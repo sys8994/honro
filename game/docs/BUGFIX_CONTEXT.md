@@ -4,6 +4,8 @@
 
 RC21 + Workshop 통합 이후 활성 런타임은 `shared/runtime`, 엔진은 `shared/engine/src`, 맵은 `shared/data/campaign.json`이다. [루트 아키텍처](../../ARCHITECTURE.md)와 [검증](../../VALIDATION.md)을 먼저 확인한다. 구 stage-maps/world는 migration/legacy의 비교 원본이다. 게임·편집기·Playtest에 별도 구현을 추가하지 않는다. BGM은 외부 assets/bgm 파일을 참조하므로 HTML과 함께 배포한다.
 
+BGM 현재 곡은 `main.js`의 `updateMusicLabel()`이 실제 재생 스트림의 파일명으로 표시한다. 우측 하단 9px 표시이며 음소거·일시정지 때는 숨긴다. 스테이지 도입 대사도 전투 상태이며, 3·6·8·10은 활성 중간/최종 보스로 인해 진입부터 05를 선택한다. 메인 테마 잔류 점검과 실제 MP3 검증은 HBUG-028을 참고한다.
+
 개별 증상·원인·검증은 [BUG_LOG.md](BUG_LOG.md), 이전 큰 수정의 수치와 화면은 [GAMEPLAY_FIXES.md](../reports/GAMEPLAY_FIXES.md)에 있다. 현재 코드가 달라졌다면 확인한 변경에 맞춰 이 문서를 갱신한다.
 
 ## 범위와 실행 구조

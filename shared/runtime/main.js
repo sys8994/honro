@@ -679,6 +679,23 @@
             if(this.musicSession!==b?.session){this.musicSession=b?.session;this.bossMusicSeen=false;}
             if(inBattle&&b.units.some(u=>u.side===1&&!u.dead&&u.hp>0&&(u.boss||u.honroMidboss||u.honroFinalBoss)&&(u.awake||u.honroFinalBoss)))this.bossMusicSeen=true;
             this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden||(inBattle&&this.modal.classList.contains('open')));
+            this.updateMusicLabel();
+        }
+        updateMusicLabel(){
+            const label=this.musicLabel||(this.musicLabel=$('bgm-now-playing')),music=this.audio?.music;
+            if(!label)return;
+            // Report the audible stream, including the old track while the next one loads.
+            const audio=music?.enabled&&!music.paused&&music.volume>0
+                ?[music.current,music.outgoing].find(a=>a&&!a.paused&&!a.ended&&!a.muted&&!a.error&&a.readyState>=2&&a.volume>0):null;
+            if(!audio){if(!label.hidden)label.hidden=true;return;}
+            const source=audio.currentSrc||audio.src;
+            if(source!==this.musicLabelSource){
+                let name=source.split('/').pop().split(/[?#]/)[0];
+                try{name=decodeURIComponent(name);}catch{/* Keep a malformed filename readable. */}
+                label.textContent=`BGM · ${name.replace(/\.mp3$/i,'')}`;
+                this.musicLabelSource=source;
+            }
+            if(label.hidden)label.hidden=false;
         }
         bind() {
             document.addEventListener('visibilitychange',()=>this.updateAudio());

@@ -33,24 +33,24 @@ npm.cmd run verify
 | editor-features | PASS · 23 checks |
 | authored | PASS · 15 checks |
 | audio-unit | PASS · 11 checks |
-| audio-browser | PASS · 28 checks |
+| audio-browser | PASS · 69 checks |
 | migration | PASS · 10 stages × 3 difficulties |
 | Existing RC21 verify | PASS · typecheck, Node audits, browser 10, performance 5 |
 | Browser uncaught JS errors | 0 |
 
 | Stage / viewport / zoom | Original Hz / ms | Game Hz / ms | Editor Hz / ms | Original / Game / Editor load ms |
 |---|---|---|---|---|
-| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 59.84 / 3.203 | 60.10 / 0.986 | 83.4 / 94.7 / 56.6 |
-| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 60.02 / 2.334 | 60.30 / 1.814 | 106.2 / 96.2 / 86.5 |
-| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.17 / 3.831 | 59.67 / 1.537 | 102.3 / 99.8 / 55.8 |
-| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.84 / 2.642 | 60.29 / 2.113 | 99 / 94.9 / 63.1 |
-| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.01 / 3.871 | 59.87 / 1.569 | 87.6 / 92.5 / 69.6 |
-| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 59.67 / 2.513 | 59.85 / 2.010 | 99.2 / 96.8 / 58.1 |
+| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 59.85 / 3.680 | 59.84 / 0.948 | 83.4 / 101.7 / 58.3 |
+| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 60.03 / 2.233 | 60.33 / 1.576 | 106.2 / 107.3 / 49.5 |
+| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.06 / 3.629 | 60.29 / 1.435 | 102.3 / 95.8 / 46.2 |
+| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 60.05 / 2.275 | 60.06 / 1.590 | 99 / 80.4 / 33.8 |
+| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 59.99 / 3.536 | 59.81 / 1.343 | 87.6 / 82.6 / 42.2 |
+| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 59.77 / 2.002 | 60.22 / 1.755 | 99.2 / 78 / 39.8 |
 
 | Metric | Original | Game | Editor |
 |---|---|---|---|
-| renderMaxMs | 3.70 ms … 5.40 ms | 3.60 ms … 5.80 ms | 1.60 ms … 2.90 ms |
-| heapDelta | -0.436 MB … 1.311 MB | -1.353 MB … 1.300 MB | -1.644 MB … 0.919 MB |
+| renderMaxMs | 3.70 ms … 5.40 ms | 3.00 ms … 6.80 ms | 2.10 ms … 2.80 ms |
+| heapDelta | -0.436 MB … 1.311 MB | -0.258 MB … 1.770 MB | -1.710 MB … 2.358 MB |
 | warmCacheRebuilds | 0 … 0 | 0 … 0 | 0 … 0 |
 
 Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. 수치 원본: [before](reports/performance-before.json), [game](reports/performance-game.json), [editor](reports/performance-editor.json).
