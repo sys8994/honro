@@ -1,0 +1,71 @@
+{
+  "rows": [
+    {
+      "stage": 1,
+      "terrain": 9,
+      "units": 6,
+      "passed": true
+    },
+    {
+      "stage": 2,
+      "terrain": 17,
+      "units": 12,
+      "passed": true
+    },
+    {
+      "stage": 3,
+      "terrain": 7,
+      "units": 10,
+      "passed": true
+    },
+    {
+      "stage": 4,
+      "terrain": 7,
+      "units": 12,
+      "passed": true
+    },
+    {
+      "stage": 5,
+      "terrain": 14,
+      "units": 13,
+      "passed": true
+    },
+    {
+      "stage": 6,
+      "terrain": 10,
+      "units": 16,
+      "passed": true
+    },
+    {
+      "stage": 7,
+      "terrain": 11,
+      "units": 17,
+      "passed": true
+    },
+    {
+      "stage": 8,
+      "terrain": 11,
+      "units": 14,
+      "passed": true
+    },
+    {
+      "stage": 9,
+      "terrain": 8,
+      "units": 16,
+      "passed": true
+    },
+    {
+      "stage": 10,
+      "terrain": 9,
+      "units": 12,
+      "passed": true
+    }
+  ],
+  "reproducible": true,
+  "difficulties": [
+    "story",
+    "normal",
+    "veteran"
+  ],
+  "roundTrip": true
+}

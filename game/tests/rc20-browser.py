@@ -27,7 +27,7 @@ with sync_playwright() as p:
         page.screenshot(path=str(OUT/f'stage-{sid}-detail.png'))
         maps.append(d)
     # A small regression tripwire: do not reintroduce costly Canvas filters.
-    source=(ROOT/'game/src/renderer.js').read_text(encoding='utf-8')
+    source=(ROOT/'shared/runtime/renderer.js').read_text(encoding='utf-8')
     ck('.filter =' not in source and '.filter=' not in source,'No Canvas filter performance regression')
     ck(not errors,'No browser runtime exceptions',errors)
     (ROOT/'game/reports/rc20-browser.json').write_text(json.dumps({'checks':checks,'maps':maps,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')

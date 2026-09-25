@@ -6,9 +6,11 @@ import {buildCore} from '../engine/build.mjs';
 export const gameRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 export async function runtime(){
   const context=vm.createContext({console,performance,structuredClone});
-  vm.runInContext(await buildCore(),context);
-  context.HONRO_BALANCE=JSON.parse(await readFile(path.join(gameRoot,'config/balance.json'),'utf8'));
-  for(const file of ['content','terrain-space','map-engine','stage-maps','battlefield-layouts','progression','encounters','world','difficulty','allies','mission','stage-rules','objectives','combat-status'])vm.runInContext(await readFile(path.join(gameRoot,`src/${file}.js`),'utf8'),context,{filename:file+'.js'});
+  const {runtimeParts}=await import('../../shared/build.mjs');
+  for(const source of await runtimeParts({vector:false,render:false}))vm.runInContext(source,context);
+  // Frozen source specs remain available solely to the historical map audits.
+  vm.runInContext(await readFile(path.join(gameRoot,'../migration/legacy/rc21-stage-maps.js'),'utf8'),context);
+
   return context;
 }
 export function battlefield(g,id,{profile=null,entry=true}={}){

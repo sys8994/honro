@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 export async function buildCore(){
-  const dir=path.join(path.dirname(fileURLToPath(import.meta.url)),'src');
+  const dir=path.join(path.dirname(fileURLToPath(import.meta.url)),'../../shared/engine/src');
   const files=(await readdir(dir)).filter(f=>f.endsWith('.ts')).sort();
   const modules=[];
   for(const f of files){
