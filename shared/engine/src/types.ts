@@ -58,6 +58,7 @@ export interface Terrain {
     route?: boolean;
 }
 export interface Water {
+    bottom?: Vec[];
     x: number;
     y: number;
     w: number;

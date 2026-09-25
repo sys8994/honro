@@ -3,10 +3,12 @@
 본게임 RC21과 Map Workshop을 하나의 엔진·Scene·맵 모델로 통합한 정적 웹 프로젝트입니다.
 
 - 게임: 루트 `HONRO.html`을 브라우저에서 엽니다.
-- 편집기: 루트 `HONRO_WORKSHOP.html`을 엽니다. 기본 프로젝트는 원본 Stage 1~10입니다.
+- 편집기: 루트 `HONRO_WORKSHOP.html`을 엽니다. 기본 프로젝트는 Stage 1~10이며, 1·2는 목업을 반영한 숲길·분지 개편판입니다.
 - 실행 자산: `assets/bgm/`을 HTML과 함께 같은 디렉터리 구조로 배포합니다. MP3는 HTML에 포함되지 않습니다.
 - 편집한 맵 실행: Workshop의 Project JSON을 내보낸 뒤 게임 타이틀의 `Workshop Map`으로 가져옵니다. 캠페인 저장과 분리해 실행합니다.
 - Playtest: 실제 게임 HUD와 조작을 사용합니다. 시작 위치·선택 유닛·현재 카메라에서 시작하고 Stop으로 편집에 복귀합니다.
+
+1·2스테이지 개편의 실제 화면·작성 과정·검증은 [개편 보고서](reports/stage12-redesign/README.md)에 있습니다. 기존 전투 저장은 보존하며 새 스테이지 진입·재시도에 새 맵을 적용합니다. Workshop에 기존 자동저장 프로젝트가 있으면 활성 [campaign.json](shared/data/campaign.json)을 Import하여 새 기본 맵을 불러올 수 있습니다.
 
 `file://`로 실행하거나, 저장소 루트에서 `python -m http.server 8000`을 실행하고 `http://localhost:8000/HONRO_WORKSHOP.html`을 엽니다.
 

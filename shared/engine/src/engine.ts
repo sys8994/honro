@@ -17,6 +17,13 @@ const CURSES = new Set(['curseWeak','curseBetray','curseDot','curseBind','curseC
 const SUMMONS = new Set(['summonStalker','summonLantern','summonCharger','summonWarden','summonHost']);
 const BODY = new Set(['leap', 'slam', 'spin', 'dash', 'quake', 'guard', 'lift', 'recall', 'charge', 'vault', 'cataclysmCharge']);
 const ARROWS = new Set(['arrow', 'pierce', 'ricochet', 'triple', 'push', 'bind', 'break', 'sticky', 'pull', 'mark', 'rain', 'return', 'homing', 'windArrow', 'seekRain', 'seekChild', 'hunterBolt']);
+// Authored pools follow their actual basin floor, so an elevated pool cannot shock actors below the cliff.
+function waterFloor(w:Battle['waters'][number],x:number){
+    if(!w.bottom?.length)return Infinity;
+    const ps=w.bottom,nx=clamp(x,w.x,w.x+w.w);
+    for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i];if(nx>=a.x&&nx<=b.x)return a.y+(b.y-a.y)*(nx-a.x)/(b.x-a.x||1);}
+    return w.y+w.depth;
+}
 export interface Collision {
     x: number;
     y: number;
@@ -1013,9 +1020,9 @@ export class Engine {
         if (p.mode === 'lightning') {
             this.blast(p.x, p.y, p.blast, p.damage, p.owner, false, p);
             for (const w of this.b.waters)
-                if (w.kind !== 'lava' && p.x > w.x - 45 && p.x < w.x + w.w + 45 && p.y > w.y - 55) {
+                if (w.kind !== 'lava' && p.x > w.x - 45 && p.x < w.x + w.w + 45 && p.y > w.y - 55 && p.y <= waterFloor(w,p.x)+55) {
                     for (const t of this.b.units)
-                        if (!t.dead && t.x > w.x && t.x < w.x + w.w && t.y >= w.y - 8) {
+                        if (!t.dead && t.x > w.x && t.x < w.x + w.w && t.y >= w.y - 8 && t.y <= waterFloor(w,t.x)+8) {
                             this.hurt(t, 27 * u.attack, p.owner, false, p);
                             this.fx('line', t.x, t.y - t.h * .5, p.color, 40);
                         }

@@ -6,6 +6,10 @@ RC21 + Workshop 통합 이후 활성 런타임은 `shared/runtime`, 엔진은 `s
 
 BGM 현재 곡은 `main.js`의 `updateMusicLabel()`이 실제 재생 스트림의 파일명으로 표시한다. 우측 하단 9px 표시이며 음소거·일시정지 때는 숨긴다. 스테이지 도입 대사도 전투 상태이며, 3·6·8·10은 활성 중간/최종 보스로 인해 진입부터 05를 선택한다. 메인 테마 잔류 점검과 실제 MP3 검증은 HBUG-028을 참고한다.
 
+**Stage 1·2 현재 지형은 2026-09-25 목업 개편판이다.** `workshop/recipes/stage12-forest-basin.js`와 실제 Workshop 명령/내보내기로 작성했다. 1은 4200×2200 숲길·가지 2개·물 1곳, 2는 4300×3300 분지·가지 5개·물 3곳이다. 상여는 바닥 x=1240→3340으로 이동한다. 아래 과거 RC 지형 수치보다 이 작성 데이터가 우선한다. 상세 화면과 검증은 [개편 기록](../../reports/stage12-redesign/README.md), 회귀는 `tests/stage12-redesign.mjs`에 있다. 기존 저장 Battle은 강제 지형 이전 없이 유지한다.
+
+매립 바위에서는 유효 지지면이 없는 다음 보행 위치의 발끝도 고체 침투 검사에 포함한다. 물 재질은 `conductive:true`로 실제 Water에 연결하며 바닥 높이 아래 유닛에는 전도하지 않는다. 배경 나무는 충돌을 갖지 않는다.
+
 개별 증상·원인·검증은 [BUG_LOG.md](BUG_LOG.md), 이전 큰 수정의 수치와 화면은 [GAMEPLAY_FIXES.md](../reports/GAMEPLAY_FIXES.md)에 있다. 현재 코드가 달라졌다면 확인한 변경에 맞춰 이 문서를 갱신한다.
 
 ## 범위와 실행 구조

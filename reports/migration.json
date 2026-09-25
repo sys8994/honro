@@ -2,13 +2,13 @@
   "rows": [
     {
       "stage": 1,
-      "terrain": 9,
+      "terrain": 3,
       "units": 6,
       "passed": true
     },
     {
       "stage": 2,
-      "terrain": 17,
+      "terrain": 9,
       "units": 12,
       "passed": true
     },
@@ -62,6 +62,11 @@
     }
   ],
   "reproducible": true,
+  "redesignedStages": [
+    1,
+    2
+  ],
+  "comparison": "Original import for 1/2; unchanged active stages 3-10. Workshop recipe reproduction verified for the complete active project.",
   "difficulties": [
     "story",
     "normal",

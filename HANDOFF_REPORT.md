@@ -2,6 +2,8 @@
 
 기록일: 2026-09-25. RC21 본게임과 Workshop V2를 실제 공통 runtime으로 통합하고 `master`에 배포했습니다.
 
+후속 변경: 같은 날 BGM 현재 곡 표시와 Stage 1·2 목업 개편을 추가했습니다. 아래 내용은 최초 통합 시점의 기록이며, 현재 맵·스크린샷·작성 레시피·저장 정책은 [Stage 1·2 개편 보고서](reports/stage12-redesign/README.md), 최신 검증과 산출물 해시는 [VALIDATION.md](VALIDATION.md)를 기준으로 확인합니다.
+
 ## 변경과 아키텍처 결정
 
 - 엔진·물리·카메라·Scene·실제 벡터 유닛·임무·스토리·오디오를 shared로 모았습니다. `shared/build.mjs` 하나가 번들 목록을 관리합니다.

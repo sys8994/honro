@@ -24,6 +24,7 @@ Project: `schema/version/name/activeStageId/settings/library/stages`. Settings�
 - 공통: `baseMaterial/oneWay/breakable/layer/properties`. Properties는 hp·임무 플래그 등 기존 속성을 보존합니다.
 - Material: `id/terrainId/kind/x1/x2/reference?/depth/alpha`. 실제 지지면에서 생성합니다. 원본의 명시적 `points/surface/bottom`은 그대로 저장하므로 기존 재질은 지형 편집 시 자동으로 재설계되지 않습니다.
 - grass/moss/rock/scree/mud/soil/charred/stone 및 water/shallow-water를 실제 Scene 재질로 컴파일합니다. 물의 표면은 수평이고 바닥은 지지면을 따릅니다.
+- 명시적 `water-pool`의 `conductive:true`는 surface/bottom을 엔진 Water에도 연결합니다. 고체 충돌을 만들지 않으며 전격 전도는 실제 바닥 높이 안으로 제한합니다. `grass-mass`의 선택적 `colors:[top,bottom]`은 작성한 잔디 면의 색을 지정합니다.
 
 ## Element asset / instance
 

@@ -46,6 +46,9 @@ export function walkTerrain(e:any,u:Unit,direction:number,dt:number):boolean{
     let support=grounded?e.surface(nx,u.y-28,u.y+28):null;
     if(support&&Math.abs(terrainSlopeAt(support.t,nx,support.y))>1.35)support=null;
     const ny=support?support.y:u.y;
+    // At an embedded rock seam the old support can end just below the adjacent
+    // solid. Head/torso probes miss this foot-only entry; stop for a jump instead.
+    if(!support&&e.b.terrain.some((t:Terrain)=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,nx-.1,ny-.1,.2,.08,.001)))break;
     // A steep face rejected as a walkable slope is still solid. Previously
     // null support meant horizontal movement INTO that face, then falling inside.
     const skip=e.b.terrain.filter((t:Terrain)=>t.oneWay||t===current?.t||t===support?.t).map((t:Terrain)=>t.id);

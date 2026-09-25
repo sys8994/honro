@@ -11,6 +11,9 @@ for name in ['integration','editor-features','authored','audio-unit','audio-brow
     data=read(name+'.json')
     assert not data.get('errors'),name
     lines.append(f'| {name} | PASS · {len(data["checks"])} checks |')
+for name in ['stage12-redesign/checks','stage12-redesign/browser']:
+    data=read(name+'.json');assert not data.get('failed') and not data.get('errors'),name
+    lines.append(f'| {name} | PASS · {len(data["checks"])} checks |')
 migration=read('migration.json');assert migration['roundTrip'] and migration['reproducible']
 lines.append(f'| migration | PASS · {len(migration["rows"])} stages × {len(migration["difficulties"])} difficulties |')
 lines.extend(['| Existing RC21 verify | PASS · typecheck, Node audits, browser 10, performance 5 |',
@@ -30,7 +33,7 @@ for name,fmt in [('renderMaxMs',lambda x:f'{x:.2f} ms'),('heapDelta',lambda x:f'
     for rows in [before,game,editor]:
         xs=[r[name] for r in rows];values.append(fmt(min(xs))+' … '+fmt(max(xs)))
     lines.append('| '+name+' | '+' | '.join(values)+' |')
-lines.extend(['','Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. 수치 원본: [before](reports/performance-before.json), [game](reports/performance-game.json), [editor](reports/performance-editor.json).',
+lines.extend(['','Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. Original은 RC21 원본 지형이고 Game/Editor는 개편 지형이므로 동일 콘텐츠의 성능 비교는 아닙니다. 수치 원본: [before](reports/performance-before.json), [game](reports/performance-game.json), [editor](reports/performance-editor.json).',
               '정적 cache 바이트 예산과 build/hit 횟수도 각 JSON에 포함됩니다.'])
 p=ROOT/'VALIDATION.md';text=p.read_text(encoding='utf-8');start='<!-- RESULTS_START -->';end='<!-- RESULTS_END -->'
 p.write_text(text.split(start)[0]+start+'\n'+'\n'.join(lines)+'\n'+end+text.split(end)[1],encoding='utf-8',newline='\n')

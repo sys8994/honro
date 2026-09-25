@@ -43,7 +43,9 @@ export async function migrate(){
  return project;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){
- const project=await migrate();await mkdir(path.join(root,'shared/data'),{recursive:true});
+ const baseline=await migrate(),g=await legacyRuntime();
+ for(const file of ['shared/map/geometry.js','shared/map/commands.js','workshop/recipes/stage12-forest-basin.js'])vm.runInContext(await read(file),g);
+ const project=g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline));await mkdir(path.join(root,'shared/data'),{recursive:true});
  await writeFile(path.join(root,'shared/data/campaign.json'),JSON.stringify(project,null,2)+'\n');
- console.log(`Migrated ${project.stages.length} stages, ${project.stages.reduce((n,s)=>n+s.terrains.length,0)} exact polygons`);
+ console.log(`Migrated ${project.stages.length} stages and replayed the requested Stage 1/2 Workshop design`);
 }

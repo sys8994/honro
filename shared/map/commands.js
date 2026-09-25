@@ -10,8 +10,12 @@ function apply(input,commands){
  for(const original of commands){const c={...original,op:aliases[original.op]||original.op},st=p.stages.find(s=>s.id===(c.stageId||p.activeStageId));if(!st)throw Error('Stage not found');
   switch(c.op){
   case'world.set':for(const k of ['width','height','backdrop','name'])if(c[k]!==undefined)st[k]=c[k];break;
+  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
+  case'object.update':{const {o}=target(st,c.id);for(const [k,v] of Object.entries(c.values||{})){if(k==='id')throw Error('Use rename to change an ID');o[k]=clone(v);}break;}
+  case'asset.add':if(p.library.some(a=>a.id===c.asset?.id))throw Error('Duplicate asset '+c.asset.id);p.library.push(clone(c.asset));break;
   case'terrain.add':case'terrain.addSolid':{
    const solid=c.op==='terrain.addSolid'||c.type==='solid',t={id:c.id||uid('terrain'),name:c.name||'Terrain',type:solid?'solid':c.type||'ground',baseMaterial:c.material||'soil',breakable:!!c.breakable,oneWay:!!c.oneWay,layer:'terrain',detail:{spacing:c.spacing??18,roughness:c.roughness??0,seed:c.seed??42,optimizeEpsilon:c.optimizeEpsilon??0}};
+   if(c.properties)t.properties=clone(c.properties);
    if(solid)t.points=points(c.points);else{t.control=points(c.control);t.floor=c.floor??st.height+180;t.thickness=c.thickness??80;}st.terrains.push(t);break;
   }
   case'terrain.moveNode':{const t=target(st,c.id).o,ps=t.type==='solid'?t.points:t.control;if(!ps?.[c.index])throw Error('Terrain node not found');for(const k of ['x','y'])if(c[k]!==undefined)ps[c.index][k]=c[k];break;}

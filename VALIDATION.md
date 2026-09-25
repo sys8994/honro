@@ -14,7 +14,8 @@ npm.cmd run verify
 
 | 검사 | 판정 기준 / 결과 파일 |
 |---|---|
-| Migration | 10 Stage × story/normal/veteran, 원본 상태·geometry·material·unit·events 일치, 재생성·왕복 일치. [결과](reports/migration.json) |
+| Migration | 10 Stage × story/normal/veteran 원본 이관 일치. 개편한 1·2는 원본 프로젝트로 비교하고 활성 3~10은 원본과 동일. 현재 전체 프로젝트는 원본+Workshop 레시피 재현·왕복 일치. [결과](reports/migration.json) |
+| Stage 1·2 redesign | 실제 Workshop 작성·내보내기, 이동·점프·가지 파괴·상여 경로·물 전도, 실제 Playtest 입력. [결과·화면](reports/stage12-redesign/README.md) |
 | Integration | Stage 1~10 동일 viewport/camera/zoom에서 픽셀 차이 0. 실제 게임/iframe에 같은 420 tick 입력을 적용한 위치·속도·grounded·충돌·투사체 trace 일치. 10 Stage 이동·점프·공격 smoke, 실제 유닛·undo/redo·preview·모바일 HUD 포함. [결과](reports/integration.json) |
 | Editor features | 실제 포인터로 terrain/solid·node/whole-shape drag·Ctrl snap·paint·scatter·lock/hide·Element polygon/collision·왕복·legacy import·asset layer 검사. [결과](reports/editor-features.json) |
 | Authored game | 실제 file input import, level/rank, encounter, 턴 경계 trigger/dialogue, 소켓 interaction, 목표, 파괴 cache, retry, localStorage 격리·프로필 복원. [결과](reports/authored.json) |
@@ -34,26 +35,28 @@ npm.cmd run verify
 | authored | PASS · 15 checks |
 | audio-unit | PASS · 11 checks |
 | audio-browser | PASS · 69 checks |
+| stage12-redesign/checks | PASS · 18 checks |
+| stage12-redesign/browser | PASS · 9 checks |
 | migration | PASS · 10 stages × 3 difficulties |
 | Existing RC21 verify | PASS · typecheck, Node audits, browser 10, performance 5 |
 | Browser uncaught JS errors | 0 |
 
 | Stage / viewport / zoom | Original Hz / ms | Game Hz / ms | Editor Hz / ms | Original / Game / Editor load ms |
 |---|---|---|---|---|
-| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 59.85 / 3.680 | 59.84 / 0.948 | 83.4 / 101.7 / 58.3 |
-| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 60.03 / 2.233 | 60.33 / 1.576 | 106.2 / 107.3 / 49.5 |
-| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.06 / 3.629 | 60.29 / 1.435 | 102.3 / 95.8 / 46.2 |
-| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 60.05 / 2.275 | 60.06 / 1.590 | 99 / 80.4 / 33.8 |
-| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 59.99 / 3.536 | 59.81 / 1.343 | 87.6 / 82.6 / 42.2 |
-| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 59.77 / 2.002 | 60.22 / 1.755 | 99.2 / 78 / 39.8 |
+| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 59.73 / 4.058 | 59.63 / 0.785 | 83.4 / 81.2 / 38.8 |
+| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 59.64 / 2.891 | 60.28 / 1.715 | 106.2 / 110.6 / 73.2 |
+| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 59.89 / 3.624 | 59.92 / 1.503 | 102.3 / 77.4 / 37.4 |
+| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.84 / 3.094 | 59.71 / 1.908 | 99 / 124.4 / 83.8 |
+| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.17 / 4.024 | 59.94 / 1.369 | 87.6 / 79.6 / 28.8 |
+| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 60.04 / 3.314 | 60.06 / 1.836 | 99.2 / 143.8 / 76.5 |
 
 | Metric | Original | Game | Editor |
 |---|---|---|---|
-| renderMaxMs | 3.70 ms … 5.40 ms | 3.00 ms … 6.80 ms | 2.10 ms … 2.80 ms |
-| heapDelta | -0.436 MB … 1.311 MB | -0.258 MB … 1.770 MB | -1.710 MB … 2.358 MB |
+| renderMaxMs | 3.70 ms … 5.40 ms | 4.30 ms … 5.60 ms | 1.40 ms … 3.00 ms |
+| heapDelta | -0.436 MB … 1.311 MB | -1.478 MB … 2.980 MB | -2.153 MB … 2.359 MB |
 | warmCacheRebuilds | 0 … 0 | 0 … 0 | 0 … 0 |
 
-Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. 수치 원본: [before](reports/performance-before.json), [game](reports/performance-game.json), [editor](reports/performance-editor.json).
+Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. Original은 RC21 원본 지형이고 Game/Editor는 개편 지형이므로 동일 콘텐츠의 성능 비교는 아닙니다. 수치 원본: [before](reports/performance-before.json), [game](reports/performance-game.json), [editor](reports/performance-editor.json).
 정적 cache 바이트 예산과 build/hit 횟수도 각 JSON에 포함됩니다.
 <!-- RESULTS_END -->
 

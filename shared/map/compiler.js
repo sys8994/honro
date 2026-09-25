@@ -30,7 +30,7 @@ function createBattle(st,project,profile=profileFor(st)){
   terrain:map.terrain,honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,
   honroMapAnchors:clone(st.anchors||{}),honroMap:clone(st.design||{}),honroRoute:clone(st.routes||[]),honroDetailStats:clone(st.detailStats||{}),
   honroMarkers:clone(st.markers||[]),honroEvents:clone(st.events.filter(e=>e.when)),honroAuthoredEvents:clone(st.events.filter(e=>!e.when)),honroObjectives:clone(st.objectives),
-  projectiles:[],units:[],events:[],fields:[],drafts:[],waters:[],zones:[],decor:[],queue:[],phase:'aim',round:1,side:0,
+  projectiles:[],units:[],events:[],fields:[],drafts:[],waters:map.materials.filter(z=>z.conductive&&z.kind==='water-pool').map(z=>({x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y})),frozen:0,kind:'water'})),zones:[],decor:[],queue:[],phase:'aim',round:1,side:0,
   honroState:clone(st.initialState?.honroState||{flags:{},collected:[],hold:0,lastRound:1,rescued:false,combatLog:[]})});
  delete b.volley;delete b.summonTurn;delete b.honroGrowth;
  for(const e of b.honroAuthoredEvents){

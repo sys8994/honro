@@ -1,75 +1,68 @@
 {
   "checks": [
     {
-      "name": "Stage 1 loads RC20",
+      "name": "Stage 1 loads shared campaign runtime",
       "detail": {
         "sid": 1,
         "w": 4200,
-        "h": 3200,
+        "h": 2200,
         "rev": 20,
         "mapRev": 20,
         "stats": {
-          "groundTop": 216,
-          "ribbonTop": 35,
-          "branchNodes": 66,
-          "solidNodes": 34,
-          "surfaceNodes": 349,
-          "scatterCount": 34
+          "groundTop": 245,
+          "branchNodes": 20,
+          "solidNodes": 20,
+          "scatterCount": 20
         },
         "zones": [
           {
-            "kind": "grass-mass",
-            "n": 24,
+            "kind": "water-pool",
+            "n": 28,
             "attached": true
           },
           {
             "kind": "grass-mass",
-            "n": 22,
-            "attached": true
-          },
-          {
-            "kind": "grass-mass",
-            "n": 14,
+            "n": 96,
             "attached": true
           },
           {
             "kind": "exposed-rock-mass",
-            "n": 22,
+            "n": 28,
             "attached": true
           },
           {
-            "kind": "exposed-rock-mass",
-            "n": 20,
+            "kind": "grass-mass",
+            "n": 34,
+            "attached": true
+          },
+          {
+            "kind": "moss-mass",
+            "n": 18,
+            "attached": true
+          },
+          {
+            "kind": "grass-mass",
+            "n": 26,
+            "attached": true
+          },
+          {
+            "kind": "moss-mass",
+            "n": 26,
+            "attached": true
+          },
+          {
+            "kind": "grass-mass",
+            "n": 26,
             "attached": true
           },
           {
             "kind": "mud-mass",
-            "n": 14,
+            "n": 6,
             "attached": true
           },
           {
-            "kind": "moss-mass",
-            "n": 24,
-            "attached": true
-          },
-          {
-            "kind": "moss-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "exposed-rock-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "exposed-rock-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "exposed-rock-mass",
-            "n": 24,
+            "kind": "mud-mass",
+            "n": 12,
             "attached": true
           },
           {
@@ -78,71 +71,35 @@
             "attached": true
           },
           {
-            "kind": "moss-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "exposed-rock-mass",
-            "n": 20,
-            "attached": true
-          },
-          {
-            "kind": "exposed-rock-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "moss-mass",
-            "n": 22,
-            "attached": true
-          },
-          {
-            "kind": "moss-mass",
-            "n": 16,
-            "attached": true
-          },
-          {
             "kind": "grass-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "water-pool",
-            "n": 29,
+            "n": 26,
             "attached": true
           }
         ],
-        "landmarks": 38,
-        "terrain": 9,
+        "landmarks": 27,
+        "terrain": 5,
         "branchIds": [
-          "root-step-low",
-          "root-step-mid",
-          "root-step-high",
-          "canopy-root"
+          "pine-branch-west",
+          "pine-branch-east"
         ]
       }
     },
     {
       "name": "Stage 1 high-density ground visible",
       "detail": {
-        "groundTop": 216,
-        "ribbonTop": 35,
-        "branchNodes": 66,
-        "solidNodes": 34,
-        "surfaceNodes": 349,
-        "scatterCount": 34
+        "groundTop": 245,
+        "branchNodes": 20,
+        "solidNodes": 20,
+        "scatterCount": 20
       }
     },
     {
       "name": "Stage 1 deterministic scenery density",
       "detail": {
-        "groundTop": 216,
-        "ribbonTop": 35,
-        "branchNodes": 66,
-        "solidNodes": 34,
-        "surfaceNodes": 349,
-        "scatterCount": 34
+        "groundTop": 245,
+        "branchNodes": 20,
+        "solidNodes": 20,
+        "scatterCount": 20
       }
     },
     {
@@ -157,60 +114,48 @@
       ]
     },
     {
-      "name": "Stage 2 loads RC20",
+      "name": "Stage 2 loads shared campaign runtime",
       "detail": {
         "sid": 2,
         "w": 4300,
-        "h": 4000,
+        "h": 3300,
         "rev": 20,
         "mapRev": 20,
         "stats": {
-          "groundTop": 252,
-          "ribbonTop": 99,
-          "branchNodes": 46,
-          "solidNodes": 72,
-          "surfaceNodes": 318,
+          "groundTop": 250,
+          "branchNodes": 44,
+          "solidNodes": 413,
           "scatterCount": 21
         },
         "zones": [
           {
-            "kind": "exposed-rock-mass",
-            "n": 14,
+            "kind": "water-pool",
+            "n": 21,
             "attached": true
           },
           {
-            "kind": "exposed-rock-mass",
+            "kind": "water-pool",
+            "n": 30,
+            "attached": true
+          },
+          {
+            "kind": "water-pool",
             "n": 16,
             "attached": true
           },
           {
-            "kind": "exposed-rock-mass",
-            "n": 12,
+            "kind": "grass-mass",
+            "n": 52,
             "attached": true
           },
           {
-            "kind": "moss-mass",
-            "n": 12,
+            "kind": "grass-mass",
+            "n": 42,
             "attached": true
           },
           {
-            "kind": "mud-mass",
-            "n": 16,
-            "attached": true
-          },
-          {
-            "kind": "scree-mass",
-            "n": 20,
-            "attached": true
-          },
-          {
-            "kind": "scree-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "scree-mass",
-            "n": 16,
+            "kind": "grass-mass",
+            "n": 42,
             "attached": true
           },
           {
@@ -219,84 +164,77 @@
             "attached": true
           },
           {
-            "kind": "mud-mass",
-            "n": 26,
-            "attached": true
-          },
-          {
             "kind": "scree-mass",
             "n": 14,
             "attached": true
           },
           {
-            "kind": "mud-mass",
+            "kind": "moss-mass",
+            "n": 18,
+            "attached": true
+          },
+          {
+            "kind": "scree-mass",
             "n": 18,
             "attached": true
           },
           {
             "kind": "mud-mass",
-            "n": 14,
+            "n": 30,
             "attached": true
           },
           {
             "kind": "grass-mass",
-            "n": 16,
+            "n": 18,
             "attached": true
           },
           {
-            "kind": "exposed-rock-mass",
+            "kind": "moss-mass",
             "n": 22,
             "attached": true
           },
           {
-            "kind": "scree-mass",
-            "n": 14,
+            "kind": "grass-mass",
+            "n": 26,
             "attached": true
           },
           {
-            "kind": "grass-mass",
-            "n": 14,
-            "attached": true
-          },
-          {
-            "kind": "grass-mass",
+            "kind": "exposed-rock-mass",
             "n": 12,
             "attached": true
           },
           {
-            "kind": "water-pool",
-            "n": 34,
+            "kind": "moss-mass",
+            "n": 18,
             "attached": true
           }
         ],
-        "landmarks": 25,
-        "terrain": 17,
+        "landmarks": 35,
+        "terrain": 20,
         "branchIds": [
           "left-tree-branch-upper",
+          "left-tree-branch-middle",
           "left-tree-branch-lower",
-          "right-tree-branch"
+          "right-tree-branch-lower",
+          "right-tree-branch-upper"
         ]
       }
     },
     {
       "name": "Stage 2 high-density ground visible",
       "detail": {
-        "groundTop": 252,
-        "ribbonTop": 99,
-        "branchNodes": 46,
-        "solidNodes": 72,
-        "surfaceNodes": 318,
+        "groundTop": 250,
+        "branchNodes": 44,
+        "solidNodes": 413,
         "scatterCount": 21
       }
     },
     {
       "name": "Stage 2 deterministic scenery density",
       "detail": {
-        "groundTop": 252,
-        "ribbonTop": 99,
-        "branchNodes": 46,
-        "solidNodes": 72,
-        "surfaceNodes": 318,
+        "groundTop": 250,
+        "branchNodes": 44,
+        "solidNodes": 413,
         "scatterCount": 21
       }
     },
@@ -324,71 +262,64 @@
     {
       "sid": 1,
       "w": 4200,
-      "h": 3200,
+      "h": 2200,
       "rev": 20,
       "mapRev": 20,
       "stats": {
-        "groundTop": 216,
-        "ribbonTop": 35,
-        "branchNodes": 66,
-        "solidNodes": 34,
-        "surfaceNodes": 349,
-        "scatterCount": 34
+        "groundTop": 245,
+        "branchNodes": 20,
+        "solidNodes": 20,
+        "scatterCount": 20
       },
       "zones": [
         {
-          "kind": "grass-mass",
-          "n": 24,
+          "kind": "water-pool",
+          "n": 28,
           "attached": true
         },
         {
           "kind": "grass-mass",
-          "n": 22,
-          "attached": true
-        },
-        {
-          "kind": "grass-mass",
-          "n": 14,
+          "n": 96,
           "attached": true
         },
         {
           "kind": "exposed-rock-mass",
-          "n": 22,
+          "n": 28,
           "attached": true
         },
         {
-          "kind": "exposed-rock-mass",
-          "n": 20,
+          "kind": "grass-mass",
+          "n": 34,
+          "attached": true
+        },
+        {
+          "kind": "moss-mass",
+          "n": 18,
+          "attached": true
+        },
+        {
+          "kind": "grass-mass",
+          "n": 26,
+          "attached": true
+        },
+        {
+          "kind": "moss-mass",
+          "n": 26,
+          "attached": true
+        },
+        {
+          "kind": "grass-mass",
+          "n": 26,
           "attached": true
         },
         {
           "kind": "mud-mass",
-          "n": 14,
+          "n": 6,
           "attached": true
         },
         {
-          "kind": "moss-mass",
-          "n": 24,
-          "attached": true
-        },
-        {
-          "kind": "moss-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "exposed-rock-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "exposed-rock-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "exposed-rock-mass",
-          "n": 24,
+          "kind": "mud-mass",
+          "n": 12,
           "attached": true
         },
         {
@@ -397,103 +328,59 @@
           "attached": true
         },
         {
-          "kind": "moss-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "exposed-rock-mass",
-          "n": 20,
-          "attached": true
-        },
-        {
-          "kind": "exposed-rock-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "moss-mass",
-          "n": 22,
-          "attached": true
-        },
-        {
-          "kind": "moss-mass",
-          "n": 16,
-          "attached": true
-        },
-        {
           "kind": "grass-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "water-pool",
-          "n": 29,
+          "n": 26,
           "attached": true
         }
       ],
-      "landmarks": 38,
-      "terrain": 9,
+      "landmarks": 27,
+      "terrain": 5,
       "branchIds": [
-        "root-step-low",
-        "root-step-mid",
-        "root-step-high",
-        "canopy-root"
+        "pine-branch-west",
+        "pine-branch-east"
       ]
     },
     {
       "sid": 2,
       "w": 4300,
-      "h": 4000,
+      "h": 3300,
       "rev": 20,
       "mapRev": 20,
       "stats": {
-        "groundTop": 252,
-        "ribbonTop": 99,
-        "branchNodes": 46,
-        "solidNodes": 72,
-        "surfaceNodes": 318,
+        "groundTop": 250,
+        "branchNodes": 44,
+        "solidNodes": 413,
         "scatterCount": 21
       },
       "zones": [
         {
-          "kind": "exposed-rock-mass",
-          "n": 14,
+          "kind": "water-pool",
+          "n": 21,
           "attached": true
         },
         {
-          "kind": "exposed-rock-mass",
+          "kind": "water-pool",
+          "n": 30,
+          "attached": true
+        },
+        {
+          "kind": "water-pool",
           "n": 16,
           "attached": true
         },
         {
-          "kind": "exposed-rock-mass",
-          "n": 12,
+          "kind": "grass-mass",
+          "n": 52,
           "attached": true
         },
         {
-          "kind": "moss-mass",
-          "n": 12,
+          "kind": "grass-mass",
+          "n": 42,
           "attached": true
         },
         {
-          "kind": "mud-mass",
-          "n": 16,
-          "attached": true
-        },
-        {
-          "kind": "scree-mass",
-          "n": 20,
-          "attached": true
-        },
-        {
-          "kind": "scree-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "scree-mass",
-          "n": 16,
+          "kind": "grass-mass",
+          "n": 42,
           "attached": true
         },
         {
@@ -502,62 +389,59 @@
           "attached": true
         },
         {
-          "kind": "mud-mass",
-          "n": 26,
-          "attached": true
-        },
-        {
           "kind": "scree-mass",
           "n": 14,
           "attached": true
         },
         {
-          "kind": "mud-mass",
+          "kind": "moss-mass",
+          "n": 18,
+          "attached": true
+        },
+        {
+          "kind": "scree-mass",
           "n": 18,
           "attached": true
         },
         {
           "kind": "mud-mass",
-          "n": 14,
+          "n": 30,
           "attached": true
         },
         {
           "kind": "grass-mass",
-          "n": 16,
+          "n": 18,
           "attached": true
         },
         {
-          "kind": "exposed-rock-mass",
+          "kind": "moss-mass",
           "n": 22,
           "attached": true
         },
         {
-          "kind": "scree-mass",
-          "n": 14,
+          "kind": "grass-mass",
+          "n": 26,
           "attached": true
         },
         {
-          "kind": "grass-mass",
-          "n": 14,
-          "attached": true
-        },
-        {
-          "kind": "grass-mass",
+          "kind": "exposed-rock-mass",
           "n": 12,
           "attached": true
         },
         {
-          "kind": "water-pool",
-          "n": 34,
+          "kind": "moss-mass",
+          "n": 18,
           "attached": true
         }
       ],
-      "landmarks": 25,
-      "terrain": 17,
+      "landmarks": 35,
+      "terrain": 20,
       "branchIds": [
         "left-tree-branch-upper",
+        "left-tree-branch-middle",
         "left-tree-branch-lower",
-        "right-tree-branch"
+        "right-tree-branch-lower",
+        "right-tree-branch-upper"
       ]
     }
   ],
