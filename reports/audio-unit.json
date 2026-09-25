@@ -1,0 +1,16 @@
+{
+  "passed": 11,
+  "checks": [
+    "No eager media preload or playback",
+    "First input unlocks Main Theme",
+    "Noncombat refresh does not restart Main Theme",
+    "Battle playlist cycles 02 → 03 → 04 → 02",
+    "Stage change preserves battle track and time",
+    "Boss crossfades to looping 05, only two channels",
+    "Pause/resume keeps playback position",
+    "Main return and battle index are retained",
+    "Music mute/volume affects BGM independently",
+    "Missing MP3 skips the failed playlist track without throwing",
+    "Dispose releases all streams"
+  ]
+}

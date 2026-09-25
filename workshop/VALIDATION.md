@@ -30,3 +30,6 @@
 - ε = 10: 43 nodes
 
 이 값은 silhouette/roughness에 따라 달라지며, 사용자가 preview/playtest로 형태를 확인한 뒤 threshold를 선택해야 한다.
+# 현재 검증
+
+현재 결과는 루트 [VALIDATION.md](../VALIDATION.md)와 `reports/`를 참조합니다. 아래 문서는 이관 전 V2의 검사 기록입니다.

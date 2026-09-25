@@ -1,5 +1,6 @@
 (function(G){'use strict';
 const C=G.HONRO_CORE,M=G.HonroMaps,Q=G.HonroGeometry,clone=M.clone;
+const renderLayer=layer=>({far:'back',interactive:'prop',terrain:'prop',units:'front',events:'front'})[layer]||layer||'back';
 function profileFor(st){const p=C.defaults(),sid=st.metadata?.stageId||1;p.recruited=[...new Set(st.units.filter(u=>u.team==='player').map(u=>G.HONRO_CONTENT.hero[u.kind]?u.kind:u.cls).filter(Boolean))];if(!p.recruited.length)p.recruited=['archer'];for(const c of p.recruited)p.heroes[c].xp=G.HonroProgression.xpAt(G.HonroProgression.plan(sid).entryLevel);return p;}
 function compile(st,project){
  const terrain=st.terrains.map(t=>Q.terrain(t,st.height)),elements=[],landmarks=[];
@@ -8,10 +9,11 @@ function compile(st,project){
   const e=clone(instance);if(e.snap){const hit=G.HonroMapEngine.surfaceY(terrain,e.x,e.y);if(hit)e.y=hit.y;}
   if(asset.renderer==='landmark'){
    const {assetId,scale,rotation,snap,...native}=e;
-   landmarks.push({...native,kind:asset.kind,size:scale??e.size??1,rotation:rotation||0});
+   landmarks.push({...native,layer:renderLayer(native.layer),kind:asset.kind,size:scale??e.size??1,rotation:rotation||0});
   }else{
    const collision=Q.collision(asset,e);for(const t of collision){t.honroElementId=e.id;t.honroElementCollision=true;}terrain.push(...collision);
-   elements.push({...e,asset:clone(asset),collisionIds:collision.map(t=>t.id)});
+   const element={...e,kind:'canonical-element',asset:clone(asset),collisionIds:collision.map(t=>t.id)};
+   elements.push(element);landmarks.push({...element,layer:renderLayer(e.layer)});
   }
  }
  return{terrain,landmarks,elements,materials:st.materials.map(m=>Q.material(st,m,terrain))};
@@ -31,20 +33,31 @@ function createBattle(st,project,profile=profileFor(st)){
   projectiles:[],units:[],events:[],fields:[],drafts:[],waters:[],zones:[],decor:[],queue:[],phase:'aim',round:1,side:0,
   honroState:clone(st.initialState?.honroState||{flags:{},collected:[],hold:0,lastRound:1,rescued:false,combatLog:[]})});
  delete b.volley;delete b.summonTurn;delete b.honroGrowth;
+ for(const e of b.honroAuthoredEvents){
+  if(e.type==='interaction')b.honroMarkers.push({...clone(e),action:'authored',authoredAction:e.action});
+  else if(e.type==='objective')b.honroObjectives.push({...clone(e),type:e.objectiveType||'reach'});
+  else b.honroEvents.push({...clone(e),when:{region:{x:e.x,y:e.y,radius:e.radius||160,width:e.width,height:e.height}},action:e.action||(e.type==='spawn'?{type:'spawn',n:e.count||1,x:e.x,kind:e.unit?.kind||'hound'}:null),text:e.label,once:true});
+ }
+ for(const e of map.elements)if(e.asset.interactionType){
+  const sockets=e.asset.sockets.length?e.asset.sockets:[{id:'anchor',x:e.asset.anchor.x,y:e.asset.anchor.y}];
+  for(const socket of sockets){const position=Q.transformPoint(socket,e.asset,e);b.honroMarkers.push({id:`${e.id}:socket:${socket.id}`,type:'interaction',action:'authored',label:e.asset.name,elementId:e.id,...position});}
+ }
  b.units=st.units.map(u=>G.HonroUnits.create(u,b,profile,content));
+ for(const [i,group] of st.encounters.entries())if(group.behavior)for(const id of group.unitIds){const u=b.units.find(u=>u.id===id);if(u){u.group=i+1;u.honroCluster=group.key||group.id;if(group.behavior==='aggressive'){u.awake=true;u.aggroUntil=999;}if(group.behavior==='stationary')u.fixed=true;}}
  b.active=b.units.find(u=>u.side===0&&!u.summoned)?.id||b.units[0]?.id;
  b.honroActiveLimit=st.initialState?.honroActiveLimit??content.active;b.enemyLimit=b.honroActiveLimit;
  b.honroCounters={initialEnemies:b.units.filter(u=>u.side===1).length,allyActions:0,spawned:0};
  G.HonroProgression.initialize(b,profile);return b;
 }
 // Imported legacy Workshop projects are normalized once; exported data is always v3.
-function importSpec(spec,id='imported-stage'){
+function importSpec(spec,id='imported-stage',project=G.HONRO_PROJECT){
  const width=spec.dimensions[0],height=spec.dimensions[1],st=M.emptyStage(id,spec.design?.title||'Imported stage',width,height),map=G.HonroMapEngine.compile({id:1,w:width,h:height},spec);
- st.backdrop=spec.backdrop?.kind||'forest';st.design=clone(spec.design||{});st.anchors=map.anchors;st.routes=map.routes;
+ st.backdrop=({ravine:'valley',village:'gate'})[spec.backdrop?.kind]||spec.backdrop?.kind||'forest';st.design=clone(spec.design||{});st.anchors=map.anchors;st.routes=map.routes;
  st.terrains=map.terrain.map(t=>{const {vertices,x,y,w,h,id,mat,oneWay,indestructible,...properties}=t;return{id,name:id,type:'solid',points:vertices,baseMaterial:mat,oneWay,breakable:!indestructible,properties,layer:'terrain'};});
  st.materials=map.surfaceZones.map(m=>({...m,terrainId:m.support}));
- st.elements=map.landmarks.map((l,i)=>({...l,id:l.id||`landmark-${i}`,assetId:'builtin:'+l.kind,scale:l.size||1,rotation:0,snap:false}));
+ st.elements=spec.editorData?.elements?clone(spec.editorData.elements):map.landmarks.map((l,i)=>({...l,id:l.id||`landmark-scatter-${i}`,assetId:project.library.some(a=>a.id===l.kind)?l.kind:'builtin:'+l.kind,scale:l.size||1,rotation:l.rotation||0,snap:false}));
  st.units=(spec.editorData?.units||map.enemySpawns.map((s,i)=>G.HonroUnits.record(s.kind,'imported-foe-'+i,s.x,s.y,'enemy')));
+ if(!st.units.some(u=>u.team==='player')){const x=map.anchors?.spawn?.x??220,y=G.HonroMapEngine.surfaceY(map.terrain,x)?.y??height/2;st.units.unshift(G.HonroUnits.record('archer','imported-player',x,y));}
  st.events=clone(spec.editorData?.events||[]);return st;
 }
 Object.assign(M,{compile,createBattle,profileFor,importSpec});

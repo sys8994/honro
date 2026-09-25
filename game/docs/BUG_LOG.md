@@ -6,6 +6,8 @@
 
 | ID | 증상 | 상태 | 최근 기록 |
 |---|---|---|---|
+| HBUG-026 | Workshop 그림·충돌·간이 플레이·export가 실제 게임과 다름 | 단일 런타임·무손실 schema·실제 Playtest 통합 검증 | 2026-09-25 |
+| HBUG-027 | 맵 왕복 시 기본 속성 추가, imported profile 누출, Playtest BGM 무음 | canonical finalize·프로필 복원·오디오 설정 유지 검증 | 2026-09-25 |
 | HBUG-001 | 세로 맵 줌아웃 시 오른쪽 공허한 여백 | 수정·자동/브라우저 검증 | 2026-09-14 |
 | HBUG-002 | 공중 증원이 지형 내부에 생성 | 수정·자동/브라우저 검증 | 2026-09-14 |
 | HBUG-003 | 죽은 NPC 대사, 적 전멸 후 증원·상여 대기 | 수정·자동/브라우저 검증 | 2026-09-14 |
@@ -34,6 +36,21 @@
 | ART-260916 | 새 설오 compact 리그의 게임 연결 | 사용자 디자인 거절·v006 복구 | 2026-09-16 |
 
 아래 항목은 당시 수정 작업의 이관 기록이다. 새 세션에서 재실행한 결과를 뜻하지 않는다. 상세 원인·수치·화면은 [기존 수정 보고서](../reports/GAMEPLAY_FIXES.md)에 있다.
+
+## HBUG-026 — Game / Workshop 공통화
+
+- 증상: V2는 게임과 다른 지형·배경·유닛 renderer, 지면 탐색, 경량 이동 물리를 사용했다. Draft export는 좌표 반올림·node 축소를 수행했다.
+- 원인: 별도 authoring/runtime 개념과 중복 구현. 플레이테스트에 실제 게임의 턴·투사체·AI·HUD가 없었다.
+- 변경: shared 엔진/Scene/camera/compiler/unit factory를 사용한다. Stage 1~10은 RC21의 103개 exact polygon과 원본 상태를 canonical v3로 이관했다. 실제 게임 HTML을 iframe에 넣어 Playtest하고 Stop은 원본 편집 상태로 복귀한다. Element Studio visual/collision/socket을 실제 게임 경로에 연결했다.
+- 검증: `tests/migration.mjs`(10 Stage × 3 난이도), `tests/integration.py`(Stage 1~10 픽셀 차이 0, 동일 420 tick 물리/투사체, 실제 유닛, 왕복, 모바일 HUD), `tests/editor-features.py`(20개 도구 검사), 성능 before/game/editor JSON. 상세 정확한 결과는 루트 VALIDATION.md.
+- 한계: 모바일은 Chrome 에뮬레이션이다. 10 Stage 전체 수동 클리어·실기기 Safari는 미수행. 오래된 RC별 Node 검사 12개는 원본에서도 실패해 별도 비교 결과를 기록했다.
+
+## HBUG-027 — 편집 왕복·진행 격리·Playtest 오디오
+
+- 재현: 새 solid를 그린 후 export/import하면 detail 기본값이 추가됐다. 가져온 맵을 종료하면 테스트 프로필이 앱에 남았다. Playtest에서 실제 클릭해도 BGM starts=0이었다.
+- 원인: 인간 생성과 import의 정규화 시점 불일치, imported profile 복원 누락, 엔진 기본 테스트 settings의 무음 값이 실제 앱 설정을 덮음.
+- 변경: 인간/Agent transaction에 같은 canonical finalize를 적용했다. launchMap은 원래 프로필과 Stage를 보관하고 stopBattle에서 복원한다. 테스트 프로필에 원래 오디오 설정을 유지한다. 기존 캠페인 persist는 테스트 중 차단한다.
+- 검증: edited geometry/material/ID 문자열 왕복, 가져오기 파일 입력·retry·localStorage 불변·원래 프로필 복원, iframe 실제 MP3 currentTime 증가와 Stop의 AudioContext/stream 폐기. `tests/authored.py`, `tests/audio-browser.py`, `tests/editor-features.py`에 재현 회귀를 남겼다.
 
 ## ART-260916 — 260916 설오의 실제 게임 연결 (철회)
 

@@ -23,6 +23,10 @@ function create(record,b,profile,st){
   const source=G.HONRO_PROJECT?.stages.flatMap(s=>s.units).find(u=>u.kind===record.kind);if(!source)throw Error('Missing boss definition');u=clone(source);delete u.runtimeTemplate;
  }else u=C.makeUnit('knight',side,record.x,record.y,{id:record.id,name:record.kind.slice(7),honroType:record.kind.slice(7),fixed:true,loadout:[],hp:1450,maxHp:1450,r:50,h:110,honroCivilian:true});
  Object.assign(u,{id:record.id,x:record.x,y:record.y,side,spawnX:record.x,spawnY:record.y});
+ if(!record.runtimeTemplate||side!==record.side){
+  u.honroAlly=record.team==='ally';u.honroCivilian=record.team==='npc';
+  if(u.honroAlly){u.allyRole??='guard';u.allyState??='follow';u.awake=true;}
+ }
  if(side===0&&H.hero[u.cls]){
   u.loadout=[...profile.loadouts[u.cls]];u.tune=profile.tuning[u.cls]??.5;C.applyHero(u,b.heroes[u.cls],true);u.h=92;u.acted=false;u.cooldowns={};
  }else if(side===1&&u.combatBaseHp!==undefined){const d=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal;u.honroDifficulty=b.difficulty;u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.xpGranted=0;}
@@ -32,8 +36,8 @@ function create(record,b,profile,st){
  if(record.behavior){u.honroBehavior=record.behavior;if(record.behavior==='aggressive'){u.awake=true;u.aggroUntil=999;}if(record.behavior==='stationary')u.fixed=true;}
  if(record.boss!==undefined)u.boss=record.boss;
  if(record.miniboss!==undefined)u.honroMidboss=record.miniboss;
- if(record.rank!==undefined)for(const id of u.loadout)u.ranks[id]=record.rank;
  if(record.levelOverride!==undefined){u.level=record.levelOverride;if(side===0){const h=clone(b.heroes[u.cls]);h.xp=C.xpAtLevel(u.level);C.applyHero(u,h,true);}}
+ if(record.rank!==undefined)for(const id of u.loadout)u.ranks[id]=record.rank;
  Object.assign(u,clone(record.stageOverrides||{}));return u;
 }
 function record(kind,id,x,y,team){const d=catalog().find(d=>d.kind===kind);if(!d)throw Error('Unknown unit '+kind);return{id,kind,team:team||d.team,x,y,facing:1};}

@@ -109,3 +109,6 @@ snap
 ```
 
 `snap=true`이면 anchor가 가장 가까운 terrain surface에 붙는다.
+# 현재 schema
+
+현재 작성·저장 스키마는 루트 [MAP_SCHEMA.md](../MAP_SCHEMA.md)의 canonical v3입니다. 아래 V2 문서는 이관 전 기록입니다.

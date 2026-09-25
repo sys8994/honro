@@ -1,54 +1,34 @@
 {
-  "passed": 12,
-  "failed": 0,
+  "passed": 3,
+  "failed": 9,
   "checks": [
     {
       "name": "Stage 1 macro terrain remains high-resolution and is materially re-authored",
       "passed": true,
       "detail": {
-        "nodes": 109,
-        "verticalRange": 1150
+        "nodes": 216,
+        "verticalRange": 1125
       }
     },
     {
       "name": "Stage 2 is no longer one continuous V ground",
-      "passed": true,
-      "detail": {
-        "groundNodes": 111,
-        "drop": 1529.5,
-        "descentSteps": 4
-      }
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n3 !== 2\n"
     },
     {
       "name": "Stage 1 uses at least five visually distinct surface materials",
-      "passed": true,
-      "detail": [
-        "moss",
-        "shallow-water",
-        "mud-track",
-        "exposed-rock",
-        "scree"
-      ]
+      "passed": false,
+      "error": ""
     },
     {
       "name": "Stage 2 uses at least five visually distinct surface materials",
-      "passed": true,
-      "detail": [
-        "exposed-rock",
-        "scree",
-        "mud-track",
-        "shallow-water",
-        "moss"
-      ]
+      "passed": false,
+      "error": ""
     },
     {
       "name": "Back scenery is rendered behind collision terrain",
-      "passed": true,
-      "detail": {
-        "back": 9744,
-        "terrain": 10044,
-        "front": 10286
-      }
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(back>=0&&terr>back&&front>terr)\n"
     },
     {
       "name": "Stage 1/2 authored scenery is support-bound instead of free-floating",
@@ -57,144 +37,28 @@
     },
     {
       "name": "Stage 1 start-to-exit route is stable",
-      "passed": true,
-      "detail": {
-        "ok": true,
-        "i": 1594,
-        "x": 4026.2677518394867,
-        "y": 1394.4506903010013,
-        "surface": "forest-floor"
-      }
+      "passed": false,
+      "error": "{\"ok\":false,\"stuck\":true,\"i\":878,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}"
     },
     {
       "name": "Stage 2 start-to-exit route is stable",
-      "passed": true,
-      "detail": {
-        "ok": true,
-        "i": 1484,
-        "x": 4077.312946258482,
-        "y": 1850.947842290253,
-        "surface": "canyon-ground"
-      }
+      "passed": false,
+      "error": "{\"ok\":false,\"stuck\":true,\"i\":882,\"x\":495.32209022146526,\"y\":1075.9544022969585,\"surface\":\"left-high-ground\"}"
     },
     {
       "name": "Stage 1 optional root/rock route remains usable",
-      "passed": true,
-      "detail": [
-        {
-          "id": "root-step-low",
-          "x": 1980,
-          "y": 1931.6,
-          "i": 96
-        },
-        {
-          "id": "root-step-mid",
-          "x": 2201.1,
-          "y": 1796.9,
-          "i": 126
-        },
-        {
-          "id": "root-step-high",
-          "x": 2447.6,
-          "y": 1594.8,
-          "i": 96
-        },
-        {
-          "id": "canopy-root",
-          "x": 2722.1,
-          "y": 1409.7,
-          "i": 107
-        },
-        {
-          "id": "upper-ridge-shelf",
-          "x": 3421.1,
-          "y": 1316.8,
-          "i": 143
-        }
-      ]
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'canopy-root'\n"
     },
     {
       "name": "Stage 2 left cliff descent is a real four-step traversal",
-      "passed": true,
-      "detail": [
-        {
-          "fromId": "left-high-ground",
-          "targetId": "descent-1",
-          "i": 156,
-          "x": 1225.3,
-          "y": 1253.5
-        },
-        {
-          "fromId": "descent-1",
-          "targetId": "descent-2",
-          "i": 168,
-          "x": 1836.5,
-          "y": 1514
-        },
-        {
-          "fromId": "descent-2",
-          "targetId": "descent-3",
-          "i": 166,
-          "x": 2281.3,
-          "y": 1761.1
-        },
-        {
-          "fromId": "descent-3",
-          "targetId": "descent-4",
-          "i": 189,
-          "x": 2940.6,
-          "y": 2035.8
-        },
-        {
-          "fromId": "descent-4",
-          "targetId": "canyon-ground",
-          "i": 72,
-          "x": 3488.5,
-          "y": 2061.9
-        }
-      ]
+      "passed": false,
+      "error": "left-high-ground->descent-1 failed; landed=canyon-ground"
     },
     {
       "name": "Stage 2 right cliff climb remains usable after left-side redesign",
-      "passed": true,
-      "detail": [
-        {
-          "id": "climb-1",
-          "x": 2800.8,
-          "y": 2373.1,
-          "i": 126
-        },
-        {
-          "id": "climb-2",
-          "x": 2981.6,
-          "y": 2193.3,
-          "i": 109
-        },
-        {
-          "id": "climb-3",
-          "x": 3162.4,
-          "y": 2008.2,
-          "i": 107
-        },
-        {
-          "id": "climb-4",
-          "x": 3358.8,
-          "y": 1820.9,
-          "i": 105
-        },
-        {
-          "id": "climb-5",
-          "x": 3531.8,
-          "y": 1639.1,
-          "i": 108
-        },
-        {
-          "id": "mid-shelf",
-          "x": 3671.3,
-          "y": 1439.6,
-          "i": 98
-        }
-      ]
+      "passed": false,
+      "error": "not grounded before climb-1"
     },
     {
       "name": "Stage 2 high roost remains reachable with Seol-o basic arrow",
@@ -206,7 +70,7 @@
         },
         {
           "id": "foe-4",
-          "best": 31.1
+          "best": 31
         }
       ]
     }

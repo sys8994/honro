@@ -1,5 +1,7 @@
 # HONRO Map Workshop v2
 
+> 이하는 V2 원본 기록입니다. 현재 버전은 루트 [HONRO_WORKSHOP.html](../HONRO_WORKSHOP.html), [README](../README.md), [ARCHITECTURE](../ARCHITECTURE.md)를 사용합니다. 간이 Playtest와 draft export는 실제 HONRO runtime 및 canonical v3로 교체했습니다. `python build.py`는 공통 Node 빌더에 위임합니다.
+
 HONRO 맵을 **사람과 AI agent가 같은 데이터/명령 체계 위에서 공동 편집**하기 위한 local-first standalone 웹 에디터다.
 
 ## 실행

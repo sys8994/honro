@@ -1,0 +1,147 @@
+{
+  "checks": [
+    {
+      "name": "desktop autoplay initially locked",
+      "detail": null
+    },
+    {
+      "name": "desktop actual MP3 playback after trusted input",
+      "detail": {
+        "state": "main",
+        "track": 1,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 1,
+        "playing": 1,
+        "currentTime": 0.165402,
+        "errors": []
+      }
+    },
+    {
+      "name": "desktop noncombat UI retains Main Theme",
+      "detail": null
+    },
+    {
+      "name": "desktop actual battle streams cycle 02/03/04",
+      "detail": null
+    },
+    {
+      "name": "desktop stage transition preserves playlist",
+      "detail": null
+    },
+    {
+      "name": "desktop boss transition ends with one stream",
+      "detail": null
+    },
+    {
+      "name": "desktop pause holds music time",
+      "detail": null
+    },
+    {
+      "name": "desktop resume retains stream and time",
+      "detail": null
+    },
+    {
+      "name": "desktop battle exit returns to Main Theme",
+      "detail": null
+    },
+    {
+      "name": "desktop BGM mute",
+      "detail": null
+    },
+    {
+      "name": "desktop existing SFX channel remains active",
+      "detail": null
+    },
+    {
+      "name": "desktop no media errors",
+      "detail": []
+    },
+    {
+      "name": "mobile autoplay initially locked",
+      "detail": null
+    },
+    {
+      "name": "mobile actual MP3 playback after trusted input",
+      "detail": {
+        "state": "main",
+        "track": 1,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 1,
+        "playing": 1,
+        "currentTime": 0.159277,
+        "errors": []
+      }
+    },
+    {
+      "name": "mobile noncombat UI retains Main Theme",
+      "detail": null
+    },
+    {
+      "name": "mobile actual battle streams cycle 02/03/04",
+      "detail": null
+    },
+    {
+      "name": "mobile stage transition preserves playlist",
+      "detail": null
+    },
+    {
+      "name": "mobile boss transition ends with one stream",
+      "detail": null
+    },
+    {
+      "name": "mobile pause holds music time",
+      "detail": null
+    },
+    {
+      "name": "mobile resume retains stream and time",
+      "detail": null
+    },
+    {
+      "name": "mobile battle exit returns to Main Theme",
+      "detail": null
+    },
+    {
+      "name": "mobile BGM mute",
+      "detail": null
+    },
+    {
+      "name": "mobile existing SFX channel remains active",
+      "detail": null
+    },
+    {
+      "name": "mobile no media errors",
+      "detail": []
+    },
+    {
+      "name": "Edit mode creates no audio engine",
+      "detail": null
+    },
+    {
+      "name": "Playtest streams BGM through actual game audio",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 1,
+        "playing": 1,
+        "currentTime": 0.117986,
+        "errors": []
+      }
+    },
+    {
+      "name": "Stop disposes playtest BGM/SFX",
+      "detail": null
+    },
+    {
+      "name": "No uncaught audio browser errors",
+      "detail": []
+    }
+  ],
+  "errors": []
+}

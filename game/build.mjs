@@ -29,7 +29,7 @@ export async function buildGame({vector=true,destination=path.join(root,'HONRO.h
   await writeFile(destination,html);
   if(vector){
     await mkdir(path.join(here,'reports'),{recursive:true});
-    await writeFile(path.join(here,'reports/build.json'),JSON.stringify({entry:'HONRO.html',source:['shared/runtime','shared/engine/src','game/config/balance.json','shared/assets/rebuild-game-adapter.mjs','shared/assets/party.v006.runtime.js'],character_art:{seol_o:'v006',other_party:'v006'},baseline:'standalone-code-handoff',shell_sha256:sha(reference),html_bytes:Buffer.byteLength(html),html_sha256:sha(html),vector:true,external_runtime_dependencies:0,engine_change:'RC21 renderer performance pass: cached static world raster, cached quantized parallax background, zoom-aware LOD; gameplay/map geometry unchanged from RC20.'},null,2)+'\n');
+    await writeFile(path.join(here,'reports/build.json'),JSON.stringify({entry:'HONRO.html',source:['shared/runtime','shared/engine/src','game/config/balance.json','shared/assets/rebuild-game-adapter.mjs','shared/assets/party.v006.runtime.js'],character_art:{seol_o:'v006',other_party:'v006'},baseline:'standalone-code-handoff',shell_sha256:sha(reference),html_bytes:Buffer.byteLength(html),html_sha256:sha(html),vector:true,external_runtime_dependencies:0,external_assets:['assets/bgm/01..05 MP3'],engine_change:'Shared HONRO runtime, canonical maps and streamed BGM; RC21 renderer caching, gameplay and authored campaign geometry preserved.'},null,2)+'\n');
   }
   return html;
 }

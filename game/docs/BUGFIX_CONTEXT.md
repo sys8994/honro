@@ -1,6 +1,8 @@
 # HONRO 게임 수정 맥락
 
-이 문서는 디자인을 제외한 게임 내용·진행·동작 수정의 시작점이다. 최근 정리: 2026-09-19. 과거 대화를 읽지 않아도 판단을 이어갈 수 있도록 유지한다.
+이 문서는 디자인을 제외한 게임 내용·진행·동작 수정의 시작점이다. 최근 정리: 2026-09-25. 과거 대화를 읽지 않아도 판단을 이어갈 수 있도록 유지한다.
+
+RC21 + Workshop 통합 이후 활성 런타임은 `shared/runtime`, 엔진은 `shared/engine/src`, 맵은 `shared/data/campaign.json`이다. [루트 아키텍처](../../ARCHITECTURE.md)와 [검증](../../VALIDATION.md)을 먼저 확인한다. 구 stage-maps/world는 migration/legacy의 비교 원본이다. 게임·편집기·Playtest에 별도 구현을 추가하지 않는다. BGM은 외부 assets/bgm 파일을 참조하므로 HTML과 함께 배포한다.
 
 개별 증상·원인·검증은 [BUG_LOG.md](BUG_LOG.md), 이전 큰 수정의 수치와 화면은 [GAMEPLAY_FIXES.md](../reports/GAMEPLAY_FIXES.md)에 있다. 현재 코드가 달라졌다면 확인한 변경에 맞춰 이 문서를 갱신한다.
 
@@ -10,24 +12,24 @@
 
 | 영역 | 현재 소스와 역할 |
 |---|---|
-| 앱·입력·결과·대사·저장 연결 | [main.js](../src/main.js), [ui-bridge.js](../src/ui-bridge.js) |
-| 대화 정지·포커스·재개·턴 배너 | [story.js](../src/story.js), [presentation.css](../src/presentation.css) |
-| 도입·월드맵 이야기 / 교체 가능한 초상 | [story-content.js](../src/story-content.js), [story-portraits.json](../config/story-portraits.json) |
-| 스테이지 내용·목표·합류 시점 | [content.js](../src/content.js) |
-| 지형·초기 유닛·이벤트 정의 | [world.js](../src/world.js) |
-| 열린 교전 지형·5/6/7 배치·기존 저장 이전 | [battlefield-layouts.js](../src/battlefield-layouts.js) |
-| 지형 압축·기존 저장 보정·초기 배치 | [stage-rules.js](../src/stage-rules.js) |
-| 생성 위치의 몸 전체 충돌·간격 검사 | [terrain-space.js](../src/terrain-space.js) |
-| 이벤트 조건·의존성·필수 증원·재시도 | [encounters.js](../src/encounters.js) |
-| NPC 행동·증원 실행 | [allies.js](../src/allies.js) |
-| 위치 조건 감지·임무 상태 반영·상여 | [mission.js](../src/mission.js) |
-| 전투 효과음 / 단일 WebAudio 출력 | [sound-design.ts](../engine/src/sound-design.ts), [audio.js](../src/audio.js) |
-| 캠페인 XP·적 수치 | [progression.js](../src/progression.js), [balance.json](../config/balance.json) |
-| 정량 난이도 계산 | [difficulty.js](../src/difficulty.js), [balance-report.mjs](../tests/balance-report.mjs) |
-| 턴·공격·피해·낙하 | [engine.ts](../engine/src/engine.ts), [physics.ts](../engine/src/physics.ts) |
-| 발 지면 탐색·보행 | [locomotion.ts](../engine/src/locomotion.ts) |
-| 기존 XP 곡선·스킬·세이브 구조 | [progression.ts](../engine/src/progression.ts), [data.ts](../engine/src/data.ts), [store.ts](../engine/src/store.ts) |
-| 화면 좌표·카메라·실제 유닛 그림 | [renderer.js](../src/renderer.js), [art-dark.js](../src/art-dark.js), [hud.css](../src/hud.css) |
+| 앱·입력·결과·대사·저장 연결 | [main.js](../../shared/runtime/main.js), [ui-bridge.js](../../shared/runtime/ui-bridge.js) |
+| 대화 정지·포커스·재개·턴 배너 | [story.js](../../shared/runtime/story.js), [presentation.css](../src/presentation.css) |
+| 도입·월드맵 이야기 / 교체 가능한 초상 | [story-content.js](../../shared/runtime/story-content.js), [story-portraits.json](../config/story-portraits.json) |
+| 스테이지 내용·목표·합류 시점 | [content.js](../../shared/runtime/content.js) |
+| 지형·초기 유닛·이벤트 정의 | [world.js](../../shared/runtime/world.js) |
+| 열린 교전 지형·5/6/7 배치·기존 저장 이전 | [battlefield-layouts.js](../../shared/runtime/battlefield-layouts.js) |
+| 지형 압축·기존 저장 보정·초기 배치 | [stage-rules.js](../../shared/runtime/stage-rules.js) |
+| 생성 위치의 몸 전체 충돌·간격 검사 | [terrain-space.js](../../shared/runtime/terrain-space.js) |
+| 이벤트 조건·의존성·필수 증원·재시도 | [encounters.js](../../shared/runtime/encounters.js) |
+| NPC 행동·증원 실행 | [allies.js](../../shared/runtime/allies.js) |
+| 위치 조건 감지·임무 상태 반영·상여 | [mission.js](../../shared/runtime/mission.js) |
+| 전투 효과음 / 단일 WebAudio 출력 | [sound-design.ts](../../shared/engine/src/sound-design.ts), [audio.js](../../shared/runtime/audio.js) |
+| 캠페인 XP·적 수치 | [progression.js](../../shared/runtime/progression.js), [balance.json](../config/balance.json) |
+| 정량 난이도 계산 | [difficulty.js](../../shared/runtime/difficulty.js), [balance-report.mjs](../tests/balance-report.mjs) |
+| 턴·공격·피해·낙하 | [engine.ts](../../shared/engine/src/engine.ts), [physics.ts](../../shared/engine/src/physics.ts) |
+| 발 지면 탐색·보행 | [locomotion.ts](../../shared/engine/src/locomotion.ts) |
+| 기존 XP 곡선·스킬·세이브 구조 | [progression.ts](../../shared/engine/src/progression.ts), [data.ts](../../shared/engine/src/data.ts), [store.ts](../../shared/engine/src/store.ts) |
+| 화면 좌표·카메라·실제 유닛 그림 | [renderer.js](../../shared/runtime/renderer.js), [art-dark.js](../../shared/runtime/art-dark.js), [hud.css](../src/hud.css) |
 | 생성 HTML의 실제 구성 | [build.mjs](../build.mjs), [engine/build.mjs](../engine/build.mjs) |
 
 `game/build.mjs`가 TypeScript 엔진과 앱 모듈, 에셋을 inline한다. 일부 CSS·여정도·아이콘·타이틀은 보관용 handoff에서 읽는다. 그 영역을 바꿀 때는 필요한 소스를 활성 디렉터리로 옮기고 빌드 참조도 함께 바꾼다. 원본 0.6.8 HTML이나 생성 HTML에 수정 블록을 덧붙이지 않는다.

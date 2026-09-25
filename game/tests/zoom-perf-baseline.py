@@ -1,13 +1,17 @@
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
+from browser_support import browser_path
 from pathlib import Path
 import json, shutil
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2]
 rows=[]
 with sync_playwright() as p:
-  browser=p.chromium.launch(executable_path=shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--enable-precise-memory-info'])
+  browser=p.chromium.launch(executable_path=browser_path(),headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--enable-precise-memory-info'])
   for sid in (1,2,3,4):
     page=browser.new_page(viewport={'width':1365,'height':768})
-    page.set_content((ROOT/'HONRO.html').read_text(),wait_until='load',timeout=120000)
+    page.set_content((ROOT/'HONRO.html').read_text(encoding='utf-8'),wait_until='load',timeout=120000)
     page.evaluate("""()=>{const a=HonroApp;a.profile.seen['map-story-v5-0']=true;a.profile.recruited=['archer','mage','knight','occultist'];a.profile.party=[...a.profile.recruited];for(let i=1;i<=10;i++)a.profile.cleared[i]={};}""")
     launch=page.evaluate("""sid=>{const a=HonroApp,t=performance.now();a.close();a.profile.honroBattle=null;a.launch(sid);const ms=performance.now()-t;if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;a.scene.manual=true;a.scene.scale=.20;a.scene.x=a.engine.b.width/2;a.scene.y=a.engine.b.height/2;return ms;}""",sid)
     page.evaluate("""()=>{const a=HonroApp;window.__zp={n:0,total:0,max:0};const orig=a.scene.render.bind(a.scene);a.scene.render=function(...args){const t=performance.now(),r=orig(...args),dt=performance.now()-t;__zp.n++;__zp.total+=dt;__zp.max=Math.max(__zp.max,dt);return r;}}""")

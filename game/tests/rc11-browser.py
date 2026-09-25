@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
+from browser_support import browser_path
 from pathlib import Path
 import shutil, json, hashlib
 from playwright.sync_api import sync_playwright
@@ -8,7 +12,7 @@ def ck(ok,name,detail=None):
     if not ok: raise AssertionError(f'{name}: {detail}')
     checks.append({'name':name,'detail':detail});print('PASS',name,detail or '',flush=True)
 with sync_playwright() as p:
-    browser=p.chromium.launch(executable_path=shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+    browser=p.chromium.launch(executable_path=browser_path(),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
     page=browser.new_page(viewport={'width':1440,'height':900})
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.set_content((ROOT/'HONRO.html').read_text(encoding='utf-8'),wait_until='load',timeout=120000)

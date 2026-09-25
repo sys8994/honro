@@ -3,14 +3,14 @@
   <header class="topbar">
     <div class="brand"><div class="brand-mark"><span>魂</span></div><div><strong>HONRO WORKSHOP</strong><br><small id="projectName">Map Workshop</small></div></div>
     <nav class="tabs"><button class="tab" data-tab="element">ELEMENTS</button><button class="tab active" data-tab="stage">STAGE</button><button class="tab" data-tab="play">PLAYTEST</button></nav>
-    <div class="top-actions"><button class="icon-btn" id="undoBtn" title="Undo">↶</button><button class="icon-btn" id="redoBtn" title="Redo">↷</button><button class="btn hide-mobile" id="newStageBtn">+ Stage</button><button class="btn hide-mobile" id="importBtn">Import</button><button class="btn primary" id="exportBtn">Export</button><input id="fileInput" type="file" accept=".json" hidden></div>
+    <div class="top-actions"><label class="overlay-toggle"><input id="overlayToggle" type="checkbox" checked> Overlay</label><button class="icon-btn" id="undoBtn" title="Undo">↶</button><button class="icon-btn" id="redoBtn" title="Redo">↷</button><button class="btn hide-mobile" id="newStageBtn">+ Stage</button><button class="btn hide-mobile" id="importBtn">Import</button><button class="btn primary" id="exportBtn">Export</button><input id="fileInput" type="file" accept=".json" hidden></div>
   </header>
   <main class="workspace">
     <aside class="panel left-panel"><div id="leftContent" class="panel-scroll"></div></aside>
     <section class="center">
-      <div id="stageView" class="view active"><div class="canvas-wrap"><canvas id="stageCanvas" class="canvas"></canvas><div id="stageToolbar" class="toolbar"></div><div class="hud-overlay"><span class="chip" id="stageZoom">100%</span><span class="chip" id="stageCoord">0, 0</span></div><div class="canvas-help">Wheel: zoom · Pan/우클릭: 이동 · Ctrl+드래그: Grid snap · Solid: 더블클릭/Enter 완료 · Ctrl+Z: Undo</div></div></div>
+      <div id="stageView" class="view active"><div class="canvas-wrap"><canvas id="stageCanvas" class="canvas"></canvas><canvas id="stageOverlay" class="canvas editor-overlay"></canvas><div id="stageToolbar" class="toolbar"></div><div class="hud-overlay"><span class="chip" id="stageZoom">100%</span><span class="chip" id="stageCoord">0, 0</span></div><div class="canvas-help">Wheel: zoom · Pan/우클릭: 이동 · Ctrl+드래그: Grid snap · Solid: 더블클릭/Enter 완료 · Ctrl+Z: Undo</div></div></div>
       <div id="elementView" class="view"><div class="element-layout"><div class="element-library"><div class="muted" style="font-size:10px">왼쪽 패널에서 요소를 선택하세요.</div></div><div class="element-canvas-wrap"><canvas id="elementCanvas" class="canvas"></canvas><div id="elementToolbar" class="element-tools"></div><div class="canvas-help">Polygon/Point 선택·드래그 · Ctrl+드래그: Grid snap · Polygon tool: 더블클릭/Enter 완료</div></div><div class="element-inspector"><div class="muted" style="font-size:10px">속성은 오른쪽 패널에 표시됩니다.</div></div></div></div>
-      <div id="playView" class="view"><div class="canvas-wrap"><canvas id="playCanvas" class="canvas"></canvas><div class="play-hud">실시간 lightweight playtest</div><div class="play-keys">A / D 또는 ← / → · Space 점프</div></div></div>
+      <div id="playView" class="view"><div class="play-controls"><button id="playFromStart" class="btn">처음부터</button><button id="playFromSelected" class="btn">선택 유닛부터</button><button id="playFromCamera" class="btn">카메라 위치부터</button><button id="stopPlay" class="btn primary">■ 편집으로 돌아가기</button></div><div id="runtimeHost"></div></div>
     </section>
     <aside class="panel right-panel"><div id="rightContent" class="panel-scroll"></div></aside>
   </main>

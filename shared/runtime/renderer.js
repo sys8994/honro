@@ -69,6 +69,7 @@
         renderCacheStats(){return{...this._cacheStats,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
+            this.battle=b;
             this.time += effectDt;
             const walkDt=effectDt>0?dt:0;this.walkTime=(this.walkTime||0)+walkDt;
             this.archerVisual?.update(e,this.time,walkDt);

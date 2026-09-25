@@ -1,3 +1,4 @@
+import {BgmPlayer, type MusicState} from './bgm';
 import type { Profile } from './types';
 
 /** Damped material sounds: no UI bleeps, pitch sweeps or victory jingles. */
@@ -32,17 +33,21 @@ export function soundSamples(name:string,sr=24000):Float32Array {
 
 /** One context, unlocked by the same trusted gesture as the controls. */
 export class AudioEngine {
+    music=new BgmPlayer();
     enabled=true; volume=.55; context:AudioContext|null=null; master:GainNode|null=null;
     buffers=new Map<string,AudioBuffer>(); voices=new Set<AudioBufferSourceNode>();
     pending:{name:string;at:number}[]=[];
     lastPlayed:Record<string,number>={};requestedAt:Record<string,number>={};startedAt:Record<string,number>={};playCount=0;
     static samples=soundSamples;
     configure(s:Profile['settings']){
+        const settings=s as Profile['settings']&{music?:boolean;musicVolume?:number};
+        this.music.configure(settings.music!==false,(Number(s.volume)||0)*(settings.musicVolume??.65));
         this.enabled=!!s.sound;this.volume=Math.max(0,Math.min(1,Number(s.volume)||0));
         if(this.master&&this.context)this.master.gain.setTargetAtTime(this.enabled?this.volume:0,this.context.currentTime,.015);
         if(!this.enabled){this.pending=[];this.pause();}
     }
     async wake():Promise<boolean>{
+        this.music.unlock();
         if(!this.enabled)return false;
         try{
             if(!this.context){
@@ -74,5 +79,6 @@ export class AudioEngine {
     }
     pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.pending=[];}
     setTheme(_n:number){}
-    update(){}
+    update(state?:MusicState,paused=false){if(state)this.music.select(state);this.music.setPaused(paused);this.music.tick();}
+    dispose(){this.pause();this.music.dispose();void this.context?.close();}
 }

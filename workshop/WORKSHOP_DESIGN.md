@@ -1,5 +1,7 @@
 # HONRO Map Workshop v2 — UX / Cowork Design
 
+> V2의 UX 기록입니다. 현재 runtime·Playtest·schema 결정은 루트 [ARCHITECTURE.md](../ARCHITECTURE.md)를 우선합니다.
+
 ## 목표
 
 사람은 큰 형태와 미술 구도를 빠르게 만든다. AI agent는 같은 editor command API로 디테일링·배치·검증·이벤트를 이어서 작업한다.

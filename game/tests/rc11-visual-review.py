@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
+from browser_support import browser_path
 from pathlib import Path
 import shutil
 from playwright.sync_api import sync_playwright
@@ -5,7 +9,7 @@ from PIL import Image, ImageOps, ImageDraw
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'game/reports/rc11-map-review';OUT.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
-    browser=p.chromium.launch(executable_path=shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+    browser=p.chromium.launch(executable_path=browser_path(),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
     page=browser.new_page(viewport={'width':1440,'height':900})
     page.set_content((ROOT/'HONRO.html').read_text(encoding='utf-8'),wait_until='load',timeout=120000)
     page.evaluate("()=>{HonroApp.profile.seen['map-story-v5-0']=true;HonroApp.profile.recruited=['archer','mage','knight','occultist'];HonroApp.profile.party=[...HonroApp.profile.recruited];}")

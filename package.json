@@ -1,0 +1,12 @@
+{
+  "name": "honro-shared-runtime",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node workshop/build.mjs",
+    "migrate": "node migration/migrate-stages.mjs",
+    "verify": "npm run build && npm --prefix game run verify && npm run test:integration && npm run test:performance",
+    "test:integration": "node tests/migration.mjs && node tests/audio.mjs && python -X utf8 tests/integration.py && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py",
+    "test:performance": "python -X utf8 tests/performance.py HONRO.html reports/performance-game.json && python -X utf8 tests/performance.py HONRO_WORKSHOP.html reports/performance-editor.json"
+  }
+}

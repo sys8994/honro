@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
+from browser_support import browser_path
 from pathlib import Path
 import shutil, json, math
 from playwright.sync_api import sync_playwright
@@ -16,7 +20,7 @@ def prep_stage(page,stage):
     page.evaluate("""s=>{const a=HonroApp;a.profile.seen['map-story-v5-0']=true;for(let i=1;i<s;i++)a.profile.cleared[i]={};a.profile.recruited=['archer'];if(s>=3)a.profile.recruited.push('mage');if(s>=6)a.profile.recruited.push('knight');a.profile.party=[...a.profile.recruited];for(const c of a.profile.recruited)a.profile.heroes[c].xp=HONRO_CORE.xpAtLevel(Math.max(1,s));a.launch(s)}""",stage)
     page.wait_for_timeout(220);finish_dialogue(page);page.wait_for_timeout(250)
 with sync_playwright() as p:
-    chromium=shutil.which('chromium')
+    chromium=browser_path()
     browser=p.chromium.launch(executable_path=chromium,headless=True,args=['--no-sandbox'])
     page=browser.new_page(viewport={'width':1440,'height':900})
     page.set_content(HTML,wait_until='load');page.wait_for_timeout(250)

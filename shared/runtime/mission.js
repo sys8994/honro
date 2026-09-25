@@ -1,6 +1,7 @@
 (function(G){'use strict';
 function tick(app,dt){
  const e=app.engine;if(!e||app.training)return;
+ if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
  const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
  const lead=heroes.reduce((a,c)=>a.x>c.x?a:c),height=Math.min(...heroes.map(h=>h.y)),boundary=b.phase==='transition'&&!b.projectiles.length&&!e.settleBusy();
  for(const m of b.honroMarkers||[]){

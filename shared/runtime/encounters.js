@@ -18,6 +18,7 @@ function configure(b){
   if(b.honroStage>=4)for(const ev of b.honroEvents){const trim=a=>{if(!a)return;if(a.type==='spawn')a.n=Math.min(a.n,4);if(a.type==='multi')a.actions.forEach(trim);};trim(ev.action);}
 }
 function matches(w,s){
+  if(w.region&&!(s.heroes||[]).some(u=>G.HonroAuthored.inside(u,w.region)))return false;
   if(w.after&&!s.flags['event:'+w.after])return false;
   if(w.any&&!w.any.some(c=>matches(c,s)))return false;
   return (w.progress===undefined||s.progress>=w.progress)&&(w.height===undefined||s.height<=w.height)&&(w.round===undefined||s.round>=w.round)&&(w.enemiesAtMost===undefined||s.enemies<=w.enemiesAtMost)&&(w.broken===undefined||s.broken>=w.broken)&&(w.collected===undefined||s.collected>=w.collected)&&(w.hold===undefined||s.hold>=w.hold)&&(!w.rescued||s.rescued)&&(!w.destroyed||s.terrain.find(t=>t.id===w.destroyed)?.broken);
@@ -32,7 +33,7 @@ function update(app,dt,state){
     const key='event:'+ev.id;if(hs.flags[key])continue;
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
-    if(!matches(ev.when,{...state,enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
+    if(!matches(ev.when,{...state,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
     if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);
   }
 }

@@ -1,5 +1,6 @@
 (function(G){'use strict';
 function state(b,st){
+ if(b.honroCustom)return G.HonroAuthored.objectiveState(b);
  const hs=b.honroState||{},markers=b.honroMarkers||[],heroes=b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead&&u.hp>0),obj=b.units.find(u=>u.id==='objective'),boss=b.units.find(u=>u.id==='boss'),seals=b.terrain.filter(t=>t.honroSeal),left=seals.filter(t=>!t.broken),foes=b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0),pending=G.HonroEncounters.pending(b);const all=[];const add=(kind,id,x,y,label,extra={})=>{const t={kind,id,x,y,label,...extra};all.push(t);return t;};
  seals.forEach((t,i)=>add('seal',t.id,t.x+t.w/2,t.y,st.id===5?'절벽 고리쇠 · 설오의 화살로 파괴':st.id===8?`상여 결박 ${i+1} · 공격`:`매듭 ${i+1} · 공격`,{done:!!t.broken,box:t}));
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
@@ -20,7 +21,9 @@ function state(b,st){
   case'sodan':complete=!!hs.sodanCoop&&(hs.coopHold||0)>=2&&!foes.length&&!pending;summary=!hs.sodanCoop?'소단의 주박을 비살상으로 낮추고 두 받이진 활성화':`소단과 공동 방어 · 안정 ${hs.coopHold||0}/2 · 적 ${foes.length}명`;kinds=!hs.sodanCoop?['boss','interact']:[];break;
   default:complete=!foes.length;
  }
- return{complete,summary,targets:all.filter(t=>kinds.includes(t.kind)&&!t.done),allTargets:all};
+ const authored=G.HonroAuthored?.objectiveState(b);
+ if(authored?.allTargets.length){complete=complete&&authored.complete;summary+=' · '+authored.summary;}
+ return{complete,summary,targets:[...all.filter(t=>kinds.includes(t.kind)&&!t.done),...(authored?.targets||[])],allTargets:[...all,...(authored?.allTargets||[])]};
 }
 const briefings={
  1:[],

@@ -1,17 +1,11 @@
 {
-  "passed": 14,
-  "failed": 0,
+  "passed": 8,
+  "failed": 6,
   "checks": [
     {
       "name": "Stage 2 has one continuous center ground and no center cliff gap",
-      "passed": true,
-      "detail": {
-        "dimensions": [
-          6200,
-          3200
-        ],
-        "maxSampleDelta": 23
-      }
+      "passed": false,
+      "error": "no floor at 0"
     },
     {
       "name": "Stage 2 upper roost remains reachable by Seol-o basic arrow",
@@ -23,78 +17,14 @@
         },
         {
           "id": "foe-4",
-          "best": 31.1
+          "best": 31
         }
       ]
     },
     {
       "name": "Every horizontal main corridor is traversable without a fall or seam drop",
-      "passed": true,
-      "detail": {
-        "1": {
-          "ok": true,
-          "i": 1799,
-          "x": 4794.468759289764,
-          "y": 1854.3085949112206,
-          "surface": "forest-floor"
-        },
-        "2": {
-          "ok": true,
-          "i": 1639,
-          "x": 4292.87256614893,
-          "y": 2094.1448322806127,
-          "surface": "canyon-ground"
-        },
-        "3": {
-          "ok": true,
-          "i": 2524,
-          "x": 6812.2637694244995,
-          "y": 1648.73582616547,
-          "surface": "east-bank"
-        },
-        "4": {
-          "ok": true,
-          "i": 1527,
-          "x": 4203.987316548423,
-          "y": 1946.9324877698948,
-          "surface": "gate-basin"
-        },
-        "5": {
-          "ok": true,
-          "i": 1531,
-          "x": 4152.410580788625,
-          "y": 3281.5809521913384,
-          "surface": "valley-floor"
-        },
-        "6": {
-          "ok": true,
-          "i": 2257,
-          "x": 6352.797391610704,
-          "y": 2265.920695570479,
-          "surface": "lower-road"
-        },
-        "8": {
-          "ok": true,
-          "i": 2358,
-          "x": 6922.5404847945565,
-          "y": 2118.4973010136964,
-          "surface": "bier-road"
-        },
-        "9": {
-          "ok": true,
-          "i": 1105,
-          "x": 3412.8278958679375,
-          "y": 2384.973768330565,
-          "surface": "yard-floor"
-        },
-        "10": {
-          "ok": true,
-          "i": 1622,
-          "x": 4832.437045148192,
-          "y": 2903.7939646351183,
-          "surface": "outer-yard"
-        }
-      }
+      "passed": false,
+      "error": "stage1 {\"ok\":false,\"stuck\":true,\"i\":558,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}"
     },
     {
       "name": "Stage 6 left region has no unstable overlapping route seam",
@@ -110,35 +40,13 @@
     },
     {
       "name": "Stage 3 bridge route is permanent and seam-safe",
-      "passed": true,
-      "detail": {
-        "ok": true,
-        "i": 2526,
-        "x": 6817.504344863194,
-        "y": 1649.0502606917917,
-        "surface": "east-bank"
-      }
+      "passed": false,
+      "error": "Cannot read properties of undefined (reading 'hp')"
     },
     {
       "name": "Stage 3 warehouse roof is reachable through jump platforms",
-      "passed": true,
-      "detail": [
-        {
-          "from": "east-bank",
-          "to": "crate-step-1",
-          "gap": 152.5
-        },
-        {
-          "from": "crate-step-1",
-          "to": "crate-step-2",
-          "gap": 170
-        },
-        {
-          "from": "crate-step-2",
-          "to": "warehouse-roof",
-          "gap": 176.5
-        }
-      ]
+      "passed": false,
+      "error": "east-bank/crate-step-1"
     },
     {
       "name": "Stage 5 high roost is reachable through seven jump platforms",
@@ -270,66 +178,13 @@
     },
     {
       "name": "All ten stages have distinct macro ratios and explicit gameplay geometry",
-      "passed": true,
-      "detail": [
-        [
-          5000,
-          3000,
-          1.67
-        ],
-        [
-          6200,
-          3200,
-          1.94
-        ],
-        [
-          7000,
-          2700,
-          2.59
-        ],
-        [
-          4400,
-          3400,
-          1.29
-        ],
-        [
-          4400,
-          4700,
-          0.94
-        ],
-        [
-          6600,
-          3800,
-          1.74
-        ],
-        [
-          3600,
-          5000,
-          0.72
-        ],
-        [
-          7200,
-          3400,
-          2.12
-        ],
-        [
-          3600,
-          3500,
-          1.03
-        ],
-        [
-          5000,
-          3900,
-          1.28
-        ]
-      ]
+      "passed": false,
+      "error": "[[4200,3200,1.31],[4300,4000,1.07],[6500,3100,2.1],[4600,3500,1.31],[4400,4700,0.94],[6600,3800,1.74],[3600,5000,0.72],[7200,3400,2.12],[3600,3500,1.03],[5000,3900,1.28]]\n\n9 !== 10\n"
     },
     {
       "name": "All walkable route endpoints are exposed and body-safe",
-      "passed": true,
-      "detail": {
-        "samples": 26
-      }
+      "passed": false,
+      "error": "stage2/canyon-ground@3172 not grounded"
     },
     {
       "name": "All initial enemies retain semantic and tactical placement metadata",

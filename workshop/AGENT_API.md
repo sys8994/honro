@@ -59,3 +59,6 @@ HonroWorkshopAPI.clearPreview();
 ```
 
 Agent는 작은 change set 단위로 수정하고 매 변경 뒤 `validate()`를 호출하는 것이 좋다.
+# 현재 API
+
+현재 API는 루트 [AGENT_API.md](../AGENT_API.md)를 참조합니다. 아래 문서는 이전 V2 기록이며 `exportHonroSpec`도 현재는 canonical Project를 반환합니다.

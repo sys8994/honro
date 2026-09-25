@@ -28,9 +28,11 @@ function nearest(st,x,y=Infinity){const ts=st.terrains.map(t=>terrain(t,st.heigh
 function material(st,m,compiled){
  if(m.points)return clone(m);
  const support=m.terrainId||m.support,ts=compiled||st.terrains.map(t=>terrain(t,st.height));
- const a=Math.min(m.x1,m.x2),b=Math.max(m.x1,m.x2),surface=M.sampleSupport(ts,support,a,b,m.step||24,m.reference),depth=m.depth??24;
+ const t=ts.find(t=>t.id===support),a=Math.max(t?.x??0,Math.min(m.x1,m.x2)),b=Math.min(t?t.x+t.w:st.width,Math.max(m.x1,m.x2)),surface=[],depth=m.depth??24,n=Math.max(2,Math.ceil((b-a)/(m.step||24)));
+ for(let i=0;i<=n;i++){const x=a+(b-a)*i/n,hit=M.surfaceY(ts,x,m.reference,support);if(hit)surface.push([x,hit.y]);}
+ if(surface.length<2)return{...m,points:[],surface:[]};
  if(m.kind==='water'||m.kind==='shallow-water'){
-  const level=m.surfaceY??Math.min(surface[0][1],surface.at(-1)[1]);
+  const level=m.surfaceY??Math.min(surface[0][1],surface.at(-1)[1])-depth;
   return{...m,kind:'water-pool',support,attached:true,surface:[[a,level],[b,level]],bottom:surface,points:[[a,level],[b,level],...surface.slice().reverse()]};
  }
  const kinds={grass:'grass-mass',moss:'moss-mass',rock:'exposed-rock-mass',mud:'mud-mass',scree:'scree-mass',soil:'mud-mass',charred:'charred-soil',stone:'stone-road'};
@@ -38,6 +40,6 @@ function material(st,m,compiled){
 }
 function transformPoint(p,asset,inst){const z=inst.scale??1,a=inst.rotation||0,x=(p.x-(asset.anchor?.x||0))*z,y=(p.y-(asset.anchor?.y||0))*z;return{x:inst.x+x*Math.cos(a)-y*Math.sin(a),y:inst.y+x*Math.sin(a)+y*Math.cos(a)};}
 function shapes(asset,inst){return(asset.visual||[]).map(sh=>({...sh,points:(sh.points||[]).map(p=>transformPoint(p,asset,inst))}));}
-function collision(asset,inst){return(asset.collision||[]).map((pts,i)=>M.solid(`${inst.id}:collision:${i}`,pts.map(p=>{const q=transformPoint(p,asset,inst);return[q.x,q.y];}),{mat:asset.material||'wood',oneWay:!!asset.oneWay,indestructible:!asset.breakable,hp:asset.hp??360,route:false,surfaceKind:asset.material||'wood'}));}
+function collision(asset,inst){return(asset.collision||[]).map((pts,i)=>M.solid(`${inst.id}:collision:${i}`,pts.map(p=>{const q=transformPoint(p,asset,inst);return[q.x,q.y];}),{mat:asset.material||'wood',oneWay:!!asset.oneWay,indestructible:!asset.breakable,climbable:!!asset.climbable,hp:asset.hp??360,route:false,surfaceKind:asset.material||'wood'}));}
 G.HonroGeometry={derive,terrain,surfaces,nearest,material,shapes,transformPoint,collision,simplify,simplifyClosed,seeded};
 })(globalThis);

@@ -11,11 +11,11 @@ const living=new Set(['beast','bat','crow','human']),rows=[];let total=0,live=0;
 for(const st of H.stages){const {b}=battlefield(g,st.id),enemies=b.units.filter(u=>u.side===1&&u.id!=='boss'),n=enemies.length,l=enemies.filter(u=>living.has(u.honroType)).length;rows.push({stage:st.id,total:n,living:l,ratio:n?l/n:1});total+=n;live+=l;if(st.id!==8)assert.ok(!n||l/n>=.70,`Stage ${st.id} living ratio ${l}/${n}`);}
 check('Possessed living creatures dominate Act-I enemies',()=>{assert.ok(live/total>=.72,`${live}/${total}`);return {ratio:+(live/total).toFixed(3),rows};});
 check('Item/structure monster is reserved for the Stage-8 story gimmick',()=>{const {b}=battlefield(g,8),boss=b.units.find(u=>u.id==='boss');assert.equal(boss?.name,'빈 상여');assert.equal(boss?.honroType,'bier');});
-const story=await readFile(gameRoot+'/src/story-content.js','utf8');
+const story=await readFile(gameRoot+'/../shared/runtime/story-content.js','utf8');
 check('Act-I runtime story keeps the historical reveal hidden',()=>{for(const token of ['백기곡','무명사','대천도','혼로 봉쇄','사면장'])assert.ok(!story.includes(token),token);});
-const storyEngine=await readFile(gameRoot+'/src/story.js','utf8');
+const storyEngine=await readFile(gameRoot+'/../shared/runtime/story.js','utf8');
 check('Dialogue camera has authored 500 ms smooth focus',()=>{assert.match(storyEngine,/storyFocus\?\.\(actor\.id,500\)/);assert.match(storyEngine,/storyRelease\?\.\(app\.storyCamera,450\)/);});
-const interactions=await readFile(gameRoot+'/src/interactions.js','utf8'),hud=await readFile(gameRoot+'/src/hud.css','utf8');
+const interactions=await readFile(gameRoot+'/../shared/runtime/interactions.js','utf8'),hud=await readFile(gameRoot+'/src/hud.css','utf8');
 check('Mobile contextual interaction exists above HUD',()=>{assert.match(interactions,/context-interact/);assert.match(hud,/hover:none/);assert.match(hud,/safe-area-inset-bottom/);});
 const controls=await readFile(gameRoot+'/src/controls.css','utf8');
 check('Desktop pause menu is vertical',()=>assert.match(controls,/\.pause-menu\{display:grid;grid-template-columns:1fr/));

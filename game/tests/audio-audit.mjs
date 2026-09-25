@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {runtime,gameRoot} from './helpers.mjs';
 const g=await runtime(),samples=g.HONRO_CORE.AudioEngine.samples,sr=24000;
-const engine=await readFile(gameRoot+'/engine/src/engine.ts','utf8');
+const engine=await readFile(gameRoot+'/../shared/engine/src/engine.ts','utf8');
 const names=['arrow','arrowhit','sword','fire','charge','meteor','boom','hit','break','ricochet','split','heal','down','win','lose','turn','jump'];
 for(const [,name]of engine.matchAll(/emit\('sound',\s*\{\s*name:\s*'([^']+)'/g))assert.ok(names.includes(name),'Unknown sound event: '+name);
 // Windowed spectrum of the audible attack/body, independent of recipe metadata.

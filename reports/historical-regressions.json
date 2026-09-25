@@ -1,0 +1,355 @@
+{
+  "baselineCommit": "8c22dde",
+  "rows": [
+    {
+      "script": "audio-audit.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "balance-report.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "charge-audit.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "impact-audit.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "mission-tempo.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "movement-audit.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: Stage 1/2 main routes must stay traversable with normal walk+jump controls at multiple timesteps"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: Stage 1/2 main routes must stay traversable with normal walk+jump controls at multiple timesteps"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "party-pacing.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc11-map-physics.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 3 permanent bridges are indestructible terrain and form a crossing The expression evaluated to a falsy value:",
+          "FAIL Stage 2 is wider/lower than RC10 complaint and upper roost is A01-reachable Expected values to be strictly equal:",
+          "FAIL All ten aspect ratios are intentionally varied [[4200,3200,1.31],[4300,4000,1.07],[6500,3100,2.1],[4600,3500,1.31],[4400,4700,0.94],[6600,3800,1.74],[3600,5000,0.72],[7200,3400,2.12],[3600,3500,1.03],[5000,3900,1.28]]",
+          "FAIL Main progression corridors cannot be hard-blocked by authored polygons stage 1 stuck {\"ok\":false,\"steps\":438,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"} -> 4050",
+          "FAIL Stage 7 zig-zag root village is traversable through every authored tier did not reach crown: 3000",
+          "FAIL Every route polygon allows move, jump and fire from a legal support point stage 2/right-cliff-ground not grounded",
+          "FAIL Stage 2 archer perch remains grounded and responsive before the cliff edge perch penetration left-cliff-rock"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 3 permanent bridges are indestructible terrain and form a crossing The expression evaluated to a falsy value:",
+          "FAIL Stage 2 is wider/lower than RC10 complaint and upper roost is A01-reachable Expected values to be strictly equal:",
+          "FAIL All ten aspect ratios are intentionally varied [[4200,3200,1.31],[4300,4000,1.07],[6500,3100,2.1],[4600,3500,1.31],[4400,4700,0.94],[6600,3800,1.74],[3600,5000,0.72],[7200,3400,2.12],[3600,3500,1.03],[5000,3900,1.28]]",
+          "FAIL Main progression corridors cannot be hard-blocked by authored polygons stage 1 stuck {\"ok\":false,\"steps\":438,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"} -> 4050",
+          "FAIL Stage 7 zig-zag root village is traversable through every authored tier did not reach crown: 3000",
+          "FAIL Every route polygon allows move, jump and fire from a legal support point stage 2/right-cliff-ground not grounded",
+          "FAIL Stage 2 archer perch remains grounded and responsive before the cliff edge perch penetration left-cliff-rock"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc12-map-gameplay.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 2 has one continuous center ground and no center cliff gap no floor at 0",
+          "FAIL Every horizontal main corridor is traversable without a fall or seam drop stage1 {\"ok\":false,\"stuck\":true,\"i\":558,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 3 bridge route is permanent and seam-safe Cannot read properties of undefined (reading 'hp')",
+          "FAIL Stage 3 warehouse roof is reachable through jump platforms east-bank/crate-step-1",
+          "FAIL All ten stages have distinct macro ratios and explicit gameplay geometry [[4200,3200,1.31],[4300,4000,1.07],[6500,3100,2.1],[4600,3500,1.31],[4400,4700,0.94],[6600,3800,1.74],[3600,5000,0.72],[7200,3400,2.12],[3600,3500,1.03],[5000,3900,1.28]]",
+          "FAIL All walkable route endpoints are exposed and body-safe stage2/canyon-ground@3172 not grounded"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 2 has one continuous center ground and no center cliff gap no floor at 0",
+          "FAIL Every horizontal main corridor is traversable without a fall or seam drop stage1 {\"ok\":false,\"stuck\":true,\"i\":558,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 3 bridge route is permanent and seam-safe Cannot read properties of undefined (reading 'hp')",
+          "FAIL Stage 3 warehouse roof is reachable through jump platforms east-bank/crate-step-1",
+          "FAIL All ten stages have distinct macro ratios and explicit gameplay geometry [[4200,3200,1.31],[4300,4000,1.07],[6500,3100,2.1],[4600,3500,1.31],[4400,4700,0.94],[6600,3800,1.74],[3600,5000,0.72],[7200,3400,2.12],[3600,3500,1.03],[5000,3900,1.28]]",
+          "FAIL All walkable route endpoints are exposed and body-safe stage2/canyon-ground@3172 not grounded"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc13-balance-audit.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc15-detail-audit.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 1 authored geometry has dense optional terrain + surface layers The expression evaluated to a falsy value:",
+          "FAIL Stage 2 authored geometry has dense vertical terrain + surface layers The expression evaluated to a falsy value:",
+          "FAIL Stage 1 start-to-exit main ground remains traversable {\"ok\":false,\"stuck\":true,\"i\":778,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 2 start-to-exit main ground remains traversable {\"ok\":false,\"stuck\":true,\"i\":782,\"x\":495.32209022146526,\"y\":1075.9544022969585,\"surface\":\"left-high-ground\"}",
+          "FAIL Stage 2 five-step cliff climb reaches the high shelf climb-1",
+          "FAIL Shallow water is a visual terrain layer, not a blocking solid The expression evaluated to a falsy value:"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 1 authored geometry has dense optional terrain + surface layers The expression evaluated to a falsy value:",
+          "FAIL Stage 2 authored geometry has dense vertical terrain + surface layers The expression evaluated to a falsy value:",
+          "FAIL Stage 1 start-to-exit main ground remains traversable {\"ok\":false,\"stuck\":true,\"i\":778,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 2 start-to-exit main ground remains traversable {\"ok\":false,\"stuck\":true,\"i\":782,\"x\":495.32209022146526,\"y\":1075.9544022969585,\"surface\":\"left-high-ground\"}",
+          "FAIL Stage 2 five-step cliff climb reaches the high shelf climb-1",
+          "FAIL Shallow water is a visual terrain layer, not a blocking solid The expression evaluated to a falsy value:"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc17-map-audit.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 2 is no longer one continuous V ground Expected values to be strictly equal:",
+          "FAIL Stage 1 uses at least five visually distinct surface materials ",
+          "FAIL Stage 2 uses at least five visually distinct surface materials ",
+          "FAIL Back scenery is rendered behind collision terrain The expression evaluated to a falsy value:",
+          "FAIL Stage 1 start-to-exit route is stable {\"ok\":false,\"stuck\":true,\"i\":878,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 2 start-to-exit route is stable {\"ok\":false,\"stuck\":true,\"i\":882,\"x\":495.32209022146526,\"y\":1075.9544022969585,\"surface\":\"left-high-ground\"}",
+          "FAIL Stage 1 optional root/rock route remains usable Expected values to be strictly equal:",
+          "FAIL Stage 2 left cliff descent is a real four-step traversal left-high-ground->descent-1 failed; landed=canyon-ground",
+          "FAIL Stage 2 right cliff climb remains usable after left-side redesign not grounded before climb-1"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 2 is no longer one continuous V ground Expected values to be strictly equal:",
+          "FAIL Stage 1 uses at least five visually distinct surface materials ",
+          "FAIL Stage 2 uses at least five visually distinct surface materials ",
+          "FAIL Back scenery is rendered behind collision terrain The expression evaluated to a falsy value:",
+          "FAIL Stage 1 start-to-exit route is stable {\"ok\":false,\"stuck\":true,\"i\":878,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 2 start-to-exit route is stable {\"ok\":false,\"stuck\":true,\"i\":882,\"x\":495.32209022146526,\"y\":1075.9544022969585,\"surface\":\"left-high-ground\"}",
+          "FAIL Stage 1 optional root/rock route remains usable Expected values to be strictly equal:",
+          "FAIL Stage 2 left cliff descent is a real four-step traversal left-high-ground->descent-1 failed; landed=canyon-ground",
+          "FAIL Stage 2 right cliff climb remains usable after left-side redesign not grounded before climb-1"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc18-map-audit.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 3 uses at least five visible terrain materials ",
+          "FAIL Stage 4 uses at least five visible terrain materials ",
+          "FAIL Stage 3 authored scenery has valid support and layer landmark-2:prop",
+          "FAIL Stage 4 authored scenery has valid support and layer landmark-1:prop"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 3 uses at least five visible terrain materials ",
+          "FAIL Stage 4 uses at least five visible terrain materials ",
+          "FAIL Stage 3 authored scenery has valid support and layer landmark-2:prop",
+          "FAIL Stage 4 authored scenery has valid support and layer landmark-1:prop"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc19-map-audit.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 1 scenery is support-bound and layer-valid giantPine:structural-back",
+          "FAIL Stage 2 scenery is support-bound and layer-valid ravinePine:structural-back",
+          "FAIL Stage 1 main route traverses start-to-exit {\"ok\":false,\"stuck\":true,\"i\":778,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 2 main route traverses start-to-exit {\"ok\":false,\"stuck\":true,\"i\":782,\"x\":495.32209022146526,\"y\":1075.9544022969585,\"surface\":\"left-high-ground\"}",
+          "FAIL Stage 2 basin water and cliff materials are attached The expression evaluated to a falsy value:",
+          "FAIL Stage 2 five-step climb remains reachable climb-1",
+          "FAIL Renderer distinguishes background props without Canvas filter regression The input did not match the regular expression /globalAlpha=\\.52/. Input:"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "FAIL Stage 1 scenery is support-bound and layer-valid giantPine:structural-back",
+          "FAIL Stage 2 scenery is support-bound and layer-valid ravinePine:structural-back",
+          "FAIL Stage 1 main route traverses start-to-exit {\"ok\":false,\"stuck\":true,\"i\":778,\"x\":445.4860757060634,\"y\":2439.1805569717576,\"surface\":\"forest-floor\"}",
+          "FAIL Stage 2 main route traverses start-to-exit {\"ok\":false,\"stuck\":true,\"i\":782,\"x\":495.32209022146526,\"y\":1075.9544022969585,\"surface\":\"left-high-ground\"}",
+          "FAIL Stage 2 basin water and cliff materials are attached The expression evaluated to a falsy value:",
+          "FAIL Stage 2 five-step climb remains reachable climb-1",
+          "FAIL Renderer distinguishes background props without Canvas filter regression The input did not match the regular expression /globalAlpha=\\.52/. Input:"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc20-map-audit.mjs",
+      "baseline": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 0,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "rc5-contract.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "regressions.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": []
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": []
+      },
+      "newFailure": false
+    },
+    {
+      "script": "stage8-lock.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "tactics-audit.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+        ]
+      },
+      "newFailure": false
+    },
+    {
+      "script": "terrain-audit.mjs",
+      "baseline": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+        ]
+      },
+      "integrated": {
+        "exitCode": 1,
+        "failures": [
+          "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+        ]
+      },
+      "newFailure": false
+    }
+  ]
+}

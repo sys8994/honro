@@ -1,0 +1,93 @@
+import json
+from playwright.sync_api import sync_playwright
+from browser_support import ROOT,launch
+checks=[];errors=[]
+def check(name,ok,detail=None):
+    assert ok,(name,detail)
+    checks.append({'name':name,'detail':detail});print('PASS',name,detail or '',flush=True)
+with sync_playwright() as p:
+    browser=launch(p);page=browser.new_page(viewport={'width':1600,'height':950});page.on('pageerror',lambda e:errors.append(str(e)))
+    page.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());page.wait_for_function('window.HonroWorkshopAPI')
+    page.evaluate('''()=>{const p=HonroWorkshopAPI.getProject(),s=HonroMaps.emptyStage('tools','Tool checks',2000,1200);
+      s.terrains=[{id:'ground',type:'ground',control:[{x:0,y:950},{x:700,y:940},{x:1200,y:880},{x:2000,y:800}],floor:1400,baseMaterial:'soil',detail:{spacing:12,roughness:12,seed:31,optimizeEpsilon:0},layer:'terrain'}];
+      s.units=[HonroUnits.record('archer','player',250,950)];p.stages=[s];p.activeStageId=s.id;HonroWorkshopAPI.importProject(p)}''')
+    def world(x,y,canvas='#stageCanvas',view='stageView'):
+        return page.locator(canvas).evaluate('''(c,[x,y,key])=>{const v=HonroWorkshopAPI.getEditorState()[key],p=HonroCamera.screen(v,c.clientWidth,c.clientHeight,{x,y}),r=c.getBoundingClientRect();return{x:p.x+r.left,y:p.y+r.top}}''',[x,y,view])
+    def drag(start,end,control=False):
+        page.mouse.move(start['x'],start['y']);
+        if control:page.keyboard.down('Control')
+        page.mouse.down();page.mouse.move(end['x'],end['y'],steps=8);page.mouse.up()
+        if control:page.keyboard.up('Control')
+    page.fill('#gridSize','32');page.locator('#gridSize').press('Tab');check('Configurable grid',page.evaluate('HonroWorkshopAPI.getProject().settings.grid')==32)
+    before=page.evaluate('HonroWorkshopAPI.getContext().counts.terrainDerived')
+    page.evaluate('HonroWorkshopAPI.applyCommands([{op:"simplifyTerrain",id:"ground",epsilon:9}])')
+    after=page.evaluate('HonroWorkshopAPI.getContext().counts.terrainDerived');check('Explicit terrain optimization',after<before,{'before':before,'after':after})
+    page.evaluate('HonroWorkshopAPI.undo();HonroWorkshopAPI.select("terrain","ground")')
+    drag(world(700,940),world(765,885),True)
+    control=page.evaluate('HonroWorkshopAPI.getProject().stages[0].terrains[0].control[1]');check('Ctrl terrain node grid snap',control['x']%32==0 and control['y']%32==0,control)
+    page.evaluate('HonroWorkshopAPI.applyCommands([{op:"createTerrain",type:"solid",id:"roof",points:[[700,450],[1150,450],[1150,590],[700,590]],material:"rock"}]);HonroWorkshopAPI.select("terrain","roof")')
+    original=page.evaluate('HonroWorkshopAPI.getProject().stages[0].terrains.find(t=>t.id==="roof").points')
+    drag(world(900,530),world(964,562),True)
+    moved=page.evaluate('HonroWorkshopAPI.getProject().stages[0].terrains.find(t=>t.id==="roof").points')
+    check('Whole polygon drag preserves shape',all(abs(v['x']-u['x']-64)<.01 and abs(v['y']-u['y']-32)<.01 for u,v in zip(original,moved)),moved)
+    page.evaluate('HonroWorkshopAPI.undo()');check('Human drag Undo',page.evaluate('HonroWorkshopAPI.getProject().stages[0].terrains.find(t=>t.id==="roof").points')==original)
+    # Freehand ground and arbitrary solid tools remain real pointer operations.
+    count=page.evaluate('HonroWorkshopAPI.getProject().stages[0].terrains.length')
+    page.click('[data-tool="terrain"]');drag(world(1200,720),world(1600,700))
+    check('Freehand terrain drawing',page.evaluate('HonroWorkshopAPI.getProject().stages[0].terrains.length')==count+1)
+    page.click('[data-tool="solid"]')
+    for pt in [(1400,350),(1750,370),(1650,480)]:q=world(*pt);page.mouse.click(q['x'],q['y'])
+    page.keyboard.press('Enter');check('Arbitrary solid polygon tool',page.evaluate('HonroWorkshopAPI.getProject().stages[0].terrains.at(-1).type')=='solid')
+    # Material paint now works on exact migrated solid polygons as well.
+    page.evaluate('HonroWorkshopAPI.setCamera({x:1000,y:600,zoom:.4})')
+    page.click('[data-tool="material"]');drag(world(750,450),world(1100,450))
+    check('Material painting on solid supports',page.evaluate('HonroWorkshopAPI.getProject().stages[0].materials.some(m=>m.terrainId==="roof")'))
+    page.evaluate('HonroWorkshopAPI.applyCommands([{op:"paintMaterial",id:"water",terrainId:"ground",x1:300,x2:600,kind:"water",depth:24}])')
+    check('Shallow water uses real material renderer',page.evaluate('HonroWorkshopAPI.getRuntime().engine.b.honroSurfaceZones.some(m=>m.id==="water"&&m.kind==="water-pool"&&m.points.length>3)'))
+    # Asset placement and continuous scatter.
+    page.locator('[data-asset="rock_small"]').click();q=world(500,940);page.mouse.click(q['x'],q['y'])
+    check('One-shot element placement selects result',page.evaluate('HonroWorkshopAPI.getEditorState().tool')=='select')
+    count=page.evaluate('HonroWorkshopAPI.getProject().stages[0].elements.length')
+    page.evaluate('HonroWorkshopAPI.applyCommands([{op:"scatterElements",assetIds:["grass_tuft","fern"],count:5,x1:200,x2:1800,seed:77}])')
+    check('Seeded scatter and surface snap',page.evaluate('HonroWorkshopAPI.getProject().stages[0].elements.length')==count+5)
+    # Lock blocks actual pointer edits.
+    page.locator('[data-lock="terrain"]').click();before=page.evaluate('JSON.stringify(HonroWorkshopAPI.getProject().stages[0].terrains)')
+    drag(world(900,530),world(950,550),True)
+    check('Layer lock prevents node/body drag',page.evaluate('JSON.stringify(HonroWorkshopAPI.getProject().stages[0].terrains)')==before)
+    page.locator('[data-lock="terrain"]').click();page.locator('[data-eye="terrain"]').click()
+    check('Hidden layer affects preview only',page.evaluate('HonroWorkshopAPI.getRuntime().engine.b.terrain.every(t=>t.honroElementCollision)'))
+    page.locator('[data-eye="terrain"]').click()
+    page.click('[data-tab="element"]');page.locator('[data-edit-asset="rock_small"]').click()
+    asset=page.evaluate('HonroWorkshopAPI.getProject().library.find(a=>a.id==="rock_small")');n=len(asset['visual'][0]['points'])
+    page.click('#addPolygon')
+    for pt in [(110,-70),(190,-80),(180,20)]:q=world(*pt,'#elementCanvas','elementView');page.mouse.click(q['x'],q['y'])
+    page.keyboard.press('Enter');check('Element polygon addition',page.evaluate('HonroWorkshopAPI.getProject().library.find(a=>a.id==="rock_small").visual.length')==2)
+    page.fill('#elementGridSize','16');page.locator('#elementGridSize').press('Tab')
+    point=asset['visual'][0]['points'][0];drag(world(point['x'],point['y'],'#elementCanvas','elementView'),world(point['x']+31,point['y']-17,'#elementCanvas','elementView'),True)
+    node=page.evaluate('HonroWorkshopAPI.getProject().library.find(a=>a.id==="rock_small").visual[0].points[0]')
+    check('Element node Ctrl grid snap',node['x']%16==0 and node['y']%16==0,node)
+    page.select_option('#assetCollisionMode','independent');collision=page.evaluate('JSON.stringify(HonroWorkshopAPI.getProject().library.find(a=>a.id==="rock_small").collision)')
+    page.click('#randomizeAsset');check('Independent collision survives visual randomize',page.evaluate('JSON.stringify(HonroWorkshopAPI.getProject().library.find(a=>a.id==="rock_small").collision)')==collision)
+    page.fill('#assetOptimizeEps','4');page.click('#optimizeAsset');check('Element simplify is undoable',page.locator('#undoBtn').is_enabled());page.click('#undoBtn')
+    page.click('[data-tab="stage"]');saved=page.evaluate('HonroWorkshopAPI.exportProject()');page.evaluate('p=>HonroWorkshopAPI.importProject(JSON.parse(p))',saved)
+    exported=page.evaluate('HonroWorkshopAPI.exportProject()')
+    if exported!=saved:
+        (ROOT/'.test-output/roundtrip-before.json').write_text(saved,encoding='utf-8')
+        (ROOT/'.test-output/roundtrip-after.json').write_text(exported,encoding='utf-8')
+    check('Edited geometry/material/IDs JSON round-trip',exported==saved)
+    # Every custom visual/collision asset is used directly by the real game compiler.
+    result=page.evaluate('''()=>{const p=HonroWorkshopAPI.getProject(),st=p.stages[0],b=HonroMaps.createBattle(st,p),instance=st.elements.find(e=>e.assetId==='rock_small'),asset=p.library.find(a=>a.id===instance.assetId),e=b.honroElements.find(e=>e.id===instance.id);return {same:JSON.stringify(e.asset)===JSON.stringify(asset),collision:e.collisionIds.every(id=>b.terrain.some(t=>t.id===id)),count:e.collisionIds.length}}''')
+    check('Element Studio output directly used by game',result['same'] and result['collision'] and result['count']>0,result)
+    result=page.evaluate('''()=>{HonroWorkshopAPI.applyCommands([{op:'asset.update',id:'fern',values:{layer:'front'}},{op:'placeElement',id:'front-fern',assetId:'fern',x:650}]);return {stored:HonroWorkshopAPI.getProject().stages[0].elements.find(e=>e.id==='front-fern').layer,rendered:HonroWorkshopAPI.getRuntime().engine.b.honroLandmarks.find(e=>e.id==='front-fern').layer};}''')
+    check('Asset default layer reaches real Scene',result=={'stored':'front','rendered':'front'},result)
+    legacy=json.loads((ROOT/'workshop/examples/RC20_STAGE_1_RUNTIME_SPEC.json').read_text(encoding='utf-8'))
+    result=page.evaluate('''spec=>{const p=HonroWorkshopAPI.getProject(),s=HonroMaps.importSpec(spec,'legacy',p),native=HonroMapEngine.compile({id:1,w:spec.dimensions[0],h:spec.dimensions[1]},spec);p.stages=[s];p.activeStageId=s.id;HonroWorkshopAPI.importProject(p);return {same:JSON.stringify(s.terrains.map(t=>t.points))===JSON.stringify(native.terrain.map(t=>t.vertices)),playable:s.units.some(u=>u.team==='player'),errors:HonroWorkshopAPI.validateMap().filter(x=>x.level==='err')};}''',legacy)
+    check('Legacy runtime spec imports without node reduction',result['same'] and result['playable'] and not result['errors'],result)
+    pack=str(ROOT/'workshop/examples/RC20_STAGE_1_4_STAGE_PACK.json')
+    page.locator('#fileInput').set_input_files(pack)
+    page.wait_for_function('HonroWorkshopAPI.getProject().stages.length===5')
+    check('Legacy Stage pack import keeps all four stages',page.evaluate('HonroWorkshopAPI.getProject().stages.length')==5)
+    check('No editor browser exceptions',not errors,errors)
+    browser.close()
+(ROOT/'reports/editor-features.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+print('EDITOR FEATURES PASS',len(checks))
