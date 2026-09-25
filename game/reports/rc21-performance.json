@@ -1,0 +1,91 @@
+{
+  "rows": [
+    {
+      "stage": 1,
+      "launchMs": 143.4,
+      "renderHz": 60.5,
+      "renderAvgMs": 3.5,
+      "renderMaxMs": 33.6,
+      "heapDelta": -2231457,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 20.800000000046566,
+        "bgBuilds": 3,
+        "bgBuildMs": 23.099999999976717,
+        "worldHits": 121,
+        "bgHits": 119,
+        "worldBytes": 24016692,
+        "worldScale": 0.6681531047810609,
+        "backgroundBytes": 3603600
+      },
+      "error": null
+    },
+    {
+      "stage": 2,
+      "launchMs": 82.1,
+      "renderHz": 60.5,
+      "renderAvgMs": 2.08,
+      "renderMaxMs": 25.5,
+      "heapDelta": -5219932,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 64.19999999995343,
+        "bgBuilds": 3,
+        "bgBuildMs": 20.600000000093132,
+        "worldHits": 121,
+        "bgHits": 119,
+        "worldBytes": 24008080,
+        "worldScale": 0.5906244232186183,
+        "backgroundBytes": 3603600
+      },
+      "error": null
+    },
+    {
+      "stage": 3,
+      "launchMs": 70.9,
+      "renderHz": 61.0,
+      "renderAvgMs": 2.4,
+      "renderMaxMs": 18.7,
+      "heapDelta": -3858545,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 14.300000000046566,
+        "bgBuilds": 3,
+        "bgBuildMs": 12.599999999860302,
+        "worldHits": 122,
+        "bgHits": 120,
+        "worldBytes": 24006096,
+        "worldScale": 0.5456800796984004,
+        "backgroundBytes": 3603600
+      },
+      "error": null
+    },
+    {
+      "stage": 4,
+      "launchMs": 73.3,
+      "renderHz": 60.5,
+      "renderAvgMs": 2.57,
+      "renderMaxMs": 22.9,
+      "heapDelta": -5070637,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 23.300000000046566,
+        "bgBuilds": 3,
+        "bgBuildMs": 17.29999999993015,
+        "worldHits": 121,
+        "bgHits": 119,
+        "worldBytes": 24011332,
+        "worldScale": 0.6104676956673597,
+        "backgroundBytes": 3603600
+      },
+      "error": null
+    }
+  ],
+  "cacheInvalidation": {
+    "before": 1,
+    "after": 2,
+    "broken": true,
+    "sceneVersion": 81
+  },
+  "errors": []
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "stage": 1,
+    "launchMs": 131.5,
+    "renders2s": 121,
+    "renderHz": 60.5,
+    "renderAvgMs": 4.09,
+    "renderMaxMs": 46.7,
+    "heapDelta": -3060029,
+    "err": null
+  },
+  {
+    "stage": 2,
+    "launchMs": 82.4,
+    "renders2s": 123,
+    "renderHz": 61.5,
+    "renderAvgMs": 1.92,
+    "renderMaxMs": 16,
+    "heapDelta": -1729208,
+    "err": null
+  },
+  {
+    "stage": 3,
+    "launchMs": 80.1,
+    "renders2s": 122,
+    "renderHz": 61.0,
+    "renderAvgMs": 2.65,
+    "renderMaxMs": 23.6,
+    "heapDelta": -1693881,
+    "err": null
+  },
+  {
+    "stage": 4,
+    "launchMs": 74,
+    "renders2s": 122,
+    "renderHz": 61.0,
+    "renderAvgMs": 2.05,
+    "renderMaxMs": 11.9,
+    "heapDelta": -3692773,
+    "err": null
+  }
+]

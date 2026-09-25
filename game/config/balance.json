@@ -1,0 +1,225 @@
+{
+  "version": 3,
+  "maxLevel": 25,
+  "combatShare": 0.4,
+  "stages": [
+    {
+      "id": 1,
+      "entryLevel": 1,
+      "exitLevel": 2,
+      "initialEnemies": 4,
+      "activeEnemies": 2,
+      "targetHits": 0.95,
+      "targetIncomingHpFraction": 0.05,
+      "maxAlive": 4,
+      "targetRounds": [
+        5,
+        6
+      ],
+      "objectiveTurns": 1.3
+    },
+    {
+      "id": 2,
+      "entryLevel": 2,
+      "exitLevel": 3,
+      "initialEnemies": 6,
+      "activeEnemies": 3,
+      "targetHits": 1.45,
+      "targetIncomingHpFraction": 0.065,
+      "maxAlive": 6,
+      "recruit": "mage",
+      "targetRounds": [
+        7,
+        8
+      ],
+      "objectiveTurns": 2.0
+    },
+    {
+      "id": 3,
+      "entryLevel": 3,
+      "exitLevel": 4,
+      "initialEnemies": 6,
+      "activeEnemies": 3,
+      "targetHits": 1.75,
+      "targetIncomingHpFraction": 0.075,
+      "maxAlive": 7,
+      "midBossHits": 5.5,
+      "targetRounds": [
+        8,
+        9
+      ],
+      "objectiveTurns": 1.8
+    },
+    {
+      "id": 4,
+      "entryLevel": 4,
+      "exitLevel": 5,
+      "initialEnemies": 7,
+      "activeEnemies": 3,
+      "targetHits": 1.95,
+      "targetIncomingHpFraction": 0.08,
+      "maxAlive": 7,
+      "targetRounds": [
+        9,
+        10
+      ],
+      "objectiveTurns": 1.0
+    },
+    {
+      "id": 5,
+      "entryLevel": 5,
+      "exitLevel": 6,
+      "initialEnemies": 10,
+      "activeEnemies": 4,
+      "targetHits": 2.05,
+      "targetIncomingHpFraction": 0.085,
+      "maxAlive": 10,
+      "recruit": "knight",
+      "targetRounds": [
+        10,
+        11
+      ],
+      "objectiveTurns": 3.5
+    },
+    {
+      "id": 6,
+      "entryLevel": 6,
+      "exitLevel": 7,
+      "initialEnemies": 10,
+      "activeEnemies": 4,
+      "targetHits": 2.15,
+      "targetIncomingHpFraction": 0.09,
+      "maxAlive": 11,
+      "midBossHits": 6.5,
+      "targetRounds": [
+        11,
+        12
+      ],
+      "objectiveTurns": 4.5
+    },
+    {
+      "id": 7,
+      "entryLevel": 7,
+      "exitLevel": 8.5,
+      "initialEnemies": 11,
+      "activeEnemies": 4,
+      "targetHits": 2.3,
+      "targetIncomingHpFraction": 0.092,
+      "maxAlive": 11,
+      "targetRounds": [
+        12,
+        13
+      ],
+      "objectiveTurns": 5.8
+    },
+    {
+      "id": 8,
+      "entryLevel": 8.5,
+      "exitLevel": 10,
+      "initialEnemies": 10,
+      "activeEnemies": 4,
+      "targetHits": 2.4,
+      "targetIncomingHpFraction": 0.095,
+      "maxAlive": 11,
+      "bossHits": 10,
+      "bossIncomingHpFraction": 0.14,
+      "targetRounds": [
+        13,
+        14
+      ],
+      "objectiveTurns": 4.5
+    },
+    {
+      "id": 9,
+      "entryLevel": 10,
+      "exitLevel": 11,
+      "initialEnemies": 12,
+      "activeEnemies": 4,
+      "targetHits": 2.55,
+      "targetIncomingHpFraction": 0.1,
+      "maxAlive": 12,
+      "reinforcements": 6,
+      "medianEnemyHitHpPercent": 10,
+      "medianHitsToKill": 3.7,
+      "targetRounds": [
+        14,
+        15
+      ],
+      "objectiveTurns": 5.4
+    },
+    {
+      "id": 10,
+      "entryLevel": 11,
+      "exitLevel": 12,
+      "initialEnemies": 8,
+      "activeEnemies": 4,
+      "targetHits": 2.65,
+      "targetIncomingHpFraction": 0.105,
+      "maxAlive": 9,
+      "bossHits": 18,
+      "bossIncomingHpFraction": 0.19,
+      "reinforcements": 6,
+      "medianEnemyHitHpPercent": 11,
+      "medianHitsToKill": 3.9,
+      "targetRounds": [
+        15,
+        16
+      ],
+      "objectiveTurns": 2.5
+    }
+  ],
+  "futureActs": [
+    {
+      "act": 2,
+      "stageExitLevels": [
+        10.75,
+        11.5,
+        12.25,
+        13,
+        13.75,
+        14.5,
+        15.25,
+        16
+      ]
+    },
+    {
+      "act": 3,
+      "stageExitLevels": [
+        16.75,
+        17.5,
+        18.25,
+        19,
+        19.75,
+        20.5,
+        21.25,
+        22
+      ]
+    },
+    {
+      "act": 4,
+      "stageExitLevels": [
+        23,
+        24,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "act": 5,
+      "stageExitLevels": [
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25
+      ]
+    }
+  ]
+}

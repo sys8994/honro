@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "name": "bat flies in two dimensions at dt 0.008333333333333333",
+      "passed": true,
+      "detail": {
+        "distance": 279.00000000000176,
+        "dx": 139.50000000000068,
+        "dy": 241.62108765585947
+      }
+    },
+    {
+      "name": "bat flies in two dimensions at dt 0.03333333333333333",
+      "passed": true,
+      "detail": {
+        "distance": 279.99999999999994,
+        "dx": 140,
+        "dy": 242.48711305964275
+      }
+    },
+    {
+      "name": "bat flies in two dimensions at dt 0.06",
+      "passed": true,
+      "detail": {
+        "distance": 279.99999999999994,
+        "dx": 140,
+        "dy": 242.48711305964275
+      }
+    },
+    {
+      "name": "crow flies in two dimensions at dt 0.008333333333333333",
+      "passed": true,
+      "detail": {
+        "distance": 279.0000000000018,
+        "dx": 241.62108765585958,
+        "dy": 139.50000000000068
+      }
+    },
+    {
+      "name": "crow flies in two dimensions at dt 0.03333333333333333",
+      "passed": true,
+      "detail": {
+        "distance": 280.00000000000006,
+        "dx": 242.48711305964287,
+        "dy": 140
+      }
+    },
+    {
+      "name": "crow flies in two dimensions at dt 0.06",
+      "passed": true,
+      "detail": {
+        "distance": 280,
+        "dx": 242.48711305964287,
+        "dy": 140
+      }
+    },
+    {
+      "name": "lantern flies in two dimensions at dt 0.008333333333333333",
+      "passed": true,
+      "detail": {
+        "distance": 279.0000000000018,
+        "dx": 241.62108765585958,
+        "dy": 139.50000000000068
+      }
+    },
+    {
+      "name": "lantern flies in two dimensions at dt 0.03333333333333333",
+      "passed": true,
+      "detail": {
+        "distance": 280.00000000000006,
+        "dx": 242.48711305964287,
+        "dy": 140
+      }
+    },
+    {
+      "name": "lantern flies in two dimensions at dt 0.06",
+      "passed": true,
+      "detail": {
+        "distance": 280,
+        "dx": 242.48711305964287,
+        "dy": 140
+      }
+    },
+    {
+      "name": "bat stops at a new thin obstacle during flight",
+      "passed": true,
+      "detail": {
+        "x": 442.0042846555634
+      }
+    },
+    {
+      "name": "crow stops at a new thin obstacle during flight",
+      "passed": true,
+      "detail": {
+        "x": 436.40371336815497
+      }
+    },
+    {
+      "name": "lantern stops at a new thin obstacle during flight",
+      "passed": true,
+      "detail": {
+        "x": 444.80457029926765
+      }
+    },
+    {
+      "name": "Flying plan resumes from serialized state",
+      "passed": true
+    },
+    {
+      "name": "Stationary props and ground units are not classified as flyers",
+      "passed": true
+    },
+    {
+      "name": "Flight checks full body against sloped terrain, ceilings, bounds and other units",
+      "passed": true
+    },
+    {
+      "name": "Useful splash may hit a teammate when opposing damage is greater",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "reason": "",
+        "hit": {
+          "x": 800,
+          "y": 950,
+          "unit": "friend0",
+          "points": [],
+          "closest": 20,
+          "apex": false
+        },
+        "miss": 20.39607805437114,
+        "risk": 58.87898693574009,
+        "enemyDamage": 102.12801788334507,
+        "friendlyDamage": 58.87898693574009,
+        "net": 34.41718290724397
+      }
+    },
+    {
+      "name": "Friendly-only shots remain rejected",
+      "passed": true,
+      "detail": {
+        "ok": false,
+        "reason": "friendly",
+        "hit": {
+          "x": 800,
+          "y": 950,
+          "unit": "friend0",
+          "points": [],
+          "closest": 20,
+          "apex": false
+        },
+        "miss": 700.0114284781356,
+        "risk": 58.87898693574009,
+        "enemyDamage": 0,
+        "friendlyDamage": 58.87898693574009,
+        "net": -67.7108349761011
+      }
+    },
+    {
+      "name": "Higher friendly cost remains rejected",
+      "passed": true
+    },
+    {
+      "name": "A friendly shield also counts as a cost",
+      "passed": true
+    },
+    {
+      "name": "Existing allied NPC friendly-damage immunity is considered",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "reason": "",
+        "hit": {
+          "x": 800,
+          "y": 950,
+          "unit": "friend0",
+          "points": [],
+          "closest": 20,
+          "apex": false
+        },
+        "miss": 20.39607805437114,
+        "risk": 0,
+        "enemyDamage": 54.74863876054901,
+        "friendlyDamage": 0,
+        "net": 54.74863876054901
+      }
+    },
+    {
+      "name": "Terrain impact without reachable opposing damage remains rejected",
+      "passed": true
+    },
+    {
+      "name": "Betrayal target can be deliberately attacked",
+      "passed": true
+    },
+    {
+      "name": "Ally uses the same power for evaluation and actual firing",
+      "passed": true
+    },
+    {
+      "name": "Real trajectory search finds and fires a useful crowded-area attack",
+      "passed": true,
+      "detail": {
+        "aim": {
+          "angle": 50,
+          "power": 0.37000000000000005,
+          "score": 522.4737353545454
+        },
+        "enemyDamage": 49,
+        "friendlyDamage": 0
+      }
+    },
+    {
+      "name": "Enemy retargets when the preferred opponent is obstructed",
+      "passed": true
+    },
+    {
+      "name": "Ranged ally retargets and retains the allied queue",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "checks": [
+    {
+      "name": "울림비명: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "메아리침: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "망자의 한숨: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "상여그늘: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "뿌리쐐기: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "흙울음: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "혼불방울: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "혼무씨: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "수의가시: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "매듭실: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "썩은깃: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "검은깃비: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "장승못: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "터줏바람: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "곡소리: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 3,
+        "secondsAt4x": 0.75
+      }
+    },
+    {
+      "name": "상여추: short miss lifetime and unchanged trajectory",
+      "passed": true,
+      "detail": {
+        "secondsAt1x": 2.9583333333333335,
+        "secondsAt4x": 0.7395833333333334
+      }
+    },
+    {
+      "name": "stage 1: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "연목 나루 방향 · 고개 끝까지 이동",
+        "targets": [
+          "도착 지점"
+        ]
+      }
+    },
+    {
+      "name": "stage 2: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "상여 엄호 · 적 6명 / 뒤따르는 기척 있음",
+        "targets": [
+          "홍만의 상여 · 보호",
+          "상여 도착 지점"
+        ]
+      }
+    },
+    {
+      "name": "stage 3: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "침수된 나루장승을 제압하고 장부를 찾기",
+        "targets": [
+          "침수된 나루장승 · 중간 우두머리",
+          "홍만의 장부 · 상호작용"
+        ]
+      }
+    },
+    {
+      "name": "stage 4: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "피란민 통로 보호 · 0/9턴",
+        "targets": [
+          "피란문 · 보호"
+        ]
+      }
+    },
+    {
+      "name": "stage 5: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "담허를 받이진에 세우고 E · 의식 유지",
+        "targets": [
+          "담허의 받이진 · 담허로 E · 의식 유지"
+        ]
+      }
+    },
+    {
+      "name": "stage 6: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "부러진 교각귀를 제압해 호송로 확보",
+        "targets": [
+          "부러진 교각귀 · 중간 우두머리"
+        ]
+      }
+    },
+    {
+      "name": "stage 7: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "들린 주민 구조 · 0/3 · 주변 위협 11명",
+        "targets": [
+          "덕수 · 구조",
+          "월이 · 구조",
+          "칠복 · 구조"
+        ]
+      }
+    },
+    {
+      "name": "stage 8: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "빈 상여의 결박부터 파괴 · 0/2",
+        "targets": [
+          "상여 결박 1 · 공격",
+          "상여 결박 2 · 공격"
+        ]
+      }
+    },
+    {
+      "name": "stage 9: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "주민 대피 후 받이진 준비 · 0/2 · 위협 12명",
+        "targets": [
+          "서쪽 받이진 · E · 받이진 설치",
+          "동쪽 받이진 · E · 받이진 설치"
+        ]
+      }
+    },
+    {
+      "name": "stage 10: authored objective can be completed by its intended state",
+      "passed": true,
+      "detail": {
+        "initial": "소단의 주박을 비살상으로 낮추고 두 받이진 활성화",
+        "targets": [
+          "소단의 주박 · 비살상 제압",
+          "서쪽 받이진 · E · 받이진 설치",
+          "동쪽 받이진 · E · 받이진 설치"
+        ]
+      }
+    },
+    {
+      "name": "Stage 2 RC12 is wider and lower while preserving elevated overwatch",
+      "passed": true,
+      "detail": {
+        "width": 6200,
+        "height": 3200,
+        "verticalSeparation": 1294
+      }
+    },
+    {
+      "name": "Stage 10 cannot complete before Sodan cooperates and both receiving arrays have done their job",
+      "passed": true
+    }
+  ]
+}

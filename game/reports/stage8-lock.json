@@ -1,0 +1,9 @@
+{
+  "checks": [
+    {
+      "name": "The expression evaluated to a falsy value:\n\n  assert.ok(e.grounded(u))\n",
+      "passed": false,
+      "stack": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(e.grounded(u))\n\n    at file:///mnt/data/rc13_work/HONRO_ACT1_RC12/game/tests/stage8-lock.mjs:12:9\n    at check (file:///mnt/data/rc13_work/HONRO_ACT1_RC12/game/tests/stage8-lock.mjs:5:38)\n    at file:///mnt/data/rc13_work/HONRO_ACT1_RC12/game/tests/stage8-lock.mjs:8:75"
+    }
+  ]
+}

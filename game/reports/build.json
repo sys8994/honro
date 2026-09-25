@@ -1,0 +1,21 @@
+{
+  "entry": "HONRO.html",
+  "source": [
+    "game/src",
+    "game/engine/src",
+    "game/config/balance.json",
+    "game/runtime/rebuild-game-adapter.mjs",
+    "game/runtime/party.v006.runtime.js"
+  ],
+  "character_art": {
+    "seol_o": "v006",
+    "other_party": "v006"
+  },
+  "baseline": "standalone-code-handoff",
+  "shell_sha256": "3c6388df3d45cb0688fbbcafbc2f87710e3a6f85e26d01bd5272ed55281ffbd9",
+  "html_bytes": 1821076,
+  "html_sha256": "db5718e1dc4fe1356b5142325fd7a4bfd8aa49918eaa042dfb6a2358d42a59fa",
+  "vector": true,
+  "external_runtime_dependencies": 0,
+  "engine_change": "RC21 renderer performance pass: cached static world raster, cached quantized parallax background, zoom-aware LOD; gameplay/map geometry unchanged from RC20."
+}

@@ -1,0 +1,71 @@
+{
+  "passed": 3,
+  "failed": 7,
+  "checks": [
+    {
+      "name": "Stage 1 main ground vertex density is >= 5x RC13 baseline",
+      "passed": true,
+      "detail": {
+        "baseline": 10,
+        "nodes": 109,
+        "factor": 10.9
+      }
+    },
+    {
+      "name": "Stage 2 total authored ground vertex density is >= 5x RC13 baseline",
+      "passed": true,
+      "detail": {
+        "baseline": 13,
+        "nodes": 111,
+        "factor": 8.538461538461538,
+        "grounds": 2
+      }
+    },
+    {
+      "name": "Stage 1 authored geometry has dense optional terrain + surface layers",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(physical>=160)\n"
+    },
+    {
+      "name": "Stage 2 authored geometry has dense vertical terrain + surface layers",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(surface>=70)\n"
+    },
+    {
+      "name": "Stage 1 start-to-exit main ground remains traversable",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "i": 1594,
+        "x": 4026.2677518394867,
+        "y": 1394.4506903010013,
+        "surface": "forest-floor"
+      }
+    },
+    {
+      "name": "Stage 2 start-to-exit main ground remains traversable",
+      "passed": false,
+      "error": "No support sample mid-shelf@3510.0"
+    },
+    {
+      "name": "Stage 1 root route offers real optional vertical play",
+      "passed": false,
+      "error": "did not land root-step-low; landed=forest-floor, x=1949.4945865851646, y=2098.305802290338"
+    },
+    {
+      "name": "Stage 2 five-step cliff climb reaches the high shelf",
+      "passed": false,
+      "error": "No support sample mid-shelf@3510.0"
+    },
+    {
+      "name": "Stage 2 upper roost is still reachable by Seol-o basic arrow",
+      "passed": false,
+      "error": "No support sample mid-shelf@3510.0"
+    },
+    {
+      "name": "Shallow water is a visual terrain layer, not a blocking solid",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(zones.some(z=>z.kind==='shallow-water'))\n"
+    }
+  ]
+}

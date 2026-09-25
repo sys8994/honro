@@ -1,0 +1,144 @@
+{
+  "passed": 8,
+  "failed": 4,
+  "checks": [
+    {
+      "name": "Polygon top does not lock move / jump / fire",
+      "passed": true,
+      "detail": {
+        "x": 2174.8282250006973,
+        "y": 1951.168712500142,
+        "projectiles": 1
+      }
+    },
+    {
+      "name": "Polygon support contact is not body penetration",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "Stage 3 permanent bridges are indestructible terrain and form a crossing",
+      "passed": true,
+      "detail": [
+        1865.121951219512,
+        1772.7906976744187,
+        1804.6808510638298,
+        1991.9148936170213,
+        2014.6511627906978,
+        1977.0588235294117,
+        1846.842105263158,
+        1841.2244897959183
+      ]
+    },
+    {
+      "name": "Stage 10 main hill is continuous and walk-grade",
+      "passed": true,
+      "detail": {
+        "maxSlope": 0.5454545454545454
+      }
+    },
+    {
+      "name": "Stage 2 is wider/lower than RC10 complaint and upper roost is A01-reachable",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n6200 !== 5600\n"
+    },
+    {
+      "name": "All ten aspect ratios are intentionally varied",
+      "passed": false,
+      "error": "[[5000,3000,1.67],[6200,3200,1.94],[7000,2700,2.59],[4400,3400,1.29],[4400,4700,0.94],[6600,3800,1.74],[3600,5000,0.72],[7200,3400,2.12],[3600,3500,1.03],[5000,3900,1.28]]"
+    },
+    {
+      "name": "Main progression corridors cannot be hard-blocked by authored polygons",
+      "passed": true,
+      "detail": {
+        "1": {
+          "ok": true,
+          "steps": 1799,
+          "x": 4794.468759289764,
+          "y": 1854.3085949112206,
+          "surface": "forest-floor"
+        },
+        "3": {
+          "ok": true,
+          "steps": 2475,
+          "x": 6813.004472083786,
+          "y": 35944.312723894975
+        },
+        "4": {
+          "ok": true,
+          "steps": 1527,
+          "x": 4203.987316548423,
+          "y": 1946.9324877698948,
+          "surface": "gate-basin"
+        },
+        "5": {
+          "ok": true,
+          "steps": 1531,
+          "x": 4152.410580788625,
+          "y": 3281.5809521913384,
+          "surface": "valley-floor"
+        },
+        "6": {
+          "ok": true,
+          "steps": 2257,
+          "x": 6352.797391610704,
+          "y": 2265.920695570479,
+          "surface": "lower-road"
+        },
+        "8": {
+          "ok": true,
+          "steps": 2358,
+          "x": 6922.5404847945565,
+          "y": 2118.4973010136964,
+          "surface": "bier-road"
+        },
+        "9": {
+          "ok": true,
+          "steps": 1105,
+          "x": 3412.8278958679375,
+          "y": 2384.973768330565,
+          "surface": "yard-floor"
+        },
+        "10": {
+          "ok": true,
+          "steps": 1622,
+          "x": 4832.437045148192,
+          "y": 2903.7939646351183,
+          "surface": "outer-yard"
+        }
+      }
+    },
+    {
+      "name": "Stage 7 zig-zag root village is traversable through every authored tier",
+      "passed": false,
+      "error": "did not reach crown: 3000"
+    },
+    {
+      "name": "Every route polygon allows move, jump and fire from a legal support point",
+      "passed": true,
+      "detail": {
+        "samples": 21
+      }
+    },
+    {
+      "name": "Stage 2 archer perch remains grounded and responsive before the cliff edge",
+      "passed": false,
+      "error": "perch penetration left-overwatch\n\n1 !== 0\n"
+    },
+    {
+      "name": "Extreme enemy horizontal ranges were reduced without flattening monster variety",
+      "passed": true,
+      "detail": {
+        "HBT01": 0.994,
+        "HBT02": 0.896,
+        "HSH01": 0.756,
+        "HCW01": 0.826
+      }
+    },
+    {
+      "name": "Every initial encounter has semantic and tactical placement metadata",
+      "passed": true,
+      "detail": true
+    }
+  ]
+}

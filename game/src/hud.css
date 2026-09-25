@@ -1,0 +1,189 @@
+/* 0.6.4: use the final ARCFALL HUD geometry. Honro changes only tokens/labels. */
+.honro #app .battle-bottom.arcfall-hud{
+  position:absolute!important;inset:auto 0 0!important;height:auto!important;min-height:0!important;max-height:none!important;
+  display:grid!important;grid-template-columns:132px minmax(250px,1fr) 176px!important;grid-template-rows:auto 98px!important;
+  gap:6px 16px!important;padding:10px max(18px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))!important;
+  align-items:end!important;background:linear-gradient(180deg,rgba(7,20,27,0),rgba(7,20,27,.88) 25%,#07141bf8 66%)!important;
+  border-top:1px solid #73837855!important;overflow:visible!important;pointer-events:none!important;z-index:20!important;
+}
+.honro #app .battle-bottom.arcfall-hud>*{pointer-events:auto!important}
+.honro #app .arcfall-hud .hero-hud{
+  grid-column:2!important;grid-row:1!important;width:min(100%,420px)!important;height:auto!important;min-height:0!important;max-width:420px!important;
+  justify-self:center!important;display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:3px 10px!important;align-items:center!important;padding:0!important;
+}
+.honro #app .arcfall-hud .hero-switches{grid-column:1/3!important;grid-row:1!important;display:flex!important;gap:6px!important;align-items:center!important;justify-content:center!important;margin:0!important;min-width:0!important}
+.honro #app .arcfall-hud .ally-chip{flex:1 1 0!important;min-width:0!important;max-width:150px!important;min-height:34px!important;height:34px!important;padding:1px 6px 1px 1px!important;gap:5px!important;border:1px solid #667d7366!important;border-radius:8px!important;background:#142a31e8!important;color:#e3e5d9!important;overflow:hidden!important}
+.honro #app .arcfall-hud .ally-chip.active{border-color:#d7bf83!important;box-shadow:inset 0 0 12px #d7bf830e,0 0 0 1px #d7bf8322!important}.honro #app .arcfall-hud .ally-chip.acted{opacity:.52!important}
+.honro #app .arcfall-hud .ally-chip canvas,.honro #app .arcfall-hud .ally-chip img{width:25px!important;height:30px!important;flex:none!important;object-fit:contain!important}
+.honro #app .arcfall-hud .ally-chip span{min-width:0!important;display:block!important;overflow:hidden!important}.honro #app .arcfall-hud .ally-chip strong,.honro #app .arcfall-hud .ally-chip small{display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.honro #app .arcfall-hud .ally-chip strong{font-size:9px!important}.honro #app .arcfall-hud .ally-chip small{font-size:7px!important;color:#d7bf83!important}
+.honro #app .arcfall-hud .hpmp{grid-row:2!important;display:grid!important;grid-template-columns:25px minmax(0,1fr)!important;gap:5px!important;align-items:center!important;margin:0!important;height:auto!important;min-width:0!important}.honro #app .arcfall-hud .hpmp>span{font-size:9px!important;color:#aebeb9!important}.honro #app .arcfall-hud .meter{height:12px!important;min-width:0!important;background:#10242ce8!important;border:1px solid #8ca69b2b!important;border-radius:4px!important;overflow:hidden!important;position:relative!important}.honro #app .arcfall-hud .meter>i{position:absolute!important;inset:0 auto 0 0!important;background:#78b398!important}.honro #app .arcfall-hud .meter.mp>i{background:#6c9bb7!important}.honro #app .arcfall-hud .meter label{position:absolute!important;inset:0!important;line-height:10px!important;font-size:8px!important;text-align:center!important;color:#eef2e8!important;text-shadow:0 1px 2px #000!important}
+.honro #app .arcfall-hud .hud-xp{display:none!important}.honro #app .arcfall-hud .move-readout{grid-column:1/3!important;grid-row:3!important;margin:0!important;text-align:right!important;font-size:9px!important;color:#b7c6c0!important;white-space:nowrap!important}
+.honro #app .arcfall-hud .action-deck{display:contents!important}
+.honro #app .arcfall-hud .skill-strip{grid-column:2!important;grid-row:2!important;display:flex!important;align-self:center!important;justify-self:center!important;justify-content:center!important;gap:7px!important;width:auto!important;min-width:0!important;max-width:none!important;overflow:visible!important}
+.honro #app .arcfall-hud .skill-button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:62px!important;height:60px!important;min-width:0!important;min-height:0!important;max-width:none!important;padding:5px 3px!important;gap:3px!important;border:1px solid #81958b5d!important;border-radius:10px!important;background:linear-gradient(135deg,#263d43ed,#152a34f5)!important;color:var(--skill)!important;position:relative!important;overflow:hidden!important}
+.honro #app .arcfall-hud .skill-button.selected{border-color:#e1c789!important;box-shadow:0 0 0 1px #e1c78922,inset 0 0 13px #e1c7890d!important}.honro #app .arcfall-hud .skill-button.unaffordable{opacity:.4!important}.honro #app .arcfall-hud .skill-button.empty{opacity:.18!important}
+.honro #app .arcfall-hud .skill-button svg{width:25px!important;height:25px!important;flex:none!important;fill:none!important;stroke:currentColor!important;stroke-width:1.65!important}.honro #app .arcfall-hud .skill-button .skill-name{font-size:9px!important;line-height:10px!important;max-width:56px!important;color:#e1e5da!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.honro #app .arcfall-hud .skill-button .key{position:absolute!important;left:5px!important;top:3px!important;font-size:8px!important;color:#91a5ae!important}.honro #app .arcfall-hud .skill-button .mana-cost{position:absolute!important;right:5px!important;top:3px!important;font-size:8px!important;color:#9fcedf!important}.honro #app .arcfall-hud .skill-button .rank-tiny{position:absolute!important;right:5px!important;bottom:2px!important;font-size:7px!important;color:var(--skill)!important}
+.honro #app .arcfall-hud .joystick{display:grid!important;grid-column:1!important;grid-row:1/3!important;align-self:end!important;justify-self:start!important;position:relative!important;width:118px!important;height:118px!important;touch-action:none!important;user-select:none!important;-webkit-touch-callout:none!important;outline:none!important}
+.honro #app .arcfall-hud .joystick-ring{position:absolute!important;inset:8px!important;border-radius:50%!important;border:1px solid #a9bbaa66!important;background:radial-gradient(circle at 42% 38%,#56685e9e 0 14%,#29444ae8 55%,#10252f 100%)!important;box-shadow:inset 0 0 18px #07181dcc,0 4px 16px #0007!important}.honro #app .arcfall-hud .joystick-ring:before,.honro #app .arcfall-hud .joystick-ring:after{content:''!important;position:absolute!important;background:#bac6b42d!important;pointer-events:none!important}.honro #app .arcfall-hud .joystick-ring:before{left:10px!important;right:10px!important;top:50%!important;height:1px!important}.honro #app .arcfall-hud .joystick-ring:after{top:10px!important;bottom:10px!important;left:50%!important;width:1px!important}.honro #app .arcfall-hud .joystick-ring .axis-h{position:absolute!important;left:5px!important;right:5px!important;top:50%!important;border-top:1px solid #e7d1a11c!important}.honro #app .arcfall-hud .joystick-ring .axis-v{position:absolute!important;top:5px!important;bottom:5px!important;left:50%!important;border-left:1px solid #e7d1a11c!important}.honro #app .arcfall-hud .joystick-ring i{position:absolute!important;left:50%!important;top:50%!important;width:50px!important;height:50px!important;margin:-25px!important;border-radius:50%!important;background:linear-gradient(145deg,#746e5b,#40585a)!important;border:1px solid #e7d19a88!important;box-shadow:0 4px 10px #0008,inset 0 1px 5px #fff2!important;pointer-events:none!important}.honro #app .arcfall-hud .joystick .stick-label{position:absolute!important;top:-1px!important;left:14px!important;padding:1px 5px!important;background:#142a31!important;color:#d8c99f!important;border-radius:6px!important;font-size:8px!important;z-index:3!important}.honro #app .arcfall-hud .joystick .stick-value{position:absolute!important;bottom:-2px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;padding:1px 5px!important;background:#142a31!important;color:#aac0bd!important;border-radius:5px!important;font-size:8px!important;white-space:nowrap!important}
+.honro #app .arcfall-hud .shot-controls{grid-column:3!important;grid-row:1/3!important;display:flex!important;align-items:flex-end!important;justify-content:flex-end!important;gap:8px!important;width:auto!important;height:auto!important;min-width:0!important}.honro #app .arcfall-hud .minor-controls{display:flex!important;flex-direction:column!important;gap:8px!important;position:static!important}.honro #app .arcfall-hud .minor-controls .icon-btn{width:42px!important;height:42px!important;min-height:42px!important;padding:0!important;border:1px solid #718a7f55!important;border-radius:12px!important;background:#193039e8!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;color:#e4d9bf!important}.honro #app .arcfall-hud .minor-controls .icon-btn span{font-size:8px!important}.honro #app .arcfall-hud .fire-block{position:static!important;display:grid!important;grid-template-columns:72px 88px!important;grid-template-rows:auto 88px!important;gap:5px 8px!important;align-items:end!important;width:auto!important;height:auto!important}.honro #app .arcfall-hud .shot-readout{grid-column:1/3!important;grid-row:1!important;text-align:center!important;font-size:11px!important;color:#e4d5b4!important;white-space:nowrap!important;line-height:14px!important}.honro #app .arcfall-hud .fire-button{padding:5px!important;border-radius:50%!important;border:1px solid #d4b97f!important;touch-action:none!important;box-shadow:0 4px 22px #04131d66!important}.honro #app .arcfall-hud .fire-inner{width:100%!important;height:100%!important;border-radius:50%!important;border:1px solid #f2d5a080!important;background:linear-gradient(140deg,#c7b07e,#8b744f)!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;font-weight:700!important;font-size:12px!important;color:#1d2e31!important}.honro #app .arcfall-hud #jump{grid-column:1!important;grid-row:2!important;width:70px!important;height:70px!important;min-height:70px!important}.honro #app .arcfall-hud #fire{grid-column:2!important;grid-row:2!important;width:88px!important;height:88px!important;min-height:88px!important}
+/* FontAwesome system controls keep consistent spacing; skill icons no longer use FA. */
+.honro .battle-head,.honro .map-tools,.honro .dialog-actions,.honro .actions,.honro .training-tools,.honro .branch-tabs{gap:8px!important}.honro .battle-head>button,.honro .map-tools>button,.honro .dialog-actions>button,.honro .actions>button,.honro .training-tools>button{margin:0 2px!important}.honro button svg+span{margin-left:4px!important}
+@media(max-height:520px) and (orientation:landscape){
+ .honro #app .battle-bottom.arcfall-hud{grid-template-columns:105px minmax(210px,1fr) 148px!important;grid-template-rows:28px 70px!important;gap:2px 8px!important;padding:4px max(11px,env(safe-area-inset-right)) max(5px,env(safe-area-inset-bottom)) max(11px,env(safe-area-inset-left))!important}.honro #app .arcfall-hud .joystick{width:96px!important;height:96px!important}.honro #app .arcfall-hud .joystick-ring i{width:42px!important;height:42px!important;margin:-21px!important}.honro #app .arcfall-hud .hero-hud{width:min(100%,370px)!important}.honro #app .arcfall-hud .skill-button{width:51px!important;height:48px!important}.honro #app .arcfall-hud .fire-block{grid-template-columns:58px 70px!important;grid-template-rows:auto 70px!important}.honro #app .arcfall-hud #jump{width:58px!important;height:58px!important;min-height:58px!important}.honro #app .arcfall-hud #fire{width:70px!important;height:70px!important;min-height:70px!important}.honro #app .arcfall-hud .skill-strip{gap:5px!important}
+}
+@media(max-width:620px) and (orientation:portrait){
+ .honro #app .battle-bottom.arcfall-hud{grid-template-columns:108px minmax(0,1fr) 116px!important;grid-template-rows:auto 50px 108px!important;gap:5px 6px!important;padding:8px max(8px,env(safe-area-inset-right)) max(9px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important}
+ .honro #app .arcfall-hud .hero-hud{grid-column:1/4!important;grid-row:1!important;width:100%!important;max-width:none!important;height:auto!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto auto!important;gap:3px 8px!important}.honro #app .arcfall-hud .hero-switches{grid-column:1/3!important;grid-row:1!important;justify-content:flex-start!important;gap:5px!important}.honro #app .arcfall-hud .ally-chip{max-width:none!important;min-height:34px!important;height:34px!important}.honro #app .arcfall-hud .hpmp{grid-row:2!important}.honro #app .arcfall-hud .move-readout{grid-column:1/3!important;grid-row:3!important;text-align:right!important}
+ .honro #app .arcfall-hud .skill-strip{grid-column:2/4!important;grid-row:2!important;justify-self:end!important;gap:5px!important}.honro #app .arcfall-hud .skill-button{width:42px!important;height:45px!important;padding:3px 2px!important}.honro #app .arcfall-hud .skill-button svg{width:20px!important;height:20px!important}.honro #app .arcfall-hud .skill-button .skill-name{font-size:7px!important;max-width:39px!important}.honro #app .arcfall-hud .skill-button .key,.honro #app .arcfall-hud .skill-button .mana-cost,.honro #app .arcfall-hud .skill-button .rank-tiny{font-size:6.5px!important}
+ .honro #app .arcfall-hud .joystick{grid-column:1!important;grid-row:2/4!important;width:105px!important;height:105px!important;align-self:end!important}.honro #app .arcfall-hud .joystick-ring i{width:44px!important;height:44px!important;margin:-22px!important}
+ .honro #app .arcfall-hud .shot-controls{grid-column:2/4!important;grid-row:3!important;justify-self:end!important;align-self:end!important;display:flex!important;gap:7px!important}.honro #app .arcfall-hud .minor-controls{display:flex!important;align-self:end!important}.honro #app .arcfall-hud .minor-controls .icon-btn{width:46px!important;height:46px!important;min-height:46px!important}.honro #app .arcfall-hud .fire-block{grid-template-columns:52px 66px!important;grid-template-rows:auto 66px!important;gap:3px 6px!important}.honro #app .arcfall-hud #jump{width:52px!important;height:52px!important;min-height:52px!important}.honro #app .arcfall-hud #fire{width:66px!important;height:66px!important;min-height:66px!important}.honro #app .arcfall-hud .shot-readout{font-size:8px!important}.honro #app .arcfall-hud .fire-inner{font-size:9px!important}.honro #app .arcfall-hud .fire-inner svg{width:17px!important;height:17px!important}
+}
+@media(max-width:380px) and (orientation:portrait){.honro #app .battle-bottom.arcfall-hud{grid-template-columns:98px minmax(0,1fr) 108px!important;gap:4px!important;padding-inline:6px!important}.honro #app .arcfall-hud .joystick{width:96px!important;height:96px!important}.honro #app .arcfall-hud .skill-strip{gap:3px!important}.honro #app .arcfall-hud .skill-button{width:38px!important}.honro #app .arcfall-hud .minor-controls .icon-btn{width:42px!important;height:42px!important;min-height:42px!important}.honro #app .arcfall-hud .fire-block{grid-template-columns:48px 62px!important}.honro #app .arcfall-hud #jump{width:48px!important;height:48px!important;min-height:48px!important}.honro #app .arcfall-hud #fire{width:62px!important;height:62px!important;min-height:62px!important}}
+
+/* 0.6.5 — fixed-width hero chips + real bottom breathing room. */
+@media (max-width:760px) and (orientation:portrait){
+  .honro #app .battle-bottom.arcfall-hud{
+    padding-bottom:max(20px,calc(env(safe-area-inset-bottom) + 12px))!important;
+  }
+  .honro #app .arcfall-hud .hero-switches{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    justify-content:flex-start!important;
+    align-items:center!important;
+    gap:5px!important;
+    width:100%!important;
+  }
+  .honro #app .arcfall-hud .ally-chip,
+  .honro #app .arcfall-hud .ally-chip.player-chip{
+    flex:0 0 112px!important;
+    width:112px!important;
+    min-width:112px!important;
+    max-width:112px!important;
+  }
+  .honro #app .arcfall-hud .shot-controls{
+    padding-bottom:0!important;
+    margin-bottom:0!important;
+  }
+  .honro #app .arcfall-hud #jump,
+  .honro #app .arcfall-hud #fire,
+  .honro #app .arcfall-hud .minor-controls .icon-btn{
+    margin-bottom:0!important;
+  }
+}
+@media (max-width:380px) and (orientation:portrait){
+  .honro #app .arcfall-hud .ally-chip,
+  .honro #app .arcfall-hud .ally-chip.player-chip{
+    flex-basis:106px!important;
+    width:106px!important;
+    min-width:106px!important;
+    max-width:106px!important;
+  }
+  .honro #app .battle-bottom.arcfall-hud{
+    padding-bottom:max(18px,calc(env(safe-area-inset-bottom) + 10px))!important;
+  }
+}
+
+/* 0.6.6 — compact three-band HUD: roster / vitals / controls. */
+.honro #app .battle-bottom.honro-compact-hud{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-rows:auto auto auto!important;
+  align-items:stretch!important;
+  gap:5px!important;
+  padding:7px max(8px,env(safe-area-inset-right)) max(18px,calc(env(safe-area-inset-bottom) + 10px)) max(8px,env(safe-area-inset-left))!important;
+  background:linear-gradient(180deg,rgba(6,19,27,.18),rgba(6,19,27,.93) 20%,rgba(5,16,24,.985))!important;
+  overflow:visible!important;
+}
+.honro #app .honro-compact-hud .hud-roster{grid-row:1;min-width:0}
+.honro #app .honro-compact-hud .hero-switches{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:4px!important;
+  width:100%!important;
+  overflow:hidden!important;
+  margin:0!important;
+}
+.honro #app .honro-compact-hud .ally-chip,
+.honro #app .honro-compact-hud .ally-chip.player-chip{
+  flex:0 0 clamp(78px,22vw,86px)!important;
+  width:clamp(78px,22vw,86px)!important;
+  min-width:clamp(78px,22vw,86px)!important;
+  max-width:clamp(78px,22vw,86px)!important;
+  height:40px!important;
+  min-height:40px!important;
+  padding:2px 5px 2px 2px!important;
+  gap:4px!important;
+  border-radius:9px!important;
+}
+.honro #app .honro-compact-hud .ally-chip img,
+.honro #app .honro-compact-hud .ally-chip canvas.portrait{
+  width:27px!important;height:34px!important;flex:none!important;
+}
+.honro #app .honro-compact-hud .ally-chip span{min-width:0!important;line-height:1.05!important}
+.honro #app .honro-compact-hud .ally-chip strong{font-size:10px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.honro #app .honro-compact-hud .ally-chip small{font-size:8px!important;white-space:nowrap!important}
+
+.honro #app .honro-compact-hud .hud-vitals{
+  grid-row:2;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:7px!important;
+  min-height:15px!important;
+}
+.honro #app .honro-compact-hud .hpmp{display:grid!important;grid-template-columns:20px minmax(0,1fr)!important;gap:3px!important;margin:0!important;align-items:center!important}
+.honro #app .honro-compact-hud .hpmp>span{font-size:8px!important;color:#aebfba!important}
+.honro #app .honro-compact-hud .meter{height:18px!important;border-radius:5px!important}
+.honro #app .honro-compact-hud .meter label{display:grid!important;place-items:center!important;font-size:10px!important;line-height:1!important;font-variant-numeric:tabular-nums;font-weight:600;pointer-events:none}
+.honro #app .honro-compact-hud .move-readout{font-size:8px!important;margin:0!important;white-space:nowrap!important;color:#bdc8c3!important;text-align:right!important}
+.honro #app .honro-compact-hud .hud-xp{display:none!important}
+
+.honro #app .honro-compact-hud .hud-controls-row{
+  grid-row:3;
+  display:grid!important;
+  grid-template-columns:82px minmax(8px,1fr) auto minmax(8px,1fr) 118px!important;
+  gap:0!important;
+  align-items:center!important;
+  min-width:0!important;
+}
+.honro #app .honro-compact-hud .joystick{
+  width:82px!important;height:82px!important;min-height:82px!important;margin:0!important;align-self:end!important;
+}
+.honro #app .honro-compact-hud .joystick-ring{width:82px!important;height:82px!important;inset:0!important}
+.honro #app .honro-compact-hud .joystick-ring i{width:34px!important;height:34px!important;margin:-17px!important}
+.honro #app .honro-compact-hud .stick-label{display:none!important}
+.honro #app .honro-compact-hud .stick-value{font-size:8px!important;bottom:-1px!important;right:2px!important}
+
+.honro #app .honro-compact-hud .skill-strip{
+  display:grid!important;
+  grid-template-columns:repeat(4,62px)!important;
+  gap:6px!important;
+  width:max-content!important;
+  min-width:0!important;
+  align-self:center!important;
+  overflow:visible!important;
+}
+.honro #app .honro-compact-hud .skill-button{
+  width:62px!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:58px!important;
+  padding:4px 1px 8px!important;
+  gap:2px!important;
+  border-radius:9px!important;
+}
+.honro #app .honro-compact-hud .skill-button .icon,
+.honro #app .honro-compact-hud .skill-button svg{width:22px!important;height:22px!important}
+.honro #app .honro-compact-hud .skill-button .skill-name{font-size:8px!important;max-width:100%!important;padding:0 1px!important}
+.honro #app .honro-compact-hud .skill-button .key,
+.honro #app .honro-compact-hud .skill-button .mana-cost,
+.honro #app .honro-compact-hud .skill-button .rank-tiny{font-size:7px!important}
+/* Context interaction: desktop keeps E; touch receives a large contextual button above the combat HUD. */
+.honro .context-interact{position:absolute;z-index:34;left:18px;bottom:168px;pointer-events:none}.honro .context-interact[hidden]{display:none!important}.honro .context-interact button{pointer-events:auto;min-width:160px;max-width:250px;min-height:58px;padding:8px 14px;border-radius:12px;border:1px solid #d8bf83;background:linear-gradient(135deg,#27413df5,#14272df7);color:#f2e5c6;box-shadow:0 8px 24px #0008;text-align:left;touch-action:manipulation}.honro .context-interact span,.honro .context-interact strong{display:block}.honro .context-interact span{font-size:9px;letter-spacing:.12em;color:#c8b687}.honro .context-interact strong{font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (hover:none) and (pointer:coarse){.honro .context-interact{left:auto;right:max(12px,env(safe-area-inset-right));bottom:max(230px,calc(env(safe-area-inset-bottom) + 220px))}}
+@media (hover:none) and (pointer:coarse) and (orientation:landscape) and (max-height:550px){.honro .context-interact{bottom:max(132px,calc(env(safe-area-inset-bottom) + 122px))}.honro .context-interact button{min-height:48px;min-width:145px;padding:6px 11px}}
+
+.honro .context-interact button{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:9px;align-items:center}
+.honro .context-interact .keycap{grid-row:1/3;display:grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border:1px solid #d8bf8370;border-radius:7px;background:#0a171be8;color:#ead9ae;font:700 12px/1 sans-serif;box-shadow:inset 0 -2px 0 #0007}

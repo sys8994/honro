@@ -1,0 +1,292 @@
+{
+  "checks": [
+    {
+      "name": "Stochastic mage multishot is priced by intentional-hit probability, not theoretical projectile count",
+      "passed": true,
+      "detail": {
+        "M13": {
+          "name": "화염혜성",
+          "baseDamage": 52,
+          "aimControl": 0.78,
+          "balanceFactor": 1.572,
+          "effectiveBaseDamage": 81.7,
+          "score": 143.6,
+          "target": 146
+        },
+        "M14": {
+          "name": "빙하구",
+          "baseDamage": 39,
+          "aimControl": 0.65,
+          "balanceFactor": 2.531,
+          "effectiveBaseDamage": 98.7,
+          "score": 141.9,
+          "target": 146
+        },
+        "M15": {
+          "name": "뇌운핵",
+          "baseDamage": 46,
+          "aimControl": 0.7,
+          "balanceFactor": 2.004,
+          "effectiveBaseDamage": 92.2,
+          "score": 142.6,
+          "target": 146
+        }
+      }
+    },
+    {
+      "name": "Stage 2 Damheo is a durable but sub-player support combatant",
+      "passed": true,
+      "detail": {
+        "hp": 494,
+        "attack": 1.376,
+        "heroHp": 395,
+        "heroAttack": 1.93,
+        "medianMobAttack": 0.407
+      }
+    },
+    {
+      "name": "Stage 3 Hwigyeom has front-line durability and useful damage",
+      "passed": true,
+      "detail": {
+        "hp": 752,
+        "attack": 1.772,
+        "armor": 0.24,
+        "heroHp": 425,
+        "heroAttack": 2.11,
+        "medianMobHp": 280
+      }
+    },
+    {
+      "name": "Stage 10 Sodan reads as a final boss in HP and actual skill output",
+      "passed": true,
+      "detail": {
+        "hp": 5803,
+        "attack": 3.378,
+        "meanSkillOutput": 150.4,
+        "medianMobHp": 1000,
+        "medianMobSkillOutput": 83.1
+      }
+    },
+    {
+      "name": "Midboss cadence is every 2–3 stages before the final boss",
+      "passed": true,
+      "detail": {
+        "3": {
+          "name": "침수된 나루장승",
+          "hp": 1025,
+          "attack": 0.834,
+          "outputRatio": 1.55
+        },
+        "6": {
+          "name": "부러진 교각귀",
+          "hp": 1765,
+          "attack": 1.246,
+          "outputRatio": 1.55
+        },
+        "8": {
+          "name": "빈 상여",
+          "hp": 2578,
+          "attack": 1.438,
+          "outputRatio": 1.47
+        }
+      }
+    },
+    {
+      "name": "Projected campaign pace rises monotonically from tutorial to finale",
+      "passed": true,
+      "detail": [
+        {
+          "stage": 1,
+          "target": "5-6",
+          "projected": 4.9,
+          "initialEnemies": 4,
+          "midbosses": 0,
+          "scriptedReinforcements": 2,
+          "referenceHitWork": 5.6
+        },
+        {
+          "stage": 2,
+          "target": "7-8",
+          "projected": 7.1,
+          "initialEnemies": 6,
+          "midbosses": 0,
+          "scriptedReinforcements": 2,
+          "referenceHitWork": 11
+        },
+        {
+          "stage": 3,
+          "target": "8-9",
+          "projected": 7.9,
+          "initialEnemies": 6,
+          "midbosses": 1,
+          "scriptedReinforcements": 1,
+          "referenceHitWork": 19
+        },
+        {
+          "stage": 4,
+          "target": "9-10",
+          "projected": 9.3,
+          "initialEnemies": 7,
+          "midbosses": 0,
+          "scriptedReinforcements": 4,
+          "referenceHitWork": 21.6
+        },
+        {
+          "stage": 5,
+          "target": "10-11",
+          "projected": 11.1,
+          "initialEnemies": 10,
+          "midbosses": 0,
+          "scriptedReinforcements": 3,
+          "referenceHitWork": 26.3
+        },
+        {
+          "stage": 6,
+          "target": "11-12",
+          "projected": 11.6,
+          "initialEnemies": 10,
+          "midbosses": 1,
+          "scriptedReinforcements": 6,
+          "referenceHitWork": 40
+        },
+        {
+          "stage": 7,
+          "target": "12-13",
+          "projected": 11.9,
+          "initialEnemies": 11,
+          "midbosses": 0,
+          "scriptedReinforcements": 4,
+          "referenceHitWork": 35.9
+        },
+        {
+          "stage": 8,
+          "target": "13-14",
+          "projected": 13.6,
+          "initialEnemies": 10,
+          "midbosses": 1,
+          "scriptedReinforcements": 2,
+          "referenceHitWork": 45.8
+        },
+        {
+          "stage": 9,
+          "target": "14-15",
+          "projected": 14,
+          "initialEnemies": 12,
+          "midbosses": 0,
+          "scriptedReinforcements": 6,
+          "referenceHitWork": 46.2
+        },
+        {
+          "stage": 10,
+          "target": "15-16",
+          "projected": 14.8,
+          "initialEnemies": 8,
+          "midbosses": 0,
+          "scriptedReinforcements": 2,
+          "referenceHitWork": 56.5
+        }
+      ]
+    },
+    {
+      "name": "Stage 2 only has two combat reinforcements; later story beats do not spawn extra waves",
+      "passed": true,
+      "detail": [
+        "road-pressure",
+        "sniper-seen"
+      ]
+    }
+  ],
+  "pace": [
+    {
+      "stage": 1,
+      "target": "5-6",
+      "projected": 4.9,
+      "initialEnemies": 4,
+      "midbosses": 0,
+      "scriptedReinforcements": 2,
+      "referenceHitWork": 5.6
+    },
+    {
+      "stage": 2,
+      "target": "7-8",
+      "projected": 7.1,
+      "initialEnemies": 6,
+      "midbosses": 0,
+      "scriptedReinforcements": 2,
+      "referenceHitWork": 11
+    },
+    {
+      "stage": 3,
+      "target": "8-9",
+      "projected": 7.9,
+      "initialEnemies": 6,
+      "midbosses": 1,
+      "scriptedReinforcements": 1,
+      "referenceHitWork": 19
+    },
+    {
+      "stage": 4,
+      "target": "9-10",
+      "projected": 9.3,
+      "initialEnemies": 7,
+      "midbosses": 0,
+      "scriptedReinforcements": 4,
+      "referenceHitWork": 21.6
+    },
+    {
+      "stage": 5,
+      "target": "10-11",
+      "projected": 11.1,
+      "initialEnemies": 10,
+      "midbosses": 0,
+      "scriptedReinforcements": 3,
+      "referenceHitWork": 26.3
+    },
+    {
+      "stage": 6,
+      "target": "11-12",
+      "projected": 11.6,
+      "initialEnemies": 10,
+      "midbosses": 1,
+      "scriptedReinforcements": 6,
+      "referenceHitWork": 40
+    },
+    {
+      "stage": 7,
+      "target": "12-13",
+      "projected": 11.9,
+      "initialEnemies": 11,
+      "midbosses": 0,
+      "scriptedReinforcements": 4,
+      "referenceHitWork": 35.9
+    },
+    {
+      "stage": 8,
+      "target": "13-14",
+      "projected": 13.6,
+      "initialEnemies": 10,
+      "midbosses": 1,
+      "scriptedReinforcements": 2,
+      "referenceHitWork": 45.8
+    },
+    {
+      "stage": 9,
+      "target": "14-15",
+      "projected": 14,
+      "initialEnemies": 12,
+      "midbosses": 0,
+      "scriptedReinforcements": 6,
+      "referenceHitWork": 46.2
+    },
+    {
+      "stage": 10,
+      "target": "15-16",
+      "projected": 14.8,
+      "initialEnemies": 8,
+      "midbosses": 0,
+      "scriptedReinforcements": 2,
+      "referenceHitWork": 56.5
+    }
+  ],
+  "note": "Projected rounds are a deterministic planning model, not human telemetry. It combines reference-shot durability, party/NPC action capacity, authored reinforcement count, objective overhead and Stage 10 post-boss breach."
+}

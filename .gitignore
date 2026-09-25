@@ -1,0 +1,17 @@
+node_modules/
+__pycache__/
+*.pyc
+*.log
+*.bak
+.cache/
+.test-output/
+test-results/
+playwright-report/
+*.zip
+game/reports/*.wav
+game/reports/**/*-ui/
+game/reports/**/*.png
+game/reports/**/*.jpg
+workshop/*.png
+/*.png
+/*VISUAL_REVIEW*.jpg

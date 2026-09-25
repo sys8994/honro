@@ -1,0 +1,188 @@
+[
+  {
+    "footer": {
+      "x": 0,
+      "y": 284,
+      "w": 844,
+      "h": 106,
+      "display": "grid",
+      "grid": "82px 176px 168.797px 265.453px 102px"
+    },
+    "roster": {
+      "x": 98.4,
+      "y": 301,
+      "w": 176,
+      "h": 72,
+      "display": "block",
+      "grid": "none"
+    },
+    "switches": {
+      "x": 98.4,
+      "y": 301,
+      "w": 176,
+      "h": 72,
+      "display": "grid",
+      "grid": "85px 85px"
+    },
+    "vitals": {
+      "x": 282.9,
+      "y": 305,
+      "w": 168.8,
+      "h": 64,
+      "display": "grid",
+      "grid": "168.797px"
+    },
+    "joystick": {
+      "x": 8,
+      "y": 296,
+      "w": 82,
+      "h": 82,
+      "display": "grid",
+      "grid": "none"
+    },
+    "skills": {
+      "x": 479.3,
+      "y": 310,
+      "w": 227,
+      "h": 54,
+      "display": "grid",
+      "grid": "52.3125px 52.3125px 52.3125px 52.3125px"
+    },
+    "actions": {
+      "x": 732,
+      "y": 293,
+      "w": 104,
+      "h": 88,
+      "display": "block",
+      "grid": "none"
+    },
+    "battleHud": "108px",
+    "heroCount": 3,
+    "label": "landscape",
+    "pageErrors": []
+  },
+  {
+    "footer": {
+      "x": 0,
+      "y": 614,
+      "w": 1280,
+      "h": 106,
+      "display": "grid",
+      "grid": "100px 220px 235px 551px 118px"
+    },
+    "roster": {
+      "x": 118,
+      "y": 631,
+      "w": 220,
+      "h": 72,
+      "display": "block",
+      "grid": "none"
+    },
+    "switches": {
+      "x": 118,
+      "y": 631,
+      "w": 220,
+      "h": 72,
+      "display": "grid",
+      "grid": "107px 107px"
+    },
+    "vitals": {
+      "x": 348,
+      "y": 635,
+      "w": 235,
+      "h": 64,
+      "display": "grid",
+      "grid": "235px"
+    },
+    "joystick": {
+      "x": 17,
+      "y": 626,
+      "w": 82,
+      "h": 82,
+      "display": "grid",
+      "grid": "none"
+    },
+    "skills": {
+      "x": 734,
+      "y": 640,
+      "w": 269,
+      "h": 54,
+      "display": "grid",
+      "grid": "62px 62px 62px 62px"
+    },
+    "actions": {
+      "x": 1168,
+      "y": 623,
+      "w": 104,
+      "h": 88,
+      "display": "block",
+      "grid": "none"
+    },
+    "battleHud": "108px",
+    "heroCount": 3,
+    "label": "desktop-landscape",
+    "pageErrors": []
+  },
+  {
+    "footer": {
+      "x": 0,
+      "y": 629,
+      "w": 390,
+      "h": 215,
+      "display": "grid",
+      "grid": "374px"
+    },
+    "roster": {
+      "x": 8,
+      "y": 637,
+      "w": 374,
+      "h": 59,
+      "display": "block",
+      "grid": "none"
+    },
+    "switches": {
+      "x": 8,
+      "y": 637,
+      "w": 374,
+      "h": 40,
+      "display": "flex",
+      "grid": "repeat(4, minmax(0px, 1fr))"
+    },
+    "vitals": {
+      "x": 8,
+      "y": 701,
+      "w": 374,
+      "h": 20,
+      "display": "grid",
+      "grid": "121.328px 121.328px 121.344px"
+    },
+    "joystick": {
+      "x": 8,
+      "y": 735,
+      "w": 82,
+      "h": 82,
+      "display": "grid",
+      "grid": "none"
+    },
+    "skills": {
+      "x": 112,
+      "y": 728,
+      "w": 130,
+      "h": 96,
+      "display": "grid",
+      "grid": "62px 62px"
+    },
+    "actions": {
+      "x": 264,
+      "y": 726,
+      "w": 118,
+      "h": 100,
+      "display": "block",
+      "grid": "none"
+    },
+    "battleHud": "148px",
+    "heroCount": 3,
+    "label": "portrait",
+    "pageErrors": []
+  }
+]

@@ -1,0 +1,78 @@
+import type { Profile } from './types';
+
+/** Damped material sounds: no UI bleeps, pitch sweeps or victory jingles. */
+export function soundSamples(name:string,sr=24000):Float32Array {
+    const recipes:Record<string,number[]>={
+        // seconds, body Hz, noise cutoff Hz, body gain, texture gain, decay
+        arrow:[.27,146,1800,.29,.26,8], arrowhit:[.30,94,1150,.42,.38,10],
+        sword:[.34,108,1900,.24,.40,7], fire:[.55,69,900,.42,.46,5],
+        charge:[.22,122,580,.06,.08,9], meteor:[1.15,43,760,.58,.52,3.6],
+        boom:[.95,49,820,.61,.52,4], hit:[.30,86,1050,.41,.38,9],
+        break:[.58,112,1500,.24,.47,6], ricochet:[.22,224,1500,.16,.29,12],
+        split:[.32,137,1250,.22,.25,8], heal:[.65,98,500,.15,.18,5],
+        down:[.57,58,680,.33,.25,5], win:[1.1,64,560,.32,.21,4],
+        lose:[.85,47,430,.29,.22,4], turn:[.32,82,600,.15,.13,9], jump:[.20,106,800,.11,.16,10]
+    };
+    const r=recipes[name];if(!r)return new Float32Array(0);
+    const [duration,f,cutoff,body,texture,decay]=r,out=new Float32Array(Math.ceil(sr*duration));
+    let seed=[...name].reduce((v,c)=>(Math.imul(v,33)+c.charCodeAt(0))>>>0,71237),low=0,brown=0,dc=0;
+    const a=1-Math.exp(-2*Math.PI*cutoff/sr);
+    for(let i=0;i<out.length;i++){
+        seed=(Math.imul(seed,1664525)+1013904223)>>>0;
+        const noise=seed/2147483648-1,t=i/sr,q=t/duration;
+        low+=a*(noise-low);brown=.985*brown+.15*noise;
+        const modes=Math.sin(t*f*6.28318)*Math.exp(-decay*q)+.32*Math.sin(t*f*1.71*6.28318)*Math.exp(-decay*1.7*q)+.16*Math.sin(t*f*2.63*6.28318)*Math.exp(-decay*2.4*q);
+        const air=(low*.75+brown*.25)*Math.exp(-decay*.9*q);
+        const attack=Math.min(1,t/.008),end=Math.min(1,(duration-t)/.035);
+        const v=(modes*body+air*texture)*attack*end;
+        dc=.996*dc+.004*v;out[i]=Math.tanh((v-dc)*.85)*.8;
+    }
+    return out;
+}
+
+/** One context, unlocked by the same trusted gesture as the controls. */
+export class AudioEngine {
+    enabled=true; volume=.55; context:AudioContext|null=null; master:GainNode|null=null;
+    buffers=new Map<string,AudioBuffer>(); voices=new Set<AudioBufferSourceNode>();
+    pending:{name:string;at:number}[]=[];
+    lastPlayed:Record<string,number>={};requestedAt:Record<string,number>={};startedAt:Record<string,number>={};playCount=0;
+    static samples=soundSamples;
+    configure(s:Profile['settings']){
+        this.enabled=!!s.sound;this.volume=Math.max(0,Math.min(1,Number(s.volume)||0));
+        if(this.master&&this.context)this.master.gain.setTargetAtTime(this.enabled?this.volume:0,this.context.currentTime,.015);
+        if(!this.enabled){this.pending=[];this.pause();}
+    }
+    async wake():Promise<boolean>{
+        if(!this.enabled)return false;
+        try{
+            if(!this.context){
+                const Constructor=globalThis.AudioContext||(globalThis as any).webkitAudioContext;if(!Constructor)return false;
+                const ctx:AudioContext=this.context=new Constructor();
+                this.master=ctx.createGain();this.master.gain.value=this.volume;
+                const compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-12;compressor.knee.value=12;compressor.ratio.value=5;compressor.attack.value=.003;compressor.release.value=.22;
+                this.master.connect(compressor);compressor.connect(ctx.destination);
+            }
+            if(this.context!.state!=='running')await this.context!.resume();
+            const now=performance.now(),queue=this.pending.splice(0);
+            for(const item of queue)if(now-item.at<300)this.play(item.name);
+            return this.context!.state==='running';
+        }catch{return false;}
+    }
+    play(name:string){
+        if(!this.enabled||this.volume<=0||name==='click')return;
+        const now=performance.now();this.requestedAt[name]=now;
+        if(!this.context||this.context.state!=='running'){
+            this.pending=this.pending.filter(p=>now-p.at<300&&p.name!==name);this.pending.push({name,at:now});return;
+        }
+        if(now-(this.lastPlayed[name]??-1e9)<45)return;
+        let buffer=this.buffers.get(name);
+        if(!buffer){const samples=soundSamples(name,this.context.sampleRate);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,this.context.sampleRate);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}
+        if(this.voices.size>=20){const oldest=this.voices.values().next().value;oldest?.stop();if(oldest)this.voices.delete(oldest);}
+        const source=this.context.createBufferSource();source.buffer=buffer;source.connect(this.master!);this.voices.add(source);
+        source.onended=()=>{this.voices.delete(source);source.disconnect();};source.start();
+        this.lastPlayed[name]=this.startedAt[name]=now;this.playCount++;
+    }
+    pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.pending=[];}
+    setTheme(_n:number){}
+    update(){}
+}

@@ -1,0 +1,351 @@
+{
+  "passed": 20,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Stage 1 uses support-bound material composition",
+      "passed": true,
+      "detail": {
+        "kinds": [
+          "grass-mass",
+          "moss-mass",
+          "mud-mass",
+          "rock-mass",
+          "scree-mass",
+          "water-pool"
+        ],
+        "nodes": 292
+      }
+    },
+    {
+      "name": "Stage 2 uses support-bound material composition",
+      "passed": true,
+      "detail": {
+        "kinds": [
+          "grass-mass",
+          "rock-mass",
+          "scree-mass",
+          "mud-mass",
+          "moss-mass",
+          "water-pool"
+        ],
+        "nodes": 336
+      }
+    },
+    {
+      "name": "Stage 3 uses support-bound material composition",
+      "passed": true,
+      "detail": {
+        "kinds": [
+          "grass-mass",
+          "mud-mass",
+          "scree-mass",
+          "rock-mass",
+          "gravel-mass",
+          "stone-road",
+          "water-pool"
+        ],
+        "nodes": 479
+      }
+    },
+    {
+      "name": "Stage 4 uses support-bound material composition",
+      "passed": true,
+      "detail": {
+        "kinds": [
+          "stone-road",
+          "mud-mass",
+          "charred-mass",
+          "dry-grass-mass",
+          "rock-mass",
+          "grass-mass"
+        ],
+        "nodes": 384
+      }
+    },
+    {
+      "name": "Stage 1 scenery is support-bound and layer-valid",
+      "passed": true,
+      "detail": {
+        "landmarks": 13
+      }
+    },
+    {
+      "name": "Stage 2 scenery is support-bound and layer-valid",
+      "passed": true,
+      "detail": {
+        "landmarks": 12
+      }
+    },
+    {
+      "name": "Stage 3 scenery is support-bound and layer-valid",
+      "passed": true,
+      "detail": {
+        "landmarks": 12
+      }
+    },
+    {
+      "name": "Stage 4 scenery is support-bound and layer-valid",
+      "passed": true,
+      "detail": {
+        "landmarks": 11
+      }
+    },
+    {
+      "name": "Stage 1 main route traverses start-to-exit",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "i": 1594,
+        "x": 4026.3,
+        "y": 1394.5,
+        "surface": "forest-floor"
+      }
+    },
+    {
+      "name": "Stage 2 main route traverses start-to-exit",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "i": 1484,
+        "x": 4077.3,
+        "y": 1850.9,
+        "surface": "canyon-ground"
+      }
+    },
+    {
+      "name": "Stage 3 main route traverses start-to-exit",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "i": 2369,
+        "x": 6228.1,
+        "y": 1539.7,
+        "surface": "ferry-ground"
+      }
+    },
+    {
+      "name": "Stage 4 main route traverses start-to-exit",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "i": 1621,
+        "x": 4376.8,
+        "y": 1883.4,
+        "surface": "gate-basin"
+      }
+    },
+    {
+      "name": "Stage 1 giant pine owns destructible gameplay branches",
+      "passed": true,
+      "detail": {
+        "treeX": 2450,
+        "branches": [
+          {
+            "id": "root-step-low",
+            "hp": 430,
+            "nodes": 18
+          },
+          {
+            "id": "root-step-mid",
+            "hp": 410,
+            "nodes": 16
+          },
+          {
+            "id": "root-step-high",
+            "hp": 400,
+            "nodes": 18
+          },
+          {
+            "id": "canopy-root",
+            "hp": 390,
+            "nodes": 18
+          }
+        ]
+      }
+    },
+    {
+      "name": "Stage 1 branch route is physically reachable and optional",
+      "passed": true,
+      "detail": {
+        "climb": [
+          {
+            "id": "root-step-low",
+            "x": 1980.5,
+            "y": 1942.1,
+            "i": 96
+          },
+          {
+            "id": "root-step-mid",
+            "x": 2201.6,
+            "y": 1783.1,
+            "i": 118
+          },
+          {
+            "id": "root-step-high",
+            "x": 2453.2,
+            "y": 1583.6,
+            "i": 98
+          },
+          {
+            "id": "canopy-root",
+            "x": 2760.7,
+            "y": 1445.4,
+            "i": 124
+          }
+        ],
+        "mainAfterBreak": {
+          "ok": true,
+          "i": 962,
+          "x": 4028.1,
+          "y": 1394.3,
+          "surface": "forest-floor"
+        }
+      }
+    },
+    {
+      "name": "Stage 2 basin water and cliff materials are attached",
+      "passed": true,
+      "detail": {
+        "waterWidth": 630,
+        "shelfNodes": 19
+      }
+    },
+    {
+      "name": "Stage 2 five-step climb remains reachable",
+      "passed": true,
+      "detail": [
+        {
+          "id": "climb-1",
+          "x": 2778.5,
+          "y": 2375.3,
+          "i": 123
+        },
+        {
+          "id": "climb-2",
+          "x": 2998.1,
+          "y": 2192.5,
+          "i": 108
+        },
+        {
+          "id": "climb-3",
+          "x": 3181.5,
+          "y": 2007.3,
+          "i": 106
+        },
+        {
+          "id": "climb-4",
+          "x": 3377.8,
+          "y": 1819.5,
+          "i": 105
+        },
+        {
+          "id": "climb-5",
+          "x": 3532.8,
+          "y": 1639.1,
+          "i": 109
+        },
+        {
+          "id": "mid-shelf",
+          "x": 3669.8,
+          "y": 1439.7,
+          "i": 98
+        }
+      ]
+    },
+    {
+      "name": "Stage 3 permanent docks, water basin, scaffold and roof remain coherent",
+      "passed": true,
+      "detail": [
+        {
+          "id": "dock-west",
+          "x": 1369.4,
+          "y": 2034.6,
+          "i": 160
+        },
+        {
+          "id": "dock-mid",
+          "x": 2095.9,
+          "y": 2094.9,
+          "i": 276
+        },
+        {
+          "id": "dock-east",
+          "x": 2741.6,
+          "y": 2132.5,
+          "i": 245
+        },
+        {
+          "id": "cargo-step-1",
+          "x": 4540.8,
+          "y": 1745.6,
+          "i": 105
+        },
+        {
+          "id": "cargo-step-2",
+          "x": 4761.3,
+          "y": 1576.1,
+          "i": 113
+        },
+        {
+          "id": "warehouse-roof",
+          "x": 5026.4,
+          "y": 1379.7,
+          "i": 100
+        }
+      ]
+    },
+    {
+      "name": "Stage 4 two defense heights remain reachable with composed terrain",
+      "passed": true,
+      "detail": [
+        {
+          "id": "west-step-1",
+          "x": 1081.3,
+          "y": 2057.8,
+          "i": 90
+        },
+        {
+          "id": "west-step-2",
+          "x": 1268,
+          "y": 1860,
+          "i": 99
+        },
+        {
+          "id": "west-shoulder",
+          "x": 1497.3,
+          "y": 1699,
+          "i": 117
+        },
+        {
+          "id": "east-step-1",
+          "x": 3160.7,
+          "y": 2104.9,
+          "i": 103
+        },
+        {
+          "id": "east-step-2",
+          "x": 3339.3,
+          "y": 1931.7,
+          "i": 112
+        },
+        {
+          "id": "east-watch",
+          "x": 3542,
+          "y": 1757.3,
+          "i": 111
+        }
+      ]
+    },
+    {
+      "name": "Generated material bands sit exactly on declared support",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "Renderer distinguishes background props without Canvas filter regression",
+      "passed": true,
+      "detail": true
+    }
+  ]
+}

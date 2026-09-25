@@ -1,0 +1,1064 @@
+{
+  "dimensions": [
+    6500,
+    3100
+  ],
+  "design": {
+    "title": "젖은 나루 제방과 영구 잔교, 창고 고지",
+    "question": "높은 제방에서 내려와 얕은 물과 진흙을 건너거나, 영구 잔교와 화물 발판을 타고 높은 창고 사격점을 선점",
+    "gameplay": [
+      "river-materials",
+      "shallow-water-basin",
+      "permanent-docks",
+      "warehouse-high-route",
+      "logical-scaffold"
+    ]
+  },
+  "backdrop": {
+    "kind": "river",
+    "layers": 8,
+    "mood": "foggy-reed-ferry"
+  },
+  "grounds": [
+    {
+      "id": "ferry-ground",
+      "top": [
+        [
+          0,
+          1780
+        ],
+        [
+          64,
+          1775
+        ],
+        [
+          128,
+          1769
+        ],
+        [
+          192,
+          1762
+        ],
+        [
+          256,
+          1756
+        ],
+        [
+          320,
+          1750
+        ],
+        [
+          386,
+          1757
+        ],
+        [
+          452,
+          1767
+        ],
+        [
+          518,
+          1778
+        ],
+        [
+          584,
+          1788
+        ],
+        [
+          650,
+          1795
+        ],
+        [
+          710,
+          1817
+        ],
+        [
+          770,
+          1839
+        ],
+        [
+          830,
+          1863
+        ],
+        [
+          890,
+          1887
+        ],
+        [
+          950,
+          1910
+        ],
+        [
+          1010,
+          1947
+        ],
+        [
+          1070,
+          1984
+        ],
+        [
+          1130,
+          2019
+        ],
+        [
+          1190,
+          2053
+        ],
+        [
+          1250,
+          2090
+        ],
+        [
+          1310,
+          2129
+        ],
+        [
+          1370,
+          2171
+        ],
+        [
+          1430,
+          2212
+        ],
+        [
+          1490,
+          2251
+        ],
+        [
+          1550,
+          2290
+        ],
+        [
+          1600,
+          2316
+        ],
+        [
+          1650,
+          2341
+        ],
+        [
+          1700,
+          2367
+        ],
+        [
+          1750,
+          2393
+        ],
+        [
+          1800,
+          2420
+        ],
+        [
+          1870,
+          2434
+        ],
+        [
+          1940,
+          2445
+        ],
+        [
+          2010,
+          2455
+        ],
+        [
+          2080,
+          2466
+        ],
+        [
+          2150,
+          2480
+        ],
+        [
+          2230,
+          2483
+        ],
+        [
+          2310,
+          2485
+        ],
+        [
+          2390,
+          2487
+        ],
+        [
+          2470,
+          2489
+        ],
+        [
+          2550,
+          2490
+        ],
+        [
+          2630,
+          2483
+        ],
+        [
+          2710,
+          2476
+        ],
+        [
+          2790,
+          2471
+        ],
+        [
+          2870,
+          2468
+        ],
+        [
+          2950,
+          2460
+        ],
+        [
+          3030,
+          2445
+        ],
+        [
+          3110,
+          2427
+        ],
+        [
+          3190,
+          2411
+        ],
+        [
+          3270,
+          2395
+        ],
+        [
+          3350,
+          2380
+        ],
+        [
+          3420,
+          2354
+        ],
+        [
+          3490,
+          2329
+        ],
+        [
+          3560,
+          2304
+        ],
+        [
+          3630,
+          2277
+        ],
+        [
+          3700,
+          2250
+        ],
+        [
+          3770,
+          2218
+        ],
+        [
+          3840,
+          2189
+        ],
+        [
+          3910,
+          2161
+        ],
+        [
+          3980,
+          2131
+        ],
+        [
+          4050,
+          2100
+        ],
+        [
+          4120,
+          2068
+        ],
+        [
+          4190,
+          2036
+        ],
+        [
+          4260,
+          2003
+        ],
+        [
+          4330,
+          1970
+        ],
+        [
+          4400,
+          1940
+        ],
+        [
+          4470,
+          1916
+        ],
+        [
+          4540,
+          1890
+        ],
+        [
+          4610,
+          1863
+        ],
+        [
+          4680,
+          1835
+        ],
+        [
+          4750,
+          1810
+        ],
+        [
+          4820,
+          1787
+        ],
+        [
+          4890,
+          1766
+        ],
+        [
+          4960,
+          1744
+        ],
+        [
+          5030,
+          1723
+        ],
+        [
+          5100,
+          1700
+        ],
+        [
+          5170,
+          1686
+        ],
+        [
+          5240,
+          1668
+        ],
+        [
+          5310,
+          1653
+        ],
+        [
+          5380,
+          1639
+        ],
+        [
+          5450,
+          1625
+        ],
+        [
+          5520,
+          1617
+        ],
+        [
+          5590,
+          1606
+        ],
+        [
+          5660,
+          1594
+        ],
+        [
+          5730,
+          1584
+        ],
+        [
+          5800,
+          1575
+        ],
+        [
+          5870,
+          1568
+        ],
+        [
+          5940,
+          1563
+        ],
+        [
+          6010,
+          1558
+        ],
+        [
+          6080,
+          1553
+        ],
+        [
+          6150,
+          1545
+        ],
+        [
+          6220,
+          1540
+        ],
+        [
+          6290,
+          1537
+        ],
+        [
+          6360,
+          1536
+        ],
+        [
+          6430,
+          1534
+        ],
+        [
+          6500,
+          1530
+        ]
+      ],
+      "floor": 3300,
+      "surfaceKind": "soil",
+      "mat": "earth"
+    }
+  ],
+  "ribbons": [
+    {
+      "id": "dock-west",
+      "top": [
+        [
+          1180,
+          2060
+        ],
+        [
+          1225,
+          2054
+        ],
+        [
+          1270,
+          2048
+        ],
+        [
+          1315,
+          2041
+        ],
+        [
+          1360,
+          2035
+        ],
+        [
+          1410,
+          2033
+        ],
+        [
+          1460,
+          2031
+        ],
+        [
+          1510,
+          2029
+        ],
+        [
+          1560,
+          2028
+        ],
+        [
+          1610,
+          2032
+        ],
+        [
+          1660,
+          2034
+        ],
+        [
+          1710,
+          2037
+        ],
+        [
+          1760,
+          2040
+        ],
+        [
+          1805,
+          2043
+        ],
+        [
+          1850,
+          2047
+        ],
+        [
+          1895,
+          2051
+        ],
+        [
+          1940,
+          2055
+        ]
+      ],
+      "thickness": 62,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "wood",
+      "mat": "wood"
+    },
+    {
+      "id": "dock-mid",
+      "top": [
+        [
+          1950,
+          2105
+        ],
+        [
+          2002,
+          2102
+        ],
+        [
+          2055,
+          2098
+        ],
+        [
+          2108,
+          2094
+        ],
+        [
+          2160,
+          2090
+        ],
+        [
+          2215,
+          2090
+        ],
+        [
+          2270,
+          2090
+        ],
+        [
+          2325,
+          2091
+        ],
+        [
+          2380,
+          2092
+        ],
+        [
+          2435,
+          2095
+        ],
+        [
+          2490,
+          2096
+        ],
+        [
+          2545,
+          2098
+        ],
+        [
+          2600,
+          2100
+        ]
+      ],
+      "thickness": 64,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "wood",
+      "mat": "wood"
+    },
+    {
+      "id": "dock-east",
+      "top": [
+        [
+          2610,
+          2140
+        ],
+        [
+          2662,
+          2138
+        ],
+        [
+          2715,
+          2134
+        ],
+        [
+          2768,
+          2131
+        ],
+        [
+          2820,
+          2128
+        ],
+        [
+          2875,
+          2128
+        ],
+        [
+          2930,
+          2128
+        ],
+        [
+          2985,
+          2129
+        ],
+        [
+          3040,
+          2130
+        ],
+        [
+          3090,
+          2133
+        ],
+        [
+          3140,
+          2135
+        ],
+        [
+          3190,
+          2137
+        ],
+        [
+          3240,
+          2140
+        ]
+      ],
+      "thickness": 66,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "wood",
+      "mat": "wood"
+    },
+    {
+      "id": "cargo-step-1",
+      "top": [
+        [
+          4450,
+          1760
+        ],
+        [
+          4487,
+          1755
+        ],
+        [
+          4523,
+          1749
+        ],
+        [
+          4560,
+          1742
+        ],
+        [
+          4607,
+          1741
+        ],
+        [
+          4653,
+          1740
+        ],
+        [
+          4700,
+          1740
+        ]
+      ],
+      "thickness": 54,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "scaffold",
+      "mat": "wood"
+    },
+    {
+      "id": "cargo-step-2",
+      "top": [
+        [
+          4630,
+          1590
+        ],
+        [
+          4677,
+          1586
+        ],
+        [
+          4723,
+          1581
+        ],
+        [
+          4770,
+          1575
+        ],
+        [
+          4823,
+          1575
+        ],
+        [
+          4877,
+          1574
+        ],
+        [
+          4930,
+          1575
+        ]
+      ],
+      "thickness": 54,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "scaffold",
+      "mat": "wood"
+    },
+    {
+      "id": "warehouse-roof",
+      "top": [
+        [
+          4850,
+          1415
+        ],
+        [
+          4900,
+          1406
+        ],
+        [
+          4950,
+          1396
+        ],
+        [
+          5000,
+          1385
+        ],
+        [
+          5050,
+          1375
+        ],
+        [
+          5112,
+          1370
+        ],
+        [
+          5175,
+          1367
+        ],
+        [
+          5238,
+          1364
+        ],
+        [
+          5300,
+          1360
+        ],
+        [
+          5368,
+          1363
+        ],
+        [
+          5435,
+          1365
+        ],
+        [
+          5502,
+          1367
+        ],
+        [
+          5570,
+          1370
+        ],
+        [
+          5632,
+          1377
+        ],
+        [
+          5695,
+          1385
+        ],
+        [
+          5758,
+          1393
+        ],
+        [
+          5820,
+          1400
+        ]
+      ],
+      "thickness": 96,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "tile",
+      "mat": "rock"
+    }
+  ],
+  "solids": [],
+  "anchors": {
+    "start": {
+      "x": 330,
+      "support": "ferry-ground"
+    },
+    "ferry": {
+      "x": 1700,
+      "support": "dock-west"
+    },
+    "mudflat": {
+      "x": 2850,
+      "support": "ferry-ground"
+    },
+    "cargo": {
+      "x": 4700,
+      "support": "ferry-ground"
+    },
+    "ledger": {
+      "x": 5650,
+      "support": "ferry-ground"
+    },
+    "exit": {
+      "x": 6250,
+      "support": "ferry-ground"
+    },
+    "roof": {
+      "x": 5300,
+      "support": "warehouse-roof"
+    }
+  },
+  "landmarks": [
+    {
+      "kind": "reedBank",
+      "x": 420,
+      "support": "ferry-ground",
+      "size": 1.55,
+      "layer": "back"
+    },
+    {
+      "kind": "ancientPine",
+      "x": 720,
+      "support": "ferry-ground",
+      "size": 3.2,
+      "layer": "back"
+    },
+    {
+      "kind": "ferry",
+      "x": 1710,
+      "support": "dock-west",
+      "size": 1.15,
+      "layer": "prop"
+    },
+    {
+      "kind": "brokenDock",
+      "x": 2310,
+      "support": "dock-mid",
+      "size": 1.15,
+      "layer": "prop"
+    },
+    {
+      "kind": "reedBank",
+      "x": 2920,
+      "support": "ferry-ground",
+      "size": 1.6,
+      "layer": "back"
+    },
+    {
+      "kind": "waterShrine",
+      "x": 3860,
+      "support": "ferry-ground",
+      "size": 0.95,
+      "layer": "prop"
+    },
+    {
+      "kind": "scree",
+      "x": 4160,
+      "support": "ferry-ground",
+      "size": 1.15,
+      "layer": "back"
+    },
+    {
+      "kind": "cargoScaffold",
+      "x": 4720,
+      "support": "ferry-ground",
+      "size": 1.05,
+      "layer": "back"
+    },
+    {
+      "kind": "warehouse",
+      "x": 5550,
+      "support": "ferry-ground",
+      "size": 1.55,
+      "layer": "back"
+    },
+    {
+      "kind": "fernPatch",
+      "x": 4970,
+      "support": "ferry-ground",
+      "size": 1.0,
+      "layer": "back"
+    },
+    {
+      "kind": "oldHall",
+      "x": 6200,
+      "support": "ferry-ground",
+      "size": 1.0,
+      "layer": "back"
+    },
+    {
+      "kind": "refugeeCarts",
+      "x": 4660,
+      "support": "ferry-ground",
+      "size": 0.72,
+      "layer": "prop"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "dock-pack",
+      "anchor": "ferry",
+      "reason": "버려진 나룻배와 젖은 짐에 사람 냄새가 남아 산개가 몰렸다.",
+      "tactical": "제방 아래 밀집군. 잔교 위에서 곡사하거나 물길로 내려가 광역 공격.",
+      "members": [
+        {
+          "kind": "hound",
+          "dx": -160,
+          "role": "guard"
+        },
+        {
+          "kind": "boar",
+          "dx": 15,
+          "role": "screen"
+        },
+        {
+          "kind": "hound",
+          "dx": 175,
+          "role": "guard"
+        }
+      ]
+    },
+    {
+      "id": "islet-flock",
+      "anchor": "mudflat",
+      "reason": "얕은 물의 말뚝과 유실물 위에 날짐승이 자리 잡았다.",
+      "tactical": "낮은 수면 군집과 위쪽 공중 표적을 분리해 노린다.",
+      "members": [
+        {
+          "kind": "crow",
+          "dx": -190,
+          "dy": -190,
+          "role": "precision"
+        },
+        {
+          "kind": "bat",
+          "dx": 20,
+          "dy": -285,
+          "role": "harrier"
+        },
+        {
+          "kind": "crow",
+          "dx": 210,
+          "dy": -160,
+          "role": "precision"
+        }
+      ]
+    },
+    {
+      "id": "warehouse-core",
+      "anchor": "cargo",
+      "reason": "장부가 있는 창고의 처마와 화물 뒤에 들림이 버틴다.",
+      "tactical": "화물 엄폐 뒤 지상군과 창고 지붕의 원거리 표적을 선택.",
+      "members": [
+        {
+          "kind": "human",
+          "dx": -120,
+          "role": "screen"
+        },
+        {
+          "kind": "ghost",
+          "dx": 90,
+          "role": "core"
+        },
+        {
+          "kind": "crow",
+          "dx": 310,
+          "dy": -260,
+          "role": "precision"
+        }
+      ]
+    }
+  ],
+  "sectors": [
+    {
+      "anchor": "start",
+      "label": "젖은 제방"
+    },
+    {
+      "anchor": "ferry",
+      "label": "잠긴 잔교"
+    },
+    {
+      "anchor": "mudflat",
+      "label": "얕은 나루"
+    },
+    {
+      "anchor": "ledger",
+      "label": "홍만의 창고"
+    }
+  ],
+  "surfaceZones": [],
+  "materialBands": [
+    {
+      "id": "west-bank-grass",
+      "kind": "grass-mass",
+      "support": "ferry-ground",
+      "x1": 80,
+      "x2": 900,
+      "depth": 70,
+      "step": 28,
+      "alpha": 0.72
+    },
+    {
+      "id": "west-bank-mud",
+      "kind": "mud-mass",
+      "support": "ferry-ground",
+      "x1": 900,
+      "x2": 1820,
+      "depth": 82,
+      "step": 28,
+      "alpha": 0.84
+    },
+    {
+      "id": "east-bank-scree",
+      "kind": "scree-mass",
+      "support": "ferry-ground",
+      "x1": 3000,
+      "x2": 3900,
+      "depth": 74,
+      "step": 26,
+      "alpha": 0.8
+    },
+    {
+      "id": "east-rock",
+      "kind": "rock-mass",
+      "support": "ferry-ground",
+      "x1": 3500,
+      "x2": 4350,
+      "depth": 96,
+      "step": 26,
+      "alpha": 0.84
+    },
+    {
+      "id": "cargo-gravel",
+      "kind": "gravel-mass",
+      "support": "ferry-ground",
+      "x1": 4300,
+      "x2": 5050,
+      "depth": 72,
+      "step": 26,
+      "alpha": 0.82
+    },
+    {
+      "id": "warehouse-road",
+      "kind": "stone-road",
+      "support": "ferry-ground",
+      "x1": 5050,
+      "x2": 6400,
+      "depth": 70,
+      "step": 28,
+      "alpha": 0.8
+    }
+  ],
+  "waterPools": [
+    {
+      "id": "ferry-water",
+      "support": "ferry-ground",
+      "x1": 1900,
+      "x2": 3000,
+      "surfaceY": 2435,
+      "step": 24,
+      "alpha": 0.94
+    }
+  ]
+}

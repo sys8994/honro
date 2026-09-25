@@ -1,0 +1,963 @@
+{
+  "dimensions": [
+    4600,
+    3500
+  ],
+  "design": {
+    "title": "재질이 갈리는 피란문 분지와 양측 방어 고지",
+    "question": "문 앞 중앙 분지를 버틸지, 서쪽 둔덕과 동쪽 감시대를 먼저 점령해 교차사격을 끊을지 선택",
+    "gameplay": [
+      "stone-road",
+      "mud-basin",
+      "charred-village",
+      "dry-grass-slope",
+      "rock-watch",
+      "two-defense-heights"
+    ]
+  },
+  "backdrop": {
+    "kind": "gate",
+    "layers": 8,
+    "mood": "smoke-refuge-gate"
+  },
+  "grounds": [
+    {
+      "id": "gate-basin",
+      "top": [
+        [
+          0,
+          2340
+        ],
+        [
+          60,
+          2335
+        ],
+        [
+          120,
+          2329
+        ],
+        [
+          180,
+          2322
+        ],
+        [
+          240,
+          2316
+        ],
+        [
+          300,
+          2310
+        ],
+        [
+          370,
+          2302
+        ],
+        [
+          440,
+          2297
+        ],
+        [
+          510,
+          2293
+        ],
+        [
+          580,
+          2288
+        ],
+        [
+          650,
+          2280
+        ],
+        [
+          716,
+          2275
+        ],
+        [
+          782,
+          2270
+        ],
+        [
+          848,
+          2267
+        ],
+        [
+          914,
+          2264
+        ],
+        [
+          980,
+          2260
+        ],
+        [
+          1034,
+          2271
+        ],
+        [
+          1088,
+          2282
+        ],
+        [
+          1142,
+          2291
+        ],
+        [
+          1196,
+          2299
+        ],
+        [
+          1250,
+          2310
+        ],
+        [
+          1296,
+          2333
+        ],
+        [
+          1342,
+          2359
+        ],
+        [
+          1388,
+          2384
+        ],
+        [
+          1434,
+          2407
+        ],
+        [
+          1480,
+          2430
+        ],
+        [
+          1524,
+          2460
+        ],
+        [
+          1568,
+          2489
+        ],
+        [
+          1612,
+          2519
+        ],
+        [
+          1656,
+          2549
+        ],
+        [
+          1700,
+          2580
+        ],
+        [
+          1750,
+          2602
+        ],
+        [
+          1800,
+          2621
+        ],
+        [
+          1850,
+          2639
+        ],
+        [
+          1900,
+          2658
+        ],
+        [
+          1950,
+          2680
+        ],
+        [
+          2000,
+          2687
+        ],
+        [
+          2050,
+          2693
+        ],
+        [
+          2100,
+          2699
+        ],
+        [
+          2150,
+          2705
+        ],
+        [
+          2200,
+          2710
+        ],
+        [
+          2250,
+          2695
+        ],
+        [
+          2300,
+          2680
+        ],
+        [
+          2350,
+          2667
+        ],
+        [
+          2400,
+          2656
+        ],
+        [
+          2450,
+          2640
+        ],
+        [
+          2500,
+          2615
+        ],
+        [
+          2550,
+          2587
+        ],
+        [
+          2600,
+          2561
+        ],
+        [
+          2650,
+          2535
+        ],
+        [
+          2700,
+          2510
+        ],
+        [
+          2750,
+          2480
+        ],
+        [
+          2800,
+          2451
+        ],
+        [
+          2850,
+          2422
+        ],
+        [
+          2900,
+          2391
+        ],
+        [
+          2950,
+          2360
+        ],
+        [
+          3000,
+          2332
+        ],
+        [
+          3050,
+          2307
+        ],
+        [
+          3100,
+          2283
+        ],
+        [
+          3150,
+          2257
+        ],
+        [
+          3200,
+          2230
+        ],
+        [
+          3250,
+          2206
+        ],
+        [
+          3300,
+          2182
+        ],
+        [
+          3350,
+          2157
+        ],
+        [
+          3400,
+          2132
+        ],
+        [
+          3450,
+          2110
+        ],
+        [
+          3500,
+          2092
+        ],
+        [
+          3550,
+          2072
+        ],
+        [
+          3600,
+          2051
+        ],
+        [
+          3650,
+          2029
+        ],
+        [
+          3700,
+          2010
+        ],
+        [
+          3750,
+          1995
+        ],
+        [
+          3800,
+          1982
+        ],
+        [
+          3850,
+          1968
+        ],
+        [
+          3900,
+          1955
+        ],
+        [
+          3950,
+          1940
+        ],
+        [
+          4000,
+          1932
+        ],
+        [
+          4050,
+          1920
+        ],
+        [
+          4100,
+          1911
+        ],
+        [
+          4150,
+          1903
+        ],
+        [
+          4200,
+          1895
+        ],
+        [
+          4250,
+          1894
+        ],
+        [
+          4300,
+          1890
+        ],
+        [
+          4350,
+          1885
+        ],
+        [
+          4400,
+          1882
+        ],
+        [
+          4450,
+          1880
+        ],
+        [
+          4480,
+          1877
+        ],
+        [
+          4510,
+          1876
+        ],
+        [
+          4540,
+          1875
+        ],
+        [
+          4570,
+          1874
+        ],
+        [
+          4600,
+          1870
+        ]
+      ],
+      "floor": 3700,
+      "surfaceKind": "soil",
+      "mat": "earth"
+    }
+  ],
+  "ribbons": [
+    {
+      "id": "west-step-1",
+      "top": [
+        [
+          930,
+          2090
+        ],
+        [
+          977,
+          2080
+        ],
+        [
+          1023,
+          2069
+        ],
+        [
+          1070,
+          2058
+        ],
+        [
+          1117,
+          2057
+        ],
+        [
+          1163,
+          2056
+        ],
+        [
+          1210,
+          2055
+        ]
+      ],
+      "thickness": 58,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "rock",
+      "mat": "rock"
+    },
+    {
+      "id": "west-step-2",
+      "top": [
+        [
+          1110,
+          1900
+        ],
+        [
+          1160,
+          1887
+        ],
+        [
+          1210,
+          1874
+        ],
+        [
+          1260,
+          1860
+        ],
+        [
+          1310,
+          1860
+        ],
+        [
+          1360,
+          1860
+        ],
+        [
+          1410,
+          1860
+        ]
+      ],
+      "thickness": 62,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "rock",
+      "mat": "rock"
+    },
+    {
+      "id": "west-shoulder",
+      "top": [
+        [
+          1290,
+          1745
+        ],
+        [
+          1330,
+          1734
+        ],
+        [
+          1370,
+          1722
+        ],
+        [
+          1410,
+          1710
+        ],
+        [
+          1450,
+          1698
+        ],
+        [
+          1498,
+          1699
+        ],
+        [
+          1545,
+          1701
+        ],
+        [
+          1592,
+          1703
+        ],
+        [
+          1640,
+          1705
+        ],
+        [
+          1682,
+          1715
+        ],
+        [
+          1725,
+          1723
+        ],
+        [
+          1768,
+          1731
+        ],
+        [
+          1810,
+          1740
+        ]
+      ],
+      "thickness": 105,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "rock",
+      "mat": "rock"
+    },
+    {
+      "id": "east-step-1",
+      "top": [
+        [
+          3060,
+          2120
+        ],
+        [
+          3100,
+          2114
+        ],
+        [
+          3140,
+          2108
+        ],
+        [
+          3180,
+          2102
+        ],
+        [
+          3223,
+          2101
+        ],
+        [
+          3267,
+          2101
+        ],
+        [
+          3310,
+          2100
+        ]
+      ],
+      "thickness": 58,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "rock",
+      "mat": "rock"
+    },
+    {
+      "id": "east-step-2",
+      "top": [
+        [
+          3220,
+          1945
+        ],
+        [
+          3270,
+          1939
+        ],
+        [
+          3320,
+          1934
+        ],
+        [
+          3370,
+          1928
+        ],
+        [
+          3420,
+          1929
+        ],
+        [
+          3470,
+          1929
+        ],
+        [
+          3520,
+          1930
+        ]
+      ],
+      "thickness": 62,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "rock",
+      "mat": "rock"
+    },
+    {
+      "id": "east-watch",
+      "top": [
+        [
+          3400,
+          1775
+        ],
+        [
+          3440,
+          1770
+        ],
+        [
+          3480,
+          1765
+        ],
+        [
+          3520,
+          1760
+        ],
+        [
+          3560,
+          1755
+        ],
+        [
+          3605,
+          1755
+        ],
+        [
+          3650,
+          1755
+        ],
+        [
+          3695,
+          1755
+        ],
+        [
+          3740,
+          1755
+        ],
+        [
+          3788,
+          1760
+        ],
+        [
+          3835,
+          1765
+        ],
+        [
+          3882,
+          1770
+        ],
+        [
+          3930,
+          1775
+        ]
+      ],
+      "thickness": 110,
+      "oneWay": true,
+      "indestructible": true,
+      "route": false,
+      "surfaceKind": "rock",
+      "mat": "rock"
+    }
+  ],
+  "solids": [],
+  "anchors": {
+    "start": {
+      "x": 330,
+      "support": "gate-basin"
+    },
+    "gate": {
+      "x": 1030,
+      "support": "gate-basin"
+    },
+    "leftLane": {
+      "x": 1750,
+      "support": "gate-basin"
+    },
+    "cartChoke": {
+      "x": 2300,
+      "support": "gate-basin"
+    },
+    "rightLane": {
+      "x": 3560,
+      "support": "gate-basin"
+    },
+    "exit": {
+      "x": 4400,
+      "support": "gate-basin"
+    },
+    "watch": {
+      "x": 3720,
+      "support": "east-watch"
+    },
+    "westVantage": {
+      "x": 1530,
+      "support": "west-shoulder"
+    }
+  },
+  "landmarks": [
+    {
+      "kind": "villageWall",
+      "x": 930,
+      "support": "gate-basin",
+      "size": 1.65,
+      "layer": "back"
+    },
+    {
+      "kind": "oldGate",
+      "x": 1030,
+      "support": "gate-basin",
+      "size": 1.42,
+      "layer": "prop"
+    },
+    {
+      "kind": "refugeeCarts",
+      "x": 1320,
+      "support": "gate-basin",
+      "size": 0.92,
+      "layer": "prop"
+    },
+    {
+      "kind": "scree",
+      "x": 1760,
+      "support": "gate-basin",
+      "size": 1.15,
+      "layer": "back"
+    },
+    {
+      "kind": "cliffFace",
+      "x": 1580,
+      "support": "west-shoulder",
+      "size": 1.25,
+      "layer": "back",
+      "dy": 6
+    },
+    {
+      "kind": "burnedHouses",
+      "x": 2700,
+      "support": "gate-basin",
+      "size": 1.38,
+      "layer": "back"
+    },
+    {
+      "kind": "ancientPine",
+      "x": 3010,
+      "support": "gate-basin",
+      "size": 3.2,
+      "layer": "back"
+    },
+    {
+      "kind": "watchtower",
+      "x": 3870,
+      "support": "east-watch",
+      "size": 1.15,
+      "layer": "back"
+    },
+    {
+      "kind": "cliffFace",
+      "x": 3650,
+      "support": "east-watch",
+      "size": 1.25,
+      "layer": "back",
+      "dy": 5
+    },
+    {
+      "kind": "fernPatch",
+      "x": 4170,
+      "support": "gate-basin",
+      "size": 0.95,
+      "layer": "back"
+    },
+    {
+      "kind": "refugeeCarts",
+      "x": 2310,
+      "support": "gate-basin",
+      "size": 0.86,
+      "layer": "prop"
+    }
+  ],
+  "encounters": [
+    {
+      "id": "gate-pressure",
+      "anchor": "leftLane",
+      "reason": "피란 행렬을 뒤쫓은 짐승들이 배수로와 문 앞 저지선을 밀어붙인다.",
+      "tactical": "중앙 전열과 좌측 둔덕의 공격을 동시에 관리.",
+      "members": [
+        {
+          "kind": "hound",
+          "dx": -170,
+          "role": "guard"
+        },
+        {
+          "kind": "boar",
+          "dx": -20,
+          "role": "screen"
+        },
+        {
+          "kind": "hound",
+          "dx": 140,
+          "role": "guard"
+        }
+      ]
+    },
+    {
+      "id": "cart-pocket",
+      "anchor": "cartChoke",
+      "reason": "멈춘 수레와 불탄 짐 주변의 혼기에 작은 무리가 모였다.",
+      "tactical": "분지 중앙의 광역 보상 군집. 피란문과 충분히 떨어져 있다.",
+      "members": [
+        {
+          "kind": "hound",
+          "dx": -170,
+          "role": "guard"
+        },
+        {
+          "kind": "hound",
+          "dx": -45,
+          "role": "guard"
+        },
+        {
+          "kind": "boar",
+          "dx": 100,
+          "role": "screen"
+        },
+        {
+          "kind": "stag",
+          "dx": 255,
+          "role": "core"
+        }
+      ]
+    },
+    {
+      "id": "watch-crossfire",
+      "anchor": "rightLane",
+      "reason": "무너진 감시대와 동쪽 암반을 날짐승과 들린 병사가 차지했다.",
+      "tactical": "동쪽 고지를 점령하면 공중 견제에 짧은 사선 확보.",
+      "members": [
+        {
+          "kind": "human",
+          "dx": -180,
+          "role": "core"
+        },
+        {
+          "kind": "crow",
+          "dx": 20,
+          "dy": -220,
+          "role": "precision"
+        },
+        {
+          "kind": "bat",
+          "dx": 190,
+          "dy": -300,
+          "role": "harrier"
+        },
+        {
+          "kind": "crow",
+          "dx": 330,
+          "dy": -180,
+          "role": "precision"
+        }
+      ]
+    }
+  ],
+  "sectors": [
+    {
+      "anchor": "gate",
+      "label": "연목 피란문"
+    },
+    {
+      "anchor": "leftLane",
+      "label": "배수로 방어선"
+    },
+    {
+      "anchor": "cartChoke",
+      "label": "불탄 수레 목"
+    },
+    {
+      "anchor": "watch",
+      "label": "동쪽 감시대"
+    }
+  ],
+  "surfaceZones": [],
+  "materialBands": [
+    {
+      "id": "gate-stone-road",
+      "kind": "stone-road",
+      "support": "gate-basin",
+      "x1": 60,
+      "x2": 1200,
+      "depth": 72,
+      "step": 26,
+      "alpha": 0.86
+    },
+    {
+      "id": "cart-mud",
+      "kind": "mud-mass",
+      "support": "gate-basin",
+      "x1": 1180,
+      "x2": 1900,
+      "depth": 82,
+      "step": 26,
+      "alpha": 0.84
+    },
+    {
+      "id": "burned-yard",
+      "kind": "charred-mass",
+      "support": "gate-basin",
+      "x1": 1880,
+      "x2": 2800,
+      "depth": 90,
+      "step": 28,
+      "alpha": 0.88
+    },
+    {
+      "id": "east-dry-grass",
+      "kind": "dry-grass-mass",
+      "support": "gate-basin",
+      "x1": 2780,
+      "x2": 3450,
+      "depth": 66,
+      "step": 24,
+      "alpha": 0.78
+    },
+    {
+      "id": "watch-rock",
+      "kind": "rock-mass",
+      "support": "gate-basin",
+      "x1": 3400,
+      "x2": 4250,
+      "depth": 100,
+      "step": 26,
+      "alpha": 0.88
+    },
+    {
+      "id": "exit-grass",
+      "kind": "grass-mass",
+      "support": "gate-basin",
+      "x1": 4140,
+      "x2": 4580,
+      "depth": 58,
+      "step": 22,
+      "alpha": 0.62
+    }
+  ],
+  "waterPools": []
+}

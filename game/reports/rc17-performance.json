@@ -1,0 +1,47 @@
+{
+  "rows": [
+    {
+      "stage": 1,
+      "launchMs": 130.4,
+      "rendersPerSec": 23,
+      "renderAvgMs": 10.31,
+      "renderMaxMs": 15.1,
+      "heapBefore": 13997551,
+      "heapAfter": 11311643,
+      "heapDelta": -2685908,
+      "lastError": null,
+      "terrain": 9,
+      "landmarks": 38,
+      "zones": 19
+    },
+    {
+      "stage": 2,
+      "launchMs": 87.8,
+      "rendersPerSec": 45,
+      "renderAvgMs": 4.89,
+      "renderMaxMs": 9.2,
+      "heapBefore": 13905694,
+      "heapAfter": 11669926,
+      "heapDelta": -2235768,
+      "lastError": null,
+      "terrain": 17,
+      "landmarks": 25,
+      "zones": 19
+    },
+    {
+      "stage": 3,
+      "launchMs": 80.3,
+      "rendersPerSec": 53,
+      "renderAvgMs": 4.33,
+      "renderMaxMs": 11.2,
+      "heapBefore": 14423205,
+      "heapAfter": 14142776,
+      "heapDelta": -280429,
+      "lastError": null,
+      "terrain": 7,
+      "landmarks": 12,
+      "zones": 7
+    }
+  ],
+  "errors": []
+}

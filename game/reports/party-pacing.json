@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "name": "Stage 2: mage joins at level 3 in profile and battle",
+      "passed": true,
+      "detail": 3
+    },
+    {
+      "name": "Stage 5: knight joins at level 6 in profile and battle",
+      "passed": true,
+      "detail": 6
+    },
+    {
+      "name": "Future Sodan recruitment uses the same stage level contract",
+      "passed": true
+    },
+    {
+      "name": "Old under-levelled recruits recover once without reviving or repositioning units",
+      "passed": true
+    },
+    {
+      "name": "A stronger saved companion never loses XP, learned skills, or loadout",
+      "passed": true
+    },
+    {
+      "name": "Named allied NPCs already have stage-appropriate levels when encountered",
+      "passed": true
+    },
+    {
+      "name": "guard: own attack settles, reviews damage, then advances exactly one ally",
+      "passed": true,
+      "detail": {
+        "damage": 99,
+        "reviewSeconds": 0.6500000000000001
+      }
+    },
+    {
+      "name": "daoist: own attack settles, reviews damage, then advances exactly one ally",
+      "passed": true,
+      "detail": {
+        "damage": 59,
+        "reviewSeconds": 0.6500000000000001
+      }
+    },
+    {
+      "name": "Summoned spirits get the same post-attack review interval",
+      "passed": true,
+      "detail": {
+        "remaining": 0.4750000000000005
+      }
+    }
+  ]
+}

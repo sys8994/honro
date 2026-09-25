@@ -1,0 +1,139 @@
+{
+  "version": 2,
+  "progression": [
+    {
+      "stage": 1,
+      "entry_xp": 0,
+      "combat_xp": 70,
+      "combat_budget": 72,
+      "exit_xp": 180,
+      "exit_level": 2,
+      "exit_fraction": 0,
+      "planned_exit": 2
+    },
+    {
+      "stage": 2,
+      "entry_xp": 180,
+      "combat_xp": 108,
+      "combat_budget": 108,
+      "exit_xp": 450,
+      "exit_level": 3,
+      "exit_fraction": 0,
+      "planned_exit": 3
+    },
+    {
+      "stage": 3,
+      "entry_xp": 450,
+      "combat_xp": 184,
+      "combat_budget": 185,
+      "exit_xp": 912,
+      "exit_level": 4,
+      "exit_fraction": 0,
+      "planned_exit": 4
+    },
+    {
+      "stage": 4,
+      "entry_xp": 912,
+      "combat_xp": 290,
+      "combat_budget": 292,
+      "exit_xp": 1643,
+      "exit_level": 5,
+      "exit_fraction": 0,
+      "planned_exit": 5
+    },
+    {
+      "stage": 5,
+      "entry_xp": 1643,
+      "combat_xp": 424,
+      "combat_budget": 426,
+      "exit_xp": 2709,
+      "exit_level": 6,
+      "exit_fraction": 0,
+      "planned_exit": 6
+    },
+    {
+      "stage": 6,
+      "entry_xp": 2709,
+      "combat_xp": 580,
+      "combat_budget": 584,
+      "exit_xp": 4170,
+      "exit_level": 7,
+      "exit_fraction": 0,
+      "planned_exit": 7
+    },
+    {
+      "stage": 7,
+      "entry_xp": 4170,
+      "combat_xp": 1247,
+      "combat_budget": 1247,
+      "exit_xp": 7287,
+      "exit_level": 8,
+      "exit_fraction": 0.5,
+      "planned_exit": 8.5
+    },
+    {
+      "stage": 8,
+      "entry_xp": 7287,
+      "combat_xp": 1667,
+      "combat_budget": 1667,
+      "exit_xp": 11455,
+      "exit_level": 10,
+      "exit_fraction": 0,
+      "planned_exit": 10
+    }
+  ],
+  "futureActs": [
+    {
+      "act": 2,
+      "stageExitLevels": [
+        10.75,
+        11.5,
+        12.25,
+        13,
+        13.75,
+        14.5,
+        15.25,
+        16
+      ]
+    },
+    {
+      "act": 3,
+      "stageExitLevels": [
+        16.75,
+        17.5,
+        18.25,
+        19,
+        19.75,
+        20.5,
+        21.25,
+        22
+      ]
+    },
+    {
+      "act": 4,
+      "stageExitLevels": [
+        23,
+        24,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "act": 5,
+      "stageExitLevels": [
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25
+      ]
+    }
+  ]
+}

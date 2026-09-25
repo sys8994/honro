@@ -1,0 +1,21 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>HONRO Map Workshop</title><style>/*STYLE*/</style></head><body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark"><span>魂</span></div><div><strong>HONRO WORKSHOP</strong><br><small id="projectName">Map Workshop</small></div></div>
+    <nav class="tabs"><button class="tab" data-tab="element">ELEMENTS</button><button class="tab active" data-tab="stage">STAGE</button><button class="tab" data-tab="play">PLAYTEST</button></nav>
+    <div class="top-actions"><button class="icon-btn" id="undoBtn" title="Undo">↶</button><button class="icon-btn" id="redoBtn" title="Redo">↷</button><button class="btn hide-mobile" id="newStageBtn">+ Stage</button><button class="btn hide-mobile" id="importBtn">Import</button><button class="btn primary" id="exportBtn">Export</button><input id="fileInput" type="file" accept=".json" hidden></div>
+  </header>
+  <main class="workspace">
+    <aside class="panel left-panel"><div id="leftContent" class="panel-scroll"></div></aside>
+    <section class="center">
+      <div id="stageView" class="view active"><div class="canvas-wrap"><canvas id="stageCanvas" class="canvas"></canvas><div id="stageToolbar" class="toolbar"></div><div class="hud-overlay"><span class="chip" id="stageZoom">100%</span><span class="chip" id="stageCoord">0, 0</span></div><div class="canvas-help">Wheel: zoom · Pan/우클릭: 이동 · Ctrl+드래그: Grid snap · Solid: 더블클릭/Enter 완료 · Ctrl+Z: Undo</div></div></div>
+      <div id="elementView" class="view"><div class="element-layout"><div class="element-library"><div class="muted" style="font-size:10px">왼쪽 패널에서 요소를 선택하세요.</div></div><div class="element-canvas-wrap"><canvas id="elementCanvas" class="canvas"></canvas><div id="elementToolbar" class="element-tools"></div><div class="canvas-help">Polygon/Point 선택·드래그 · Ctrl+드래그: Grid snap · Polygon tool: 더블클릭/Enter 완료</div></div><div class="element-inspector"><div class="muted" style="font-size:10px">속성은 오른쪽 패널에 표시됩니다.</div></div></div></div>
+      <div id="playView" class="view"><div class="canvas-wrap"><canvas id="playCanvas" class="canvas"></canvas><div class="play-hud">실시간 lightweight playtest</div><div class="play-keys">A / D 또는 ← / → · Space 점프</div></div></div>
+    </section>
+    <aside class="panel right-panel"><div id="rightContent" class="panel-scroll"></div></aside>
+  </main>
+  <footer class="statusbar"><span id="statusText">준비됨</span><span class="right">HONRO Workshop · local-first · agent-ready</span></footer>
+</div>
+<div class="modal" id="newStageModal"><div class="modal-card"><h2>새 Stage</h2><div class="row"><label>이름</label><input id="newStageName" class="field" value="새 스테이지"></div><div class="split"><div><label class="node-label">Width</label><input id="newStageW" class="field" type="number" value="5000"></div><div><label class="node-label">Height</label><input id="newStageH" class="field" type="number" value="3200"></div></div><div class="modal-footer"><button class="btn" id="createStageCancel">취소</button><button class="btn primary" id="createStageConfirm">생성</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>/*SCRIPT*/</script></body></html>

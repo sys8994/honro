@@ -1,0 +1,173 @@
+{
+  "passed": 8,
+  "failed": 4,
+  "checks": [
+    {
+      "name": "Stage 3 ground density >= 5x prior 12 authored ground nodes",
+      "passed": true,
+      "detail": {
+        "prior": 12,
+        "nodes": 96,
+        "factor": 8
+      }
+    },
+    {
+      "name": "Stage 4 ground density >= 5x prior 9 nodes",
+      "passed": true,
+      "detail": {
+        "prior": 9,
+        "nodes": 91,
+        "factor": 10.11
+      }
+    },
+    {
+      "name": "Stage 3 uses at least five visible terrain materials",
+      "passed": false,
+      "error": ""
+    },
+    {
+      "name": "Stage 4 uses at least five visible terrain materials",
+      "passed": false,
+      "error": ""
+    },
+    {
+      "name": "Stage 3 authored scenery has valid support and layer",
+      "passed": false,
+      "error": "landmark-2:prop"
+    },
+    {
+      "name": "Stage 4 authored scenery has valid support and layer",
+      "passed": false,
+      "error": "landmark-1:prop"
+    },
+    {
+      "name": "Stage 3 start-to-exit route remains traversable",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "i": 2369,
+        "x": 6228.098909276724,
+        "y": 1539.6529038881404,
+        "surface": "ferry-ground"
+      }
+    },
+    {
+      "name": "Stage 4 start-to-exit route remains traversable",
+      "passed": true,
+      "detail": {
+        "ok": true,
+        "i": 1621,
+        "x": 4376.756271069704,
+        "y": 1883.3946237358177,
+        "surface": "gate-basin"
+      }
+    },
+    {
+      "name": "Stage 3 permanent dock route and warehouse roof are reachable",
+      "passed": true,
+      "detail": [
+        {
+          "id": "dock-west",
+          "x": 1369.4,
+          "y": 2034.6,
+          "i": 160
+        },
+        {
+          "id": "dock-mid",
+          "x": 2095.9,
+          "y": 2094.9,
+          "i": 276
+        },
+        {
+          "id": "dock-east",
+          "x": 2741.6,
+          "y": 2132.5,
+          "i": 245
+        },
+        {
+          "id": "cargo-step-1",
+          "x": 4540.8,
+          "y": 1745.6,
+          "i": 105
+        },
+        {
+          "id": "cargo-step-2",
+          "x": 4761.3,
+          "y": 1576.1,
+          "i": 113
+        },
+        {
+          "id": "warehouse-roof",
+          "x": 5026.4,
+          "y": 1379.7,
+          "i": 100
+        }
+      ]
+    },
+    {
+      "name": "Stage 3 essential dock geometry is indestructible",
+      "passed": true,
+      "detail": [
+        {
+          "id": "dock-west",
+          "hp": 99999
+        },
+        {
+          "id": "dock-mid",
+          "hp": 99999
+        },
+        {
+          "id": "dock-east",
+          "hp": 99999
+        }
+      ]
+    },
+    {
+      "name": "Stage 4 west and east defense heights are reachable",
+      "passed": true,
+      "detail": [
+        {
+          "id": "west-step-1",
+          "x": 1081.3,
+          "y": 2057.8,
+          "i": 90
+        },
+        {
+          "id": "west-step-2",
+          "x": 1268,
+          "y": 1860,
+          "i": 99
+        },
+        {
+          "id": "west-shoulder",
+          "x": 1497.3,
+          "y": 1699,
+          "i": 117
+        },
+        {
+          "id": "east-step-1",
+          "x": 3160.7,
+          "y": 2104.9,
+          "i": 103
+        },
+        {
+          "id": "east-step-2",
+          "x": 3339.3,
+          "y": 1931.7,
+          "i": 112
+        },
+        {
+          "id": "east-watch",
+          "x": 3542,
+          "y": 1757.3,
+          "i": 111
+        }
+      ]
+    },
+    {
+      "name": "RC18 renderer contains no Canvas filter regression",
+      "passed": true,
+      "detail": true
+    }
+  ]
+}

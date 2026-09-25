@@ -1,0 +1,452 @@
+{
+  "checks": [
+    {
+      "name": "Main page uses cropped HONRO calligraphy logo",
+      "detail": {
+        "srcBytesApprox": 59539
+      }
+    },
+    {
+      "name": "Full poster is not used as main-page background",
+      "detail": "radial-gradient(at 68% 38%, rgba(39, 68, 59, 0.267) 0px, rgba(18, 37, 44, 0.333) 28%, rgba(0, 0, 0, 0) 55%), linear-gradient(145deg, rgb(10, 21, 27) 0%, rgb(20, 39, 42) 48%, rgb(9, 19, 24) 100%)"
+    },
+    {
+      "name": "Stage 1 entry uses its poster-panel crop",
+      "detail": {
+        "title": "연목 고갯길",
+        "bytesApprox": 44348
+      }
+    },
+    {
+      "name": "Stage 1 loads RC11 polygon map",
+      "detail": {
+        "w": 5200,
+        "h": 2600,
+        "mw": 176,
+        "mh": 88,
+        "revision": 11,
+        "terrain": 4,
+        "polygon": 4
+      }
+    },
+    {
+      "name": "Stage 1 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 2.0,
+        "ui": 2.0,
+        "relError": 0.0
+      }
+    },
+    {
+      "name": "Stage 2 entry uses its poster-panel crop",
+      "detail": {
+        "title": "상여 위의 높은 길",
+        "bytesApprox": 41504
+      }
+    },
+    {
+      "name": "Stage 2 loads RC11 polygon map",
+      "detail": {
+        "w": 5600,
+        "h": 3600,
+        "mw": 176,
+        "mh": 113,
+        "revision": 11,
+        "terrain": 4,
+        "polygon": 4
+      }
+    },
+    {
+      "name": "Stage 2 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 1.5555555555555556,
+        "ui": 1.5575221238938053,
+        "relError": 0.0012642225031605264
+      }
+    },
+    {
+      "name": "Stage 3 entry uses its poster-panel crop",
+      "detail": {
+        "title": "나루의 남은 장부",
+        "bytesApprox": 36275
+      }
+    },
+    {
+      "name": "Stage 3 loads RC11 polygon map",
+      "detail": {
+        "w": 7600,
+        "h": 2400,
+        "mw": 176,
+        "mh": 56,
+        "revision": 11,
+        "terrain": 7,
+        "polygon": 7
+      }
+    },
+    {
+      "name": "Stage 3 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 3.1666666666666665,
+        "ui": 3.142857142857143,
+        "relError": 0.007518796992481177
+      }
+    },
+    {
+      "name": "Stage 4 entry uses its poster-panel crop",
+      "detail": {
+        "title": "문 밖에 남은 사람들",
+        "bytesApprox": 47513
+      }
+    },
+    {
+      "name": "Stage 4 loads RC11 polygon map",
+      "detail": {
+        "w": 4600,
+        "h": 3400,
+        "mw": 176,
+        "mh": 130,
+        "revision": 11,
+        "terrain": 4,
+        "polygon": 4
+      }
+    },
+    {
+      "name": "Stage 4 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 1.3529411764705883,
+        "ui": 1.353846153846154,
+        "relError": 0.0006688963210702317
+      }
+    },
+    {
+      "name": "Stage 5 entry uses its poster-panel crop",
+      "detail": {
+        "title": "폭포 틈의 한 발",
+        "bytesApprox": 39386
+      }
+    },
+    {
+      "name": "Stage 5 loads RC11 polygon map",
+      "detail": {
+        "w": 4300,
+        "h": 4600,
+        "mw": 144,
+        "mh": 154,
+        "revision": 11,
+        "terrain": 7,
+        "polygon": 7
+      }
+    },
+    {
+      "name": "Stage 5 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 0.9347826086956522,
+        "ui": 0.935064935064935,
+        "relError": 0.0003020235578374417
+      }
+    },
+    {
+      "name": "Stage 6 entry uses its poster-panel crop",
+      "detail": {
+        "title": "끊어진 나무다리",
+        "bytesApprox": 41873
+      }
+    },
+    {
+      "name": "Stage 6 loads RC11 polygon map",
+      "detail": {
+        "w": 6500,
+        "h": 3600,
+        "mw": 176,
+        "mh": 97,
+        "revision": 11,
+        "terrain": 7,
+        "polygon": 7
+      }
+    },
+    {
+      "name": "Stage 6 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 1.8055555555555556,
+        "ui": 1.8144329896907216,
+        "relError": 0.004916732751784281
+      }
+    },
+    {
+      "name": "Stage 7 entry uses its poster-panel crop",
+      "detail": {
+        "title": "살아 있는 사람을 꺼내는 법",
+        "bytesApprox": 39818
+      }
+    },
+    {
+      "name": "Stage 7 loads RC11 polygon map",
+      "detail": {
+        "w": 3600,
+        "h": 5000,
+        "mw": 111,
+        "mh": 154,
+        "revision": 11,
+        "terrain": 9,
+        "polygon": 9
+      }
+    },
+    {
+      "name": "Stage 7 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 0.72,
+        "ui": 0.7207792207792207,
+        "relError": 0.0010822510822510673
+      }
+    },
+    {
+      "name": "Stage 8 entry uses its poster-panel crop",
+      "detail": {
+        "title": "돌아오는 빈 상여",
+        "bytesApprox": 34148
+      }
+    },
+    {
+      "name": "Stage 8 loads RC11 polygon map",
+      "detail": {
+        "w": 8200,
+        "h": 3000,
+        "mw": 176,
+        "mh": 64,
+        "revision": 11,
+        "terrain": 6,
+        "polygon": 6
+      }
+    },
+    {
+      "name": "Stage 8 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 2.7333333333333334,
+        "ui": 2.75,
+        "relError": 0.006097560975609735
+      }
+    },
+    {
+      "name": "Stage 9 entry uses its poster-panel crop",
+      "detail": {
+        "title": "바람 없는 마당",
+        "bytesApprox": 38624
+      }
+    },
+    {
+      "name": "Stage 9 loads RC11 polygon map",
+      "detail": {
+        "w": 3400,
+        "h": 3200,
+        "mw": 176,
+        "mh": 166,
+        "revision": 11,
+        "terrain": 4,
+        "polygon": 4
+      }
+    },
+    {
+      "name": "Stage 9 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 1.0625,
+        "ui": 1.0602409638554218,
+        "relError": 0.002126151665485393
+      }
+    },
+    {
+      "name": "Stage 10 entry uses its poster-panel crop",
+      "detail": {
+        "title": "소단 — 놓지 못한 밤",
+        "bytesApprox": 47294
+      }
+    },
+    {
+      "name": "Stage 10 loads RC11 polygon map",
+      "detail": {
+        "w": 5200,
+        "h": 3800,
+        "mw": 176,
+        "mh": 129,
+        "revision": 11,
+        "terrain": 4,
+        "polygon": 4
+      }
+    },
+    {
+      "name": "Stage 10 minimap preserves map aspect ratio",
+      "detail": {
+        "world": 1.368421052631579,
+        "ui": 1.3643410852713178,
+        "relError": 0.0029815146094216254
+      }
+    },
+    {
+      "name": "All ten stage-entry crops are distinct",
+      "detail": 10
+    },
+    {
+      "name": "Stage 3 crossing bridges cannot be destroyed",
+      "detail": {
+        "count": 2,
+        "indestructible": true,
+        "broken": false,
+        "same": true
+      }
+    },
+    {
+      "name": "Desktop E interaction prompt is visible near the ritual",
+      "detail": {
+        "hidden": false,
+        "text": "E\n담허의 의식\n담허의 받이진"
+      }
+    },
+    {
+      "name": "Damheo opens the Stage 5 firing window while holding the array",
+      "detail": {
+        "prompt": {
+          "hidden": false,
+          "text": "E\n담허의 의식\n담허의 받이진"
+        },
+        "used": true,
+        "hp0": 520,
+        "blockedHp": 520,
+        "after": {
+          "active": true,
+          "veilOpen": true,
+          "hp": 520
+        },
+        "activeDamage": 100,
+        "left": {
+          "active": false,
+          "veilOpen": false
+        }
+      }
+    },
+    {
+      "name": "Stage 5 cleat ignores hits while closed and accepts hits while open",
+      "detail": {
+        "prompt": {
+          "hidden": false,
+          "text": "E\n담허의 의식\n담허의 받이진"
+        },
+        "used": true,
+        "hp0": 520,
+        "blockedHp": 520,
+        "after": {
+          "active": true,
+          "veilOpen": true,
+          "hp": 520
+        },
+        "activeDamage": 100,
+        "left": {
+          "active": false,
+          "veilOpen": false
+        }
+      }
+    },
+    {
+      "name": "Stage 5 firing window closes when Damheo leaves position",
+      "detail": {
+        "active": false,
+        "veilOpen": false
+      }
+    },
+    {
+      "name": "No browser runtime exceptions",
+      "detail": []
+    }
+  ],
+  "maps": [
+    {
+      "w": 5200,
+      "h": 2600,
+      "mw": 176,
+      "mh": 88,
+      "revision": 11,
+      "terrain": 4,
+      "polygon": 4
+    },
+    {
+      "w": 5600,
+      "h": 3600,
+      "mw": 176,
+      "mh": 113,
+      "revision": 11,
+      "terrain": 4,
+      "polygon": 4
+    },
+    {
+      "w": 7600,
+      "h": 2400,
+      "mw": 176,
+      "mh": 56,
+      "revision": 11,
+      "terrain": 7,
+      "polygon": 7
+    },
+    {
+      "w": 4600,
+      "h": 3400,
+      "mw": 176,
+      "mh": 130,
+      "revision": 11,
+      "terrain": 4,
+      "polygon": 4
+    },
+    {
+      "w": 4300,
+      "h": 4600,
+      "mw": 144,
+      "mh": 154,
+      "revision": 11,
+      "terrain": 7,
+      "polygon": 7
+    },
+    {
+      "w": 6500,
+      "h": 3600,
+      "mw": 176,
+      "mh": 97,
+      "revision": 11,
+      "terrain": 7,
+      "polygon": 7
+    },
+    {
+      "w": 3600,
+      "h": 5000,
+      "mw": 111,
+      "mh": 154,
+      "revision": 11,
+      "terrain": 9,
+      "polygon": 9
+    },
+    {
+      "w": 8200,
+      "h": 3000,
+      "mw": 176,
+      "mh": 64,
+      "revision": 11,
+      "terrain": 6,
+      "polygon": 6
+    },
+    {
+      "w": 3400,
+      "h": 3200,
+      "mw": 176,
+      "mh": 166,
+      "revision": 11,
+      "terrain": 4,
+      "polygon": 4
+    },
+    {
+      "w": 5200,
+      "h": 3800,
+      "mw": 176,
+      "mh": 129,
+      "revision": 11,
+      "terrain": 4,
+      "polygon": 4
+    }
+  ],
+  "errors": []
+}
