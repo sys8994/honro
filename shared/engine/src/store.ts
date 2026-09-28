@@ -6,7 +6,7 @@ import { upgradeBattle } from './world';
 import { CLASS_IDS, freshRoster, baseSkill, XP_CAP, LEGACY_XP_CAP_9, migrateLegacyXp9, TALENT_MAP, levelOf, xpAtLevel, autoTrain, sanitizeLoadout, pointsSpent, pointsEarned, isOpen, requiredRankLevel } from './progression';
 const KEY = 'falling-star-company.rpg.v2', BACK = KEY + '.backup', OLD = 'falling-star-company.v1';
 const copy = <T>(o: T): T => JSON.parse(JSON.stringify(o));
-export function defaults(): Profile { return { version: 2, revision: 12, cleared: {}, party: ['mage', 'archer', 'knight', 'occultist'], loadouts: { mage: ['M01'], archer: ['A01'], knight: ['S01', 'S09'], occultist: ['O01','O06','O11'] }, tuning: { mage: .5, archer: .5, knight: .5, occultist: .5 }, settings: { sound: true, music: false, volume: .35, assist: false, shake: true, quality: 'high', difficulty: 'normal', speed: 2, playerSpeed: 1, orientation: 'landscape' }, saved: null, lastStage: 1, mapNode: 1, tutorial: false, heroes: freshRoster() }; }
+export function defaults(): Profile { return { version: 2, revision: 12, cleared: {}, party: ['mage', 'archer', 'knight', 'occultist'], loadouts: { mage: ['M01'], archer: ['A01'], knight: ['S00'], occultist: ['O01','O06','O11'] }, tuning: { mage: .5, archer: .5, knight: .5, occultist: .5 }, settings: { sound: true, music: false, volume: .35, assist: false, shake: true, quality: 'high', difficulty: 'normal', speed: 2, playerSpeed: 1, orientation: 'landscape' }, saved: null, lastStage: 1, mapNode: 1, tutorial: false, heroes: freshRoster() }; }
 function playback(n: number) { return [1, 1.5, 2, 3, 4].reduce((a, b) => Math.abs(b - n) < Math.abs(a - n) ? b : a, 1); }
 function finite(n: unknown) { return typeof n === 'number' && Number.isFinite(n); }
 function object(v: unknown): v is Record<string, any> { return !!v && typeof v === 'object' && !Array.isArray(v); }
@@ -15,8 +15,9 @@ function validHero(raw: unknown, cls: ClassId, legacyXp=false): HeroProgress {
     const maxXp=legacyXp?LEGACY_XP_CAP_9:XP_CAP;
     if (!object(raw) || !finite(raw.xp) || raw.xp < 0 || raw.xp > maxXp || !object(raw.ranks)) return fail();
     const converted=legacyXp?migrateLegacyXp9(raw.xp):Math.floor(raw.xp);
-    const h: HeroProgress = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision:raw.skillRevision };
+    const h: HeroProgress = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision:raw.skillRevision,martialRevision:raw.martialRevision };
     if(raw.skillRevision!==undefined&&raw.skillRevision!==SKILL_REVISION)return fail();
+    if(raw.martialRevision!==undefined&&raw.martialRevision!==1)return fail();
     for (const [id, rank] of Object.entries(raw.ranks)) {
         if(id===baseSkill(cls)&&SKILLS[id].basic){if(rank!==1)return fail();h.ranks[id]=1;continue;}
         const n = TALENT_MAP[id];
@@ -136,6 +137,18 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
             return fail();
     }
     if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();
+    if(b.martialRevision!==undefined&&b.martialRevision!==1)return fail();
+    const optionalNumber=(v:unknown,min=0,max=1e12)=>v===undefined||finite(v)&&(v as number)>=min&&(v as number)<=max;
+    for(const u of b.units){
+        if(!optionalNumber(u.arrowTurn)||u.arrowTurnToken!==undefined&&!safe(u.arrowTurnToken)||!optionalNumber(u.salheunFlash,0,1)||!optionalNumber(u.jucheon,0,108)||!optionalNumber(u.bladeStored,0,.450001))return fail();
+        for(const key of ['jucheonReady','harmony'] as const)if(u[key]!==undefined&&typeof u[key]!=='boolean')return fail();
+        if(u.swordChain&&(!Array.isArray(u.swordChain)||u.swordChain.length>2||new Set(u.swordChain).size!==u.swordChain.length||u.swordChain.some(v=>!['sword','rush','blade'].includes(v))))return fail();
+        if(u.meleeFollow!==undefined&&!['landing','ready','spent'].includes(u.meleeFollow))return fail();
+        if(u.martialGuard&&(!nums(u.martialGuard,['round','reduction'])||u.martialGuard.reduction<0||u.martialGuard.reduction>.300001||u.martialGuard.counter!==undefined&&typeof u.martialGuard.counter!=='boolean'||!optionalNumber(u.martialGuard.rank,1,8)))return fail();
+        if(u.bladeScreen&&(!nums(u.bladeScreen,['round','rank','hits','facing'])||u.bladeScreen.rank<1||u.bladeScreen.rank>8||u.bladeScreen.hits<0||u.bladeScreen.hits>7||![-1,1].includes(u.bladeScreen.facing)))return fail();
+        if(u.meleeAction){const a=u.meleeAction;if(!SKILLS[a.skill]?.martial||!nums(a,['elapsed','index','damage','range','power','shot'])||a.elapsed<0||a.elapsed>5||a.index<0||a.index>8||a.damage<0||a.range<0||a.power<0||a.power>1||a.target!==undefined&&!ids.has(a.target)||!optionalNumber(a.lifeCost,0,50000))return fail();}
+        if(u.salheun){if(!object(u.salheun))return fail();for(const [owner,h] of Object.entries(u.salheun)){if(!ids.has(owner)||!nums(h,['action','recorded','cap'])||h.recorded<0||h.cap<0||h.recorded>h.cap+.01||!Array.isArray(h.entries)||h.entries.length>5||h.entries.some(v=>!nums(v,['turn','damage'])||v.turn<0||v.damage<0)||!Array.isArray(h.projectiles)||h.projectiles.length>64||h.projectiles.some(v=>!finite(v)))return fail();}}
+    }
     if(b.cast&&(!ids.has(b.cast.owner)||!SKILLS[b.cast.skill]||!nums(b.cast,['shot','cost','enemyDamage'])||b.cast.cost<0||b.cast.enemyDamage<0||b.cast.refunded!==undefined&&typeof b.cast.refunded!=='boolean'))return fail();
     for(const u of b.units){
         if(u.retreat!==undefined&&typeof u.retreat!=='boolean'||u.gateTurn!==undefined&&!safe(u.gateTurn))return fail();
@@ -149,6 +162,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         const seen=new Set<number>();for(const z of b.stakes){
             if(!nums(z,['id','x','y','rank','damage','shot'])||!ids.has(z.owner)||SKILLS[z.skill]?.branch!=='stake'||![0,1,2].includes(z.side)||seen.has(z.id)||!Number.isInteger(z.rank)||z.rank<1||z.rank>8)return fail();seen.add(z.id);
             if(z.active!==undefined&&typeof z.active!=='boolean'||z.expires!==undefined&&!finite(z.expires)||z.inside&&(!Array.isArray(z.inside)||z.inside.some(id=>!ids.has(id))))return fail();
+            if(!optionalNumber(z.effectBoost,0,.15))return fail();
             for(const m of [z.crossed,z.budgetTurns])if(m&&(!object(m)||Object.entries(m).some(([id,turn])=>!ids.has(id)||!safe(turn))))return fail();
         }
     }
@@ -166,6 +180,8 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
 
         if(q.ultimateBurst!==undefined&&typeof q.ultimateBurst!=='boolean')return fail();
+        if(!optionalNumber(q.effectBoost,0,.15)||!optionalNumber(q.sizeBoost,0,2)||q.dived!==undefined&&typeof q.dived!=='boolean')return fail();
+        if(q.orbit){const o=q.orbit;if(!finite(o.seed)||!Array.isArray(o.blades)||o.blades.length<5||o.blades.length>9)return fail();for(const blade of o.blades){if(!nums(blade,['radius','omega','phase','mod'])||blade.radius<1||blade.radius>150||Math.abs(blade.omega)>5||!object(blade.hits)||!object(blade.lastHits)||Object.entries(blade.hits).some(([id,n])=>!ids.has(id)||!Number.isInteger(n)||n<0||n>2)||Object.entries(blade.lastHits).some(([id,n])=>!ids.has(id)||!finite(n)||n<0))return fail();}}
         for(const key of ['apexY','launchX','launchY','rootDamage','plannedTime','maxAge','returnAge','preparedRank'] as const)if(q[key]!==undefined&&!finite(q[key]))return fail();
         for(const key of ['turned','returning','secondary'] as const)if(q[key]!==undefined&&typeof q[key]!=='boolean')return fail();
         if(q.targetPoint&&!nums(q.targetPoint,['x','y'])||q.contacts&&(!Array.isArray(q.contacts)||q.contacts.length>100||q.contacts.some(v=>!nums(v,['x','y'])))||q.outboundHits&&(!Array.isArray(q.outboundHits)||q.outboundHits.some(id=>!ids.has(id))))return fail();

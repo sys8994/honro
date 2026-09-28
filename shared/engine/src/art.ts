@@ -1,4 +1,5 @@
-import {drawRedesignProjectile,drawRedesignGuide,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
+import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -240,7 +241,7 @@ export class Renderer {
             if (size > 65)
                 this.shake = Math.max(this.shake, Math.min(size / 35, 4));
         }
-        if (kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
+        if (kind === 'swordCut' || kind === 'circulation' || kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
             this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, x2: e.x2, y2: e.y2 });
         if (this.fxs.length > 370)
             this.fxs.splice(0, this.fxs.length - 370);
@@ -254,7 +255,9 @@ export class Renderer {
                 if (f.kind === 'spark') f.vy += 260 * dt;
             }
             const t=f.age/f.life, alpha=Math.max(0,1-t); c.save(); c.globalAlpha=alpha;
-            if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
+            if(f.kind==='swordCut')drawSwordCut(c,f.x,f.y,f.size,t,f.x2,f.y2,f.color);
+            else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
+            else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
             else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
             if(f.kind==='inkLine')line(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.color,f.size);
@@ -277,27 +280,8 @@ export class Renderer {
         const sk=SKILLS[skillId]||SKILLS[active.loadout[0]]; if(!sk||sk.passive)return;
         const guidePower=charging?power:(active.lastPower??power??.5);
         const zoom=Math.max(.12,this.scale||1);
+        drawAimDirection(c,engine,active,sk,guidePower,charging,this.time,zoom);
         if(drawRedesignGuide(c,engine,active,sk,guidePower,zoom))return;
-        const ori=engine.origin(active,active.angle), a=rad(active.angle);
-        // A short, translucent signature follows the true launch direction.
-        c.save();c.translate(ori.x,ori.y);c.rotate(-a);c.globalAlpha=charging?.48:.32;
-        const ink={archer:'#cab889',mage:'#9caeaa',knight:'#b9ad92',occultist:'#aea5bc'}[active.cls]||sk.color;
-        const fade=c.createLinearGradient(0,0,48,0);fade.addColorStop(0,'transparent');fade.addColorStop(.4,ink);fade.addColorStop(1,'transparent');
-        c.strokeStyle=fade;c.lineWidth=1.2;c.beginPath();c.moveTo(2,0);c.lineTo(46,0);c.stroke();
-        c.strokeStyle=ink;c.lineWidth=1;
-        if(active.cls==='archer'){
-            for(const x of [25,31]){c.beginPath();c.moveTo(x-4,-3);c.lineTo(x,0);c.lineTo(x-4,3);c.stroke();}
-            line(c,41,-2,45,0,ink,1);line(c,41,2,45,0,ink,1);
-        }else if(active.cls==='knight'){
-            c.beginPath();c.moveTo(13,-3);c.lineTo(44,0);c.lineTo(13,3);c.stroke();line(c,16,-5,16,5,ink,1);
-        }else if(active.cls==='mage'){
-            c.beginPath();c.arc(29,0,7,-1.2,1.2);c.stroke();c.beginPath();c.arc(29,0,7,1.95,4.3);c.stroke();
-            circle(c,41,0,1.5,ink);
-        }else{
-            c.beginPath();c.moveTo(9,3);c.quadraticCurveTo(22,-6,37,0);c.moveTo(15,-3);c.quadraticCurveTo(28,5,40,0);c.stroke();
-            for(const x of [40,46])circle(c,x,0,x===40?1.6:1,ink);
-        }
-        c.restore();
         // Repeated archer shots can continue after the first target. Draw this under the normal collision prediction.
         if(throughUnits){
             const ext=engine.predict(active,sk,active.angle,guidePower,undefined,true,true);
@@ -511,10 +495,7 @@ export class Renderer {
         }
         if (active && b.phase === 'aim') {
             const sk = SKILLS[selected] || SKILLS[active.loadout[0]];
-            const ori = engine.origin(active, active.angle);
-            const a = rad(active.angle);
-            line(c, ori.x, ori.y, ori.x + Math.cos(a) * 82, ori.y - Math.sin(a) * 82, 'rgba(245,218,168,.8)', 1.5);
-            circle(c, ori.x + Math.cos(a) * 86, ori.y - Math.sin(a) * 86, 2.5, '#efd2a0');
+            if(sk)drawAimDirection(c,engine,active,sk,power,charging,this.time,this.scale);
             if (settings.assist || b.mode === 'practice') {
                 // The guide is a *prediction* for the currently selected shot, not a replay of
                 // the previous projectile. While charging it tracks live charge power; while idle
@@ -589,7 +570,9 @@ export class Renderer {
             c.globalAlpha = alpha;
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
-            if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
+            if(f.kind==='swordCut')drawSwordCut(c,f.x,f.y,f.size,t,f.x2,f.y2,f.color);
+            else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
+            else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
             else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
             if (f.kind === 'spark') {
@@ -1562,7 +1545,7 @@ export class Renderer {
         }
         c.restore();
     }
-    bodyTrail(c: C, p: Battle['projectiles'][number]) { if (p.trail.length < 2)
+    bodyTrail(c: C, p: Battle['projectiles'][number]) { if(drawWarriorProjectile(c,p))return; if (p.trail.length < 2)
         return; c.save(); c.globalCompositeOperation = 'lighter'; for (let i = 1; i < p.trail.length; i++) {
         const a = p.trail[i - 1], b = p.trail[i], f = i / p.trail.length;
         c.globalAlpha = f * .22;

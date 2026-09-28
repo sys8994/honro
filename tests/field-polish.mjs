@@ -30,7 +30,7 @@ test('Turn preview follows the exact post-steering flight without changing live 
 test('Only steered turn arrows gain the rank-scaled hit bonus',()=>{
  for(const rank of [1,8]){const damage=turned=>{const a=arena('A09',rank),t=a.foe(1800);a.e.fire('A09',20,.6);const p=a.b.projectiles[0];p.turned=turned;a.e.hurt(t,100,a.u.id,true,p,{x:1800,y:1660});return t.maxHp-t.hp;};const base=damage(false),bonus=damage(true),ratio=rank===1?1.3:1.65;assert(Math.abs(bonus-base*ratio)<2);}
 });
-test('Scatter and seven-star visible predictions contain one complete representative parabola',()=>{
+test('Scatter and seven-star visible predictions each contain one complete representative path',()=>{
  for(const id of ['A04','A15']){const a=arena(id);const before=JSON.stringify(a.b),pr=C.redesignPrediction(a.e,a.u,C.SKILLS[id],55,.65,true);assert.equal(pr.paths.length,1);assert(pr.apex&&pr.points.some(p=>p.y>pr.apex.y+150&&p.x>pr.apex.x));assert.equal(JSON.stringify(a.b),before);assert(C.redesignPrediction(a.e,a.u,C.SKILLS[id],55,.65).paths.length>1);}
 });
 test('Ice charge controls a longer fuse and preview equals the actual delayed bounce endpoint',()=>{

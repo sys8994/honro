@@ -1,9 +1,10 @@
+import {jucheonBoost} from './combatPassives';
 import type {Battle,Unit,Projectile,Skill,Vec,Profile} from './types';
 import type {Engine,Collision,Prediction} from './engine';
 import {dragFor} from './physics';
 import {SKILLS} from './data';
 import {clamp,rad,STEP,terrainRectIntersects} from './math';
-import {passiveRank,baseSkill,sanitizeLoadout} from './progression';
+import {passiveRank,baseSkill,sanitizeLoadout,applyHero} from './progression';
 
 export const SKILL_REVISION=1;
 export const ICE_GOURD_FUSE=3.2;
@@ -17,7 +18,8 @@ export function mainBranch(u:Pick<Unit,'ranks'>,cls='archer'){
  const sums:Record<string,number>={};for(const [id,r] of Object.entries(u.ranks)){const s=SKILLS[id];if(s?.cls===cls&&s.branch&&!s.passive)sums[s.branch]=(sums[s.branch]||0)+r;}
  const entries=Object.entries(sums).sort((a,b)=>b[1]-a[1]);return entries.length&&entries[0][1]>0&&entries[0][1]>(entries[1]?.[1]||0)?entries[0][0]:null;
 }
-export function specialty(u:Unit,s:Skill){return mainBranch(u,u.cls)===s.branch?passiveRank(u,u.cls==='archer'?'AP05':'MP05'):0;}
+/** Retained for old callers; no single-tree specialization remains. */
+export function specialty(u:Unit,s:Skill){return 0;}
 export function trajectoryMultiplier(p:Projectile,u:Unit,hit:Vec){
  const s=SKILLS[p.skill];if(!s?.redesigned||s.cls!=='archer'||p.secondary)return 1;
  const extra=.025*(passiveRank(u,'AP04')+specialty(u,s));
@@ -78,12 +80,18 @@ export function migrateSkills(p:Profile & {honroBattle?:Battle}){
   for(const q of [...b.projectiles,...(b.volley?[b.volley.template]:[])])if(SKILLS['L'+q.skill])q.skill='L'+q.skill;
   b.skillRevision=SKILL_REVISION;
  }
- for(const cls of ['archer','mage'] as const)sanitizeLoadout(p,cls);
+ for(const heroes of rosters){const h=heroes?.knight;if(h&&h.martialRevision!==1){h.ranks={S00:1};h.martialRevision=1;}}
+ for(const b of [p.saved,p.honroBattle])if(b&&b.martialRevision!==1){
+  for(const u of b.units){if(u.side===0&&!u.summoned&&u.cls==='knight'){u.ranks={...b.heroes.knight.ranks};u.loadout=['S00'];u.cooldowns={};const hp=u.hp,focus=u.focus;applyHero(u,b.heroes.knight);u.hp=Math.min(hp,u.maxHp);u.focus=Math.min(focus,u.maxFocus);delete u.meleeFollow;delete u.meleeAction;}else migrateEnemySkills(u);}
+  for(const q of [...b.projectiles,...(b.volley?[b.volley.template]:[])])if(/^S\d\d$/.test(q.skill)&&SKILLS['L'+q.skill])q.skill='L'+q.skill;
+  b.martialRevision=1;
+ }
+ for(const cls of ['archer','mage','knight'] as const)sanitizeLoadout(p,cls);
  return p;
 }
-export function initRedesignCast(e:Engine,s:Skill,u:Unit){
+export function initRedesignCast(e:Engine,s:Skill,u:Unit,actualKiSpent=e.manaCost(s,u)){
  if(!s.redesigned)return;
- e.b.cast={owner:u.id,skill:s.id,shot:e.b.shot,cost:e.manaCost(s,u),enemyDamage:0};
+ e.b.cast={owner:u.id,skill:s.id,shot:e.b.shot,cost:actualKiSpent,enemyDamage:0};
  if(u.prepared&&u.prepared.expires<e.b.round)delete u.prepared;
  const roots=e.b.projectiles.filter(p=>p.owner===u.id&&p.shot===e.b.shot);
  for(const p of roots){if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
@@ -158,7 +166,7 @@ export function geometryHits(g:SkillGeometry,u:Pick<Unit,'x'|'y'|'h'|'r'>){
  const vs=baguaVertices(g);let count=vs.some((v,i)=>lineDistance(p,v,vs[(i+1)%8])<=width)?1:0;for(const v of vs)if(lineDistance(p,g,v)<=width)count++;
  return {count:Math.min(3,count),center:d<=70+u.r,interior:false};
 }
-const geometryBoost=(u:Unit,s:Skill)=>1+passiveRank(u,'MP01')*.02+specialty(u,s)*.025;
+const geometryBoost=(u:Unit,s:Skill,boost=jucheonBoost(u,s))=>(1+passiveRank(u,'MP01')*.02)*(1+Math.min(.05,boost/3));
 function emitGeometry(e:Engine,g:SkillGeometry){
  // Serialize the exact hit shape as one event; renderer does no independent geometry reconstruction.
  e.emit('fx',{name:'skillGeometry',x:g.x,y:g.y,color:'#ced4cd',text:JSON.stringify(g),size:g.radius});
@@ -178,7 +186,7 @@ function spawnChild(e:Engine,p:Projectile,mode:string,vx:number,vy:number,damage
  const q:Projectile={...p,id:e.b.nextId++,mode,vx,vy,prevVy:vy,damage,blast,age:0,child:true,secondary:true,apex:true,hit:[],trail:[],bounces:0,pierces:0,fuseAt:undefined,phaseMode:undefined,gravityScale:1,drag:.025,radius:3,maxAge:.5};e.b.projectiles.push(q);return q;
 }
 function gourdBurst(e:Engine,p:Projectile){
- const u=e.unit(p.owner)!;const s=SKILLS[p.skill],r=rank(p),secondary=1+passiveRank(u,'MP01')*.03+specialty(u,s)*.025;
+ const u=e.unit(p.owner)!;const s=SKILLS[p.skill],r=rank(p),secondary=(1+passiveRank(u,'MP01')*.03)*(1+(p.effectBoost||0)*.5);
  if(p.mode==='gourdSky'){
   p.mode='skyWait';p.targetPoint={x:p.x,y:p.y};p.vx=p.vy=0;p.age=0;p.fuseAt=undefined;e.emit('fx',{name:'inkLine',x:p.x,y:p.y-220,x2:p.x,y2:p.y,color:'#a8bbc6',size:1});return;
  }
@@ -196,8 +204,8 @@ function gourdBurst(e:Engine,p:Projectile){
 }
 function placeStake(e:Engine,p:Projectile,h:Collision){
  const b=e.b;b.stakes??=[];const floor=h.n.y<-.3?h.y:e.surface(p.x,p.y-3,b.height)?.y;if(floor===undefined){e.remove(p);return;}
- const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
- b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:p.x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot});
+ const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
+ b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:p.x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost});
  e.fx('spark',p.x,floor,'#a89b7f',15);e.remove(p);
 }
 
@@ -207,7 +215,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.x=h.x;p.y=h.y;
  if(p.secondary){if(h.unit&&enemy(p,h.unit)){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip')h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
  if(p.mode==='waveArc'){
-  strikeGeometry(e,p,skillGeometry(s,r,h.x,h.y,Math.atan2(p.vy,p.vx),u.lastPower,undefined,undefined,geometryBoost(u,s)),h.unit);e.remove(p);return true;
+  strikeGeometry(e,p,skillGeometry(s,r,h.x,h.y,Math.atan2(p.vy,p.vx),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost)),h.unit);e.remove(p);return true;
  }
  if(p.mode==='qiPulse'){
   e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);e.emit('sound',{name:'qiWave'});e.remove(p);return true;
@@ -221,7 +229,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
   if(h.terrain){p.contacts??=[];p.contacts.push({x:h.x,y:h.y});reflect(p,h);
    e.fx('inkImpact',h.x,h.y,'#dce3da',30);
    e.emit('sound',{name:'qiRebound'});
-   if(p.mode==='waveTriangle'&&p.contacts.length>=2){strikeGeometry(e,p,skillGeometry(s,r,p.x,p.y,0,.5,p.contacts,{x:p.launchX!,y:p.launchY!},geometryBoost(u,s)));e.remove(p);}
+   if(p.mode==='waveTriangle'&&p.contacts.length>=2){strikeGeometry(e,p,skillGeometry(s,r,p.x,p.y,0,.5,p.contacts,{x:p.launchX!,y:p.launchY!},geometryBoost(u,s,p.effectBoost)));e.remove(p);}
    else if(p.bounces>Math.round(lerpRank(2,7,r)))e.remove(p);
   }else if(h.unit){e.hurt(h.unit,p.damage*(1+Math.min(.48,p.bounces*.08)),p.owner,false,p,h);e.remove(p);}return true;
  }
@@ -271,10 +279,10 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
   const iron=p.mode==='ironEmitter',count=iron?8+2*(r-1):6+r,duration=iron?1.5:1;
   while((p.emissions||0)<count&&(p.emissions||0)*duration/count<=p.age){
    p.emissions=(p.emissions||0)+1;const a=e.random()*Math.PI*2;
-   if(iron){const q=spawnChild(e,p,'ironChip',Math.cos(a)*440,Math.sin(a)*440,p.damage*.20);q.maxAge=.45;}
+   if(iron){const q=spawnChild(e,p,'ironChip',Math.cos(a)*560,Math.sin(a)*560,p.damage*.20);q.maxAge=.60;}
    else {const radius=Math.sqrt(e.random())*240,x=p.x+Math.cos(a)*radius,seedY=p.y+Math.sin(a)*radius;
     const y=seedY;
-    const secondary=1+passiveRank(u,'MP01')*.03+specialty(u,s)*.025;
+    const secondary=(1+passiveRank(u,'MP01')*.03)*(1+(p.effectBoost||0)*.5);
     const q=spawnChild(e,p,'microWait',0,0,p.damage*14/48*secondary,55);q.x=x;q.y=y;q.maxAge=undefined;q.fuseAt=.04+e.random()*.16;}
   }
   if(p.age>=duration)e.remove(p);return true;
@@ -283,7 +291,7 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
  if(p.mode==='waveArc')p.phaseMode=undefined;
  if(['waveRing','waveBagua'].includes(p.mode)){
   if(p.mode==='waveRing'||p.age>=(p.plannedTime||.5)){
-   const t=p.targetPoint!,g=skillGeometry(s,r,t.x,t.y,-rad(u.angle),u.lastPower,undefined,undefined,geometryBoost(u,s));
+   const t=p.targetPoint!,g=skillGeometry(s,r,t.x,t.y,-rad(u.angle),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost));
    strikeGeometry(e,p,g);e.remove(p);return true;
   }
  }
@@ -307,7 +315,7 @@ export function useGate(e:Engine,u=e.active){
  const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y}:null;}).find(v=>v&&!e.b.terrain.some(t=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,v.x-u.r,v.y-u.h,u.r*2,u.h-2,.1))&&!e.b.units.some(t=>!t.dead&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
  if(!spot){e.message('도착 진목 주변에 설 자리가 없습니다.');return false;}
  const {x,y}=spot;u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
- const r=to.rank,caster=e.unit(to.owner),boost=caster?geometryBoost(caster,SKILLS.M09):1;
+ const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveRank(caster,'MP01')*.02)*(1+(to.effectBoost||0)):1;
  if(r>=2)u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(r===2?.08:.10)*boost);
  if(r>=4)u.hp=Math.min(u.maxHp,u.hp+u.maxHp*(r===4?.06:.08)*boost);
  if(r>=6)u.moveLeft=Math.min(u.maxMove,u.moveLeft+u.maxMove*(r===6?.16:.24)*boost);
@@ -331,7 +339,7 @@ export function tickRedesign(e:Engine,dt:number){
  for(const z of [...(b.stakes||[])]){
   if(z.expires!==undefined&&b.round>=z.expires){b.stakes=b.stakes!.filter(s=>s.id!==z.id);continue;}
   if(z.skill==='M09')continue;
-  const caster=e.unit(z.owner);if(!caster)continue;const boost=geometryBoost(caster,SKILLS[z.skill]),trigger=45*boost;
+  const caster=e.unit(z.owner);if(!caster)continue;const boost=(1+passiveRank(caster,'MP01')*.02)*(1+(z.effectBoost||0)),trigger=45*Math.min(1.25,boost);
   const nearby=b.units.filter(u=>!u.dead&&(z.skill==='M10'?u.side===z.side||((u as any).honroAlly&&z.side===0):enemy(z,u))&&Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<trigger+u.r);
   const p={owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
   if(!z.active&&nearby.length){
@@ -347,12 +355,12 @@ export function tickRedesign(e:Engine,dt:number){
      e.impulse(v,dx/d*Math.min(480,length*2.4),-Math.min(180,length));
     }
    }
-   if(z.skill==='M99'){z.active=true;z.expires=b.round+2;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
+   if(z.skill==='M99'){z.active=true;z.expires=b.round+2+((z.effectBoost||0)>=.10?1:0);z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
    else b.stakes=b.stakes!.filter(s=>s.id!==z.id);
   }
   if(z.active){
    for(const u of b.units.filter(u=>enemy(z,u))){const d=Math.hypot(u.x-z.x,u.y-z.y),token=`${b.round}:${b.teamEnds[u.side]}`,was=z.inside!.includes(u.id);
-    if(d<=220){u.slowed={factor:.45,expires:b.round};if(!was)z.inside!.push(u.id);z.budgetTurns??={};if(z.budgetTurns[u.id]!==token){z.budgetTurns[u.id]=token;u.moveLeft*=.65;}}
+    if(d<=220){u.slowed={factor:Math.min(.55,.45*boost),expires:b.round};if(!was)z.inside!.push(u.id);z.budgetTurns??={};if(z.budgetTurns[u.id]!==token){z.budgetTurns[u.id]=token;u.moveLeft*=1-Math.min(.45,.35*boost);}}
     else if(was){if(z.crossed![u.id]!==token){z.crossed![u.id]=token;e.hurt(u,z.damage*22/35,z.owner,false,p,z);}
      if(!u.boss&&!u.fixed){e.impulse(u,(z.x-u.x)*2,-60);u.moveLeft=0;}else u.breaks=Math.max(1,u.breaks);
     }
@@ -373,14 +381,18 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
  actor.ranks.AP01=0;
  sim.grounded=()=>true;sim.canAct=()=>true;sim.fire(s.id,angle,power);
  let roots=[...b.projectiles];const primary=roots[Math.floor(roots.length/2)];
- if(representative&&primary){roots=[primary];b.projectiles=roots;Object.assign(primary,e.origin(u,angle),e.velocity(u,s,angle,power));primary.prevVy=primary.vy;if(s.id==='A15')primary.mode='arrow';}
+ if(representative&&primary){roots=[primary];b.projectiles=roots;if(s.id==='A04'){Object.assign(primary,e.origin(u,angle),e.velocity(u,s,angle,power));primary.prevVy=primary.vy;}}
  const paths=new Map<number,Vec[]>();
+ let tracked=primary;
  let time=0,apex:Vec|undefined;const origin=e.origin(u,angle);
  for(const p of roots)paths.set(p.id,[{x:p.x,y:p.y}]);
  for(let i=0;i<1440&&b.projectiles.length;i++){
-  for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex;sim.stepProjectile(p,STEP);
+  for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex,wasSplit=representative&&p===tracked&&p.mode==='seekRain',nextId=b.nextId;sim.stepProjectile(p,STEP);
    if(p===primary&&!wasApex&&p.apex)apex={x:p.x,y:p.apexY??p.y};
-   if(!p.secondary){const list=paths.get(p.id)||[];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(p.id,list);}
+   if(!p.secondary&&(!representative||p===tracked)){const key=representative?primary.id:p.id,list=paths.get(key)||[];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(key,list);}
+   // Keep all seven in the replay so their collisions and kills affect homing exactly as in combat.
+   // Only the middle child's samples extend the visible parent path.
+   if(wasSplit&&!b.projectiles.includes(p)){const children=b.projectiles.filter(q=>q.id>=nextId&&q.mode==='seekChild');if(children.length===7)tracked=children[3];}
   }time=(i+1)*STEP;
  }
  const points=primary?paths.get(primary.id)||[origin]:[origin],last=points.at(-1)||origin;

@@ -6,14 +6,15 @@
 .honro #app .battle-info .mission-help:hover{text-decoration:underline}
 .honro #app .battle-info .mission-help{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-height:2.8em}
 .honro #app .honro-compact-hud .hud-vitals{grid-template-columns:repeat(3,minmax(0,1fr))!important;min-height:20px!important;height:20px!important}
-.honro #app .honro-compact-hud .hpmp{grid-template-columns:28px minmax(0,1fr)!important}
-.honro #app .honro-compact-hud .hpmp>span{display:block!important;grid-column:1!important;grid-row:1!important;white-space:nowrap!important}
-.honro #app .honro-compact-hud .hpmp>.meter{grid-column:2!important;grid-row:1!important;width:auto!important}
-.honro #app .honro-compact-hud .meter label{white-space:nowrap!important}
+.honro #app .honro-compact-hud .hpmp{grid-template-columns:minmax(0,1fr)!important}
+.honro #app .honro-compact-hud .hpmp>.meter{grid-column:1!important;grid-row:1!important;width:100%!important}
+.honro #app .honro-compact-hud .meter label{display:flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;white-space:nowrap!important}
+.honro #app .honro-compact-hud .meter label>span{flex:none}
+.honro #app .honro-compact-hud .meter .vital-name{font-size:8px!important;font-weight:400;opacity:.9}
 .honro #app .honro-compact-hud .meter.movement>i{background:#b8a574!important}
-.honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(1){grid-column:1!important;grid-row:1!important}
-.honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(2){grid-column:2!important;grid-row:1!important}
-.honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(3){grid-column:3!important;grid-row:1!important}
+.honro #app .honro-compact-hud .hud-vitals>[data-vital=hp]{grid-column:1!important;grid-row:1!important}
+.honro #app .honro-compact-hud .hud-vitals>[data-vital=mp]{grid-column:2!important;grid-row:1!important}
+.honro #app .honro-compact-hud .hud-vitals>[data-vital=move]{grid-column:3!important;grid-row:1!important}
 .honro #app .honro-compact-hud .hud-controls-row{grid-template-rows:100px!important;height:100px!important}
 .honro #app .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:1!important;align-self:center!important}
 .honro #app .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:3!important;grid-row:1!important}
@@ -63,8 +64,8 @@
   .honro #app .honro-compact-hud .skill-button{height:45px!important;padding:3px 2px 5px!important}
   .honro #app .honro-compact-hud .skill-button svg{width:19px!important;height:19px!important}
   .honro #app .honro-compact-hud .hud-vitals{gap:5px!important}
-  .honro #app .honro-compact-hud .hpmp{grid-template-columns:25px minmax(0,1fr)!important;gap:2px!important}
   .honro #app .honro-compact-hud .meter label{font-size:8px!important;white-space:nowrap!important}
+  .honro #app .honro-compact-hud .meter .vital-name{font-size:7px!important}
   .honro .pause-dialog{width:min(360px,100%);padding:24px}
   .honro .pause-menu{display:grid;grid-template-columns:1fr;gap:10px}
   .honro .pause-menu>button{width:100%;min-height:48px;justify-content:flex-start;padding-inline:20px;font-size:14px}
@@ -124,17 +125,14 @@
     display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(3,18px)!important;
     gap:5px!important;width:100%!important;height:auto!important;min-height:0!important;align-self:center!important;
   }
-  .honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(1),
-  .honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(2),
-  .honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(3){grid-column:1!important}
-  .honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(1){grid-row:1!important}
-  .honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(2){grid-row:2!important}
-  .honro #app .honro-compact-hud .hud-vitals>.hpmp:nth-child(3){grid-row:3!important}
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital]{grid-column:1!important}
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital=hp]{grid-row:1!important}
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital=mp]{grid-row:2!important}
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital=move]{grid-row:3!important}
   .honro #app .honro-compact-hud .hpmp{
-    display:grid!important;grid-template-columns:1fr!important;grid-template-rows:1fr!important;
-    width:100%!important;height:18px!important;min-height:18px!important;gap:0!important;margin:0!important;
+    display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:1fr!important;
+    width:100%!important;height:18px!important;min-height:18px!important;gap:5px!important;margin:0!important;
   }
-  .honro #app .honro-compact-hud .hpmp>span{display:none!important}
   .honro #app .honro-compact-hud .hpmp>.meter{
     grid-column:1!important;grid-row:1!important;width:100%!important;height:18px!important;border-radius:4px!important;
   }
@@ -164,3 +162,6 @@
   .honro #app .honro-compact-hud .radial-actions #fire .fire-inner{font-size:9px!important}
   .honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:17px!important;height:17px!important}
 }
+
+/* Learned combat passives use static SVG geometry and update only when state changes. */
+.hud-vitals{position:relative}.combat-passives{position:absolute;left:0;bottom:calc(100% + 5px);font-size:10px;line-height:20px;color:#c7d6cd;pointer-events:none}.combat-passives[hidden]{display:none}.jucheon-state,.sword-chain{display:flex;align-items:center;gap:5px;background:#102328d9;border-radius:4px;padding:0 5px}.jucheon-state svg{width:22px;height:22px;fill:none;stroke:#cbd9d0;stroke-width:1.5;transform:rotate(-90deg)}.jucheon-state .track{stroke:#53655c;stroke-width:1}.jucheon-state.ready{color:#eee3bd}.sword-chain i{font-style:normal;opacity:.4;border-bottom:1px solid #5b6960}.sword-chain i.linked{opacity:1;border-color:#d8cfb1}.sword-chain b{color:#ebd7a5}.skill-button:disabled{opacity:.32;filter:none;cursor:default}

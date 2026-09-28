@@ -125,8 +125,8 @@ test('enemy/NPC loadouts use frozen legacy definitions, Stage 1–10 construct',
  for(let id=1;id<=10;id++){const p=C.defaults();p.recruited=g.HonroStageRules.stageParty(id);const b=g.HonroWorld.build(g.HONRO_CONTENT.stages[id-1],p,false,'archer','A01');const e=new C.Engine(b);for(const u of b.units.filter(u=>u.side!==0))assert(u.loadout.every(id=>!C.SKILLS[id].redesigned));}
  assert.equal(C.SKILLS.LA02.mode,'pierce');assert.equal(C.SKILLS.LM09.mode,'wall');
 });
-test('specialization ties do not stack, and 기해 grows focus and regeneration',()=>{
- const a=arena('A14');a.u.ranks={A01:1,A14:2,A11:2,AP05:8,AP04:1};assert.equal(C.mainBranch(a.u),null);a.u.ranks.A14=3;assert.equal(C.specialty(a.u,C.SKILLS.A14),8);assert.equal(C.specialty(a.u,C.SKILLS.A11),0);
+test('removed specialization no longer buffs a branch, and 기해 grows focus and regeneration',()=>{
+ const a=arena('A14');a.u.ranks={A01:1,A14:2,A11:2,AP05:8,AP04:1};assert.equal(C.mainBranch(a.u),null);a.u.ranks.A14=3;assert.equal(C.specialty(a.u,C.SKILLS.A14),0);assert.equal(C.specialty(a.u,C.SKILLS.A11),0);
  const h=C.freshHero('mage'),before=C.heroStats(h,'mage');h.ranks.MP02=8;const after=C.heroStats(h,'mage');assert(Math.abs(after.mp/before.mp-1.24)<.015);assert.equal(after.regen-before.regen,4);
 });
 test('legacy mage child caps retain their historical values after alias migration',()=>{

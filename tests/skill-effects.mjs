@@ -13,7 +13,7 @@ function arena(id,rank=8){
  return {e,b,u,events,foe,resolve};
 }
 test('All 32 redesigned actions repeat without refresh, at both ranks, including capstones and retreat',()=>{
- const rows=[];for(const s of Object.values(C.SKILLS).filter(s=>s.redesigned&&!s.passive))for(const rank of [1,8]){
+ const rows=[];for(const s of Object.values(C.SKILLS).filter(s=>s.redesigned&&!s.martial&&!s.passive))for(const rank of [1,8]){
   const a=arena(s.id,rank);a.foe();if(s.cls==='archer')a.u.ranks.AP03=8;const session=a.b.session;
   for(let shot=0;shot<2;shot++){assert(a.e.fire(s.id,40,.6),s.id+' shot '+shot);a.resolve();assert.equal(a.e.cooldownLeft(a.u,s.id),0);assert(!a.u.retreat);assert.equal(a.u.focus,a.u.maxFocus);}
   assert.equal(a.b.session,session);assert.equal(a.u.ranks[s.id],rank);rows.push({id:s.id,rank,shots:2});

@@ -7,6 +7,7 @@
 - 실행 자산: `assets/bgm/`을 HTML과 함께 같은 디렉터리 구조로 배포합니다. MP3는 HTML에 포함되지 않습니다.
 - 편집한 맵 실행: Workshop의 Project JSON을 내보낸 뒤 게임 타이틀의 `Workshop Map`으로 가져옵니다. 캠페인 저장과 분리해 실행합니다.
 - Playtest: 실제 게임 HUD와 조작을 사용합니다. 시작 위치·선택 유닛·현재 카메라에서 시작하고 Stop으로 편집에 복귀합니다.
+- 대화와 장부: 대화창의 `대화 기록` 또는 일시정지 메뉴의 `대화와 장부 기록`에서 지나온 장면을 다시 읽습니다. 넘긴 대화도 남으며, 장부를 읽다 저장하면 같은 쪽에서 이어집니다. [1막 이야기 구성과 검증](game/docs/STORY_REWRITE_IMPLEMENTATION_NOTES.md).
 
 1·2스테이지 개편의 실제 화면·작성 과정·검증은 [개편 보고서](game/docs/STAGE12_REDESIGN.md)에 있습니다. 기존 전투 저장은 보존하며 새 스테이지 진입·재시도에 새 맵을 적용합니다. Workshop에 기존 자동저장 프로젝트가 있으면 활성 [campaign.json](shared/data/campaign.json)을 Import하여 새 기본 맵을 불러올 수 있습니다.
 
@@ -39,6 +40,8 @@ npm.cmd run verify
 브라우저 검사는 Chrome/Edge 또는 Playwright Chromium을 찾습니다. 다른 실행 파일은 `HONRO_BROWSER` 환경 변수로 지정합니다. 성능 검사는 다른 브라우저 부하와 겹치지 않게 순차 실행합니다.
 
 `npm run build`는 게임과 Workshop을 함께 생성합니다. 기존 `python workshop/build.py`도 같은 빌더에 위임합니다. 생성 HTML을 직접 수정하지 않습니다.
+
+이야기·문서·기록·저장/재개 회귀만 확인하려면 빌드 후 `npm run test:story`를 실행합니다. 이 검사는 전체 `verify`에도 포함됩니다.
 
 ## 소스와 문서
 

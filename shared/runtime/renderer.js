@@ -170,6 +170,7 @@
                     continue;
                 this.unit(c, v, v.id === b.active, charging && v.id === b.active ? power : 0);
             }
+            G.HONRO_CORE.drawCombatPassives(c,e,this.time);
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];
             for(const row of this.reviewSummary){
                 const target=row.target;c.save();c.translate(target.x,target.y-target.h-58/this.scale);c.scale(1/this.scale,1/this.scale);
@@ -233,8 +234,9 @@
         c.beginPath(); c.moveTo(px - 8*u.facing, py + 10); c.lineTo(px + 18*u.facing, py - 10); c.stroke();
         c.beginPath(); c.arc(px + 12 * u.facing, py - 4, 4, 0, Math.PI*2); c.fill();
       }else if(u.cls === 'knight'){
-        c.beginPath(); c.ellipse(px, py + 24, 18 * pulse, 8 * pulse, 0, 0, Math.PI*2); c.stroke();
-        c.beginPath(); c.moveTo(px - 10, py + 15); c.lineTo(px + 10, py + 15); c.stroke();
+        c.strokeStyle = `rgba(216,228,231,${Math.max(0,power-.55)*1.5})`;
+        c.lineWidth = 1;
+        c.beginPath(); c.moveTo(px+4*u.facing,py+13); c.lineTo(px+22*u.facing,py-12); c.stroke();
       }else if(u.cls === 'occultist'){
         c.beginPath(); c.arc(px, py - 8, 17 * pulse, 0, Math.PI*2); c.stroke();
         for(let i=0;i<3;i++){ const a=(this.time||0)*1.9 + i*2.09; c.beginPath(); c.arc(px + Math.cos(a)*20, py - 10 + Math.sin(a)*14, 2.6, 0, Math.PI*2); c.fill(); }

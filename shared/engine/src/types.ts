@@ -7,6 +7,7 @@ export type Vec = {
     y: number;
 };
 export interface Skill {
+    martial?: boolean;
     redesigned?: boolean;
     basic?: boolean;
     capstone?: boolean;
@@ -88,6 +89,7 @@ export interface Decoration {
     variant: number;
 }
 export interface HeroProgress {
+    martialRevision?: number;
     skillRevision?: number;
     xp: number;
     ranks: Record<string, number>;
@@ -116,6 +118,19 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    arrowTurn?: number;
+    arrowTurnToken?: string;
+    salheun?: Record<string,{entries:{turn:number;damage:number}[];action:number;recorded:number;cap:number;projectiles:number[]}>;
+    salheunFlash?: number;
+    jucheon?: number;
+    jucheonReady?: boolean;
+    swordChain?: string[];
+    harmony?: boolean;
+    martialGuard?: {round:number;reduction:number;counter?:boolean;rank?:number};
+    bladeScreen?: {round:number;rank:number;hits:number;facing:number};
+    bladeStored?: number;
+    meleeFollow?: 'landing'|'ready'|'spent';
+    meleeAction?: {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number};
     retreat?: boolean;
     prepared?: {rank:number;expires:number};
     gateTurn?: string;
@@ -206,6 +221,11 @@ export interface Unit {
     cooldowns?: Record<string, number>;
 }
 export interface Projectile {
+    effectBoost?: number;
+    sizeBoost?: number;
+    dived?: boolean;
+    salheunPrimary?: boolean;
+    orbit?: {seed:number;blades:{radius:number;omega:number;phase:number;mod:number;hits:Record<string,number>;lastHits:Record<string,number>}[]};
     apexY?: number;
     preparedRank?: number;
     turned?: boolean;
@@ -308,10 +328,11 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    martialRevision?: number;
     practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
-    stakes?: {id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
+    stakes?: {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean};
     vertical?: boolean;
@@ -377,7 +398,7 @@ export interface Battle {
     session: string;
 }
 export interface FX {
-    kind: 'qiBurst' | 'fireBloom' | 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
+    kind: 'swordCut' | 'circulation' | 'qiBurst' | 'fireBloom' | 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
     x: number;
     y: number;
     vx: number;

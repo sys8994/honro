@@ -54,14 +54,17 @@ function flush(app){
     hs.flags[key]=true;if(combat(ev.action))spawned=true;
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);
     hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);
-    app.event(ev.text);if(ev.lines?.length)app.sayLines(ev.lines);b.events.push('honro:'+ev.id);app.dirty=true;
+    const lines=G.HonroStoryContent.eventLines(app,ev);app.event(lines?.[0]?.[2]?.storyTitle||ev.text);if(lines?.length)app.sayLines(lines);b.events.push('honro:'+ev.id);app.dirty=true;
   }
 }
+// Reaching an exit can win during movement, before the next event boundary.
+// Finish already-triggered, action-free discoveries before the ending dialogue.
+function finishNarrative(app){const b=app.engine?.b,hs=b?.honroState;if(!hs||b.honroCustom||b.phase!=='won')return;for(const id of [...(hs.pendingEvents||[])]){const ev=b.honroEvents.find(v=>v.id===id);if(!ev||ev.action||hs.flags['event:'+id])continue;const lines=G.HonroStoryContent.eventLines(app,ev);if(!lines?.[0]?.[2]?.waitForClear)continue;if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0))continue;app.sayLines(lines);hs.flags['event:'+id]=true;hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);}}
 function attach(app,e){const next=e.switchTeam.bind(e);e.switchTeam=function(){
   const b=e.b,hs=b.honroState;if(b.phase!=='transition')return;
   const boundary=b.teamEnds.join(':');
   if(hs.lastEventBoundary!==boundary){hs.lastEventBoundary=boundary;G.HonroAllies.missionTick(app,0);flush(app);app.startQueuedStory?.();}
   if(app.dialogue)return;next();
 };}
-G.HonroEncounters={configure,matches,pending,update,flush,attach,combat,spawnCount};
+G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,combat,spawnCount};
 })(globalThis);

@@ -21,7 +21,7 @@ SETUP=r'''()=>{
   Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,x:1000,y:820,scale:.60});a.scene.arcFx.fxs=[];
   window.castEvents=[];const emit=e.onEvent;e.onEvent=ev=>{castEvents.push(ev);emit(ev);};a.updateHUD(true);return {e,b,u};
  };
- window.castAll=()=>{const rows=[];for(const s of Object.values(C.SKILLS).filter(s=>s.redesigned&&!s.passive))for(const r of [1,8]){
+ window.castAll=()=>{const rows=[];for(const s of Object.values(C.SKILLS).filter(s=>s.redesigned&&!s.martial&&!s.passive))for(const r of [1,8]){
   const {e,b,u}=skillArena(s.id,r,['M02','M11','M12'].includes(s.id));const fired=e.fire(s.id,35,.60);let maxProjectiles=b.projectiles.length,ticks=0;
   for(;ticks<1900&&(b.projectiles.length||b.volley);ticks++){e.stepVolley(1/120);for(const p of [...b.projectiles])if(b.projectiles.includes(p))e.stepProjectile(p,1/120);C.tickRedesign(e,1/120);if(ticks%12===0)a.scene.render(e,.1,'',.6,false,.1);maxProjectiles=Math.max(maxProjectiles,b.projectiles.length);}
   a.scene.render(e,0,'',.6,false,0);rows.push({id:s.id,rank:r,fired,ticks,maxProjectiles,remaining:b.projectiles.length,damage:b.units.filter(v=>v.side===1).reduce((n,v)=>n+v.maxHp-v.hp,0),stakes:b.stakes.length});

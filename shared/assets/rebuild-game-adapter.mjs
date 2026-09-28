@@ -64,6 +64,10 @@ export class HonroPoseVisual{
       target.draw=raise;target.arrow=raise>.65?1:0;target.spirit=target.qi=0;target.spiritAlpha=target.qiAlpha=0;
       return this.api.solvePose(this.asset,target);
     }
+    if(this.asset.character_id==='hwigyeom'){
+      const p=structuredClone(this.loaded);p.pelvis[1]+=charge*18;p.frontShoulder[1]+=charge*10;p.rearShoulder[1]+=charge*10;p.frontHand[1]+=charge*6;p.rearHand[1]+=charge*6;p.spirit=p.qi=p.spiritAlpha=p.qiAlpha=0;
+      return this.api.solvePose(this.asset,this.api.blendPoseTargets(this.ready,p,raise));
+    }
     const anim=this.asset.animation.animations.attack,prepare=anim.keyframes[1].t,load=anim.keyframes[2].t;
     return this.api.sampleAnimation(this.asset,'attack',raise<1?prepare*raise:prepare+(load-prepare)*draw,true);
   }
@@ -82,6 +86,7 @@ export class HonroPoseVisual{
       p.draw=0;p.arrow=0;if(s.worldEffect){p.spiritAlpha=0;p.qiAlpha=0;}sample=this.api.solvePose(this.asset,p);sample.t=phase;
     }
     else if(charge>0){sample=this.chargingPose(u,charge,s);s.mode='charge';}
+    else if(this.asset.character_id==='hwigyeom'&&u.martialGuard?.counter){sample=this.chargingPose(u,.25,{...s,chargeAt:this.time-.32});s.mode='guard';}
     else if(airborne){
       if(!s.wasAirborne)s.riseSpeed=Math.max(1,-(u.vy||0));
       const phase=(u.vy||0)<0?.25+.25*(1-poseClamp(-(u.vy||0)/s.riseSpeed)):.5+.3*poseClamp((u.vy||0)/750);

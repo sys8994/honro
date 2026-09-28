@@ -6,12 +6,13 @@ import {buildCore} from '../engine/build.mjs';
 export const gameRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 await mkdir(path.join(gameRoot,'../_local/game-reports'),{recursive:true});
 await mkdir(path.join(gameRoot,'../_local/reports'),{recursive:true});
-export async function runtime(){
+export async function runtime({legacyMaps=true}={}){
   const context=vm.createContext({console,performance,structuredClone});
   const {runtimeParts}=await import('../../shared/build.mjs');
   for(const source of await runtimeParts({vector:false,render:false}))vm.runInContext(source,context);
-  // Frozen source specs remain available solely to the historical map audits.
-  vm.runInContext(await readFile(path.join(gameRoot,'../migration/legacy/rc21-stage-maps.js'),'utf8'),context);
+  // Historical audits need the frozen specs (which also replace content dimensions).
+  // Production regressions opt out so they see the same metadata as the HTML bundle.
+  if(legacyMaps)vm.runInContext(await readFile(path.join(gameRoot,'../migration/legacy/rc21-stage-maps.js'),'utf8'),context);
 
   return context;
 }

@@ -48,23 +48,27 @@ npm.cmd run verify
 | skill-effects/browser | PASS · 21 checks |
 | field-polish/unit | PASS · 9 checks |
 | field-polish/browser | PASS · 24 checks |
+| hwigyeom-p5/unit | PASS · 38 checks |
+| hwigyeom-p5/browser | PASS · 37 checks |
+| story-rewrite/unit | PASS · 8 checks |
+| story-rewrite/browser | PASS · 61 checks |
 | migration | PASS · 10 stages × 3 difficulties |
 | Existing RC21 verify | PASS · typecheck, Node audits, browser 10, performance 5 |
 | Browser uncaught JS errors | 0 |
 
 | Stage / viewport / zoom | Original Hz / ms | Game Hz / ms | Editor Hz / ms | Original / Game / Editor load ms |
 |---|---|---|---|---|
-| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 60.03 / 0.877 | 60.02 / 0.698 | 83.4 / 97.1 / 40.8 |
-| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 59.94 / 1.262 | 60.01 / 1.351 | 106.2 / 96.2 / 63.5 |
-| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.01 / 1.369 | 60.00 / 1.174 | 102.3 / 62 / 24.6 |
-| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.98 / 1.756 | 59.99 / 1.706 | 99 / 101 / 55.1 |
-| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.01 / 1.321 | 60.00 / 1.083 | 87.6 / 64.5 / 27.2 |
-| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 60.00 / 1.484 | 60.05 / 1.516 | 99.2 / 91.5 / 54.4 |
+| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 60.02 / 1.010 | 60.02 / 0.703 | 83.4 / 119.9 / 40.8 |
+| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 60.12 / 1.402 | 59.87 / 1.302 | 106.2 / 120.4 / 74 |
+| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.01 / 1.441 | 60.01 / 1.236 | 102.3 / 69.5 / 36 |
+| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 60.01 / 1.847 | 60.08 / 1.732 | 99 / 119.1 / 70.3 |
+| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.05 / 1.358 | 60.08 / 1.159 | 87.6 / 72.3 / 34.8 |
+| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 60.00 / 1.614 | 59.90 / 1.337 | 99.2 / 106.3 / 56.8 |
 
 | Metric | Original | Game | Editor |
 |---|---|---|---|
-| renderMaxMs | 3.70 ms … 5.40 ms | 1.40 ms … 2.90 ms | 1.10 ms … 3.00 ms |
-| heapDelta | -0.436 MB … 1.311 MB | 0.150 MB … 2.749 MB | -1.982 MB … 2.366 MB |
+| renderMaxMs | 3.70 ms … 5.40 ms | 1.60 ms … 3.00 ms | 1.20 ms … 3.90 ms |
+| heapDelta | -0.436 MB … 1.311 MB | -0.333 MB … 2.269 MB | -2.329 MB … 2.420 MB |
 | warmCacheRebuilds | 0 … 0 | 0 … 0 | 0 … 0 |
 
 Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. Original은 RC21 원본 지형이고 Game/Editor는 개편 지형이므로 동일 콘텐츠의 성능 비교는 아닙니다. 수치 원본: [before](tests/fixtures/performance-before.json), [game](_local/reports/performance-game.json), [editor](_local/reports/performance-editor.json).

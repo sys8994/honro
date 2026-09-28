@@ -6,15 +6,17 @@ function state(b,st){
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
  if(boss&&!boss.dead)add('boss',boss.id,boss.x,boss.y-boss.h,st.id===10?'소단의 주박 · 비살상 제압':'빈 상여 · 제압',{unitId:boss.id});for(const u of b.units.filter(u=>u.honroMidboss&&!u.dead&&u.id!=='boss'))add('midboss',u.id,u.x,u.y-u.h,`${u.name} · 중간 우두머리`,{unitId:u.id});
  for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?'담허로 E · 의식 유지':'E · 받이진 설치'}`);if(m.type==='resident')add('interact',m.id,m.x,m.y,`${m.label} · 구조`);}
- if(['arrival','rescue','overwatch'].includes(st.objective)){const m=markers.find(m=>m.type==='exit'),x=st.objective==='overwatch'?b.honroEscortGoalX??st.w-290:m?.x??st.w-180;add('exit',m?.id||'mission-exit',x,m?.y??G.HonroWorld.top(b,x,obj?.y),st.objective==='overwatch'?'상여 도착 지점':'도착 지점');}
+ // The saved/live map owns the exit. Content dimensions can belong to an older map.
+ const exit=markers.find(m=>m.type==='exit'),exitX=(st.objective==='overwatch'?b.honroEscortGoalX:undefined)??exit?.x??b.honroMapAnchors?.exit?.x??b.width-(st.objective==='overwatch'?290:st.objective==='rescue'?130:180);
+ if(['arrival','rescue','overwatch'].includes(st.objective))add('exit',exit?.id||'mission-exit',exitX,exit?.y??G.HonroWorld.top(b,exitX,obj?.y),st.objective==='overwatch'?'상여 도착 지점':'도착 지점');
  let complete=false,summary=st.goal,kinds=[];
  switch(st.objective){
-  case'arrival':complete=heroes.some(u=>u.x>=st.w-300);summary='연목 나루 방향 · 고개 끝까지 이동';kinds=['exit'];break;
-  case'overwatch':complete=!!obj&&obj.x>=(b.honroEscortGoalX??st.w-290)&&!foes.length&&!pending;summary=`상여 엄호 · 적 ${foes.length}명${pending?' / 뒤따르는 기척 있음':''}`;kinds=['objective','exit'];break;
+  case'arrival':complete=heroes.some(u=>u.x>=exitX-120);summary='연목 나루 방향 · 고개 끝까지 이동';kinds=['exit'];break;
+  case'overwatch':complete=!!obj&&obj.x>=exitX&&!foes.length&&!pending;summary=`상여 엄호 · 적 ${foes.length}명${pending?' / 뒤따르는 기척 있음':''}`;kinds=['objective','exit'];break;
   case'ledger':complete=!!hs.ledger;summary=hs.ledger?'홍만의 장부 확보 · 남은 위협 정리':b.units.some(u=>u.honroMidboss&&!u.dead)?'침수된 나루장승을 제압하고 장부를 찾기':'나루 움막의 장부를 찾기';kinds=hs.ledger?[]:['interact','midboss'];if(hs.ledger&&foes.length)complete=false;break;
   case'defend':complete=!pending&&(!foes.length||b.round>(st.holdRounds||6));summary=`피란민 통로 보호 · ${Math.min(st.holdRounds||6,b.round-1)}/${st.holdRounds||6}턴${pending?' · 뒤따르는 적 있음':''}`;kinds=['objective'];break;
   case'seals':complete=!left.length;summary=left.length?(st.id===5?(hs.ritual?.active?'물틈이 열렸다 · 설오로 고리쇠 사격':'담허를 받이진에 세우고 E · 의식 유지'):'받이진을 지키며 절벽 틈 고리쇠 파괴'):'고리쇠 파괴 완료 · 남은 위협 정리';kinds=left.length?(st.id===5&&!hs.ritual?.active?['interact']:['seal']):[];if(!left.length&&foes.length)complete=false;break;
-  case'rescue':{const mid=b.units.find(u=>u.honroMidboss&&!u.dead);complete=!!hs.rescued&&!!obj&&obj.x>st.w-270&&!mid;summary=mid?'부러진 교각귀를 제압해 호송로 확보':hs.rescued?'부상자 운반대를 쉼터까지 호송':'부상자 운반대에 접근';kinds=mid?['midboss']:hs.rescued?['objective','exit']:['objective'];break;}
+  case'rescue':{const mid=b.units.find(u=>u.honroMidboss&&!u.dead);complete=!!hs.rescued&&!!obj&&obj.x>exitX-140&&!mid;summary=mid?'부러진 교각귀를 제압해 호송로 확보':hs.rescued?'부상자 운반대를 쉼터까지 호송':'부상자 운반대에 접근';kinds=mid?['midboss']:hs.rescued?['objective','exit']:['objective'];break;}
   case'rescue3':complete=(hs.rescuedCount||0)>=3&&!foes.length&&!pending;summary=`들린 주민 구조 · ${hs.rescuedCount||0}/3${foes.length?' · 주변 위협 '+foes.length+'명':''}`;kinds=(hs.rescuedCount||0)<3?['interact']:[];break;
   case'bierboss':complete=!left.length&&!!boss?.dead&&!foes.filter(u=>u.id!=='boss').length&&!pending;summary=left.length?`빈 상여의 결박부터 파괴 · ${seals.length-left.length}/${seals.length}`:boss&&!boss.dead?'빈 상여 본체 제압':'남은 들린 것 정리';kinds=left.length?['seal']:boss&&!boss.dead?['boss']:[];break;
   case'prepare':complete=(hs.receivers||0)>=2&&!foes.length&&!pending;summary=`주민 대피 후 받이진 준비 · ${hs.receivers||0}/2${foes.length?' · 위협 '+foes.length+'명':''}`;kinds=(hs.receivers||0)<2?['interact']:[];break;
@@ -32,7 +34,7 @@ const briefings={
  4:[['휘겸','피란민이 빠질 때까지만 길을 지켜주시오.']],
  5:[['설오','받이진을 세우면 고리쇠는 내가 쏘겠습니다.',{focus:'seal'}]],
  6:[['휘겸','운반대는 내가 붙들겠소. 앞길을 열어주시오.',{focus:'objective'}]],
- 7:[['담허','사람은 치지 말고, 바깥 매듭부터 떼어내게.']],
+ 7:[['담허','사람은 치지 말게. 이름이 적힌 주민 곁에서 E로 구조하면 되네.']],
  8:[['담허','상여 자체보다 안에 든 것을 받을 곳이 필요하네. 결박부터 끊세.',{focus:'seal'}]],
  9:[['휘겸','아래 사람은 내가 내보내겠소. 두 받이진만 준비합시다.']],
  10:[['담허','소단의 몸은 치지 말게. 주박만 낮추고 받을 자리를 열어야 하네.',{focus:'boss'}]]
