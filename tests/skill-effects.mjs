@@ -49,4 +49,4 @@ test('Thunder and sky gourds emit branched lightning at the real damage endpoint
   const bolts=a.events.filter(ev=>ev.name==='lightningBolt');assert(bolts.length);assert(t.hp<t.maxHp);for(const ev of bolts){const {trunk,forks}=C.lightningPaths(ev.x,ev.y,ev.x2,ev.y2);assert.equal(trunk[0].x,ev.x);assert.equal(trunk[0].y,ev.y);assert(Math.hypot(trunk.at(-1).x-ev.x2,trunk.at(-1).y-ev.y2)<1e-8);assert.equal(forks.length,6);assert(trunk.some(p=>C.lineDistance(p,{x:ev.x,y:ev.y},{x:ev.x2,y:ev.y2})>2));}
  }
 });
-await mkdir('reports/skill-effects',{recursive:true});await writeFile('reports/skill-effects/unit.json',JSON.stringify({checks,details},null,2)+'\n');if(checks.some(v=>!v.pass))process.exitCode=1;
+await mkdir('_local/reports/skill-effects',{recursive:true});await writeFile('_local/reports/skill-effects/unit.json',JSON.stringify({checks,details},null,2)+'\n');if(checks.some(v=>!v.pass))process.exitCode=1;

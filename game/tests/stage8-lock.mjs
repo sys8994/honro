@@ -56,4 +56,4 @@ check('Action explanations distinguish resources, cooldown, jumping and complete
  const {b,e}=battlefield(g,8),u=e.active,sk=C.SKILLS.A01;u.focus=-1;assert.match(g.HonroCombatStatus.reason(e,u,sk),/기력 부족/);u.focus=999;u.cooldowns={A01:b.round+2};assert.match(g.HonroCombatStatus.reason(e,u,sk),/재사용 대기/);u.cooldowns={};u.moveLeft=0;assert.match(g.HonroCombatStatus.reason(e,u,sk),/이동력 소진/);u.jumping=true;assert.match(g.HonroCombatStatus.reason(e,u,sk),/착지 후/);u.jumping=false;u.acted=true;assert.match(g.HonroCombatStatus.reason(e,u,sk),/행동 완료/);b.side=1;b.phase='enemy';assert.match(g.HonroCombatStatus.reason(e,u,sk),/적군 턴/);
 });
 }catch(e){checks.push({name:e.message,passed:false,stack:e.stack});process.exitCode=1;console.error(e);}
-await writeFile(gameRoot+'/reports/stage8-lock.json',JSON.stringify({checks},null,2)+'\n');console.log(`${checks.filter(c=>c.passed).length}/${checks.length} stage 8 contact and status checks passed`);
+await writeFile(gameRoot+'/../_local/game-reports/stage8-lock.json',JSON.stringify({checks},null,2)+'\n');console.log(`${checks.filter(c=>c.passed).length}/${checks.length} stage 8 contact and status checks passed`);

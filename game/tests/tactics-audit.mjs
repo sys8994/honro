@@ -76,4 +76,4 @@ check('Ranged ally retargets and retains the allied queue',()=>{
  e.predict=(_u,_s,angle)=>angle>60?{x:300,y:1000,terrain:'wall',points:[],closest:500,apex:false}:{x:second.x,y:second.y-45,unit:second.id,points:[],closest:0,apex:false};
  g.HonroAllies.tick(app,e,C.STEP,()=>{});assert.equal(b.phase,'ally');assert.equal(b.honroState.allyQueue.targetId,second.id);assert.equal(b.honroState.allyQueue.phase,'flight');assert.ok(b.projectiles.length);
 });
-await writeFile(gameRoot+'/reports/tactics-audit.json',JSON.stringify({checks},null,2)+'\n');console.log(`${checks.length} flight and tactical shot checks passed`);
+await writeFile(gameRoot+'/../_local/game-reports/tactics-audit.json',JSON.stringify({checks},null,2)+'\n');console.log(`${checks.length} flight and tactical shot checks passed`);

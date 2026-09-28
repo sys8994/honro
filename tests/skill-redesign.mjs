@@ -135,4 +135,4 @@ test('legacy mage child caps retain their historical values after alias migratio
 test('every redesigned active casts and resolves at Lv.1 and Lv.8',()=>{
  for(const s of Object.values(C.SKILLS).filter(s=>s.redesigned&&!s.passive))for(const r of [1,8]){const a=arena(s.id,r);for(let i=0;i<8;i++)a.foe(950+i*55);a.fire(40,.65);if(s.id==='A09')a.e.turnArrow({x:1200,y:1600});a.run(15);assert.equal(a.b.projectiles.length,0,`${s.id} Lv${r}`);assert(a.b.units.every(u=>Number.isFinite(u.hp)&&Number.isFinite(u.x)));}
 });
-await mkdir('reports/skill-redesign',{recursive:true});await writeFile('reports/skill-redesign/unit.json',JSON.stringify({results},null,2));if(results.some(r=>!r.pass))process.exitCode=1;
+await mkdir('_local/reports/skill-redesign',{recursive:true});await writeFile('_local/reports/skill-redesign/unit.json',JSON.stringify({results},null,2));if(results.some(r=>!r.pass))process.exitCode=1;

@@ -29,6 +29,6 @@ assert.equal(samples('click').length,0);assert.equal(samples('unknown').length,0
 const audition=['arrow','arrowhit','sword','fire','boom','turn'],chunks=audition.map(name=>samples(name,sr)),length=chunks.reduce((n,x)=>n+x.length+sr*.35,0);
 const wave=Buffer.alloc(44+length*2);wave.write('RIFF');wave.writeUInt32LE(wave.length-8,4);wave.write('WAVEfmt ',8);wave.writeUInt32LE(16,16);wave.writeUInt16LE(1,20);wave.writeUInt16LE(1,22);wave.writeUInt32LE(sr,24);wave.writeUInt32LE(sr*2,28);wave.writeUInt16LE(2,32);wave.writeUInt16LE(16,34);wave.write('data',36);wave.writeUInt32LE(length*2,40);
 let offset=44;for(const data of chunks){for(const x of data){wave.writeInt16LE(Math.round(x*32767),offset);offset+=2;}offset+=sr*.35*2;}
-await writeFile(gameRoot+'/reports/sound-audition.wav',wave);
-await writeFile(gameRoot+'/reports/audio-audit.json',JSON.stringify({sampleRate:sr,passed:checks.length+2,audition,checks},null,2)+'\n');
+await writeFile(gameRoot+'/../_local/game-reports/sound-audition.wav',wave);
+await writeFile(gameRoot+'/../_local/game-reports/audio-audit.json',JSON.stringify({sampleRate:sr,passed:checks.length+2,audition,checks},null,2)+'\n');
 console.log(JSON.stringify({passed:checks.length+2,checks},null,2));

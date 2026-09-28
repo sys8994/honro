@@ -1,92 +1,13 @@
-# HONRO Map Workshop v2
+# HONRO Map Workshop
 
-> 이하는 V2 원본 기록입니다. 현재 버전은 루트 [HONRO_WORKSHOP.html](../HONRO_WORKSHOP.html), [README](../README.md), [ARCHITECTURE](../ARCHITECTURE.md)를 사용합니다. 간이 Playtest와 draft export는 실제 HONRO runtime 및 canonical v3로 교체했습니다. `python build.py`는 공통 Node 빌더에 위임합니다.
+루트의 `HONRO_WORKSHOP.html`을 엽니다. 게임·Stage View·Playtest는 같은 엔진과 Scene을 사용합니다.
 
-HONRO 맵을 **사람과 AI agent가 같은 데이터/명령 체계 위에서 공동 편집**하기 위한 local-first standalone 웹 에디터다.
+- 실행·빌드·검증: [프로젝트 README](../README.md)
+- 공통 구조: [ARCHITECTURE](../ARCHITECTURE.md)
+- 현재 맵 형식: [MAP_SCHEMA](../MAP_SCHEMA.md)
+- 편집 명령: [AGENT_API](../AGENT_API.md)
+- 검증 범위: [VALIDATION](../VALIDATION.md)
 
-## 실행
+편집 UI는 `src/`, 작성 레시피는 `recipes/`, 가져오기 예제는 `examples/`에 있습니다. `python workshop/build.py`는 공통 Node 빌더에 위임합니다. `HONRO_MAP_WORKSHOP.html`은 루트 편집기로 이동하는 호환 진입점입니다.
 
-`HONRO_MAP_WORKSHOP.html`을 브라우저에서 연다. 서버나 외부 라이브러리가 필요 없다.
-
-## v2 핵심 기능
-
-### ELEMENTS
-- 기본 Element Library
-- polygon vertex 직접 편집
-- polygon 내부 클릭 → 전체 polygon 선택/drag
-- `Polygon` tool / `+ Polygon`으로 한 asset에 polygon 추가
-- double-click으로 edge에 vertex 추가
-- Anchor / Socket
-- Collision / Breakable / One-way
-- Duplicate / Randomize
-- **Node simplify threshold ε**
-- **Ctrl+drag vertex → Grid snap**
-- Grid size 변경
-
-### STAGE
-- Width / Height
-- Freehand Ground draw
-- control point 편집
-- **Ground 외에 arbitrary closed `Solid Polygon` 작성**
-  - overhang
-  - cave roof / cave wall
-  - arch / floating rock
-  - 다층 solid
-- Terrain body click → 전체 terrain drag
-- Terrain control node drag
-- **Ctrl+drag node → Grid snap**
-- configurable Grid size
-- Material Paint
-- Element place + surface snap
-- 요소 배치 후 자동 Select mode 복귀
-- Element / Unit / Event click-select + drag
-- Scatter
-- Layer visibility / lock
-- Undo / Redo
-- JSON import/export
-- HONRO Draft Spec export
-
-### PERFORMANCE
-- Terrain derived node count 표시
-- Element vector node count 표시
-- 전체 scene node count 표시
-- Terrain `Optimize ε` — authored controls는 유지하고 derived/export node 감소
-- Element `Simplify ε` — polygon node 직접 단순화, Undo 가능
-- Adaptive LOD — zoom-out draw geometry 임시 단순화
-- viewport element culling
-- derived terrain caching
-
-실제 HONRO Stage 1 렉은 node 수만이 아니라 **background + landmark vector drawing**이 주 병목이었다. 자세한 측정은 `PERFORMANCE_ANALYSIS.md` 참고.
-
-### PLAYTEST
-- A/D 또는 ←/→
-- Space jump
-- Ground / Platform / Solid collision preview
-- solid underside ceiling collision 지원
-
-본게임 전체 전투엔진은 아직 포함하지 않은 lightweight physics preview다.
-
-## AI Cowork
-
-```js
-window.HonroWorkshopAPI
-```
-
-주요 API:
-- `getProject()`
-- `getContext()`
-- `getEditorState()`
-- `getPlayState()`
-- `validate()`
-- `previewCommands(commands)`
-- `applyCommands(commands)`
-- `exportHonroSpec()`
-
-사람 UI와 AI API 모두 같은 Project schema와 Undo history를 사용한다.
-
-## 문서
-- `WORKSHOP_DESIGN.md`
-- `SCHEMA.md`
-- `AGENT_API.md`
-- `PERFORMANCE_ANALYSIS.md`
-- `VALIDATION.md`
+옛 V2 문서와 일회성 패치 스크립트는 로컬 `_local/archive/workshop/`에 보관합니다. 현재 사용법은 위 공통 문서를 기준으로 합니다.

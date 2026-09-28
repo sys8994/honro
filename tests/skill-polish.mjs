@@ -55,5 +55,5 @@ test('New sounds have audible finite, unclipped samples with different waveforms
  for(const name of names){const xs=C.AudioEngine.samples(name,24000),rms=Math.sqrt(xs.reduce((n,v)=>n+v*v,0)/xs.length),peak=Math.max(...xs.map(Math.abs));assert(xs.length>4000&&xs.every(Number.isFinite));assert(rms>.02&&peak<.95,`${name} rms=${rms} peak=${peak}`);metrics.audio.push({name,rms,peak,duration:xs.length/24000});}
  assert(new Set(metrics.audio.map(x=>x.rms)).size===names.length);
 });
-await mkdir('reports/skill-polish',{recursive:true});await writeFile('reports/skill-polish/unit.json',JSON.stringify({checks,metrics},null,2)+'\n');
+await mkdir('_local/reports/skill-polish',{recursive:true});await writeFile('_local/reports/skill-polish/unit.json',JSON.stringify({checks,metrics},null,2)+'\n');
 if(checks.some(c=>!c.pass))process.exitCode=1;

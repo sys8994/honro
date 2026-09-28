@@ -127,5 +127,5 @@ with sync_playwright() as p:
     mobile.click('#stopPlay');check('Mobile returns to editor',mobile.locator('#runtimeFrame').count()==0)
     check('No browser exceptions',not errors,errors)
     browser.close()
-(ROOT/'reports/integration.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+(ROOT/'_local/reports/integration.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
 print('INTEGRATION PASS',len(checks))

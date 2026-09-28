@@ -2,7 +2,7 @@
 import base64,json
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
-out=ROOT/'reports/stage12-redesign';out.mkdir(parents=True,exist_ok=True)
+out=ROOT/'_local/reports/stage12-redesign';out.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[]
 def check(name,ok,detail=None):
     assert ok,(name,detail)

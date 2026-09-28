@@ -34,5 +34,5 @@ for(const [cls,id] of [['archer','A01'],['mage','M01'],['knight','S01'],['occult
 }
 // Enemy aim search uses percentages, never player hold time. Its old calibration is preserved.
 const enemy=e.alive(1)[0];for(const power of [.08,.3,.7,1]){const s=C.SKILLS[enemy.loadout[0]],v=e.velocity(enemy,s,12,power);near(Math.hypot(v.vx,v.vy),(270+535*power)*e.effective(s,enemy).speed);}
-await writeFile(path.join(gameRoot,'reports/charge-audit.json'),JSON.stringify({acceleration:480,maxSeconds:5,skillTuneCases:rows.length,minSeconds:Math.min(...rows.map(r=>r.secondsToFull)),maxSecondsCurrent:Math.max(...rows.map(r=>r.secondsToFull)),rows,actual},null,2)+'\n');
+await writeFile(path.join(gameRoot,'../_local/game-reports/charge-audit.json'),JSON.stringify({acceleration:480,maxSeconds:5,skillTuneCases:rows.length,minSeconds:Math.min(...rows.map(r=>r.secondsToFull)),maxSecondsCurrent:Math.max(...rows.map(r=>r.secondsToFull)),rows,actual},null,2)+'\n');
 console.log(`${rows.length} skill/tune profiles, 12 actual launches and enemy calibration passed`);

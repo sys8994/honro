@@ -40,5 +40,5 @@ check('stronger impact increases damage with a 30% per-impact cap',()=>{
  assert.ok(damage.every((d,i)=>d>0&&d<=300&&(!i||d>damage[i-1])));return damage;
 });
 check('collision damage can defeat a unit',()=>{const {e,u}=setup();u.hp=1;u.y-=2;u.vy=1200;e.integrateBody(u,1/120);assert.equal(u.hp,0);assert.equal(u.dead,true);});
-await writeFile(gameRoot+'/reports/impact-audit.json',JSON.stringify({checks},null,2)+'\n');
+await writeFile(gameRoot+'/../_local/game-reports/impact-audit.json',JSON.stringify({checks},null,2)+'\n');
 console.log(`${checks.length} fall, knockback and safe-contact checks passed`);

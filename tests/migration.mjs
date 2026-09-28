@@ -28,4 +28,4 @@ for(let id=1;id<=10;id++){
  rows.push({stage:id,terrain:st.terrains.length,units:st.units.length,passed:true});console.log('PASS migrated stage',id);
 }
 g.HONRO_PROJECT=project;
-await mkdir('reports',{recursive:true});await writeFile('reports/migration.json',JSON.stringify({rows,reproducible:true,redesignedStages:[1,2],comparison:'Original import for 1/2; unchanged active stages 3-10. Workshop recipe reproduction verified for the complete active project.',difficulties:['story','normal','veteran'],roundTrip:true},null,2)+'\n');
+await mkdir('_local/reports',{recursive:true});await writeFile('_local/reports/migration.json',JSON.stringify({rows,reproducible:true,redesignedStages:[1,2],comparison:'Original import for 1/2; unchanged active stages 3-10. Workshop recipe reproduction verified for the complete active project.',difficulties:['story','normal','veteran'],roundTrip:true},null,2)+'\n');

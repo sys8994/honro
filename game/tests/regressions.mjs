@@ -92,9 +92,9 @@ try{
     retry.b.heroes.archer.xp=C.xpAtLevel(5);g.HonroProgression.complete(retry.b);assert.equal(C.levelOf(retry.b.heroes.archer),5);
   });
   check('Five-act schedule reaches 10 at act 1 end and 25 at act 4 stage 3',()=>{assert.equal(progression.at(-1).exit_level,10);assert.equal(g.HONRO_BALANCE.futureActs[2].stageExitLevels[2],25);assert.ok(g.HONRO_BALANCE.futureActs[2].stageExitLevels.slice(0,2).every(l=>l<25));});
-  await mkdir(path.join(gameRoot,'reports'),{recursive:true});
-  await writeFile(path.join(gameRoot,'reports/progression.json'),JSON.stringify({version:2,progression,futureActs:g.HONRO_BALANCE.futureActs},null,2)+'\n');
+  await mkdir(path.join(gameRoot,'../_local/game-reports'),{recursive:true});
+  await writeFile(path.join(gameRoot,'../_local/game-reports/progression.json'),JSON.stringify({version:2,progression,futureActs:g.HONRO_BALANCE.futureActs},null,2)+'\n');
 }catch(error){checks.push({name:error.message,passed:false,stack:error.stack});process.exitCode=1;}
-await writeFile(path.join(gameRoot,'reports/regressions.json'),JSON.stringify({passed:checks.filter(c=>c.passed).length,failed:checks.filter(c=>!c.passed).length,checks},null,2)+'\n');
+await writeFile(path.join(gameRoot,'../_local/game-reports/regressions.json'),JSON.stringify({passed:checks.filter(c=>c.passed).length,failed:checks.filter(c=>!c.passed).length,checks},null,2)+'\n');
 console.log(JSON.stringify({passed:checks.filter(c=>c.passed).length,failed:checks.filter(c=>!c.passed).length},null,2));
 if(process.exitCode)console.log(checks.at(-1));

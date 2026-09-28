@@ -4,17 +4,17 @@
 
 RC21 + Workshop 통합 이후 활성 런타임은 `shared/runtime`, 엔진은 `shared/engine/src`, 맵은 `shared/data/campaign.json`이다. [루트 아키텍처](../../ARCHITECTURE.md)와 [검증](../../VALIDATION.md)을 먼저 확인한다. 구 stage-maps/world는 migration/legacy의 비교 원본이다. 게임·편집기·Playtest에 별도 구현을 추가하지 않는다. BGM은 외부 assets/bgm 파일을 참조하므로 HTML과 함께 배포한다.
 
-**연속 수련·파문/번개 최신 기준(HBUG-033, 2026-09-27):** [후속 보고서](../reports/SKILL_EFFECTS_2026_09_27.md). 허공터는 공격 종료 시 재사용 대기와 이탈보 제한을 제거하여 같은 기예를 바로 재사용한다. 캠페인 제한은 유지한다. 원호파(M03)는 첫 적/지형 접촉에서 폭발하고, 접촉 순간 속도에 수직으로 충돌 지점의 양옆에 원호를 펼친다. 팔괘파(M15)는 팔각형 외곽을 예상·실제 VFX·명중 판정에 공통 적용한다. 예상 도형은 옅은 점선, 실제 파문은 0.9초 붓결/잔광, 명중 효과는 0.8초, 뇌호/천뢰호는 0.9초 분기 번개다. 새 효과만 실시간 `visualDt`를 사용하여 배속으로 짧아지지 않으며 정지는 유지한다. 옛 비행 중 원호파의 phaseMode도 실제 스텝에서 복구한다. 스키마·성장 초기화 없음. 이번 요청의 원호파/팔괘파 동작이 최초 명세보다 우선한다.
+**연속 수련·파문/번개 최신 기준(HBUG-033, 2026-09-27):** [후속 보고서](SKILL_EFFECTS_2026_09_27.md). 허공터는 공격 종료 시 재사용 대기와 이탈보 제한을 제거하여 같은 기예를 바로 재사용한다. 캠페인 제한은 유지한다. 원호파(M03)는 첫 적/지형 접촉에서 폭발하고, 접촉 순간 속도에 수직으로 충돌 지점의 양옆에 원호를 펼친다. 팔괘파(M15)는 팔각형 외곽을 예상·실제 VFX·명중 판정에 공통 적용한다. 예상 도형은 옅은 점선, 실제 파문은 0.9초 붓결/잔광, 명중 효과는 0.8초, 뇌호/천뢰호는 0.9초 분기 번개다. 새 효과만 실시간 `visualDt`를 사용하여 배속으로 짧아지지 않으며 정지는 유지한다. 옛 비행 중 원호파의 phaseMode도 실제 스텝에서 복구한다. 스키마·성장 초기화 없음. 이번 요청의 원호파/팔괘파 동작이 최초 명세보다 우선한다.
 
-**허공터·기예 후속 기준(HBUG-032, 2026-09-27):** [후속 보고서](../reports/SKILL_POLISH_2026_09_27.md). 허공터는 `training.js`/`training.css`의 초상·계통 카드·경지 1~8 선택을 사용한다. `main.js`의 두 전투 준비 경로에서 rank=8을 강제하지 않는다. 서사 설명은 `skillLore.ts`, 수치는 공통 `skillEffectRows()`에서 관리한다. 화살 예측은 복제 전투의 실제 projectile 스텝을 사용하며 원본 RNG·피해·지형을 변경하지 않는다. 빙호는 2.4초 후 폭발하고 적과 지형에 반사한다. 명중음은 피해/보호막 흡수 경로에서 발생한다. `drawStakes`에 Scene 시간을 전달해야 진목 부적과 잔광이 움직인다. 후속 단위/브라우저 회귀도 `npm run test:skills`와 전체 verify에 포함된다. 이 후속 요청은 개편 명세의 이전 빙호 1.6초 수치보다 우선한다.
+**허공터·기예 후속 기준(HBUG-032, 2026-09-27):** [후속 보고서](SKILL_POLISH_2026_09_27.md). 허공터는 `training.js`/`training.css`의 초상·계통 카드·경지 1~8 선택을 사용한다. `main.js`의 두 전투 준비 경로에서 rank=8을 강제하지 않는다. 서사 설명은 `skillLore.ts`, 수치는 공통 `skillEffectRows()`에서 관리한다. 화살 예측은 복제 전투의 실제 projectile 스텝을 사용하며 원본 RNG·피해·지형을 변경하지 않는다. 빙호는 2.4초 후 폭발하고 적과 지형에 반사한다. 명중음은 피해/보호막 흡수 경로에서 발생한다. `drawStakes`에 Scene 시간을 전달해야 진목 부적과 잔광이 움직인다. 후속 단위/브라우저 회귀도 `npm run test:skills`와 전체 verify에 포함된다. 이 후속 요청은 개편 명세의 이전 빙호 1.6초 수치보다 우선한다.
 
-**설오·담허 기예 최신 기준(HBUG-031, 2026-09-27):** [개편 보고서](../../SKILL_REDESIGN_IMPLEMENTATION_REPORT.md)와 [명세](../../HONRO_SKILL_REDESIGN_SEOLO_DAMHEO.md)를 함께 읽는다. 평사/기파는 무료 기본기이며 각각 3×5 사용 기예 + 5 상시 기예다. 여섯 계통 비기는 `capstone:true`로 Lv.1~8 성장하며 전역 ultimate 해금과 분리한다. 정의는 `skillRedesignData.ts`, 공통 판정·저장 이전은 `skillMechanics.ts`, 회백색 파문·도자기·목재 표현은 `skillVisuals.ts`에 있다. 적/NPC는 기존 LAxx/LMxx 정의를 사용한다. 플레이어 새 작성 피해에는 balance factor를 적용하지 않는다. `HeroProgress.skillRevision=1`, `Battle.skillRevision=1` 이전의 설오/담허만 배분을 환원하며 XP·통계·미완료 전투 진행과 휘겸/소단 배분은 보존한다. 기존 ranks를 새 ID 의미로 직접 해석하거나 marker를 지우지 않는다. 진목은 summon이 아니라 `Battle.stakes`, 이탈보는 aim+retreat 플래그다. E와 모바일 context 입력은 공통 interactions 경로를 사용한다. `npm run test:skills`는 두 HTML 빌드 후 실행하며 전체 `npm run verify`에도 포함된다.
+**설오·담허 기예 최신 기준(HBUG-031, 2026-09-27):** [개편 보고서](SKILL_REDESIGN_IMPLEMENTATION_REPORT.md)와 [명세](HONRO_SKILL_REDESIGN_SEOLO_DAMHEO.md)를 함께 읽는다. 평사/기파는 무료 기본기이며 각각 3×5 사용 기예 + 5 상시 기예다. 여섯 계통 비기는 `capstone:true`로 Lv.1~8 성장하며 전역 ultimate 해금과 분리한다. 정의는 `skillRedesignData.ts`, 공통 판정·저장 이전은 `skillMechanics.ts`, 회백색 파문·도자기·목재 표현은 `skillVisuals.ts`에 있다. 적/NPC는 기존 LAxx/LMxx 정의를 사용한다. 플레이어 새 작성 피해에는 balance factor를 적용하지 않는다. `HeroProgress.skillRevision=1`, `Battle.skillRevision=1` 이전의 설오/담허만 배분을 환원하며 XP·통계·미완료 전투 진행과 휘겸/소단 배분은 보존한다. 기존 ranks를 새 ID 의미로 직접 해석하거나 marker를 지우지 않는다. 진목은 summon이 아니라 `Battle.stakes`, 이탈보는 aim+retreat 플래그다. E와 모바일 context 입력은 공통 interactions 경로를 사용한다. `npm run test:skills`는 두 HTML 빌드 후 실행하며 전체 `npm run verify`에도 포함된다.
 
 BGM 현재 곡은 `main.js`의 `updateMusicLabel()`이 실제 재생 스트림의 파일명으로 표시한다. 우측 하단 9px 표시이며 음소거·일시정지 때는 숨긴다. 스테이지 도입 대사도 전투 상태이며, 3·6·8·10은 활성 중간/최종 보스로 인해 진입부터 05를 선택한다. 메인 테마 잔류 점검과 실제 MP3 검증은 HBUG-028을 참고한다.
 
 **BGM 전환 최신 기준(HBUG-030, 2026-09-26):** 새 `Battle.session`(다음 스테이지·재시도)은 마지막 일반 전투곡의 다음 곡으로 넘어간다. 곡이 끝나도 02→03→04→02 순환하며, ESC·설정·같은 전투 저장 재개로는 순서를 넘기지 않는다. 보스 전용 전투는 일반곡을 추가 소비하지 않는다. 음악 상태는 `screen==='battle' && engine`을 기준으로 하며 won/lost/done만으로 메인 테마를 선택하지 않는다. 대사·결과창·결과창 ESC 닫기는 전투곡을 유지하고 실제 비전투 화면으로 나갈 때 01로 돌아간다. 일반 전투 모달은 같은 스트림을 일시정지한다. 모달 닫기 중 engine이 비어 있는 재시도 준비 구간에서는 main을 고르지 않는다. 재마운트가 완료된 뒤 동기화한다. 순서와 재생 시각은 앱 메모리에만 유지하고 기존 저장 스키마는 보존한다. 회귀: `tests/audio.mjs`, `tests/audio-browser.py`, `tests/bgm-transitions.py`.
 
-**Stage 1·2 현재 지형은 2026-09-25 목업 개편판이다.** `workshop/recipes/stage12-forest-basin.js`와 실제 Workshop 명령/내보내기로 작성했다. 1은 4200×2200 숲길·가지 2개·물 1곳, 2는 4300×3300 분지·가지 5개·물 3곳이다. 상여는 바닥 x=1240→3340으로 이동한다. 아래 과거 RC 지형 수치보다 이 작성 데이터가 우선한다. 상세 화면과 검증은 [개편 기록](../../reports/stage12-redesign/README.md), 회귀는 `tests/stage12-redesign.mjs`에 있다. 기존 저장 Battle은 강제 지형 이전 없이 유지한다.
+**Stage 1·2 현재 지형은 2026-09-25 목업 개편판이다.** `workshop/recipes/stage12-forest-basin.js`와 실제 Workshop 명령/내보내기로 작성했다. 1은 4200×2200 숲길·가지 2개·물 1곳, 2는 4300×3300 분지·가지 5개·물 3곳이다. 상여는 바닥 x=1240→3340으로 이동한다. 아래 과거 RC 지형 수치보다 이 작성 데이터가 우선한다. 상세 화면과 검증은 [개편 기록](STAGE12_REDESIGN.md), 회귀는 `tests/stage12-redesign.mjs`에 있다. 기존 저장 Battle은 강제 지형 이전 없이 유지한다.
 
 매립 바위에서는 유효 지지면이 없는 다음 보행 위치의 발끝도 고체 침투 검사에 포함한다. 물 재질은 `conductive:true`로 실제 Water에 연결하며 바닥 높이 아래 유닛에는 전도하지 않는다. 배경 나무는 충돌을 갖지 않는다.
 
@@ -68,7 +68,7 @@ BGM 현재 곡은 `main.js`의 `updateMusicLabel()`이 실제 재생 스트림�
 
 ## 접촉 복구와 행동 제한 안내
 
-2026-09-19 [장례문 끼임·상태 안내 보고서](../reports/STAGE8_CONTACT_STATUS_2026_09_19.md). `integrateBody`는 머리/몸통뿐 아니라 **발끝의 이동 경로**도 수직 벽과 검사한다. 발 위 5 지점만 검사하면 낮은 턱에 발부터 침투할 수 있다. 착지 후보도 `terrainSurface`와 마찬가지로 다른 고체에 묻힌 표면을 제외해야 한다. 충돌 뒤에는 몸 탐침 반경 밖에 여유를 두어 반대 방향 이동을 허용한다.
+2026-09-19 [장례문 끼임·상태 안내 보고서](STAGE8_CONTACT_STATUS_2026_09_19.md). `integrateBody`는 머리/몸통뿐 아니라 **발끝의 이동 경로**도 수직 벽과 검사한다. 발 위 5 지점만 검사하면 낮은 턱에 발부터 침투할 수 있다. 착지 후보도 `terrainSurface`와 마찬가지로 다른 고체에 묻힌 표면을 제외해야 한다. 충돌 뒤에는 몸 탐침 반경 밖에 여유를 두어 반대 방향 이동을 허용한다.
 
 `honroContactRevision=2`이며 `repairEmbeddedSave`는 로드 시 실제 침투를 검사한다. 이미 버전 2인 저장도 발이 고체 안에 있으면 복구하고, 유효 위치는 반복 이동시키지 않는다. 정상 낙하/점프, 몸체 투사체가 제어 중인 배우, 운반 중인 배우는 원래 상태를 유지한다. 체력·진행·상태이상은 보존한다. 이전 문서의 버전 1 단발 보정보다 이 기준이 우선한다.
 
@@ -125,7 +125,7 @@ AI 공격 선택은 `shotImpactValue/shotViable`를 공통 사용한다. 첫 충
 - 후속 막은 각각 8스테이지로 가정한 데이터다. 2막 종료 16, 3막 종료 22, 4막 세 번째 스테이지 25, 이후 25 유지. 아직 플레이 콘텐츠로 구현된 것은 아니다.
 - 기존 XP 곡선을 유지하며 스테이지별 성장량의 40%를 전투 XP 예산으로 둔다. 피해와 처치는 같은 적의 한 예산을 공유한다. 참가 파티에 공유하고, 최초 완료 시 목표 누적 XP까지 보충한다. 재시도 지급량을 저장하고 완료 스테이지의 반복 XP를 막는다.
 - 난이도는 단순한 적 레벨 대신 기준 궁사의 명중 횟수, 기준 영웅 HP 대비 한 발 피해, 초기 적 수, 동시 행동 수, 동시 생존 상한으로 조정한다. 역할·보스·난이도 배율을 포함하며 현재 기준 공격의 스킬 랭크 가정도 확인한다.
-- 수치 원본은 [설정](../config/balance.json), 계산 결과는 [balance.json](../reports/balance.json), [progression.json](../reports/progression.json), [전체 성장 CSV](../reports/level-schedule.csv)다. 보고서의 수치를 직접 수정해서 검사를 통과시키지 않는다.
+- 수치 원본은 [설정](../config/balance.json), 계산 결과는 [balance.json](../../_local/game-reports/balance.json), [progression.json](../../_local/game-reports/progression.json), [전체 성장 CSV](../../_local/game-reports/level-schedule.csv)다. 보고서의 수치를 직접 수정해서 검사를 통과시키지 않는다.
 
 ## 변경에 맞는 검증
 
@@ -156,4 +156,4 @@ Node 22 이상과 설치된 Chrome/Edge/Chromium을 사용한다. 명령은 저�
 
 ## 기록 유지
 
-수정 작업이 끝나면 [BUG_LOG.md](BUG_LOG.md)에 재현 조건·원인·수정·검증·한계를 기록한다. 구조나 목표가 바뀌면 이 문서도 수정한다. 상세 로그와 스크린샷은 `game/reports/`에 두고 링크한다. 특정 버그의 과거 증거를 새 실행 결과처럼 덮어 쓰지 않도록 날짜와 변경 범위를 남긴다.
+수정 작업이 끝나면 [BUG_LOG.md](BUG_LOG.md)에 재현 조건·원인·수정·검증·한계를 기록한다. 구조나 목표가 바뀌면 이 문서도 수정한다. 상세 로그와 스크린샷은 Git에서 제외된 `_local/game-reports/`, `_local/reports/`에 두고 링크한다. 현재 동작의 명세와 계속 필요한 설명은 `game/docs/`에 남긴다. 특정 버그의 과거 증거를 새 실행 결과처럼 덮어 쓰지 않도록 날짜와 변경 범위를 남긴다. 2026-09-28 이전 RC 패치 문서와 배포 자료는 로컬 `_local/archive/`로 옮겼으며, 패키지에 원래 없던 과거 보고서 링크는 역사 기록이다.

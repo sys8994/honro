@@ -155,6 +155,6 @@ with sync_playwright() as p:
     browser.close()
 
 check('No uncaught transition browser errors', not errors, errors)
-(ROOT/'reports/bgm-transitions.json').write_text(json.dumps({
+(ROOT/'_local/reports/bgm-transitions.json').write_text(json.dumps({
     'note': 'Victory/defeat were constructed to check navigation, not manual combat clears.',
     'checks': checks, 'errors': errors}, ensure_ascii=False, indent=2)+'\n', encoding='utf-8', newline='\n')

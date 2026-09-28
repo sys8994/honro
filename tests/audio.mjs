@@ -45,4 +45,4 @@ check('Autoplay lock and mute preserve encounter order without eager streams',()
  m.configure(false,.3);m.unlock();assert.equal(m.current.src,'03');assert.equal(m.current.plays,0);
  m.configure(true,.3);assert.equal(m.current.plays,1);m.setPaused(true);m.select('battle','two');m.setPaused(false);assert.equal(m.current.src,'03');m.dispose();
 });
-await writeFile('reports/audio-unit.json',JSON.stringify({passed:checks.length,checks},null,2)+'\n');
+await writeFile('_local/reports/audio-unit.json',JSON.stringify({passed:checks.length,checks},null,2)+'\n');

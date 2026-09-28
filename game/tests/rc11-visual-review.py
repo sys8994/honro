@@ -7,7 +7,7 @@ import shutil
 from playwright.sync_api import sync_playwright
 from PIL import Image, ImageOps, ImageDraw
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'game/reports/rc11-map-review';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'_local/game-reports/rc11-map-review';OUT.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=browser_path(),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
     page=browser.new_page(viewport={'width':1440,'height':900})

@@ -21,4 +21,4 @@ with sync_playwright() as p:
     row={'stage':sid,'launchMs':round(launch,1),'renders2s':d['p']['n'],'renderHz':round(d['p']['n']/2,1),'renderAvgMs':round(d['p']['total']/max(1,d['p']['n']),2),'renderMaxMs':round(d['p']['max'],2),'heapDelta':d['heap']-before,'err':d['err']}
     rows.append(row);print(row,flush=True);page.close()
   browser.close()
-(ROOT/'game/reports/zoom-perf-baseline.json').write_text(json.dumps(rows,indent=2))
+(ROOT/'_local/game-reports/zoom-perf-baseline.json').write_text(json.dumps(rows,indent=2))

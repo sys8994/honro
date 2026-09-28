@@ -1,9 +1,0 @@
-{
-  "checks": [
-    {
-      "name": "The expression evaluated to a falsy value:\n\n  assert.ok(e.grounded(u))\n",
-      "passed": false,
-      "stack": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(e.grounded(u))\n\n    at file:///C:/Users/user/Google%20Drive/Career/1.%20About%20my%20work/2025%20ProjectSoboro/Code/honro/game/tests/stage8-lock.mjs:12:9\n    at check (file:///C:/Users/user/Google%20Drive/Career/1.%20About%20my%20work/2025%20ProjectSoboro/Code/honro/game/tests/stage8-lock.mjs:5:38)\n    at file:///C:/Users/user/Google%20Drive/Career/1.%20About%20my%20work/2025%20ProjectSoboro/Code/honro/game/tests/stage8-lock.mjs:8:75"
-    }
-  ]
-}

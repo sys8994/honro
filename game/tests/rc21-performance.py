@@ -6,7 +6,7 @@ from pathlib import Path
 import json, shutil
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'game/reports';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'_local/game-reports';OUT.mkdir(parents=True,exist_ok=True)
 rows=[]; errors=[]
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=browser_path(),headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--enable-precise-memory-info'])

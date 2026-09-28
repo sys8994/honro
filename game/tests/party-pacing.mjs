@@ -53,4 +53,4 @@ check('Summoned spirits get the same post-attack review interval',()=>{
  e.tick(C.STEP);const t=b.summonTurn;assert.equal(t.stage,'wait');assert.ok(t.hold>=C.ACTION_REVIEW_SECONDS-C.STEP-.00001);assert.ok(target.hp<10000);
  for(let i=0;i<20;i++)e.tick(C.STEP);assert.equal(t.index,0);return {remaining:t.hold};
 });
-await writeFile(path.join(gameRoot,'reports/party-pacing.json'),JSON.stringify({checks},null,2)+'\n');console.log(`${checks.length} recruitment and allied pacing checks passed`);
+await writeFile(path.join(gameRoot,'../_local/game-reports/party-pacing.json'),JSON.stringify({checks},null,2)+'\n');console.log(`${checks.length} recruitment and allied pacing checks passed`);

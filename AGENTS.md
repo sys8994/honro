@@ -8,3 +8,4 @@
 수정 후 npm run verify를 실행하고 두 HTML에서 관련 동작을 실제 확인한다. 성능 검사는 다른 브라우저 부하 없이 순차 실행한다.
 스키마·렌더러·물리 변경은 tests/migration.mjs와 tests/integration.py를 통과해야 한다. migration/legacy는 비교 원본이며 활성 맵 소스가 아니다.
 저장 호환성과 기존 플레이 진행을 보존하고 BUG_LOG.md에 원인·변경·검증·한계를 기록한다.
+패치 노트·일회성 보고서·배포 압축본은 Git에서 제외된 _local/archive/에, 자동 검사 결과·스크린샷은 _local/reports/ 또는 _local/game-reports/에 둔다. 현재 명세·수정 맥락은 game/docs/, 검사 입력 기준 데이터는 tests/fixtures/ 및 game/tests/fixtures/에 남긴다.

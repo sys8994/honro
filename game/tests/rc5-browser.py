@@ -7,7 +7,7 @@ import shutil, json, math
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2]
 HTML=(ROOT/'HONRO.html').read_text(encoding='utf-8')
-OUT=ROOT/'game/reports/rc5-ui';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'_local/game-reports/rc5-ui';OUT.mkdir(parents=True,exist_ok=True)
 checks=[]
 def ck(cond,name,detail=None):
     assert cond,(name,detail);checks.append({'name':name,'detail':detail});print('PASS',name,detail or '')

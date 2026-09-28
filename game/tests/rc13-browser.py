@@ -5,7 +5,7 @@ from browser_support import browser_path
 from pathlib import Path
 import json, shutil
 from playwright.sync_api import sync_playwright
-ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'game/reports/rc13-ui'; OUT.mkdir(parents=True,exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'_local/game-reports/rc13-ui'; OUT.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[]
 def ck(ok,name,detail=None):
     if not ok: raise AssertionError(f'{name}: {detail}')
@@ -26,6 +26,6 @@ with sync_playwright() as p:
     ck(snapshots['3']['mid3']['mid'] and snapshots['6']['mid6']['mid'] and snapshots['8']['boss']['mid'],'Midbosses appear in Stages 3, 6 and 8',{k:snapshots[k] for k in ['3','6','8']})
     ck(snapshots['10']['boss']['final'] and snapshots['10']['boss']['hp']>=5500 and snapshots['10']['boss']['attack']>=3.3,'Stage 10 Sodan final-boss stats',snapshots['10']['boss'])
     ck(not errors,'No browser runtime exceptions',errors)
-    (ROOT/'game/reports/rc13-browser.json').write_text(json.dumps({'checks':checks,'snapshots':snapshots,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+    (ROOT/'_local/game-reports/rc13-browser.json').write_text(json.dumps({'checks':checks,'snapshots':snapshots,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
     browser.close()
 print('RC13 BROWSER PASSED',len(checks))

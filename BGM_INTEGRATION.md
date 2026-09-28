@@ -24,4 +24,4 @@ Pause/숨김은 같은 스트림·시각을 보존하고 resume합니다. 비전
 
 Edit 모드에는 AudioEngine이 없습니다. Playtest는 본게임 AudioEngine을 쓰고 iframe 안의 실제 입력으로 unlock합니다. 테스트 프로필은 오디오 설정을 유지하며 Stop은 SFX/BGM 모두 dispose합니다. assets/bgm을 HTML과 함께 배포해야 합니다.
 
-검사는 실제 MP3 디코딩·currentTime 증가·전환·mute·SFX·iframe 폐기를 포함합니다. `tests/bgm-transitions.py`는 두 HTML에서 실제 ESC·설정·재시도 입력과 구성한 승패 결과→지도→다음 전투를 확인합니다. 수정 전 관측은 [before](reports/bgm-transitions-before.json), 회귀 결과는 [after](reports/bgm-transitions.json)에 있습니다. 곡 끝은 ended 이벤트로 전체 순환을 확인했습니다. 전체 전투 수동 클리어·전곡 청취나 MP3 지연까지 포함한 sample 단위 무간격 검사는 하지 않았습니다. 모바일 검증은 Chrome 가로 터치 에뮬레이션이며 실기기 Safari는 별도 확인 대상입니다.
+검사는 실제 MP3 디코딩·currentTime 증가·전환·mute·SFX·iframe 폐기를 포함합니다. `tests/bgm-transitions.py`는 두 HTML에서 실제 ESC·설정·재시도 입력과 구성한 승패 결과→지도→다음 전투를 확인합니다. 수정 전 관측은 [before](_local/reports/bgm-transitions-before.json), 회귀 결과는 [after](_local/reports/bgm-transitions.json)에 있습니다. 곡 끝은 ended 이벤트로 전체 순환을 확인했습니다. 전체 전투 수동 클리어·전곡 청취나 MP3 지연까지 포함한 sample 단위 무간격 검사는 하지 않았습니다. 모바일 검증은 Chrome 가로 터치 에뮬레이션이며 실기기 Safari는 별도 확인 대상입니다.

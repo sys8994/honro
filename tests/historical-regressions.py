@@ -25,5 +25,5 @@ for script in sorted((ROOT/'game/tests').glob('*.mjs')):
         row[label]['failures']=[line[:500] for line in output.splitlines() if line.startswith(('FAIL','AssertionError','Error:','Error [','    throw')) or 'ENOENT' in line][:24]
     row['newFailure']=row['baseline']['exitCode']==0 and row['integrated']['exitCode']!=0
     rows.append(row);print(json.dumps(row,ensure_ascii=False),flush=True)
-    (ROOT/'reports/historical-regressions.json').write_text(json.dumps({'baselineCommit':'8c22dde','rows':rows},ensure_ascii=False,indent=2),encoding='utf-8')
-assert not any(r['newFailure'] for r in rows),'New failure versus RC21; inspect reports/historical-regressions.json'
+    (ROOT/'_local/reports/historical-regressions.json').write_text(json.dumps({'baselineCommit':'8c22dde','rows':rows},ensure_ascii=False,indent=2),encoding='utf-8')
+assert not any(r['newFailure'] for r in rows),'New failure versus RC21; inspect _local/reports/historical-regressions.json'

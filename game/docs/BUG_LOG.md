@@ -2,6 +2,14 @@
 
 게임 내용·진행·동작의 이력을 모은다. 미술 제작은 Forge reports에서 관리한다. 구조와 공통 검증은 [BUGFIX_CONTEXT.md](BUGFIX_CONTEXT.md)를 먼저 본다.
 
+## 저장소 정리와 Pages 진입점 — 2026-09-28
+
+- 원인: 과거 RC 패치 노트·배포 압축본·설계/출시 보고서와 재생성 가능한 검증 결과가 활성 소스와 섞여 있었다. 기본 주소에서 게임으로 연결하는 `index.html`도 없었다.
+- 변경: 과거 자료는 `_local/archive/`, 검사 결과는 `_local/reports/`·`_local/game-reports/`, 전체 검증 로그는 `_local/logs/`로 모으고 `_local/` 전체를 Git에서 제외했다. 빌드·검사의 출력 경로와 현재 문서 링크를 함께 수정했다. 현재 명세·설명은 `game/docs/`, 검사 입력 기준 JSON은 `tests/fixtures/`·`game/tests/fixtures/`에 보존했다. `index.html`은 쿼리·해시를 유지하며 기존 `HONRO.html`로 연결하고 `.nojekyll`은 정적 파일 배포를 지정한다.
+- 검증: `python -X utf8 tests/verify.py`가 실행한 `npm run verify` PASS(exit 0, 312.90초). 타입·게임 회귀·맵 이관·두 HTML 통합/편집/오디오/기예·순차 성능 검사 포함. [실행 기록·HTML SHA256](../../_local/reports/verification-run.json), [전체 로그](../../_local/logs/final-verify.log). 배포 파일만 둔 `/honro/` HTTP 경로에서 기본 주소/쿼리/해시, 게임 스테이지 시작, MP3 5개 원본 일치, 편집기 10개 스테이지, JavaScript 없는 진입점까지 5항목 PASS·브라우저 예외 0건: [배포 구성 검사](../../_local/reports/pages-smoke.json).
+- 보존: 보관한 과거 자료 54개와 비교 기준 JSON 2개의 SHA256이 이동 전과 일치한다. 기존 미커밋 게임·기예 변경과 저장 형식·진행을 유지했다. 파일 이동표는 로컬 `_local/cleanup-plan.json`에 있다.
+- 한계: `_local/` 자료는 새 clone에 포함되지 않으며 문서의 해당 링크는 로컬 증거용이다. 기존 커밋 이력은 남는다. 실제 GitHub Pages 설정·배포·커밋·푸시는 수행하지 않았다.
+
 ## 찾아보기
 
 | ID | 증상 | 상태 | 최근 기록 |
@@ -49,7 +57,7 @@
 - 원인: 허공터 리셋이 비기 재사용 대기를 남기고 이탈보의 후속 행동을 요구했다. 파문 예상/실제 효과가 비슷한 두꺼운 선이고 효과 시간이 전투 배속을 따라 짧아졌다. M15의 외곽은 원, M03은 유닛을 통과하는 목표 중심 원호, 호리병 번개는 `inkLine` 한 줄이었다.
 - 수정: 허공터 공격 종료 시 대기·이탈보 제한 해제. 옅은 점선 예측과 0.8~0.9초 실시간 붓결/잔광·입자를 분리. 팔괘파는 공통 팔각형 외곽과 선분 판정. 원호파는 첫 적/지형 접촉에서 충돌 속도에 수직인 원호를 펼치며 직접 맞은 적의 피해를 보장. 뇌호/천뢰호는 꺾인 줄기·가지·푸른 번짐과 흰 착탄 섬광으로 교체.
 - 파일: `engine.ts`, `skillMechanics.ts`, `skillVisuals.ts`, `art.ts`, `renderer.js`, 기예 설명·효과 패널. 생성 HTML 두 개는 공통 빌드로 갱신.
-- 검증: 신규 단위 6묶음(32기예×2경지×2회=128발사, 원호파 예측/실제 12조건), 실제 게임/Workshop 브라우저 21개 PASS·예외 0. 1배속/4배속의 효과 수명·일시정지, 실제 버튼의 연속 사용, 팔각형 판정과 번개 피해 위치 검사. 전체 `npm.cmd run verify` PASS, exit 0(360.44초). [범위·화면·최종 실행 결과](../reports/SKILL_EFFECTS_2026_09_27.md).
+- 검증: 신규 단위 6묶음(32기예×2경지×2회=128발사, 원호파 예측/실제 12조건), 실제 게임/Workshop 브라우저 21개 PASS·예외 0. 1배속/4배속의 효과 수명·일시정지, 실제 버튼의 연속 사용, 팔각형 판정과 번개 피해 위치 검사. 전체 `npm.cmd run verify` PASS, exit 0(360.44초). [범위·화면·최종 실행 결과](SKILL_EFFECTS_2026_09_27.md).
 - 저장/진행: 스키마·skillRevision 변화 및 SP 환원 없음. 옛 비행 중 원호파의 `phaseMode=all`은 다음 실제 스텝에서 해제한다. 캠페인의 재사용 대기·이탈보, 허공터의 진목과 선택 경지를 보존한다.
 - 한계: 통제된 실제 전투 fixture와 브라우저 입력 검증이며 전 캠페인 수동 완주/실기기 GPU 체감 검증은 아니다. 예상은 조준 당시 전장 상태 기준이다. HBUG-032의 파문 표현을 이번 요청에 맞춰 갱신했다.
 
@@ -58,27 +66,27 @@
 - 날짜/상태: 2026-09-27 / 사용자 후속 요청 7개 구현·실제 게임/Workshop 검사.
 - 원인: 허공터의 두 드롭다운과 두 단계의 rank=8 강제 설정. 관통/귀환/도약의 조기 반환과 파문 projectile 피해의 명중음 누락. 일반 예측 루프는 정점 이후 급락/귀환을 반영하지 않음. 빙호는 유닛 충돌 대상에서 제외. 진목은 공통 정지 도형.
 - 수정: 초상·계통 카드·경지·상시 기예 선택, 플레이어 설명 84개 서사화와 공통 효과 패널 보완, 실제 피해 지점 명중음/붓결 VFX, 복제 전투의 실제 화살 스텝으로 예측, 빙호 2.4초/적 반사, 진목 5종 색·머리·부적·애니메이션, 파문 전개/명중/반사 음원.
-- 검증: 신규 Node 7묶음(화살 96조건 좌표 오차 0 포함)·브라우저 59개 PASS, 전체 verify exit 0(267.93초). 두 HTML의 실제 카드/경지/키보드/취소/재시작·WebAudio 소스 출력·모바일 화면. `npm.cmd run verify` 최종 결과는 [실행 기록](../../reports/skill-polish/verification.json), 화면/범위는 [상세 보고서](../reports/SKILL_POLISH_2026_09_27.md).
+- 검증: 신규 Node 7묶음(화살 96조건 좌표 오차 0 포함)·브라우저 59개 PASS, 전체 verify exit 0(267.93초). 두 HTML의 실제 카드/경지/키보드/취소/재시작·WebAudio 소스 출력·모바일 화면. `npm.cmd run verify` 최종 결과는 [실행 기록](../../_local/reports/skill-polish/verification.json), 화면/범위는 [상세 보고서](SKILL_POLISH_2026_09_27.md).
 - 저장: 새 초기화/마이그레이션 없음. 기존 skillRevision과 캠페인 XP·배분·진행을 보존한다. 허공터 선택값은 세션 메모리만 사용.
 - 한계: 예측은 조준 시점의 적/시전자 상태 기준이며 미래 이동·전로시 추가 입력을 예언하지 않는다. 전 캠페인 수동 완주 및 실기기 스피커 청취 검사는 아니다.
 
 ## HBUG-031 — 설오·담허 스킬 개편과 저장·적군 호환
 
-- 요청/조건: [스킬 개편 명세](../../HONRO_SKILL_REDESIGN_SEOLO_DAMHEO.md)에 따라 설오는 거리/낙차/충돌 속력, 담허는 호리병/파문/진목으로 전면 개편. 기존 저장과 Stage 1~10의 적/NPC는 유지.
+- 요청/조건: [스킬 개편 명세](HONRO_SKILL_REDESIGN_SEOLO_DAMHEO.md)에 따라 설오는 거리/낙차/충돌 속력, 담허는 호리병/파문/진목으로 전면 개편. 기존 저장과 Stage 1~10의 적/NPC는 유지.
 - 원인: 기본기가 talent에 포함되고 A99/M99는 전역 해금·rank 1 비기로 처리됐다. A/M ID를 적도 공유했고, 기존 balance factor가 작성 피해를 정규화했다. 옛 ranks를 그대로 읽으면 같은 ID의 다른 의미로 포인트가 옮겨지는 구조였다.
 - 변경: basic/capstone/branch 메타데이터, 각 20 talent, seeded 궤적·치명·중복 상한, 원호/삼각/원주/팔괘 공통 geometry, 고정 stakes, 이탈보와 E/터치 입력을 공통 엔진에 연결. 옛 정의는 enemyOnly LA/LM으로 복제. migration marker 1로 설오/담허 배분만 환원하고 XP/통계·진행은 보존. 새 자탄·배치물·후속 사격도 저장 복원.
-- 파일: `shared/engine/src/skillRedesignData.ts`, `skillMechanics.ts`, `skillVisuals.ts`, progression/engine/store/art/UI 및 `shared/runtime` 입력·렌더 연결. 상세 파일·ID·수치는 [구현 보고서](../../SKILL_REDESIGN_IMPLEMENTATION_REPORT.md).
+- 파일: `shared/engine/src/skillRedesignData.ts`, `skillMechanics.ts`, `skillVisuals.ts`, progression/engine/store/art/UI 및 `shared/runtime` 입력·렌더 연결. 상세 파일·ID·수치는 [구현 보고서](SKILL_REDESIGN_IMPLEMENTATION_REPORT.md).
 - 검증: 신규 단위 검사 35개, 실제 HONRO/Workshop 각 64개 Lv.1/Lv.8 발사 조합, 8적 밀집·벽/천장/발판, E·context·터치, 두 아군 진목, localStorage 재로드를 확인. 최종 `npm run verify` 종료 코드 0(236.1초). migration Stage 1~10, integration 47개, 편집 23개, authored 15개와 RC21/양쪽 HTML 성능도 통과. 최종 수치는 구현 보고서에 기록했다. 두 HTML은 동일 공통 번들로 생성한다.
 - 한계: 실제 빌드 debug fixture 검증이며 정상 육성 캠페인 전체 수동 완주는 아니다. 설치 뒤 지형이 움직이거나 파괴되어도 진목을 재낙하시키지는 않는다. 장기 체감 밸런스와 MP04의 간단한 예상 피해 범위는 보고서에 구분했다. 캐릭터 그래픽·활성 맵·휘겸/소단 설계는 유지했다.
 
 ## HBUG-030 — 전투곡 순서와 ESC·결과 화면의 음악 상태
 
 - 요청: 일반 전투곡 재생 중 스테이지를 종료한 뒤 새 스테이지에 들어가면 다음 일반곡이 나오게 하고, 전투 중 메인 테마가 나오는 조건을 조사·수정.
-- 수정 전 재현: 실제 MP3로 1스테이지 02→승리 결과 01→ESC로 결과창 닫기 01→지도 01→2스테이지 02를 확인했다. 일반 aim 상태의 ESC 일시정지·재개에서는 전투곡이 그대로였으며, 그 조건만으로 메인 테마가 되는 현상은 재현하지 못했다. [관측](../../reports/bgm-transitions-before.json).
+- 수정 전 재현: 실제 MP3로 1스테이지 02→승리 결과 01→ESC로 결과창 닫기 01→지도 01→2스테이지 02를 확인했다. 일반 aim 상태의 ESC 일시정지·재개에서는 전투곡이 그대로였으며, 그 조건만으로 메인 테마가 되는 현상은 재현하지 못했다. [관측](../../_local/reports/bgm-transitions-before.json).
 - 원인: `BgmPlayer`가 ended 때만 playlist index를 올리고 스테이지 경계는 구분하지 않았다. `App.updateAudio`는 화면에 전투가 남아 있어도 won/lost/done을 비전투로 분류해 결과창을 닫은 뒤에도 01을 재생했다. 설정 입력에 포커스가 있으면 키 처리의 조기 반환으로 ESC도 무시됐다.
 - 변경: 저장된 `Battle.session`으로 새 전투와 같은 전투 재개를 구별한다. 새 스테이지·재시도는 마지막 일반곡의 다음 곡을 처음부터 재생하고, ESC·설정·같은 전투 재개는 곡/시각을 유지한다. 보스 전용 전투는 일반곡 순서를 추가로 소비하지 않는다. 전투 화면·결과는 해당 전투곡을 유지하고 실제 비전투 화면에서만 01을 선택한다. 모달 열기/닫기와 mount 후 음악을 즉시 동기화하되 재시도 중 engine이 비어 있는 구간에는 01을 끼워 넣지 않는다. 설정 입력 포커스보다 ESC 처리를 우선한다. 같은 전투에서 이미 만난 보스의 음악은 지도 왕복·재개에도 유지한다.
 - 관련 파일: `shared/engine/src/bgm.ts`, `sound-design.ts`, `shared/runtime/main.js`. 두 HTML은 공통 빌드로 생성한다.
-- 검증: 단위 회귀 `tests/audio.mjs`, 실제 MP3·모바일 에뮬레이션 `tests/audio-browser.py`, 본게임/Workshop의 실제 키·버튼 전환 회귀 `tests/bgm-transitions.py`. [전환 회귀 결과](../../reports/bgm-transitions.json). 전체 검증 결과는 [실행 기록](../../reports/verification-run.json)과 [검증 표](../../VALIDATION.md)에 기록한다.
+- 검증: 단위 회귀 `tests/audio.mjs`, 실제 MP3·모바일 에뮬레이션 `tests/audio-browser.py`, 본게임/Workshop의 실제 키·버튼 전환 회귀 `tests/bgm-transitions.py`. [전환 회귀 결과](../../_local/reports/bgm-transitions.json). 전체 검증 결과는 [실행 기록](../../_local/reports/verification-run.json)과 [검증 표](../../VALIDATION.md)에 기록한다.
 - 최종 결과: 단위 14개·기존 오디오 브라우저 69개·추가 전환 브라우저 68개 PASS. 전체 `npm run verify` PASS(exit 0, 2026-09-26). 새 검사 도구의 함수 복원 표현식 오류를 고친 뒤 전체 묶음을 재실행했다. 두 HTML의 실제 MP3와 중복 스트림 해제, 기존 통합·저장·성능 검사도 통과했다.
 - 한계: 승패는 테스트 상태로 구성해 메뉴·전환을 검사했으며 전 캠페인 수동 클리어·실기기 Safari·스피커 전곡 청취는 아니다. 곡 순서·시각은 기존처럼 앱 메모리에만 유지한다. 새로고침/새 Playtest는 초기 순서이며 사용자 저장·프로필 스키마는 변경하지 않는다.
 
@@ -87,16 +95,16 @@
 - 요청: 제공된 목업처럼 Stage 1 숲길/물웅덩이/큰 가지와 Stage 2 절벽/분지/상여 경로를 직접 에디터 엔진으로 작성.
 - 변경: 실제 Workshop Preview→Apply→Undo→Redo→Export 경로로 canonical 캠페인을 교체했다. 배경 나무와 파괴 가능한 가지를 분리하고 화강암 요소·잔디 면·지지면에 붙는 물을 배치했다. 2스테이지 상여 시작과 도착은 분지 바닥에 둔다. Stage 3~10과 기존 진행 저장은 보존한다. 새 진입·재시도에 새 맵을 사용한다.
 - 함께 발견한 오류: 매립 바위에서 지지면을 잃은 발끝이 고체 안으로 이동할 수 있었다. 머리/몸통/발 위 5px 탐침만으로는 막지 못해 `walkTerrain`에 실제 발의 고체 진입 검사를 추가했다. 또한 그림으로만 존재하던 물 재질은 `conductive:true`일 때 실제 Water로 컴파일한다. 전격 판정에는 물 바닥 높이 제한을 추가해 높은 물 아래 유닛을 제외한다.
-- 검증: `tests/stage12-redesign.mjs`, `tests/stage12-browser.py`, 기존 공통 통합/회귀/성능 검사. 기본 점프로 가지 연결·출구 도달, 파괴 후 경로, 상여 충돌 없는 도착, 실제 키 입력 Playtest, 원본+명령 재현, 무손실 왕복을 확인한다. [보고서·실제 화면·결과](../../reports/stage12-redesign/README.md).
+- 검증: `tests/stage12-redesign.mjs`, `tests/stage12-browser.py`, 기존 공통 통합/회귀/성능 검사. 기본 점프로 가지 연결·출구 도달, 파괴 후 경로, 상여 충돌 없는 도착, 실제 키 입력 Playtest, 원본+명령 재현, 무손실 왕복을 확인한다. [보고서·실제 화면·결과](STAGE12_REDESIGN.md).
 - 한계: 상여 완료 검사는 적과 필수 이벤트 완료 상태를 구성했다. 전 캠페인 수동 클리어나 실기기 Safari 검증은 아니다. 기존 진행 중 Battle은 기존 지형을 유지한다.
 
 ## HBUG-028 — 스테이지 BGM 점검·현재 곡 표시
 
 - 관찰/요청: 스테이지 진입 후에도 메인 테마가 들리는지 점검하고, 재생 중인 곡 정보를 우측 구석에 작게 표시해 달라는 요청.
-- 재현 결과: 수정 전 빌드에서 타이틀→여정도→들어가기 버튼을 실제 클릭했다. Stage 1 도입 대사를 열어 둔 상태에서 `02 battle theme - 장막 너머의 음.mp3`의 currentTime 증가를 확인했고, 메인 테마 스트림은 해제되어 재생 스트림은 1개였다. [수정 전 관측](../../reports/bgm-stage-entry-before.json). 메인 테마 잔류 현상은 이 경로에서 재현되지 않았다. 기존 420ms crossfade가 자연스러운 연결에 기여할 수 있으나 청감상 원인으로 단정하지 않는다.
+- 재현 결과: 수정 전 빌드에서 타이틀→여정도→들어가기 버튼을 실제 클릭했다. Stage 1 도입 대사를 열어 둔 상태에서 `02 battle theme - 장막 너머의 음.mp3`의 currentTime 증가를 확인했고, 메인 테마 스트림은 해제되어 재생 스트림은 1개였다. [수정 전 관측](../../_local/reports/bgm-stage-entry-before.json). 메인 테마 잔류 현상은 이 경로에서 재현되지 않았다. 기존 420ms crossfade가 자연스러운 연결에 기여할 수 있으나 청감상 원인으로 단정하지 않는다.
 - 변경: 공통 앱에서 실제 HTMLAudioElement의 재생·음량·준비 상태와 currentSrc를 읽어 우측 하단 9px 글씨로 파일명(번호·테마·곡명)을 표시한다. 곡 선택 규칙은 유지했다. 음소거·일시정지·재생 실패에는 숨기며 SFX 음소거와 독립이다. 대사/UI 전환과 Workshop Playtest에서도 같은 표시를 사용한다.
-- 검증: `tests/audio-browser.py`에서 데스크톱·모바일 에뮬레이션의 실제 버튼 진입, 대사 중 전투곡, 02→03→04 순환, 보스 05, 지도 복귀 01, 음소거·일시정지·0 음량, Playtest 표시·Stop을 검사한다. Stage 1~10의 실제 MP3도 확인했다. 3·6·8·10은 진입부터 awake인 중간/최종 보스가 있어 05를 선택하고 나머지는 유지된 전투 playlist를 재생한다. [데스크톱](../../reports/bgm-desktop-entry.png) / [모바일](../../reports/bgm-mobile-entry.png).
-- 최종 결과: 오디오 브라우저 69개 검사와 전체 `npm run verify` PASS(exit 0). 게임·Workshop 빌드, 회귀·성능 결과와 산출물 SHA256은 [검증 기록](../../reports/verification-run.json)에 남겼다.
+- 검증: `tests/audio-browser.py`에서 데스크톱·모바일 에뮬레이션의 실제 버튼 진입, 대사 중 전투곡, 02→03→04 순환, 보스 05, 지도 복귀 01, 음소거·일시정지·0 음량, Playtest 표시·Stop을 검사한다. Stage 1~10의 실제 MP3도 확인했다. 3·6·8·10은 진입부터 awake인 중간/최종 보스가 있어 05를 선택하고 나머지는 유지된 전투 playlist를 재생한다. [데스크톱](../../_local/reports/bgm-desktop-entry.png) / [모바일](../../_local/reports/bgm-mobile-entry.png).
+- 최종 결과: 오디오 브라우저 69개 검사와 전체 `npm run verify` PASS(exit 0). 게임·Workshop 빌드, 회귀·성능 결과와 산출물 SHA256은 [검증 기록](../../_local/reports/verification-run.json)에 남겼다.
 - 한계: 실제 스피커를 통한 전곡 청취나 실기기 Safari 확인은 포함하지 않는다. 재생 파일·재생 시간·중복 스트림과 UI를 브라우저에서 검증했다.
 
 ## HBUG-026 — Game / Workshop 공통화
@@ -139,7 +147,7 @@
 - **확인된 원인**: 상대 좌표만으로 생성하고 몸 전체의 충돌을 검사하지 않음. 초기 보정도 비행 유닛에 지상 규칙을 적용함.
 - **수정**: 지상/비행 배치 분리, 몸·경계·유닛 간격 검사, 주변 공간 탐색, 유효 공간 부재 시 재시도. 다중 그룹은 전체 배치를 예약한 뒤 한 번에 생성.
 - **관련 파일**: [terrain-space.js](../src/terrain-space.js), [allies.js](../src/allies.js), [stage-rules.js](../src/stage-rules.js).
-- **검증**: 8개 스테이지 초기 배치, 주인공 위치 7종의 공중 생성, 막힌 다중 생성의 중복/부분 반영 방지. [회귀 결과](../reports/regressions.json), [전투 화면 검사](../reports/browser-bugs.json).
+- **검증**: 8개 스테이지 초기 배치, 주인공 위치 7종의 공중 생성, 막힌 다중 생성의 중복/부분 반영 방지. [회귀 결과](../../_local/game-reports/regressions.json), [전투 화면 검사](../reports/browser-bugs.json).
 - **한계**: 배치 가능한 공간이 아예 없으면 생성은 보류된다. 이후 새로운 맵/몬스터의 크기가 바뀌면 별도 사례를 추가한다.
 
 ## HBUG-003 — 생존·현재 교전을 무시하는 이벤트
@@ -148,7 +156,7 @@
 - **확인된 원인**: 스테이지 2 증원은 고정 턴이 아닌 상여 위치 조건에만 묶임. 화자 검색은 적의 mage 클래스도 담허와 연결했고, 대사 큐/행동에 생존 검사가 없었음.
 - **수정**: 실제 배우 생존 검사, 대사 큐·표시·신규 대사·법식 취소, 결과/기록 대사 필터. 증원에 적 전멸 대안과 순서·생존 수·처리 상태 조건 추가. 마지막 교전 후 상여 자동 이동. 스테이지 3도 전멸 시 다음 방어 교전으로 진행.
 - **관련 파일**: [encounters.js](../src/encounters.js), [allies.js](../src/allies.js), [main.js](../src/main.js).
-- **검증**: 죽은 NPC의 대사/행동/승리 기록, 같은 1라운드에서 네 증원 순차 발동, 마지막 교전 후 임무 완료, 승패 이후 이벤트 중단. [브라우저 결과](../reports/browser-bugs.json), [회귀 결과](../reports/regressions.json).
+- **검증**: 죽은 NPC의 대사/행동/승리 기록, 같은 1라운드에서 네 증원 순차 발동, 마지막 교전 후 임무 완료, 승패 이후 이벤트 중단. [브라우저 결과](../reports/browser-bugs.json), [회귀 결과](../../_local/game-reports/regressions.json).
 - **한계**: 교전 조건 검사에는 자동 적 제거를 사용했다. 영구 사망·동료 합류 분기 전체를 새로 설계한 변경은 아니다.
 
 ## HBUG-004 — 경사·연결 틈 보행
@@ -169,7 +177,7 @@
 - **수정**: 스테이지 XP 예산·파티 공유·첫 완료 보충·재시도 지급 기록. 실제 공격 배율을 포함한 적 체력/공격력 조정, 초기 적/동시 행동 수 설정, 이야기 합류 시점에 맞춘 파티. 기존 초과 XP 유지.
 - **목표**: 1스테이지 완료 2, 1막 완료 10, 최대 25. 4막 세 번째 스테이지 25는 향후 설계 데이터.
 - **관련 파일**: [balance.json](../config/balance.json), [progression.js](../src/progression.js), [difficulty.js](../src/difficulty.js), [content.js](../src/content.js), [world.js](../src/world.js), [stage-rules.js](../src/stage-rules.js), [main.js](../src/main.js), [engine.ts](../engine/src/engine.ts), [balance.ts](../engine/src/balance.ts).
-- **검증**: 8스테이지 목표 XP와 수치 예산, 파티 공유·반복/실패 예산·기존 XP 유지, 실제 1스테이지 결과 180 XP/2레벨, 재시도 저장. [성장 결과](../reports/progression.json), [난이도 계산](../reports/balance.json), [결과 화면](../reports/stage1-level2-result.png).
+- **검증**: 8스테이지 목표 XP와 수치 예산, 파티 공유·반복/실패 예산·기존 XP 유지, 실제 1스테이지 결과 180 XP/2레벨, 재시도 저장. [성장 결과](../../_local/game-reports/progression.json), [난이도 계산](../../_local/game-reports/balance.json), [결과 화면](../reports/stage1-level2-result.png).
 - **한계**: 정상 조작 전체 클리어 시간과 체감 난이도는 미측정. 기존 고레벨 저장을 낮추지 않으므로 새 성장 경로와 다르다. 2–5막 플레이 콘텐츠는 미구현.
 
 ## HBUG-006 — 걸을 수 없는 급경사 안으로 이동
@@ -184,7 +192,7 @@
 
 - **관찰/원인**: 버튼 소리에 비해 공격·폭발이 들리지 않음. 기존 전자음 합성과 Audio 요소 풀/별도 WebAudio 확장이 혼재하여 실제 전투 emit과 브라우저 제스처 unlock을 일관되게 처리하지 못했음.
 - **수정**: 단일 AudioContext와 명시적 제스처 unlock. 낮은 감쇠 공명/필터 노이즈 17종, 버튼 click 무음, 점프를 베기음에서 분리, 직접 피해와 NPC 베기음 보완. 중복·동시 음원 제한, 설정 음소거.
-- **파일/검증**: `sound-design.ts`, `audio.ts`, `audio.js`, `main.js`, `engine.ts`, `allies.js`. [음원 검사](../reports/audio-audit.json) 19개, 실제 화살 출력 파형·명중·폭발 피해/음·음소거를 [브라우저 검사](../reports/presentation-qa.json)에서 확인. [청취용 WAV](../reports/sound-audition.wav).
+- **파일/검증**: `sound-design.ts`, `audio.ts`, `audio.js`, `main.js`, `engine.ts`, `allies.js`. [음원 검사](../../_local/game-reports/audio-audit.json) 19개, 실제 화살 출력 파형·명중·폭발 피해/음·음소거를 [브라우저 검사](../reports/presentation-qa.json)에서 확인. [청취용 WAV](../../_local/game-reports/sound-audition.wav).
 - **한계**: 실제 사용자 스피커에서의 음량·청감 평가는 남음. 음원은 녹음 Foley가 아닌 절차적 합성이다. 수치상 저역 중심이지만 선호 음색의 최종 판단을 대신하지 않는다.
 
 ## HBUG-008 — 이야기를 읽을 수 있는 장면과 저장 재개
@@ -323,7 +331,7 @@
 - **원인**: 박쥐·까마귀·등불귀의 `fixed`는 중력을 막는 동시에 `enemyAction/stepUnits/planEnemyMove`에서 이동을 배제했다.
 - **수정**: `flyingEnemy`로 해당 원형만 공중 이동 경로에 연결. 최대 턴 이동 280, 속도 180 월드단위/초. 12방향×2거리 후보에서 사거리·사선·밀집도를 평가한다. 중력 면제는 유지한다. 전방 몸 전체를 6단위 이하로 검사하고 실제 이동도 최대 4단위로 나눠 새 장애물/경사/천장/다른 유닛을 통과하지 않는다.
 - **파일**: `enemyAI.ts`, `engine.ts`. 기존 `aiMove` 직렬화 구조를 재사용하며 `fixed`와 `honroType`으로 옛 저장의 비행 몬스터도 인식한다. 고정 보스·표적·시설은 비행 대상으로 취급하지 않는다.
-- **검증**: [tactics-audit.mjs](../tests/tactics-audit.mjs) — 3종×3dt 이동·예산·계획 불변, 얇은 벽, 저장 중간 재개, 몸/경계/유닛 간격. 브라우저 시뮬레이션에서 비행→같은 행동의 발사 확인. [수치](../reports/tactics-audit.json).
+- **검증**: [tactics-audit.mjs](../tests/tactics-audit.mjs) — 3종×3dt 이동·예산·계획 불변, 얇은 벽, 저장 중간 재개, 몸/경계/유닛 간격. 브라우저 시뮬레이션에서 비행→같은 행동의 발사 확인. [수치](../../_local/game-reports/tactics-audit.json).
 - **한계**: 짧은 지역 사선 개선이다. 긴 미로를 우회하는 전역 경로 탐색은 아니다. 더 나은 자리가 없으면 제자리에 머무른다.
 
 ## HBUG-021 — 오사 위험에 대한 무조건 공격 거부
@@ -368,7 +376,7 @@
 - **수정**: `integrateBody`에 발끝의 연속 이동 경로/수직 벽 검사를 추가한다. 벽 밖에 기존 몸 탐침 너비의 여유를 두어 뒤로 빠져나올 수 있게 한다. 다른 고체에 묻힌 착지면은 제외한다. 정상 경사·점프·실제 충격 피해는 유지한다.
 - **저장 복구**: 접촉 보정 버전 2. 로드 시 발이 실제 고체 안에 있는 살아 있는 이동 유닛만 가까운 유효 지면으로 복구한다. 이미 이전 보정을 받은 저장도 다시 끼인 경우 복구한다. 정상 좌표·낙하와 진행 중인 몸체 기예/운반은 유지한다. 체력·기력·턴·행동·성장·상태이상은 초기화하지 않는다.
 - **검증**: `stage8-lock.mjs` 15개(장례문 점프·밀침 248조건 포함), 설오/담허×4dt, 양쪽 턱, 기존/새 접촉 버전 저장, 실제 기절·결박. 실제 브라우저 24개에서 두 캐릭터의 키보드 이동·충전 발사, 끼인 저장 Continue, 4화면 크기 확인. 기존 전체 verify와 게임 21개·조작 36개·대상 정보 27개도 통과.
-- **관련 파일**: `engine.ts`, `stage-rules.js`, [상세 보고서](../reports/STAGE8_CONTACT_STATUS_2026_09_19.md), [변경 전 재현](../reports/stage8-lock-before.json), [현재 검사](../reports/stage8-lock.json).
+- **관련 파일**: `engine.ts`, `stage-rules.js`, [상세 보고서](STAGE8_CONTACT_STATUS_2026_09_19.md), [변경 전 재현](../reports/stage8-lock-before.json), [현재 검사](../../_local/game-reports/stage8-lock.json).
 - **한계**: 제보의 저장 자체와 모든 기예·지형 조합을 검사한 것은 아니다. 맵 밖 추락 4조건은 기존 복귀 경계로 분리했고, 전투 전체 완주 검증으로 계산하지 않는다.
 
 ## HBUG-025 — 행동 제한 이유와 기절 지속 표시
@@ -378,7 +386,7 @@
 - **수정**: `stunnedRound`에 기절로 행동을 잃은 턴을 기록한다. 현재 기절과 다음 행동 기절을 구분하고 다음 턴에는 만료된다. 동행 칩은 기절·결박·저주·행동 완료를 표시한다. 기절한 동료를 누르면 이유를 알리며 행동 권한을 부여하지 않는다. 하단 상태 줄과 발사 설명에 기절, 결박 효과/횟수, 저주, 기력 부족, 재사용 대기, 착지 대기, 이동력 소진, 턴/공격 처리 상태를 표시한다. 결박은 공격 불가로 오표시하지 않는다. 적·동맹 정보 카드도 같은 상태 설명을 사용한다.
 - **검증**: 실제 `stun → newRound` 소비 후 표시 유지와 다음 턴 회복, 결박 상태의 실제 발사, 자원/쿨다운 구별. 1440/844/390/320 폭에서 상태 텍스트·비활성 버튼·동료 클릭·넘침 없음 확인. 좁은 동행 칩에서는 상태 이름을 우선해 ‘기…’로 잘리지 않도록 했다.
 - **저장/영향**: 선택 필드 `stunnedRound`만 추가하며 기절/결박의 게임 규칙은 바꾸지 않는다. 과거 저장에서 이미 소비된 기절은 원인을 추정해 복원하지 않는다. 접촉 복구로 상태이상을 치료하지 않는다.
-- **파일**: `combat-status.js`, `ui-bridge.js`, `main.js`, `controls.css`, `unit-info.js`, `engine.ts`, `types.ts`. 상세 검증/화면은 [보고서](../reports/STAGE8_CONTACT_STATUS_2026_09_19.md).
+- **파일**: `combat-status.js`, `ui-bridge.js`, `main.js`, `controls.css`, `unit-info.js`, `engine.ts`, `types.ts`. 상세 검증/화면은 [보고서](STAGE8_CONTACT_STATUS_2026_09_19.md).
 
 ## 추가 검증이 필요한 맥락
 

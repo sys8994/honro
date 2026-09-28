@@ -6,7 +6,7 @@ from pathlib import Path
 import json, shutil
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'game/reports/rc20-ui'; OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'_local/game-reports/rc20-ui'; OUT.mkdir(parents=True,exist_ok=True)
 checks=[]; errors=[]
 def ck(ok,name,detail=None):
     if not ok: raise AssertionError(f'{name}: {detail}')
@@ -34,6 +34,6 @@ with sync_playwright() as p:
     source=(ROOT/'shared/runtime/renderer.js').read_text(encoding='utf-8')
     ck('.filter =' not in source and '.filter=' not in source,'No Canvas filter performance regression')
     ck(not errors,'No browser runtime exceptions',errors)
-    (ROOT/'game/reports/rc20-browser.json').write_text(json.dumps({'checks':checks,'maps':maps,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+    (ROOT/'_local/game-reports/rc20-browser.json').write_text(json.dumps({'checks':checks,'maps':maps,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
     browser.close()
 print('RC20 BROWSER PASSED',len(checks))

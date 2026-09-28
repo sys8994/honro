@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readFile,writeFile} from 'node:fs/promises';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import vm from 'node:vm';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {migrate} from '../migration/migrate-stages.mjs';
@@ -29,4 +29,6 @@ check('Water lightning reaches other submerged actors but not actors below an el
  const p={id:999,owner:shooter.id,mode:'lightning',x:w.x+12,y:w.y+5,blast:10,damage:1,color:'#fff',radius:2,hit:[]};b.projectiles=[p];e.impact(p,{x:p.x,y:p.y,t:0,n:{x:0,y:-1}});assert.ok(wet.hp<1000,'wet target did not conduct');assert.equal(below.hp,1000);return{wetHP:wet.hp,belowHP:below.hp};});
 check('Stage 2: initial high perch can shoot the opposite flying enemies',()=>{const {e}=battlefield(g,2),u=e.active,rows=[];for(const target of e.b.units.filter(u=>u.honroCluster==='shelf-roost')){let best=1e9;for(let a=-10;a<=85;a+=2.5)for(let p=.2;p<=1.001;p+=.02){const h=e.predict(u,C.SKILLS.A01,a,p,target,false,false);best=Math.min(best,Math.hypot(h.x-target.x,h.y-(target.y-target.h*.5)));}assert.ok(best<95,`${target.id}: ${best}`);rows.push({id:target.id,miss:best});}return rows;});
 const report={passed:checks.filter(c=>c.passed).length,failed:checks.filter(c=>!c.passed).length,checks};
-await writeFile(new URL('../reports/stage12-redesign/checks.json',import.meta.url),JSON.stringify(report,null,2)+'\n');if(report.failed)process.exitCode=1;
+const reportURL=new URL('../_local/reports/stage12-redesign/checks.json',import.meta.url);
+await mkdir(new URL('.',reportURL),{recursive:true});
+await writeFile(reportURL,JSON.stringify(report,null,2)+'\n');if(report.failed)process.exitCode=1;

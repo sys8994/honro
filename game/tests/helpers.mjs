@@ -1,9 +1,11 @@
 import vm from 'node:vm';
-import {readFile} from 'node:fs/promises';
+import {readFile,mkdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {buildCore} from '../engine/build.mjs';
 export const gameRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+await mkdir(path.join(gameRoot,'../_local/game-reports'),{recursive:true});
+await mkdir(path.join(gameRoot,'../_local/reports'),{recursive:true});
 export async function runtime(){
   const context=vm.createContext({console,performance,structuredClone});
   const {runtimeParts}=await import('../../shared/build.mjs');

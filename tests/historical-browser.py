@@ -23,5 +23,5 @@ for script in sorted((ROOT/'game/tests').glob('*browser.py')):
         row[label]['failures']=[line[:500] for line in output.splitlines() if line.startswith(('FAIL','AssertionError','Error:')) or 'TimeoutError' in line][:20]
     row['newFailure']=row['baseline']['exitCode']==0 and row['integrated']['exitCode']!=0
     rows.append(row);print(json.dumps(row,ensure_ascii=False),flush=True)
-    (ROOT/'reports/historical-browser.json').write_text(json.dumps({'baselineCommit':'8c22dde','rows':rows},ensure_ascii=False,indent=2),encoding='utf-8')
+    (ROOT/'_local/reports/historical-browser.json').write_text(json.dumps({'baselineCommit':'8c22dde','rows':rows},ensure_ascii=False,indent=2),encoding='utf-8')
 assert not any(r['newFailure'] for r in rows),'New browser failure versus RC21'

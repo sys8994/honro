@@ -25,4 +25,4 @@ with sync_playwright() as p:
         d.update({'stage':sid,'scale':scale});rows.append(d);print('PROFILE',sid,scale,round(d['per'],2),{k:round(v['ms']/20,2) for k,v in d['parts'].items()})
         page.close()
     browser.close()
-(ROOT/'game/reports/rc20-deep-profile.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
+(ROOT/'_local/game-reports/rc20-deep-profile.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')

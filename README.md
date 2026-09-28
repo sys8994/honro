@@ -8,9 +8,20 @@
 - 편집한 맵 실행: Workshop의 Project JSON을 내보낸 뒤 게임 타이틀의 `Workshop Map`으로 가져옵니다. 캠페인 저장과 분리해 실행합니다.
 - Playtest: 실제 게임 HUD와 조작을 사용합니다. 시작 위치·선택 유닛·현재 카메라에서 시작하고 Stop으로 편집에 복귀합니다.
 
-1·2스테이지 개편의 실제 화면·작성 과정·검증은 [개편 보고서](reports/stage12-redesign/README.md)에 있습니다. 기존 전투 저장은 보존하며 새 스테이지 진입·재시도에 새 맵을 적용합니다. Workshop에 기존 자동저장 프로젝트가 있으면 활성 [campaign.json](shared/data/campaign.json)을 Import하여 새 기본 맵을 불러올 수 있습니다.
+1·2스테이지 개편의 실제 화면·작성 과정·검증은 [개편 보고서](game/docs/STAGE12_REDESIGN.md)에 있습니다. 기존 전투 저장은 보존하며 새 스테이지 진입·재시도에 새 맵을 적용합니다. Workshop에 기존 자동저장 프로젝트가 있으면 활성 [campaign.json](shared/data/campaign.json)을 Import하여 새 기본 맵을 불러올 수 있습니다.
 
 `file://`로 실행하거나, 저장소 루트에서 `python -m http.server 8000`을 실행하고 `http://localhost:8000/HONRO_WORKSHOP.html`을 엽니다.
+
+## GitHub Pages 배포
+
+`HONRO.html` 이름을 그대로 사용할 수 있습니다. 저장소의 **Settings → Pages → Deploy from a branch**에서 배포할 브랜치와 **/(root)**를 선택합니다.
+
+- 기본 주소 `https://<사용자>.github.io/<저장소>/`는 `index.html`을 통해 게임으로 이동합니다. 쿼리와 `#` 뒤의 진입 옵션도 유지합니다.
+- 게임 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO.html`
+- 편집기 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO_WORKSHOP.html`
+- 배포 필수 파일은 `index.html`, `HONRO.html`, `assets/bgm/`의 MP3 5개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. 두 HTML은 `npm run build`로 최신화합니다.
+
+Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)를 참고합니다.
 
 ## 개발과 검증
 
@@ -41,6 +52,14 @@ npm.cmd run verify
 | `workshop/src/` | 편집 UI·오버레이·히스토리·Playtest 호스트 |
 | `game/config/`, `game/src/`, `game/vendor/` | 기존 설정, 게임 CSS, UI 자산 |
 | `migration/legacy/` | 이전·비교 검사 전용 원본 정의 |
-| `tests/`, `reports/` | 통합 검사와 결과 |
+| `tests/`, `game/tests/` | 통합·게임 검사. `fixtures/`의 비교 기준 데이터도 Git으로 관리 |
+| `game/docs/` | 버그 기록·수정 맥락·현재 기예 명세·설계 설명 |
+| `_local/reports/`, `_local/game-reports/` | 자동 생성 검사 결과·스크린샷·오디오 (Git 제외) |
+| `_local/archive/` | 과거 패치 노트·RC 설계/출시 보고서·압축본·구 Workshop 문서 (Git 제외) |
+| `_local/logs/` | 전체 검증 실행 로그 (Git 제외) |
 
-[아키텍처](ARCHITECTURE.md), [스키마](MAP_SCHEMA.md), [Agent API](AGENT_API.md), [이전 방식](MIGRATION.md), [BGM](BGM_INTEGRATION.md), [검증](VALIDATION.md), [인계](HANDOFF_REPORT.md)를 참조합니다. 과거 RC 문서는 당시 기록이며 현재 실행 방법과 합격 기준은 루트 문서를 우선합니다.
+[아키텍처](ARCHITECTURE.md), [스키마](MAP_SCHEMA.md), [Agent API](AGENT_API.md), [이전 방식](MIGRATION.md), [BGM](BGM_INTEGRATION.md), [검증](VALIDATION.md)을 참조합니다.
+
+`_local/`은 이 PC에만 보관하는 폴더이며 `.gitignore`로 전체 제외합니다. 과거 문서는 원래 경로 구조를 `_local/archive/` 아래에 보존했습니다. 새 패치 노트·일회성 보고서·배포 압축본도 그곳에 저장합니다. 빌드·검사 결과는 `_local/` 아래에 자동 생성되며 새 clone에는 포함되지 않습니다. 문서의 `_local/` 링크는 로컬 검증 증거용입니다. 이전에 커밋한 파일의 이력은 Git에 남아 있습니다.
+
+`game/docs/BUGFIX_CONTEXT.md`, `game/docs/BUG_LOG.md`와 현재 명세는 유지보수에 필요하므로 계속 Git으로 관리합니다. 검사 입력으로 읽는 기준 JSON은 `tests/fixtures/`, `game/tests/fixtures/`에 보존합니다.

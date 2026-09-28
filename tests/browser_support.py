@@ -3,6 +3,8 @@ import os
 import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
+(ROOT / '_local/reports').mkdir(parents=True, exist_ok=True)
+(ROOT / '_local/game-reports').mkdir(parents=True, exist_ok=True)
 
 def browser_path():
     candidates = [os.environ.get('HONRO_BROWSER'), shutil.which('chromium'), shutil.which('google-chrome'),

@@ -89,5 +89,5 @@ with sync_playwright() as p:
     check('Legacy Stage pack import keeps all four stages',page.evaluate('HonroWorkshopAPI.getProject().stages.length')==5)
     check('No editor browser exceptions',not errors,errors)
     browser.close()
-(ROOT/'reports/editor-features.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+(ROOT/'_local/reports/editor-features.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
 print('EDITOR FEATURES PASS',len(checks))

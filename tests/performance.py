@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
 
 source = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT/'HONRO.html'
-output = ROOT/(sys.argv[2] if len(sys.argv) > 2 else 'reports/performance-game.json')
+output = ROOT/(sys.argv[2] if len(sys.argv) > 2 else '_local/reports/performance-game.json')
 rows = []
 errors = []
 editor = 'WORKSHOP' in source.name

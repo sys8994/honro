@@ -5,7 +5,7 @@ from browser_support import browser_path
 from pathlib import Path
 import shutil, json, math
 from playwright.sync_api import sync_playwright
-ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'game/reports/rc12-ui'; OUT.mkdir(parents=True,exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'_local/game-reports/rc12-ui'; OUT.mkdir(parents=True,exist_ok=True)
 checks=[]; errors=[]
 def ck(ok,name,detail=None):
     if not ok: raise AssertionError(f'{name}: {detail}')
@@ -22,6 +22,6 @@ with sync_playwright() as p:
         page.evaluate("""()=>{const a=HonroApp,b=a.engine.b,cv=document.getElementById('battlecanvas'),rect=cv.getBoundingClientRect();a.done=true;a.scene.storyTween=null;a.scene.goalFocus=null;a.scene.cinematic=null;a.scene.manual=true;a.scene.x=b.width/2;a.scene.y=b.height/2;a.scene.scale=Math.max(.12,Math.min((rect.width*.88)/b.width,(rect.height*.82)/b.height));a.scene.render(a.engine,0,a.selected,.6,false,.02);}""")
         page.screenshot(path=str(OUT/f'stage-{sid}.png'))
     ck(not errors,'No browser runtime exceptions',errors)
-    (ROOT/'game/reports/rc12-browser.json').write_text(json.dumps({'checks':checks,'maps':maps,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+    (ROOT/'_local/game-reports/rc12-browser.json').write_text(json.dumps({'checks':checks,'maps':maps,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
     browser.close()
 print('RC12 BROWSER PASSED',len(checks))

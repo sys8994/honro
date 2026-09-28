@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {runtime,battlefield,gameRoot} from './helpers.mjs';
-const g=await runtime(),C=g.HONRO_CORE,checks=[],stages=[],old=JSON.parse(await readFile(gameRoot+'/reports/terrain-before.json','utf8'));
+const g=await runtime(),C=g.HONRO_CORE,checks=[],stages=[],old=JSON.parse(await readFile(gameRoot+'/tests/fixtures/terrain-before.json','utf8'));
 const check=(name,fn)=>{const detail=fn();checks.push({name,passed:true,detail});};
 const shelves=b=>b.terrain.filter(t=>!t.broken&&(t.oneWay||t.id.startsWith('bridge-')));
 function canopy(b){const ts=shelves(b);let covered=0,maxLayers=0;for(let x=0;x<b.width;x+=10){const n=ts.filter(t=>x>=t.x&&x<t.x+t.w).length;covered+=n?10:0;maxLayers=Math.max(n,maxLayers);}return {shelves:ts.length,totalWidth:ts.reduce((n,t)=>n+t.w,0),coveredPercent:+(covered/b.width*100).toFixed(1),maxLayers};}
@@ -60,4 +60,4 @@ check('A saved knight near the old altar remains inside the new ritual area',()=
  const b=structuredClone(old[6].b),k=b.units.find(u=>u.cls==='knight'&&u.side===0);Object.assign(k,{x:4050,y:1080,vx:0,vy:0});assert.ok(g.HonroLayouts.upgrade(b));const altar=b.honroMarkers.find(m=>m.type==='shrine');assert.ok(Math.hypot(k.x-altar.x,k.y-altar.y)<330);
 });
 }catch(e){checks.push({name:e.message,passed:false,stack:e.stack});process.exitCode=1;console.error(e);}
-await writeFile(gameRoot+'/reports/terrain-audit.json',JSON.stringify({stages,checks},null,2)+'\n');console.log(`${checks.filter(c=>c.passed).length}/${checks.length} terrain checks passed`);
+await writeFile(gameRoot+'/../_local/game-reports/terrain-audit.json',JSON.stringify({stages,checks},null,2)+'\n');console.log(`${checks.filter(c=>c.passed).length}/${checks.length} terrain checks passed`);

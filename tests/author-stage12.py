@@ -4,7 +4,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
 
-out=ROOT/'reports/stage12-redesign';out.mkdir(parents=True,exist_ok=True)
+out=ROOT/'_local/reports/stage12-redesign';out.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
     browser=launch(p);page=browser.new_page(viewport={'width':1600,'height':1000})
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))

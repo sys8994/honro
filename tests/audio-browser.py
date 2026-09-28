@@ -42,7 +42,7 @@ with sync_playwright() as p:
         check_label(page,prefix+' entry dialogue label matches actual battle MP3',2)
         placement=page.locator('#bgm-now-playing').evaluate('''e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {fontSize:s.fontSize,pointerEvents:s.pointerEvents,right:innerWidth-r.right,bottom:innerHeight-r.bottom}}''')
         check(prefix+' tiny noninteractive label at bottom right',placement['fontSize']=='9px' and placement['pointerEvents']=='none' and 0<=placement['right']<=12 and 0<=placement['bottom']<=8,placement)
-        page.screenshot(path=str(ROOT/f'reports/bgm-{prefix}-entry.png'))
+        page.screenshot(path=str(ROOT/f'_local/reports/bgm-{prefix}-entry.png'))
         page.evaluate('''()=>{const a=HonroApp;for(let i=1;i<=10;i++)a.profile.cleared[i]={};if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;}''')
         for track in [3,4,2]:
             page.evaluate("HonroApp.audio.music.current.dispatchEvent(new Event('ended'))")
@@ -102,4 +102,4 @@ with sync_playwright() as p:
     check('Stop disposes playtest BGM/SFX',editor.evaluate('oldPlayAudio.music.current===null&&oldPlayAudio.context.state==="closed"'))
     browser.close()
 check('No uncaught audio browser errors',not errors,errors)
-(ROOT/'reports/audio-browser.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+(ROOT/'_local/reports/audio-browser.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')

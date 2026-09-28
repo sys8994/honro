@@ -53,5 +53,5 @@ with sync_playwright() as p:
     check('Legacy Workshop normalization preserves geometry',old['version']==3 and old['geometry'] and not old['errors'],old)
     check('No authored browser exceptions',not errors,errors)
     browser.close()
-(ROOT/'reports/authored.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+(ROOT/'_local/reports/authored.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
 print('AUTHORED PASS',len(checks))
