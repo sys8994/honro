@@ -1,0 +1,299 @@
+{
+  "checks": [
+    {
+      "name": "Game: toolbar label fits its button",
+      "detail": null
+    },
+    {
+      "name": "Game: four selectable portraits, no dropdown",
+      "detail": null
+    },
+    {
+      "name": "Game: archer branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: archer branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: archer branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: archer branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: mage branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: mage branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: mage branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: mage branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: knight branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: knight branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: knight branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: knight branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: occultist branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: occultist branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: occultist branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: occultist branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Game: keyboard level selection reaches the real combat unit",
+      "detail": null
+    },
+    {
+      "name": "Game: reset retains the selected level",
+      "detail": null
+    },
+    {
+      "name": "Game: passive independently enabled at chosen rank",
+      "detail": null
+    },
+    {
+      "name": "Game: cancel preserves the applied configuration",
+      "detail": null
+    },
+    {
+      "name": "Game: another portrait changes caster and level",
+      "detail": null
+    },
+    {
+      "name": "Game: training leaves campaign hero progression intact",
+      "detail": null
+    },
+    {
+      "name": "Camp detail separates narrative from the 2.4-second specification",
+      "detail": null
+    },
+    {
+      "name": "Game: every pierced enemy starts an audio source, including same-frame hits",
+      "detail": {
+        "starts": 6,
+        "events": 6
+      }
+    },
+    {
+      "name": "Game: all five waves resolve hit VFX and play WebAudio",
+      "detail": [
+        {
+          "id": "M03",
+          "damage": 76,
+          "hits": 1,
+          "played": true,
+          "fx": 1
+        },
+        {
+          "id": "M11",
+          "damage": 79,
+          "hits": 1,
+          "played": true,
+          "fx": 1
+        },
+        {
+          "id": "M12",
+          "damage": 131,
+          "hits": 3,
+          "played": true,
+          "fx": 3
+        },
+        {
+          "id": "M14",
+          "damage": 45,
+          "hits": 1,
+          "played": true,
+          "fx": 1
+        },
+        {
+          "id": "M15",
+          "damage": 282,
+          "hits": 1,
+          "played": true,
+          "fx": 1
+        }
+      ]
+    },
+    {
+      "name": "All five placed stakes animate over time",
+      "detail": null
+    },
+    {
+      "name": "Mobile portrait: picker fits viewport and has one dialog",
+      "detail": null
+    },
+    {
+      "name": "Mobile portrait: rank control and pinned apply button work",
+      "detail": null
+    },
+    {
+      "name": "Mobile landscape: picker fits viewport and has one dialog",
+      "detail": null
+    },
+    {
+      "name": "Mobile landscape: rank control and pinned apply button work",
+      "detail": null
+    },
+    {
+      "name": "Workshop: toolbar label fits its button",
+      "detail": null
+    },
+    {
+      "name": "Workshop: four selectable portraits, no dropdown",
+      "detail": null
+    },
+    {
+      "name": "Workshop: archer branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: archer branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: archer branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: archer branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: mage branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: mage branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: mage branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: mage branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: knight branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: knight branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: knight branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: knight branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: occultist branch 0 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: occultist branch 1 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: occultist branch 2 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: occultist branch 3 has five icon cards",
+      "detail": null
+    },
+    {
+      "name": "Workshop: keyboard level selection reaches the real combat unit",
+      "detail": null
+    },
+    {
+      "name": "Workshop: reset retains the selected level",
+      "detail": null
+    },
+    {
+      "name": "Workshop: passive independently enabled at chosen rank",
+      "detail": null
+    },
+    {
+      "name": "Workshop: cancel preserves the applied configuration",
+      "detail": null
+    },
+    {
+      "name": "Workshop: another portrait changes caster and level",
+      "detail": null
+    },
+    {
+      "name": "Workshop: training leaves campaign hero progression intact",
+      "detail": null
+    },
+    {
+      "name": "Workshop: shared brush geometry reaches renderer",
+      "detail": null
+    },
+    {
+      "name": "Workshop: testing leaves the authored map intact",
+      "detail": null
+    },
+    {
+      "name": "No browser exceptions",
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "metrics": {
+    "chargePrediction": [
+      {
+        "id": "A11",
+        "p50": 0.4000000059604645,
+        "p95": 1.0999999940395355
+      },
+      {
+        "id": "A12",
+        "p50": 1,
+        "p95": 3.2999999970197678
+      },
+      {
+        "id": "A15",
+        "p50": 1.7000000029802322,
+        "p95": 4.200000002980232
+      }
+    ]
+  }
+}

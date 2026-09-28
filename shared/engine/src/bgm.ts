@@ -7,6 +7,7 @@ export class BgmPlayer {
     transitionStart=0; transitionMs=420; starts=0; errors:string[]=[];
     private positions=new Map<number,number>(); private failed=new Set<number>();
     private requested=false;
+    private battleSession:string|undefined; private battleSelected=false;
     constructor(public tracks:string[]=(globalThis as any).HONRO_BGM_TRACKS||[],
       private makeAudio:()=>HTMLAudioElement=()=>new Audio()){}
     configure(enabled:boolean,volume:number){
@@ -14,8 +15,16 @@ export class BgmPlayer {
         this.applyPause();this.tick();
     }
     unlock(){this.unlocked=true;this.requested=false;this.select(this.state);this.applyPause();}
-    select(state:MusicState){
+    select(state:MusicState,battleSession?:string){
+        // A fresh encounter advances from the last normal battle song. UI pauses,
+        // map visits and continuing the same saved encounter do not consume a song.
+        if((state==='battle'||state==='boss')&&battleSession!==undefined&&battleSession!==this.battleSession){
+            if(this.battleSelected)this.battleIndex=(this.battleIndex+1)%3;
+            this.battleSession=battleSession;this.battleSelected=false;
+            this.positions.delete(1+this.battleIndex);
+        }
         this.state=state;
+        if(state==='battle')this.battleSelected=true;
         if(state==='battle')for(let n=0;n<3&&this.failed.has(1+this.battleIndex);n++)this.battleIndex=(this.battleIndex+1)%3;
         const track=state==='main'?0:state==='boss'?4:state==='battle'?1+this.battleIndex:-1;
         if(track<0){this.silence();return;}

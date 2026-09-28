@@ -4,7 +4,7 @@
       "name": "Stochastic mage multishot is priced by intentional-hit probability, not theoretical projectile count",
       "passed": true,
       "detail": {
-        "M13": {
+        "LM13": {
           "name": "화염혜성",
           "baseDamage": 52,
           "aimControl": 0.78,
@@ -13,7 +13,7 @@
           "score": 143.6,
           "target": 146
         },
-        "M14": {
+        "LM14": {
           "name": "빙하구",
           "baseDamage": 39,
           "aimControl": 0.65,
@@ -22,7 +22,7 @@
           "score": 141.9,
           "target": 146
         },
-        "M15": {
+        "LM15": {
           "name": "뇌운핵",
           "baseDamage": 46,
           "aimControl": 0.7,
@@ -31,6 +31,18 @@
           "score": 142.6,
           "target": 146
         }
+      }
+    },
+    {
+      "name": "Redesigned player skills retain authored damage instead of legacy normalization",
+      "passed": true,
+      "detail": {
+        "M13": 48,
+        "M14": 72,
+        "M15": 34,
+        "A99": 96,
+        "A15": 26,
+        "A08": 70
       }
     },
     {

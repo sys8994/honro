@@ -11,6 +11,8 @@ export function soundSamples(name:string,sr=24000):Float32Array {
         boom:[.95,49,820,.61,.52,4], hit:[.30,86,1050,.41,.38,9],
         break:[.58,112,1500,.24,.47,6], ricochet:[.22,224,1500,.16,.29,12],
         split:[.32,137,1250,.22,.25,8], heal:[.65,98,500,.15,.18,5],
+        qiWave:[.64,76,1650,.32,.48,4.8], qiHit:[.39,103,1350,.52,.38,8],
+        qiRebound:[.25,182,1150,.27,.29,11], ceramic:[.23,286,1800,.29,.32,13],
         down:[.57,58,680,.33,.25,5], win:[1.1,64,560,.32,.21,4],
         lose:[.85,47,430,.29,.22,4], turn:[.32,82,600,.15,.13,9], jump:[.20,106,800,.11,.16,10]
     };
@@ -23,7 +25,8 @@ export function soundSamples(name:string,sr=24000):Float32Array {
         const noise=seed/2147483648-1,t=i/sr,q=t/duration;
         low+=a*(noise-low);brown=.985*brown+.15*noise;
         const modes=Math.sin(t*f*6.28318)*Math.exp(-decay*q)+.32*Math.sin(t*f*1.71*6.28318)*Math.exp(-decay*1.7*q)+.16*Math.sin(t*f*2.63*6.28318)*Math.exp(-decay*2.4*q);
-        const air=(low*.75+brown*.25)*Math.exp(-decay*.9*q);
+        const breath=name==='qiWave'?Math.sin(Math.PI*Math.min(1,t/.13))*.3+1:1;
+        const air=(low*.75+brown*.25)*Math.exp(-decay*.9*q)*breath;
         const attack=Math.min(1,t/.008),end=Math.min(1,(duration-t)/.035);
         const v=(modes*body+air*texture)*attack*end;
         dc=.996*dc+.004*v;out[i]=Math.tanh((v-dc)*.85)*.8;
@@ -69,7 +72,7 @@ export class AudioEngine {
         if(!this.context||this.context.state!=='running'){
             this.pending=this.pending.filter(p=>now-p.at<300&&p.name!==name);this.pending.push({name,at:now});return;
         }
-        if(now-(this.lastPlayed[name]??-1e9)<45)return;
+        if(now-(this.lastPlayed[name]??-1e9)<(name==='arrowhit'?0:name==='qiHit'?24:45))return;
         let buffer=this.buffers.get(name);
         if(!buffer){const samples=soundSamples(name,this.context.sampleRate);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,this.context.sampleRate);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}
         if(this.voices.size>=20){const oldest=this.voices.values().next().value;oldest?.stop();if(oldest)this.voices.delete(oldest);}
@@ -79,6 +82,6 @@ export class AudioEngine {
     }
     pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.pending=[];}
     setTheme(_n:number){}
-    update(state?:MusicState,paused=false){if(state)this.music.select(state);this.music.setPaused(paused);this.music.tick();}
+    update(state?:MusicState,paused=false,battleSession?:string){this.music.setPaused(paused);if(state)this.music.select(state,battleSession);this.music.tick();}
     dispose(){this.pause();this.music.dispose();void this.context?.close();}
 }

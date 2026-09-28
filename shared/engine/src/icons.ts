@@ -49,6 +49,16 @@ const MAP_PATHS:Record<string,string>={
  brazier:'M4 18h24l-5 8H9ZM10 26l-3 5m15-5 3 5M12 16q-6-6 2-12 0 6 4 7-1-8 4-10 8 13 0 16',
  range:'M16 4a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10ZM8 23 5 30m19-7 3 7M16 14 29 1m-5 0h5v5'
 };
+// Player redesign icons are native SVG: ceramic gourds, measured brush geometry and wood stakes.
+const GOURD='M12 2h8v4q4 2 3 6l-3 3q10 5 6 12-3 5-10 4-7 1-10-4-4-7 6-12l-3-3q-1-4 3-6ZM10 14l12 1m-6 0v12m0-9 4 1-1 6';
+const STAKE='M12 2h8v24l-4 5-4-5ZM13 7h6m-5 4 4 2-4 3m-4 13H4m18 0h6';
+const REDESIGN_PATHS:Record<string,string>={
+ M01:'M6 4q17 12 0 24M3 9q10 7 0 14',M06:GOURD,M02:GOURD+'M3 4v7m-3-3h6',M04:GOURD+'M27 2l-3 5h5l-3 5',M13:GOURD+'M2 19v3m27-5v3m-2 8h4',M05:GOURD+'M3 2v12m-3-4 3 4 3-4',
+ M03:'M5 3q23 13 0 26M8 6q17 10 0 20',M11:'M2 27 10 7l12 18 8-20M4 3h24M4 29h24',M12:'M3 26 12 3l17 23ZM12 3v23',M14:'M16 3a13 13 0 1 0 0 26 13 13 0 0 0 0-26Zm0 8a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z',M15:'M16 2v28M2 16h28M6 6l20 20M6 26 26 6M10 3h12l7 7v12l-7 7H10l-7-7V10Z',
+ M07:STAKE,M10:STAKE+'M2 16h7m-3-3v6',M08:STAKE+'M2 14h7m-3-3 3 3-3 3m24-3h-7m3-3-3 3 3 3',M09:STAKE+'M2 20V7h6m16 0h6v13M2 20l3-3m25 3-3-3',M99:STAKE+'M2 7v18m28-18v18M2 25l14 6 14-6',
+ MP01:'M4 25q12-9 0-18m8 21q13-12 0-24m8 24q13-12 0-24',MP02:GOURD,MP03:'M26 7a12 12 0 1 0 2 16M26 7h-8m8 0v8',MP04:'M2 16q14-18 28 0-14 18-28 0ZM16 11a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z',MP05:STAKE,
+ A01:P.arrow,A14:P.target,A02:P.pierce,A06:P.return,A10:'M4 6q18 10 0 20M5 6v20M5 16h24m-6-5 6 5-6 5',A99:P.pierce+'M2 8h8m-4-4v8',A11:P.rain,A09:P.bounce,A13:P.target+'M3 29 12 20',A12:P.return,A15:P.rain,A05:P.push,A04:P.triple,A07:P.crack,A03:P.arrow+'M3 7h6m-6 6h4',A08:P.triple+'M3 3l7 7m14 14 5 5'
+};
 function skillPath(id:string){const sk=SKILLS[id];if(!sk)return {path:P.rune,extra:''};const i=Number(id.match(/(\d+)$/)?.[1])||1;let path=P[sk.icon]||P.rune;
  if(sk.cls==='occultist'&&!sk.passive){
  const spectral=['M6 29 8 11q8-16 16 0l2 18-6-5-4 5-4-5ZM12 12h1m6 0h1','M2 19h28M8 28V11q8-14 16 0v17m-19-9 5-4m-5 4 5 4','M5 28q-2-10 8-22m-5 3 5-3 2 6M21 3q9 9 2 21m-4-5 4 5 5-4','M3 29 27 3m-7 1 7-1-1 7M8 3v9m0 7v10m11-5 5 0','M7 9q15-14 20 3t-8 15M7 9h8M7 9V2M19 27l-4-3 4-5'];
@@ -61,6 +71,7 @@ function skillPath(id:string){const sk=SKILLS[id];if(!sk)return {path:P.rune,ext
  if(sk.passive){const special:Record<string,string>={MP01:P.resonance,MP02:P.vortex,MP03:P.flame,MP04:P.snow,MP05:P.bolt,AP01:P.triple,AP02:P.pierce,AP03:P.wind,AP04:P.recall,AP05:P.target,SP01:P.pull,SP02:P.shield,SP03:P.wall,SP04:P.lift,SP05:P.star,OP01:P.vortex,OP02:P.bind,OP03:P.home,OP04:P.return,OP05:P.resonance};path=special[id]||path;extra='<path d="M3 26v5h26v-5" stroke-width=".8"/>';}
  if(sk.ultimate)extra='<circle cx="16" cy="16" r="14.5" stroke-width=".8" stroke-dasharray="2 3"/><path d="M2 2l4 1-3 3m27-4-4 1 3 3M2 30l4-1-3-3m27 4-4-1 3-3" stroke-width=".9"/>';
  else {const ordinal=((i-1)%5)+1;if(i>5||sk.passive)extra+=`<path d="${Array.from({length:Math.min(5,ordinal)},(_,n)=>`M${4+n*5.7} 30v-2`).join('')}" stroke-width="1.1"/>`;}
+ if(sk.redesigned&&REDESIGN_PATHS[id])path=REDESIGN_PATHS[id];
  return {path,extra};}
 export function icon(name:string,cls='',size=24){const spec=name.startsWith('skill:')?skillPath(name.slice(6)):{path:MAP_PATHS[name]||P[name]||P.rune,extra:''};return `<svg class="icon ${cls}" width="${size}" height="${size}" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="${spec.path}"/>${spec.extra}</svg>`;}
 export const crest = `<svg viewBox="0 0 120 120" fill="none" aria-hidden="true"><circle cx="60" cy="60" r="42" stroke="currentColor" stroke-width=".8"/><circle cx="60" cy="60" r="34" stroke="currentColor" stroke-width=".5" stroke-dasharray="1 8"/><path d="M60 8 68 47 108 60 68 69 60 111 51 69 11 60 51 47Z" fill="currentColor" fill-opacity=".09" stroke="currentColor"/><path d="m60 36 5 19 19 5-19 5-5 19-5-19-19-5 19-5Z" fill="currentColor"/><path d="m28 91 14-20M88 28 76 44" stroke="currentColor" stroke-width="2"/></svg>`;

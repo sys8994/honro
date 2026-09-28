@@ -1,0 +1,162 @@
+{
+  "source": "HONRO.html",
+  "rows": [
+    {
+      "stage": 1,
+      "viewport": [
+        1365,
+        768
+      ],
+      "zoom": 0.82,
+      "loadMs": 80.7,
+      "renderHz": 59.95,
+      "renderAvgMs": 3.843,
+      "renderMaxMs": 6.8,
+      "heapDelta": 103731,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 7.2999999998137355,
+        "bgBuilds": 1,
+        "bgBuildMs": 7.600000000093132,
+        "worldHits": 134,
+        "bgHits": 134,
+        "worldBytes": 17090304,
+        "worldScale": 0.68,
+        "backgroundBytes": 3603600
+      },
+      "warmCacheRebuilds": 0,
+      "error": null
+    },
+    {
+      "stage": 2,
+      "viewport": [
+        1365,
+        768
+      ],
+      "zoom": 0.82,
+      "loadMs": 114.8,
+      "renderHz": 59.93,
+      "renderAvgMs": 2.677,
+      "renderMaxMs": 4.3,
+      "heapDelta": 44251,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 8.699999999720603,
+        "bgBuilds": 1,
+        "bgBuildMs": 1.900000000372529,
+        "worldHits": 152,
+        "bgHits": 152,
+        "worldBytes": 24009448,
+        "worldScale": 0.6502560887623551,
+        "backgroundBytes": 3603600
+      },
+      "warmCacheRebuilds": 0,
+      "error": null
+    },
+    {
+      "stage": 1,
+      "viewport": [
+        1365,
+        768
+      ],
+      "zoom": 0.2,
+      "loadMs": 81,
+      "renderHz": 59.76,
+      "renderAvgMs": 4.001,
+      "renderMaxMs": 5.8,
+      "heapDelta": -1093013,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 6.699999999720603,
+        "bgBuilds": 1,
+        "bgBuildMs": 7.600000000093132,
+        "worldHits": 150,
+        "bgHits": 150,
+        "worldBytes": 6519744,
+        "worldScale": 0.42,
+        "backgroundBytes": 3603600
+      },
+      "warmCacheRebuilds": 0,
+      "error": null
+    },
+    {
+      "stage": 2,
+      "viewport": [
+        1365,
+        768
+      ],
+      "zoom": 0.2,
+      "loadMs": 117.1,
+      "renderHz": 60.17,
+      "renderAvgMs": 2.618,
+      "renderMaxMs": 3.8,
+      "heapDelta": 2855191,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 8.5,
+        "bgBuilds": 1,
+        "bgBuildMs": 1.8999999999068677,
+        "worldHits": 156,
+        "bgHits": 156,
+        "worldBytes": 10012464,
+        "worldScale": 0.42,
+        "backgroundBytes": 3603600
+      },
+      "warmCacheRebuilds": 0,
+      "error": null
+    },
+    {
+      "stage": 1,
+      "viewport": [
+        844,
+        390
+      ],
+      "zoom": 0.2,
+      "loadMs": 74.5,
+      "renderHz": 60.12,
+      "renderAvgMs": 3.883,
+      "renderMaxMs": 5.7,
+      "heapDelta": 311831,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 6.899999999906868,
+        "bgBuilds": 1,
+        "bgBuildMs": 6.100000000093132,
+        "worldHits": 154,
+        "bgHits": 154,
+        "worldBytes": 6519744,
+        "worldScale": 0.42,
+        "backgroundBytes": 952032
+      },
+      "warmCacheRebuilds": 0,
+      "error": null
+    },
+    {
+      "stage": 2,
+      "viewport": [
+        844,
+        390
+      ],
+      "zoom": 0.2,
+      "loadMs": 141.2,
+      "renderHz": 59.79,
+      "renderAvgMs": 2.684,
+      "renderMaxMs": 4.3,
+      "heapDelta": 103155,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 14.299999999813735,
+        "bgBuilds": 1,
+        "bgBuildMs": 3.5,
+        "worldHits": 154,
+        "bgHits": 154,
+        "worldBytes": 10012464,
+        "worldScale": 0.42,
+        "backgroundBytes": 952032
+      },
+      "warmCacheRebuilds": 0,
+      "error": null
+    }
+  ],
+  "errors": []
+}

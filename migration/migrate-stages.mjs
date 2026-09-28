@@ -7,6 +7,14 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>readFile(path.join(root,p),'utf8');
 export async function legacyRuntime(){
  const g=vm.createContext({console,performance,structuredClone});vm.runInContext(await buildCore(),g);
+ // Reproduce the historical map import with its historical loadouts. The active
+ // runtime migrates these IDs when instantiating units; authored geometry stays frozen.
+ vm.runInContext(`{
+  const C=HONRO_CORE;
+  for(const s of Object.values(C.SKILLS))if(s.legacyId){const {legacyId,enemyOnly,...old}=s;C.SKILLS[legacyId]={...old,id:legacyId};}
+  const defaults=C.defaults;
+  C.defaults=()=>{const p=defaults();for(const [cls,second] of [['archer','A05'],['mage','M03']]){p.heroes[cls].ranks[second]=1;p.loadouts[cls]=[C.baseSkill(cls),second];}for(const h of Object.values(p.heroes))delete h.skillRevision;return p;};
+ }`,g);
  g.HONRO_BALANCE=JSON.parse(await read('game/config/balance.json'));
  for(const f of ['content','terrain-space','map-engine','battlefield-layouts','progression','encounters'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
  for(const f of ['rc21-stage-maps','rc21-world'])vm.runInContext(await read(`migration/legacy/${f}.js`),g);
@@ -33,7 +41,7 @@ export async function migrate(){
   s.objectives=[{id:'campaign-goal',type:'campaign',label:st.goal}];
   s.anchors=clone(b.honroMapAnchors);s.design=clone(b.honroMap);s.routes=clone(b.honroRoute);s.detailStats=clone(b.honroDetailStats);
   s.initialState=clone(b);
-  for(const key of ['units','terrain','honroEvents','honroMarkers','honroLandmarks','honroSurfaceZones','honroMapAnchors','honroMap','honroRoute','honroDetailStats','heroes','startXP','session','honroGrowth','difficulty'])delete s.initialState[key];
+  for(const key of ['units','terrain','honroEvents','honroMarkers','honroLandmarks','honroSurfaceZones','honroMapAnchors','honroMap','honroRoute','honroDetailStats','heroes','startXP','session','honroGrowth','difficulty','skillRevision'])delete s.initialState[key];
   stages.push(s);
  }
  const library=JSON.parse(await read('shared/data/elements.json'));

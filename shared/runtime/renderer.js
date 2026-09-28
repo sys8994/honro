@@ -152,6 +152,7 @@
                 const rr = f.r || f.radius || 100;
                 this.field(c, f.x, f.y, rr, f.kind || f.type || 'gravity');
             }
+            G.HONRO_CORE.drawStakes(c,e,this.time);
             for (const z of b.zones || []) {
                 if (z.dead)
                     continue;
@@ -181,7 +182,7 @@
                 if(this.arcFx){ if(q.body)this.arcFx.bodyTrail(c,q); else this.arcFx.projectile(c,q); }
                 else this.projectile(c,q);
             }
-            if(this.arcFx)this.arcFx.worldFx(c,effectDt,false); else {
+            if(this.arcFx)this.arcFx.worldFx(c,effectDt,false,effectDt>0?dt:0); else {
                 for (const fx of this.effects) { fx.life += effectDt; this.effect(c, fx); }
                 this.effects = this.effects.filter(x => x.life < (x.name === 'text' ? 1.6 : .9));
             }

@@ -51,7 +51,7 @@ with sync_playwright() as p:
         check(prefix+' actual battle streams cycle 02/03/04',True)
         page.evaluate("HonroApp.audio.music.current.dispatchEvent(new Event('ended'));window.trackBefore=HonroApp.audio.music.current;HonroApp.launch(2)")
         page.wait_for_timeout(500)
-        check(prefix+' stage transition preserves playlist',page.evaluate('HonroApp.audio.music.current===trackBefore&&HonroApp.audio.music.status().track===3'))
+        check(prefix+' new stage advances from the last battle song',page.evaluate('HonroApp.audio.music.current!==trackBefore&&HonroApp.audio.music.status().track===4'))
         page.evaluate("HonroApp.engine.b.units.find(u=>u.side===1).boss=true;HonroApp.engine.b.units.find(u=>u.side===1).awake=true")
         page.wait_for_function('HonroApp.audio.music.status().track===5&&HonroApp.audio.music.current.currentTime>.1')
         page.wait_for_timeout(500);check(prefix+' boss transition ends with one stream',page.evaluate('HonroApp.audio.music.status().playing')==1)
@@ -81,7 +81,7 @@ with sync_playwright() as p:
             for stage in range(1,11):
                 page.evaluate('(stage)=>HonroApp.launch(stage)',stage)
                 # Canonical stages 3/6/8/10 start with an awake midboss or final boss.
-                track=5 if stage in [3,6,8,10] else 3
+                track=[2,3,5,4,2,5,3,5,4,5][stage-1]
                 page.wait_for_function('track=>HonroApp.audio.music.status().track===track&&HonroApp.audio.music.current.currentTime>.05',arg=track)
                 check_label(page,f'stage {stage:02} entry uses expected actual MP3',track)
         check(prefix+' no media errors',not page.evaluate('HonroApp.audio.music.errors'),page.evaluate('HonroApp.audio.music.errors'))

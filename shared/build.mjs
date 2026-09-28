@@ -25,7 +25,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   if(render)for(const name of ['renderer','art-dark','elements'])parts.push(await read(`shared/runtime/${name}.js`));
   if(app){
     for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));
-    for(const name of ['ui-bridge','stage-rules','audio','story','interactions','unit-info','main'])
+    for(const name of ['ui-bridge','stage-rules','audio','story','interactions','unit-info','training','main'])
       parts.push(await read(`shared/runtime/${name}.js`));
   }else parts.push(await read('shared/runtime/stage-rules.js'));
   return parts;

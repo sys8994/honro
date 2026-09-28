@@ -1,4 +1,5 @@
 import type { Skill, ClassId, Stage, EnemySpec } from './types';
+import {installSkillRedesign} from './skillRedesignData';
 export const CLASSES: Record<ClassId, {
     name: string;
     person: string;
@@ -223,3 +224,5 @@ for(const s of [
 ]) SKILLS[s.id]=s;
 
 SKILLS.O99={id:'O99',cls:'occultist',name:'백귀야행',tag:'궁극기 · 경계 붕괴',desc:'혼령핵이 정점에서 귀문을 열어 넓은 범위의 적을 저주하고 추적 원혼을 쏟아낸다. 귀문 아래에는 강력한 소환귀 둘이 남는다.',cost:72,damage:92,radius:190,speed:.84,wind:.18,mode:'nightParade',color:'#b780f0',icon:'vortex',terrain:.35,ultimate:true,cooldown:2,gravity:.18};
+
+installSkillRedesign(SKILLS);

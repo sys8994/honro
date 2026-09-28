@@ -2,6 +2,9 @@
 function effects(b,u){
  const list=[];if(!u)return list;
  if(u.dead||u.hp<=0)return ['전투 불능'];
+ if(u.retreat)list.push('이탈보 · 후퇴 단계');
+ if(u.prepared)list.push('정심 · 다음 절명 사격 강화');
+ if(u.slowed)list.push('감속 '+Math.round(u.slowed.factor*100)+'%');
  if(u.stunnedRound===b.round&&u.acted)list.push('기절 · 이번 턴 행동 불가');
  else if(u.stun>0)list.push(`기절 · 다음 행동 ${u.stun}회 불가`);
  if(u.bound>0)list.push(`결박 ${u.bound}회 · 이동력 감소·이동 소모 증가`);
@@ -17,6 +20,8 @@ function reason(e,u,skill){
  if(b.side===1)return '적군 턴 · 행동을 기다리는 중';
  if(b.phase==='transition')return '턴 전환 중 · 착지와 이벤트 처리 대기';
  if(b.phase==='review')return '공격 결과 확인 중';
+ if(b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup))return '전로시 · 전장 클릭/터치 또는 E로 1회 선회';
+ if(u.retreat)return '후퇴 · 이동/점프만 가능 · 대기로 종료';
  if(b.phase==='flight')return b.projectiles.length||b.volley?'공격 처리 중':e.settleBusy()?'착지 대기 중':'공격 마무리 중';
  if(u.stunnedRound===b.round&&u.acted)return '기절로 이번 턴 행동 불가 · 다른 동행을 선택하세요';
  if(u.acted)return '행동 완료 · 다른 동행을 선택하세요';

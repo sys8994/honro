@@ -1,6 +1,6 @@
 # 통합 검증
 
-2026-09-25 Windows / Chrome headless 환경에서 실행했습니다. 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 844×390 가로 터치 에뮬레이션입니다. 생성 HTML을 실제로 열어 검사했으며 빌드 성공만으로 판정하지 않았습니다.
+최신 전체 검증: 2026-09-27 Windows / Chrome headless, `npm.cmd run verify` PASS(exit 0, 360.44초). [허공터 연속 사용·파문/번개 개선 결과](game/reports/SKILL_EFFECTS_2026_09_27.md). 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 844×390 가로 터치 에뮬레이션입니다. 생성 HTML을 실제로 열어 검사했으며 빌드 성공만으로 판정하지 않았습니다.
 
 ## 실행 명령과 범위
 
@@ -33,27 +33,34 @@ npm.cmd run verify
 | integration | PASS · 47 checks |
 | editor-features | PASS · 23 checks |
 | authored | PASS · 15 checks |
-| audio-unit | PASS · 11 checks |
+| audio-unit | PASS · 14 checks |
 | audio-browser | PASS · 69 checks |
+| bgm-transitions | PASS · 68 checks |
 | stage12-redesign/checks | PASS · 18 checks |
 | stage12-redesign/browser | PASS · 9 checks |
+| skill-redesign/unit | PASS · 35 checks |
+| skill-redesign/browser | PASS · 21 checks |
+| skill-polish/unit | PASS · 7 checks |
+| skill-polish/browser | PASS · 59 checks |
+| skill-effects/unit | PASS · 6 checks |
+| skill-effects/browser | PASS · 21 checks |
 | migration | PASS · 10 stages × 3 difficulties |
 | Existing RC21 verify | PASS · typecheck, Node audits, browser 10, performance 5 |
 | Browser uncaught JS errors | 0 |
 
 | Stage / viewport / zoom | Original Hz / ms | Game Hz / ms | Editor Hz / ms | Original / Game / Editor load ms |
 |---|---|---|---|---|
-| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 59.73 / 4.058 | 59.63 / 0.785 | 83.4 / 81.2 / 38.8 |
-| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 59.64 / 2.891 | 60.28 / 1.715 | 106.2 / 110.6 / 73.2 |
-| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 59.89 / 3.624 | 59.92 / 1.503 | 102.3 / 77.4 / 37.4 |
-| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.84 / 3.094 | 59.71 / 1.908 | 99 / 124.4 / 83.8 |
-| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.17 / 4.024 | 59.94 / 1.369 | 87.6 / 79.6 / 28.8 |
-| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 60.04 / 3.314 | 60.06 / 1.836 | 99.2 / 143.8 / 76.5 |
+| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 56.52 / 0.618 | 54.53 / 0.531 | 83.4 / 115.3 / 38.6 |
+| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 56.02 / 1.034 | 56.10 / 1.006 | 106.2 / 114.4 / 77.2 |
+| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 56.04 / 1.136 | 56.03 / 0.958 | 102.3 / 71.5 / 32.6 |
+| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 56.17 / 1.588 | 55.84 / 1.341 | 99 / 109.8 / 54.1 |
+| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 56.21 / 0.935 | 55.80 / 0.819 | 87.6 / 72.3 / 32.2 |
+| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 55.85 / 1.171 | 56.33 / 1.096 | 99.2 / 110.6 / 59.8 |
 
 | Metric | Original | Game | Editor |
 |---|---|---|---|
-| renderMaxMs | 3.70 ms … 5.40 ms | 4.30 ms … 5.60 ms | 1.40 ms … 3.00 ms |
-| heapDelta | -0.436 MB … 1.311 MB | -1.478 MB … 2.980 MB | -2.153 MB … 2.359 MB |
+| renderMaxMs | 3.70 ms … 5.40 ms | 1.00 ms … 2.60 ms | 1.00 ms … 2.00 ms |
+| heapDelta | -0.436 MB … 1.311 MB | -1.497 MB … 0.891 MB | -2.370 MB … 1.904 MB |
 | warmCacheRebuilds | 0 … 0 | 0 … 0 | 0 … 0 |
 
 Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. Original은 RC21 원본 지형이고 Game/Editor는 개편 지형이므로 동일 콘텐츠의 성능 비교는 아닙니다. 수치 원본: [before](reports/performance-before.json), [game](reports/performance-game.json), [editor](reports/performance-editor.json).

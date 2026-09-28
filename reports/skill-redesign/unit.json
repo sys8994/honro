@@ -1,0 +1,144 @@
+{
+  "results": [
+    {
+      "name": "3 × 5 active, 5 passive, free basics and rankable capstones",
+      "pass": true
+    },
+    {
+      "name": "distance, drop and speed are independent and monotonic",
+      "pass": true
+    },
+    {
+      "name": "seeded crit repeats exactly and obeys caps",
+      "pass": true
+    },
+    {
+      "name": "정심 consumes one distance cast and expires after two turns",
+      "pass": true
+    },
+    {
+      "name": "pierce ranks and 88% decay, rock blocks",
+      "pass": true
+    },
+    {
+      "name": "회기시 actual enemy damage only and per-cast recovery caps",
+      "pass": true
+    },
+    {
+      "name": "전로시 permits one manual turn at capped angle and 92% speed",
+      "pass": true
+    },
+    {
+      "name": "homing obeys LOS and terrain collisions",
+      "pass": true
+    },
+    {
+      "name": "return keeps outbound and inbound hits separate",
+      "pass": true
+    },
+    {
+      "name": "칠성추혼 always splits seven and caps each target at four hits",
+      "pass": true
+    },
+    {
+      "name": "push transfers enemy collision and 쇄암 terrain multiplier",
+      "pass": true
+    },
+    {
+      "name": "chain selects fresh enemies and decays by 72%",
+      "pass": true
+    },
+    {
+      "name": "철화 emits 8–22 seeded short arrows and caps child damage",
+      "pass": true
+    },
+    {
+      "name": "산개사 + 연속 시위 preserves count, spread, 0.5s cadence and exponential decay",
+      "pass": true
+    },
+    {
+      "name": "retreat permits movement, blocks attack and switching, exhausts to end",
+      "pass": true
+    },
+    {
+      "name": "빙호 bounces until fuse; shards and primary explosion follow",
+      "pass": true
+    },
+    {
+      "name": "뇌호 hits every target once from origin, through units and walls",
+      "pass": true
+    },
+    {
+      "name": "화호 and 연폭호 counts, deterministic emissions and target caps",
+      "pass": true
+    },
+    {
+      "name": "천뢰호 delay and marker match vertical strike without roof",
+      "pass": true
+    },
+    {
+      "name": "원호 preview and actual geometry agree, ring excludes interior and decays",
+      "pass": true
+    },
+    {
+      "name": "반탄파 2–7 bounces and 삼재 boundary/interior geometry",
+      "pass": true
+    },
+    {
+      "name": "팔괘 center and ray hits are capped at three lines",
+      "pass": true
+    },
+    {
+      "name": "파진목 enemy step, 회생진목 ally recovery, no summon or placement refund",
+      "pass": true
+    },
+    {
+      "name": "유인진목 pull stays outside solid wall",
+      "pass": true
+    },
+    {
+      "name": "축지 max2 oldest replacement, once per unit/turn, arrival recovery",
+      "pass": true
+    },
+    {
+      "name": "오방봉진 2R expiry and once-per-turn boundary damage",
+      "pass": true
+    },
+    {
+      "name": "회기 refunds complete misses exactly once, authored balance stays authoritative",
+      "pass": true
+    },
+    {
+      "name": "오방봉진 reduces the renewed movement budget once each turn",
+      "pass": true
+    },
+    {
+      "name": "mid-flight save restores every emitter, child mode, volley and stake",
+      "pass": true
+    },
+    {
+      "name": "삼재파 records actual launch and two terrain contacts, preview matches",
+      "pass": true
+    },
+    {
+      "name": "migration preserves XP/stats and unrelated allocations; repeated load is idempotent",
+      "pass": true
+    },
+    {
+      "name": "enemy/NPC loadouts use frozen legacy definitions, Stage 1–10 construct",
+      "pass": true
+    },
+    {
+      "name": "specialization ties do not stack, and 기해 grows focus and regeneration",
+      "pass": true
+    },
+    {
+      "name": "legacy mage child caps retain their historical values after alias migration",
+      "pass": true
+    },
+    {
+      "name": "every redesigned active casts and resolves at Lv.1 and Lv.8",
+      "pass": true
+    }
+  ]
+}

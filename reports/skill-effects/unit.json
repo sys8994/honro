@@ -1,0 +1,353 @@
+{
+  "checks": [
+    {
+      "name": "All 32 redesigned actions repeat without refresh, at both ranks, including capstones and retreat",
+      "pass": true
+    },
+    {
+      "name": "Campaign retains capstone cooldown and retreat while practice keeps consecutive gate placements",
+      "pass": true
+    },
+    {
+      "name": "Arc collides with the first enemy; guide equals impact and tangent is perpendicular to incoming velocity",
+      "pass": true
+    },
+    {
+      "name": "Arc stops on a wall and old in-flight phase-through saves recover the new contact behavior",
+      "pass": true
+    },
+    {
+      "name": "Bagua has eight straight outer sides and uses those exact sides for hit detection",
+      "pass": true
+    },
+    {
+      "name": "Thunder and sky gourds emit branched lightning at the real damage endpoints",
+      "pass": true
+    }
+  ],
+  "details": {
+    "repeat": [
+      {
+        "id": "M01",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M01",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M02",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M02",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M03",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M03",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M04",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M04",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M05",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M05",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M06",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M06",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M07",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M07",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M08",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M08",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M09",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M09",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M10",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M10",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M11",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M11",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M12",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M12",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A01",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A01",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A02",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A02",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A03",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A03",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A04",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A04",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A05",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A05",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A06",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A06",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A07",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A07",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A08",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A08",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A09",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A09",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A10",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A10",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A11",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A11",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A12",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A12",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M13",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M13",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M14",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M14",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M15",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M15",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A13",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A13",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A14",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A14",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A15",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A15",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "M99",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "M99",
+        "rank": 8,
+        "shots": 2
+      },
+      {
+        "id": "A99",
+        "rank": 1,
+        "shots": 2
+      },
+      {
+        "id": "A99",
+        "rank": 8,
+        "shots": 2
+      }
+    ],
+    "arcCases": 12
+  }
+}

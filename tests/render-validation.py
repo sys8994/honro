@@ -7,13 +7,17 @@ def read(name):return json.loads((ROOT/'reports'/name).read_text(encoding='utf-8
 verification=read('verification-run.json');assert verification['exitCode']==0
 lines=['**최종 `npm run verify`: PASS (exit 0).** [실행 기록·산출물 SHA256](reports/verification-run.json)','',
        '| Suite | Result |','|---|---|']
-for name in ['integration','editor-features','authored','audio-unit','audio-browser']:
+for name in ['integration','editor-features','authored','audio-unit','audio-browser','bgm-transitions']:
     data=read(name+'.json')
     assert not data.get('errors'),name
     lines.append(f'| {name} | PASS · {len(data["checks"])} checks |')
 for name in ['stage12-redesign/checks','stage12-redesign/browser']:
     data=read(name+'.json');assert not data.get('failed') and not data.get('errors'),name
     lines.append(f'| {name} | PASS · {len(data["checks"])} checks |')
+for name in ['skill-redesign/unit','skill-redesign/browser','skill-polish/unit','skill-polish/browser','skill-effects/unit','skill-effects/browser']:
+    data=read(name+'.json');assert not data.get('errors'),name
+    checks=data.get('checks',data.get('results',[]));assert checks and all(c.get('pass',True) for c in checks),name
+    lines.append(f'| {name} | PASS · {len(checks)} checks |')
 migration=read('migration.json');assert migration['roundTrip'] and migration['reproducible']
 lines.append(f'| migration | PASS · {len(migration["rows"])} stages × {len(migration["difficulties"])} difficulties |')
 lines.extend(['| Existing RC21 verify | PASS · typecheck, Node audits, browser 10, performance 5 |',

@@ -1,16 +1,19 @@
 {
-  "passed": 11,
+  "passed": 14,
   "checks": [
     "No eager media preload or playback",
     "First input unlocks Main Theme",
     "Noncombat refresh does not restart Main Theme",
     "Battle playlist cycles 02 → 03 → 04 → 02",
-    "Stage change preserves battle track and time",
+    "Same encounter refresh preserves battle track and time",
     "Boss crossfades to looping 05, only two channels",
     "Pause/resume keeps playback position",
-    "Main return and battle index are retained",
+    "Map visit and saved encounter resume retain song and position",
     "Music mute/volume affects BGM independently",
     "Missing MP3 skips the failed playlist track without throwing",
-    "Dispose releases all streams"
+    "Dispose releases all streams",
+    "New encounters advance once, through a map or directly, and wrap from the last song",
+    "Boss interruptions preserve the next normal song; boss-only encounters consume none",
+    "Autoplay lock and mute preserve encounter order without eager streams"
   ]
 }

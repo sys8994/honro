@@ -55,7 +55,7 @@ function top(b,x,reference,support){return G.HonroMapEngine.surfaceY(b.terrain,x
 function createEnemy(b,st,x,kind,index,y,absolute=false){const def=ARCHETYPES[kind]||ARCHETYPES.ghost,u=C.makeEnemy({role:def.role,x,y:y??top(b,x)},b.terrain,C.STAGES[st.id-1],index);const mult=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal;
  Object.assign(u,{id:'foe-'+index,name:def.name,honroType:def.look,h:def.h,r:def.r,x,y:y??top(b,x),awake:false,aggroUntil:0,group:Math.floor(x/(st.w/4)),fixed:!!def.flying,elite:st.id===1?false:index%11===10,cls:def.cls||u.cls,loadout:[...(def.skills||u.loadout)],intent:def.intent||u.intent,honroVariant:def.variant||kind});u.ranks={...u.ranks};for(const sid of u.loadout)u.ranks[sid]=Math.max(1,Math.min(4,1+Math.floor((st.level-1)/3)));
  if(def.flying&&!absolute)u.y-=170+(index%3)*85;
- u.armor=u.elite?.12:.04;u.spawnX=u.x;u.spawnY=u.y;u.honroDifficulty=b.difficulty;u.level=Math.floor(G.HonroProgression.plan(st.id).entryLevel);G.HonroProgression.tuneEnemy(st,u,kind);G.HonroProgression.enemyXP(b,u);return u;
+ C.migrateEnemySkills(u);u.armor=u.elite?.12:.04;u.spawnX=u.x;u.spawnY=u.y;u.honroDifficulty=b.difficulty;u.level=Math.floor(G.HonroProgression.plan(st.id).entryLevel);G.HonroProgression.tuneEnemy(st,u,kind);G.HonroProgression.enemyXP(b,u);C.migrateEnemySkills(u);return u;
 }
 function ally(b,st,id,role,x,y){
  const cls=role==='ritualist'||role==='healer'||role==='daoist'?'mage':role==='medium'?'occultist':'knight';
@@ -69,7 +69,7 @@ function ally(b,st,id,role,x,y){
  if(id==='npc-hwigyeom'){hp=Math.round(hp*1.32);attack*=1.20;armor=.24;}
  Object.assign(u,{honroAlly:true,allyRole:role,honroType:'ally',role:'ally-'+role,fixed:false,hp,maxHp:hp,focus:160,maxFocus:160,attack,armor,r:20,h:90,acted:true,allyState:'follow',awake:true,group:-1,damageBy:{},spawnX:x,spawnY:y??top(b,x)});
  for(const sid of loadout)u.ranks[sid]=Math.max(1,Math.min(4,1+Math.floor((level-1)/2)));
- return u;
+ C.migrateEnemySkills(u);return u;
 }
 function midboss(b,st,id,name,kind,x,y){const u=createEnemy(b,st,x,kind,900+st.id,y,true);Object.assign(u,{id,name,awake:true,aggroUntil:999,group:-3,honroMidboss:true,elite:true});u.armor=Math.max(u.armor||0,.14);G.HonroProgression.tuneMidboss(b,st,u);u.spawnX=u.x;u.spawnY=u.y;return u;}
 

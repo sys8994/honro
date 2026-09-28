@@ -1,3 +1,4 @@
+import {drawRedesignProjectile,drawRedesignGuide,drawInkGeometry,drawInkImpact,drawLightningBolt,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -239,20 +240,24 @@ export class Renderer {
             if (size > 65)
                 this.shake = Math.max(this.shake, Math.min(size / 35, 4));
         }
-        if (kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
-            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6, color, size, text: e.text, x2: e.x2, y2: e.y2 });
+        if (kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
+            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, x2: e.x2, y2: e.y2 });
         if (this.fxs.length > 370)
             this.fxs.splice(0, this.fxs.length - 370);
     }
 
     /** Reuse the production ARCFALL projectile/fx rendering inside other shells. */
-    worldFx(c: C, dt: number, paused = false) {
+    worldFx(c: C, dt: number, paused = false, visualDt=dt) {
         for (const f of this.fxs) {
             if (!paused) {
-                f.age += dt; f.x += f.vx * dt; f.y += f.vy * dt;
+                f.age += f.kind in SKILL_FX_SECONDS ? visualDt : dt; f.x += f.vx * dt; f.y += f.vy * dt;
                 if (f.kind === 'spark') f.vy += 260 * dt;
             }
             const t=f.age/f.life, alpha=Math.max(0,1-t); c.save(); c.globalAlpha=alpha;
+            if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
+            if(f.kind==='inkLine')line(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.color,f.size);
+            if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
+            if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
             if(f.kind==='spark') line(c,f.x,f.y,f.x-f.vx*.028,f.y-f.vy*.028,f.color,f.size);
             if(f.kind==='ring'){c.strokeStyle=f.color;c.lineWidth=2.5*(1-t)+.5;c.beginPath();c.arc(f.x,f.y,Math.max(1,f.size*(.25+.75*t)),0,Math.PI*2);c.stroke();if(t<.3)circle(c,f.x,f.y,f.size*(.2+t),f.color+'19');}
             if(f.kind==='rune') this.rune(c,f.x,f.y,f.size*(.6+.4*t),f.color,t*.4);
@@ -269,6 +274,7 @@ export class Renderer {
     predictionGuide(c:C, engine:Engine, active:Unit, skillId:string, power:number, charging:boolean, throughUnits=false) {
         const sk=SKILLS[skillId]||SKILLS[active.loadout[0]]; if(!sk||sk.passive)return;
         const guidePower=charging?power:(active.lastPower??power??.5);
+        if(drawRedesignGuide(c,engine,active,sk,guidePower))return;
         const ori=engine.origin(active,active.angle), a=rad(active.angle);
         // A short, translucent signature follows the true launch direction.
         c.save();c.translate(ori.x,ori.y);c.rotate(-a);c.globalAlpha=charging?.48:.32;
@@ -578,6 +584,9 @@ export class Renderer {
             const t = f.age / f.life, alpha = Math.max(0, 1 - t);
             c.save();
             c.globalAlpha = alpha;
+            if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
+            if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
+            if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
             if (f.kind === 'spark') {
                 line(c, f.x, f.y, f.x - f.vx * .028, f.y - f.vy * .028, f.color, f.size);
             }
@@ -1558,6 +1567,7 @@ export class Renderer {
     } c.restore(); if (p.mode === 'slam') this.glow(c, p.x, p.y, 40, '#ffcf94', .25);
     if(p.mode==='cataclysmCharge'){this.glow(c,p.x,p.y-28,75,'#d2a4ff',.36);c.save();c.globalCompositeOperation='lighter';for(let i=0;i<3;i++){c.globalAlpha=.35-i*.08;line(c,p.x-75-i*20,p.y-38+i*8,p.x+18,p.y-28,'#d9bcff',8-i*2);}c.restore();} }
     projectile(c: C, p: Battle['projectiles'][number]) {
+        if(drawRedesignProjectile(c,p))return;
         const angle = Math.atan2(p.vy, p.vx), occult=p.skill?.[0]==='O'||['nightParade','nightBolt','spiritRain'].includes(p.mode), ultimate=['arcaneJudgment','starHunt','arcBolt','hunterBolt','nightParade','nightBolt'].includes(p.mode)||p.skill==='M99'||p.skill==='A99'||p.skill==='O99', advanced = ['meteor', 'emberOrb', 'frostOrb', 'stormOrb','arcaneJudgment','starHunt','reverseGhost','nightParade'].includes(p.mode), arrow = p.skill[0] === 'A' || p.mode==='hunterBolt', color = p.color;
         c.save();
         c.lineCap = 'round';

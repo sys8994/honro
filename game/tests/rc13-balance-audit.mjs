@@ -6,9 +6,12 @@ const check=(name,fn)=>{const detail=fn();checks.push({name,passed:true,detail})
 function spawnCount(b){let n=0;const add=a=>{if(!a)return;if(a.type==='spawn'||a.type==='sniperAmbush')n+=a.n||1;else if(a.type==='multi')for(const q of a.actions||[])add(q);};for(const e of b.honroEvents||[])add(e.action);return n;}
 function output(u){const ss=(u.loadout||[]).map(id=>C.SKILLS[id]).filter(Boolean);return ss.reduce((n,s)=>n+s.damage*C.skillBalanceFactor(s)*u.attack,0)/Math.max(1,ss.length);}
 check('Stochastic mage multishot is priced by intentional-hit probability, not theoretical projectile count',()=>{
- const expected={M13:{control:.78,minFactor:1.45},M14:{control:.65,minFactor:2.25},M15:{control:.70,minFactor:1.80}},out={};
+ const expected={LM13:{control:.78,minFactor:1.45},LM14:{control:.65,minFactor:2.25},LM15:{control:.70,minFactor:1.80}},out={};
  for(const [id,x] of Object.entries(expected)){const s=C.SKILLS[id],r=C.skillScoreBreakdown(s);assert.equal(r.aimControl,x.control);assert.ok(r.factor>=x.minFactor,`${id} factor ${r.factor}`);assert.ok(Math.abs(r.normalized-r.target)<6,`${id} normalized ${r.normalized}/${r.target}`);out[id]={name:s.name,baseDamage:s.damage,aimControl:r.aimControl,balanceFactor:+r.factor.toFixed(3),effectiveBaseDamage:+(s.damage*r.factor).toFixed(1),score:+r.normalized.toFixed(1),target:r.target};}
  return out;
+});
+check('Redesigned player skills retain authored damage instead of legacy normalization',()=>{
+ const out={};for(const id of ['M13','M14','M15','A99','A15','A08']){assert.equal(C.skillBalanceFactor(C.SKILLS[id]),1);out[id]=C.SKILLS[id].damage;}return out;
 });
 check('Stage 2 Damheo is a durable but sub-player support combatant',()=>{const{b}=battlefield(g,2),d=b.units.find(u=>u.id==='npc-damheo'),hero=b.units.find(u=>u.id==='p-archer'),mobs=b.units.filter(u=>u.side===1);const med=mobs.map(u=>u.attack).sort((a,b)=>a-b)[Math.floor(mobs.length/2)];assert.ok(d.hp>=hero.hp*1.15);assert.ok(d.attack>=med*2.8);assert.ok(d.attack<hero.attack*.85);return{hp:d.hp,attack:+d.attack.toFixed(3),heroHp:hero.hp,heroAttack:+hero.attack.toFixed(3),medianMobAttack:+med.toFixed(3)};});
 check('Stage 3 Hwigyeom has front-line durability and useful damage',()=>{const{b}=battlefield(g,3),h=b.units.find(u=>u.id==='npc-hwigyeom'),hero=b.units.find(u=>u.id==='p-archer'),mobs=b.units.filter(u=>u.side===1&&!u.honroMidboss);assert.ok(h.hp>=hero.hp*1.7);assert.ok(h.armor>=.22);assert.ok(h.attack>=hero.attack*.8);return{hp:h.hp,attack:+h.attack.toFixed(3),armor:h.armor,heroHp:hero.hp,heroAttack:+hero.attack.toFixed(3),medianMobHp:mobs.map(u=>u.hp).sort((a,b)=>a-b)[Math.floor(mobs.length/2)]};});

@@ -81,6 +81,7 @@ const RELIABILITY:Record<string,number>={
 
 export function skillTier(id:string){
  const s=SKILLS[id]; if(!s)return 0; if(s.ultimate)return 6;
+ if(s.legacyId)id=s.legacyId;
  const branches=ACTIVE_ROWS[s.cls];
  for(const branch of branches){const i=branch.indexOf(id);if(i>=0)return i+1;}
  return 1;
@@ -109,7 +110,8 @@ export function scoreSkill(skill:Skill,damageOverride=skill.damage){
  const c=rawComponents(skill,damageOverride);return c.damage+c.area+c.reach+c.utility+c.reliability+c.terrain-c.manaPenalty;
 }
 export function skillBalanceFactor(skill:Skill){
- if(skill.passive)return 1;
+ if(skill.passive||skill.redesigned)return 1;
+ if(skill.legacyId)skill={...skill,id:skill.legacyId};
  const target=targetSkillScore(skill),base=scoreSkill(skill);
  const hits=expectedHits(skill);
  const c=rawComponents(skill);

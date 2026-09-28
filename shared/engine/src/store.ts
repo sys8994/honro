@@ -1,3 +1,4 @@
+import {migrateSkills,SKILL_REVISION} from './skillMechanics';
 import {validPhysics} from './physics';
 import type { Profile, Battle, ClassId, HeroProgress, Roster } from './types';
 import { SKILLS } from './data';
@@ -5,7 +6,7 @@ import { upgradeBattle } from './world';
 import { CLASS_IDS, freshRoster, baseSkill, XP_CAP, LEGACY_XP_CAP_9, migrateLegacyXp9, TALENT_MAP, levelOf, xpAtLevel, autoTrain, sanitizeLoadout, pointsSpent, pointsEarned, isOpen, requiredRankLevel } from './progression';
 const KEY = 'falling-star-company.rpg.v2', BACK = KEY + '.backup', OLD = 'falling-star-company.v1';
 const copy = <T>(o: T): T => JSON.parse(JSON.stringify(o));
-export function defaults(): Profile { return { version: 2, revision: 12, cleared: {}, party: ['mage', 'archer', 'knight', 'occultist'], loadouts: { mage: ['M01', 'M03'], archer: ['A01', 'A05'], knight: ['S01', 'S09'], occultist: ['O01','O06','O11'] }, tuning: { mage: .5, archer: .5, knight: .5, occultist: .5 }, settings: { sound: true, music: false, volume: .35, assist: false, shake: true, quality: 'high', difficulty: 'normal', speed: 2, playerSpeed: 1, orientation: 'landscape' }, saved: null, lastStage: 1, mapNode: 1, tutorial: false, heroes: freshRoster() }; }
+export function defaults(): Profile { return { version: 2, revision: 12, cleared: {}, party: ['mage', 'archer', 'knight', 'occultist'], loadouts: { mage: ['M01'], archer: ['A01'], knight: ['S01', 'S09'], occultist: ['O01','O06','O11'] }, tuning: { mage: .5, archer: .5, knight: .5, occultist: .5 }, settings: { sound: true, music: false, volume: .35, assist: false, shake: true, quality: 'high', difficulty: 'normal', speed: 2, playerSpeed: 1, orientation: 'landscape' }, saved: null, lastStage: 1, mapNode: 1, tutorial: false, heroes: freshRoster() }; }
 function playback(n: number) { return [1, 1.5, 2, 3, 4].reduce((a, b) => Math.abs(b - n) < Math.abs(a - n) ? b : a, 1); }
 function finite(n: unknown) { return typeof n === 'number' && Number.isFinite(n); }
 function object(v: unknown): v is Record<string, any> { return !!v && typeof v === 'object' && !Array.isArray(v); }
@@ -14,8 +15,10 @@ function validHero(raw: unknown, cls: ClassId, legacyXp=false): HeroProgress {
     const maxXp=legacyXp?LEGACY_XP_CAP_9:XP_CAP;
     if (!object(raw) || !finite(raw.xp) || raw.xp < 0 || raw.xp > maxXp || !object(raw.ranks)) return fail();
     const converted=legacyXp?migrateLegacyXp9(raw.xp):Math.floor(raw.xp);
-    const h: HeroProgress = { xp: converted, ranks: {}, kills: 0, damage: 0 };
+    const h: HeroProgress = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision:raw.skillRevision };
+    if(raw.skillRevision!==undefined&&raw.skillRevision!==SKILL_REVISION)return fail();
     for (const [id, rank] of Object.entries(raw.ranks)) {
+        if(id===baseSkill(cls)&&SKILLS[id].basic){if(rank!==1)return fail();h.ranks[id]=1;continue;}
         const n = TALENT_MAP[id];
         if (!n || n.cls !== cls || !finite(rank) || !Number.isInteger(rank) || rank < 0 || rank > n.maxRank)
             return fail();
@@ -25,7 +28,7 @@ function validHero(raw: unknown, cls: ClassId, legacyXp=false): HeroProgress {
     if (!h.ranks[baseSkill(cls)])
         h.ranks[baseSkill(cls)] = 1;
     for (const [id, rank] of Object.entries(h.ranks)) {
-        const n = TALENT_MAP[id];
+        const n = TALENT_MAP[id];if(SKILLS[id]?.basic)continue;
         if (levelOf(h) < requiredRankLevel(n,rank) || n.prereq && !(h.ranks[n.prereq] > 0))
             return fail();
     }
@@ -72,6 +75,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
             return fail();
         for (const [id, r] of Object.entries(u.ranks)) {
             const n=TALENT_MAP[id],sk=SKILLS[id];
+            if(sk?.basic||sk?.enemyOnly){if(!finite(r)||!Number.isInteger(r)||r<0||r>8)return fail();continue;}
             if(sk?.ultimate&&sk.cls===u.cls){if(!finite(r)||!Number.isInteger(r)||r<0||r>1)return fail();continue;}
             if (!n || n.cls !== u.cls || !finite(r) || !Number.isInteger(r) || r < 0 || r > n.maxRank) return fail();
         }
@@ -131,7 +135,24 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         if (u.jumping !== undefined && typeof u.jumping !== 'boolean')
             return fail();
     }
-    const modes = new Set([...Object.values(SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain','summonBolt']);
+    if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();
+    if(b.cast&&(!ids.has(b.cast.owner)||!SKILLS[b.cast.skill]||!nums(b.cast,['shot','cost','enemyDamage'])||b.cast.cost<0||b.cast.enemyDamage<0||b.cast.refunded!==undefined&&typeof b.cast.refunded!=='boolean'))return fail();
+    for(const u of b.units){
+        if(u.retreat!==undefined&&typeof u.retreat!=='boolean'||u.gateTurn!==undefined&&!safe(u.gateTurn))return fail();
+        if(u.prepared&&(!nums(u.prepared,['rank','expires'])||!Number.isInteger(u.prepared.rank)||u.prepared.rank<1||u.prepared.rank>8))return fail();
+        if(u.slowed&&(!nums(u.slowed,['factor','expires'])||u.slowed.factor<0||u.slowed.factor>1))return fail();
+        if(u.arrivalGuard!==undefined&&!finite(u.arrivalGuard))return fail();
+        if(u.shove&&(!ids.has(u.shove.owner)||!nums(u.shove,['damage','remaining','life'])||!Array.isArray(u.shove.hit)||u.shove.hit.some(id=>!ids.has(id))))return fail();
+    }
+    if(b.stakes){
+        if(!Array.isArray(b.stakes)||b.stakes.length>512)return fail();
+        const seen=new Set<number>();for(const z of b.stakes){
+            if(!nums(z,['id','x','y','rank','damage','shot'])||!ids.has(z.owner)||SKILLS[z.skill]?.branch!=='stake'||![0,1,2].includes(z.side)||seen.has(z.id)||!Number.isInteger(z.rank)||z.rank<1||z.rank>8)return fail();seen.add(z.id);
+            if(z.active!==undefined&&typeof z.active!=='boolean'||z.expires!==undefined&&!finite(z.expires)||z.inside&&(!Array.isArray(z.inside)||z.inside.some(id=>!ids.has(id))))return fail();
+            for(const m of [z.crossed,z.budgetTurns])if(m&&(!object(m)||Object.entries(m).some(([id,turn])=>!ids.has(id)||!safe(turn))))return fail();
+        }
+    }
+    const modes = new Set([...Object.values(SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain','summonBolt','ironChip','fireChip','frostChip','ironEmitter','microEmitter','microWait','skyWait']);
     for (const q of [...b.projectiles, ...(b.volley ? [b.volley.template] : [])]) {
         if (!nums(q, ['id', 'x', 'y', 'vx', 'vy', 'prevVy', 'age', 'radius', 'damage', 'blast', 'wind', 'bounces', 'pierces', 'phase', 'returnX', 'returnY', 'rolled', 'shot']) || !ids.has(q.owner) || !SKILLS[q.skill] || !modes.has(q.mode) || !Array.isArray(q.hit) || q.hit.length > 100 || !Array.isArray(q.trail) || q.trail.length > 400 || q.trail.some(v => !nums(v, ['x', 'y'])) || typeof q.body !== 'boolean' || typeof q.child !== 'boolean')
             return fail();
@@ -145,15 +166,18 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
 
         if(q.ultimateBurst!==undefined&&typeof q.ultimateBurst!=='boolean')return fail();
+        for(const key of ['apexY','launchX','launchY','rootDamage','plannedTime','maxAge','returnAge','preparedRank'] as const)if(q[key]!==undefined&&!finite(q[key]))return fail();
+        for(const key of ['turned','returning','secondary'] as const)if(q[key]!==undefined&&typeof q[key]!=='boolean')return fail();
+        if(q.targetPoint&&!nums(q.targetPoint,['x','y'])||q.contacts&&(!Array.isArray(q.contacts)||q.contacts.length>100||q.contacts.some(v=>!nums(v,['x','y'])))||q.outboundHits&&(!Array.isArray(q.outboundHits)||q.outboundHits.some(id=>!ids.has(id))))return fail();
     }
     if(b.vertical!==undefined&&typeof b.vertical!=='boolean')return fail();
     if(b.routePoints!==undefined&&(!Array.isArray(b.routePoints)||b.routePoints.length>80||b.routePoints.some(v=>!nums(v,['x','y']))))return fail();
     if(b.reviewLeft!==undefined&&(!finite(b.reviewLeft)||b.reviewLeft<0||b.reviewLeft>2))return fail();
     if(b.reviewFocus!==undefined&&!nums(b.reviewFocus,['x','y']))return fail();
     if(b.reviewDamage!==undefined&&(!object(b.reviewDamage)||Object.entries(b.reviewDamage).some(([id,d])=>!ids.has(id)||!finite(d)||d<0||d>1e8)))return fail();
-    if(b.volley){const v=b.volley,p=v.template;if(!nums(v,['remaining','elapsed','interval','index','angle','power'])||v.remaining<0||v.remaining>4||!Number.isInteger(v.remaining)||![.5,1].includes(v.interval)||v.index<0||v.index>5||v.elapsed<0||v.elapsed>2||v.power<0||v.power>1||!object(p)||!nums(p,['x','y','vx','vy','damage','blast','radius','shot'])||!ids.has(p.owner)||!SKILLS[p.skill]||SKILLS[p.skill].cls!=='archer'||SKILLS[p.skill].passive||!modes.has(p.mode))return fail();}
+    if(b.volley){const v=b.volley,p=v.template;if(!nums(v,['remaining','elapsed','interval','index','angle','power'])||v.remaining<0||v.remaining>5||!Number.isInteger(v.remaining)||![.5,1].includes(v.interval)||v.index<0||v.index>6||v.elapsed<0||v.elapsed>2||v.power<0||v.power>1||!object(p)||!nums(p,['x','y','vx','vy','damage','blast','radius','shot'])||!ids.has(p.owner)||!SKILLS[p.skill]||SKILLS[p.skill].cls!=='archer'||SKILLS[p.skill].passive||!modes.has(p.mode))return fail();}
     for(const u of b.units){if(u.carriedBy!==undefined&&(!finite(u.carriedBy)||!b.projectiles.some(p=>p.id===u.carriedBy&&(p.mode==='charge'||p.mode==='cataclysmCharge'))))return fail();if(u.lastStandUsed!==undefined&&typeof u.lastStandUsed!=='boolean')return fail();}
-    for(const p of b.projectiles){if(p.carry!==undefined&&(!Array.isArray(p.carry)||p.carry.length>60||p.carry.some(id=>!ids.has(id))))return fail();if(p.repeatIndex!==undefined&&(!finite(p.repeatIndex)||p.repeatIndex<0||p.repeatIndex>4))return fail();}
+    for(const p of b.projectiles){if(p.carry!==undefined&&(!Array.isArray(p.carry)||p.carry.length>60||p.carry.some(id=>!ids.has(id))))return fail();if(p.repeatIndex!==undefined&&(!finite(p.repeatIndex)||p.repeatIndex<0||p.repeatIndex>5))return fail();}
     for (const z of b.zones)
         if (!nums(z, ['id', 'x', 'y', 'radius', 'damage', 'expires']) || !['fire', 'frost', 'delay', 'bomb'].includes(z.kind) || !ids.has(z.owner))
             return fail();
@@ -169,10 +193,12 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         return fail();
     return b;
 }
-export function validate(raw: unknown): Profile {
+export function validate(input: unknown): Profile {
+    const raw=copy(input);
     if (!object(raw) || ![1, 2].includes(raw.version))
         throw new Error('지원하지 않는 세이브 버전입니다.');
     if(raw.revision !== undefined && (!finite(raw.revision)||raw.revision>12))throw new Error('더 새로운 게임에서 저장한 기록입니다. 해당 버전으로 열어주세요.');
+    if(object(raw.heroes)&&object(raw.loadouts)&&['archer','mage'].every(c=>object(raw.heroes[c])&&Array.isArray(raw.loadouts[c])))migrateSkills(raw as Profile);
     const p = defaults(), legacy = raw.version === 1;
     if (raw.cleared !== undefined) {
         if (!object(raw.cleared))

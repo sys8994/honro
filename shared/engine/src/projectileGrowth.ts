@@ -12,6 +12,7 @@ const GROWTH:Record<string,{base:number;step:number;spread:number;compensation:n
 };
 export function multishotProfile(skill:Skill,rank:number){
  const r=clamp(Math.floor(rank||1),1,8),g=GROWTH[skill.mode];if(!g)return null;
+ if(skill.redesigned&&skill.mode==='seekRain')return {rank:r,count:7,base:7,halfAngle:23,damageScale:1,growth:0,waves:1};
  const count=g.base+g.step*(r-1),halfAngle=g.spread*Math.sqrt(count/g.base),damageScale=Math.pow(g.base/count,g.compensation);
  return {rank:r,count,base:g.base,halfAngle,damageScale,growth:g.step,waves:['emberOrb','frostOrb','stormOrb'].includes(skill.mode)?8:1};
 }

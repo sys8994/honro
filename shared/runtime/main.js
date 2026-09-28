@@ -34,6 +34,7 @@
             p.schema = 4;
             p.settings = { ...fresh().settings, ...x.settings };
             if(p.honroBattle?.honroRevision!==20){p.honroBattle=null;p.upgradeNotice=!!x.honroBattle;}
+            C.migrateSkills(p);
             G.HonroProgression.repairRecruits(p);
             return p;
         }
@@ -183,7 +184,7 @@
             u.ranks = { ...u.ranks };
             if (skill) {
                 u.loadout = [skill];
-                u.ranks[skill] = S[skill]?.ultimate ? 1 : 8;
+                u.ranks[skill] = S[skill]?.ultimate || S[skill]?.basic ? 1 : p.heroes[cls].ranks[skill] || 1;
                 b.heroes[cls].ranks = { ...u.ranks };
             }
             for (let i = 0; i < 5; i++) {
@@ -266,7 +267,7 @@
     }
     function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,makeLegacyWorld);}
     class App {
-        constructor() { this.root = $('app'); this.modal = $('modal'); this.profile = load(); this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.map = { x: 1100, y: 850, z: .6 }; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); this.showTitle(); requestAnimationFrame(t => this.frame(t)); }
+        constructor() { this.root = $('app'); this.modal = $('modal'); this.profile = load(); this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.map = { x: 1100, y: 850, z: .6 }; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); this.showTitle(); requestAnimationFrame(t => this.frame(t)); }
         persist() { if(G.HONRO_EMBEDDED||this.customMap)return; G.HonroProgression.persist(this); this.profile.party = [...this.profile.recruited]; if (!save(this.profile) && !this.storageWarned) {
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
@@ -307,8 +308,8 @@
 
         sig(id){return C.icon('skill:'+id,'',28);}
 
-        open(html, kind = '') { this.cancelInput(); this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); }
-        close() { this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now(); }
+        open(html, kind = '') { this.cancelInput(); this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); }
+        close() { this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now(); if(this.engine)this.updateAudio(); }
         talent(id){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls],r=h.ranks[id]||0;this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
             if (!sk.passive) {
                 let p = clone(this.profile);
@@ -390,9 +391,10 @@
                 p.recruited = ROSTER.slice();
                 for (const c of ROSTER) {
                     p.heroes[c].xp = C.xpAtLevel(25);
+                    p.heroes[c].ranks = {[C.baseSkill(c)]: 1};
                     for (const t of C.TALENTS.filter(t => t.cls === c)) {
                         if (!t.passive || this.trainingPassives[t.id])
-                            p.heroes[c].ranks[t.id] = 8;
+                            p.heroes[c].ranks[t.id] = this.trainingRanks[t.id] || 1;
                         else
                             delete p.heroes[c].ranks[t.id];
                     }
@@ -427,7 +429,7 @@
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '기예를 고르고 자유롭게 시험' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? `<nav class="training-tools"><select id="training-class">${ROSTER.map(c => `<option value="${c}" ${c === this.trainingClass ? 'selected' : ''}>${H.hero[c].name} · ${H.hero[c].job}</option>`).join('')}</select><select id="training-skill">${Object.values(S).filter(s => s.cls === this.trainingClass).map(s => `<option value="${s.id}" ${s.id === this.selected ? 'selected' : ''}>${s.passive ? (this.trainingPassives[s.id] ? '● ' : '○ ') : ''}${s.name}</option>`).join('')}</select><button class="icon" data-action="training-reset" aria-label="다시">${fa('rotateRight',16)}</button><button class="icon" data-action="training-info" aria-label="기예 정보">${fa('circleInfo',16)}</button></nav>` : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '기예를 고르고 자유롭게 시험' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         continue() { if (!this.profile.honroBattle) {
             this.showMap();
             return;
@@ -503,14 +505,14 @@
             this.audio?.play(won ? 'win' : 'lose');
         }
         pause() { this.cancelInput(); this.open(`<h2>잠시 머무르기</h2><div class="pause-menu"><button class="primary" data-action="close">${fa('crosshairs',17)}<span>돌아가기</span></button><button data-action="settings">${fa('gear',17)}<span>설정</span></button><button data-action="fullscreen">${fa('expand',17)}<span>전체화면</span></button><button data-action="retry">${fa('rotateRight',17)}<span>처음부터</span></button><button data-action="map">${fa('map',17)}<span>여정도</span></button></div>`,'pause-dialog'); }
-        defend() { if(!this.canInput()) return; const u=this.engine.active; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
+        defend() { if(!this.canInput()) return; if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
         displayAngle(u) { return u.facing >= 0 ? u.angle : 270 - u.angle; }
         adjustAngle(u, v) { if (u.facing >= 0)
             u.angle = clamp(u.angle + v, C.AIM_MIN || -85, 90);
         else
             u.angle = 270 - clamp(this.displayAngle(u) + v, 5, 180); }
         canInput() { return this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
-        beginCharge() { if (!this.canInput() || !this.engine.grounded(this.engine.active))
+        beginCharge() { if(this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&this.engine?.turnArrow()){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
             return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || u.focus < this.engine.manaCost(sk, u) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0; return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
@@ -560,7 +562,7 @@
             G.HonroUnitInfo.bind(this);
             let lastPair = null, start = null, moved = false;
             const pos = e => { let r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }, pair = () => { const ps = [...this.contacts.values()]; return ps.length > 1 ? { x: (ps[0].x + ps[1].x) / 2, y: (ps[0].y + ps[1].y) / 2, d: Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y) } : null; };
-            cv.onpointerdown = e => { e.preventDefault(); let p = pos(e); this.contacts.set(e.pointerId, p); cv.setPointerCapture(e.pointerId); if (this.contacts.size === 1) {
+            cv.onpointerdown = e => { e.preventDefault(); let p = pos(e);if(!this.modal.classList.contains('open')&&!this.dialogue&&this.engine?.turnArrow(this.scene.world(p.x,p.y))){this.updateHUD(true);return;} this.contacts.set(e.pointerId, p); cv.setPointerCapture(e.pointerId); if (this.contacts.size === 1) {
                 start = p;
                 moved = false;
             }
@@ -629,7 +631,7 @@
             if(force||sig!==this.hudSig){
                 this.hudSig=sig;
                 $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted?'acted':''}" data-action="select-hero" data-id="${v.id}" ${v.dead?'disabled':''}>${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
-                $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[u.loadout[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}"><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span><span class="rank-tiny">${s.ultimate?'비기':u.ranks?.[s.id]?'+'+u.ranks[s.id]:''}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
+                $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[u.loadout[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}"><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span><span class="rank-tiny">${s.basic?'기본':s.capstone?'비기 '+(u.ranks?.[s.id]||1):s.ultimate?'비기':u.ranks?.[s.id]?'+'+u.ranks[s.id]:''}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
                 this.drawPortraits();
             }
             $('hp-fill').style.width=(Math.max(0,u.hp)/u.maxHp*100)+'%';$('hp-label').textContent=Math.round(Math.max(0,u.hp))+' / '+u.maxHp;
@@ -640,7 +642,8 @@
             $('read-aim').textContent=`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`;
             const turnLabel=G.HonroStory.turnLabel(b);$('turn-text').textContent=turnLabel?b.round+'번째 턴 · '+turnLabel:b.round+'번째 턴';
             $('wind-text').textContent=(b.wind<0?'← ':'→ ')+Math.abs(Math.round(b.wind));
-            $('fire').disabled=!this.canInput()||!e.grounded(e.active)||u.focus<cost||cd>0;$('fire').style.setProperty('--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
+            const steering=b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup);
+            $('fire').disabled=!steering&&(u.retreat||!this.canInput()||!e.grounded(e.active)||u.focus<cost||cd>0);$('fire').style.setProperty('--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             $('jump').disabled=!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput();
             G.HonroObjectives.refresh(this);
             G.HonroInteractions?.refresh(this);
@@ -675,10 +678,13 @@
         }
         catch { /* Unsupported orientation lock must not block gameplay or cover the settings. */ } }
         updateAudio(){
-            const b=this.engine?.b,inBattle=this.screen==='battle'&&b&&!['won','lost'].includes(b.phase)&&!this.done;
-            if(this.musicSession!==b?.session){this.musicSession=b?.session;this.bossMusicSeen=false;}
+            // The battlefield owns its theme until we actually leave it, including
+            // outro/result screens and ESC. Combat phase is not a navigation state.
+            const b=this.engine?.b,inBattle=this.screen==='battle'&&!!b;
+            if(inBattle&&this.musicSession!==b.session){this.musicSession=b.session;this.bossMusicSeen=false;}
             if(inBattle&&b.units.some(u=>u.side===1&&!u.dead&&u.hp>0&&(u.boss||u.honroMidboss||u.honroFinalBoss)&&(u.awake||u.honroFinalBoss)))this.bossMusicSeen=true;
-            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden||(inBattle&&this.modal.classList.contains('open')));
+            const modalPause=inBattle&&this.modal.classList.contains('open')&&!this.modal.querySelector('.result');
+            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden||modalPause,inBattle?b.session:undefined);
             this.updateMusicLabel();
         }
         updateMusicLabel(){
@@ -703,13 +709,15 @@
             for(const type of ['selectstart','dragstart','contextmenu'])document.addEventListener(type,e=>{if(e.target?.closest?.('#app,#modal'))e.preventDefault();},{capture:true,passive:false});
             document.addEventListener('selectionchange',()=>{const selection=window.getSelection();if(selection&&!selection.isCollapsed&&(this.root.contains(selection.anchorNode)||this.modal.contains(selection.anchorNode)))selection.removeAllRanges();});
             document.addEventListener('pointerdown', () => { this.audio?.configure(this.profile.settings); void this.audio?.wake?.(); }, { capture: true });
-            document.addEventListener('keydown', e => { void this.audio?.wake?.(); if(this.dialogue){G.HonroStory.key(this,e);return;} if (this.screen !== 'battle' || /INPUT|SELECT|TEXTAREA/.test(e.target.tagName))
-                return; if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyA', 'KeyD', 'KeyE', 'ControlLeft', 'ControlRight', 'Space', 'Tab', 'Escape'].includes(e.code))
-                e.preventDefault(); if (e.code === 'Escape') {
+            document.addEventListener('keydown', e => { void this.audio?.wake?.(); if(this.dialogue){G.HonroStory.key(this,e);return;} if (this.screen !== 'battle')
+                return; if (e.code === 'Escape') {
+                e.preventDefault();
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
                 this.modal.classList.contains('open') ? this.close() : this.pause();
                 return;
-            } if (this.dialogue) {
+            } if (/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+            if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyA', 'KeyD', 'KeyE', 'ControlLeft', 'ControlRight', 'Space', 'Tab'].includes(e.code))e.preventDefault();
+            if (this.dialogue) {
                 if (e.code === 'Space' && !e.repeat)
                     this.nextDialogue();
                 return;
@@ -749,6 +757,7 @@
                     this.trainingClass = 'archer';
                     this.trainingSkill = 'A01';
                     this.launch(1, true, 'A01');
+                    G.HonroTraining.open(this);
                     break;
                 case 'launch':
                     this.launch();
@@ -903,23 +912,6 @@
                     this.applyOrientation();
                 this.persist();
             }
-            else if (el.id === 'training-class') {
-                this.trainingClass = el.value;
-                this.trainingSkill = C.baseSkill(this.trainingClass);
-                this.engine = null;
-                this.launch(1, true, this.trainingSkill);
-            }
-            else if (el.id === 'training-skill') {
-                const chosen = S[el.value];
-                if (chosen.passive) {
-                    this.trainingPassives[el.value] = !this.trainingPassives[el.value];
-                    this.notify(chosen.name + (this.trainingPassives[el.value] ? ' · 적용' : ' · 해제'));
-                }
-                else
-                    this.trainingSkill = el.value;
-                this.engine = null;
-                this.launch(1, true, this.trainingSkill);
-            }
             else if (el.id === 'map-import' && el.files[0]) {
                 try {const project=JSON.parse(await el.files[0].text());this.launchMap(project,project.activeStageId);}
                 catch(err){this.notify(err.message||'맵을 읽을 수 없습니다.');}
@@ -931,7 +923,7 @@
                     if (data.game !== 'honro' || ![1,2,3,4].includes(data.schema) || !data.heroes || !Array.isArray(data.recruited) || !data.recruited.includes('archer'))
                         throw Error('혼로의 기록 파일이 아니야.');
                     this.engine = null;
-                    const migrated=fresh(); Object.assign(migrated,data); migrated.schema=4; migrated.settings={...fresh().settings,...data.settings}; migrated.honroBattle=null;
+                    const migrated=fresh(); Object.assign(migrated,data); migrated.schema=4; migrated.settings={...fresh().settings,...data.settings}; if(migrated.honroBattle?.honroRevision!==20)migrated.honroBattle=null; C.migrateSkills(migrated);
                     this.profile = migrated;
                     G.HonroProgression.repairRecruits(this.profile);
                     this.persist();

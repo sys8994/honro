@@ -16,7 +16,7 @@ function recruit(profile,st,b){
 }
 const budget=id=>{const p=plan(id),start=xpAt(p.entryLevel),end=xpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
 function entryHero(st){const h=C.freshHero('archer');h.xp=xpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
-function referenceStats(st){const h=entryHero(st),stats=C.heroStats(h,'archer',['A01']);return {...stats,shot:C.SKILLS.A01.damage*(C.skillBalanceFactor?.(C.SKILLS.A01)||1)*stats.attack*1.18*C.skillDamageFactor(h.ranks.A01)*.96};}
+function referenceStats(st){const h=entryHero(st),stats=C.heroStats(h,'archer',['A01']);return {...stats,shot:C.SKILLS.LA01.damage*(C.skillBalanceFactor?.(C.SKILLS.LA01)||1)*stats.attack*1.18*C.skillDamageFactor(h.ranks.A01)*.96};}
 function tuneEnemy(st,u,kind){
   const p=plan(st.id),r=referenceStats(st);
   const weight={bat:.68,crow:.78,lantern:.80,ghost:1,human:1,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[kind]||1;

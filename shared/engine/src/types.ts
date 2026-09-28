@@ -7,6 +7,12 @@ export type Vec = {
     y: number;
 };
 export interface Skill {
+    redesigned?: boolean;
+    basic?: boolean;
+    capstone?: boolean;
+    branch?: string;
+    enemyOnly?: boolean;
+    legacyId?: string;
     passive?: boolean;
     ultimate?: boolean;
     cooldown?: number;
@@ -82,6 +88,7 @@ export interface Decoration {
     variant: number;
 }
 export interface HeroProgress {
+    skillRevision?: number;
     xp: number;
     ranks: Record<string, number>;
     kills: number;
@@ -109,6 +116,12 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    retreat?: boolean;
+    prepared?: {rank:number;expires:number};
+    gateTurn?: string;
+    arrivalGuard?: number;
+    slowed?: {factor:number;expires:number};
+    shove?: {owner:string;damage:number;remaining:number;hit:string[];life:number};
     elite?: boolean;
     summoned?: boolean;
     summonOwner?: string;
@@ -193,6 +206,18 @@ export interface Unit {
     cooldowns?: Record<string, number>;
 }
 export interface Projectile {
+    apexY?: number;
+    preparedRank?: number;
+    turned?: boolean;
+    returning?: boolean;
+    outboundHits?: string[];
+    contacts?: Vec[];
+    targetPoint?: Vec;
+    plannedTime?: number;
+    maxAge?: number;
+    secondary?: boolean;
+    rootDamage?: number;
+    returnAge?: number;
     followup?: boolean;
     gravityScale?: number;
     phaseMode?: 'terrain' | 'all';
@@ -283,6 +308,9 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    skillRevision?: number;
+    cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
+    stakes?: {id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean};
     vertical?: boolean;
@@ -348,7 +376,7 @@ export interface Battle {
     session: string;
 }
 export interface FX {
-    kind: 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
+    kind: 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
     x: number;
     y: number;
     vx: number;

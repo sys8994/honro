@@ -1,0 +1,698 @@
+{
+  "note": "Victory/defeat were constructed to check navigation, not manual combat clears.",
+  "checks": [
+    {
+      "name": "game first battle",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 2,
+        "playing": 1,
+        "currentTime": 0.282033,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game ESC pause 1 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "game battle settings retain paused song",
+      "detail": null
+    },
+    {
+      "name": "game ESC resume 1",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 3,
+        "playing": 1,
+        "currentTime": 0.46,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game ESC resume 1 retains stream",
+      "detail": null
+    },
+    {
+      "name": "game ESC pause 2 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "game ESC resume 2",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 4,
+        "playing": 1,
+        "currentTime": 0.46,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game ESC resume 2 retains stream",
+      "detail": null
+    },
+    {
+      "name": "game ESC pause 3 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "game ESC resume 3",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 5,
+        "playing": 1,
+        "currentTime": 0.46,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game ESC resume 3 retains stream",
+      "detail": null
+    },
+    {
+      "name": "game map uses main theme",
+      "detail": {
+        "state": "main",
+        "track": 1,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 7,
+        "playing": 1,
+        "currentTime": 0.324599,
+        "errors": [],
+        "source": "01 main theme - 혼로.mp3",
+        "label": "BGM · 01 main theme - 혼로"
+      }
+    },
+    {
+      "name": "game saved encounter keeps its song",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 0.748499,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game saved encounter keeps its position",
+      "detail": null
+    },
+    {
+      "name": "game victory outro stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 0.822235,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game victory result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 1.285824,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game victory ESC closing result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 1.292763,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game victory result and ESC never replace the stream",
+      "detail": null
+    },
+    {
+      "name": "game actual battlefield exit uses main theme",
+      "detail": {
+        "state": "main",
+        "track": 1,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 10,
+        "playing": 1,
+        "currentTime": 0.688073,
+        "errors": [],
+        "source": "01 main theme - 혼로.mp3",
+        "label": "BGM · 01 main theme - 혼로"
+      }
+    },
+    {
+      "name": "game stage 1 to 2 advances without waiting for song end",
+      "detail": {
+        "state": "battle",
+        "track": 3,
+        "battleIndex": 1,
+        "unlocked": true,
+        "paused": false,
+        "starts": 11,
+        "playing": 1,
+        "currentTime": 0.256835,
+        "errors": [],
+        "source": "03 battle theme - 하늘의 그림자.mp3",
+        "label": "BGM · 03 battle theme - 하늘의 그림자"
+      }
+    },
+    {
+      "name": "game retry starts next battle song",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 13,
+        "playing": 1,
+        "currentTime": 0.283014,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "game retry never selects main even during mounting",
+      "detail": null
+    },
+    {
+      "name": "game defeat outro stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 13,
+        "playing": 1,
+        "currentTime": 0.430239,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "game defeat result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 13,
+        "playing": 1,
+        "currentTime": 0.44288,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "game defeat ESC closing result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 13,
+        "playing": 1,
+        "currentTime": 0.448437,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "game defeat result and ESC never replace the stream",
+      "detail": null
+    },
+    {
+      "name": "game wrap retry starts next battle song",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 15,
+        "playing": 1,
+        "currentTime": 0.290739,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "game wrap retry never selects main even during mounting",
+      "detail": null
+    },
+    {
+      "name": "game boss appears",
+      "detail": {
+        "state": "boss",
+        "track": 5,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 16,
+        "playing": 1,
+        "currentTime": 0.325381,
+        "errors": [],
+        "source": "05 boss battle theme - 그림자 대결.mp3",
+        "label": "BGM · 05 boss battle theme - 그림자 대결"
+      }
+    },
+    {
+      "name": "game boss ESC pause 1 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "game boss battle settings retain paused song",
+      "detail": null
+    },
+    {
+      "name": "game boss ESC resume 1",
+      "detail": {
+        "state": "boss",
+        "track": 5,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 17,
+        "playing": 1,
+        "currentTime": 0.4,
+        "errors": [],
+        "source": "05 boss battle theme - 그림자 대결.mp3",
+        "label": "BGM · 05 boss battle theme - 그림자 대결"
+      }
+    },
+    {
+      "name": "game boss ESC resume 1 retains stream",
+      "detail": null
+    },
+    {
+      "name": "game boss ESC pause 2 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "game boss ESC resume 2",
+      "detail": {
+        "state": "boss",
+        "track": 5,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 18,
+        "playing": 1,
+        "currentTime": 0.42,
+        "errors": [],
+        "source": "05 boss battle theme - 그림자 대결.mp3",
+        "label": "BGM · 05 boss battle theme - 그림자 대결"
+      }
+    },
+    {
+      "name": "game boss ESC resume 2 retains stream",
+      "detail": null
+    },
+    {
+      "name": "game boss ESC pause 3 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "game boss ESC resume 3",
+      "detail": {
+        "state": "boss",
+        "track": 5,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 19,
+        "playing": 1,
+        "currentTime": 0.42,
+        "errors": [],
+        "source": "05 boss battle theme - 그림자 대결.mp3",
+        "label": "BGM · 05 boss battle theme - 그림자 대결"
+      }
+    },
+    {
+      "name": "game boss ESC resume 3 retains stream",
+      "detail": null
+    },
+    {
+      "name": "game boss exit",
+      "detail": {
+        "state": "main",
+        "track": 1,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 21,
+        "playing": 1,
+        "currentTime": 1.129625,
+        "errors": [],
+        "source": "01 main theme - 혼로.mp3",
+        "label": "BGM · 01 main theme - 혼로"
+      }
+    },
+    {
+      "name": "game saved boss encounter preserves boss theme after boss death",
+      "detail": {
+        "state": "boss",
+        "track": 5,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 22,
+        "playing": 1,
+        "currentTime": 0.692043,
+        "errors": [],
+        "source": "05 boss battle theme - 그림자 대결.mp3",
+        "label": "BGM · 05 boss battle theme - 그림자 대결"
+      }
+    },
+    {
+      "name": "Workshop first battle",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 1,
+        "playing": 1,
+        "currentTime": 0.249105,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "Workshop ESC pause 1 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "Workshop battle settings retain paused song",
+      "detail": null
+    },
+    {
+      "name": "Workshop ESC resume 1",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 2,
+        "playing": 1,
+        "currentTime": 0.3,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "Workshop ESC resume 1 retains stream",
+      "detail": null
+    },
+    {
+      "name": "Workshop ESC pause 2 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "Workshop ESC resume 2",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 3,
+        "playing": 1,
+        "currentTime": 0.3,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "Workshop ESC resume 2 retains stream",
+      "detail": null
+    },
+    {
+      "name": "Workshop ESC pause 3 holds song and time",
+      "detail": null
+    },
+    {
+      "name": "Workshop ESC resume 3",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 4,
+        "playing": 1,
+        "currentTime": 0.32,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "Workshop ESC resume 3 retains stream",
+      "detail": null
+    },
+    {
+      "name": "Workshop retry starts next battle song",
+      "detail": {
+        "state": "battle",
+        "track": 3,
+        "battleIndex": 1,
+        "unlocked": true,
+        "paused": false,
+        "starts": 6,
+        "playing": 1,
+        "currentTime": 0.27587,
+        "errors": [],
+        "source": "03 battle theme - 하늘의 그림자.mp3",
+        "label": "BGM · 03 battle theme - 하늘의 그림자"
+      }
+    },
+    {
+      "name": "Workshop retry never selects main even during mounting",
+      "detail": null
+    },
+    {
+      "name": "Workshop victory outro stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 3,
+        "battleIndex": 1,
+        "unlocked": true,
+        "paused": false,
+        "starts": 6,
+        "playing": 1,
+        "currentTime": 0.756456,
+        "errors": [],
+        "source": "03 battle theme - 하늘의 그림자.mp3",
+        "label": "BGM · 03 battle theme - 하늘의 그림자"
+      }
+    },
+    {
+      "name": "Workshop victory result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 3,
+        "battleIndex": 1,
+        "unlocked": true,
+        "paused": false,
+        "starts": 6,
+        "playing": 1,
+        "currentTime": 1.447226,
+        "errors": [],
+        "source": "03 battle theme - 하늘의 그림자.mp3",
+        "label": "BGM · 03 battle theme - 하늘의 그림자"
+      }
+    },
+    {
+      "name": "Workshop victory ESC closing result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 3,
+        "battleIndex": 1,
+        "unlocked": true,
+        "paused": false,
+        "starts": 6,
+        "playing": 1,
+        "currentTime": 1.453633,
+        "errors": [],
+        "source": "03 battle theme - 하늘의 그림자.mp3",
+        "label": "BGM · 03 battle theme - 하늘의 그림자"
+      }
+    },
+    {
+      "name": "Workshop victory result and ESC never replace the stream",
+      "detail": null
+    },
+    {
+      "name": "Workshop after victory retry starts next battle song",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 0.301347,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "Workshop after victory retry never selects main even during mounting",
+      "detail": null
+    },
+    {
+      "name": "Workshop defeat outro stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 0.814121,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "Workshop defeat result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 0.826267,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "Workshop defeat ESC closing result stays on battle theme",
+      "detail": {
+        "state": "battle",
+        "track": 4,
+        "battleIndex": 2,
+        "unlocked": true,
+        "paused": false,
+        "starts": 8,
+        "playing": 1,
+        "currentTime": 0.834125,
+        "errors": [],
+        "source": "04 battle theme - 불길의 춤.mp3",
+        "label": "BGM · 04 battle theme - 불길의 춤"
+      }
+    },
+    {
+      "name": "Workshop defeat result and ESC never replace the stream",
+      "detail": null
+    },
+    {
+      "name": "Workshop wrap retry starts next battle song",
+      "detail": {
+        "state": "battle",
+        "track": 2,
+        "battleIndex": 0,
+        "unlocked": true,
+        "paused": false,
+        "starts": 10,
+        "playing": 1,
+        "currentTime": 0.281518,
+        "errors": [],
+        "source": "02 battle theme - 장막 너머의 음.mp3",
+        "label": "BGM · 02 battle theme - 장막 너머의 음"
+      }
+    },
+    {
+      "name": "Workshop wrap retry never selects main even during mounting",
+      "detail": null
+    },
+    {
+      "name": "Workshop Stop releases both music streams",
+      "detail": null
+    },
+    {
+      "name": "No uncaught transition browser errors",
+      "detail": []
+    }
+  ],
+  "errors": []
+}
