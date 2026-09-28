@@ -1058,7 +1058,7 @@ class Renderer {
             if (size > 65)
                 this.shake = Math.max(this.shake, Math.min(size / 35, 4));
         }
-        if (kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
+        if (kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
             this.fxs.push({ kind: kind, x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: skillVisuals_1.SKILL_FX_SECONDS[kind] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, x2: e.x2, y2: e.y2 });
         if (this.fxs.length > 370)
             this.fxs.splice(0, this.fxs.length - 370);
@@ -1076,7 +1076,11 @@ class Renderer {
             const t = f.age / f.life, alpha = Math.max(0, 1 - t);
             c.save();
             c.globalAlpha = alpha;
-            if (f.kind === 'lightningBolt')
+            if (f.kind === 'qiBurst')
+                (0, skillVisuals_1.drawQiBurst)(c, f.x, f.y, f.size, t);
+            else if (f.kind === 'fireBloom')
+                (0, skillVisuals_1.drawFireBloom)(c, f.x, f.y, f.size, t);
+            else if (f.kind === 'lightningBolt')
                 (0, skillVisuals_1.drawLightningBolt)(c, f.x, f.y, f.x2 ?? f.x, f.y2 ?? f.y, f.size, t);
             if (f.kind === 'inkLine')
                 line(c, f.x, f.y, f.x2 ?? f.x, f.y2 ?? f.y, f.color, f.size);
@@ -1135,7 +1139,8 @@ class Renderer {
         if (!sk || sk.passive)
             return;
         const guidePower = charging ? power : (active.lastPower ?? power ?? .5);
-        if ((0, skillVisuals_1.drawRedesignGuide)(c, engine, active, sk, guidePower))
+        const zoom = Math.max(.12, this.scale || 1);
+        if ((0, skillVisuals_1.drawRedesignGuide)(c, engine, active, sk, guidePower, zoom))
             return;
         const ori = engine.origin(active, active.angle), a = (0, math_1.rad)(active.angle);
         // A short, translucent signature follows the true launch direction.
@@ -1203,7 +1208,7 @@ class Renderer {
                 c.setLineDash([]);
                 c.globalAlpha = .20;
                 c.strokeStyle = sk.color;
-                c.lineWidth = 1.15;
+                c.lineWidth = 1.15 / zoom;
                 c.beginPath();
                 ext.points.forEach((v, i) => i ? c.lineTo(v.x, v.y) : c.moveTo(v.x, v.y));
                 c.stroke();
@@ -1214,13 +1219,13 @@ class Renderer {
         if (!pr)
             return;
         c.save();
-        c.globalAlpha = .42;
+        c.globalAlpha = .65;
         pr.points.forEach((v, i) => { if (i % 2 === 0)
-            circle(c, v.x, v.y, 1.6, sk.color); });
+            circle(c, v.x, v.y, 1.6 / zoom, sk.color); });
         const r = engine.effective(sk, active).radius;
         c.globalAlpha = .62;
-        c.setLineDash([4, 5]);
-        c.lineWidth = 1.35;
+        c.setLineDash([4 / zoom, 5 / zoom]);
+        c.lineWidth = 1.35 / zoom;
         if (r) {
             c.strokeStyle = sk.color;
             c.beginPath();
@@ -1542,7 +1547,11 @@ class Renderer {
                 (0, skillVisuals_1.drawInkGeometry)(c, JSON.parse(f.text), t);
             if (f.kind === 'inkImpact')
                 (0, skillVisuals_1.drawInkImpact)(c, f.x, f.y, f.size, t);
-            if (f.kind === 'lightningBolt')
+            if (f.kind === 'qiBurst')
+                (0, skillVisuals_1.drawQiBurst)(c, f.x, f.y, f.size, t);
+            else if (f.kind === 'fireBloom')
+                (0, skillVisuals_1.drawFireBloom)(c, f.x, f.y, f.size, t);
+            else if (f.kind === 'lightningBolt')
                 (0, skillVisuals_1.drawLightningBolt)(c, f.x, f.y, f.x2 ?? f.x, f.y2 ?? f.y, f.size, t);
             if (f.kind === 'spark') {
                 line(c, f.x, f.y, f.x - f.vx * .028, f.y - f.vy * .028, f.color, f.size);
@@ -5204,14 +5213,14 @@ class Engine {
         if (p && (0, skillMechanics_1.newSkill)(p) && (dmg > 0 || absorbed > 0)) {
             const skill = data_1.SKILLS[p.skill], wave = skill.branch === 'wave' || skill.id === 'M01';
             this.emit('sound', { name: skill.cls === 'archer' ? 'arrowhit' : wave ? 'qiHit' : 'hit' });
-            if (wave)
+            if (wave && skill.id !== 'M01')
                 this.emit('fx', { name: 'inkImpact', x: u.x, y: u.y - u.h * .5, x2: p.vx, y2: p.vy, color: '#dde0d3', size: Math.min(52, 24 + Math.sqrt(dmg)) });
         }
         if (dmg) {
             const actual = Math.min(u.hp, dmg);
             if (!p)
                 this.emit('sound', { name: 'hit' });
-            u.hp = Math.max(0, u.hp - dmg);
+            u.hp = Math.max(this.b.mode === 'practice' && this.b.practiceCombat && u.side !== 1 ? 1 : 0, u.hp - dmg);
             if (u.hp === 0 && !u.lastStandUsed && (0, progression_1.equippedRank)(u, 'SP05')) {
                 u.lastStandUsed = true;
                 u.hp = Math.max(1, Math.round(u.maxHp * .08 * (0, progression_1.equippedRank)(u, 'SP05')));
@@ -5324,8 +5333,14 @@ class Engine {
         if (depth > 8)
             return;
         const radius = Math.max(r, 1), s = p ? data_1.SKILLS[p.skill] : undefined;
-        this.fx('burst', x, y, p?.color || '#edb16e', radius);
-        this.fx('ring', x, y, p?.color || '#efc99b', radius);
+        if (s?.redesigned && s.id === 'M01')
+            this.fx('qiBurst', x, y, '#e5ebdf', radius);
+        else if (s?.redesigned && ['M06', 'M13'].includes(s.id))
+            this.fx('fireBloom', x, y, '#eaaa65', radius);
+        else {
+            this.fx('burst', x, y, p?.color || '#edb16e', radius);
+            this.fx('ring', x, y, p?.color || '#efc99b', radius);
+        }
         this.emit('sound', { name: radius > 105 ? 'boom' : 'hit', value: radius });
         for (const u of this.b.units) {
             if (u.dead || (body && u.id === owner) || ((p?.mode === 'spin' || p?.mode === 'charge' || p?.mode === 'cataclysmCharge') && p.hit.includes(u.id)))
@@ -5515,7 +5530,7 @@ class Engine {
         const queue = this.alive(0).filter(u => u.summoned).map(u => u.id);
         if (!queue.length || !this.alive(1).length)
             return 0;
-        b.summonTurn = { queue, index: 0, stage: 'approach', elapsed: 0, hold: 0, returnActive: b.active, practice: b.mode === 'practice' };
+        b.summonTurn = { queue, index: 0, stage: 'approach', elapsed: 0, hold: 0, returnActive: b.active, practice: b.mode === 'practice' && !b.practiceCombat };
         b.phase = 'summon';
         b.side = 0;
         b.turnAge = 0;
@@ -6301,7 +6316,7 @@ class Engine {
         if (u.dead)
             return;
         const fall = Math.ceil(u.maxHp * .2);
-        u.hp = Math.max(0, u.hp - fall);
+        u.hp = Math.max(this.b.mode === 'practice' && this.b.practiceCombat && u.side !== 1 ? 1 : 0, u.hp - fall);
         u.hurt = .7;
         this.fx('text', u.x, Math.min(this.b.height, u.y - u.h), '#efa797', 18, '−' + fall);
         if (u.hp === 0) {
@@ -6613,7 +6628,7 @@ class Engine {
         b.projectiles = [];
         b.volley = undefined;
         b.resolveAge = 0;
-        if (b.mode === 'practice') {
+        if (b.mode === 'practice' && !b.practiceCombat) {
             if (this.runSummonTurn() > 0)
                 return;
             this.resetPractice();
@@ -6713,6 +6728,14 @@ class Engine {
             u.moveLeft = u.bound > 0 ? u.maxMove * .45 : u.maxMove;
             if (u.side !== 2)
                 u.focus = (0, math_1.clamp)(u.focus + u.regen, 0, u.maxFocus);
+        }
+        if (b.mode === 'practice' && b.practiceCombat) {
+            b.cast = undefined;
+            for (const u of b.units.filter(u => u.side === 0 && !u.summoned && !u.dead)) {
+                u.focus = u.maxFocus;
+                u.cooldowns = {};
+                delete u.retreat;
+            }
         }
         b.zones = b.zones.filter(z => z.expires >= b.round);
         for (const t of b.terrain) {
@@ -9303,7 +9326,7 @@ function skillEffectRows(id, rank) {
             A10: [row('집중 유지', '2턴 · 다음 절명 사격 1회'), row('거리 위력 가산', pct(mix(.08, .22))), row('치명 확률 가산', pct(mix(.06, .20))), row('방어 무시', pct(mix(.04, .15)))],
             A99: [row('처형 발동 거리', '1,200 이상 · 치명타'), row('처형 잔여 체력', pct(mix(.12, .22))), row('치명 확률', pct(.05 + mix(.25, .39))), row('치명 피해', num(mix(2, 2.35)) + '배'), row('보스 추가 피해', '잃은 체력에 따라 최대 25%')],
             A11: [row('낙하 가속', num(mix(2.8, 4.1)) + '배')],
-            A09: [row('방향 변경', '비행 중 클릭 · E · 1회'), row('최대 선회각', num(mix(45, 80)) + '°'), row('선회 후 속력', '92%')],
+            A09: [row('방향 변경', '비행 중 발사 · 클릭 · E · 1회'), row('선회 명중 추가 피해', pct(mix(.30, .65))), row('최대 선회각', num(mix(45, 80)) + '°'), row('선회 후 속력', '92%')],
             A13: [row('추적', '시야가 열린 적 · 벽에 차단')],
             A12: [row('관통', '왕복 각 1회'), row('귀환 피해', '70%'), row('같은 적 재명중', '귀환 피해 +20%')],
             A15: [row('분열 화살', '7발'), row('같은 적 명중 상한', '4발'), row('연속 명중 피해', '100 / 70 / 50 / 35%')],
@@ -9312,9 +9335,9 @@ function skillEffectRows(id, rank) {
             A03: [row('추가 도약', `${Math.round(mix(1, 5))}회`), row('도약 거리', '260'), row('도약 후 피해', '이전의 72%')],
             A08: [row('분출 시간', '1.5초'), row('파편', `${8 + 2 * (rr - 1)}개`), row('파편 피해', num(dmg * .20)), row('대상별 파편 피해 상한', '직격의 65%')],
             M06: [row('불꽃 파편', `${5 + rr}개`), row('파편 피해', num(dmg * .18)), row('대상별 파편 명중', '최대 2회')],
-            M02: [row('폭발 대기', '2.4초'), row('충돌', '적과 지형에서 반동'), row('얼음 파편', `${5 + rr}개`), row('파편 피해', num(dmg * .16)), row('감속', pct(mix(.20, .35)) + ' · 1턴'), row('대상별 파편 명중', '최대 2회')],
+            M02: [row('폭발 대기', '3.2~6.4초 · 오래 충전할수록 증가'), row('충돌', '적과 지형에서 반동'), row('얼음 파편', `${5 + rr}개`), row('파편 피해', num(dmg * .16)), row('감속', pct(mix(.20, .35)) + ' · 1턴'), row('대상별 파편 명중', '최대 2회')],
             M04: [row('번개 거리', `${260 + 10 * (rr - 1)}`), row('번개 피해', num(dmg * .45)), row('번개 명중', '범위 안의 적마다 1회')],
-            M13: [row('후속 폭발', `${6 + rr}회 · 1초`), row('후속 폭발 피해', num(dmg * 14 / 48)), row('후속 폭발 반경', '55 · 분포 반경 240'), row('대상별 후속 명중', '최대 3회')],
+            M13: [row('후속 폭발', `${6 + rr}회 · 약 1초`), row('속성·전개', '불 · 첫 폭발 주변 공중에 무작위 연쇄'), row('후속 폭발 피해', num(dmg * 14 / 48)), row('후속 폭발 반경', '55 · 분포 반경 240'), row('대상별 후속 명중', '최대 3회')],
             M05: [row('낙뢰 대기', '착탄 후 0.35초'), row('낙뢰 차폐', '상부 지형에 가로막힘')],
             M03: [row('발동', '적·지형 접촉 시'), row('펼침 방향', '충돌 지점에서 진행 방향의 양옆'), row('원호 각도', `${52 + 6 * (rr - 1)}°`), row('원호 두께', `${30 + 2 * (rr - 1)}`)],
             M11: [row('반사 횟수', `${Math.round(mix(2, 7))}회`), row('반사 위력', '매번 +8% · 최대 +48%')],
@@ -9324,7 +9347,7 @@ function skillEffectRows(id, rank) {
             M07: [row('기동 거리', '45 · 적이 접근하면 폭발')],
             M10: [row('체력 회복', pct(.06 + .01 * rr)), row('기력 회복', pct(.07 + .01 * rr)), row('이동력 회복', pct(.12 + .03 * rr)), row('사용 횟수', '아군 접촉 1회')],
             M08: [row('기동 거리', '45 · 적이 접근하면 발동'), row('끌어당김', '벽에 가로막힘')],
-            M09: [row('동시 설치', '2개 · 초과 시 오래된 진목 교체'), row('이동', '진목 위에서 E · 턴당 1회'), row('도착 기력 회복', rr < 2 ? '없음' : rr === 2 ? '8%' : '10%'), row('도착 체력 회복', rr < 4 ? '없음' : rr === 4 ? '6%' : '8%'), row('도착 이동력 회복', rr < 6 ? '없음' : rr === 6 ? '16%' : '24%'), row('도착 방호', rr === 8 ? '적 행동 종료까지' : '없음')],
+            M09: [row('첫 설치', '발밑·착탄점에 한 쌍'), row('동시 설치', '2개 · 초과 시 오래된 진목 교체'), row('이동', '진목 위에서 E · 턴당 1회'), row('도착 기력 회복', rr < 2 ? '없음' : rr === 2 ? '8%' : '10%'), row('도착 체력 회복', rr < 4 ? '없음' : rr === 4 ? '6%' : '8%'), row('도착 이동력 회복', rr < 6 ? '없음' : rr === 6 ? '16%' : '24%'), row('도착 방호', rr === 8 ? '적 행동 종료까지' : '없음')],
             M99: [row('봉쇄 유지', '2턴'), row('경계 피해', num(dmg * 22 / 35) + ' · 턴당 1회'), row('내부 감속', '45%'), row('내부 이동력 감소', '35%')],
         };
         const branchRows = s.cls === 'archer' && s.branch && s.id !== 'A10' ? [row('계통 위력', s.branch === 'distance' ? `수평거리 1,800에서 최대 +${s.id === 'A99' ? 60 : 40}%` : s.branch === 'drop' ? `낙차 900에서 최대 +${s.id === 'A15' ? 55 : s.id === 'A13' ? 35 : 45}%` : `충돌 속력에 따라 최대 +${s.id === 'A08' ? 35 : 45}%`)] : [];
@@ -9563,7 +9586,7 @@ exports.SKILL_LORE = {
     A10: '활을 낮추고 한 번 깊게 숨을 고른다. 소란이 멎은 마음에는 다음 살이 갈 길만 남는다.',
     A99: '아득히 먼 곳의 숨결을 붙든다. 오래 벼린 한 발이 적의 마지막 빈틈을 가른다.',
     A11: '하늘 끝에 걸린 살이 무겁게 고개를 숙인다. 적의 머리 위로 곧은 죽음이 떨어진다.',
-    A09: '놓아 보낸 살의 길을 다시 짚는다. 허공에서 꺾인 화살이 뜻밖의 틈으로 파고든다.',
+    A09: '놓아 보낸 살의 길을 다시 짚는다. 때를 맞춰 꺾인 화살이 기세를 더해 뜻밖의 틈을 파고든다.',
     A13: '살끝이 희미한 기척을 좇는다. 굽이치는 길 너머에서도 숨길 수 없는 적의 혼을 찾는다.',
     A12: '크게 휘어 나간 살이 다시 주인의 곁을 향한다. 등 뒤로 돌아온 화살은 지나친 적을 기억한다.',
     A15: '높이 오른 한 발에서 일곱 살이 흩어진다. 밤하늘의 별처럼 갈라진 길마다 적의 기척이 걸린다.',
@@ -9581,7 +9604,7 @@ exports.SKILL_LORE = {
     M06: '호리병에 가둔 불씨의 봉인을 푼다. 깨진 도자기 틈에서 붉은 잔불이 사방으로 흩어진다.',
     M02: '차가운 숨을 담은 호리병이 통통 튀어 오른다. 이윽고 봉인이 갈라지면 날 선 서리가 쏟아진다.',
     M04: '호리병 속 잠든 우레를 깨운다. 터져 나온 벼락이 주변의 적을 저마다 찾아 내리친다.',
-    M13: '호리병을 깨뜨려 땅에 불씨를 뿌린다. 잠시 잠잠해진 자리마다 뒤늦은 폭음이 번진다.',
+    M13: '호리병이 터진 자리에 붉은 불씨가 흩어진다. 허공에 머문 불꽃들이 잇달아 피어나며 주위를 불길로 감싼다.',
     M05: '호리병을 던져 하늘에 청할 자리를 정한다. 짧은 정적 뒤, 창백한 천뢰가 그곳을 가른다.',
     M03: '지팡이로 허공에 큰 획을 긋는다. 적에게 닿은 기운이 양옆으로 벌어지며 흰 붓끝처럼 전열을 쓸어 벤다.',
     M11: '단단한 곳에 부딪힌 기운을 다시 거둬 보낸다. 벽과 천장을 오간 파문이 더 묵직하게 적을 두드린다.',
@@ -9646,7 +9669,7 @@ exports.SKILL_LORE = {
 "skillMechanics": function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newSkill = exports.ICE_GOURD_FUSE = exports.SKILL_REVISION = void 0;
+exports.newSkill = exports.iceGourdFuse = exports.ICE_GOURD_FUSE = exports.SKILL_REVISION = void 0;
 exports.mainBranch = mainBranch;
 exports.specialty = specialty;
 exports.trajectoryMultiplier = trajectoryMultiplier;
@@ -9658,6 +9681,7 @@ exports.migrateSkills = migrateSkills;
 exports.initRedesignCast = initRedesignCast;
 exports.finishRedesign = finishRedesign;
 exports.turnArrow = turnArrow;
+exports.turnPrediction = turnPrediction;
 exports.baguaVertices = baguaVertices;
 exports.skillGeometry = skillGeometry;
 exports.geometryPaths = geometryPaths;
@@ -9675,7 +9699,9 @@ const data_1 = require("./data");
 const math_1 = require("./math");
 const progression_1 = require("./progression");
 exports.SKILL_REVISION = 1;
-exports.ICE_GOURD_FUSE = 2.4;
+exports.ICE_GOURD_FUSE = 3.2;
+const iceGourdFuse = (power) => exports.ICE_GOURD_FUSE + 3.2 * (0, math_1.clamp)(power, 0, 1);
+exports.iceGourdFuse = iceGourdFuse;
 const newSkill = (p) => !!data_1.SKILLS[p.skill]?.redesigned;
 exports.newSkill = newSkill;
 const rank = (p) => p.skillRank || 1;
@@ -9716,6 +9742,8 @@ function redrawDamage(e, p, u, target, amount, point, direct) {
         return amount;
     if (u.cls === 'archer' && direct) {
         amount *= trajectoryMultiplier(p, u, point);
+        if (p.skill === 'A09' && p.turned)
+            amount *= 1 + lerpRank(.30, .65, rank(p));
         const c = critProfile(p, u), critical = e.random() < c.chance;
         if (critical) {
             amount *= c.multiplier;
@@ -9814,6 +9842,8 @@ function initRedesignCast(e, s, u) {
         delete u.prepared;
     const roots = e.b.projectiles.filter(p => p.owner === u.id && p.shot === e.b.shot);
     for (const p of roots) {
+        if (s.id === 'M02')
+            p.fuseAt = (0, exports.iceGourdFuse)(u.lastPower);
         p.apexY = p.y;
         p.rootDamage = p.damage;
         if (s.branch === 'distance' && s.id !== 'A10' && u.prepared)
@@ -9881,6 +9911,25 @@ function turnArrow(e, point) {
     p.turned = true;
     e.fx('ring', p.x, p.y, '#d0d5cc', 22);
     return true;
+}
+/** Read-only continuation from the arrow's current state, with the same one-time steering. */
+function turnPrediction(e, point) {
+    const live = e.b.projectiles.find(p => p.skill === 'A09' && p.owner === e.b.active && !p.turned && !p.followup);
+    if (!live || e.b.phase !== 'flight')
+        return null;
+    const b = structuredClone(e.b), Sim = e.constructor, sim = new Sim(b);
+    const p = b.projectiles.find(p => p.id === live.id);
+    b.projectiles = [p];
+    b.volley = undefined;
+    if (!turnArrow(sim, point))
+        return null;
+    const points = [{ x: p.x, y: p.y }];
+    for (let i = 0; i < 1440 && b.projectiles.includes(p); i++) {
+        sim.stepProjectile(p, math_1.STEP);
+        if (i % 3 === 0 || !b.projectiles.includes(p))
+            points.push({ x: p.x, y: p.y });
+    }
+    return { points, x: p.x, y: p.y };
 }
 function baguaVertices(g) {
     return Array.from({ length: 8 }, (_, i) => ({ x: g.x + Math.cos(g.angle + i * Math.PI / 4) * g.radius, y: g.y + Math.sin(g.angle + i * Math.PI / 4) * g.radius }));
@@ -10014,7 +10063,13 @@ function placeStake(e, p, h) {
     const all = b.stakes;
     if (p.skill === 'M09') {
         const gates = all.filter(s => s.skill === 'M09' && s.side === p.side);
-        if (gates.length >= 2)
+        if (!gates.length) {
+            const u = e.unit(p.owner);
+            const home = e.surface(u.x, u.y - 8, u.y + 80);
+            if (home)
+                b.stakes.push({ id: b.nextId++, skill: p.skill, owner: p.owner, side: p.side, x: u.x, y: home.y, rank: rank(p), damage: 0, shot: p.shot });
+        }
+        else if (gates.length >= 2)
             b.stakes = all.filter(s => s.id !== gates[0].id);
     }
     b.stakes.push({ id: b.nextId++, skill: p.skill, owner: p.owner, side: p.side, x: p.x, y: floor, rank: rank(p), damage: p.damage, shot: p.shot });
@@ -10044,7 +10099,6 @@ function redesignImpact(e, p, h) {
     }
     if (p.mode === 'qiPulse') {
         e.blast(p.x, p.y, p.blast, p.damage, p.owner, false, p);
-        e.emit('fx', { name: 'inkImpact', x: p.x, y: p.y, color: '#e2e6dd', size: Math.max(36, p.blast * .7) });
         e.emit('sound', { name: 'qiWave' });
         e.remove(p);
         return true;
@@ -10167,7 +10221,7 @@ function redesignStep(e, p, dt) {
         e.remove(p);
         return true;
     }
-    if (p.mode === 'gourdIce' && p.age >= exports.ICE_GOURD_FUSE) {
+    if (p.mode === 'gourdIce' && p.age >= (p.fuseAt ?? (0, exports.iceGourdFuse)(u.lastPower))) {
         gourdBurst(e, p);
         return true;
     }
@@ -10182,7 +10236,7 @@ function redesignStep(e, p, dt) {
         return true;
     }
     if (p.mode === 'microWait') {
-        if (p.age >= .08) {
+        if (p.age >= (p.fuseAt ?? .08)) {
             e.blast(p.x, p.y, 55, p.damage, p.owner, false, p);
             e.remove(p);
         }
@@ -10199,13 +10253,13 @@ function redesignStep(e, p, dt) {
             }
             else {
                 const radius = Math.sqrt(e.random()) * 240, x = p.x + Math.cos(a) * radius, seedY = p.y + Math.sin(a) * radius;
-                const floor = e.surface(x, p.y - 240, p.y + 240), y = floor ? floor.y - 8 : seedY;
+                const y = seedY;
                 const secondary = 1 + (0, progression_1.passiveRank)(u, 'MP01') * .03 + specialty(u, s) * .025;
                 const q = spawnChild(e, p, 'microWait', 0, 0, p.damage * 14 / 48 * secondary, 55);
                 q.x = x;
                 q.y = y;
                 q.maxAge = undefined;
-                e.fx('ring', x, y, '#68736c', 8);
+                q.fuseAt = .04 + e.random() * .16;
             }
         }
         if (p.age >= duration)
@@ -10252,12 +10306,17 @@ function useGate(e, u = e.active) {
     if (u.gateTurn === token)
         return false;
     const to = e.b.stakes.find(s => s.skill === 'M09' && s.side === u.side && s.id !== from.id);
-    const x = (0, math_1.clamp)(to.x, 25, e.b.width - 25), y = to.y;
-    if (e.b.terrain.some(t => !t.broken && !t.oneWay && (0, math_1.terrainRectIntersects)(t, x - u.r, y - u.h, u.r * 2, u.h - 2, .1)) || e.b.units.some(t => !t.dead && t.id !== u.id && Math.abs(t.x - x) < t.r + u.r && Math.abs(t.y - y) < u.h))
+    const spot = [0, -24, 24, -48, 48, -72, 72, -96, 96].map(offset => { const x = (0, math_1.clamp)(to.x + offset, 25, e.b.width - 25), floor = e.surface(x, to.y - 80, to.y + 100); return floor ? { x, y: floor.y } : null; }).find(v => v && !e.b.terrain.some(t => !t.broken && !t.oneWay && (0, math_1.terrainRectIntersects)(t, v.x - u.r, v.y - u.h, u.r * 2, u.h - 2, .1)) && !e.b.units.some(t => !t.dead && t.id !== u.id && Math.abs(t.x - v.x) < t.r + u.r && Math.abs(t.y - v.y) < u.h));
+    if (!spot) {
+        e.message('도착 진목 주변에 설 자리가 없습니다.');
         return false;
+    }
+    const { x, y } = spot;
     u.x = x;
     u.y = y;
     u.vx = u.vy = 0;
+    u.airborne = false;
+    u.jumping = false;
     delete u.moveTarget;
     u.gateTurn = token;
     const r = to.rank, caster = e.unit(to.owner), boost = caster ? geometryBoost(caster, data_1.SKILLS.M09) : 1;
@@ -10385,7 +10444,7 @@ function tickRedesign(e, dt) {
 }
 /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
  * piercing, chains and split children cannot diverge into a second physics loop. */
-function arrowPrediction(e, u, s, angle, power) {
+function arrowPrediction(e, u, s, angle, power, representative = false) {
     const b = structuredClone(e.b), Sim = e.constructor, sim = new Sim(b), actor = sim.unit(u.id);
     b.active = actor.id;
     b.side = 0;
@@ -10404,7 +10463,17 @@ function arrowPrediction(e, u, s, angle, power) {
     sim.grounded = () => true;
     sim.canAct = () => true;
     sim.fire(s.id, angle, power);
-    const paths = new Map(), roots = [...b.projectiles], primary = roots[Math.floor(roots.length / 2)];
+    let roots = [...b.projectiles];
+    const primary = roots[Math.floor(roots.length / 2)];
+    if (representative && primary) {
+        roots = [primary];
+        b.projectiles = roots;
+        Object.assign(primary, e.origin(u, angle), e.velocity(u, s, angle, power));
+        primary.prevVy = primary.vy;
+        if (s.id === 'A15')
+            primary.mode = 'arrow';
+    }
+    const paths = new Map();
     let time = 0, apex;
     const origin = e.origin(u, angle);
     for (const p of roots)
@@ -10430,11 +10499,11 @@ function arrowPrediction(e, u, s, angle, power) {
     return { ...last, points, paths: [...paths.values()], time, contacts: [], apex, closest: 99999 };
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
-function redesignPrediction(e, u, s, angle, power) {
+function redesignPrediction(e, u, s, angle, power, representative = false) {
     if (!s.redesigned)
         return null;
     if (s.cls === 'archer')
-        return arrowPrediction(e, u, s, angle, power);
+        return arrowPrediction(e, u, s, angle, power, representative);
     if (s.cls !== 'mage')
         return null;
     const r = u.ranks[s.id] || 1, origin = e.origin(u, angle), v = e.velocity(u, s, angle, power), points = [origin], contacts = [];
@@ -10445,10 +10514,10 @@ function redesignPrediction(e, u, s, angle, power) {
         const center = at(u);
         return { ...center, points: [], time: 0, closest, contacts, geometry: skillGeometry(s, r, center.x, center.y, -(0, math_1.rad)(angle), power, undefined, undefined, geometryBoost(u, s)) };
     }
-    for (let i = 0; i < Math.ceil((ice ? exports.ICE_GOURD_FUSE : 8) / math_1.STEP); i++) {
+    for (let i = 0; i < Math.ceil((ice ? (0, exports.iceGourdFuse)(power) : 8) / math_1.STEP); i++) {
         age += math_1.STEP;
         time = age;
-        if (ice && age >= exports.ICE_GOURD_FUSE)
+        if (ice && age >= (0, exports.iceGourdFuse)(power))
             break;
         const m = e.advanceProjectile(p, math_1.STEP);
         if (p.vy < 0 && m.vy >= 0)
@@ -10525,19 +10594,19 @@ function installSkillRedesign(skills) {
         A05: '적을 밀어 뒤의 적과 충돌시킨다. 후속 충돌 18% 피해, 힘 70%, 최대 2~5회.', A04: '기존 확산각으로 3~10발을 동시에 발사한다. 연속 시위와 함께 각 사격 묶음이 이어진다.',
         A07: '무거운 살의 직격과 반경 70의 55% 충격. 파괴 가능한 지형에 4.5배 피해.', A03: '첫 적 이후 260 안의 다른 적에게 1~5회 도약한다. 매 도약 피해 72%.', A08: '직격 후 1.5초 동안 8~22개의 짧은 화살을 분출. 각 20%, 한 적의 자탄 피해 총합 65% 상한. 2R 재사용.',
         M01: '지팡이에서 회백색 기파를 보내 작은 압력파를 만든다. SP를 쓰지 않는 기본 공격.', M06: '도자기 호리병이 터지고 6~13개의 짧은 불꽃 파편을 흩뿌린다. 한 적 최대 2파편.',
-        M02: '적과 지형에서 튀며 2.4초 뒤 터진다. 얼음조각 6~13개, 맞은 적 1턴 20~35% 감속.', M04: '폭발점에서 260~330 안의 모든 적에게 각각 45% 번개. 다른 유닛과 벽을 무시하며 대상당 1회.',
+        M02: '적과 지형에서 튀며 충전에 따라 3.2~6.4초 뒤 터진다. 얼음조각 6~13개, 맞은 적 1턴 20~35% 감속.', M04: '폭발점에서 260~330 안의 모든 적에게 각각 45% 번개. 다른 유닛과 벽을 무시하며 대상당 1회.',
         M13: '큰 폭발 후 1초 동안 반경 240에 작은 폭발 7~14회. 한 적은 최대 3회.', M05: '착탄점을 표시하고 0.35초 뒤 수직 천뢰가 내려온다. 상부 지형에 차폐될 수 있다. 2R 재사용.',
         M03: '적·지형에 닿으면 반경 150, 각도 52~94도의 원호가 충돌점에서 진행 방향에 수직으로 펼쳐진다.', M11: '지형에 2~7회 반사한다. 반사마다 피해 +8%, 최대 +48%. 적에게 닿으면 타격.',
         M12: '발사점과 두 지형 반사점의 삼각형. 경계 38(최대 2변), 내부 16 피해. 작은 삼각형은 내부 피해 없음.', M14: '충전으로 180~900 반지름을 정한다. 내부는 피해 없이 원주만 타격. 피해는 220/r, 최소 28%.',
         M15: '목표에 팔방 기선과 팔각형 외곽 기문을 펼친다. 중심 62, 선 34, 같은 적 최대 3선. 2R 재사용.', M07: '바닥에 고정된 진목. 적이 반경 45에 들어오면 반경 95의 기파를 내고 소멸.',
         M10: '아군이 밟으면 체력 7~14%, 기력 8~15%, 이동력 15~36% 회복 후 소멸.', M08: '적이 밟으면 피해를 주고 260~365 범위 적을 끌어당긴다. 벽은 통과하지 않는다.',
-        M09: '최대 두 진목을 유지. 세 번째는 가장 오래된 것을 교체한다. 위에서 E·상호작용으로 건너가며 유닛당 턴에 한 번. 성장하면 도착 회복·방호.',
+        M09: '첫 설치는 발밑과 착탄점에 진목 한 쌍을 세운다. 최대 두 진목을 유지. 세 번째는 가장 오래된 것을 교체한다. 위에서 E·상호작용으로 건너가며 유닛당 턴에 한 번. 성장하면 도착 회복·방호.',
         M99: '적이 밟으면 오방 진목으로 2R 봉쇄. 내부 감속·이동 예산 감소, 경계를 넘으면 턴당 1회 피해와 안쪽 밀침. 2R 재사용.'
     };
     for (const [id, name, damage, cost, radius, mode, speed, branch, wind] of rows) {
         const old = skills[id], capstone = ['A99', 'A15', 'A08', 'M05', 'M15', 'M99'].includes(id);
         skills[id] = { ...old, id, name, damage, cost: cost / balance_1.MANA_COST_MULTIPLIER, radius, mode, speed, wind: wind ?? .65, terrain: id === 'A07' ? 4.5 : old.terrain,
-            redesigned: true, basic: id === 'A01' || id === 'M01', branch, capstone, ultimate: false, cooldown: capstone ? 2 : undefined, phase: undefined, gravity: 1, fuse: id === 'M02' ? 2.4 : undefined,
+            redesigned: true, basic: id === 'A01' || id === 'M01', branch, capstone, ultimate: false, cooldown: capstone ? 2 : undefined, phase: undefined, gravity: 1, fuse: id === 'M02' ? 3.2 : undefined,
             color: id[0] === 'A' ? '#ccd0c5' : id === 'M06' ? '#b98a61' : '#b9cccf', tag: { distance: '절명', drop: '곡사', speed: '강궁', gourd: '호리병술', wave: '파문술', stake: '진법' }[branch] || '기본 공격', desc: descriptions[id] };
     }
     const passives = {
@@ -10557,7 +10626,7 @@ function installSkillRedesign(skills) {
 "skillVisuals": function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.STAKE_STYLES = exports.SKILL_FX_SECONDS = void 0;
+exports.STAKE_STYLES = exports.ARROW_STYLES = exports.SKILL_FX_SECONDS = void 0;
 exports.drawSkillGeometry = drawSkillGeometry;
 exports.drawRedesignProjectile = drawRedesignProjectile;
 exports.drawStakes = drawStakes;
@@ -10565,6 +10634,9 @@ exports.drawInkGeometry = drawInkGeometry;
 exports.drawInkImpact = drawInkImpact;
 exports.lightningPaths = lightningPaths;
 exports.drawLightningBolt = drawLightningBolt;
+exports.drawQiBurst = drawQiBurst;
+exports.drawFireBloom = drawFireBloom;
+exports.drawTurnGuide = drawTurnGuide;
 exports.drawRedesignGuide = drawRedesignGuide;
 const data_1 = require("./data");
 const skillMechanics_1 = require("./skillMechanics");
@@ -10574,21 +10646,78 @@ function guidePrediction(e, u, s, power) {
     const cached = guideCache.get(e);
     if (cached?.key === key)
         return cached.prediction;
-    const prediction = e.predict(u, s, u.angle, power);
+    const prediction = ['A04', 'A15'].includes(s.id) ? (0, skillMechanics_1.redesignPrediction)(e, u, s, u.angle, power, true) : e.predict(u, s, u.angle, power);
     guideCache.set(e, { key, prediction });
     return prediction;
 }
-exports.SKILL_FX_SECONDS = { skillGeometry: .9, inkImpact: .8, lightningBolt: .9 };
-function drawSkillGeometry(c, g, thick = false) {
+exports.SKILL_FX_SECONDS = { skillGeometry: .9, inkImpact: .8, lightningBolt: .9, qiBurst: .55, fireBloom: .85 };
+function drawSkillGeometry(c, g, thick = false, zoom = 1) {
     c.save();
-    c.strokeStyle = '#c2ccc6';
-    c.lineWidth = thick ? g.thickness : 1.05;
+    c.strokeStyle = '#d3ddd2';
+    c.lineWidth = thick ? g.thickness : 1.2 / zoom;
     c.lineCap = 'round';
     c.lineJoin = 'round';
     for (const ps of (0, skillMechanics_1.geometryPaths)(g)) {
         c.beginPath();
         ps.forEach((p, i) => i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y));
         c.stroke();
+    }
+    c.restore();
+}
+exports.ARROW_STYLES = { distance: { width: 1.25, length: 48, head: 2.6, color: '#d5d7c9' }, drop: { width: 2, length: 39, head: 4, color: '#b7cdca' }, speed: { width: 3.7, length: 37, head: 6.7, color: '#c7b38c' }, basic: { width: 1.8, length: 39, head: 3.5, color: '#b5b6a4' } };
+function gourdAura(c, p) {
+    const ice = p.skill === 'M02', electric = p.skill === 'M04' || p.skill === 'M05', t = p.age;
+    c.save();
+    c.lineCap = 'round';
+    if (electric) {
+        c.strokeStyle = '#c2e9ff';
+        for (let i = 0; i < 3; i++) {
+            const a = t * 4 + i * 2.1, x = Math.cos(a) * 13, y = Math.sin(a) * 15;
+            c.globalAlpha = .3 + .35 * Math.sin(t * 17 + i) ** 2;
+            c.lineWidth = i === 0 ? 1.5 : 1;
+            c.beginPath();
+            c.moveTo(x, y);
+            c.lineTo(x - 5 - Math.sin(t * 31 + i) * 6, y - 6);
+            c.lineTo(x - 9, y + 3);
+            c.lineTo(x - 18 - Math.cos(t * 23) * 7, y - 2);
+            c.stroke();
+        }
+        c.fillStyle = '#8fcfff';
+        c.globalAlpha = .10;
+        c.beginPath();
+        c.ellipse(-5, 0, 23, 20, 0, 0, Math.PI * 2);
+        c.fill();
+    }
+    else if (ice) {
+        c.strokeStyle = '#c7f0f0';
+        for (let i = 0; i < 5; i++) {
+            const phase = (t * .9 + i / 5) % 1, x = -8 - phase * 28, y = Math.sin(i * 4 + t * 3) * 15;
+            c.globalAlpha = (1 - phase) * .6;
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(x - 3, y);
+            c.lineTo(x + 3, y);
+            c.moveTo(x, y - 3);
+            c.lineTo(x, y + 3);
+            c.stroke();
+        }
+    }
+    else {
+        for (let i = 0; i < 5; i++) {
+            const wave = Math.sin(t * 11 + i * 2), y = (i - 2) * 4;
+            c.globalAlpha = .25 + .16 * (1 + wave);
+            c.strokeStyle = i % 2 ? '#e1a361' : '#bf6549';
+            c.lineWidth = 2 + i % 2;
+            c.beginPath();
+            c.moveTo(6, y);
+            c.bezierCurveTo(-7, y - 10 * wave, -18, y + wave * 9, -33 - i * 3, y + Math.sin(t * 14 + i) * 7);
+            c.stroke();
+        }
+        c.globalAlpha = .12;
+        c.fillStyle = '#e97943';
+        c.beginPath();
+        c.ellipse(-5, 0, 23, 18, 0, 0, Math.PI * 2);
+        c.fill();
     }
     c.restore();
 }
@@ -10600,11 +10729,11 @@ function drawRedesignProjectile(c, p) {
         return true;
     c.save();
     if (p.mode === 'microWait') {
-        c.strokeStyle = '#b4beb0';
-        c.lineWidth = 1;
+        c.fillStyle = '#edba72';
+        c.globalAlpha = .7;
         c.beginPath();
-        c.arc(p.x, p.y, 8, 0, Math.PI * 2);
-        c.stroke();
+        c.arc(p.x, p.y, 2 + Math.sin(p.age * 30), 0, Math.PI * 2);
+        c.fill();
         c.restore();
         return true;
     }
@@ -10619,31 +10748,41 @@ function drawRedesignProjectile(c, p) {
     c.translate(p.x, p.y);
     c.rotate(Math.atan2(p.vy, p.vx));
     if (s.cls === 'archer') {
-        c.strokeStyle = '#ad9d7f';
-        c.lineWidth = 2;
+        const a = exports.ARROW_STYLES[s.branch] || exports.ARROW_STYLES.basic;
+        c.strokeStyle = a.color;
+        c.lineWidth = a.width;
         c.beginPath();
-        c.moveTo(-25, 0);
-        c.lineTo(12, 0);
+        c.moveTo(15 - a.length, 0);
+        c.lineTo(11, 0);
         c.stroke();
-        c.fillStyle = '#c7ccc3';
+        c.fillStyle = a.color;
         c.beginPath();
-        c.moveTo(17, 0);
-        c.lineTo(7, -3);
-        c.lineTo(8, 3);
+        c.moveTo(19, 0);
+        c.lineTo(6, -a.head);
+        c.lineTo(9, 0);
+        c.lineTo(6, a.head);
         c.closePath();
         c.fill();
-        c.strokeStyle = '#999f8d';
-        c.lineWidth = 1.5;
-        for (const x of [-23, -18]) {
+        c.lineWidth = s.branch === 'speed' ? 2.3 : 1;
+        for (const x of [18 - a.length, 24 - a.length]) {
             c.beginPath();
             c.moveTo(x, 0);
-            c.lineTo(x - 4, -5);
+            c.lineTo(x - 6, -a.head - 2);
             c.moveTo(x, 0);
-            c.lineTo(x - 4, 5);
+            c.lineTo(x - 6, a.head + 2);
+            c.stroke();
+        }
+        if (s.branch === 'drop') {
+            c.globalAlpha = .35;
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(-20, 0);
+            c.quadraticCurveTo(-30, Math.sin(p.age * 12) * 7, -44, Math.sin(p.age * 12 + 1) * 4);
             c.stroke();
         }
     }
     else if (s.branch === 'gourd' && !p.secondary) {
+        gourdAura(c, p);
         c.rotate(p.age * 2);
         c.fillStyle = s.id === 'M02' ? '#9cbbb9' : '#a0a995';
         c.strokeStyle = '#404d47';
@@ -10686,7 +10825,7 @@ function drawRedesignProjectile(c, p) {
         c.stroke();
     }
     else if (p.secondary) {
-        c.strokeStyle = p.mode === 'fireChip' ? '#b88e64' : '#b6cccf';
+        c.strokeStyle = p.mode === 'fireChip' ? '#e9a367' : '#b6cccf';
         c.lineWidth = 2;
         c.beginPath();
         c.moveTo(-5, -2);
@@ -10694,17 +10833,46 @@ function drawRedesignProjectile(c, p) {
         c.lineTo(-2, 3);
         c.stroke();
     }
+    else if (s.id === 'M01') {
+        const pulse = Math.sin(p.age * 13);
+        c.lineCap = 'round';
+        for (let i = 0; i < 3; i++) {
+            c.globalAlpha = i === 0 ? .8 : .23;
+            c.strokeStyle = '#e4ecdf';
+            c.lineWidth = i === 0 ? 2.2 : 1;
+            c.beginPath();
+            c.ellipse(2 - i * 6, 0, 7 + i * 2, 8 + i * 3 + pulse, 0, -1.2, 1.2);
+            c.stroke();
+        }
+        c.globalAlpha = .28;
+        c.lineWidth = 1;
+        c.beginPath();
+        c.moveTo(-20, -3);
+        c.quadraticCurveTo(-11, pulse * 4, 3, 0);
+        c.moveTo(-24, 4);
+        c.quadraticCurveTo(-8, 3 - pulse * 3, 3, 0);
+        c.stroke();
+    }
     else {
         // White dry-brush tip, translucent wash and trailing fibres: no neon glow.
+        const flutter = Math.sin(p.age * 15) * 3;
         for (let i = 0; i < 4; i++) {
             c.strokeStyle = i === 0 ? '#ecebdf' : '#c6d1c3';
             c.globalAlpha = i === 0 ? .9 : .30;
             c.lineWidth = i === 0 ? 3.5 : 1.1;
             c.beginPath();
-            c.moveTo(-29 - i * 3, -7 + i * 4);
-            c.quadraticCurveTo(-9, -15 + i * 7, 9 - i, 0);
-            c.quadraticCurveTo(-7, 13 - i * 3, -20 - i * 2, 7 - i * 2);
+            c.moveTo(-29 - i * 3, -7 + i * 4 + flutter);
+            c.quadraticCurveTo(-9, -15 + i * 7 - flutter, 9 - i, 0);
+            c.quadraticCurveTo(-7, 13 - i * 3 + flutter, -20 - i * 2, 7 - i * 2 - flutter);
             c.stroke();
+        }
+        for (let i = 0; i < 4; i++) {
+            const phase = (p.age * 2 + i / 4) % 1;
+            c.globalAlpha = (1 - phase) * .45;
+            c.fillStyle = '#dbe9db';
+            c.beginPath();
+            c.ellipse(-18 - phase * 35, Math.sin(p.age * 8 + i * 2) * 10, 2.5 * (1 - phase) + .5, 1, 0, 0, Math.PI * 2);
+            c.fill();
         }
         c.globalAlpha = .12;
         c.fillStyle = '#e3e4d8';
@@ -10993,19 +11161,130 @@ function drawLightningBolt(c, x, y, x2, y2, size, t) {
     }
     c.restore();
 }
-function drawRedesignGuide(c, e, u, s, power) {
+function drawQiBurst(c, x, y, size, t) {
+    if (t >= 1)
+        return;
+    c.save();
+    c.translate(x, y);
+    c.setLineDash([]);
+    const life = envelope(t), r = size * (.2 + .8 * Math.pow(t, .45));
+    c.strokeStyle = '#e4edde';
+    c.globalAlpha = life * .72;
+    c.lineWidth = 2.2 * (1 - t) + .6;
+    c.beginPath();
+    c.arc(0, 0, r, 0, Math.PI * 2);
+    c.stroke();
+    c.globalAlpha = life * .12;
+    c.fillStyle = '#e0eadc';
+    c.beginPath();
+    c.arc(0, 0, r * .88, 0, Math.PI * 2);
+    c.fill();
+    for (let i = 0; i < 6; i++) {
+        const a = i * Math.PI / 3 + .2;
+        c.globalAlpha = life * .5;
+        c.lineWidth = 1;
+        c.beginPath();
+        c.moveTo(Math.cos(a) * r * .9, Math.sin(a) * r * .9);
+        c.lineTo(Math.cos(a) * r * 1.13, Math.sin(a) * r * 1.13);
+        c.stroke();
+    }
+    c.restore();
+}
+function drawFireBloom(c, x, y, size, t) {
+    if (t >= 1)
+        return;
+    const life = envelope(t), r = size * (.24 + .8 * Math.pow(t, .45));
+    c.save();
+    c.translate(x, y);
+    c.setLineDash([]);
+    const glow = c.createRadialGradient(0, -r * .1, 0, 0, -r * .1, r * 1.2);
+    glow.addColorStop(0, '#fff0baba');
+    glow.addColorStop(.25, '#ffca7280');
+    glow.addColorStop(.6, '#cc57383c');
+    glow.addColorStop(1, '#a7452900');
+    c.globalAlpha = life;
+    c.fillStyle = glow;
+    c.fillRect(-r * 1.3, -r * 1.4, r * 2.6, r * 2.6);
+    for (let i = 0; i < 12; i++) {
+        const a = i * Math.PI / 6 + .1, reach = r * (.7 + .3 * noise(i + x)), xx = Math.cos(a) * reach, yy = Math.sin(a) * reach - t * size * .18;
+        c.globalAlpha = life * (.5 + .35 * noise(i + 8));
+        c.fillStyle = i % 3 === 0 ? '#f5d096' : i % 2 ? '#dc935b' : '#b8573d';
+        c.beginPath();
+        c.moveTo(Math.cos(a - .25) * r * .3, Math.sin(a - .25) * r * .3);
+        c.quadraticCurveTo(xx * .9, yy * .65, xx, yy);
+        c.quadraticCurveTo(xx * .65, yy * .85, Math.cos(a + .25) * r * .25, Math.sin(a + .25) * r * .25);
+        c.fill();
+        c.fillStyle = '#f3cb87';
+        c.globalAlpha = life * .75;
+        c.beginPath();
+        c.ellipse(xx * 1.15, yy * 1.15, 1.7, 3.5, a, 0, Math.PI * 2);
+        c.fill();
+    }
+    c.restore();
+}
+/** Pixel-sized dashes retain contrast at every camera zoom. */
+function guideStroke(c, path, zoom, color = '#d9e1d2', alpha = .64) {
+    if (path.length < 2)
+        return;
+    c.save();
+    c.lineCap = 'round';
+    c.lineJoin = 'round';
+    c.setLineDash([4 / zoom, 7 / zoom]);
+    c.beginPath();
+    path.forEach((p, i) => i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y));
+    c.strokeStyle = '#10242a';
+    c.lineWidth = 3.3 / zoom;
+    c.globalAlpha = .45;
+    c.stroke();
+    c.strokeStyle = color;
+    c.lineWidth = 1.35 / zoom;
+    c.globalAlpha = alpha;
+    c.stroke();
+    c.restore();
+}
+const turnGuideCache = new WeakMap();
+function drawTurnGuide(c, e, zoom = 1, point) {
+    const p = e.b.projectiles.find(p => p.skill === 'A09' && p.owner === e.b.active && !p.turned && !p.followup);
+    if (e.b.phase !== 'flight' || !p)
+        return false;
+    zoom = Math.max(.12, zoom);
+    const key = [p.id, Math.floor(p.age * 30), e.active?.angle, point?.x.toFixed(0), point?.y.toFixed(0), e.b.sceneVersion].join(':');
+    let cached = turnGuideCache.get(e);
+    if (cached?.key !== key) {
+        cached = { key, prediction: (0, skillMechanics_1.turnPrediction)(e, point) };
+        turnGuideCache.set(e, cached);
+    }
+    const pr = cached.prediction;
+    if (!pr)
+        return false;
+    guideStroke(c, [{ x: p.x, y: p.y }, ...pr.points.slice(1)], zoom, '#f2d39c', .82);
+    c.save();
+    c.strokeStyle = '#f0d5a7';
+    c.globalAlpha = .8;
+    c.lineWidth = 1.3 / zoom;
+    c.beginPath();
+    c.arc(pr.x, pr.y, 5 / zoom, 0, Math.PI * 2);
+    c.stroke();
+    c.font = `${12 / zoom}px sans-serif`;
+    c.fillStyle = '#f0d5a7';
+    c.fillText('선회 예상', p.x + 14 / zoom, p.y - 14 / zoom);
+    c.restore();
+    return true;
+}
+function drawRedesignGuide(c, e, u, s, power, zoom = 1) {
     if (!s.redesigned)
         return false;
     if (s.mode === 'prepare' || u.retreat)
         return true;
+    zoom = Math.max(.12, zoom);
     const pr = guidePrediction(e, u, s, power);
     const insight = u.ranks.MP04 || 0;
     c.save();
-    c.strokeStyle = '#bdc8bf';
-    c.fillStyle = '#bdc8bf';
-    c.lineWidth = 1;
-    c.globalAlpha = .35;
-    c.setLineDash([3, 7]);
+    c.strokeStyle = '#d3ddd2';
+    c.fillStyle = '#d3ddd2';
+    c.lineWidth = 1.2 / zoom;
+    c.globalAlpha = .4;
+    c.setLineDash([4 / zoom, 7 / zoom]);
     let path = pr.points;
     if ('contacts' in pr && Array.isArray(pr.contacts) && pr.contacts.length && (s.id === 'M02' && insight < 2 || s.id === 'M11' && insight < 4)) {
         const contact = pr.contacts[s.id === 'M11' && insight >= 3 ? Math.min(1, pr.contacts.length - 1) : 0];
@@ -11016,44 +11295,32 @@ function drawRedesignGuide(c, e, u, s, power) {
         } });
         path = path.slice(0, nearest + 1);
     }
-    c.beginPath();
-    path.forEach((v, i) => i ? c.lineTo(v.x, v.y) : c.moveTo(v.x, v.y));
-    c.stroke();
-    c.setLineDash([]);
-    if ('paths' in pr && Array.isArray(pr.paths)) {
-        c.globalAlpha = .22;
-        c.setLineDash([3, 7]);
+    guideStroke(c, path, zoom);
+    if (!['A04', 'A15'].includes(s.id) && 'paths' in pr && Array.isArray(pr.paths))
         for (const other of pr.paths) {
-            if (other === path)
-                continue;
-            c.beginPath();
-            other.forEach((v, i) => i ? c.lineTo(v.x, v.y) : c.moveTo(v.x, v.y));
-            c.stroke();
+            if (other !== path)
+                guideStroke(c, other, zoom, '#c5d7cb', .36);
         }
-        c.setLineDash([]);
-    }
     const geo = 'geometry' in pr ? pr.geometry : undefined;
     if (geo) {
-        c.setLineDash([4, 8]);
+        c.setLineDash([4 / zoom, 8 / zoom]);
         if (insight >= 5) {
             c.globalAlpha = .025;
-            drawSkillGeometry(c, geo, true);
+            drawSkillGeometry(c, geo, true, zoom);
         }
-        c.globalAlpha = .24;
-        drawSkillGeometry(c, geo);
-        c.setLineDash([]);
+        c.globalAlpha = .4;
+        drawSkillGeometry(c, geo, false, zoom);
     }
     else if (s.radius && s.branch !== 'stake') {
-        c.globalAlpha = .24;
-        c.setLineDash([4, 8]);
+        c.globalAlpha = .4;
+        c.setLineDash([4 / zoom, 8 / zoom]);
         c.beginPath();
         c.arc(pr.x, pr.y, e.effective(s, u).radius, 0, Math.PI * 2);
         c.stroke();
-        c.setLineDash([]);
     }
     if ('secondaryRadius' in pr && pr.secondaryRadius && ((s.branch === 'gourd' && insight >= 1) || (s.branch === 'stake' && insight >= 6))) {
-        c.globalAlpha = .25;
-        c.setLineDash([4, 9]);
+        c.globalAlpha = .32;
+        c.setLineDash([4 / zoom, 9 / zoom]);
         c.beginPath();
         c.arc(pr.x, pr.y, Number(pr.secondaryRadius), 0, Math.PI * 2);
         c.stroke();
@@ -11068,8 +11335,8 @@ function drawRedesignGuide(c, e, u, s, power) {
     if (insight >= 8 && s.cls === 'mage') {
         const d = e.effective(s, u).damage;
         c.globalAlpha = .7;
-        c.font = '13px sans-serif';
-        c.fillText(`예상 ${Math.round(d * .3)}–${Math.round(d * 1.5)}`, pr.x + 12, pr.y - 18);
+        c.font = `${12 / zoom}px sans-serif`;
+        c.fillText(`예상 ${Math.round(d * .3)}–${Math.round(d * 1.5)}`, pr.x + 12 / zoom, pr.y - 18 / zoom);
     }
     c.restore();
     return true;
@@ -12933,8 +13200,36 @@ function ally(b,st,id,role,x,y){
 }
 function midboss(b,st,id,name,kind,x,y){const u=createEnemy(b,st,x,kind,900+st.id,y,true);Object.assign(u,{id,name,awake:true,aggroUntil:999,group:-3,honroMidboss:true,elite:true});u.armor=Math.max(u.armor||0,.14);G.HonroProgression.tuneMidboss(b,st,u);u.spawnX=u.x;u.spawnY=u.y;return u;}
 
+function trainingWorld(st,profile,cls,skill,legacy){
+ const b=legacy(st,profile,true,cls,skill);Object.assign(b,{width:5600,height:2300,practiceCombat:true,practiceWind:7,enemyLimit:2,honroRevision:20,terrain:[],waters:[],drafts:[],decor:[],honroLandmarks:[],honroSurfaceZones:[]});
+ const floor=(id,x,w,y,slope=0)=>b.terrain.push({id,x,y,w,h:2300-y,mat:'rock',slope,hp:99999,maxHp:99999,indestructible:true,route:true});
+ floor('training-west',0,620,1400);floor('training-descent',620,530,1400,240);floor('training-stream-bed',1150,550,1640);
+ floor('training-ridge-ascent',1700,700,1640,-520);floor('training-ridge',2400,560,1120);floor('training-ridge-descent',2960,680,1120,470);
+ floor('training-lake-bed',3640,810,1590);floor('training-east-ascent',4450,750,1590,-350);floor('training-east',5200,400,1240);
+ // One continuous polygon keeps the hill, valley and ground shading connected.
+ const ground=b.terrain,crest=ground.map(t=>({x:t.x,y:t.y}));crest.push({x:5600,y:1240});
+ b.terrain=[{id:'training-ground',x:0,y:1120,w:5600,h:1580,vertices:[...crest,{x:5600,y:2700},{x:0,y:2700}],mat:'rock',hp:99999,maxHp:99999,indestructible:true,route:true}];
+ ground.forEach((t,i)=>{const a=[t.x,t.y],z=[t.x+t.w,t.y+(t.slope||0)];b.honroSurfaceZones.push({id:'training-surface-'+i,kind:['grass-mass','moss-mass','mud-mass','exposed-rock-mass','stone-road','dry-grass-mass','mud-mass','grass-mass','moss-mass'][i],points:[a,z,[z[0],z[1]+65],[a[0],a[1]+65]],surface:[a,z],attached:true});});
+ const ledge=(id,x,y,w)=>b.terrain.push({id,x,y,w,h:22,mat:'wood',hp:210,maxHp:210,oneWay:true,route:true});
+ ledge('training-bridge',1180,1450,450);ledge('training-perch',2540,890,210);ledge('training-lake-ledge',3860,1380,230);
+ b.terrain.push({id:'training-barrel',x:2820,y:1060,w:45,h:60,mat:'barrel',hp:48,maxHp:48});
+ for(const [x,y,w,depth] of [[1150,1530,550,110],[3640,1480,810,110]]){
+  b.waters.push({x,y,w,depth,frozen:0,kind:'water',conductive:true,bottom:[{x,y:y+depth},{x:x+w,y:y+depth}]});
+  b.honroSurfaceZones.push({id:'training-water-'+x,kind:'water-pool',points:[[x,y],[x+w,y],[x+w,y+depth],[x,y+depth]],surface:[[x,y],[x+w,y]],bottom:[[x,y+depth],[x+w,y+depth]],attached:true});
+ }
+ b.drafts.push({x:1840,y:950,w:160,h:570,force:260});
+ for(const [kind,x,size] of [['giantPine',130,1.1],['forestPath',550,1.4],['waterShrine',1370,.8],['rockPile',1840,1.1],['gate',2490,.8],['deadPines',2920,1.3],['watchtower',3320,.9],['reeds',3900,1.2],['waterShrine',4270,1],['Pines',4970,1.4],['ruin',5410,1],['giantPine',2770,.65]])b.honroLandmarks.push({kind,x,y:top(b,x,2200),size,layer:'back'});
+ for(const x of [450,860,1770,2230,3050,4540,5080,5480])b.honroLandmarks.push({kind:'fernPatch',x,y:top(b,x,2200),size:1.3,layer:'prop'});
+ const hero=b.units.find(u=>u.side===0);b.units=[hero];C.applyHero(hero,b.heroes[cls],true);Object.assign(hero,{x:340,y:1400,spawnX:340,spawnY:1400,acted:false,cooldowns:{},vx:0,vy:0});
+ const kinds=['human','hound','crow','ghost','warden','bat','boar','lantern','shade','human','stag','mourner'];
+ [760,1180,1560,2110,2590,2870,3320,3820,4170,4610,5010,5380].forEach((x,i)=>{
+  const u=createEnemy(b,{...st,w:b.width},x,kinds[i],i,top(b,x));u.name+=' · 수련';
+  Object.assign(u,{hp:130+(i%4)*45,maxHp:130+(i%4)*45,attack:.72,armor:.04,awake:true,aggroUntil:0,group:Math.floor(x/1200),cooldowns:{},focus:180,maxFocus:180});b.units.push(u);
+ });
+ b.active=hero.id;b.sceneVersion++;return b;
+}
 function build(st,profile,training,cls,skill,legacy){
- if(training){const b=legacy({...st,w:2400,h:1380},profile,true,cls,skill);b.honroRevision=20;return b;}
+ if(training)return trainingWorld(st,profile,cls,skill,legacy);
  const project=G.HONRO_PROJECT,map=project.stages.find(s=>s.metadata.stageId===st.id);
  if(!map)throw Error('Missing canonical stage '+st.id);
  return G.HonroMaps.createBattle(map,project,profile);
@@ -46837,7 +47132,7 @@ class HonroPartyVisual{
   projectile(ctx,q,engine){
     if(q.body)return false;
     const id=resolveRebuildCharacter(engine.b.units.find(u=>u.id===q.owner));
-    const part=id==='sodan'&&q.skill==='O01'?'spirit':id==='damheo'&&q.skill==='M01'?'qi':null;
+    const part=id==='sodan'&&q.skill==='O01'?'spirit':null;
     if(!part)return false;
     const asset=this.visuals[id].asset;
     this.flightPaths??={};this.flightPaths[part]??=asset.paths.filter(p=>p.part===part).map(p=>({path:new Path2D(p.d),color:asset.palette[p.fill]}));
@@ -47015,6 +47310,7 @@ globalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=Honro
                     if(this.arcFx){this.arcFx.time=this.time;this.arcFx.scale=this.scale;this.arcFx.predictionGuide(c,e,u,selected,power,charging,repeat);}
                 } catch { }
             }
+            if(!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
             for (const v of b.units || []) {
                 if (v.x < this.x - w / this.scale - 100 || v.x > this.x + w / this.scale + 100)
                     continue;
@@ -47046,7 +47342,7 @@ globalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=Honro
         outsideTerrain(c,b,view){
             // Scenery beyond the simulation rectangle. These meshes never enter
             // b.terrain, collision indexing, AI navigation or projectile physics.
-            const edgeY=x=>{const ts=b.terrain.filter(t=>!t.broken&&x>=t.x-1&&x<=t.x+t.w+1);return ts.length?Math.min(...ts.map(t=>t.y+(t.slope||0)*Math.max(0,Math.min(1,(x-t.x)/t.w)))):b.height*.7;};
+            const edgeY=x=>{const hits=b.terrain.filter(t=>!t.broken&&x>=t.x-1&&x<=t.x+t.w+1).flatMap(t=>G.HONRO_CORE.terrainSurfaces(t,x).map(h=>h.y));return hits.length?Math.min(...hits):b.height*.7;};
             for(const side of [-1,1]){
                 const edge=side<0?0:b.width,extent=side<0?Math.max(0,-view.left):Math.max(0,view.right-b.width);
                 if(!extent)continue;
@@ -47058,7 +47354,7 @@ globalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=Honro
                 P(c,[...points,[last[0],bottom],[edge,bottom]],grad);
                 c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle='#8f9a8175';c.lineWidth=1.45;c.stroke();
             }
-            if(view.bottom>b.height){c.fillStyle='#192b2c';c.fillRect(Math.min(0,view.left),b.height+200,Math.max(b.width,view.right)-Math.min(0,view.left),Math.max(0,view.bottom-b.height));}
+            if(view.bottom>b.height){c.fillStyle='#192b2c';c.fillRect(Math.min(0,view.left),b.height,Math.max(b.width,view.right)-Math.min(0,view.left),Math.max(0,view.bottom-b.height));}
         }
         chargeFx(engine,power,charging){
       const u = engine && engine.active;
@@ -47750,7 +48046,7 @@ function use(app,m){const ok=eligibility(app,m);if(!ok.ok)return false;if(m?.act
 }
 function refresh(app){const host=$('context-interact');if(!host)return;const near=candidates(app),one=near[0],enabled=!!one?.ok,sig=one?`${one.marker.id}:${enabled}:${one.reason}:${near.length}`:'none';if(host.dataset.sig===sig)return;host.dataset.sig=sig;if(!one){host.hidden=true;host.innerHTML='';return;}host.hidden=false;const action=one.marker.action,label=action==='skillGate'?'축지':action==='ledger'?'장부 확인':action==='receiver'?'받이진 설치':action==='ritual'?'담허의 의식':action==='authored'?'상호작용':'구조';host.innerHTML=`<button ${enabled?'':'disabled'} data-context-interact="${one.marker.id}" aria-label="${label} · ${one.marker.label}"><i class="keycap">E</i><span>${label}</span><strong>${enabled?one.marker.label:one.reason}</strong></button>`;}
 function mount(app){const battle=app.root.querySelector('.battle');if(!battle||$('context-interact'))return;const el=document.createElement('div');el.id='context-interact';el.className='context-interact';el.hidden=true;battle.appendChild(el);refresh(app);}
-function nearest(app){return candidates(app).find(x=>x.ok)?.marker||null;}function key(app,e){if(e.code!=='KeyE'||e.repeat)return false;if(!app.dialogue&&!app.modal?.classList.contains('open')&&app.engine?.turnArrow()){e.preventDefault();return true;}const m=nearest(app);if(!m)return false;e.preventDefault();return use(app,m);}
+function nearest(app){return candidates(app).find(x=>x.ok)?.marker||null;}function key(app,e){if(e.code!=='KeyE'||e.repeat)return false;if(!app.dialogue&&!app.modal?.classList.contains('open')&&app.engine?.turnArrow(app.scene?.turnTarget)){e.preventDefault();return true;}const m=nearest(app);if(!m)return false;e.preventDefault();return use(app,m);}
 document.addEventListener('click',e=>{const btn=e.target.closest?.('[data-context-interact]');if(!btn)return;const app=G.HonroApp,m=app?candidates(app).find(x=>x.marker.id===btn.dataset.contextInteract)?.marker:null;if(app&&m)use(app,m);});
 G.HonroInteractions={mount,refresh,nearest,use,key,candidates,eligibility};
 })(globalThis);
@@ -48309,7 +48605,7 @@ G.HonroTraining={toolbar,open};
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '기예를 고르고 자유롭게 시험' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         continue() { if (!this.profile.honroBattle) {
             this.showMap();
             return;
@@ -48392,7 +48688,7 @@ G.HonroTraining={toolbar,open};
         else
             u.angle = 270 - clamp(this.displayAngle(u) + v, 5, 180); }
         canInput() { return this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
-        beginCharge() { if(this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&this.engine?.turnArrow()){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
+        beginCharge() { if(this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&this.engine?.turnArrow(this.scene?.turnTarget)){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
             return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || u.focus < this.engine.manaCost(sk, u) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0; return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
@@ -48402,7 +48698,7 @@ G.HonroTraining={toolbar,open};
             let u = this.engine.active;
             this.power = this.chargePower();
             u.lastPower = this.power;
-            this.engine.fire(this.selected, u.angle, this.power);
+            this.scene.turnTarget=undefined;this.engine.fire(this.selected, u.angle, this.power);
             this.scene.manual = false;
         } }
         jump() { if (this.canInput()) {
@@ -48451,7 +48747,7 @@ G.HonroTraining={toolbar,open};
                 G.HonroUnitInfo.close(this);
                 moved = true;
             } };
-            cv.onpointermove = e => { if (!this.contacts.has(e.pointerId) || !this.scene)
+            cv.onpointermove = e => { if(this.scene&&this.engine?.b.phase==='flight'&&e.pointerType!=='touch'){const q=pos(e);this.scene.turnTarget=this.scene.world(q.x,q.y);} if (!this.contacts.has(e.pointerId) || !this.scene)
                 return; let p = pos(e), old = this.contacts.get(e.pointerId); this.contacts.set(e.pointerId, p); if (this.contacts.size > 1) {
                 let q = pair();
                 if (q && lastPair) {
@@ -48563,8 +48859,7 @@ G.HonroTraining={toolbar,open};
             const b=this.engine?.b,inBattle=this.screen==='battle'&&!!b;
             if(inBattle&&this.musicSession!==b.session){this.musicSession=b.session;this.bossMusicSeen=false;}
             if(inBattle&&b.units.some(u=>u.side===1&&!u.dead&&u.hp>0&&(u.boss||u.honroMidboss||u.honroFinalBoss)&&(u.awake||u.honroFinalBoss)))this.bossMusicSeen=true;
-            const modalPause=inBattle&&this.modal.classList.contains('open')&&!this.modal.querySelector('.result');
-            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden||modalPause,inBattle?b.session:undefined);
+            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden,inBattle?b.session:undefined);
             this.updateMusicLabel();
         }
         updateMusicLabel(){

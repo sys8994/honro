@@ -44,19 +44,19 @@ def esc_resume(page, keyboard, prefix, track):
     page.evaluate('window.keptMusic=HonroApp.audio.music.current;window.keptIndex=HonroApp.audio.music.battleIndex')
     for turn in range(3):
         keyboard.press('Escape')
-        page.wait_for_function('HonroApp.audio.music.paused')
+        page.wait_for_function("document.querySelector('.pause-dialog') && !HonroApp.audio.music.paused")
         before = page.evaluate('keptMusic.currentTime')
         page.wait_for_timeout(120)
-        check(prefix+f' ESC pause {turn+1} holds song and time', page.evaluate('''before => {
+        check(prefix+f' ESC menu {turn+1} keeps the same song playing', page.evaluate('''before => {
             const m=HonroApp.audio.music;return m.current===keptMusic&&m.battleIndex===keptIndex
-                &&m.status().playing===0&&Math.abs(keptMusic.currentTime-before)<.04;
+                &&m.status().playing===1&&keptMusic.currentTime>before+.05;
         }''', before))
         if turn == 0:
             page.click('[data-action="settings"]')
             page.locator('[data-setting="music"]').uncheck()
             page.locator('[data-setting="music"]').check()
-            check(prefix+' battle settings retain paused song', page.evaluate(
-                'HonroApp.audio.music.current===keptMusic&&HonroApp.audio.music.status().playing===0'))
+            check(prefix+' battle settings retain the playing song', page.evaluate(
+                'HonroApp.audio.music.current===keptMusic&&HonroApp.audio.music.status().playing===1'))
         keyboard.press('Escape')
         song(page, prefix+f' ESC resume {turn+1}', track)
         check(prefix+f' ESC resume {turn+1} retains stream', page.evaluate('HonroApp.audio.music.current===keptMusic'))

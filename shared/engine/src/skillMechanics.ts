@@ -6,7 +6,8 @@ import {clamp,rad,STEP,terrainRectIntersects} from './math';
 import {passiveRank,baseSkill,sanitizeLoadout} from './progression';
 
 export const SKILL_REVISION=1;
-export const ICE_GOURD_FUSE=2.4;
+export const ICE_GOURD_FUSE=3.2;
+export const iceGourdFuse=(power:number)=>ICE_GOURD_FUSE+3.2*clamp(power,0,1);
 export const newSkill=(p:Pick<Projectile,'skill'>)=>!!SKILLS[p.skill]?.redesigned;
 const rank=(p:Projectile)=>p.skillRank||1;
 const at=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
@@ -34,6 +35,7 @@ export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:num
  if(!newSkill(p))return amount;
  if(u.cls==='archer'&&direct){
   amount*=trajectoryMultiplier(p,u,point);
+  if(p.skill==='A09'&&p.turned)amount*=1+lerpRank(.30,.65,rank(p));
   const c=critProfile(p,u),critical=e.random()<c.chance;
   if(critical){amount*=c.multiplier;e.emit('fx',{name:'inkLine',x:target.x-18,y:target.y-target.h*.5,x2:target.x+42,y2:target.y-target.h*.5-4,color:'#e3e3d8',size:2});}
   if(p.preparedRank)amount/=Math.max(.3,1-clamp(target.armor,0,.7))*Math.max(.3,1-clamp(target.armor-lerpRank(.04,.15,p.preparedRank),0,.7));
@@ -84,7 +86,7 @@ export function initRedesignCast(e:Engine,s:Skill,u:Unit){
  e.b.cast={owner:u.id,skill:s.id,shot:e.b.shot,cost:e.manaCost(s,u),enemyDamage:0};
  if(u.prepared&&u.prepared.expires<e.b.round)delete u.prepared;
  const roots=e.b.projectiles.filter(p=>p.owner===u.id&&p.shot===e.b.shot);
- for(const p of roots){p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
+ for(const p of roots){if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
  if(s.branch==='distance'&&s.id!=='A10')delete u.prepared;
  if(s.mode==='prepare'){e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));u.prepared={rank:u.ranks[s.id]||1,expires:e.b.round+2};e.fx('ring',u.x,u.y-u.h*.6,'#c8cebf',22);}
  if(['waveRing','waveBagua'].includes(s.mode))for(const p of roots){
@@ -109,6 +111,17 @@ export function turnArrow(e:Engine,point?:Vec){
  const p=e.b.projectiles.find(q=>q.skill==='A09'&&q.owner===e.b.active&&!q.turned&&!q.followup);if(!p||e.b.phase!=='flight')return false;
  const u=e.unit(p.owner)!,a=Math.atan2(p.vy,p.vx),desired=point?Math.atan2(point.y-p.y,point.x-p.x):-rad(u.angle),d=Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),max=rad(lerpRank(45,80,rank(p))),next=a+clamp(d,-max,max),speed=Math.hypot(p.vx,p.vy)*.92;
  p.vx=Math.cos(next)*speed;p.vy=Math.sin(next)*speed;p.turned=true;e.fx('ring',p.x,p.y,'#d0d5cc',22);return true;
+}
+/** Read-only continuation from the arrow's current state, with the same one-time steering. */
+export function turnPrediction(e:Engine,point?:Vec){
+ const live=e.b.projectiles.find(p=>p.skill==='A09'&&p.owner===e.b.active&&!p.turned&&!p.followup);
+ if(!live||e.b.phase!=='flight')return null;
+ const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b);
+ const p=b.projectiles.find(p=>p.id===live.id)!;b.projectiles=[p];b.volley=undefined;
+ if(!turnArrow(sim,point))return null;
+ const points:Vec[]=[{x:p.x,y:p.y}];
+ for(let i=0;i<1440&&b.projectiles.includes(p);i++){sim.stepProjectile(p,STEP);if(i%3===0||!b.projectiles.includes(p))points.push({x:p.x,y:p.y});}
+ return {points,x:p.x,y:p.y};
 }
 
 export type SkillGeometry={kind:'arc'|'ring'|'triangle'|'bagua';x:number;y:number;radius:number;thickness:number;angle:number;span:number;points?:Vec[];impact?:Vec};
@@ -183,7 +196,7 @@ function gourdBurst(e:Engine,p:Projectile){
 }
 function placeStake(e:Engine,p:Projectile,h:Collision){
  const b=e.b;b.stakes??=[];const floor=h.n.y<-.3?h.y:e.surface(p.x,p.y-3,b.height)?.y;if(floor===undefined){e.remove(p);return;}
- const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
+ const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
  b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:p.x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot});
  e.fx('spark',p.x,floor,'#a89b7f',15);e.remove(p);
 }
@@ -197,7 +210,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
   strikeGeometry(e,p,skillGeometry(s,r,h.x,h.y,Math.atan2(p.vy,p.vx),u.lastPower,undefined,undefined,geometryBoost(u,s)),h.unit);e.remove(p);return true;
  }
  if(p.mode==='qiPulse'){
-  e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);e.emit('fx',{name:'inkImpact',x:p.x,y:p.y,color:'#e2e6dd',size:Math.max(36,p.blast*.7)});e.emit('sound',{name:'qiWave'});e.remove(p);return true;
+  e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);e.emit('sound',{name:'qiWave'});e.remove(p);return true;
  }
  if(s.branch==='stake'){if(h.terrain)placeStake(e,p,h);return true;}
  if(s.branch==='gourd'){
@@ -245,14 +258,14 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
  if(!newSkill(p))return false;
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.apexY=Math.min(p.apexY??p.y,p.y);
  if(p.maxAge&&p.age>=p.maxAge){e.remove(p);return true;}
- if(p.mode==='gourdIce'&&p.age>=ICE_GOURD_FUSE){gourdBurst(e,p);return true;}
+ if(p.mode==='gourdIce'&&p.age>=(p.fuseAt??iceGourdFuse(u.lastPower))){gourdBurst(e,p);return true;}
  if(p.mode==='skyWait'){
   if(p.age>=.35){const target=p.targetPoint!,start={x:target.x,y:Math.min(-170,target.y-600)},hit=e.collision(start,target,3,p.owner,[],false);const end=hit||target;
    e.emit('fx',{name:'lightningBolt',x:start.x,y:start.y,x2:end.x,y2:end.y,color:'#a8cfff',size:5});e.blast(end.x,end.y,p.blast,p.damage,p.owner,false,p);e.remove(p);
   }return true;
  }
  if(p.mode==='microWait'){
-  if(p.age>=.08){e.blast(p.x,p.y,55,p.damage,p.owner,false,p);e.remove(p);}return true;
+  if(p.age>=(p.fuseAt??.08)){e.blast(p.x,p.y,55,p.damage,p.owner,false,p);e.remove(p);}return true;
  }
  if(p.mode==='ironEmitter'||p.mode==='microEmitter'){
   const iron=p.mode==='ironEmitter',count=iron?8+2*(r-1):6+r,duration=iron?1.5:1;
@@ -260,9 +273,9 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
    p.emissions=(p.emissions||0)+1;const a=e.random()*Math.PI*2;
    if(iron){const q=spawnChild(e,p,'ironChip',Math.cos(a)*440,Math.sin(a)*440,p.damage*.20);q.maxAge=.45;}
    else {const radius=Math.sqrt(e.random())*240,x=p.x+Math.cos(a)*radius,seedY=p.y+Math.sin(a)*radius;
-    const floor=e.surface(x,p.y-240,p.y+240),y=floor?floor.y-8:seedY;
+    const y=seedY;
     const secondary=1+passiveRank(u,'MP01')*.03+specialty(u,s)*.025;
-    const q=spawnChild(e,p,'microWait',0,0,p.damage*14/48*secondary,55);q.x=x;q.y=y;q.maxAge=undefined;e.fx('ring',x,y,'#68736c',8);}
+    const q=spawnChild(e,p,'microWait',0,0,p.damage*14/48*secondary,55);q.x=x;q.y=y;q.maxAge=undefined;q.fuseAt=.04+e.random()*.16;}
   }
   if(p.age>=duration)e.remove(p);return true;
  }
@@ -291,9 +304,9 @@ export function useGate(e:Engine,u=e.active){
  const from=gateCandidate(e,u);if(!from||!u||!e.canAct())return false;
  const token=`${e.b.round}:${e.b.teamEnds[0]}`;if(u.gateTurn===token)return false;
  const to=e.b.stakes!.find(s=>s.skill==='M09'&&s.side===u.side&&s.id!==from.id)!;
- const x=clamp(to.x,25,e.b.width-25),y=to.y;
- if(e.b.terrain.some(t=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,x-u.r,y-u.h,u.r*2,u.h-2,.1))||e.b.units.some(t=>!t.dead&&t.id!==u.id&&Math.abs(t.x-x)<t.r+u.r&&Math.abs(t.y-y)<u.h))return false;
- u.x=x;u.y=y;u.vx=u.vy=0;delete u.moveTarget;u.gateTurn=token;
+ const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y}:null;}).find(v=>v&&!e.b.terrain.some(t=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,v.x-u.r,v.y-u.h,u.r*2,u.h-2,.1))&&!e.b.units.some(t=>!t.dead&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
+ if(!spot){e.message('도착 진목 주변에 설 자리가 없습니다.');return false;}
+ const {x,y}=spot;u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
  const r=to.rank,caster=e.unit(to.owner),boost=caster?geometryBoost(caster,SKILLS.M09):1;
  if(r>=2)u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(r===2?.08:.10)*boost);
  if(r>=4)u.hp=Math.min(u.maxHp,u.hp+u.maxHp*(r===4?.06:.08)*boost);
@@ -352,14 +365,16 @@ export function tickRedesign(e:Engine,dt:number){
 export interface SkillPrediction extends Prediction {time:number;geometry?:SkillGeometry;contacts:Vec[];secondaryRadius?:number;paths?:Vec[][];}
 /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
  * piercing, chains and split children cannot diverge into a second physics loop. */
-function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number):SkillPrediction{
+function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false):SkillPrediction{
  const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
  b.active=actor.id;b.side=0;b.phase='aim';b.mode='practice';b.projectiles=[];b.volley=undefined;
  actor.loadout=[s.id];actor.focus=actor.maxFocus=10000;actor.cooldowns={};actor.acted=false;actor.dead=false;actor.retreat=false;
  // The guide represents this volley; later repeated volleys have the same launch path.
  actor.ranks.AP01=0;
  sim.grounded=()=>true;sim.canAct=()=>true;sim.fire(s.id,angle,power);
- const paths=new Map<number,Vec[]>(),roots=[...b.projectiles],primary=roots[Math.floor(roots.length/2)];
+ let roots=[...b.projectiles];const primary=roots[Math.floor(roots.length/2)];
+ if(representative&&primary){roots=[primary];b.projectiles=roots;Object.assign(primary,e.origin(u,angle),e.velocity(u,s,angle,power));primary.prevVy=primary.vy;if(s.id==='A15')primary.mode='arrow';}
+ const paths=new Map<number,Vec[]>();
  let time=0,apex:Vec|undefined;const origin=e.origin(u,angle);
  for(const p of roots)paths.set(p.id,[{x:p.x,y:p.y}]);
  for(let i=0;i<1440&&b.projectiles.length;i++){
@@ -372,16 +387,16 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number):Skil
  return {...last,points,paths:[...paths.values()],time,contacts:[],apex,closest:99999};
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
-export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number):SkillPrediction|null{
+export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false):SkillPrediction|null{
  if(!s.redesigned)return null;
- if(s.cls==='archer')return arrowPrediction(e,u,s,angle,power);
+ if(s.cls==='archer')return arrowPrediction(e,u,s,angle,power,representative);
  if(s.cls!=='mage')return null;
  const r=u.ranks[s.id]||1,origin=e.origin(u,angle),v=e.velocity(u,s,angle,power),points:Vec[]=[origin],contacts:Vec[]=[];
  const p={...origin,...v,wind:s.wind,gravityScale:s.gravity??1,drag:dragFor(s),skill:s.id,mode:s.mode,radius:6,bounces:0} as Projectile;
  let age=0,time=0,closest=99999,apex:Vec|undefined;const arc=s.mode==='waveArc',ring=s.mode==='waveRing',bagua=s.mode==='waveBagua',ice=s.mode==='gourdIce';
  if(ring){const center=at(u);return {...center,points:[],time:0,closest,contacts,geometry:skillGeometry(s,r,center.x,center.y,-rad(angle),power,undefined,undefined,geometryBoost(u,s))};}
- for(let i=0;i<Math.ceil((ice?ICE_GOURD_FUSE:8)/STEP);i++){
-  age+=STEP;time=age;if(ice&&age>=ICE_GOURD_FUSE)break;
+ for(let i=0;i<Math.ceil((ice?iceGourdFuse(power):8)/STEP);i++){
+  age+=STEP;time=age;if(ice&&age>=iceGourdFuse(power))break;
   const m=e.advanceProjectile(p,STEP);if(p.vy<0&&m.vy>=0)apex={x:p.x,y:p.y};p.vx=m.vx;p.vy=m.vy;time=age;
   const h=e.collision(p,m,6,u.id,[],!s.mode.startsWith('stake')&&!['waveTriangle','waveBagua'].includes(s.mode));
   if(h){p.x=h.x;p.y=h.y;

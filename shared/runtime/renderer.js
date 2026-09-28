@@ -164,6 +164,7 @@
                     if(this.arcFx){this.arcFx.time=this.time;this.arcFx.scale=this.scale;this.arcFx.predictionGuide(c,e,u,selected,power,charging,repeat);}
                 } catch { }
             }
+            if(!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
             for (const v of b.units || []) {
                 if (v.x < this.x - w / this.scale - 100 || v.x > this.x + w / this.scale + 100)
                     continue;
@@ -195,7 +196,7 @@
         outsideTerrain(c,b,view){
             // Scenery beyond the simulation rectangle. These meshes never enter
             // b.terrain, collision indexing, AI navigation or projectile physics.
-            const edgeY=x=>{const ts=b.terrain.filter(t=>!t.broken&&x>=t.x-1&&x<=t.x+t.w+1);return ts.length?Math.min(...ts.map(t=>t.y+(t.slope||0)*Math.max(0,Math.min(1,(x-t.x)/t.w)))):b.height*.7;};
+            const edgeY=x=>{const hits=b.terrain.filter(t=>!t.broken&&x>=t.x-1&&x<=t.x+t.w+1).flatMap(t=>G.HONRO_CORE.terrainSurfaces(t,x).map(h=>h.y));return hits.length?Math.min(...hits):b.height*.7;};
             for(const side of [-1,1]){
                 const edge=side<0?0:b.width,extent=side<0?Math.max(0,-view.left):Math.max(0,view.right-b.width);
                 if(!extent)continue;
@@ -207,7 +208,7 @@
                 P(c,[...points,[last[0],bottom],[edge,bottom]],grad);
                 c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle='#8f9a8175';c.lineWidth=1.45;c.stroke();
             }
-            if(view.bottom>b.height){c.fillStyle='#192b2c';c.fillRect(Math.min(0,view.left),b.height+200,Math.max(b.width,view.right)-Math.min(0,view.left),Math.max(0,view.bottom-b.height));}
+            if(view.bottom>b.height){c.fillStyle='#192b2c';c.fillRect(Math.min(0,view.left),b.height,Math.max(b.width,view.right)-Math.min(0,view.left),Math.max(0,view.bottom-b.height));}
         }
         chargeFx(engine,power,charging){
       const u = engine && engine.active;

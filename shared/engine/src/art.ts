@@ -1,4 +1,4 @@
-import {drawRedesignProjectile,drawRedesignGuide,drawInkGeometry,drawInkImpact,drawLightningBolt,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawRedesignProjectile,drawRedesignGuide,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -240,7 +240,7 @@ export class Renderer {
             if (size > 65)
                 this.shake = Math.max(this.shake, Math.min(size / 35, 4));
         }
-        if (kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
+        if (kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
             this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, x2: e.x2, y2: e.y2 });
         if (this.fxs.length > 370)
             this.fxs.splice(0, this.fxs.length - 370);
@@ -254,7 +254,9 @@ export class Renderer {
                 if (f.kind === 'spark') f.vy += 260 * dt;
             }
             const t=f.age/f.life, alpha=Math.max(0,1-t); c.save(); c.globalAlpha=alpha;
-            if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
+            if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
+            else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
             if(f.kind==='inkLine')line(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.color,f.size);
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
@@ -274,7 +276,8 @@ export class Renderer {
     predictionGuide(c:C, engine:Engine, active:Unit, skillId:string, power:number, charging:boolean, throughUnits=false) {
         const sk=SKILLS[skillId]||SKILLS[active.loadout[0]]; if(!sk||sk.passive)return;
         const guidePower=charging?power:(active.lastPower??power??.5);
-        if(drawRedesignGuide(c,engine,active,sk,guidePower))return;
+        const zoom=Math.max(.12,this.scale||1);
+        if(drawRedesignGuide(c,engine,active,sk,guidePower,zoom))return;
         const ori=engine.origin(active,active.angle), a=rad(active.angle);
         // A short, translucent signature follows the true launch direction.
         c.save();c.translate(ori.x,ori.y);c.rotate(-a);c.globalAlpha=charging?.48:.32;
@@ -298,14 +301,14 @@ export class Renderer {
         // Repeated archer shots can continue after the first target. Draw this under the normal collision prediction.
         if(throughUnits){
             const ext=engine.predict(active,sk,active.angle,guidePower,undefined,true,true);
-            if(ext?.points?.length){c.save();c.setLineDash([]);c.globalAlpha=.20;c.strokeStyle=sk.color;c.lineWidth=1.15;c.beginPath();ext.points.forEach((v,i)=>i?c.lineTo(v.x,v.y):c.moveTo(v.x,v.y));c.stroke();c.restore();}
+            if(ext?.points?.length){c.save();c.setLineDash([]);c.globalAlpha=.20;c.strokeStyle=sk.color;c.lineWidth=1.15/zoom;c.beginPath();ext.points.forEach((v,i)=>i?c.lineTo(v.x,v.y):c.moveTo(v.x,v.y));c.stroke();c.restore();}
         }
         const pr=engine.predict(active,sk,active.angle,guidePower);
         if(!pr)return;
-        c.save();c.globalAlpha=.42;
-        pr.points.forEach((v,i)=>{if(i%2===0)circle(c,v.x,v.y,1.6,sk.color);});
+        c.save();c.globalAlpha=.65;
+        pr.points.forEach((v,i)=>{if(i%2===0)circle(c,v.x,v.y,1.6/zoom,sk.color);});
         const r=engine.effective(sk,active).radius;
-        c.globalAlpha=.62;c.setLineDash([4,5]);c.lineWidth=1.35;
+        c.globalAlpha=.62;c.setLineDash([4/zoom,5/zoom]);c.lineWidth=1.35/zoom;
         if(r){c.strokeStyle=sk.color;c.beginPath();c.arc(pr.x,pr.y,r,0,Math.PI*2);c.stroke();c.globalAlpha=.16;circle(c,pr.x,pr.y,r,sk.color);}
         c.setLineDash([]);c.globalAlpha=.72;line(c,pr.x-8,pr.y,pr.x+8,pr.y,sk.color,1.2);line(c,pr.x,pr.y-8,pr.x,pr.y+8,sk.color,1.2);
         if(pr.apex&&(sk.mode==='cluster'||sk.mode==='rain'||sk.mode==='seekRain'))this.rune(c,pr.apex.x,pr.apex.y,12,sk.color);
@@ -586,7 +589,9 @@ export class Renderer {
             c.globalAlpha = alpha;
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
-            if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
+            if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
+            else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
             if (f.kind === 'spark') {
                 line(c, f.x, f.y, f.x - f.vx * .028, f.y - f.vy * .028, f.color, f.size);
             }

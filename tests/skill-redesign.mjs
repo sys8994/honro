@@ -64,14 +64,14 @@ test('retreat permits movement, blocks attack and switching, exhausts to end',()
  const a=arena();a.b.mode='campaign';a.u.ranks.AP03=8;a.fire();a.b.projectiles=[];a.e.finishAction(true);assert(a.u.retreat);assert.equal(a.u.moveLeft,a.u.maxMove*.4);assert(!a.e.fire('A01',30,.6));assert(!a.e.select(a.foe(1600,1800,{side:0}).id));const x=a.u.x;a.e.move(1,.1);assert(a.u.x>x);a.u.moveLeft=0;C.tickRedesign(a.e,.01);assert(!a.u.retreat);
 });
 test('빙호 bounces until fuse; shards and primary explosion follow',()=>{
- const a=arena('M02',8),p=a.fire(0,.2),t=a.foe(520,1800);let count=0;for(let i=0;i<280;i++){a.e.stepProjectile(p,1/120);count=Math.max(count,p.bounces);assert.equal(t.hp,t.maxHp);}assert(count>0);for(let i=0;i<14&&a.b.projectiles.includes(p);i++)a.e.stepProjectile(p,1/120);assert(!a.b.projectiles.includes(p));assert.equal(a.b.projectiles.filter(q=>q.secondary).length,13);
+ const a=arena('M02',8),p=a.fire(0,.2),t=a.foe(520,1800);let count=0;for(let i=0;i<280;i++){a.e.stepProjectile(p,1/120);count=Math.max(count,p.bounces);assert.equal(t.hp,t.maxHp);}assert(count>0);for(let i=0;i<Math.ceil(p.fuseAt/C.STEP)&&a.b.projectiles.includes(p);i++)a.e.stepProjectile(p,1/120);assert(!a.b.projectiles.includes(p));assert.equal(a.b.projectiles.filter(q=>q.secondary).length,13);
 });
 test('뇌호 hits every target once from origin, through units and walls',()=>{
  const a=arena('M04',8),p=a.fire(),ts=Array.from({length:8},(_,i)=>a.foe(1000+i*5,1800));a.e.impact(p,{x:800,y:1760,t:0,n:{x:0,y:-1},terrain:a.b.terrain[0]});assert(ts.every(t=>t.hp<t.maxHp));const lines=a.events.filter(e=>e.name==='lightningBolt');assert.equal(lines.length,8);assert(lines.every(l=>l.x===800&&l.y===1760));
 });
 test('화호 and 연폭호 counts, deterministic emissions and target caps',()=>{
  const a=arena('M06',1),p=a.fire();a.e.impact(p,{x:900,y:1700,t:0,n:{x:0,y:-1},terrain:a.b.terrain[0]});assert.equal(a.b.projectiles.length,6);const t=a.foe(1200);for(const q of a.b.projectiles)a.e.hurt(t,q.damage,a.u.id,false,q,q);assert((a.b.shotDamage[`redesign:${p.shot}:M06:${t.id}`]||0)===2);
- const trial=()=>{const b=arena('M13',8),q=b.fire();b.e.impact(q,{x:900,y:1700,t:0,n:{x:0,y:-1},terrain:b.b.terrain[0]});b.run(2);const markers=b.events.filter(e=>e.name==='ring'&&e.size===8);assert.equal(markers.length,14);return b.events.filter(e=>e.name==='ring'&&e.size!==8).map(e=>[e.x,e.y]);};assert.deepEqual(trial(),trial());assert.equal(trial().length,15);
+ const trial=()=>{const b=arena('M13',8),q=b.fire();b.e.impact(q,{x:900,y:1700,t:0,n:{x:0,y:-1},terrain:b.b.terrain[0]});b.run(2);const bursts=b.events.filter(e=>e.name==='fireBloom');assert.equal(bursts.filter(e=>e.size===55).length,14);return bursts.map(e=>[e.x,e.y]);};assert.deepEqual(trial(),trial());assert.equal(trial().length,15);
 });
 test('천뢰호 delay and marker match vertical strike without roof',()=>{
  const a=arena('M05'),p=a.fire();a.e.impact(p,{x:900,y:1800,t:0,n:{x:0,y:-1},terrain:a.b.terrain[0]});for(let i=0;i<41;i++)a.e.stepProjectile(p,1/120);assert(a.b.projectiles.includes(p));a.run(1);const line=a.events.filter(e=>e.name==='lightningBolt').at(-1);assert.equal(line.x,900);assert.equal(line.x2,900);assert(Math.abs(line.y2-1800)<5);
@@ -108,7 +108,7 @@ test('오방봉진 reduces the renewed movement budget once each turn',()=>{
 });
 test('mid-flight save restores every emitter, child mode, volley and stake',()=>{
  for(const id of ['A08','M06','M02','M13','M05']){
-  const a=arena(id,8);a.u.maxHp=a.u.hp=1000;a.foe();const q=a.fire();a.e.impact(q,{x:900,y:1790,t:0,n:{x:0,y:-1},terrain:a.b.terrain[0]});if(id==='M02')q.age=C.ICE_GOURD_FUSE;
+  const a=arena(id,8);a.u.maxHp=a.u.hp=1000;a.foe();const q=a.fire();a.e.impact(q,{x:900,y:1790,t:0,n:{x:0,y:-1},terrain:a.b.terrain[0]});if(id==='M02')q.age=q.fuseAt;
   C.redesignStep(a.e,q,.01);const p=C.defaults();p.saved=a.b;const restored=C.validate(plain(p)).saved;assert(restored);assert.deepEqual(plain(restored.projectiles),plain(a.b.projectiles),id);const e=new C.Engine(restored);for(let i=0;i<1600&&restored.projectiles.length;i++)for(const v of [...restored.projectiles])if(restored.projectiles.includes(v))e.stepProjectile(v,C.STEP);assert.equal(restored.projectiles.length,0,id);
  }
  const a=arena('A04',8);a.u.ranks.AP01=8;a.fire();const p=C.defaults();p.saved=a.b;assert.equal(C.validate(plain(p)).saved.volley.remaining,5);

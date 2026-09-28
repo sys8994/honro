@@ -429,7 +429,7 @@
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '기예를 고르고 자유롭게 시험' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         continue() { if (!this.profile.honroBattle) {
             this.showMap();
             return;
@@ -512,7 +512,7 @@
         else
             u.angle = 270 - clamp(this.displayAngle(u) + v, 5, 180); }
         canInput() { return this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
-        beginCharge() { if(this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&this.engine?.turnArrow()){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
+        beginCharge() { if(this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&this.engine?.turnArrow(this.scene?.turnTarget)){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
             return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || u.focus < this.engine.manaCost(sk, u) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0; return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
@@ -522,7 +522,7 @@
             let u = this.engine.active;
             this.power = this.chargePower();
             u.lastPower = this.power;
-            this.engine.fire(this.selected, u.angle, this.power);
+            this.scene.turnTarget=undefined;this.engine.fire(this.selected, u.angle, this.power);
             this.scene.manual = false;
         } }
         jump() { if (this.canInput()) {
@@ -571,7 +571,7 @@
                 G.HonroUnitInfo.close(this);
                 moved = true;
             } };
-            cv.onpointermove = e => { if (!this.contacts.has(e.pointerId) || !this.scene)
+            cv.onpointermove = e => { if(this.scene&&this.engine?.b.phase==='flight'&&e.pointerType!=='touch'){const q=pos(e);this.scene.turnTarget=this.scene.world(q.x,q.y);} if (!this.contacts.has(e.pointerId) || !this.scene)
                 return; let p = pos(e), old = this.contacts.get(e.pointerId); this.contacts.set(e.pointerId, p); if (this.contacts.size > 1) {
                 let q = pair();
                 if (q && lastPair) {
@@ -683,8 +683,7 @@
             const b=this.engine?.b,inBattle=this.screen==='battle'&&!!b;
             if(inBattle&&this.musicSession!==b.session){this.musicSession=b.session;this.bossMusicSeen=false;}
             if(inBattle&&b.units.some(u=>u.side===1&&!u.dead&&u.hp>0&&(u.boss||u.honroMidboss||u.honroFinalBoss)&&(u.awake||u.honroFinalBoss)))this.bossMusicSeen=true;
-            const modalPause=inBattle&&this.modal.classList.contains('open')&&!this.modal.querySelector('.result');
-            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden||modalPause,inBattle?b.session:undefined);
+            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden,inBattle?b.session:undefined);
             this.updateMusicLabel();
         }
         updateMusicLabel(){

@@ -308,6 +308,7 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
     stakes?: {id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
@@ -376,7 +377,7 @@ export interface Battle {
     session: string;
 }
 export interface FX {
-    kind: 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
+    kind: 'qiBurst' | 'fireBloom' | 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
     x: number;
     y: number;
     vx: number;

@@ -107,7 +107,7 @@ export class HonroPartyVisual{
   projectile(ctx,q,engine){
     if(q.body)return false;
     const id=resolveRebuildCharacter(engine.b.units.find(u=>u.id===q.owner));
-    const part=id==='sodan'&&q.skill==='O01'?'spirit':id==='damheo'&&q.skill==='M01'?'qi':null;
+    const part=id==='sodan'&&q.skill==='O01'?'spirit':null;
     if(!part)return false;
     const asset=this.visuals[id].asset;
     this.flightPaths??={};this.flightPaths[part]??=asset.paths.filter(p=>p.part===part).map(p=>({path:new Path2D(p.d),color:asset.palette[p.fill]}));

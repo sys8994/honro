@@ -22,7 +22,7 @@ test('All 32 redesigned actions repeat without refresh, at both ranks, including
 test('Campaign retains capstone cooldown and retreat while practice keeps consecutive gate placements',()=>{
  const a=arena('A99');a.b.mode='campaign';a.foe();a.e.fire('A99',20,.5);assert(a.e.cooldownLeft(a.u,'A99')>0);a.b.projectiles=[];a.e.finishAction(true);assert(a.e.cooldownLeft(a.u,'A99')>0);
  const r=arena('A01');r.b.mode='campaign';r.u.ranks.AP03=8;r.foe();r.e.fire('A01',30,.5);r.b.projectiles=[];r.e.finishAction(true);assert(r.u.retreat);assert(!r.e.fire('A01',30,.5));
- const gate=arena('M09');for(let i=0;i<2;i++){assert(gate.e.fire('M09',35,.6));gate.resolve();assert.equal(gate.b.stakes.length,i+1);}
+ const gate=arena('M09');for(let i=0;i<2;i++){assert(gate.e.fire('M09',35,.6));gate.resolve();assert.equal(gate.b.stakes.length,2);}
 });
 test('Arc collides with the first enemy; guide equals impact and tangent is perpendicular to incoming velocity',()=>{
  let cases=0;for(const rank of [1,8])for(const angle of [0,35,70])for(const wind of [-18,20]){

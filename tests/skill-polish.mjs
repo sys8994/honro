@@ -27,11 +27,11 @@ test('Every pierced target, including shield absorption, emits its own hit sound
  for(let i=0;i<600&&b.projectiles.length;i++)for(const p of [...b.projectiles])e.stepProjectile(p,C.STEP);
  assert.equal(events.filter(ev=>ev.type==='sound'&&ev.name==='arrowhit').length,6);assert(b.units.slice(2).every(t=>t.hp<t.maxHp));assert(b.units[1].shield<10000);
 });
-test('Ice hits the enemy, reverses velocity, waits 2.4 s and matches preview',()=>{
+test('Ice hits the enemy, reverses velocity, waits the charged fuse and matches preview',()=>{
  for(const rank of [1,8])for(const wind of [-12,18]){
   const {e,b,u,foe,events}=arena('M02',rank),t=foe(610);b.wind=wind;const pr=e.predict(u,C.SKILLS.M02,0,.6);assert(e.fire('M02',0,.6));const q=b.projectiles[0];let reversed=false;
-  for(let i=0;i<400&&b.projectiles.includes(q);i++){const vx=q.vx;e.stepProjectile(q,C.STEP);if(vx>0&&q.vx<0&&q.x<t.x)reversed=true;if(q.age<C.ICE_GOURD_FUSE){assert(b.projectiles.includes(q));assert.equal(t.hp,t.maxHp);}}
-  assert(reversed);assert(q.age>=2.4&&q.age<2.4+C.STEP*1.01);assert(events.some(v=>v.name==='ceramic'));assert.equal(b.projectiles.filter(v=>v.secondary).length,5+rank);
+  for(let i=0;i<800&&b.projectiles.includes(q);i++){const vx=q.vx;e.stepProjectile(q,C.STEP);if(vx>0&&q.vx<0&&q.x<t.x)reversed=true;if(q.age<q.fuseAt){assert(b.projectiles.includes(q));assert.equal(t.hp,t.maxHp);}}
+  assert(reversed);assert(q.age>=C.iceGourdFuse(.6)&&q.age<C.iceGourdFuse(.6)+C.STEP*1.01);assert(events.some(v=>v.name==='ceramic'));assert.equal(b.projectiles.filter(v=>v.secondary).length,5+rank);
   assert(Math.hypot(pr.x-q.x,pr.y-q.y)<1e-7,`ice prediction drift ${Math.hypot(pr.x-q.x,pr.y-q.y)}`);
  }
 });
@@ -39,13 +39,13 @@ test('Every wave skill produces hit sound and an ink impact at actual damage',()
  for(const id of ['M01','M03','M11','M12','M14','M15']){
   const {e,b,foe,events}=arena(id,8);foe(850,1800,{r:1500,h:2000});if(id==='M12')b.terrain.push({id:'roof',x:0,y:1200,w:2200,h:20,hp:99999,maxHp:99999,mat:'rock'});
   assert(e.fire(id,35,.6));for(let i=0;i<1500&&b.projectiles.length;i++)for(const p of [...b.projectiles])if(b.projectiles.includes(p))e.stepProjectile(p,C.STEP);
-  assert(events.some(ev=>ev.type==='sound'&&ev.name==='qiHit'),id);assert(events.some(ev=>ev.type==='fx'&&ev.name==='inkImpact'),id);
+  assert(events.some(ev=>ev.type==='sound'&&ev.name==='qiHit'),id);assert(events.some(ev=>ev.type==='fx'&&ev.name===(id==='M01'?'qiBurst':'inkImpact')),id);
  }
 });
 test('Player descriptions are prose; changing-rank specifications stay in effect rows',()=>{
  const players=Object.values(C.SKILLS).filter(s=>!s.enemyOnly&&/^[AMOS](?:P)?[0-9]{2}$/.test(s.id));assert(players.length>=84);
  for(const s of players){assert(s.desc.length>20,s.id);assert(!/[0-9%×±]|SP|MP|HP|fuse|계수|랭크/.test(s.desc),s.id+': '+s.desc);assert(C.skillEffectRows(s.id,8).length>0,s.id);}
- assert(C.skillEffectRows('M02',1).some(r=>r.value==='2.4초'));assert(C.skillEffectRows('A02',1).some(r=>r.value==='1회'));assert(C.skillEffectRows('A02',8).some(r=>r.value==='5회'));
+ assert(C.skillEffectRows('M02',1).some(r=>r.value.includes('3.2~6.4')));assert(C.skillEffectRows('A02',1).some(r=>r.value==='1회'));assert(C.skillEffectRows('A02',8).some(r=>r.value==='5회'));
 });
 test('All five stakes have distinct color, name and seal',()=>{
  for(const key of ['color','name','mark'])assert.equal(new Set(Object.values(C.STAKE_STYLES).map(s=>s[key])).size,5);

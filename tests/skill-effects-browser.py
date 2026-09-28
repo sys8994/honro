@@ -11,7 +11,7 @@ SETUP=r'''()=>{
  const a=HonroApp,C=HONRO_CORE;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();
  window.effectArena=(id='M15',rank=8)=>{
   a.trainingClass=C.SKILLS[id].cls;a.trainingSkill=id;a.trainingRanks[id]=rank;a.trainingPassives={};a.launch(1,true,id);a.done=false;a.turnNotice=null;a.dialogue=null;
-  const e=a.engine,b=e.b,u=e.active;Object.assign(b,{width:2600,height:1500,wind:0,fields:[],waters:[],drafts:[],zones:[],stakes:[],honroMarkers:[],honroSurfaceZones:[],honroLandmarks:[]});
+  const e=a.engine,b=e.b,u=e.active;Object.assign(b,{practiceCombat:false,width:2600,height:1500,wind:0,fields:[],waters:[],drafts:[],zones:[],stakes:[],honroMarkers:[],honroSurfaceZones:[],honroLandmarks:[]});
   b.terrain=[{id:'floor',x:0,y:1100,w:2600,h:400,hp:99999,maxHp:99999,mat:'rock'}];b.units=[u];Object.assign(u,{x:400,y:1100,spawnX:400,spawnY:1100,vx:0,vy:0,airborne:false,jumping:false,acted:false,attack:1,ranks:{[C.baseSkill(u.cls)]:1,[id]:rank},loadout:[id],focus:1000,maxFocus:1000,cooldowns:{},angle:35});
   b.phase='aim';b.active=u.id;b.rng=194512;b.sceneVersion++;a.selected=id;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,x:980,y:960,scale:.9});a.scene.arcFx.fxs=[];
   window.effectEvents=[];const emit=e.onEvent;e.onEvent=ev=>{effectEvents.push(ev);emit(ev);};a.updateHUD(true);
@@ -55,7 +55,7 @@ with sync_playwright() as p:
     page.evaluate("{const a=HonroApp;a.trainingClass='mage';a.trainingSkill='M15';a.profile.settings.playerSpeed=4;a.launch(1,true,'M15');a.frame=Object.getPrototypeOf(a).frame;a.prev=performance.now();requestAnimationFrame(t=>a.frame(t));}")
     for i in range(2):
         page.locator('#fire').dispatch_event('pointerdown',{'pointerId':1,'button':0,'isPrimary':True});page.wait_for_timeout(130);page.locator('#fire').dispatch_event('pointerup',{'pointerId':1,'button':0,'isPrimary':True});page.wait_for_function("HonroApp.engine.b.phase==='aim'&&HonroApp.canInput()&&HonroApp.engine.cooldownLeft(HonroApp.engine.active,'M15')===0")
-    check('Actual animation loop supports two consecutive capstone casts',page.evaluate('HonroApp.engine.b.shot')==2);page.evaluate('HonroApp.frame=()=>{}')
+    check('Actual animation loop supports two consecutive capstone casts',page.evaluate('HonroApp.engine.b.shots')==2);page.evaluate('HonroApp.frame=()=>{}')
     page.close()
     editor=browser.new_page(viewport={'width':1440,'height':900});editor.on('pageerror',lambda e:errors.append(str(e)));editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI');snapshot=editor.evaluate('HonroWorkshopAPI.exportProject()');editor.click('[data-tab=play]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine');play=editor.frames[1];play.on('pageerror',lambda e:errors.append(str(e)));repeats(play,'Workshop')
     for id in ['M03','M15','M05']:

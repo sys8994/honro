@@ -14,7 +14,7 @@ for name in ['integration','editor-features','authored','audio-unit','audio-brow
 for name in ['stage12-redesign/checks','stage12-redesign/browser']:
     data=read(name+'.json');assert not data.get('failed') and not data.get('errors'),name
     lines.append(f'| {name} | PASS · {len(data["checks"])} checks |')
-for name in ['skill-redesign/unit','skill-redesign/browser','skill-polish/unit','skill-polish/browser','skill-effects/unit','skill-effects/browser']:
+for name in ['skill-redesign/unit','skill-redesign/browser','skill-polish/unit','skill-polish/browser','skill-effects/unit','skill-effects/browser','field-polish/unit','field-polish/browser']:
     data=read(name+'.json');assert not data.get('errors'),name
     checks=data.get('checks',data.get('results',[]));assert checks and all(c.get('pass',True) for c in checks),name
     lines.append(f'| {name} | PASS · {len(checks)} checks |')

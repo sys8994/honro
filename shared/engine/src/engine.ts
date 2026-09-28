@@ -587,12 +587,12 @@ export class Engine {
         if(p&&newSkill(p)&&(dmg>0||absorbed>0)){
             const skill=SKILLS[p.skill],wave=skill.branch==='wave'||skill.id==='M01';
             this.emit('sound',{name:skill.cls==='archer'?'arrowhit':wave?'qiHit':'hit'});
-            if(wave)this.emit('fx',{name:'inkImpact',x:u.x,y:u.y-u.h*.5,x2:p.vx,y2:p.vy,color:'#dde0d3',size:Math.min(52,24+Math.sqrt(dmg))});
+            if(wave&&skill.id!=='M01')this.emit('fx',{name:'inkImpact',x:u.x,y:u.y-u.h*.5,x2:p.vx,y2:p.vy,color:'#dde0d3',size:Math.min(52,24+Math.sqrt(dmg))});
         }
         if (dmg) {
             const actual = Math.min(u.hp, dmg);
             if(!p)this.emit('sound',{name:'hit'});
-            u.hp = Math.max(0, u.hp - dmg);
+            u.hp = Math.max(this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1?1:0, u.hp - dmg);
             if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*.08*equippedRank(u,'SP05')));this.fx('rune',u.x,u.y-u.h*.5,'#f1d09b',100);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
             u.hurt = .7;
@@ -679,8 +679,9 @@ export class Engine {
         if (depth > 8)
             return;
         const radius = Math.max(r, 1), s = p ? SKILLS[p.skill] : undefined;
-        this.fx('burst', x, y, p?.color || '#edb16e', radius);
-        this.fx('ring', x, y, p?.color || '#efc99b', radius);
+        if(s?.redesigned&&s.id==='M01')this.fx('qiBurst',x,y,'#e5ebdf',radius);
+        else if(s?.redesigned&&['M06','M13'].includes(s.id))this.fx('fireBloom',x,y,'#eaaa65',radius);
+        else {this.fx('burst', x, y, p?.color || '#edb16e', radius);this.fx('ring', x, y, p?.color || '#efc99b', radius);}
         this.emit('sound', { name: radius > 105 ? 'boom' : 'hit', value: radius });
         for (const u of this.b.units) {
             if (u.dead || (body && u.id === owner) || ((p?.mode === 'spin'||p?.mode==='charge'||p?.mode==='cataclysmCharge') && p.hit.includes(u.id)))
@@ -817,7 +818,7 @@ export class Engine {
         for(const u of this.alive(0).filter(v=>v.summoned))if(u.summonExpires!==undefined&&b.round>u.summonExpires){u.dead=true;u.hp=0;}
         const queue=this.alive(0).filter(u=>u.summoned).map(u=>u.id);
         if(!queue.length||!this.alive(1).length)return 0;
-        b.summonTurn={queue,index:0,stage:'approach',elapsed:0,hold:0,returnActive:b.active,practice:b.mode==='practice'};
+        b.summonTurn={queue,index:0,stage:'approach',elapsed:0,hold:0,returnActive:b.active,practice:b.mode==='practice'&&!b.practiceCombat};
         b.phase='summon';b.side=0;b.turnAge=0;b.reviewDamage={};b.volley=undefined;
         this.message(`소환귀 차례 · ${queue.length}`);this.emit('change');this.emit('save');return queue.length;
     }
@@ -1326,7 +1327,7 @@ export class Engine {
         if (u.dead)
             return;
         const fall = Math.ceil(u.maxHp * .2);
-        u.hp = Math.max(0, u.hp - fall);
+        u.hp = Math.max(this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1?1:0, u.hp - fall);
         u.hurt = .7;
         this.fx('text', u.x, Math.min(this.b.height, u.y - u.h), '#efa797', 18, '−' + fall);
         if (u.hp === 0) {
@@ -1574,7 +1575,7 @@ export class Engine {
         }
         b.projectiles = []; b.volley=undefined;
         b.resolveAge = 0;
-        if (b.mode === 'practice') {if(this.runSummonTurn()>0)return;this.resetPractice();return;}
+        if (b.mode === 'practice'&&!b.practiceCombat) {if(this.runSummonTurn()>0)return;this.resetPractice();return;}
         if (this.checkEnd())
             return;
         const pending = this.alive(b.side).filter(a => (b.side!==0||!a.summoned) && !a.acted && (b.side !== 1 || b.queue.includes(a.id)));
@@ -1651,6 +1652,7 @@ export class Engine {
             if (u.side !== 2)
                 u.focus = clamp(u.focus + u.regen, 0, u.maxFocus);
         }
+        if(b.mode==='practice'&&b.practiceCombat){b.cast=undefined;for(const u of b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead)){u.focus=u.maxFocus;u.cooldowns={};delete u.retreat;}}
         b.zones = b.zones.filter(z => z.expires >= b.round);
         for (const t of b.terrain) {
             if (t.expires && t.expires <= b.round && !t.broken) {

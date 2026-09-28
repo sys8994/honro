@@ -73,8 +73,36 @@ function ally(b,st,id,role,x,y){
 }
 function midboss(b,st,id,name,kind,x,y){const u=createEnemy(b,st,x,kind,900+st.id,y,true);Object.assign(u,{id,name,awake:true,aggroUntil:999,group:-3,honroMidboss:true,elite:true});u.armor=Math.max(u.armor||0,.14);G.HonroProgression.tuneMidboss(b,st,u);u.spawnX=u.x;u.spawnY=u.y;return u;}
 
+function trainingWorld(st,profile,cls,skill,legacy){
+ const b=legacy(st,profile,true,cls,skill);Object.assign(b,{width:5600,height:2300,practiceCombat:true,practiceWind:7,enemyLimit:2,honroRevision:20,terrain:[],waters:[],drafts:[],decor:[],honroLandmarks:[],honroSurfaceZones:[]});
+ const floor=(id,x,w,y,slope=0)=>b.terrain.push({id,x,y,w,h:2300-y,mat:'rock',slope,hp:99999,maxHp:99999,indestructible:true,route:true});
+ floor('training-west',0,620,1400);floor('training-descent',620,530,1400,240);floor('training-stream-bed',1150,550,1640);
+ floor('training-ridge-ascent',1700,700,1640,-520);floor('training-ridge',2400,560,1120);floor('training-ridge-descent',2960,680,1120,470);
+ floor('training-lake-bed',3640,810,1590);floor('training-east-ascent',4450,750,1590,-350);floor('training-east',5200,400,1240);
+ // One continuous polygon keeps the hill, valley and ground shading connected.
+ const ground=b.terrain,crest=ground.map(t=>({x:t.x,y:t.y}));crest.push({x:5600,y:1240});
+ b.terrain=[{id:'training-ground',x:0,y:1120,w:5600,h:1580,vertices:[...crest,{x:5600,y:2700},{x:0,y:2700}],mat:'rock',hp:99999,maxHp:99999,indestructible:true,route:true}];
+ ground.forEach((t,i)=>{const a=[t.x,t.y],z=[t.x+t.w,t.y+(t.slope||0)];b.honroSurfaceZones.push({id:'training-surface-'+i,kind:['grass-mass','moss-mass','mud-mass','exposed-rock-mass','stone-road','dry-grass-mass','mud-mass','grass-mass','moss-mass'][i],points:[a,z,[z[0],z[1]+65],[a[0],a[1]+65]],surface:[a,z],attached:true});});
+ const ledge=(id,x,y,w)=>b.terrain.push({id,x,y,w,h:22,mat:'wood',hp:210,maxHp:210,oneWay:true,route:true});
+ ledge('training-bridge',1180,1450,450);ledge('training-perch',2540,890,210);ledge('training-lake-ledge',3860,1380,230);
+ b.terrain.push({id:'training-barrel',x:2820,y:1060,w:45,h:60,mat:'barrel',hp:48,maxHp:48});
+ for(const [x,y,w,depth] of [[1150,1530,550,110],[3640,1480,810,110]]){
+  b.waters.push({x,y,w,depth,frozen:0,kind:'water',conductive:true,bottom:[{x,y:y+depth},{x:x+w,y:y+depth}]});
+  b.honroSurfaceZones.push({id:'training-water-'+x,kind:'water-pool',points:[[x,y],[x+w,y],[x+w,y+depth],[x,y+depth]],surface:[[x,y],[x+w,y]],bottom:[[x,y+depth],[x+w,y+depth]],attached:true});
+ }
+ b.drafts.push({x:1840,y:950,w:160,h:570,force:260});
+ for(const [kind,x,size] of [['giantPine',130,1.1],['forestPath',550,1.4],['waterShrine',1370,.8],['rockPile',1840,1.1],['gate',2490,.8],['deadPines',2920,1.3],['watchtower',3320,.9],['reeds',3900,1.2],['waterShrine',4270,1],['Pines',4970,1.4],['ruin',5410,1],['giantPine',2770,.65]])b.honroLandmarks.push({kind,x,y:top(b,x,2200),size,layer:'back'});
+ for(const x of [450,860,1770,2230,3050,4540,5080,5480])b.honroLandmarks.push({kind:'fernPatch',x,y:top(b,x,2200),size:1.3,layer:'prop'});
+ const hero=b.units.find(u=>u.side===0);b.units=[hero];C.applyHero(hero,b.heroes[cls],true);Object.assign(hero,{x:340,y:1400,spawnX:340,spawnY:1400,acted:false,cooldowns:{},vx:0,vy:0});
+ const kinds=['human','hound','crow','ghost','warden','bat','boar','lantern','shade','human','stag','mourner'];
+ [760,1180,1560,2110,2590,2870,3320,3820,4170,4610,5010,5380].forEach((x,i)=>{
+  const u=createEnemy(b,{...st,w:b.width},x,kinds[i],i,top(b,x));u.name+=' · 수련';
+  Object.assign(u,{hp:130+(i%4)*45,maxHp:130+(i%4)*45,attack:.72,armor:.04,awake:true,aggroUntil:0,group:Math.floor(x/1200),cooldowns:{},focus:180,maxFocus:180});b.units.push(u);
+ });
+ b.active=hero.id;b.sceneVersion++;return b;
+}
 function build(st,profile,training,cls,skill,legacy){
- if(training){const b=legacy({...st,w:2400,h:1380},profile,true,cls,skill);b.honroRevision=20;return b;}
+ if(training)return trainingWorld(st,profile,cls,skill,legacy);
  const project=G.HONRO_PROJECT,map=project.stages.find(s=>s.metadata.stageId===st.id);
  if(!map)throw Error('Missing canonical stage '+st.id);
  return G.HonroMaps.createBattle(map,project,profile);
