@@ -2,6 +2,8 @@
 
 2026-09-29. 대상: 본게임 `HONRO.html` 및 같은 런타임을 사용하는 `HONRO_WORKSHOP.html` Playtest.
 
+같은 날 후속 조정으로 근접 사거리 20% 감소, 21종 아이콘 구분, 검기/돌격 잔상과 동행별 각도 가이드를 반영했다. 최신 통합 검증은 [VALIDATION.md](../../VALIDATION.md), 변경 근거는 [HBUG-039/040](BUG_LOG.md)에 있다.
+
 기존 허공터·기예 후속 수정은 먼저 `97d6e7f`로 커밋했다. 이 문서는 그 뒤의 새 개편을 설명한다. [요청 명세](HONRO_SKILL_REDESIGN_HWIGYEOM_P5.md).
 
 ## 데이터와 행동

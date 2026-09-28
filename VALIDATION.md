@@ -38,6 +38,7 @@ npm.cmd run verify
 | audio-unit | PASS · 14 checks |
 | audio-browser | PASS · 69 checks |
 | bgm-transitions | PASS · 68 checks |
+| aim-direction/browser | PASS · 58 checks |
 | stage12-redesign/checks | PASS · 18 checks |
 | stage12-redesign/browser | PASS · 9 checks |
 | skill-redesign/unit | PASS · 35 checks |
@@ -50,6 +51,8 @@ npm.cmd run verify
 | field-polish/browser | PASS · 24 checks |
 | hwigyeom-p5/unit | PASS · 38 checks |
 | hwigyeom-p5/browser | PASS · 37 checks |
+| skill-tuning/unit | PASS · 6 checks |
+| skill-tuning/browser | PASS · 20 checks |
 | story-rewrite/unit | PASS · 8 checks |
 | story-rewrite/browser | PASS · 61 checks |
 | migration | PASS · 10 stages × 3 difficulties |
@@ -58,22 +61,24 @@ npm.cmd run verify
 
 | Stage / viewport / zoom | Original Hz / ms | Game Hz / ms | Editor Hz / ms | Original / Game / Editor load ms |
 |---|---|---|---|---|
-| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 60.02 / 1.010 | 60.02 / 0.703 | 83.4 / 119.9 / 40.8 |
-| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 60.12 / 1.402 | 59.87 / 1.302 | 106.2 / 120.4 / 74 |
-| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.01 / 1.441 | 60.01 / 1.236 | 102.3 / 69.5 / 36 |
-| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 60.01 / 1.847 | 60.08 / 1.732 | 99 / 119.1 / 70.3 |
-| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.05 / 1.358 | 60.08 / 1.159 | 87.6 / 72.3 / 34.8 |
-| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 60.00 / 1.614 | 59.90 / 1.337 | 99.2 / 106.3 / 56.8 |
+| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 60.08 / 0.926 | 59.99 / 0.739 | 83.4 / 93.2 / 47.3 |
+| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 60.06 / 1.553 | 60.02 / 1.340 | 106.2 / 96 / 62 |
+| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.00 / 1.401 | 60.01 / 1.209 | 102.3 / 67.5 / 30.6 |
+| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.99 / 1.736 | 60.04 / 1.627 | 99 / 98.8 / 50.4 |
+| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 59.98 / 1.420 | 60.49 / 1.177 | 87.6 / 63.7 / 28.8 |
+| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 60.01 / 1.569 | 59.98 / 1.456 | 99.2 / 93.4 / 52.8 |
 
 | Metric | Original | Game | Editor |
 |---|---|---|---|
-| renderMaxMs | 3.70 ms … 5.40 ms | 1.60 ms … 3.00 ms | 1.20 ms … 3.90 ms |
-| heapDelta | -0.436 MB … 1.311 MB | -0.333 MB … 2.269 MB | -2.329 MB … 2.420 MB |
+| renderMaxMs | 3.70 ms … 5.40 ms | 1.60 ms … 2.60 ms | 1.10 ms … 2.80 ms |
+| heapDelta | -0.436 MB … 1.311 MB | -1.916 MB … 1.959 MB | -0.604 MB … 2.318 MB |
 | warmCacheRebuilds | 0 … 0 | 0 … 0 | 0 … 0 |
 
 Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. Original은 RC21 원본 지형이고 Game/Editor는 개편 지형이므로 동일 콘텐츠의 성능 비교는 아닙니다. 수치 원본: [before](tests/fixtures/performance-before.json), [game](_local/reports/performance-game.json), [editor](_local/reports/performance-editor.json).
 정적 cache 바이트 예산과 build/hit 횟수도 각 JSON에 포함됩니다.
 <!-- RESULTS_END -->
+
+검증 범위: 전체 verify는 기록된 HTML SHA256 기준입니다. 이후 병렬 몬스터 작업이 HTML을 다시 빌드하여 이번 기예·방향선 요청의 84개 검사를 최신 두 HTML에서 재실행했고 모두 통과했습니다. [최신 산출물·재검사 기록](_local/reports/skill-tuning/latest-artifacts-check.json). 몬스터 미술 자체의 전체 검증은 포함하지 않습니다.
 
 ## 원본 대비 보관된 회귀 검사
 
