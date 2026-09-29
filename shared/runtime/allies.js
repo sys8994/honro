@@ -13,8 +13,8 @@ function* safeAllyAimSteps(e,u,skill,target){
  const maxRange=u.allyRole==='daoist'?1550:u.allyRole==='medium'?1320:1100;
  if(Math.hypot(target.x-u.x,(target.y-u.y)*.75)>maxRange)return null;
  const base=yield* e.searchShot(u,skill,target,false,.82);
- const angles=[0,-14,-8,-4,4,8,14],powers=[0,-.18,-.10,.10,.18];
- for(const da of angles)for(const dp of powers){const a={angle:clamp(base.angle+da,-85,265),power:clamp(base.power+dp,.08,.82),score:0};const result=C.shotViable(e,u,skill,target,a.angle,a.power);a.score=(result.net||0)*2-result.miss*.1;yield;if(result.ok)return a;}
+ const a={...base,angle:clamp(base.angle,-85,265),power:clamp(base.power,.08,.82)};
+ const result=C.shotViable(e,u,skill,target,a.angle,a.power);yield;if(result.ok)return a;
  return null;
 }
 function* allyShot(e,u,skill,targets){for(const target of targets){const aim=yield* safeAllyAimSteps(e,u,skill,target);if(aim)return{aim,targetId:target.id};}return null;}
@@ -62,7 +62,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   else {log(e,u,'advance',u.id);q.phase='after';q.elapsed=0;}
  }
  if(q.phase==='flight'){for(const shot of [...b.projectiles])if(b.projectiles.includes(shot))e.stepProjectile(shot,dt);e.stepUnits(dt);if(!b.projectiles.length&&!e.settleBusy()){q.phase='after';q.elapsed=0;}}
- if(q.phase==='after'){e.stepUnits(dt);if(q.elapsed>=C.ACTION_REVIEW_SECONDS)finish(e,q);}
+ if(q.phase==='after'){e.stepUnits(dt);if(q.elapsed>=e.actionReviewSeconds())finish(e,q);}
 }
 function missionTick(app,dt){G.HonroMission.tick(app,dt);}
 function restore(e,f){for(const u of coalition(e)){u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*f));if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*(f+.10)));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}}

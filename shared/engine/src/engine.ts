@@ -52,13 +52,17 @@ export class Engine {
     private terrainOrder = new Map<Terrain, number>();
     private indexedVersion = -1;
     private indexedCount = -1;
-    private planningDeadline=Infinity;
+    private planningRemaining=Infinity;
     private enemyPlanning?:{key:string;steps:Generator<void,void,unknown>};
     /** Runtime-only work budget; saves resume an unfinished decision from its input state. */
-    planningBudget(ms?:number){this.planningDeadline=ms===undefined?Infinity:performance.now()+ms;}
+    planningBudget(ms?:number){this.planningRemaining=ms??Infinity;}
     planningKey(){const b=this.b;return [b.active,b.round,b.sceneVersion,b.physics?.revision,b.wind,b.rng,...b.units.map(u=>`${u.id}:${u.x}:${u.y}:${u.hp}:${u.shield}:${u.focus}:${u.dead}`)].join('|');}
     continuePlanning<T>(steps:Generator<void,T,unknown>):IteratorResult<void,T>|undefined{
-        while(performance.now()<this.planningDeadline){const next=steps.next();if(next.done)return next;}
+        while(this.planningRemaining>0){
+            const timed=Number.isFinite(this.planningRemaining),start=timed?performance.now():0,next=steps.next();
+            if(timed)this.planningRemaining-=Math.max(0,performance.now()-start);
+            if(next.done)return next;
+        }
     }
     constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; this.b = b; for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
@@ -353,10 +357,29 @@ export class Engine {
         return seeds;
     }
     bestShot(u: Unit, s: Skill, target: Unit, allowAllyTarget=false,maxPower=1){return finishPlanning(this.searchShot(u,s,target,allowAllyTarget,maxPower));}
+    /** Conservative free-flight envelope for the ordinary HONRO enemy projectiles.
+     * Reject only when no opposing body/blast can be reached at ANY launch angle.
+     * Non-uniform forces and special player skills retain full prediction. */
+    npcShotInReach(u:Unit,s:Skill,allowedTarget?:Unit,maxPower=1){
+        if(!s.mode.startsWith('honro')||this.b.fields.length||this.b.drafts.length||this.b.physics?.regions?.length)return true;
+        const eff=this.effective(s,u),o=this.origin(u,0),a=this.forceSample({...o,wind:s.wind,gravityScale:s.gravity??1,drag:dragFor(s),skill:s.id});
+        if(a.k<0)return true;
+        const speed=(270+535*maxPower)*eff.speed,reach=Math.abs(o.x-u.x),duration=6,step=.25;
+        // Every continuous point lies within this distance of a sampled time.
+        const margin=(speed+Math.hypot(a.x,a.y)*duration)*step*.5+7;
+        const opponents=this.b.units.filter(v=>!v.dead&&(v.side!==u.side||v.id===allowedTarget?.id));
+        for(let t=0;t<=duration;t+=step){
+            const F=a.k<1e-7?t:-Math.expm1(-a.k*t)/a.k,Q=a.k<1e-7?t*t*.5:(t-F)/a.k;
+            const x=u.x+a.x*Q,y=o.y+a.y*Q,r=reach+speed*F+eff.radius+margin;
+            if(opponents.some(v=>Math.hypot(x-v.x,y-(v.y-v.h*.5))<=r+Math.hypot(v.r,v.h*.5)))return true;
+        }
+        return false;
+    }
     *searchShot(u:Unit,s:Skill,target:Unit,allowAllyTarget=false,maxPower=1):Generator<void,{angle:number;power:number;score:number},unknown>{
         if(this.bestShot!==Engine.prototype.bestShot)return this.bestShot(u,s,target,allowAllyTarget);
         const right = target.x > u.x, blast = this.effective(s, u).radius;
         let best = { angle: right ? 45 : 135, power: Math.min(.62,maxPower), score: -1e9 },useful=false;
+        if(u.side!==0&&!this.npcShotInReach(u,s,allowAllyTarget?target:undefined,maxPower))return best;
         const score = (a: number, p: number) => {
             const hit = this.predict(u, s, a, p, target, false);
             const d = Math.hypot(hit.x - target.x, hit.y - (target.y - target.h * .52));
@@ -378,8 +401,14 @@ export class Engine {
             const sc=score(seed.angle,seed.power);if(sc>best.score)best={...seed,score:sc};
             yield;if(useful)return {...seed,score:sc};
         }
-        for (let elev = target.y > u.y+90 ? -65 : 10; elev <= 86; elev += 8)
-            for (let p = .20; p <= maxPower+.001; p += .085) {
+        // A blocked NPC lane used to exhaust hundreds of samples per skill/target.
+        // Cover low/high arcs at coarse powers, then refine the best neighbourhood.
+        // Player-facing analysis retains the full precision grid.
+        const npc=u.side!==0;
+        const elevations=npc?(target.y>u.y+90?[-65,-35,-5,25,50,70,86]:[10,25,40,55,70,86]):Array.from({length:Math.floor((86-(target.y>u.y+90?-65:10))/8)+1},(_,i)=>(target.y>u.y+90?-65:10)+i*8);
+        const powers=npc?[.25,.5,.75,1].map(p=>p*maxPower):Array.from({length:Math.floor((maxPower+.001-.20)/.085)+1},(_,i)=>.20+i*.085);
+        for (const elev of elevations)
+            for (const p of powers) {
                 const a = right ? elev : 180 - elev, sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
@@ -387,8 +416,8 @@ export class Engine {
                 if(u.side!==0&&useful)return {angle:a,power:p,score:sc};
             }
         const initial = { ...best };
-        for (let da = -6; da <= 6; da += 3)
-            for (let dp = -.07; dp <= .07; dp += .035) {
+        for (let da = -6; da <= 6; da += npc?6:3)
+            for (let dp = -.07; dp <= .07; dp += npc?.07:.035) {
                 const a = clamp(initial.angle + da, AIM_MIN, AIM_MAX), p = clamp(initial.power + dp, .1, maxPower), sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
@@ -535,7 +564,8 @@ export class Engine {
       }
     }
     releaseCarried(p:Projectile){for(const id of p.carry||[]){const u=this.unit(id);if(!u)continue;delete u.carriedBy;if(!u.dead){u.jumping=false;this.impulse(u,clamp(p.vx*.28,-240,240),-90);}}p.carry=[];}
-    surface(x:number,min=-1500,max=this.b.height+200){return terrainSurface(this.b.terrain,x,min,max);}
+    // Include seam neighbours and buried-surface occluders, preserving terrain order.
+    surface(x:number,min=-1500,max=this.b.height+200){return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max);}
     item(kind: string) {
         if(this.active?.retreat)return false;
         if (!this.canAct() || !this.b.items[kind])
@@ -1611,12 +1641,13 @@ export class Engine {
             this.emit('change');
             return;
     }
+    actionReviewSeconds(){return this.active?.side!==0&&!Object.keys(this.b.reviewDamage||{}).length?.18:ACTION_REVIEW_SECONDS;}
     finishAction(reviewed=false) {
         const b = this.b, u = this.active;
         if(finishWarrior(this))return;
         if(u)arrowTurn(this,u);
         if(finishRedesign(this,reviewed))return;
-        if(b.mode!=='practice'&&!reviewed){b.phase='review';b.reviewLeft=ACTION_REVIEW_SECONDS;b.reviewFocus??=u?{x:u.x,y:u.y-u.h}:undefined;this.emit('change');this.emit('save');return;}
+        if(b.mode!=='practice'&&!reviewed){b.phase='review';b.reviewLeft=this.actionReviewSeconds();b.reviewFocus??=u?{x:u.x,y:u.y-u.h}:undefined;this.emit('change');this.emit('save');return;}
         if (u) {
             delete u.moveTarget;
             delete u.aiMove;
@@ -1761,9 +1792,10 @@ export class Engine {
             u.intent = ENEMIES[u.role]?.intent || '대기';
     } }
     enemyAction(){
-        if(performance.now()>=this.planningDeadline)return;
+        if(this.active?.aiMove||this.active?.moveTarget!==undefined)return;
+        if(this.planningRemaining<=0)return;
         const key=this.planningKey();if(!this.enemyPlanning||this.enemyPlanning.key!==key)this.enemyPlanning={key,steps:this.enemyActionSteps()};
-        const work=this.enemyPlanning;do{if(work.steps.next().done){this.enemyPlanning=undefined;return;}}while(performance.now()<this.planningDeadline);
+        const work=this.enemyPlanning;if(this.continuePlanning(work.steps)){this.enemyPlanning=undefined;return;}
         work.key=this.planningKey();
     }
     private *enemyActionSteps():Generator<void,void,unknown>{

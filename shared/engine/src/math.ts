@@ -34,10 +34,10 @@ export function terrainContains(t:Terrain,x:number,y:number,epsilon=0){
     const v=poly(t);let inside=false,minD=Infinity;
     for(let i=0,j=v.length-1;i<v.length;j=i++){
         const a=v[j],b=v[i],dx=b.x-a.x,dy=b.y-a.y,n=dx*dx+dy*dy,q=n?clamp(((x-a.x)*dx+(y-a.y)*dy)/n,0,1):0;
-        minD=Math.min(minD,Math.hypot(x-a.x-q*dx,y-a.y-q*dy));
+        const ex=x-a.x-q*dx,ey=y-a.y-q*dy;minD=Math.min(minD,ex*ex+ey*ey);
         if((a.y>y)!==(b.y>y)&&x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)inside=!inside;
     }
-    return inside||minD<=epsilon;
+    return inside||epsilon>=0&&minD<=epsilon*epsilon;
 }
 export function terrainRectIntersects(t:Terrain,x:number,y:number,w:number,h:number,epsilon=.05){
     if(t.broken||x+w<=t.x+epsilon||x>=t.x+t.w-epsilon||y+h<=t.y+epsilon||y>=t.y+t.h-epsilon)return false;
@@ -63,8 +63,14 @@ export function segRect(a: Vec, b: Vec, x: number, y: number, w: number, h: numb
 export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
     if (!t.vertices?.length && !t.slope) return segRect(a,b,t.x,t.y,t.w,t.h,pad);
     const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y;let best:{t:number;n:Vec}|null=null;
+    const left=Math.min(a.x,b.x)-pad,right=Math.max(a.x,b.x)+pad,top=Math.min(a.y,b.y)-pad,bottom=Math.max(a.y,b.y)+pad;
     for(let i=0;i<pts.length;i++){
-        const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y,len=Math.hypot(ex,ey);if(len<1e-8)continue;
+        const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y;
+        // Detailed ground contours have many distant edges. Reject those before
+        // normalising; retain the narrow phase's extended endpoint tolerance.
+        const margin=1e-7+1e-8*(Math.abs(dx)+Math.abs(dy)+Math.abs(ex)+Math.abs(ey));
+        if(Math.max(p.x,q.x)<left-margin||Math.min(p.x,q.x)>right+margin||Math.max(p.y,q.y)<top-margin||Math.min(p.y,q.y)>bottom+margin)continue;
+        const len=Math.hypot(ex,ey);if(len<1e-8)continue;
         const nx=ey/len,ny=-ex/len;
         // Critical RC11 rule: resting on or moving tangentially along a polygon must not collide with its supporting face.
         // Only motions entering the solid can hit that edge. This removes the move/jump/fire lock on polygon tops.

@@ -47,8 +47,9 @@ function tick(app,dt){
    }
    if(m.type==='relic'&&!m.collected){m.collected=true;app.event('길에 남은 기록을 주웠다.');}
  }
- // Stage 5: Damheo's position is the gate. Leaving the receiving array closes the actual projectile blocker.
- if(st.id===5){const ritual=hs.ritual,veil=b.terrain.find(t=>t.id==='waterfall-veil'),cleat=b.terrain.find(t=>t.id==='cliff-cleat'),marker=b.honroMarkers.find(m=>m.id==='receiver-5'),holder=ritual?.holderId?e.unit(ritual.holderId):null;const valid=!!ritual?.active&&!!holder&&!holder.dead&&holder.hp>0&&holder.cls==='mage'&&!!marker&&Math.abs(holder.x-marker.x)<=125&&Math.abs(holder.y-marker.y)<=80&&e.grounded(holder);if(cleat?.broken){if(ritual)ritual.active=false;hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}if(marker)marker.collected=true;}else if(valid){hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}}else{if(ritual?.active){ritual.active=false;app.event('담허가 받이진에서 벗어나 물틈이 다시 닫혔다.');}hs.waterfallSight=false;if(veil?.broken){veil.broken=false;b.sceneVersion++;}}}
+ // Once started, only leaving the array (or losing the holder) releases it.
+ // grounded() includes velocity: a small hit used to cancel it before any movement.
+ if(st.id===5){const ritual=hs.ritual,veil=b.terrain.find(t=>t.id==='waterfall-veil'),cleat=b.terrain.find(t=>t.id==='cliff-cleat'),marker=b.honroMarkers.find(m=>m.id==='receiver-5'),holder=ritual?.holderId?e.unit(ritual.holderId):null;const valid=!!ritual?.active&&!!holder&&!holder.dead&&holder.hp>0&&holder.cls==='mage'&&!!marker&&Math.abs(holder.x-marker.x)<=125&&Math.abs(holder.y-marker.y)<=80;if(cleat?.broken){if(ritual)ritual.active=false;hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}if(marker)marker.collected=true;}else if(valid){hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}}else{if(ritual?.active){ritual.active=false;app.event('담허가 받이진에서 벗어나 물틈이 다시 닫혔다.');}hs.waterfallSight=false;if(veil?.broken){veil.broken=false;b.sceneVersion++;}}}
  const obj=e.unit('objective');
  if(st.objective==='rescue'&&obj&&!obj.dead){
    if(!hs.rescued&&heroes.some(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205))hs.rescuePending=true;

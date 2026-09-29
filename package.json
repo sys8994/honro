@@ -11,7 +11,7 @@
     "test:progress-hud": "node tests/progress-hud.mjs && python -X utf8 tests/progress-hud-browser.py",
     "test:story": "node tests/story-rewrite.mjs && python -X utf8 tests/story-rewrite-browser.py && npm run test:combat-story",
     "test:combat-story": "node tests/combat-story-update.mjs && python -X utf8 tests/combat-story-browser.py && npm run test:finale",
-    "test:finale": "node tests/finale-update.mjs && node tests/attack-tempo-finale.mjs && node game/tests/tactics-audit.mjs && python -X utf8 tests/finale-browser.py && python -X utf8 tests/attack-tempo-finale-browser.py",
+    "test:finale": "node tests/finale-update.mjs && node tests/attack-tempo-finale.mjs && node game/tests/tactics-audit.mjs && node tests/npc-latency.mjs && python -X utf8 tests/finale-browser.py && python -X utf8 tests/attack-tempo-finale-browser.py && python -X utf8 tests/npc-latency-browser.py",
     "test:performance": "python -X utf8 tests/performance.py HONRO.html _local/reports/performance-game.json && python -X utf8 tests/performance.py HONRO_WORKSHOP.html _local/reports/performance-editor.json && python -X utf8 tests/performance-combat.py after",
     "test:skills": "node tests/skill-redesign.mjs && node tests/skill-polish.mjs && node tests/skill-effects.mjs && node tests/field-polish.mjs && python -X utf8 tests/skill-redesign-browser.py && python -X utf8 tests/skill-polish-browser.py && python -X utf8 tests/skill-effects-browser.py && python -X utf8 tests/field-polish-browser.py && npm run test:hwigyeom && npm run test:skill-presentation",
     "test:hwigyeom": "node tests/hwigyeom-p5.mjs && python -X utf8 tests/hwigyeom-p5-browser.py && npm run test:skill-tuning",

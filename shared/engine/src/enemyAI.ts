@@ -130,7 +130,8 @@ function positionScore(e:Engine,u:Unit,target:Unit,p:Vec){
  return score;
 }
 /** Read-only travel probe. At most one normal jump on this leg, with swept body collisions. */
-export function traceTravel(e:Engine,u:Unit,from:Vec,to:Vec,budget:number):{cost:number;jump:boolean;jumpX?:number}|null{
+export function traceTravel(e:Engine,u:Unit,from:Vec,to:Vec,budget:number){return finishPlanning(traceTravelSteps(e,u,from,to,budget));}
+function* traceTravelSteps(e:Engine,u:Unit,from:Vec,to:Vec,budget:number):Generator<void,{cost:number;jump:boolean;jumpX?:number}|null,unknown>{
  const dx=to.x-from.x,dy=to.y-from.y;
  if(Math.abs(dx)>Math.min(650,budget)||dy< -230||dy>300||Math.hypot(dx,dy)<5)return null;
  const ghost:Unit={...u,x:from.x,y:from.y,vx:0,vy:0,moveLeft:budget,airborne:false,jumping:false,aiMove:undefined,moveTarget:undefined};
@@ -140,6 +141,7 @@ export function traceTravel(e:Engine,u:Unit,from:Vec,to:Vec,budget:number):{cost
  if(firstJump&&!startJump())return null;
  // Route budgets bound the iteration count; the integrator uses the same fixed STEP (1/120 s) as live play.
  for(let tick=0;tick<240;tick++){
+  if(tick%8===0)yield;
   if(Math.abs(ghost.x-to.x)<8&&Math.abs(ghost.y-to.y)<8&&e.grounded(ghost))return {cost:budget-ghost.moveLeft,jump:jumpUsed,...(jumpUsed?{jumpX}: {})};
   const oldX=ghost.x,oldY=ghost.y,dir=Math.abs(to.x-ghost.x)<5?0:Math.sign(to.x-ghost.x);
   if(dir&&!e.walk(ghost,dir,STEP)&&!ghost.jumping){if(!startJump())return null;firstJump=true;}
@@ -180,11 +182,14 @@ function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,numb
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
  let best=-90;
  for(const s of skills){const right=target.x>=p.x,blast=e.effective(s,ghost).radius;
+  if(!e.npcShotInReach(ghost,s))continue;
   for(const aim of e.shotSeeds(ghost,s,target)){
    const hit=e.predict(ghost,s,aim.angle,aim.power,target,false),value=shotImpactValue(e,ghost,s,hit);
    yield;if(value.enemyDamage>0&&value.net>2)return 35+clamp(value.net,-120,60);
   }
-  for(const elev of (target.y>p.y+80?[-55,-25,18,42,68,84]:[16,34,50,68,82]))for(const power of [.3,.52,.75,1]){
+  // This is a position heuristic, not the final aim search. Sample three arcs;
+  // the selected position is aimed precisely only once, after movement.
+  for(const elev of (target.y>p.y+80?[-35,35,78]:[18,50,82]))for(const power of [1]){
    const angle=right?elev:180-elev,hit=e.predict(ghost,s,angle,power,target,false);
    const d=Math.hypot(hit.x-target.x,hit.y-(target.y-target.h*.5));
    let score=-Math.min(90,Math.min(d,hit.closest+100)*.18);
@@ -203,12 +208,17 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit):Generator<void,
  if(u.fixed||u.dead||u.moveLeft<35||!e.grounded(u))return;
  const budget=Math.min(u.moveLeft,610),start={x:u.x,y:u.y},poses=candidates(e,u,target);
  const reachable:Stance[]=[];
- for(const p of poses){const leg=traceTravel(e,u,start,p,budget);if(leg)reachable.push({...p,cost:leg.cost,path:[{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:positionScore(e,u,target,p)-leg.cost*.025});yield;}
+ for(const p of poses){const leg=yield* traceTravelSteps(e,u,start,p,budget);if(leg)reachable.push({...p,cost:leg.cost,path:[{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:positionScore(e,u,target,p)-leg.cost*.025});yield;
+  // Candidates already have tactical priority. Three reachable alternatives are
+  // enough to start walking; blocked routes still try the remaining candidates.
+  if(reachable.length>=3||reachable.some(r=>r.score>positionScore(e,u,target,start)+45))break;
+ }
  // A second step supports stairs/vertical shafts without an unbounded navigation search.
- const bridges=[...reachable].sort((a,c)=>a.cost-c.cost).slice(0,4);
- for(const p of poses.filter(p=>p.y<u.y-40).slice(0,8)){
+ const bridges=[...reachable].sort((a,c)=>a.cost-c.cost).slice(0,2);
+ const directBest=Math.max(-Infinity,...reachable.map(p=>p.score));
+ for(const p of poses.filter(p=>p.y<u.y-40&&positionScore(e,u,target,p)>directBest+4).slice(0,3)){
   if(reachable.some(r=>Math.abs(r.x-p.x)<10&&Math.abs(r.y-p.y)<10))continue;
-  for(const via of bridges){if(via.cost>budget-85)continue;const leg=traceTravel(e,u,via,p,budget-via.cost);yield;if(!leg)continue;
+  for(const via of bridges){if(via.cost>budget-85)continue;const leg=yield* traceTravelSteps(e,u,via,p,budget-via.cost);yield;if(!leg)continue;
    reachable.push({...p,cost:via.cost+leg.cost,path:[...via.path,{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:positionScore(e,u,target,p)-(via.cost+leg.cost)*.025});break;
   }
  }
@@ -270,13 +280,15 @@ export function* chooseEnemyShotSteps(e:Engine,u:Unit,target:Unit,skills:Skill[]
  if(u.boss===6||u.boss===5){const id=u.boss===6?(e.b.round%3===0?'M06':'M07'):(e.b.round%2===0?'S06':'S01'),skill=skills.find(s=>s.id===id)||skills[0];return {skill,aim:yield* e.searchShot(u,skill,target)};}
  let best:{skill:Skill;aim:{angle:number;power:number;score:number};value:number}|undefined;
  const crowd=e.alive(target.side).filter(v=>Math.hypot(v.x-target.x,v.y-target.y)<180).length;
- for(const skill of skills.slice(0,3)){
+ const ordered=skills.slice(0,3).sort((a,b)=>crowd>1?Number(b.radius>30)-Number(a.radius>30):0);
+ for(const skill of ordered){
   const aim=yield* e.searchShot(u,skill,target);
   const outcome=shotViable(e,u,skill,target,aim.angle,aim.power);
   let value=aim.score+(skill.radius>30?(crowd-1)*13:0)-e.manaCost(skill,u)*.13+(outcome.ok?150:-150);
   if(aim.score>100)value+=Math.min(30,skill.damage*.18);
   if((skill.mode==='push'||skill.mode==='pull'||skill.mode==='bind')&&Math.abs(target.y-u.y)>70)value+=10;
   if(!best||value>best.value)best={skill,aim,value};
+  if(outcome.ok)return {skill,aim};
  }
  return best!;
 }

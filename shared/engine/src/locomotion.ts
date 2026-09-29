@@ -10,6 +10,7 @@ export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number)
     for(const h of terrainSurfaces(t,clamp(x,t.x,t.x+t.w))){
       if(Math.abs(h.slope)>1.35)continue;
       const y=h.y;
+      if(y<min||y>max)continue;
       // A surface buried inside another solid is not a floor. A roof with empty air below remains valid.
       if(terrain.some(o=>o!==t&&!o.broken&&!o.oneWay&&terrainRectIntersects(o,x-.2,y+.25,.4,3,.01)))continue;
       if(y>=min&&y<=max){

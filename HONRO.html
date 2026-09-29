@@ -4305,7 +4305,8 @@ function positionScore(e, u, target, p) {
     return score;
 }
 /** Read-only travel probe. At most one normal jump on this leg, with swept body collisions. */
-function traceTravel(e, u, from, to, budget) {
+function traceTravel(e, u, from, to, budget) { return finishPlanning(traceTravelSteps(e, u, from, to, budget)); }
+function* traceTravelSteps(e, u, from, to, budget) {
     const dx = to.x - from.x, dy = to.y - from.y;
     if (Math.abs(dx) > Math.min(650, budget) || dy < -230 || dy > 300 || Math.hypot(dx, dy) < 5)
         return null;
@@ -4319,6 +4320,8 @@ function traceTravel(e, u, from, to, budget) {
         return null;
     // Route budgets bound the iteration count; the integrator uses the same fixed STEP (1/120 s) as live play.
     for (let tick = 0; tick < 240; tick++) {
+        if (tick % 8 === 0)
+            yield;
         if (Math.abs(ghost.x - to.x) < 8 && Math.abs(ghost.y - to.y) < 8 && e.grounded(ghost))
             return { cost: budget - ghost.moveLeft, jump: jumpUsed, ...(jumpUsed ? { jumpX } : {}) };
         const oldX = ghost.x, oldY = ghost.y, dir = Math.abs(to.x - ghost.x) < 5 ? 0 : Math.sign(to.x - ghost.x);
@@ -4385,14 +4388,18 @@ function* shotOpportunity(e, u, target, p) {
     let best = -90;
     for (const s of skills) {
         const right = target.x >= p.x, blast = e.effective(s, ghost).radius;
+        if (!e.npcShotInReach(ghost, s))
+            continue;
         for (const aim of e.shotSeeds(ghost, s, target)) {
             const hit = e.predict(ghost, s, aim.angle, aim.power, target, false), value = shotImpactValue(e, ghost, s, hit);
             yield;
             if (value.enemyDamage > 0 && value.net > 2)
                 return 35 + (0, math_1.clamp)(value.net, -120, 60);
         }
-        for (const elev of (target.y > p.y + 80 ? [-55, -25, 18, 42, 68, 84] : [16, 34, 50, 68, 82]))
-            for (const power of [.3, .52, .75, 1]) {
+        // This is a position heuristic, not the final aim search. Sample three arcs;
+        // the selected position is aimed precisely only once, after movement.
+        for (const elev of (target.y > p.y + 80 ? [-35, 35, 78] : [18, 50, 82]))
+            for (const power of [1]) {
                 const angle = right ? elev : 180 - elev, hit = e.predict(ghost, s, angle, power, target, false);
                 const d = Math.hypot(hit.x - target.x, hit.y - (target.y - target.h * .5));
                 let score = -Math.min(90, Math.min(d, hit.closest + 100) * .18);
@@ -4419,20 +4426,25 @@ function* planEnemyMoveSteps(e, u, target) {
     const budget = Math.min(u.moveLeft, 610), start = { x: u.x, y: u.y }, poses = candidates(e, u, target);
     const reachable = [];
     for (const p of poses) {
-        const leg = traceTravel(e, u, start, p, budget);
+        const leg = yield* traceTravelSteps(e, u, start, p, budget);
         if (leg)
             reachable.push({ ...p, cost: leg.cost, path: [{ ...p, jump: leg.jump, ...(leg.jumpX !== undefined ? { jumpX: leg.jumpX } : {}) }], score: positionScore(e, u, target, p) - leg.cost * .025 });
         yield;
+        // Candidates already have tactical priority. Three reachable alternatives are
+        // enough to start walking; blocked routes still try the remaining candidates.
+        if (reachable.length >= 3 || reachable.some(r => r.score > positionScore(e, u, target, start) + 45))
+            break;
     }
     // A second step supports stairs/vertical shafts without an unbounded navigation search.
-    const bridges = [...reachable].sort((a, c) => a.cost - c.cost).slice(0, 4);
-    for (const p of poses.filter(p => p.y < u.y - 40).slice(0, 8)) {
+    const bridges = [...reachable].sort((a, c) => a.cost - c.cost).slice(0, 2);
+    const directBest = Math.max(-Infinity, ...reachable.map(p => p.score));
+    for (const p of poses.filter(p => p.y < u.y - 40 && positionScore(e, u, target, p) > directBest + 4).slice(0, 3)) {
         if (reachable.some(r => Math.abs(r.x - p.x) < 10 && Math.abs(r.y - p.y) < 10))
             continue;
         for (const via of bridges) {
             if (via.cost > budget - 85)
                 continue;
-            const leg = traceTravel(e, u, via, p, budget - via.cost);
+            const leg = yield* traceTravelSteps(e, u, via, p, budget - via.cost);
             yield;
             if (!leg)
                 continue;
@@ -4564,7 +4576,8 @@ function* chooseEnemyShotSteps(e, u, target, skills) {
     }
     let best;
     const crowd = e.alive(target.side).filter(v => Math.hypot(v.x - target.x, v.y - target.y) < 180).length;
-    for (const skill of skills.slice(0, 3)) {
+    const ordered = skills.slice(0, 3).sort((a, b) => crowd > 1 ? Number(b.radius > 30) - Number(a.radius > 30) : 0);
+    for (const skill of ordered) {
         const aim = yield* e.searchShot(u, skill, target);
         const outcome = shotViable(e, u, skill, target, aim.angle, aim.power);
         let value = aim.score + (skill.radius > 30 ? (crowd - 1) * 13 : 0) - e.manaCost(skill, u) * .13 + (outcome.ok ? 150 : -150);
@@ -4574,6 +4587,8 @@ function* chooseEnemyShotSteps(e, u, target, skills) {
             value += 10;
         if (!best || value > best.value)
             best = { skill, aim, value };
+        if (outcome.ok)
+            return { skill, aim };
     }
     return best;
 }
@@ -4617,11 +4632,13 @@ function waterFloor(w, x) {
 }
 class Engine {
     /** Runtime-only work budget; saves resume an unfinished decision from its input state. */
-    planningBudget(ms) { this.planningDeadline = ms === undefined ? Infinity : performance.now() + ms; }
+    planningBudget(ms) { this.planningRemaining = ms ?? Infinity; }
     planningKey() { const b = this.b; return [b.active, b.round, b.sceneVersion, b.physics?.revision, b.wind, b.rng, ...b.units.map(u => `${u.id}:${u.x}:${u.y}:${u.hp}:${u.shield}:${u.focus}:${u.dead}`)].join('|'); }
     continuePlanning(steps) {
-        while (performance.now() < this.planningDeadline) {
-            const next = steps.next();
+        while (this.planningRemaining > 0) {
+            const timed = Number.isFinite(this.planningRemaining), start = timed ? performance.now() : 0, next = steps.next();
+            if (timed)
+                this.planningRemaining -= Math.max(0, performance.now() - start);
             if (next.done)
                 return next;
         }
@@ -4632,7 +4649,7 @@ class Engine {
         this.terrainOrder = new Map();
         this.indexedVersion = -1;
         this.indexedCount = -1;
-        this.planningDeadline = Infinity;
+        this.planningRemaining = Infinity;
         b.fields ?? (b.fields = []);
         b.physics ?? (b.physics = (0, physics_1.makePhysics)(data_1.STAGES[b.stageId - 1]?.physics));
         b.reviewDamage ?? (b.reviewDamage = {});
@@ -5011,11 +5028,34 @@ class Engine {
         return seeds;
     }
     bestShot(u, s, target, allowAllyTarget = false, maxPower = 1) { return (0, enemyAI_1.finishPlanning)(this.searchShot(u, s, target, allowAllyTarget, maxPower)); }
+    /** Conservative free-flight envelope for the ordinary HONRO enemy projectiles.
+     * Reject only when no opposing body/blast can be reached at ANY launch angle.
+     * Non-uniform forces and special player skills retain full prediction. */
+    npcShotInReach(u, s, allowedTarget, maxPower = 1) {
+        if (!s.mode.startsWith('honro') || this.b.fields.length || this.b.drafts.length || this.b.physics?.regions?.length)
+            return true;
+        const eff = this.effective(s, u), o = this.origin(u, 0), a = this.forceSample({ ...o, wind: s.wind, gravityScale: s.gravity ?? 1, drag: (0, physics_1.dragFor)(s), skill: s.id });
+        if (a.k < 0)
+            return true;
+        const speed = (270 + 535 * maxPower) * eff.speed, reach = Math.abs(o.x - u.x), duration = 6, step = .25;
+        // Every continuous point lies within this distance of a sampled time.
+        const margin = (speed + Math.hypot(a.x, a.y) * duration) * step * .5 + 7;
+        const opponents = this.b.units.filter(v => !v.dead && (v.side !== u.side || v.id === allowedTarget?.id));
+        for (let t = 0; t <= duration; t += step) {
+            const F = a.k < 1e-7 ? t : -Math.expm1(-a.k * t) / a.k, Q = a.k < 1e-7 ? t * t * .5 : (t - F) / a.k;
+            const x = u.x + a.x * Q, y = o.y + a.y * Q, r = reach + speed * F + eff.radius + margin;
+            if (opponents.some(v => Math.hypot(x - v.x, y - (v.y - v.h * .5)) <= r + Math.hypot(v.r, v.h * .5)))
+                return true;
+        }
+        return false;
+    }
     *searchShot(u, s, target, allowAllyTarget = false, maxPower = 1) {
         if (this.bestShot !== Engine.prototype.bestShot)
             return this.bestShot(u, s, target, allowAllyTarget);
         const right = target.x > u.x, blast = this.effective(s, u).radius;
         let best = { angle: right ? 45 : 135, power: Math.min(.62, maxPower), score: -1e9 }, useful = false;
+        if (u.side !== 0 && !this.npcShotInReach(u, s, allowAllyTarget ? target : undefined, maxPower))
+            return best;
         const score = (a, p) => {
             const hit = this.predict(u, s, a, p, target, false);
             const d = Math.hypot(hit.x - target.x, hit.y - (target.y - target.h * .52));
@@ -5044,8 +5084,14 @@ class Engine {
                 if (useful)
                     return { ...seed, score: sc };
             }
-        for (let elev = target.y > u.y + 90 ? -65 : 10; elev <= 86; elev += 8)
-            for (let p = .20; p <= maxPower + .001; p += .085) {
+        // A blocked NPC lane used to exhaust hundreds of samples per skill/target.
+        // Cover low/high arcs at coarse powers, then refine the best neighbourhood.
+        // Player-facing analysis retains the full precision grid.
+        const npc = u.side !== 0;
+        const elevations = npc ? (target.y > u.y + 90 ? [-65, -35, -5, 25, 50, 70, 86] : [10, 25, 40, 55, 70, 86]) : Array.from({ length: Math.floor((86 - (target.y > u.y + 90 ? -65 : 10)) / 8) + 1 }, (_, i) => (target.y > u.y + 90 ? -65 : 10) + i * 8);
+        const powers = npc ? [.25, .5, .75, 1].map(p => p * maxPower) : Array.from({ length: Math.floor((maxPower + .001 - .20) / .085) + 1 }, (_, i) => .20 + i * .085);
+        for (const elev of elevations)
+            for (const p of powers) {
                 const a = right ? elev : 180 - elev, sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
@@ -5054,8 +5100,8 @@ class Engine {
                     return { angle: a, power: p, score: sc };
             }
         const initial = { ...best };
-        for (let da = -6; da <= 6; da += 3)
-            for (let dp = -.07; dp <= .07; dp += .035) {
+        for (let da = -6; da <= 6; da += npc ? 6 : 3)
+            for (let dp = -.07; dp <= .07; dp += npc ? .07 : .035) {
                 const a = (0, math_1.clamp)(initial.angle + da, math_1.AIM_MIN, math_1.AIM_MAX), p = (0, math_1.clamp)(initial.power + dp, .1, maxPower), sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
@@ -5355,7 +5401,8 @@ class Engine {
             this.impulse(u, (0, math_1.clamp)(p.vx * .28, -240, 240), -90);
         }
     } p.carry = []; }
-    surface(x, min = -1500, max = this.b.height + 200) { return (0, locomotion_1.terrainSurface)(this.b.terrain, x, min, max); }
+    // Include seam neighbours and buried-surface occluders, preserving terrain order.
+    surface(x, min = -1500, max = this.b.height + 200) { return (0, locomotion_1.terrainSurface)(this.collisionTerrain({ x, y: 0 }, { x, y: 0 }, 3), x, min, max); }
     item(kind) {
         if (this.active?.retreat)
             return false;
@@ -6882,6 +6929,7 @@ class Engine {
         this.emit('change');
         return;
     }
+    actionReviewSeconds() { return this.active?.side !== 0 && !Object.keys(this.b.reviewDamage || {}).length ? .18 : balance_1.ACTION_REVIEW_SECONDS; }
     finishAction(reviewed = false) {
         const b = this.b, u = this.active;
         if ((0, warriorMechanics_1.finishWarrior)(this))
@@ -6892,7 +6940,7 @@ class Engine {
             return;
         if (b.mode !== 'practice' && !reviewed) {
             b.phase = 'review';
-            b.reviewLeft = balance_1.ACTION_REVIEW_SECONDS;
+            b.reviewLeft = this.actionReviewSeconds();
             b.reviewFocus ?? (b.reviewFocus = u ? { x: u.x, y: u.y - u.h } : undefined);
             this.emit('change');
             this.emit('save');
@@ -7079,18 +7127,18 @@ class Engine {
         }
     }
     enemyAction() {
-        if (performance.now() >= this.planningDeadline)
+        if (this.active?.aiMove || this.active?.moveTarget !== undefined)
+            return;
+        if (this.planningRemaining <= 0)
             return;
         const key = this.planningKey();
         if (!this.enemyPlanning || this.enemyPlanning.key !== key)
             this.enemyPlanning = { key, steps: this.enemyActionSteps() };
         const work = this.enemyPlanning;
-        do {
-            if (work.steps.next().done) {
-                this.enemyPlanning = undefined;
-                return;
-            }
-        } while (performance.now() < this.planningDeadline);
+        if (this.continuePlanning(work.steps)) {
+            this.enemyPlanning = undefined;
+            return;
+        }
         work.key = this.planningKey();
     }
     *enemyActionSteps() {
@@ -7454,6 +7502,8 @@ function terrainSurface(terrain, x, min, max) {
             if (Math.abs(h.slope) > 1.35)
                 continue;
             const y = h.y;
+            if (y < min || y > max)
+                continue;
             // A surface buried inside another solid is not a floor. A roof with empty air below remains valid.
             if (terrain.some(o => o !== t && !o.broken && !o.oneWay && (0, math_1.terrainRectIntersects)(o, x - .2, y + .25, .4, 3, .01)))
                 continue;
@@ -9364,11 +9414,12 @@ function terrainContains(t, x, y, epsilon = 0) {
     let inside = false, minD = Infinity;
     for (let i = 0, j = v.length - 1; i < v.length; j = i++) {
         const a = v[j], b = v[i], dx = b.x - a.x, dy = b.y - a.y, n = dx * dx + dy * dy, q = n ? (0, exports.clamp)(((x - a.x) * dx + (y - a.y) * dy) / n, 0, 1) : 0;
-        minD = Math.min(minD, Math.hypot(x - a.x - q * dx, y - a.y - q * dy));
+        const ex = x - a.x - q * dx, ey = y - a.y - q * dy;
+        minD = Math.min(minD, ex * ex + ey * ey);
         if ((a.y > y) !== (b.y > y) && x < (b.x - a.x) * (y - a.y) / (b.y - a.y) + a.x)
             inside = !inside;
     }
-    return inside || minD <= epsilon;
+    return inside || epsilon >= 0 && minD <= epsilon * epsilon;
 }
 function terrainRectIntersects(t, x, y, w, h, epsilon = .05) {
     if (t.broken || x + w <= t.x + epsilon || x >= t.x + t.w - epsilon || y + h <= t.y + epsilon || y >= t.y + t.h - epsilon)
@@ -9411,8 +9462,15 @@ function segmentTerrain(a, b, t, pad = 0) {
         return segRect(a, b, t.x, t.y, t.w, t.h, pad);
     const pts = poly(t), dx = b.x - a.x, dy = b.y - a.y;
     let best = null;
+    const left = Math.min(a.x, b.x) - pad, right = Math.max(a.x, b.x) + pad, top = Math.min(a.y, b.y) - pad, bottom = Math.max(a.y, b.y) + pad;
     for (let i = 0; i < pts.length; i++) {
-        const p = pts[i], q = pts[(i + 1) % pts.length], ex = q.x - p.x, ey = q.y - p.y, len = Math.hypot(ex, ey);
+        const p = pts[i], q = pts[(i + 1) % pts.length], ex = q.x - p.x, ey = q.y - p.y;
+        // Detailed ground contours have many distant edges. Reject those before
+        // normalising; retain the narrow phase's extended endpoint tolerance.
+        const margin = 1e-7 + 1e-8 * (Math.abs(dx) + Math.abs(dy) + Math.abs(ex) + Math.abs(ey));
+        if (Math.max(p.x, q.x) < left - margin || Math.min(p.x, q.x) > right + margin || Math.max(p.y, q.y) < top - margin || Math.min(p.y, q.y) > bottom + margin)
+            continue;
+        const len = Math.hypot(ex, ey);
         if (len < 1e-8)
             continue;
         const nx = ey / len, ny = -ex / len;
@@ -10706,7 +10764,9 @@ function useGate(e, u = e.active) {
     if (u.gateTurn === token)
         return false;
     const to = e.b.stakes.find(s => s.skill === 'M09' && s.side === u.side && s.id !== from.id);
-    const spot = [0, -24, 24, -48, 48, -72, 72, -96, 96].map(offset => { const x = (0, math_1.clamp)(to.x + offset, 25, e.b.width - 25), floor = e.surface(x, to.y - 80, to.y + 100); return floor ? { x, y: floor.y } : null; }).find(v => v && !e.b.terrain.some(t => !t.broken && !t.oneWay && (0, math_1.terrainRectIntersects)(t, v.x - u.r, v.y - u.h, u.r * 2, u.h - 2, .1)) && !e.b.units.some(t => !t.dead && t.id !== u.id && Math.abs(t.x - v.x) < t.r + u.r && Math.abs(t.y - v.y) < u.h));
+    // Feet stand on the exact-x support, as in walking and scripted placement.
+    // A body's lower corners overlap a slope; that contact is not an arrival wall.
+    const spot = [0, -24, 24, -48, 48, -72, 72, -96, 96].map(offset => { const x = (0, math_1.clamp)(to.x + offset, 25, e.b.width - 25), floor = e.surface(x, to.y - 80, to.y + 100); return floor ? { x, y: floor.y, support: floor.t } : null; }).find(v => v && !e.b.terrain.some(t => !t.broken && !t.oneWay && t !== v.support && (0, math_1.terrainRectIntersects)(t, v.x - u.r, v.y - u.h, u.r * 2, u.h - 2, .1)) && !e.b.units.some(t => !t.dead && t.id !== u.id && Math.abs(t.x - v.x) < t.r + u.r && Math.abs(t.y - v.y) < u.h));
     if (!spot) {
         e.message('도착 진목 주변에 설 자리가 없습니다.');
         return false;
@@ -15054,8 +15114,8 @@ function* safeAllyAimSteps(e,u,skill,target){
  const maxRange=u.allyRole==='daoist'?1550:u.allyRole==='medium'?1320:1100;
  if(Math.hypot(target.x-u.x,(target.y-u.y)*.75)>maxRange)return null;
  const base=yield* e.searchShot(u,skill,target,false,.82);
- const angles=[0,-14,-8,-4,4,8,14],powers=[0,-.18,-.10,.10,.18];
- for(const da of angles)for(const dp of powers){const a={angle:clamp(base.angle+da,-85,265),power:clamp(base.power+dp,.08,.82),score:0};const result=C.shotViable(e,u,skill,target,a.angle,a.power);a.score=(result.net||0)*2-result.miss*.1;yield;if(result.ok)return a;}
+ const a={...base,angle:clamp(base.angle,-85,265),power:clamp(base.power,.08,.82)};
+ const result=C.shotViable(e,u,skill,target,a.angle,a.power);yield;if(result.ok)return a;
  return null;
 }
 function* allyShot(e,u,skill,targets){for(const target of targets){const aim=yield* safeAllyAimSteps(e,u,skill,target);if(aim)return{aim,targetId:target.id};}return null;}
@@ -15103,7 +15163,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   else {log(e,u,'advance',u.id);q.phase='after';q.elapsed=0;}
  }
  if(q.phase==='flight'){for(const shot of [...b.projectiles])if(b.projectiles.includes(shot))e.stepProjectile(shot,dt);e.stepUnits(dt);if(!b.projectiles.length&&!e.settleBusy()){q.phase='after';q.elapsed=0;}}
- if(q.phase==='after'){e.stepUnits(dt);if(q.elapsed>=C.ACTION_REVIEW_SECONDS)finish(e,q);}
+ if(q.phase==='after'){e.stepUnits(dt);if(q.elapsed>=e.actionReviewSeconds())finish(e,q);}
 }
 function missionTick(app,dt){G.HonroMission.tick(app,dt);}
 function restore(e,f){for(const u of coalition(e)){u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*f));if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*(f+.10)));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}}
@@ -15197,8 +15257,9 @@ function tick(app,dt){
    }
    if(m.type==='relic'&&!m.collected){m.collected=true;app.event('길에 남은 기록을 주웠다.');}
  }
- // Stage 5: Damheo's position is the gate. Leaving the receiving array closes the actual projectile blocker.
- if(st.id===5){const ritual=hs.ritual,veil=b.terrain.find(t=>t.id==='waterfall-veil'),cleat=b.terrain.find(t=>t.id==='cliff-cleat'),marker=b.honroMarkers.find(m=>m.id==='receiver-5'),holder=ritual?.holderId?e.unit(ritual.holderId):null;const valid=!!ritual?.active&&!!holder&&!holder.dead&&holder.hp>0&&holder.cls==='mage'&&!!marker&&Math.abs(holder.x-marker.x)<=125&&Math.abs(holder.y-marker.y)<=80&&e.grounded(holder);if(cleat?.broken){if(ritual)ritual.active=false;hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}if(marker)marker.collected=true;}else if(valid){hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}}else{if(ritual?.active){ritual.active=false;app.event('담허가 받이진에서 벗어나 물틈이 다시 닫혔다.');}hs.waterfallSight=false;if(veil?.broken){veil.broken=false;b.sceneVersion++;}}}
+ // Once started, only leaving the array (or losing the holder) releases it.
+ // grounded() includes velocity: a small hit used to cancel it before any movement.
+ if(st.id===5){const ritual=hs.ritual,veil=b.terrain.find(t=>t.id==='waterfall-veil'),cleat=b.terrain.find(t=>t.id==='cliff-cleat'),marker=b.honroMarkers.find(m=>m.id==='receiver-5'),holder=ritual?.holderId?e.unit(ritual.holderId):null;const valid=!!ritual?.active&&!!holder&&!holder.dead&&holder.hp>0&&holder.cls==='mage'&&!!marker&&Math.abs(holder.x-marker.x)<=125&&Math.abs(holder.y-marker.y)<=80;if(cleat?.broken){if(ritual)ritual.active=false;hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}if(marker)marker.collected=true;}else if(valid){hs.waterfallSight=true;if(veil&&!veil.broken){veil.broken=true;b.sceneVersion++;}}else{if(ritual?.active){ritual.active=false;app.event('담허가 받이진에서 벗어나 물틈이 다시 닫혔다.');}hs.waterfallSight=false;if(veil?.broken){veil.broken=false;b.sceneVersion++;}}}
  const obj=e.unit('objective');
  if(st.objective==='rescue'&&obj&&!obj.dead){
    if(!hs.rescued&&heroes.some(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205))hs.rescuePending=true;
@@ -15225,7 +15286,7 @@ function state(b,st){
  seals.forEach((t,i)=>add('seal',t.id,t.x+t.w/2,t.y,st.id===5?'절벽 고리쇠 · 설오의 화살로 파괴':st.id===8?`상여 결박 ${i+1} · 공격`:`매듭 ${i+1} · 공격`,{done:!!t.broken,box:t}));
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
  if(boss&&!boss.dead)add('boss',boss.id,boss.x,boss.y-boss.h,st.id===10?(hs.sodanCoop?'소단 · 혼매듭 의식 보호':'소단의 주박 · 비살상 제압'):'빈 상여 · 제압',{unitId:boss.id});for(const u of b.units.filter(u=>u.honroMidboss&&!u.dead&&u.id!=='boss'))add('midboss',u.id,u.x,u.y-u.h,`${u.name} · 중간 우두머리`,{unitId:u.id});
- for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?'담허로 E · 의식 시작':'E · 받이진 설치'}`);if(m.type==='resident')add('interact',m.id,m.x,m.y,`${m.label} · 구조`);}
+ for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?(hs.ritual?.active?'의식 유지 중 · 이탈 시 해제':'담허로 E · 의식 시작'):'E · 받이진 설치'}`);if(m.type==='resident')add('interact',m.id,m.x,m.y,`${m.label} · 구조`);}
  // The saved/live map owns the exit. Content dimensions can belong to an older map.
  const exit=markers.find(m=>m.type==='exit'),exitX=(st.objective==='overwatch'?b.honroEscortGoalX:undefined)??exit?.x??b.honroMapAnchors?.exit?.x??b.width-(st.objective==='overwatch'?290:st.objective==='rescue'?130:180);
  if(['arrival','rescue','overwatch'].includes(st.objective))add('exit',exit?.id||'mission-exit',exitX,exit?.y??G.HonroWorld.top(b,exitX,obj?.y),st.objective==='overwatch'?'상여 도착 지점':'도착 지점');
@@ -50051,8 +50112,8 @@ G.HonroStory={journal,journalHTML,allowed,start,queue,draw,next,finish,drain,map
 
 (function(G){'use strict';
 const $=id=>document.getElementById(id),RANGE=260;
-function eligibility(app,m){const e=app.engine,b=e?.b,u=e?.active;if(u?.retreat)return{ok:false,reason:'이탈보 · 이동/점프만 가능'};if(m?.action==='skillGate')return {ok:app.canInput()&&u.gateTurn!==`${b.round}:${b.teamEnds[0]}`,reason:'E · 축지진목'};if(!e||!u||!m||m.collected||u.side!==0||u.dead)return{ok:false,reason:'상호작용할 수 없음'};const d=Math.hypot(u.x-m.x,(u.y-m.y)*.75);if(d>RANGE)return{ok:false,reason:'더 가까이 이동'};if(Math.abs(u.y-m.y)>150)return{ok:false,reason:'같은 층으로 이동'};if(m.action==='ritual'&&(Math.abs(u.x-m.x)>125||Math.abs(u.y-m.y)>80||!e.grounded(u)))return{ok:false,reason:'받이진 안에 서세요'};if(m.action==='ritual'&&b.honroState.ritual?.active)return{ok:false,reason:'의식 유지 중 · 이동하면 해제'};if(m.requiredClass&&u.cls!==m.requiredClass)return{ok:false,reason:`${G.HONRO_CONTENT.hero[m.requiredClass]?.name||'지정 인물'} 필요`};if(!app.canInput())return{ok:false,reason:'현재 행동이 끝난 뒤'};return{ok:true,reason:m.action==='ritual'?'E · 의식 시작':'E · 상호작용'};}
-function candidates(app){if(!app.engine||app.done)return[];const e=app.engine,u=e.active;if(!u||u.side!==0||u.dead)return[];const gate=e.gateCandidate(),markers=[...(e.b.honroMarkers||[]),...(gate?[{...gate,id:'skillGate-'+gate.id,action:'skillGate',label:'축지진목'}]:[])];return markers.filter(m=>m.action&&!m.collected&&Math.hypot(u.x-m.x,(u.y-m.y)*.75)<=RANGE+70).map(m=>({marker:m,d:Math.hypot(u.x-m.x,u.y-m.y),...eligibility(app,m)})).sort((a,b)=>a.d-b.d);}
+function eligibility(app,m){const e=app.engine,b=e?.b,u=e?.active;if(u?.retreat)return{ok:false,reason:'이탈보 · 이동/점프만 가능'};if(m?.action==='skillGate')return {ok:app.canInput()&&u.gateTurn!==`${b.round}:${b.teamEnds[0]}`,reason:'E · 축지진목'};if(!e||!u||!m||m.collected||u.side!==0||u.dead)return{ok:false,reason:'상호작용할 수 없음'};const d=Math.hypot(u.x-m.x,(u.y-m.y)*.75);if(d>RANGE)return{ok:false,reason:'더 가까이 이동'};if(Math.abs(u.y-m.y)>150)return{ok:false,reason:'같은 층으로 이동'};if(m.action==='ritual'&&b.honroState.ritual?.active)return{ok:false,reason:'의식 유지 중 · 이탈 시 해제'};if(m.action==='ritual'&&(Math.abs(u.x-m.x)>125||Math.abs(u.y-m.y)>80||!e.grounded(u)))return{ok:false,reason:'받이진 안에 서세요'};if(m.requiredClass&&u.cls!==m.requiredClass)return{ok:false,reason:`${G.HONRO_CONTENT.hero[m.requiredClass]?.name||'지정 인물'} 필요`};if(!app.canInput())return{ok:false,reason:'현재 행동이 끝난 뒤'};return{ok:true,reason:m.action==='ritual'?'E · 의식 시작':'E · 상호작용'};}
+function candidates(app){if(!app.engine||app.done)return[];const e=app.engine,u=e.active;if(!u||u.side!==0||u.dead)return[];const gate=e.gateCandidate(),markers=[...(e.b.honroMarkers||[]),...(gate?[{...gate,id:'skillGate-'+gate.id,action:'skillGate',label:'축지진목'}]:[])];return markers.filter(m=>m.action&&!m.collected&&Math.hypot(u.x-m.x,(u.y-m.y)*.75)<=RANGE+70).map(m=>({marker:m,d:Math.hypot(u.x-m.x,u.y-m.y),...eligibility(app,m)})).sort((a,b)=>Number(b.ok&&b.marker.action==='skillGate')-Number(a.ok&&a.marker.action==='skillGate')||a.d-b.d);}
 function linesFor(app,m){return G.HonroStoryContent.interaction(app,m)||[];}
 function use(app,m){const ok=eligibility(app,m);if(!ok.ok)return false;if(m?.action==='skillGate'){const used=app.engine.useGate();if(used){app.dirty=true;app.updateHUD(true);}refresh(app);return used;}const e=app.engine,b=e.b,hs=b.honroState,u=e.active;
  if(m.action==='authored'){if(m.authoredAction&&G.HonroAllies.execute(app,m.authoredAction)===false)return false;m.collected=true;hs.flags['interact:'+m.id]=true;if(m.lines?.length)app.sayLines(m.lines);app.event(m.label);if(!app.checkMission(e))e.finishAction();app.dirty=true;refresh(app);return true;}
@@ -50060,7 +50121,7 @@ function use(app,m){const ok=eligibility(app,m);if(!ok.ok)return false;if(m?.act
  m.collected=true;if(m.action==='ledger')hs.ledger=true;if(m.action==='receiver'){hs.receivers=(hs.receivers||0)+1;e.fx('ring',m.x,m.y-20,'#b8c999',65);}if(m.action==='rescue'){hs.rescuedCount=(hs.rescuedCount||0)+1;const target=e.unit(m.target);if(target){target.shield=Math.max(target.shield||0,60);target.fixed=true;target.honroResolved=true;e.fx('ring',target.x,target.y-target.h*.5,'#a7c3ad',60);}}
  const lines=linesFor(app,m);if(lines.length)app.sayLines(lines);app.event(m.action==='ledger'?'홍만의 장부를 찾았다.':m.action==='receiver'?'받이진을 세웠다.':'들린 사람에게서 원혼을 떼어냈다.');if(!app.checkMission(e))e.finishAction();app.dirty=true;refresh(app);return true;
 }
-function refresh(app){const host=$('context-interact');if(!host)return;const near=candidates(app),one=near[0],enabled=!!one?.ok,sig=one?`${one.marker.id}:${enabled}:${one.reason}:${near.length}`:'none';if(host.dataset.sig===sig)return;host.dataset.sig=sig;if(!one){host.hidden=true;host.innerHTML='';return;}host.hidden=false;const action=one.marker.action,label=action==='skillGate'?'축지':action==='ledger'?'장부 확인':action==='receiver'?'받이진 설치':action==='ritual'?'담허의 의식':action==='authored'?'상호작용':'구조';host.innerHTML=`<button ${enabled?'':'disabled'} data-context-interact="${one.marker.id}" aria-label="${label} · ${one.marker.label}"><i class="keycap">E</i><span>${label}</span><strong>${enabled?one.marker.label:one.reason}</strong></button>`;}
+function refresh(app){const host=$('context-interact');if(!host)return;const near=candidates(app),one=near.find(x=>x.ok)||near[0],enabled=!!one?.ok,sig=one?`${one.marker.id}:${enabled}:${one.reason}:${near.length}`:'none';if(host.dataset.sig===sig)return;host.dataset.sig=sig;if(!one){host.hidden=true;host.innerHTML='';return;}host.hidden=false;const action=one.marker.action,holding=action==='ritual'&&app.engine.b.honroState.ritual?.active,label=action==='skillGate'?'축지':action==='ledger'?'장부 확인':action==='receiver'?'받이진 설치':action==='ritual'?'담허의 의식':action==='authored'?'상호작용':'구조';host.innerHTML=`<button ${enabled?'':'disabled'} data-context-interact="${one.marker.id}" aria-label="${label} · ${one.marker.label}">${holding?'':'<i class="keycap">E</i>'}<span>${label}</span><strong>${enabled?one.marker.label:one.reason}</strong></button>`;}
 function mount(app){const battle=app.root.querySelector('.battle');if(!battle||$('context-interact'))return;const el=document.createElement('div');el.id='context-interact';el.className='context-interact';el.hidden=true;battle.appendChild(el);refresh(app);}
 function nearest(app){return candidates(app).find(x=>x.ok)?.marker||null;}function key(app,e){if(e.code!=='KeyE'||e.repeat)return false;if(!app.dialogue&&!app.modal?.classList.contains('open')&&(app.engine?.manualDive()||app.engine?.turnArrow(app.scene?.turnTarget))){e.preventDefault();return true;}const m=nearest(app);if(!m)return false;e.preventDefault();return use(app,m);}
 document.addEventListener('click',e=>{const btn=e.target.closest?.('[data-context-interact]');if(!btn)return;const app=G.HonroApp,m=app?candidates(app).find(x=>x.marker.id===btn.dataset.contextInteract)?.marker:null;if(app&&m)use(app,m);});
