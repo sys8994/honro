@@ -7,7 +7,7 @@ def read(name):return json.loads((ROOT/'_local/reports'/name).read_text(encoding
 verification=read('verification-run.json');assert verification['exitCode']==0
 lines=['**최종 `npm run verify`: PASS (exit 0).** [실행 기록·산출물 SHA256](_local/reports/verification-run.json)','',
        '| Suite | Result |','|---|---|']
-for name in ['integration','editor-features','authored','audio-unit','audio-browser','bgm-transitions','aim-direction/browser','monster-forge/browser']:
+for name in ['integration','editor-features','authored','audio-unit','audio-browser','bgm-transitions','aim-direction/browser','monster-forge/browser','party-forge/browser']:
     data=read(name+'.json')
     assert not data.get('errors'),name
     lines.append(f'| {name} | PASS · {len(data["checks"])} checks |')

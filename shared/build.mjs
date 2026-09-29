@@ -3,6 +3,7 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {buildCore} from '../game/engine/build.mjs';
 import {buildMonsters} from '../tools/monster-forge/build.mjs';
+import {buildParty} from '../tools/party-forge/build.mjs';
 
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
@@ -19,7 +20,9 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   for(const name of ['geometry','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
   parts.push('globalThis.HONRO_PROJECT='+await read('shared/data/campaign.json')+';');
   if(vector){
-    parts.push(await read('shared/assets/party.v006.runtime.js'));
+    await buildParty();
+    parts.push(await read('shared/runtime/party-rig.js'));
+    parts.push(await read('shared/assets/party/party.runtime.js'));
     parts.push((await read('shared/assets/rebuild-game-adapter.mjs')).replace(/^export /gm,'')+
       '\nglobalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');
   }

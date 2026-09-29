@@ -1,6 +1,6 @@
 # 통합 검증
 
-최신 전체 검증: 2026-09-29 Windows / Chrome headless, `npm.cmd run verify` PASS(exit 0, 401.16초). [실행 기록·HTML SHA256](_local/reports/verification-run.json), [전체 로그](_local/logs/final-verify.log). 일반 적 벡터 11종·최초 원본 대비 2.85~3.15배 앵커 제한·공통 렌더러와 두 HTML의 실제 동작, 기존 기예·방향 가이드 개선을 포함해 검사했습니다. 몬스터 제작·시각 검수 기준은 [제작 계획](game/docs/MONSTER_ART_PIPELINE.md), 전용 43개 결과는 [monster-forge/browser](_local/reports/monster-forge/browser.json)에 있습니다. 11종을 섞은 36인스턴스 렌더 p95는 현 PC에서 8.6ms였습니다. 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 터치 에뮬레이션이며 실제 기기 검사는 아닙니다.
+최신 전체 검증: 2026-09-29 Windows / Chrome headless, `npm.cmd run verify` PASS(exit 0, 408.10초). [실행 기록·HTML SHA256](_local/reports/verification-run.json), [전체 로그](_local/logs/final-verify.log). 설오·담허·휘겸·소단 v007의 약 2배 앵커·얼굴/복식 개정·머리 비율 유지·모션 조정, 일반 적 벡터 11종과 기존 기예·방향 가이드·캠페인 회귀를 함께 검사했습니다. [네 동행 제작·검수 기준](game/docs/PARTY_ART_PIPELINE.md), [전용 48개 결과](_local/reports/party-forge/browser.json), [직접 본 미술 검토](_local/reports/party-forge/VISUAL_REVIEW.md). 12캐릭터 220px 렌더 p95는 현 PC에서 4.8ms였습니다. Game/Stage View/Playtest의 캐릭터 픽셀 일치와 두 HTML의 실제 충전·발사·피해·점프 연결을 확인했습니다. 공방 재생·스크럽·메모 다운로드·모바일 크기 유지도 별도 5개 PASS입니다. [공방 조작 검사](_local/reports/party-forge/review-ui.json). 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 터치 에뮬레이션이며 실제 기기 검사는 아닙니다.
 
 Pages 배포 구성도 별도로 검사했습니다. `index.html`·게임·편집기·BGM만 있는 `/honro/` HTTP 경로에서 기본 주소 이동(쿼리·해시 보존), 게임 시작, MP3 5개 다운로드/원본 일치, 편집기 10개 스테이지, JavaScript 없는 진입점의 5항목 PASS·브라우저 예외 0건입니다. [결과](_local/reports/pages-smoke.json). 실제 GitHub 배포는 수행하지 않았습니다. `_local/` 결과·로그·이미지는 로컬 전용이며 Git에 포함되지 않습니다.
 
@@ -21,6 +21,7 @@ npm.cmd run verify
 | Integration | Stage 1~10 동일 viewport/camera/zoom에서 픽셀 차이 0. 실제 게임/iframe에 같은 420 tick 입력을 적용한 위치·속도·grounded·충돌·투사체 trace 일치. 10 Stage 이동·점프·공격 smoke, 실제 유닛·undo/redo·preview·모바일 HUD 포함. [결과](_local/reports/integration.json) |
 | Editor features | 실제 포인터로 terrain/solid·node/whole-shape drag·Ctrl snap·paint·scatter·lock/hide·Element polygon/collision·왕복·legacy import·asset layer 검사. [결과](_local/reports/editor-features.json) |
 | Authored game | 실제 file input import, level/rank, encounter, 턴 경계 trigger/dialogue, 소켓 interaction, 목표, 파괴 cache, retry, localStorage 격리·프로필 복원. [결과](_local/reports/authored.json) |
+| Party art | 고정 v006 앵커 예산·5동작 × 101시점 × 4인 리그·SVG/Canvas 일치·양방향 조준·실제 Game/Playtest 발사/피격/점프·Stage View 그림 일치. [결과](_local/reports/party-forge/browser.json) |
 | BGM unit | lazy preload, playlist, state/index 보존, crossfade, mute/volume, 실패 fallback, dispose. [결과](_local/reports/audio-unit.json) |
 | BGM browser | 실제 MP3 currentTime 증가, desktop/mobile playlist/보스/일시정지/비전투, SFX, iframe BGM와 Stop dispose. [결과](_local/reports/audio-browser.json) |
 | RC21 performance | Stage 1~4 실제 runtime, ≥50Hz, render 평균 <7ms, 시작 <500ms, heap 증가 <30MB, 파괴 후 cache invalidate. [결과](_local/game-reports/rc21-performance.json) |
@@ -40,6 +41,7 @@ npm.cmd run verify
 | bgm-transitions | PASS · 68 checks |
 | aim-direction/browser | PASS · 58 checks |
 | monster-forge/browser | PASS · 43 checks |
+| party-forge/browser | PASS · 48 checks |
 | stage12-redesign/checks | PASS · 18 checks |
 | stage12-redesign/browser | PASS · 9 checks |
 | skill-redesign/unit | PASS · 35 checks |
@@ -62,17 +64,17 @@ npm.cmd run verify
 
 | Stage / viewport / zoom | Original Hz / ms | Game Hz / ms | Editor Hz / ms | Original / Game / Editor load ms |
 |---|---|---|---|---|
-| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 60.04 / 1.165 | 60.02 / 0.939 | 83.4 / 82.1 / 40.3 |
-| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 59.96 / 1.696 | 59.99 / 1.526 | 106.2 / 99.3 / 56.7 |
-| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.05 / 1.538 | 60.00 / 1.413 | 102.3 / 66.1 / 25.2 |
-| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.55 / 2.084 | 59.88 / 1.839 | 99 / 99.3 / 46.7 |
-| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.05 / 1.542 | 60.05 / 1.400 | 87.6 / 67.1 / 38.5 |
-| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 59.98 / 1.840 | 60.00 / 1.851 | 99.2 / 95.6 / 49.5 |
+| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 57.17 / 0.683 | 57.32 / 0.707 | 83.4 / 87.3 / 32.9 |
+| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 57.21 / 1.343 | 56.70 / 1.329 | 106.2 / 100.8 / 55.7 |
+| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 56.76 / 1.214 | 57.08 / 1.058 | 102.3 / 68.6 / 26.4 |
+| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 57.14 / 1.330 | 57.10 / 1.277 | 99 / 105 / 45.7 |
+| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 56.96 / 1.231 | 56.83 / 0.939 | 87.6 / 72.4 / 29 |
+| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 57.04 / 1.288 | 57.33 / 1.388 | 99.2 / 105.7 / 46.9 |
 
 | Metric | Original | Game | Editor |
 |---|---|---|---|
-| renderMaxMs | 3.70 ms … 5.40 ms | 2.00 ms … 3.10 ms | 1.40 ms … 3.40 ms |
-| heapDelta | -0.436 MB … 1.311 MB | -1.451 MB … 2.038 MB | -0.618 MB … 2.421 MB |
+| renderMaxMs | 3.70 ms … 5.40 ms | 1.40 ms … 2.40 ms | 1.10 ms … 2.30 ms |
+| heapDelta | -0.436 MB … 1.311 MB | -1.710 MB … 1.156 MB | -2.510 MB … 2.387 MB |
 | warmCacheRebuilds | 0 … 0 | 0 … 0 | 0 … 0 |
 
 Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. Original은 RC21 원본 지형이고 Game/Editor는 개편 지형이므로 동일 콘텐츠의 성능 비교는 아닙니다. 수치 원본: [before](tests/fixtures/performance-before.json), [game](_local/reports/performance-game.json), [editor](_local/reports/performance-editor.json).

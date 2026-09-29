@@ -1,0 +1,289 @@
+{
+  "canvas": {
+    "viewBox": [
+      -100,
+      -140,
+      880,
+      680
+    ],
+    "anchor": [
+      240,
+      480
+    ],
+    "visualHeight": 425
+  },
+  "rig": {
+    "parts": [
+      {
+        "id": "root",
+        "parent": null,
+        "pivot": [
+          240,
+          480
+        ],
+        "z": 0
+      },
+      {
+        "id": "pelvis",
+        "parent": "root",
+        "pivot": [
+          240,
+          278
+        ],
+        "z": 30
+      },
+      {
+        "id": "thorax",
+        "parent": "pelvis",
+        "pivot": [
+          240,
+          278
+        ],
+        "z": 50
+      },
+      {
+        "id": "neck",
+        "parent": "thorax",
+        "pivot": [
+          241,
+          155
+        ],
+        "z": 51
+      },
+      {
+        "id": "head",
+        "parent": "neck",
+        "pivot": [
+          240,
+          143
+        ],
+        "z": 70
+      },
+      {
+        "id": "rear_thigh",
+        "parent": "pelvis",
+        "pivot": [
+          225,
+          278
+        ],
+        "z": 12
+      },
+      {
+        "id": "rear_shin",
+        "parent": "rear_thigh",
+        "pivot": [
+          213,
+          365
+        ],
+        "z": 13
+      },
+      {
+        "id": "rear_foot",
+        "parent": "rear_shin",
+        "pivot": [
+          199,
+          459
+        ],
+        "z": 14
+      },
+      {
+        "id": "front_thigh",
+        "parent": "pelvis",
+        "pivot": [
+          253,
+          278
+        ],
+        "z": 20
+      },
+      {
+        "id": "front_shin",
+        "parent": "front_thigh",
+        "pivot": [
+          272,
+          365
+        ],
+        "z": 21
+      },
+      {
+        "id": "front_foot",
+        "parent": "front_shin",
+        "pivot": [
+          286,
+          459
+        ],
+        "z": 22
+      },
+      {
+        "id": "rear_upper_arm",
+        "parent": "thorax",
+        "pivot": [
+          215,
+          161
+        ],
+        "z": 32
+      },
+      {
+        "id": "rear_forearm",
+        "parent": "rear_upper_arm",
+        "pivot": [
+          194,
+          235
+        ],
+        "z": 33
+      },
+      {
+        "id": "rear_hand",
+        "parent": "rear_forearm",
+        "pivot": [
+          188,
+          290
+        ],
+        "z": 34
+      },
+      {
+        "id": "front_upper_arm",
+        "parent": "thorax",
+        "pivot": [
+          265,
+          162
+        ],
+        "z": 55
+      },
+      {
+        "id": "front_forearm",
+        "parent": "front_upper_arm",
+        "pivot": [
+          288,
+          230
+        ],
+        "z": 56
+      },
+      {
+        "id": "front_hand",
+        "parent": "front_forearm",
+        "pivot": [
+          318,
+          287
+        ],
+        "z": 64
+      },
+      {
+        "id": "rear_cloth",
+        "parent": "pelvis",
+        "pivot": [
+          224,
+          273
+        ],
+        "z": 24
+      },
+      {
+        "id": "front_cloth",
+        "parent": "pelvis",
+        "pivot": [
+          257,
+          275
+        ],
+        "z": 44
+      },
+      {
+        "id": "belt",
+        "parent": "pelvis",
+        "pivot": [
+          240,
+          278
+        ],
+        "z": 60
+      },
+      {
+        "id": "prop_hip",
+        "parent": "pelvis",
+        "pivot": [
+          227,
+          280
+        ],
+        "z": 48
+      },
+      {
+        "id": "weapon",
+        "parent": "front_hand",
+        "pivot": [
+          318,
+          290
+        ],
+        "z": 62
+      },
+      {
+        "id": "ribbon",
+        "parent": "belt",
+        "pivot": [
+          242,
+          279
+        ],
+        "z": 61
+      }
+    ]
+  },
+  "constraints": {},
+  "face": {
+    "landmarks": {
+      "brow": [
+        251,
+        109
+      ],
+      "eye": [
+        252,
+        114
+      ],
+      "nose": [
+        264,
+        124
+      ],
+      "mouth": [
+        255,
+        132
+      ],
+      "chin": [
+        251,
+        143
+      ],
+      "ear": [
+        230,
+        118
+      ],
+      "neck": [
+        240,
+        151
+      ]
+    },
+    "shapeIds": [
+      "hair_back",
+      "face_plane",
+      "temple_shadow",
+      "cheek_light",
+      "jaw_plane",
+      "brow_plane",
+      "ear",
+      "ear_fold",
+      "brow",
+      "eye_socket",
+      "eye_light",
+      "iris",
+      "lower_lid",
+      "nose_bridge",
+      "nostril",
+      "mouth",
+      "lower_lip",
+      "sideburn",
+      "beard",
+      "moustache",
+      "jaw_stubble",
+      "face_scar",
+      "gat_crown",
+      "gat_crown_light",
+      "gat_brim",
+      "gat_rim",
+      "gat_band",
+      "gat_cord"
+    ]
+  }
+}

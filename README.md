@@ -45,7 +45,9 @@ npm.cmd run verify
 
 ## 소스와 문서
 
-몬스터 미술은 [제작·시각 검수 계획](game/docs/MONSTER_ART_PIPELINE.md)을 따른다. 일반 적 11종을 최초 원본 대비 약 3배의 앵커로 제작하고 공통 벡터 렌더러로 표시한다. `npm.cmd run test:monsters`로 검수 공방과 전후·크기별 비교 이미지를 생성하고 `_local/reports/monster-forge/index.html`을 연다. 제작 원본은 `tools/monster-forge/recipes.mjs`와 `species.mjs`, 원본 측정 기준은 `tests/fixtures/monster-baseline.json`이다. 상여·소단 등 특수 보스는 기존 디자인을 사용한다.
+설오·담허·휘겸·소단은 [네 동행 제작 기준](game/docs/PARTY_ART_PIPELINE.md)에 따라 v006 원본의 약 2배 앵커로 얼굴·복식·모션을 개선한 v007을 사용한다. 제작 소스는 `tools/party-forge/recipes.mjs`, 공통 리그는 `shared/runtime/party-rig.js`, 생성물은 `shared/assets/party/`다. 빌드 후 `npm.cmd run test:party`로 전후·얼굴·크기·모션 검수 자료를 만들고 `_local/reports/party-forge/index.html`을 연다. 캠페인의 적 소단에도 같은 개정판을 적용한다.
+
+몬스터 미술은 [제작·시각 검수 계획](game/docs/MONSTER_ART_PIPELINE.md)을 따른다. 일반 적 11종을 최초 원본 대비 약 3배의 앵커로 제작하고 공통 벡터 렌더러로 표시한다. `npm.cmd run test:monsters`로 검수 공방과 전후·크기별 비교 이미지를 생성하고 `_local/reports/monster-forge/index.html`을 연다. 제작 원본은 `tools/monster-forge/recipes.mjs`와 `species.mjs`, 원본 측정 기준은 `tests/fixtures/monster-baseline.json`이다. 상여 등 특수 보스는 기존 디자인을 유지하고, 소단은 위 네 동행 에셋을 사용한다.
 
 | 위치 | 역할 |
 |---|---|

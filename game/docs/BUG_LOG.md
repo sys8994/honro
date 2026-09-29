@@ -2,6 +2,15 @@
 
 게임 내용·진행·동작의 이력을 모은다. 미술 제작은 Forge reports에서 관리한다. 구조와 공통 검증은 [BUGFIX_CONTEXT.md](BUGFIX_CONTEXT.md)를 먼저 본다.
 
+## 설오·담허·휘겸·소단 v007 얼굴·복식·모션 — 2026-09-29
+
+- 요청/원인: 직전 몬스터 작업을 먼저 `8a31454`로 커밋한 뒤 네 캐릭터를 약 2배의 노드로 개선해 달라는 요청이다. v006 얼굴은 코·턱이 과하게 돌출되고 귀·입·눈 구조가 부족했다. 머리 행렬이 몸통의 비균일 늘어남을 상속해 동작 중 얼굴 비율도 바뀌었다.
+- 변경: v006의 SHA·앵커·발 기준·크기를 고정한 `tests/fixtures/party-baseline.json`, 작성 소스 `tools/party-forge/recipes.mjs`, SVG·rig·animation·runtime 생성기, 전후/얼굴/크기/모션 공방을 추가했다. 활성 에셋은 `shared/assets/party/`, 공통 리그는 `shared/runtime/party-rig.js`다. 머리·귀·눈썹·눈·코·입·턱·수염과 복식·손·도구를 새로 작성하거나 보완했다. 생성기는 원본의 1.9~2.1배 밖이면 실패한다. 설오 268→514(1.92배), 담허 267→517(1.94배), 휘겸 228→458(2.01배), 소단 261→497(1.90배). 곡선 제어점은 별도다.
+- 모션: 머리 pivot을 목 위로 옮기고 위치만 몸통을 따라가며 얼굴에는 회전·이동만 적용한다. 이동 발 들기를 기존의 60%, 설오·휘겸의 몸통 흔들림을 65%, 옷자락 흔들림을 75%로 낮췄다. 5개 동작과 손/무기 연결을 검토했다. 시각 검토 중 휘겸의 얼굴 위를 지나던 갓끈을 턱 아래로 옮겼다.
+- 검증: `npm run verify` PASS(exit 0, 408.10초). migration·integration·기존 게임/기예/스토리/저장 회귀와 순차 게임·편집기 성능 포함. 캐릭터 전용 48개 PASS: 4인 × 5동작 × 101시점의 머리 비율·관절·팔 도달·대기 발·루프, 양방향/4각도/3충전 활시위, SVG/Canvas 일치, Game/Stage View/Playtest 동일 그림, 두 HTML의 실제 충전/발사/피해/점프, 캠페인 적 소단, 렌더 상태 불변·편집 프로젝트 보존. 12인 220px 렌더 p95 4.8ms(현 PC). 공방 UI 5개도 별도 PASS.
+- 시각 증거: [얼굴 전후](../../_local/reports/party-forge/faces.png), [전신 전후](../../_local/reports/party-forge/comparison.png), [동작 공방](../../_local/reports/party-forge/index.html), [직접 본 평가·한계](../../_local/reports/party-forge/VISUAL_REVIEW.md), [수치 결과](../../_local/reports/party-forge/browser.json). [지속 제작 기준](PARTY_ART_PIPELINE.md), [전체 실행·HTML 해시](../../_local/reports/verification-run.json).
+- 보존/용량: 기존 `rebuild-game-adapter.mjs`와 전투·h/r·물리·저장은 유지한다. 과거 거절된 compact 설오는 사용하지 않았다. 에셋+공통 리그 96,657 bytes(기존 대비 +32,852), 게임 HTML +32,853 bytes, Workshop HTML +70,416 bytes. 생성물 크기는 [metrics](../../_local/reports/party-forge/metrics.json)와 [번들 측정](../../_local/reports/party-forge/bundle-size.json)에 있다. 64px에서는 인물 실루엣과 도구를 우선하며 미세 표정은 제한적이다. 정면 얼굴·립싱크·천 시뮬레이션·모바일 실기기·사용자 최종 미술 평가는 이번 자동 검증의 범위가 아니다.
+
 ## 일반 적 11종 확장·최초 원본 대비 약 3배 앵커 제한 — 2026-09-29
 
 - 요청/원인: 초기 3종의 앵커 증가가 과도하다는 피드백에 따라 기존 시안을 줄이고 다른 몬스터도 같은 예산으로 제작한다. 이전 개선본을 기준으로 다시 3배 늘리는 해석은 사용하지 않는다.

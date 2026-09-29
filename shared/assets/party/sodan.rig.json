@@ -1,0 +1,318 @@
+{
+  "canvas": {
+    "viewBox": [
+      -100,
+      -140,
+      880,
+      680
+    ],
+    "anchor": [
+      240,
+      480
+    ],
+    "visualHeight": 399
+  },
+  "rig": {
+    "parts": [
+      {
+        "id": "root",
+        "parent": null,
+        "pivot": [
+          240,
+          480
+        ],
+        "z": 0
+      },
+      {
+        "id": "pelvis",
+        "parent": "root",
+        "pivot": [
+          240,
+          278
+        ],
+        "z": 30
+      },
+      {
+        "id": "thorax",
+        "parent": "pelvis",
+        "pivot": [
+          240,
+          278
+        ],
+        "z": 50
+      },
+      {
+        "id": "neck",
+        "parent": "thorax",
+        "pivot": [
+          241,
+          155
+        ],
+        "z": 51
+      },
+      {
+        "id": "head",
+        "parent": "neck",
+        "pivot": [
+          240,
+          143
+        ],
+        "z": 70
+      },
+      {
+        "id": "rear_thigh",
+        "parent": "pelvis",
+        "pivot": [
+          225,
+          278
+        ],
+        "z": 12
+      },
+      {
+        "id": "rear_shin",
+        "parent": "rear_thigh",
+        "pivot": [
+          213,
+          365
+        ],
+        "z": 13
+      },
+      {
+        "id": "rear_foot",
+        "parent": "rear_shin",
+        "pivot": [
+          199,
+          459
+        ],
+        "z": 14
+      },
+      {
+        "id": "front_thigh",
+        "parent": "pelvis",
+        "pivot": [
+          253,
+          278
+        ],
+        "z": 20
+      },
+      {
+        "id": "front_shin",
+        "parent": "front_thigh",
+        "pivot": [
+          272,
+          365
+        ],
+        "z": 21
+      },
+      {
+        "id": "front_foot",
+        "parent": "front_shin",
+        "pivot": [
+          286,
+          459
+        ],
+        "z": 22
+      },
+      {
+        "id": "rear_upper_arm",
+        "parent": "thorax",
+        "pivot": [
+          215,
+          161
+        ],
+        "z": 32
+      },
+      {
+        "id": "rear_forearm",
+        "parent": "rear_upper_arm",
+        "pivot": [
+          190,
+          226
+        ],
+        "z": 33
+      },
+      {
+        "id": "rear_hand",
+        "parent": "rear_forearm",
+        "pivot": [
+          194,
+          294
+        ],
+        "z": 34
+      },
+      {
+        "id": "front_upper_arm",
+        "parent": "thorax",
+        "pivot": [
+          265,
+          162
+        ],
+        "z": 55
+      },
+      {
+        "id": "front_forearm",
+        "parent": "front_upper_arm",
+        "pivot": [
+          288,
+          230
+        ],
+        "z": 56
+      },
+      {
+        "id": "front_hand",
+        "parent": "front_forearm",
+        "pivot": [
+          321,
+          278
+        ],
+        "z": 64
+      },
+      {
+        "id": "rear_cloth",
+        "parent": "pelvis",
+        "pivot": [
+          224,
+          273
+        ],
+        "z": 24
+      },
+      {
+        "id": "front_cloth",
+        "parent": "pelvis",
+        "pivot": [
+          257,
+          275
+        ],
+        "z": 44
+      },
+      {
+        "id": "belt",
+        "parent": "pelvis",
+        "pivot": [
+          240,
+          278
+        ],
+        "z": 60
+      },
+      {
+        "id": "hair_tail",
+        "parent": "head",
+        "pivot": [
+          229,
+          100
+        ],
+        "z": 45
+      },
+      {
+        "id": "prop_hip",
+        "parent": "pelvis",
+        "pivot": [
+          227,
+          280
+        ],
+        "z": 48
+      },
+      {
+        "id": "weapon",
+        "parent": "front_hand",
+        "pivot": [
+          326,
+          285
+        ],
+        "z": 62
+      },
+      {
+        "id": "ribbon",
+        "parent": "belt",
+        "pivot": [
+          242,
+          279
+        ],
+        "z": 61
+      },
+      {
+        "id": "rear_sleeve",
+        "parent": "rear_upper_arm",
+        "pivot": [
+          215,
+          161
+        ],
+        "z": 32.1
+      },
+      {
+        "id": "front_sleeve",
+        "parent": "front_upper_arm",
+        "pivot": [
+          265,
+          162
+        ],
+        "z": 55.1
+      },
+      {
+        "id": "spirit",
+        "parent": "root",
+        "pivot": [
+          390,
+          235
+        ],
+        "z": 90
+      }
+    ]
+  },
+  "constraints": {},
+  "face": {
+    "landmarks": {
+      "brow": [
+        251,
+        109
+      ],
+      "eye": [
+        252,
+        114
+      ],
+      "nose": [
+        264,
+        124
+      ],
+      "mouth": [
+        255,
+        132
+      ],
+      "chin": [
+        251,
+        143
+      ],
+      "ear": [
+        230,
+        118
+      ],
+      "neck": [
+        240,
+        151
+      ]
+    },
+    "shapeIds": [
+      "hair_back",
+      "face_plane",
+      "temple_shadow",
+      "cheek_light",
+      "jaw_plane",
+      "brow_plane",
+      "ear",
+      "ear_fold",
+      "brow",
+      "eye_socket",
+      "eye_light",
+      "iris",
+      "lower_lid",
+      "nose_bridge",
+      "nostril",
+      "mouth",
+      "lower_lip",
+      "hair_front",
+      "hair_sweep",
+      "hair_cord",
+      "hair_cord_light"
+    ]
+  }
+}

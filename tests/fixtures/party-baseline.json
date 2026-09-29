@@ -1,0 +1,79 @@
+{
+  "source": "shared/assets/party.v006.runtime.js",
+  "sha256": "3a7304eb5c01e219909266687c66e0ffc6216811cc0122995705c6c4289bf4ef",
+  "counting": "Explicit M/L/Q/C endpoints; Bezier controls counted separately; unmodified v006 baseline.",
+  "assets": {
+    "seol_o": {
+      "name": "설오",
+      "anchors": 268,
+      "paths": 45,
+      "canvas": {
+        "viewBox": [
+          -100,
+          -140,
+          880,
+          680
+        ],
+        "anchor": [
+          240,
+          479
+        ],
+        "visualHeight": 415
+      }
+    },
+    "damheo": {
+      "name": "담허",
+      "anchors": 267,
+      "paths": 42,
+      "canvas": {
+        "viewBox": [
+          -100,
+          -140,
+          880,
+          680
+        ],
+        "anchor": [
+          240,
+          480
+        ],
+        "visualHeight": 415
+      }
+    },
+    "hwigyeom": {
+      "name": "휘겸",
+      "anchors": 228,
+      "paths": 43,
+      "canvas": {
+        "viewBox": [
+          -100,
+          -140,
+          880,
+          680
+        ],
+        "anchor": [
+          240,
+          480
+        ],
+        "visualHeight": 425
+      }
+    },
+    "sodan": {
+      "name": "소단",
+      "anchors": 261,
+      "paths": 45,
+      "canvas": {
+        "viewBox": [
+          -100,
+          -140,
+          880,
+          680
+        ],
+        "anchor": [
+          240,
+          480
+        ],
+        "visualHeight": 399
+      }
+    }
+  }
+}
