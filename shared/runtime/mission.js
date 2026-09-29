@@ -1,22 +1,29 @@
 (function(G){'use strict';
 const FINALE_TURNS=6,FINALE_CAP=28;
+function finaleSites(b){const a=b.honroMapAnchors||{},site=(id,key,fraction,label)=>{const p=a[key]||{x:b.width*fraction};return{id,label,x:p.x,y:G.HonroWorld.top(b,p.x,p.y,p.support),support:p.support};};return[site('west','westHall',.33,'서쪽 전각'),site('east','eastHall',.71,'동쪽 전각')];}
+function ritualPosition(b,sodan){const a=b.honroMapAnchors?.ritual||{x:b.width*.5,y:sodan.spawnY||sodan.y};return G.HonroTerrain.place(b,sodan,{x:a.x,y:G.HonroWorld.top(b,a.x,a.y,a.support),flying:false,maxDistance:160,clearance:12});}
+function channeler(b,sodan,position,fraction){const C=G.HONRO_CORE,h=structuredClone(b.heroes.occultist),level=Math.floor(G.HonroProgression.plan(10).entryLevel);h.xp=Math.max(h.xp,C.xpAtLevel(level));C.autoTrain(h,'occultist');sodan.loadout=C.knownSkills(h,'occultist').filter(id=>!C.SKILLS[id].passive).slice(0,4);C.applyHero(sodan,h,true);
+ Object.assign(sodan,position,{name:'소단',side:2,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:0,hp:Math.max(1,Math.round(sodan.maxHp*fraction))});delete sodan.moveTarget;delete sodan.aiMove;sodan.airborne=sodan.jumping=false;
+ Object.assign(b.honroState,{finaleAnchor:position,finaleRevision:2,finaleSites:finaleSites(b)});
+}
 function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('boss'),space=Math.max(0,FINALE_CAP-e.alive(1).length),n=Math.min(index===0?8:6,space);if(!n)return index>0;
- const before=new Set(b.units.map(u=>u.id)),dir=index%2?-1:1,x=Math.max(180,Math.min(b.width-200,boss.x+dir*(650+index*35)));
- const actions=[{type:'spawn',n:Math.ceil(n*.65),x,kind:index%3===2?'boar':'hound'},{type:'spawn',n:Math.floor(n*.35),x:Math.max(180,Math.min(b.width-200,boss.x-dir*720)),kind:'crow'}].filter(a=>a.n);
+ const before=new Set(b.units.map(u=>u.id)),sites=hs.finaleSites||finaleSites(b),front=sites[index%2===0?1:0],rear=sites[index%2===0?0:1];
+ const actions=[{type:'spawn',n:Math.ceil(n*.5),kind:index%3===2?'boar':'hound',site:front},{type:'spawn',n:Math.floor(n*.5),kind:'crow',site:rear}].filter(a=>a.n).map(a=>({...a,x:a.site.x,y:a.site.y,support:a.site.support,spacing:140,maxDistance:288,source:a.site.id}));
  if(G.HonroAllies.execute(app,{type:'multi',actions})===false)return false;
  const units=b.units.filter(u=>!before.has(u.id));for(let i=0;i<units.length;i++){const u=units[i];u.aggroUntil=b.round+10;if(i%2===0){u.honroTargetId=boss.id;u.honroTargetUntil=b.round+10;}}
- hs.finaleWaves??=[];hs.finaleWaves.push({index,round:b.round,units:units.map(u=>u.id)});app.event(`혼매듭으로 몰려드는 들림 · ${index+1}차 습격`);return true;}
+ hs.finaleSites=sites;hs.finaleWaves??=[];hs.finaleWaves.push({index,round:b.round,units:units.map(u=>u.id),sources:actions.map(a=>a.source)});for(const site of sites)e.fx('ring',site.x,site.y-45,'#b85e5b',90);app.event(`${front.label}에서 짐승, ${rear.label}에서 까마귀가 몰려온다 · ${index+1}차 습격`);return true;}
 function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss');if(!sodan||sodan.dead)return;
  if(!hs.sodanCoop){if(!app.actorBoundary||(hs.receivers||0)<2||sodan.hp>sodan.maxHp*.42)return;
+  const position=ritualPosition(b,sodan);if(!position)return;
   if(!rush(app,0))return;
   hs.sodanBreach={units:hs.finaleWaves[0].units,round:b.round,source:'east'};hs.sodanCoop=true;hs.coopHold=0;hs.finaleLastEnemyEnd=b.teamEnds[1]+(b.side===1?1:0);hs.finaleWave=0;
-  Object.assign(sodan,{side:2,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:Math.max(sodan.shield||0,100),hp:Math.max(sodan.hp,Math.round(sodan.maxHp*.65))});hs.finaleAnchor={x:sodan.x,y:sodan.y};
-  const C=G.HONRO_CORE,h=structuredClone(b.heroes.occultist);h.xp=Math.max(h.xp,C.xpAtLevel(sodan.level||1));C.autoTrain(h,'occultist');sodan.ranks={...h.ranks};sodan.loadout=C.knownSkills(h,'occultist').filter(id=>!C.SKILLS[id].passive).slice(0,4);Object.assign(sodan,C.criticalStats('occultist',sodan.level,sodan.ranks));
+  channeler(b,sodan,position,.8);e.fx('ring',sodan.x,sodan.y-12,'#deb56e',80);
   b.queue=(b.queue||[]).filter(id=>id!==sodan.id);
   const beforeCoop=l=>l[2]?.storyId?.includes('entry-follow-10-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(beforeCoop));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!beforeCoop(l));
   app.sayLines(G.HonroStoryContent.cooperation());
  }
  // Old saves retain earned progress, but need six full enemy turns in total.
+ if(hs.finaleRevision!==2){const position=ritualPosition(b,sodan);if(position)channeler(b,sodan,position,Math.min(1,sodan.hp/sodan.maxHp));}
  hs.finaleLastEnemyEnd??=b.teamEnds[1];hs.finaleWave??=hs.coopHold||0;hs.finaleDefenseTurns??=hs.coopHold||0;hs.finaleAnchor??={x:sodan.x,y:sodan.y};
  Object.assign(sodan,{...hs.finaleAnchor,side:2,honroAlly:true,allyRole:'channeler',fixed:true,vx:0,vy:0});delete sodan.moveTarget;delete sodan.aiMove;b.enemyLimit=b.honroActiveLimit=6;
  if(!app.actorBoundary)return;
@@ -58,5 +65,5 @@ function tick(app,dt){
  if(st.id===10)finale(app);
  app.checkMission(e);
 }
-G.HonroMission={tick,finale,FINALE_TURNS,FINALE_CAP};
+G.HonroMission={tick,finale,finaleSites,FINALE_TURNS,FINALE_CAP};
 })(globalThis);

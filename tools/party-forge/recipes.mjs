@@ -1,12 +1,12 @@
+import {rebuildSheetFace,applySheetColors} from './sheet-faces.mjs';
 // Author in the existing v006 bind space. Rig contacts and game dimensions stay fixed.
 const common={skinLight:'#D3B899',skinShade:'#92725A',skinWarm:'#B18C70',feature:'#473B34',eye:'#242B2A',eyeLight:'#D8D5C2',hairLight:'#414640',seam:'#858B75',leatherLight:'#927A58',metalLight:'#C0C4B0'};
 export function createParty(original){
  const assets=structuredClone(original);
  for(const a of Object.values(assets)){
-  a.version=7;a.asset_id=a.character_id+'.v007';Object.assign(a.palette,common);
+  a.version=8;a.asset_id=a.character_id+'.v008';Object.assign(a.palette,common);
   a.rig.parts.find(p=>p.id==='head').pivot=[240,143];
-  a.face={landmarks:{brow:[251,109],eye:[252,114],nose:[264,124],mouth:[255,132],chin:[251,143],ear:[230,118],neck:[240,151]},shapeIds:[]};
-  rebuildFace(a);refineBody(a);refineMotion(a);
+  refineBody(a);refineMotion(a);rebuildSheetFace(a);applySheetColors(a);
   a.face.shapeIds=a.paths.filter(p=>p.part==='head').map(p=>p.id);
  }
  return assets;
@@ -14,70 +14,6 @@ export function createParty(original){
 function add(a,id,part,d,fill,detail=0){a.paths.push({id,part,d,fill,detail});return a.paths.at(-1);}
 function line(a,id,part,d,stroke,width=1,detail=1){a.paths.push({id,part,d,stroke,strokeWidth:width,detail});}
 function replace(a,id,d){const p=a.paths.find(p=>p.id===id);if(!p)throw Error('Missing authoring path '+id);p.d=d;}
-function rebuildFace(a){
- const id=a.character_id,old=id==='damheo',warrior=id==='hwigyeom',soft=id==='sodan';
- a.paths=a.paths.filter(p=>!['head','neck','hair_tail'].includes(p.part));
- if(old)Object.assign(a.palette,{hairLight:'#A9A99D',skinLight:'#C5AD8B',skinShade:'#83694F',skinWarm:'#A58A6A'});
- if(soft)Object.assign(a.palette,{hairLight:'#484552',skinLight:'#DDC9B0',skinShade:'#A88A7D',skinWarm:'#C0A491'});
- const p=(name,d,fill,detail=0)=>add(a,name,'head',d,fill,detail),l=(name,d,color,width=1,detail=1)=>line(a,name,'head',d,color,width,detail);
- add(a,'neck','neck','M231 132 Q240 137 250 132 L251 150 244 165 230 150Z','skin');
- add(a,'neck_turn','neck','M231 136 L240 142 246 144 241 155 231 150Z','skinShade');
- line(a,'neck_tendon','neck','M246 144 L245 151','skinLight',1.2,1);
- p('hair_back',soft?'M222 96 Q226 82 242 81 Q259 79 266 96 L263 119 252 137 233 142 221 128 216 113Z':old?'M222 98 Q222 83 239 83 Q255 80 262 94 L260 115 251 137 234 145 224 135 218 115Z':'M222 100 Q221 87 237 82 Q255 80 263 95 L262 114 252 137 237 143 223 133 218 116Z',old?'ash':'ink');
- p('face_plane',warrior?'M237 94 Q248 88 257 97 L261 107 260 116 266 123 Q265 126 261 126 L262 132 257 141 249 146 238 140 232 130 231 110Z':soft?'M236 96 Q246 88 255 96 Q260 101 260 112 L259 117 265 123 262 126 260 126 261 131 Q257 141 251 143 Q243 142 237 135 L231 123 232 109Z':old?'M236 94 Q247 89 255 96 L260 106 258 117 265 124 262 127 260 127 261 132 256 140 247 144 237 137 232 127 230 110Z':'M235 94 Q247 88 256 96 L260 106 259 116 265 123 262 126 260 126 261 131 256 138 Q251 144 246 141 L237 134 231 124 231 109Z','skin');
- p('temple_shadow','M234 99 L241 100 237 115 238 126 246 140 237 134 231 124 231 111Z','skinShade');
- p('cheek_light',soft?'M245 103 Q250 100 255 105 L255 115 260 120 255 124 245 128 240 119Z':'M244 101 Q251 99 255 105 L255 113 260 121 253 125 243 123 240 115Z','skinLight');
- p('jaw_plane',warrior?'M239 127 L247 131 259 130 256 140 249 143 241 138Z':'M239 128 L246 132 258 130 255 136 249 140 243 136Z','skinWarm');
- p('brow_plane','M244 103 L249 102 254 105 250 105 246 106Z','skinLight',1);
- p('ear','M230 109 Q223 107 224 117 Q224 126 231 128 L235 120 234 112Z','skinWarm');
- l('ear_fold','M229 114 Q225 113 227 120 L231 121','skinShade',1.2,1);
- // Upper lid and pupil occupy the same eye socket; the eyebrow is above it.
- p('brow',old?'M244 108 Q251 104 258 109 L257 111 249 109 244 111Z':warrior?'M245 108 L257 108 259 111 251 111 245 112Z':soft?'M245 108 Q251 106 257 109 L256 110 250 109 245 110Z':'M244 108 L250 106 258 109 256 111 250 109 244 111Z',old?'hairLight':'ink');
- p('eye_socket','M246 114 Q251 111 257 113 L256 116 250 117Z','feature');
- p('eye_light','M248 114 L255 113.6 254 115.1 250 115.1Z','eyeLight');
- p('iris','M252 113.5 L254 113.5 254 115.6 252 115.8Z','eye');
- l('lower_lid','M248 118 L253 118','skinShade',.8,2);
- l('nose_bridge','M258 113 L257.5 119 261 123','skinShade',1,1);
- p('nostril','M260 124 L263 124 262 125.5 260 125.4Z','feature');
- l('mouth','M250 131.5 Q255 130.5 260 131.8','feature',1.3,0);
- l('lower_lip','M253 134 L258 133.8','skinLight',1,1);
- if(old){
-  p('hair_front','M221 101 Q220 84 237 83 Q254 79 262 92 L263 98 255 96 250 92 244 99 237 102 233 113 228 114 227 104Z','ash');
-  p('hair_sweep','M227 96 Q230 85 243 86 L253 90 243 91 236 96 232 107 229 109Z','hairLight');
-  p('topknot','M225 85 Q216 78 221 69 Q227 62 234 70 L235 79 231 86Z','ash');
-  l('hair_tie','M221 80 Q227 84 234 81','ink',2,0);
-  p('moustache','M247 129 Q253 127 259 130 L261 133 255 132 251 134 245 132 241 133Z','hairLight');
-  p('beard','M237 130 Q242 137 249 137 L259 133 Q260 145 251 157 L246 163 242 157 236 148 231 136Z','paper');
-  p('beard_plane','M233 135 L240 141 244 157 241 153 236 148Z','ash');
-  l('beard_strands','M247 141 Q252 145 246 155 M253 139 L252 148','hairLight',1,1);
-  l('age_lines','M240 106 L243 104 M244 121 L249 123 M257 127 L256 130','skinShade',.8,2);
- }else if(warrior){
-  p('sideburn','M228 103 L235 104 234 121 238 132 236 137 230 127 227 116Z','ink');
-  p('beard','M239 134 L246 139 254 137 260 133 258 143 250 149 243 147 239 141Z','hairLight');
-  l('moustache','M251 130 L256 129 260 131','ink',1.6,0);
-  l('jaw_stubble','M242 138 L244 143 M247 142 L248 146 M253 140 L252 144','ink',.8,2);
-  l('face_scar','M242 117 L242 121 245 125','skinLight',1,2);
-  p('gat_crown','M224 92 L227 62 Q237 57 252 61 L258 94Z','ink');
-  p('gat_crown_light','M229 65 Q237 62 243 64 L245 90 227 89Z','hairLight');
-  p('gat_brim','M181 96 Q203 87 233 89 Q269 88 298 102 Q281 107 239 106 Q200 104 180 100Z','ink');
-  p('gat_rim','M184 96 Q233 88 292 101 Q269 99 241 98 L208 97Z','iron');
-  l('gat_band','M225 90 Q242 94 258 92','iron',2,1);
-  l('gat_cord','M224 104 Q220 126 230 141 Q238 150 250 146','wood',1.1,0);
- }else{
-  p('hair_front',soft?'M221 100 Q222 83 242 82 Q259 81 265 97 L265 102 257 98 255 106 250 98 242 105 237 117 231 122 230 107 225 110Z':'M222 100 Q223 86 238 83 Q255 81 262 93 L265 100 257 96 253 105 247 96 240 103 236 114 230 118 231 102Z','ink');
-  p('hair_sweep',soft?'M227 98 Q233 85 247 86 L257 92 246 92 236 100 232 109Z':'M227 97 Q232 87 245 86 L254 91 245 91 236 97 232 106Z','hairLight',1);
-  if(soft){
-   add(a,'low_hair_tail','hair_tail','M220 116 Q208 126 210 144 L204 168 213 162 220 158 Q228 139 228 124Z','ink');
-   line(a,'hair_tail_fold','hair_tail','M220 128 Q216 143 213 155','hairLight',1.5,1);
-   p('hair_cord','M220 114 Q212 107 207 115 L211 121 219 121 Q226 111 230 116 L229 123 221 123 220 143 215 149 217 127 211 132 214 122Z','red');
-  }else{
-   p('hair_knot','M224 86 Q217 80 218 73 Q220 66 228 68 Q236 71 232 81 L229 86Z','ink');
-   l('hair_tie','M220 81 Q225 85 233 80','red',2,0);
-   add(a,'hair_tie_tail','hair_tail','M222 99 Q210 116 207 129 L213 125 212 139 221 131 227 112Z','ink');
-   line(a,'tail_strand','hair_tail','M221 110 L215 126','hairLight',1.2,1);
-  }
- }
-}
 function refineBody(a){
  const id=a.character_id,old=id==='damheo',warrior=id==='hwigyeom',soft=id==='sodan',robe=old||soft;
  const cloth=soft?'violet':old?'ash':warrior?'navy':'pine',dark=old?'charcoal':soft?'indigo':warrior?'ink':'olive',light=old?'paper':soft?'ivory':warrior?'iron':'hemp';
@@ -178,5 +114,4 @@ function refineMotion(a){
    if(frame.frontCloth)frame.frontCloth*=.75;if(frame.rearCloth)frame.rearCloth*=.75;
   }
  }
- a.design={reference:'shared/assets/party.v006.runtime.js',brief:{seol_o:'날렵한 얼굴과 짧게 정리한 턱, 초록 겉옷과 봉인 활',damheo:'눈꺼풀과 광대의 나이, 흐르는 백발·수염과 삼베',hwigyeom:'갓 아래 드러나는 눈썹, 단단한 턱과 짧은 수염, 남색 무복',sodan:'둥근 턱과 차분한 눈, 낮은 머리끈·자줏빛 겉옷과 방울'}[a.character_id],anchorBudget:[1.9,2.1]};
 }

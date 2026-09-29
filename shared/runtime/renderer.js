@@ -33,6 +33,36 @@
     } c.restore(); }
     class Scene {
         constructor(canvas) { this.canvas = canvas; this.ctx = canvas.getContext('2d'); this.x = 800; this.y = 850; this.scale = .7; this.manual = false; this.time = 0; this.effects = []; this.theme = 'forest'; this._staticWorldCache=null; this._backgroundCache=null; this._cacheStats={worldBuilds:0,worldBuildMs:0,bgBuilds:0,bgBuildMs:0,worldHits:0,bgHits:0}; this.focusId=null;this.focusUntil=0;this.speakerId=null;this.speakerUntil=0;this.storyTween=null;this.archerVisual = G.HonroArcherVisual ? new G.HonroArcherVisual(G.HONRO_ARCHER,G.HonroVectorRig) : null; this.arcFx = G.HONRO_CORE.Renderer ? new G.HONRO_CORE.Renderer(canvas) : null; }
+        finaleRitual(c,b){
+            const v=b.units.find(u=>u.id==='boss'&&!u.dead);if(!v)return;
+            const done=Math.min(6,b.honroState.coopHold||0),t=this.time,scale=this.scale;
+            // Two braided ritual cords, with souls visibly flowing out to the receiving stones.
+            // Fixed, small path/particle counts; no per-frame surfaces, blur filters or entity spawns.
+            c.save();c.lineCap='round';
+            for(const m of b.honroMarkers||[])if(m.action==='receiver'&&m.collected){
+                const from={x:v.x,y:v.y-34},to={x:m.x,y:m.y-70},bend={x:(v.x+m.x)*.5,y:Math.min(v.y,m.y)-220};
+                const at=p=>({x:(1-p)*(1-p)*from.x+2*(1-p)*p*bend.x+p*p*to.x,y:(1-p)*(1-p)*from.y+2*(1-p)*p*bend.y+p*p*to.y});
+                for(const [color,width,offset] of [['#151c24cc',7,0],['#a9574bd9',3.2,0],['#d9916266',1,3]]){
+                    c.beginPath();c.moveTo(from.x,from.y+offset);c.quadraticCurveTo(bend.x,bend.y+offset,to.x,to.y+offset);c.strokeStyle=color;c.lineWidth=width;c.stroke();
+                }
+                for(let i=0;i<9;i++){const p=(i/9+t*.09)%1,a=at(p),tail=at(Math.max(0,p-.013));L(c,tail.x,tail.y,a.x,a.y,'#e5c585b0',3);E(c,a.x,a.y,3.5,2.6,'#fff0c9');}
+                E(c,m.x,m.y-7,66,17,'#e7c77815');glyph(c,m.x,m.y-70,31,'#d9b879',t*.08);E(c,m.x,m.y-70,9,13,'#efd09588');
+                c.fillStyle='#e2c995';c.textAlign='center';c.font=`${11/scale}px sans-serif`;c.fillText('원혼을 받는 중',m.x,m.y+30/scale);
+            }
+            // Six closed red knots open into gold beads as each full defense is completed.
+            E(c,v.x,v.y+3,89,24,'#171920b8');
+            for(let i=0;i<6;i++){const a=i*Math.PI/3,x=v.x+Math.cos(a)*75,y=v.y+3+Math.sin(a)*19;
+                c.strokeStyle=i<done?'#e9c887':'#a55b52';c.lineWidth=2;c.beginPath();c.ellipse(v.x,v.y+3,75,19,0,a+.08,a+Math.PI/3-.08);c.stroke();
+                if(i<done)E(c,x,y,4,4,'#f3d69a');else{c.beginPath();c.ellipse(x-4,y,6,4,-.5,0,Math.PI*2);c.ellipse(x+4,y,6,4,.5,0,Math.PI*2);c.stroke();}
+            }
+            c.textAlign='center';c.font=`600 ${12/scale}px sans-serif`;c.fillStyle='#e7cf9d';c.fillText(`혼매듭 ${done}/6 · 소단 보호`,v.x,v.y+47/scale);
+            for(const site of b.honroState.finaleSites||[]){
+                E(c,site.x,site.y-52,30,52,'#301e2bd9');c.strokeStyle='#a35c5f';c.lineWidth=2;c.beginPath();c.ellipse(site.x,site.y-52,30,52,0,Math.PI,Math.PI*2);c.stroke();
+                for(let i=0;i<4;i++){const p=(i/4+t*.2)%1;c.globalAlpha=(1-p)*.65;E(c,site.x+Math.sin(i*5+t)*22,site.y-25-p*120,4,12,'#c7786f');}c.globalAlpha=1;
+                c.fillStyle='#deb6aa';c.font=`${11/scale}px sans-serif`;c.fillText(site.label+' · 들림 출몰',site.x,site.y+30/scale);
+            }
+            c.restore();
+        }
         focusUnit(id,ms=900,speaker=false){this.focusId=id;this.focusUntil=performance.now()+ms;if(speaker){this.speakerId=id;this.speakerUntil=performance.now()+ms;}this.manual=false;}
         storyFocus(id,duration=500,targetScale=null){this.storyTween={kind:'unit',id,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},targetScale};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
         storyRelease(camera,duration=450){if(!camera)return;this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
@@ -153,7 +183,7 @@
                 this.field(c, f.x, f.y, rr, f.kind || f.type || 'gravity');
             }
             G.HONRO_CORE.drawStakes(c,e,this.time);
-            if(b.honroStage===10&&b.honroState?.sodanCoop){const v=b.units.find(u=>u.id==='boss'&&!u.dead);if(v){const done=b.honroState.coopHold||0;c.save();c.strokeStyle='#ccb77c';c.lineWidth=2/this.scale;for(let i=0;i<6;i++){c.globalAlpha=i<done?.9:.22;c.beginPath();c.ellipse(v.x,v.y+3,75,19,0,i*Math.PI/3+.06,(i+1)*Math.PI/3-.06);c.stroke();}c.globalAlpha=.6;for(const m of b.honroMarkers||[])if(m.action==='receiver'&&m.collected)L(c,v.x,v.y-v.h*.45,m.x,m.y-12,'#c5b08b66',1);c.globalAlpha=1;c.fillStyle='#ebd497';c.textAlign='center';c.font=`600 ${12/this.scale}px sans-serif`;c.fillText(`혼매듭 ${done}/6 · 보호`,v.x,v.y-v.h-30/this.scale);c.restore();}}
+            if(b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
             for (const z of b.zones || []) {
                 if (z.dead)
                     continue;

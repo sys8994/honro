@@ -253,62 +253,75 @@
   "constraints": {},
   "face": {
     "landmarks": {
-      "brow": [
-        251,
-        109
-      ],
       "eye": [
-        252,
-        114
+        248.3,
+        120.22
+      ],
+      "farEye": [
+        261.22,
+        121.92
       ],
       "nose": [
-        264,
-        124
+        259.18,
+        130.07999999999998
       ],
       "mouth": [
-        255,
-        132
-      ],
-      "chin": [
-        251,
-        143
-      ],
-      "ear": [
-        230,
-        118
-      ],
-      "neck": [
-        240,
-        151
+        250.68,
+        138.58
       ]
     },
     "shapeIds": [
+      "topknot",
       "hair_back",
       "face_plane",
       "temple_shadow",
-      "cheek_light",
-      "jaw_plane",
-      "brow_plane",
       "ear",
       "ear_fold",
-      "brow",
-      "eye_socket",
-      "eye_light",
-      "iris",
-      "lower_lid",
-      "nose_bridge",
-      "nostril",
+      "near_brow",
+      "far_brow",
+      "near_eye",
+      "near_lid",
+      "near_pupil",
+      "far_eye",
+      "far_lid",
+      "far_pupil",
+      "nose",
+      "age_line",
       "mouth",
-      "lower_lip",
       "hair_front",
-      "hair_sweep",
-      "topknot",
-      "hair_tie",
+      "grey_temple",
       "moustache",
-      "beard",
-      "beard_plane",
-      "beard_strands",
-      "age_lines"
-    ]
+      "beard"
+    ],
+    "view": "three-quarter",
+    "reference": "260916",
+    "authoringMap": {
+      "from": [
+        850,
+        228
+      ],
+      "to": [
+        250,
+        143
+      ],
+      "scale": 0.34,
+      "sign": 1,
+      "eye": [
+        845,
+        161
+      ],
+      "farEye": [
+        883,
+        166
+      ],
+      "nose": [
+        877,
+        190
+      ],
+      "mouth": [
+        852,
+        215
+      ]
+    }
   }
 }

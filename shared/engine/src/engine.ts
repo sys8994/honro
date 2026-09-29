@@ -56,7 +56,10 @@ export class Engine {
     private enemyPlanning?:{key:string;steps:Generator<void,void,unknown>};
     /** Runtime-only work budget; saves resume an unfinished decision from its input state. */
     planningBudget(ms?:number){this.planningDeadline=ms===undefined?Infinity:performance.now()+ms;}
-    private planningKey(){const b=this.b;return [b.active,b.round,b.sceneVersion,b.physics?.revision,b.wind,b.rng,...b.units.map(u=>`${u.id}:${u.x}:${u.y}:${u.hp}:${u.shield}:${u.focus}:${u.dead}`)].join('|');}
+    planningKey(){const b=this.b;return [b.active,b.round,b.sceneVersion,b.physics?.revision,b.wind,b.rng,...b.units.map(u=>`${u.id}:${u.x}:${u.y}:${u.hp}:${u.shield}:${u.focus}:${u.dead}`)].join('|');}
+    continuePlanning<T>(steps:Generator<void,T,unknown>):IteratorResult<void,T>|undefined{
+        while(performance.now()<this.planningDeadline){const next=steps.next();if(next.done)return next;}
+    }
     constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; this.b = b; for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
@@ -331,11 +334,29 @@ export class Engine {
         }
         return { points, x, y, closest, apex: ap };
     }
-    bestShot(u: Unit, s: Skill, target: Unit, allowAllyTarget=false){return finishPlanning(this.searchShot(u,s,target,allowAllyTarget));}
-    *searchShot(u:Unit,s:Skill,target:Unit,allowAllyTarget=false):Generator<void,{angle:number;power:number;score:number},unknown>{
+    /** Invert constant-force flight to seed aiming, then validate against the real trajectory.
+     * Spatial fields, obstacles and special skills still use prediction and the bounded fallback. */
+    shotSeeds(u:Unit,s:Skill,target:Unit,maxPower=1){
+        const speed=this.effective(s,u).speed,baseTime=Math.max(.12,Math.hypot(target.x-u.x,target.y-u.y)/((270+535*maxPower)*speed*.86));
+        const gravity=(s.gravity??1)*(GHOST.has(s.mode)?Math.max(.12,1-equippedRank(u,'OP01')*.08):1),seeds:{angle:number;power:number}[]=[];
+        for(const factor of [1,1.2,.85,1.5,1.9,2.4]){
+            const t=baseTime*factor;let angle=target.x>=u.x?20:160,power=0;
+            for(let i=0;i<3;i++){
+                const o=this.origin(u,angle,BODY.has(s.mode)),a=this.forceSample({...o,wind:s.wind,gravityScale:gravity,drag:dragFor(s),skill:s.id});
+                const k=a.k,F=k<1e-7?t:-Math.expm1(-k*t)/k,Q=k<1e-7?t*t*.5:(t-F)/k;
+                const vx=(target.x-o.x-a.x*Q)/F,vy=(target.y-target.h*.52-o.y-a.y*Q)/F;
+                angle=Math.atan2(-vy,vx)*180/Math.PI;if(angle< -90)angle+=360;
+                power=(Math.hypot(vx,vy)/speed-270)/535;
+            }
+            if(angle>=AIM_MIN&&angle<=AIM_MAX&&power>=.08&&power<=maxPower)seeds.push({angle,power});
+        }
+        return seeds;
+    }
+    bestShot(u: Unit, s: Skill, target: Unit, allowAllyTarget=false,maxPower=1){return finishPlanning(this.searchShot(u,s,target,allowAllyTarget,maxPower));}
+    *searchShot(u:Unit,s:Skill,target:Unit,allowAllyTarget=false,maxPower=1):Generator<void,{angle:number;power:number;score:number},unknown>{
         if(this.bestShot!==Engine.prototype.bestShot)return this.bestShot(u,s,target,allowAllyTarget);
         const right = target.x > u.x, blast = this.effective(s, u).radius;
-        let best = { angle: right ? 45 : 135, power: .62, score: -1e9 };
+        let best = { angle: right ? 45 : 135, power: Math.min(.62,maxPower), score: -1e9 },useful=false;
         const score = (a: number, p: number) => {
             const hit = this.predict(u, s, a, p, target, false);
             const d = Math.hypot(hit.x - target.x, hit.y - (target.y - target.h * .52));
@@ -345,6 +366,7 @@ export class Engine {
             if (blast > 0 && d < blast)
                 sc = 160 + (1 - d / blast) * 70;
             const value=shotImpactValue(this,u,s,hit,allowAllyTarget?target.id:undefined);
+            useful=value.enemyDamage>0&&value.net>Math.max(2,value.enemyDamage*.05);
             sc+=value.net*2;
             if(value.enemyDamage>0&&value.net>2)sc+=150;
             else if(value.friendlyDamage>0)sc-=250;
@@ -352,20 +374,26 @@ export class Engine {
                 sc -= 500;
             return sc;
         };
+        if(u.side!==0)for(const seed of this.shotSeeds(u,s,target,maxPower)){
+            const sc=score(seed.angle,seed.power);if(sc>best.score)best={...seed,score:sc};
+            yield;if(useful)return {...seed,score:sc};
+        }
         for (let elev = target.y > u.y+90 ? -65 : 10; elev <= 86; elev += 8)
-            for (let p = .20; p <= 1.001; p += .085) {
+            for (let p = .20; p <= maxPower+.001; p += .085) {
                 const a = right ? elev : 180 - elev, sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
                 yield;
+                if(u.side!==0&&useful)return {angle:a,power:p,score:sc};
             }
         const initial = { ...best };
         for (let da = -6; da <= 6; da += 3)
             for (let dp = -.07; dp <= .07; dp += .035) {
-                const a = clamp(initial.angle + da, AIM_MIN, AIM_MAX), p = clamp(initial.power + dp, .1, 1), sc = score(a, p);
+                const a = clamp(initial.angle + da, AIM_MIN, AIM_MAX), p = clamp(initial.power + dp, .1, maxPower), sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
                 yield;
+                if(u.side!==0&&useful)return {angle:a,power:p,score:sc};
             }
         return best;
     }
@@ -1858,7 +1886,7 @@ export class Engine {
             if (b.resolveAge > .12)
                 this.finishAction();
         }
-        else if (b.phase === 'enemy' && b.turnAge > .18 && !this.settleBusy())
+        else if (b.phase === 'enemy' && !this.settleBusy())
             this.enemyAction();
         else if (b.phase === 'transition' && b.turnAge > .16 && !this.settleBusy())
             this.switchTeam();

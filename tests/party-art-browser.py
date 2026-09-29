@@ -12,7 +12,7 @@ def listen(page):page.on('pageerror',lambda e:errors.append(str(e)))
 
 AUDIT=r'''()=>{const R=HonroVectorRig,rows=[];for(const[id,a]of Object.entries(HONRO_PARTY)){let headError=0,reach=0,footDrift=0,jointGap=0,loopError=0;const idle=R.rigMatrices(a,R.sampleAnimation(a,'idle',0,true).poses),by=Object.fromEntries(a.rig.parts.map(p=>[p.id,p]));for(const name of Object.keys(a.animation.animations))for(let i=0;i<=100;i++){const s=R.sampleAnimation(a,name,i/100,true),m=R.rigMatrices(a,s.poses),h=m.head;headError=Math.max(headError,Math.abs(Math.hypot(h[0],h[1])-1),Math.abs(Math.hypot(h[2],h[3])-1),Math.abs(h[0]*h[2]+h[1]*h[3]));reach=Math.max(reach,...Object.values(s.guide.reach));for(const side of ['rear','front']){for(const [upper,lower]of [[side+'_upper_arm',side+'_forearm'],[side+'_forearm',side+'_hand'],[side+'_thigh',side+'_shin'],[side+'_shin',side+'_foot']]){const p=by[lower].pivot,x=R.point(m[upper],p),y=R.point(m[lower],p);jointGap=Math.max(jointGap,Math.hypot(x[0]-y[0],x[1]-y[1]));}if(name==='idle'){const p=by[side+'_foot'].pivot,x=R.point(m[side+'_foot'],p),y=R.point(idle[side+'_foot'],p);footDrift=Math.max(footDrift,Math.hypot(x[0]-y[0],x[1]-y[1]));}}if(Object.values(m).some(v=>v.some(n=>!Number.isFinite(n))))throw Error(id+': nonfinite');}
  for(const name of ['idle','move']){const x=R.rigMatrices(a,R.sampleAnimation(a,name,0,true).poses),y=R.rigMatrices(a,R.sampleAnimation(a,name,1,true).poses);for(const k of Object.keys(x))loopError=Math.max(loopError,...x[k].map((v,i)=>Math.abs(v-y[k][i])));}
- const cv=document.createElement('canvas'),c=cv.getContext('2d'),face=new Path2D(a.paths.find(p=>p.id==='face_plane').d),landmarks=['eye','nose','mouth'].map(k=>({key:k,inside:c.isPointInPath(face,...a.face.landmarks[k])}));
+ const cv=document.createElement('canvas'),c=cv.getContext('2d'),face=new Path2D(a.paths.find(p=>p.id==='face_plane').d),landmarks=['eye','farEye','nose','mouth'].map(k=>({key:k,inside:c.isPointInPath(face,...a.face.landmarks[k])}));
  rows.push({id,headError,reach,footDrift,jointGap,loopError,landmarks});}return rows;}'''
 
 ARENA=r'''()=>{const p=HonroMaps.normalize(HONRO_PROJECT),s=HonroMaps.emptyStage('party-art','Four companions',1800,1050);s.terrains=[{id:'floor',type:'solid',points:[{x:0,y:800},{x:1800,y:800},{x:1800,y:1050},{x:0,y:1050}],baseMaterial:'rock',breakable:false}];s.units=['archer','mage','knight','occultist'].map((cls,i)=>HonroUnits.record(cls,'art-'+cls,350+i*320,800));s.events=[];p.stages=[s];p.activeStageId=s.id;return p;}'''
@@ -32,26 +32,31 @@ def live_suite(page,label):
         owner.mouse.up()
         result=page.evaluate(r'''()=>{const a=HonroApp,e=a.engine,u=e.active;a.scene.render(e,.04,a.selected,0,false,.04);const v=a.scene.partyVisual.visuals[resolveRebuildCharacter(u)],release=v.pose(u,0),releaseMode=release.state.mode,before=JSON.stringify(e.b),cv=document.createElement('canvas');cv.width=500;cv.height=500;const c=cv.getContext('2d');a.scene.unitBody(c,{...u,x:200,y:440,h:320});const pure=before===JSON.stringify(e.b);e.hurt(u,5,'qa');a.scene.render(e,.01,a.selected,0,false,.01);const hit=v.pose(u,0);return{phase:e.b.phase,release:releaseMode,arrow:release.sample.controls.arrowOpacity,hit:hit.state.mode,pure,asset:v.asset.asset_id};}''')
         # Snapshot the mode before hit changes the adapter's mutable presentation state.
-        check(label+' '+id+': actual fire/hit use the new asset and preserve battle data',result['phase']!='aim' and result['release']=='release' and result['hit']=='hit' and result['pure'] and result['asset']==id+'.v007' and result['arrow']==0,result)
+        check(label+' '+id+': actual fire/hit use the new asset and preserve battle data',result['phase']!='aim' and result['release']=='release' and result['hit']=='hit' and result['pure'] and result['asset']==id+'.v008' and result['arrow']==0,result)
         owner.screenshot(path=str(OUT/(label+'-'+id+'-hit.png')))
         movement=page.evaluate(r'''sid=>{const {a,e,u}=artSetup(sid);const v=a.scene.partyVisual.visuals[resolveRebuildCharacter(u)];u.moving=.2;u.walkPhase=(u.walkPhase||0)+5;a.scene.render(e,.1,sid,0,false,.1);const move=v.pose(u,0).state.mode;const jump=e.jump(u);e.stepUnits(.04);a.scene.render(e,.04,sid,0,false,.04);const s=v.pose(u,0);return{move,jump,mode:s.state.mode,root:s.sample.poses.root.matrix,rootX:s.sample.poses.root.x,rootY:s.sample.poses.root.y};}''',sid)
         check(label+' '+id+': move/jump modes keep physical height in the engine',movement['move']=='move' and movement['jump'] and movement['mode']=='jump' and movement['rootX']==0 and movement['rootY']==0,movement)
 
 with sync_playwright() as p:
-    b=launch(p);lab=b.new_page(viewport={'width':1480,'height':1100});listen(lab);lab.goto((OUT/'index.html').as_uri());lab.wait_for_function('window.PartyLab')
-    metrics=json.loads((OUT/'metrics.json').read_text(encoding='utf-8'));baseline=json.loads((ROOT/'tests/fixtures/party-baseline.json').read_text(encoding='utf-8'))
+    b=launch(p);lab=b.new_page(viewport={'width':1480,'height':1100});listen(lab);lab.goto((OUT/'index.html').as_uri());lab.wait_for_function('window.PartyLab');lab.evaluate('PartyRefsReady')
+    metrics=json.loads((OUT/'metrics.json').read_text(encoding='utf-8'));baseline=json.loads((ROOT/'tools/party-forge/references.json').read_text(encoding='utf-8'))
     source='\n'.join(name+'\n'+(ROOT/name).read_text(encoding='utf-8') for name in metrics['sourceFiles'])
     check('Authoring sources match the generated provenance',hashlib.sha256(source.encode()).hexdigest()==metrics['sourceSha256'])
+    for ref in baseline['assets'].values():
+        data=(ROOT/'tools/party-forge/references'/ref['file']).read_bytes()
+        check(ref['file']+': supplied PNG and declared portrait crop preserved',hashlib.sha256(data).hexdigest()==ref['sha256'] and ref['faceCrop'][0]+ref['faceCrop'][2]<=ref['size'][0] and ref['faceCrop'][1]+ref['faceCrop'][3]<=ref['size'][1])
+    preserved=lab.evaluate("Object.entries(HONRO_PARTY).every(([id,a])=>['rig','animation','canvas','constraints'].every(k=>JSON.stringify(a[k])===JSON.stringify(PartyBaseline.assets[id][k])))")
+    check('Face revision preserves all v007 rig, motion, canvas and weapon constraints',preserved)
     audit=lab.evaluate(AUDIT)
     for row in audit:
         meta=next(x for x in metrics['assets'] if x['id']==row['id'])
-        check(row['id']+': 1.9-2.1x immutable v006 anchors',1.9<=meta['anchors']/baseline['assets'][row['id']]['anchors']<=2.1,{'anchors':meta['anchors'],'original':meta['originalAnchors']})
+        check(row['id']+': within 5% of immutable v007 anchors',.95<=meta['anchors']/baseline['assets'][row['id']]['anchors']<=1.05,{'anchors':meta['anchors'],'previous':meta['previousAnchors']})
         check(row['id']+': rigid head, connected joints, planted idle feet and seamless loops',all(row[k]<1e-6 for k in ['headError','jointGap','footDrift','loopError']) and row['reach']<.1,row)
         check(row['id']+': eyes and mouth sit within the face',all(v['inside'] for v in row['landmarks'] if v['key']!='nose'),row['landmarks'])
         id=row['id'];svg=(ROOT/f'shared/assets/party/{id}.svg').read_text(encoding='utf-8')
         diff=lab.evaluate(r'''async([id,svg])=>{const a=HONRO_PARTY[id],[x,y,w,h]=a.canvas.viewBox,left=document.createElement('canvas'),right=document.createElement('canvas');left.width=right.width=w;left.height=right.height=h;const l=left.getContext('2d'),r=right.getContext('2d'),im=new Image();im.src='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(svg)));await im.decode();l.drawImage(im,0,0,w,h);r.translate(-x,-y);HonroVectorRig.createCanvasRenderer(a).draw(r,{x:a.canvas.anchor[0],y:a.canvas.anchor[1],height:a.canvas.visualHeight,time:0,normalized:true,detail:2});const aa=l.getImageData(0,0,w,h).data,bb=r.getImageData(0,0,w,h).data;let changed=0;for(let i=0;i<aa.length;i+=4)if(Math.max(...[0,1,2,3].map(j=>Math.abs(aa[i+j]-bb[i+j])))>20)changed++;return changed/(w*h);}''',[id,svg])
         check(id+': SVG equals the production idle pose',diff<.002,diff)
-    for id in ['comparison','faces']:lab.locator('#'+id).screenshot(path=str(OUT/(id+'.png')))
+    for id in ['comparison','faces','references']:lab.locator('#'+id).screenshot(path=str(OUT/(id+'.png')))
     for id in baseline['assets']:
         lab.select_option('#character',id);lab.locator('#sizes').screenshot(path=str(OUT/(id+'-sizes.png')))
     lab.select_option('#background','#b8baa9');lab.locator('#comparison').screenshot(path=str(OUT/'light-background.png'))
@@ -68,8 +73,8 @@ with sync_playwright() as p:
     game_sprites=game.evaluate('()=>('+SPRITES+')(HonroApp.scene,HonroApp.engine)');save_image('game-sprites',game_sprites);game.screenshot(path=str(OUT/'game.png'))
     live_suite(game,'Game')
     boss=game.evaluate(r'''()=>{const a=HonroApp;for(let i=1;i<10;i++)a.profile.cleared[i]={visits:1};a.launch(10);a.dialogue=null;a.turnNotice=null;const u=a.engine.b.units.find(u=>u.id==='boss');a.scene.render(a.engine,0);return{version:a.scene.partyVisual.visuals.sodan.asset.version,id:resolveRebuildCharacter(u),name:u.name};}''')
-    check('Campaign Sodan boss resolves to the same revised character',boss['id']=='sodan' and boss['version']==7,boss);game.close()
-    editor=b.new_page(viewport={'width':1440,'height':900});listen(editor);editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI');editor.evaluate('p=>HonroWorkshopAPI.importProject(p)',arena);editor.evaluate('HonroWorkshopAPI.setCamera({x:840,y:570,zoom:1})');editor.wait_for_timeout(100);saved=editor.evaluate('HonroWorkshopAPI.exportProject()');editor.screenshot(path=str(OUT/'workshop-stage.png'))
+    check('Campaign Sodan boss resolves to the same revised character',boss['id']=='sodan' and boss['version']==8,boss);game.close()
+    editor=b.new_page(viewport={'width':1440,'height':900});listen(editor);editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI');editor.evaluate('p=>HonroWorkshopAPI.importProject(p)',arena);editor.evaluate('HonroWorkshopAPI.setCamera({x:830,y:650,zoom:.65})');editor.wait_for_timeout(100);saved=editor.evaluate('HonroWorkshopAPI.exportProject()');editor.screenshot(path=str(OUT/'workshop-stage.png'))
     stage=editor.evaluate('()=>{const {scene,engine}=HonroWorkshopAPI.getRuntime();return('+SPRITES+')(scene,engine);}')
     check('Stage View and Game draw identical revised characters',stage==game_sprites)
     editor.click('[data-tab=play]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine');play=editor.frames[1];play.evaluate('p=>{HonroApp.frame=()=>{};HonroApp.launchMap(p,p.activeStageId,{story:false});}',arena)

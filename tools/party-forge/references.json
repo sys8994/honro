@@ -1,0 +1,102 @@
+{
+  "version": 8,
+  "baseline": {
+    "source": "tests/fixtures/party-v007.runtime.js",
+    "sha256": "7076654c2628fc8af91923ad8c2aff5560bfd350f202d2aca20c01538e80f583",
+    "minRatio": 0.95,
+    "maxRatio": 1.05
+  },
+  "maskMethod": "Bounded manual silhouettes and feature paths in original PNG pixel coordinates (portrait-shapes.mjs), mapped with one uniform scale and translation per character. Hwigyeom is mirrored to face the gameplay direction. No automatic dense trace or raster in runtime.",
+  "jointPolicy": "Existing body pivots, limb lengths, foot anchors and v007 head pivot are retained. Occluded joints follow those rig constraints.",
+  "assets": {
+    "seol_o": {
+      "file": "260916_설오_캐릭터시트.png",
+      "sha256": "fc85be658ed0d11cff183629c121b0fbf05dfd719bdd8ea9b97685500c03eb84",
+      "size": [
+        1491,
+        1055
+      ],
+      "faceCrop": [
+        1038,
+        5,
+        245,
+        275
+      ],
+      "vectorCrop": [
+        206,
+        67,
+        68,
+        88
+      ],
+      "anchors": 514,
+      "brief": "긴 앞머리와 높은 묶음머리, 두 눈이 보이는 날렵한 얼굴, 짧고 얇은 입선과 어두운 초록 겉옷"
+    },
+    "damheo": {
+      "file": "260916_담허_캐릭터시트.png",
+      "sha256": "90bcc982bf043c4875bb1e5a33701817d6ce4988587db55edb75e75c7c5264f5",
+      "size": [
+        1516,
+        1038
+      ],
+      "faceCrop": [
+        738,
+        43,
+        180,
+        216
+      ],
+      "vectorCrop": [
+        216,
+        80,
+        58,
+        77
+      ],
+      "anchors": 517,
+      "brief": "검은 머리와 회색 관자, 무거운 눈꺼풀, 짧은 회색 콧수염·턱수염과 먹빛 겹옷"
+    },
+    "hwigyeom": {
+      "file": "260916_휘겸_캐릭터시트.png",
+      "sha256": "557db4c29c162661863077c8f80528c6c9aa24af20939f4d492674694763ab08",
+      "size": [
+        1448,
+        1086
+      ],
+      "faceCrop": [
+        848,
+        120,
+        190,
+        182
+      ],
+      "vectorCrop": [
+        215,
+        96,
+        62,
+        70
+      ],
+      "anchors": 458,
+      "brief": "넓고 낮은 갓 아래의 두 눈, 각진 턱과 짧은 수염, 뺨의 흉터와 묶은 뒷머리",
+      "mirror": true
+    },
+    "sodan": {
+      "file": "260916_소단_캐릭터시트.png",
+      "sha256": "56dd172305b91d0c1c719ab59953fab50bcea8275d7799b4740af395f8e13bce",
+      "size": [
+        1451,
+        1084
+      ],
+      "faceCrop": [
+        785,
+        22,
+        250,
+        234
+      ],
+      "vectorCrop": [
+        196,
+        78,
+        78,
+        88
+      ],
+      "anchors": 497,
+      "brief": "가늘고 부드러운 턱, 차분한 눈과 작은 입, 낮은 쪽머리·붉은 끈·흰 겉옷과 회보라색 안감"
+    }
+  }
+}

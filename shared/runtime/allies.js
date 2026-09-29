@@ -1,5 +1,6 @@
 (function(G){'use strict';
 const C=G.HONRO_CORE,W=G.HonroWorld,clamp=C.clamp;
+const aiming=new WeakMap();
 /** A non-player coalition, not a fifth selectable hero and not an immortal prop.
  * Turn schedule: heroes -> summons -> allied NPCs -> enemies. All queue state is serialized. */
 function attach(app,e){const b=e.b,baseTransition=e.completeTeamTransition.bind(e),baseTick=e.tick.bind(e);
@@ -7,15 +8,16 @@ function attach(app,e){const b=e.b,baseTransition=e.completeTeamTransition.bind(
  e.tick=function(dt=C.STEP){if(b.phase==='ally'){tick(app,e,dt,baseTransition);C.tickRedesign(e,dt);return;}baseTick(dt);};
 }
 function coalition(e){return e.b.units.filter(u=>!u.dead&&u.hp>0&&(u.side===0||u.honroAlly||u.honroCivilian));}
-function safeAllyAim(e,u,skill,target){
+function safeAllyAim(e,u,skill,target){return C.finishPlanning(safeAllyAimSteps(e,u,skill,target));}
+function* safeAllyAimSteps(e,u,skill,target){
  const maxRange=u.allyRole==='daoist'?1550:u.allyRole==='medium'?1320:1100;
  if(Math.hypot(target.x-u.x,(target.y-u.y)*.75)>maxRange)return null;
- const base=e.bestShot(u,skill,target);
+ const base=yield* e.searchShot(u,skill,target,false,.82);
  const angles=[0,-14,-8,-4,4,8,14],powers=[0,-.18,-.10,.10,.18];
- let best=null;
- for(const da of angles)for(const dp of powers){const a={angle:clamp(base.angle+da,-85,265),power:clamp(base.power+dp,.12,.82),score:0};const result=C.shotViable(e,u,skill,target,a.angle,a.power);a.score=(result.net||0)*2-result.miss*.1;if(result.ok&&(!best||a.score>best.score))best=a;}
- return best;
+ for(const da of angles)for(const dp of powers){const a={angle:clamp(base.angle+da,-85,265),power:clamp(base.power+dp,.08,.82),score:0};const result=C.shotViable(e,u,skill,target,a.angle,a.power);a.score=(result.net||0)*2-result.miss*.1;yield;if(result.ok)return a;}
+ return null;
 }
+function* allyShot(e,u,skill,targets){for(const target of targets){const aim=yield* safeAllyAimSteps(e,u,skill,target);if(aim)return{aim,targetId:target.id};}return null;}
 function log(e,u,action,target){const b=e.b;b.honroCounters.allyActions++;b.honroState.combatLog.push({round:b.round,actor:u.id,action,target});b.honroState.combatLog=b.honroState.combatLog.slice(-120);}
 function finish(e,q){q.index++;q.phase='begin';q.elapsed=0;q.started=false;e.b.projectiles=[];e.b.volley=undefined;}
 function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if(!q){transition();return;}if(e.checkEnd())return;
@@ -49,7 +51,10 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const near=coalition(e).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1350).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];if(near){if(u.allyRole==='healer'){const heal=Math.min(near.maxHp-near.hp,Math.round(near.maxHp*.11));near.hp+=heal;e.fx('text',near.x,near.y-near.h-10,'#b9c6a8',16,'+'+heal);log(e,u,'heal',near.id);}else{near.shield=Math.max(near.shield,75);log(e,u,'ward',near.id);}e.fx('line',u.x,u.y-55,'#91b9ad',2,undefined);e.fx('ring',near.x,near.y-45,'#9cb7a4',45);}q.phase='after';q.elapsed=0;}
   else if((u.allyRole==='daoist'||u.allyRole==='medium')&&target&&!target.dead){const nearby=e.alive(1).filter(v=>Math.hypot(v.x-target.x,(v.y-target.y)*.8)<260).length,skill=u.allyRole==='daoist'?(nearby>=2?'M06':'M01'):(nearby>=2?'O10':'O09');u.loadout=[skill];u.ranks[skill]=Math.max(1,u.ranks[skill]||1);u.focus=999;let aim=null;
    const targets=[target,...e.alive(1).filter(v=>v!==target).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2)];
-   for(const candidate of targets){aim=safeAllyAim(e,u,C.SKILLS[skill],candidate);if(aim){target=candidate;q.targetId=target.id;break;}}
+   const key=e.planningKey()+'|'+q.index+'|'+skill+'|'+targets.map(t=>t.id).join(',');let work=aiming.get(e);
+   if(!work||work.key!==key){work={key,steps:allyShot(e,u,C.SKILLS[skill],targets)};aiming.set(e,work);}
+   const ready=e.continuePlanning(work.steps);if(!ready){q.started=false;return;}aiming.delete(e);
+   if(ready.value){aim=ready.value.aim;target=e.unit(ready.value.targetId);q.targetId=target.id;}
    if(aim&&e.fire(skill,aim.angle,aim.power,true)){b.phase='ally';log(e,u,u.allyRole==='daoist'?'daoist-shot':'curse-shot',target.id);q.phase='flight';q.elapsed=0;}else{u.shield=Math.max(u.shield,28);log(e,u,'hold-fire',target.id);q.phase='after';q.elapsed=0;}}
   else if(target&&!target.dead){const d=Math.hypot(target.x-u.x,(target.y-u.y)*.8);if((u.allyRole==='guard'||u.allyRole==='scout')&&d<320){e.hurt(target,54+u.attack*38,u.id,true);e.impulse(target,Math.sign(target.x-u.x)*120,-45);e.fx('slash',target.x,target.y-target.h*.5,'#c1b18c',62);e.emit('sound',{name:'sword'});log(e,u,'sword',target.id);q.phase='after';q.elapsed=0;}
    else if((u.allyRole==='guard'||u.allyRole==='scout')&&d<720){e.hurt(target,31+u.attack*25,u.id,true);e.fx('line',u.x,u.y-u.h*.48,'#c9b98f',3,target.x,target.y-target.h*.5);e.fx('slash',target.x,target.y-target.h*.5,'#b5a781',48);log(e,u,'sword-wave',target.id);q.phase='after';q.elapsed=0;}
@@ -85,14 +90,15 @@ function prepareSpawn(b,st,a,hero){
  if(a.type==='sniperAmbush'&&!archer)return null;
  const list=[];
  for(let i=0;i<(a.n||1);i++){
-   const ambush=a.type==='sniperAmbush',id=b.nextId++,x=clamp(ambush?archer.x+420+(i%3)*160:a.x+(i-(a.n-1)/2)*115,90,b.width-100);
-   const y=ambush?Math.max(120,archer.y-100-(i%2)*120):st.id===7&&!b.honroLayoutRevision?hero?.y:undefined;
+   const ambush=a.type==='sniperAmbush',id=b.nextId++,x=clamp(ambush?archer.x+420+(i%3)*160:a.x+(i-(a.n-1)/2)*(a.spacing??115),90,b.width-100);
+   const y=ambush?Math.max(120,archer.y-100-(i%2)*120):a.y!==undefined?W.top(b,x,a.y,a.support):st.id===7&&!b.honroLayoutRevision?hero?.y:undefined;
    const kind=ambush?'crow':a.kind,u=W.createEnemy(b,st,x,kind,id,y);
    if(b.honroEncounterRevision){u.combatBaseHp*=.6;u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));}
    if(ambush)u.y=y;
-   const position=G.HonroTerrain.place({...b,units:[...b.units,...list]},u,{flying:!!W.archetypes[kind]?.flying,maxDistance:1600});
+   const position=G.HonroTerrain.place({...b,units:[...b.units,...list]},u,{flying:!!W.archetypes[kind]?.flying,maxDistance:a.maxDistance??1600});
    if(!position)return null;
    Object.assign(u,position,{id:(ambush?'sniper-crow-':'event-')+id,awake:true,aggroUntil:b.round+(ambush?6:3),spawnX:position.x,spawnY:position.y});
+   if(a.source)u.honroSpawnSource=a.source;
    if(ambush){u.group=-2;u.honroTargetId=archer.id;u.honroTargetUntil=b.round+5;}
    list.push(u);
  }

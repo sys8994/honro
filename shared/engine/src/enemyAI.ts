@@ -180,6 +180,10 @@ function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,numb
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
  let best=-90;
  for(const s of skills){const right=target.x>=p.x,blast=e.effective(s,ghost).radius;
+  for(const aim of e.shotSeeds(ghost,s,target)){
+   const hit=e.predict(ghost,s,aim.angle,aim.power,target,false),value=shotImpactValue(e,ghost,s,hit);
+   yield;if(value.enemyDamage>0&&value.net>2)return 35+clamp(value.net,-120,60);
+  }
   for(const elev of (target.y>p.y+80?[-55,-25,18,42,68,84]:[16,34,50,68,82]))for(const power of [.3,.52,.75,1]){
    const angle=right?elev:180-elev,hit=e.predict(ghost,s,angle,power,target,false);
    const d=Math.hypot(hit.x-target.x,hit.y-(target.y-target.h*.5));
@@ -188,7 +192,7 @@ function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,numb
    else if(blast>0&&d<blast)score=25;
    const value=shotImpactValue(e,ghost,s,hit);
    score+=clamp(value.net,-120,60);
-   best=Math.max(best,score);yield;
+   best=Math.max(best,score);yield;if(value.enemyDamage>0&&value.net>2)return best;
   }
  }
  return best;

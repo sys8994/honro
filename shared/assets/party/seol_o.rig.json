@@ -279,57 +279,67 @@
   },
   "face": {
     "landmarks": {
-      "brow": [
-        251,
-        109
-      ],
       "eye": [
-        252,
-        114
+        248.7,
+        116
+      ],
+      "farEye": [
+        260.7,
+        116.3
       ],
       "nose": [
-        264,
-        124
+        259.5,
+        127.7
       ],
       "mouth": [
-        255,
-        132
-      ],
-      "chin": [
-        251,
-        143
-      ],
-      "ear": [
-        230,
-        118
-      ],
-      "neck": [
-        240,
-        151
+        252,
+        133.1
       ]
     },
     "shapeIds": [
       "hair_back",
       "face_plane",
       "temple_shadow",
-      "cheek_light",
-      "jaw_plane",
-      "brow_plane",
       "ear",
       "ear_fold",
-      "brow",
-      "eye_socket",
-      "eye_light",
-      "iris",
-      "lower_lid",
-      "nose_bridge",
-      "nostril",
+      "near_brow",
+      "far_brow",
+      "near_eye",
+      "far_eye",
+      "nose",
       "mouth",
-      "lower_lip",
       "hair_front",
-      "hair_sweep",
-      "hair_knot",
-      "hair_tie"
-    ]
+      "hair_sweep"
+    ],
+    "view": "three-quarter",
+    "reference": "260916",
+    "authoringMap": {
+      "from": [
+        1195,
+        256
+      ],
+      "to": [
+        252,
+        143
+      ],
+      "scale": 0.3,
+      "sign": 1,
+      "eye": [
+        1184,
+        166
+      ],
+      "farEye": [
+        1224,
+        167
+      ],
+      "nose": [
+        1220,
+        205
+      ],
+      "mouth": [
+        1195,
+        223
+      ]
+    }
   }
 }
