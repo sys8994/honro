@@ -2,7 +2,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {runtimeParts,root} from '../../shared/build.mjs';
 const dir=path.join(root,'_local/reports/party-forge');await mkdir(dir,{recursive:true});
-const runtime=(await runtimeParts()).join('\n'),legacy=await readFile(path.join(root,'tests/fixtures/party-v007.runtime.js'),'utf8'),metrics=await readFile(path.join(dir,'metrics.json'),'utf8');
+const runtime=(await runtimeParts()).join('\n'),legacy=await readFile(path.join(root,'tests/fixtures/party-v008.runtime.js'),'utf8'),metrics=await readFile(path.join(dir,'metrics.json'),'utf8');
 const sheets=JSON.parse(await readFile(path.join(root,'tools/party-forge/references.json'),'utf8'));
 for(const ref of Object.values(sheets.assets))ref.src='data:image/png;base64,'+(await readFile(path.join(root,'tools/party-forge/references',ref.file))).toString('base64');
 const baseline=`(function(){const globalThis={};${legacy}\nwindow.PartyBaseline={assets:globalThis.HONRO_PARTY,rig:window.HonroVectorRig};})();`;

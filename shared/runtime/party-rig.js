@@ -120,7 +120,7 @@ function solveTwoBone(a,target,l1,l2,hint,plane){
 }
 function solvePose(asset,target={}){
   const by=Object.fromEntries(asset.rig.parts.map(p=>[p.id,p])),world={root:identity()},poses={},joints={},reach={},depth={};
-  const bindPelvis=by.pelvis.pivot,bindThorax=[240,185],pelvis=target.pelvis||bindPelvis,thorax=target.thorax||bindThorax;
+  const bindPelvis=by.pelvis.pivot,bindThorax=asset.rig.bindThorax||[240,185],pelvis=target.pelvis||bindPelvis,thorax=target.thorax||bindThorax;
   const rotation=angle(sub(thorax,pelvis))-angle(sub(bindThorax,bindPelvis));
   world.pelvis=localMatrix(bindPelvis,{x:pelvis[0]-bindPelvis[0],y:pelvis[1]-bindPelvis[1],r:target.pelvisAngle||0});
   world.thorax=localMatrix(bindPelvis,{x:pelvis[0]-bindPelvis[0],y:pelvis[1]-bindPelvis[1],r:rotation,sy:length(sub(thorax,pelvis))/length(sub(bindThorax,bindPelvis))});

@@ -1,13 +1,13 @@
 {
-  "version": 8,
+  "version": 9,
   "baseline": {
-    "source": "tests/fixtures/party-v007.runtime.js",
-    "sha256": "7076654c2628fc8af91923ad8c2aff5560bfd350f202d2aca20c01538e80f583",
-    "minRatio": 0.95,
-    "maxRatio": 1.05
+    "source": "tests/fixtures/party-v008.runtime.js",
+    "sha256": "0eb201e31fd3efb8857c0efe5e14a235e145722b6deb5b651761630f54c06bfa",
+    "minRatio": 1,
+    "maxRatio": 1
   },
   "maskMethod": "Bounded manual silhouettes and feature paths in original PNG pixel coordinates (portrait-shapes.mjs), mapped with one uniform scale and translation per character. Hwigyeom is mirrored to face the gameplay direction. No automatic dense trace or raster in runtime.",
-  "jointPolicy": "Existing body pivots, limb lengths, foot anchors and v007 head pivot are retained. Occluded joints follow those rig constraints.",
+  "jointPolicy": "Body proportions and complete pose targets retargeted together from v008; heads translated rigidly, feet stay grounded. Missing/occluded joints inherit the v008 solved anatomy. Physical unit h/r and renderer visualHeight calibration remain unchanged.",
   "assets": {
     "seol_o": {
       "file": "260916_설오_캐릭터시트.png",
@@ -28,7 +28,7 @@
         68,
         88
       ],
-      "anchors": 514,
+      "anchors": 512,
       "brief": "긴 앞머리와 높은 묶음머리, 두 눈이 보이는 날렵한 얼굴, 짧고 얇은 입선과 어두운 초록 겉옷"
     },
     "damheo": {
@@ -50,7 +50,7 @@
         58,
         77
       ],
-      "anchors": 517,
+      "anchors": 541,
       "brief": "검은 머리와 회색 관자, 무거운 눈꺼풀, 짧은 회색 콧수염·턱수염과 먹빛 겹옷"
     },
     "hwigyeom": {
@@ -72,7 +72,7 @@
         62,
         70
       ],
-      "anchors": 458,
+      "anchors": 480,
       "brief": "넓고 낮은 갓 아래의 두 눈, 각진 턱과 짧은 수염, 뺨의 흉터와 묶은 뒷머리",
       "mirror": true
     },
@@ -95,7 +95,7 @@
         78,
         88
       ],
-      "anchors": 497,
+      "anchors": 511,
       "brief": "가늘고 부드러운 턱, 차분한 눈과 작은 입, 낮은 쪽머리·붉은 끈·흰 겉옷과 회보라색 안감"
     }
   }

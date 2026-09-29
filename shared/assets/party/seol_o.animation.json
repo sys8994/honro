@@ -11,59 +11,396 @@
           "t": 0,
           "pelvis": [
             240,
-            281
+            245.4
           ],
           "thorax": [
             240,
-            188
-          ]
+            133.8
+          ],
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            213.75,
+            105
+          ],
+          "rearHip": [
+            224.25,
+            245.4
+          ],
+          "rearElbow": [
+            179.3969,
+            178.774
+          ],
+          "rearKnee": [
+            228.1987,
+            350.6918
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            266.25,
+            106.2
+          ],
+          "frontHip": [
+            253.65,
+            245.4
+          ],
+          "frontElbow": [
+            283.0881,
+            190.1643
+          ],
+          "frontKnee": [
+            287.6212,
+            344.9584
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.25,
           "pelvis": [
             240,
-            282
+            246.6
           ],
           "thorax": [
-            242,
-            187
+            242.1,
+            132.6
           ],
-          "hair": -2
+          "hair": -2,
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            216.3978,
+            102.5492
+          ],
+          "rearHip": [
+            224.25,
+            246.6
+          ],
+          "rearElbow": [
+            187.7465,
+            179.4375
+          ],
+          "rearKnee": [
+            230.8092,
+            351.7215
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            268.8635,
+            105.0379
+          ],
+          "frontHip": [
+            253.65,
+            246.6
+          ],
+          "frontElbow": [
+            283.8537,
+            189.4584
+          ],
+          "frontKnee": [
+            290.1641,
+            344.9757
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.5,
           "pelvis": [
             240,
-            283
+            247.8
           ],
           "thorax": [
-            242,
-            189
+            242.1,
+            135
           ],
-          "hair": 1
+          "hair": 1,
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            216.3979,
+            105.2522
+          ],
+          "rearHip": [
+            224.25,
+            247.8
+          ],
+          "rearElbow": [
+            181.7314,
+            178.8345
+          ],
+          "rearKnee": [
+            233.0995,
+            352.702
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            268.8634,
+            107.7414
+          ],
+          "frontHip": [
+            253.65,
+            247.8
+          ],
+          "frontElbow": [
+            280.3413,
+            192.878
+          ],
+          "frontKnee": [
+            292.4,
+            345.0521
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.75,
           "pelvis": [
             240,
-            282
+            246.6
           ],
           "thorax": [
             240,
-            189
+            135
           ],
-          "hair": 2
+          "hair": 2,
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            213.75,
+            106.2
+          ],
+          "rearHip": [
+            224.25,
+            246.6
+          ],
+          "rearElbow": [
+            177.5251,
+            178.7951
+          ],
+          "rearKnee": [
+            230.8092,
+            351.7215
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            266.25,
+            107.4
+          ],
+          "frontHip": [
+            253.65,
+            246.6
+          ],
+          "frontElbow": [
+            281.4182,
+            191.779
+          ],
+          "frontKnee": [
+            290.1641,
+            344.9757
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 1,
           "pelvis": [
             240,
-            281
+            245.4
           ],
           "thorax": [
             240,
-            188
-          ]
+            133.8
+          ],
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            213.75,
+            105
+          ],
+          "rearHip": [
+            224.25,
+            245.4
+          ],
+          "rearElbow": [
+            179.3969,
+            178.774
+          ],
+          "rearKnee": [
+            228.1987,
+            350.6918
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            266.25,
+            106.2
+          ],
+          "frontHip": [
+            253.65,
+            245.4
+          ],
+          "frontElbow": [
+            283.0881,
+            190.1643
+          ],
+          "frontKnee": [
+            287.6212,
+            344.9584
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         }
       ]
     },
@@ -74,32 +411,32 @@
         {
           "t": 0,
           "pelvis": [
-            237,
-            296.05
+            236.85,
+            263.46
           ],
           "thorax": [
-            252,
-            203.7
+            252.6,
+            152.64
           ],
           "rearFoot": [
-            182,
+            179.1,
             459
           ],
           "frontFoot": [
-            286,
+            288.3,
             459
           ],
           "rearHand": [
-            197,
-            282
+            194.85,
+            246.6
           ],
           "frontHand": [
-            325,
-            265
+            329.25,
+            226.2
           ],
           "frontElbow": [
-            292,
-            223
+            294.6,
+            175.8
           ],
           "weapon": -12,
           "contacts": [
@@ -107,70 +444,152 @@
             "front"
           ],
           "frontCloth": -6,
-          "rearCloth": 9
+          "rearCloth": 9,
+          "rearShoulder": [
+            230.7541,
+            119.2316
+          ],
+          "rearHip": [
+            221.1,
+            263.46
+          ],
+          "rearElbow": [
+            176.8472,
+            175.6981
+          ],
+          "rearKnee": [
+            238.1166,
+            367.0385
+          ],
+          "frontShoulder": [
+            282.4056,
+            130.0426
+          ],
+          "frontHip": [
+            250.5,
+            263.46
+          ],
+          "frontKnee": [
+            308.4656,
+            347.3087
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.25,
           "pelvis": [
             240,
-            288.25
+            254.1
           ],
           "thorax": [
-            258,
-            196.55
+            258.9,
+            144.06
           ],
           "rearFoot": [
-            250,
-            429
+            250.5,
+            423
           ],
           "rearKnee": [
-            291,
-            358
+            293.55,
+            337.8
           ],
           "frontFoot": [
-            234,
+            233.7,
             459
           ],
           "rearHand": [
-            249,
-            244
+            249.45,
+            201
           ],
           "frontHand": [
-            323,
-            260
+            327.15,
+            220.2
           ],
           "weapon": -14,
           "contacts": [
             "front"
           ],
           "frontCloth": 6,
-          "rearCloth": 12.75
+          "rearCloth": 12.75,
+          "rearShoulder": [
+            238.019,
+            109.8841
+          ],
+          "rearHip": [
+            224.25,
+            254.1
+          ],
+          "rearElbow": [
+            189.787,
+            172.6976
+          ],
+          "frontShoulder": [
+            289.3326,
+            122.6243
+          ],
+          "frontHip": [
+            253.65,
+            254.1
+          ],
+          "frontElbow": [
+            261.0521,
+            202.4723
+          ],
+          "frontKnee": [
+            278.5255,
+            357.1096
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.5,
           "pelvis": [
-            237,
-            296.05
+            236.85,
+            263.46
           ],
           "thorax": [
-            252,
-            203.7
+            252.6,
+            152.64
           ],
           "rearFoot": [
-            286,
+            288.3,
             459
           ],
           "frontFoot": [
-            182,
+            179.1,
             459
           ],
           "rearHand": [
-            251,
-            242
+            251.55,
+            198.6
           ],
           "frontHand": [
-            319,
-            264
+            322.95,
+            225
           ],
           "weapon": -11,
           "contacts": [
@@ -178,74 +597,160 @@
             "front"
           ],
           "frontCloth": 9,
-          "rearCloth": -4.5
+          "rearCloth": -4.5,
+          "rearShoulder": [
+            230.7541,
+            119.2316
+          ],
+          "rearHip": [
+            221.1,
+            263.46
+          ],
+          "rearElbow": [
+            187.7758,
+            186.8438
+          ],
+          "rearKnee": [
+            279.04,
+            345.4479
+          ],
+          "frontShoulder": [
+            282.4056,
+            130.0426
+          ],
+          "frontHip": [
+            250.5,
+            263.46
+          ],
+          "frontElbow": [
+            256.2012,
+            210.8105
+          ],
+          "frontKnee": [
+            241.2764,
+            369.7995
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.75,
           "pelvis": [
             240,
-            288.25
+            254.1
           ],
           "thorax": [
-            258,
-            196.55
+            258.9,
+            144.06
           ],
           "rearFoot": [
-            234,
+            233.7,
             459
           ],
           "frontFoot": [
-            250,
-            424.2
+            250.5,
+            417.24
           ],
           "frontKnee": [
-            299,
-            355
+            301.95,
+            334.2
           ],
           "rearHand": [
-            195,
-            276
+            192.75,
+            239.4
           ],
           "frontHand": [
-            321,
-            259
+            325.05,
+            219
           ],
           "weapon": -14,
           "contacts": [
             "rear"
           ],
           "frontCloth": 13.5,
-          "rearCloth": 3.75
+          "rearCloth": 3.75,
+          "rearShoulder": [
+            238.019,
+            109.8841
+          ],
+          "rearHip": [
+            224.25,
+            254.1
+          ],
+          "rearElbow": [
+            184.0306,
+            166.2488
+          ],
+          "rearKnee": [
+            262.714,
+            349.8828
+          ],
+          "frontShoulder": [
+            289.3326,
+            122.6243
+          ],
+          "frontHip": [
+            253.65,
+            254.1
+          ],
+          "frontElbow": [
+            258.9176,
+            201.4409
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 1,
           "pelvis": [
-            237,
-            296.05
+            236.85,
+            263.46
           ],
           "thorax": [
-            252,
-            203.7
+            252.6,
+            152.64
           ],
           "rearFoot": [
-            182,
+            179.1,
             459
           ],
           "frontFoot": [
-            286,
+            288.3,
             459
           ],
           "rearHand": [
-            197,
-            282
+            194.85,
+            246.6
           ],
           "frontHand": [
-            325,
-            265
+            329.25,
+            226.2
           ],
           "frontElbow": [
-            292,
-            223
+            294.6,
+            175.8
           ],
           "weapon": -12,
           "contacts": [
@@ -253,7 +758,48 @@
             "front"
           ],
           "frontCloth": -6,
-          "rearCloth": 9
+          "rearCloth": 9,
+          "rearShoulder": [
+            230.7541,
+            119.2316
+          ],
+          "rearHip": [
+            221.1,
+            263.46
+          ],
+          "rearElbow": [
+            176.8472,
+            175.6981
+          ],
+          "rearKnee": [
+            238.1166,
+            367.0385
+          ],
+          "frontShoulder": [
+            282.4056,
+            130.0426
+          ],
+          "frontHip": [
+            250.5,
+            263.46
+          ],
+          "frontKnee": [
+            308.4656,
+            347.3087
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         }
       ]
     },
@@ -268,42 +814,118 @@
             "support": "both",
             "moving": "front foot next",
             "force": "stable low bow"
-          }
+          },
+          "pelvis": [
+            240,
+            241.8
+          ],
+          "thorax": [
+            240,
+            130.2
+          ],
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            213.75,
+            101.4
+          ],
+          "rearHip": [
+            224.25,
+            241.8
+          ],
+          "rearElbow": [
+            187.5,
+            179.4
+          ],
+          "rearKnee": [
+            212.132,
+            346.2745
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.9511,
+            458.9913
+          ],
+          "frontShoulder": [
+            266.25,
+            102.6
+          ],
+          "frontHip": [
+            253.65,
+            241.8
+          ],
+          "frontElbow": [
+            290.4,
+            184.2
+          ],
+          "frontKnee": [
+            273.6,
+            346.2
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "name": "RAISE",
           "t": 0.15,
           "pelvis": [
-            243,
-            283
+            243.15,
+            247.8
           ],
           "thorax": [
-            241,
-            190
+            241.05,
+            136.2
           ],
           "frontHand": [
-            385,
-            164
+            392.25,
+            105
           ],
           "rearHand": [
-            337,
-            171
+            341.85,
+            113.4
           ],
           "frontElbow": [
-            317,
-            161
+            320.85,
+            101.4
           ],
           "rearElbow": [
-            265,
-            208
+            266.25,
+            157.8
           ],
           "rearFoot": [
-            190,
+            187.5,
             459
           ],
           "frontFoot": [
-            303,
-            449
+            306.15,
+            447
           ],
           "contacts": [
             "rear"
@@ -315,45 +937,82 @@
             "support": "rear",
             "moving": "front foot widens stance",
             "force": "feet open before draw"
-          }
+          },
+          "rearShoulder": [
+            214.2641,
+            108.045
+          ],
+          "rearHip": [
+            227.4,
+            247.8
+          ],
+          "rearKnee": [
+            224.6217,
+            353.1406
+          ],
+          "frontShoulder": [
+            266.7746,
+            107.955
+          ],
+          "frontHip": [
+            256.8,
+            247.8
+          ],
+          "frontKnee": [
+            312.9781,
+            333.2231
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": -1
         },
         {
           "name": "FULL DRAW",
           "t": 0.43,
           "pelvis": [
-            239,
-            288
+            238.95,
+            253.8
           ],
           "thorax": [
-            248,
-            193
+            248.4,
+            139.8
           ],
           "rearShoulder": [
-            260,
-            180
+            261,
+            124.2
           ],
           "frontHand": [
-            408,
-            161
+            416.4,
+            101.4
           ],
           "rearHand": [
-            254,
-            145
+            254.7,
+            82.2
           ],
           "frontElbow": [
-            343,
-            167
+            348.15,
+            108.6
           ],
           "rearElbow": [
-            186,
-            160
+            183.3,
+            100.2
           ],
           "rearFoot": [
-            190,
+            187.5,
             459
           ],
           "frontFoot": [
-            311,
+            314.55,
             459
           ],
           "contacts": [
@@ -368,45 +1027,77 @@
             "support": "both",
             "moving": "front step planted",
             "force": "ground / open chest / drawn string"
-          }
+          },
+          "rearHip": [
+            223.2,
+            253.8
+          ],
+          "rearKnee": [
+            234.4955,
+            358.3948
+          ],
+          "frontShoulder": [
+            276.8701,
+            114.4359
+          ],
+          "frontHip": [
+            252.6,
+            253.8
+          ],
+          "frontKnee": [
+            299.4704,
+            346.2655
+          ],
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "rearArmPlane": -1,
+          "frontArmPlane": 1
         },
         {
           "name": "RELEASE",
           "t": 0.49,
           "pelvis": [
-            239,
-            288
+            238.95,
+            253.8
           ],
           "thorax": [
-            248,
-            193
+            248.4,
+            139.8
           ],
           "rearShoulder": [
-            260,
-            180
+            261,
+            124.2
           ],
           "frontHand": [
-            408,
-            161
+            416.4,
+            101.4
           ],
           "rearHand": [
-            224,
-            141
+            223.2,
+            77.4
           ],
           "frontElbow": [
-            343,
-            167
+            348.15,
+            108.6
           ],
           "rearElbow": [
-            185,
-            160
+            182.25,
+            100.2
           ],
           "rearFoot": [
-            190,
+            187.5,
             459
           ],
           "frontFoot": [
-            311,
+            314.55,
             459
           ],
           "contacts": [
@@ -421,45 +1112,77 @@
             "support": "both",
             "moving": "drawing hand backward",
             "force": "bow arm retains target line"
-          }
+          },
+          "rearHip": [
+            223.2,
+            253.8
+          ],
+          "rearKnee": [
+            234.4955,
+            358.3948
+          ],
+          "frontShoulder": [
+            276.8701,
+            114.4359
+          ],
+          "frontHip": [
+            252.6,
+            253.8
+          ],
+          "frontKnee": [
+            299.4704,
+            346.2655
+          ],
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "rearArmPlane": -1,
+          "frontArmPlane": 1
         },
         {
           "name": "FOLLOW",
           "t": 0.68,
           "pelvis": [
-            244,
-            289
+            244.2,
+            255
           ],
           "thorax": [
-            251,
-            195
+            251.55,
+            142.2
           ],
           "rearShoulder": [
-            265,
-            183
+            266.25,
+            127.8
           ],
           "frontHand": [
-            406,
-            171
+            414.3,
+            113.4
           ],
           "rearHand": [
-            217,
-            143
+            215.85,
+            79.8
           ],
           "frontElbow": [
-            337,
-            173
+            341.85,
+            115.8
           ],
           "rearElbow": [
-            191,
-            167
+            188.55,
+            108.6
           ],
           "rearFoot": [
-            190,
+            187.5,
             459
           ],
           "frontFoot": [
-            311,
+            314.55,
             459
           ],
           "contacts": [
@@ -473,7 +1196,40 @@
             "support": "both",
             "moving": "chest settles",
             "force": "release continues backward, never punches forward"
-          }
+          },
+          "rearHip": [
+            228.45,
+            255
+          ],
+          "rearKnee": [
+            236.9452,
+            359.9403
+          ],
+          "frontShoulder": [
+            279.5453,
+            116.5311
+          ],
+          "frontHip": [
+            257.85,
+            255
+          ],
+          "frontKnee": [
+            307.9823,
+            345.2031
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "rearArmPlane": -1,
+          "frontArmPlane": 1
         },
         {
           "name": "RECOVERY",
@@ -482,7 +1238,83 @@
             "support": "both",
             "moving": "return to compact stance",
             "force": "lower bow after follow-through"
-          }
+          },
+          "pelvis": [
+            240,
+            241.8
+          ],
+          "thorax": [
+            240,
+            130.2
+          ],
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            213.75,
+            101.4
+          ],
+          "rearHip": [
+            224.25,
+            241.8
+          ],
+          "rearElbow": [
+            187.5,
+            179.4
+          ],
+          "rearKnee": [
+            212.132,
+            346.2745
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.9511,
+            458.9913
+          ],
+          "frontShoulder": [
+            266.25,
+            102.6
+          ],
+          "frontHip": [
+            253.65,
+            241.8
+          ],
+          "frontElbow": [
+            290.4,
+            184.2
+          ],
+          "frontKnee": [
+            273.6,
+            346.2
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         }
       ],
       "events": [
@@ -500,144 +1332,387 @@
           "t": 0,
           "pelvis": [
             240,
-            304
+            273
           ],
           "thorax": [
-            251,
-            212
+            251.55,
+            162.6
           ],
           "frontFoot": [
-            286,
+            288.3,
             459
           ],
           "rearFoot": [
-            199,
+            196.95,
             459
           ],
           "contacts": [
             "rear",
             "front"
-          ]
+          ],
+          "rearShoulder": [
+            228.4663,
+            130.5481
+          ],
+          "rearHip": [
+            224.25,
+            273
+          ],
+          "rearElbow": [
+            169.283,
+            179.6307
+          ],
+          "rearKnee": [
+            259.6744,
+            370.302
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "frontShoulder": [
+            280.4708,
+            138.8584
+          ],
+          "frontHip": [
+            253.65,
+            273
+          ],
+          "frontElbow": [
+            262.6599,
+            222.5601
+          ],
+          "frontKnee": [
+            318.2794,
+            350.2242
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.25,
           "pelvis": [
             240,
-            293
+            259.8
           ],
           "thorax": [
-            261,
-            202
+            262.05,
+            150.6
           ],
           "frontFoot": [
-            301,
-            425
+            304.05,
+            418.2
           ],
           "rearFoot": [
-            199,
-            444
+            196.95,
+            441
           ],
           "frontKnee": [
-            304,
-            353
+            307.2,
+            331.8
           ],
           "frontHand": [
-            365,
-            209
+            371.25,
+            159
           ],
           "rearHand": [
-            238,
-            210
+            237.9,
+            160.2
           ],
           "weapon": -32,
           "frontCloth": 10,
           "rearCloth": 18,
-          "contacts": []
+          "contacts": [],
+          "rearShoulder": [
+            242.1626,
+            115.6736
+          ],
+          "rearHip": [
+            224.25,
+            259.8
+          ],
+          "rearElbow": [
+            174.3511,
+            146.9456
+          ],
+          "rearKnee": [
+            262.9472,
+            355.46
+          ],
+          "frontShoulder": [
+            293.081,
+            130.3393
+          ],
+          "frontHip": [
+            253.65,
+            259.8
+          ],
+          "frontElbow": [
+            320.5209,
+            210.5695
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.5,
           "pelvis": [
             240,
-            289
+            255
           ],
           "thorax": [
-            251,
-            197
+            251.55,
+            144.6
           ],
           "frontFoot": [
-            320,
-            390
+            324,
+            376.2
           ],
           "rearFoot": [
-            201,
-            421
+            199.05,
+            413.4
           ],
           "frontKnee": [
-            304,
-            339
+            307.2,
+            315
           ],
           "rearKnee": [
-            215,
-            367
+            213.75,
+            348.6
           ],
           "frontHand": [
-            360,
-            192
+            366,
+            138.6
           ],
           "rearHand": [
-            234,
-            183
+            233.7,
+            127.8
           ],
           "weapon": -36,
           "frontCloth": 17,
           "rearCloth": 23,
-          "contacts": []
+          "contacts": [],
+          "rearShoulder": [
+            228.4663,
+            112.5481
+          ],
+          "rearHip": [
+            224.25,
+            255
+          ],
+          "rearElbow": [
+            194.7782,
+            186.7215
+          ],
+          "frontShoulder": [
+            280.4708,
+            120.8584
+          ],
+          "frontHip": [
+            253.65,
+            255
+          ],
+          "frontElbow": [
+            319.1691,
+            194.7795
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.75,
           "pelvis": [
-            242,
-            288
+            242.1,
+            253.8
           ],
           "thorax": [
-            248,
-            195
+            248.4,
+            142.2
           ],
           "frontFoot": [
-            299,
-            455
+            301.95,
+            454.2
           ],
           "rearFoot": [
-            195,
-            432
+            192.75,
+            426.6
           ],
           "frontHand": [
-            341,
-            244
+            346.05,
+            201
           ],
           "rearHand": [
-            188,
-            244
+            185.4,
+            201
           ],
           "weapon": -19,
           "frontCloth": -6,
           "rearCloth": 17,
-          "contacts": []
+          "contacts": [],
+          "rearShoulder": [
+            223.8303,
+            111.4685
+          ],
+          "rearHip": [
+            226.35,
+            253.8
+          ],
+          "rearElbow": [
+            249.2542,
+            189.8251
+          ],
+          "rearKnee": [
+            265.885,
+            349.0115
+          ],
+          "frontShoulder": [
+            276.1536,
+            116.5315
+          ],
+          "frontHip": [
+            255.75,
+            253.8
+          ],
+          "frontElbow": [
+            278.1715,
+            202.6419
+          ],
+          "frontKnee": [
+            310.3377,
+            340.5594
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": -1,
+          "frontArmPlane": 1
         },
         {
           "t": 1,
           "pelvis": [
             240,
-            307
+            276.6
           ],
           "thorax": [
-            253,
-            216
+            253.65,
+            167.4
           ],
           "contacts": [
             "rear",
             "front"
-          ]
+          ],
+          "rearShoulder": [
+            231.1864,
+            134.9767
+          ],
+          "rearHip": [
+            224.25,
+            276.6
+          ],
+          "rearElbow": [
+            169.3681,
+            179.6158
+          ],
+          "rearKnee": [
+            262.1572,
+            372.6723
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            283.012,
+            144.6362
+          ],
+          "frontHip": [
+            253.65,
+            276.6
+          ],
+          "frontElbow": [
+            261.2796,
+            227.1192
+          ],
+          "frontKnee": [
+            320.6652,
+            351.1209
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         }
       ]
     },
@@ -646,74 +1721,399 @@
       "loop": false,
       "keyframes": [
         {
-          "t": 0
+          "t": 0,
+          "pelvis": [
+            240,
+            241.8
+          ],
+          "thorax": [
+            240,
+            130.2
+          ],
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            213.75,
+            101.4
+          ],
+          "rearHip": [
+            224.25,
+            241.8
+          ],
+          "rearElbow": [
+            187.5,
+            179.4
+          ],
+          "rearKnee": [
+            212.132,
+            346.2745
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.9511,
+            458.9913
+          ],
+          "frontShoulder": [
+            266.25,
+            102.6
+          ],
+          "frontHip": [
+            253.65,
+            241.8
+          ],
+          "frontElbow": [
+            290.4,
+            184.2
+          ],
+          "frontKnee": [
+            273.6,
+            346.2
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.2,
           "pelvis": [
-            223,
-            293
+            222.15,
+            259.8
           ],
           "thorax": [
-            201,
-            204
+            199.05,
+            153
           ],
           "frontHand": [
-            300,
-            231
+            303,
+            185.4
           ],
           "rearHand": [
-            190,
-            226
+            187.5,
+            179.4
           ],
           "frontElbow": [
-            260,
-            224
+            261,
+            177
           ],
           "rearElbow": [
-            157,
-            190
+            152.85,
+            136.2
           ],
           "weapon": 17,
           "head": -9,
-          "rearCloth": 11
+          "rearCloth": 11,
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            167.6057,
+            132.6378
+          ],
+          "rearHip": [
+            206.4,
+            259.8
+          ],
+          "rearKnee": [
+            241.7904,
+            357.1182
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            218.8201,
+            119.388
+          ],
+          "frontHip": [
+            235.8,
+            259.8
+          ],
+          "frontKnee": [
+            292.1879,
+            345.0424
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.5,
           "pelvis": [
-            219,
-            300
+            217.95,
+            268.2
           ],
           "thorax": [
-            202,
-            211
+            200.1,
+            161.4
           ],
           "frontHand": [
-            290,
-            251
+            292.5,
+            209.4
           ],
           "rearHand": [
-            193,
-            236
+            190.65,
+            191.4
           ],
           "weapon": 14,
           "head": -6,
-          "rearCloth": 15
+          "rearCloth": 15,
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            169.7097,
+            139.4673
+          ],
+          "rearHip": [
+            202.2,
+            268.2
+          ],
+          "rearElbow": [
+            127.6756,
+            207.8505
+          ],
+          "rearKnee": [
+            246.9829,
+            360.3264
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            221.4693,
+            129.3585
+          ],
+          "frontHip": [
+            231.6,
+            268.2
+          ],
+          "frontElbow": [
+            224.8106,
+            215.4151
+          ],
+          "frontKnee": [
+            296.3203,
+            345.3247
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
           "t": 0.8,
           "pelvis": [
-            232,
-            287
+            231.6,
+            252.6
           ],
           "thorax": [
-            230,
-            195
+            229.5,
+            142.2
           ],
-          "weapon": 4
+          "weapon": 4,
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            202.7143,
+            114.3617
+          ],
+          "rearHip": [
+            215.85,
+            252.6
+          ],
+          "rearElbow": [
+            159.8998,
+            182.1096
+          ],
+          "rearKnee": [
+            237.8125,
+            354.9558
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.95,
+            459
+          ],
+          "frontShoulder": [
+            255.2244,
+            114.2448
+          ],
+          "frontHip": [
+            245.25,
+            252.6
+          ],
+          "frontElbow": [
+            276.8805,
+            196.754
+          ],
+          "frontKnee": [
+            292.1573,
+            345.041
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         },
         {
-          "t": 1
+          "t": 1,
+          "pelvis": [
+            240,
+            241.8
+          ],
+          "thorax": [
+            240,
+            130.2
+          ],
+          "contacts": [
+            "rear",
+            "front"
+          ],
+          "rearShoulder": [
+            213.75,
+            101.4
+          ],
+          "rearHip": [
+            224.25,
+            241.8
+          ],
+          "rearElbow": [
+            187.5,
+            179.4
+          ],
+          "rearKnee": [
+            212.132,
+            346.2745
+          ],
+          "rearHand": [
+            179.1,
+            252.6
+          ],
+          "rearFoot": [
+            196.9511,
+            458.9913
+          ],
+          "frontShoulder": [
+            266.25,
+            102.6
+          ],
+          "frontHip": [
+            253.65,
+            241.8
+          ],
+          "frontElbow": [
+            290.4,
+            184.2
+          ],
+          "frontKnee": [
+            273.6,
+            346.2
+          ],
+          "frontHand": [
+            326.1,
+            250.2
+          ],
+          "frontFoot": [
+            288.3,
+            459
+          ],
+          "weapon": 0,
+          "head": 0,
+          "pelvisAngle": 0,
+          "rearHandAngle": 0,
+          "frontHandAngle": 0,
+          "rearFootAngle": 0,
+          "frontFootAngle": 0,
+          "frontCloth": 0,
+          "rearCloth": 0,
+          "hair": 0,
+          "spirit": 0,
+          "qi": 0,
+          "draw": 0,
+          "arrow": 0,
+          "rearArmPlane": 1,
+          "frontArmPlane": 1
         }
       ]
     }

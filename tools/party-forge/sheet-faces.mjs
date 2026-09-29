@@ -23,7 +23,7 @@ export function rebuildSheetFace(a){
   {id:'gat_brim',part:'head',d:'M180 104 Q199 94 234 91 Q273 89 298 100 Q280 107 241 108 Q203 111 180 104Z',fill:'hair'},
   {id:'gat_rim',part:'head',d:'M187 103 Q239 91 291 100',stroke:'hairLight',strokeWidth:1.4,detail:1},
   {id:'gat_cord',part:'head',d:'M226 108 L227 140 223 165 M270 108 Q265 141 255 166',stroke:'hair',strokeWidth:1.1});
- a.face={landmarks:Object.fromEntries(['eye','farEye','nose','mouth'].map(k=>[k,mapPoint(id,portraitMaps[id][k])])),shapeIds:a.paths.filter(p=>p.part==='head').map(p=>p.id),view:'three-quarter',reference:'260916',authoringMap:portraitMaps[id]};
+ a.face={landmarks:Object.fromEntries(['eye','farEye','nose','mouth'].map(k=>[k,mapPoint(id,portraitMaps[id][k])])),shapeIds:a.paths.filter(p=>p.part==='head').map(p=>p.id),view:'three-quarter',reference:'260916',authoringMap:structuredClone(portraitMaps[id])};
 }
 
 export function applySheetColors(a){

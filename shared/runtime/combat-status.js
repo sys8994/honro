@@ -43,17 +43,17 @@ const paths={};
 function glyph(key){return `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="${symbols[key]}"/></svg>`;}
 function draw(c,b,u,time,scale,active){
  const states=entries(b,u);if(!states.length||u.dead)return;
- const has=key=>states.some(s=>s.key===key),z=1/Math.max(.16,scale||1);
+ const has=key=>states.some(s=>s.key===key),z=1/Math.max(.16,scale||1),visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h;
  c.save();c.lineWidth=2*z;
  // Silhouettes stay recognizable: ropes at the ankles, ice underfoot, a curse seal and a shield arc.
  if(has('bind')){c.strokeStyle=colors.bind;c.beginPath();for(let i=0;i<2;i++)c.ellipse(u.x,u.y-7-i*13,u.r+8,7,0,0,Math.PI*2);c.moveTo(u.x-u.r,u.y-23);c.lineTo(u.x+u.r,u.y-2);c.stroke();}
  if(has('slow')){c.strokeStyle=colors.slow;c.beginPath();for(let i=0;i<5;i++){const x=u.x+(i-2)*12;c.moveTo(x-6,u.y+1);c.lineTo(x,u.y-10-(i%2)*7);c.lineTo(x+6,u.y+1);}c.stroke();}
- if(has('curse')){c.strokeStyle=colors.curse;c.globalAlpha=.65+.15*Math.sin(time*3);c.beginPath();c.ellipse(u.x,u.y-u.h*.45,u.r+11,u.h*.35,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
- if(has('shield')||has('guard')){c.strokeStyle=has('shield')?colors.shield:colors.guard;c.globalAlpha=.7;c.beginPath();c.ellipse(u.x,u.y-u.h*.5,u.r+19,u.h*.57,0,-Math.PI*.8,Math.PI*.8);c.stroke();c.globalAlpha=1;}
- if(has('stun')){c.strokeStyle=colors.stun;for(let i=0;i<3;i++){const a=time*2+i*Math.PI*2/3,x=u.x+Math.cos(a)*(u.r+10),y=u.y-u.h-8+Math.sin(a)*5;c.beginPath();c.moveTo(x-3*z,y);c.lineTo(x+3*z,y);c.moveTo(x,y-3*z);c.lineTo(x,y+3*z);c.stroke();}}
+ if(has('curse')){c.strokeStyle=colors.curse;c.globalAlpha=.65+.15*Math.sin(time*3);c.beginPath();c.ellipse(u.x,u.y-visualHeight*.45,u.r+11,visualHeight*.35,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
+ if(has('shield')||has('guard')){c.strokeStyle=has('shield')?colors.shield:colors.guard;c.globalAlpha=.7;c.beginPath();c.ellipse(u.x,u.y-visualHeight*.5,u.r+19,visualHeight*.57,0,-Math.PI*.8,Math.PI*.8);c.stroke();c.globalAlpha=1;}
+ if(has('stun')){c.strokeStyle=colors.stun;for(let i=0;i<3;i++){const a=time*2+i*Math.PI*2/3,x=u.x+Math.cos(a)*(u.r+10),y=u.y-visualHeight-8+Math.sin(a)*5;c.beginPath();c.moveTo(x-3*z,y);c.lineTo(x+3*z,y);c.moveTo(x,y-3*z);c.lineTo(x,y+3*z);c.stroke();}}
  // Three fixed-size signs plus a count keep stacked effects compact at every zoom.
  const shown=states.slice(0,3),extra=states.length-shown.length;
- c.translate(u.x+(active?28*z:0),u.y-u.h-33*z);c.scale(z,z);
+ c.translate(u.x+(active?28*z:0),u.y-visualHeight-33*z);c.scale(z,z);
  const width=shown.length*20+(extra?21:0);c.translate(active?0:-width/2,0);
  for(let i=0;i<shown.length;i++){const s=shown[i];c.save();c.translate(i*20,0);c.fillStyle='#0c2028ed';c.fillRect(-1,-1,19,20);c.strokeStyle=s.color;c.lineWidth=1.5;paths[s.key]??=new Path2D(symbols[s.key]);c.stroke(paths[s.key]);if(s.count){c.fillStyle='#07151d';c.fillRect(10,10,9,10);c.fillStyle=s.color;c.font='bold 9px sans-serif';c.textAlign='right';c.fillText(String(s.count),18,18);}c.restore();}
  if(extra){c.fillStyle='#e4d9c0';c.font='bold 10px sans-serif';c.textAlign='left';c.fillText('+'+extra,shown.length*20,12);}

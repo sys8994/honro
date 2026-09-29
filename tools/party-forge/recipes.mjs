@@ -1,13 +1,17 @@
 import {rebuildSheetFace,applySheetColors} from './sheet-faces.mjs';
+import {refineProportions} from './proportions.mjs';
+import {harmonizeHeads} from './head-scale.mjs';
 // Author in the existing v006 bind space. Rig contacts and game dimensions stay fixed.
 const common={skinLight:'#D3B899',skinShade:'#92725A',skinWarm:'#B18C70',feature:'#473B34',eye:'#242B2A',eyeLight:'#D8D5C2',hairLight:'#414640',seam:'#858B75',leatherLight:'#927A58',metalLight:'#C0C4B0'};
-export function createParty(original){
+export function createParty(original,rig){
  const assets=structuredClone(original);
  for(const a of Object.values(assets)){
   a.version=8;a.asset_id=a.character_id+'.v008';Object.assign(a.palette,common);
   a.rig.parts.find(p=>p.id==='head').pivot=[240,143];
   refineBody(a);refineMotion(a);rebuildSheetFace(a);applySheetColors(a);
   a.face.shapeIds=a.paths.filter(p=>p.part==='head').map(p=>p.id);
+  refineProportions(a,rig);
+  harmonizeHeads(a);
  }
  return assets;
 }

@@ -6,12 +6,12 @@ const S=G.HonroScene.prototype;
 // The body-only mask follows the current pose; health bars, shadows and selection arrows are excluded.
 S.unitOutline=function(c,u){
  if(u.id!==this.hoverUnitId&&u.id!==this.inspectUnitId)return;
- const size=u.h*3,ratio=Math.min(2,512/size),pad=8/this.scale;
- const width=Math.ceil((size+pad*2)*ratio),height=Math.ceil((u.h*2+pad*2)*ratio);
+ const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,size=visualHeight*3,ratio=Math.min(2,512/size),pad=8/this.scale;
+ const width=Math.ceil((size+pad*2)*ratio),height=Math.ceil((visualHeight*2+pad*2)*ratio);
  this.outlineMask??=document.createElement('canvas');this.outlineEdge??=document.createElement('canvas');
  const mask=this.outlineMask,edge=this.outlineEdge;
  for(const cv of [mask,edge]){if(cv.width!==width)cv.width=width;if(cv.height!==height)cv.height=height;}
- const m=mask.getContext('2d'),o=edge.getContext('2d'),left=u.x-size/2-pad,top=u.y-u.h*1.5-pad;
+ const m=mask.getContext('2d'),o=edge.getContext('2d'),left=u.x-size/2-pad,top=u.y-visualHeight*1.5-pad;
  m.setTransform(1,0,0,1,0,0);m.clearRect(0,0,width,height);m.setTransform(ratio,0,0,ratio,-left*ratio,-top*ratio);
  this.unitBody(m,u);m.setTransform(1,0,0,1,0,0);
  m.globalCompositeOperation='source-in';m.fillStyle=u.side===1?'#eed1ae':'#c8e4cf';m.fillRect(0,0,width,height);m.globalCompositeOperation='source-over';
@@ -25,7 +25,7 @@ function pick(a,p,touch=false){
  const scene=a.scene,w=scene.world(p.x,p.y),padding=(touch?12:4)/scene.scale;
  // Nearest body wins at dense spawn points; tapping does not change the active combatant.
  return a.engine.b.units.filter(eligible).map(u=>{
-  const half=Math.max(u.r,u.h*.24)+padding,cy=u.y-u.h*.5,hh=u.h*.55+padding;
+  const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,half=Math.max(u.r,u.h*.24)+padding,cy=u.y-visualHeight*.5,hh=visualHeight*.55+padding;
   return {u,d:Math.pow((w.x-u.x)/half,2)+Math.pow((w.y-cy)/hh,2)};
  }).filter(x=>x.d<=1).sort((a,b)=>a.d-b.d)[0]?.u||null;
 }
@@ -67,7 +67,7 @@ function tick(a){
  const r=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
  const bottom=Math.min(r.bottom,hud?.top??innerHeight)-10,top=Math.max(76,r.top+8);
  el.style.maxHeight=Math.max(90,bottom-top)+'px';
- const rect=el.getBoundingClientRect(),x=r.left+r.width/2+(u.x-scene.x)*scene.scale,y=r.top+r.height/2+(u.y-u.h-scene.y)*scene.scale;
+ const rect=el.getBoundingClientRect(),x=r.left+r.width/2+(u.x-scene.x)*scene.scale,y=r.top+r.height/2+(u.y-(G.HonroPartyPresentationHeight?.(u)??u.h)-scene.y)*scene.scale;
  let left=x+Math.max(18,u.r*scene.scale)+12;if(left+rect.width>innerWidth-12)left=x-rect.width-Math.max(18,u.r*scene.scale)-12;
  el.style.left=(innerWidth<=600?(innerWidth-rect.width)/2:clamp(left,12,innerWidth-rect.width-12))+'px';
  el.style.top=(innerWidth<=600?Math.max(top,bottom-rect.height):clamp(y,top,bottom-rect.height))+'px';

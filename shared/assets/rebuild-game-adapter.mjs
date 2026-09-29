@@ -11,6 +11,14 @@ export function resolveRebuildCharacter(u){
   if(named&&(u.honroAlly||u.honroCivilian||u.honroFinalBoss||u.id==='boss'))return named;
   return null;
 }
+// Presentation bounds only. Summons/NPC renderers take precedence over class
+// aliases, and collision dimensions remain owned by the engine.
+export function partyPresentationHeight(u){
+  if(!u||u.summoned)return u?.h||0;
+  const a=globalThis.HONRO_PARTY?.[resolveRebuildCharacter(u)];
+  return a?u.h*(a.canvas.presentationHeight||a.canvas.visualHeight)/a.canvas.visualHeight:u.h;
+}
+globalThis.HonroPartyPresentationHeight=partyPresentationHeight;
 export class HonroPoseVisual{
   constructor(asset,api){
     this.asset=asset;this.api=api;this.renderer=api.createCanvasRenderer(asset);this.states=new WeakMap();this.time=0;

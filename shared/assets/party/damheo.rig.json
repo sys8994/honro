@@ -10,7 +10,8 @@
       240,
       480
     ],
-    "visualHeight": 415
+    "visualHeight": 415,
+    "presentationHeight": 453.64000000000004
   },
   "rig": {
     "parts": [
@@ -28,7 +29,7 @@
         "parent": "root",
         "pivot": [
           240,
-          278
+          255.56
         ],
         "z": 30
       },
@@ -37,7 +38,7 @@
         "parent": "pelvis",
         "pivot": [
           240,
-          278
+          255.56
         ],
         "z": 50
       },
@@ -45,8 +46,8 @@
         "id": "neck",
         "parent": "thorax",
         "pivot": [
-          241,
-          155
+          241.03,
+          117.8
         ],
         "z": 51
       },
@@ -55,7 +56,7 @@
         "parent": "neck",
         "pivot": [
           240,
-          143
+          104.36
         ],
         "z": 70
       },
@@ -63,8 +64,8 @@
         "id": "rear_thigh",
         "parent": "pelvis",
         "pivot": [
-          225,
-          278
+          224.55,
+          255.56
         ],
         "z": 12
       },
@@ -72,8 +73,8 @@
         "id": "rear_shin",
         "parent": "rear_thigh",
         "pivot": [
-          213,
-          365
+          212.19,
+          353
         ],
         "z": 13
       },
@@ -81,7 +82,7 @@
         "id": "rear_foot",
         "parent": "rear_shin",
         "pivot": [
-          202,
+          200.86,
           465
         ],
         "z": 14
@@ -90,8 +91,8 @@
         "id": "front_thigh",
         "parent": "pelvis",
         "pivot": [
-          253,
-          278
+          253.39,
+          255.56
         ],
         "z": 20
       },
@@ -99,8 +100,8 @@
         "id": "front_shin",
         "parent": "front_thigh",
         "pivot": [
-          272,
-          365
+          272.96,
+          353
         ],
         "z": 21
       },
@@ -108,7 +109,7 @@
         "id": "front_foot",
         "parent": "front_shin",
         "pivot": [
-          274,
+          275.02,
           465
         ],
         "z": 22
@@ -117,8 +118,8 @@
         "id": "rear_upper_arm",
         "parent": "thorax",
         "pivot": [
-          215,
-          161
+          214.25,
+          124.52
         ],
         "z": 32
       },
@@ -126,8 +127,8 @@
         "id": "rear_forearm",
         "parent": "rear_upper_arm",
         "pivot": [
-          190,
-          226
+          188.5,
+          197.32
         ],
         "z": 33
       },
@@ -135,8 +136,8 @@
         "id": "rear_hand",
         "parent": "rear_forearm",
         "pivot": [
-          194,
-          290
+          192.62,
+          269
         ],
         "z": 34
       },
@@ -144,8 +145,8 @@
         "id": "front_upper_arm",
         "parent": "thorax",
         "pivot": [
-          265,
-          162
+          265.75,
+          125.64
         ],
         "z": 55
       },
@@ -153,8 +154,8 @@
         "id": "front_forearm",
         "parent": "front_upper_arm",
         "pivot": [
-          288,
-          230
+          289.44,
+          201.8
         ],
         "z": 56
       },
@@ -162,8 +163,8 @@
         "id": "front_hand",
         "parent": "front_forearm",
         "pivot": [
-          322,
-          286
+          324.46,
+          264.52
         ],
         "z": 64
       },
@@ -171,8 +172,8 @@
         "id": "rear_cloth",
         "parent": "pelvis",
         "pivot": [
-          224,
-          273
+          223.52,
+          249.96
         ],
         "z": 24
       },
@@ -180,8 +181,8 @@
         "id": "front_cloth",
         "parent": "pelvis",
         "pivot": [
-          257,
-          275
+          257.51,
+          252.2
         ],
         "z": 44
       },
@@ -190,7 +191,7 @@
         "parent": "pelvis",
         "pivot": [
           240,
-          278
+          255.56
         ],
         "z": 60
       },
@@ -198,8 +199,8 @@
         "id": "prop_back",
         "parent": "thorax",
         "pivot": [
-          215,
-          180
+          214.25,
+          145.8
         ],
         "z": 8
       },
@@ -207,8 +208,8 @@
         "id": "prop_hip",
         "parent": "pelvis",
         "pivot": [
-          227,
-          280
+          226.61,
+          257.8
         ],
         "z": 48
       },
@@ -216,8 +217,8 @@
         "id": "weapon",
         "parent": "front_hand",
         "pivot": [
-          326,
-          285
+          328.46,
+          263.4
         ],
         "z": 62
       },
@@ -225,8 +226,8 @@
         "id": "rear_sleeve",
         "parent": "rear_upper_arm",
         "pivot": [
-          215,
-          161
+          214.25,
+          124.52
         ],
         "z": 32.1
       },
@@ -234,8 +235,8 @@
         "id": "front_sleeve",
         "parent": "front_upper_arm",
         "pivot": [
-          265,
-          162
+          265.75,
+          125.64
         ],
         "z": 55.1
       },
@@ -248,26 +249,30 @@
         ],
         "z": 88
       }
+    ],
+    "bindThorax": [
+      240,
+      151.4
     ]
   },
   "constraints": {},
   "face": {
     "landmarks": {
       "eye": [
-        248.3,
-        120.22
+        248.549,
+        80.8966
       ],
       "farEye": [
-        261.22,
-        121.92
+        261.8566,
+        82.6476
       ],
       "nose": [
-        259.18,
-        130.07999999999998
+        259.7554,
+        91.05239999999999
       ],
       "mouth": [
-        250.68,
-        138.58
+        251.0004,
+        99.8074
       ]
     },
     "shapeIds": [
@@ -301,10 +306,10 @@
         228
       ],
       "to": [
-        250,
-        143
+        250.3,
+        104.36
       ],
-      "scale": 0.34,
+      "scale": 0.3502,
       "sign": 1,
       "eye": [
         845,
