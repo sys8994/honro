@@ -19,7 +19,7 @@ def fixture_win(page,sid):
     return page.evaluate('''sid=>{const a=HonroApp,e=a.engine,b=e.b,hs=b.honroState,st=a.stage;
       for(const ev of b.honroEvents)hs.flags['event:'+ev.id]=true;hs.pendingEvents=[];
       for(const u of b.units){Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});if(u.side===1&&!(sid===10&&u.id==='boss')){u.hp=0;u.dead=true;}}
-      b.phase='transition';b.projectiles=[];
+      b.phase='transition';b.projectiles=[];b.round=Math.max(b.round,sid+3);hs.objectiveReadyRound=b.round-2;
       if(sid===1){e.heroesAlive()[0].x=b.honroMarkers.find(m=>m.type==='exit').x;delete hs.flags['event:witness'];hs.pendingEvents.push('witness');}
       if(sid===2)e.unit('objective').x=b.honroEscortGoalX;
       if(sid===3)hs.ledger=true;
@@ -30,9 +30,9 @@ def fixture_win(page,sid):
       if(sid===9)hs.receivers=2;
       if(sid===10){const boss=e.unit('boss');e.hurt(boss,1e9,e.heroesAlive()[0].id);if(boss.dead||boss.hp<=0)throw Error('Sodan died');boss.hp=boss.maxHp*.4;for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});hs.receivers=2;HonroMission.tick(a,0);
         if(!hs.sodanCoop||hs.sodanBreach.units.length!==4)throw Error('Missing external breach');
-        if(!a.startQueuedStory())throw Error('Missing cooperation scene');
+        if(!a.dialogue&&!a.startQueuedStory())throw Error('Missing cooperation scene');
         if(!a.dialogue.lines.some(l=>l[0]==='소단'))throw Error('Filtered Sodan');HonroStory.finish(a);
-        for(const u of e.alive(1)){u.hp=0;u.dead=true;}HonroMission.tick(a,0);b.round++;HonroMission.tick(a,0);
+        for(const u of e.alive(1)){u.hp=0;u.dead=true;}b.round+=2;HonroMission.tick(a,0);
       }
       if(e.heroesAlive().some(u=>u.x<0||u.x>b.width)||e.unit('objective')?.x>b.width)throw Error('Victory fixture left the actual map');
       a.checkMission(e);const phase=b.phase;if(phase==='won')a.outcome();return {phase,lines:a.dialogue?.lines.length,summary:b.winnerReason};}''',sid)
@@ -61,7 +61,7 @@ with sync_playwright() as p:
     # Actual ledger interaction, immediately followed by victory, must display discovery first.
     game.evaluate('''()=>{const a=HonroApp;a.launch(3);HonroStory.finish(a);a.turnNotice=null;const e=a.engine,b=e.b,m=b.honroMarkers.find(m=>m.action==='ledger');
       for(const u of e.alive(1)){u.dead=true;u.hp=0;}for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});
-      Object.assign(e.active,{x:m.x,y:m.y});if(!HonroInteractions.use(a,m))throw Error('Cannot use ledger');b.phase='transition';a.checkMission(e);a.outcome();}''')
+      Object.assign(e.active,{x:m.x,y:m.y});if(!HonroInteractions.use(a,m))throw Error('Cannot use ledger');b.round=8;b.honroState.objectiveReadyRound=6;a.checkMission(e);}''')
     check('Victory begins with queued ledger discovery',game.evaluate('HonroApp.dialogue.lines[0][2].storyId.endsWith(":ledger")'))
     game.click('[data-action="dialogue-next"]')
     check('Ledger is a real document panel',game.locator('.story-document').count()==1 and '아이 둘' in game.locator('#story-line').inner_text())
@@ -91,9 +91,9 @@ with sync_playwright() as p:
 
     # A rescue is committed by interaction, not by finishing its dialogue callback.
     rescue=game.evaluate('''()=>{const a=HonroApp;a.launch(7);HonroStory.finish(a);a.turnNotice=null;const e=a.engine,b=e.b,m=b.honroMarkers.find(m=>m.action==='rescue');Object.assign(e.active,{x:m.x,y:m.y});
-      const used=HonroInteractions.use(a,m),count=b.honroState.rescuedCount,blocked=!HonroStory.drain(a)&&!a.dialogue;
-      for(const u of e.alive(1)){u.dead=true;u.hp=0;}const shown=HonroStory.drain(a);if(a.dialogue)HonroStory.finish(a);return{used,count,blocked,shown,resolved:e.unit(m.target).honroResolved,collected:m.collected,after:b.honroState.rescuedCount};}''')
-    check('Rescue is committed once; testimony waits for safety and skip keeps it',all(rescue.get(k) for k in ['used','blocked','shown','resolved','collected']) and rescue['count']==rescue['after']==1,rescue)
+      const used=HonroInteractions.use(a,m),count=b.honroState.rescuedCount,blocked=!!a.dialogue&&!a.canInput();
+      for(const u of e.alive(1)){u.dead=true;u.hp=0;}const shown=!!a.dialogue;if(a.dialogue)HonroStory.finish(a);return{used,count,blocked,shown,resolved:e.unit(m.target).honroResolved,collected:m.collected,after:b.honroState.rescuedCount};}''')
+    check('Rescue is committed once; testimony pauses immediately and skip keeps it',all(rescue.get(k) for k in ['used','blocked','shown','resolved','collected']) and rescue['count']==rescue['after']==1,rescue)
 
     # Review every line's width; scrollable long panels stay within all three viewports.
     for width,height in [(1440,900),(390,844),(844,390)]:
@@ -105,12 +105,12 @@ with sync_playwright() as p:
         game.screenshot(path=str(OUT/f'ledger-{width}x{height}.png'))
         skip(game)
 
-    # Native frame loop and keyboard prove blocking versus nonblocking delivery.
+    # Native frame loop proves all event dialogue pauses immediately, then restores input.
     live=browser.new_page(viewport={'width':1365,'height':768});live.on('pageerror',lambda e:errors.append(str(e)))
     live.goto((ROOT/'HONRO.html').as_uri());live.wait_for_function('window.HonroApp');live.evaluate('HonroApp.launch(1)');skip(live);live.wait_for_timeout(350)
     live.evaluate('HonroStory.queue(HonroApp,HonroStoryContent.eventLines(HonroApp,{id:"cart"}));HonroStory.drain(HonroApp)')
     live.wait_for_timeout(80);x=live.evaluate('HonroApp.engine.active.x');live.keyboard.down('d');live.wait_for_timeout(250);live.keyboard.up('d')
-    check('Short field dialogue permits actual movement',live.evaluate('HonroApp.engine.active.x')>x+10 and not live.evaluate('!!HonroApp.dialogue') and live.locator('#banter').is_visible())
+    check('Field event dialogue immediately stops actual movement',live.evaluate('HonroApp.engine.active.x')==x and live.evaluate('!!HonroApp.dialogue'))
     live.evaluate('HonroStory.start(HonroApp,HonroStoryContent.mapScenes[0],{title:"길 위의 대화"})');x=live.evaluate('HonroApp.engine.active.x')
     live.keyboard.down('d');live.wait_for_timeout(200);live.keyboard.up('d')
     check('Important dialogue stops movement and battle input',live.evaluate('HonroApp.engine.active.x')==x and not live.evaluate('!!HonroApp.canInput()'))

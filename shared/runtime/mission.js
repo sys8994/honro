@@ -7,7 +7,7 @@ function tick(app,dt){
  for(const m of b.honroMarkers||[]){
    const distance=m.type==='sector'?430:m.type==='relic'?155:180;
    if(heroes.some(u=>Math.hypot(u.x-m.x,(u.y-m.y)*(m.type==='sector'?.6:1))<distance))m.honroPending=true;
-   if(!boundary||!m.honroPending)continue;
+   if(!m.honroPending)continue;
    if(m.type==='sector'&&!hs.flags['sector-'+m.sector]){hs.flags['sector-'+m.sector]=true;app.event(m.label);}
    if(m.type==='rest'&&!m.collected&&!e.alive(1).some(v=>Math.abs(v.x-m.x)<470&&!v.fixed)){
      m.collected=true;for(const u of G.HonroAllies.coalition(e)){u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.30));if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*.40));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}e.emit('sound',{name:'heal'});app.event('불씨를 지켰다. 동행이 숨을 고른다.');
@@ -19,7 +19,7 @@ function tick(app,dt){
  const obj=e.unit('objective');
  if(st.objective==='rescue'&&obj&&!obj.dead){
    if(!hs.rescued&&heroes.some(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205))hs.rescuePending=true;
-   if(boundary&&hs.rescuePending&&!hs.rescued){hs.rescued=true;app.event('뒤처진 피란민이 일행을 따라오기 시작한다.');}
+   if(hs.rescuePending&&!hs.rescued){hs.rescued=true;app.event('뒤처진 피란민이 일행을 따라오기 시작한다.');}
    if(hs.rescued&&lead.x>obj.x+65&&b.phase!=='ally'){obj.x+=Math.min(dt*360,lead.x-obj.x-60);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
  }
  if(boundary&&b.side===0&&hs.lastRitualRound!==b.round){
@@ -34,7 +34,7 @@ function tick(app,dt){
  // that she is not the root cause; she changes faction and helps hold the yard.
  if(st.id===10){
    const sodan=e.unit('boss');
-   if(sodan&&!sodan.dead&&!hs.sodanCoop&&(hs.receivers||0)>=2&&sodan.hp<=sodan.maxHp*.42&&boundary){
+   if(sodan&&!sodan.dead&&!hs.sodanCoop&&(hs.receivers||0)>=2&&sodan.hp<=sodan.maxHp*.42){
      const ma=b.honroMapAnchors||{},east=ma.eastHall?.x??Math.min(b.width-1100,3600),edge=ma.outerEast?.x??b.width-500,before=new Set(b.units.map(u=>u.id));
      // Commit the faction change only when the visible external wave can actually enter.
      const breach=G.HonroAllies.execute(app,{type:'multi',actions:[{type:'spawn',n:2,x:east,kind:'hound'},{type:'spawn',n:1,x:edge,kind:'stag'},{type:'sniperAmbush',n:1}]});
@@ -46,7 +46,7 @@ function tick(app,dt){
      app.sayLines(G.HonroStoryContent.cooperation());
      app.event('소단이 주박을 거두고 일행과 함께 바깥에서 밀려드는 들림을 막기 시작한다.');
    }
-   if(hs.sodanCoop&&boundary&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&hs.lastCoopRound!==b.round){hs.lastCoopRound=b.round;hs.coopHold=Math.min(2,(hs.coopHold||0)+1);if(hs.coopHold===1)app.event('받이진이 버틴다. 마지막 매듭을 풀 수 있는 틈이 생겼다.');}
+   if(hs.sodanCoop&&b.round>(hs.sodanBreach?.round??b.round)&&hs.lastCoopRound!==b.round){hs.lastCoopRound=b.round;hs.coopHold=Math.min(2,b.round-(hs.sodanBreach?.round??b.round));if(hs.coopHold===1)app.event('받이진이 버틴다. 마지막 매듭을 풀 수 있는 틈이 생겼다.');}
  }
  app.checkMission(e);
 }

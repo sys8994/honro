@@ -20,7 +20,7 @@ export const ARROW_STYLES={distance:{width:1.25,length:48,head:2.6,color:'#d5d7c
 export function drawAimDirection(c:C,e:Engine,u:Unit,s:Skill,power:number,charging:boolean,time:number,zoom=1){
  if(s.passive||u.dead||u.retreat||s.mode==='prepare')return false;
  zoom=Math.max(.12,zoom);power=Math.max(0,Math.min(1,power));
- const melee=!!s.martial&&(s.branch==='sword'||s.mode==='bladeScreen'),angle=melee?(Math.cos(u.angle*Math.PI/180)<0?Math.PI:0):u.angle*Math.PI/180;
+ const melee=!!s.martial&&(s.branch==='sword'||s.mode==='bladeScreen'),angle=s.mode==='bladeScreen'?(Math.cos(u.angle*Math.PI/180)<0?Math.PI:0):u.angle*Math.PI/180;
  const origin=melee?{x:u.x,y:u.y-u.h*.5}:e.origin(u,u.angle,!!s.martial&&s.branch==='rush');
  const length=96+(charging?power*24:0),alpha=charging?.9:.54,ink={archer:'#e3cca1',mage:'#e7ecda',knight:'#d1e1df',occultist:'#d7bddf'}[u.cls];
  c.save();c.translate(origin.x,origin.y);c.rotate(-angle);c.scale(1/zoom,1/zoom);c.setLineDash([]);c.lineCap='round';c.lineJoin='round';

@@ -487,13 +487,13 @@
             E(c, 0, 0, big ? 13 : 6, big ? 13 : 6, col);
             glyph(c, 0, 0, big ? 23 : 11, '#dfddb8', this.time * 1.5);
         } c.restore(); }
-        effect(c, f) { const t = f.life; if (f.name === 'text') {
+        effect(c, f) { const t = f.life; if(f.name==='swordCut'&&f.text){const g=JSON.parse(f.text);c.save();c.translate(f.x,f.y);c.rotate(g.angle);c.globalAlpha=Math.max(0,1-t/.34);c.strokeStyle=f.color;c.lineWidth=3;c.beginPath();c.arc(0,0,f.size,-g.span/2,g.span/2);c.stroke();c.globalAlpha*=.3;c.beginPath();c.moveTo(0,0);c.arc(0,0,f.size,-g.span/2,g.span/2);c.closePath();c.fillStyle=f.color;c.fill();c.restore();return;} if (f.name === 'text') {
             c.save();
             c.globalAlpha = Math.max(0, 1 - t / .95);
             c.fillStyle = f.color || '#e2d4b8';
             c.font = `600 ${Math.max(12, f.size || 16)}px system-ui`;
             c.textAlign = 'center';
-            c.fillText(f.text || '', f.x, f.y - t * 30);
+            if(f.critical){c.font=`900 ${Math.max(22,f.size||26)}px system-ui`;c.strokeStyle='#62241d';c.lineWidth=3;c.strokeText(f.text||'',f.x,f.y-t*38);c.shadowColor='#ef6e39';c.shadowBlur=8;}c.fillText(f.text || '', f.x, f.y - t * (f.critical?38:30));
             c.restore();
             return;
         } c.save(); c.globalAlpha = Math.max(0, 1 - t / .8); let col = f.color || '#dcc4a0'; if (f.name === 'line' || f.x2 !== undefined) {

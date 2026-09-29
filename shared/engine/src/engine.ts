@@ -1,6 +1,6 @@
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
-import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty} from './skillMechanics';
+import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
 import {terrainSurface,walkTerrain} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,validPhysicsPatch} from './physics';
@@ -535,11 +535,15 @@ export class Engine {
     wait() { if (!this.canAct())
         return; const u = this.active!; if(u.retreat){this.finishAction(true);return;} u.shield = Math.max(u.shield, Math.round(u.maxHp * .12)); u.shieldUntil = this.b.teamEnds[1] + 1; u.focus = Math.min(u.maxFocus, u.focus + u.regen); if (!this.combatEnemies().length)
         u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12)); this.message(`${u.name} · 방어하며 대기`); this.finishAction(); }
+    iceGourdReady(){return iceGourdReady(this);}
+    detonateIceGourd(){return detonateIceGourd(this);}
     hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'='normal') {
         if (u.dead || amount <= 0)
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
         let dmg = amount;
+        const critical=damageSource==='normal'&&src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct)&&this.random()<critProfile(p||{skill:'',skillRank:1} as Projectile,src).chance;
+        if(critical)dmg*=critProfile(p||{skill:'',skillRank:1} as Projectile,src!).multiplier;
         if(src?.side===0 && src.cls==='occultist' && (u.curseTurns||0)>0) dmg*=1+equippedRank(src,'OP05')*.07;
         if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))dmg*=1+.04*equippedRank(src,'AP02');
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
@@ -554,7 +558,7 @@ export class Engine {
             dmg *= this.b.difficulty === 'explorer' ? .48 : this.b.difficulty === 'story' ? .60 : this.b.difficulty === 'normal' ? .82 : this.b.difficulty === 'veteran' ? .98 : 1.08;
         if (src?.side === 1 && src.combatBaseAttack===undefined && this.b.mode === 'campaign' && this.b.stageId === 1)
             dmg *= .85;
-        if(p&&src&&newSkill(p))dmg=redrawDamage(this,p,src,u,dmg,source||p,direct);
+        if(p&&src&&newSkill(p))dmg=redrawDamage(this,p,src,u,dmg,source||p,direct,!!critical);
         if(u.arrivalGuard!==undefined)dmg*=.90;
         let armor = Math.max(0,u.armor-(u.curseArmor||0));
         if (u.role === 'guard' && source)
@@ -605,7 +609,7 @@ export class Engine {
             if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*.08*equippedRank(u,'SP05')));u.martialGuard={round:this.b.round,reduction:.18};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
             u.hurt = .7;
-            this.fx('text', u.x, u.y - u.h - 7, u.side === 0 ? '#ffaaa3' : '#fff0d2', 19, '−' + dmg);
+            this.emit('fx',{name:'text',x:u.x,y:u.y-u.h-7,color:critical?'#ffd45c':u.side===0?'#ffaaa3':'#fff0d2',size:critical?26:19,text:(critical?'치명! −':'−')+dmg,critical:!!critical});
             if (src?.side === 0 && u.side === 1) {
                 this.b.hits++;
                 u.damageBy[src.id] = (u.damageBy[src.id] || 0) + actual;

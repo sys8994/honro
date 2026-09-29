@@ -1,0 +1,5 @@
+.story-guide{width:min(660px,calc(100vw - 28px));max-height:calc(100dvh - 36px);overflow:auto;padding:28px 32px;border:2px solid #c9ac6a;border-radius:10px;background:linear-gradient(135deg,#203943,#10242c);box-shadow:0 12px 60px #000b;color:#f5ecd6;margin:auto}
+.guide-overlay{display:flex;align-items:center;justify-content:center;background:#061116ae}
+.guide-kicker{color:#f3cc75;font-size:13px;letter-spacing:.08em;font-weight:800}
+.story-guide h2{font-size:23px;margin:10px 0 18px}.story-guide p{font-size:18px;line-height:1.8;white-space:pre-line}.story-guide .story-actions{margin-top:22px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+@media(max-width:600px){.story-guide{padding:20px}.story-guide p{font-size:16px}.story-guide h2{font-size:20px}}

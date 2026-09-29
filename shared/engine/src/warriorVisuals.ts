@@ -1,6 +1,6 @@
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
-import {meleeSkill,meleeRange,orbitPoint} from './warriorMechanics';
+import {meleeSkill,meleeRange,meleeSpan,orbitPoint} from './warriorMechanics';
 import {SKILLS} from './data';
 import {STEP} from './math';
 type C=CanvasRenderingContext2D;
@@ -39,12 +39,13 @@ export function drawWarriorProjectile(c:C,p:Projectile){
 }
 export function drawMeleeGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=1){
  if(!s.martial||!meleeSkill(s)&&s.mode!=='bladeScreen')return false;
- const radius=s.mode==='bladeScreen'?175:meleeRange(u,s,s.mode==='lifeSlash'?0:power),wide=s.mode==='bladeScreen'?Math.PI*.5:s.mode==='meleeWide'?1.3:1.05,angle=Math.cos(u.angle*Math.PI/180)<0?Math.PI:0;
+ const radius=s.mode==='bladeScreen'?175:meleeRange(u,s,s.mode==='lifeSlash'?0:power),wide=s.mode==='bladeScreen'?Math.PI*.5:meleeSpan(u,s,power)/2,angle=s.mode==='bladeScreen'?(Math.cos(u.angle*Math.PI/180)<0?Math.PI:0):-u.angle*Math.PI/180;
  c.save();c.translate(u.x,u.y-u.h*.5);c.lineWidth=1.35/zoom;c.strokeStyle='#d5dfd4';c.setLineDash([4/zoom,7/zoom]);c.globalAlpha=.65;
  for(const offset of s.mode==='meleeTurn'?[0,Math.PI]:[0]){c.beginPath();c.moveTo(0,0);c.arc(0,0,radius,angle+offset-wide,angle+offset+wide);c.closePath();c.stroke();}
  c.restore();return true;
 }
-export function drawSwordCut(c:C,x:number,y:number,size:number,t:number,facing=1,variant=0,color='#dce3de'){
+export function drawSwordCut(c:C,x:number,y:number,size:number,t:number,facing=1,variant=0,color='#dce3de',geometry?:string){
+ if(geometry){const g=JSON.parse(geometry);c.save();c.translate(x,y);c.rotate(g.angle);c.strokeStyle=color;c.lineWidth=3*(1-t)+.6;c.beginPath();c.arc(0,0,size,-g.span/2,g.span/2);c.stroke();c.globalAlpha*=.22*(1-t);c.fillStyle=color;c.beginPath();c.moveTo(0,0);c.arc(0,0,size,-g.span/2,g.span/2);c.closePath();c.fill();c.restore();return;}
  c.save();c.translate(x,y);c.scale(facing,1);c.strokeStyle=color;c.lineCap='round';
  if(variant===2){c.lineWidth=2.5*(1-t)+.5;c.beginPath();c.moveTo(8,14);c.lineTo(size*Math.min(1,t*7),-14);c.stroke();c.globalAlpha*=.35;c.strokeStyle='#a96358';c.beginPath();c.moveTo(10,18);c.lineTo(size*.92,-9);c.stroke();}
  else {const direction=variant===1?-1:1,progress=Math.min(1,t*4);c.lineWidth=2.8*(1-t)+.6;c.beginPath();c.ellipse(5,0,size*.86,size*.43,direction*.12,-1.2,-1.2+2.4*progress);c.stroke();for(let i=0;i<3;i++){c.globalAlpha=.20*(1-t);c.lineWidth=.7;c.beginPath();c.ellipse(5,0,size*(.76+i*.025),size*.37,direction*.12,-1.08,-1.08+2.25*progress);c.stroke();}}

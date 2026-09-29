@@ -26,12 +26,15 @@ with sync_playwright() as p:
         before=editor.evaluate('HonroWorkshopAPI.exportProject()')
         editor.click('[data-tab="play"]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
         play=editor.frames[1]
-        for _ in range(12):
+        for _ in range(20):
             skip=play.locator('[data-action="dialogue-skip"]')
-            if not skip.count():break
-            skip.click();play.wait_for_timeout(100)
-        play.wait_for_function('!HonroApp.dialogue')
-        play.wait_for_timeout(600)
+            if skip.count():skip.click()
+            play.wait_for_timeout(150)
+            if play.evaluate('!!HonroApp.canInput()'):
+                # Initial proximity events now pause immediately after the entry banner.
+                play.wait_for_timeout(300)
+                if play.evaluate('!!HonroApp.canInput()'):break
+        play.wait_for_function('!!HonroApp.canInput()')
         x=play.evaluate('HonroApp.engine.active.x')
         play.locator('#battlecanvas').click(position={'x':400,'y':180})
         editor.keyboard.down('d');play.wait_for_timeout(380);editor.keyboard.up('d')

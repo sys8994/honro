@@ -35,7 +35,7 @@ export async function migrate(){
   });
   s.materials=b.honroSurfaceZones.map(m=>({...clone(m),terrainId:m.support}));
   s.elements=b.honroLandmarks.map((l,i)=>({...clone(l),id:l.id||`landmark-scatter-${i}`,assetId:'builtin:'+l.kind,scale:l.size??1,rotation:0,snap:false,layer:l.layer||'back'}));
-  s.units=b.units.map(u=>({...clone(u),kind:g.HonroUnits.kindOf(u),team:u.side===0?'player':u.side===1?'enemy':u.honroCivilian?'npc':'ally',runtimeTemplate:true}));
+  s.units=b.units.map(u=>{const data=clone(u);delete data.critChance;delete data.critMultiplier;return({...data,kind:g.HonroUnits.kindOf(u),team:u.side===0?'player':u.side===1?'enemy':u.honroCivilian?'npc':'ally',runtimeTemplate:true});});
   s.events=clone(b.honroEvents);s.markers=clone(b.honroMarkers);
   s.encounters=[...new Set(b.units.map(u=>u.honroCluster).filter(Boolean))].map(id=>({id:'encounter:'+id,key:id,unitIds:b.units.filter(u=>u.honroCluster===id).map(u=>u.id)}));
   s.objectives=[{id:'campaign-goal',type:'campaign',label:st.goal}];

@@ -50,7 +50,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
     S05:[row('공격 방향','전방 1회 · 후방 1회'),row('근접 중복','아주 가까운 적 최대 2회')],
     S07:[row('연속 베기',`${COMBO_HITS[rr-1]}회`),row('타격 대상','한 명 · 쓰러지면 가까운 적에게 이어짐')],
     S08:[row('받는 피해 감소',pct(mix(.20,.30))),row('반격','근접한 첫 적 1회'),row('반격 피해',num(52*mix(1.10,1.30)))],
-    S02:[row('체력 비용','현재 체력 50% · 먼저 소모'),row('소모 체력당 추가 피해',String(+mix(.65,.90).toFixed(3))),row('방어 무시','35%'),row('치명타','없음')],
+    S02:[row('체력 비용','현재 체력 50% · 먼저 소모'),row('소모 체력당 추가 피해',String(+mix(.65,.90).toFixed(3))),row('방어 무시','35%'),row('치명타','캐릭터 치명 능력 적용')],
     S01:[row('착지','해당 위치에 남음 · 한 대상 중심 타격')],S06:[row('경로 명중','각 적 1회 · 관통')],
     S04:[row('급강하','비행 중 발사 버튼 · E · 1회'),row('급강하 위력','135~165% · 외곽으로 감소'),row('재입력 없음','일반 비행·착지 · 75% 피해')],
     S15:[row('지상 적','타격 후 진행 방향으로 밀침'),row('공중 적','타격만 · 통과')],
@@ -60,14 +60,14 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
     S14:[row('투사체 피해 감소',pct(mix(.50,.70))),row('최대 반응',`${3+Math.floor(rr/2)}회`),row('저장 검세 상한',pct(mix(.35,.45))),row('다음 검기','피해·크기·속도 증가 · 1회 소모')],
     S12:[row('공전 검기',`${ORBIT_BLADES[rr-1]}개`),row('검기별 대상 명중','최대 2회'),row('예상 표시','중심 포물선 하나')]
    };
-   return [row(s.id==='S02'?'기초 피해':s.id==='S07'?'한 번의 베기 피해':'기본 피해',num(dmg)),row('기력',num(mp)),...(melee&&!['S08','S02'].includes(s.id)?[row('속발 / 최대 축세 피해','88% / 135%'),row('최대 축세 사거리','123%'),row('속발 비용','75%'),row('속발 수세','최대 12% 피해 감소 · 다음 내 턴까지')]:[]),...(melee?[row('근접 사거리',num(s.radius))]:[]),...(extra[id]||[]),...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
+   return [row(s.id==='S02'?'기초 피해':s.id==='S07'?'한 번의 베기 피해':'기본 피해',num(dmg)),row('기력',num(mp)),...(melee&&!['S08','S02'].includes(s.id)?[row('속발 / 최대 축세 피해','88% / 135%'),row('최대 축세 사거리','123%'),row('속발 비용','75%'),row('속발 수세','최대 12% 피해 감소 · 다음 내 턴까지')]:[]),...(melee?[row('근접 사거리',num(s.radius)),row('기본 전체 각도',`${(s.mode==='meleeWide'?48:s.mode==='counterStance'?40:s.mode==='meleeCombo'?22:25)+(rr-1)*1.5}°`),row('조준','선택 각도를 중심으로 베기'),row('축세 각도 확대','최대 +10° · 검세 경지당 +0.5°')]:[]),...(extra[id]||[]),...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
   }
   const extra:Record<string,EffectRow[]>={
-   A14:[row('치명 확률',pct(.05+mix(.18,.39))),row('치명 피해',num(mix(1.70,2.05))+'배')],
+   A14:[row('추가 치명 확률',pct(mix(.18,.39))+'p'),row('추가 치명 배율','+'+num(mix(.20,.55))),row('치명 기준','캐릭터의 치명 능력에 합산')],
    A02:[row('추가 관통',`${[1,1,2,2,3,3,4,5][rr-1]}회`),row('관통 후 피해','이전의 88%'),row('지형 관통','얇은 목재')],
    A06:[row('피해에 따른 체력 회수',pct(mix(.05,.12))),row('피해에 따른 기력 회수',pct(mix(.03,.07))),row('한 사격 회복 상한','최대 체력 15% · 기력 18%')],
    A10:[row('집중 유지','2턴 · 다음 절명 사격 1회'),row('거리 위력 가산',pct(mix(.08,.22))),row('치명 확률 가산',pct(mix(.06,.20))),row('방어 무시',pct(mix(.04,.15)))],
-   A99:[row('처형 발동 거리','1,200 이상 · 치명타'),row('처형 잔여 체력',pct(mix(.12,.22))),row('치명 확률',pct(.05+mix(.25,.39))),row('치명 피해',num(mix(2,2.35))+'배'),row('보스 추가 피해','잃은 체력에 따라 최대 25%')],
+   A99:[row('처형 발동 거리','1,200 이상 · 치명타'),row('처형 잔여 체력',pct(mix(.12,.22))),row('추가 치명 확률',pct(mix(.25,.39))+'p'),row('추가 치명 배율','+'+num(mix(.50,.85))),row('보스 추가 피해','잃은 체력에 따라 최대 25%')],
    A11:[row('낙하 가속',num(mix(2.8,4.1))+'배')],
    A09:[row('방향 변경','비행 중 발사 · 클릭 · E · 1회'),row('선회 명중 추가 피해',pct(mix(.30,.65))),row('최대 선회각',num(mix(45,80))+'°'),row('선회 후 속력','92%')],
    A13:[row('추적','시야가 열린 적 · 벽에 차단')],
@@ -78,7 +78,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    A03:[row('추가 도약',`${Math.round(mix(1,5))}회`),row('도약 거리','260'),row('도약 후 피해','이전의 72%')],
    A08:[row('분출 시간','1.5초'),row('파편',`${8+2*(rr-1)}개`),row('파편 비행','0.6초 · 초속 560'),row('파편 피해',num(dmg*.20)),row('대상별 파편 피해 상한','직격의 65%')],
    M06:[row('불꽃 파편',`${5+rr}개`),row('파편 피해',num(dmg*.18)),row('대상별 파편 명중','최대 2회')],
-   M02:[row('폭발 대기','3.2~6.4초 · 오래 충전할수록 증가'),row('충돌','적과 지형에서 반동'),row('얼음 파편',`${5+rr}개`),row('파편 피해',num(dmg*.16)),row('감속',pct(mix(.20,.35))+' · 1턴'),row('대상별 파편 명중','최대 2회')],
+   M02:[row('폭발','비행 중 발사 버튼을 다시 누르면 즉시'),row('자동 폭발','3.2~6.4초 · 충전량에 따라 증가'),row('충돌','적과 지형에서 반동'),row('얼음 파편',`${5+rr}개`),row('파편 피해',num(dmg*.16)),row('감속',pct(mix(.20,.35))+' · 1턴'),row('대상별 파편 명중','최대 2회')],
    M04:[row('번개 거리',`${260+10*(rr-1)}`),row('번개 피해',num(dmg*.45)),row('번개 명중','범위 안의 적마다 1회')],
    M13:[row('후속 폭발',`${6+rr}회 · 약 1초`),row('속성·전개','불 · 첫 폭발 주변 공중에 무작위 연쇄'),row('후속 폭발 피해',num(dmg*14/48)),row('후속 폭발 반경','55 · 분포 반경 240'),row('대상별 후속 명중','최대 3회')],
    M05:[row('낙뢰 대기','착탄 후 0.35초'),row('낙뢰 차폐','상부 지형에 가로막힘')],
@@ -88,18 +88,18 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    M14:[row('원주 반경','충전에 따라 180~900'),row('원주 두께',num(mix(34,50))),row('원주 피해','반경 220까지 100% · 확대 시 감소'),row('최소 피해','28% · 원 안쪽 피해 없음')],
    M15:[row('외곽 경계','팔각형'),row('중심 추가 피해',num(dmg*62/34)),row('기선 두께',`${20+2*(rr-1)}`),row('중복 명중','최대 3선')],
    M07:[row('기동 거리','45 · 적이 접근하면 폭발')],
-   M10:[row('체력 회복',pct(.06+.01*rr)),row('기력 회복',pct(.07+.01*rr)),row('이동력 회복',pct(.12+.03*rr)),row('사용 횟수','아군 접촉 1회')],
+   M10:[row('체력 회복',pct(.06+.01*rr)),row('기력 회복',pct(.07+.01*rr)),row('이동력 회복',pct(.12+.03*rr)),row('사용 횟수','아군마다 매 턴 1회')],
    M08:[row('기동 거리','45 · 적이 접근하면 발동'),row('끌어당김','벽에 가로막힘')],
    M09:[row('첫 설치','발밑·착탄점에 한 쌍'),row('동시 설치','2개 · 초과 시 오래된 진목 교체'),row('이동','진목 위에서 E · 턴당 1회'),row('도착 기력 회복',rr<2?'없음':rr===2?'8%':'10%'),row('도착 체력 회복',rr<4?'없음':rr===4?'6%':'8%'),row('도착 이동력 회복',rr<6?'없음':rr===6?'16%':'24%'),row('도착 방호',rr===8?'적 행동 종료까지':'없음')],
-   M99:[row('봉쇄 유지','2턴'),row('경계 피해',num(dmg*22/35)+' · 턴당 1회'),row('내부 감속','45%'),row('내부 이동력 감소','35%')],
+   M99:[row('봉쇄 유지',`${stakeDuration(id,rr)}턴`),row('경계 피해',num(dmg*22/35)+' · 턴당 1회'),row('내부 감속','45%'),row('내부 이동력 감소','35%')],
   };
   const branchRows:EffectRow[]=s.cls==='archer'&&s.branch&&s.id!=='A10'?[row('계통 위력',s.branch==='distance'?`수평거리 1,800에서 최대 +${s.id==='A99'?60:40}%`:s.branch==='drop'?`낙차 900에서 최대 +${s.id==='A15'?55:s.id==='A13'?35:45}%`:`충돌 속력에 따라 최대 +${s.id==='A08'?35:45}%`)]:[];
-  const multi=multishotProfile(s,rr);return [row(s.mode==='triple'?'화살당 피해':'기본 피해',`${Math.round(dmg*(s.mode==='triple'?(multi?.damageScale||1):1)*10)/10}`),...(multi?[row(s.mode==='triple'?'화살 수':multi.waves>1?'파생탄 최대 수':'파생 투사체 수',`${multi.count}`)]:[]),...(s.mode==='triple'&&multi?[row('전체 확산각',`${(2*multi.halfAngle).toFixed(1)}°`)]:[]),row('투사체 속도',`${s.speed.toFixed(2)}×`),...(s.radius>0?[row('효과 반경',`${rad}`)]:[]),row('MP',`${mp}`),...(s.redesigned?extra[id]||[]:[]),...branchRows,...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
+  const multi=multishotProfile(s,rr);return [row(s.mode==='triple'?'화살당 피해':'기본 피해',`${Math.round(dmg*(s.mode==='triple'?(multi?.damageScale||1):1)*10)/10}`),...(multi?[row(s.mode==='triple'?'화살 수':multi.waves>1?'파생탄 최대 수':'파생 투사체 수',`${multi.count}`)]:[]),...(s.mode==='triple'&&multi?[row('전체 확산각',`${(2*multi.halfAngle).toFixed(1)}°`)]:[]),row('투사체 속도',`${s.speed.toFixed(2)}×`),...(s.radius>0?[row('효과 반경',`${rad}`)]:[]),row('MP',`${mp}`),...(s.redesigned?extra[id]||[]:[]),...branchRows,...(s.branch==='stake'?[row('진목 지속',`${stakeDuration(id,rr)}턴`),row('반복 발동',id==='M10'?'아군마다 턴당 1회':id==='M09'?'유닛마다 턴당 1회':id==='M99'?'지속 봉쇄 · 경계 피해 턴당 1회':'턴당 1회')]:[]),...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
  }
  const rows:Record<string,EffectRow[]>={
  MP01:[row('호리병 2차 효과',pct(.03*r)),row('파문 두께·진목 효력',pct(.02*r))],MP02:[row('최대 기력',pct(.03*r)),row('턴 회복',num(.5*r))],MP03:[row('미스 환급',pct(.18+.04*Math.max(0,r-1)))],MP04:[row('예측 정보 단계',num(r))],MP05:[row('완성에 필요한 소비 기력',num(JUCHEON_THRESHOLD[Math.max(0,r-1)])),row('완성 후 비용 감소',pct(r?JUCHEON_DISCOUNT[r-1]:0)),row('도술 효과 강화',pct(r?JUCHEON_EFFECT[r-1]:0)),row('파문 범위 확대 상한','5%'),row('무료 도술','주천 충전 없음')],
- AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('치명 확률',pct(.02*r)),row('치명 배율',num(.04*r))],AP03:[row('후퇴 이동력',pct(r?.08+.04*r:0))],AP04:[row('계통 계수',num(.025*r))],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
- SP01:[row('최대 축세 추가 위력',pct(.012*r)),row('최대 축세 추가 사거리',pct(.006*r)),row('돌격 위력',pct(.025*r)),row('검기 속도·크기',pct(.012*r))],SP02:[row('최대 HP',pct(.05*p)),row('피해 감소',pct(.03*p)),row('밀치기 저항',pct(knockbackResistance(r)))],SP03:[row('이동 거리',pct(.10*p)),row('점프 높이 계수',pct((1+.02*r)**2-1)),row('돌격 속도',pct(.015*r)),row('점프 소비',num(Math.max(25,75-5*r)))],SP04:[row('합세 조건','서로 다른 세 계통 · 같은 계통 반복 시 유지'),row('합세 기력 회복',pct(.05+.00625*r)),row('다음 기예 비용','25% 감소'),row('다음 기예 피해','15% 증가'),row('합세 수세','10% 피해 감소 · 다음 내 턴까지')],SP05:[row('불굴 잔여 HP',pct(.08*p)),row('발동 횟수','전투당 1회'),row('회복 자세','18% 피해 감소 · 다음 내 턴까지')],
+ AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('추가 치명 확률',pct(.02*r)+'p'),row('추가 치명 배율','+'+num(.04*r))],AP03:[row('후퇴 이동력',pct(r?.08+.04*r:0))],AP04:[row('계통 계수',num(.025*r))],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
+ SP01:[row('베기 각도 확대',num(.5*r)+'°'),row('최대 축세 추가 위력',pct(.012*r)),row('최대 축세 추가 사거리',pct(.006*r)),row('돌격 위력',pct(.025*r)),row('검기 속도·크기',pct(.012*r))],SP02:[row('최대 HP',pct(.05*p)),row('피해 감소',pct(.03*p)),row('밀치기 저항',pct(knockbackResistance(r)))],SP03:[row('이동 거리',pct(.10*p)),row('점프 높이 계수',pct((1+.02*r)**2-1)),row('돌격 속도',pct(.015*r)),row('점프 소비',num(Math.max(25,75-5*r)))],SP04:[row('합세 조건','서로 다른 세 계통 · 같은 계통 반복 시 유지'),row('합세 기력 회복',pct(.05+.00625*r)),row('다음 기예 비용','25% 감소'),row('다음 기예 피해','15% 증가'),row('합세 수세','10% 피해 감소 · 다음 내 턴까지')],SP05:[row('불굴 잔여 HP',pct(.08*p)),row('발동 횟수','전투당 1회'),row('회복 자세','18% 피해 감소 · 다음 내 턴까지')],
  OP01:[row('유령 피해',`+${pct(.055*p)}`),row('중력 영향',`-${pct(Math.min(.6,.08*p))}`)],OP02:[row('저주 지속',`+${Math.floor(p/1.5)}R`),row('저주 강도',`+${pct(.08*p)}`)],OP03:[row('소환귀 HP',`+${pct(.15*p)}`),row('소환귀 피해',`+${pct(.12*p)}`)],OP04:[row('처치 MP',num(6*p))],OP05:[row('저주 대상 추가 피해',`+${pct(.07*p)}`)]
  };return rows[id]||[];
 }
@@ -183,12 +183,17 @@ export function sanitizeLoadout(p: Profile, cls: ClassId) { const known = active
         list.push(s); p.loadouts[cls] = [...new Set(list)].slice(0, 4); return p.loadouts[cls]; }
 // Retained no-op for older callers; concrete learned-passive effects use passivePower.
 export function passiveBonus(h:HeroProgress,cls:ClassId,kind:Talent['passive'],branch?:number,loadout:string[]=[]){return 0;}
+export function criticalStats(cls:ClassId,level=1,ranks:Record<string,number>={}){
+ const base={archer:[.18,1.75,.005,.015],mage:[.09,1.5,.003,.01],knight:[.12,1.6,.004,.012],occultist:[.13,1.55,.0035,.012]}[cls],L=Math.max(0,level-1),pass=cls==='archer'?(ranks.AP02||0):0;
+ return {critChance:Math.min(.65,base[0]+L*base[2]+pass*.02),critMultiplier:Math.min(3,base[1]+L*base[3]+pass*.04)};
+}
+export function stakeDuration(id:string,rank=1){return (['M10','M09'].includes(id)?4:2)+Math.floor((Math.max(1,rank)-1)/2);}
 export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const level=levelOf(h),i=CLASS_IDS.indexOf(cls),L=level-1;
  const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=rank('SP02'),mobility=0,leap=rank('SP03'),defense=rank('SP02');
  const hpBase=[390,365,610,460][i], hpGain=[32,30,48,36][i], armorBase=[.06,.08,.22,.11][i];
  const hp=(hpBase+L*hpGain)*(1+vitality*.05), atkBase=[1.75,1.75,1.75,1.86][i], atkGain=[.18,.18,.18,.19][i];
- return {level,hp:Math.round(hp),mp:Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(h.ranks.MP02||0)*.03:0))),attack:atkBase+L*atkGain,armor:Math.min(.62,armorBase+L*.008+defense*.03),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?(h.ranks.MP02||0)*.5:0)};}
-export function applyHero(u:Unit,h:HeroProgress,full=false){const s=heroStats(h,u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove;u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+Math.max(0,dh),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+Math.max(0,dm),0,s.mp);u.maxFocus=s.mp;u.attack=s.attack;u.armor=s.armor;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:Math.min(s.move,u.moveLeft+Math.max(0,s.move-oldMove));u.ranks={...h.ranks};}
+ return {...criticalStats(cls,level,h.ranks),level,hp:Math.round(hp),mp:Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(h.ranks.MP02||0)*.03:0))),attack:atkBase+L*atkGain,armor:Math.min(.62,armorBase+L*.008+defense*.03),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?(h.ranks.MP02||0)*.5:0)};}
+export function applyHero(u:Unit,h:HeroProgress,full=false){const s=heroStats(h,u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove;u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+Math.max(0,dh),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+Math.max(0,dm),0,s.mp);u.maxFocus=s.mp;u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:Math.min(s.move,u.moveLeft+Math.max(0,s.move-oldMove));u.ranks={...h.ranks};}
 export function grantXP(h: HeroProgress, amount: number) { const before = levelOf(h); const actual = Math.max(0, Math.min(XP_CAP - h.xp, Math.round(amount))); h.xp += actual; return { actual, before, after: levelOf(h) }; }
 export function recommendedLevel(stage: number) { return [1,1,2,2,3,4,4,5,5,6,7,8,8,9,10,10,11,12,12,13,14,15,16,17,17,18,19,20,21,22,22,23,23,24,24,25][clamp(Math.floor(stage),1,36)-1]; }
 export interface MapNode {

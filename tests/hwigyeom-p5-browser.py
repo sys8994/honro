@@ -84,7 +84,7 @@ with sync_playwright() as p:
     browser=launch(p)
     page=browser.new_page(viewport={'width':1440,'height':900});page.on('pageerror',lambda e:errors.append(str(e)));page.goto((ROOT/'HONRO.html').as_uri());page.wait_for_function('window.HonroApp')
     # This case runs the actual RAF game loop, with no simulated ticks or frame override.
-    page.evaluate("{const a=HonroApp;a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();a.trainingClass='knight';a.trainingSkill='S00';a.launch(1,true,'S00');a.dialogue=null;a.turnNotice=null;const b=a.engine.b,u=a.engine.active;b.practiceCombat=false;b.units=b.units.slice(0,2);const t=b.units[1];t.fixed=true;t.x=u.x+110;t.y=u.y;t.hp=t.maxHp=10000;t.armor=0;window.liveHp=t.hp;a.updateHUD(true);}")
+    page.evaluate("{const a=HonroApp;a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();a.trainingClass='knight';a.trainingSkill='S00';a.launch(1,true,'S00');a.dialogue=null;a.turnNotice=null;const b=a.engine.b,u=a.engine.active;u.angle=0;b.practiceCombat=false;b.units=b.units.slice(0,2);const t=b.units[1];t.fixed=true;t.x=u.x+110;t.y=u.y;t.hp=t.maxHp=10000;t.armor=0;window.liveHp=t.hp;a.updateHUD(true);}")
     fire(page,180)
     page.wait_for_function("HonroApp.engine.b.round>1&&HonroApp.engine.b.phase==='aim'",timeout=30000)
     check('Unmodified RAF loop: melee hits and rearms without refresh',page.evaluate('HonroApp.engine.b.units[1].hp<liveHp&&HonroApp.canInput()'))

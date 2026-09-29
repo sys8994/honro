@@ -9,7 +9,7 @@ function audit(stage,b){
   const reinforcements=(b.honroEvents||[]).reduce((n,e)=>n+G.HonroEncounters.spawnCount(e.action),0);
   const medianHits=median(ordinary.map(hits)),medianIncoming=median(ordinary.map(incoming));
   const issues=[];
-  if(medianHits<.65||medianHits>4)issues.push('ordinary enemy hit budget');
+  if(medianHits<(b.honroEncounterRevision?.35:.65)||medianHits>4)issues.push('ordinary enemy hit budget');
   if(medianIncoming<.035||medianIncoming>.15)issues.push('incoming damage budget');
   if(stage.active>4)issues.push('simultaneous enemy actions');
   const growth=P.budget(stage.id);

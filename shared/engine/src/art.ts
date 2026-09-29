@@ -242,7 +242,7 @@ export class Renderer {
                 this.shake = Math.max(this.shake, Math.min(size / 35, 4));
         }
         if (kind === 'swordCut' || kind === 'circulation' || kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
-            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, x2: e.x2, y2: e.y2 });
+            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, critical:e.critical, x2: e.x2, y2: e.y2 });
         if (this.fxs.length > 370)
             this.fxs.splice(0, this.fxs.length - 370);
     }
@@ -255,7 +255,7 @@ export class Renderer {
                 if (f.kind === 'spark') f.vy += 260 * dt;
             }
             const t=f.age/f.life, alpha=Math.max(0,1-t); c.save(); c.globalAlpha=alpha;
-            if(f.kind==='swordCut')drawSwordCut(c,f.x,f.y,f.size,t,f.x2,f.y2,f.color);
+            if(f.kind==='swordCut')drawSwordCut(c,f.x,f.y,f.size,t,f.x2,f.y2,f.color,f.text);
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
@@ -266,7 +266,7 @@ export class Renderer {
             if(f.kind==='spark') line(c,f.x,f.y,f.x-f.vx*.028,f.y-f.vy*.028,f.color,f.size);
             if(f.kind==='ring'){c.strokeStyle=f.color;c.lineWidth=2.5*(1-t)+.5;c.beginPath();c.arc(f.x,f.y,Math.max(1,f.size*(.25+.75*t)),0,Math.PI*2);c.stroke();if(t<.3)circle(c,f.x,f.y,f.size*(.2+t),f.color+'19');}
             if(f.kind==='rune') this.rune(c,f.x,f.y,f.size*(.6+.4*t),f.color,t*.4);
-            if(f.kind==='text') txt(c,f.text||'',f.x,f.y,f.color,f.size,'center','700');
+            if(f.kind==='text'){if(f.critical){c.font=`900 ${f.size}px "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif`;c.textAlign='center';c.textBaseline='middle';c.strokeStyle='#62241d';c.lineWidth=3;c.strokeText(f.text||'',f.x,f.y);c.shadowColor='#ef6e39';c.shadowBlur=8;}txt(c,f.text||'',f.x,f.y,f.color,f.size,'center',f.critical?'900':'700');}
             if(f.kind==='meteor'){line(c,f.x,f.y-500,f.x,f.y,'rgba(253,207,141,.32)',2);this.rune(c,f.x,f.y,55,f.color,t);}
             if(f.kind==='slash'){c.save();c.translate(f.x,f.y);c.rotate(-.35+t*.8);c.strokeStyle=f.color;c.lineWidth=8*(1-t);c.beginPath();c.arc(0,0,Math.max(10,f.size*.7),Math.PI*.85,Math.PI*1.85);c.stroke();c.restore();}
             if(f.kind==='line'&&f.x2!==undefined)this.lightning(c,f.x,f.y,f.x2,f.y2??f.y,f.color,f.size||2,f.age*4);
@@ -570,7 +570,7 @@ export class Renderer {
             c.globalAlpha = alpha;
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
-            if(f.kind==='swordCut')drawSwordCut(c,f.x,f.y,f.size,t,f.x2,f.y2,f.color);
+            if(f.kind==='swordCut')drawSwordCut(c,f.x,f.y,f.size,t,f.x2,f.y2,f.color,f.text);
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
@@ -590,7 +590,7 @@ export class Renderer {
             if (f.kind === 'rune')
                 this.rune(c, f.x, f.y, f.size * (.6 + .4 * t), f.color, t * .4);
             if (f.kind === 'text') {
-                txt(c, f.text || '', f.x, f.y, f.color, f.size, 'center', '700');
+                if(f.critical){c.strokeStyle='#62241d';c.lineWidth=3;c.font=`900 ${f.size}px "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif`;c.textAlign='center';c.textBaseline='middle';c.strokeText(f.text||'',f.x,f.y);}txt(c, f.text || '', f.x, f.y, f.color, f.size, 'center', f.critical?'900':'700');
             }
             if (f.kind === 'meteor') {
                 line(c, f.x, f.y - 500, f.x, f.y, 'rgba(253,207,141,.32)', 2);

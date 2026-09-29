@@ -13,7 +13,8 @@ editor = 'WORKSHOP' in source.name
 with sync_playwright() as p:
     browser = launch(p)
     for width, height, zoom in [(1365, 768, .82), (1365, 768, .20), (844, 390, .20)]:
-        for sid in [1, 2]:
+        # Include the denser late-stage formations after doubling campaign enemies.
+        for sid in [1, 2, 7, 10]:
             page = browser.new_page(viewport={'width':width,'height':height})
             page.on('pageerror', lambda e: errors.append(str(e)))
             page.goto(source.as_uri(), wait_until='load')

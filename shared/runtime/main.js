@@ -442,17 +442,19 @@
             if (['won', 'lost'].includes(b.phase))
                 return true;
             const heroes = b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
-            if (!heroes.length || objective?.dead) {
+            const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
+            if (!heroes.length || objective?.dead || rescuedResidentLost) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);
-                b.winnerReason = objective?.dead ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.';
+                b.winnerReason = objective?.dead || rescuedResidentLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.';
                 this.dirty = true;
                 return true;
             }
-            const st=this.stage,win=G.HonroObjectives.state(b,st).complete;
-            if (win && (b.projectiles.length||e.settleBusy()||['flight','review','ally','summon'].includes(b.phase)))return false;
+            const st=this.stage,state=G.HonroObjectives.state(b,st);
+            if(state.objectiveReady){b.honroState.objectiveReadyRound??=b.round;}else delete b.honroState.objectiveReadyRound;
+            const win=G.HonroObjectives.state(b,st).complete;
             if (win) {
-                b.phase = 'won';
+                b.phase = 'won';this.cancelInput();b.projectiles=[];b.volley=undefined;for(const u of b.units)delete u.meleeAction;
                 C.cleanupPassiveHistory(e);
                 b.winnerReason = st.storySummary || '길을 확보했다.';
                 this.dirty = true;
@@ -517,7 +519,7 @@
         else
             u.angle = 270 - clamp(this.displayAngle(u) + v, 5, 180); }
         canInput() { return this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
-        beginCharge() { if(this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
+        beginCharge() { if(this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.detonateIceGourd()||this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
             return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || u.focus < this.engine.manaCost(sk, u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0; return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
@@ -621,7 +623,7 @@
             const previous=this.engine.b.lastShots?.[u.id]?.power||0,power=this.charging?this.power:0;
             button.style.setProperty('--charge',power*100);button.style.setProperty('--previous',previous*100);button.style.setProperty('--charge-color',H.hero[u.cls]?.color||'#c8b17c');
             button.dataset.character=u.id;button.dataset.previous=previous;button.classList.toggle('charging',this.charging);
-            const label=button.querySelector('.fire-label');if(label)label.textContent=this.charging?Math.round(power*100)+'%':'발사';
+            const label=button.querySelector('.fire-label');if(label)label.textContent=this.engine.iceGourdReady()?'폭발':this.charging?Math.round(power*100)+'%':'발사';
             if(!button.disabled)button.title=previous?'이전 발사 '+Math.round(previous*100)+'%':'누른 채 충전, 손을 떼어 발사';
         }
         updateHUD(force = false) {
@@ -649,8 +651,9 @@
             $('read-aim').textContent=`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`;
             const turnLabel=G.HonroStory.turnLabel(b);$('turn-text').textContent=turnLabel?b.round+'번째 턴 · '+turnLabel:b.round+'번째 턴';
             $('wind-text').textContent=(b.wind<0?'← ':'→ ')+Math.abs(Math.round(b.wind));
-            const steering=b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup||p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
+            const steering=e.iceGourdReady()||b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup||p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
             $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||u.focus<e.manaCost(sk,u,0)||cd>0);$('fire').style.setProperty('--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
+            this.updateChargeDisplay();
             $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()&&u.meleeFollow!=='ready'?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput();
             G.HonroObjectives.refresh(this);
             G.HonroInteractions?.refresh(this);

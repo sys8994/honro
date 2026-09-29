@@ -21,7 +21,7 @@ def suite(page,shell):
             box=page.locator('#fire').bounding_box();owner.mouse.move(box['x']+box['width']/2,box['y']+box['height']/2);owner.mouse.down();owner.wait_for_timeout(90)
             marks=page.evaluate('aimPaint()')
             state=page.evaluate("({charging:HonroApp.charging,phase:HonroApp.engine.b.phase,dpr:HonroApp.scene.size().d})")
-            expected=0 if sid=='S00' and angle<90 else 180 if sid=='S00' else angle
+            expected=angle
             import math
             check(shell+f': {sid} charge at {angle} degrees draws a separate correctly oriented direction signature',state['charging'] and len(marks)==1 and abs(marks[0]['m'][0]/state['dpr']-math.cos(math.radians(expected)))<1e-7 and abs(marks[0]['m'][1]/state['dpr']+math.sin(math.radians(expected)))<1e-7,{'marks':marks,'state':state})
             if angle==35:owner.screenshot(path=str(OUT/(shell+'-'+sid+'.png')))

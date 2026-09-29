@@ -1,6 +1,24 @@
 (function(G){'use strict';
 const combat=a=>!!a&&(a.type==='spawn'||a.type==='sniperAmbush'||a.type==='multi'&&(a.actions||[]).some(combat));
 const spawnCount=a=>!a?0:a.type==='multi'?(a.actions||[]).reduce((n,a)=>n+spawnCount(a),0):combat(a)?a.n||1:0;
+// Applied only to newly compiled campaign battles. Saved battles keep their population and HP.
+function balance(b){
+ if(b.honroCustom||b.honroEncounterRevision)return;
+ const originals=b.units.filter(u=>u.side===1&&!u.boss&&!u.honroMidboss&&!u.honroFinalBoss),added=[];
+ for(const u of originals){
+  u.combatBaseHp=(u.combatBaseHp??u.maxHp/(G.HONRO_CORE.DIFFICULTIES[b.difficulty]?.hp||1))*.6;
+  u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));
+  const v=structuredClone(u);v.id=u.id+'-cluster';v.x+=u.r*2+24;v.spawnX=v.x;v.damageBy={};v.xpGranted=0;
+  const kind=v.honroVariant||v.honroType,flying=!!G.HonroWorld.archetypes[kind]?.flying;
+  const spot=G.HonroTerrain.place({...b,units:[...b.units,...added]},v,{flying,maxDistance:700});
+  if(!spot)throw Error('No safe cluster placement: '+v.id);
+  Object.assign(v,spot,{spawnX:spot.x,spawnY:spot.y});added.push(v);
+ }
+ b.units.push(...added);
+ const double=a=>{if(!a)return;if(a.type==='multi')a.actions.forEach(double);else if(combat(a))a.n=(a.n||1)*2;};
+ for(const ev of b.honroEvents||[])double(ev.action);
+ b.honroEncounterRevision=1;
+}
 function configure(b){
   if(!b.honroEvents||b.honroCanonical)return;
   if(b.honroStage===2){
@@ -36,10 +54,11 @@ function update(app,dt,state){
     if(!matches(ev.when,{...state,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
     if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);
   }
+  flush(app);
 }
 function flush(app){
   const e=app.engine,b=e.b,hs=b.honroState;
-  if(b.phase!=='transition'||b.projectiles.length||e.settleBusy())return;
+  if(app.dialogue||['won','lost'].includes(b.phase))return;
   let spawned=false;
   for(const id of [...(hs.pendingEvents||[])]){
     const ev=b.honroEvents.find(v=>v.id===id),key='event:'+id;
@@ -47,7 +66,7 @@ function flush(app){
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(combat(ev.action)){
-      const cap=G.HonroProgression.plan(b.honroStage).maxAlive;
+      const cap=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
       if(spawned||enemies+spawnCount(ev.action)>cap)continue;
     }
     if(G.HonroAllies.execute(app,ev.action)===false)continue;
@@ -55,16 +74,17 @@ function flush(app){
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);
     hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);
     const lines=G.HonroStoryContent.eventLines(app,ev);app.event(lines?.[0]?.[2]?.storyTitle||ev.text);if(lines?.length)app.sayLines(lines);b.events.push('honro:'+ev.id);app.dirty=true;
+    if(app.dialogue)break;
   }
 }
 // Reaching an exit can win during movement, before the next event boundary.
 // Finish already-triggered, action-free discoveries before the ending dialogue.
-function finishNarrative(app){const b=app.engine?.b,hs=b?.honroState;if(!hs||b.honroCustom||b.phase!=='won')return;for(const id of [...(hs.pendingEvents||[])]){const ev=b.honroEvents.find(v=>v.id===id);if(!ev||ev.action||hs.flags['event:'+id])continue;const lines=G.HonroStoryContent.eventLines(app,ev);if(!lines?.[0]?.[2]?.waitForClear)continue;if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0))continue;app.sayLines(lines);hs.flags['event:'+id]=true;hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);}}
+function finishNarrative(app){const b=app.engine?.b,hs=b?.honroState;if(!hs||b.honroCustom||b.phase!=='won')return;for(const id of [...(hs.pendingEvents||[])]){const ev=b.honroEvents.find(v=>v.id===id);if(!ev||ev.action||hs.flags['event:'+id])continue;const lines=G.HonroStoryContent.eventLines(app,ev);if(!lines?.length)continue;if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0))continue;app.sayLines(lines);hs.flags['event:'+id]=true;hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);}}
 function attach(app,e){const next=e.switchTeam.bind(e);e.switchTeam=function(){
   const b=e.b,hs=b.honroState;if(b.phase!=='transition')return;
   const boundary=b.teamEnds.join(':');
   if(hs.lastEventBoundary!==boundary){hs.lastEventBoundary=boundary;G.HonroAllies.missionTick(app,0);flush(app);app.startQueuedStory?.();}
-  if(app.dialogue)return;next();
+  if(app.dialogue||b.phase!=='transition')return;next();
 };}
-G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,combat,spawnCount};
+G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,combat,spawnCount,balance};
 })(globalThis);

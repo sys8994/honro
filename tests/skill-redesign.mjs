@@ -21,7 +21,7 @@ test('distance, drop and speed are independent and monotonic',()=>{
  p.skill='A05';const sp=[500,800,1150].map(v=>{p.vx=v;return C.trajectoryMultiplier(p,a.u,{x:100,y:900});});assert(sp[0]<sp[1]&&sp[1]<sp[2]);assert.equal(C.trajectoryMultiplier(p,a.u,{x:4000,y:2200}),sp[2]);
 });
 test('seeded crit repeats exactly and obeys caps',()=>{
- const trial=()=>{const a=arena('A14',8),p=a.fire(),t=a.foe();a.u.ranks.AP02=8;p.preparedRank=8;const out=[];for(let i=0;i<20;i++){const hp=t.hp;a.e.hurt(t,20,a.u.id,true,p,p);out.push(hp-t.hp);}assert.equal(C.critProfile(p,a.u).chance,.65);assert(Math.abs(C.critProfile(p,a.u).multiplier-2.37)<1e-8);return out;};assert.deepEqual(trial(),trial());assert(new Set(trial()).size>1);
+ const trial=()=>{const a=arena('A14',8),p=a.fire(),t=a.foe();a.u.ranks.AP02=8;p.preparedRank=8;const out=[];for(let i=0;i<20;i++){const hp=t.hp;a.e.hurt(t,20,a.u.id,true,p,p);out.push(hp-t.hp);}assert.equal(C.critProfile(p,a.u).chance,.80);assert(Math.abs(C.critProfile(p,a.u).multiplier-2.66)<1e-8);return out;};assert.deepEqual(trial(),trial());assert(new Set(trial()).size>1);
 });
 test('정심 consumes one distance cast and expires after two turns',()=>{
  const a=arena('A10',8);a.fire();assert.equal(a.b.projectiles.length,0);assert.equal(a.u.prepared.rank,8);a.u.loadout=['A01','A14'];a.b.phase='aim';a.u.ranks.A14=1;assert(a.e.fire('A01',30,.5));assert(a.u.prepared);a.b.projectiles=[];a.b.phase='aim';assert(a.e.fire('A14',30,.5));assert(!a.u.prepared);assert.equal(a.b.projectiles[0].preparedRank,8);a.u.prepared={rank:1,expires:3};a.b.round=4;C.tickRedesign(a.e,0);assert(!a.u.prepared);
@@ -88,7 +88,7 @@ test('반탄파 2–7 bounces and 삼재 boundary/interior geometry',()=>{
 test('팔괘 center and ray hits are capped at three lines',()=>{const geo=C.skillGeometry(C.SKILLS.M15,8,500,500,0);const center=C.geometryHits(geo,{x:500,y:540,h:80,r:21});assert(center.center);assert.equal(center.count,3);assert(C.geometryHits(geo,{x:650,y:540,h:80,r:10}).count>0);});
 function place(a,skill,x,rank=8){a.u.ranks[skill]=rank;a.u.loadout=[skill];a.b.phase='aim';a.u.acted=false;a.u.focus=1000;a.u.cooldowns={};assert(a.e.fire(skill,0,.3));const p=a.b.projectiles.find(p=>p.skill===skill&&!p.secondary);a.e.impact(p,{x,y:1800,t:0,n:{x:0,y:-1},terrain:a.b.terrain[0]});return a.b.stakes.at(-1);}
 test('파진목 enemy step, 회생진목 ally recovery, no summon or placement refund',()=>{
- const a=arena('M07');place(a,'M07',1000);C.tickRedesign(a.e,.01);assert.equal(a.b.stakes.length,1);const t=a.foe(1000);C.tickRedesign(a.e,.01);assert.equal(a.b.stakes.length,0);assert(t.hp<t.maxHp);
+ const a=arena('M07');place(a,'M07',1000);C.tickRedesign(a.e,.01);assert.equal(a.b.stakes.length,1);const t=a.foe(1000);C.tickRedesign(a.e,.01);assert.equal(a.b.stakes.length,1);assert(t.hp<t.maxHp);
  const b=arena('M10');b.u.ranks.MP03=8;place(b,'M10',1000);const f=b.foe(1000,1800,{side:0,hp:200,maxHp:1000,focus:0,maxFocus:100,moveLeft:0,maxMove:1000});C.tickRedesign(b.e,.01);assert.equal(f.hp,340);assert(Math.abs(f.focus-15)<1e-8);assert.equal(f.moveLeft,360);assert(!f.summoned);C.finishRedesign(b.e,false);assert(b.u.focus<1000);
 });
 test('유인진목 pull stays outside solid wall',()=>{
@@ -97,8 +97,8 @@ test('유인진목 pull stays outside solid wall',()=>{
 test('축지 max2 oldest replacement, once per unit/turn, arrival recovery',()=>{
  const a=arena('M09');const first=place(a,'M09',700),second=place(a,'M09',1100),third=place(a,'M09',1500);assert.deepEqual(Array.from(a.b.stakes,s=>s.id),[second.id,third.id]);a.u.x=1100;a.u.y=1800;a.u.hp=500;a.u.focus=0;a.u.moveLeft=0;a.b.phase='aim';assert(a.e.useGate());assert.equal(a.u.x,1500);assert(a.u.hp>500&&a.u.focus>0&&a.u.moveLeft>0&&a.u.arrivalGuard);assert(!a.e.useGate());a.b.teamEnds[0]++;assert(a.e.useGate());assert.equal(a.u.x,1100);
 });
-test('오방봉진 2R expiry and once-per-turn boundary damage',()=>{
- const a=arena('M99'),z=place(a,'M99',1000),t=a.foe(1000,1800,{fixed:false});C.tickRedesign(a.e,.01);assert(z.active);assert.equal(z.expires,a.b.round+2);assert.equal(t.moveLeft,t.maxMove*.65);t.x=1240;const before=t.hp;C.tickRedesign(a.e,.01);assert(t.hp<before);const after=t.hp;C.tickRedesign(a.e,.01);assert.equal(t.hp,after);assert(t.vx<0);a.b.round+=2;C.tickRedesign(a.e,.01);assert.equal(a.b.stakes.length,0);
+test('오방봉진 SP-scaled expiry and once-per-turn boundary damage',()=>{
+ const a=arena('M99'),z=place(a,'M99',1000),t=a.foe(1000,1800,{fixed:false});C.tickRedesign(a.e,.01);assert(z.active);assert.equal(z.expires,a.b.round+C.stakeDuration('M99',z.rank));assert.equal(t.moveLeft,t.maxMove*.65);t.x=1240;const before=t.hp;C.tickRedesign(a.e,.01);assert(t.hp<before);const after=t.hp;C.tickRedesign(a.e,.01);assert.equal(t.hp,after);assert(t.vx<0);a.b.round=z.expires;C.tickRedesign(a.e,.01);assert.equal(a.b.stakes.length,0);
 });
 test('회기 refunds complete misses exactly once, authored balance stays authoritative',()=>{
  const a=arena('M06',8);a.u.ranks.MP03=8;const cost=a.e.manaCost(C.SKILLS.M06,a.u);a.fire();a.b.projectiles=[];C.finishRedesign(a.e,false);assert(Math.abs(a.u.focus-(1000-cost+cost*.46))<1e-6);for(const s of Object.values(C.SKILLS).filter(s=>s.redesigned))assert.equal(C.skillBalanceFactor(s),1);

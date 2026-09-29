@@ -14,7 +14,8 @@ for(let id=1;id<=10;id++){
  g.HONRO_PROJECT=id<=2?baseline:project;
  for(const difficulty of ['story','normal','veteran']){
   const p=g.HonroMaps.profileFor(project.stages[id-1]);p.settings.difficulty=difficulty;
-  const a=battlefield(old,id,{profile:plain(p)}).b,b=battlefield(g,id,{profile:plain(p)}).b;
+  const a=battlefield(old,id,{profile:plain(p)}).b,b=g.HonroMaps.createBattle(g.HONRO_PROJECT.stages[id-1],g.HONRO_PROJECT,plain(p),{legacyBalance:true});
+  g.HonroStageRules.sanitizeStageBattle(b);new g.HONRO_CORE.Engine(b,()=>{},true);
   assert.deepEqual(plain(b.terrain),plain(a.terrain),`Stage ${id} ${difficulty} terrain`);
   assert.deepEqual(plain(b.honroSurfaceZones).map(({terrainId,...z})=>z),plain(a.honroSurfaceZones),`Stage ${id} materials`);
   for(const field of ['honroEvents','honroMarkers','honroMapAnchors','honroMap','honroRoute','honroDetailStats','honroState','honroGrowth'])

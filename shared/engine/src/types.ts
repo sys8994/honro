@@ -118,6 +118,8 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    critChance?: number;
+    critMultiplier?: number;
     arrowTurn?: number;
     arrowTurnToken?: string;
     salheun?: Record<string,{entries:{turn:number;damage:number}[];action:number;recorded:number;cap:number;projectiles:number[]}>;
@@ -126,11 +128,11 @@ export interface Unit {
     jucheonReady?: boolean;
     swordChain?: string[];
     harmony?: boolean;
-    martialGuard?: {round:number;reduction:number;counter?:boolean;rank?:number};
+    martialGuard?: {round:number;reduction:number;counter?:boolean;rank?:number;angle?:number;span?:number};
     bladeScreen?: {round:number;rank:number;hits:number;facing:number};
     bladeStored?: number;
     meleeFollow?: 'landing'|'ready'|'spent';
-    meleeAction?: {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number};
+    meleeAction?: {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number;angle?:number;span?:number};
     retreat?: boolean;
     prepared?: {rank:number;expires:number};
     gateTurn?: string;
@@ -332,7 +334,7 @@ export interface Battle {
     practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
-    stakes?: {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
+    stakes?: {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean};
     vertical?: boolean;
@@ -398,6 +400,7 @@ export interface Battle {
     session: string;
 }
 export interface FX {
+    critical?: boolean;
     kind: 'swordCut' | 'circulation' | 'qiBurst' | 'fireBloom' | 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
     x: number;
     y: number;
@@ -444,6 +447,7 @@ export interface Profile {
     migrated?: boolean;
 }
 export interface Event {
+    critical?: boolean;
     type: 'fx' | 'sound' | 'change' | 'save' | 'result' | 'message' | 'xp' | 'level';
     name?: string;
     text?: string;

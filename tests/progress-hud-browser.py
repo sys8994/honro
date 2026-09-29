@@ -14,9 +14,21 @@ def load(page):
     page.goto((ROOT/'HONRO.html').as_uri());page.wait_for_function('window.HonroApp')
 def skip(page):
     page.locator('[data-action="dialogue-skip"]').click()
+def reach_outcome(page,walk=False):
+    owner=page if hasattr(page,'keyboard') else page.page
+    try:
+        for _ in range(48):
+            if page.evaluate('HonroApp.dialogue?.after==="outcome"'):return
+            if page.evaluate('!!HonroApp.dialogue'):
+                owner.keyboard.up('d');skip(page)
+            elif walk:
+                page.locator('#battlecanvas').focus();owner.keyboard.down('d')
+            page.wait_for_timeout(180)
+        raise AssertionError(page.evaluate('({phase:HonroApp.engine.b.phase,dialogue:HonroApp.dialogue,x:HonroApp.engine.active.x})'))
+    finally:owner.keyboard.up('d')
 def near_exit(page,at_goal=False):
     return page.evaluate('''atGoal=>{const a=HonroApp;a.launch(1);HonroStory.finish(a);a.turnNotice=null;const b=a.engine.b,u=a.engine.active,exit=b.honroMarkers.find(m=>m.type==='exit'),x=exit.x-(atGoal?0:200);
-      Object.assign(u,{x,y:HonroWorld.top(b,x),vx:0,vy:0,airborne:false,jumping:false});a.scene.x=x;a.scene.y=u.y-180;a.scene.manual=true;
+      b.round=3;Object.assign(u,{x,y:HonroWorld.top(b,x),vx:0,vy:0,airborne:false,jumping:false});a.scene.x=x;a.scene.y=u.y-180;a.scene.manual=true;
       const result={width:b.width,contentWidth:a.stage.w,x:u.x,exit:exit.x,complete:HonroObjectives.state(b,a.stage).complete};
       if(atGoal){a.frame=()=>{};b.honroState.flags.savedExit=true;b.honroStory=null;a.profile.honroBattle=structuredClone(b);a.persist();}
       return result;}''',at_goal)
@@ -32,9 +44,7 @@ with sync_playwright() as p:
     browser=launch(p)
     game=browser.new_page(viewport={'width':1920,'height':1080});load(game)
     start=near_exit(game);check('The approach fixture starts inside the actual map and before completion',not start['complete'] and 0<start['x']<start['exit']<start['width'],start)
-    game.keyboard.down('d')
-    try:game.wait_for_function('HonroApp.engine.b.phase==="won"&&HonroApp.dialogue?.after==="outcome"',timeout=7000)
-    finally:game.keyboard.up('d')
+    reach_outcome(game,walk=True)
     end=game.evaluate('({x:HonroApp.engine.active.x,width:HonroApp.engine.b.width,lines:HonroApp.dialogue.lines.length})')
     check('Actual keyboard walking into the exit starts the victory dialogue',end['x']<end['width'] and end['x']>start['x'] and end['lines']>=4,end)
     skip(game);check('Skipping victory applies the clear and opens Stage 2',game.evaluate('!!HonroApp.profile.cleared[1]&&HonroApp.isOpen(HONRO_CONTENT.stages[1])&&HonroApp.done'))
@@ -44,7 +54,7 @@ with sync_playwright() as p:
 
     saved=browser.new_page(viewport={'width':1440,'height':900});load(saved);near_exit(saved,True)
     saved.reload();saved.wait_for_function('window.HonroApp');saved.click('[data-action="continue"]')
-    saved.wait_for_function('HonroApp.dialogue?.after==="outcome"',timeout=7000)
+    reach_outcome(saved)
     check('An existing save already at the exit clears after Continue',saved.evaluate('HonroApp.engine.b.phase==="won"&&HonroApp.engine.b.honroState.flags.savedExit&&HonroApp.engine.active.x<HonroApp.engine.b.width'))
     skip(saved);check('Saved-exit recovery keeps progression and the clear',saved.evaluate('!!HonroApp.profile.cleared[1]&&HonroApp.profile.heroes.archer.xp>0'))
     saved.close()
@@ -73,10 +83,8 @@ with sync_playwright() as p:
     if play.locator('[data-action="dialogue-skip"]').count():skip(play)
     play.evaluate('HonroApp.turnNotice=null;HonroApp.updateHUD(true)')
     viewport=play.evaluate('({w:innerWidth,h:innerHeight})');check_layout(play,'Workshop Playtest shows the same labels and movement bar',viewport['w'],viewport['h'])
-    play.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=a.engine.active,exit=b.honroMarkers.find(m=>m.type==='exit'),x=exit.x-200;Object.assign(u,{x,y:HonroWorld.top(b,x),vx:0,vy:0,airborne:false,jumping:false});}''')
-    play.locator('#battlecanvas').click(position={'x':300,'y':150});editor.keyboard.down('d')
-    try:play.wait_for_function('HonroApp.engine.b.phase==="won"&&HonroApp.dialogue?.after==="outcome"',timeout=7000)
-    finally:editor.keyboard.up('d')
+    play.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=a.engine.active,exit=b.honroMarkers.find(m=>m.type==='exit'),x=exit.x-200;b.round=3;Object.assign(u,{x,y:HonroWorld.top(b,x),vx:0,vy:0,airborne:false,jumping:false});}''')
+    reach_outcome(play,walk=True)
     check('Workshop Playtest crosses the actual exit through keyboard movement',play.evaluate('HonroApp.engine.active.x<HonroApp.engine.b.width'))
     skip(play);check('Workshop Playtest reaches the result screen',play.locator('.result-title').inner_text()=='길이 열렸다')
     editor.click('#stopPlay');check('The exit playtest preserves the authored map',editor.evaluate('HonroWorkshopAPI.exportProject()')==project)

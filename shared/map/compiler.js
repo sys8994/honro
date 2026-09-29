@@ -18,7 +18,7 @@ function compile(st,project){
  }
  return{terrain,landmarks,elements,materials:st.materials.map(m=>Q.material(st,m,terrain))};
 }
-function createBattle(st,project,profile=profileFor(st)){
+function createBattle(st,project,profile=profileFor(st),options={}){
  const sid=st.metadata?.stageId||1,content=G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});
  Object.assign(b,clone(st.initialState||{}));
  const map=compile(st,project);
@@ -44,6 +44,7 @@ function createBattle(st,project,profile=profileFor(st)){
  }
  b.units=st.units.map(u=>G.HonroUnits.create(u,b,profile,content));
  for(const [i,group] of st.encounters.entries())if(group.behavior)for(const id of group.unitIds){const u=b.units.find(u=>u.id===id);if(u){u.group=i+1;u.honroCluster=group.key||group.id;if(group.behavior==='aggressive'){u.awake=true;u.aggroUntil=999;}if(group.behavior==='stationary')u.fixed=true;}}
+ if(!options.legacyBalance)G.HonroEncounters.balance(b);
  b.active=b.units.find(u=>u.side===0&&!u.summoned)?.id||b.units[0]?.id;
  b.honroActiveLimit=st.initialState?.honroActiveLimit??content.active;b.enemyLimit=b.honroActiveLimit;
  b.honroCounters={initialEnemies:b.units.filter(u=>u.side===1).length,allyActions:0,spawned:0};

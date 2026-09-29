@@ -29,13 +29,11 @@ test('Canonical event mechanics remain authored; custom event dialogue is never 
  for(let id=1;id<=10;id++){const {app,b}=battlefield(g,id);const before=JSON.stringify(b.honroEvents);for(const ev of b.honroEvents){const lines=g.HonroStoryContent.eventLines(app,ev);assert(Array.isArray(lines));if(g.HonroStoryContent.events[id]?.[ev.id])assert(!lines[0][2].storyTitle.includes(ev.id));}assert.equal(JSON.stringify(b.honroEvents),before);}
  const {app,b}=battlefield(g,1);b.honroCustom=true;const ev={id:'cart',lines:[['작가','직접 만든 이야기']]};assert.deepEqual(plain(g.HonroStoryContent.eventLines(app,ev)),ev.lines);
 });
-test('Banter remains nonblocking and deferred discoveries survive the queue/save boundary',()=>{
- const {app,b}=battlefield(g,1);Object.assign(app,{screen:'battle',canSpeak:()=>true,speakerUnits:()=>[],persist(){}});
- const ev=id=>g.HonroStoryContent.eventLines(app,{id});g.HonroStory.queue(app,ev('witness'));g.HonroStory.queue(app,ev('cart'));
- assert.equal(g.HonroStory.drain(app),false);assert.equal(app.dialogue,undefined);assert.equal(b.honroState.storyQueue.length,10);assert.equal(b.honroState.storyBanter.length,1);
- assert.equal(app.profile.honroNarrative.length,1);assert.equal(app.profile.honroBattle.honroState.storyQueue.length,10);
- b.honroCustom=true;g.HonroStory.queue(app,ev('more')); // Authored event with no lines is safely ignored.
- assert.equal(app.profile.honroNarrative.length,1);
+test('Field event queue retains immediate dialogue semantics across save data',()=>{
+ const {app,b}=battlefield(g,1);Object.assign(app,{screen:'battle',dialogue:{lines:[]},canSpeak:()=>true,speakerUnits:()=>[],persist(){}});
+ for(const id of ['witness','cart'])g.HonroStory.queue(app,g.HonroStoryContent.eventLines(app,{id}));
+ assert.equal(b.honroState.storyQueue.length,11);assert(b.honroState.storyQueue.every(l=>l[2].delivery==='dialogue'&&!l[2].waitForClear));
+ const saved=plain(b);assert.equal(saved.honroState.storyQueue.length,11);assert(!saved.honroState.storyBanter?.length);
 });
 test('Hostile Sodan can speak, a fallen ally cannot, and documents need no actor',()=>{
  const {app,b,e}=battlefield(g,10);Object.assign(app,{screen:'battle',canSpeak:()=>false,speakerUnits:()=>[]});
