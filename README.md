@@ -45,6 +45,8 @@ npm.cmd run verify
 
 ## 소스와 문서
 
+몬스터 미술은 [제작·시각 검수 계획](game/docs/MONSTER_ART_PIPELINE.md)을 따른다. 일반 적 11종을 최초 원본 대비 약 3배의 앵커로 제작하고 공통 벡터 렌더러로 표시한다. `npm.cmd run test:monsters`로 검수 공방과 전후·크기별 비교 이미지를 생성하고 `_local/reports/monster-forge/index.html`을 연다. 제작 원본은 `tools/monster-forge/recipes.mjs`와 `species.mjs`, 원본 측정 기준은 `tests/fixtures/monster-baseline.json`이다. 상여·소단 등 특수 보스는 기존 디자인을 사용한다.
+
 | 위치 | 역할 |
 |---|---|
 | `shared/engine/src/` | 실제 엔진, 물리·이동·전투, SFX/BGM |

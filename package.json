@@ -6,7 +6,7 @@
     "build": "node workshop/build.mjs",
     "migrate": "node migration/migrate-stages.mjs",
     "verify": "npm run build && npm --prefix game run verify && npm run test:integration && npm run test:performance",
-    "test:integration": "node tests/migration.mjs && node tests/audio.mjs && python -X utf8 tests/integration.py && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:skills && npm run test:story && npm run test:progress-hud",
+    "test:integration": "node tests/migration.mjs && node tests/audio.mjs && python -X utf8 tests/integration.py && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:skills && npm run test:story && npm run test:progress-hud && npm run test:monsters",
     "test:monsters": "node tools/monster-forge/lab.mjs && python -X utf8 tests/monster-art-browser.py",
     "test:progress-hud": "node tests/progress-hud.mjs && python -X utf8 tests/progress-hud-browser.py",
     "test:story": "node tests/story-rewrite.mjs && python -X utf8 tests/story-rewrite-browser.py",

@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "baseHeight": 150,
+  "viewBox": [
+    -80,
+    -166,
+    160,
+    178
+  ],
+  "parts": [
+    {
+      "id": "left-leg",
+      "pivot": [
+        -9,
+        -49
+      ],
+      "parent": null
+    },
+    {
+      "id": "right-leg",
+      "pivot": [
+        9,
+        -49
+      ],
+      "parent": null
+    },
+    {
+      "id": "back-cloth",
+      "pivot": [
+        -7,
+        -104
+      ],
+      "parent": null
+    },
+    {
+      "id": "torso",
+      "pivot": [
+        0,
+        -82
+      ],
+      "parent": null
+    },
+    {
+      "id": "rear-arm",
+      "pivot": [
+        -18,
+        -101
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "front-arm",
+      "pivot": [
+        17,
+        -103
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        0,
+        -119
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "hat",
+      "pivot": [
+        0,
+        -139
+      ],
+      "parent": "head"
+    },
+    {
+      "id": "quiver",
+      "pivot": [
+        -21,
+        -85
+      ],
+      "parent": null
+    },
+    {
+      "id": "bow",
+      "pivot": [
+        43,
+        -81
+      ],
+      "parent": "front-arm"
+    },
+    {
+      "id": "seals",
+      "pivot": [
+        0,
+        -80
+      ],
+      "parent": "torso"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "source": "shared/runtime/art-dark.js",
+  "sha256": "62c024776958dfe45bff060cf1d0f7065c29c4f2cd2112d6a32b4d48e61a42d0",
+  "measurement": "legacyBody at time=0, charge=0; explicit M/L/Q/C endpoints, arc/ellipse/rect separate",
+  "assets": {
+    "ghost": {
+      "anchors": 33,
+      "primitives": 0,
+      "name": "떠도는 혼",
+      "h": 105,
+      "r": 21
+    },
+    "shade": {
+      "anchors": 45,
+      "primitives": 0,
+      "name": "매듭진 수의귀",
+      "h": 115,
+      "r": 22
+    },
+    "hound": {
+      "anchors": 66,
+      "primitives": 1,
+      "name": "들린 산개",
+      "h": 88,
+      "r": 32
+    },
+    "boar": {
+      "anchors": 69,
+      "primitives": 1,
+      "name": "들린 멧돼지",
+      "h": 108,
+      "r": 41
+    },
+    "stag": {
+      "anchors": 79,
+      "primitives": 1,
+      "name": "들린 숫사슴",
+      "h": 116,
+      "r": 38
+    },
+    "bat": {
+      "anchors": 40,
+      "primitives": 3,
+      "name": "들린 산박쥐",
+      "h": 66,
+      "r": 28
+    },
+    "crow": {
+      "anchors": 47,
+      "primitives": 0,
+      "name": "들린 까마귀",
+      "h": 80,
+      "r": 33
+    },
+    "human": {
+      "anchors": 106,
+      "primitives": 0,
+      "name": "들린 사람",
+      "h": 91,
+      "r": 21
+    },
+    "lantern": {
+      "anchors": 33,
+      "primitives": 0,
+      "name": "혼을 삼킨 등불",
+      "h": 92,
+      "r": 25
+    },
+    "warden": {
+      "anchors": 93,
+      "primitives": 3,
+      "name": "들린 장승",
+      "h": 146,
+      "r": 32
+    },
+    "mourner": {
+      "anchors": 124,
+      "primitives": 1,
+      "name": "들린 상두꾼",
+      "h": 120,
+      "r": 26
+    }
+  }
+}

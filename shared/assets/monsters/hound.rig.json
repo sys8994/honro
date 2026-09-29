@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "baseHeight": 125,
+  "viewBox": [
+    -87,
+    -133,
+    174,
+    143
+  ],
+  "parts": [
+    {
+      "id": "tail",
+      "pivot": [
+        -47,
+        -59
+      ],
+      "parent": null
+    },
+    {
+      "id": "hind-far",
+      "pivot": [
+        -36,
+        -52
+      ],
+      "parent": null
+    },
+    {
+      "id": "fore-far",
+      "pivot": [
+        25,
+        -52
+      ],
+      "parent": null
+    },
+    {
+      "id": "body",
+      "pivot": [
+        -2,
+        -57
+      ],
+      "parent": null
+    },
+    {
+      "id": "neck",
+      "pivot": [
+        25,
+        -72
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        39,
+        -83
+      ],
+      "parent": "neck"
+    },
+    {
+      "id": "jaw",
+      "pivot": [
+        47,
+        -77
+      ],
+      "parent": "head"
+    },
+    {
+      "id": "collar",
+      "pivot": [
+        31,
+        -70
+      ],
+      "parent": "neck"
+    },
+    {
+      "id": "hind-near",
+      "pivot": [
+        -33,
+        -48
+      ],
+      "parent": null
+    },
+    {
+      "id": "fore-near",
+      "pivot": [
+        25,
+        -48
+      ],
+      "parent": null
+    }
+  ]
+}

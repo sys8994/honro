@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "baseHeight": 150,
+  "viewBox": [
+    -80,
+    -166,
+    160,
+    178
+  ],
+  "parts": [
+    {
+      "id": "left-leg",
+      "pivot": [
+        -9,
+        -49
+      ],
+      "parent": null
+    },
+    {
+      "id": "right-leg",
+      "pivot": [
+        9,
+        -49
+      ],
+      "parent": null
+    },
+    {
+      "id": "back-cloth",
+      "pivot": [
+        -7,
+        -104
+      ],
+      "parent": null
+    },
+    {
+      "id": "torso",
+      "pivot": [
+        0,
+        -82
+      ],
+      "parent": null
+    },
+    {
+      "id": "rear-arm",
+      "pivot": [
+        -18,
+        -101
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "front-arm",
+      "pivot": [
+        17,
+        -103
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "empty-collar",
+      "pivot": [
+        0,
+        -112
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "yoke",
+      "pivot": [
+        0,
+        -105
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "bell-0",
+      "pivot": [
+        -47,
+        -122
+      ],
+      "parent": "yoke"
+    },
+    {
+      "id": "bell-1",
+      "pivot": [
+        47,
+        -101
+      ],
+      "parent": "yoke"
+    },
+    {
+      "id": "apron",
+      "pivot": [
+        0,
+        -57
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "wrist-cloth",
+      "pivot": [
+        36,
+        -77
+      ],
+      "parent": "front-arm"
+    },
+    {
+      "id": "mantle",
+      "pivot": [
+        0,
+        -110
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "clapper",
+      "pivot": [
+        42,
+        -81
+      ],
+      "parent": "front-arm"
+    },
+    {
+      "id": "cloth-repairs",
+      "pivot": [
+        0,
+        -60
+      ],
+      "parent": "torso"
+    }
+  ]
+}

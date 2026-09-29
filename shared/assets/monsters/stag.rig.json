@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "baseHeight": 150,
+  "viewBox": [
+    -90,
+    -160,
+    180,
+    171
+  ],
+  "parts": [
+    {
+      "id": "tail",
+      "pivot": [
+        -42,
+        -56
+      ],
+      "parent": null
+    },
+    {
+      "id": "hind-far",
+      "pivot": [
+        -33,
+        -43
+      ],
+      "parent": null
+    },
+    {
+      "id": "fore-far",
+      "pivot": [
+        26,
+        -43
+      ],
+      "parent": null
+    },
+    {
+      "id": "body",
+      "pivot": [
+        0,
+        -55
+      ],
+      "parent": null
+    },
+    {
+      "id": "neck",
+      "pivot": [
+        23,
+        -69
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "antlers",
+      "pivot": [
+        38,
+        -114
+      ],
+      "parent": "neck"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        38,
+        -105
+      ],
+      "parent": "neck"
+    },
+    {
+      "id": "ears",
+      "pivot": [
+        37,
+        -113
+      ],
+      "parent": "head"
+    },
+    {
+      "id": "jaw",
+      "pivot": [
+        46,
+        -93
+      ],
+      "parent": "head"
+    },
+    {
+      "id": "hind-near",
+      "pivot": [
+        -30,
+        -43
+      ],
+      "parent": null
+    },
+    {
+      "id": "fore-near",
+      "pivot": [
+        20,
+        -43
+      ],
+      "parent": null
+    },
+    {
+      "id": "seal",
+      "pivot": [
+        24,
+        -82
+      ],
+      "parent": "neck"
+    }
+  ]
+}

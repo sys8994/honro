@@ -2,6 +2,7 @@ import {readFile,readdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {buildCore} from '../game/engine/build.mjs';
+import {buildMonsters} from '../tools/monster-forge/build.mjs';
 
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
@@ -22,7 +23,11 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     parts.push((await read('shared/assets/rebuild-game-adapter.mjs')).replace(/^export /gm,'')+
       '\nglobalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');
   }
-  if(render)for(const name of ['renderer','art-dark','elements'])parts.push(await read(`shared/runtime/${name}.js`));
+  if(render){
+    await buildMonsters();
+    parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
+    for(const name of ['renderer','art-dark','monster-vector','elements'])parts.push(await read(`shared/runtime/${name}.js`));
+  }
   if(app){
     for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));
     for(const name of ['ui-bridge','stage-rules','audio','story','interactions','unit-info','training','main'])

@@ -2,6 +2,23 @@
 
 게임 내용·진행·동작의 이력을 모은다. 미술 제작은 Forge reports에서 관리한다. 구조와 공통 검증은 [BUGFIX_CONTEXT.md](BUGFIX_CONTEXT.md)를 먼저 본다.
 
+## 일반 적 11종 확장·최초 원본 대비 약 3배 앵커 제한 — 2026-09-29
+
+- 요청/원인: 초기 3종의 앵커 증가가 과도하다는 피드백에 따라 기존 시안을 줄이고 다른 몬스터도 같은 예산으로 제작한다. 이전 개선본을 기준으로 다시 3배 늘리는 해석은 사용하지 않는다.
+- 변경: `tests/fixtures/monster-baseline.json`에 최초 `art-dark.js`의 해시·앵커·프리미티브·크기를 고정했다. 생성기는 원본의 2.85~3.15배 밖이면 실패한다. 산개 379→204(원본 66), 장승 560→284(93), 등불귀 234→101(33)로 줄이고 얼굴·몸 구조·주요 재질은 유지했다. `species.mjs`에 멧돼지·숫사슴·산박쥐·까마귀·떠도는 혼·수의귀·들린 사람·상두꾼을 추가해 일반 적 11종을 적용했다. 실제 비율은 2.93~3.13배다.
+- 시각 검토: 전후·256/128/96/64px, 어두운/밝은 배경, 단색, 종별 공격 5시점과 실제 게임 이미지를 관찰했다. 장승의 세로 나뭇결을 소량 복원하고, 혼과 수의귀의 외곽이 비슷한 문제를 묶인 소매·길어진 매듭으로 수정했다. [공방](../../_local/reports/monster-forge/index.html), [전체 도감](../../_local/reports/monster-forge/roster.png), [96/64px](../../_local/reports/monster-forge/readability-dark.png), [직접 본 평가와 한계](../../_local/reports/monster-forge/VISUAL_REVIEW.md).
+- 연결/보존: 소단과 일반 궁수가 human 타입을 공유하므로 최종 보스 플래그·boss ID를 교체 대상에서 제외했다. 일반 중간보스는 해당 종의 에셋을 사용한다. 손과 활은 기존 적 궁수의 사격 각도를 함께 따른다. h/r·물리·AI·전투 수치·발사 시점·저장 형식은 변경하지 않았다.
+- 검증: `npm run verify` PASS(exit 0, 401.16초), migration·integration·게임 회귀·순차 게임/편집기 성능 포함. 몬스터 전용 43개 PASS: 11종 원본 예산·양방향 네 동작·정지 발 고정·SVG/Canvas 출력·게임/Stage View/Playtest 픽셀 일치·실제 발사/피해 연결·상태 불변·예외 대상. 11종을 섞은 36인스턴스 120px 렌더 p95 8.6ms(현 PC). [전체 결과/HTML 해시](../../_local/reports/verification-run.json), [전용 결과](../../_local/reports/monster-forge/browser.json).
+- 용량/범위: 생성 에셋 68,920 bytes + 공통 렌더러 3,647 bytes. 특수 보스는 이번 11종 작업에 포함하지 않았다. 보행 IK·모바일 실기기·최종 미술 승인은 후속 범위다. 초기 과밀 3종 소스/보고서는 `_local/archive/monster-art-v1/`에 보관한다.
+
+## 몬스터 벡터 제작·공통 렌더링 1차 — 2026-09-29
+
+- 원인/요청: 적의 큰 다각형·직선 위주 외형에 해부 구조·얼굴·재질 정보가 부족하고, 이름 있는 파트 원본과 반복 가능한 시각 검수 절차가 없었다. 과거 공방 제작 도구는 현재 독립 패키지에 포함되어 있지 않았다.
+- 변경: `tools/monster-forge/recipes.mjs` 원본 → SVG·리그/동작 JSON·런타임의 결정적 생성기, `shared/runtime/monster-vector.js`의 공통 Path2D/계층/3단계 디테일 렌더러, 전후·크기·배경·실루엣·시간별 검수 공방을 추가했다. 산개·장승·등불귀 3종에만 적용한다. [전체 제작 계획·판정 기준](MONSTER_ART_PIPELINE.md).
+- 측정: 윤곽 앵커 산개 66→379, 장승 93→560, 등불 33→234. 기존 원/호는 별도 집계하고 Bézier 제어점은 앵커에 합산하지 않았다. 생성 에셋+공통 렌더러 추가 36,306 bytes. 같은 기준 높이의 전후·256/128/96/64px를 직접 보고 다리 겹침과 지나치게 익살스러운 얼굴을 수정했다. [미술 검토](../../_local/reports/monster-forge/VISUAL_REVIEW.md), [공방](../../_local/reports/monster-forge/index.html).
+- 검증: `npm run verify` PASS(exit 0, 376.98초). `tests/migration.mjs`, `tests/integration.py`, 기존 게임·기예 회귀, 순차 게임/편집기 성능 포함. 몬스터 전용 17개 PASS: SVG/Canvas 정지 그림 차이 0, 게임/Stage View/Playtest 그림 일치, 실제 적 발사/피해 상태 연결, 그리기 중 전투 상태 불변, 기존 variant/동맹/소환귀 fallback, 네 동작·양방향, 36인스턴스 p95 10.6ms. 공방 UI 4개 추가 확인(재생·키보드 시점/방향·메모 저장·모바일 1:1 크기 스크롤). [전체 실행](../../_local/reports/verification-run.json), [전용 결과](../../_local/reports/monster-forge/browser.json).
+- 보존/한계: h/r·AI·전투 수치·발사 시점·저장 형식은 바꾸지 않았다. 공격의 움츠림은 발사 후 시각 표현이다. 원본 11종 중 3종의 1차 시안이며 나머지 8종/보스, 보행 IK·실기기 성능·최종 미술 승인은 후속 범위다. 독립 검수 전장과 자동 게임 회귀는 전체 캠페인 수동 완주를 뜻하지 않는다.
+
 ## 저장소 정리와 Pages 진입점 — 2026-09-28
 
 - 원인: 과거 RC 패치 노트·배포 압축본·설계/출시 보고서와 재생성 가능한 검증 결과가 활성 소스와 섞여 있었다. 기본 주소에서 게임으로 연결하는 `index.html`도 없었다.

@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -91,
+    -173,
+    182,
+    185
+  ],
+  "parts": [
+    {
+      "id": "roots",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "left-arm",
+      "pivot": [
+        -22,
+        -80
+      ],
+      "parent": null
+    },
+    {
+      "id": "right-arm",
+      "pivot": [
+        21,
+        -79
+      ],
+      "parent": null
+    },
+    {
+      "id": "trunk",
+      "pivot": [
+        0,
+        -70
+      ],
+      "parent": null
+    },
+    {
+      "id": "face",
+      "pivot": [
+        0,
+        -119
+      ],
+      "parent": "trunk"
+    },
+    {
+      "id": "crown",
+      "pivot": [
+        0,
+        -143
+      ],
+      "parent": "face"
+    },
+    {
+      "id": "rope",
+      "pivot": [
+        0,
+        -80
+      ],
+      "parent": "trunk"
+    },
+    {
+      "id": "paper-0",
+      "pivot": [
+        -13,
+        -76
+      ],
+      "parent": "trunk"
+    },
+    {
+      "id": "paper-1",
+      "pivot": [
+        0,
+        -76
+      ],
+      "parent": "trunk"
+    },
+    {
+      "id": "paper-2",
+      "pivot": [
+        15,
+        -76
+      ],
+      "parent": "trunk"
+    },
+    {
+      "id": "moss",
+      "pivot": [
+        0,
+        -65
+      ],
+      "parent": "trunk"
+    }
+  ]
+}

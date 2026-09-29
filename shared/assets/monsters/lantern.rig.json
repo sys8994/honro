@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "baseHeight": 128,
+  "viewBox": [
+    -65,
+    -139,
+    130,
+    151
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -69
+      ],
+      "parent": null
+    },
+    {
+      "id": "ribbon-0",
+      "pivot": [
+        -18,
+        -36
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "ribbon-2",
+      "pivot": [
+        0,
+        -36
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "ribbon-4",
+      "pivot": [
+        18,
+        -36
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "handle",
+      "pivot": [
+        0,
+        -104
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "shell",
+      "pivot": [
+        0,
+        -70
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "flame",
+      "pivot": [
+        0,
+        -67
+      ],
+      "parent": "shell"
+    },
+    {
+      "id": "frame",
+      "pivot": [
+        0,
+        -70
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "knot",
+      "pivot": [
+        0,
+        -36
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "seal",
+      "pivot": [
+        -17,
+        -103
+      ],
+      "parent": "root"
+    }
+  ]
+}

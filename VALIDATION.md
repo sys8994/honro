@@ -1,6 +1,6 @@
 # 통합 검증
 
-최신 전체 검증: 2026-09-28 Windows / Chrome headless, `npm.cmd run verify` PASS(exit 0, 312.90초). [실행 기록·HTML SHA256](_local/reports/verification-run.json), [전체 로그](_local/logs/final-verify.log). 폴더 정리 후 두 HTML의 실제 동작과 기존 미커밋 기예 개선을 포함해 검사했습니다. 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 터치 에뮬레이션이며 실제 기기 검사는 아닙니다.
+최신 전체 검증: 2026-09-29 Windows / Chrome headless, `npm.cmd run verify` PASS(exit 0, 401.16초). [실행 기록·HTML SHA256](_local/reports/verification-run.json), [전체 로그](_local/logs/final-verify.log). 일반 적 벡터 11종·최초 원본 대비 2.85~3.15배 앵커 제한·공통 렌더러와 두 HTML의 실제 동작, 기존 기예·방향 가이드 개선을 포함해 검사했습니다. 몬스터 제작·시각 검수 기준은 [제작 계획](game/docs/MONSTER_ART_PIPELINE.md), 전용 43개 결과는 [monster-forge/browser](_local/reports/monster-forge/browser.json)에 있습니다. 11종을 섞은 36인스턴스 렌더 p95는 현 PC에서 8.6ms였습니다. 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 터치 에뮬레이션이며 실제 기기 검사는 아닙니다.
 
 Pages 배포 구성도 별도로 검사했습니다. `index.html`·게임·편집기·BGM만 있는 `/honro/` HTTP 경로에서 기본 주소 이동(쿼리·해시 보존), 게임 시작, MP3 5개 다운로드/원본 일치, 편집기 10개 스테이지, JavaScript 없는 진입점의 5항목 PASS·브라우저 예외 0건입니다. [결과](_local/reports/pages-smoke.json). 실제 GitHub 배포는 수행하지 않았습니다. `_local/` 결과·로그·이미지는 로컬 전용이며 Git에 포함되지 않습니다.
 
@@ -39,6 +39,7 @@ npm.cmd run verify
 | audio-browser | PASS · 69 checks |
 | bgm-transitions | PASS · 68 checks |
 | aim-direction/browser | PASS · 58 checks |
+| monster-forge/browser | PASS · 43 checks |
 | stage12-redesign/checks | PASS · 18 checks |
 | stage12-redesign/browser | PASS · 9 checks |
 | skill-redesign/unit | PASS · 35 checks |
@@ -61,24 +62,24 @@ npm.cmd run verify
 
 | Stage / viewport / zoom | Original Hz / ms | Game Hz / ms | Editor Hz / ms | Original / Game / Editor load ms |
 |---|---|---|---|---|
-| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 60.08 / 0.926 | 59.99 / 0.739 | 83.4 / 93.2 / 47.3 |
-| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 60.06 / 1.553 | 60.02 / 1.340 | 106.2 / 96 / 62 |
-| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.00 / 1.401 | 60.01 / 1.209 | 102.3 / 67.5 / 30.6 |
-| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.99 / 1.736 | 60.04 / 1.627 | 99 / 98.8 / 50.4 |
-| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 59.98 / 1.420 | 60.49 / 1.177 | 87.6 / 63.7 / 28.8 |
-| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 60.01 / 1.569 | 59.98 / 1.456 | 99.2 / 93.4 / 52.8 |
+| 1 / 1365×768 / 0.82 | 59.76 / 3.575 | 60.04 / 1.165 | 60.02 / 0.939 | 83.4 / 82.1 / 40.3 |
+| 2 / 1365×768 / 0.82 | 60.20 / 2.375 | 59.96 / 1.696 | 59.99 / 1.526 | 106.2 / 99.3 / 56.7 |
+| 1 / 1365×768 / 0.2 | 59.77 / 3.805 | 60.05 / 1.538 | 60.00 / 1.413 | 102.3 / 66.1 / 25.2 |
+| 2 / 1365×768 / 0.2 | 59.97 / 2.091 | 59.55 / 2.084 | 59.88 / 1.839 | 99 / 99.3 / 46.7 |
+| 1 / 844×390 / 0.2 | 60.00 / 3.748 | 60.05 / 1.542 | 60.05 / 1.400 | 87.6 / 67.1 / 38.5 |
+| 2 / 844×390 / 0.2 | 59.65 / 2.581 | 59.98 / 1.840 | 60.00 / 1.851 | 99.2 / 95.6 / 49.5 |
 
 | Metric | Original | Game | Editor |
 |---|---|---|---|
-| renderMaxMs | 3.70 ms … 5.40 ms | 1.60 ms … 2.60 ms | 1.10 ms … 2.80 ms |
-| heapDelta | -0.436 MB … 1.311 MB | -1.916 MB … 1.959 MB | -0.604 MB … 2.318 MB |
+| renderMaxMs | 3.70 ms … 5.40 ms | 2.00 ms … 3.10 ms | 1.40 ms … 3.40 ms |
+| heapDelta | -0.436 MB … 1.311 MB | -1.451 MB … 2.038 MB | -0.618 MB … 2.421 MB |
 | warmCacheRebuilds | 0 … 0 | 0 … 0 | 0 … 0 |
 
 Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입니다. 18개 표본 모두 기준을 통과했습니다. Original은 RC21 원본 지형이고 Game/Editor는 개편 지형이므로 동일 콘텐츠의 성능 비교는 아닙니다. 수치 원본: [before](tests/fixtures/performance-before.json), [game](_local/reports/performance-game.json), [editor](_local/reports/performance-editor.json).
 정적 cache 바이트 예산과 build/hit 횟수도 각 JSON에 포함됩니다.
 <!-- RESULTS_END -->
 
-검증 범위: 전체 verify는 기록된 HTML SHA256 기준입니다. 이후 병렬 몬스터 작업이 HTML을 다시 빌드하여 이번 기예·방향선 요청의 84개 검사를 최신 두 HTML에서 재실행했고 모두 통과했습니다. [최신 산출물·재검사 기록](_local/reports/skill-tuning/latest-artifacts-check.json). 몬스터 미술 자체의 전체 검증은 포함하지 않습니다.
+검증 범위: 이번 전체 verify는 일반 적 11종을 반영한 두 HTML의 기록된 SHA256 기준이며, 종료 후에도 해시가 일치함을 확인했습니다. 이전 기예·방향선 개별 재검사 기록은 [보관 결과](_local/reports/skill-tuning/latest-artifacts-check.json)입니다. 공방 조작 5항목도 별도 확인했습니다([UI 검사](_local/reports/monster-forge/lab-ui.json)). 이미지 관찰 결과는 [시각 검토](_local/reports/monster-forge/VISUAL_REVIEW.md)에 있으며, 기술 통과를 사용자의 미술 승인으로 취급하지 않습니다.
 
 ## 원본 대비 보관된 회귀 검사
 
