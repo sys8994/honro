@@ -18,6 +18,7 @@ def capture(page,name):
 def suite(page,shell):
     owner=page if hasattr(page,'mouse') else page.page
     page.evaluate(r'''()=>{const a=HonroApp,C=HONRO_CORE;a.frame=()=>{};for(let id=1;id<=10;id++)a.profile.cleared[id]=true;a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();
+    window.endActor=()=>{const a=HonroApp,e=a.engine,u=e.active;if(e.canAct())a.defend();for(let i=0;i<3000&&!a.dialogue&&!u.acted;i++)e.tick(1/120);};
     window.dismiss=()=>{let guard=80;while(a.dialogue&&guard--)HonroStory.finish(a);a.turnNotice=null;};
     window.combatArena=id=>{a.trainingClass=C.SKILLS[id].cls;a.trainingSkill=id;a.trainingRanks[id]=8;a.launch(1,true,id);dismiss();const e=a.engine,b=e.b,u=e.active;Object.assign(b,{width:4200,height:2100,practiceCombat:true,terrain:[{id:'floor',x:0,y:1500,w:4200,h:600,mat:'rock',hp:99999,maxHp:99999}],waters:[],drafts:[],fields:[],zones:[],honroLandmarks:[],honroSurfaceZones:[],honroMarkers:[],wind:0});b.units=[u];Object.assign(u,{x:800,y:1500,spawnX:800,spawnY:1500,loadout:[id],ranks:{[C.baseSkill(u.cls)]:1,[id]:8},angle:25,acted:false,airborne:false,jumping:false,vx:0,vy:0,focus:1000,maxFocus:1000,cooldowns:{}});a.selected=id;b.active=u.id;b.phase='aim';b.sceneVersion++;Object.assign(a.scene,{manual:true,x:1050,y:1350,scale:1});a.updateHUD(true);return{a,e,b,u};};}''')
     page.evaluate("combatArena('M02')")
@@ -44,13 +45,15 @@ def suite(page,shell):
             fits=page.locator('.story-guide').evaluate('(el)=>{const r=el.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight&&el.scrollWidth<=el.clientWidth+1;}')
             check(f'Guide fits {width}x{height}',fits)
         owner.set_viewport_size({'width':1440,'height':900})
-    deferred=page.evaluate("(()=>{const a=HonroApp;dismiss();a.engine.b.round=2;HonroStory.tick(a,performance.now());return{dialogue:!!a.dialogue,count:a.dialogue?.lines.length,pending:a.engine.b.honroState.deferredStory.length};})()")
-    check(shell+': next-round explanation pauses immediately and is consumed once',deferred['dialogue'] and deferred['count']<=5 and deferred['pending']==0,deferred)
+    deferred=page.evaluate("(()=>{const a=HonroApp;dismiss();a.engine.b.round=2;HonroStory.tick(a,performance.now());endActor();return{dialogue:!!a.dialogue,count:a.dialogue?.lines.length,pending:a.engine.b.honroState.deferredStory.length};})()")
+    check(shell+': next-round explanation waits for the actor and consumes one authored beat',deferred['dialogue'] and deferred['count']<=5 and deferred['pending']==1,deferred)
     # Stage 7 must speak with enemies still alive and without ending the player team.
     rescue=page.evaluate(r'''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-7');dismiss();const e=a.engine,b=e.b,m=b.honroMarkers.find(m=>m.action==='rescue');Object.assign(e.active,{x:m.x,y:m.y,vx:0,vy:0});a.updateHUD(true);window.rescueMarker=m.id;return{enemies:e.alive(1).length,round:b.round};}''')
     page.locator('#battlecanvas').focus();page.locator('#battlecanvas').press('e')
+    check(shell+': rescue waits through action review',page.evaluate('!HonroApp.dialogue&&HonroApp.engine.b.phase==="review"'))
+    page.evaluate('endActor()')
     now=page.evaluate("({dialogue:!!HonroApp.dialogue,count:HonroApp.engine.b.honroState.rescuedCount,enemies:HonroApp.engine.alive(1).length,blocked:!HonroApp.canInput(),round:HonroApp.engine.b.round})")
-    check(shell+': rescue E input opens testimony immediately with enemies alive',now['dialogue'] and now['count']==1 and now['enemies']==rescue['enemies'] and now['blocked'] and now['round']==rescue['round'],now)
+    check(shell+': rescue E input opens testimony at actor end with enemies alive',now['dialogue'] and now['count']==1 and now['enemies']==rescue['enemies'] and now['blocked'] and now['round']==rescue['round'],now)
     capture(page,shell+'-rescue.png')
     saved=page.evaluate(r'''()=>{const a=HonroApp;a.dialogue.index=2;HonroStory.draw(a);const saved=structuredClone(a.profile.honroBattle),text=a.dialogue.lines[2][1];a.dialogue=null;a.mount(saved);const same=a.dialogue?.lines[a.dialogue.index][1]===text;dismiss();return{same,count:a.engine.b.honroState.rescuedCount,collected:a.engine.b.honroMarkers.find(m=>m.id===rescueMarker).collected};}''')
     check(shell+': mid-testimony save resumes the exact line without re-rescuing',saved['same'] and saved['count']==1 and saved['collected'],saved)
@@ -68,8 +71,8 @@ def suite(page,shell):
     check(shell+': completed objective wins during player aim with surviving enemies and no allied actions',instant['won'] and instant['phase']=='won' and instant['alive']>0 and instant['same'] and instant['alliesUnchanged'],instant)
     ending=page.evaluate(r'''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-1');dismiss();const b=a.engine.b,hs=b.honroState;hs.pendingEvents=['witness'];delete hs.flags['event:witness'];b.phase='won';a.outcome();const lines=a.dialogue.lines,first=lines[0][2]?.storyId;return{first,witness:lines.filter(l=>l[2]?.storyId?.endsWith('event-1-witness')).length,outro:lines.some(l=>l[2]?.storyId?.endsWith('outcome-1'))};}''')
     check(shell+': final-frame discovery precedes the ending exactly once',ending['first'].endswith('event-1-witness') and ending['witness']==10 and ending['outro'],ending)
-    legacy=page.evaluate(r'''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-1');dismiss();const b=a.engine.b,hs=b.honroState;b.phase='flight';hs.storyQueue=[['설오','이전 저장에서 기다리던 이야기',{storyId:'legacy-queue',waitForClear:true,delivery:'banter'}]];HonroStory.tick(a,performance.now());return{paused:!!a.dialogue&&!a.canInput(),text:a.dialogue?.lines[0][1],queued:hs.storyQueue.length,enemies:a.engine.alive(1).length};}''')
-    check(shell+': old waiting dialogue pauses immediately after resume despite surviving enemies',legacy['paused'] and legacy['queued']==0 and legacy['enemies']>0 and legacy['text']=='이전 저장에서 기다리던 이야기',legacy)
+    legacy=page.evaluate(r'''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-1');dismiss();const b=a.engine.b,hs=b.honroState;b.phase='review';b.reviewLeft=.01;hs.storyQueue=[['설오','이전 저장에서 기다리던 이야기',{storyId:'legacy-queue',waitForClear:true,delivery:'banter'}]];HonroStory.tick(a,performance.now());if(a.dialogue)throw Error('Legacy scene interrupted action');endActor();return{paused:!!a.dialogue&&!a.canInput(),text:a.dialogue?.lines[0][1],queued:hs.storyQueue.length,enemies:a.engine.alive(1).length};}''')
+    check(shell+': old waiting dialogue resumes at actor end despite surviving enemies',legacy['paused'] and legacy['queued']==0 and legacy['enemies']>0 and legacy['text']=='이전 저장에서 기다리던 이야기',legacy)
 with sync_playwright() as p:
     browser=launch(p);game=browser.new_page(viewport={'width':1440,'height':900});game.on('pageerror',lambda e:errors.append(str(e)));game.goto((ROOT/'HONRO.html').as_uri());game.wait_for_function('window.HonroApp');suite(game,'Game');game.close()
     editor=browser.new_page(viewport={'width':1440,'height':900});editor.on('pageerror',lambda e:errors.append(str(e)));editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI');editor.click('[data-tab=play]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine');suite(editor.frames[1],'Workshop');editor.close()

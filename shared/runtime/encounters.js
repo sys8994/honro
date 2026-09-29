@@ -52,21 +52,22 @@ function update(app,dt,state){
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(!matches(ev.when,{...state,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
-    if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);
+    if(!hs.pendingEvents.includes(ev.id)){hs.pendingEvents.push(ev.id);hs.eventActors??={};hs.eventActors[ev.id]={id:app.actorBoundary||b.active,round:b.round};app.dirty=true;}
   }
   flush(app);
 }
 function flush(app){
   const e=app.engine,b=e.b,hs=b.honroState;
-  if(app.dialogue||['won','lost'].includes(b.phase))return;
+  if(!app.actorBoundary||app.dialogue||['won','lost'].includes(b.phase))return;
   let spawned=false;
   for(const id of [...(hs.pendingEvents||[])]){
     const ev=b.honroEvents.find(v=>v.id===id),key='event:'+id;
     if(!ev||hs.flags[key]){hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);continue;}
+    const wait=hs.eventActors?.[id],actor=wait&&e.unit(wait.id);if(wait&&b.round<=wait.round&&actor&&!actor.acted&&!actor.dead&&app.actorBoundary!==actor.id)continue;
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(combat(ev.action)){
-      const cap=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
+      const cap=Math.min(G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1),hs.sodanCoop?G.HonroMission.FINALE_CAP:Infinity);
       if(spawned||enemies+spawnCount(ev.action)>cap)continue;
     }
     if(G.HonroAllies.execute(app,ev.action)===false)continue;
@@ -80,11 +81,15 @@ function flush(app){
 // Reaching an exit can win during movement, before the next event boundary.
 // Finish already-triggered, action-free discoveries before the ending dialogue.
 function finishNarrative(app){const b=app.engine?.b,hs=b?.honroState;if(!hs||b.honroCustom||b.phase!=='won')return;for(const id of [...(hs.pendingEvents||[])]){const ev=b.honroEvents.find(v=>v.id===id);if(!ev||ev.action||hs.flags['event:'+id])continue;const lines=G.HonroStoryContent.eventLines(app,ev);if(!lines?.length)continue;if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0))continue;app.sayLines(lines);hs.flags['event:'+id]=true;hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);}}
-function attach(app,e){const next=e.switchTeam.bind(e);e.switchTeam=function(){
+function actorEnd(app,id){const hs=app.engine?.b.honroState;if(!hs||app.training||app.actorBoundary)return;hs.actorTurnSerial=(hs.actorTurnSerial||0)+1;app.actorBoundary=id||'boundary';try{G.HonroAllies.missionTick(app,0);flush(app);app.startQueuedStory?.();}finally{app.actorBoundary=null;}}
+function attach(app,e){
+ const finish=e.finishAction.bind(e);e.finishAction=function(...args){const b=e.b,u=e.active,acted=u?.acted,round=b.round;const out=finish(...args);if(u&&(!acted&&u.acted||b.round!==round))actorEnd(app,u.id);return out;};
+ const tick=e.tick.bind(e);e.tick=function(dt){const b=e.b,phase=b.phase,id=b.active,index=phase==='ally'?b.honroState?.allyQueue?.index:b.summonTurn?.index;tick(dt);if((phase==='ally'&&index!==b.honroState?.allyQueue?.index)||(phase==='summon'&&index!==b.summonTurn?.index))actorEnd(app,id);};
+ const next=e.switchTeam.bind(e);e.switchTeam=function(){
   const b=e.b,hs=b.honroState;if(b.phase!=='transition')return;
   const boundary=b.teamEnds.join(':');
-  if(hs.lastEventBoundary!==boundary){hs.lastEventBoundary=boundary;G.HonroAllies.missionTick(app,0);flush(app);app.startQueuedStory?.();}
+  if(hs.lastEventBoundary!==boundary){hs.lastEventBoundary=boundary;actorEnd(app,b.active);}
   if(app.dialogue||b.phase!=='transition')return;next();
 };}
-G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,combat,spawnCount,balance};
+G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,actorEnd,combat,spawnCount,balance};
 })(globalThis);

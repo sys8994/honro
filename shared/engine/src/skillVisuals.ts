@@ -4,11 +4,19 @@ import type {Engine} from './engine';
 import {SKILLS} from './data';
 import {geometryPaths,redesignPrediction,turnPrediction,type SkillGeometry} from './skillMechanics';
 type C=CanvasRenderingContext2D;
-const guideCache=new WeakMap<Engine,{key:string;prediction:ReturnType<Engine['predict']>}>();
-function guidePrediction(e:Engine,u:Unit,s:Skill,power:number){
+const guideCache=new WeakMap<Engine,Map<boolean,{key:string;prediction:ReturnType<Engine['predict']>}>>();
+export function guidePrediction(e:Engine,u:Unit,s:Skill,power:number,ignoreUnits=false){
  const b=e.b,key=[b.shot,b.rng,b.sceneVersion,b.physics?.revision,b.wind,s.id,u.x,u.y,u.h,u.angle,power,u.tune,JSON.stringify(u.ranks),...b.units.map(v=>`${v.id}:${v.x}:${v.y}:${v.hp}:${v.dead}`)].join('|');
- const cached=guideCache.get(e);if(cached?.key===key)return cached.prediction;
- const prediction=['A04','A15'].includes(s.id)?redesignPrediction(e,u,s,u.angle,power,true)!:e.predict(u,s,u.angle,power);guideCache.set(e,{key,prediction});return prediction;
+ let cache=guideCache.get(e);if(!cache){cache=new Map();guideCache.set(e,cache);}const cached=cache.get(ignoreUnits);if(cached?.key===key)return cached.prediction;
+ const prediction=['A04','A15'].includes(s.id)?redesignPrediction(e,u,s,u.angle,power,true,ignoreUnits)!:e.predict(u,s,u.angle,power,undefined,true,ignoreUnits);cache.set(ignoreUnits,{key,prediction});return prediction;
+}
+export function drawGuideContinuation(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:number){
+ if(s.martial||s.mode==='pierce'||s.mode==='return'||s.mode==='prepare')return;
+ const pr=guidePrediction(e,u,s,power);if(!pr.unit||pr.points.length<2)return;
+ const ext=guidePrediction(e,u,s,power,true);if(ext.points.length<2)return;
+ let start=0,distance=Infinity;for(let i=0;i<ext.points.length;i++){const p=ext.points[i],d=Math.hypot(p.x-pr.x,p.y-pr.y);if(d<distance){distance=d;start=i;}}
+ const path=ext.points.slice(start);if(path.length<2)return;
+ c.save();c.setLineDash([]);c.globalAlpha=.22;c.strokeStyle=s.color;c.lineWidth=.85/Math.max(.12,zoom);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
 }
 export const SKILL_FX_SECONDS={swordCut:.34,circulation:.6,skillGeometry:.9,inkImpact:.8,lightningBolt:.9,qiBurst:.55,fireBloom:.85};
 export function drawSkillGeometry(c:C,g:SkillGeometry,thick=false,zoom=1){

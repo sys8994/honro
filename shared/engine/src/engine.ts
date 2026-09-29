@@ -11,7 +11,7 @@ import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
-import { planEnemyMove, advanceEnemyMove, targetFor, chooseEnemyShot, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
+import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, segRect, segmentTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -52,6 +52,11 @@ export class Engine {
     private terrainOrder = new Map<Terrain, number>();
     private indexedVersion = -1;
     private indexedCount = -1;
+    private planningDeadline=Infinity;
+    private enemyPlanning?:{key:string;steps:Generator<void,void,unknown>};
+    /** Runtime-only work budget; saves resume an unfinished decision from its input state. */
+    planningBudget(ms?:number){this.planningDeadline=ms===undefined?Infinity:performance.now()+ms;}
+    private planningKey(){const b=this.b;return [b.active,b.round,b.sceneVersion,b.physics?.revision,b.wind,b.rng,...b.units.map(u=>`${u.id}:${u.x}:${u.y}:${u.hp}:${u.shield}:${u.focus}:${u.dead}`)].join('|');}
     constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; this.b = b; for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
@@ -223,8 +228,9 @@ export class Engine {
     }
     collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true): Collision | null {
         let best: Collision | null = null;
+        const left=Math.min(a.x,c.x)-r,right=Math.max(a.x,c.x)+r,top=Math.min(a.y,c.y)-r,bottom=Math.max(a.y,c.y)+r;
         if(terrain) for (const t of this.collisionTerrain(a, c, r)) {
-            if (t.broken || skip.includes(t.id) || t.x > Math.max(a.x, c.x) + r || t.x + t.w < Math.min(a.x, c.x) - r || Math.min(t.y, t.y + (t.slope || 0)) > Math.max(a.y, c.y) + r || t.y + t.h < Math.min(a.y, c.y) - r)
+            if (t.broken || skip.includes(t.id) || t.x > right || t.x + t.w < left || Math.min(t.y, t.y + (t.slope || 0)) > bottom || t.y + t.h < top)
                 continue;
             const h = segmentTerrain(a, c, t, r);
             if (h && (!best || h.t < best.t))
@@ -232,7 +238,9 @@ export class Engine {
         }
         if (units)
             for (const u of this.b.units) {
-                if (u.dead || u.id === owner || hit.includes(u.id))
+                // Most units are nowhere near this short substep; avoid allocating
+                // the slab-intersection arrays for every unit in every AI probe.
+                if (u.dead || u.id === owner || u.x-u.r>right || u.x+u.r<left || u.y-u.h>bottom || u.y<top || hit.includes(u.id))
                     continue;
                 const h = segRect(a, c, u.x - u.r, u.y - u.h, u.r * 2, u.h, r);
                 if (h && (!best || h.t < best.t))
@@ -242,7 +250,7 @@ export class Engine {
     }
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
-        const custom=redesignPrediction(this,u,skill,angle,power);if(custom)return custom;
+        const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.origin(u, angle, body), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
         const points: Vec[] = [], ignored: string[] = [], skips: string[] = [];
@@ -323,11 +331,9 @@ export class Engine {
         }
         return { points, x, y, closest, apex: ap };
     }
-    bestShot(u: Unit, s: Skill, target: Unit, allowAllyTarget=false): {
-        angle: number;
-        power: number;
-        score: number;
-    } {
+    bestShot(u: Unit, s: Skill, target: Unit, allowAllyTarget=false){return finishPlanning(this.searchShot(u,s,target,allowAllyTarget));}
+    *searchShot(u:Unit,s:Skill,target:Unit,allowAllyTarget=false):Generator<void,{angle:number;power:number;score:number},unknown>{
+        if(this.bestShot!==Engine.prototype.bestShot)return this.bestShot(u,s,target,allowAllyTarget);
         const right = target.x > u.x, blast = this.effective(s, u).radius;
         let best = { angle: right ? 45 : 135, power: .62, score: -1e9 };
         const score = (a: number, p: number) => {
@@ -351,6 +357,7 @@ export class Engine {
                 const a = right ? elev : 180 - elev, sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
+                yield;
             }
         const initial = { ...best };
         for (let da = -6; da <= 6; da += 3)
@@ -358,6 +365,7 @@ export class Engine {
                 const a = clamp(initial.angle + da, AIM_MIN, AIM_MAX), p = clamp(initial.power + dp, .1, 1), sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
+                yield;
             }
         return best;
     }
@@ -1725,6 +1733,12 @@ export class Engine {
             u.intent = ENEMIES[u.role]?.intent || '대기';
     } }
     enemyAction(){
+        if(performance.now()>=this.planningDeadline)return;
+        const key=this.planningKey();if(!this.enemyPlanning||this.enemyPlanning.key!==key)this.enemyPlanning={key,steps:this.enemyActionSteps()};
+        const work=this.enemyPlanning;do{if(work.steps.next().done){this.enemyPlanning=undefined;return;}}while(performance.now()<this.planningDeadline);
+        work.key=this.planningKey();
+    }
+    private *enemyActionSteps():Generator<void,void,unknown>{
         const b=this.b,u=this.active;
         if(!u||u.dead){this.finishAction();return;}
         if(u.aiMove||u.moveTarget!==undefined)return;
@@ -1732,12 +1746,11 @@ export class Engine {
         let target=targetFor(this,u);
         if(!target){this.finishAction();return;}
         if(u.lastAct!==b.round){
-            u.lastAct=b.round;
             if(flyingEnemy(u))u.moveLeft=Math.min(u.moveLeft,FLY_MOVE_BUDGET);
             if(flyingEnemy(u)||!u.fixed&&this.grounded(u)){
-                const plan=planEnemyMove(this,u,target);
+                const plan=yield* planEnemyMoveSteps(this,u,target);u.lastAct=b.round;
                 if(plan){u.aiMove=plan;u.intent=plan.intent;this.emit('change');return;}
-            }
+            }else u.lastAct=b.round;
         }
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target=targetFor(this,u)||target;
@@ -1752,7 +1765,8 @@ export class Engine {
         const available=u.loadout.map(id=>SKILLS[id]).filter(sk=>sk&&!sk.passive&&this.manaCost(sk,u)<=u.focus);
         if(!available.length){u.shield=Math.max(u.shield,18);u.shieldUntil=b.teamEnds[0]+1;this.finishAction();return;}
         const betrayal=target.side===u.side&&target.id!==u.id&&(target.betrayalUntil||0)>=b.round;
-        const choice=betrayal?(()=>{const skill=available.find(v=>v.radius<70)||available[0];return {skill,aim:this.bestShot(u,skill,target,true)}})():chooseEnemyShot(this,u,target,available);
+        const betrayalSkill=available.find(v=>v.radius<70)||available[0];
+        const choice=betrayal?{skill:betrayalSkill,aim:yield* this.searchShot(u,betrayalSkill,target,true)}:yield* chooseEnemyShotSteps(this,u,target,available);
         let sk=choice.skill,aim=choice.aim;
         const error=DIFFICULTIES[b.difficulty].aim;
         const safeAngle=aim.angle,safePower=aim.power;
@@ -1764,14 +1778,14 @@ export class Engine {
         if(!viable.ok&&!betrayal){
             const alternatives=this.b.units.filter(v=>!v.dead&&v.id!==target!.id&&(v.side===0||v.side===2&&((v as any).honroAlly||v.id==='objective')))
                 .sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2);
-            for(const candidate of alternatives){const shot=chooseEnemyShot(this,u,candidate,available),test=shotViable(this,u,shot.skill,candidate,shot.aim.angle,shot.aim.power);
+            for(const candidate of alternatives){const shot=yield* chooseEnemyShotSteps(this,u,candidate,available),test=shotViable(this,u,shot.skill,candidate,shot.aim.angle,shot.aim.power);
                 if(test.ok){target=candidate;sk=shot.skill;aim=shot.aim;viable=test;break;}}
         }
         if(!viable.ok){
             // One bounded second reposition attempt is allowed after discovering a bad firing lane.
             if((flyingEnemy(u)||!u.fixed&&this.grounded(u))&&u.moveLeft>90&&(u as any).honroRepositionRound!==b.round){
                 (u as any).honroRepositionRound=b.round;
-                const retry=planEnemyMove(this,u,target);
+                const retry=yield* planEnemyMoveSteps(this,u,target);
                 if(retry){u.aiMove=retry;u.intent=viable.reason==='blocked'?'사선 변경':'사거리 확보';this.emit('change');return;}
             }
             u.shield=Math.max(u.shield,Math.round(u.maxHp*.08));u.shieldUntil=b.teamEnds[0]+1;u.intent=viable.reason==='blocked'?'사선 없음 · 방어':'공격 보류 · 방어';this.finishAction();return;

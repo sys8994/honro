@@ -184,10 +184,10 @@ export function sanitizeLoadout(p: Profile, cls: ClassId) { const known = active
 // Retained no-op for older callers; concrete learned-passive effects use passivePower.
 export function passiveBonus(h:HeroProgress,cls:ClassId,kind:Talent['passive'],branch?:number,loadout:string[]=[]){return 0;}
 export function criticalStats(cls:ClassId,level=1,ranks:Record<string,number>={}){
- const base={archer:[.18,1.75,.005,.015],mage:[.09,1.5,.003,.01],knight:[.12,1.6,.004,.012],occultist:[.13,1.55,.0035,.012]}[cls],L=Math.max(0,level-1),pass=cls==='archer'?(ranks.AP02||0):0;
+ const base={archer:[.08,1.75,.002,.015],mage:[.04,1.5,.001,.01],knight:[.05,1.6,.0012,.012],occultist:[.06,1.55,.0015,.012]}[cls],L=Math.max(0,level-1),pass=cls==='archer'?(ranks.AP02||0):0;
  return {critChance:Math.min(.65,base[0]+L*base[2]+pass*.02),critMultiplier:Math.min(3,base[1]+L*base[3]+pass*.04)};
 }
-export function stakeDuration(id:string,rank=1){return (['M10','M09'].includes(id)?4:2)+Math.floor((Math.max(1,rank)-1)/2);}
+export function stakeDuration(id:string,rank=1){return (id==='M09'?6:id==='M10'?4:2)+Math.max(0,rank-1);}
 export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const level=levelOf(h),i=CLASS_IDS.indexOf(cls),L=level-1;
  const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=rank('SP02'),mobility=0,leap=rank('SP03'),defense=rank('SP02');
  const hpBase=[390,365,610,460][i], hpGain=[32,30,48,36][i], armorBase=[.06,.08,.22,.11][i];

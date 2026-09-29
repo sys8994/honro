@@ -153,6 +153,7 @@
                 this.field(c, f.x, f.y, rr, f.kind || f.type || 'gravity');
             }
             G.HONRO_CORE.drawStakes(c,e,this.time);
+            if(b.honroStage===10&&b.honroState?.sodanCoop){const v=b.units.find(u=>u.id==='boss'&&!u.dead);if(v){const done=b.honroState.coopHold||0;c.save();c.strokeStyle='#ccb77c';c.lineWidth=2/this.scale;for(let i=0;i<6;i++){c.globalAlpha=i<done?.9:.22;c.beginPath();c.ellipse(v.x,v.y+3,75,19,0,i*Math.PI/3+.06,(i+1)*Math.PI/3-.06);c.stroke();}c.globalAlpha=.6;for(const m of b.honroMarkers||[])if(m.action==='receiver'&&m.collected)L(c,v.x,v.y-v.h*.45,m.x,m.y-12,'#c5b08b66',1);c.globalAlpha=1;c.fillStyle='#ebd497';c.textAlign='center';c.font=`600 ${12/this.scale}px sans-serif`;c.fillText(`혼매듭 ${done}/6 · 보호`,v.x,v.y-v.h-30/this.scale);c.restore();}}
             for (const z of b.zones || []) {
                 if (z.dead)
                     continue;
@@ -166,7 +167,7 @@
             }
             if(!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
             for (const v of b.units || []) {
-                if (v.x < this.x - w / this.scale - 100 || v.x > this.x + w / this.scale + 100)
+                if (v.dead || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
                     continue;
                 this.unit(c, v, v.id === b.active, charging && v.id === b.active ? power : 0);
             }

@@ -6,6 +6,7 @@ import {SKILLS} from './data';
 import {clamp,topAt,STEP,AIM_MIN,AIM_MAX} from './math';
 const HEAVY=new Set(['guard','leaper']);
 interface Stance extends Vec {cost:number;path:{x:number;y:number;jump:boolean;jumpX?:number}[];score:number;}
+export function finishPlanning<T>(steps:Generator<void,T,unknown>):T{let next=steps.next();while(!next.done)next=steps.next();return next.value;}
 
 export const FLY_MOVE_BUDGET=280;
 export function flyingEnemy(u:Unit){return u.side===1&&u.fixed&&['bat','crow','lantern'].includes((u as any).honroType);}
@@ -21,17 +22,17 @@ function flightLeg(e:Engine,u:Unit,to:Vec){
  for(let i=1;i<=steps;i++)if(!flightClear(e,u,{x:u.x+(to.x-u.x)*i/steps,y:u.y+(to.y-u.y)*i/steps}))return false;
  return true;
 }
-function planFlight(e:Engine,u:Unit,target:Unit):AIMovePlan|undefined{
+function* planFlight(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|undefined,unknown>{
  const budget=Math.min(FLY_MOVE_BUDGET,u.moveLeft);if(budget<24)return;
  const poses:Stance[]=[],start={x:u.x,y:u.y};
  for(const distance of [budget*.5,budget])for(let i=0;i<12;i++){
   const angle=i*Math.PI/6,p={x:u.x+Math.cos(angle)*distance,y:u.y+Math.sin(angle)*distance};
-  if(flightLeg(e,u,p))poses.push({...p,cost:distance,path:[{...p,jump:false}],score:positionScore(e,u,target,p)-distance*.015});
+  if(flightLeg(e,u,p))poses.push({...p,cost:distance,path:[{...p,jump:false}],score:positionScore(e,u,target,p)-distance*.015});yield;
  }
  if(!poses.length)return;
- const stay=positionScore(e,u,target,start)+shotOpportunity(e,u,target,start);
+ const stay=positionScore(e,u,target,start)+(yield* shotOpportunity(e,u,target,start));
  const top=poses.sort((a,b)=>b.score-a.score).slice(0,5);
- for(const p of top)p.score+=shotOpportunity(e,u,target,p);
+ for(const p of top)p.score+=yield* shotOpportunity(e,u,target,p);
  const best=top.sort((a,b)=>b.score-a.score)[0];if(best.score<stay+3)return;
  return {round:e.b.round,targetId:target.id,path:best.path,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'공중 사선 확보'};
 }
@@ -173,7 +174,7 @@ function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
   return value(c)-value(a);
  }).slice(0,30);
 }
-function shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec){
+function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
  if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
  const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
@@ -187,29 +188,30 @@ function shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec){
    else if(blast>0&&d<blast)score=25;
    const value=shotImpactValue(e,ghost,s,hit);
    score+=clamp(value.net,-120,60);
-   best=Math.max(best,score);
+   best=Math.max(best,score);yield;
   }
  }
  return best;
 }
-export function planEnemyMove(e:Engine,u:Unit,target:Unit):AIMovePlan|undefined{
- if(flyingEnemy(u))return planFlight(e,u,target);
+export function planEnemyMove(e:Engine,u:Unit,target:Unit){return finishPlanning(planEnemyMoveSteps(e,u,target));}
+export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|undefined,unknown>{
+ if(flyingEnemy(u))return yield* planFlight(e,u,target);
  if(u.fixed||u.dead||u.moveLeft<35||!e.grounded(u))return;
  const budget=Math.min(u.moveLeft,610),start={x:u.x,y:u.y},poses=candidates(e,u,target);
  const reachable:Stance[]=[];
- for(const p of poses){const leg=traceTravel(e,u,start,p,budget);if(leg)reachable.push({...p,cost:leg.cost,path:[{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:positionScore(e,u,target,p)-leg.cost*.025});}
+ for(const p of poses){const leg=traceTravel(e,u,start,p,budget);if(leg)reachable.push({...p,cost:leg.cost,path:[{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:positionScore(e,u,target,p)-leg.cost*.025});yield;}
  // A second step supports stairs/vertical shafts without an unbounded navigation search.
  const bridges=[...reachable].sort((a,c)=>a.cost-c.cost).slice(0,4);
  for(const p of poses.filter(p=>p.y<u.y-40).slice(0,8)){
   if(reachable.some(r=>Math.abs(r.x-p.x)<10&&Math.abs(r.y-p.y)<10))continue;
-  for(const via of bridges){if(via.cost>budget-85)continue;const leg=traceTravel(e,u,via,p,budget-via.cost);if(!leg)continue;
+  for(const via of bridges){if(via.cost>budget-85)continue;const leg=traceTravel(e,u,via,p,budget-via.cost);yield;if(!leg)continue;
    reachable.push({...p,cost:via.cost+leg.cost,path:[...via.path,{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:positionScore(e,u,target,p)-(via.cost+leg.cost)*.025});break;
   }
  }
  if(!reachable.length)return;
- const stayScore=positionScore(e,u,target,start)+shotOpportunity(e,u,target,start);
+ const stayScore=positionScore(e,u,target,start)+(yield* shotOpportunity(e,u,target,start));
  const top=reachable.sort((a,c)=>c.score-a.score).slice(0,4);
- for(const r of top)r.score+=shotOpportunity(e,u,target,r);
+ for(const r of top)r.score+=yield* shotOpportunity(e,u,target,r);
  const best=top.sort((a,c)=>c.score-a.score)[0];
  const currentDistance=Math.hypot(u.x-target.x,(u.y-target.y)*.72), forceAdvance=currentDistance>preferredRange(u)[1]+90;
  if(!forceAdvance&&best.score<stayScore+4)return;
@@ -258,13 +260,14 @@ export function shotViable(e:Engine,u:Unit,skill:Skill,target:Unit,angle:number,
  return {ok:false,reason:'range',hit,miss,risk:allyRisk,...value};
 }
 
-export function chooseEnemyShot(e:Engine,u:Unit,target:Unit,skills:Skill[]){
+export function chooseEnemyShot(e:Engine,u:Unit,target:Unit,skills:Skill[]){return finishPlanning(chooseEnemyShotSteps(e,u,target,skills));}
+export function* chooseEnemyShotSteps(e:Engine,u:Unit,target:Unit,skills:Skill[]):Generator<void,{skill:Skill;aim:{angle:number;power:number;score:number}},unknown>{
  // Scripted bosses retain telegraphed cadence, mobile enemies compare affordable attacks.
- if(u.boss===6||u.boss===5){const id=u.boss===6?(e.b.round%3===0?'M06':'M07'):(e.b.round%2===0?'S06':'S01'),skill=skills.find(s=>s.id===id)||skills[0];return {skill,aim:e.bestShot(u,skill,target)};}
+ if(u.boss===6||u.boss===5){const id=u.boss===6?(e.b.round%3===0?'M06':'M07'):(e.b.round%2===0?'S06':'S01'),skill=skills.find(s=>s.id===id)||skills[0];return {skill,aim:yield* e.searchShot(u,skill,target)};}
  let best:{skill:Skill;aim:{angle:number;power:number;score:number};value:number}|undefined;
  const crowd=e.alive(target.side).filter(v=>Math.hypot(v.x-target.x,v.y-target.y)<180).length;
  for(const skill of skills.slice(0,3)){
-  const aim=e.bestShot(u,skill,target);
+  const aim=yield* e.searchShot(u,skill,target);
   const outcome=shotViable(e,u,skill,target,aim.angle,aim.power);
   let value=aim.score+(skill.radius>30?(crowd-1)*13:0)-e.manaCost(skill,u)*.13+(outcome.ok?150:-150);
   if(aim.score>100)value+=Math.min(30,skill.damage*.18);

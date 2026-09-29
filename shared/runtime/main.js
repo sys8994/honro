@@ -429,7 +429,7 @@
                 if(args[0]){const src=e.unit(args[0]);if(src?.honroAlly&&(u.side===0||u.side===2))return;if(u.honroAlly&&src?.side===0)return;}
                 if (u.id === 'boss' && e.b.terrain.some(t => t.honroSeal && !t.broken)) amount *= .20;
                 if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop){const floor=Math.ceil(u.maxHp*.36);amount=Math.min(amount,Math.max(0,u.hp-floor));}
-                const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&u.hp<=0){u.hp=1;u.dead=false;}
+                const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
         } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
@@ -443,10 +443,11 @@
                 return true;
             const heroes = b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
             const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
-            if (!heroes.length || objective?.dead || rescuedResidentLost) {
+            const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
+            if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);
-                b.winnerReason = objective?.dead || rescuedResidentLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.';
+                b.winnerReason = objective?.dead || rescuedResidentLost || channelerLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.';
                 this.dirty = true;
                 return true;
             }
@@ -1006,6 +1007,8 @@
                         }
                         this.acc += dt * this.playbackSpeed();
                         // .06s frame cap × 4 speed × 120Hz needs up to 29 substeps.
+                        e.planningBudget(4);
+                        try{
                         for (let k = 0; k < 32 && this.acc >= 1 / 120; k++) {
                             if (e.canAct()) {
                                 let x = clamp(((this.keys.has('ArrowRight')||this.keys.has('KeyD')) ? 1 : 0) - ((this.keys.has('ArrowLeft')||this.keys.has('KeyA')) ? 1 : 0) + this.stick.x, -1, 1);
@@ -1021,6 +1024,7 @@
                             if(['aim','enemy','ally','summon'].includes(e.b.phase))G.HonroStory.turn(this);
                             if (this.dialogue||G.HonroStory.turnPaused(this)||['won', 'lost'].includes(e.b.phase)){this.acc=0;break;}
                         }
+                        }finally{e.planningBudget();}
                         if (['won', 'lost'].includes(e.b.phase) && !this.training&&!this.dialogue)
                             this.outcome();
                     }

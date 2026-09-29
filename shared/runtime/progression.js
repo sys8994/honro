@@ -11,8 +11,9 @@ function alignRecruit(profile,st,b=profile.honroBattle){
 }
 function repairRecruits(profile,b=profile.honroBattle){for(const st of G.HONRO_CONTENT.stages)if(st.recruit)alignRecruit(profile,st,b);}
 function recruit(profile,st,b){
-  if(!st.recruit)return;if(!profile.recruited.includes(st.recruit))profile.recruited.push(st.recruit);
+  if(!st.recruit)return;const first=!profile.recruited.includes(st.recruit);if(first)profile.recruited.push(st.recruit);
   alignRecruit(profile,st,b);profile.party=[...profile.recruited];
+  if(first){const cls=st.recruit,h=profile.heroes[cls];C.autoTrain(h,cls);C.sanitizeLoadout(profile,cls);if(b?.heroes){b.heroes[cls]=clone(h);for(const u of b.units||[])if(u.side===0&&!u.summoned&&u.cls===cls){u.loadout=[...profile.loadouts[cls]];C.applyHero(u,h);}}}
 }
 const budget=id=>{const p=plan(id),start=xpAt(p.entryLevel),end=xpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
 function entryHero(st){const h=C.freshHero('archer');h.xp=xpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
@@ -44,6 +45,7 @@ function tuneBoss(b,st,u){
 }
 function actionWeight(a){if(!a)return 0;if(a.type==='multi')return(a.actions||[]).reduce((n,a)=>n+actionWeight(a),0);if(a.type==='sniperAmbush')return a.n*.78;if(a.type==='spawn')return a.n*({bat:.68,crow:.78,lantern:.8,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[a.kind]||1);return 0;}
 function initialize(b,profile){
+  for(const u of b.units)if(u.side===0&&!u.summoned||u.honroAlly){const stats=C.heroStats({xp:C.xpAtLevel(u.level||1),ranks:u.ranks||{}},u.cls);u.critChance=stats.critChance;u.critMultiplier=stats.critMultiplier;}
   if(b.mode!=='campaign')return;
   if(b.honroGrowth?.ledger?.version===config.version)return;
   const ledger=clone(profile.honroGrowth||{version:config.version,stages:{}});ledger.version=config.version;ledger.stages??={};

@@ -6,7 +6,9 @@ const check=(name,fn)=>{checks.push({name,passed:true,detail:fn()});};
 function arena(){const {b,e,app,st}=battlefield(g,2);b.width=4000;b.height=2000;b.terrain=[{id:'floor',x:0,y:1500,w:4000,h:500,mat:'rock',hp:999999,maxHp:999999}];b.sceneVersion++;b.waters=[];b.zones=[];b.drafts=[];b.wind=0;b.units=[];return {b,e,app,st};}
 const unit=(id,side,x,y,extra={})=>C.makeUnit('mage',side,x,y,{id,name:id,armor:0,shield:0,h:92,attack:1,hp:1000,maxHp:1000,awake:true,...extra});
 for(const kind of ['bat','crow','lantern'])for(const dt of [1/120,1/30,.06])check(`${kind} flies in two dimensions at dt ${dt}`,()=>{
- const {b,e,st}=arena(),u=g.HonroWorld.createEnemy(b,st,450,kind,1,700),target=unit('hero',0,1600,1300);b.units=[u,target];b.side=1;b.phase='enemy';b.active=u.id;u.acted=false;
+ const {b,e,st}=arena(),u=g.HonroWorld.createEnemy(b,st,450,kind,1,700,true),target=unit('hero',0,1600,1300);b.units=[u,target];b.side=1;b.phase='enemy';b.active=u.id;u.acted=false;
+ // Block the straight horizontal lane: an open arena may legitimately prefer it.
+ b.terrain.push({id:'flight-obstacle',x:610,y:600,w:50,h:200,mat:'rock',hp:99999,maxHp:99999});b.sceneVersion++;
  e.enemyAction();assert.ok(u.aiMove);const start={x:u.x,y:u.y},budget=u.moveLeft;assert.ok(budget<=280);const original=JSON.stringify(b);
  C.planEnemyMove(e,u,target);assert.equal(JSON.stringify(b),original,'planning is read only');
  let distance=0;for(let i=0;i<400&&u.aiMove;i++){const old={x:u.x,y:u.y};e.stepUnits(dt);distance+=Math.hypot(u.x-old.x,u.y-old.y);assert.ok(C.flightClear(e,u,u));}

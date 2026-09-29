@@ -1,8 +1,34 @@
 (function(G){'use strict';
+const FINALE_TURNS=6,FINALE_CAP=28;
+function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('boss'),space=Math.max(0,FINALE_CAP-e.alive(1).length),n=Math.min(index===0?8:6,space);if(!n)return index>0;
+ const before=new Set(b.units.map(u=>u.id)),dir=index%2?-1:1,x=Math.max(180,Math.min(b.width-200,boss.x+dir*(650+index*35)));
+ const actions=[{type:'spawn',n:Math.ceil(n*.65),x,kind:index%3===2?'boar':'hound'},{type:'spawn',n:Math.floor(n*.35),x:Math.max(180,Math.min(b.width-200,boss.x-dir*720)),kind:'crow'}].filter(a=>a.n);
+ if(G.HonroAllies.execute(app,{type:'multi',actions})===false)return false;
+ const units=b.units.filter(u=>!before.has(u.id));for(let i=0;i<units.length;i++){const u=units[i];u.aggroUntil=b.round+10;if(i%2===0){u.honroTargetId=boss.id;u.honroTargetUntil=b.round+10;}}
+ hs.finaleWaves??=[];hs.finaleWaves.push({index,round:b.round,units:units.map(u=>u.id)});app.event(`혼매듭으로 몰려드는 들림 · ${index+1}차 습격`);return true;}
+function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss');if(!sodan||sodan.dead)return;
+ if(!hs.sodanCoop){if(!app.actorBoundary||(hs.receivers||0)<2||sodan.hp>sodan.maxHp*.42)return;
+  if(!rush(app,0))return;
+  hs.sodanBreach={units:hs.finaleWaves[0].units,round:b.round,source:'east'};hs.sodanCoop=true;hs.coopHold=0;hs.finaleLastEnemyEnd=b.teamEnds[1]+(b.side===1?1:0);hs.finaleWave=0;
+  Object.assign(sodan,{side:2,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:Math.max(sodan.shield||0,100),hp:Math.max(sodan.hp,Math.round(sodan.maxHp*.65))});hs.finaleAnchor={x:sodan.x,y:sodan.y};
+  const C=G.HONRO_CORE,h=structuredClone(b.heroes.occultist);h.xp=Math.max(h.xp,C.xpAtLevel(sodan.level||1));C.autoTrain(h,'occultist');sodan.ranks={...h.ranks};sodan.loadout=C.knownSkills(h,'occultist').filter(id=>!C.SKILLS[id].passive).slice(0,4);Object.assign(sodan,C.criticalStats('occultist',sodan.level,sodan.ranks));
+  b.queue=(b.queue||[]).filter(id=>id!==sodan.id);
+  const beforeCoop=l=>l[2]?.storyId?.includes('entry-follow-10-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(beforeCoop));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!beforeCoop(l));
+  app.sayLines(G.HonroStoryContent.cooperation());
+ }
+ // Old saves retain earned progress, but need six full enemy turns in total.
+ hs.finaleLastEnemyEnd??=b.teamEnds[1];hs.finaleWave??=hs.coopHold||0;hs.finaleDefenseTurns??=hs.coopHold||0;hs.finaleAnchor??={x:sodan.x,y:sodan.y};
+ Object.assign(sodan,{...hs.finaleAnchor,side:2,honroAlly:true,allyRole:'channeler',fixed:true,vx:0,vy:0});delete sodan.moveTarget;delete sodan.aiMove;b.enemyLimit=b.honroActiveLimit=6;
+ if(!app.actorBoundary)return;
+ if(b.teamEnds[1]>hs.finaleLastEnemyEnd){const delta=b.teamEnds[1]-hs.finaleLastEnemyEnd,previous=hs.coopHold||0;hs.finaleLastEnemyEnd=b.teamEnds[1];hs.finaleDefenseTurns+=delta;hs.coopHold=Math.min(FINALE_TURNS,hs.finaleDefenseTurns);if(previous<3&&hs.coopHold>=3)app.sayLines(G.HonroStoryContent.finaleMidpoint());}
+ // An unusually early conversion must not leave empty rounds until the campaign pacing floor.
+ if(!G.HonroObjectives.state(b,app.stage).complete&&hs.finaleWave<hs.finaleDefenseTurns&&rush(app,hs.finaleDefenseTurns))hs.finaleWave=hs.finaleDefenseTurns;
+}
 function tick(app,dt){
  const e=app.engine;if(!e||app.training)return;
  if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
  const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
+ if(st.id===7&&(hs.rescuedCount||0)>=3){const instruction=l=>l[2]?.storyId?.includes('entry-follow-7-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(instruction));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!instruction(l));}
  const lead=heroes.reduce((a,c)=>a.x>c.x?a:c),height=Math.min(...heroes.map(h=>h.y)),boundary=b.phase==='transition'&&!b.projectiles.length&&!e.settleBusy();
  for(const m of b.honroMarkers||[]){
    const distance=m.type==='sector'?430:m.type==='relic'?155:180;
@@ -29,26 +55,8 @@ function tick(app,dt){
  const progress=st.objective==='overwatch'?(obj?.x||0):st.objective==='escort'?Math.max(lead.x,obj?.x||0):lead.x;
  G.HonroEncounters.update(app,dt,{progress,height,broken:b.terrain.filter(t=>t.honroSeal&&t.broken).length,collected:b.honroMarkers.filter(m=>m.type==='relic'&&m.collected).length});
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
- // Stage 10: Sodan is never killed. Once both receiving arrays are ready and her ward is
- // sufficiently weakened, a new breach arrives from outside her net. That is the narrative proof
- // that she is not the root cause; she changes faction and helps hold the yard.
- if(st.id===10){
-   const sodan=e.unit('boss');
-   if(sodan&&!sodan.dead&&!hs.sodanCoop&&(hs.receivers||0)>=2&&sodan.hp<=sodan.maxHp*.42){
-     const ma=b.honroMapAnchors||{},east=ma.eastHall?.x??Math.min(b.width-1100,3600),edge=ma.outerEast?.x??b.width-500,before=new Set(b.units.map(u=>u.id));
-     // Commit the faction change only when the visible external wave can actually enter.
-     const breach=G.HonroAllies.execute(app,{type:'multi',actions:[{type:'spawn',n:2,x:east,kind:'hound'},{type:'spawn',n:1,x:edge,kind:'stag'},{type:'sniperAmbush',n:1}]});
-     if(breach===false){app.checkMission(e);return;}
-     hs.sodanBreach={units:b.units.filter(u=>!before.has(u.id)).map(u=>u.id),round:b.round,source:'east'};
-     hs.sodanCoop=true;hs.coopHold=0;hs.lastCoopRound=-1;
-     sodan.side=2;sodan.honroAlly=true;sodan.honroCivilian=false;sodan.allyRole='medium';sodan.fixed=false;sodan.acted=true;sodan.shield=Math.max(sodan.shield||0,100);sodan.hp=Math.max(sodan.hp,Math.round(sodan.maxHp*.38));
-     b.queue=(b.queue||[]).filter(id=>id!==sodan.id);
-     app.sayLines(G.HonroStoryContent.cooperation());
-     app.event('소단이 주박을 거두고 일행과 함께 바깥에서 밀려드는 들림을 막기 시작한다.');
-   }
-   if(hs.sodanCoop&&b.round>(hs.sodanBreach?.round??b.round)&&hs.lastCoopRound!==b.round){hs.lastCoopRound=b.round;hs.coopHold=Math.min(2,b.round-(hs.sodanBreach?.round??b.round));if(hs.coopHold===1)app.event('받이진이 버틴다. 마지막 매듭을 풀 수 있는 틈이 생겼다.');}
- }
+ if(st.id===10)finale(app);
  app.checkMission(e);
 }
-G.HonroMission={tick};
+G.HonroMission={tick,finale,FINALE_TURNS,FINALE_CAP};
 })(globalThis);

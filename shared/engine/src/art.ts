@@ -1,5 +1,5 @@
 import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
-import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,guidePrediction,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -275,19 +275,15 @@ export class Renderer {
         }
         this.fxs=this.fxs.filter(f=>f.age<f.life);
     }
-    /** Production prediction guide. Optional throughUnits adds a faint solid continuation for repeated arrows. */
+    /** Production guide: dotted collision path and faint solid continuation beyond units. */
     predictionGuide(c:C, engine:Engine, active:Unit, skillId:string, power:number, charging:boolean, throughUnits=false) {
         const sk=SKILLS[skillId]||SKILLS[active.loadout[0]]; if(!sk||sk.passive)return;
         const guidePower=charging?power:(active.lastPower??power??.5);
         const zoom=Math.max(.12,this.scale||1);
         drawAimDirection(c,engine,active,sk,guidePower,charging,this.time,zoom);
+        drawGuideContinuation(c,engine,active,sk,guidePower,zoom);
         if(drawRedesignGuide(c,engine,active,sk,guidePower,zoom))return;
-        // Repeated archer shots can continue after the first target. Draw this under the normal collision prediction.
-        if(throughUnits){
-            const ext=engine.predict(active,sk,active.angle,guidePower,undefined,true,true);
-            if(ext?.points?.length){c.save();c.setLineDash([]);c.globalAlpha=.20;c.strokeStyle=sk.color;c.lineWidth=1.15/zoom;c.beginPath();ext.points.forEach((v,i)=>i?c.lineTo(v.x,v.y):c.moveTo(v.x,v.y));c.stroke();c.restore();}
-        }
-        const pr=engine.predict(active,sk,active.angle,guidePower);
+        const pr=guidePrediction(engine,active,sk,guidePower);
         if(!pr)return;
         c.save();c.globalAlpha=.65;
         pr.points.forEach((v,i)=>{if(i%2===0)circle(c,v.x,v.y,1.6/zoom,sk.color);});

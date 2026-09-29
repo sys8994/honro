@@ -1168,7 +1168,7 @@ class Renderer {
         }
         this.fxs = this.fxs.filter(f => f.age < f.life);
     }
-    /** Production prediction guide. Optional throughUnits adds a faint solid continuation for repeated arrows. */
+    /** Production guide: dotted collision path and faint solid continuation beyond units. */
     predictionGuide(c, engine, active, skillId, power, charging, throughUnits = false) {
         const sk = data_1.SKILLS[skillId] || data_1.SKILLS[active.loadout[0]];
         if (!sk || sk.passive)
@@ -1176,24 +1176,10 @@ class Renderer {
         const guidePower = charging ? power : (active.lastPower ?? power ?? .5);
         const zoom = Math.max(.12, this.scale || 1);
         (0, skillVisuals_1.drawAimDirection)(c, engine, active, sk, guidePower, charging, this.time, zoom);
+        (0, skillVisuals_1.drawGuideContinuation)(c, engine, active, sk, guidePower, zoom);
         if ((0, skillVisuals_1.drawRedesignGuide)(c, engine, active, sk, guidePower, zoom))
             return;
-        // Repeated archer shots can continue after the first target. Draw this under the normal collision prediction.
-        if (throughUnits) {
-            const ext = engine.predict(active, sk, active.angle, guidePower, undefined, true, true);
-            if (ext?.points?.length) {
-                c.save();
-                c.setLineDash([]);
-                c.globalAlpha = .20;
-                c.strokeStyle = sk.color;
-                c.lineWidth = 1.15 / zoom;
-                c.beginPath();
-                ext.points.forEach((v, i) => i ? c.lineTo(v.x, v.y) : c.moveTo(v.x, v.y));
-                c.stroke();
-                c.restore();
-            }
-        }
-        const pr = engine.predict(active, sk, active.angle, guidePower);
+        const pr = (0, skillVisuals_1.guidePrediction)(engine, active, sk, guidePower);
         if (!pr)
             return;
         c.save();
@@ -4055,6 +4041,7 @@ exports.SKILLS.O99 = { id: 'O99', cls: 'occultist', name: '백귀야행', tag: '
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FLY_MOVE_BUDGET = void 0;
+exports.finishPlanning = finishPlanning;
 exports.flyingEnemy = flyingEnemy;
 exports.flightClear = flightClear;
 exports.shotImpactValue = shotImpactValue;
@@ -4062,13 +4049,17 @@ exports.targetFor = targetFor;
 exports.dangerAt = dangerAt;
 exports.traceTravel = traceTravel;
 exports.planEnemyMove = planEnemyMove;
+exports.planEnemyMoveSteps = planEnemyMoveSteps;
 exports.advanceEnemyMove = advanceEnemyMove;
 exports.friendlyFireRisk = friendlyFireRisk;
 exports.shotViable = shotViable;
 exports.chooseEnemyShot = chooseEnemyShot;
+exports.chooseEnemyShotSteps = chooseEnemyShotSteps;
 const data_1 = require("./data");
 const math_1 = require("./math");
 const HEAVY = new Set(['guard', 'leaper']);
+function finishPlanning(steps) { let next = steps.next(); while (!next.done)
+    next = steps.next(); return next.value; }
 exports.FLY_MOVE_BUDGET = 280;
 function flyingEnemy(u) { return u.side === 1 && u.fixed && ['bat', 'crow', 'lantern'].includes(u.honroType); }
 /** Full body clearance, including slopes and thin ceilings. Used by both planning and motion. */
@@ -4087,7 +4078,7 @@ function flightLeg(e, u, to) {
             return false;
     return true;
 }
-function planFlight(e, u, target) {
+function* planFlight(e, u, target) {
     const budget = Math.min(exports.FLY_MOVE_BUDGET, u.moveLeft);
     if (budget < 24)
         return;
@@ -4097,13 +4088,14 @@ function planFlight(e, u, target) {
             const angle = i * Math.PI / 6, p = { x: u.x + Math.cos(angle) * distance, y: u.y + Math.sin(angle) * distance };
             if (flightLeg(e, u, p))
                 poses.push({ ...p, cost: distance, path: [{ ...p, jump: false }], score: positionScore(e, u, target, p) - distance * .015 });
+            yield;
         }
     if (!poses.length)
         return;
-    const stay = positionScore(e, u, target, start) + shotOpportunity(e, u, target, start);
+    const stay = positionScore(e, u, target, start) + (yield* shotOpportunity(e, u, target, start));
     const top = poses.sort((a, b) => b.score - a.score).slice(0, 5);
     for (const p of top)
-        p.score += shotOpportunity(e, u, target, p);
+        p.score += yield* shotOpportunity(e, u, target, p);
     const best = top.sort((a, b) => b.score - a.score)[0];
     if (best.score < stay + 3)
         return;
@@ -4334,7 +4326,7 @@ function candidates(e, u, target) {
         return value(c) - value(a);
     }).slice(0, 30);
 }
-function shotOpportunity(e, u, target, p) {
+function* shotOpportunity(e, u, target, p) {
     if (Math.hypot(p.x - target.x, p.y - target.y) > 1900)
         return -90;
     const ghost = { ...u, x: p.x, y: p.y, vx: 0, vy: 0 };
@@ -4354,13 +4346,15 @@ function shotOpportunity(e, u, target, p) {
                 const value = shotImpactValue(e, ghost, s, hit);
                 score += (0, math_1.clamp)(value.net, -120, 60);
                 best = Math.max(best, score);
+                yield;
             }
     }
     return best;
 }
-function planEnemyMove(e, u, target) {
+function planEnemyMove(e, u, target) { return finishPlanning(planEnemyMoveSteps(e, u, target)); }
+function* planEnemyMoveSteps(e, u, target) {
     if (flyingEnemy(u))
-        return planFlight(e, u, target);
+        return yield* planFlight(e, u, target);
     if (u.fixed || u.dead || u.moveLeft < 35 || !e.grounded(u))
         return;
     const budget = Math.min(u.moveLeft, 610), start = { x: u.x, y: u.y }, poses = candidates(e, u, target);
@@ -4369,6 +4363,7 @@ function planEnemyMove(e, u, target) {
         const leg = traceTravel(e, u, start, p, budget);
         if (leg)
             reachable.push({ ...p, cost: leg.cost, path: [{ ...p, jump: leg.jump, ...(leg.jumpX !== undefined ? { jumpX: leg.jumpX } : {}) }], score: positionScore(e, u, target, p) - leg.cost * .025 });
+        yield;
     }
     // A second step supports stairs/vertical shafts without an unbounded navigation search.
     const bridges = [...reachable].sort((a, c) => a.cost - c.cost).slice(0, 4);
@@ -4379,6 +4374,7 @@ function planEnemyMove(e, u, target) {
             if (via.cost > budget - 85)
                 continue;
             const leg = traceTravel(e, u, via, p, budget - via.cost);
+            yield;
             if (!leg)
                 continue;
             reachable.push({ ...p, cost: via.cost + leg.cost, path: [...via.path, { ...p, jump: leg.jump, ...(leg.jumpX !== undefined ? { jumpX: leg.jumpX } : {}) }], score: positionScore(e, u, target, p) - (via.cost + leg.cost) * .025 });
@@ -4387,10 +4383,10 @@ function planEnemyMove(e, u, target) {
     }
     if (!reachable.length)
         return;
-    const stayScore = positionScore(e, u, target, start) + shotOpportunity(e, u, target, start);
+    const stayScore = positionScore(e, u, target, start) + (yield* shotOpportunity(e, u, target, start));
     const top = reachable.sort((a, c) => c.score - a.score).slice(0, 4);
     for (const r of top)
-        r.score += shotOpportunity(e, u, target, r);
+        r.score += yield* shotOpportunity(e, u, target, r);
     const best = top.sort((a, c) => c.score - a.score)[0];
     const currentDistance = Math.hypot(u.x - target.x, (u.y - target.y) * .72), forceAdvance = currentDistance > preferredRange(u)[1] + 90;
     if (!forceAdvance && best.score < stayScore + 4)
@@ -4500,16 +4496,17 @@ function shotViable(e, u, skill, target, angle, power, allowedTargetId) {
         return { ok: false, reason: 'friendly', hit, miss, risk: allyRisk, ...value };
     return { ok: false, reason: 'range', hit, miss, risk: allyRisk, ...value };
 }
-function chooseEnemyShot(e, u, target, skills) {
+function chooseEnemyShot(e, u, target, skills) { return finishPlanning(chooseEnemyShotSteps(e, u, target, skills)); }
+function* chooseEnemyShotSteps(e, u, target, skills) {
     // Scripted bosses retain telegraphed cadence, mobile enemies compare affordable attacks.
     if (u.boss === 6 || u.boss === 5) {
         const id = u.boss === 6 ? (e.b.round % 3 === 0 ? 'M06' : 'M07') : (e.b.round % 2 === 0 ? 'S06' : 'S01'), skill = skills.find(s => s.id === id) || skills[0];
-        return { skill, aim: e.bestShot(u, skill, target) };
+        return { skill, aim: yield* e.searchShot(u, skill, target) };
     }
     let best;
     const crowd = e.alive(target.side).filter(v => Math.hypot(v.x - target.x, v.y - target.y) < 180).length;
     for (const skill of skills.slice(0, 3)) {
-        const aim = e.bestShot(u, skill, target);
+        const aim = yield* e.searchShot(u, skill, target);
         const outcome = shotViable(e, u, skill, target, aim.angle, aim.power);
         let value = aim.score + (skill.radius > 30 ? (crowd - 1) * 13 : 0) - e.manaCost(skill, u) * .13 + (outcome.ok ? 150 : -150);
         if (aim.score > 100)
@@ -4560,12 +4557,16 @@ function waterFloor(w, x) {
     return w.y + w.depth;
 }
 class Engine {
+    /** Runtime-only work budget; saves resume an unfinished decision from its input state. */
+    planningBudget(ms) { this.planningDeadline = ms === undefined ? Infinity : performance.now() + ms; }
+    planningKey() { const b = this.b; return [b.active, b.round, b.sceneVersion, b.physics?.revision, b.wind, b.rng, ...b.units.map(u => `${u.id}:${u.x}:${u.y}:${u.hp}:${u.shield}:${u.focus}:${u.dead}`)].join('|'); }
     constructor(b, onEvent = () => { }, fresh = false) {
         this.counter = 0;
         this.terrainBins = new Map();
         this.terrainOrder = new Map();
         this.indexedVersion = -1;
         this.indexedCount = -1;
+        this.planningDeadline = Infinity;
         b.fields ?? (b.fields = []);
         b.physics ?? (b.physics = (0, physics_1.makePhysics)(data_1.STAGES[b.stageId - 1]?.physics));
         b.reviewDamage ?? (b.reviewDamage = {});
@@ -4799,9 +4800,10 @@ class Engine {
     }
     collision(a, c, r, owner, hit = [], units = true, skip = [], terrain = true) {
         let best = null;
+        const left = Math.min(a.x, c.x) - r, right = Math.max(a.x, c.x) + r, top = Math.min(a.y, c.y) - r, bottom = Math.max(a.y, c.y) + r;
         if (terrain)
             for (const t of this.collisionTerrain(a, c, r)) {
-                if (t.broken || skip.includes(t.id) || t.x > Math.max(a.x, c.x) + r || t.x + t.w < Math.min(a.x, c.x) - r || Math.min(t.y, t.y + (t.slope || 0)) > Math.max(a.y, c.y) + r || t.y + t.h < Math.min(a.y, c.y) - r)
+                if (t.broken || skip.includes(t.id) || t.x > right || t.x + t.w < left || Math.min(t.y, t.y + (t.slope || 0)) > bottom || t.y + t.h < top)
                     continue;
                 const h = (0, math_1.segmentTerrain)(a, c, t, r);
                 if (h && (!best || h.t < best.t))
@@ -4809,7 +4811,9 @@ class Engine {
             }
         if (units)
             for (const u of this.b.units) {
-                if (u.dead || u.id === owner || hit.includes(u.id))
+                // Most units are nowhere near this short substep; avoid allocating
+                // the slab-intersection arrays for every unit in every AI probe.
+                if (u.dead || u.id === owner || u.x - u.r > right || u.x + u.r < left || u.y - u.h > bottom || u.y < top || hit.includes(u.id))
                     continue;
                 const h = (0, math_1.segRect)(a, c, u.x - u.r, u.y - u.h, u.r * 2, u.h, r);
                 if (h && (!best || h.t < best.t))
@@ -4821,7 +4825,7 @@ class Engine {
         const martial = (0, warriorMechanics_1.warriorPrediction)(this, u, skill, angle, power);
         if (martial)
             return martial;
-        const custom = (0, skillMechanics_1.redesignPrediction)(this, u, skill, angle, power);
+        const custom = (0, skillMechanics_1.redesignPrediction)(this, u, skill, angle, power, false, ignoreUnits);
         if (custom)
             return custom;
         const body = BODY.has(skill.mode), origin = this.origin(u, angle, body), v = this.velocity(u, skill, angle, power);
@@ -4918,7 +4922,10 @@ class Engine {
         }
         return { points, x, y, closest, apex: ap };
     }
-    bestShot(u, s, target, allowAllyTarget = false) {
+    bestShot(u, s, target, allowAllyTarget = false) { return (0, enemyAI_1.finishPlanning)(this.searchShot(u, s, target, allowAllyTarget)); }
+    *searchShot(u, s, target, allowAllyTarget = false) {
+        if (this.bestShot !== Engine.prototype.bestShot)
+            return this.bestShot(u, s, target, allowAllyTarget);
         const right = target.x > u.x, blast = this.effective(s, u).radius;
         let best = { angle: right ? 45 : 135, power: .62, score: -1e9 };
         const score = (a, p) => {
@@ -4944,6 +4951,7 @@ class Engine {
                 const a = right ? elev : 180 - elev, sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
+                yield;
             }
         const initial = { ...best };
         for (let da = -6; da <= 6; da += 3)
@@ -4951,6 +4959,7 @@ class Engine {
                 const a = (0, math_1.clamp)(initial.angle + da, math_1.AIM_MIN, math_1.AIM_MAX), p = (0, math_1.clamp)(initial.power + dp, .1, 1), sc = score(a, p);
                 if (sc > best.score)
                     best = { angle: a, power: p, score: sc };
+                yield;
             }
         return best;
     }
@@ -6968,6 +6977,21 @@ class Engine {
         }
     }
     enemyAction() {
+        if (performance.now() >= this.planningDeadline)
+            return;
+        const key = this.planningKey();
+        if (!this.enemyPlanning || this.enemyPlanning.key !== key)
+            this.enemyPlanning = { key, steps: this.enemyActionSteps() };
+        const work = this.enemyPlanning;
+        do {
+            if (work.steps.next().done) {
+                this.enemyPlanning = undefined;
+                return;
+            }
+        } while (performance.now() < this.planningDeadline);
+        work.key = this.planningKey();
+    }
+    *enemyActionSteps() {
         const b = this.b, u = this.active;
         if (!u || u.dead) {
             this.finishAction();
@@ -6985,11 +7009,11 @@ class Engine {
             return;
         }
         if (u.lastAct !== b.round) {
-            u.lastAct = b.round;
             if ((0, enemyAI_1.flyingEnemy)(u))
                 u.moveLeft = Math.min(u.moveLeft, enemyAI_1.FLY_MOVE_BUDGET);
             if ((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u)) {
-                const plan = (0, enemyAI_1.planEnemyMove)(this, u, target);
+                const plan = yield* (0, enemyAI_1.planEnemyMoveSteps)(this, u, target);
+                u.lastAct = b.round;
                 if (plan) {
                     u.aiMove = plan;
                     u.intent = plan.intent;
@@ -6997,6 +7021,8 @@ class Engine {
                     return;
                 }
             }
+            else
+                u.lastAct = b.round;
         }
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target = (0, enemyAI_1.targetFor)(this, u) || target;
@@ -7031,7 +7057,8 @@ class Engine {
             return;
         }
         const betrayal = target.side === u.side && target.id !== u.id && (target.betrayalUntil || 0) >= b.round;
-        const choice = betrayal ? (() => { const skill = available.find(v => v.radius < 70) || available[0]; return { skill, aim: this.bestShot(u, skill, target, true) }; })() : (0, enemyAI_1.chooseEnemyShot)(this, u, target, available);
+        const betrayalSkill = available.find(v => v.radius < 70) || available[0];
+        const choice = betrayal ? { skill: betrayalSkill, aim: yield* this.searchShot(u, betrayalSkill, target, true) } : yield* (0, enemyAI_1.chooseEnemyShotSteps)(this, u, target, available);
         let sk = choice.skill, aim = choice.aim;
         const error = balance_1.DIFFICULTIES[b.difficulty].aim;
         const safeAngle = aim.angle, safePower = aim.power;
@@ -7048,7 +7075,7 @@ class Engine {
             const alternatives = this.b.units.filter(v => !v.dead && v.id !== target.id && (v.side === 0 || v.side === 2 && (v.honroAlly || v.id === 'objective')))
                 .sort((a, c) => Math.hypot(a.x - u.x, a.y - u.y) - Math.hypot(c.x - u.x, c.y - u.y)).slice(0, 2);
             for (const candidate of alternatives) {
-                const shot = (0, enemyAI_1.chooseEnemyShot)(this, u, candidate, available), test = (0, enemyAI_1.shotViable)(this, u, shot.skill, candidate, shot.aim.angle, shot.aim.power);
+                const shot = yield* (0, enemyAI_1.chooseEnemyShotSteps)(this, u, candidate, available), test = (0, enemyAI_1.shotViable)(this, u, shot.skill, candidate, shot.aim.angle, shot.aim.power);
                 if (test.ok) {
                     target = candidate;
                     sk = shot.skill;
@@ -7062,7 +7089,7 @@ class Engine {
             // One bounded second reposition attempt is allowed after discovering a bad firing lane.
             if (((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u)) && u.moveLeft > 90 && u.honroRepositionRound !== b.round) {
                 u.honroRepositionRound = b.round;
-                const retry = (0, enemyAI_1.planEnemyMove)(this, u, target);
+                const retry = yield* (0, enemyAI_1.planEnemyMoveSteps)(this, u, target);
                 if (retry) {
                     u.aiMove = retry;
                     u.intent = viable.reason === 'blocked' ? '사선 변경' : '사거리 확보';
@@ -9709,10 +9736,10 @@ function sanitizeLoadout(p, cls) {
 // Retained no-op for older callers; concrete learned-passive effects use passivePower.
 function passiveBonus(h, cls, kind, branch, loadout = []) { return 0; }
 function criticalStats(cls, level = 1, ranks = {}) {
-    const base = { archer: [.18, 1.75, .005, .015], mage: [.09, 1.5, .003, .01], knight: [.12, 1.6, .004, .012], occultist: [.13, 1.55, .0035, .012] }[cls], L = Math.max(0, level - 1), pass = cls === 'archer' ? (ranks.AP02 || 0) : 0;
+    const base = { archer: [.08, 1.75, .002, .015], mage: [.04, 1.5, .001, .01], knight: [.05, 1.6, .0012, .012], occultist: [.06, 1.55, .0015, .012] }[cls], L = Math.max(0, level - 1), pass = cls === 'archer' ? (ranks.AP02 || 0) : 0;
     return { critChance: Math.min(.65, base[0] + L * base[2] + pass * .02), critMultiplier: Math.min(3, base[1] + L * base[3] + pass * .04) };
 }
-function stakeDuration(id, rank = 1) { return (['M10', 'M09'].includes(id) ? 4 : 2) + Math.floor((Math.max(1, rank) - 1) / 2); }
+function stakeDuration(id, rank = 1) { return (id === 'M09' ? 6 : id === 'M10' ? 4 : 2) + Math.max(0, rank - 1); }
 function heroStats(h, cls, loadout = []) {
     const level = levelOf(h), i = exports.CLASS_IDS.indexOf(cls), L = level - 1;
     const rank = (id) => exports.TALENT_MAP[id]?.cls === cls ? rankPower(h.ranks[id] || 0) : 0, vitality = rank('SP02'), mobility = 0, leap = rank('SP03'), defense = rank('SP02');
@@ -10711,8 +10738,12 @@ function tickRedesign(e, dt) {
 }
 /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
  * piercing, chains and split children cannot diverge into a second physics loop. */
-function arrowPrediction(e, u, s, angle, power, representative = false) {
+function arrowPrediction(e, u, s, angle, power, representative = false, ignoreUnits = false) {
     const b = structuredClone(e.b), Sim = e.constructor, sim = new Sim(b), actor = sim.unit(u.id);
+    const collision = sim.collision.bind(sim);
+    let contact = null, capture = true;
+    sim.collision = (a, z, r, owner, ignored, units = true, ...rest) => { const h = collision(a, z, r, owner, ignored, ignoreUnits ? false : units, ...rest); if (capture && h?.unit && !contact)
+        contact = h; return h; };
     b.active = actor.id;
     b.side = 0;
     b.phase = 'aim';
@@ -10751,6 +10782,7 @@ function arrowPrediction(e, u, s, angle, power, representative = false) {
             if (!b.projectiles.includes(p))
                 continue;
             const wasApex = p.apex, wasSplit = representative && p === tracked && p.mode === 'seekRain', nextId = b.nextId;
+            capture = !representative || p === tracked;
             sim.stepProjectile(p, math_1.STEP);
             if (p === primary && !wasApex && p.apex)
                 apex = { x: p.x, y: p.apexY ?? p.y };
@@ -10764,26 +10796,31 @@ function arrowPrediction(e, u, s, angle, power, representative = false) {
             // Only the middle child's samples extend the visible parent path.
             if (wasSplit && !b.projectiles.includes(p)) {
                 const children = b.projectiles.filter(q => q.id >= nextId && q.mode === 'seekChild');
-                if (children.length === 7)
+                if (children.length === 7) {
                     tracked = children[3];
+                    contact = null;
+                }
             }
         }
         time = (i + 1) * math_1.STEP;
+        // Later sibling impacts cannot change the representative path that has already ended.
+        if (representative && tracked && !b.projectiles.includes(tracked))
+            break;
     }
     const points = primary ? paths.get(primary.id) || [origin] : [origin], last = points.at(-1) || origin;
-    return { ...last, points, paths: [...paths.values()], time, contacts: [], apex, closest: 99999 };
+    return { ...last, unit: contact?.unit?.id, points, paths: [...paths.values()], time, contacts: [], apex, closest: 99999 };
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
-function redesignPrediction(e, u, s, angle, power, representative = false) {
+function redesignPrediction(e, u, s, angle, power, representative = false, ignoreUnits = false) {
     if (!s.redesigned)
         return null;
     if (s.cls === 'archer')
-        return arrowPrediction(e, u, s, angle, power, representative);
+        return arrowPrediction(e, u, s, angle, power, representative, ignoreUnits);
     if (s.cls !== 'mage')
         return null;
     const r = u.ranks[s.id] || 1, origin = e.origin(u, angle), v = e.velocity(u, s, angle, power), points = [origin], contacts = [];
     const p = { ...origin, ...v, wind: s.wind, gravityScale: s.gravity ?? 1, drag: (0, physics_1.dragFor)(s), skill: s.id, mode: s.mode, radius: 6, bounces: 0 };
-    let age = 0, time = 0, closest = 99999, apex;
+    let age = 0, time = 0, closest = 99999, apex, contact = null;
     const arc = s.mode === 'waveArc', ring = s.mode === 'waveRing', bagua = s.mode === 'waveBagua', ice = s.mode === 'gourdIce';
     if (ring) {
         const center = at(u);
@@ -10800,7 +10837,9 @@ function redesignPrediction(e, u, s, angle, power, representative = false) {
         p.vx = m.vx;
         p.vy = m.vy;
         time = age;
-        const h = e.collision(p, m, 6, u.id, [], !s.mode.startsWith('stake') && !['waveTriangle', 'waveBagua'].includes(s.mode));
+        const h = e.collision(p, m, 6, u.id, [], !ignoreUnits && !s.mode.startsWith('stake') && !['waveTriangle', 'waveBagua'].includes(s.mode));
+        if (h)
+            contact = h;
         if (h) {
             p.x = h.x;
             p.y = h.y;
@@ -10828,7 +10867,7 @@ function redesignPrediction(e, u, s, angle, power, representative = false) {
     }
     points.push({ x: p.x, y: p.y });
     const geometry = arc || bagua || s.mode === 'waveTriangle' ? skillGeometry(s, r, p.x, p.y, arc ? Math.atan2(p.vy, p.vx) : -(0, math_1.rad)(angle), power, contacts, origin, geometryBoost(u, s)) : undefined;
-    return { x: p.x, y: p.y, points, time, closest, contacts, apex, geometry, secondaryRadius: s.branch === 'gourd' ? (s.id === 'M04' ? 260 + 10 * (r - 1) : s.id === 'M13' ? 240 : s.id === 'M05' ? 190 : 180) : s.branch === 'stake' ? 45 * geometryBoost(u, s) : undefined };
+    return { x: p.x, y: p.y, unit: contact?.unit?.id, terrain: contact?.terrain?.id, points, time, closest, contacts, apex, geometry, secondaryRadius: s.branch === 'gourd' ? (s.id === 'M04' ? 260 + 10 * (r - 1) : s.id === 'M13' ? 240 : s.id === 'M05' ? 190 : 180) : s.branch === 'stake' ? 45 * geometryBoost(u, s) : undefined };
 }
 
 },
@@ -10902,6 +10941,8 @@ function installSkillRedesign(skills) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.STAKE_STYLES = exports.ARROW_STYLES = exports.SKILL_FX_SECONDS = void 0;
+exports.guidePrediction = guidePrediction;
+exports.drawGuideContinuation = drawGuideContinuation;
 exports.drawSkillGeometry = drawSkillGeometry;
 exports.drawAimDirection = drawAimDirection;
 exports.drawRedesignProjectile = drawRedesignProjectile;
@@ -10918,14 +10959,49 @@ const warriorVisuals_1 = require("./warriorVisuals");
 const data_1 = require("./data");
 const skillMechanics_1 = require("./skillMechanics");
 const guideCache = new WeakMap();
-function guidePrediction(e, u, s, power) {
+function guidePrediction(e, u, s, power, ignoreUnits = false) {
     const b = e.b, key = [b.shot, b.rng, b.sceneVersion, b.physics?.revision, b.wind, s.id, u.x, u.y, u.h, u.angle, power, u.tune, JSON.stringify(u.ranks), ...b.units.map(v => `${v.id}:${v.x}:${v.y}:${v.hp}:${v.dead}`)].join('|');
-    const cached = guideCache.get(e);
+    let cache = guideCache.get(e);
+    if (!cache) {
+        cache = new Map();
+        guideCache.set(e, cache);
+    }
+    const cached = cache.get(ignoreUnits);
     if (cached?.key === key)
         return cached.prediction;
-    const prediction = ['A04', 'A15'].includes(s.id) ? (0, skillMechanics_1.redesignPrediction)(e, u, s, u.angle, power, true) : e.predict(u, s, u.angle, power);
-    guideCache.set(e, { key, prediction });
+    const prediction = ['A04', 'A15'].includes(s.id) ? (0, skillMechanics_1.redesignPrediction)(e, u, s, u.angle, power, true, ignoreUnits) : e.predict(u, s, u.angle, power, undefined, true, ignoreUnits);
+    cache.set(ignoreUnits, { key, prediction });
     return prediction;
+}
+function drawGuideContinuation(c, e, u, s, power, zoom) {
+    if (s.martial || s.mode === 'pierce' || s.mode === 'return' || s.mode === 'prepare')
+        return;
+    const pr = guidePrediction(e, u, s, power);
+    if (!pr.unit || pr.points.length < 2)
+        return;
+    const ext = guidePrediction(e, u, s, power, true);
+    if (ext.points.length < 2)
+        return;
+    let start = 0, distance = Infinity;
+    for (let i = 0; i < ext.points.length; i++) {
+        const p = ext.points[i], d = Math.hypot(p.x - pr.x, p.y - pr.y);
+        if (d < distance) {
+            distance = d;
+            start = i;
+        }
+    }
+    const path = ext.points.slice(start);
+    if (path.length < 2)
+        return;
+    c.save();
+    c.setLineDash([]);
+    c.globalAlpha = .22;
+    c.strokeStyle = s.color;
+    c.lineWidth = .85 / Math.max(.12, zoom);
+    c.beginPath();
+    path.forEach((p, i) => i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y));
+    c.stroke();
+    c.restore();
 }
 exports.SKILL_FX_SECONDS = { swordCut: .34, circulation: .6, skillGeometry: .9, inkImpact: .8, lightningBolt: .9, qiBurst: .55, fireBloom: .85 };
 function drawSkillGeometry(c, g, thick = false, zoom = 1) {
@@ -11958,6 +12034,8 @@ class AudioEngine {
         this.master = null;
         this.buffers = new Map();
         this.voices = new Set();
+        this.gainTarget = -1;
+        this.warming = false;
         this.pending = [];
         this.lastPlayed = {};
         this.requestedAt = {};
@@ -11969,12 +12047,13 @@ class AudioEngine {
         this.music.configure(settings.music !== false, (Number(s.volume) || 0) * (settings.musicVolume ?? .65));
         this.enabled = !!s.sound;
         this.volume = Math.max(0, Math.min(1, Number(s.volume) || 0));
-        if (this.master && this.context)
-            this.master.gain.setTargetAtTime(this.enabled ? this.volume : 0, this.context.currentTime, .015);
-        if (!this.enabled) {
-            this.pending = [];
-            this.pause();
+        const gain = this.enabled ? this.volume : 0;
+        if (this.master && this.context && gain !== this.gainTarget) {
+            this.master.gain.setTargetAtTime(gain, this.context.currentTime, .015);
+            this.gainTarget = gain;
         }
+        if (!this.enabled && (this.pending.length || this.voices.size))
+            this.pause();
     }
     async wake() {
         this.music.unlock();
@@ -11985,7 +12064,7 @@ class AudioEngine {
                 const Constructor = globalThis.AudioContext || globalThis.webkitAudioContext;
                 if (!Constructor)
                     return false;
-                const ctx = this.context = new Constructor();
+                const ctx = this.context = new Constructor({ latencyHint: 'interactive' });
                 this.master = ctx.createGain();
                 this.master.gain.value = this.volume;
                 const compressor = ctx.createDynamicsCompressor();
@@ -12003,12 +12082,30 @@ class AudioEngine {
             for (const item of queue)
                 if (now - item.at < 300)
                     this.play(item.name);
+            this.warm();
             return this.context.state === 'running';
         }
         catch {
             return false;
         }
     }
+    buffer(name) { let buffer = this.buffers.get(name); if (!buffer && this.context) {
+        const samples = soundSamples(name, this.context.sampleRate);
+        if (!samples.length)
+            return;
+        buffer = this.context.createBuffer(1, samples.length, this.context.sampleRate);
+        buffer.copyToChannel(samples, 0);
+        this.buffers.set(name, buffer);
+    } return buffer; }
+    warm() { if (this.warming)
+        return; this.warming = true; const names = ['arrow', 'arrowhit', 'hit', 'sword', 'qiHit', 'break', 'down', 'fire', 'boom', 'qiWave', 'ricochet', 'split', 'ceramic', 'heal', 'turn', 'jump', 'charge', 'meteor', 'qiRebound', 'win', 'lose']; const step = () => { if (!this.context || this.context.state === 'closed')
+        return; const name = names.shift(); if (name)
+        this.buffer(name); if (names.length) {
+        if (typeof requestIdleCallback === 'function')
+            requestIdleCallback(step, { timeout: 250 });
+        else
+            setTimeout(step, 20);
+    } }; setTimeout(step, 0); }
     play(name) {
         if (!this.enabled || this.volume <= 0 || name === 'click')
             return;
@@ -12021,15 +12118,9 @@ class AudioEngine {
         }
         if (now - (this.lastPlayed[name] ?? -1e9) < (name === 'arrowhit' ? 0 : name === 'qiHit' ? 24 : 45))
             return;
-        let buffer = this.buffers.get(name);
-        if (!buffer) {
-            const samples = soundSamples(name, this.context.sampleRate);
-            if (!samples.length)
-                return;
-            buffer = this.context.createBuffer(1, samples.length, this.context.sampleRate);
-            buffer.copyToChannel(samples, 0);
-            this.buffers.set(name, buffer);
-        }
+        const buffer = this.buffer(name);
+        if (!buffer)
+            return;
         if (this.voices.size >= 20) {
             const oldest = this.voices.values().next().value;
             oldest?.stop();
@@ -12042,7 +12133,8 @@ class AudioEngine {
         this.voices.add(source);
         source.onended = () => { this.voices.delete(source); source.disconnect(); };
         source.start();
-        this.lastPlayed[name] = this.startedAt[name] = now;
+        this.lastPlayed[name] = now;
+        this.startedAt[name] = performance.now();
         this.playCount++;
     }
     pause() { for (const voice of this.voices) {
@@ -14088,63 +14180,66 @@ globalThis.HONRO_BALANCE={
 const version=6;
 const intro={
  1:{art:'road',narration:['설오는 사라진 고향 사람들의 행방을 찾아 연목으로 왔다. 몇 해 전 그들을 배에 태웠다는 뱃사공, 홍만을 만나러 가는 길이다.'],story:[
-  ['설오','북쪽에서 내려온 사람들을 태웠다던 홍만. 나루에서 아직 배를 몬다면 그 뒤의 행선지도 알겠지.'],
-  ['설오','들린 짐승이 늘었다고 했지. 발자국이 길 안쪽으로 겹쳐 있네. 활은 꺼내 두자.']]},
+  ['설오','(접힌 쪽지를 다시 편다) 홍만… 연목 나루. 이번에는 늦지 않았으면 좋겠는데.'],
+  ['설오','저 발자국은 왜 길 안에서만 맴돌지? …주막에서 들은 말이 빈말은 아니었구나.']]},
  2:{art:'cliff',narration:['연목 나루로 내려가는 분지에서 장례 행렬이 멈췄다. 관을 메고 가는 운반틀인 상여 곁으로, 정체 모를 혼에 몸을 빼앗긴 짐승들이 내려오고 있다. 설오는 높은 바위턱에서 활을 든다.'],story:[
   ['담허','위에 활 든 양반! 사람을 돕겠다면 상여 앞으로 내려오는 놈들부터 막아주시게.'],
-  ['설오','저 아래 어른이 행렬을 이끄십니까?'],['담허','담허라 하네. 상여가 지나는 길목만 열어 주면 되네. 뒤쪽은 호위들이 맡고 있어.'],
+  ['설오','위에서 돕겠습니다! 어른은 누구십니까? 행렬을 맡고 계신 겁니까?'],['담허','담허라 하네. 상여가 지나는 길목만 열어 주면 되네. 뒤쪽은 호위들이 맡고 있어.'],
   ['설오','설오입니다. 높은 놈들은 여기서 쏘겠습니다. 아래로 붙으면 내려가 돕지요.'],
   ['담허','짐승이 쓰러져도 그 옆을 비워 두게. 안에 든 것이 다른 그릇을 찾을 수 있으니.'],
   ['설오','나무꾼이 본 일과 같군요. 자세한 이야기는 사람들을 빼낸 뒤 듣겠습니다.']]},
- 3:{art:'ferry',narration:['홍만은 이미 세상을 떠났다. 딸 연실이 알려 준 나루 움막에는 그가 마지막까지 챙기려 했던 장부가 남아 있다. 담허는 급증한 들림을 조사하기 위해 설오와 동행했다.'],story:[
-  ['설오','수레든 짐승이든, 몸을 부숴도 안에 든 건 남을 수 있다고 했지요. 그게 정확히 뭡니까?'],
-  ['담허','죽은 뒤에도 떠나지 못했거나 떠나지 않은 혼이네. 그런 혼을 원혼이라 부르지. 죽은 사람이 모두 그렇게 되는 건 아니야.'],
-  ['설오','몸이 없는데 어떻게 사람을 덮칩니까?'],['담허','사람이나 짐승, 때로는 물건에 들어가 움직이는 거지. 그 몸이나 물건이 그릇이네.'],
-  ['설오','그래서 눈앞의 몸을 쓰러뜨리는 것만으로는 끝났다고 할 수 없군요.'],
-  ['담허','맞네. 빈 그릇이나 받이진으로 사람에게서 떼어 놓고, 떠날 수 있는지 살펴야 해. 무턱대고 부수는 것과는 다르지.'],
-  ['설오','노와 그물도 그대로 두고 갔습니다. 나루 사람들이 급히 피한 모양입니다.'],
-  ['휘겸','사람들은 먼저 문 쪽으로 보냈소. 나는 여기 남은 길을 지키겠소. 움막으로 갈 거라면 장승을 조심하시오.']]},
+ 3:{art:'ferry',narration:['홍만은 이미 세상을 떠났다. 설오는 그의 딸 연실이 알려 준 장부를 찾아 담허와 나루로 내려왔다. 빈 움막 앞에서 낯선 검객 하나가 두 사람을 향해 손을 들었다.'],story:[
+  ['휘겸','멈추시오. 저 장승이 물 밖으로 기어 나왔소. 그쪽은 위험하오.'],
+  ['설오','(활을 내리지 않은 채) 나루를 지키는 분입니까? 사람들은 어디로 갔지요?'],
+  ['휘겸','휘겸이라 하오. 서쪽 길에서 피란민을 데려오다 여기 발이 묶였소. 걸을 수 있는 사람은 마을 문으로 먼저 보냈소.'],
+  ['설오','저는 설오입니다. 홍만 어르신의 장부를 찾으러 왔습니다. 저 움막에 있다고 들었습니다.'],
+  ['휘겸','홍만 어르신이라면… 부고를 들었소. 움막은 아직 못 살폈소. 내가 장승의 눈을 끄는 동안 들어가 보시오.'],
+  ['담허','나는 담허라 하네. 혼이 옮겨 붙지 못하게 받겠네. 혼자 남아 애썼구먼.']],followups:[
+   [['설오','어른, 아까 받겠다는 건 무엇입니까? 몸을 부숴도 남는 것이요.'],['담허','죽은 뒤에도 떠나지 못한 혼이네. 그런 혼을 원혼이라 부르지. 죽은 사람이 모두 그렇게 되는 건 아니야.'],['설오','저 장승도… 누군가의 혼이 들어 움직이는 겁니까?'],['담허','그래. 사람이나 짐승, 저런 물건도 그릇이 되네. 부수고 끝낼 수 없는 까닭이지.']],
+   [['설오','몸에서 떼어 놓은 뒤에는 어디로 보냅니까?'],['담허','우선 빈 그릇이나 땅에 편 진으로 받아 사람에게서 떨어뜨리네. 그다음 떠날 길을 찾는 거야.'],['설오','그래서 받이진이군요. 이름만 듣고는 무엇을 받는다는 건지 몰랐습니다.'],['담허','(빈 움막을 돌아보며) 여기 남은 것도 살펴야겠네. 서두르되 함부로 부수지는 말게.']]]},
  4:{art:'gate',narration:['장부에 따르면 설오의 고향 사람들은 연목 주막에 묵은 뒤 북문으로 이동했다. 마을 입구에서는 피란민들이 좁은 문을 빠져나오고 있었다.'],story:[
-  ['휘겸','나루에서 온 두 분이군. 휘겸이오. 지금은 부상자들이 문을 빠져나갈 시간을 벌어야 하오.'],
-  ['설오','장부에 적힌 사람들을 찾고 있습니다. 주막에 물어보려면 문부터 지켜야겠군요.'],
-  ['휘겸','나는 문 앞을 막겠소. 두 분은 멀리서 들어오는 놈들을 끊어 주시오.'],
-  ['춘례','짐승만 저러는 게 아니에요. 빈 집 문짝도 밤새 두드리고, 멀쩡하던 사람도 제 몸을 못 가눠요.'],
+  ['휘겸','나루에서 무사히 나왔군. (등 뒤의 문을 살핀다) 아직 다친 사람들이 안에 있소. 잠깐만 더 길을 지켜주시오.'],
+  ['설오','휘겸, 대체 마을 안에서 무슨 일이 난 겁니까? 나루에서 보낸 사람들도 저 안에 있습니까?'],
+  ['휘겸','그 사람들은 먼저 통과했소. 안에 남은 주민들이 이제 나오는 중이오. 나는 문 앞을 막겠소.'],
+  ['춘례','(붕대를 움켜쥔다) 저는 이 마을 춘례예요. 밤새 빈집 문짝이 두드려지더니… 사람까지 제 몸을 못 가눠요.'],
   ['담허','나루 하나의 일이 아니군. 다친 사람은 따로 앉히고, 들렸다는 이유만으로 때리지는 마시오.']]},
  5:{art:'waterfall',narration:['마을 사람들을 지키던 붉은 실이 이제 집 쪽으로 거세게 당겨진다. 줄을 따라온 일행은 폭포 뒤에서 줄을 고정한 쇠고리를 찾았다. 담허는 땅에 혼을 잠시 붙들어 둘 받이진을 펴서, 고리를 끊어도 혼이 주민들에게 돌아가지 않게 하려 한다.'],story:[
-  ['설오','저 고리를 끊으면 마을 쪽 매듭도 풀리는 겁니까?'],
+  ['설오','물 뒤에 쇠고리가 있습니다. 저게 마을의 실을 당기는 겁니까?'],
   ['담허','망 전체를 끊자는 게 아니야. 내가 이쪽을 받아 두고, 지나치게 당기는 고리만 떼어내려는 거네.'],
   ['설오','다른 매듭에도 힘이 옮겨갈 수 있겠군요.'],['담허','그래. 위험이 없다고는 못 해. 사람 쪽으로 쏠리는 지금 상태도 두고 볼 수 없으니 한 곳씩 확인하세.'],
   ['담허','나는 저 평평한 바위에서 진을 붙들겠네. 발을 떼면 물살이 다시 덮일 테니, 틈이 열리거든 고리를 부탁하네.'],['설오','그동안 열린 틈으로 고리쇠만 쏘겠습니다.']]},
  6:{art:'bridge',narration:['휘겸이 앞서 보낸 피란민들은 쉼터에 닿았다. 그러나 늦게 출발한 부상자 운반대 하나가 나무다리 아래에 남아 있었다. 세 사람은 함께 그들을 데리러 내려간다.'],story:[
-  ['휘겸','이 운반대까지 들어가야 호송이 끝나오. 나는 다리 아래로 붙겠소.'],
+  ['휘겸','저기요. 다리 아래 붕대를 흔드는 사람들이 보이오? …너무 오래 기다리게 했군. 내가 내려가겠소.'],
   ['설오','지난번에 같은 흔적을 쫓는다고 하셨지요. 무엇을 보셨습니까?'],
   ['휘겸','서쪽 길에서도 들린 것들이 붉은 실 주변에 몰렸소. 그곳은 잠잠해졌는데 다른 길에서 다시 나타났지.'],
   ['담허','사라진 게 아니라 옮겨 다닌 걸 수도 있겠네.'],['휘겸','그래서 실이 이어진 곳을 직접 확인하려는 거요. 먼저 저 사람들부터 데려갑시다.']]},
- 7:{art:'terrace',narration:['북문 안 주거지에는 미처 피하지 못한 주민이 셋 남았다. 목수 덕수, 아이를 먼저 보낸 월이, 짐꾼 칠복이다. 그들은 붉은 실로 몸에 든 혼을 눌러 둔 채 구조를 기다리고 있었다. 몸이 제 뜻대로 움직이지 않아, 가까이 오지 말라고 손짓하는 이도 있었다.'],story:[
-  ['덕수','멀리 계시오! 아까도 내 손이 멋대로 움직였소.'],['설오','우리를 보면서 말하고 있습니다. 저 사람들도 적인 겁니까?'],
-  ['담허','몸을 빼앗기지 않으려고 버티는 중이네. 아직 제 이름을 기억하고 있네. 저 세 사람에게는 활을 쏘지 말게.'],
-  ['휘겸','주변에서 덮치는 놈들은 내가 막겠소. 구조할 때는 한 사람씩 접근하시오.'],
-  ['담허','그 사람 곁에서 매듭을 짚어 주게. 내가 혼을 빈 기둥 쪽으로 받아 내겠네. 묶은 줄부터 마구 끊으면 사람 몸으로 되붙을 수 있어.']]},
+ 7:{art:'terrace',narration:['북문 안 주거지에서 인기척이 났다. 붉은 실에 묶인 주민 셋이 몸을 웅크리고 있었다. 그중 한 사람이 다가오는 일행에게 필사적으로 고개를 저었다.'],story:[
+  ['덕수','멀리 계시오! 아까도 내 손이 멋대로… 내 마누라한테….'],['설오','(겨누던 활을 내린다) 우리 말을 알아듣습니다. 저 사람까지 쏘면 안 되는 거지요?'],
+  ['담허','그래. 안에 든 혼에 몸을 빼앗기지 않으려고 버티는 중이네. 저 실도 사람을 가둔 건지 지킨 건지 아직 모르네.'],
+  ['설오','괜찮습니다. 화살은 안 쏩니다. 성함을 말해주실 수 있습니까?'],['덕수','덕수요. 목수 덕수… 제발 내 손 좀 잡아주시오.'],
+  ['휘겸','뒤는 내가 보겠소. 담허 어른과 함께 다가가시오.']],followups:[[['설오','묶인 줄을 잘라드리면 됩니까?'],['담허','잠깐. 줄 안쪽에서 혼이 밀고 있네. 먼저 빈 기둥으로 옮겨 받아야 해.'],['설오','알겠습니다. 줄을 잡고 계십시오. 하나씩 돕겠습니다.']]]},
  8:{art:'bier',narration:['홍만을 장사 지낸 뒤 창고에 놓아둔 빈 상여가 움직였다. 관은 비어 있는데 결박은 안쪽에서 잡아당긴 듯 팽팽했다.'],story:[
-  ['설오','그때 쓰던 상여군요. 홍만이 돌아온 겁니까?'],
+  ['설오','(발을 멈춘다) 저건… 홍만 어르신을 모셨던 상여 아닙니까? 장례가 끝났는데 왜 움직이지요?'],
   ['담허','아니야. 홍만 어르신은 장례 때 제대로 떠났네. 빈 상여를 다른 원혼이 그릇으로 삼은 거야.'],
   ['휘겸','폭포 쪽 줄과 같은 방향으로 당겨져 있소.'],
   ['설오','우리가 고리쇠를 끊은 뒤에 이쪽으로 몰렸을 수도 있겠습니다.'],
   ['담허','그 가능성을 빼면 안 되네. 그때 내 받이진으로 전부 받았다고 단정할 수는 없었어.'],
   ['설오','그럼 이번에는 옆으로 빠지는 것까지 보고 정리합시다. 저 상여 하나로 끝났다고 생각하지 않고.']]},
- 9:{art:'yard',narration:['구조한 주민들이 소단이라 부른 젊은 영매는 방울과 붉은 실로 혼을 붙들어 마을을 지켜 왔다. 그러나 몰려드는 혼이 너무 많아 혼자 버티지 못하고 있다. 일행은 그녀가 있는 윗마당에 오르기 전, 아랫마당에 혼을 나누어 받을 두 진을 준비한다.'],story:[
-  ['휘겸','사람들이 이 마당으로 돌아오지 않게 길을 지키겠소. 두 진부터 설치합시다.'],
-  ['설오','준비도 없이 매듭을 놓으라고 할 수는 없겠군요.'],
-  ['담허','어디로 옮길지 눈앞에서 보여줘야지. 소단도 혼자 버티고 있으니.'],
-  ['소단','아래에 진을 놓는 건 봐드릴게요. 하지만 내 줄에는 손대지 마요.'],
-  ['설오','이쪽 준비가 끝나면 이야기합시다. 당신이 구한 사람들에게 듣고 왔습니다.']]},
- 10:{art:'upper-yard',narration:['아랫마당의 대피와 분산 준비는 끝났다. 윗마당에서는 소단이 맨 혼의 끈, 주박이 일행을 가로막았다. 끈을 놓치면 다시 사람에게 혼이 붙을까 두려워, 소단은 도움의 손길조차 막고 있었다. 설오와 담허, 휘겸은 두 받이진을 연결하며 소단의 손을 나누어 받기로 한다.'],story:[
-  ['담허','한꺼번에 놓으라는 게 아니네. 이곳의 두 진부터 잇고, 우리가 받는 만큼만 넘겨주게.'],
-  ['소단','받고 나서 놓치면요? 다시 사람에게 붙으면 그때도 괜찮다고 할 건가요?'],
-  ['설오','괜찮다고 하지 않겠습니다. 그래서 사람을 비웠고, 여기서 같이 막으려는 겁니다.'],
-  ['소단','가까이 오면 망이 버티질 못해요. 나도 어디가 먼저 터질지 몰라요.'],
-  ['휘겸','몸을 노리지 마시오. 길을 막는 주박만 낮춰 진에 닿겠소.'],
-  ['담허','소단, 우리가 받을 곳을 여는 동안 가운데를 놓지 말게. 말만으로 믿으라는 게 아니야.']]}
+ 9:{art:'yard',narration:['구조한 주민들은 자신들을 지킨 사람을 소단이라 불렀다. 일행이 아랫마당에 닿자, 위쪽 담장 너머에서 방울 소리가 뚝 멎었다. 붉은 실에 감긴 손 하나가 담장 위로 보였다.'],story:[
+  ['설오','위에 계신 분! 주민들이 말한 소단입니까? 덕수 씨 일행을 데려왔습니다.'],
+  ['소단','(담장 아래를 내려다본다) 덕수 아저씨가… 걸어서 나갔어요?'],
+  ['설오','예. 담허 어른이 몸에 든 혼을 떼어냈습니다. 당신도 도우러 왔습니다.'],
+  ['소단','도움은 됐어요. 빈자리에 진을 놓는 것까지는 막지 않겠지만, 제 줄에는 손대지 마요.'],
+  ['설오','지금도 손에서 피가 납니다. 아래에서 나눠 받을 테니 잠깐이라도 쉬십시오.'],
+  ['소단','안 보여요? 제가 놓으면 저 실들이 전부 아래로 쏟아져요. 쉬라고 하지 말아요.']],followups:[[['설오','방울로 혼을 부리는 분입니까? 주민들은 목숨을 구해줬다고 하던데….'],['담허','그런 이를 영매라 부르네. 저 아이는 부리는 것보다 붙잡는 데 힘을 다 쓰고 있어.'],['휘겸','그럼 먼저 사람이 없는 자리부터 만들겠소. 믿으라고 다그쳐 봐야 손을 놓지는 못할 거요.']]]},
+ 10:{art:'upper-yard',narration:['윗마당으로 오르는 발밑을 붉은 끈이 후려쳤다. 혼을 얽어 막는 주박이었다. 소단은 일행이 가까이 올 때마다 방울을 쥔 손을 세게 당겼다.'],story:[
+  ['소단','거기서 멈춰요! 고리를 끊은 사람들이잖아요. 이번에는 못 지나가요.'],
+  ['설오','(끈에 긁힌 팔을 감싼다) 또 끊으려는 게 아닙니다. 아래에 받을 곳을 만들었습니다. 직접 보십시오.'],
+  ['소단','보러 갈 수가 없어요! 손을 놓쳤다가 덕수 아저씨가 가족을 덮쳤어요. 당신들까지 믿었다가 또 그러면… 누가 막아요?'],
+  ['담허','내 판단이 모자랐네. 하지만 지금 그 매듭도 터지고 있어. 양옆 진을 이어야 자네 손의 힘을 나눌 수 있네.'],
+  ['소단','(방울을 끌어안는다) 못 넘겨요. 가까이 오지 말라니까요!'],
+  ['휘겸','설오, 사람을 겨누지 마시오. 우리를 때리는 주박만 걷고 진으로 길을 냅시다.']],followups:[[['설오','저 사람도 다칠까 두려워서 이러는 거겠지요. 그렇다고 그냥 물러설 수도 없고….'],['담허','두려움을 틀렸다고 해선 안 되네. 우리가 받을 수 있다는 걸 보여줘야지.'],['설오','소단! 줄을 받칠 테니, 양옆이 당겨지는지만 느껴보십시오. 가운데는 놓지 마십시오.']]]}
+
 };
 const outros={
  1:[['설오','말이 쓰러진 뒤 옆 짐승이 움직였다. 들린 몸을 쓰러뜨려도 안에 든 게 옮겨갈 수 있다는 뜻인가.'],
@@ -14182,14 +14277,14 @@ const outros={
   ['휘겸','앞서 맡은 부상자들은 쉼터에 보냈소. 돌아오는 길의 붉은 실도 갑자기 방향이 달라졌더군.'],
   ['설오','우리가 이 고리를 끊었습니다. 영향이 거기까지 간 모양입니다.'],
   ['휘겸','그렇다면 나도 같이 확인하겠소. 서쪽 길에서 본 들림도 이 실과 이어져 있소. 그냥 두면 쉼터로 가는 길까지 위험해질 거요.'],
-  ['설오','이유를 알았으니 함께 갑시다.'],['휘겸','나무다리 아래에 뒤처진 운반대 하나가 더 있소. 그 사람들까지 데려오고 안으로 갑시다.']],
+  ['설오','혼자 두 길을 다 지키셨군요. 이제 같이 갑시다. 앞이 안 보이면 서로 부르고요.'],['휘겸','나무다리 아래에 뒤처진 운반대 하나가 더 있소. 그 사람들까지 데려오고 안으로 갑시다.']],
  6:[['휘겸','운반대가 쉼터에 닿았소. 이제 남은 주민 쪽으로 갈 수 있겠군.'],['설오','이쪽 고리도 같은 실로 이어져 있습니다. 나루와 마을을 따로 볼 일이 아니군요.'],
   ['담허','한 곳에서 붙잡으면 다른 곳으로도 힘이 갈 수 있네. 얼마나 넓게 망을 친 건지 확인해야 해.'],
   ['휘겸','안쪽에서 사람 목소리를 들었소. 제 몸이 멋대로 움직인다며 가까이 오지 말라고 하더군.'],
   ['설오','살아 있는 사람이란 말이지요. 적부터 찾지 말고 누가 버티고 있는지 보겠습니다.'],['담허','그래. 때려눕히는 대신 떼어낼 방법을 써야 하네.']],
  7:[['덕수','이제 손을 움직여도 내 뜻대로 움직입니다. 정말 빠져나간 거요?'],['담허','자네 몸에서 떨어진 건 받았네. 당분간은 사람들 있는 쉼터에서 쉬게.'],
   ['월이','소단이가 처음 왔을 때도 그렇게 말했어요. 제가 제 아이를 못 알아보니까, 아이를 먼저 밖으로 내보내고 절 묶었어요.'],
-  ['설오','소단. 방울을 들고 붉은 실을 맨 사람이 그 이름입니까?'],['칠복','맞소. 죽여야 멈춘다는 사람들을 말리고, 자기한테 맡기라고 했소.'],
+  ['설오','소단이 아이부터 내보냈군요…. 묶인 분들만 보고는 그런 사정까지 몰랐습니다.'],['칠복','죽여야 멈춘다는 사람들도 말렸소. 자기한테 맡기라고 했지.'],
   ['휘겸','붙잡은 사람을 해치려 했다면 이런 식으로 보호할 이유가 없소.'],
   ['설오','매듭에 사람이 갇힌 것만 보고 잘못 짐작했군요. 소단은 원혼을 떼어내고 사람들이 버틸 시간을 벌고 있었습니다.'],
   ['담허','다만 저 사람 하나가 계속 받아 낼 수는 없어. 장부와 매듭을 보니 이미 그 한계를 넘고 있네.'],
@@ -14201,33 +14296,28 @@ const outros={
   ['담허','나도 받이진 하나로 충분하다고 본 판단을 고쳐야겠어. 탓만 하고 있을 때는 아니네.'],
   ['휘겸','남은 주민을 먼저 마당 밖으로 보냅시다. 그리고 받을 곳을 둘로 나누겠소.'],
   ['설오','그 준비를 보여주고 소단과 이야기하죠. 매듭을 더 끊기 전에.']],
- 9:[['소단','거기서 멈춰요. 받이진을 만들었다고 제 줄까지 풀어도 된다는 뜻은 아니에요.'],['설오','덕수, 월이, 칠복은 구조했습니다. 당신이 사람을 해치려던 게 아니라는 것도 들었습니다.'],
-  ['소단','살았어요? 셋 다?'],['담허','몸에 붙은 것을 떼어내고 길을 비웠네. 이제 자네가 잡은 것도 나눠 받자는 거야.'],
-  ['소단','나눠 받고는요? 다 보낼 수 있어요?'],['담허','그렇게 장담은 못 하네. 하지만 사람 없는 두 자리로 분산하면 자네 혼자 버티는 것보다는 여유가 생겨.'],
-  ['소단','전에 한 번 손을 놓쳤어요. 그때 빠져나간 게 바로 옆 사람에게 붙었어요. 그래서 빈집으로도, 나무로도 받을 곳을 늘렸어요.'],
-  ['설오','다시 그런 일이 생길까 봐 계속 붙잡고 있었군요.'],['소단','그럼 그냥 풀까요? 사람에게 들어가고, 짐승에게 들어가고, 그것도 없으면 주변 물건에 붙는데요.'],
-  ['휘겸','그 위험을 없다고 말하러 온 게 아니오. 지금 망이 버티지 못하는 것도 함께 봐야 하오.'],
-  ['소단','알아요. 잠깐 눈을 떼면 다른 매듭이 당겨져요. 저도 오래 못 버틴다는 건 안다고요.'],
-  ['설오','폭포 고리쇠를 끊은 건 우리입니다. 담허 어른이 받을 곳을 만들었지만, 다른 줄까지 어떻게 바뀔지는 다 알지 못했습니다.'],
-  ['소단','그 뒤로 이쪽이 얼마나 흔들렸는지 알아요?'],['설오','상여에서 봤습니다. 우리 행동도 상황을 악화시켰다는 걸 인정합니다. 그래서 더는 혼자 풀지 않겠습니다.'],
-  ['담허','아랫길은 비웠고 두 진은 준비했네. 위쪽에도 받을 곳을 연결해서, 한 매듭을 옮기는 동안 나머지는 그대로 두세.'],
-  ['휘겸','나는 바깥 길을 지키겠소. 문제가 생기면 사람이 있는 쪽부터 막고.'],
-  ['소단','말처럼 안 되면요? 또 누군가에게 붙으면요?'],['담허','그때 자네 혼자 막게 두지 않겠다는 건 약속할 수 있어. 전부 알고 있다고는 말하지 않겠네.'],
-  ['소단','……전에 놓친 건, 다시 겪고 싶지 않아요. 그 이야기는 지금 더 못 하겠어요.'],
-  ['설오','과거를 캐묻지 않겠습니다. 지금 살릴 수 있는 사람부터 봅시다.'],
-  ['소단','위에는 들어오지 마요. 가까이 오면 주박도 제 뜻대로 안 움직여요.'],['휘겸','그러면 준비한 진을 먼저 연결하겠소. 당신을 죽이러 가는 게 아니오.']],
- 10:[['소단','……줄이 느슨해졌어요. 제가 손을 조금 내려도 버텨요.'],['담허','양쪽으로 나눠 받고 있으니. 한꺼번에 놓지는 말고, 남은 것은 차례로 살펴보세.'],
-  ['휘겸','바깥에서 들어온 놈들은 막았소. 대피로도 아직 비어 있소.'],['설오','우리가 소단의 망을 누그러뜨린 뒤에도 동쪽 밖에서 새로 들어왔습니다. 안에서 빠져나온 것만은 아니었습니다.'],
-  ['소단','저도 전부 제가 놓친 거라고 생각했어요. 묶어 둔 수보다 더 많이 느껴져도 제가 잘못 센 줄 알았어요.'],
-  ['담허','자네가 모아 둔 것이 넘친 건 맞네. 우리도 줄을 건드렸고. 하지만 계속 새로 들어오는 원인은 별도로 찾아야 해.'],
-  ['소단','그럼 제가 망을 놓는다고 끝나는 게 아니네요.'],['설오','예. 당신을 쓰러뜨리면 끝이라고 볼 수 없는 증거를 함께 봤습니다.'],
-  ['휘겸','새로 들어온 것들은 동쪽 외문을 넘었소. 그 너머 산길에서 내려온 흔적도 같은 방향이오.'],
-  ['담허','산맥 너머에서 오는지, 중간 어디서 모이는지는 아직 모르네. 그 길을 따라 확인해야겠어.'],
-  ['설오','홍만의 장부에는 고향 사람들이 연목 북문으로 갔다고 적혀 있었습니다. 그 뒤 기록은 없지만 여기서 찾는 걸 멈추진 않겠습니다.'],
-  ['소단','여기 남은 원혼은요? 또 사람에게 붙으면……'],['담허','받이진과 남은 매듭을 함께 확인하세. 사람들에게 돌아갈 길이 안전해진 다음에 움직이는 거야.'],
-  ['휘겸','쉼터 사람들에게 길이 열린 걸 알리겠소. 모르는 일까지 끝났다고 말하지는 않겠소.'],
-  ['설오','하나는 분명해졌습니다. 누가 붙잡고 있느냐만 볼 일이 아니었어요. 어디서 계속 오는지 찾아야 합니다.'],
-  ['서술','연목의 사람들은 돌아갈 길을 얻었다. 일행에게는 홍만의 장부와, 마당 바깥에서 새로 밀려온 원혼의 흔적이 남았다. 다음에 확인할 곳은 그 흔적이 이어진 산길이다.',{kind:'narration',art:'road'}]]
+ 9:[['담허','아랫마당 두 자리는 이어졌네. 사람들이 지나는 길에서도 떨어져 있어.'],
+  ['소단','(잠시 눈을 감았다가 뜬다) 당기는 힘이 조금 줄었어요. 그래도 위로는 오지 마요.'],
+  ['설오','계속 여기서 혼자 막을 수 있습니까? 손을 보십시오.'],['소단','그러는 당신들은 폭포에서 뭘 했어요? 고리 끊어진 뒤에 이 손으로 잡은 줄이 몇 개인지 알아요?'],
+  ['설오','…우리가 끊었습니다. 마을 쪽 줄을 풀려고 했지만, 다른 곳에 얼마나 쏠릴지는 몰랐습니다.'],
+  ['소단','몰랐다고요? 그때 빈 상여가 일어났어요. 이번에도 모른 채로 건드리겠다는 거잖아요.'],
+  ['담허','변명하지 않겠네. 이번엔 자네가 붙든 가운데를 건드리지 않고, 양옆부터 우리가 받겠네.'],
+  ['소단','오지 말아요. 더 다가오면… 막을 거예요.'],
+  ['휘겸','(설오의 팔을 붙든다) 성급히 오르지 마시오. 저 사람은 우리를 구하러 온 이들로 보지 않소.'],
+  ['설오','알겠습니다. 활끝부터 낮추겠습니다. 하지만 저 손이 꺾일 때까지 기다릴 수도 없습니다.']],
+ 10:[['소단','(방울을 내려놓으려다 다시 쥔다) …정말 놔도 돼요?'],['담허','손가락 하나부터 펴보게. 그래. 양옆 진이 받고 있네.'],
+  ['소단','손이… 말을 안 들어요. 계속 잡고 있어야 하는 줄 알았어요.'],['설오','서두르지 마십시오. 여기 앉아도 됩니다. 앞은 아직 우리가 보고 있습니다.'],
+  ['휘겸','(흙 묻은 검을 내려 세운다) 마지막 무리는 외문 밖으로 밀었소. 사람들 돌아오는 길부터 확인하겠소.'],
+  ['소단','내가 여러분까지 다치게 했어요. 줄을 당기면 아플 걸 알면서도….'],['설오','팔은 나을 겁니다. 다만 다음엔, 두려운 걸 먼저 말해주십시오. 저희도 함부로 끊지 않겠습니다.'],
+  ['소단','약속할게요. …나도 더는 혼자 셀 수 없어요.'],
+  ['담허','잡아 둔 것 말고 바깥에서 들어오는 것도 함께 세어야겠네. 오늘 본 것부터 기록하세.'],
+  ['휘겸','새 무리는 동쪽 외문을 넘어왔소. 산길의 진흙이 여기까지 이어져 있소.'],['설오','그쪽이 근원입니까?'],
+  ['담허','아직은 모르네. 그 너머에서 오는지, 길 중간에 모이는지 따라가 봐야 해.'],
+  ['설오','홍만의 장부도 북문 뒤부터는 비어 있었습니다. 고향 사람들의 흔적을 놓칠 수는 없습니다. 저도 그 길을 보겠습니다.'],
+  ['소단','남은 매듭을 정리하고… 나도 같이 가고 싶어요. 어디서 오는지도 모른 채 또 묶어 두고 싶지는 않아요.'],
+  ['설오','그때 함께 길을 정합시다. 오늘은 우선, 살아 있는 사람들에게 돌아가죠.'],
+  ['서술','소단이 손을 폈다. 손바닥의 붉은 자국은 남았지만, 방울은 더 울리지 않았다. 외문 너머 산길에 새 발자국이 이어져 있었다.',{kind:'narration',art:'road'}]]
+
 };
 const summaries={
  1:'들림이 이 고개에서도 비정상적으로 잦다. 설오는 홍만을 찾는 길에 위험에 빠진 장례 행렬부터 돕기로 했다.',
@@ -14242,7 +14332,7 @@ const summaries={
  10:'소단과 함께 외부에서 밀려온 새 원혼을 막았다. 과부하된 망만이 원인은 아니다. 홍만의 장부와 동쪽 산길의 흔적을 따라, 원혼이 계속 오는 근원을 찾아야 한다.'
 };
 function scene(id,title,lines,options={}){return lines.map(([who,text,meta={}])=>[who,text,{...meta,storyId:'act1-v6:'+id,storyTitle:title,...options}]);}
-for(const st of G.HONRO_CONTENT.stages){const d=intro[st.id];st.narration=d.narration;st.narrationArt=d.art;st.story=d.story;st.outro=outros[st.id];st.storySummary=summaries[st.id];}
+for(const st of G.HONRO_CONTENT.stages){const d=intro[st.id];st.narration=d.narration;st.narrationArt=d.art;st.story=d.story;st.storyFollowups=d.followups||[];st.outro=outros[st.id];st.storySummary=summaries[st.id];}
 const mapScenes={0:[
  ['서술','고개에 오르기 전, 설오는 길가 주막에서 뱃사공 홍만의 소식을 물었다.',{kind:'narration',art:'tavern'}],
  ['주막주인','연목 나루라 했지? 홍만을 찾는 사람이 요즘도 있구먼.'],['설오','몇 해 전 북쪽 산에서 내려온 사람들을 태웠다고 들었습니다. 제 고향 사람들입니다. 그 뒤 소식이 끊겼습니다.'],
@@ -14266,16 +14356,16 @@ const events={
   'last-flight':{lines:[['설오','출구까지 얼마 안 남았습니다. 흩어진 놈들까지 확인하겠습니다.']]}
  },
  3:{
-  'midboss-stage3-seen':{lines:[['휘겸','침수된 장승이 길을 막았소. 사람은 비워 뒀으니 저쪽으로 몰아내시오.']]},
+  'midboss-stage3-seen':{lines:[['휘겸','저 장승이오! 물에 잠겨 있던 것이 기어 나오는 걸 봤소. 사람은 비워 뒀으니 이쪽으로 몰리지 않게 해주시오.']]},
   'dock-beasts':{lines:[['설오','움막으로 가는 길에 또 올라옵니다. 물가를 비우고 움직이죠.']]},
   transfer:{delivery:'dialogue',lines:[['설오','하나가 멈추면 주변이 바로 움직입니다. 사람도 짐승도 물건도 그릇이 될 수 있다는 말이군요.'],['담허','그래. 모든 들린 것을 같은 원혼이라고 단정할 수는 없지만, 옮겨 붙을 길을 남겨 두면 위험하네.'],['설오','움막 처마에는 붉은 실이 매여 있습니다. 저건 그릇과 다릅니까?'],['담허','지나가는 혼을 사람 대신 걸어 두는 매듭에 가까워. 맨 사람의 의도는 장부와 함께 살펴보세.']]}
  },
  4:{'siege-0':{lines:[['휘겸','문 앞을 비우지 마시오. 다친 사람들이 아직 지나가고 있소.']]},'siege-1':{lines:[['휘겸','동쪽에서 새들이 온다. 마지막 행렬까지 엄호하시오.']]}},
  5:{'lower-beasts':{lines:[['설오','사슴들이 받이진 쪽으로 옵니다. 담허 어른이 자리를 지킬 수 있게 막겠습니다.']]},bell:{lines:[['설오','고리가 깨진 쪽에서 방울 소리가 났습니다.'],['담허','줄의 움직임도 달라졌네. 다른 매듭까지 살펴야겠어.']]}},
- 6:{'midboss-stage6-seen':{lines:[['휘겸','교각귀가 운반대 길을 막고 있소. 저걸 먼저 멈춰야 하오.']]},'bridge-crows':{lines:[['휘겸','위쪽 새들을 끊어주시오. 운반대를 노리고 있소.']]},'bridge-boars':{lines:[['설오','기둥 쪽에서 멧돼지가 올라옵니다. 앞길을 확인하고 갑시다.']]},pursuit:{lines:[['휘겸','운반대가 우리를 따라오오. 앞사람만 뛰지 말고 뒤를 봅시다.']]}},
+ 6:{'midboss-stage6-seen':{lines:[['휘겸','다리 기둥이 움직인다! 저런 걸 교각귀라 부르더군. 운반대가 깔리기 전에 멈춰야 하오.']]},'bridge-crows':{lines:[['휘겸','위쪽 새들을 끊어주시오. 운반대를 노리고 있소.']]},'bridge-boars':{lines:[['설오','기둥 쪽에서 멧돼지가 올라옵니다. 앞길을 확인하고 갑시다.']]},pursuit:{lines:[['휘겸','운반대가 우리를 따라오오. 앞사람만 뛰지 말고 뒤를 봅시다.']]}},
  7:{'yard-hounds':{lines:[['휘겸','산개들은 내가 막겠소. 묶인 주민에게는 화살을 쏘지 마시오.']]},'upper-crows':{lines:[['담허','구조하는 동안 새들이 몰리네. 사람과 떨어진 쪽으로 유도하게.']]}},
  8:{'bier-side':{lines:[['설오','상여 밖에도 들린 것이 있습니다. 빈 관만 보고 방심할 수 없겠군요.']]},'bier-crows':{lines:[['담허','첫 결박이 풀리자 새들이 움직이네. 받는 쪽을 보면서 나머지도 처리하세.']]}},
- 9:{'evac-beasts':{lines:[['휘겸','대피로 뒤쪽에 붙었다. 사람들이 돌아오기 전에 막겠소.']]},'evac-crows':{lines:[['소단','위에서 새들이 내려가요. 진을 놓는 사람 곁으로 보내지 마요.']]}},
+ 9:{'evac-beasts':{lines:[['휘겸','대피로 뒤쪽에 붙었다. 사람들이 돌아오기 전에 막겠소.']]},'evac-crows':{lines:[['소단','(담장 너머로 외친다) 아래, 조심해요! 새들이 진을 놓는 사람한테 내려가요!']]}},
  10:{'sodan-hounds':{lines:[['설오','윗마당 바깥에서 짐승들이 옵니다. 소단만 보고 있을 때가 아닙니다.']]}}
 };
 const ledgerPages=[
@@ -14299,22 +14389,32 @@ function interaction(app,m){
   [['담허','두 받이진이 이어졌네. 한 번에 풀지 않고 나누어 받을 준비가 됐어.'],[id===10?'소단':'휘겸',id===10?'진 쪽으로 조금씩 당겨지는 게 느껴져요. 하지만 가운데는 아직 제가 붙들어야 해요.':'바깥길을 지키겠소. 준비가 됐다고 무작정 줄부터 끊지는 맙시다.']],{delivery:'dialogue'});
  if(m.action==='rescue'){
   const testimony={덕수:'내가 집사람 목을 졸랐소. 소단이가 달려들어 떼어놓고 나 대신 빈 기둥에 실을 걸었소. 날 죽이지 않고 묶어 둔 거요.',월이:'제 아이를 먼저 밖으로 내보냈어요. 소단이는 제가 정신이 돌아올 때까지 곁을 지키다 다른 집 비명을 듣고 갔어요.',칠복:'붙잡은 걸 풀면 다시 사람에게 간다고 했소. 저 처녀도 손을 떨면서 실을 계속 덧매고 있었소.'};
-  return scene('rescue-'+m.target,m.label+'의 증언',[[m.label,'이제 제 몸 같습니다. 손이 더는 멋대로 움직이지 않아요.'],['담허','몸에 붙은 것은 받았네. 잠깐 숨부터 고르게.'],[m.label,testimony[m.label]||'방울 든 사람이 사람들을 밖으로 보내고 나를 지켜줬어요.'],['설오','기억나는 말을 더 듣고 싶지만 지금은 안전한 곳부터 갑시다.']],{delivery:'dialogue'});
+  const first=!hs.flags['story:sodan-known'];hs.flags['story:sodan-known']=true;
+  return scene('rescue-'+m.target,m.label+'의 증언',[[m.label,`(손을 펴 보인다) 나는 ${m.label}… 이제 내 뜻대로 움직여요.`],...(first?[[m.label,'소단이가 와서 묶어 주지 않았으면… 누구를 해쳤을지 몰라요.'],['설오','소단이라면, 누구입니까? 이 실을 맨 사람인가요?'],[m.label,'예. 방울을 들고 다니는 젊은 처녀요. 우리 몸에 든 것을 자기가 붙잡겠다고 했어요.']]:[]),['담허','몸에 붙은 것은 받았네. 잠깐 숨부터 고르게.'],[m.label,testimony[m.label]||'방울 든 사람이 사람들을 밖으로 보내고 나를 지켜줬어요.'],['설오','기억나는 말을 더 듣고 싶지만 지금은 안전한 곳부터 갑시다.']],{delivery:'dialogue'});
  }
  return null;
 }
 const eventTitles={cart:'수레 뒤의 기척',more:'고개에 모인 새들',witness:'나무꾼의 증언',ridge:'멈춰 선 행렬','procession-seen':'상여 엄호','road-pressure':'그릇에서 빠져나온 것','sniper-seen':'머리 위의 까마귀','right-cliff':'바뀌는 바람','last-flight':'행렬의 출구','midboss-stage3-seen':'침수된 나루장승','dock-beasts':'움막으로 가는 길',transfer:'몸과 그릇','siege-0':'피란문 앞에서','siege-1':'마지막 피란 행렬','lower-beasts':'받이진을 지키며',bell:'고리 너머의 방울 소리','midboss-stage6-seen':'운반대를 막은 교각귀','bridge-crows':'운반대 위의 새들','bridge-boars':'기둥 아래의 기척',pursuit:'뒤처진 사람들과 함께','yard-hounds':'주민에게 다가가기','upper-crows':'구조하는 동안','bier-side':'빈 상여 바깥','bier-crows':'결박이 풀린 뒤','evac-beasts':'대피로 뒤편','evac-crows':'받이진을 설치하며','sodan-hounds':'윗마당 바깥의 기척'};
 function eventLines(app,ev){if(app.engine?.b.honroCustom)return ev.lines||[];const d=events[app.stage.id]?.[ev.id];return d?scene('event-'+app.stage.id+'-'+ev.id,app.stage.name+' · '+eventTitles[ev.id],d.lines,{delivery:'dialogue'}):ev.lines||[];}
-function cooperation(){return scene('cooperation','망 바깥에서 온 것들',[
- ['서술','일행이 건드리지 않은 동쪽 외문 너머에서 새 무리가 마당으로 넘어왔다. 받이진은 그대로 서 있었고, 바깥 줄이 안쪽을 향해 당겨졌다.',{kind:'narration',art:'upper-yard'}],
- ['설오','동쪽 밖에서 새로 들어옵니다. 방금 낮춘 주박에서 빠져나온 게 아닙니다.'],['휘겸','외문을 넘어오는 걸 봤소. 뒤에 있던 무리와 방향이 다르오.'],
- ['소단','또 왔어요? 그쪽 줄은 풀지 않았는데…….'],['담허','소단, 망 안에 든 것만 세고 있었네. 바깥에서 들어오는 것도 있어.'],
- ['소단','그래서 잡아도 자꾸 늘었던 거예요? 제가 전부 놓친 게 아니고요?'],['담허','지금 넘어온 것들은 그렇네. 근원은 아직 모르지만 자네 혼자 붙잡아 해결할 일은 아니야.'],
- ['설오','양쪽 받이진은 버팁니다. 당신이 가운데를 유지하면 우리는 새로 들어오는 것을 막을 수 있습니다.'],
- ['소단','……알겠어요. 주박은 거둘게요. 동쪽에서 오는 건 저도 받아볼게요.'],
- ['휘겸','내가 앞길을 막겠소. 서로의 진을 등지고, 대피한 사람 쪽으로 보내지 맙시다.'],
- ['담허','받는 자리가 안정될 때까지 함께 버티세. 이제 서로 싸울 이유는 없네.']]);}
-G.HonroStoryContent={version,introductions:intro,mapScenes,outros,summaries,events,ledgerPages,scene,eventLines,interaction,cooperation};
+function cooperation(){return scene('cooperation','손을 나누어 잡다',[
+ ['소단','(휘청이며 줄을 움켜쥔다) 안 돼… 또 놓치면….'],
+ ['담허','넘겨주게. 오른쪽 진으로, 조금만. …됐네. 사람에게 가지 않았어.'],
+ ['소단','받았어요? 정말로…'],
+ ['휘겸','동쪽 외문이다! 새 무리가 담을 넘었소. 설오, 소단 앞을 막으시오!'],
+ ['설오','저쪽 줄은 풀지 않았습니다. 바깥에서 들어오는 겁니다. 저걸 전부 당신 혼자 붙잡으려 했습니까?'],
+ ['소단','잡은 것보다 늘 많았어요. 내가 자꾸 놓치는 줄 알았어요. 그래서 더 세게…'],
+ ['담허','지금 들어온 것까지 자네 잘못은 아니네. 하지만 이대로 모으면 또 넘쳐. 가운데 혼매듭을 풀어 양옆으로 흘려야 해.'],
+ ['소단','(설오를 막던 줄을 거둔다) 가운데는 내가 할게요. 한번 풀기 시작하면 움직일 수 없어요. 방울도 못 들어요.'],
+ ['설오','그동안 앞을 지키겠습니다. 힘들면 부르십시오. 듣고 있습니다.'],
+ ['소단','…소단이에요. 아까는 이름도 제대로 못 말했네요. 나 혼자 두고 가지 말아요.'],
+ ['휘겸','여기 있소. 시작하시오.'],
+ ['안내','소단이 혼매듭 의식을 시작했습니다. 소단은 이동·공격할 수 없습니다. 매 턴 추가되는 적을 막으며 여섯 번의 적 턴을 버티세요. 소단이 쓰러지면 실패합니다.',{kind:'guide'}]]);}
+function finaleMidpoint(){return scene('finale-midpoint','놓치지 않는 손',[
+ ['소단','(몸을 낮춰 매듭을 붙든다) 반은 풀렸어요. 그런데 밖에서 자꾸… 손이 떨려요.'],
+ ['설오','제 목소리 들립니까? 바로 앞에 있습니다. 바깥은 보지 마십시오.'],
+ ['소단','…들려요. 조금만 더, 부탁해요.'],
+ ['담허','양옆은 내가 받네. 숨을 내쉬게. 급하게 풀 필요 없어.']]);}
+G.HonroStoryContent={version,introductions:intro,mapScenes,outros,summaries,events,ledgerPages,scene,eventLines,interaction,cooperation,finaleMidpoint};
 })(globalThis);
 
 (function(G){'use strict';
@@ -14479,8 +14579,9 @@ function alignRecruit(profile,st,b=profile.honroBattle){
 }
 function repairRecruits(profile,b=profile.honroBattle){for(const st of G.HONRO_CONTENT.stages)if(st.recruit)alignRecruit(profile,st,b);}
 function recruit(profile,st,b){
-  if(!st.recruit)return;if(!profile.recruited.includes(st.recruit))profile.recruited.push(st.recruit);
+  if(!st.recruit)return;const first=!profile.recruited.includes(st.recruit);if(first)profile.recruited.push(st.recruit);
   alignRecruit(profile,st,b);profile.party=[...profile.recruited];
+  if(first){const cls=st.recruit,h=profile.heroes[cls];C.autoTrain(h,cls);C.sanitizeLoadout(profile,cls);if(b?.heroes){b.heroes[cls]=clone(h);for(const u of b.units||[])if(u.side===0&&!u.summoned&&u.cls===cls){u.loadout=[...profile.loadouts[cls]];C.applyHero(u,h);}}}
 }
 const budget=id=>{const p=plan(id),start=xpAt(p.entryLevel),end=xpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
 function entryHero(st){const h=C.freshHero('archer');h.xp=xpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
@@ -14512,6 +14613,7 @@ function tuneBoss(b,st,u){
 }
 function actionWeight(a){if(!a)return 0;if(a.type==='multi')return(a.actions||[]).reduce((n,a)=>n+actionWeight(a),0);if(a.type==='sniperAmbush')return a.n*.78;if(a.type==='spawn')return a.n*({bat:.68,crow:.78,lantern:.8,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[a.kind]||1);return 0;}
 function initialize(b,profile){
+  for(const u of b.units)if(u.side===0&&!u.summoned||u.honroAlly){const stats=C.heroStats({xp:C.xpAtLevel(u.level||1),ranks:u.ranks||{}},u.cls);u.critChance=stats.critChance;u.critMultiplier=stats.critMultiplier;}
   if(b.mode!=='campaign')return;
   if(b.honroGrowth?.ledger?.version===config.version)return;
   const ledger=clone(profile.honroGrowth||{version:config.version,stages:{}});ledger.version=config.version;ledger.stages??={};
@@ -14605,21 +14707,22 @@ function update(app,dt,state){
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(!matches(ev.when,{...state,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
-    if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);
+    if(!hs.pendingEvents.includes(ev.id)){hs.pendingEvents.push(ev.id);hs.eventActors??={};hs.eventActors[ev.id]={id:app.actorBoundary||b.active,round:b.round};app.dirty=true;}
   }
   flush(app);
 }
 function flush(app){
   const e=app.engine,b=e.b,hs=b.honroState;
-  if(app.dialogue||['won','lost'].includes(b.phase))return;
+  if(!app.actorBoundary||app.dialogue||['won','lost'].includes(b.phase))return;
   let spawned=false;
   for(const id of [...(hs.pendingEvents||[])]){
     const ev=b.honroEvents.find(v=>v.id===id),key='event:'+id;
     if(!ev||hs.flags[key]){hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);continue;}
+    const wait=hs.eventActors?.[id],actor=wait&&e.unit(wait.id);if(wait&&b.round<=wait.round&&actor&&!actor.acted&&!actor.dead&&app.actorBoundary!==actor.id)continue;
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(combat(ev.action)){
-      const cap=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
+      const cap=Math.min(G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1),hs.sodanCoop?G.HonroMission.FINALE_CAP:Infinity);
       if(spawned||enemies+spawnCount(ev.action)>cap)continue;
     }
     if(G.HonroAllies.execute(app,ev.action)===false)continue;
@@ -14633,13 +14736,17 @@ function flush(app){
 // Reaching an exit can win during movement, before the next event boundary.
 // Finish already-triggered, action-free discoveries before the ending dialogue.
 function finishNarrative(app){const b=app.engine?.b,hs=b?.honroState;if(!hs||b.honroCustom||b.phase!=='won')return;for(const id of [...(hs.pendingEvents||[])]){const ev=b.honroEvents.find(v=>v.id===id);if(!ev||ev.action||hs.flags['event:'+id])continue;const lines=G.HonroStoryContent.eventLines(app,ev);if(!lines?.length)continue;if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0))continue;app.sayLines(lines);hs.flags['event:'+id]=true;hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);}}
-function attach(app,e){const next=e.switchTeam.bind(e);e.switchTeam=function(){
+function actorEnd(app,id){const hs=app.engine?.b.honroState;if(!hs||app.training||app.actorBoundary)return;hs.actorTurnSerial=(hs.actorTurnSerial||0)+1;app.actorBoundary=id||'boundary';try{G.HonroAllies.missionTick(app,0);flush(app);app.startQueuedStory?.();}finally{app.actorBoundary=null;}}
+function attach(app,e){
+ const finish=e.finishAction.bind(e);e.finishAction=function(...args){const b=e.b,u=e.active,acted=u?.acted,round=b.round;const out=finish(...args);if(u&&(!acted&&u.acted||b.round!==round))actorEnd(app,u.id);return out;};
+ const tick=e.tick.bind(e);e.tick=function(dt){const b=e.b,phase=b.phase,id=b.active,index=phase==='ally'?b.honroState?.allyQueue?.index:b.summonTurn?.index;tick(dt);if((phase==='ally'&&index!==b.honroState?.allyQueue?.index)||(phase==='summon'&&index!==b.summonTurn?.index))actorEnd(app,id);};
+ const next=e.switchTeam.bind(e);e.switchTeam=function(){
   const b=e.b,hs=b.honroState;if(b.phase!=='transition')return;
   const boundary=b.teamEnds.join(':');
-  if(hs.lastEventBoundary!==boundary){hs.lastEventBoundary=boundary;G.HonroAllies.missionTick(app,0);flush(app);app.startQueuedStory?.();}
+  if(hs.lastEventBoundary!==boundary){hs.lastEventBoundary=boundary;actorEnd(app,b.active);}
   if(app.dialogue||b.phase!=='transition')return;next();
 };}
-G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,combat,spawnCount,balance};
+G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,actorEnd,combat,spawnCount,balance};
 })(globalThis);
 
 (function(G){'use strict';
@@ -14781,7 +14888,7 @@ const C=G.HONRO_CORE,W=G.HonroWorld,clamp=C.clamp;
 /** A non-player coalition, not a fifth selectable hero and not an immortal prop.
  * Turn schedule: heroes -> summons -> allied NPCs -> enemies. All queue state is serialized. */
 function attach(app,e){const b=e.b,baseTransition=e.completeTeamTransition.bind(e),baseTick=e.tick.bind(e);
- e.completeTeamTransition=function(){if(e.checkEnd())return;const hs=b.honroState;const list=b.units.filter(u=>u.honroAlly&&!u.dead&&u.hp>0);if(b.honroStage===2&&list.length&&!list.some(u=>u.allyRole==='porter')){const bearer=list.find(u=>u.allyRole==='guard')||list[0];bearer.allyOriginalRole??=bearer.allyRole;bearer.allyRole='porter';app.event('남은 호위가 상여채를 이어받았다.');}if(b.side===0&&list.length&&hs.allyDoneRound!==b.round){hs.allyDoneRound=b.round;hs.allyQueue={ids:list.map(u=>u.id),index:0,returnActive:b.active,phase:'begin',elapsed:0,started:false};b.phase='ally';b.turnAge=0;e.emit('save');return;}if(b.side===0&&b.honroStage===2&&!list.length){const car=e.unit('objective'),nearHero=e.heroesAlive().find(u=>car&&Math.hypot(u.x-car.x,u.y-car.y)<820),clear=!e.alive(1).length;if(car&&(nearHero||clear)){const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&t.x>car.x-35&&t.x<car.x+720);const lead=nearHero?.x??car.x+900;car.x=Math.max(car.x,Math.min(car.x+(clear?420:240),lead+180,block?block.x-105:(b.honroEscortGoalX??b.width-180)));car.y=W.top(b,car.x,car.y);}}baseTransition();};
+ e.completeTeamTransition=function(){if(e.checkEnd())return;const hs=b.honroState;const list=b.units.filter(u=>u.honroAlly&&!u.dead&&u.hp>0&&u.allyRole!=='channeler');if(b.honroStage===2&&list.length&&!list.some(u=>u.allyRole==='porter')){const bearer=list.find(u=>u.allyRole==='guard')||list[0];bearer.allyOriginalRole??=bearer.allyRole;bearer.allyRole='porter';app.event('남은 호위가 상여채를 이어받았다.');}if(b.side===0&&list.length&&hs.allyDoneRound!==b.round){hs.allyDoneRound=b.round;hs.allyQueue={ids:list.map(u=>u.id),index:0,returnActive:b.active,phase:'begin',elapsed:0,started:false};b.phase='ally';b.turnAge=0;e.emit('save');return;}if(b.side===0&&b.honroStage===2&&!list.length){const car=e.unit('objective'),nearHero=e.heroesAlive().find(u=>car&&Math.hypot(u.x-car.x,u.y-car.y)<820),clear=!e.alive(1).length;if(car&&(nearHero||clear)){const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&t.x>car.x-35&&t.x<car.x+720);const lead=nearHero?.x??car.x+900;car.x=Math.max(car.x,Math.min(car.x+(clear?420:240),lead+180,block?block.x-105:(b.honroEscortGoalX??b.width-180)));car.y=W.top(b,car.x,car.y);}}baseTransition();};
  e.tick=function(dt=C.STEP){if(b.phase==='ally'){tick(app,e,dt,baseTransition);C.tickRedesign(e,dt);return;}baseTick(dt);};
 }
 function coalition(e){return e.b.units.filter(u=>!u.dead&&u.hp>0&&(u.side===0||u.honroAlly||u.honroCivilian));}
@@ -14799,7 +14906,7 @@ function finish(e,q){q.index++;q.phase='begin';q.elapsed=0;q.started=false;e.b.p
 function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if(!q){transition();return;}if(e.checkEnd())return;
  q.elapsed+=dt;b.turnAge+=dt;const id=q.ids[q.index],u=e.unit(id);
  if(q.index>=q.ids.length){b.active=q.returnActive;hs.allyQueue=null;transition();e.emit('save');return;}
- if(!u||u.dead){finish(e,q);return;}b.active=u.id;
+ if(!u||u.dead||u.allyRole==='channeler'){finish(e,q);return;}b.active=u.id;
  if(q.phase==='begin'){
   b.reviewDamage={};b.reviewFocus=undefined;
   q.phase='move';q.elapsed=0;q.started=false;const support=u.allyRole==='daoist'||u.allyRole==='medium';u.moveLeft=u.maxMove=u.allyRole==='guard'?1400:support?1250:1180;u.walkSpeed=u.allyRole==='guard'?700:support?630:560;u.focus=u.maxFocus=180;
@@ -14880,10 +14987,36 @@ G.HonroAllies={attach,tick,missionTick,execute,coalition,safeAllyAim};
 })(globalThis);
 
 (function(G){'use strict';
+const FINALE_TURNS=6,FINALE_CAP=28;
+function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('boss'),space=Math.max(0,FINALE_CAP-e.alive(1).length),n=Math.min(index===0?8:6,space);if(!n)return index>0;
+ const before=new Set(b.units.map(u=>u.id)),dir=index%2?-1:1,x=Math.max(180,Math.min(b.width-200,boss.x+dir*(650+index*35)));
+ const actions=[{type:'spawn',n:Math.ceil(n*.65),x,kind:index%3===2?'boar':'hound'},{type:'spawn',n:Math.floor(n*.35),x:Math.max(180,Math.min(b.width-200,boss.x-dir*720)),kind:'crow'}].filter(a=>a.n);
+ if(G.HonroAllies.execute(app,{type:'multi',actions})===false)return false;
+ const units=b.units.filter(u=>!before.has(u.id));for(let i=0;i<units.length;i++){const u=units[i];u.aggroUntil=b.round+10;if(i%2===0){u.honroTargetId=boss.id;u.honroTargetUntil=b.round+10;}}
+ hs.finaleWaves??=[];hs.finaleWaves.push({index,round:b.round,units:units.map(u=>u.id)});app.event(`혼매듭으로 몰려드는 들림 · ${index+1}차 습격`);return true;}
+function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss');if(!sodan||sodan.dead)return;
+ if(!hs.sodanCoop){if(!app.actorBoundary||(hs.receivers||0)<2||sodan.hp>sodan.maxHp*.42)return;
+  if(!rush(app,0))return;
+  hs.sodanBreach={units:hs.finaleWaves[0].units,round:b.round,source:'east'};hs.sodanCoop=true;hs.coopHold=0;hs.finaleLastEnemyEnd=b.teamEnds[1]+(b.side===1?1:0);hs.finaleWave=0;
+  Object.assign(sodan,{side:2,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:Math.max(sodan.shield||0,100),hp:Math.max(sodan.hp,Math.round(sodan.maxHp*.65))});hs.finaleAnchor={x:sodan.x,y:sodan.y};
+  const C=G.HONRO_CORE,h=structuredClone(b.heroes.occultist);h.xp=Math.max(h.xp,C.xpAtLevel(sodan.level||1));C.autoTrain(h,'occultist');sodan.ranks={...h.ranks};sodan.loadout=C.knownSkills(h,'occultist').filter(id=>!C.SKILLS[id].passive).slice(0,4);Object.assign(sodan,C.criticalStats('occultist',sodan.level,sodan.ranks));
+  b.queue=(b.queue||[]).filter(id=>id!==sodan.id);
+  const beforeCoop=l=>l[2]?.storyId?.includes('entry-follow-10-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(beforeCoop));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!beforeCoop(l));
+  app.sayLines(G.HonroStoryContent.cooperation());
+ }
+ // Old saves retain earned progress, but need six full enemy turns in total.
+ hs.finaleLastEnemyEnd??=b.teamEnds[1];hs.finaleWave??=hs.coopHold||0;hs.finaleDefenseTurns??=hs.coopHold||0;hs.finaleAnchor??={x:sodan.x,y:sodan.y};
+ Object.assign(sodan,{...hs.finaleAnchor,side:2,honroAlly:true,allyRole:'channeler',fixed:true,vx:0,vy:0});delete sodan.moveTarget;delete sodan.aiMove;b.enemyLimit=b.honroActiveLimit=6;
+ if(!app.actorBoundary)return;
+ if(b.teamEnds[1]>hs.finaleLastEnemyEnd){const delta=b.teamEnds[1]-hs.finaleLastEnemyEnd,previous=hs.coopHold||0;hs.finaleLastEnemyEnd=b.teamEnds[1];hs.finaleDefenseTurns+=delta;hs.coopHold=Math.min(FINALE_TURNS,hs.finaleDefenseTurns);if(previous<3&&hs.coopHold>=3)app.sayLines(G.HonroStoryContent.finaleMidpoint());}
+ // An unusually early conversion must not leave empty rounds until the campaign pacing floor.
+ if(!G.HonroObjectives.state(b,app.stage).complete&&hs.finaleWave<hs.finaleDefenseTurns&&rush(app,hs.finaleDefenseTurns))hs.finaleWave=hs.finaleDefenseTurns;
+}
 function tick(app,dt){
  const e=app.engine;if(!e||app.training)return;
  if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
  const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
+ if(st.id===7&&(hs.rescuedCount||0)>=3){const instruction=l=>l[2]?.storyId?.includes('entry-follow-7-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(instruction));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!instruction(l));}
  const lead=heroes.reduce((a,c)=>a.x>c.x?a:c),height=Math.min(...heroes.map(h=>h.y)),boundary=b.phase==='transition'&&!b.projectiles.length&&!e.settleBusy();
  for(const m of b.honroMarkers||[]){
    const distance=m.type==='sector'?430:m.type==='relic'?155:180;
@@ -14910,28 +15043,10 @@ function tick(app,dt){
  const progress=st.objective==='overwatch'?(obj?.x||0):st.objective==='escort'?Math.max(lead.x,obj?.x||0):lead.x;
  G.HonroEncounters.update(app,dt,{progress,height,broken:b.terrain.filter(t=>t.honroSeal&&t.broken).length,collected:b.honroMarkers.filter(m=>m.type==='relic'&&m.collected).length});
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
- // Stage 10: Sodan is never killed. Once both receiving arrays are ready and her ward is
- // sufficiently weakened, a new breach arrives from outside her net. That is the narrative proof
- // that she is not the root cause; she changes faction and helps hold the yard.
- if(st.id===10){
-   const sodan=e.unit('boss');
-   if(sodan&&!sodan.dead&&!hs.sodanCoop&&(hs.receivers||0)>=2&&sodan.hp<=sodan.maxHp*.42){
-     const ma=b.honroMapAnchors||{},east=ma.eastHall?.x??Math.min(b.width-1100,3600),edge=ma.outerEast?.x??b.width-500,before=new Set(b.units.map(u=>u.id));
-     // Commit the faction change only when the visible external wave can actually enter.
-     const breach=G.HonroAllies.execute(app,{type:'multi',actions:[{type:'spawn',n:2,x:east,kind:'hound'},{type:'spawn',n:1,x:edge,kind:'stag'},{type:'sniperAmbush',n:1}]});
-     if(breach===false){app.checkMission(e);return;}
-     hs.sodanBreach={units:b.units.filter(u=>!before.has(u.id)).map(u=>u.id),round:b.round,source:'east'};
-     hs.sodanCoop=true;hs.coopHold=0;hs.lastCoopRound=-1;
-     sodan.side=2;sodan.honroAlly=true;sodan.honroCivilian=false;sodan.allyRole='medium';sodan.fixed=false;sodan.acted=true;sodan.shield=Math.max(sodan.shield||0,100);sodan.hp=Math.max(sodan.hp,Math.round(sodan.maxHp*.38));
-     b.queue=(b.queue||[]).filter(id=>id!==sodan.id);
-     app.sayLines(G.HonroStoryContent.cooperation());
-     app.event('소단이 주박을 거두고 일행과 함께 바깥에서 밀려드는 들림을 막기 시작한다.');
-   }
-   if(hs.sodanCoop&&b.round>(hs.sodanBreach?.round??b.round)&&hs.lastCoopRound!==b.round){hs.lastCoopRound=b.round;hs.coopHold=Math.min(2,b.round-(hs.sodanBreach?.round??b.round));if(hs.coopHold===1)app.event('받이진이 버틴다. 마지막 매듭을 풀 수 있는 틈이 생겼다.');}
- }
+ if(st.id===10)finale(app);
  app.checkMission(e);
 }
-G.HonroMission={tick};
+G.HonroMission={tick,finale,FINALE_TURNS,FINALE_CAP};
 })(globalThis);
 
 (function(G){'use strict';
@@ -14940,7 +15055,7 @@ function state(b,st){
  const hs=b.honroState||{},markers=b.honroMarkers||[],heroes=b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead&&u.hp>0),obj=b.units.find(u=>u.id==='objective'),boss=b.units.find(u=>u.id==='boss'),seals=b.terrain.filter(t=>t.honroSeal),left=seals.filter(t=>!t.broken),foes=b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0),pending=G.HonroEncounters.pending(b);const all=[];const add=(kind,id,x,y,label,extra={})=>{const t={kind,id,x,y,label,...extra};all.push(t);return t;};
  seals.forEach((t,i)=>add('seal',t.id,t.x+t.w/2,t.y,st.id===5?'절벽 고리쇠 · 설오의 화살로 파괴':st.id===8?`상여 결박 ${i+1} · 공격`:`매듭 ${i+1} · 공격`,{done:!!t.broken,box:t}));
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
- if(boss&&!boss.dead)add('boss',boss.id,boss.x,boss.y-boss.h,st.id===10?'소단의 주박 · 비살상 제압':'빈 상여 · 제압',{unitId:boss.id});for(const u of b.units.filter(u=>u.honroMidboss&&!u.dead&&u.id!=='boss'))add('midboss',u.id,u.x,u.y-u.h,`${u.name} · 중간 우두머리`,{unitId:u.id});
+ if(boss&&!boss.dead)add('boss',boss.id,boss.x,boss.y-boss.h,st.id===10?(hs.sodanCoop?'소단 · 혼매듭 의식 보호':'소단의 주박 · 비살상 제압'):'빈 상여 · 제압',{unitId:boss.id});for(const u of b.units.filter(u=>u.honroMidboss&&!u.dead&&u.id!=='boss'))add('midboss',u.id,u.x,u.y-u.h,`${u.name} · 중간 우두머리`,{unitId:u.id});
  for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?'담허로 E · 의식 시작':'E · 받이진 설치'}`);if(m.type==='resident')add('interact',m.id,m.x,m.y,`${m.label} · 구조`);}
  // The saved/live map owns the exit. Content dimensions can belong to an older map.
  const exit=markers.find(m=>m.type==='exit'),exitX=(st.objective==='overwatch'?b.honroEscortGoalX:undefined)??exit?.x??b.honroMapAnchors?.exit?.x??b.width-(st.objective==='overwatch'?290:st.objective==='rescue'?130:180);
@@ -14956,7 +15071,7 @@ function state(b,st){
   case'rescue3':complete=(hs.rescuedCount||0)>=3;summary=`들린 주민 구조 · ${hs.rescuedCount||0}/3${foes.length?' · 주변 위협 '+foes.length+'명':''}`;kinds=(hs.rescuedCount||0)<3?['interact']:[];break;
   case'bierboss':complete=!left.length&&!!boss?.dead;summary=left.length?`빈 상여의 결박부터 파괴 · ${seals.length-left.length}/${seals.length}`:boss&&!boss.dead?'빈 상여 본체 제압':'빈 상여 제압 완료 · 원혼 수습';kinds=left.length?['seal']:boss&&!boss.dead?['boss']:[];break;
   case'prepare':complete=(hs.receivers||0)>=2;summary=`주민 대피 후 받이진 준비 · ${hs.receivers||0}/2${foes.length?' · 위협 '+foes.length+'명':''}`;kinds=(hs.receivers||0)<2?['interact']:[];break;
-  case'sodan':complete=!!hs.sodanCoop&&(hs.coopHold||0)>=2;summary=!hs.sodanCoop?'소단의 주박을 비살상으로 낮추고 두 받이진 활성화':`소단과 공동 방어 · 안정 ${hs.coopHold||0}/2 · 적 ${foes.length}명`;kinds=!hs.sodanCoop?['boss','interact']:[];break;
+  case'sodan':complete=!!hs.sodanCoop&&(hs.coopHold||0)>=6;summary=!hs.sodanCoop?'소단의 주박을 비살상으로 낮추고 두 받이진 활성화':`소단 보호 · 혼매듭 ${hs.coopHold||0}/6턴 · 적 ${foes.length}명`;kinds=!hs.sodanCoop?['boss','interact']:['boss'];break;
   default:complete=!foes.length;
  }
  const objectiveReady=complete,minimumRound=[3,4,5,6,7,8,9,10,11,12][st.id-1]||1,settleRounds=({ledger:1,seals:1,rescue3:2,bierboss:1,prepare:2})[st.objective]||0;
@@ -14981,8 +15096,10 @@ const briefings={
  10:[['담허','소단의 몸은 치지 말게. 주박만 낮추고 받을 자리를 열어야 하네.',{focus:'boss'}]]
 };
 function lines(app){const fallback=app.engine.heroesAlive()[0]?.name||'설오';return(briefings[app.stage.id]||[]).map(([who,text,meta])=>[app.canSpeak(who)?who:fallback,text,meta]);}
-const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모두 처치할 필요는 없습니다.',2:'상여가 도착 지점에 닿도록 앞길을 엄호하세요. 길에서 떨어진 적은 남아도 됩니다.',3:'장부 곁에서 E 또는 장부 확인 버튼을 누르세요. 확보 후 한 턴 동안 일행을 지키며 철수합니다.',4:'피란민이 빠져나가는 다섯 턴 동안 문을 지키세요. 남은 적 수와 관계없이 대피가 끝나면 완료됩니다.',5:'담허로 받이진 안에서 E를 한 번 누르세요. 다음 턴부터는 그 자리에서 공격할 수 있습니다. 이동·도약으로 진을 벗어나면 물틈이 닫힙니다. 설오로 고리쇠를 부순 뒤 한 턴 동안 진을 안정시킵니다.',6:'운반대에 접근하고 교각귀를 제압한 뒤 도착 지점까지 호송하세요.',7:'주민 곁에서 E 또는 구조 버튼을 누르세요. 세 사람을 구출한 뒤 두 턴 동안 주민들을 지키며 대피를 돕습니다.',8:'결박을 끊고 빈 상여 본체를 제압하세요. 한 턴 동안 원혼을 수습하면 주변 적이 남아도 완료됩니다.',9:'두 받이진을 설치한 뒤 두 턴 동안 유지하세요. 진을 준비하고 생존하는 것이 목표입니다.',10:'두 받이진을 활성화하고 소단의 주박을 낮추세요. 소단과 협력한 뒤 두 턴 동안 버티면 됩니다.'};
-function entry(app){const n=(app.stage.narration||[]).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',guides[app.stage.id],{kind:'guide',storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];for(let i=0;i<remaining.length;i+=5)hs.deferredStory.push({round:2+Math.floor(i/5)*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i,app.stage.name+' · 길 위에서',remaining.slice(i,i+5))});}return [...opening,guide];}
+const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모두 처치할 필요는 없습니다.',2:'상여가 도착 지점에 닿도록 앞길을 엄호하세요. 길에서 떨어진 적은 남아도 됩니다.',3:'장부 곁에서 E 또는 장부 확인 버튼을 누르세요. 확보 후 한 턴 동안 일행을 지키며 철수합니다.',4:'피란민이 빠져나가는 다섯 턴 동안 문을 지키세요. 남은 적 수와 관계없이 대피가 끝나면 완료됩니다.',5:'담허로 받이진 안에서 E를 한 번 누르세요. 다음 턴부터는 그 자리에서 공격할 수 있습니다. 이동·도약으로 진을 벗어나면 물틈이 닫힙니다. 설오로 고리쇠를 부순 뒤 한 턴 동안 진을 안정시킵니다.',6:'운반대에 접근하고 교각귀를 제압한 뒤 도착 지점까지 호송하세요.',7:'주민 곁에서 E 또는 구조 버튼을 누르세요. 세 사람을 구출한 뒤 두 턴 동안 주민들을 지키며 대피를 돕습니다.',8:'결박을 끊고 빈 상여 본체를 제압하세요. 한 턴 동안 원혼을 수습하면 주변 적이 남아도 완료됩니다.',9:'두 받이진을 설치한 뒤 두 턴 동안 유지하세요. 진을 준비하고 생존하는 것이 목표입니다.',10:'두 받이진을 활성화하고 소단의 주박을 낮추세요. 협력 후 소단은 혼매듭을 붙들어 이동·공격할 수 없습니다. 매 턴 밀려드는 적을 막으며 여섯 차례의 적 턴 동안 소단을 보호하세요. 소단이 쓰러지면 실패합니다.'};
+function entry(app){const n=(app.stage.narration||[]).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',guides[app.stage.id],{kind:'guide',storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;
+ if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];const beats=(app.stage.storyFollowups||[]).map(x=>x.slice());if(remaining.length&&beats.length&&remaining.length+beats[0].length<=5)beats[0].push(...remaining);else for(let i=remaining.length;i>0;i-=5)beats.unshift(remaining.slice(Math.max(0,i-5),i));beats.forEach((lines,i)=>hs.deferredStory.push({round:2+i*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i*5,app.stage.name+' · 길 위에서',lines)}));}
+ return [...opening,guide];}
 function focus(app,kind){const s=state(app.engine.b,app.stage);return s.targets.find(t=>t.kind===kind)||s.allTargets.find(t=>t.kind===kind&&!t.done)||s.allTargets.find(t=>t.kind===kind);}
 function refresh(app){if(!app.engine||app.training)return;const s=state(app.engine.b,app.stage);app.scene.missionTargets=s.targets;const el=document.getElementById('objective-text');if(el)el.textContent=s.summary;}
 function draw(scene,e){const targets=scene.goalFocus?[scene.goalFocus]:scene.missionTargets;if(!targets?.length)return;const c=scene.ctx,{w,h,d}=scene.size(),z=scene.scale,cv=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();const top=110,bottom=Math.max(top+30,Math.min(h-24,(hud?.top??h)-cv.top-26)),mini=document.getElementById('minimap')?.getBoundingClientRect();c.save();c.setTransform(d,0,0,d,0,0);c.font='600 12px sans-serif';c.textAlign='center';c.textBaseline='middle';let outside=0;scene.missionDrawn=[];for(const t of targets){const x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z,visible=x>30&&x<w-30&&y>top&&y<bottom;if(!visible&&outside++>0)continue;let px=Math.max(70,Math.min(w-70,x)),py=Math.max(top,Math.min(bottom,y-26));const label=(visible?'':'목표 · ')+t.label.split(' · ')[0],width=Math.min(w-24,c.measureText(label).width+16);if(mini&&px+width/2>mini.left-cv.left&&py-33<mini.bottom-cv.top&&py+5>mini.top-cv.top){if(mini.bottom-cv.top+40<bottom)py=mini.bottom-cv.top+40;else px=Math.max(width/2+8,mini.left-cv.left-width/2-10);}c.fillStyle='#e5c57e';c.beginPath();c.moveTo(px-7,py-8);c.lineTo(px+7,py-8);c.lineTo(px,py+3);c.closePath();c.fill();const lx=Math.max(width/2+6,Math.min(w-width/2-6,px));c.fillStyle='#10242aee';c.fillRect(lx-width/2,py-33,width,20);c.fillStyle='#ecd398';c.fillText(label,lx,py-23,width-8);}c.restore();}
@@ -48856,6 +48973,7 @@ globalThis.HONRO_MONSTERS={"version":1,"sourceSha256":"0135eba1c0b04f66ce8bcb7bb
                 this.field(c, f.x, f.y, rr, f.kind || f.type || 'gravity');
             }
             G.HONRO_CORE.drawStakes(c,e,this.time);
+            if(b.honroStage===10&&b.honroState?.sodanCoop){const v=b.units.find(u=>u.id==='boss'&&!u.dead);if(v){const done=b.honroState.coopHold||0;c.save();c.strokeStyle='#ccb77c';c.lineWidth=2/this.scale;for(let i=0;i<6;i++){c.globalAlpha=i<done?.9:.22;c.beginPath();c.ellipse(v.x,v.y+3,75,19,0,i*Math.PI/3+.06,(i+1)*Math.PI/3-.06);c.stroke();}c.globalAlpha=.6;for(const m of b.honroMarkers||[])if(m.action==='receiver'&&m.collected)L(c,v.x,v.y-v.h*.45,m.x,m.y-12,'#c5b08b66',1);c.globalAlpha=1;c.fillStyle='#ebd497';c.textAlign='center';c.font=`600 ${12/this.scale}px sans-serif`;c.fillText(`혼매듭 ${done}/6 · 보호`,v.x,v.y-v.h-30/this.scale);c.restore();}}
             for (const z of b.zones || []) {
                 if (z.dead)
                     continue;
@@ -48869,7 +48987,7 @@ globalThis.HONRO_MONSTERS={"version":1,"sourceSha256":"0135eba1c0b04f66ce8bcb7bb
             }
             if(!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
             for (const v of b.units || []) {
-                if (v.x < this.x - w / this.scale - 100 || v.x > this.x + w / this.scale + 100)
+                if (v.dead || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
                     continue;
                 this.unit(c, v, v.id === b.active, charging && v.id === b.active ? power : 0);
             }
@@ -49335,7 +49453,10 @@ const oldUnit=Scene.prototype.unit;
 Scene.prototype.unitBody=function(c,u,charge=0){c.save();c.translate(u.x,u.y);const baseHeight=u.boss?230:u.honroType==='beast'?125:['crow','bat'].includes(u.honroType)?83:['ghost','shade','lantern'].includes(u.honroType)?112:102;c.scale(u.h/baseHeight,u.h/baseHeight);
  if(u.honroType==='bier')this.bier(c,u);else if(u.honroType==='gate')hall(c,0,0,108,122);else if(u.boss)this.boss(c,u);else if(u.honroType==='warden'){this.warden(c,u);}else if(u.honroType==='civilian'){this.human(c,{...u,cls:'mage'},H.hero.mage,false,0,0);}else if(u.summoned||['ghost','shade','lantern'].includes(u.honroType))this.spirit(c,u);else if(u.honroType==='bat')this.bat(c,u);else if(u.honroType==='crow')this.crow(c,u);else if(u.honroType==='beast')this.beast(c,u,(u.moving||0)>0?Math.sin(this.time*12)*9:0);else if(u.honroType==='mourner'){this.human(c,{...u,cls:'occultist'},H.hero.occultist,true,0,0);c.fillStyle='#1d292e';c.fillRect(-13,-116,28,28);stroke(c,[[-20,-91],[-3,-76],[23,-89]],'#99876c',3);}else this.human(c,u,H.hero[u.cls]||H.hero.archer,u.side===1,(u.moving||0)>0?Math.sin(this.time*12)*8:0,charge);
  c.restore();};
-Scene.prototype.unit=function(c,u,active,charge=0){if(u.dead)return;if(!u.portraitOnly)this.unitOutline?.(c,u);E(c,u.x,u.y+2,u.r*1.35,5,'#091a2180');c.save();if(!u.portraitOnly&&u.hurt>0){const pulse=Math.sin(u.hurt*36)>0;c.filter=pulse?'brightness(2.6) sepia(1) saturate(4) hue-rotate(320deg)':'brightness(1.65)';}this.unitBody(c,u,charge);c.restore();if(u.portraitOnly)return;const width=u.honroFinalBoss?120:u.honroMidboss?96:u.boss?116:u.honroType==='bier'?85:u.honroAlly?49:52,y=u.y-u.h-12;c.fillStyle='#10272b';c.fillRect(u.x-width/2-1,y-1,width+2,6);c.fillStyle=u.side===0?'#a2bd9e':u.side===2?'#c5ad77':u.elite?'#bb9871':'#ad776c';c.fillRect(u.x-width/2,y,width*Math.max(0,u.hp/u.maxHp),4);if(active)this.activeMarker(c,u,y);if(u.honroAlly){P(c,[[u.x-4,u.y+8],[u.x,u.y+12],[u.x+4,u.y+8],[u.x,u.y+4]],'#c7b889');}}
+// Tint one composited sprite, never hundreds of filtered vector draw calls.
+// Four reusable size buckets bound memory and avoid resizing a surface for every monster.
+Scene.prototype.hitBody=function(c,u,charge){const m=c.getTransform(),scale=Math.max(.25,Math.min(2,Math.hypot(m.c,m.d))),extent=Math.max(100,u.h,u.r*3)*4,size=[128,256,512,1024].find(n=>n>=extent*scale)||1024,rs=Math.min(scale,size/extent);this._hitLayers??=new Map();let cv=this._hitLayers.get(size);if(!cv){cv=document.createElement('canvas');cv.width=cv.height=size;this._hitLayers.set(size,cv);}const cc=cv.getContext('2d'),cx=size/2,cy=size*.72;cc.setTransform(1,0,0,1,0,0);cc.clearRect(0,0,size,size);cc.save();cc.setTransform(rs,0,0,rs,cx-u.x*rs,cy-u.y*rs);this.unitBody(cc,u,charge);cc.restore();cc.globalCompositeOperation='source-atop';cc.fillStyle=Math.sin(u.hurt*36)>0?'#ff625f88':'#fff7e6aa';cc.fillRect(0,0,size,size);cc.globalCompositeOperation='source-over';c.drawImage(cv,u.x-cx/rs,u.y-cy/rs,size/rs,size/rs);};
+Scene.prototype.unit=function(c,u,active,charge=0){if(u.dead)return;if(!u.portraitOnly)this.unitOutline?.(c,u);E(c,u.x,u.y+2,u.r*1.35,5,'#091a2180');if(!u.portraitOnly&&u.hurt>0)this.hitBody(c,u,charge);else this.unitBody(c,u,charge);if(u.portraitOnly)return;const width=u.honroFinalBoss?120:u.honroMidboss?96:u.boss?116:u.honroType==='bier'?85:u.honroAlly?49:52,y=u.y-u.h-12;c.fillStyle='#10272b';c.fillRect(u.x-width/2-1,y-1,width+2,6);c.fillStyle=u.side===0?'#a2bd9e':u.side===2?'#c5ad77':u.elite?'#bb9871':'#ad776c';c.fillRect(u.x-width/2,y,width*Math.max(0,u.hp/u.maxHp),4);if(active)this.activeMarker(c,u,y);if(u.honroAlly){P(c,[[u.x-4,u.y+8],[u.x,u.y+12],[u.x+4,u.y+8],[u.x,u.y+4]],'#c7b889');}}
 
 // RC15 environment-detail overrides. Physics stays untouched; these are pure scene layers.
 const rc15OldBackground=Scene.prototype.background,rc15OldLandmark=Scene.prototype.landmark,rc15OldInkTree=Scene.prototype.inkTree;
@@ -49592,13 +49713,15 @@ function host(app){let node=$('dialogue-root');if(!node){node=document.createEle
 function actorFor(app,who){const actor=app.speakerUnits?.(who).find(u=>!u.dead&&u.hp>0);if(actor)return actor;const boss=app.engine?.b.units.find(u=>u.id==='boss'&&u.name===who&&!u.dead&&u.hp>0);return app.stage?.id===10&&who==='소단'?boss:null;}
 function allowed(app,who){return who==='서술'||who==='기록'||who==='안내'||app.screen!=='battle'||!!actorFor(app,who)||app.canSpeak(who);}
 function history(app){if(app.training)return[];if(app.engine?.b.honroCustom)return app.engine.b.honroState.narrative??=[];return app.profile.honroNarrative??=[];}
-function groups(lines){const result=[];for(const line of lines){const last=result.at(-1);if(last&&last[0][2]?.storyId===line[2]?.storyId)last.push(line);else result.push([line]);}return result;}
+function groups(lines){const result=[];for(const line of lines){const last=result.at(-1),a=last?.[0][2]||{},b=line[2]||{};if(last&&['storyId','waitActor','waitRound','afterAction'].every(key=>a[key]===b[key]))last.push(line);else result.push([line]);}return result;}
 function remember(app,lines,title){for(const part of groups(lines)){const meta=part[0]?.[2]||{},id=meta.storyId||`${app.stage?.id||0}:${title}:${part[0]?.[1]}`,entry={id,title:meta.storyTitle||title||'길 위의 대화',lines:clone(part)};const log=history(app),old=log.findIndex(x=>x.id===id);if(old>=0)log[old]=entry;else log.push(entry);if(log.length>120)log.splice(0,log.length-120);}}
 function journalHTML(app){const log=history(app);return `<h2>여정의 기록</h2><p class="muted">지나온 대화와 발견한 문서입니다. 건너뛴 대화도 여기서 읽을 수 있습니다.</p>${log.length?log.map(x=>`<details class="story-record"><summary>${esc(x.title)}</summary>${x.lines.map(([who,text,meta={}])=>`<div class="record-row ${meta.kind==='document'?'record-document':''}"><b>${esc(meta.documentTitle||who)}</b><p>${esc(text)}</p></div>`).join('')}</details>`).join(''):'<p>아직 나눈 대화가 없습니다.</p>'}${(app.profile.record||[]).length?`<details class="story-record"><summary>여정과 전투 기록</summary>${app.profile.record.slice(-30).map(x=>`<div class="record-row"><b>${esc(x.place)}</b><p>${esc(x.text)}</p></div>`).join('')}</details>`:''}`;}
 function journal(app){app.open(journalHTML(app));}
 function historyView(app,node){for(const child of node.children)child.inert=true;node.insertAdjacentHTML('beforeend',`<div class="story-history-overlay"><section class="story-history" role="dialog" aria-modal="true" aria-label="여정의 기록"><button class="primary" data-story-tool="back">대화로 돌아가기</button>${journalHTML(app)}</section></div>`);node.querySelector('[data-story-tool="back"]').focus({preventScroll:true});}
 function controls(node){const actions=node.querySelector('.story-actions,.narration-actions');if(actions)actions.insertAdjacentHTML('afterbegin','<button class="ghost" data-story-tool="history">대화 기록</button>');}
-function queue(app,lines){const b=app.engine?.b;if(!b)return;const hs=b.honroState;hs.storyQueue??=[];hs.storyQueue.push(...lines.filter(l=>allowed(app,l[0])).map(([who,text,meta={}])=>[who,text,{...meta,delivery:'dialogue',waitForClear:false}]));app.dirty=true;if(!app.dialogue&&!app.modal?.classList.contains('open')&&!app.done&&!['won','lost'].includes(b.phase))drain(app);}
+function waitForActor(app){const b=app.engine.b;return app.actorBoundary?{afterAction:b.honroState.actorTurnSerial||0}:{afterAction:(b.honroState.actorTurnSerial||0)+1,waitActor:b.active,waitRound:b.round};}
+function ready(app,meta){const b=app.engine.b,u=b.units.find(u=>u.id===meta.waitActor);return (b.honroState.actorTurnSerial||0)>=(meta.afterAction||0)&&(!meta.waitActor||b.round>meta.waitRound||!u||u.acted||u.dead||app.actorBoundary===u.id);}
+function queue(app,lines){const b=app.engine?.b;if(!b)return;const hs=b.honroState;hs.storyQueue??=[];const wait=waitForActor(app);hs.storyQueue.push(...lines.filter(l=>allowed(app,l[0])).map(([who,text,meta={}])=>[who,text,{...meta,delivery:'dialogue',waitForClear:false,...wait}]));app.dirty=true;if(app.actorBoundary&&!app.dialogue&&!app.modal?.classList.contains('open')&&!app.done&&!['won','lost'].includes(b.phase))drain(app);}
 function start(app,lines,options={}){if(options.after&&options.index===undefined&&!app.engine?.b.honroCustom)lines=G.HonroStoryContent.scene(`${options.after}-${app.stage?.id}`,options.title||app.stage?.name,lines);if(options.after==='outcome'&&options.index===undefined){G.HonroEncounters.finishNarrative(app);const hs=app.engine?.b.honroState;if(hs){restoreQueuedSpeech(hs);lines=[...(hs.storyQueue||[]),...(hs.deferredStory||[]).flatMap(x=>x.lines),...lines];hs.storyQueue=[];hs.deferredStory=[];hs.storyBanter=[];hs.banterLine=null;}}lines=lines.filter(l=>allowed(app,l[0]));if(!lines.length){if(options.after==='outcome')app.outcome(true);return false;}app.cancelInput();app.acc=0;app.turnNotice=null;app.storyHistoryOpen=false;const banter=$('banter');if(banter)banter.hidden=true;const banner=$('turn-banner');if(banner)banner.hidden=true;if(!app.dialogue&&app.scene)app.storyCamera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};app.dialogue={...options,lines:clone(lines),index:Math.min(options.index||0,lines.length-1)};remember(app,lines,options.title);save(app);draw(app);return true;}
 function save(app){if(app.engine&&!app.training){app.engine.b.honroStory=app.dialogue?clone(app.dialogue):null;app.profile.honroBattle=clone(app.engine.b);app.persist();app.dirty=true;}else if(app.screen==='map'){app.profile.honroMapStory=app.dialogue?.id?{id:app.dialogue.id,index:app.dialogue.index}:null;app.persist();}}
 function drawBust(cv,actor,cls){const source=document.createElement('canvas');source.width=640;source.height=900;const c=source.getContext('2d'),scene=new G.HonroScene(source),u={...(actor||{}),portraitOnly:true,cls,x:0,y:0,h:100,r:22,side:actor?.side??0,dead:false,maxHp:0,angle:25,facing:1,moving:0,hurt:0,anim:0,jumping:false};c.translate(320,820);c.scale(6,6);scene.unit(c,u,false,0);const pixels=c.getImageData(0,0,source.width,source.height).data;let top=source.height,bottom=0;for(let y=0;y<source.height;y++)for(let x=0;x<source.width;x++)if(pixels[(y*source.width+x)*4+3]>24){top=Math.min(top,y);bottom=y;break;}if(top>=bottom)return;const pad=(bottom-top)*.035,sy=Math.max(0,top-pad),height=(bottom-top)*.46+pad,width=height*cv.width/cv.height;cv.getContext('2d').drawImage(source,source.width/2-width/2,sy,width,height,0,0,cv.width,cv.height);}
@@ -49623,7 +49746,7 @@ function draw(app){const node=host(app),d=app.dialogue;document.body.classList.t
 function finish(app){const d=app.dialogue;if(!d)return;app.dialogue=null;save(app);draw(app);app.acc=0;if(d.id){app.profile.seen[d.id]=true;app.profile.honroMapStory=null;app.persist();}if(d.after==='outcome')app.outcome(true);else if(!drain(app)&&d.after==='entry')turn(app,true);}
 function next(app){if(!app.dialogue||app.storyHistoryOpen)return;app.dialogue.index++;draw(app);}function key(app,e){if(app.storyHistoryOpen){if(e.code==='Tab'){e.preventDefault();const items=[...host(app).querySelectorAll('.story-history button,.story-history summary')],index=items.indexOf(document.activeElement);items[(index+(e.shiftKey?-1:1)+items.length)%items.length]?.focus();}if(e.code==='Escape'){e.preventDefault();app.storyHistoryOpen=false;draw(app);}return;}if(['Space','Enter'].includes(e.code)&&document.activeElement?.dataset.storyTool){e.preventDefault();if(!e.repeat)document.activeElement.click();return;}if(['Space','Enter','Escape','Tab'].includes(e.code))e.preventDefault();if(e.code==='Tab'){const buttons=[...host(app).querySelectorAll('button')],index=buttons.indexOf(document.activeElement);buttons[(index+(e.shiftKey?-1:1)+buttons.length)%buttons.length]?.focus();}else if(['Space','Enter'].includes(e.code)&&!e.repeat){if(document.activeElement?.dataset.action==='dialogue-skip')finish(app);else next(app);}}
 function restoreQueuedSpeech(hs){hs.storyQueue=[...(hs.banterLine?[hs.banterLine.line]:[]),...(hs.storyBanter||[]).flat(),...(hs.storyQueue||[])];hs.storyBanter=[];hs.banterLine=null;}
-function drain(app){if(app.dialogue)return false;const hs=app.engine?.b.honroState;if(!hs)return false;restoreQueuedSpeech(hs);const [selected,...waiting]=groups(hs.storyQueue);if(!selected)return false;hs.storyQueue=waiting.flat();return start(app,selected,{title:selected[0][2]?.storyTitle||app.stage.name+' · 길 위의 사건'});}
+function drain(app){if(app.dialogue)return false;const hs=app.engine?.b.honroState;if(!hs)return false;restoreQueuedSpeech(hs);for(const line of hs.storyQueue){line[2]??={};if(line[2].afterAction===undefined)Object.assign(line[2],waitForActor(app));}const waiting=groups(hs.storyQueue),index=waiting.findIndex(lines=>ready(app,lines[0][2]));if(index<0)return false;const [selected]=waiting.splice(index,1);hs.storyQueue=waiting.flat();return start(app,selected,{title:selected[0][2]?.storyTitle||app.stage.name+' · 길 위의 사건'});}
 function map(app){const completed=Math.max(0,...Object.keys(app.profile.cleared).map(Number)),id=`map-story-v${G.HonroStoryContent.version}-${completed}`;if(app.profile.seen[id])return;const lines=G.HonroStoryContent.mapScenes[completed];if(!lines)return;const index=app.profile.honroMapStory?.id===id?app.profile.honroMapStory.index:0;start(app,lines,{id,index:Math.min(index,lines.length-1),title:completed?'다음 길로':'연목으로 가는 길'});}
 function turnSide(b){return ['ally','summon'].includes(b.phase)?'ally':b.side===0?'player':'enemy';}function turnLabel(b){const side=turnSide(b);return side!=='player'&&!hasPhaseUnit(b,side)?'':{player:'아군 턴',enemy:'적군 턴',ally:'동맹군 턴'}[side];}function hasPhaseUnit(b,side){if(side==='enemy')return b.units.some(u=>u.side===1&&!u.dead&&u.hp>0);if(side==='ally'){const ids=b.honroState?.allyQueue?.ids||[];return ids.some(id=>{const u=b.units.find(v=>v.id===id);return u&&!u.dead&&u.hp>0;});}return true;}function turnPaused(app,now=performance.now()){return !!app.turnNotice&&now<app.turnNotice.pauseUntil;}
 function turn(app,force=false){const b=app.engine?.b;if(!b||app.training||app.dialogue||app.done)return;const side=turnSide(b),key=`${b.round}:${side}`;if(!force&&app.lastTurnNotice===key)return;app.lastTurnNotice=key;if(!hasPhaseUnit(b,side)){app.turnNotice=null;const old=$('turn-banner');if(old)old.hidden=true;return;}const now=performance.now();app.turnNotice={until:now+1050,pauseUntil:now+(side==='player'?250:700),side};app.acc=0;app.cancelInput();app.audio?.play('turn');const actor=b.phase==='ally'?b.honroState?.allyQueue?.ids[b.honroState.allyQueue.index]:b.phase==='summon'?b.summonTurn?.queue[b.summonTurn.index]:b.active;if(actor&&side!=='player')app.scene?.focusUnit(actor,1200);let node=$('turn-banner');if(!node){node=document.createElement('div');node.id='turn-banner';node.setAttribute('role','status');app.root.appendChild(node);}node.hidden=false;node.dataset.side=side;node.innerHTML=`<small>${b.round}번째 턴</small><strong>${turnLabel(b)}</strong><i></i>`;}
@@ -50203,7 +50326,7 @@ G.HonroTraining={toolbar,open};
                 if(args[0]){const src=e.unit(args[0]);if(src?.honroAlly&&(u.side===0||u.side===2))return;if(u.honroAlly&&src?.side===0)return;}
                 if (u.id === 'boss' && e.b.terrain.some(t => t.honroSeal && !t.broken)) amount *= .20;
                 if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop){const floor=Math.ceil(u.maxHp*.36);amount=Math.min(amount,Math.max(0,u.hp-floor));}
-                const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&u.hp<=0){u.hp=1;u.dead=false;}
+                const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
         } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
@@ -50217,10 +50340,11 @@ G.HonroTraining={toolbar,open};
                 return true;
             const heroes = b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
             const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
-            if (!heroes.length || objective?.dead || rescuedResidentLost) {
+            const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
+            if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);
-                b.winnerReason = objective?.dead || rescuedResidentLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.';
+                b.winnerReason = objective?.dead || rescuedResidentLost || channelerLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.';
                 this.dirty = true;
                 return true;
             }
@@ -50780,6 +50904,8 @@ G.HonroTraining={toolbar,open};
                         }
                         this.acc += dt * this.playbackSpeed();
                         // .06s frame cap × 4 speed × 120Hz needs up to 29 substeps.
+                        e.planningBudget(4);
+                        try{
                         for (let k = 0; k < 32 && this.acc >= 1 / 120; k++) {
                             if (e.canAct()) {
                                 let x = clamp(((this.keys.has('ArrowRight')||this.keys.has('KeyD')) ? 1 : 0) - ((this.keys.has('ArrowLeft')||this.keys.has('KeyA')) ? 1 : 0) + this.stick.x, -1, 1);
@@ -50795,6 +50921,7 @@ G.HonroTraining={toolbar,open};
                             if(['aim','enemy','ally','summon'].includes(e.b.phase))G.HonroStory.turn(this);
                             if (this.dialogue||G.HonroStory.turnPaused(this)||['won', 'lost'].includes(e.b.phase)){this.acc=0;break;}
                         }
+                        }finally{e.planningBudget();}
                         if (['won', 'lost'].includes(e.b.phase) && !this.training&&!this.dialogue)
                             this.outcome();
                     }

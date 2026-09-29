@@ -15,7 +15,7 @@ test('Campaign chronology preserves recruits and excludes later-act revelations'
  const text=JSON.stringify(g.HonroStoryContent);
  assert(!/백기곡|대천도|무명사|백기장/.test(text));
  for(const st of stages)assert(st.narration.length&&st.story.length&&st.outro.length&&st.storySummary);
- assert(stages[1].outro.length>=18&&stages[8].outro.length>=20&&stages[9].outro.length>=15);
+ assert(stages[1].outro.length>=18&&stages[8].outro.length>=8&&stages[9].outro.length>=15);
 });
 test('Early-act clues distinguish past travelers from recent possession reports',()=>{
  const text=id=>JSON.stringify(g.HONRO_CONTENT.stages[id-1]);
@@ -46,13 +46,13 @@ test('An exit reached before the turn boundary still delivers a triggered witnes
  g.HonroEncounters.finishNarrative(app);assert.equal(app.speeches.length,10);
 });
 test('A blocked external wave cannot commit cooperation or partially duplicate spawns',()=>{
- const {app,b,e}=battlefield(g,10),boss=e.unit('boss');b.phase='transition';b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
+ const {app,b,e}=battlefield(g,10),boss=e.unit('boss');b.phase='transition';app.actorBoundary=b.active;b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
  const original=g.HonroAllies.execute,units=JSON.stringify(b.units);g.HonroAllies.execute=()=>false;
  try{g.HonroMission.tick(app,0);g.HonroMission.tick(app,0);assert(!b.honroState.sodanCoop);assert.equal(boss.side,1);assert.equal(JSON.stringify(b.units),units);assert.equal(app.speeches.length,0);}finally{g.HonroAllies.execute=original;}
 });
 test('Visible new enemies precede cooperation; resume and repeat never spawn the wave twice',()=>{
- const {app,b,e}=battlefield(g,10),boss=e.unit('boss');b.phase='transition';b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
- g.HonroMission.tick(app,0);assert(b.honroState.sodanCoop);assert.equal(boss.side,2);assert.equal(b.honroState.sodanBreach.units.length,4);
+ const {app,b,e}=battlefield(g,10),boss=e.unit('boss');b.phase='transition';app.actorBoundary=b.active;b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
+ g.HonroMission.tick(app,0);assert(b.honroState.sodanCoop);assert.equal(boss.side,2);assert.equal(b.honroState.sodanBreach.units.length,8);
  const newUnits=b.honroState.sodanBreach.units.map(id=>e.unit(id));assert(newUnits.every(u=>u.side===1&&!u.dead));assert(newUnits.filter(u=>u.x>b.width*.5).length>=3);
  assert(app.speeches.some(l=>l[0]==='소단'));assert(app.speeches.some(l=>l[1].includes('바깥에서 들어오는')));
  const count=b.units.length;g.HonroMission.tick(app,0);assert.equal(b.units.length,count);

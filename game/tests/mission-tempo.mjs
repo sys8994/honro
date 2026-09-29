@@ -23,9 +23,9 @@ for(let id=1;id<=10;id++)check(`stage ${id}: authored objective can be completed
  if(id===7)b.honroState.rescuedCount=3;
  if(id===8){for(const t of b.terrain)if(t.honroSeal)t.broken=true;const boss=b.units.find(u=>u.id==='boss');boss.dead=true;boss.hp=0;}
  if(id===9)b.honroState.receivers=2;
- if(id===10){b.honroState.sodanCoop=true;b.honroState.coopHold=2;}
+ if(id===10){b.honroState.sodanCoop=true;b.honroState.coopHold=6;}
  assert.equal(g.HonroObjectives.state(b,st).complete,true);return {initial:before.summary,targets:before.targets.map(t=>t.label)};
 });
 check('Stage 2 RC12 is wider and lower while preserving elevated overwatch',()=>{const {b}=battlefield(g,2);assert.equal(b.width,4300);assert.equal(b.height,4000);const archer=b.units.find(u=>u.side===0&&u.cls==='archer'),bier=b.units.find(u=>u.id==='objective');assert.ok(bier.y-archer.y>900);assert.ok(b.width>b.height);return {width:b.width,height:b.height,verticalSeparation:+(bier.y-archer.y).toFixed(0)};});
-check('Stage 10 cannot complete before Sodan cooperates and both receiving arrays have done their job',()=>{const {b,st}=battlefield(g,10);for(const u of b.units)if(u.side===1&&u.id!=='boss'){u.dead=true;u.hp=0;}for(const ev of b.honroEvents)b.honroState.flags['event:'+ev.id]=true;b.honroState.receivers=2;assert.equal(g.HonroObjectives.state(b,st).complete,false);b.honroState.sodanCoop=true;b.honroState.coopHold=2;const boss=b.units.find(u=>u.id==='boss');boss.side=2;assert.equal(g.HonroObjectives.state(b,st).complete,true);});
+check('Stage 10 cannot complete before Sodan cooperates and both receiving arrays have done their job',()=>{const {b,st}=battlefield(g,10);for(const u of b.units)if(u.side===1&&u.id!=='boss'){u.dead=true;u.hp=0;}for(const ev of b.honroEvents)b.honroState.flags['event:'+ev.id]=true;b.honroState.receivers=2;assert.equal(g.HonroObjectives.state(b,st).complete,false);b.honroState.sodanCoop=true;b.honroState.coopHold=6;const boss=b.units.find(u=>u.id==='boss');boss.side=2;assert.equal(g.HonroObjectives.state(b,st).complete,true);});
 await writeFile(gameRoot+'/../_local/game-reports/mission-tempo.json',JSON.stringify({checks},null,2)+'\n');console.log(`${checks.length} mission and enemy-flight checks passed`);

@@ -21,7 +21,7 @@ test('distance, drop and speed are independent and monotonic',()=>{
  p.skill='A05';const sp=[500,800,1150].map(v=>{p.vx=v;return C.trajectoryMultiplier(p,a.u,{x:100,y:900});});assert(sp[0]<sp[1]&&sp[1]<sp[2]);assert.equal(C.trajectoryMultiplier(p,a.u,{x:4000,y:2200}),sp[2]);
 });
 test('seeded crit repeats exactly and obeys caps',()=>{
- const trial=()=>{const a=arena('A14',8),p=a.fire(),t=a.foe();a.u.ranks.AP02=8;p.preparedRank=8;const out=[];for(let i=0;i<20;i++){const hp=t.hp;a.e.hurt(t,20,a.u.id,true,p,p);out.push(hp-t.hp);}assert.equal(C.critProfile(p,a.u).chance,.80);assert(Math.abs(C.critProfile(p,a.u).multiplier-2.66)<1e-8);return out;};assert.deepEqual(trial(),trial());assert(new Set(trial()).size>1);
+ const trial=()=>{const a=arena('A14',8),p=a.fire(),t=a.foe();p.preparedRank=8;const out=[];for(let i=0;i<20;i++){const hp=t.hp;a.e.hurt(t,20,a.u.id,true,p,p);out.push(hp-t.hp);}assert.equal(C.critProfile(p,a.u).chance,.718);assert(Math.abs(C.critProfile(p,a.u).multiplier-2.66)<1e-8);Object.assign(a.u,{critChance:.65,critMultiplier:3});assert.equal(C.critProfile(p,a.u).chance,.80);assert.equal(C.critProfile(p,a.u).multiplier,3.5);return out;};assert.deepEqual(trial(),trial());assert(new Set(trial()).size>1);
 });
 test('정심 consumes one distance cast and expires after two turns',()=>{
  const a=arena('A10',8);a.fire();assert.equal(a.b.projectiles.length,0);assert.equal(a.u.prepared.rank,8);a.u.loadout=['A01','A14'];a.b.phase='aim';a.u.ranks.A14=1;assert(a.e.fire('A01',30,.5));assert(a.u.prepared);a.b.projectiles=[];a.b.phase='aim';assert(a.e.fire('A14',30,.5));assert(!a.u.prepared);assert.equal(a.b.projectiles[0].preparedRank,8);a.u.prepared={rank:1,expires:3};a.b.round=4;C.tickRedesign(a.e,0);assert(!a.u.prepared);

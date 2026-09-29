@@ -39,6 +39,7 @@ export class AudioEngine {
     music=new BgmPlayer();
     enabled=true; volume=.55; context:AudioContext|null=null; master:GainNode|null=null;
     buffers=new Map<string,AudioBuffer>(); voices=new Set<AudioBufferSourceNode>();
+    private gainTarget=-1; private warming=false;
     pending:{name:string;at:number}[]=[];
     lastPlayed:Record<string,number>={};requestedAt:Record<string,number>={};startedAt:Record<string,number>={};playCount=0;
     static samples=soundSamples;
@@ -46,8 +47,9 @@ export class AudioEngine {
         const settings=s as Profile['settings']&{music?:boolean;musicVolume?:number};
         this.music.configure(settings.music!==false,(Number(s.volume)||0)*(settings.musicVolume??.65));
         this.enabled=!!s.sound;this.volume=Math.max(0,Math.min(1,Number(s.volume)||0));
-        if(this.master&&this.context)this.master.gain.setTargetAtTime(this.enabled?this.volume:0,this.context.currentTime,.015);
-        if(!this.enabled){this.pending=[];this.pause();}
+        const gain=this.enabled?this.volume:0;
+        if(this.master&&this.context&&gain!==this.gainTarget){this.master.gain.setTargetAtTime(gain,this.context.currentTime,.015);this.gainTarget=gain;}
+        if(!this.enabled&&(this.pending.length||this.voices.size))this.pause();
     }
     async wake():Promise<boolean>{
         this.music.unlock();
@@ -55,7 +57,7 @@ export class AudioEngine {
         try{
             if(!this.context){
                 const Constructor=globalThis.AudioContext||(globalThis as any).webkitAudioContext;if(!Constructor)return false;
-                const ctx:AudioContext=this.context=new Constructor();
+                const ctx:AudioContext=this.context=new Constructor({latencyHint:'interactive'});
                 this.master=ctx.createGain();this.master.gain.value=this.volume;
                 const compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-12;compressor.knee.value=12;compressor.ratio.value=5;compressor.attack.value=.003;compressor.release.value=.22;
                 this.master.connect(compressor);compressor.connect(ctx.destination);
@@ -63,9 +65,12 @@ export class AudioEngine {
             if(this.context!.state!=='running')await this.context!.resume();
             const now=performance.now(),queue=this.pending.splice(0);
             for(const item of queue)if(now-item.at<300)this.play(item.name);
+            this.warm();
             return this.context!.state==='running';
         }catch{return false;}
     }
+    private buffer(name:string){let buffer=this.buffers.get(name);if(!buffer&&this.context){const samples=soundSamples(name,this.context.sampleRate);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,this.context.sampleRate);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}return buffer;}
+    private warm(){if(this.warming)return;this.warming=true;const names=['arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','meteor','qiRebound','win','lose'];const step=()=>{if(!this.context||this.context.state==='closed')return;const name=names.shift();if(name)this.buffer(name);if(names.length){if(typeof requestIdleCallback==='function')requestIdleCallback(step,{timeout:250});else setTimeout(step,20);}};setTimeout(step,0);}
     play(name:string){
         if(!this.enabled||this.volume<=0||name==='click')return;
         const now=performance.now();this.requestedAt[name]=now;
@@ -73,12 +78,11 @@ export class AudioEngine {
             this.pending=this.pending.filter(p=>now-p.at<300&&p.name!==name);this.pending.push({name,at:now});return;
         }
         if(now-(this.lastPlayed[name]??-1e9)<(name==='arrowhit'?0:name==='qiHit'?24:45))return;
-        let buffer=this.buffers.get(name);
-        if(!buffer){const samples=soundSamples(name,this.context.sampleRate);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,this.context.sampleRate);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}
+        const buffer=this.buffer(name);if(!buffer)return;
         if(this.voices.size>=20){const oldest=this.voices.values().next().value;oldest?.stop();if(oldest)this.voices.delete(oldest);}
         const source=this.context.createBufferSource();source.buffer=buffer;source.connect(this.master!);this.voices.add(source);
         source.onended=()=>{this.voices.delete(source);source.disconnect();};source.start();
-        this.lastPlayed[name]=this.startedAt[name]=now;this.playCount++;
+        this.lastPlayed[name]=now;this.startedAt[name]=performance.now();this.playCount++;
     }
     pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.pending=[];}
     setTheme(_n:number){}
