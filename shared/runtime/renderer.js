@@ -139,7 +139,7 @@
                 if(raw>=1){if(tw.kind==='unit'){this.storyTween={...tw,from:to,to,duration:1,start:now-1};}else{this.manual=!!tw.manual;this.storyTween=null;}}
             }
             if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
-            else if(!this.storyTween){this.x = this.cameraAxis(this.x,w/this.scale,-40,b.width+40);this.y = this.cameraAxis(this.y,h/this.scale,-220,b.height);}
+            else if(!this.storyTween&&!this.skillPreview){this.x = this.cameraAxis(this.x,w/this.scale,-40,b.width+40);this.y = this.cameraAxis(this.y,h/this.scale,-220,b.height);}
             c.save();
             c.translate(w / 2, h / 2);
             c.scale(this.scale, this.scale);
@@ -199,7 +199,8 @@
             for (const v of b.units || []) {
                 if (v.dead || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
                     continue;
-                this.unit(c, v, v.id === b.active, charging && v.id === b.active ? power : 0);
+                this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
+                G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
             }
             G.HONRO_CORE.drawCombatPassives(c,e,this.time);
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];

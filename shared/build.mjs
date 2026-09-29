@@ -4,6 +4,7 @@ import path from 'node:path';
 import {buildCore} from '../game/engine/build.mjs';
 import {buildMonsters} from '../tools/monster-forge/build.mjs';
 import {buildParty} from '../tools/party-forge/build.mjs';
+import {buildActors} from '../tools/actor-forge/build.mjs';
 
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
@@ -28,12 +29,14 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   }
   if(render){
     await buildMonsters();
+    await buildActors();
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
-    for(const name of ['renderer','art-dark','monster-vector','elements'])parts.push(await read(`shared/runtime/${name}.js`));
+    parts.push(await read('shared/assets/actors/actors.runtime.js'));
+    for(const name of ['renderer','art-dark','monster-vector','actor-vector','elements'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));
-    for(const name of ['ui-bridge','stage-rules','audio','story','interactions','unit-info','training','main'])
+    for(const name of ['ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','main'])
       parts.push(await read(`shared/runtime/${name}.js`));
   }else parts.push(await read('shared/runtime/stage-rules.js'));
   return parts;

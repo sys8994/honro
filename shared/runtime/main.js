@@ -311,28 +311,7 @@
         open(html, kind = '') { this.cancelInput(); this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); }
         close() { this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now(); if(this.engine)this.updateAudio(); }
         talent(id){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls],r=h.ranks[id]||0;this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
-            if (!sk.passive) {
-                let p = clone(this.profile);
-                p.heroes[sk.cls].ranks[id] = Math.max(1, r);
-                p.loadouts[sk.cls] = [id];
-                let b = makeWorld(H.stages[0], p, true, sk.cls, id);
-                b.units[0].ranks = { ...h.ranks, [id]: Math.max(1, r) };
-                let pr = { id, p, b, age: 0, acc: 0, fired: false, canvas: $('previewcanvas') };
-                pr.scene = new G.HonroScene(pr.canvas);
-                pr.scene.manual = true;
-                pr.scene.x = 960;
-                pr.scene.y = 805;
-                pr.scene.scale = .44;
-                pr.e = new C.Engine(b, x => pr.scene.event(x), true);
-                try {
-                    pr.aim = pr.e.bestShot(pr.e.active, sk, pr.e.alive(1)[1] || pr.e.alive(1)[0]);
-                }
-                catch {
-                    pr.aim = { angle: 42, power: .64 };
-                }
-                pr.e.active.angle = pr.aim.angle;
-                this.preview = pr;
-            }
+            this.preview=sk.passive?null:G.HonroSkillPreview.setup(this,id,h,$('previewcanvas'));
         }
         equip(id) { this.equipIncoming = id; this.open(`<h2>갖출 자리</h2><div class="slots">${[1, 2, 3].map(i => `<button class="slot filled" data-action="equip-confirm" data-slot="${i}"><div><strong>${S[this.profile.loadouts[this.cls][i]]?.name || '빈 자리'}</strong><small class="muted">${i + 1}번 자리</small></div></button>`).join('')}</div>`); }
         changeRank(id, delta, detail) { let h = this.profile.heroes[S[id].cls]; if (delta > 0) {
@@ -971,29 +950,7 @@
                 this.prev = now; G.HonroStory.tick(this,now);
                 if (this.screen === 'map')
                     this.renderMap(dt);
-                if (this.preview) {
-                    let p = this.preview;
-                    p.age += dt;
-                    let charging = p.age < .75;
-                    if (!charging && !p.fired) {
-                        p.fired = true;
-                        let u = p.e.active;
-                        u.focus = u.maxFocus = 9999;
-                        p.e.fire(p.id, p.aim.angle, p.aim.power);
-                    }
-                    if (p.fired) {
-                        p.acc += dt;
-                        for (let k = 0; k < 12 && p.acc > 1 / 120; k++) {
-                            p.e.tick(1 / 120);
-                            p.acc -= 1 / 120;
-                        }
-                    }
-                    p.scene.render(p.e, dt, p.id, charging ? .1 + p.age * .7 : p.aim.power, charging);
-                    if (p.age > 7) {
-                        let id = p.id;
-                        this.talent(id);
-                    }
-                }
+                if(this.preview)G.HonroSkillPreview.tick(this,this.preview,dt);
                 if (this.engine && this.scene && this.screen === 'battle') {
                     const e = this.engine;let simulated=0;
                     if(!this.modal.classList.contains('open')&&!this.dialogue&&['aim','enemy','ally','summon'].includes(e.b.phase))G.HonroStory.turn(this);

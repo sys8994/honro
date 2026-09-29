@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "baseHeight": 122,
+  "viewBox": [
+    -100,
+    -149,
+    200,
+    160
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "base",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "frame",
+      "pivot": [
+        0,
+        -58
+      ],
+      "parent": null
+    },
+    {
+      "id": "left-door",
+      "pivot": [
+        -43,
+        -55
+      ],
+      "parent": "frame"
+    },
+    {
+      "id": "right-door",
+      "pivot": [
+        43,
+        -55
+      ],
+      "parent": "frame"
+    },
+    {
+      "id": "roof",
+      "pivot": [
+        0,
+        -106
+      ],
+      "parent": null
+    }
+  ]
+}

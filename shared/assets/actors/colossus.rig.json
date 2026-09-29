@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "baseHeight": 238,
+  "viewBox": [
+    -127,
+    -270,
+    254,
+    284
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "roots",
+      "pivot": [
+        0,
+        -20
+      ],
+      "parent": null
+    },
+    {
+      "id": "body",
+      "pivot": [
+        0,
+        -64
+      ],
+      "parent": null
+    },
+    {
+      "id": "head",
+      "pivot": [
+        0,
+        -161
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "left-arm",
+      "pivot": [
+        -35,
+        -136
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "right-arm",
+      "pivot": [
+        34,
+        -134
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "seals",
+      "pivot": [
+        0,
+        -137
+      ],
+      "parent": "body"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ export async function buildGame({vector=true,destination=path.join(root,'HONRO.h
   parts.push('globalThis.HONRO_STORY_PORTRAITS='+JSON.stringify(portraits)+';');
   // Preserve the existing developer hash entry, with no save reset or timing patch.
   parts.push("if(location.hash==='#autostage2'){HonroApp.launch(2);}");
-  const css=(await read(path.join(base,'ui/arcfall-layout.css')))+'\n'+await read(path.join(base,'style.css'))+'\n'+await read(path.join(here,'src/hud.css'))+'\n'+await read(path.join(here,'src/presentation.css'))+'\n'+await read(path.join(here,'src/controls.css'))+'\n'+await read(path.join(here,'src/unit-info.css'))+'\n'+await read(path.join(here,'src/training.css'))+'\n'+await read(path.join(here,'src/guide.css'));
+  const css=(await read(path.join(base,'ui/arcfall-layout.css')))+'\n'+await read(path.join(base,'style.css'))+'\n'+await read(path.join(here,'src/hud.css'))+'\n'+await read(path.join(here,'src/presentation.css'))+'\n'+await read(path.join(here,'src/controls.css'))+'\n'+await read(path.join(here,'src/unit-info.css'))+'\n'+await read(path.join(here,'src/training.css'))+'\n'+await read(path.join(here,'src/guide.css'))+'\n'+await read(path.join(here,'src/skill-presentation.css'));
   const shell=reference;
   const html=`<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><style>${css}</style></head>${shell}<script>${parts.join('\n').replace(/<\/script/gi,'<\\/script')}</script></body></html>\n`;
   assert.ok(!/id="honro-06\d.*(?:patch|script)/.test(html),'No runtime patch stack');

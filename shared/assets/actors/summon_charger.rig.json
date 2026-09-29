@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "baseHeight": 132,
+  "viewBox": [
+    -80,
+    -155,
+    160,
+    173
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -77.14285714285714
+      ],
+      "parent": null
+    },
+    {
+      "id": "rear-arm",
+      "pivot": [
+        -22,
+        -97
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "body",
+      "pivot": [
+        0,
+        -73.28571428571429
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        9,
+        -109
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "front-arm",
+      "pivot": [
+        19,
+        -96
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "club",
+      "pivot": [
+        36,
+        -55.285714285714285
+      ],
+      "parent": "front-arm"
+    }
+  ]
+}

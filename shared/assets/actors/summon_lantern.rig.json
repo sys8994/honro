@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "baseHeight": 112,
+  "viewBox": [
+    -74,
+    -130,
+    148,
+    148
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -60
+      ],
+      "parent": null
+    },
+    {
+      "id": "frame",
+      "pivot": [
+        0,
+        -67
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "flame",
+      "pivot": [
+        0,
+        -61
+      ],
+      "parent": "frame"
+    },
+    {
+      "id": "tails",
+      "pivot": [
+        0,
+        -32
+      ],
+      "parent": "frame"
+    }
+  ]
+}

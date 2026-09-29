@@ -1,0 +1,336 @@
+{
+  "sources": {
+    "tests/fixtures/actor-art-dark-baseline.js": "ba5d637404090a3e587dcae9083b48725951bc0ae4416cb7d97d99d852b40e54",
+    "tests/fixtures/actor-renderer-baseline.js": "b4ec3f0b52ed7b67c396f59b5d8c29e9cb5d123a18f15fd0671477a4b8657268"
+  },
+  "assets": {
+    "ally_porter": {
+      "id": "ally_porter",
+      "name": "상여꾼",
+      "anchors": 181,
+      "controls": 0,
+      "paths": 33,
+      "ellipses": 0,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "porter",
+        "cls": "knight",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "ally_guard": {
+      "id": "ally_guard",
+      "name": "호위 무사",
+      "anchors": 183,
+      "controls": 0,
+      "paths": 32,
+      "ellipses": 0,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "guard",
+        "cls": "knight",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "ally_archer": {
+      "id": "ally_archer",
+      "name": "동맹 궁수",
+      "anchors": 175,
+      "controls": 0,
+      "paths": 30,
+      "ellipses": 0,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "archer",
+        "cls": "knight",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "ally_healer": {
+      "id": "ally_healer",
+      "name": "치료사",
+      "anchors": 114,
+      "controls": 0,
+      "paths": 35,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "healer",
+        "cls": "mage",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "ally_ritualist": {
+      "id": "ally_ritualist",
+      "name": "의식승",
+      "anchors": 114,
+      "controls": 0,
+      "paths": 35,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "ritualist",
+        "cls": "mage",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "ally_daoist": {
+      "id": "ally_daoist",
+      "name": "동맹 도사",
+      "anchors": 106,
+      "controls": 0,
+      "paths": 32,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "daoist",
+        "cls": "mage",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "ally_medium": {
+      "id": "ally_medium",
+      "name": "동맹 무당",
+      "anchors": 131,
+      "controls": 0,
+      "paths": 38,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "medium",
+        "cls": "occultist",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "ally_scout": {
+      "id": "ally_scout",
+      "name": "척후병",
+      "anchors": 185,
+      "controls": 0,
+      "paths": 33,
+      "ellipses": 0,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "scout",
+        "cls": "knight",
+        "name": "검수 동맹"
+      },
+      "family": "human"
+    },
+    "woodcutter": {
+      "id": "woodcutter",
+      "name": "나무꾼",
+      "anchors": 185,
+      "controls": 0,
+      "paths": 33,
+      "ellipses": 0,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "honroCivilian": true,
+        "allyRole": "scout",
+        "cls": "knight",
+        "id": "npc-woodcutter",
+        "name": "나무꾼"
+      },
+      "family": "human"
+    },
+    "civilian": {
+      "id": "civilian",
+      "name": "구조 대상 주민",
+      "anchors": 100,
+      "controls": 0,
+      "paths": 30,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "civilian",
+        "honroCivilian": true,
+        "cls": "knight",
+        "name": "주민"
+      },
+      "family": "human"
+    },
+    "summon_stalker": {
+      "id": "summon_stalker",
+      "name": "배회령",
+      "anchors": 37,
+      "controls": 0,
+      "paths": 8,
+      "ellipses": 0,
+      "unit": {
+        "side": 0,
+        "summoned": true,
+        "summonKind": "stalker",
+        "cls": "occultist",
+        "name": "검수 소환수"
+      },
+      "family": "summon"
+    },
+    "summon_lantern": {
+      "id": "summon_lantern",
+      "name": "등불귀",
+      "anchors": 41,
+      "controls": 0,
+      "paths": 11,
+      "ellipses": 0,
+      "unit": {
+        "side": 0,
+        "summoned": true,
+        "summonKind": "lantern",
+        "cls": "occultist",
+        "name": "검수 소환수"
+      },
+      "family": "summon"
+    },
+    "summon_charger": {
+      "id": "summon_charger",
+      "name": "돌격귀",
+      "anchors": 37,
+      "controls": 0,
+      "paths": 8,
+      "ellipses": 0,
+      "unit": {
+        "side": 0,
+        "summoned": true,
+        "summonKind": "charger",
+        "cls": "occultist",
+        "name": "검수 소환수"
+      },
+      "family": "summon"
+    },
+    "summon_warden": {
+      "id": "summon_warden",
+      "name": "수호령",
+      "anchors": 45,
+      "controls": 0,
+      "paths": 12,
+      "ellipses": 1,
+      "unit": {
+        "side": 0,
+        "summoned": true,
+        "summonKind": "warden",
+        "cls": "occultist",
+        "name": "검수 소환수"
+      },
+      "family": "summon"
+    },
+    "summon_host": {
+      "id": "summon_host",
+      "name": "문지기귀",
+      "anchors": 37,
+      "controls": 0,
+      "paths": 8,
+      "ellipses": 0,
+      "unit": {
+        "side": 0,
+        "summoned": true,
+        "summonKind": "host",
+        "cls": "occultist",
+        "name": "검수 소환수"
+      },
+      "family": "summon"
+    },
+    "bier": {
+      "id": "bier",
+      "name": "홍만의 상여",
+      "anchors": 44,
+      "controls": 0,
+      "paths": 20,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "bier",
+        "cls": "knight",
+        "honroCivilian": true
+      },
+      "family": "object"
+    },
+    "bier_boss": {
+      "id": "bier_boss",
+      "name": "빈 상여",
+      "anchors": 44,
+      "controls": 0,
+      "paths": 20,
+      "ellipses": 1,
+      "unit": {
+        "side": 1,
+        "honroType": "bier",
+        "cls": "knight",
+        "id": "boss"
+      },
+      "family": "object"
+    },
+    "stretcher": {
+      "id": "stretcher",
+      "name": "부상자 운반대",
+      "anchors": 100,
+      "controls": 0,
+      "paths": 30,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "civilian",
+        "cls": "knight",
+        "honroCivilian": true,
+        "id": "objective",
+        "name": "부상자 운반대"
+      },
+      "family": "object"
+    },
+    "gate": {
+      "id": "gate",
+      "name": "피란문",
+      "anchors": 109,
+      "controls": 0,
+      "paths": 43,
+      "ellipses": 0,
+      "unit": {
+        "side": 2,
+        "honroType": "gate",
+        "cls": "knight",
+        "honroCivilian": true
+      },
+      "family": "object"
+    },
+    "colossus": {
+      "id": "colossus",
+      "name": "봉인 거신 (구 보스 호환)",
+      "anchors": 184,
+      "controls": 0,
+      "paths": 63,
+      "ellipses": 1,
+      "unit": {
+        "side": 1,
+        "boss": 1,
+        "cls": "knight",
+        "honroType": "boss"
+      },
+      "family": "monster"
+    }
+  }
+}

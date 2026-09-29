@@ -1,0 +1,45 @@
+/* Shared game and Workshop skill detail. A single scroll surface keeps all controls reachable. */
+.honro .skill-mechanics{color:#c8d7cf;font-size:12px;line-height:1.7;margin:10px 0 16px;padding-left:12px;border-left:2px solid #9aab8860;word-break:keep-all;overflow-wrap:anywhere}
+.honro .dialog.talent-dialog,.honro .dialog.ultimate-dialog{width:min(760px,94vw);height:auto;max-height:92dvh;overflow:auto;overscroll-behavior:contain}
+.honro .talent-dialog .skill-modal-grid,.honro .ultimate-dialog .skill-modal-grid{display:block;height:auto}
+.honro .skill-modal-grid>section{display:block;min-height:0}
+.honro .skill-preview-shell{margin:14px 0 18px!important;box-shadow:none}
+.honro .skill-preview-shell canvas,.honro #previewcanvas{display:block;width:100%;height:clamp(230px,36vw,320px)!important;max-height:none!important;aspect-ratio:auto!important;object-fit:fill}
+.honro .effect-heading,.honro .effect-row{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:8px;padding:9px 12px;overflow-wrap:anywhere}
+.honro .effect-compare.at-max .effect-heading,.honro .effect-compare.at-max .effect-row{grid-template-columns:1.3fr 1fr}
+.honro .effect-compare.at-max .effect-heading>:nth-child(2),.honro .effect-compare.at-max .effect-row>:nth-child(2){display:none}
+@media(orientation:landscape) and (max-height:540px){
+ .honro .dialog.talent-dialog,.honro .dialog.ultimate-dialog{width:min(880px,96vw);height:auto;max-height:94dvh;padding:20px}
+ .honro .skill-desc,.honro .skill-mechanics{font-size:12px}
+ .honro .skill-preview-shell canvas,.honro #previewcanvas{height:250px!important}
+ .honro .talent-dialog .effect-heading,.honro .talent-dialog .effect-row{font-size:11px}
+ .honro .talent-dialog .skill-modal-grid,.honro .ultimate-dialog .skill-modal-grid{display:grid;grid-template-columns:minmax(180px,.65fr) minmax(250px,1.35fr);align-items:start;gap:16px}
+ .honro .skill-modal-stats{grid-column:1/-1}
+ .honro .skill-modal-preview .skill-preview-shell{margin:0!important}
+ .honro .talent-dialog .passive-detail .skill-modal-grid{display:block}
+}
+@media(max-width:540px) and (orientation:portrait){
+ .honro .dialog.talent-dialog,.honro .dialog.ultimate-dialog{width:96vw;padding:18px 14px}
+ .honro .effect-heading,.honro .effect-row{gap:5px;padding:9px 8px;font-size:10px}
+}
+/* Status is read in the field first. Details stay available to touch and keyboard users. */
+.honro #app .honro-compact-hud .hud-roster{position:relative}
+.honro #app .honro-compact-hud .combat-status{display:block!important;position:relative;margin:2px 0 0;min-height:0;line-height:1.25;font-size:10px}
+.honro .status-details{position:relative;width:max-content;max-width:100%}
+.honro .status-details summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:5px;max-width:100%;min-height:24px;border:1px solid #63817570;border-radius:5px;padding:3px 7px;background:#10282ddd;color:#d6e0d2;white-space:nowrap}
+.honro .status-details summary::-webkit-details-marker{display:none}
+.honro .status-details summary::after{content:'⌃';color:#9daea4;margin-left:3px}
+.honro .status-details summary:focus-visible{outline:2px solid #edcd82;outline-offset:2px}
+.honro .status-glyph{display:inline-flex;align-items:center;gap:3px;color:var(--status-color);font-weight:600}
+.honro .status-glyph svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.honro .status-popover{position:absolute;bottom:calc(100% + 7px);left:0;z-index:15;width:min(290px,85vw);max-height:min(320px,55dvh);overflow:auto;padding:12px;background:#10232af5;border:1px solid #6b8377;border-radius:9px;box-shadow:0 6px 24px #0009;color:#d7ded6;font-size:12px;line-height:1.6;white-space:normal}
+.honro .status-popover>strong{display:block;margin-bottom:7px;color:#f0dfb6}
+.honro .status-popover p{margin:4px 0}
+.honro .status-popover .status-entry{display:flex;gap:7px;margin:6px 0;align-items:flex-start}
+.honro .status-popover .status-entry svg{flex:none;margin-top:2px}
+.honro .status-reason{padding-top:7px;border-top:1px solid #718a7040;color:#b9c8c0}
+.honro #app .combat-status .status-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:540px),(orientation:landscape) and (max-height:540px){
+ .honro .status-details summary{min-height:24px;padding:2px 5px;font-size:10px}
+ .honro .status-popover{max-height:48dvh}
+}

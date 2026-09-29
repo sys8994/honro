@@ -3,3 +3,5 @@
 *.png binary
 *.jpg binary
 *.zip binary
+# Byte-exact art references: keep their original mixed line endings for SHA-256 validation.
+tests/fixtures/actor-*-baseline.js -text

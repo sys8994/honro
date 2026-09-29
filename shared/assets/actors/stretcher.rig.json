@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "baseHeight": 108,
+  "viewBox": [
+    -105,
+    -129,
+    210,
+    143
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "frame",
+      "pivot": [
+        0,
+        -21
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "patient",
+      "pivot": [
+        -29,
+        -40
+      ],
+      "parent": "frame"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        -44,
+        -46
+      ],
+      "parent": "patient"
+    }
+  ]
+}

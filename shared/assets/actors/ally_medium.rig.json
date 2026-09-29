@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "baseHeight": 115,
+  "viewBox": [
+    -75,
+    -132,
+    150,
+    146
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "rear-leg",
+      "pivot": [
+        -6.16,
+        -51.16279069767442
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "rear-foot",
+      "pivot": [
+        -6.16,
+        -6.395348837209302
+      ],
+      "parent": "rear-leg"
+    },
+    {
+      "id": "front-leg",
+      "pivot": [
+        6.16,
+        -51.16279069767442
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "front-foot",
+      "pivot": [
+        6.16,
+        -6.395348837209302
+      ],
+      "parent": "front-leg"
+    },
+    {
+      "id": "body",
+      "pivot": [
+        0,
+        -55
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "rear-sleeve",
+      "pivot": [
+        -9.68,
+        -87
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "rear-hand",
+      "pivot": [
+        -19.36,
+        -57
+      ],
+      "parent": "rear-sleeve"
+    },
+    {
+      "id": "hem",
+      "pivot": [
+        0,
+        -59
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "neck",
+      "pivot": [
+        0,
+        -94
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        0,
+        -95
+      ],
+      "parent": "neck"
+    },
+    {
+      "id": "hair-bun",
+      "pivot": [
+        -4.1888000000000005,
+        -102.48
+      ],
+      "parent": "head"
+    },
+    {
+      "id": "front-sleeve",
+      "pivot": [
+        9.68,
+        -87
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "front-hand",
+      "pivot": [
+        19.36,
+        -59
+      ],
+      "parent": "front-sleeve"
+    },
+    {
+      "id": "tool",
+      "pivot": [
+        20.24,
+        -55
+      ],
+      "parent": "front-hand"
+    },
+    {
+      "id": "ribbon",
+      "pivot": [
+        -5.984000000000001,
+        -101.12
+      ],
+      "parent": "head"
+    },
+    {
+      "id": "goreum",
+      "pivot": [
+        1.76,
+        -75
+      ],
+      "parent": "body"
+    }
+  ]
+}

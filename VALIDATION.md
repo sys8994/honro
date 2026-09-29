@@ -1,6 +1,10 @@
 # 통합 검증
 
-최신 전체 검증: 2026-09-29 Windows / Chrome headless, `npm.cmd run verify` PASS(exit 0, 709.91초, 13:42:36 UTC 완료). [실행 기록·HTML SHA256](_local/reports/verification-run.json), [전체 로그](_local/logs/final-verify.log). 네 동행 v008의 시트 기반 얼굴·v007 대비 ±5% 노드 예산·소단 연보라색 포인트와 기존 리그/동작 보존을 확인했습니다. 같은 작업공간의 전투·피날레·서사 변경도 포함한 전체 검증입니다. [제작 기준](game/docs/PARTY_ART_PIPELINE.md), [전용 53개 결과](_local/reports/party-forge/browser.json), [네 단계 시각 검토](_local/reports/party-forge/VISUAL_REVIEW.md). 12캐릭터 220px 렌더 p95는 현 PC에서 3.8ms였습니다. Game/Stage View/Playtest의 픽셀 일치와 두 HTML의 실제 충전·발사·피해·점프 연결을 확인했습니다. 공방 재생·스크럽·메모 다운로드·모바일 크기 유지도 별도 5개 PASS입니다. [공방 조작 검사](_local/reports/party-forge/review-ui.json). 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 터치 에뮬레이션이며 실기기 검사는 아닙니다. 기술 통과와 시각적 완성도 평가는 별개입니다.
+**동맹·소환귀·목표물 최종 검증(2026-09-30 KST):** 같은 작업공간의 기예 시연·상태 표시 개선을 포함한 `npm run verify` 전체 PASS(exit 0, 810.71초, 2026-09-29 15:12:44 UTC). [실행 기록과 최종 HTML SHA256](_local/reports/actor-forge/verification.json), [전체 로그](_local/reports/skill-presentation/full-verify.log). 새 에셋 20종의 전용 검사 77개, 캠페인 생성 개체 212개·편집기 카탈로그 28개·아군/중립 몬스터 22개 배치를 확인했다. 5동작×5시점×양방향, 256/128/96/64px 자료, SVG/Canvas·Game/Stage View/Playtest 일치, 실제 소환/동맹 행동과 상태 불변을 포함한다. 36개 동시 렌더 p95는 현 PC에서 9.4ms. [전용 결과](_local/reports/actor-forge/browser.json), [제작 기준](game/docs/ACTOR_ART_PIPELINE.md), [시각 검토](_local/reports/actor-forge/VISUAL_REVIEW.md). 네 동행의 승인된 geometry/rig/animation은 `c7a3567`과 동일하며 이름이 아닌 새 ID로 배치한 소단 보스의 외형 선택만 보완했다. 비교 원본의 바이트 보존 속성과 Git 저장 시 해시 불변도 확인했다. 아래 이전 실행 결과보다 이 검증이 최신이다.
+
+최신 전체 검증: **2026-09-30 Windows / Chrome headless, `npm run verify` PASS**(exit 0, 810.72초, 00:12:44 KST). [독립 실행 결과·소스/HTML SHA256](_local/reports/skill-presentation/verification.json), [전체 로그](_local/reports/skill-presentation/full-verify.log). 검증 도중 소스 변경 0건이며 최종 두 HTML 해시가 일치합니다. 기예 시연·성장 설명·전장 상태 UI 전용 검사 39개와 기존 migration/integration·전투·저장·스토리·미술·순차 성능이 모두 통과했습니다. [유지 명세](game/docs/SKILL_PRESENTATION.md), [전용 결과](_local/reports/skill-presentation/browser.json). 28개체의 중첩 상태 렌더 p95는 Game 2.5ms / Workshop 2.4ms입니다. 모바일 3크기는 브라우저 에뮬레이션이며 실기기 측정이나 캠페인 전체 수동 완주는 아닙니다.
+
+이전 전체 검증: 2026-09-29 Windows / Chrome headless, `npm.cmd run verify` PASS(exit 0, 709.91초, 13:42:36 UTC 완료). [실행 기록·HTML SHA256](_local/reports/verification-run.json), [전체 로그](_local/logs/final-verify.log). 네 동행 v008의 시트 기반 얼굴·v007 대비 ±5% 노드 예산·소단 연보라색 포인트와 기존 리그/동작 보존을 확인했습니다. 같은 작업공간의 전투·피날레·서사 변경도 포함한 전체 검증입니다. [제작 기준](game/docs/PARTY_ART_PIPELINE.md), [전용 53개 결과](_local/reports/party-forge/browser.json), [네 단계 시각 검토](_local/reports/party-forge/VISUAL_REVIEW.md). 12캐릭터 220px 렌더 p95는 현 PC에서 3.8ms였습니다. Game/Stage View/Playtest의 픽셀 일치와 두 HTML의 실제 충전·발사·피해·점프 연결을 확인했습니다. 공방 재생·스크럽·메모 다운로드·모바일 크기 유지도 별도 5개 PASS입니다. [공방 조작 검사](_local/reports/party-forge/review-ui.json). 브라우저 오류는 pageerror와 게임 lastError를 수집했습니다. 모바일은 터치 에뮬레이션이며 실기기 검사는 아닙니다. 기술 통과와 시각적 완성도 평가는 별개입니다.
 
 Pages 배포 구성도 별도로 검사했습니다. `index.html`·게임·편집기·BGM만 있는 `/honro/` HTTP 경로에서 기본 주소 이동(쿼리·해시 보존), 게임 시작, MP3 5개 다운로드/원본 일치, 편집기 10개 스테이지, JavaScript 없는 진입점의 5항목 PASS·브라우저 예외 0건입니다. [결과](_local/reports/pages-smoke.json). 실제 GitHub 배포는 수행하지 않았습니다. `_local/` 결과·로그·이미지는 로컬 전용이며 Git에 포함되지 않습니다.
 
@@ -22,6 +26,7 @@ npm.cmd run verify
 | Editor features | 실제 포인터로 terrain/solid·node/whole-shape drag·Ctrl snap·paint·scatter·lock/hide·Element polygon/collision·왕복·legacy import·asset layer 검사. [결과](_local/reports/editor-features.json) |
 | Authored game | 실제 file input import, level/rank, encounter, 턴 경계 trigger/dialogue, 소켓 interaction, 목표, 파괴 cache, retry, localStorage 격리·프로필 복원. [결과](_local/reports/authored.json) |
 | Party art | 실제 시트 SHA/crop·v007 앵커 ±5%·리그/동작/무기 제약 보존·5동작 × 101시점 × 4인·SVG/Canvas 일치·양방향 조준·Game/Playtest 발사/피격/점프·Stage View 그림 일치. [결과](_local/reports/party-forge/browser.json) |
+| Remaining cast art | 동맹·주민·소환귀·목표물·구 보스 20종, 캠페인/편집기 전수, 아군/중립 종 보존, 5동작·SVG·세 호스트 일치·실제 소환/동맹 행동·상태/저장 불변·공방 조작·순차 성능. [77개 결과](_local/reports/actor-forge/browser.json) |
 | BGM unit | lazy preload, playlist, state/index 보존, crossfade, mute/volume, 실패 fallback, dispose. [결과](_local/reports/audio-unit.json) |
 | BGM browser | 실제 MP3 currentTime 증가, desktop/mobile playlist/보스/일시정지/비전투, SFX, iframe BGM와 Stop dispose. [결과](_local/reports/audio-browser.json) |
 | RC21 performance | Stage 1~4 실제 runtime, ≥50Hz, render 평균 <7ms, 시작 <500ms, heap 증가 <30MB, 파괴 후 cache invalidate. [결과](_local/game-reports/rc21-performance.json) |
@@ -29,7 +34,7 @@ npm.cmd run verify
 최종 검사 수와 성능 수치는 아래 자동 갱신 표에 기록합니다. 개별 명명된 assertion과 세부값은 각 JSON에 남습니다.
 
 <!-- RESULTS_START -->
-**최종 `npm run verify`: PASS (exit 0).** [실행 기록·산출물 SHA256](_local/reports/verification-run.json)
+**최종 `npm run verify`: PASS (exit 0).** [실행 기록·산출물 SHA256](_local/reports/skill-presentation/verification.json)
 
 | Suite | Result |
 |---|---|

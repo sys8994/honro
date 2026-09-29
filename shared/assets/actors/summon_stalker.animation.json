@@ -1,0 +1,244 @@
+{
+  "idle": {
+    "duration": 3,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "rear-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            4
+          ],
+          [
+            0.75,
+            -4
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "root",
+        "channel": "y",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.5,
+            -2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "move": {
+    "duration": 0.8,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "root",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            4
+          ],
+          [
+            0.75,
+            -4
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "attack": {
+    "duration": 0.6,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "front-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.22,
+            -13.799999999999999
+          ],
+          [
+            0.48,
+            23
+          ],
+          [
+            0.72,
+            6.8999999999999995
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "head",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.22,
+            -4.8
+          ],
+          [
+            0.48,
+            8
+          ],
+          [
+            0.72,
+            2.4
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "root",
+        "channel": "x",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.2,
+            -3
+          ],
+          [
+            0.48,
+            5
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "hit": {
+    "duration": 0.35,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "front-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -13.799999999999999
+          ],
+          [
+            0.4,
+            5.75
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "head",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -4.8
+          ],
+          [
+            0.4,
+            2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "root",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -8
+          ],
+          [
+            0.4,
+            3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "jump_fall": {
+    "duration": 0.8,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "root",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.4,
+            -5
+          ],
+          [
+            0.7,
+            3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -38,6 +38,12 @@ export function volleyCount(rank:number){return 1+Math.min(5,Math.max(0,Math.flo
 export function volleyDamage(rank:number,index=1){return (.42+.02*(clamp(rank,1,8)-1))*Math.pow(.66,Math.max(0,index-1));}
 export function requiredRankLevel(n:Talent, rank:number){return Math.min(MAX_LEVEL,n.required+Math.floor(Math.max(0,rank-1)/2));}
 export interface EffectRow {label:string; value:string;}
+/** Keep rank plateaus, but omit mechanics that never change with investment. */
+export function skillGrowthRows(id:string,rank:number):EffectRow[]{
+ const all=Array.from({length:8},(_,i)=>skillEffectRows(id,i+1)),variable=new Set<string>();
+ for(const row of all[0])if(new Set(all.map(rows=>rows.find(r=>r.label===row.label)?.value)).size>1)variable.add(row.label);
+ return skillEffectRows(id,rank).filter(row=>variable.has(row.label)&&!(id==='M99'&&row.label==='봉쇄 유지'));
+}
 /** These values are shared by the detail panel and the actual formulas below/in Engine. */
 export function skillEffectRows(id:string,rank:number):EffectRow[]{
  const s=SKILLS[id];if(!s)return [];const r=clamp(rank,0,8),p=rankPower(r),pct=(v:number)=>`${+(v*100).toFixed(1)}%`,num=(v:number)=>`${+v.toFixed(1)}`;
@@ -63,11 +69,11 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    return [row(s.id==='S02'?'기초 피해':s.id==='S07'?'한 번의 베기 피해':'기본 피해',num(dmg)),row('기력',num(mp)),...(melee&&!['S08','S02'].includes(s.id)?[row('속발 / 최대 축세 피해','88% / 135%'),row('최대 축세 사거리','123%'),row('속발 비용','75%'),row('속발 수세','최대 12% 피해 감소 · 다음 내 턴까지')]:[]),...(melee?[row('근접 사거리',num(s.radius)),row('기본 전체 각도',`${(s.mode==='meleeWide'?48:s.mode==='counterStance'?40:s.mode==='meleeCombo'?22:25)+(rr-1)*1.5}°`),row('조준','선택 각도를 중심으로 베기'),row('축세 각도 확대','최대 +10° · 검세 경지당 +0.5°')]:[]),...(extra[id]||[]),...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
   }
   const extra:Record<string,EffectRow[]>={
-   A14:[row('추가 치명 확률',pct(mix(.18,.39))+'p'),row('추가 치명 배율','+'+num(mix(.20,.55))),row('치명 기준','캐릭터의 치명 능력에 합산')],
+   A14:[row('추가 치명 확률',pct(mix(.18,.39))+'p'),row('추가 치명 배율','+'+(+mix(.20,.55).toFixed(2))),row('치명 기준','캐릭터의 치명 능력에 합산')],
    A02:[row('추가 관통',`${[1,1,2,2,3,3,4,5][rr-1]}회`),row('관통 후 피해','이전의 88%'),row('지형 관통','얇은 목재')],
    A06:[row('피해에 따른 체력 회수',pct(mix(.05,.12))),row('피해에 따른 기력 회수',pct(mix(.03,.07))),row('한 사격 회복 상한','최대 체력 15% · 기력 18%')],
    A10:[row('집중 유지','2턴 · 다음 절명 사격 1회'),row('거리 위력 가산',pct(mix(.08,.22))),row('치명 확률 가산',pct(mix(.06,.20))),row('방어 무시',pct(mix(.04,.15)))],
-   A99:[row('처형 발동 거리','1,200 이상 · 치명타'),row('처형 잔여 체력',pct(mix(.12,.22))),row('추가 치명 확률',pct(mix(.25,.39))+'p'),row('추가 치명 배율','+'+num(mix(.50,.85))),row('보스 추가 피해','잃은 체력에 따라 최대 25%')],
+   A99:[row('처형 발동 거리','1,200 이상 · 치명타'),row('처형 잔여 체력',pct(mix(.12,.22))),row('추가 치명 확률',pct(mix(.25,.39))+'p'),row('추가 치명 배율','+'+(+mix(.50,.85).toFixed(2))),row('보스 추가 피해','잃은 체력에 따라 최대 25%')],
    A11:[row('낙하 가속',num(mix(2.8,4.1))+'배')],
    A09:[row('방향 변경','비행 중 발사 · 클릭 · E · 1회'),row('선회 명중 추가 피해',pct(mix(.30,.65))),row('최대 선회각',num(mix(45,80))+'°'),row('선회 후 속력','92%')],
    A13:[row('추적','시야가 열린 적 · 벽에 차단')],
@@ -98,7 +104,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
  }
  const rows:Record<string,EffectRow[]>={
  MP01:[row('호리병 2차 효과',pct(.03*r)),row('파문 두께·진목 효력',pct(.02*r))],MP02:[row('최대 기력',pct(.03*r)),row('턴 회복',num(.5*r))],MP03:[row('미스 환급',pct(.18+.04*Math.max(0,r-1)))],MP04:[row('예측 정보 단계',num(r))],MP05:[row('완성에 필요한 소비 기력',num(JUCHEON_THRESHOLD[Math.max(0,r-1)])),row('완성 후 비용 감소',pct(r?JUCHEON_DISCOUNT[r-1]:0)),row('도술 효과 강화',pct(r?JUCHEON_EFFECT[r-1]:0)),row('파문 범위 확대 상한','5%'),row('무료 도술','주천 충전 없음')],
- AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('추가 치명 확률',pct(.02*r)+'p'),row('추가 치명 배율','+'+num(.04*r))],AP03:[row('후퇴 이동력',pct(r?.08+.04*r:0))],AP04:[row('계통 계수',num(.025*r))],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
+ AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('추가 치명 확률',pct(.02*r)+'p'),row('추가 치명 배율','+'+(+.04*r).toFixed(2))],AP03:[row('후퇴 이동력',pct(r?.08+.04*r:0))],AP04:[row('계통 위력 가산','+'+pct(.025*r)+'p')],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
  SP01:[row('베기 각도 확대',num(.5*r)+'°'),row('최대 축세 추가 위력',pct(.012*r)),row('최대 축세 추가 사거리',pct(.006*r)),row('돌격 위력',pct(.025*r)),row('검기 속도·크기',pct(.012*r))],SP02:[row('최대 HP',pct(.05*p)),row('피해 감소',pct(.03*p)),row('밀치기 저항',pct(knockbackResistance(r)))],SP03:[row('이동 거리',pct(.10*p)),row('점프 높이 계수',pct((1+.02*r)**2-1)),row('돌격 속도',pct(.015*r)),row('점프 소비',num(Math.max(25,75-5*r)))],SP04:[row('합세 조건','서로 다른 세 계통 · 같은 계통 반복 시 유지'),row('합세 기력 회복',pct(.05+.00625*r)),row('다음 기예 비용','25% 감소'),row('다음 기예 피해','15% 증가'),row('합세 수세','10% 피해 감소 · 다음 내 턴까지')],SP05:[row('불굴 잔여 HP',pct(.08*p)),row('발동 횟수','전투당 1회'),row('회복 자세','18% 피해 감소 · 다음 내 턴까지')],
  OP01:[row('유령 피해',`+${pct(.055*p)}`),row('중력 영향',`-${pct(Math.min(.6,.08*p))}`)],OP02:[row('저주 지속',`+${Math.floor(p/1.5)}R`),row('저주 강도',`+${pct(.08*p)}`)],OP03:[row('소환귀 HP',`+${pct(.15*p)}`),row('소환귀 피해',`+${pct(.12*p)}`)],OP04:[row('처치 MP',num(6*p))],OP05:[row('저주 대상 추가 피해',`+${pct(.07*p)}`)]
  };return rows[id]||[];

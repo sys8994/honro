@@ -8,7 +8,7 @@ export function resolveRebuildCharacter(u){
   if(!u)return null;
   if(u.side===0)return {archer:'seol_o',mage:'damheo',knight:'hwigyeom',occultist:'sodan'}[u.cls]||null;
   const named={'설오':'seol_o','담허':'damheo','휘겸':'hwigyeom','소단':'sodan'}[u.name]||null;
-  if(named&&(u.honroAlly||u.honroCivilian||u.id==='boss'))return named;
+  if(named&&(u.honroAlly||u.honroCivilian||u.honroFinalBoss||u.id==='boss'))return named;
   return null;
 }
 export class HonroPoseVisual{

@@ -22,7 +22,7 @@ function talent(profile,id){const s=C.SKILLS[id];const text=localize(s.ultimate?
 function bottom(){
  const I=G.HonroFA?.icon||((n,c,s)=>''),vitals=[['hp','체력',''],['mp','기력','mp'],['move','이동도','movement']];
  return `<footer class="battle-bottom arcfall-hud honro-compact-hud" id="battle-bottom">
- <div class="hud-roster"><div class="hero-switches" id="hero-switches"></div><div id="combat-status" class="combat-status" role="status" aria-live="polite"></div></div>
+ <div class="hud-roster"><div class="hero-switches" id="hero-switches"></div><div id="combat-status" class="combat-status"></div></div>
  <div class="hud-vitals"><div id="combat-passives" class="combat-passives" hidden></div>${vitals.map(([id,name,style])=>`<div class="hpmp" data-vital="${id}"><div class="meter ${style}" role="group" aria-labelledby="${id}-name ${id}-label"><i id="${id}-fill"></i><label><span class="vital-name" id="${id}-name">${name}</span><span id="${id}-label"></span></label></div></div>`).join('')}<div class="hud-xp" aria-hidden="true"><i id="hud-xp-fill"></i></div></div>
  <div class="hud-controls-row">
  <div class="joystick" id="joystick" role="application" aria-label="좌우 이동·위아래 조준"><div class="joystick-ring"><i id="stick-knob"></i><span class="axis-h"></span><span class="axis-v"></span></div><span class="stick-value" id="move-left"></span></div>

@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "baseHeight": 132,
+  "viewBox": [
+    -80,
+    -155,
+    160,
+    173
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -77.14285714285714
+      ],
+      "parent": null
+    },
+    {
+      "id": "rear-arm",
+      "pivot": [
+        -15,
+        -97
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "body",
+      "pivot": [
+        0,
+        -77.14285714285714
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        0,
+        -114
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "front-arm",
+      "pivot": [
+        14,
+        -95
+      ],
+      "parent": "body"
+    }
+  ]
+}

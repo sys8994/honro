@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "baseHeight": 108,
+  "viewBox": [
+    -105,
+    -129,
+    210,
+    143
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "poles",
+      "pivot": [
+        0,
+        -6
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "box",
+      "pivot": [
+        0,
+        -39
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "cloth",
+      "pivot": [
+        0,
+        -49
+      ],
+      "parent": "box"
+    },
+    {
+      "id": "soul",
+      "pivot": [
+        0,
+        -42
+      ],
+      "parent": "box"
+    },
+    {
+      "id": "roof",
+      "pivot": [
+        0,
+        -57
+      ],
+      "parent": "root"
+    }
+  ]
+}

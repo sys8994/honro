@@ -50,7 +50,7 @@ with sync_playwright() as p:
     page.goto((ROOT/'HONRO.html').as_uri());page.wait_for_function('window.HonroApp');picker(page,'Game')
     # The normal talent detail shares the same prose and expanded effect table.
     page.evaluate("HonroApp.talent('M02')")
-    check('Camp detail separates narrative from the charged fuse specification', '3.2~6.4' not in page.locator('.skill-desc').inner_text() and '3.2~6.4' in page.locator('.effect-compare').inner_text())
+    check('Camp detail separates narrative from the charged fuse specification', '3.2~6.4' not in page.locator('.skill-desc').inner_text() and '3.2~6.4' in page.locator('.skill-mechanics').inner_text())
     page.evaluate("{const p=HonroApp.preview;p.scene.render(p.e,.1,p.id,.6,true,.1);}");page.screenshot(path=str(OUT/'skill-detail.png')); page.evaluate('HonroApp.close()')
     # Passive off and on, actual sources must start for separate pierced enemies.
     page.evaluate("HonroApp.trainingPassives={};polishArena('A02');HonroApp.audio.wake()")
