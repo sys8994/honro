@@ -15,9 +15,10 @@ function validHero(raw: unknown, cls: ClassId, legacyXp=false): HeroProgress {
     const maxXp=legacyXp?LEGACY_XP_CAP_9:XP_CAP;
     if (!object(raw) || !finite(raw.xp) || raw.xp < 0 || raw.xp > maxXp || !object(raw.ranks)) return fail();
     const converted=legacyXp?migrateLegacyXp9(raw.xp):Math.floor(raw.xp);
-    const h: HeroProgress = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision:raw.skillRevision,martialRevision:raw.martialRevision };
+    const h: HeroProgress = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision:raw.skillRevision,martialRevision:raw.martialRevision,occultRevision:raw.occultRevision };
     if(raw.skillRevision!==undefined&&raw.skillRevision!==SKILL_REVISION)return fail();
     if(raw.martialRevision!==undefined&&raw.martialRevision!==1)return fail();
+    if(raw.occultRevision!==undefined&&raw.occultRevision!==1)return fail();
     for (const [id, rank] of Object.entries(raw.ranks)) {
         if(id===baseSkill(cls)&&SKILLS[id].basic){if(rank!==1)return fail();h.ranks[id]=1;continue;}
         const n = TALENT_MAP[id];
@@ -98,12 +99,16 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
     if(b.physics!==undefined&&!validPhysics(b.physics))return fail();
     if((b.phase==='summon')!==!!b.summonTurn)return fail();
     if(b.summonTurn){const t=b.summonTurn;
-        if(b.side!==0||!Array.isArray(t.queue)||t.queue.length>64||new Set(t.queue).size!==t.queue.length||t.queue.some(id=>!ids.has(id)||!b.units.find(u=>u.id===id)?.summoned)||!Number.isInteger(t.index)||t.index<0||t.index>t.queue.length||!['approach','attack','wait'].includes(t.stage)||!nums(t,['elapsed','hold'])||t.elapsed<0||t.elapsed>30||Math.abs(t.hold)>2||!ids.has(t.returnActive)||typeof t.practice!=='boolean')return fail();
+        if(b.side!==0||!Array.isArray(t.queue)||t.queue.length>64||new Set(t.queue).size!==t.queue.length||t.queue.some(id=>!ids.has(id)||!b.units.find(u=>u.id===id&&(u.summoned||u.enthrall)))||!Number.isInteger(t.index)||t.index<0||t.index>t.queue.length||!['approach','attack','wait'].includes(t.stage)||!nums(t,['elapsed','hold'])||t.elapsed<0||t.elapsed>30||Math.abs(t.hold)>2||!ids.has(t.returnActive)||typeof t.practice!=='boolean'||t.afterActor!==undefined&&typeof t.afterActor!=='boolean')return fail();
         if(t.start&&!nums(t.start,['x','y'])||t.destination&&!nums(t.destination,['x','y'])||t.targetId!==undefined&&!ids.has(t.targetId))return fail();
     }
     for(const u of b.units){
         if(u.summonFloating!==undefined&&typeof u.summonFloating!=='boolean'||u.summoned!==undefined&&typeof u.summoned!=='boolean')return fail();
-        if(u.summoned&&(!['stalker','lantern','charger','warden','host'].includes(u.summonKind||'')||!ids.has(u.summonOwner||'')||!finite(u.summonExpires)||u.side!==0))return fail();
+        if(u.summoned&&(!['stalker','lantern','charger','warden','host','eater','echo','earthbound'].includes(u.summonKind||'')||!ids.has(u.summonOwner||'')||!finite(u.summonExpires)||u.side!==0))return fail();
+        if(u.enthrall&&(!ids.has(u.enthrall.owner)||u.side!==0||!nums(u.enthrall,['actions','captureRatio','originalMaxHp','originalAttack','originalArmor','power'])||u.enthrall.actions<0||u.enthrall.actions>7||u.enthrall.captureRatio<0||u.enthrall.captureRatio>1))return fail();
+        if(u.spiritSight!==undefined&&typeof u.spiritSight!=='boolean'||u.spiritHidden!==undefined&&typeof u.spiritHidden!=='boolean'||u.manifested!==undefined&&typeof u.manifested!=='boolean'||u.revealSpiritToParty!==undefined&&typeof u.revealSpiritToParty!=='boolean')return fail();
+        for(const key of ['summonRank','summonActionRound','summonAbsorbed','manifestedUntil','formDamageTakenBonus','soulAffinityBonus','soulDefenseBonus','soulBonusUntil','nextSummonDiscount','soulRemnants'] as const)if(u[key]!==undefined&&!finite(u[key]))return fail();
+        if(u.earthbind&&(!ids.has(u.earthbind.owner)||!nums(u.earthbind,['until','damage'])))return fail();
         if(u.impactCooldown!==undefined&&(!finite(u.impactCooldown)||u.impactCooldown<0||u.impactCooldown>1))return fail();
     }
     const tids = new Set<string>();
@@ -138,6 +143,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
     }
     if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();
     if(b.martialRevision!==undefined&&b.martialRevision!==1)return fail();
+    if(b.occultRevision!==undefined&&b.occultRevision!==1)return fail();
     const optionalNumber=(v:unknown,min=0,max=1e12)=>v===undefined||finite(v)&&(v as number)>=min&&(v as number)<=max;
     for(const u of b.units){
         if(!optionalNumber(u.arrowTurn)||u.arrowTurnToken!==undefined&&!safe(u.arrowTurnToken)||!optionalNumber(u.salheunFlash,0,1)||!optionalNumber(u.jucheon,0,108)||!optionalNumber(u.bladeStored,0,.450001))return fail();
@@ -166,7 +172,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
             for(const m of [z.crossed,z.budgetTurns])if(m&&(!object(m)||Object.entries(m).some(([id,turn])=>!ids.has(id)||!safe(turn))))return fail();
         }
     }
-    const modes = new Set([...Object.values(SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain','summonBolt','ironChip','fireChip','frostChip','ironEmitter','microEmitter','microWait','skyWait']);
+    const modes = new Set([...Object.values(SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain','summonBolt','convergeSpirit','ironChip','fireChip','frostChip','ironEmitter','microEmitter','microWait','skyWait']);
     for (const q of [...b.projectiles, ...(b.volley ? [b.volley.template] : [])]) {
         if (!nums(q, ['id', 'x', 'y', 'vx', 'vy', 'prevVy', 'age', 'radius', 'damage', 'blast', 'wind', 'bounces', 'pierces', 'phase', 'returnX', 'returnY', 'rolled', 'shot']) || !ids.has(q.owner) || !SKILLS[q.skill] || !modes.has(q.mode) || !Array.isArray(q.hit) || q.hit.length > 100 || !Array.isArray(q.trail) || q.trail.length > 400 || q.trail.some(v => !nums(v, ['x', 'y'])) || typeof q.body !== 'boolean' || typeof q.child !== 'boolean')
             return fail();
@@ -178,6 +184,8 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
             return fail();
         if(q.targetId!==undefined&&(!safe(q.targetId)||!ids.has(q.targetId)))return fail();
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
+        if(q.echoDelay!==undefined&&(!finite(q.echoDelay)||q.echoDelay<0||q.echoDelay>.3)||q.echoSource!==undefined&&!ids.has(q.echoSource)||q.soulBoost!==undefined&&typeof q.soulBoost!=='boolean')return fail();
+        if(q.curve&&(!nums(q.curve.start,['x','y'])||!nums(q.curve.spread,['x','y'])||!nums(q.curve.control,['x','y'])||!nums(q.curve.goal,['x','y'])||!finite(q.curve.duration)||q.curve.duration<=0||q.curve.duration>3))return fail();
 
         if(q.ultimateBurst!==undefined&&typeof q.ultimateBurst!=='boolean')return fail();
         if(!optionalNumber(q.effectBoost,0,.15)||!optionalNumber(q.sizeBoost,0,2)||q.dived!==undefined&&typeof q.dived!=='boolean')return fail();
@@ -197,6 +205,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
     for (const z of b.zones)
         if (!nums(z, ['id', 'x', 'y', 'radius', 'damage', 'expires']) || !['fire', 'frost', 'delay', 'bomb'].includes(z.kind) || !ids.has(z.owner))
             return fail();
+    if(b.occultTraps&&(!Array.isArray(b.occultTraps)||b.occultTraps.length>64||b.occultTraps.some(t=>!nums(t,['id','x','y','rank','damage','expires'])||!ids.has(t.owner)||!['O06','O07','O08'].includes(t.skill))))return fail();
     if (!nums(b.items, ['heal', 'focus', 'cleanse', 'ward']) || b.events.some(t => !safe(t, 600)) || !object(b.lastShots) || !object(b.shotDamage) || !Array.isArray(b.teamEnds) || b.teamEnds.length !== 3 || b.teamEnds.some(n => !finite(n) || n < 0) || typeof b.rewardGranted !== 'boolean' || !safe(b.session, 120))
         return fail();
     for (const s of Object.values(b.lastShots))

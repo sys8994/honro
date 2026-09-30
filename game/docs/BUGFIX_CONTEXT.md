@@ -1,5 +1,7 @@
 # HONRO 게임 수정 맥락
 
+**소단 기예 개편(HBUG-058, 2026-10-01):** `shared/engine/src/occultData.ts`가 새 소단 트리와 옛 `LO*` 정의를, `occultMechanics.ts`가 반향 목표 snapshot·만혼귀결 곡선을 맡는다. `engine.ts`는 소단 직후 `summonTurn`을 재사용하며, `skillMechanics.ts`가 옛 투자 SP와 비행 탄을 이행한다. 대표 검사는 `tests/sodan-redesign.mjs`와 `tests/sodan-redesign-browser.py`; 설계 충돌·한계는 [보고서](SKILL_REDESIGN_SODAN_REPORT.md)에 있다.
+
 **1막 깊이·원경 가독성(HBUG-057, 2026-10-01):** 3·4장 밤숲은 [거리별 화면 규칙](ACT1_LAYER_DEPTH.md)의 `distance`로 줌·시차가 완만하게 달라지고, 달은 화면 크기가 고정된다. `shared/runtime/map-art-polish.js`가 저채도 소나무·앙상한 나무를 섞고, `renderer.js`는 줌에 따라 해당 원경 캐시를 갱신한다. 월드 장식은 레이어별 불투명도를 적용하되 가까운 바위는 완전 불투명하다. 지형 윤곽은 `art-dark.js`에서 선명하게 그린다. 관련 검사는 `tests/stage36-place-browser.py --stage34`, `tests/migration.mjs`, `tests/integration.py`다.
 
 **3·4장 물·밤숲·선택 경로(HBUG-056, 2026-09-30):** 3장의 `ferry-water`는 이제 실제 전도 물 영역이며, `shared/runtime/map-art-polish.js`의 `liveWater`가 정적 캐시 밖에서 흐름·지주 회류·착수 파문을 그린다. `renderer.js`는 월드 캐시 뒤, 유닛 앞에서 이 패스를 호출한다. 3장의 `ferry-side-gangway`와 4장의 `burned-gallery`는 `workshop/recipes/stage36-place-design.js`가 만드는 파괴 가능한 선택 발판이며 기존 지상 경로는 유지한다. 두 장의 원경만 높은 밤숲으로 교체했다. 관련 검사는 `node tests/stage36-place-design.mjs`, `python -X utf8 tests/stage36-place-browser.py --stage34`, `node tests/migration.mjs`, `python -X utf8 tests/integration.py`다. [작업 기록](STAGE36_PLACE_DESIGN.md).

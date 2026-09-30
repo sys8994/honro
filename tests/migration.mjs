@@ -6,13 +6,18 @@ import vm from 'node:vm';
 const g=await runtime(),old=await legacyRuntime(),plain=x=>JSON.parse(JSON.stringify(x)),rows=[];
 const project=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));
 const baseline=plain(await migrate());
+// Stage 10's frozen authored boss stats predate the Sodan basic attack redesign.
+// Compare map/schema identity while explicitly pinning that two-field balance drift.
+function mapWithoutSodanBalance(value){const copy=plain(value);for(const stage of copy.stages||[]){const boss=stage.units?.find(u=>u.id==='boss'&&u.cls==='occultist');if(boss){delete boss.attack;delete boss.combatBaseAttack;}}return copy;}
+const oldBoss=project.stages[9].units.find(u=>u.id==='boss'),newBoss=baseline.stages[9].units.find(u=>u.id==='boss');
+assert(Math.abs(oldBoss.attack-3.377988734638485)<1e-9&&Math.abs(newBoss.attack-3.307897932671126)<1e-9,'Only the expected Sodan boss template balance differs');
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design.js',import.meta.url),'utf8'),g);
 const firstDesign=plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline)));
-assert.deepEqual(plain(g.HonroCommands.apply(firstDesign,g.HonroStage36Places.commands(firstDesign))),project,'Migration plus Stage 1–6 Workshop designs must be reproducible');
+assert.deepEqual(mapWithoutSodanBalance(g.HonroCommands.apply(firstDesign,g.HonroStage36Places.commands(firstDesign))),mapWithoutSodanBalance(project),'Migration plus Stage 1–6 Workshop designs must be reproducible');
 const originalLater=plain(baseline.stages.slice(6)),activeLater=plain(project.stages.slice(6));
 activeLater[3].elements.find(e=>e.kind==='ritualDais').layer='back';
-assert.deepEqual(activeLater,originalLater,'Stages 7–10 retain original data apart from ritual dais presentation layer');
+assert.deepEqual(mapWithoutSodanBalance({stages:activeLater}),mapWithoutSodanBalance({stages:originalLater}),'Stages 7–10 retain original data apart from ritual dais presentation layer');
 for(let id=1;id<=10;id++){
  // The original import remains lossless. Stages 1–6 have separately tested Workshop redesigns.
  g.HONRO_PROJECT=id<=6?baseline:project;
@@ -25,7 +30,7 @@ for(let id=1;id<=10;id++){
   for(const field of ['honroEvents','honroMarkers','honroMapAnchors','honroMap','honroRoute','honroDetailStats','honroState','honroGrowth'])
    assert.deepEqual(plain(b[field]),plain(a[field]),`Stage ${id} ${difficulty} ${field}`);
   assert.equal(b.units.length,a.units.length);
-  for(const u of a.units){const v=b.units.find(v=>v.id===u.id);assert.ok(v,u.id);for(const [key,value] of Object.entries(plain(u)))assert.deepEqual(plain(v[key]),value,`Stage ${id} ${difficulty} ${u.id}.${key}`);}
+  for(const u of a.units){const v=b.units.find(v=>v.id===u.id);assert.ok(v,u.id);for(const [key,value] of Object.entries(plain(u))){if(id===10&&u.id==='boss'&&['attack','combatBaseAttack'].includes(key))continue;assert.deepEqual(plain(v[key]),value,`Stage ${id} ${difficulty} ${u.id}.${key}`);}}
   for(let i=0;i<a.honroLandmarks.length;i++){const original=plain(a.honroLandmarks[i]),actual=plain(b.honroLandmarks[i]);if(id===10&&original.kind==='ritualDais')original.layer='prop';for(const [key,value] of Object.entries(original))assert.deepEqual(actual[key],value,`Stage ${id} landmark ${i}.${key}`);}
  }
  const st=project.stages[id-1],roundtrip=g.HonroMaps.normalize(JSON.parse(g.HonroMaps.serialize(project)));

@@ -14,9 +14,10 @@ function setup(app,id,h,canvas){
  if(id==='S05')positions[1]=260;
  if(id==='S10')positions.splice(0,positions.length,830);
  if(id==='O03')positions.splice(0,positions.length,1000,1130,1260);
- if(id==='M10'||id==='M09'||id==='O14')positions.splice(0,positions.length,1050);
+ if(id==='M10'||id==='M09'||id==='O13'||id==='O14'||id==='O15')positions.splice(0,positions.length,1050);
  for(const [i,x] of positions.entries()){const u=C.makeUnit('knight',1,x,floor,{id:'preview-target-'+i,name:'표적',h:115,r:27,honroType:'beast',honroVariant:'hound',hp:2400,maxHp:2400,armor:0,attack:.5,awake:true,fixed:!['A05','S15','S10','M08'].includes(id),loadout:['LA01'],focus:9999,maxFocus:9999});b.units.push(u);}
- if(id==='M10'||id==='O14'){const ally=C.makeUnit('knight',0,780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
+ if(id==='M10'||id==='O13'){const ally=C.makeUnit('knight',0,780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
+ if(id==='O16')for(const [i,x] of [220,570].entries())b.units.push(C.makeUnit('occultist',0,x,floor-130,{id:'preview-echo-'+i,name:'반향령',summoned:true,summonOwner:hero.id,summonKind:'echo',summonRank:8,summonExpires:8,acted:true,fixed:true,summonFloating:true,h:65,r:20,hp:180,maxHp:180,attack:0,loadout:[],ranks:{...hero.ranks}}));
  if(bounce)b.terrain.push({id:'preview-wall',x:1140,y:620,w:40,h:380,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  b.active=hero.id;b.side=0;b.phase='aim';b.queue=[];
  const pr={id,b,canvas,hero,age:0,acc:0,fired:false,follow:false,cycle:0,events:[],h:structuredClone(h)};
@@ -29,14 +30,14 @@ function setup(app,id,h,canvas){
  else if(ring)aim={angle:0,power:(300-180)/720};
  else if(id==='A10'||id==='S14')aim={angle:0,power:.5};
  else if(id==='O03')aim={angle:-30,power:.42};
- else if(id==='O99')aim={angle:20,power:.4};
+ else if(id==='O16')aim={angle:20,power:.4};
  else if(id==='A15')aim={angle:62,power:.52};
  else if(id==='M11')aim={angle:30,power:.72};
  else if(id==='M12')aim={angle:-8,power:.62};
  else if(id==='S11'||id==='S12')aim={angle:8,power:.75};
- else if(s.branch==='stake'||id==='O14'){
+ else if(s.branch==='stake'||['O13','O14','O15'].includes(id)){
   // Aim at the ground, not a body: the same prediction and actual landing create the stake.
-  const goal=id==='M09'?780:id==='M10'||id==='O14'?760:840;
+  const goal=id==='M09'?780:id==='M10'||['O13','O14','O15'].includes(id)?760:840;
   let best=Infinity;for(const angle of [15,28,42])for(let power=.25;power<=.9;power+=.025){const hit=pr.e.predict(hero,s,angle,power,undefined,false),d=Math.abs(hit.x-goal)+Math.abs(hit.y-floor);if(d<best){best=d;aim={angle,power};}}
  }else aim=shortShot(pr.e,hero,s,target);
  pr.aim=aim;hero.angle=aim.angle;hero.lastPower=aim.power;
@@ -59,6 +60,7 @@ function tick(app,p,dt){
   if(p.id==='A10'&&p.age>1.8&&!p.follow){p.follow=true;ready(p,'A14');const aim=shortShot(e,u,C.SKILLS.A14,b.units[1]);e.fire('A14',aim.angle,aim.power);}
   if(p.id==='M09'&&b.stakes.length===2&&!p.follow){ready(p,p.id);p.follow=e.useGate();}
   if(p.id==='S14'&&p.age>1.5&&!p.follow){p.follow=true;const foe=b.units[1];b.active=foe.id;b.side=1;b.phase='enemy';foe.lastAct=b.round;const aim=shortShot(e,foe,C.SKILLS.LA01,u);e.fire('LA01',aim.angle,aim.power,true);}
+  if(p.id==='O15'&&!p.follow&&b.phase==='aim'&&p.age>3){p.follow=true;ready(p,'O01');const aim=shortShot(e,u,C.SKILLS.O01,b.units[1]);e.fire('O01',aim.angle,aim.power);}
   p.acc+=dt;for(let n=0;n<16&&p.acc>=C.STEP;n++,p.acc-=C.STEP){
    if(['transition','enemy'].includes(b.phase)){e.stepUnits(C.STEP);C.tickRedesign(e,C.STEP);}
    else e.tick(C.STEP);

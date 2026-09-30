@@ -6,21 +6,22 @@ import { SKILLS, CLASSES } from './data';
 import { clamp } from './math';
 import { MANA_COST_MULTIPLIER } from './balance';
 import { skillBalanceFactor } from './balanceModel';
+import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_POWER,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 export const CLASS_IDS: ClassId[] = ['mage', 'archer', 'knight', 'occultist'];
 export const MAX_LEVEL = 25;
-export const ULTIMATES:Record<ClassId,string>={mage:'M99',archer:'A99',knight:'S99',occultist:'O99'};
+export const ULTIMATES:Record<ClassId,string>={mage:'M99',archer:'A99',knight:'S99',occultist:'O16'};
 export interface Talent {id:string;cls:ClassId;branch:number;row:number;name:string;skill?:string;passive?:'power'|'vitality'|'mana'|'mobility'|'defense'|'regen'|'special';required:number;prereq?:string;maxRank:number;icon:string;desc:string;}
 export const BRANCHES:Record<ClassId,{name:string;color:string;tag:string}[]>={
  mage:[{name:'호리병술',color:'#b98a61',tag:'봉인과 해방'},{name:'파문술',color:'#bbc9cb',tag:'기하와 파면'},{name:'진법',color:'#a9b496',tag:'진목과 전장'},{name:'도법',color:'#dfcd9f',tag:'습득 시 자동 적용'}],
  archer:[{name:'절명',color:'#bfc8ae',tag:'수평거리'},{name:'곡사',color:'#bbc9cb',tag:'최고점과 낙차'},{name:'강궁',color:'#b9a28a',tag:'충돌 속력'},{name:'궁술 기예',color:'#dfcd9f',tag:'습득 시 자동 적용'}],
  knight:[{name:'검술',color:'#cbd2c6',tag:'근거리와 축세'},{name:'돌격',color:'#c1aa8d',tag:'도약과 돌파'},{name:'검기',color:'#a9c5c7',tag:'검압과 포격'},{name:'무예',color:'#dfcd9f',tag:'습득 시 자동 적용'}],
- occultist:[{name:'유령',color:'#b897e5',tag:'저중력과 투과'},{name:'저주',color:'#c369a7',tag:'쇠약과 원한'},{name:'소환귀',color:'#7fb3c8',tag:'자동 전투 소환'},{name:'영매술',color:'#d5c4a4',tag:'습득 시 자동 적용'}]
+ occultist:[{name:'혼행',color:'#aebfb3',tag:'혼의 자유로운 포격'},{name:'주박',color:'#c1a88e',tag:'부적과 존재 변화'},{name:'초혼',color:'#9fb5aa',tag:'혼매듭과 소환령'},{name:'영매술',color:'#d5c4a4',tag:'습득 시 자동 적용'}]
 };
 const layouts:Record<ClassId,string[][]>={
  mage:[['M06','M02','M04','M13','M05'],['M03','M11','M12','M14','M15'],['M07','M10','M08','M09','M99'],['MP01','MP02','MP04','MP03','MP05']],
  archer:[['A14','A02','A06','A10','A99'],['A11','A09','A13','A12','A15'],['A05','A04','A07','A03','A08'],['AP04','AP02','AP01','AP03','AP05']],
  knight:[['S03','S05','S07','S08','S02'],['S01','S06','S04','S15','S13'],['S09','S10','S11','S14','S12'],['SP01','SP02','SP03','SP04','SP05']],
- occultist:[['O01','O02','O03','O04','O05'],['O06','O07','O08','O09','O10'],['O11','O12','O13','O14','O15'],['OP01','OP02','OP03','OP04','OP05']]
+ occultist:[['O02','O03','O04','O05','O16'],['O06','O07','O08','O09','O10'],['O11','O12','O13','O14','O15'],['OP01','OP02','OP03','OP04','OP05']]
 };
 export const TALENTS:Talent[]=CLASS_IDS.flatMap(cls=>layouts[cls].flatMap((ids,branch)=>ids.map((id,row)=>({id,cls,branch,row,name:SKILLS[id].name,skill:id,passive:branch===3?'special' as const:undefined,required:(branch===3?[1,3,6,9,12]:[1,3,6,9,12])[row],prereq:branch!==3&&row>0?ids[row-1]:undefined,maxRank:8,icon:SKILLS[id].icon,desc:SKILLS[id].desc}))));
 /** Passive ranks depend on training, never on an active-skill slot. */
@@ -98,20 +99,27 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    M08:[row('기동 거리','45 · 적이 접근하면 발동'),row('끌어당김','벽에 가로막힘')],
    M09:[row('첫 설치','발밑·착탄점에 한 쌍'),row('동시 설치','2개 · 초과 시 오래된 진목 교체'),row('이동','진목 위에서 E · 턴당 1회'),row('도착 기력 회복',rr<2?'없음':rr===2?'8%':'10%'),row('도착 체력 회복',rr<4?'없음':rr===4?'6%':'8%'),row('도착 이동력 회복',rr<6?'없음':rr===6?'16%':'24%'),row('도착 방호',rr===8?'적 행동 종료까지':'없음')],
    M99:[row('봉쇄 유지',`${stakeDuration(id,rr)}턴`),row('경계 피해',num(dmg*22/35)+' · 턴당 1회'),row('내부 감속','45%'),row('내부 이동력 감소','35%')],
+   O06:[row('쇠약 유지',`${WEAK_TURNS[rr-1]}턴`)],O07:[row('증오 유지',`${BETRAY_TURNS[rr-1]}턴`)],
+   O08:[row('현형 유지',`${MANIFEST_TURNS[rr-1]}턴`)],O09:[row('섭혼 행동',`${ENTHRALL_ACTIONS[rr-1]}회`),row('섭혼 전투력',pct(ENTHRALL_POWER[rr-1]))],
+   O10:[row('지박 유지',`${3+Math.floor((rr-1)*4/7)}턴`),row('지박령 동시 수','최대 4')],
+   O11:[row('배회령 유지',`${SPIRIT_TURNS[rr-1]}턴`)],O12:[row('등불귀 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('대상 수',rr<4?'1명':'최대 2명')],
+   O13:[row('호혼령 유지',`${SPIRIT_TURNS[rr-1]}턴`)],O14:[row('먹귀 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('끌림 반경',`${200+rr*15}`)],
+   O15:[row('반향령 유지',`${ECHO_TURNS[rr-1]}턴`),row('반향 피해',pct(ECHO_POWER[rr-1])),row('동시 설치',`${ECHO_LIMIT[rr-1]}개`)],
+   O16:[row('귀결 혼령',`${10+Math.floor(rr/2)}기`)],
   };
   const branchRows:EffectRow[]=s.cls==='archer'&&s.branch&&s.id!=='A10'?[row('계통 위력',s.branch==='distance'?`수평거리 1,800에서 최대 +${s.id==='A99'?60:40}%`:s.branch==='drop'?`낙차 900에서 최대 +${s.id==='A15'?55:s.id==='A13'?35:45}%`:`충돌 속력에 따라 최대 +${s.id==='A08'?35:45}%`)]:[];
-  const multi=multishotProfile(s,rr);return [row(s.mode==='triple'?'화살당 피해':'기본 피해',`${Math.round(dmg*(s.mode==='triple'?(multi?.damageScale||1):1)*10)/10}`),...(multi?[row(s.mode==='triple'?'화살 수':multi.waves>1?'파생탄 최대 수':'파생 투사체 수',`${multi.count}`)]:[]),...(s.mode==='triple'&&multi?[row('전체 확산각',`${(2*multi.halfAngle).toFixed(1)}°`)]:[]),row('투사체 속도',`${s.speed.toFixed(2)}×`),...(s.radius>0?[row('효과 반경',`${rad}`)]:[]),row('MP',`${mp}`),...(s.redesigned?extra[id]||[]:[]),...branchRows,...(s.branch==='stake'?[row('진목 지속',`${stakeDuration(id,rr)}턴`),row('반복 발동',id==='M10'?'아군마다 턴당 1회':id==='M09'?'유닛마다 턴당 1회':id==='M99'?'지속 봉쇄 · 경계 피해 턴당 1회':'턴당 1회')]:[]),...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
+  const multi=multishotProfile(s,rr);return [...(s.cls==='occultist'&&s.damage===0?[]:[row(s.mode==='triple'?'화살당 피해':'기본 피해',`${Math.round(dmg*(s.mode==='triple'?(multi?.damageScale||1):1)*10)/10}`)]),...(multi?[row(s.mode==='triple'?'화살 수':multi.waves>1?'파생탄 최대 수':'파생 투사체 수',`${multi.count}`)]:[]),...(s.mode==='triple'&&multi?[row('전체 확산각',`${(2*multi.halfAngle).toFixed(1)}°`)]:[]),...(s.cls==='occultist'?[]:[row('투사체 속도',`${s.speed.toFixed(2)}×`)]),...(s.radius>0&&!['O06','O07'].includes(id)?[row('효과 반경',`${rad}`)]:[]),row('MP',`${mp}`),...((s.redesigned||s.cls==='occultist')?extra[id]||[]:[]),...branchRows,...(s.branch==='stake'?[row('진목 지속',`${stakeDuration(id,rr)}턴`),row('반복 발동',id==='M10'?'아군마다 턴당 1회':id==='M09'?'유닛마다 턴당 1회':id==='M99'?'지속 봉쇄 · 경계 피해 턴당 1회':'턴당 1회')]:[]),...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
  }
  const rows:Record<string,EffectRow[]>={
  MP01:[row('호리병 2차 효과',pct(.03*r)),row('파문 두께·진목 효력',pct(.02*r))],MP02:[row('최대 기력',pct(.03*r)),row('턴 회복',num(.5*r))],MP03:[row('미스 환급',pct(.18+.04*Math.max(0,r-1)))],MP04:[row('예측 정보 단계',num(r))],MP05:[row('완성에 필요한 소비 기력',num(JUCHEON_THRESHOLD[Math.max(0,r-1)])),row('완성 후 비용 감소',pct(r?JUCHEON_DISCOUNT[r-1]:0)),row('도술 효과 강화',pct(r?JUCHEON_EFFECT[r-1]:0)),row('파문 범위 확대 상한','5%'),row('무료 도술','주천 충전 없음')],
  AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('추가 치명 확률',pct(.02*r)+'p'),row('추가 치명 배율','+'+(+.04*r).toFixed(2))],AP03:[row('후퇴 이동력',pct(r?.08+.04*r:0))],AP04:[row('계통 위력 가산','+'+pct(.025*r)+'p')],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
  SP01:[row('베기 각도 확대',num(.5*r)+'°'),row('최대 축세 추가 위력',pct(.012*r)),row('최대 축세 추가 사거리',pct(.006*r)),row('돌격 위력',pct(.025*r)),row('검기 속도·크기',pct(.012*r))],SP02:[row('최대 HP',pct(.05*p)),row('피해 감소',pct(.03*p)),row('밀치기 저항',pct(knockbackResistance(r)))],SP03:[row('이동 거리',pct(.10*p)),row('점프 높이 계수',pct((1+.02*r)**2-1)),row('돌격 속도',pct(.015*r)),row('점프 소비',num(Math.max(25,75-5*r)))],SP04:[row('합세 조건','서로 다른 세 계통 · 같은 계통 반복 시 유지'),row('합세 기력 회복',pct(.05+.00625*r)),row('다음 기예 비용','25% 감소'),row('다음 기예 피해','15% 증가'),row('합세 수세','10% 피해 감소 · 다음 내 턴까지')],SP05:[row('불굴 잔여 HP',pct(.08*p)),row('발동 횟수','전투당 1회'),row('회복 자세','18% 피해 감소 · 다음 내 턴까지')],
- OP01:[row('유령 피해',`+${pct(.055*p)}`),row('중력 영향',`-${pct(Math.min(.6,.08*p))}`)],OP02:[row('저주 지속',`+${Math.floor(p/1.5)}R`),row('저주 강도',`+${pct(.08*p)}`)],OP03:[row('소환귀 HP',`+${pct(.15*p)}`),row('소환귀 피해',`+${pct(.12*p)}`)],OP04:[row('처치 MP',num(6*p))],OP05:[row('저주 대상 추가 피해',`+${pct(.07*p)}`)]
+ OP01:[row('잔부 유지',`${1+Math.floor(r/3)}턴`),row('잔부 효과',pct(.22+.045*r))],OP02:[row('주박 대상 우선 탐색',`${170+35*r} 거리`) ],OP03:[row('피해 분담',pct(Math.min(.28,.04*r))),row('공격당 분담 한도',pct(.12))],OP04:[row('자연 소멸 기력 회수',pct(.04+.018*r)),row('다음 초혼 비용 감소',pct(Math.min(.24,.035*r)))],OP05:[row('잔혼 최대','3개'),row('다음 기예 강화',pct(.12+.02*r))]
  };return rows[id]||[];
 }
 export const activeSkills=(ids:string[])=>ids.filter(id=>SKILLS[id]&&!SKILLS[id].passive);
 export function ultimateProgress(h:HeroProgress,cls:ClassId){const ids=layouts[cls].slice(0,3).flat();const learned=ids.filter(id=>(h.ranks[id]||0)>0).length;return {learned,total:ids.length};}
-export function ultimateUnlocked(h:HeroProgress,cls:ClassId){if(cls!=='occultist')return false;const p=ultimateProgress(h,cls);return p.learned>=p.total;}
+export function ultimateUnlocked(_h:HeroProgress,_cls:ClassId){return false;}
 export function ultimateSkill(cls:ClassId){return ULTIMATES[cls];}
 export const TALENT_MAP: Record<string, Talent> = Object.fromEntries(TALENTS.map(n => [n.id, n]));
 export const baseSkill = (cls: ClassId) => cls === 'mage' ? 'M01' : cls === 'archer' ? 'A01' : cls === 'knight' ? 'S00' : 'O01';
@@ -141,7 +149,7 @@ export function migrateLegacyXp9(xp:number){
 export function levelOf(hero: HeroProgress | number) { const xp = typeof hero === 'number' ? hero : hero.xp; let l = 1; while (l < MAX_LEVEL && xp >= xpAtLevel(l + 1))
     l++; return l; }
 export function xpFraction(h: HeroProgress) { const l = levelOf(h); return l === MAX_LEVEL ? 1 : (h.xp - xpAtLevel(l)) / xpToNext(l); }
-export function freshHero(cls: ClassId): HeroProgress { const second=cls==='mage'?'M03':cls==='archer'?'A05':cls==='knight'?'S09':'O06'; return { xp: 0, ranks: cls!=='occultist'?{[baseSkill(cls)]:1}:{[baseSkill(cls)]:1,[second]:1}, kills: 0, damage: 0, skillRevision:1, martialRevision:1 }; }
+export function freshHero(cls: ClassId): HeroProgress { const second=cls==='mage'?'M03':cls==='archer'?'A05':cls==='knight'?'S09':'O06'; return { xp: 0, ranks: cls!=='occultist'?{[baseSkill(cls)]:1}:{[baseSkill(cls)]:1,[second]:1}, kills: 0, damage: 0, skillRevision:1, martialRevision:1,occultRevision:cls==='occultist'?1:undefined }; }
 export function freshRoster(): Roster { return { mage: freshHero('mage'), archer: freshHero('archer'), knight: freshHero('knight'), occultist: freshHero('occultist') }; }
 export function pointsEarned(h: HeroProgress) { return 3 + (levelOf(h) - 1) * 2; }
 export function pointsSpent(h: HeroProgress, cls: ClassId) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (TALENT_MAP[id]?.cls === cls ? r - (id === baseSkill(cls) ? 1 : 0) : 0), 0); }

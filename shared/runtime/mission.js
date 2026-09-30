@@ -3,7 +3,7 @@ const FINALE_TURNS=6,FINALE_CAP=28;
 function finaleSites(b){const a=b.honroMapAnchors||{},site=(id,key,fraction,label)=>{const p=a[key]||{x:b.width*fraction};return{id,label,x:p.x,y:G.HonroWorld.top(b,p.x,p.y,p.support),support:p.support};};return[site('west','westHall',.33,'서쪽 전각'),site('east','eastHall',.71,'동쪽 전각')];}
 function ritualPosition(b,sodan){const a=b.honroMapAnchors?.ritual||{x:b.width*.5,y:sodan.spawnY||sodan.y};return G.HonroTerrain.place(b,sodan,{x:a.x,y:G.HonroWorld.top(b,a.x,a.y,a.support),flying:false,maxDistance:160,clearance:12});}
 function channeler(b,sodan,position,fraction){const C=G.HONRO_CORE,h=structuredClone(b.heroes.occultist),level=Math.floor(G.HonroProgression.plan(10).entryLevel);h.xp=Math.max(h.xp,C.xpAtLevel(level));C.autoTrain(h,'occultist');sodan.loadout=C.knownSkills(h,'occultist').filter(id=>!C.SKILLS[id].passive).slice(0,4);C.applyHero(sodan,h,true);
- Object.assign(sodan,position,{name:'소단',side:2,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:0,hp:Math.max(1,Math.round(sodan.maxHp*fraction))});delete sodan.moveTarget;delete sodan.aiMove;sodan.airborne=sodan.jumping=false;
+ Object.assign(sodan,position,{name:'소단',side:2,spiritSight:true,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:0,hp:Math.max(1,Math.round(sodan.maxHp*fraction))});delete sodan.moveTarget;delete sodan.aiMove;sodan.airborne=sodan.jumping=false;
  Object.assign(b.honroState,{finaleAnchor:position,finaleRevision:2,finaleSites:finaleSites(b)});
 }
 function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('boss'),space=Math.max(0,FINALE_CAP-e.alive(1).length),n=Math.min(index===0?8:6,space);if(!n)return index>0;

@@ -1,5 +1,5 @@
 import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
-import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,guidePrediction,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -285,6 +285,7 @@ export class Renderer {
         if(drawRedesignGuide(c,engine,active,sk,guidePower,zoom))return;
         const pr=guidePrediction(engine,active,sk,guidePower);
         if(!pr)return;
+        drawEchoGuides(c,engine,active,sk,guidePower,zoom,pr);
         c.save();c.globalAlpha=.65;
         pr.points.forEach((v,i)=>{if(i%2===0)circle(c,v.x,v.y,1.6/zoom,sk.color);});
         const r=engine.effective(sk,active).radius;
@@ -1552,7 +1553,7 @@ export class Renderer {
     if(p.mode==='cataclysmCharge'){this.glow(c,p.x,p.y-28,75,'#d2a4ff',.36);c.save();c.globalCompositeOperation='lighter';for(let i=0;i<3;i++){c.globalAlpha=.35-i*.08;line(c,p.x-75-i*20,p.y-38+i*8,p.x+18,p.y-28,'#d9bcff',8-i*2);}c.restore();} }
     projectile(c: C, p: Battle['projectiles'][number]) {
         if(drawRedesignProjectile(c,p))return;
-        const angle = Math.atan2(p.vy, p.vx), occult=p.skill?.[0]==='O'||['nightParade','nightBolt','spiritRain'].includes(p.mode), ultimate=['arcaneJudgment','starHunt','arcBolt','hunterBolt','nightParade','nightBolt'].includes(p.mode)||p.skill==='M99'||p.skill==='A99'||p.skill==='O99', advanced = ['meteor', 'emberOrb', 'frostOrb', 'stormOrb','arcaneJudgment','starHunt','reverseGhost','nightParade'].includes(p.mode), arrow = p.skill[0] === 'A' || p.mode==='hunterBolt', color = p.color;
+        const angle = Math.atan2(p.vy, p.vx), occult=p.skill?.[0]==='O'||p.skill?.startsWith('LO')||['nightParade','nightBolt','spiritRain'].includes(p.mode), ultimate=['arcaneJudgment','starHunt','arcBolt','hunterBolt','nightParade','nightBolt'].includes(p.mode)||p.skill==='M99'||p.skill==='A99'||p.skill==='O99', advanced = ['meteor', 'emberOrb', 'frostOrb', 'stormOrb','arcaneJudgment','starHunt','reverseGhost','nightParade'].includes(p.mode), arrow = p.skill[0] === 'A' || p.mode==='hunterBolt', color = p.color;
         c.save();
         c.lineCap = 'round';
         c.lineJoin = 'round';
@@ -1624,10 +1625,15 @@ export class Renderer {
             c.save();c.translate(p.x,p.y);c.rotate(angle);if(p.mode==='honroMournerWail'){c.strokeStyle='#b27e80';c.lineWidth=2;for(let i=0;i<3;i++){c.globalAlpha=.55-i*.12;c.beginPath();c.arc(-i*12,0,13+i*8,-.75,.75);c.stroke();}}else path(c,[[15,0],[5,-8],[-13,-7],[-18,5],[2,9]],'#705c4c','#a68e70',1);c.restore();c.restore();return;
         }
         if(occult){
-            this.glow(c,p.x,p.y,ultimate?44:26,color,.38);c.save();c.translate(p.x,p.y);c.rotate(angle);
-            if(['curseWeak','curseBetray','curseDot','curseBind','curseChain'].includes(p.mode)){path(c,[[-10,-7],[8,-5],[10,7],[-8,6]],'#d8c9a6',color,1);this.rune(c,0,0,5,color,p.age*1.4);}
-            else if(['summonStalker','summonLantern','summonCharger','summonWarden','summonHost'].includes(p.mode)){circle(c,0,0,8,color+'bb',color);this.rune(c,0,0,13,color,-p.age);}
-            else {path(c,[[13,0],[-2,-9],[-11,0],[-2,9]],color+'aa','#efe4ff',1);for(let i=0;i<3;i++)circle(c,-10-i*8,Math.sin(p.age*7+i)*5,2,color+'99');}
+            if(p.mode!=='convergeSpirit')this.glow(c,p.x,p.y,p.mode==='spiritConverge'?38:19,color,.25);
+            c.save();c.translate(p.x,p.y);c.rotate(angle);
+            if(['curseWeak','curseBetray','curseDot','curseBind','curseChain','curseManifest','curseEnthrall','curseEarth'].includes(p.mode)){
+                path(c,[[-11,-7],[9,-6],[11,7],[-9,6]],'#d6c9aa',color,1);line(c,-4,-4,4,3,'#554b3e',1.1);line(c,4,-3,-3,4,'#554b3e',.8);
+            }else if(p.mode.startsWith('summon')){
+                c.strokeStyle=color;c.globalAlpha=.78;c.lineWidth=1.5;c.beginPath();c.arc(0,0,8,0,Math.PI*2);c.stroke();line(c,-9,-7,9,7,color,1.3);line(c,-9,7,9,-7,color,1.3);circle(c,0,0,2,'#e7deca');
+            }else if(p.mode==='convergeSpirit'){
+                c.globalAlpha=.75;path(c,[[11,0],[-3,-4],[-10,0],[-3,4]],color+'aa','#d9d7c6',.6);
+            }else {path(c,[[13,0],[-2,-7],[-11,0],[-2,7]],color+'aa','#e6e7d8',1);for(let i=0;i<2;i++)circle(c,-10-i*8,Math.sin(p.age*5+i)*3,1.5,color+'88');}
             c.restore();c.restore();return;
         }
         c.translate(p.x, p.y);

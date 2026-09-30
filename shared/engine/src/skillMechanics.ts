@@ -84,7 +84,18 @@ export function migrateSkills(p:Profile & {honroBattle?:Battle}){
   for(const q of [...b.projectiles,...(b.volley?[b.volley.template]:[])])if(/^S\d\d$/.test(q.skill)&&SKILLS['L'+q.skill])q.skill='L'+q.skill;
   b.martialRevision=1;
  }
- for(const cls of ['archer','mage','knight'] as const)sanitizeLoadout(p,cls);
+ for(const heroes of rosters){const h=heroes?.occultist;if(h&&h.occultRevision!==1){
+  const ranks:Record<string,number>={O01:1};for(const id of ['O02','O03','O04','O05','O06','O07'])if(h.ranks[id]>0)ranks[id]=h.ranks[id];
+  h.ranks=ranks;h.occultRevision=1;
+ }}
+ for(const b of [p.saved,p.honroBattle])if(b&&b.occultRevision!==1){
+  for(const u of b.units){if(u.side===0&&!u.summoned&&u.cls==='occultist'){
+   u.ranks={...b.heroes.occultist.ranks};u.loadout=['O01',...u.loadout.filter(id=>['O02','O03','O04','O05','O06','O07'].includes(id))].slice(0,4);u.cooldowns={};u.spiritSight=true;
+  }else migrateEnemySkills(u);}
+  for(const q of [...b.projectiles,...(b.volley?[b.volley.template]:[])])if(['O08','O09','O10','O13','O14','O15','O99'].includes(q.skill))q.skill='L'+q.skill;
+  b.occultRevision=1;
+ }
+ for(const cls of ['archer','mage','knight','occultist'] as const)sanitizeLoadout(p,cls);
  return p;
 }
 export function initRedesignCast(e:Engine,s:Skill,u:Unit,actualKiSpent=e.manaCost(s,u)){

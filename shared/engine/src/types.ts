@@ -91,6 +91,7 @@ export interface Decoration {
 export interface HeroProgress {
     martialRevision?: number;
     skillRevision?: number;
+    occultRevision?: number;
     xp: number;
     ranks: Record<string, number>;
     kills: number;
@@ -142,9 +143,26 @@ export interface Unit {
     elite?: boolean;
     summoned?: boolean;
     summonOwner?: string;
-    summonKind?: 'stalker' | 'lantern' | 'charger' | 'warden' | 'host';
+    summonKind?: 'stalker' | 'lantern' | 'charger' | 'warden' | 'host' | 'eater' | 'echo' | 'earthbound';
     summonExpires?: number;
+    summonRank?: number;
+    summonActionRound?: number;
+    summonAbsorbed?: number;
+    auraHits?: Record<string,string>;
     summonFloating?: boolean;
+    spiritSight?: boolean;
+    manifested?: boolean;
+    spiritHidden?: boolean;
+    manifestedUntil?: number;
+    revealSpiritToParty?: boolean;
+    formDamageTakenBonus?: number;
+    soulAffinityBonus?: number;
+    soulDefenseBonus?: number;
+    soulBonusUntil?: number;
+    enthrall?: {owner:string;actions:number;captureRatio:number;originalMaxHp:number;originalAttack:number;originalArmor:number;power:number};
+    earthbind?: {owner:string;until:number;damage:number};
+    nextSummonDiscount?: number;
+    soulRemnants?: number;
     impactCooldown?: number;
     impactSource?: string;
     curseOwner?: string;
@@ -206,6 +224,7 @@ export interface Unit {
     airborne: boolean;
     fixed: boolean;
     boss?: number;
+    honroMidboss?: boolean;
     spawnX: number;
     spawnY: number;
     intent: string;
@@ -223,6 +242,10 @@ export interface Unit {
     cooldowns?: Record<string, number>;
 }
 export interface Projectile {
+    echoDelay?: number;
+    echoSource?: string;
+    soulBoost?: boolean;
+    curve?: {start:Vec;spread:Vec;control:Vec;goal:Vec;duration:number};
     effectBoost?: number;
     sizeBoost?: number;
     dived?: boolean;
@@ -331,12 +354,14 @@ export interface Stage {
 }
 export interface Battle {
     martialRevision?: number;
+    occultRevision?: number;
     practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
     stakes?: {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
     physics?:PhysicsEnvironment;
-    summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean};
+    summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean;afterActor?:boolean};
+    occultTraps?: {id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number}[];
     vertical?: boolean;
     routePoints?: Vec[];
     volley?: {template: Projectile; remaining: number; elapsed: number; interval: number; index: number; angle: number; power: number};

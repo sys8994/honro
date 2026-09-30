@@ -11,9 +11,13 @@ const symbols={
  follow:'M2 4H13L9 1M14 12H3L7 15',
  retreat:'M1 8H14M5 4 1 8 5 12',
  prepared:'M8 1V5M8 11V15M1 8H5M11 8H15M8 4A4 4 0 1 0 8 12A4 4 0 1 0 8 4',
+ manifest:'M2 3H14V13H2ZM5 8H11M8 5V11',
+ enthrall:'M3 5Q8 1 13 5M3 11Q8 15 13 11M5 6L11 10M11 6L5 10',
+ earthbind:'M8 1V10M8 10L2 15M8 10L14 15M8 10L5 13M8 10L11 13',
+ remnant:'M3 11Q1 5 5 4Q8 4 6 10M9 12Q7 6 11 3Q15 4 13 11',
  dead:'M3 3 13 13M3 13 13 3'
 };
-const colors={stun:'#f5d27f',bind:'#e2ba87',slow:'#9dddeb',curse:'#d7a2e4',betrayal:'#ee9cbc',shield:'#a8dbd3',guard:'#cadbd5',power:'#eed69a',follow:'#eed69a',retreat:'#b4d3c5',prepared:'#eed69a',dead:'#bfaaa2'};
+const colors={stun:'#f5d27f',bind:'#e2ba87',slow:'#9dddeb',curse:'#d7a2e4',betrayal:'#ee9cbc',shield:'#a8dbd3',guard:'#cadbd5',power:'#eed69a',follow:'#eed69a',retreat:'#b4d3c5',prepared:'#eed69a',manifest:'#d7d0ac',enthrall:'#c2b596',earthbind:'#b8ab8a',remnant:'#d1c6ab',dead:'#bfaaa2'};
 function entries(b,u){
  const list=[];if(!u)return list;
  const add=(key,name,detail,count)=>list.push({key,name,detail,count,color:colors[key]});
@@ -24,6 +28,10 @@ function entries(b,u){
  if(u.slowed)add('slow','감속','감속 '+Math.round(u.slowed.factor*100)+'%');
  if(u.curseTurns>0){const parts=[`저주 ${u.curseTurns}턴`];if(u.curseDamage>0)parts.push(`매 턴 피해 ${Math.round(u.curseDamage)}`);if(u.curseAttack>0)parts.push(`공격력 ${Math.round(u.curseAttack*100)}% 감소`);if(u.curseArmor>0)parts.push(`방어력 ${Math.round(u.curseArmor*100)}%p 감소`);add('curse','저주',parts.join(' · '),u.curseTurns);}
  if(u.betrayalUntil>0&&u.betrayalUntil>=b.round)add('betrayal','이간','이간 · 같은 편의 공격 대상이 됨',u.betrayalUntil-b.round+1);
+ if(u.manifested)add('manifest','현형',`현형 · 동료에게도 보임 · ${Math.max(1,(u.manifestedUntil||b.round)-b.round+1)}턴`);
+ if(u.enthrall)add('enthrall','섭혼',`섭혼 · 소단 편으로 ${u.enthrall.actions}회 더 행동`,u.enthrall.actions);
+ if(u.earthbind)add('earthbind','지박',`지박 · 매 턴 피해와 이동 방해 · ${Math.max(1,u.earthbind.until-b.round+1)}턴`);
+ if(u.soulRemnants>0)add('remnant','잔혼',`잔혼 ${u.soulRemnants}/3 · 셋이 모이면 다음 기예 강화`,u.soulRemnants);
  if(u.mark>0)add('prepared','표식','표식 · 표식을 남긴 편의 다음 직격 피해 50% 증가');
  if(u.breaks>0)add('guard','방어 붕괴',`방어 붕괴 · 다음 피격 ${u.breaks}회 방어력 약화`,u.breaks);
  if(u.shield>0)add('shield','보호막',`보호막 ${Math.round(u.shield)}`);
@@ -49,6 +57,10 @@ function draw(c,b,u,time,scale,active){
  if(has('bind')){c.strokeStyle=colors.bind;c.beginPath();for(let i=0;i<2;i++)c.ellipse(u.x,u.y-7-i*13,u.r+8,7,0,0,Math.PI*2);c.moveTo(u.x-u.r,u.y-23);c.lineTo(u.x+u.r,u.y-2);c.stroke();}
  if(has('slow')){c.strokeStyle=colors.slow;c.beginPath();for(let i=0;i<5;i++){const x=u.x+(i-2)*12;c.moveTo(x-6,u.y+1);c.lineTo(x,u.y-10-(i%2)*7);c.lineTo(x+6,u.y+1);}c.stroke();}
  if(has('curse')){c.strokeStyle=colors.curse;c.globalAlpha=.65+.15*Math.sin(time*3);c.beginPath();c.ellipse(u.x,u.y-visualHeight*.45,u.r+11,visualHeight*.35,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
+ if(has('manifest')){c.strokeStyle=colors.manifest;c.globalAlpha=.68;c.beginPath();c.ellipse(u.x,u.y-visualHeight*.5,u.r+14,visualHeight*.55,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
+ if(has('enthrall')){c.strokeStyle=colors.enthrall;c.beginPath();c.moveTo(u.x-u.r-8,u.y-visualHeight*.45);c.quadraticCurveTo(u.x,u.y-visualHeight*.72,u.x+u.r+8,u.y-visualHeight*.45);c.stroke();}
+ if(has('earthbind')){c.strokeStyle=colors.earthbind;c.beginPath();for(let i=-2;i<=2;i++){const x=u.x+i*10;c.moveTo(x,u.y);c.lineTo(x+i*4,u.y-18-Math.abs(i)*4);}c.stroke();}
+ if(has('remnant')){c.fillStyle=colors.remnant;for(let i=0;i<Math.min(3,u.soulRemnants||0);i++){c.beginPath();c.arc(u.x+(i-1)*12,u.y-visualHeight-13,2.5,0,Math.PI*2);c.fill();}}
  if(has('shield')||has('guard')){c.strokeStyle=has('shield')?colors.shield:colors.guard;c.globalAlpha=.7;c.beginPath();c.ellipse(u.x,u.y-visualHeight*.5,u.r+19,visualHeight*.57,0,-Math.PI*.8,Math.PI*.8);c.stroke();c.globalAlpha=1;}
  if(has('stun')){c.strokeStyle=colors.stun;for(let i=0;i<3;i++){const a=time*2+i*Math.PI*2/3,x=u.x+Math.cos(a)*(u.r+10),y=u.y-visualHeight-8+Math.sin(a)*5;c.beginPath();c.moveTo(x-3*z,y);c.lineTo(x+3*z,y);c.moveTo(x,y-3*z);c.lineTo(x,y+3*z);c.stroke();}}
  // Three fixed-size signs plus a count keep stacked effects compact at every zoom.

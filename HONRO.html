@@ -1228,6 +1228,7 @@ class Renderer {
         const pr = (0, skillVisuals_1.guidePrediction)(engine, active, sk, guidePower);
         if (!pr)
             return;
+        (0, skillVisuals_1.drawEchoGuides)(c, engine, active, sk, guidePower, zoom, pr);
         c.save();
         c.globalAlpha = .65;
         pr.points.forEach((v, i) => { if (i % 2 === 0)
@@ -2690,7 +2691,7 @@ class Renderer {
     projectile(c, p) {
         if ((0, skillVisuals_1.drawRedesignProjectile)(c, p))
             return;
-        const angle = Math.atan2(p.vy, p.vx), occult = p.skill?.[0] === 'O' || ['nightParade', 'nightBolt', 'spiritRain'].includes(p.mode), ultimate = ['arcaneJudgment', 'starHunt', 'arcBolt', 'hunterBolt', 'nightParade', 'nightBolt'].includes(p.mode) || p.skill === 'M99' || p.skill === 'A99' || p.skill === 'O99', advanced = ['meteor', 'emberOrb', 'frostOrb', 'stormOrb', 'arcaneJudgment', 'starHunt', 'reverseGhost', 'nightParade'].includes(p.mode), arrow = p.skill[0] === 'A' || p.mode === 'hunterBolt', color = p.color;
+        const angle = Math.atan2(p.vy, p.vx), occult = p.skill?.[0] === 'O' || p.skill?.startsWith('LO') || ['nightParade', 'nightBolt', 'spiritRain'].includes(p.mode), ultimate = ['arcaneJudgment', 'starHunt', 'arcBolt', 'hunterBolt', 'nightParade', 'nightBolt'].includes(p.mode) || p.skill === 'M99' || p.skill === 'A99' || p.skill === 'O99', advanced = ['meteor', 'emberOrb', 'frostOrb', 'stormOrb', 'arcaneJudgment', 'starHunt', 'reverseGhost', 'nightParade'].includes(p.mode), arrow = p.skill[0] === 'A' || p.mode === 'hunterBolt', color = p.color;
         c.save();
         c.lineCap = 'round';
         c.lineJoin = 'round';
@@ -2872,22 +2873,35 @@ class Renderer {
             return;
         }
         if (occult) {
-            this.glow(c, p.x, p.y, ultimate ? 44 : 26, color, .38);
+            if (p.mode !== 'convergeSpirit')
+                this.glow(c, p.x, p.y, p.mode === 'spiritConverge' ? 38 : 19, color, .25);
             c.save();
             c.translate(p.x, p.y);
             c.rotate(angle);
-            if (['curseWeak', 'curseBetray', 'curseDot', 'curseBind', 'curseChain'].includes(p.mode)) {
-                path(c, [[-10, -7], [8, -5], [10, 7], [-8, 6]], '#d8c9a6', color, 1);
-                this.rune(c, 0, 0, 5, color, p.age * 1.4);
+            if (['curseWeak', 'curseBetray', 'curseDot', 'curseBind', 'curseChain', 'curseManifest', 'curseEnthrall', 'curseEarth'].includes(p.mode)) {
+                path(c, [[-11, -7], [9, -6], [11, 7], [-9, 6]], '#d6c9aa', color, 1);
+                line(c, -4, -4, 4, 3, '#554b3e', 1.1);
+                line(c, 4, -3, -3, 4, '#554b3e', .8);
             }
-            else if (['summonStalker', 'summonLantern', 'summonCharger', 'summonWarden', 'summonHost'].includes(p.mode)) {
-                circle(c, 0, 0, 8, color + 'bb', color);
-                this.rune(c, 0, 0, 13, color, -p.age);
+            else if (p.mode.startsWith('summon')) {
+                c.strokeStyle = color;
+                c.globalAlpha = .78;
+                c.lineWidth = 1.5;
+                c.beginPath();
+                c.arc(0, 0, 8, 0, Math.PI * 2);
+                c.stroke();
+                line(c, -9, -7, 9, 7, color, 1.3);
+                line(c, -9, 7, 9, -7, color, 1.3);
+                circle(c, 0, 0, 2, '#e7deca');
+            }
+            else if (p.mode === 'convergeSpirit') {
+                c.globalAlpha = .75;
+                path(c, [[11, 0], [-3, -4], [-10, 0], [-3, 4]], color + 'aa', '#d9d7c6', .6);
             }
             else {
-                path(c, [[13, 0], [-2, -9], [-11, 0], [-2, 9]], color + 'aa', '#efe4ff', 1);
-                for (let i = 0; i < 3; i++)
-                    circle(c, -10 - i * 8, Math.sin(p.age * 7 + i) * 5, 2, color + '99');
+                path(c, [[13, 0], [-2, -7], [-11, 0], [-2, 7]], color + 'aa', '#e6e7d8', 1);
+                for (let i = 0; i < 2; i++)
+                    circle(c, -10 - i * 8, Math.sin(p.age * 5 + i) * 3, 1.5, color + '88');
             }
             c.restore();
             c.restore();
@@ -3870,6 +3884,7 @@ exports.ITEM_INFO = exports.STAGES = exports.ENEMIES = exports.THEMES = exports.
 exports.unlockedSkills = unlockedSkills;
 const warriorData_1 = require("./warriorData");
 const skillRedesignData_1 = require("./skillRedesignData");
+const occultData_1 = require("./occultData");
 exports.CLASSES = {
     mage: { name: '마법사', person: '이렌', epithet: '재를 읽는 자', desc: '운석과 산개탄으로 엄폐 너머를 무너뜨린다.', color: '#e7ae67', hp: 180, icon: 'flame', start: ['M01', 'M05', 'M06', 'M02'], order: ['M01', 'M05', 'M06', 'M02', 'M03', 'M04', 'M07', 'M08', 'M09', 'M10', 'M11', 'M12'] },
     archer: { name: '궁수', person: '카엘', epithet: '바람의 끝', desc: '작은 틈, 반사면, 적의 빈틈을 정확히 꿰뚫는다.', color: '#86cbb2', hp: 175, icon: 'arrow', start: ['A01', 'A02', 'A04', 'A05'], order: ['A01', 'A02', 'A04', 'A05', 'A03', 'A06', 'A07', 'A08', 'A09', 'A10', 'A11', 'A12'] },
@@ -4084,6 +4099,7 @@ for (const s of [
 ])
     exports.SKILLS[s.id] = s;
 exports.SKILLS.O99 = { id: 'O99', cls: 'occultist', name: '백귀야행', tag: '궁극기 · 경계 붕괴', desc: '혼령핵이 정점에서 귀문을 열어 넓은 범위의 적을 저주하고 추적 원혼을 쏟아낸다. 귀문 아래에는 강력한 소환귀 둘이 남는다.', cost: 86, damage: 116, radius: 190, speed: .84, wind: .18, mode: 'nightParade', color: '#b780f0', icon: 'vortex', terrain: .35, ultimate: true, gravity: .18 };
+(0, occultData_1.installOccultRedesign)(exports.SKILLS);
 (0, skillRedesignData_1.installSkillRedesign)(exports.SKILLS);
 (0, warriorData_1.installWarriorSkills)(exports.SKILLS);
 
@@ -4603,6 +4619,8 @@ const warriorMechanics_1 = require("./warriorMechanics");
 const skillMechanics_1 = require("./skillMechanics");
 const locomotion_1 = require("./locomotion");
 const summons_1 = require("./summons");
+const occultMechanics_1 = require("./occultMechanics");
+const occultData_1 = require("./occultData");
 const physics_1 = require("./physics");
 const projectileGrowth_1 = require("./projectileGrowth");
 const balance_1 = require("./balance");
@@ -4613,9 +4631,8 @@ const enemyAI_1 = require("./enemyAI");
 const math_1 = require("./math");
 const world_1 = require("./world");
 const progression_1 = require("./progression");
-const GHOST = new Set(['spiritBolt', 'phaseWraith', 'reverseGhost', 'spiritLance', 'wraithReturn', 'nightParade']);
-const CURSES = new Set(['curseWeak', 'curseBetray', 'curseDot', 'curseBind', 'curseChain']);
-const SUMMONS = new Set(['summonStalker', 'summonLantern', 'summonCharger', 'summonWarden', 'summonHost']);
+const CURSES = new Set(['curseWeak', 'curseBetray', 'curseDot', 'curseBind', 'curseChain', 'curseManifest', 'curseEnthrall', 'curseEarth']);
+const SUMMONS = new Set(['summonStalker', 'summonLantern', 'summonCharger', 'summonWarden', 'summonHost', 'summonEater', 'summonEcho']);
 const BODY = new Set(['leap', 'slam', 'spin', 'dash', 'quake', 'guard', 'lift', 'recall', 'charge', 'vault', 'cataclysmCharge']);
 const ARROWS = new Set(['recoveryArrow', 'executeArrow', 'dropArrow', 'turnArrow', 'chainArrow', 'ironFlower', 'breakArrow', 'arrow', 'pierce', 'ricochet', 'triple', 'push', 'bind', 'break', 'sticky', 'pull', 'mark', 'rain', 'return', 'homing', 'windArrow', 'seekRain', 'seekChild', 'hunterBolt']);
 // Authored pools follow their actual basin floor, so an elevated pool cannot shock actors below the cliff.
@@ -4654,6 +4671,7 @@ class Engine {
         b.physics ?? (b.physics = (0, physics_1.makePhysics)(data_1.STAGES[b.stageId - 1]?.physics));
         b.reviewDamage ?? (b.reviewDamage = {});
         b.reviewLeft ?? (b.reviewLeft = 0);
+        b.occultRevision ?? (b.occultRevision = 1);
         this.b = b;
         for (const u of b.units)
             (0, skillMechanics_1.migrateEnemySkills)(u);
@@ -4671,19 +4689,19 @@ class Engine {
     message(text) { this.b.events.push(text); this.b.events = this.b.events.slice(-30); this.emit('message', { text }); }
     random() { let a = this.b.rng += 0x6D2B79F5; a = Math.imul(a ^ a >>> 15, 1 | a); a ^= a + Math.imul(a ^ a >>> 7, 61 | a); return ((a ^ a >>> 14) >>> 0) / 4294967296; }
     alive(side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0); }
-    heroesAlive() { return this.alive(0).filter(u => !u.summoned); }
-    creditUnit(u) { return u?.summoned && u.summonOwner ? (this.unit(u.summonOwner) || u) : u; }
+    heroesAlive() { return this.alive(0).filter(u => !u.summoned && !u.enthrall); }
+    creditUnit(u) { const owner = u?.summonOwner || u?.enthrall?.owner; return owner ? (this.unit(owner) || u) : u; }
     unit(id) { return this.b.units.find(u => u.id === id); }
-    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.acted && !this.active.airborne; }
+    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.airborne; }
     select(id) {
         const u = this.unit(id);
-        if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow === 'ready') || !u || u.side !== 0 || u.summoned || u.dead || u.acted)
+        if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow === 'ready') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
             return false;
         this.b.active = id;
         this.emit('change');
         return true;
     }
-    manaCost(s, u, power = u.lastPower) { const rank = s.ultimate || s.basic ? 1 : (u.ranks[s.id] || 1), scale = u.side === 0 ? balance_1.MANA_COST_MULTIPLIER : 1, charge = (0, warriorMechanics_1.meleeSkill)(s) && !['counterStance', 'lifeSlash'].includes(s.mode) ? .75 + .25 * (0, math_1.clamp)(power, 0, 1) : 1; return (0, combatPassives_1.passiveCost)(u, s, s.cost * (0, progression_1.skillManaFactor)(rank) * scale * charge); }
+    manaCost(s, u, power = u.lastPower) { const rank = s.ultimate || s.basic ? 1 : (u.ranks[s.id] || 1), scale = u.side === 0 ? balance_1.MANA_COST_MULTIPLIER : 1, charge = (0, warriorMechanics_1.meleeSkill)(s) && !['counterStance', 'lifeSlash'].includes(s.mode) ? .75 + .25 * (0, math_1.clamp)(power, 0, 1) : 1; return (0, combatPassives_1.passiveCost)(u, s, s.cost * (0, progression_1.skillManaFactor)(rank) * scale * charge) * (occultMechanics_1.SUMMON_SKILLS.has(s.id) ? 1 - (u.nextSummonDiscount || 0) : 1); }
     skillAllowed(s, u = this.active) { return !!u && (0, warriorMechanics_1.warriorAllowed)(u, s); }
     manualDive() { return (0, warriorMechanics_1.manualDive)(this); }
     cooldownLeft(u, skillId) { const cap = data_1.SKILLS[skillId]?.cooldown; if (!cap)
@@ -4709,12 +4727,6 @@ class Engine {
             }
             if (u.cls === 'knight' && BODY.has(s.mode))
                 damage *= .9 + u.tune * .2;
-            if (u.cls === 'occultist') {
-                if (GHOST.has(s.mode))
-                    damage *= 1 + (0, progression_1.equippedRank)(u, 'OP01') * .055;
-                if (CURSES.has(s.mode))
-                    radius *= 1 + (0, progression_1.equippedRank)(u, 'OP02') * .035;
-            }
         }
         if (s.redesigned && s.cls === 'mage')
             damage *= 1 + (0, combatPassives_1.jucheonBoost)(u, s);
@@ -4914,7 +4926,7 @@ class Engine {
             return custom;
         const body = BODY.has(skill.mode), origin = this.origin(u, angle, body), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
-        const points = [], ignored = [], skips = [];
+        const points = [], ignored = occultMechanics_1.SOUL_SKILLS.has(skill.id) ? this.alive(u.side).map(v => v.id) : [], skips = [];
         let ap;
         const dt = collect ? math_1.STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
         for (let i = 0; i < Math.ceil((skill.mode.startsWith('honro') ? 6 : 12.2) / dt); i++) {
@@ -4923,8 +4935,7 @@ class Engine {
                 vx = v.vx;
                 vy = v.vy;
             }
-            const ghostRank = u.cls === 'occultist' ? (0, progression_1.equippedRank)(u, 'OP01') : 0;
-            const gravity = (skill.gravity ?? 1) * (GHOST.has(skill.mode) ? Math.max(.12, 1 - ghostRank * .08) : 1);
+            const gravity = skill.gravity ?? 1;
             const motion = this.advanceProjectile({ x, y, vx, vy, wind: meteor ? 0 : skill.wind, gravityScale: gravity, drag: (0, physics_1.dragFor)(skill, meteor ? 'meteor' : skill.mode), skill: skill.id, mode: skill.mode }, dt);
             const prev = vy;
             vx = motion.vx;
@@ -4949,7 +4960,7 @@ class Engine {
             if (target)
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase = skill.phase;
-            const h = phase === 'all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits && skill.mode !== 'charge' && skill.mode !== 'spin', skips, phase !== 'terrain');
+            const h = phase === 'all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits && !SUMMONS.has(skill.mode) && skill.mode !== 'charge' && skill.mode !== 'spin', skips, phase !== 'terrain');
             const fuse = (skill.fuse ?? 0) * (skill.mode === 'phaseWraith' ? (.55 + power * 1.05) : 1);
             if (fuse > 0 && i * dt >= fuse) {
                 if (collect)
@@ -5010,7 +5021,7 @@ class Engine {
      * Spatial fields, obstacles and special skills still use prediction and the bounded fallback. */
     shotSeeds(u, s, target, maxPower = 1) {
         const speed = this.effective(s, u).speed, baseTime = Math.max(.12, Math.hypot(target.x - u.x, target.y - u.y) / ((270 + 535 * maxPower) * speed * .86));
-        const gravity = (s.gravity ?? 1) * (GHOST.has(s.mode) ? Math.max(.12, 1 - (0, progression_1.equippedRank)(u, 'OP01') * .08) : 1), seeds = [];
+        const gravity = s.gravity ?? 1, seeds = [];
         for (const factor of [1, 1.2, .85, 1.5, 1.9, 2.4]) {
             const t = baseTime * factor;
             let angle = target.x >= u.x ? 20 : 160, power = 0;
@@ -5137,7 +5148,7 @@ class Engine {
         b.reviewFocus = undefined;
         b.shots += u.side === 0 ? 1 : 0;
         const origin = this.origin(u, u.angle, BODY.has(s.mode));
-        const make = (a, damage = e.damage, child = false) => { const origin = this.origin(u, a, BODY.has(s.mode)), v = this.velocity(u, s, a, u.lastPower); const p = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX: origin.x, launchY: origin.y, repeatIndex: 0, carry: [], skillRank: s.ultimate ? 1 : (u.ranks[s.id] || 1), drag: (0, physics_1.dragFor)(s), gravityScale: (s.gravity ?? 1) * (GHOST.has(s.mode) ? Math.max(.12, 1 - (0, progression_1.equippedRank)(u, 'OP01') * .08) : 1), phaseMode: s.phase, fuseAt: s.fuse ? s.fuse * (s.mode === 'phaseWraith' ? (.55 + u.lastPower * 1.05) : 1) : undefined }; b.projectiles.push(p); return p; };
+        const make = (a, damage = e.damage, child = false) => { const origin = this.origin(u, a, BODY.has(s.mode)), v = this.velocity(u, s, a, u.lastPower); const p = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX: origin.x, launchY: origin.y, repeatIndex: 0, carry: [], skillRank: s.ultimate ? 1 : (u.ranks[s.id] || 1), drag: (0, physics_1.dragFor)(s), gravityScale: s.gravity ?? 1, phaseMode: s.phase, fuseAt: s.fuse ? s.fuse * (s.mode === 'phaseWraith' ? (.55 + u.lastPower * 1.05) : 1) : undefined }; b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan = (0, projectileGrowth_1.multishotProfile)(s, u.ranks[s.id] || 1);
             for (const angle of (0, projectileGrowth_1.volleyAngles)(s, plan.rank, u.angle))
@@ -5149,6 +5160,7 @@ class Engine {
         }
         else
             make(u.angle);
+        (0, occultMechanics_1.beginOccultCast)(this, u, s, b.projectiles.filter(p => p.owner === u.id && p.shot === b.shot));
         const castBonus = (0, combatPassives_1.beginPlayerCast)(this, u, s, actualKiSpent);
         for (const p of b.projectiles.filter(p => p.owner === u.id && p.shot === b.shot)) {
             p.effectBoost = castBonus.effectBoost;
@@ -5464,8 +5476,6 @@ class Engine {
         const critical = damageSource === 'normal' && src && src.side !== 1 && !rawSrc?.summoned && (!!p || direct) && this.random() < (0, skillMechanics_1.critProfile)(p || { skill: '', skillRank: 1 }, src).chance;
         if (critical)
             dmg *= (0, skillMechanics_1.critProfile)(p || { skill: '', skillRank: 1 }, src).multiplier;
-        if (src?.side === 0 && src.cls === 'occultist' && (u.curseTurns || 0) > 0)
-            dmg *= 1 + (0, progression_1.equippedRank)(src, 'OP05') * .07;
         if (src?.side === 0 && direct && src.cls === 'archer' && !p?.skill.startsWith('A'))
             dmg *= 1 + .04 * (0, progression_1.equippedRank)(src, 'AP02');
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
@@ -5511,7 +5521,7 @@ class Engine {
             dmg *= 1 - (0, math_1.clamp)(armor * (p?.skill === 'S02' ? .65 : 1), 0, .7);
         if (u.martialGuard && u.martialGuard.round >= this.b.round)
             dmg *= 1 - u.martialGuard.reduction;
-        if (p?.child && !(0, skillMechanics_1.newSkill)(p)) {
+        if (p?.child && !(0, skillMechanics_1.newSkill)(p) && p.mode !== 'convergeSpirit') {
             const key = p.shot + ':' + (p.repeatIndex || 0) + ':' + u.id;
             const legacyId = data_1.SKILLS[p.skill]?.legacyId || p.skill;
             const used = this.b.shotDamage[key] || 0, cap = (['M13', 'M14', 'M15'].includes(legacyId) ? 160 : legacyId === 'M06' ? 78 : legacyId === 'A11' ? 90 : 75) * (p.amplification || 1) * (src?.attack || 1) * (1 + Math.max(0, ((src?.ranks[p.skill] || 1) - 1)) * .16);
@@ -5524,6 +5534,14 @@ class Engine {
         const absorbed = Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
+        if (u.side === 0 && u.cls === 'occultist' && !u.summoned && !u.enthrall && (0, progression_1.passiveRank)(u, 'OP03') && dmg > u.maxHp * .14) {
+            const near = this.alive(0).filter(v => v.summoned && v.summonOwner === u.id && Math.hypot(v.x - u.x, v.y - u.y) < 340).sort((a, c) => Math.hypot(a.x - u.x, a.y - u.y) - Math.hypot(c.x - u.x, c.y - u.y))[0];
+            if (near) {
+                const shared = Math.min(Math.round(dmg * Math.min(.28, .04 * (0, progression_1.passiveRank)(u, 'OP03'))), Math.round(u.maxHp * .12), near.hp);
+                dmg -= shared;
+                this.hurt(near, shared, owner, false, undefined, source, 'salheun');
+            }
+        }
         if (absorbed)
             this.fx('ring', u.x, u.y - u.h * .5, '#b1daf4', 32);
         if (p && (0, skillMechanics_1.newSkill)(p) && (dmg > 0 || absorbed > 0)) {
@@ -5582,12 +5600,13 @@ class Engine {
             if (u.side === 1) {
                 this.b.kills++;
                 this.rewardKill(u, src);
-                if (src?.side === 0 && src.cls === 'occultist' && (u.curseOwner === src.id || (u.curseTurns || 0) > 0)) {
-                    const r = (0, progression_1.equippedRank)(src, 'OP04');
-                    if (r) {
-                        src.focus = Math.min(src.maxFocus, src.focus + Math.round(6 * r));
-                        this.fx('rune', src.x, src.y - src.h * .5, '#c5a1e8', 34);
-                    }
+                const medium = src?.side === 0 && src.cls === 'occultist' ? src : u.curseOwner ? this.unit(u.curseOwner) : undefined;
+                if (medium?.side === 0 && medium.cls === 'occultist' && (0, progression_1.passiveRank)(medium, 'OP05'))
+                    medium.soulRemnants = Math.min(3, (medium.soulRemnants || 0) + 1);
+                if (u.earthbind && u.earthbind.until >= this.b.round) {
+                    const binder = this.unit(u.earthbind.owner);
+                    if (binder)
+                        this.spawnEarthbound(u.x, u.y, binder);
                 }
                 this.message(`${u.name} 제압`);
             }
@@ -5791,67 +5810,201 @@ class Engine {
             this.recover(u);
         this.remove(p);
     }
-    cursePower(owner) { return owner.cls === 'occultist' ? 1 + (0, progression_1.equippedRank)(owner, 'OP02') * .08 : 1; }
-    curseDuration(owner, base) { return base + (owner.cls === 'occultist' ? Math.floor((0, progression_1.equippedRank)(owner, 'OP02') / 1.5) : 0); }
-    applyCurse(target, owner, kind, damage = 0) {
+    applyCurse(target, owner, kind, damage = 0, rank = 1, bonus = 0, trap = false) {
         if (target.dead || target.side === owner.side || target.side === 2)
             return;
-        const q = this.cursePower(owner);
+        const duration = Math.max(1, Math.ceil(((kind === 'weak' ? occultData_1.WEAK_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] : kind === 'betray' ? occultData_1.BETRAY_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] : kind === 'dot' ? 5 : kind === 'chain' ? 3 : 2) + bonus) * (trap ? .45 : 1))), strength = trap ? .5 : 1;
         target.curseOwner = owner.id;
         if (kind === 'weak') {
-            target.curseTurns = Math.max(target.curseTurns || 0, this.curseDuration(owner, 3));
-            target.curseAttack = Math.max(target.curseAttack || 0, .12 * q);
-            target.curseArmor = Math.max(target.curseArmor || 0, .13 * q);
+            target.curseTurns = Math.max(target.curseTurns || 0, duration);
+            target.curseAttack = Math.max(target.curseAttack || 0, .12 * strength);
+            target.curseArmor = Math.max(target.curseArmor || 0, .13 * strength);
         }
         if (kind === 'betray') {
-            target.curseTurns = Math.max(target.curseTurns || 0, this.curseDuration(owner, 2));
-            target.betrayalUntil = Math.max(target.betrayalUntil || 0, this.b.round + this.curseDuration(owner, 2));
+            target.curseTurns = Math.max(target.curseTurns || 0, duration);
+            target.betrayalUntil = Math.max(target.betrayalUntil || 0, this.b.round + duration - 1);
         }
         if (kind === 'dot' || kind === 'chain') {
-            target.curseTurns = Math.max(target.curseTurns || 0, this.curseDuration(owner, kind === 'dot' ? 5 : 3));
-            target.curseDamage = Math.max(target.curseDamage || 0, Math.round(damage * q));
+            target.curseTurns = Math.max(target.curseTurns || 0, duration);
+            target.curseDamage = Math.max(target.curseDamage || 0, Math.round(damage));
         }
         if (kind === 'bind') {
-            target.curseTurns = Math.max(target.curseTurns || 0, this.curseDuration(owner, 2));
+            target.curseTurns = Math.max(target.curseTurns || 0, duration);
             target.bound = Math.max(target.bound, 2);
-            target.curseAttack = Math.max(target.curseAttack || 0, .18 * q);
+            target.curseAttack = Math.max(target.curseAttack || 0, .18);
         }
-        this.fx('rune', target.x, target.y - target.h * .55, kind === 'betray' ? '#df74b8' : '#a67bd2', 48);
+        this.fx('spark', target.x, target.y - target.h * .55, kind === 'betray' ? '#bd9c8f' : '#c1b399', 30);
     }
-    spawnSummon(owner, kind, x, y, strong = 1) {
-        const p = (0, progression_1.equippedRank)(owner, 'OP03'), hpScale = (1 + p * .15) * strong, atkScale = (1 + p * .12) * strong;
+    manifest(target, owner, rank, bonus = 0) {
+        if (target.dead || target.side !== 1)
+            return;
+        target.manifestedUntil = Math.max(target.manifestedUntil || 0, this.b.round + Math.max(1, occultData_1.MANIFEST_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] + bonus) - 1);
+        target.manifested = true;
+        target.revealSpiritToParty = true;
+        target.formDamageTakenBonus = .08 + .015 * rank;
+        target.curseOwner = owner.id;
+        this.fx('spark', target.x, target.y - target.h * .55, '#d9d0b1', 32);
+    }
+    captureEnemy(target, owner, rank, empowered = false) {
+        if (target.dead || target.side !== 1 || target.boss || target.honroMidboss || target.elite || target.enthrall)
+            return false;
+        const power = occultData_1.ENTHRALL_POWER[(0, math_1.clamp)(rank, 1, 8) - 1], ratio = target.hp / target.maxHp;
+        target.enthrall = { owner: owner.id, actions: occultData_1.ENTHRALL_ACTIONS[(0, math_1.clamp)(rank, 1, 8) - 1] + (empowered ? 1 : 0), captureRatio: ratio, originalMaxHp: target.maxHp, originalAttack: target.attack, originalArmor: target.armor, power };
+        target.side = 0;
+        target.maxHp = Math.max(1, Math.round(target.maxHp * power));
+        target.hp = Math.max(1, Math.round(target.maxHp * ratio));
+        target.attack *= power;
+        target.armor = (0, math_1.clamp)(target.armor * power, 0, .75);
+        target.acted = true;
+        this.fx('ring', target.x, target.y - target.h * .5, '#beb89a', 55);
+        this.emit('change');
+        return true;
+    }
+    releaseEnemy(target) {
+        const state = target.enthrall;
+        if (!state)
+            return;
+        const ratio = Math.min(state.captureRatio, target.hp / Math.max(1, target.maxHp));
+        target.side = 1;
+        target.maxHp = state.originalMaxHp;
+        target.hp = Math.max(0, Math.round(target.maxHp * ratio));
+        target.attack = state.originalAttack;
+        target.armor = state.originalArmor;
+        target.acted = true;
+        delete target.enthrall;
+        if (target.hp <= 0)
+            target.dead = true;
+        this.fx('ring', target.x, target.y - target.h * .5, '#9b9c8b', 42);
+        this.emit('change');
+    }
+    spawnEarthbound(x, y, owner) {
+        const existing = this.b.units.filter(u => !u.dead && u.summonKind === 'earthbound' && u.summonOwner === owner.id);
+        if (existing.length >= 4) {
+            existing.sort((a, c) => (a.summonExpires || 0) - (c.summonExpires || 0))[0].dead = true;
+        }
+        const ghost = this.spawnSummon(owner, 'earthbound', x, y, 1);
+        ghost.summonExpires = this.b.round + 2;
+        ghost.fixed = true;
+        ghost.summonFloating = true;
+        this.fx('spark', x, y - 40, '#bcb7a1', 45);
+    }
+    absorbHostileProjectile(p, dt) {
+        if (p.body)
+            return false;
+        for (const eater of this.b.units) {
+            if (eater.dead || eater.summonKind !== 'eater')
+                continue;
+            const rank = (0, math_1.clamp)(eater.summonRank || 1, 1, 8), cx = eater.x, cy = eater.y - eater.h * .5, dx = cx - p.x, dy = cy - p.y, d = Math.hypot(dx, dy), reach = 200 + rank * 15;
+            if (d > reach)
+                continue;
+            if (d < eater.r + p.radius + 16) {
+                eater.summonAbsorbed = (eater.summonAbsorbed || 0) + p.damage;
+                this.remove(p);
+                this.fx('spark', cx, cy, '#b1b5a6', 18);
+                if (eater.summonAbsorbed >= 95 + rank * 24) {
+                    const damage = eater.summonAbsorbed * (.36 + .02 * rank), radius = 135 + rank * 7;
+                    for (const target of this.alive(1))
+                        if (Math.hypot(target.x - cx, target.y - target.h * .5 - cy) < radius + target.r) {
+                            this.hurt(target, damage, eater.id, false, undefined, { x: cx, y: cy });
+                            this.impulse(target, (target.x - cx) * .28, -35);
+                        }
+                    eater.dead = true;
+                    eater.hp = 0;
+                    this.fx('ring', cx, cy, '#c8c3ae', radius);
+                }
+                return true;
+            }
+            const pull = (120 + 880 * (1 - d / reach) ** 2) * dt / Math.max(1, d);
+            p.vx = (0, math_1.clamp)(p.vx + dx * pull, -950, 950);
+            p.vy = (0, math_1.clamp)(p.vy + dy * pull, -950, 950);
+        }
+        return false;
+    }
+    tickOccult() {
+        const b = this.b;
+        b.occultTraps ?? (b.occultTraps = []);
+        for (const trap of [...b.occultTraps]) {
+            if (trap.expires < b.round) {
+                b.occultTraps = b.occultTraps.filter(z => z.id !== trap.id);
+                continue;
+            }
+            const owner = this.unit(trap.owner), target = this.alive(1).find(v => Math.hypot(v.x - trap.x, v.y - v.h * .5 - trap.y) < v.r + 38);
+            if (!owner || !target)
+                continue;
+            if (trap.skill === 'O08')
+                this.manifest(target, owner, trap.rank, -Math.floor(occultData_1.MANIFEST_TURNS[(0, math_1.clamp)(trap.rank, 1, 8) - 1] / 2));
+            else
+                this.applyCurse(target, owner, trap.skill === 'O06' ? 'weak' : 'betray', trap.damage, trap.rank, 0, true);
+            if (trap.damage > 0)
+                this.hurt(target, trap.damage, owner.id, false);
+            this.fx('spark', trap.x, trap.y, '#c2b9a0', 25);
+            b.occultTraps = b.occultTraps.filter(z => z.id !== trap.id);
+        }
+        for (const anchor of b.units) {
+            if (anchor.dead || anchor.summonKind !== 'earthbound')
+                continue;
+            const token = String(b.round), cx = anchor.x, cy = anchor.y - anchor.h * .5;
+            anchor.auraHits ?? (anchor.auraHits = {});
+            for (const target of this.alive(1))
+                if (anchor.auraHits[target.id] !== token && Math.hypot(target.x - cx, target.y - target.h * .5 - cy) < 180 + target.r) {
+                    anchor.auraHits[target.id] = token;
+                    target.moveLeft *= .82;
+                    target.slowed = { factor: .18, expires: b.round };
+                    this.hurt(target, Math.max(8, anchor.maxHp * .07), anchor.id, false);
+                }
+        }
+    }
+    expireSummon(u) {
+        if (!u.summoned || u.dead || u.summonExpires === undefined || this.b.round <= u.summonExpires)
+            return false;
+        const owner = u.summonOwner ? this.unit(u.summonOwner) : undefined, rank = owner ? (0, progression_1.passiveRank)(owner, 'OP04') : 0;
+        if (owner && rank && u.summonKind !== 'earthbound') {
+            owner.focus = Math.min(owner.maxFocus, owner.focus + owner.maxFocus * (.04 + .018 * rank));
+            owner.nextSummonDiscount = Math.max(owner.nextSummonDiscount || 0, Math.min(.24, .035 * rank));
+            this.fx('spark', u.x, u.y - u.h * .5, '#c8c1a9', 24);
+        }
+        u.dead = true;
+        u.hp = 0;
+        return true;
+    }
+    spawnSummon(owner, kind, x, y, strong = 1, rank = 1, empowered = false) {
+        const hpScale = (1 + .07 * (rank - 1)) * strong * (empowered ? 1.20 : 1), atkScale = (1 + .055 * (rank - 1)) * strong;
         const ground = this.surface((0, math_1.clamp)(x, 30, this.b.width - 30), y - 80, this.b.height + 120);
-        const floating = kind === 'lantern';
+        const floating = ['lantern', 'eater', 'echo', 'earthbound'].includes(kind);
         const sy = floating ? (0, math_1.clamp)(y, 90, this.b.height - 170) : (ground?.y ?? (0, world_1.groundY)(this.b.terrain, x));
-        const base = { stalker: { hp: 175, atk: .84, h: 58, r: 17, dur: 4 }, lantern: { hp: 138, atk: .78, h: 54, r: 16, dur: 4 }, charger: { hp: 205, atk: 1.00, h: 66, r: 19, dur: 4 }, warden: { hp: 255, atk: .46, h: 72, r: 21, dur: 5 }, host: { hp: 230, atk: 1.06, h: 70, r: 21, dur: 4 } }[kind];
+        const base = { stalker: { hp: 175, atk: .84, h: 58, r: 17, dur: 4 }, lantern: { hp: 138, atk: .78, h: 54, r: 16, dur: 4 }, charger: { hp: 205, atk: 1.00, h: 66, r: 19, dur: 4 }, warden: { hp: 255, atk: .46, h: 72, r: 21, dur: 5 }, host: { hp: 230, atk: 1.06, h: 70, r: 21, dur: 4 }, eater: { hp: 205, atk: 0, h: 54, r: 23, dur: 4 }, echo: { hp: 170, atk: 0, h: 64, r: 20, dur: 4 }, earthbound: { hp: 145, atk: 0, h: 68, r: 21, dur: 3 } }[kind];
         const hp = Math.round(base.hp * hpScale * (.78 + owner.level * .027));
-        const summon = (0, world_1.makeUnit)('occultist', 0, (0, math_1.clamp)(x, 30, this.b.width - 30), sy, { id: `summon-${this.b.nextId++}`, name: { stalker: '배회령', lantern: '등불귀', charger: '돌격귀', warden: '수호령', host: '문지기귀' }[kind], role: `summon-${kind}`, summoned: true, summonOwner: owner.id, summonKind: kind, summonExpires: this.b.round + base.dur, hp, maxHp: hp, r: base.r, h: base.h, attack: owner.attack * base.atk * atkScale, armor: kind === 'warden' ? .20 : .07, focus: 0, maxFocus: 0, regen: 0, loadout: [], fixed: floating, summonFloating: true, acted: true, moveLeft: 0, maxMove: 0, walkSpeed: 0, ranks: { ...owner.ranks }, awake: true, xpBudget: 0 });
+        const dur = ['charger', 'host', 'earthbound'].includes(kind) ? base.dur : occultData_1.SPIRIT_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] + (empowered ? 1 : 0);
+        const summon = (0, world_1.makeUnit)('occultist', 0, (0, math_1.clamp)(x, 30, this.b.width - 30), sy, { id: `summon-${this.b.nextId++}`, name: { stalker: '배회령', lantern: '등불귀', charger: '돌격귀', warden: '호혼령', host: '문지기귀', eater: '먹귀', echo: '반향령', earthbound: '지박령' }[kind], role: `summon-${kind}`, summoned: true, summonOwner: owner.id, summonKind: kind, summonRank: rank, summonExpires: this.b.round + dur - 1, hp, maxHp: hp, r: base.r, h: base.h, attack: owner.attack * base.atk * atkScale, armor: kind === 'warden' ? .20 : .07, focus: 0, maxFocus: 0, regen: 0, loadout: [], fixed: floating, summonFloating: true, acted: true, moveLeft: 0, maxMove: 0, walkSpeed: 0, ranks: { ...owner.ranks }, awake: true, xpBudget: 0 });
+        if (kind === 'echo') {
+            summon.summonExpires = this.b.round + occultData_1.ECHO_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] - 1;
+            const echoes = this.b.units.filter(v => !v.dead && v.summonKind === 'echo' && v.summonOwner === owner.id);
+            if (echoes.length >= occultData_1.ECHO_LIMIT[(0, math_1.clamp)(rank, 1, 8) - 1])
+                echoes.sort((a, c) => (a.summonExpires || 0) - (c.summonExpires || 0))[0].dead = true;
+        }
         summon.spawnX = summon.x;
         summon.spawnY = summon.y;
         this.b.units.push(summon);
-        this.fx('rune', summon.x, summon.y - summon.h * .45, '#a98ad2', 75);
-        this.fx('burst', summon.x, summon.y - summon.h * .45, '#7fa9bd', 45);
+        this.fx('ring', summon.x, summon.y - summon.h * .45, '#aeb9aa', 48);
+        this.fx('spark', summon.x, summon.y - summon.h * .45, '#c4c7b4', 24);
         return summon;
     }
     summonAtProjectile(p, kind) { const owner = this.creditUnit(this.unit(p.owner)); if (!owner || !kind)
-        return; this.spawnSummon(owner, kind, p.x, p.y); this.remove(p); }
+        return; this.spawnSummon(owner, kind, p.x, p.y, 1, p.skillRank || 1, !!p.soulBoost); this.remove(p); }
     /**
      * Summons act once after the four player heroes finish and before the enemy team.
      * Offensive ghosts may move and attack in the same summon turn; the old small
      * movement step often produced a visually silent "move only" turn.
      */
     /** A persisted phase, not an invisible loop or part of the enemy turn. */
-    runSummonTurn() {
+    runSummonTurn(ownerId) {
         const b = this.b;
         for (const u of this.alive(0).filter(v => v.summoned))
-            if (u.summonExpires !== undefined && b.round > u.summonExpires) {
-                u.dead = true;
-                u.hp = 0;
-            }
-        const queue = this.alive(0).filter(u => u.summoned).map(u => u.id);
+            this.expireSummon(u);
+        const queue = this.alive(0).filter(u => (u.summoned && !['eater', 'echo', 'earthbound'].includes(u.summonKind || '') || !!u.enthrall) && u.summonActionRound !== b.round && !(u.stun || 0) && (!ownerId || u.summonOwner === ownerId || u.enthrall?.owner === ownerId)).map(u => u.id);
         if (!queue.length || !this.alive(1).length)
             return 0;
-        b.summonTurn = { queue, index: 0, stage: 'approach', elapsed: 0, hold: 0, returnActive: b.active, practice: b.mode === 'practice' && !b.practiceCombat };
+        b.summonTurn = { queue, index: 0, stage: 'approach', elapsed: 0, hold: 0, returnActive: b.active, practice: b.mode === 'practice' && !b.practiceCombat, afterActor: !!ownerId };
         b.phase = 'summon';
         b.side = 0;
         b.turnAge = 0;
@@ -5914,6 +6067,8 @@ class Engine {
             if (t.practice) {
                 this.resetPractice();
             }
+            else if (t.afterActor)
+                this.advanceAfterAction();
             else
                 this.completeTeamTransition();
             return;
@@ -5927,12 +6082,14 @@ class Engine {
             t.destination = undefined;
             return;
         }
-        u.summonFloating = true;
+        if (!u.enthrall)
+            u.summonFloating = true;
         b.active = u.id;
         const kind = u.summonKind || 'stalker', cfg = summons_1.SUMMON_TUNING[kind];
         if (t.stage === 'approach') {
             if (!t.start) {
-                const enemies = this.alive(1).sort((a, c) => Math.hypot(a.x - u.x, a.y - a.h * .5 - u.y + u.h * .5) - Math.hypot(c.x - u.x, c.y - c.h * .5 - u.y + u.h * .5));
+                const owner = u.summonOwner ? this.unit(u.summonOwner) : u.enthrall?.owner ? this.unit(u.enthrall.owner) : undefined, mark = owner ? (0, progression_1.passiveRank)(owner, 'OP02') : 0;
+                const enemies = this.alive(1).sort((a, c) => Math.hypot(a.x - u.x, a.y - a.h * .5 - u.y + u.h * .5) - (mark && (a.curseOwner === owner?.id || a.earthbind?.owner === owner?.id) ? 170 + mark * 35 : 0) - Math.hypot(c.x - u.x, c.y - c.h * .5 - u.y + u.h * .5) + (mark && (c.curseOwner === owner?.id || c.earthbind?.owner === owner?.id) ? 170 + mark * 35 : 0));
                 let target = enemies[0];
                 if (kind === 'warden') {
                     target = this.heroesAlive().sort((a, c) => Math.hypot(a.x - u.x, a.y - u.y) - Math.hypot(c.x - u.x, c.y - u.y))[0] || target;
@@ -5974,13 +6131,16 @@ class Engine {
                         continue;
                     ally.shield = Math.max(ally.shield, Math.round(22 + u.attack * 10));
                     ally.shieldUntil = b.teamEnds[1] + 1;
+                    ally.soulAffinityBonus = Math.max(ally.soulAffinityBonus || 0, .06 + .01 * (u.summonRank || 1));
+                    ally.soulDefenseBonus = Math.max(ally.soulDefenseBonus || 0, .06 + .01 * (u.summonRank || 1));
+                    ally.soulBonusUntil = b.round + 1;
                     n++;
                 }
                 this.fx('ring', center.x, center.y, '#9ccfd7', 220);
                 this.message(`${u.name} · ${n}명 방호`);
             }
             else if (kind === 'lantern') {
-                const targets = this.alive(1).filter(e => Math.hypot(e.x - center.x, e.y - e.h * .5 - center.y) <= cfg.reach + e.r);
+                const targets = this.alive(1).filter(e => Math.hypot(e.x - center.x, e.y - e.h * .5 - center.y) <= cfg.reach + e.r).sort((a, c) => (c.curseOwner === u.summonOwner ? 1 : 0) - (a.curseOwner === u.summonOwner ? 1 : 0)).slice(0, (u.summonRank || 1) < 4 ? 1 : 2);
                 for (const target of targets)
                     this.launchSummonBolt(u, target);
                 this.fx('rune', center.x, center.y, '#c4e6ef', 90);
@@ -6015,6 +6175,9 @@ class Engine {
             t.hold -= dt;
             if (t.hold > 0)
                 return;
+            u.summonActionRound = b.round;
+            if (u.enthrall && --u.enthrall.actions <= 0)
+                this.releaseEnemy(u);
             t.index++;
             t.stage = 'approach';
             t.elapsed = 0;
@@ -6028,7 +6191,29 @@ class Engine {
     completeTeamTransition() { const b = this.b; b.teamEnds[b.side]++; this.triggerDelays(b.side); b.phase = 'transition'; b.turnAge = 0; this.emit('save'); }
     tickCurses() {
         for (const u of this.b.units) {
-            if (u.dead || !(u.curseTurns || 0))
+            if (u.manifestedUntil !== undefined && u.manifestedUntil < this.b.round) {
+                u.manifested = false;
+                u.revealSpiritToParty = false;
+                u.formDamageTakenBonus = 0;
+                delete u.manifestedUntil;
+            }
+            if (u.soulBonusUntil !== undefined && u.soulBonusUntil < this.b.round) {
+                u.soulAffinityBonus = 0;
+                u.soulDefenseBonus = 0;
+                delete u.soulBonusUntil;
+            }
+            if (u.earthbind && u.earthbind.until < this.b.round)
+                delete u.earthbind;
+            if (u.dead)
+                continue;
+            if (u.earthbind) {
+                const caster = this.unit(u.earthbind.owner);
+                if (caster) {
+                    u.slowed = { factor: .24, expires: this.b.round };
+                    this.hurt(u, u.earthbind.damage, caster.id, false);
+                }
+            }
+            if (!(u.curseTurns || 0))
                 continue;
             const owner = u.curseOwner ? this.unit(u.curseOwner) : undefined;
             if ((u.curseDamage || 0) > 0 && owner) {
@@ -6047,14 +6232,53 @@ class Engine {
         }
     }
     occultImpact(p, h) {
+        var _a, _b;
         const owner = this.creditUnit(this.unit(p.owner));
         if (!owner)
             return false;
         if (['curseWeak', 'curseBetray', 'curseBind'].includes(p.mode)) {
             if (h?.unit) {
                 this.hurt(h.unit, p.damage, p.owner, true, p, h);
-                this.applyCurse(h.unit, owner, p.mode === 'curseWeak' ? 'weak' : p.mode === 'curseBetray' ? 'betray' : 'bind', p.damage * .28);
+                this.applyCurse(h.unit, owner, p.mode === 'curseWeak' ? 'weak' : p.mode === 'curseBetray' ? 'betray' : 'bind', p.damage * .28, p.skillRank || 1, p.soulBoost ? 1 : 0);
             }
+            else if (h?.terrain && ['O06', 'O07'].includes(p.skill) && (0, progression_1.passiveRank)(owner, 'OP01')) {
+                (_a = this.b).occultTraps ?? (_a.occultTraps = []);
+                this.b.occultTraps.push({ id: this.b.nextId++, x: p.x, y: p.y, owner: owner.id, skill: p.skill, rank: p.skillRank || 1, damage: p.damage * (.22 + .045 * (0, progression_1.passiveRank)(owner, 'OP01')), expires: this.b.round + 1 + Math.floor((0, progression_1.passiveRank)(owner, 'OP01') / 3) });
+                if (this.b.occultTraps.length > 24)
+                    this.b.occultTraps.shift();
+            }
+            this.remove(p);
+            return true;
+        }
+        if (p.mode === 'curseManifest') {
+            for (const t of this.alive(1))
+                if (Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) < p.blast + t.r) {
+                    this.manifest(t, owner, p.skillRank || 1, p.soulBoost ? 1 : 0);
+                    this.hurt(t, p.damage, p.owner, false, p, p);
+                }
+            if (h?.terrain && (0, progression_1.passiveRank)(owner, 'OP01')) {
+                (_b = this.b).occultTraps ?? (_b.occultTraps = []);
+                this.b.occultTraps.push({ id: this.b.nextId++, x: p.x, y: p.y, owner: owner.id, skill: p.skill, rank: p.skillRank || 1, damage: p.damage, expires: this.b.round + 1 + Math.floor((0, progression_1.passiveRank)(owner, 'OP01') / 3) });
+                if (this.b.occultTraps.length > 24)
+                    this.b.occultTraps.shift();
+            }
+            this.remove(p);
+            return true;
+        }
+        if (p.mode === 'curseEnthrall') {
+            if (h?.unit)
+                this.captureEnemy(h.unit, owner, p.skillRank || 1, !!p.soulBoost);
+            this.remove(p);
+            return true;
+        }
+        if (p.mode === 'curseEarth') {
+            for (const t of this.alive(1))
+                if (Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) < p.blast + t.r) {
+                    t.earthbind = { owner: owner.id, until: this.b.round + 2 + Math.floor(((p.skillRank || 1) - 1) * 4 / 7) + (p.soulBoost ? 1 : 0), damage: p.damage * .32 };
+                    t.curseOwner = owner.id;
+                    this.hurt(t, p.damage, p.owner, false, p, p);
+                }
+            this.fx('ring', p.x, p.y, '#b9ae91', p.blast);
             this.remove(p);
             return true;
         }
@@ -6066,10 +6290,8 @@ class Engine {
             this.remove(p);
             return true;
         }
-        const kind = { summonStalker: 'stalker', summonLantern: 'lantern', summonCharger: 'charger', summonWarden: 'warden', summonHost: 'host' };
+        const kind = { summonStalker: 'stalker', summonLantern: 'lantern', summonCharger: 'charger', summonWarden: 'warden', summonHost: 'host', summonEater: 'eater', summonEcho: 'echo' };
         if (kind[p.mode]) {
-            if (h?.unit)
-                this.hurt(h.unit, p.damage, p.owner, true, p, h);
             if (p.mode === 'summonHost') {
                 this.spawnSummon(owner, 'stalker', p.x - 35, p.y, 1.12);
                 this.spawnSummon(owner, 'charger', p.x + 35, p.y, 1.12);
@@ -6094,6 +6316,10 @@ class Engine {
             return;
         if ((CURSES.has(p.mode) || SUMMONS.has(p.mode)) && this.occultImpact(p, h))
             return;
+        if (p.mode === 'spiritConverge') {
+            (0, occultMechanics_1.convergeAt)(this, p);
+            return;
+        }
         if (p.mode === 'spiritLance') {
             if (h.unit)
                 this.hurt(h.unit, p.damage, p.owner, true, p, h);
@@ -6439,7 +6665,29 @@ class Engine {
                 this.stepProjectile(p, dt, true);
             return;
         }
+        if ((p.echoDelay || 0) > 0) {
+            p.echoDelay = Math.max(0, p.echoDelay - dt);
+            if (!p.echoDelay) {
+                this.fx('spark', p.x, p.y, '#c5c9b8', 20);
+                this.emit('sound', { name: 'charge' });
+            }
+            return;
+        }
         p.age += dt;
+        if (p.mode === 'convergeSpirit') {
+            (0, occultMechanics_1.stepConvergingSpirit)(this, p, dt);
+            return;
+        }
+        if (p.side === 1 && this.absorbHostileProjectile(p, dt))
+            return;
+        if (p.mode === 'spiritConverge' && (p.age > 3.2 || p.targetPoint && Math.hypot(p.x - p.targetPoint.x, p.y - p.targetPoint.y) < Math.max(8, Math.hypot(p.vx, p.vy) * dt))) {
+            if (p.targetPoint) {
+                p.x = p.targetPoint.x;
+                p.y = p.targetPoint.y;
+            }
+            (0, occultMechanics_1.convergeAt)(this, p);
+            return;
+        }
         if ((0, warriorMechanics_1.stepWarrior)(this, p, dt))
             return;
         if ((0, skillMechanics_1.newSkill)(p) && (0, skillMechanics_1.redesignStep)(this, p, dt))
@@ -6592,7 +6840,7 @@ class Engine {
                     this.hurt(e, p.damage, p.owner, true, p, p);
                     this.fx('slash', e.x, e.y - e.h * .5, p.color, 55);
                 }
-        let hit = p.phaseMode === 'all' ? null : this.collision({ x: p.x, y: p.y }, { x: nx, y: ny }, p.radius, p.owner, p.hit, p.mode !== 'spin' && p.mode !== 'charge' && p.mode !== 'cataclysmCharge' && p.mode !== 'waveTriangle' && !p.mode.startsWith('stake'), [], p.phaseMode !== 'terrain');
+        let hit = p.phaseMode === 'all' ? null : this.collision({ x: p.x, y: p.y }, { x: nx, y: ny }, p.radius, p.owner, p.hit, !SUMMONS.has(p.mode) && p.mode !== 'spin' && p.mode !== 'charge' && p.mode !== 'cataclysmCharge' && p.mode !== 'waveTriangle' && !p.mode.startsWith('stake'), [], p.phaseMode !== 'terrain');
         if (p.mode === 'charge' || p.mode === 'cataclysmCharge') {
             for (const f of this.b.units.filter(v => v.side !== p.side && v.side !== 2 && v.fixed && !v.dead)) {
                 const h = (0, math_1.segRect)({ x: p.x, y: p.y }, { x: nx, y: ny }, f.x - f.r, f.y - f.h, f.r * 2, f.h, p.radius);
@@ -6914,10 +7162,7 @@ class Engine {
         b.round++;
         this.applyPhysicsCues();
         for (const u of b.units)
-            if (u.summoned && u.summonExpires !== undefined && b.round > u.summonExpires) {
-                u.dead = true;
-                u.hp = 0;
-            }
+            this.expireSummon(u);
         this.pruneExpiredSummons();
         b.zones = b.zones.filter(z => z.expires >= b.round);
         b.terrain.forEach(t => {
@@ -6959,11 +7204,19 @@ class Engine {
         b.volley = undefined;
         b.resolveAge = 0;
         if (b.mode === 'practice' && !b.practiceCombat) {
-            if (this.runSummonTurn() > 0)
+            if (u?.cls === 'occultist' && this.runSummonTurn(u.id) > 0)
                 return;
             this.resetPractice();
             return;
         }
+        if (this.checkEnd())
+            return;
+        if (b.side === 0 && u?.cls === 'occultist' && this.runSummonTurn(u.id) > 0)
+            return;
+        this.advanceAfterAction();
+    }
+    advanceAfterAction() {
+        const b = this.b;
         if (this.checkEnd())
             return;
         const pending = this.alive(b.side).filter(a => (b.side !== 0 || !a.summoned) && !a.acted && (b.side !== 1 || b.queue.includes(a.id)));
@@ -7042,12 +7295,9 @@ class Engine {
             if (u.dead)
                 continue;
             (0, combatPassives_1.arrowTurn)(this, u);
-            u.acted = !!u.summoned;
-            if (u.summoned && u.summonExpires !== undefined && b.round > u.summonExpires) {
-                u.dead = true;
-                u.hp = 0;
+            u.acted = !!u.summoned || !!u.enthrall;
+            if (this.expireSummon(u))
                 continue;
-            }
             if (u.side === 0 && !u.summoned && (u.stun || 0) > 0) {
                 u.stun--;
                 u.stunnedRound = b.round;
@@ -7312,6 +7562,7 @@ class Engine {
         b.turnAge += dt;
         this.stepUnits(dt);
         (0, skillMechanics_1.tickRedesign)(this, dt);
+        this.tickOccult();
         (0, warriorMechanics_1.tickWarrior)(this, dt);
         (0, combatPassives_1.cleanupPassiveHistory)(this);
         for (const z of b.zones) {
@@ -9505,6 +9756,163 @@ function joystickAxes(dx, dy, range, wasMoving = false) {
 }
 
 },
+"occultData": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BETRAY_TURNS = exports.WEAK_TURNS = exports.MANIFEST_TURNS = exports.SPIRIT_TURNS = exports.ECHO_LIMIT = exports.ECHO_POWER = exports.ECHO_TURNS = exports.ENTHRALL_POWER = exports.ENTHRALL_ACTIONS = void 0;
+exports.installOccultRedesign = installOccultRedesign;
+exports.ENTHRALL_ACTIONS = [2, 3, 3, 4, 4, 5, 5, 6];
+exports.ENTHRALL_POWER = [.70, .70, .85, .85, 1, 1, 1.15, 1.15];
+exports.ECHO_TURNS = [4, 5, 5, 6, 6, 7, 7, 8];
+exports.ECHO_POWER = [.60, .65, .70, .70, .75, .80, .80, .85];
+exports.ECHO_LIMIT = [1, 1, 1, 2, 2, 2, 3, 3];
+exports.SPIRIT_TURNS = [4, 4, 5, 5, 6, 6, 7, 8];
+exports.MANIFEST_TURNS = [3, 3, 4, 4, 5, 5, 6, 7];
+exports.WEAK_TURNS = [3, 3, 4, 4, 5, 5, 6, 7];
+exports.BETRAY_TURNS = [2, 2, 3, 3, 4, 4, 5, 6];
+function installOccultRedesign(skills) {
+    // Keep already flying casts from old saves and old NPC loadouts executable.
+    for (const id of ['O08', 'O09', 'O10', 'O13', 'O14', 'O15', 'O99'])
+        skills['L' + id] = { ...skills[id], id: 'L' + id, enemyOnly: true, ultimate: false, legacyId: id };
+    const update = (id, patch) => { skills[id] = { ...skills[id], ...patch }; };
+    update('O01', { name: '혼령탄', tag: '기본 · 혼행', desc: '혼의 기운을 응축해 날린다. 중력과 바람의 영향을 적게 받는다.', damage: 31, radius: 50, speed: .95, wind: .08, gravity: .18, basic: true, color: '#b7c5bd' });
+    update('O06', { tag: '주박 · 쇠약', desc: '부적에 맞은 적의 기세와 방어를 약하게 한다. 경지에 따라 3~7턴 유지된다.', color: '#bdab8d' });
+    update('O07', { tag: '주박 · 증오', desc: '부적에 맞은 적이 같은 편에게도 적의 대상으로 보인다. 경지에 따라 2~6턴 유지된다.', color: '#bb9b94' });
+    update('O08', { name: '현형부', tag: '주박 · 현형', desc: '부적이 닿은 자리의 혼령형 적을 드러낸다. 주변 적도 함께 현형되어 동료의 눈에 보인다.', cost: 30, damage: 9, radius: 88, mode: 'curseManifest', icon: 'target', color: '#c6b39a', wind: .48 });
+    update('O09', { name: '섭혼부', tag: '주박 · 섭혼', desc: '보스가 아닌 적의 혼을 잠시 붙잡아 같은 편으로 싸우게 한다. 적이 행동한 횟수만큼 효력이 소모된다.', cost: 44, damage: 0, radius: 0, mode: 'curseEnthrall', icon: 'bind', color: '#c1a98e', wind: .48 });
+    update('O10', { name: '지박부', tag: '주박 비기 · 지박', desc: '넓은 곳에 지박주를 남긴다. 저주받은 적이 쓰러지면 그 자리에 지박령이 머문다.', cost: 68, damage: 22, radius: 150, mode: 'curseEarth', icon: 'rune', color: '#b6a788', wind: .42, capstone: true });
+    update('O11', { name: '배회령', tag: '초혼 · 추적', desc: '혼매듭에서 배회령을 부른다. 소단의 행동이 끝나면 가까운 적을 쫓아 공격한다.', damage: 0, radius: 0, color: '#a9bab4' });
+    update('O12', { name: '등불귀', tag: '초혼 · 원거리', desc: '허공의 혼매듭에서 등불귀를 부른다. 소단의 행동 뒤 먼 적에게 혼령탄을 보낸다.', damage: 0, radius: 0, color: '#b6c8b2' });
+    update('O13', { name: '호혼령', tag: '초혼 · 수호', desc: '혼매듭에서 동료를 지키는 호혼령을 부른다. 가까운 아군에게 방호를 준다.', cost: 36, damage: 0, radius: 0, mode: 'summonWarden', icon: 'shield', color: '#9eafa6' });
+    update('O14', { name: '먹귀', tag: '초혼 · 투사체 포식', desc: '허공에 먹귀를 묶어 적의 탄을 끌어당기고 삼킨다. 힘이 차면 가까운 적에게 혼을 터뜨린다.', cost: 43, damage: 0, radius: 0, mode: 'summonEater', icon: 'vortex', color: '#aaa79d', gravity: .12 });
+    update('O15', { name: '반향령', tag: '초혼 비기 · 반향', desc: '소단의 혼행을 되비추는 영체를 묶어둔다. 소단이 혼을 쏘면 반향령들도 각자의 자리에서 같은 목표를 향해 혼행을 펼친다.', cost: 78, damage: 0, radius: 0, mode: 'summonEcho', icon: 'resonance', color: '#bec3b2', gravity: .18, capstone: true });
+    skills.O16 = { id: 'O16', cls: 'occultist', name: '만혼귀결', tag: '혼행 비기 · 귀결', desc: '흩어진 수많은 혼을 한 점으로 이끈다. 혼령들은 세상의 벽을 넘어 귀결점을 향해 모여든다.', cost: 74, damage: 76, radius: 0, speed: .93, wind: .10, mode: 'spiritConverge', color: '#c4c8b6', icon: 'resonance', terrain: .2, gravity: .20, capstone: true };
+    for (const [id, name, desc, icon, color] of [
+        ['OP01', '잔부', '빗나간 부적이 잠시 남아 닿은 적에게 약한 주박을 건다.', 'rune', '#c7b597'],
+        ['OP02', '혼맥', '주박한 적을 소환령이 우선 찾아 공격한다.', 'target', '#bdada0'],
+        ['OP03', '분혼', '큰 피해의 일부를 가까운 소환령과 나누어 받는다.', 'shield', '#aebdb1'],
+        ['OP04', '매듭보전', '수명이 다한 소환령이 기력을 돌려주고 다음 초혼을 가볍게 한다.', 'return', '#b7b7a5'],
+        ['OP05', '잔혼', '소단의 영향 아래 적이 쓰러지면 잔혼을 모아 다음 기예를 강화한다.', 'vortex', '#c9bda7']
+    ])
+        update(id, { name, desc, icon, color });
+    // O99 remains as an inaccessible historical definition for saved projectiles only.
+    skills.O99.enemyOnly = true;
+    skills.O99.ultimate = false;
+}
+
+},
+"occultMechanics": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SUMMON_SKILLS = exports.CHARM_SKILLS = exports.SOUL_SKILLS = void 0;
+exports.spiritVisibleTo = spiritVisibleTo;
+exports.echoAim = echoAim;
+exports.beginOccultCast = beginOccultCast;
+exports.convergeAt = convergeAt;
+exports.stepConvergingSpirit = stepConvergingSpirit;
+const math_1 = require("./math");
+const occultData_1 = require("./occultData");
+exports.SOUL_SKILLS = new Set(['O01', 'O02', 'O03', 'O04', 'O05', 'O16']);
+exports.CHARM_SKILLS = new Set(['O06', 'O07', 'O08', 'O09', 'O10']);
+exports.SUMMON_SKILLS = new Set(['O11', 'O12', 'O13', 'O14', 'O15']);
+function spiritVisibleTo(viewer, target) { return !target.spiritHidden || !!viewer.spiritSight || !!target.revealSpiritToParty; }
+/** All origins aim at a world point frozen when Sodan casts, not at the same angle. */
+function echoAim(e, origin, s, point, preferredPower) {
+    const ghost = { ...origin, ranks: { ...origin.ranks, [s.id]: origin.ranks[s.id] || 1 } };
+    const proxy = { ...origin, x: point.x, y: point.y, h: 0, r: 2 };
+    const seeds = e.shotSeeds(ghost, s, proxy, 1);
+    if (seeds.length)
+        return seeds.sort((a, b) => Math.abs(a.power - preferredPower) - Math.abs(b.power - preferredPower))[0];
+    const dx = point.x - origin.x, dy = point.y - (origin.y - origin.h * .63);
+    let angle = Math.atan2(-dy, dx) * 180 / Math.PI;
+    if (angle < -90)
+        angle += 360;
+    return { angle: (0, math_1.clamp)(angle, -85, 265), power: (0, math_1.clamp)(preferredPower, .08, 1) };
+}
+function beginOccultCast(e, u, s, roots) {
+    if (u.side !== 0 || u.summoned || !s.id.startsWith('O') || s.enemyOnly)
+        return;
+    const soul = exports.SOUL_SKILLS.has(s.id), summon = exports.SUMMON_SKILLS.has(s.id);
+    const empowered = (u.soulRemnants || 0) >= 3;
+    if (empowered) {
+        u.soulRemnants = 0;
+        e.fx('spark', u.x, u.y - u.h * .6, '#d8cfaa', 34);
+    }
+    if (summon)
+        u.nextSummonDiscount = 0;
+    for (const p of roots) {
+        p.soulBoost = empowered;
+        if (soul)
+            p.hit = e.alive(0).map(v => v.id);
+        if (empowered && soul)
+            p.damage *= 1 + .12 + .02 * (u.ranks.OP05 || 0);
+    }
+    if (!soul)
+        return;
+    const prediction = e.predict(u, s, u.angle, u.lastPower, undefined, true);
+    const point = { x: prediction.x, y: prediction.y };
+    for (const p of roots) {
+        p.targetPoint = { ...point };
+        if (prediction.unit)
+            p.targetId = prediction.unit;
+    }
+    const echoes = e.b.units.filter(v => !v.dead && v.summonKind === 'echo' && v.summonOwner === u.id && (v.summonExpires ?? 0) >= e.b.round);
+    for (const [i, echo] of echoes.entries()) {
+        const rank = (0, math_1.clamp)(echo.summonRank || 1, 1, 8), aim = echoAim(e, echo, s, point, u.lastPower), o = e.origin(echo, aim.angle), v = e.velocity(echo, s, aim.angle, aim.power);
+        for (const root of roots) {
+            const copy = { ...root, id: e.b.nextId++, x: o.x, y: o.y, vx: v.vx, vy: v.vy, prevVy: v.vy, launchX: o.x, launchY: o.y, returnX: echo.x, returnY: echo.y, damage: root.damage * occultData_1.ECHO_POWER[rank - 1], age: 0, hit: [...root.hit], trail: [o], child: false, echoUsed: true, echoSource: echo.id, echoDelay: .075 * (i + 1), targetPoint: { ...point }, targetId: prediction.unit, shot: root.shot };
+            e.b.projectiles.push(copy);
+        }
+    }
+}
+/** The representative alone is predicted. Curve parameters are fixed once on impact. */
+function convergeAt(e, p) {
+    const goal = { x: p.x, y: p.y }, start = { x: p.returnX, y: p.returnY - 48 }, rank = (0, math_1.clamp)(p.skillRank || 1, 1, 8), count = 10 + Math.floor(rank / 2);
+    for (let i = 0; i < count; i++) {
+        const angle = i * Math.PI * 2 / count + p.id * .23, reach = 125 + (i % 4) * 23;
+        const spread = { x: start.x + Math.cos(angle) * reach, y: start.y + Math.sin(angle) * reach * .72 };
+        const bend = ((i % 2) * 2 - 1) * (95 + (i % 3) * 26), control = { x: (spread.x + goal.x) * .55 - Math.sin(angle) * bend, y: (spread.y + goal.y) * .55 + Math.cos(angle) * bend };
+        const c = { ...p, id: e.b.nextId++, mode: 'convergeSpirit', x: start.x, y: start.y, vx: 0, vy: 0, prevVy: 0, age: 0, radius: 5, damage: p.damage * .22, blast: 38, phaseMode: 'all', gravityScale: 0, wind: 0, hit: [], trail: [start], child: true, echoUsed: true, curve: { start, spread, control, goal, duration: 1.05 + (i % 3) * .08 } };
+        e.b.projectiles.push(c);
+    }
+    e.fx('ring', goal.x, goal.y, '#bec4ae', 55);
+    e.remove(p);
+}
+function stepConvergingSpirit(e, p, dt) {
+    const c = p.curve;
+    if (!c) {
+        e.remove(p);
+        return;
+    }
+    const t = (0, math_1.clamp)(p.age / c.duration, 0, 1), v = 1 - t;
+    const next = { x: v * v * v * c.start.x + 3 * v * v * t * c.spread.x + 3 * v * t * t * c.control.x + t * t * t * c.goal.x, y: v * v * v * c.start.y + 3 * v * v * t * c.spread.y + 3 * v * t * t * c.control.y + t * t * t * c.goal.y };
+    const old = { x: p.x, y: p.y };
+    p.vx = (next.x - old.x) / Math.max(dt, .001);
+    p.vy = (next.y - old.y) / Math.max(dt, .001);
+    p.x = next.x;
+    p.y = next.y;
+    for (const u of e.alive(1))
+        if (!p.hit.includes(u.id)) {
+            const h = (0, math_1.segRect)(old, next, u.x - u.r, u.y - u.h, u.r * 2, u.h, p.radius);
+            if (h) {
+                p.hit.push(u.id);
+                e.hurt(u, p.damage, p.owner, true, p, next);
+            }
+        }
+    if (p.age === dt || Math.floor(p.age * 20) !== Math.floor((p.age - dt) * 20)) {
+        p.trail.push(next);
+        if (p.trail.length > 14)
+            p.trail.shift();
+    }
+    if (t >= 1) {
+        for (const u of e.alive(1))
+            if (Math.hypot(u.x - c.goal.x, u.y - u.h * .5 - c.goal.y) < p.blast + u.r)
+                e.hurt(u, p.damage * .55, p.owner, false, p, c.goal);
+        e.remove(p);
+    }
+}
+
+},
 "physics": function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9669,20 +10077,21 @@ const data_1 = require("./data");
 const math_1 = require("./math");
 const balance_1 = require("./balance");
 const balanceModel_1 = require("./balanceModel");
+const occultData_1 = require("./occultData");
 exports.CLASS_IDS = ['mage', 'archer', 'knight', 'occultist'];
 exports.MAX_LEVEL = 25;
-exports.ULTIMATES = { mage: 'M99', archer: 'A99', knight: 'S99', occultist: 'O99' };
+exports.ULTIMATES = { mage: 'M99', archer: 'A99', knight: 'S99', occultist: 'O16' };
 exports.BRANCHES = {
     mage: [{ name: '호리병술', color: '#b98a61', tag: '봉인과 해방' }, { name: '파문술', color: '#bbc9cb', tag: '기하와 파면' }, { name: '진법', color: '#a9b496', tag: '진목과 전장' }, { name: '도법', color: '#dfcd9f', tag: '습득 시 자동 적용' }],
     archer: [{ name: '절명', color: '#bfc8ae', tag: '수평거리' }, { name: '곡사', color: '#bbc9cb', tag: '최고점과 낙차' }, { name: '강궁', color: '#b9a28a', tag: '충돌 속력' }, { name: '궁술 기예', color: '#dfcd9f', tag: '습득 시 자동 적용' }],
     knight: [{ name: '검술', color: '#cbd2c6', tag: '근거리와 축세' }, { name: '돌격', color: '#c1aa8d', tag: '도약과 돌파' }, { name: '검기', color: '#a9c5c7', tag: '검압과 포격' }, { name: '무예', color: '#dfcd9f', tag: '습득 시 자동 적용' }],
-    occultist: [{ name: '유령', color: '#b897e5', tag: '저중력과 투과' }, { name: '저주', color: '#c369a7', tag: '쇠약과 원한' }, { name: '소환귀', color: '#7fb3c8', tag: '자동 전투 소환' }, { name: '영매술', color: '#d5c4a4', tag: '습득 시 자동 적용' }]
+    occultist: [{ name: '혼행', color: '#aebfb3', tag: '혼의 자유로운 포격' }, { name: '주박', color: '#c1a88e', tag: '부적과 존재 변화' }, { name: '초혼', color: '#9fb5aa', tag: '혼매듭과 소환령' }, { name: '영매술', color: '#d5c4a4', tag: '습득 시 자동 적용' }]
 };
 const layouts = {
     mage: [['M06', 'M02', 'M04', 'M13', 'M05'], ['M03', 'M11', 'M12', 'M14', 'M15'], ['M07', 'M10', 'M08', 'M09', 'M99'], ['MP01', 'MP02', 'MP04', 'MP03', 'MP05']],
     archer: [['A14', 'A02', 'A06', 'A10', 'A99'], ['A11', 'A09', 'A13', 'A12', 'A15'], ['A05', 'A04', 'A07', 'A03', 'A08'], ['AP04', 'AP02', 'AP01', 'AP03', 'AP05']],
     knight: [['S03', 'S05', 'S07', 'S08', 'S02'], ['S01', 'S06', 'S04', 'S15', 'S13'], ['S09', 'S10', 'S11', 'S14', 'S12'], ['SP01', 'SP02', 'SP03', 'SP04', 'SP05']],
-    occultist: [['O01', 'O02', 'O03', 'O04', 'O05'], ['O06', 'O07', 'O08', 'O09', 'O10'], ['O11', 'O12', 'O13', 'O14', 'O15'], ['OP01', 'OP02', 'OP03', 'OP04', 'OP05']]
+    occultist: [['O02', 'O03', 'O04', 'O05', 'O16'], ['O06', 'O07', 'O08', 'O09', 'O10'], ['O11', 'O12', 'O13', 'O14', 'O15'], ['OP01', 'OP02', 'OP03', 'OP04', 'OP05']]
 };
 exports.TALENTS = exports.CLASS_IDS.flatMap(cls => layouts[cls].flatMap((ids, branch) => ids.map((id, row) => ({ id, cls, branch, row, name: data_1.SKILLS[id].name, skill: id, passive: branch === 3 ? 'special' : undefined, required: (branch === 3 ? [1, 3, 6, 9, 12] : [1, 3, 6, 9, 12])[row], prereq: branch !== 3 && row > 0 ? ids[row - 1] : undefined, maxRank: 8, icon: data_1.SKILLS[id].icon, desc: data_1.SKILLS[id].desc }))));
 /** Passive ranks depend on training, never on an active-skill slot. */
@@ -9764,24 +10173,30 @@ function skillEffectRows(id, rank) {
             M08: [row('기동 거리', '45 · 적이 접근하면 발동'), row('끌어당김', '벽에 가로막힘')],
             M09: [row('첫 설치', '발밑·착탄점에 한 쌍'), row('동시 설치', '2개 · 초과 시 오래된 진목 교체'), row('이동', '진목 위에서 E · 턴당 1회'), row('도착 기력 회복', rr < 2 ? '없음' : rr === 2 ? '8%' : '10%'), row('도착 체력 회복', rr < 4 ? '없음' : rr === 4 ? '6%' : '8%'), row('도착 이동력 회복', rr < 6 ? '없음' : rr === 6 ? '16%' : '24%'), row('도착 방호', rr === 8 ? '적 행동 종료까지' : '없음')],
             M99: [row('봉쇄 유지', `${stakeDuration(id, rr)}턴`), row('경계 피해', num(dmg * 22 / 35) + ' · 턴당 1회'), row('내부 감속', '45%'), row('내부 이동력 감소', '35%')],
+            O06: [row('쇠약 유지', `${occultData_1.WEAK_TURNS[rr - 1]}턴`)], O07: [row('증오 유지', `${occultData_1.BETRAY_TURNS[rr - 1]}턴`)],
+            O08: [row('현형 유지', `${occultData_1.MANIFEST_TURNS[rr - 1]}턴`)], O09: [row('섭혼 행동', `${occultData_1.ENTHRALL_ACTIONS[rr - 1]}회`), row('섭혼 전투력', pct(occultData_1.ENTHRALL_POWER[rr - 1]))],
+            O10: [row('지박 유지', `${3 + Math.floor((rr - 1) * 4 / 7)}턴`), row('지박령 동시 수', '최대 4')],
+            O11: [row('배회령 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`)], O12: [row('등불귀 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`), row('대상 수', rr < 4 ? '1명' : '최대 2명')],
+            O13: [row('호혼령 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`)], O14: [row('먹귀 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`), row('끌림 반경', `${200 + rr * 15}`)],
+            O15: [row('반향령 유지', `${occultData_1.ECHO_TURNS[rr - 1]}턴`), row('반향 피해', pct(occultData_1.ECHO_POWER[rr - 1])), row('동시 설치', `${occultData_1.ECHO_LIMIT[rr - 1]}개`)],
+            O16: [row('귀결 혼령', `${10 + Math.floor(rr / 2)}기`)],
         };
         const branchRows = s.cls === 'archer' && s.branch && s.id !== 'A10' ? [row('계통 위력', s.branch === 'distance' ? `수평거리 1,800에서 최대 +${s.id === 'A99' ? 60 : 40}%` : s.branch === 'drop' ? `낙차 900에서 최대 +${s.id === 'A15' ? 55 : s.id === 'A13' ? 35 : 45}%` : `충돌 속력에 따라 최대 +${s.id === 'A08' ? 35 : 45}%`)] : [];
         const multi = (0, projectileGrowth_1.multishotProfile)(s, rr);
-        return [row(s.mode === 'triple' ? '화살당 피해' : '기본 피해', `${Math.round(dmg * (s.mode === 'triple' ? (multi?.damageScale || 1) : 1) * 10) / 10}`), ...(multi ? [row(s.mode === 'triple' ? '화살 수' : multi.waves > 1 ? '파생탄 최대 수' : '파생 투사체 수', `${multi.count}`)] : []), ...(s.mode === 'triple' && multi ? [row('전체 확산각', `${(2 * multi.halfAngle).toFixed(1)}°`)] : []), row('투사체 속도', `${s.speed.toFixed(2)}×`), ...(s.radius > 0 ? [row('효과 반경', `${rad}`)] : []), row('MP', `${mp}`), ...(s.redesigned ? extra[id] || [] : []), ...branchRows, ...(s.branch === 'stake' ? [row('진목 지속', `${stakeDuration(id, rr)}턴`), row('반복 발동', id === 'M10' ? '아군마다 턴당 1회' : id === 'M09' ? '유닛마다 턴당 1회' : id === 'M99' ? '지속 봉쇄 · 경계 피해 턴당 1회' : '턴당 1회')] : []), ...(s.cooldown ? [row('재사용 대기', `${s.cooldown}턴`)] : [])];
+        return [...(s.cls === 'occultist' && s.damage === 0 ? [] : [row(s.mode === 'triple' ? '화살당 피해' : '기본 피해', `${Math.round(dmg * (s.mode === 'triple' ? (multi?.damageScale || 1) : 1) * 10) / 10}`)]), ...(multi ? [row(s.mode === 'triple' ? '화살 수' : multi.waves > 1 ? '파생탄 최대 수' : '파생 투사체 수', `${multi.count}`)] : []), ...(s.mode === 'triple' && multi ? [row('전체 확산각', `${(2 * multi.halfAngle).toFixed(1)}°`)] : []), ...(s.cls === 'occultist' ? [] : [row('투사체 속도', `${s.speed.toFixed(2)}×`)]), ...(s.radius > 0 && !['O06', 'O07'].includes(id) ? [row('효과 반경', `${rad}`)] : []), row('MP', `${mp}`), ...((s.redesigned || s.cls === 'occultist') ? extra[id] || [] : []), ...branchRows, ...(s.branch === 'stake' ? [row('진목 지속', `${stakeDuration(id, rr)}턴`), row('반복 발동', id === 'M10' ? '아군마다 턴당 1회' : id === 'M09' ? '유닛마다 턴당 1회' : id === 'M99' ? '지속 봉쇄 · 경계 피해 턴당 1회' : '턴당 1회')] : []), ...(s.cooldown ? [row('재사용 대기', `${s.cooldown}턴`)] : [])];
     }
     const rows = {
         MP01: [row('호리병 2차 효과', pct(.03 * r)), row('파문 두께·진목 효력', pct(.02 * r))], MP02: [row('최대 기력', pct(.03 * r)), row('턴 회복', num(.5 * r))], MP03: [row('미스 환급', pct(.18 + .04 * Math.max(0, r - 1)))], MP04: [row('예측 정보 단계', num(r))], MP05: [row('완성에 필요한 소비 기력', num(warriorData_1.JUCHEON_THRESHOLD[Math.max(0, r - 1)])), row('완성 후 비용 감소', pct(r ? warriorData_1.JUCHEON_DISCOUNT[r - 1] : 0)), row('도술 효과 강화', pct(r ? warriorData_1.JUCHEON_EFFECT[r - 1] : 0)), row('파문 범위 확대 상한', '5%'), row('무료 도술', '주천 충전 없음')],
         AP01: [row('추가 발사', `${Math.min(5, r)}발`), row('첫 후속타', pct(volleyDamage(r))), row('후속 감쇠', '66%')], AP02: [row('추가 치명 확률', pct(.02 * r) + 'p'), row('추가 치명 배율', '+' + (+.04 * r).toFixed(2))], AP03: [row('후퇴 이동력', pct(r ? .08 + .04 * r : 0))], AP04: [row('계통 위력 가산', '+' + pct(.025 * r) + 'p')], AP05: [row('기억하는 과거 내 턴', `${r ? warriorData_1.SALHEUN_TURNS[r - 1] : 0}턴`), row('직전 직접 피해 재현', pct(r ? warriorData_1.SALHEUN_RATIO[r - 1] : 0)), row('이전 턴마다 감쇠', '55%'), row('발동 제한', '한 행동 · 대상마다 1회'), row('후속/파편 화살', '연속 시위·철화 자탄 제외')],
         SP01: [row('베기 각도 확대', num(.5 * r) + '°'), row('최대 축세 추가 위력', pct(.012 * r)), row('최대 축세 추가 사거리', pct(.006 * r)), row('돌격 위력', pct(.025 * r)), row('검기 속도·크기', pct(.012 * r))], SP02: [row('최대 HP', pct(.05 * p)), row('피해 감소', pct(.03 * p)), row('밀치기 저항', pct(knockbackResistance(r)))], SP03: [row('이동 거리', pct(.10 * p)), row('점프 높이 계수', pct((1 + .02 * r) ** 2 - 1)), row('돌격 속도', pct(.015 * r)), row('점프 소비', num(Math.max(25, 75 - 5 * r)))], SP04: [row('합세 조건', '서로 다른 세 계통 · 같은 계통 반복 시 유지'), row('합세 기력 회복', pct(.05 + .00625 * r)), row('다음 기예 비용', '25% 감소'), row('다음 기예 피해', '15% 증가'), row('합세 수세', '10% 피해 감소 · 다음 내 턴까지')], SP05: [row('불굴 잔여 HP', pct(.08 * p)), row('발동 횟수', '전투당 1회'), row('회복 자세', '18% 피해 감소 · 다음 내 턴까지')],
-        OP01: [row('유령 피해', `+${pct(.055 * p)}`), row('중력 영향', `-${pct(Math.min(.6, .08 * p))}`)], OP02: [row('저주 지속', `+${Math.floor(p / 1.5)}R`), row('저주 강도', `+${pct(.08 * p)}`)], OP03: [row('소환귀 HP', `+${pct(.15 * p)}`), row('소환귀 피해', `+${pct(.12 * p)}`)], OP04: [row('처치 MP', num(6 * p))], OP05: [row('저주 대상 추가 피해', `+${pct(.07 * p)}`)]
+        OP01: [row('잔부 유지', `${1 + Math.floor(r / 3)}턴`), row('잔부 효과', pct(.22 + .045 * r))], OP02: [row('주박 대상 우선 탐색', `${170 + 35 * r} 거리`)], OP03: [row('피해 분담', pct(Math.min(.28, .04 * r))), row('공격당 분담 한도', pct(.12))], OP04: [row('자연 소멸 기력 회수', pct(.04 + .018 * r)), row('다음 초혼 비용 감소', pct(Math.min(.24, .035 * r)))], OP05: [row('잔혼 최대', '3개'), row('다음 기예 강화', pct(.12 + .02 * r))]
     };
     return rows[id] || [];
 }
 const activeSkills = (ids) => ids.filter(id => data_1.SKILLS[id] && !data_1.SKILLS[id].passive);
 exports.activeSkills = activeSkills;
 function ultimateProgress(h, cls) { const ids = layouts[cls].slice(0, 3).flat(); const learned = ids.filter(id => (h.ranks[id] || 0) > 0).length; return { learned, total: ids.length }; }
-function ultimateUnlocked(h, cls) { if (cls !== 'occultist')
-    return false; const p = ultimateProgress(h, cls); return p.learned >= p.total; }
+function ultimateUnlocked(_h, _cls) { return false; }
 function ultimateSkill(cls) { return exports.ULTIMATES[cls]; }
 exports.TALENT_MAP = Object.fromEntries(exports.TALENTS.map(n => [n.id, n]));
 const baseSkill = (cls) => cls === 'mage' ? 'M01' : cls === 'archer' ? 'A01' : cls === 'knight' ? 'S00' : 'O01';
@@ -9822,7 +10237,7 @@ function levelOf(hero) {
     return l;
 }
 function xpFraction(h) { const l = levelOf(h); return l === exports.MAX_LEVEL ? 1 : (h.xp - xpAtLevel(l)) / xpToNext(l); }
-function freshHero(cls) { const second = cls === 'mage' ? 'M03' : cls === 'archer' ? 'A05' : cls === 'knight' ? 'S09' : 'O06'; return { xp: 0, ranks: cls !== 'occultist' ? { [(0, exports.baseSkill)(cls)]: 1 } : { [(0, exports.baseSkill)(cls)]: 1, [second]: 1 }, kills: 0, damage: 0, skillRevision: 1, martialRevision: 1 }; }
+function freshHero(cls) { const second = cls === 'mage' ? 'M03' : cls === 'archer' ? 'A05' : cls === 'knight' ? 'S09' : 'O06'; return { xp: 0, ranks: cls !== 'occultist' ? { [(0, exports.baseSkill)(cls)]: 1 } : { [(0, exports.baseSkill)(cls)]: 1, [second]: 1 }, kills: 0, damage: 0, skillRevision: 1, martialRevision: 1, occultRevision: cls === 'occultist' ? 1 : undefined }; }
 function freshRoster() { return { mage: freshHero('mage'), archer: freshHero('archer'), knight: freshHero('knight'), occultist: freshHero('occultist') }; }
 function pointsEarned(h) { return 3 + (levelOf(h) - 1) * 2; }
 function pointsSpent(h, cls) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (exports.TALENT_MAP[id]?.cls === cls ? r - (id === (0, exports.baseSkill)(cls) ? 1 : 0) : 0), 0); }
@@ -10069,20 +10484,21 @@ exports.SKILL_LORE = {
     O05: '돌아갈 곳을 잊은 망령을 길 위에 놓는다. 스쳐 간 적을 기억하며 되돌아온 원한이 깊게 파고든다.',
     O06: '적의 몸에 쇠락의 글귀를 붙인다. 무거워진 팔다리와 무딘 기세가 싸울 힘을 앗아간다.',
     O07: '마음속 작은 증오를 뒤집어 드러낸다. 부적에 홀린 적은 제 곁의 동료에게도 낯선 기척이 된다.',
-    O08: '땅에 오래 묵은 원한을 펼친다. 악령의 낙인이 남은 몸은 싸움이 이어질수록 쇠약해진다.',
-    O09: '달아나려는 혼에 봉인의 글귀를 감는다. 무거운 속박이 적의 걸음과 기세를 눌러 둔다.',
-    O10: '하나의 원한을 이웃한 혼에 옮긴다. 몰려든 적들 사이로 저주가 속삭이듯 번져 간다.',
+    O08: '부적이 젖은 허공에 붙자 숨어 있던 윤곽이 드러난다. 설오도 이제 그 혼을 볼 수 있다.',
+    O09: '소단이 맺은 글귀가 적의 뜻을 잠시 돌려놓는다. 빼앗긴 몸은 몇 번의 행동 뒤 제 주인에게 돌아간다.',
+    O10: '원한을 땅에 매단다. 주박이 남은 몸이 무너지면 그 자리에 지박령이 눌러앉는다.',
     O11: '낯선 땅에 혼의 씨앗을 심는다. 깨어난 배회령은 가까운 적의 기척을 좇아 달려든다.',
     O12: '허공에 길 잃은 등불을 띄운다. 등불귀는 어둠 속의 적들을 찾아 창백한 혼을 보낸다.',
-    O13: '사나운 혼을 땅 위에 불러낸다. 돌격귀가 거친 길을 넘어 적을 들이받는다.',
-    O14: '곁을 지킬 오래된 혼을 청한다. 수호령의 그늘 아래에서 동료들은 다시 몸을 추스른다.',
-    O15: '잠시 귀문의 빗장을 걷는다. 서로 다른 혼들이 문을 넘어와 적진에 뒤섞인다.',
+    O13: '오래된 혼에게 곁을 맡긴다. 호혼령의 옅은 그늘이 동료 앞에 먼저 선다.',
+    O14: '허공에 매단 먹귀가 날아오는 기척을 삼킨다. 더는 담지 못할 때 작은 혼폭이 터진다.',
+    O15: '소단의 혼 한 자락을 매듭에 비춘다. 반향령은 소단이 가리킨 그곳을 함께 겨눈다.',
+    O16: '멀리 흩어진 혼들이 잠시 밖으로 돌았다가 한 자리로 돌아온다. 귀결점에는 희미한 안개만 남는다.',
     O99: '산 자와 죽은 자의 경계가 열린다. 쏟아져 나온 원혼과 귀신들이 밤길을 채운다.',
-    OP01: '경계 너머의 숨결을 더 또렷이 듣는다. 불러낸 혼이 세상의 무게에서 한층 멀어진다.',
-    OP02: '작은 흉조를 오래 남을 저주로 엮는다. 몸에 새긴 원한이 쉽게 흩어지지 않는다.',
-    OP03: '귀문의 틈을 단단히 붙든다. 건너온 혼들이 더 오래, 더 거세게 싸운다.',
-    OP04: '쓰러진 적이 남긴 사념을 거둔다. 흩어진 원한이 다음 도술을 펼칠 기운으로 돌아온다.',
-    OP05: '저주와 혼령이 같은 뜻으로 움직인다. 원한이 새겨진 적에게 경계 너머의 손길이 깊이 닿는다.'
+    OP01: '빗나간 부적도 땅에 잠시 남는다. 지나가던 적의 발목에 못다 쓴 글귀가 붙는다.',
+    OP02: '주박의 실을 따라 소환령이 헤맨다. 매듭 끝에서 적의 기척이 더 또렷해진다.',
+    OP03: '큰 충격이 닥치면 가까운 혼이 소단의 고통을 조금 나누어 짊어진다.',
+    OP04: '저절로 풀린 혼매듭은 기운을 남긴다. 다음 매듭은 그 힘으로 한결 가볍게 묶인다.',
+    OP05: '쓰러진 적의 마지막 흔적을 거둔다. 세 갈래 잔혼이 모이면 다음 기예에 스민다.'
 };
 
 },
@@ -10278,7 +10694,35 @@ function migrateSkills(p) {
                     q.skill = 'L' + q.skill;
             b.martialRevision = 1;
         }
-    for (const cls of ['archer', 'mage', 'knight'])
+    for (const heroes of rosters) {
+        const h = heroes?.occultist;
+        if (h && h.occultRevision !== 1) {
+            const ranks = { O01: 1 };
+            for (const id of ['O02', 'O03', 'O04', 'O05', 'O06', 'O07'])
+                if (h.ranks[id] > 0)
+                    ranks[id] = h.ranks[id];
+            h.ranks = ranks;
+            h.occultRevision = 1;
+        }
+    }
+    for (const b of [p.saved, p.honroBattle])
+        if (b && b.occultRevision !== 1) {
+            for (const u of b.units) {
+                if (u.side === 0 && !u.summoned && u.cls === 'occultist') {
+                    u.ranks = { ...b.heroes.occultist.ranks };
+                    u.loadout = ['O01', ...u.loadout.filter(id => ['O02', 'O03', 'O04', 'O05', 'O06', 'O07'].includes(id))].slice(0, 4);
+                    u.cooldowns = {};
+                    u.spiritSight = true;
+                }
+                else
+                    migrateEnemySkills(u);
+            }
+            for (const q of [...b.projectiles, ...(b.volley ? [b.volley.template] : [])])
+                if (['O08', 'O09', 'O10', 'O13', 'O14', 'O15', 'O99'].includes(q.skill))
+                    q.skill = 'L' + q.skill;
+            b.occultRevision = 1;
+        }
+    for (const cls of ['archer', 'mage', 'knight', 'occultist'])
         (0, progression_1.sanitizeLoadout)(p, cls);
     return p;
 }
@@ -11082,9 +11526,9 @@ const notes = {
     S11: '지나가는 모든 적을 한 번씩 관통합니다.', S14: '전방의 적 투사체를 약화하고 그 힘을 모읍니다. 모은 검세는 다음 검기 한 번의 피해·크기·속도를 높입니다.', S12: '공전하는 여러 검기를 함께 날립니다. 각 검기는 같은 적을 최대 두 번 맞힙니다.',
     SP01: '검술의 각도와 축세, 돌격 피해, 검기의 크기·속도를 강화합니다.', SP02: '최대 체력과 방어를 높이고 밀림을 줄입니다.', SP03: '이동과 도약을 강화하고 점프의 이동력 소모를 줄입니다.', SP04: '검술·돌격·검기를 이어 쓰면 합세가 완성됩니다. 기력을 회복하고 다음 기예는 비용 25% 감소·피해 15% 증가를 받습니다.', SP05: '전투마다 한 번 치명적인 피해를 버팁니다. 직후에는 잠시 받는 피해가 줄어듭니다.',
     O01: '중력과 바람의 영향을 적게 받는 혼령탄을 날립니다.', O02: '지형과 적을 통과하며 피해를 남긴 뒤 폭발합니다. 오래 충전할수록 더 늦게 터집니다.', O03: '거꾸로 솟아오른 혼이 원혼비로 갈라져 아래를 덮칩니다.', O04: '벽을 통과하고 처음 닿은 적에게 강한 피해를 줍니다.', O05: '왕복하며 적을 관통합니다. 돌아오는 길에는 더 강한 피해를 줍니다.',
-    O06: '공격력과 방어력을 낮추는 저주를 남깁니다.', O07: '맞은 적이 가까운 같은 편에게도 공격 대상으로 노출됩니다.', O08: '범위 안의 적에게 여러 턴 동안 지속 피해를 주는 저주를 남깁니다.', O09: '맞은 적의 이동과 공격력을 낮춥니다.', O10: '착탄점 주위의 여러 적에게 피해와 지속 저주를 남깁니다.',
-    O11: '배회령이 소환귀 차례에 가까운 적을 쫓아가 공격합니다.', O12: '공중의 등불귀가 소환귀 차례에 사거리 안의 적마다 추적탄을 쏩니다.', O13: '돌격귀가 지형을 넘어 적을 추적하고 강하게 밀칩니다.', O14: '수호령이 소환귀 차례마다 주변 아군에게 보호막을 줍니다.', O15: '배회령과 돌격귀를 함께 부릅니다. 한 종류를 부를 때보다 유지시간이 짧습니다.', O99: '공중에서 귀문을 열어 저주와 추적 원혼을 쏟고 소환귀 둘을 남깁니다.',
-    OP01: '혼령 공격을 강화하고 중력의 영향을 더 줄입니다.', OP02: '저주가 더 오래, 더 강하게 남습니다.', OP03: '소환귀의 체력과 공격력을 높입니다.', OP04: '저주받은 적을 쓰러뜨리면 기력을 회복합니다.', OP05: '저주받은 적에게 주는 피해를 높입니다.'
+    O06: '공격력과 방어력을 낮추는 부적입니다. 경지가 높을수록 오래 갑니다.', O07: '맞은 적이 같은 편에게도 공격 대상으로 보입니다. 경지가 높을수록 오래 갑니다.', O08: '작은 범위의 적을 현형합니다. 숨은 혼령도 다른 동료에게 보입니다.', O09: '보스가 아닌 적을 잠시 동맹으로 돌립니다. 직접 행동한 횟수만큼 효력이 소모됩니다.', O10: '넓은 범위에 지박주를 남깁니다. 저주받은 적이 죽으면 그 자리에 지박령이 생깁니다.',
+    O11: '배회령이 소단의 행동 직후 가까운 적을 쫓아 공격합니다.', O12: '등불귀가 소단의 행동 직후 먼 적에게 추적탄을 보냅니다. 높은 경지에서는 최대 두 적을 노립니다.', O13: '호혼령이 소단의 행동 직후 가까운 아군을 보호합니다.', O14: '허공에 머무르며 적의 탄을 끌어당겨 삼킵니다. 힘이 차면 주변 적에게 폭발합니다.', O15: '소단이 지정한 목표를 각자의 자리에서 함께 겨눕니다. 부적과 초혼은 반향하지 않습니다.', O16: '대표 혼령이 닿은 곳을 귀결점으로 삼습니다. 흩어져 돌아온 혼령이 경로와 귀결점에 피해를 줍니다.',
+    OP01: '빗나간 부적은 잠시 함정으로 남습니다. 섭혼부와 지박부에는 적용되지 않습니다.', OP02: '소환령이 주박한 적을 우선 찾아 공격합니다.', OP03: '큰 피해의 일부를 가까운 소환령과 나눕니다. 한 공격에서 나눌 수 있는 피해에는 한도가 있습니다.', OP04: '수명이 끝난 소환령에게서 기력을 돌려받고 다음 초혼 비용을 줄입니다.', OP05: '영향 아래 쓰러진 적의 잔혼 셋을 모아 다음 기예 하나를 강화합니다.'
 };
 function skillPlayNotes(id) { const s = data_1.SKILLS[id]; if (!s)
     return ''; const branch = s.cls === 'archer' && s.id !== 'A10' ? { distance: ' 멀리서 맞힐수록 피해가 증가합니다.', drop: ' 높은 곳에서 떨어져 맞힐수록 피해가 증가합니다.', speed: ' 빠르게 충돌할수록 피해가 증가합니다.' }[s.branch || ''] || '' : ''; return (notes[id] || '') + branch; }
@@ -11164,6 +11608,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.STAKE_STYLES = exports.ARROW_STYLES = exports.SKILL_FX_SECONDS = void 0;
 exports.guidePrediction = guidePrediction;
 exports.drawGuideContinuation = drawGuideContinuation;
+exports.drawEchoGuides = drawEchoGuides;
 exports.drawSkillGeometry = drawSkillGeometry;
 exports.drawAimDirection = drawAimDirection;
 exports.drawRedesignProjectile = drawRedesignProjectile;
@@ -11178,6 +11623,7 @@ exports.drawTurnGuide = drawTurnGuide;
 exports.drawRedesignGuide = drawRedesignGuide;
 const warriorVisuals_1 = require("./warriorVisuals");
 const data_1 = require("./data");
+const occultMechanics_1 = require("./occultMechanics");
 const skillMechanics_1 = require("./skillMechanics");
 const guideCache = new WeakMap();
 function guidePrediction(e, u, s, power, ignoreUnits = false) {
@@ -11222,6 +11668,37 @@ function drawGuideContinuation(c, e, u, s, power, zoom) {
     c.beginPath();
     path.forEach((p, i) => i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y));
     c.stroke();
+    c.restore();
+}
+const echoGuideCache = new WeakMap();
+function drawEchoGuides(c, e, u, s, power, zoom, root) {
+    if (u.cls !== 'occultist' || !occultMechanics_1.SOUL_SKILLS.has(s.id))
+        return;
+    const echoes = e.alive(0).filter(v => v.summonKind === 'echo' && v.summonOwner === u.id);
+    if (!echoes.length)
+        return;
+    const point = { x: root.x, y: root.y }, key = [e.b.shot, e.b.round, e.b.sceneVersion, e.b.wind, u.x, u.y, u.angle, power, s.id, point.x, point.y, ...echoes.map(v => `${v.id}:${v.x}:${v.y}`)].join('|');
+    let entry = echoGuideCache.get(e);
+    if (entry?.key !== key) {
+        entry = { key, paths: echoes.map(v => { const aim = (0, occultMechanics_1.echoAim)(e, v, s, point, power); return e.predict(v, s, aim.angle, aim.power, undefined, true).points; }) };
+        echoGuideCache.set(e, entry);
+    }
+    c.save();
+    c.globalAlpha = .30;
+    c.strokeStyle = s.color;
+    c.lineWidth = .95 / Math.max(.12, zoom);
+    c.setLineDash([3 / zoom, 7 / zoom]);
+    for (const points of entry.paths) {
+        c.beginPath();
+        for (let i = 0; i < points.length; i += 2) {
+            const p = points[i];
+            if (i)
+                c.lineTo(p.x, p.y);
+            else
+                c.moveTo(p.x, p.y);
+        }
+        c.stroke();
+    }
     c.restore();
 }
 exports.SKILL_FX_SECONDS = { swordCut: .34, circulation: .6, skillGeometry: .9, inkImpact: .8, lightningBolt: .9, qiBurst: .55, fireBloom: .85 };
@@ -12461,10 +12938,12 @@ function validHero(raw, cls, legacyXp = false) {
     if (!object(raw) || !finite(raw.xp) || raw.xp < 0 || raw.xp > maxXp || !object(raw.ranks))
         return fail();
     const converted = legacyXp ? (0, progression_1.migrateLegacyXp9)(raw.xp) : Math.floor(raw.xp);
-    const h = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision: raw.skillRevision, martialRevision: raw.martialRevision };
+    const h = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision: raw.skillRevision, martialRevision: raw.martialRevision, occultRevision: raw.occultRevision };
     if (raw.skillRevision !== undefined && raw.skillRevision !== skillMechanics_1.SKILL_REVISION)
         return fail();
     if (raw.martialRevision !== undefined && raw.martialRevision !== 1)
+        return fail();
+    if (raw.occultRevision !== undefined && raw.occultRevision !== 1)
         return fail();
     for (const [id, rank] of Object.entries(raw.ranks)) {
         if (id === (0, progression_1.baseSkill)(cls) && data_1.SKILLS[id].basic) {
@@ -12573,7 +13052,7 @@ function validBattle(raw, legacyXp = false) {
         return fail();
     if (b.summonTurn) {
         const t = b.summonTurn;
-        if (b.side !== 0 || !Array.isArray(t.queue) || t.queue.length > 64 || new Set(t.queue).size !== t.queue.length || t.queue.some(id => !ids.has(id) || !b.units.find(u => u.id === id)?.summoned) || !Number.isInteger(t.index) || t.index < 0 || t.index > t.queue.length || !['approach', 'attack', 'wait'].includes(t.stage) || !nums(t, ['elapsed', 'hold']) || t.elapsed < 0 || t.elapsed > 30 || Math.abs(t.hold) > 2 || !ids.has(t.returnActive) || typeof t.practice !== 'boolean')
+        if (b.side !== 0 || !Array.isArray(t.queue) || t.queue.length > 64 || new Set(t.queue).size !== t.queue.length || t.queue.some(id => !ids.has(id) || !b.units.find(u => u.id === id && (u.summoned || u.enthrall))) || !Number.isInteger(t.index) || t.index < 0 || t.index > t.queue.length || !['approach', 'attack', 'wait'].includes(t.stage) || !nums(t, ['elapsed', 'hold']) || t.elapsed < 0 || t.elapsed > 30 || Math.abs(t.hold) > 2 || !ids.has(t.returnActive) || typeof t.practice !== 'boolean' || t.afterActor !== undefined && typeof t.afterActor !== 'boolean')
             return fail();
         if (t.start && !nums(t.start, ['x', 'y']) || t.destination && !nums(t.destination, ['x', 'y']) || t.targetId !== undefined && !ids.has(t.targetId))
             return fail();
@@ -12581,7 +13060,16 @@ function validBattle(raw, legacyXp = false) {
     for (const u of b.units) {
         if (u.summonFloating !== undefined && typeof u.summonFloating !== 'boolean' || u.summoned !== undefined && typeof u.summoned !== 'boolean')
             return fail();
-        if (u.summoned && (!['stalker', 'lantern', 'charger', 'warden', 'host'].includes(u.summonKind || '') || !ids.has(u.summonOwner || '') || !finite(u.summonExpires) || u.side !== 0))
+        if (u.summoned && (!['stalker', 'lantern', 'charger', 'warden', 'host', 'eater', 'echo', 'earthbound'].includes(u.summonKind || '') || !ids.has(u.summonOwner || '') || !finite(u.summonExpires) || u.side !== 0))
+            return fail();
+        if (u.enthrall && (!ids.has(u.enthrall.owner) || u.side !== 0 || !nums(u.enthrall, ['actions', 'captureRatio', 'originalMaxHp', 'originalAttack', 'originalArmor', 'power']) || u.enthrall.actions < 0 || u.enthrall.actions > 7 || u.enthrall.captureRatio < 0 || u.enthrall.captureRatio > 1))
+            return fail();
+        if (u.spiritSight !== undefined && typeof u.spiritSight !== 'boolean' || u.spiritHidden !== undefined && typeof u.spiritHidden !== 'boolean' || u.manifested !== undefined && typeof u.manifested !== 'boolean' || u.revealSpiritToParty !== undefined && typeof u.revealSpiritToParty !== 'boolean')
+            return fail();
+        for (const key of ['summonRank', 'summonActionRound', 'summonAbsorbed', 'manifestedUntil', 'formDamageTakenBonus', 'soulAffinityBonus', 'soulDefenseBonus', 'soulBonusUntil', 'nextSummonDiscount', 'soulRemnants'])
+            if (u[key] !== undefined && !finite(u[key]))
+                return fail();
+        if (u.earthbind && (!ids.has(u.earthbind.owner) || !nums(u.earthbind, ['until', 'damage'])))
             return fail();
         if (u.impactCooldown !== undefined && (!finite(u.impactCooldown) || u.impactCooldown < 0 || u.impactCooldown > 1))
             return fail();
@@ -12619,6 +13107,8 @@ function validBattle(raw, legacyXp = false) {
     if (b.skillRevision !== undefined && b.skillRevision !== skillMechanics_1.SKILL_REVISION)
         return fail();
     if (b.martialRevision !== undefined && b.martialRevision !== 1)
+        return fail();
+    if (b.occultRevision !== undefined && b.occultRevision !== 1)
         return fail();
     const optionalNumber = (v, min = 0, max = 1e12) => v === undefined || finite(v) && v >= min && v <= max;
     for (const u of b.units) {
@@ -12680,7 +13170,7 @@ function validBattle(raw, legacyXp = false) {
                     return fail();
         }
     }
-    const modes = new Set([...Object.values(data_1.SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain', 'summonBolt', 'ironChip', 'fireChip', 'frostChip', 'ironEmitter', 'microEmitter', 'microWait', 'skyWait']);
+    const modes = new Set([...Object.values(data_1.SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain', 'summonBolt', 'convergeSpirit', 'ironChip', 'fireChip', 'frostChip', 'ironEmitter', 'microEmitter', 'microWait', 'skyWait']);
     for (const q of [...b.projectiles, ...(b.volley ? [b.volley.template] : [])]) {
         if (!nums(q, ['id', 'x', 'y', 'vx', 'vy', 'prevVy', 'age', 'radius', 'damage', 'blast', 'wind', 'bounces', 'pierces', 'phase', 'returnX', 'returnY', 'rolled', 'shot']) || !ids.has(q.owner) || !data_1.SKILLS[q.skill] || !modes.has(q.mode) || !Array.isArray(q.hit) || q.hit.length > 100 || !Array.isArray(q.trail) || q.trail.length > 400 || q.trail.some(v => !nums(v, ['x', 'y'])) || typeof q.body !== 'boolean' || typeof q.child !== 'boolean')
             return fail();
@@ -12693,6 +13183,10 @@ function validBattle(raw, legacyXp = false) {
         if (q.targetId !== undefined && (!safe(q.targetId) || !ids.has(q.targetId)))
             return fail();
         if (q.drag !== undefined && (!finite(q.drag) || q.drag < 0 || q.drag > 5) || q.gravityScale !== undefined && (!finite(q.gravityScale) || Math.abs(q.gravityScale) > 10) || q.skillRank !== undefined && (!Number.isInteger(q.skillRank) || q.skillRank < 1 || q.skillRank > 8))
+            return fail();
+        if (q.echoDelay !== undefined && (!finite(q.echoDelay) || q.echoDelay < 0 || q.echoDelay > .3) || q.echoSource !== undefined && !ids.has(q.echoSource) || q.soulBoost !== undefined && typeof q.soulBoost !== 'boolean')
+            return fail();
+        if (q.curve && (!nums(q.curve.start, ['x', 'y']) || !nums(q.curve.spread, ['x', 'y']) || !nums(q.curve.control, ['x', 'y']) || !nums(q.curve.goal, ['x', 'y']) || !finite(q.curve.duration) || q.curve.duration <= 0 || q.curve.duration > 3))
             return fail();
         if (q.ultimateBurst !== undefined && typeof q.ultimateBurst !== 'boolean')
             return fail();
@@ -12746,6 +13240,8 @@ function validBattle(raw, legacyXp = false) {
     for (const z of b.zones)
         if (!nums(z, ['id', 'x', 'y', 'radius', 'damage', 'expires']) || !['fire', 'frost', 'delay', 'bomb'].includes(z.kind) || !ids.has(z.owner))
             return fail();
+    if (b.occultTraps && (!Array.isArray(b.occultTraps) || b.occultTraps.length > 64 || b.occultTraps.some(t => !nums(t, ['id', 'x', 'y', 'rank', 'damage', 'expires']) || !ids.has(t.owner) || !['O06', 'O07', 'O08'].includes(t.skill))))
+        return fail();
     if (!nums(b.items, ['heal', 'focus', 'cleanse', 'ward']) || b.events.some(t => !safe(t, 600)) || !object(b.lastShots) || !object(b.shotDamage) || !Array.isArray(b.teamEnds) || b.teamEnds.length !== 3 || b.teamEnds.some(n => !finite(n) || n < 0) || typeof b.rewardGranted !== 'boolean' || !safe(b.session, 120))
         return fail();
     for (const s of Object.values(b.lastShots))
@@ -12977,7 +13473,8 @@ exports.SUMMON_TUNING = {
     charger: { move: 3200, speed: 2600, reach: 640, damage: 54 },
     host: { move: 2850, speed: 2350, reach: 760, damage: 60 },
     lantern: { move: 1550, speed: 1600, reach: 2400, damage: 32 },
-    warden: { move: 1800, speed: 1700, reach: 1500, damage: 0 }
+    warden: { move: 1800, speed: 1700, reach: 1500, damage: 0 },
+    eater: { move: 0, speed: 0, reach: 0, damage: 0 }, echo: { move: 0, speed: 0, reach: 0, damage: 0 }, earthbound: { move: 0, speed: 0, reach: 180, damage: 0 }
 };
 
 },
@@ -13886,7 +14383,7 @@ function groundY(terrain, x, prefer = 1800) {
 let unitSequence = 0;
 function makeUnit(cls, side, x, y, options = {}) {
     const c = data_1.CLASSES[cls];
-    return { id: 'u' + (++unitSequence), name: c.person, role: cls, cls, side, x, y, vx: 0, vy: 0, hp: 390, maxHp: 390, r: 21, h: 72, focus: 100, maxFocus: 100, regen: 14, level: 1, attack: 1.75, armor: cls === 'knight' ? .15 : .06, shield: 0, bound: 0, mark: 0, breaks: 0, acted: false, moveLeft: 900, maxMove: 900, walkSpeed: 260, angle: side === 1 ? 136 : 44, lastPower: .55, loadout: [side !== 0 && cls === 'knight' ? 'S01' : (0, progression_1.baseSkill)(cls)], tune: .5, facing: side === 1 ? -1 : 1, hurt: 0, anim: 0, airborne: false, fixed: false, spawnX: x, spawnY: y, intent: '', dead: false, ranks: {}, group: 0, awake: side !== 1, lastAct: 0, aggroUntil: 0, xpBudget: 0, xpGranted: 0, killRewarded: false, damageBy: {}, ...options };
+    return { id: 'u' + (++unitSequence), name: c.person, role: cls, cls, side, x, y, vx: 0, vy: 0, hp: 390, maxHp: 390, r: 21, h: 72, focus: 100, maxFocus: 100, regen: 14, level: 1, attack: 1.75, armor: cls === 'knight' ? .15 : .06, shield: 0, bound: 0, mark: 0, breaks: 0, acted: false, moveLeft: 900, maxMove: 900, walkSpeed: 260, angle: side === 1 ? 136 : 44, lastPower: .55, loadout: [side !== 0 && cls === 'knight' ? 'S01' : (0, progression_1.baseSkill)(cls)], tune: .5, facing: side === 1 ? -1 : 1, hurt: 0, anim: 0, airborne: false, fixed: false, spawnX: x, spawnY: y, intent: '', dead: false, ...(side === 0 && cls === 'occultist' ? { spiritSight: true } : {}), ranks: {}, group: 0, awake: side !== 1, lastAct: 0, aggroUntil: 0, xpBudget: 0, xpGranted: 0, killRewarded: false, damageBy: {}, ...options };
 }
 function makeEnemy(spec, terrain, stage, index) {
     const e = data_1.ENEMIES[spec.role] || data_1.ENEMIES.bow, level = (0, progression_1.recommendedLevel)(stage.id), hp = Math.round((spec.hp || e.hp * (1.30 + level * .09)) * (0, balance_1.stageStrength)(stage.id).hp * balance_1.ENEMY_GLOBAL_STAT);
@@ -14389,7 +14886,7 @@ globalThis.HONRO_BALANCE={
 ;
 (function (G) {
     const hero = { archer: { name: '설오', job: '궁수', color: '#b7c393', branch: ['절명', '곡사', '강궁', '궁도'], line: '사라진 고향 사람들의 흔적을 쫓고 있다.' }, mage: { name: '담허', job: '도사', color: '#86bab6', branch: ['호리병술', '파문술', '진법', '도법'], line: '죽은 자는 오래 붙잡아 둘수록 더 깊이 상한다.' }, knight: { name: '휘겸', job: '무사', color: '#b9b6ab', branch: ['검술', '돌격', '검기', '무예'], line: '지금은 산 사람부터 지키는 것이 먼저다.' }, occultist: { name: '소단', job: '영매', color: '#ba9abf', branch: ['혼행', '주박', '초혼', '영매술'], line: '보이지 않아도, 여기 있다는 건 알아요.' } };
-    const N = { M01: '불씨', M02: '연화탄', M03: '서리결', M04: '우렛줄', M05: '낙성인', M06: '성화산개', M07: '폭뢰', M08: '한수진', M09: '빙벽', M10: '끌림진', M11: '쇄빙인', M12: '천뢰인', M13: '염화혜성', M14: '빙륜', M15: '우레등', M99: '천공심판', A01: '평사', A02: '파갑시', A03: '반향시', A04: '산개사격', A05: '풍향시', A06: '속박시', A07: '쇄갑시', A08: '지연인', A09: '견인시', A10: '추적인', A11: '낙우', A12: '귀환시', A13: '추혼시', A14: '질풍시', A15: '추격성좌', A99: '별사냥', S01: '도약참', S02: '파산격', S03: '회풍참', S04: '관문돌파', S05: '진각', S06: '호위진', S07: '승천격', S08: '갈고리', S09: '월영참', S10: '지맥파', S11: '회선방패', S12: '귀환격', S13: '쇄진돌격', S14: '쌍월참', S15: '비월', S99: '파성진', O01: '혼령탄', O02: '투과령', O03: '역천령', O04: '황천창', O05: '회귀망령', O06: '쇠망부', O07: '증오부', O08: '악령진', O09: '봉혼부', O10: '연쇄원한', O11: '배회령', O12: '등불귀', O13: '돌격귀', O14: '수호령', O15: '귀문', O99: '만혼행렬' };
+    const N = { M01: '불씨', M02: '연화탄', M03: '서리결', M04: '우렛줄', M05: '낙성인', M06: '성화산개', M07: '폭뢰', M08: '한수진', M09: '빙벽', M10: '끌림진', M11: '쇄빙인', M12: '천뢰인', M13: '염화혜성', M14: '빙륜', M15: '우레등', M99: '천공심판', A01: '평사', A02: '파갑시', A03: '반향시', A04: '산개사격', A05: '풍향시', A06: '속박시', A07: '쇄갑시', A08: '지연인', A09: '견인시', A10: '추적인', A11: '낙우', A12: '귀환시', A13: '추혼시', A14: '질풍시', A15: '추격성좌', A99: '별사냥', S01: '도약참', S02: '파산격', S03: '회풍참', S04: '관문돌파', S05: '진각', S06: '호위진', S07: '승천격', S08: '갈고리', S09: '월영참', S10: '지맥파', S11: '회선방패', S12: '귀환격', S13: '쇄진돌격', S14: '쌍월참', S15: '비월', S99: '파성진', O01: '혼령탄', O02: '투과령', O03: '역천령', O04: '황천창', O05: '회귀망령', O06: '쇠망부', O07: '증오부', O08: '현형부', O09: '섭혼부', O10: '지박부', O11: '배회령', O12: '등불귀', O13: '호혼령', O14: '먹귀', O15: '반향령', O16: '만혼귀결' };
     const stages = [
       {id:1,name:'연목 고갯길',level:1,theme:'forest',template:1,objective:'arrival',goal:'연목 나루로 가는 고갯길 통과',w:8200,h:2200,map:[420,330],requires:[],enemies:4,active:2,narrationArt:'road'},
       {id:2,name:'상여 위의 높은 길',level:2,theme:'valley',template:2,objective:'overwatch',goal:'능선 위에서 장례 행렬을 끝까지 엄호',w:3600,h:6000,map:[760,520],requires:[1],recruit:'mage',joinLevel:3,enemies:6,active:3,narrationArt:'cliff'},
@@ -15214,7 +15711,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
  if(q.phase==='act'&&!q.started){q.started=true;let target=e.unit(q.targetId);if(!target||target.dead)target=e.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
   if(u.allyRole==='porter'){const car=e.unit('objective'),block=q.blockerId&&b.terrain.find(t=>t.id===q.blockerId&&!t.broken);if(block&&car&&block.x-car.x<260){e.damageTerrain(block,145+u.attack*35,0,u.id);log(e,u,'clear-road',block.id);e.fx('slash',block.x+block.w*.5,block.y+block.h*.4,'#c1b18c',70);if(block.broken)app.event('호위대가 길을 막은 뿌리를 잘라냈다.');}else if(car){car.shield=Math.max(car.shield,38);log(e,u,'escort',car.id);e.fx('ring',car.x,car.y-45,'#b6c1a2',40);}q.phase='after';q.elapsed=0;}
   else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const near=coalition(e).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1350).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];if(near){if(u.allyRole==='healer'){const heal=Math.min(near.maxHp-near.hp,Math.round(near.maxHp*.11));near.hp+=heal;e.fx('text',near.x,near.y-near.h-10,'#b9c6a8',16,'+'+heal);log(e,u,'heal',near.id);}else{near.shield=Math.max(near.shield,75);log(e,u,'ward',near.id);}e.fx('line',u.x,u.y-55,'#91b9ad',2,undefined);e.fx('ring',near.x,near.y-45,'#9cb7a4',45);}q.phase='after';q.elapsed=0;}
-  else if((u.allyRole==='daoist'||u.allyRole==='medium')&&target&&!target.dead){const nearby=e.alive(1).filter(v=>Math.hypot(v.x-target.x,(v.y-target.y)*.8)<260).length,skill=u.allyRole==='daoist'?(nearby>=2?'M06':'M01'):(nearby>=2?'O10':'O09');u.loadout=[skill];u.ranks[skill]=Math.max(1,u.ranks[skill]||1);u.focus=999;let aim=null;
+  else if((u.allyRole==='daoist'||u.allyRole==='medium')&&target&&!target.dead){const nearby=e.alive(1).filter(v=>Math.hypot(v.x-target.x,(v.y-target.y)*.8)<260).length,skill=u.allyRole==='daoist'?(nearby>=2?'M06':'M01'):(nearby>=2?'LO10':'LO09');u.loadout=[skill];u.ranks[skill]=Math.max(1,u.ranks[skill]||1);u.focus=999;let aim=null;
    const targets=[target,...e.alive(1).filter(v=>v!==target).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2)];
    const key=e.planningKey()+'|'+q.index+'|'+skill+'|'+targets.map(t=>t.id).join(',');let work=aiming.get(e);
    if(!work||work.key!==key){work={key,steps:allyShot(e,u,C.SKILLS[skill],targets)};aiming.set(e,work);}
@@ -15277,7 +15774,7 @@ const FINALE_TURNS=6,FINALE_CAP=28;
 function finaleSites(b){const a=b.honroMapAnchors||{},site=(id,key,fraction,label)=>{const p=a[key]||{x:b.width*fraction};return{id,label,x:p.x,y:G.HonroWorld.top(b,p.x,p.y,p.support),support:p.support};};return[site('west','westHall',.33,'서쪽 전각'),site('east','eastHall',.71,'동쪽 전각')];}
 function ritualPosition(b,sodan){const a=b.honroMapAnchors?.ritual||{x:b.width*.5,y:sodan.spawnY||sodan.y};return G.HonroTerrain.place(b,sodan,{x:a.x,y:G.HonroWorld.top(b,a.x,a.y,a.support),flying:false,maxDistance:160,clearance:12});}
 function channeler(b,sodan,position,fraction){const C=G.HONRO_CORE,h=structuredClone(b.heroes.occultist),level=Math.floor(G.HonroProgression.plan(10).entryLevel);h.xp=Math.max(h.xp,C.xpAtLevel(level));C.autoTrain(h,'occultist');sodan.loadout=C.knownSkills(h,'occultist').filter(id=>!C.SKILLS[id].passive).slice(0,4);C.applyHero(sodan,h,true);
- Object.assign(sodan,position,{name:'소단',side:2,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:0,hp:Math.max(1,Math.round(sodan.maxHp*fraction))});delete sodan.moveTarget;delete sodan.aiMove;sodan.airborne=sodan.jumping=false;
+ Object.assign(sodan,position,{name:'소단',side:2,spiritSight:true,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:0,hp:Math.max(1,Math.round(sodan.maxHp*fraction))});delete sodan.moveTarget;delete sodan.aiMove;sodan.airborne=sodan.jumping=false;
  Object.assign(b.honroState,{finaleAnchor:position,finaleRevision:2,finaleSites:finaleSites(b)});
 }
 function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('boss'),space=Math.max(0,FINALE_CAP-e.alive(1).length),n=Math.min(index===0?8:6,space);if(!n)return index>0;
@@ -15444,9 +15941,13 @@ const symbols={
  follow:'M2 4H13L9 1M14 12H3L7 15',
  retreat:'M1 8H14M5 4 1 8 5 12',
  prepared:'M8 1V5M8 11V15M1 8H5M11 8H15M8 4A4 4 0 1 0 8 12A4 4 0 1 0 8 4',
+ manifest:'M2 3H14V13H2ZM5 8H11M8 5V11',
+ enthrall:'M3 5Q8 1 13 5M3 11Q8 15 13 11M5 6L11 10M11 6L5 10',
+ earthbind:'M8 1V10M8 10L2 15M8 10L14 15M8 10L5 13M8 10L11 13',
+ remnant:'M3 11Q1 5 5 4Q8 4 6 10M9 12Q7 6 11 3Q15 4 13 11',
  dead:'M3 3 13 13M3 13 13 3'
 };
-const colors={stun:'#f5d27f',bind:'#e2ba87',slow:'#9dddeb',curse:'#d7a2e4',betrayal:'#ee9cbc',shield:'#a8dbd3',guard:'#cadbd5',power:'#eed69a',follow:'#eed69a',retreat:'#b4d3c5',prepared:'#eed69a',dead:'#bfaaa2'};
+const colors={stun:'#f5d27f',bind:'#e2ba87',slow:'#9dddeb',curse:'#d7a2e4',betrayal:'#ee9cbc',shield:'#a8dbd3',guard:'#cadbd5',power:'#eed69a',follow:'#eed69a',retreat:'#b4d3c5',prepared:'#eed69a',manifest:'#d7d0ac',enthrall:'#c2b596',earthbind:'#b8ab8a',remnant:'#d1c6ab',dead:'#bfaaa2'};
 function entries(b,u){
  const list=[];if(!u)return list;
  const add=(key,name,detail,count)=>list.push({key,name,detail,count,color:colors[key]});
@@ -15457,6 +15958,10 @@ function entries(b,u){
  if(u.slowed)add('slow','감속','감속 '+Math.round(u.slowed.factor*100)+'%');
  if(u.curseTurns>0){const parts=[`저주 ${u.curseTurns}턴`];if(u.curseDamage>0)parts.push(`매 턴 피해 ${Math.round(u.curseDamage)}`);if(u.curseAttack>0)parts.push(`공격력 ${Math.round(u.curseAttack*100)}% 감소`);if(u.curseArmor>0)parts.push(`방어력 ${Math.round(u.curseArmor*100)}%p 감소`);add('curse','저주',parts.join(' · '),u.curseTurns);}
  if(u.betrayalUntil>0&&u.betrayalUntil>=b.round)add('betrayal','이간','이간 · 같은 편의 공격 대상이 됨',u.betrayalUntil-b.round+1);
+ if(u.manifested)add('manifest','현형',`현형 · 동료에게도 보임 · ${Math.max(1,(u.manifestedUntil||b.round)-b.round+1)}턴`);
+ if(u.enthrall)add('enthrall','섭혼',`섭혼 · 소단 편으로 ${u.enthrall.actions}회 더 행동`,u.enthrall.actions);
+ if(u.earthbind)add('earthbind','지박',`지박 · 매 턴 피해와 이동 방해 · ${Math.max(1,u.earthbind.until-b.round+1)}턴`);
+ if(u.soulRemnants>0)add('remnant','잔혼',`잔혼 ${u.soulRemnants}/3 · 셋이 모이면 다음 기예 강화`,u.soulRemnants);
  if(u.mark>0)add('prepared','표식','표식 · 표식을 남긴 편의 다음 직격 피해 50% 증가');
  if(u.breaks>0)add('guard','방어 붕괴',`방어 붕괴 · 다음 피격 ${u.breaks}회 방어력 약화`,u.breaks);
  if(u.shield>0)add('shield','보호막',`보호막 ${Math.round(u.shield)}`);
@@ -15482,6 +15987,10 @@ function draw(c,b,u,time,scale,active){
  if(has('bind')){c.strokeStyle=colors.bind;c.beginPath();for(let i=0;i<2;i++)c.ellipse(u.x,u.y-7-i*13,u.r+8,7,0,0,Math.PI*2);c.moveTo(u.x-u.r,u.y-23);c.lineTo(u.x+u.r,u.y-2);c.stroke();}
  if(has('slow')){c.strokeStyle=colors.slow;c.beginPath();for(let i=0;i<5;i++){const x=u.x+(i-2)*12;c.moveTo(x-6,u.y+1);c.lineTo(x,u.y-10-(i%2)*7);c.lineTo(x+6,u.y+1);}c.stroke();}
  if(has('curse')){c.strokeStyle=colors.curse;c.globalAlpha=.65+.15*Math.sin(time*3);c.beginPath();c.ellipse(u.x,u.y-visualHeight*.45,u.r+11,visualHeight*.35,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
+ if(has('manifest')){c.strokeStyle=colors.manifest;c.globalAlpha=.68;c.beginPath();c.ellipse(u.x,u.y-visualHeight*.5,u.r+14,visualHeight*.55,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
+ if(has('enthrall')){c.strokeStyle=colors.enthrall;c.beginPath();c.moveTo(u.x-u.r-8,u.y-visualHeight*.45);c.quadraticCurveTo(u.x,u.y-visualHeight*.72,u.x+u.r+8,u.y-visualHeight*.45);c.stroke();}
+ if(has('earthbind')){c.strokeStyle=colors.earthbind;c.beginPath();for(let i=-2;i<=2;i++){const x=u.x+i*10;c.moveTo(x,u.y);c.lineTo(x+i*4,u.y-18-Math.abs(i)*4);}c.stroke();}
+ if(has('remnant')){c.fillStyle=colors.remnant;for(let i=0;i<Math.min(3,u.soulRemnants||0);i++){c.beginPath();c.arc(u.x+(i-1)*12,u.y-visualHeight-13,2.5,0,Math.PI*2);c.fill();}}
  if(has('shield')||has('guard')){c.strokeStyle=has('shield')?colors.shield:colors.guard;c.globalAlpha=.7;c.beginPath();c.ellipse(u.x,u.y-visualHeight*.5,u.r+19,visualHeight*.57,0,-Math.PI*.8,Math.PI*.8);c.stroke();c.globalAlpha=1;}
  if(has('stun')){c.strokeStyle=colors.stun;for(let i=0;i<3;i++){const a=time*2+i*Math.PI*2/3,x=u.x+Math.cos(a)*(u.r+10),y=u.y-visualHeight-8+Math.sin(a)*5;c.beginPath();c.moveTo(x-3*z,y);c.lineTo(x+3*z,y);c.moveTo(x,y-3*z);c.lineTo(x,y+3*z);c.stroke();}}
  // Three fixed-size signs plus a count keep stacked effects compact at every zoom.
@@ -55856,9 +56365,10 @@ function setup(app,id,h,canvas){
  if(id==='S05')positions[1]=260;
  if(id==='S10')positions.splice(0,positions.length,830);
  if(id==='O03')positions.splice(0,positions.length,1000,1130,1260);
- if(id==='M10'||id==='M09'||id==='O14')positions.splice(0,positions.length,1050);
+ if(id==='M10'||id==='M09'||id==='O13'||id==='O14'||id==='O15')positions.splice(0,positions.length,1050);
  for(const [i,x] of positions.entries()){const u=C.makeUnit('knight',1,x,floor,{id:'preview-target-'+i,name:'표적',h:115,r:27,honroType:'beast',honroVariant:'hound',hp:2400,maxHp:2400,armor:0,attack:.5,awake:true,fixed:!['A05','S15','S10','M08'].includes(id),loadout:['LA01'],focus:9999,maxFocus:9999});b.units.push(u);}
- if(id==='M10'||id==='O14'){const ally=C.makeUnit('knight',0,780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
+ if(id==='M10'||id==='O13'){const ally=C.makeUnit('knight',0,780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
+ if(id==='O16')for(const [i,x] of [220,570].entries())b.units.push(C.makeUnit('occultist',0,x,floor-130,{id:'preview-echo-'+i,name:'반향령',summoned:true,summonOwner:hero.id,summonKind:'echo',summonRank:8,summonExpires:8,acted:true,fixed:true,summonFloating:true,h:65,r:20,hp:180,maxHp:180,attack:0,loadout:[],ranks:{...hero.ranks}}));
  if(bounce)b.terrain.push({id:'preview-wall',x:1140,y:620,w:40,h:380,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  b.active=hero.id;b.side=0;b.phase='aim';b.queue=[];
  const pr={id,b,canvas,hero,age:0,acc:0,fired:false,follow:false,cycle:0,events:[],h:structuredClone(h)};
@@ -55871,14 +56381,14 @@ function setup(app,id,h,canvas){
  else if(ring)aim={angle:0,power:(300-180)/720};
  else if(id==='A10'||id==='S14')aim={angle:0,power:.5};
  else if(id==='O03')aim={angle:-30,power:.42};
- else if(id==='O99')aim={angle:20,power:.4};
+ else if(id==='O16')aim={angle:20,power:.4};
  else if(id==='A15')aim={angle:62,power:.52};
  else if(id==='M11')aim={angle:30,power:.72};
  else if(id==='M12')aim={angle:-8,power:.62};
  else if(id==='S11'||id==='S12')aim={angle:8,power:.75};
- else if(s.branch==='stake'||id==='O14'){
+ else if(s.branch==='stake'||['O13','O14','O15'].includes(id)){
   // Aim at the ground, not a body: the same prediction and actual landing create the stake.
-  const goal=id==='M09'?780:id==='M10'||id==='O14'?760:840;
+  const goal=id==='M09'?780:id==='M10'||['O13','O14','O15'].includes(id)?760:840;
   let best=Infinity;for(const angle of [15,28,42])for(let power=.25;power<=.9;power+=.025){const hit=pr.e.predict(hero,s,angle,power,undefined,false),d=Math.abs(hit.x-goal)+Math.abs(hit.y-floor);if(d<best){best=d;aim={angle,power};}}
  }else aim=shortShot(pr.e,hero,s,target);
  pr.aim=aim;hero.angle=aim.angle;hero.lastPower=aim.power;
@@ -55901,6 +56411,7 @@ function tick(app,p,dt){
   if(p.id==='A10'&&p.age>1.8&&!p.follow){p.follow=true;ready(p,'A14');const aim=shortShot(e,u,C.SKILLS.A14,b.units[1]);e.fire('A14',aim.angle,aim.power);}
   if(p.id==='M09'&&b.stakes.length===2&&!p.follow){ready(p,p.id);p.follow=e.useGate();}
   if(p.id==='S14'&&p.age>1.5&&!p.follow){p.follow=true;const foe=b.units[1];b.active=foe.id;b.side=1;b.phase='enemy';foe.lastAct=b.round;const aim=shortShot(e,foe,C.SKILLS.LA01,u);e.fire('LA01',aim.angle,aim.power,true);}
+  if(p.id==='O15'&&!p.follow&&b.phase==='aim'&&p.age>3){p.follow=true;ready(p,'O01');const aim=shortShot(e,u,C.SKILLS.O01,b.units[1]);e.fire('O01',aim.angle,aim.power);}
   p.acc+=dt;for(let n=0;n<16&&p.acc>=C.STEP;n++,p.acc-=C.STEP){
    if(['transition','enemy'].includes(b.phase)){e.stepUnits(C.STEP);C.tickRedesign(e,C.STEP);}
    else e.tick(C.STEP);

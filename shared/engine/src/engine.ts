@@ -3,6 +3,8 @@ import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWa
 import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
 import {terrainSurface,walkTerrain} from './locomotion';
 import {SUMMON_TUNING} from './summons';
+import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
+import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
@@ -15,9 +17,8 @@ import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, 
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, segRect, segmentTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
-const GHOST = new Set(['spiritBolt','phaseWraith','reverseGhost','spiritLance','wraithReturn','nightParade']);
-const CURSES = new Set(['curseWeak','curseBetray','curseDot','curseBind','curseChain']);
-const SUMMONS = new Set(['summonStalker','summonLantern','summonCharger','summonWarden','summonHost']);
+const CURSES = new Set(['curseWeak','curseBetray','curseDot','curseBind','curseChain','curseManifest','curseEnthrall','curseEarth']);
+const SUMMONS = new Set(['summonStalker','summonLantern','summonCharger','summonWarden','summonHost','summonEater','summonEcho']);
 const BODY = new Set(['leap', 'slam', 'spin', 'dash', 'quake', 'guard', 'lift', 'recall', 'charge', 'vault', 'cataclysmCharge']);
 const ARROWS = new Set(['recoveryArrow','executeArrow','dropArrow','turnArrow','chainArrow','ironFlower','breakArrow','arrow', 'pierce', 'ricochet', 'triple', 'push', 'bind', 'break', 'sticky', 'pull', 'mark', 'rain', 'return', 'homing', 'windArrow', 'seekRain', 'seekChild', 'hunterBolt']);
 // Authored pools follow their actual basin floor, so an elevated pool cannot shock actors below the cliff.
@@ -64,7 +65,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; this.b = b; for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -75,13 +76,13 @@ export class Engine {
     message(text: string) { this.b.events.push(text); this.b.events = this.b.events.slice(-30); this.emit('message', { text }); }
     random() { let a = this.b.rng += 0x6D2B79F5; a = Math.imul(a ^ a >>> 15, 1 | a); a ^= a + Math.imul(a ^ a >>> 7, 61 | a); return ((a ^ a >>> 14) >>> 0) / 4294967296; }
     alive(side: Side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0); }
-    heroesAlive() { return this.alive(0).filter(u => !u.summoned); }
-    creditUnit(u?:Unit){ return u?.summoned && u.summonOwner ? (this.unit(u.summonOwner) || u) : u; }
+    heroesAlive() { return this.alive(0).filter(u => !u.summoned&&!u.enthrall); }
+    creditUnit(u?:Unit){ const owner=u?.summonOwner||u?.enthrall?.owner;return owner?(this.unit(owner)||u):u; }
     unit(id: string) { return this.b.units.find(u => u.id === id); }
-    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.acted && !this.active.airborne; }
-    select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready') || !u || u.side !== 0 || u.summoned || u.dead || u.acted)
+    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.airborne; }
+    select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
         return false; this.b.active = id; this.emit('change'); return true; }
-    manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge); }
+    manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1); }
     skillAllowed(s:Skill,u=this.active){return !!u&&warriorAllowed(u,s);}
     manualDive(){return manualDive(this);}
     cooldownLeft(u:Unit,skillId:string){const cap=SKILLS[skillId]?.cooldown;if(!cap)return 0;const raw=Math.max(0,(u.cooldowns?.[skillId]||0)-this.b.round);return Math.min(cap,raw);}
@@ -105,10 +106,6 @@ export class Engine {
             }
             if (u.cls === 'knight' && BODY.has(s.mode))
                 damage *= .9 + u.tune * .2;
-            if (u.cls === 'occultist') {
-                if (GHOST.has(s.mode)) damage *= 1 + equippedRank(u,'OP01')*.055;
-                if (CURSES.has(s.mode)) radius *= 1 + equippedRank(u,'OP02')*.035;
-            }
         }
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
         if(s.martial&&u.side===0){if(u.harmony)damage*=1.15;if(s.branch==='rush'){damage*=1+.025*passiveRank(u,'SP01');speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+.012*passiveRank(u,'SP01');}
@@ -260,13 +257,12 @@ export class Engine {
         const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.origin(u, angle, body), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
-        const points: Vec[] = [], ignored: string[] = [], skips: string[] = [];
+        const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.alive(u.side).map(v=>v.id):[], skips: string[] = [];
         let ap: Vec | undefined;
         const dt = collect ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
         for (let i = 0; i < Math.ceil((skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
             if(skill.mode==='homing'&&i*dt>.12){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
-            const ghostRank=u.cls==='occultist'?equippedRank(u,'OP01'):0;
-            const gravity=(skill.gravity??1)*(GHOST.has(skill.mode)?Math.max(.12,1-ghostRank*.08):1);
+            const gravity=skill.gravity??1;
             const motion = this.advanceProjectile({ x, y, vx,vy,wind: meteor ? 0 : skill.wind, gravityScale:gravity,drag:dragFor(skill,meteor?'meteor':skill.mode),skill:skill.id,mode:skill.mode },dt);
             const prev=vy;vx=motion.vx;vy=motion.vy;
             if (!apex && prev < 0 && vy >= 0) {
@@ -289,7 +285,7 @@ export class Engine {
             if (target)
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase=skill.phase;
-            const h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&skill.mode!=='charge'&&skill.mode!=='spin', skips, phase!=='terrain');
+            const h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, phase!=='terrain');
             const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
             if(fuse>0&&i*dt>=fuse){ if(collect)points.push({x:nx,y:ny}); return {points,x:nx,y:ny,closest,apex:ap}; }
             if(skill.mode==='reverseGhost'&&ny<-420){if(collect)points.push({x:nx,y:ny});return {points,x:nx,y:ny,closest,apex:ap};}
@@ -342,7 +338,7 @@ export class Engine {
      * Spatial fields, obstacles and special skills still use prediction and the bounded fallback. */
     shotSeeds(u:Unit,s:Skill,target:Unit,maxPower=1){
         const speed=this.effective(s,u).speed,baseTime=Math.max(.12,Math.hypot(target.x-u.x,target.y-u.y)/((270+535*maxPower)*speed*.86));
-        const gravity=(s.gravity??1)*(GHOST.has(s.mode)?Math.max(.12,1-equippedRank(u,'OP01')*.08):1),seeds:{angle:number;power:number}[]=[];
+        const gravity=s.gravity??1,seeds:{angle:number;power:number}[]=[];
         for(const factor of [1,1.2,.85,1.5,1.9,2.4]){
             const t=baseTime*factor;let angle=target.x>=u.x?20:160,power=0;
             for(let i=0;i<3;i++){
@@ -446,7 +442,7 @@ export class Engine {
         b.shotDamage = {}; b.reviewDamage={}; b.reviewFocus=undefined;
         b.shots += u.side === 0 ? 1 : 0;
         const origin = this.origin(u, u.angle, BODY.has(s.mode));
-        const make = (a: number, damage = e.damage, child = false) => { const origin=this.origin(u,a,BODY.has(s.mode)),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:(s.gravity??1)*(GHOST.has(s.mode)?Math.max(.12,1-equippedRank(u,'OP01')*.08):1), phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; b.projectiles.push(p); return p; };
+        const make = (a: number, damage = e.damage, child = false) => { const origin=this.origin(u,a,BODY.has(s.mode)),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
             for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
@@ -454,6 +450,7 @@ export class Engine {
         else if(s.mode==='twinCrescent'){const a=make(u.angle-4,e.damage,true),c=make(u.angle+4,e.damage,true);a.mode=c.mode='crescent';}
         else
             make(u.angle);
+        beginOccultCast(this,u,s,b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot));
         const castBonus=beginPlayerCast(this,u,s,actualKiSpent);
         for(const p of b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot)){p.effectBoost=castBonus.effectBoost;p.sizeBoost=s.martial&&s.branch==='blade'?1+.012*passiveRank(u,'SP01'):1;}
         initRedesignCast(this,s,u,actualKiSpent);startWarriorCast(this,s,u);
@@ -610,7 +607,6 @@ export class Engine {
         let dmg = amount;
         const critical=damageSource==='normal'&&src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct)&&this.random()<critProfile(p||{skill:'',skillRank:1} as Projectile,src).chance;
         if(critical)dmg*=critProfile(p||{skill:'',skillRank:1} as Projectile,src!).multiplier;
-        if(src?.side===0 && src.cls==='occultist' && (u.curseTurns||0)>0) dmg*=1+equippedRank(src,'OP05')*.07;
         if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))dmg*=1+.04*equippedRank(src,'AP02');
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
         if (p && !newSkill(p) && src && src.side === 0 && direct && (src.cls === 'archer' || p.body && src.cls === 'knight'))
@@ -648,7 +644,7 @@ export class Engine {
         }
         if(damageSource==='normal')dmg*=1-clamp(armor*(p?.skill==='S02'?.65:1),0,.7);
         if(u.martialGuard&&u.martialGuard.round>=this.b.round)dmg*=1-u.martialGuard.reduction;
-        if (p?.child && !newSkill(p)) {
+        if (p?.child && !newSkill(p) && p.mode!=='convergeSpirit') {
             const key = p.shot + ':' + (p.repeatIndex||0) + ':' + u.id;
             const legacyId=SKILLS[p.skill]?.legacyId||p.skill;
             const used = this.b.shotDamage[key] || 0, cap = (['M13', 'M14', 'M15'].includes(legacyId) ? 160 : legacyId === 'M06' ? 78 : legacyId === 'A11' ? 90 : 75) * (p.amplification || 1) * (src?.attack || 1) * (1 + Math.max(0, ((src?.ranks[p.skill] || 1) - 1)) * .16);
@@ -661,6 +657,10 @@ export class Engine {
         const absorbed = Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
+        if(u.side===0&&u.cls==='occultist'&&!u.summoned&&!u.enthrall&&passiveRank(u,'OP03')&&dmg>u.maxHp*.14){
+            const near=this.alive(0).filter(v=>v.summoned&&v.summonOwner===u.id&&Math.hypot(v.x-u.x,v.y-u.y)<340).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
+            if(near){const shared=Math.min(Math.round(dmg*Math.min(.28,.04*passiveRank(u,'OP03'))),Math.round(u.maxHp*.12),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun');}
+        }
         if (absorbed)
             this.fx('ring', u.x, u.y - u.h * .5, '#b1daf4', 32);
         if(p&&newSkill(p)&&(dmg>0||absorbed>0)){
@@ -699,7 +699,9 @@ export class Engine {
             if (u.side === 1) {
                 this.b.kills++;
                 this.rewardKill(u, src);
-                if(src?.side===0&&src.cls==='occultist'&&(u.curseOwner===src.id||(u.curseTurns||0)>0)){const r=equippedRank(src,'OP04');if(r){src.focus=Math.min(src.maxFocus,src.focus+Math.round(6*r));this.fx('rune',src.x,src.y-src.h*.5,'#c5a1e8',34);}}
+                const medium=src?.side===0&&src.cls==='occultist'?src:u.curseOwner?this.unit(u.curseOwner):undefined;
+                if(medium?.side===0&&medium.cls==='occultist'&&passiveRank(medium,'OP05'))medium.soulRemnants=Math.min(3,(medium.soulRemnants||0)+1);
+                if(u.earthbind&&u.earthbind.until>=this.b.round){const binder=this.unit(u.earthbind.owner);if(binder)this.spawnEarthbound(u.x,u.y,binder);}
                 this.message(`${u.name} 제압`);
             }
         }
@@ -865,39 +867,117 @@ export class Engine {
             this.recover(u);
         this.remove(p);
     }
-    private cursePower(owner:Unit){return owner.cls==='occultist'?1+equippedRank(owner,'OP02')*.08:1;}
-    private curseDuration(owner:Unit,base:number){return base+(owner.cls==='occultist'?Math.floor(equippedRank(owner,'OP02')/1.5):0);}
-    private applyCurse(target:Unit,owner:Unit,kind:'weak'|'betray'|'dot'|'bind'|'chain',damage=0){
+    private applyCurse(target:Unit,owner:Unit,kind:'weak'|'betray'|'dot'|'bind'|'chain',damage=0,rank=1,bonus=0,trap=false){
         if(target.dead||target.side===owner.side||target.side===2)return;
-        const q=this.cursePower(owner);target.curseOwner=owner.id;
-        if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,this.curseDuration(owner,3));target.curseAttack=Math.max(target.curseAttack||0,.12*q);target.curseArmor=Math.max(target.curseArmor||0,.13*q);}
-        if(kind==='betray'){target.curseTurns=Math.max(target.curseTurns||0,this.curseDuration(owner,2));target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+this.curseDuration(owner,2));}
-        if(kind==='dot'||kind==='chain'){target.curseTurns=Math.max(target.curseTurns||0,this.curseDuration(owner,kind==='dot'?5:3));target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage*q));}
-        if(kind==='bind'){target.curseTurns=Math.max(target.curseTurns||0,this.curseDuration(owner,2));target.bound=Math.max(target.bound,2);target.curseAttack=Math.max(target.curseAttack||0,.18*q);}
-        this.fx('rune',target.x,target.y-target.h*.55,kind==='betray'?'#df74b8':'#a67bd2',48);
+        const duration=Math.max(1,Math.ceil(((kind==='weak'?WEAK_TURNS[clamp(rank,1,8)-1]:kind==='betray'?BETRAY_TURNS[clamp(rank,1,8)-1]:kind==='dot'?5:kind==='chain'?3:2)+bonus)*(trap?.45:1))),strength=trap?.5:1;
+        target.curseOwner=owner.id;
+        if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseAttack=Math.max(target.curseAttack||0,.12*strength);target.curseArmor=Math.max(target.curseArmor||0,.13*strength);}
+        if(kind==='betray'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+duration-1);}
+        if(kind==='dot'||kind==='chain'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage));}
+        if(kind==='bind'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.bound=Math.max(target.bound,2);target.curseAttack=Math.max(target.curseAttack||0,.18);}
+        this.fx('spark',target.x,target.y-target.h*.55,kind==='betray'?'#bd9c8f':'#c1b399',30);
     }
-    private spawnSummon(owner:Unit,kind:'stalker'|'lantern'|'charger'|'warden'|'host',x:number,y:number,strong=1){
-        const p=equippedRank(owner,'OP03'),hpScale=(1+p*.15)*strong,atkScale=(1+p*.12)*strong;
+    private manifest(target:Unit,owner:Unit,rank:number,bonus=0){
+        if(target.dead||target.side!==1)return;
+        target.manifestedUntil=Math.max(target.manifestedUntil||0,this.b.round+Math.max(1,MANIFEST_TURNS[clamp(rank,1,8)-1]+bonus)-1);
+        target.manifested=true;target.revealSpiritToParty=true;target.formDamageTakenBonus=.08+.015*rank;target.curseOwner=owner.id;
+        this.fx('spark',target.x,target.y-target.h*.55,'#d9d0b1',32);
+    }
+    private captureEnemy(target:Unit,owner:Unit,rank:number,empowered=false){
+        if(target.dead||target.side!==1||target.boss||target.honroMidboss||target.elite||target.enthrall)return false;
+        const power=ENTHRALL_POWER[clamp(rank,1,8)-1],ratio=target.hp/target.maxHp;
+        target.enthrall={owner:owner.id,actions:ENTHRALL_ACTIONS[clamp(rank,1,8)-1]+(empowered?1:0),captureRatio:ratio,originalMaxHp:target.maxHp,originalAttack:target.attack,originalArmor:target.armor,power};
+        target.side=0;target.maxHp=Math.max(1,Math.round(target.maxHp*power));target.hp=Math.max(1,Math.round(target.maxHp*ratio));target.attack*=power;target.armor=clamp(target.armor*power,0,.75);target.acted=true;
+        this.fx('ring',target.x,target.y-target.h*.5,'#beb89a',55);this.emit('change');return true;
+    }
+    private releaseEnemy(target:Unit){
+        const state=target.enthrall;if(!state)return;
+        const ratio=Math.min(state.captureRatio,target.hp/Math.max(1,target.maxHp));
+        target.side=1;target.maxHp=state.originalMaxHp;target.hp=Math.max(0,Math.round(target.maxHp*ratio));target.attack=state.originalAttack;target.armor=state.originalArmor;target.acted=true;delete target.enthrall;
+        if(target.hp<=0)target.dead=true;
+        this.fx('ring',target.x,target.y-target.h*.5,'#9b9c8b',42);this.emit('change');
+    }
+    private spawnEarthbound(x:number,y:number,owner:Unit){
+        const existing=this.b.units.filter(u=>!u.dead&&u.summonKind==='earthbound'&&u.summonOwner===owner.id);
+        if(existing.length>=4){existing.sort((a,c)=>(a.summonExpires||0)-(c.summonExpires||0))[0].dead=true;}
+        const ghost=this.spawnSummon(owner,'earthbound',x,y,1);ghost.summonExpires=this.b.round+2;ghost.fixed=true;ghost.summonFloating=true;
+        this.fx('spark',x,y-40,'#bcb7a1',45);
+    }
+    private absorbHostileProjectile(p:Projectile,dt:number){
+        if(p.body)return false;
+        for(const eater of this.b.units){if(eater.dead||eater.summonKind!=='eater')continue;
+            const rank=clamp(eater.summonRank||1,1,8),cx=eater.x,cy=eater.y-eater.h*.5,dx=cx-p.x,dy=cy-p.y,d=Math.hypot(dx,dy),reach=200+rank*15;
+            if(d>reach)continue;
+            if(d<eater.r+p.radius+16){
+                eater.summonAbsorbed=(eater.summonAbsorbed||0)+p.damage;this.remove(p);this.fx('spark',cx,cy,'#b1b5a6',18);
+                if(eater.summonAbsorbed>=95+rank*24){
+                    const damage=eater.summonAbsorbed*(.36+.02*rank),radius=135+rank*7;
+                    for(const target of this.alive(1))if(Math.hypot(target.x-cx,target.y-target.h*.5-cy)<radius+target.r){this.hurt(target,damage,eater.id,false,undefined,{x:cx,y:cy});this.impulse(target,(target.x-cx)*.28,-35);}
+                    eater.dead=true;eater.hp=0;this.fx('ring',cx,cy,'#c8c3ae',radius);
+                }
+                return true;
+            }
+            const pull=(120+880*(1-d/reach)**2)*dt/Math.max(1,d);
+            p.vx=clamp(p.vx+dx*pull,-950,950);p.vy=clamp(p.vy+dy*pull,-950,950);
+        }
+        return false;
+    }
+    private tickOccult(){
+        const b=this.b;b.occultTraps??=[];
+        for(const trap of [...b.occultTraps]){
+            if(trap.expires<b.round){b.occultTraps=b.occultTraps!.filter(z=>z.id!==trap.id);continue;}
+            const owner=this.unit(trap.owner),target=this.alive(1).find(v=>Math.hypot(v.x-trap.x,v.y-v.h*.5-trap.y)<v.r+38);
+            if(!owner||!target)continue;
+            if(trap.skill==='O08')this.manifest(target,owner,trap.rank,-Math.floor(MANIFEST_TURNS[clamp(trap.rank,1,8)-1]/2));
+            else this.applyCurse(target,owner,trap.skill==='O06'?'weak':'betray',trap.damage,trap.rank,0,true);
+            if(trap.damage>0)this.hurt(target,trap.damage,owner.id,false);
+            this.fx('spark',trap.x,trap.y,'#c2b9a0',25);b.occultTraps=b.occultTraps!.filter(z=>z.id!==trap.id);
+        }
+        for(const anchor of b.units){if(anchor.dead||anchor.summonKind!=='earthbound')continue;
+            const token=String(b.round),cx=anchor.x,cy=anchor.y-anchor.h*.5;anchor.auraHits??={};
+            for(const target of this.alive(1))if(anchor.auraHits[target.id]!==token&&Math.hypot(target.x-cx,target.y-target.h*.5-cy)<180+target.r){
+                anchor.auraHits[target.id]=token;target.moveLeft*=.82;target.slowed={factor:.18,expires:b.round};this.hurt(target,Math.max(8,anchor.maxHp*.07),anchor.id,false);
+            }
+        }
+    }
+    private expireSummon(u:Unit){
+        if(!u.summoned||u.dead||u.summonExpires===undefined||this.b.round<=u.summonExpires)return false;
+        const owner=u.summonOwner?this.unit(u.summonOwner):undefined,rank=owner?passiveRank(owner,'OP04'):0;
+        if(owner&&rank&&u.summonKind!=='earthbound'){
+            owner.focus=Math.min(owner.maxFocus,owner.focus+owner.maxFocus*(.04+.018*rank));
+            owner.nextSummonDiscount=Math.max(owner.nextSummonDiscount||0,Math.min(.24,.035*rank));
+            this.fx('spark',u.x,u.y-u.h*.5,'#c8c1a9',24);
+        }
+        u.dead=true;u.hp=0;return true;
+    }
+    private spawnSummon(owner:Unit,kind:NonNullable<Unit['summonKind']>,x:number,y:number,strong=1,rank=1,empowered=false){
+        const hpScale=(1+.07*(rank-1))*strong*(empowered?1.20:1),atkScale=(1+.055*(rank-1))*strong;
         const ground=this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
-        const floating=kind==='lantern';const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
-        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4}}[kind];
+        const floating=['lantern','eater','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
+        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:54,r:23,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
-        const summon=makeUnit('occultist',0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'수호령',host:'문지기귀'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonExpires:this.b.round+base.dur,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:true,acted:true,moveLeft:0,maxMove:0,walkSpeed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
-        summon.spawnX=summon.x;summon.spawnY=summon.y;this.b.units.push(summon);this.fx('rune',summon.x,summon.y-summon.h*.45,'#a98ad2',75);this.fx('burst',summon.x,summon.y-summon.h*.45,'#7fa9bd',45);return summon;
+        const dur=['charger','host','earthbound'].includes(kind)?base.dur:SPIRIT_TURNS[clamp(rank,1,8)-1]+(empowered?1:0);
+        const summon=makeUnit('occultist',0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:true,acted:true,moveLeft:0,maxMove:0,walkSpeed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
+        if(kind==='echo'){
+            summon.summonExpires=this.b.round+ECHO_TURNS[clamp(rank,1,8)-1]-1;
+            const echoes=this.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===owner.id);
+            if(echoes.length>=ECHO_LIMIT[clamp(rank,1,8)-1])echoes.sort((a,c)=>(a.summonExpires||0)-(c.summonExpires||0))[0].dead=true;
+        }
+        summon.spawnX=summon.x;summon.spawnY=summon.y;this.b.units.push(summon);this.fx('ring',summon.x,summon.y-summon.h*.45,'#aeb9aa',48);this.fx('spark',summon.x,summon.y-summon.h*.45,'#c4c7b4',24);return summon;
     }
-    private summonAtProjectile(p:Projectile,kind:Unit['summonKind']){const owner=this.creditUnit(this.unit(p.owner));if(!owner||!kind)return;this.spawnSummon(owner,kind,p.x,p.y);this.remove(p);}
+    private summonAtProjectile(p:Projectile,kind:Unit['summonKind']){const owner=this.creditUnit(this.unit(p.owner));if(!owner||!kind)return;this.spawnSummon(owner,kind,p.x,p.y,1,p.skillRank||1,!!p.soulBoost);this.remove(p);}
     /**
      * Summons act once after the four player heroes finish and before the enemy team.
      * Offensive ghosts may move and attack in the same summon turn; the old small
      * movement step often produced a visually silent "move only" turn.
      */
     /** A persisted phase, not an invisible loop or part of the enemy turn. */
-    private runSummonTurn(){
+    private runSummonTurn(ownerId?:string){
         const b=this.b;
-        for(const u of this.alive(0).filter(v=>v.summoned))if(u.summonExpires!==undefined&&b.round>u.summonExpires){u.dead=true;u.hp=0;}
-        const queue=this.alive(0).filter(u=>u.summoned).map(u=>u.id);
+        for(const u of this.alive(0).filter(v=>v.summoned))this.expireSummon(u);
+        const queue=this.alive(0).filter(u=>(u.summoned&&!['eater','echo','earthbound'].includes(u.summonKind||'')||!!u.enthrall)&&u.summonActionRound!==b.round&&!(u.stun||0)&&(!ownerId||u.summonOwner===ownerId||u.enthrall?.owner===ownerId)).map(u=>u.id);
         if(!queue.length||!this.alive(1).length)return 0;
-        b.summonTurn={queue,index:0,stage:'approach',elapsed:0,hold:0,returnActive:b.active,practice:b.mode==='practice'&&!b.practiceCombat};
+        b.summonTurn={queue,index:0,stage:'approach',elapsed:0,hold:0,returnActive:b.active,practice:b.mode==='practice'&&!b.practiceCombat,afterActor:!!ownerId};
         b.phase='summon';b.side=0;b.turnAge=0;b.reviewDamage={};b.volley=undefined;
         this.message(`소환귀 차례 · ${queue.length}`);this.emit('change');this.emit('save');return queue.length;
     }
@@ -922,12 +1002,13 @@ export class Engine {
         const b=this.b,t=b.summonTurn;if(!t){this.completeTeamTransition();return;}
         if(this.checkEnd())return;
         if(t.index>=t.queue.length){b.active=t.returnActive;delete b.summonTurn;b.reviewFocus=undefined;
-            if(t.practice){this.resetPractice();}else this.completeTeamTransition();return;}
+            if(t.practice){this.resetPractice();}else if(t.afterActor)this.advanceAfterAction();else this.completeTeamTransition();return;}
         const u=this.unit(t.queue[t.index]);if(!u||u.dead){t.index++;t.stage='approach';t.elapsed=0;t.start=undefined;t.destination=undefined;return;}
-        u.summonFloating=true;b.active=u.id;const kind=u.summonKind||'stalker',cfg=SUMMON_TUNING[kind];
+        if(!u.enthrall)u.summonFloating=true;b.active=u.id;const kind=u.summonKind||'stalker',cfg=SUMMON_TUNING[kind];
         if(t.stage==='approach'){
             if(!t.start){
-                const enemies=this.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-a.h*.5-u.y+u.h*.5)-Math.hypot(c.x-u.x,c.y-c.h*.5-u.y+u.h*.5));
+                const owner=u.summonOwner?this.unit(u.summonOwner):u.enthrall?.owner?this.unit(u.enthrall.owner):undefined,mark=owner?passiveRank(owner,'OP02'):0;
+                const enemies=this.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-a.h*.5-u.y+u.h*.5)-(mark&&(a.curseOwner===owner?.id||a.earthbind?.owner===owner?.id)?170+mark*35:0)-Math.hypot(c.x-u.x,c.y-c.h*.5-u.y+u.h*.5)+(mark&&(c.curseOwner===owner?.id||c.earthbind?.owner===owner?.id)?170+mark*35:0));
                 let target=enemies[0];if(kind==='warden'){target=this.heroesAlive().sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0]||target;}
                 if(!target){t.index=t.queue.length;return;}
                 t.targetId=target.id;t.start={x:u.x,y:u.y};const dx=target.x-u.x,dy=target.y-target.h*.5-(u.y-u.h*.5),distance=Math.hypot(dx,dy),stop=kind==='lantern'?cfg.reach*.58:cfg.reach*.62,travel=Math.min(cfg.move,Math.max(0,distance-stop));
@@ -942,9 +1023,9 @@ export class Engine {
         }
         if(t.stage==='attack'){
             const center={x:u.x,y:u.y-u.h*.5};
-            if(kind==='warden'){let n=0;for(const ally of this.alive(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));ally.shieldUntil=b.teamEnds[1]+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.message(`${u.name} · ${n}명 방호`);}
+            if(kind==='warden'){let n=0;for(const ally of this.alive(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.message(`${u.name} · ${n}명 방호`);}
             else if(kind==='lantern'){
-                const targets=this.alive(1).filter(e=>Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r);
+                const targets=this.alive(1).filter(e=>Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r).sort((a,c)=>(c.curseOwner===u.summonOwner?1:0)-(a.curseOwner===u.summonOwner?1:0)).slice(0,(u.summonRank||1)<4?1:2);
                 for(const target of targets)this.launchSummonBolt(u,target);
                 this.fx('rune',center.x,center.y,'#c4e6ef',90);this.message(`${u.name} · ${targets.length}명 동시 추적탄`);if(targets.length)this.emit('sound',{name:'charge'});
             }else{
@@ -959,25 +1040,44 @@ export class Engine {
         }
         if(t.stage==='wait'){
             if(b.projectiles.length)return;t.hold-=dt;if(t.hold>0)return;
+            u.summonActionRound=b.round;if(u.enthrall&&--u.enthrall.actions<=0)this.releaseEnemy(u);
             t.index++;t.stage='approach';t.elapsed=0;t.start=undefined;t.destination=undefined;t.targetId=undefined;b.reviewDamage={};b.reviewFocus=undefined;
         }
     }
     private completeTeamTransition(){const b=this.b;b.teamEnds[b.side]++;this.triggerDelays(b.side);b.phase='transition';b.turnAge=0;this.emit('save');}
     private tickCurses(){
-        for(const u of this.b.units){if(u.dead||!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner){this.hurt(u,u.curseDamage!,owner.id,false);this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
+        for(const u of this.b.units){
+            if(u.manifestedUntil!==undefined&&u.manifestedUntil<this.b.round){u.manifested=false;u.revealSpiritToParty=false;u.formDamageTakenBonus=0;delete u.manifestedUntil;}
+            if(u.soulBonusUntil!==undefined&&u.soulBonusUntil<this.b.round){u.soulAffinityBonus=0;u.soulDefenseBonus=0;delete u.soulBonusUntil;}
+            if(u.earthbind&&u.earthbind.until<this.b.round)delete u.earthbind;
+            if(u.dead)continue;
+            if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster){u.slowed={factor:.24,expires:this.b.round};this.hurt(u,u.earthbind.damage,caster.id,false);}}
+            if(!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner){this.hurt(u,u.curseDamage!,owner.id,false);this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
             u.curseTurns!--;if((u.curseTurns||0)<=0){u.curseTurns=0;u.curseDamage=0;u.curseAttack=0;u.curseArmor=0;u.betrayalUntil=0;u.curseOwner=undefined;}
         }
     }
     private occultImpact(p:Projectile,h?:Collision){
         const owner=this.creditUnit(this.unit(p.owner));if(!owner)return false;
         if(['curseWeak','curseBetray','curseBind'].includes(p.mode)){
-            if(h?.unit){this.hurt(h.unit,p.damage,p.owner,true,p,h);this.applyCurse(h.unit,owner,p.mode==='curseWeak'?'weak':p.mode==='curseBetray'?'betray':'bind',p.damage*.28);}this.remove(p);return true;
+            if(h?.unit){this.hurt(h.unit,p.damage,p.owner,true,p,h);this.applyCurse(h.unit,owner,p.mode==='curseWeak'?'weak':p.mode==='curseBetray'?'betray':'bind',p.damage*.28,p.skillRank||1,p.soulBoost?1:0);}
+            else if(h?.terrain&&['O06','O07'].includes(p.skill)&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage*(.22+.045*passiveRank(owner,'OP01')),expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
+            this.remove(p);return true;
+        }
+        if(p.mode==='curseManifest'){
+            for(const t of this.alive(1))if(Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);this.hurt(t,p.damage,p.owner,false,p,p);}
+            if(h?.terrain&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
+            this.remove(p);return true;
+        }
+        if(p.mode==='curseEnthrall'){if(h?.unit)this.captureEnemy(h.unit,owner,p.skillRank||1,!!p.soulBoost);this.remove(p);return true;}
+        if(p.mode==='curseEarth'){
+            for(const t of this.alive(1))if(Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){t.earthbind={owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32};t.curseOwner=owner.id;this.hurt(t,p.damage,p.owner,false,p,p);}
+            this.fx('ring',p.x,p.y,'#b9ae91',p.blast);this.remove(p);return true;
         }
         if(p.mode==='curseDot'||p.mode==='curseChain'){
             this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);for(const t of this.b.units)if(!t.dead&&t.side!==owner.side&&t.side!==2&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r)this.applyCurse(t,owner,p.mode==='curseDot'?'dot':'chain',p.damage*(p.mode==='curseDot'?.40:.30));this.remove(p);return true;
         }
-        const kind:Record<string,Unit['summonKind']>={summonStalker:'stalker',summonLantern:'lantern',summonCharger:'charger',summonWarden:'warden',summonHost:'host'};
-        if(kind[p.mode]){if(h?.unit)this.hurt(h.unit,p.damage,p.owner,true,p,h);if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode]);return true;}
+        const kind:Record<string,Unit['summonKind']>={summonStalker:'stalker',summonLantern:'lantern',summonCharger:'charger',summonWarden:'warden',summonHost:'host',summonEater:'eater',summonEcho:'echo'};
+        if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode]);return true;}
         return false;
     }
     impact(p: Projectile, h: Collision) {
@@ -991,6 +1091,7 @@ export class Engine {
         }
         if(redesignImpact(this,p,h))return;
         if((CURSES.has(p.mode)||SUMMONS.has(p.mode))&&this.occultImpact(p,h))return;
+        if(p.mode==='spiritConverge'){convergeAt(this,p);return;}
         if(p.mode==='spiritLance'){
             if(h.unit)this.hurt(h.unit,p.damage,p.owner,true,p,h);this.fx('burst',p.x,p.y,p.color,36);this.remove(p);return;
         }
@@ -1268,7 +1369,11 @@ export class Engine {
             for(let i=0;i<2&&this.b.projectiles.includes(p);i++)this.stepProjectile(p,dt,true);
             return;
         }
+        if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);this.emit('sound',{name:'charge'});}return;}
         p.age += dt;
+        if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
+        if(p.side===1&&this.absorbHostileProjectile(p,dt))return;
+        if(p.mode==='spiritConverge'&&(p.age>3.2||p.targetPoint&&Math.hypot(p.x-p.targetPoint.x,p.y-p.targetPoint.y)<Math.max(8,Math.hypot(p.vx,p.vy)*dt))){if(p.targetPoint){p.x=p.targetPoint.x;p.y=p.targetPoint.y;}convergeAt(this,p);return;}
         if(stepWarrior(this,p,dt))return;
         if(newSkill(p)&&redesignStep(this,p,dt))return;
         if(p.mode==='summonBolt'){this.stepSummonBolt(p,dt);return;}
@@ -1365,7 +1470,7 @@ export class Engine {
                     this.hurt(e, p.damage, p.owner, true, p, p);
                     this.fx('slash', e.x, e.y - e.h * .5, p.color, 55);
                 }
-        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],p.phaseMode!=='terrain');
+        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,!SUMMONS.has(p.mode)&&p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],p.phaseMode!=='terrain');
         if(p.mode==='charge'||p.mode==='cataclysmCharge'){
           for(const f of this.b.units.filter(v=>v.side!==p.side&&v.side!==2&&v.fixed&&!v.dead)){const h=segRect({x:p.x,y:p.y},{x:nx,y:ny},f.x-f.r,f.y-f.h,f.r*2,f.h,p.radius);if(h&&(!hit||h.t<hit.t))hit={x:p.x+(nx-p.x)*h.t,y:p.y+(ny-p.y)*h.t,t:h.t,n:h.n,unit:f};}
           this.carrySweep(p,{x:p.x,y:p.y},hit||{x:nx,y:ny});
@@ -1630,7 +1735,7 @@ export class Engine {
             }
             b.cast=undefined;
             b.round++;this.applyPhysicsCues();
-            for(const u of b.units)if(u.summoned&&u.summonExpires!==undefined&&b.round>u.summonExpires){u.dead=true;u.hp=0;}
+            for(const u of b.units)this.expireSummon(u);
             this.pruneExpiredSummons();
             b.zones = b.zones.filter(z => z.expires >= b.round);
             b.terrain.forEach(t => { if (t.expires && t.expires < b.round)
@@ -1658,9 +1763,14 @@ export class Engine {
         }
         b.projectiles = []; b.volley=undefined;
         b.resolveAge = 0;
-        if (b.mode === 'practice'&&!b.practiceCombat) {if(this.runSummonTurn()>0)return;this.resetPractice();return;}
-        if (this.checkEnd())
-            return;
+        if (b.mode === 'practice'&&!b.practiceCombat) {if(u?.cls==='occultist'&&this.runSummonTurn(u.id)>0)return;this.resetPractice();return;}
+        if (this.checkEnd())return;
+        if(b.side===0&&u?.cls==='occultist'&&this.runSummonTurn(u.id)>0)return;
+        this.advanceAfterAction();
+    }
+    private advanceAfterAction(){
+        const b=this.b;
+        if(this.checkEnd())return;
         const pending = this.alive(b.side).filter(a => (b.side!==0||!a.summoned) && !a.acted && (b.side !== 1 || b.queue.includes(a.id)));
         if (pending.length) {
             b.active = pending[0].id; b.reviewDamage={}; b.reviewFocus=undefined;
@@ -1723,8 +1833,8 @@ export class Engine {
             if (u.dead)
                 continue;
             arrowTurn(this,u);
-            u.acted = !!u.summoned;
-            if(u.summoned&&u.summonExpires!==undefined&&b.round>u.summonExpires){u.dead=true;u.hp=0;continue;}
+            u.acted = !!u.summoned||!!u.enthrall;
+            if(this.expireSummon(u))continue;
             if (u.side === 0 && !u.summoned && (u.stun || 0) > 0) {
                 u.stun!--;
                 u.stunnedRound=b.round;
@@ -1892,7 +2002,7 @@ export class Engine {
         this.counter++;
         b.turnAge += dt;
         this.stepUnits(dt);
-        tickRedesign(this,dt);tickWarrior(this,dt);cleanupPassiveHistory(this);
+        tickRedesign(this,dt);this.tickOccult();tickWarrior(this,dt);cleanupPassiveHistory(this);
         for (const z of b.zones) {
             if (z.attached) {
                 const u = this.unit(z.attached);
