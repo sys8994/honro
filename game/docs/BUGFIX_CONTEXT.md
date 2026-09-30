@@ -1,5 +1,7 @@
 # HONRO 게임 수정 맥락
 
+**1막 깊이·원경 가독성(HBUG-057, 2026-10-01):** 3·4장 밤숲은 [거리별 화면 규칙](ACT1_LAYER_DEPTH.md)의 `distance`로 줌·시차가 완만하게 달라지고, 달은 화면 크기가 고정된다. `shared/runtime/map-art-polish.js`가 저채도 소나무·앙상한 나무를 섞고, `renderer.js`는 줌에 따라 해당 원경 캐시를 갱신한다. 월드 장식은 레이어별 불투명도를 적용하되 가까운 바위는 완전 불투명하다. 지형 윤곽은 `art-dark.js`에서 선명하게 그린다. 관련 검사는 `tests/stage36-place-browser.py --stage34`, `tests/migration.mjs`, `tests/integration.py`다.
+
 **3·4장 물·밤숲·선택 경로(HBUG-056, 2026-09-30):** 3장의 `ferry-water`는 이제 실제 전도 물 영역이며, `shared/runtime/map-art-polish.js`의 `liveWater`가 정적 캐시 밖에서 흐름·지주 회류·착수 파문을 그린다. `renderer.js`는 월드 캐시 뒤, 유닛 앞에서 이 패스를 호출한다. 3장의 `ferry-side-gangway`와 4장의 `burned-gallery`는 `workshop/recipes/stage36-place-design.js`가 만드는 파괴 가능한 선택 발판이며 기존 지상 경로는 유지한다. 두 장의 원경만 높은 밤숲으로 교체했다. 관련 검사는 `node tests/stage36-place-design.mjs`, `python -X utf8 tests/stage36-place-browser.py --stage34`, `node tests/migration.mjs`, `python -X utf8 tests/integration.py`다. [작업 기록](STAGE36_PLACE_DESIGN.md).
 
 **3–6장 장소 재구성(HBUG-055, 2026-09-30):** 활성 `shared/data/campaign.json`의 3–6장은 [장소 설계 기록](STAGE36_PLACE_DESIGN.md)과 `workshop/recipes/stage36-place-design.js`가 기준이다. 이 레시피는 1·2장 레시피 뒤에 적용하며 `tools/map-forge/apply-stage36.mjs --check`로 재현성을 검사한다. 지형에 붙은 유닛·마커·앵커와 물 영역을 함께 보정하므로, 다른 맵 작업에서 새 지형만 덮어쓰지 않는다. 새 벡터 구조물은 `shared/runtime/map-art-polish.js`의 `builtin:placeDetail`로 Game/Stage View/Playtest가 함께 그린다. 회귀 검사는 `npm run test:stage36`과 전체 `npm run verify`다.

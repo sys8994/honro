@@ -75,25 +75,28 @@
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
         zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(); this.scale = Math.max(.16, Math.min(1.65, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
-        _backgroundKey(w,h,d,b){const bucket=Math.round(this.x/120)*120;return`${b.honroStage||0}:${b.honroBackdrop||''}:${b.sceneVersion||0}:${w}x${h}@${d.toFixed(2)}:${bucket}`;}
+        _backgroundBucket(b){const step=b.honroStage===3||b.honroStage===4?40:120;return Math.round(this.x/step)*step;}
+        _backgroundKey(w,h,d,b){const bucket=this._backgroundBucket(b),forest=b.honroStage===3||b.honroStage===4;return`${b.honroStage||0}:${b.honroBackdrop||''}:${b.sceneVersion||0}:${w}x${h}@${d.toFixed(2)}:${bucket}:${forest?this.scale.toFixed(3):''}`;}
         _drawBackgroundCached(c,w,h,d,b){
-            const bd=Math.min(d,1.15),key=this._backgroundKey(w,h,bd,b),bucket=Math.round(this.x/120)*120;
+            const bd=Math.min(d,1.15),key=this._backgroundKey(w,h,bd,b),bucket=this._backgroundBucket(b);
             let q=this._backgroundCache;
             if(!q||q.key!==key){const t0=performance.now(),cv=this._makeLayerCanvas(w*bd,h*bd),cc=cv.getContext('2d',{alpha:false});cc.setTransform(bd,0,0,bd,0,0);const ox=this.x;this.x=bucket;this.background(cc,w,h,b);this.x=ox;q=this._backgroundCache={key,canvas:cv,x:bucket,w,h,d:bd,bytes:cv.width*cv.height*4};this._cacheStats.bgBuilds++;this._cacheStats.bgBuildMs+=performance.now()-t0;}else this._cacheStats.bgHits++;
             const shift=(q.x-this.x)*.055;c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,shift,0,w,h);
         }
         _worldRasterScale(b,w){const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
+        _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;const rock=l.asset?.category==='rock'||/rock|boulder|granite/i.test(`${l.assetId||''} ${l.kind||''}`);c.globalAlpha=layer==='back'?.32:layer==='structural-back'?.72:layer==='mid'?.86:layer==='prop'?(rock?1:.96):1;this.landmark?.(c,l);}c.restore();}
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}`;}
         _buildStaticWorld(b,w){
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
             const t0=performance.now(),rs=this._worldRasterScale(b,w),cv=this._makeLayerCanvas(b.width*rs,b.height*rs),cc=cv.getContext('2d',{alpha:true});cc.setTransform(rs,0,0,rs,0,0);cc.clearRect(0,0,b.width,b.height);
             const oldAll=this._staticCacheBuild;this._staticCacheBuild=true;
-            cc.save();cc.globalAlpha=.44;for(const l of b.honroLandmarks||[])if((l.layer||'back')==='back')this.landmark?.(cc,l);cc.restore();
-            cc.save();cc.globalAlpha=.80;for(const l of b.honroLandmarks||[])if((l.layer||'back')==='structural-back')this.landmark?.(cc,l);cc.restore();
+            this._landmarkLayer(cc,b.honroLandmarks||[],'back');
+            this._landmarkLayer(cc,b.honroLandmarks||[],'structural-back');
             for(const t of b.terrain||[])if(!t.broken)this.terrain(cc,t);
             this.surfaceZones?.(cc,b);
-            cc.save();cc.globalAlpha=.76;for(const l of b.honroLandmarks||[])if((l.layer||'back')==='prop'||(l.layer||'back')==='mid')this.landmark?.(cc,l);cc.restore();
-            cc.save();cc.globalAlpha=.94;for(const l of b.honroLandmarks||[])if((l.layer||'back')==='front')this.landmark?.(cc,l);cc.restore();
+            this._landmarkLayer(cc,b.honroLandmarks||[],'mid');
+            this._landmarkLayer(cc,b.honroLandmarks||[],'prop');
+            this._landmarkLayer(cc,b.honroLandmarks||[],'front');
             this._staticCacheBuild=oldAll;this._staticWorldCache={key,canvas:cv,rs,w:b.width,h:b.height,bytes:cv.width*cv.height*4};this._cacheStats.worldBuilds++;this._cacheStats.worldBuildMs+=performance.now()-t0;return this._staticWorldCache;
         }
         _drawStaticWorldCached(c,b,w){const q=this._buildStaticWorld(b,w);c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,0,0,b.width,b.height);}
@@ -150,12 +153,13 @@
             // views rasterize it once per sceneVersion; keep live vectors only for close inspection.
             if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w);}else{
                 const viewLeft=this.x-w/this.scale-600,viewRight=this.x+w/this.scale+600,visibleLandmarks=(b.honroLandmarks||[]).filter(l=>l.x>viewLeft&&l.x<viewRight);
-                c.save();c.globalAlpha=.44;for(const l of visibleLandmarks)if((l.layer||'back')==='back')this.landmark?.(c,l);c.restore();
-                c.save();c.globalAlpha=.80;for(const l of visibleLandmarks)if((l.layer||'back')==='structural-back')this.landmark?.(c,l);c.restore();
+                this._landmarkLayer(c,visibleLandmarks,'back');
+                this._landmarkLayer(c,visibleLandmarks,'structural-back');
                 for(const t of b.terrain||[]){if(t.broken||t.x+t.w<this.x-w/this.scale||t.x>this.x+w/this.scale)continue;this.terrain(c,t);}
                 this.surfaceZones?.(c,b);
-                c.save();c.globalAlpha=.76;for(const l of visibleLandmarks)if((l.layer||'back')==='prop'||(l.layer||'back')==='mid')this.landmark?.(c,l);c.restore();
-                c.save();c.globalAlpha=.94;for(const l of visibleLandmarks)if((l.layer||'back')==='front')this.landmark?.(c,l);c.restore();
+                this._landmarkLayer(c,visibleLandmarks,'mid');
+                this._landmarkLayer(c,visibleLandmarks,'prop');
+                this._landmarkLayer(c,visibleLandmarks,'front');
             }
             // Animated water lives outside the world raster cache; its collision and
             // conduction geometry remain in the canonical static map.

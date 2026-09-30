@@ -55,6 +55,18 @@ with sync_playwright() as playwright:
             cinematic:null,x:camera.x,y:camera.y,scale:camera.zoom});
           a.scene.render(a.engine,0,'',.6,false,0);
         }''', [sid, actual])
+        if sid == 3 and '--stage34' in sys.argv:
+            layer_alpha = game.evaluate('''()=>{const s=HonroApp.scene,
+              cv=document.createElement('canvas'),c=cv.getContext('2d'),draw=s.landmark,rows={};
+              s.landmark=(ctx,l)=>{rows[l.id]=ctx.globalAlpha};
+              try{
+                s._landmarkLayer(c,[{id:'distant',layer:'back'}],'back');
+                s._landmarkLayer(c,[{id:'rock',layer:'prop',asset:{category:'rock'}},
+                  {id:'ordinary',layer:'prop'}],'prop');
+              }finally{s.landmark=draw}
+              return rows;}''')
+            assert layer_alpha['distant'] < .4 and layer_alpha['rock'] == 1 and layer_alpha['ordinary'] < 1, layer_alpha
+            checks.append({'layerOpacity': layer_alpha})
         owner = Image.open(io.BytesIO(png(game, '#battlecanvas'))).convert('RGBA')
         workshop = Image.open(io.BytesIO(png(editor, '#stageCanvas'))).convert('RGBA')
         difference = ImageChops.difference(owner, workshop).convert('RGB')
@@ -87,6 +99,16 @@ with sync_playwright() as playwright:
               a.scene.render(a.engine,0,'',.6,false,0)}''', [x,y,scale])
             (OUT / f'stage-{sid}-{name}.png').write_bytes(png(game, '#battlecanvas'))
         if sid == 3 and '--stage34' in sys.argv:
+            zoom_keys = []
+            for label, scale in [('wide', .22), ('normal', .66)]:
+                key = game.evaluate('''scale=>{const a=HonroApp,s=a.scene;
+                  Object.assign(s,{manual:true,x:2250,y:2150,scale,time:0});
+                  s.render(a.engine,0,'',.6,false,0);
+                  return s._backgroundCache.key;}''', scale)
+                zoom_keys.append(key)
+                (OUT / f'stage-3-crossing-zoom-{label}.png').write_bytes(png(game, '#battlecanvas'))
+            assert zoom_keys[0] != zoom_keys[1], 'forest background cache did not follow zoom'
+            checks.append({'stage': 3, 'zoomBackgroundRebuilt': True})
             for phase_time, label in [(0, 'still'), (1.2, 'flow')]:
                 game.evaluate('''t=>{const a=HonroApp;Object.assign(a.scene,
                   {manual:true,x:2250,y:2150,scale:.66,time:t});
@@ -166,7 +188,9 @@ for sid in STAGES:
         images.insert(0, (f'이전 {sid}장', f'../map-gap/overview-stage-{sid}.png'))
     images += [(name, f'stage-{sid}-{name}.png') for name, _, _ in FOCUSES[sid]]
     if sid == 3 and '--stage34' in sys.argv:
-        images += [('나루 물 흐름 · 실제 게임 화면', 'stage-3-water-motion.gif')]
+        images += [('나루 · 넓은 줌 0.22', 'stage-3-crossing-zoom-wide.png'),
+                   ('나루 · 보통 줌 0.66', 'stage-3-crossing-zoom-normal.png'),
+                   ('나루 물 흐름 · 실제 게임 화면', 'stage-3-water-motion.gif')]
     figures = ''.join(f'<figure><figcaption>{label}</figcaption><img src="{source}"></figure>'
                       for label, source in images)
     cards.append(f'<section><h2>{sid}장</h2><div>{figures}</div></section>')

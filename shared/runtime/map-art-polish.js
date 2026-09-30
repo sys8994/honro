@@ -203,6 +203,10 @@ function ridge(c,w,h,seed,level,color,edge){
   for(let i=0;i<6;i++){const x=(i*269+seed*71)%w,y=h*(.36+level*.10);line(c,[[x,y],[x+44,y-8],[x+75,y-6]],edge,1.1);}
 }
 const forestNoise=n=>{const v=Math.sin(n*12.9898+37.719)*43758.5453;return v-Math.floor(v);};
+// distance=0 shares the playable world's zoom; Infinity is fixed to the sky.
+// A nearby backdrop tree has a smaller distance than a far ridge or cloud.
+function depthZoom(zoom,distance){const ratio=Math.max(.16,Math.min(1.65,zoom))/.66;return 1+(ratio-1)/(1+distance);}
+function depthPan(camera,distance){return camera*.055/(1+distance*.22);}
 function forestTree(c,x,ground,height,seed,trunk,crown,near=false){
   const lean=(forestNoise(seed+11)-.5)*height*.11,tw=near?Math.max(6,height*.018):Math.max(3,height*.012);
   fill(c,[[x-tw,ground],[x-tw*.8+lean*.36,ground-height*.58],[x+lean-tw*.28,ground-height],[x+lean+tw*.25,ground-height],[x+tw*.85+lean*.36,ground-height*.58],[x+tw,ground]],trunk);
@@ -226,44 +230,56 @@ function forestTree(c,x,ground,height,seed,trunk,crown,near=false){
   line(c,[[tipX,tipY+height*.031],[tipX+spread*.55,tipY-height*.003],[tipX+spread*.90,tipY+height*.010]],trunk,Math.max(2,tw*.25));
   fill(c,[[tipX-spread*.93,tipY+height*.023],[tipX-spread*.79,tipY-height*.003],[tipX-spread*.47,tipY-height*.022],[tipX-spread*.12,tipY-height*.030],[tipX+spread*.24,tipY-height*.019],[tipX+spread*.59,tipY-height*.020],[tipX+spread*.90,tipY+height*.011],[tipX+spread*.54,tipY+height*.039],[tipX-spread*.40,tipY+height*.045]],crown);
 }
+function forestBareTree(c,x,ground,height,seed,trunk){
+  const lean=(forestNoise(seed+11)-.5)*height*.12,tw=Math.max(3,height*.013);
+  fill(c,[[x-tw,ground],[x-tw*.8+lean*.55,ground-height*.58],[x+lean-tw*.30,ground-height],[x+lean+tw*.25,ground-height],[x+tw*.8+lean*.55,ground-height*.58],[x+tw,ground]],trunk);
+  for(let j=0;j<7;j++){
+    const t=.30+j*.095,side=j%2?-1:1,bx=x+lean*t,by=ground-height*t;
+    const reach=height*(.14+forestNoise(seed+j*13)*.12)*(1-t*.42),tip=bx+side*reach,ty=by-height*(.07+forestNoise(seed+j*7)*.07);
+    line(c,[[bx,by],[bx+side*reach*.44,by-height*.025],[tip,ty]],trunk,Math.max(1.4,tw*(.56-t*.31)));
+    line(c,[[bx+side*reach*.57,by-height*.046],[bx+side*reach*.68,by-height*.10],[bx+side*reach*.72,by-height*.17]],trunk,Math.max(1,tw*.19));
+    line(c,[[bx+side*reach*.75,by-height*.072],[bx+side*reach*.97,by-height*.13]],trunk,Math.max(1,tw*.14));
+  }
+  if(height>170)line(c,[[x,ground-height*.18],[x+lean*.58,ground-height*.67],[x+lean,ground-height*.96]],'#79736732',1.1);
+}
 function forestBackground(c,w,h,stage,camera){
   const gate=stage===4,g=c.createLinearGradient(0,0,0,h);
   g.addColorStop(0,gate?'#091118':'#07151b');g.addColorStop(.53,gate?'#182329':'#142a2d');g.addColorStop(1,gate?'#26302c':'#20352f');c.fillStyle=g;c.fillRect(0,0,w,h);
   // A muted moon belongs behind the canopy and passing cloud bands.
   // Match the renderer's cached-background shift so bucket changes cannot
   // make trunks, clouds or the moon jump by a different parallax amount.
-  const pan=camera*.055,mx=w*.75-pan,my=h*.18;
+  const moonDistance=Infinity,mx=w*.75-depthPan(camera,moonDistance),my=h*.18;
   const halo=c.createRadialGradient(mx,my,5,mx,my,h*.24);halo.addColorStop(0,'#acb3a01c');halo.addColorStop(1,'#acb3a000');c.fillStyle=halo;c.fillRect(mx-h*.24,my-h*.24,h*.48,h*.48);
-  E(c,mx,my,h*.034,h*.034,'#b2b6a432');
+  const moonSize=h*.034*depthZoom(this.scale,moonDistance);E(c,mx,my,moonSize,moonSize,'#b2b6a432');
   for(let k=0;k<3;k++){
-    const drift=pan,cy=h*(.15+k*.095);
+    const drift=depthPan(camera,24),cy=h*(.15+k*.095);
     for(let i=Math.floor(drift/360)-2;i<Math.ceil((drift+w)/360)+2;i++){
       const x=i*360-drift+forestNoise(i*7+k*31)*55;
       fill(c,[[x-95,cy+15],[x-38,cy-10],[x+33,cy-21],[x+132,cy-7],[x+255,cy-2],[x+335,cy+19],[x+197,cy+28],[x+54,cy+24]],k===0?'#101d249c':'#17252a77');
     }
   }
   const layers=[
-    {step:68,shift:.055,base:.91,lo:.36,hi:.25,trunk:'#233b39',crown:'#294441'},
-    {step:100,shift:.055,base:1.03,lo:.48,hi:.24,trunk:gate?'#263a35':'#1e3430',crown:gate?'#2c4038':'#284238'},
-    {step:142,shift:.055,base:1.13,lo:.57,hi:.27,trunk:gate?'#1b2928':'#142a27',crown:gate?'#29332d':'#1d332a'}
+    {distance:1.9,step:68,base:.91,lo:.36,hi:.25,opacity:.43,trunk:'#474642',crown:'#444c48'},
+    {distance:.95,step:100,base:1.03,lo:.48,hi:.24,opacity:.57,trunk:'#413f3a',crown:gate?'#41433e':'#3d4a43'},
+    {distance:.48,step:142,base:1.13,lo:.57,hi:.27,opacity:.69,trunk:gate?'#383633':'#3c3a35',crown:gate?'#353b35':'#34443b'}
   ];
   for(let layer=0;layer<layers.length;layer++){
-    const q=layers[layer],pan=camera*q.shift,start=Math.floor(pan/q.step)-2,end=Math.ceil((pan+w)/q.step)+2;
+    const q=layers[layer],size=depthZoom(this.scale,q.distance),step=q.step*size,pan=depthPan(camera,q.distance),start=Math.floor(pan/step)-2,end=Math.ceil((pan+w)/step)+2;
+    c.save();c.globalAlpha=q.opacity;
     for(let i=start;i<=end;i++){
-      const seed=i*23+layer*109+stage*7,x=i*q.step-pan+(forestNoise(seed+1)-.5)*q.step*.5;
-      const height=h*(q.lo+forestNoise(seed+3)*q.hi),base=h*q.base+(forestNoise(seed+5)-.5)*h*.09;
-      if(gate&&layer===2&&forestNoise(seed+8)>.64){
-        // Fire damage leaves interrupted crowns, especially near the village.
-        forestTree(c,x,base,height*.78,seed,q.trunk,'#27302b',true);
-        line(c,[[x+10,base-height*.64],[x+41,base-height*.83]],'#3d3a3299',3);
-      }else forestTree(c,x,base,height,seed,q.trunk,q.crown,layer===2);
+      const seed=i*23+layer*109+stage*7,x=i*step-pan+(forestNoise(seed+1)-.5)*step*.5;
+      const height=h*(q.lo+forestNoise(seed+3)*q.hi)*size,base=h*q.base+(forestNoise(seed+5)-.5)*h*.09;
+      const bare=forestNoise(seed+8)<(gate?(layer===2 ? .47 : .27):(layer===2 ? .24 : .13));
+      if(bare)forestBareTree(c,x,base,height,seed,gate?'#55504a':'#4e4b44');
+      else forestTree(c,x,base,height,seed,q.trunk,q.crown,layer===2);
     }
+    c.restore();
   }
   const mist=c.createLinearGradient(0,h*.55,0,h);mist.addColorStop(0,'#a0aea000');mist.addColorStop(.60,gate?'#817d7222':'#829c9b20');mist.addColorStop(1,'#14262463');c.fillStyle=mist;c.fillRect(0,h*.55,w,h*.45);
 }
 Scene.prototype.background=function(c,w,h,b){
   const stage=b?.honroStage||0,kind=this.theme;
-  if(stage===3||stage===4){forestBackground(c,w,h,stage,this.x);return;}
+  if(stage===3||stage===4){forestBackground.call(this,c,w,h,stage,this.x);return;}
   oldBackground.call(this,c,w,h,b);
   // A shallow second set of fractured Korean mountain ridges breaks up the
   // repeated rounded horizon without competing with readable combat terrain.
