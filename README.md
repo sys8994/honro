@@ -51,6 +51,8 @@ npm.cmd run verify
 
 동맹·주민·소환귀·상여·운반대·문·구 보스 20종은 [동맹과 혼 제작 기준](game/docs/ACTOR_ART_PIPELINE.md)에 따라 한국식 다크 판타지로 다시 그렸다. 승인된 동행/몬스터와 같은 높이로 비율과 톤을 비교하며, 노드 증량보다 성인 비율·복식·역할 구분을 우선한다. `npm.cmd run test:actors` 뒤 `_local/reports/actor-forge/index.html`에서 전후·기존 승인작·크기·5동작을 검토한다. 원본은 `tools/actor-forge/`, 생성물은 `shared/assets/actors/`다.
 
+맵 장식과 원경은 [맵 미술 제작 기준](game/docs/MAP_ART_PIPELINE.md)을 따른다. 화강암·기와집·성문·장승·솟대·당산나무·의식 제단을 저채도 한국형 다크 판타지로 손보고, 각 장식과 배경 레이어의 Canvas 경로 점 수를 기존의 2배 이하로 제한한다. `npm.cmd run test:map-art`가 전후 화면과 52개 표본의 점 수, Game/Stage View/Playtest의 공통 그림을 검사한다.
+
 | 위치 | 역할 |
 |---|---|
 | `shared/engine/src/` | 실제 엔진, 물리·이동·전투, SFX/BGM |

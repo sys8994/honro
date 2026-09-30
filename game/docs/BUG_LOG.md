@@ -10,6 +10,13 @@
 - 검증: `tests/current-update.mjs` 6개, `tests/current-update-browser.py` Game·Workshop의 목표 카메라/좌우상하 화살표, `tests/aim-direction-browser.py`, `tests/field-polish-browser.py`, `tests/story-rewrite.mjs`, `tests/story-rewrite-browser.py`, `tests/skill-tuning.mjs`, `tests/hwigyeom-p5.mjs`, `tests/migration.mjs` 및 `tests/integration.py` 47개 통과. 브라우저 시각 확인은 `_local/reports/current-update/`에 둔다. 전체 `verify`는 이전 요청에 맞춰 필요한 검사로 한정해 실행하지 않았다.
 - 저장·한계: 저장 필드는 추가하지 않는다. 기존 대기 중인 지연 대사와 궁극기 쿨타임은 새 규칙으로 읽는다. 자동 검사는 4장 중간 증원의 실제 생성과 완료 라운드를 확인했지만, 정상 입력으로 8턴을 버틴 난이도·전 캠페인 수동 완주는 측정하지 않았다.
 
+## HBUG-052 · 반복 산세·밝은 바위·같은 전각으로 읽히던 맵 장식 — 2026-09-30
+
+- 원인: 기본 원경의 다섯 능선이 동일한 둥근 곡선으로 반복되고 1·2장 화강암의 밝은 면이 작은 화면에서 떠 보였다. 3~10장의 의식석·묘표·당산 공간·전각 등은 종류가 달라도 기본 `hall` 그림으로 귀결됐다. 10장 의식 제단은 back 레이어에서 지형에 가렸다.
+- 변경: 원경에 각진 암릉과 얕은 원근선을 사용하고, 기와 처마·창호·돌 기단이 있는 건물과 장승·솟대·바위 제단·휘어진 소나무를 종류별로 작성했다. 화강암 3종은 어둡게 다시 배색하고 균열 경로를 더했다. 의식 제단은 prop 레이어로 옮겼다. 지형/충돌/상호작용/저장 스키마는 변경하지 않았다.
+- 검증: `npm.cmd run test:map-art`로 52개 장식/배경 표본의 원본 대비 경로 점 수 2배 상한, 10개 장의 실제 렌더, Game/Workshop Stage View/Playtest 픽셀 일치와 브라우저 오류 0을 확인한다. 별도 전후 PNG와 수치는 `_local/reports/map-art/`, 기준은 `tests/fixtures/map-art-baseline.json`에 둔다. [제작·시각 기준](MAP_ART_PIPELINE.md).
+- 실제 검사/한계: 맵 전용 검사, 10장 마이그레이션, 47개 브라우저 통합 검사와 Stage 1·2 경로 검사가 통과했다. 정지 화면과 경로 점 수 검사는 모든 카메라 배율에서의 미감까지 판정하지 않는다. 전체 `verify` 재실행은 맵 변경과 별도로 진행 중인 10장 최소 완료 턴 변경(12→15)에 비해 `tests/finale-update.mjs`의 기존 12턴 기대가 남아 있어 실패했다.
+
 ## HBUG-050 · 받이진이 작은 피격에도 해제되어 E 재입력을 요구 — 2026-09-30
 
 - 재현/원인: 5장 받이진에서 의식을 시작하고 `impulse(20,-15)`를 가하면 좌표가 변하기 전부터 해제됐다. 유지 조건의 `grounded()`가 지면 접촉뿐 아니라 속도·공중 상태까지 요구했다. 유지 중에도 근처 안내에 E 키와 시작 문구가 남았다.

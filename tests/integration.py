@@ -45,7 +45,7 @@ with sync_playwright() as p:
         }''',[sid,actual_camera])
         a=canvas_image(editor,'#stageCanvas');b=canvas_image(game,'#battlecanvas')
         assert a.size==b.size,(a.size,b.size)
-        diff=ImageChops.difference(a,b).convert('RGB');pixels=list(diff.getdata());changed=sum(max(px)>3 for px in pixels);ratio=changed/len(pixels)
+        diff=ImageChops.difference(a,b).convert('RGB');pixels=list(diff.get_flattened_data() if hasattr(diff,'get_flattened_data') else diff.getdata());changed=sum(max(px)>3 for px in pixels);ratio=changed/len(pixels)
         if sid in [1,2,8,10]:a.save(OUT/f'editor-stage-{sid}.png');b.save(OUT/f'game-stage-{sid}.png');diff.save(OUT/f'diff-stage-{sid}.png')
         check(f'Rendering equivalence Stage {sid}',ratio<.0001,{'differentPixels':changed,'ratio':ratio})
     # Exercise all ten migrated campaigns through the real app and engine.

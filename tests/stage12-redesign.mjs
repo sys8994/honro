@@ -8,7 +8,7 @@ const check=(name,fn)=>{try{const detail=fn();checks.push({name,passed:true,deta
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
 const baseline=await migrate(),project=plain(g.HONRO_PROJECT);
 check('Workshop authoring recipe reproduces the canonical project exactly',()=>assert.deepEqual(plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline))),project));
-check('Stages 3 through 10 stay byte-for-byte unchanged',()=>assert.deepEqual(project.stages.slice(2),plain(baseline.stages.slice(2))));
+check('Stages 3 through 10 retain data except the ritual dais art layer',()=>{const later=plain(project.stages.slice(2));later[7].elements.find(e=>e.kind==='ritualDais').layer='back';assert.deepEqual(later,plain(baseline.stages.slice(2)));});
 check('Canonical editor export/import is lossless',()=>assert.deepEqual(plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(project)))),project));
 function travel(e,u,goal,max=24000){let last=u.x,still=0,jumps=0;const hp=u.hp;for(let i=0;i<max;i++){u.moveLeft=1e7;e.walk(u,Math.sign(goal-u.x),1/120);if(still>22&&e.grounded(u)){e.jump(u);jumps++;still=0;}e.integrateBody(u,1/120);if(u.dead||u.y>e.b.height+80)return{ok:false,dead:u.dead,x:u.x,y:u.y,hp:u.hp};if(Math.abs(goal-u.x)<25&&e.grounded(u))return{ok:true,x:u.x,y:u.y,damage:hp-u.hp,jumps};still=Math.abs(u.x-last)<.03?still+1:0;last=u.x;}return{ok:false,x:u.x,y:u.y,jumps};}
 for(const id of [1,2]){

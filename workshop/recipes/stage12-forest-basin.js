@@ -6,7 +6,15 @@ function commands(project){
  const rock=(id,w,h)=>{
   const p=[[-.50,.05],[-.53,-.38],[-.34,-.76],[-.06,-.92],[.05,-1],[.29,-.85],[.48,-.53],[.55,-.15],[.48,.02],[.27,.01],[.04,.17],[-.26,.25]].map(([x,y])=>({x:x*w,y:y*h}));
   const face=[p[1],p[2],p[3],p[4],p[5],p[6],{x:w*.38,y:-h*.18},{x:w*.03,y:-h*.06},{x:-w*.26,y:-h*.13}];
-  return{id,name:'화강암 · '+id,category:'rock',visual:[{points:p,fill:'#626e69',stroke:'#202d2b',lineWidth:3},{points:face,fill:'#a0aaa0',stroke:'#76847a',lineWidth:1},{points:[p[6],p[7],p[8],{x:w*.38,y:-h*.18}],fill:'#79867b'}],collision:[p],collisionMode:'independent',anchor:{x:0,y:0},sockets:[],material:'rock',breakable:false,oneWay:false,layer:'prop',tags:['stage12','granite'],params:{}};
+  const left=Math.min(...p.map(q=>q.x)),right=Math.max(...p.map(q=>q.x)),top=Math.min(...p.map(q=>q.y)),bottom=Math.max(...p.map(q=>q.y));
+  const x=t=>Math.round((left+(right-left)*t)*1000)/1000,y=t=>Math.round((top+(bottom-top)*t)*1000)/1000;
+  return{id,name:'화강암 · '+id,category:'rock',visual:[
+   {points:p,fill:'#303c37',stroke:'#182a2b',lineWidth:3},
+   {points:face,fill:'#526158',stroke:'#384940',lineWidth:1},
+   {points:[p[6],p[7],p[8],{x:w*.38,y:-h*.18}],fill:'#3d4a42'},
+   {type:'polyline',closed:false,points:[{x:x(.32),y:y(.18)},{x:x(.41),y:y(.41)},{x:x(.38),y:y(.60)},{x:x(.47),y:y(.78)}],fill:null,stroke:'#182a2b99',lineWidth:1.7,alpha:1},
+   {type:'polyline',closed:false,points:[{x:x(.67),y:y(.30)},{x:x(.60),y:y(.48)},{x:x(.66),y:y(.57)}],fill:null,stroke:'#a0a9975a',lineWidth:1.3,alpha:1}
+  ],collision:[p],collisionMode:'independent',anchor:{x:0,y:0},sockets:[],material:'rock',breakable:false,oneWay:false,layer:'prop',tags:['stage12','granite'],params:{}};
  };
  for(const [id,w,h] of [['mockup-granite-large',510,250],['mockup-granite-small',135,130],['mockup-granite-shelf',360,160]])
   out.push(project.library.some(a=>a.id===id)?{op:'asset.update',id,values:rock(id,w,h)}:{op:'asset.add',asset:rock(id,w,h)});
@@ -120,6 +128,7 @@ function commands(project){
    detailStats:{groundTop:st.terrains.filter(t=>t.type==='ground').reduce((n,t)=>n+Q.derive(t).length,0),branchNodes:st.terrains.filter(t=>t.properties?.surfaceKind==='branch').reduce((n,t)=>n+t.points.length,0),solidNodes:st.terrains.filter(t=>t.type==='solid').reduce((n,t)=>n+t.points.length,0),scatterCount:count},initialState
   }});
  }
+ out.push({stageId:'stage-10',op:'object.update',id:'landmark-3',values:{layer:'prop'}});
  return out;
 }
 G.HonroStage12Design={commands};
