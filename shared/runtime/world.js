@@ -96,8 +96,9 @@ function trainingWorld(st,profile,cls,skill,legacy){
  const hero=b.units.find(u=>u.side===0);b.units=[hero];C.applyHero(hero,b.heroes[cls],true);Object.assign(hero,{x:340,y:1400,spawnX:340,spawnY:1400,acted:false,cooldowns:{},vx:0,vy:0});
  const kinds=['human','hound','crow','ghost','warden','bat','boar','lantern','shade','human','stag','mourner'];
  [760,1180,1560,2110,2590,2870,3320,3820,4170,4610,5010,5380].forEach((x,i)=>{
-  const u=createEnemy(b,{...st,w:b.width},x,kinds[i],i,top(b,x));u.name+=' · 수련';
-  Object.assign(u,{hp:130+(i%4)*45,maxHp:130+(i%4)*45,attack:.72,armor:.04,awake:true,aggroUntil:0,group:Math.floor(x/1200),cooldowns:{},focus:180,maxFocus:180});b.units.push(u);
+  const u=createEnemy(b,{...st,w:b.width},x,kinds[i],i,top(b,x)),elite=i===4,hp=elite?3400:130+(i%4)*45;
+  u.name=elite?'정예 산지기 · 수련':u.name+' · 수련';
+  Object.assign(u,{hp,maxHp:hp,attack:elite?1.05:.72,armor:elite?.12:.04,elite,awake:true,aggroUntil:0,group:Math.floor(x/1200),cooldowns:{},focus:180,maxFocus:180});b.units.push(u);
  });
  b.active=hero.id;b.sceneVersion++;return b;
 }

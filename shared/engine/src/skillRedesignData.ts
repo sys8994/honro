@@ -8,18 +8,18 @@ export function installSkillRedesign(skills:Record<string,Skill>){
  const rows:[string,string,number,number,number,string,number,string,number?][]=[
   ['A01','평사',43,0,0,'arrow',1.23,'',.55],
   ['A14','급소시',46,30,0,'windArrow',1.52,'distance',.06],['A02','관통시',50,36,0,'pierce',1.28,'distance'],
-  ['A06','회기시',40,34,0,'recoveryArrow',1.15,'distance'],['A10','정심',0,0,0,'prepare',1,'distance'],['A99','절명시',96,62,0,'executeArrow',1.55,'distance'],
+  ['A06','회기시',40,34,0,'recoveryArrow',1.15,'distance'],['A10','정심',0,0,0,'prepare',1,'distance'],['A99','절명시',123,76,0,'executeArrow',1.55,'distance'],
   ['A11','급락시',48,32,0,'dropArrow',1.06,'drop'],['A09','전로시',42,34,0,'turnArrow',1.13,'drop'],
-  ['A13','추혼시',45,38,0,'homing',1.17,'drop'],['A12','귀환시',62,44,0,'return',1.17,'drop'],['A15','칠성추혼',26,60,0,'seekRain',1.10,'drop'],
+  ['A13','추혼시',45,38,0,'homing',1.17,'drop'],['A12','귀환시',62,44,0,'return',1.17,'drop'],['A15','칠성추혼',33,72,0,'seekRain',1.10,'drop'],
   ['A05','격퇴시',36,30,0,'push',1,'speed',.42],['A04','산개사',22,38,0,'triple',1.16,'speed',.65],
-  ['A07','쇄암시',58,42,70,'breakArrow',1.30,'speed'],['A03','연환시',48,40,0,'chainArrow',1.18,'speed'],['A08','철화',70,64,0,'ironFlower',1.08,'speed'],
+  ['A07','쇄암시',58,42,70,'breakArrow',1.30,'speed'],['A03','연환시',48,40,0,'chainArrow',1.18,'speed'],['A08','철화',90,76,0,'ironFlower',1.08,'speed'],
   ['M01','기파',34,0,68,'qiPulse',1.05,''],
   ['M06','화호',42,32,88,'gourdFire',.89,'gourd'],['M02','빙호',38,34,96,'gourdIce',1.06,'gourd'],['M04','뇌호',34,38,82,'gourdThunder',1.08,'gourd'],
-  ['M13','연폭호',48,46,140,'gourdBurst',.80,'gourd'],['M05','천뢰호',88,68,190,'gourdSky',.91,'gourd'],
+  ['M13','연폭호',48,46,140,'gourdBurst',.80,'gourd'],['M05','천뢰호',112,80,190,'gourdSky',.91,'gourd'],
   ['M03','원호파',44,32,150,'waveArc',.92,'wave'],['M11','반탄파',46,34,0,'waveBounce',1.02,'wave'],['M12','삼재파',38,42,0,'waveTriangle',1.04,'wave'],
-  ['M14','동심파',72,46,0,'waveRing',.74,'wave'],['M15','팔괘파',34,66,220,'waveBagua',.82,'wave'],
+  ['M14','동심파',72,46,0,'waveRing',.74,'wave'],['M15','팔괘파',43,78,220,'waveBagua',.82,'wave'],
   ['M07','파진목',56,30,95,'stakeBlast',.96,'stake'],['M10','회생진목',0,34,45,'stakeHeal',.84,'stake'],['M08','유인진목',30,38,260,'stakePull',.86,'stake'],
-  ['M09','축지진목',0,44,45,'stakeGate',.82,'stake'],['M99','오방봉진',35,62,220,'stakeSeal',.88,'stake']
+  ['M09','축지진목',0,44,45,'stakeGate',.82,'stake'],['M99','오방봉진',46,76,220,'stakeSeal',.88,'stake']
  ];
  const descriptions:Record<string,string>={
  A01:'빠르고 곧게 살을 날린다. SP를 쓰지 않는 기본 공격.',A14:'수평거리만큼 강해지는 정밀 사격. 캐릭터 치명 능력에 확률 +18~39%p, 배율 +0.20~0.55.',
@@ -39,10 +39,11 @@ export function installSkillRedesign(skills:Record<string,Skill>){
  M10:'아군이 밟으면 체력 7~14%, 기력 8~15%, 이동력 15~36% 회복. 아군마다 턴당 1회, SP에 따라 4~7턴 반복 사용.',M08:'적이 밟으면 피해를 주고 260~365 범위 적을 끌어당긴다. 벽은 통과하지 않는다. 턴당 1회, SP에 따라 2~5턴 반복 사용.',
  M09:'첫 설치는 발밑과 착탄점에 진목 한 쌍을 세운다. 최대 두 진목을 유지. 세 번째는 가장 오래된 것을 교체한다. 위에서 E·상호작용으로 건너가며 유닛당 턴에 한 번. 성장하면 도착 회복·방호.',
  M99:'적이 밟으면 오방 진목으로 SP에 따라 2~5턴 봉쇄. 내부 감속·이동 예산 감소, 경계를 넘으면 턴당 1회 피해와 안쪽 밀침. 2R 재사용.'};
+ for(const id of ['A99','A15','A08','M05','M15','M99'])descriptions[id]=descriptions[id].replace(' 2R 재사용.','');
  for(const [id,name,damage,cost,radius,mode,speed,branch,wind] of rows){
   const old=skills[id],capstone=['A99','A15','A08','M05','M15','M99'].includes(id);
   skills[id]={...old,id,name,damage,cost:cost/MANA_COST_MULTIPLIER,radius,mode,speed,wind:wind??.65,terrain:id==='A07'?4.5:old.terrain,
-   redesigned:true,basic:id==='A01'||id==='M01',branch,capstone,ultimate:false,cooldown:capstone?2:undefined,phase:undefined,gravity:1,fuse:id==='M02'?3.2:undefined,
+   redesigned:true,basic:id==='A01'||id==='M01',branch,capstone,ultimate:false,cooldown:undefined,phase:undefined,gravity:1,fuse:id==='M02'?3.2:undefined,
    color:id[0]==='A'?'#ccd0c5':id==='M06'?'#b98a61':'#b9cccf',tag:({distance:'절명',drop:'곡사',speed:'강궁',gourd:'호리병술',wave:'파문술',stake:'진법'} as Record<string,string>)[branch]||'기본 공격',desc:descriptions[id]};
  }
  const passives:Record<string,[string,string]>={

@@ -24,14 +24,14 @@ export function drawSkillGeometry(c:C,g:SkillGeometry,thick=false,zoom=1){
  for(const ps of geometryPaths(g)){c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();}c.restore();
 }
 export const ARROW_STYLES={distance:{width:1.25,length:48,head:2.6,color:'#d5d7c9'},drop:{width:2,length:39,head:4,color:'#b7cdca'},speed:{width:3.7,length:37,head:6.7,color:'#c7b38c'},basic:{width:1.8,length:39,head:3.5,color:'#b5b6a4'}};
-/** A screen-sized signature marks direction, independently of the ballistic prediction. */
+/** A softly zoom-scaled signature marks direction, independently of the ballistic prediction. */
 export function drawAimDirection(c:C,e:Engine,u:Unit,s:Skill,power:number,charging:boolean,time:number,zoom=1){
  if(s.passive||u.dead||u.retreat||s.mode==='prepare')return false;
  zoom=Math.max(.12,zoom);power=Math.max(0,Math.min(1,power));
  const melee=!!s.martial&&(s.branch==='sword'||s.mode==='bladeScreen'),angle=s.mode==='bladeScreen'?(Math.cos(u.angle*Math.PI/180)<0?Math.PI:0):u.angle*Math.PI/180;
  const origin=melee?{x:u.x,y:u.y-u.h*.5}:e.origin(u,u.angle,!!s.martial&&s.branch==='rush');
  const length=96+(charging?power*24:0),alpha=charging?.9:.54,ink={archer:'#e3cca1',mage:'#e7ecda',knight:'#d1e1df',occultist:'#d7bddf'}[u.cls];
- c.save();c.translate(origin.x,origin.y);c.rotate(-angle);c.scale(1/zoom,1/zoom);c.setLineDash([]);c.lineCap='round';c.lineJoin='round';
+ c.save();c.translate(origin.x,origin.y);c.rotate(-angle);const size=1/Math.sqrt(zoom);c.scale(size,size);c.setLineDash([]);c.lineCap='round';c.lineJoin='round';
  // A fine, uninterrupted centre makes the selected direction unambiguous against scenery.
  c.beginPath();c.moveTo(5,0);c.lineTo(length-5,0);c.strokeStyle='#10242a';c.globalAlpha=.6;c.lineWidth=3.5;c.stroke();
  const gradient=c.createLinearGradient(0,0,length,0);gradient.addColorStop(0,ink+'30');gradient.addColorStop(.55,ink);gradient.addColorStop(1,ink+'b0');

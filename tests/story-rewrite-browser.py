@@ -19,7 +19,7 @@ def fixture_win(page,sid):
     return page.evaluate('''sid=>{const a=HonroApp,e=a.engine,b=e.b,hs=b.honroState,st=a.stage;
       for(const ev of b.honroEvents)hs.flags['event:'+ev.id]=true;hs.pendingEvents=[];
       for(const u of b.units){Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});if(u.side===1&&!(sid===10&&u.id==='boss')){u.hp=0;u.dead=true;}}
-      b.phase='transition';b.projectiles=[];b.round=Math.max(b.round,sid+3);hs.objectiveReadyRound=b.round-2;
+      b.phase='transition';b.projectiles=[];b.round=Math.max(b.round,sid+3,HonroObjectives.state(b,st).minimumRound+2);hs.objectiveReadyRound=b.round-2;
       if(sid===1){e.heroesAlive()[0].x=b.honroMarkers.find(m=>m.type==='exit').x;delete hs.flags['event:witness'];hs.pendingEvents.push('witness');}
       if(sid===2)e.unit('objective').x=b.honroEscortGoalX;
       if(sid===3)hs.ledger=true;

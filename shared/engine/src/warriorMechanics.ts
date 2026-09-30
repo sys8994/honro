@@ -13,9 +13,16 @@ export function meleeRange(u:Unit,s:Skill,power:number){return s.radius*(1+(['co
 export function meleeFactor(u:Unit,power:number){return .88+(.47+.012*passiveRank(u,'SP01'))*power;}
 export function meleeSpan(u:Unit,s:Skill,power=0){const base=s.mode==='meleeWide'?48:s.mode==='counterStance'?40:s.mode==='meleeCombo'?22:25;return rad(base+Math.max(0,(u.ranks[s.id]||1)-1)*1.5+clamp(power,0,1)*10+passiveRank(u,'SP01')*.5);}
 export function meleeContains(e:Engine,u:Unit,t:Unit,range:number,angle=-rad(u.angle),span=meleeSpan(u,SKILLS.S00)){
- const a=at(u),v=at(t),dx=v.x-a.x,dy=v.y-a.y,dist=Math.hypot(dx,dy),delta=Math.abs(Math.atan2(Math.sin(Math.atan2(dy,dx)-angle),Math.cos(Math.atan2(dy,dx)-angle)));
- if(dist>range+t.r||dist>t.r&&delta>span/2+Math.asin(Math.min(1,t.r/Math.max(1,dist))))return false;
- return !e.collision(a,v,1,u.id,[],false);
+ const a=at(u),padding=6,bodyRadius=t.r+padding;
+ // A tall sprite can visibly overlap the preview sector even when its centre is outside it.
+ for(const offset of [-.22,0,.22]){
+  const v={x:t.x,y:t.y-t.h*(.5+offset)},dx=v.x-a.x,dy=v.y-a.y,dist=Math.hypot(dx,dy);
+  if(dist>range+bodyRadius)continue;
+  const delta=Math.abs(Math.atan2(Math.sin(Math.atan2(dy,dx)-angle),Math.cos(Math.atan2(dy,dx)-angle)));
+  if(dist>bodyRadius&&delta>span/2+Math.asin(Math.min(1,bodyRadius/Math.max(1,dist))))continue;
+  if(!e.collision(a,v,1,u.id,[],false))return true;
+ }
+ return false;
 }
 function stroke(e:Engine,u:Unit,range:number,facing=u.facing,color='#dbe2dd',variant=0,angle?:number,span?:number){
  const c=at(u);e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:facing,y2:variant,color,size:range,text:angle===undefined?undefined:JSON.stringify({angle,span})});u.anim=.55;
@@ -37,7 +44,7 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
   const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp*.5):0;
   if(lifeCost)u.hp-=lifeCost;
-  u.meleeAction={skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(.65+.25*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
+  u.meleeAction={skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(.72+.27*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
   if(power<.30&&s.mode!=='lifeSlash')u.martialGuard={round:e.b.round,reduction:.12*(1-power/.30)};
   return;
  }

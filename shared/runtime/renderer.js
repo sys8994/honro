@@ -65,6 +65,7 @@
         }
         focusUnit(id,ms=900,speaker=false){this.focusId=id;this.focusUntil=performance.now()+ms;if(speaker){this.speakerId=id;this.speakerUntil=performance.now()+ms;}this.manual=false;}
         storyFocus(id,duration=500,targetScale=null){this.storyTween={kind:'unit',id,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},targetScale};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
+        storyFocusPoint(x,y,duration=500){const {h}=this.size();this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x,y:y-h*.10/this.scale,scale:this.scale},manual:false};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
         storyRelease(camera,duration=450){if(!camera)return;this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
         event(ev) { if (this.arcFx) { this.arcFx.event(ev); return; } if (ev.type === 'fx') this.effects.push({ ...ev, life: 0 }); }
         size() { const r = this.canvas.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 1.7), w = Math.max(1, r.width), h = Math.max(1, r.height); if (this.canvas.width !== Math.round(w * d) || this.canvas.height !== Math.round(h * d)) {

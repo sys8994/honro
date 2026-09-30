@@ -84,7 +84,7 @@ export class Engine {
     manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge); }
     skillAllowed(s:Skill,u=this.active){return !!u&&warriorAllowed(u,s);}
     manualDive(){return manualDive(this);}
-    cooldownLeft(u:Unit,skillId:string){const raw=Math.max(0,(u.cooldowns?.[skillId]||0)-this.b.round),cap=SKILLS[skillId]?.cooldown;return cap?Math.min(cap,raw):raw;}
+    cooldownLeft(u:Unit,skillId:string){const cap=SKILLS[skillId]?.cooldown;if(!cap)return 0;const raw=Math.max(0,(u.cooldowns?.[skillId]||0)-this.b.round);return Math.min(cap,raw);}
     effective(s: Skill, u: Unit) {
         let speed = s.speed, damage = s.damage * skillBalanceFactor(s) * u.attack * (1-(u.curseAttack||0)), radius = s.radius;
         if (u.side === 0) {

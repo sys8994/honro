@@ -22,20 +22,20 @@ export function installWarriorSkills(skills:Record<string,Skill>){
   ['S05','회신참','sword','meleeTurn',41,27,180,'앞을 벤 뒤 몸을 돌려 뒤까지 베어낸다. 포위된 상황에서 특히 강하다.'],
   ['S07','연참','sword','meleeCombo',26,32,165,'가까운 적을 빠르게 연이어 벤다. 적이 쓰러지면 남은 베기를 다음 적에게 이어간다.'],
   ['S08','응수세','sword','counterStance',62,24,185,'검을 세우고 상대를 기다린다. 공격을 견뎌내며 가까이 들어온 첫 적을 즉시 베어낸다.'],
-  ['S02','사생참','sword','lifeSlash',80,0,180,'자신의 생명을 깎아 한 번의 검격에 쏟아붓는다. 소모한 체력이 많을수록 위력이 커진다.'],
+  ['S02','사생참','sword','lifeSlash',116,42,180,'자신의 생명과 기력을 깎아 한 번의 검격에 쏟아붓는다. 소모한 체력이 많을수록 위력이 커진다.'],
   ['S01','도약참','rush','warriorLeap',62,24,82,'몸을 날려 목표 지점으로 뛰어들며 적을 벤다.'],
   ['S06','회풍참','rush','warriorSweep',48,30,78,'날아가는 길목의 적들을 차례로 베어내며 통과한다.'],
   ['S04','파산격','rush','warriorDive',65,34,175,'날아가는 도중 다시 명령하면 즉시 아래로 내리꽂는다. 높은 곳에서 떨어질수록 충격이 강해진다.'],
   ['S15','쇄진돌격','rush','warriorDrive',58,36,70,'적진을 가르며 전진한다. 지상의 적은 함께 밀어내고 공중의 적은 베고 지나간다.'],
-  ['S13','파진연격','rush','warriorFollow',64,48,85,'적진을 베며 돌파한 뒤 곧바로 검술을 이어간다. 착지 후 한 번의 근접 공격을 추가로 사용할 수 있다.'],
+  ['S13','파진연격','rush','warriorFollow',82,62,85,'적진을 베며 돌파한 뒤 곧바로 검술을 이어간다. 착지 후 한 번의 근접 공격을 추가로 사용할 수 있다.'],
   ['S09','월영참','blade','bladeMoon',48,22,0,'검을 휘둘러 날카로운 검기를 멀리 날린다.'],
   ['S10','견인참','blade','bladePull',43,32,0,'검기에 닿은 자를 자신 앞으로 끌어온다. 적은 끌어온 뒤 다시 한 번 베어낸다.'],
   ['S11','관통참','blade','bladePierce',47,34,0,'검기가 적을 꿰뚫으며 계속 날아간다. 지나친 모든 적에게 피해를 준다.'],
   ['S14','검막','blade','bladeScreen',0,28,175,'검압을 남겨 날아오는 공격을 받아낸다. 막아낸 힘은 다음 검기에 실린다.'],
-  ['S12','회륜검기','blade','bladeOrbit',28,56,0,'여러 검기를 하나의 궤도에 실어 날린다. 서로 다른 궤도로 공전하는 검기들이 적을 연이어 꿰뚫는다.']
+  ['S12','회륜검기','blade','bladeOrbit',36,70,0,'여러 검기를 하나의 궤도에 실어 날린다. 서로 다른 궤도로 공전하는 검기들이 적을 연이어 꿰뚫는다.']
  ];
  for(const [id,name,branch,mode,damage,cost,radius,desc] of rows){const old=skills[id]||skills.S01,capstone=['S02','S13','S12'].includes(id);
-  skills[id]={...old,id,name,cls:'knight',branch,mode,damage,cost:cost/MANA_COST_MULTIPLIER,radius:branch==='sword'?radius*MELEE_REACH_SCALE:radius,desc,tag:({sword:'검술',rush:'돌격',blade:'검기'} as Record<string,string>)[branch],color:'#c6d3d2',icon:WARRIOR_ICONS[id],speed:branch==='rush'?(id==='S15'?1.12:.98):1.1,wind:.55,gravity:1,terrain:.3,redesigned:true,martial:true,basic:id==='S00',capstone,ultimate:false,cooldown:capstone?2:undefined,phase:undefined,fuse:undefined};
+  skills[id]={...old,id,name,cls:'knight',branch,mode,damage,cost:cost/MANA_COST_MULTIPLIER,radius:branch==='sword'?radius*MELEE_REACH_SCALE:radius,desc,tag:({sword:'검술',rush:'돌격',blade:'검기'} as Record<string,string>)[branch],color:'#c6d3d2',icon:WARRIOR_ICONS[id],speed:branch==='rush'?(id==='S15'?1.12:.98):1.1,wind:.55,gravity:1,terrain:.3,redesigned:true,martial:true,basic:id==='S00',capstone,ultimate:false,cooldown:undefined,phase:undefined,fuse:undefined};
  }
  skills.S99={...skills.LS99,id:'S99',enemyOnly:true,ultimate:false};
  const passives:Record<string,[string,string]>={

@@ -20,7 +20,12 @@ function balance(b){
  b.honroEncounterRevision=1;
 }
 function configure(b){
-  if(!b.honroEvents||b.honroCanonical)return;
+  if(!b.honroEvents)return;
+  if(b.honroStage===4&&b.honroEncounterRevision&&!b.honroEvents.some(ev=>ev.id==='siege-mid')){
+    const wave={id:'siege-mid',when:{round:5},action:{type:'spawn',n:4,x:2320,kind:'hound'},text:'산개들이 중간 길목을 넘어 피란문으로 내려온다.',lines:[],once:true};
+    const first=b.honroEvents.findIndex(ev=>ev.id==='siege-0');b.honroEvents.splice(first+1,0,wave);
+  }
+  if(b.honroCanonical)return;
   if(b.honroStage===2){
     const chain=['road-pressure','sniper-seen','right-cliff','last-flight'];
     for(const ev of b.honroEvents){
@@ -67,7 +72,8 @@ function flush(app){
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(combat(ev.action)){
-      const cap=Math.min(G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1),hs.sodanCoop?G.HonroMission.FINALE_CAP:Infinity);
+      const normalCap=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
+      const cap=Math.min(b.honroStage===4?Math.max(normalCap,26):normalCap,hs.sodanCoop?G.HonroMission.FINALE_CAP:Infinity);
       if(spawned||enemies+spawnCount(ev.action)>cap)continue;
     }
     if(G.HonroAllies.execute(app,ev.action)===false)continue;

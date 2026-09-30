@@ -20,10 +20,10 @@ def suite(page,shell):
             page.evaluate('([id,angle])=>aimSetup(id,angle)',[sid,angle])
             box=page.locator('#fire').bounding_box();owner.mouse.move(box['x']+box['width']/2,box['y']+box['height']/2);owner.mouse.down();owner.wait_for_timeout(90)
             marks=page.evaluate('aimPaint()')
-            state=page.evaluate("({charging:HonroApp.charging,phase:HonroApp.engine.b.phase,dpr:HonroApp.scene.size().d})")
+            state=page.evaluate("({charging:HonroApp.charging,phase:HonroApp.engine.b.phase,dpr:HonroApp.scene.size().d,zoom:HonroApp.scene.scale})")
             expected=angle
             import math
-            check(shell+f': {sid} charge at {angle} degrees draws a separate correctly oriented direction signature',state['charging'] and len(marks)==1 and abs(marks[0]['m'][0]/state['dpr']-math.cos(math.radians(expected)))<1e-7 and abs(marks[0]['m'][1]/state['dpr']+math.sin(math.radians(expected)))<1e-7,{'marks':marks,'state':state})
+            check(shell+f': {sid} charge at {angle} degrees draws a separate correctly oriented direction signature',state['charging'] and len(marks)==1 and abs(marks[0]['m'][0]/state['dpr']-math.cos(math.radians(expected))*math.sqrt(state['zoom']))<1e-7 and abs(marks[0]['m'][1]/state['dpr']+math.sin(math.radians(expected))*math.sqrt(state['zoom']))<1e-7,{'marks':marks,'state':state})
             if angle==35:owner.screenshot(path=str(OUT/(shell+'-'+sid+'.png')))
             owner.mouse.up()
             check(shell+f': {sid} release hides the aiming signature during the actual attack',not page.evaluate('aimPaint()') and page.evaluate('HonroApp.engine.b.phase')!='aim')
@@ -36,7 +36,7 @@ def suite(page,shell):
       sc.fillStyle='#e4e6d9';sc.font='18px sans-serif';sc.fillText({A01:'설오 · 활시위와 화살깃',M01:'담허 · 붓결과 기의 흐름',S09:'휘겸 · 검의 날과 바람',O01:'소단 · 혼불과 혼의 실'}[id],15,i*140+63);
       signatures.push(animation[0]);rows.push({id,widths,animated:new Set(animation).size===3,pure:JSON.stringify(e.b)===before});
      }window.aimSheet=sheet.toDataURL();return{rows,distinct:new Set(signatures).size};}''')
-    check(shell+': all four signatures animate, remain distinct and preserve pixel width at every zoom',result['distinct']==4 and all(r['animated'] and r['pure'] and all(abs(w-1.35)<1e-6 for w in r['widths']) for r in result['rows']),result)
+    check(shell+': all four signatures animate, remain distinct and scale with square-root zoom',result['distinct']==4 and all(r['animated'] and r['pure'] and all(abs(w-1.35*math.sqrt(z))<1e-6 for w,z in zip(r['widths'],[.2,.5,1.2])) for r in result['rows']),result)
     (OUT/(shell+'-signatures.png')).write_bytes(base64.b64decode(page.evaluate('aimSheet').split(',')[1]))
     page.evaluate("{const {a}=aimSetup('A15',55,.2);a.charging=true;a.power=.75;aimPaint();}");owner.screenshot(path=str(OUT/(shell+'-zoom-out.png')))
     check(shell+': redesigned seven-star keeps direction and trajectory simultaneously',len(page.evaluate('aimPaint()'))==1)
