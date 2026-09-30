@@ -11,6 +11,8 @@
 
 1·2스테이지 개편의 실제 화면·작성 과정·검증은 [개편 보고서](game/docs/STAGE12_REDESIGN.md)에 있습니다. 기존 전투 저장은 보존하며 새 스테이지 진입·재시도에 새 맵을 적용합니다. Workshop에 기존 자동저장 프로젝트가 있으면 활성 [campaign.json](shared/data/campaign.json)을 Import하여 새 기본 맵을 불러올 수 있습니다.
 
+3–6스테이지의 지형·건축물 접지·물길·한국 산지 분위기 개편은 [장소 설계 기록](game/docs/STAGE36_PLACE_DESIGN.md)을 참고합니다. `npm.cmd run test:stage36`으로 레시피 재현, 지형 접지, Game/Stage View/Playtest 화면을 검사합니다.
+
 `file://`로 실행하거나, 저장소 루트에서 `python -m http.server 8000`을 실행하고 `http://localhost:8000/HONRO_WORKSHOP.html`을 엽니다.
 
 ## GitHub Pages 배포

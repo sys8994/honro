@@ -369,7 +369,9 @@ export function tickRedesign(e:Engine,dt:number){
   if(z.active){
    for(const u of b.units.filter(u=>enemy(z,u))){const d=Math.hypot(u.x-z.x,u.y-z.y),token=`${b.round}:${b.teamEnds[u.side]}`,was=z.inside!.includes(u.id);
     if(d<=220){u.slowed={factor:Math.min(.55,.45*boost),expires:b.round};if(!was)z.inside!.push(u.id);z.budgetTurns??={};if(z.budgetTurns[u.id]!==token){z.budgetTurns[u.id]=token;u.moveLeft*=1-Math.min(.45,.35*boost);}}
-    else if(was){if(z.crossed![u.id]!==token){z.crossed![u.id]=token;e.hurt(u,z.damage*22/35,z.owner,false,p,z);}
+    else if(was){
+     // Leaving is an event: repeated upward impulses would keep this unit airborne forever.
+     z.inside!.splice(z.inside!.indexOf(u.id),1);if(z.crossed![u.id]!==token){z.crossed![u.id]=token;e.hurt(u,z.damage*22/35,z.owner,false,p,z);}
      if(!u.boss&&!u.fixed){e.impulse(u,(z.x-u.x)*2,-60);u.moveLeft=0;}else u.breaks=Math.max(1,u.breaks);
     }
    }

@@ -10,11 +10,13 @@ output = ROOT/(sys.argv[2] if len(sys.argv) > 2 else '_local/reports/performance
 rows = []
 errors = []
 editor = 'WORKSHOP' in source.name
+requested = next((arg.removeprefix('--stages=') for arg in sys.argv[3:] if arg.startswith('--stages=')), None)
+stages = [int(s) for s in requested.split(',')] if requested else [1, 2, 7, 10]
 with sync_playwright() as p:
     browser = launch(p)
     for width, height, zoom in [(1365, 768, .82), (1365, 768, .20), (844, 390, .20)]:
         # Include the denser late-stage formations after doubling campaign enemies.
-        for sid in [1, 2, 7, 10]:
+        for sid in stages:
             page = browser.new_page(viewport={'width':width,'height':height})
             page.on('pageerror', lambda e: errors.append(str(e)))
             page.goto(source.as_uri(), wait_until='load')

@@ -157,6 +157,9 @@
                 c.save();c.globalAlpha=.76;for(const l of visibleLandmarks)if((l.layer||'back')==='prop'||(l.layer||'back')==='mid')this.landmark?.(c,l);c.restore();
                 c.save();c.globalAlpha=.94;for(const l of visibleLandmarks)if((l.layer||'back')==='front')this.landmark?.(c,l);c.restore();
             }
+            // Animated water lives outside the world raster cache; its collision and
+            // conduction geometry remain in the canonical static map.
+            this.liveWater?.(c,b);
             for (const a of b.honroMarkers || []) {
                 if (a.collected||a.type==='sector')
                     continue;

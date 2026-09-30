@@ -7,13 +7,15 @@ const g=await runtime(),old=await legacyRuntime(),plain=x=>JSON.parse(JSON.strin
 const project=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));
 const baseline=plain(await migrate());
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
-assert.deepEqual(plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline))),project,'Migration plus Workshop design must be reproducible');
-const originalLater=plain(baseline.stages.slice(2)),activeLater=plain(project.stages.slice(2));
-activeLater[7].elements.find(e=>e.kind==='ritualDais').layer='back';
-assert.deepEqual(activeLater,originalLater,'Later stages retain original data apart from ritual dais presentation layer');
+vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design.js',import.meta.url),'utf8'),g);
+const firstDesign=plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline)));
+assert.deepEqual(plain(g.HonroCommands.apply(firstDesign,g.HonroStage36Places.commands(firstDesign))),project,'Migration plus Stage 1–6 Workshop designs must be reproducible');
+const originalLater=plain(baseline.stages.slice(6)),activeLater=plain(project.stages.slice(6));
+activeLater[3].elements.find(e=>e.kind==='ritualDais').layer='back';
+assert.deepEqual(activeLater,originalLater,'Stages 7–10 retain original data apart from ritual dais presentation layer');
 for(let id=1;id<=10;id++){
- // The original import remains lossless. Stage 1/2 intentionally use the separately tested Workshop redesign.
- g.HONRO_PROJECT=id<=2?baseline:project;
+ // The original import remains lossless. Stages 1–6 have separately tested Workshop redesigns.
+ g.HONRO_PROJECT=id<=6?baseline:project;
  for(const difficulty of ['story','normal','veteran']){
   const p=g.HonroMaps.profileFor(project.stages[id-1]);p.settings.difficulty=difficulty;
   const a=battlefield(old,id,{profile:plain(p)}).b,b=g.HonroMaps.createBattle(g.HONRO_PROJECT.stages[id-1],g.HONRO_PROJECT,plain(p),{legacyBalance:true});
@@ -31,4 +33,4 @@ for(let id=1;id<=10;id++){
  rows.push({stage:id,terrain:st.terrains.length,units:st.units.length,passed:true});console.log('PASS migrated stage',id);
 }
 g.HONRO_PROJECT=project;
-await mkdir('_local/reports',{recursive:true});await writeFile('_local/reports/migration.json',JSON.stringify({rows,reproducible:true,redesignedStages:[1,2],comparison:'Original import for 1/2; stages 3-10 retain original data except ritual dais presentation layer. Workshop recipe reproduction verified for the complete active project.',difficulties:['story','normal','veteran'],roundTrip:true},null,2)+'\n');
+await mkdir('_local/reports',{recursive:true});await writeFile('_local/reports/migration.json',JSON.stringify({rows,reproducible:true,redesignedStages:[1,2,3,4,5,6],comparison:'Original import for 1–6; stages 7–10 retain original data except ritual dais presentation layer. Both Workshop recipes reproduce the active project.',difficulties:['story','normal','veteran'],roundTrip:true},null,2)+'\n');

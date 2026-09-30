@@ -18,7 +18,7 @@
 
 `workshop/recipes/stage12-forest-basin.js`가 만드는 명령을 실행 중인 `HonroWorkshopAPI.previewCommands/applyPreview`로 적용했다. Preview의 원본 불변, Undo/Redo의 문자열 일치, schema 검증을 확인한 후 `exportProject()` 결과를 `shared/data/campaign.json`에 저장했다. [실행 증거](../../_local/reports/stage12-redesign/authoring.json). 새 asset 추가, terrain 생성, 재질 작성, unit/marker 이동, anchor/escort 목표 변경을 모두 같은 모델에서 수행한다.
 
-새 작성 명령은 `asset.add`, `stage.update`, `object.update`, terrain의 `properties`이다. 게임·편집기·Playtest는 동일 canonical 데이터를 컴파일한다. Stage 3~10은 원본과 동일하다. `npm run migrate`는 원본 이관 후 이 레시피까지 재현한다.
+새 작성 명령은 `asset.add`, `stage.update`, `object.update`, terrain의 `properties`이다. 게임·편집기·Playtest는 동일 canonical 데이터를 컴파일한다. 당시 Stage 3~10은 원본과 동일했다. 이후 3–6장은 [장소 설계 작업](STAGE36_PLACE_DESIGN.md)을 추가 적용했다. `npm run migrate`는 원본 이관 후 1·2장 레시피와 3–6장 레시피를 재현한다.
 
 ## 동작·검증
 

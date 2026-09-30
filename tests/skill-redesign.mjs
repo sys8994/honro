@@ -106,6 +106,15 @@ test('회기 refunds complete misses exactly once, authored balance stays author
 test('오방봉진 reduces the renewed movement budget once each turn',()=>{
  const a=arena('M99');place(a,'M99',1000);const t=a.foe(1000);C.tickRedesign(a.e,0);assert.equal(t.moveLeft,t.maxMove*.65);a.b.teamEnds[1]++;t.moveLeft=t.maxMove;C.tickRedesign(a.e,0);assert.equal(t.moveLeft,t.maxMove*.65);C.tickRedesign(a.e,0);assert.equal(t.moveLeft,t.maxMove*.65);
 });
+test('오방봉진 boundary push lets an enemy land and complete its turn',()=>{
+ const a=arena('M99');place(a,'M99',1000);const t=a.foe(1000,1800,{fixed:false});C.tickRedesign(a.e,0);
+ assert(a.b.stakes[0].active&&a.b.stakes[0].inside.includes(t.id));
+ a.b.mode='campaign';a.b.side=1;a.b.phase='enemy';a.b.active=t.id;a.b.queue=[t.id];a.u.acted=true;
+ a.e.checkEnd=()=>false;t.y=1450;t.vx=t.vy=0;t.airborne=false;
+ for(let i=0;i<720&&!t.acted;i++)a.e.tick(C.STEP);
+ assert(t.acted,`enemy turn stuck at y=${t.y}, vy=${t.vy}, phase=${a.b.phase}`);
+ assert.equal(t.y,1800);
+});
 test('mid-flight save restores every emitter, child mode, volley and stake',()=>{
  for(const id of ['A08','M06','M02','M13','M05']){
   const a=arena(id,8);a.u.maxHp=a.u.hp=1000;a.foe();const q=a.fire();a.e.impact(q,{x:900,y:1790,t:0,n:{x:0,y:-1},terrain:a.b.terrain[0]});if(id==='M02')q.age=q.fuseAt;

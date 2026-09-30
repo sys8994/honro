@@ -1,5 +1,9 @@
 # HONRO 게임 수정 맥락
 
+**3·4장 물·밤숲·선택 경로(HBUG-056, 2026-09-30):** 3장의 `ferry-water`는 이제 실제 전도 물 영역이며, `shared/runtime/map-art-polish.js`의 `liveWater`가 정적 캐시 밖에서 흐름·지주 회류·착수 파문을 그린다. `renderer.js`는 월드 캐시 뒤, 유닛 앞에서 이 패스를 호출한다. 3장의 `ferry-side-gangway`와 4장의 `burned-gallery`는 `workshop/recipes/stage36-place-design.js`가 만드는 파괴 가능한 선택 발판이며 기존 지상 경로는 유지한다. 두 장의 원경만 높은 밤숲으로 교체했다. 관련 검사는 `node tests/stage36-place-design.mjs`, `python -X utf8 tests/stage36-place-browser.py --stage34`, `node tests/migration.mjs`, `python -X utf8 tests/integration.py`다. [작업 기록](STAGE36_PLACE_DESIGN.md).
+
+**3–6장 장소 재구성(HBUG-055, 2026-09-30):** 활성 `shared/data/campaign.json`의 3–6장은 [장소 설계 기록](STAGE36_PLACE_DESIGN.md)과 `workshop/recipes/stage36-place-design.js`가 기준이다. 이 레시피는 1·2장 레시피 뒤에 적용하며 `tools/map-forge/apply-stage36.mjs --check`로 재현성을 검사한다. 지형에 붙은 유닛·마커·앵커와 물 영역을 함께 보정하므로, 다른 맵 작업에서 새 지형만 덮어쓰지 않는다. 새 벡터 구조물은 `shared/runtime/map-art-polish.js`의 `builtin:placeDetail`로 Game/Stage View/Playtest가 함께 그린다. 회귀 검사는 `npm run test:stage36`과 전체 `npm run verify`다.
+
 **맵 장식·원경 개정(HBUG-052, 2026-09-30):** `shared/runtime/map-art-polish.js`가 활성 10개 Stage의 전각·성문·산신당·당산나무·제단을 종류별로 그리고, 기본 원경 능선을 둥근 반복 곡선에서 각진 산세로 바꾼다. 1·2장 화강암은 `tools/map-forge/polish.py`가 활성 프로젝트 라이브러리의 visual만 수정한다. 10장 낮은 의식 제단은 prop 레이어에서 보이며 충돌·상호작용은 그대로다. `tests/fixtures/map-art-baseline.json`의 52개 Canvas 경로 점 수를 `test:map-art`가 2배 상한으로 검사하고 Game/Stage View/Playtest 동일 그림과 실제 화면을 확인한다. [제작 기준](MAP_ART_PIPELINE.md).
 
 **받이진 유지·축지진목 E(2026-09-30, HBUG-050/051):** 5장 의식의 시작에는 접지를 요구하지만 유지에는 속도/`grounded()`를 요구하지 않는다. 실제 진 범위 이탈·사망까지 유지하며 안내도 E 재입력을 요구하지 않는다. 축지는 발밑 지지면을 도착 장애물에서 제외하고, 가까운 사용 가능 진목의 E 입력과 버튼을 다른 상호작용보다 우선한다. 저장 상태·턴당 사용 제한은 유지한다. 집중 검사는 `python -X utf8 tests/interaction-hold-gate-browser.py`이며 두 HTML의 입력/피격/턴/저장/경사면/막힌 도착만 확인한다. 이번에는 사용자의 검사 범위 제한에 따라 전체 재검사를 중단했다.
