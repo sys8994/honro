@@ -1,6 +1,10 @@
 # HONRO 게임 수정 맥락
 
-**소단 공중 시전·허공터·BGM(HBUG-060, 2026-10-01):** 초혼과 만혼귀결은 `occultData.ts`의 시한 및 `Engine.predict()`·`stepProjectile()`의 같은 비행 경로에서 종점을 정한다. 새 먹귀·반향령·지박령은 `tools/actor-forge/`의 독립 벡터이고 `renderer.js`는 먹귀 흡인 반경을 실제 계산식으로 그린다. 허공터 설정 적용은 `training.js`에서 조작 영웅만 바꾸며 `world.js`의 숨은 상승 기류는 제거했다. 5번 BGM은 10장에서만 사용하고 `bgm.ts`는 새 전투 시 재생 위치를 지운다. [설계와 집중 검사](SODAN_FOLLOWUP_DESIGN.md)를 본다.
+**먹귀 피격 성장(HBUG-062, 2026-10-01):** `Engine.growEater()`는 적 탄 흡수와 적의 직접 피해(방패 포함)에 같은 성장 단계를 적용한다. 몸 높이와 피격 반경은 최대 170%가 되고 몸의 중심과 흡인장의 중심은 그대로다. 흡수 폭발 기준은 `190 + 경지×38`; 새 `summonGrowthHits`는 선택적 저장 필드여서 옛 저장은 0회 성장으로 이어진다. 집중 검사는 `tests/sodan-redesign.mjs`와 `tests/sodan-followup-browser.py`다.
+
+**소단 황천창·배회령·존재상 정보(HBUG-061, 2026-10-01):** 황천창 `O04`의 짧은 충전 최저 속도는 `Engine.velocity()`에서 실제 투사체와 예측에 같이 적용한다. 배회령 `O11`은 시한 발동 없이 지형 충돌만으로 소환하며 옛 비행 저장의 시한도 런타임에서 버린다. 배회령·등불귀 이동·사거리는 `summons.ts`에서 관리한다. 공통 궤적은 `skillVisuals.ts`의 `guideStroke()`로 선폭·점선 간격을 공유하고 `CLASSES`의 직업색을 쓴다. 소환령 대기는 `tools/actor-forge/spirits.mjs`의 벡터 파트 압축·팽창으로 만들고 `tests/actor-art-browser.py`에서 확인한다. 정보 UI는 `campUI.ts`의 공격 구성/피해 반응 표시를 기예 상세·허공터·클릭 대상 정보에 재사용하며 실제 반응값은 `existence.ts`가 계산한다.
+
+**소단 공중 시전·허공터·BGM(HBUG-060, 2026-10-01):** 등불귀 등 공중 초혼과 만혼귀결은 `occultData.ts`의 시한 및 `Engine.predict()`·`stepProjectile()`의 같은 비행 경로에서 종점을 정한다. 배회령은 HBUG-061부터 지형 착탄만 사용한다. 새 먹귀·반향령·지박령은 `tools/actor-forge/`의 독립 벡터이고 `renderer.js`는 먹귀 흡인 반경을 실제 계산식으로 그린다. 허공터 설정 적용은 `training.js`에서 조작 영웅만 바꾸며 `world.js`의 숨은 상승 기류는 제거했다. 5번 BGM은 10장에서만 사용하고 `bgm.ts`는 새 전투 시 재생 위치를 지운다. [설계와 집중 검사](SODAN_FOLLOWUP_DESIGN.md)를 본다.
 
 **형·기·혼 피해 계층(HBUG-059, 2026-10-01):** `shared/engine/src/existence.ts`가 공격 구성비와 종족별 감응도, 선택적 전투 중 변화량, 최종 배수를 정의한다. 모든 일반 피격은 `Engine.hurt()`에서 기존 기술 피해·조건·치명·방어 계산을 거쳐 이 계층을 적용한다. `shared/engine/src/data.ts`는 플레이어 및 옛 NPC 기술에, `shared/runtime/world.js`는 현재 몬스터 기술에 공격 구성을 연결한다. 기본 감응도는 종족/역할에서 조회해 활성 맵과 옛 저장의 유닛 레코드를 변경하지 않으며, 새 저장에는 `existenceDefense` 또는 `existenceShift`를 선택적으로 둘 수 있다. 분류표·공식·밸런스 판단은 [현재 설계와 검증](DAMAGE_EXISTENCE_SYSTEM.md), 집중 검사는 `tests/existence-damage.mjs`와 `tests/existence-damage-browser.py`를 본다.
 

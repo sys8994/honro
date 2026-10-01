@@ -8,6 +8,7 @@
 .honro .unit-info-health i{display:block;height:100%;background:#759c85}
 .honro .unit-info[data-side=enemy] .unit-info-health i{background:#a57665}
 .honro .unit-info-health span{position:absolute;inset:0;text-align:center;font-size:12px;line-height:20px;color:#fff8e6;text-shadow:0 1px 3px #000}
+.honro .unit-info-existence .existence-info{margin:10px 0 0;padding:7px 8px}
 .honro .unit-info-desc{margin:12px 0 8px;font-size:13px;line-height:1.65;color:#c5cbbd}
 .honro .unit-info-skills,.honro .unit-info-status{font-size:11px;line-height:1.7;color:#c6b992}
 .honro .unit-info-status:empty,.honro .unit-info-skills:empty{display:none}

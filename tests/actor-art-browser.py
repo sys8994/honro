@@ -20,7 +20,7 @@ AUDIT=r'''()=>{const V=HonroActorVisual,cv=document.createElement('canvas');cv.w
  for(const[id,a]of Object.entries(V.assets)){let bounded=true,visible=true,rigid=true;const frames={};
  for(const facing of [-1,1])for(const motion of Object.keys(a.clips))for(const t of [0,.2,.48,.75,1]){
   const state=motion==='idle'?{}:motion==='move'?{move:true}:{[motion==='jump_fall'?'jump':motion]:t};
-  const pose=V.pose(a,t*a.clips[motion].duration,state);rigid&&=Object.values(pose).every(p=>p.scaleX===1&&p.scaleY===1&&Object.values(p).every(Number.isFinite));
+  const pose=V.pose(a,t*a.clips[motion].duration,state);rigid&&=Object.values(pose).every(p=>Object.values(p).every(Number.isFinite)&&(a.family==='summon'||p.scaleX===1&&p.scaleY===1));
   c.clearRect(0,0,700,700);c.save();c.translate(350,520);c.scale(facing*180/a.baseHeight,180/a.baseHeight);V.draw(c,id,{time:t*a.clips[motion].duration,state,pixels:180});c.restore();
   const pixels=c.getImageData(0,0,700,700).data;let count=0;
   for(let y=0;y<700;y++)for(let x=0;x<700;x++)if(pixels[(y*700+x)*4+3]>32){count++;if(x===0||x===699||y===0||y===699)bounded=false;}
@@ -45,9 +45,12 @@ with sync_playwright() as p:
     lab=browser.new_page(viewport={'width':1500,'height':1100});listen(lab);lab.goto((OUT/'index.html').as_uri());lab.wait_for_function('window.ActorLab')
     actor_fixtures=lab.evaluate('catalog')
     rows=lab.evaluate(AUDIT)
+    idle=lab.evaluate(r'''() => Object.values(HonroActorVisual.assets).filter(a=>a.family==='summon').map(a=>({id:a.id,rotates:a.clips.idle.tracks.some(t=>t.channel==='rotate'),deforms:a.clips.idle.tracks.some(t=>t.channel==='scaleX'||t.channel==='scaleY'),amplitude:Math.max(...a.clips.idle.tracks.filter(t=>t.channel==='scaleX'||t.channel==='scaleY').flatMap(t=>t.keys.map(k=>Math.abs(k[1]-1))))}))''')
+    check('Summon idle uses contour deformation without repeated tilting',all(v['deforms'] and not v['rotates'] for v in idle),idle)
+    check('Eater has a visible grotesque compression cycle',next(v for v in idle if v['id']=='summon_eater')['amplitude']>=.04,idle)
     for row in rows:
         m=next(m for m in METRICS['assets'] if m['id']==row['id'])
-        check(row['id']+': bounded five-motion geometry, rigid joints and planted idle feet',all(row[k] for k in ['bounded','visible','rigid','planted']),row)
+        check(row['id']+': bounded five-motion geometry, valid joints and planted idle feet',all(row[k] for k in ['bounded','visible','rigid','planted']),row)
         budget=BASE['assets'][row['id']]['anchors']*3.15 if row['id'] in BASE['assets'] else 240
         check(row['id']+': anchor ceiling and visible attack/hit response',m['anchors']<=budget and row['clips']['attack']>1 and row['clips']['hit']>1,{'anchors':m['anchors'],'ratio':m['ratio']})
     check('Actor source provenance matches runtime',lab.evaluate('HONRO_ACTORS.sourceSha256')==METRICS['sourceSha256']==hashlib.sha256('\n'.join(n+'\n'+(ROOT/n).read_text(encoding='utf-8') for n in METRICS['sourceFiles']).encode()).hexdigest())

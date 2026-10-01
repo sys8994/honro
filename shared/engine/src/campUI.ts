@@ -1,17 +1,24 @@
 /** Pure view builders for the armory. State changes stay in App/progression. */
-import type { Profile, ClassId } from './types';
+import type { Profile, ClassId, Skill, Unit, ExistenceVector } from './types';
 import { SKILLS, CLASSES } from './data';
 import { icon } from './icons';
 import { escapeHTML as esc } from './math';
 import { MANA_COST_MULTIPLIER } from './balance';
 import {skillPlayNotes} from './skillNotes';
 import {skillGrowthRows} from './progression';
+import {attackForSkill,normalizedAttack,effectiveDefenseForUnit} from './existence';
 export {skillPlayNotes} from './skillNotes';
 import { BRANCHES, TALENTS, TALENT_MAP, CLASS_IDS, baseSkill, heroStats, levelOf, xpFraction, xpAtLevel, xpToNext, pointsLeft, trainReason, untrainReason, requiredRankLevel, ultimateProgress, ultimateUnlocked, ultimateSkill, MAX_LEVEL } from './progression';
 const clsName=(c:ClassId)=>({mage:'마법사',archer:'궁수',knight:'검사',occultist:'심령술사'})[c];
 const tier=(id:string)=> SKILLS[id]?.basic?'기본':SKILLS[id]?.capstone?'비기':SKILLS[id]?.ultimate?'ULT':String((TALENT_MAP[id]?.row??0)+1);
 const color=(id:string)=>{const s=SKILLS[id],n=TALENT_MAP[id];return s?.ultimate?s.color:n?BRANCHES[n.cls][n.branch].color:'#80949e';};
 const pip=(r:number)=>`<span class="rank-track" aria-hidden="true">${Array.from({length:8},(_,i)=>`<i class="${i<r?'on':''}"></i>`).join('')}</span>`;
+function existenceBars(title:string,values:ExistenceVector,max:number,note:string){
+ const rows=([['form','형'],['qi','기'],['soul','혼']] as const).map(([key,label])=>{const percent=Math.round(values[key]*100);return `<span class="existence-part" style="--existence-width:${Math.min(100,values[key]/max*100)}%" title="${label} ${percent}%"><b>${label}</b><i aria-hidden="true"><em></em></i><strong>${percent}%</strong></span>`;}).join('');
+ return `<div class="existence-info" role="group" aria-label="${title}"><div class="existence-caption">${title}<small>${note}</small></div><div class="existence-parts">${rows}</div></div>`;
+}
+export function existenceAttackView(skill:Skill){return existenceBars('공격 속성',normalizedAttack(skill.existenceAttack||attackForSkill(skill)),1,'형 · 기 · 혼');}
+export function existenceDefenseView(unit:Unit){return existenceBars('피해 반응',effectiveDefenseForUnit(unit),1.5,'100% = 보통 피해');}
 export function skillStamp(id:string,size=28){const s=SKILLS[id];return `<span class="skill-stamp ${s?.ultimate?'ultimate-stamp':''}" style="--branch:${color(id)}">${s?icon('skill:'+id,'',size):icon('plus','',size)}${s?`<b>${tier(id)}</b>`:''}</span>`;}
 function slotMeta(p:Profile,cls:ClassId,id:string|undefined){const s=id?SKILLS[id]:undefined;if(!s)return {branch:'배운 액티브 선택',tier:'',rank:'',color:'#80949e'};if(s.basic)return {branch:'기본 공격 · SP 불필요',tier:'',rank:'항상 사용 가능',color:s.color};if(s.ultimate)return {branch:'궁극기',tier:'3계열 완성',rank:'ULT',color:s.color};const n=TALENT_MAP[id!],r=p.heroes[cls].ranks[id!]||0,br=n?BRANCHES[cls][n.branch]:undefined;return {branch:br?.name||'액티브',tier:n?`${n.row+1}단계`:'',rank:`Lv.${r}/8`,color:color(id!)};}
 export function slotCard(p:Profile,cls:ClassId,i:number,action='choose-slot',incoming=''){
@@ -36,17 +43,17 @@ export function campView(p:Profile,cls:ClassId,portraits:Record<string,string>,h
  </div></div></main>`;
 }
 export function talentView(p:Profile,id:string,closeButton:string){
- if(SKILLS[id]?.basic){const s=SKILLS[id];return `${closeButton}<h2>${s.name}</h2><p class="skill-desc">${s.desc}</p><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p><p>기본 공격 · SP 투자 없음 · 항상 사용 가능</p><canvas aria-label="${esc(s.name)} 시연" id="skill-preview" width="720" height="360"></canvas>`;}
+ if(SKILLS[id]?.basic){const s=SKILLS[id];return `${closeButton}<h2>${s.name}</h2><p class="skill-desc">${s.desc}</p><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p>${existenceAttackView(s)}<p>기본 공격 · SP 투자 없음 · 항상 사용 가능</p><canvas aria-label="${esc(s.name)} 시연" id="skill-preview" width="720" height="360"></canvas>`;}
  const n=TALENT_MAP[id],s=SKILLS[id],h=p.heroes[n.cls],rank=h.ranks[id]||0,reason=trainReason(h,id),br=BRANCHES[n.cls][n.branch],equipped=p.loadouts[n.cls].includes(id),next=Math.min(8,rank+1);
  const before=skillGrowthRows(id,rank),after=skillGrowthRows(id,next);
  const preview=!s.passive?`<section class="skill-preview-shell"><canvas aria-label="${esc(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas></section>`:'';
- const summary=`<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id,35)}<div><div class="micro-label">${br.name} · ${tier(id)}단계</div><h2>${n.name}</h2><span class="ability-type">${s.passive?'패시브 · 습득 시 자동 적용':equipped?'액티브 · 장착 중':'액티브'}</span></div></div><div class="rank-banner"><strong>Lv.${rank}<small> / 8</small></strong>${pip(rank)}<span>${pointsLeft(h,n.cls)} SP</span></div><p class="skill-desc">${esc(n.desc)}</p><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p></section>`;
+ const summary=`<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id,35)}<div><div class="micro-label">${br.name} · ${tier(id)}단계</div><h2>${n.name}</h2><span class="ability-type">${s.passive?'패시브 · 습득 시 자동 적용':equipped?'액티브 · 장착 중':'액티브'}</span></div></div><div class="rank-banner"><strong>Lv.${rank}<small> / 8</small></strong>${pip(rank)}<span>${pointsLeft(h,n.cls)} SP</span></div><p class="skill-desc">${esc(n.desc)}</p><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p>${!s.passive?existenceAttackView(s):''}</section>`;
  const stats=`<section class="skill-modal-stats"><div class="effect-compare ${rank>=8?'at-max':''}"><div class="effect-heading"><span>효과</span><span>${rank?'현재':'미습득'}</span><span>${rank<8?`Lv.${next}`:'최대'}</span></div>${after.map((row,i)=>`<div class="effect-row"><span>${row.label}</span><span>${rank?before[i]?.value||'—':'—'}</span><strong>${row.value}</strong></div>`).join('')}</div>${rank<8?`<div class="upgrade-requirement">${reason||`강화 가능 · 용병 Lv.${requiredRankLevel(n,next)}`}<span>${rank?'강화':'습득'} 1 SP</span></div>`:'<div class="upgrade-requirement">최고 레벨에 도달했습니다.</div>'}<div class="dialog-actions">${!s.passive&&rank>0&&id!==baseSkill(n.cls)?`<button class="btn" data-action="equip-prompt" data-skill="${id}">${equipped?'슬롯 변경':'장착'}</button>`:''}<button class="btn primary" data-action="train" data-talent="${id}" ${reason?'disabled':''}>${rank>=8?'최대 레벨':rank?'강화 · 1 SP':'습득 · 1 SP'}</button></div></section>`;
  return `${closeButton}<div class="talent-detail talent-v5 ${s.passive?'passive-detail':''}" style="--branch:${br.color}"><div class="skill-modal-grid">${summary}${!s.passive?`<section class="skill-modal-preview">${preview}</section>`:''}${stats}</div></div>`;
 }
 export function ultimateView(p:Profile,cls:ClassId,close:string){
  const h=p.heroes[cls],id=ultimateSkill(cls),s=SKILLS[id],prog=ultimateProgress(h,cls),unlocked=ultimateUnlocked(h,cls),equipped=p.loadouts[cls].includes(id),cost=Math.round(s.cost*MANA_COST_MULTIPLIER);
- const summary=`<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id,42)}<div><div class="micro-label">CLASS ULTIMATE · ${prog.learned}/${prog.total}</div><h2>${s.name}</h2><span class="ability-type">${unlocked?'해금됨 · 기력이 있으면 사용 가능':'세 액티브 계열 완성 필요'}</span></div></div><p class="skill-desc">${esc(s.desc)}</p><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p><div class="ultimate-progress big"><i style="width:${prog.learned/prog.total*100}%"></i></div></section>`;
+ const summary=`<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id,42)}<div><div class="micro-label">CLASS ULTIMATE · ${prog.learned}/${prog.total}</div><h2>${s.name}</h2><span class="ability-type">${unlocked?'해금됨 · 기력이 있으면 사용 가능':'세 액티브 계열 완성 필요'}</span></div></div><p class="skill-desc">${esc(s.desc)}</p><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p>${existenceAttackView(s)}<div class="ultimate-progress big"><i style="width:${prog.learned/prog.total*100}%"></i></div></section>`;
  const preview=`<section class="skill-preview-shell ultimate-preview"><canvas aria-label="${esc(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas></section>`;
  const stats=`<section class="skill-modal-stats"><div class="ultimate-stat-grid"><div><small>기본 피해</small><strong>${s.damage}</strong></div><div><small>효과 반경</small><strong>${s.radius||'직격'}</strong></div><div><small>MP</small><strong>${cost}</strong></div><div><small>재사용</small><strong>제한 없음</strong></div></div><div class="upgrade-requirement">${unlocked?'모든 액티브 기술을 최소 Lv.1 습득했습니다.':`액티브 기술 ${prog.total-prog.learned}개를 더 습득하세요.`}<span>${prog.learned} / ${prog.total}</span></div>${unlocked?`<div class="dialog-actions"><button class="btn primary" data-action="equip-prompt" data-skill="${id}">${equipped?'슬롯 변경':'궁극기 장착'}</button></div>`:''}</section>`;
  return `${close}<div class="talent-detail ultimate-detail" style="--branch:${s.color}"><div class="skill-modal-grid">${summary}<section class="skill-modal-preview">${preview}</section>${stats}</div></div>`;

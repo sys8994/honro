@@ -47,6 +47,26 @@ for(const [rank,actions,power] of [[1,2,.7],[2,3,.7],[3,3,.85],[4,4,.85],[5,4,1]
  const before=Math.abs(shot.vx);a.e.stepProjectile(shot,C.STEP);assert(shot.vx< -before||!a.b.projectiles.includes(shot));
 }
 {
+ const a=arena('O14',8),eater=a.e.spawnSummon(a.u,'eater',630,1200,1,8),center=eater.y-eater.h*.5;
+ const absorb=()=>{const p=castAt(a,'O01')[0];p.side=1;p.x=eater.x;p.y=center;p.damage=100;assert(a.e.absorbHostileProjectile(p,C.STEP));};
+ for(let i=1;i<=4;i++){
+  absorb();assert.equal(eater.summonGrowthHits,i);assert(Math.abs(eater.h-120*(1+.14*i))<.001);assert(Math.abs(eater.r-46*(1+.14*i))<.001);assert(Math.abs(eater.y-eater.h*.5-center)<.001);assert(!eater.dead);
+ }
+ const saved=C.defaults();saved.saved=a.b;const restored=C.validate(plain(saved)).saved.units.find(u=>u.id===eater.id);
+ assert.equal(restored.summonGrowthHits,4);assert.equal(restored.h,eater.h);
+ const legacy=plain(saved),legacyEater=legacy.saved.units.find(u=>u.id===eater.id);delete legacyEater.summonGrowthHits;Object.assign(legacyEater,{h:120,r:46,y:center+60});
+ const oldBattle=C.validate(legacy).saved,oldEngine=new C.Engine(oldBattle),oldUnit=oldBattle.units.find(u=>u.id===eater.id);
+ oldEngine.hurt(oldUnit,5,a.foe.id);assert.equal(oldUnit.summonGrowthHits,1);assert(Math.abs(oldUnit.h-136.8)<.001);
+ absorb();assert(eater.dead);assert.equal(eater.summonGrowthHits,4);
+}
+{
+ const a=arena('O14',8),eater=a.e.spawnSummon(a.u,'eater',630,1200,1,8),hp=eater.hp;
+ eater.shield=80;a.e.hurt(eater,20,a.foe.id);assert.equal(eater.summonGrowthHits,1);assert.equal(eater.hp,hp);
+ eater.shield=0;a.e.hurt(eater,20,a.foe.id);assert.equal(eater.summonGrowthHits,2);assert(eater.hp<hp);
+ a.e.hurt(eater,20,a.foe.id,false,undefined,undefined,'environment');assert.equal(eater.summonGrowthHits,2);
+ for(let i=0;i<8;i++){eater.hp=eater.maxHp;a.e.hurt(eater,5,a.foe.id);}assert.equal(eater.summonGrowthHits,5);assert(Math.abs(eater.h-204)<.001);
+}
+{
  const a=arena('O09');a.foe.x=560;a.foe.hp=10000;const other=C.makeUnit('knight',1,780,1400,{id:'other',fixed:true,hp:20000,maxHp:20000,armor:0,h:100,r:25,loadout:['LS09']});a.b.units.push(other);
  direct(a,'O09');for(let action=1;action<=2;action++){
   a.b.phase='aim';a.b.side=0;a.b.active=a.u.id;a.u.acted=false;a.e.finishAction(true);

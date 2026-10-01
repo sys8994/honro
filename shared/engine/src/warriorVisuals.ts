@@ -1,7 +1,7 @@
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
 import {meleeSkill,meleeRange,meleeSpan,orbitPoint} from './warriorMechanics';
-import {SKILLS} from './data';
+import {SKILLS,CLASSES} from './data';
 import {STEP} from './math';
 type C=CanvasRenderingContext2D;
 function crescent(c:C,x:number,y:number,angle:number,size=22){
@@ -40,7 +40,7 @@ export function drawWarriorProjectile(c:C,p:Projectile){
 export function drawMeleeGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=1){
  if(!s.martial||!meleeSkill(s)&&s.mode!=='bladeScreen')return false;
  const radius=s.mode==='bladeScreen'?175:meleeRange(u,s,s.mode==='lifeSlash'?0:power),wide=s.mode==='bladeScreen'?Math.PI*.5:meleeSpan(u,s,power)/2,angle=s.mode==='bladeScreen'?(Math.cos(u.angle*Math.PI/180)<0?Math.PI:0):-u.angle*Math.PI/180;
- c.save();c.translate(u.x,u.y-u.h*.5);c.lineWidth=1.35/zoom;c.strokeStyle='#d5dfd4';c.setLineDash([4/zoom,7/zoom]);c.globalAlpha=.65;
+  c.save();c.translate(u.x,u.y-u.h*.5);c.lineWidth=1.35/zoom;c.strokeStyle=CLASSES[u.cls].color;c.setLineDash([4/zoom,7/zoom]);c.globalAlpha=.65;
  for(const offset of s.mode==='meleeTurn'?[0,Math.PI]:[0]){c.beginPath();c.moveTo(0,0);c.arc(0,0,radius,angle+offset-wide,angle+offset+wide);c.closePath();c.stroke();}
  c.restore();return true;
 }

@@ -1,7 +1,7 @@
 import {drawWarriorProjectile,drawMeleeGuide} from './warriorVisuals';
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
-import {SKILLS} from './data';
+import {SKILLS,CLASSES} from './data';
 import {echoAim,SOUL_SKILLS} from './occultMechanics';
 import {geometryPaths,redesignPrediction,turnPrediction,type SkillGeometry} from './skillMechanics';
 type C=CanvasRenderingContext2D;
@@ -17,7 +17,7 @@ export function drawGuideContinuation(c:C,e:Engine,u:Unit,s:Skill,power:number,z
  const ext=guidePrediction(e,u,s,power,true);if(ext.points.length<2)return;
  let start=0,distance=Infinity;for(let i=0;i<ext.points.length;i++){const p=ext.points[i],d=Math.hypot(p.x-pr.x,p.y-pr.y);if(d<distance){distance=d;start=i;}}
  const path=ext.points.slice(start);if(path.length<2)return;
- c.save();c.setLineDash([]);c.globalAlpha=.22;c.strokeStyle=s.color;c.lineWidth=.85/Math.max(.12,zoom);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
+ c.save();c.setLineDash([]);c.globalAlpha=.22;c.strokeStyle=CLASSES[u.cls].color;c.lineWidth=.85/Math.max(.12,zoom);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
 }
 const echoGuideCache=new WeakMap<Engine,{key:string;paths:Array<Array<{x:number;y:number}>>}>();
 export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:number,root:ReturnType<Engine['predict']>){
@@ -31,9 +31,7 @@ export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:num
   echoGuideCache.set(e,entry);
  }
  // Echoed casts use the same dotted grammar as the principal prediction.
- c.save();c.globalAlpha=.30;
- for(const points of entry.paths)for(let i=0;i<points.length;i+=2){const p=points[i];c.beginPath();c.arc(p.x,p.y,1.6/Math.max(.12,zoom),0,Math.PI*2);c.fillStyle=s.color;c.fill();}
- c.restore();
+  for(const points of entry.paths)guideStroke(c,points,zoom,CLASSES[u.cls].color,.30);
 }
 export const SKILL_FX_SECONDS={swordCut:.34,circulation:.6,skillGeometry:.9,inkImpact:.8,lightningBolt:.9,qiBurst:.55,fireBloom:.85};
 export function drawSkillGeometry(c:C,g:SkillGeometry,thick=false,zoom=1){
@@ -233,8 +231,8 @@ export function drawFireBloom(c:C,x:number,y:number,size:number,t:number){
  c.restore();
 }
 /** Pixel-sized dashes retain contrast at every camera zoom. */
-function guideStroke(c:C,path:{x:number;y:number}[],zoom:number,color='#d9e1d2',alpha=.64){
- if(path.length<2)return;c.save();c.lineCap='round';c.lineJoin='round';c.setLineDash([4/zoom,7/zoom]);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle='#10242a';c.lineWidth=3.3/zoom;c.globalAlpha=.45;c.stroke();c.strokeStyle=color;c.lineWidth=1.35/zoom;c.globalAlpha=alpha;c.stroke();c.restore();
+export function guideStroke(c:C,path:{x:number;y:number}[],zoom:number,color='#d9e1d2',alpha=.64,width=1.35){
+ if(path.length<2)return;zoom=Math.max(.12,zoom);c.save();c.lineCap='round';c.lineJoin='round';c.setLineDash([4/zoom,7/zoom]);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle='#10242a';c.lineWidth=(width+1.95)/zoom;c.globalAlpha=.45;c.stroke();c.strokeStyle=color;c.lineWidth=width/zoom;c.globalAlpha=alpha;c.stroke();c.restore();
 }
 const turnGuideCache=new WeakMap<Engine,{key:string;prediction:ReturnType<typeof turnPrediction>}>();
 export function drawTurnGuide(c:C,e:Engine,zoom=1,point?:{x:number;y:number}){
@@ -249,14 +247,14 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
  if(!s.redesigned)return false;
  if(s.mode==='prepare'||u.retreat)return true;
  zoom=Math.max(.12,zoom);const pr=guidePrediction(e,u,s,power);const insight=u.ranks.MP04||0;
- c.save();c.strokeStyle='#d3ddd2';c.fillStyle='#d3ddd2';c.lineWidth=1.2/zoom;c.globalAlpha=.4;c.setLineDash([4/zoom,7/zoom]);
+  c.save();c.strokeStyle=CLASSES[u.cls].color;c.fillStyle=CLASSES[u.cls].color;c.lineWidth=1.2/zoom;c.globalAlpha=.4;c.setLineDash([4/zoom,7/zoom]);
  let path=pr.points;
  if('contacts' in pr&&Array.isArray(pr.contacts)&&pr.contacts.length&&(s.id==='M02'&&insight<2||s.id==='M11'&&insight<4)){
   const contact=pr.contacts[s.id==='M11'&&insight>=3?Math.min(1,pr.contacts.length-1):0];let nearest=0,best=Infinity;
   path.forEach((v,i)=>{const d=Math.hypot(v.x-contact.x,v.y-contact.y);if(d<best){best=d;nearest=i;}});path=path.slice(0,nearest+1);
  }
- guideStroke(c,path,zoom);
- if(!['A04','A15'].includes(s.id)&&'paths' in pr&&Array.isArray(pr.paths))for(const other of pr.paths as {x:number;y:number}[][]){if(other!==path)guideStroke(c,other,zoom,'#c5d7cb',.36);}
+  guideStroke(c,path,zoom,CLASSES[u.cls].color);
+  if(!['A04','A15'].includes(s.id)&&'paths' in pr&&Array.isArray(pr.paths))for(const other of pr.paths as {x:number;y:number}[][]){if(other!==path)guideStroke(c,other,zoom,CLASSES[u.cls].color,.36);}
  const geo='geometry' in pr?pr.geometry as SkillGeometry:undefined;
  if(geo){c.setLineDash([4/zoom,8/zoom]);if(insight>=5){c.globalAlpha=.025;drawSkillGeometry(c,geo,true,zoom);}c.globalAlpha=.4;drawSkillGeometry(c,geo,false,zoom);}
  else if(s.radius&&s.branch!=='stake'){c.globalAlpha=.4;c.setLineDash([4/zoom,8/zoom]);c.beginPath();c.arc(pr.x,pr.y,e.effective(s,u).radius,0,Math.PI*2);c.stroke();}

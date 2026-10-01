@@ -109,7 +109,8 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         if(u.summoned&&(!['stalker','lantern','charger','warden','host','eater','echo','earthbound'].includes(u.summonKind||'')||!ids.has(u.summonOwner||'')||!finite(u.summonExpires)||u.side!==0))return fail();
         if(u.enthrall&&(!ids.has(u.enthrall.owner)||u.side!==0||!nums(u.enthrall,['actions','captureRatio','originalMaxHp','originalAttack','originalArmor','power'])||u.enthrall.actions<0||u.enthrall.actions>7||u.enthrall.captureRatio<0||u.enthrall.captureRatio>1))return fail();
         if(u.spiritSight!==undefined&&typeof u.spiritSight!=='boolean'||u.spiritHidden!==undefined&&typeof u.spiritHidden!=='boolean'||u.manifested!==undefined&&typeof u.manifested!=='boolean'||u.revealSpiritToParty!==undefined&&typeof u.revealSpiritToParty!=='boolean')return fail();
-        for(const key of ['summonRank','summonActionRound','summonAbsorbed','manifestedUntil','formDamageTakenBonus','soulAffinityBonus','soulDefenseBonus','soulBonusUntil','nextSummonDiscount','soulRemnants'] as const)if(u[key]!==undefined&&!finite(u[key]))return fail();
+        for(const key of ['summonRank','summonActionRound','summonAbsorbed','summonGrowthHits','manifestedUntil','formDamageTakenBonus','soulAffinityBonus','soulDefenseBonus','soulBonusUntil','nextSummonDiscount','soulRemnants'] as const)if(u[key]!==undefined&&!finite(u[key]))return fail();
+        if(u.summonGrowthHits!==undefined&&(!Number.isInteger(u.summonGrowthHits)||u.summonGrowthHits<0||u.summonGrowthHits>5||u.summonKind!=='eater'))return fail();
         if(u.earthbind&&(!ids.has(u.earthbind.owner)||!nums(u.earthbind,['until','damage'])))return fail();
         if(u.impactCooldown!==undefined&&(!finite(u.impactCooldown)||u.impactCooldown<0||u.impactCooldown>1))return fail();
     }

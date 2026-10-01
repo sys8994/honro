@@ -1,5 +1,16 @@
 /* Shared game and Workshop skill detail. A single scroll surface keeps all controls reachable. */
 .honro .skill-mechanics{color:#c8d7cf;font-size:12px;line-height:1.7;margin:10px 0 16px;padding-left:12px;border-left:2px solid #9aab8860;word-break:keep-all;overflow-wrap:anywhere}
+.honro .existence-info{margin:11px 0 16px;padding:9px 10px;border:1px solid #7084794d;border-radius:7px;background:#10232a8c;color:#d5ddd2}
+.honro .existence-caption{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:700}
+.honro .existence-caption small{color:#aab8ac;font-size:10px;font-weight:400}
+.honro .existence-parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.honro .existence-part{display:grid;grid-template-columns:14px minmax(0,1fr);align-items:center;column-gap:5px;font-size:10px}
+.honro .existence-part b{grid-row:span 2;font-size:11px}
+.honro .existence-part i{height:4px;overflow:hidden;border-radius:3px;background:#61716b55}
+.honro .existence-part em{display:block;height:100%;width:var(--existence-width);background:#c7a98d}
+.honro .existence-part:nth-child(2) em{background:#9bbfba}
+.honro .existence-part:nth-child(3) em{background:#bd9dcb}
+.honro .existence-part strong{font-weight:600;color:#ced9ce;font-variant-numeric:tabular-nums}
 .honro .dialog.talent-dialog,.honro .dialog.ultimate-dialog{width:min(760px,94vw);height:auto;max-height:92dvh;overflow:auto;overscroll-behavior:contain}
 .honro .talent-dialog .skill-modal-grid,.honro .ultimate-dialog .skill-modal-grid{display:block;height:auto}
 .honro .skill-modal-grid>section{display:block;min-height:0}

@@ -155,6 +155,7 @@ export interface Unit {
     summonRank?: number;
     summonActionRound?: number;
     summonAbsorbed?: number;
+    summonGrowthHits?: number;
     auraHits?: Record<string,string>;
     summonFloating?: boolean;
     spiritSight?: boolean;

@@ -9,7 +9,7 @@ function arena(id,side=0){
  const u=b.units[0];Object.assign(u,{x:350,y:1800,loadout:[id],focus:9999,maxFocus:9999,acted:false,ranks:{[id]:8,[C.baseSkill(s.cls)]:1}});
  b.units=[u];b.active=u.id;const e=new C.Engine(b,()=>{});u.side=side;return{e,b,u,s};
 }
-for(const id of ['O11','O12','O13','O14','O15','O16']){
+for(const id of ['O12','O13','O14','O15','O16']){
  const {e,b,u,s}=arena(id),angle=57,power=.55,guide=e.predict(u,s,angle,power);
  assert(guide.points.length>3,id+' prediction path');assert(e.fire(id,angle,power),id+' launch');
  const root=b.projectiles[0],launchSpeed=Math.hypot(root.vx,root.vy),expected=Math.hypot(...Object.values(e.velocity(u,s,angle,power)));
@@ -23,6 +23,31 @@ for(const id of ['O11','O12','O13','O14','O15','O16']){
  assert(Math.hypot(event.x-guide.x,event.y-guide.y)<25,id+' guide matches cast point');
  console.log('PASS',id,'open-air guide and actual cast agree');
 }
+{
+ const {e,b,u,s}=arena('O11'),angle=76,power=.8,guide=e.predict(u,s,angle,power);
+ assert(guide.terrain,'stalker guide must end at terrain');
+ const middle=guide.points[Math.floor(guide.points.length*.45)],enemy=C.makeUnit('knight',1,middle.x,middle.y+50,{id:'seed-pass-through',hp:1000,maxHp:1000,h:100,r:25,fixed:true});b.units.push(enemy);
+ assert(e.fire('O11',angle,power),'stalker launch');
+ const root=b.projectiles[0];assert.equal(root.fuseAt,undefined,'stalker cannot hatch in air');
+ root.age=1.45;root.fuseAt=1.45;e.stepProjectile(root,C.STEP);assert(b.projectiles.includes(root),'elapsed flight alone must not summon, including old saves');
+ assert.equal(root.fuseAt,undefined,'old saved fuse must be discarded');
+ for(let i=0;i<1500&&b.projectiles.includes(root);i++)e.stepProjectile(root,C.STEP);
+ const spirit=b.units.find(v=>v.summonKind==='stalker');assert(spirit,'terrain impact must summon stalker');
+ assert(root.x>enemy.x+enemy.r&&enemy.hp===1000,'stalker seed must pass through enemies');
+ assert(Math.hypot(root.x-guide.x,root.y-guide.y)<25,'stalker guide must mark actual ground impact');
+ assert(Math.abs(spirit.y-root.y)<12,'ground summon must remain at impact height');
+ console.log('PASS O11 flies through open air and summons only on terrain');
+}
+{
+ const {e,b,u,s}=arena('O04'),tap=e.velocity(u,s,30,.03),echo=C.makeUnit('occultist',0,u.x,u.y,{summoned:true,summonKind:'echo'}),echoSpeed=e.velocity(echo,s,30,.03);
+ assert(Math.hypot(tap.vx,tap.vy)>480,'quick O04 cast needs a readable minimum speed');
+ assert(Math.hypot(tap.vx,tap.vy)>Math.hypot(echoSpeed.vx,echoSpeed.vy),'Sodan must not throw slower than her echo');
+ assert(e.fire('O04',30,.03),'O04 launch');const root=b.projectiles[0];
+ assert(Math.abs(Math.hypot(root.vx,root.vy)-Math.hypot(tap.vx,tap.vy))<1e-7,'actual O04 uses predicted launch speed');
+ console.log('PASS O04 quick cast and echo speed');
+}
+assert.equal(C.SUMMON_TUNING.stalker.move,2080);assert.equal(C.SUMMON_TUNING.stalker.reach,416);
+assert.equal(C.SUMMON_TUNING.lantern.move,1240);assert.equal(C.SUMMON_TUNING.lantern.reach,1920);
 {
  const {e,b}=arena('O16');assert(e.fire('O16',35,.5));const p=b.projectiles[0],here={x:p.x+180,y:p.y-100};
  Object.assign(p,{...here,age:2.25,targetPoint:{x:here.x+900,y:here.y+500}});delete p.fuseAt;

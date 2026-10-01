@@ -20,9 +20,12 @@ JS=r'''()=>{
  const soul={...arrow,skill:'O01',owner:medium.id,mode:'spiritBolt'};e.hurt(spirit,100,medium.id,true,soul,{x:spirit.x,y:spirit.y-40});
  const soulDamage=10000-physical[1]-qiDamage-spirit.hp;
  Object.assign(a.scene,{manual:true,x:940,y:hero.y-120,scale:.7});a.scene.render(e,C.STEP,'A01',.5,false,0);
+ a.scene.inspectUnitId=spirit.id;HonroUnitInfo.tick(a);
+ const defense=document.querySelector('#unit-info .existence-info')?.innerText||'';
+ const attack=C.talentView(a.profile,'O04','').match(/<div class="existence-info"[\s\S]*?<\/div><\/div>/)?.[0]||'';
  const trace=globalThis.HONRO_DAMAGE_TRACE.map(t=>({skill:t.skill,existence:t.existenceMultiplier,final:t.finalDamage}));
  globalThis.HONRO_DEBUG_DAMAGE=false;
- return {physical,qiDamage,soulDamage,trace,canvas:document.querySelector('canvas')?.toDataURL().length||0};
+ return {physical,qiDamage,soulDamage,trace,defense,attack,canvas:document.querySelector('canvas')?.toDataURL().length||0};
 }'''
 
 errors=[]
@@ -44,6 +47,9 @@ with sync_playwright() as pw:
   assert result['physical'][0]>result['physical'][1]*3,result
   assert result['qiDamage']>result['physical'][1]*3 and result['soulDamage']>result['qiDamage'],result
   assert len(result['trace'])==4 and result['canvas']>1000,result
+  assert '피해 반응' in result['defense'] and '20%' in result['defense'] and '132%' in result['defense'],result
+  assert '공격 속성' in result['attack'] and '84%' in result['attack'],result
+  host.locator('#unit-info').screenshot(path=str(ROOT/f'_local/reports/existence-info-{shell.lower()}.png'))
   print('PASS',shell,result,flush=True)
   page.close()
  browser.close()

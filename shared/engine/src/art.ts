@@ -1,5 +1,5 @@
 import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
-import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,guideStroke,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -286,14 +286,15 @@ export class Renderer {
         const pr=guidePrediction(engine,active,sk,guidePower);
         if(!pr)return;
         drawEchoGuides(c,engine,active,sk,guidePower,zoom,pr);
+        const guideColor=CLASSES[active.cls].color;
+        guideStroke(c,pr.points,zoom,guideColor);
         c.save();c.globalAlpha=.65;
-        pr.points.forEach((v,i)=>{if(i%2===0)circle(c,v.x,v.y,1.6/zoom,sk.color);});
         const r=engine.effective(sk,active).radius;
-        c.globalAlpha=.62;c.setLineDash([4/zoom,5/zoom]);c.lineWidth=1.35/zoom;
-        if(r){c.strokeStyle=sk.color;c.beginPath();c.arc(pr.x,pr.y,r,0,Math.PI*2);c.stroke();c.globalAlpha=.16;circle(c,pr.x,pr.y,r,sk.color);}
-        c.setLineDash([]);c.globalAlpha=.72;line(c,pr.x-8,pr.y,pr.x+8,pr.y,sk.color,1.2);line(c,pr.x,pr.y-8,pr.x,pr.y+8,sk.color,1.2);
+        c.globalAlpha=.62;c.setLineDash([4/zoom,7/zoom]);c.lineWidth=1.35/zoom;
+        if(r){c.strokeStyle=guideColor;c.beginPath();c.arc(pr.x,pr.y,r,0,Math.PI*2);c.stroke();c.globalAlpha=.16;circle(c,pr.x,pr.y,r,guideColor);}
+        c.setLineDash([]);c.globalAlpha=.72;line(c,pr.x-8,pr.y,pr.x+8,pr.y,guideColor,1.2);line(c,pr.x,pr.y-8,pr.x,pr.y+8,guideColor,1.2);
         if(sk.mode.startsWith('summon')||sk.mode==='spiritConverge'){
-            c.globalAlpha=.7;c.setLineDash([3/zoom,5/zoom]);c.lineWidth=1.35/zoom;c.strokeStyle=sk.color;c.beginPath();c.arc(pr.x,pr.y,14/zoom,0,Math.PI*2);c.stroke();c.setLineDash([]);
+            c.globalAlpha=.7;c.setLineDash([4/zoom,7/zoom]);c.lineWidth=1.35/zoom;c.strokeStyle=guideColor;c.beginPath();c.arc(pr.x,pr.y,14/zoom,0,Math.PI*2);c.stroke();c.setLineDash([]);
         }
         if(pr.apex&&(sk.mode==='cluster'||sk.mode==='rain'||sk.mode==='seekRain'))this.rune(c,pr.apex.x,pr.apex.y,12,sk.color);
         c.restore();
@@ -508,21 +509,21 @@ export class Renderer {
                 }
                 const pr = this.preview;
                 if (pr) {
+                    const guideColor=CLASSES[active.cls].color;
+                    guideStroke(c,pr.points,this.scale,guideColor);
                     c.save();
                     c.globalAlpha = .65;
-                    pr.points.forEach((v, i) => { if (i % 2 === 0)
-                        circle(c, v.x, v.y, 1.6, sk.color); });
                     c.globalAlpha = .55;
                     const r = engine.effective(sk, active).radius;
-                    c.setLineDash([4, 5]);
+                    c.setLineDash([4/this.scale, 7/this.scale]);
                     if (r) {
-                        c.strokeStyle = sk.color;
+                        c.strokeStyle = guideColor;
                         c.beginPath();
                         c.arc(pr.x, pr.y, r, 0, Math.PI * 2);
                         c.stroke();
                     }
-                    line(c, pr.x - 8, pr.y, pr.x + 8, pr.y, sk.color, 1.2);
-                    line(c, pr.x, pr.y - 8, pr.x, pr.y + 8, sk.color, 1.2);
+                    line(c, pr.x - 8, pr.y, pr.x + 8, pr.y, guideColor, 1.2);
+                    line(c, pr.x, pr.y - 8, pr.x, pr.y + 8, guideColor, 1.2);
                     if (pr.apex && (sk.mode === 'cluster' || sk.mode === 'rain')) {
                         this.rune(c, pr.apex.x, pr.apex.y, 12, sk.color);
                     }

@@ -33,7 +33,7 @@ function close(a){if(!a.scene)return;a.scene.inspectUnitId=null;const el=documen
 function hover(a,p){if(!a.scene)return;a.scene.inspectPointer=p;const u=p&&pick(a,p);a.scene.hoverUnitId=u?.id||null;a.scene.canvas.style.cursor=u?'pointer':'';}
 function bind(a){
  const el=document.createElement('aside');el.id='unit-info';el.className='unit-info';el.hidden=true;el.setAttribute('aria-label','대상 정보');
- el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div>';
+  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div>';
  a.scene.canvas.parentElement.append(el);el.querySelector('button').onclick=()=>close(a);
  // Activating the card's close button must not also start a Space-key shot.
  for(const type of ['keydown','keyup'])el.addEventListener(type,e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();});
@@ -59,7 +59,9 @@ function tick(a){
  text('h3',`${u.name} · Lv. ${u.level||1}`);
  text('.unit-info-health span',`${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}`);
  const health=el.querySelector('.unit-info-health');health.setAttribute('aria-valuemin','0');health.setAttribute('aria-valuemax',u.maxHp);health.setAttribute('aria-valuenow',Math.ceil(u.hp));
- health.querySelector('i').style.width=clamp(u.hp/u.maxHp*100,0,100)+'%';
+  health.querySelector('i').style.width=clamp(u.hp/u.maxHp*100,0,100)+'%';
+  const existence=el.querySelector('.unit-info-existence'),response=G.HONRO_CORE.effectiveDefenseForUnit(u),key=[u.id,response.form,response.qi,response.soul].join(':');
+  if(existence.dataset.key!==key){existence.innerHTML=G.HONRO_CORE.existenceDefenseView(u);existence.dataset.key=key;}
  text('.unit-info-desc',u.intent||G.HonroWorld.archetypes[u.honroType]?.intent||(u.summoned?'소환자를 도와 동맹군 턴에 행동합니다.':u.allyRole==='civilian'?'전투에 휘말린 동행인. 안전하게 호위해야 합니다.':'함께 적을 상대하는 동행입니다.'));
  text('.unit-info-skills',skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
  const states=G.HonroCombatStatus.effects(a.engine.b,u);

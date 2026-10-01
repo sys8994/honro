@@ -20,7 +20,32 @@ def check(page, label):
     assert result['owner']==result['heroId'] and result['heroClass']=='mage' and result['skill']=='M09', (label,result)
     assert result['uniquePaths']==5 and result['art']=='summon_eater' and result['radius']==320, (label,result)
     page.locator('#battlecanvas').screenshot(path=str(ROOT/f'_local/reports/{label}-eater-training.png'))
+    growth=page.evaluate(r'''() => {
+      const a=HonroApp,e=a.engine,u=e.b.units.find(v=>v.summonKind==='eater'),foe=e.b.units.find(v=>v.side===1),center=u.y-u.h*.5;
+      for(let i=0;i<3;i++)e.hurt(u,20,foe.id);
+      u.hurt=0;
+      a.scene.render(e,0,a.selected,a.power,false,0);
+      return {hits:u.summonGrowthHits,height:u.h,radius:u.r,centerShift:u.y-u.h*.5-center,art:HonroActorVisual.kind(u)};
+    }''')
+    assert growth['hits']==3 and abs(growth['height']-170.4)<.001 and abs(growth['radius']-65.32)<.001 and abs(growth['centerShift'])<.001 and growth['art']=='summon_eater',(label,growth)
+    page.locator('#battlecanvas').screenshot(path=str(ROOT/f'_local/reports/{label}-eater-grown.png'))
+    guides=page.evaluate(r'''() => {
+      const a=HonroApp,C=HONRO_CORE,c=document.createElement('canvas').getContext('2d'),original=c.stroke.bind(c),rows=[];
+      for(const cls of ['archer','mage','knight','occultist']){
+        const id=C.baseSkill(cls),s=C.SKILLS[id],u=C.makeUnit(cls,0,400,1300,{id:'guide-'+cls,loadout:[id],ranks:{[id]:1},angle:42,lastPower:.6});
+        const strokes=[];c.stroke=()=>{strokes.push({color:c.strokeStyle,width:c.lineWidth,dash:c.getLineDash()});original();};
+        a.engine.b.units.push(u);
+        a.scene.arcFx.scale=.7;a.scene.arcFx.predictionGuide(c,a.engine,u,id,.6,false);
+        a.engine.b.units.pop();
+        rows.push({cls,color:C.CLASSES[cls].color,strokes});
+      }
+      return rows.map(({cls,color,strokes})=>({cls,primary:strokes.find(v=>String(v.color).toLowerCase()===color.toLowerCase()&&v.dash.length===2&&Math.abs(v.width-1.35/.7)<.01)}));
+    }''')
+    assert all(row['primary'] and len(row['primary']['dash'])==2 for row in guides),(label,guides)
+    assert len({(round(row['primary']['width'],3),tuple(round(v,3) for v in row['primary']['dash'])) for row in guides})==1,(label,guides)
     print('PASS',label,'training world and eater persist; five curse icons differ',flush=True)
+    print('PASS',label,'eater grows from enemy hits while preserving its field center',flush=True)
+    print('PASS',label,'four heroes share semantic-color trajectory width and dash',flush=True)
 
 with sync_playwright() as p:
     browser=launch(p)

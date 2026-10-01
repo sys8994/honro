@@ -69,12 +69,18 @@ export function normalizedAttack(attack:ExistenceVector):ExistenceVector{
  const form=finiteNonnegative(attack.form),qi=finiteNonnegative(attack.qi),soul=finiteNonnegative(attack.soul),sum=form+qi+soul;
  return sum>0?mix(form/sum,qi/sum,soul/sum):mix(1,0,0);
 }
+/** Current response to each damage type; 1 means ordinary damage. */
+export function effectiveDefenseForUnit(target:Unit):ExistenceVector{
+ const base=defenseForUnit(target),delta=target.existenceShift;
+ return mix(
+  finiteNonnegative(base.form+(delta?.form||0)+(target.manifested?target.formDamageTakenBonus||0:0),1),
+  finiteNonnegative(base.qi+(delta?.qi||0),1),
+  finiteNonnegative(base.soul+(delta?.soul||0)-(target.soulDefenseBonus||0),1)
+ );
+}
 export function existenceMultiplier(attack:ExistenceVector,target:Unit,attacker?:Unit):number{
- const a=normalizedAttack(attack),base=defenseForUnit(target),delta=target.existenceShift;
- const form=finiteNonnegative(base.form+(delta?.form||0)+(target.manifested?target.formDamageTakenBonus||0:0),1);
- const qi=finiteNonnegative(base.qi+(delta?.qi||0),1);
- const soul=finiteNonnegative(base.soul+(delta?.soul||0)-(target.soulDefenseBonus||0),1);
- const response=a.form*form+a.qi*qi+a.soul*soul;
+ const a=normalizedAttack(attack),defense=effectiveDefenseForUnit(target);
+ const response=a.form*defense.form+a.qi*defense.qi+a.soul*defense.soul;
  return Math.max(.1,Math.min(1.5,response*(1+a.soul*(attacker?.soulAffinityBonus||0))));
 }
 export function attackForHit(p:Projectile|undefined,rawSource:Unit|undefined,source:Unit|undefined,skills:Record<string,Skill>):ExistenceVector|undefined{

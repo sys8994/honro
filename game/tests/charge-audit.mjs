@@ -12,7 +12,8 @@ for(const s of skills){
   assert.ok(duration>0&&duration<=5);near(duration,full/480); // Current skills preserve their authored maximum reach.
   for(const seconds of [0,.1,.5,1,2,5,20]){
    const power=e.chargePower(u,s,seconds),v=e.velocity(u,s,35,power);
-   near(Math.hypot(v.vx,v.vy),Math.min(seconds*480,full));assert.ok(power>=0&&power<=1);
+   const expected=Math.max(s.id==='O04'?full*.55:0,Math.min(seconds*480,full));
+   near(Math.hypot(v.vx,v.vy),expected);assert.ok(power>=0&&power<=1);
   }
   rows.push({id:s.id,cls:s.cls,tune,secondsToFull:duration,maxSpeed:full});
  }

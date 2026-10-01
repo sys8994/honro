@@ -22,6 +22,7 @@ const CURSES = new Set(['curseWeak','curseBetray','curseDot','curseBind','curseC
 const SUMMONS = new Set(['summonStalker','summonLantern','summonCharger','summonWarden','summonHost','summonEater','summonEcho']);
 const BODY = new Set(['leap', 'slam', 'spin', 'dash', 'quake', 'guard', 'lift', 'recall', 'charge', 'vault', 'cataclysmCharge']);
 const ARROWS = new Set(['recoveryArrow','executeArrow','dropArrow','turnArrow','chainArrow','ironFlower','breakArrow','arrow', 'pierce', 'ricochet', 'triple', 'push', 'bind', 'break', 'sticky', 'pull', 'mark', 'rain', 'return', 'homing', 'windArrow', 'seekRain', 'seekChild', 'hunterBolt']);
+const EATER_SIZE={h:120,r:46,growthPerHit:.14,maxGrowthHits:5};
 // Authored pools follow their actual basin floor, so an elevated pool cannot shock actors below the cliff.
 function waterFloor(w:Battle['waters'][number],x:number){
     if(!w.bottom?.length)return Infinity;
@@ -189,7 +190,7 @@ export class Engine {
      * NPC/AI powers retain their established ballistic calibration. */
     chargeDuration(u: Unit, s: Skill) { return Math.min(MAX_CHARGE_SECONDS, 805 * this.effective(s, u).speed / CHARGE_ACCELERATION); }
     chargePower(u: Unit, s: Skill, seconds: number) { return clamp(seconds / Math.max(.001, this.chargeDuration(u, s)), 0, 1); }
-    velocity(u: Unit, s: Skill, angle: number, power: number) { const v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * clamp(power,0,1) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
+    velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * (s.id==='O04'?Math.max(.55,charge):charge) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
     origin(u: Unit, angle: number, body = false) { const reach = body ? 6 : u.cls === 'mage' ? 44 : u.cls === 'archer' ? 42 : u.cls === 'occultist' ? 40 : 28; return { x: u.x + Math.cos(rad(angle)) * reach, y: u.y - u.h * .63 - Math.sin(rad(angle)) * (body ? 8 : reach) }; }
     /** Data-only environmental patch; renderer cache and all future substeps see it immediately. */
     setEnvironment(patch:PhysicsPatch){if(!validPhysicsPatch(patch))throw new Error('Invalid physics patch');this.b.physics??=makePhysics();changePhysics(this.b.physics,patch);this.emit('change');}
@@ -718,6 +719,7 @@ export class Engine {
                 this.message(`${u.name} 제압`);
             }
         }
+        if(!u.dead&&u.summonKind==='eater'&&src?.side===1&&damageSource==='normal'&&(dmg>0||absorbed>0))this.growEater(u);
     }
     impulse(u: Unit, vx: number, vy: number) { if (u.fixed || u.dead || u.summonFloating)
         return; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
@@ -916,6 +918,14 @@ export class Engine {
         const ghost=this.spawnSummon(owner,'earthbound',x,y,1);ghost.summonExpires=this.b.round+2;ghost.fixed=true;ghost.summonFloating=true;
         this.fx('spark',x,y-40,'#bcb7a1',45);
     }
+    private growEater(eater:Unit){
+        const hits=Math.min(EATER_SIZE.maxGrowthHits,(eater.summonGrowthHits||0)+1);
+        if(hits===eater.summonGrowthHits)return;
+        const centerY=eater.y-eater.h*.5,scale=1+EATER_SIZE.growthPerHit*hits;
+        eater.summonGrowthHits=hits;
+        eater.h=EATER_SIZE.h*scale;eater.r=EATER_SIZE.r*scale;
+        eater.y=centerY+eater.h*.5;
+    }
     private absorbHostileProjectile(p:Projectile,dt:number){
         if(p.body)return false;
         for(const eater of this.b.units){if(eater.dead||eater.summonKind!=='eater')continue;
@@ -923,7 +933,9 @@ export class Engine {
             if(d>reach)continue;
             if(d<eater.r+p.radius+16){
                 eater.summonAbsorbed=(eater.summonAbsorbed||0)+p.damage;this.remove(p);this.fx('spark',cx,cy,'#b1b5a6',18);
-                if(eater.summonAbsorbed>=95+rank*24){
+                const burstThreshold=190+rank*38;
+                if(p.damage>0&&eater.summonAbsorbed<burstThreshold)this.growEater(eater);
+                if(eater.summonAbsorbed>=burstThreshold){
                     const damage=eater.summonAbsorbed*(.36+.02*rank),radius=135+rank*7;
                     for(const target of this.alive(1))if(Math.hypot(target.x-cx,target.y-target.h*.5-cy)<radius+target.r){this.hurt(target,damage,eater.id,false,undefined,{x:cx,y:cy});this.impulse(target,(target.x-cx)*.28,-35);}
                     eater.dead=true;eater.hp=0;this.fx('ring',cx,cy,'#c8c3ae',radius);
@@ -967,7 +979,7 @@ export class Engine {
         const hpScale=(1+.07*(rank-1))*strong*(empowered?1.20:1),atkScale=(1+.055*(rank-1))*strong;
         const ground=this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
         const floating=['lantern','eater','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
-        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:120,r:46,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
+        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
         const dur=['charger','host','earthbound'].includes(kind)?base.dur:SPIRIT_TURNS[clamp(rank,1,8)-1]+(empowered?1:0);
         const summon=makeUnit('occultist',0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:true,acted:true,moveLeft:0,maxMove:0,walkSpeed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
@@ -1376,6 +1388,8 @@ export class Engine {
         }
     }
     stepProjectile(p: Projectile, dt: number, paced=false) {
+        // Old saves may still carry the former timed hatching on a flying stalker seed.
+        if(p.skill==='O11'&&p.fuseAt!==undefined)p.fuseAt=undefined;
         // Enemy-exclusive attacks play two unchanged physics substeps per world step.
         // Preserve trajectories/swept collision precision while shortening empty flight time.
         if(!paced&&p.mode.startsWith('honro')){
