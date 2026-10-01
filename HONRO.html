@@ -3885,6 +3885,7 @@ exports.unlockedSkills = unlockedSkills;
 const warriorData_1 = require("./warriorData");
 const skillRedesignData_1 = require("./skillRedesignData");
 const occultData_1 = require("./occultData");
+const existence_1 = require("./existence");
 exports.CLASSES = {
     mage: { name: '마법사', person: '이렌', epithet: '재를 읽는 자', desc: '운석과 산개탄으로 엄폐 너머를 무너뜨린다.', color: '#e7ae67', hp: 180, icon: 'flame', start: ['M01', 'M05', 'M06', 'M02'], order: ['M01', 'M05', 'M06', 'M02', 'M03', 'M04', 'M07', 'M08', 'M09', 'M10', 'M11', 'M12'] },
     archer: { name: '궁수', person: '카엘', epithet: '바람의 끝', desc: '작은 틈, 반사면, 적의 빈틈을 정확히 꿰뚫는다.', color: '#86cbb2', hp: 175, icon: 'arrow', start: ['A01', 'A02', 'A04', 'A05'], order: ['A01', 'A02', 'A04', 'A05', 'A03', 'A06', 'A07', 'A08', 'A09', 'A10', 'A11', 'A12'] },
@@ -4102,6 +4103,9 @@ exports.SKILLS.O99 = { id: 'O99', cls: 'occultist', name: '백귀야행', tag: '
 (0, occultData_1.installOccultRedesign)(exports.SKILLS);
 (0, skillRedesignData_1.installSkillRedesign)(exports.SKILLS);
 (0, warriorData_1.installWarriorSkills)(exports.SKILLS);
+for (const skill of Object.values(exports.SKILLS))
+    if (skill.damage > 0 || ['O11', 'O12', 'O13', 'O14', 'O15'].includes(skill.id))
+        skill.existenceAttack = (0, existence_1.attackForSkill)(skill);
 
 },
 "enemyAI": function(module,exports,require){
@@ -4627,6 +4631,7 @@ const balance_1 = require("./balance");
 const balanceModel_1 = require("./balanceModel");
 const stageRules_1 = require("./stageRules");
 const data_1 = require("./data");
+const existence_1 = require("./existence");
 const enemyAI_1 = require("./enemyAI");
 const math_1 = require("./math");
 const world_1 = require("./world");
@@ -5473,30 +5478,34 @@ class Engine {
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
         let dmg = amount;
-        const critical = damageSource === 'normal' && src && src.side !== 1 && !rawSrc?.summoned && (!!p || direct) && this.random() < (0, skillMechanics_1.critProfile)(p || { skill: '', skillRank: 1 }, src).chance;
-        if (critical)
-            dmg *= (0, skillMechanics_1.critProfile)(p || { skill: '', skillRank: 1 }, src).multiplier;
+        const canCritical = damageSource === 'normal' && !!src && src.side !== 1 && !rawSrc?.summoned && (!!p || direct);
+        const crit = canCritical ? (0, skillMechanics_1.critProfile)(p || { skill: '', skillRank: 1 }, src) : undefined;
+        const critical = canCritical && this.random() < crit.chance;
+        const criticalMultiplier = critical ? crit.multiplier : 1;
+        const conditionBonuses = [];
         if (src?.side === 0 && direct && src.cls === 'archer' && !p?.skill.startsWith('A'))
-            dmg *= 1 + .04 * (0, progression_1.equippedRank)(src, 'AP02');
+            conditionBonuses.push(.04 * (0, progression_1.equippedRank)(src, 'AP02'));
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
         if (p && !(0, skillMechanics_1.newSkill)(p) && src && src.side === 0 && direct && (src.cls === 'archer' || p.body && src.cls === 'knight'))
-            dmg *= this.kineticMultiplier(p, src);
+            conditionBonuses.push(this.kineticMultiplier(p, src) - 1);
         if (src?.side === 0 && src.cls === 'knight' && direct && !data_1.SKILLS[p?.skill || '']?.martial) {
             const originX = p?.launchX ?? src.x, originY = p?.launchY ?? src.y, travel = source ? Math.hypot(source.x - originX, source.y - originY) : 9999;
             // Melee identity: close engagements reward the knight without turning long-range crescents into nukes.
             if (travel < 280)
-                dmg *= 1.42;
+                conditionBonuses.push(.42);
             else if (travel < 560)
-                dmg *= 1.18;
+                conditionBonuses.push(.18);
         }
+        if (p && src)
+            conditionBonuses.push(...(0, skillMechanics_1.redesignConditionBonuses)(p, src, source || p, direct));
         if (src?.side === 1 && src.combatBaseAttack === undefined)
             dmg *= this.b.difficulty === 'explorer' ? .48 : this.b.difficulty === 'story' ? .60 : this.b.difficulty === 'normal' ? .82 : this.b.difficulty === 'veteran' ? .98 : 1.08;
         if (src?.side === 1 && src.combatBaseAttack === undefined && this.b.mode === 'campaign' && this.b.stageId === 1)
             dmg *= .85;
+        const preCondition = 1 + conditionBonuses.reduce((sum, bonus) => sum + bonus, 0);
+        dmg *= preCondition * criticalMultiplier;
         if (p && src && (0, skillMechanics_1.newSkill)(p))
             dmg = (0, skillMechanics_1.redrawDamage)(this, p, src, u, dmg, source || p, direct, !!critical);
-        if (u.arrivalGuard !== undefined)
-            dmg *= .90;
         let armor = Math.max(0, u.armor - (u.curseArmor || 0));
         if (u.role === 'guard' && source)
             armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
@@ -5509,18 +5518,21 @@ class Engine {
             u.breaks--;
         }
         if (direct && u.mark > 0 && src && u.markSide === src.side) {
-            dmg *= 1.5;
+            conditionBonuses.push(.5);
             u.mark = 0;
             this.fx('rune', u.x, u.y - u.h * .5, '#fff0b5', 55);
         }
         if (direct && source && u.boss && Math.abs(source.y - (u.y - u.h * .53)) < u.h * .17) {
-            dmg *= 1.22;
+            conditionBonuses.push(.22);
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
-        if (damageSource === 'normal')
-            dmg *= 1 - (0, math_1.clamp)(armor * (p?.skill === 'S02' ? .65 : 1), 0, .7);
-        if (u.martialGuard && u.martialGuard.round >= this.b.round)
-            dmg *= 1 - u.martialGuard.reduction;
+        const defenseMultiplier = (damageSource === 'normal' ? 1 - (0, math_1.clamp)(armor * (p?.skill === 'S02' ? .65 : 1), 0, .7) : 1)
+            * (u.arrivalGuard !== undefined ? .90 : 1)
+            * (u.martialGuard && u.martialGuard.round >= this.b.round ? 1 - u.martialGuard.reduction : 1);
+        const attack = damageSource === 'normal' ? (0, existence_1.attackForHit)(p, rawSrc, src, data_1.SKILLS) : undefined;
+        const existence = attack ? (0, existence_1.existenceMultiplier)(attack, u, rawSrc || src) : 1;
+        const layers = (0, existence_1.calculateDamage)({ skillDamage: dmg / (preCondition * criticalMultiplier), conditionBonuses, criticalMultiplier, existenceMultiplier: existence, defenseMultiplier });
+        dmg = layers.finalDamage;
         if (p?.child && !(0, skillMechanics_1.newSkill)(p) && p.mode !== 'convergeSpirit') {
             const key = p.shot + ':' + (p.repeatIndex || 0) + ':' + u.id;
             const legacyId = data_1.SKILLS[p.skill]?.legacyId || p.skill;
@@ -5531,6 +5543,14 @@ class Engine {
         if (dmg <= 0)
             return;
         dmg = Math.max(1, Math.round(dmg));
+        const debug = globalThis;
+        if (debug.HONRO_DEBUG_DAMAGE) {
+            const traces = debug.HONRO_DAMAGE_TRACE ?? (debug.HONRO_DAMAGE_TRACE = []);
+            traces.push({ skill: p?.skill || '(direct)', source: owner, target: u.id, ...layers, finalDamage: dmg });
+            if (traces.length > 100)
+                traces.shift();
+            debug.HONRO_DAMAGE_TRACE = traces;
+        }
         const absorbed = Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
@@ -5666,7 +5686,7 @@ class Engine {
             if (id.startsWith('falling'))
                 for (const u of this.b.units)
                     if (!u.dead && u.x > linked.x - 15 && u.x < linked.x + linked.w + 15 && u.y > linked.y)
-                        this.hurt(u, 70, this.b.active);
+                        this.hurt(u, 70, this.b.active, false, undefined, undefined, 'environment');
         }
     }
     blast(x, y, r, damage, owner, body = false, p, depth = 0) {
@@ -7603,6 +7623,113 @@ class Engine {
     }
 }
 exports.Engine = Engine;
+
+},
+"existence": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MONSTER_EXISTENCE = exports.ATTACK_EXISTENCE = exports.NEUTRAL_EXISTENCE = void 0;
+exports.attackForSkill = attackForSkill;
+exports.defenseForUnit = defenseForUnit;
+exports.normalizedAttack = normalizedAttack;
+exports.existenceMultiplier = existenceMultiplier;
+exports.attackForHit = attackForHit;
+exports.calculateDamage = calculateDamage;
+/** Attack values are proportions (normally sum to 1), not extra attack power. */
+const mix = (form, qi, soul) => ({ form, qi, soul });
+exports.NEUTRAL_EXISTENCE = mix(1, 1, 1);
+// Explicitly grouped by what each implemented attack does, including the HONRO monster skills.
+const attackRows = [
+    ['A01 A02 A04 A05 A06 A07 A08 A09 A11 A12 A13 A14 A15 A99', mix(.96, .04, 0)],
+    ['A03', mix(.82, .18, 0)],
+    ['M01 M03 M04 M05 M07 M08 M11 M12 M14 M15 M99', mix(.08, .92, 0)],
+    ['M02 M06 M13', mix(.25, .75, 0)],
+    ['S00 S02 S03 S05 S07 S08', mix(.94, .06, 0)],
+    ['S01 S04 S06 S13 S15', mix(.82, .18, 0)],
+    ['S09 S10 S11 S12', mix(.55, .45, 0)],
+    ['O01 O02 O03 O04 O05 O16', mix(0, .16, .84)],
+    ['O06 O07 O08 O10', mix(0, .28, .72)],
+    ['O11 O12 O13 O14 O15', mix(0, .18, .82)],
+    ['HBR01 HBR02 HWD01 HMO02', mix(.82, .18, 0)],
+    ['HWD02 HBT01 HBT02', mix(.25, .75, 0)],
+    ['HCW01 HCW02', mix(.85, .15, 0)],
+    ['HGS01 HGS02 HLN01 HLN02 HSH01 HSH02 HMO01', mix(.04, .20, .76)]
+];
+exports.ATTACK_EXISTENCE = {};
+for (const [ids, value] of attackRows)
+    for (const id of ids.split(' '))
+        exports.ATTACK_EXISTENCE[id] = { ...value };
+// Historical NPC and in-flight save skills keep their old modes and use these explicit families.
+const legacyRows = [
+    ['LA01 LA02 LA03 LA04 LA05 LA06 LA07 LA08 LA09 LA10 LA11 LA12 LA13 LA14 LA15 LA99', mix(.94, .06, 0)],
+    ['LM01 LM02 LM03 LM04 LM05 LM06 LM07 LM08 LM09 LM10 LM11 LM12 LM13 LM14 LM15 LM99', mix(.12, .88, 0)],
+    ['LS01 LS02 LS03 LS04 LS05 LS06 LS07 LS08 LS11 LS13 LS15 LS99 S99', mix(.84, .16, 0)],
+    ['LS09 LS10 LS12 LS14', mix(.58, .42, 0)],
+    ['LO08 LO09 LO10 LO13 LO14 LO15 LO99 O99', mix(0, .22, .78)]
+];
+for (const [ids, value] of legacyRows)
+    for (const id of ids.split(' '))
+        exports.ATTACK_EXISTENCE[id] = { ...value };
+function attackForSkill(skill) {
+    return exports.ATTACK_EXISTENCE[skill.id] || { archer: mix(.95, .05, 0), mage: mix(.12, .88, 0), knight: mix(.85, .15, 0), occultist: mix(0, .2, .8) }[skill.cls];
+}
+/** Neutral 1 preserves old damage. Values below/above 1 reduce/amplify that part of a hit. */
+exports.MONSTER_EXISTENCE = {
+    bow: mix(1, 1, .78), crossbow: mix(1, 1, .78), slinger: mix(1, 1, .78), guard: mix(1, 1, .78), leaper: mix(1, 1, .78),
+    fire: mix(1, 1, .78), frost: mix(1, 1, .78), storm: mix(1, 1, .78), bomber: mix(1, 1, .78), healer: mix(1, 1, .78), ward: mix(1, 1, .78), ballista: mix(.92, 1, .55),
+    human: mix(1, 1, .88), hound: mix(.94, 1.03, 1.08), boar: mix(.96, 1.03, 1.08), stag: mix(.94, 1.04, 1.08),
+    bat: mix(.90, 1.06, 1.10), crow: mix(.92, 1.04, 1.08), ghost: mix(.20, 1.05, 1.32), shade: mix(.24, 1.05, 1.28), lantern: mix(.18, 1.10, 1.34),
+    warden: mix(.82, 1.08, 1.20), mourner: mix(.78, 1.05, 1.25), golem: mix(.83, 1.06, 1.23), medium: mix(1, 1.08, 1.16),
+    dummy: exports.NEUTRAL_EXISTENCE, boss: mix(.94, 1.03, 1.08),
+    'boss:1': mix(.80, 1.05, 1.15), 'boss:2': mix(1, 1, .80), 'boss:3': mix(.72, 1.15, .90),
+    'boss:4': mix(.80, 1.12, 1.15), 'boss:5': mix(1, 1, .82), 'boss:6': mix(.92, 1.10, 1),
+    bier: mix(1, .80, .35), gate: mix(1, .82, .30), civilian: mix(1, 1, .88),
+    'summon-stalker': mix(.65, 1.03, 1.18), 'summon-charger': mix(.75, 1.02, 1.14), 'summon-host': mix(.70, 1.04, 1.17),
+    'summon-lantern': mix(.25, 1.07, 1.27), 'summon-warden': mix(.60, 1.04, 1.16), 'summon-eater': mix(.28, 1.07, 1.25),
+    'summon-echo': mix(.22, 1.08, 1.26), 'summon-earthbound': mix(.64, 1.03, 1.18)
+};
+function defenseForUnit(u) {
+    if (u.existenceDefense)
+        return u.existenceDefense;
+    if (u.summonKind)
+        return exports.MONSTER_EXISTENCE['summon-' + u.summonKind] || exports.NEUTRAL_EXISTENCE;
+    if (u.side === 0)
+        return exports.MONSTER_EXISTENCE.human;
+    if (u.side === 2)
+        return exports.MONSTER_EXISTENCE[u.honroType || ''] || exports.MONSTER_EXISTENCE.human;
+    if (u.role === 'boss' && u.boss)
+        return exports.MONSTER_EXISTENCE['boss:' + u.boss] || exports.MONSTER_EXISTENCE.boss;
+    if (u.role === 'medium' || u.role === 'golem')
+        return exports.MONSTER_EXISTENCE[u.role];
+    return exports.MONSTER_EXISTENCE[u.honroVariant || ''] || exports.MONSTER_EXISTENCE[u.honroType || ''] || exports.MONSTER_EXISTENCE[u.role] || exports.MONSTER_EXISTENCE[u.boss ? 'boss' : 'human'];
+}
+function finiteNonnegative(value, defaultValue = 0) { return Number.isFinite(value) ? Math.max(0, value) : defaultValue; }
+function normalizedAttack(attack) {
+    const form = finiteNonnegative(attack.form), qi = finiteNonnegative(attack.qi), soul = finiteNonnegative(attack.soul), sum = form + qi + soul;
+    return sum > 0 ? mix(form / sum, qi / sum, soul / sum) : mix(1, 0, 0);
+}
+function existenceMultiplier(attack, target, attacker) {
+    const a = normalizedAttack(attack), base = defenseForUnit(target), delta = target.existenceShift;
+    const form = finiteNonnegative(base.form + (delta?.form || 0) + (target.manifested ? target.formDamageTakenBonus || 0 : 0), 1);
+    const qi = finiteNonnegative(base.qi + (delta?.qi || 0), 1);
+    const soul = finiteNonnegative(base.soul + (delta?.soul || 0) - (target.soulDefenseBonus || 0), 1);
+    const response = a.form * form + a.qi * qi + a.soul * soul;
+    return Math.max(.1, Math.min(1.5, response * (1 + a.soul * (attacker?.soulAffinityBonus || 0))));
+}
+function attackForHit(p, rawSource, source, skills) {
+    if (p)
+        return p.existenceAttack || skills[p.skill]?.existenceAttack || attackForSkill(skills[p.skill] || { id: p.skill, cls: source?.cls || 'knight' });
+    if (rawSource?.summonKind)
+        return { stalker: mix(.35, .10, .55), charger: mix(.48, .10, .42), host: mix(.35, .15, .50), lantern: mix(0, .14, .86), warden: mix(.25, .25, .50), eater: mix(0, .12, .88), echo: mix(0, .14, .86), earthbound: mix(.32, .18, .50) }[rawSource.summonKind];
+    if (!source)
+        return undefined; // Falls, terrain and scripted environmental damage remain unchanged.
+    return attackForSkill({ id: '', cls: source.cls });
+}
+function calculateDamage(layers) {
+    const skillDamage = finiteNonnegative(layers.skillDamage), conditionMultiplier = Math.max(0, 1 + layers.conditionBonuses.reduce((sum, b) => sum + (Number.isFinite(b) ? b : 0), 0));
+    const criticalMultiplier = finiteNonnegative(layers.criticalMultiplier, 1), existenceMultiplier = finiteNonnegative(layers.existenceMultiplier, 1), defenseMultiplier = finiteNonnegative(layers.defenseMultiplier, 1);
+    return { skillDamage, conditionMultiplier, criticalMultiplier, existenceMultiplier, defenseMultiplier, finalDamage: skillDamage * conditionMultiplier * criticalMultiplier * existenceMultiplier * defenseMultiplier };
+}
 
 },
 "icons": function(module,exports,require){
@@ -10509,6 +10636,7 @@ exports.newSkill = exports.iceGourdFuse = exports.ICE_GOURD_FUSE = exports.SKILL
 exports.mainBranch = mainBranch;
 exports.specialty = specialty;
 exports.trajectoryMultiplier = trajectoryMultiplier;
+exports.redesignConditionBonuses = redesignConditionBonuses;
 exports.critProfile = critProfile;
 exports.redrawDamage = redrawDamage;
 exports.recordRedesignDamage = recordRedesignDamage;
@@ -10572,6 +10700,11 @@ function trajectoryMultiplier(p, u, hit) {
         return 1 + ((s.id === 'A08' ? .35 : .45) + extra) * (0, math_1.clamp)((Math.hypot(p.vx, p.vy) - 500) / 650, 0, 1);
     return 1;
 }
+function redesignConditionBonuses(p, u, hit, direct) {
+    if (!(0, exports.newSkill)(p) || u.cls !== 'archer' || !direct)
+        return [];
+    return [trajectoryMultiplier(p, u, hit) - 1, ...(p.skill === 'A09' && p.turned ? [lerpRank(.30, .65, rank(p))] : [])];
+}
 function critProfile(p, u) {
     const r = rank(p), id = p.skill, base = (0, progression_1.criticalStats)(u.cls, u.level, u.ranks);
     return { chance: Math.min(.80, (u.critChance ?? base.critChance) + (id === 'A14' ? lerpRank(.18, .39, r) : id === 'A99' ? lerpRank(.25, .39, r) : 0) + (p.preparedRank ? lerpRank(.06, .20, p.preparedRank) : 0)),
@@ -10581,9 +10714,6 @@ function redrawDamage(e, p, u, target, amount, point, direct, critical = false) 
     if (!(0, exports.newSkill)(p))
         return amount;
     if (u.cls === 'archer' && direct) {
-        amount *= trajectoryMultiplier(p, u, point);
-        if (p.skill === 'A09' && p.turned)
-            amount *= 1 + lerpRank(.30, .65, rank(p));
         if (p.preparedRank)
             amount /= Math.max(.3, 1 - (0, math_1.clamp)(target.armor, 0, .7)) * Math.max(.3, 1 - (0, math_1.clamp)(target.armor - lerpRank(.04, .15, p.preparedRank), 0, .7));
         if (p.skill === 'A99' && critical && Math.abs(point.x - (p.launchX ?? point.x)) >= 1200) {
@@ -12996,6 +13126,7 @@ function validBattle(raw, legacyXp = false) {
     if (!['aim', 'flight', 'enemy', 'review', 'transition', 'summon', 'won', 'lost'].includes(b.phase) || !['campaign', 'practice', 'skirmish'].includes(b.mode) || ![0, 1].includes(b.side) || !['explorer', 'story', 'normal', 'veteran', 'nightmare'].includes(b.difficulty))
         return fail();
     const nums = (v, keys, max = 1e14) => object(v) && keys.every(k => finite(v[k]) && Math.abs(v[k]) <= max), ids = new Set(), safe = (s, max = 100) => typeof s === 'string' && s.length <= max && !['__proto__', 'prototype', 'constructor'].includes(s);
+    const existenceVector = (v, partial = false) => object(v) && ['form', 'qi', 'soul'].every(k => partial && v[k] === undefined || finite(v[k]) && v[k] >= (partial ? -2 : 0) && v[k] <= 2);
     if (!nums(b, ['round', 'wind', 'turnAge', 'resolveAge', 'nextId', 'shot', 'shots', 'hits', 'kills', 'seed', 'rng', 'reinforced', 'sceneVersion', 'enemyLimit', 'encounter']) || b.round < 1 || b.enemyLimit < 1 || b.enemyLimit > 12)
         return fail();
     for (const u of b.units) {
@@ -13010,6 +13141,8 @@ function validBattle(raw, legacyXp = false) {
                 return fail();
         }
         if (u.moveTarget !== undefined && !finite(u.moveTarget))
+            return fail();
+        if (u.existenceDefense !== undefined && !existenceVector(u.existenceDefense) || u.existenceShift !== undefined && !existenceVector(u.existenceShift, true))
             return fail();
         for (const [id, r] of Object.entries(u.ranks)) {
             const n = progression_1.TALENT_MAP[id], sk = data_1.SKILLS[id];
@@ -13235,6 +13368,8 @@ function validBattle(raw, legacyXp = false) {
         if (p.carry !== undefined && (!Array.isArray(p.carry) || p.carry.length > 60 || p.carry.some(id => !ids.has(id))))
             return fail();
         if (p.repeatIndex !== undefined && (!finite(p.repeatIndex) || p.repeatIndex < 0 || p.repeatIndex > 5))
+            return fail();
+        if (p.existenceAttack !== undefined && !existenceVector(p.existenceAttack))
             return fail();
     }
     for (const z of b.zones)
@@ -14657,7 +14792,7 @@ function upgradeBattle(b, profile) {
 }
 
 }};const cache={};function load(id){id=id.replace(/^\.\//,'').replace(/\.js$/,'');if(cache[id])return cache[id].exports;if(!modules[id])throw new Error('Missing internal module: '+id);const m={exports:{}};cache[id]=m;modules[id](m,m.exports,load);return m.exports;}
-globalThis.HONRO_CORE={...load('audio'),...load('bgm'),...load('campUI'),...load('icons'),...load('atlasControls'),...load('art'),...load('engine'),...load('data'),...load('world'),...load('store'),...load('math'),...load('progression'),...load('enemyAI'),...load('balance'),...load('balanceModel'),...load('stageRules'),...load('atlasLayout'),...load('physics'),...load('projectileGrowth'),...load('skillMechanics'),...load('skillVisuals'),...load('warriorData'),...load('warriorMechanics'),...load('combatPassives'),...load('warriorVisuals'),...load('summons'),...load('locomotion')};
+globalThis.HONRO_CORE={...load('audio'),...load('bgm'),...load('campUI'),...load('icons'),...load('atlasControls'),...load('art'),...load('engine'),...load('data'),...load('world'),...load('store'),...load('math'),...load('progression'),...load('enemyAI'),...load('balance'),...load('balanceModel'),...load('stageRules'),...load('atlasLayout'),...load('physics'),...load('projectileGrowth'),...load('skillMechanics'),...load('skillVisuals'),...load('warriorData'),...load('warriorMechanics'),...load('combatPassives'),...load('warriorVisuals'),...load('summons'),...load('locomotion'),...load('existence')};
 globalThis.HONRO_BALANCE={
   "version": 3,
   "maxLevel": 25,
@@ -15547,6 +15682,7 @@ const MONSTER_SKILLS={
  HMO01:{id:'HMO01',cls:'knight',name:'곡소리',tag:'상두꾼 · 충격파',desc:'목 없는 몸에서 검은 울림이 퍼진다.',cost:0,damage:30,radius:92,mode:'honroMournerWail',icon:'resonance',color:'#9f7978',speed:.80,wind:.20,terrain:.25,gravity:.24},
  HMO02:{id:'HMO02',cls:'knight',name:'상여추',tag:'상두꾼 · 중량',desc:'상여 장식의 무거운 파편을 던진다.',cost:0,damage:42,radius:52,mode:'honroBierWeight',icon:'slam',color:'#8e7762',speed:.70,wind:.48,terrain:1.15,gravity:1.30}
 };
+for(const skill of Object.values(MONSTER_SKILLS))skill.existenceAttack=C.attackForSkill(skill);
 Object.assign(C.SKILLS,MONSTER_SKILLS);
 const ARCHETYPES={
  ghost:{name:'떠도는 혼',role:'fire',look:'ghost',cls:'occultist',skills:['HGS01','HGS02'],hp:102,attack:.50,h:105,r:21,intent:'망자의 한숨'},

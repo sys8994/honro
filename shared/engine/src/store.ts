@@ -62,6 +62,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
     if (!['aim', 'flight', 'enemy', 'review', 'transition', 'summon', 'won', 'lost'].includes(b.phase) || !['campaign', 'practice', 'skirmish'].includes(b.mode) || ![0, 1].includes(b.side) || !['explorer','story','normal','veteran','nightmare'].includes(b.difficulty))
         return fail();
     const nums = (v: unknown, keys: string[], max = 1e14) => object(v) && keys.every(k => finite(v[k]) && Math.abs(v[k]) <= max), ids = new Set<string>(), safe = (s: unknown, max = 100) => typeof s === 'string' && s.length <= max && !['__proto__', 'prototype', 'constructor'].includes(s);
+    const existenceVector=(v:unknown,partial=false)=>object(v)&&['form','qi','soul'].every(k=>partial&&v[k]===undefined||finite(v[k])&&v[k]>= (partial?-2:0)&&v[k]<=2);
     if (!nums(b, ['round', 'wind', 'turnAge', 'resolveAge', 'nextId', 'shot', 'shots', 'hits', 'kills', 'seed', 'rng', 'reinforced', 'sceneVersion', 'enemyLimit', 'encounter']) || b.round < 1 || b.enemyLimit < 1 || b.enemyLimit > 12)
         return fail();
     for (const u of b.units) {
@@ -75,6 +76,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         }
         if (u.moveTarget !== undefined && !finite(u.moveTarget))
             return fail();
+        if(u.existenceDefense!==undefined&&!existenceVector(u.existenceDefense)||u.existenceShift!==undefined&&!existenceVector(u.existenceShift,true))return fail();
         for (const [id, r] of Object.entries(u.ranks)) {
             const n=TALENT_MAP[id],sk=SKILLS[id];
             if(sk?.basic||sk?.enemyOnly){if(!finite(r)||!Number.isInteger(r)||r<0||r>8)return fail();continue;}
@@ -201,7 +203,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
     if(b.reviewDamage!==undefined&&(!object(b.reviewDamage)||Object.entries(b.reviewDamage).some(([id,d])=>!ids.has(id)||!finite(d)||d<0||d>1e8)))return fail();
     if(b.volley){const v=b.volley,p=v.template;if(!nums(v,['remaining','elapsed','interval','index','angle','power'])||v.remaining<0||v.remaining>5||!Number.isInteger(v.remaining)||![.5,1].includes(v.interval)||v.index<0||v.index>6||v.elapsed<0||v.elapsed>2||v.power<0||v.power>1||!object(p)||!nums(p,['x','y','vx','vy','damage','blast','radius','shot'])||!ids.has(p.owner)||!SKILLS[p.skill]||SKILLS[p.skill].cls!=='archer'||SKILLS[p.skill].passive||!modes.has(p.mode))return fail();}
     for(const u of b.units){if(u.carriedBy!==undefined&&(!finite(u.carriedBy)||!b.projectiles.some(p=>p.id===u.carriedBy&&(p.mode==='charge'||p.mode==='cataclysmCharge'))))return fail();if(u.lastStandUsed!==undefined&&typeof u.lastStandUsed!=='boolean')return fail();}
-    for(const p of b.projectiles){if(p.carry!==undefined&&(!Array.isArray(p.carry)||p.carry.length>60||p.carry.some(id=>!ids.has(id))))return fail();if(p.repeatIndex!==undefined&&(!finite(p.repeatIndex)||p.repeatIndex<0||p.repeatIndex>5))return fail();}
+    for(const p of b.projectiles){if(p.carry!==undefined&&(!Array.isArray(p.carry)||p.carry.length>60||p.carry.some(id=>!ids.has(id))))return fail();if(p.repeatIndex!==undefined&&(!finite(p.repeatIndex)||p.repeatIndex<0||p.repeatIndex>5))return fail();if(p.existenceAttack!==undefined&&!existenceVector(p.existenceAttack))return fail();}
     for (const z of b.zones)
         if (!nums(z, ['id', 'x', 'y', 'radius', 'damage', 'expires']) || !['fire', 'frost', 'delay', 'bomb'].includes(z.kind) || !ids.has(z.owner))
             return fail();

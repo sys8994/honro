@@ -6,7 +6,9 @@ export type Vec = {
     x: number;
     y: number;
 };
+export type ExistenceVector = {form:number;qi:number;soul:number};
 export interface Skill {
+    existenceAttack?: ExistenceVector;
     martial?: boolean;
     redesigned?: boolean;
     basic?: boolean;
@@ -119,6 +121,11 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    /** Optional overrides and temporary shifts; absent fields use the species/role baseline. */
+    existenceDefense?: ExistenceVector;
+    existenceShift?: Partial<ExistenceVector>;
+    honroVariant?: string;
+    honroType?: string;
     critChance?: number;
     critMultiplier?: number;
     arrowTurn?: number;
@@ -242,6 +249,7 @@ export interface Unit {
     cooldowns?: Record<string, number>;
 }
 export interface Projectile {
+    existenceAttack?: ExistenceVector;
     echoDelay?: number;
     echoSource?: string;
     soulBoost?: boolean;

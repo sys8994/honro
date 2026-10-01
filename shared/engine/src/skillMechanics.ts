@@ -28,6 +28,10 @@ export function trajectoryMultiplier(p:Projectile,u:Unit,hit:Vec){
  if(s.branch==='speed')return 1+((s.id==='A08'?.35:.45)+extra)*clamp((Math.hypot(p.vx,p.vy)-500)/650,0,1);
  return 1;
 }
+export function redesignConditionBonuses(p:Projectile,u:Unit,hit:Vec,direct:boolean){
+ if(!newSkill(p)||u.cls!=='archer'||!direct)return [];
+ return [trajectoryMultiplier(p,u,hit)-1,...(p.skill==='A09'&&p.turned?[lerpRank(.30,.65,rank(p))]:[])];
+}
 export function critProfile(p:Projectile,u:Unit){
  const r=rank(p),id=p.skill,base=criticalStats(u.cls,u.level,u.ranks);
  return {chance:Math.min(.80,(u.critChance??base.critChance)+(id==='A14'?lerpRank(.18,.39,r):id==='A99'?lerpRank(.25,.39,r):0)+(p.preparedRank?lerpRank(.06,.20,p.preparedRank):0)),
@@ -36,8 +40,6 @@ export function critProfile(p:Projectile,u:Unit){
 export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:number,point:Vec,direct:boolean,critical=false){
  if(!newSkill(p))return amount;
  if(u.cls==='archer'&&direct){
-  amount*=trajectoryMultiplier(p,u,point);
-  if(p.skill==='A09'&&p.turned)amount*=1+lerpRank(.30,.65,rank(p));
   if(p.preparedRank)amount/=Math.max(.3,1-clamp(target.armor,0,.7))*Math.max(.3,1-clamp(target.armor-lerpRank(.04,.15,p.preparedRank),0,.7));
   if(p.skill==='A99'&&critical&&Math.abs(point.x-(p.launchX??point.x))>=1200){
    if(target.boss)amount*=1+.25*(1-target.hp/target.maxHp);

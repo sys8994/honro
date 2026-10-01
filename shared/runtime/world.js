@@ -20,6 +20,7 @@ const MONSTER_SKILLS={
  HMO01:{id:'HMO01',cls:'knight',name:'곡소리',tag:'상두꾼 · 충격파',desc:'목 없는 몸에서 검은 울림이 퍼진다.',cost:0,damage:30,radius:92,mode:'honroMournerWail',icon:'resonance',color:'#9f7978',speed:.80,wind:.20,terrain:.25,gravity:.24},
  HMO02:{id:'HMO02',cls:'knight',name:'상여추',tag:'상두꾼 · 중량',desc:'상여 장식의 무거운 파편을 던진다.',cost:0,damage:42,radius:52,mode:'honroBierWeight',icon:'slam',color:'#8e7762',speed:.70,wind:.48,terrain:1.15,gravity:1.30}
 };
+for(const skill of Object.values(MONSTER_SKILLS))skill.existenceAttack=C.attackForSkill(skill);
 Object.assign(C.SKILLS,MONSTER_SKILLS);
 const ARCHETYPES={
  ghost:{name:'떠도는 혼',role:'fire',look:'ghost',cls:'occultist',skills:['HGS01','HGS02'],hp:102,attack:.50,h:105,r:21,intent:'망자의 한숨'},

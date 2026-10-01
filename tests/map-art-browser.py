@@ -94,8 +94,10 @@ if mode == 'baseline':
     BASELINE.write_text(json.dumps(result['counts'], ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 else:
     baseline = json.loads(BASELINE.read_text(encoding='utf-8'))
+    # HBUG-057 deliberately replaced Stage 4's sparse backdrop with a layered night forest.
+    revised_background_budget = {'background:4': 12000}
     excess = {k: {'before': v, 'after': result['counts'].get(k)} for k, v in baseline.items()
-              if k not in result['counts'] or result['counts'][k] > v * 2}
+              if k not in result['counts'] or result['counts'][k] > max(v * 2, revised_background_budget.get(k, 0))}
     result['excess'] = excess
     if excess:
         raise AssertionError(excess)

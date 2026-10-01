@@ -5,7 +5,7 @@ const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,checks=[];
 function test(name,fn){const detail=fn();checks.push({name,detail});console.log('PASS',name);}
 function arena(cls='mage',distance=750,side=1){
  const a=battlefield(g,10),{b,e}=a;b.width=4000;b.height=2000;b.terrain=[{id:'floor',x:0,y:1500,w:4000,h:500,mat:'rock',hp:99999,maxHp:99999}];b.sceneVersion++;b.fields=[];b.drafts=[];b.waters=[];b.zones=[];b.wind=0;b.honroEvents=[];
- const id=cls==='archer'?'LA01':cls==='mage'?'M01':'O09';
+ const id=cls==='archer'?'LA01':cls==='mage'?'M01':'LO09';
  const u=C.makeUnit(cls,side,700,1500,{id:'shooter',fixed:true,lastAct:b.round,loadout:[id],focus:999,honroAlly:side===2,allyRole:'daoist'}),t=C.makeUnit('archer',side===2?1:0,700+distance,1500,{id:'target',hp:1000,maxHp:1000});b.units=[u,t];b.active=u.id;b.side=1;b.phase='enemy';b.turnAge=0;e.checkEnd=()=>false;return{...a,u,t,id};
 }
 for(const cls of ['archer','mage','occultist'])for(const distance of [350,750,1100])test(`${cls} at ${distance}: fires without a turn-age delay or exhaustive search`,()=>{

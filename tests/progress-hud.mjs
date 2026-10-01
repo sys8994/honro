@@ -21,7 +21,7 @@ test('Escort and rescue still require their mission conditions at the displayed 
  const {b,e,st}=battlefield(g,2),car=e.unit('objective');car.x=b.honroEscortGoalX;assert(!g.HonroObjectives.state(b,st).complete);
  b.round=4;for(const u of e.alive(1)){u.hp=0;u.dead=true;}for(const ev of b.honroEvents)b.honroState.flags['event:'+ev.id]=true;
  assert(g.HonroObjectives.state(b,st).complete);assert.equal(g.HonroObjectives.state(b,st).allTargets.find(t=>t.kind==='exit').x,car.x);
- const r=battlefield(g,6),marker=r.b.honroMarkers.find(m=>m.type==='exit'),convoy=r.e.unit('objective');convoy.x=marker.x;r.b.honroState.rescued=true;r.b.round=8;
+ const r=battlefield(g,6),marker=r.b.honroMarkers.find(m=>m.type==='exit'),convoy=r.e.unit('objective');convoy.x=marker.x;r.b.honroState.rescued=true;r.b.honroState.objectiveReadyRound=11;r.b.round=12;
  assert(!g.HonroObjectives.state(r.b,r.st).complete);for(const u of r.b.units.filter(u=>u.honroMidboss)){u.dead=true;u.hp=0;}
  assert(g.HonroObjectives.state(r.b,{...r.st,w:r.st.w+9000}).complete);r.b.honroState.rescued=false;assert(!g.HonroObjectives.state(r.b,r.st).complete);
 });

@@ -1,5 +1,7 @@
 # HONRO 게임 수정 맥락
 
+**형·기·혼 피해 계층(HBUG-059, 2026-10-01):** `shared/engine/src/existence.ts`가 공격 구성비와 종족별 감응도, 선택적 전투 중 변화량, 최종 배수를 정의한다. 모든 일반 피격은 `Engine.hurt()`에서 기존 기술 피해·조건·치명·방어 계산을 거쳐 이 계층을 적용한다. `shared/engine/src/data.ts`는 플레이어 및 옛 NPC 기술에, `shared/runtime/world.js`는 현재 몬스터 기술에 공격 구성을 연결한다. 기본 감응도는 종족/역할에서 조회해 활성 맵과 옛 저장의 유닛 레코드를 변경하지 않으며, 새 저장에는 `existenceDefense` 또는 `existenceShift`를 선택적으로 둘 수 있다. 분류표·공식·밸런스 판단은 [현재 설계와 검증](DAMAGE_EXISTENCE_SYSTEM.md), 집중 검사는 `tests/existence-damage.mjs`와 `tests/existence-damage-browser.py`를 본다.
+
 **소단 기예 개편(HBUG-058, 2026-10-01):** `shared/engine/src/occultData.ts`가 새 소단 트리와 옛 `LO*` 정의를, `occultMechanics.ts`가 반향 목표 snapshot·만혼귀결 곡선을 맡는다. `engine.ts`는 소단 직후 `summonTurn`을 재사용하며, `skillMechanics.ts`가 옛 투자 SP와 비행 탄을 이행한다. 대표 검사는 `tests/sodan-redesign.mjs`와 `tests/sodan-redesign-browser.py`; 설계 충돌·한계는 [보고서](SKILL_REDESIGN_SODAN_REPORT.md)에 있다.
 
 **1막 깊이·원경 가독성(HBUG-057, 2026-10-01):** 3·4장 밤숲은 [거리별 화면 규칙](ACT1_LAYER_DEPTH.md)의 `distance`로 줌·시차가 완만하게 달라지고, 달은 화면 크기가 고정된다. `shared/runtime/map-art-polish.js`가 저채도 소나무·앙상한 나무를 섞고, `renderer.js`는 줌에 따라 해당 원경 캐시를 갱신한다. 월드 장식은 레이어별 불투명도를 적용하되 가까운 바위는 완전 불투명하다. 지형 윤곽은 `art-dark.js`에서 선명하게 그린다. 관련 검사는 `tests/stage36-place-browser.py --stage34`, `tests/migration.mjs`, `tests/integration.py`다.

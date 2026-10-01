@@ -19,8 +19,8 @@ test('All 32 redesigned actions repeat without refresh, at both ranks, including
   assert.equal(a.b.session,session);assert.equal(a.u.ranks[s.id],rank);rows.push({id:s.id,rank,shots:2});
  }details.repeat=rows;
 });
-test('Campaign retains capstone cooldown and retreat while practice keeps consecutive gate placements',()=>{
- const a=arena('A99');a.b.mode='campaign';a.foe();a.e.fire('A99',20,.5);assert(a.e.cooldownLeft(a.u,'A99')>0);a.b.projectiles=[];a.e.finishAction(true);assert(a.e.cooldownLeft(a.u,'A99')>0);
+test('Campaign capstone has no cooldown and retains retreat while practice keeps consecutive gate placements',()=>{
+ const a=arena('A99');a.b.mode='campaign';a.foe();a.e.fire('A99',20,.5);assert.equal(a.e.cooldownLeft(a.u,'A99'),0);a.b.projectiles=[];a.e.finishAction(true);assert.equal(a.e.cooldownLeft(a.u,'A99'),0);
  const r=arena('A01');r.b.mode='campaign';r.u.ranks.AP03=8;r.foe();r.e.fire('A01',30,.5);r.b.projectiles=[];r.e.finishAction(true);assert(r.u.retreat);assert(!r.e.fire('A01',30,.5));
  const gate=arena('M09');for(let i=0;i<2;i++){assert(gate.e.fire('M09',35,.6));gate.resolve();assert.equal(gate.b.stakes.length,2);}
 });

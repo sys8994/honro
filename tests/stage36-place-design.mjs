@@ -6,18 +6,20 @@ import {migrate} from '../migration/migrate-stages.mjs';
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,project=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
 const plain=x=>JSON.parse(JSON.stringify(x)),checks=[];
+// Sodan's earlier skill redesign changes only the frozen Stage 10 boss attack fields.
+function withoutHistoricalSodanAttack(value){const copy=plain(value);for(const stage of copy.stages||[]){const boss=stage.units?.find(u=>u.id==='boss'&&u.cls==='occultist');if(boss){delete boss.attack;delete boss.combatBaseAttack;}}return copy;}
 function test(name,fn){try{const detail=fn();checks.push({name,pass:true,detail});console.log('PASS',name);}catch(error){checks.push({name,pass:false,error:String(error)});console.error('FAIL',name,error.message);}}
 function top(st,x){const p=st.terrains[0].points.slice(0,st.detailStats.groundTop);for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i];if(a.x<=x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('No ground at '+x);}
 function grade(st,x,width){return Math.abs(top(st,x-width/2)-top(st,x+width/2));}
 vm.runInContext(await readFile('workshop/recipes/stage12-forest-basin.js','utf8'),g);
 vm.runInContext(await readFile('workshop/recipes/stage36-place-design.js','utf8'),g);
 const migrated=await migrate(),first=g.HonroCommands.apply(migrated,g.HonroStage12Design.commands(migrated));
-test('Both Workshop recipes reproduce the active Stage 1–10 project',()=>assert.deepEqual(plain(g.HonroCommands.apply(first,g.HonroStage36Places.commands(first))),project));
+test('Both Workshop recipes reproduce the active Stage 1–10 project',()=>assert.deepEqual(withoutHistoricalSodanAttack(g.HonroCommands.apply(first,g.HonroStage36Places.commands(first))),withoutHistoricalSodanAttack(project)));
 test('Only Stages 3–6 receive new playable geometry and 7–10 remain unchanged',()=>{
  for(const sid of[3,4,5,6]){const a=first.stages[sid-1],b=project.stages[sid-1];assert.notDeepEqual(b.terrains[0].points,a.terrains[0].points);assert.equal(b.metadata.placeRevision,1);assert(b.detailStats.groundTop>=150);}
  const later=plain(project.stages.slice(6));
  later[3].elements.find(e=>e.kind==='ritualDais').layer='back';
- assert.deepEqual(later,plain(migrated.stages.slice(6)));
+ assert.deepEqual(withoutHistoricalSodanAttack({stages:later}).stages,withoutHistoricalSodanAttack({stages:migrated.stages.slice(6)}).stages);
 });
 test('Warehouse, gate and burned homes have level usable footprints',()=>{
  assert(grade(project.stages[2],5550,450)<5);

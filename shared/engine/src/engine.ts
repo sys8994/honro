@@ -1,6 +1,6 @@
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
-import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
+import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
 import {terrainSurface,walkTerrain} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
@@ -13,6 +13,7 @@ import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
+import {attackForHit,calculateDamage,existenceMultiplier} from './existence';
 import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, segRect, segmentTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
@@ -600,28 +601,33 @@ export class Engine {
         u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12)); this.message(`${u.name} · 방어하며 대기`); this.finishAction(); }
     iceGourdReady(){return iceGourdReady(this);}
     detonateIceGourd(){return detonateIceGourd(this);}
-    hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'='normal') {
+    hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'|'environment'='normal') {
         if (u.dead || amount <= 0)
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
         let dmg = amount;
-        const critical=damageSource==='normal'&&src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct)&&this.random()<critProfile(p||{skill:'',skillRank:1} as Projectile,src).chance;
-        if(critical)dmg*=critProfile(p||{skill:'',skillRank:1} as Projectile,src!).multiplier;
-        if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))dmg*=1+.04*equippedRank(src,'AP02');
+        const canCritical=damageSource==='normal'&&!!src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct);
+        const crit=canCritical?critProfile(p||{skill:'',skillRank:1} as Projectile,src!):undefined;
+        const critical=canCritical&&this.random()<crit!.chance;
+        const criticalMultiplier=critical?crit!.multiplier:1;
+        const conditionBonuses:number[]=[];
+        if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))conditionBonuses.push(.04*equippedRank(src,'AP02'));
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
         if (p && !newSkill(p) && src && src.side === 0 && direct && (src.cls === 'archer' || p.body && src.cls === 'knight'))
-            dmg *= this.kineticMultiplier(p, src);
+            conditionBonuses.push(this.kineticMultiplier(p, src)-1);
         if(src?.side===0 && src.cls==='knight' && direct&&!SKILLS[p?.skill||'']?.martial){
             const originX=p?.launchX??src.x, originY=p?.launchY??src.y, travel=source?Math.hypot(source.x-originX,source.y-originY):9999;
             // Melee identity: close engagements reward the knight without turning long-range crescents into nukes.
-            if(travel<280)dmg*=1.42; else if(travel<560)dmg*=1.18;
+            if(travel<280)conditionBonuses.push(.42); else if(travel<560)conditionBonuses.push(.18);
         }
+        if(p&&src)conditionBonuses.push(...redesignConditionBonuses(p,src,source||p,direct));
         if (src?.side === 1 && src.combatBaseAttack===undefined)
             dmg *= this.b.difficulty === 'explorer' ? .48 : this.b.difficulty === 'story' ? .60 : this.b.difficulty === 'normal' ? .82 : this.b.difficulty === 'veteran' ? .98 : 1.08;
         if (src?.side === 1 && src.combatBaseAttack===undefined && this.b.mode === 'campaign' && this.b.stageId === 1)
             dmg *= .85;
+        const preCondition=1+conditionBonuses.reduce((sum,bonus)=>sum+bonus,0);
+        dmg*=preCondition*criticalMultiplier;
         if(p&&src&&newSkill(p))dmg=redrawDamage(this,p,src,u,dmg,source||p,direct,!!critical);
-        if(u.arrivalGuard!==undefined)dmg*=.90;
         let armor = Math.max(0,u.armor-(u.curseArmor||0));
         if (u.role === 'guard' && source)
             armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
@@ -634,16 +640,21 @@ export class Engine {
             u.breaks--;
         }
         if (direct && u.mark > 0 && src && u.markSide === src.side) {
-            dmg *= 1.5;
+            conditionBonuses.push(.5);
             u.mark = 0;
             this.fx('rune', u.x, u.y - u.h * .5, '#fff0b5', 55);
         }
         if (direct && source && u.boss && Math.abs(source.y - (u.y - u.h * .53)) < u.h * .17) {
-            dmg *= 1.22;
+            conditionBonuses.push(.22);
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
-        if(damageSource==='normal')dmg*=1-clamp(armor*(p?.skill==='S02'?.65:1),0,.7);
-        if(u.martialGuard&&u.martialGuard.round>=this.b.round)dmg*=1-u.martialGuard.reduction;
+        const defenseMultiplier=(damageSource==='normal'?1-clamp(armor*(p?.skill==='S02'?.65:1),0,.7):1)
+            *(u.arrivalGuard!==undefined?.90:1)
+            *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
+        const attack=damageSource==='normal'?attackForHit(p,rawSrc,src,SKILLS):undefined;
+        const existence=attack?existenceMultiplier(attack,u,rawSrc||src):1;
+        const layers=calculateDamage({skillDamage:dmg/(preCondition*criticalMultiplier),conditionBonuses,criticalMultiplier,existenceMultiplier:existence,defenseMultiplier});
+        dmg=layers.finalDamage;
         if (p?.child && !newSkill(p) && p.mode!=='convergeSpirit') {
             const key = p.shot + ':' + (p.repeatIndex||0) + ':' + u.id;
             const legacyId=SKILLS[p.skill]?.legacyId||p.skill;
@@ -654,6 +665,8 @@ export class Engine {
         if (dmg <= 0)
             return;
         dmg = Math.max(1, Math.round(dmg));
+        const debug=globalThis as any;
+        if(debug.HONRO_DEBUG_DAMAGE){const traces=debug.HONRO_DAMAGE_TRACE??=[];traces.push({skill:p?.skill||'(direct)',source:owner,target:u.id,...layers,finalDamage:dmg});if(traces.length>100)traces.shift();debug.HONRO_DAMAGE_TRACE=traces;}
         const absorbed = Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
@@ -753,7 +766,7 @@ export class Engine {
             if (id.startsWith('falling'))
                 for (const u of this.b.units)
                     if (!u.dead && u.x > linked.x - 15 && u.x < linked.x + linked.w + 15 && u.y > linked.y)
-                        this.hurt(u, 70, this.b.active);
+                        this.hurt(u, 70, this.b.active,false,undefined,undefined,'environment');
         }
     }
     blast(x: number, y: number, r: number, damage: number, owner: string, body = false, p?: Projectile, depth = 0) {

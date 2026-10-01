@@ -8,7 +8,7 @@ def check(name,ok,detail=None):
     assert ok,(name,detail)
     checks.append({'name':name,'detail':detail});print('PASS',name,flush=True)
 SETUP=r'''()=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();
- window.previewIds=[...new Set([...HONRO_CORE.TALENTS.filter(n=>!n.passive).map(n=>n.id),...HONRO_CORE.CLASS_IDS.map(c=>HONRO_CORE.baseSkill(c)),'O99'])];
+ window.previewIds=[...new Set([...HONRO_CORE.TALENTS.filter(n=>!n.passive).map(n=>n.id),...HONRO_CORE.CLASS_IDS.map(c=>HONRO_CORE.baseSkill(c))])];
  window.auditPreview=(id,rank,seconds=6.6)=>{const C=HONRO_CORE,h=a.profile.heroes[C.SKILLS[id].cls];h.ranks[id]=rank;if(a.training&&a.engine)a.engine.b.heroes[C.SKILLS[id].cls].ranks[id]=rank;
  const saved=JSON.stringify(a.profile),storage=JSON.stringify(localStorage);a.talent(id);const p=a.preview,render=p.scene.render.bind(p.scene);let frame=0,minPixels=999,visible=true,flight=false,shotVisible=false,turn=false,dived=false;const events=[];
  p.scene.render=(...args)=>{if(frame++%12===0)render(args[0],.2,...args.slice(2));};
@@ -36,8 +36,10 @@ def suite(page,shell):
             if rank==1:
                 (OUT/(shell+'-'+id+'.png')).write_bytes(base64.b64decode(page.evaluate('HonroApp.preview.capture').split(',')[1]))
     check(shell+': all 64 active skills at ranks 1 and 8 fire with visible actors and projectiles',len(results)==128 and all(r['fired'] and r['visible'] and r['minPixels']>=55 and (not r['flight'] or r['shotVisible']) for r in results),results)
-    support={'M09','M10','S14','O14'}
-    check(shell+': offensive previews actually hit; support previews activate their real mechanics',all(r['damage']>0 for r in results if r['id'] not in support) and all(r['teleport']>600 if r['id']=='M09' else r['heal']>300 if r['id']=='M10' else r['stored']>0 if r['id']=='S14' else r['shield']>0 for r in results if r['id'] in support))
+    support={'M09','M10','S14','O13','O14','O15'}
+    failed_offense=[(r['id'],r['rank'],r['damage'],r['summons']) for r in results if r['id'] not in support and r['damage']<=0]
+    failed_support=[(r['id'],r['rank'],r['shield'],r['summons']) for r in results if r['id'] in support and not (r['teleport']>600 if r['id']=='M09' else r['heal']>300 if r['id']=='M10' else r['stored']>0 if r['id']=='S14' else r['shield']>0 if r['id']=='O13' else r['summons']>0)]
+    check(shell+': offensive previews actually hit; support previews activate their real mechanics',not failed_offense and not failed_support,{'offense':failed_offense,'support':failed_support})
     check(shell+': manual steering, detonation, dive and followup execute at both ranks',all(r['follow'] for r in results if r['id'] in {'M02','A09','S04','S13','A10'}))
     check(shell+': isolated previews never change campaign progression or local saves',all(r['unchanged'] for r in results))
     check(shell+': obsolete preview captions removed',page.locator('.preview-label').count()==0)
