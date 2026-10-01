@@ -1,5 +1,7 @@
 # HONRO 코드 인수인계
 
+배경·장식·맵 배치와 깊이/카메라 반응 작업을 시작할 때 `.agents/skills/honro-environment/SKILL.md`를 읽고 `shared/map/environment.js`의 공통 체계와 검증을 사용한다.
+
 먼저 README.md, game/docs/BUGFIX_CONTEXT.md와 BUG_LOG.md의 관련 항목을 읽는다.
 게임 런타임 수정은 shared/runtime/, shared/engine/src/, shared/map/, shared/data/에서 한다. CSS와 밸런스 설정은 game/src/, game/config/에 있다. HONRO.html과 HONRO_WORKSHOP.html은 생성물이므로 직접 수정하지 않는다.
 게임·Stage View·Playtest는 shared/build.mjs의 동일 번들 목록을 사용한다. Workshop 전용 지형 렌더러나 이동/물리 루프를 만들지 않는다.

@@ -108,7 +108,28 @@
       "rock",
       "natural"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 2,
+      "bounds": {
+        "x": -33.522048120942145,
+        "y": -20.215323602240957,
+        "w": 65.87842372395093,
+        "h": 46.365294552916154
+      },
+      "foot": {
+        "x": 0,
+        "y": 26.149970950675197
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "rock_large",
@@ -350,7 +371,28 @@
       "ledge",
       "natural"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 2,
+      "bounds": {
+        "x": -67.06506629600051,
+        "y": -47.128190864695696,
+        "w": 144.17296254216757,
+        "h": 99.56240805716273
+      },
+      "foot": {
+        "x": 0,
+        "y": 52.43421719246703
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "rock_ledge",
@@ -429,7 +471,28 @@
       "rock",
       "ledge"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 2,
+      "bounds": {
+        "x": -90,
+        "y": -32,
+        "w": 184,
+        "h": 56
+      },
+      "foot": {
+        "x": 0,
+        "y": 24
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "ancient_pine",
@@ -726,7 +789,28 @@
       "pine",
       "background"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 8,
+      "bounds": {
+        "x": -136.06364072763824,
+        "y": -430,
+        "w": 249.63246047266705,
+        "h": 430
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "dead_pine",
@@ -835,7 +919,28 @@
       "dead",
       "background"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 7.2,
+      "bounds": {
+        "x": -105,
+        "y": -340,
+        "w": 215,
+        "h": 340
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "branch_thick",
@@ -923,7 +1028,28 @@
       "branch",
       "platform"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 2,
+      "bounds": {
+        "x": -95,
+        "y": -28,
+        "w": 187,
+        "h": 48
+      },
+      "foot": {
+        "x": 0,
+        "y": 20
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "grass_tuft",
@@ -1103,7 +1229,28 @@
       "grass",
       "foreground"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 0.7,
+      "bounds": {
+        "x": -16,
+        "y": -17.82,
+        "w": 30,
+        "h": 17.82
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.25,
+        2
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "fern",
@@ -1823,7 +1970,28 @@
       "fern",
       "forest"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 0.7,
+      "bounds": {
+        "x": -22,
+        "y": -32,
+        "w": 44,
+        "h": 32
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.25,
+        2
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "reed",
@@ -2023,7 +2191,28 @@
       "reed",
       "water"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 0.7,
+      "bounds": {
+        "x": -21,
+        "y": -58,
+        "w": 44,
+        "h": 58
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.25,
+        2
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "shrine_gate",
@@ -2123,7 +2312,28 @@
       "gate",
       "architecture"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 4.5,
+      "bounds": {
+        "x": -98,
+        "y": -140,
+        "w": 196,
+        "h": 140
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "hut",
@@ -2191,7 +2401,28 @@
       "building",
       "hut"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 4.5,
+      "bounds": {
+        "x": -88,
+        "y": -105,
+        "w": 176,
+        "h": 105
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "warehouse",
@@ -2259,7 +2490,28 @@
       "building",
       "warehouse"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 4.5,
+      "bounds": {
+        "x": -118,
+        "y": -132,
+        "w": 236,
+        "h": 132
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "cart",
@@ -2415,7 +2667,28 @@
       "cart",
       "prop"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 1.5,
+      "bounds": {
+        "x": -65,
+        "y": -78,
+        "w": 130,
+        "h": 97.1378528495226
+      },
+      "foot": {
+        "x": 0,
+        "y": 19.137852849522602
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "lantern",
@@ -2483,7 +2756,28 @@
       "lantern",
       "prop"
     ],
-    "params": {}
+    "params": {},
+    "reference": {
+      "heightM": 1.5,
+      "bounds": {
+        "x": -12,
+        "y": -40,
+        "w": 24,
+        "h": 35
+      },
+      "foot": {
+        "x": 0,
+        "y": -5
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
   },
   {
     "id": "grave_post",
@@ -2530,6 +2824,354 @@
     "tags": [
       "grave",
       "prop"
+    ],
+    "params": {},
+    "reference": {
+      "heightM": 1.5,
+      "bounds": {
+        "x": -18,
+        "y": -105,
+        "w": 36,
+        "h": 105
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    }
+  },
+  {
+    "id": "env:ridge",
+    "name": "먹빛 산등성이",
+    "category": "environment",
+    "visual": [
+      {
+        "points": [
+          {
+            "x": -800,
+            "y": 0
+          },
+          {
+            "x": -730,
+            "y": -92
+          },
+          {
+            "x": -600,
+            "y": -157
+          },
+          {
+            "x": -510,
+            "y": -128
+          },
+          {
+            "x": -330,
+            "y": -294
+          },
+          {
+            "x": -202,
+            "y": -222
+          },
+          {
+            "x": -30,
+            "y": -366
+          },
+          {
+            "x": 150,
+            "y": -273
+          },
+          {
+            "x": 320,
+            "y": -331
+          },
+          {
+            "x": 470,
+            "y": -194
+          },
+          {
+            "x": 590,
+            "y": -221
+          },
+          {
+            "x": 800,
+            "y": -45
+          },
+          {
+            "x": 800,
+            "y": 0
+          }
+        ],
+        "fill": "#26373a",
+        "stroke": "#536560",
+        "lineWidth": 1
+      }
+    ],
+    "reference": {
+      "heightM": 20,
+      "bounds": {
+        "x": -800,
+        "y": -366,
+        "w": 1600,
+        "h": 366
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.8,
+        1.2
+      ],
+      "backgroundRange": [
+        0.8,
+        1.2
+      ]
+    },
+    "collision": [],
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "sockets": [],
+    "tags": [
+      "environment"
+    ],
+    "params": {}
+  },
+  {
+    "id": "env:cliff",
+    "name": "절벽 암면",
+    "category": "environment",
+    "visual": [
+      {
+        "points": [
+          {
+            "x": -200,
+            "y": 0
+          },
+          {
+            "x": -192,
+            "y": -112
+          },
+          {
+            "x": -162,
+            "y": -188
+          },
+          {
+            "x": -94,
+            "y": -240
+          },
+          {
+            "x": -51,
+            "y": -207
+          },
+          {
+            "x": -15,
+            "y": -308
+          },
+          {
+            "x": 63,
+            "y": -273
+          },
+          {
+            "x": 101,
+            "y": -235
+          },
+          {
+            "x": 165,
+            "y": -181
+          },
+          {
+            "x": 190,
+            "y": -83
+          },
+          {
+            "x": 205,
+            "y": 700
+          },
+          {
+            "x": -200,
+            "y": 700
+          }
+        ],
+        "fill": "#374442",
+        "stroke": "#718076",
+        "lineWidth": 1
+      },
+      {
+        "points": [
+          {
+            "x": -157,
+            "y": -179
+          },
+          {
+            "x": -94,
+            "y": -240
+          },
+          {
+            "x": -51,
+            "y": -207
+          },
+          {
+            "x": -78,
+            "y": -99
+          },
+          {
+            "x": -126,
+            "y": -53
+          }
+        ],
+        "fill": "#4a5550"
+      },
+      {
+        "points": [
+          {
+            "x": 31,
+            "y": -270
+          },
+          {
+            "x": 99,
+            "y": -235
+          },
+          {
+            "x": 146,
+            "y": -173
+          },
+          {
+            "x": 84,
+            "y": -101
+          }
+        ],
+        "fill": "#293736"
+      }
+    ],
+    "reference": {
+      "heightM": 20,
+      "bounds": {
+        "x": -200,
+        "y": -308,
+        "w": 405,
+        "h": 1008
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.75,
+        1.25
+      ],
+      "backgroundRange": [
+        0.75,
+        1.25
+      ]
+    },
+    "collision": [],
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "sockets": [],
+    "tags": [
+      "environment"
+    ],
+    "params": {}
+  },
+  {
+    "id": "env:cloud",
+    "name": "밤구름",
+    "category": "environment",
+    "visual": [
+      {
+        "points": [
+          {
+            "x": -260,
+            "y": 0
+          },
+          {
+            "x": -211,
+            "y": -30
+          },
+          {
+            "x": -157,
+            "y": -41
+          },
+          {
+            "x": -109,
+            "y": -76
+          },
+          {
+            "x": -20,
+            "y": -68
+          },
+          {
+            "x": 38,
+            "y": -89
+          },
+          {
+            "x": 139,
+            "y": -70
+          },
+          {
+            "x": 196,
+            "y": -36
+          },
+          {
+            "x": 260,
+            "y": 0
+          },
+          {
+            "x": 128,
+            "y": 12
+          },
+          {
+            "x": 12,
+            "y": 7
+          },
+          {
+            "x": -150,
+            "y": 15
+          }
+        ],
+        "fill": "#263337"
+      }
+    ],
+    "reference": {
+      "heightM": 9,
+      "bounds": {
+        "x": -260,
+        "y": -89,
+        "w": 520,
+        "h": 104
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        0.8,
+        1.2
+      ],
+      "backgroundRange": [
+        0.8,
+        1.2
+      ]
+    },
+    "collision": [],
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "sockets": [],
+    "tags": [
+      "environment"
     ],
     "params": {}
   }

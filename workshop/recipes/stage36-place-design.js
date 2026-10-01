@@ -1,7 +1,7 @@
 /* Replayable Stage 3–6 place design: landforms support routes and landmarks. */
 (function(G){'use strict';
 const copy=x=>JSON.parse(JSON.stringify(x)),pt=a=>a.map(([x,y])=>({x,y}));
-const asset={id:'builtin:placeDetail',name:'산지 구조·흔적',category:'native',renderer:'landmark',kind:'placeDetail',visual:[],collision:[],anchor:{x:0,y:0},sockets:[],tags:['HONRO','place-design'],params:{},bounds:{x:-700,y:-1600,w:1400,h:1700}};
+const asset={id:'builtin:placeDetail',name:'산지 구조·흔적',category:'native',renderer:'landmark',kind:'placeDetail',visual:[],collision:[],anchor:{x:0,y:0},sockets:[],tags:['HONRO','place-design'],params:{},bounds:{x:-700,y:-1600,w:1400,h:1700},reference:{heightM:5,bounds:{x:-700,y:-1600,w:1400,h:1700},foot:{x:0,y:0},scaleRange:[.3,5],backgroundRange:[.7,1.3]}};
 function height(points,x){for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i];if(a.x<=x&&x<=b.x&&a.x!==b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}return points.at(-1).y;}
 function smooth(x){x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);}
 function relief(sid,old){

@@ -14,7 +14,7 @@ function commands(project){
    {points:[p[6],p[7],p[8],{x:w*.38,y:-h*.18}],fill:'#3d4a42'},
    {type:'polyline',closed:false,points:[{x:x(.32),y:y(.18)},{x:x(.41),y:y(.41)},{x:x(.38),y:y(.60)},{x:x(.47),y:y(.78)}],fill:null,stroke:'#182a2b99',lineWidth:1.7,alpha:1},
    {type:'polyline',closed:false,points:[{x:x(.67),y:y(.30)},{x:x(.60),y:y(.48)},{x:x(.66),y:y(.57)}],fill:null,stroke:'#a0a9975a',lineWidth:1.3,alpha:1}
-  ],collision:[p],collisionMode:'independent',anchor:{x:0,y:0},sockets:[],material:'rock',breakable:false,oneWay:false,layer:'prop',tags:['stage12','granite'],params:{}};
+  ],collision:[p],collisionMode:'independent',anchor:{x:0,y:0},sockets:[],material:'rock',breakable:false,oneWay:false,layer:'prop',tags:['stage12','granite'],params:{},reference:{heightM:2,bounds:{x:left,y:top,w:right-left,h:bottom-top},foot:{x:0,y:bottom},scaleRange:[.4,4.5],backgroundRange:[.7,1.3]}};
  };
  for(const [id,w,h] of [['mockup-granite-large',510,250],['mockup-granite-small',135,130],['mockup-granite-shelf',360,160]])
   out.push(project.library.some(a=>a.id===id)?{op:'asset.update',id,values:rock(id,w,h)}:{op:'asset.add',asset:rock(id,w,h)});

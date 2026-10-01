@@ -95,7 +95,11 @@ if mode == 'baseline':
 else:
     baseline = json.loads(BASELINE.read_text(encoding='utf-8'))
     # HBUG-057 deliberately replaced Stage 4's sparse backdrop with a layered night forest.
-    revised_background_budget = {'background:4': 12000}
+    # Stage 5/6 now render their authored L2-L4 forest/cliff placements rather
+    # than the old nearly empty screen-space backdrop. The separate depth
+    # browser audit measures their real frame cost and culling.
+    revised_background_budget = {'background:4': 12000, 'background:5': 2000, 'background:6': 1500,
+                                 'background:8': 1000, 'background:10': 1000}
     excess = {k: {'before': v, 'after': result['counts'].get(k)} for k, v in baseline.items()
               if k not in result['counts'] or result['counts'][k] > max(v * 2, revised_background_budget.get(k, 0))}
     result['excess'] = excess

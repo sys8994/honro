@@ -49,8 +49,8 @@ with sync_playwright() as p:
     check('Leaving imported play restores original profile',page.evaluate('JSON.stringify(HonroApp.profile)')==original)
     check('Leaving imported play releases custom map',page.evaluate('HonroApp.customMap===null&&HonroApp.engine===null'))
     # Old Workshop v1/v2 data is upgraded once; unsupported geometry is never reduced.
-    old=page.evaluate('''p=>{p.version=1;delete p.schema;for(const s of p.stages){delete s.metadata;delete s.initialState;delete s.encounters;delete s.objectives;}const n=HonroMaps.normalize(p);return {version:n.version,geometry:JSON.stringify(p.stages[0].terrains)===JSON.stringify(n.stages[0].terrains),errors:HonroMaps.validate(n).filter(x=>x.level==='err')};}''',project)
-    check('Legacy Workshop normalization preserves geometry',old['version']==3 and old['geometry'] and not old['errors'],old)
+    old=page.evaluate('''p=>{p.version=1;delete p.schema;for(const s of p.stages){delete s.metadata;delete s.initialState;delete s.encounters;delete s.objectives;}const n=HonroMaps.normalize(p);return {version:n.version,expected:HonroMaps.VERSION,geometry:JSON.stringify(p.stages[0].terrains)===JSON.stringify(n.stages[0].terrains),errors:HonroMaps.validate(n).filter(x=>x.level==='err')};}''',project)
+    check('Legacy Workshop normalization preserves geometry',old['version']==old['expected'] and old['geometry'] and not old['errors'],old)
     check('No authored browser exceptions',not errors,errors)
     browser.close()
 (ROOT/'_local/reports/authored.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')

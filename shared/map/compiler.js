@@ -8,7 +8,7 @@ function compile(st,project){
   const asset=project.library.find(a=>a.id===instance.assetId);if(!asset)throw Error('Missing element '+instance.assetId);
   const e=clone(instance);if(e.snap){const hit=G.HonroMapEngine.surfaceY(terrain,e.x,e.y);if(hit)e.y=hit.y;}
   if(asset.renderer==='landmark'){
-   const {assetId,scale,rotation,snap,...native}=e;
+   const {assetId,scale,rotation,snap,depthLayer,...native}=e;
    landmarks.push({...native,layer:renderLayer(native.layer),kind:asset.kind,size:scale??e.size??1,rotation:rotation||0});
   }else{
    const collision=Q.collision(asset,e);for(const t of collision){t.honroElementId=e.id;t.honroElementCollision=true;}terrain.push(...collision);
@@ -24,6 +24,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  const map=compile(st,project);
  Object.assign(b,{stage:sid,honroStage:sid,honroRevision:20,honroMapRevision:20,honroLayoutRevision:G.HonroLayouts.revision,
   honroCanonical:true,honroAuthoredId:st.id,honroCustom:st.metadata?.campaign!==true,honroBackdrop:st.backdrop,
+  honroEnvironment:{...clone(st.environment),placements:st.environment.placements.map(e=>({...clone(e),asset:clone(project.library.find(a=>a.id===e.assetId))}))},
   mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,
   difficulty:profile.settings.difficulty,heroes:clone(profile.heroes),startXP:Object.fromEntries(Object.entries(profile.heroes).map(([c,h])=>[c,h.xp])),
   session:'honro-map-'+st.id+'-'+Date.now(),sceneVersion:st.initialState?.sceneVersion??80,
@@ -54,9 +55,10 @@ function createBattle(st,project,profile=profileFor(st),options={}){
 function importSpec(spec,id='imported-stage',project=G.HONRO_PROJECT){
  const width=spec.dimensions[0],height=spec.dimensions[1],st=M.emptyStage(id,spec.design?.title||'Imported stage',width,height),map=G.HonroMapEngine.compile({id:1,w:width,h:height},spec);
  st.backdrop=({ravine:'valley',village:'gate'})[spec.backdrop?.kind]||spec.backdrop?.kind||'forest';st.design=clone(spec.design||{});st.anchors=map.anchors;st.routes=map.routes;
+ st.environment={preset:G.HonroEnvironment.SCENE_PRESETS[st.backdrop],placements:G.HonroEnvironment.makePlacements({...st,environment:null})};
  st.terrains=map.terrain.map(t=>{const {vertices,x,y,w,h,id,mat,oneWay,indestructible,...properties}=t;return{id,name:id,type:'solid',points:vertices,baseMaterial:mat,oneWay,breakable:!indestructible,properties,layer:'terrain'};});
  st.materials=map.surfaceZones.map(m=>({...m,terrainId:m.support}));
- st.elements=spec.editorData?.elements?clone(spec.editorData.elements):map.landmarks.map((l,i)=>({...l,id:l.id||`landmark-scatter-${i}`,assetId:project.library.some(a=>a.id===l.kind)?l.kind:'builtin:'+l.kind,scale:l.size||1,rotation:l.rotation||0,snap:false}));
+ st.elements=(spec.editorData?.elements?clone(spec.editorData.elements):map.landmarks.map((l,i)=>({...l,id:l.id||`landmark-scatter-${i}`,assetId:project.library.some(a=>a.id===l.kind)?l.kind:'builtin:'+l.kind,scale:l.size||1,rotation:l.rotation||0,snap:false}))).map(e=>({...e,depthLayer:'L1'}));
  st.units=(spec.editorData?.units||map.enemySpawns.map((s,i)=>G.HonroUnits.record(s.kind,'imported-foe-'+i,s.x,s.y,'enemy')));
  if(!st.units.some(u=>u.team==='player')){const x=map.anchors?.spawn?.x??220,y=G.HonroMapEngine.surfaceY(map.terrain,x)?.y??height/2;st.units.unshift(G.HonroUnits.record('archer','imported-player',x,y));}
  st.events=clone(spec.editorData?.events||[]);return st;

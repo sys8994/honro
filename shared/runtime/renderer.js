@@ -75,16 +75,8 @@
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
         zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(); this.scale = Math.max(.16, Math.min(1.65, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
-        _backgroundBucket(b){const step=b.honroStage===3||b.honroStage===4?40:120;return Math.round(this.x/step)*step;}
-        _backgroundKey(w,h,d,b){const bucket=this._backgroundBucket(b),forest=b.honroStage===3||b.honroStage===4;return`${b.honroStage||0}:${b.honroBackdrop||''}:${b.sceneVersion||0}:${w}x${h}@${d.toFixed(2)}:${bucket}:${forest?this.scale.toFixed(3):''}`;}
-        _drawBackgroundCached(c,w,h,d,b){
-            const bd=Math.min(d,1.15),key=this._backgroundKey(w,h,bd,b),bucket=this._backgroundBucket(b);
-            let q=this._backgroundCache;
-            if(!q||q.key!==key){const t0=performance.now(),cv=this._makeLayerCanvas(w*bd,h*bd),cc=cv.getContext('2d',{alpha:false});cc.setTransform(bd,0,0,bd,0,0);const ox=this.x;this.x=bucket;this.background(cc,w,h,b);this.x=ox;q=this._backgroundCache={key,canvas:cv,x:bucket,w,h,d:bd,bytes:cv.width*cv.height*4};this._cacheStats.bgBuilds++;this._cacheStats.bgBuildMs+=performance.now()-t0;}else this._cacheStats.bgHits++;
-            const shift=(q.x-this.x)*.055;c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,shift,0,w,h);
-        }
         _worldRasterScale(b,w){const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
-        _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;const rock=l.asset?.category==='rock'||/rock|boulder|granite/i.test(`${l.assetId||''} ${l.kind||''}`);c.globalAlpha=layer==='back'?.32:layer==='structural-back'?.72:layer==='mid'?.86:layer==='prop'?(rock?1:.96):1;this.landmark?.(c,l);}c.restore();}
+        _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;this.landmark?.(c,l);}c.restore();}
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}`;}
         _buildStaticWorld(b,w){
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
@@ -114,16 +106,6 @@
             const ps = pal[this.theme];
             c.setTransform(d, 0, 0, d, 0, 0);
             c.clearRect(0, 0, w, h);
-            if(this.background)this._drawBackgroundCached(c,w,h,d,b);
-            // Rain, leaves and drifting funeral ash also expose the current wind.
-            for (let i = 0; i < 26; i++) {
-                const xx = ((i * 193 + this.time * (15 + (b.wind || 0) * 1.7)) % (w + 50) + w + 50) % (w + 50), yy = (i * 101 + this.time * 18) % (h + 30);
-                c.save();
-                c.translate(xx, yy);
-                c.rotate(Math.sin(i) * .9 + this.time * .2);
-                P(c, [[-3, 0], [0, -1.5], [4, 0], [0, 2]], i % 4 ? '#9daf9840' : '#e0d4b259');
-                c.restore();
-            }
             const u = e.active,reviewing=b.phase==='review'||b.phase==='ally'&&b.honroState?.allyQueue?.phase==='after'||b.phase==='summon'&&b.summonTurn?.stage==='wait'&&!b.projectiles.length;
             if (!this.manual && u) {
                 let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=u.y-u.h*2,speed=4.2;
@@ -144,6 +126,14 @@
             }
             if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
             else if(!this.storyTween&&!this.skillPreview){this.x = this.cameraAxis(this.x,w/this.scale,-40,b.width+40);this.y = this.cameraAxis(this.y,h/this.scale,-220,b.height);}
+            if(this.background)this.background(c,w,h,b);
+            // Weather particles are L5 screen effects; their animation is separate
+            // from finite scenery projection and battlefield camera movement.
+            if(b.honroEnvironment?.skyVisible!==false)for (let i = 0; i < 26; i++) {
+                const xx = ((i * 193 + this.time * (15 + (b.wind || 0) * 1.7)) % (w + 50) + w + 50) % (w + 50), yy = (i * 101 + this.time * 18) % (h + 30);
+                c.save();c.translate(xx, yy);c.rotate(Math.sin(i) * .9 + this.time * .2);
+                P(c, [[-3, 0], [0, -1.5], [4, 0], [0, 2]], i % 4 ? '#9daf9840' : '#e0d4b259');c.restore();
+            }
             c.save();
             c.translate(w / 2, h / 2);
             c.scale(this.scale, this.scale);

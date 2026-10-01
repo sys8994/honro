@@ -4,13 +4,13 @@ const uid=prefix=>prefix+'-'+(globalThis.crypto?.randomUUID?.()||Date.now().toSt
 const aliases={createTerrain:'terrain.add',editTerrain:'terrain.moveNode',simplifyTerrain:'terrain.optimize',roughenTerrain:'terrain.roughen',paintMaterial:'material.paint',placeElement:'element.place',scatterElements:'element.scatter',placeUnit:'unit.place',createEncounter:'encounter.add',createTrigger:'event.place',createObjective:'objective.add'};
 const points=arr=>(arr||[]).map(p=>Array.isArray(p)?{x:p[0],y:p[1]}:{...p});
 const collections=['terrains','materials','elements','units','events','encounters','objectives','markers'];
-function target(st,id){for(const key of collections){const o=st[key]?.find(x=>x.id===id);if(o)return{key,o};}throw Error('Object not found '+id);}
+function target(st,id){for(const key of collections){const o=st[key]?.find(x=>x.id===id);if(o)return{key,o};}const scenery=st.environment?.placements.find(x=>x.id===id);if(scenery)return{key:'scenery',o:scenery};throw Error('Object not found '+id);}
 function apply(input,commands){
  const p=clone(input);
  for(const original of commands){const c={...original,op:aliases[original.op]||original.op},st=p.stages.find(s=>s.id===(c.stageId||p.activeStageId));if(!st)throw Error('Stage not found');
   switch(c.op){
   case'world.set':for(const k of ['width','height','backdrop','name'])if(c[k]!==undefined)st[k]=c[k];break;
-  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
+  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta','environment'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
   case'object.update':{const {o}=target(st,c.id);for(const [k,v] of Object.entries(c.values||{})){if(k==='id')throw Error('Use rename to change an ID');o[k]=clone(v);}break;}
   case'asset.add':if(p.library.some(a=>a.id===c.asset?.id))throw Error('Duplicate asset '+c.asset.id);p.library.push(clone(c.asset));break;
   case'terrain.add':case'terrain.addSolid':{
@@ -24,13 +24,17 @@ function apply(input,commands){
   case'material.paint':st.materials.push({id:c.id||uid('material'),terrainId:c.terrainId,x1:c.x1,x2:c.x2,reference:c.reference,kind:c.kind||'grass',depth:c.depth??25,alpha:c.alpha??.9,...(c.points?{points:clone(c.points)}:{})});break;
   case'element.place':{
    const a=p.library.find(a=>a.id===c.assetId);if(!a)throw Error('Unknown asset '+c.assetId);
-   const e={id:c.id||uid('element'),assetId:a.id,x:c.x,y:c.y??0,rotation:(c.rotation||0)*Math.PI/180,scale:c.scale??1,layer:c.layer||a.layer||(a.collision.length?'interactive':'back'),snap:c.snap!==false};
+   const e={id:c.id||uid('element'),assetId:a.id,x:c.x,y:c.y??0,rotation:(c.rotation||0)*Math.PI/180,scale:c.scale??1,layer:c.layer||a.layer||(a.collision.length?'interactive':'back'),depthLayer:'L1',snap:c.snap!==false};
    if(e.snap){const sf=Q.nearest(st,e.x,c.y);if(sf)e.y=sf.y;}st.elements.push(e);break;
+  }
+  case'scenery.place':{
+   const a=p.library.find(a=>a.id===c.assetId);if(!a)throw Error('Unknown scenery asset '+c.assetId);
+   st.environment.placements.push({id:c.id||uid('scenery'),assetId:a.id,depthLayer:c.depthLayer,x:c.x,y:c.y,scale:c.scale??1,rotation:(c.rotation||0)*Math.PI/180,group:c.group||'authored'});break;
   }
   case'element.scatter':{
    const r=Q.seeded(c.seed??1),ids=c.assetIds||[c.assetId];
    for(let i=0;i<(c.count??8);i++){const a=p.library.find(a=>a.id===ids[i%ids.length]);if(!a)throw Error('Unknown scatter asset');const x=(c.x1??0)+r()*((c.x2??st.width)-(c.x1??0)),sf=Q.nearest(st,x,c.y??st.height/2);if(!sf)continue;
-    st.elements.push({id:uid('element'),assetId:a.id,x,y:sf.y,rotation:(r()-.5)*(c.rotationVariance??.3),scale:(c.minScale??.7)+r()*((c.maxScale??1.4)-(c.minScale??.7)),layer:c.layer||a.layer||(a.collision.length?'interactive':'back'),snap:true,scatter:true});}
+    st.elements.push({id:uid('element'),assetId:a.id,x,y:sf.y,rotation:(r()-.5)*(c.rotationVariance??.3),scale:(c.minScale??.7)+r()*((c.maxScale??1.4)-(c.minScale??.7)),layer:c.layer||a.layer||(a.collision.length?'interactive':'back'),depthLayer:'L1',snap:true,scatter:true});}
    break;
   }
   case'unit.place':{
@@ -57,11 +61,11 @@ function apply(input,commands){
   case'asset.optimize':{const a=p.library.find(a=>a.id===c.id);if(!a)throw Error('Missing asset');a.visual=a.visual.map(sh=>({...sh,points:Q.simplifyClosed(sh.points,c.epsilon??2)}));if(a.collisionMode!=='independent'&&a.collision.length)a.collision=clone(a.visual.map(sh=>sh.points));break;}
   case'asset.update':{const a=p.library.find(a=>a.id===c.id);if(!a)throw Error('Missing asset');Object.assign(a,clone(c.values));break;}
   case'rename':{
-   target(st,c.id);if(!c.newId||collections.some(k=>st[k].some(o=>o.id===c.newId)))throw Error('ID must be nonempty and unique');
+   target(st,c.id);if(!c.newId||collections.some(k=>st[k].some(o=>o.id===c.newId))||st.environment.placements.some(o=>o.id===c.newId))throw Error('ID must be nonempty and unique');
    const visit=o=>{if(!o||typeof o!=='object')return;for(const k of Object.keys(o)){if(o[k]===c.id)o[k]=c.newId;else visit(o[k]);}};visit(st);break;
   }
   case'element.delete':case'delete':{
-   target(st,c.id);for(const k of collections)st[k]=st[k].filter(o=>o.id!==c.id);
+   target(st,c.id);for(const k of collections)st[k]=st[k].filter(o=>o.id!==c.id);st.environment.placements=st.environment.placements.filter(o=>o.id!==c.id);
    st.materials=st.materials.filter(m=>(m.terrainId||m.support)!==c.id);for(const e of st.encounters)e.unitIds=e.unitIds.filter(id=>id!==c.id);break;
   }
   default:throw Error('Unknown command '+c.op);

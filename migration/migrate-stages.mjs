@@ -19,7 +19,7 @@ export async function legacyRuntime(){
  for(const f of ['content','terrain-space','map-engine','battlefield-layouts','progression','encounters'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
  for(const f of ['rc21-stage-maps','rc21-world'])vm.runInContext(await read(`migration/legacy/${f}.js`),g);
  for(const f of ['difficulty','allies','mission','stage-rules','objectives','combat-status'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
- for(const f of ['schema','units'])vm.runInContext(await read(`shared/map/${f}.js`),g);
+ for(const f of ['environment','schema','units'])vm.runInContext(await read(`shared/map/${f}.js`),g);
  return g;
 }
 export async function migrate(){
@@ -29,6 +29,7 @@ export async function migrate(){
   for(const cls of p.recruited)p.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(st.id).entryLevel);
   const b=g.HonroWorld.build(st,p,false,'archer','A01'),s=g.HonroMaps.emptyStage(`stage-${st.id}`,st.name,st.w,st.h);
   s.metadata={stageId:st.id,campaign:true,source:'HONRO RC21',mapRevision:20};s.backdrop=st.theme;
+  s.environment={preset:g.HonroEnvironment.SCENE_PRESETS[s.backdrop],placements:g.HonroEnvironment.makePlacements({...s,environment:null})};
   s.terrains=b.terrain.map(t=>{
    const {vertices,x,y,w,h,id,mat,oneWay,indestructible,...properties}=clone(t);
    return{id,name:id,type:'solid',points:vertices,baseMaterial:mat,oneWay:!!oneWay,breakable:!indestructible,properties,layer:'terrain',detail:{spacing:18,roughness:0,seed:1,optimizeEpsilon:0}};
@@ -54,7 +55,11 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
  const baseline=await migrate(),g=await legacyRuntime();
  for(const file of ['shared/map/geometry.js','shared/map/commands.js','workshop/recipes/stage12-forest-basin.js','workshop/recipes/stage36-place-design.js'])vm.runInContext(await read(file),g);
  const first=g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline));
- const project=g.HonroCommands.apply(first,g.HonroStage36Places.commands(first));await mkdir(path.join(root,'shared/data'),{recursive:true});
+ const project=g.HonroCommands.apply(first,g.HonroStage36Places.commands(first));
+ // The authored Stage 10 boss balance was adjusted after the original import.
+ const sodan=project.stages[9].units.find(u=>u.id==='boss'&&u.cls==='occultist');
+ if(sodan){sodan.attack=3.377988734638485;sodan.combatBaseAttack=2.9120592539986943;}
+ await mkdir(path.join(root,'shared/data'),{recursive:true});
  await writeFile(path.join(root,'shared/data/campaign.json'),JSON.stringify(project,null,2)+'\n');
  console.log(`Migrated ${project.stages.length} stages and replayed the Stage 1–6 Workshop designs`);
 }
