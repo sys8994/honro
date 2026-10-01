@@ -8,6 +8,13 @@
 /* Current streamed track stays above story panels without intercepting input. */
 #bgm-now-playing{position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(4px,env(safe-area-inset-bottom));z-index:150;max-width:calc(100vw - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:400 9px/1.4 sans-serif;letter-spacing:.01em;color:#dedbd0b3;text-shadow:0 1px 3px #000,0 0 4px #000;pointer-events:none;user-select:none}
 #bgm-now-playing[hidden]{display:none}
+.honro .stat-invest-panel{margin:14px 0 18px;padding:13px 16px;border:1px solid #758a7555;border-radius:11px;background:#182a2dc9}
+.honro .stat-invest-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px}.honro .stat-invest-head h3{margin:0;color:#e6dcc2;font-size:15px}.honro .stat-invest-head h3 span{color:#d8bf89;font-size:12px;margin-left:8px}.honro .stat-invest-head>small{color:#9db0a5;font-size:10px}
+.honro .stat-invest-character{margin:0 0 10px;color:#d8dccf;font-size:12px}
+.honro .stat-invest-gains{display:flex;flex-wrap:wrap;gap:5px 12px;margin-bottom:12px;color:#a4bbb4;font-size:10px}
+.honro .stat-invest-gains b{margin-left:3px;color:#e6cc93;font-weight:650}
+.honro .stat-invest-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px}.honro .stat-invest-actions>span{margin-right:auto;color:#b5c8ba;font-size:11px}.honro .stat-invest-actions button:disabled{opacity:.4}
+@media(max-width:420px){.honro .stat-invest-actions{flex-wrap:wrap}.honro .stat-invest-actions>span{width:100%}}
 /* Original v006 charge dial retained in RC5. */
 .honro #app .radial-actions #fire{--charge:0;--previous:0;--charge-color:#c7b47f;background:#243534!important;transition:box-shadow .1s,background .1s}
 .honro #app .honro-compact-hud .radial-actions #fire svg.charge-dial{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;pointer-events:none;overflow:visible;transform:rotate(-90deg)}

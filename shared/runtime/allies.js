@@ -95,7 +95,7 @@ function prepareSpawn(b,st,a,hero){
    const kind=ambush?'crow':a.kind,u=W.createEnemy(b,st,x,kind,id,y);
    if(b.honroEncounterRevision){u.combatBaseHp*=.6;u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));}
    if(ambush)u.y=y;
-   const position=G.HonroTerrain.place({...b,units:[...b.units,...list]},u,{flying:!!W.archetypes[kind]?.flying,maxDistance:a.maxDistance??1600});
+   const position=G.HonroTerrain.place({...b,units:[...b.units,...list]},u,{flying:!!W.archetypes[kind]?.flying,maxDistance:a.maxDistance??1600,clearance:a.clearance??18});
    if(!position)return null;
    Object.assign(u,position,{id:(ambush?'sniper-crow-':'event-')+id,awake:true,aggroUntil:b.round+(ambush?6:3),spawnX:position.x,spawnY:position.y});
    if(a.source)u.honroSpawnSource=a.source;

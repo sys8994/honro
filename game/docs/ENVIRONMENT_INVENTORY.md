@@ -7,20 +7,20 @@
 | rock_small | 2 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | rock_large | 2 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | rock_ledge | 2 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| ancient_pine | 8 | tree | 지형/지지면 필수 | L2 | landscape-L2, upper-ridge-L2, slope-L2, valley-bottom-L2 / SCENIC / landscape, upper-ridge, slope, valley-bottom | static / cached-vector |
-| dead_pine | 7.2 | tree | 지형/지지면 필수 | L2 | landscape-L2, upper-ridge-L2, slope-L2, valley-bottom-L2 / SCENIC / landscape, upper-ridge, slope, valley-bottom | static / cached-vector |
+| ancient_pine | 8 | tree | 지형/지지면 필수 | L2 | landscape-L2, upper-ridge-L2, slope-L2, valley-bottom-L2 / WORLD / landscape, upper-ridge, slope, valley-bottom | static / cached-vector |
+| dead_pine | 7.2 | tree | 지형/지지면 필수 | L2, L1 | landscape-L2, upper-ridge-L2, slope-L2, valley-bottom-L2,  / WORLD / landscape, upper-ridge, slope, valley-bottom, world | static / cached-vector |
 | branch_thick | 2 | branch | 풍경/하늘 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | grass_tuft | 0.7 | vegetation | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | fern | 0.7 | vegetation | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| reed | 0.7 | vegetation | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| reed | 0.7 | vegetation | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | shrine_gate | 4.5 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | hut | 4.5 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | warehouse | 4.5 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | cart | 1.5 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| lantern | 1.5 | light | 지형/지지면 필수 | L2 | upper-ridge-L2, slope-L2, valley-bottom-L2 / SCENIC / upper-ridge, slope, valley-bottom | glow / cached-vector |
+| lantern | 1.5 | light | 지형/지지면 필수 | L2 | upper-ridge-L2, slope-L2, valley-bottom-L2 / WORLD / upper-ridge, slope, valley-bottom | glow / cached-vector |
 | grave_post | 1.5 | prop | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| env:ridge | 20 | ridge | 풍경/하늘 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| env:cliff | 20 | cliff | 풍경/하늘 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| env:ridge | 20 | ridge | 풍경/하늘 | L4 | landscape-L4, upper-ridge-L4, slope-L4 / WORLD / landscape, upper-ridge, slope | static / cached-vector |
+| env:cliff | 20 | cliff | 풍경/하늘 | L3 | valley-bottom-L3, upper-ridge-L3, slope-L3 / WORLD / valley-bottom, upper-ridge, slope | static / cached-vector |
 | env:cloud | 9 | cloud | 풍경/하늘 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | builtin:ancientPine | 9 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | builtin:scree | 4 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -61,10 +61,10 @@
 | builtin:royalGate | 5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | builtin:ritualDais | 4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | builtin:upperShrine | 5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| env:forest | 12 | forest | 풍경/하늘 | L3 | landscape-L3, upper-ridge-L3, slope-L3, valley-bottom-L3 / SCENIC / landscape, upper-ridge, slope, valley-bottom | static / cached-vector |
-| env:rock | 3.5 | rock | 지형/지지면 필수 | L3, L2 | landscape-L3, upper-ridge-L3, slope-L3, valley-bottom-L3, upper-ridge-L2, slope-L2, valley-bottom-L2 / SCENIC / landscape, upper-ridge, slope, valley-bottom | static / cached-vector |
-| env:shrine | 6 | building | 지형/지지면 필수 | L3 | landscape-L3, upper-ridge-L3, slope-L3, valley-bottom-L3 / SCENIC / landscape, upper-ridge, slope, valley-bottom | static / cached-vector |
-| env:waterfall | 18 | waterfall | 지형/지지면 필수 | L2 | slope-L2, valley-bottom-L2 / SCENIC / slope, valley-bottom | flow / cached-body/live-flow |
+| env:forest | 12 | forest | 풍경/하늘 | L3 | landscape-L3, upper-ridge-L3, slope-L3 / WORLD / landscape, upper-ridge, slope | static / cached-vector |
+| env:rock | 3.5 | rock | 지형/지지면 필수 | L3, L2 | landscape-L3, upper-ridge-L3, slope-L3, upper-ridge-L2, slope-L2, valley-bottom-L2 / WORLD / landscape, upper-ridge, slope, valley-bottom | static / cached-vector |
+| env:shrine | 6 | building | 지형/지지면 필수 | L3 | landscape-L3, slope-L3 / WORLD / landscape, slope | static / cached-vector |
+| env:waterfall | 18 | waterfall | 지형/지지면 필수 | L2 | slope-L2, valley-bottom-L2 / WORLD / slope, valley-bottom | flow / cached-body/live-flow |
 | mockup-granite-large | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | mockup-granite-small | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | mockup-granite-shelf | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -74,16 +74,16 @@
 
 | 맵 | 거리 preset / atmosphere | L1 장식 / 지형 / 물 | 구역 | 풍경 묶음 | 지지면 | 배경 개체 |
 | --- | --- | --- | --- | ---: | ---: | ---: |
-| stage-1 | forest / forest | 27 / 3 / 1 | landscape | 3 | 3 | 29 |
-| stage-2 | valley / valley | 35 / 9 / 3 | upper-ridge, slope, valley-bottom | 9 | 9 | 95 |
-| stage-3 | forest / forest | 26 / 8 / 1 | landscape | 3 | 3 | 32 |
-| stage-4 | forest / burned | 19 / 8 / 0 | upper-ridge, slope, valley-bottom | 9 | 9 | 87 |
-| stage-5 | valley / valley | 12 / 14 / 1 | upper-ridge, slope, valley-bottom | 9 | 9 | 95 |
-| stage-6 | valley / valley | 14 / 10 / 1 | upper-ridge, slope, valley-bottom | 9 | 9 | 104 |
-| stage-7 | forest / enclosed | 5 / 11 / 0 | upper-ridge, slope, valley-bottom | 6 | 6 | 51 |
-| stage-8 | forest / temple | 4 / 11 / 0 | upper-ridge, slope, valley-bottom | 9 | 9 | 99 |
-| stage-9 | forest / forest | 4 / 8 / 0 | upper-ridge, slope, valley-bottom | 9 | 9 | 87 |
-| stage-10 | forest / otherworld | 7 / 9 / 0 | upper-ridge, slope, valley-bottom | 9 | 9 | 93 |
+| stage-1 | forest / forest | 27 / 3 / 1 | landscape | 3 | 3 | 34 |
+| stage-2 | valley / valley | 35 / 9 / 3 | upper-ridge, slope, valley-bottom | 8 | 8 | 91 |
+| stage-3 | forest / forest | 28 / 8 / 1 | landscape | 3 | 3 | 37 |
+| stage-4 | forest / burned | 21 / 8 / 0 | upper-ridge, slope, valley-bottom | 8 | 8 | 85 |
+| stage-5 | valley / valley | 14 / 14 / 1 | upper-ridge, slope, valley-bottom | 8 | 8 | 92 |
+| stage-6 | valley / valley | 14 / 10 / 1 | upper-ridge, slope, valley-bottom | 8 | 8 | 99 |
+| stage-7 | forest / enclosed | 7 / 11 / 0 | upper-ridge, slope, valley-bottom | 6 | 6 | 36 |
+| stage-8 | forest / temple | 6 / 11 / 0 | upper-ridge, slope, valley-bottom | 8 | 8 | 93 |
+| stage-9 | forest / forest | 6 / 8 / 0 | upper-ridge, slope, valley-bottom | 8 | 8 | 84 |
+| stage-10 | forest / otherworld | 7 / 9 / 0 | upper-ridge, slope, valley-bottom | 8 | 8 | 88 |
 
 ## 코드가 생성하는 요소
 

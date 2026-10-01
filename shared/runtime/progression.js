@@ -1,8 +1,10 @@
 (function(G){'use strict';
 const C=G.HONRO_CORE,config=G.HONRO_BALANCE,clone=x=>JSON.parse(JSON.stringify(x));
 const xpAt=level=>{const n=Math.floor(level);return C.xpAtLevel(n)+Math.round((level-n)*C.xpToNext(n));};
+// Stage rewards keep their established budget; only the amount required to level grows.
+const rewardXpAt=level=>{const n=Math.floor(level);return C.oldXpAtLevel12(n)+Math.round((level-n)*C.oldXpToNext12(n));};
 const plan=id=>config.stages[id-1];
-const joinLevel=st=>Math.max(1,Math.min(25,Math.floor(st.joinLevel??plan(st.id)?.exitLevel??(st.level||1)+1)));
+const joinLevel=st=>Math.max(1,Math.min(30,Math.floor(st.joinLevel??plan(st.id)?.exitLevel??(st.level||1)+1)));
 function alignRecruit(profile,st,b=profile.honroBattle){
   const cls=st.recruit;if(!cls||!profile.recruited.includes(cls))return;
   const floor=Math.max(xpAt(joinLevel(st)),profile.heroes[cls]?.xp||0,b?.heroes?.[cls]?.xp||0);
@@ -15,8 +17,8 @@ function recruit(profile,st,b){
   alignRecruit(profile,st,b);profile.party=[...profile.recruited];
   if(first){const cls=st.recruit,h=profile.heroes[cls];C.autoTrain(h,cls);C.sanitizeLoadout(profile,cls);if(b?.heroes){b.heroes[cls]=clone(h);for(const u of b.units||[])if(u.side===0&&!u.summoned&&u.cls===cls){u.loadout=[...profile.loadouts[cls]];C.applyHero(u,h);}}}
 }
-const budget=id=>{const p=plan(id),start=xpAt(p.entryLevel),end=xpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
-function entryHero(st){const h=C.freshHero('archer');h.xp=xpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
+const budget=id=>{const p=plan(id),start=rewardXpAt(p.entryLevel),end=rewardXpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
+function entryHero(st){const h=C.freshHero('archer');h.xp=rewardXpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
 function referenceStats(st){const h=entryHero(st),stats=C.heroStats(h,'archer',['A01']);return {...stats,shot:C.SKILLS.LA01.damage*(C.skillBalanceFactor?.(C.SKILLS.LA01)||1)*stats.attack*1.18*C.skillDamageFactor(h.ranks.A01)*.96};}
 function tuneEnemy(st,u,kind){
   const p=plan(st.id),r=referenceStats(st);
@@ -49,7 +51,8 @@ function initialize(b,profile){
   if(b.mode!=='campaign')return;
   if(b.honroGrowth?.ledger?.version===config.version)return;
   const ledger=clone(profile.honroGrowth||{version:config.version,stages:{}});ledger.version=config.version;ledger.stages??={};
-  const id=b.honroStage,limit=budget(id);
+  const id=b.honroStage,limit=budget(id),entryXp=Math.max(0,...b.units.filter(u=>u.side===0&&!u.summoned).map(u=>b.heroes[u.cls]?.xp||0)),shift=Math.max(0,entryXp-limit.start);
+  limit.start+=shift;limit.end+=shift;
   ledger.stages[id]??={combat:{},cleared:!!profile.cleared[id]};
   const state=ledger.stages[id];state.combat??={};state.cleared||=!!profile.cleared[id];
   const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0);
@@ -82,5 +85,5 @@ function complete(b){
   state.cleared=true;
 }
 function persist(app){if(app.engine?.b.honroGrowth)app.profile.honroGrowth=clone(app.engine.b.honroGrowth.ledger);}
-G.HonroProgression={version:config.version,plan,budget,xpAt,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist};
+G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist};
 })(globalThis);

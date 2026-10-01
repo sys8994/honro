@@ -64,8 +64,9 @@
             c.restore();
         }
         focusUnit(id,ms=900,speaker=false){this.focusId=id;this.focusUntil=performance.now()+ms;if(speaker){this.speakerId=id;this.speakerUntil=performance.now()+ms;}this.manual=false;}
-        storyFocus(id,duration=500,targetScale=null){this.storyTween={kind:'unit',id,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},targetScale};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
-        storyFocusPoint(x,y,duration=500){const {h}=this.size();this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x,y:y-h*.10/this.scale,scale:this.scale},manual:false};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
+        storyScale(){const {w,h}=this.size(),short=Math.min(w,h),base=Math.max(.55,Math.min(.82,.55+(short-390)*.00045));return h>w*1.1?base*.9:base;}
+        storyFocus(id,duration=500,targetScale=null){this.storyTween={kind:'unit',id,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},targetScale:Math.min(targetScale??Infinity,this.storyScale())};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
+        storyFocusPoint(x,y,duration=500){const {h}=this.size(),scale=this.storyScale();this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x,y:y-h*.10/scale,scale},manual:false};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
         storyRelease(camera,duration=450){if(!camera)return;this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
         event(ev) { if (this.arcFx) { this.arcFx.event(ev); return; } if (ev.type === 'fx') this.effects.push({ ...ev, life: 0 }); }
         size() { const r = this.canvas.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 1.7), w = Math.max(1, r.width), h = Math.max(1, r.height); if (this.canvas.width !== Math.round(w * d) || this.canvas.height !== Math.round(h * d)) {
@@ -120,7 +121,7 @@
             if(this.storyTween){
                 const tw=this.storyTween,now=performance.now(),raw=Math.max(0,Math.min(1,(now-tw.start)/tw.duration)),ease=raw*raw*(3-2*raw);
                 let to=tw.to;
-                if(tw.kind==='unit'){const v=b.units.find(v=>v.id===tw.id&&!v.dead);if(v){const sc=tw.targetScale??(w<700?.84:.96),mid=v.y-v.h*.48;to={x:v.x,y:mid-h*.12/sc,scale:sc};}}
+                if(tw.kind==='unit'){const v=b.units.find(v=>v.id===tw.id&&!v.dead);if(v){const sc=tw.targetScale??this.storyScale(),mid=v.y-v.h*.48;to={x:v.x,y:mid-h*.12/sc,scale:sc};}}
                 if(to){this.x=tw.from.x+(to.x-tw.from.x)*ease;this.y=tw.from.y+(to.y-tw.from.y)*ease;this.scale=tw.from.scale+(to.scale-tw.from.scale)*ease;}
                 if(raw>=1){if(tw.kind==='unit'){this.storyTween={...tw,from:to,to,duration:1,start:now-1};}else{this.manual=!!tw.manual;this.storyTween=null;}}
             }

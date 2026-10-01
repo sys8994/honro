@@ -2,7 +2,7 @@ import {drawWarriorProjectile,drawMeleeGuide} from './warriorVisuals';
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
 import {SKILLS,CLASSES} from './data';
-import {convergenceCurve,convergencePoint,echoAim,SOUL_SKILLS} from './occultMechanics';
+import {echoAim,SOUL_SKILLS} from './occultMechanics';
 import {geometryPaths,redesignPrediction,turnPrediction,type SkillGeometry} from './skillMechanics';
 type C=CanvasRenderingContext2D;
 const guideCache=new WeakMap<Engine,Map<boolean,{key:string;prediction:ReturnType<Engine['predict']>}>>();
@@ -21,7 +21,7 @@ export function drawGuideContinuation(c:C,e:Engine,u:Unit,s:Skill,power:number,z
 }
 const echoGuideCache=new WeakMap<Engine,{key:string;paths:Array<Array<{x:number;y:number}>>}>();
 export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:number,root:ReturnType<Engine['predict']>){
- if(u.cls!=='occultist'||!SOUL_SKILLS.has(s.id))return;
+  if(u.cls!=='occultist'||!SOUL_SKILLS.has(s.id)||s.id==='O16')return;
  const echoes=e.alive(0).filter(v=>v.summonKind==='echo'&&v.summonOwner===u.id);
  if(!echoes.length)return;
  const point={x:root.x,y:root.y},key=[e.b.shot,e.b.round,e.b.sceneVersion,e.b.wind,u.x,u.y,u.angle,power,s.id,point.x,point.y,...echoes.map(v=>`${v.id}:${v.x}:${v.y}`)].join('|');
@@ -32,15 +32,6 @@ export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:num
  }
  // Echoed casts use the same dotted grammar as the principal prediction.
   for(const points of entry.paths)guideStroke(c,points,zoom,CLASSES[u.cls].color,.30);
-}
-export function drawConvergenceGuide(c:C,e:Engine,u:Unit,s:Skill,zoom:number,goal:{x:number;y:number}){
- if(s.mode!=='spiritConverge')return;
- const start={x:u.x,y:u.y-48},count=10+Math.floor((u.ranks[s.id]||1)/2);
- for(let i=0;i<count;i+=2){
-  const curve=convergenceCurve(start,goal,e.b.nextId,i,count),points=[];
-  for(let j=0;j<=18;j++)points.push(convergencePoint(curve,(curve.delay||0)+curve.duration*j/18));
-  guideStroke(c,points,zoom,CLASSES[u.cls].color,.23,.9);
- }
 }
 export const SKILL_FX_SECONDS={swordCut:.34,circulation:.6,skillGeometry:.9,inkImpact:.8,lightningBolt:.9,qiBurst:.55,fireBloom:.85};
 export function drawSkillGeometry(c:C,g:SkillGeometry,thick=false,zoom=1){

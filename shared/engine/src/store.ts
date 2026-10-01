@@ -3,19 +3,23 @@ import {validPhysics} from './physics';
 import type { Profile, Battle, ClassId, HeroProgress, Roster } from './types';
 import { SKILLS } from './data';
 import { upgradeBattle } from './world';
-import { CLASS_IDS, freshRoster, baseSkill, XP_CAP, LEGACY_XP_CAP_9, migrateLegacyXp9, TALENT_MAP, levelOf, xpAtLevel, autoTrain, sanitizeLoadout, pointsSpent, pointsEarned, isOpen, requiredRankLevel } from './progression';
+import { CLASS_IDS, freshRoster, baseSkill, XP_CAP, OLD_XP_CAP_12, LEGACY_XP_CAP_9, migrateLegacyXp9, migrateXp12, STAT_KEYS, TALENT_MAP, levelOf, xpAtLevel, autoTrain, sanitizeLoadout, pointsSpent, pointsEarned, isOpen, requiredRankLevel } from './progression';
 const KEY = 'falling-star-company.rpg.v2', BACK = KEY + '.backup', OLD = 'falling-star-company.v1';
 const copy = <T>(o: T): T => JSON.parse(JSON.stringify(o));
-export function defaults(): Profile { return { version: 2, revision: 12, cleared: {}, party: ['mage', 'archer', 'knight', 'occultist'], loadouts: { mage: ['M01'], archer: ['A01'], knight: ['S00'], occultist: ['O01','O06','O11'] }, tuning: { mage: .5, archer: .5, knight: .5, occultist: .5 }, settings: { sound: true, music: false, volume: .35, assist: false, shake: true, quality: 'high', difficulty: 'normal', speed: 2, playerSpeed: 1, orientation: 'landscape' }, saved: null, lastStage: 1, mapNode: 1, tutorial: false, heroes: freshRoster() }; }
+export function defaults(): Profile { return { version: 2, revision: 13, cleared: {}, party: ['mage', 'archer', 'knight', 'occultist'], loadouts: { mage: ['M01'], archer: ['A01'], knight: ['S00'], occultist: ['O01','O06','O11'] }, tuning: { mage: .5, archer: .5, knight: .5, occultist: .5 }, settings: { sound: true, music: false, volume: .35, assist: false, shake: true, quality: 'high', difficulty: 'normal', speed: 2, playerSpeed: 1, orientation: 'landscape' }, saved: null, lastStage: 1, mapNode: 1, tutorial: false, heroes: freshRoster() }; }
 function playback(n: number) { return [1, 1.5, 2, 3, 4].reduce((a, b) => Math.abs(b - n) < Math.abs(a - n) ? b : a, 1); }
 function finite(n: unknown) { return typeof n === 'number' && Number.isFinite(n); }
 function object(v: unknown): v is Record<string, any> { return !!v && typeof v === 'object' && !Array.isArray(v); }
 function fail(): never { throw new Error('세이브 형식이 올바르지 않습니다. 기존 기록은 유지됩니다.'); }
-function validHero(raw: unknown, cls: ClassId, legacyXp=false): HeroProgress {
-    const maxXp=legacyXp?LEGACY_XP_CAP_9:XP_CAP;
+function validHero(raw: unknown, cls: ClassId, legacyXp=false, oldXp=false): HeroProgress {
+    const maxXp=legacyXp?LEGACY_XP_CAP_9:oldXp?OLD_XP_CAP_12:XP_CAP;
     if (!object(raw) || !finite(raw.xp) || raw.xp < 0 || raw.xp > maxXp || !object(raw.ranks)) return fail();
-    const converted=legacyXp?migrateLegacyXp9(raw.xp):Math.floor(raw.xp);
-    const h: HeroProgress = { xp: converted, ranks: {}, kills: 0, damage: 0, skillRevision:raw.skillRevision,martialRevision:raw.martialRevision,occultRevision:raw.occultRevision };
+    const converted=legacyXp?migrateLegacyXp9(raw.xp):oldXp?migrateXp12(raw.xp):Math.floor(raw.xp);
+    const h: HeroProgress = { xp: converted, ranks: {}, statTraining:0, kills: 0, damage: 0, skillRevision:raw.skillRevision,martialRevision:raw.martialRevision,occultRevision:raw.occultRevision };
+    let formerRanks=0;
+    if(raw.statRanks!==undefined){if(!object(raw.statRanks))return fail();for(const [key,rank] of Object.entries(raw.statRanks)){if(!STAT_KEYS.includes(key as typeof STAT_KEYS[number])||!finite(rank)||!Number.isInteger(rank)||rank<0||rank>30)return fail();formerRanks+=rank;}}
+    if(raw.statTraining!==undefined&&(!finite(raw.statTraining)||!Number.isInteger(raw.statTraining)||raw.statTraining<0||raw.statTraining>60))return fail();
+    h.statTraining=raw.statTraining??formerRanks;
     if(raw.skillRevision!==undefined&&raw.skillRevision!==SKILL_REVISION)return fail();
     if(raw.martialRevision!==undefined&&raw.martialRevision!==1)return fail();
     if(raw.occultRevision!==undefined&&raw.occultRevision!==1)return fail();
@@ -43,8 +47,8 @@ function validHero(raw: unknown, cls: ClassId, legacyXp=false): HeroProgress {
     }
     return h;
 }
-function validRoster(v: unknown,legacyXp=false): Roster { if (!object(v)) return fail(); return { mage: validHero(v.mage, 'mage',legacyXp), archer: validHero(v.archer, 'archer',legacyXp), knight: validHero(v.knight, 'knight',legacyXp), occultist: v.occultist === undefined ? freshRoster().occultist : validHero(v.occultist, 'occultist',legacyXp) }; }
-function validBattle(raw: unknown,legacyXp=false): Battle {
+function validRoster(v: unknown,legacyXp=false,oldXp=false): Roster { if (!object(v)) return fail(); return { mage: validHero(v.mage, 'mage',legacyXp,oldXp), archer: validHero(v.archer, 'archer',legacyXp,oldXp), knight: validHero(v.knight, 'knight',legacyXp,oldXp), occultist: v.occultist === undefined ? freshRoster().occultist : validHero(v.occultist, 'occultist',legacyXp,oldXp) }; }
+function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     if (!object(raw) || raw.version !== 2)
         return fail();
     const b = copy(raw) as Battle;
@@ -83,7 +87,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
             if(sk?.ultimate&&sk.cls===u.cls){if(!finite(r)||!Number.isInteger(r)||r<0||r>1)return fail();continue;}
             if (!n || n.cls !== u.cls || !finite(r) || !Number.isInteger(r) || r < 0 || r > n.maxRank) return fail();
         }
-        if (u.armor < 0 || u.armor > 1 || u.level < 1 || u.level > 25 || u.attack < 0 || u.attack > 100 || u.maxMove < 0 || u.maxMove > 100000 || u.walkSpeed < 0 || u.walkSpeed > 3000)
+        if (u.armor < 0 || u.armor > 1 || u.level < 1 || u.level > 30 || u.attack < 0 || u.attack > 100 || u.maxMove < 0 || u.maxMove > 100000 || u.walkSpeed < 0 || u.walkSpeed > 3000 || u.fallApexY!==undefined&&(!finite(u.fallApexY)||Math.abs(u.fallApexY)>20000))
             return fail();
         if(u.elite!==undefined&&typeof u.elite!=='boolean')return fail();
         if(u.cooldowns!==undefined&&(!object(u.cooldowns)||Object.entries(u.cooldowns).some(([id,v])=>!SKILLS[id]||!finite(v)||v<0||v>100000)))return fail();
@@ -215,8 +219,8 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
     for (const s of Object.values(b.lastShots))
         if (!nums(s, ['angle', 'power', 'wind']) || !SKILLS[s.skill] || !Array.isArray(s.path) || s.path.length > 400 || s.path.some(v => !nums(v, ['x', 'y'])))
             return fail();
-    b.heroes = validRoster(b.heroes,legacyXp);
-    if(object(b.startXP)&&legacyXp)for(const cls of CLASS_IDS)if(finite(b.startXP[cls]))b.startXP[cls]=migrateLegacyXp9(b.startXP[cls]);
+    b.heroes = validRoster(b.heroes,legacyXp,oldXp);
+    if(object(b.startXP)&&(legacyXp||oldXp))for(const cls of CLASS_IDS)if(finite(b.startXP[cls]))b.startXP[cls]=legacyXp?migrateLegacyXp9(b.startXP[cls]):migrateXp12(b.startXP[cls]);
     if(object(b.startXP)&&b.startXP.occultist===undefined)b.startXP.occultist=b.heroes.occultist.xp;
     if (!nums(b.startXP, CLASS_IDS))
         return fail();
@@ -226,7 +230,7 @@ export function validate(input: unknown): Profile {
     const raw=copy(input);
     if (!object(raw) || ![1, 2].includes(raw.version))
         throw new Error('지원하지 않는 세이브 버전입니다.');
-    if(raw.revision !== undefined && (!finite(raw.revision)||raw.revision>12))throw new Error('더 새로운 게임에서 저장한 기록입니다. 해당 버전으로 열어주세요.');
+    if(raw.revision !== undefined && (!finite(raw.revision)||raw.revision>13))throw new Error('더 새로운 게임에서 저장한 기록입니다. 해당 버전으로 열어주세요.');
     if(object(raw.heroes)&&object(raw.loadouts)&&['archer','mage'].every(c=>object(raw.heroes[c])&&Array.isArray(raw.loadouts[c])))migrateSkills(raw as Profile);
     const p = defaults(), legacy = raw.version === 1;
     if (raw.cleared !== undefined) {
@@ -249,7 +253,7 @@ export function validate(input: unknown): Profile {
         p.tutorial = false;
     }
     else {
-        if([4,5,6,7,8,9,10,11,12].includes(raw.revision)){const legacyXp=raw.revision<=10;p.heroes=validRoster(raw.heroes,legacyXp);p.migrated=!!raw.migrated;}
+        if([4,5,6,7,8,9,10,11,12,13].includes(raw.revision)){const legacyXp=raw.revision<=10,oldXp=raw.revision<=12;p.heroes=validRoster(raw.heroes,legacyXp,oldXp&&!legacyXp);p.migrated=!!raw.migrated;}
         else {
             // Tree topology changed: retain earned progression and refund ALL old allocations.
             // Also retain XP already committed inside an unfinished legacy campaign battle.
@@ -263,7 +267,7 @@ export function validate(input: unknown): Profile {
             }
             p.migrated=true;
         }
-        p.tutorial = [4,5,6,7,8,9,10,11,12].includes(raw.revision) && !!raw.tutorial;
+        p.tutorial = [4,5,6,7,8,9,10,11,12,13].includes(raw.revision) && !!raw.tutorial;
     }
     for (const cls of CLASS_IDS) {
         if (Array.isArray(raw.loadouts?.[cls]))
@@ -296,8 +300,8 @@ export function validate(input: unknown): Profile {
     p.mapNode = legacy ? p.lastStage : finite(raw.mapNode) ? clampInt(raw.mapNode, 1, 36) : 1;
     if (!isOpen(p, p.mapNode))
         p.mapNode = 1;
-    if (!legacy && [4,5,6,7,8,9,10,11,12].includes(raw.revision) && raw.saved) {
-        p.saved = validBattle(raw.saved,raw.revision<=10);
+    if (!legacy && [4,5,6,7,8,9,10,11,12,13].includes(raw.revision) && raw.saved) {
+        p.saved = validBattle(raw.saved,raw.revision<=10,raw.revision>10&&raw.revision<=12);
         if (p.saved.mode === 'campaign')
             p.heroes = copy(p.saved.heroes);
         for (const cls of CLASS_IDS)

@@ -41,9 +41,12 @@ export function dragFor(skill:Skill,mode=skill.mode){
 export function reinforceFields(fields:ForceField[]){for(const f of fields){if(f.kind==='storm')continue;f.radius*=1.35;f.strength*=1.7;}}
 /** Normal impulse per unit mass. Small steps/normal jumps sit below these thresholds. */
 export function collisionDamage(maxHp:number,normalSpeed:number,kind:'fall'|'wall'){
- const threshold=kind==='fall'?780:340;
- return Math.round(maxHp*Math.min(.30,Math.max(0,normalSpeed-threshold)*.00030));
+ if(kind==='fall')return 0; // Landings use measured drop height in Engine.integrateBody.
+ return Math.round(maxHp*Math.min(.30,Math.max(0,normalSpeed-340)*.00030));
 }
+// Keep physical height aligned with HonroEnvironment.WORLD_UNITS_PER_METER.
+export const FALL_UNITS_PER_METER=60;
+export function fallDamage(maxHp:number,dropUnits:number){return Math.round(maxHp*clamp((dropUnits/FALL_UNITS_PER_METER-10)/90,0,1));}
 const num=(x:unknown)=>typeof x==='number'&&Number.isFinite(x);
 const vector=(v:any)=>v&&num(v.x)&&num(v.y)&&Math.abs(v.x)<=5000&&Math.abs(v.y)<=5000;
 export function validPhysicsPatch(p:any):boolean{

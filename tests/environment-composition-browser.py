@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
 
 mode = 'before' if '--before' in sys.argv else 'after'
-out = ROOT / '_local/reports/environment-v2' / mode
+out = ROOT / '_local/reports/environment-v3' / mode
 out.mkdir(parents=True, exist_ok=True)
 errors, rows = [], []
 source = ROOT / 'HONRO.html'
@@ -30,7 +30,8 @@ with sync_playwright() as pw:
           goalFocus:null,cinematic:null,time:0,walkTime:0});}''', sid)
         stage = page.evaluate('({w:HonroApp.engine.b.width,h:HonroApp.engine.b.height})')
         cameras = [('normal', stage['w']*.5, stage['h']*.55, .66),
-                   ('wide', stage['w']*.5, stage['h']*.5, .16)]
+                   ('wide', stage['w']*.5, stage['h']*.5, .16),
+                   ('near', stage['w']*.5, stage['h']*.55, 1.65)]
         if sid == 1:
             cameras.append(('forest', 1250, 1400, .66))
         if sid == 3:
@@ -64,7 +65,7 @@ with sync_playwright() as pw:
             if(previous){groups.forEach((g,i)=>{maxPositionStep=Math.max(maxPositionStep,Math.abs(g.y-previous.groups[i].y));maxOpacityStep=Math.max(maxOpacityStep,Math.abs(g.opacity-previous.groups[i].opacity));});
               for(const k of Object.keys(palette))if(typeof palette[k]==='string')for(const index of [1,3,5])maxColorStep=Math.max(maxColorStep,Math.abs(parseInt(palette[k].slice(index,index+2),16)-parseInt(previous.palette[k].slice(index,index+2),16)));}
             previous={groups,palette};frames++;}return {frames,maxPositionStep,maxOpacityStep,maxColorStep};}''')
-        assert transition['frames']>250 and transition['maxPositionStep']<2 and transition['maxOpacityStep']<.03 and transition['maxColorStep']<=2,transition
+        assert transition['frames']>250 and abs(transition['maxPositionStep']-8*.66)<.001 and transition['maxOpacityStep']==0 and transition['maxColorStep']<=2,transition
         # Exercise the REAL render path and observe animation, not merely a helper.
         motion=[]
         for sid,x,y in [(1,1960,1610),(2,2100,2980),(3,2250,2150),(5,3050,2750)]:
@@ -85,7 +86,7 @@ with sync_playwright() as pw:
           for(const missing of [false,true]){if(missing)delete b.honroEnvironment;const before=JSON.stringify(b),env=HonroEnvironmentRenderer.ensureBattle(b);
             for(let i=0;i<2;i++)HonroApp.scene.render(HonroApp.engine,0,'',.6,false,0);
             result.push({same:JSON.stringify(b)===before,version:env.version,cached:env===HonroEnvironmentRenderer.ensureBattle(b)});}return result;}''')
-        assert saved==[{'same':True,'version':2,'cached':True}]*2,saved
+        assert saved==[{'same':True,'version':3,'cached':True}]*2,saved
         rows.append({'motion':motion,'savedBattle':saved,'transition':transition})
 
         editor=browser.new_page(viewport={'width':1440,'height':900})
@@ -106,7 +107,10 @@ with sync_playwright() as pw:
         editor.click('[data-tab="play"]')
         editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
         play=editor.frames[1]
-        play.evaluate('''()=>{const a=HonroApp;a.frame=()=>{};a.dialogue=null;a.turnNotice=null;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,x:2100,y:2600,scale:.66,time:.73});a.scene.render(a.engine,0,'',.6,false,0)}''')
+        play.evaluate('''()=>{const a=HonroApp;a.frame=()=>{};a.dialogue=null;a.turnNotice=null;
+          document.querySelectorAll('.story-overlay,.narration-overlay,.story-history-overlay').forEach(node=>node.remove());document.body.classList.remove('story-lock');
+          Object.assign(a.scene,{manual:true,storyFrozen:false,cinematic:null,storyTween:null,goalFocus:null,x:2100,y:2600,scale:.66,time:.73});
+          a.scene.render(a.engine,0,'',.6,false,0)}''')
         play.locator('#battlecanvas').screenshot(path=str(out/'playtest.png'))
         assert play.evaluate('HonroApp.engine.b.honroEnvironment.placements.some(e=>e.id==="authored-qa"&&e.supportId)')
         assert play.evaluate('HonroApp.engine.b.honroEnvironment.atmosphere.preset')=='temple'

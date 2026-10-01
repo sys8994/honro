@@ -26,6 +26,21 @@
     C.STAGES.length = 10;
     function fresh() { const p = C.defaults(); for (const c of ROSTER)
         C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 4; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55 }; return p; }
+    function migrateGrowth(p,revision){
+        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(!hero)continue;if(!Number.isInteger(hero.statTraining))hero.statTraining=Object.values(hero.statRanks||{}).reduce((sum,n)=>sum+(Number.isInteger(n)&&n>0?n:0),0);delete hero.statRanks;}
+        if(revision>=13)return;
+        const convert=revision<=10?C.migrateLegacyXp9:C.migrateXp12;
+        const oldBattleXp=new Map([p.saved,p.honroBattle].filter(Boolean).map(b=>[b,Math.max(...ROSTER.map(cls=>Number.isFinite(b.heroes?.[cls]?.xp)?b.heroes[cls].xp:0))]));
+        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(hero&&Number.isFinite(hero.xp))hero.xp=convert(hero.xp);}
+        for(const battle of [p.saved,p.honroBattle])if(battle){
+            if(battle.startXP)for(const cls of ROSTER)if(Number.isFinite(battle.startXP[cls]))battle.startXP[cls]=convert(battle.startXP[cls]);
+            if(battle.honroGrowth?.limit){
+                const newHero=Math.max(...ROSTER.map(cls=>Number.isFinite(battle.heroes?.[cls]?.xp)?battle.heroes[cls].xp:0));
+                const shift=Math.max(0,newHero-(oldBattleXp.get(battle)||0));battle.honroGrowth.limit.start+=shift;battle.honroGrowth.limit.end+=shift;
+            }
+        }
+        p.revision=13;
+    }
     function load() { if(G.HONRO_EMBEDDED)return fresh(); try {
         let x = JSON.parse(localStorage.getItem(KEY) || 'null');
         if (x && x.game === 'honro' && [1,2,3,4].includes(x.schema) && x.heroes && Array.isArray(x.recruited) && x.recruited.includes('archer')) {
@@ -35,6 +50,7 @@
             p.settings = { ...fresh().settings, ...x.settings };
             if(p.honroBattle?.honroRevision!==20){p.honroBattle=null;p.upgradeNotice=!!x.honroBattle;}
             C.migrateSkills(p);
+            migrateGrowth(p,x.revision||12);
             G.HonroProgression.repairRecruits(p);
             return p;
         }
@@ -411,7 +427,7 @@
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><b>${this.training ? '허공터' : this.stage.name}</b><span id="objective-text">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</span></div><span class="grow"></span><div class="battle-info"><div id="turn-text"></div><span id="wind-text" class="muted"></span></div></header><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}<canvas class="mini" id="minimap"></canvas>${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } this.selected = e.active?.loadout?.includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible??=true; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row"><b>${this.training ? '허공터' : this.stage.name}</b><span id="turn-text"></span></div><span id="objective-text">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</span></div></header><div class="minimap-dock" id="minimap-dock" aria-expanded="${this.minimapVisible}"><button type="button" data-action="toggle-minimap" id="minimap-toggle" aria-label="미니맵 ${this.minimapVisible?'숨기기':'보기'}" aria-expanded="${this.minimapVisible}">${this.minimapVisible?'지도 접기':'지도 보기'}</button><canvas class="mini" id="minimap"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         continue() { if (!this.profile.honroBattle) {
             this.showMap();
             return;
@@ -629,8 +645,9 @@
             const allies=b.units.filter(v=>v.honroAlly&&!v.dead),alSig=allies.map(v=>v.id+':'+Math.round(v.hp)+':'+Math.round(v.maxHp)).join('|');
             if(this.allySig!==alSig){this.allySig=alSig;$('allied-roster').innerHTML=allies.map(v=>`<span class="allied-chip" title="${v.name} · 동맹"><i></i><span>${v.name}</span><b style="--ally-hp:${Math.max(0,v.hp)/v.maxHp*100}%"></b><small>${Math.round(Math.max(0,v.hp))}</small></span>`).join('');}
             $('read-aim').textContent=`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`;
-            const turnLabel=G.HonroStory.turnLabel(b);$('turn-text').textContent=turnLabel?b.round+'번째 턴 · '+turnLabel:b.round+'번째 턴';
-            $('wind-text').textContent=(b.wind<0?'← ':'→ ')+Math.abs(Math.round(b.wind));
+            const turnLabel=G.HonroStory.turnLabel(b);$('turn-text').textContent=b.round+'턴'+(turnLabel?' · '+turnLabel:'');
+            const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
+            $('wind-left').style.width=(wind<0?fraction:0)+'%';$('wind-right').style.width=(wind>0?fraction:0)+'%';$('wind-value').textContent=`바람 ${Math.abs(Math.round(b.wind))}`;$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
             const steering=e.iceGourdReady()||b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup||p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
             $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||u.focus<e.manaCost(sk,u,0)||cd>0);$('fire').style.setProperty('--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
@@ -640,7 +657,8 @@
             G.HonroCombatStatus.refresh(this,u);G.HonroCombatStatus.passives(this,u);
             this.tickBanter();const ev=$('event');ev.hidden=performance.now()>this.eventUntil;if(!ev.hidden)ev.textContent=this.eventText;
             // RC12: minimap draws the exact authored polygon geometry at the world aspect ratio.
-            const mc=$('minimap'),ratio=b.width/b.height,mobile=innerWidth<620,maxW=mobile?136:176,maxH=innerHeight<550?102:(mobile?126:154);let cssW,cssH;
+            if(!this.minimapVisible)return;
+            const mc=$('minimap'),ratio=b.width/b.height,mobile=innerWidth<620,maxW=mobile?118:152,maxH=innerHeight<550?86:(mobile?108:132);let cssW,cssH;
             if(ratio>=1){cssW=maxW;cssH=maxW/ratio;}else{cssH=maxH;cssW=maxH*ratio;}
             mc.style.setProperty('width',Math.round(cssW)+'px','important');mc.style.setProperty('height',Math.round(cssH)+'px','important');mc.style.aspectRatio=String(b.width)+' / '+String(b.height);const mw=mc.clientWidth||cssW,mh=mc.clientHeight||cssH,dpr=2;
             if(mc.width!==Math.round(mw*dpr)||mc.height!==Math.round(mh*dpr)){mc.width=Math.round(mw*dpr);mc.height=Math.round(mh*dpr);}
@@ -734,6 +752,10 @@
                 case 'title':
                     this.showTitle();
                     break;
+                case 'toggle-minimap': {
+                    this.minimapVisible=!this.minimapVisible;const dock=$('minimap-dock');dock.setAttribute('aria-expanded',String(this.minimapVisible));el.setAttribute('aria-expanded',String(this.minimapVisible));el.setAttribute('aria-label',this.minimapVisible?'미니맵 숨기기':'미니맵 보기');el.textContent=this.minimapVisible?'지도 접기':'지도 보기';if(this.minimapVisible)this.updateHUD(true);
+                    break;
+                }
                 case 'map':
                     this.showMap();
                     break;
@@ -768,6 +790,14 @@
                 case 'rank-minus':
                     this.changeRank(sk, -1, false);
                     break;
+                case 'invest-stat':
+                case 'refund-stat': {
+                    const scroll=$('armory')?.scrollTop||0;
+                    if(C.investStat(this.profile.heroes[this.cls],this.cls,a==='invest-stat'?1:-1)){
+                        this.persist();this.showCamp(this.cls);if($('armory'))$('armory').scrollTop=scroll;
+                    }
+                    break;
+                }
                 case 'train':
                 case 'rank-plus-detail':
                     this.changeRank(sk, 1, true);

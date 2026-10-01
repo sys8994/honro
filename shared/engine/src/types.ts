@@ -96,6 +96,8 @@ export interface HeroProgress {
     occultRevision?: number;
     xp: number;
     ranks: Record<string, number>;
+    statRanks?: Record<string, number>;
+    statTraining?: number;
     kills: number;
     damage: number;
 }
@@ -173,6 +175,7 @@ export interface Unit {
     nextSummonDiscount?: number;
     soulRemnants?: number;
     impactCooldown?: number;
+    fallApexY?: number;
     impactSource?: string;
     curseOwner?: string;
     curseTurns?: number;

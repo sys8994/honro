@@ -15,13 +15,14 @@ for(const st of project.stages){
    assert(sf,'Every current finite asset has explicit support');assert.equal(e.y,0);
    assert(Math.abs(q.y-(t.y+E.surfaceY(sf,e.x)*t.scale))<1e-8,'Root and support share the complete transform');
    const inverse=E.groupWorld(v,1280,720,st,group.id,q);assert(Math.abs(inverse.x-e.x)<1e-8);
-   const moved=E.placementScreen({...v,x:v.x+100},1280,720,st,e);assert(Math.abs(q.x-moved.x-100*t.scale)<1e-8,'Horizontal response still follows physical depth');count++;
+  const moved=E.placementScreen({...v,x:v.x+100},1280,720,st,e);assert(Math.abs(q.x-moved.x-100*t.scale)<1e-8,'Horizontal response still follows physical depth');count++;
+   const raised=E.placementScreen({...v,y:v.y-100},1280,720,st,e);assert(Math.abs(raised.y-q.y-100*zoom)<1e-8,'Every finite layer follows L1 camera height');
   }
  }
- // Sweep every transition; opacity, position and lighting are continuous.
+ // Height zones blend atmosphere only. Scenery never fades or relocates there.
  for(const zone of st.environment.zones.slice(0,-1))for(let y=zone.to-zone.blend-1;y<=zone.to+zone.blend+1;y+=2){
   const a=E.zoneWeights(st,y),b=E.zoneWeights(st,y+.01);assert(a.every((r,i)=>Math.abs(r.weight-b[i].weight)<.001));
-  for(const group of st.environment.groups){const q=E.groupTransform({x:0,y,scale:.66},960,540,st,group),r=E.groupTransform({x:0,y:y+.01,scale:.66},960,540,st,group);assert(Math.abs(q.y-r.y)<.1);}
+  for(const group of st.environment.groups){const q=E.groupTransform({x:0,y,scale:.66},960,540,st,group),r=E.groupTransform({x:0,y:y+.01,scale:.66},960,540,st,group);assert(Math.abs(q.y-r.y-.0066)<1e-9);assert.equal(q.opacity,1);}
  }
 }
 const st=project.stages[4],v={x:1000,y:2000,scale:.66},group={...st.environment.groups[0],verticalMode:'WORLD',x:1000,y:2000};
@@ -46,6 +47,19 @@ const preserved=JSON.stringify(old.stages.map(({environment,...s})=>s));E.upgrad
 assert.equal(JSON.stringify(old.stages.map(({environment,...s})=>s)),preserved,'Migration preserves all gameplay data');
 assert(old.stages[0].environment.migrationNotes.some(n=>n.includes('authored-tree')));
 const snapshot=JSON.stringify(old);E.upgradeComposition(old);assert.equal(JSON.stringify(old),snapshot,'Migration is idempotent');
+const previous=clone(project),priorStage=previous.stages[4];previous.environmentVersion=2;priorStage.environment.version=2;
+priorStage.environment.atmosphere.overrides={hazeStrength:.5};priorStage.environment.placements.push({id:'author-v2',assetId:'ancient_pine',depthLayer:'L2',groupId:'slope-L2',supportId:'slope-L2-support',x:500,y:0,scale:1,rotation:.23});
+priorStage.environment.groups.push({id:'artist-wall',depthLayer:'L2',verticalMode:'SCENIC',zoneId:'slope',x:0,y:120});
+priorStage.environment.surfaces.push({id:'artist-wall-support',groupId:'artist-wall',kind:'cliff',points:[{x:0,y:-100},{x:1000,y:-120}],bottom:900});
+priorStage.environment.placements.push({id:'author-wall',assetId:'env:rock',depthLayer:'L2',groupId:'artist-wall',supportId:'artist-wall-support',x:500,y:0,scale:1,rotation:0});
+const previousGameplay=JSON.stringify(previous.stages.map(({environment,...stage})=>stage));E.upgradeComposition(previous);
+const retained=previous.stages[4].environment.placements.find(e=>e.id==='author-v2');
+assert.equal(JSON.stringify(previous.stages.map(({environment,...stage})=>stage)),previousGameplay,'v2 migration changes environment only');
+assert.equal(retained.groupId,'slope-L2');assert.equal(retained.supportId,'slope-L2-support');assert.equal(retained.rotation,.23);
+assert.equal(previous.stages[4].environment.groups.find(g=>g.id==='artist-wall').verticalMode,'WORLD');
+assert.equal(previous.stages[4].environment.placements.find(e=>e.id==='author-wall').supportId,'artist-wall-support');
+assert.equal(previous.stages[4].environment.atmosphere.overrides.hazeStrength,.5);
+assert.deepEqual(clone(E.validate(previous)),[]);
 const placed=g.HonroCommands.apply(project,[{op:'scenery.place',stageId:'stage-5',id:'test-root',assetId:'ancient_pine',depthLayer:'L2',x:1000,y:2000}]);
 const moved=g.HonroCommands.apply(placed,[{op:'move',stageId:'stage-5',id:'test-root',dx:40,dy:500}]);
 assert.equal(moved.stages[4].environment.placements.find(e=>e.id==='test-root').y,0,'Dragging never detaches roots');

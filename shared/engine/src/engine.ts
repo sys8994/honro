@@ -5,7 +5,7 @@ import {terrainSurface,walkTerrain} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
 import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
-import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,validPhysicsPatch} from './physics';
+import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,fallDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
 import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER } from './balance';
@@ -190,7 +190,7 @@ export class Engine {
      * NPC/AI powers retain their established ballistic calibration. */
     chargeDuration(u: Unit, s: Skill) { return Math.min(MAX_CHARGE_SECONDS, 805 * this.effective(s, u).speed / CHARGE_ACCELERATION); }
     chargePower(u: Unit, s: Skill, seconds: number) { return clamp(seconds / Math.max(.001, this.chargeDuration(u, s)), 0, 1); }
-    velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * (s.id==='O04'?Math.max(.55,charge):charge) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
+    velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),occultFloor=({O01:.74,O04:.80,O16:.62} as Record<string,number>)[s.id]||0,v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * Math.max(occultFloor,charge) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
     origin(u: Unit, angle: number, body = false) { const reach = body ? 6 : u.cls === 'mage' ? 44 : u.cls === 'archer' ? 42 : u.cls === 'occultist' ? 40 : 28; return { x: u.x + Math.cos(rad(angle)) * reach, y: u.y - u.h * .63 - Math.sin(rad(angle)) * (body ? 8 : reach) }; }
     /** Data-only environmental patch; renderer cache and all future substeps see it immediately. */
     setEnvironment(patch:PhysicsPatch){if(!validPhysicsPatch(patch))throw new Error('Invalid physics patch');this.b.physics??=makePhysics();changePhysics(this.b.physics,patch);this.emit('change');}
@@ -198,7 +198,7 @@ export class Engine {
     private applyPhysicsCues(event?:string){const env=this.b.physics??(this.b.physics=makePhysics());for(const c of duePhysics(env,this.b.round,event)){this.setEnvironment(c.patch);env.applied.push(c.id);this.message(`환경 변화 · ${c.id}`);}}
     private forceSample(p:{x:number;y:number;wind:number;gravityScale?:number;drag?:number;skill?:string;mode?:string}){
         const env=environmentAt(this.b.physics??(this.b.physics=makePhysics()),p.x,p.y),q=p.gravityScale??1;
-        let gx=env.gravity.x*q+this.b.wind*p.wind*2.6,gy=env.gravity.y*q;
+        let gx=env.gravity.x*q+this.b.wind*p.wind*5.2,gy=env.gravity.y*q;
         for(const d of this.b.drafts)if(p.x>d.x&&p.x<d.x+d.w&&p.y>d.y&&p.y<d.y+d.h&&(!d.device||this.b.terrain.some(t=>t.id===d.device&&!t.broken)))gy-=d.force;
         for(const f of this.b.fields){if(f.kind==='storm')continue;const dx=f.x-p.x,dy=f.y-p.y,d=Math.hypot(dx,dy);if(d>=f.radius||d<1)continue;const a=(f.kind==='repulsor'?-1:1)*f.strength*Math.sin(Math.PI*d/f.radius);gx+=dx/d*a;gy+=dy/d*a;}
         const skill=p.skill?SKILLS[p.skill]:undefined,k=(p.drag??(skill?dragFor(skill,p.mode):0))*env.dragScale;
@@ -1592,9 +1592,9 @@ export class Engine {
         const v = Math.abs(u.vx) * Math.exp(-(ice ? 1.45 : 6.5) * grip * dt) - (ice ? 12 : 90) * grip * dt;
         u.vx = v < 3 ? 0 : Math.sign(u.vx) * v;
     }
-    private contactDamage(u:Unit,vx:number,vy:number,n:Vec,kind:'fall'|'wall',silent=false,scale=1){
+    private contactDamage(u:Unit,vx:number,vy:number,n:Vec,kind:'fall'|'wall',silent=false,scale=1,dropUnits?:number){
         if(silent||u.dead||u.summoned||(u.impactCooldown||0)>0)return;
-        const normalSpeed=Math.max(0,-vx*n.x-vy*n.y),damage=Math.round(collisionDamage(u.maxHp,normalSpeed,kind)*scale);
+        const normalSpeed=Math.max(0,-vx*n.x-vy*n.y),damage=Math.round((kind==='fall'?fallDamage(u.maxHp,dropUnits||0):collisionDamage(u.maxHp,normalSpeed,kind))*scale);
         if(damage<=0)return;u.impactCooldown=.30;
         this.hurt(u,damage,'',false);this.fx('text',u.x,u.y-u.h-25,'#edb699',13,kind==='fall'?'낙하 충격':'충돌 충격');
     }
@@ -1644,12 +1644,16 @@ export class Engine {
             // A nearby surface supports a resting body, not one still arriving at impact speed.
             // Otherwise the 4-unit contact tolerance can erase a fall before contactDamage runs.
             const ox = u.x, oy = u.y, support = this.surface(ox, oy - 3, oy + 4), supported = !!support && env.gravity.y>=0 && u.vy >= 0 && u.vy <= 3 && !u.jumping;
-            if (supported && Math.abs(u.vx) < 3) {
+             if (supported && Math.abs(u.vx) < 3) {
                 u.x = ox;
                 u.y = support!.y;
-                u.vx = u.vy = 0;
-                return true;
-            }
+                 u.vx = u.vy = 0;
+                 u.fallApexY=undefined;
+                 return true;
+             }
+             // The highest foot position since losing support determines impact energy.
+             // This also counts a jump's upward arc, but ordinary jumps stay below 10 m.
+             if(!supported)u.fallApexY=Math.min(u.fallApexY??oy,oy);
             if (!supported){
                 const gravityScale=u.jumping?1000/G:1,k=.015*env.dragScale;
                 u.vx+=(env.gravity.x*gravityScale-k*(u.vx-env.flow.x))*dt;
@@ -1679,11 +1683,12 @@ export class Engine {
                 // Following the support at the NEW x prevents tiny airborne gaps on downhill slopes.
                 const maxStep = Math.abs(nx - ox) * 1.7 + 5;
                 const next = this.surface(nx, oy - maxStep, oy + maxStep);
-                if (next) {
+                 if (next) {
                     u.y = next.y;
                     u.vy = 0;
-                    this.groundFriction(u, next.t, dt);
-                    return true;
+                     this.groundFriction(u, next.t, dt);
+                     u.fallApexY=undefined;
+                     return true;
                 }
             }
             if (u.vy < 0) {
@@ -1711,7 +1716,8 @@ export class Engine {
                 u.x = clamp(nx, t.x + .01, t.x + t.w - .01);
                 u.y = topAt(t, u.x,ground?.y??below?.y);
                 const slope=terrainSlopeAt(t,u.x,u.y),norm=Math.hypot(slope,1),normal=ground?.n??{x:slope/norm,y:-1/norm};
-                this.contactDamage(u,u.vx,u.vy,normal,'fall',silent);
+                 this.contactDamage(u,u.vx,u.vy,normal,'fall',silent,1,Math.max(0,u.y-(u.fallApexY??oy)));
+                 u.fallApexY=undefined;
                 this.landUnit(u,silent);
                 this.groundFriction(u, t, dt);
             }

@@ -25,6 +25,8 @@ for(const zoom of [.16,.66,1.65])for(const [layer,e] of [['L2',near],['L3',far]]
  assert(Math.abs(back.x-e.x)<1e-9&&Math.abs(back.y-e.y)<1e-9,`${layer} inverse at ${zoom}`);
  const moved=E.screen({...v,x:v.x+100},w,h,st,layer,e);
  assert(Math.abs((p.x-moved.x)-100*zoom/(1+z*d/E.D0_METERS))<1e-9,`${layer} pan at ${zoom}`);
+ const raised=E.screen({...v,y:v.y-100},w,h,st,layer,e);
+ assert(Math.abs(raised.y-p.y-100*zoom)<1e-9,`${layer} vertical response at ${zoom}`);
 }
 assert.equal(E.ratio(st,'L1',.16),1,'L1 remains the exact existing world transform');
 assert.equal(E.ratio(st,'L1',1.65),1,'L1 zoom remains unchanged');

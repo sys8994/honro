@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
 
 mode=sys.argv[1] if len(sys.argv)>1 else 'after'
-out=ROOT/'_local/reports/environment-v2'
+out=ROOT/'_local/reports/environment-v3'
 out.mkdir(parents=True,exist_ok=True)
 source=ROOT/'HONRO.html'
 if mode=='before':

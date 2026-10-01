@@ -25,7 +25,7 @@ function bottom(){
  <div class="hud-roster"><div class="hero-switches" id="hero-switches"></div><div id="combat-status" class="combat-status"></div></div>
  <div class="hud-vitals"><div id="combat-passives" class="combat-passives" hidden></div>${vitals.map(([id,name,style])=>`<div class="hpmp" data-vital="${id}"><div class="meter ${style}" role="group" aria-labelledby="${id}-name ${id}-label"><i id="${id}-fill"></i><label><span class="vital-name" id="${id}-name">${name}</span><span id="${id}-label"></span></label></div></div>`).join('')}<div class="hud-xp" aria-hidden="true"><i id="hud-xp-fill"></i></div></div>
  <div class="hud-controls-row">
- <div class="joystick" id="joystick" role="application" aria-label="좌우 이동·위아래 조준"><div class="joystick-ring"><i id="stick-knob"></i><span class="axis-h"></span><span class="axis-v"></span></div><span class="stick-value" id="move-left"></span></div>
+  <div class="joystick" id="joystick" role="application" aria-label="좌우 이동·위아래 조준"><div class="joystick-ring"><i id="stick-knob"></i><span class="axis-h"></span><span class="axis-v"></span></div><span class="stick-value" id="move-left"></span><div class="wind-gauge" role="meter" aria-label="바람" aria-valuemin="-30" aria-valuemax="30" aria-valuenow="0"><span class="wind-gauge-track"><i id="wind-left"></i><i id="wind-right"></i><b></b></span><small id="wind-value">바람 0</small></div></div>
  <div class="skill-strip" id="combat-skills"></div>
  <div class="radial-actions"><div class="shot-readout" id="read-aim"></div>
  <button class="icon-btn honro-defend" data-action="defend" aria-label="방어하며 기력 회복" title="방어">${I('shieldHalved','',18)}<span>방어</span></button>

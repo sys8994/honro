@@ -1,5 +1,5 @@
 import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
-import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,drawConvergenceGuide,guidePrediction,guideStroke,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,guideStroke,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -288,7 +288,6 @@ export class Renderer {
         drawEchoGuides(c,engine,active,sk,guidePower,zoom,pr);
         const guideColor=CLASSES[active.cls].color;
         guideStroke(c,pr.points,zoom,guideColor);
-        drawConvergenceGuide(c,engine,active,sk,zoom,pr);
         c.save();c.globalAlpha=.65;
         const r=engine.effective(sk,active).radius;
         c.globalAlpha=.62;c.setLineDash([4/zoom,7/zoom]);c.lineWidth=1.35/zoom;

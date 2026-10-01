@@ -6,8 +6,10 @@ import {migrate} from '../migration/migrate-stages.mjs';
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,project=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
 const plain=x=>JSON.parse(JSON.stringify(x)),checks=[];
-// Sodan's earlier skill redesign changes only the frozen Stage 10 boss attack fields.
-function withoutHistoricalSodanAttack(value){const copy=plain(value);for(const stage of copy.stages||[]){const boss=stage.units?.find(u=>u.id==='boss'&&u.cls==='occultist');if(boss){delete boss.attack;delete boss.combatBaseAttack;}}return copy;}
+// Historical place recipes are compared independently of later combat tuning,
+// one-way platform rules, habitat props, and the authored scenery library.
+const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mid','bridge-east','lower-lookout','pier-west','pier-east','tier-low','tier-mid','tier-upper','tier-crown','ramp-1','center-lookout']);
+function withoutHistoricalSodanAttack(value){const copy=plain(value);delete copy.library;for(const stage of copy.stages||[]){delete stage.environment;stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));for(const t of stage.terrains||[])if(platformIds.has(t.id))delete t.oneWay;for(const u of stage.units||[])for(const key of ['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp'])delete u[key];}return copy;}
 function test(name,fn){try{const detail=fn();checks.push({name,pass:true,detail});console.log('PASS',name);}catch(error){checks.push({name,pass:false,error:String(error)});console.error('FAIL',name,error.message);}}
 function top(st,x){const p=st.terrains[0].points.slice(0,st.detailStats.groundTop);for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i];if(a.x<=x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('No ground at '+x);}
 function grade(st,x,width){return Math.abs(top(st,x-width/2)-top(st,x+width/2));}

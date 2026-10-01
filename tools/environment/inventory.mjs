@@ -42,5 +42,5 @@ rows.push('','## 코드가 생성하는 요소','',
  '');
 const output=rows.join('\n'),file=path.join(root,'game/docs/ENVIRONMENT_INVENTORY.md');
 if(process.argv.includes('--check')){if(await readFile(file,'utf8')!==output)throw Error('Environment inventory is stale');}
-else{await writeFile(file,output);await mkdir(path.join(root,'_local/reports/environment-v2'),{recursive:true});await writeFile(path.join(root,'_local/reports/environment-v2/inventory.json'),JSON.stringify(inventory,null,2)+'\n');}
+else{await writeFile(file,output);await mkdir(path.join(root,'_local/reports/environment-v3'),{recursive:true});await writeFile(path.join(root,'_local/reports/environment-v3/inventory.json'),JSON.stringify(inventory,null,2)+'\n');}
 console.log('Environment inventory: '+project.library.length+' assets, '+project.stages.length+' maps; '+project.stages.reduce((n,s)=>n+s.environment.placements.length,0)+' supported placements');

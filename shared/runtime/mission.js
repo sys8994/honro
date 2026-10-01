@@ -31,6 +31,29 @@ function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss
  // An unusually early conversion must not leave empty rounds until the campaign pacing floor.
  if(!G.HonroObjectives.state(b,app.stage).complete&&hs.finaleWave<hs.finaleDefenseTurns&&rush(app,hs.finaleDefenseTurns))hs.finaleWave=hs.finaleDefenseTurns;
 }
+function reinforceHold(app,boundary){
+ const e=app.engine,b=e.b,hs=b.honroState,st=app.stage;
+ if(!boundary||b.side!==0||st.id===10||hs.lastHabitatRound===b.round)return;
+ const objective=G.HonroObjectives.state(b,st);
+ const holding=st.objective==='defend'||objective.objectiveReady&&!objective.complete&&objective.settleRounds>0;
+ if(!holding||objective.complete)return;
+ hs.lastHabitatRound=b.round;
+ const foes=e.alive(1).length,minimum=st.objective==='defend'?7:5;
+ if(foes>=minimum||b.units.length>=68)return;
+ const sites=(b.honroMarkers||[]).filter(m=>m.type==='hauntHabitat');if(!sites.length)return;
+ // Alternate habitats and keep emergence away from the party's feet.
+ const heroes=e.heroesAlive(),ranked=sites.map(site=>({site,distance:Math.min(...heroes.map(u=>Math.hypot(u.x-site.x,(u.y-site.y)*.6)))})).sort((a,c)=>c.distance-a.distance);
+ const distant=ranked.filter(item=>item.distance>=400),contested=!distant.length,choices=contested?ranked:distant;
+ const ordered=choices.length>1?[choices[b.round%choices.length],...choices.filter((_,i)=>i!==b.round%choices.length)]:choices;
+ const n=Math.min(contested?2:4,minimum-foes,68-b.units.length);
+ for(const item of ordered){const site=item.site;
+  for(let count=n;count>=1;count--){
+   const spawned=G.HonroAllies.execute(app,{type:'spawn',n:count,kind:site.kind,x:site.x,y:site.y,support:site.support,spacing:contested?240:110,maxDistance:260,clearance:contested?100:18,source:site.id});
+   if(spawned===false)continue;
+   e.fx('ring',site.x,site.y-28,'#a46f73',56);app.event(`${site.label}에서 들린 짐승이 나타났다.`);return;
+  }
+ }
+}
 function tick(app,dt){
  const e=app.engine;if(!e||app.training)return;
  if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
@@ -62,6 +85,7 @@ function tick(app,dt){
  }
  const progress=st.objective==='overwatch'?(obj?.x||0):st.objective==='escort'?Math.max(lead.x,obj?.x||0):lead.x;
  G.HonroEncounters.update(app,dt,{progress,height,broken:b.terrain.filter(t=>t.honroSeal&&t.broken).length,collected:b.honroMarkers.filter(m=>m.type==='relic'&&m.collected).length});
+ reinforceHold(app,boundary);
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
  if(st.id===10)finale(app);
  app.checkMission(e);

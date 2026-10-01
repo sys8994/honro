@@ -4,12 +4,16 @@ function polygon(points,close=true,soft=false){const p=new Path2D();if(soft){con
 function prepare(env){
  if(prepared.has(env))return prepared.get(env);
  const groups=env.groups.map(group=>({group,surfaces:env.surfaces.filter(s=>s.groupId===group.id).map(s=>{
-  const points=[...s.points,{x:s.points.at(-1).x,y:s.bottom},{x:s.points[0].x,y:s.bottom}];
-  const planes=[];for(let i=1;i<s.points.length-1;i+=3){const p=s.points[i],next=s.points[i+1],span=next.x-p.x;planes.push(polygon([p,next,{x:p.x+span*.35,y:p.y+Math.min(1200,span*.8)}]));}
-  return{...s,path:polygon(points),edge:polygon(s.points,false),planes,top:Math.min(...s.points.map(p=>p.y))};
+  const reach=group.depthLayer==='L2'?1100:group.depthLayer==='L3'?1350:1600;
+  const drawBottom=Math.max(...s.points.map(p=>p.y))+reach;
+  const points=[...s.points,{x:s.points.at(-1).x,y:drawBottom},{x:s.points[0].x,y:drawBottom}];
+  const planes=[];for(let i=0;i<s.points.length-2;i+=4){const run=s.points.slice(i,i+5),first=run[0],last=run.at(-1),depth=s.kind==='ridge'?750:s.kind==='cave-wall'?600:500;
+   planes.push({light:polygon([...run,{x:last.x-(last.x-first.x)*.16,y:last.y+depth*.55},{x:first.x,y:first.y+depth*.42}]),
+    shadow:polygon([run[Math.min(1,run.length-1)],...run.slice(2),{x:last.x,y:last.y+depth},{x:first.x+(last.x-first.x)*.48,y:first.y+depth*.40}])});}
+  return{...s,path:polygon(points),edge:polygon(s.points,false),planes,top:Math.min(...s.points.map(p=>p.y)),drawBottom};
  }),children:env.placements.filter(e=>e.groupId===group.id&&e.asset).map(e=>({...e,role:E.assetRole(e.asset),paths:(e.asset.visual||[]).map(s=>({...s,path:polygon(s.points,s.closed!==false,e.asset.id==='env:forest')}))}))}));
  groups.sort((a,b)=>E.depth({environment:env},b.group.depthLayer)-E.depth({environment:env},a.group.depthLayer));
- const data={groups,paths:groups.reduce((n,g)=>n+g.surfaces.reduce((m,s)=>m+2+s.planes.length,0)+g.children.reduce((m,e)=>m+e.paths.length,0),0)};prepared.set(env,data);return data;
+ const data={groups,paths:groups.reduce((n,g)=>n+g.surfaces.reduce((m,s)=>m+2+s.planes.length*2,0)+g.children.reduce((m,e)=>m+e.paths.length,0),0)};prepared.set(env,data);return data;
 }
 function sky(c,w,h,st,a){c.fillStyle=A.gradient(c,0,0,0,h,[[0,a.skyTop],[.58,E.mixColor(a.skyTop,a.skyBottom,.67)],[1,a.skyBottom]]);c.fillRect(0,0,w,h);
  if(!E.preset(st).sky||st.environment.skyVisible===false)return;
@@ -18,10 +22,14 @@ function sky(c,w,h,st,a){c.fillStyle=A.gradient(c,0,0,0,h,[[0,a.skyTop],[.58,E.m
  A.fog(c,w*.30,h*.19,w*.65,h*.16,a.farFogColor,.22);
  A.fog(c,w*.81,h*.31,w*.62,h*.12,a.hazeColor,.18);
 }
-function surface(c,s,g,a){const f=E.FINISH[g.depthLayer],far=E.mixColor(a.shadowTint,a.hazeColor,f.haze*a.hazeStrength),lit=E.mixColor(far,a.ambientTint,.35),top=s.top;
- c.fillStyle=A.gradient(c,0,top,0,Math.max(1400,top+2000),[[0,lit],[.48,far],[1,E.mixColor(far,a.shadowTint,.34)]]);c.fill(s.path);
- // Major geological planes are cues inside the drawing, never camera pitch.
- c.save();c.clip(s.path);c.fillStyle=A.color(E.mixColor(lit,a.keyLightColor,.18),g.depthLayer==='L4'?.20:.25);for(const plane of s.planes)c.fill(plane);c.restore();
+function surface(c,s,g,a){const f=E.FINISH[g.depthLayer],far=E.mixColor(a.shadowTint,a.hazeColor,f.haze*a.hazeStrength),lit=E.mixColor(far,a.ambientTint,.35),top=s.top,reach=g.depthLayer==='L2'?1000:g.depthLayer==='L3'?1250:1500;
+ c.fillStyle=A.gradient(c,0,top,0,top+reach,[[0,A.color(lit,.75)],[.38,A.color(far,.50)],[1,A.color(far,0)]]);c.fill(s.path);
+ // A few broad light and shadow facets survive maximum zoom-out. The cached
+ // paths share the support contour, so they cannot detach during camera pans.
+ c.save();c.clip(s.path);
+ c.fillStyle=A.color(E.mixColor(lit,a.keyLightColor,.40),g.depthLayer==='L4'?.14:.17);for(const plane of s.planes)c.fill(plane.light);
+ c.fillStyle=A.color(E.mixColor(far,a.shadowTint,.58),g.depthLayer==='L4'?.17:.20);for(const plane of s.planes)c.fill(plane.shadow);
+ c.restore();
  c.strokeStyle=A.color(E.mixColor(lit,a.keyLightColor,.26),.40);c.lineWidth=g.depthLayer==='L2'?3:5;c.stroke(s.edge);
 }
 function child(c,e,g,st,view,w,h,a,time){const r=e.asset.reference,box=E.screenBounds(e.asset,e,view,w,h,st);if(box.x>w+60||box.x+box.w<-60||box.y>h+60||box.y+box.h<-60)return false;
@@ -29,7 +37,7 @@ function child(c,e,g,st,view,w,h,a,time){const r=e.asset.reference,box=E.screenB
  c.save();c.translate(e.x,y);c.rotate(e.rotation||0);c.scale(scale,scale);c.translate(-r.foot.x,-r.foot.y);
  if(e.asset.renderer==='landmark'){c.globalAlpha*=1-E.FINISH[g.depthLayer].haze*.55;G.HonroElements.nativeLandmark.call(view,c,{...e,kind:e.asset.kind,x:0,y:0,size:1});}
  else if(e.role.role==='waterfall')A.waterfall(c,0,0,110,540,a,time);
- else {const fade=E.FINISH[g.depthLayer].haze*a.hazeStrength;for(const shape of e.paths){c.save();c.globalAlpha*=shape.alpha??1;if(shape.fill){const base=E.mixColor(shape.fill.slice(0,7),a.ambientTint,.19),dark=E.mixColor(base,a.hazeColor,fade),lit=E.mixColor(dark,a.keyLightColor,(1-fade)*.10);c.fillStyle=A.gradient(c,0,r.bounds.y,0,r.bounds.y+r.bounds.h,[[0,lit],[.65,dark],[1,E.mixColor(dark,a.shadowTint,.16)]]);c.fill(shape.path);}if(shape.stroke&&g.depthLayer==='L2'){c.strokeStyle=E.mixColor(shape.stroke.slice(0,7),a.hazeColor,fade+.15);c.lineWidth=shape.lineWidth||1;c.stroke(shape.path);}c.restore();}}
+ else {const fade=E.FINISH[g.depthLayer].haze*a.hazeStrength;for(const [index,shape] of e.paths.entries()){c.save();c.globalAlpha*=shape.alpha??1;if(shape.fill){const base=E.mixColor(shape.fill.slice(0,7),a.ambientTint,.19),dark=E.mixColor(base,a.hazeColor,fade),lit=E.mixColor(dark,a.keyLightColor,(1-fade)*.10);c.fillStyle=index===0?A.gradient(c,0,r.bounds.y,0,r.bounds.y+r.bounds.h,[[0,lit],[.65,dark],[1,E.mixColor(dark,a.shadowTint,.16)]]):lit;c.fill(shape.path);}if(shape.stroke&&g.depthLayer==='L2'){c.strokeStyle=E.mixColor(shape.stroke.slice(0,7),a.hazeColor,fade+.15);c.lineWidth=shape.lineWidth||1;c.stroke(shape.path);}c.restore();}}
  if(e.role.role==='light')A.glow(c,0,-40,65,90,a.glowColor,.22+.025*Math.sin(time*.8));
  c.restore();return true;
 }
@@ -45,13 +53,13 @@ function ensureBattle(b){if(b.honroEnvironment?.version===E.VERSION)return b.hon
 }
 Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),st={width:b.width,height:b.height,backdrop:b.honroBackdrop,environment:env},a=E.atmosphereAt(st,this.y),data=prepare(env),time=A.time(this);sky(c,w,h,st,a);
  let visible=0,active=0,animated=1;
- for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer))continue;const tr=E.groupTransform(this,w,h,st,g);if(tr.opacity<=.001)continue;active++;
+ for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer))continue;const tr=E.groupTransform(this,w,h,st,g),surface0=unit.surfaces[0];if(tr.opacity<=.001||surface0&&(tr.y+surface0.top*tr.scale>h+600||tr.y+surface0.drawBottom*tr.scale<0))continue;active++;
   const z=env.zones.find(z=>z.id===g.zoneId),local=E.atmosphere(st,z);
   c.save();c.globalAlpha=tr.opacity;c.translate(tr.x,tr.y);c.scale(tr.scale,tr.scale);
   for(const s of unit.surfaces)surface(c,s,g,local);
   for(const e of unit.children)if(child(c,e,g,st,this,w,h,local,time)){visible++;animated+=e.role.role==='waterfall'?10:e.role.role==='light'?1:0;}
   // Local mist shares the parent's X/Y/zoom transform, including camera pans.
-  if(g.depthLayer==='L3'&&unit.surfaces[0])for(const fraction of [.28,.72]){const x=st.width*fraction,y=E.surfaceY(unit.surfaces[0],x)+90;A.fog(c,x,y,Math.max(2400,st.width*.75),440,local.farFogColor,local.mistStrength,time,local.mistSpeed);animated++;}
+  if(g.depthLayer==='L3'&&surface0){const x=st.width*.5,y=E.surfaceY(surface0,x)+90,screenY=tr.y+y*tr.scale;if(screenY>-220&&screenY<h+220){A.fog(c,x,y,Math.max(2400,st.width*.75),440,local.farFogColor,local.mistStrength,time,local.mistSpeed);animated++;}}
   c.restore();
  }
  const [lx,ly]=a.keyLightDirection;A.shaft(c,w*lx,h*ly,w*.23,h*.80,a.keyLightColor,a.lightStrength,time);

@@ -8,7 +8,7 @@ import { MANA_COST_MULTIPLIER } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_POWER,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 export const CLASS_IDS: ClassId[] = ['mage', 'archer', 'knight', 'occultist'];
-export const MAX_LEVEL = 25;
+export const MAX_LEVEL = 30;
 export const ULTIMATES:Record<ClassId,string>={mage:'M99',archer:'A99',knight:'S99',occultist:'O16'};
 export interface Talent {id:string;cls:ClassId;branch:number;row:number;name:string;skill?:string;passive?:'power'|'vitality'|'mana'|'mobility'|'defense'|'regen'|'special';required:number;prereq?:string;maxRank:number;icon:string;desc:string;}
 export const BRANCHES:Record<ClassId,{name:string;color:string;tag:string}[]>={
@@ -23,7 +23,9 @@ const layouts:Record<ClassId,string[][]>={
  knight:[['S03','S05','S07','S08','S02'],['S01','S06','S04','S15','S13'],['S09','S10','S11','S14','S12'],['SP01','SP02','SP03','SP04','SP05']],
  occultist:[['O02','O03','O04','O05','O16'],['O06','O07','O08','O09','O10'],['O11','O12','O13','O14','O15'],['OP01','OP02','OP03','OP04','OP05']]
 };
-export const TALENTS:Talent[]=CLASS_IDS.flatMap(cls=>layouts[cls].flatMap((ids,branch)=>ids.map((id,row)=>({id,cls,branch,row,name:SKILLS[id].name,skill:id,passive:branch===3?'special' as const:undefined,required:(branch===3?[1,3,6,9,12]:[1,3,6,9,12])[row],prereq:branch!==3&&row>0?ids[row-1]:undefined,maxRank:8,icon:SKILLS[id].icon,desc:SKILLS[id].desc}))));
+// Each branch opens at a different pace, while every old rank remains legal in existing saves.
+const unlockLevels=[[1,3,5,8,10],[1,2,6,8,12],[1,3,5,7,11],[1,2,4,9,12]];
+export const TALENTS:Talent[]=CLASS_IDS.flatMap(cls=>layouts[cls].flatMap((ids,branch)=>ids.map((id,row)=>({id,cls,branch,row,name:SKILLS[id].name,skill:id,passive:branch===3?'special' as const:undefined,required:unlockLevels[branch][row],prereq:branch!==3&&row>0?ids[row-1]:undefined,maxRank:8,icon:SKILLS[id].icon,desc:SKILLS[id].desc}))));
 /** Passive ranks depend on training, never on an active-skill slot. */
 export function passiveRank(u:Pick<Unit,'side'|'ranks'>,id:string){return u.side===0&&SKILLS[id]?.passive?clamp(Math.floor(u.ranks[id]||0),0,8):0;}
 /** Keep the first three ranks' bonuses. Later ranks have gentler, but nonzero, gains. */
@@ -130,29 +132,47 @@ export const baseSkill = (cls: ClassId) => cls === 'mage' ? 'M01' : cls === 'arc
  */
 export function xpToNext(level: number) {
  const l=clamp(Math.floor(level),1,MAX_LEVEL);
- return l>=MAX_LEVEL?0:Math.round(180+90*Math.pow(l-1,1.65));
+ return l>=MAX_LEVEL?0:Math.round((180+90*Math.pow(l-1,1.65))*1.5);
 }
 export function xpAtLevel(level: number) { let sum = 0; for (let i = 1; i < clamp(level, 1, MAX_LEVEL); i++) sum += xpToNext(i); return sum; }
 export const XP_CAP = xpAtLevel(MAX_LEVEL);
+const OLD_MAX_LEVEL=25;
+export function oldXpToNext12(level:number){return level>=OLD_MAX_LEVEL?0:Math.round(180+90*Math.pow(level-1,1.65));}
+export function oldXpAtLevel12(level:number){let sum=0;for(let i=1;i<Math.min(OLD_MAX_LEVEL,level);i++)sum+=oldXpToNext12(i);return sum;}
+export const OLD_XP_CAP_12=oldXpAtLevel12(OLD_MAX_LEVEL);
+export function migrateXp12(xp:number){const raw=clamp(Math.floor(xp),0,OLD_XP_CAP_12);let level=1;while(level<OLD_MAX_LEVEL&&raw>=oldXpAtLevel12(level+1))level++;if(level>=OLD_MAX_LEVEL)return xpAtLevel(OLD_MAX_LEVEL);const progress=(raw-oldXpAtLevel12(level))/oldXpToNext12(level);return Math.floor(xpAtLevel(level)+progress*xpToNext(level));}
 /** Exact 9.0 curve, retained only for save migration. */
-export function legacyXpToNext9(level:number){const l=clamp(Math.floor(level),1,MAX_LEVEL);return l>=MAX_LEVEL?0:120+80*l+12*l*l;}
-export function legacyXpAtLevel9(level:number){let sum=0;for(let i=1;i<clamp(level,1,MAX_LEVEL);i++)sum+=legacyXpToNext9(i);return sum;}
-export const LEGACY_XP_CAP_9=legacyXpAtLevel9(MAX_LEVEL);
+export function legacyXpToNext9(level:number){const l=clamp(Math.floor(level),1,OLD_MAX_LEVEL);return l>=OLD_MAX_LEVEL?0:120+80*l+12*l*l;}
+export function legacyXpAtLevel9(level:number){let sum=0;for(let i=1;i<clamp(level,1,OLD_MAX_LEVEL);i++)sum+=legacyXpToNext9(i);return sum;}
+export const LEGACY_XP_CAP_9=legacyXpAtLevel9(OLD_MAX_LEVEL);
 /** Preserve exact level and within-level progress when importing <=9.0 saves. */
 export function migrateLegacyXp9(xp:number){
  const raw=clamp(Math.floor(xp),0,LEGACY_XP_CAP_9);let level=1;
- while(level<MAX_LEVEL&&raw>=legacyXpAtLevel9(level+1))level++;
- if(level>=MAX_LEVEL)return XP_CAP;
+ while(level<OLD_MAX_LEVEL&&raw>=legacyXpAtLevel9(level+1))level++;
+ if(level>=OLD_MAX_LEVEL)return xpAtLevel(OLD_MAX_LEVEL);
  const start=legacyXpAtLevel9(level),need=legacyXpToNext9(level),frac=need?clamp((raw-start)/need,0,1):0;
  return Math.floor(xpAtLevel(level)+frac*xpToNext(level));
 }
 export function levelOf(hero: HeroProgress | number) { const xp = typeof hero === 'number' ? hero : hero.xp; let l = 1; while (l < MAX_LEVEL && xp >= xpAtLevel(l + 1))
     l++; return l; }
 export function xpFraction(h: HeroProgress) { const l = levelOf(h); return l === MAX_LEVEL ? 1 : (h.xp - xpAtLevel(l)) / xpToNext(l); }
-export function freshHero(cls: ClassId): HeroProgress { const second=cls==='mage'?'M03':cls==='archer'?'A05':cls==='knight'?'S09':'O06'; return { xp: 0, ranks: cls!=='occultist'?{[baseSkill(cls)]:1}:{[baseSkill(cls)]:1,[second]:1}, kills: 0, damage: 0, skillRevision:1, martialRevision:1,occultRevision:cls==='occultist'?1:undefined }; }
+export function freshHero(cls: ClassId): HeroProgress { const second=cls==='mage'?'M03':cls==='archer'?'A05':cls==='knight'?'S09':'O06'; return { xp: 0, ranks: cls!=='occultist'?{[baseSkill(cls)]:1}:{[baseSkill(cls)]:1,[second]:1}, statTraining:0, kills: 0, damage: 0, skillRevision:1, martialRevision:1,occultRevision:cls==='occultist'?1:undefined }; }
 export function freshRoster(): Roster { return { mage: freshHero('mage'), archer: freshHero('archer'), knight: freshHero('knight'), occultist: freshHero('occultist') }; }
 export function pointsEarned(h: HeroProgress) { return 3 + (levelOf(h) - 1) * 2; }
-export function pointsSpent(h: HeroProgress, cls: ClassId) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (TALENT_MAP[id]?.cls === cls ? r - (id === baseSkill(cls) ? 1 : 0) : 0), 0); }
+export const STAT_KEYS=['hp','mp','attack','armor','critChance','critMultiplier','move'] as const;
+export type StatKey=typeof STAT_KEYS[number];
+export const STAT_LABELS:Record<StatKey,string>={hp:'체력',mp:'기력',attack:'공격',armor:'방어',critChance:'치명 확률',critMultiplier:'치명 배율',move:'이동력'};
+// One SP strengthens the whole character. For each stat, the largest class gain is at most twice the smallest.
+export const STAT_GAINS:Record<ClassId,Record<StatKey,number>>={
+ mage:{hp:.035,mp:.060,attack:.040,armor:.010,critChance:.005,critMultiplier:.035,move:.025},
+ archer:{hp:.030,mp:.035,attack:.050,armor:.008,critChance:.008,critMultiplier:.050,move:.025},
+ knight:{hp:.055,mp:.035,attack:.030,armor:.015,critChance:.004,critMultiplier:.030,move:.045},
+ occultist:{hp:.040,mp:.055,attack:.040,armor:.010,critChance:.006,critMultiplier:.035,move:.030}
+};
+export function statTrainingRank(h:HeroProgress){return h.statTraining??Object.values(h.statRanks||{}).reduce((sum,n)=>sum+n,0);}
+export function investStat(h:HeroProgress,cls:ClassId,delta=1){if(![1,-1].includes(delta))return false;const old=statTrainingRank(h);if(delta>0&&(pointsLeft(h,cls)<1||old>=60)||delta<0&&old<=0)return false;h.statTraining=old+delta;delete h.statRanks;return true;}
+export function statGainLabel(cls:ClassId,key:StatKey){const n=STAT_GAINS[cls][key];return key==='critMultiplier'?`+${n.toFixed(2)}×`:key==='armor'||key==='critChance'?`+${(n*100).toFixed(1)}%p`:`+${+(n*100).toFixed(1)}%`;}
+export function pointsSpent(h: HeroProgress, cls: ClassId) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (TALENT_MAP[id]?.cls === cls ? r - (id === baseSkill(cls) ? 1 : 0) : 0), 0)+statTrainingRank(h); }
 export function pointsLeft(h: HeroProgress, cls: ClassId) { return Math.max(0, pointsEarned(h) - pointsSpent(h, cls)); }
 export function trainReason(h: HeroProgress, id: string) { const n = TALENT_MAP[id]; if (!n)
     return '알 수 없는 기술'; if (!h.ranks[baseSkill(n.cls)])
@@ -178,7 +198,7 @@ export function untrain(h: HeroProgress, id: string) {
  const next=(h.ranks[id]||0)-1; if(next>0)h.ranks[id]=next; else delete h.ranks[id];
  return true;
 }
-export function resetTalents(h: HeroProgress, cls: ClassId) { h.ranks = { [baseSkill(cls)]: 1 }; }
+export function resetTalents(h: HeroProgress, cls: ClassId) { h.ranks = { [baseSkill(cls)]: 1 }; h.statTraining=0;delete h.statRanks; }
 export function autoTrain(h:HeroProgress,cls:ClassId){
  const owned=()=>TALENTS.filter(n=>n.cls===cls&&n.branch<3&&(h.ranks[n.id]||0)>0);
  let guard=100;
@@ -205,8 +225,8 @@ export function stakeDuration(id:string,rank=1){return (id==='M09'?6:id==='M10'?
 export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const level=levelOf(h),i=CLASS_IDS.indexOf(cls),L=level-1;
  const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=rank('SP02'),mobility=0,leap=rank('SP03'),defense=rank('SP02');
  const hpBase=[390,365,610,460][i], hpGain=[32,30,48,36][i], armorBase=[.06,.08,.22,.11][i];
- const hp=(hpBase+L*hpGain)*(1+vitality*.05), atkBase=[1.75,1.75,1.75,1.86][i], atkGain=[.18,.18,.18,.19][i];
- return {...criticalStats(cls,level,h.ranks),level,hp:Math.round(hp),mp:Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(h.ranks.MP02||0)*.03:0))),attack:atkBase+L*atkGain,armor:Math.min(.62,armorBase+L*.008+defense*.03),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?(h.ranks.MP02||0)*.5:0)};}
+ const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+L*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks);
+ return {...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(4,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp:Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(h.ranks.MP02||0)*.03:0))*(1+invested('mp'))),attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(.75,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?(h.ranks.MP02||0)*.5:0)};}
 export function applyHero(u:Unit,h:HeroProgress,full=false){const s=heroStats(h,u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove;u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+Math.max(0,dh),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+Math.max(0,dm),0,s.mp);u.maxFocus=s.mp;u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:Math.min(s.move,u.moveLeft+Math.max(0,s.move-oldMove));u.ranks={...h.ranks};}
 export function grantXP(h: HeroProgress, amount: number) { const before = levelOf(h); const actual = Math.max(0, Math.min(XP_CAP - h.xp, Math.round(amount))); h.xp += actual; return { actual, before, after: levelOf(h) }; }
 export function recommendedLevel(stage: number) { return [1,1,2,2,3,4,4,5,5,6,7,8,8,9,10,10,11,12,12,13,14,15,16,17,17,18,19,20,21,22,22,23,23,24,24,25][clamp(Math.floor(stage),1,36)-1]; }

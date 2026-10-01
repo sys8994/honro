@@ -1,4 +1,20 @@
 /* Active battle controls. Fixed skill tiles, flexible space on both sides. */
+.honro #app .battle-screen .minimap-dock{position:absolute;top:10px;right:12px;z-index:5;display:flex;flex-direction:column;align-items:flex-end;gap:4px;max-width:35vw}
+.honro #app .battle-screen .minimap-dock #minimap{position:static!important;inset:auto!important;min-width:0!important;max-width:100%!important;max-height:min(132px,calc(100dvh - 290px))!important;box-sizing:border-box}
+.honro #app .battle-screen .minimap-dock[aria-expanded=false] #minimap{display:none!important}
+.honro #app .battle-screen #minimap-toggle{min-height:25px;padding:3px 8px;border:1px solid #9fae9366;border-radius:6px;background:#11262cdb;color:#e4d4aa;font-size:10px;line-height:1.2}
+.honro #app .battle-title-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.honro #app .battle-title-row b{margin:0}
+.honro #app #turn-text{white-space:nowrap;color:#d9c28c;font-size:10px;font-weight:650}
+.honro #app .honro-compact-hud .joystick .wind-gauge{position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);width:94px;z-index:4;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:1px}
+.honro #app .wind-gauge-track{display:block;position:relative;width:100%;height:7px;border:1px solid #9aa59177;border-radius:5px;background:#172a2e;box-shadow:inset 0 1px 3px #071315}
+.honro #app .wind-gauge-track b{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:#e2d5b2;transform:translateX(-50%)}
+.honro #app .wind-gauge-track i{position:absolute;top:0;height:100%;background:linear-gradient(90deg,#95b7b5,#e0d4a9)}
+.honro #app #wind-left{right:50%;border-radius:4px 0 0 4px}
+.honro #app #wind-right{left:50%;border-radius:0 4px 4px 0}
+.honro #app .wind-gauge small{font-size:8px;line-height:1;color:#d7cbaa;text-shadow:0 1px 2px #061115}
+@media(min-width:621px){.honro #app .honro-compact-hud #joystick{transform:translateY(-17px)!important}}
+@media(max-width:620px){.honro #app .battle-screen .minimap-dock{top:8px;right:8px;max-width:31vw}.honro #app .battle-screen .minimap-dock #minimap{max-height:min(108px,calc(100dvh - 290px))!important}.honro #app .battle-title-row{gap:5px}.honro #app #turn-text{font-size:9px}.honro #app .honro-compact-hud .joystick .wind-gauge{width:76px}}
 .honro #app .honro-compact-hud .combat-status{min-height:16px;margin-top:3px;color:#a5b7b0;font-size:11px;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
 .honro #app .honro-compact-hud .combat-status[data-limited=true]{color:#ead09c}
 .honro #app .honro-compact-hud .player-chip.status-impaired small{color:#edbb85!important}
