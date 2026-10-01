@@ -30,8 +30,9 @@ export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:num
   entry={key,paths:echoes.map(v=>{const aim=echoAim(e,v,s,point,power);return e.predict(v,s,aim.angle,aim.power,undefined,true).points;})};
   echoGuideCache.set(e,entry);
  }
- c.save();c.globalAlpha=.30;c.strokeStyle=s.color;c.lineWidth=.95/Math.max(.12,zoom);c.setLineDash([3/zoom,7/zoom]);
- for(const points of entry.paths){c.beginPath();for(let i=0;i<points.length;i+=2){const p=points[i];if(i)c.lineTo(p.x,p.y);else c.moveTo(p.x,p.y);}c.stroke();}
+ // Echoed casts use the same dotted grammar as the principal prediction.
+ c.save();c.globalAlpha=.30;
+ for(const points of entry.paths)for(let i=0;i<points.length;i+=2){const p=points[i];c.beginPath();c.arc(p.x,p.y,1.6/Math.max(.12,zoom),0,Math.PI*2);c.fillStyle=s.color;c.fill();}
  c.restore();
 }
 export const SKILL_FX_SECONDS={swordCut:.34,circulation:.6,skillGeometry:.9,inkImpact:.8,lightningBolt:.9,qiBurst:.55,fireBloom:.85};

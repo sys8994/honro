@@ -673,7 +673,7 @@
             const b=this.engine?.b,inBattle=this.screen==='battle'&&!!b;
             const session=inBattle?(this.training?(this.trainingMusicSession||b.session):b.session):undefined;
             if(inBattle&&this.musicSession!==session){this.musicSession=session;this.bossMusicSeen=false;}
-            if(inBattle&&b.units.some(u=>u.side===1&&!u.dead&&u.hp>0&&(u.boss||u.honroMidboss||u.honroFinalBoss)&&(u.awake||u.honroFinalBoss)))this.bossMusicSeen=true;
+            if(inBattle&&!this.training&&b.honroStage===10&&b.units.some(u=>u.side===1&&!u.dead&&u.hp>0&&(u.boss||u.honroMidboss||u.honroFinalBoss)&&(u.awake||u.honroFinalBoss)))this.bossMusicSeen=true;
             this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden,session);
             this.updateMusicLabel();
         }

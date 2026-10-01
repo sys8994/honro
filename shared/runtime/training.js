@@ -30,7 +30,20 @@ function render(app,focus){
 function act(app,action,value){
  if(action==='open'){open(app);return;}if(action==='close'){app.close();return;}
  const d=app.trainingDraft;if(!d)return;
- if(action==='apply'){app.trainingClass=d.cls;app.trainingSkill=d.active;app.trainingRanks={...d.ranks};app.trainingPassives={...d.passives};app.launch(1,true,d.active);return;}
+ if(action==='apply'){
+  app.trainingClass=d.cls;app.trainingSkill=d.active;app.trainingRanks={...d.ranks};app.trainingPassives={...d.passives};
+  const b=app.engine.b,old=app.engine.active,index=b.units.indexOf(old);
+  // Rebuild only the controlled hero. Projectiles, terrain, stakes, summons,
+  // enemy health and the current music session all remain in this battle.
+  for(const cls of heroes){const h=b.heroes[cls];h.ranks={[C.baseSkill(cls)]:1};for(const t of C.TALENTS.filter(t=>t.cls===cls))if(!t.passive||d.passives[t.id])h.ranks[t.id]=d.ranks[t.id]||1;}
+  const u=C.makeUnit(d.cls,0,old.x,old.y,{id:old.id,name:H.hero[d.cls].name,loadout:[d.active],tune:old.tune});
+  C.applyHero(u,b.heroes[d.cls],true);
+  Object.assign(u,{x:old.x,y:old.y,spawnX:old.spawnX,spawnY:old.spawnY,vx:old.vx,vy:old.vy,angle:old.angle,lastPower:old.lastPower,facing:old.facing,acted:old.acted,moveLeft:old.moveLeft,focus:9999,maxFocus:9999,hp:Math.max(1,Math.round(u.maxHp*old.hp/Math.max(1,old.maxHp))),cooldowns:{}});
+  u.ranks={...b.heroes[d.cls].ranks,[d.active]:rank(d,d.active)};
+  b.units[index]=u;b.active=u.id;b.sceneVersion++;
+  app.selected=d.active;app.selectedByUnit[u.id]=d.active;app.charging=false;app.scene.previewKey='';
+  app.close();document.querySelector('.training-tools').outerHTML=toolbar(app);app.updateHUD(true);return;
+ }
  if(action==='hero'){d.cls=value;d.id=d.active=C.baseSkill(value);d.branch=branch(d.id);}
  if(action==='branch'){d.branch=+value;d.id=skills(d.cls,d.branch)[0].id;if(!S[d.id].passive)d.active=d.id;}
  if(action==='skill'){d.id=value;if(!S[value].passive)d.active=value;}

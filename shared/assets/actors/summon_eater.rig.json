@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "baseHeight": 132,
+  "viewBox": [
+    -80,
+    -155,
+    160,
+    173
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -77.14285714285714
+      ],
+      "parent": null
+    },
+    {
+      "id": "shroud",
+      "pivot": [
+        0,
+        -95
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "face",
+      "pivot": [
+        0,
+        -108
+      ],
+      "parent": "shroud"
+    },
+    {
+      "id": "maw",
+      "pivot": [
+        0,
+        -70.71428571428571
+      ],
+      "parent": "face"
+    }
+  ]
+}

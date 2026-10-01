@@ -32,31 +32,33 @@ AUDIT=r'''()=>{const V=HonroActorVisual,cv=document.createElement('canvas');cv.w
  rows.push({id,bounded,visible,rigid,planted,clips});}
  return rows;}'''
 
-ARENA=r'''()=>{const p=HonroMaps.normalize(HONRO_PROJECT),s=HonroMaps.emptyStage('actor-art','Remaining cast',7000,1050);
- s.terrains=[{id:'floor',type:'solid',points:[{x:0,y:800},{x:7000,y:800},{x:7000,y:1050},{x:0,y:1050}],baseMaterial:'rock',breakable:false}];
- s.units=[HonroUnits.record('occultist','owner',180,800),HonroUnits.record('human','foe',6700,800),...fixtures.map((d,i)=>({...HONRO_CORE.makeUnit(d.unit.cls,d.unit.side,480+i*300,800,{id:'art-'+d.id,name:d.name,h:110,r:25,hp:1000,maxHp:1000,...d.unit}),id:'art-'+d.id,kind:d.family==='summon'?'occultist':d.id==='colossus'?'boss:bier':d.unit.honroType==='bier'?'object:bier':d.unit.honroType==='gate'?'object:gate':d.unit.honroType==='civilian'?'object:civilian':'ally:'+(d.unit.allyRole||'guard'),team:d.unit.side===0?'player':d.unit.side===1?'enemy':'ally',runtimeTemplate:true}))];
+ARENA=r'''()=>{const p=HonroMaps.normalize(HONRO_PROJECT),s=HonroMaps.emptyStage('actor-art','Remaining cast',8000,1050);
+ s.terrains=[{id:'floor',type:'solid',points:[{x:0,y:800},{x:8000,y:800},{x:8000,y:1050},{x:0,y:1050}],baseMaterial:'rock',breakable:false}];
+ s.units=[HonroUnits.record('occultist','owner',180,800),HonroUnits.record('human','foe',7700,800),...fixtures.map((d,i)=>({...HONRO_CORE.makeUnit(d.unit.cls,d.unit.side,480+i*300,800,{id:'art-'+d.id,name:d.name,h:110,r:25,hp:1000,maxHp:1000,...d.unit}),id:'art-'+d.id,kind:d.family==='summon'?'occultist':d.id==='colossus'?'boss:bier':d.unit.honroType==='bier'?'object:bier':d.unit.honroType==='gate'?'object:gate':d.unit.honroType==='civilian'?'object:civilian':'ally:'+(d.unit.allyRole||'guard'),team:d.unit.side===0?'player':d.unit.side===1?'enemy':'ally',runtimeTemplate:true}))];
  s.events=[];p.stages=[s];p.activeStageId=s.id;return p;}'''
-SPRITES=r'''(scene,e)=>{const cv=document.createElement('canvas');cv.width=1500;cv.height=1200;const c=cv.getContext('2d');scene.time=0;scene.walkTime=0;scene.actorEngine=e;scene.scale=1;
+SPRITES=r'''(scene,e)=>{const cv=document.createElement('canvas');cv.width=1500;cv.height=1600;const c=cv.getContext('2d');scene.time=0;scene.walkTime=0;scene.actorEngine=e;scene.scale=1;
  for(const[id,a]of Object.entries(HonroActorVisual.assets)){const i=Object.keys(HonroActorVisual.assets).indexOf(id),u=e.unit('art-'+id);scene.unitBody(c,{...u,x:150+i%5*300,y:280+Math.floor(i/5)*300,h:a.family==='object'?115:180,facing:1,angle:0});}return cv.toDataURL();}'''
 RUNTIME=r'''()=>{const a=HonroApp;a.frame=()=>{};a.dialogue=null;a.turnNotice=null;a.done=false;const e=a.engine,b=e.b;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,scale:1,x:700,y:600,time:0});const before=JSON.stringify(b),image=(SPRITES)(a.scene,e),pure=before===JSON.stringify(b);a.scene.render(e,0,'',0,false,0);a.updateHUD(true);return{image,pure,hash:HONRO_ACTORS.sourceSha256,kinds:b.units.filter(u=>u.id.startsWith('art-')).map(u=>[u.id,HonroActorVisual.kind(u)]),error:a.lastError||null};}'''.replace('SPRITES',SPRITES)
 
 with sync_playwright() as p:
     browser=launch(p)
     lab=browser.new_page(viewport={'width':1500,'height':1100});listen(lab);lab.goto((OUT/'index.html').as_uri());lab.wait_for_function('window.ActorLab')
+    actor_fixtures=lab.evaluate('catalog')
     rows=lab.evaluate(AUDIT)
     for row in rows:
         m=next(m for m in METRICS['assets'] if m['id']==row['id'])
         check(row['id']+': bounded five-motion geometry, rigid joints and planted idle feet',all(row[k] for k in ['bounded','visible','rigid','planted']),row)
-        check(row['id']+': anchor ceiling and visible attack/hit response',m['anchors']<=BASE['assets'][row['id']]['anchors']*3.15 and row['clips']['attack']>1 and row['clips']['hit']>1,{'anchors':m['anchors'],'ratio':m['ratio']})
+        budget=BASE['assets'][row['id']]['anchors']*3.15 if row['id'] in BASE['assets'] else 240
+        check(row['id']+': anchor ceiling and visible attack/hit response',m['anchors']<=budget and row['clips']['attack']>1 and row['clips']['hit']>1,{'anchors':m['anchors'],'ratio':m['ratio']})
     check('Actor source provenance matches runtime',lab.evaluate('HONRO_ACTORS.sourceSha256')==METRICS['sourceSha256']==hashlib.sha256('\n'.join(n+'\n'+(ROOT/n).read_text(encoding='utf-8') for n in METRICS['sourceFiles']).encode()).hexdigest())
     for n,h in BASE['sources'].items(): check('Immutable before source '+n,hashlib.sha256((ROOT/n).read_bytes()).hexdigest()==h)
     # Exported vector geometry and the shipped renderer must agree at bind pose.
-    for id in BASE['assets']:
+    for id in [row['id'] for row in METRICS['assets']]:
         svg=(ROOT/f'shared/assets/actors/{id}.svg').read_text(encoding='utf-8')
         diff=lab.evaluate(r'''async([id,svg])=>{const a=HonroActorVisual.assets[id],[x,y,w,h]=a.viewBox,make=()=>{const c=document.createElement('canvas');c.width=w*3;c.height=h*3;return c;},left=make(),right=make(),l=left.getContext('2d'),r=right.getContext('2d'),im=new Image();im.src='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(svg)));await im.decode();l.drawImage(im,0,0,w*3,h*3);r.scale(3,3);r.translate(-x,-y);HonroActorVisual.draw(r,id,{time:0,pixels:256,detail:2});const aa=l.getImageData(0,0,w*3,h*3).data,bb=r.getImageData(0,0,w*3,h*3).data;let changed=0;for(let i=0;i<aa.length;i+=4)if(Math.max(...[0,1,2,3].map(j=>Math.abs(aa[i+j]-bb[i+j])))>20)changed++;return changed/(w*h*9);}''',[id,svg])
         check(id+': SVG matches runtime',diff<.015,diff)
     for selector,name in [('#roster','roster'),('#style','style-comparison'),('#comparison','comparison')]:lab.locator(selector).screenshot(path=str(OUT/(name+'.png')))
-    for id in BASE['assets']:
+    for id in [row['id'] for row in METRICS['assets']]:
         lab.select_option('#actor',id);lab.locator('#focus').screenshot(path=str(OUT/(id+'-detail.png')));lab.locator('#sizes').screenshot(path=str(OUT/(id+'-sizes.png')))
         atlas=lab.evaluate(r'''id=>{const cv=document.createElement('canvas');cv.width=1300;cv.height=1250;const c=cv.getContext('2d'),V=HonroActorVisual,a=V.assets[id];c.fillStyle='#192a2c';c.fillRect(0,0,1300,1250);Object.keys(a.clips).forEach((motion,i)=>[0,.2,.48,.75,1].forEach((t,j)=>{c.fillStyle='#c9cbb8';c.font='14px sans-serif';c.fillText(`${a.name} / ${motion} ${t}`,j*260+15,i*250+22);const state=motion==='idle'?{}:motion==='move'?{move:true}:{[motion==='jump_fall'?'jump':motion]:t};c.save();c.translate(j*260+130,i*250+225);c.scale(140/a.baseHeight,140/a.baseHeight);V.draw(c,id,{time:t*a.clips[motion].duration,state,pixels:140});c.restore();}));return cv.toDataURL();}''',id)
         png(id+'-motions',atlas)
@@ -82,9 +84,9 @@ with sync_playwright() as p:
     check('Every default editor catalog entry uses improved art',all(r['actor'] or r['party'] or r['monster'] for r in catalog),catalog)
     friendly=game.evaluate(r'''()=>{const a=HonroApp,e=a.engine,V=HonroActorVisual,M=HonroMonsterVisual,scene=Object.create(HonroScene.prototype);scene.time=0;const cv=document.createElement('canvas');cv.width=cv.height=500;const c=cv.getContext('2d'),rows=[];for(const id of Object.keys(M.assets))for(const team of ['ally','npc']){const u=HonroUnits.create(HonroUnits.record(id,'friendly-'+id,250,420,team),e.b,a.profile,a.stage);u.h=140;u.facing=1;c.clearRect(0,0,500,500);scene.unitBody(c,u);const actual=cv.toDataURL();c.clearRect(0,0,500,500);c.save();c.translate(u.x,u.y);c.scale(u.h/M.assets[id].baseHeight,u.h/M.assets[id].baseHeight);M.draw(c,id,{time:0,pixels:140,state:M.state(u)});c.restore();rows.push({id,team,kind:V.monsterKind(u),human:V.kind(u),same:cv.toDataURL()===actual});}return rows;}''')
     check('All 11 species retain their improved shape with allied/neutral team overrides',all(r['kind']==r['id'] and r['human'] is None and r['same'] for r in friendly),friendly)
-    game.evaluate('rows=>globalThis.fixtures=rows',[{'id':id,**d} for id,d in BASE['assets'].items()]);arena=game.evaluate(ARENA)
+    game.evaluate('rows=>globalThis.fixtures=rows',actor_fixtures);arena=game.evaluate(ARENA)
     game.evaluate('p=>HonroApp.launchMap(p,p.activeStageId,{story:false})',arena);result=game.evaluate(RUNTIME)
-    check('Game routes all 20 designs without writing gameplay state',result['hash']==METRICS['sourceSha256'] and result['pure'] and not result['error'] and all(a=='art-'+(b or '') for a,b in result['kinds']),result['kinds']);png('game-sprites',result['image']);game.screenshot(path=str(OUT/'game.png'))
+    check('Game routes all 23 designs without writing gameplay state',result['hash']==METRICS['sourceSha256'] and result['pure'] and not result['error'] and all(a=='art-'+(b or '') for a,b in result['kinds']),result['kinds']);png('game-sprites',result['image']);game.screenshot(path=str(OUT/'game.png'))
     # Actual summon creation and attack turn, not hand-written animation flags.
     summons=game.evaluate(r'''()=>{const e=HonroApp.engine,b=e.b,V=HonroActorVisual,owner=e.unit('owner'),foe=e.unit('foe');b.units=[owner,foe];owner.hp=owner.maxHp;foe.hp=foe.maxHp=999999;foe.x=800;const rows=[];for(const kind of ['stalker','lantern','charger','warden','host']){b.units=[owner,foe];b.projectiles=[];b.phase='aim';b.active=owner.id;b.side=0;owner.dead=foe.dead=false;owner.x=500;owner.y=800;const u=e.spawnSummon(owner,kind,600,800),count=e.runSummonTurn();let attack;for(let i=0;i<400&&!attack;i++){e.stepSummonTurn(.016);if(b.summonTurn?.stage==='wait')attack=V.state(u,e);}e.hurt(u,(u.shield||0)*2+20,foe.id);rows.push({kind,route:V.kind(u),count,attack:attack?.attack,hit:V.state(u,e).hit,h:u.h,r:u.r});}return rows;}''')
     check('All five real summons drive attack and damage poses',all(r['count']==1 and r['route']=='summon_'+r['kind'] and 0<=r.get('attack',-1)<=1 and r['hit']==0 for r in summons),summons)

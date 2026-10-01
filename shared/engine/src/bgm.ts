@@ -18,10 +18,13 @@ export class BgmPlayer {
     select(state:MusicState,battleSession?:string){
         // A fresh encounter advances from the last normal battle song. UI pauses,
         // map visits and continuing the same saved encounter do not consume a song.
-        if((state==='battle'||state==='boss')&&battleSession!==undefined&&battleSession!==this.battleSession){
+        const freshEncounter=(state==='battle'||state==='boss')&&battleSession!==undefined&&battleSession!==this.battleSession;
+        if(freshEncounter){
             if(this.battleSelected)this.battleIndex=(this.battleIndex+1)%3;
             this.battleSession=battleSession;this.battleSelected=false;
-            this.positions.delete(1+this.battleIndex);
+            // A visit to the map must not restore any previous combat position,
+            // including the boss track and the two normal tracks not selected now.
+            for(const index of [1,2,3,4])this.positions.delete(index);
         }
         this.state=state;
         if(state==='battle')this.battleSelected=true;
@@ -29,7 +32,7 @@ export class BgmPlayer {
         const track=state==='main'?0:state==='boss'?4:state==='battle'?1+this.battleIndex:-1;
         if(track<0){this.silence();return;}
         if(!this.unlocked||!this.tracks[track]||this.failed.has(track))return;
-        if(track===this.track&&this.current)return;
+        if(track===this.track&&this.current){if(freshEncounter)this.current.currentTime=0;return;}
         if(this.outgoing){this.outgoing.pause();this.outgoing.removeAttribute('src');this.outgoing.load();this.outgoing=null;}
         if(this.current){this.positions.set(this.track,this.current.currentTime||0);this.outgoing=this.current;}
         this.track=track;const audio=this.current=this.makeAudio();audio.preload='metadata';audio.src=this.tracks[track];

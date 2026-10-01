@@ -90,6 +90,14 @@ function skillPath(id:string){const sk=SKILLS[id];if(!sk)return {path:P.rune,ext
  else if(i<=15){const summon=['M8 26q-4-14 4-21l9 3 3 18-8-4ZM13 11h1m5 0h1','M6 9h20l-3 17H9ZM9 3h14m-7 0v6m-7 4h14m-10 2v8m6-8v8m-3 3v5','M2 26 19 8l8 6-11 16M20 8l-4-5m8 8 6-1M5 6l9 4M2 13l7 3','M4 8 16 3l12 5v10q-1 9-12 13Q5 27 4 18ZM10 13l6-6 6 6-6 10ZM8 26h16','M3 29V7h26v22M1 7 7 3h18l6 4M10 28V13h12v15M15 12v-4'];path=summon[i-11];}
  }
  const distinct:Record<string,string>={M02:'M3 25 10 11l9 12 10-12M16 2q7 5 1 11-7-1-3-6-1 4 2-5M22 7h8v9',S04:'M5 28 21 7l7-4-3 8L8 29M3 20l11 11M6 4v9m16 8v10',S11:'M15 5 24 9v7q-1 7-9 12Q6 23 6 16V9Zm-2 7 2 8 2-8M3 8Q-1 23 10 30m-1-4 1 4-5-1M28 23Q35 8 23 2m1 4-1-4 5 1',S14:'M18 2C5 4 2 16 10 23c-3-9 1-15 8-21ZM30 10c-13 2-16 14-8 21-3-9 1-15 8-21Z'};if(distinct[id])path=distinct[id];
+ // Five talismans retain the paper frame but show their separate effect at 32 px.
+ const curses:Record<string,string>={
+ O06:'M7 3 26 5 23 29 5 27ZM10 10 20 10 16 15 21 18 12 24 15 17 10 16Z',
+ O07:'M7 3 26 5 23 29 5 27ZM10 12 15 16 10 20M21 12 16 16 21 20M15 16 16 24',
+ O08:'M7 3 26 5 23 29 5 27ZM9 17Q16 8 23 17 16 26 9 17ZM14 17Q16 14 18 17 16 20 14 17Z',
+ O09:'M7 3 26 5 23 29 5 27ZM10 12Q21 8 21 18 21 25 15 23 10 21 13 16 16 12 22 13M10 23 15 18',
+ O10:'M7 3 26 5 23 29 5 27ZM16 9 16 20M16 18 9 24M16 18 23 24M16 21 12 27M16 21 20 28M12 12 16 9 20 12'
+ };if(curses[id])path=curses[id];
  let extra='';
  if(sk.passive){const special:Record<string,string>={MP01:P.resonance,MP02:P.vortex,MP03:P.flame,MP04:P.snow,MP05:P.bolt,AP01:P.triple,AP02:P.pierce,AP03:P.wind,AP04:P.recall,AP05:P.target,SP01:P.pull,SP02:P.shield,SP03:P.wall,SP04:P.lift,SP05:P.star,OP01:P.vortex,OP02:P.bind,OP03:P.home,OP04:P.return,OP05:P.resonance};path=special[id]||path;extra='<path d="M3 26v5h26v-5" stroke-width=".8"/>';}
  if(sk.ultimate)extra='<circle cx="16" cy="16" r="14.5" stroke-width=".8" stroke-dasharray="2 3"/><path d="M2 2l4 1-3 3m27-4-4 1 3 3M2 30l4-1-3-3m27 4-4-1 3-3" stroke-width=".9"/>';

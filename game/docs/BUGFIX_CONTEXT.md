@@ -1,5 +1,7 @@
 # HONRO 게임 수정 맥락
 
+**소단 공중 시전·허공터·BGM(HBUG-060, 2026-10-01):** 초혼과 만혼귀결은 `occultData.ts`의 시한 및 `Engine.predict()`·`stepProjectile()`의 같은 비행 경로에서 종점을 정한다. 새 먹귀·반향령·지박령은 `tools/actor-forge/`의 독립 벡터이고 `renderer.js`는 먹귀 흡인 반경을 실제 계산식으로 그린다. 허공터 설정 적용은 `training.js`에서 조작 영웅만 바꾸며 `world.js`의 숨은 상승 기류는 제거했다. 5번 BGM은 10장에서만 사용하고 `bgm.ts`는 새 전투 시 재생 위치를 지운다. [설계와 집중 검사](SODAN_FOLLOWUP_DESIGN.md)를 본다.
+
 **형·기·혼 피해 계층(HBUG-059, 2026-10-01):** `shared/engine/src/existence.ts`가 공격 구성비와 종족별 감응도, 선택적 전투 중 변화량, 최종 배수를 정의한다. 모든 일반 피격은 `Engine.hurt()`에서 기존 기술 피해·조건·치명·방어 계산을 거쳐 이 계층을 적용한다. `shared/engine/src/data.ts`는 플레이어 및 옛 NPC 기술에, `shared/runtime/world.js`는 현재 몬스터 기술에 공격 구성을 연결한다. 기본 감응도는 종족/역할에서 조회해 활성 맵과 옛 저장의 유닛 레코드를 변경하지 않으며, 새 저장에는 `existenceDefense` 또는 `existenceShift`를 선택적으로 둘 수 있다. 분류표·공식·밸런스 판단은 [현재 설계와 검증](DAMAGE_EXISTENCE_SYSTEM.md), 집중 검사는 `tests/existence-damage.mjs`와 `tests/existence-damage-browser.py`를 본다.
 
 **소단 기예 개편(HBUG-058, 2026-10-01):** `shared/engine/src/occultData.ts`가 새 소단 트리와 옛 `LO*` 정의를, `occultMechanics.ts`가 반향 목표 snapshot·만혼귀결 곡선을 맡는다. `engine.ts`는 소단 직후 `summonTurn`을 재사용하며, `skillMechanics.ts`가 옛 투자 SP와 비행 탄을 이행한다. 대표 검사는 `tests/sodan-redesign.mjs`와 `tests/sodan-redesign-browser.py`; 설계 충돌·한계는 [보고서](SKILL_REDESIGN_SODAN_REPORT.md)에 있다.

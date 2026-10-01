@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "baseHeight": 132,
+  "viewBox": [
+    -80,
+    -155,
+    160,
+    173
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -77.14285714285714
+      ],
+      "parent": null
+    },
+    {
+      "id": "left-paper",
+      "pivot": [
+        -9,
+        -93
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "right-paper",
+      "pivot": [
+        9,
+        -93
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "body",
+      "pivot": [
+        0,
+        -93
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        0,
+        -132
+      ],
+      "parent": "body"
+    }
+  ]
+}

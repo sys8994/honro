@@ -14,10 +14,11 @@ function setup(app,id,h,canvas){
  if(id==='S05')positions[1]=260;
  if(id==='S10')positions.splice(0,positions.length,830);
  if(id==='O03')positions.splice(0,positions.length,1000,1130,1260);
+ if(id==='O16')positions.splice(0,positions.length,760,870);
  if(id==='M10'||id==='M09'||id==='O13'||id==='O14'||id==='O15')positions.splice(0,positions.length,1050);
  for(const [i,x] of positions.entries()){const u=C.makeUnit('knight',1,x,floor,{id:'preview-target-'+i,name:'표적',h:115,r:27,honroType:'beast',honroVariant:'hound',hp:2400,maxHp:2400,armor:0,attack:.5,awake:true,fixed:!['A05','S15','S10','M08'].includes(id),loadout:['LA01'],focus:9999,maxFocus:9999});b.units.push(u);}
  if(id==='M10'||id==='O13'){const ally=C.makeUnit('knight',0,780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
- if(id==='O16')for(const [i,x] of [220,570].entries())b.units.push(C.makeUnit('occultist',0,x,floor-130,{id:'preview-echo-'+i,name:'반향령',summoned:true,summonOwner:hero.id,summonKind:'echo',summonRank:8,summonExpires:8,acted:true,fixed:true,summonFloating:true,h:65,r:20,hp:180,maxHp:180,attack:0,loadout:[],ranks:{...hero.ranks}}));
+ if(id==='O16')for(const [i,x] of [250,540].entries())b.units.push(C.makeUnit('occultist',0,x,floor-130,{id:'preview-echo-'+i,name:'반향령',summoned:true,summonOwner:hero.id,summonKind:'echo',summonRank:8,summonExpires:8,acted:true,fixed:true,summonFloating:true,h:65,r:20,hp:180,maxHp:180,attack:0,loadout:[],ranks:{...hero.ranks}}));
  if(bounce)b.terrain.push({id:'preview-wall',x:1140,y:620,w:40,h:380,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  b.active=hero.id;b.side=0;b.phase='aim';b.queue=[];
  const pr={id,b,canvas,hero,age:0,acc:0,fired:false,follow:false,cycle:0,events:[],h:structuredClone(h)};

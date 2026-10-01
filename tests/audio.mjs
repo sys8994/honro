@@ -33,6 +33,13 @@ check('New encounters advance once, through a map or directly, and wrap from the
  m.select('main');m.select('battle','four');m.current.emit('loadedmetadata');assert.equal(m.current.src,'02');assert.equal(m.current.currentTime,0);
  m.current.emit('ended');assert.equal(m.current.src,'03');m.select('battle','five');assert.equal(m.current.src,'04');m.dispose();
 });
+check('Every fresh encounter starts its selected combat song at zero',()=>{
+ const m=sessionMusic();m.unlock();m.select('battle','first');m.current.currentTime=28;
+ m.select('main');m.select('battle','second');m.current.currentTime=17;
+ m.select('main');m.select('battle','third');m.current.currentTime=11;
+ m.select('main');m.select('battle','fourth');m.current.emit('loadedmetadata');assert.equal(m.current.currentTime,0);
+ m.select('boss','fourth');m.current.currentTime=24;m.select('main');m.select('boss','fifth');m.current.emit('loadedmetadata');assert.equal(m.current.currentTime,0);m.dispose();
+});
 check('Boss interruptions preserve the next normal song; boss-only encounters consume none',()=>{
  const m=sessionMusic();m.unlock();m.select('battle','one');m.current.emit('ended');
  m.select('boss','one');m.select('main');m.select('boss','one');assert.equal(m.battleIndex,1);

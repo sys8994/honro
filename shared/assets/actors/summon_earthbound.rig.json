@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "baseHeight": 132,
+  "viewBox": [
+    -80,
+    -155,
+    160,
+    173
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -77.14285714285714
+      ],
+      "parent": null
+    },
+    {
+      "id": "roots",
+      "pivot": [
+        0,
+        -30.857142857142858
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "pole",
+      "pivot": [
+        0,
+        -87.42857142857143
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "seal",
+      "pivot": [
+        0,
+        -101
+      ],
+      "parent": "pole"
+    }
+  ]
+}

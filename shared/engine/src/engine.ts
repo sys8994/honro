@@ -262,6 +262,8 @@ export class Engine {
         let ap: Vec | undefined;
         const dt = collect ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
         for (let i = 0; i < Math.ceil((skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
+            const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
+            if(fuse>0&&(i+1)*dt>=fuse){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
             if(skill.mode==='homing'&&i*dt>.12){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
             const gravity=skill.gravity??1;
             const motion = this.advanceProjectile({ x, y, vx,vy,wind: meteor ? 0 : skill.wind, gravityScale:gravity,drag:dragFor(skill,meteor?'meteor':skill.mode),skill:skill.id,mode:skill.mode },dt);
@@ -287,8 +289,6 @@ export class Engine {
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase=skill.phase;
             const h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, phase!=='terrain');
-            const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
-            if(fuse>0&&i*dt>=fuse){ if(collect)points.push({x:nx,y:ny}); return {points,x:nx,y:ny,closest,apex:ap}; }
             if(skill.mode==='reverseGhost'&&ny<-420){if(collect)points.push({x:nx,y:ny});return {points,x:nx,y:ny,closest,apex:ap};}
             if (h) {
                 if ((skill.mode === 'bounce' || skill.mode === 'ricochet' || skill.mode === 'shieldthrow') && h.terrain && bounce === 0) {
@@ -967,7 +967,7 @@ export class Engine {
         const hpScale=(1+.07*(rank-1))*strong*(empowered?1.20:1),atkScale=(1+.055*(rank-1))*strong;
         const ground=this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
         const floating=['lantern','eater','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
-        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:54,r:23,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
+        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:120,r:46,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
         const dur=['charger','host','earthbound'].includes(kind)?base.dur:SPIRIT_TURNS[clamp(rank,1,8)-1]+(empowered?1:0);
         const summon=makeUnit('occultist',0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:true,acted:true,moveLeft:0,maxMove:0,walkSpeed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
@@ -1386,7 +1386,9 @@ export class Engine {
         p.age += dt;
         if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
         if(p.side===1&&this.absorbHostileProjectile(p,dt))return;
-        if(p.mode==='spiritConverge'&&(p.age>3.2||p.targetPoint&&Math.hypot(p.x-p.targetPoint.x,p.y-p.targetPoint.y)<Math.max(8,Math.hypot(p.vx,p.vy)*dt))){if(p.targetPoint){p.x=p.targetPoint.x;p.y=p.targetPoint.y;}convergeAt(this,p);return;}
+        // Never teleport the visible representative to a predicted point. The
+        // ordinary swept collision below must choose the same point the player sees.
+        if(p.mode==='spiritConverge'&&p.age>=(p.fuseAt??2.25)){convergeAt(this,p);return;}
         if(stepWarrior(this,p,dt))return;
         if(newSkill(p)&&redesignStep(this,p,dt))return;
         if(p.mode==='summonBolt'){this.stepSummonBolt(p,dt);return;}
@@ -1398,7 +1400,7 @@ export class Engine {
         }
         if(p.fuseAt!==undefined&&p.age>=p.fuseAt){
             if(p.mode==='phaseWraith'){this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);this.remove(p);return;}
-            if(p.mode==='summonLantern'){this.summonAtProjectile(p,'lantern');return;}
+            if(SUMMONS.has(p.mode)){this.occultImpact(p);return;}
             if(p.mode==='wraithReturn'&&p.phase===0){p.phase=1;p.phaseMode='all';p.fuseAt=undefined;p.vx=-p.vx*.92;const owner=this.unit(p.owner),returnY=(owner?.y??p.returnY)-(owner?.h??70)*.62;p.vy=clamp((returnY-p.y)*2.2,-220,80);p.hit=[];this.fx('rune',p.x,p.y,p.color,58);}
         }
         // Low-gravity ultimate must open its gate inside the playable sky even when its ballistic apex would be far above the camera.

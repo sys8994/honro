@@ -292,6 +292,9 @@ export class Renderer {
         c.globalAlpha=.62;c.setLineDash([4/zoom,5/zoom]);c.lineWidth=1.35/zoom;
         if(r){c.strokeStyle=sk.color;c.beginPath();c.arc(pr.x,pr.y,r,0,Math.PI*2);c.stroke();c.globalAlpha=.16;circle(c,pr.x,pr.y,r,sk.color);}
         c.setLineDash([]);c.globalAlpha=.72;line(c,pr.x-8,pr.y,pr.x+8,pr.y,sk.color,1.2);line(c,pr.x,pr.y-8,pr.x,pr.y+8,sk.color,1.2);
+        if(sk.mode.startsWith('summon')||sk.mode==='spiritConverge'){
+            c.globalAlpha=.7;c.setLineDash([3/zoom,5/zoom]);c.lineWidth=1.35/zoom;c.strokeStyle=sk.color;c.beginPath();c.arc(pr.x,pr.y,14/zoom,0,Math.PI*2);c.stroke();c.setLineDash([]);
+        }
         if(pr.apex&&(sk.mode==='cluster'||sk.mode==='rain'||sk.mode==='seekRain'))this.rune(c,pr.apex.x,pr.apex.y,12,sk.color);
         c.restore();
     }

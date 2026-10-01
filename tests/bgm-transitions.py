@@ -115,12 +115,15 @@ with sync_playwright() as p:
     page.evaluate('HonroApp.stageId=2;HonroApp.mapDock()')
     page.click('[data-action="launch"]')
     song(page, 'game stage 1 to 2 advances without waiting for song end', 3)
+    check('game new stage starts its battle track at the beginning', page.evaluate('HonroApp.audio.music.current.currentTime<.9'))
     retry(page, page.keyboard, 'game', 4)
     result_screen(page, page.keyboard, 'game defeat', 4, 'lost')
     retry(page, page.keyboard, 'game wrap', 2)
-    # A boss theme remains latched even after the boss dies and this encounter is resumed.
+    # Track 05 belongs to the act finale, not an arbitrary elite or boss flag.
     page.evaluate('''() => {const u=HonroApp.engine.b.units.find(u=>u.side===1);
         u.boss=true;u.awake=true;window.testBossId=u.id;}''')
+    song(page, 'game earlier-stage boss keeps normal battle music', 2)
+    page.evaluate('''() => {const a=HonroApp;a.engine.b.honroStage=10;a.stageId=10;a.updateAudio();}''')
     song(page, 'game boss appears', 5)
     page.evaluate('''() => {const a=HonroApp,u=a.engine.unit(testBossId);u.dead=true;u.hp=0;}''')
     esc_resume(page, page.keyboard, 'game boss', 5)

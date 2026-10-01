@@ -91,7 +91,6 @@ function trainingWorld(st,profile,cls,skill,legacy){
   b.waters.push({x,y,w,depth,frozen:0,kind:'water',conductive:true,bottom:[{x,y:y+depth},{x:x+w,y:y+depth}]});
   b.honroSurfaceZones.push({id:'training-water-'+x,kind:'water-pool',points:[[x,y],[x+w,y],[x+w,y+depth],[x,y+depth]],surface:[[x,y],[x+w,y]],bottom:[[x,y+depth],[x+w,y+depth]],attached:true});
  }
- b.drafts.push({x:1840,y:950,w:160,h:570,force:260});
  for(const [kind,x,size] of [['giantPine',130,1.1],['forestPath',550,1.4],['waterShrine',1370,.8],['rockPile',1840,1.1],['gate',2490,.8],['deadPines',2920,1.3],['watchtower',3320,.9],['reeds',3900,1.2],['waterShrine',4270,1],['Pines',4970,1.4],['ruin',5410,1],['giantPine',2770,.65]])b.honroLandmarks.push({kind,x,y:top(b,x,2200),size,layer:'back'});
  for(const x of [450,860,1770,2230,3050,4540,5080,5480])b.honroLandmarks.push({kind:'fernPatch',x,y:top(b,x,2200),size:1.3,layer:'prop'});
  const hero=b.units.find(u=>u.side===0);b.units=[hero];C.applyHero(hero,b.heroes[cls],true);Object.assign(hero,{x:340,y:1400,spawnX:340,spawnY:1400,acted:false,cooldowns:{},vx:0,vy:0});
