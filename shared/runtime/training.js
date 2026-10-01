@@ -32,7 +32,9 @@ function act(app,action,value){
  const d=app.trainingDraft;if(!d)return;
  if(action==='apply'){
   app.trainingClass=d.cls;app.trainingSkill=d.active;app.trainingRanks={...d.ranks};app.trainingPassives={...d.passives};
-  const b=app.engine.b,old=app.engine.active,index=b.units.indexOf(old);
+  const b=app.engine.b,old=b.units.find(v=>v.side===0&&!v.summoned&&!v.enthrall&&v.id.startsWith('p-'))||b.units.find(v=>v.side===0&&!v.summoned&&!v.enthrall);
+  if(!old)return;
+  const index=b.units.indexOf(old);
   // Rebuild only the controlled hero. Projectiles, terrain, stakes, summons,
   // enemy health and the current music session all remain in this battle.
   for(const cls of heroes){const h=b.heroes[cls];h.ranks={[C.baseSkill(cls)]:1};for(const t of C.TALENTS.filter(t=>t.cls===cls))if(!t.passive||d.passives[t.id])h.ranks[t.id]=d.ranks[t.id]||1;}
@@ -40,7 +42,12 @@ function act(app,action,value){
   C.applyHero(u,b.heroes[d.cls],true);
   Object.assign(u,{x:old.x,y:old.y,spawnX:old.spawnX,spawnY:old.spawnY,vx:old.vx,vy:old.vy,angle:old.angle,lastPower:old.lastPower,facing:old.facing,acted:old.acted,moveLeft:old.moveLeft,focus:9999,maxFocus:9999,hp:Math.max(1,Math.round(u.maxHp*old.hp/Math.max(1,old.maxHp))),cooldowns:{}});
   u.ranks={...b.heroes[d.cls].ranks,[d.active]:rank(d,d.active)};
-  b.units[index]=u;b.active=u.id;b.sceneVersion++;
+  b.units[index]=u;
+  // An enemy may be active while this modal is open. Never replace that enemy,
+  // and repair duplicate ordinary practice heroes left by an older session.
+  b.units=b.units.filter(v=>v===u||v.side!==0||v.summoned||v.enthrall);
+  if(b.side===0||!b.units.some(v=>v.id===b.active))b.active=u.id;
+  b.sceneVersion++;
   app.selected=d.active;app.selectedByUnit[u.id]=d.active;app.charging=false;app.scene.previewKey='';
   app.close();document.querySelector('.training-tools').outerHTML=toolbar(app);app.updateHUD(true);return;
  }

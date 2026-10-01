@@ -31,8 +31,8 @@ AUDIT = r'''()=>{
   return {counts,captures};
 }'''
 FINGERPRINT = r'''()=>{const cv=document.createElement('canvas');cv.width=960;cv.height=540;
-  const c=cv.getContext('2d'),s=Object.create(HonroScene.prototype);s.x=210;s.time=0;s.theme='shrine';
-  s.background(c,960,540,{honroStage:10,honroBackdrop:'shrine'});
+  const c=cv.getContext('2d'),s=new HonroScene(cv),b=HonroMaps.createBattle(HONRO_PROJECT.stages[9],HONRO_PROJECT);s.x=210;s.y=2000;s.scale=.66;s.time=0;s.theme='shrine';s.battle=b;
+  s.background(c,960,540,b);
   s.landmark(c,{kind:'oldGate',x:210,y:500,size:1});
   s.landmark(c,{kind:'rootShrine',x:680,y:510,size:.72});
   return cv.toDataURL();}'''

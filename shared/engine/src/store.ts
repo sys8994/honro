@@ -156,6 +156,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         if(u.martialGuard&&(!nums(u.martialGuard,['round','reduction'])||u.martialGuard.reduction<0||u.martialGuard.reduction>.300001||u.martialGuard.counter!==undefined&&typeof u.martialGuard.counter!=='boolean'||!optionalNumber(u.martialGuard.rank,1,8)))return fail();
         if(u.bladeScreen&&(!nums(u.bladeScreen,['round','rank','hits','facing'])||u.bladeScreen.rank<1||u.bladeScreen.rank>8||u.bladeScreen.hits<0||u.bladeScreen.hits>7||![-1,1].includes(u.bladeScreen.facing)))return fail();
         if(u.meleeAction){const a=u.meleeAction;if(!SKILLS[a.skill]?.martial||!nums(a,['elapsed','index','damage','range','power','shot'])||a.elapsed<0||a.elapsed>5||a.index<0||a.index>8||a.damage<0||a.range<0||a.power<0||a.power>1||a.target!==undefined&&!ids.has(a.target)||!optionalNumber(a.lifeCost,0,50000))return fail();}
+        if(u.mageWardShot!==undefined&&(!Number.isInteger(u.mageWardShot)||u.mageWardShot<0))return fail();
         if(u.salheun){if(!object(u.salheun))return fail();for(const [owner,h] of Object.entries(u.salheun)){if(!ids.has(owner)||!nums(h,['action','recorded','cap'])||h.recorded<0||h.cap<0||h.recorded>h.cap+.01||!Array.isArray(h.entries)||h.entries.length>5||h.entries.some(v=>!nums(v,['turn','damage'])||v.turn<0||v.damage<0)||!Array.isArray(h.projectiles)||h.projectiles.length>64||h.projectiles.some(v=>!finite(v)))return fail();}}
     }
     if(b.cast&&(!ids.has(b.cast.owner)||!SKILLS[b.cast.skill]||!nums(b.cast,['shot','cost','enemyDamage'])||b.cast.cost<0||b.cast.enemyDamage<0||b.cast.refunded!==undefined&&typeof b.cast.refunded!=='boolean'))return fail();
@@ -188,7 +189,7 @@ function validBattle(raw: unknown,legacyXp=false): Battle {
         if(q.targetId!==undefined&&(!safe(q.targetId)||!ids.has(q.targetId)))return fail();
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
         if(q.echoDelay!==undefined&&(!finite(q.echoDelay)||q.echoDelay<0||q.echoDelay>.3)||q.echoSource!==undefined&&!ids.has(q.echoSource)||q.soulBoost!==undefined&&typeof q.soulBoost!=='boolean')return fail();
-        if(q.curve&&(!nums(q.curve.start,['x','y'])||!nums(q.curve.spread,['x','y'])||!nums(q.curve.control,['x','y'])||!nums(q.curve.goal,['x','y'])||!finite(q.curve.duration)||q.curve.duration<=0||q.curve.duration>3))return fail();
+        if(q.curve&&(!nums(q.curve.start,['x','y'])||!nums(q.curve.spread,['x','y'])||!nums(q.curve.control,['x','y'])||!nums(q.curve.goal,['x','y'])||!finite(q.curve.duration)||q.curve.duration<=0||q.curve.duration>3||!optionalNumber(q.curve.delay,0,1.2)||!optionalNumber(q.curve.outwardRatio,0,1)))return fail();
 
         if(q.ultimateBurst!==undefined&&typeof q.ultimateBurst!=='boolean')return fail();
         if(!optionalNumber(q.effectBoost,0,.15)||!optionalNumber(q.sizeBoost,0,2)||q.dived!==undefined&&typeof q.dived!=='boolean')return fail();

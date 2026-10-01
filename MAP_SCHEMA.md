@@ -28,6 +28,8 @@ Project: `schema/version/name/activeStageId/settings/library/stages`. Settings�
 
 ## Element asset / instance
 
+배경 공간의 기준은 [환경 구도 스키마](game/docs/ENVIRONMENT_COMPOSITION.md)와 `shared/map/environment.js`다. 유한 배경은 `stage.environment`의 zones/groups/surfaces/placements에 저장한다. 배치의 x/y는 그룹 내부 x와 지지면 부착 오프셋이며 L1 요소 좌표와 다르다. `reference`가 물리 높이·벡터 경계·바닥 기준·허용 scale을 제공한다. 현재 환경 버전은 `HonroEnvironment.VERSION`을 참조한다.
+
 Asset: `id/name/category/visual/collision/anchor/sockets/material/breakable/oneWay/climbable/interactionType/layer/tags/params`. Visual은 점 기반 polygon/path로 `points/fill/stroke/alpha/lineWidth/closed`를 사용합니다. 임의 SVG 문자열을 실행하지 않습니다.
 
 `collisionMode:independent`는 그림 randomize/simplify 시 충돌을 유지합니다. Visual 모드는 그림에 충돌을 맞출 수 있습니다. Anchor를 기준으로 instance의 `x/y`, radians `rotation`, `scale`을 그림·충돌·소켓에 동일 적용합니다. Instance에는 `id/assetId/layer/snap`도 있습니다. 명령 회전 입력은 degrees, 저장은 radians입니다.

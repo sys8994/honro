@@ -2,12 +2,13 @@
 const VERSION=4,clone=x=>JSON.parse(JSON.stringify(x)),C=G.HONRO_CORE;
 const arrays=['terrains','materials','elements','units','events','encounters','objectives','markers','layers'];
 function layers(){return['far','mid','back','structural-back','terrain','interactive','prop','units','events','front','L2','L3','L4','L5'].map(id=>({id,name:id,visible:true,locked:false}));}
-function emptyStage(id='stage-new',name='새 스테이지',width=5000,height=3200){const st={id,name,width,height,backdrop:'forest',metadata:{stageId:1,campaign:false},terrains:[],materials:[],elements:[],units:[],events:[],encounters:[],objectives:[],markers:[],layers:layers(),meta:{notes:'',seed:12031},initialState:{}};st.environment={preset:'forest',placements:G.HonroEnvironment.makePlacements(st)};return st;}
+function emptyStage(id='stage-new',name='새 스테이지',width=5000,height=3200){const st={id,name,width,height,backdrop:'forest',metadata:{stageId:1,campaign:false},terrains:[],materials:[],elements:[],units:[],events:[],encounters:[],objectives:[],markers:[],layers:layers(),meta:{notes:'',seed:12031},initialState:{}};st.environment=G.HonroEnvironment.makeEnvironment(st);return st;}
 function normalize(input){
  const p=clone(input);if(!p||!Array.isArray(p.stages)||!Array.isArray(p.library))throw Error('Expected a HONRO project with stages and library');
  if(p.version>VERSION)throw Error('Unsupported future map version '+p.version);
  const legacy=(p.version||1)<VERSION;
  if(legacy){for(const st of p.stages)st.backdrop=({ravine:'valley',village:'gate'})[st.backdrop]||st.backdrop||'forest';G.HonroEnvironment.upgradeLegacy(p);}
+ else if((p.environmentVersion||1)<G.HonroEnvironment.VERSION)G.HonroEnvironment.upgradeComposition(p);
  p.schema='honro-map';p.version=VERSION;p.settings={grid:40,snap:true,autosave:true,adaptiveLOD:true,...p.settings};p.activeStageId??=p.stages[0]?.id;
  for(const a of p.library){a.visual??=[];a.collision??=[];a.anchor??={x:0,y:0};a.sockets??=[];a.tags??=[];a.params??={};}
  for(const st of p.stages){st.metadata??={stageId:1,campaign:false};st.meta??={notes:''};st.initialState??={};for(const a of arrays)st[a]??=a==='layers'?layers():[];if(legacy)for(const l of ['L2','L3','L4','L5'])if(!st.layers.some(x=>x.id===l))st.layers.push({id:l,name:l,visible:true,locked:false});for(const t of st.terrains)t.detail??={spacing:18,roughness:0,seed:1,optimizeEpsilon:0};}
@@ -34,7 +35,7 @@ function validate(project){
   if(!st.units.some(u=>u.team==='player'))issue('warn',`${st.id}: Player start가 없습니다.`);
   for(const e of st.encounters)for(const id of e.unitIds||[])if(!ids.has(id))issue('err',`${e.id}: missing member ${id}`);
  }
- if(project.environmentVersion!==1)issue('err','Missing environment schema version');
+ if(project.environmentVersion!==G.HonroEnvironment.VERSION)issue('err','Missing environment schema version');
  out.push(...G.HonroEnvironment.validate(project));
  return out.length?out:[{level:'ok',text:'구조 오류 없음'}];
 }

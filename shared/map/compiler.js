@@ -55,7 +55,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
 function importSpec(spec,id='imported-stage',project=G.HONRO_PROJECT){
  const width=spec.dimensions[0],height=spec.dimensions[1],st=M.emptyStage(id,spec.design?.title||'Imported stage',width,height),map=G.HonroMapEngine.compile({id:1,w:width,h:height},spec);
  st.backdrop=({ravine:'valley',village:'gate'})[spec.backdrop?.kind]||spec.backdrop?.kind||'forest';st.design=clone(spec.design||{});st.anchors=map.anchors;st.routes=map.routes;
- st.environment={preset:G.HonroEnvironment.SCENE_PRESETS[st.backdrop],placements:G.HonroEnvironment.makePlacements({...st,environment:null})};
+ st.environment=G.HonroEnvironment.makeEnvironment(st);
  st.terrains=map.terrain.map(t=>{const {vertices,x,y,w,h,id,mat,oneWay,indestructible,...properties}=t;return{id,name:id,type:'solid',points:vertices,baseMaterial:mat,oneWay,breakable:!indestructible,properties,layer:'terrain'};});
  st.materials=map.surfaceZones.map(m=>({...m,terrainId:m.support}));
  st.elements=(spec.editorData?.elements?clone(spec.editorData.elements):map.landmarks.map((l,i)=>({...l,id:l.id||`landmark-scatter-${i}`,assetId:project.library.some(a=>a.id===l.kind)?l.kind:'builtin:'+l.kind,scale:l.size||1,rotation:l.rotation||0,snap:false}))).map(e=>({...e,depthLayer:'L1'}));

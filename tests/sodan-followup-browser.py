@@ -27,7 +27,7 @@ def check(page, label):
       a.scene.render(e,0,a.selected,a.power,false,0);
       return {hits:u.summonGrowthHits,height:u.h,radius:u.r,centerShift:u.y-u.h*.5-center,art:HonroActorVisual.kind(u)};
     }''')
-    assert growth['hits']==3 and abs(growth['height']-170.4)<.001 and abs(growth['radius']-65.32)<.001 and abs(growth['centerShift'])<.001 and growth['art']=='summon_eater',(label,growth)
+    assert growth['hits']==3 and abs(growth['height']-136.32)<.001 and abs(growth['radius']-52.256)<.001 and abs(growth['centerShift'])<.001 and growth['art']=='summon_eater',(label,growth)
     page.locator('#battlecanvas').screenshot(path=str(ROOT/f'_local/reports/{label}-eater-grown.png'))
     guides=page.evaluate(r'''() => {
       const a=HonroApp,C=HONRO_CORE,c=document.createElement('canvas').getContext('2d'),original=c.stroke.bind(c),rows=[];

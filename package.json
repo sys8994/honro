@@ -23,6 +23,6 @@
     "test:skill-presentation": "python -X utf8 tests/skill-presentation-browser.py",
     "test:actors": "node tools/actor-forge/lab.mjs && python -X utf8 tests/actor-art-browser.py",
     "test:map-art": "python -X utf8 tests/map-art-browser.py current",
-    "test:environment": "node tests/environment-depth.mjs && node tools/environment/inventory.mjs --check && python -X utf8 tests/environment-browser.py"
+    "test:environment": "node tests/environment-depth.mjs && node tests/environment-composition.mjs && node tools/environment/validate.mjs && node tools/environment/inventory.mjs --check && python -X utf8 tests/environment-browser.py && python -X utf8 tests/environment-composition-browser.py"
   }
 }

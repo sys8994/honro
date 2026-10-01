@@ -47,6 +47,8 @@ npm.cmd run verify
 
 ## 소스와 문서
 
+배경 제작은 [환경 구도·대기 시스템](game/docs/ENVIRONMENT_COMPOSITION.md)과 [전체 분류표](game/docs/ENVIRONMENT_INVENTORY.md)를 따른다. Workshop에서 Depth와 Zone/Group/Support를 선택하고 Atmosphere를 정한다. `npm run test:environment`는 수직 맵·접지·줌·물 움직임·저장과 편집을 검증한다.
+
 설오·담허·휘겸·소단은 [네 동행 제작 기준](game/docs/PARTY_ART_PIPELINE.md)의 v009를 사용한다. 시트 얼굴 형상·소단의 연보라 포인트를 유지하고 몸과 팔다리를 늘렸으며 휘겸의 어깨를 넓혔다. 갓·머리카락을 제외한 얼굴 높이는 남성 셋이 같은 수준, 소단은 약 12.5% 작게 맞췄다. 앵커는 v008과 동일한 512/541/480/511이다. 제작 입력과 경로는 `tools/party-forge/`, 공통 리그는 `shared/runtime/party-rig.js`, 생성물은 `shared/assets/party/`다. 빌드 후 `npm.cmd run test:party`로 시트/벡터·전후·머리 크기·축소·모션 검수 자료를 만들고 `_local/reports/party-forge/index.html`을 연다. 캠페인의 적 소단에도 같은 개정판을 적용한다.
 
 몬스터 미술은 [제작·시각 검수 계획](game/docs/MONSTER_ART_PIPELINE.md)을 따른다. 일반 적 11종을 최초 원본 대비 약 3배의 앵커로 제작하고 공통 벡터 렌더러로 표시한다. `npm.cmd run test:monsters`로 검수 공방과 전후·크기별 비교 이미지를 생성하고 `_local/reports/monster-forge/index.html`을 연다. 제작 원본은 `tools/monster-forge/recipes.mjs`와 `species.mjs`, 원본 측정 기준은 `tests/fixtures/monster-baseline.json`이다. 적 소단은 위 네 동행 에셋을 사용한다.

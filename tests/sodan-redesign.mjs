@@ -50,7 +50,7 @@ for(const [rank,actions,power] of [[1,2,.7],[2,3,.7],[3,3,.85],[4,4,.85],[5,4,1]
  const a=arena('O14',8),eater=a.e.spawnSummon(a.u,'eater',630,1200,1,8),center=eater.y-eater.h*.5;
  const absorb=()=>{const p=castAt(a,'O01')[0];p.side=1;p.x=eater.x;p.y=center;p.damage=100;assert(a.e.absorbHostileProjectile(p,C.STEP));};
  for(let i=1;i<=4;i++){
-  absorb();assert.equal(eater.summonGrowthHits,i);assert(Math.abs(eater.h-120*(1+.14*i))<.001);assert(Math.abs(eater.r-46*(1+.14*i))<.001);assert(Math.abs(eater.y-eater.h*.5-center)<.001);assert(!eater.dead);
+  absorb();assert.equal(eater.summonGrowthHits,i);assert(Math.abs(eater.h-96*(1+.14*i))<.001);assert(Math.abs(eater.r-36.8*(1+.14*i))<.001);assert(Math.abs(eater.y-eater.h*.5-center)<.001);assert(!eater.dead);
  }
  const saved=C.defaults();saved.saved=a.b;const restored=C.validate(plain(saved)).saved.units.find(u=>u.id===eater.id);
  assert.equal(restored.summonGrowthHits,4);assert.equal(restored.h,eater.h);
@@ -64,7 +64,7 @@ for(const [rank,actions,power] of [[1,2,.7],[2,3,.7],[3,3,.85],[4,4,.85],[5,4,1]
  eater.shield=80;a.e.hurt(eater,20,a.foe.id);assert.equal(eater.summonGrowthHits,1);assert.equal(eater.hp,hp);
  eater.shield=0;a.e.hurt(eater,20,a.foe.id);assert.equal(eater.summonGrowthHits,2);assert(eater.hp<hp);
  a.e.hurt(eater,20,a.foe.id,false,undefined,undefined,'environment');assert.equal(eater.summonGrowthHits,2);
- for(let i=0;i<8;i++){eater.hp=eater.maxHp;a.e.hurt(eater,5,a.foe.id);}assert.equal(eater.summonGrowthHits,5);assert(Math.abs(eater.h-204)<.001);
+ for(let i=0;i<8;i++){eater.hp=eater.maxHp;a.e.hurt(eater,5,a.foe.id);}assert.equal(eater.summonGrowthHits,5);assert(Math.abs(eater.h-163.2)<.001);
 }
 {
  const a=arena('O09');a.foe.x=560;a.foe.hp=10000;const other=C.makeUnit('knight',1,780,1400,{id:'other',fixed:true,hp:20000,maxHp:20000,armor:0,h:100,r:25,loadout:['LS09']});a.b.units.push(other);
@@ -121,7 +121,12 @@ for(const id of ['O01','O02','O03','O04','O05']){
  assert.deepEqual(plain(copies.map(p=>Math.round(p.echoDelay*1000))),[75,150,225]);
  const sample=copies[0];const old=sample.x;a.e.stepProjectile(sample,.01);assert.equal(sample.x,old);
  roots[0].x=roots[0].targetPoint.x;roots[0].y=roots[0].targetPoint.y;a.e.stepProjectile(roots[0],C.STEP);
- assert(a.b.projectiles.filter(p=>p.mode==='convergeSpirit').length>=10);
+ const spirits=a.b.projectiles.filter(p=>p.mode==='convergeSpirit');assert(spirits.length>=10);
+ assert(spirits.every((p,i)=>Math.abs(p.curve.delay-i*.07)<1e-8));
+ const first=spirits[0],late=spirits.at(-1),origin={x:first.x,y:first.y};
+ a.e.stepProjectile(late,.15);assert.deepEqual({x:late.x,y:late.y},origin);
+ a.e.stepProjectile(first,.50);assert(Math.hypot(first.x-origin.x,first.y-origin.y)>170);
+ assert(Math.hypot(first.x-first.curve.goal.x,first.y-first.curve.goal.y)>170);
  const saved=C.defaults();saved.saved=a.b;assert(C.validate(plain(saved)).saved.projectiles.some(p=>p.mode==='convergeSpirit'));
  assert(echoes.every(u=>u.summonExpires-a.b.round+1===8));
 }

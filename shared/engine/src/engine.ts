@@ -22,7 +22,7 @@ const CURSES = new Set(['curseWeak','curseBetray','curseDot','curseBind','curseC
 const SUMMONS = new Set(['summonStalker','summonLantern','summonCharger','summonWarden','summonHost','summonEater','summonEcho']);
 const BODY = new Set(['leap', 'slam', 'spin', 'dash', 'quake', 'guard', 'lift', 'recall', 'charge', 'vault', 'cataclysmCharge']);
 const ARROWS = new Set(['recoveryArrow','executeArrow','dropArrow','turnArrow','chainArrow','ironFlower','breakArrow','arrow', 'pierce', 'ricochet', 'triple', 'push', 'bind', 'break', 'sticky', 'pull', 'mark', 'rain', 'return', 'homing', 'windArrow', 'seekRain', 'seekChild', 'hunterBolt']);
-const EATER_SIZE={h:120,r:46,growthPerHit:.14,maxGrowthHits:5};
+const EATER_SIZE={h:96,r:36.8,growthPerHit:.14,maxGrowthHits:5};
 // Authored pools follow their actual basin floor, so an elevated pool cannot shock actors below the cliff.
 function waterFloor(w:Battle['waters'][number],x:number){
     if(!w.bottom?.length)return Infinity;
@@ -458,7 +458,6 @@ export class Engine {
         initRedesignCast(this,s,u,actualKiSpent);startWarriorCast(this,s,u);
         const rank=passiveRank(u,'AP01');
         if(rank>0 && ARROWS.has(s.mode)){const roots=b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot);b.volley={template:JSON.parse(JSON.stringify(roots[s.mode==='triple'?Math.floor(roots.length/2):0])),remaining:volleyCount(rank)-1,elapsed:0,interval:VOLLEY_INTERVAL,index:0,angle:u.angle,power:u.lastPower};}
-        if(!s.redesigned&&equippedRank(u,'MP04')){u.shield+=Math.round(u.maxHp*.05*equippedRank(u,'MP04'));u.shieldUntil=b.teamEnds[1]+1;this.fx('ring',u.x,u.y-u.h*.5,'#9acce6',55);}
         if (BODY.has(s.mode)) {
             u.airborne = true;
             u.vx = u.vy = 0;
@@ -694,6 +693,14 @@ export class Engine {
                 this.b.hits++;
                 u.damageBy[src.id] = (u.damageBy[src.id] || 0) + actual;
                 if(damageSource==='normal'){recordRedesignDamage(this,p,src,u,actual);recordSalheun(this,p,src,u,actual,direct);}
+                const wardRank=passiveRank(src,'MP04');
+                if(damageSource==='normal'&&p&&wardRank&&src.cls==='mage'&&!src.summoned&&SKILLS[p.skill]?.cls==='mage'&&src.mageWardShot!==p.shot){
+                    src.mageWardShot=p.shot;
+                    const ally=this.alive(0).filter(v=>!v.summoned&&!v.enthrall&&v.id!==src.id&&Math.hypot(v.x-u.x,(v.y-v.h*.5)-(u.y-u.h*.5))<520).sort((a,b)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(b.x-u.x,b.y-u.y))[0]||src;
+                    ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*.25),ally.shield+Math.round(ally.maxHp*(.025+.0075*wardRank))));
+                    ally.shieldUntil=Math.max(ally.shieldUntil||0,this.b.teamEnds[1]+1);
+                    this.fx('ring',ally.x,ally.y-ally.h*.5,'#b4d8d1',34);
+                }
                 if(p&&!newSkill(p)&&equippedRank(src,'MP03')&&src.refundShot!==p.shot){src.refundShot=p.shot;src.focus=Math.min(src.maxFocus,src.focus+5*equippedRank(src,'MP03'));this.fx('rune',src.x,src.y-src.h*.5,'#98d9db',30);}
                 u.aggroUntil = this.b.round + 3;
                 u.awake = true;
@@ -919,11 +926,12 @@ export class Engine {
         this.fx('spark',x,y-40,'#bcb7a1',45);
     }
     private growEater(eater:Unit){
-        const hits=Math.min(EATER_SIZE.maxGrowthHits,(eater.summonGrowthHits||0)+1);
+        const previous=eater.summonGrowthHits||0,hits=Math.min(EATER_SIZE.maxGrowthHits,previous+1);
         if(hits===eater.summonGrowthHits)return;
-        const centerY=eater.y-eater.h*.5,scale=1+EATER_SIZE.growthPerHit*hits;
+        const centerY=eater.y-eater.h*.5,scale=1+EATER_SIZE.growthPerHit*hits,previousScale=1+EATER_SIZE.growthPerHit*previous;
         eater.summonGrowthHits=hits;
-        eater.h=EATER_SIZE.h*scale;eater.r=EATER_SIZE.r*scale;
+        // Saved summons keep the size they were born with, including old 120px eaters.
+        eater.h=eater.h/previousScale*scale;eater.r=eater.r/previousScale*scale;
         eater.y=centerY+eater.h*.5;
     }
     private absorbHostileProjectile(p:Projectile,dt:number){

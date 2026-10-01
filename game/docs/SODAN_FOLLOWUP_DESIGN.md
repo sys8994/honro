@@ -16,7 +16,7 @@
 
 도상 참고: [국립민속박물관 《신들이 사는 마을》](https://www.nfm.go.kr/user/planexhibition/home/20/selectPlanExhibitionLView.do?planExhibitionIdx=991), [국립민속박물관 무속·부적 자료](https://efw.nfm.go.kr/service/book/theme/133/11), [국립중앙박물관 귀면와](https://www.museum.go.kr/MUSEUM/contents/M0502000000.do?relicId=149517&schM=view&searchId=search). 외곽·재료의 착상만 참고했으며 소장품 이미지를 복제하지 않았다.
 
-1차 256/128/96/64px 검수에서 먹귀의 둥근 눈과 어깨가 귀여운 가면처럼 보였다. 2차에서 비대칭의 깊은 눈구멍, 기와 균열, 찢어진 소매·발톱을 더했고, 실제 허공터 화면을 보고 실루엣 높이를 120으로 키웠다. 반향령의 좌우 종이 날개와 지박령의 뿌리는 64px에서도 기존 다섯 종과 구분된다. 크기별 그림·동작 시트는 `_local/reports/actor-forge/`, 전투 화면은 `_local/reports/game-eater-training.png`와 `_local/reports/playtest-eater-training.png`에 둔다.
+1차 256/128/96/64px 검수에서 먹귀의 둥근 눈과 어깨가 귀여운 가면처럼 보였다. 2차에서 비대칭의 깊은 눈구멍, 기와 균열, 찢어진 소매·발톱을 더했고, 실제 허공터 화면을 보고 당시 실루엣 높이를 120으로 키웠다. 이후 HBUG-064에서 피격 성장을 더 잘 느낄 수 있도록 새 먹귀의 초기 높이를 96으로 낮췄다. 옛 저장의 높이 120 먹귀는 현재 크기를 유지한 채 성장한다. 반향령의 좌우 종이 날개와 지박령의 뿌리는 64px에서도 기존 다섯 종과 구분된다. 크기별 그림·동작 시트는 `_local/reports/actor-forge/`, 전투 화면은 `_local/reports/game-eater-training.png`와 `_local/reports/playtest-eater-training.png`에 둔다.
 
 ## 집중 검증
 

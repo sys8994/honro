@@ -18,13 +18,16 @@ def reach_outcome(page,walk=False):
     owner=page if hasattr(page,'keyboard') else page.page
     try:
         for _ in range(48):
-            if page.evaluate('HonroApp.dialogue?.after==="outcome"'):return
-            if page.evaluate('!!HonroApp.dialogue'):
+            # A frame can open the outro between two browser queries. Read the
+            # dialogue once so this harness never skips the outcome it awaits.
+            dialogue=page.evaluate('({present:!!HonroApp.dialogue,after:HonroApp.dialogue?.after})')
+            if dialogue.get('after')=='outcome':return
+            if dialogue['present']:
                 owner.keyboard.up('d');skip(page)
             elif walk:
                 page.locator('#battlecanvas').focus();owner.keyboard.down('d')
             page.wait_for_timeout(180)
-        raise AssertionError(page.evaluate('({phase:HonroApp.engine.b.phase,dialogue:HonroApp.dialogue,x:HonroApp.engine.active.x})'))
+        raise AssertionError(page.evaluate('({phase:HonroApp.engine.b.phase,dialogue:HonroApp.dialogue,x:HonroApp.engine.active.x,done:HonroApp.done,error:HonroApp.lastError})'))
     finally:owner.keyboard.up('d')
 def near_exit(page,at_goal=False):
     return page.evaluate('''atGoal=>{const a=HonroApp;a.launch(1);HonroStory.finish(a);a.turnNotice=null;const b=a.engine.b,u=a.engine.active,exit=b.honroMarkers.find(m=>m.type==='exit'),x=exit.x-(atGoal?0:200);

@@ -1,5 +1,9 @@
 # HONRO 게임 수정 맥락
 
+**허공터·담허/휘겸/소단 기예 조정(HBUG-064, 2026-10-01):** 허공터 적용은 `training.js`에서 일반 아군 영웅의 ID를 기준으로 교체하고 이전 세션의 중복 영웅을 정리한다. 적이 행동 중이어도 적의 `active`를 유지한다. 담허 M11의 반사는 경지와 무관하게 실제 예측 경로 전체를 표시하고, M05의 낙뢰 범위는 `skyStrikePoint()`로 실제 낙뢰 착지점에 그린다. MP04는 UI 강화 대신 명중한 적 근처 동행에게 한 행동당 한 번 방호를 주는 `기맥전도`로 바뀌었다. 기존 저장의 MP04 랭크는 유지된다. 휘겸 S02는 현재 HP 약 1/3을 소모하며 S08은 시전 시 소량 회복한다. 소단 O16은 0.07초 간격으로 영체를 내보내고 더 긴 방사형 경로를 거쳐 모인다. 새 먹귀는 96×36.8이며 옛 저장 먹귀는 저장 당시 몸 크기에서 계속 자란다. 집중 검사는 `tests/combat-polish-browser.py`, `tests/skill-redesign.mjs`, `tests/hwigyeom-p5.mjs`, `tests/sodan-redesign.mjs`다.
+
+**배경 구도·대기 2차 개편(HBUG-063, 2026-10-01):** 현재 환경은 `shared/map/environment.js`의 거리식과 지지면·풍경 묶음·높이 구역을 함께 사용한다. L1과 수평 depth/zoom은 그대로이며 수직 구도는 group 단위로만 결정한다. `environment-renderer.js`와 `environment-art.js`가 Game/Stage View/Playtest 공통 배경·안개·빛·물/폭포를 그린다. 3장 전용 물 애니메이션은 공통 `liveWater`로 교체했다. 실제 분류·이관·저장·편집 규칙은 [환경 구도와 대기](ENVIRONMENT_COMPOSITION.md), 제작 절차는 `.agents/skills/honro-environment/SKILL.md`를 본다. 아래 HBUG-057의 과거 depthPan/동일 수직 반응 설명보다 현재 registry가 우선한다. 검사: `npm run test:environment`, `node tools/environment/validate.mjs`, 마이그레이션·통합·전체 verify. 배경만 이관하고 진행 중인 전투의 지형·유닛·HP·비행·성장은 보존한다.
+
 **먹귀 피격 성장(HBUG-062, 2026-10-01):** `Engine.growEater()`는 적 탄 흡수와 적의 직접 피해(방패 포함)에 같은 성장 단계를 적용한다. 몸 높이와 피격 반경은 최대 170%가 되고 몸의 중심과 흡인장의 중심은 그대로다. 흡수 폭발 기준은 `190 + 경지×38`; 새 `summonGrowthHits`는 선택적 저장 필드여서 옛 저장은 0회 성장으로 이어진다. 집중 검사는 `tests/sodan-redesign.mjs`와 `tests/sodan-followup-browser.py`다.
 
 **소단 황천창·배회령·존재상 정보(HBUG-061, 2026-10-01):** 황천창 `O04`의 짧은 충전 최저 속도는 `Engine.velocity()`에서 실제 투사체와 예측에 같이 적용한다. 배회령 `O11`은 시한 발동 없이 지형 충돌만으로 소환하며 옛 비행 저장의 시한도 런타임에서 버린다. 배회령·등불귀 이동·사거리는 `summons.ts`에서 관리한다. 공통 궤적은 `skillVisuals.ts`의 `guideStroke()`로 선폭·점선 간격을 공유하고 `CLASSES`의 직업색을 쓴다. 소환령 대기는 `tools/actor-forge/spirits.mjs`의 벡터 파트 압축·팽창으로 만들고 `tests/actor-art-browser.py`에서 확인한다. 정보 UI는 `campUI.ts`의 공격 구성/피해 반응 표시를 기예 상세·허공터·클릭 대상 정보에 재사용하며 실제 반응값은 `existence.ts`가 계산한다.

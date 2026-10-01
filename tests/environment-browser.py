@@ -59,7 +59,7 @@ with sync_playwright() as p:
     assert selected == {'type':'scenery','id':'depth-drag-check'}, selected
     moved = editor.evaluate('''()=>{const api=HonroWorkshopAPI,p=api.getProject(),st=p.stages[2],e=st.environment.placements.find(x=>x.id==='depth-drag-check');
       const scale=api.getEditorState().stageView.zoom,ratio=HonroEnvironment.ratio(st,'L2',scale);
-      return {x:e.x,y:e.y,expectedX:1800+42/(scale*ratio),expectedY:1600+16/(scale*ratio)}}''')
+      return {x:e.x,y:e.y,expectedX:1800+42/(scale*ratio),expectedY:0}}''')
     assert abs(moved['x']-moved['expectedX']) < 2 and abs(moved['y']-moved['expectedY']) < 2, moved
     snapshot = editor.evaluate('JSON.parse(HonroWorkshopAPI.exportProject())')
     editor.evaluate('p=>HonroWorkshopAPI.importProject(p)', snapshot)

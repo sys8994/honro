@@ -3,7 +3,7 @@
 const Scene=G.HonroScene,D=G.honroDraw,{P,L,E}=D;
 const oldLandmark=Scene.prototype.landmark;
 function line(c,pts,color,width=1){c.beginPath();pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.strokeStyle=color;c.lineWidth=width;c.stroke();}
-function fill(c,pts,color,edge){P(c,pts,color,edge||null,edge?1:0);}
+function fill(c,pts,color,edge){const ys=pts.map(p=>p[1]),top=Math.min(...ys),bottom=Math.max(...ys);if(bottom-top>60&&/^#[0-9a-f]{6}$/i.test(color)&&G.HonroEnvironmentArt){const E=G.HonroEnvironment;color=G.HonroEnvironmentArt.gradient(c,0,top,0,bottom,[[0,E.mixColor(color,'#c9c3a5',.06)],[.55,color],[1,E.mixColor(color,'#14262c',.19)]]);}P(c,pts,color,edge||null,edge?1:0);}
 function roof(c,w,y,depth,broken=false){
   // Restrained Korean giwa eaves: a long ridge and shallow, weighty overhang.
   fill(c,[[-w*.58,y+8],[-w*.47,y-4],[-w*.27,y-depth*.73],[0,y-depth],[w*.27,y-depth*.73],[w*.47,y-4],[w*.58,y+8],[w*.43,y+3],[0,y-depth*.68],[-w*.43,y+3]],broken?'#343936':'#283638','#65746d');
@@ -185,87 +185,12 @@ function drawSpecial(c,l){const k=l.kind;if(!k)return false;
   else if(k==='rootShrine'){pine(c);c.save();c.translate(-4,0);hall(c,138,108,'shrine');c.restore();}
   else if(k==='waterShrine'){fill(c,[[-72,0],[72,0],[62,-18],[-62,-18]],'#586159','#9e9f83');for(const x of[-42,42])stonePost(c,x,-18,55);fill(c,[[-31,-18],[-25,-64],[25,-64],[31,-18]],'#293b3a','#9a9b7f');roof(c,145,-68,43);line(c,[[-18,-36],[18,-36]],'#8fa59b',2);}
   else if(k==='spiritKnot'){stone(c,k);for(const x of[-34,34])line(c,[[x,-40],[x*.5,-85],[x*.2,-132]],'#665c54',3);line(c,[[-21,-93],[18,-105],[36,-90]],'#986660',3);}
-  else if(k==='waterfall'){const h=(l.drop||196*(l.size||1))/(l.size||1);fill(c,[[-95,0],[-71,-h*.47],[-50,-h*.87],[-29,-h],[30,-h],[62,-h*.80],[82,-h*.37],[105,0]],'#3b4b49','#78847b');fill(c,[[-38,-h],[9,-h],[28,-h*.62],[38,-h*.28],[53,0],[-48,0],[-41,-h*.42]],'#506f7188');for(const x of[-25,-4,17,38])line(c,[[x,-h*.97],[x+4,-h*.52],[x-4,-10]],'#c1d1c163',2);for(const x of[-32,0,32])line(c,[[x-17,-4],[x,-10],[x+18,-3]],'#afc5b683',1.2);}
+  else if(k==='waterfall'){const h=(l.drop||196*(l.size||1))/(l.size||1);fill(c,[[-95,0],[-71,-h*.47],[-50,-h*.87],[-29,-h],[30,-h],[62,-h*.80],[82,-h*.37],[105,0]],'#3b4b49','#78847b');fill(c,[[-95,0],[-71,-h*.47],[-50,-h*.87],[-29,-h],[-38,-h*.35],[-52,0]],'#465850');fill(c,[[30,-h],[62,-h*.80],[82,-h*.37],[105,0],[56,0],[42,-h*.66]],'#263d40');}
   else if(k==='brokenBridge'){fill(c,[[-140,-13],[-60,-20],[-26,-10],[-12,0],[-139,0]],'#4d4b3d','#8a8067');fill(c,[[21,-7],[49,-19],[140,-14],[140,0],[23,0]],'#4d4b3d','#8a8067');for(const x of[-120,-70,62,119])L(c,x,0,x,45,'#5b503e',5);}
   else if(k==='bridgePillar'){fill(c,[[-22,0],[-25,-90],[-15,-110],[16,-110],[25,-90],[22,0]],'#505e59','#899184');line(c,[[-17,-86],[13,-86]],'#263631',1.6);line(c,[[-11,-47],[18,-51]],'#263631',1.3);}
   else if(k==='giantPine')pine(c);
   c.restore();return true;
 }
 Scene.prototype.landmark=function(c,l){if(!drawSpecial(c,l))oldLandmark.call(this,c,l);};
-Scene.prototype.liveWater=function(c,b){
-  if(b?.honroStage!==3)return;
-  const z=b.honroSurfaceZones?.find(q=>q.id==='ferry-water'&&q.kind==='water-pool');
-  if(!z?.surface?.length||!z.points?.length)return;
-  const left=z.surface[0][0],right=z.surface.at(-1)[0],top=z.surface[0][1];
-  const visible=this.canvas.clientWidth/Math.max(.16,this.scale),lo=this.x-visible*.5-120,hi=this.x+visible*.5+120;
-  if(right<lo||left>hi)return;
-  const reduced=G.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
-  const t=reduced?1.2:this.time,phase=t*78*(z.flowDirection===-1?-1:1);
-  c.save();
-  c.beginPath();c.moveTo(left,top+2);
-  for(let x=left+36;x<right;x+=36){
-    const u=(x-left)/(right-left),envelope=Math.sin(Math.PI*u)**2;
-    const lift=envelope*(Math.sin(x*.026-t*2.7)*2.8+Math.sin(x*.061+t*1.4)*1.1);
-    c.lineTo(x,top+1+lift);
-  }
-  c.lineTo(right,top+2);c.lineTo(right,top+9);c.lineTo(left,top+9);c.closePath();
-  c.fillStyle='#376369a9';c.fill();
-  c.beginPath();c.moveTo(left,top+2);
-  for(let x=left+36;x<right;x+=36){const u=(x-left)/(right-left),envelope=Math.sin(Math.PI*u)**2;
-    c.lineTo(x,top+1+envelope*(Math.sin(x*.026-t*2.7)*2.8+Math.sin(x*.061+t*1.4)*1.1));}
-  c.lineTo(right,top+2);c.strokeStyle='#a7bdac7c';c.lineWidth=1.5;c.stroke();
-  c.beginPath();z.points.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();c.clip();
-  // Long, broken strokes reveal direction without redrawing the whole pool.
-  for(let band=0;band<3;band++){
-    const y=top+6+band*13,flow=band===0?1:.78;
-    c.beginPath();c.moveTo(left+10,y+2);
-    for(let x=left+10;x<right+120;x+=90){
-      const bend=Math.sin(x*.017+band*1.7)*2.7+Math.sin(x*.031+band)*1.2;
-      c.quadraticCurveTo(x+43,y+bend-3,x+90,y+bend*.55+1);
-    }
-    c.setLineDash(band===0?[48,72,12,53]:[86,95,22,77]);c.lineDashOffset=-phase*flow-band*47;
-    c.strokeStyle=band===0?'#c0cdb07d':band===1?'#96b8ad69':'#709f9c63';c.lineWidth=band===0?2.4:band===1?3.4:4.2;c.stroke();
-  }
-  c.setLineDash([]);
-  for(let i=0;i<8;i++){
-    const span=right-left+180,x=left-90+((i*181+phase*(.75+(i%3)*.12))%span);
-    const y=top+9+(i%3)*12,len=60+(i%4)*22;
-    c.beginPath();c.moveTo(x,y);
-    c.quadraticCurveTo(x+len*.38,y-4,x+len,y-1);
-    c.quadraticCurveTo(x+len*.76,y+2,x+len*.50,y+4);
-    c.quadraticCurveTo(x+len*.22,y+3,x,y);c.closePath();
-    c.fillStyle=i%3?'#91b5ad38':'#b7c6ad4a';c.fill();
-  }
-  // Current parts around the two dock piles, then joins again downstream.
-  for(const [i,x] of[2250,2890].entries()){
-    const breathe=Math.sin(t*2.4+i*1.7)*3;
-    c.beginPath();c.ellipse(x-21,top+11,31+breathe,5.6,-.12,Math.PI*.15,Math.PI*1.35);
-    c.strokeStyle='#c1d1b480';c.lineWidth=2.3;c.stroke();
-    c.beginPath();c.ellipse(x+29,top+21,43,7.5,.08,-Math.PI*.35,Math.PI*.52);
-    c.strokeStyle='#a5c4b96e';c.lineWidth=2.2;c.stroke();
-  }
-  // Individual moonlit flecks drift at different rates instead of forming a tiled wave.
-  for(let i=0;i<14;i++){
-    const span=right-left-60,x=left+30+((i*173+phase*(.62+(i%3)*.17))%span),y=top+7+(i%4)*10+Math.sin(t*1.6+i)*1.5;
-    line(c,[[x-9,y],[x+6,y-2],[x+16,y]],i%3?'#b6d0bf70':'#d0d5b981',i%3?1.25:1.8);
-  }
-  const contactKey=`${b.honroStage}:${b.session}`;
-  if(this._waterContactKey!==contactKey){this._waterContactKey=contactKey;this._waterContacts=new Map();this._waterRipples=[];}
-  const seen=new Set();
-  for(const u of b.units||[]){
-    if(u.dead)continue;
-    seen.add(u.id);
-    const touching=u.x>=left&&u.x<=right&&u.y>=top-3&&u.y<top+85;
-    const previous=this._waterContacts.get(u.id);
-    if(previous===false&&touching&&!reduced)this._waterRipples.push({x:u.x,born:t});
-    this._waterContacts.set(u.id,touching);
-  }
-  for(const id of this._waterContacts.keys())if(!seen.has(id))this._waterContacts.delete(id);
-  this._waterRipples=this._waterRipples.filter(r=>t-r.born<1.25);
-  for(const r of this._waterRipples){const age=t-r.born,spread=12+age*53;
-    c.beginPath();c.ellipse(r.x,top+6,spread,3+age*4,0,Math.PI*.06,Math.PI*.94);
-    c.strokeStyle=`rgba(194,213,196,${Math.max(0,.48-age*.35)})`;c.lineWidth=2;c.stroke();
-  }
-  c.restore();
-};
+// Dynamic pools and waterfall ribbons are drawn by environment-renderer.js.
 })(globalThis);

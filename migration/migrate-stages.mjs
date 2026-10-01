@@ -29,7 +29,7 @@ export async function migrate(){
   for(const cls of p.recruited)p.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(st.id).entryLevel);
   const b=g.HonroWorld.build(st,p,false,'archer','A01'),s=g.HonroMaps.emptyStage(`stage-${st.id}`,st.name,st.w,st.h);
   s.metadata={stageId:st.id,campaign:true,source:'HONRO RC21',mapRevision:20};s.backdrop=st.theme;
-  s.environment={preset:g.HonroEnvironment.SCENE_PRESETS[s.backdrop],placements:g.HonroEnvironment.makePlacements({...s,environment:null})};
+  s.environment=g.HonroEnvironment.makeEnvironment(s);
   s.terrains=b.terrain.map(t=>{
    const {vertices,x,y,w,h,id,mat,oneWay,indestructible,...properties}=clone(t);
    return{id,name:id,type:'solid',points:vertices,baseMaterial:mat,oneWay:!!oneWay,breakable:!indestructible,properties,layer:'terrain',detail:{spacing:18,roughness:0,seed:1,optimizeEpsilon:0}};

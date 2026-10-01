@@ -4,12 +4,12 @@ const uid=prefix=>prefix+'-'+(globalThis.crypto?.randomUUID?.()||Date.now().toSt
 const aliases={createTerrain:'terrain.add',editTerrain:'terrain.moveNode',simplifyTerrain:'terrain.optimize',roughenTerrain:'terrain.roughen',paintMaterial:'material.paint',placeElement:'element.place',scatterElements:'element.scatter',placeUnit:'unit.place',createEncounter:'encounter.add',createTrigger:'event.place',createObjective:'objective.add'};
 const points=arr=>(arr||[]).map(p=>Array.isArray(p)?{x:p[0],y:p[1]}:{...p});
 const collections=['terrains','materials','elements','units','events','encounters','objectives','markers'];
-function target(st,id){for(const key of collections){const o=st[key]?.find(x=>x.id===id);if(o)return{key,o};}const scenery=st.environment?.placements.find(x=>x.id===id);if(scenery)return{key:'scenery',o:scenery};throw Error('Object not found '+id);}
+function target(st,id){for(const key of collections){const o=st[key]?.find(x=>x.id===id);if(o)return{key,o};}for(const key of ['placements','surfaces','groups','zones']){const o=st.environment?.[key]?.find(x=>x.id===id);if(o)return{key:key==='placements'?'scenery':key,o};}throw Error('Object not found '+id);}
 function apply(input,commands){
  const p=clone(input);
  for(const original of commands){const c={...original,op:aliases[original.op]||original.op},st=p.stages.find(s=>s.id===(c.stageId||p.activeStageId));if(!st)throw Error('Stage not found');
   switch(c.op){
-  case'world.set':for(const k of ['width','height','backdrop','name'])if(c[k]!==undefined)st[k]=c[k];break;
+  case'world.set':{const changed=['width','height','backdrop'].some(k=>c[k]!==undefined&&c[k]!==st[k]);for(const k of ['width','height','backdrop','name'])if(c[k]!==undefined)st[k]=c[k];if(changed)G.HonroEnvironment.resize(st);break;}
   case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta','environment'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
   case'object.update':{const {o}=target(st,c.id);for(const [k,v] of Object.entries(c.values||{})){if(k==='id')throw Error('Use rename to change an ID');o[k]=clone(v);}break;}
   case'asset.add':if(p.library.some(a=>a.id===c.asset?.id))throw Error('Duplicate asset '+c.asset.id);p.library.push(clone(c.asset));break;
@@ -29,8 +29,13 @@ function apply(input,commands){
   }
   case'scenery.place':{
    const a=p.library.find(a=>a.id===c.assetId);if(!a)throw Error('Unknown scenery asset '+c.assetId);
-   st.environment.placements.push({id:c.id||uid('scenery'),assetId:a.id,depthLayer:c.depthLayer,x:c.x,y:c.y,scale:c.scale??1,rotation:(c.rotation||0)*Math.PI/180,group:c.group||'authored'});break;
+   st.environment.placements.push(G.HonroEnvironment.place(st,a,{...c,id:c.id||uid('scenery')}));break;
   }
+  case'environment.set':st.environment.atmosphere=clone(c.atmosphere);break;
+  case'scenic.add':st.environment.groups.push(clone(c.group));break;
+  case'support.add':st.environment.surfaces.push(clone(c.surface));break;
+  case'zone.update':{const z=st.environment.zones.find(z=>z.id===c.id);if(!z)throw Error('Zone not found');Object.assign(z,clone(c.values));break;}
+  case'scenery.attach':{const e=target(st,c.id).o,a=p.library.find(a=>a.id===e.assetId),old=G.HonroEnvironment.groupOf(st,e),group=c.groupId?st.environment.groups.find(g=>g.id===c.groupId):st.environment.groups.find(g=>g.depthLayer===(c.depthLayer||e.depthLayer)&&g.zoneId===(c.zoneId||old?.zoneId));if(!group)throw Error('Scenic group not found');const next=G.HonroEnvironment.place(st,a,{id:e.id,scale:e.scale,depthLayer:group.depthLayer,groupId:group.id,supportId:c.supportId,localX:c.localX??e.x,offsetY:c.offsetY??0,rotation:e.rotation*180/Math.PI});Object.assign(e,next);break;}
   case'element.scatter':{
    const r=Q.seeded(c.seed??1),ids=c.assetIds||[c.assetId];
    for(let i=0;i<(c.count??8);i++){const a=p.library.find(a=>a.id===ids[i%ids.length]);if(!a)throw Error('Unknown scatter asset');const x=(c.x1??0)+r()*((c.x2??st.width)-(c.x1??0)),sf=Q.nearest(st,x,c.y??st.height/2);if(!sf)continue;
@@ -48,10 +53,11 @@ function apply(input,commands){
    for(const [k,v] of Object.entries(c.values||{}))u[k]=clone(v);break;
   }
   case'element.move':case'unit.move':case'move':{
-   const {o}=target(st,c.id);const dx=c.dx??(c.x!==undefined?c.x-(o.x??0):0),dy=c.dy??(c.y!==undefined?c.y-(o.y??0):0);
+   const {o,key}=target(st,c.id);const dx=c.dx??(c.x!==undefined?c.x-(o.x??0):0),dy=c.dy??(c.y!==undefined?c.y-(o.y??0):0);
    if(o.points||o.control){for(const q of o.points||o.control){q.x+=dx;q.y+=dy;}if(o.floor!==undefined)o.floor+=dy;}
    else{if(c.x!==undefined)o.x=c.x;else if(o.x!==undefined)o.x+=dx;if(c.y!==undefined)o.y=c.y;else if(o.y!==undefined)o.y+=dy;}
    if(c.rotation!==undefined)o.rotation=c.rotation*Math.PI/180;if(c.scale!==undefined)o.scale=c.scale;
+   if(key==='scenery'&&o.supportId)o.y=c.offsetY??0;
    if(c.snap&&o.x!==undefined){const sf=Q.nearest(st,o.x,o.y);if(sf)o.y=sf.y;}break;
   }
   case'rotate':case'scale':{const {key,o}=target(st,c.id);if(key!=='elements')throw Error('rotate/scale require an element instance');if(c.op==='rotate')o.rotation=(c.degrees??c.rotation??0)*Math.PI/180;else o.scale=c.factor??c.scale??1;break;}
@@ -61,11 +67,11 @@ function apply(input,commands){
   case'asset.optimize':{const a=p.library.find(a=>a.id===c.id);if(!a)throw Error('Missing asset');a.visual=a.visual.map(sh=>({...sh,points:Q.simplifyClosed(sh.points,c.epsilon??2)}));if(a.collisionMode!=='independent'&&a.collision.length)a.collision=clone(a.visual.map(sh=>sh.points));break;}
   case'asset.update':{const a=p.library.find(a=>a.id===c.id);if(!a)throw Error('Missing asset');Object.assign(a,clone(c.values));break;}
   case'rename':{
-   target(st,c.id);if(!c.newId||collections.some(k=>st[k].some(o=>o.id===c.newId))||st.environment.placements.some(o=>o.id===c.newId))throw Error('ID must be nonempty and unique');
+   target(st,c.id);if(!c.newId||collections.some(k=>st[k].some(o=>o.id===c.newId))||['placements','groups','surfaces','zones'].some(k=>st.environment[k].some(o=>o.id===c.newId)))throw Error('ID must be nonempty and unique');
    const visit=o=>{if(!o||typeof o!=='object')return;for(const k of Object.keys(o)){if(o[k]===c.id)o[k]=c.newId;else visit(o[k]);}};visit(st);break;
   }
   case'element.delete':case'delete':{
-   target(st,c.id);for(const k of collections)st[k]=st[k].filter(o=>o.id!==c.id);st.environment.placements=st.environment.placements.filter(o=>o.id!==c.id);
+   target(st,c.id);for(const k of collections)st[k]=st[k].filter(o=>o.id!==c.id);for(const k of ['placements','surfaces','groups','zones'])st.environment[k]=st.environment[k].filter(o=>o.id!==c.id);
    st.materials=st.materials.filter(m=>(m.terrainId||m.support)!==c.id);for(const e of st.encounters)e.unitIds=e.unitIds.filter(id=>id!==c.id);break;
   }
   default:throw Error('Unknown command '+c.op);

@@ -2,7 +2,7 @@ import {drawWarriorProjectile,drawMeleeGuide} from './warriorVisuals';
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
 import {SKILLS,CLASSES} from './data';
-import {echoAim,SOUL_SKILLS} from './occultMechanics';
+import {convergenceCurve,convergencePoint,echoAim,SOUL_SKILLS} from './occultMechanics';
 import {geometryPaths,redesignPrediction,turnPrediction,type SkillGeometry} from './skillMechanics';
 type C=CanvasRenderingContext2D;
 const guideCache=new WeakMap<Engine,Map<boolean,{key:string;prediction:ReturnType<Engine['predict']>}>>();
@@ -32,6 +32,15 @@ export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:num
  }
  // Echoed casts use the same dotted grammar as the principal prediction.
   for(const points of entry.paths)guideStroke(c,points,zoom,CLASSES[u.cls].color,.30);
+}
+export function drawConvergenceGuide(c:C,e:Engine,u:Unit,s:Skill,zoom:number,goal:{x:number;y:number}){
+ if(s.mode!=='spiritConverge')return;
+ const start={x:u.x,y:u.y-48},count=10+Math.floor((u.ranks[s.id]||1)/2);
+ for(let i=0;i<count;i+=2){
+  const curve=convergenceCurve(start,goal,e.b.nextId,i,count),points=[];
+  for(let j=0;j<=18;j++)points.push(convergencePoint(curve,(curve.delay||0)+curve.duration*j/18));
+  guideStroke(c,points,zoom,CLASSES[u.cls].color,.23,.9);
+ }
 }
 export const SKILL_FX_SECONDS={swordCut:.34,circulation:.6,skillGeometry:.9,inkImpact:.8,lightningBolt:.9,qiBurst:.55,fireBloom:.85};
 export function drawSkillGeometry(c:C,g:SkillGeometry,thick=false,zoom=1){
@@ -246,20 +255,18 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
  if(drawMeleeGuide(c,e,u,s,power,zoom))return true;
  if(!s.redesigned)return false;
  if(s.mode==='prepare'||u.retreat)return true;
- zoom=Math.max(.12,zoom);const pr=guidePrediction(e,u,s,power);const insight=u.ranks.MP04||0;
+ zoom=Math.max(.12,zoom);const pr=guidePrediction(e,u,s,power);
   c.save();c.strokeStyle=CLASSES[u.cls].color;c.fillStyle=CLASSES[u.cls].color;c.lineWidth=1.2/zoom;c.globalAlpha=.4;c.setLineDash([4/zoom,7/zoom]);
  let path=pr.points;
- if('contacts' in pr&&Array.isArray(pr.contacts)&&pr.contacts.length&&(s.id==='M02'&&insight<2||s.id==='M11'&&insight<4)){
-  const contact=pr.contacts[s.id==='M11'&&insight>=3?Math.min(1,pr.contacts.length-1):0];let nearest=0,best=Infinity;
-  path.forEach((v,i)=>{const d=Math.hypot(v.x-contact.x,v.y-contact.y);if(d<best){best=d;nearest=i;}});path=path.slice(0,nearest+1);
- }
   guideStroke(c,path,zoom,CLASSES[u.cls].color);
   if(!['A04','A15'].includes(s.id)&&'paths' in pr&&Array.isArray(pr.paths))for(const other of pr.paths as {x:number;y:number}[][]){if(other!==path)guideStroke(c,other,zoom,CLASSES[u.cls].color,.36);}
  const geo='geometry' in pr?pr.geometry as SkillGeometry:undefined;
- if(geo){c.setLineDash([4/zoom,8/zoom]);if(insight>=5){c.globalAlpha=.025;drawSkillGeometry(c,geo,true,zoom);}c.globalAlpha=.4;drawSkillGeometry(c,geo,false,zoom);}
+ if(geo){c.setLineDash([4/zoom,8/zoom]);c.globalAlpha=.025;drawSkillGeometry(c,geo,true,zoom);c.globalAlpha=.4;drawSkillGeometry(c,geo,false,zoom);}
  else if(s.radius&&s.branch!=='stake'){c.globalAlpha=.4;c.setLineDash([4/zoom,8/zoom]);c.beginPath();c.arc(pr.x,pr.y,e.effective(s,u).radius,0,Math.PI*2);c.stroke();}
- if('secondaryRadius' in pr&&pr.secondaryRadius&&((s.branch==='gourd'&&insight>=1)||(s.branch==='stake'&&insight>=6))){c.globalAlpha=.32;c.setLineDash([4/zoom,9/zoom]);c.beginPath();c.arc(pr.x,pr.y,Number(pr.secondaryRadius),0,Math.PI*2);c.stroke();}
- if(insight>=7&&s.id==='M04')for(const t of e.b.units.filter(t=>!t.dead&&t.side===1&&Math.hypot(t.x-pr.x,t.y-t.h*.5-pr.y)<=260+10*((u.ranks.M04||1)-1))){c.beginPath();c.moveTo(pr.x,pr.y);c.lineTo(t.x,t.y-t.h*.5);c.stroke();}
- if(insight>=8&&s.cls==='mage'){const d=e.effective(s,u).damage;c.globalAlpha=.7;c.font=`${12/zoom}px sans-serif`;c.fillText(`예상 ${Math.round(d*.3)}–${Math.round(d*1.5)}`,pr.x+12/zoom,pr.y-18/zoom);}
+ if('secondaryRadius' in pr&&pr.secondaryRadius){const center='secondaryPoint' in pr&&pr.secondaryPoint?pr.secondaryPoint as {x:number;y:number}:pr;
+  c.globalAlpha=.32;c.setLineDash([4/zoom,9/zoom]);c.beginPath();c.arc(center.x,center.y,Number(pr.secondaryRadius),0,Math.PI*2);c.stroke();
+  if(center!==pr){guideStroke(c,[{x:center.x,y:center.y-140},center],zoom,CLASSES[u.cls].color,.32,.85);}
+ }
+ if(s.id==='M04')for(const t of e.b.units.filter(t=>!t.dead&&t.side===1&&Math.hypot(t.x-pr.x,t.y-t.h*.5-pr.y)<=260+10*((u.ranks.M04||1)-1))){c.beginPath();c.moveTo(pr.x,pr.y);c.lineTo(t.x,t.y-t.h*.5);c.stroke();}
  c.restore();return true;
 }

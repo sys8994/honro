@@ -37,22 +37,36 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
  }
 }
 
+export function convergenceCurve(start:Vec,goal:Vec,seed:number,index:number,count:number):NonNullable<Projectile['curve']>{
+ const angle=index*Math.PI*2/count+seed*.23,reach=225+(index%4)*27;
+ // Souls fan out around the medium without burrowing under the ground at her feet.
+ const vertical=Math.sin(angle)*reach;
+ const spread={x:start.x+Math.cos(angle)*reach,y:start.y+vertical*(vertical>0?.1:.78)};
+ const bend=((index%2)*2-1)*(95+(index%3)*26);
+ const control={x:(spread.x+goal.x)*.55-Math.sin(angle)*bend,y:Math.min(start.y+28,(spread.y+goal.y)*.55+Math.cos(angle)*bend)};
+ return {start,spread,control,goal,duration:1.26+(index%3)*.08,delay:index*.07,outwardRatio:.4};
+}
+export function convergencePoint(c:NonNullable<Projectile['curve']>,age:number):Vec{
+ const t=clamp((age-(c.delay||0))/c.duration,0,1);
+ // Curves already in an old save keep their original single cubic trajectory.
+ if(c.outwardRatio===undefined){const v=1-t;return{x:v*v*v*c.start.x+3*v*v*t*c.spread.x+3*v*t*t*c.control.x+t*t*t*c.goal.x,y:v*v*v*c.start.y+3*v*v*t*c.spread.y+3*v*t*t*c.control.y+t*t*t*c.goal.y};}
+ if(t<c.outwardRatio){const phase=t/c.outwardRatio,ease=phase*phase*(3-2*phase);return{x:c.start.x+(c.spread.x-c.start.x)*ease,y:c.start.y+(c.spread.y-c.start.y)*ease};}
+ const phase=(t-c.outwardRatio)/(1-c.outwardRatio),ease=phase*phase*(3-2*phase),v=1-ease;
+ return{x:v*v*c.spread.x+2*v*ease*c.control.x+ease*ease*c.goal.x,y:v*v*c.spread.y+2*v*ease*c.control.y+ease*ease*c.goal.y};
+}
 /** The representative alone is predicted. Curve parameters are fixed once on impact. */
 export function convergeAt(e:Engine,p:Projectile){
  const goal={x:p.x,y:p.y},start={x:p.returnX,y:p.returnY-48},rank=clamp(p.skillRank||1,1,8),count=10+Math.floor(rank/2);
  for(let i=0;i<count;i++){
-  const angle=i*Math.PI*2/count+p.id*.23,reach=125+(i%4)*23;
-  const spread={x:start.x+Math.cos(angle)*reach,y:start.y+Math.sin(angle)*reach*.72};
-  const bend=((i%2)*2-1)*(95+(i%3)*26),control={x:(spread.x+goal.x)*.55-Math.sin(angle)*bend,y:(spread.y+goal.y)*.55+Math.cos(angle)*bend};
-  const c:Projectile={...p,id:e.b.nextId++,mode:'convergeSpirit',x:start.x,y:start.y,vx:0,vy:0,prevVy:0,age:0,radius:5,damage:p.damage*.22,blast:38,phaseMode:'all',gravityScale:0,wind:0,hit:[],trail:[start],child:true,echoUsed:true,curve:{start,spread,control,goal,duration:1.05+(i%3)*.08}};
+  const c:Projectile={...p,id:e.b.nextId++,mode:'convergeSpirit',x:start.x,y:start.y,vx:0,vy:0,prevVy:0,age:0,radius:6,damage:p.damage*.22,blast:38,phaseMode:'all',gravityScale:0,wind:0,hit:[],trail:[start],child:true,echoUsed:true,color:'#bea9cf',curve:convergenceCurve(start,goal,p.id,i,count)};
   e.b.projectiles.push(c);
  }
  e.fx('ring',goal.x,goal.y,'#bec4ae',55);e.remove(p);
 }
 export function stepConvergingSpirit(e:Engine,p:Projectile,dt:number){
  const c=p.curve;if(!c){e.remove(p);return;}
- const t=clamp(p.age/c.duration,0,1),v=1-t;
- const next={x:v*v*v*c.start.x+3*v*v*t*c.spread.x+3*v*t*t*c.control.x+t*t*t*c.goal.x,y:v*v*v*c.start.y+3*v*v*t*c.spread.y+3*v*t*t*c.control.y+t*t*t*c.goal.y};
+ if(p.age<(c.delay||0))return;
+ const t=clamp((p.age-(c.delay||0))/c.duration,0,1),next=convergencePoint(c,p.age);
  const old={x:p.x,y:p.y};p.vx=(next.x-old.x)/Math.max(dt,.001);p.vy=(next.y-old.y)/Math.max(dt,.001);p.x=next.x;p.y=next.y;
  for(const u of e.alive(1))if(!p.hit.includes(u.id)){
   const h=segRect(old,next,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius);

@@ -8,7 +8,7 @@ function draw(c,asset,inst,scene){
   nativeLandmark.call(scene,c,{...inst,kind:asset.kind,x:0,y:0,size:1});
  }else for(const sh of Q.shapes(asset,inst)){
   c.beginPath();sh.points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));if(sh.closed!==false)c.closePath();
-  c.save();c.globalAlpha*=sh.alpha??1;if(sh.fill){c.fillStyle=sh.fill;c.fill();}if(sh.stroke){c.strokeStyle=sh.stroke;c.lineWidth=sh.lineWidth??1.5;c.stroke();}c.restore();
+  c.save();c.globalAlpha*=sh.alpha??1;if(sh.fill){c.fillStyle=sh.fill;const E=G.HonroEnvironment,A=G.HonroEnvironmentArt;if(A&&scene?.battle?.honroEnvironment&&['tree','rock','architecture'].includes(asset.category)&&/^#[0-9a-f]{6}$/i.test(sh.fill)){const a=E.atmosphere({backdrop:scene.battle.honroBackdrop,environment:scene.battle.honroEnvironment}),ys=sh.points.map(p=>p.y),top=Math.min(...ys),bottom=Math.max(...ys);if(bottom>top)c.fillStyle=A.gradient(c,0,top,0,bottom,[[0,E.mixColor(sh.fill,a.keyLightColor,.09)],[.55,sh.fill],[1,E.mixColor(sh.fill,a.shadowTint,.24)]]);}c.fill();}if(sh.stroke){c.strokeStyle=sh.stroke;c.lineWidth=sh.lineWidth??1.5;c.stroke();}c.restore();
  }
  c.restore();
 }

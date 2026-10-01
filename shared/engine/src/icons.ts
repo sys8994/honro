@@ -99,7 +99,7 @@ function skillPath(id:string){const sk=SKILLS[id];if(!sk)return {path:P.rune,ext
  O10:'M7 3 26 5 23 29 5 27ZM16 9 16 20M16 18 9 24M16 18 23 24M16 21 12 27M16 21 20 28M12 12 16 9 20 12'
  };if(curses[id])path=curses[id];
  let extra='';
- if(sk.passive){const special:Record<string,string>={MP01:P.resonance,MP02:P.vortex,MP03:P.flame,MP04:P.snow,MP05:P.bolt,AP01:P.triple,AP02:P.pierce,AP03:P.wind,AP04:P.recall,AP05:P.target,SP01:P.pull,SP02:P.shield,SP03:P.wall,SP04:P.lift,SP05:P.star,OP01:P.vortex,OP02:P.bind,OP03:P.home,OP04:P.return,OP05:P.resonance};path=special[id]||path;extra='<path d="M3 26v5h26v-5" stroke-width=".8"/>';}
+ if(sk.passive){const special:Record<string,string>={MP01:P.resonance,MP02:P.vortex,MP03:P.flame,MP04:P.shield,MP05:P.bolt,AP01:P.triple,AP02:P.pierce,AP03:P.wind,AP04:P.recall,AP05:P.target,SP01:P.pull,SP02:P.shield,SP03:P.wall,SP04:P.lift,SP05:P.star,OP01:P.vortex,OP02:P.bind,OP03:P.home,OP04:P.return,OP05:P.resonance};path=special[id]||path;extra='<path d="M3 26v5h26v-5" stroke-width=".8"/>';}
  if(sk.ultimate)extra='<circle cx="16" cy="16" r="14.5" stroke-width=".8" stroke-dasharray="2 3"/><path d="M2 2l4 1-3 3m27-4-4 1 3 3M2 30l4-1-3-3m27 4-4-1 3-3" stroke-width=".9"/>';
  else {const ordinal=((i-1)%5)+1;if(i>5||sk.passive)extra+=`<path d="${Array.from({length:Math.min(5,ordinal)},(_,n)=>`M${4+n*5.7} 30v-2`).join('')}" stroke-width="1.1"/>`;}
  if(sk.redesigned&&REDESIGN_PATHS[id])path=REDESIGN_PATHS[id];

@@ -1,5 +1,5 @@
 import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
-import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,guideStroke,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,drawConvergenceGuide,guidePrediction,guideStroke,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -288,6 +288,7 @@ export class Renderer {
         drawEchoGuides(c,engine,active,sk,guidePower,zoom,pr);
         const guideColor=CLASSES[active.cls].color;
         guideStroke(c,pr.points,zoom,guideColor);
+        drawConvergenceGuide(c,engine,active,sk,zoom,pr);
         c.save();c.globalAlpha=.65;
         const r=engine.effective(sk,active).radius;
         c.globalAlpha=.62;c.setLineDash([4/zoom,7/zoom]);c.lineWidth=1.35/zoom;
@@ -1556,6 +1557,7 @@ export class Renderer {
     } c.restore(); if (p.mode === 'slam') this.glow(c, p.x, p.y, 40, '#ffcf94', .25);
     if(p.mode==='cataclysmCharge'){this.glow(c,p.x,p.y-28,75,'#d2a4ff',.36);c.save();c.globalCompositeOperation='lighter';for(let i=0;i<3;i++){c.globalAlpha=.35-i*.08;line(c,p.x-75-i*20,p.y-38+i*8,p.x+18,p.y-28,'#d9bcff',8-i*2);}c.restore();} }
     projectile(c: C, p: Battle['projectiles'][number]) {
+        if(p.mode==='convergeSpirit'&&p.age<(p.curve?.delay||0))return;
         if(drawRedesignProjectile(c,p))return;
         const angle = Math.atan2(p.vy, p.vx), occult=p.skill?.[0]==='O'||p.skill?.startsWith('LO')||['nightParade','nightBolt','spiritRain'].includes(p.mode), ultimate=['arcaneJudgment','starHunt','arcBolt','hunterBolt','nightParade','nightBolt'].includes(p.mode)||p.skill==='M99'||p.skill==='A99'||p.skill==='O99', advanced = ['meteor', 'emberOrb', 'frostOrb', 'stormOrb','arcaneJudgment','starHunt','reverseGhost','nightParade'].includes(p.mode), arrow = p.skill[0] === 'A' || p.mode==='hunterBolt', color = p.color;
         c.save();
@@ -1564,11 +1566,11 @@ export class Renderer {
         if (p.trail.length > 1) {
             c.globalCompositeOperation = 'lighter';
             const width = p.mode === 'meteor' ? 22 : ultimate ? 18 : advanced ? 14 : arrow ? 2.5 : 4;
-            for (let i = 1; i < p.trail.length; i++) {
+            for (let i = p.mode==='convergeSpirit'?Math.max(1,p.trail.length-5):1; i < p.trail.length; i++) {
                 const a = p.trail[i - 1], b = p.trail[i], f = i / p.trail.length;
-                c.globalAlpha = f * (advanced ? .17 : .22);
+                c.globalAlpha = f * (p.mode==='convergeSpirit'?.10:advanced ? .17 : .22);
                 line(c, a.x, a.y, b.x, b.y, color, width * (.2 + f));
-                c.globalAlpha = f * .65;
+                c.globalAlpha = f * (p.mode==='convergeSpirit'?.30:.65);
                 line(c, a.x, a.y, b.x, b.y, color, advanced ? 2.4 : 1.1);
             }
             if (advanced && !this.low) {
@@ -1635,8 +1637,12 @@ export class Renderer {
                 path(c,[[-11,-7],[9,-6],[11,7],[-9,6]],'#d6c9aa',color,1);line(c,-4,-4,4,3,'#554b3e',1.1);line(c,4,-3,-3,4,'#554b3e',.8);
             }else if(p.mode.startsWith('summon')){
                 c.strokeStyle=color;c.globalAlpha=.78;c.lineWidth=1.5;c.beginPath();c.arc(0,0,8,0,Math.PI*2);c.stroke();line(c,-9,-7,9,7,color,1.3);line(c,-9,7,9,-7,color,1.3);circle(c,0,0,2,'#e7deca');
-            }else if(p.mode==='convergeSpirit'){
-                c.globalAlpha=.75;path(c,[[11,0],[-3,-4],[-10,0],[-3,4]],color+'aa','#d9d7c6',.6);
+            }else if(p.mode==='convergeSpirit'||p.mode==='spiritBolt'){
+                // The same small spirit silhouette flies in Sodan's basic shot and convergence.
+                c.scale(p.mode==='convergeSpirit'?1.35:1,p.mode==='convergeSpirit'?1.35:1);
+                c.globalAlpha=.82;path(c,[[12,0],[6,-5],[0,-8],[-7,-6],[-10,-1],[-15,-4],[-12,4],[-19,10],[-5,6],[2,8],[8,5]],color+'bb','#d8ddcf',.8);
+                circle(c,1,-3,1.3,'#eee8d5');circle(c,1,3,1.1,'#eee8d5');
+                line(c,-11,-2,-18,-7,color,.8);line(c,-10,4,-16,10,color,.8);
             }else {path(c,[[13,0],[-2,-7],[-11,0],[-2,7]],color+'aa','#e6e7d8',1);for(let i=0;i<2;i++)circle(c,-10-i*8,Math.sin(p.age*5+i)*3,1.5,color+'88');}
             c.restore();c.restore();return;
         }

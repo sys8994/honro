@@ -141,6 +141,7 @@ export interface Unit {
     bladeStored?: number;
     meleeFollow?: 'landing'|'ready'|'spent';
     meleeAction?: {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number;angle?:number;span?:number};
+    mageWardShot?: number;
     retreat?: boolean;
     prepared?: {rank:number;expires:number};
     gateTurn?: string;
@@ -254,7 +255,7 @@ export interface Projectile {
     echoDelay?: number;
     echoSource?: string;
     soulBoost?: boolean;
-    curve?: {start:Vec;spread:Vec;control:Vec;goal:Vec;duration:number};
+    curve?: {start:Vec;spread:Vec;control:Vec;goal:Vec;duration:number;delay?:number;outwardRatio?:number};
     effectBoost?: number;
     sizeBoost?: number;
     dived?: boolean;

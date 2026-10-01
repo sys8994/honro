@@ -57,7 +57,7 @@ def suite(page,shell):
     page.evaluate("{const {a,e,u}=martialArena('S13',8);u.loadout=['S13','S09','S02'];e.fire('S13',40,.6);advance();a.updateHUD(true);}")
     check(shell+': melee-only follow-up disables rush, blade and jump controls',page.locator('[data-skill=S13]').is_disabled() and page.locator('[data-skill=S09]').is_disabled() and not page.locator('[data-skill=S02]').is_disabled() and page.locator('#jump').is_disabled())
     page.locator('[data-skill=S02]').click();fire(page)
-    check(shell+': selecting life slash for the follow-up pays HP before the strike',page.evaluate('HonroApp.engine.active.hp===350&&HonroApp.engine.active.meleeAction.skill==="S02"'))
+    check(shell+': selecting life slash for the follow-up pays one-third HP before the strike',page.evaluate('HonroApp.engine.active.hp===467&&HonroApp.engine.active.meleeAction.lifeCost===233&&HonroApp.engine.active.meleeAction.skill==="S02"'))
     page.evaluate('advance();paint()')
     # The latest narrative UI may pause between the rush and its bonus action.
     page.evaluate("{const {a,e}=martialArena('S13',8);e.fire('S13',40,.6);advance();HonroStory.start(a,[['서술','길 위의 이야기를 마치고 검을 다시 쥔다.',{kind:'narration'}]],{title:'전투 연계 확인'});a.updateHUD(true);}")

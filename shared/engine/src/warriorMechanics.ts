@@ -40,11 +40,16 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
  if(meleeSkill(s)||s.mode==='bladeScreen'){
   e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));
   const power=u.lastPower,damage=p.damage*(s.mode==='lifeSlash'?1:meleeFactor(u,power));
-  if(s.mode==='counterStance'){u.martialGuard={round:e.b.round,reduction:.20+.10*((u.ranks[s.id]||1)-1)/7,counter:true,rank:u.ranks[s.id]||1,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;}
+  if(s.mode==='counterStance'){
+   const rank=u.ranks[s.id]||1,before=u.hp;
+   u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*(.02+.005*(rank-1))));
+   if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
+   u.martialGuard={round:e.b.round,reduction:.20+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
+  }
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
-  const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp*.5):0;
+  const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp/3):0;
   if(lifeCost)u.hp-=lifeCost;
-  u.meleeAction={skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(.72+.27*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
+  u.meleeAction={skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
   if(power<.30&&s.mode!=='lifeSlash')u.martialGuard={round:e.b.round,reduction:.12*(1-power/.30)};
   return;
  }

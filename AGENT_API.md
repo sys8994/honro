@@ -45,6 +45,12 @@ api.importProject(JSON.parse(json));
 | `rename` | id/newId, Stage 내부의 일치하는 문자열 참조도 갱신 |
 | `delete` / `element.delete` | id, 종속 재질·encounter 멤버 참조 정리 |
 | `asset.update`, `asset.optimize` | library id, values 또는 epsilon |
+| `scenery.place` | assetId/depthLayer/groupId?/supportId?/zoneId?/localX/offsetY?/scale. 지지면 기본 접지 |
+| `scenery.attach` | id, groupId/supportId/depthLayer/localX 중 변경값 |
+| `scenic.add`, `support.add` | group 또는 surface 레코드 |
+| `zone.update`, `environment.set` | id/values 또는 atmosphere |
+
+풍경 묶음·지지면·구역은 `object.update`, `rename`, `delete`로도 편집한다. 삭제 후 종속 참조가 남으면 전체 명령 배열을 거부한다. 상세 필드와 좌표 의미는 [환경 구도](game/docs/ENVIRONMENT_COMPOSITION.md)를 참조한다.
 
 `applyCommands([...])`는 preview 없는 즉시 적용 API입니다. 기본 UI 흐름은 Preview → Apply/Discard입니다. 전체 배열을 복제본에 적용하고 검증하므로 실패 시 부분 변경이 남지 않습니다. Change Set은 컬렉션 증감 또는 속성 변경 안내를 표시합니다.
 

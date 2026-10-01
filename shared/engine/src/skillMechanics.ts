@@ -196,6 +196,11 @@ function reflect(p:Projectile,h:Collision,restitution=.84){const dot=p.vx*h.n.x+
 function spawnChild(e:Engine,p:Projectile,mode:string,vx:number,vy:number,damage:number,blast=0){
  const q:Projectile={...p,id:e.b.nextId++,mode,vx,vy,prevVy:vy,damage,blast,age:0,child:true,secondary:true,apex:true,hit:[],trail:[],bounces:0,pierces:0,fuseAt:undefined,phaseMode:undefined,gravityScale:1,drag:.025,radius:3,maxAge:.5};e.b.projectiles.push(q);return q;
 }
+function skyStrikePoint(e:Engine,point:Vec,owner:string):Vec{
+ const start={x:point.x,y:Math.min(-170,point.y-600)};
+ const hit=e.collision(start,point,3,owner,[],false);
+ return hit?{x:hit.x,y:hit.y}:point;
+}
 function gourdBurst(e:Engine,p:Projectile){
  const u=e.unit(p.owner)!;const s=SKILLS[p.skill],r=rank(p),secondary=(1+passiveRank(u,'MP01')*.03)*(1+(p.effectBoost||0)*.5);
  if(p.mode==='gourdSky'){
@@ -285,7 +290,7 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
  if(p.maxAge&&p.age>=p.maxAge){e.remove(p);return true;}
  if(p.mode==='gourdIce'&&p.age>=(p.fuseAt??iceGourdFuse(u.lastPower))){gourdBurst(e,p);return true;}
  if(p.mode==='skyWait'){
-  if(p.age>=.35){const target=p.targetPoint!,start={x:target.x,y:Math.min(-170,target.y-600)},hit=e.collision(start,target,3,p.owner,[],false);const end=hit||target;
+  if(p.age>=.35){const target=p.targetPoint!,start={x:target.x,y:Math.min(-170,target.y-600)},end=skyStrikePoint(e,target,p.owner);
    e.emit('fx',{name:'lightningBolt',x:start.x,y:start.y,x2:end.x,y2:end.y,color:'#a8cfff',size:5});e.blast(end.x,end.y,p.blast,p.damage,p.owner,false,p);e.remove(p);
   }return true;
  }
@@ -393,7 +398,7 @@ export function tickRedesign(e:Engine,dt:number){
  if(e.active?.retreat&&e.active.moveLeft<=.5&&!e.settleBusy())e.finishAction(true);
 }
 
-export interface SkillPrediction extends Prediction {time:number;geometry?:SkillGeometry;contacts:Vec[];secondaryRadius?:number;paths?:Vec[][];}
+export interface SkillPrediction extends Prediction {time:number;geometry?:SkillGeometry;contacts:Vec[];secondaryRadius?:number;secondaryPoint?:Vec;paths?:Vec[][];}
 /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
@@ -449,5 +454,6 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
  }
  points.push({x:p.x,y:p.y});
  const geometry=arc||bagua||s.mode==='waveTriangle'?skillGeometry(s,r,p.x,p.y,arc?Math.atan2(p.vy,p.vx):-rad(angle),power,contacts,origin,geometryBoost(u,s)):undefined;
- return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,points,time,closest,contacts,apex,geometry,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:s.id==='M05'?190:180):s.branch==='stake'?45*geometryBoost(u,s):undefined};
+ const secondaryPoint=s.id==='M05'?skyStrikePoint(e,{x:p.x,y:p.y},u.id):undefined;
+ return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,points,time,closest,contacts,apex,geometry,secondaryPoint,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:s.id==='M05'?e.effective(s,u).radius:180):s.branch==='stake'?45*geometryBoost(u,s):undefined};
 }

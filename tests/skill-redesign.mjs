@@ -106,6 +106,15 @@ test('회기 refunds complete misses exactly once, authored balance stays author
 test('오방봉진 reduces the renewed movement budget once each turn',()=>{
  const a=arena('M99');place(a,'M99',1000);const t=a.foe(1000);C.tickRedesign(a.e,0);assert.equal(t.moveLeft,t.maxMove*.65);a.b.teamEnds[1]++;t.moveLeft=t.maxMove;C.tickRedesign(a.e,0);assert.equal(t.moveLeft,t.maxMove*.65);C.tickRedesign(a.e,0);assert.equal(t.moveLeft,t.maxMove*.65);
 });
+test('기맥전도 shields one nearby companion per damaging cast, even after a save',()=>{
+ const a=arena('M11',8),enemy=a.foe(1000),ally=a.foe(960,1800,{side:0,maxHp:1000,hp:1000});a.u.ranks.MP04=8;
+ const p=a.fire();a.e.hurt(enemy,100,a.u.id,false,p,p);
+ assert.equal(ally.shield,85);assert.equal(a.u.shield,0);
+ a.e.hurt(enemy,100,a.u.id,false,p,p);assert.equal(ally.shield,85);
+ const saved=C.defaults();saved.saved=a.b;const restored=C.validate(plain(saved)).saved;
+ assert.equal(restored.units.find(u=>u.id===a.u.id).mageWardShot,p.shot);
+ const b=arena('M11',1),target=b.foe();b.u.ranks.MP04=1;const q=b.fire();b.e.hurt(target,40,b.u.id,false,q,q);assert.equal(b.u.shield,Math.round(b.u.maxHp*.0325));
+});
 test('오방봉진 boundary push lets an enemy land and complete its turn',()=>{
  const a=arena('M99');place(a,'M99',1000);const t=a.foe(1000,1800,{fixed:false});C.tickRedesign(a.e,0);
  assert(a.b.stakes[0].active&&a.b.stakes[0].inside.includes(t.id));

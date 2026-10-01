@@ -8,9 +8,10 @@ const E=g.HonroEnvironment,project=JSON.parse(await readFile(new URL('../shared/
 assert.equal(E.validate(project).length,0,'All assets, placements and stages must be classified');
 const st=project.stages[2],tree=project.library.find(a=>a.id==='ancient_pine');
 const L2=st.environment.placements.find(e=>e.assetId==='ancient_pine'&&e.depthLayer==='L2');
-const L3=st.environment.placements.find(e=>e.assetId==='ancient_pine'&&e.depthLayer==='L3');
-assert(L2&&L3,'Real Stage 3 reuses the same reference tree at two depths');
-const near={...L2,x:1600,y:1600,scale:1},far={...L3,x:1600,y:1600,scale:1};
+const group3=st.environment.groups.find(g=>g.depthLayer==='L3');
+assert(L2&&group3,'Stage 3 exposes both finite depths');
+assert(st.environment.placements.some(e=>e.assetId==='env:forest'&&e.depthLayer==='L3'),'Distant vegetation is a forest mass');
+const near={...L2,x:1600,y:0,scale:1},far={...near,depthLayer:'L3',groupId:group3.id,supportId:st.environment.surfaces.find(s=>s.groupId===group3.id).id};
 const w=960,h=540,view={x:1400,y:1500,scale:.66};
 const height=e=>E.screenBounds(tree,e,view,w,h,st).h;
 const d2=E.depth(st,'L2'),d3=E.depth(st,'L3');
