@@ -54,6 +54,16 @@ function upgradeLegacy(project){for(const a of ENV_ASSETS)if(!project.library.so
 const VERSION=4,VERTICAL_MODES=['WORLD','SKY'];
 const COVERAGE={minZoom:.16,maxViewport:{w:2560,h:1440},margin:240};
 const FINISH={L1:{haze:0,detail:1},L2:{haze:.18,detail:1},L3:{haze:.48,detail:.5},L4:{haze:.76,detail:.2}};
+// The painted SKY is a distant panorama, not a finite WORLD support. Its small
+// camera drift is deliberately independent of the L1-L4 projection and zoom.
+const ACT1_FAR={saturation:.45,brightness:{mountains:.80,gorge:.76},veil:'#1b2730',veilOpacity:.08,panX:.025,panY:.0035,marginX:.022,marginY:.007};
+function act1Mood(stage){const n=Number(stage);if(!Number.isInteger(n)||n<1||n>10)return null;const t=(n-1)/9;
+ return{stage:n,variant:n<6?'mountains':'gorge',tint:mixColor('#83968f','#52627e',t),opacity:.03+t*.12};}
+function act1BackdropFrame(view,w,h,b,iw=1600,ih=900){const mx=w*ACT1_FAR.marginX,my=h*ACT1_FAR.marginY,
+ s=Math.max((w+2*mx)/iw,(h+2*my)/ih),dw=iw*s,dh=ih*s,
+ offsetX=-mx*Math.tanh(((view.x??b.width*.5)-b.width*.5)*ACT1_FAR.panX/mx),
+ offsetY=-my*Math.tanh(((view.y??b.height*.5)-b.height*.5)*ACT1_FAR.panY/my),anchor=w/h>=.9?.98:.5;
+ return{x:-mx-(dw-w-2*mx)*anchor+offsetX,y:-my-(dh-h-2*my)*.28+offsetY,w:dw,h:dh,offsetX,offsetY};}
 const ATMOSPHERES={
  forest:{skyTop:'#0c1920',skyBottom:'#47564c',ambientTint:'#3e5147',hazeColor:'#56695f',hazeStrength:.65,nearFogColor:'#687c69',farFogColor:'#83918a',keyLightColor:'#d1c19a',keyLightDirection:[.76,.13],glowColor:'#d7cca7',shadowTint:'#142728',waterBaseColor:'#233d40',waterHighlightColor:'#9bb5a7',waterfallFoamColor:'#c0d0bb',mistStrength:.30,mistSpeed:9,lightStrength:.12},
  valley:{skyTop:'#101f2b',skyBottom:'#66777b',ambientTint:'#41575f',hazeColor:'#738a90',hazeStrength:.78,nearFogColor:'#8aa6a8',farFogColor:'#a1afb0',keyLightColor:'#d2d9cc',keyLightDirection:[.68,.09],glowColor:'#dae4d6',shadowTint:'#1b303c',waterBaseColor:'#334b4d',waterHighlightColor:'#ced4c5',waterfallFoamColor:'#dce0d0',mistStrength:.43,mistSpeed:13,lightStrength:.16},
@@ -240,5 +250,5 @@ function validate(project){const issues=[],error=text=>issues.push({level:'err',
  }
  return issues;
 }
-G.HonroEnvironment={VERSION,REFERENCE_SCALE,WORLD_UNITS_PER_METER,D0_METERS,PRESETS,SCENE_PRESETS,LAYERS,preset,depth,factor,ratio,screen,world,vectorScale,screenBounds,classifyLegacyElement,referenceForLegacyAsset,makePlacements,makeEnvironment,resize,upgradeLegacy,upgradeComposition,validate,VERTICAL_MODES,COVERAGE,FINISH,ATMOSPHERES,ATMOSPHERE_BY_SCENE,mixColor,atmosphere,atmosphereAt,zoneWeights,assetRole,surfaceY,groupOf,supportOf,placementPosition,placementScreen,groupTransform,groupWorld,coveragePad,place,generatedAssets:()=>copy([...ENV_ASSETS,...COMPOSITION_ASSETS])};
+G.HonroEnvironment={VERSION,REFERENCE_SCALE,WORLD_UNITS_PER_METER,D0_METERS,PRESETS,SCENE_PRESETS,LAYERS,preset,depth,factor,ratio,screen,world,vectorScale,screenBounds,classifyLegacyElement,referenceForLegacyAsset,makePlacements,makeEnvironment,resize,upgradeLegacy,upgradeComposition,validate,VERTICAL_MODES,COVERAGE,FINISH,ACT1_FAR,act1Mood,act1BackdropFrame,ATMOSPHERES,ATMOSPHERE_BY_SCENE,mixColor,atmosphere,atmosphereAt,zoneWeights,assetRole,surfaceY,groupOf,supportOf,placementPosition,placementScreen,groupTransform,groupWorld,coveragePad,place,generatedAssets:()=>copy([...ENV_ASSETS,...COMPOSITION_ASSETS])};
 })(globalThis);

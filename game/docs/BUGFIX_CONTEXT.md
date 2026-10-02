@@ -1,6 +1,6 @@
 # HONRO 게임 수정 맥락
 
-**1막 단일 원경 SVG(HBUG-072, 2026-10-02):** 중단된 대화의 HBUG-071 PNG/WebP·공통 번들·검증 기록을 확인하고 SVG 요청을 이어서 완료했다. 현행 제작 원본과 실행 자산은 `shared/assets/environment/act1-far.svg`(1600×900, 순수 벡터)이며 `shared/build.mjs`가 두 HTML에 동일하게 내장한다. 큰 먹산·절벽 명암·산허리 안개·달을 SVG의 이름 있는 그룹으로 편집한다. 기존 PNG/WebP는 이전 제작 기록으로 보존하되 실행에는 쓰지 않는다. 1~10장의 공통 원경, 자동 생성 L2~L4 대신 사용자 작성 풍경을 보존하는 기존 동작은 유지한다. 화면 크롭은 종횡비를 보존하도록 수정했다. 검증과 전체 검사의 기존 수중 번개 실패는 [HBUG-072](BUG_LOG.md)을 본다.
+**1막 원경 2종·미세 시차·밤톤(HBUG-073, 2026-10-02):** HBUG-072 완성본을 `5ff3cc0`으로 커밋한 뒤 후속 요청을 적용했다. 1–5장은 기존 `shared/assets/environment/act1-far.svg`, 6–10장은 새 `act1-gorge.svg`(협곡·암주·먼 소나무·폭포)이며 두 HTML이 동일 SVG를 내장한다. 기존 SVG의 경로·색상 원본은 그대로다. `shared/map/environment.js`의 `ACT1_FAR/act1Mood/act1BackdropFrame`이 낮은 채도·밝기, 수평보다 훨씬 작은 수직 시차, 단계별 밤톤을 관리한다. SKY의 움직임만 변경하며 유한 L1–L4·물리·저장은 유지한다. `environment-renderer.js`는 원경별 색상 보정 캔버스 2개를 재사용하고, `renderer.js`는 L1 지형·물까지 그린 뒤 캐릭터·조준선·표시 전에 밤톤을 적용한다. 검증과 전체 검사의 기존 수중 번개 실패는 [HBUG-073](BUG_LOG.md)을 본다.
 
 **2장 계곡의 암봉·필선·안개(HBUG-070, 2026-10-02):** `shared/map/environment.js`는 계곡 L4를 한 주봉의 `ink-granite` 지지면으로 만들고 L3에 `ink-foothill`을 둔다. `environment-renderer.js`는 캐시된 큰 먹면과 드문 수직 필선, 산허리 안개를 그린다. L1 절벽·소나무는 `map-art-polish.js`, 화강암 에셋은 `tools/environment/polish-assets.mjs`가 작성한다. 빛기둥 대신 부드러운 달빛을 사용한다. 물리·저장과 공유 depth/zoom은 유지한다. 실화면·검증·전체 `verify`의 별개 실패는 [HBUG-070](BUG_LOG.md)을 본다.
 

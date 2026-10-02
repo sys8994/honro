@@ -5,6 +5,23 @@ import {readFile} from 'node:fs/promises';
 const source=await readFile(new URL('../shared/map/environment.js',import.meta.url),'utf8');
 const g=vm.createContext({});vm.runInContext(source,g);
 const E=g.HonroEnvironment,project=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));
+// SKY panorama drift is bounded and anisotropic; finite projection stays intact.
+for(const [w,h] of [[1280,720],[390,844],[2560,1080]])for(const zoom of [.16,.66,1.65]){
+ const b={width:6000,height:5000},center={x:3000,y:2500,scale:zoom},q=E.act1BackdropFrame(center,w,h,b),
+   px=E.act1BackdropFrame({...center,x:3500},w,h,b),py=E.act1BackdropFrame({...center,y:3000},w,h,b);
+ assert(q.x>px.x&&q.y>py.y&&q.x-px.x>3*(q.y-py.y),'Pan X is stronger than Y and opposite the camera');
+ assert(Math.abs(q.w/q.h-1600/900)<1e-12,'Panorama keeps its aspect ratio');
+ for(const x of [-1e6,0,6000,1e6])for(const y of [-1e6,0,5000,1e6]){
+   const p=E.act1BackdropFrame({x,y,scale:zoom},w,h,b);
+   assert(p.x<=1e-9&&p.y<=1e-9&&p.x+p.w>=w-1e-9&&p.y+p.h>=h-1e-9,'No exposed edges at extreme cameras');
+ }
+ assert.equal(q.w,E.act1BackdropFrame({...center,scale:1},w,h,b).w,'SKY does not pulse with gameplay zoom');
+}
+for(let sid=1;sid<=10;sid++){
+ const mood=E.act1Mood(sid);assert.equal(mood.variant,sid<6?'mountains':'gorge');
+ if(sid>1)assert(mood.opacity>E.act1Mood(sid-1).opacity,'Night deepens at every stage');
+}
+for(const sid of [0,11,1.5,undefined])assert.equal(E.act1Mood(sid),null,'No campaign grading in unrelated maps');
 assert.equal(E.validate(project).length,0,'All assets, placements and stages must be classified');
 const st=project.stages[2],tree=project.library.find(a=>a.id==='ancient_pine');
 const L2=st.environment.placements.find(e=>e.assetId==='ancient_pine'&&e.depthLayer==='L2');

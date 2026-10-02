@@ -16,11 +16,12 @@ rows,errors,failures=[],[],[]
 with sync_playwright() as p:
     browser=launch(p)
     for width,height in [(1280,720),(844,390),(2560,1440)]:
-        for sid,x,y,z in [(1,1250,1400,.66),(3,2250,2150,.66),(5,3050,2750,.66),(5,2200,2300,.16)]:
+        for sid,x,y,z in [(1,1250,1400,.66),(3,2250,2150,.66),(5,3050,2750,.66),(5,2200,2300,.16),(6,2400,2000,.66),(10,2400,2000,.16)]:
             page=browser.new_page(viewport={'width':width,'height':height})
             page.on('pageerror',lambda e:errors.append(str(e)))
             page.goto(source.as_uri())
             page.wait_for_function('window.HonroApp && window.HONRO_PROJECT')
+            page.wait_for_function('!window.HonroAct1Background || HonroAct1Background.ready()')
             page.evaluate('HonroApp.frame=()=>{}')
             page.evaluate('''([sid,x,y,z])=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});a.dialogue=null;a.turnNotice=null;
               Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,x,y,scale:z});

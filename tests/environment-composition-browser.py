@@ -25,11 +25,29 @@ with sync_playwright() as pw:
     page.wait_for_function('window.HonroApp && window.HONRO_PROJECT')
     if mode == 'after':
         page.wait_for_function('window.HonroAct1Background?.ready()')
-        same_background=page.evaluate('''()=>{const a=HonroApp,cv=document.createElement('canvas');cv.width=960;cv.height=540;
-          const c=cv.getContext('2d'),images=[];for(let sid=1;sid<=10;sid++){a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});
-            c.clearRect(0,0,960,540);a.scene.background(c,960,540,a.engine.b);images.push(cv.toDataURL());}
-          return {unique:new Set(images).size,width:HonroAct1Background.image.naturalWidth};}''')
-        assert same_background['unique']==1 and same_background['width']>=1600,same_background
+        variations=page.evaluate('''()=>{const a=HonroApp,cv=document.createElement('canvas');cv.width=960;cv.height=540;
+          const c=cv.getContext('2d'),images=[],graded=[],variants=[],light=[];for(let sid=1;sid<=10;sid++){
+            a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});const b=a.engine.b,s=a.scene;
+            Object.assign(s,{x:b.width*.5,y:b.height*.5});c.clearRect(0,0,960,540);s.background(c,960,540,b);images.push(cv.toDataURL());
+            s.environmentTone(c,960,540,b);graded.push(cv.toDataURL());const pixels=c.getImageData(0,0,960,540).data;
+            let l=0;for(let i=0;i<pixels.length;i+=4)l+=pixels[i]*.2126+pixels[i+1]*.7152+pixels[i+2]*.0722;light.push(l/(960*540));
+            variants.push(HonroAct1Background.imageFor(sid)===HonroAct1Background.images[sid<6?'mountains':'gorge']);}
+          return {unique:new Set(images).size,graded:new Set(graded).size,variants,light,cache:HonroAct1Background.cacheSize()};}''')
+        assert variations['unique']==2 and variations['graded']==10 and all(variations['variants']) and variations['cache']==2,variations
+        for start in [0,5]:
+            assert all(variations['light'][i]>variations['light'][i+1] for i in range(start,start+4)),variations
+        parallax=page.evaluate('''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-6',{story:false});
+          const s=a.scene,b=a.engine.b,cv=document.createElement('canvas');cv.width=960;cv.height=540;const c=cv.getContext('2d'),calls=[],frames=[],draw=c.drawImage.bind(c);
+          c.drawImage=(...args)=>{calls.push(args.slice(1));draw(...args);};
+          for(const [x,y] of [[b.width/2,b.height/2],[b.width/2+500,b.height/2],[b.width/2,b.height/2+500],[-1e6,-1e6],[1e6,1e6]]){
+            Object.assign(s,{x,y});c.clearRect(0,0,960,540);s.background(c,960,540,b);frames.push(cv.toDataURL());}
+          return{calls,unique:new Set(frames).size};}''')
+        assert parallax['unique']==5,parallax
+        center,px,py,*edges=parallax['calls']
+        dx,dy=center[0]-px[0],center[1]-py[1]
+        assert 0<dy<dx<20 and dy<3,parallax
+        for x,y,w,h in parallax['calls']:
+            assert x<=.001 and y<=.001 and x+w>=959.999 and y+h>=539.999 and abs(w/h-1600/900)<1e-10,parallax
         custom_visible=page.evaluate('''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-2',{story:false});const b=a.engine.b,
           p=b.honroEnvironment.placements.find(e=>e.depthLayer==='L2');if(!p)return -1;
           const e={...p,id:'authored-background-prop',x:b.width*.5},env=b.honroEnvironment;env.placements.push(e);
@@ -138,6 +156,19 @@ with sync_playwright() as pw:
         play.locator('#battlecanvas').screenshot(path=str(out/'playtest.png'))
         assert play.evaluate('HonroApp.engine.b.honroEnvironment.placements.some(e=>e.id==="authored-qa"&&e.supportId)')
         assert play.evaluate('HonroApp.engine.b.honroEnvironment.atmosphere.preset')=='temple'
+        # Late-act SVG, drift and grading must also use the actual iframe runtime.
+        play.wait_for_function('HonroAct1Background.ready(6)')
+        assert play.evaluate('HONRO_ACT1_FAR_DATA.gorge')==page.evaluate('HONRO_ACT1_FAR_DATA.gorge')
+        play.evaluate('''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-6',{story:false});a.dialogue=null;a.turnNotice=null;
+          Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,x:a.engine.b.width/2,y:a.engine.b.height*.55,scale:.66,time:0});
+          a.scene.render(a.engine,0,'',.6,false,0);}''')
+        play.locator('#battlecanvas').screenshot(path=str(out/'playtest-gorge.png'))
+        assert play.evaluate('HonroAct1Background.cacheSize()')==2
+        page.set_viewport_size({'width':390,'height':844})
+        page.evaluate('''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-6',{story:false});a.dialogue=null;a.turnNotice=null;
+          Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,x:a.engine.b.width/2,y:a.engine.b.height*.55,scale:.16,time:0});
+          a.scene.render(a.engine,0,'',.6,false,0);}''')
+        page.locator('#battlecanvas').screenshot(path=str(out/'stage-6-390x844.png'))
         editor.close()
     browser.close()
 

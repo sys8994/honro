@@ -1,11 +1,17 @@
 (function(G){'use strict';
 const Scene=G.HonroScene,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,prepared=new WeakMap(),battleEnvironments=new WeakMap();
-const act1Image=typeof Image==='undefined'||!G.HONRO_ACT1_FAR_DATA?null:new Image();if(act1Image)act1Image.src=G.HONRO_ACT1_FAR_DATA;
-const act1Ready=()=>!!(act1Image?.complete&&act1Image.naturalWidth);
-G.HonroAct1Background={image:act1Image,ready:act1Ready};
-function paintedSky(c,w,h){const iw=act1Image.naturalWidth,ih=act1Image.naturalHeight,target=w/h,source=iw/ih;let sx=0,sy=0,sw=iw,sh=ih;
- if(target<source){sw=ih*target;sx=(iw-sw)*(target>=.9?.98:.5);}else{sh=iw/target;sy=(ih-sh)*.28;}
- c.drawImage(act1Image,sx,sy,sw,sh,0,0,w,h);
+const act1Images={},act1Tones=new Map();
+if(typeof Image!=='undefined')for(const [key,src] of Object.entries(G.HONRO_ACT1_FAR_DATA||{})){const img=new Image();img.src=src;act1Images[key]=img;}
+const imageReady=img=>!!(img?.complete&&img.naturalWidth),act1ImageFor=stage=>act1Images[E.act1Mood(stage)?.variant];
+const act1Ready=stage=>stage===undefined?['mountains','gorge'].every(k=>imageReady(act1Images[k])):imageReady(act1ImageFor(stage));
+function tonedBackdrop(stage){const mood=E.act1Mood(stage),key=mood.variant;if(act1Tones.has(key))return act1Tones.get(key);
+ const img=act1Images[key],cv=document.createElement('canvas'),tone=E.ACT1_FAR;cv.width=img.naturalWidth;cv.height=img.naturalHeight;
+ const ctx=cv.getContext('2d');ctx.filter=`saturate(${tone.saturation}) brightness(${tone.brightness[key]})`;ctx.drawImage(img,0,0);ctx.filter='none';
+ ctx.globalAlpha=tone.veilOpacity;ctx.fillStyle=tone.veil;ctx.fillRect(0,0,cv.width,cv.height);act1Tones.set(key,cv);return cv;
+}
+G.HonroAct1Background={images:act1Images,imageFor:act1ImageFor,ready:act1Ready,cacheSize:()=>act1Tones.size};
+function paintedSky(c,w,h,b,view){const img=tonedBackdrop(b.honroStage),q=E.act1BackdropFrame(view,w,h,b,img.width,img.height);
+ c.drawImage(img,q.x,q.y,q.w,q.h);
 }
 function polygon(points,close=true,soft=false){const p=new Path2D();if(soft){const first=points[0],last=points.at(-1);p.moveTo((last.x+first.x)/2,(last.y+first.y)/2);points.forEach((v,i)=>{const next=points[(i+1)%points.length];p.quadraticCurveTo(v.x,v.y,(v.x+next.x)/2,(v.y+next.y)/2);});}else points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));if(close)p.closePath();return p;}
 function graniteForms(s){const w=s.compositionWidth,crest=E.surfaceY(s,w*.51),pt=([x,y])=>({x:x*w,y:crest+y}),area=coords=>polygon(coords.map(pt)),stroke=coords=>polygon(coords.map(pt),false),mass=new Path2D();
@@ -101,7 +107,8 @@ function ensureBattle(b){if(b.honroEnvironment?.version===E.VERSION)return b.hon
  const environment={...st.environment,placements:st.environment.placements.map(e=>({...e,asset:p.library.find(a=>a.id===e.assetId)}))};
  battleEnvironments.set(b,{source:b.honroEnvironment,key,environment});return environment;
 }
-Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),stageId=Number(b.honroStage),painted=stageId>=1&&stageId<=10&&act1Ready();if(painted){paintedSky(c,w,h);
+Scene.prototype.environmentTone=function(c,w,h,b){const mood=E.act1Mood(b.honroStage);if(!mood)return;c.save();c.globalCompositeOperation='multiply';c.globalAlpha*=mood.opacity;c.fillStyle=mood.tint;c.fillRect(0,0,w,h);c.restore();};
+Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),painted=E.act1Mood(b.honroStage)&&act1Ready(b.honroStage);if(painted){paintedSky(c,w,h,b,this);
   // The authored far painting replaces only the generated backdrop. Workshop
   // scenery with its own ID still uses its support, depth and camera transform.
   const custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)).map(e=>e.id));let visible=0,active=0,paths=0;

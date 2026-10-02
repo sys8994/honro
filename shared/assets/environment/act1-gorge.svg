@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">혼로 · 깊은 달의 협곡</title>
+  <desc id="description">6–10장의 원경. 겹겹의 암주와 먼 소나무 능선, 두 가는 폭포 사이로 내려가는 안개 계곡. 기존 달 아래 겹산과 같은 먹빛 벡터 산수.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#19282d"/><stop offset=".6" stop-color="#3f5256"/><stop offset="1" stop-color="#748581"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#d7d8b8" stop-opacity=".17"/><stop offset="1" stop-color="#d7d8b8" stop-opacity="0"/></radialGradient>
+    <linearGradient id="moon" x2=".5" y2="1"><stop stop-color="#e5dfc1"/><stop offset="1" stop-color="#ccc7aa"/></linearGradient>
+    <linearGradient id="far" x2=".2" y2="1"><stop stop-color="#24373b"/><stop offset=".7" stop-color="#405657"/><stop offset="1" stop-color="#768981"/></linearGradient>
+    <linearGradient id="rock" x2=".5" y2="1"><stop stop-color="#213439"/><stop offset=".55" stop-color="#344b4f"/><stop offset="1" stop-color="#667e7c"/></linearGradient>
+    <linearGradient id="side" x2=".3" y2="1"><stop stop-color="#172c31"/><stop offset=".6" stop-color="#294247"/><stop offset="1" stop-color="#59716f"/></linearGradient>
+    <linearGradient id="lit" x2=".35" y2="1"><stop stop-color="#8b8a76" stop-opacity=".59"/><stop offset=".4" stop-color="#798474" stop-opacity=".34"/><stop offset="1" stop-color="#7c958b" stop-opacity="0"/></linearGradient>
+    <linearGradient id="wash" x2=".6" y2="1"><stop stop-color="#738076" stop-opacity=".28"/><stop offset="1" stop-color="#859b92" stop-opacity="0"/></linearGradient>
+    <linearGradient id="water" x2=".2" y2="1"><stop stop-color="#cad0bc" stop-opacity=".6"/><stop offset=".5" stop-color="#9aac9f" stop-opacity=".38"/><stop offset="1" stop-color="#bfd0bd" stop-opacity="0"/></linearGradient>
+    <linearGradient id="low-mist" x2="0" y2="1"><stop stop-color="#a3b1a3" stop-opacity="0"/><stop offset=".7" stop-color="#9eafa3" stop-opacity=".43"/><stop offset="1" stop-color="#849b93" stop-opacity=".73"/></linearGradient>
+    <radialGradient id="air"><stop stop-color="#c0c8b4" stop-opacity=".38"/><stop offset=".6" stop-color="#a8b8a8" stop-opacity=".13"/><stop offset="1" stop-color="#a6b7a9" stop-opacity="0"/></radialGradient>
+    <path id="peak" d="M237 460 290 411 321 404 349 363 373 341 395 351 412 333 430 316 455 287 479 279 492 254 507 239 523 246 539 224 547 205 562 189 578 187 589 169 607 165 624 174 637 155 654 151 671 128 690 130 702 113 724 115 739 104 750 87 768 86 781 73 793 71 806 64 818 47 834 48 845 38 861 42 872 29 883 51 891 58 896 83 906 105 909 129 925 142 934 163 937 186 950 213 963 209 978 219 989 235 1003 229 1015 205 1032 195 1039 178 1052 181 1067 170 1081 182 1089 206 1103 212 1110 241 1124 257 1136 254 1149 273 1157 309 1173 323 1186 316 1201 348 1225 363 1241 393 1277 405 1301 431 1347 426 1371 451 1402 447 1456 487 1456 722 237 722Z"/>
+    <clipPath id="peak-clip"><use href="#peak"/></clipPath>
+    <path id="west" d="M-50 174 12 198 49 183 65 168 86 172 108 157 126 161 146 151 161 158 178 140 190 145 209 132 223 145 237 177 242 216 260 237 266 272 278 293 281 334 307 369 324 416 352 435 365 474 383 482 399 541 406 574 431 600 438 636 463 669 458 712 494 747 530 900H-50Z"/>
+    <clipPath id="west-clip"><use href="#west"/></clipPath>
+    <path id="waterfall-crag" d="M168 900 180 852 205 826 216 771 237 743 240 680 261 613 306 527 326 505 340 468 356 454 368 411 393 376 399 322 414 307 420 278 433 273 439 251 453 252 460 235 472 240 483 263 491 297 508 323 514 355 527 365 535 422 549 452 568 467 575 506 591 520 599 559 616 565 632 612 649 642 657 698 682 732 691 787 714 814 725 900Z"/>
+    <clipPath id="crag-clip"><use href="#waterfall-crag"/></clipPath>
+    <path id="central-pillar" d="M615 900 629 825 654 784 659 730 677 708 689 644 708 615 715 566 731 540 737 491 754 459 760 414 775 401 781 379 799 377 813 363 828 369 842 390 847 428 864 454 870 508 884 531 887 563 902 588 908 636 921 659 929 719 946 750 953 805 975 836 984 900Z"/>
+    <clipPath id="pillar-clip"><use href="#central-pillar"/></clipPath>
+    <path id="east" d="M1110 900 1119 840 1143 816 1154 768 1179 732 1187 691 1204 683 1216 643 1234 634 1247 605 1260 594 1265 552 1282 543 1293 525 1310 529 1320 514 1338 521 1351 508 1372 516 1390 510 1418 532 1435 526 1450 541 1465 519 1471 482 1489 469 1494 429 1509 410 1516 371 1531 355 1540 311 1556 293 1564 250 1585 221 1632 204V900Z"/>
+    <clipPath id="east-clip"><use href="#east"/></clipPath>
+    <!-- Small rooted pines belong to these painted distant rock silhouettes. -->
+    <g id="pine">
+      <path d="M-3 1 3 1 1-10 7-21 8-31 4-28 3-20-4-15-15-17-19-22-21-21-18-15-7-11Z" fill="#233735"/>
+      <path d="M-31-24q4-6 11-5l4-4 8 3 4 5-7 3-11-1Z M-10-34q4-5 10-4l6-5 10 3 8 5-7 4-12-1Z M5-23l7-6q9-2 13 3l9 4-4 4-14-1Z" fill="#243936"/>
+    </g>
+    <g id="pine-lean">
+      <path d="M-2 1 3 0-1-8-9-16-6-25-9-30-11-26-13-17-5-10-16-11-21-18-23-17-20-9-5-7Z" fill="#1e3434"/>
+      <path d="M-25-29q3-6 9-5l7-5 8 4 7 4-7 3-11-1Z M-35-19l8-5 10 2 7 5-13 1Z M-4-19l6-6 8-2 8 4 5 5-12 1Z" fill="#263c36"/>
+    </g>
+  </defs>
+
+  <g id="night-sky">
+    <path d="M0 0H1600V900H0Z" fill="url(#sky)"/>
+    <ellipse cx="1266" cy="100" rx="137" ry="134" fill="url(#halo)"/>
+    <circle cx="1266" cy="100" r="39" fill="url(#moon)"/>
+    <g fill="#7d8e8b" opacity=".32">
+      <path d="m164 0 66 4-10 6 35 1-9 6 44 8-19 3 70 13-40 1 46 9-64-4-41-10-37-3 12-5-59-7 15-6-37-9Z"/>
+      <path d="m608 131 41-8 20 3-4-5 34 7 33-1 30 10-34-1 16 6-53-3-38 3-53-6 25-2Z"/>
+      <path d="m1133 112 33-5 20 4 17-4 22 7 21-1 15 5 35 2-12 4 37 1 21 7 57 4-42 3-47-6-47-1-25-5-56-3 20-4-50-1Z"/>
+      <path d="m1451 186 24-7 20 1-11-5 45-11 25 4 20-7 40 3 15 11-44 6 19 4-70 7 16 4-61-1-32 3Z"/>
+    </g>
+  </g>
+
+  <g id="receding-valley" fill="url(#far)">
+    <path opacity=".57" d="M126 422 202 379 247 368 289 332 327 348 371 315 416 323 473 298 504 314 554 307 610 336 695 353 702 558H126Z"/>
+    <path opacity=".65" d="M922 491 993 417 1039 406 1094 374 1123 381 1156 350 1181 354 1218 327 1236 341 1264 337 1299 306 1321 318 1349 298 1379 311 1398 305 1432 323 1471 299 1517 306 1563 276 1622 297V651H922Z"/>
+    <path opacity=".43" d="M910 585 950 533 989 521 1022 504 1068 519 1100 503 1147 509 1201 474 1232 484 1268 466 1300 481 1340 469 1386 482 1435 454 1478 469 1533 441 1617 482V724H910Z"/>
+  </g>
+  <g id="high-granite">
+    <use href="#peak" fill="url(#far)"/>
+    <g clip-path="url(#peak-clip)">
+      <g fill="url(#lit)">
+        <path d="m872 29 11 22 8 7 5 25 10 22 3 24 16 13 9 21 3 23 13 27 13-4 15 10 11 16 14-6-7 51-29 38-19-43-5-46-19-18-10-39-19-26-4-32-13-30Z"/>
+        <path d="m1067 170 14 12 8 24 14 6 7 29 14 16 12-3 13 19 8 36 16 14 13-7 15 32 24 15 16 30-11 73-46-37-15-48-24-15-16-48-12-15-6-64-21-28Z"/>
+        <path d="m654 151 17-23 19 2 12-17 11 30-22 27-7 46-26 24-15 65-35 26 22-78 10-44Z"/>
+        <path d="m785 76 21-12 12-17 16 1-14 46-25 17-11 42-17 18-10 43-24 30 17-59 7-39Z"/>
+      </g>
+      <g fill="#152d32" opacity=".57">
+        <path d="m877 65 7 20-1 35 17 22 3 39 17 22 6 61-13-30-6-36-15-16-4-43-12-21Z"/>
+        <path d="m923 162 8 18 3 42 14 22 5 59-11-42-12-24Z"/>
+        <path d="m1068 202 7 30-4 33 13 34 3 40 13 28 4 60-12-42-11-29-3-51-11-21Z"/>
+        <path d="m745 152-8 42-15 27-5 45-23 39 8-42 10-51 17-26Z"/>
+      </g>
+      <g fill="url(#wash)">
+        <path d="m805 113-18 67-29 42-10 76-27 51-21 99 9-102 20-59 5-58 29-54Z"/>
+        <path d="m583 200-18 49-21 27-18 59-35 47 15-66 22-41 19-48Z"/>
+      </g>
+    </g>
+  </g>
+
+  <g id="high-cloud-belts" fill="#9eafa3" opacity=".37">
+    <path d="m615 231q23-9 38-6 14-16 28-8l10 6q19-12 37-1l13 9 31 4-21 5 47 7-56-1-33 4-25-6-41 3-45-7 33-3Z"/>
+    <path d="m894 206q22-7 36-3 10-11 24-2l18 5q21-8 40 6l33 7-20 4 43 7-59-2-29-5-37 2-47-8 27-3Z"/>
+    <path d="m1144 354q18-14 33-6 9-21 27-12l13 10q24-12 42 2l20 12 29 1-14 5 51 7-53 3-37-5-48 3-32-4-65 6-40-8 35-3Z"/>
+  </g>
+
+  <g id="behind-columns" fill="url(#rock)">
+    <path d="m469 677 27-72 36-31 18-64 23-16 13-47 28-25 10-43 17-2 9-26 16 7 15 28 4 52 14 22 5 57 23 39 8 56 29 45 17 58 30 56v126H469Z"/>
+    <path d="m862 725 17-67 24-12 12-53 23-31 9-56 17-23 10-37 17-8 8-26 19 9 15 36 4 33 20 24 7 46 18 29 2 47 29 39 11 51 29 45 25 64 20 104H862Z"/>
+    <path fill="url(#lit)" d="m641 379 9-26 16 7 15 28 4 52 14 22 5 57 23 39-5 96-33-68-8-70-16-24-4-65Z"/>
+    <path fill="url(#lit)" d="m999 412 19 9 15 36 4 33 20 24 7 46 18 29 2 47-22-41-7-63-17-26-8-42-17-19Z"/>
+    <g opacity=".75"><use href="#pine" transform="translate(642 380) scale(.76)"/><use href="#pine-lean" transform="translate(657 354) scale(.7)"/><use href="#pine" transform="translate(988 438) scale(.65)"/></g>
+  </g>
+  <g id="deep-valley-air">
+    <ellipse cx="902" cy="655" rx="310" ry="188" fill="url(#air)"/>
+    <ellipse cx="1221" cy="502" rx="233" ry="118" fill="url(#air)"/>
+    <g fill="#a6b5a8" opacity=".29">
+      <path d="m526 465q25-6 37-18 18-15 36 3l17 5q12-12 26-3l24 10 39 8-25 4 48 7-65-1-41 5-35-7-41 4-48-7Z"/>
+      <path d="m990 574q26-8 36-28 14-14 26 1 9-27 28-14l13 17q25-15 44 7l15 8 46 6-22 5 55 7-69 2-38-6-42 5-37-6-40 5-57-8Z"/>
+    </g>
+  </g>
+
+  <g id="west-rock-wall">
+    <use href="#west" fill="url(#side)"/>
+    <g clip-path="url(#west-clip)">
+      <path fill="url(#lit)" d="m209 132 14 13 14 32 5 39 18 21 6 35 12 21 3 41 26 35 17 47 28 19 13 39 18 8 16 59 7 33 25 26 7 36 25 33-42 20-34-107-27-28-20-80-27-37-6-69-15-28-2-67-15-31-2-54-20-24Z"/>
+      <path fill="url(#wash)" d="m126 161 20-10 15 7 17-18-5 69-30 53-5 93-23 37-8 110-29 48 14-111 5-83 23-42-4-66Z"/>
+      <g fill="#172b2f" opacity=".6">
+        <path d="m214 164 6 26-3 54 17 29 5 73 13 29 4 65-13-37-7-64-12-35-2-62Z"/>
+        <path d="m258 330 10 30 1 61 19 46 4 89-12-58-18-43-2-56Z"/>
+        <path d="m310 477 9 31 1 45 17 34 8 74-13-39-8-59-12-23Z"/>
+      </g>
+    </g>
+    <use href="#pine" transform="translate(190 145) scale(1.18)"/>
+    <use href="#pine-lean" transform="translate(144 155) scale(.75)"/>
+    <use href="#pine" transform="translate(323 416) scale(.75)"/>
+  </g>
+
+  <g id="waterfall-tower">
+    <use href="#waterfall-crag" fill="url(#rock)"/>
+    <g clip-path="url(#crag-clip)">
+      <path fill="url(#lit)" d="m460 235 12 5 11 23 8 34 17 26 6 32 13 10 8 57 14 30 19 15 7 39 16 14 8 39 17 6 16 47-39 62-31-89-5-76-19-38-9-54-11-22-8-74-16-35-10-36Z"/>
+      <path fill="url(#wash)" d="m433 273-7 65-21 41-1 57-20 48-10 71-36 55 12-74 15-53 5-63 23-47 6-50Z"/>
+      <g fill="#1b3339" opacity=".65">
+        <path d="m463 272 8 26-2 39 17 37 3 60 14 29 6 91-13-58-13-27-3-69-14-35Z"/>
+        <path d="m524 441 12 27 1 52 14 34 7 74-13-48-8-27-5-56Z"/>
+        <path d="m585 577 8 20-1 53 17 41 7 70-14-40-8-48-10-32Z"/>
+      </g>
+      <path id="west-fall" fill="url(#water)" d="m490 305 13 12 5 12q-2 93 12 161l4 69q-5 66 17 126l-12 40-20-23q-7-77-8-137l-4-84q-8-92-7-176Z"/>
+      <path fill="#d4d8bc" opacity=".22" d="m495 317 4 7 1 113 6 56 2 75-4-31-4-53-5-61Z"/>
+      <path fill="#293f42" opacity=".6" d="m501 340 2 26-1 63 5 41-1 62-4-64-3-47Z"/>
+    </g>
+    <use href="#pine" transform="translate(455 251) scale(1.03)"/>
+    <use href="#pine-lean" transform="translate(430 275) scale(.85)"/>
+    <use href="#pine" transform="translate(481 263) scale(.7)"/>
+    <use href="#pine" transform="translate(593 525) scale(.65)"/>
+    <ellipse cx="537" cy="702" rx="95" ry="81" fill="url(#air)"/>
+  </g>
+
+  <g id="middle-needle">
+    <use href="#central-pillar" fill="url(#rock)"/>
+    <g clip-path="url(#pillar-clip)">
+      <path fill="url(#lit)" d="m813 363 15 6 14 21 5 38 17 26 6 54 14 23 3 32 15 25 6 48 13 23 8 60 17 31 7 55-38-16-22-59-8-75-12-29-5-82-19-39-3-67-20-23-3-38Z"/>
+      <path fill="url(#wash)" d="m774 421-6 64-14 30-7 78-15 28-4 78-38 74 14-77 8-89 14-33 7-62 16-35Z"/>
+      <g fill="#1b343a" opacity=".7">
+        <path d="m818 405 6 34-2 33 16 40 4 62 13 29 6 83-10-44-10-24-7-92-13-32Z"/>
+        <path d="m869 556 6 17 2 52 13 36 6 55-11-33-9-44Z"/>
+        <path d="m758 521-7 39-2 70-12 32 2 70 7-57 10-31-2-60Z"/>
+      </g>
+    </g>
+    <use href="#pine-lean" transform="translate(796 378) scale(.95)"/>
+    <use href="#pine" transform="translate(825 369) scale(.83)"/>
+    <use href="#pine" transform="translate(710 615) scale(.78)"/>
+    <use href="#pine-lean" transform="translate(943 750) scale(.64)"/>
+  </g>
+
+  <g id="east-escarpment">
+    <use href="#east" fill="url(#side)"/>
+    <g clip-path="url(#east-clip)">
+      <path fill="url(#lit)" d="m1293 525 17 4 10-15 18 7-6 78-19 44-6 71-27 48-9 63-31 75h-27l19-85 20-59 8-69 21-62 4-57Z"/>
+      <path fill="url(#wash)" d="m1450 541 15-22 6-37 18-13 5-40 15-19 7-39 15-16 9-44 16-18-6 86-24 42-8 80-25 57-9 94-33 72 13-91Z"/>
+      <g fill="#172f34" opacity=".62">
+        <path d="m1301 551-4 38-14 47-6 59-23 59-12 76 8-93 18-52 7-66 18-48Z"/>
+        <path d="m1479 505-8 51-15 32-5 60-19 68 7-76 12-64 14-36Z"/>
+      </g>
+      <path id="east-fall" fill="url(#water)" d="m1328 550 15-4-3 56q-3 37-19 65l-9 82q-5 48-31 87l-12 40-27 24 12-58q27-68 30-109l16-89q24-36 28-94Z"/>
+      <path fill="#ccd5be" opacity=".2" d="m1334 557 3-3-5 58-15 43-10 76-6 20 9-104 16-43Z"/>
+    </g>
+    <use href="#pine-lean" transform="translate(1357 514) scale(1.4)"/>
+    <use href="#pine" transform="translate(1383 514) scale(.9)"/>
+    <use href="#pine" transform="translate(1515 372) scale(1.02)"/>
+    <use href="#pine-lean" transform="translate(1580 229) scale(.84)"/>
+  </g>
+
+  <g id="rising-gorge-mist">
+    <ellipse cx="382" cy="731" rx="151" ry="139" fill="url(#air)"/>
+    <ellipse cx="638" cy="810" rx="186" ry="149" fill="url(#air)"/>
+    <ellipse cx="1048" cy="760" rx="180" ry="184" fill="url(#air)"/>
+    <ellipse cx="1217" cy="854" rx="167" ry="130" fill="url(#air)"/>
+    <g fill="#b0bdaa" opacity=".29">
+      <path d="m296 716q18-5 22-24 13-18 29 2 7-30 23-19 15-12 29 14l13 14q16-11 27 2l25 14-26 6 38 8-50 2-26-8-34 6-37-4-52 7-19-8Z"/>
+      <path d="m510 800q24-11 29-32 14-17 26 5 6-30 22-17 12-9 27 16l18 13q18-10 31 8l26 9-23 4 31 10-53 2-35-7-37 6-29-5-54 7-26-7Z"/>
+      <path d="m906 771q23-13 26-33 14-17 26 4 11-35 25-14 16-14 30 13l17 21q18-11 35 8l28 12-26 5 42 9-59 2-32-7-32 7-39-6-46 5-23-7Z"/>
+      <path d="m1059 859q28-15 31-41 14-21 27 0 6-40 26-19 16-17 35 17l12 22q20-12 33 10l27 12-30 6 32 9-55 3-28-8-30 8-33-6-59 7-20-9Z"/>
+    </g>
+    <path d="M0 695H1600V900H0Z" fill="url(#low-mist)"/>
+  </g>
+</svg>
