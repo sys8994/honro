@@ -15,8 +15,8 @@ function mapWithoutSodanBalance(value){const copy=plain(value);delete copy.libra
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design.js',import.meta.url),'utf8'),g);
 const firstDesign=plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline)));
-assert.deepEqual(mapWithoutSodanBalance(g.HonroCommands.apply(firstDesign,g.HonroStage36Places.commands(firstDesign))),mapWithoutSodanBalance(project),'Migration plus Stage 1–6 Workshop designs must be reproducible');
-const originalLater=plain(baseline.stages.slice(6)),activeLater=plain(project.stages.slice(6));
+assert.deepEqual(mapWithoutSodanBalance(g.HonroCommands.apply(firstDesign,g.HonroStage36Places.commands(firstDesign))),mapWithoutSodanBalance({...project,stages:project.stages.slice(0,10)}),'Migration plus Stage 1–6 Workshop designs must be reproducible');
+const originalLater=plain(baseline.stages.slice(6)),activeLater=plain(project.stages.slice(6,10));
 activeLater[3].elements.find(e=>e.kind==='ritualDais').layer='back';
 assert.deepEqual(mapWithoutSodanBalance({stages:activeLater}),mapWithoutSodanBalance({stages:originalLater}),'Stages 7–10 retain original data apart from ritual dais presentation layer');
 for(let id=1;id<=10;id++){

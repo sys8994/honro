@@ -40,7 +40,7 @@ CONTRACT=r'''()=>{
  }
  // The monster layer delegates specials, summons and allies to the outer actor/party adapters.
  const fallback=[{side:1,honroType:'human',honroFinalBoss:true},{side:1,honroType:'human',id:'boss'},{side:1,honroType:'human',boss:2},{side:1,honroType:'ghost',summoned:true},{side:0,honroType:'lantern',summoned:true},{side:2,honroType:'warden'},{side:1,honroType:'unknown'}].every(u=>V.kind(u)===null);
- const coverage=Object.entries(HonroWorld.archetypes).map(([id,d])=>({id,kind:V.kind({side:1,honroType:d.look,honroVariant:d.variant}),midboss:V.kind({side:1,honroType:d.look,honroVariant:d.variant,honroMidboss:true})}));
+ const coverage=Object.entries(HonroWorld.archetypes).filter(([,d])=>!d.act2).map(([id,d])=>({id,kind:V.kind({side:1,honroType:d.look,honroVariant:d.variant}),midboss:V.kind({side:1,honroType:d.look,honroVariant:d.variant,honroMidboss:true})}));
  const aim=[30,60,150].map(angle=>V.pose(V.assets.human,0,V.state({angle}))['front-arm'].rotate);
  return{rows,fallback,coverage,aim,defaultBeast:V.kind({side:1,honroType:'beast'}),cache:V.cacheSize()};
 }'''

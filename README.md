@@ -3,11 +3,13 @@
 본게임 RC21과 Map Workshop을 하나의 엔진·Scene·맵 모델로 통합한 정적 웹 프로젝트입니다.
 
 - 게임: 루트 `HONRO.html`을 브라우저에서 엽니다.
-- 편집기: 루트 `HONRO_WORKSHOP.html`을 엽니다. 기본 프로젝트는 Stage 1~10이며, 1·2는 목업을 반영한 숲길·분지 개편판입니다.
+- 편집기: 루트 `HONRO_WORKSHOP.html`을 엽니다. 기본 프로젝트는 Stage 1~20(1막·2막)이며, 1·2는 목업을 반영한 숲길·분지 개편판입니다.
 - 실행 자산: `assets/bgm/`을 HTML과 함께 같은 디렉터리 구조로 배포합니다. MP3는 HTML에 포함되지 않습니다.
 - 편집한 맵 실행: Workshop의 Project JSON을 내보낸 뒤 게임 타이틀의 `Workshop Map`으로 가져옵니다. 캠페인 저장과 분리해 실행합니다.
 - Playtest: 실제 게임 HUD와 조작을 사용합니다. 시작 위치·선택 유닛·현재 카메라에서 시작하고 Stop으로 편집에 복귀합니다.
 - 대화와 장부: 대화창의 `대화 기록` 또는 일시정지 메뉴의 `대화와 장부 기록`에서 지나온 장면을 다시 읽습니다. 넘긴 대화도 남으며, 장부를 읽다 저장하면 같은 쪽에서 이어집니다. [1막 이야기 구성과 검증](game/docs/STORY_REWRITE_IMPLEMENTATION_NOTES.md).
+
+2막 **울리지 않는 종**은 1막 완료 후 이어지는 10개 장입니다. 소단을 포함한 4인 동행으로 동굴마을·잠운사·묵종을 지나 생존자를 호송합니다. 여정도의 `2막` 버튼으로 해당 구간을 볼 수 있으며 각 장은 앞 장을 완료하면 열립니다. [구현·스테이지·몬스터 목록](game/docs/ACT2_IMPLEMENTATION_NOTES.md), [검증과 한계](game/docs/ACT2_QA.md). 집중 검사는 `npm.cmd run test:act2`입니다.
 
 1·2스테이지 개편의 실제 화면·작성 과정·검증은 [개편 보고서](game/docs/STAGE12_REDESIGN.md)에 있습니다. 기존 전투 저장은 보존하며 새 스테이지 진입·재시도에 새 맵을 적용합니다. Workshop에 기존 자동저장 프로젝트가 있으면 활성 [campaign.json](shared/data/campaign.json)을 Import하여 새 기본 맵을 불러올 수 있습니다.
 

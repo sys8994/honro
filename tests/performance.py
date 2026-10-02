@@ -26,7 +26,7 @@ with sync_playwright() as p:
             else:
                 load = page.evaluate('''([sid,zoom])=>{
               const a=HonroApp; a.profile.seen['map-story-v5-0']=true;
-              for(let i=1;i<=10;i++)a.profile.cleared[i]={};
+              for(let i=1;i<=HONRO_CONTENT.stages.length;i++)a.profile.cleared[i]={};
               const t=performance.now(); a.launch(sid); if(a.dialogue)HonroStory.finish(a);
               a.turnNotice=null; a.done=true;
               Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,

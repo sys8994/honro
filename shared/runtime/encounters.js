@@ -3,7 +3,7 @@ const combat=a=>!!a&&(a.type==='spawn'||a.type==='sniperAmbush'||a.type==='multi
 const spawnCount=a=>!a?0:a.type==='multi'?(a.actions||[]).reduce((n,a)=>n+spawnCount(a),0):combat(a)?a.n||1:0;
 // Applied only to newly compiled campaign battles. Saved battles keep their population and HP.
 function balance(b){
- if(b.honroCustom||b.honroEncounterRevision)return;
+ if(b.honroCustom||b.honroEncounterRevision||b.honroStage>10)return;
  const originals=b.units.filter(u=>u.side===1&&!u.boss&&!u.honroMidboss&&!u.honroFinalBoss),added=[];
  for(const u of originals){
   u.combatBaseHp=(u.combatBaseHp??u.maxHp/(G.HONRO_CORE.DIFFICULTIES[b.difficulty]?.hp||1))*.6;

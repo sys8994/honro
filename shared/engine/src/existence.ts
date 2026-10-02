@@ -19,7 +19,11 @@ const attackRows:[string,ExistenceVector][]=[
  ['HBR01 HBR02 HWD01 HMO02',mix(.82,.18,0)],
  ['HWD02 HBT01 HBT02',mix(.25,.75,0)],
  ['HCW01 HCW02',mix(.85,.15,0)],
- ['HGS01 HGS02 HLN01 HLN02 HSH01 HSH02 HMO01',mix(.04,.20,.76)]
+ ['HGS01 HGS02 HLN01 HLN02 HSH01 HSH02 HMO01',mix(.04,.20,.76)],
+ ['H2CART H2HOIST',mix(.85,.15,0)],
+ ['H2PICK',mix(.95,.05,0)],
+ ['H2WATER',mix(.12,.88,0)],
+ ['H2STONE H2RESONANCE H2ECHO H2KEEPER',mix(0,.20,.80)]
 ];
 export const ATTACK_EXISTENCE:Record<string,ExistenceVector>={};
 for(const [ids,value] of attackRows)for(const id of ids.split(' '))ATTACK_EXISTENCE[id]={...value};
@@ -45,6 +49,8 @@ export const MONSTER_EXISTENCE:Record<string,ExistenceVector>={
  human:mix(1,1,.88),hound:mix(.94,1.03,1.08),boar:mix(.96,1.03,1.08),stag:mix(.94,1.04,1.08),
  bat:mix(.90,1.06,1.10),crow:mix(.92,1.04,1.08),ghost:mix(.20,1.05,1.32),shade:mix(.24,1.05,1.28),lantern:mix(.18,1.10,1.34),
  warden:mix(.82,1.08,1.20),mourner:mix(.78,1.05,1.25),golem:mix(.83,1.06,1.23),medium:mix(1,1.08,1.16),
+ minecart:mix(1,.95,.82),picks:mix(1,.95,.82),waterwheel:mix(1,.95,.82),stoneLantern:mix(1,.95,.82),hoist:mix(1,.95,.82),keeper:mix(1,.95,.82),
+ resonance:mix(.06,.40,1.32),echo:mix(.06,.40,1.32),bellCluster:mix(.06,.40,1.32),monkVessel:mix(.06,.40,1.32),
  dummy:NEUTRAL_EXISTENCE,boss:mix(.94,1.03,1.08),
  'boss:1':mix(.80,1.05,1.15),'boss:2':mix(1,1,.80),'boss:3':mix(.72,1.15,.90),
  'boss:4':mix(.80,1.12,1.15),'boss:5':mix(1,1,.82),'boss:6':mix(.92,1.10,1),

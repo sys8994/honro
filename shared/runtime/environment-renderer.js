@@ -2,9 +2,9 @@
 const Scene=G.HonroScene,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,prepared=new WeakMap(),battleEnvironments=new WeakMap();
 const act1Images={},act1Tones=new Map();
 if(typeof Image!=='undefined')for(const [key,src] of Object.entries(G.HONRO_ACT1_FAR_DATA||{})){const img=new Image();img.src=src;act1Images[key]=img;}
-const imageReady=img=>!!(img?.complete&&img.naturalWidth),act1ImageFor=stage=>act1Images[E.act1Mood(stage)?.variant];
+const imageReady=img=>!!(img?.complete&&img.naturalWidth),act1ImageFor=stage=>act1Images[E.campaignMood(stage)?.variant];
 const act1Ready=stage=>stage===undefined?['mountains','gorge'].every(k=>imageReady(act1Images[k])):imageReady(act1ImageFor(stage));
-function tonedBackdrop(stage){const mood=E.act1Mood(stage),key=mood.variant;if(act1Tones.has(key))return act1Tones.get(key);
+function tonedBackdrop(stage){const mood=E.campaignMood(stage),key=mood.variant;if(act1Tones.has(key))return act1Tones.get(key);
  const img=act1Images[key],cv=document.createElement('canvas'),tone=E.ACT1_FAR;cv.width=img.naturalWidth;cv.height=img.naturalHeight;
  const ctx=cv.getContext('2d');ctx.filter=`saturate(${tone.saturation}) brightness(${tone.brightness[key]})`;ctx.drawImage(img,0,0);ctx.filter='none';
  ctx.globalAlpha=tone.veilOpacity;ctx.fillStyle=tone.veil;ctx.fillRect(0,0,cv.width,cv.height);act1Tones.set(key,cv);return cv;
@@ -107,8 +107,8 @@ function ensureBattle(b){if(b.honroEnvironment?.version===E.VERSION)return b.hon
  const environment={...st.environment,placements:st.environment.placements.map(e=>({...e,asset:p.library.find(a=>a.id===e.assetId)}))};
  battleEnvironments.set(b,{source:b.honroEnvironment,key,environment});return environment;
 }
-Scene.prototype.environmentTone=function(c,w,h,b){const mood=E.act1Mood(b.honroStage);if(!mood)return;c.save();c.globalCompositeOperation='multiply';c.globalAlpha*=mood.opacity;c.fillStyle=mood.tint;c.fillRect(0,0,w,h);c.restore();};
-Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),painted=E.act1Mood(b.honroStage)&&act1Ready(b.honroStage);if(painted){paintedSky(c,w,h,b,this);
+Scene.prototype.environmentTone=function(c,w,h,b){const mood=E.campaignMood(b.honroStage);if(!mood)return;c.save();c.globalCompositeOperation='multiply';c.globalAlpha*=mood.opacity;c.fillStyle=mood.tint;c.fillRect(0,0,w,h);c.restore();};
+Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),painted=E.campaignMood(b.honroStage)&&act1Ready(b.honroStage);if(painted){paintedSky(c,w,h,b,this);
   // The authored far painting replaces only the generated backdrop. Workshop
   // scenery with its own ID still uses its support, depth and camera transform.
   const custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)).map(e=>e.id));let visible=0,active=0,paths=0;

@@ -1,6 +1,7 @@
 (function(G){'use strict';
 function state(b,st){
  if(b.honroCustom)return G.HonroAuthored.objectiveState(b);
+ if(G.HonroAct2?.active(b))return G.HonroAct2.state(b);
  const hs=b.honroState||{},markers=b.honroMarkers||[],heroes=b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead&&u.hp>0),obj=b.units.find(u=>u.id==='objective'),boss=b.units.find(u=>u.id==='boss'),seals=b.terrain.filter(t=>t.honroSeal),left=seals.filter(t=>!t.broken),foes=b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0),pending=G.HonroEncounters.pending(b);const all=[];const add=(kind,id,x,y,label,extra={})=>{const t={kind,id,x,y,label,...extra};all.push(t);return t;};
  seals.forEach((t,i)=>add('seal',t.id,t.x+t.w/2,t.y,st.id===5?'절벽 고리쇠 · 설오의 화살로 파괴':st.id===8?`상여 결박 ${i+1} · 공격`:`매듭 ${i+1} · 공격`,{done:!!t.broken,box:t}));
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
@@ -47,7 +48,7 @@ const briefings={
 function lines(app){const fallback=app.engine.heroesAlive()[0]?.name||'설오';return(briefings[app.stage.id]||[]).map(([who,text,meta])=>[app.canSpeak(who)?who:fallback,text,meta]);}
 const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모두 처치할 필요는 없습니다.',2:'상여가 도착 지점에 닿도록 앞길을 엄호하세요. 길에서 떨어진 적은 남아도 됩니다.',3:'장부 곁에서 E 또는 장부 확인 버튼을 누르세요. 확보 후 한 턴 동안 일행을 지키며 철수합니다.',4:'피란민이 빠져나가는 여덟 턴 동안 문을 지키세요. 남은 적 수와 관계없이 대피가 끝나면 완료됩니다.',5:'담허로 받이진 안에서 E를 한 번 누르세요. 다음 턴부터는 그 자리에서 공격할 수 있습니다. 이동·도약으로 진을 벗어나면 물틈이 닫힙니다. 설오로 고리쇠를 부순 뒤 한 턴 동안 진을 안정시킵니다.',6:'운반대에 접근하고 교각귀를 제압한 뒤 도착 지점까지 호송하세요.',7:'주민 곁에서 E 또는 구조 버튼을 누르세요. 세 사람을 구출한 뒤 두 턴 동안 주민들을 지키며 대피를 돕습니다.',8:'결박을 끊고 빈 상여 본체를 제압하세요. 한 턴 동안 원혼을 수습하면 주변 적이 남아도 완료됩니다.',9:'두 받이진을 설치한 뒤 두 턴 동안 유지하세요. 진을 준비하고 생존하는 것이 목표입니다.',10:'두 받이진을 활성화하고 소단의 주박을 낮추세요. 협력 후 소단은 혼매듭을 붙들어 이동·공격할 수 없습니다. 매 턴 밀려드는 적을 막으며 여섯 차례의 적 턴 동안 소단을 보호하세요. 소단이 쓰러지면 실패합니다.'};
 const guideFocus=['exit','objective','interact','objective','interact','objective','interact','seal','interact','interact'];
-function entry(app){const n=(app.stage.narration||[]).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',guides[app.stage.id],{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;
+function entry(app){if(app.stage.act===2)return G.HonroAct2.entry(app);const n=(app.stage.narration||[]).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',guides[app.stage.id],{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;
  if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];const beats=(app.stage.storyFollowups||[]).map(x=>x.slice());if(remaining.length&&beats.length&&remaining.length+beats[0].length<=5)beats[0].push(...remaining);else for(let i=remaining.length;i>0;i-=5)beats.unshift(remaining.slice(Math.max(0,i-5),i));beats.forEach((lines,i)=>hs.deferredStory.push({round:2+i*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i*5,app.stage.name+' · 길 위에서',lines)}));}
  return [...opening,guide];}
 function focus(app,kind){const s=state(app.engine.b,app.stage);return s.targets.find(t=>t.kind===kind)||s.allTargets.find(t=>t.kind===kind&&!t.done)||s.allTargets.find(t=>t.kind===kind);}
@@ -63,7 +64,7 @@ function draw(scene,e){
   const x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z,visible=x>30&&x<w-30&&y>top&&y<bottom;
   if(!visible&&outside++>0)continue;
   let px=Math.max(70,Math.min(w-70,x)),py=Math.max(top,Math.min(bottom,y-26));
-  const label=(visible?'':'?? ? ')+t.label.split(' ? ')[0],width=Math.min(w-24,c.measureText(label).width+16);
+  const label=(visible?'':'화면 밖 · ')+t.label.split(' · ')[0],width=Math.min(w-24,c.measureText(label).width+16);
   if(mini&&px+width/2>mini.left-cv.left&&py-33<mini.bottom-cv.top&&py+5>mini.top-cv.top){
    if(mini.bottom-cv.top+40<bottom)py=mini.bottom-cv.top+40;
    else px=Math.max(width/2+8,mini.left-cv.left-width/2-10);

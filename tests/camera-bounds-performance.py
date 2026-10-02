@@ -15,6 +15,12 @@ with sync_playwright() as pw:
               a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});a.dialogue=null;a.turnNotice=null;
               const s=a.scene,{w,h}=s.size();s.manual=true;s.zoom(.001,w/2,h/2);
               for(let i=0;i<15;i++)s.render(a.engine,0,'',.6,false,1/60);}''',sid)
+            # Synchronous draws do not let the browser finish font decoding or
+            # present its first GPU frames. Measure steady panning after real
+            # presentation warmup, and retain that cost separately in the report.
+            warmup=page.evaluate('''async()=>{const start=performance.now();await document.fonts.ready;
+              await new Promise(resolve=>{let left=30;const warm=()=>{HonroApp.scene.render(HonroApp.engine,0,'',.6,false,1/60);if(--left)requestAnimationFrame(warm);else resolve();};requestAnimationFrame(warm);});
+              return performance.now()-start;}''')
             r=page.evaluate('''()=>new Promise(resolve=>{const a=HonroApp,s=a.scene,b=a.engine.b,times=[],start=performance.now(),
               terrainCount=b.terrain.length,nodes=b.terrain.reduce((n,t)=>n+(t.vertices?.length||4),0),builds=s.overscanStats.builds,worldBuilds=s.renderCacheStats().worldBuilds;
               const next=()=>{const i=times.length;s.x=b.width*(.5+.54*Math.sin(i/110*Math.PI*2));s.y=b.height*.6;
@@ -23,7 +29,7 @@ with sync_playwright() as pw:
                   resolve({avgMs:times.reduce((a,b)=>a+b)/times.length,p95Ms:times[104],fps:110000/elapsed,zoom:s.scale,
                     skirtBuilds:s.overscanStats.builds-builds,worldBuilds:s.renderCacheStats().worldBuilds-worldBuilds,paths:s.overscanStats.paths,
                     terrainCount,nodes,terrainStable:terrainCount===b.terrain.length&&nodes===b.terrain.reduce((n,t)=>n+(t.vertices?.length||4),0)});}};requestAnimationFrame(next);})''')
-            r.update(stage=sid,viewport=[width,height]);rows.append(r);print(json.dumps(r),flush=True)
+            r.update(stage=sid,viewport=[width,height],warmupMs=warmup);rows.append(r);print(json.dumps(r),flush=True)
             if not(r['avgMs']<7 and r['p95Ms']<12 and r['fps']>45 and r['skirtBuilds']==0 and r['worldBuilds']==0 and r['terrainStable']):failures.append(r)
         page.close()
     browser.close()

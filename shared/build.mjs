@@ -9,7 +9,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['content','story-content','terrain-space','map-engine','battlefield-layouts',
-  'progression','encounters','world','difficulty','allies','mission','objectives','combat-status','authored'];
+  'progression','encounters','world','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeParts({vector=true,render=true,app=false}={}) {
@@ -38,10 +38,11 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     parts.push('globalThis.HONRO_ACT1_FAR_DATA='+JSON.stringify(act1Backdrops)+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer'])parts.push(await read(`shared/runtime/${name}.js`));
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','act2-art'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));
+    parts.push(await read('shared/runtime/act2-journey.js'));
     for(const name of ['ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','main'])
       parts.push(await read(`shared/runtime/${name}.js`));
   }else parts.push(await read('shared/runtime/stage-rules.js'));

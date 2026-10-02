@@ -23,7 +23,7 @@
         const b = BASE[(st.id - 1) % BASE.length] || BASE[0];
         C.STAGES[st.id - 1] = { ...b, id: st.id, name: st.name, subtitle: st.goal, region: 0, local: st.id - 1, objective: (st.objective === 'escort'||st.objective==='overwatch') ? 'escort' : st.objective === 'defend' ? 'banner' : st.objective === 'boss' ? 'boss' : 'clear', boss: st.objective === 'boss', intro: '', outro: st.outro.map(x => x[1]).join(' ') };
     }
-    C.STAGES.length = 10;
+    C.STAGES.length = H.stages.length;
     function fresh() { const p = C.defaults(); for (const c of ROSTER)
         C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 4; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55 }; return p; }
     function migrateGrowth(p,revision){
@@ -302,7 +302,7 @@
             r.human(c, { cls, facing: 1, angle: 25, side: 0, x: 0 }, H.hero[cls] || H.hero.archer, false, 0, 0);
             c.restore();
         } }
-        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg"></div><header class="top"><span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap">${G.HONRO_TITLE_LOGO?`<img class="honro-logo" src="${G.HONRO_TITLE_LOGO}" alt="혼로 HONRO · 잊힌 혼들이 머무는 곳, 다시 흐르는 이야기">`:'<h1>혼로</h1>'}</div><p class="title-tagline">산도, 죽은 자도, 언젠가 다시 흐른다.</p><div class="title-actions"><button class="primary" data-action="${this.profile.honroBattle ? 'continue' : 'map'}">${this.profile.honroBattle ? '이어서 걷기' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? '<button class="ghost" data-action="map">여정도</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>첫째 막 · 연목의 매듭</span></footer></main>`; }
+        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg"></div><header class="top"><span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap">${G.HONRO_TITLE_LOGO?`<img class="honro-logo" src="${G.HONRO_TITLE_LOGO}" alt="혼로 HONRO · 잊힌 혼들이 머무는 곳, 다시 흐르는 이야기">`:'<h1>혼로</h1>'}</div><p class="title-tagline">산도, 죽은 자도, 언젠가 다시 흐른다.</p><div class="title-actions"><button class="primary" data-action="${this.profile.honroBattle ? 'continue' : 'map'}">${this.profile.honroBattle ? '이어서 걷기' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? '<button class="ghost" data-action="map">여정도</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
         stopBattle() { this.disposeAtlas(); if (this.engine && !this.training && !this.done) {
             this.profile.heroes = clone(this.engine.b.heroes);
             this.profile.honroBattle = clone(this.engine.b);
@@ -382,7 +382,7 @@
             this.stageId = st.id;
             this.training = training;
             this.stage = st;
-            if(!training)G.HonroProgression.repairRecruits(this.profile);
+            if(!training){if(st.act===2)G.HonroAct2.recruit(this.profile);G.HonroProgression.repairRecruits(this.profile);}
             const p = clone(this.profile);
             if (training) {
                 p.recruited = ROSTER.slice();
@@ -417,7 +417,7 @@
         }
         mount(b) { G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);b.honroActiveLimit=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
-            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); if (!this.training) {
+            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
@@ -439,10 +439,11 @@
             const heroes = b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
             const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
             const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
-            if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost) {
+            const act2Failure=G.HonroAct2.failure(b);
+            if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);
-                b.winnerReason = objective?.dead || rescuedResidentLost || channelerLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.';
+                b.winnerReason = act2Failure || (objective?.dead || rescuedResidentLost || channelerLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.');
                 this.dirty = true;
                 return true;
             }
@@ -504,7 +505,7 @@
                 this.profile.honroFlags['cleared-' + st.id] = true;
             }
             this.persist();
-            this.open(`<div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p><div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>${won && st.id === 10 ? '<p>첫째 막 끝. 다음 여정은 아직 열리지 않았다.</p>' : ''}<div class="actions"><button data-action="retry">다시 걷기</button><button class="primary" data-action="result-map">여정도</button></div>`, 'result');
+            this.open(`<div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p><div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 백기곡의 기록을 찾을 읍성 문서고입니다. 셋째 막은 준비 중입니다.</p>' : !won && st.act===2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}<div class="actions"><button data-action="retry">다시 걷기</button><button class="primary" data-action="result-map">여정도</button></div>`, 'result');
             this.audio?.play(won ? 'win' : 'lose');
         }
         pause() { this.cancelInput(); this.open(`<h2>잠시 머무르기</h2><div class="pause-menu"><button class="primary" data-action="close">${fa('crosshairs',17)}<span>돌아가기</span></button><button data-action="settings">${fa('gear',17)}<span>설정</span></button><button data-action="journal"><span>대화와 장부 기록</span></button><button data-action="fullscreen">${fa('expand',17)}<span>전체화면</span></button><button data-action="retry">${fa('rotateRight',17)}<span>처음부터</span></button><button data-action="map">${fa('map',17)}<span>여정도</span></button></div>`,'pause-dialog'); }

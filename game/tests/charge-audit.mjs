@@ -3,7 +3,7 @@ import {writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {runtime,battlefield,gameRoot} from './helpers.mjs';
 const g=await runtime(),C=g.HONRO_CORE,rows=[];
-const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-6,`${a} != ${b}`);
+const near=(a,b,label="")=>assert.ok(Math.abs(a-b)<1e-6,`${label}: ${a} != ${b}`);
 const {e}=battlefield(g,8),skills=Object.values(C.SKILLS).filter(s=>!s.passive&&!s.id.startsWith('H'));
 for(const s of skills){
  const original=C.makeUnit(s.cls,0,500,500,{id:'charge-probe'});
@@ -12,8 +12,8 @@ for(const s of skills){
   assert.ok(duration>0&&duration<=5);near(duration,full/480); // Current skills preserve their authored maximum reach.
   for(const seconds of [0,.1,.5,1,2,5,20]){
    const power=e.chargePower(u,s,seconds),v=e.velocity(u,s,35,power);
-   const floor={O01:.74,O04:.80,O16:.62}[s.id]||0,expected=Math.max(full*floor,Math.min(seconds*480,full));
-   near(Math.hypot(v.vx,v.vy),expected);assert.ok(power>=0&&power<=1);
+   const floor={O01:.74,O04:.80}[s.id]||0,expected=Math.max(full*floor,Math.min(seconds*480,full));
+   near(Math.hypot(v.vx,v.vy),expected,`${s.id}, tune ${tune}, seconds ${seconds}`);assert.ok(power>=0&&power<=1);
   }
   rows.push({id:s.id,cls:s.cls,tune,secondsToFull:duration,maxSpeed:full});
  }

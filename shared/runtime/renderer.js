@@ -163,7 +163,7 @@
             // nights retain the same readable combat colors in every entry point.
             if(this.environmentTone){c.save();c.setTransform(d,0,0,d,0,0);this.environmentTone(c,w,h,b);c.restore();}
             for (const a of b.honroMarkers || []) {
-                if (a.collected||a.type==='sector')
+                if (a.collected||a.type==='sector'||a.type?.startsWith('act2'))
                     continue;
                 const pulse = Math.sin(this.time * 3) * 3;
                 if (a.type === 'relic') {

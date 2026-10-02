@@ -59,6 +59,8 @@ const FINISH={L1:{haze:0,detail:1},L2:{haze:.18,detail:1},L3:{haze:.48,detail:.5
 const ACT1_FAR={saturation:.45,brightness:{mountains:.80,gorge:.76},veil:'#1b2730',veilOpacity:.08,panX:.025,panY:.0035,marginX:.022,marginY:.007};
 function act1Mood(stage){const n=Number(stage);if(!Number.isInteger(n)||n<1||n>10)return null;const t=(n-1)/9;
  return{stage:n,variant:n<6?'mountains':'gorge',tint:mixColor('#83968f','#52627e',t),opacity:.03+t*.12};}
+function campaignMood(stage){const first=act1Mood(stage);if(first)return first;const n=Number(stage);if(![11,12,20].includes(n))return null;
+ return{stage:n,variant:n===12?'gorge':'mountains',tint:n===20?'#9daca0':'#899b92',opacity:n===12?.06:.025};}
 function act1BackdropFrame(view,w,h,b,iw=1600,ih=900){const mx=w*ACT1_FAR.marginX,my=h*ACT1_FAR.marginY,
  s=Math.max((w+2*mx)/iw,(h+2*my)/ih),dw=iw*s,dh=ih*s,
  offsetX=-mx*Math.tanh(((view.x??b.width*.5)-b.width*.5)*ACT1_FAR.panX/mx),
@@ -250,5 +252,5 @@ function validate(project){const issues=[],error=text=>issues.push({level:'err',
  }
  return issues;
 }
-G.HonroEnvironment={VERSION,REFERENCE_SCALE,WORLD_UNITS_PER_METER,D0_METERS,PRESETS,SCENE_PRESETS,LAYERS,preset,depth,factor,ratio,screen,world,vectorScale,screenBounds,classifyLegacyElement,referenceForLegacyAsset,makePlacements,makeEnvironment,resize,upgradeLegacy,upgradeComposition,validate,VERTICAL_MODES,COVERAGE,FINISH,ACT1_FAR,act1Mood,act1BackdropFrame,ATMOSPHERES,ATMOSPHERE_BY_SCENE,mixColor,atmosphere,atmosphereAt,zoneWeights,assetRole,surfaceY,groupOf,supportOf,placementPosition,placementScreen,groupTransform,groupWorld,coveragePad,place,generatedAssets:()=>copy([...ENV_ASSETS,...COMPOSITION_ASSETS])};
+G.HonroEnvironment={VERSION,REFERENCE_SCALE,WORLD_UNITS_PER_METER,D0_METERS,PRESETS,SCENE_PRESETS,LAYERS,preset,depth,factor,ratio,screen,world,vectorScale,screenBounds,classifyLegacyElement,referenceForLegacyAsset,makePlacements,makeEnvironment,resize,upgradeLegacy,upgradeComposition,validate,VERTICAL_MODES,COVERAGE,FINISH,ACT1_FAR,act1Mood,campaignMood,act1BackdropFrame,ATMOSPHERES,ATMOSPHERE_BY_SCENE,mixColor,atmosphere,atmosphereAt,zoneWeights,assetRole,surfaceY,groupOf,supportOf,placementPosition,placementScreen,groupTransform,groupWorld,coveragePad,place,generatedAssets:()=>copy([...ENV_ASSETS,...COMPOSITION_ASSETS])};
 })(globalThis);

@@ -9,7 +9,7 @@ const plain=x=>JSON.parse(JSON.stringify(x)),checks=[];
 // Historical place recipes are compared independently of later combat tuning,
 // one-way platform rules, habitat props, and the authored scenery library.
 const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mid','bridge-east','lower-lookout','pier-west','pier-east','tier-low','tier-mid','tier-upper','tier-crown','ramp-1','center-lookout']);
-function withoutHistoricalSodanAttack(value){const copy=plain(value);delete copy.library;for(const stage of copy.stages||[]){delete stage.environment;stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));for(const t of stage.terrains||[])if(platformIds.has(t.id))delete t.oneWay;for(const u of stage.units||[])for(const key of ['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp'])delete u[key];}return copy;}
+function withoutHistoricalSodanAttack(value){const copy=plain(value);delete copy.library;if(copy.stages)copy.stages=copy.stages.slice(0,10);for(const stage of copy.stages||[]){delete stage.environment;stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));for(const t of stage.terrains||[])if(platformIds.has(t.id))delete t.oneWay;for(const u of stage.units||[])for(const key of ['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp'])delete u[key];}return copy;}
 function test(name,fn){try{const detail=fn();checks.push({name,pass:true,detail});console.log('PASS',name);}catch(error){checks.push({name,pass:false,error:String(error)});console.error('FAIL',name,error.message);}}
 function top(st,x){const p=st.terrains[0].points.slice(0,st.detailStats.groundTop);for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i];if(a.x<=x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('No ground at '+x);}
 function grade(st,x,width){return Math.abs(top(st,x-width/2)-top(st,x+width/2));}
@@ -19,7 +19,7 @@ const migrated=await migrate(),first=g.HonroCommands.apply(migrated,g.HonroStage
 test('Both Workshop recipes reproduce the active Stage 1–10 project',()=>assert.deepEqual(withoutHistoricalSodanAttack(g.HonroCommands.apply(first,g.HonroStage36Places.commands(first))),withoutHistoricalSodanAttack(project)));
 test('Only Stages 3–6 receive new playable geometry and 7–10 remain unchanged',()=>{
  for(const sid of[3,4,5,6]){const a=first.stages[sid-1],b=project.stages[sid-1];assert.notDeepEqual(b.terrains[0].points,a.terrains[0].points);assert.equal(b.metadata.placeRevision,1);assert(b.detailStats.groundTop>=150);}
- const later=plain(project.stages.slice(6));
+ const later=plain(project.stages.slice(6,10));
  later[3].elements.find(e=>e.kind==='ritualDais').layer='back';
  assert.deepEqual(withoutHistoricalSodanAttack({stages:later}).stages,withoutHistoricalSodanAttack({stages:migrated.stages.slice(6)}).stages);
 });

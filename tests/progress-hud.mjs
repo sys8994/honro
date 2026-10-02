@@ -4,8 +4,8 @@ import {runtime,battlefield} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),checks=[];
 function test(name,fn){try{const detail=fn();checks.push({name,pass:true,detail});console.log('PASS',name,detail||'');}catch(e){checks.push({name,pass:false,error:String(e)});console.error('FAIL',name,e);}}
 test('Stage 1 uses its reachable map exit instead of the obsolete content width',()=>{
- const {b,e,st}=battlefield(g,1),u=e.active,exit=b.honroMarkers.find(m=>m.type==='exit'),at=x=>{u.x=x;return g.HonroObjectives.state(b,st);};
- b.round=3;assert.equal(b.width,4200);assert.equal(exit.x,4050);assert(st.w-300>b.width,'Regression fixture must retain the stale content dimensions');
+ const {b,e,st:content}=battlefield(g,1),st={...content,w:b.width+2000},u=e.active,exit=b.honroMarkers.find(m=>m.type==='exit'),at=x=>{u.x=x;return g.HonroObjectives.state(b,st);};
+ b.round=3;assert.equal(b.width,g.HONRO_PROJECT.stages[0].width);assert.equal(exit.x,g.HONRO_PROJECT.stages[0].markers.find(m=>m.type==='exit').x);assert(st.w-300>b.width,'Regression fixture must retain the stale content dimensions');
  assert(!at(exit.x-121).complete);assert(at(exit.x-120).complete);const result=at(exit.x);assert(result.complete);assert.equal(result.allTargets.find(t=>t.kind==='exit').x,exit.x);assert(u.x<b.width);
  return{mapWidth:b.width,legacyWidth:st.w,exit:exit.x,requiredBefore:st.w-300};
 });

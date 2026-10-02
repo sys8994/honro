@@ -676,7 +676,7 @@ export class Engine {
         }
         if (absorbed)
             this.fx('ring', u.x, u.y - u.h * .5, '#b1daf4', 32);
-        if(p&&(dmg>0||absorbed>0)){
+        if(p&&SKILLS[p.skill]&&(dmg>0||absorbed>0)){
             const skill=SKILLS[p.skill],wave=skill.branch==='wave'||skill.id==='M01';
             if(newSkill(p)||direct&&!p.body)this.emit('sound',{name:skill.cls==='archer'?'arrowhit':skill.cls==='occultist'?'spiritImpact':wave?'qiHit':'hit'});
             if(newSkill(p)&&wave&&skill.id!=='M01')this.emit('fx',{name:'inkImpact',x:u.x,y:u.y-u.h*.5,x2:p.vx,y2:p.vy,color:'#dde0d3',size:Math.min(52,24+Math.sqrt(dmg))});
@@ -684,7 +684,7 @@ export class Engine {
         if (dmg) {
             const actual = Math.min(u.hp, dmg);
             if(!p)this.emit('sound',{name:'hit'});
-            u.hp = Math.max(this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1?1:0, u.hp - dmg);
+            u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - dmg);
             if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*.08*equippedRank(u,'SP05')));u.martialGuard={round:this.b.round,reduction:.18};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
             u.hurt = .7;
@@ -1568,7 +1568,7 @@ export class Engine {
         if (u.dead)
             return;
         const fall = Math.ceil(u.maxHp * .2);
-        u.hp = Math.max(this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1?1:0, u.hp - fall);
+        u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - fall);
         u.hurt = .7;
         this.fx('text', u.x, Math.min(this.b.height, u.y - u.h), '#efa797', 18, '−' + fall);
         if (u.hp === 0) {

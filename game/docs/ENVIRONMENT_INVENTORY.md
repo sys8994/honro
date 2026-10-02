@@ -5,9 +5,9 @@
 | Asset | 기준 높이(m) | 역할 | 접지 | 사용 깊이 | 묶음 / 수직 모드 / 구역 | 대기 표현 / 렌더링 |
 | --- | ---: | --- | --- | --- | --- | --- |
 | rock_small | 2 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| rock_large | 2 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| rock_large | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | rock_ledge | 2 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| ancient_pine | 8 | tree | 지형/지지면 필수 | L2 | landscape-L2 / WORLD / landscape | static / cached-vector |
+| ancient_pine | 8 | tree | 지형/지지면 필수 | L2, L1 | landscape-L2,  / WORLD / landscape, world | static / cached-vector |
 | dead_pine | 7.2 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | branch_thick | 2 | branch | 풍경/하늘 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | grass_tuft | 0.7 | vegetation | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -69,6 +69,12 @@
 | mockup-granite-small | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | mockup-granite-shelf | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | builtin:placeDetail | 5 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:cave-house | 3.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:temple | 5.2 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:bell | 15.5 | light | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | glow / cached-vector |
+| act2:hoist-frame | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:lamp | 1.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:ritual | 2 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 
 ## 현재 맵
 
@@ -84,6 +90,16 @@
 | stage-8 | forest / temple | 6 / 11 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
 | stage-9 | forest / forest | 6 / 8 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 7 |
 | stage-10 | forest / otherworld | 7 / 9 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
+| stage-11 | forest / forest | 13 / 1 / 0 | landscape | 1 | 1 | 0 |
+| stage-12 | valley / valley | 10 / 2 / 0 | landscape | 1 | 1 | 0 |
+| stage-13 | enclosed / enclosed | 12 / 4 / 0 | landscape | 0 | 0 | 0 |
+| stage-14 | enclosed / enclosed | 17 / 4 / 1 | upper-ridge, slope, valley-bottom | 0 | 0 | 0 |
+| stage-15 | enclosed / enclosed | 12 / 5 / 1 | landscape | 0 | 0 | 0 |
+| stage-16 | enclosed / enclosed | 13 / 2 / 0 | landscape | 0 | 0 | 0 |
+| stage-17 | enclosed / enclosed | 13 / 5 / 0 | landscape | 0 | 0 | 0 |
+| stage-18 | enclosed / enclosed | 13 / 3 / 0 | upper-ridge, slope, valley-bottom | 0 | 0 | 0 |
+| stage-19 | enclosed / enclosed | 18 / 2 / 1 | upper-ridge, slope, valley-bottom | 0 | 0 | 0 |
+| stage-20 | valley / valley | 8 / 4 / 0 | landscape | 1 | 1 | 0 |
 
 ## 코드가 생성하는 요소
 

@@ -27,7 +27,8 @@ function validate(project){
   if(!Number.isFinite(st.width)||!Number.isFinite(st.height)||st.width<=0||st.height<=0)issue('err',`${st.id}: invalid dimensions`);
   out.push(...G.HonroBounds.validate(st));
   if(!['forest','temple','gate','river','valley','bridge','tree','shrine'].includes(st.backdrop))issue('err',`${st.id}: unknown backdrop ${st.backdrop}`);
-  if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>10)issue('err',`${st.id}: stageId must be 1 through 10`);
+  // Standalone map/environment tools may load the schema without game content.
+  if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>(G.HONRO_CONTENT?.stages?.length??20))issue('err',`${st.id}: stageId must reference an implemented campaign stage`);
   const ids=unique(arrays.filter(k=>k!=='layers').flatMap(k=>st[k]||[]),st.id),terrainIds=new Set(st.terrains.map(t=>t.id));
   for(const t of st.terrains){const pts=t.type==='solid'?t.points:t.control;if(!pts||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
   for(const e of st.elements){if(!assets.has(e.assetId))issue('err',`${e.id}: missing asset ${e.assetId}`);if(!Number.isFinite(e.x)||!Number.isFinite(e.y))issue('err',`${e.id}: invalid position`);}

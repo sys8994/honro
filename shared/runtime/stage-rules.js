@@ -1,5 +1,5 @@
 (function(G){
-  const stageParty = id => ['archer',...G.HONRO_CONTENT.stages.filter(s=>s.id<id&&s.recruit).map(s=>s.recruit)];
+  const stageParty = id => [...new Set(['archer',...G.HONRO_CONTENT.stages.filter(s=>s.id<id&&s.recruit).map(s=>s.recruit),...(id>10?['occultist']:[])])];
   // RC5: preserve the original full-height Stage 2 canyon.
   function compressStage2(b){ return; }
   function addForegroundDecor(b){
