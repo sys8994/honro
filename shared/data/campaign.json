@@ -7495,7 +7495,7 @@
     {
       "id": "stage-1",
       "name": "연목 고갯길",
-      "width": 4200,
+      "width": 5400,
       "height": 2200,
       "backdrop": "forest",
       "metadata": {
@@ -7688,6 +7688,56 @@
           ]
         },
         {
+          "id": "ridge-east-extension",
+          "name": "Terrain",
+          "type": "ground",
+          "baseMaterial": "soil",
+          "breakable": false,
+          "oneWay": false,
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 1.4,
+            "seed": 43,
+            "optimizeEpsilon": 0
+          },
+          "properties": {
+            "surfaceKind": "soil"
+          },
+          "control": [
+            {
+              "x": 4200,
+              "y": 860
+            },
+            {
+              "x": 4390,
+              "y": 915
+            },
+            {
+              "x": 4590,
+              "y": 1040
+            },
+            {
+              "x": 4780,
+              "y": 1000
+            },
+            {
+              "x": 4960,
+              "y": 800
+            },
+            {
+              "x": 5180,
+              "y": 690
+            },
+            {
+              "x": 5400,
+              "y": 740
+            }
+          ],
+          "floor": 2400,
+          "thickness": 80
+        },
+        {
           "id": "pine-branch-east",
           "name": "Terrain",
           "type": "solid",
@@ -7752,6 +7802,15 @@
         }
       ],
       "materials": [
+        {
+          "id": "east-ridge-grass",
+          "terrainId": "ridge-east-extension",
+          "x1": 4910,
+          "x2": 5320,
+          "kind": "grass",
+          "depth": 38,
+          "alpha": 0.9
+        },
         {
           "id": "creek-water",
           "terrainId": "forest-floor",
@@ -8751,10 +8810,21 @@
         {
           "id": "old-pass-gate",
           "assetId": "builtin:oldGate",
-          "x": 4050,
-          "y": 889.9046515441727,
+          "x": 5210,
+          "y": 693.412752015576,
           "rotation": 0,
           "scale": 0.8,
+          "layer": "back",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "east-ridge-pine",
+          "assetId": "builtin:ancientPine",
+          "x": 5050,
+          "y": 758.7521885402724,
+          "rotation": 0,
+          "scale": 1.3,
           "layer": "back",
           "depthLayer": "L1",
           "snap": false
@@ -8978,6 +9048,61 @@
           "layer": "prop",
           "depthLayer": "L1",
           "snap": false
+        },
+        {
+          "id": "flora-20",
+          "assetId": "builtin:fernPatch",
+          "x": 4234.545454545455,
+          "y": 864.661045150121,
+          "rotation": 0,
+          "scale": 0.42,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-21",
+          "assetId": "grass_tuft",
+          "x": 4440,
+          "y": 934.746660864126,
+          "rotation": 0,
+          "scale": 0.9,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-22",
+          "assetId": "grass_tuft",
+          "x": 4641.818181818182,
+          "y": 1031.9441588956731,
+          "rotation": 0,
+          "scale": 0.9,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-23",
+          "assetId": "grass_tuft",
+          "x": 5061.538461538462,
+          "y": 750.7973590508591,
+          "rotation": 0,
+          "scale": 0.9,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-24",
+          "assetId": "builtin:fernPatch",
+          "x": 5264.615384615385,
+          "y": 705.1969402366456,
+          "rotation": 0,
+          "scale": 0.42,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
         }
       ],
       "units": [
@@ -9190,8 +9315,8 @@
           "role": "leaper",
           "cls": "knight",
           "side": 1,
-          "x": 3480,
-          "y": 1176.9876066110696,
+          "x": 4780,
+          "y": 999.8511070433843,
           "vx": 0,
           "vy": 0,
           "hp": 126,
@@ -9224,8 +9349,8 @@
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 3480,
-          "spawnY": 1176.9876066110696,
+          "spawnX": 4780,
+          "spawnY": 999.8511070433843,
           "intent": "뿔 돌진과 뿌리쐐기",
           "dead": false,
           "ranks": {
@@ -9577,8 +9702,8 @@
         {
           "id": "marker-7",
           "type": "exit",
-          "x": 4050,
-          "y": 889.9046515441727,
+          "x": 5210,
+          "y": 693.412752015576,
           "label": "고개 끝"
         }
       ],
@@ -9703,7 +9828,7 @@
         "waters": [],
         "drafts": [],
         "decor": [],
-        "width": 4200,
+        "width": 5400,
         "height": 2200,
         "vertical": false,
         "routePoints": [],
@@ -10047,7 +10172,7 @@
                 "y": -267
               },
               {
-                "x": 23287,
+                "x": 24113,
                 "y": -256
               }
             ],
@@ -10083,8 +10208,8 @@
           "y": 1437.828389584912
         },
         "exit": {
-          "x": 4050,
-          "y": 889.9046515441727
+          "x": 5210,
+          "y": 693.412752015576
         }
       },
       "design": {
@@ -10100,10 +10225,10 @@
       },
       "routes": [],
       "detailStats": {
-        "groundTop": 245,
+        "groundTop": 316,
         "branchNodes": 20,
         "solidNodes": 20,
-        "scatterCount": 20
+        "scatterCount": 25
       }
     },
     {

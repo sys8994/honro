@@ -22,8 +22,8 @@ function commands(project){
   const old=project.stages[sid-1],stageId=old.id,add=c=>out.push({stageId,...c});
   for(const key of ['terrains','elements'])for(const o of old[key])add({op:'delete',id:o.id});
   for(const o of old.materials.filter(m=>!old.terrains.some(t=>t.id===(m.terrainId||m.support))))add({op:'delete',id:o.id});
-  const st=clone(old);st.terrains=[];st.elements=[];st.materials=[];st.height=sid===1?2200:3300;
-  add({op:'world.set',height:st.height,backdrop:sid===1?'forest':'valley'});
+  const st=clone(old);st.terrains=[];st.elements=[];st.materials=[];st.height=sid===1?2200:3300;if(sid===1)st.width=5400;
+  add({op:'world.set',width:st.width,height:st.height,backdrop:sid===1?'forest':'valley'});
   const ground=(id,control,material='rock')=>{
    if(control.some((p,i)=>i&&p[0]<control[i-1][0])){
     const dense=[];for(let i=0;i<control.length-1;i++){const a=control[i],b=control[i+1],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/22);for(let j=0;j<n;j++)dense.push([a[0]+(b[0]-a[0])*j/n,a[1]+(b[1]-a[1])*j/n]);}dense.push(control.at(-1),[control.at(-1)[0],st.height+200],[control[0][0],st.height+200]);
@@ -59,6 +59,9 @@ function commands(project){
   if(sid===1){
    ground('forest-floor',[[0,1620],[260,1520],[470,1580],[640,1550],[910,1430],[1140,1470],[1350,1510],[1580,1460],[1730,1480],[1960,1530],[2180,1590],[2260,1660],[2410,1720],[2570,1720],[2740,1650],[2910,1600],[3060,1510],[3190,1450],[3320,1280],[3510,1170],[3690,1010],[3930,990],[4050,890],[4200,860]],'soil');
    branch('pine-branch-west',[[1400,1230],[1510,1280],[1710,1320],[1890,1330],[2030,1350]], [20,42,52,46,30]);
+   // A real final encounter basin and firing ridge. The original 0..4200
+   // contour stays byte-for-byte reproducible; no global coordinate scaling.
+   ground('ridge-east-extension',[[4200,860],[4390,915],[4590,1040],[4780,1000],[4960,800],[5180,690],[5400,740]],'soil');
    branch('pine-branch-east',[[2110,1180],[2240,1140],[2410,1150],[2590,1170],[2690,1140]], [40,54,54,38,18]);
    element('forest-boulder-a','mockup-granite-large',910,1580,1,'prop');
    element('forest-boulder-b','mockup-granite-small',1630,1510,.9,'prop');
@@ -66,13 +69,15 @@ function commands(project){
    element('distant-pine-west','builtin:ancientPine',560,1570,2,'back');
    element('distant-pine-east','builtin:ancientPine',3700,1130,1.8,'back');
    element('abandoned-cart','cart',1160,top(1160),1.1,'prop');
-   element('old-pass-gate','builtin:oldGate',4050,top(4050),.8,'back');
+   element('old-pass-gate','builtin:oldGate',5210,top(5210),.8,'back');
+   element('east-ridge-pine','builtin:ancientPine',5050,top(5050),1.3,'back');
+   paint('east-ridge-grass','ridge-east-extension','grass',4910,5320,38);
    water('creek-water','forest-floor',2260,2740,1660);
    paint('green-ridge','forest-floor','grass',3060,3890,165);
    paint('rock-ridge','forest-floor','rock',2860,3150,55);
-   anchors={start:{x:250},cart:{x:1160},shrine:{x:1950},lookout:{x:2530,y:top(2530,1000,'pine-branch-east'),support:'pine-branch-east'},ridge:{x:3550},woodcutter:{x:3210},exit:{x:4050}};
-   positions={'p-archer':[250,top(250)],'foe-0':[1310,top(1310)],'foe-3':[1480,top(1480)],'foe-1':[2530,800],'foe-2':[3480,top(3480)],'npc-woodcutter':[3210,top(3210)]};
-   markerPositions=[[250,0],[1160,0],[640,0],[1950,0],[1830,0],[3550,0],[3400,0],[4050,0]];
+   anchors={start:{x:250},cart:{x:1160},shrine:{x:1950},lookout:{x:2530,y:top(2530,1000,'pine-branch-east'),support:'pine-branch-east'},ridge:{x:3550},woodcutter:{x:3210},exit:{x:5210}};
+   positions={'p-archer':[250,top(250)],'foe-0':[1310,top(1310)],'foe-3':[1480,top(1480)],'foe-1':[2530,800],'foe-2':[4780,top(4780)],'npc-woodcutter':[3210,top(3210)]};
+   markerPositions=[[250,0],[1160,0],[640,0],[1950,0],[1830,0],[3550,0],[3400,0],[5210,0]];
    for(const [i,a,b,kind] of [[0,50,420,'grass'],[1,490,670,'moss'],[2,980,1250,'grass'],[3,1410,1680,'moss'],[4,1740,2010,'grass'],[5,2180,2250,'mud'],[6,2730,2830,'mud'],[7,2850,2990,'scree'],[8,3920,4190,'grass']])paint('ground-patch-'+i,'forest-floor',kind,a,b,28);
   }else{
    // Three solid masses leave the central airspace clear and the entire bier road connected.

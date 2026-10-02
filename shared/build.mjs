@@ -18,7 +18,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   const parts=['globalThis.HONRO_BGM_TRACKS='+JSON.stringify(bgm.map(f=>'assets/bgm/'+f))+';',await buildCore(), 'globalThis.HONRO_BALANCE='+await read('game/config/balance.json')+';'];
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
-  for(const name of ['environment','geometry','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
+  for(const name of ['bounds','environment','geometry','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
   parts.push('globalThis.HONRO_PROJECT='+await read('shared/data/campaign.json')+';');
   if(vector){
     await buildParty();
@@ -38,7 +38,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     parts.push('globalThis.HONRO_ACT1_FAR_DATA='+JSON.stringify(act1Backdrops)+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
-    for(const name of ['renderer','art-dark','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer'])parts.push(await read(`shared/runtime/${name}.js`));
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));

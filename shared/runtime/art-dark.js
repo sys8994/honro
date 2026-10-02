@@ -2,6 +2,7 @@
 const Scene=G.HonroScene,D=G.honroDraw,{P,L,E,glyph,glow}=D,H=G.HONRO_CONTENT,C=G.HONRO_CORE;
 const PAL={ink:'#0b171c',rim:'#718173',steel:'#73817d',cloth:'#34463f',paper:'#c2b79a',blood:'#86504e'};
 const noise=(n)=>{const x=Math.sin(n*12.9898+78.233)*43758.5453;return x-Math.floor(x);};
+G.HonroTerrainPalette=t=>t.mat==='wood'?['#544d3d','#38362f','#17282b']:t.mat==='crystal'?['#668b91','#3f6871','#17282b']:t.mat==='ice'?['#5d7878','#415f64','#17282b']:t.mat==='water'||t.surfaceKind==='wet'?['#50646a','#31474c','#152227']:t.mat==='earth'||t.surfaceKind==='soil'?['#596152','#39463f','#18282a']:t.mat==='rock'||t.surfaceKind==='rock'?['#56615f','#34413e','#17282b']:['#4b564d','#303e3a','#17282b'];
 function stroke(c,pts,col,w=1){c.beginPath();pts.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.strokeStyle=col;c.lineWidth=w;c.stroke();}
 function roof(c,x,y,w,h){P(c,[[x-w*.62,y],[x-w*.43,y-h*.18],[x-w*.24,y-h*.42],[x,y-h*.50],[x+w*.24,y-h*.42],[x+w*.43,y-h*.18],[x+w*.62,y],[x+w*.45,y-h*.09],[x-w*.45,y-h*.09]],'#192b30','#707c71',1.5);for(let i=-8;i<=8;i++){let px=x+i*w*.049;L(c,px,y-h*.11,px*.0+x+i*w*.038,y-h*.44+Math.abs(i)*h*.031,'#77817455',1.0);}L(c,x-w*.61,y,x+w*.61,y,'#969680',1.1);}
 function hall(c,x,y,w=220,h=180){c.save();c.translate(x,y);P(c,[[-w*.45,0],[-w*.4,-h*.82],[w*.40,-h*.82],[w*.45,0]],'#25342f','#15262a',2);P(c,[[-w*.45,0],[w*.45,0],[w*.5,10],[-w*.5,10]],'#5d6660');for(let i=-2;i<=2;i++){const xx=i*w*.16;L(c,xx,-h*.71,xx,-5,'#514943',7);L(c,xx-2,-h*.69,xx-2,-8,'#95856a',1.3);}for(const i of [-1,0,1]){c.fillStyle='#101d23';c.fillRect(i*w*.19-w*.066,-h*.60,w*.132,h*.52);for(let k=1;k<4;k++)L(c,i*w*.19-w*.063,-h*.61+k*16,i*w*.19+w*.063,-h*.61+k*16,'#6b6651',.7);}roof(c,0,-h*.68,w,h*.56);for(let i=0;i<3;i++)L(c,-w*.50-i*5,8+i*9,w*.50+i*5,8+i*9,'#71796a',3);c.restore();}
@@ -13,7 +14,7 @@ Scene.prototype.landmark=function(c,l){c.save();c.translate(l.x,l.y);c.scale(l.s
  else hall(c,0,0,/watchtower/i.test(k)?145:230,/watchtower/i.test(k)?240:155);c.restore();};
 Scene.prototype.terrain=function(c,t){
  const verts=C.poly(t),pts=verts.map(p=>[p.x,p.y]),wood=t.mat==='wood',ice=t.mat==='ice',seal=t.honroSeal,crystal=t.mat==='crystal',wet=t.mat==='water'||t.surfaceKind==='wet',earth=t.mat==='earth'||t.surfaceKind==='soil',rock=t.mat==='rock'||t.surfaceKind==='rock';
- const palette=wood?['#544d3d','#38362f','#17282b']:(crystal?['#668b91','#3f6871','#17282b']:(ice?['#5d7878','#415f64','#17282b']:(wet?['#50646a','#31474c','#152227']:(earth?['#596152','#39463f','#18282a']:(rock?['#56615f','#34413e','#17282b']:['#4b564d','#303e3a','#17282b'])))));
+ const palette=G.HonroTerrainPalette(t);
  let grad=c.createLinearGradient(0,t.y,0,t.y+Math.min(t.h,420));
  grad.addColorStop(0,palette[0]);grad.addColorStop(.22,palette[1]);grad.addColorStop(1,palette[2]);P(c,pts,grad,null,0);
  const left=this._staticCacheBuild?t.x:Math.max(t.x,this.x-this.canvas.clientWidth/this.scale),right=this._staticCacheBuild?t.x+t.w:Math.min(t.x+t.w,this.x+this.canvas.clientWidth/this.scale);

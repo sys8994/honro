@@ -10,7 +10,7 @@ function apply(input,commands){
  for(const original of commands){const c={...original,op:aliases[original.op]||original.op},st=p.stages.find(s=>s.id===(c.stageId||p.activeStageId));if(!st)throw Error('Stage not found');
   switch(c.op){
   case'world.set':{const changed=['width','height','backdrop'].some(k=>c[k]!==undefined&&c[k]!==st[k]);for(const k of ['width','height','backdrop','name'])if(c[k]!==undefined)st[k]=c[k];if(changed)G.HonroEnvironment.resize(st);break;}
-  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta','environment'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
+  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta','environment','camera'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
   case'object.update':{const {o}=target(st,c.id);for(const [k,v] of Object.entries(c.values||{})){if(k==='id')throw Error('Use rename to change an ID');o[k]=clone(v);}break;}
   case'asset.add':if(p.library.some(a=>a.id===c.asset?.id))throw Error('Duplicate asset '+c.asset.id);p.library.push(clone(c.asset));break;
   case'terrain.add':case'terrain.addSolid':{

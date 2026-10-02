@@ -45,7 +45,7 @@ function newProject(){return deep(HONRO_PROJECT)}
 let project=loadAutosave()||newProject(), currentTab='stage', selectedAssetId=project.library[0]?.id, selected=null, selectedNode=-1, selectedShapeIndex=-1, tool='select', materialKind='grass', placementAssetId='rock_large', unitKind='hound', eventKind='trigger', previewProject=null;
 let history=[],future=[],stageView={x:0,y:0,zoom:1},elementView={x:0,y:0,zoom:1},playState=null,drawStroke=[],paintStroke=[],solidDraft=[],elementPolygonDraft=[],scatterStamp=0,placementDepthLayer='L1',placementGroupId='',placementSupportId='';
 const dom={};
-let editorRuntime=null,editorRevision=0,overlayEnabled=true,playFrame=null,playReady=null,playSnapshot=null,previewCommandsKey=null;
+let editorRuntime=null,editorRevision=0,overlayEnabled=true,boundsEnabled=false,playFrame=null,playReady=null,playSnapshot=null,previewCommandsKey=null;
 function invalidateRuntime(){editorRuntime=null;editorRevision++}
 
 function activeProject(){return previewProject||project}
@@ -80,7 +80,7 @@ function layerLocked(st,id){return st.layers.find(l=>l.id===id)?.locked===true}
 function init(){cacheDom();bindTop();bindCanvas(dom.stageCanvas,'stage');bindCanvas(dom.elementCanvas,'element');resizeAll();addEventListener('resize',resizeAll);renderAll();requestAnimationFrame(loop)}
 function cacheDom(){Object.assign(dom,{stageCanvas:$('#stageCanvas'),stageOverlay:$('#stageOverlay'),elementCanvas:$('#elementCanvas'),playCanvas:$('#playCanvas'),status:$('#statusText'),left:$('#leftContent'),right:$('#rightContent')})}
 function bindTop(){
- $$('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));$('#overlayToggle').onchange=e=>{overlayEnabled=e.target.checked;renderStage()};$('#undoBtn').onclick=undo;$('#redoBtn').onclick=redo;
+ $$('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));$('#overlayToggle').onchange=e=>{overlayEnabled=e.target.checked;renderStage()};$('#boundsToggle').onchange=e=>{boundsEnabled=e.target.checked;renderStage()};$('#undoBtn').onclick=undo;$('#redoBtn').onclick=redo;
  $('#exportBtn').onclick=downloadProject;$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').onchange=importFile;$('#newStageBtn').onclick=createStageDialog;
  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo();return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();return}if(e.key==='Enter'){if(currentTab==='stage'&&tool==='solid')finalizeSolid();else if(currentTab==='element'&&elementTool==='polygon')finalizeElementPolygon();return}if(e.key==='Delete'||e.key==='Backspace'){if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;if(currentTab==='element'){const a=activeAsset();if(selectedNode>=0){const n=nodeByGlobal(a,selectedNode);if(n&&n.shape.points.length>3)commit('Vertex 삭제',()=>{n.shape.points.splice(n.index,1);syncAssetCollision(a);selectedNode=-1})}else if(selectedShapeIndex>=0&&a.visual.length>1)commit('Polygon 삭제',()=>{a.visual.splice(selectedShapeIndex,1);syncAssetCollision(a);selectedShapeIndex=-1});return}deleteSelection()}if(e.key==='Escape'){selected=null;selectedNode=-1;selectedShapeIndex=-1;solidDraft=[];elementPolygonDraft=[];renderAll()}})
 }
@@ -191,7 +191,7 @@ function ensureRuntime(){
  if(hidden.has('units'))b.units=[];
  if(hidden.has('events'))b.honroMarkers=[];
  b.sceneVersion+=editorRevision;
- const engine=new HONRO_CORE.Engine(b,()=>{},true),scene=new HonroScene(dom.stageCanvas);scene.manual=true;
+ const engine=new HONRO_CORE.Engine(b,()=>{},true),scene=new HonroScene(dom.stageCanvas);scene.manual=true;scene.editorView=true;
  scene.missionTargets=HonroObjectives.state(b,HONRO_CONTENT.stages[(st.metadata.stageId||1)-1]).targets;
  editorRuntime={engine,scene,profile};return editorRuntime;
 }
@@ -206,6 +206,16 @@ function renderStage(){
  if(overlayEnabled){ctx.save();ctx.translate(c.clientWidth/2,c.clientHeight/2);ctx.scale(stageView.zoom,stageView.zoom);ctx.translate(-stageView.x,-stageView.y);
   drawGridWorld(ctx,stage(),stageView);if(layerVisible(stage(),'events'))drawEvents(ctx,stage());drawSelection(ctx,stage(),'stage');if(tool==='solid'&&solidDraft.length)drawWorldDraft(ctx,solidDraft,true);if(drawStroke.length)drawWorldDraft(ctx,drawStroke);ctx.restore();if(paintStroke.length)drawTransientBand(paintStroke);}
  drawStageUI(ctx,c,stage(),stageView);
+ if(boundsEnabled)drawBounds(ctx,c,stage(),stageView);
+}
+
+function drawBounds(ctx,c,st,view){const B=HonroBounds,w=c.clientWidth,h=c.clientHeight,rows=[
+ ['Play','#e8cc82',B.play(st)],['Camera focus','#84c8e3',B.focus(st)],['Visual · tactical min','#b5a2db',B.visual(st,w,h)]];
+ ctx.save();ctx.setTransform(c._dpr||1,0,0,c._dpr||1,0,0);ctx.lineWidth=1.5;ctx.font='12px sans-serif';
+ rows.forEach(([label,color,b],i)=>{const a=HonroCamera.screen(view,w,h,{x:b.left,y:b.top}),z=view.zoom;
+  ctx.strokeStyle=color;ctx.setLineDash(i?[7,5]:[]);ctx.strokeRect(a.x,a.y,(b.right-b.left)*z,(b.bottom-b.top)*z);
+  ctx.fillStyle='#102027e8';ctx.fillRect(12,44+i*22,206,20);ctx.fillStyle=color;ctx.fillText(label,20,58+i*22);});
+ ctx.setLineDash([]);ctx.fillStyle='#d8ddd4';ctx.fillText('가로 시야 '+Math.round(w/view.zoom)+' · 최소 줌 '+Math.round(B.zoomLimits(w).min*100)+'%',20,128);ctx.restore();
 }
 
 function renderAssetPreviews(){for(const c of $$('[data-asset-preview]')){
@@ -331,6 +341,7 @@ window.HonroWorkshopAPI={
  selectStage:id=>{if(!project.stages.some(s=>s.id===id))throw Error('Missing stage');project.activeStageId=id;selected=null;stageView._fit=false;resizeAll()},
  setCamera:view=>{Object.assign(stageView,view);renderStage()},
  setOverlay:enabled=>{overlayEnabled=!!enabled;$('#overlayToggle').checked=overlayEnabled;renderStage()},
+ setBoundsOverlay:enabled=>{boundsEnabled=!!enabled;$('#boundsToggle').checked=boundsEnabled;renderStage()},
  getRuntime:()=>ensureRuntime(),render:renderStage,
  startPlaytest:from=>{switchTab('play');if(from&&from!=='start')return resetPlay(from);return playReady},stopPlaytest:stopPlay,
  getPlayApp:()=>playFrame?.contentWindow.HonroApp,

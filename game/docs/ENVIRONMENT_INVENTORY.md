@@ -74,7 +74,7 @@
 
 | 맵 | 거리 preset / atmosphere | L1 장식 / 지형 / 물 | 구역 | 풍경 묶음 | 지지면 | 배경 개체 |
 | --- | --- | --- | --- | ---: | ---: | ---: |
-| stage-1 | forest / forest | 27 / 3 / 1 | landscape | 1 | 1 | 0 |
+| stage-1 | forest / forest | 33 / 4 / 1 | landscape | 1 | 1 | 0 |
 | stage-2 | valley / valley | 35 / 9 / 3 | upper-ridge, slope, valley-bottom | 5 | 5 | 13 |
 | stage-3 | forest / forest | 28 / 8 / 1 | landscape | 3 | 3 | 6 |
 | stage-4 | forest / burned | 21 / 8 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |

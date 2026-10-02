@@ -47,6 +47,8 @@ npm.cmd run verify
 
 ## 소스와 문서
 
+플레이 경계·카메라 중심·시각 영역은 [카메라 경계 계약](game/docs/CAMERA_BOUNDS.md)을 따릅니다. 줌은 가로 전술 시야와 식별 크기로 결정하며, 맵 바깥은 충돌 없는 지형 연장으로 이어집니다. Workshop `Bounds`로 세 영역을 보고 `npm.cmd run test:camera`로 세로/가로 화면과 입력·저장·지형 연결을 검증합니다. 새 1장은 마지막 능선이 1,200만큼 확장되며 진행 중인 옛 저장은 옛 맵을 유지합니다.
+
 배경 제작은 [환경 구도·대기 시스템](game/docs/ENVIRONMENT_COMPOSITION.md)과 [전체 분류표](game/docs/ENVIRONMENT_INVENTORY.md)를 따른다. Workshop에서 Depth와 Zone/Group/Support를 선택하고 Atmosphere를 정한다. `npm run test:environment`는 수직 맵·접지·줌·물 움직임·저장과 편집을 검증한다.
 
 설오·담허·휘겸·소단은 [네 동행 제작 기준](game/docs/PARTY_ART_PIPELINE.md)의 v009를 사용한다. 시트 얼굴 형상·소단의 연보라 포인트를 유지하고 몸과 팔다리를 늘렸으며 휘겸의 어깨를 넓혔다. 갓·머리카락을 제외한 얼굴 높이는 남성 셋이 같은 수준, 소단은 약 12.5% 작게 맞췄다. 앵커는 v008과 동일한 512/541/480/511이다. 제작 입력과 경로는 `tools/party-forge/`, 공통 리그는 `shared/runtime/party-rig.js`, 생성물은 `shared/assets/party/`다. 빌드 후 `npm.cmd run test:party`로 시트/벡터·전후·머리 크기·축소·모션 검수 자료를 만들고 `_local/reports/party-forge/index.html`을 연다. 캠페인의 적 소단에도 같은 개정판을 적용한다.

@@ -25,6 +25,7 @@ function validate(project){
  }
  for(const st of project.stages){
   if(!Number.isFinite(st.width)||!Number.isFinite(st.height)||st.width<=0||st.height<=0)issue('err',`${st.id}: invalid dimensions`);
+  out.push(...G.HonroBounds.validate(st));
   if(!['forest','temple','gate','river','valley','bridge','tree','shrine'].includes(st.backdrop))issue('err',`${st.id}: unknown backdrop ${st.backdrop}`);
   if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>10)issue('err',`${st.id}: stageId must be 1 through 10`);
   const ids=unique(arrays.filter(k=>k!=='layers').flatMap(k=>st[k]||[]),st.id),terrainIds=new Set(st.terrains.map(t=>t.id));

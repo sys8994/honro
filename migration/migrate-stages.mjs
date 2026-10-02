@@ -19,7 +19,7 @@ export async function legacyRuntime(){
  for(const f of ['content','terrain-space','map-engine','battlefield-layouts','progression','encounters'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
  for(const f of ['rc21-stage-maps','rc21-world'])vm.runInContext(await read(`migration/legacy/${f}.js`),g);
  for(const f of ['difficulty','allies','mission','stage-rules','objectives','combat-status'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
- for(const f of ['environment','schema','units'])vm.runInContext(await read(`shared/map/${f}.js`),g);
+ for(const f of ['bounds','environment','schema','units'])vm.runInContext(await read(`shared/map/${f}.js`),g);
  return g;
 }
 export async function migrate(){

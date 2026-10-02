@@ -74,7 +74,7 @@
             this.canvas.height = Math.round(h * d);
         } return { w, h, d }; }
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
-        zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(); this.scale = Math.max(.16, Math.min(1.65, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; this.manual = true; }
+        zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         _worldRasterScale(b,w){const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;this.landmark?.(c,l);}c.restore();}
@@ -97,6 +97,10 @@
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
+            // A resize preserves horizontal world span, bounded by readability.
+            // Editor inspection and skill demonstrations may use wider views.
+            if(!this.editorView&&!this.skillPreview&&this._cameraWidth&&this._cameraWidth!==w){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,Math.min(limits.max,this.scale*w/this._cameraWidth));}
+            this._cameraWidth=w;
             this.time += effectDt;
             const walkDt=effectDt>0?dt:0;this.walkTime=(this.walkTime||0)+walkDt;
             this.archerVisual?.update(e,this.time,walkDt);
@@ -126,7 +130,7 @@
                 if(raw>=1){if(tw.kind==='unit'){this.storyTween={...tw,from:to,to,duration:1,start:now-1};}else{this.manual=!!tw.manual;this.storyTween=null;}}
             }
             if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
-            else if(!this.storyTween&&!this.skillPreview){this.x = this.cameraAxis(this.x,w/this.scale,-40,b.width+40);this.y = this.cameraAxis(this.y,h/this.scale,-220,b.height);}
+            else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}
             if(this.background)this.background(c,w,h,b);
             // Weather particles are L5 screen effects; their animation is separate
             // from finite scenery projection and battlefield camera movement.
@@ -139,7 +143,7 @@
             c.translate(w / 2, h / 2);
             c.scale(this.scale, this.scale);
             c.translate(-this.x, -this.y);
-            this.outsideTerrain(c,b,{left:this.x-w/(2*this.scale),right:this.x+w/(2*this.scale),bottom:this.y+h/(2*this.scale)});
+            this.terrainSkirt(c,b,w,h);
             // Static scenery is by far the dominant cost on detailed maps. At normal/zoomed-out
             // views rasterize it once per sceneVersion; keep live vectors only for close inspection.
             if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w);}else{
@@ -232,23 +236,6 @@
         }
         cameraAxis(center,span,min,max){return G.HonroCamera.axis(center,span,min,max);}
         activeMarker(c,u,y){const z=1/Math.max(.16,this.scale||1),lift=Math.sin(this.time*3)*2*z;c.save();c.translate(u.x,y-10*z+lift);glow(c,0,-18*z,24*z,'#f0d69d',.24);P(c,[[-7*z,-35*z],[7*z,-35*z],[7*z,-19*z],[15*z,-19*z],[0,0],[-15*z,-19*z],[-7*z,-19*z]],'#f4d793','#102025',2*z);c.restore();}
-        outsideTerrain(c,b,view){
-            // Scenery beyond the simulation rectangle. These meshes never enter
-            // b.terrain, collision indexing, AI navigation or projectile physics.
-            const edgeY=x=>{const hits=b.terrain.filter(t=>!t.broken&&x>=t.x-1&&x<=t.x+t.w+1).flatMap(t=>G.HONRO_CORE.terrainSurfaces(t,x).map(h=>h.y));return hits.length?Math.min(...hits):b.height*.7;};
-            for(const side of [-1,1]){
-                const edge=side<0?0:b.width,extent=side<0?Math.max(0,-view.left):Math.max(0,view.right-b.width);
-                if(!extent)continue;
-                const y0=edgeY(edge),step=240,top=d=>y0-55*Math.sin(d/480)-28*Math.sin(d/173);
-                const points=[[edge,y0]];
-                for(let d=step;d<extent+step*2;d+=step)points.push([edge+side*d,top(d)]);
-                const bottom=Math.max(b.height+400,view.bottom+300),last=points.at(-1);
-                const grad=c.createLinearGradient(0,y0,0,y0+380);grad.addColorStop(0,'#465047');grad.addColorStop(.18,'#303c38');grad.addColorStop(1,'#192b2c');
-                P(c,[...points,[last[0],bottom],[edge,bottom]],grad);
-                c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle='#8f9a8175';c.lineWidth=1.45;c.stroke();
-            }
-            if(view.bottom>b.height){c.fillStyle='#192b2c';c.fillRect(Math.min(0,view.left),b.height,Math.max(b.width,view.right)-Math.min(0,view.left),Math.max(0,view.bottom-b.height));}
-        }
         chargeFx(engine,power,charging){
       const u = engine && engine.active;
       if(!charging || !u) return;

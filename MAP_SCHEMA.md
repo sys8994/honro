@@ -1,6 +1,6 @@
-# Canonical map schema v3
+# Canonical map schema v4
 
-게임·편집기·Agent·JSON 저장은 `schema: "honro-map", version: 3` Project 하나를 사용합니다. 구현은 `shared/map/schema.js`이며 작성 좌표를 반올림하지 않습니다.
+게임·편집기·Agent·JSON 저장은 `schema: "honro-map", version: 4` Project 하나를 사용합니다. 구현은 `shared/map/schema.js`이며 작성 좌표를 반올림하지 않습니다.
 
 Project: `schema/version/name/activeStageId/settings/library/stages`. Settings는 `grid/snap/autosave` 등을 포함합니다. Stage를 만들 때는 `HonroMaps.emptyStage(id,name,width,height)`를 사용합니다. 실제 프로젝트에는 active Stage가 있어야 합니다.
 
@@ -10,6 +10,7 @@ Project: `schema/version/name/activeStageId/settings/library/stages`. Settings�
 |---|---|
 | `id/name/width/height` | 안정 ID, 이름, 월드 크기 |
 | `backdrop` | forest/temple/gate/river/valley/bridge/tree/shrine |
+| `camera.focusBounds?` | 선택적 `{left,top,right,bottom}`. Play Bounds를 포함하는 카메라 중심 범위. viewport·충돌 범위가 아님. |
 | `metadata` | `stageId:1..10` 수치·콘텐츠 문맥, `campaign` 기존 임무 사용 여부 |
 | `terrains/materials/elements/units` | 지형·표면 재질·요소 instance·실제 유닛 |
 | `events/encounters/objectives/markers` | 트리거·적 그룹·목표·상호작용 |
@@ -17,7 +18,7 @@ Project: `schema/version/name/activeStageId/settings/library/stages`. Settings�
 | `initialState` | 이전된 캠페인의 초기 환경·임무 상태 |
 | `anchors/routes/design/detailStats/meta` | 원본 배치·경로·설계·노트 |
 
-좌표는 px, 오른쪽 +x, 아래쪽 +y이며 유닛은 발 기준입니다. Object ID는 한 Stage의 콘텐츠 컬렉션 사이에서 유일합니다. Stage와 Library ID도 각각 유일합니다.
+좌표는 world unit, 오른쪽 +x, 아래쪽 +y이며 유닛은 발 기준입니다. Object ID는 한 Stage의 콘텐츠 컬렉션 사이에서 유일합니다. Stage와 Library ID도 각각 유일합니다. width/height는 Play Bounds를 정합니다. 카메라 중심·visual overscan은 [별도 경계 계약](game/docs/CAMERA_BOUNDS.md)을 따르며 저장 지형을 늘리지 않습니다.
 
 - `solid`: `points:[{x,y},...]`에 정확한 닫힌 다각형. 동굴·천장·overhang도 실제 엔진 충돌을 사용합니다.
 - `ground/platform`: `control`, `detail:{spacing,roughness,seed,optimizeEpsilon,interpolation?}`, `floor/thickness`. 공통 결정적 생성기를 사용합니다.

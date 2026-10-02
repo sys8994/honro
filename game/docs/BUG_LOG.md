@@ -1,5 +1,16 @@
 # HONRO 게임 버그 기록
 
+## HBUG-075 · 플레이·카메라·시각 경계 분리와 전술 줌 — 2026-10-03
+
+- 확인된 원인: 실제 하한은 map height가 아니라 화면 비율에 무관한 `Scene.zoom()`의 0.16이었다. 별도 viewport confiner가 큰 축을 중앙에 고정했다. 모든 스테이지의 `outsideTerrain()`이 반복된 외곽 평지와 단색 하단 사각형을 그렸으며, 활성 10개 맵에 카메라용 fake collision terrain은 없었다. 실제 게임 지형을 더미로 간주해 삭제하지 않았다.
+- 경계·카메라: `shared/map/bounds.js`의 `play/focus/visual/zoomLimits`를 공통 계약으로 추가했다. Play는 기존 width/height이며 focus는 카메라 중심만 제한한다. 줌은 가로 4,200 목표와 최소 일반 적 66 world / 7px 식별성으로 결정한다. 너비 390은 가로 약 3,677, 너비 320은 약 3,017을 보며 화면 높이는 제한식에 없다. 회전은 가로 world span을 유지한다. 선택적 `stage.camera.focusBounds`는 v4 export/import·commands·compiler를 통해 `b.honroCamera`로 전달되며 옛 저장에는 기본값을 계산할 뿐 필드를 덧쓰지 않는다.
+- 최종 시각 처리: `terrain-skirt.js`가 실제 하단 단면을 읽어 지하 암반을 연결한다. 좌우는 끝의 높이·안쪽 기울기·팔레트를 이어받는 큰 비탈/능선이며 멀어질수록 안개·낮은 대비로 이어진다. 사용자 피드백에 따라 모든 맵을 절벽 꼭대기에 고립시키는 방식은 사용하지 않는다. 원경 SVG·SKY 미세 시차·밤톤·L1–L4 투영은 유지한다. 실제 geometry·collision·AI·projectile 경계를 추가하지 않는다. 얇은 겹침으로 정적 래스터 경계의 밝은 틈을 제거하고 경로를 캐시했다.
+- 맵 설계: 전체 맵 크기·임무·동선을 검토했다. 1장은 동쪽에 `ridge-east-extension` 한 개를 추가해 4,200→5,400으로 넓혔다. 최종 적 x=4780, 출구·문 x=5210을 새 분지와 능선에 배치했다. 기존 지형·초반 좌표·전투 수치·보상은 보존한다. 2–10장은 기존 호송 거리·수직 구조·방어 거리를 유지하며 모든 게임플레이 데이터 hash가 기존과 같다. 1장 원래 terrain 레코드도 hash가 같다. 옛 전투는 옛 크기·출구로 끝내고 새 시작/재시도만 확장판을 쓴다. 레시피 재현과 환경 분류표를 갱신했다.
+- 편집·지침: Workshop `Bounds`가 Play / Camera focus / 게임 최소 줌의 Visual 영역을 구분한다. `AGENTS.md`, 환경 스킬, `MAP_SCHEMA.md`, `CAMERA_BOUNDS.md`에 제작 순서와 더미 금지·portrait·지형 연장 원칙을 명시했다. 자동 조준 framing은 추가하지 않아 수동 pan과 기존 발사탄·대사 카메라를 유지한다.
+- 검증: 두 HTML 빌드, `tests/camera-bounds.mjs` 5건(수식·임의 높이·초점 저장·1장 왕복/승리·1,200 이상 장거리 곡사·외곽 궤적 불변), `tests/camera-bounds-browser.py` 68건, 마이그레이션 10개 맵, 통합 47건, 환경 1,224개 조건·40개 극단 화면·49개 구도 화면이 통과했다. 실제 wheel/drag/pinch·회전, 10맵×4 viewport, 옛 1장 저장·HP·진행 유지, 바깥 탄 추적·Game/Stage View/Playtest 일치와 브라우저 오류 0건을 확인했다. 새 브라우저 검사는 `npm run test:camera`로 실행하며 루트 통합 검사에 포함했다. [화면·수치](../../_local/reports/camera-bounds/index.html), [설계와 맵별 판단](CAMERA_BOUNDS.md).
+- 성능: 다른 브라우저 검사 없이 순차 측정한 최소 전술 줌·이동 16조건이 통과했다(최저 46.36fps, 렌더 p95 최대 3.60ms). 이동 중 skirt/world 캐시 재생성·게임 지형 노드 증가는 없었다. 기존 환경 18조건은 첫 측정에서 1장/1280×720만 44.40fps로 기준 45fps에 미달했다. 원본을 `camera-bounds/environment-performance-first.json`에 보존하고 조건·임계값 변경 없이 한 번 재측정해 18조건이 통과했다(최저 45.08fps, p95 최대 3.50ms). 최종 수치는 `camera-bounds/performance.json`과 `environment-performance-final.json`에 있다. 첫 조건은 기준에 가까워 안정적인 60fps를 보장하지 않는다.
+- 전체 검사 한계: 전체 `npm run verify`는 기존 HBUG-069~074와 같은 `tests/stage12-redesign.mjs`의 수중 번개 검사(`branch` 접근)에서 실패했다. 별도 관련 검사 통과를 전체 verify 통과로 표현하지 않는다. 이동/임무 검사는 적을 분리한 재현도 포함하며 수동 캠페인 완주·실제 모바일 GPU 측정은 아니다. 작은 portrait의 최소 줌은 몸체 식별용이며 얼굴/복식 확인에는 확대가 필요하다.
+
 ## HBUG-074 · F 방어·행동 종료 단축키와 배경 제작 지침 — 2026-10-02
 
 - 요청·원인: 승인된 HBUG-073 배경을 먼저 `e8777a5`로 커밋했다. 사용자는 이후 같은 배경 제작 방식을 지속할 지침과 데스크톱 F 방어 단축키를 요청했다. 기존 방어 버튼은 회복·보호막·행동 종료를 처리했지만 키보드 바인딩이 없었다.

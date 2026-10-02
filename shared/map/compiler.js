@@ -25,7 +25,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  Object.assign(b,{stage:sid,honroStage:sid,honroRevision:20,honroMapRevision:20,honroLayoutRevision:G.HonroLayouts.revision,
   honroCanonical:true,honroAuthoredId:st.id,honroCustom:st.metadata?.campaign!==true,honroBackdrop:st.backdrop,
   honroEnvironment:{...clone(st.environment),placements:st.environment.placements.map(e=>({...clone(e),asset:clone(project.library.find(a=>a.id===e.assetId))}))},
-  mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,
+  mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,honroCamera:clone(st.camera||{}),
   difficulty:profile.settings.difficulty,heroes:clone(profile.heroes),startXP:Object.fromEntries(Object.entries(profile.heroes).map(([c,h])=>[c,h.xp])),
   session:'honro-map-'+st.id+'-'+Date.now(),sceneVersion:st.initialState?.sceneVersion??80,
   terrain:map.terrain,honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,

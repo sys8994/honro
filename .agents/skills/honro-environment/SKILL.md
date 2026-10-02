@@ -19,6 +19,16 @@ description: HONRO에서 사용자가 준 일러스트를 SVG 배경으로 재�
 - 스테이지가 진행될수록 전체 풍경의 색을 조금씩 차갑고 어둡게 해 밤이 깊어지도록 한다. `act1Mood`의 공통 색상 패스를 재사용하고 캐릭터·조준선·탄·목표 표시·HUD의 가독성을 유지한다. variation이 바뀌는 경계에서도 갑자기 밝아지지 않게 직접 비교한다. 새 막의 시간대·분위기를 사용자가 지정하면 그 설정에 맞춘다.
 - 원본 SVG와 실제 적용 화면을 모두 확인한다. 스테이지별 비교, 배정 경계, 수평/수직 이동, 확대/축소, 세로 화면 크롭, L1 구분, 캐릭터·조준선 가독성을 검토한다. 같은 소스·카메라에서 세 실행 화면이 일치하는지 확인하고, 테스트 실패·성능 변동은 통과 결과와 구분해 기록한다.
 
+## 플레이 경계·카메라·시각 여유
+
+- **Camera viewport is allowed to extend outside the playable map. Never create gameplay dummy terrain only to satisfy camera zoom bounds.**
+- 제작 순서는 **실제 gameplay terrain 설계 → Play Bounds 정의 → Camera Focus Bounds 확인 → max tactical zoom 계산 → Visual Overscan coverage 확인 → natural edge / terrain skirt → portrait + landscape 검증**이다.
+- 기준은 `shared/map/bounds.js`의 `HonroBounds`와 `game/docs/CAMERA_BOUNDS.md`다. Play는 width/height의 게임 좌표계, focus는 카메라 중심 범위, visual은 viewport·최소 줌에서 계산한다. focus/visual을 collision·spawn·projectile 경계로 사용하지 않는다.
+- 전술 줌은 가로 world 시야와 최소 actor 식별 크기로 제한한다. 맵 높이나 viewport 전체를 맵 안에 넣는 조건으로 막지 않는다. X/Y는 같은 배율이며 원경 깊이·패럴랙스 체계를 재작성하지 않는다.
+- 실제 지형 확장은 전투 선택지·동선으로 설계한다. 전체 좌표를 확대하거나 바깥을 평지 더미로 채우지 않는다. 기존 지형과 진행 중인 전투를 보존하고 새 맵 배정을 검증한다.
+- 좌우는 실제 끝의 높이·기울기·팔레트를 이어받는 시각 전용 산비탈·능선 extension을 기본으로 한다. 모든 맵을 절벽 꼭대기에 고립시키지 않는다. 바깥으로 갈수록 안개와 낮은 대비로 연결한다. 하단 암반과 함께 `terrain-skirt.js`의 공통 캐시를 쓰고 geometry를 `b.terrain`이나 저장에 추가하지 않는다. 공중 발판 아래 통로·물리를 메우지 않는다.
+- Workshop `Bounds`와 `npm run test:camera`로 전 맵의 desktop landscape·mobile landscape·portrait·긴 portrait를 확인한다. 실제 pan/zoom·연결·식별성·coverage를 보고, 성능 검사는 `tests/camera-bounds-performance.py`를 단독 실행한다.
+
 ## 조사와 배치
 
 1. README·AGENTS·BUGFIX_CONTEXT·BUG_LOG의 관련 항목을 읽는다. 활성 맵 `shared/data/campaign.json`과 `shared/data/elements.json`에서 지형, 카메라 범위, 기존 에셋과 현재 구역을 확인한다.

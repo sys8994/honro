@@ -16456,6 +16456,28 @@ G.HonroCamera={
 })(globalThis);
 
 (function(G){'use strict';
+// Simulation keeps its existing 0..width / 0..height coordinates. Neither
+// camera focus nor visual coverage is a collision or projectile boundary.
+const POLICY=Object.freeze({desiredTacticalWorldWidth:4200,minActorScreenHeight:7,
+ smallestActorWorldHeight:66,maxZoom:1.65,focusSide:320,focusAbove:1800,focusBelow:240,overscanMargin:240});
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function play(source){return{left:0,top:0,right:source.width,bottom:source.height};}
+function focus(source){const p=play(source),authored=(source.camera||source.honroCamera)?.focusBounds;
+ return authored?{...authored}:{left:p.left-POLICY.focusSide,top:p.top-POLICY.focusAbove,right:p.right+POLICY.focusSide,bottom:p.bottom+POLICY.focusBelow};}
+function zoomLimits(width){const tactical=Math.max(1,width)/POLICY.desiredTacticalWorldWidth,
+ readability=POLICY.minActorScreenHeight/POLICY.smallestActorWorldHeight;
+ return{min:Math.min(POLICY.maxZoom,Math.max(tactical,readability)),max:POLICY.maxZoom,tactical,readability};}
+function viewport(view,w,h){const z=view.scale??view.zoom;return{left:view.x-w/(2*z),right:view.x+w/(2*z),top:view.y-h/(2*z),bottom:view.y+h/(2*z)};}
+function visual(source,w,h,scale=zoomLimits(w).min){const f=focus(source),z=Math.min(scale,zoomLimits(w).min),
+ mx=w/(2*z)+POLICY.overscanMargin,my=h/(2*z)+POLICY.overscanMargin;
+ return{left:f.left-mx,right:f.right+mx,top:f.top-my,bottom:f.bottom+my};}
+function constrain(view,source){const f=focus(source);view.x=clamp(view.x,f.left,f.right);view.y=clamp(view.y,f.top,f.bottom);return view;}
+function validate(st){const f=st.camera?.focusBounds;if(!f)return[];const p=play(st),valid=['left','right','top','bottom'].every(k=>Number.isFinite(f[k]))&&f.left<=p.left&&f.right>=p.right&&f.top<=p.top&&f.bottom>=p.bottom;
+ return valid?[]:[{level:'err',text:st.id+': camera.focusBounds must be finite and contain Play Bounds'}];}
+G.HonroBounds={POLICY,play,focus,zoomLimits,viewport,visual,constrain,validate};
+})(globalThis);
+
+(function(G){'use strict';
 // World coordinates remain the game's existing units. A 1.8 m actor is roughly
 // 108 world units; only scenery authored in metres uses this conversion.
 const REFERENCE_SCALE=.66,WORLD_UNITS_PER_METER=60,D0_METERS=18;
@@ -16783,6 +16805,7 @@ function validate(project){
  }
  for(const st of project.stages){
   if(!Number.isFinite(st.width)||!Number.isFinite(st.height)||st.width<=0||st.height<=0)issue('err',`${st.id}: invalid dimensions`);
+  out.push(...G.HonroBounds.validate(st));
   if(!['forest','temple','gate','river','valley','bridge','tree','shrine'].includes(st.backdrop))issue('err',`${st.id}: unknown backdrop ${st.backdrop}`);
   if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>10)issue('err',`${st.id}: stageId must be 1 through 10`);
   const ids=unique(arrays.filter(k=>k!=='layers').flatMap(k=>st[k]||[]),st.id),terrainIds=new Set(st.terrains.map(t=>t.id));
@@ -16875,7 +16898,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  Object.assign(b,{stage:sid,honroStage:sid,honroRevision:20,honroMapRevision:20,honroLayoutRevision:G.HonroLayouts.revision,
   honroCanonical:true,honroAuthoredId:st.id,honroCustom:st.metadata?.campaign!==true,honroBackdrop:st.backdrop,
   honroEnvironment:{...clone(st.environment),placements:st.environment.placements.map(e=>({...clone(e),asset:clone(project.library.find(a=>a.id===e.assetId))}))},
-  mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,
+  mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,honroCamera:clone(st.camera||{}),
   difficulty:profile.settings.difficulty,heroes:clone(profile.heroes),startXP:Object.fromEntries(Object.entries(profile.heroes).map(([c,h])=>[c,h.xp])),
   session:'honro-map-'+st.id+'-'+Date.now(),sceneVersion:st.initialState?.sceneVersion??80,
   terrain:map.terrain,honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,
@@ -16928,7 +16951,7 @@ function apply(input,commands){
  for(const original of commands){const c={...original,op:aliases[original.op]||original.op},st=p.stages.find(s=>s.id===(c.stageId||p.activeStageId));if(!st)throw Error('Stage not found');
   switch(c.op){
   case'world.set':{const changed=['width','height','backdrop'].some(k=>c[k]!==undefined&&c[k]!==st[k]);for(const k of ['width','height','backdrop','name'])if(c[k]!==undefined)st[k]=c[k];if(changed)G.HonroEnvironment.resize(st);break;}
-  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta','environment'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
+  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta','environment','camera'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
   case'object.update':{const {o}=target(st,c.id);for(const [k,v] of Object.entries(c.values||{})){if(k==='id')throw Error('Use rename to change an ID');o[k]=clone(v);}break;}
   case'asset.add':if(p.library.some(a=>a.id===c.asset?.id))throw Error('Duplicate asset '+c.asset.id);p.library.push(clone(c.asset));break;
   case'terrain.add':case'terrain.addSolid':{
@@ -24497,7 +24520,7 @@ globalThis.HONRO_PROJECT={
     {
       "id": "stage-1",
       "name": "연목 고갯길",
-      "width": 4200,
+      "width": 5400,
       "height": 2200,
       "backdrop": "forest",
       "metadata": {
@@ -24690,6 +24713,56 @@ globalThis.HONRO_PROJECT={
           ]
         },
         {
+          "id": "ridge-east-extension",
+          "name": "Terrain",
+          "type": "ground",
+          "baseMaterial": "soil",
+          "breakable": false,
+          "oneWay": false,
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 1.4,
+            "seed": 43,
+            "optimizeEpsilon": 0
+          },
+          "properties": {
+            "surfaceKind": "soil"
+          },
+          "control": [
+            {
+              "x": 4200,
+              "y": 860
+            },
+            {
+              "x": 4390,
+              "y": 915
+            },
+            {
+              "x": 4590,
+              "y": 1040
+            },
+            {
+              "x": 4780,
+              "y": 1000
+            },
+            {
+              "x": 4960,
+              "y": 800
+            },
+            {
+              "x": 5180,
+              "y": 690
+            },
+            {
+              "x": 5400,
+              "y": 740
+            }
+          ],
+          "floor": 2400,
+          "thickness": 80
+        },
+        {
           "id": "pine-branch-east",
           "name": "Terrain",
           "type": "solid",
@@ -24754,6 +24827,15 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "materials": [
+        {
+          "id": "east-ridge-grass",
+          "terrainId": "ridge-east-extension",
+          "x1": 4910,
+          "x2": 5320,
+          "kind": "grass",
+          "depth": 38,
+          "alpha": 0.9
+        },
         {
           "id": "creek-water",
           "terrainId": "forest-floor",
@@ -25753,10 +25835,21 @@ globalThis.HONRO_PROJECT={
         {
           "id": "old-pass-gate",
           "assetId": "builtin:oldGate",
-          "x": 4050,
-          "y": 889.9046515441727,
+          "x": 5210,
+          "y": 693.412752015576,
           "rotation": 0,
           "scale": 0.8,
+          "layer": "back",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "east-ridge-pine",
+          "assetId": "builtin:ancientPine",
+          "x": 5050,
+          "y": 758.7521885402724,
+          "rotation": 0,
+          "scale": 1.3,
           "layer": "back",
           "depthLayer": "L1",
           "snap": false
@@ -25980,6 +26073,61 @@ globalThis.HONRO_PROJECT={
           "layer": "prop",
           "depthLayer": "L1",
           "snap": false
+        },
+        {
+          "id": "flora-20",
+          "assetId": "builtin:fernPatch",
+          "x": 4234.545454545455,
+          "y": 864.661045150121,
+          "rotation": 0,
+          "scale": 0.42,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-21",
+          "assetId": "grass_tuft",
+          "x": 4440,
+          "y": 934.746660864126,
+          "rotation": 0,
+          "scale": 0.9,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-22",
+          "assetId": "grass_tuft",
+          "x": 4641.818181818182,
+          "y": 1031.9441588956731,
+          "rotation": 0,
+          "scale": 0.9,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-23",
+          "assetId": "grass_tuft",
+          "x": 5061.538461538462,
+          "y": 750.7973590508591,
+          "rotation": 0,
+          "scale": 0.9,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
+        },
+        {
+          "id": "flora-24",
+          "assetId": "builtin:fernPatch",
+          "x": 5264.615384615385,
+          "y": 705.1969402366456,
+          "rotation": 0,
+          "scale": 0.42,
+          "layer": "prop",
+          "depthLayer": "L1",
+          "snap": false
         }
       ],
       "units": [
@@ -26192,8 +26340,8 @@ globalThis.HONRO_PROJECT={
           "role": "leaper",
           "cls": "knight",
           "side": 1,
-          "x": 3480,
-          "y": 1176.9876066110696,
+          "x": 4780,
+          "y": 999.8511070433843,
           "vx": 0,
           "vy": 0,
           "hp": 126,
@@ -26226,8 +26374,8 @@ globalThis.HONRO_PROJECT={
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 3480,
-          "spawnY": 1176.9876066110696,
+          "spawnX": 4780,
+          "spawnY": 999.8511070433843,
           "intent": "뿔 돌진과 뿌리쐐기",
           "dead": false,
           "ranks": {
@@ -26579,8 +26727,8 @@ globalThis.HONRO_PROJECT={
         {
           "id": "marker-7",
           "type": "exit",
-          "x": 4050,
-          "y": 889.9046515441727,
+          "x": 5210,
+          "y": 693.412752015576,
           "label": "고개 끝"
         }
       ],
@@ -26705,7 +26853,7 @@ globalThis.HONRO_PROJECT={
         "waters": [],
         "drafts": [],
         "decor": [],
-        "width": 4200,
+        "width": 5400,
         "height": 2200,
         "vertical": false,
         "routePoints": [],
@@ -27049,7 +27197,7 @@ globalThis.HONRO_PROJECT={
                 "y": -267
               },
               {
-                "x": 23287,
+                "x": 24113,
                 "y": -256
               }
             ],
@@ -27085,8 +27233,8 @@ globalThis.HONRO_PROJECT={
           "y": 1437.828389584912
         },
         "exit": {
-          "x": 4050,
-          "y": 889.9046515441727
+          "x": 5210,
+          "y": 693.412752015576
         }
       },
       "design": {
@@ -27102,10 +27250,10 @@ globalThis.HONRO_PROJECT={
       },
       "routes": [],
       "detailStats": {
-        "groundTop": 245,
+        "groundTop": 316,
         "branchNodes": 20,
         "solidNodes": 20,
-        "scatterCount": 20
+        "scatterCount": 25
       }
     },
     {
@@ -67733,7 +67881,7 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
             this.canvas.height = Math.round(h * d);
         } return { w, h, d }; }
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
-        zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(); this.scale = Math.max(.16, Math.min(1.65, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; this.manual = true; }
+        zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         _worldRasterScale(b,w){const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;this.landmark?.(c,l);}c.restore();}
@@ -67756,6 +67904,10 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
+            // A resize preserves horizontal world span, bounded by readability.
+            // Editor inspection and skill demonstrations may use wider views.
+            if(!this.editorView&&!this.skillPreview&&this._cameraWidth&&this._cameraWidth!==w){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,Math.min(limits.max,this.scale*w/this._cameraWidth));}
+            this._cameraWidth=w;
             this.time += effectDt;
             const walkDt=effectDt>0?dt:0;this.walkTime=(this.walkTime||0)+walkDt;
             this.archerVisual?.update(e,this.time,walkDt);
@@ -67785,7 +67937,7 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
                 if(raw>=1){if(tw.kind==='unit'){this.storyTween={...tw,from:to,to,duration:1,start:now-1};}else{this.manual=!!tw.manual;this.storyTween=null;}}
             }
             if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
-            else if(!this.storyTween&&!this.skillPreview){this.x = this.cameraAxis(this.x,w/this.scale,-40,b.width+40);this.y = this.cameraAxis(this.y,h/this.scale,-220,b.height);}
+            else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}
             if(this.background)this.background(c,w,h,b);
             // Weather particles are L5 screen effects; their animation is separate
             // from finite scenery projection and battlefield camera movement.
@@ -67798,7 +67950,7 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
             c.translate(w / 2, h / 2);
             c.scale(this.scale, this.scale);
             c.translate(-this.x, -this.y);
-            this.outsideTerrain(c,b,{left:this.x-w/(2*this.scale),right:this.x+w/(2*this.scale),bottom:this.y+h/(2*this.scale)});
+            this.terrainSkirt(c,b,w,h);
             // Static scenery is by far the dominant cost on detailed maps. At normal/zoomed-out
             // views rasterize it once per sceneVersion; keep live vectors only for close inspection.
             if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w);}else{
@@ -67891,23 +68043,6 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
         }
         cameraAxis(center,span,min,max){return G.HonroCamera.axis(center,span,min,max);}
         activeMarker(c,u,y){const z=1/Math.max(.16,this.scale||1),lift=Math.sin(this.time*3)*2*z;c.save();c.translate(u.x,y-10*z+lift);glow(c,0,-18*z,24*z,'#f0d69d',.24);P(c,[[-7*z,-35*z],[7*z,-35*z],[7*z,-19*z],[15*z,-19*z],[0,0],[-15*z,-19*z],[-7*z,-19*z]],'#f4d793','#102025',2*z);c.restore();}
-        outsideTerrain(c,b,view){
-            // Scenery beyond the simulation rectangle. These meshes never enter
-            // b.terrain, collision indexing, AI navigation or projectile physics.
-            const edgeY=x=>{const hits=b.terrain.filter(t=>!t.broken&&x>=t.x-1&&x<=t.x+t.w+1).flatMap(t=>G.HONRO_CORE.terrainSurfaces(t,x).map(h=>h.y));return hits.length?Math.min(...hits):b.height*.7;};
-            for(const side of [-1,1]){
-                const edge=side<0?0:b.width,extent=side<0?Math.max(0,-view.left):Math.max(0,view.right-b.width);
-                if(!extent)continue;
-                const y0=edgeY(edge),step=240,top=d=>y0-55*Math.sin(d/480)-28*Math.sin(d/173);
-                const points=[[edge,y0]];
-                for(let d=step;d<extent+step*2;d+=step)points.push([edge+side*d,top(d)]);
-                const bottom=Math.max(b.height+400,view.bottom+300),last=points.at(-1);
-                const grad=c.createLinearGradient(0,y0,0,y0+380);grad.addColorStop(0,'#465047');grad.addColorStop(.18,'#303c38');grad.addColorStop(1,'#192b2c');
-                P(c,[...points,[last[0],bottom],[edge,bottom]],grad);
-                c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle='#8f9a8175';c.lineWidth=1.45;c.stroke();
-            }
-            if(view.bottom>b.height){c.fillStyle='#192b2c';c.fillRect(Math.min(0,view.left),b.height,Math.max(b.width,view.right)-Math.min(0,view.left),Math.max(0,view.bottom-b.height));}
-        }
         chargeFx(engine,power,charging){
       const u = engine && engine.active;
       if(!charging || !u) return;
@@ -68219,6 +68354,7 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
 const Scene=G.HonroScene,D=G.honroDraw,{P,L,E,glyph,glow}=D,H=G.HONRO_CONTENT,C=G.HONRO_CORE;
 const PAL={ink:'#0b171c',rim:'#718173',steel:'#73817d',cloth:'#34463f',paper:'#c2b79a',blood:'#86504e'};
 const noise=(n)=>{const x=Math.sin(n*12.9898+78.233)*43758.5453;return x-Math.floor(x);};
+G.HonroTerrainPalette=t=>t.mat==='wood'?['#544d3d','#38362f','#17282b']:t.mat==='crystal'?['#668b91','#3f6871','#17282b']:t.mat==='ice'?['#5d7878','#415f64','#17282b']:t.mat==='water'||t.surfaceKind==='wet'?['#50646a','#31474c','#152227']:t.mat==='earth'||t.surfaceKind==='soil'?['#596152','#39463f','#18282a']:t.mat==='rock'||t.surfaceKind==='rock'?['#56615f','#34413e','#17282b']:['#4b564d','#303e3a','#17282b'];
 function stroke(c,pts,col,w=1){c.beginPath();pts.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.strokeStyle=col;c.lineWidth=w;c.stroke();}
 function roof(c,x,y,w,h){P(c,[[x-w*.62,y],[x-w*.43,y-h*.18],[x-w*.24,y-h*.42],[x,y-h*.50],[x+w*.24,y-h*.42],[x+w*.43,y-h*.18],[x+w*.62,y],[x+w*.45,y-h*.09],[x-w*.45,y-h*.09]],'#192b30','#707c71',1.5);for(let i=-8;i<=8;i++){let px=x+i*w*.049;L(c,px,y-h*.11,px*.0+x+i*w*.038,y-h*.44+Math.abs(i)*h*.031,'#77817455',1.0);}L(c,x-w*.61,y,x+w*.61,y,'#969680',1.1);}
 function hall(c,x,y,w=220,h=180){c.save();c.translate(x,y);P(c,[[-w*.45,0],[-w*.4,-h*.82],[w*.40,-h*.82],[w*.45,0]],'#25342f','#15262a',2);P(c,[[-w*.45,0],[w*.45,0],[w*.5,10],[-w*.5,10]],'#5d6660');for(let i=-2;i<=2;i++){const xx=i*w*.16;L(c,xx,-h*.71,xx,-5,'#514943',7);L(c,xx-2,-h*.69,xx-2,-8,'#95856a',1.3);}for(const i of [-1,0,1]){c.fillStyle='#101d23';c.fillRect(i*w*.19-w*.066,-h*.60,w*.132,h*.52);for(let k=1;k<4;k++)L(c,i*w*.19-w*.063,-h*.61+k*16,i*w*.19+w*.063,-h*.61+k*16,'#6b6651',.7);}roof(c,0,-h*.68,w,h*.56);for(let i=0;i<3;i++)L(c,-w*.50-i*5,8+i*9,w*.50+i*5,8+i*9,'#71796a',3);c.restore();}
@@ -68230,7 +68366,7 @@ Scene.prototype.landmark=function(c,l){c.save();c.translate(l.x,l.y);c.scale(l.s
  else hall(c,0,0,/watchtower/i.test(k)?145:230,/watchtower/i.test(k)?240:155);c.restore();};
 Scene.prototype.terrain=function(c,t){
  const verts=C.poly(t),pts=verts.map(p=>[p.x,p.y]),wood=t.mat==='wood',ice=t.mat==='ice',seal=t.honroSeal,crystal=t.mat==='crystal',wet=t.mat==='water'||t.surfaceKind==='wet',earth=t.mat==='earth'||t.surfaceKind==='soil',rock=t.mat==='rock'||t.surfaceKind==='rock';
- const palette=wood?['#544d3d','#38362f','#17282b']:(crystal?['#668b91','#3f6871','#17282b']:(ice?['#5d7878','#415f64','#17282b']:(wet?['#50646a','#31474c','#152227']:(earth?['#596152','#39463f','#18282a']:(rock?['#56615f','#34413e','#17282b']:['#4b564d','#303e3a','#17282b'])))));
+ const palette=G.HonroTerrainPalette(t);
  let grad=c.createLinearGradient(0,t.y,0,t.y+Math.min(t.h,420));
  grad.addColorStop(0,palette[0]);grad.addColorStop(.22,palette[1]);grad.addColorStop(1,palette[2]);P(c,pts,grad,null,0);
  const left=this._staticCacheBuild?t.x:Math.max(t.x,this.x-this.canvas.clientWidth/this.scale),right=this._staticCacheBuild?t.x+t.w:Math.min(t.x+t.w,this.x+this.canvas.clientWidth/this.scale);
@@ -68401,6 +68537,64 @@ function giantPine(c,l,scene){c.save();c.translate(l.x,l.y);const s=l.size||1;c.
 function ravinePine(c,l){c.save();c.translate(l.x,l.y);c.scale(l.size||1,l.size||1);const lean=l.lean||1,base='#48463a',rim='#80765d';const H=1080,tipX=lean*300;const trunk=[];for(let i=0;i<=12;i++){const t=i/12,x=tipX*t+Math.sin(t*8.2)*10,y=-H*t,w=36*(1-t*.72)+5;trunk.push([x-lean*w,y]);}for(let i=12;i>=0;i--){const t=i/12,x=tipX*t+Math.sin(t*8.2)*10,y=-H*t,w=40*(1-t*.72)+5;trunk.push([x+lean*w,y]);}fillPoly(c,trunk,base,'#202720',1.2);stroke(c,[[0,0],[lean*40,-230],[lean*95,-480],[lean*180,-760],[tipX,-H]],'#8b7b5a35',2.2);const branches=[.28,.43,.58,.71,.82];for(let j=0;j<branches.length;j++){const t=branches[j],bx=tipX*t,by=-H*t,side=j%2?1:-1,len=180+rand(j+31)*180,ex=bx+side*len,ey=by-35-rand(j+61)*65;stroke(c,[[bx,by],[bx+side*len*.45,by-18],[ex,ey]],base,18-j*2);stroke(c,[[bx+side*len*.45,by-18],[bx+side*len*.70,by-80-rand(j+88)*30]],base,7);for(let k=0;k<4;k++){const px=bx+side*len*(.35+k*.16),py=by-20-k*7;E(c,px,py,42+rand(j*9+k)*28,16+rand(j*11+k)*14,j%2?'#2c4134aa':'#34483aaa');}}for(let i=0;i<8;i++){const x=tipX+(rand(i+201)-.5)*180,y=-H+(rand(i+221)-.5)*100;E(c,x,y,55+rand(i+241)*38,22+rand(i+251)*18,'#304638aa');}c.restore();}
 function cargoScaffold(c,l){c.save();c.translate(l.x,l.y);c.scale(l.size||1,l.size||1);const wood='#4a4031',rim='#80745a';for(const x of[-120,-45,40,115]){L(c,x,0,x,-310,wood,8);L(c,x-2,0,x-2,-310,'#907d5b44',1);}for(const y of[-72,-158,-244]){L(c,-135,y,135,y,wood,9);L(c,-132,y-3,132,y-3,rim,1);}for(let i=0;i<6;i++){const x=-108+(i%3)*72,y=-20-Math.floor(i/3)*64;fillPoly(c,[[x,y],[x+58,y],[x+55,y-48],[x-3,y-45]],i%2?'#5d503d':'#655741','#2b3029',1);L(c,x+28,y-47,x+29,y, '#8d7d6055',1);}c.restore();}
 Scene.prototype.landmark=function(c,l){if(l.kind==='giantPine'){giantPine(c,l,this);return;}if(l.kind==='ravinePine'){ravinePine(c,l);return;}if(l.kind==='cargoScaffold'){cargoScaffold(c,l);return;}baseLandmark.call(this,c,l);};
+})(globalThis);
+
+(function(G){'use strict';
+const C=G.HONRO_CORE,B=G.HonroBounds,INK='#0c191f';
+function path(points){const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();return p;}
+// Slice the actual collision contour only to find the visual join. No generated
+// point is ever inserted into the terrain or serialized into a battle.
+function intervals(t,axis,value){const pts=C.poly(t),other=axis==='x'?'y':'x',hits=[];
+ for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length];if((a[axis]<=value&&b[axis]>value)||(b[axis]<=value&&a[axis]>value))hits.push(a[other]+(b[other]-a[other])*(value-a[axis])/(b[axis]-a[axis]));}
+ hits.sort((a,b)=>a-b);const spans=[];for(let i=0;i+1<hits.length;i+=2)spans.push([hits[i],hits[i+1]]);return spans;
+}
+function prepare(b,coverage){const bottom=coverage.bottom,base=b.height,skirts=[],edges=[],facets=[];
+ for(const t of b.terrain||[]){if(t.broken||t.honroElementCollision||t.oneWay)continue;
+  for(const [left,right] of intervals(t,'y',base-.5)){
+   if(right-left<1)continue;const col=G.HonroTerrainPalette(t)[2];
+   skirts.push({path:path([[left,base-24],[right,base-24],[right,bottom],[left,bottom]]),col});
+   // Broad mineral planes, fading into the same ink as the surrounding abyss.
+   const depth=Math.min(1800,(right-left)*.7),y=base+160;
+   if(right-left>400)facets.push(path([[left+(right-left)*.08,y],[left+(right-left)*.32,y+depth*.13],[left+(right-left)*.47,y+depth],[left+(right-left)*.21,y+depth*.7]]));
+  }
+ }
+ for(const side of [-1,1]){const edge=side<0?0:b.width,inside=edge-side*.5;
+  // Continue only foundation contours. Floating platforms and their gaps stay
+  // untouched. The end of a combat area is not automatically a precipice.
+  const candidates=(b.terrain||[]).filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=base).flatMap(t=>intervals(t,'x',inside).map(span=>({t,span}))).filter(q=>q.span[1]>=base-1);
+  candidates.sort((a,b)=>a.span[0]-b.span[0]);const q=candidates[0];if(!q)continue;
+  const top=q.span[0],sample=180,inner=intervals(q.t,'x',edge-side*sample).find(s=>s[1]>=base-1),
+   slope=Math.max(-.55,Math.min(.55,(top-(inner?.[0]??top))/sample)),extent=side<0?edge-coverage.left:coverage.right-edge,
+   amplitude=Math.min(220,90+(base-top)*.055),phase=(b.honroStage||1)*.43+side*.7,x=d=>edge+side*d,
+   y=d=>top+slope*800*(1-Math.exp(-d/800))+amplitude*(1-Math.exp(-d/600))*(-.55*Math.sin(d/1250)+.3*(Math.sin(d/3100+phase)-Math.sin(phase))),pts=[[edge,top]];
+  // Fixed world spacing keeps the landform stationary through pan and resize.
+  // A few broad shoulders replace the old repeated flat plateau.
+  for(let d=280;d<extent;d+=280)pts.push([x(d),y(d)]);pts.push([x(extent),y(extent)]);
+  const crest=new Path2D();pts.forEach(([px,py],i)=>i?crest.lineTo(px,py):crest.moveTo(px,py));
+  const mid=Math.min(1100,extent*.6),far=extent;
+  edges.push({path:path([...pts,[x(extent),bottom],[edge-side*24,bottom],[edge-side*24,top+24]]),crest,t:q.t,edge,side,extent,top,
+   face:path([[x(160),y(160)+100],[x(mid),y(mid)+180],[x(far),y(far)+600],[x(far),base+1700],[x(mid),base+900]])});
+ }
+ return{skirts,edges,facets,coverage,base,paths:skirts.length+edges.length*3+facets.length};
+}
+G.HonroScene.prototype.terrainSkirt=function(c,b,w,h){
+ const coverage=B.visual(b,w,h,this.scale),key=[b.sceneVersion||0,b.width,b.height,coverage.left,coverage.top,coverage.right,coverage.bottom].join(':');
+ let q=this._terrainSkirt;if(!q||q.key!==key||q.terrain!==b.terrain){q={...prepare(b,coverage),key,terrain:b.terrain};this._terrainSkirt=q;this._skirtBuilds=(this._skirtBuilds||0)+1;}
+ // A world-anchored atmospheric abyss covers any aspect ratio, including a
+ // custom floating map. It is neither a standable surface nor a rectangle rim.
+ c.save();const v=coverage,deep=c.createLinearGradient(0,b.height+180,0,b.height+1900);deep.addColorStop(0,'#0c191f00');deep.addColorStop(1,INK);c.fillStyle=deep;c.fillRect(v.left,b.height+180,v.right-v.left,Math.max(0,v.bottom-b.height-180));
+ for(const edge of q.edges){const pal=G.HonroTerrainPalette(edge.t),grad=c.createLinearGradient(0,edge.t.y,0,edge.t.y+Math.min(edge.t.h,420));grad.addColorStop(0,pal[0]);grad.addColorStop(.22,pal[1]);grad.addColorStop(1,pal[2]);c.fillStyle=grad;c.fill(edge.path);
+  c.save();c.clip(edge.path);c.fillStyle='#8c9d860b';c.fill(edge.face);
+  const mist=c.createLinearGradient(edge.edge,0,edge.edge+edge.side*edge.extent,0);mist.addColorStop(0,'#687a7200');mist.addColorStop(.22,'#687a720a');mist.addColorStop(1,'#687a7240');c.fillStyle=mist;c.fill(edge.path);c.restore();
+  const rim=c.createLinearGradient(edge.edge,0,edge.edge+edge.side*Math.min(edge.extent,1800),0);rim.addColorStop(0,edge.t.mat==='earth'?'#aabd9999':'#bfc4b299');rim.addColorStop(1,'#bfc4b200');c.strokeStyle=rim;c.lineWidth=2;c.stroke(edge.crest);
+ }
+ for(const skirt of q.skirts){c.fillStyle=skirt.col;c.fill(skirt.path);}
+ c.fillStyle='#63777310';for(const facet of q.facets)c.fill(facet);
+ // Fade the joined rock mass to the surrounding abyss without a hard bottom.
+ const fade=c.createLinearGradient(0,b.height+140,0,b.height+1850);fade.addColorStop(0,'#0c191f00');fade.addColorStop(1,INK);c.fillStyle=fade;
+ for(const skirt of q.skirts)c.fill(skirt.path);for(const edge of q.edges)c.fill(edge.path);
+ c.restore();this.overscanStats={bounds:coverage,paths:q.paths,builds:this._skirtBuilds};
+};
 })(globalThis);
 
 (function(G){'use strict';
