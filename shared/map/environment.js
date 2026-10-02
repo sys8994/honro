@@ -51,12 +51,12 @@ function upgradeLegacy(project){for(const a of ENV_ASSETS)if(!project.library.so
 }
 // Finite groups share the battlefield's vertical camera response. Depth changes
 // their horizontal pan and apparent size, never the camera-height response.
-const VERSION=3,VERTICAL_MODES=['WORLD','SKY'];
+const VERSION=4,VERTICAL_MODES=['WORLD','SKY'];
 const COVERAGE={minZoom:.16,maxViewport:{w:2560,h:1440},margin:240};
 const FINISH={L1:{haze:0,detail:1},L2:{haze:.18,detail:1},L3:{haze:.48,detail:.5},L4:{haze:.76,detail:.2}};
 const ATMOSPHERES={
  forest:{skyTop:'#0c1920',skyBottom:'#47564c',ambientTint:'#3e5147',hazeColor:'#56695f',hazeStrength:.65,nearFogColor:'#687c69',farFogColor:'#83918a',keyLightColor:'#d1c19a',keyLightDirection:[.76,.13],glowColor:'#d7cca7',shadowTint:'#142728',waterBaseColor:'#233d40',waterHighlightColor:'#9bb5a7',waterfallFoamColor:'#c0d0bb',mistStrength:.30,mistSpeed:9,lightStrength:.12},
- valley:{skyTop:'#101f2b',skyBottom:'#66777b',ambientTint:'#41575f',hazeColor:'#738a90',hazeStrength:.78,nearFogColor:'#8aa6a8',farFogColor:'#a1afb0',keyLightColor:'#d2d9cc',keyLightDirection:[.68,.09],glowColor:'#dae4d6',shadowTint:'#1b303c',waterBaseColor:'#284b56',waterHighlightColor:'#b0d1d0',waterfallFoamColor:'#d0e0d5',mistStrength:.43,mistSpeed:13,lightStrength:.16},
+ valley:{skyTop:'#101f2b',skyBottom:'#66777b',ambientTint:'#41575f',hazeColor:'#738a90',hazeStrength:.78,nearFogColor:'#8aa6a8',farFogColor:'#a1afb0',keyLightColor:'#d2d9cc',keyLightDirection:[.68,.09],glowColor:'#dae4d6',shadowTint:'#1b303c',waterBaseColor:'#334b4d',waterHighlightColor:'#ced4c5',waterfallFoamColor:'#dce0d0',mistStrength:.43,mistSpeed:13,lightStrength:.16},
  enclosed:{skyTop:'#090f16',skyBottom:'#242e34',ambientTint:'#25333b',hazeColor:'#37424d',hazeStrength:.7,nearFogColor:'#667b7b',farFogColor:'#495c66',keyLightColor:'#ccb790',keyLightDirection:[.28,.04],glowColor:'#dab786',shadowTint:'#101c28',waterBaseColor:'#1b303a',waterHighlightColor:'#789393',waterfallFoamColor:'#9cafa8',mistStrength:.35,mistSpeed:5,lightStrength:.22},
  temple:{skyTop:'#211f2b',skyBottom:'#776c65',ambientTint:'#544f51',hazeColor:'#7c7774',hazeStrength:.67,nearFogColor:'#aa9e8d',farFogColor:'#968d86',keyLightColor:'#dbc196',keyLightDirection:[.72,.15],glowColor:'#e1be88',shadowTint:'#2c2b35',waterBaseColor:'#3a484b',waterHighlightColor:'#b6b9a6',waterfallFoamColor:'#c9cbb7',mistStrength:.25,mistSpeed:6,lightStrength:.14},
  burned:{skyTop:'#211c24',skyBottom:'#60554b',ambientTint:'#514b44',hazeColor:'#766c60',hazeStrength:.70,nearFogColor:'#918572',farFogColor:'#8c8279',keyLightColor:'#d3ae80',keyLightDirection:[.81,.12],glowColor:'#d4ad81',shadowTint:'#272a2c',waterBaseColor:'#344449',waterHighlightColor:'#9faeaa',waterfallFoamColor:'#b6c1b7',mistStrength:.22,mistSpeed:8,lightStrength:.10},
@@ -82,6 +82,21 @@ function groupTransform(view,w,h,st,g){if(g.verticalMode==='SKY')return{x:w*g.x,
 function placementScreen(view,w,h,st,e){const g=groupOf(st,e);if(!g)return screen(view,w,h,st,e.depthLayer,e);const t=groupTransform(view,w,h,st,g),sf=supportOf(st,e);return{x:t.x+e.x*t.scale,y:t.y+((sf?surfaceY(sf,e.x):0)+e.y)*t.scale};}
 function groupWorld(view,w,h,st,groupId,p){const g=st.environment.groups.find(g=>g.id===groupId),t=groupTransform(view,w,h,st,g);return{x:(p.x-t.x)/t.scale,y:(p.y-t.y)/t.scale};}
 function coveragePad(st,layer){const s=COVERAGE.minZoom*ratio(st,layer,COVERAGE.minZoom);return Math.ceil((COVERAGE.maxViewport.w/2+COVERAGE.margin)/s);}
+// The far ridge is one authored landform per height band, not a row of ridge
+// stamps. Broad peaks leave sky between them and remain legible at minimum zoom.
+function mountainHeight(x,width,seed){const w=Math.max(width,3600),peaks=[[-.16,.35,690],[.28,.31,1200],[.73,.27,950],[1.16,.37,620]];
+ return 250+peaks.reduce((height,[center,spread,rise])=>height+rise*Math.exp(-Math.pow((x/w-center-(seed%3-1)*.025)/spread,2)),0);
+}
+// The valley has one cropped, rain-dark granite peak. Its broad shoulders and
+// abrupt vertical crown are composed deliberately, rather than sampled noise.
+const GRANITE_PROFILE=[[-.55,420],[-.28,600],[0,1050],[.14,1330],[.29,1510],[.37,1740],[.43,2110],[.475,2020],[.51,2260],[.55,1900],[.62,1650],[.71,1250],[.83,1160],[1,1290],[1.25,760],[1.6,460]];
+function graniteHeight(x,width){const u=x/Math.max(width,3600);for(let i=1;i<GRANITE_PROFILE.length;i++)if(u<=GRANITE_PROFILE[i][0]){const [ax,ay]=GRANITE_PROFILE[i-1],[bx,by]=GRANITE_PROFILE[i],t=clamp((u-ax)/(bx-ax));return ay+(by-ay)*t;}return GRANITE_PROFILE.at(-1)[1];}
+function scenicPurpose(sid,backdrop,band,layer){
+ if(layer==='L4')return !['tree','temple'].includes(backdrop)&&(['valley','bridge'].includes(backdrop)?band===0:band<2);
+ if(layer==='L3')return sid===3||sid===7||[2,5,6,8,9,10].includes(sid)&&band>0;
+ if(layer==='L2')return sid===3||sid===7&&band===2||[2,5,6].includes(sid)&&band>0;
+ return false;
+}
 function makeEnvironment(st,options={}){const sid=st.metadata?.stageId||1,presetName=options.preset||SCENE_PRESETS[st.backdrop]||'forest',env={version:VERSION,preset:presetName,atmosphere:{preset:sid===10?'otherworld':ATMOSPHERE_BY_SCENE[st.backdrop]||'forest'},zones:[],groups:[],surfaces:[],placements:[]},source={...st,environment:env},enclosed=presetName==='enclosed'||st.backdrop==='tree',vertical=st.height>=3300;
  if(enclosed)env.skyVisible=false;
  const cuts=vertical?[0,st.height*.37,st.height*.67,st.height]:[0,st.height],names=vertical?['upper-ridge','slope','valley-bottom']:['landscape'];
@@ -91,32 +106,35 @@ function makeEnvironment(st,options={}){const sid=st.metadata?.stageId||1,preset
  // Each band occupies a fixed world height. Long supported terrain overlaps the
  // adjacent bands; a camera pan never moves or fades a band independently.
  for(const [band,zone] of env.zones.entries())for(const layer of ['L4','L3','L2']){
-  if(PRESETS[presetName].depths[layer]===undefined||enclosed&&layer==='L4'||vertical&&band===env.zones.length-1&&layer==='L4')continue;
+  if(PRESETS[presetName].depths[layer]===undefined||enclosed&&layer==='L4'||vertical&&band===env.zones.length-1&&layer==='L4'||!scenicPurpose(sid,st.backdrop,band,layer))continue;
   const span=zone.to-zone.from,base=vertical?(band===0?zone.to-Math.min(300,span*.20):band===env.zones.length-1?zone.from-160:zone.from+span*.55):st.height*.49;
-  const lift=enclosed?(layer==='L3'?200:250):vertical&&band===0?(layer==='L2'?120:150):layer==='L4'?850:layer==='L3'?700:450;
+  const lift=layer==='L4'?(vertical?100:st.height*.07):enclosed?(layer==='L3'?200:250):vertical&&band===0?(layer==='L2'?120:150):layer==='L3'?470:260;
   const g={id:`${zone.id}-${layer}`,depthLayer:layer,verticalMode:'WORLD',zoneId:zone.id,x:0,y:Math.round(base+lift)};env.groups.push(g);
-  const pad=coveragePad(source,layer),step=layer==='L4'?1800:layer==='L3'?1100:650,points=[];
-  for(let x=-pad,i=0;x<=st.width+pad+step;x+=step,i++){
+  const granite=layer==='L4'&&['valley','bridge'].includes(st.backdrop),pad=coveragePad(source,layer),step=layer==='L4'?700:layer==='L3'?1100:650,points=[];
+  const xs=[];for(let x=-pad;x<=st.width+pad+step;x+=step)xs.push(x);
+  if(granite)for(const [u] of GRANITE_PROFILE)if(u>=0&&u<=1)xs.push(Math.round(u*st.width));
+  xs.sort((a,b)=>a-b);
+  for(const [i,x] of xs.entries()){
    const u=clamp(x/Math.max(1,st.width)),valley=['valley','bridge'].includes(st.backdrop)?-Math.abs(u-.52)*1250:0;
    const roll=Math.sin(u*5.4+band*.7+sid*.31)*155+Math.sin(u*9.8+sid*.7)*68;
    const height=layer==='L4'?470:layer==='L3'?260:125;
-   points.push({x,y:Math.round(-height+valley*(layer==='L2'?.60:1)+roll*(layer==='L4'?1.7:layer==='L3'?1.2:1)+rng(i+band*23+layer.charCodeAt(1)*19)*24)});
+   points.push({x,y:layer==='L4'?Math.round(-(granite?graniteHeight(x,st.width):mountainHeight(x,st.width,sid+band))+(granite?0:Math.sin(x/1300+sid*.7)*24)):Math.round(-height+valley*(layer==='L2'?.60:1)+roll*(layer==='L3'?1.2:1)+rng(i+band*23+layer.charCodeAt(1)*19)*24)});
   }
-  const sf={id:g.id+'-support',groupId:g.id,kind:enclosed?'cave-wall':layer==='L4'?'ridge':zone.id==='valley-bottom'?'cliff':'rear-ground',points,bottom:st.height+Math.ceil(COVERAGE.maxViewport.h/(COVERAGE.minZoom*ratio(source,layer,COVERAGE.minZoom)))+2200};env.surfaces.push(sf);
-  if(layer==='L4'){
-   const offset=band*900;for(let x=Math.ceil((-pad-offset)/3600)*3600+offset;x<st.width+pad;x+=3600)add(g,'env:ridge',x,sf.id,.9+Math.round(rng(x+band*17)*20)/100);
-   continue;
-  }
-  const stride=layer==='L3'?2300:1500;
+  const foothill=layer==='L3'&&['valley','bridge'].includes(st.backdrop);
+  const sf={id:g.id+'-support',groupId:g.id,kind:granite?'ink-granite':foothill?'ink-foothill':layer==='L4'?'ink-mountain':enclosed?'cave-wall':zone.id==='valley-bottom'?'cliff':'rear-ground',...(granite||foothill?{compositionWidth:st.width,inkVariant:band}:{}),points,bottom:st.height+Math.ceil(COVERAGE.maxViewport.h/(COVERAGE.minZoom*ratio(source,layer,COVERAGE.minZoom)))+2200};env.surfaces.push(sf);
+  if(layer==='L4')continue;
+  const stride=layer==='L3'?Math.max(2300,st.width*.48):Math.max(2200,st.width*.55);
   for(let x=Math.ceil(-pad/stride)*stride,i=0;x<st.width+pad;x+=stride,i++){
-   if(enclosed&&layer==='L2'&&i%2===band%2)add(g,'env:rock',x,sf.id,1);
-   else if(enclosed&&layer==='L3'&&i%4===band%4)add(g,'env:cliff',x,sf.id,.95);
-   else if(layer==='L3'&&!enclosed&&(!vertical||band<2)&&i%3===band%3)add(g,'env:forest',x,sf.id,1);
-   else if(layer==='L2'&&!enclosed)add(g,rng(i+19)<(sid===4?.6:.18)?'dead_pine':'ancient_pine',Math.min(sf.points.at(-1).x,x+Math.round(rng(i+7)*330)),sf.id,.9+Math.round(rng(i+13)*20)/100);
+   if(enclosed&&layer==='L2'&&i%3===band%3)add(g,'env:rock',x,sf.id,1);
+   else if(enclosed&&layer==='L3'&&i%3===band%3)add(g,'env:cliff',x,sf.id,.95);
+   else if(layer==='L3'&&!enclosed&&[3,9].includes(sid)&&i%3===band%3)add(g,'env:forest',x,sf.id,1);
+   else if(layer==='L2'&&!enclosed&&sid===3&&i%3===0)add(g,'ancient_pine',Math.min(sf.points.at(-1).x,x+Math.round(rng(i+7)*330)),sf.id,1);
+   else if(layer==='L2'&&!enclosed&&sid!==3&&i%3===band%3)add(g,'env:rock',x,sf.id,1);
   }
-  if(layer==='L3'&&!enclosed){if(!vertical||band===1)add(g,'env:shrine',st.width*.67,sf.id);if(vertical&&band===2){for(const x of [st.width*.16,st.width*.83])add(g,'env:cliff',x,sf.id,.9);}else add(g,'env:rock',st.width*.28,sf.id);}
-  if(layer==='L2'&&enclosed)add(g,'lantern',st.width*.58,sf.id,1);
-  if(layer==='L2'&&['valley','bridge'].includes(st.backdrop)&&zone.id!=='upper-ridge')add(g,'env:waterfall',st.width*.70,sf.id,1);
+  if(layer==='L3'&&!enclosed&&['shrine','temple'].includes(st.backdrop))add(g,'env:shrine',st.width*.67,sf.id);
+  if(layer==='L3'&&!enclosed&&['valley','bridge'].includes(st.backdrop))for(const x of [st.width*.16,st.width*.83])add(g,'env:cliff',x,sf.id,.9);
+  if(layer==='L2'&&enclosed&&sid===7)add(g,'lantern',st.width*.58,sf.id,1);
+  if(layer==='L2'&&['valley','bridge'].includes(st.backdrop))add(g,'env:waterfall',st.width*.70,sf.id,1);
  }
  return env;
 }
@@ -136,6 +154,16 @@ function upgradeComposition(project){for(const a of [...ENV_ASSETS,...COMPOSITIO
   }
   for(const surface of old?.surfaces||[])if(!st.environment.surfaces.some(s=>s.id===surface.id)&&st.environment.groups.some(g=>g.id===surface.groupId))st.environment.surfaces.push(copy(surface));
   const custom=(old?.placements||[]).filter(e=>!e.id?.startsWith(`scenery-${st.id}-`));
+  // A newly sparse map may omit a depth that an older authored scene used.
+  // Restore a support for that depth before reattaching custom scenery.
+  for(const e of custom)if(!st.environment.groups.some(g=>g.depthLayer===e.depthLayer)&&PRESETS[st.environment.preset]?.depths[e.depthLayer]!==undefined){
+   const previous=old?.groups?.find(g=>g.id===e.groupId),zone=st.environment.zones.find(z=>z.id===previous?.zoneId)||st.environment.zones[0],pad=coveragePad(st,e.depthLayer),id=previous?.id||`${zone.id}-${e.depthLayer}`;
+   const group=previous?{...copy(previous),verticalMode:'WORLD',zoneId:zone.id}:{id,depthLayer:e.depthLayer,verticalMode:'WORLD',zoneId:zone.id,x:0,y:Math.round((zone.from+zone.to)/2)};
+   st.environment.groups.push(group);
+   const support=old?.surfaces?.find(s=>s.groupId===id),bottom=st.height+Math.ceil(COVERAGE.maxViewport.h/(COVERAGE.minZoom*ratio(st,e.depthLayer,COVERAGE.minZoom)))+2200;
+   st.environment.surfaces.push(support?copy(support):{id:id+'-support',groupId:id,kind:'rear-ground',points:[{x:-pad,y:-120},{x:st.width+pad,y:-120}],bottom});
+   (st.environment.migrationNotes??=[]).push(`${e.id}: restored authored ${e.depthLayer} support`);
+  }
   for(const e of custom){const a=project.library.find(a=>a.id===e.assetId);if(a&&st.environment.groups.some(g=>g.depthLayer===e.depthLayer)){const oldGroup=old?.groups?.find(g=>g.id===e.groupId),placed=place(st,a,{...e,zoneId:oldGroup?.zoneId,localX:e.x,offsetY:old?.version>=2?e.y:0,rotationRadians:e.rotation||0});st.environment.placements.push(placed);(st.environment.migrationNotes??=[]).push(`${e.id}: attached to ${placed.supportId}; old backdrop position replaced by world support`);}else{st.environment.placements.push(e);(st.environment.migrationNotes??=[]).push(`${e.id}: unresolved legacy scenery; choose support/group explicitly`);}}
  }
  project.environmentVersion=VERSION;return project;
@@ -149,11 +177,14 @@ const COMPOSITION_ASSETS=[
   plane([[-362,-100],[-299,-166],[-254,-145],[-220,-209],[-170,-189],[-132,-272],[-74,-220],[-13,-222],[37,-193],[68,-203],[132,-161],[160,-116],[-32,-139],[-222,-129]],'#71806a'),
   plane([[65,-115],[145,-195],[187,-155],[239,-197],[284,-140],[344,-154],[390,-88],[259,-108],[163,-98]],'#314d48')]),
  environmentAsset('env:rock','능선 화강암','rock',3.5,[[-105,0],[-119,-48],[-67,-123],[-12,-140],[74,-115],[117,-48],[95,0]],[
-  plane([[-105,0],[-119,-48],[-67,-123],[-43,-38],[-21,0]],'#314244'),
-  plane([[-67,-123],[-12,-140],[74,-115],[31,-82],[-42,-77]],'#839082'),
-  plane([[74,-115],[117,-48],[95,0],[29,0],[31,-82]],'#43575a'),
-  plane([[-42,-77],[31,-82],[29,0],[-21,0]],'#5b6861'),
-  plane([[-105,0],[-68,-14],[27,-12],[95,0]],'#293a39')]),
+  plane([[-105,0],[-119,-48],[-67,-123],[-12,-140],[74,-115],[117,-48],[95,0]],'#263c3c'),
+  plane([[-119,-48],[-67,-123],[-44,-101],[-54,-71],[-81,-19],[-105,0]],'#60736a'),
+  plane([[-67,-123],[-12,-140],[74,-115],[42,-100],[14,-113],[-25,-104]],'#697c6f'),
+  plane([[74,-115],[117,-48],[95,0],[34,-4],[31,-79]],'#30484a'),
+  plane([[-35,-100],[14,-113],[31,-79],[9,-51],[-15,-27],[-59,-41]],'#465e56'),
+  plane([[-12,-140],[2,-119],[-4,-83],[17,-52],[8,-77],[-8,-113]],'#203738'),
+  plane([[31,-79],[42,-100],[55,-84],[47,-41],[26,-18],[33,-49]],'#172f32'),
+  plane([[-105,0],[-81,-19],[-15,-27],[34,-4],[95,0]],'#1b3134')]),
  environmentAsset('env:shrine','먼 산신당','building',6,[[-160,0],[-157,-19],[-112,-26],[-112,-153],[-172,-142],[-142,-164],[-70,-190],[0,-222],[76,-184],[138,-161],[169,-149],[110,-152],[110,-26],[153,-19],[158,0]],[
   plane([[-112,-153],[34,-153],[34,-26],[-112,-26]],'#716b5b'),
   plane([[34,-153],[110,-152],[110,-26],[34,-26]],'#474e4a'),

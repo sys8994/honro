@@ -1,12 +1,12 @@
 # 환경 구도와 대기 표현
 
-현재 배경은 `shared/map/environment.js`의 거리 투영 위에 월드 고정 지지면과 풍경 묶음을 결합한다. Game, Stage View, Playtest가 같은 데이터와 Canvas 렌더러를 사용한다. `environmentVersion`과 stage environment의 `version`은 코드의 `VERSION`(현재 3)으로 관리한다. 맵 본체 스키마와 전투 저장 형식은 유지한다.
+현재 배경은 `shared/map/environment.js`의 거리 투영 위에 월드 고정 지지면과 풍경 묶음을 결합한다. Game, Stage View, Playtest가 같은 데이터와 Canvas 렌더러를 사용한다. `environmentVersion`과 stage environment의 `version`은 코드의 `VERSION`(현재 4)으로 관리한다. 맵 본체 스키마와 전투 저장 형식은 유지한다.
 
 ## 공간의 기준
 
 엔진의 x/y는 기존 좌우/아래 방향 그대로다. 요청서의 높이 Z는 엔진 y에 해당한다. `factor(d,z)`는 화면 크기·수평 카메라 반응·줌을 함께 결정한다. 유한 그룹의 화면 원점 Y는 `viewportHeight/2 + (group.y - camera.y) × zoom`이다. 따라서 카메라 높이가 100 이동하면 L1–L4가 모두 `100 × zoom`만큼 함께 움직인다. depth는 Y 카메라 반응에 곱하지 않는다.
 
-L1은 전장과 같은 평면의 모든 요소다. 비상호작용 나무·구조물도 포함하며 back/prop/front는 그리기 순서다. 밑동·기단·바닥이 실제 지형에 닿는 장식은 L1-back을 우선한다. L2는 후면 지형과 접지된 장식, L3/L4는 큰 숲·암벽·산 덩어리를 맡는다. 유한 그룹은 WORLD만 작성하고 SKY는 별도 viewport 경로다. 옛 SCENIC/HORIZON의 카메라 높이 기반 구도/opacity 변환은 환경 버전 3에서 제거했다.
+L1은 전장과 같은 평면의 모든 요소다. 비상호작용 나무·구조물도 포함하며 back/prop/front는 그리기 순서다. 밑동·기단·바닥이 실제 지형에 닿는 장식은 L1-back을 우선한다. L2/L3는 맞은편 숲·동굴 벽·계곡 절벽·사당처럼 해당 장소를 설명할 때만 만든다. L4는 큰 먹산 덩어리 하나와 하늘의 여백을 맡고, 같은 능선 에셋을 타일처럼 반복하지 않는다. 1장은 L1 장식과 연속된 L4 산세만 사용한다. 유한 그룹은 WORLD만 작성하고 SKY는 별도 viewport 경로다. 옛 SCENIC/HORIZON의 카메라 높이 기반 구도/opacity 변환은 환경 버전 3에서 제거했다.
 
 ## 저장 데이터
 
@@ -29,6 +29,12 @@ stage.environment에는 다음 데이터가 있다.
 `ATMOSPHERES`는 숲·계곡·폐허·동굴·사찰·왜곡된 영역을 구분한다. 색/빛/물/안개 값은 공통 preset에서 상속하고 stage와 zone이 일부만 덮어쓴다. `FINISH`는 가까운 장식의 대비를 남기고 먼 풍경을 해당 장면의 공기색에 섞는다. L1의 캐릭터·적·투사체·예측선에는 배경 haze를 적용하지 않는다.
 
 `environment-art.js`의 gradient, glow, shaft, fog, pool, waterfall이 공통 미술 primitive다. SVG 요청의 hard clip은 실제 Canvas clip, soft mask는 gradient/fog card로 구현했다. 기존 렌더 경로가 Canvas이므로 SVG DOM으로 다시 짜지 않고 벡터 에셋의 형태 원칙만 적용했다. 산·숲·암석·사당에는 silhouette 뒤에 큰 명암면·재질면을 두고 support 지형에도 2–4개의 넓은 암면을 캐시한다. 작은 잎·균열·기와 수를 늘리는 대신 최대 축소에서도 보이는 형태를 우선한다.
+
+환경 버전 4는 진경산수·수묵담채의 형태 언어를 기준으로 원경을 다시 구성한다. `ink-mountain` 지지면은 화면 바깥까지 이어지는 하나의 불규칙 산세이며, 내부의 어깨 능선과 큰 빛/그림자 암면으로 농담을 만든다. 원경의 색은 청회색·먹색·탁한 녹색에 제한하고, 하단을 연무에 녹인다. 실제 나무는 비대칭으로 기운 줄기·굵은 가지·다섯 수관 덩어리와 밝고 어두운 면으로, 화강암은 여섯 넓은 면으로 읽히게 한다. 중경의 그룹 수와 배치는 `scenicPurpose`의 장소별 이유에 한정한다. 사용자 제작 구형 중경은 이관 시 지지면을 복원해 보존한다.
+
+**현행 1막 화면:** 1~10장의 실제 원경은 [act1-far.svg](../../shared/assets/environment/act1-far.svg)가 맡는다. 1600×900 순수 벡터로, 사용자 스크린샷의 큰 산세·절벽의 명암·겹치는 산허리 안개·달을 재구성했다. `night-sky`, `granite-mass`, `overlapping-spurs`, `valley-clouds`, `open-lower-mist` 등 이름 있는 그룹과 gradient/clipPath가 편집 원본이다. 래스터 이미지·외부 참조·필터·스크립트를 포함하지 않는다. `shared/build.mjs`가 SVG를 두 HTML의 공통 런타임에 내장하므로 외부 파일 요청 없이 기존 Canvas에 그린다. 이미지 디코드 전에는 기존 벡터 하늘을 임시로 표시하고 준비되면 같은 경로에서 SVG로 전환한다. 화면 크롭은 종횡비를 보존하며 세로 화면은 산 중심을 우선해 달이 잘릴 수 있다. SVG가 활성화되면 자동 생성 L2~L4 풍경은 그리지 않으며, 별도 ID를 가진 Workshop 작성 풍경은 기존 support/depth 변환으로 그린다. L1 게임플레이 지형과 장식, 물·충돌·진행 데이터는 바꾸지 않는다. 이전 대화의 PNG/WebP와 프롬프트는 [제작 이력](../../shared/assets/environment/act1-far.prompt.md)에 보존하며 현재 번들에는 넣지 않는다.
+
+벡터 대체 경로에서 2장 계곡은 반복된 `ink-mountain` 대신 한 `ink-granite` 주봉을 쓴다. 좁고 높은 관봉, 옆으로 내려오는 넓은 어깨, 짙은 젖은 암면과 밝게 남긴 암면을 먼저 구성하고, 아래로 소실되는 수직 먹획과 두 겹의 `ink-foothill`·안개가 깊이를 잇는다. 절벽은 실제 L1 지형에 클립된 암면만 덧그리므로 충돌과 경로는 바뀌지 않는다. 소나무 잎은 매끈한 타원 대신 수평 군집·짧은 끊어진 획으로 처리한다. [국립중앙박물관 인왕제색도 해설](https://www.museum.go.kr/MUSEUM/contents/M0501000000.do?relicRecommendId=962060&schM=view)과 [메트로폴리탄박물관 정선 산수 해설](https://www.metmuseum.org/exhibitions/listings/2018/diamond-mountains/exhibition-gallery)의 암면·안개·준법 설명을 형태 참고로 사용했다.
 
 정적 배경 경로는 환경 객체별 WeakMap의 Path2D로 준비한다. 안개는 제한된 수의 작은 canvas card를 재사용하며 팔레트 캐시 크기를 제한한다. 실제 움직임은 기존 Scene.time과 reduced-motion 설정을 사용한다. 새로운 RAF/CSS 애니메이션 루프는 없다.
 

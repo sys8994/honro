@@ -30,6 +30,8 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   if(render){
     await buildMonsters();
     await buildActors();
+    const act1Backdrop=await readFile(path.join(root,'shared/assets/environment/act1-far.svg'));
+    parts.push('globalThis.HONRO_ACT1_FAR_DATA='+JSON.stringify('data:image/svg+xml;base64,'+act1Backdrop.toString('base64'))+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
     for(const name of ['renderer','art-dark','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer'])parts.push(await read(`shared/runtime/${name}.js`));

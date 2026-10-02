@@ -1,6 +1,6 @@
 import {readFile,writeFile} from 'node:fs/promises';
-// Authoring source for the two reference trees. Preserve sockets, physical
-// height, collision and instance scale; replace only their visual planes.
+// Authoring source for the reference trees and Act 1 granite. Preserve
+// sockets, physical height, collision and instance scale; change visual planes.
 const file=new URL('../../shared/data/elements.json',import.meta.url);
 const library=JSON.parse(await readFile(file,'utf8'));
 const shape=(points,fill)=>({type:'polygon',points:points.map(([x,y])=>({x,y})),fill,stroke:null,alpha:1});
@@ -25,4 +25,21 @@ dead.visual=[
 ];
 for(const a of [pine,dead]){const pts=a.visual.flatMap(s=>s.points),xs=pts.map(p=>p.x),ys=pts.map(p=>p.y);a.reference.bounds={x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys)};}
 await writeFile(file,JSON.stringify(library,null,2)+'\n');
-console.log('Rebuilt reference pine planes; physical heights and sockets preserved');
+const campaignFile=new URL('../../shared/data/campaign.json',import.meta.url);
+const campaign=JSON.parse(await readFile(campaignFile,'utf8'));
+for(const id of ['mockup-granite-large','mockup-granite-small']){
+ const rock=campaign.library.find(a=>a.id===id),b=rock.reference.bounds,center=b.x+b.w/2,bottom=b.y+b.h,at=(x,y)=>[center+x*b.w/2,bottom-y*b.h];
+ const plane=(points,fill)=>shape(points.map(([x,y])=>at(x,y)),fill);
+ rock.visual=[
+  // A wet granite block: one dark weight, a reserved dry face, descending
+  // fracture lines and a nearly black foot. These are material forms, not facets.
+  plane([[-1,0],[-.92,.39],[-.70,.75],[-.31,.86],[-.02,1],[.25,.94],[.65,.72],[.87,.43],[1,.10],[.80,0],[.28,0],[-.32,.02]],'#263737'),
+  plane([[-.92,.39],[-.70,.75],[-.31,.86],[-.13,.61],[-.48,.34],[-.70,.08],[-1,0]],'#596b60'),
+  plane([[-.02,1],[.25,.94],[.65,.72],[.40,.68],[.07,.39],[-.13,.61],[-.31,.86]],'#687b70'),
+  plane([[.65,.72],[.87,.43],[1,.10],[.80,0],[.28,0],[.40,.68]],'#3a504d'),
+  plane([[-.02,1],[.11,.80],[.04,.54],[.15,.38],[.07,.39],[-.13,.61],[-.09,.83]],'#203739'),
+  plane([[-1,0],[-.70,.08],[-.32,.02],[.28,0],[.80,0],[1,.10],[.48,.07],[-.23,.09]],'#17282b')
+ ];
+}
+await writeFile(campaignFile,JSON.stringify(campaign,null,2)+'\n');
+console.log('Rebuilt pine and granite planes; physical heights, collision and sockets preserved');

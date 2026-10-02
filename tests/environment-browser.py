@@ -27,9 +27,9 @@ with sync_playwright() as p:
                     x:edge?st.width:0,y:edge?st.height:0,scale:zoom,time:0});
                   const t=performance.now();s.render(a.engine,0,'',.6,false,0);
                   const ms=performance.now()-t,pixel=s.ctx.getImageData(0,0,1,1).data;
-                  return {stage:sid,zoom,edge,x:s.x,y:s.y,ms,alpha:pixel[3],placements:a.engine.b.honroEnvironment.placements.length};
+                  return {stage:sid,zoom,edge,x:s.x,y:s.y,ms,alpha:pixel[3],surfaces:a.engine.b.honroEnvironment.surfaces.length,placements:a.engine.b.honroEnvironment.placements.length};
                 }''', [sid, zoom, edge])
-                assert result['alpha'] == 255 and result['placements'] > 0, result
+                assert result['alpha'] == 255 and result['surfaces'] > 0, result
                 rows.append(result)
     for sid in range(1, 11):
         game.evaluate('''sid=>{const a=HonroApp,st=HONRO_PROJECT.stages[sid-1];a.launchMap(HONRO_PROJECT,st.id,{story:false});

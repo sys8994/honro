@@ -23,6 +23,21 @@ with sync_playwright() as pw:
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.goto(source.as_uri())
     page.wait_for_function('window.HonroApp && window.HONRO_PROJECT')
+    if mode == 'after':
+        page.wait_for_function('window.HonroAct1Background?.ready()')
+        same_background=page.evaluate('''()=>{const a=HonroApp,cv=document.createElement('canvas');cv.width=960;cv.height=540;
+          const c=cv.getContext('2d'),images=[];for(let sid=1;sid<=10;sid++){a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});
+            c.clearRect(0,0,960,540);a.scene.background(c,960,540,a.engine.b);images.push(cv.toDataURL());}
+          return {unique:new Set(images).size,width:HonroAct1Background.image.naturalWidth};}''')
+        assert same_background['unique']==1 and same_background['width']>=1600,same_background
+        custom_visible=page.evaluate('''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-2',{story:false});const b=a.engine.b,
+          p=b.honroEnvironment.placements.find(e=>e.depthLayer==='L2');if(!p)return -1;
+          const e={...p,id:'authored-background-prop',x:b.width*.5},env=b.honroEnvironment;env.placements.push(e);
+          const group=env.groups.find(g=>g.id===e.groupId),support=env.surfaces.find(s=>s.id===e.supportId),
+          cv=document.createElement('canvas');cv.width=960;cv.height=540;const s=a.scene;
+          Object.assign(s,{x:e.x,y:group.y+HonroEnvironment.surfaceY(support,e.x),scale:.16});
+          s.background(cv.getContext('2d'),960,540,b);return s.environmentStats.visibleAssets;}''')
+        assert custom_visible>=1,custom_visible
     page.evaluate('HonroApp.frame=()=>{}')
     for sid in range(1, 11):
         page.evaluate('''sid=>{const a=HonroApp; a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});
@@ -49,6 +64,15 @@ with sync_playwright() as pw:
               stats:s.environmentStats||null};}''', [x,y,z])
             page.locator('#battlecanvas').screenshot(path=str(out / f'stage-{sid}-{name}.png'))
             rows.append({'stage':sid,'view':name,**data})
+    if mode == 'after':
+        for width,height in [(867,703),(390,844)]:
+            page.set_viewport_size({'width':width,'height':height})
+            page.evaluate('''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-2',{story:false});
+              a.dialogue=null;a.turnNotice=null;Object.assign(a.scene,{manual:true,storyTween:null,
+              goalFocus:null,x:2150,y:1650,scale:.16,time:0,walkTime:0});
+              a.scene.render(a.engine,0,'',.6,false,0);}''')
+            page.locator('#battlecanvas').screenshot(path=str(out/f'stage-2-{width}x{height}.png'))
+        page.set_viewport_size({'width':1280,'height':720})
     # Enclosed authoring preset is also rendered through the real game.
     page.evaluate('''()=>{const p=structuredClone(HONRO_PROJECT),s=p.stages[4];s.backdrop='temple';
       s.environment=HonroEnvironment.makeEnvironment?.(s)||{preset:'enclosed',placements:HonroEnvironment.makePlacements({...s,environment:{preset:'enclosed'}})};
@@ -86,7 +110,7 @@ with sync_playwright() as pw:
           for(const missing of [false,true]){if(missing)delete b.honroEnvironment;const before=JSON.stringify(b),env=HonroEnvironmentRenderer.ensureBattle(b);
             for(let i=0;i<2;i++)HonroApp.scene.render(HonroApp.engine,0,'',.6,false,0);
             result.push({same:JSON.stringify(b)===before,version:env.version,cached:env===HonroEnvironmentRenderer.ensureBattle(b)});}return result;}''')
-        assert saved==[{'same':True,'version':3,'cached':True}]*2,saved
+        assert saved==[{'same':True,'version':page.evaluate('HonroEnvironment.VERSION'),'cached':True}]*2,saved
         rows.append({'motion':motion,'savedBattle':saved,'transition':transition})
 
         editor=browser.new_page(viewport={'width':1440,'height':900})

@@ -6,6 +6,16 @@ for(const f of ['environment','schema','geometry','commands'])vm.runInContext(aw
 g.HonroUnits={has:()=>true,teams:{player:0,enemy:1,ally:2,npc:3}};
 const E=g.HonroEnvironment,project=JSON.parse(await read('shared/data/campaign.json')),clone=x=>JSON.parse(JSON.stringify(x));
 assert.deepEqual(clone(E.validate(project)),[]);
+const forest=project.stages[0].environment;
+assert.equal(forest.groups.filter(g=>g.depthLayer==='L4').length,1,'Act 1 has one continuous far mountain');
+assert.equal(forest.placements.filter(e=>e.depthLayer==='L4').length,0,'Far mountains are landforms, not repeated stamps');
+assert.equal(forest.groups.filter(g=>g.depthLayer==='L2').length,0,'Act 1 rooted trees stay on the battlefield');
+assert(forest.surfaces.find(s=>s.kind==='ink-mountain').points.some(p=>p.y<-800),'The far ridge has a readable large peak');
+const valley=project.stages[1].environment,peak=valley.surfaces.find(s=>s.kind==='ink-granite');
+assert.equal(valley.groups.filter(g=>g.depthLayer==='L4').length,1,'The valley has one main granite peak across the vertical map');
+assert(peak&&peak.compositionWidth===project.stages[1].width&&E.surfaceY(peak,project.stages[1].width*.51)<E.surfaceY(peak,0)-800,'The granite crown rises distinctly above the shoulder');
+assert.equal(valley.surfaces.filter(s=>s.kind==='ink-foothill').length,2,'Valley lower bands use distinct ink foothills');
+assert(project.stages.every(s=>!s.environment.placements.some(e=>e.assetId==='env:ridge')),'No active map repeats ridge stamps');
 let count=0;
 for(const st of project.stages){
  for(const zoom of [.16,.66,1.65])for(const y of [0,st.height*.2,st.height*.37,st.height*.5,st.height*.67,st.height]){
@@ -29,8 +39,8 @@ const st=project.stages[4],v={x:1000,y:2000,scale:.66},group={...st.environment.
 for(const layer of ['L1','L2','L3','L4']){const t=E.groupTransform(v,960,540,st,{...group,depthLayer:layer});assert.equal(t.y,270,'Depth alone never shifts screen height');}
 assert.deepEqual(clone(E.groupTransform(v,960,540,st,{...group,verticalMode:'SKY',depthLayer:'L5',x:.7,y:.2})),{x:672,y:108,scale:1,opacity:1});
 const checkInvalid=(mutate,message)=>{const p=clone(project);mutate(p.stages[4].environment,p);assert(E.validate(p).some(i=>i.text.includes(message)),message);};
-checkInvalid(e=>delete e.placements.find(x=>x.assetId==='ancient_pine').supportId,'rooted object without support');
-checkInvalid(e=>e.placements.find(x=>x.assetId==='ancient_pine').y=500,'root detached');
+checkInvalid(e=>delete e.placements.find(x=>x.assetId==='env:rock').supportId,'rooted object without support');
+checkInvalid(e=>e.placements.find(x=>x.assetId==='env:rock').y=500,'root detached');
 checkInvalid(e=>e.placements[0].supportId='missing','invalid support id');
 checkInvalid(e=>e.placements[0].groupId='missing','invalid scenic group');
 checkInvalid(e=>e.groups[0].zoneId='missing','invalid background zone');
@@ -46,6 +56,8 @@ old.stages[0].environment.placements.push({id:'authored-tree',assetId:'ancient_p
 const preserved=JSON.stringify(old.stages.map(({environment,...s})=>s));E.upgradeComposition(old);
 assert.equal(JSON.stringify(old.stages.map(({environment,...s})=>s)),preserved,'Migration preserves all gameplay data');
 assert(old.stages[0].environment.migrationNotes.some(n=>n.includes('authored-tree')));
+assert.equal(old.stages[0].environment.placements.find(e=>e.id==='authored-tree').depthLayer,'L2');
+assert.deepEqual(clone(E.validate(old)),[],'An older authored L2 tree retains a valid support on a sparse map');
 const snapshot=JSON.stringify(old);E.upgradeComposition(old);assert.equal(JSON.stringify(old),snapshot,'Migration is idempotent');
 const previous=clone(project),priorStage=previous.stages[4];previous.environmentVersion=2;priorStage.environment.version=2;
 priorStage.environment.atmosphere.overrides={hazeStrength:.5};priorStage.environment.placements.push({id:'author-v2',assetId:'ancient_pine',depthLayer:'L2',groupId:'slope-L2',supportId:'slope-L2-support',x:500,y:0,scale:1,rotation:.23});
