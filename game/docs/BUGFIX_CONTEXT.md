@@ -1,5 +1,7 @@
 # HONRO 게임 수정 맥락
 
+**F 방어 단축키·배경 제작 기준(HBUG-074, 2026-10-02):** 승인된 HBUG-073 배경은 `e8777a5`로 커밋했다. 이후 `shared/runtime/main.js`의 전투 키보드 입력에 `KeyF`를 추가했다. 행동 가능할 때 충전·이동 입력을 취소한 뒤 기존 `defend()`를 호출해 방어 버튼과 같은 회복·보호막·행동 종료를 수행한다. 반복·수정키 조합·글 입력·대화·모달에서는 방어하지 않는다. Game과 Workshop Playtest 공통 경로이며 `npm run test:controls`로 검사한다. 앞으로 사용자가 준 일러스트를 순수 SVG로 재구성하는 배경 제작 방식과 variation·미세 시차·L1 색상 구분·밤톤 기준은 `AGENTS.md` 및 `.agents/skills/honro-environment/SKILL.md`에 명시했다. 검증과 전체 검사의 기존 실패는 [HBUG-074](BUG_LOG.md)을 본다.
+
 **1막 원경 2종·미세 시차·밤톤(HBUG-073, 2026-10-02):** HBUG-072 완성본을 `5ff3cc0`으로 커밋한 뒤 후속 요청을 적용했다. 1–5장은 기존 `shared/assets/environment/act1-far.svg`, 6–10장은 새 `act1-gorge.svg`(협곡·암주·먼 소나무·폭포)이며 두 HTML이 동일 SVG를 내장한다. 기존 SVG의 경로·색상 원본은 그대로다. `shared/map/environment.js`의 `ACT1_FAR/act1Mood/act1BackdropFrame`이 낮은 채도·밝기, 수평보다 훨씬 작은 수직 시차, 단계별 밤톤을 관리한다. SKY의 움직임만 변경하며 유한 L1–L4·물리·저장은 유지한다. `environment-renderer.js`는 원경별 색상 보정 캔버스 2개를 재사용하고, `renderer.js`는 L1 지형·물까지 그린 뒤 캐릭터·조준선·표시 전에 밤톤을 적용한다. 검증과 전체 검사의 기존 수중 번개 실패는 [HBUG-073](BUG_LOG.md)을 본다.
 
 **2장 계곡의 암봉·필선·안개(HBUG-070, 2026-10-02):** `shared/map/environment.js`는 계곡 L4를 한 주봉의 `ink-granite` 지지면으로 만들고 L3에 `ink-foothill`을 둔다. `environment-renderer.js`는 캐시된 큰 먹면과 드문 수직 필선, 산허리 안개를 그린다. L1 절벽·소나무는 `map-art-polish.js`, 화강암 에셋은 `tools/environment/polish-assets.mjs`가 작성한다. 빛기둥 대신 부드러운 달빛을 사용한다. 물리·저장과 공유 depth/zoom은 유지한다. 실화면·검증·전체 `verify`의 별개 실패는 [HBUG-070](BUG_LOG.md)을 본다.

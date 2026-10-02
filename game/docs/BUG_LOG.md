@@ -1,5 +1,13 @@
 # HONRO 게임 버그 기록
 
+## HBUG-074 · F 방어·행동 종료 단축키와 배경 제작 지침 — 2026-10-02
+
+- 요청·원인: 승인된 HBUG-073 배경을 먼저 `e8777a5`로 커밋했다. 사용자는 이후 같은 배경 제작 방식을 지속할 지침과 데스크톱 F 방어 단축키를 요청했다. 기존 방어 버튼은 회복·보호막·행동 종료를 처리했지만 키보드 바인딩이 없었다.
+- 변경: `shared/runtime/main.js`의 공통 전투 키 입력에서 물리 키 `KeyF`를 받는다. 기존 `canInput()`을 통과하면 `cancelInput()`으로 이동·충전·포인터 입력을 정리하고 기존 `defend()`를 호출한다. 따라서 방어 효과와 행동 종료·다음 행동 인계는 버튼과 같은 엔진 경로를 사용한다. 후퇴 중에는 기존 규칙대로 추가 회복·보호막 없이 행동만 마친다. 키 반복, Ctrl/Alt/Meta 조합, IME 조합 중, input/textarea/select/contenteditable, 모달·대화·적 행동 중에는 방어를 실행하지 않는다. 방어 버튼에 F 툴팁과 `aria-keyshortcuts`를 추가했다. 저장·전투 수치·모바일 터치 조작은 바꾸지 않았다.
+- 제작 기준: `AGENTS.md`와 `.agents/skills/honro-environment/SKILL.md`에 사용자 일러스트를 편집 가능한 순수 SVG로 재구성하는 기본 절차를 반영했다. 지정 구간의 variation, 수평보다 훨씬 작은 수직 시차, 색감으로 L1과 구분, 단계별 깊어지는 밤톤, 승인된 노드·실루엣 보존, 세 실행 화면의 공통 번들·실화면 검증을 명시했다. 현재 1–5/6–10장 배정은 예시이며 향후 사용자가 지정한 구간과 분위기를 따른다.
+- 검증: `npm run build`로 두 HTML을 재생성했다. `npm run test:controls`의 실제 Game/Workshop Playtest 브라우저 검사 37건에서 버튼·F의 동일한 회복/보호막, 엔진 review 이후 행동 종료, 키 반복·글 입력·수정키·대화·모달·적 행동 차단, 충전 취소 뒤 Space 해제 시 지연 발사 없음, 후퇴 중 기존 동작과 브라우저 오류 0건을 확인했다. 이 검사를 루트 `test:integration`에 연결했다. `python -X utf8 tests/integration.py` 47건, 환경 스킬 `quick_validate.py`, `git diff --check`도 통과했다. 화면과 수치는 [`_local/reports/defend-shortcut/`](../../_local/reports/defend-shortcut/report.json)에 있다.
+- 전체 검사 한계: `npm run verify`는 HBUG-069~073과 같은 기존 `tests/stage12-redesign.mjs`의 수중 번개 검사에서 `Cannot read properties of undefined (reading 'branch')`로 중단됐다. 이번 입력·지침 변경의 검사는 별도 통과했으며 전체 verify 통과로 보고하지 않는다. 키보드 검사는 데스크톱 Chromium에서 수행했다.
+
 ## HBUG-073 · 후반 협곡 원경·작은 시차·단계별 밤톤 — 2026-10-02
 
 - 요청·기준: 사용자가 HBUG-072의 완성본을 승인하여 먼저 `5ff3cc0`으로 커밋했다. 이후 새 참고 이미지의 variation을 6–10장에 배정하고, 원경에 작은 시차를 추가하며 L1과의 색상 구분 및 장마다 깊어지는 밤을 요청했다.

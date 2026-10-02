@@ -28,7 +28,7 @@ function bottom(){
   <div class="joystick" id="joystick" role="application" aria-label="좌우 이동·위아래 조준"><div class="joystick-ring"><i id="stick-knob"></i><span class="axis-h"></span><span class="axis-v"></span></div><span class="stick-value" id="move-left"></span><div class="wind-gauge" role="meter" aria-label="바람" aria-valuemin="-30" aria-valuemax="30" aria-valuenow="0"><span class="wind-gauge-track"><i id="wind-left"></i><i id="wind-right"></i><b></b></span><small id="wind-value">바람 0</small></div></div>
  <div class="skill-strip" id="combat-skills"></div>
  <div class="radial-actions"><div class="shot-readout" id="read-aim"></div>
- <button class="icon-btn honro-defend" data-action="defend" aria-label="방어하며 기력 회복" title="방어">${I('shieldHalved','',18)}<span>방어</span></button>
+ <button class="icon-btn honro-defend" data-action="defend" aria-label="방어하며 기력 회복 후 턴 종료" aria-keyshortcuts="F" title="방어 · 턴 종료 (F)">${I('shieldHalved','',18)}<span>방어</span></button>
  <button id="jump" class="fire-button jump-button" aria-label="도약"><span class="fire-inner">${I('arrowUp','',18)}<span>도약</span></span></button>
  <button id="fire" class="fire-button" aria-label="누른 채 충전, 손을 떼어 발사"><svg class="charge-dial" viewBox="0 0 100 100" aria-hidden="true"><circle class="charge-track" cx="50" cy="50" r="46"/><circle class="charge-history" cx="50" cy="50" r="37" pathLength="100"/><circle class="charge-live" cx="50" cy="50" r="46" pathLength="100"/></svg><span class="fire-inner">${I('crosshairs','',19)}<span class="fire-label">발사</span></span></button>
  </div></div></footer>`;

@@ -2,6 +2,7 @@
 
 배경·장식·맵 배치와 깊이/카메라 반응 작업을 시작할 때 `.agents/skills/honro-environment/SKILL.md`를 읽고 `shared/map/environment.js`의 공통 체계와 검증을 사용한다. 뿌리가 보이는 배경은 지지면·풍경 묶음에 붙이고, 구역·대기·물 표현은 같은 렌더러와 `npm run test:environment`로 검증한다.
 배경의 기본 조형은 한국화 진경산수·수묵담채다. 실제 지형에 붙은 나무·바위·건물은 L1-back, 중경은 장소를 설명할 때만, 원경은 큰 산세 한 층을 우선한다. 실루엣·큰 명암면·여백·안개를 먼저 만들고 반복 polygon·미세 균열·노이즈로 디테일을 대신하지 않는다.
+새 배경은 사용자가 준 일러스트를 편집 가능한 순수 SVG로 재구성하는 방식을 기본으로 한다. 지정 구간에 variation을 배정하고, 작은 수평 시차·더 작은 수직 시차, L1과 구분되는 낮은 채도/밝기, 단계별 깊어지는 밤톤을 공통 렌더러에 적용한다. 승인된 벡터 형태는 색감 조정 때문에 바꾸지 않는다. 상세 제작·검증 기준은 위 환경 스킬의 `일러스트에서 만드는 SVG 배경` 절을 따른다.
 
 먼저 README.md, game/docs/BUGFIX_CONTEXT.md와 BUG_LOG.md의 관련 항목을 읽는다.
 게임 런타임 수정은 shared/runtime/, shared/engine/src/, shared/map/, shared/data/에서 한다. CSS와 밸런스 설정은 game/src/, game/config/에 있다. HONRO.html과 HONRO_WORKSHOP.html은 생성물이므로 직접 수정하지 않는다.

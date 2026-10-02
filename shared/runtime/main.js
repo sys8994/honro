@@ -730,7 +730,14 @@
                     this.nextDialogue();
                 return;
             } if (this.modal.classList.contains('open'))
-                return; if(e.code==='KeyE'&&G.HonroInteractions?.key(this,e))return; this.keys.add(e.code); if (!e.repeat && e.code === 'Space')
+                return;
+            if(e.code==='KeyF'){
+                if(e.ctrlKey||e.altKey||e.metaKey||e.isComposing||e.target.isContentEditable)return;
+                e.preventDefault();
+                if(!e.repeat&&this.canInput()){this.cancelInput();this.defend();}
+                return;
+            }
+            if(e.code==='KeyE'&&G.HonroInteractions?.key(this,e))return; this.keys.add(e.code); if (!e.repeat && e.code === 'Space')
                 this.beginCharge(); if (!e.repeat && e.code.startsWith('Control'))
                 this.jump(); if (!e.repeat && e.code === 'Tab') {
                 let arr = this.engine.b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && !u.acted), i = arr.findIndex(u => u.id === this.engine.b.active);
