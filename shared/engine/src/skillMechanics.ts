@@ -204,7 +204,7 @@ function skyStrikePoint(e:Engine,point:Vec,owner:string):Vec{
 function gourdBurst(e:Engine,p:Projectile){
  const u=e.unit(p.owner)!;const s=SKILLS[p.skill],r=rank(p),secondary=(1+passiveRank(u,'MP01')*.03)*(1+(p.effectBoost||0)*.5);
  if(p.mode==='gourdSky'){
-  p.mode='skyWait';p.targetPoint={x:p.x,y:p.y};p.vx=p.vy=0;p.age=0;p.fuseAt=undefined;e.emit('fx',{name:'inkLine',x:p.x,y:p.y-220,x2:p.x,y2:p.y,color:'#a8bbc6',size:1});return;
+  p.mode='skyWait';p.targetPoint={x:p.x,y:p.y};p.vx=p.vy=0;p.age=0;p.fuseAt=undefined;e.emit('fx',{name:'inkLine',x:p.x,y:p.y-220,x2:p.x,y2:p.y,color:'#a8bbc6',size:1});e.emit('sound',{name:'ceramic'});return;
  }
  e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);
  if(p.mode==='gourdFire'||p.mode==='gourdIce'){
@@ -229,6 +229,7 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
  const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
  b.stakes.push({id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:p.x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
  e.fx('spark',p.x,floor,'#a89b7f',15);e.remove(p);
+ e.emit('sound',{name:'ceramic'});
 }
 
 /** Hook only redesigned impacts; collision detection and integration remain in Engine. */

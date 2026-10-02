@@ -62,6 +62,7 @@ export function convergeAt(e:Engine,p:Projectile){
   e.b.projectiles.push(c);
  }
  e.fx('ring',goal.x,goal.y,'#bec4ae',55);e.remove(p);
+ e.emit('sound',{name:'spiritSummon'});
 }
 export function stepConvergingSpirit(e:Engine,p:Projectile,dt:number){
  const c=p.curve;if(!c){e.remove(p);return;}

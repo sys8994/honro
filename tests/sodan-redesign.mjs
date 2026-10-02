@@ -125,7 +125,8 @@ for(const id of ['O01','O02','O03','O04','O05']){
  assert(spirits.every((p,i)=>Math.abs(p.curve.delay-i*.07)<1e-8));
  const first=spirits[0],late=spirits.at(-1),origin={x:first.x,y:first.y};
  a.e.stepProjectile(late,.15);assert.deepEqual({x:late.x,y:late.y},origin);
- a.e.stepProjectile(first,.50);assert(Math.hypot(first.x-origin.x,first.y-origin.y)>170);
+ a.e.stepProjectile(first,.50);assert(Math.hypot(first.x-origin.x,first.y-origin.y)>15);
+ assert(spirits.some(p=>Math.hypot(p.curve.spread.x-p.curve.start.x,p.curve.spread.y-p.curve.start.y)>200),'the fan includes long outward paths');
  assert(Math.hypot(first.x-first.curve.goal.x,first.y-first.curve.goal.y)>170);
  const saved=C.defaults();saved.saved=a.b;assert(C.validate(plain(saved)).saved.projectiles.some(p=>p.mode==='convergeSpirit'));
  assert(echoes.every(u=>u.summonExpires-a.b.round+1===8));

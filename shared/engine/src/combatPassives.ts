@@ -42,7 +42,7 @@ export function beginPlayerCast(e:Engine,u:Unit,s:Skill,actualKiSpent:number){
  const boost=jucheonBoost(u,s),r=passiveRank(u,'MP05');
  if(u.cls==='mage'&&r&&s.cls==='mage'&&s.cost>0){
   if(boost){u.jucheon=0;u.jucheonReady=false;}
-  else if(actualKiSpent>0){u.jucheon=Math.min(JUCHEON_THRESHOLD[r-1],(u.jucheon||0)+actualKiSpent);if(u.jucheon>=JUCHEON_THRESHOLD[r-1]){u.jucheonReady=true;e.fx('circulation',u.x,u.y-u.h*.5,'#cbd8d2',u.h*.65);e.emit('sound',{name:'qiReflect'});e.message('주천완성 · 다음 도술 강화');}}
+   else if(actualKiSpent>0){u.jucheon=Math.min(JUCHEON_THRESHOLD[r-1],(u.jucheon||0)+actualKiSpent);if(u.jucheon>=JUCHEON_THRESHOLD[r-1]){u.jucheonReady=true;e.fx('circulation',u.x,u.y-u.h*.5,'#cbd8d2',u.h*.65);e.emit('sound',{name:'qiRebound'});e.message('주천완성 · 다음 도술 강화');}}
  }
  if(u.side===0&&u.cls==='knight'&&s.martial){
   const hadHarmony=!!u.harmony;u.harmony=false;

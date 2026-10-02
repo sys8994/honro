@@ -8,6 +8,8 @@ export function soundSamples(name:string,sr=24000):Float32Array {
         arrow:[.27,146,1800,.29,.26,8], arrowhit:[.30,94,1150,.42,.38,10],
         sword:[.34,108,1900,.24,.40,7], fire:[.55,69,900,.42,.46,5],
         charge:[.22,122,580,.06,.08,9], meteor:[1.15,43,760,.58,.52,3.6],
+        spiritCast:[.38,128,1280,.29,.34,6], spiritImpact:[.36,86,1200,.42,.41,8],
+        spiritSummon:[.58,72,940,.34,.38,5],
         boom:[.95,49,820,.61,.52,4], hit:[.30,86,1050,.41,.38,9],
         break:[.58,112,1500,.24,.47,6], ricochet:[.22,224,1500,.16,.29,12],
         split:[.32,137,1250,.22,.25,8], heal:[.65,98,500,.15,.18,5],
@@ -70,7 +72,7 @@ export class AudioEngine {
         }catch{return false;}
     }
     private buffer(name:string){let buffer=this.buffers.get(name);if(!buffer&&this.context){const samples=soundSamples(name,this.context.sampleRate);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,this.context.sampleRate);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}return buffer;}
-    private warm(){if(this.warming)return;this.warming=true;const names=['arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','meteor','qiRebound','win','lose'];const step=()=>{if(!this.context||this.context.state==='closed')return;const name=names.shift();if(name)this.buffer(name);if(names.length){if(typeof requestIdleCallback==='function')requestIdleCallback(step,{timeout:250});else setTimeout(step,20);}};setTimeout(step,0);}
+    private warm(){if(this.warming)return;this.warming=true;const names=['arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose'];const step=()=>{if(!this.context||this.context.state==='closed')return;const name=names.shift();if(name)this.buffer(name);if(names.length){if(typeof requestIdleCallback==='function')requestIdleCallback(step,{timeout:250});else setTimeout(step,20);}};setTimeout(step,0);}
     play(name:string){
         if(!this.enabled||this.volume<=0||name==='click')return;
         const now=performance.now();this.requestedAt[name]=now;

@@ -31,7 +31,7 @@ export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number)
 }
 
 /** Stable foot contact, bounded substeps, exact-x support, and body wall tests. */
-export function walkTerrain(e:any,u:Unit,direction:number,dt:number):boolean{
+export function walkTerrain(e:any,u:Unit,direction:number,dt:number,requireSupport=false):boolean{
   if(u.dead||!direction||dt<=0)return false;
   const facing=Math.sign(direction);let changed=false;
   if(facing!==u.facing){u.angle=clamp(180-u.angle,AIM_MIN,AIM_MAX);u.facing=facing;changed=true;}
@@ -46,6 +46,7 @@ export function walkTerrain(e:any,u:Unit,direction:number,dt:number):boolean{
     const nx=clamp(u.x+dx,25,e.b.width-25);if(Math.abs(nx-u.x)<1e-6)break;
     let support=grounded?e.surface(nx,u.y-28,u.y+28):null;
     if(support&&Math.abs(terrainSlopeAt(support.t,nx,support.y))>1.35)support=null;
+    if(requireSupport&&!support)break;
     const ny=support?support.y:u.y;
     // At an embedded rock seam the old support can end just below the adjacent
     // solid. Head/torso probes miss this foot-only entry; stop for a jump instead.

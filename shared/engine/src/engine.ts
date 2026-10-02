@@ -190,7 +190,7 @@ export class Engine {
      * NPC/AI powers retain their established ballistic calibration. */
     chargeDuration(u: Unit, s: Skill) { return Math.min(MAX_CHARGE_SECONDS, 805 * this.effective(s, u).speed / CHARGE_ACCELERATION); }
     chargePower(u: Unit, s: Skill, seconds: number) { return clamp(seconds / Math.max(.001, this.chargeDuration(u, s)), 0, 1); }
-    velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),occultFloor=({O01:.74,O04:.80,O16:.62} as Record<string,number>)[s.id]||0,v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * Math.max(occultFloor,charge) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
+    velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),occultFloor=({O01:.74,O04:.80} as Record<string,number>)[s.id]||0,v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * Math.max(occultFloor,charge) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
     origin(u: Unit, angle: number, body = false) { const reach = body ? 6 : u.cls === 'mage' ? 44 : u.cls === 'archer' ? 42 : u.cls === 'occultist' ? 40 : 28; return { x: u.x + Math.cos(rad(angle)) * reach, y: u.y - u.h * .63 - Math.sin(rad(angle)) * (body ? 8 : reach) }; }
     /** Data-only environmental patch; renderer cache and all future substeps see it immediately. */
     setEnvironment(patch:PhysicsPatch){if(!validPhysicsPatch(patch))throw new Error('Invalid physics patch');this.b.physics??=makePhysics();changePhysics(this.b.physics,patch);this.emit('change');}
@@ -464,7 +464,7 @@ export class Engine {
         }
         b.lastShots[u.id] = { angle: u.angle, power: u.lastPower, wind: b.wind, skill: skillId, path: [] };
         this.fx(s.redesigned?'spark':'rune', origin.x, origin.y, s.color, s.redesigned?10:30);
-        this.emit('sound', { name: s.mode === 'marker' ? 'charge' : u.cls === 'archer' ? 'arrow' : u.cls === 'knight' ? 'sword' : u.cls === 'occultist' ? 'charge' : 'fire' });
+        this.emit('sound', { name: s.mode === 'marker' ? 'charge' : u.cls === 'archer' ? 'arrow' : u.cls === 'knight' ? 'sword' : u.cls === 'occultist' ? 'spiritCast' : 'fire' });
         this.message(`${u.name} · ${s.name}`);
         this.emit('change');
         this.emit('save');
@@ -475,7 +475,7 @@ export class Engine {
     jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
     jump(u = this.active) { if (!u || u.dead || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
         return false; delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
-    walk(u:Unit,direction:number,dt:number){if(u.meleeFollow==='ready')return;return walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)));}
+    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.meleeFollow==='ready')return;return walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);}
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
@@ -676,10 +676,10 @@ export class Engine {
         }
         if (absorbed)
             this.fx('ring', u.x, u.y - u.h * .5, '#b1daf4', 32);
-        if(p&&newSkill(p)&&(dmg>0||absorbed>0)){
+        if(p&&(dmg>0||absorbed>0)){
             const skill=SKILLS[p.skill],wave=skill.branch==='wave'||skill.id==='M01';
-            this.emit('sound',{name:skill.cls==='archer'?'arrowhit':wave?'qiHit':'hit'});
-            if(wave&&skill.id!=='M01')this.emit('fx',{name:'inkImpact',x:u.x,y:u.y-u.h*.5,x2:p.vx,y2:p.vy,color:'#dde0d3',size:Math.min(52,24+Math.sqrt(dmg))});
+            if(newSkill(p)||direct&&!p.body)this.emit('sound',{name:skill.cls==='archer'?'arrowhit':skill.cls==='occultist'?'spiritImpact':wave?'qiHit':'hit'});
+            if(newSkill(p)&&wave&&skill.id!=='M01')this.emit('fx',{name:'inkImpact',x:u.x,y:u.y-u.h*.5,x2:p.vx,y2:p.vy,color:'#dde0d3',size:Math.min(52,24+Math.sqrt(dmg))});
         }
         if (dmg) {
             const actual = Math.min(u.hp, dmg);
@@ -990,7 +990,8 @@ export class Engine {
         const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
         const dur=['charger','host','earthbound'].includes(kind)?base.dur:SPIRIT_TURNS[clamp(rank,1,8)-1]+(empowered?1:0);
-        const summon=makeUnit('occultist',0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:true,acted:true,moveLeft:0,maxMove:0,walkSpeed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
+        const grounded=kind==='stalker'||kind==='warden';
+        const summon=makeUnit('occultist',0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:!grounded,acted:true,moveLeft:0,maxMove:grounded?SUMMON_TUNING[kind].move:0,walkSpeed:grounded?SUMMON_TUNING[kind].speed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
         if(kind==='echo'){
             summon.summonExpires=this.b.round+ECHO_TURNS[clamp(rank,1,8)-1]-1;
             const echoes=this.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===owner.id);
@@ -1026,7 +1027,7 @@ export class Engine {
         p.vx=dx/n*1250;p.vy=dy/n*1250;
         const m=this.advanceProjectile(p,dt),h=segRect(p,m,t.x-t.r,t.y-t.h,t.r*2,t.h,p.radius);
         // Dedicated ethereal ray per target: no friendly collision or incidental tank intercept.
-        if(h){p.x+= (m.x-p.x)*h.t;p.y+=(m.y-p.y)*h.t;this.hurt(t,p.damage,p.owner,true,p,p);this.fx('burst',p.x,p.y,p.color,35);this.emit('sound',{name:'arrowhit'});this.remove(p);return;}
+        if(h){p.x+= (m.x-p.x)*h.t;p.y+=(m.y-p.y)*h.t;this.hurt(t,p.damage,p.owner,true,p,p);this.fx('burst',p.x,p.y,p.color,35);this.remove(p);return;}
         p.x=m.x;p.y=m.y;p.vx=m.vx;p.vy=m.vy;
         if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>28)p.trail.shift();}
         if(p.age>4.5)this.remove(p);
@@ -1037,30 +1038,44 @@ export class Engine {
         if(t.index>=t.queue.length){b.active=t.returnActive;delete b.summonTurn;b.reviewFocus=undefined;
             if(t.practice){this.resetPractice();}else if(t.afterActor)this.advanceAfterAction();else this.completeTeamTransition();return;}
         const u=this.unit(t.queue[t.index]);if(!u||u.dead){t.index++;t.stage='approach';t.elapsed=0;t.start=undefined;t.destination=undefined;return;}
-        if(!u.enthrall)u.summonFloating=true;b.active=u.id;const kind=u.summonKind||'stalker',cfg=SUMMON_TUNING[kind];
+        b.active=u.id;const kind=u.summonKind||'stalker',cfg=SUMMON_TUNING[kind],groundBound=!u.enthrall&&(kind==='stalker'||kind==='warden');
+        if(groundBound&&u.summonFloating){
+            // Restore a spirit saved during the former airborne approach to nearby ground.
+            for(const offset of [0,20,-20,40,-40,80,-80,160,-160]){
+                const x=clamp(u.x+offset,30,b.width-30),support=this.surface(x,u.y-80,b.height+120);
+                if(support){u.x=x;u.y=support.y;u.vx=u.vy=0;u.jumping=false;break;}
+            }
+        }
+        if(!u.enthrall)u.summonFloating=!groundBound;
         if(t.stage==='approach'){
             if(!t.start){
                 const owner=u.summonOwner?this.unit(u.summonOwner):u.enthrall?.owner?this.unit(u.enthrall.owner):undefined,mark=owner?passiveRank(owner,'OP02'):0;
                 const enemies=this.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-a.h*.5-u.y+u.h*.5)-(mark&&(a.curseOwner===owner?.id||a.earthbind?.owner===owner?.id)?170+mark*35:0)-Math.hypot(c.x-u.x,c.y-c.h*.5-u.y+u.h*.5)+(mark&&(c.curseOwner===owner?.id||c.earthbind?.owner===owner?.id)?170+mark*35:0));
                 let target=enemies[0];if(kind==='warden'){target=this.heroesAlive().sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0]||target;}
                 if(!target){t.index=t.queue.length;return;}
-                t.targetId=target.id;t.start={x:u.x,y:u.y};const dx=target.x-u.x,dy=target.y-target.h*.5-(u.y-u.h*.5),distance=Math.hypot(dx,dy),stop=kind==='lantern'?cfg.reach*.58:cfg.reach*.62,travel=Math.min(cfg.move,Math.max(0,distance-stop));
-                t.destination={x:clamp(u.x+dx/(distance||1)*travel,30,b.width-30),y:clamp(u.y+dy/(distance||1)*travel,60,b.height-30)};
+                t.targetId=target.id;t.start={x:u.x,y:u.y};const dx=target.x-u.x,dy=target.y-target.h*.5-(u.y-u.h*.5),distance=groundBound?Math.abs(dx):Math.hypot(dx,dy),stop=kind==='lantern'?cfg.reach*.58:cfg.reach*.62,travel=Math.min(cfg.move,Math.max(0,distance-stop));
+                t.destination={x:clamp(u.x+dx/(distance||1)*travel,30,b.width-30),y:groundBound?u.y:clamp(u.y+dy/(distance||1)*travel,60,b.height-30)};
+                if(groundBound){u.moveLeft=cfg.move;u.walkSpeed=cfg.speed;}
                 u.intent=kind==='warden'?'수호 위치로 이동':'영체 추적';u.anim=.4;this.emit('change');
             }
-            t.elapsed+=dt;const a=t.start!,d=t.destination!,distance=Math.hypot(d.x-a.x,d.y-a.y),progress=distance>1?Math.min(1,t.elapsed*cfg.speed/distance):1;
-            u.x=a.x+(d.x-a.x)*progress;u.y=a.y+(d.y-a.y)*progress;u.vx=u.vy=0;u.facing=d.x>=a.x?1:-1;
+            t.elapsed+=dt;const a=t.start!,d=t.destination!,distance=Math.hypot(d.x-a.x,d.y-a.y);let progress=distance>1?Math.min(1,t.elapsed*cfg.speed/distance):1;
+            if(groundBound){
+                const before=u.x,remaining=Math.abs(d.x-u.x);
+                if(remaining>3&&u.moveLeft>0)this.walk(u,Math.sign(d.x-u.x),Math.min(dt,remaining/cfg.speed),true);
+                progress=remaining>3&&Math.abs(u.x-before)>0.1&&u.moveLeft>0?0:1;
+            }else{u.x=a.x+(d.x-a.x)*progress;u.y=a.y+(d.y-a.y)*progress;}
+            u.vx=u.vy=0;u.facing=d.x>=a.x?1:-1;
             b.reviewFocus={x:u.x,y:u.y-u.h*.5};
             if(progress<1){u.moving=.1;if(this.counter%12===0)this.fx('spark',u.x,u.y-u.h*.5,'#a995d6',16);return;}
             t.stage='attack';t.elapsed=0;
         }
         if(t.stage==='attack'){
             const center={x:u.x,y:u.y-u.h*.5};
-            if(kind==='warden'){let n=0;for(const ally of this.alive(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.message(`${u.name} · ${n}명 방호`);}
+            if(kind==='warden'){let n=0;for(const ally of this.alive(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.emit('sound',{name:'spiritSummon'});this.message(`${u.name} · ${n}명 방호`);}
             else if(kind==='lantern'){
                 const targets=this.alive(1).filter(e=>Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r).sort((a,c)=>(c.curseOwner===u.summonOwner?1:0)-(a.curseOwner===u.summonOwner?1:0)).slice(0,(u.summonRank||1)<4?1:2);
                 for(const target of targets)this.launchSummonBolt(u,target);
-                this.fx('rune',center.x,center.y,'#c4e6ef',90);this.message(`${u.name} · ${targets.length}명 동시 추적탄`);if(targets.length)this.emit('sound',{name:'charge'});
+                this.fx('rune',center.x,center.y,'#c4e6ef',90);this.message(`${u.name} · ${targets.length}명 동시 추적탄`);if(targets.length)this.emit('sound',{name:'spiritCast'});
             }else{
                 const target=this.alive(1).sort((a,c)=>Math.hypot(a.x-center.x,a.y-a.h*.5-center.y)-Math.hypot(c.x-center.x,c.y-c.h*.5-center.y))[0];
                 if(target&&Math.hypot(target.x-center.x,target.y-target.h*.5-center.y)<=cfg.reach+target.r){
@@ -1091,6 +1106,8 @@ export class Engine {
     }
     private occultImpact(p:Projectile,h?:Collision){
         const owner=this.creditUnit(this.unit(p.owner));if(!owner)return false;
+        if(SUMMONS.has(p.mode))this.emit('sound',{name:'spiritSummon'});
+        else if(!['curseDot','curseChain'].includes(p.mode)&&(h?.terrain||!p.damage||['curseManifest','curseEarth'].includes(p.mode)))this.emit('sound',{name:'spiritImpact'});
         if(['curseWeak','curseBetray','curseBind'].includes(p.mode)){
             if(h?.unit){this.hurt(h.unit,p.damage,p.owner,true,p,h);this.applyCurse(h.unit,owner,p.mode==='curseWeak'?'weak':p.mode==='curseBetray'?'betray':'bind',p.damage*.28,p.skillRank||1,p.soulBoost?1:0);}
             else if(h?.terrain&&['O06','O07'].includes(p.skill)&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage*(.22+.045*passiveRank(owner,'OP01')),expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
@@ -1126,7 +1143,7 @@ export class Engine {
         if((CURSES.has(p.mode)||SUMMONS.has(p.mode))&&this.occultImpact(p,h))return;
         if(p.mode==='spiritConverge'){convergeAt(this,p);return;}
         if(p.mode==='spiritLance'){
-            if(h.unit)this.hurt(h.unit,p.damage,p.owner,true,p,h);this.fx('burst',p.x,p.y,p.color,36);this.remove(p);return;
+            if(h.unit)this.hurt(h.unit,p.damage,p.owner,true,p,h);else this.emit('sound',{name:'spiritImpact'});this.fx('burst',p.x,p.y,p.color,36);this.remove(p);return;
         }
         if ((p.mode === 'bounce' || p.mode === 'ricochet' || p.mode === 'shieldthrow') && h.terrain && p.bounces === 0) {
             const dot = p.vx * h.n.x + p.vy * h.n.y;
@@ -1204,6 +1221,7 @@ export class Engine {
             if (p.mode === 'sticky' && h.unit)
                 this.hurt(h.unit, p.damage, p.owner, true, p, h);
             this.createZone(p, p.mode === 'sticky' ? 'bomb' : 'delay', h.unit);
+            this.emit('sound',{name:'qiWave'});
             this.remove(p);
             return;
         }
@@ -1275,6 +1293,7 @@ export class Engine {
             }
             this.fx('ring', p.x, p.y, p.color, p.blast);
             this.fx('rune', p.x, p.y, p.color, 85);
+            this.emit('sound',{name:'qiWave'});
             this.remove(p);
             return;
         }
@@ -1338,7 +1357,7 @@ export class Engine {
                 }
             }
             this.fx('spark', p.x, p.y, p.color, 28);
-            this.emit('sound', { name: 'arrowhit' });
+            if(!h.unit)this.emit('sound', { name: 'arrowhit' });
             this.remove(p);
             return;
         }
@@ -1397,14 +1416,14 @@ export class Engine {
     }
     stepProjectile(p: Projectile, dt: number, paced=false) {
         // Old saves may still carry the former timed hatching on a flying stalker seed.
-        if(p.skill==='O11'&&p.fuseAt!==undefined)p.fuseAt=undefined;
+        if((p.skill==='O11'||p.skill==='O13')&&p.fuseAt!==undefined)p.fuseAt=undefined;
         // Enemy-exclusive attacks play two unchanged physics substeps per world step.
         // Preserve trajectories/swept collision precision while shortening empty flight time.
         if(!paced&&p.mode.startsWith('honro')){
             for(let i=0;i<2&&this.b.projectiles.includes(p);i++)this.stepProjectile(p,dt,true);
             return;
         }
-        if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);this.emit('sound',{name:'charge'});}return;}
+        if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);this.emit('sound',{name:'spiritCast'});}return;}
         p.age += dt;
         if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
         if(p.side===1&&this.absorbHostileProjectile(p,dt))return;

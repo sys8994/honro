@@ -22,7 +22,7 @@ export function installOccultRedesign(skills:Record<string,Skill>){
  update('O10',{name:'지박부',tag:'주박 비기 · 지박',desc:'넓은 곳에 지박주를 남긴다. 저주받은 적이 쓰러지면 그 자리에 지박령이 머문다.',cost:68,damage:22,radius:150,mode:'curseEarth',icon:'rune',color:'#b6a788',wind:.42,capstone:true});
  update('O11',{name:'배회령',tag:'초혼 · 추적',desc:'혼매듭이 지형에 닿으면 배회령을 부른다. 적은 통과하며, 소단의 행동이 끝나면 가까운 적을 쫓아 공격한다.',damage:0,radius:0,fuse:undefined,color:'#a9bab4'});
  update('O12',{name:'등불귀',tag:'초혼 · 원거리',desc:'허공의 혼매듭에서 등불귀를 부른다. 소단의 행동 뒤 먼 적에게 혼령탄을 보낸다.',damage:0,radius:0,color:'#b6c8b2'});
- update('O13',{name:'호혼령',tag:'초혼 · 수호',desc:'혼매듭에서 동료를 지키는 호혼령을 부른다. 가까운 아군에게 방호를 준다.',cost:36,damage:0,radius:0,mode:'summonWarden',icon:'shield',color:'#9eafa6',fuse:1.45});
+ update('O13',{name:'호혼령',tag:'초혼 · 수호',desc:'혼매듭에서 동료를 지키는 호혼령을 부른다. 가까운 아군에게 방호를 준다.',cost:36,damage:0,radius:0,mode:'summonWarden',icon:'shield',color:'#9eafa6',fuse:undefined});
 update('O14',{name:'먹귀',tag:'초혼 · 투사체 포식',desc:'허공에 먹귀를 묶어 적의 탄을 삼키게 한다. 공격을 받을수록 몸집이 불어나고, 힘이 차면 가까운 적에게 혼을 터뜨린다.',cost:43,damage:0,radius:0,mode:'summonEater',icon:'vortex',color:'#aaa79d',gravity:.12,fuse:1.45});
  update('O15',{name:'반향령',tag:'초혼 비기 · 반향',desc:'소단의 혼행을 되비추는 영체를 묶어둔다. 소단이 혼을 쏘면 반향령들도 각자의 자리에서 같은 목표를 향해 혼행을 펼친다.',cost:78,damage:0,radius:0,mode:'summonEcho',icon:'resonance',color:'#bec3b2',gravity:.18,capstone:true,fuse:1.45});
  skills.O16={id:'O16',cls:'occultist',name:'만혼귀결',tag:'혼행 비기 · 귀결',desc:'흩어진 수많은 혼을 한 점으로 이끈다. 혼령들은 세상의 벽을 넘어 귀결점을 향해 모여든다.',cost:74,damage:76,radius:0,speed:1.55,wind:.10,mode:'spiritConverge',color:'#c4c8b6',icon:'resonance',terrain:.2,gravity:.20,capstone:true,fuse:2.25};
