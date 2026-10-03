@@ -70,6 +70,8 @@
 | mockup-granite-shelf | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | builtin:placeDetail | 5 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:cave-house | 3.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:cave-house-lean | 3.2 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:cave-house-ruin | 3.3 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:temple | 5.2 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:bell | 15.5 | light | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | glow / cached-vector |
 | act2:hoist-frame | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |

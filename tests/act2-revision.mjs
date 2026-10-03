@@ -15,6 +15,7 @@ for(const before of baseline.stages){
  check(id+' spirit lamp scarcity and story entry',()=>{assert.equal(lamps.length,plan.lamps.length);assert(lamps.length<=2);assert(g.HonroAct2.entry(app).length<=8);assert(st.elements.length>=before.decorations*1.6);});
  check(id+' measured planning range agrees with balance data',()=>{assert.deepEqual(st.design.targetRounds,plan.rounds);assert.deepEqual(balance.stages.find(s=>s.id===id).targetRounds,Array.from(plan.rounds));assert.deepEqual(Array.from(st.design.expectedMinutes),Array.from(plan.rounds,r=>Math.round(r*1.35+5)));});
  if(id===14||id===16)check(id+' inhabited buildings rest on authored foreground terrain',()=>{const asset=id===14?'act2:cave-house':'act2:temple';assert(st.elements.some(e=>e.assetId===asset&&e.depthLayer==='L1'));assert(!st.environment.placements.some(e=>e.assetId===asset));});
+ if(id===14)check('14 upper and lower homes vary while remaining on the foreground',()=>{const homes=st.elements.filter(e=>e.assetId.startsWith('act2:cave-house'));assert(new Set(homes.map(e=>e.assetId)).size>=3);assert(homes.every(e=>e.depthLayer==='L1'));assert(homes.some(e=>e.y<4000)&&homes.some(e=>e.y>6000));});
  check(id+' flying enemies stay within the playable ground band',()=>{for(const u of enemies.filter(v=>g.HonroWorld.archetypes[v.honroType]?.flying))assert(Math.abs(g.HonroWorld.top(b,u.x,u.y)-u.y)<=400,`${u.id} is out of shot range`);});
  if(id>=17)check(id+' late-act correction is applied once to fresh and resumed enemies',()=>{
   assert.equal(plan.active,3);

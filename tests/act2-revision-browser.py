@@ -1,10 +1,11 @@
 """Revision 2 visual/contact audit, using actual shared game and editor scenes."""
 import json,sys
+from PIL import Image
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
 iteration=sys.argv[1] if len(sys.argv)>1 else 'current'
 OUT=ROOT/'_local/reports/act2-revision'/iteration;OUT.mkdir(parents=True,exist_ok=True)
-errors=[];rows=[]
+errors=[];rows=[];seams=[]
 with sync_playwright() as p:
     browser=launch(p);page=browser.new_page(viewport={'width':1440,'height':900})
     page.on('pageerror',lambda e:errors.append(str(e)))
@@ -23,7 +24,15 @@ with sync_playwright() as p:
         if 13<=sid<=19:
             for edge in ['top','left','right','bottom']:
                 page.evaluate('''edge=>{const a=HonroApp,b=a.engine.b,s=a.scene,p=b.honroCaveEnvelope.portals.find(p=>p.side===edge);s.x=edge==='left'?0:edge==='right'?b.width:b.width*.5;s.y=edge==='top'?0:edge==='bottom'?b.height:p?(p.top+p.bottom)*.5:b.height*.5;s.render(a.engine,0)}''',edge)
-                page.screenshot(path=str(OUT/f'stage-{sid}-{edge}.png'))
+                shot=OUT/f'stage-{sid}-{edge}.png';page.screenshot(path=str(shot))
+                if edge in ('left','right'):
+                    # A closed tunnel fill may be necessary, but its closing
+                    # edge must never be stroked through the open mouth.
+                    cx,cy=page.evaluate('''()=>{const r=HonroApp.scene.canvas.getBoundingClientRect();return[Math.round(r.x+r.width/2),Math.round(r.y+r.height/2)]}''')
+                    im=Image.open(shot).convert('RGB');px=im.load()
+                    seam=max(sum(sum(abs(px[x,y][k]-(px[x-2,y][k]+px[x+2,y][k])/2) for k in range(3))/3 for y in range(cy-50,cy+51,5))/21 for x in range(cx-10,cx+10))
+                    seams.append({'stage':sid,'side':edge,'edgeContrast':round(seam,2)})
+                    assert seam<8,(sid,edge,seam)
     page.evaluate("HonroApp.launch(14);while(HonroApp.dialogue)HonroStory.finish(HonroApp)")
     for width,height in [(390,844),(844,390)]:
         page.set_viewport_size({'width':width,'height':height})
@@ -49,5 +58,5 @@ with sync_playwright() as p:
         rows.append({'workshop':row});editor.screenshot(path=str(OUT/f'workshop-{sid}.png'))
     assert not errors,errors
     browser.close()
-(OUT/'result.json').write_text(json.dumps({'rows':rows,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
-print(json.dumps({'checks':len(rows),'errors':errors,'output':str(OUT)},ensure_ascii=False))
+(OUT/'result.json').write_text(json.dumps({'rows':rows,'seams':seams,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+print(json.dumps({'checks':len(rows),'seamChecks':len(seams),'maxSeamContrast':max(s['edgeContrast'] for s in seams),'errors':errors,'output':str(OUT)},ensure_ascii=False))

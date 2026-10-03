@@ -8066,6 +8066,559 @@
       }
     },
     {
+      "id": "act2:cave-house-lean",
+      "name": "암벽에 기댄 살림집",
+      "category": "architecture",
+      "visual": [
+        {
+          "points": [
+            {
+              "x": -163,
+              "y": 0
+            },
+            {
+              "x": -153,
+              "y": -108
+            },
+            {
+              "x": 99,
+              "y": -108
+            },
+            {
+              "x": 129,
+              "y": 0
+            }
+          ],
+          "fill": "#55584d",
+          "stroke": "#293a3a",
+          "lineWidth": 2
+        },
+        {
+          "points": [
+            {
+              "x": 44,
+              "y": 0
+            },
+            {
+              "x": 44,
+              "y": -108
+            },
+            {
+              "x": 99,
+              "y": -108
+            },
+            {
+              "x": 129,
+              "y": 0
+            }
+          ],
+          "fill": "#343e3b",
+          "stroke": null,
+          "lineWidth": 0
+        },
+        {
+          "points": [
+            {
+              "x": -183,
+              "y": -106
+            },
+            {
+              "x": -104,
+              "y": -164
+            },
+            {
+              "x": 70,
+              "y": -148
+            },
+            {
+              "x": 151,
+              "y": -94
+            },
+            {
+              "x": 139,
+              "y": -84
+            },
+            {
+              "x": -170,
+              "y": -88
+            }
+          ],
+          "fill": "#263437",
+          "stroke": "#77817a",
+          "lineWidth": 3
+        },
+        {
+          "points": [
+            {
+              "x": -105,
+              "y": -150
+            },
+            {
+              "x": 66,
+              "y": -137
+            },
+            {
+              "x": 127,
+              "y": -99
+            },
+            {
+              "x": 80,
+              "y": -108
+            },
+            {
+              "x": -94,
+              "y": -137
+            }
+          ],
+          "fill": "#4c5b57",
+          "stroke": null,
+          "lineWidth": 0
+        },
+        {
+          "points": [
+            {
+              "x": -128,
+              "y": -96
+            },
+            {
+              "x": -116,
+              "y": -96
+            },
+            {
+              "x": -116,
+              "y": 0
+            },
+            {
+              "x": -128,
+              "y": 0
+            }
+          ],
+          "fill": "#998768",
+          "stroke": null,
+          "lineWidth": 0
+        },
+        {
+          "points": [
+            {
+              "x": 101,
+              "y": -90
+            },
+            {
+              "x": 112,
+              "y": -90
+            },
+            {
+              "x": 123,
+              "y": 0
+            },
+            {
+              "x": 107,
+              "y": 0
+            }
+          ],
+          "fill": "#796f59",
+          "stroke": null,
+          "lineWidth": 0
+        },
+        {
+          "points": [
+            {
+              "x": -81,
+              "y": -87
+            },
+            {
+              "x": -22,
+              "y": -87
+            },
+            {
+              "x": -22,
+              "y": -32
+            },
+            {
+              "x": -81,
+              "y": -32
+            }
+          ],
+          "fill": "#cba76d",
+          "stroke": "#3b4843",
+          "lineWidth": 3
+        },
+        {
+          "points": [
+            {
+              "x": 28,
+              "y": 0
+            },
+            {
+              "x": 28,
+              "y": -83
+            },
+            {
+              "x": 76,
+              "y": -83
+            },
+            {
+              "x": 76,
+              "y": 0
+            }
+          ],
+          "fill": "#1a292b",
+          "stroke": "#7c7961",
+          "lineWidth": 2
+        },
+        {
+          "points": [
+            {
+              "x": -170,
+              "y": 0
+            },
+            {
+              "x": 136,
+              "y": 0
+            },
+            {
+              "x": 151,
+              "y": 16
+            },
+            {
+              "x": -180,
+              "y": 16
+            }
+          ],
+          "fill": "#67746d",
+          "stroke": "#15191b",
+          "lineWidth": 2
+        }
+      ],
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act2"
+      ],
+      "params": {},
+      "reference": {
+        "heightM": 3.2,
+        "bounds": {
+          "x": -183,
+          "y": -164,
+          "w": 334,
+          "h": 180
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.4,
+          4
+        ],
+        "backgroundRange": [
+          0.7,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "act2:cave-house-ruin",
+      "name": "무너진 지붕의 옛 돌집",
+      "category": "architecture",
+      "visual": [
+        {
+          "points": [
+            {
+              "x": -148,
+              "y": 0
+            },
+            {
+              "x": -140,
+              "y": -114
+            },
+            {
+              "x": -71,
+              "y": -114
+            },
+            {
+              "x": -40,
+              "y": -90
+            },
+            {
+              "x": 58,
+              "y": -108
+            },
+            {
+              "x": 126,
+              "y": -96
+            },
+            {
+              "x": 140,
+              "y": 0
+            }
+          ],
+          "fill": "#555950",
+          "stroke": "#28393a",
+          "lineWidth": 2
+        },
+        {
+          "points": [
+            {
+              "x": 49,
+              "y": 0
+            },
+            {
+              "x": 58,
+              "y": -108
+            },
+            {
+              "x": 126,
+              "y": -96
+            },
+            {
+              "x": 140,
+              "y": 0
+            }
+          ],
+          "fill": "#374441",
+          "stroke": null,
+          "lineWidth": 0
+        },
+        {
+          "points": [
+            {
+              "x": -169,
+              "y": -108
+            },
+            {
+              "x": -107,
+              "y": -168
+            },
+            {
+              "x": -17,
+              "y": -151
+            },
+            {
+              "x": 23,
+              "y": -116
+            },
+            {
+              "x": -18,
+              "y": -106
+            },
+            {
+              "x": -101,
+              "y": -142
+            },
+            {
+              "x": -158,
+              "y": -92
+            }
+          ],
+          "fill": "#283437",
+          "stroke": "#727e76",
+          "lineWidth": 3
+        },
+        {
+          "points": [
+            {
+              "x": 9,
+              "y": -119
+            },
+            {
+              "x": 69,
+              "y": -147
+            },
+            {
+              "x": 144,
+              "y": -99
+            },
+            {
+              "x": 127,
+              "y": -83
+            },
+            {
+              "x": 63,
+              "y": -119
+            }
+          ],
+          "fill": "#394945",
+          "stroke": "#7c8277",
+          "lineWidth": 2
+        },
+        {
+          "points": [
+            {
+              "x": -105,
+              "y": -105
+            },
+            {
+              "x": -91,
+              "y": -105
+            },
+            {
+              "x": -91,
+              "y": 0
+            },
+            {
+              "x": -105,
+              "y": 0
+            }
+          ],
+          "fill": "#8f8066",
+          "stroke": null,
+          "lineWidth": 0
+        },
+        {
+          "points": [
+            {
+              "x": 79,
+              "y": -103
+            },
+            {
+              "x": 93,
+              "y": -103
+            },
+            {
+              "x": 111,
+              "y": 0
+            },
+            {
+              "x": 95,
+              "y": 0
+            }
+          ],
+          "fill": "#8f8066",
+          "stroke": null,
+          "lineWidth": 0
+        },
+        {
+          "points": [
+            {
+              "x": -66,
+              "y": -78
+            },
+            {
+              "x": -21,
+              "y": -78
+            },
+            {
+              "x": -21,
+              "y": -25
+            },
+            {
+              "x": -66,
+              "y": -25
+            }
+          ],
+          "fill": "#d0ae77",
+          "stroke": "#394844",
+          "lineWidth": 3
+        },
+        {
+          "points": [
+            {
+              "x": 20,
+              "y": 0
+            },
+            {
+              "x": 20,
+              "y": -77
+            },
+            {
+              "x": 65,
+              "y": -77
+            },
+            {
+              "x": 65,
+              "y": 0
+            }
+          ],
+          "fill": "#172528",
+          "stroke": "#8a8265",
+          "lineWidth": 2
+        },
+        {
+          "points": [
+            {
+              "x": -167,
+              "y": 0
+            },
+            {
+              "x": -136,
+              "y": -32
+            },
+            {
+              "x": -102,
+              "y": -14
+            },
+            {
+              "x": -70,
+              "y": 0
+            }
+          ],
+          "fill": "#71796c",
+          "stroke": "#344240",
+          "lineWidth": 2
+        },
+        {
+          "points": [
+            {
+              "x": -175,
+              "y": 0
+            },
+            {
+              "x": 145,
+              "y": 0
+            },
+            {
+              "x": 156,
+              "y": 16
+            },
+            {
+              "x": -185,
+              "y": 16
+            }
+          ],
+          "fill": "#66746c",
+          "stroke": "#15191b",
+          "lineWidth": 2
+        }
+      ],
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act2"
+      ],
+      "params": {},
+      "reference": {
+        "heightM": 3.3,
+        "bounds": {
+          "x": -185,
+          "y": -168,
+          "w": 341,
+          "h": 184
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.4,
+          4
+        ],
+        "backgroundRange": [
+          0.7,
+          1.3
+        ]
+      }
+    },
+    {
       "id": "act2:temple",
       "name": "잠운사 암벽 법당",
       "category": "architecture",
@@ -66300,7 +66853,7 @@
         },
         {
           "id": "a2-14-4",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-lean",
           "x": 1490,
           "y": 2201,
           "scale": 1.17,
@@ -66344,7 +66897,7 @@
         },
         {
           "id": "a2-14-8",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-ruin",
           "x": 2430,
           "y": 2462,
           "scale": 1.01,
@@ -66432,7 +66985,7 @@
         },
         {
           "id": "a2-14-16",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-lean",
           "x": 4310,
           "y": 2975,
           "scale": 1.17,
@@ -66476,7 +67029,7 @@
         },
         {
           "id": "a2-14-20",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-ruin",
           "x": 5250,
           "y": 3311,
           "scale": 1.01,
@@ -66564,7 +67117,7 @@
         },
         {
           "id": "a2-14-28",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-lean",
           "x": 7130,
           "y": 4044.3076923076924,
           "scale": 1.17,
@@ -66608,7 +67161,7 @@
         },
         {
           "id": "a2-14-32",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-ruin",
           "x": 8070,
           "y": 4519,
           "scale": 1.01,
@@ -66872,7 +67425,7 @@
         },
         {
           "id": "a2-14-56",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-lean",
           "x": 650,
           "y": 6524,
           "scale": 1,
@@ -66916,7 +67469,7 @@
         },
         {
           "id": "a2-14-60",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-ruin",
           "x": 2130,
           "y": 6349,
           "scale": 0.9,
@@ -66938,7 +67491,7 @@
         },
         {
           "id": "a2-14-62",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-lean",
           "x": 2870,
           "y": 6324,
           "scale": 1,
@@ -66982,7 +67535,7 @@
         },
         {
           "id": "a2-14-66",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-ruin",
           "x": 4350,
           "y": 5982,
           "scale": 0.9,
@@ -67004,7 +67557,7 @@
         },
         {
           "id": "a2-14-68",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-lean",
           "x": 5090,
           "y": 5742,
           "scale": 1,
@@ -67048,7 +67601,7 @@
         },
         {
           "id": "a2-14-72",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-ruin",
           "x": 6570,
           "y": 5177,
           "scale": 0.9,
@@ -67070,7 +67623,7 @@
         },
         {
           "id": "a2-14-74",
-          "assetId": "act2:cave-house",
+          "assetId": "act2:cave-house-lean",
           "x": 7310,
           "y": 4922,
           "scale": 1,

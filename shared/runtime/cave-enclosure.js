@@ -47,10 +47,14 @@ function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersi
   // edges otherwise leave a one-pixel antialias seam at extreme camera pans.
   const fill=new Path2D();fill.rect(v.left,v.top,v.right-v.left,v.bottom-v.top);fill.rect(4,4,b.width-8,b.height-8);
   const tunnels=(b.honroCaveEnvelope.portals||[]).map(p=>{const left=p.side==='left',x=left?0:b.width,sign=left?-1:1,far=x+sign*780;
-   const end=left?Math.min(far,v.left-350):Math.max(far,v.right+350),mid=(p.top+p.bottom)/2,path=new Path2D();
+   const end=left?Math.min(far,v.left-350):Math.max(far,v.right+350),mid=(p.top+p.bottom)/2,path=new Path2D(),rim=new Path2D();
    path.moveTo(x-sign*6,p.top);path.bezierCurveTo(x+sign*160,p.top-45,x+sign*300,p.top+25,end,mid-25);
    path.lineTo(end,mid+25);path.bezierCurveTo(x+sign*390,p.bottom+40,x+sign*150,p.bottom+5,x-sign*6,p.bottom);path.closePath();
-   return{...p,x,far:end,path};});
+   // The fill closes across the entrance, but the visible rim must not:
+   // stroking that closing edge drew a straight wall through the open mouth.
+   rim.moveTo(x-sign*6,p.top);rim.bezierCurveTo(x+sign*160,p.top-45,x+sign*300,p.top+25,end,mid-25);
+   rim.moveTo(end,mid+25);rim.bezierCurveTo(x+sign*390,p.bottom+40,x+sign*150,p.bottom+5,x-sign*6,p.bottom);
+   return{...p,x,far:end,path,rim};});
   const strata=[];
   for(const y of [-1180,-520,b.height+420,b.height+1080]){
    const p=new Path2D();p.moveTo(v.left-100,y+170);
@@ -68,7 +72,7 @@ function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersi
  q.strata.forEach((p,i)=>{c.strokeStyle=i%2?'#78878236':'#121f254d';c.lineWidth=i%2?75:130;c.stroke(p);c.strokeStyle='#89958c20';c.lineWidth=5;c.stroke(p);});
  c.restore();
  for(const p of q.tunnels){const g=c.createLinearGradient(p.x,0,p.far,0);g.addColorStop(0,'#203035');g.addColorStop(.45,'#172a30');g.addColorStop(1,'#344249');c.fillStyle=g;c.fill(p.path);
-  c.strokeStyle='#75867c38';c.lineWidth=3;c.stroke(p.path);}
+  c.strokeStyle='#75867c38';c.lineWidth=3;c.stroke(p.rim);}
  c.restore();this.overscanStats={bounds:v,paths:1+q.tunnels.length,builds:this._skirtBuilds,cave:true,portals:q.tunnels.length};
 }
 G.HonroCaveRock={terrain,enclosure,background,prepare,rock};
