@@ -88,10 +88,16 @@ with sync_playwright() as p:
     for id in IDS:
         atlas=lab.evaluate(r'''id=>{const cv=document.createElement('canvas');cv.width=1500;cv.height=300;const c=cv.getContext('2d');c.fillStyle='#182b2c';c.fillRect(0,0,1500,300);const a=HonroMonsterVisual.assets[id];[0,.2,.45,.7,1].forEach((t,j)=>{c.fillStyle='#ccd4ba';c.font='16px sans-serif';c.fillText(`${a.name} / ${Math.round(t*100)}%`,j*300+24,28);c.save();c.translate(j*300+145,278);c.scale(145/a.baseHeight,145/a.baseHeight);HonroMonsterVisual.draw(c,id,{time:0,state:{attack:t},pixels:145});c.restore();});return cv.toDataURL();}''',id)
         (OUT/(id+'-attack.png')).write_bytes(base64.b64decode(atlas.split(',')[1]))
-    # An honest stress workload draws visible assets into a visible-size Canvas and flushes pixels.
-    perf=lab.evaluate(r'''()=>{const cv=document.createElement('canvas');cv.width=1500;cv.height=900;const c=cv.getContext('2d'),times=[];for(let k=0;k<80;k++){const start=performance.now();c.clearRect(0,0,1500,900);for(let i=0;i<36;i++){const ids=Object.keys(HonroMonsterVisual.assets),id=ids[i%ids.length],a=HonroMonsterVisual.assets[id];c.save();c.translate(100+i%9*165,185+Math.floor(i/9)*220);c.scale(120/a.baseHeight,120/a.baseHeight);HonroMonsterVisual.draw(c,id,{time:k*.02,pixels:120,state:{move:true}});c.restore();}c.getImageData(0,0,1,1);if(k>=10)times.push(performance.now()-start);}times.sort((a,b)=>a-b);return{units:36,samples:times.length,p50:times[35],p95:times[66],max:times.at(-1)};}''')
-    check('36 detailed monsters draw within 16.7ms at p95 on this machine',perf['p95']<16.7,perf)
+    # The galleries above create hundreds of full-canvas data URLs. Close that
+    # page before timing the production renderer so their garbage collection is
+    # not charged to an otherwise identical 36-monster combat workload.
     lab.close()
+    bench=browser.new_page(viewport={'width':1480,'height':1100});listen(bench)
+    bench.goto((OUT/'index.html').as_uri());bench.wait_for_function('window.MonsterLab')
+    perf=bench.evaluate(r'''()=>{const cv=document.createElement('canvas');cv.width=1500;cv.height=900;const c=cv.getContext('2d'),times=[],assets=HonroMonsterVisual.assets,ids=Object.keys(assets);for(let k=0;k<80;k++){const start=performance.now();c.clearRect(0,0,1500,900);for(let i=0;i<36;i++){const id=ids[i%ids.length],a=assets[id];c.save();c.translate(100+i%9*165,185+Math.floor(i/9)*220);c.scale(120/a.baseHeight,120/a.baseHeight);HonroMonsterVisual.draw(c,id,{time:k*.02,pixels:120,state:{move:true}});c.restore();}c.getImageData(0,0,1,1);if(k>=10)times.push(performance.now()-start);}times.sort((a,b)=>a-b);return{units:36,samples:times.length,p50:times[35],p95:times[66],max:times.at(-1)};}''')
+    print('MONSTER PERF',json.dumps(perf),flush=True)
+    check('36 detailed monsters draw within 16.7ms at p95 on this machine',perf['p95']<16.7,perf)
+    bench.close()
     game=browser.new_page(viewport={'width':1440,'height':900});listen(game);game.goto((ROOT/'HONRO.html').as_uri());game.wait_for_function('window.HonroApp');arena=game.evaluate(ARENA)
     game.evaluate('p=>{HonroApp.profile.settings.sound=false;HonroApp.launchMap(p,p.activeStageId,{story:false});}',arena)
     game_result=game.evaluate(RUNTIME);check('Game uses pure production vectors',game_result['pure'] and not game_result['error'],game_result['signatures']);game.screenshot(path=str(OUT/'game.png'))

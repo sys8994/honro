@@ -35,12 +35,14 @@
 
 ## 현행 revision 2 전체 회귀·성능
 
-이번 변경 후 `npm.cmd run verify` 단일 실행은 세 번 모두 종료 코드 1이었다. 첫 실행은 기존 몬스터 36체 렌더 p95 17.0ms(기준 16.7ms), 두 번째는 Workshop 조준 화면 p95 16.8ms(기준 16.7ms), 세 번째는 몬스터 p95 25.0ms에서 중단됐다. 몬스터·조준 검사는 같은 빌드의 단독 재측정에서 통과했다. 전체 명령이 도달하지 못한 나머지 검사는 순차로 따로 실행해 통과했다: 빌드, 기존 맵·이관, 환경 20개 맵/83개 에셋, Game/Stage View 월드 화소 통합 67조건, 입력·대사·저장·모바일 회귀, 2막 상태 fixture 10장·개편 82조건·물리 이동 10장·브라우저 57조건/화면 검수 17묶음과 동굴 좌우 경계 14곳, 정상 전투 API 10장 승리, 순차 2막 성능 18조건씩. 별도의 전체 성능 묶음도 기존 1막 타격 장면의 프레임 p95 45.8ms(기준 45ms)에서 중단됐고, 단독 재측정은 Workshop 47.5ms에서 한 번 실패한 뒤 다음 측정에서 통과했다. 기준을 변경하거나 전체 `verify`가 통과했다고 계산하지 않는다. 전체 로그는 `_local/logs/act2-revision-verify-edge-and-village.log`, `act2-revision-verify-edge-and-village-final.log`, `act2-revision-verify-consolidated.log`이고, 장별 정상 행동 기록은 위 표의 `normal-play-*.json`이다.
+화면 수정 직후 `npm.cmd run verify`는 기존 몬스터·조준 성능의 변동으로 세 번 중단됐다. 몬스터 36체 p95는 17.0/25.0ms(기준 16.7ms), Workshop 조준은 16.8ms(기준 16.7ms)였다. 기존 1막 타격 프레임도 별도 전체 성능 실행에서 45.8ms, 단독 재측정에서 47.5ms(기준 45ms)로 흔들렸다. 몬스터 미술 검사가 대량 이미지 비교와 성능 측정을 같은 페이지에서 연달아 하던 점을 확인해, 비교 페이지를 닫고 동일한 36체·70프레임 부하를 새 페이지에서 측정하도록 했다. 기준이나 작업량은 바꾸지 않았다. 수정 후 독립 실행 세 번의 p95는 14.4/11.5/12.4ms였다.
+
+최종 `npm.cmd run verify`는 종료 코드 0으로 통과했다. 빌드·이관·환경 20개 맵/83개 에셋, Game/Stage View 월드 화소 통합 67조건, 입력·대사·저장·모바일 회귀, 2막 상태 fixture 10장·개편 82조건·물리 이동 10장·브라우저 57조건/화면 검수 17묶음과 동굴 좌우 경계 14곳, 정상 전투 API 10장 승리, 순차 2막 성능 18조건씩을 포함한다. 최종 몬스터 p95는 8.6ms였다. 최종 로그는 `_local/logs/act2-revision-verify-isolated-monster.log`, 장별 행동 기록은 위 표의 `normal-play-*.json`이다. 앞선 실패 로그는 `_local/logs/act2-revision-verify-edge-and-village*.log`, `act2-revision-verify-consolidated.log`, `act2-revision-verify-stabilized.log`에 남겼다.
 
 | 2막 성능, 11·14·15·18·19·20장 | 조건 | 최저 Hz | 평균 렌더 최댓값 | 최대 진입 시간 | 예외 / 예열 후 캐시 재생성 |
 |---|---:|---:|---:|---:|---:|
-| Game | 18 | 58.04 | 2.764ms | 262.0ms | 0 / 0 |
-| Workshop | 18 | 59.63 | 2.642ms | 159.9ms | 0 / 0 |
+| Game | 18 | 59.91 | 2.203ms | 218.6ms | 0 / 0 |
+| Workshop | 18 | 59.53 | 2.108ms | 132.2ms | 0 / 0 |
 
 각 18조건은 데스크톱 확대·축소와 모바일 가로 화면을 포함한다. 원본 JSON은 `_local/reports/act2/performance-game.json`과 `performance-editor.json`에 있다. 실제 휴대전화 기기의 촉감과 처음 보는 사람의 전투 시간은 자동 검사 범위 밖이다. 15장은 세 회복약·두 보호막을 모두 사용했고, 19장은 한 동료를 잃은 뒤 소단을 포함한 3명이 살아남았다. 자동 승리를 쉬운 난이도 또는 예상 분량의 증거로 해석하지 않는다.
 
