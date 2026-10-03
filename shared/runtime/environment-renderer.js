@@ -3,11 +3,11 @@ const Scene=G.HonroScene,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,prepared=n
 const act1Images={},act1Tones=new Map();
 if(typeof Image!=='undefined')for(const [key,src] of Object.entries(G.HONRO_ACT1_FAR_DATA||{})){const img=new Image();img.src=src;act1Images[key]=img;}
 const imageReady=img=>!!(img?.complete&&img.naturalWidth),act1ImageFor=stage=>act1Images[E.campaignMood(stage)?.variant];
-const act1Ready=stage=>stage===undefined?['mountains','gorge'].every(k=>imageReady(act1Images[k])):imageReady(act1ImageFor(stage));
+const act1Ready=stage=>stage===undefined?['mountains','gorge','dawn'].every(k=>imageReady(act1Images[k])):imageReady(act1ImageFor(stage));
 function tonedBackdrop(stage){const mood=E.campaignMood(stage),key=mood.variant;if(act1Tones.has(key))return act1Tones.get(key);
  const img=act1Images[key],cv=document.createElement('canvas'),tone=E.ACT1_FAR;cv.width=img.naturalWidth;cv.height=img.naturalHeight;
- const ctx=cv.getContext('2d');ctx.filter=`saturate(${tone.saturation}) brightness(${tone.brightness[key]})`;ctx.drawImage(img,0,0);ctx.filter='none';
- ctx.globalAlpha=tone.veilOpacity;ctx.fillStyle=tone.veil;ctx.fillRect(0,0,cv.width,cv.height);act1Tones.set(key,cv);return cv;
+ const ctx=cv.getContext('2d');ctx.filter=`saturate(${key==='dawn'?.78:tone.saturation}) brightness(${tone.brightness[key]})`;ctx.drawImage(img,0,0);ctx.filter='none';
+ ctx.globalAlpha=key==='dawn'?.025:tone.veilOpacity;ctx.fillStyle=tone.veil;ctx.fillRect(0,0,cv.width,cv.height);act1Tones.set(key,cv);return cv;
 }
 G.HonroAct1Background={images:act1Images,imageFor:act1ImageFor,ready:act1Ready,cacheSize:()=>act1Tones.size};
 function paintedSky(c,w,h,b,view){const img=tonedBackdrop(b.honroStage),q=E.act1BackdropFrame(view,w,h,b,img.width,img.height);
@@ -117,6 +117,7 @@ Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),painted=E
   }
   this.environmentStats={groups:active,visibleAssets:visible,cachedPaths:paths,backgroundAnimatedPrimitives:0,animatedPrimitives:0,...A.stats()};return;}
  const st={width:b.width,height:b.height,backdrop:b.honroBackdrop,environment:env},a=E.atmosphereAt(st,this.y),data=prepare(env),time=A.time(this);sky(c,w,h,st,a);
+ if(b.honroCaveEnvelope)G.HonroCaveRock?.background(c,b,this,w,h);
  let visible=0,active=0,animated=1;
  for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer))continue;const tr=E.groupTransform(this,w,h,st,g),surface0=unit.surfaces[0];if(tr.opacity<=.001||surface0&&(tr.y+surface0.top*tr.scale>h+600||tr.y+surface0.drawBottom*tr.scale<0))continue;active++;
   const z=env.zones.find(z=>z.id===g.zoneId),local=E.atmosphere(st,z);

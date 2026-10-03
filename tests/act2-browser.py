@@ -3,7 +3,7 @@ explicit fixtures, separately from movement/fire tests; no user storage is used.
 import json,base64
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
-OUT=ROOT/'_local/reports/act2';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'_local/reports/act2-revision/browser';OUT.mkdir(parents=True,exist_ok=True)
 rows=[];errors=[]
 def check(name,ok,detail=None):
     assert ok,(name,detail)
@@ -27,7 +27,7 @@ with sync_playwright() as p:
         check(f'2-{sid-10} real move/fire',data['moved']>20 and data['fired'] and data['finite'],data)
         page.screenshot(path=str(OUT/f'stage-{sid}.png'))
     page.evaluate('HonroApp.launch(11)');skip(page)
-    page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=b.units.find(u=>u.cls==='occultist'&&u.side===0),m=b.honroMarkers.find(m=>m.id==='knot-west');b.active=u.id;Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});a.updateHUD(true);HonroInteractions.refresh(a)}''')
+    page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=b.units.find(u=>u.cls==='occultist'&&u.side===0),m=b.honroMarkers.find(m=>m.id==='knot-west');b.active=u.id;Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});for(const v of b.units)if(v.side===1&&Math.hypot(v.x-m.x,v.y-m.y)<360){v.hp=0;v.dead=true;}a.updateHUD(true);HonroInteractions.refresh(a)}''')
     page.keyboard.press('e')
     check('PC E commits knot exactly once',page.evaluate('!!HonroApp.engine.b.honroState.act2.done["knot-west"]'))
     page.evaluate('HonroApp.engine.finishAction(true);HonroApp.startQueuedStory();HonroApp.profile.honroBattle=structuredClone(HonroApp.engine.b);HonroApp.persist()')
@@ -37,7 +37,7 @@ with sync_playwright() as p:
     skip(page)
     for width,height in [(390,844),(844,390)]:
         page.set_viewport_size({'width':width,'height':height});page.evaluate('HonroApp.launch(11)');skip(page)
-        page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=b.units.find(u=>u.cls==='occultist'&&u.side===0),m=b.honroMarkers.find(m=>m.id==='knot-west');b.active=u.id;Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});a.updateHUD(true);HonroInteractions.refresh(a)}''')
+        page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=b.units.find(u=>u.cls==='occultist'&&u.side===0),m=b.honroMarkers.find(m=>m.id==='knot-west');b.active=u.id;Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});for(const v of b.units)if(v.side===1&&Math.hypot(v.x-m.x,v.y-m.y)<360){v.hp=0;v.dead=true;}a.updateHUD(true);HonroInteractions.refresh(a)}''')
         page.click('[data-context-interact="knot-west"]')
         check(f'Mobile {width} context interaction',page.evaluate('!!HonroApp.engine.b.honroState.act2.done["knot-west"]'))
         page.evaluate('HonroApp.engine.finishAction(true);HonroApp.startQueuedStory()')
@@ -52,22 +52,26 @@ with sync_playwright() as p:
     page.evaluate('HonroApp.showMap()');skip(page);page.click('[data-act-focus="11"]')
     check('Journey has all Act 2 nodes and focus navigation',page.locator('.map-node').count()==20 and page.evaluate('HonroApp.stageId===11'))
     page.screenshot(path=str(OUT/'journey.png'))
-    # Explicit terminal fixtures exercise the real application reward/unlock/outro
-    # path. The separate Node bot covers movement and combat without these fixtures.
+    # Explicit terminal fixtures exercise real application reward/unlock/outro.
+    # Enemy deaths and hold completion here are controlled; Node checks each
+    # objective rule and the separate bot covers normal movement/combat.
     page.evaluate('''()=>{const a=HonroApp;a.profile=HONRO_TOOLS.fresh();for(let j=1;j<=10;j++)a.profile.cleared[j]={rounds:12};a.profile.recruited=['archer','mage','knight'];for(const cls of a.profile.recruited)a.profile.heroes[cls].xp=HONRO_CORE.xpAtLevel(12)}''')
     for sid in range(11,21):
         page.evaluate('id=>HonroApp.launch(id)',sid);skip(page)
         result=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,st=a.stage;const before=b.heroes.archer.xp;
-          for(const s of st.steps){const u=e.heroesAlive().find(u=>u.cls===(s.requiredClass||(s.kind==='rescue'?'occultist':'archer'))),m=b.honroMarkers.find(m=>m.id===s.id);b.active=u.id;b.phase='aim';b.side=0;u.acted=false;u.vx=u.vy=0;
-           if(s.kind==='destroy')e.damageTerrain(b.terrain.find(t=>t.id===s.id),1000,0,u.id);
+          for(const s of st.steps){if(s.kind==='clear'&&HonroAct2.memory(b).done[s.id])continue;
+           const u=e.heroesAlive().find(u=>u.cls===(s.requiredClass||(s.kind==='rescue'?'occultist':'archer'))),m=b.honroMarkers.find(m=>m.id===s.id);b.active=u.id;b.phase='aim';b.side=0;u.acted=false;u.vx=u.vy=0;
+           if(s.kind==='clear'){for(const v of HonroAct2.enemiesFor(b,s)){v.hp=0;v.dead=true;}}
+           else if(s.kind==='hold'){const h=HonroAct2.memory(b).holds;h[s.id]={progress:s.rounds,spawned:s.wave.count,lastRound:b.round,continuous:true,guarded:true};}
+           else if(s.kind==='destroy')e.damageTerrain(b.terrain.find(t=>t.id===s.id),1000,0,u.id);
            else if(s.kind==='defeat')e.hurt(e.unit(s.target),1e9,u.id);
            else if(s.kind==='reach')Object.assign(u,{x:m.x,y:m.y});
            else if(s.kind==='escort')Object.assign(e.unit('objective'),{x:m.x,y:m.y});
-           else {Object.assign(u,{x:m.x,y:m.y});HonroAct2.use(a,m);}
-           HonroAct2.tick(a,0);while(a.dialogue)HonroStory.finish(a);
+           else {Object.assign(u,{x:m.x,y:m.y});for(const v of e.alive(1))if(v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360){v.hp=0;v.dead=true;}if(s.kind==='rescue'){const spirit=e.unit(m.spiritId);spirit.hp=Math.min(spirit.hp,Math.floor(spirit.maxHp*.35));}if(!HonroAct2.use(a,m))throw Error('Blocked '+st.id+'/'+s.id);}
+           a.actorBoundary=u.id;HonroAct2.tick(a,0);a.actorBoundary=null;while(a.dialogue)HonroStory.finish(a);
           }
           a.checkMission(e);const phase=b.phase;a.outcome();while(a.dialogue)HonroStory.finish(a);
-          const xp=a.profile.heroes.archer.xp;a.outcome(true);return{phase,cleared:!!a.profile.cleared[st.id],xpGained:xp-before,oneTime:a.profile.heroes.archer.xp===xp,next:st.id===20?HONRO_CONTENT.nextAct.available===false:a.isOpen(HONRO_CONTENT.stages[st.id])}}''')
+          const xp=a.profile.heroes.archer.xp,goal=HonroAct2.current(b)?.id,foes=e.alive(1).map(v=>v.id),events=HonroAct2.memory(b).events,boss=e.unit('act2-keeper');a.outcome(true);return{phase,cleared:!!a.profile.cleared[st.id],xpGained:xp-before,oneTime:a.profile.heroes.archer.xp===xp,next:st.id===20?HONRO_CONTENT.nextAct.available===false:a.isOpen(HONRO_CONTENT.stages[st.id]),goal,foes,events,boss:boss&&{hp:boss.hp,maxHp:boss.maxHp,dead:boss.dead,subdued:boss.honroSubdued}}}''')
         check(f'Campaign {sid} victory, outro, reward and next unlock',result['phase']=='won' and result['cleared'] and result['xpGained']>0 and result['oneTime'] and result['next'],result)
     page.evaluate('HonroApp.launch(14)');skip(page)
     result=page.evaluate('''()=>{const a=HonroApp,b=a.engine.b;a.engine.unit('objective').hp=0;a.engine.unit('objective').dead=true;a.checkMission(a.engine);a.outcome(true);return{phase:b.phase,reason:b.winnerReason,xp:a.profile.heroes.archer.xp}}''')
@@ -91,7 +95,7 @@ with sync_playwright() as p:
     saved=editor.evaluate('HonroWorkshopAPI.exportProject()')
     editor.click('[data-tab="play"]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
     play=editor.frames[1];play.evaluate('HonroApp.frame=()=>{}');skip(play)
-    result=play.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.heroesAlive().find(u=>u.cls==='mage'),m=b.honroMarkers.find(m=>m.id==='silence');b.active=u.id;Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});a.updateHUD(true);HonroInteractions.refresh(a);return{stage:b.honroStage,party:e.heroesAlive().length,active:HonroAct2.active(b)}}''')
+    result=play.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.heroesAlive().find(u=>u.cls==='mage'),m=b.honroMarkers.find(m=>m.id==='silence');HonroAct2.memory(b).done['clear-wards']=true;b.active=u.id;Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,acted:false});for(const v of e.alive(1))if(Math.hypot(v.x-m.x,v.y-m.y)<360){v.hp=0;v.dead=true;}a.updateHUD(true);HonroInteractions.refresh(a);return{stage:b.honroStage,party:e.heroesAlive().length,active:HonroAct2.active(b)}}''')
     play.locator('[data-context-interact="silence"]').click()
     check('Actual Workshop iframe runs Act 2 ritual rules',result['stage']==18 and result['party']==4 and result['active'] and play.evaluate('!!HonroAct2.memory(HonroApp.engine.b).done.silence'),result)
     editor.click('#stopPlay')

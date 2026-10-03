@@ -83,6 +83,7 @@
 | act2:rock-column | 10 | rock | 지형/지지면 필수 | L1, L2 | , slope-L2, valley-bottom-L2 / WORLD / world, slope, valley-bottom | static / cached-vector |
 | act2:hanging-cloth | 2.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:stone-table | 1.4 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:old-soul-stone | 8.5 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:rock-bank | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 
 ## 현재 맵
@@ -107,7 +108,7 @@
 | stage-16 | enclosed / enclosed | 57 / 6 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 23 |
 | stage-17 | enclosed / enclosed | 52 / 9 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
 | stage-18 | enclosed / enclosed | 60 / 7 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 24 |
-| stage-19 | enclosed / enclosed | 68 / 6 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 24 |
+| stage-19 | enclosed / enclosed | 70 / 6 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 24 |
 | stage-20 | valley / valley | 47 / 8 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
 
 ## 코드가 생성하는 요소

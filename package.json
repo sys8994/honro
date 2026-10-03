@@ -26,6 +26,6 @@
     "test:actors": "node tools/actor-forge/lab.mjs && python -X utf8 tests/actor-art-browser.py",
     "test:map-art": "python -X utf8 tests/map-art-browser.py current",
     "test:environment": "node tests/environment-depth.mjs && node tests/environment-composition.mjs && node tools/environment/validate.mjs && node tools/environment/inventory.mjs --check && python -X utf8 tests/environment-browser.py && python -X utf8 tests/environment-composition-browser.py",
-    "test:act2": "node tests/act2.mjs && python -X utf8 tests/act2-browser.py && node tests/act2-playthrough.mjs"
+    "test:act2": "node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-traversal.mjs && python -X utf8 tests/act2-browser.py && python -X utf8 tests/act2-revision-browser.py regression && node tests/act2-playthrough.mjs"
   }
 }

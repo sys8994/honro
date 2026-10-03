@@ -42,7 +42,7 @@ with sync_playwright() as p:
     rows.append({'visibility':visibility})
     editor=browser.new_page(viewport={'width':1440,'height':900});editor.on('pageerror',lambda e:errors.append(str(e)))
     editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene')
-    for sid in [13,14,15,18,20]:
+    for sid in [13,14,15,18,19,20]:
         editor.evaluate('id=>HonroWorkshopAPI.selectStage("stage-"+id)',sid)
         row=editor.evaluate('''()=>{const r=HonroWorkshopAPI.getRuntime(),b=r.engine.b;return{stage:b.honroStage,width:b.width,height:b.height,revision:b.honroAct2Revision}}''')
         assert row['revision']==2,row

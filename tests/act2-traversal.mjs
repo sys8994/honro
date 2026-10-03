@@ -16,8 +16,11 @@ for(const id of ids){
    if(Math.abs(u.x-x)<.08){stuck++;if(stuck>8&&e.grounded(u)){e.jump(u);stuck=0;}}else stuck=0;
    if(u.dead||u.y>b.height){failed={reason:'fall',goal:p,x:u.x,y:u.y};break;}
   }
+  // A player can end their turn at the village bend before doubling back.
+  // The return path must remain passable after landing on the lower floor.
+  if(id===14&&p.x===8350)for(let settle=0;settle<120;settle++){e.tick(1/60);ticks++;}
   samples.push({goal:p,x:Math.round(u.x),y:Math.round(u.y),age});
-  if(failed||age>=420){failed??={reason:'stuck',goal:p,x:u.x,y:u.y};break;}
+  if(failed||age>=420||Math.abs(u.y-p.y)>320){failed??={reason:age>=420?'stuck':'wrong level',goal:p,x:u.x,y:u.y};break;}
  }
  const row={stage:id,passed:!failed,failed,seconds:(performance.now()-start)/1000,ticks,samples};rows.push(row);console.log(JSON.stringify({...row,samples:samples.length}));
 }

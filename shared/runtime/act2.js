@@ -54,8 +54,26 @@ function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;
 function current(b){return steps(b).find(s=>!satisfied(b,s));}
 function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.cohorts==='all'||s.cohorts===u.honroCohort));}
 function visible(b,u){if(!u?.honroSpirit||!u.spiritHidden||u.manifested||u.revealSpiritToParty)return true;const viewer=b.units.find(v=>v.id===b.active);return viewer?.side===0?!!viewer.spiritSight:!!b.units.find(v=>v.id===memory(b).viewerId)?.spiritSight;}
-function tuneEncounter(u){if(u.honroAct2Tuned)return;u.honroAct2Tuned=true;
+function scaleEncounter(u,hp,attack){const ratio=u.maxHp>0?u.hp/u.maxHp:1;
+ u.maxHp=Math.max(1,Math.round(u.maxHp*hp));u.hp=Math.max(u.dead?0:1,Math.round(u.maxHp*ratio));
+ if(Number.isFinite(u.combatBaseHp))u.combatBaseHp*=hp;
+ u.attack*=attack;if(Number.isFinite(u.combatBaseAttack))u.combatBaseAttack*=attack;
+}
+function tuneEncounter(u,stage=0){
+ const late=stage>=17&&stage<=20;
+ if(u.honroAct2Tuned){
+  // Old revision-2 saves keep their battle state but receive the late-act
+  // attrition correction exactly once when resumed.
+  if(late&&!u.honroAct2LateTuned){scaleEncounter(u,.85,.65);u.honroAct2LateTuned=true;}
+  return;
+ }
+ u.honroAct2Tuned=true;
+ // Mandatory clear/defense waves make total work much larger than revision 1.
+ // Keep each opponent dangerous without making attrition across 20–40 bodies
+ // depend on out-of-combat healing that the engine does not provide.
+ scaleEncounter(u,.78,.75);
  if(u.honroAct2Elite&&!u.honroAct2Boss&&u.honroType!=='hoist'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.combatBaseHp*=1.55;u.attack*=1.15;u.combatBaseAttack*=1.15;u.honroXpWeight=(u.honroXpWeight||1)*1.6;u.name='정예 '+u.name;}
+ if(late){scaleEncounter(u,.85,.65);u.honroAct2LateTuned=true;}
 }
 function state(b){const list=steps(b),index=list.findIndex(s=>!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&b.terrain.find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=index<0?list.length:index;
  const target=s?{id:s.id,kind:s.kind==='destroy'?'seal':s.kind==='defeat'?'boss':s.kind==='reach'||s.kind==='escort'?'exit':'interact',x:u?.x??m?.x??t?.x??0,y:u?u.y-u.h:m?.y??t?.y??0,label:s.label,unitId:u?.id,box:t}:null;
@@ -93,7 +111,7 @@ function wave(app,key,kind,n=2,siteKey=key,eliteEvery=4){const e=app.engine,b=e.
  const site=marker(b,'wave-'+siteKey)||marker(b,'wave');if(!site)return false;
  const previous=new Set(b.units.map(u=>u.id));
  if(G.HonroAllies.execute(app,{type:'spawn',n,kind,x:site.x,y:site.y,spacing:130,maxDistance:450,source:key})===false)return false;
- if(revision2(b)){let index=0;for(const u of b.units)if(!previous.has(u.id)&&u.side===1){u.honroCohort='reinforcement';u.honroAct2Elite=++index%eliteEvery===0||n>=3&&index===n;u.honroAct2Revision=2;tuneEncounter(u);}}
+ if(revision2(b)){let index=0;for(const u of b.units)if(!previous.has(u.id)&&u.side===1){u.honroCohort='reinforcement';u.honroAct2Elite=++index%eliteEvery===0||n>=3&&index===n;u.honroAct2Revision=2;tuneEncounter(u,b.honroStage);}}
  a.events[key]=true;a.pulseRound=b.round;a.pulseUntil=(b.time||0)+1.8;app.event('종의 잔울림을 따라 '+G.HonroWorld.archetypes[kind].name+' 등장');return true;
 }
 function expose(b,until,site,radius=Infinity){for(const u of b.units)if(u.honroSpirit&&!u.dead&&(!site||Math.hypot(u.x-site.x,u.y-site.y)<=radius)){u.manifested=true;u.revealSpiritToParty=true;u.manifestedUntil=Math.max(u.manifestedUntil||0,until);u.formDamageTakenBonus=Math.max(u.formDamageTakenBonus||0,.92);}}
@@ -126,7 +144,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=current(b);
  if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
 function attach(app,e){if(!active(e.b))return;
- if(revision2(e.b))for(const u of e.b.units)if(u.side===1)tuneEncounter(u);
+ if(revision2(e.b))for(const u of e.b.units)if(u.side===1)tuneEncounter(u,e.b.honroStage);
  const manifest=e.manifest.bind(e);e.manifest=function(target,...args){const out=manifest(target,...args);if(target.honroSpirit&&target.manifested)target.formDamageTakenBonus=Math.max(target.formDamageTakenBonus,.92);return out;};
  const damage=e.hurt.bind(e);e.hurt=function(u,amount,...args){
   const source=e.unit(args[0]);
@@ -199,5 +217,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  app.checkMission(e);
 }
 function entry(app){return [...app.stage.narration.map(text=>['서술',text,{kind:'narration',art:'road'}]),...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2};
+G.HonroAct2={active,configureEnemy,recruit,memory,current,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
 })(globalThis);

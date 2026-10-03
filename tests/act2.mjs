@@ -24,21 +24,31 @@ check('Spirits resist form, accept soul, and O08 enables party form damage',()=>
 check('Resident extraction is nonlethal, one-time, and player damage cannot kill the host',()=>{
  const {e,b,app}=fixture(14),m=b.honroMarkers.find(m=>m.id==='family-upper'),resident=e.unit(m.target),before=resident.hp;
  e.hurt(resident,1e9,e.active.id);assert.equal(resident.hp,before);
- const sodan=e.heroesAlive().find(u=>u.cls==='occultist');b.active=sodan.id;assert(g.HonroAct2.use(app,m));assert(resident.honroResolved&&!resident.dead);assert(e.unit(m.spiritId).dead);assert.equal(g.HonroAct2.memory(b).rescued.length,1);assert.equal(g.HonroAct2.use(app,m),false);
+ const sodan=e.heroesAlive().find(u=>u.cls==='occultist');b.active=sodan.id;
+ // Isolate the rescue after its required upper-village clear. A live host spirit
+ // must be weakened and the immediate approach secured before extraction.
+ g.HonroAct2.memory(b).done['clear-upper']=true;
+ for(const u of e.alive(1))if(u.id!==m.spiritId&&Math.hypot(u.x-m.x,u.y-m.y)<360){u.hp=0;u.dead=true;}
+ const spirit=e.unit(m.spiritId);spirit.hp=Math.floor(spirit.maxHp*.35);
+ assert(g.HonroAct2.use(app,m));assert(resident.honroResolved&&!resident.dead);assert(spirit.dead);assert.equal(g.HonroAct2.memory(b).rescued.length,1);assert.equal(g.HonroAct2.use(app,m),false);
 });
 check('Cave ceiling is solid to a real projectile, with an open firing shaft',()=>{
  const {b,e}=fixture(15),u=e.active;u.angle=90;
  assert(b.terrain.filter(t=>t.honroCeiling).length===3);assert(e.fire('A01',90,.55));
  let minY=Infinity;for(let i=0;i<500&&b.projectiles.length;i++){for(const p of [...b.projectiles]){minY=Math.min(minY,p.y);e.stepProjectile(p,1/120);}}
  assert.equal(b.projectiles.length,0);assert(minY>1300,`roof should stop high shot, minY=${minY}`);
- assert(!b.terrain.some(t=>t.honroCeiling&&C.terrainContains(t,1690,1100)), 'shaft stays physically open');
+ const cap=b.terrain.find(t=>t.id==='shaft-cap'),shaftX=cap.x+cap.w/2;
+ assert(b.terrain.some(t=>t.honroCeiling&&C.terrainContains(t,shaftX,cap.y+80)),'sealed cap closes the sky above the shaft');
+ assert(!b.terrain.some(t=>t.honroCeiling&&C.terrainContains(t,shaftX,cap.y+cap.h+60)),'firing slot below the cap stays open');
 });
 check('Breaking the unsupported brace creates a recoverable hazard, not a softlock',()=>{
  const {b,e,app}=fixture(17),t=b.terrain.find(t=>t.id==='collapse-pin');e.damageTerrain(t,1000);assert(g.HonroAct2.memory(b).collapse);assert(!b.terrain.find(t=>t.id==='gate-debris').broken);const m=b.honroMarkers.find(m=>m.id==='rebuild-brace');assert(!m.collected);g.HonroAct2.use(app,m);assert(g.HonroAct2.memory(b).rebuilt);assert(b.terrain.find(t=>t.id==='gate-debris').broken);
 });
 check('Rockfall changes the walkable route, and draining water keeps its bed below its surface',()=>{
- const {b,e}=fixture(12),before=e.surface(1970,1000,2200).y;e.damageTerrain(b.terrain.find(t=>t.id==='rock-pin'),1000);assert(e.surface(1970,1000,2200).y<before-200);
- const q=fixture(15),water=q.b.waters[0],y=water.y;g.HonroAct2.use(q.app,q.b.honroMarkers.find(m=>m.id==='sluice'));assert.equal(water.y,y+120);assert(water.bottom.every(p=>p.y>water.y));assert(q.b.honroSurfaceZones.filter(z=>z.kind==='water-pool').every(z=>z.bottom.every(p=>p[1]>z.surface[0][1])));
+ const {b,e}=fixture(12),crossingX=3430,floor=b.terrain.find(t=>t.id==='act2-floor'),before=C.topAt(floor,crossingX,4000);e.damageTerrain(b.terrain.find(t=>t.id==='rock-pin'),1000);assert(C.topAt(floor,crossingX,4000)<before-200);
+ const q=fixture(15),water=q.b.waters[0],y=water.y,sluice=q.b.honroMarkers.find(m=>m.id==='sluice');q.b.honroState.act2.done['clear-water']=true;
+ for(const u of q.e.alive(1))if(Math.hypot(u.x-sluice.x,u.y-sluice.y)<360){u.hp=0;u.dead=true;}
+ assert(g.HonroAct2.use(q.app,sluice));assert.equal(water.y,y+120);assert(water.bottom.every(p=>p.y>water.y));assert(q.b.honroSurfaceZones.filter(z=>z.kind==='water-pool').every(z=>z.bottom.every(p=>p[1]>z.surface[0][1])));
 });
 check('Cave rock shelves have continuous exposed support through both ends',()=>{
  for(const id of [13,16,17,18,19]){const {b,e}=fixture(id),x=id>=18?3240:1800,t=b.terrain.find(t=>t.id==='act2-floor');for(let xx=x-380;xx<=x+590;xx+=4){const y=C.terrainSurfaces(t,xx)[0].y;assert(e.surface(xx,y-1,y+1),`${id}: buried seam at ${xx}`);}}
@@ -49,13 +59,42 @@ check('Mokjong is scenery; keeper cannot die and his suppression requires every 
 for(let id=11;id<=20;id++)check(`Act 2-${id-10} ordered objectives, narrative, save and rewards (state fixture)`,()=>{
  const {b,e,app,st}=fixture(id);g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);
  for(const s of st.steps){
+  if(s.kind==='clear'&&g.HonroAct2.memory(b).done[s.id])continue;
   const hero=e.heroesAlive().find(u=>u.cls===(s.requiredClass||(s.kind==='rescue'?'occultist':'archer')));b.active=hero.id;b.phase='aim';b.side=0;hero.acted=false;hero.vx=hero.vy=0;
   const m=b.honroMarkers.find(m=>m.id===s.id);
-  if(s.kind==='destroy')e.damageTerrain(b.terrain.find(t=>t.id===s.id),1000,0,hero.id);
+  assert.equal(g.HonroAct2.current(b)?.id,s.id,`${id}: objective order before ${s.id}`);
+  if(s.kind==='clear'){
+   const a=g.HonroAct2.memory(b);
+   // Boss/convoy ambushes are triggered by their own earlier event in live play.
+   // This fixture resolves any already spawned roster for the designated cohort.
+   if(s.cohorts==='all'){
+    const plan=g.HonroAct2Plan.forStage(id);
+    if(plan.bossWave)assert(a.events['keeper-retaliation'],'keeper wave must have triggered');
+    if(plan.progressWave)assert(a.events['convoy-ambush'],'convoy wave must have triggered');
+   }
+   for(const u of g.HonroAct2.enemiesFor(b,s)){u.hp=0;u.dead=true;}
+  }else if(s.kind==='hold'){
+   for(const u of e.heroesAlive()){u.x=m.x;u.y=m.y;}
+   const waveSite=b.honroMarkers.find(v=>v.id==='wave-'+s.id);
+   for(const u of e.alive(1))if(!u.honroAct2Boss&&(Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius+30||waveSite&&Math.hypot(u.x-waveSite.x,u.y-waveSite.y)<780)){u.hp=0;u.dead=true;}
+   app.actorBoundary=hero.id;
+   for(let j=0;j<s.rounds+3&&g.HonroAct2.current(b)?.id===s.id;j++){
+    b.round++;g.HonroAct2.tick(app,0);
+    // Resolve the incoming wave to make physical room for the next one. The
+    // keeper and enemies outside this defense remain for later objectives.
+    for(const u of e.alive(1))if(!u.honroAct2Boss&&(u.honroSpawnSource?.startsWith(s.id)||Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius+30)){u.hp=0;u.dead=true;}
+   }
+   assert.equal(g.HonroAct2.memory(b).holds[s.id].spawned,s.wave.count,s.id+' wave count');
+  }else if(s.kind==='destroy')e.damageTerrain(b.terrain.find(t=>t.id===s.id),1000,0,hero.id);
   else if(s.kind==='defeat')e.hurt(e.unit(s.target),1e9,hero.id);
   else if(s.kind==='reach'){Object.assign(hero,{x:m.x,y:m.y});}
   else if(s.kind==='escort'){Object.assign(e.unit('objective'),{x:m.x,y:m.y});}
-  else {Object.assign(hero,{x:m.x,y:m.y});assert(g.HonroAct2.eligibility(app,m).ok,s.id);assert(g.HonroAct2.use(app,m),s.id);}
+  else {
+   Object.assign(hero,{x:m.x,y:m.y});
+   for(const u of e.alive(1))if(u.id!==m.spiritId&&!u.honroAct2Boss&&Math.hypot(u.x-m.x,u.y-m.y)<360){u.hp=0;u.dead=true;}
+   if(s.kind==='rescue'){const spirit=e.unit(m.spiritId);spirit.hp=Math.min(spirit.hp,Math.floor(spirit.maxHp*.35));}
+   assert(g.HonroAct2.eligibility(app,m).ok,s.id);assert(g.HonroAct2.use(app,m),s.id);
+  }
   g.HonroAct2.tick(app,0);
   assert(g.HonroAct2.memory(b).done[s.id]||g.HonroAct2.state(b).allTargets.find(t=>t.id===s.id)?.done,`${id}/${s.id}`);
   const restored=plain(b);assert.deepEqual(plain(g.HonroAct2.state(restored)),plain(g.HonroAct2.state(b)),s.id+' save roundtrip');
@@ -67,4 +106,4 @@ check('Actor loss and resident loss have explicit failure, and all late revelati
  for(const s of g.HONRO_CONTENT.stages.filter(s=>s.act===2&&s.actStage<9))assert(!JSON.stringify([s.story,s.beats,s.outro]).includes('백기곡'));
  assert(JSON.stringify(g.HONRO_CONTENT.stages[18].beats).includes('백기곡'));
 });
-await mkdir('_local/reports/act2',{recursive:true});await writeFile('_local/reports/act2/unit.json',JSON.stringify({checks:rows,limitations:'Ordered objective tests use explicit state fixtures; they are not normal combat playthroughs.'},null,2));
+await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile('_local/reports/act2-revision/unit-flow.json',JSON.stringify({checks:rows,limitations:'Ordered objective tests use explicit state fixtures; they are not normal combat playthroughs.'},null,2));

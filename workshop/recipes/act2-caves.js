@@ -14,7 +14,7 @@ const profiles=[
 ];
 const heights=[4800,5200,6600,7600,6000,6600,6800,7600,7600,5800];
 const yAt=(route,x)=>{if(x<=route[0][0])return route[0][1];for(let i=1;i<route.length;i++)if(x<=route[i][0]){const a=route[i-1],b=route[i],t=(x-a[0])/(b[0]-a[0]);return a[1]+(b[1]-a[1])*t;}return route.at(-1)[1];};
-const upper=[[0,2010],[700,2000],[1450,2190],[2150,2380],[2900,2600],[3650,2720],[4350,2990],[5100,3260],[5800,3500],[6450,3760],[7100,4030],[7750,4350],[8240,4680]];
+const upper=[[0,2010],[700,2000],[1450,2190],[2150,2380],[2900,2600],[3650,2720],[4350,2990],[5100,3260],[5800,3500],[6450,3760],[7100,4030],[7750,4350],[8000,4519]];
 // Small weathered lips join deliberately placed terraces. They are not a
 // uniform scaling of the old silhouettes.
 function contour(route,seed=0,roof=false){const out=[route[0]];for(let i=1;i<route.length;i++){
@@ -87,6 +87,14 @@ function assets(){const asset=(id,name,visual,heightM,category='architecture')=>
   shape([[-96,-66],[92,-66],[103,-51],[-97,-49]],'#8c7c5d'),
   shape([[-41,-71],[-5,-82],[29,-77],[56,-65],[7,-60]],'#c8bc95','#655b48',1),
   shape([[-4,-80],[0,-80],[16,-61],[11,-60]],'#726e58',null,0)],1.4);
+ prop('old-soul-stone','오래된 혼의 암석 표식',[
+  shape([[-151,0],[-142,-248],[-118,-484],[-77,-604],[9,-642],[94,-588],[133,-422],[153,-20]],'#404c4b','#7b8980',5),
+  shape([[16,-627],[94,-588],[133,-422],[153,-20],[70,-17],[47,-321]],'#263a3b',null,0),
+  shape([[-117,-203],[119,-203],[129,-167],[-126,-167]],'#66736c','#304443',2),
+  shape([[-86,-464],[-51,-475],[-44,-287],[-78,-270]],'#263a39','#819087',2),
+  shape([[-12,-515],[22,-505],[11,-296],[-17,-302]],'#293d3c','#819087',2),
+  shape([[56,-447],[83,-427],[69,-298],[43,-314]],'#263a39','#819087',2),
+  shape([[-168,0],[-129,-47],[-98,-27],[-58,-15],[43,-25],[82,-5],[147,-36],[181,0]],'#626d65','#344545',3)],8.5);
  const bell=list.find(a=>a.id==='act2:bell');
  // Raised lotus panels, bronze studs and the strike band identify the bell at
  // room scale. Every form remains editable in the common vector workshop.
@@ -138,13 +146,15 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  const portals=cave?[{side:'left',top:ground(0)-360,bottom:ground(0)},{side:'right',top:floor(width)-380,bottom:floor(width)}]:[];
  Object.assign(st,{backdrop:d.theme,metadata:{stageId:id,act:2,actStage:i+1,campaign:true},
  design:{title:d.name,description:d.goal,act:2,revision:2,targetRounds:plan.rounds,expectedMinutes:plan.expectedMinutes},
- routes:points(village?[...terrace,...route.filter(p=>p[0]<8240).reverse()]:route),
+ // Step beyond the upper ledge before turning back along the lower village.
+ // Without this waypoint the route doubles back on top and never descends.
+ routes:points(village?[...terrace,[8350,floor(8350)],...route.filter(p=>p[0]<8240).reverse()]:route),
  anchors:{spawn:{x:320,y:ground(320)},exit:end},
  initialState:{honroAct2Revision:2,honroActiveLimit:plan.active,honroAct2Steps:clone(d.steps),
  honroCaveEnvelope:cave?{version:1,portals}:null,
  honroState:{flags:{},collected:[],hold:0,lastRound:1,rescued:false,combatLog:[],act2:{version:2,done:{},events:{},rescued:[],checkpoints:[],holds:{}}}}});
  st.terrains=[solid('act2-floor',[...route,[width,height+240],[0,height+240]],{route:true,surfaceKind:i<2?'soil':'cave',honroCave:cave})];
- if(village)st.terrains.push(solid('village-upper',[...terrace,...terrace.slice().reverse().map(([x,y],j)=>[x,y+Math.min(170+(j%4)*11,floor(x)-y-18)])],{route:true,honroCave:true}));
+ if(village)st.terrains.push(solid('village-upper',[...terrace,...terrace.slice().reverse().map(([x,y],j)=>[x,y+Math.max(24,Math.min(170+(j%4)*11,floor(x)-y-170))])],{route:true,honroCave:true}));
  let roof=[];
  if(cave){
    roof=contour((village?upper:profiles[i]).map(([x,y],j)=>[x,y-(i===7||i===8?1700:i===3?1050:i===4?510:620+(j%3)*145)]),i,true);
@@ -190,6 +200,7 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  if(village)for(let x=650;x<7900;x+=740){elem('act2:cave-house',x,floor(x),.9+(x%3)*.05);elem('act2:lamp',x+190,floor(x+190),.7);}
  if(i===5){elem('act2:temple',4550,ground(4550),1.65);elem('act2:temple',6750,ground(6750),1.05);}
  if([7,8].includes(i)){elem('act2:bell',6240,floor(6240),1.4);for(const x of [5320,7390])elem('act2:hoist-frame',x,floor(x),1.4);}
+ if(i===8){elem('act2:old-soul-stone',9440,floor(9440),1.2,'old-soul-stone');elem('act2:memorial',8990,floor(8990),1.65,'old-soul-memorial');}
  if([3,4,8].includes(i)){
   const x1=i===3?3100:i===4?1900:5720,x2=x1+(i===4?1700:1350),xs=route.filter(p=>p[0]>x1&&p[0]<x2).map(p=>p[0]),bed=[x1,...xs,x2].map(x=>[x,floor(x)]),waterY=Math.min(...bed.map(p=>p[1]))-(i===4?190:40);
   st.materials.push({id:'underground-river',kind:'water-pool',terrainId:'act2-floor',conductive:true,attached:true,surface:[[x1,waterY],[x2,waterY]],bottom:bed,points:[[x1,waterY],[x2,waterY],...bed.slice().reverse()]});
@@ -201,7 +212,9 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
   let x=1150+j*(width-1780)/(plan.initial-1),y=village&&cohort==='east'?floor(x):ground(x);
   if(kind==='keeper'){x=sites.keeper.x;y=sites.keeper.y;}if(kind==='hoist'){x=sites.hoist.x;y=sites.hoist.y;}
   const flying=G.HonroWorld.archetypes[kind]?.flying,elite=j%plan.eliteEvery===plan.eliteEvery-1,uid=kind==='keeper'?'act2-keeper':kind==='hoist'?'act2-hoist':'a2-enemy-'+j;
-  st.units.push({...G.HonroUnits.record(kind,uid,x,y-(flying?150:0),'enemy'),spawnIndex:j,behavior:'patrol',stageOverrides:{honroCohort:cohort,honroAct2Elite:elite,honroAct2Revision:2}});
+  // Unit records already raise flying archetypes. Keeping their authoring
+  // anchor near the road leaves the flyer within playable shot range.
+  st.units.push({...G.HonroUnits.record(kind,uid,x,y+(flying?280:0),'enemy'),spawnIndex:j,behavior:'patrol',stageOverrides:{honroCohort:cohort,honroAct2Elite:elite,honroAct2Revision:2}});
  }
  for(const [j,s] of d.steps.entries()){
   const {x,y}=sites[s.id],m={id:s.id,type:'act2',x,y,label:s.label,action:'act2',...(s.requiredClass?{requiredClass:s.requiredClass}:{})};
@@ -226,7 +239,7 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  if(i===6)st.markers.push({id:'rebuild-brace',type:'act2',action:'act2',label:'낙석 치우기',x:3500,y:ground(3500),collected:true});
  if([3,5,8,9].includes(i)){
   const x=i===9?3080:i===8?1750:950,y=ground(x);
-  st.units.push({...G.HonroUnits.record('object:civilian','objective',x,y,'npc'),label:i===9?'생존자 행렬':'피난 주민',stageOverrides:{honroProtected:true,honroCivilian:true,hp:1900,maxHp:1900,r:25,h:92,fixed:i!==9,walkSpeed:240,moveLeft:850,maxMove:850}});
+  st.units.push({...G.HonroUnits.record('object:civilian','objective',x,y,'npc'),label:i===9?'생존자 행렬':'피난 주민',stageOverrides:{honroProtected:true,honroCivilian:true,hp:i===9?2600:1900,maxHp:i===9?2600:1900,r:25,h:92,fixed:i!==9,walkSpeed:240,moveLeft:850,maxMove:850}});
  }
  const barrier=(key,x,y,h,broken=false)=>st.terrains.push(solid(key,[[x-25,y-h],[x+25,y-h],[x+25,y],[x-25,y]],{hp:99999,maxHp:99999,honroCave:true,broken}));
  if(i===2)barrier('gate-gate',4510,ground(4510),350);
@@ -244,7 +257,7 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
   const support=env.surfaces.find(s=>s.groupId===group.id);if(!support)continue;
   for(let x=500,j=0;x<width;x+=1450,j++)env.placements.push({id:'rear-'+group.id+'-'+j,assetId:i===3?'act2:cave-house':i===5?'act2:temple':j%2?'act2:rock-column':'act2:memorial',depthLayer:'L2',groupId:group.id,supportId:support.id,x,y:0,scale:i===3?1.05:i===5?.9:1.1,rotation:0});
  }
- env.atmosphere={preset:cave?'enclosed':i===0?'forest':'valley',overrides:cave?{skyTop:'#172328',skyBottom:'#233237',ambientTint:'#364346',lightStrength:.10,mistStrength:.11,hazeStrength:.24,farFogColor:'#26393d',nearFogColor:'#304447'}:{}};
+ env.atmosphere={preset:cave?'enclosed':i===0?'forest':'valley',overrides:cave?{skyTop:'#172328',skyBottom:'#233237',ambientTint:'#364346',lightStrength:.10,mistStrength:.11,hazeStrength:.24,farFogColor:'#26393d',nearFogColor:'#304447'}:i===9?{skyTop:'#687b86',skyBottom:'#dec39e',ambientTint:'#8b8e79',hazeColor:'#b7ab96',farFogColor:'#d4c9ad',nearFogColor:'#d3bfa1',keyLightColor:'#ffdb9d',keyLightDirection:[.77,.15],glowColor:'#f6c888',shadowTint:'#394447',lightStrength:.40,mistStrength:.30}:{}};
  env.skyVisible=!cave;st.environment=env;
  st.meta={notes:'2-'+(i+1)+' '+d.name+' · 개편 2 · '+plan.rounds.join('–')+'턴 설계',seed:2210+i};p.stages.push(st);
  }

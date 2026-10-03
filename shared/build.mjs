@@ -31,7 +31,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     await buildMonsters();
     await buildActors();
     const act1Backdrops={};
-    for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg']]){
+    for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg']]){
       const svg=await readFile(path.join(root,'shared/assets/environment',file));
       act1Backdrops[key]='data:image/svg+xml;base64,'+svg.toString('base64');
     }
