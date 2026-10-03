@@ -104,6 +104,7 @@ function mountainHeight(x,width,seed){const w=Math.max(width,3600),peaks=[[-.16,
 const GRANITE_PROFILE=[[-.55,420],[-.28,600],[0,1050],[.14,1330],[.29,1510],[.37,1740],[.43,2110],[.475,2020],[.51,2260],[.55,1900],[.62,1650],[.71,1250],[.83,1160],[1,1290],[1.25,760],[1.6,460]];
 function graniteHeight(x,width){const u=x/Math.max(width,3600);for(let i=1;i<GRANITE_PROFILE.length;i++)if(u<=GRANITE_PROFILE[i][0]){const [ax,ay]=GRANITE_PROFILE[i-1],[bx,by]=GRANITE_PROFILE[i],t=clamp((u-ax)/(bx-ax));return ay+(by-ay)*t;}return GRANITE_PROFILE.at(-1)[1];}
 function scenicPurpose(sid,backdrop,band,layer){
+ if(sid>=13&&sid<=19){if(layer==='L3')return true;if(layer==='L2')return [14,16,18,19].includes(sid)&&band>0;return false;}
  if(layer==='L4')return !['tree','temple'].includes(backdrop)&&(['valley','bridge'].includes(backdrop)?band===0:band<2);
  if(layer==='L3')return sid===3||sid===7||[2,5,6,8,9,10].includes(sid)&&band>0;
  if(layer==='L2')return sid===3||sid===7&&band===2||[2,5,6].includes(sid)&&band>0;
@@ -127,12 +128,12 @@ function makeEnvironment(st,options={}){const sid=st.metadata?.stageId||1,preset
   if(granite)for(const [u] of GRANITE_PROFILE)if(u>=0&&u<=1)xs.push(Math.round(u*st.width));
   xs.sort((a,b)=>a-b);
   for(const [i,x] of xs.entries()){
-   const u=clamp(x/Math.max(1,st.width)),valley=['valley','bridge'].includes(st.backdrop)?-Math.abs(u-.52)*1250:0;
+   const u=clamp(x/Math.max(1,st.width)),valley=!enclosed&&['valley','bridge'].includes(st.backdrop)?-Math.abs(u-.52)*1250:0;
    const roll=Math.sin(u*5.4+band*.7+sid*.31)*155+Math.sin(u*9.8+sid*.7)*68;
    const height=layer==='L4'?470:layer==='L3'?260:125;
    points.push({x,y:layer==='L4'?Math.round(-(granite?graniteHeight(x,st.width):mountainHeight(x,st.width,sid+band))+(granite?0:Math.sin(x/1300+sid*.7)*24)):Math.round(-height+valley*(layer==='L2'?.60:1)+roll*(layer==='L3'?1.2:1)+rng(i+band*23+layer.charCodeAt(1)*19)*24)});
   }
-  const foothill=layer==='L3'&&['valley','bridge'].includes(st.backdrop);
+  const foothill=!enclosed&&layer==='L3'&&['valley','bridge'].includes(st.backdrop);
   const sf={id:g.id+'-support',groupId:g.id,kind:granite?'ink-granite':foothill?'ink-foothill':layer==='L4'?'ink-mountain':enclosed?'cave-wall':zone.id==='valley-bottom'?'cliff':'rear-ground',...(granite||foothill?{compositionWidth:st.width,inkVariant:band}:{}),points,bottom:st.height+Math.ceil(COVERAGE.maxViewport.h/(COVERAGE.minZoom*ratio(source,layer,COVERAGE.minZoom)))+2200};env.surfaces.push(sf);
   if(layer==='L4')continue;
   const stride=layer==='L3'?Math.max(2300,st.width*.48):Math.max(2200,st.width*.55);

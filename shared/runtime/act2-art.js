@@ -12,11 +12,22 @@ const paths={
  stole:path('M-24-72L-8-79-5-15-22-4Z M10-79L26-72 21-4 5-16Z')
 };
 const body=S.unitBody;
+const drawUnit=S.unit;
+S.unit=function(c,u,active,charge=0){
+ if(!u.dead&&!u.portraitOnly&&this.battle&&u.honroSpirit&&!G.HonroAct2.visible(this.battle,u)){
+  // No body, face, outline, name or HP bar. A few displaced translucent bands
+  // suggest disturbed air while the unchanged unit remains in hit collision.
+  c.save();c.translate(u.x,u.y-u.h*.5);const time=this.time||0;
+  for(let j=0;j<5;j++){const phase=time*1.65+j*1.2,y=(j-2)*u.h*.16,drift=Math.sin(phase)*u.r*.25;c.globalAlpha=.07+.025*Math.sin(phase+.8);c.strokeStyle=j%2?'#b4c2be':'#728d96';c.lineWidth=2.5;c.beginPath();c.ellipse(drift,y,u.r*(.5+.15*Math.cos(phase)),u.h*.09,Math.sin(phase)*.14,.15,Math.PI*1.78);c.stroke();}
+  c.restore();return;
+ }
+ return drawUnit.call(this,c,u,active,charge);
+};
 S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call(this,c,u,charge);
  const kind=u.honroType;
  if(kind==='keeper'){body.call(this,c,u,charge);c.save();c.translate(u.x,u.y);c.scale((u.facing||1)*u.h/103,u.h/103);paint(c,paths.stole,'#9b8b69','#c0b28d',1.2);c.restore();return;}
  c.save();c.translate(u.x,u.y);c.scale((u.facing||1)*u.h/110,u.h/110);const t=this.time||0;
- if(u.honroSpirit){const viewer=this.battle?.units.find(v=>v.id===this.battle.active),visible=viewer?.spiritSight||u.manifested||u.revealSpiritToParty;c.globalAlpha*=visible?.94:.22;c.translate(0,Math.sin(t*1.7)*5);
+ if(u.honroSpirit){c.globalAlpha*=.94;c.translate(0,Math.sin(t*1.7)*5);
   if(kind==='bellCluster'){for(const [x,y,z] of [[-29,-11,.6],[28,-6,.62],[0,0,.83]]){c.save();c.translate(x,y);c.scale(z,z);paint(c,paths.soul,'#718794','#bac7c2',1.5);paint(c,paths.face,'#c6cec5',null);c.restore();}}
   else{paint(c,paths.soul,kind==='echo'?'#6f728e':'#778c94','#becbc1',1.7);paint(c,paths.face,'#d0d6c8','#7d8b86',.8);}
  }else if(kind==='minecart'){c.rotate(Math.sin(t*8)*(u.moving?.018:.005));paint(c,paths.cart,'#776a50','#aaa486',2);paint(c,paths.cartSide,'#3e473f',null);paint(c,paths.wheel,'#293c3d','#a0a590',3);}
@@ -29,6 +40,7 @@ S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call
 };
 const terrain=S.terrain;
 S.terrain=function(c,t){if(!t.honroCave&&!t.honroCeiling&&!(this.battle?.honroStage>=13&&this.battle?.honroStage<=19&&t.id==='act2-floor'))return terrain.call(this,c,t);
+ if(G.HonroCaveRock&&this.battle)return G.HonroCaveRock.terrain(c,t,this.battle);
  const ps=C.poly(t);c.save();c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();const grad=c.createLinearGradient(t.x,t.y,t.x+t.w*.4,t.y+Math.min(t.h,1200));grad.addColorStop(0,t.honroCeiling?'#252a30':'#444b50');grad.addColorStop(.5,'#30373d');grad.addColorStop(1,'#161f27');c.fillStyle=grad;c.fill();c.strokeStyle=t.honroCeiling?'#737c7d':'#919d99';c.lineWidth=t.honroCeiling?2:3;c.stroke();
  // A few broad mineral planes, clipped to the physical rock mass.
  c.clip();c.globalAlpha=.17;c.fillStyle='#8b9290';c.beginPath();c.moveTo(t.x+t.w*.12,t.y);c.lineTo(t.x+t.w*.56,t.y);c.lineTo(t.x+t.w*.37,t.y+t.h*.7);c.lineTo(t.x+t.w*.21,t.y+t.h);c.closePath();c.fill();c.restore();

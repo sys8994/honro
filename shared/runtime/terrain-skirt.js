@@ -37,6 +37,7 @@ function prepare(b,coverage){const bottom=coverage.bottom,base=b.height,skirts=[
  return{skirts,edges,facets,coverage,base,paths:skirts.length+edges.length*3+facets.length};
 }
 G.HonroScene.prototype.terrainSkirt=function(c,b,w,h){
+ if(b.honroCaveEnvelope&&G.HonroCaveRock)return G.HonroCaveRock.enclosure.call(this,c,b,w,h);
  const coverage=B.visual(b,w,h,this.scale),key=[b.sceneVersion||0,b.width,b.height,coverage.left,coverage.top,coverage.right,coverage.bottom].join(':');
  let q=this._terrainSkirt;if(!q||q.key!==key||q.terrain!==b.terrain){q={...prepare(b,coverage),key,terrain:b.terrain};this._terrainSkirt=q;this._skirtBuilds=(this._skirtBuilds||0)+1;}
  // A world-anchored atmospheric abyss covers any aspect ratio, including a

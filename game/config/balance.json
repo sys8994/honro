@@ -172,190 +172,190 @@
       "act": 2,
       "entryLevel": 12.0,
       "exitLevel": 12.6,
-      "initialEnemies": 4,
-      "activeEnemies": 3,
-      "targetHits": 2.45,
-      "targetIncomingHpFraction": 0.088,
-      "maxAlive": 12,
+      "initialEnemies": 18,
+      "activeEnemies": 4,
+      "targetHits": 2.85,
+      "targetIncomingHpFraction": 0.112,
+      "maxAlive": 34,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        8,
-        12
+        16,
+        23
       ],
-      "objectiveTurns": 4.0
+      "objectiveTurns": 6
     },
     {
       "id": 12,
       "act": 2,
       "entryLevel": 12.6,
       "exitLevel": 13.2,
-      "initialEnemies": 5,
-      "activeEnemies": 3,
-      "targetHits": 2.495,
-      "targetIncomingHpFraction": 0.089,
-      "maxAlive": 12,
+      "initialEnemies": 20,
+      "activeEnemies": 4,
+      "targetHits": 2.885,
+      "targetIncomingHpFraction": 0.1145,
+      "maxAlive": 36,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        8,
-        12
+        18,
+        26
       ],
-      "objectiveTurns": 4.3
+      "objectiveTurns": 6
     },
     {
       "id": 13,
       "act": 2,
       "entryLevel": 13.2,
       "exitLevel": 13.8,
-      "initialEnemies": 6,
-      "activeEnemies": 3,
-      "targetHits": 2.54,
-      "targetIncomingHpFraction": 0.09,
-      "maxAlive": 12,
+      "initialEnemies": 22,
+      "activeEnemies": 5,
+      "targetHits": 2.92,
+      "targetIncomingHpFraction": 0.117,
+      "maxAlive": 38,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        9,
-        13
+        20,
+        29
       ],
-      "objectiveTurns": 4.6
+      "objectiveTurns": 7
     },
     {
       "id": 14,
       "act": 2,
       "entryLevel": 13.8,
       "exitLevel": 14.4,
-      "initialEnemies": 6,
-      "activeEnemies": 3,
-      "targetHits": 2.585,
-      "targetIncomingHpFraction": 0.091,
-      "maxAlive": 12,
+      "initialEnemies": 24,
+      "activeEnemies": 5,
+      "targetHits": 2.955,
+      "targetIncomingHpFraction": 0.1195,
+      "maxAlive": 40,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        9,
-        13
+        24,
+        35
       ],
-      "objectiveTurns": 4.9
+      "objectiveTurns": 10
     },
     {
       "id": 15,
       "act": 2,
       "entryLevel": 14.4,
       "exitLevel": 15.0,
-      "initialEnemies": 5,
-      "activeEnemies": 3,
-      "targetHits": 2.6300000000000003,
-      "targetIncomingHpFraction": 0.092,
-      "maxAlive": 12,
+      "initialEnemies": 22,
+      "activeEnemies": 5,
+      "targetHits": 2.99,
+      "targetIncomingHpFraction": 0.122,
+      "maxAlive": 38,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        10,
-        14
+        21,
+        30
       ],
-      "objectiveTurns": 5.2
+      "objectiveTurns": 7
     },
     {
       "id": 16,
       "act": 2,
       "entryLevel": 15.0,
       "exitLevel": 15.6,
-      "initialEnemies": 6,
-      "activeEnemies": 3,
-      "targetHits": 2.6750000000000003,
-      "targetIncomingHpFraction": 0.093,
-      "maxAlive": 12,
+      "initialEnemies": 24,
+      "activeEnemies": 5,
+      "targetHits": 3.025,
+      "targetIncomingHpFraction": 0.1245,
+      "maxAlive": 40,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        10,
-        14
+        23,
+        32
       ],
-      "objectiveTurns": 5.5
+      "objectiveTurns": 8
     },
     {
       "id": 17,
       "act": 2,
       "entryLevel": 15.6,
       "exitLevel": 16.2,
-      "initialEnemies": 6,
-      "activeEnemies": 3,
-      "targetHits": 2.72,
-      "targetIncomingHpFraction": 0.094,
-      "maxAlive": 12,
+      "initialEnemies": 24,
+      "activeEnemies": 5,
+      "targetHits": 3.06,
+      "targetIncomingHpFraction": 0.127,
+      "maxAlive": 40,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        11,
-        15
+        25,
+        36
       ],
-      "objectiveTurns": 5.8
+      "objectiveTurns": 9
     },
     {
       "id": 18,
       "act": 2,
       "entryLevel": 16.2,
       "exitLevel": 16.8,
-      "initialEnemies": 7,
-      "activeEnemies": 4,
-      "targetHits": 2.765,
-      "targetIncomingHpFraction": 0.095,
-      "maxAlive": 12,
+      "initialEnemies": 28,
+      "activeEnemies": 6,
+      "targetHits": 3.095,
+      "targetIncomingHpFraction": 0.1295,
+      "maxAlive": 44,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        11,
-        15
+        29,
+        42
       ],
-      "objectiveTurns": 6.1
+      "objectiveTurns": 10
     },
     {
       "id": 19,
       "act": 2,
       "entryLevel": 16.8,
       "exitLevel": 17.4,
-      "initialEnemies": 4,
-      "activeEnemies": 3,
-      "targetHits": 2.81,
-      "targetIncomingHpFraction": 0.096,
-      "maxAlive": 12,
+      "initialEnemies": 18,
+      "activeEnemies": 5,
+      "targetHits": 3.13,
+      "targetIncomingHpFraction": 0.132,
+      "maxAlive": 34,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        12,
-        16
+        26,
+        37
       ],
-      "objectiveTurns": 6.4
+      "objectiveTurns": 13
     },
     {
       "id": 20,
       "act": 2,
       "entryLevel": 17.4,
       "exitLevel": 18.0,
-      "initialEnemies": 4,
-      "activeEnemies": 3,
-      "targetHits": 2.855,
-      "targetIncomingHpFraction": 0.097,
-      "maxAlive": 12,
+      "initialEnemies": 22,
+      "activeEnemies": 5,
+      "targetHits": 3.165,
+      "targetIncomingHpFraction": 0.1345,
+      "maxAlive": 38,
       "bossHits": 11,
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        12,
-        16
+        23,
+        33
       ],
-      "objectiveTurns": 6.699999999999999
+      "objectiveTurns": 8
     }
   ],
   "futureActs": [

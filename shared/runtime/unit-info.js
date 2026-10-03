@@ -24,7 +24,7 @@ function pick(a,p,touch=false){
  if(!available(a))return null;
  const scene=a.scene,w=scene.world(p.x,p.y),padding=(touch?12:4)/scene.scale;
  // Nearest body wins at dense spawn points; tapping does not change the active combatant.
- return a.engine.b.units.filter(eligible).map(u=>{
+ return a.engine.b.units.filter(u=>eligible(u)&&(!G.HonroAct2||G.HonroAct2.visible(a.engine.b,u))).map(u=>{
   const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,half=Math.max(u.r,u.h*.24)+padding,cy=u.y-visualHeight*.5,hh=visualHeight*.55+padding;
   return {u,d:Math.pow((w.x-u.x)/half,2)+Math.pow((w.y-cy)/hh,2)};
  }).filter(x=>x.d<=1).sort((a,b)=>a.d-b.d)[0]?.u||null;
@@ -50,7 +50,7 @@ function tick(a){
  const scene=a.scene,el=document.getElementById('unit-info');if(!scene||!el)return;
  if(!available(a)){close(a);hover(a,null);return;}
  if(scene.inspectPointer)hover(a,scene.inspectPointer);
- const u=a.engine.unit(scene.inspectUnitId);if(!eligible(u)){close(a);return;}
+ const u=a.engine.unit(scene.inspectUnitId);if(!eligible(u)||G.HonroAct2&&!G.HonroAct2.visible(a.engine.b,u)){close(a);return;}
  el.hidden=false;el.dataset.unitId=u.id;el.dataset.side=u.side===1?'enemy':'ally';
  const side=u.side===1?'적군':u.summoned?'동맹군 · 소환귀':'동맹군';
  const skills=(u.loadout||[]).map(id=>G.HONRO_CORE.SKILLS[id]).filter(s=>s&&!s.passive).slice(0,2);

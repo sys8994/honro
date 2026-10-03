@@ -127,7 +127,7 @@ Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),painted=E
   if(g.depthLayer==='L3'&&surface0){const x=st.width*.5,y=E.surfaceY(surface0,x)+90,screenY=tr.y+y*tr.scale;if(screenY>-220&&screenY<h+220){A.fog(c,x,y,Math.max(2400,st.width*.75),440,local.farFogColor,local.mistStrength,time,local.mistSpeed);animated++;if(['valley','bridge'].includes(st.backdrop)){A.fog(c,st.width*.37,y+285,st.width*.60,670,local.farFogColor,.32,time,local.mistSpeed*.5);animated++;}}}
   c.restore();
  }
- const [lx,ly]=a.keyLightDirection;if(['valley','bridge'].includes(st.backdrop))A.glow(c,w*lx,h*(ly+.17),w*.19,h*.46,a.keyLightColor,a.lightStrength*.18);else A.shaft(c,w*lx,h*ly,w*.23,h*.80,a.keyLightColor,a.lightStrength,time);if(env.skyVisible===false)A.glow(c,w*lx,h*ly,w*.14,h*.24,a.glowColor,.13);
+ const [lx,ly]=a.keyLightDirection;if(env.skyVisible!==false){if(['valley','bridge'].includes(st.backdrop))A.glow(c,w*lx,h*(ly+.17),w*.19,h*.46,a.keyLightColor,a.lightStrength*.18);else A.shaft(c,w*lx,h*ly,w*.23,h*.80,a.keyLightColor,a.lightStrength,time);}
  this.environmentStats={groups:active,visibleAssets:visible,cachedPaths:data.paths,backgroundAnimatedPrimitives:animated,animatedPrimitives:animated,...A.stats()};
 };
 Scene.prototype.liveWater=function(c,b){const st={backdrop:b.honroBackdrop,environment:ensureBattle(b)},a=E.atmosphereAt(st,this.y),time=A.time(this),halfW=this.canvas.clientWidth/this.scale/2,halfH=this.canvas.clientHeight/this.scale/2;
