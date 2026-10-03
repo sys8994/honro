@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[],metrics=[];
 const baseline=JSON.parse(await readFile('tests/fixtures/act2-v1-baseline.json','utf8'));
+const balance=JSON.parse(await readFile('game/config/balance.json','utf8'));
 const check=(name,fn)=>{fn();rows.push({name,passed:true});console.log('PASS',name);};
 const fixture=id=>{const q=battlefield(g,id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);return q;};
 for(const before of baseline.stages){
@@ -12,6 +13,8 @@ for(const before of baseline.stages){
  check(id+' doubles both dimensions and adds actual geometry',()=>{assert(st.width>=before.width*2&&st.height>=before.height*2);assert(nodes>=before.terrainNodes*2);assert(st.routes.length>20);});
  check(id+' expanded encounters and finite defense objective',()=>{assert(enemies.length>=before.enemies*2);assert(enemies.filter(u=>u.elite).length>=3);assert(g.HonroAct2.steps(b).some(s=>s.kind==='clear'));assert(g.HonroAct2.steps(b).some(s=>s.kind==='hold'));assert(plan.waveCount>=6);assert.equal(g.HonroDifficulty.audit(g.HONRO_CONTENT.stages[id-1],b).reinforcements,plan.waveCount);});
  check(id+' spirit lamp scarcity and story entry',()=>{assert.equal(lamps.length,plan.lamps.length);assert(lamps.length<=2);assert(g.HonroAct2.entry(app).length<=8);assert(st.elements.length>=before.decorations*1.6);});
+ check(id+' measured planning range agrees with balance data',()=>{assert.deepEqual(st.design.targetRounds,plan.rounds);assert.deepEqual(balance.stages.find(s=>s.id===id).targetRounds,Array.from(plan.rounds));assert.deepEqual(Array.from(st.design.expectedMinutes),Array.from(plan.rounds,r=>Math.round(r*1.35+5)));});
+ if(id===14||id===16)check(id+' inhabited buildings rest on authored foreground terrain',()=>{const asset=id===14?'act2:cave-house':'act2:temple';assert(st.elements.some(e=>e.assetId===asset&&e.depthLayer==='L1'));assert(!st.environment.placements.some(e=>e.assetId===asset));});
  check(id+' flying enemies stay within the playable ground band',()=>{for(const u of enemies.filter(v=>g.HonroWorld.archetypes[v.honroType]?.flying))assert(Math.abs(g.HonroWorld.top(b,u.x,u.y)-u.y)<=400,`${u.id} is out of shot range`);});
  if(id>=17)check(id+' late-act correction is applied once to fresh and resumed enemies',()=>{
   assert.equal(plan.active,3);

@@ -253,9 +253,11 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
   st.terrains[0].points=points([...pit.filter(([x])=>x<=x1||x>=x2||x===x1+30||x===x2-30).sort((a,b)=>a[0]-b[0]),[width,height+240],[0,height+240]]);
  }
  const env=G.HonroEnvironment.makeEnvironment(st,{preset:cave?'enclosed':i===0?'forest':'valley'});
- if(cave)for(const group of env.groups.filter(g=>g.depthLayer==='L2')){
+ // Houses and temple halls must sit on the actual L1 settlement ledges.
+ // Repeating them on a distant L2 support made inhabited buildings hover.
+ if(cave&&!village&&i!==5)for(const group of env.groups.filter(g=>g.depthLayer==='L2')){
   const support=env.surfaces.find(s=>s.groupId===group.id);if(!support)continue;
-  for(let x=500,j=0;x<width;x+=1450,j++)env.placements.push({id:'rear-'+group.id+'-'+j,assetId:i===3?'act2:cave-house':i===5?'act2:temple':j%2?'act2:rock-column':'act2:memorial',depthLayer:'L2',groupId:group.id,supportId:support.id,x,y:0,scale:i===3?1.05:i===5?.9:1.1,rotation:0});
+  for(let x=500,j=0;x<width;x+=1900,j++)env.placements.push({id:'rear-'+group.id+'-'+j,assetId:j%2?'act2:rock-column':'act2:memorial',depthLayer:'L2',groupId:group.id,supportId:support.id,x,y:0,scale:1.1,rotation:0});
  }
  env.atmosphere={preset:cave?'enclosed':i===0?'forest':'valley',overrides:cave?{skyTop:'#172328',skyBottom:'#233237',ambientTint:'#364346',lightStrength:.10,mistStrength:.11,hazeStrength:.24,farFogColor:'#26393d',nearFogColor:'#304447'}:i===9?{skyTop:'#687b86',skyBottom:'#dec39e',ambientTint:'#8b8e79',hazeColor:'#b7ab96',farFogColor:'#d4c9ad',nearFogColor:'#d3bfa1',keyLightColor:'#ffdb9d',keyLightDirection:[.77,.15],glowColor:'#f6c888',shadowTint:'#394447',lightStrength:.40,mistStrength:.30}:{}};
  env.skyVisible=!cave;st.environment=env;

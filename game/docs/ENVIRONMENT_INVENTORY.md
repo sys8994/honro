@@ -69,8 +69,8 @@
 | mockup-granite-small | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | mockup-granite-shelf | 2 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | builtin:placeDetail | 5 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| act2:cave-house | 3.5 | building | 지형/지지면 필수 | L1, L2 | , slope-L2, valley-bottom-L2 / WORLD / world, slope, valley-bottom | static / cached-vector |
-| act2:temple | 5.2 | building | 지형/지지면 필수 | L1, L2 | , slope-L2, valley-bottom-L2 / WORLD / world, slope, valley-bottom | static / cached-vector |
+| act2:cave-house | 3.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:temple | 5.2 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:bell | 15.5 | light | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | glow / cached-vector |
 | act2:hoist-frame | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:lamp | 1.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -103,12 +103,12 @@
 | stage-11 | forest / forest | 48 / 5 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
 | stage-12 | valley / valley | 49 / 6 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
 | stage-13 | enclosed / enclosed | 50 / 8 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-14 | enclosed / enclosed | 81 / 9 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 23 |
+| stage-14 | enclosed / enclosed | 81 / 9 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
 | stage-15 | enclosed / enclosed | 52 / 5 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-16 | enclosed / enclosed | 57 / 6 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 23 |
+| stage-16 | enclosed / enclosed | 57 / 6 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
 | stage-17 | enclosed / enclosed | 52 / 9 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-18 | enclosed / enclosed | 60 / 7 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 24 |
-| stage-19 | enclosed / enclosed | 70 / 6 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 24 |
+| stage-18 | enclosed / enclosed | 60 / 7 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
+| stage-19 | enclosed / enclosed | 70 / 6 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
 | stage-20 | valley / valley | 47 / 8 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
 
 ## 코드가 생성하는 요소

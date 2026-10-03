@@ -6,19 +6,20 @@ function rock(c,b){const g=c.createLinearGradient(0,0,0,b.height+1800);g.addColo
 function prepare(t,b){const source=t.vertices||t;let q=cache.get(t);if(q?.source===source)return q;
  const pts=C.poly(t).map(p=>[p.x,p.y]),shape=polygon(pts),contour=pts.filter(([x,y])=>y>1&&y<b.height&&x>=0&&x<=b.width),edge=new Path2D();
  contour.forEach(([x,y],i)=>i?edge.lineTo(x,y):edge.moveTo(x,y));
- const bands=[],joints=[],sign=t.honroCeiling?-1:1;
- // Broad ledges and sediment beds follow the authored rock surface. Retained
- // paths, rather than frame noise, describe scale at normal and tactical zoom.
- for(let j=0;j+2<contour.length;j+=5){const segment=contour.slice(j,j+7),a=segment[0],z=segment.at(-1);if(Math.abs(z[0]-a[0])<160)continue;
-  const depth=110+(j%4)*42;
-  bands.push(polygon([...segment.map(([x,y])=>[x,y+sign*15]),...segment.slice().reverse().map(([x,y],k)=>[x+(k%3-1)*24,y+sign*(depth+k*8)])]));
-  const p=new Path2D();p.moveTo(a[0]+40,a[1]+sign*45);p.bezierCurveTo(a[0]+140,a[1]+sign*105,z[0]-110,z[1]+sign*75,z[0]-18,z[1]+sign*130);joints.push(p);
- }
- q={source,shape,edge,bands,joints};cache.set(t,q);return q;
+ // A village shelf has a top and an underside. Its strata follow only the
+ // walkable top; drawing short polygons around both faces made floating tiles.
+ const surface=t.id==='village-upper'?contour.slice(0,Math.ceil(contour.length/2)):contour;
+ const sign=t.honroCeiling?-1:1,taper=x=>Math.min(1,Math.max(0,Math.min(x,b.width-x)/700)),band=(near,far,phase)=>polygon([
+  ...surface.map(([x,y])=>[x,y+sign*(near+14*Math.sin(x/760+phase))*taper(x)]),
+  ...surface.slice().reverse().map(([x,y])=>[x,y+sign*(far+36*Math.sin(x/1090+phase))*taper(x)])
+ ]);
+ // Two continuous mineral beds preserve the large cave silhouette without
+ // the rectangular seams of the old seven-node chunks.
+ const bands=surface.length>2?[band(16,145,0),band(185,365,1.2)]:[];
+ q={source,shape,edge,bands};cache.set(t,q);return q;
 }
 function terrain(c,t,b){const q=prepare(t,b);c.save();c.fillStyle=rock(c,b);c.fill(q.shape);c.clip(q.shape);
- q.bands.forEach((p,i)=>{c.fillStyle=i%3===0?'#73817a28':i%3===1?'#15272e45':'#a4a48a15';c.fill(p);});
- c.lineWidth=4;c.strokeStyle='#172a3060';for(const p of q.joints)c.stroke(p);
+ q.bands.forEach((p,i)=>{c.fillStyle=i?'#142a3040':'#81918827';c.fill(p);});
  c.strokeStyle=t.honroCeiling?'#7081836b':'#a2aea38a';c.lineWidth=t.honroCeiling?3:4;c.lineJoin='round';c.stroke(q.edge);c.restore();
 }
 function background(c,b,scene,w,h){
@@ -42,11 +43,13 @@ function background(c,b,scene,w,h){
 }
 function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersion,b.width,b.height,v.left,v.top,v.right,v.bottom].join(':');
  let q=this._caveEnclosure;if(!q||q.key!==key||q.source!==b.honroCaveEnvelope){
-  const fill=new Path2D();fill.rect(v.left,v.top,v.right-v.left,v.bottom-v.top);fill.rect(0,0,b.width,b.height);
+  // Overlap the play rectangle by a few world units. Two coincident canvas
+  // edges otherwise leave a one-pixel antialias seam at extreme camera pans.
+  const fill=new Path2D();fill.rect(v.left,v.top,v.right-v.left,v.bottom-v.top);fill.rect(4,4,b.width-8,b.height-8);
   const tunnels=(b.honroCaveEnvelope.portals||[]).map(p=>{const left=p.side==='left',x=left?0:b.width,sign=left?-1:1,far=x+sign*780;
    const end=left?Math.min(far,v.left-350):Math.max(far,v.right+350),mid=(p.top+p.bottom)/2,path=new Path2D();
-   path.moveTo(x-sign*2,p.top);path.bezierCurveTo(x+sign*160,p.top-45,x+sign*300,p.top+25,end,mid-25);
-   path.lineTo(end,mid+25);path.bezierCurveTo(x+sign*390,p.bottom+40,x+sign*150,p.bottom+5,x-sign*2,p.bottom);path.closePath();
+   path.moveTo(x-sign*6,p.top);path.bezierCurveTo(x+sign*160,p.top-45,x+sign*300,p.top+25,end,mid-25);
+   path.lineTo(end,mid+25);path.bezierCurveTo(x+sign*390,p.bottom+40,x+sign*150,p.bottom+5,x-sign*6,p.bottom);path.closePath();
    return{...p,x,far:end,path};});
   const strata=[];
   for(const y of [-1180,-520,b.height+420,b.height+1080]){
@@ -64,7 +67,8 @@ function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersi
  // including at portrait zoom when the camera sees far above play bounds.
  q.strata.forEach((p,i)=>{c.strokeStyle=i%2?'#78878236':'#121f254d';c.lineWidth=i%2?75:130;c.stroke(p);c.strokeStyle='#89958c20';c.lineWidth=5;c.stroke(p);});
  c.restore();
- for(const p of q.tunnels){const g=c.createLinearGradient(p.x,0,p.far,0);g.addColorStop(0,'#203035');g.addColorStop(.45,'#172a30');g.addColorStop(1,'#344249');c.fillStyle=g;c.fill(p.path);c.strokeStyle='#75867c38';c.lineWidth=3;c.stroke(p.path);}
+ for(const p of q.tunnels){const g=c.createLinearGradient(p.x,0,p.far,0);g.addColorStop(0,'#203035');g.addColorStop(.45,'#172a30');g.addColorStop(1,'#344249');c.fillStyle=g;c.fill(p.path);
+  c.strokeStyle='#75867c38';c.lineWidth=3;c.stroke(p.path);}
  c.restore();this.overscanStats={bounds:v,paths:1+q.tunnels.length,builds:this._skirtBuilds,cave:true,portals:q.tunnels.length};
 }
 G.HonroCaveRock={terrain,enclosure,background,prepare,rock};

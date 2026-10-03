@@ -15193,8 +15193,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        16,
-        23
+        30,
+        48
       ],
       "objectiveTurns": 6
     },
@@ -15212,8 +15212,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        18,
-        26
+        30,
+        48
       ],
       "objectiveTurns": 6
     },
@@ -15231,8 +15231,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        20,
-        29
+        44,
+        70
       ],
       "objectiveTurns": 7
     },
@@ -15250,8 +15250,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        24,
-        35
+        55,
+        88
       ],
       "objectiveTurns": 10
     },
@@ -15269,8 +15269,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        21,
-        30
+        33,
+        53
       ],
       "objectiveTurns": 7
     },
@@ -15288,8 +15288,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        23,
-        32
+        70,
+        130
       ],
       "objectiveTurns": 8
     },
@@ -15307,8 +15307,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        25,
-        36
+        52,
+        84
       ],
       "objectiveTurns": 9
     },
@@ -15326,8 +15326,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        29,
-        42
+        80,
+        126
       ],
       "objectiveTurns": 10
     },
@@ -15345,8 +15345,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        26,
-        37
+        44,
+        70
       ],
       "objectiveTurns": 13
     },
@@ -15364,8 +15364,8 @@ globalThis.HONRO_BALANCE={
       "bossIncomingHpFraction": 0.135,
       "midBossHits": 5.8,
       "targetRounds": [
-        23,
-        33
+        30,
+        48
       ],
       "objectiveTurns": 8
     }
@@ -16738,35 +16738,35 @@ const clear=(id,label,cohorts='all')=>({id,label,kind:'clear',cohorts});
 const hold=(id,label,rounds,wave,requiredClass)=>({id,label,kind:'hold',rounds,wave,requiredClass,radius:680,contestRadius:260});
 const wave=(kind,count,eliteEvery=4)=>({kind,count,eliteEvery});
 const plans=[
- {size:[7800,4800],initial:18,active:4,eliteEvery:5,rounds:[16,23],lamps:[],
+ {size:[7800,4800],initial:18,active:4,eliteEvery:5,rounds:[30,48],lamps:[],
   sequence:['knot-west',clear('clear-west','서쪽 매듭을 덮친 들림 제압','west'),'knot-east',hold('hold-knots','소단의 매듭 해체를 지키기',4,wave('echo',6)),'resident',clear('clear-road','산길에 남은 들림 모두 제압'),'trace'],
   sites:{'knot-west':[1600],'clear-west':[1850],'knot-east':[3550],'hold-knots':[3550],resident:[5580],'clear-road':[6350],trace:[7260]}},
- {size:[8400,5200],initial:20,active:4,eliteEvery:5,rounds:[18,26],lamps:[],
+ {size:[8400,5200],initial:20,active:4,eliteEvery:5,rounds:[30,48],lamps:[],
   sequence:[clear('clear-approach','채석장 진입로 확보','west'),'rock-pin','sign',hold('hold-road','복구 중인 길표와 후방 지키기',4,wave('minecart',8)),clear('clear-quarry','채석장 들린 도구 전부 제압'),'exit'],
   sites:{'clear-approach':[1900],'rock-pin':[3000],sign:[4620],'hold-road':[4620],'clear-quarry':[6500],exit:[7920]}},
- {size:[8200,6600],initial:22,active:4,eliteEvery:4,rounds:[20,29],lamps:[],
+ {size:[8200,6600],initial:22,active:4,eliteEvery:4,rounds:[44,70],lamps:[],
   sequence:[clear('clear-entry','석문 앞 작업조 제압','west'),'resident','door-pin','gate',hold('hold-gate','석문 통로를 지켜 피난 시간 확보',5,wave('picks',8)),clear('clear-depth','안쪽 회랑 전부 제압'),'exit'],
   sites:{'clear-entry':[1500],resident:[2100],'door-pin':[3620],gate:[4220],'hold-gate':[4420],'clear-depth':[6500],exit:[7700]}},
- {size:[8600,7600],initial:24,active:4,eliteEvery:4,rounds:[24,35],lamps:[],
+ {size:[8600,7600],initial:24,active:4,eliteEvery:4,rounds:[55,88],lamps:[],
   sequence:[clear('clear-upper','상층 가옥의 들린 도구 제압','west'),'family-upper',clear('clear-middle','중층 장터 확보','middle'),'family-mid','family-lower','bridge',hold('hold-refuge','피난 다리에서 주민을 지키기',6,wave('picks',12)),clear('clear-village','마을에 남은 들림 전부 제압')],
   sites:{'clear-upper':[2000],'family-upper':[2600],'clear-middle':[4900],'family-mid':[5650],'family-lower':[5050,'lower'],bridge:[1850,'lower'],'hold-refuge':[2100,'lower'],'clear-village':[2850,'lower']}},
- {size:[8000,6000],initial:22,active:4,eliteEvery:4,rounds:[21,30],lamps:[],
+ {size:[8000,6000],initial:22,active:4,eliteEvery:4,rounds:[33,53],lamps:[],
   sequence:[clear('clear-water','수문을 지키는 수차와 도구 제압','west'),'sluice',hold('hold-sluice','역류가 잦아들 때까지 수문 지키기',4,wave('picks',8)),'shaft-pin',clear('clear-gallery','수갱 아래 작업조 전부 제압'),'groove','exit'],
   sites:{'clear-water':[1700],sluice:[2400],'hold-sluice':[2550],'shaft-pin':[4060],'clear-gallery':[5820],groove:[6360],exit:[7510]}},
- {size:[8200,6600],initial:24,active:4,eliteEvery:4,rounds:[23,32],lamps:[],
+ {size:[8200,6600],initial:24,active:4,eliteEvery:4,rounds:[70,130],lamps:[],
   sequence:[clear('clear-court','잠운사 앞마당 정예 제압','west'),'monk','hall',hold('hold-hall','승려가 기록함을 여는 동안 법당 방어',5,wave('stoneLantern',10)),'record',clear('clear-temple','후원과 회랑의 들림 전부 제압'),'witness'],
   sites:{'clear-court':[1850],monk:[2500],hall:[3900],'hold-hall':[4140],record:[5280],'clear-temple':[6500],witness:[7460]}},
- {size:[8400,6800],initial:24,active:3,eliteEvery:4,rounds:[25,36],lamps:[],
+ {size:[8400,6800],initial:24,active:3,eliteEvery:4,rounds:[52,84],lamps:[],
   sequence:[clear('clear-works','버팀목 작업장 확보','west'),'brace','collapse-pin','hoist','repair',hold('hold-hoist','인양축이 돌아가는 동안 작업장 방어',5,wave('minecart',10)),clear('clear-lift','인양로의 잔존 들림 전부 제압'),'notes'],
   sites:{'clear-works':[1800],brace:[2500],'collapse-pin':[3320],hoist:[4380],repair:[5250],'hold-hoist':[5400],'clear-lift':[6600],notes:[7840]}},
- {size:[10400,7600],initial:28,active:3,eliteEvery:4,rounds:[29,42],lamps:[3100],
+ {size:[10400,7600],initial:28,active:3,eliteEvery:4,rounds:[80,126],lamps:[3100],
   sequence:[clear('clear-wards','공명진을 둘러싼 정예 제압','west'),'silence',hold('hold-silence','공명 역류를 견디며 억제진 유지',4,wave('bellCluster',8),'mage'),'upper-chain','lower-chain','leak','keeper',clear('clear-bell','종에서 쏟아진 잔여 들림 제압')],
   sites:{'clear-wards':[2400],silence:[3350],'hold-silence':[3350],'upper-chain':[4850],'lower-chain':[6110],leak:[7260],keeper:[8500],'clear-bell':[9220]},
   bossWave:wave('picks',4,2)},
- {size:[10400,7600],initial:18,active:3,eliteEvery:4,rounds:[26,37],lamps:[3000,7800],
+ {size:[10400,7600],initial:18,active:3,eliteEvery:4,rounds:[44,70],lamps:[3000,7800],
   sequence:['route','separate-1',hold('hold-first','첫 이름이 길을 찾을 때까지 천도진 유지',3,wave('echo',3),'occultist'),'send-1','separate-2',hold('hold-second','두 번째 혼군집의 역류 막기',3,wave('resonance',3),'occultist'),'send-2','separate-3',hold('hold-last','마지막 혼군집의 길을 지키기',4,wave('bellCluster',4),'occultist'),'send-3',clear('clear-souls','천도길에 남은 원혼 전부 제압'),'old-soul'],
   sites:{route:[1750],'separate-1':[3050],'hold-first':[3050],'send-1':[3260],'separate-2':[4900],'hold-second':[4900],'send-2':[5120],'separate-3':[6940],'hold-last':[6940],'send-3':[7150],'clear-souls':[8480],'old-soul':[9470]}},
- {size:[9000,5800],initial:18,active:3,eliteEvery:4,rounds:[23,33],lamps:[],
+ {size:[9000,5800],initial:18,active:3,eliteEvery:4,rounds:[30,48],lamps:[],
   sequence:[clear('clear-mouth','출구의 매복조 제압','west'),'exit-pin','escort',{id:'escort-mid',label:'생존자 행렬을 중간 쉼터까지 호송',kind:'escort'},hold('hold-convoy','부상자가 쉬는 동안 쉼터 방어',4,wave('minecart',6)),clear('clear-pass','마지막 산길 매복조 전부 제압'),'escape'],
   sites:{'clear-mouth':[1700],'exit-pin':[2740],escort:[3240],'escort-mid':[5200],'hold-convoy':[5200],'clear-pass':[7120],escape:[8430]},
   progressWave:wave('picks',4,2)}
@@ -75200,7 +75200,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-1 매듭을 거둔 아침 · 개편 2 · 16–23턴 설계",
+        "notes": "2-1 매듭을 거둔 아침 · 개편 2 · 30–48턴 설계",
         "seed": 2210
       },
       "initialState": {
@@ -75881,12 +75881,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          16,
-          23
+          30,
+          48
         ],
         "expectedMinutes": [
-          27,
-          36
+          46,
+          70
         ]
       },
       "routes": [
@@ -78058,7 +78058,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-2 돌산으로 가는 길 · 개편 2 · 18–26턴 설계",
+        "notes": "2-2 돌산으로 가는 길 · 개편 2 · 30–48턴 설계",
         "seed": 2211
       },
       "initialState": {
@@ -78543,12 +78543,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          18,
-          26
+          30,
+          48
         ],
         "expectedMinutes": [
-          29,
-          40
+          46,
+          70
         ]
       },
       "routes": [
@@ -80852,7 +80852,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-3 석문 · 개편 2 · 20–29턴 설계",
+        "notes": "2-3 석문 · 개편 2 · 44–70턴 설계",
         "seed": 2212
       },
       "initialState": {
@@ -81469,12 +81469,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          20,
-          29
+          44,
+          70
         ],
         "expectedMinutes": [
-          32,
-          44
+          64,
+          100
         ]
       },
       "routes": [
@@ -85549,7 +85549,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-4 해가 닿지 않는 마을 · 개편 2 · 24–35턴 설계",
+        "notes": "2-4 해가 닿지 않는 마을 · 개편 2 · 55–88턴 설계",
         "seed": 2213
       },
       "initialState": {
@@ -86618,138 +86618,6 @@ globalThis.HONRO_PROJECT={
             "y": 0,
             "scale": 1,
             "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-0",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-1",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-2",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-3",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-4",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-5",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-0",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-1",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-2",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-3",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-4",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-5",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
           }
         ],
         "skyVisible": false
@@ -86760,12 +86628,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          24,
-          35
+          55,
+          88
         ],
         "expectedMinutes": [
-          37,
-          52
+          79,
+          124
         ]
       },
       "routes": [
@@ -89644,7 +89512,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-5 물 아래의 길 · 개편 2 · 21–30턴 설계",
+        "notes": "2-5 물 아래의 길 · 개편 2 · 33–53턴 설계",
         "seed": 2214
       },
       "initialState": {
@@ -90261,12 +90129,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          21,
-          30
+          33,
+          53
         ],
         "expectedMinutes": [
-          33,
-          46
+          50,
+          77
         ]
       },
       "routes": [
@@ -92649,7 +92517,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-6 잠운사 · 개편 2 · 23–32턴 설계",
+        "notes": "2-6 잠운사 · 개편 2 · 70–130턴 설계",
         "seed": 2215
       },
       "initialState": {
@@ -93692,138 +93560,6 @@ globalThis.HONRO_PROJECT={
             "y": 0,
             "scale": 1,
             "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-0",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-1",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-2",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-3",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-4",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-5",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-0",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-1",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-2",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-3",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-4",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-5",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
           }
         ],
         "skyVisible": false
@@ -93834,12 +93570,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          23,
-          32
+          70,
+          130
         ],
         "expectedMinutes": [
-          36,
-          48
+          100,
+          181
         ]
       },
       "routes": [
@@ -96266,7 +96002,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-7 두드리는 벽 · 개편 2 · 25–36턴 설계",
+        "notes": "2-7 두드리는 벽 · 개편 2 · 52–84턴 설계",
         "seed": 2216
       },
       "initialState": {
@@ -96889,12 +96625,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          25,
-          36
+          52,
+          84
         ],
         "expectedMinutes": [
-          39,
-          54
+          75,
+          118
         ]
       },
       "routes": [
@@ -99502,7 +99238,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-8 묵종 · 개편 2 · 29–42턴 설계",
+        "notes": "2-8 묵종 · 개편 2 · 80–126턴 설계",
         "seed": 2217
       },
       "initialState": {
@@ -100611,7 +100347,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100622,7 +100358,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100633,7 +100369,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100644,7 +100380,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100655,18 +100391,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100688,7 +100413,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100699,7 +100424,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100710,7 +100435,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100721,7 +100446,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100732,18 +100457,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -100757,12 +100471,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          29,
-          42
+          80,
+          126
         ],
         "expectedMinutes": [
-          44,
-          62
+          113,
+          175
         ]
       },
       "routes": [
@@ -103561,7 +103275,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-9 종 안의 사람들 · 개편 2 · 26–37턴 설계",
+        "notes": "2-9 종 안의 사람들 · 개편 2 · 44–70턴 설계",
         "seed": 2218
       },
       "initialState": {
@@ -104706,7 +104420,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104717,7 +104431,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104728,7 +104442,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104739,7 +104453,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104750,18 +104464,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104783,7 +104486,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104794,7 +104497,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104805,7 +104508,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104816,7 +104519,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104827,18 +104530,7 @@ globalThis.HONRO_PROJECT={
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -104852,12 +104544,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          26,
-          37
+          44,
+          70
         ],
         "expectedMinutes": [
-          40,
-          55
+          64,
+          100
         ]
       },
       "routes": [
@@ -106919,7 +106611,7 @@ globalThis.HONRO_PROJECT={
         }
       ],
       "meta": {
-        "notes": "2-10 다시 하늘 아래 · 개편 2 · 23–33턴 설계",
+        "notes": "2-10 다시 하늘 아래 · 개편 2 · 30–48턴 설계",
         "seed": 2219
       },
       "initialState": {
@@ -107429,12 +107121,12 @@ globalThis.HONRO_PROJECT={
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          23,
-          33
+          30,
+          48
         ],
         "expectedMinutes": [
-          36,
-          50
+          46,
+          70
         ]
       },
       "routes": [
@@ -109454,19 +109146,20 @@ function rock(c,b){const g=c.createLinearGradient(0,0,0,b.height+1800);g.addColo
 function prepare(t,b){const source=t.vertices||t;let q=cache.get(t);if(q?.source===source)return q;
  const pts=C.poly(t).map(p=>[p.x,p.y]),shape=polygon(pts),contour=pts.filter(([x,y])=>y>1&&y<b.height&&x>=0&&x<=b.width),edge=new Path2D();
  contour.forEach(([x,y],i)=>i?edge.lineTo(x,y):edge.moveTo(x,y));
- const bands=[],joints=[],sign=t.honroCeiling?-1:1;
- // Broad ledges and sediment beds follow the authored rock surface. Retained
- // paths, rather than frame noise, describe scale at normal and tactical zoom.
- for(let j=0;j+2<contour.length;j+=5){const segment=contour.slice(j,j+7),a=segment[0],z=segment.at(-1);if(Math.abs(z[0]-a[0])<160)continue;
-  const depth=110+(j%4)*42;
-  bands.push(polygon([...segment.map(([x,y])=>[x,y+sign*15]),...segment.slice().reverse().map(([x,y],k)=>[x+(k%3-1)*24,y+sign*(depth+k*8)])]));
-  const p=new Path2D();p.moveTo(a[0]+40,a[1]+sign*45);p.bezierCurveTo(a[0]+140,a[1]+sign*105,z[0]-110,z[1]+sign*75,z[0]-18,z[1]+sign*130);joints.push(p);
- }
- q={source,shape,edge,bands,joints};cache.set(t,q);return q;
+ // A village shelf has a top and an underside. Its strata follow only the
+ // walkable top; drawing short polygons around both faces made floating tiles.
+ const surface=t.id==='village-upper'?contour.slice(0,Math.ceil(contour.length/2)):contour;
+ const sign=t.honroCeiling?-1:1,taper=x=>Math.min(1,Math.max(0,Math.min(x,b.width-x)/700)),band=(near,far,phase)=>polygon([
+  ...surface.map(([x,y])=>[x,y+sign*(near+14*Math.sin(x/760+phase))*taper(x)]),
+  ...surface.slice().reverse().map(([x,y])=>[x,y+sign*(far+36*Math.sin(x/1090+phase))*taper(x)])
+ ]);
+ // Two continuous mineral beds preserve the large cave silhouette without
+ // the rectangular seams of the old seven-node chunks.
+ const bands=surface.length>2?[band(16,145,0),band(185,365,1.2)]:[];
+ q={source,shape,edge,bands};cache.set(t,q);return q;
 }
 function terrain(c,t,b){const q=prepare(t,b);c.save();c.fillStyle=rock(c,b);c.fill(q.shape);c.clip(q.shape);
- q.bands.forEach((p,i)=>{c.fillStyle=i%3===0?'#73817a28':i%3===1?'#15272e45':'#a4a48a15';c.fill(p);});
- c.lineWidth=4;c.strokeStyle='#172a3060';for(const p of q.joints)c.stroke(p);
+ q.bands.forEach((p,i)=>{c.fillStyle=i?'#142a3040':'#81918827';c.fill(p);});
  c.strokeStyle=t.honroCeiling?'#7081836b':'#a2aea38a';c.lineWidth=t.honroCeiling?3:4;c.lineJoin='round';c.stroke(q.edge);c.restore();
 }
 function background(c,b,scene,w,h){
@@ -109490,11 +109183,13 @@ function background(c,b,scene,w,h){
 }
 function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersion,b.width,b.height,v.left,v.top,v.right,v.bottom].join(':');
  let q=this._caveEnclosure;if(!q||q.key!==key||q.source!==b.honroCaveEnvelope){
-  const fill=new Path2D();fill.rect(v.left,v.top,v.right-v.left,v.bottom-v.top);fill.rect(0,0,b.width,b.height);
+  // Overlap the play rectangle by a few world units. Two coincident canvas
+  // edges otherwise leave a one-pixel antialias seam at extreme camera pans.
+  const fill=new Path2D();fill.rect(v.left,v.top,v.right-v.left,v.bottom-v.top);fill.rect(4,4,b.width-8,b.height-8);
   const tunnels=(b.honroCaveEnvelope.portals||[]).map(p=>{const left=p.side==='left',x=left?0:b.width,sign=left?-1:1,far=x+sign*780;
    const end=left?Math.min(far,v.left-350):Math.max(far,v.right+350),mid=(p.top+p.bottom)/2,path=new Path2D();
-   path.moveTo(x-sign*2,p.top);path.bezierCurveTo(x+sign*160,p.top-45,x+sign*300,p.top+25,end,mid-25);
-   path.lineTo(end,mid+25);path.bezierCurveTo(x+sign*390,p.bottom+40,x+sign*150,p.bottom+5,x-sign*2,p.bottom);path.closePath();
+   path.moveTo(x-sign*6,p.top);path.bezierCurveTo(x+sign*160,p.top-45,x+sign*300,p.top+25,end,mid-25);
+   path.lineTo(end,mid+25);path.bezierCurveTo(x+sign*390,p.bottom+40,x+sign*150,p.bottom+5,x-sign*6,p.bottom);path.closePath();
    return{...p,x,far:end,path};});
   const strata=[];
   for(const y of [-1180,-520,b.height+420,b.height+1080]){
@@ -109512,7 +109207,8 @@ function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersi
  // including at portrait zoom when the camera sees far above play bounds.
  q.strata.forEach((p,i)=>{c.strokeStyle=i%2?'#78878236':'#121f254d';c.lineWidth=i%2?75:130;c.stroke(p);c.strokeStyle='#89958c20';c.lineWidth=5;c.stroke(p);});
  c.restore();
- for(const p of q.tunnels){const g=c.createLinearGradient(p.x,0,p.far,0);g.addColorStop(0,'#203035');g.addColorStop(.45,'#172a30');g.addColorStop(1,'#344249');c.fillStyle=g;c.fill(p.path);c.strokeStyle='#75867c38';c.lineWidth=3;c.stroke(p.path);}
+ for(const p of q.tunnels){const g=c.createLinearGradient(p.x,0,p.far,0);g.addColorStop(0,'#203035');g.addColorStop(.45,'#172a30');g.addColorStop(1,'#344249');c.fillStyle=g;c.fill(p.path);
+  c.strokeStyle='#75867c38';c.lineWidth=3;c.stroke(p.path);}
  c.restore();this.overscanStats={bounds:v,paths:1+q.tunnels.length,builds:this._skirtBuilds,cave:true,portals:q.tunnels.length};
 }
 G.HonroCaveRock={terrain,enclosure,background,prepare,rock};

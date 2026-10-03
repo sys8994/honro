@@ -57538,7 +57538,7 @@
         }
       ],
       "meta": {
-        "notes": "2-1 매듭을 거둔 아침 · 개편 2 · 16–23턴 설계",
+        "notes": "2-1 매듭을 거둔 아침 · 개편 2 · 30–48턴 설계",
         "seed": 2210
       },
       "initialState": {
@@ -58219,12 +58219,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          16,
-          23
+          30,
+          48
         ],
         "expectedMinutes": [
-          27,
-          36
+          46,
+          70
         ]
       },
       "routes": [
@@ -60396,7 +60396,7 @@
         }
       ],
       "meta": {
-        "notes": "2-2 돌산으로 가는 길 · 개편 2 · 18–26턴 설계",
+        "notes": "2-2 돌산으로 가는 길 · 개편 2 · 30–48턴 설계",
         "seed": 2211
       },
       "initialState": {
@@ -60881,12 +60881,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          18,
-          26
+          30,
+          48
         ],
         "expectedMinutes": [
-          29,
-          40
+          46,
+          70
         ]
       },
       "routes": [
@@ -63190,7 +63190,7 @@
         }
       ],
       "meta": {
-        "notes": "2-3 석문 · 개편 2 · 20–29턴 설계",
+        "notes": "2-3 석문 · 개편 2 · 44–70턴 설계",
         "seed": 2212
       },
       "initialState": {
@@ -63807,12 +63807,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          20,
-          29
+          44,
+          70
         ],
         "expectedMinutes": [
-          32,
-          44
+          64,
+          100
         ]
       },
       "routes": [
@@ -67887,7 +67887,7 @@
         }
       ],
       "meta": {
-        "notes": "2-4 해가 닿지 않는 마을 · 개편 2 · 24–35턴 설계",
+        "notes": "2-4 해가 닿지 않는 마을 · 개편 2 · 55–88턴 설계",
         "seed": 2213
       },
       "initialState": {
@@ -68956,138 +68956,6 @@
             "y": 0,
             "scale": 1,
             "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-0",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-1",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-2",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-3",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-4",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-5",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-0",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-1",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-2",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-3",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-4",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-5",
-            "assetId": "act2:cave-house",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.05,
-            "rotation": 0
           }
         ],
         "skyVisible": false
@@ -69098,12 +68966,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          24,
-          35
+          55,
+          88
         ],
         "expectedMinutes": [
-          37,
-          52
+          79,
+          124
         ]
       },
       "routes": [
@@ -71982,7 +71850,7 @@
         }
       ],
       "meta": {
-        "notes": "2-5 물 아래의 길 · 개편 2 · 21–30턴 설계",
+        "notes": "2-5 물 아래의 길 · 개편 2 · 33–53턴 설계",
         "seed": 2214
       },
       "initialState": {
@@ -72599,12 +72467,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          21,
-          30
+          33,
+          53
         ],
         "expectedMinutes": [
-          33,
-          46
+          50,
+          77
         ]
       },
       "routes": [
@@ -74987,7 +74855,7 @@
         }
       ],
       "meta": {
-        "notes": "2-6 잠운사 · 개편 2 · 23–32턴 설계",
+        "notes": "2-6 잠운사 · 개편 2 · 70–130턴 설계",
         "seed": 2215
       },
       "initialState": {
@@ -76030,138 +75898,6 @@
             "y": 0,
             "scale": 1,
             "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-0",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-1",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-2",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-3",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-4",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-5",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-0",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 500,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-1",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 1950,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-2",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 3400,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-3",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 4850,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-4",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 6300,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-5",
-            "assetId": "act2:temple",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 0.9,
-            "rotation": 0
           }
         ],
         "skyVisible": false
@@ -76172,12 +75908,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          23,
-          32
+          70,
+          130
         ],
         "expectedMinutes": [
-          36,
-          48
+          100,
+          181
         ]
       },
       "routes": [
@@ -78604,7 +78340,7 @@
         }
       ],
       "meta": {
-        "notes": "2-7 두드리는 벽 · 개편 2 · 25–36턴 설계",
+        "notes": "2-7 두드리는 벽 · 개편 2 · 52–84턴 설계",
         "seed": 2216
       },
       "initialState": {
@@ -79227,12 +78963,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          25,
-          36
+          52,
+          84
         ],
         "expectedMinutes": [
-          39,
-          54
+          75,
+          118
         ]
       },
       "routes": [
@@ -81840,7 +81576,7 @@
         }
       ],
       "meta": {
-        "notes": "2-8 묵종 · 개편 2 · 29–42턴 설계",
+        "notes": "2-8 묵종 · 개편 2 · 80–126턴 설계",
         "seed": 2217
       },
       "initialState": {
@@ -82949,7 +82685,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -82960,7 +82696,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -82971,7 +82707,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -82982,7 +82718,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -82993,18 +82729,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -83026,7 +82751,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -83037,7 +82762,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -83048,7 +82773,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -83059,7 +82784,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -83070,18 +82795,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -83095,12 +82809,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          29,
-          42
+          80,
+          126
         ],
         "expectedMinutes": [
-          44,
-          62
+          113,
+          175
         ]
       },
       "routes": [
@@ -85899,7 +85613,7 @@
         }
       ],
       "meta": {
-        "notes": "2-9 종 안의 사람들 · 개편 2 · 26–37턴 설계",
+        "notes": "2-9 종 안의 사람들 · 개편 2 · 44–70턴 설계",
         "seed": 2218
       },
       "initialState": {
@@ -87044,7 +86758,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87055,7 +86769,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87066,7 +86780,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87077,7 +86791,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87088,18 +86802,7 @@
             "depthLayer": "L2",
             "groupId": "slope-L2",
             "supportId": "slope-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-slope-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "slope-L2",
-            "supportId": "slope-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87121,7 +86824,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 1950,
+            "x": 2400,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87132,7 +86835,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 3400,
+            "x": 4300,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87143,7 +86846,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 4850,
+            "x": 6200,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87154,7 +86857,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 6300,
+            "x": 8100,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87165,18 +86868,7 @@
             "depthLayer": "L2",
             "groupId": "valley-bottom-L2",
             "supportId": "valley-bottom-L2-support",
-            "x": 7750,
-            "y": 0,
-            "scale": 1.1,
-            "rotation": 0
-          },
-          {
-            "id": "rear-valley-bottom-L2-6",
-            "assetId": "act2:memorial",
-            "depthLayer": "L2",
-            "groupId": "valley-bottom-L2",
-            "supportId": "valley-bottom-L2-support",
-            "x": 9200,
+            "x": 10000,
             "y": 0,
             "scale": 1.1,
             "rotation": 0
@@ -87190,12 +86882,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          26,
-          37
+          44,
+          70
         ],
         "expectedMinutes": [
-          40,
-          55
+          64,
+          100
         ]
       },
       "routes": [
@@ -89257,7 +88949,7 @@
         }
       ],
       "meta": {
-        "notes": "2-10 다시 하늘 아래 · 개편 2 · 23–33턴 설계",
+        "notes": "2-10 다시 하늘 아래 · 개편 2 · 30–48턴 설계",
         "seed": 2219
       },
       "initialState": {
@@ -89767,12 +89459,12 @@
         "act": 2,
         "revision": 2,
         "targetRounds": [
-          23,
-          33
+          30,
+          48
         ],
         "expectedMinutes": [
-          36,
-          50
+          46,
+          70
         ]
       },
       "routes": [

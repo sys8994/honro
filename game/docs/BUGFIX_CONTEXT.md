@@ -1,6 +1,6 @@
 # HONRO 게임 수정 맥락
 
-**2막 재설계 진행 중(HBUG-077):** 기존 2막의 크기·동굴 외곽·난이도·시야·서사에 대한 사용자 재작업 요청이다. `act2-plan.js`, `act2-drama.js`, `cave-enclosure.js`를 추가했고 `act2-caves.js`를 전면 재작성 중이다. 완료 기준·현재 실패/검수·저장 구분은 [ACT2_REVISION_DESIGN.md](ACT2_REVISION_DESIGN.md)를 먼저 읽는다. 이전 21/57건 및 10장 완주 결과는 revision 1이며 현재 개편의 증거가 아니다. 정상 플레이 보정과 전체 회귀가 남아 있다.
+**2막 재설계(HBUG-077):** 11–20장 revision 2는 양 축 2배 이상의 맵, 필수 제압·방어·호송, 희소 등불, 개편 대사와 동굴 시각 외곽을 사용한다. 10장 모두 실제 전투 API를 쓰는 봇으로 승리했고, 기존 revision 1 전투는 그 목표와 지형을 유지한다. `act2-plan.js`, `act2-drama.js`, `cave-enclosure.js`, `act2-caves.js`가 현재 원본이다. 2026-10-03 화면 재검토에서 떠 보이는 L2 건물과 반복 직사각 암벽 무늬를 제거하고 출입구 암층을 조정했다. 처음 턴·시간 가설은 실제 기록과 맞지 않아 [재보정 표](ACT2_REVISION_DESIGN.md)로 대체했다. 전체 검증과 사람의 난이도·플레이 시간은 [QA 기록](ACT2_QA.md)에서 구분한다.
 
 **2막 울리지 않는 종(HBUG-076, 2026-10-03):** 현재 캠페인은 내부 ID 1–20이다. 11–20의 콘텐츠·순차 목표·혼령·구출·수문·봉인·호송은 `shared/runtime/act2-content.js`, `act2.js`에서 관리한다. 10장 완료 저장의 소단 합류는 11장 출발 시 보정하며 기존 1막 파티를 바꾸지 않는다. 새 맵 원본은 `workshop/recipes/act2-caves.js`이고 `node tools/map-forge/apply-act2.mjs`가 기존 1막을 보존하고 2막만 갱신한다. 천장과 지형은 공통 고체 충돌이다. 겹치는 선반/바닥을 따로 만들면 매몰 표면 판정으로 끝에서 추락할 수 있으므로 하나의 상부 경계로 합친다. 대사·진행은 기존 저장 큐와 `honroState.act2`에 남긴다. `npm run test:act2`는 상태 fixture, 실제 양쪽 HTML, 순간이동 없는 정상 행동 플레이를 구분해 검사한다. [구현](ACT2_IMPLEMENTATION_NOTES.md)·[검증](ACT2_QA.md)을 참고한다.
 
