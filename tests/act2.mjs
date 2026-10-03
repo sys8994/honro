@@ -32,23 +32,25 @@ check('Resident extraction is nonlethal, one-time, and player damage cannot kill
  const spirit=e.unit(m.spiritId);spirit.hp=Math.floor(spirit.maxHp*.35);
  assert(g.HonroAct2.use(app,m));assert(resident.honroResolved&&!resident.dead);assert(spirit.dead);assert.equal(g.HonroAct2.memory(b).rescued.length,1);assert.equal(g.HonroAct2.use(app,m),false);
 });
-check('Cave ceiling is solid to a real projectile, with an open firing shaft',()=>{
+check('Continuous cave ceiling blocks a high shot while the bow target hangs below it',()=>{
  const {b,e}=fixture(15),u=e.active;u.angle=90;
- assert(b.terrain.filter(t=>t.honroCeiling).length===3);assert(e.fire('A01',90,.55));
+ assert.equal(b.terrain.filter(t=>t.honroCeiling).length,1);assert(e.fire('A01',90,.55));
  let minY=Infinity;for(let i=0;i<500&&b.projectiles.length;i++){for(const p of [...b.projectiles]){minY=Math.min(minY,p.y);e.stepProjectile(p,1/120);}}
  assert.equal(b.projectiles.length,0);assert(minY>1300,`roof should stop high shot, minY=${minY}`);
- const cap=b.terrain.find(t=>t.id==='shaft-cap'),shaftX=cap.x+cap.w/2;
- assert(b.terrain.some(t=>t.honroCeiling&&C.terrainContains(t,shaftX,cap.y+80)),'sealed cap closes the sky above the shaft');
- assert(!b.terrain.some(t=>t.honroCeiling&&C.terrainContains(t,shaftX,cap.y+cap.h+60)),'firing slot below the cap stays open');
+ const target=b.honroMarkers.find(m=>m.id==='marker-shaft-pin'),step=b.honroAct2Steps.find(s=>s.id==='shaft-pin'),roof=b.terrain.find(t=>t.honroCeiling),hanger=b.honroCaveHangingTarget;
+ assert(target&&hanger&&step?.requiredClass==='archer');assert.equal(target.x,hanger.x);
+ assert(C.terrainContains(roof,hanger.x,hanger.roofY-20));
+ assert(!C.terrainContains(roof,hanger.x,target.y));
+ assert(target.y>hanger.roofY+150,'target hangs inside the cavern, below the ceiling');
 });
 check('Breaking the unsupported brace creates a recoverable hazard, not a softlock',()=>{
  const {b,e,app}=fixture(17),t=b.terrain.find(t=>t.id==='collapse-pin');e.damageTerrain(t,1000);assert(g.HonroAct2.memory(b).collapse);assert(!b.terrain.find(t=>t.id==='gate-debris').broken);const m=b.honroMarkers.find(m=>m.id==='rebuild-brace');assert(!m.collected);g.HonroAct2.use(app,m);assert(g.HonroAct2.memory(b).rebuilt);assert(b.terrain.find(t=>t.id==='gate-debris').broken);
 });
 check('Rockfall changes the walkable route, and draining water keeps its bed below its surface',()=>{
- const {b,e}=fixture(12),crossingX=3430,floor=b.terrain.find(t=>t.id==='act2-floor'),before=C.topAt(floor,crossingX,4000);e.damageTerrain(b.terrain.find(t=>t.id==='rock-pin'),1000);assert(C.topAt(floor,crossingX,4000)<before-200);
+ const {b,e}=fixture(12),crossingX=3520,floor=b.terrain.find(t=>t.id==='act2-floor'),before=C.topAt(floor,crossingX,4000);e.damageTerrain(b.terrain.find(t=>t.id==='rock-pin'),1000);assert(C.topAt(floor,crossingX,4000)<before-200);
  const q=fixture(15),water=q.b.waters[0],y=water.y,sluice=q.b.honroMarkers.find(m=>m.id==='sluice');q.b.honroState.act2.done['clear-water']=true;
  for(const u of q.e.alive(1))if(Math.hypot(u.x-sluice.x,u.y-sluice.y)<360){u.hp=0;u.dead=true;}
- assert(g.HonroAct2.use(q.app,sluice));assert.equal(water.y,y+120);assert(water.bottom.every(p=>p.y>water.y));assert(q.b.honroSurfaceZones.filter(z=>z.kind==='water-pool').every(z=>z.bottom.every(p=>p[1]>z.surface[0][1])));
+ assert(g.HonroAct2.use(q.app,sluice));const drained=q.b.waters[0];assert.equal(drained.y,y+120);assert(drained.bottom.slice(1,-1).every(p=>p.y>drained.y));assert(q.b.honroSurfaceZones.filter(z=>z.kind==='water-pool').every(z=>z.bottom.slice(1,-1).every(p=>p[1]>z.surface[0][1])));
 });
 check('Cave rock shelves have continuous exposed support through both ends',()=>{
  for(const id of [13,16,17,18,19]){const {b,e}=fixture(id),x=id>=18?3240:1800,t=b.terrain.find(t=>t.id==='act2-floor');for(let xx=x-380;xx<=x+590;xx+=4){const y=C.terrainSurfaces(t,xx)[0].y;assert(e.surface(xx,y-1,y+1),`${id}: buried seam at ${xx}`);}}

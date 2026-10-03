@@ -56,6 +56,24 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
  for(const file of ['shared/map/geometry.js','shared/map/commands.js','workshop/recipes/stage12-forest-basin.js','workshop/recipes/stage36-place-design.js'])vm.runInContext(await read(file),g);
  const first=g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline));
  const project=g.HonroCommands.apply(first,g.HonroStage36Places.commands(first));
+ // The checked-in campaign is the active authored source. Historical migration
+ // must not replace later Act 1 layout and balance edits with old RC21 values.
+ // The Stage 2 cliff remains the one explicit recipe update in this migration.
+ let active=null;
+ try{active=JSON.parse(await read('shared/data/campaign.json'));}catch(error){if(error.code!=='ENOENT')throw error;}
+ if(active?.stages?.length>=10){
+  const cliff=project.stages[1].terrains.find(t=>t.id==='right-cliff-ground');
+  for(let i=0;i<10;i++){
+   const old=active.stages[i];if(old.id!==project.stages[i].id)throw Error(`Act 1 stage mismatch at ${i+1}`);
+   project.stages[i]=old;
+  }
+  const target=project.stages[1].terrains.findIndex(t=>t.id==='right-cliff-ground');
+  if(target<0||!cliff)throw Error('Stage 2 cliff is missing');
+  project.stages[1].terrains[target]=cliff;
+  project.stages[1].detailStats.solidNodes=first.stages[1].detailStats.solidNodes;
+  const oldAssets=new Map(active.library.map(a=>[a.id,a]));
+  project.library=project.library.map(a=>oldAssets.get(a.id)||a);
+ }
  // The authored Stage 10 boss balance was adjusted after the original import.
  const sodan=project.stages[9].units.find(u=>u.id==='boss'&&u.cls==='occultist');
  if(sodan){sodan.attack=3.377988734638485;sodan.combatBaseAttack=2.9120592539986943;}

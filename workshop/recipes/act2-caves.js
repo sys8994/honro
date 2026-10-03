@@ -1,29 +1,54 @@
 (function(G){'use strict';
 const clone=x=>JSON.parse(JSON.stringify(x)),points=xs=>xs.map(([x,y])=>({x,y}));
 const profiles=[
- [[0,3500],[700,3460],[1500,3210],[2250,2940],[3000,3040],[3800,2720],[4550,2500],[5200,2610],[5950,2360],[6600,2040],[7250,1830],[7800,1790]],
- [[0,4220],[800,3970],[1500,3700],[2200,3420],[2900,3200],[3700,3330],[4450,3100],[5200,2820],[6000,2520],[6650,2300],[7350,2180],[8400,2140]],
- [[0,2920],[650,2920],[1400,3150],[2200,3400],[3000,3470],[3750,3730],[4500,3890],[5200,4160],[5900,4450],[6750,4700],[7500,4850],[8200,4860]],
- [[0,6550],[1000,6510],[2100,6350],[3000,6320],[3900,6120],[4750,5860],[5500,5600],[6200,5320],[6900,5050],[7700,4800],[8600,4780]],
- [[0,3690],[650,3670],[1450,3810],[2300,4050],[3000,4140],[3650,4280],[4200,4280],[4800,4140],[5500,4020],[6100,4140],[6800,4000],[7450,3840],[8000,3800]],
- [[0,5100],[700,5090],[1450,4880],[2250,4570],[3000,4370],[3700,4300],[4500,4000],[5300,3790],[6100,3620],[6850,3430],[7450,3480],[8200,3450]],
- [[0,3400],[650,3400],[1400,3690],[2200,3900],[3000,4140],[3800,4390],[4550,4580],[5300,4610],[6100,4900],[6800,5180],[7550,5250],[8400,5210]],
- [[0,3840],[800,3840],[1700,4150],[2600,4480],[3400,4650],[4200,4880],[5100,5190],[6000,5220],[6900,5220],[7700,5100],[8500,4820],[9250,4550],[10400,4530]],
- [[0,3840],[800,3840],[1700,4150],[2600,4480],[3400,4650],[4200,4880],[5100,5190],[6000,5220],[6900,5220],[7700,5100],[8500,4820],[9250,4550],[10400,4530]],
- [[0,4480],[800,4420],[1550,4170],[2300,3970],[3100,3680],[3950,3390],[4800,3070],[5500,2790],[6250,2570],[7000,2380],[7750,2180],[8350,2020],[9000,2000]]
+ [[0,3500],[800,3450],[1600,3250],[2100,3330],[2900,3090],[3600,2960],[4200,3010],[5050,2680],[5550,2710],[6300,2290],[7100,2020],[7800,1880]],
+ [[0,4220],[800,4020],[1600,3740],[2300,3500],[2900,3220],[3330,3380],[3900,3370],[4500,3120],[5200,2890],[5750,2810],[6300,2650],[6900,2490],[7400,2550],[7950,2750],[8400,2920]],
+ [[0,2920],[800,2990],[1500,3150],[2200,3410],[2800,3620],[3400,3720],[3900,3700],[4500,3940],[5200,4140],[5800,4400],[6450,4670],[7100,4810],[7650,4910],[8200,5000]],
+ [[0,6550],[1200,6500],[2300,6330],[3200,6190],[4300,6070],[5400,5660],[6300,5390],[7200,5080],[8000,4790],[8600,4780]],
+ [[0,3690],[700,3680],[1450,3850],[2200,4050],[2700,4160],[3800,4270],[4500,4110],[5200,4020],[6100,4060],[6800,3910],[7400,3850],[8000,3800]],
+ [[0,5100],[700,5090],[1600,4900],[2300,4660],[3000,4390],[3700,4300],[4400,4050],[5200,3800],[6100,3620],[6900,3470],[7500,3460],[8200,3450]],
+ [[0,3400],[700,3400],[1500,3690],[2200,3900],[3000,4140],[3800,4390],[4550,4580],[5300,4700],[6100,4920],[6800,5190],[7600,5300],[8400,5210]],
+ [[0,3840],[800,3840],[1700,4140],[2600,4450],[3400,4680],[4200,4870],[5100,5200],[6000,5300],[6900,5220],[7700,5100],[8500,4820],[9250,4560],[10400,4530]],
+ [[0,3870],[800,3870],[1700,4140],[2600,4460],[3400,4680],[4200,4850],[5100,5180],[6000,5210],[6800,5290],[7600,5050],[8500,4840],[9400,4550],[10400,4510]],
+ [[0,4480],[800,4450],[1600,4200],[2300,3970],[3100,3680],[3900,3420],[4800,3100],[5600,2800],[6500,2530],[7300,2330],[8000,2090],[9000,2000]]
 ];
 const heights=[4800,5200,6600,7600,6000,6600,6800,7600,7600,5800];
 const yAt=(route,x)=>{if(x<=route[0][0])return route[0][1];for(let i=1;i<route.length;i++)if(x<=route[i][0]){const a=route[i-1],b=route[i],t=(x-a[0])/(b[0]-a[0]);return a[1]+(b[1]-a[1])*t;}return route.at(-1)[1];};
 const upper=[[0,2010],[700,2000],[1450,2190],[2150,2380],[2900,2600],[3650,2720],[4350,2990],[5100,3260],[5800,3500],[6450,3760],[7100,4030],[7750,4350],[8000,4519]];
-// Small weathered lips join deliberately placed terraces. They are not a
-// uniform scaling of the old silhouettes.
-function contour(route,seed=0,roof=false){const out=[route[0]];for(let i=1;i<route.length;i++){
- const a=route[i-1],b=route[i],n=Math.max(2,Math.ceil((b[0]-a[0])/145));
- for(let j=1;j<n;j++){const f=j/n,offset=roof?Math.sin((i*5+j+seed)*1.7)*38:a[1]===b[1]?0:Math.sin((i*3+j+seed)*1.9)*Math.min(5,(b[0]-a[0])/n*.04);
- out.push([Math.round(a[0]+(b[0]-a[0])*f),Math.round(a[1]+(b[1]-a[1])*f+offset)]);}out.push(b);
-}return out;}
+// Curved strata follow broad authored landforms. A sign change flattens the
+// tangent at a ridge or basin, avoiding the sawtooth facets of linear joins.
+function contour(route,seed=0,roof=false){
+ const slope=(a,b)=>(route[b][1]-route[a][1])/(route[b][0]-route[a][0]);
+ const tangent=i=>{if(i===0)return slope(0,1);if(i===route.length-1)return slope(i-1,i);
+  const a=slope(i-1,i),b=slope(i,i+1);return a*b<=0?0:2*a*b/(a+b);};
+ const out=[route[0]];
+ for(let i=1;i<route.length;i++){
+  const a=route[i-1],b=route[i],dx=b[0]-a[0],n=Math.max(2,Math.ceil(dx/90)),m0=tangent(i-1),m1=tangent(i);
+  for(let j=1;j<n;j++){
+   const f=j/n,f2=f*f,f3=f2*f,x=a[0]+dx*f;
+   const y=(2*f3-3*f2+1)*a[1]+(f3-2*f2+f)*dx*m0+(-2*f3+3*f2)*b[1]+(f3-f2)*dx*m1;
+   const grain=Math.sin(Math.PI*f)*Math.sin(x/185+seed*.7)*(roof?9:2);
+   out.push([Math.round(x),Math.round(y+grain)]);
+  }
+  out.push(b);
+ }
+ return out;
+}
 function plotsOn(route,plots){const xs=[...new Set([...route.map(p=>p[0]),...plots.flatMap(p=>[p.x-p.reach,p.x-p.half,p.x,p.x+p.half,p.x+p.reach])])].filter(x=>x>=route[0][0]&&x<=route.at(-1)[0]).sort((a,b)=>a-b);
  return xs.map(x=>{let y=yAt(route,x);for(const p of plots){const d=Math.abs(x-p.x),f=d<=p.half?1:d>=p.reach?0:(p.reach-d)/(p.reach-p.half);y=y*(1-f)+yAt(route,p.x)*f;}return[x,Math.round(y)];});}
+// The wet edge is the exact meeting point of water and the carved bank.
+function carveBasin(route,left,right,variant){
+ const level=Math.round(Math.max(yAt(route,left),yAt(route,right))+25);
+ const shapes={
+  3:[[150,0],[330,105],[530,210],[-310,100],[-150,0]],
+  4:[[130,0],[295,100],[490,235],[-280,110],[-130,0]],
+  8:[[115,0],[250,95],[430,210],[-260,95],[-120,0]]
+ };
+ const nodes=shapes[variant],wetLeft=left+nodes[0][0],wetRight=right+nodes.at(-1)[0];
+ const bank=contour([[left,Math.round(yAt(route,left))],...nodes.map(([dx,depth])=>[dx>=0?left+dx:right+dx,level+depth]),[right,Math.round(yAt(route,right))]],variant);
+ const shaped=[...route.filter(p=>p[0]<left),...bank,...route.filter(p=>p[0]>right)];
+ return{route:shaped,level,bottom:bank.filter(p=>p[0]>=wetLeft&&p[0]<=wetRight)};
+}
 function solid(id,p,properties={},breakable=false,mat='rock'){return{id,name:id,type:'solid',points:points(p),baseMaterial:mat,breakable,oneWay:false,layer:'terrain',properties,detail:{spacing:18,roughness:0,seed:1,optimizeEpsilon:0}};}
 function shape(p,fill,stroke='#15191b',lineWidth=2){return{points:points(p),fill,stroke,lineWidth};}
 function assets(){const asset=(id,name,visual,heightM,category='architecture')=>({id:'act2:'+id,name,category,visual,collision:[],anchor:{x:0,y:0},sockets:[],tags:['act2'],params:{},reference:{heightM,bounds:G.HonroGeometry?bounds(visual):{x:-200,y:-200,w:400,h:200},foot:{x:0,y:0},scaleRange:[.4,4],backgroundRange:[.7,1.3]}});
@@ -159,7 +184,10 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  for(let i=0;i<10;i++){
  const id=11+i,d=G.HONRO_CONTENT.stages[id-1],plan=G.HonroAct2Plan.forStage(id),[width,height]=plan.size,village=i===3,cave=i>=2&&i<=8;
  const plots=i===5?[{x:4550,half:480,reach:1050},{x:6750,half:310,reach:750}]:village?Array.from({length:10},(_,j)=>({x:650+j*740,half:175,reach:355})):[];
- const route=contour(plotsOn(profiles[i],plots),i),terrace=village?contour(plotsOn(upper,Array.from({length:7},(_,j)=>({x:550+j*940,half:200,reach:425}))),3):null,floor=x=>yAt(route,x),ground=x=>village?yAt(terrace,x):floor(x);
+ const basinBounds={3:[3200,4300],4:[2760,3770],8:[5650,6500]};
+ const baseRoute=contour(plotsOn(profiles[i],plots),i),basin=basinBounds[i]?carveBasin(baseRoute,...basinBounds[i],i):null;
+ const route=basin?.route||baseRoute,terrace=village?contour(plotsOn(upper,Array.from({length:7},(_,j)=>({x:550+j*940,half:200,reach:425}))),3):null,floor=x=>yAt(route,x),ground=x=>village?yAt(terrace,x):floor(x);
+ const middle=village?[[5200,floor(5200)],[5480,floor(5480)-220],[5930,floor(5930)-430],[6480,floor(6480)-460],[7020,floor(7020)-340],[7590,floor(7590)-230],[8170,floor(8170)-75],[8350,floor(8350)]]:null;
  const st=G.HonroMaps.emptyStage('stage-'+id,d.name,width,height);
  const pos=spec=>({x:spec[0],y:spec[1]==='lower'?floor(spec[0]):ground(spec[0])});
  const sites=Object.fromEntries(Object.entries(plan.sites).map(([key,value])=>[key,pos(value)]));
@@ -169,31 +197,48 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  design:{title:d.name,description:d.goal,act:2,revision:2,targetRounds:plan.rounds,expectedMinutes:plan.expectedMinutes},
  // Step beyond the upper ledge before turning back along the lower village.
  // Without this waypoint the route doubles back on top and never descends.
- routes:points(village?[...terrace,[8350,floor(8350)],...route.filter(p=>p[0]<8240).reverse()]:route),
+ routes:points(village?[...terrace,[8350,floor(8350)],...middle.slice().reverse(),...route.filter(p=>p[0]<5200).reverse()]:route),
  anchors:{spawn:{x:320,y:ground(320)},exit:end},
  initialState:{honroAct2Revision:2,honroActiveLimit:plan.active,honroAct2Steps:clone(d.steps),
  honroCaveEnvelope:cave?{version:1,portals}:null,
  honroState:{flags:{},collected:[],hold:0,lastRound:1,rescued:false,combatLog:[],act2:{version:2,done:{},events:{},rescued:[],checkpoints:[],holds:{}}}}});
- st.terrains=[solid('act2-floor',[...route,[width,height+240],[0,height+240]],{route:true,surfaceKind:i<2?'soil':'cave',honroCave:cave})];
- if(village)st.terrains.push(solid('village-upper',[...terrace,...terrace.slice().reverse().map(([x,y],j)=>[x,y+Math.max(24,Math.min(170+(j%4)*11,floor(x)-y-170))])],{route:true,honroCave:true}));
+ st.terrains=[solid('act2-floor',[...route,[width,height+240],[0,height+240]],{route:true,surfaceKind:i===0?'soil':i===1?'rock':'cave',honroCave:cave})];
+ if(village)st.terrains.push(solid('village-upper',[...terrace,...terrace.slice().reverse().map(([x,y])=>[x,y+Math.max(40,Math.min(130,(floor(x)-y)*.33))])],{route:true,honroCave:true}));
+ if(village)st.terrains.push(solid('village-middle',[...middle,...middle.slice().reverse().map(([x,y])=>[x,y+125])],{route:true,honroCave:true},false,'rock'));
+ const shelves=[[1850,5800],[2300,5700],[2450,6500],[],[1600,5300],[2650,5900],[2100,6100],[3200,7900],[3900,8250],[2250,6450]][i];
+ for(const [j,x] of shelves.entries()){
+  const lift=205+(j%2)*70,top=[[x-390,floor(x-390)-6],[x-180,floor(x)-lift],[x+170,floor(x)-lift],[x+410,floor(x+410)-6]];
+  st.terrains.push({...solid('stone-shelf-'+j,[...top,...top.slice().reverse().map(([px,py])=>[px,py+28])],{honroCave:cave,route:false},false,'rock'),oneWay:true});
+ }
  let roof=[];
  if(cave){
-   roof=contour((village?upper:profiles[i]).map(([x,y],j)=>[x,y-(i===7||i===8?1700:i===3?1050:i===4?510:620+(j%3)*145)]),i,true);
+   roof=contour((village?upper:profiles[i]).map(([x,y])=>{
+    const gap=i===7||i===8?1700:i===3?1050:i===4?980:i===2?860:900;
+    return[x,Math.round(y-gap-95*Math.sin(x/1050+i*.61)-(i===4?330*Math.max(0,1-Math.abs(x-4060)/1150):0))];
+   }),i,true);
    if(village)roof.push([width,ground(width)-1050]);
    // The vault narrows into the tunnel mouths continuously. There is no
    // vertical cut from the top of the play rectangle down to an open sky.
    for(const p of roof){const reach=1100;if(p[0]<reach){const f=p[0]/reach;p[1]=Math.round((ground(0)-360)*(1-f)+p[1]*f);}else if(p[0]>width-reach){const f=(width-p[0])/reach;p[1]=Math.round((floor(width)-380)*(1-f)+p[1]*f);}}
    const roofY=x=>yAt(roof,x);
-   if(i===4){
-    const sx=sites['shaft-pin'].x;
-    st.terrains.push(solid('cave-roof-west',[[0,0],[sx-60,0],[sx-60,roofY(sx-60)],...roof.filter(p=>p[0]<sx-60).reverse()],{honroCeiling:true,honroCave:true}));
-    st.terrains.push(solid('cave-roof-east',[[sx+60,0],[width,0],...roof.filter(p=>p[0]>sx+60).reverse(),[sx+60,roofY(sx+60)]],{honroCeiling:true,honroCave:true}));
-    st.terrains.push(solid('shaft-cap',[[sx-60,0],[sx+60,0],[sx+60,roofY(sx)-650],[sx-60,roofY(sx)-650]],{honroCeiling:true,honroCave:true}));
-   }else st.terrains.push(solid('cave-roof',[[0,0],[width,0],...roof.slice().reverse()],{honroCeiling:true,honroCave:true}));
+   st.terrains.push(solid('cave-roof',[[0,0],[width,0],...roof.slice().reverse()],{honroCeiling:true,honroCave:true}));
+   st.initialState.honroCaveForms=[];
+   for(let x=1050,j=0;x<width-620;x+=690+(j%3)*180,j++){
+    const top=roofY(x),bottom=floor(x),gap=bottom-top;if(gap<500)continue;
+    const type=j%5===1&&gap<2000?'column':j%3===0?'stalagmite':j%3===1?'cluster':'stalactite';
+    st.initialState.honroCaveForms.push({x,top,bottom,type,width:55+(j%4)*19,length:Math.min(gap*.43,270+(j%4)*75)});
+   }
    // Actual cave side walls leave exactly the authored entrance and exit.
    if(village)st.terrains.push(solid('cave-wall-left',[[0,ground(0)+175],[155,ground(155)+195],[135,3000],[245,3640],[190,4340],[260,5300],[125,6100],[120,floor(120)+40],[0,floor(0)+40]],{honroCave:true,honroSideWall:true}));
  }
- if(i===9)st.terrains.push(solid('exit-overhang',[[0,0],[3760,0],[3760,ground(3760)-920],[3210,ground(3210)-550],[2400,ground(2400)-530],[1550,ground(1550)-660],[700,ground(700)-620],[0,ground(0)-640]],{honroCeiling:true,honroCave:true}));
+ if(i===1){
+  const shoulder=5600;
+  const rim=contour([[shoulder,0],[6050,940],[6500,ground(6500)-690],[7000,ground(7000)-760],[7500,ground(7500)-830],[7950,ground(7950)-720],[width,ground(width)-620]],1,true);
+  st.terrains.push(solid('quarry-cave-mouth',[[shoulder,0],[width,0],...rim.slice().reverse()],{honroCeiling:true,honroCave:true}));
+  st.initialState.honroCaveApproach={start:6350,end:width,roofEnd:ground(width)-620,floorEnd:ground(width)};
+ }
+ if(i===9){const faceHeight=ground(3760)-920,face=Array.from({length:27},(_,j)=>{const t=j/26,s=t*t*(3-2*t);return[Math.round(4900-1140*s),Math.round(faceHeight*t)];});
+  st.terrains.push(solid('exit-overhang',[[0,0],...face,[3210,ground(3210)-550],[2400,ground(2400)-530],[1550,ground(1550)-660],[700,ground(700)-620],[0,ground(0)-640]],{honroCeiling:true,honroCave:true}));}
  const elem=(assetId,x,y,scale=1,key='',layer='back')=>st.elements.push({id:'a2-'+id+'-'+(key||st.elements.length),assetId,x,y,scale,rotation:0,snap:false,layer,depthLayer:'L1'});
  // Combat galleries provide alternate firing angles and clear undersides.
  for(const [j,x] of [1250,3150,5450,width-1450].entries()){
@@ -204,7 +249,7 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  // Oil lamps provide light, not spirit manifestation.
  for(let x=420,j=0;x<width-180;x+=470,j++){
   const y=ground(x);
-  if(i<2||i===9&&x>3800){elem(j%3===0?'ancient_pine':'dead_pine',x,y,.72+(j%3)*.16);if(j%2===0)elem('act2:rock-bank',x+130,ground(x+130),.7);}
+  if(i===0||i===1&&x<6900||i===9&&x>3800){elem(j%3===0?'ancient_pine':'dead_pine',x,y,.72+(j%3)*.16);if(j%2===0)elem('act2:rock-bank',x+130,ground(x+130),.7);}
   else{
    if([2,4,6].includes(i)&&j%3===0)elem('act2:hoist-frame',x,y,.7+(j%2)*.2);
    if(i===3&&j%2===0){const houses=['act2:cave-house','act2:cave-house-lean','act2:cave-house-ruin'];elem(houses[Math.floor(j/2)%houses.length],x+130,ground(x+130),.85+(j%3)*.16);}
@@ -216,7 +261,7 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  for(let x=780,j=0;x<width-350;x+=650,j++){
   const y=ground(x),kind=i<2?'bundles':i===3?(j%2?'hanging-cloth':'bundles'):i===5?(j%2?'memorial':'stone-table'):i>=7&&i<=8?(j%2?'memorial':'bundles'):j%2?'timber-rack':'mine-rail';
   elem('act2:'+kind,x,y,.7+(j%3)*.12);
-  if(cave&&j%3===1){elem('act2:rock-column',x+180,ground(x+180),.9);if([3,4,5].includes(i))elem('act2:water-trough',x-135,ground(x-135),.7);}
+  if(cave&&j%3===1&&[3,4,5].includes(i))elem('act2:water-trough',x-135,ground(x-135),.7);
  }
  if(village)for(let x=650,j=0;x<7900;x+=740,j++){
   const houses=['act2:cave-house-lean','act2:cave-house','act2:cave-house-ruin'];
@@ -225,9 +270,8 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  if(i===5){elem('act2:temple',4550,ground(4550),1.65);elem('act2:temple',6750,ground(6750),1.05);}
  if([7,8].includes(i)){elem('act2:bell',6240,floor(6240),1.4);for(const x of [5320,7390])elem('act2:hoist-frame',x,floor(x),1.4);}
  if(i===8){elem('act2:old-soul-stone',9440,floor(9440),1.2,'old-soul-stone');elem('act2:memorial',8990,floor(8990),1.65,'old-soul-memorial');}
- if([3,4,8].includes(i)){
-  const x1=i===3?3100:i===4?1900:5720,x2=x1+(i===4?1700:1350),xs=route.filter(p=>p[0]>x1&&p[0]<x2).map(p=>p[0]),bed=[x1,...xs,x2].map(x=>[x,floor(x)]),waterY=Math.min(...bed.map(p=>p[1]))-(i===4?190:40);
-  st.materials.push({id:'underground-river',kind:'water-pool',terrainId:'act2-floor',conductive:true,attached:true,surface:[[x1,waterY],[x2,waterY]],bottom:bed,points:[[x1,waterY],[x2,waterY],...bed.slice().reverse()]});
+ if(basin){const x1=basin.bottom[0][0],x2=basin.bottom.at(-1)[0],waterY=basin.level;
+  st.materials.push({id:'underground-river',kind:'water-pool',terrainId:'act2-floor',conductive:true,attached:true,honroCarvedBasin:true,surface:[[x1,waterY],[x2,waterY]],bottom:basin.bottom,points:[[x1,waterY],[x2,waterY],...basin.bottom.slice().reverse()]});
  }
  st.units=['archer','mage','knight','occultist'].map((cls,j)=>G.HonroUnits.record(cls,'p-'+cls,300+j*95,ground(300+j*95),'player'));
  for(let j=0;j<plan.initial;j++){
@@ -243,7 +287,8 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  for(const [j,s] of d.steps.entries()){
   const {x,y}=sites[s.id],m={id:s.id,type:'act2',x,y,label:s.label,action:'act2',...(s.requiredClass?{requiredClass:s.requiredClass}:{})};
   if(s.kind==='destroy'){
-   delete m.action;const ty=i===4?yAt(roof,x)-550:s.id==='upper-chain'?y-410:y-160;
+   delete m.action;const ty=i===4?yAt(roof,x)+225:s.id==='upper-chain'?y-410:y-160;
+   if(i===4&&s.id==='shaft-pin')st.initialState.honroCaveHangingTarget={x,roofY:yAt(roof,x),targetY:ty};
    st.terrains.push(solid(s.id,[[x-24,ty],[x+24,ty],[x+25,ty+76],[x-25,ty+76]],{hp:100,maxHp:100,honroSeal:true,honroAct2Target:true,honroRockfall:['rock-pin','collapse-pin','exit-pin'].includes(s.id)},true,'wood'));m.id='marker-'+s.id;m.y=ty+38;
   }else if(['defeat','clear','hold','reach','escort'].includes(s.kind)){delete m.action;if(['reach','escort'].includes(s.kind))m.type='exit';}
   else elem('act2:ritual',x,y,.7,'goal-'+j,'prop');
@@ -271,17 +316,17 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
  if(i===6){barrier('gate-repair',5740,ground(5740),285);barrier('gate-debris',3500,ground(3500),230,true);}
  if(i===9)barrier('gate-exit',2940,ground(2940),300);
  if(i===1){
-  const x1=3320,x2=3540,original=clone(st.terrains[0].points),pit=route.map(([x,y])=>[x,y]);
-  pit.push([x1,floor(x1)],[x1+30,floor(x1)+270],[x2-30,floor(x2)+270],[x2,floor(x2)]);
+  const x1=3180,x2=3880,original=clone(st.terrains[0].points);
+  const collapse=contour([[x1,floor(x1)],[x1+170,floor(x1+170)+95],[x1+340,floor(x1+340)+245],[x2-210,floor(x2-210)+205],[x2-95,floor(x2-95)+80],[x2,floor(x2)]],12);
   st.terrains[0].properties.honroRestoredVertices=original;
-  st.terrains[0].points=points([...pit.filter(([x])=>x<=x1||x>=x2||x===x1+30||x===x2-30).sort((a,b)=>a[0]-b[0]),[width,height+240],[0,height+240]]);
+  st.terrains[0].points=points([...route.filter(([x])=>x<x1),...collapse,...route.filter(([x])=>x>x2),[width,height+240],[0,height+240]]);
  }
  const env=G.HonroEnvironment.makeEnvironment(st,{preset:cave?'enclosed':i===0?'forest':'valley'});
  // Houses and temple halls must sit on the actual L1 settlement ledges.
  // Repeating them on a distant L2 support made inhabited buildings hover.
  if(cave&&!village&&i!==5)for(const group of env.groups.filter(g=>g.depthLayer==='L2')){
   const support=env.surfaces.find(s=>s.groupId===group.id);if(!support)continue;
-  for(let x=500,j=0;x<width;x+=1900,j++)env.placements.push({id:'rear-'+group.id+'-'+j,assetId:j%2?'act2:rock-column':'act2:memorial',depthLayer:'L2',groupId:group.id,supportId:support.id,x,y:0,scale:1.1,rotation:0});
+  for(let x=500,j=0;x<width;x+=1900,j++)env.placements.push({id:'rear-'+group.id+'-'+j,assetId:'act2:memorial',depthLayer:'L2',groupId:group.id,supportId:support.id,x,y:0,scale:1.1,rotation:0});
  }
  env.atmosphere={preset:cave?'enclosed':i===0?'forest':'valley',overrides:cave?{skyTop:'#07080a',skyBottom:'#0a0b0d',ambientTint:'#17181b',hazeColor:'#0c0d10',shadowTint:'#090a0c',lightStrength:.10,mistStrength:.015,hazeStrength:.20,farFogColor:'#0b0c0e',nearFogColor:'#101114'}:i===9?{skyTop:'#687b86',skyBottom:'#dec39e',ambientTint:'#8b8e79',hazeColor:'#b7ab96',farFogColor:'#d4c9ad',nearFogColor:'#d3bfa1',keyLightColor:'#ffdb9d',keyLightDirection:[.77,.15],glowColor:'#f6c888',shadowTint:'#394447',lightStrength:.40,mistStrength:.30}:{} };
  // The playable cavity stays black. Distant scenic supports otherwise fill it

@@ -51,7 +51,7 @@ with sync_playwright() as pw:
                 heightOverscan:h/z>b.height};}''')
             r.update(stage=sid,viewport=[width,height]);rows.append(r)
             check(f'{sid} @ {width}x{height}: tactical zoom, focus, coverage, readability, immutable battle',
-                  abs(r['z']-r['limits']['min'])<1e-8 and r['actorPx']>=7-1e-7 and r['span']>=min(4200,width/(7/66))-.1
+                  abs(r['z']-r['limits']['min'])<1e-8 and r['actorPx']>=3.75-1e-7 and r['span']>=min(6800,width/(3.75/66))-.1
                   and all(p['stable'] and p['covered'] for p in r['positions']) and not r['transparent'] and r['terrainStable'] and r['cached'] and r['paths']<30,r)
             if sid in [1,2,7,10]:
                 canvas.screenshot(path=str(OUT/f'stage-{sid}-{width}x{height}.png'))
@@ -110,7 +110,7 @@ with sync_playwright() as pw:
     check('Real mobile pinch reaches the same tactical zoom and releases both contacts',abs(touch['z']-touch['min'])<1e-8 and touch['contacts']==0,touch)
     mobile.set_viewport_size({'width':844,'height':390})
     rotated=mobile.evaluate('''()=>{const a=HonroApp,s=a.scene;s.render(a.engine,0,'',.6,false,0);return {z:s.scale,min:HonroBounds.zoomLimits(s.size().w).min,span:s.size().w/s.scale};}''')
-    check('Portrait-to-landscape rotation retains a readable horizontal view',rotated['z']>=rotated['min'] and 3000<rotated['span']<=4200.01,rotated)
+    check('Portrait-to-landscape rotation retains a readable horizontal view',rotated['z']>=rotated['min'] and 3000<rotated['span']<=6800.01,rotated)
     browser.close()
 check('No browser errors',not errors,errors)
 (OUT/'report.json').write_text(json.dumps({'checks':checks,'views':rows,'errors':errors},ensure_ascii=False,indent=2),encoding='utf8')

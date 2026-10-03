@@ -41,6 +41,16 @@ function recruit(profile){
  G.HonroProgression.recruit(profile,{id:10,recruit:'occultist',joinLevel:level});
 }
 const revision2=b=>b.honroAct2Revision>=2;
+function lowerPool(z,amount){
+ const level=z.surface[0][1]+amount,bed=z.bottom;
+ if(!z.honroCarvedBasin)return{...z,surface:z.surface.map(([x,y])=>[x,y+amount]),points:[...z.surface.map(([x,y])=>[x,y+amount]),...bed.slice().reverse()]};
+ const first=bed.findIndex(p=>p[1]>=level),last=bed.findLastIndex(p=>p[1]>=level);
+ if(first<=0||last<first||last>=bed.length-1)return{...z,surface:[],bottom:[],points:[]};
+ const cross=(a,b)=>[a[0]+(b[0]-a[0])*(level-a[1])/(b[1]-a[1]),level];
+ const bottom=[cross(bed[first-1],bed[first]),...bed.slice(first,last+1),cross(bed[last],bed[last+1])];
+ const surface=[[bottom[0][0],level],[bottom.at(-1)[0],level]];
+ return{...z,surface,bottom,points:[...surface,...bottom.slice().reverse()]};
+}
 const steps=b=>b.honroAct2Steps||(revision2(b)?H.stages[b.honroStage-1].steps:G.HonroAct2Content.legacySteps[b.honroStage-11]);
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
@@ -128,8 +138,9 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=current(b);
    resident.honroResolved=true;resident.shield=Math.max(resident.shield,Math.round(resident.maxHp*.3));a.rescued.push(resident.id);
   }
   if(s.id==='sluice'){
-   for(const w of b.waters){w.y+=120;w.depth=Math.max(10,w.depth-120);}
-   for(const z of b.honroSurfaceZones.filter(z=>z.kind==='water-pool')){z.surface=z.surface.map(([x,y])=>[x,y+120]);z.points=[...z.surface,...z.bottom.slice().reverse()];}
+   b.honroSurfaceZones=b.honroSurfaceZones.map(z=>z.kind==='water-pool'?lowerPool(z,120):z);
+   const pools=b.honroSurfaceZones.filter(z=>z.kind==='water-pool'&&z.surface.length===2);
+   b.waters=pools.map((z,j)=>({...(b.waters[j]||{}),x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y}))}));
    const block=b.terrain.find(t=>t.id==='water-gate');if(block)block.broken=true;b.sceneVersion++;
   }
   if(['gate','bridge','repair'].includes(s.id)){const barrier=b.terrain.find(t=>t.id==='gate-'+s.id);if(barrier)barrier.broken=true;b.sceneVersion++;}

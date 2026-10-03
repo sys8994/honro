@@ -82,7 +82,7 @@
 | act2:water-trough | 1.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:memorial | 2.2 | prop | 지형/지지면 필수 | L1, L2 | , slope-L2, valley-bottom-L2 / WORLD / world, slope, valley-bottom | static / cached-vector |
 | act2:bundles | 1.5 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| act2:rock-column | 10 | rock | 지형/지지면 필수 | L1, L2 | , slope-L2, valley-bottom-L2 / WORLD / world, slope, valley-bottom | static / cached-vector |
+| act2:rock-column | 10 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act2:hanging-cloth | 2.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:stone-table | 1.4 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:old-soul-stone | 8.5 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -102,16 +102,16 @@
 | stage-8 | forest / temple | 6 / 11 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
 | stage-9 | forest / forest | 6 / 8 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 7 |
 | stage-10 | forest / otherworld | 7 / 9 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
-| stage-11 | forest / forest | 48 / 5 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
-| stage-12 | valley / valley | 49 / 6 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
-| stage-13 | enclosed / enclosed | 50 / 8 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-14 | enclosed / enclosed | 81 / 9 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
-| stage-15 | enclosed / enclosed | 52 / 5 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-16 | enclosed / enclosed | 57 / 6 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
-| stage-17 | enclosed / enclosed | 52 / 9 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-18 | enclosed / enclosed | 60 / 7 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
-| stage-19 | enclosed / enclosed | 70 / 6 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
-| stage-20 | valley / valley | 47 / 8 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
+| stage-11 | forest / forest | 48 / 7 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
+| stage-12 | valley / valley | 47 / 9 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
+| stage-13 | enclosed / enclosed | 46 / 10 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
+| stage-14 | enclosed / enclosed | 77 / 10 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
+| stage-15 | enclosed / enclosed | 48 / 5 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
+| stage-16 | enclosed / enclosed | 53 / 8 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
+| stage-17 | enclosed / enclosed | 48 / 11 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
+| stage-18 | enclosed / enclosed | 55 / 9 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
+| stage-19 | enclosed / enclosed | 65 / 8 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
+| stage-20 | valley / valley | 47 / 10 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
 
 ## 코드가 생성하는 요소
 

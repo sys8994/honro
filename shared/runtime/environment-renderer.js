@@ -115,9 +115,13 @@ Scene.prototype.background=function(c,w,h,b){const env=ensureBattle(b),painted=E
   if(custom.size){const st={width:b.width,height:b.height,backdrop:b.honroBackdrop,environment:env},data=prepare(env),time=A.time(this);paths=data.paths;
    for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer)||!unit.children.some(e=>custom.has(e.id)))continue;const tr=E.groupTransform(this,w,h,st,g),a=E.atmosphere(st,env.zones.find(z=>z.id===g.zoneId));active++;c.save();c.globalAlpha=tr.opacity;c.translate(tr.x,tr.y);c.scale(tr.scale,tr.scale);for(const e of unit.children)if(custom.has(e.id)&&child(c,e,g,st,this,w,h,a,time))visible++;c.restore();}
   }
+  if(b.honroCaveApproach)G.HonroCaveRock?.approach(c,b,this,w,h);
+  if(b.honroStage===20)G.HonroCaveRock?.exit(c,b,this,w,h);
   this.environmentStats={groups:active,visibleAssets:visible,cachedPaths:paths,backgroundAnimatedPrimitives:0,animatedPrimitives:0,...A.stats()};return;}
  const st={width:b.width,height:b.height,backdrop:b.honroBackdrop,environment:env},a=E.atmosphereAt(st,this.y),data=prepare(env),time=A.time(this);sky(c,w,h,st,a);
  if(b.honroCaveEnvelope)G.HonroCaveRock?.background(c,b,this,w,h);
+ if(b.honroCaveApproach)G.HonroCaveRock?.approach(c,b,this,w,h);
+ if(b.honroStage===20)G.HonroCaveRock?.exit(c,b,this,w,h);
  let visible=0,active=0,animated=1;
  for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer))continue;const tr=E.groupTransform(this,w,h,st,g),surface0=unit.surfaces[0];if(tr.opacity<=.001||surface0&&(tr.y+surface0.top*tr.scale>h+600||tr.y+surface0.drawBottom*tr.scale<0))continue;active++;
   const z=env.zones.find(z=>z.id===g.zoneId),local=E.atmosphere(st,z);

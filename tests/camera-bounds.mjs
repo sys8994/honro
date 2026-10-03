@@ -3,11 +3,12 @@ import {runtime,battlefield} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),B=g.HonroBounds,C=g.HONRO_CORE,clone=v=>JSON.parse(JSON.stringify(v));
 let count=0;const check=(name,fn)=>{fn();count++;console.log('PASS',name);};
 check('Zoom limits depend on horizontal FOV and actor size, never map height',()=>{
- for(const w of [320,390,844,1440,2560]){const z=B.zoomLimits(w).min;assert(z*66>=7-1e-9);assert(w/z<=4200+1e-8);
+ for(const w of [320,390,844,1440,2560]){const z=B.zoomLimits(w).min;assert(z*66>=3.75-1e-9);assert(w/z<=6800+1e-8);assert(w/z>=5327,'minimum view must cover Seol-o long shot');
   for(const height of [100,2200,5000,20000]){const st={width:1000,height},f=B.focus(st),v={x:0,y:0,scale:z};B.constrain(v,st);assert.deepEqual(clone(v),{x:0,y:0,scale:z});
    for(const h of [390,844,1100,1440]){const cover=B.visual(st,w,h);for(const x of [f.left,f.right])for(const y of [f.top,f.bottom]){const view=B.viewport({x,y,scale:z},w,h);assert(view.left>=cover.left&&view.right<=cover.right&&view.top>=cover.top&&view.bottom<=cover.bottom);}}}
  }
- assert(B.zoomLimits(390).min<.16);assert.equal(B.zoomLimits(390).min,B.zoomLimits(320).min);
+ assert(B.zoomLimits(390).min<.16);assert(B.zoomLimits(390).min>B.zoomLimits(320).min);
+ assert.equal(1440/B.zoomLimits(1440).min,6800);
 });
 check('Focus bounds are independent of viewport and valid through export/import',()=>{
  const p=clone(g.HONRO_PROJECT),st=p.stages[0];st.camera={focusBounds:{left:-400,top:-2000,right:6000,bottom:3000}};

@@ -19,6 +19,9 @@ for(const id of ids){
   // A player can end their turn at the village bend before doubling back.
   // The return path must remain passable after landing on the lower floor.
   if(id===14&&p.x===8350)for(let settle=0;settle<120;settle++){e.tick(1/60);ticks++;}
+  // A seal can force an automatic jump just before a waypoint. Judge the
+  // landing surface instead of an airborne sample at the same X coordinate.
+  if(u.y<p.y-320&&!e.grounded(u))for(let settle=0;settle<120&&!e.grounded(u);settle++){e.tick(1/60);ticks++;}
   samples.push({goal:p,x:Math.round(u.x),y:Math.round(u.y),age});
   if(failed||age>=420||Math.abs(u.y-p.y)>320){failed??={reason:age>=420?'stuck':'wrong level',goal:p,x:u.x,y:u.y};break;}
  }

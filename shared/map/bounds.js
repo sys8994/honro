@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Simulation keeps its existing 0..width / 0..height coordinates. Neither
 // camera focus nor visual coverage is a collision or projectile boundary.
-const POLICY=Object.freeze({desiredTacticalWorldWidth:4200,minActorScreenHeight:7,
+const POLICY=Object.freeze({desiredTacticalWorldWidth:6800,minActorScreenHeight:3.75,
  smallestActorWorldHeight:66,maxZoom:1.65,focusSide:320,focusAbove:1800,focusBelow:240,overscanMargin:240});
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 function play(source){return{left:0,top:0,right:source.width,bottom:source.height};}
