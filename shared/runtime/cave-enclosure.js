@@ -2,7 +2,7 @@
 const C=G.HONRO_CORE,B=G.HonroBounds,cache=new WeakMap();
 const backdropCache=new WeakMap();
 function polygon(ps){const p=new Path2D();ps.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();return p;}
-function rock(c,b){const g=c.createLinearGradient(0,0,0,b.height+1800);g.addColorStop(0,'#293439');g.addColorStop(.38,'#37444a');g.addColorStop(.70,'#303e44');g.addColorStop(1,'#17272e');return g;}
+function rock(c,b){const g=c.createLinearGradient(0,0,0,b.height+1800);g.addColorStop(0,'#303136');g.addColorStop(.38,'#414247');g.addColorStop(.70,'#38393e');g.addColorStop(1,'#292a2f');return g;}
 function prepare(t,b){const source=t.vertices||t;let q=cache.get(t);if(q?.source===source)return q;
  const pts=C.poly(t).map(p=>[p.x,p.y]),shape=polygon(pts),contour=pts.filter(([x,y])=>y>1&&y<b.height&&x>=0&&x<=b.width),edge=new Path2D();
  contour.forEach(([x,y],i)=>i?edge.lineTo(x,y):edge.moveTo(x,y));
@@ -19,8 +19,8 @@ function prepare(t,b){const source=t.vertices||t;let q=cache.get(t);if(q?.source
  q={source,shape,edge,bands};cache.set(t,q);return q;
 }
 function terrain(c,t,b){const q=prepare(t,b);c.save();c.fillStyle=rock(c,b);c.fill(q.shape);c.clip(q.shape);
- q.bands.forEach((p,i)=>{c.fillStyle=i?'#142a3040':'#81918827';c.fill(p);});
- c.strokeStyle=t.honroCeiling?'#7081836b':'#a2aea38a';c.lineWidth=t.honroCeiling?3:4;c.lineJoin='round';c.stroke(q.edge);c.restore();
+ q.bands.forEach((p,i)=>{c.fillStyle=i?'#17181b40':'#77787d27';c.fill(p);});
+ c.strokeStyle=t.honroCeiling?'#7071766b':'#999a9e8a';c.lineWidth=t.honroCeiling?3:4;c.lineJoin='round';c.stroke(q.edge);c.restore();
 }
 function background(c,b,scene,w,h){
  const floor=b.terrain.find(t=>t.id==='act2-floor');if(!floor)return;
@@ -35,10 +35,10 @@ function background(c,b,scene,w,h){
   q={floor,source:floor.vertices,ridge,planes};backdropCache.set(b,q);
  }
  c.save();c.translate(w/2,h/2);c.scale(scene.scale,scene.scale);c.translate(-scene.x,-scene.y);
- const wash=c.createLinearGradient(0,b.height*.35,0,b.height);wash.addColorStop(0,'#26383d');wash.addColorStop(.55,'#34474a');wash.addColorStop(1,'#26383d');
- c.fillStyle=wash;c.globalAlpha=.56;c.fill(q.ridge);
- c.fillStyle='#5b6a67';c.globalAlpha=.095;for(const p of q.planes)c.fill(p);
- c.strokeStyle='#70807b';c.globalAlpha=.15;c.lineWidth=8;c.stroke(q.ridge);
+ const wash=c.createLinearGradient(0,b.height*.35,0,b.height);wash.addColorStop(0,'#0c0d0f');wash.addColorStop(.55,'#131416');wash.addColorStop(1,'#0c0d0f');
+ c.fillStyle=wash;c.globalAlpha=.45;c.fill(q.ridge);
+ c.fillStyle='#303136';c.globalAlpha=.06;for(const p of q.planes)c.fill(p);
+ c.strokeStyle='#303136';c.globalAlpha=.08;c.lineWidth=8;c.stroke(q.ridge);
  c.restore();
 }
 function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersion,b.width,b.height,v.left,v.top,v.right,v.bottom].join(':');
@@ -69,10 +69,10 @@ function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersi
  c.save();c.clip(q.fill,'evenodd');
  // Two slow, wide strata make the outer roof read as the same massive rock,
  // including at portrait zoom when the camera sees far above play bounds.
- q.strata.forEach((p,i)=>{c.strokeStyle=i%2?'#78878236':'#121f254d';c.lineWidth=i%2?75:130;c.stroke(p);c.strokeStyle='#89958c20';c.lineWidth=5;c.stroke(p);});
+ q.strata.forEach((p,i)=>{c.strokeStyle=i%2?'#77787d36':'#1a1b1f4d';c.lineWidth=i%2?75:130;c.stroke(p);c.strokeStyle='#8b8c9220';c.lineWidth=5;c.stroke(p);});
  c.restore();
- for(const p of q.tunnels){const g=c.createLinearGradient(p.x,0,p.far,0);g.addColorStop(0,'#203035');g.addColorStop(.45,'#172a30');g.addColorStop(1,'#344249');c.fillStyle=g;c.fill(p.path);
-  c.strokeStyle='#75867c38';c.lineWidth=3;c.stroke(p.rim);}
+ for(const p of q.tunnels){const g=c.createLinearGradient(p.x,0,p.far,0);g.addColorStop(0,'#08090b');g.addColorStop(.45,'#0a0b0d');g.addColorStop(1,'#34353a');c.fillStyle=g;c.fill(p.path);
+  c.strokeStyle='#76777b38';c.lineWidth=3;c.stroke(p.rim);}
  c.restore();this.overscanStats={bounds:v,paths:1+q.tunnels.length,builds:this._skirtBuilds,cave:true,portals:q.tunnels.length};
 }
 G.HonroCaveRock={terrain,enclosure,background,prepare,rock};

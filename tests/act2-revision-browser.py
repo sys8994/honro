@@ -30,7 +30,9 @@ with sync_playwright() as p:
                     # edge must never be stroked through the open mouth.
                     cx,cy=page.evaluate('''()=>{const r=HonroApp.scene.canvas.getBoundingClientRect();return[Math.round(r.x+r.width/2),Math.round(r.y+r.height/2)]}''')
                     im=Image.open(shot).convert('RGB');px=im.load()
-                    seam=max(sum(sum(abs(px[x,y][k]-(px[x-2,y][k]+px[x+2,y][k])/2) for k in range(3))/3 for y in range(cy-50,cy+51,5))/21 for x in range(cx-10,cx+10))
+                    # Inspect the open upper half of the mouth. At floor height,
+                    # foreground houses and props can end exactly on the boundary.
+                    seam=max(sum(sum(abs(px[x,y][k]-(px[x-2,y][k]+px[x+2,y][k])/2) for k in range(3))/3 for y in range(cy-100,cy-49,5))/11 for x in range(cx-10,cx+10))
                     seams.append({'stage':sid,'side':edge,'edgeContrast':round(seam,2)})
                     assert seam<8,(sid,edge,seam)
     page.evaluate("HonroApp.launch(14);while(HonroApp.dialogue)HonroStory.finish(HonroApp)")

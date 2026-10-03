@@ -12628,8 +12628,8 @@
               "y": -35
             }
           ],
-          "fill": "#394d50",
-          "stroke": "#263b40",
+          "fill": "#424449",
+          "stroke": "#292b30",
           "lineWidth": 3
         },
         {
@@ -12715,7 +12715,7 @@
               "y": -491
             }
           ],
-          "fill": "#73817b",
+          "fill": "#73757a",
           "stroke": null,
           "lineWidth": 0
         },
@@ -12786,7 +12786,7 @@
               "y": -502
             }
           ],
-          "fill": "#233b40",
+          "fill": "#292b30",
           "stroke": null,
           "lineWidth": 0
         },
@@ -12825,7 +12825,7 @@
               "y": -424
             }
           ],
-          "fill": "#9a9c7c35",
+          "fill": "#a1a3a835",
           "stroke": null,
           "lineWidth": 0
         },
@@ -12864,7 +12864,7 @@
               "y": -229
             }
           ],
-          "fill": "#152e3840",
+          "fill": "#18191d40",
           "stroke": null,
           "lineWidth": 0
         }
@@ -63834,14 +63834,16 @@
         "atmosphere": {
           "preset": "enclosed",
           "overrides": {
-            "skyTop": "#172328",
-            "skyBottom": "#233237",
-            "ambientTint": "#364346",
+            "skyTop": "#07080a",
+            "skyBottom": "#0a0b0d",
+            "ambientTint": "#17181b",
+            "hazeColor": "#0c0d10",
+            "shadowTint": "#090a0c",
             "lightStrength": 0.1,
-            "mistStrength": 0.11,
-            "hazeStrength": 0.24,
-            "farFogColor": "#26393d",
-            "nearFogColor": "#304447"
+            "mistStrength": 0.015,
+            "hazeStrength": 0.2,
+            "farFogColor": "#0b0c0e",
+            "nearFogColor": "#101114"
           }
         },
         "zones": [
@@ -64352,7 +64354,12 @@
             "rotation": 0
           }
         ],
-        "skyVisible": false
+        "skyVisible": false,
+        "hiddenLayers": [
+          "L2",
+          "L3",
+          "L4"
+        ]
       },
       "design": {
         "title": "석문",
@@ -68537,14 +68544,16 @@
         "atmosphere": {
           "preset": "enclosed",
           "overrides": {
-            "skyTop": "#172328",
-            "skyBottom": "#233237",
-            "ambientTint": "#364346",
+            "skyTop": "#07080a",
+            "skyBottom": "#0a0b0d",
+            "ambientTint": "#17181b",
+            "hazeColor": "#0c0d10",
+            "shadowTint": "#090a0c",
             "lightStrength": 0.1,
-            "mistStrength": 0.11,
-            "hazeStrength": 0.24,
-            "farFogColor": "#26393d",
-            "nearFogColor": "#304447"
+            "mistStrength": 0.015,
+            "hazeStrength": 0.2,
+            "farFogColor": "#0b0c0e",
+            "nearFogColor": "#101114"
           }
         },
         "zones": [
@@ -69511,7 +69520,12 @@
             "rotation": 0
           }
         ],
-        "skyVisible": false
+        "skyVisible": false,
+        "hiddenLayers": [
+          "L2",
+          "L3",
+          "L4"
+        ]
       },
       "design": {
         "title": "해가 닿지 않는 마을",
@@ -72494,14 +72508,16 @@
         "atmosphere": {
           "preset": "enclosed",
           "overrides": {
-            "skyTop": "#172328",
-            "skyBottom": "#233237",
-            "ambientTint": "#364346",
+            "skyTop": "#07080a",
+            "skyBottom": "#0a0b0d",
+            "ambientTint": "#17181b",
+            "hazeColor": "#0c0d10",
+            "shadowTint": "#090a0c",
             "lightStrength": 0.1,
-            "mistStrength": 0.11,
-            "hazeStrength": 0.24,
-            "farFogColor": "#26393d",
-            "nearFogColor": "#304447"
+            "mistStrength": 0.015,
+            "hazeStrength": 0.2,
+            "farFogColor": "#0b0c0e",
+            "nearFogColor": "#101114"
           }
         },
         "zones": [
@@ -73012,7 +73028,12 @@
             "rotation": 0
           }
         ],
-        "skyVisible": false
+        "skyVisible": false,
+        "hiddenLayers": [
+          "L2",
+          "L3",
+          "L4"
+        ]
       },
       "design": {
         "title": "물 아래의 길",
@@ -75499,14 +75520,16 @@
         "atmosphere": {
           "preset": "enclosed",
           "overrides": {
-            "skyTop": "#172328",
-            "skyBottom": "#233237",
-            "ambientTint": "#364346",
+            "skyTop": "#07080a",
+            "skyBottom": "#0a0b0d",
+            "ambientTint": "#17181b",
+            "hazeColor": "#0c0d10",
+            "shadowTint": "#090a0c",
             "lightStrength": 0.1,
-            "mistStrength": 0.11,
-            "hazeStrength": 0.24,
-            "farFogColor": "#26393d",
-            "nearFogColor": "#304447"
+            "mistStrength": 0.015,
+            "hazeStrength": 0.2,
+            "farFogColor": "#0b0c0e",
+            "nearFogColor": "#101114"
           }
         },
         "zones": [
@@ -76453,7 +76476,12 @@
             "rotation": 0
           }
         ],
-        "skyVisible": false
+        "skyVisible": false,
+        "hiddenLayers": [
+          "L2",
+          "L3",
+          "L4"
+        ]
       },
       "design": {
         "title": "잠운사",
@@ -78990,14 +79018,16 @@
         "atmosphere": {
           "preset": "enclosed",
           "overrides": {
-            "skyTop": "#172328",
-            "skyBottom": "#233237",
-            "ambientTint": "#364346",
+            "skyTop": "#07080a",
+            "skyBottom": "#0a0b0d",
+            "ambientTint": "#17181b",
+            "hazeColor": "#0c0d10",
+            "shadowTint": "#090a0c",
             "lightStrength": 0.1,
-            "mistStrength": 0.11,
-            "hazeStrength": 0.24,
-            "farFogColor": "#26393d",
-            "nearFogColor": "#304447"
+            "mistStrength": 0.015,
+            "hazeStrength": 0.2,
+            "farFogColor": "#0b0c0e",
+            "nearFogColor": "#101114"
           }
         },
         "zones": [
@@ -79508,7 +79538,12 @@
             "rotation": 0
           }
         ],
-        "skyVisible": false
+        "skyVisible": false,
+        "hiddenLayers": [
+          "L2",
+          "L3",
+          "L4"
+        ]
       },
       "design": {
         "title": "두드리는 벽",
@@ -82231,14 +82266,16 @@
         "atmosphere": {
           "preset": "enclosed",
           "overrides": {
-            "skyTop": "#172328",
-            "skyBottom": "#233237",
-            "ambientTint": "#364346",
+            "skyTop": "#07080a",
+            "skyBottom": "#0a0b0d",
+            "ambientTint": "#17181b",
+            "hazeColor": "#0c0d10",
+            "shadowTint": "#090a0c",
             "lightStrength": 0.1,
-            "mistStrength": 0.11,
-            "hazeStrength": 0.24,
-            "farFogColor": "#26393d",
-            "nearFogColor": "#304447"
+            "mistStrength": 0.015,
+            "hazeStrength": 0.2,
+            "farFogColor": "#0b0c0e",
+            "nearFogColor": "#101114"
           }
         },
         "zones": [
@@ -83354,7 +83391,12 @@
             "rotation": 0
           }
         ],
-        "skyVisible": false
+        "skyVisible": false,
+        "hiddenLayers": [
+          "L2",
+          "L3",
+          "L4"
+        ]
       },
       "design": {
         "title": "묵종",
@@ -86304,14 +86346,16 @@
         "atmosphere": {
           "preset": "enclosed",
           "overrides": {
-            "skyTop": "#172328",
-            "skyBottom": "#233237",
-            "ambientTint": "#364346",
+            "skyTop": "#07080a",
+            "skyBottom": "#0a0b0d",
+            "ambientTint": "#17181b",
+            "hazeColor": "#0c0d10",
+            "shadowTint": "#090a0c",
             "lightStrength": 0.1,
-            "mistStrength": 0.11,
-            "hazeStrength": 0.24,
-            "farFogColor": "#26393d",
-            "nearFogColor": "#304447"
+            "mistStrength": 0.015,
+            "hazeStrength": 0.2,
+            "farFogColor": "#0b0c0e",
+            "nearFogColor": "#101114"
           }
         },
         "zones": [
@@ -87427,7 +87471,12 @@
             "rotation": 0
           }
         ],
-        "skyVisible": false
+        "skyVisible": false,
+        "hiddenLayers": [
+          "L2",
+          "L3",
+          "L4"
+        ]
       },
       "design": {
         "title": "종 안의 사람들",

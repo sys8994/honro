@@ -93,10 +93,10 @@ function assets(){const asset=(id,name,visual,heightM,category='architecture')=>
   shape([[27,-65],[41,-65],[61,-10],[48,-7]],'#a6a385',null,0),
   shape([[-84,5],[-91,-8],[-72,-14],[-50,-6],[-56,5]],'#ac9870')],1.5);
  prop('rock-column','공동의 침식 암주',[
-  shape([[-150,0],[-116,-145],[-85,-324],[-110,-478],[-64,-703],[6,-755],[90,-665],[61,-425],[104,-247],[151,-35]],'#3b4c4e','#263b40',3),
-  shape([[-64,-696],[6,-735],[32,-520],[-10,-318],[22,-159],[-25,-5],[-92,-7],[-54,-300]],'#77817a',null,0),
-  shape([[50,-660],[69,-592],[39,-414],[85,-217],[112,-37],[41,-19],[13,-206],[24,-385]],'#233b40',null,0),
-  shape([[-84,-452],[41,-481],[62,-458],[-87,-424]],'#9a9c7c45',null,0)],10);
+  shape([[-150,0],[-116,-145],[-85,-324],[-110,-478],[-64,-703],[6,-755],[90,-665],[61,-425],[104,-247],[151,-35]],'#424449','#292b30',3),
+  shape([[-64,-696],[6,-735],[32,-520],[-10,-318],[22,-159],[-25,-5],[-92,-7],[-54,-300]],'#73757a',null,0),
+  shape([[50,-660],[69,-592],[39,-414],[85,-217],[112,-37],[41,-19],[13,-206],[24,-385]],'#292b30',null,0),
+  shape([[-84,-452],[41,-481],[62,-458],[-87,-424]],'#a1a3a845',null,0)],10);
  prop('hanging-cloth','매듭을 남긴 빨랫줄',[
   shape([[-140,-137],[141,-123],[141,-119],[-140,-133]],'#a99875',null,0),
   shape([[-105,-134],[-52,-130],[-50,-52],[-70,-39],[-107,-53]],'#9a9982'),
@@ -136,11 +136,11 @@ function assets(){const asset=(id,name,visual,heightM,category='architecture')=>
  bell.visual.push(shape([[151,-100],[223,-95],[249,-27],[166,-18]],'#31453b',null,0));
  const column=list.find(a=>a.id==='act2:rock-column');
  column.visual=[
- shape([[-150,0],[-120,-84],[-123,-155],[-93,-214],[-91,-292],[-70,-335],[-103,-405],[-110,-478],[-91,-516],[-87,-599],[-65,-634],[-64,-703],[-28,-727],[6,-755],[30,-728],[65,-705],[90,-665],[80,-617],[66,-595],[67,-507],[49,-462],[61,-425],[72,-371],[72,-313],[104,-247],[107,-174],[135,-112],[151,-35]],'#394d50','#263b40',3),
- shape([[-64,-696],[-18,-714],[6,-735],[20,-658],[9,-594],[32,-520],[4,-458],[8,-385],[-10,-318],[9,-255],[22,-159],[-3,-96],[-25,-5],[-92,-7],[-77,-139],[-71,-226],[-54,-300],[-66,-370],[-62,-429],[-83,-491]],'#73817b',null,0),
- shape([[50,-660],[69,-592],[48,-541],[39,-414],[58,-363],[57,-307],[85,-217],[85,-138],[112,-37],[41,-19],[29,-123],[13,-206],[25,-283],[24,-385],[36,-436],[29,-502]],'#233b40',null,0),
- shape([[-84,-452],[-31,-469],[11,-470],[41,-481],[62,-458],[21,-447],[-25,-448],[-87,-424]],'#9a9c7c35',null,0),
- shape([[-81,-249],[-28,-256],[11,-241],[43,-253],[60,-235],[11,-226],[-29,-238],[-89,-229]],'#152e3840',null,0)];
+ shape([[-150,0],[-120,-84],[-123,-155],[-93,-214],[-91,-292],[-70,-335],[-103,-405],[-110,-478],[-91,-516],[-87,-599],[-65,-634],[-64,-703],[-28,-727],[6,-755],[30,-728],[65,-705],[90,-665],[80,-617],[66,-595],[67,-507],[49,-462],[61,-425],[72,-371],[72,-313],[104,-247],[107,-174],[135,-112],[151,-35]],'#424449','#292b30',3),
+ shape([[-64,-696],[-18,-714],[6,-735],[20,-658],[9,-594],[32,-520],[4,-458],[8,-385],[-10,-318],[9,-255],[22,-159],[-3,-96],[-25,-5],[-92,-7],[-77,-139],[-71,-226],[-54,-300],[-66,-370],[-62,-429],[-83,-491]],'#73757a',null,0),
+ shape([[50,-660],[69,-592],[48,-541],[39,-414],[58,-363],[57,-307],[85,-217],[85,-138],[112,-37],[41,-19],[29,-123],[13,-206],[25,-283],[24,-385],[36,-436],[29,-502]],'#292b30',null,0),
+ shape([[-84,-452],[-31,-469],[11,-470],[41,-481],[62,-458],[21,-447],[-25,-448],[-87,-424]],'#a1a3a835',null,0),
+ shape([[-81,-249],[-28,-256],[11,-241],[43,-253],[60,-235],[11,-226],[-29,-238],[-89,-229]],'#18191d40',null,0)];
  for(const a of list)a.reference.bounds=bounds(a.visual);
  return list;
 }
@@ -283,7 +283,10 @@ function build(project){const p=clone(project);p.stages=p.stages.filter(s=>s.met
   const support=env.surfaces.find(s=>s.groupId===group.id);if(!support)continue;
   for(let x=500,j=0;x<width;x+=1900,j++)env.placements.push({id:'rear-'+group.id+'-'+j,assetId:j%2?'act2:rock-column':'act2:memorial',depthLayer:'L2',groupId:group.id,supportId:support.id,x,y:0,scale:1.1,rotation:0});
  }
- env.atmosphere={preset:cave?'enclosed':i===0?'forest':'valley',overrides:cave?{skyTop:'#172328',skyBottom:'#233237',ambientTint:'#364346',lightStrength:.10,mistStrength:.11,hazeStrength:.24,farFogColor:'#26393d',nearFogColor:'#304447'}:i===9?{skyTop:'#687b86',skyBottom:'#dec39e',ambientTint:'#8b8e79',hazeColor:'#b7ab96',farFogColor:'#d4c9ad',nearFogColor:'#d3bfa1',keyLightColor:'#ffdb9d',keyLightDirection:[.77,.15],glowColor:'#f6c888',shadowTint:'#394447',lightStrength:.40,mistStrength:.30}:{}};
+ env.atmosphere={preset:cave?'enclosed':i===0?'forest':'valley',overrides:cave?{skyTop:'#07080a',skyBottom:'#0a0b0d',ambientTint:'#17181b',hazeColor:'#0c0d10',shadowTint:'#090a0c',lightStrength:.10,mistStrength:.015,hazeStrength:.20,farFogColor:'#0b0c0e',nearFogColor:'#101114'}:i===9?{skyTop:'#687b86',skyBottom:'#dec39e',ambientTint:'#8b8e79',hazeColor:'#b7ab96',farFogColor:'#d4c9ad',nearFogColor:'#d3bfa1',keyLightColor:'#ffdb9d',keyLightDirection:[.77,.15],glowColor:'#f6c888',shadowTint:'#394447',lightStrength:.40,mistStrength:.30}:{} };
+ // The playable cavity stays black. Distant scenic supports otherwise fill it
+ // with the same green-blue bands used by outdoor stages and end at the portals.
+ if(cave)env.hiddenLayers=['L2','L3','L4'];
  env.skyVisible=!cave;st.environment=env;
  st.meta={notes:'2-'+(i+1)+' '+d.name+' · 개편 2 · '+plan.rounds.join('–')+'턴 설계',seed:2210+i};p.stages.push(st);
  }

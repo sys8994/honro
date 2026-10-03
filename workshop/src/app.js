@@ -182,7 +182,7 @@ function ensureRuntime(){
  const st=stage(),p=activeProject(),profile=HonroMaps.profileFor(st),b=HonroMaps.createBattle(st,p,profile);
  if(st.terrains.length&&b.units.length)HonroStageRules.sanitizeStageBattle(b);
  // Layer switches affect only this disposable preview; the authored map stays intact.
- const hidden=new Set(st.layers.filter(l=>!l.visible).map(l=>l.id));
+ const hidden=new Set([...(st.environment?.hiddenLayers||[]),...st.layers.filter(l=>!l.visible).map(l=>l.id)]);
  b.terrain=b.terrain.filter(t=>!hidden.has(st.terrains.find(x=>x.id===t.id)?.layer||'terrain'));
  b.honroLandmarks=b.honroLandmarks.filter(l=>!hidden.has(st.elements.find(e=>e.id===l.id)?.layer||l.layer||'back'));
  b.honroEnvironment.placements=b.honroEnvironment.placements.filter(e=>!hidden.has(e.depthLayer));
