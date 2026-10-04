@@ -93,7 +93,7 @@
 | 맵 | 거리 preset / atmosphere | L1 장식 / 지형 / 물 | 구역 | 풍경 묶음 | 지지면 | 배경 개체 |
 | --- | --- | --- | --- | ---: | ---: | ---: |
 | stage-1 | forest / forest | 33 / 4 / 1 | landscape | 1 | 1 | 0 |
-| stage-2 | valley / valley | 35 / 9 / 3 | upper-ridge, slope, valley-bottom | 5 | 5 | 13 |
+| stage-2 | valley / valley | 31 / 8 / 2 | upper-ridge, slope, valley-bottom | 5 | 5 | 13 |
 | stage-3 | forest / forest | 28 / 8 / 1 | landscape | 3 | 3 | 6 |
 | stage-4 | forest / burned | 21 / 8 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
 | stage-5 | valley / valley | 14 / 14 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 13 |
@@ -104,13 +104,13 @@
 | stage-10 | forest / otherworld | 7 / 9 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
 | stage-11 | forest / forest | 48 / 7 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
 | stage-12 | valley / valley | 47 / 9 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
-| stage-13 | enclosed / enclosed | 46 / 10 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-14 | enclosed / enclosed | 77 / 10 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
-| stage-15 | enclosed / enclosed | 48 / 5 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-16 | enclosed / enclosed | 53 / 8 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
-| stage-17 | enclosed / enclosed | 48 / 11 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-18 | enclosed / enclosed | 55 / 9 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
-| stage-19 | enclosed / enclosed | 65 / 8 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
+| stage-13 | enclosed / enclosed | 37 / 12 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
+| stage-14 | enclosed / enclosed | 77 / 9 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
+| stage-15 | enclosed / enclosed | 33 / 7 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
+| stage-16 | enclosed / enclosed | 53 / 9 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 11 |
+| stage-17 | enclosed / enclosed | 41 / 13 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
+| stage-18 | enclosed / enclosed | 47 / 11 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
+| stage-19 | enclosed / enclosed | 57 / 10 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 22 |
 | stage-20 | valley / valley | 47 / 10 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
 
 ## 코드가 생성하는 요소

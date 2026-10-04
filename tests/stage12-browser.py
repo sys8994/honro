@@ -16,7 +16,7 @@ with sync_playwright() as p:
         data=game.evaluate('''sid=>{const a=HonroApp;for(let i=1;i<=10;i++)a.profile.cleared[i]={};a.launch(sid);if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const b=a.engine.b;
           Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,x:b.width/2,y:b.height/2,scale:Math.min(1520/b.width,900/b.height),time:0,walkTime:0});a.scene.render(a.engine,0,'',.6,false,0);
           return {stage:b.honroStage,revision:b.honroMapDesignRevision,water:b.waters.length,terrain:b.terrain.length,treeCollision:b.terrain.some(t=>/pine.*collision/.test(t.id))}}''',sid)
-        check(f'Stage {sid} actual campaign loads authored geometry and conductive water',data['revision']==1 and data['water']==(1 if sid==1 else 3) and not data['treeCollision'],data)
+        check(f'Stage {sid} actual campaign loads authored geometry and conductive water',data['revision']==1 and data['water']==(1 if sid==1 else 2) and not data['treeCollision'],data)
         image=game.locator('#battlecanvas').evaluate('c=>c.toDataURL().split(",")[1]')
         (out/f'stage-{sid}-overview.png').write_bytes(base64.b64decode(image))
     editor=browser.new_page(viewport={'width':1365,'height':768});editor.on('pageerror',lambda e:errors.append(str(e)))

@@ -58,7 +58,9 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
  const project=g.HonroCommands.apply(first,g.HonroStage36Places.commands(first));
  // The checked-in campaign is the active authored source. Historical migration
  // must not replace later Act 1 layout and balance edits with old RC21 values.
- // The Stage 2 cliff remains the one explicit recipe update in this migration.
+ // Stage 2's authored visible surfaces are an explicit recipe update. Keep
+ // campaign tuning and scenery metadata while refreshing its geometry and
+ // support-bound water/grass together, or old hidden overlays reappear.
  let active=null;
  try{active=JSON.parse(await read('shared/data/campaign.json'));}catch(error){if(error.code!=='ENOENT')throw error;}
  if(active?.stages?.length>=10){
@@ -67,10 +69,12 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
    const old=active.stages[i];if(old.id!==project.stages[i].id)throw Error(`Act 1 stage mismatch at ${i+1}`);
    project.stages[i]=old;
   }
-  const target=project.stages[1].terrains.findIndex(t=>t.id==='right-cliff-ground');
-  if(target<0||!cliff)throw Error('Stage 2 cliff is missing');
-  project.stages[1].terrains[target]=cliff;
-  project.stages[1].detailStats.solidNodes=first.stages[1].detailStats.solidNodes;
+  const revised=first.stages[1],target=project.stages[1];
+  if(!cliff||!target.terrains.some(t=>t.id==='right-cliff-ground'))throw Error('Stage 2 cliff is missing');
+  target.terrains=revised.terrains;
+  target.materials=revised.materials;
+  target.elements=[...revised.elements,...target.elements.filter(e=>e.id?.startsWith('habitat-prop-'))];
+  target.detailStats=revised.detailStats;
   const oldAssets=new Map(active.library.map(a=>[a.id,a]));
   project.library=project.library.map(a=>oldAssets.get(a.id)||a);
  }

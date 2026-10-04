@@ -23,7 +23,9 @@ with sync_playwright() as p:
         d=page.evaluate("""sid=>{const a=HonroApp;a.close();a.profile.honroBattle=null;a.launch(sid);if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;a.updateHUD(true);const b=a.engine.b,cv=document.getElementById('battlecanvas'),rect=cv.getBoundingClientRect();a.done=true;a.scene.storyTween=null;a.scene.goalFocus=null;a.scene.cinematic=null;a.scene.manual=true;a.scene.x=b.width/2;a.scene.y=b.height/2;a.scene.scale=Math.max(.12,Math.min((rect.width*.91)/b.width,(rect.height*.84)/b.height));a.scene.render(a.engine,0,a.selected,.6,false,.02);return{sid,w:b.width,h:b.height,rev:b.honroRevision,mapRev:b.honroMapRevision,stats:b.honroDetailStats,zones:(b.honroSurfaceZones||[]).map(z=>({kind:z.kind,n:z.points.length,attached:!!z.attached})),landmarks:b.honroLandmarks.length,terrain:b.terrain.length,branchIds:b.terrain.filter(t=>t.surfaceKind==='branch').map(t=>t.id)};}""",sid)
         ck(d['rev']==20 and d['mapRev']==20,f'Stage {sid} loads shared campaign runtime',d)
         ck(d['stats']['groundTop']>=200,f'Stage {sid} high-density ground visible',d['stats'])
-        ck(d['stats']['scatterCount']>=18,f'Stage {sid} deterministic scenery density',d['stats'])
+        # Stage 2's hidden west-cliff scatter was removed during the full
+        # terrain audit; its 17 visible pieces remain deterministic.
+        ck(d['stats']['scatterCount']>=(18 if sid==1 else 17),f'Stage {sid} deterministic scenery density',d['stats'])
         kinds={z['kind'] for z in d['zones']}
         ck('water-pool' in kinds and len(kinds)>=5,f'Stage {sid} natural material composition',sorted(kinds))
         page.screenshot(path=str(OUT/f'stage-{sid}-overview.png'))

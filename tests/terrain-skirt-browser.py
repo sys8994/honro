@@ -59,6 +59,12 @@ with sync_playwright() as p:
     browser.close()
 
 assert not errors, errors
+# The mountain-to-cave ceiling has to continue past Stage 12's right play
+# boundary. A flat exterior cap used to expose a full-height strata cutoff.
+im = Image.open(OUT / 'stage-12-right.png').convert('RGB')
+roof_seam = sum(max(abs(a-b) for a,b in zip(im.getpixel((708,y)),im.getpixel((732,y))))
+                for y in range(150,266))/116
+assert roof_seam < 5.5, f'Stage 12 cave roof stops at the right boundary: {roof_seam:.2f}'
 for edge in ('left', 'right', 'top', 'bottom'):
     ims = []
     for sid in range(1, 21):
@@ -73,5 +79,5 @@ for edge in ('left', 'right', 'top', 'bottom'):
         sheet.paste(im, ((i%4)*540, (i//4)*350))
     sheet.save(OUT / f'contact-{edge}.jpg', quality=88)
 
-(OUT / 'report.json').write_text(json.dumps({'views':rows,'errors':errors},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-print(json.dumps({'screenshots':len(rows)+1,'errors':errors,'output':str(OUT)},ensure_ascii=False))
+(OUT / 'report.json').write_text(json.dumps({'views':rows,'stage12RoofSeam':roof_seam,'errors':errors},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print(json.dumps({'screenshots':len(rows)+1,'stage12RoofSeam':round(roof_seam,2),'errors':errors,'output':str(OUT)},ensure_ascii=False))

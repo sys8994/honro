@@ -84,8 +84,8 @@ function commands(project){
    ground('canyon-ground',[[0,2960],[280,2980],[480,3020],[680,2960],[900,2920],[1170,2960],[1430,2940],[1620,3000],[1810,2950],[2050,2940],[2240,3005],[2490,3005],[2730,2960],[2940,2940],[3070,2900],[3200,2840],[3450,2820],[3660,2740],[3870,2610],[4100,2630],[4300,2490]],'soil');
    ground('left-high-ground',[[0,540],[280,590],[510,610],[590,670],[640,870],[740,960],[860,1080],[940,1220],[1030,1370],[1160,1490],[1120,1630],[1040,1680],[1100,1850],[1270,1910],[1420,2140],[1500,2240],[1260,2310],[1060,2440],[940,2520],[900,2590],[970,2730],[870,2860],[790,2940]],'rock');
    ground('right-cliff-ground',[[3440,2810],[3380,2610],[3470,2470],[3450,2260],[3550,2120],[3510,1960],[3690,1830],[3710,1640],[3830,1510],[3970,1500],[4100,1570],[4210,1550],[4270,1500],[4275,1380],[4170,1240],[4050,1230],[3930,1090],[3850,900],[3890,720],[4020,600],[4140,500],[4300,430]],'rock');
-   add({op:'createTerrain',id:'left-grass-outcrop',type:'solid',points:[[720,1500],[900,1560],[1130,1550],[1190,1610],[1110,1780],[850,1800],[720,1740],[690,1620]],material:'rock'});
-   st.terrains.push({id:'left-grass-outcrop',type:'solid',points:points([[720,1500],[900,1560],[1130,1550],[1190,1610],[1110,1780],[850,1800],[720,1740],[690,1620]]),baseMaterial:'rock'});
+   // The former outcrop was embedded inside the large left cliff. Its grass
+   // was drawn over solid stone and read as a detached strip in the air.
    branch('left-tree-branch-upper',[[1100,750],[1240,780],[1430,785],[1570,800],[1690,795]],[24,34,32,24,12]);
    branch('left-tree-branch-middle',[[960,1000],[1080,1070],[1260,1100],[1390,1140],[1500,1140]],[30,48,54,44,18]);
    branch('left-tree-branch-lower',[[1370,1790],[1460,1850],[1600,1860],[1700,1890]],[24,42,34,16]);
@@ -100,15 +100,13 @@ function commands(project){
     ['basin-boulder-left','mockup-granite-large',970,3000,.65],['basin-boulder-mid','mockup-granite-large',1600,3220,.63],
     ['right-cliff-base','mockup-granite-large',3570,2570,.95],['right-cliff-ledge','mockup-granite-shelf',3640,2200,1],
     ['right-cliff-roof','mockup-granite-shelf',4050,1210,.95],['right-cliff-top','mockup-granite-small',4020,680,1]])element(id,asset,x,y,s,'prop');
-   water('basin-water-west','canyon-ground',300,680,2980);
    water('basin-water','canyon-ground',2180,2800,2970);
    water('shelf-water','right-cliff-ground',3980,4270,1530);
-   paint('green-left-outcrop','left-grass-outcrop','grass',720,1170,150,1500);
    paint('green-right-crown','right-cliff-ground','grass',3930,4290,80,650);
    anchors={archerPerch:{x:290,support:'left-high-ground'},procession:{x:1240,support:'canyon-ground'},leftBasin:{x:1700,support:'canyon-ground'},rightBasin:{x:2860,support:'canyon-ground'},rightShelf:{x:3380,y:1170},exit:{x:3340,support:'canyon-ground'}};
    positions={'p-archer':[290,top(290,600,'left-high-ground')],'objective':[1240,top(1240,2960,'canyon-ground')],'ally-bokman':[1130,top(1130,2960,'canyon-ground')],'ally-baeksan':[1460,top(1460,2960,'canyon-ground')],'npc-damheo':[1540,top(1540,2960,'canyon-ground')],'npc-yeonsil':[1350,top(1350,2960,'canyon-ground')],'foe-0':[1850,top(1850,2960,'canyon-ground')],'foe-3':[2010,top(2010,2960,'canyon-ground')],'foe-2':[2940,top(2940,2960,'canyon-ground')],'foe-5':[3200,top(3200,2860,'canyon-ground')],'foe-1':[3370,1010],'foe-4':[3190,1150]};
    markerPositions=[[290,600],[1700,2960],[1760,2960],[2860,2960],[2900,2960],[4020,600],[3900,800]];
-   for(const [i,support,a,b,ref,kind] of [[0,'left-high-ground',40,510,600,'grass'],[1,'left-high-ground',720,870,1050,'moss'],[2,'left-high-ground',1130,1340,2050,'scree'],[3,'left-high-ground',1010,1210,2400,'moss'],[4,'canyon-ground',60,230,2960,'scree'],[5,'canyon-ground',780,1110,2950,'mud'],[6,'canyon-ground',1260,1450,2950,'grass'],[7,'canyon-ground',1780,2010,2960,'moss'],[8,'canyon-ground',2820,3100,2900,'grass'],[9,'right-cliff-ground',3580,3690,2080,'rock'],[10,'right-cliff-ground',3730,3900,1570,'moss']])paint('canyon-patch-'+i,support,kind,a,b,28,ref);
+   for(const [i,support,a,b,ref,kind] of [[0,'left-high-ground',40,510,600,'grass'],[1,'left-high-ground',720,870,1050,'moss'],[2,'left-high-ground',1130,1340,2050,'scree'],[3,'left-high-ground',1010,1210,2400,'moss'],[5,'canyon-ground',900,1110,2950,'mud'],[6,'canyon-ground',1260,1450,2950,'grass'],[7,'canyon-ground',1780,2010,2960,'moss'],[8,'canyon-ground',2820,3100,2900,'grass'],[9,'right-cliff-ground',3580,3690,2080,'rock'],[10,'right-cliff-ground',3730,3900,1570,'moss']])paint('canyon-patch-'+i,support,kind,a,b,28,ref);
    for(const event of old.events){const e=clone(event);if(e.id==='procession-seen')e.when.progress=1200;if(e.id==='road-pressure'){e.when.any[0].progress=1520;e.action.x=1850;}if(e.id==='last-flight')e.when.any[0].progress=3140;add({op:'object.update',id:e.id,values:e});delete out.at(-1).values.id;}
   }
   for(const a of Object.values(anchors))if(a.y===undefined)a.y=top(a.x,undefined,a.support); // stable authored camera/objective positions
@@ -119,6 +117,7 @@ function commands(project){
   for(const t of st.terrains.filter(t=>t.type==='ground')){
    const vertices=Q.derive(t);
    for(let i=2;i<vertices.length-2;i+=12){const p=vertices[i],next=vertices[i+1];if(next.x-p.x<.1||Math.abs((next.y-p.y)/(next.x-p.x))>1.15)continue;
+    if(sid===2&&t.id==='canyon-ground'&&p.x<790)continue;
     const other=M.surfaceY(st.terrains.map(q=>Q.terrain(q,st.height)),p.x,p.y);
     if(!other||Math.abs(other.y-p.y)>3)continue;
     element('flora-'+count,(count%4===0?'builtin:fernPatch':'grass_tuft'),p.x,p.y,count%4===0?.42:.9,'prop');count++;

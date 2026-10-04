@@ -16,8 +16,11 @@ def digest(v):
 baseline=json.loads((ROOT/'tests/fixtures/camera-bounds-baseline.json').read_text(encoding='utf8'))
 project=json.loads((ROOT/'shared/data/campaign.json').read_text(encoding='utf8'))
 for s,old in zip(project['stages'],baseline['stages']):
-    check(s['id']+': original collision records preserved',all(digest(next(t for t in s['terrains'] if t['id']==tid))==sha for tid,sha in old['terrain'].items()))
-    if s['id']!='stage-1':
+    retained={t['id']:t for t in s['terrains'] if t['id'] in old['terrain']}
+    check(s['id']+': retained collision records preserved',
+          all(digest(t)==old['terrain'][tid] for tid,t in retained.items())
+          and (len(retained)==len(old['terrain']) if s['id']!='stage-2' else len(retained)==len(old['terrain'])-1))
+    if s['id'] not in ['stage-1','stage-2']:
         check(s['id']+': gameplay data unchanged',digest({k:s.get(k) for k in ['width','height','terrains','materials','units','markers','objectives','events','encounters','initialState']})==old['gameplayHash'])
 
 SETUP='''sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;

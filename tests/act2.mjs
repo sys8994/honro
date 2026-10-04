@@ -53,7 +53,7 @@ check('Rockfall changes the walkable route, and draining water keeps its bed bel
  assert(g.HonroAct2.use(q.app,sluice));const drained=q.b.waters[0];assert.equal(drained.y,y+120);assert(drained.bottom.slice(1,-1).every(p=>p.y>drained.y));assert(q.b.honroSurfaceZones.filter(z=>z.kind==='water-pool').every(z=>z.bottom.slice(1,-1).every(p=>p[1]>z.surface[0][1])));
 });
 check('Cave rock shelves have continuous exposed support through both ends',()=>{
- for(const id of [13,16,17,18,19]){const {b,e}=fixture(id),x=id>=18?3240:1800,t=b.terrain.find(t=>t.id==='act2-floor');for(let xx=x-380;xx<=x+590;xx+=4){const y=C.terrainSurfaces(t,xx)[0].y;assert(e.surface(xx,y-1,y+1),`${id}: buried seam at ${xx}`);}}
+ for(const id of [13,16,17,18,19]){const {b,e}=fixture(id),x=id===16?1300:id>=18?3240:1800,t=b.terrain.find(t=>t.id==='act2-floor');for(let xx=x-380;xx<=x+590;xx+=4){const y=C.terrainSurfaces(t,xx)[0].y;assert(e.surface(xx,y-1,y+1),`${id}: buried seam at ${xx}`);}}
 });
 check('Mokjong is scenery; keeper cannot die and his suppression requires every objective',()=>{
  const {b,e}=fixture(18),boss=e.unit('act2-keeper');assert(!b.terrain.some(t=>t.id.includes('bell')));boss.hp=1;e.recover(boss);assert(!boss.dead&&boss.hp===1,'knockback outside the map cannot kill the keeper');e.hurt(boss,1e9,e.active.id);assert(!boss.dead&&boss.hp>=1&&boss.honroSubdued);assert(!g.HonroObjectives.state(b,g.HONRO_CONTENT.stages[17]).complete);
