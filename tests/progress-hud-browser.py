@@ -68,6 +68,19 @@ with sync_playwright() as p:
         hud.set_viewport_size({'width':w,'height':h});hud.evaluate('HonroApp.updateHUD(true)')
         check_layout(hud,f'All three resource bars and labels are readable at {w}x{h}',w,h)
         hud.locator('#battle-bottom').screenshot(path=str(OUT/f'hud-{w}x{h}.png'))
+    hud.evaluate('''()=>{const a=HonroApp,u=a.engine.active;for(const [i,cls] of ['mage','knight','occultist'].entries())a.engine.b.units.push({...u,id:'hud-ally-'+i,cls,x:u.x+40*(i+1)});a.updateHUD(true)}''')
+    for w,h in [(320,740),(390,844),(667,375),(844,390)]:
+        hud.set_viewport_size({'width':w,'height':h});hud.evaluate('HonroApp.updateHUD(true)')
+        geometry=hud.evaluate('''()=>{const box=s=>{const r=document.querySelector(s).getBoundingClientRect();return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,w:r.width,h:r.height}};return{hud:box('#battle-bottom'),chips:[...document.querySelectorAll('.ally-chip')].map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,w:r.width,h:r.height}}),controls:['#joystick','#combat-skills','#fire','#jump','.honro-defend','.wind-gauge'].map(box),status:box('#combat-status summary')};}''')
+        visible=lambda r:r['x']>=-1 and r['right']<=w+1 and r['y']>=-1 and r['bottom']<=h+1 and r['w']>0 and r['h']>0
+        clear=lambda a,b:a['right']<=b['x']+1 or b['right']<=a['x']+1 or a['bottom']<=b['y']+1 or b['bottom']<=a['y']+1
+        check(f'Four party buttons, status and controls fit {w}x{h}',len(geometry['chips'])==4 and all(map(visible,geometry['chips']+geometry['controls']+[geometry['status']])) and (w!=667 or geometry['hud']['h']<145 and all(clear(geometry['status'],r) for r in geometry['controls'])),geometry)
+        if w==667:
+            hud.locator('#combat-status summary').click()
+            popover=hud.evaluate('''()=>{const r=document.querySelector('.status-popover').getBoundingClientRect();return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,w:r.width,h:r.height}}''')
+            check('Short landscape status details open inside the viewport',hud.locator('.status-popover').is_visible() and visible(popover),popover)
+            hud.locator('#combat-status summary').click()
+        hud.locator('#battle-bottom').screenshot(path=str(OUT/f'hud-party-{w}x{h}.png'))
     hud.set_viewport_size({'width':1920,'height':1080})
     before=hud.evaluate(MEASURE)
     changed=hud.evaluate('''()=>{const a=HonroApp,u=a.engine.active,move=u.moveLeft;a.engine.move(1,.15);u.hp-=17;u.focus-=11;a.updateHUD(true);return{moveBefore:move,moveAfter:u.moveLeft};}''')

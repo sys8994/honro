@@ -15,9 +15,16 @@ export function drawGuideContinuation(c:C,e:Engine,u:Unit,s:Skill,power:number,z
  if(s.martial||s.mode==='pierce'||s.mode==='return'||s.mode==='prepare')return;
  const pr=guidePrediction(e,u,s,power);if(!pr.unit||pr.points.length<2)return;
  const ext=guidePrediction(e,u,s,power,true);if(ext.points.length<2)return;
- let start=0,distance=Infinity;for(let i=0;i<ext.points.length;i++){const p=ext.points[i],d=Math.hypot(p.x-pr.x,p.y-pr.y);if(d<distance){distance=d;start=i;}}
- const path=ext.points.slice(start);if(path.length<2)return;
- c.save();c.setLineDash([]);c.globalAlpha=.22;c.strokeStyle=CLASSES[u.cls].color;c.lineWidth=.85/Math.max(.12,zoom);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
+ let segment=0,distance=Infinity;
+ for(let i=0;i<ext.points.length-1;i++){
+  const a=ext.points[i],b=ext.points[i+1],dx=b.x-a.x,dy=b.y-a.y,length=dx*dx+dy*dy;
+  const t=length?Math.max(0,Math.min(1,((pr.x-a.x)*dx+(pr.y-a.y)*dy)/length)):0;
+  const d=Math.hypot(a.x+dx*t-pr.x,a.y+dy*t-pr.y);
+  if(d<distance){distance=d;segment=i;}
+ }
+ const path=[{x:pr.x,y:pr.y},...ext.points.slice(segment+1)];
+ if(path.length<2||Math.hypot(path.at(-1)!.x-pr.x,path.at(-1)!.y-pr.y)<4/Math.max(.12,zoom))return;
+ c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.strokeStyle=CLASSES[u.cls].color;c.lineWidth=1.35/Math.max(.12,zoom);c.globalAlpha=.56;c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
 }
 const echoGuideCache=new WeakMap<Engine,{key:string;paths:Array<Array<{x:number;y:number}>>}>();
 export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:number,root:ReturnType<Engine['predict']>){

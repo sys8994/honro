@@ -186,3 +186,36 @@
 
 /* Learned combat passives use static SVG geometry and update only when state changes. */
 .hud-vitals{position:relative}.combat-passives{position:absolute;left:0;bottom:calc(100% + 5px);font-size:10px;line-height:20px;color:#c7d6cd;pointer-events:none}.combat-passives[hidden]{display:none}.jucheon-state,.sword-chain{display:flex;align-items:center;gap:5px;background:#102328d9;border-radius:4px;padding:0 5px}.jucheon-state svg{width:22px;height:22px;fill:none;stroke:#cbd9d0;stroke-width:1.5;transform:rotate(-90deg)}.jucheon-state .track{stroke:#53655c;stroke-width:1}.jucheon-state.ready{color:#eee3bd}.sword-chain i{font-style:normal;opacity:.4;border-bottom:1px solid #5b6960}.sword-chain i.linked{opacity:1;border-color:#d8cfb1}.sword-chain b{color:#ebd7a5}.skill-button:disabled{opacity:.32;filter:none;cursor:default}
+
+/* Four party controls must remain reachable on narrow portrait phones. */
+@media (orientation:portrait) and (max-width:420px){
+  .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
+  .honro #app .honro-compact-hud .ally-chip,
+  .honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
+}
+@media (orientation:portrait) and (max-width:380px){
+  .honro #app .honro-compact-hud .joystick .wind-gauge{width:56px!important}
+}
+
+/* Compact landscape phones need a two-band rail; the desktop rail starts at 700px. */
+@media (orientation:landscape) and (min-width:560px) and (max-width:699px) and (max-height:550px){
+  .honro #app .battle-bottom.honro-compact-hud{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;grid-template-rows:40px 72px!important;gap:4px 8px!important;padding:4px max(8px,env(safe-area-inset-right)) max(5px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important}
+  .honro #app .honro-compact-hud .hud-roster{grid-column:1!important;grid-row:1!important;min-width:0!important}
+  .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important;height:40px!important;overflow:visible!important}
+  .honro #app .honro-compact-hud .ally-chip,
+  .honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;height:40px!important;padding-right:2px!important}
+  .honro #app .honro-compact-hud .hud-vitals{grid-column:2!important;grid-row:1!important;min-width:0!important;align-self:center!important}
+  .honro #app .honro-compact-hud .hud-controls-row{grid-column:1/3!important;grid-row:2!important;display:grid!important;grid-template-columns:70px minmax(0,1fr) 98px!important;grid-template-rows:72px!important;height:72px!important;align-items:center!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:1!important;align-self:center!important;width:64px!important;height:64px!important;min-height:64px!important;transform:none!important}
+  .honro #app .honro-compact-hud .joystick-ring{width:64px!important;height:64px!important}
+  .honro #app .honro-compact-hud .joystick-ring i{width:30px!important;height:30px!important;margin:-15px!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:2!important;grid-row:1!important;justify-self:center!important;display:grid!important;grid-template-columns:repeat(4,50px)!important;gap:4px!important;width:max-content!important}
+  .honro #app .honro-compact-hud .skill-button{width:50px!important;height:50px!important}
+  .honro #app .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:3!important;grid-row:1!important;--action-size:31px;--fire-size:56px;--action-x:0px;--action-y:2px;width:98px!important;height:68px!important}
+  .honro #app .honro-compact-hud .radial-actions .shot-readout{width:56px!important;font-size:7px!important}
+}
+
+@media (orientation:landscape) and (max-height:550px){
+  .honro #app .honro-compact-hud .joystick .wind-gauge{top:auto!important;bottom:2px!important;width:64px!important;padding:1px 3px;border-radius:5px;background:#10242ad9}
+  .honro #app .honro-compact-hud .wind-gauge small{font-size:7px!important}
+}
