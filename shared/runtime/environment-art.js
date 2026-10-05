@@ -30,7 +30,7 @@ function pool(c,z,a,time){if(!z.points?.length)return;const q=poolData(z),{left,
  // Five broad highlights, regardless of pool width; no per-frame wave mesh.
  const ripple=path('ripple','M-1 0 C-.75 -.5 -.4 .6 0 0 S.7 -.5 1 0');
  for(let i=0;i<5;i++){c.save();const phase=(time*(.055+i*.006)+i*.21)%1;c.translate(left+w*(.15+phase*.75),top+5+i*Math.min(12,h*.12));c.scale(w*(.12+(i%3)*.06),2+i*.35);c.globalAlpha*=.24+Math.sin(phase*Math.PI)*.40;c.strokeStyle=i%2?a.waterHighlightColor:a.waterfallFoamColor;c.lineWidth=1.1;c.stroke(ripple);c.restore();}
- c.fillStyle=gradient(c,left+w*.6,top,left+w*.6,top+h*.7,[[0,color(a.keyLightColor,.17)],[1,color(a.keyLightColor,0)]]);c.fillRect(left+w*.61,top,w*.16,h*.7);
+ c.fillStyle=gradient(c,left+w*.6,top,left+w*.6,top+h*.7,[[0,color(a.keyLightColor,.17)],[1,color(a.keyLightColor,0)]]);if(!z.honroCarvedBasin)c.fillRect(left+w*.61,top,w*.16,h*.7);
  c.strokeStyle=color(a.shadowTint,.85);c.lineWidth=4;c.stroke(q.edge);c.strokeStyle=color(a.waterHighlightColor,.70);c.lineWidth=1.5;c.stroke(q.edge);c.restore();
 }
 G.HonroEnvironmentArt={color,gradient,glow,fog,shaft,waterfall,pool,poolData,time:scene=>reduced?.matches?1.2:scene.time,stats:()=>({paths:paths.size,fogCards:cards.size,fogBytes:cards.size*512*128*4})};

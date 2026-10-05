@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-195 -240 390 263">
+<title>cave home</title>
+<desc>Original editable Korean granite and ink-mass environment artwork. Pure SVG paths and gradients; no embedded raster.</desc>
+<defs><linearGradient id="wall" x1="-150" y1="-180" x2="160" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5b605b"/><stop offset="1" stop-color="#2b3335"/></linearGradient></defs>
+
+<path id="stone-body" fill="url(#wall)" d="M-146 0L-141-134L115-139L150 0Z"/><path id="side-shadow" fill="#20292d" d="M73-135L115-139L150 0H79Z"/>
+<path id="heavy-curved-roof" fill="#101c26" d="M-188-145Q-158-135-120-160L-26-207L51-194L128-155Q154-137 183-153L165-127L94-132L-118-125L-172-128Z"/>
+<path id="roof-lit-plane" fill="#34424b" d="M-155-147L-26-207L51-194L128-155L164-145L109-151L-21-188L-122-141Z"/>
+<path fill="none" stroke="#65717a" stroke-width="3" d="M-185-145Q-163-134-127-147L-25-192L103-150Q144-134 181-153"/>
+<path id="timber-joinery" fill="#574936" d="M-139-131H-126V1H-139Z M64-135H79V0H64Z M123-131H137L149 0H133Z M-142-123H131V-111H-142Z"/>
+<path id="doorway" fill="#0a151d" d="M-25-105H40V0H-25Z"/><path fill="#8b6c44" d="M-31-109H45V-103H-25V0H-31Z"/>
+<path id="window-amber" fill="#ad813e" d="M-111-103H-62V-51H-111Z"/><path fill="#e2b65f" d="M-105-96H-89V-60H-105Z M-84-96H-69V-60H-84Z"/>
+<path fill="#574b39" d="M-111-82H-62V-77H-111Z"/><path id="foundation" fill="#49545a" d="M-164-2H153L172 16H-178Z"/><path fill="#89918f" d="M-161-2H153L158 4H-168Z"/>
+
+</svg>

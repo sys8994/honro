@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node workshop/build.mjs",
-    "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs",
+    "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs",
     "verify": "npm run build && npm --prefix game run verify && npm run test:integration && npm run test:performance",
     "test:integration": "node tests/migration.mjs && node tests/turnhold-physics-growth.mjs && npm run test:environment && node tests/audio.mjs && python -X utf8 tests/integration.py && npm run test:controls && npm run test:camera && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:stage36 && npm run test:skills && npm run test:story && npm run test:current-update && npm run test:progress-hud && npm run test:monsters && npm run test:party && npm run test:actors && npm run test:map-art && npm run test:act2 && npm run test:debug-mode",
     "test:debug-mode": "python -X utf8 tests/debug-mode-browser.py",
@@ -27,6 +27,23 @@
     "test:actors": "node tools/actor-forge/lab.mjs && python -X utf8 tests/actor-art-browser.py",
     "test:map-art": "python -X utf8 tests/map-art-browser.py current",
     "test:environment": "node tests/environment-depth.mjs && node tests/environment-composition.mjs && node tools/environment/validate.mjs && node tools/environment/inventory.mjs --check && python -X utf8 tests/environment-browser.py && python -X utf8 tests/environment-composition-browser.py",
-    "test:act2": "node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-terrain.mjs && node tests/act2-traversal.mjs && python -X utf8 tests/act2-browser.py && python -X utf8 tests/act2-revision-browser.py regression && python -X utf8 tests/act2-terrain-browser.py regression && node tests/act2-playthrough.mjs"
+    "test:act2": "node tests/act2-spatial-contracts.mjs && node tests/act2-spatial.mjs && node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-terrain.mjs && node tests/act2-optional-routes.mjs && node tests/act2-spatial-progression.mjs && node tests/act2-traversal.mjs && python -X utf8 tests/act2-spatial-browser.py && python -X utf8 tests/act2-browser.py && python -X utf8 tests/act2-revision-browser.py regression && python -X utf8 tests/act2-terrain-browser.py regression && node tests/act2-playthrough.mjs",
+    "test:act2:offline": "node tests/act2-spatial-contracts.mjs && node tests/act2-spatial.mjs && node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-terrain.mjs && node tests/act2-optional-routes.mjs && node tests/act2-spatial-progression.mjs && node tests/act2-traversal.mjs",
+    "test:launch-visibility": "node tests/aim-launch-collision.mjs && node tests/renderer-visibility.mjs",
+    "verify:offline": "node tools/verify-offline.mjs",
+    "capture:act2": "node tools/environment/capture-act2.mjs",
+    "test:vector-art": "node tests/vector-assets.mjs && node tests/workshop-vector-selection.mjs",
+    "test:intent-pipeline": "node --test tests/intent-pipeline.mjs tests/intent-pipeline-act.mjs tests/intent-pipeline-plan-approval.mjs tests/intent-pipeline-act-adapter.mjs tests/intent-pipeline-provenance.mjs && node tests/intent-pipeline-integration.mjs",
+    "test:act2:normal": "node tests/act2-playthrough.mjs",
+    "test:act2:combat-evidence": "node tools/collect-act2-combat.mjs",
+    "capture:act1": "node tools/environment/capture-act1.mjs",
+    "test:act1:offline": "node tests/act1-spatial-contracts.mjs && node tests/act1-collision-repair.mjs && node tests/act1-missions.mjs && node tests/act1-traversal.mjs && node tests/act1-high-low-shots.mjs && node tests/act1-spatial-art.mjs",
+    "test:act1:normal": "node tests/act1-playthrough.mjs",
+    "test:act1:combat-evidence": "node tests/act1-combat-evidence.mjs",
+    "test:act2:guidance": "node tests/act2-objective-readability.mjs",
+    "capture:act2:guidance": "node tools/environment/capture-act2-guidance.mjs"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "0.1.100"
   }
 }

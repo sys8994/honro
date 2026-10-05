@@ -1,0 +1,268 @@
+{
+  "schema": "honro-space-plan",
+  "version": 1,
+  "stageId": 18,
+  "id": "B",
+  "label": "넓은 공동형",
+  "buttonLabel": "B · 넓은 공동",
+  "description": "넓은 공동에서는 네 동행과 고정구를 읽기 쉽지만, 수직 탐험의 비중은 줄어듭니다.",
+  "topologyId": "open-bell-court",
+  "topology": "One broad, nearly level ritual court with a single short solid firing gallery left of the bell. No three-lane switchback.",
+  "silhouette": "A low entrance releases into one broad vaulted black chamber; the bell and asymmetric short gallery are isolated landmarks.",
+  "floor": [
+    [
+      0,
+      5500
+    ],
+    [
+      1200,
+      5480
+    ],
+    [
+      2150,
+      5430
+    ],
+    [
+      2900,
+      5410
+    ],
+    [
+      3500,
+      5410
+    ],
+    [
+      4240,
+      5542.421
+    ],
+    [
+      4500,
+      5280
+    ],
+    [
+      4850,
+      4920
+    ],
+    [
+      5150,
+      4920
+    ],
+    [
+      5510,
+      5280
+    ],
+    [
+      5810,
+      5600
+    ],
+    [
+      7000,
+      5600
+    ],
+    [
+      8050,
+      5510
+    ],
+    [
+      9050,
+      5480
+    ],
+    [
+      10400,
+      5520
+    ]
+  ],
+  "roof": [
+    [
+      0,
+      4300
+    ],
+    [
+      1400,
+      3750
+    ],
+    [
+      2400,
+      2350
+    ],
+    [
+      4000,
+      1800
+    ],
+    [
+      6200,
+      1750
+    ],
+    [
+      8200,
+      2300
+    ],
+    [
+      9300,
+      3600
+    ],
+    [
+      10400,
+      4200
+    ]
+  ],
+  "mainRoute": [
+    [
+      0,
+      5500
+    ],
+    [
+      1200,
+      5480
+    ],
+    [
+      2150,
+      5430
+    ],
+    [
+      2900,
+      5410
+    ],
+    [
+      3500,
+      5410
+    ],
+    [
+      4240,
+      5542.421
+    ],
+    [
+      4500,
+      5280
+    ],
+    [
+      4850,
+      4920
+    ],
+    [
+      5150,
+      4920
+    ],
+    [
+      5510,
+      5280
+    ],
+    [
+      5810,
+      5600
+    ],
+    [
+      7000,
+      5600
+    ],
+    [
+      8050,
+      5510
+    ],
+    [
+      9050,
+      5480
+    ],
+    [
+      10400,
+      5520
+    ]
+  ],
+  "solids": [],
+  "sites": {
+    "clear-wards": {
+      "x": 2150,
+      "y": 5430
+    },
+    "silence": {
+      "x": 3200,
+      "y": 5410
+    },
+    "hold-silence": {
+      "x": 3200,
+      "y": 5410
+    },
+    "upper-chain": {
+      "x": 5060,
+      "y": 4920
+    },
+    "lower-chain": {
+      "x": 6150,
+      "y": 5600
+    },
+    "leak": {
+      "x": 7270,
+      "y": 5576.857
+    },
+    "keeper": {
+      "x": 8440,
+      "y": 5498.3
+    },
+    "clear-bell": {
+      "x": 9620,
+      "y": 5496.889
+    }
+  },
+  "lampX": 2750,
+  "bell": {
+    "x": 6710,
+    "bottomY": 5515,
+    "scale": 1.4
+  },
+  "oilLampXs": [
+    1100,
+    2400,
+    4100,
+    7800,
+    9400
+  ],
+  "rooms": [
+    {
+      "id": "entry",
+      "role": "compressed-arrival"
+    },
+    {
+      "id": "silence",
+      "role": "four-round-mage-defense"
+    },
+    {
+      "id": "bell",
+      "role": "central-bell-and-fixtures"
+    },
+    {
+      "id": "keeper",
+      "role": "nonlethal-confrontation"
+    }
+  ],
+  "connections": [
+    {
+      "from": "entry",
+      "to": "silence",
+      "mode": "walk-jump"
+    },
+    {
+      "from": "silence",
+      "to": "bell",
+      "mode": "walk-jump"
+    },
+    {
+      "from": "bell",
+      "to": "keeper",
+      "mode": "walk-jump"
+    }
+  ],
+  "graphicNotes": [
+    "Large flat court is intentional negative space, not an invitation to repeat memorial props.",
+    "Use a broad rough rock vault; a restrained stone plinth and small temple-work traces may anchor the site, but do not invent another full temple or palace.",
+    "Keep firing ramp left of bell body (bell x range 6220–7200); no bridge or solid route through bronze.",
+    "Put wear, bronze relief and a few oil lamps on actual existing vector assets. No glowing runes or neon effects."
+  ],
+  "combatTradeoffs": [
+    "Best party and objective readability; simplest all-class ground traversal.",
+    "Open court exposes the party to longer firing lanes.",
+    "Fewer vertical choices; gallery shape and spacing must still block trivial all-map sightlines."
+  ],
+  "limitations": [
+    "Unapproved spatial prototype; not final graphics.",
+    "28 enemies and authored objectives are preserved; balance and normal combat clear not yet validated."
+  ]
+}

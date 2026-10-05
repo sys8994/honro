@@ -44,6 +44,8 @@ export interface Prediction {
     y: number;
     unit?: string;
     terrain?: string;
+    /** False when terrain identifies an earlier bounce rather than the endpoint. */
+    terrainAtEnd?: boolean;
     closest: number;
     apex?: Vec;
 }
@@ -192,6 +194,16 @@ export class Engine {
     chargePower(u: Unit, s: Skill, seconds: number) { return clamp(seconds / Math.max(.001, this.chargeDuration(u, s)), 0, 1); }
     velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),occultFloor=({O01:.74,O04:.80} as Record<string,number>)[s.id]||0,v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * Math.max(occultFloor,charge) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
     origin(u: Unit, angle: number, body = false) { const reach = body ? 6 : u.cls === 'mage' ? 44 : u.cls === 'archer' ? 42 : u.cls === 'occultist' ? 40 : 28; return { x: u.x + Math.cos(rad(angle)) * reach, y: u.y - u.h * .63 - Math.sin(rad(angle)) * (body ? 8 : reach) }; }
+    /** Keep a weapon's muzzle from starting on the far side of a nearby solid face.
+     * This is a launch-only sweep: locomotion's tangent/escape collision rule stays intact,
+     * and genuinely terrain-phasing skills retain their authored origin. */
+    projectileOrigin(u: Unit, skill: Skill, angle: number) {
+        const body=BODY.has(skill.mode),origin=this.origin(u,angle,body);
+        if(body||skill.phase==='terrain'||skill.phase==='all')return origin;
+        const radius=ARROWS.has(skill.mode)?3:skill.mode==='shieldthrow'?9:6;
+        const hit=this.collision({x:u.x,y:u.y-u.h*.63},origin,radius,u.id,[],false);
+        return hit?{x:hit.x+hit.n.x*.05,y:hit.y+hit.n.y*.05}:origin;
+    }
     /** Data-only environmental patch; renderer cache and all future substeps see it immediately. */
     setEnvironment(patch:PhysicsPatch){if(!validPhysicsPatch(patch))throw new Error('Invalid physics patch');this.b.physics??=makePhysics();changePhysics(this.b.physics,patch);this.emit('change');}
     triggerPhysicsEvent(event:string){this.applyPhysicsCues(event);}
@@ -257,7 +269,7 @@ export class Engine {
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
         const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
-        const body = BODY.has(skill.mode), origin = this.origin(u, angle, body), v = this.velocity(u, skill, angle, power);
+        const body = BODY.has(skill.mode), origin = this.projectileOrigin(u, skill, angle), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
         const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.alive(u.side).map(v=>v.id):[], skips: string[] = [];
         let ap: Vec | undefined;
@@ -331,8 +343,12 @@ export class Engine {
             y = ny;
             if (collect && i % 3 === 0)
                 points.push({ x, y });
-            if (y > this.b.height + 180 || x < -280 || x > this.b.width + 280 || y < -1700)
+            // Use the live projectile's removal bounds, including phase-through shots
+            // which can leave the map without ever finding a terrain contact.
+            if (y > this.b.height + 110 || x < -170 || x > this.b.width + 170 || y < -1700) {
+                if(collect&&i%3!==0)points.push({x,y});
                 break;
+            }
         }
         return { points, x, y, closest, apex: ap };
     }
@@ -443,8 +459,8 @@ export class Engine {
         b.shot++;
         b.shotDamage = {}; b.reviewDamage={}; b.reviewFocus=undefined;
         b.shots += u.side === 0 ? 1 : 0;
-        const origin = this.origin(u, u.angle, BODY.has(s.mode));
-        const make = (a: number, damage = e.damage, child = false) => { const origin=this.origin(u,a,BODY.has(s.mode)),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; b.projectiles.push(p); return p; };
+        const origin = this.projectileOrigin(u, s, u.angle);
+        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
             for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
@@ -532,7 +548,7 @@ export class Engine {
       v.elapsed+=dt;
       while(v.remaining>0&&v.elapsed+1e-8>=v.interval){v.elapsed-=v.interval;v.remaining--;v.index++;
         const sk=SKILLS[v.template.skill],a=clamp(v.angle+(this.random()*2-1)*VOLLEY_SPREAD,AIM_MIN,AIM_MAX),angles=volleyAngles(sk,v.template.skillRank||u.ranks[sk.id]||1,a);
-        for(const angle of angles){const o=this.origin(u,angle),vel=this.velocity(u,sk,angle,v.power);const p:Projectile={...JSON.parse(JSON.stringify(v.template)),id:b.nextId++,x:o.x,y:o.y,...vel,prevVy:vel.vy,age:0,apex:false,hit:[],trail:[o],phase:0,bounces:0,pierces:0,emissions:0,rolled:0,fieldHits:[],amplification:1,damage:v.template.damage*volleyDamage(passiveRank(u,'AP01'),v.index),followup:true,repeatIndex:v.index,launchX:o.x,launchY:o.y,carry:[]};b.projectiles.push(p);}
+        for(const angle of angles){const o=this.projectileOrigin(u,sk,angle),vel=this.velocity(u,sk,angle,v.power);const p:Projectile={...JSON.parse(JSON.stringify(v.template)),id:b.nextId++,x:o.x,y:o.y,...vel,prevVy:vel.vy,age:0,apex:false,hit:[],trail:[o],phase:0,bounces:0,pierces:0,emissions:0,rolled:0,fieldHits:[],amplification:1,damage:v.template.damage*volleyDamage(passiveRank(u,'AP01'),v.index),followup:true,repeatIndex:v.index,launchX:o.x,launchY:o.y,carry:[]};b.projectiles.push(p);}
         u.anim=.6;this.fx('ring',u.x,u.y-u.h*.6,sk.color,20);this.emit('sound',{name:'arrow'});
       }
       if(v.remaining<=0)b.volley=undefined;

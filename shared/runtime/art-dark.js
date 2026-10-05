@@ -3,6 +3,14 @@ const Scene=G.HonroScene,D=G.honroDraw,{P,L,E,glyph,glow}=D,H=G.HONRO_CONTENT,C=
 const PAL={ink:'#0b171c',rim:'#718173',steel:'#73817d',cloth:'#34463f',paper:'#c2b79a',blood:'#86504e'};
 const noise=(n)=>{const x=Math.sin(n*12.9898+78.233)*43758.5453;return x-Math.floor(x);};
 G.HonroTerrainPalette=t=>t.mat==='wood'?['#544d3d','#38362f','#17282b']:t.mat==='crystal'?['#668b91','#3f6871','#17282b']:t.mat==='ice'?['#5d7878','#415f64','#17282b']:t.mat==='water'||t.surfaceKind==='wet'?['#50646a','#31474c','#152227']:t.mat==='earth'||t.surfaceKind==='soil'?['#596152','#39463f','#18282a']:t.mat==='rock'||t.surfaceKind==='rock'?['#56615f','#34413e','#17282b']:['#4b564d','#303e3a','#17282b'];
+// Adjacent foundation polygons share one world-height color field. A local
+// t.y-based gradient creates a permanent vertical seam at their join.
+G.HonroTerrainGradient=function(c,t,b){
+ const palette=G.HonroTerrainPalette(t),foundation=b&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=b.height-1;
+ const peers=foundation?(b.terrain||[]).filter(v=>!v.broken&&!v.oneWay&&!v.honroElementCollision&&v.mat===t.mat&&v.y+v.h>=b.height-1):[t];
+ const top=Math.min(...peers.map(v=>v.y)),g=c.createLinearGradient(0,top,0,top+Math.min(Math.max(...peers.map(v=>v.h)),420));
+ g.addColorStop(0,palette[0]);g.addColorStop(.22,palette[1]);g.addColorStop(1,palette[2]);return g;
+};
 function stroke(c,pts,col,w=1){c.beginPath();pts.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.strokeStyle=col;c.lineWidth=w;c.stroke();}
 function roof(c,x,y,w,h){P(c,[[x-w*.62,y],[x-w*.43,y-h*.18],[x-w*.24,y-h*.42],[x,y-h*.50],[x+w*.24,y-h*.42],[x+w*.43,y-h*.18],[x+w*.62,y],[x+w*.45,y-h*.09],[x-w*.45,y-h*.09]],'#192b30','#707c71',1.5);for(let i=-8;i<=8;i++){let px=x+i*w*.049;L(c,px,y-h*.11,px*.0+x+i*w*.038,y-h*.44+Math.abs(i)*h*.031,'#77817455',1.0);}L(c,x-w*.61,y,x+w*.61,y,'#969680',1.1);}
 function hall(c,x,y,w=220,h=180){c.save();c.translate(x,y);P(c,[[-w*.45,0],[-w*.4,-h*.82],[w*.40,-h*.82],[w*.45,0]],'#25342f','#15262a',2);P(c,[[-w*.45,0],[w*.45,0],[w*.5,10],[-w*.5,10]],'#5d6660');for(let i=-2;i<=2;i++){const xx=i*w*.16;L(c,xx,-h*.71,xx,-5,'#514943',7);L(c,xx-2,-h*.69,xx-2,-8,'#95856a',1.3);}for(const i of [-1,0,1]){c.fillStyle='#101d23';c.fillRect(i*w*.19-w*.066,-h*.60,w*.132,h*.52);for(let k=1;k<4;k++)L(c,i*w*.19-w*.063,-h*.61+k*16,i*w*.19+w*.063,-h*.61+k*16,'#6b6651',.7);}roof(c,0,-h*.68,w,h*.56);for(let i=0;i<3;i++)L(c,-w*.50-i*5,8+i*9,w*.50+i*5,8+i*9,'#71796a',3);c.restore();}
@@ -13,10 +21,10 @@ Scene.prototype.landmark=function(c,l){c.save();c.translate(l.x,l.y);c.scale(l.s
  else if(/bell/i.test(k)){L(c,-53,0,-53,-173,'#5a564a',7);L(c,53,0,53,-173,'#5a564a',7);roof(c,0,-175,148,65);c.fillStyle='#5c6555';c.beginPath();c.moveTo(-31,-110);c.quadraticCurveTo(-23,-164,0,-164);c.quadraticCurveTo(23,-164,31,-110);c.lineTo(42,-69);c.lineTo(-42,-69);c.closePath();c.fill();for(let i=0;i<3;i++)L(c,-30-i*4,-109+i*18,30+i*4,-109+i*18,'#85836b',2);}
  else hall(c,0,0,/watchtower/i.test(k)?145:230,/watchtower/i.test(k)?240:155);c.restore();};
 Scene.prototype.terrain=function(c,t){
+ if(t.honroSpaceSurfaceId&&G.HonroAct2SpatialArt?.active(this.battle))return G.HonroAct2SpatialArt.terrain(c,t,this.battle);
  const verts=C.poly(t),pts=verts.map(p=>[p.x,p.y]),wood=t.mat==='wood',ice=t.mat==='ice',seal=t.honroSeal,crystal=t.mat==='crystal',wet=t.mat==='water'||t.surfaceKind==='wet',earth=t.mat==='earth'||t.surfaceKind==='soil',rock=t.mat==='rock'||t.surfaceKind==='rock';
  const palette=G.HonroTerrainPalette(t);
- let grad=c.createLinearGradient(0,t.y,0,t.y+Math.min(t.h,420));
- grad.addColorStop(0,palette[0]);grad.addColorStop(.22,palette[1]);grad.addColorStop(1,palette[2]);P(c,pts,grad,null,0);
+ const grad=G.HonroTerrainGradient(c,t,this.battle);P(c,pts,grad,null,0);
  const left=this._staticCacheBuild?t.x:Math.max(t.x,this.x-this.canvas.clientWidth/this.scale),right=this._staticCacheBuild?t.x+t.w:Math.min(t.x+t.w,this.x+this.canvas.clientWidth/this.scale);
  if(wood){for(let i=0,x=left+17;x<right;x+=46,i++){const y=C.topAt(t,x,t.y);if(!Number.isFinite(y))continue;stroke(c,[[x,y+10],[x+18,y+8+noise(x+i)*8],[x+34,y+12]],'#b2a67c28',1);if(i%3===0)stroke(c,[[x+8,y+22],[x+17,y+31],[x+30,y+29]],'#171f1f66',1);}}
  else if(wet){for(let i=0,x=left+10;x<right;x+=38,i++){const y=C.topAt(t,x,t.y);if(!Number.isFinite(y))continue;stroke(c,[[x,y+8],[x+12,y+7+Math.sin((x+i)*.09)*4],[x+26,y+8]],'#d2e7ef33',1.2);if(i%2===0)stroke(c,[[x+8,y+20],[x+16,y+29],[x+24,y+24]],'#20485755',1);}}

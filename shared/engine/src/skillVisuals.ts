@@ -51,7 +51,10 @@ export function drawAimDirection(c:C,e:Engine,u:Unit,s:Skill,power:number,chargi
  if(s.passive||u.dead||u.retreat||s.mode==='prepare')return false;
  zoom=Math.max(.12,zoom);power=Math.max(0,Math.min(1,power));
  const melee=!!s.martial&&(s.branch==='sword'||s.mode==='bladeScreen'),angle=s.mode==='bladeScreen'?(Math.cos(u.angle*Math.PI/180)<0?Math.PI:0):u.angle*Math.PI/180;
- const origin=melee?{x:u.x,y:u.y-u.h*.5}:e.origin(u,u.angle,!!s.martial&&s.branch==='rush');
+ const origin=melee?{x:u.x,y:u.y-u.h*.5}:e.projectileOrigin(u,s,u.angle);
+ // A muzzle blocked by nearby rock is represented by the contact mark instead
+ // of a decorative direction arrow extending through the same solid face.
+ if(!melee&&!s.martial){const raw=e.origin(u,u.angle);if(Math.hypot(raw.x-origin.x,raw.y-origin.y)>.1)return false;}
  const length=96+(charging?power*24:0),alpha=charging?.9:.54,ink={archer:'#e3cca1',mage:'#e7ecda',knight:'#d1e1df',occultist:'#d7bddf'}[u.cls];
  c.save();c.translate(origin.x,origin.y);c.rotate(-angle);const size=1/Math.sqrt(zoom);c.scale(size,size);c.setLineDash([]);c.lineCap='round';c.lineJoin='round';
  // A fine, uninterrupted centre makes the selected direction unambiguous against scenery.
@@ -241,6 +244,19 @@ export function drawFireBloom(c:C,x:number,y:number,size:number,t:number){
 export function guideStroke(c:C,path:{x:number;y:number}[],zoom:number,color='#d9e1d2',alpha=.64,width=1.35){
  if(path.length<2)return;zoom=Math.max(.12,zoom);c.save();c.lineCap='round';c.lineJoin='round';c.setLineDash([4/zoom,7/zoom]);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle='#10242a';c.lineWidth=(width+1.95)/zoom;c.globalAlpha=.45;c.stroke();c.strokeStyle=color;c.lineWidth=width/zoom;c.globalAlpha=alpha;c.stroke();c.restore();
 }
+/** The terminal mark comes from the same collision that ended the live replay. */
+export function drawTerrainGuideContact(c:C,e:Engine,u:Unit,pr:ReturnType<Engine['predict']>,zoom=1){
+ if(!pr.terrain||pr.terrainAtEnd===false)return;
+ zoom=Math.max(.12,zoom);const r=5/zoom;
+ c.save();c.setLineDash([]);c.lineWidth=4/zoom;c.strokeStyle='#10242a';
+ c.beginPath();c.moveTo(pr.x-r,pr.y-r);c.lineTo(pr.x+r,pr.y+r);c.moveTo(pr.x+r,pr.y-r);c.lineTo(pr.x-r,pr.y+r);c.stroke();
+ c.strokeStyle='#edc39a';c.lineWidth=1.6/zoom;c.stroke();
+ if(Math.hypot(pr.x-u.x,pr.y-(u.y-u.h*.63))<180){
+  c.font=`600 ${11/zoom}px sans-serif`;c.textAlign='left';c.textBaseline='bottom';c.lineWidth=3/zoom;c.strokeStyle='#10242a';c.fillStyle='#edcda7';
+  c.strokeText('지형에 막힘',pr.x+10/zoom,pr.y-9/zoom);c.fillText('지형에 막힘',pr.x+10/zoom,pr.y-9/zoom);
+ }
+ c.restore();
+}
 const turnGuideCache=new WeakMap<Engine,{key:string;prediction:ReturnType<typeof turnPrediction>}>();
 export function drawTurnGuide(c:C,e:Engine,zoom=1,point?:{x:number;y:number}){
  const p=e.b.projectiles.find(p=>p.skill==='A09'&&p.owner===e.b.active&&!p.turned&&!p.followup);if(e.b.phase!=='flight'||!p)return false;
@@ -266,5 +282,5 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
   if(center!==pr){guideStroke(c,[{x:center.x,y:center.y-140},center],zoom,CLASSES[u.cls].color,.32,.85);}
  }
  if(s.id==='M04')for(const t of e.b.units.filter(t=>!t.dead&&t.side===1&&Math.hypot(t.x-pr.x,t.y-t.h*.5-pr.y)<=260+10*((u.ranks.M04||1)-1))){c.beginPath();c.moveTo(pr.x,pr.y);c.lineTo(t.x,t.y-t.h*.5);c.stroke();}
- c.restore();return true;
+ c.restore();drawTerrainGuideContact(c,e,u,pr,zoom);return true;
 }

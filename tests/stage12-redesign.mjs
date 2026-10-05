@@ -1,3 +1,4 @@
+import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import vm from 'node:vm';
@@ -7,7 +8,7 @@ const g=await runtime(),C=g.HONRO_CORE,checks=[],plain=x=>JSON.parse(JSON.string
 // Compare historical terrain recipes independently of newer combat tuning,
 // one-way gameplay platforms, and the separately authored scenery library.
 const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mid','bridge-east','lower-lookout','pier-west','pier-east','tier-low','tier-mid','tier-upper','tier-crown','ramp-1','center-lookout']);
-function withoutHistoricalSodanAttack(value){const copy=plain(value);delete copy.library;if(copy.stages)copy.stages=copy.stages.slice(0,10);for(const stage of copy.stages||[]){delete stage.environment;stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));for(const t of stage.terrains||[])if(platformIds.has(t.id))delete t.oneWay;for(const u of stage.units||[])for(const key of ['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp'])delete u[key];}return copy;}
+function withoutHistoricalSodanAttack(value){const copy=applyAct1CollisionRepair(plain(value));delete copy.library;if(copy.stages)copy.stages=copy.stages.slice(0,10);for(const stage of copy.stages||[]){delete stage.environment;if(stage.design?.act1Scene){delete stage.design.act1Scene;if(!Object.keys(stage.design).length)delete stage.design;}stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-')&&!e.id?.startsWith('a1-scene-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));for(const t of stage.terrains||[])if(platformIds.has(t.id))delete t.oneWay;for(const u of stage.units||[])for(const key of ['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp'])delete u[key];}return copy;}
 const check=(name,fn)=>{try{const detail=fn();checks.push({name,passed:true,detail});console.log('PASS',name,detail??'');}catch(e){checks.push({name,passed:false,error:e.message});console.error('FAIL',name,e.message);}};
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design.js',import.meta.url),'utf8'),g);

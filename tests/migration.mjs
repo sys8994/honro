@@ -1,3 +1,4 @@
+import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
 import {writeFile,mkdir,readFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
@@ -11,7 +12,7 @@ const baseline=plain(await migrate());
 const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mid','bridge-east','lower-lookout','pier-west','pier-east','tier-low','tier-mid','tier-upper','tier-crown','ramp-1','center-lookout']);
 const originalTerrain=items=>plain(items).map(t=>{if(platformIds.has(t.id))delete t.oneWay;return t;});
 const balanceFields=new Set(['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp']);
-function mapWithoutSodanBalance(value){const copy=plain(value);delete copy.library;for(const stage of copy.stages||[]){delete stage.environment;stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));stage.terrains=originalTerrain(stage.terrains);for(const u of stage.units||[])for(const key of balanceFields)delete u[key];}return copy;}
+function mapWithoutSodanBalance(value){const copy=applyAct1CollisionRepair(plain(value));delete copy.library;for(const stage of copy.stages||[]){delete stage.environment;if(stage.design?.act1Scene){delete stage.design.act1Scene;if(!Object.keys(stage.design).length)delete stage.design;}stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-')&&!e.id?.startsWith('a1-scene-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));stage.terrains=originalTerrain(stage.terrains);for(const u of stage.units||[])for(const key of balanceFields)delete u[key];}return copy;}
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design.js',import.meta.url),'utf8'),g);
 const firstDesign=plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline)));
@@ -29,7 +30,7 @@ for(let id=1;id<=10;id++){
   assert.deepEqual(originalTerrain(b.terrain),originalTerrain(a.terrain),`Stage ${id} ${difficulty} terrain`);
   assert.deepEqual(plain(b.honroSurfaceZones).map(({terrainId,...z})=>z),plain(a.honroSurfaceZones),`Stage ${id} materials`);
   for(const field of ['honroEvents','honroMarkers','honroMapAnchors','honroMap','honroRoute','honroDetailStats','honroState','honroGrowth'])
-   assert.deepEqual(field==='honroMarkers'?plain(b[field]).filter(m=>!m.id?.startsWith('habitat-')):plain(b[field]),plain(a[field]),`Stage ${id} ${difficulty} ${field}`);
+   {const value=field==='honroMarkers'?plain(b[field]).filter(m=>!m.id?.startsWith('habitat-')):plain(b[field]);if(field==='honroMap')delete value.act1Scene;assert.deepEqual(value,plain(a[field]),`Stage ${id} ${difficulty} ${field}`);}
   assert.equal(b.units.length,a.units.length);
   for(const u of a.units){const v=b.units.find(v=>v.id===u.id);assert.ok(v,u.id);for(const [key,value] of Object.entries(plain(u))){if(balanceFields.has(key))continue;assert.deepEqual(plain(v[key]),value,`Stage ${id} ${difficulty} ${u.id}.${key}`);}}
   for(let i=0;i<a.honroLandmarks.length;i++){const original=plain(a.honroLandmarks[i]),actual=plain(b.honroLandmarks[i]);if(id===10&&original.kind==='ritualDais')original.layer='prop';for(const [key,value] of Object.entries(original))assert.deepEqual(actual[key],value,`Stage ${id} landmark ${i}.${key}`);}

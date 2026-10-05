@@ -1,7 +1,8 @@
-﻿// Gameplay bot: engine movement, jump, fire, item, wait and interaction APIs only.
+// Gameplay bot: engine movement, jump, fire, item, wait and interaction APIs only.
 // It never edits actors, enemy HP, inventory or objective state during play.
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
 const requested=process.argv.slice(2).map(Number),ids=requested.length?requested:Array.from({length:10},(_,i)=>11+i);
 const actionLimit=Number(process.env.HONRO_BOT_ACTION_LIMIT||620);
@@ -14,11 +15,13 @@ for(const id of ids){
   C.sanitizeLoadout(p,cls);
  }
  let {e,b,app,st,events}=battlefield(g,id,{profile:p});
+ const canonical=g.HONRO_PROJECT.stages[id-1],space=canonical.design?.space;
+ const geometryFingerprint=createHash('sha256').update(JSON.stringify({terrain:canonical.terrains,routes:canonical.routes,sites:space?.sites,units:canonical.units,materials:canonical.materials})).digest('hex');
  const checkpoint=`_local/reports/act2-revision/normal-checkpoint-${id}.json`;
  let actions=[];
  if(process.env.HONRO_BOT_RESUME==='1'){
   const saved=JSON.parse(await readFile(checkpoint,'utf8'));
-  if(saved.stage!==id||saved.b.honroAct2Revision!==2)throw Error('Wrong Act 2 checkpoint for stage '+id);
+  if(saved.stage!==id||saved.b.honroAct2Revision!==2||saved.geometryFingerprint!==geometryFingerprint)throw Error('Checkpoint does not match current Act 2 geometry for stage '+id+'; run a fresh test instead of resuming an old clear.');
   b=saved.b;e=new C.Engine(b,event=>events.push(event),false);app.engine=e;actions=saved.actions;
  }
  const start=performance.now();
@@ -59,14 +62,8 @@ for(const id of ids){
   if(s.kind==='hold'&&(!combatTarget||s.requiredClass===u.cls||Math.abs(x-m.x)>s.radius-100)){x=m.x;y=m.y;}
   if(s.kind==='rescue'&&combatTarget&&(combatTarget.dead||combatTarget.hp<=combatTarget.maxHp*.4)){x=m.x;y=m.y;}
 
-  if(s.kind==='destroy'){x=id===15?4060:pos.x-180;y=g.HonroWorld.top(b,x,u.y);}
+  if(s.kind==='destroy'){const firing=space?.sites[s.id]?.standing;x=firing?.x??pos.x-180;y=firing?.y??g.HonroWorld.top(b,x,u.y);}
   else if(s.kind==='defeat'){x=pos.x-(u.cls==='knight'?100:420);}
-  if(id===14&&pos.y>5000){
-   // The lower road doubles back beneath the upper village. Follow its bend
-   // in short steps or a direct move toward the lower family climbs back up.
-   if(u.y<4750){x=8360;y=4800;}
-   else if(u.x>pos.x+300){x=u.x-250;y=pos.y;}
-  }
   if(s.kind==='escort'){x=Math.min(pos.x,e.unit('objective').x+420);}
   const ritualKeeper=id===19&&u.cls==='occultist',reserveForRitual=id===19&&!ritualKeeper&&sodanAlive&&b.items.heal<=2;
   const recoverAt=u.cls==='occultist'?.30:.25;
@@ -82,15 +79,16 @@ for(const id of ids){
   if(needsHeal&&e.item('heal')){actions.push({round:b.round,actor:u.cls,action:'heal-item'});continue;}
   if(needsWard&&e.item('ward')){actions.push({round:b.round,actor:u.cls,action:'ward-item'});continue;}
   if(retreating){defend();actions.push({round:b.round,actor:u.cls,action:'retreat-defend'});continue;}
-  const key=s.id+':'+b.round;if(previous!==key){previous=key;console.log('PLAY',id,b.round,s.id,u.cls,Math.round(u.x),Math.round(u.y),'HP',e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`_local/reports/act2-revision/normal-progress-${id}.json`,JSON.stringify({stage:id,round:b.round,goal:s.id,actions,units:b.units},null,2));await writeFile(checkpoint,JSON.stringify({stage:id,b,actions}));}
+  const key=s.id+':'+b.round;if(previous!==key){previous=key;console.log('PLAY',id,b.round,s.id,u.cls,Math.round(u.x),Math.round(u.y),'HP',e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`_local/reports/act2-revision/normal-progress-${id}.json`,JSON.stringify({stage:id,round:b.round,goal:s.id,actions,units:b.units},null,2));await writeFile(checkpoint,JSON.stringify({stage:id,geometryFingerprint,b,actions}));}
   if(m?.action&&(!needed||u.cls===needed)&&Math.hypot(u.x-m.x,(u.y-m.y)*.75)<=250&&Math.abs(u.y-m.y)<=150&&g.HonroAct2.eligibility(app,m).ok){g.HonroAct2.use(app,m);actions.push({round:b.round,actor:u.cls,action:'interact',id:s.id});continue;}
   if(s.kind==='destroy'&&(!needed||u.cls===needed)){
    const target={...u,id:'terrain-target',side:1,x:terrain.x+terrain.w/2,y:terrain.y+terrain.h/2+15,h:30,r:25};
    let best=null;
    // The authored shaft is narrower than the generic eight-degree enemy grid.
-   const angles=id===15?[90,89.5,90.5,89,91]:Array.from({length:38},(_,j)=>-20+j*3);
-   for(const angle of angles)for(const power of [.2,.35,.5,.65,.8,1]){const a=u.x>target.x?180-angle:angle,hit=e.predict(u,skill,a,power,target,false),distance=Math.hypot(hit.x-target.x,hit.y-(target.y-15));if(!best||distance<best.distance)best={angle:a,power,distance};}
-   if(best.distance<70&&e.fire(skill.id,best.angle,best.power)){actions.push({round:b.round,actor:u.cls,action:'fire-target',id:s.id,...best});continue;}
+   const direct=Math.atan2(u.y-u.h*.6-(terrain.y+terrain.h*.5),terrain.x+terrain.w*.5-u.x)*180/Math.PI;
+   const angles=[direct,...Array.from({length:97},(_,j)=>-12+j*2)];
+   for(const angle of angles)for(const power of [.2,.35,.5,.65,.8,1]){const a=angle,hit=e.predict(u,skill,a,power,target,false),distance=Math.hypot(hit.x-target.x,hit.y-(target.y-15));if(hit.terrain===terrain.id&&(!best||distance<best.distance))best={angle:a,power,distance};}
+   if(best&&e.fire(skill.id,best.angle,best.power)){actions.push({round:b.round,actor:u.cls,action:'fire-target',id:s.id,...best});continue;}
   }
   if(u.focus<u.maxFocus*.15&&b.items.focus>0&&e.item('focus')){actions.push({round:b.round,actor:u.cls,action:'focus-item'});continue;}
   let fired=false;
@@ -118,9 +116,9 @@ for(const id of ids){
   }
   if(!fired){defend();actions.push({round:b.round,actor:u.cls,action:'defend'});}
  }
- const row={stage:id,revision:b.honroAct2Revision,phase:b.phase,round:b.round,goal:g.HonroAct2.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,items:{...b.items},heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,x:u.x,y:u.y})),actions};rows.push(row);
+ const row={stage:id,revision:b.honroAct2Revision,geometryFingerprint,geometryRevision:space?.geometryRevision,phase:b.phase,round:b.round,goal:g.HonroAct2.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,items:{...b.items},heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,x:u.x,y:u.y})),actions};rows.push(row);
  console.log('RESULT',JSON.stringify({...row,actions:actions.length}));
- await writeFile(checkpoint,JSON.stringify({stage:id,b,actions}));
+ await writeFile(checkpoint,JSON.stringify({stage:id,geometryFingerprint,b,actions}));
  await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile(`_local/reports/act2-revision/normal-play-${id}.json`,JSON.stringify(row,null,2));
  if(b.phase!=='won')await writeFile(`_local/reports/act2-revision/normal-failed-${id}.json`,JSON.stringify({units:b.units,terrain:b.terrain,events},null,2));
 }

@@ -1,0 +1,321 @@
+{
+  "schema": "honro-space-plan",
+  "version": 1,
+  "stageId": 18,
+  "id": "C",
+  "label": "갈라진 석교형",
+  "buttonLabel": "C · 석교와 아래길",
+  "description": "석교와 아래길을 오가며 사선을 고를 수 있지만, 아래로 내려간 동행을 합류시키는 동선은 더 길어집니다.",
+  "topologyId": "fractured-stone-crossing",
+  "topology": "A thin high stone crossing and a deep ground bypass join at both abutments, forming one actual loop. Mandatory ritual objectives stay on the crossing in this first prototype; lower route offers a combat approach.",
+  "silhouette": "One long thin stone span cuts an otherwise deep open cavity; thick irregular abutments and a dark bowl underneath contrast with A's solid descent and B's open level court.",
+  "floor": [
+    [
+      0,
+      4310
+    ],
+    [
+      1100,
+      4330
+    ],
+    [
+      1900,
+      4400
+    ],
+    [
+      2600,
+      4800
+    ],
+    [
+      3300,
+      5300
+    ],
+    [
+      4000,
+      5820
+    ],
+    [
+      5500,
+      6220
+    ],
+    [
+      6800,
+      6120
+    ],
+    [
+      7900,
+      5340
+    ],
+    [
+      9200,
+      4390
+    ],
+    [
+      10400,
+      4430
+    ]
+  ],
+  "roof": [
+    [
+      0,
+      3030
+    ],
+    [
+      1700,
+      2100
+    ],
+    [
+      3400,
+      1600
+    ],
+    [
+      5000,
+      1850
+    ],
+    [
+      6500,
+      1800
+    ],
+    [
+      7800,
+      2500
+    ],
+    [
+      9300,
+      3200
+    ],
+    [
+      10400,
+      3300
+    ]
+  ],
+  "mainRoute": [
+    [
+      0,
+      4310
+    ],
+    [
+      1100,
+      4330
+    ],
+    [
+      1700,
+      4382.5
+    ],
+    [
+      1900,
+      4230
+    ],
+    [
+      2800,
+      4210
+    ],
+    [
+      3700,
+      4180
+    ],
+    [
+      5200,
+      4180
+    ],
+    [
+      6300,
+      4220
+    ],
+    [
+      7600,
+      4260
+    ],
+    [
+      9200,
+      4220
+    ],
+    [
+      10400,
+      4430
+    ]
+  ],
+  "solids": [
+    {
+      "id": "stone-crossing",
+      "points": [
+        [
+          1900,
+          4230
+        ],
+        [
+          2800,
+          4210
+        ],
+        [
+          3700,
+          4180
+        ],
+        [
+          5200,
+          4180
+        ],
+        [
+          6300,
+          4220
+        ],
+        [
+          7600,
+          4260
+        ],
+        [
+          9200,
+          4220
+        ],
+        [
+          9200,
+          4280
+        ],
+        [
+          8450,
+          4420
+        ],
+        [
+          7550,
+          4510
+        ],
+        [
+          6650,
+          4430
+        ],
+        [
+          5400,
+          4350
+        ],
+        [
+          4650,
+          4430
+        ],
+        [
+          3900,
+          4370
+        ],
+        [
+          2400,
+          4450
+        ],
+        [
+          1900,
+          4290
+        ]
+      ],
+      "route": true
+    }
+  ],
+  "sites": {
+    "clear-wards": {
+      "x": 2220,
+      "y": 4222.889
+    },
+    "silence": {
+      "x": 3530,
+      "y": 4185.667
+    },
+    "hold-silence": {
+      "x": 3530,
+      "y": 4185.667
+    },
+    "upper-chain": {
+      "x": 5060,
+      "y": 4180
+    },
+    "lower-chain": {
+      "x": 6000,
+      "y": 4209.091
+    },
+    "leak": {
+      "x": 7340,
+      "y": 4252
+    },
+    "keeper": {
+      "x": 8460,
+      "y": 4238.5
+    },
+    "clear-bell": {
+      "x": 9720,
+      "y": 4407.333
+    }
+  },
+  "lampX": 2900,
+  "bell": {
+    "x": 6750,
+    "bottomY": 4148.846,
+    "scale": 1.4
+  },
+  "oilLampXs": [
+    1100,
+    2400,
+    4100,
+    7800,
+    9400
+  ],
+  "rooms": [
+    {
+      "id": "entry",
+      "role": "compressed-arrival"
+    },
+    {
+      "id": "silence",
+      "role": "four-round-mage-defense"
+    },
+    {
+      "id": "bell",
+      "role": "central-bell-and-fixtures"
+    },
+    {
+      "id": "keeper",
+      "role": "nonlethal-confrontation"
+    }
+  ],
+  "connections": [
+    {
+      "from": "entry",
+      "to": "silence",
+      "mode": "walk-jump"
+    },
+    {
+      "from": "silence",
+      "to": "bell",
+      "mode": "walk-jump"
+    },
+    {
+      "from": "bell",
+      "to": "keeper",
+      "mode": "walk-jump"
+    },
+    {
+      "from": "entry",
+      "to": "keeper",
+      "mode": "lower-bypass",
+      "verification": "physical-fixture-required"
+    }
+  ],
+  "graphicNotes": [
+    "Fractured means a large irregular underside and separated visual stone slabs, not an unverified dynamic collapse mechanic.",
+    "Keep bridge top unbroken and both ends joined to real ground; lower route must remain open under the entire span.",
+    "Do not add full-height central support columns that split or plug the lower route.",
+    "No ordinary front decoration may obscure the bridge edge, party silhouettes, or aim lines."
+  ],
+  "combatTradeoffs": [
+    "Only option with an actual upper/lower approach loop and cross-level firing.",
+    "Lower route is longer and may leave melee heroes far from upper threats.",
+    "Verify AI navigation and spirit-lamp local reveal independently on both levels; do not spread mandatory wave targets into unreachable lower corners."
+  ],
+  "limitations": [
+    "Unapproved spatial prototype; not final graphics.",
+    "28 enemies and authored objectives preserved; balance and normal combat clear not yet validated.",
+    "Bridge entrance uses a 170-unit jump lip, with 110-unit head clearance for the walking route below. Existing jump is required to select upper route."
+  ],
+  "entryJump": {
+    "x": 1710,
+    "to": "stone-crossing",
+    "required": true,
+    "mechanic": "existing-jump",
+    "description": "Jump from left shoulder for bridge; keep walking to descend below."
+  }
+}

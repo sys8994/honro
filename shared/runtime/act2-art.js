@@ -45,6 +45,48 @@ S.terrain=function(c,t){if(!t.honroCave&&!t.honroCeiling&&!(this.battle?.honroSt
  // A few broad mineral planes, clipped to the physical rock mass.
  c.clip();c.globalAlpha=.17;c.fillStyle='#8b9290';c.beginPath();c.moveTo(t.x+t.w*.12,t.y);c.lineTo(t.x+t.w*.56,t.y);c.lineTo(t.x+t.w*.37,t.y+t.h*.7);c.lineTo(t.x+t.w*.21,t.y+t.h);c.closePath();c.fill();c.restore();
 };
+// Guidance uses the same Euclidean foot-point radii as Act2.tick. These are
+// screen cues only: no collision, geometry, progress or saved fields are added.
+function holdGuide(b,s){
+ if(!s||s.kind!=='hold'||!G.HonroAct2.revision2(b))return null;
+ const m=b.honroMarkers.find(m=>m.id===s.id);if(!m||!(s.radius>0)||!(s.contestRadius>0))return null;
+ const heroes=b.units.filter(u=>u.side===0&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);
+ const guarded=heroes.some(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius);
+ const contested=b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
+ const progress=b.honroState?.act2?.holds?.[s.id]?.progress||0;
+ return{x:m.x,y:m.y,radius:s.radius,contestRadius:s.contestRadius,guarded,contested,progress,rounds:s.rounds,
+  who:s.requiredClass?G.HONRO_CONTENT.hero[s.requiredClass].name:'동행 1명',status:contested?'적 진입 · 진행 멈춤':guarded?'방어 중':'범위 안으로 이동'};
+}
+function guideBadge(c,scene,x,y,lines,color){
+ const z=Math.max(.05,scene.scale),{w,h}=scene.size(),sx=w/2+(x-scene.x)*z,sy=h/2+(y-scene.y)*z;
+ if(sx<0||sx>w||sy<20||sy>h-lines.length*19-14)return;
+ c.save();c.font='600 12px sans-serif';const width=Math.min(w-24,Math.max(...lines.map(t=>c.measureText(t).width))+20);
+ const clamped=Math.max(width/2+12,Math.min(w-width/2-12,sx));c.translate(x+(clamped-sx)/z,y);c.scale(1/z,1/z);c.textAlign='center';c.textBaseline='middle';
+ c.fillStyle='#10212bed';c.fillRect(-width/2,-13,width,lines.length*19+7);c.strokeStyle=color+'88';c.lineWidth=1;c.strokeRect(-width/2,-13,width,lines.length*19+7);
+ lines.forEach((text,i)=>{c.fillStyle=i?'#c7cdc8':color;c.fillText(text,0,i*19,width-16);});c.restore();
+}
+function objectiveGuide(c,scene,b){
+ if(scene.editorView||scene.skillPreview)return null;
+ const s=G.HonroAct2.active(b)?G.HonroAct2.current(b):null;if(!s)return null;
+ const z=Math.max(.05,scene.scale),hold=holdGuide(b,s);
+ c.save();
+ if(hold){
+  const color=hold.contested?'#edab88':hold.guarded?'#b9d1b7':'#dfca98';
+  c.beginPath();c.arc(hold.x,hold.y,hold.radius,0,Math.PI*2);c.fillStyle=color+'09';c.fill();c.strokeStyle=color+'ba';c.lineWidth=1.6/z;c.stroke();
+  c.beginPath();c.arc(hold.x,hold.y,hold.contestRadius,0,Math.PI*2);c.setLineDash([5/z,7/z]);c.strokeStyle=hold.contested?'#edab88':'#cfb98b99';c.lineWidth=1.3/z;c.stroke();c.setLineDash([]);
+  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}턴 · ${hold.status}`,'실선: 방어 범위 / 점선: 적 진입 금지'],color);
+ }else if(s.kind==='destroy'){
+  const t=b.terrain.find(t=>t.id===s.id&&!t.broken);if(t){
+   // Trace the real collision polygon, then bracket its bounds at a readable
+   // screen width. Only the current actionable pin is highlighted.
+   const ps=C.poly(t);c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.strokeStyle='#f3d99bcc';c.lineWidth=1.6/z;c.stroke();
+   const pad=7/z,l=t.x-pad,r=t.x+t.w+pad,top=t.y-pad,bottom=t.y+t.h+pad,arm=8/z;c.beginPath();
+   for(const [x,dx]of [[l,1],[r,-1]])for(const [y,dy]of [[top,1],[bottom,-1]]){c.moveTo(x+dx*arm,y);c.lineTo(x,y);c.lineTo(x,y+dy*arm);}c.strokeStyle='#f3d99b';c.lineWidth=1.7/z;c.stroke();
+   guideBadge(c,scene,t.x+t.w/2,bottom+23/z,[s.requiredClass?G.HONRO_CONTENT.hero[s.requiredClass].name+' · 사격 표적':'공격하여 파괴'],'#f3d99b');
+  }
+ }
+ c.restore();return hold;
+}
 const tone=S.environmentTone;
 S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(b.honroStage<11||b.honroStage>20)return;
  c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);
@@ -54,9 +96,10 @@ S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(b.honroStage<11|
  }
  const target=G.HonroAct2.active(b)?G.HonroAct2.current(b):null;
  if(target){const m=b.honroMarkers.find(m=>m.id===target.id);if(m){c.strokeStyle='#d6c69c';c.lineWidth=2;c.beginPath();c.ellipse(m.x,m.y-3,32,9,0,0,Math.PI*2);c.stroke();}}
+ objectiveGuide(c,this,b);
  const a=b.honroState?.act2,pulse=a?.pulseRound;if(pulse&&pulse!==this._act2Pulse){this._act2Pulse=pulse;this._act2PulseStart=this.time;}
  if(this._act2PulseStart!==undefined&&this.time-this._act2PulseStart<1.6){c.globalAlpha=Math.max(0,.12*(1-(this.time-this._act2PulseStart)/1.6));c.fillStyle='#b0c9d5';c.fillRect(this.x-w/this.scale/2,this.y-h/this.scale/2,w/this.scale,h/this.scale);}
  c.restore();
 };
-G.HonroAct2Art={paths};
+G.HonroAct2Art={paths,holdGuide,objectiveGuide};
 })(globalThis);

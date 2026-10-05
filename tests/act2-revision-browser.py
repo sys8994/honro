@@ -1,4 +1,4 @@
-"""Revision 2 visual/contact audit, using actual shared game and editor scenes."""
+"""Stage-aware cave visual/contact audit in the shared game and editor scenes."""
 import json,sys
 from PIL import Image
 from playwright.sync_api import sync_playwright
@@ -23,9 +23,9 @@ with sync_playwright() as p:
             page.screenshot(path=str(OUT/f'stage-{sid}-{zone}.png'))
         if 13<=sid<=19:
             for edge in ['top','left','right','bottom']:
-                page.evaluate('''edge=>{const a=HonroApp,b=a.engine.b,s=a.scene,p=b.honroCaveEnvelope.portals.find(p=>p.side===edge);s.x=edge==='left'?0:edge==='right'?b.width:b.width*.5;s.y=edge==='top'?0:edge==='bottom'?b.height:p?(p.top+p.bottom)*.5:b.height*.5;s.render(a.engine,0)}''',edge)
+                page.evaluate('''edge=>{const a=HonroApp,b=a.engine.b,s=a.scene,p=(b.honroCaveEnvelope?.portals||b.honroCaveApproach?.portals||[]).find(p=>p.side===edge);s.x=edge==='left'?0:edge==='right'?b.width:b.width*.5;s.y=edge==='top'?0:edge==='bottom'?b.height:p?(p.top+p.bottom)*.5:b.height*.5;s.render(a.engine,0)}''',edge)
                 shot=OUT/f'stage-{sid}-{edge}.png';page.screenshot(path=str(shot))
-                if edge in ('left','right'):
+                if edge in ('left','right') and page.evaluate('edge=>(HonroApp.engine.b.honroCaveEnvelope?.portals||HonroApp.engine.b.honroCaveApproach?.portals||[]).some(p=>p.side===edge)', edge):
                     # A closed tunnel fill may be necessary, but its closing
                     # edge must never be stroked through the open mouth.
                     cx,cy=page.evaluate('''()=>{const r=HonroApp.scene.canvas.getBoundingClientRect();return[Math.round(r.x+r.width/2),Math.round(r.y+r.height/2)]}''')
@@ -55,10 +55,10 @@ with sync_playwright() as p:
     editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene')
     for sid in [13,14,15,18,19,20]:
         editor.evaluate('id=>HonroWorkshopAPI.selectStage("stage-"+id)',sid)
-        row=editor.evaluate('''()=>{const r=HonroWorkshopAPI.getRuntime(),b=r.engine.b;return{stage:b.honroStage,width:b.width,height:b.height,revision:b.honroAct2Revision}}''')
-        assert row['revision']==2,row
+        row=editor.evaluate('''()=>{const r=HonroWorkshopAPI.getRuntime(),b=r.engine.b;return{stage:b.honroStage,width:b.width,height:b.height,revision:b.honroAct2Revision,geometryRevision:b.honroMap.space.geometryRevision,topology:b.honroMap.space.topologyId}}''')
+        assert row['revision']==2 and row['geometryRevision']==3,row
         rows.append({'workshop':row});editor.screenshot(path=str(OUT/f'workshop-{sid}.png'))
     assert not errors,errors
     browser.close()
 (OUT/'result.json').write_text(json.dumps({'rows':rows,'seams':seams,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
-print(json.dumps({'checks':len(rows),'seamChecks':len(seams),'maxSeamContrast':max(s['edgeContrast'] for s in seams),'errors':errors,'output':str(OUT)},ensure_ascii=False))
+print(json.dumps({'checks':len(rows),'seamChecks':len(seams),'maxSeamContrast':max((s['edgeContrast'] for s in seams), default=0),'errors':errors,'output':str(OUT)},ensure_ascii=False))

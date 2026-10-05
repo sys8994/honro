@@ -404,41 +404,42 @@ export interface SkillPrediction extends Prediction {time:number;geometry?:Skill
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
  const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
- const collision=sim.collision.bind(sim);let contact:Collision|null=null,capture=true;
- sim.collision=(a,z,r,owner,ignored,units=true,...rest)=>{const h=collision(a,z,r,owner,ignored,ignoreUnits?false:units,...rest);if(capture&&h?.unit&&!contact)contact=h;return h;};
+ const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
+ sim.collision=(a,z,r,owner,ignored,units=true,...rest)=>{const h=collision(a,z,r,owner,ignored,ignoreUnits?false:units,...rest);if(capture&&h){stepContact=h;if(h.unit&&!contact)contact=h;}return h;};
  b.active=actor.id;b.side=0;b.phase='aim';b.mode='practice';b.projectiles=[];b.volley=undefined;
  actor.loadout=[s.id];actor.focus=actor.maxFocus=10000;actor.cooldowns={};actor.acted=false;actor.dead=false;actor.retreat=false;
  // The guide represents this volley; later repeated volleys have the same launch path.
  actor.ranks.AP01=0;
  sim.grounded=()=>true;sim.canAct=()=>true;sim.fire(s.id,angle,power);
  let roots=[...b.projectiles];const primary=roots[Math.floor(roots.length/2)];
- if(representative&&primary){roots=[primary];b.projectiles=roots;if(s.id==='A04'){Object.assign(primary,e.origin(u,angle),e.velocity(u,s,angle,power));primary.prevVy=primary.vy;}}
+ if(representative&&primary){roots=[primary];b.projectiles=roots;if(s.id==='A04'){Object.assign(primary,e.projectileOrigin(u,s,angle),e.velocity(u,s,angle,power));primary.prevVy=primary.vy;}}
  const paths=new Map<number,Vec[]>();
  let tracked=primary;
- let time=0,apex:Vec|undefined;const origin=e.origin(u,angle);
+ let time=0,apex:Vec|undefined;const origin=e.projectileOrigin(u,s,angle);
  for(const p of roots)paths.set(p.id,[{x:p.x,y:p.y}]);
  for(let i=0;i<1440&&b.projectiles.length;i++){
-  for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex,wasSplit=representative&&p===tracked&&p.mode==='seekRain',nextId=b.nextId;capture=!representative||p===tracked;sim.stepProjectile(p,STEP);
+  for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex,wasSplit=representative&&p===tracked&&p.mode==='seekRain',nextId=b.nextId;capture=!representative||p===tracked;stepContact=null;sim.stepProjectile(p,STEP);
+   if(p===tracked&&!b.projectiles.includes(p))terminalContact=stepContact;
    if(p===primary&&!wasApex&&p.apex)apex={x:p.x,y:p.apexY??p.y};
    if(!p.secondary&&(!representative||p===tracked)){const key=representative?primary.id:p.id,list=paths.get(key)||[];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(key,list);}
    // Keep all seven in the replay so their collisions and kills affect homing exactly as in combat.
    // Only the middle child's samples extend the visible parent path.
-   if(wasSplit&&!b.projectiles.includes(p)){const children=b.projectiles.filter(q=>q.id>=nextId&&q.mode==='seekChild');if(children.length===7){tracked=children[3];contact=null;}}
+   if(wasSplit&&!b.projectiles.includes(p)){const children=b.projectiles.filter(q=>q.id>=nextId&&q.mode==='seekChild');if(children.length===7){tracked=children[3];contact=null;terminalContact=null;}}
   }time=(i+1)*STEP;
   // Later sibling impacts cannot change the representative path that has already ended.
   if(representative&&tracked&&!b.projectiles.includes(tracked))break;
  }
  const points=primary?paths.get(primary.id)||[origin]:[origin],last=points.at(-1)||origin;
- return {...last,unit:(contact as Collision|null)?.unit?.id,points,paths:[...paths.values()],time,contacts:[],apex,closest:99999};
+ return {...last,unit:(contact as Collision|null)?.unit?.id,terrain:(terminalContact as Collision|null)?.terrain?.id,points,paths:[...paths.values()],time,contacts:[],apex,closest:99999};
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
 export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction|null{
  if(!s.redesigned)return null;
  if(s.cls==='archer')return arrowPrediction(e,u,s,angle,power,representative,ignoreUnits);
  if(s.cls!=='mage')return null;
- const r=u.ranks[s.id]||1,origin=e.origin(u,angle),v=e.velocity(u,s,angle,power),points:Vec[]=[origin],contacts:Vec[]=[];
+ const r=u.ranks[s.id]||1,origin=e.projectileOrigin(u,s,angle),v=e.velocity(u,s,angle,power),points:Vec[]=[origin],contacts:Vec[]=[];
  const p={...origin,...v,wind:s.wind,gravityScale:s.gravity??1,drag:dragFor(s),skill:s.id,mode:s.mode,radius:6,bounces:0} as Projectile;
- let age=0,time=0,closest=99999,apex:Vec|undefined,contact:Collision|null=null;const arc=s.mode==='waveArc',ring=s.mode==='waveRing',bagua=s.mode==='waveBagua',ice=s.mode==='gourdIce';
+ let age=0,time=0,closest=99999,apex:Vec|undefined,contact:Collision|null=null,terrainAtEnd=false;const arc=s.mode==='waveArc',ring=s.mode==='waveRing',bagua=s.mode==='waveBagua',ice=s.mode==='gourdIce';
  if(ring){const center=at(u);return {...center,points:[],time:0,closest,contacts,geometry:skillGeometry(s,r,center.x,center.y,-rad(angle),power,undefined,undefined,geometryBoost(u,s))};}
  for(let i=0;i<Math.ceil((ice?iceGourdFuse(power):8)/STEP);i++){
   age+=STEP;time=age;if(ice&&age>=iceGourdFuse(power))break;
@@ -447,14 +448,14 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
   if(h){p.x=h.x;p.y=h.y;
    if(ice||s.mode==='waveBounce'||s.mode==='waveTriangle'){
     if(!ice&&!h.terrain)break;contacts.push({x:h.x,y:h.y});reflect(p,h,ice?(h.unit?.72:.64):.84);
-    if(s.mode==='waveTriangle'&&contacts.length>=2)break;
-    if(!ice&&p.bounces>Math.round(lerpRank(2,7,r)))break;
-   }else break;
+    if(s.mode==='waveTriangle'&&contacts.length>=2){terrainAtEnd=!!h.terrain;break;}
+    if(!ice&&p.bounces>Math.round(lerpRank(2,7,r))){terrainAtEnd=!!h.terrain;break;}
+   }else{terrainAtEnd=!!h.terrain;break;}
   }else{p.x=m.x;p.y=m.y;}
   if(i%3===0)points.push({x:p.x,y:p.y});if(p.y>e.b.height+100||p.x<0||p.x>e.b.width||p.y< -1700)break;
  }
  points.push({x:p.x,y:p.y});
  const geometry=arc||bagua||s.mode==='waveTriangle'?skillGeometry(s,r,p.x,p.y,arc?Math.atan2(p.vy,p.vx):-rad(angle),power,contacts,origin,geometryBoost(u,s)):undefined;
  const secondaryPoint=s.id==='M05'?skyStrikePoint(e,{x:p.x,y:p.y},u.id):undefined;
- return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,points,time,closest,contacts,apex,geometry,secondaryPoint,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:s.id==='M05'?e.effective(s,u).radius:180):s.branch==='stake'?45*geometryBoost(u,s):undefined};
+ return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,terrainAtEnd,points,time,closest,contacts,apex,geometry,secondaryPoint,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:s.id==='M05'?e.effective(s,u).radius:180):s.branch==='stake'?45*geometryBoost(u,s):undefined};
 }

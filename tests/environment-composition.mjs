@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 const g=vm.createContext({structuredClone}),read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
-for(const f of ['bounds','environment','schema','geometry','commands'])vm.runInContext(await read('shared/map/'+f+'.js'),g);
+for(const f of ['bounds','environment','vector-art','space-layout','schema','geometry','commands'])vm.runInContext(await read('shared/map/'+f+'.js'),g);
 g.HonroUnits={has:()=>true,teams:{player:0,enemy:1,ally:2,npc:3}};
 const E=g.HonroEnvironment,project=JSON.parse(await read('shared/data/campaign.json')),clone=x=>JSON.parse(JSON.stringify(x));
 assert.deepEqual(clone(E.validate(project)),[]);

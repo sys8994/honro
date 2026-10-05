@@ -78,7 +78,7 @@
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         _worldRasterScale(b,w){const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;this.landmark?.(c,l);}c.restore();}
-        _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}`;}
+        _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
         _buildStaticWorld(b,w){
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
             const t0=performance.now(),rs=this._worldRasterScale(b,w),cv=this._makeLayerCanvas(b.width*rs,b.height*rs),cc=cv.getContext('2d',{alpha:true});cc.setTransform(rs,0,0,rs,0,0);cc.clearRect(0,0,b.width,b.height);
@@ -92,7 +92,22 @@
             this._landmarkLayer(cc,b.honroLandmarks||[],'front');
             this._staticCacheBuild=oldAll;this._staticWorldCache={key,canvas:cv,rs,w:b.width,h:b.height,bytes:cv.width*cv.height*4};this._cacheStats.worldBuilds++;this._cacheStats.worldBuildMs+=performance.now()-t0;return this._staticWorldCache;
         }
-        _drawStaticWorldCached(c,b,w){const q=this._buildStaticWorld(b,w);c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,0,0,b.width,b.height);}
+        _drawStaticWorldCached(c,b,w,h){
+            const q=this._buildStaticWorld(b,w);c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,0,0,b.width,b.height);
+            // The raster is bounded to the physical map; the artwork is not. Continue
+            // boundary trees/buildings outside it without growing the memory-capped bitmap
+            // or clipping them again at an arbitrary padding distance.
+            const view=G.HonroBounds.viewport(this,w,h);
+            if(view.left>=0&&view.top>=0&&view.right<=b.width&&view.bottom<=b.height)return;
+            const candidates=(b.honroLandmarks||[]).filter(l=>{
+                const r=1500*Math.max(.2,Math.abs(l.scale??l.size??1));
+                return (l.x-r<0||l.x+r>b.width||l.y-r<0||l.y+r>b.height)&&l.x+r>view.left&&l.x-r<view.right&&l.y+r>view.top&&l.y-r<view.bottom;
+            });
+            if(!candidates.length)return;
+            c.save();c.beginPath();c.rect(view.left-1,view.top-1,view.right-view.left+2,view.bottom-view.top+2);c.rect(0,0,b.width,b.height);c.clip('evenodd');
+            for(const layer of ['back','structural-back','mid','prop','front'])this._landmarkLayer(c,candidates,layer);
+            c.restore();
+        }
         renderCacheStats(){return{...this._cacheStats,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
@@ -146,7 +161,7 @@
             this.terrainSkirt(c,b,w,h);
             // Static scenery is by far the dominant cost on detailed maps. At normal/zoomed-out
             // views rasterize it once per sceneVersion; keep live vectors only for close inspection.
-            if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w);}else{
+            if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w,h);}else{
                 const viewLeft=this.x-w/this.scale-600,viewRight=this.x+w/this.scale+600,visibleLandmarks=(b.honroLandmarks||[]).filter(l=>l.x>viewLeft&&l.x<viewRight);
                 this._landmarkLayer(c,visibleLandmarks,'back');
                 this._landmarkLayer(c,visibleLandmarks,'structural-back');
@@ -206,12 +221,15 @@
                 } catch { }
             }
             if(!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
+            const visibleUnits=[];
             for (const v of b.units || []) {
                 if (v.dead || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
                     continue;
+                visibleUnits.push(v);
                 this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
                 if(!G.HonroAct2||G.HonroAct2.visible(b,v))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
             }
+            if(!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
             G.HONRO_CORE.drawCombatPassives(c,e,this.time);
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)&&(!G.HonroAct2||G.HonroAct2.visible(b,e.unit(id)))).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];
             for(const row of this.reviewSummary){
@@ -235,6 +253,46 @@
             G.HonroObjectives?.draw(this,e);
         }
         cameraAxis(center,span,min,max){return G.HonroCamera.axis(center,span,min,max);}
+        occludedUnitSilhouettes(c,b,units,charge=0){
+            const visible=u=>!G.HonroAct2||G.HonroAct2.visible(b,u),height=u=>G.HonroPartyPresentationHeight?.(u)??u.h;
+            const targets=new Set([b.active,this.hoverUnitId,this.inspectUnitId]);
+            this._occludedUnitIds=[];
+            for(let i=0;i<units.length;i++){
+                const u=units[i];if(!targets.has(u.id)||!visible(u))continue;
+                const uh=height(u),half=Math.max(u.r*2,uh*.6);
+                const covers=units.slice(i+1).filter(v=>visible(v)&&Math.abs(v.x-u.x)<half+Math.max(v.r*2,height(v)*.6)&&v.y>u.y-uh*1.3&&v.y-height(v)*1.3<u.y);
+                if(!covers.length)continue;
+                // Only actor pixels covered by a later body are overlaid. Props, HP bars,
+                // open air and genuinely unrevealed spirits retain their normal appearance.
+                const extent=Math.max(uh*3,half*3,140),size=384,rs=Math.min(2,size/extent),left=u.x-size/(2*rs),top=u.y-size*.78/rs;
+                this._occlusionLayers??=Array.from({length:3},()=>this._makeLayerCanvas(size,size));
+                const [body,cover,edge]=this._occlusionLayers,[bc,cc,ec]=this._occlusionLayers.map(cv=>cv.getContext('2d'));
+                for(const ctx of [bc,cc,ec]){ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,size,size);}
+                for(const ctx of [bc,cc])ctx.setTransform(rs,0,0,rs,-left*rs,-top*rs);
+                this.unitBody(bc,u,u.id===b.active?charge:0);
+                for(const v of covers)this.unitBody(cc,v);
+                bc.setTransform(1,0,0,1,0,0);cc.setTransform(1,0,0,1,0,0);
+                bc.globalCompositeOperation='source-in';bc.fillStyle=u.id===b.active?'#f4d793':u.side===1?'#edb7a3':'#bee1cc';bc.fillRect(0,0,size,size);bc.globalCompositeOperation='source-over';
+                const r=1.6*rs/this.scale;
+                for(let j=0;j<8;j++)ec.drawImage(body,Math.cos(j*Math.PI/4)*r,Math.sin(j*Math.PI/4)*r);
+                ec.globalCompositeOperation='destination-out';ec.drawImage(body,0,0);
+                ec.globalCompositeOperation='destination-in';ec.drawImage(cover,0,0);ec.globalCompositeOperation='source-over';
+                bc.globalCompositeOperation='destination-in';bc.drawImage(cover,0,0);bc.globalCompositeOperation='source-over';
+                c.save();c.globalAlpha=.38;c.drawImage(body,left,top,size/rs,size/rs);c.globalAlpha=.95;c.drawImage(edge,left,top,size/rs,size/rs);c.restore();
+                this._occludedUnitIds.push(u.id);
+            }
+        }
+        tacticalUnitMarkers(c,b,units){
+            if(this.scale>.42)return;
+            const z=1/Math.max(.12,this.scale);
+            for(const u of units){
+                if(G.HonroAct2&&!G.HonroAct2.visible(b,u))continue;
+                const active=u.id===b.active,y=u.y-(G.HonroPartyPresentationHeight?.(u)??u.h)-12,col=active?'#f4d793':u.side===1?'#e3a393':u.side===2?'#dac08d':'#b9d8c2',w=active?26:19;
+                c.save();c.translate(u.x,y);c.scale(z,z);c.fillStyle='#102025';c.fillRect(-w/2-1,-2,w+2,5);c.fillStyle=col;c.fillRect(-w/2,-1,w*Math.max(0,u.hp/u.maxHp),3);
+                if(!active){c.lineWidth=1.4;if(u.side===1)P(c,[[0,-13],[4,-9],[0,-5],[-4,-9]],col,'#102025',1.4);else if(u.side===2){c.fillStyle=col;c.fillRect(-3.5,-12.5,7,7);c.strokeStyle='#102025';c.strokeRect(-3.5,-12.5,7,7);}else{c.beginPath();c.arc(0,-9,3.5,0,Math.PI*2);c.fillStyle=col;c.fill();c.strokeStyle='#102025';c.stroke();}}
+                c.restore();
+            }
+        }
         activeMarker(c,u,y){const z=1/Math.max(.16,this.scale||1),lift=Math.sin(this.time*3)*2*z;c.save();c.translate(u.x,y-10*z+lift);glow(c,0,-18*z,24*z,'#f0d69d',.24);P(c,[[-7*z,-35*z],[7*z,-35*z],[7*z,-19*z],[15*z,-19*z],[0,0],[-15*z,-19*z],[-7*z,-19*z]],'#f4d793','#102025',2*z);c.restore();}
         chargeFx(engine,power,charging){
       const u = engine && engine.active;

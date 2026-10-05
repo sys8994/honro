@@ -28,7 +28,7 @@ function prepare(t,b){const source=t.vertices||t;let q=cache.get(t);if(q?.source
  }
  q={source,shape,edge,bands,joints};cache.set(t,q);return q;
 }
-function terrain(c,t,b){const q=prepare(t,b);c.save();c.fillStyle=rock(c,b);c.fill(q.shape);c.clip(q.shape);
+function terrain(c,t,b){if(G.HonroAct2SpatialArt?.active(b))return G.HonroAct2SpatialArt.terrain(c,t,b);const q=prepare(t,b);c.save();c.fillStyle=rock(c,b);c.fill(q.shape);c.clip(q.shape);
  const tones=['#62636a29','#17181d52','#77787e1b','#14151a46'];
  q.bands.forEach((p,i)=>{c.fillStyle=tones[i];c.fill(p);});
  c.fillStyle='#11121655';for(const p of q.joints)c.fill(p);
@@ -186,7 +186,7 @@ function portalLip(b,p,v,foundationOnly=false){
  ];
  return foundationOnly?[lips[1]]:lips;
 }
-function enclosure(c,b,w,h){const v=B.visual(b,w,h,this.scale),key=[b.sceneVersion,b.width,b.height,v.left,v.top,v.right,v.bottom].join(':');
+function enclosure(c,b,w,h){if(G.HonroAct2SpatialArt?.active(b))return G.HonroAct2SpatialArt.enclosure(c,b,w,h,this);const v=B.visual(b,w,h,this.scale),key=[b.sceneVersion,b.width,b.height,v.left,v.top,v.right,v.bottom].join(':');
  let q=this._caveEnclosure;if(!q||q.key!==key||q.source!==b.honroCaveEnvelope){
   // Overlap the play rectangle by a few world units. Two coincident canvas
   // edges otherwise leave a one-pixel antialias seam at extreme camera pans.

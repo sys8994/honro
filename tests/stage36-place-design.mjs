@@ -1,3 +1,4 @@
+import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import vm from 'node:vm';
@@ -9,7 +10,7 @@ const plain=x=>JSON.parse(JSON.stringify(x)),checks=[];
 // Historical place recipes are compared independently of later combat tuning,
 // one-way platform rules, habitat props, and the authored scenery library.
 const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mid','bridge-east','lower-lookout','pier-west','pier-east','tier-low','tier-mid','tier-upper','tier-crown','ramp-1','center-lookout']);
-function withoutHistoricalSodanAttack(value){const copy=plain(value);delete copy.library;if(copy.stages)copy.stages=copy.stages.slice(0,10);for(const stage of copy.stages||[]){delete stage.environment;stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));for(const t of stage.terrains||[])if(platformIds.has(t.id))delete t.oneWay;for(const u of stage.units||[])for(const key of ['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp'])delete u[key];}return copy;}
+function withoutHistoricalSodanAttack(value){const copy=applyAct1CollisionRepair(plain(value));delete copy.library;if(copy.stages)copy.stages=copy.stages.slice(0,10);for(const stage of copy.stages||[]){delete stage.environment;if(stage.design?.act1Scene){delete stage.design.act1Scene;if(!Object.keys(stage.design).length)delete stage.design;}stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-')&&!e.id?.startsWith('a1-scene-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));for(const t of stage.terrains||[])if(platformIds.has(t.id))delete t.oneWay;for(const u of stage.units||[])for(const key of ['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp'])delete u[key];}return copy;}
 function test(name,fn){try{const detail=fn();checks.push({name,pass:true,detail});console.log('PASS',name);}catch(error){checks.push({name,pass:false,error:String(error)});console.error('FAIL',name,error.message);}}
 function top(st,x){const p=st.terrains[0].points.slice(0,st.detailStats.groundTop);for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i];if(a.x<=x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('No ground at '+x);}
 function grade(st,x,width){return Math.abs(top(st,x-width/2)-top(st,x+width/2));}

@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+// Decisions and render purity need no browser; paired live Canvas captures cover pixels.
+const calls=[];
+const context=()=>new Proxy({},{get:(o,k)=>k in o?o[k]:(...args)=>calls.push([k,...args]),set:(o,k,v)=>(o[k]=v,true)});
+const canvas=()=>({width:384,height:384,getContext:()=>context()});
+const g=vm.createContext({console,performance,HONRO_CONTENT:{},HONRO_CORE:{},document:{createElement:canvas},HonroAct2:{visible:(b,u)=>!u.unrevealed}});
+vm.runInContext(await readFile('shared/map/bounds.js','utf8'),g);vm.runInContext(await readFile('shared/runtime/renderer.js','utf8'),g);
+const S=g.HonroScene.prototype,scene=Object.create(S);scene.scale=.68;scene.time=0;scene._makeLayerCanvas=canvas;
+const bodyCalls=[];scene.unitBody=(c,u)=>bodyCalls.push(u.id);
+const hero={id:'hero',x:100,y:250,h:90,r:20,side:0,hp:100,maxHp:100},lamp={id:'lamp',x:100,y:250,h:138,r:30,side:1,hp:100,maxHp:100},b={active:'hero',units:[hero,lamp]};
+let before=JSON.stringify(b);scene.occludedUnitSilhouettes(context(),b,b.units);assert.equal(scene._occludedUnitIds.join(','),'hero');assert.equal(bodyCalls.join(','),'hero,lamp');assert.equal(JSON.stringify(b),before);assert(calls.some(c=>c[0]==='drawImage'));console.log('PASS Selected overlapping actor is composited after its occluder without battle mutation');
+bodyCalls.length=0;hero.x=-200;scene.occludedUnitSilhouettes(context(),b,b.units);assert.equal(scene._occludedUnitIds.length,0);assert.equal(bodyCalls.length,0);
+hero.x=100;hero.unrevealed=true;scene.occludedUnitSilhouettes(context(),b,b.units);assert.equal(bodyCalls.length,0);delete hero.unrevealed;
+lamp.unrevealed=true;scene.occludedUnitSilhouettes(context(),b,b.units);assert.equal(bodyCalls.length,0);delete lamp.unrevealed;console.log('PASS Separated actors and unrevealed spirits never acquire an occlusion silhouette');
+scene.hoverUnitId='lamp';b.units=[lamp,{...hero,id:'front'}];b.active='none';bodyCalls.length=0;scene.occludedUnitSilhouettes(context(),b,b.units);assert.equal(scene._occludedUnitIds.join(','),'lamp');console.log('PASS Inspected or hovered targets use the same bounded overlay path');
+scene.scale=.2;calls.length=0;const hidden={...lamp,id:'hidden',unrevealed:true};scene.tacticalUnitMarkers(context(),{active:'hero'},[hero,lamp,{...lamp,id:'npc',side:2},hidden]);assert.equal(calls.filter(c=>c[0]==='fillRect').length,7);assert(calls.some(c=>c[0]==='lineTo'));assert(calls.some(c=>c[0]==='strokeRect'));scene.scale=1;calls.length=0;scene.tacticalUnitMarkers(context(),b,[hero,lamp]);assert.equal(calls.length,0);console.log('PASS Tactical markers use fixed-screen health bars and team shapes only when zoomed out');
+const map={width:1000,height:800,honroLandmarks:[{kind:'giantPine',x:40,y:500,size:1}]};Object.assign(scene,{x:100,y:400,scale:1});let layers=[];scene._buildStaticWorld=()=>({canvas:{width:500,height:400}});scene._landmarkLayer=(c,l,layer)=>layers.push(layer);before=JSON.stringify(map);calls.length=0;scene._drawStaticWorldCached(context(),map,600,600);assert(calls.some(c=>c[0]==='clip'&&c[1]==='evenodd'));assert.equal(layers.join(','),'back,structural-back,mid,prop,front');assert.equal(JSON.stringify(map),before);
+scene.x=500;scene.y=400;layers=[];scene._drawStaticWorldCached(context(),map,500,500);assert.equal(layers.length,0);console.log('PASS Cache overflow continues existing boundary artwork only outside the unchanged physical map');

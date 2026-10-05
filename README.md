@@ -30,11 +30,14 @@
 
 Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)를 참고합니다.
 
+1막 1–10장의 야외 장소·순수 SVG·접지 개편과 3장 바위 충돌 이음새 수정은 [구현 기록](game/docs/ACT1_SPATIAL_IMPLEMENTATION.md), [검증 범위](game/docs/ACT1_SPATIAL_VALIDATION.md)를 참고합니다. `npm run test:act1:offline`과 `npm run capture:act1 -- final --review`로 재현합니다.
+
 ## 개발과 검증
 
-Node.js 20 이상과 Python 3.10 이상을 사용합니다. Windows PowerShell에서는 실행 정책 충돌을 피하려면 `npm.cmd`를 사용합니다.
+Node.js 20 이상과 Python 3.10 이상을 사용합니다. Native Canvas 캡처/오프라인 미술 검사는 루트에 고정된 `@napi-rs/canvas` 개발 의존성을 사용합니다. 게임 HTML을 여는 데에는 Node 의존성이 필요하지 않습니다. Windows PowerShell에서는 실행 정책 충돌을 피하려면 `npm.cmd`를 사용합니다.
 
 ```powershell
+npm.cmd install --ignore-scripts
 npm.cmd --prefix game ci
 python -m pip install -r requirements-dev.txt
 # Chrome/Edge가 없으면 테스트용 Chromium 설치
@@ -84,3 +87,9 @@ npm.cmd run verify
 `_local/`은 이 PC에만 보관하는 폴더이며 `.gitignore`로 전체 제외합니다. 과거 문서는 원래 경로 구조를 `_local/archive/` 아래에 보존했습니다. 새 패치 노트·일회성 보고서·배포 압축본도 그곳에 저장합니다. 빌드·검사 결과는 `_local/` 아래에 자동 생성되며 새 clone에는 포함되지 않습니다. 문서의 `_local/` 링크는 로컬 검증 증거용입니다. 이전에 커밋한 파일의 이력은 Git에 남아 있습니다.
 
 `game/docs/BUGFIX_CONTEXT.md`, `game/docs/BUG_LOG.md`와 현재 명세는 유지보수에 필요하므로 계속 Git으로 관리합니다. 검사 입력으로 읽는 기준 JSON은 `tests/fixtures/`, `game/tests/fixtures/`에 보존합니다.
+
+## 2막 공간 개편 (2026-10-05)
+
+11–20장의 방과 실제 보행 지형, 순수 SVG·공통 렌더링을 다시 저작했습니다. 18/19는 같은 묵종 공간이며 20의 행렬은 실제 오른쪽 보행을 유지합니다. 기존 진행 중인 전투는 보존하고 새 진입/재시도에 적용됩니다. 지도 형식은 v5, 프로필 저장은 기존 schema 4입니다.
+
+[구현·실행·검증 범위](game/docs/ACT2_SPATIAL_IMPLEMENTATION.md). 브라우저를 제외한 검사는 `npm run verify:offline`, 정상 엔진 자동전투는 `npm run test:act2:normal`로 분리합니다. 이번 환경에서는 실제 브라우저 UI/성능을 검증하지 않았습니다.

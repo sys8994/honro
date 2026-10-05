@@ -41,13 +41,14 @@ function prepare(b,coverage){const bottom=coverage.bottom,base=b.height,skirts=[
  return{skirts,edges,facets,coverage,base,paths:skirts.length+edges.length*2+facets.length};
 }
 G.HonroScene.prototype.terrainSkirt=function(c,b,w,h){
+ if(G.HonroAct2SpatialArt?.active(b))return G.HonroAct2SpatialArt.enclosure(c,b,w,h,this);
  if(b.honroCaveEnvelope&&G.HonroCaveRock)return G.HonroCaveRock.enclosure.call(this,c,b,w,h);
  const coverage=B.visual(b,w,h,this.scale),key=[b.sceneVersion||0,b.width,b.height,coverage.left,coverage.top,coverage.right,coverage.bottom].join(':');
  let q=this._terrainSkirt;if(!q||q.key!==key||q.terrain!==b.terrain){q={...prepare(b,coverage),key,terrain:b.terrain};this._terrainSkirt=q;this._skirtBuilds=(this._skirtBuilds||0)+1;}
  // A world-anchored atmospheric abyss covers any aspect ratio, including a
  // custom floating map. It is neither a standable surface nor a rectangle rim.
  c.save();const v=coverage,deep=c.createLinearGradient(0,b.height+180,0,b.height+1900);deep.addColorStop(0,'#0c191f00');deep.addColorStop(1,INK);c.fillStyle=deep;c.fillRect(v.left,b.height+180,v.right-v.left,Math.max(0,v.bottom-b.height-180));
- for(const edge of q.edges){const pal=G.HonroTerrainPalette(edge.t),grad=c.createLinearGradient(0,edge.t.y,0,edge.t.y+Math.min(edge.t.h,420));grad.addColorStop(0,pal[0]);grad.addColorStop(.22,pal[1]);grad.addColorStop(1,pal[2]);c.fillStyle=grad;c.fill(edge.path);
+ for(const edge of q.edges){const grad=G.HonroTerrainGradient(c,edge.t,b);c.fillStyle=grad;c.fill(edge.path);
   c.save();c.clip(edge.path);
   const mist=c.createLinearGradient(edge.edge,0,edge.edge+edge.side*edge.extent,0);mist.addColorStop(0,'#687a7200');mist.addColorStop(.22,'#687a720a');mist.addColorStop(1,'#687a7240');c.fillStyle=mist;c.fill(edge.path);c.restore();
   const rim=c.createLinearGradient(edge.edge,0,edge.edge+edge.side*Math.min(edge.extent,1800),0);rim.addColorStop(0,edge.t.mat==='earth'?'#aabd9999':'#bfc4b299');rim.addColorStop(1,'#bfc4b200');c.strokeStyle=rim;c.lineWidth=2;c.stroke(edge.crest);

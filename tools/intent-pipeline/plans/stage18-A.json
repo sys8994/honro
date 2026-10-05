@@ -1,0 +1,248 @@
+{
+  "schema": "honro-space-plan",
+  "version": 1,
+  "stageId": 18,
+  "id": "A",
+  "label": "수갱 하강형",
+  "buttonLabel": "A · 깊은 수갱",
+  "description": "깊은 수갱으로 내려갈수록 묵종의 압박감이 커지지만, 고저차가 커서 동행을 다시 모으는 데 시간이 듭니다.",
+  "topologyId": "descending-bell-shaft",
+  "topology": "One continuous deep-U route: enter high left, defend a mid-height landing, descend into bell well, leave by rising right rim. No full-width stacked benches.",
+  "silhouette": "One tall asymmetric black void bounded by a steep left shoulder and rising right wall; bell sits low inside this negative space.",
+  "floor": [
+    [
+      0,
+      2800
+    ],
+    [
+      1100,
+      2800
+    ],
+    [
+      2200,
+      3650
+    ],
+    [
+      2700,
+      4030
+    ],
+    [
+      3900,
+      4030
+    ],
+    [
+      4700,
+      4720
+    ],
+    [
+      5600,
+      5590
+    ],
+    [
+      6300,
+      6120
+    ],
+    [
+      7350,
+      6120
+    ],
+    [
+      8200,
+      5740
+    ],
+    [
+      9100,
+      5250
+    ],
+    [
+      10400,
+      5120
+    ]
+  ],
+  "roof": [
+    [
+      0,
+      1700
+    ],
+    [
+      1200,
+      1450
+    ],
+    [
+      2300,
+      1100
+    ],
+    [
+      3900,
+      850
+    ],
+    [
+      5500,
+      700
+    ],
+    [
+      7200,
+      1250
+    ],
+    [
+      8450,
+      2400
+    ],
+    [
+      9400,
+      3650
+    ],
+    [
+      10400,
+      4000
+    ]
+  ],
+  "mainRoute": [
+    [
+      0,
+      2800
+    ],
+    [
+      1100,
+      2800
+    ],
+    [
+      2200,
+      3650
+    ],
+    [
+      2700,
+      4030
+    ],
+    [
+      3900,
+      4030
+    ],
+    [
+      4700,
+      4720
+    ],
+    [
+      5600,
+      5590
+    ],
+    [
+      6300,
+      6120
+    ],
+    [
+      7350,
+      6120
+    ],
+    [
+      8200,
+      5740
+    ],
+    [
+      9100,
+      5250
+    ],
+    [
+      10400,
+      5120
+    ]
+  ],
+  "solids": [],
+  "sites": {
+    "clear-wards": {
+      "x": 2450,
+      "y": 3840
+    },
+    "silence": {
+      "x": 3260,
+      "y": 4030
+    },
+    "hold-silence": {
+      "x": 3260,
+      "y": 4030
+    },
+    "upper-chain": {
+      "x": 4550,
+      "y": 4590.625
+    },
+    "lower-chain": {
+      "x": 6000,
+      "y": 5892.857
+    },
+    "leak": {
+      "x": 7210,
+      "y": 6120
+    },
+    "keeper": {
+      "x": 8420,
+      "y": 5620.222
+    },
+    "clear-bell": {
+      "x": 9660,
+      "y": 5194
+    }
+  },
+  "lampX": 2800,
+  "bell": {
+    "x": 6730,
+    "bottomY": 6035,
+    "scale": 1.4
+  },
+  "oilLampXs": [
+    1100,
+    2400,
+    4100,
+    7800,
+    9400
+  ],
+  "rooms": [
+    {
+      "id": "entry",
+      "role": "compressed-arrival"
+    },
+    {
+      "id": "silence",
+      "role": "four-round-mage-defense"
+    },
+    {
+      "id": "bell",
+      "role": "central-bell-and-fixtures"
+    },
+    {
+      "id": "keeper",
+      "role": "nonlethal-confrontation"
+    }
+  ],
+  "connections": [
+    {
+      "from": "entry",
+      "to": "silence",
+      "mode": "walk-jump"
+    },
+    {
+      "from": "silence",
+      "to": "bell",
+      "mode": "walk-jump"
+    },
+    {
+      "from": "bell",
+      "to": "keeper",
+      "mode": "walk-jump"
+    }
+  ],
+  "graphicNotes": [
+    "Use one large left rock shoulder and one lower bowl, not small repeated waves.",
+    "Connect the bell visually to a ceiling suspension; do not add new collision to the bell.",
+    "Keep the hold landing broad and relatively flat so the required four-round defense does not turn into a ledge puzzle.",
+    "Place hoist/timber evidence sparsely on rim landings, not evenly every few hundred units."
+  ],
+  "combatTradeoffs": [
+    "Strong downhill reveal and changing firing angles.",
+    "Party recovery and retreat up slopes may cost more movement.",
+    "Upper-chain shot and full-party regrouping need focused validation; do not claim a shorter stage."
+  ],
+  "limitations": [
+    "Unapproved spatial prototype; not final graphics.",
+    "28 enemies and authored objectives are preserved; balance and normal combat clear not yet validated."
+  ]
+}

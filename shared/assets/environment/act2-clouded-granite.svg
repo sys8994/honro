@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<title>clouded granite</title>
+<desc>Original editable Korean granite and ink-mass environment artwork. Pure SVG paths and gradients; no embedded raster.</desc>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#354355"/><stop offset="1" stop-color="#68747b"/></linearGradient><linearGradient id="mountain" x1="0" y1="260" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1b2a3a"/><stop offset="1" stop-color="#293949"/></linearGradient><linearGradient id="mist" x1="0" y1="620" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#52636c" stop-opacity="0"/><stop offset=".7" stop-color="#52636c" stop-opacity=".18"/><stop offset="1" stop-color="#52636c" stop-opacity=".44"/></linearGradient></defs>
+
+<path id="overcast-sky" fill="url(#sky)" d="M0 0H1920V1080H0Z"/>
+<path id="heavy-cloud" fill="#202c3a" opacity=".68" d="M0 0H1920V90C1800 61 1725 149 1618 120C1490 203 1392 150 1305 203C1152 212 1093 104 984 146C902 183 836 135 756 124C653 166 586 106 547 77C426 100 354 175 258 129C150 123 119 73 0 77Z"/>
+<path id="far-mountain-mass" fill="#334152" d="M0 559L106 538L210 461L252 482L365 385L470 426L545 348L613 416L707 334L779 357L861 276L917 355L985 316L1094 226L1173 313L1273 204L1371 253L1450 184L1576 247L1681 226L1777 367L1859 346L1920 399V1080H0Z"/>
+<path id="granite-shoulder" fill="url(#mountain)" d="M0 899L144 842L250 729L370 768L480 673L561 612L604 485L640 457L657 355L692 333L702 421L732 366L755 298L781 307L808 446L843 476L893 571L961 508L1049 450L1121 325L1162 305L1191 184L1214 138L1241 132L1259 227L1290 191L1311 200L1321 323L1370 384L1410 469L1440 490L1488 417L1530 526L1639 486L1740 597L1843 627L1920 612V1080H0Z"/>
+<g id="broad-cut-granite-faces" fill="#405063" opacity=".69">
+<path d="M604 485L640 457L657 355L673 342L655 502L603 641L570 663Z"/>
+<path d="M732 366L755 298L769 302L765 449L742 474L713 580L699 556Z"/>
+<path d="M1191 184L1214 138L1229 135L1198 325L1154 426L1159 333Z"/>
+<path d="M1259 227L1290 191L1301 198L1277 370L1238 419L1247 334Z"/>
+<path d="M1311 200L1321 323L1370 384L1383 429L1325 403L1296 323Z"/>
+</g>
+<path id="single-near-shoulder" fill="#1b2935" d="M0 644L110 623L254 711L337 767L415 784L518 879L628 915L780 982L914 977L1132 1080H0Z"/>
+<path id="valley-ink-wash" fill="url(#mist)" d="M0 691C389 784 578 961 911 815C1337 634 1578 825 1920 691V1080H0Z"/>
+
+</svg>

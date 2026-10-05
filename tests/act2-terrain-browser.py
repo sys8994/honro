@@ -30,18 +30,18 @@ with sync_playwright() as p:
         stage(sid)
         data = page.evaluate('''()=>{const b=HonroApp.engine.b;return{stage:b.honroStage,width:b.width,height:b.height,
           pools:b.honroSurfaceZones.filter(z=>z.kind==='water-pool').map(z=>({id:z.id,surface:z.surface,bottom:z.bottom,carved:!!z.honroCarvedBasin})),
-          forms:b.honroCaveForms||[],target:b.honroCaveHangingTarget||null}}''')
+          forms:b.honroCaveForms||[],target:b.honroCaveHangingTarget||null,space:b.honroMap.space}}''')
         rows.append(data)
         for j, pool in enumerate(data['pools']):
             x = sum(pt[0] for pt in pool['surface']) / 2
             y = pool['surface'][0][1] + 50
             shot(f'stage-{sid}-water-{j}', x, y, .72)
-        if sid == 12:
-            shot('stage-12-cave-mouth', 7550, 2280, .65)
-        if sid == 13:
-            shot('stage-13-cave-entry', 650, 2750, .65)
-        if sid == 14:
-            shot('stage-14-switchback', 6550, 4220, .29)
+        # Frame actual authored rooms rather than obsolete switchback coordinates.
+        if sid in (12, 13, 14):
+            selected = {12: 'outer-mouth', 13: 'sunken-forecourt', 14: 'middle-market'}[sid]
+            room = next(r for r in data['space']['rooms'] if r['id'] == selected)
+            box = room['bounds']
+            shot(f'stage-{sid}-{selected}', box['x'] + box['w'] / 2, box['y'] + box['h'] / 2, .5)
         if sid == 15:
             t = data['target']
             shot('stage-15-vault-target', t['x'], t['targetY'] + 500, .57)

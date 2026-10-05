@@ -1,0 +1,470 @@
+{
+  "source": "Approved ACT2_SPATIAL_CONCEPT.json, 2026-10-05; semantic room names and topology only, never untested coordinates.",
+  "stages": [
+    {
+      "id": 11,
+      "topologyId": "asymmetric-pine-basin",
+      "rooms": [
+        "forest-entry",
+        "west-knot",
+        "east-knot-court",
+        "ridge-perch",
+        "resident-bank",
+        "north-trace"
+      ],
+      "bindings": {
+        "knot-west": "west-knot",
+        "clear-west": "west-knot",
+        "knot-east": "east-knot-court",
+        "hold-knots": "east-knot-court",
+        "resident": "resident-bank",
+        "clear-road": "north-trace",
+        "trace": "north-trace"
+      },
+      "connections": [
+        {
+          "from": "forest-entry",
+          "to": "west-knot",
+          "kind": "walk"
+        },
+        {
+          "from": "west-knot",
+          "to": "east-knot-court",
+          "kind": "walk"
+        },
+        {
+          "from": "west-knot",
+          "to": "ridge-perch",
+          "kind": "walk"
+        },
+        {
+          "from": "ridge-perch",
+          "to": "east-knot-court",
+          "kind": "walk"
+        },
+        {
+          "from": "east-knot-court",
+          "to": "resident-bank",
+          "kind": "walk"
+        },
+        {
+          "from": "resident-bank",
+          "to": "north-trace",
+          "kind": "walk"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "topologyId": "diagonal-granite-quarry",
+      "rooms": [
+        "quarry-approach",
+        "rockfall-cut",
+        "pin-firing-shoulder",
+        "sign-yard",
+        "outer-mouth"
+      ],
+      "bindings": {
+        "clear-approach": "quarry-approach",
+        "rock-pin": "rockfall-cut",
+        "sign": "sign-yard",
+        "hold-road": "sign-yard",
+        "clear-quarry": "outer-mouth",
+        "exit": "outer-mouth"
+      },
+      "connections": [
+        {
+          "from": "quarry-approach",
+          "to": "pin-firing-shoulder",
+          "kind": "walk"
+        },
+        {
+          "from": "pin-firing-shoulder",
+          "to": "rockfall-cut",
+          "kind": "walk"
+        },
+        {
+          "from": "rockfall-cut",
+          "to": "sign-yard",
+          "kind": "gated-walk",
+          "existingState": "rock-pin restores act2-floor.honroRestoredVertices"
+        },
+        {
+          "from": "sign-yard",
+          "to": "outer-mouth",
+          "kind": "walk"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "topologyId": "daylight-collapse-to-low-throat",
+      "rooms": [
+        "sunken-forecourt",
+        "mason-ledge",
+        "stone-threshold",
+        "low-gallery",
+        "inner-pocket"
+      ],
+      "bindings": {
+        "clear-entry": "sunken-forecourt",
+        "resident": "mason-ledge",
+        "door-pin": "stone-threshold",
+        "gate": "stone-threshold",
+        "hold-gate": "low-gallery",
+        "clear-depth": "inner-pocket",
+        "exit": "inner-pocket"
+      },
+      "connections": [
+        {
+          "from": "sunken-forecourt",
+          "to": "mason-ledge",
+          "kind": "walk"
+        },
+        {
+          "from": "mason-ledge",
+          "to": "stone-threshold",
+          "kind": "walk"
+        },
+        {
+          "from": "stone-threshold",
+          "to": "low-gallery",
+          "kind": "gated-walk",
+          "existingState": "gate opens gate-gate"
+        },
+        {
+          "from": "low-gallery",
+          "to": "inner-pocket",
+          "kind": "walk"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "topologyId": "asymmetric-inhabited-terraces",
+      "rooms": [
+        "upper-homes",
+        "right-descent",
+        "middle-market",
+        "lower-family",
+        "refuge-bridge",
+        "market-perch"
+      ],
+      "bindings": {
+        "clear-upper": "upper-homes",
+        "family-upper": "upper-homes",
+        "clear-middle": "middle-market",
+        "family-mid": "middle-market",
+        "family-lower": "lower-family",
+        "bridge": "refuge-bridge",
+        "hold-refuge": "refuge-bridge",
+        "clear-village": "refuge-bridge"
+      },
+      "connections": [
+        {
+          "from": "upper-homes",
+          "to": "right-descent",
+          "kind": "walk"
+        },
+        {
+          "from": "right-descent",
+          "to": "middle-market",
+          "kind": "walk"
+        },
+        {
+          "from": "middle-market",
+          "to": "market-perch",
+          "kind": "optional-jump"
+        },
+        {
+          "from": "middle-market",
+          "to": "lower-family",
+          "kind": "walk"
+        },
+        {
+          "from": "lower-family",
+          "to": "refuge-bridge",
+          "kind": "gated-walk",
+          "existingState": "bridge opens gate-bridge; interaction accessible before gate"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "topologyId": "low-sluice-high-shaft",
+      "rooms": [
+        "wet-approach",
+        "sluice-neck",
+        "dry-shoulder",
+        "open-shaft",
+        "carved-groove",
+        "temple-stair"
+      ],
+      "bindings": {
+        "clear-water": "wet-approach",
+        "sluice": "sluice-neck",
+        "hold-sluice": "sluice-neck",
+        "shaft-pin": "open-shaft",
+        "clear-gallery": "carved-groove",
+        "groove": "carved-groove",
+        "exit": "temple-stair"
+      },
+      "connections": [
+        {
+          "from": "wet-approach",
+          "to": "sluice-neck",
+          "kind": "walk"
+        },
+        {
+          "from": "sluice-neck",
+          "to": "dry-shoulder",
+          "kind": "walk"
+        },
+        {
+          "from": "sluice-neck",
+          "to": "open-shaft",
+          "kind": "gated-walk",
+          "existingState": "sluice lowers water by existing 120 units and opens water-gate"
+        },
+        {
+          "from": "open-shaft",
+          "to": "carved-groove",
+          "kind": "walk"
+        },
+        {
+          "from": "carved-groove",
+          "to": "temple-stair",
+          "kind": "walk"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "topologyId": "temple-court-short-record-loop",
+      "rooms": [
+        "temple-court",
+        "monk-shelter",
+        "hall-terrace",
+        "record-gallery",
+        "rear-witness"
+      ],
+      "bindings": {
+        "clear-court": "temple-court",
+        "monk": "monk-shelter",
+        "hall": "hall-terrace",
+        "hold-hall": "hall-terrace",
+        "record": "record-gallery",
+        "clear-temple": "rear-witness",
+        "witness": "rear-witness"
+      },
+      "connections": [
+        {
+          "from": "temple-court",
+          "to": "monk-shelter",
+          "kind": "walk"
+        },
+        {
+          "from": "monk-shelter",
+          "to": "hall-terrace",
+          "kind": "walk"
+        },
+        {
+          "from": "hall-terrace",
+          "to": "record-gallery",
+          "kind": "walk",
+          "shape": "short right-hand descent"
+        },
+        {
+          "from": "record-gallery",
+          "to": "rear-witness",
+          "kind": "walk"
+        },
+        {
+          "from": "hall-terrace",
+          "to": "rear-witness",
+          "kind": "walk",
+          "purpose": "short tactical flank; does not bypass ordered objectives"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "topologyId": "offset-hoist-workbays",
+      "rooms": [
+        "brace-workyard",
+        "supported-cut",
+        "hoist-bay",
+        "axle-platform",
+        "work-notes"
+      ],
+      "bindings": {
+        "clear-works": "brace-workyard",
+        "brace": "brace-workyard",
+        "collapse-pin": "supported-cut",
+        "hoist": "hoist-bay",
+        "repair": "axle-platform",
+        "hold-hoist": "axle-platform",
+        "clear-lift": "work-notes",
+        "notes": "work-notes"
+      },
+      "connections": [
+        {
+          "from": "brace-workyard",
+          "to": "supported-cut",
+          "kind": "walk"
+        },
+        {
+          "from": "supported-cut",
+          "to": "hoist-bay",
+          "kind": "gated-walk",
+          "existingState": "early collapse may enable gate-debris; rebuild-brace clears it"
+        },
+        {
+          "from": "hoist-bay",
+          "to": "axle-platform",
+          "kind": "walk"
+        },
+        {
+          "from": "axle-platform",
+          "to": "work-notes",
+          "kind": "gated-walk",
+          "existingState": "repair opens gate-repair"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "topologyId": "monumental-bell-vault",
+      "rooms": [
+        "bell-entry",
+        "suppression-court",
+        "chain-shoulder",
+        "lower-chain-floor",
+        "leak-basin",
+        "keeper-ledge"
+      ],
+      "bindings": {
+        "clear-wards": "suppression-court",
+        "silence": "suppression-court",
+        "hold-silence": "suppression-court",
+        "upper-chain": "chain-shoulder",
+        "lower-chain": "lower-chain-floor",
+        "leak": "leak-basin",
+        "keeper": "keeper-ledge",
+        "clear-bell": "keeper-ledge"
+      },
+      "connections": [
+        {
+          "from": "bell-entry",
+          "to": "suppression-court",
+          "kind": "walk"
+        },
+        {
+          "from": "suppression-court",
+          "to": "chain-shoulder",
+          "kind": "walk"
+        },
+        {
+          "from": "chain-shoulder",
+          "to": "lower-chain-floor",
+          "kind": "walk"
+        },
+        {
+          "from": "suppression-court",
+          "to": "lower-chain-floor",
+          "kind": "walk",
+          "purpose": "short exposed floor alternate; ordered objectives unchanged"
+        },
+        {
+          "from": "lower-chain-floor",
+          "to": "leak-basin",
+          "kind": "walk"
+        },
+        {
+          "from": "leak-basin",
+          "to": "keeper-ledge",
+          "kind": "walk"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "topologyId": "monumental-bell-vault-ritual-state",
+      "rooms": [
+        "bell-entry",
+        "suppression-court",
+        "chain-shoulder",
+        "lower-chain-floor",
+        "leak-basin",
+        "keeper-ledge"
+      ],
+      "bindings": {
+        "route": "bell-entry",
+        "separate-1": "suppression-court",
+        "hold-first": "suppression-court",
+        "send-1": "suppression-court",
+        "separate-2": "lower-chain-floor",
+        "hold-second": "lower-chain-floor",
+        "send-2": "lower-chain-floor",
+        "separate-3": "keeper-ledge",
+        "hold-last": "keeper-ledge",
+        "send-3": "keeper-ledge",
+        "clear-souls": "keeper-ledge",
+        "old-soul": "leak-basin"
+      },
+      "connections": []
+    },
+    {
+      "id": 20,
+      "topologyId": "enclosed-mouth-to-dawn-pass",
+      "rooms": [
+        "blocked-mouth",
+        "convoy-start",
+        "open-rest-shelf",
+        "final-pass",
+        "dawn-arrival",
+        "hero-side-perch"
+      ],
+      "bindings": {
+        "clear-mouth": "blocked-mouth",
+        "exit-pin": "blocked-mouth",
+        "escort": "convoy-start",
+        "escort-mid": "open-rest-shelf",
+        "hold-convoy": "open-rest-shelf",
+        "clear-pass": "final-pass",
+        "escape": "dawn-arrival"
+      },
+      "connections": [
+        {
+          "from": "blocked-mouth",
+          "to": "convoy-start",
+          "kind": "gated-walk",
+          "existingState": "exit-pin opens gate-exit"
+        },
+        {
+          "from": "convoy-start",
+          "to": "open-rest-shelf",
+          "kind": "walk",
+          "constraint": "continuous positive-x NPC walking, no required jump or reverse"
+        },
+        {
+          "from": "open-rest-shelf",
+          "to": "final-pass",
+          "kind": "walk",
+          "constraint": "continuous positive-x NPC walking"
+        },
+        {
+          "from": "final-pass",
+          "to": "dawn-arrival",
+          "kind": "walk",
+          "constraint": "continuous positive-x NPC walking"
+        },
+        {
+          "from": "open-rest-shelf",
+          "to": "hero-side-perch",
+          "kind": "optional-jump"
+        }
+      ]
+    }
+  ]
+}

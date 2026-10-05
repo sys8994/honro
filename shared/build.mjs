@@ -4,6 +4,9 @@ import path from 'node:path';
 import {buildCore} from '../game/engine/build.mjs';
 import {buildMonsters} from '../tools/monster-forge/build.mjs';
 import {buildParty} from '../tools/party-forge/build.mjs';
+import {applyAct1SceneComposition} from '../tools/environment/act1-scene-composition.mjs';
+import {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';
+import {applyAct2VectorArt} from '../tools/environment/build-act2-art.mjs';
 import {buildActors} from '../tools/actor-forge/build.mjs';
 
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -18,8 +21,9 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   const parts=['globalThis.HONRO_BGM_TRACKS='+JSON.stringify(bgm.map(f=>'assets/bgm/'+f))+';',await buildCore(), 'globalThis.HONRO_BALANCE='+await read('game/config/balance.json')+';'];
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
-  for(const name of ['bounds','environment','geometry','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
-  parts.push('globalThis.HONRO_PROJECT='+await read('shared/data/campaign.json')+';');
+  for(const name of ['bounds','environment','geometry','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
+  const project=await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json')))));
+  parts.push('globalThis.HONRO_PROJECT='+JSON.stringify(project)+';');
   if(vector){
     await buildParty();
     parts.push(await read('shared/runtime/party-rig.js'));
@@ -36,9 +40,12 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
       act1Backdrops[key]='data:image/svg+xml;base64,'+svg.toString('base64');
     }
     parts.push('globalThis.HONRO_ACT1_FAR_DATA='+JSON.stringify(act1Backdrops)+';');
+    const act2Backdrops={};
+    for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+(await readFile(path.join(root,'shared/assets/environment',file))).toString('base64');
+    parts.push('globalThis.HONRO_ACT2_FAR_DATA='+JSON.stringify(act2Backdrops)+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-art'])parts.push(await read(`shared/runtime/${name}.js`));
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','act2-art','act1-spatial-art'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));
