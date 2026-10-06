@@ -46,15 +46,37 @@ function tuneBoss(b,st,u){
   u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.honroXpWeight=5;
 }
 function actionWeight(a){if(!a)return 0;if(a.type==='multi')return(a.actions||[]).reduce((n,a)=>n+actionWeight(a),0);if(a.type==='sniperAmbush')return a.n*.78;if(a.type==='spawn')return a.n*({bat:.68,crow:.78,lantern:.8,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[a.kind]||1);return 0;}
+const validLimit=limit=>limit&&['start','end','total','combat'].every(key=>Number.isFinite(limit[key])&&limit[key]>=0)&&limit.end>=limit.start;
+function rememberLimit(b){
+  const g=b?.honroGrowth,state=g?.ledger?.stages?.[b.honroStage];
+  if(state&&validLimit(g.limit))state.limit=clone(g.limit);
+}
 function initialize(b,profile){
   for(const u of b.units)if(u.side===0&&!u.summoned||u.honroAlly){const stats=C.heroStats({xp:C.xpAtLevel(u.level||1),ranks:u.ranks||{}},u.cls);u.critChance=stats.critChance;u.critMultiplier=stats.critMultiplier;}
   if(b.mode!=='campaign')return;
-  if(b.honroGrowth?.ledger?.version===config.version)return;
+  if(b.honroGrowth?.ledger?.version===config.version){rememberLimit(b);return;}
   const ledger=clone(profile.honroGrowth||{version:config.version,stages:{}});ledger.version=config.version;ledger.stages??={};
-  const id=b.honroStage,limit=budget(id),entryXp=Math.max(0,...b.units.filter(u=>u.side===0&&!u.summoned).map(u=>b.heroes[u.cls]?.xp||0)),shift=Math.max(0,entryXp-limit.start);
-  limit.start+=shift;limit.end+=shift;
+  const id=b.honroStage,previous=profile.honroBattle,saved=previous?.honroGrowth;
+  // Recover an old export's unfinished stage before its snapshot is replaced,
+  // even when entering a different chapter. Keep all unrelated stage records.
+  const recorded=saved?.ledger?.stages?.[previous?.honroStage];
+  if(saved?.ledger?.version===config.version&&recorded){
+    const old=ledger.stages[previous.honroStage]||{},combat={};
+    for(const cls of new Set([...Object.keys(old.combat||{}),...Object.keys(recorded.combat||{})]))combat[cls]=Math.max(old.combat?.[cls]||0,recorded.combat?.[cls]||0);
+    const recovered={...clone(recorded),...old,combat,cleared:!!(old.cleared||recorded.cleared||profile.cleared[previous.honroStage])};
+    if(validLimit(saved.limit))recovered.limit=clone(saved.limit);
+    ledger.stages[previous.honroStage]=recovered;
+  }
   ledger.stages[id]??={combat:{},cleared:!!profile.cleared[id]};
   const state=ledger.stages[id];state.combat??={};state.cleared||=!!profile.cleared[id];
+  const limit=validLimit(state.limit)?clone(state.limit):budget(id);
+  if(!validLimit(state.limit)){
+    // Ledger-only old saves have no ceiling: remove each companion's already
+    // recorded combat XP before recovering the original party entry shift.
+    const entryXp=Math.max(0,...b.units.filter(u=>u.side===0&&!u.summoned).map(u=>(b.heroes[u.cls]?.xp||0)-(state.combat[u.cls]||0)));
+    const shift=Math.max(0,entryXp-limit.start);limit.start+=shift;limit.end+=shift;
+  }
+  state.limit=clone(limit);
   const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0);
   b.honroGrowth={ledger,limit,weight:Math.max(1,weight)};
   for(const u of b.units.filter(u=>u.side===1))enemyXP(b,u);
@@ -84,6 +106,35 @@ function complete(b){
   for(const u of b.units.filter(u=>u.side===0&&!u.summoned))C.grantXP(b.heroes[u.cls],Math.max(0,g.limit.end-b.heroes[u.cls].xp));
   state.cleared=true;
 }
-function persist(app){if(app.engine?.b.honroGrowth)app.profile.honroGrowth=clone(app.engine.b.honroGrowth.ledger);}
-G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist};
+// Camp allocates the next expedition while Continue owns an independent combat
+// snapshot. Only these choices cross the sync boundary; combat owns XP/counters.
+function markCampAllocation(profile,cls){
+  if(profile.honroBattle?.heroes?.[cls]){
+    profile.honroCampPending??={};profile.honroCampPending[cls]=true;
+  }
+}
+function reconcileCampAllocations(profile){
+  const battle=profile.honroBattle;
+  if(!battle){delete profile.honroCampPending;return;}
+  // Older saves have no marker. A profile/snapshot allocation difference is an
+  // unsaved camp choice, including a refund to zero, never a rank maximum.
+  for(const cls of C.CLASS_IDS){
+    const h=profile.heroes[cls],old=battle.heroes?.[cls];if(!h||!old)continue;
+    const ids=new Set([...Object.keys(h.ranks),...Object.keys(old.ranks)]);
+    if([...ids].some(id=>(h.ranks[id]||0)!==(old.ranks[id]||0))||C.statTrainingRank(h)!==C.statTrainingRank(old))markCampAllocation(profile,cls);
+  }
+}
+function syncRoster(profile,b){
+  const heroes=clone(b.heroes);
+  for(const cls of C.CLASS_IDS){
+    const h=profile.heroes[cls];
+    if(profile.honroCampPending?.[cls]&&h&&heroes[cls]){
+      heroes[cls].ranks=clone(h.ranks);
+      heroes[cls].statTraining=C.statTrainingRank(h);delete heroes[cls].statRanks;
+    }
+  }
+  profile.heroes=heroes;
+}
+function persist(app){if(app.engine?.b.honroGrowth){rememberLimit(app.engine.b);app.profile.honroGrowth=clone(app.engine.b.honroGrowth.ledger);}}
+G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
 })(globalThis);

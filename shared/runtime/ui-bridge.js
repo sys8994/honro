@@ -16,7 +16,10 @@ function localize(html,profile){const box=document.createElement('div');box.inne
  const nav=box.querySelector('.hero-tabs');if(nav)for(const c of ['archer','mage','knight','occultist']){const el=nav.querySelector(`[data-class=${c}]`);if(el)nav.appendChild(el);}
  return box.innerHTML;
 }
-function camp(profile,cls,header,branch){return localize(C.campView(profile,cls,portraits(),header,branch),profile);}
+function camp(profile,cls,header,branch){
+ const view=localize(C.campView(profile,cls,portraits(),header,branch),profile);
+ return profile.honroBattle?view.replace('<div class="armory-shell">','<div class="armory-shell"><p class="camp-resume-note" role="note">진행 중인 전투가 있습니다. 수련·되돌리기·갖춘 기예 변경은 다시 걷기나 다음 장부터 적용됩니다. 이어서 걷기는 저장된 체력·기력·소모품·행동 상태와 기예를 그대로 이어갑니다.</p>'):view;
+}
 function talent(profile,id){const s=C.SKILLS[id];const text=localize(s.ultimate?C.ultimateView(profile,s.cls,''):C.talentView(profile,id,''),profile);return text.replace(/id="skill-preview"/g,'id="previewcanvas"');}
 /** The original Arcfall battle-bottom geometry, localized to Honro. */
 function bottom(){

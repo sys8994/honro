@@ -72,3 +72,7 @@ SKY SVG·미세 시차·밤톤과 L1–L4 투영은 유지한다. 암반은 배�
 - migration·integration·environment·전체 verify도 실행하고 결과와 한계를 BUG_LOG에 남긴다.
 
 화면과 수치는 `_local/reports/camera-bounds/index.html`에서 본다. 수동 캠페인 완주와 실제 모바일 GPU 측정은 별도다.
+
+## 짧은 가로 화면의 자동 추적
+
+`HonroCamera.followY`는 기존 몸 높이 두 배의 위쪽 오프셋을 화면 높이 28% 이내로 제한한다. 너비/높이 변경 시 자동 추적은 일시정지의 dt=0에서도 새 세로 구도를 적용한다. 너비 기반 줌 보존·최소 전술 줌, 수동 팬, 이야기/목표/투사체의 카메라 소유권은 바꾸지 않는다. `npm run test:camera-follow`는 네이티브 Canvas 회귀이며 실제 브라우저 레이아웃 검사는 별도다. HBUG-087에 실제 공개 빌드 재현과 한계를 기록했다.

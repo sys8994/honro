@@ -15,3 +15,5 @@
 .honro #app .battle-screen:has(.training-tools) #minimap{top:148px!important}
 .honro .talent-dialog .skill-modal-stats{min-height:0;max-height:calc(90dvh - 60px);overflow-y:auto;overscroll-behavior:contain}
 @media(max-width:620px){.honro .training-tools{top:80px;left:12px;right:auto}.training-current img{width:34px}.training-current strong{font-size:12px}.training-current span{white-space:nowrap}}
+
+.honro .camp-resume-note{margin:0;padding:12px 16px;border:1px solid #627060;border-radius:10px;background:#25332c;color:#dedbc5;font-size:13px;line-height:1.7;overflow-wrap:anywhere}

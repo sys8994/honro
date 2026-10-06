@@ -192,7 +192,7 @@ export class Engine {
      * NPC/AI powers retain their established ballistic calibration. */
     chargeDuration(u: Unit, s: Skill) { return Math.min(MAX_CHARGE_SECONDS, 805 * this.effective(s, u).speed / CHARGE_ACCELERATION); }
     chargePower(u: Unit, s: Skill, seconds: number) { return clamp(seconds / Math.max(.001, this.chargeDuration(u, s)), 0, 1); }
-    velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),occultFloor=({O01:.74,O04:.80} as Record<string,number>)[s.id]||0,v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * Math.max(occultFloor,charge) : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
+    velocity(u: Unit, s: Skill, angle: number, power: number) { const charge=clamp(power,0,1),v = u.side===0&&!u.summoned ? CHARGE_ACCELERATION * this.chargeDuration(u,s) * charge : (270 + 535 * clamp(power,.08,1)) * this.effective(s,u).speed; return { vx: Math.cos(rad(angle)) * v, vy: -Math.sin(rad(angle)) * v }; }
     origin(u: Unit, angle: number, body = false) { const reach = body ? 6 : u.cls === 'mage' ? 44 : u.cls === 'archer' ? 42 : u.cls === 'occultist' ? 40 : 28; return { x: u.x + Math.cos(rad(angle)) * reach, y: u.y - u.h * .63 - Math.sin(rad(angle)) * (body ? 8 : reach) }; }
     /** Keep a weapon's muzzle from starting on the far side of a nearby solid face.
      * This is a launch-only sweep: locomotion's tangent/escape collision rule stays intact,
@@ -274,9 +274,12 @@ export class Engine {
         const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.alive(u.side).map(v=>v.id):[], skips: string[] = [];
         let ap: Vec | undefined;
         const dt = collect ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
+        let age=0;
         for (let i = 0; i < Math.ceil((skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
+            age+=dt;
+            // Match live pre-motion triggers, including reverseGhost's timed airburst.
             const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
-            if(fuse>0&&(i+1)*dt>=fuse){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
+            if((fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
             if(skill.mode==='homing'&&i*dt>.12){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
             const gravity=skill.gravity??1;
             const motion = this.advanceProjectile({ x, y, vx,vy,wind: meteor ? 0 : skill.wind, gravityScale:gravity,drag:dragFor(skill,meteor?'meteor':skill.mode),skill:skill.id,mode:skill.mode },dt);
@@ -302,7 +305,6 @@ export class Engine {
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase=skill.phase;
             const h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, phase!=='terrain');
-            if(skill.mode==='reverseGhost'&&ny<-420){if(collect)points.push({x:nx,y:ny});return {points,x:nx,y:ny,closest,apex:ap};}
             if (h) {
                 if ((skill.mode === 'bounce' || skill.mode === 'ricochet' || skill.mode === 'shieldthrow') && h.terrain && bounce === 0) {
                     const dot = vx * h.n.x + vy * h.n.y;
@@ -345,7 +347,7 @@ export class Engine {
                 points.push({ x, y });
             // Use the live projectile's removal bounds, including phase-through shots
             // which can leave the map without ever finding a terrain contact.
-            if (y > this.b.height + 110 || x < -170 || x > this.b.width + 170 || y < -1700) {
+            if (y > this.b.height + 110 || x < -170 || x > this.b.width + 170 || y < -1700 || age > (skill.mode.startsWith('honro')?6:12)) {
                 if(collect&&i%3!==0)points.push({x,y});
                 break;
             }
@@ -748,11 +750,17 @@ export class Engine {
         return; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
         u.jumping = false; }
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active) {
-        if ((this.b as any).honroStage===5 && t.id==='cliff-cleat' && !(this.b as any).honroState?.ritual?.active)
-            return;
         if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
             return;
+        if((this.b as any).honroStage===5&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
+            this.fx('text',t.x+t.w/2,t.y-28,'#c8d6d8',15,'물틈 닫힘 · 받이진 필요');return;
+        }
+        const before=t.hp;
         t.hp -= amount;
+        if(amount>0&&((t as any).honroSeal||(t as any).honroAct2Target||t.device)){
+            this.fx('text',t.x+t.w/2,t.y-28,'#fff0d2',19,'−'+Math.ceil(Math.min(before,amount)));
+            this.b.reviewFocus={x:t.x+t.w/2,y:t.y+t.h*.5};
+        }
         if (t.hp > 0) {
             this.fx('spark', t.x + t.w / 2, t.y + t.h / 2, t.mat === 'wood' ? '#a88159' : '#aab7ba', 18);
             return;

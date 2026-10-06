@@ -219,3 +219,14 @@
   .honro #app .honro-compact-hud .joystick .wind-gauge{top:auto!important;bottom:2px!important;width:64px!important;padding:1px 3px;border-radius:5px;background:#10242ad9}
   .honro #app .honro-compact-hud .wind-gauge small{font-size:7px!important}
 }
+
+/* Re-openable help stays in the existing modal; no automatic tutorial overlay. */
+.honro .battle-help-dialog{width:min(630px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;text-align:left}
+.honro .battle-help-dialog section+section{margin-top:18px}
+.honro .battle-help-dialog h3{margin:0 0 6px;font-size:14px;color:#dfcda7}
+.honro .battle-help-dialog p{margin:0;font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+.honro .battle-help-dialog .battle-help-current{margin-bottom:8px;color:#f0ddb4;font-weight:650}
+.honro .battle-help-dialog .actions{display:flex;flex-wrap:wrap;margin-top:20px}
+.honro .battle-help-dialog .actions button{min-height:44px}
+.honro #app .battle-info .mission-help:focus-visible{outline:2px solid #dfcda7;outline-offset:3px}
+@media(max-width:420px){.honro .battle-help-dialog{padding:20px 16px}.honro .battle-help-dialog .actions button{flex:1;min-width:100px}}

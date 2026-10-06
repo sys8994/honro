@@ -112,10 +112,11 @@
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
+            const resized=this._cameraWidth!==undefined&&(this._cameraWidth!==w||this._cameraHeight!==h);
             // A resize preserves horizontal world span, bounded by readability.
             // Editor inspection and skill demonstrations may use wider views.
             if(!this.editorView&&!this.skillPreview&&this._cameraWidth&&this._cameraWidth!==w){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,Math.min(limits.max,this.scale*w/this._cameraWidth));}
-            this._cameraWidth=w;
+            this._cameraWidth=w;this._cameraHeight=h;
             this.time += effectDt;
             const walkDt=effectDt>0?dt:0;this.walkTime=(this.walkTime||0)+walkDt;
             this.archerVisual?.update(e,this.time,walkDt);
@@ -128,14 +129,18 @@
             c.clearRect(0, 0, w, h);
             const u = e.active,reviewing=b.phase==='review'||b.phase==='ally'&&b.honroState?.allyQueue?.phase==='after'||b.phase==='summon'&&b.summonTurn?.stage==='wait'&&!b.projectiles.length;
             if (!this.manual && u) {
-                let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=u.y-u.h*2,speed=4.2;
+                let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
                 const now=performance.now(),focus=this.focusId&&now<this.focusUntil?b.units.find(v=>v.id===this.focusId):null;
                 const speaking=this.speakerId&&now<this.speakerUntil?b.units.find(v=>v.id===this.speakerId):null;
                 if(speaking){tx=speaking.x;ty=speaking.y-speaking.h*.8;speed=6.4;}
                 else if(b.projectiles?.length){const q=b.projectiles.find(q=>!q.child)||b.projectiles[0];tx=q.x;ty=q.y;speed=7.0;}
                 else if(reviewing&&b.reviewFocus){tx=b.reviewFocus.x;ty=b.reviewFocus.y;speed=7.2;}
                 else if(focus){tx=focus.x;ty=focus.y-focus.h*.65;speed=6.0;}
-                this.x+=(tx-this.x)*Math.min(1,dt*speed);this.y+=(ty-this.y)*Math.min(1,dt*speed);
+                this.x+=(tx-this.x)*Math.min(1,dt*speed);
+                // Resize also occurs while a pause dialog freezes dt. Reframe
+                // automatic follow immediately; never steal manual/story focus.
+                if(resized&&!this.storyTween&&!this.goalFocus)this.y=ty;
+                else this.y+=(ty-this.y)*Math.min(1,dt*speed);
             }
             if(this.storyTween){
                 const tw=this.storyTween,now=performance.now(),raw=Math.max(0,Math.min(1,(now-tw.start)/tw.duration)),ease=raw*raw*(3-2*raw);
@@ -230,6 +235,7 @@
                 if(!G.HonroAct2||G.HonroAct2.visible(b,v))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
             }
             if(!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
+            this.terrainHealth(c,b,w,h);
             G.HONRO_CORE.drawCombatPassives(c,e,this.time);
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)&&(!G.HonroAct2||G.HonroAct2.visible(b,e.unit(id)))).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];
             for(const row of this.reviewSummary){
@@ -251,6 +257,41 @@
             c.restore();
             this.chargeFx(e,power,charging);
             G.HonroObjectives?.draw(this,e);
+        }
+        // Durability is combat state, never part of the static scenery bitmap.
+        // Keep labels and bars in screen pixels at every gameplay zoom.
+        terrainHealthTargets(b){
+            const objectives=(b.honroObjectives||[]).filter(o=>o.type==='destroy'),steps=G.HonroAct2?.active(b)?G.HonroAct2.steps(b):[];
+            return (b.terrain||[]).flatMap(t=>{
+                if(t.broken||t.indestructible||!Number.isFinite(t.hp)||t.hp>=9999||!Number.isFinite(t.maxHp)||t.maxHp<=0)return [];
+                const objective=objectives.find(o=>o.targetId===t.id||o.targetId===t.honroElementId),step=steps.find(o=>o.kind==='destroy'&&o.id===t.id);
+                const event=!!(t.honroSeal||t.honroAct2Target||t.device||objective||step);
+                if(!event&&t.hp>=t.maxHp)return [];
+                const title=objective?.label||step?.label||(t.id==='cliff-cleat'?'고리쇠':t.id.startsWith('bier-knot-')?'상여 결박':t.honroSeal?'봉인':({ward:'결계 장치',sluice:'수문',wind:'바람 장치'})[t.device])||'파괴 가능한 지형';
+                let blocked='';
+                if(b.honroStage===5&&t.id==='cliff-cleat'&&!b.honroState?.ritual?.active)blocked='물틈 닫힘 · 담허의 받이진 필요';
+                else if(G.HonroAct2?.active(b)&&t.id==='upper-chain'&&!b.honroState?.act2?.silenced)blocked='공명 억제 후 파괴 가능';
+                else if(G.HonroAct2?.active(b)&&step?.requiredClass&&b.units.find(u=>u.id===b.active)?.cls!==step.requiredClass)blocked=(H.hero[step.requiredClass]?.name||'동행')+'의 사격 필요';
+                return [{id:t.id,x:t.x+t.w/2,y:t.y,label:title,event,blocked,hp:Math.max(0,t.hp),maxHp:t.maxHp}];
+            });
+        }
+        terrainHealth(c,b,w,h){
+            const z=1/Math.max(.01,this.scale),left=this.x-w*z/2,right=this.x+w*z/2,top=this.y-h*z/2,bottom=this.y+h*z/2;
+            for(const t of this.terrainHealthTargets(b)){
+                if(t.x<left-100*z||t.x>right+100*z||t.y<top-70*z||t.y>bottom+70*z)continue;
+                const width=t.event?100:64,ratio=Math.max(0,Math.min(1,t.hp/t.maxHp)),color=t.blocked?'#a3adb0':'#db9a88';
+                c.save();c.translate(t.x,t.y);c.scale(z,z);c.textAlign='center';c.textBaseline='middle';
+                c.font='600 11px sans-serif';
+                const value=`${Math.ceil(t.hp)} / ${Math.ceil(t.maxHp)}`,label=t.event?t.label:'',caption=t.blocked;
+                const panel=Math.max(width+12,Math.min(250,c.measureText(label).width+14),Math.min(250,c.measureText(caption).width+14));
+                c.fillStyle='#0d2026ee';c.fillRect(-panel/2,-(caption?66:48),panel,44+(caption?18:0));
+                if(label){c.fillStyle='#ead2ad';c.fillText(label,0,-38,panel-12);}
+                c.fillStyle='#293c42';c.fillRect(-width/2,-27,width,7);c.fillStyle=color;c.fillRect(-width/2,-27,width*ratio,7);
+                c.strokeStyle='#bdbaa566';c.lineWidth=1;c.strokeRect(-width/2-.5,-27.5,width+1,8);
+                c.fillStyle='#eee7d5';c.fillText(value,0,-11);
+                if(caption){c.fillStyle='#c8d6d8';c.fillText(caption,0,-56,panel-12);}
+                c.restore();
+            }
         }
         cameraAxis(center,span,min,max){return G.HonroCamera.axis(center,span,min,max);}
         occludedUnitSilhouettes(c,b,units,charge=0){
@@ -350,12 +391,7 @@
             glow(c, x, y, 75, '#b1666570', .4);
             P(c, [[x - 10, y - 28], [x + 12, y - 24], [x + 9, y + 27], [x - 11, y + 24]], '#c1b69b', '#64484b');
             glyph(c, x, y, 8, '#a8534f');
-            if (t.maxHp) {
-                c.fillStyle = '#27373a';
-                c.fillRect(x - 25, t.y - 15, 50, 4);
-                c.fillStyle = '#c0786a';
-                c.fillRect(x - 25, t.y - 15, 50 * Math.max(0, t.hp / t.maxHp), 4);
-            }
+
         } }
         landmark(c,l){const k=l.kind||'',x=l.x,y=l.y,s=l.size||1;c.save();c.globalAlpha=.88;
             if(k==='leftCliff'||k==='rightCliff'){

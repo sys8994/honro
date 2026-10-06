@@ -10,6 +10,7 @@ import {applyAct1VectorArt} from './build-act1-art.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const author=vm.createContext({HonroMapEngine:{},HONRO_CORE:{}});
 vm.runInContext(await readFile(path.join(root,'shared/map/geometry.js'),'utf8'),author);
+vm.runInContext(await readFile(path.join(root,'shared/map/stage7-reentry.js'),'utf8'),author);
 const PREFIX='a1-scene-';
 export function surfaceAt(st,x,y=Infinity,supportId){
  const hits=[];for(const t of st.terrains){if(supportId&&t.id!==supportId)continue;const pts=author.HonroGeometry.derive(t);for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1];if(b.x<=a.x||x<a.x||x>b.x)continue;const at=a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);hits.push({x,y:at,supportId:t.id});}}
@@ -40,6 +41,7 @@ const PLACES={
  10:['서쪽 외문','서쪽 회랑','중앙 주박 의식대','동쪽 회랑']
 };
 export async function applyAct1SceneComposition(project){
+ author.HonroStage7Reentry.applyProject(project);
  applyAct1CollisionRepair(project);
  await applyAct1VectorArt(project);
  for(const st of project.stages){const n=st.metadata?.stageId;if(n<1||n>10)continue;

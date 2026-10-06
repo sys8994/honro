@@ -130,3 +130,113 @@ node tools/intent-pipeline/act-cli.mjs build --run act2-concepts --render-manife
 전체 막 실행은 일반 runtime/build/forge 입력뿐 아니라 recipe·map-forge·environment builder·pipeline 코드도 지문화한다. 구현 권한 안에서 코드를 바꾸면 새 executionSource를 기록하고 이전 기술·플레이·미술 검수 결과를 무효화한다. 승인된 개념/톤과 변경되지 않은 전달 계획은 유지한다. 실행 소스를 바꾸는 것이 최종 미술 승인으로 이어지지 않는다.
 
 검사 결과는 컴파일·스키마·기존 목표/유닛 정의·다른 막과 공유 에셋 보존·18/19 같은 공간·새 전투 roundtrip·spawn support를 구분한다. 이동 완료, 정상 전투 완료, 기존 저장 복원, 브라우저/HUD/입력, 성능, 최종 미술은 별도 증거가 없으면 blocked다. `build` 종료 0은 이 어댑터 단계가 끝났다는 뜻이며 전체 제작 완료를 뜻하지 않는다.
+
+## 실행·재개 가능한 검수 작업
+
+`review-cli.mjs`는 기존 의도/선택 실행을 실제 구현·빌드·검사 명령과 연결한다. 별도 서버, 모델 API, 원격 callback, 브라우저 자동화나 자격 증명은 만들지 않는다. 영속 작업의 매니페스트·명령 로그·해시·검수 보고서는 `_local/reports/review-jobs/<job>/`에 남긴다. `npm run review-job -- help`가 전체 CLI다.
+
+두 실행 범위는 명시적으로 다르다.
+
+- `current-source`: 이미 저작된 현재 campaign/코드를 재빌드하고 검수한다. 새 콘셉트나 지형을 승인/생성하지 않는다. `--run`을 지정하면 기존 의도, 실제 선택한 콘셉트/톤, 전달 계획을 연결하고 그 파일의 해시를 확인한다. 과거 승인 계획의 범위 밖 변경을 승인한 것으로 취급하지 않는다.
+- `act-canonical`: 기존 전체 막 실행의 구현 승인이 필요하다. 승인된 막 전체 scope를 유지하며 `act-cli.mjs build --run ... --skip-render`를 실제 실행한다. 이 canonical adapter는 기존 불변 baseline과 비교하며, 다른 막까지 바뀌었다면 실패한다. 검수를 통과시키기 위해 baseline을 새 소스로 바꾸지 않는다. 현재 adapter는 저작된 canonical 맵을 컴파일하며 새 공간을 자동 발명하거나 캠페인 소스를 덮어쓰지 않는다.
+
+```sh
+# 이미 승인한 의도와 연결해 현재 실제 구현을 검수한다.
+npm run review-job -- init --job act2-current-review --mode current-source --run act2-concepts --stages 11,12,13,14,15,16,17,18,19,20
+npm run review-job -- resume --job act2-current-review --through build
+# 같은 target으로 외부 브라우저 관찰을 시작할 수 있다. 기술 검사는 아직 not-run이다.
+npm run review-job -- resume --job act2-current-review
+npm run review-job -- status --job act2-current-review
+
+# 승인된 전체 막 계획의 canonical 구현 adapter까지 실행한다.
+npm run review-job -- init --job act2-implementation-review --mode act-canonical --run act2-concepts --stages 11,12,13,14,15,16,17,18,19,20
+npm run review-job -- resume --job act2-implementation-review
+
+# 별도의 현재 소스 점검에는 범위와 검수 의도를 직접 명시할 수 있다.
+npm run review-job -- init --job current-campaign-audit --stages 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 --goal "현재 저작된 캠페인의 빌드·회귀·실제 플레이 증거를 연결해 검수"
+```
+
+기존 선택이 해결되지 않았으면 명령 실행 전에 멈춘다. `decision-request.json`은 현행 결정 ID/revision과 옵션을 전달하는 로컬 자료다. 실제 사용자 응답을 확인한 운영자가 기존 `pipeline`의 `propose`, `decide`, `reject` 명령으로 기록한 후 같은 job을 `resume`한다. 이 파일은 클릭 가능한 UI나 인증 callback이 아니다. `implementation-review` 역할의 마지막 실제 결과 검수는 구현을 막지 않지만 최종 미술 승인을 대체하지도 않는다.
+
+### 실제 실행하는 고정 명령
+
+`resume`은 계획 문서의 문자열을 셸로 실행하지 않는다. 코드에 정의한 실행 파일과 argv만 순서대로 실행한다.
+
+1. `act-canonical`이면 기존 `act-cli.mjs build --skip-render`
+2. `node workshop/build.mjs`: Game/Workshop 두 HTML을 같은 기존 빌더로 생성
+3. 게임 TypeScript 검사, migration, 게임 회귀 묶음, 기존 intent-pipeline 검사, review-job 자체 검사, 전투 도움말 회귀
+4. `npm run test:campaign-continuity`: production App lifecycle 기반의 진행/저장 상태 회귀. 정상 플레이 증거가 아니다.
+5. scope에 해당하는 `test:act1:offline`, `test:act2:offline`; 2막에는 `tests/act2-art-fidelity.mjs`도 실행
+
+각 명령의 시작·완료 상태와 시도별 로그가 즉시 저장된다. 성공한 명령은 입력·로그·산출물 해시가 같을 때만 재사용한다. 실패/누락 명령만 다음 `resume`에서 재시도한다. 명령이 없으면 `missing`, 실행 후 오류면 `failed`, 아직 실행하지 않았다면 `not-run`, 외부 증거나 선택을 기다리면 `blocked`다. 이 고정 오프라인 묶음은 전체 `npm run verify` 통과가 아니다. 브라우저 검사는 별도 승인된 경로에서 실행한다.
+
+프로세스가 끊어지면 `running` 시도는 성공으로 승격하지 않는다. 동시 실행은 `.review.lock`으로 막는다. 비정상 종료로 잠금이 남았으면 `job.json`의 실행 중 명령에 기록된 PID/process group과 `.review.lock`의 CLI 프로세스가 모두 실제로 종료됐는지 확인한 뒤 사람이 잠금만 제거하고 재개한다. 다른 작성자의 잠금을 자동으로 지우지 않는다. 명령별 시간 제한은 15분이며, 초과는 실패다. Unix에서는 해당 명령의 전용 process group에 종료 신호를 보낸다. CLI 강제 종료까지 자동 복구하는 서비스는 없으며, 테스트의 합성 실행 중단은 실제 OS 프로세스 종료 검증을 대신하지 않는다.
+
+### 소스·산출물·증거의 무효화
+
+검수 지문에는 일반 pipeline 소스 외에 전체 검사 코드, 도구 코드, recipe, package script와 설치된 TypeScript 입력이 포함된다. 검사 코드 자체를 바꾸고 과거 성공 로그를 재사용할 수 없다. 빌더가 생성 자산을 갱신하면 새 소스로 모든 하위 검사를 다시 실행한다. 검사 도중 소스가 바뀌면 현재 증거를 실패 처리하고 안정된 소스에서 재개하게 한다.
+
+브라우저 대상은 두 HTML과 외부 BGM의 바이트 해시를 묶는다. 다른 커밋이라도 실제 배포/열람한 바이트가 완전히 같다는 것을 확인한 관찰은 재사용 가능하다. 새 SVG, 맵, 렌더러, HUD 등으로 HTML이 달라지면 과거 공개 버전의 브라우저 결과는 거절한다. 파일명이나 성공 숫자만 같아서는 재사용할 수 없다. 실행 소스, 의도/선택, 로그, 결과물, 반입 보고서, 미술 검수 이미지 변경은 해당 기술/플레이/미술/전달 증거를 무효화한다.
+
+### 실제 브라우저 관찰 반입
+
+현재 job의 `browser-request.json`은 필요한 scope와 정확한 대상 해시를 출력한다. 이 template 자체는 관찰이 아니며 `observer`, `observedAt`, `evidence`, `coverage`가 비어 있어 반입할 수 없다.
+
+승인된 실제 브라우저 운영자는 열어본 Game/Workshop과 외부 자산이 요청의 바이트와 같은지 먼저 확인한다. 관찰 보고서/스크린샷을 저장소 내부 `_local`에 저장하고 해시가 있는 `honro-browser-evidence/v1` packet을 만든다.
+
+- `kind`: `browser-live-play`; `runType`: `real-browser`
+- `observer`, `observedAt`: 실제 관찰자/시각. transcript나 비공개 대화 ID를 공개 파일에 복사하지 않는다.
+- `provenance.targetDigest`, `provenance.artifacts`: 검증한 현재 요청의 전체 대상 해시
+- `evidence`: 실제 파일의 `{kind, path, sha256}` 배열. `path`는 checkout 상대 경로이며 symlink/바깥 경로는 허용하지 않는다.
+- `coverage`: `{surface, check, stageIds, status, detail, evidencePaths}` 배열. `surface`는 `game` 또는 `workshop`, `status`는 `passed`, `failed`, `blocked`, `not-run`이다. 관찰된 성공/실패는 해시 확인한 증거 파일을 연결한다.
+
+필수 검수는 scope의 각 장 `game/normal-playthrough`, 여러 장이면 `game/campaign-continuity`, `game/controls`, `game/save-resume`, `game/mobile-portrait`, `game/mobile-landscape`, `workshop/stage-view`, `workshop/playtest`, `workshop/save-load`, 두 surface의 `performance`다. 장 입장·짧은 이동 같은 부분 관찰은 별도 `stage-entry` 등의 check로 보관하되 정상 완료 요구를 충족하지 않는다. `normal-playthrough` 성공은 해당 `stageIds`, `method: "normal-input"`, `completed: true`, `debug: false`, `modifications: []`를 모두 필요로 한다. 적 삭제·승리 주입·상태 fixture는 허용하지 않는다. `campaign-continuity` 성공은 `method: "normal-input"`, `singleProfile: true`, scope 순서와 같은 `completedStageIds`, `resetCount: 0`, `debug: false`, `modifications: []` 및 해시 확인한 `transitionEvidencePaths`/`saveEvidencePaths`를 요구한다. 장별로 독립 실행한 승리를 한 저장의 연속 여정으로 합치지 않는다. 모바일 두 방향은 실제 `viewport.width`/`height`, `inputMode: "touch-emulation"` 또는 `"real-device-touch"`, `controlsConfirmed: true`, `readabilityConfirmed: true`가 필요하다. 데스크톱 마우스 점검을 모바일로 간주하지 않으며 에뮬레이션과 실기기를 명확히 구분한다. 성능 성공에는 `isolated: true`와 실제 `measurements.frames`, `measurements.p95FrameMs`가 필요하다.
+
+```sh
+npm run review-job -- import-browser --job act2-current-review --packet _local/reports/browser/actual-coverage.json
+npm run review-job -- status --job act2-current-review
+```
+
+Game만 실제 열어본 부분 관찰에는 `provenance.scope: "observed-surfaces"`를 명시하고 `targetDigest`를 생략하며 실제 확인한 `HONRO.html` 해시만 제공할 수 있다. 이 경우 Game 항목만 검수하며, 열지 않은 Workshop·외부 BGM을 검증했다고 주장하지 않는다. 현재 Game HTML이 바뀌면 이 부분 증거도 거절한다. 성능 성공에는 항상 전체 대상 해시가 필요하다. 좁은 창에서 마우스로 누른 점검은 `narrow-pointer-portrait` 같은 별도 check로 보관하며 실제 모바일 touch 요구를 충족하지 않는다.
+
+반입 후에도 파일 해시를 다시 확인한다. 이미 반입한 packet/증거는 덮어쓰지 않고 새 이름으로 재검수 자료를 만든다. 과거 대상의 증거는 새 HTML에서 stale로 분리하지만, 반입된 파일 자체가 사라지거나 변조되면 원본을 복구하기 전 전달을 막는다. 실패를 수정한 재검수는 더 늦은 `observedAt`으로 같은 항목을 명시해서 반입하며 과거 실패 이력은 지우지 않는다. 같은 최신 시각에 성공/실패가 충돌하면 실패가 우선한다. 최소 요구 목록 밖에서 발견한 실제 실패도 전달을 막는다. 같은 항목/장에 대한 더 늦은 명시적 성공 재검수로만 해결되며, `not-run`이나 `blocked`를 새로 써서 실패를 지울 수 없다. 알려지지 않은 항목이나 부분 관찰은 보고서에 남지만 필수 검수로 확대 계산하지 않는다. 발견한 실패는 `job.json`의 영속 `knownFailures` 장부에 surface/check/장 단위로 기록하며, 원래 반입 packet·보고서·이미지의 해시와 당시 대상 출처를 유지한다. 소스/HTML 변경이나 과거 packet의 stale 분류가 결함을 해결하지 않는다. 각 결함은 원래 실패보다 실제 관찰 시각이 늦고, 현재 대상에 유효한 같은 check/장의 명시적 성공 재검수를 필요로 한다. 여러 장의 실패 중 한 장만 재검수하면 나머지는 열린 상태다. 해결된 결함도 원래 이력을 지우지 않으며 새 대상에서는 그 대상의 재검수를 요구한다.
+
+장부가 없던 기존 job은 이미 반입했던 해시 확인된 packet에서 실패를 복원한다. 새 반입은 당시 승인된 정확한 대상 해시 묶음도 receipt에 보관한다. 과거 대상이라고 해서 연결된 보고서/이미지의 무결성 검사를 건너뛰지 않는다. 이 파일이 사라지거나 바뀌면 새 대상의 최소 검사가 모두 통과해도 전달을 막는다. 같은 시각의 서로 다른 ISO 표기(`Z`와 `.000Z`)는 동일한 순간으로 비교하며 실패가 우선한다.
+
+### 새 빌드 후 도착한 과거 브라우저 관찰
+
+공개된 이전 빌드에서 계속 진행한 검수가 새 로컬 빌드보다 늦게 도착하면, 일반 `import-browser`는 여전히 오래된 HTML을 거절한다. 새 관찰의 실패를 잃지 않으려면 별도 명령을 사용한다. `--against-receipt`에는 **같은 job의 `imports`에 이미 기록된 일반 브라우저 packet의 경로**를 지정한다. 새 packet을 자기 자신의 출처로 지정하거나, 기록되지 않은 대상/다른 job/과거 전용 반입을 출처로 지정할 수 없다.
+
+```sh
+npm run review-job -- import-historical-browser --job current-campaign-audit --packet _local/reports/browser/late-old-build-coverage.json --against-receipt _local/reports/browser/already-accepted-coverage.json
+npm run review-job -- status --job current-campaign-audit
+```
+
+이 명령은 과거 대상의 별도 레지스트리를 추측하지 않는다. 이미 반입된 receipt의 packet 바이트·연결 보고서/스크린샷 해시를 다시 검증하고, 그 receipt에 저장한 `acceptedTarget`을 기준으로 새 packet의 전체 스키마·장 범위·증거·일반 브라우저 규칙을 검증한다. `acceptedTarget`이 없는 구형 receipt는 **원래 해시로 묶인 packet의 대상 정보만** 출처로 쓴다. 특히 구형 `observed-surfaces` Game receipt는 기록된 Game HTML 부분집합만 허용하며, 확인하지 않은 Workshop·BGM이나 전체 대상 digest를 새로 주장할 수 없다. 원본 receipt·보고서·대상 정보는 수정/이관하지 않는다. 이 제한을 풀려고 원본 해시나 job 장부를 수동 편집하지 않는다.
+
+새 관찰은 `historicalImports`에 별도 보관하고, 검수 보고서의 `historicalObservations` 및 “Historical browser observations (zero current proof)”에서 원본 출처와 성공/실패/부분 관찰을 보여준다. packet과 연결 파일은 `_local`의 고유 경로에 계속 보관한다. 이후 status/resume/delivery에서도 새 packet과 출처 receipt 양쪽의 파일 무결성을 확인한다. 파일 변조/삭제는 전달을 막는다. 과거 전용 반입은 현재 성공 빌드가 다시 실행되기 전에도 기록할 수 있지만 빌드·기술 검수 상태를 통과로 만들지 않는다.
+
+과거 실패는 surface/check/장별 영속 결함 장부에 추가하며 현재 대상의 더 늦은 **일반 `import-browser` 성공 재검수**를 요구한다. 과거 성공은 현재 필수 검수·실패 해결·최종 미술 승인에 **항상 0의 증거 기여**만 한다. 나중에 현재 HTML을 과거 바이트로 되돌려도 이 구분을 유지한다. 같은 과거 packet을 일반 반입으로 승격할 수 없으며, JSON 공백/키 순서/동일 시각 표기나 순서 없는 coverage·증거·artifact 목록을 재배열한 관찰도 새 재검수로 인정하지 않는다. 동일 관찰자·실제 시각·surface·HTML 해시가 같은 관찰은 보수적으로 같은 사건으로 묶어 coverage 행 분할이나 부분 surface packet 재작성도 승격하지 않는다. 같은 HTML의 다른 check를 새로 검수했다면 실제 새 관찰 시각을 기록해야 하며 시간을 임의로 바꿔 승격하지 않는다. HTML이 실제로 다른 현재 대상의 같은 시각 관찰은 별도로 검증하며, 기존 동률 실패 우선 규칙을 유지한다. 정상 완료/성능 등 성공 주장의 기존 스키마 규칙도 완화하지 않는다. 같은 순간의 다른 ISO 표기는 여전히 동률이며, 한 장의 재검수로 다른 장의 실패를 해결하지 않는다. 새 관찰은 이전 미술 승인/전달을 무효화하고, 공개 배포나 미술 승인을 만들지 않는다.
+
+JSON은 운영자가 확인한 사실을 반입하는 신뢰 어댑터다. 해시 검사는 관찰자나 사용자 신원, 글의 진실성을 인증하는 서비스가 아니다.
+
+### 검수 보고서와 로컬 전달
+
+`reviewer.md`와 `reviewer.json`은 항상 현재 의도/선택, 구현 기록, 커밋/소스/대상 지문, 명령별 로그, 실제 브라우저 coverage, 부족한 증거를 함께 보여준다. 미술의 합격은 자동 점수로 만들지 않는다.
+
+기술/실제 플레이가 모두 충족한 뒤 실제 사용자에게 현재 결과 이미지를 보여 주고 최종 승인을 받은 경우에만, 운영자가 `user-artistic-approval` packet을 반입한다. 필수 필드는 `actor: "user"`, 실제 응답의 `reference`, `approvedAt`, 현재 `reviewer.json`의 `basis`, 현재 `targetDigest`, 현재 대상을 가리키는 해시 있는 `renderEvidence`(`kind: "screenshot"` 또는 `"render"`, 각각의 `targetDigest`)다. 이 비공개 응답 출처는 로컬 기록에만 보관하며 fixture에는 예시만 사용한다.
+
+```sh
+npm run review-job -- approve-art --job act2-current-review --packet _local/actual-user-art-approval.json
+npm run review-job -- deliver --job act2-current-review
+```
+
+`deliver`는 모든 현재 증거가 충족됐을 때만 `delivery.json`을 만든다. 정확한 두 HTML/외부 자산, 동결된 검수 보고서, 브라우저 관찰, 사용자 미술 승인과 하나의 proof basis를 연결한다. 이것은 로컬 전달 manifest이며 업로드·공개 배포·merge 권한을 만들지 않는다. 하나라도 미확인인 job은 완료 manifest를 만들지 않고 검수 보고서와 다음 필요한 행동을 남긴다.
+
+검사: `npm run test:review-job`. 이 테스트의 합성 명령/승인/브라우저 packet은 임시 디렉터리의 상태전이 검사용이며 실제 job 증거로 반입하지 않는다. 실제 브라우저가 없는 환경의 실행은 빌드·오프라인 검사를 실제로 수행한 뒤 정확히 그 자리에서 대기한다.
+
+### 연속 여정의 재시도 기록
+
+`campaign-continuity.resetCount`는 새 여정 시작이나 프로필 교체로 진행을 초기화한 횟수다. 같은 프로필에서 정상 메뉴로 한 장을 다시 시도한 것은 여정 초기화와 구분한다. 정상 재시도가 있었다면 coverage의 상세 기록에 장·실패/재시도 횟수와 증거를 남기고, 무실패·단일 시도 완주라고 표시하지 않는다. 장별 강제 승리나 별도 초기 프로필의 승리를 합치는 것은 여전히 허용하지 않는다.
+
+현재 고정 기술 프로필에는 `test:camp-persistence`도 포함된다. 캠프 수련·환불·장착과 진행 중 전투 스냅샷의 경계를 검사하며, 브라우저의 실제 캠프 입력 증거를 대신하지 않는다.

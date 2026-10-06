@@ -52123,6 +52123,54 @@
             "seed": 1,
             "optimizeEpsilon": 0
           }
+        },
+        {
+          "id": "root-reentry",
+          "name": "아랫뿌리 발디딤",
+          "type": "solid",
+          "points": [
+            {
+              "x": 20,
+              "y": 4480
+            },
+            {
+              "x": 170,
+              "y": 4300
+            },
+            {
+              "x": 470,
+              "y": 4300
+            },
+            {
+              "x": 930,
+              "y": 4480
+            },
+            {
+              "x": 930,
+              "y": 4520
+            },
+            {
+              "x": 20,
+              "y": 4520
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": true,
+            "surfaceKind": "wood",
+            "artSeed": 1
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [],

@@ -106,7 +106,7 @@ function build(st,profile,training,cls,skill,legacy){
  if(training)return trainingWorld(st,profile,cls,skill,legacy);
  const project=G.HONRO_PROJECT,map=project.stages.find(s=>s.metadata.stageId===st.id);
  if(!map)throw Error('Missing canonical stage '+st.id);
- return G.HonroMaps.createBattle(map,project,profile);
+ return G.HonroMaps.createBattle(map,project,profile,{origin:'campaign'});
 }
 
 G.HonroWorld={build,top,createEnemy,ally,archetypes:ARCHETYPES};

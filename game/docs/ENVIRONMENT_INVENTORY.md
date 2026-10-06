@@ -120,7 +120,7 @@
 | stage-4 | forest / burned | 31 / 8 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
 | stage-5 | valley / valley | 19 / 14 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 13 |
 | stage-6 | valley / valley | 20 / 10 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 10 |
-| stage-7 | forest / enclosed | 11 / 11 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 15 |
+| stage-7 | forest / enclosed | 11 / 12 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 15 |
 | stage-8 | forest / temple | 14 / 11 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
 | stage-9 | forest / forest | 10 / 8 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 7 |
 | stage-10 | forest / otherworld | 13 / 9 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
