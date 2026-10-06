@@ -46,7 +46,7 @@
     "test:stage7-reentry": "node tests/stage7-reentry.mjs",
     "test:campaign-continuity": "node tests/campaign-continuity.mjs",
     "test:battle-help": "node tests/battle-help.mjs && node tests/modal-keyboard.mjs && node tests/aim-readout.mjs",
-    "test:camera-follow": "node tests/camera-follow.mjs",
+    "test:camera-follow": "node tests/camera-follow.mjs && node tests/camera-resize.mjs",
     "review-job": "node tools/intent-pipeline/review-cli.mjs",
     "test:review-job": "node --test tests/intent-pipeline-review-job.mjs",
     "test:camp-persistence": "node tests/camp-persistence.mjs && node tests/camp-reward-budget.mjs",

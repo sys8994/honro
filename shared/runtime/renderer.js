@@ -160,9 +160,10 @@
             c.clearRect(0, 0, w, h);
             const u = e.active,reviewing=b.phase==='review'||b.phase==='ally'&&b.honroState?.allyQueue?.phase==='after'||b.phase==='summon'&&b.summonTurn?.stage==='wait'&&!b.projectiles.length;
             if (!this.manual && u) {
-                let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
                 const now=performance.now(),focus=this.focusId&&now<this.focusUntil?b.units.find(v=>v.id===this.focusId):null;
                 const speaking=this.speakerId&&now<this.speakerUntil?b.units.find(v=>v.id===this.speakerId):null;
+                if(resized&&!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
+                let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
                 if(speaking){tx=speaking.x;ty=speaking.y-speaking.h*.8;speed=6.4;}
                 else if(b.projectiles?.length){const q=b.projectiles.find(q=>!q.child)||b.projectiles[0];tx=q.x;ty=q.y;speed=7.0;}
                 else if(reviewing&&b.reviewFocus){tx=b.reviewFocus.x;ty=b.reviewFocus.y;speed=7.2;}
