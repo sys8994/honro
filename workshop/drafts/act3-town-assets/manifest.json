@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "status": "inactive-art-draft",
+  "baseCommit": "53fd1085cfbbb22d06023d62bc923a367d5767c0",
+  "purpose": "Common town materials for map-concept review; no map or narrative decision is made here.",
+  "runtimeRegistration": false,
+  "collision": [],
+  "assets": [
+    {
+      "id": "draft-act3-town:eupseong-gate",
+      "name": "읍성 성문 · 석축과 문루",
+      "file": "eupseong-gate.svg",
+      "role": "architecture",
+      "candidateLayer": "L1-back",
+      "reference": {"heightM": 14.083333333333334, "bounds": {"x": -750, "y": -835, "w": 1500, "h": 845}, "foot": {"x": 0, "y": 0}, "scaleRange": [0.85, 1.15], "backgroundRange": [0.85, 1.15]},
+      "groundContacts": [[-640, 0], [-300, 0], [300, 0], [640, 0]],
+      "clearRegions": [{"name": "arch-passage", "x": -120, "y": -185, "w": 240, "h": 177}],
+      "roof": {"groupId": "broad-paljak-roof", "bounds": {"x": -490, "y": -819, "w": 981, "h": 215}},
+      "materialNotes": "Cool irregular granite masses, three-bay timber pavilion, muted green bracket band, restrained broad paljak roof.",
+      "placementNotes": "Split stone contacts sit on a common support. The arch is empty artwork, not a cut through terrain. A future map must author separate collision solids and retain passage clearance."
+    },
+    {
+      "id": "draft-act3-town:office-wall-entry",
+      "name": "관아 담장 · 열린 문간",
+      "file": "office-wall-entry.svg",
+      "role": "architecture",
+      "candidateLayer": "L1-back",
+      "reference": {"heightM": 9.166666666666666, "bounds": {"x": -720, "y": -540, "w": 1440, "h": 550}, "foot": {"x": 0, "y": 0}, "scaleRange": [0.85, 1.15], "backgroundRange": [0.85, 1.15]},
+      "groundContacts": [[-640, 0], [-290, 0], [290, 0], [640, 0]],
+      "clearRegions": [{"name": "entry-passage", "x": -68, "y": -260, "w": 136, "h": 252}],
+      "roof": {"groupId": "entry-roof-and-eaves", "bounds": {"x": -254, "y": -520, "w": 512, "h": 182}},
+      "materialNotes": "Long warm plaster planes over short granite courses; low tiled coping and a higher timber entry distinguish this from a fortress.",
+      "placementNotes": "Wall wings and post shoes contact y=0; threshold remains clear. An eave silhouette does not block arrows until corresponding collision is explicitly authored. No office name or insignia is assigned."
+    },
+    {
+      "id": "draft-act3-town:granary-loading-wall",
+      "name": "관창 외벽 · 열린 하역칸",
+      "file": "granary-loading-wall.svg",
+      "role": "architecture",
+      "candidateLayer": "L1-back",
+      "reference": {"heightM": 10.333333333333334, "bounds": {"x": -720, "y": -610, "w": 1440, "h": 620}, "foot": {"x": 0, "y": 0}, "scaleRange": [0.85, 1.15], "backgroundRange": [0.85, 1.15]},
+      "groundContacts": [[-582, 0], [-288, 0], [50, 0], [390, 0], [625, 0]],
+      "clearRegions": [{"name": "open-loading-bay", "x": 242, "y": -300, "w": 148, "h": 137}, {"name": "under-deck-gap", "x": 140, "y": -84, "w": 180, "h": 75}],
+      "roof": {"groupId": "long-low-tiled-roof", "bounds": {"x": -701, "y": -595, "w": 1408, "h": 221}},
+      "materialNotes": "Low wide roof, timber-clad clay wall, closed plank store door, high vent and an open cargo bay on raised stone piers.",
+      "placementNotes": "Five stone piers touch ground; loading deck is at y=-152. The opening is at deck height, not ground. No implied ramp, walkable deck, river, cargo record or destructible gate is added."
+    }
+  ]
+}
