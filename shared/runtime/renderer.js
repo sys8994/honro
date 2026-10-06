@@ -144,6 +144,10 @@
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
             const resized=this._cameraWidth!==undefined&&(this._cameraWidth!==w||this._cameraHeight!==h);
+            // Read HUD layout only on first layout/resize, never per frame.
+            // The full-width header container is transparent; only its info
+            // panel and pause button can obscure the selected actor marker.
+            if(resized||this._cameraWidth===undefined){const root=this.canvas.closest?.('.battle'),view=this.canvas.getBoundingClientRect(),rects=['.battle-info','.battle-head>button'].map(selector=>root?.querySelector(selector)?.getBoundingClientRect()).filter(r=>r&&r.width>0&&r.height>0);this._cameraHeader=rects.length?{left:Math.min(...rects.map(r=>r.left))-view.left,right:Math.max(...rects.map(r=>r.right))-view.left,top:Math.min(...rects.map(r=>r.top))-view.top,bottom:Math.max(...rects.map(r=>r.bottom))-view.top}:null;}
             // A resize preserves horizontal world span, bounded by readability.
             // Editor inspection and skill demonstrations may use wider views.
             if(!this.editorView&&!this.skillPreview&&this._cameraWidth&&this._cameraWidth!==w){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,Math.min(limits.max,this.scale*w/this._cameraWidth));}
@@ -162,8 +166,10 @@
             if (!this.manual && u) {
                 const now=performance.now(),focus=this.focusId&&now<this.focusUntil?b.units.find(v=>v.id===this.focusId):null;
                 const speaking=this.speakerId&&now<this.speakerUntil?b.units.find(v=>v.id===this.speakerId):null;
-                if(resized&&!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
+                const actorFollow=!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length;
+                if(resized&&actorFollow){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
                 let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
+                if(actorFollow){const safeX=G.HonroCamera.avoidHeaderX(u,tx,ty,w,h,this.scale,this._cameraHeader);if(resized&&safeX!==tx)this.x=safeX;tx=safeX;}
                 if(speaking){tx=speaking.x;ty=speaking.y-speaking.h*.8;speed=6.4;}
                 else if(b.projectiles?.length){const q=b.projectiles.find(q=>!q.child)||b.projectiles[0];tx=q.x;ty=q.y;speed=7.0;}
                 else if(reviewing&&b.reviewFocus){tx=b.reviewFocus.x;ty=b.reviewFocus.y;speed=7.2;}
