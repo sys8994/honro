@@ -1,5 +1,7 @@
 # HONRO 게임 수정 맥락
 
+**7장 live 주민 구조(2026-10-06):** `rescue`는 고정 의식 장소가 아니라 marker의 `target` 주민에게 접근하는 행동이다. `HonroObjectives.interactionTarget`을 거리·후보·목표 표시가 공유하며 현재 전투의 살아 있는 미구조 주민만 허용한다. 판정 좌표만 실시간으로 읽고 원래 marker에 collected/진행을 기록하므로 기존 저장의 좌표·AI·지형·구조 후 보호 규칙을 바꾸지 않는다. 고정 장부/받이진/문과 authored/Act2 장소는 그대로다. `test:rescue-targets`가 실제 App E/버튼·저장 왕복·무효 연결·중복 입력을 검사한다.
+
 **급경사 저장 복구 오판(HBUG-103 후속, 2026-10-06):** 실제 App의 내보내기→가져오기→Continue는 `sanitizeStageBattle`를 거치므로 Engine JSON 복제만으로 저장 호환을 판정하지 않는다. `validTerrainContactPose`가 공통 지지면(기존 작은 틈 포함)·이어진 상부 윤곽과 실제 발/몸/머리 여유를 확인하면 정상 급경사 위치를 유지한다. 발 매몰·벽·같은 polygon의 낮거나 얇은 천장은 여전히 복구 대상이며, 복구 후보도 같은 판정을 통과해야 한다. 새 판정은 저장 복구에만 사용하고 실시간 보행·일반 생성 배치·지형/저장 형식을 바꾸지 않는다. `test:ground-contact`가 엔진 검사와 실제 App 저장 경계 검사를 모두 실행한다.
 
 **단일 지형과 내부 플레이 범위(HBUG-102):** v6 canonical polygon 안에 Play Bounds를 두고 전체 형상은 같은 renderer로, collision은 고정 시뮬레이션 투영으로 처리한다. 기존135개 collision·play state를 보존한다. old battle Continue는 기존 지형이며 새 진입/재시도부터 적용한다. 동굴·tile·저장·편집은 `TERRAIN_DOMAIN.md`를 따른다.

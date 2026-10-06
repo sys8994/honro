@@ -1,5 +1,13 @@
 (function(G){'use strict';
 const durability=t=>Number.isFinite(t?.hp)?Math.max(0,Math.ceil(t.hp))+(Number.isFinite(t.maxHp)&&t.maxHp>0?'/'+Math.ceil(t.maxHp):''):'';
+// Rescue follows its referenced person in this battle, never its old authoring
+// point. Keep the original marker for collection/progress writes and saved maps.
+function interactionTarget(b,m){
+ if(m?.action!=='rescue')return m;
+ if(m.collected||!b?.honroMarkers?.includes(m))return null;
+ const u=b.units?.find(u=>u.id===m.target);
+ return u&&!u.dead&&u.hp>0&&!u.honroResolved&&Number.isFinite(u.x)&&Number.isFinite(u.y)?u:null;
+}
 function state(b,st){
  if(b.honroCustom)return G.HonroAuthored.objectiveState(b);
  if(G.HonroAct2?.active(b))return G.HonroAct2.state(b);
@@ -7,7 +15,7 @@ function state(b,st){
  seals.forEach((t,i)=>add('seal',t.id,t.x+t.w/2,t.y,st.id===5?'절벽 고리쇠 · '+durability(t):st.id===8?`상여 결박 ${i+1} · 공격`:`매듭 ${i+1} · 공격`,{done:!!t.broken,box:t}));
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
  if(boss&&!boss.dead)add('boss',boss.id,boss.x,boss.y-boss.h,st.id===10?(hs.sodanCoop?'소단 · 혼매듭 의식 보호':'소단의 주박 · 비살상 제압'):'빈 상여 · 제압',{unitId:boss.id});for(const u of b.units.filter(u=>u.honroMidboss&&!u.dead&&u.id!=='boss'))add('midboss',u.id,u.x,u.y-u.h,`${u.name} · 중간 우두머리`,{unitId:u.id});
- for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?(hs.ritual?.active?'의식 유지 중 · 이탈 시 해제':'담허로 E · 의식 시작'):'E · 받이진 설치'}`);if(m.type==='resident')add('interact',m.id,m.x,m.y,`${m.label} · 구조`);}
+ for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?(hs.ritual?.active?'의식 유지 중 · 이탈 시 해제':'담허로 E · 의식 시작'):'E · 받이진 설치'}`);if(m.type==='resident'){const target=interactionTarget(b,m);if(target)add('interact',m.id,target.x,target.y-(target===m?0:target.h||0),`${m.label} · 구조`,target===m?{}:{unitId:target.id});}}
  // The saved/live map owns the exit. Content dimensions can belong to an older map.
  const exit=markers.find(m=>m.type==='exit'),exitX=(st.objective==='overwatch'?b.honroEscortGoalX:undefined)??exit?.x??b.honroMapAnchors?.exit?.x??b.width-(st.objective==='overwatch'?290:st.objective==='rescue'?130:180);
  if(['arrival','rescue','overwatch'].includes(st.objective))add('exit',exit?.id||'mission-exit',exitX,exit?.y??G.HonroWorld.top(b,exitX,obj?.y),st.objective==='overwatch'?'상여 도착 지점':'도착 지점');
@@ -90,5 +98,5 @@ function draw(scene,e){
  c.restore();
 }
 function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);c.restore();}
-G.HonroObjectives={state,lines,entry,help,focus,refresh,draw,minimap,briefings};
+G.HonroObjectives={interactionTarget,state,lines,entry,help,focus,refresh,draw,minimap,briefings};
 })(globalThis);
