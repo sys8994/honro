@@ -306,7 +306,7 @@
         portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
         drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; const resumeRest=!!this.profile.honroJourney?.story&&!this.debugMode;this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg"></div><header class="top">${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap">${G.HONRO_TITLE_LOGO?`<img class="honro-logo" src="${G.HONRO_TITLE_LOGO}" alt="혼로 HONRO · 잊힌 혼들이 머무는 곳, 다시 흐르는 이야기">`:'<h1>혼로</h1>'}</div><p class="title-tagline">산도, 죽은 자도, 언젠가 다시 흐른다.</p><div class="title-actions"><button class="primary" data-action="${resumeRest?'rest':this.profile.honroBattle ? 'continue' : this.debugMode ? 'map' : 'rest'}">${resumeRest?'쉼터 대화 이어가기':this.profile.honroBattle ? '이어서 걷기' : this.debugMode ? '스테이지 검수' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? resumeRest?'<button class="ghost" data-action="continue">저장된 전투 이어서 걷기</button>':'<button class="ghost" data-action="rest">길 위의 쉼터</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
-        stopBattle() { this.disposeAtlas(); if (this.engine && !this.training && !this.done) {
+        stopBattle() { this.disposeAtlas(); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             this.persist();
@@ -1084,6 +1084,7 @@
             try {
                 const dt = Math.min(.06, Math.max(0, (now - this.prev) / 1000));
                 this.prev = now; G.HonroStory.tick(this,now);
+                G.HonroRestJourney?.frame(this,dt);
                 if (this.screen === 'map')
                     this.renderMap(dt);
                 if(this.preview)G.HonroSkillPreview.tick(this,this.preview,dt);

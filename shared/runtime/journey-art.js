@@ -29,8 +29,9 @@
     return `<g transform="translate(${x} ${y}) scale(${flip ? -scale : scale} ${scale})">` +
       path('M-27 5L-3-63 12-151 2-241 30-327 15-406 30-455 43-455 35-404 51-326 24-237 34-153 18-62 48 5 11-3 1-25-12 5Z M19-242L-61-278-122-284-152-309-146-318-113-299-55-299 32-267Z M31-331L88-371 157-386 190-414 199-410 167-371 95-355 26-309Z M31-407L-31-423-72-452-64-459-25-438 34-430Z', '#172324') +
       path('M6-13L14-65 25-150 16-241 40-326 25-403 33-441 31-404 46-326 22-239 30-151 14-62 32-3Z', p.light) +
+      `<g data-rest-motion="pine-crown" data-rest-phase="${x / 240}">` +
       path('M-161-320C-183-335-155-352-129-342-113-366-80-369-60-357-35-377-1-366 11-350 36-363 64-341 70-323 46-311 21-311-2-320-26-306-50-315-66-320-87-309-111-318-123-327-143-319-153-322-161-320Z M-91-463C-98-480-79-489-62-483-45-504-17-503 0-489 16-505 43-494 54-481 74-486 95-469 99-454 77-445 59-452 46-458 21-448 1-455-13-463-39-453-62-462-91-463Z M67-387C49-401 74-417 97-408 115-431 143-435 163-423 182-440 212-435 225-420 249-426 272-408 268-396 249-382 230-388 213-393 193-380 169-386 153-390 128-373 105-383 90-388 80-382 74-385 67-387Z M-53-277C-73-294-51-310-29-300-11-318 8-319 26-307 41-317 65-306 71-293 53-280 34-282 19-286-2-275-29-285-53-277Z', p.pine) +
-      path('M-157-337Q-143-349-129-342C-112-364-81-367-60-357Q-29-374-7-357L-28-347-61-348-89-339-115-338-133-330Z M-79-479L-61-483C-43-502-18-500 0-489Q22-500 43-484L20-478-4-480-24-472-50-476-65-469Z M76-405L97-408Q126-438 156-424C179-437 204-432 216-420L186 -416 166 -404 141 -407 117 -397 94 -397Z', p.leaf) + '</g>';
+      path('M-157-337Q-143-349-129-342C-112-364-81-367-60-357Q-29-374-7-357L-28-347-61-348-89-339-115-338-133-330Z M-79-479L-61-483C-43-502-18-500 0-489Q22-500 43-484L20-478-4-480-24-472-50-476-65-469Z M76-405L97-408Q126-438 156-424C179-437 204-432 216-420L186 -416 166 -404 141 -407 117 -397 94 -397Z', p.leaf) + '</g></g>';
   }
   function rock(x, y, scale, p) {
     return `<g transform="translate(${x} ${y}) scale(${scale})">` +
@@ -61,15 +62,15 @@
       path(temple ? 'M151 490L198 474 287 423 323 402 357 421 444 474 486 489 440 484 352 439 323 420 294 439 203 489Z' : 'M168 492L206 466 308 438 451 481 483 497 433 489 309 458 213 485Z', temple ? '#4b5d64' : '#626651') +
       path(temple ? 'M195 476L286 426 323 405 359 424 439 472 350 438 322 418 296 437Z' : 'M205 467L308 438 451 481 422 479 308 449 224 477Z', temple ? '#849091' : '#8b8566') +
       path('M206 499L311 479 429 502 480 508', 'none', 'stroke="#ad9c70" stroke-opacity=".45" stroke-width="2"') +
-      path('M265 519H281V545H265Z', '#e2b767') +
-      path('M261 516H285L282 520H264Z M264 544H282L279 550H267Z', '#3b3830'));
+      `<g data-rest-motion="lantern">` + path('M265 519H281V545H265Z', '#e2b767') +
+      path('M261 516H285L282 520H264Z M264 544H282L279 550H267Z', '#3b3830') + '</g>');
   }
   function farLandscape(p, id, variant) {
     const dawn = variant === 'dawn';
     const sky = group('open-sky', path('M0 0H1600V900H0Z', `url(#${id}-sky)`) +
       glow(1144, dawn ? 284 : 186, 330, 275, `${id}-halo`) +
       `<circle cx="1144" cy="${dawn ? 284 : 186}" r="${dawn ? 46 : 30}" fill="${dawn ? '#e6cb97' : '#d4d4b8'}" opacity=".88"/>` +
-      path('M829 212C956 197 1023 218 1133 211S1304 191 1400 214L1266 222 1191 220 1124 229 1007 226 941 219Z M152 308C270 285 341 319 458 299L527 309 419 327 361 323 269 334 223 325 125 332Z', p.mist, 'opacity=".16"'));
+      path('M829 212C956 197 1023 218 1133 211S1304 191 1400 214L1266 222 1191 220 1124 229 1007 226 941 219Z M152 308C270 285 341 319 458 299L527 309 419 327 361 323 269 334 223 325 125 332Z', p.mist, 'opacity=".16" data-rest-motion="cloud"'));
     const peaks = group('distant-ink-mountains',
       path('M-80 571L56 470 115 473 179 417 245 435 297 376 338 392 371 359 422 382 478 349 533 377 579 359 623 414 674 398 722 453 793 434 855 484 933 450 999 466 1072 413 1116 430 1174 370 1210 388 1260 342 1292 353 1327 315 1356 329 1394 287 1420 311 1450 299 1487 353 1547 375 1660 340V730H-80Z', p.ridge, 'opacity=".52"') +
       path('M-60 560L74 534 118 493 164 502 210 471 235 476 266 427 288 436 327 385 347 385 378 340 402 351 427 320 452 346 468 379 492 377 527 430 554 421 591 480 623 461 672 512 726 531 782 519 835 560 898 576 946 546 1001 558 1060 532 1110 547 1163 521 1229 547 1270 522 1326 551 1378 535 1445 564 1510 553 1640 576V756H-60Z', `url(#${id}-mountain)`) +
@@ -78,7 +79,7 @@
       path('M1050 553L1126 485 1170 479 1206 444 1244 454 1292 414 1321 434 1358 420 1406 467 1445 456 1495 500 1550 488 1635 517V700H1030Z', p.ridge, 'opacity=".65"'));
     const mist = group('valley-mist',
       path('M-30 542C217 507 270 570 466 549S812 566 1017 547 1390 493 1630 551V720H-30Z', `url(#${id}-mist)`) +
-      path('M119 588C338 564 446 590 602 569C727 550 796 565 875 576 710 580 679 604 515 600S291 592 119 606Z M817 618C1013 586 1149 620 1284 583 1365 562 1434 579 1492 585 1377 592 1355 614 1265 619L1137 632 963 628Z', p.mist, 'opacity=".12"'));
+      path('M119 588C338 564 446 590 602 569C727 550 796 565 875 576 710 580 679 604 515 600S291 592 119 606Z M817 618C1013 586 1149 620 1284 583 1365 562 1434 579 1492 585 1377 592 1355 614 1265 619L1137 632 963 628Z', p.mist, 'opacity=".12"'), 'data-rest-motion="mist"');
     return sky + peaks + mist;
   }
   function cavernBackdrop(p, id) {
@@ -88,7 +89,7 @@
       path('M0 0H1600V401L1517 348 1486 291 1401 263 1353 186 1223 174 1161 108 1036 153 973 125 861 179 755 106 644 93 527 124 415 91 273 145 202 118 100 213 56 383 0 422Z', '#182c35') +
       path('M117 577L170 463 206 439 217 362 254 325 284 421 319 449 345 567Z M1206 625L1244 567 1250 501 1286 469 1319 485 1339 570 1392 604 1415 652Z', '#304952') +
       path('M206 439L217 362 254 325 242 419 224 450 210 524 181 553Z M1286 469L1319 485 1339 570 1318 560 1303 506 1280 507Z', '#556c6b', 'opacity=".32"') +
-      path('M-20 560C237 554 427 619 678 589S1240 542 1630 596V747H-20Z', `url(#${id}-mist)`)) + cavernEnclosure(p, id);
+      path('M-20 560C237 554 427 619 678 589S1240 542 1630 596V747H-20Z', `url(#${id}-mist)`, 'data-rest-motion="mist"')) + cavernEnclosure(p, id);
   }
   function cavernEnclosure(p, id) {
     return group('cavern-enclosure',
@@ -102,7 +103,7 @@
   function placeLandscape(variant, p, id, underground = false) {
     if (variant === 'river') return group('river-reach',
       path('M552 570C704 555 790 573 957 552S1350 545 1610 571V750H362Z', `url(#${id}-water)`) +
-      path('M633 594C765 582 860 599 1000 578M770 622C923 608 1022 625 1187 603M1005 659C1176 637 1310 656 1521 623M1202 580L1338 576M427 675L593 662', 'none', 'stroke="#b0beb0" stroke-width="2" opacity=".29"') +
+      path('M633 594C765 582 860 599 1000 578M770 622C923 608 1022 625 1187 603M1005 659C1176 637 1310 656 1521 623M1202 580L1338 576M427 675L593 662', 'none', 'stroke="#b0beb0" stroke-width="2" opacity=".29" data-rest-motion="ripples"') +
       path('M963 618L991 601 1026 601 1047 581 1069 595 1089 608 1122 615 1084 627 1012 627Z M1207 624L1229 604 1250 595 1271 602 1290 616 1331 622 1349 634 1271 638Z', '#334944') +
       path('M1026 601L1047 581 1069 595 1056 596 1045 591 1034 605Z M1229 604L1250 595 1271 602 1257 605 1249 600Z', '#7e8c7a', 'opacity=".53"') +
       path('M1004 567L1111 547 1203 551 1280 579 1270 596 1209 576 1113 565 1015 585Z', '#334344') +
@@ -142,7 +143,7 @@
       path('M-40 731C143 685 266 684 418 698S644 682 778 689 1016 692 1146 710 1421 678 1640 693V930H-40Z', `url(#${id}-ground)`) +
       path('M-40 753C135 707 255 711 414 731S653 710 797 714 1020 746 1168 740 1433 695 1640 710L1640 753C1421 730 1330 761 1187 779S1009 786 884 780 723 771 622 781 436 779 285 753 104 749-40 802Z', '#767865', 'opacity=".17"') +
       path('M-30 770C116 728 239 732 389 749S650 731 792 741 1015 775 1155 767 1434 720 1631 729', 'none', 'stroke="#b0a787" stroke-width="2" opacity=".15"') +
-      glow(800, 758, 300, 103, `${id}-fire-ground`) +
+      group('fire-ground-light', glow(800, 758, 300, 103, `${id}-fire-ground`), 'data-rest-motion="fire-ground"') +
       path('M-30 847L60 826 117 835 167 821 228 839 289 830 352 851 428 854 469 870 565 864 634 886 737 882 817 909H-30Z M1082 906L1114 871 1197 854 1248 861 1304 835 1360 838 1415 813 1486 821 1533 801 1630 815V930Z', '#111f23') +
       path('M-18 851L-5 806 2 831 20 799 11 842 31 826 26 849Z M132 834L146 798 146 825 161 806 156 837Z M1472 823L1468 782 1480 802 1499 760 1493 807 1525 786 1512 814Z M1260 857L1273 830 1271 851 1290 831 1284 856Z', '#132626') +
       rock(71, 860, .94, {...p, light:'#45504a'}) + rock(1502, 855, .76, {...p, light:'#414d48'}) +
@@ -162,12 +163,14 @@
       path('M739 754L749 744 770 746 764 752 750 752Z M823 749L835 741 851 746 848 751 835 748Z M757 765L770 757 786 763 778 766 768 765Z M805 766L819 757 836 764 828 768 815 765Z', '#a08a60') +
       path('M766 743L776 736 834 756 829 766Z M769 759L824 735 834 740 779 770Z', '#3c2d23') +
       path('M775 740L830 757M778 761L828 738', 'none', 'stroke="#bd7f44" stroke-width="3" opacity=".7"') +
-      glow(800, 737, 93, 111, `${id}-fire-halo`) +
+      group('fire-air-light', glow(800, 737, 93, 111, `${id}-fire-halo`), 'data-rest-motion="fire-halo"') +
       group('campfire',
-        path('M778 754C755 729 778 718 777 698 786 710 788 709 790 696 793 685 805 679 803 663 823 681 808 697 821 709 828 717 831 724 827 735 840 725 831 720 836 709 852 734 828 757 811 758Z', '#c47736', 'class="journey-flame-outer"') +
-        path('M783 751C773 738 788 727 790 714 793 720 798 723 799 709 800 699 807 696 808 686 818 706 804 713 817 726 827 736 818 752 808 756Z', '#edb55f', 'class="journey-flame-inner"') +
-        path('M795 752C786 740 803 733 802 722 817 735 815 747 805 756Z', '#f5d59a') +
-        path('M801 645L804 640 805 646 803 650Z M827 679L830 675 831 680 829 684Z M780 674L782 671 783 675 781 678Z', '#d6a86a', 'opacity=".6"'))) +
+        path('M778 754C755 729 778 718 777 698 786 710 788 709 790 696 793 685 805 679 803 663 823 681 808 697 821 709 828 717 831 724 827 735 840 725 831 720 836 709 852 734 828 757 811 758Z', '#c47736', 'class="journey-flame-outer" data-rest-motion="flame-outer"') +
+        path('M783 751C773 738 788 727 790 714 793 720 798 723 799 709 800 699 807 696 808 686 818 706 804 713 817 726 827 736 818 752 808 756Z', '#edb55f', 'class="journey-flame-inner" data-rest-motion="flame-inner"') +
+        path('M795 752C786 740 803 733 802 722 817 735 815 747 805 756Z', '#f5d59a', 'data-rest-motion="flame-core"') +
+        path('M801 713L804 708 805 714 803 718Z', '#d6a86a', 'opacity=".6" data-rest-motion="ember" data-rest-phase="0"') +
+        path('M821 715L824 711 825 716 823 720Z', '#d6a86a', 'opacity=".6" data-rest-motion="ember" data-rest-phase=".37"') +
+        path('M780 727L782 724 783 728 781 731Z', '#d6a86a', 'opacity=".6" data-rest-motion="ember" data-rest-phase=".71"'))) +
       group('wayfinding-signpost',
         `<ellipse cx="1384" cy="769" rx="77" ry="15" fill="#0c171b" opacity=".56"/>` +
         path('M1371 587L1389 585 1384 766 1372 778 1365 768Z', '#3b3226') +
@@ -201,6 +204,30 @@
       (underground ? cavernBackdrop(p, id) : farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + campGround(p, id) + campProps(id) + '</svg>';
     cache.set(key, svg);
     return svg;
+  }
+
+  // Deterministic, presentation-only motion. Only retained transforms/opacity
+  // change: no path regeneration, filters, random particles or camera parallax.
+  // The same attributes can be rasterized by the Native proof harness.
+  function motionFrame(kind, seconds = 0, phase = 0) {
+    const t = Math.max(0, Number(seconds) || 0), s = Math.sin;
+    const n = v => Number(v.toFixed(4));
+    const around = (x, y, sx, sy, angle = 0) => `translate(${x} ${y}) rotate(${n(angle)}) scale(${n(sx)} ${n(sy)}) translate(${-x} ${-y})`;
+    const flicker = s(t * 8.1) * .62 + s(t * 13.7 + .8) * .25 + s(t * 4.3 + 2) * .13;
+    switch (kind) {
+      case 'flame-outer': return {transform:around(800,758,1 + flicker * .07,1 + s(t * 7.3) * .11 + flicker * .035,s(t * 5.4) * 2.1),opacity:String(n(.93 + flicker * .06))};
+      case 'flame-inner': return {transform:around(800,758,1 - flicker * .10,1 + s(t * 9.2 + .5) * .13,-s(t * 6.7) * 2.8)};
+      case 'flame-core': return {transform:around(803,756,1 + s(t * 11.1) * .09,1 + s(t * 8.4 + 1) * .12),opacity:String(n(.91 + s(t * 7.8) * .08))};
+      case 'fire-ground': return {transform:around(800,758,1 + flicker * .045,1 + flicker * .07),opacity:String(n(.86 + flicker * .13))};
+      case 'fire-halo': return {transform:around(800,737,1 + flicker * .09,1 + flicker * .11),opacity:String(n(.88 + flicker * .11))};
+      case 'ember': {const u = ((t / 2.8 + phase) % 1 + 1) % 1;return {transform:`translate(${n(s(u * 5 + phase * 8) * 9)} ${n(-u * 78)})`,opacity:String(n(s(Math.PI * u) * .72))};}
+      case 'pine-crown': return {transform:`rotate(${n(s(t * .85 + phase) * .42)} 0 -255)`};
+      case 'lantern': return {transform:`rotate(${n(s(t * 1.15) * 1.4)} 273 516)`,opacity:String(n(.92 + s(t * 2.3) * .06))};
+      case 'cloud': return {transform:`translate(${n(s(t * .14) * 12)} 0)`};
+      case 'mist': return {transform:`translate(${n(s(t * .23) * 9)} ${n(s(t * .31) * 1.6)})`,opacity:String(n(.94 + s(t * .39) * .06))};
+      case 'ripples': return {transform:`translate(${n(s(t * .8) * 4)} ${n(s(t * 1.2) * .6)})`,opacity:String(n(.25 + s(t * .9) * .045))};
+      default: return {};
+    }
   }
 
   function atlasRelief(id) {
@@ -301,7 +328,7 @@
     return svg;
   }
   G.HonroJourneyArt = Object.freeze({
-    scene, atlas, variants, layers,
+    scene, atlas, variants, layers, motionFrame,
     anchors: Object.freeze({
       fire: Object.freeze({ x: 800, y: 745, groundY: 765 }),
       signpost: Object.freeze({ x: 1370, y: 628, groundY: 769 }),
