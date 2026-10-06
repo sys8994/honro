@@ -108,7 +108,7 @@ for(let id=11;id<=20;id++)check(`Act 2-${id-10} ordered objectives, narrative, s
 });
 check('Actor loss and resident loss have explicit failure, and all late revelations remain ordered',()=>{
  const {b,e}=fixture(18);e.heroesAlive().find(u=>u.cls==='mage').dead=true;assert.match(g.HonroAct2.failure(b),/담허/);
- for(const s of g.HONRO_CONTENT.stages.filter(s=>s.act===2&&s.actStage<9))assert(!JSON.stringify([s.story,s.beats,s.outro]).includes('백기곡'));
- assert(JSON.stringify(g.HONRO_CONTENT.stages[18].beats).includes('백기곡'));
+ for(const s of g.HONRO_CONTENT.stages.filter(s=>s.act===2&&s.actStage<9))assert(!JSON.stringify([s.story,s.beats,s.outro]).includes('저문골'));
+ assert(JSON.stringify(g.HONRO_CONTENT.stages[18].beats).includes('저문골'));
 });
 await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile('_local/reports/act2-revision/unit-flow.json',JSON.stringify({checks:rows,limitations:'Ordered objective tests use explicit state fixtures; they are not normal combat playthroughs.'},null,2));

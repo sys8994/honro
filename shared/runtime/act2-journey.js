@@ -7,7 +7,7 @@ J.markup=function(profile,stageId,hub,header,debug=false){
  // Insert the landscape underneath the already authored route strokes and nodes.
  html=html.replace('<path d="M110 230',cave+'<path d="M110 230');
  for(const s of G.HONRO_CONTENT.stages.filter(s=>s.act===2))html=html.replace(`<span class="stage-index">${s.id}</span>`,`<span class="stage-index">2-${s.actStage}</span>`);
- const next=profile.cleared[20]?'<div style="position:absolute;left:6340px;top:1330px;width:340px;color:#c6c4af;font-size:22px;line-height:1.6">다음 여정 · 백기곡의 기록<br><small>읍성 문서고 — 셋째 막 준비 중</small></div>':'';
+ const next=profile.cleared[20]?'<div style="position:absolute;left:6340px;top:1330px;width:340px;color:#c6c4af;font-size:22px;line-height:1.6">다음 여정 · 지워진 기록<br><small>읍성 문서고 — 셋째 막 준비 중</small></div>':'';
  html=html.replace('</div></div><div class="atlas-tools">',next+'</div></div><div class="atlas-tools"><button data-act-focus="1" aria-label="첫째 막 지도">1막</button><button data-act-focus="11" aria-label="둘째 막 지도">2막</button>');
  return html;
 };

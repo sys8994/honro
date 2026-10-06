@@ -1,0 +1,808 @@
+{
+  "sourceCommit": "d2e7b22c1280530b9c5c290bc4a0d8e31c3cf2e2",
+  "limits": "Story-only baseline. No geometry, combat or objective rule changes are authorized by this fixture.",
+  "proseFields": [
+    "name",
+    "goal",
+    "narration",
+    "story",
+    "storyFollowups",
+    "outro",
+    "beats",
+    "summary",
+    "storySummary",
+    "guide"
+  ],
+  "gameplay": [
+    {
+      "id": 1,
+      "hash": "48dbdb77b9c243ad0c038221ff282681a05425b6617a3082fd3eba292e83ba78",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 2,
+      "hash": "5687472a20ba165199cc93488a88db243d848138aea969a248f69dce54db99cc",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 3,
+      "hash": "edd38bb48ecb01532cc7821354ea5fe0295715975072310f46ec85929071a3ce",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 4,
+      "hash": "7bfb4dac1cb93f662c6cf2b7a407d0654d6be6ebda6d52c5d839e3079890bf04",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 5,
+      "hash": "1d4b5344fa15ba951b61c2ba8bc723d2f276668a212b678dcac4a6202c406dfd",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 6,
+      "hash": "1c3d97a2b3097b99f7909819763ca38eeee3486b059f25af08944842b9c410b1",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 7,
+      "hash": "eda517c3df727916dd6c5ee7922eaef55717f061a973f3866436af3b81ff9645",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 8,
+      "hash": "232de96e5b4f26dd219971c728961132a995ea591766385f597686d0fae88ec4",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 9,
+      "hash": "1dbe681f6fb34866f40f7e6c02fb348b6c40a418743dc52e933f145c93cb20e7",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 10,
+      "hash": "d6127700c904e80c39ee6bd4ee8b512217697c508275df6742b7c2388cbbafa5",
+      "sceneIds": [],
+      "beatKeys": []
+    },
+    {
+      "id": 11,
+      "hash": "4dbe243a8c27051283c486e3610247d4117b3e268b4810039296ab5df61c12f8",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-11",
+        "act2-v1:act2-r2-outro-11"
+      ],
+      "beatKeys": [
+        "knot-west",
+        "resident",
+        "trace",
+        "hold-knots:start",
+        "hold-knots"
+      ]
+    },
+    {
+      "id": 12,
+      "hash": "67d055e34e997568563a8ff9ee69f6b31d8fe9c4c0b99e0ecf3685f2518210ba",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-12",
+        "act2-v1:act2-r2-outro-12"
+      ],
+      "beatKeys": [
+        "rock-pin",
+        "sign",
+        "clear-approach",
+        "hold-road"
+      ]
+    },
+    {
+      "id": 13,
+      "hash": "b9df0e244d0fcb640df97f55ba954f2984f6551532010e4683de7151ca9f4591",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-13",
+        "act2-v1:act2-r2-outro-13"
+      ],
+      "beatKeys": [
+        "resident",
+        "gate",
+        "hold-gate"
+      ]
+    },
+    {
+      "id": 14,
+      "hash": "8a595ade6506784ab01334ee8d88cb4c918817405392debaba81cf692946f5e6",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-14",
+        "act2-v1:act2-r2-outro-14"
+      ],
+      "beatKeys": [
+        "family-upper",
+        "family-lower",
+        "bridge",
+        "family-mid",
+        "hold-refuge:start",
+        "hold-refuge"
+      ]
+    },
+    {
+      "id": 15,
+      "hash": "5cb318e7e4627927fd9692981205f81a2223e829670c5cca0e219331a4ee91cc",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-15",
+        "act2-v1:act2-r2-outro-15"
+      ],
+      "beatKeys": [
+        "sluice",
+        "groove",
+        "hold-sluice"
+      ]
+    },
+    {
+      "id": 16,
+      "hash": "52ac61da43a4a4bcfb5ae5d5faaae88243842a46ff0a276cc0ba4382bcf6f6e7",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-16",
+        "act2-v1:act2-r2-outro-16"
+      ],
+      "beatKeys": [
+        "monk",
+        "record",
+        "witness",
+        "hall"
+      ]
+    },
+    {
+      "id": 17,
+      "hash": "30c65fca7d537da9429dc61cd6ff045e567ca59c9aac6580e4e88d40d0484d50",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-17",
+        "act2-v1:act2-r2-outro-17"
+      ],
+      "beatKeys": [
+        "brace",
+        "repair",
+        "notes",
+        "hoist",
+        "hold-hoist:start"
+      ]
+    },
+    {
+      "id": 18,
+      "hash": "4de293ef5d5e537121495bcf231ac1e7cac2f48347d8eee044eaced3755eeb6f",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-18",
+        "act2-v1:act2-r2-outro-18"
+      ],
+      "beatKeys": [
+        "silence",
+        "upper-chain",
+        "leak",
+        "keeper",
+        "hold-silence"
+      ]
+    },
+    {
+      "id": 19,
+      "hash": "71c8dc3ddc7bd7d1de416a70bfad799d61e2fed0feeaaff3d7991f3486280d73",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-19",
+        "act2-v1:act2-r2-outro-19"
+      ],
+      "beatKeys": [
+        "send-1",
+        "send-2",
+        "old-soul",
+        "route",
+        "separate-1",
+        "separate-2",
+        "separate-3",
+        "send-3"
+      ]
+    },
+    {
+      "id": 20,
+      "hash": "73726a7eeb7ee8712cd979b33ed273983fa0adc419f33f0a3c4bebb8e2bb715c",
+      "sceneIds": [
+        "act2-v1:act2-r2-entry-20",
+        "act2-v1:act2-r2-outro-20"
+      ],
+      "beatKeys": [
+        "escort",
+        "escort-mid",
+        "hold-convoy"
+      ]
+    }
+  ],
+  "rest": [
+    {
+      "id": 1,
+      "lines": 2,
+      "storyId": "rest-interlude-v1-1"
+    },
+    {
+      "id": 2,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-2"
+    },
+    {
+      "id": 3,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-3"
+    },
+    {
+      "id": 4,
+      "lines": 2,
+      "storyId": "rest-interlude-v1-4"
+    },
+    {
+      "id": 5,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-5"
+    },
+    {
+      "id": 6,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-6"
+    },
+    {
+      "id": 7,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-7"
+    },
+    {
+      "id": 8,
+      "lines": 2,
+      "storyId": "rest-interlude-v1-8"
+    },
+    {
+      "id": 9,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-9"
+    },
+    {
+      "id": 10,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-10"
+    },
+    {
+      "id": 11,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-11"
+    },
+    {
+      "id": 12,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-12"
+    },
+    {
+      "id": 13,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-13"
+    },
+    {
+      "id": 14,
+      "lines": 4,
+      "storyId": "rest-interlude-v1-14"
+    },
+    {
+      "id": 15,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-15"
+    },
+    {
+      "id": 16,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-16"
+    },
+    {
+      "id": 17,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-17"
+    },
+    {
+      "id": 18,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-18"
+    },
+    {
+      "id": 19,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-19"
+    },
+    {
+      "id": 20,
+      "lines": 3,
+      "storyId": "rest-interlude-v1-20"
+    }
+  ],
+  "legacy": [
+    {
+      "id": 12,
+      "story": [
+        [
+          "설오",
+          "짐을 풀 시간도 없이 달아난 모양입니다. 사람이 갈 길부터 확보하겠습니다.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-12",
+            "storyTitle": "돌산으로 가는 길"
+          }
+        ],
+        [
+          "휘겸",
+          "벼랑 아래가 비었소. 저 바위를 받친 나무를 끊으면 홈이 메워지겠군. 다만 작업장부터 조용하게 만들어야 하오.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-12",
+            "storyTitle": "돌산으로 가는 길"
+          }
+        ],
+        [
+          "소단",
+          "저 수레에는 아직 아무것도 없어요. 그런데 바퀴가 떨리고 있어요. 멀리서 부르는 소리를 기다리는 것처럼.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-12",
+            "storyTitle": "돌산으로 가는 길"
+          }
+        ]
+      ],
+      "outro": [
+        [
+          "설오",
+          "절벽 뒤가 통째로 꺼져 있습니다. 밑으로 내려가는 돌계단이 남았습니다.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-12",
+            "storyTitle": "돌산으로 가는 길"
+          }
+        ],
+        [
+          "소단",
+          "울림은 더 아래에서 와요. 여기까지 밀려 나온 것보다, 안에 남은 쪽이 훨씬 많아요.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-12",
+            "storyTitle": "돌산으로 가는 길"
+          }
+        ]
+      ],
+      "beats": {
+        "rock-pin": [
+          [
+            "휘겸",
+            "돌이 물렸소. 가운데부터 밟으시오. 바깥 가장자리는 아직 흘러내릴 수 있소."
+          ]
+        ],
+        "sign": [
+          [
+            "서술",
+            "길표를 세우는 순간 암벽 안쪽에서 낮은 울림이 왔다. 텅 빈 수레의 멍에가 들리고, 바퀴가 일제히 일행 쪽으로 돌아섰다."
+          ],
+          [
+            "소단",
+            "지금 들어갔어요. 산에서 나온 혼이 수레 안으로!"
+          ],
+          [
+            "담허",
+            "소리가 길을 열고 있군. 먼저 올라간 것들이 되돌아오지 못하게 막아야겠네."
+          ]
+        ],
+        "clear-approach": [
+          [
+            "서술",
+            "쓰러진 도구 사이에서 작은 짚신 한 짝이 나왔다. 설오는 그것을 길표 밑의 마른 돌 위에 놓았다."
+          ],
+          [
+            "설오",
+            "아이도 이 길로 내려왔습니다. 돌아올 때 주인을 찾을 수 있으면 좋겠습니다."
+          ]
+        ],
+        "hold-road": [
+          [
+            "서술",
+            "마지막 수레가 옆으로 쓰러졌다. 부서진 짐칸 아래에서 동굴마을로 향하는 길표가 다시 드러났다."
+          ],
+          [
+            "휘겸",
+            "이 정도 수레를 썼다면 안에는 작은 작업장만 있는 게 아니오."
+          ]
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "story": [
+        [
+          "설오",
+          "아래 마을에서 왔습니다. 종에 관한 기록을 찾습니다. 먼저 이분을 도와드리겠습니다.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-16",
+            "storyTitle": "잠운사"
+          }
+        ],
+        [
+          "노승",
+          "내 제자요. 제 이름을 놓칠까 봐 손에 써 주고 있소. 어릴 때도 이렇게 글을 배웠는데.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-16",
+            "storyTitle": "잠운사"
+          }
+        ],
+        [
+          "소단",
+          "곁에 붙은 혼부터 약하게 만들면 떼어낼 수 있어요. 손은 놓지 말아 주세요.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-16",
+            "storyTitle": "잠운사"
+          }
+        ],
+        [
+          "노승",
+          "기록함 열쇠는 내게 있소. 종지기에게 내주지 않은 것이 그것 하나뿐이오.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-16",
+            "storyTitle": "잠운사"
+          }
+        ]
+      ],
+      "outro": [
+        [
+          "노승",
+          "제자를 살렸다고 이 절이 한 일이 없어지지는 않겠지요. 기록도, 우리 말도 가져가시오.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-16",
+            "storyTitle": "잠운사"
+          }
+        ],
+        [
+          "설오",
+          "두고 가지 않겠습니다. 뒤편 인양로부터 확인하겠습니다.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-16",
+            "storyTitle": "잠운사"
+          }
+        ]
+      ],
+      "beats": {
+        "monk": [
+          [
+            "승려",
+            "스님. 손이 아픕니다."
+          ],
+          [
+            "노승",
+            "그래. 아프다고 말할 수 있으면 됐다. 네 이름부터 다시 말해 보아라."
+          ],
+          [
+            "서술",
+            "제자가 제 이름을 말했다. 노승은 대답 대신 손바닥에 묻은 먹을 소매로 닦아 주었다."
+          ]
+        ],
+        "record": [
+          [
+            "서술",
+            "장부에는 대종을 울리는 법보다 울림을 멈추는 절차가 길게 적혀 있었다. “이름을 불러 모았으면, 이름을 놓아 보내라. 천도 뒤에는 다시 울리지 말라.” 마지막 장은 칼로 잘려 있었다."
+          ],
+          [
+            "담허",
+            "혼을 모으는 종이지만 가두기 위한 종은 아니었네. 불러 모은 뒤 내보내는 것이 끝이었어."
+          ],
+          [
+            "설오",
+            "끝내는 절차만 없앤 겁니까?"
+          ],
+          [
+            "담허",
+            "누가 잘랐는지는 아직 모르네. 다만 저 아래에서는 끝내지 못한 울림이 계속되고 있지."
+          ]
+        ],
+        "witness": [
+          [
+            "승려",
+            "처음에는 종 안에서 돌로 두드렸어요. 이튿날에는 손으로. 사흘째에는 문 가까운 데서만 소리가 났어요."
+          ],
+          [
+            "설오",
+            "그동안 꺼낼 수 있었습니까?"
+          ],
+          [
+            "승려",
+            "인양틀이 살아 있었습니다. 종지기가 축을 빼고 문을 잠갔어요. 우리가 손대면 밖의 사람까지 죽는다고 했습니다."
+          ],
+          [
+            "승려",
+            "내가 들은 건 저주가 아니었어요. 물을 달라는 말이었어요. 그래도 나는 돌아섰습니다."
+          ],
+          [
+            "휘겸",
+            "그 말을 적어 둡시다. 안에 있던 사람을 모르는 혼으로 부르지 않도록."
+          ]
+        ],
+        "hall": [
+          [
+            "노승",
+            "종을 옮긴 날의 문서요. 기름에 젖지 않게 싸 두었소. 밖에서 들리는 소리는 잠깐만 막아 주시오."
+          ],
+          [
+            "휘겸",
+            "문 앞은 맡기시오. 읽어야 할 것까지 다시 빼앗기지는 않겠소."
+          ]
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "story": [
+        [
+          "담허",
+          "불러 모으는 길은 오래 열려 있었네. 이제 바깥으로 가는 길을 잇겠네.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-19",
+            "storyTitle": "종 안의 사람들"
+          }
+        ],
+        [
+          "주민",
+          "이름을 잊었으면 어떡하지요? 안에서 오래 있었는데.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-19",
+            "storyTitle": "종 안의 사람들"
+          }
+        ],
+        [
+          "소단",
+          "기억하는 분이 여기 있어요. 그 목소리를 따라오게 해 주세요.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-19",
+            "storyTitle": "종 안의 사람들"
+          }
+        ],
+        [
+          "설오",
+          "곁에 다가오는 것들은 저희가 막겠습니다. 하시던 말을 끝내십시오.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-19",
+            "storyTitle": "종 안의 사람들"
+          }
+        ]
+      ],
+      "outro": [
+        [
+          "소단",
+          "목소리가 멀어져요. 붙잡으라는 말이 아니라… 서로 부르면서 가요.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-19",
+            "storyTitle": "종 안의 사람들"
+          }
+        ],
+        [
+          "휘겸",
+          "우리를 기다리는 사람에게 돌아갑시다. 살아 있는 발걸음도 밖으로 나가야 하오.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-19",
+            "storyTitle": "종 안의 사람들"
+          }
+        ]
+      ],
+      "beats": {
+        "send-1": [
+          [
+            "서술",
+            "손잡이를 쥐려던 흐린 손이 멎었다. 주민은 망치를 내려놓고 빈손을 펴 보였다."
+          ],
+          [
+            "주민",
+            "이제 일은 그만해도 된다. 집으로 오는 길도 찾지 않아도 된다. 우리가 왔어."
+          ],
+          [
+            "소단",
+            "손을 놓았어요. 더 두드리지 않아요."
+          ]
+        ],
+        "send-2": [
+          [
+            "서술",
+            "한 여인이 아무도 모르는 짧은 말을 세 번 불렀다. 마지막에는 울음 대신 웃음 같은 숨이 나왔다."
+          ],
+          [
+            "담허",
+            "길을 찾았네. 이쪽에 두고 가는 이가 있다는 것도 알았겠지."
+          ]
+        ],
+        "old-soul": [
+          [
+            "소단",
+            "아직 밑에 있어요. 방금 보낸 사람들과 달라요. 갑옷을 입었고, 흰 천을 감았어요."
+          ],
+          [
+            "서술",
+            "청동 밑에 눌렸던 낡은 천이 펴졌다. 부러진 깃대 끝에 “백기곡”이라는 이름이 남아 있었다."
+          ],
+          [
+            "주민",
+            "마을 사람에게 그런 갑옷은 없었어요. 저 이름도 여기 지명은 아니에요."
+          ],
+          [
+            "담허",
+            "오래된 이름이네. 들은 적은 있지만, 이들이 왜 여기 있는지는 모르겠어."
+          ],
+          [
+            "설오",
+            "그 이름을 지우지 말고 가져갑시다. 다음에 물어볼 것이 생겼습니다."
+          ]
+        ],
+        "route": [
+          [
+            "서술",
+            "담허가 빈 그릇의 주둥이를 바깥 길로 돌렸다. 들어오는 것을 받던 자리가 나가는 것을 가리키게 되었다."
+          ],
+          [
+            "담허",
+            "붙드는 손과 놓아 주는 손은 모양이 같아 보이지. 끝까지 어느 쪽을 택하는지가 다른 것일세."
+          ]
+        ],
+        "separate-1": [
+          [
+            "주민",
+            "덕수야. 네 망치 가져왔다. 손잡이를 새로 갈아 준다던 약속은 못 지켰다. 그래도 네 것은 여기 있어."
+          ],
+          [
+            "소단",
+            "망치를 찾는 손이 보여요. 조금만 더 불러 주세요."
+          ]
+        ],
+        "separate-2": [
+          [
+            "주민",
+            "우리 언니는 이름보다 집에서 부르던 말을 좋아했어요. 그런 걸 불러도 되나요?"
+          ],
+          [
+            "소단",
+            "들으면 돌아보던 말이면 돼요. 그분에게 닿는 말이면 돼요."
+          ]
+        ],
+        "separate-3": [
+          [
+            "소단",
+            "이번에는 이름을 불러 줄 사람이 없어요. 같이 일하던 사람을 따라 들어온 것들이에요."
+          ],
+          [
+            "휘겸",
+            "그렇다면 우리가 여기 있겠소. 이름을 몰라도 혼자 보내지는 않겠소."
+          ]
+        ],
+        "send-3": [
+          [
+            "서술",
+            "네 사람은 소단의 손이 내려올 때까지 자리를 떠나지 않았다. 빈 그릇에는 더는 손톱 긁는 소리가 나지 않았다."
+          ]
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "story": [
+        [
+          "휘겸",
+          "출구까지 돌이 내려앉았소. 길부터 비우고 사람들을 부릅시다.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "주민",
+          "조용한 줄 알았는데 물소리가 이렇게 컸네요. 그동안 한 번도 못 들었어요.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "설오",
+          "중간 쉼터에서 쉬어 갑니다. 뒤처진 분이 보이면 이름을 불러 주십시오.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "소단",
+          "혼은 흩어져도 저절로 사라지지는 않아요. 바깥 물건에 들기 전에 길을 막아야 해요.",
+          {
+            "storyId": "act2-v1:act2-r2-entry-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ]
+      ],
+      "outro": [
+        [
+          "서술",
+          "동굴을 나온 사람들이 눈을 가렸다. 길찬은 아버지 대신 짐을 들었고, 노승은 제자의 손에 더는 이름을 쓰지 않았다.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "설오",
+          "연목으로 흘러간 들림은 종에 가둬 둔 혼이 넘쳐 나온 것이었습니다. 보내는 길이 열렸으니 잦아들겠지요.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "담허",
+          "그럴 것이네. 하지만 처음 종이 스스로 울린 까닭과 오래된 갑옷의 혼은 아직 남았지.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "소단",
+          "다시 모르는 것을 만난다고, 이번처럼 그릇부터 만들지는 않을 거예요.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "휘겸",
+          "백기곡의 기록을 찾읍시다. 읍성 문서고라면 잊힌 이름도 남아 있을 것이오.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ],
+        [
+          "설오",
+          "사람들은 쉬게 하고, 우리는 그 길을 잇겠습니다. 고향 사람들을 태운 배의 흔적도 아직 놓지 않았습니다.",
+          {
+            "storyId": "act2-v1:act2-r2-outro-20",
+            "storyTitle": "다시 하늘 아래"
+          }
+        ]
+      ],
+      "beats": {
+        "escort": [
+          [
+            "길찬",
+            "아버지, 밧줄은 제가 들게요. 손을 펴세요."
+          ],
+          [
+            "석공",
+            "놓으면 또 누가 못 올라올 것 같아서 그랬지. 이제는 놓아도 되겠구나."
+          ]
+        ],
+        "escort-mid": [
+          [
+            "휘겸",
+            "여기서 숨을 고르시오. 급히 일어나지 말고. 앞뒤 길은 우리가 보겠소."
+          ],
+          [
+            "서술",
+            "사람들이 돌벽에 등을 기댔다. 한 아이가 주머니에 넣고 온 등잔 심지를 꺼내 햇빛에 비춰 보았다."
+          ]
+        ],
+        "hold-convoy": [
+          [
+            "주민",
+            "걸을 수 있겠어요. 이번에는 제가 앞사람 짐을 들어 드릴게요."
+          ],
+          [
+            "설오",
+            "같이 갑시다. 마지막 길까지 열렸습니다."
+          ]
+        ]
+      }
+    }
+  ],
+  "mapRules": "bae2be1769a09b61897a598d4c3dfeb3fec3ed21b1ef04bf5c31fa74a180bf5f",
+  "balance": "93e064b72ce3d52555f8ebc5b0cacd3f63fb6d26917e0756becafe5cbbad0038"
+}

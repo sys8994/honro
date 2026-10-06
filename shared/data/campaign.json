@@ -70816,7 +70816,7 @@
     },
     {
       "id": "stage-12",
-      "name": "돌산으로 가는 길",
+      "name": "돌아오는 산길",
       "width": 8400,
       "height": 5200,
       "backdrop": "valley",
@@ -72686,7 +72686,7 @@
           "type": "act2",
           "x": 4900,
           "y": 2992.727272727273,
-          "label": "옛 동굴길 표지 복구",
+          "label": "길표의 돌림진 한 축 풀기",
           "action": "act2"
         },
         {
@@ -72700,7 +72700,7 @@
           "type": "act2",
           "x": 4900,
           "y": 2992.727272727273,
-          "label": "복구 중인 길표와 후방 지키기"
+          "label": "풀어 놓은 진의 축과 후방 지키기"
         },
         {
           "id": "clear-quarry",
@@ -72810,7 +72810,7 @@
         }
       ],
       "meta": {
-        "notes": "2-2 돌산으로 가는 길 · 방 단면 개편 3 · 30–48턴 설계",
+        "notes": "2-2 돌아오는 산길 · 방 단면 개편 3 · 30–48턴 설계",
         "seed": 2211
       },
       "initialState": {
@@ -72831,12 +72831,12 @@
           },
           {
             "id": "sign",
-            "label": "옛 동굴길 표지 복구",
+            "label": "길표의 돌림진 한 축 풀기",
             "kind": "interact"
           },
           {
             "id": "hold-road",
-            "label": "복구 중인 길표와 후방 지키기",
+            "label": "풀어 놓은 진의 축과 후방 지키기",
             "kind": "hold",
             "rounds": 4,
             "wave": {
@@ -73297,8 +73297,8 @@
         "skyVisible": true
       },
       "design": {
-        "title": "돌산으로 가는 길",
-        "description": "채석장을 제압하고 낙석 길을 연 뒤 수레 습격을 버텨 석문에 도착하기",
+        "title": "돌아오는 산길",
+        "description": "채석장을 제압하고 돌림진의 한 축을 풀어 숨겨진 길 찾기",
         "act": 2,
         "revision": 2,
         "targetRounds": [
@@ -75187,7 +75187,7 @@
     },
     {
       "id": "stage-13",
-      "name": "석문",
+      "name": "숨은 석문",
       "width": 8200,
       "height": 6600,
       "backdrop": "valley",
@@ -77022,7 +77022,7 @@
         }
       ],
       "meta": {
-        "notes": "2-3 석문 · 방 단면 개편 3 · 44–70턴 설계",
+        "notes": "2-3 숨은 석문 · 방 단면 개편 3 · 44–70턴 설계",
         "seed": 2212
       },
       "initialState": {
@@ -77637,7 +77637,7 @@
         "skyVisible": true
       },
       "design": {
-        "title": "석문",
+        "title": "숨은 석문",
         "description": "석문 앞 정예를 제압하고 석공을 구한 뒤 통로 방어와 내부 소탕",
         "act": 2,
         "revision": 2,
