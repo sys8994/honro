@@ -17666,6 +17666,10 @@ G.HonroCamera={
  // Keep the established tall-view framing, but bound the upward offset in
  // screen pixels so a short landscape canvas cannot put the actor below it.
  followY(unit,height,scale){return unit.y-Math.min(unit.h*2,Math.max(1,height)*.28/Math.max(.001,scale));},
+ // On an automatic resize, leave the upper 30% clear for the battle header.
+ // The existing follow target puts the feet at or above 78%; protect the
+ // actual painted stature plus its health bar in the remaining 48% band.
+ fitFollowScale(unit,height,scale){const stature=G.HonroPartyPresentationHeight?.(unit)||unit.h;return Math.min(scale,Math.max(1,height)*.48/Math.max(1,stature+16));},
  world(view,width,height,x,y){const z=view.scale??view.zoom;return{x:view.x+(x-width/2)/z,y:view.y+(y-height/2)/z};},
  screen(view,width,height,p){const z=view.scale??view.zoom;return{x:(p.x-view.x)*z+width/2,y:(p.y-view.y)*z+height/2};},
  axis(center,span,min,max){return span>=max-min?(min+max)/2:Math.max(min+span/2,Math.min(max-span/2,center));}
@@ -18996,9 +19000,10 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
             c.clearRect(0, 0, w, h);
             const u = e.active,reviewing=b.phase==='review'||b.phase==='ally'&&b.honroState?.allyQueue?.phase==='after'||b.phase==='summon'&&b.summonTurn?.stage==='wait'&&!b.projectiles.length;
             if (!this.manual && u) {
-                let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
                 const now=performance.now(),focus=this.focusId&&now<this.focusUntil?b.units.find(v=>v.id===this.focusId):null;
                 const speaking=this.speakerId&&now<this.speakerUntil?b.units.find(v=>v.id===this.speakerId):null;
+                if(resized&&!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
+                let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
                 if(speaking){tx=speaking.x;ty=speaking.y-speaking.h*.8;speed=6.4;}
                 else if(b.projectiles?.length){const q=b.projectiles.find(q=>!q.child)||b.projectiles[0];tx=q.x;ty=q.y;speed=7.0;}
                 else if(reviewing&&b.reviewFocus){tx=b.reviewFocus.x;ty=b.reviewFocus.y;speed=7.2;}
