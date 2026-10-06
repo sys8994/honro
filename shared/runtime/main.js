@@ -304,17 +304,7 @@
         notify(text) { let n = $('notice'); n.textContent = text; n.hidden = false; clearTimeout(this.noti); this.noti = setTimeout(() => n.hidden = true, 3200); }
         top(title, back = 'title') { return `<header class="top"><button class="icon ghost" data-action="${back}" aria-label="뒤로">${fa('chevronUp',17,'back-icon')}</button><h2>${esc(title)}</h2>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="journal" aria-label="기록">${fa('bookOpen',18)}</button><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',18)}</button></header>`; }
         portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
-        drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) {
-            let c = cv.getContext('2d'), cls = cv.dataset.portrait;
-            c.clearRect(0, 0, 88, 108);
-            c.save();
-            c.translate(44, 110);
-            c.scale(1.2, 1.2);
-            let r = new G.HonroScene(cv);
-            r.time = 0;
-            r.human(c, { cls, facing: 1, angle: 25, side: 0, x: 0 }, H.hero[cls] || H.hero.archer, false, 0, 0);
-            c.restore();
-        } }
+        drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; const resumeRest=!!this.profile.honroJourney?.story&&!this.debugMode;this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg"></div><header class="top">${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap">${G.HONRO_TITLE_LOGO?`<img class="honro-logo" src="${G.HONRO_TITLE_LOGO}" alt="혼로 HONRO · 잊힌 혼들이 머무는 곳, 다시 흐르는 이야기">`:'<h1>혼로</h1>'}</div><p class="title-tagline">산도, 죽은 자도, 언젠가 다시 흐른다.</p><div class="title-actions"><button class="primary" data-action="${resumeRest?'rest':this.profile.honroBattle ? 'continue' : this.debugMode ? 'map' : 'rest'}">${resumeRest?'쉼터 대화 이어가기':this.profile.honroBattle ? '이어서 걷기' : this.debugMode ? '스테이지 검수' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? resumeRest?'<button class="ghost" data-action="continue">저장된 전투 이어서 걷기</button>':'<button class="ghost" data-action="rest">길 위의 쉼터</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
         stopBattle() { this.disposeAtlas(); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);

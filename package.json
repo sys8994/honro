@@ -22,7 +22,7 @@
     "test:existence": "node tests/existence-damage.mjs && python -X utf8 tests/existence-damage-browser.py",
     "test:hwigyeom": "node tests/hwigyeom-p5.mjs && python -X utf8 tests/hwigyeom-p5-browser.py && npm run test:skill-tuning",
     "test:skill-tuning": "node tests/skill-tuning.mjs && python -X utf8 tests/skill-tuning-browser.py && python -X utf8 tests/aim-direction-browser.py",
-    "test:party": "node tools/party-forge/lab.mjs && python -X utf8 tests/party-art-browser.py",
+    "test:party": "npm run test:character-balance && node tools/party-forge/lab.mjs && python -X utf8 tests/party-art-browser.py",
     "test:skill-presentation": "python -X utf8 tests/skill-presentation-browser.py",
     "test:actors": "node tools/actor-forge/lab.mjs && python -X utf8 tests/actor-art-browser.py",
     "test:map-art": "python -X utf8 tests/map-art-browser.py current",
@@ -41,7 +41,8 @@
     "test:act1:normal": "node tests/act1-playthrough.mjs",
     "test:act1:combat-evidence": "node tests/act1-combat-evidence.mjs",
     "test:act2:guidance": "node tests/act2-objective-readability.mjs",
-    "capture:act2:guidance": "node tools/environment/capture-act2-guidance.mjs"
+    "capture:act2:guidance": "node tools/environment/capture-act2-guidance.mjs",
+    "test:character-balance": "node tests/character-balance.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

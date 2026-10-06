@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);const out='_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
+ ['character-balance','npm',['run','test:character-balance']],
  ['build','npm',['run','build']],['typecheck','npm',['--prefix','game','run','typecheck']],['game-regressions','npm',['--prefix','game','test']],
  ['act1-spaces','npm',['run','test:act1:offline']],['act2-spatial-art','node',['tests/act2-spatial-art.mjs']],['act2-objective-guidance','node',['tests/act2-objective-readability.mjs']],['map-schema-v5','node',['tests/map-schema-v5.mjs']],['space-layout-import','node',['tests/space-layout-import.mjs']],['workshop-vector-selection','node',['tests/workshop-vector-selection.mjs']],['vector-assets','node',['tests/vector-assets.mjs']],['migration','node',['tests/migration.mjs']],['launch-visibility','npm',['run','test:launch-visibility']],
  ['act2-spaces','npm',['run','test:act2:offline']],['intent-pipeline','npm',['run','test:intent-pipeline']],

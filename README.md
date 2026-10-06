@@ -59,7 +59,7 @@ npm.cmd run verify
 
 배경 제작은 [환경 구도·대기 시스템](game/docs/ENVIRONMENT_COMPOSITION.md)과 [전체 분류표](game/docs/ENVIRONMENT_INVENTORY.md)를 따른다. Workshop에서 Depth와 Zone/Group/Support를 선택하고 Atmosphere를 정한다. `npm run test:environment`는 수직 맵·접지·줌·물 움직임·저장과 편집을 검증한다.
 
-설오·담허·휘겸·소단은 [네 동행 제작 기준](game/docs/PARTY_ART_PIPELINE.md)의 v009를 사용한다. 시트 얼굴 형상·소단의 연보라 포인트를 유지하고 몸과 팔다리를 늘렸으며 휘겸의 어깨를 넓혔다. 갓·머리카락을 제외한 얼굴 높이는 남성 셋이 같은 수준, 소단은 약 12.5% 작게 맞췄다. 앵커는 v008과 동일한 512/541/480/511이다. 제작 입력과 경로는 `tools/party-forge/`, 공통 리그는 `shared/runtime/party-rig.js`, 생성물은 `shared/assets/party/`다. 빌드 후 `npm.cmd run test:party`로 시트/벡터·전후·머리 크기·축소·모션 검수 자료를 만들고 `_local/reports/party-forge/index.html`을 연다. 캠페인의 적 소단에도 같은 개정판을 적용한다.
+설오·담허·휘겸·소단은 [네 동행 제작 기준](game/docs/PARTY_ART_PIPELINE.md)의 v010을 사용한다. 기존 전체 키·얼굴 형태·복식·소단의 연보라 포인트를 유지하고 설오 몸 폭은 20%, 담허·휘겸은 12.5% 넓혔다. 머리 장식 아래의 두개골 정수리부터 턱까지로 재어 설오·휘겸·소단 약 7.5등신, 담허 약 7등신으로 맞췄다. 앵커 수는 512/541/480/511 그대로이며 충돌 크기는 변경하지 않는다. 제작 입력은 `tools/party-forge/`, 공통 리그는 `shared/runtime/party-rig.js`, 생성물은 `shared/assets/party/`다. `npm run test:character-balance`가 v009 전후·작은 초상·양방향 5동작의 Native Canvas 증거를 만들며, `npm run test:party`는 여기에 실제 브라우저 검사를 추가한다. 캠프·수련·HUD·대화의 초상은 `shared/runtime/portraits.js`가 머리 전체를 보존하는 공통 흉상 구도로 맞춘다. 전장·쉼터의 전신과 캠페인의 적 소단에도 같은 v010 벡터를 사용한다.
 
 몬스터 미술은 [제작·시각 검수 계획](game/docs/MONSTER_ART_PIPELINE.md)을 따른다. 일반 적 11종을 최초 원본 대비 약 3배의 앵커로 제작하고 공통 벡터 렌더러로 표시한다. `npm.cmd run test:monsters`로 검수 공방과 전후·크기별 비교 이미지를 생성하고 `_local/reports/monster-forge/index.html`을 연다. 제작 원본은 `tools/monster-forge/recipes.mjs`와 `species.mjs`, 원본 측정 기준은 `tests/fixtures/monster-baseline.json`이다. 적 소단은 위 네 동행 에셋을 사용한다.
 
