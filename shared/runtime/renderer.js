@@ -152,13 +152,7 @@
             if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
             else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}
             if(this.background)this.background(c,w,h,b);
-            // Weather particles are L5 screen effects; their animation is separate
-            // from finite scenery projection and battlefield camera movement.
-            if(b.honroEnvironment?.skyVisible!==false)for (let i = 0; i < 26; i++) {
-                const xx = ((i * 193 + this.time * (15 + (b.wind || 0) * 1.7)) % (w + 50) + w + 50) % (w + 50), yy = (i * 101 + this.time * 18) % (h + 30);
-                c.save();c.translate(xx, yy);c.rotate(Math.sin(i) * .9 + this.time * .2);
-                P(c, [[-3, 0], [0, -1.5], [4, 0], [0, 2]], i % 4 ? '#9daf9840' : '#e0d4b259');c.restore();
-            }
+            this.weatherParticles(c,b,w,h,effectDt);
             c.save();
             c.translate(w / 2, h / 2);
             c.scale(this.scale, this.scale);
@@ -257,6 +251,19 @@
             c.restore();
             this.chargeFx(e,power,charging);
             G.HonroObjectives?.draw(this,e);
+        }
+        weatherParticles(c,b,w,h,dt){
+            // L5 screen particles share the actual gameplay wind vector.
+            // Integrate new frames only, rather than time * current wind.
+            const wind=Number.isFinite(b.wind)?b.wind:0;
+            this.weatherX=(this.weatherX||0)+wind*dt;
+            if(b.honroEnvironment?.skyVisible===false)return;
+            for(let i=0;i<26;i++){
+                const motion=G.HONRO_CORE.weatherParticleMotion(wind,18+i%5*3,1.7);
+                const xx=((i*193+this.weatherX*1.7)%(w+50)+w+50)%(w+50),yy=(i*101+this.time*motion.vy)%(h+30);
+                c.save();c.translate(xx,yy);c.rotate(motion.angle);
+                P(c,[[-3,0],[0,-1.5],[4,0],[0,2]],i%4?'#9daf9840':'#e0d4b259');c.restore();
+            }
         }
         // Durability is combat state, never part of the static scenery bitmap.
         // Keep labels and bars in screen pixels at every gameplay zoom.

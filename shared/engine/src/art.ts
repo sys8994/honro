@@ -5,6 +5,14 @@ import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
 import { WORLD_W, clamp, lerp, rng, topAt, poly, rad } from './math';
 type C = CanvasRenderingContext2D;
+/** Screen-space weather uses gameplay wind's sign and strength, plus gravity.
+ * Keep displacement integrated so changing wind cannot teleport particles.
+ */
+export function weatherParticleMotion(wind:number,fallSpeed:number,windFactor=2.8){
+    const vx=(Number.isFinite(wind)?wind:0)*windFactor,vy=fallSpeed;
+    return {vx,vy,angle:Math.atan2(vy,vx)};
+}
+
 function path(c: C, p: number[][], fill: string, stroke?: string, width = 1) { c.beginPath(); p.forEach((v, i) => i ? c.lineTo(v[0], v[1]) : c.moveTo(v[0], v[1])); c.closePath(); c.fillStyle = fill; c.fill(); if (stroke) {
     c.strokeStyle = stroke;
     c.lineWidth = width;
@@ -1751,7 +1759,7 @@ export class Renderer {
         c.restore();
     }
     weather(c: C, w: number, h: number, region: number, wind: number) {
-        const count = this.low ? 22 : 44, dx = this.weatherX * 2.8, sign = Math.sign(wind) || 1;
+        const count = this.low ? 22 : 44, dx = this.weatherX * 2.8;
         c.save();
         const rainy = region === 1 || region === 2;
         // Shafts of light lean with the SAME visible wind, across the entire scrollable world.
@@ -1767,21 +1775,22 @@ export class Renderer {
         }
         for (let i = 0; i < count; i++) {
             const rate = rainy ? 150 + i % 7 * 8 : region === 3 ? -28 - i % 5 * 3 : 20 + i % 5 * 3;
+            const motion=weatherParticleMotion(wind,rate);
             const x = (((i * 113.77 + dx + (this.cameraX || 0) * -.045) % (w + 100)) + (w + 100)) % (w + 100) - 50, y = (((i * 61.3 + this.time * rate) % (h + 80)) + (h + 80)) % (h + 80) - 40;
             if (rainy) {
                 const len = 12 + i % 4 * 4;
                 c.globalAlpha = .14 + (i % 3) * .065;
-                line(c, x, y, x + wind * .21, y + len, region === 2 ? '#9dc6d5' : '#d1e6dd', .65 + i % 2 * .3);
+                line(c, x, y, x + motion.vx / motion.vy * len, y + len, region === 2 ? '#9dc6d5' : '#d1e6dd', .65 + i % 2 * .3);
             }
             else if (region === 3) {
                 c.globalAlpha = .25 + i % 4 * .12;
                 circle(c, x, y, 1 + i % 3 * .6, i % 3 === 0 ? '#eeb585' : '#c0948d');
                 if (i % 4 === 0)
-                    line(c, x, y, x - wind * .16, y + 6, '#df9f7d', .8);
+                    line(c, x, y, x - motion.vx * .16, y - motion.vy * .16, '#df9f7d', .8);
             }
             else if (region === 5) {
                 c.globalAlpha = .2 + i % 4 * .08;
-                line(c, x, y, x + sign * (7 + Math.abs(wind) * .35), y + 4, '#ccd9ee', .7);
+                line(c, x, y, x + motion.vx / motion.vy * 4, y + 4, '#ccd9ee', .7);
                 if (i % 5 === 0)
                     circle(c, x, y, 1.5, '#f5dfb8');
             }
@@ -1789,7 +1798,7 @@ export class Renderer {
                 c.globalAlpha = .3 + i % 3 * .12;
                 c.save();
                 c.translate(x, y);
-                c.rotate(Math.atan2(rate, wind * 2.8 || .1) + Math.sin(this.time + i) * .5);
+                c.rotate(motion.angle);
                 ellipse(c, 0, 0, region === 0 ? 3.5 : 2.5, 1.2, region === 0 ? ['#c7b888', '#a8be94', '#d3c5a0'][i % 3] : '#bdc3b1');
                 c.restore();
             }
