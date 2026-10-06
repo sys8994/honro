@@ -1,0 +1,6 @@
+/** Structural retained-art checks, not aesthetic approval or browser layout. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';
+const g=vm.createContext({});vm.runInContext(await readFile('shared/runtime/journey-art.js','utf8'),g);const A=g.HonroJourneyArt;
+for(const name of A.variants)for(const layer of ['surface','underground']){const svg=A.scene(name,layer);assert.equal(svg,A.scene(name,layer));assert.match(svg,/viewBox="0 0 1600 900"/);assert.match(svg,/data-art-layer="campfire"/);assert.doesNotMatch(svg,/<(?:image|script|foreignObject|animate)\b|Math\.random/);if(layer==='underground'||name==='cave')assert.doesNotMatch(svg,/data-art-layer="open-sky"/);const ids=[...svg.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);assert([...svg.matchAll(/url\(#([^)]*)\)/g)].every(m=>ids.includes(m[1])));}
+for(const layer of A.layers){const svg=A.atlas(layer);assert.equal(svg,A.atlas(layer));assert.match(svg,/viewBox="0 0 1800 1050"/);assert.doesNotMatch(svg,/<(?:image|script|foreignObject)\b/);}
+assert.equal(A.scene('__proto__'),A.scene('forest'));assert.equal(A.atlas('unknown'),A.atlas('surface'));console.log('PASS retained scene and layered atlas structure; no aesthetic/browser claim');

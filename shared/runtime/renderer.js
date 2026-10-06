@@ -76,7 +76,7 @@
         world(sx, sy) { const r = this.canvas.getBoundingClientRect(); return G.HonroCamera.world(this,r.width,r.height,sx,sy); }
         zoom(f, sx, sy) { const a = this.world(sx, sy), r = this.canvas.getBoundingClientRect(),limits=G.HonroBounds.zoomLimits(r.width); this.scale = Math.max(limits.min, Math.min(limits.max, this.scale * f)); this.x = a.x - (sx - r.width / 2) / this.scale; this.y = a.y - (sy - r.height / 2) / this.scale; if(this.battle)G.HonroBounds.constrain(this,this.battle);this.manual = true; }
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
-        _worldRasterScale(b,w){const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
+        _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b))return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;this.landmark?.(c,l);}c.restore();}
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
         _buildStaticWorld(b,w){
@@ -93,6 +93,7 @@
             this._staticCacheBuild=oldAll;this._staticWorldCache={key,canvas:cv,rs,w:b.width,h:b.height,bytes:cv.width*cv.height*4};this._cacheStats.worldBuilds++;this._cacheStats.worldBuildMs+=performance.now()-t0;return this._staticWorldCache;
         }
         _drawStaticWorldCached(c,b,w,h){
+            if(G.HonroTerrainDomain?.active(b))return this._drawTerrainDomainTiles(c,b,w,h);
             const q=this._buildStaticWorld(b,w);c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,0,0,b.width,b.height);
             // The raster is bounded to the physical map; the artwork is not. Continue
             // boundary trees/buildings outside it without growing the memory-capped bitmap
@@ -107,6 +108,31 @@
             c.save();c.beginPath();c.rect(view.left-1,view.top-1,view.right-view.left+2,view.bottom-view.top+2);c.rect(0,0,b.width,b.height);c.clip('evenodd');
             for(const layer of ['back','structural-back','mid','prop','front'])this._landmarkLayer(c,candidates,layer);
             c.restore();
+        }
+        _drawTerrainDomainTiles(c,b,w,h){
+            // Geographically fixed tiles, never a bitmap cut at Play Bounds.
+            // Pixel-aligned clips consume each gutter sample exactly once.
+            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroTerrainBounds,
+                key=this._worldCacheKey(b,w),limit=w<900?12:24;
+            let q=this._domainTiles;if(!q||q.key!==key){q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
+            const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
+                minY=Math.floor(Math.max(v.top,domain.top)/size),maxY=Math.floor(Math.min(v.bottom,domain.bottom)/size),terrain=G.HonroTerrainDomain.render(b);
+            const old=this._staticCacheBuild;this._staticCacheBuild=true;
+            for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++){
+                const id=x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
+                else{const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2),cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
+                    const landmarks=(b.honroLandmarks||[]).filter(l=>{const bounds=l.asset?.bounds||l.asset?.reference?.bounds;if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+40>=left&&Math.min(...ps.map(p=>p.x))-40<=left+size&&Math.max(...ps.map(p=>p.y))+40>=top&&Math.min(...ps.map(p=>p.y))-40<=top+size;}const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=left&&l.x-reach<=left+size&&l.y+reach>=top&&l.y-reach<=top+size;});
+                    this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
+                    for(const t of terrain)if(!t.broken&&t.x+t.w>=left&&t.x<=left+size&&t.y+t.h>=top&&t.y<=top+size)this.terrain(cc,t);
+                    this.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])this._landmarkLayer(cc,landmarks,layer);
+                    tile={canvas:cv,left,top};q.tiles.set(id,tile);this._cacheStats.domainTileBuilds=(this._cacheStats.domainTileBuilds||0)+1;this._cacheStats.worldBuildMs+=performance.now()-start;
+                }
+                const matrix=c.getTransform(),sx=Math.round(tile.left*matrix.a+matrix.e),sy=Math.round(tile.top*matrix.d+matrix.f),ex=Math.round((tile.left+size)*matrix.a+matrix.e),ey=Math.round((tile.top+size)*matrix.d+matrix.f);
+                c.save();c.beginPath();c.rect((sx-matrix.e)/matrix.a,(sy-matrix.f)/matrix.d,(ex-sx)/matrix.a,(ey-sy)/matrix.d);c.clip();c.drawImage(tile.canvas,0,0,px+gutter*2,px+gutter*2,tile.left-gutter/rs,tile.top-gutter/rs,size+gutter*2/rs,size+gutter*2/rs);c.restore();
+            }
+            this._staticCacheBuild=old;
+            while(q.tiles.size>limit)q.tiles.delete(q.tiles.keys().next().value);
+            this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
         }
         renderCacheStats(){return{...this._cacheStats,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
@@ -164,7 +190,7 @@
                 const viewLeft=this.x-w/this.scale-600,viewRight=this.x+w/this.scale+600,visibleLandmarks=(b.honroLandmarks||[]).filter(l=>l.x>viewLeft&&l.x<viewRight);
                 this._landmarkLayer(c,visibleLandmarks,'back');
                 this._landmarkLayer(c,visibleLandmarks,'structural-back');
-                for(const t of b.terrain||[]){if(t.broken||t.x+t.w<this.x-w/this.scale||t.x>this.x+w/this.scale)continue;this.terrain(c,t);}
+                for(const t of (G.HonroTerrainDomain?.render(b)||b.terrain||[])){if(t.broken||t.x+t.w<this.x-w/this.scale||t.x>this.x+w/this.scale)continue;this.terrain(c,t);}
                 this.surfaceZones?.(c,b);
                 this._landmarkLayer(c,visibleLandmarks,'mid');
                 this._landmarkLayer(c,visibleLandmarks,'prop');

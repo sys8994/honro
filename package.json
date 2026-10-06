@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "node workshop/build.mjs",
-    "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs",
+    "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs",
     "verify": "npm run build && npm --prefix game run verify && npm run test:integration && npm run test:performance",
-    "test:integration": "node tests/migration.mjs && npm run test:ground-contact && npm run test:event-targets && npm run test:camp-persistence && npm run test:rest-journey && node tests/turnhold-physics-growth.mjs && npm run test:environment && node tests/audio.mjs && python -X utf8 tests/integration.py && npm run test:controls && npm run test:camera && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:stage36 && npm run test:skills && npm run test:story && npm run test:current-update && npm run test:progress-hud && npm run test:monsters && npm run test:party && npm run test:actors && npm run test:map-art && npm run test:act2 && npm run test:debug-mode",
+    "test:integration": "node tests/migration.mjs && npm run test:terrain-domain && npm run test:ground-contact && npm run test:event-targets && npm run test:camp-persistence && npm run test:rest-journey && node tests/turnhold-physics-growth.mjs && npm run test:environment && npm run test:aim-wind-audio && python -X utf8 tests/integration.py && npm run test:controls && npm run test:camera && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:stage36 && npm run test:skills && npm run test:story && npm run test:current-update && npm run test:progress-hud && npm run test:monsters && npm run test:party && npm run test:actors && npm run test:map-art && npm run test:act2 && npm run test:debug-mode",
     "test:debug-mode": "python -X utf8 tests/debug-mode-browser.py",
     "test:controls": "python -X utf8 tests/defend-shortcut-browser.py",
     "test:camera": "node tests/camera-bounds.mjs && python -X utf8 tests/camera-bounds-browser.py",
@@ -51,11 +51,14 @@
     "test:review-job": "node --test tests/intent-pipeline-review-job.mjs",
     "test:camp-persistence": "node tests/camp-persistence.mjs && node tests/camp-reward-budget.mjs",
     "test:camp-reward-budget": "node tests/camp-reward-budget.mjs",
-    "test:rest-journey": "node tests/journey-content.mjs && node tests/journey-art.mjs && node tests/rest-journey.mjs",
+    "test:rest-journey": "node tests/journey-content.mjs && node tests/journey-art.mjs && node tests/rest-journey.mjs && node tests/journey-atlas-proof.mjs",
     "capture:rest-journey": "node tools/environment/capture-rest-journey.mjs",
     "test:sodan-charge": "node tests/sodan-charge-range.mjs && node tests/charge-input.mjs",
     "test:event-targets": "node tests/event-target-health.mjs && node tests/waterfall-destruction.mjs",
-    "test:ground-contact": "node tests/ground-contact.mjs"
+    "test:ground-contact": "node tests/ground-contact.mjs && node tests/ground-contact-save.mjs",
+    "test:aim-wind-audio": "node tests/aim-guide-cleanup.mjs && node tests/weather-wind.mjs && node tests/audio.mjs",
+    "test:terrain-domain": "node tests/terrain-domain.mjs && node tests/terrain-domain-render.mjs",
+    "capture:terrain-domain": "node tools/environment/capture-terrain-domain.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

@@ -9,7 +9,7 @@ const BASE={
 };
 function terrain(){return{id:ID,name:'아랫뿌리 발디딤',type:'solid',points:[[20,4480],[170,4300],[470,4300],[930,4480],[930,4520],[20,4520]].map(([x,y])=>({x,y})),baseMaterial:'wood',oneWay:true,breakable:false,properties:{hp:99999,maxHp:99999,route:true,surfaceKind:'wood',artSeed:1},layer:'terrain',detail:{spacing:18,roughness:0,seed:1,optimizeEpsilon:0}};}
 function matches(items,compiled=false){return Object.entries(BASE).every(([id,base])=>{
- const t=items?.find(t=>t.id===id),ps=compiled?t?.vertices:t?.points;
+ const source=items?.find(t=>t.id===id),t=!compiled&&source&&G.HonroTerrainDomain?G.HonroTerrainDomain.projection(source):source,ps=compiled?t?.vertices:t?.points;
  return t&&!t.broken&&(compiled?t.indestructible:!t.breakable)&&(compiled?t.mat:t.baseMaterial)===base.mat&&t.oneWay===base.oneWay&&ps?.length===base.points.length&&ps.every((p,i)=>p.x===base.points[i][0]&&p.y===base.points[i][1]);
 });}
 function applyProject(project){

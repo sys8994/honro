@@ -211,12 +211,12 @@ function renderStage(){
 }
 
 function drawBounds(ctx,c,st,view){const B=HonroBounds,w=c.clientWidth,h=c.clientHeight,rows=[
- ['Play','#e8cc82',B.play(st)],['Camera focus','#84c8e3',B.focus(st)],['Visual · tactical min','#b5a2db',B.visual(st,w,h)]];
+ ['Play','#e8cc82',B.play(st)],['Camera focus','#84c8e3',B.focus(st)],['Visual · tactical min','#b5a2db',B.visual(st,w,h)],['Terrain domain','#90ad91',B.terrain(st)]];
  ctx.save();ctx.setTransform(c._dpr||1,0,0,c._dpr||1,0,0);ctx.lineWidth=1.5;ctx.font='12px sans-serif';
  rows.forEach(([label,color,b],i)=>{const a=HonroCamera.screen(view,w,h,{x:b.left,y:b.top}),z=view.zoom;
   ctx.strokeStyle=color;ctx.setLineDash(i?[7,5]:[]);ctx.strokeRect(a.x,a.y,(b.right-b.left)*z,(b.bottom-b.top)*z);
   ctx.fillStyle='#102027e8';ctx.fillRect(12,44+i*22,206,20);ctx.fillStyle=color;ctx.fillText(label,20,58+i*22);});
- ctx.setLineDash([]);ctx.fillStyle='#d8ddd4';ctx.fillText('가로 시야 '+Math.round(w/view.zoom)+' · 최소 줌 '+Math.round(B.zoomLimits(w).min*100)+'%',20,128);ctx.restore();
+ ctx.setLineDash([]);ctx.fillStyle='#d8ddd4';ctx.fillText('가로 시야 '+Math.round(w/view.zoom)+' · 최소 줌 '+Math.round(B.zoomLimits(w).min*100)+'%',20,150);ctx.restore();
 }
 
 function renderAssetPreviews(){for(const c of $$('[data-asset-preview]')){

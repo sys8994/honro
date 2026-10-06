@@ -16,7 +16,8 @@ function compile(st,project){
    elements.push(element);landmarks.push({...element,layer:renderLayer(e.layer)});
   }
  }
- return{terrain,landmarks,elements,materials:st.materials.map(m=>Q.material(st,m,terrain))};
+ const worldTerrain=st.terrainBounds?st.terrains.map(t=>({...Q.terrain(t,st.height,true),...(t.playProjection?{honroDomainProjection:clone(t.playProjection)}:{})})):null;
+ return{terrain,worldTerrain,landmarks,elements,materials:st.materials.map(m=>Q.material(st,m,terrain))};
 }
 function createBattle(st,project,profile=profileFor(st),options={}){
  const sid=st.metadata?.stageId||1,content=G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});
@@ -28,7 +29,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
   mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,honroCamera:clone(st.camera||{}),
   difficulty:profile.settings.difficulty,heroes:clone(profile.heroes),startXP:Object.fromEntries(Object.entries(profile.heroes).map(([c,h])=>[c,h.xp])),
   session:'honro-map-'+st.id+'-'+Date.now(),sceneVersion:st.initialState?.sceneVersion??80,
-  terrain:map.terrain,honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,
+  terrain:map.terrain,...(map.worldTerrain?{honroWorldTerrain:map.worldTerrain,honroPlayBounds:clone(st.playBounds),honroTerrainBounds:clone(st.terrainBounds),honroTerrainDomainVersion:1}:{}),honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,
   honroMapAnchors:clone(st.anchors||{}),honroMap:clone(st.design||{}),honroRoute:clone(st.routes||[]),honroDetailStats:clone(st.detailStats||{}),
   honroMarkers:clone(st.markers||[]),honroEvents:clone(st.events.filter(e=>e.when)),honroAuthoredEvents:clone(st.events.filter(e=>!e.when)),honroObjectives:clone(st.objectives),
   projectiles:[],units:[],events:[],fields:[],drafts:[],waters:map.materials.filter(z=>z.conductive&&z.kind==='water-pool').map(z=>({x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y})),frozen:0,kind:'water'})),zones:[],decor:[],queue:[],phase:'aim',round:1,side:0,

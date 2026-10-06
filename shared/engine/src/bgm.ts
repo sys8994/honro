@@ -5,7 +5,8 @@ export class BgmPlayer {
     state:MusicState='main'; battleIndex=0; unlocked=false; enabled=true; volume=.35; paused=false;
     current:HTMLAudioElement|null=null; outgoing:HTMLAudioElement|null=null; track=-1;
     transitionStart=0; transitionMs=420; starts=0; errors:string[]=[];
-    private positions=new Map<number,number>(); private failed=new Set<number>();
+    private failed=new Set<number>();
+    private restartRequested=false;
     private requested=false;
     private battleSession:string|undefined; private battleSelected=false;
     constructor(public tracks:string[]=(globalThis as any).HONRO_BGM_TRACKS||[],
@@ -16,15 +17,16 @@ export class BgmPlayer {
     }
     unlock(){this.unlocked=true;this.requested=false;this.select(this.state);this.applyPause();}
     select(state:MusicState,battleSession?:string){
-        // A fresh encounter advances from the last normal battle song. UI pauses,
-        // map visits and continuing the same saved encounter do not consume a song.
+        // Different playlists start at their first song and zero seconds.
+        // Repeated updates, pauses and unlocks in the same playlist never seek.
+        const playlistChanged=state!==this.state;
+        if(playlistChanged){this.restartRequested=true;if(state==='battle')this.battleIndex=0;}
+        // Direct encounter changes within one playlist keep the existing order.
         const freshEncounter=(state==='battle'||state==='boss')&&battleSession!==undefined&&battleSession!==this.battleSession;
         if(freshEncounter){
-            if(this.battleSelected)this.battleIndex=(this.battleIndex+1)%3;
+            if(!playlistChanged&&this.battleSelected)this.battleIndex=(this.battleIndex+1)%3;
             this.battleSession=battleSession;this.battleSelected=false;
-            // A visit to the map must not restore any previous combat position,
-            // including the boss track and the two normal tracks not selected now.
-            for(const index of [1,2,3,4])this.positions.delete(index);
+            this.restartRequested=true;
         }
         this.state=state;
         if(state==='battle')this.battleSelected=true;
@@ -32,13 +34,12 @@ export class BgmPlayer {
         const track=state==='main'?0:state==='boss'?4:state==='battle'?1+this.battleIndex:-1;
         if(track<0){this.silence();return;}
         if(!this.unlocked||!this.tracks[track]||this.failed.has(track))return;
-        if(track===this.track&&this.current){if(freshEncounter)this.current.currentTime=0;return;}
+        if(track===this.track&&this.current){if(this.restartRequested)this.current.currentTime=0;this.restartRequested=false;return;}
         if(this.outgoing){this.outgoing.pause();this.outgoing.removeAttribute('src');this.outgoing.load();this.outgoing=null;}
-        if(this.current){this.positions.set(this.track,this.current.currentTime||0);this.outgoing=this.current;}
-        this.track=track;const audio=this.current=this.makeAudio();audio.preload='metadata';audio.src=this.tracks[track];
+        if(this.current)this.outgoing=this.current;
+        this.restartRequested=false;this.track=track;const audio=this.current=this.makeAudio();audio.preload='metadata';audio.src=this.tracks[track];
         audio.loop=state!=='battle';audio.volume=0;this.requested=false;this.transitionStart=performance.now();
-        audio.addEventListener('loadedmetadata',()=>{if(this.current!==audio)return;const time=this.positions.get(track)||0;if(time>0&&Number.isFinite(audio.duration)&&time<audio.duration)audio.currentTime=time;});
-        audio.addEventListener('ended',()=>{if(audio!==this.current||this.state!=='battle')return;this.positions.delete(track);this.battleIndex=(this.battleIndex+1)%3;this.select('battle');});
+        audio.addEventListener('ended',()=>{if(audio!==this.current||this.state!=='battle')return;this.battleIndex=(this.battleIndex+1)%3;this.select('battle');});
         audio.addEventListener('error',()=>{if(audio!==this.current)return;this.errors.push(`BGM ${track+1}: ${audio.error?.code||'media error'}`);this.failed.add(track);this.requested=false;
             if(this.state==='battle'&&[1,2,3].some(i=>!this.failed.has(i))){this.battleIndex=(this.battleIndex+1)%3;this.select('battle');}});
         this.applyPause();

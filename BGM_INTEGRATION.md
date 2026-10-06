@@ -8,11 +8,11 @@ Authoritative spec은 [assets/bgm/README.md](assets/bgm/README.md)입니다. 실
 | 일반 전투 | `02 battle theme - 장막 너머의 음.mp3` → `03 battle theme - 하늘의 그림자.mp3` → `04 battle theme - 불길의 춤.mp3` → 02 |
 | 보스 등장 이후 해당 전투 | `05 boss battle theme - 그림자 대결.mp3`, 반복 |
 
-별도 Stage 전용곡은 README에 없으므로 추가하지 않았습니다. 2026-09-26 요청에 따라 **새 스테이지 진입·재시도는 직전 일반 전투곡의 다음 곡**으로 시작합니다. 예를 들어 02 재생 중 스테이지를 마치면 다음 전투는 03, 이어서 04→02입니다. 곡이 끝나면 전투 중에도 다음 곡으로 넘어가며, 새 전투는 그때의 마지막 곡을 기준으로 합니다. 새 전투의 곡은 처음부터 재생합니다.
+별도 Stage 전용곡은 추가하지 않습니다. **main·battle·boss 플레이리스트가 실제로 바뀔 때 다음 플레이리스트의 첫 곡을 0초부터 재생합니다**(2026-10-06). main→battle과 boss→battle은 02, battle/boss→main은 01, main/battle→boss는 05입니다. 일반 전투 안에서는 02→03→04→02 순환을 유지합니다. 일반 전투 화면에서 바로 새 스테이지에 진입하거나 재시도해 플레이리스트가 바뀌지 않는 경우에는 기존대로 다음 일반곡을 0초부터 재생합니다.
 
-전투 식별은 저장에도 들어 있는 `Battle.session`을 사용합니다. ESC·설정·일시정지와 같은 전투의 저장 재개는 곡 순서를 소비하지 않습니다. 앱을 열어 둔 동안 여정도에서 같은 전투를 이어 하면 기존 곡과 시각을 복구합니다. 보스 등장 시 05로 전환하고, 그 전투의 결과·동일 세션 재개까지 유지합니다. 일반곡 없이 보스곡만 재생한 전투는 일반곡 순서를 추가로 소비하지 않습니다. 곡 순서·재생 시각은 기존처럼 앱 메모리에만 두므로 페이지 새로고침 또는 Workshop Stop 후 새 Playtest에서는 초기화됩니다. 프로필·저장 스키마는 바꾸지 않았습니다.
+전투 식별은 저장에도 들어 있는 `Battle.session`을 사용합니다. ESC·설정·일시정지와 같은 전투의 저장 재개는 곡 순서를 소비하지 않습니다. 여정도·타이틀에 나갔다가 같은 전투를 이어 해도 실제 플레이리스트 전환이므로 일반은 02, 보스는 05를 0초부터 재생합니다. 화면을 떠나지 않은 일시정지·설정·탭 숨김/복귀는 같은 스트림과 시각을 유지합니다. 보스 등장 시 05로 전환하고, 그 전투의 결과·동일 세션 재개까지 유지합니다. 일반곡 없이 보스곡만 재생한 전투는 일반곡 순서를 추가로 소비하지 않습니다. 같은 플레이리스트의 곡 순서·현재 스트림은 앱 메모리에만 두므로 페이지 새로고침 또는 Workshop Stop 후 새 Playtest에서는 초기화됩니다. 프로필·저장 스키마는 바꾸지 않았습니다.
 
-스테이지 도입 대사 중에도 전투곡을 재생합니다. 현재 캠페인 3·6·8·10은 처음부터 awake인 중간/최종 보스를 포함하므로 진입 시 05를 선택합니다. 나머지 스테이지는 일반 전투 playlist를 이어갑니다.
+스테이지 도입 대사 중에도 전투곡을 재생합니다. 현재 앱은 1막 10장의 보스 등장 이후 05를 선택합니다. 앞 장의 중간 보스는 일반 전투 playlist를 사용합니다.
 
 기존 AudioEngine이 BgmPlayer를 소유합니다. 기존 SFX WebAudio를 유지하고 BGM은 lazy HTMLAudioElement로 스트리밍합니다. 전체 decode/base64/5곡 선로딩은 없습니다. 전환은 420ms crossfade, 최대 두 스트림이며 완료 후 나가는 src를 해제합니다.
 
@@ -25,3 +25,5 @@ Authoritative spec은 [assets/bgm/README.md](assets/bgm/README.md)입니다. 실
 Edit 모드에는 AudioEngine이 없습니다. Playtest는 본게임 AudioEngine을 쓰고 iframe 안의 실제 입력으로 unlock합니다. 테스트 프로필은 오디오 설정을 유지하며 Stop은 SFX/BGM 모두 dispose합니다. assets/bgm을 HTML과 함께 배포해야 합니다.
 
 검사는 실제 MP3 디코딩·currentTime 증가·전환·mute·SFX·iframe 폐기를 포함합니다. `tests/bgm-transitions.py`는 두 HTML에서 실제 ESC·설정·재시도 입력과 구성한 승패 결과→지도→다음 전투를 확인합니다. 수정 전 관측은 [before](_local/reports/bgm-transitions-before.json), 회귀 결과는 [after](_local/reports/bgm-transitions.json)에 있습니다. 곡 끝은 ended 이벤트로 전체 순환을 확인했습니다. 전체 전투 수동 클리어·전곡 청취나 MP3 지연까지 포함한 sample 단위 무간격 검사는 하지 않았습니다. 모바일 검증은 Chrome 가로 터치 에뮬레이션이며 실기기 Safari는 별도 확인 대상입니다.
+
+`tests/audio.mjs`는 여섯 전환의 첫 곡·0초, 상태별 150회 반복 갱신/입력의 무재시작, 음소거·숨김·autoplay 잠금, 빠른 교차 전환과 스트림 해제를 검사합니다. HTMLAudioElement 대역 검사이며 실제 MP3 청취·브라우저 currentTime 검증은 별도입니다.

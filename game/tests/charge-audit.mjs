@@ -12,7 +12,7 @@ for(const s of skills){
   assert.ok(duration>0&&duration<=5);near(duration,full/480); // Current skills preserve their authored maximum reach.
   for(const seconds of [0,.1,.5,1,2,5,20]){
    const power=e.chargePower(u,s,seconds),v=e.velocity(u,s,35,power);
-   const floor={O01:.74,O04:.80}[s.id]||0,expected=Math.max(full*floor,Math.min(seconds*480,full));
+   const expected=Math.min(seconds*480,full);
    near(Math.hypot(v.vx,v.vy),expected,`${s.id}, tune ${tune}, seconds ${seconds}`);assert.ok(power>=0&&power<=1);
   }
   rows.push({id:s.id,cls:s.cls,tune,secondsToFull:duration,maxSpeed:full});
@@ -20,7 +20,7 @@ for(const s of skills){
 }
 // Future extreme-range skills still obey the global 5-second ceiling and one acceleration.
 const u=e.active,extreme={...C.SKILLS.A01,speed:20};near(e.chargeDuration(u,extreme),5);near(Math.hypot(...Object.values(e.velocity(u,extreme,0,1))),2400);
-// Prediction and actual projectile launch share the same power mapping, including occult floors.
+// Prediction and actual projectile launch share the same power mapping, without occult minimum-speed floors.
 const actual=[];
 for(const [cls,id] of [['archer','A01'],['mage','M01'],['knight','S01'],['occultist','O01']]){
  for(const seconds of [0,.1,1]){

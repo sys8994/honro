@@ -1709,15 +1709,15 @@ export class Engine {
             // The lowest old wall probe was five units ABOVE the feet. A foot
             // arriving just below a ledge could enter it while every probe passed
             // overhead, then land on a buried overlapping ground segment.
-            const footWall=this.collision({x:ox,y:oy-.05},{x:nx,y:ny},0,u.id,[],false,this.b.terrain.filter(t=>t.oneWay||supported&&t===support?.t).map(t=>t.id));
+            const footWall=this.collision({x:ox,y:oy-.05},{x:nx,y:ny},0,u.id,[],false,this.b.terrain.filter(t=>t.oneWay).map(t=>t.id));
             if(footWall?.terrain&&Math.abs(footWall.n.x)>.99&&Math.abs(footWall.n.y)<.01){
                 this.contactDamage(u,u.vx,u.vy,footWall.n,'wall',silent);
                 nx=footWall.x+footWall.n.x*(Math.min(6,Math.max(2,u.r-2))+.1);u.vx=0;
             }
             // Ignore only upward-facing ramp contacts as walls, not actual vertical faces.
             for (const offset of [u.h * .52, u.h - 7, 5]) {
-                const h = this.collision({ x: ox, y: oy - offset }, { x: nx, y: oy - offset }, offset === 5 ? 2 : Math.min(6, u.r - 2), u.id, [], false, [...(supported&&support?[support.t.id]:[]),...this.b.terrain.filter(t=>t.oneWay).map(t=>t.id)]);
-                if (h && Math.abs(h.n.x) > .65 && h.n.y > -.35) {
+                const h = this.collision({ x: ox, y: oy - offset }, { x: nx, y: oy - offset }, offset === 5 ? 2 : Math.min(6, u.r - 2), u.id, [], false, this.b.terrain.filter(t=>t.oneWay).map(t=>t.id));
+                if (h && (Math.abs(h.n.x) > .65 && h.n.y > -.35 || h.n.y > .3)) {
                     this.contactDamage(u,u.vx,u.vy,h.n,'wall',silent);
                     nx = h.x+h.n.x*6;
                     u.vx = 0;
@@ -1751,10 +1751,10 @@ export class Engine {
                 if (t.broken)
                     continue;
                 const h = segmentTerrain({ x: ox, y: oy - 0.05 }, { x: nx, y: ny }, t, 0);
-                const hx=h?ox+(nx-ox)*h.t:0,hy=h?oy+(ny-oy)*h.t:0;
+                const hx=h?ox+(nx-ox)*h.t:0,hy=h?oy-.05+(ny-oy+.05)*h.t:0;
                 const exposed=h&&exposedSurface(this.b.terrain,t,hx,hy);
                 if (h && exposed && h.n.y < -.01 && (ny - oy) - (nx - ox) * terrainSlopeAt(t,hx,hy) >= -.001 && (!ground || h.t < ground.t))
-                    ground = { x: ox + (nx - ox) * h.t, y: oy + (ny - oy) * h.t, t: h.t, n: h.n, terrain: t };
+                    ground = { x: hx, y: hy, t: h.t, n: h.n, terrain: t };
             }
             const below = u.vy >= 0 ? this.contactSurface(nx, oy - 2, ny + 2) : null;
             if (ground || below && ny >= below.y) {

@@ -84,13 +84,13 @@ for(const [stageId,terrainId] of [[5,'hidden-ledge'],[6,'bridge-mid'],[7,'tier-m
  assert(finaleReward<C.xpAtLevel(g.HonroProgression.plan(10).exitLevel),'stage rewards must not rise with the 1.5× requirement');
 }
 
-// Sodan's basic and spear cannot crawl behind the same cast by an echo.
+// Sodan's basic and spear follow hold time; echoes retain AI calibration.
 {
  const {e}=battlefield(g,9),u=C.makeUnit('occultist',0,500,500,{id:'sodan-probe'});
  for(const id of ['O01','O04']){
   const s=C.SKILLS[id],root=Math.hypot(...Object.values(e.velocity(u,s,30,.45)));
   const echo=Math.hypot(...Object.values(e.velocity({...u,summoned:true},s,30,.45)));
-  assert(root>=echo,`${id} root shot ${root} was slower than its echo ${echo}`);
+  assert(Math.abs(root-480*e.chargeDuration(u,s)*.45)<1e-6);assert(Math.abs(echo-(270+535*.45)*e.effective(s,u).speed)<1e-6);
  }
 }
 console.log('PASS hold reinforcement, platform ascent, XP/stat migration and Sodan projectile speeds');

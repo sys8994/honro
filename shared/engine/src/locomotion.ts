@@ -1,5 +1,5 @@
 import type {Terrain,Unit} from './types';
-import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,AIM_MIN,AIM_MAX} from './math';
+import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,segRect,AIM_MIN,AIM_MAX} from './math';
 
 /** Only sub-pixel/editor seams may be bridged. This never bridges real ledges. */
 export const SEAM_GAP=2.5;
@@ -8,6 +8,45 @@ export const WALKABLE_SLOPE=1.35;
  * incorrectly rejects both pieces at a coplanar overlap and creates a hole. */
 export function exposedSurface(terrain:Terrain[],t:Terrain,x:number,y:number){
   return !terrain.some(o=>o!==t&&!o.broken&&!o.oneWay&&terrainContains(o,x,y-.05));
+}
+/** Read-only save validation for a genuinely supported pose. A wide visual
+ * rectangle overlaps the uphill side of a valid steep contact. Permit that
+ * connected upward-facing contour, but still inspect every wall/ceiling and
+ * other solid with locomotion's head/torso/foot probe widths. A narrow spine
+ * also catches a thin slab between probes. This never relocates a unit. */
+export function validTerrainContactPose(terrain:Terrain[],u:Unit):boolean{
+  const eps=.15,allowed=new Map<Terrain,Set<number>>();
+  const contact=terrainSurface(terrain,u.x,u.y-eps,u.y+eps,Infinity);
+  if(!contact)return false;
+  const seam=!terrain.includes(contact.t);
+  for(const t of terrain){
+    if(t.broken)continue;
+    const x=clamp(u.x,t.x,t.x+t.w);
+    if(x!==u.x&&(!seam||Math.abs(x-u.x)>SEAM_GAP))continue;
+    const v=poly(t),up=(i:number)=>v[(i+1)%v.length].x-v[i].x>1e-7,edges=new Set<number>();
+    for(const f of terrainSurfaces(t,x))if(Math.abs(f.y-u.y)<=(seam?3:eps)&&(!seam||Math.abs(f.slope)<=WALKABLE_SLOPE)&&exposedSurface(terrain,t,x,f.y)){
+      edges.add(f.edge);
+      for(const dir of [-1,1])for(let n=1;n<v.length;n++){const i=(f.edge+dir*n+v.length)%v.length;if(!up(i))break;edges.add(i);}
+    }
+    if(edges.size)allowed.set(t,edges);
+  }
+  if(!allowed.size)return false;
+  const radius=Math.min(6,Math.max(2,u.r-2)),probes=[{y:u.y-5,r:2},{y:u.y-u.h*.5,r:radius},{y:u.y-u.h*.52,r:radius},{y:u.y-u.h+7,r:radius}];
+  for(const t of terrain){
+    if(t.broken||t.oneWay)continue;
+    // Foot penetration, a covered torso, or a head inside a roof is not contact.
+    if(terrainContains(t,u.x,u.y-.2)||probes.some(p=>terrainContains(t,u.x,p.y)))return false;
+    const v=poly(t),skip=allowed.get(t);
+    for(let i=0;i<v.length;i++){
+      if(skip?.has(i))continue;
+      const a=v[i],b=v[(i+1)%v.length],dx=b.x-a.x,dy=b.y-a.y,len2=dx*dx+dy*dy;
+      if(segRect(a,b,u.x,u.y-u.h+7+eps,0,u.h-12-2*eps))return false;
+      // Match segmentTerrain's offset faces rather than adding rounded edge
+      // caps that the live body solver does not have (notably at old stones).
+      if(len2>1e-14)for(const p of probes){const q=((u.x-a.x)*dx+(p.y-a.y)*dy)/len2;if(q>=0&&q<=1&&Math.hypot(u.x-a.x-q*dx,p.y-a.y-q*dy)<p.r-eps)return false;}
+    }
+  }
+  return true;
 }
 export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number,maxSlope=WALKABLE_SLOPE):{t:Terrain;y:number}|null{
   let best:{t:Terrain;y:number}|null=null;
@@ -63,18 +102,20 @@ export function walkTerrain(e:any,u:Unit,direction:number,dt:number,requireSuppo
     if(e.b.terrain.some((t:Terrain)=>{
       if(t.broken||t.oneWay)return false;
       const h=segmentTerrain({x:u.x,y:u.y-.05},{x:nx,y:ny-.05},t);
-      return !!h&&h.t<1-1e-7;
+      return !!h;
     }))break;
     // At an embedded rock seam the old support can end just below the adjacent
     // solid. Head/torso probes miss this foot-only entry; stop for a jump instead.
     if(!support&&e.b.terrain.some((t:Terrain)=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,nx-.1,ny-.1,.2,.08,.001)))break;
     // A steep face rejected as a walkable slope is still solid. Previously
     // null support meant horizontal movement INTO that face, then falling inside.
-    const skip=e.b.terrain.filter((t:Terrain)=>t.oneWay||t===current?.t||t===support?.t).map((t:Terrain)=>t.id);
+    // The support polygon can also contain a cave ceiling or vertical wall.
+    // Its harmless upward-facing contact is filtered by the hit normal below.
+    const skip=e.b.terrain.filter((t:Terrain)=>t.oneWay).map((t:Terrain)=>t.id);
     let blocked=false;
     for(const offset of [u.h*.5,u.h-7,5]){
       const h=e.collision({x:u.x,y:u.y-offset},{x:nx,y:ny-offset},offset===5?2:Math.min(6,Math.max(2,u.r-2)),u.id,[],false,skip);
-      if(h?.terrain&&Math.abs(h.n.x)>.65&&h.n.y>-.35){blocked=true;break;}
+      if(h?.terrain&&(Math.abs(h.n.x)>.65&&h.n.y>-.35||h.n.y>.3)){blocked=true;break;}
     }
     if(blocked)break;
     const travel=Math.hypot(nx-u.x,ny-u.y),cost=travel*(u.bound>0?1.6:1);

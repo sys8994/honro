@@ -1,0 +1,745 @@
+{
+  "sourceCommit": "1bfe5034a88509d332d9755660fd0344fc548903",
+  "stages": [
+    {
+      "id": "stage-1",
+      "terrain": [
+        {
+          "id": "forest-floor",
+          "hash": "364e700147f164fdbcd879570aa28ad1e0822c6d725f82dd7db14e6bbfb56f56"
+        },
+        {
+          "id": "pine-branch-west",
+          "hash": "54fafb648131d67c22ed934aab9a8cb4f2ceb77526ea286393beab8dbf7c4c65"
+        },
+        {
+          "id": "ridge-east-extension",
+          "hash": "83e6202d27d7a7f0e8e2ecde9a550a06131c103fa54ec97541e1032b1ab649aa"
+        },
+        {
+          "id": "pine-branch-east",
+          "hash": "571f8d82059347c215e804469f464065e522c871f4978ed726432126db0bbede"
+        }
+      ],
+      "units": "2666671468889ea299f9020940a9b8537be1aa450ba34edca8f878f94a8d36a6",
+      "events": "20f3cf6780df71832b225f7e81b80f4f16f3c7a8bd6408d7d80aa913c0a09891",
+      "initialState": "bfe5b793d21c6ce64dab342ed021264ac1bf93750059d052d79d7d6ce39881c8",
+      "objectives": "47392342bc1faf20c680448703c7d1ecd4e09bda53d94b795ff259d7d644573a",
+      "encounters": "ac53faed64f8183857ab33507413b3b47cd65ab574365984d44c55f20eac5681"
+    },
+    {
+      "id": "stage-2",
+      "terrain": [
+        {
+          "id": "canyon-ground",
+          "hash": "597af6fa1b5e70e7482bae527aa64f9a3756087adb0518a62879dfc0a2d1f264"
+        },
+        {
+          "id": "left-high-ground",
+          "hash": "c5de0e53763d40ca6330ff68336657a1a17fef38df35c8fc808772c2acf2d561"
+        },
+        {
+          "id": "right-cliff-ground",
+          "hash": "5e1336339c9f7b3a58e28359d2425752388858d4c1882c441825c8ce6635ffcf"
+        },
+        {
+          "id": "left-tree-branch-upper",
+          "hash": "06424fb3fd211dd8d2db64c85820f95a7ec3539ddec07dd46408e6b0bc5b4b93"
+        },
+        {
+          "id": "left-tree-branch-middle",
+          "hash": "e54865fbe4f38c51eef9b9babb0ab368b6e45ccd17a4b20c7a5abc291ca0fbb6"
+        },
+        {
+          "id": "left-tree-branch-lower",
+          "hash": "886417ebec8e00f9018c33d5a390de0e2a5a2994073fa5bd765c231e2e1b6b82"
+        },
+        {
+          "id": "right-tree-branch-lower",
+          "hash": "98dec59ded14a2ef458812e2684bb3fd549dc378f96e0317bdc1c4fa552fde96"
+        },
+        {
+          "id": "right-tree-branch-upper",
+          "hash": "934f0cad5baef1acbf97660096d1544e99b52377153f1ec1968c4a4d09de9668"
+        }
+      ],
+      "units": "9faee32c5c5a08af1feec570e5d4449da9b2904bad7698a688f6a4e90aa5c7e4",
+      "events": "0fa892f41b73a02122e97ae70ff51f120de4b1310e49a4adf2616e2744d8bb5e",
+      "initialState": "e1d33208a5a809b5b197a8b9d1df759a7a6c3492dde4457358ed97286270a504",
+      "objectives": "44d85e22b76c6256f48c0714f596f29ce10bbafe41b4b7caf4452b55ed7a8152",
+      "encounters": "e86b27d3f64d8016c08669e0a57a434e6ca10c9f5b8ffc4902fc7ef3281687a8"
+    },
+    {
+      "id": "stage-3",
+      "terrain": [
+        {
+          "id": "ferry-ground",
+          "hash": "4d95c6ce0baacff74e55f2f37af99f5e951a90f747708be9cb24ea000a31b5c5"
+        },
+        {
+          "id": "dock-west",
+          "hash": "69be4335b00da4c6a19dc6a90c9b6356fdece88a61267f2d4af044fa4d18f6f2"
+        },
+        {
+          "id": "dock-mid",
+          "hash": "455592e2afa09f23017569e1a91d98a5f35bdbfddf8858218326c31afc5ec354"
+        },
+        {
+          "id": "dock-east",
+          "hash": "60a418cb717e9a34d38d8ceb66027443a89cc67fa0b0ca5411bc319d41d458dc"
+        },
+        {
+          "id": "cargo-step-1",
+          "hash": "4643f718e210891abc0b900c9d5ab777d914f80d117e9c6dc4ffae74e40d3d23"
+        },
+        {
+          "id": "cargo-step-2",
+          "hash": "c2ae098e18467d90c8c94ca597ff208175dc8c62d2708f6bf5930e2f2b70cae9"
+        },
+        {
+          "id": "warehouse-roof",
+          "hash": "f20616a6dae640f4bee3d433d79001d9d3f7f033e36dbc47bf0e3c0b6f91ccc5"
+        },
+        {
+          "id": "ferry-side-gangway",
+          "hash": "efcd26ba927e3e6a1c13c711d51006d756ec39cce3acd5ce0f86eac2df42b7de"
+        }
+      ],
+      "units": "15ace2decb87f12323d466574f2477253162fa69b7bde404790f8929c92b9b5f",
+      "events": "d6d1ff55524fd0813cab78cd9d8167532f9a889da3b3c724424d8b3c4e321c18",
+      "initialState": "23faffd6e68bb7d740c932c02afd6256fb5908fb2a4707afc4c78e6006f25a46",
+      "objectives": "ace8c99826525412c6b2042504e9d87c43cb18a07ef19ff6c94152101d366b32",
+      "encounters": "a0b66d538eacba246b6911dd90b0afe5dfe6cd2c1b791cad0a790d675a95f08a"
+    },
+    {
+      "id": "stage-4",
+      "terrain": [
+        {
+          "id": "gate-basin",
+          "hash": "873afd485c7dd7159e23534c0088e590c062aedd8730564f242444b6ca3e048d"
+        },
+        {
+          "id": "west-step-1",
+          "hash": "f4fd11a696b64b7ec3f1d7f4dc5576824bbd164bcca03df74fe015a020eee7cc"
+        },
+        {
+          "id": "west-step-2",
+          "hash": "abdb677891ab30fe45bbe3b5ea3d4afac6ed55025821a0fa2a86e35042907eff"
+        },
+        {
+          "id": "west-shoulder",
+          "hash": "d6652374a51fe2e3943edc0bea17091a760454edcef18f045ee157ca17328c78"
+        },
+        {
+          "id": "east-step-1",
+          "hash": "b48fec8cc16a4b2e332b6d770adf20978edd7a7623615459260d8541a8b77429"
+        },
+        {
+          "id": "east-step-2",
+          "hash": "ad8ec93405026e037668f0f13b9780a27b03a0501d5d7cb7b36d603aec1d16ba"
+        },
+        {
+          "id": "east-watch",
+          "hash": "1a08b298f75aa56ad729f2f287120e821ce0df543918d9684975ad36d2e670da"
+        },
+        {
+          "id": "burned-gallery",
+          "hash": "1ac94322749ac7704ed2ab95279ab029fbfa05bd33aafd1cb7a542ced0bcb4ad"
+        }
+      ],
+      "units": "2e74d287bdfe2b741bb34088ebaadc4cb4bf3418ab9041453ba27ee020762aa8",
+      "events": "6861340fa09a3064cbfc20ff44f7f74030e5370a0dbf2a3584a0f3dd1450f22c",
+      "initialState": "e749f0733caad7f9226c9a4b7dc33c8d3168cd9f3183c0b9cb03c3f1d34df318",
+      "objectives": "d2c3ddb9efbeb0cbbac324952e204f4236630aef8195ad5de9e670cb7b58101b",
+      "encounters": "4bf44cd256cb956be7ae9544a8a099edc4fb1e91ed774bc1b4ed82503a48acb5"
+    },
+    {
+      "id": "stage-5",
+      "terrain": [
+        {
+          "id": "valley-floor",
+          "hash": "982321f59cbb38578799259dca5b47261816ff210cd5af5d8333c84a2933bcb0"
+        },
+        {
+          "id": "archer-step",
+          "hash": "f10bcebf1dc9a8eba5a82479f9308c048da5a845109bc217171908752d2c680e"
+        },
+        {
+          "id": "climb-1",
+          "hash": "6674c54fc1a3b9b0c632e346534170cb7f4c1e64e6cc8f5b49fdd72a79cf797b"
+        },
+        {
+          "id": "climb-2",
+          "hash": "6cc984f2d7e35ea461fece94881cd27984c52db7fef49837473eb3e041ab1d90"
+        },
+        {
+          "id": "climb-3",
+          "hash": "f3d246ef02a2c8d6237201c5665629038b70e8d6f3d7cd67ef7e7cb07b389c2c"
+        },
+        {
+          "id": "climb-4",
+          "hash": "9c408a53b32020d35dd176bb1898224d22c515a03290c96b4a4d9d6c851a0f60"
+        },
+        {
+          "id": "climb-5",
+          "hash": "4dad742386f012eeceb82bb80b75d2419f857fcee9c3f8a5ace72ebe254b84ab"
+        },
+        {
+          "id": "climb-6",
+          "hash": "fa4ea485829b70c427880c81012727167d8fac74209fd71cb25300072bbaab3d"
+        },
+        {
+          "id": "climb-7",
+          "hash": "330e74b3e64202492ff87f7b4fc9e3348a0671884f8a050b30bdf7e5b7a0a636"
+        },
+        {
+          "id": "hidden-ledge",
+          "hash": "1e916849ab1ee2499d29fcf13280370c7d86cd0c0bae7ce02edb43804441028c"
+        },
+        {
+          "id": "upper-roost",
+          "hash": "7174dc3c66eb4bbbf3ade7aacac85a1b5c83634d4b6015638bf40a1205a80ee6"
+        },
+        {
+          "id": "waterfall-roof",
+          "hash": "6e3a28d1fc6ac298ead006d4ba440b4a7a37e7c42034c9868dbd7822e2b5cf97"
+        },
+        {
+          "id": "waterfall-veil",
+          "hash": "1383c28ebdd610e6ce11c83328f6f93a986f2f53aa7a2a22ffa3598aca2cb4ef"
+        },
+        {
+          "id": "cliff-cleat",
+          "hash": "e1641d17c1944a8e076e2afcd032cc1f6d2223458d44bf7e13dececb0fa54c12"
+        }
+      ],
+      "units": "e9289c3a1bfd0ff61a1a0563a47cc3e2ad80d75c83382e101418a008bf8d2877",
+      "events": "4628b5458da0edb84052a957ad184a7335e8ece05085c93e82e62d90ce0f4da6",
+      "initialState": "3a72113561d03d4fda321b11d7893867f4d4b2ad298d8e58b3a80e20b15cdcd4",
+      "objectives": "03d032f614746f3c52f2ca958468b002f401a7094fc8e4e45658269907d6761f",
+      "encounters": "ee4210747b52856c4cc205dd364e169696ab4b734a4e73d68268cbb50b7d6db7"
+    },
+    {
+      "id": "stage-6",
+      "terrain": [
+        {
+          "id": "lower-road",
+          "hash": "bb4f3493c7fee657732c85243b8ee073215a9840d95735054e4bf15983ef1e96"
+        },
+        {
+          "id": "debris-step-1",
+          "hash": "4999241f2f48992e2e16740cef5912aff12be30a299bc5da6e9f32253b267879"
+        },
+        {
+          "id": "debris-step-2",
+          "hash": "6a1853237823efdbde49ae2885defa6180fa38fb4c1046f27708fefbbd6da375"
+        },
+        {
+          "id": "debris-step-3",
+          "hash": "022e4945f25de74a405b0bfabd64c704c72ec9ed07bad2a20d97b0c10a1834dc"
+        },
+        {
+          "id": "bridge-west",
+          "hash": "8ac985a883ded0ce5d90c0a19285bd9f8513aec2205c09372c97471fc2a0d332"
+        },
+        {
+          "id": "bridge-mid",
+          "hash": "e755ea86e8322e4ca5ac31ccf77e322d2eeb83ca1df20ca3a9247ab4f5e32e57"
+        },
+        {
+          "id": "bridge-east",
+          "hash": "0f6d181a9ec8abe9d4e8db75a2b76ee77fb44473cd3bb08c7c4a1925710cee2e"
+        },
+        {
+          "id": "lower-lookout",
+          "hash": "a3065db9ed37c223b0b8e0bd2c25c10aa76780aceafd21d24d0369268b95e4d1"
+        },
+        {
+          "id": "pier-west",
+          "hash": "1a7b85690add1b4b7701ab65a05fcbe4f7c86b4bcf92ed3b189f9c92b122640d"
+        },
+        {
+          "id": "pier-east",
+          "hash": "9ca1dacf0e65b47b2ab6a637775a25a91b03a1454e4948cc2985adf4120dd68e"
+        }
+      ],
+      "units": "cee4771503a6426678685b15bf728cd32b08acabceb3c0a0ee9624052b0d0b9f",
+      "events": "442bcd7d35ae00a6e9d9437f8d894d4a02ac84b509c76f90d2e4be6f65cf38de",
+      "initialState": "48edea9fc338e564ef24089c3ec992d4b5f78bef341d88c92024c28111114cbb",
+      "objectives": "a2d4367422d44c65a069f1bd82ad51c87a5ebe153aa6a78bf5ea34f96789c8e8",
+      "encounters": "9ec45cd3325ee016caab6c4dd1439e20baedd1e5b365f519b88c983275959844"
+    },
+    {
+      "id": "stage-7",
+      "terrain": [
+        {
+          "id": "root-floor",
+          "hash": "9a56eb4fc62ba353a88129e4d06285862002fed7f6ea3c970dad7d99126ef0f1"
+        },
+        {
+          "id": "tier-low",
+          "hash": "76ca6a8eea9e14f42b38d730af689e80f489ca03c62bf314704e5ff617099f4d"
+        },
+        {
+          "id": "ramp-1",
+          "hash": "b7aa76fd4df657207ffff2ec16c596e87ee77dae870892123566dae35019ee2b"
+        },
+        {
+          "id": "tier-mid",
+          "hash": "70348b4b45135d84b247300e02181d42efd9d55fb047d68ae6867d84fd6efb22"
+        },
+        {
+          "id": "ramp-2",
+          "hash": "3922aa9bb32a6ce4c4d0be982402b3870d53a8efa9832b7ba872c7631e7d2388"
+        },
+        {
+          "id": "tier-upper",
+          "hash": "4dbf6b31ebcd5b25a531aaed86aa1a079330cf41eec158d583b7d7c2e5f16f9c"
+        },
+        {
+          "id": "ramp-3",
+          "hash": "e8695877c2fc63d83164c1ce3f7583230574c4952c84835d38fe5e75d4097933"
+        },
+        {
+          "id": "tier-crown",
+          "hash": "b262e19a70aa13aa41e2d386f77fd261e5f7f5a176f1ce2a03498609ee06e85f"
+        },
+        {
+          "id": "side-perch-low",
+          "hash": "b71d27e4780c0b994b7d93db3cda9f2d5f7f967cfc9f408aa9b5be0523424051"
+        },
+        {
+          "id": "side-perch-upper",
+          "hash": "9905c49a2ac2471d3ab66cfbe15a1cea255ef10bec22be2ed6116682943105b1"
+        },
+        {
+          "id": "hollow-roof",
+          "hash": "bd30b0aa28fefbc347109afe6cdf956b761e02e7dc2d86f5ca35aa20b276ab04"
+        },
+        {
+          "id": "root-reentry",
+          "hash": "4a11810a210e03584482ba1716811998faa6ccaf13e5c44f89cf674de8f2b5ce"
+        }
+      ],
+      "units": "f5dacd26748c19f07a4ee07524061bcb7aba5ab38d40684346efd3d0127b426e",
+      "events": "c60330cc696ec61f091ddba8ab38328380e8b0575ca398f5f0dac2e0c41688d5",
+      "initialState": "eba3daba215679d6b7dcf57b22e247031db539a9eae79072b06b8756afb6b88e",
+      "objectives": "e43c21f413c520ee1064316c92d8e1bec1cad58bc73c579f0a327ea4f18679b4",
+      "encounters": "a3df8982d3a1f111f1ef2f2ca4cd7e41f98fa123291108e7dd0ecece2975c5ce"
+    },
+    {
+      "id": "stage-8",
+      "terrain": [
+        {
+          "id": "bier-road",
+          "hash": "7dd118ace2a50cadfc81c26f10f88d7a482747810e6bd15fa427ec22797747be"
+        },
+        {
+          "id": "eave-step-west-1",
+          "hash": "66c6a8a3bddbe84b8059bc4687ae806b6ed2a8157816d7f4c94559a42113c86a"
+        },
+        {
+          "id": "eave-step-west-2",
+          "hash": "5608481089a3fac733dff4f8d5da21e35e87b8adc20952664a72cf7236ab1ba5"
+        },
+        {
+          "id": "west-eave",
+          "hash": "aee3e26bff75a6482db8f7312aad7bb6bcd913a51c3576ba0330167cd14dd23a"
+        },
+        {
+          "id": "procession-walk",
+          "hash": "795a34233020173129011750ff564dcab1aaf9a7ff6f1f3c8dddc457d8bac9b2"
+        },
+        {
+          "id": "eave-step-east-1",
+          "hash": "3773192a3315519f30976eac1af93c13332dd9ad099a3bc96a8094a88b892d75"
+        },
+        {
+          "id": "eave-step-east-2",
+          "hash": "58edf10e850455ce8e5676a3e27e9be6be0fcfac538a993f8a087ca2728adb48"
+        },
+        {
+          "id": "east-eave",
+          "hash": "10aa2f343a77920b92e65718c43187b020018d3fd54de1f14f846909803465d0"
+        },
+        {
+          "id": "bier-screen",
+          "hash": "bf915d4284014a27572a9c7ae775f8b9bdc4be7a1f22bd45660f49fa9e199b49"
+        },
+        {
+          "id": "bier-knot-0",
+          "hash": "18643620cf9ce021fb06cdb2690246f00cc65f148303eeb799c1a682c53954c5"
+        },
+        {
+          "id": "bier-knot-1",
+          "hash": "cffe11d9272fb9dda33e78952d0406c765fcee48fe748371cf20d9c087c78c98"
+        }
+      ],
+      "units": "feadeaeab4fcf87f3cfd69f5a8be6b460c2b98b99aa49aaab15bb1d7e0c207e6",
+      "events": "3710a6bb20702394bc1548db66c14652d8ca36c3a79a25a7ff36f6527f5cec1f",
+      "initialState": "5d6a9bc2a4ff2c5e112c91aae466060fb4fe5422cf97ebb493cca9d974c36c9d",
+      "objectives": "1a9cfca7061aea9b012af628d10c888576735c1a726d36d46bde7ea93504c319",
+      "encounters": "29c5d70e2afefe31de84ffb4eb40d3b114d0ef6e4d42432a4fffbd88dd9d8d64"
+    },
+    {
+      "id": "stage-9",
+      "terrain": [
+        {
+          "id": "yard-floor",
+          "hash": "9f326db64df778bdd7d8a1b927816019593093da33932ee1988386d710925495"
+        },
+        {
+          "id": "west-step-1",
+          "hash": "aebfae7c6ae67d6aedc5f872adff731a17c8350f1536fc92ca66e2d402fa4f7a"
+        },
+        {
+          "id": "west-step-2",
+          "hash": "f28718e12befd4fcb6d1fcf68f1d8146ecf8461c6d1fa25027b070640ae6ec73"
+        },
+        {
+          "id": "west-gallery",
+          "hash": "a1e071cc49b46501943dbddd9e28e8af3e5387e27b7d2c75b5393cc735d0ddd8"
+        },
+        {
+          "id": "center-lookout",
+          "hash": "e2b22b436fb2f2080598cfe12317f084ceeccad5e7818d3addde4eb4dabc5f75"
+        },
+        {
+          "id": "east-step-1",
+          "hash": "656ad68fbe164d3532ae31d238ccbebb44919a57fa004978c5b6c55686d58a78"
+        },
+        {
+          "id": "east-step-2",
+          "hash": "e1c96f434a6800df0e9aec4b85a5f796caa39781266551614921c800cc63da6f"
+        },
+        {
+          "id": "east-gallery",
+          "hash": "21aa95f01407df89797e5544c0237aa38d8f4b39c0a09602801906673e13539f"
+        }
+      ],
+      "units": "dc1e1d008c3ac8c843e8b4cffceebccfa934c01f1eba71f7f81ab30339115976",
+      "events": "a3be1ce563c69fee54ba1a27f1a5105e9da925942e935dd29e9eaccf3a850868",
+      "initialState": "ee757d00c9d37e2b3e69bba41aee6a9823ff15cd0041daaa2c275e3c6b7d4d34",
+      "objectives": "69b2e220e9164c425f190facba9d5e805205fce04aefa7b00845fab87a622cfa",
+      "encounters": "1828c2ce020fba1b8a7657d0eaf00edf24042a503112768075c5a8adf2976a4f"
+    },
+    {
+      "id": "stage-10",
+      "terrain": [
+        {
+          "id": "outer-yard",
+          "hash": "49ed4fd751f5b5392916d2801ca108e085bc9991caf07000ef256e359a195dcd"
+        },
+        {
+          "id": "altar-step-1",
+          "hash": "bd6ec6a0a53dd447ad3345e546f19beb62b421c4307f9d3658380349a1e9bba1"
+        },
+        {
+          "id": "altar-step-2",
+          "hash": "9c5423a92526e35cc5abbd2f9d910cc9b4038177d5b271820f789c2adab9722f"
+        },
+        {
+          "id": "altar-step-3",
+          "hash": "af264d94f12503335d3a7b2cb8c6a0584fd1c2227a152e752ec0c43296172f63"
+        },
+        {
+          "id": "altar-platform",
+          "hash": "e38ad098a503bc48120ce5380c75cf20f521afff42fe68820a2c0623d168957f"
+        },
+        {
+          "id": "west-step",
+          "hash": "c14e9003a03312c8660cd1a3f3a51bd5379564a525bbac9e7b478b1b89f44cd8"
+        },
+        {
+          "id": "west-gallery",
+          "hash": "c6af1b6cea396e07c9de8526db382837bbd60b518eff4b806ab357d1cb810643"
+        },
+        {
+          "id": "east-step",
+          "hash": "610f07665b052c97a7f8fba3b0762d02880cb7e16d9cf3be47219147bd591643"
+        },
+        {
+          "id": "east-gallery",
+          "hash": "580fdf61babee1fa38af8e697d13e3c0a683042297281f0d51bafab6b20484c8"
+        }
+      ],
+      "units": "eb94c016762f51b4a0e6d89691bd56804b8aa89e1afaf4242e6255d9ecf8859f",
+      "events": "ec4612e6fc134420fe49221f0bc9be935936bf89a2c4d357d72db6fb1f2417fe",
+      "initialState": "eec829c7c15a92dd9da028439c69f1b44a75b0250ce03adef56d7731644a0d88",
+      "objectives": "06772386b6e8459be345121760e793c810e4c4a41f5517de20a0241dae692efd",
+      "encounters": "490a727d05200d19fbeb3d311a9f62e0bb1342cd18d52592db3bbe89bef1cbe6"
+    },
+    {
+      "id": "stage-11",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "89ae9972901e14b4a60e43e480d328ac500e086006c608a425399d05bfa7da1c"
+        },
+        {
+          "id": "ridge-perch",
+          "hash": "6954ac50d9bb386ff9b69efc2302a0d207633ede7f2816ed55db1b72fbfdcc8e"
+        }
+      ],
+      "units": "f7709cf3ccd745cb54edce7e28fe056be5fa4dfafcbd06c72c02026cb894ebda",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "ed5d55b43e161b23473f47257feb527e56e043f888abf44069281d6f56f6a3c1",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-12",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "f2b138c4a2450d9a5a5615ecb22f78597663488717e6b35bc2c84ece982b3113"
+        },
+        {
+          "id": "quarry-cave-mouth",
+          "hash": "a520648767dfe48bc3e6c71d99f7029af3cbbcc5568dfd1eb4c809476bde06ab"
+        },
+        {
+          "id": "quarry-firing-shelf",
+          "hash": "42b7752f0b62c4fbdb5e2033443f843b2699398b2e8f778cab39d2de8e469d22"
+        },
+        {
+          "id": "rock-pin",
+          "hash": "5616d641a4dc487232178e32611703708a70189e21c448871ff45a1271b65956"
+        }
+      ],
+      "units": "600d2a9cfdfe301ef3d903cd592064d0039325401dab340b5855232845b48282",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "72a2fff57eb1921f20c289a64422c19d68bcc053fe494ecdab85dc524906df6b",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-13",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "3478f566e196524cab35c6392ff07ebb84171a185b783a1a6271aad8cdf8a480"
+        },
+        {
+          "id": "cave-roof",
+          "hash": "8d6c05db683af9ba6ed3921a3de97e6a89ce623674279d8938e48d4e3c6b632e"
+        },
+        {
+          "id": "forecourt-shot-ledge",
+          "hash": "392b4a16e908e16601089fdc82b51eadab30c8c6fc70889d056ee195034c0be6"
+        },
+        {
+          "id": "door-pin",
+          "hash": "f8db85b1f0f952744148158b3c13a4ed92136974b5ea08472f62659f43671bd1"
+        },
+        {
+          "id": "gate-gate",
+          "hash": "5776fff288d4f478818bfc99e703b4f832c5a2988a5e90aa784721ff44ee63d5"
+        }
+      ],
+      "units": "6db3f44d6b743caccc5596dfd606bf8ff067dddaa1a4bb811b0d2deac2f2b819",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "afd1ff0bec8f38676632c34320bfa602c020949a55c9946c57bfa27e37758199",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-14",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "cfd6879836bd3aad61ed1a785a589537804cb7556e8202901f6350c9ce81b957"
+        },
+        {
+          "id": "cave-roof",
+          "hash": "b66111967706029e2c7b54e664ff15cd37e5497e463705369f0ef1759b14e67c"
+        },
+        {
+          "id": "market-perch",
+          "hash": "57a7aec9c1d3f14eeb0a3f9a88a907e64755e68e37e6bf0fe1a0124857660158"
+        },
+        {
+          "id": "refuge-bridge-walkway",
+          "hash": "1c528791d0971e95ab7448c44c3c053a352dcdde7d87339d273e82067008207b"
+        },
+        {
+          "id": "gate-bridge",
+          "hash": "d213f0242f04252c450fed5e32b947550254df285b47ac2909db9c37ed63d283"
+        }
+      ],
+      "units": "826b879bc8c38ebdeb9c746a02b77eb2d00e5191729d00a672620a986cad5657",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "65cd858cd7b805a37a0e995f1106a084c55ede271a7edf081f3b78197ff88c2f",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-15",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "c7a47adeee818d86034d849de3c2889ffd92ace06652626a62d7c7c2ea8dfe41"
+        },
+        {
+          "id": "cave-roof",
+          "hash": "f4780f5bc4d9c3f5da1bdbad196636ba9f8e31d167162a78df8c5a0086df367f"
+        },
+        {
+          "id": "dry-shoulder",
+          "hash": "8a9a8c9f630932ed9751cab9b5575cf76243f039258641edea59c273502f36d8"
+        },
+        {
+          "id": "shaft-pin",
+          "hash": "3b034bd7be4761c19c1972af9951e735ffbf6e3e34f05380cd136914bf1f387b"
+        }
+      ],
+      "units": "0e29ea6d5dd0e5a4e3c917def843490f56aee22928cfdaa96eb26d72f5f7cba0",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "0a2df9561967851e686455e1007bae2dd5f498c9dedcca0b370e7c596c02e224",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-16",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "8aee42093d0a1f7907eb7ecda1130ae5c92b3dc22d7f05a6e52930eefa1502a5"
+        },
+        {
+          "id": "cave-roof",
+          "hash": "490ffa1c2c82ffc8aa0a8905f6c46c7e6970c209992db400d29d4eced93859b2"
+        },
+        {
+          "id": "court-side-pulpit",
+          "hash": "ee39e62a107ca82bc1afd8237bc5f9ba88cd6e9441c78ad3c67c9a92647df754"
+        },
+        {
+          "id": "record-side-shelf",
+          "hash": "456093fd34c176a5950eee53a9c369ba6ff664917c196e674e8cdc98631d5dfe"
+        }
+      ],
+      "units": "54c7e850bd2469083a12fd0539cc23305645bf57d42dbc85e83a75e9674e496b",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "a48d451f281c0bb6f3e4386a5d28f009fb11f7fd4ebd67865b50d50a0273cb92",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-17",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "0f1c4ac32ceab1919d2684e7ea64453c3ecd6d27c34cd8a55bf417b8936f167f"
+        },
+        {
+          "id": "cave-roof",
+          "hash": "6a75512e6f1e25f66de31153c6cec2a1879848e9649f03ebcd221dfd4730491f"
+        },
+        {
+          "id": "hoist-side-work-shelf",
+          "hash": "57ff9c6a967f3ca06b47e19b7ffcfb3df0d190cbc139bc9db2f6e0a55f76f7f7"
+        },
+        {
+          "id": "collapse-pin",
+          "hash": "23e68483b0fafcc70376d2b49e92089ef42a2ac0f907bf8aa17a5d31b08d9160"
+        },
+        {
+          "id": "gate-repair",
+          "hash": "f7c86fa8c6ab57d9be090d9f3aefe8a257b44355bc2a7b4eec63e65be62dddd1"
+        },
+        {
+          "id": "gate-debris",
+          "hash": "ffcb144afde672ed4e19056e5c815806a4eb27440cbc0f087f8f6b13a467390d"
+        }
+      ],
+      "units": "fed98255937d8faa00e62aac2cc00176e2404552a8fb38843a68a72b3ec75efb",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "379308a0a3097c6518f3fc6bbee7e5f3bdb635ac4cdf46360ae681d4be34bf5c",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-18",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "659c209b2328dfd8d50319beced30a52b7024a1f50ee446ab9ca889feb943850"
+        },
+        {
+          "id": "cave-roof",
+          "hash": "b09230ed5557f5e5f1c3d64588b1a8726ac8728cfa0cbe97afa3659180e1ef8c"
+        },
+        {
+          "id": "suppression-rear-shelf",
+          "hash": "8040cab016d14cb72e68be63aa9685e0d64f0d29a1ba6c2fafa44eee39b83df1"
+        },
+        {
+          "id": "upper-chain",
+          "hash": "ef08c9ccc1982376386a0047d162f20f929793f8bab9c47c4544fa7a1f0eaf2d"
+        }
+      ],
+      "units": "f393e577d2053631642f9f99592a68a2e3af8a041a9911f0be9faecddd702d7d",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "5f47b5202edf27c6b0077e3147b3dc3d3fda7b4c713b80d349cab8c3bff1e856",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-19",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "659c209b2328dfd8d50319beced30a52b7024a1f50ee446ab9ca889feb943850"
+        },
+        {
+          "id": "cave-roof",
+          "hash": "b09230ed5557f5e5f1c3d64588b1a8726ac8728cfa0cbe97afa3659180e1ef8c"
+        },
+        {
+          "id": "suppression-rear-shelf",
+          "hash": "8040cab016d14cb72e68be63aa9685e0d64f0d29a1ba6c2fafa44eee39b83df1"
+        }
+      ],
+      "units": "a2799123840321a8bbbda1de05aa65cc62f315f405dd8d7ed2d39921de7d0ddb",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "853e83111965163d56c3e92d3abdee4edeff8f4e75b1766fd6815a485efba79c",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "stage-20",
+      "terrain": [
+        {
+          "id": "act2-floor",
+          "hash": "d8ff131aecaec5978f34421dcb066b938380c4ec4d8eeeee43b59328d8b67cff"
+        },
+        {
+          "id": "exit-overhang",
+          "hash": "79cb6cd272f8e1a5088378f9a53de2319816abdfab22852a73aef8f877228a2d"
+        },
+        {
+          "id": "hero-side-perch",
+          "hash": "494c1ac4859ea8e4940169fc055c400869685dcb7ba70b3eee73269f08a1565a"
+        },
+        {
+          "id": "last-pass-shot-shelf",
+          "hash": "0e100405858e8aca5aaf4f65290a12aa6f25a9bf12dae49343e117c187c83eaf"
+        },
+        {
+          "id": "exit-pin",
+          "hash": "5625238ba3cd644c6fc3afa4557fb7a6043c63622f67bc38fbe72ae757fc7e26"
+        },
+        {
+          "id": "gate-exit",
+          "hash": "9f96cdc8a7ecf44768fe0dde5b06be9db25549c6f689d62d90a39607cf69ffcc"
+        }
+      ],
+      "units": "4df95871d2864c664b6813001b3be25840a580c0b3c5c61171e1fc0d6cf357d0",
+      "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "initialState": "ac099e31dad0a7b07617738c9777ae6d15b0e60f16ece5117fe754021ab2fc96",
+      "objectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encounters": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ vm.runInContext(await readFile(path.join(root,'shared/map/geometry.js'),'utf8'),
 vm.runInContext(await readFile(path.join(root,'shared/map/stage7-reentry.js'),'utf8'),author);
 const PREFIX='a1-scene-';
 export function surfaceAt(st,x,y=Infinity,supportId){
- const hits=[];for(const t of st.terrains){if(supportId&&t.id!==supportId)continue;const pts=author.HonroGeometry.derive(t);for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1];if(b.x<=a.x||x<a.x||x>b.x)continue;const at=a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);hits.push({x,y:at,supportId:t.id});}}
+ const hits=[];for(const t of st.terrains){if(supportId&&t.id!==supportId)continue;const pts=author.HonroGeometry.derive(t);for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length];if(b.x<=a.x||x<a.x||x>b.x)continue;const at=a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);hits.push({x,y:at,supportId:t.id});}}
  if(!hits.length)throw Error('Missing ACT1 scenery support '+st.id+'/'+x+'/'+supportId);
  return hits.sort((a,b)=>Number.isFinite(y)?Math.abs(a.y-y)-Math.abs(b.y-y):a.y-b.y)[0];
 }

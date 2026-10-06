@@ -52,8 +52,8 @@ for(const id of ['O12','O14','O15','O16']){
 }
 {
  const {e,b,u,s}=arena('O04'),tap=e.velocity(u,s,30,.03),echo=C.makeUnit('occultist',0,u.x,u.y,{summoned:true,summonKind:'echo'}),echoSpeed=e.velocity(echo,s,30,.03);
- assert(Math.hypot(tap.vx,tap.vy)>480,'quick O04 cast needs a readable minimum speed');
- assert(Math.hypot(tap.vx,tap.vy)>Math.hypot(echoSpeed.vx,echoSpeed.vy),'Sodan must not throw slower than her echo');
+ assert(Math.abs(Math.hypot(tap.vx,tap.vy)-480*e.chargeDuration(u,s)*.03)<1e-6,'quick O04 obeys actual hold time');
+ assert(Math.abs(Math.hypot(echoSpeed.vx,echoSpeed.vy)-(270+535*.08)*e.effective(s,echo).speed)<1e-6,'echo keeps AI calibration');
  assert(e.fire('O04',30,.03),'O04 launch');const root=b.projectiles[0];
  assert(Math.abs(Math.hypot(root.vx,root.vy)-Math.hypot(tap.vx,tap.vy))<1e-7,'actual O04 uses predicted launch speed');
  console.log('PASS O04 quick cast and echo speed');

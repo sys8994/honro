@@ -12,7 +12,7 @@
 배경의 기본 조형은 한국화 진경산수·수묵담채다. 실제 지형에 붙은 나무·바위·건물은 L1-back, 중경은 장소를 설명할 때만, 원경은 큰 산세 한 층을 우선한다. 실루엣·큰 명암면·여백·안개를 먼저 만들고 반복 polygon·미세 균열·노이즈로 디테일을 대신하지 않는다.
 새 배경은 사용자가 준 일러스트를 편집 가능한 순수 SVG로 재구성하는 방식을 기본으로 한다. 지정 구간에 variation을 배정하고, 작은 수평 시차·더 작은 수직 시차, L1과 구분되는 낮은 채도/밝기, 단계별 깊어지는 밤톤을 공통 렌더러에 적용한다. 승인된 벡터 형태는 색감 조정 때문에 바꾸지 않는다. 상세 제작·검증 기준은 위 환경 스킬의 `일러스트에서 만드는 SVG 배경` 절을 따른다.
 
-카메라 viewport는 Play Bounds 바깥을 볼 수 있다. 줌을 위해 gameplay dummy terrain을 만들지 않는다. `shared/map/bounds.js`로 플레이·카메라 중심·시각 여유를 구분하고, 최소 줌은 가로 전술 시야와 actor 식별 크기로 결정한다. 외곽·하단은 공통 visual-only skirt로 연결하며 portrait와 landscape를 모두 검증한다. 상세 기준은 `game/docs/CAMERA_BOUNDS.md`를 따른다.
+카메라 viewport는 Play Bounds 바깥을 볼 수 있다. 맵 v6는 `shared/map/terrain-domain.js`의 단일 확장 지형 안에 Play Bounds를 둔다. 전체 polygon이 유일한 지리 원본이며 충돌은 기존 시뮬레이션 범위로 투영한다. 새 맵에 별도 외곽 dummy/skirt를 만들지 않는다. 진행 중인 저장은 원래 지형을 유지한다. `shared/map/bounds.js`로 플레이·카메라·시각·지형 범위를 구분하고, 최소 줌은 가로 전술 시야와 actor 식별 크기로 결정한다. 동굴 입구/천장/바닥·공중 통로, tile 합성, portrait/landscape를 모두 검증한다. `game/docs/TERRAIN_DOMAIN.md`와 `game/docs/CAMERA_BOUNDS.md`를 따른다.
 
 먼저 README.md, game/docs/BUGFIX_CONTEXT.md와 BUG_LOG.md의 관련 항목을 읽는다.
 게임 런타임 수정은 shared/runtime/, shared/engine/src/, shared/map/, shared/data/에서 한다. CSS와 밸런스 설정은 game/src/, game/config/에 있다. HONRO.html과 HONRO_WORKSHOP.html은 생성물이므로 직접 수정하지 않는다.

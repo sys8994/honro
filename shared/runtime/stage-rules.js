@@ -39,8 +39,11 @@
     for(const u of b.units||[]){
       if(u.dead||u.hp<=0||u.fixed||u.carriedBy!==undefined||u.airborne&&b.projectiles.some(p=>p.body&&p.owner===u.id))continue;
       const inside=b.terrain.some(t=>!t.broken&&!t.oneWay&&G.HONRO_CORE.terrainRectIntersects(t,u.x-u.r*.55,u.y-u.h+6,u.r*1.1,Math.max(3,u.h-13),.15));
-      if(!inside)continue;
-      const p=G.HonroTerrain.place(b,u,{flying:false,maxDistance:Math.max(b.width,b.height)});
+      // The rendering-width rectangle can overlap a legitimate uphill support.
+      // Keep that pose only if exact foot contact and physical body clearance
+      // agree; real burial and connected cave roofs still use the old recovery.
+      if(!inside||G.HONRO_CORE.validTerrainContactPose(b.terrain,u))continue;
+      const p=G.HonroTerrain.place(b,u,{flying:false,maxDistance:Math.max(b.width,b.height),accept:(x,y)=>G.HONRO_CORE.validTerrainContactPose(b.terrain,{...u,x,y})});
       if(!p||Math.hypot(p.x-u.x,p.y-u.y)<.5)continue;
       b.honroContactRecoveries??=[];b.honroContactRecoveries.push({id:u.id,from:{x:u.x,y:u.y},to:p});
       Object.assign(u,p,{vx:0,vy:0,jumping:false,airborne:false});

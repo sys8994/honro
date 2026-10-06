@@ -1,3 +1,5 @@
+> Recovery note (2026-10-06): the current review-job implementation is a separately reconstructed, bounded current-source tool. See [RECOVERED_REVIEW.md](RECOVERED_REVIEW.md) for supported commands and explicit limitations. The historical orchestration and historical-browser claims below are not implicitly restored.
+
 # HONRO 의도 → 사용자 선택 → 제작 파이프라인
 
 ## 사용자의 역할

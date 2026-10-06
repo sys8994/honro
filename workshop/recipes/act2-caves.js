@@ -260,7 +260,7 @@ function build(project){
   st.meta={notes:'2-'+(i+1)+' '+d.name+' · 방 단면 개편 3 · '+plan.rounds.join('–')+'턴 설계',seed:2210+i};
   const errors=validateSpace(st);if(errors.length)throw Error(errors.join('\n'));p.stages.push(st);
  }
- return p;
+ return project.stages.some(st=>st.terrainDomainVersion===1)&&G.HonroTerrainDomain?G.HonroTerrainDomain.author(p):p;
 }
 // Standalone, read-only authoring validation. Runtime import validation can call
 // this same function after loading the recipe; no mutation or geometry repair.

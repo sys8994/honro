@@ -8,7 +8,7 @@ for(let id=11;id<=20;id++){
  assert(space,`${id}: missing authored space contract`);
  const slopes=[];
  for(const surface of space.surfaces.filter(s=>['floor','shelf'].includes(s.role))){
-  const original=st.terrains.find(t=>t.id===surface.terrainId);assert(original,`${id}: missing ${surface.terrainId}`);const t=original.properties?.honroRestoredVertices?{...original,points:original.properties.honroRestoredVertices}:original;
+  const original=st.terrains.find(t=>t.id===surface.terrainId);assert(original,`${id}: missing ${surface.terrainId}`);const t=original.properties?.honroRestoredVertices?{...original,points:original.properties.honroRestoredVertices}:g.HonroTerrainDomain.projection(original);
   for(const i of surface.edgeIndices){const a=t.points[i],b=t.points[(i+1)%t.points.length],slope=Math.abs((b.y-a.y)/(b.x-a.x));assert(Number.isFinite(slope)&&slope<=1.35,`${id}/${surface.id}: required walk surface is too steep (${slope})`);slopes.push(slope);}
  }
  // Encounter composition is frozen separately. Here retain the existing

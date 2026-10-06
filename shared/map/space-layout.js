@@ -32,7 +32,8 @@ function validateSpace(st){
  };
  for(const surface of s.surfaces){
   const t=terrains.get(surface.terrainId);if(!t){fail('Missing terrain '+surface.terrainId);continue;}
-  if(!Array.isArray(t.points)||!Array.isArray(surface.edgeIndices)||!surface.edgeIndices.length||surface.edgeIndices.some(j=>!Number.isInteger(j)||j<0||j>=t.points.length))fail('Invalid edges on '+surface.id);
+  const points=t.playProjection&&G.HonroTerrainDomain?G.HonroTerrainDomain.projection(t).points:t.points;
+  if(!Array.isArray(points)||!Array.isArray(surface.edgeIndices)||!surface.edgeIndices.length||surface.edgeIndices.some(j=>!Number.isInteger(j)||j<0||j>=points.length))fail('Invalid edges on '+surface.id);
   if(!Array.isArray(surface.roomIds)||!surface.roomIds.length||surface.roomIds.some(id=>!rooms.has(id)))fail('Missing room on '+surface.id);
  }
  for(const r of s.rooms){

@@ -1,0 +1,9 @@
+import assert from 'node:assert/strict';
+import {appHarness,plain,report} from './app-regression-helpers.mjs';
+const h=await appHarness(),{g,load,reload,profileThrough,click,finish}=h,P=g.HonroProgression,checks=[];
+let app=load(profileThrough(0));app.launch(1);finish(app);const initial=plain(app.engine.b.honroGrowth.limit);
+for(let i=0;i<3;i++){P.awardCombat(app.engine,app.engine.active,19);const xp=app.engine.b.heroes.archer.xp;click('retry');finish(app);assert.deepEqual(plain(app.engine.b.honroGrowth.limit),initial);assert.equal(app.engine.b.heroes.archer.xp,xp);}checks.push('retries cannot move original completion ceiling');
+P.awardCombat(app.engine,app.engine.active,11);app.engine.b.phase='lost';app.outcome(true);app=reload();app.launch(1);finish(app);assert.deepEqual(plain(app.engine.b.honroGrowth.limit),initial);checks.push('loss and reload preserve original ceiling');
+app.engine.b.phase='won';app.outcome(true);const wonXp=app.profile.heroes.archer.xp;assert.equal(wonXp,initial.end);app.launch(1);finish(app);P.awardCombat(app.engine,app.engine.active,9999);app.engine.b.phase='won';app.outcome(true);assert.equal(app.profile.heroes.archer.xp,wonXp);checks.push('replay cannot farm combat/completion rewards');
+app=load(profileThrough(4));app.launch(5);finish(app);const limit=plain(app.engine.b.honroGrowth.limit);P.awardCombat(app.engine,app.engine.active,17);app.export();const exported=await h.exported();app=load(exported);app.launch(1);finish(app);app.stopBattle();app.launch(5);finish(app);assert.deepEqual(plain(app.engine.b.honroGrowth.limit),limit);assert((app.engine.b.honroGrowth.ledger.stages[5].combat.archer||0)>0);checks.push('unfinished exported ledger survives another chapter before returning');
+await report('camp-reward-budget',checks);console.log('PASS',checks.length,'budget cases');

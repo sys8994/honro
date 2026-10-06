@@ -64,6 +64,22 @@ for(const dt of steps)for(const direction of [-1,1]){
  setup(q,[solid('contour',0,998,2000,1002,{vertices:pts})]);place(u,{x:direction>0?490:520,y:1000});for(let i=0;i<Math.ceil(.25/dt);i++){e.walk(u,direction,dt);e.integrateBody(u,dt,true);clearFeet(b,u,'contour');assert(e.grounded(u));}assert(direction>0?u.x>515:u.x<495);
  rows.push({kind:'contour bend sweep',dt,direction});
 }
+// A vertical rise inside the current support polygon cannot be skipped as if
+// it were the harmless supporting floor; leaving it requires a real jump.
+for(const dt of steps)for(const direction of [-1,1]){
+ const q=fixture(),{e,u,b}=q,pts=direction>0?[{x:0,y:1000},{x:550,y:1000},{x:550,y:900},{x:2000,y:900},{x:2000,y:2000},{x:0,y:2000}]:[{x:0,y:900},{x:550,y:900},{x:550,y:1000},{x:2000,y:1000},{x:2000,y:2000},{x:0,y:2000}];
+ setup(q,[solid('same-solid-wall',0,900,2000,1100,{vertices:pts})]);place(u,{x:direction>0?530:570,y:1000});
+ for(let i=0;i<Math.ceil(.5/dt);i++){e.walk(u,direction,dt);e.integrateBody(u,dt,true);clearFeet(b,u,'same-solid wall');}
+ assert(direction>0?u.x<550:u.x>550);assert(e.grounded(u));assert(e.jump(u));rows.push({kind:'same-solid wall',dt,direction});
+}
+// A connected cave roof is not exempt merely because the floor belongs to
+// the same polygon. Adequate headroom stays traversable for every body.
+for(const cls of classes)for(const dt of [1/120,1/30])for(const clearance of ['low','clear'])for(const mode of ['walk','impulse']){
+ const q=fixture(1,cls),{e,u,b}=q,roofBottom=1000-(clearance==='low'?u.h*.55:u.h+12),pts=[{x:0,y:1000},{x:1200,y:1000},{x:1200,y:roofBottom},{x:650,y:roofBottom},{x:650,y:700},{x:2000,y:700},{x:2000,y:2400},{x:0,y:2400}];
+ setup(q,[solid('connected-cave',0,700,2000,1700,{vertices:pts})]);place(u,{x:620,y:1000});if(mode==='impulse')u.vx=400;
+ for(let i=0;i<Math.ceil(.6/dt);i++){if(mode==='walk')e.walk(u,1,dt);e.integrateBody(u,dt,true);assert(!C.terrainContains(b.terrain[0],u.x,u.y-u.h+7),`${cls}/${dt}/${clearance}/${mode}: head entered connected cave roof`);clearFeet(b,u,'connected cave');}
+ if(clearance==='low')assert(u.x<650);else assert(u.x>660);rows.push({kind:'connected cave clearance',cls,dt,clearance,mode});
+}
 console.log('PASS contour',rows.length);
 // Actual authored surfaces: all 20 stages, all four collision bodies, both
 // directions and common frame steps. Start on exposed tops, then let real

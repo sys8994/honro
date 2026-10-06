@@ -55,7 +55,9 @@ npm.cmd run verify
 
 ## 소스와 문서
 
-플레이 경계·카메라 중심·시각 영역은 [카메라 경계 계약](game/docs/CAMERA_BOUNDS.md)을 따릅니다. 줌은 가로 전술 시야와 식별 크기로 결정하며, 맵 바깥은 충돌 없는 지형 연장으로 이어집니다. Workshop `Bounds`로 세 영역을 보고 `npm.cmd run test:camera`로 세로/가로 화면과 입력·저장·지형 연결을 검증합니다. 새 1장은 마지막 능선이 1,200만큼 확장되며 진행 중인 옛 저장은 옛 맵을 유지합니다.
+맵 v6의 전20장은 [하나의 큰 지형 내부에 Play Bounds](game/docs/TERRAIN_DOMAIN.md)를 둡니다. 안팎은 같은 polygon·재질·renderer이며 충돌은 기존 시뮬레이션 범위로 투영합니다. 진행 저장은 유지하고 새 진입/재시도부터 적용합니다. `npm run test:terrain-domain`으로 확인합니다.
+
+플레이 경계·카메라 중심·시각 영역은 [카메라 경계 계약](game/docs/CAMERA_BOUNDS.md)을 따릅니다. 줌은 가로 전술 시야와 식별 크기로 결정하며, 큰 지형의 collision 투영은 기존 플레이 범위를 유지합니다. Workshop `Bounds`로 세 영역을 보고 `npm.cmd run test:camera`로 세로/가로 화면과 입력·저장·지형 연결을 검증합니다. 새 1장은 마지막 능선이 1,200만큼 확장되며 진행 중인 옛 저장은 옛 맵을 유지합니다.
 
 배경 제작은 [환경 구도·대기 시스템](game/docs/ENVIRONMENT_COMPOSITION.md)과 [전체 분류표](game/docs/ENVIRONMENT_INVENTORY.md)를 따른다. Workshop에서 Depth와 Zone/Group/Support를 선택하고 Atmosphere를 정한다. `npm run test:environment`는 수직 맵·접지·줌·물 움직임·저장과 편집을 검증한다.
 

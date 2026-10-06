@@ -9,7 +9,7 @@ function line(points){const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(
 function liveTop(b,id,x,fallback){const t=b.terrain.find(t=>t.id===id&&!t.broken);return t?C.topAt(t,x,fallback):fallback;}
 function pointIn(x,y,ps){let inside=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],z=ps[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)inside=!inside;}return inside;}
 function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.version===b.sceneVersion&&q.source===t.vertices)return q;const ps=C.poly(t),shape=poly(ps.map(p=>[p.x,p.y])),rim=new Path2D(),caps=[],planes=[],joints=[],edges=[],cliffPlanes=[];
- const peers=b.terrain.filter(o=>o!==t&&!o.broken&&!o.oneWay&&!o.honroElementCollision),exposed=(x,y)=>!peers.some(o=>x>o.x&&x<o.x+o.w&&y>o.y&&y<o.y+o.h&&pointIn(x,y,C.poly(o)));
+ const peers=G.HonroTerrainDomain.render(b).filter(o=>o.id!==t.id&&!o.broken&&!o.oneWay&&!o.honroElementCollision),exposed=(x,y)=>!peers.some(o=>x>o.x&&x<o.x+o.w&&y>o.y&&y<o.y+o.h&&pointIn(x,y,C.poly(o)));
  for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(z.x<=a.x||Math.abs((z.y-a.y)/(z.x-a.x))>1.36||!exposed((a.x+z.x)/2,(a.y+z.y)/2-3))continue;edges.push([a,z]);rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);}
  const at=x=>{const e=edges.find(([a,z])=>x>=a.x&&x<=z.x);return e?e[0].y+(e[1].y-e[0].y)*(x-e[0].x)/(e[1].x-e[0].x):C.topAt(t,x,t.y);};
  // Material strata and large cut faces stay clipped inside each actual solid.

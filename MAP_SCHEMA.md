@@ -1,3 +1,9 @@
+# Terrain domain update (map v6)
+
+Current projects use version6. `stage.playBounds` is `[0,width] × [0,height]`; `stage.terrainBounds` is the larger finite geography. Full canonical polygons are in `stage.terrains`. Extended solids carry `playProjection: {bounds, start}`; the compiler derives the unchanged collision mesh from this single geometry source. These are fixed stage bounds, not stale per-solid AABBs. `space.surfaces[].edgeIndices` refers to that collision projection. See [the complete contract](game/docs/TERRAIN_DOMAIN.md).
+
+v1–v5 imports retain original geometry. Old clients reject v6 rather than execute exterior terrain as gameplay collision. Profile schema stays4. Older details below apply unless superseded here.
+
 # Canonical map schema v4
 
 게임·편집기·Agent·JSON 저장은 `schema: "honro-map", version: 4` Project 하나를 사용합니다. 구현은 `shared/map/schema.js`이며 작성 좌표를 반올림하지 않습니다.

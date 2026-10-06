@@ -15,7 +15,8 @@ function derive(t){
  for(let i=0;i<c.length-1;i++){const a=c[i],b=c[i+1],n=Math.max(1,Math.ceil(Math.abs(b.x-a.x)/spacing));for(let k=0;k<n;k++){const u=k/n,sm=t.detail?.interpolation==='linear'?u:u*u*(3-2*u),micro=(r()*2-1)*rough*Math.sin(Math.PI*u)+Math.sin((a.x+k*37)*.017)*rough*.26;raw.push({x:a.x+(b.x-a.x)*u,y:a.y+(b.y-a.y)*sm+micro});}}
  raw.push({...c.at(-1)});const points=eps?simplify(raw,eps):raw;cache.set(t,{sig,points});return points;
 }
-function terrain(t,height=3200){
+function terrain(t,height=3200,world=false){
+ if(!world&&t.playProjection)t=G.HonroTerrainDomain.projection(t);
  const pts=derive(t).map(p=>[p.x,p.y]),opt={...(t.properties||{}),mat:t.baseMaterial||t.properties?.mat||'rock',oneWay:!!t.oneWay,indestructible:!t.breakable};
  if(opt.mat==='soil')opt.mat='earth';
  const out=t.type==='ground'?M.ground(t.id,pts,t.floor??height+180,opt):t.type==='platform'?M.ribbon(t.id,pts,t.thickness??80,opt):M.solid(t.id,pts,opt);

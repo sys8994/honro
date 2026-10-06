@@ -1,5 +1,7 @@
 # 플레이 영역·카메라 중심·시각 영역
 
+현재 맵 v6의 지형·충돌·cache·이관 계약은 [단일 지형 영역](TERRAIN_DOMAIN.md)을 따른다. 아래 skirt 조사는 이전 구현의 원인과 옛 저장 호환 기록이다. 새 전투는 canonical polygon을 안팎에 같은 renderer로 그리며 별도 skirt를 사용하지 않는다. 카메라/줌 수식은 유지한다.
+
 공통 기준은 `shared/map/bounds.js`의 `HonroBounds`다. 기존 엔진의 오른쪽 +X, 아래 +Y를 유지한다. 요청서의 높이 Z는 여기서 Y다. Game·Stage View·Playtest 모두 같은 Scene과 렌더러를 사용한다.
 
 ## 조사 결과
@@ -40,7 +42,7 @@ visualMarginY = viewportHeight / (2 × minZoom) + overscanMargin
 
 시각 여유는 위 margin을 focus 영역 바깥에 더해 계산한다. Workshop은 전체를 검토하기 위한 기존 0.05 검사 줌을 유지하며, 더 축소하면 실제 배율에 맞게 coverage를 넓힌다. 같은 렌더러를 사용하고 Playtest는 게임 전술 줌을 적용한다. `Bounds` 토글은 Play / Camera focus / 게임 최소 줌 Visual 영역을 구별한다. 맵마다 margin 표를 만들지 않는다.
 
-## 지하 암반과 경계
+## 이전 저장의 지하 암반과 경계
 
 `shared/runtime/terrain-skirt.js`는 실제 지형의 맵 하단 단면과 좌우 경계에 닿는 기저 암반을 읽는다. 좌우는 끝의 높이와 안쪽 표면 기울기를 이어받아 완만한 산비탈·큰 능선으로 연장한다. 모든 끝을 절벽으로 떨어뜨리지 않는다. 바깥으로 갈수록 기울기를 완화하고 낮은 대비·안개로 멀어지게 하며, 표면은 고정 월드 좌표여서 pan/resize 때 출렁이지 않는다. 사용자는 작업 도중 전장이 절벽 꼭대기에 고립되어 보이는 처리를 피하고 지형 연장을 선호한다고 명시했다.
 

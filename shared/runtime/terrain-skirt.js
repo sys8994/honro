@@ -41,6 +41,10 @@ function prepare(b,coverage){const bottom=coverage.bottom,base=b.height,skirts=[
  return{skirts,edges,facets,coverage,base,paths:skirts.length+edges.length*2+facets.length};
 }
 G.HonroScene.prototype.terrainSkirt=function(c,b,w,h){
+ // Current terrain uses one shared full-polygon pass. Only legacy snapshots
+ // retain the independent exterior compatibility renderer.
+ if(G.HonroTerrainDomain.active(b)){this.overscanStats={bounds:b.honroTerrainBounds,paths:0,builds:0,unified:true};return;}
+
  if(G.HonroAct2SpatialArt?.active(b))return G.HonroAct2SpatialArt.enclosure(c,b,w,h,this);
  if(b.honroCaveEnvelope&&G.HonroCaveRock)return G.HonroCaveRock.enclosure.call(this,c,b,w,h);
  const coverage=B.visual(b,w,h,this.scale),key=[b.sceneVersion||0,b.width,b.height,coverage.left,coverage.top,coverage.right,coverage.bottom].join(':');

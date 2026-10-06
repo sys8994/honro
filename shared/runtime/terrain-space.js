@@ -7,8 +7,8 @@ function intersects(b,u,x=u.x,y=u.y,{padding=6,support=null}={}){
   return b.terrain.some(t=>!t.broken&&t!==support&&!t.oneWay&&C.terrainRectIntersects(t,left,head,right-left,Math.max(1,feet-head-padding-1),.12));
 }
 function separated(b,u,x,y,padding=18){return b.units.every(v=>v===u||v.dead||v.hp<=0||Math.abs(v.x-x)>=v.r+u.r+padding||y<=v.y-v.h-padding||y-u.h>=v.y+padding);}
-function place(b,u,{x=u.x,y=u.y,flying=!!u.fixed,maxDistance=1600,clearance=18}={}){
-  const valid=(px,py,support=null)=>!intersects(b,u,px,py,{support,padding:flying?10:2})&&separated(b,u,px,py,clearance);
+function place(b,u,{x=u.x,y=u.y,flying=!!u.fixed,maxDistance=1600,clearance=18,accept=null}={}){
+  const valid=(px,py,support=null)=>!intersects(b,u,px,py,{support,padding:flying?10:2})&&separated(b,u,px,py,clearance)&&(!accept||accept(px,py));
   if(flying){if(valid(x,y))return{x,y};for(let radius=64;radius<=maxDistance;radius+=64){const steps=Math.max(12,Math.ceil(2*Math.PI*radius/72));for(let i=0;i<steps;i++){const a=-Math.PI/2+i*2*Math.PI/steps,px=x+Math.cos(a)*radius,py=y+Math.sin(a)*radius;if(valid(px,py))return{x:px,y:py};}}}
   else{
     const candidates=[];
