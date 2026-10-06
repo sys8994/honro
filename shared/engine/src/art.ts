@@ -1,5 +1,5 @@
 import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
-import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,guideStroke,drawTerrainGuideContact,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
+import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,guideStroke,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
 import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
@@ -298,7 +298,6 @@ export class Renderer {
         }
         if(pr.apex&&(sk.mode==='cluster'||sk.mode==='rain'||sk.mode==='seekRain'))this.rune(c,pr.apex.x,pr.apex.y,12,sk.color);
         c.restore();
-        drawTerrainGuideContact(c,engine,active,pr,zoom);
     }
     bg(region: number, variant = 0) { const key = region + ':' + variant; let c = this.backgrounds.get(key); if (!c) {
         c = background(region, variant);

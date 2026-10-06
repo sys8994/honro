@@ -37,12 +37,12 @@ check('Explicit terrain/all phasing preserves its original muzzle and the live p
   const {pr,samples}=trace(e,id,0,.8);assert(samples.some(p=>C.terrainContains(b.terrain[1],p.x,p.y)));assert(!pr.terrain);assert(pr.x>1060);rows.push({id,phase:C.SKILLS[id].phase,endpoint:[pr.x,pr.y]});
  }return rows;
 });
-check('A timed ice-gourd endpoint does not display its earlier bounce as a terminal terrain hit',()=>{
+check('A timed ice-gourd endpoint retains distinct bounce and terminal contact metadata',()=>{
  const {b,e,u}=arena('M02');b.terrain=b.terrain.slice(0,2);Object.assign(b.terrain[1],{x:1100,y:1300,w:100,h:600});b.sceneVersion++;
  const {pr}=trace(e,'M02',75,.8);assert.equal(pr.terrain,'floor');assert(pr.contacts.length>0);assert.equal(pr.terrainAtEnd,false);
  const contact=pr.contacts.at(-1);assert(Math.hypot(pr.x-contact.x,pr.y-contact.y)>20);
- const calls=[],ctx=new Proxy({},{get:(_,key)=>(...args)=>calls.push([key,...args]),set:()=>true});C.drawTerrainGuideContact(ctx,e,u,pr,.68);assert.equal(calls.length,0,'airborne timed burst got a blocked-terrain mark');
- const direct=arena('M01'),hit=trace(direct.e,'M01',0,.8).pr;assert.equal(hit.terrainAtEnd,true);C.drawTerrainGuideContact(ctx,direct.e,direct.u,hit,.68);assert(calls.some(c=>c[0]==='stroke'),'real qi collision lost its terrain mark');
+ const direct=arena('M01'),hit=trace(direct.e,'M01',0,.8).pr;assert.equal(hit.terrainAtEnd,true);
+ assert.equal(C.drawTerrainGuideContact,undefined,'removed terrain X/text renderer must not remain available');
  return{detonation:[pr.x,pr.y],lastBounce:[contact.x,contact.y],contacts:pr.contacts.length};
 });
 check('Scheduled follow-up volleys use the same non-embedded muzzle and collide normally',()=>{

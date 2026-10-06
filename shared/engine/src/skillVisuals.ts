@@ -24,7 +24,7 @@ export function drawGuideContinuation(c:C,e:Engine,u:Unit,s:Skill,power:number,z
  }
  const path=[{x:pr.x,y:pr.y},...ext.points.slice(segment+1)];
  if(path.length<2||Math.hypot(path.at(-1)!.x-pr.x,path.at(-1)!.y-pr.y)<4/Math.max(.12,zoom))return;
- c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.strokeStyle=CLASSES[u.cls].color;c.lineWidth=1.35/Math.max(.12,zoom);c.globalAlpha=.56;c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
+ c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.strokeStyle=CLASSES[u.cls].color;c.lineWidth=.7/Math.max(.12,zoom);c.globalAlpha=.38;c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
 }
 const echoGuideCache=new WeakMap<Engine,{key:string;paths:Array<Array<{x:number;y:number}>>}>();
 export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:number,root:ReturnType<Engine['predict']>){
@@ -244,19 +244,6 @@ export function drawFireBloom(c:C,x:number,y:number,size:number,t:number){
 export function guideStroke(c:C,path:{x:number;y:number}[],zoom:number,color='#d9e1d2',alpha=.64,width=1.35){
  if(path.length<2)return;zoom=Math.max(.12,zoom);c.save();c.lineCap='round';c.lineJoin='round';c.setLineDash([4/zoom,7/zoom]);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle='#10242a';c.lineWidth=(width+1.95)/zoom;c.globalAlpha=.45;c.stroke();c.strokeStyle=color;c.lineWidth=width/zoom;c.globalAlpha=alpha;c.stroke();c.restore();
 }
-/** The terminal mark comes from the same collision that ended the live replay. */
-export function drawTerrainGuideContact(c:C,e:Engine,u:Unit,pr:ReturnType<Engine['predict']>,zoom=1){
- if(!pr.terrain||pr.terrainAtEnd===false)return;
- zoom=Math.max(.12,zoom);const r=5/zoom;
- c.save();c.setLineDash([]);c.lineWidth=4/zoom;c.strokeStyle='#10242a';
- c.beginPath();c.moveTo(pr.x-r,pr.y-r);c.lineTo(pr.x+r,pr.y+r);c.moveTo(pr.x+r,pr.y-r);c.lineTo(pr.x-r,pr.y+r);c.stroke();
- c.strokeStyle='#edc39a';c.lineWidth=1.6/zoom;c.stroke();
- if(Math.hypot(pr.x-u.x,pr.y-(u.y-u.h*.63))<180){
-  c.font=`600 ${11/zoom}px sans-serif`;c.textAlign='left';c.textBaseline='bottom';c.lineWidth=3/zoom;c.strokeStyle='#10242a';c.fillStyle='#edcda7';
-  c.strokeText('지형에 막힘',pr.x+10/zoom,pr.y-9/zoom);c.fillText('지형에 막힘',pr.x+10/zoom,pr.y-9/zoom);
- }
- c.restore();
-}
 const turnGuideCache=new WeakMap<Engine,{key:string;prediction:ReturnType<typeof turnPrediction>}>();
 export function drawTurnGuide(c:C,e:Engine,zoom=1,point?:{x:number;y:number}){
  const p=e.b.projectiles.find(p=>p.skill==='A09'&&p.owner===e.b.active&&!p.turned&&!p.followup);if(e.b.phase!=='flight'||!p)return false;
@@ -282,5 +269,5 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
   if(center!==pr){guideStroke(c,[{x:center.x,y:center.y-140},center],zoom,CLASSES[u.cls].color,.32,.85);}
  }
  if(s.id==='M04')for(const t of e.b.units.filter(t=>!t.dead&&t.side===1&&Math.hypot(t.x-pr.x,t.y-t.h*.5-pr.y)<=260+10*((u.ranks.M04||1)-1))){c.beginPath();c.moveTo(pr.x,pr.y);c.lineTo(t.x,t.y-t.h*.5);c.stroke();}
- c.restore();drawTerrainGuideContact(c,e,u,pr,zoom);return true;
+ c.restore();return true;
 }
