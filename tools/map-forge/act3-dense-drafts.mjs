@@ -15,7 +15,7 @@ function house(id,w,h,{roof=110,wall='#aaa58d',timber='#514840',open=false,floor
  const l=-w/2,r=w/2,eave=-h,peak=eave-roof,coll=[],pieces=[];
  const roofPoly=[[l-45,eave-5],[l-8,eave-27],[-w*.2,peak+12],[0,peak],[w*.2,peak+12],[r+8,eave-27],[r+45,eave-5],[r+28,eave+19],[l-28,eave+19]];
  if(!open){const body=[[l,eave+15],[r,eave+15],[r,0],[l,0]];coll.push(body);pieces.push(P(body,wall));pieces.push(R(r-w*.16,eave+17,w*.16,h-17,'#777d72'));}
- else {pieces.push(R(l+12,eave+22,w-24,h-35,'#394449'));for(const x of [l+25,r-45]){const col=[[x,eave+15],[x+20,eave+15],[x+20,0],[x,0]];coll.push(col);pieces.push(P(col,timber));}}
+ else {for(const x of [l+25,r-45]){const col=[[x,eave+15],[x+20,eave+15],[x+20,0],[x,0]];coll.push(col);pieces.push(P(col,timber));}}
  pieces.push(R(l, -25,w,25,'#697776'),R(l+7,-22,w-14,8,'#9faaa0'));
  for(let floor=0;floor<floors;floor++){
   const y=eave+46+floor*(h-56)/floors,hh=(h-60)/floors;
@@ -31,7 +31,7 @@ function house(id,w,h,{roof=110,wall='#aaa58d',timber='#514840',open=false,floor
  return asset(id,id,pieces.join(''),coll,[l-50,peak-10,w+100,h+roof+22]);
 }
 function bridge(id,w,h=55,{rail=true,color='#76614c'}={}){const body=[[0,0],[w,0],[w,h],[0,h]],pieces=[P(body,color),R(0,0,w,8,'#bea681')];for(let x=0;x<w;x+=40)pieces.push(line([[x,9],[x,h]],'#3e4842',2));if(rail){pieces.push(R(0,-56,w,9,'#7c7258'));for(let x=0;x<=w;x+=100)pieces.push(R(x,-64,9,64,'#a2956c'));}return asset(id,'다리 / 회랑',pieces.join(''),[body],[-5,-70,w+20,h+80]);}
-function stairs(id,w,rise,steps=8){const p=[[0,0]],parts=[];for(let i=0;i<steps;i++){const x=(i+1)*w/steps,y=-(i+1)*rise/steps;p.push([x-w/steps,y],[x,y]);parts.push(line([[x-w/steps,y+7],[x,y+7]],'#9caa9e',3));}p.push([w,100],[0,100]);return asset(id,'석조 계단',P(p,'#586e71')+parts.join(''),[p],[0,-rise,w,rise+105]);}
+function stairs(id,w,rise,steps=8){steps=Math.max(steps,Math.ceil(rise/16));const p=[[0,0]],parts=[];for(let i=0;i<steps;i++){const x=(i+1)*w/steps,y=-(i+1)*rise/steps;p.push([x-w/steps,y],[x,y]);parts.push(line([[x-w/steps,y+7],[x,y+7]],'#9caa9e',3));}p.push([w,100],[0,100]);return asset(id,'석조 계단',P(p,'#586e71')+parts.join(''),[p],[0,-rise,w,rise+105]);}
 function env(st,lib,city=true){const E={version:4,preset:city?'forest':'enclosed',skyVisible:true,atmosphere:{preset:city?'temple':'enclosed',overrides:{skyTop:city?'#526f7e':'#17282e',skyBottom:city?'#b6b9a0':'#536965',hazeStrength:.28,mistStrength:.07,lightStrength:.12}},zones:[{id:'draft-world',from:0,to:st.height,blend:180}],groups:[],surfaces:[],placements:[]};
  if(city)for(const [layer,y,scale,step,offset]of [['L3',2000,.82,610,110],['L2',2380,.88,790,300]]){const group={id:'city-'+layer,depthLayer:layer,verticalMode:'WORLD',zoneId:'draft-world',x:0,y};E.groups.push(group);const support={id:group.id+'-ground',groupId:group.id,kind:'rear-ground',points:[{x:-18000,y:0},{x:st.width+18000,y:0}],bottom:18000};E.surfaces.push(support);for(let x=-5000,i=0;x<st.width+5000;x+=step,i++)E.placements.push({id:`city-${layer}-${i}`,assetId:['draft:sky-house','draft:sky-hall','draft:sky-granary-art','draft:sky-house','draft:sky-wall-art','draft:sky-gate-art'][i%6],depthLayer:layer,groupId:group.id,supportId:support.id,x:x+offset,y:0,scale:i%4===0?scale*1.08:scale,rotation:0});}
  st.environment=E;
@@ -45,8 +45,8 @@ export async function buildCity(g){const p=project(g,'canal-city'),s=p.stages[0]
  for(const [id,w,h,opt]of [['sky-house',640,300,{}],['sky-hall',920,570,{floors:2,wall:'#8b998f'}],['sky-gate',800,780,{open:true,wall:'#7c8c85'}]]){const a=house('draft:'+id,w,h,opt);a.collision=[];p.library.push(a);}
  for(const [short,file]of [['gate','eupseong-gate.svg'],['granary','granary-loading-wall.svg'],['wall','office-wall-entry.svg']]){const source=await readFile(path.join(root,'workshop/drafts/act3-town-assets',file),'utf8'),v=compileSVG(source),[x,y,w,h]=v.viewBox,a=asset('draft:sky-'+short+'-art',short,'',[],[x,y,w,h]);a.vector=v;p.library.push(a);}
  env(s,p.library,true);
- terrain(s,'city-foundation',[[0,2730],[1500,2730],[1500,3040],[2530,3040],[2530,2730],[3790,2730],[3790,3100],[4830,3100],[4830,2730],[6100,2730],[6100,3030],[6880,3030],[6880,2730],[7800,2730],[7800,3400],[0,3400]]);
- pool(s,'west-canal',1500,2530,2720,3040);pool(s,'grand-canal',3790,4830,2730,3100);pool(s,'east-canal',6100,6880,2720,3030);
+ terrain(s,'city-foundation',[[0,2730],[1500,2730],[1500,2824.4],[2530,2824.4],[2530,2730],[3790,2730],[3860,2990],[4010,3130],[4590,3050],[4830,2920],[4830,2730],[6100,2730],[6100,3030],[6880,3030],[6880,2730],[7800,2730],[7800,3400],[0,3400]]);
+ pool(s,'west-canal',1500,2530,2720,2824.4);pool(s,'grand-canal',3790,4830,2730,3100);s.materials.at(-1).bottom=[[3790,2920],[3860,2990],[4010,3130],[4590,3050],[4830,2920]];s.materials.at(-1).points=[[3790,2730],[4830,2730],...s.materials.at(-1).bottom.slice().reverse()];pool(s,'east-canal',6100,6880,2720,3030);
  // Every solid roof and wall below is rendered and collided from the same asset polygons.
  const buildings=[['west-shop',620,320,650,2730,{}],['cloth-hall',620,490,1260,2730,{wall:'#b8aa87'}],['west-quay-tower',430,270,1760,2530,{open:true}],['market-house',680,590,2760,2730,{wall:'#aab2a1'}],['granary',700,680,3410,2730,{wall:'#8d907f'}],['bridge-tower',440,290,4010,2440,{open:true}],['customs-hall',820,600,5070,2730,{floors:2}],['office-upper',600,500,5140,1690,{open:true}],['east-house',620,520,5740,2730,{wall:'#a89483'}],['canal-watch',400,240,6320,2470,{open:true}],['east-granary',710,440,7070,2730,{wall:'#a5ac93'}],['gate-upper',550,370,3000,1700,{open:true}]];
  for(const [id,w,h,x,y,opt]of buildings){put(p,house('draft:'+id,w,h,opt),id,x,y);s.design.draft.mainBuildings.push(id);}
@@ -56,6 +56,22 @@ export async function buildCity(g){const p=project(g,'canal-city'),s=p.stages[0]
  put(p,stairs('draft:roof-link-west',290,185,6),'roof-link-west',790,2340);
  put(p,stairs('draft:entry-stairs',360,410,6),'entry-stairs',70,2730);put(p,stairs('draft:west-quay-stairs',300,130,3),'west-quay-stairs',1170,2730);
  put(p,stairs('draft:office-stairs',440,510,7),'office-stairs',4460,2730);put(p,stairs('draft:east-stairs',420,420,6),'east-stairs',7350,2730);
+
+ // Replace the two boxed upper placeholders with the shared open gallery art.
+ // Decks are structural. Rear posts/brackets remain an explicitly rear plane.
+ const ext=JSON.parse(await readFile(path.join(root,'workshop/drafts/act3-town-assets/dense-extension-manifest.json'),'utf8'));
+ for(const [target,x,y]of [['office-upper',5250,1760],['gate-upper',3000,1770]]){const meta=ext.assets.find(a=>a.file==='open-two-storey-gallery.svg'),source=await readFile(path.join(root,'workshop/drafts/act3-town-assets',meta.file),'utf8'),vector=compileSVG(source),[bx,by,bw,bh]=vector.viewBox,a=asset('draft:'+target+'-gallery',meta.name,'',meta.suggestedSolids.map(q=>q.points),[bx,by,bw,bh]);a.vector=vector;a.params.collisionContract={file:meta.file,solids:meta.suggestedSolids};a.reference=meta.reference;p.library.push(a);const e=s.elements.find(e=>e.id===target);Object.assign(e,{assetId:a.id,x,y});}
+ s.elements=s.elements.filter(e=>!['office-high-gallery','market-upper-gallery'].includes(e.id));s.design.draft.bridges=s.design.draft.bridges.filter(id=>!['office-high-gallery','market-upper-gallery'].includes(id));
+ // Rear support posts meet the lower roofs. They are not front-plane barriers.
+ let supports='';for(const [x,y,foot]of [[2780,1770,2090],[3210,1770,1990],[4840,1760,2070],[5460,1760,2130]])supports+=R(x,y,25,foot-y,'#74664c')+R(x+3,y,6,foot-y,'#ad9b70')+P([[x,foot],[x+35,foot],[x+41,foot+18],[x-6,foot+18]],'#8b9481');
+ put(p,asset('draft:upper-rear-posts','상층 뒤기둥과 지붕 접지',supports,[],[2750,1700,2780,470]),'upper-rear-posts',0,0,'back');
+ // Three open arches; pier feet meet the canonical west channel bed exactly.
+ const bm=ext.assets.find(a=>a.file==='three-arch-stone-bridge.svg'),bs=await readFile(path.join(root,'workshop/drafts/act3-town-assets',bm.file),'utf8'),bv=compileSVG(bs),bb=bv.viewBox,ba=asset('draft:west-stone-bridge',bm.name,'',bm.suggestedSolids.map(q=>q.points),bb);ba.vector=bv;ba.reference=bm.reference;ba.material='stone';ba.params.collisionContract={file:bm.file,solids:bm.suggestedSolids};p.library.push(ba);Object.assign(s.elements.find(e=>e.id==='west-water-bridge'),{assetId:ba.id,x:2015,y:2824.4,scale:.85});
+ // Quay blocks, loading crates and a timber cargo hoist give the water a purpose.
+ let quay='';for(const [x,y,w,h]of [[2530,2650,170,80],[3690,2500,90,230],[4780,2560,85,180],[6040,2490,80,240]]){quay+=R(x,y,w,h,'#76877d')+R(x,y,w,12,'#b3b69a');for(let yy=y+38;yy<y+h;yy+=42)quay+=line([[x+4,yy],[x+w-5,yy]],'#455f60',3);}
+ for(const [x,y]of [[2570,2600],[2640,2600],[4840,2680],[5940,2670]])quay+=R(x,y,60,50,'#9b8157')+line([[x+4,y+4],[x+56,y+46],[x+56,y+4],[x+4,y+46]],'#d0b786',4);
+ quay+=R(3610,2330,20,270,'#6f6448')+R(3580,2320,200,18,'#9d8a61')+line([[3620,2490],[3740,2338]],'#9d8a61',14)+line([[3750,2338],[3750,2630]],'#c0af7b',4);
+ put(p,asset('draft:canal-quays','수로 교대·하역벽·짐틀',quay,[],[2520,2300,3650,450]),'canal-quays',0,0,'back');
  // One upper spur is a sequence of ordinary jump landings, not a ladder mechanic.
  for(const [i,x,y]of [[0,5570,1920],[1,5510,1770],[2,5570,1620]])put(p,bridge('draft:office-step-'+i,160,30,{rail:false}),'office-step-'+i,x,y);
  units(g,s,[['archer','draft-seol-o',430,2373,'player'],['mage','draft-damheo',570,2316,'player'],['knight','draft-hwigyeom',715,2311,'player'],['occultist','draft-sodan',815,2346,'player'],['human','draft-guard-roof',2860,2044,'enemy'],['human','draft-guard-hall',5230,1493,'enemy'],['object:civilian','draft-quay-resident',2170,2600,'npc']]);
@@ -83,7 +99,15 @@ export async function buildArchive(g){const p=project(g,'great-archive'),s=p.sta
  put(p,stairs('draft:archive-west-stairs',940,420,14),'archive-west-stairs',1020,2780);put(p,stairs('draft:archive-east-stairs',900,420,14),'archive-east-stairs',3400,2360);
  // Optional west gallery uses the same climbable stair surfaces and ordinary movement.
  // West upper gallery is a draft optional zone; access is not part of the primary route probe yet.
- for(const [i,x,y]of [[0,560,2460],[1,2200,2440],[2,3640,2460],[3,3990,2460],[4,4460,2460],[5,4860,2460],[6,2040,2040],[7,4480,2040],[8,4860,2040],[9,740,1600],[10,1190,1600],[11,1670,1600],[12,4420,1600],[13,4850,1600]])put(p,bookcase('draft:archive-shelf-'+i,250,270),'archive-shelf-'+i,x,y,'back');
+ for(const [i,x,y]of [[0,560,2460],[1,2200,2440],[2,3640,2460],[3,3990,2460],[4,4460,2460],[5,4860,2460],[6,2040,2040],[7,4480,2040],[8,4860,2040],[9,740,1600],[10,1190,1600],[11,1670,1600],[12,4420,1600],[13,4850,1600]])put(p,bookcase('draft:archive-shelf-'+i,250,270),'archive-shelf-'+i,x,y+(y===1600?70:y===2040?50:y===2440?60:40),'back');
+
+
+ // Reuse only the ground-level shelf subpaths. Each cabinet is attached to its
+ // own actual floor; never paste the three-storey frame across mismatched floors.
+ const archiveSource=await readFile(path.join(root,'workshop/drafts/act3-town-assets/archive-cutaway-frame.svg'),'utf8'),group=archiveSource.match(/<g id="left-bay-archive-shelves">([\s\S]*?)<\/g>/)[1];
+ const low=group.replace(/<path([^>]*?)d="([^"]+)"([^>]*)\/>/g,(all,a,d,z)=>{const ds=d.split(/(?=M)/).filter(Boolean).filter(part=>{const ts=part.match(/[MLHVZ]|-?\d+(?:\.\d+)?/g)||[];let x=0,y=0,min=Infinity;for(let i=0;i<ts.length;){const c=ts[i++];if(c==='M'||c==='L'){x=+ts[i++];y=+ts[i++];}else if(c==='H')x=+ts[i++];else if(c==='V')y=+ts[i++];min=Math.min(min,y);}return min>=-220;});return ds.length?`<path${a}d="${ds.join(' ')}"${z}/>`:'';});
+ const cabinet=asset('draft:archive-bundle-cabinet','종이묶음 장부서가',low+R(-620,-28,340,28,'#847754'),[],[-620,-220,340,220]);
+ for(const [i,x,y]of [[0,1180,2770],[5,5480,2770],[9,1360,1940],[13,5470,1940]]){s.elements=s.elements.filter(e=>e.id!=='archive-shelf-'+i);put(p,cabinet,'archive-bundle-cabinet-'+i,x,y,'back');}
  // Readable hanging scrolls and lanterns, all decorative behind actors.
  let scrolls='';for(const x of [2390,3240]){scrolls+=line([[x,1130],[x,1810]],'#635f45',7)+R(x-52,1440,104,255,'#bdad81')+R(x-60,1438,120,12,'#564e35')+R(x-60,1693,120,12,'#564e35');for(let row=0;row<7;row++)scrolls+=R(x-29,1470+row*29,58-row%3*7,5,'#667061');}put(p,asset('draft:archive-scrolls','아트리움 현판',scrolls,[],[2320,1100,1000,720]),'archive-scrolls',0,0);
  pool(s,'courtyard-water',2670,3090,2730,2780);
