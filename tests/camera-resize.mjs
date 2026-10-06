@@ -29,13 +29,13 @@ for(const cls of ['archer','mage','knight','occultist']){
 }
 dispose(f);
 // Width-unchanged height loss and repeated orientation changes must also fit.
-for(const heightOnly of [false,true]){const q=setup();if(heightOnly){q.css.height=232;}else Object.assign(q.css,{width:944,height:232});q.s.render(q.e,0,'A01',.55,false,0);const first=assertFit(q.s,q.u,q.css.width,q.css.height);
+for(const heightOnly of [false,true]){const q=setup();if(heightOnly){q.s.scale=1.65;q.css.height=232;}else Object.assign(q.css,{width:944,height:232});q.s.render(q.e,0,'A01',.55,false,0);const first=assertFit(q.s,q.u,q.css.width,q.css.height);
  for(let i=0;i<3;i++){Object.assign(q.css,{width:400,height:390});q.s.render(q.e,0,'A01',.55,false,0);Object.assign(q.css,{width:944,height:232});q.s.render(q.e,0,'A01',.55,false,0);assertFit(q.s,q.u,944,232);}rows.push({kind:heightOnly?'height-only-resize':'repeated-rotation',first});dispose(q);}
 for(const mode of ['manual','story','goal','speaker','focus','projectile','editor','preview']){
  const q=setup(),{s,u,b,e}=q;let expected=1.65;
  if(mode==='manual')s.manual=true;
  if(mode==='story'){s.storyTween={kind:'static',start:performance.now(),duration:1000,from:{x:400,y:500,scale:.7},to:{x:400,y:500,scale:.7}};expected=.7;}
- if(mode==='goal')s.goalFocus={x:600,y:700};
+ if(mode==='goal')s.goalFocus={x:600,y:700,label:'Resize target',kind:'interact'};
  if(mode==='speaker'){s.speakerId=u.id;s.speakerUntil=performance.now()+10000;}
  if(mode==='focus'){s.focusId=u.id;s.focusUntil=performance.now()+10000;}
  if(mode==='projectile'){e.fire('A01',.5);assert(b.projectiles.length);}
