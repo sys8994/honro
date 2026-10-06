@@ -38,7 +38,7 @@ for(const id of ['A01','A02','A07','A10','M01','M02','M05','M13','O01','O02','O0
 // Deterministic prediction fixture invokes the production continuation directly.
 const first={points:[{x:0,y:0},{x:10,y:5}],unit:'target',x:10,y:5},extended={points:[{x:0,y:0},{x:10,y:5},{x:30,y:9},{x:50,y:14}],x:50,y:14};
 for(const zoom of [.12,.68,1,2]){
- const u={cls:'archer',x:0,y:0,h:90,angle:0,ranks:{}},s=C.SKILLS.A01,b={shot:0,rng:1,sceneVersion:0,wind:0,units:[]},e={b,predict(...args){return args[7]?extended:first;}},trace=traceContext(),before=JSON.stringify(b);
+ const u={cls:'archer',x:0,y:0,h:90,angle:0,ranks:{}},s=C.SKILLS.A01,b={shot:0,rng:1,sceneVersion:0,wind:0,units:[]},e={b,predict(...args){return args[6]?extended:first;}},trace=traceContext(),before=JSON.stringify(b);
  C.drawGuideContinuation(trace.c,e,u,s,.8,zoom);assert.equal(trace.strokes.length,1);const stroke=trace.strokes[0];assert.equal(stroke.width,.7/Math.max(.12,zoom));assert.equal(stroke.alpha,.38);assert.equal(stroke.dash.length,0);assert.equal(JSON.stringify(stroke.path),JSON.stringify([['moveTo',10,5],['lineTo',10,5],['lineTo',30,9],['lineTo',50,14]]));assert.equal(JSON.stringify(b),before);
  const primary=traceContext();C.guideStroke(primary.c,first.points,zoom);assert.equal(primary.strokes.at(-1).width,1.35/zoom);assert.equal(primary.strokes.at(-1).alpha,.64);
 }
