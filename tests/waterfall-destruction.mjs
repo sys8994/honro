@@ -1,0 +1,23 @@
+/** Production App stop/load/continue plus isolated live arrows, not normal combat. */
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {runtime} from '../game/tests/helpers.mjs';
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x)),storage=new Map(),KEY='honro-first-act-profile-1';
+const node=()=>({innerHTML:'',classList:{remove(){},add(){},toggle(){},contains(){return false;}},dataset:{}}),nodes=new Map();
+g.document={addEventListener(){},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},body:node()};g.localStorage={getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v))};g.requestAnimationFrame=()=>0;g.innerWidth=1440;g.HonroAudio=class{configure(){}play(){}};g.HonroScene=class{event(){}focusUnit(){}};g.HonroUI={bottom:()=>''};g.HonroStory={start:()=>false,turnPaused:()=>false,allowed:()=>true,queue:()=>false};
+const main=await readFile('shared/runtime/main.js','utf8');vm.runInContext(main.replace('G.HonroApp = new App();','G.HonroLifecycleTest = {App, fresh, load};'),g);
+const {App}=g.HonroLifecycleTest;for(const n of ['bind','inputs','updateHUD','updateAudio','cancelInput','close'])App.prototype[n]=function(){};App.prototype.notify=function(m){this.lastNotice=m;};App.prototype.showMap=function(){this.stopBattle();this.screen='map';};
+// Use production interaction logic while leaving DOM mounting to browser QA.
+vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);g.HonroInteractions.mount=()=>{};let app=new App();for(let id=1;id<5;id++)app.profile.cleared[id]={};app.launch(5);
+let b,e,t,veil,m,mage,u;function refs(){e=app.engine;b=e.b;t=b.terrain.find(t=>t.id==='cliff-cleat');veil=b.terrain.find(t=>t.id==='waterfall-veil');m=b.honroMarkers.find(m=>m.id==='receiver-5');mage=e.heroesAlive().find(v=>v.cls==='mage');u=e.heroesAlive().find(v=>v.cls==='archer');}refs();
+const out={scope:'Isolated live projectile + real App save/continue fixtures, not a normal turn-by-turn clear.',checks:[],hits:[]};const ok=n=>out.checks.push(n);
+const hp=t.hp;e.damageTerrain(t,50);assert.equal(t.hp,hp);ok('Closed ritual prevents target damage');
+Object.assign(mage,{x:m.x,y:m.y,vx:0,vy:0,jumping:false,airborne:false});b.active=mage.id;assert(g.HonroInteractions.use(app,m));g.HonroMission.tick(app,0);assert(b.honroState.ritual.active);ok('Production ritual interaction opens veil');
+Object.assign(u,b.honroMapAnchors.shotGap,{vx:0,vy:0});
+const aim={angle:35,power:.8};assert.equal(e.predict(u,C.SKILLS.A01,aim.angle,aim.power,undefined,false,false).terrain,t.id);out.aim=aim;out.initialEnemies=e.alive(1).length;
+function resume(){const expected=plain({hp:t.hp,broken:!!t.broken,ritual:b.honroState.ritual,veil:!!veil.broken,round:b.round,units:b.units.map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,focus:v.focus,acted:v.acted}))});app.stopBattle();app=new App();app.continue();refs();assert.deepEqual(plain({hp:t.hp,broken:!!t.broken,ritual:b.honroState.ritual,veil:!!veil.broken,round:b.round,units:b.units.map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,focus:v.focus,acted:v.acted}))}),expected);}
+while(!t.broken&&out.hits.length<30){b.phase='aim';b.side=0;b.active=u.id;u.acted=false;assert.equal(e.predict(u,C.SKILLS.A01,aim.angle,aim.power,undefined,false,false).terrain,t.id);const before=t.hp;assert(e.fire('A01',aim.angle,aim.power));for(let i=0;i<1800&&b.projectiles.length;i++){for(const p of [...b.projectiles])if(b.projectiles.includes(p))e.stepProjectile(p,C.STEP);g.HonroMission.tick(app,0);}assert(t.hp<before);out.hits.push({shot:out.hits.length+1,before,after:t.hp,broken:!!t.broken});if(out.hits.length===1){resume();ok('Real App save/load/continue preserves partial HP, active ritual and positions');}}
+assert(t.broken);assert(veil.broken);assert(!b.honroState.ritual.active);assert(m.collected);ok('Repeated real arrows destroy cleat with original enemy roster intact');
+resume();g.HonroMission.tick(app,0);assert(t.broken&&veil.broken&&!b.honroState.ritual.active);ok('Real App save/load/continue preserves completed destruction and permanent opening');
+assert(!g.HonroObjectives.state(b,app.stage).complete);const readyRound=b.honroState.objectiveReadyRound;b.round=Math.max(10,readyRound+1);assert(app.checkMission(e));assert.equal(b.phase,'won');ok('Existing minimum round and stabilization then resolve win');out.status='passed';out.targetHp=t.hp;out.summary=g.HonroObjectives.state(b,app.stage).summary;await mkdir('_local/reports/event-target-health',{recursive:true});await writeFile('_local/reports/event-target-health/app-lifecycle.json',JSON.stringify(out,null,2));console.log(JSON.stringify(out,null,2));

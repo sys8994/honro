@@ -4,12 +4,12 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-process.chdir(root);const out='_local/reports/offline-verification';await mkdir(out,{recursive:true});
+process.chdir(root);const out=process.env.HONRO_OFFLINE_REPORT_DIR||'_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
  ['character-balance','npm',['run','test:character-balance']],
  ['build','npm',['run','build']],['typecheck','npm',['--prefix','game','run','typecheck']],['game-regressions','npm',['--prefix','game','test']],
- ['act1-spaces','npm',['run','test:act1:offline']],['act2-spatial-art','node',['tests/act2-spatial-art.mjs']],['act2-objective-guidance','node',['tests/act2-objective-readability.mjs']],['map-schema-v5','node',['tests/map-schema-v5.mjs']],['space-layout-import','node',['tests/space-layout-import.mjs']],['workshop-vector-selection','node',['tests/workshop-vector-selection.mjs']],['vector-assets','node',['tests/vector-assets.mjs']],['migration','node',['tests/migration.mjs']],['launch-visibility','npm',['run','test:launch-visibility']],
- ['act2-spaces','npm',['run','test:act2:offline']],['intent-pipeline','npm',['run','test:intent-pipeline']],
+ ['event-targets','npm',['run','test:event-targets']],['sodan-charge','npm',['run','test:sodan-charge']],['camera-follow','npm',['run','test:camera-follow']],['battle-help','npm',['run','test:battle-help']],['campaign-continuity','npm',['run','test:campaign-continuity']],['camp-persistence','npm',['run','test:camp-persistence']],['rest-journey','npm',['run','test:rest-journey']],['act1-spaces','npm',['run','test:act1:offline']],['act2-art-fidelity','node',['tests/act2-art-fidelity.mjs']],['act2-spatial-art','node',['tests/act2-spatial-art.mjs']],['act2-objective-guidance','node',['tests/act2-objective-readability.mjs']],['map-schema-v5','node',['tests/map-schema-v5.mjs']],['space-layout-import','node',['tests/space-layout-import.mjs']],['workshop-vector-selection','node',['tests/workshop-vector-selection.mjs']],['vector-assets','node',['tests/vector-assets.mjs']],['migration','node',['tests/migration.mjs']],['launch-visibility','npm',['run','test:launch-visibility']],
+ ['act2-spaces','npm',['run','test:act2:offline']],['intent-pipeline','npm',['run','test:intent-pipeline']],['review-job','npm',['run','test:review-job']],
  ...['camera-bounds','turnhold-physics-growth','environment-depth','environment-composition','audio','stage36-place-design','current-update','progress-hud','story-rewrite','combat-story-update','finale-update','attack-tempo-finale','npc-latency','skill-redesign','skill-polish','skill-effects','field-polish','sodan-followup','hwigyeom-p5','skill-tuning','existence-damage'].map(x=>[x,'node',[`tests/${x}.mjs`]]),
  ['environment-validation','node',['tools/environment/validate.mjs']],['environment-inventory','node',['tools/environment/inventory.mjs','--check']]
 ];
