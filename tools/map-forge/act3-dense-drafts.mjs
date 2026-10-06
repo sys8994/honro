@@ -95,7 +95,7 @@ export async function buildArchive(g){const p=project(g,'great-archive'),s=p.sta
  for(const y of [1830,2250,2700])rear+=R(540,y,1790,35,'#74664b')+R(3400,y,1840,35,'#74664b');
  put(p,asset('draft:archive-rear','기록고 뒤벽 · 앞벽 절개',rear,[],[450,1000,4850,1790]),'archive-rear',0,0,'back');
  const roofs=[house('draft:archive-west-roof',1950,240,{roof:180,wall:'#a9a68d'}),house('draft:archive-east-roof',1870,240,{roof:180,wall:'#a9a68d'})];put(p,roofs[0],'archive-west-roof',1350,1330);put(p,roofs[1],'archive-east-roof',4330,1330);s.design.draft.mainBuildings=['archive-west-roof','archive-east-roof'];
- for(const [id,x,y,w]of [['ground-west',520,2770,1690],['ground-east',3390,2770,1840],['middle-west',1940,2360,600],['middle-atrium',2540,2360,950],['middle-east',3490,2360,920],['upper-west',610,1940,1630],['upper-east',4290,1940,940],['upper-atrium',2230,1940,1220]]){put(p,bridge('draft:archive-'+id,w,60,{rail:id.includes('atrium')}),'archive-'+id,x,y);s.design.draft.bridges.push('archive-'+id);}
+ for(const [id,x,y,w]of [['ground-west',520,2770,1690],['ground-east',3390,2770,1840],['middle-west',1940,2360,600],['middle-atrium',2540,2360,950],['middle-east',3490,2360,1740],['upper-west',610,1940,1630],['upper-east',4290,1940,940],['upper-atrium',2230,1940,1220]]){put(p,bridge('draft:archive-'+id,w,60,{rail:id.includes('atrium')}),'archive-'+id,x,y);s.design.draft.bridges.push('archive-'+id);}
  put(p,stairs('draft:archive-west-stairs',940,420,14),'archive-west-stairs',1020,2780);put(p,stairs('draft:archive-east-stairs',900,420,14),'archive-east-stairs',3400,2360);
  // Optional west gallery uses the same climbable stair surfaces and ordinary movement.
  // West upper gallery is a draft optional zone; access is not part of the primary route probe yet.
