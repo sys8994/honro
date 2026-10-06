@@ -78,6 +78,11 @@
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b))return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;this.landmark?.(c,l);}c.restore();}
+        _landmarkVisible(l,view,padding=40){
+            const bounds=l.asset?.bounds||l.asset?.reference?.bounds;
+            if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+padding>=view.left&&Math.min(...ps.map(p=>p.x))-padding<=view.right&&Math.max(...ps.map(p=>p.y))+padding>=view.top&&Math.min(...ps.map(p=>p.y))-padding<=view.bottom;}
+            const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=view.left&&l.x-reach<=view.right&&l.y+reach>=view.top&&l.y-reach<=view.bottom;
+        }
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
         _buildStaticWorld(b,w){
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
@@ -121,7 +126,7 @@
             for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++){
                 const id=x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
                 else{const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2),cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
-                    const landmarks=(b.honroLandmarks||[]).filter(l=>{const bounds=l.asset?.bounds||l.asset?.reference?.bounds;if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+40>=left&&Math.min(...ps.map(p=>p.x))-40<=left+size&&Math.max(...ps.map(p=>p.y))+40>=top&&Math.min(...ps.map(p=>p.y))-40<=top+size;}const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=left&&l.x-reach<=left+size&&l.y+reach>=top&&l.y-reach<=top+size;});
+                    const landmarks=(b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,{left,top,right:left+size,bottom:top+size}));
                     this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
                     for(const t of terrain)if(!t.broken&&t.x+t.w>=left&&t.x<=left+size&&t.y+t.h>=top&&t.y<=top+size)this.terrain(cc,t);
                     this.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])this._landmarkLayer(cc,landmarks,layer);
@@ -187,7 +192,7 @@
             // Static scenery is by far the dominant cost on detailed maps. At normal/zoomed-out
             // views rasterize it once per sceneVersion; keep live vectors only for close inspection.
             if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w,h);}else{
-                const viewLeft=this.x-w/this.scale-600,viewRight=this.x+w/this.scale+600,visibleLandmarks=(b.honroLandmarks||[]).filter(l=>l.x>viewLeft&&l.x<viewRight);
+                const view=G.HonroBounds.viewport(this,w,h),visibleLandmarks=(b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,view));
                 this._landmarkLayer(c,visibleLandmarks,'back');
                 this._landmarkLayer(c,visibleLandmarks,'structural-back');
                 for(const t of (G.HonroTerrainDomain?.render(b)||b.terrain||[])){if(t.broken||t.x+t.w<this.x-w/this.scale||t.x>this.x+w/this.scale)continue;this.terrain(c,t);}

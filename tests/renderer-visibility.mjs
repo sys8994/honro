@@ -18,3 +18,12 @@ scene.hoverUnitId='lamp';b.units=[lamp,{...hero,id:'front'}];b.active='none';bod
 scene.scale=.2;calls.length=0;const hidden={...lamp,id:'hidden',unrevealed:true};scene.tacticalUnitMarkers(context(),{active:'hero'},[hero,lamp,{...lamp,id:'npc',side:2},hidden]);assert.equal(calls.filter(c=>c[0]==='fillRect').length,7);assert(calls.some(c=>c[0]==='lineTo'));assert(calls.some(c=>c[0]==='strokeRect'));scene.scale=1;calls.length=0;scene.tacticalUnitMarkers(context(),b,[hero,lamp]);assert.equal(calls.length,0);console.log('PASS Tactical markers use fixed-screen health bars and team shapes only when zoomed out');
 const map={width:1000,height:800,honroLandmarks:[{kind:'giantPine',x:40,y:500,size:1}]};Object.assign(scene,{x:100,y:400,scale:1});let layers=[];scene._buildStaticWorld=()=>({canvas:{width:500,height:400}});scene._landmarkLayer=(c,l,layer)=>layers.push(layer);before=JSON.stringify(map);calls.length=0;scene._drawStaticWorldCached(context(),map,600,600);assert(calls.some(c=>c[0]==='clip'&&c[1]==='evenodd'));assert.equal(layers.join(','),'back,structural-back,mid,prop,front');assert.equal(JSON.stringify(map),before);
 scene.x=500;scene.y=400;layers=[];scene._drawStaticWorldCached(context(),map,500,500);assert.equal(layers.length,0);console.log('PASS Cache overflow continues existing boundary artwork only outside the unchanged physical map');
+vm.runInContext(await readFile('shared/map/geometry.js','utf8'),g);
+const wide={x:1800,y:4400,scale:1.4,rotation:0,asset:{anchor:{x:0,y:0},bounds:{x:-1100,y:-2760,w:2200,h:2800}}},view={left:600,right:900,top:1400,bottom:2100};
+assert(scene._landmarkVisible(wide,view));assert(!scene._landmarkVisible(wide,{left:-900,right:-700,top:1400,bottom:2100}));
+const anchored={x:2000,y:3000,scale:2,rotation:Math.PI/2,asset:{anchor:{x:100,y:200},bounds:{x:100,y:200,w:200,h:1000}}};
+assert(scene._landmarkVisible(anchored,{left:100,right:300,top:3100,bottom:3200}));assert(!scene._landmarkVisible(anchored,{left:100,right:300,top:2500,bottom:2700}));
+assert(scene._landmarkVisible({...anchored,scale:-2},{left:3700,right:3900,top:2700,bottom:2900}));
+assert(scene._landmarkVisible({...wide,asset:{reference:{bounds:wide.asset.bounds}}},view));
+assert.equal(JSON.stringify(wide),JSON.stringify({x:1800,y:4400,scale:1.4,rotation:0,asset:{anchor:{x:0,y:0},bounds:{x:-1100,y:-2760,w:2200,h:2800}}}));
+console.log('PASS Landmark visibility uses full transformed bounds, including rotation, anchor, negative scale and legacy reference bounds');

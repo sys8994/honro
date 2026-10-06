@@ -1,5 +1,12 @@
 # HONRO 게임 버그 기록
 
+### HBUG-102 후속 · 확대 화면의 큰 나무 소실 — 2026-10-06
+
+- 재현: 7장, 390×844, zoom 1.65, camera (750,1800)에서 `a1-scene-7-ancient-root-village`의 원점 x1820이 culling 범위 밖으로 나가 실제 화면에 보이는 수관도 사라졌다. 같은 production Scene에 누락 나무만 다시 포함한 Native Canvas 비교에서 161,888화소 차이를 확인했다.
+- 원인/수정: 단일 지형 tile은 asset bounds를 사용하지만 1.05를 넘는 확대 경로는 landmark의 원점 X만 검사했다. 두 경로가 asset bounds·anchor·scale·rotation을 적용한 같은 가시성 판정을 사용한다. 에셋 형상·색·지형·물리·저장 데이터는 바꾸지 않는다.
+- 검증: `tests/renderer-visibility.mjs`의 실제 transform/회전/anchor/음수 scale/옛 reference bounds와 `tests/terrain-domain-render.mjs`의 7장 최대 확대 Native Canvas 재현을 추가했다. 전체 terrain-domain·character-balance 기준 검사는 수정 전에 통과했다. 수정 후 집중·통합 검사 결과는 해당 커밋의 실행 기록으로 확인한다.
+- 한계: Native Canvas의 실제 그림 검사이며 브라우저 CSS·입력·모바일 GPU 성능은 별도다. 기존 20장/135개 collision·동굴 통로·타일 43조건 및 네 동행 23검사/28초상 비율을 새 기능 구현으로 세지 않는다.
+
 ## HBUG-102 · 플레이 경계 안팎의 재질 이음새와 하단 빈틈 — 2026-10-06 / 단일 지형 이관
 
 - 원인: 내부 bitmap은 width/height에서 잘리고 외부는 generic skirt·legacy cave·ACT2 enclosure가 별도 형상/재질로 그려 색과 암면이 끊기고 하단 모서리에 빈틈이 생겼다.
