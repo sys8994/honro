@@ -18914,6 +18914,11 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
         _makeLayerCanvas(w,h){const cv=document.createElement('canvas');cv.width=Math.max(1,Math.ceil(w));cv.height=Math.max(1,Math.ceil(h));return cv;}
         _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b))return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){if((l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;this.landmark?.(c,l);}c.restore();}
+        _landmarkVisible(l,view,padding=40){
+            const bounds=l.asset?.bounds||l.asset?.reference?.bounds;
+            if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+padding>=view.left&&Math.min(...ps.map(p=>p.x))-padding<=view.right&&Math.max(...ps.map(p=>p.y))+padding>=view.top&&Math.min(...ps.map(p=>p.y))-padding<=view.bottom;}
+            const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=view.left&&l.x-reach<=view.right&&l.y+reach>=view.top&&l.y-reach<=view.bottom;
+        }
         _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
         _buildStaticWorld(b,w){
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
@@ -18957,7 +18962,7 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
             for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++){
                 const id=x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
                 else{const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2),cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
-                    const landmarks=(b.honroLandmarks||[]).filter(l=>{const bounds=l.asset?.bounds||l.asset?.reference?.bounds;if(bounds&&G.HonroGeometry){const ps=[[bounds.x,bounds.y],[bounds.x+bounds.w,bounds.y],[bounds.x,bounds.y+bounds.h],[bounds.x+bounds.w,bounds.y+bounds.h]].map(([x,y])=>G.HonroGeometry.transformPoint({x,y},l.asset,l));return Math.max(...ps.map(p=>p.x))+40>=left&&Math.min(...ps.map(p=>p.x))-40<=left+size&&Math.max(...ps.map(p=>p.y))+40>=top&&Math.min(...ps.map(p=>p.y))-40<=top+size;}const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=left&&l.x-reach<=left+size&&l.y+reach>=top&&l.y-reach<=top+size;});
+                    const landmarks=(b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,{left,top,right:left+size,bottom:top+size}));
                     this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
                     for(const t of terrain)if(!t.broken&&t.x+t.w>=left&&t.x<=left+size&&t.y+t.h>=top&&t.y<=top+size)this.terrain(cc,t);
                     this.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])this._landmarkLayer(cc,landmarks,layer);
@@ -19023,7 +19028,7 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
             // Static scenery is by far the dominant cost on detailed maps. At normal/zoomed-out
             // views rasterize it once per sceneVersion; keep live vectors only for close inspection.
             if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w,h);}else{
-                const viewLeft=this.x-w/this.scale-600,viewRight=this.x+w/this.scale+600,visibleLandmarks=(b.honroLandmarks||[]).filter(l=>l.x>viewLeft&&l.x<viewRight);
+                const view=G.HonroBounds.viewport(this,w,h),visibleLandmarks=(b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,view));
                 this._landmarkLayer(c,visibleLandmarks,'back');
                 this._landmarkLayer(c,visibleLandmarks,'structural-back');
                 for(const t of (G.HonroTerrainDomain?.render(b)||b.terrain||[])){if(t.broken||t.x+t.w<this.x-w/this.scale||t.x>this.x+w/this.scale)continue;this.terrain(c,t);}
@@ -21731,12 +21736,14 @@ function state(profile){const old=profile.honroJourney;if(!old||old.version!==1)
 function location(profile){return data().next(profile)||data().ending;}
 function active(profile){return profile.honroBattle||null;}
 function currentId(profile){return active(profile)?.honroStage||data().next(profile)?.stageId||H.stages.at(-1).id;}
-function towards(place){const last=String(place).charCodeAt(String(place).length-1)-0xac00,jong=last>=0&&last<=11171?last%28:0;return place+(jong&&jong!==8?'으로':'로');}
+function finalConsonant(text){const last=String(text).charCodeAt(String(text).length-1)-0xac00;return last>=0&&last<=11171?last%28:0;}
+function towards(place){const jong=finalConsonant(place);return place+(jong&&jong!==8?'으로':'로');}
+function together(name){return name+(finalConsonant(name)?'과':'와');}
 function speakerId(cls){return H.hero[cls]?.name;}
 function talkId(next,cls){return `rest-talk-v1-${next?.stageId||'end'}-${cls}`;}
 function restMarkup(app){const p=app.profile,d=data(),next=d.next(p),place=next||d.ending,previous=next?d.at(next.stageId-1):d.at(H.stages.at(-1).id),battle=active(p),s=state(p);
  const positions={archer:[36,84],mage:[44,79],knight:[61,82],occultist:[70,78]};
- const heroes=p.recruited.filter(cls=>H.hero[cls]).map(cls=>{const [x,y]=positions[cls]||[60,80],unread=!s.talked[talkId(next,cls)];return `<button class="rest-person rest-${cls}" data-action="rest-talk" data-class="${cls}" style="--person-x:${x}%;--person-y:${y}%" aria-label="${esc(speakerId(cls))}와 선택 대화${unread?' · 새 대화':''}"><canvas width="220" height="300" data-rest-person="${cls}" aria-hidden="true"></canvas><span class="rest-person-label">${esc(speakerId(cls))}${unread?'<i aria-hidden="true">···</i>':''}</span><small>이야기 듣기</small></button>`;}).join('');
+ const heroes=p.recruited.filter(cls=>H.hero[cls]).map(cls=>{const [x,y]=positions[cls]||[60,80],unread=!s.talked[talkId(next,cls)];return `<button class="rest-person rest-${cls}" data-action="rest-talk" data-class="${cls}" style="--person-x:${x}%;--person-y:${y}%" aria-label="${esc(together(speakerId(cls)))} 선택 대화${unread?' · 새 대화':''}"><canvas width="220" height="300" data-rest-person="${cls}" aria-hidden="true"></canvas><span class="rest-person-label">${esc(speakerId(cls))}${unread?'<i aria-hidden="true">···</i>':''}</span><small>이야기 듣기</small></button>`;}).join('');
  return `<main class="screen rest-screen">${app.top('길 위의 쉼터')}<section class="rest-landscape" aria-label="${esc(place.restName)}"><div class="rest-background" aria-hidden="true">${G.HonroJourneyArt.scene(place.variant,place.layer).replace('preserveAspectRatio="xMidYMid slice"','preserveAspectRatio="xMidYMax slice"')}</div><div class="rest-location"><span>${esc(place.region)} · ${place.layer==='underground'?'땅 아래':'지상'}</span><h1>${esc(place.restName)}</h1><p>${esc(place.restDescription)}</p></div><div class="rest-arrival"><span>지나온 길</span><strong>${esc(previous?.place||'산 아래 주막')}</strong><i>↘</i></div><div class="rest-people">${heroes}</div><button class="rest-fire" data-action="camp" aria-label="모닥불 · 모든 동행 능력치와 기예 준비"><span>모닥불</span><small>동행 · 능력치 · 기예</small></button>${next?`<button class="rest-sign" data-action="journey-enter" data-id="${next.stageId}"><small>다음 길 · ${esc(next.region)}</small><strong>${esc(towards(next.place))} 진입 <b>→</b></strong></button>`:'<div class="rest-sign rest-ending"><small>둘째 막 끝</small><strong>하늘 아래, 잠시 머무르다</strong><span>다음 여정은 준비 중입니다.</span></div>'}<div class="rest-note">동행을 누르면 이야기를 나눕니다.</div></section><footer class="rest-footer"><div class="rest-tools"><button data-action="journey-book"><span aria-hidden="true">冊</span> 여정첩</button><button class="ghost" data-action="training">허공터 · 기예 연습</button></div>${battle?`<button class="rest-resume primary" data-action="continue"><small>진행 중 · ${esc(d.at(battle.honroStage)?.place||H.stages[battle.honroStage-1]?.name)}</small><strong>저장된 전투 이어서 걷기 →</strong></button>`:`<p>${next?`${next.stageId} / ${H.stages.length}번째 길 · ${esc(next.event)}`:'지나온 길은 여정첩에서 다시 걸을 수 있습니다.'}</p>`}</footer><div id="dialogue-root"></div></main>`;
 }
 let restVisual;
@@ -22720,7 +22727,8 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
                     break;
                 case 'retry':
                     if(this.engine&&!this.training&&!this.done){G.HonroProgression.syncRoster(this.profile,this.engine.b);this.persist();}
-                    this.profile.honroBattle = null;
+                    // Practice owns no campaign snapshot; restarting it must keep the suspended journey.
+                    if(!this.training)this.profile.honroBattle = null;
                     this.engine = null;
                     this.launch(this.stageId, this.training, this.trainingSkill);
                     break;
