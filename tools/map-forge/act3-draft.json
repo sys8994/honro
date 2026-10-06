@@ -1,0 +1,34 @@
+{
+  "schema": "honro-act-draft",
+  "version": 1,
+  "act": 3,
+  "status": "awaiting-map-review",
+  "campaignEnabled": false,
+  "source": {
+    "title": "HONRO 혼로 스토리 기획 문서",
+    "version": "0.1",
+    "pageCount": 26,
+    "extractedTextSha256": "c50fdafdbd8301b92562ec8d34c9cb47b7458dfee61d03ece8a48d05db06708a",
+    "scope": "PART II, PART B–E: source rough plan, not final map approval"
+  },
+  "stageIds": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+  "decisions": {
+    "mapConcept": null,
+    "objectiveModel": null,
+    "difficulty": null,
+    "newBoss": null,
+    "ending": null
+  },
+  "stages": [
+    {"stageId": 21, "actStage": 1, "sourceTitle": "성문 아래", "sourcePages": [18, 19], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 22, "actStage": 2, "sourceTitle": "옛 장부", "sourcePages": [19], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 23, "actStage": 3, "sourceTitle": "사라진 짐", "sourcePages": [19, 20], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 24, "actStage": 4, "sourceTitle": "휘겸의 문장", "sourcePages": [20], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 25, "actStage": 5, "sourceTitle": "폐가의 기록", "sourcePages": [20, 21], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 26, "actStage": 6, "sourceTitle": "종을 만든 사람들", "sourcePages": [21], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 27, "actStage": 7, "sourceTitle": "지워진 집안", "sourcePages": [21, 22], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 28, "actStage": 8, "sourceTitle": "왕실의 선택", "sourcePages": [22], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 29, "actStage": 9, "sourceTitle": "현묵의 글", "sourcePages": [22, 23], "mapPlan": null, "canonicalStage": null},
+    {"stageId": 30, "actStage": 10, "sourceTitle": "남겨진 길", "sourcePages": [23], "mapPlan": null, "canonicalStage": null}
+  ]
+}
