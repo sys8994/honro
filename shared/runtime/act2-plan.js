@@ -11,7 +11,7 @@ const plans=[
   sequence:['knot-west',clear('clear-west','서쪽 매듭을 덮친 들림 제압','west'),'knot-east',hold('hold-knots','소단의 매듭 해체를 지키기',4,wave('echo',6)),'resident',clear('clear-road','산길에 남은 들림 모두 제압'),'trace'],
   sites:{'knot-west':[1600],'clear-west':[1850],'knot-east':[3550],'hold-knots':[3550],resident:[5580],'clear-road':[6350],trace:[7260]}},
  {size:[8400,5200],initial:20,active:4,eliteEvery:5,rounds:[30,48],lamps:[],
-  sequence:[clear('clear-approach','채석장 진입로 확보','west'),'rock-pin','sign',hold('hold-road','복구 중인 길표와 후방 지키기',4,wave('minecart',8)),clear('clear-quarry','채석장 들린 도구 전부 제압'),'exit'],
+  sequence:[clear('clear-approach','채석장 진입로 확보','west'),'rock-pin','sign',hold('hold-road','풀어 놓은 진의 축과 후방 지키기',4,wave('minecart',8)),clear('clear-quarry','채석장 들린 도구 전부 제압'),'exit'],
   sites:{'clear-approach':[1900],'rock-pin':[3000],sign:[4620],'hold-road':[4620],'clear-quarry':[6500],exit:[7920]}},
  {size:[8200,6600],initial:22,active:4,eliteEvery:4,rounds:[44,70],lamps:[],
   sequence:[clear('clear-entry','석문 앞 작업조 제압','west'),'resident','door-pin','gate',hold('hold-gate','석문 통로를 지켜 피난 시간 확보',5,wave('picks',8)),clear('clear-depth','안쪽 회랑 전부 제압'),'exit'],
