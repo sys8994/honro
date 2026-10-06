@@ -17670,6 +17670,15 @@ G.HonroCamera={
  // The existing follow target puts the feet at or above 78%; protect the
  // actual painted stature plus its health bar in the remaining 48% band.
  fitFollowScale(unit,height,scale){const stature=G.HonroPartyPresentationHeight?.(unit)||unit.h;return Math.min(scale,Math.max(1,height)*.48/Math.max(1,stature+16));},
+ // activeMarker's solid arrow spans +/-16 screen px and 7..48 px above
+ // the HP baseline, including stroke and its two-pixel idle bob. Move only
+ // far enough sideways to clear the real header; retain the fitted zoom.
+ avoidHeaderX(unit,x,y,width,height,scale,header){
+  if(!header)return x;const k=scale/Math.max(.16,scale),half=16*k,gap=6,sx=width/2+(unit.x-x)*scale,hp=height/2+(unit.y-(G.HonroPartyPresentationHeight?.(unit)||unit.h)-12-y)*scale;
+  if(sx+half<=header.left-gap||sx-half>=header.right+gap||hp-7*k<=header.top-gap||hp-48*k>=header.bottom+gap)return x;
+  const options=[header.left-gap-half,header.right+gap+half].filter(v=>v>=half+gap&&v<=width-half-gap&&Math.abs(v-sx)<=Math.min(64,width*.12)).sort((a,b)=>Math.abs(a-sx)-Math.abs(b-sx));
+  return options.length?x+(sx-options[0])/scale:x;
+ },
  world(view,width,height,x,y){const z=view.scale??view.zoom;return{x:view.x+(x-width/2)/z,y:view.y+(y-height/2)/z};},
  screen(view,width,height,p){const z=view.scale??view.zoom;return{x:(p.x-view.x)*z+width/2,y:(p.y-view.y)*z+height/2};},
  axis(center,span,min,max){return span>=max-min?(min+max)/2:Math.max(min+span/2,Math.min(max-span/2,center));}
@@ -18984,6 +18993,10 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
             const resized=this._cameraWidth!==undefined&&(this._cameraWidth!==w||this._cameraHeight!==h);
+            // Read HUD layout only on first layout/resize, never per frame.
+            // The full-width header container is transparent; only its info
+            // panel and pause button can obscure the selected actor marker.
+            if(resized||this._cameraWidth===undefined){const root=this.canvas.closest?.('.battle'),view=this.canvas.getBoundingClientRect(),rects=['.battle-info','.battle-head>button'].map(selector=>root?.querySelector(selector)?.getBoundingClientRect()).filter(r=>r&&r.width>0&&r.height>0);this._cameraHeader=rects.length?{left:Math.min(...rects.map(r=>r.left))-view.left,right:Math.max(...rects.map(r=>r.right))-view.left,top:Math.min(...rects.map(r=>r.top))-view.top,bottom:Math.max(...rects.map(r=>r.bottom))-view.top}:null;}
             // A resize preserves horizontal world span, bounded by readability.
             // Editor inspection and skill demonstrations may use wider views.
             if(!this.editorView&&!this.skillPreview&&this._cameraWidth&&this._cameraWidth!==w){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,Math.min(limits.max,this.scale*w/this._cameraWidth));}
@@ -19002,8 +19015,10 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"c0ba8c3e8f25efc1f57b895a413
             if (!this.manual && u) {
                 const now=performance.now(),focus=this.focusId&&now<this.focusUntil?b.units.find(v=>v.id===this.focusId):null;
                 const speaking=this.speakerId&&now<this.speakerUntil?b.units.find(v=>v.id===this.speakerId):null;
-                if(resized&&!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
+                const actorFollow=!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length;
+                if(resized&&actorFollow){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
                 let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
+                if(actorFollow){const safeX=G.HonroCamera.avoidHeaderX(u,tx,ty,w,h,this.scale,this._cameraHeader);if(resized&&safeX!==tx)this.x=safeX;tx=safeX;}
                 if(speaking){tx=speaking.x;ty=speaking.y-speaking.h*.8;speed=6.4;}
                 else if(b.projectiles?.length){const q=b.projectiles.find(q=>!q.child)||b.projectiles[0];tx=q.x;ty=q.y;speed=7.0;}
                 else if(reviewing&&b.reviewFocus){tx=b.reviewFocus.x;ty=b.reviewFocus.y;speed=7.2;}
