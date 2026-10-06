@@ -36,3 +36,5 @@
 ## 검증 상태
 
 2026-10-07 수정 단위 검사: 순수 서사 계약 7묶음, App 저장 17사례, 기존 story-rewrite 8묶음, journey-content, act2-spatial-contracts 13묶음과 act1-spatial-contracts 16묶음 통과. 전체 verify·최종 HTML 빌드·GitHub Pages 화면 확인은 통합 담당의 별도 검증 대상이다. 정상 전투 완주나 실제 브라우저 가독성 검수로 해석하지 않는다.
+
+추가 회귀: `tests/act2.mjs` 21묶음, `tests/act2-revision.mjs` 82조건, `tests/combat-story-update.mjs` 13묶음, `tests/rest-journey.mjs` 9묶음, `tests/campaign-transition-regressions.mjs` 14사례, `tests/migration.mjs` 10장 모두 종료 코드 0. 전투 결과를 직접 설정하는 fixture 검사를 정상 플레이 완료로 세지 않는다. 옛 저장에서 이미 읽은 기록·완료한 발견은 소급 초기화하거나 새 대본으로 덮어쓰지 않는다.

@@ -53,6 +53,8 @@ npm.cmd run verify
 
 이야기·문서·기록·저장/재개 회귀만 확인하려면 빌드 후 `npm run test:story`를 실행합니다. 이 검사는 전체 `verify`에도 포함됩니다.
 
+사용자 스토리 기획 v0.1의 1·2막 반영과 공개 순서는 [현재 서사 계약](game/docs/STORY_CANON_V01.md)을 따릅니다. `npm run test:story-canon`은 기존 지형·퀘스트·전투 보존, 돌림진부터 저문골/무명사 단서까지의 정보 순서, 진행 중 대화·쉼터 저장을 집중 검사합니다.
+
 ## 소스와 문서
 
 맵 v6의 전20장은 [하나의 큰 지형 내부에 Play Bounds](game/docs/TERRAIN_DOMAIN.md)를 둡니다. 안팎은 같은 polygon·재질·renderer이며 충돌은 기존 시뮬레이션 범위로 투영합니다. 진행 저장은 유지하고 새 진입/재시도부터 적용합니다. `npm run test:terrain-domain`으로 확인합니다.
