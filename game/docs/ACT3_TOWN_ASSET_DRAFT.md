@@ -31,8 +31,10 @@
 ```sh
 node tests/act3-town-assets.mjs
 node tools/environment/preview-act3-town-assets.mjs
+node tools/environment/preview-act3-town-assets.mjs --clean
+node tests/act3-town-assets.mjs --check-baseline
 ```
 
-검사는 XML, 기존 `compileSVG`와 `HonroVectorArt.validate`, 재사용 Path2D, SVG 안전 어휘, 파일 크기/경로 수, 실제 paint/처마 bounds, 접지 13점, 투명 여백 4곳, 390px 카드 내 0.24배 축소를 확인한다. 현재 활성 데이터·번들 원본·두 HTML이 기준 `53fd108`과 동일한지 함께 검사한다.
+검사는 XML, 기존 `compileSVG`와 `HonroVectorArt.validate`, 재사용 Path2D, SVG 안전 어휘, 파일 크기/경로 수, 실제 paint/처마 bounds, 접지 13점, 투명 여백 4곳, 390px 카드 내 0.24배 축소와 활성 등록 금지를 확인한다. `--check-baseline`은 이 시안 제작 당시 활성 데이터·번들 원본·두 HTML이 기준 `53fd108`과 같다는 일회성 증명을 재검사한다. 향후 정당한 게임 변경을 막지 않도록 과거 바이트 동일성은 기본 검사의 영구 조건으로 두지 않는다. `--clean`은 기술 수치를 생략한 사용자 검토용 이미지를 따로 만든다.
 
 컨택트 시트와 수치는 `_local/reports/act3-town-assets/`에 생성한다. 기존 공통 Canvas 벡터 renderer로 만든 재료 시안이며 실제 Game/Workshop 장면, DOM·입력, 포격각, 이동 가능성, 최종 미술 승인 또는 성능 검증을 대신하지 않는다. 두 HTML에 런타임 변화가 없어 이 draft 단위에서는 새 빌드 산출물을 저장하지 않는다. 활성화 시에는 최신 기준으로 재검수하고 전체 빌드·검사·실제 Pages 검증을 별도로 수행해야 한다.

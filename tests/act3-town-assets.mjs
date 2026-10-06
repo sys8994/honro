@@ -31,10 +31,14 @@ for(const a of manifest.assets){
  const mobile=native.createCanvas(390,250);g.HonroVectorArt.draw(mobile.getContext('2d'),asset,{x:195,y:230,scale:.24});const mb=bound(mobile,0,0);assert(mb.w>250&&mb.w<390);assert(mb.h>100);assert(mb.x>=0&&mb.x+mb.w<=390&&mb.y>=0&&mb.y+mb.h<=250);
  rows.push({id:a.id,bytes:Buffer.byteLength(source),paths:cache.pathCount,sha256:createHash('sha256').update(source).digest('hex'),paintBounds:actual,roofPaintBounds:rb,clearRegions:a.clearRegions.length,groundContacts:a.groundContacts.length,mobilePixelBounds:mb});cv.width=1;cv.height=1;mobile.width=1;mobile.height=1;
 }
-// The source-only draft must leave all production inputs and built HTML identical.
+// Historical byte-identity evidence is opt-in: future legitimate production
+// changes must not be rejected merely because this inactive draft still exists.
+const checkBaseline=process.argv.includes('--check-baseline');
 for(const file of ['shared/data/campaign.json','shared/data/elements.json','shared/build.mjs','HONRO.html','HONRO_WORKSHOP.html']){
- const baseline=execFileSync('git',['show',manifest.baseCommit+':'+file],{cwd:root,maxBuffer:20*1024*1024});assert.deepEqual(await readFile(path.join(root,file)),baseline,file+' changed during draft art work');
+ const current=await readFile(path.join(root,file));
+ if(checkBaseline){const baseline=execFileSync('git',['show',manifest.baseCommit+':'+file],{cwd:root,maxBuffer:20*1024*1024});assert.deepEqual(current,baseline,file+' changed during draft art work');}
+ for(const a of manifest.assets){assert(!current.includes(a.id),file+' unexpectedly registers draft asset');assert(!current.includes(a.file),file+' unexpectedly embeds draft asset');}
 }
 for(const file of ['shared/build.mjs','tools/environment/build-act1-art.mjs','tools/environment/build-act2-art.mjs']){const s=await readFile(path.join(root,file),'utf8');assert(!s.includes('drafts/act3-town-assets'));for(const a of manifest.assets)assert(!s.includes(a.file));}
-const out=path.join(root,'_local/reports/act3-town-assets');await mkdir(out,{recursive:true});await writeFile(path.join(out,'validation.json'),JSON.stringify({passed:true,rows,activeInputsUnchanged:true,limits:['Native Canvas only','No map placement, collision, UI, browser, combat, final art approval or performance claim']},null,2)+'\n');
+const out=path.join(root,'_local/reports/act3-town-assets');await mkdir(out,{recursive:true});await writeFile(path.join(out,checkBaseline?'validation-baseline.json':'validation.json'),JSON.stringify({passed:true,rows,activeDraftRegistration:false,activeInputsUnchanged:checkBaseline?true:null,baselineCommit:checkBaseline?manifest.baseCommit:null,limits:['Native Canvas only','No map placement, collision, UI, browser, combat, final art approval or performance claim']},null,2)+'\n');
 console.log('PASS 3 inactive town assets: XML, production vector compiler, paint/roof bounds, 4 transparent regions, 13 grounded contacts, mobile scale and active-source isolation');
