@@ -939,7 +939,8 @@
                     break;
                 case 'retry':
                     if(this.engine&&!this.training&&!this.done){G.HonroProgression.syncRoster(this.profile,this.engine.b);this.persist();}
-                    this.profile.honroBattle = null;
+                    // Practice owns no campaign snapshot; restarting it must keep the suspended journey.
+                    if(!this.training)this.profile.honroBattle = null;
                     this.engine = null;
                     this.launch(this.stageId, this.training, this.trainingSkill);
                     break;

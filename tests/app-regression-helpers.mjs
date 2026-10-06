@@ -11,13 +11,14 @@ export async function appHarness(){
  const g=await runtime({legacyMaps:false}),storage=new Map(),listeners=new Map(),nodes=new Map();let exported;
  function node(){const classes=new Set();return {innerHTML:'',dataset:{},children:[],hidden:false,isConnected:true,tagName:'BUTTON',style:{setProperty(){}},
  classList:{add:k=>classes.add(k),remove:k=>classes.delete(k),contains:k=>classes.has(k),toggle(k,v){v??=!classes.has(k);v?classes.add(k):classes.delete(k);}},
- querySelector(){return node();},querySelectorAll(){return[];},appendChild(){},insertAdjacentHTML(){},getClientRects(){return[{}];},setAttribute(){},matches(){return true;},focus(){g.document.activeElement=this;},click(){},getContext(){return {translate(){},scale(){},save(){},restore(){},clearRect(){}};},toDataURL(){return'';}};}
+ querySelector(){return node();},querySelectorAll(){return[];},remove(){},appendChild(){},insertAdjacentHTML(){},getClientRects(){return[{}];},setAttribute(){},matches(){return true;},focus(){g.document.activeElement=this;},click(){},getContext(){return {translate(){},scale(){},save(){},restore(){},clearRect(){}};},toDataURL(){return'';}};}
  g.document={body:node(),getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},querySelector:()=>node(),querySelectorAll:()=>[],createElement:()=>node(),createTreeWalker:()=>({nextNode:()=>false}),addEventListener(type,fn){const set=listeners.get(type)||[];set.push(fn);listeners.set(type,set);}};
  g.window={addEventListener(){}};g.NodeFilter={SHOW_TEXT:4};g.localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)};g.requestAnimationFrame=()=>0;g.setTimeout=()=>0;g.clearTimeout=()=>{};g.innerWidth=1440;
  g.Blob=Blob;g.URL={createObjectURL(blob){exported=blob;return 'blob:regression';},revokeObjectURL(){}};
- g.HonroAudio=class{configure(){}play(){}update(){}};g.HonroScene=class{event(){}focusUnit(){}human(){}};g.HonroUI={camp:()=>'<div id="armory"></div>',bottom:()=>''};g.HonroUnitInfo={tick(){}};g.HonroPortraits={draw(){}};
+ g.HonroAudio=class{configure(){}play(){}update(){}};g.HonroScene=class{event(){}focusUnit(){}human(){}};g.HonroUI={camp:()=>'<div id="armory"></div>',bottom:()=>'',portraits:()=>({})};g.HonroUnitInfo={tick(){}};g.HonroPortraits={draw(){}};
  g.HONRO_STORY_PORTRAITS=new Proxy({}, {get:()=>({src:'data:image/png;base64,',class:'archer'})});
- for(const file of ['journey-art','rest-journey','story'])vm.runInContext(await readFile(`shared/runtime/${file}.js`,'utf8'),g);
+ vm.runInContext(await readFile('game/vendor/ui/fa.js','utf8'),g);
+ for(const file of ['journey-art','rest-journey','story','training'])vm.runInContext(await readFile(`shared/runtime/${file}.js`,'utf8'),g);
  const source=await readFile('shared/runtime/main.js','utf8'),hook='G.HonroApp = new App();';assert.equal(source.split(hook).length,2);
  vm.runInContext(source.replace(hook,'G.AppRegression={App,fresh};'),g);const {App,fresh}=g.AppRegression;
  for(const name of ['inputs','updateHUD','updateAudio','updateChargeDisplay','cancelInput','drawPortraits'])App.prototype[name]=function(){};
