@@ -50,7 +50,7 @@ const avoid=g.HonroCamera.avoidHeaderX;
 for(const enabled of [false,true]){
  g.HonroCamera.avoidHeaderX=enabled?avoid:(_u,x)=>x;const q=setup({header:true}),{s,u,e,css,cv}=q;
  s.x=u.x+Math.min(170,css.width/s.scale*.19);s.y=g.HonroCamera.followY(u,css.height,s.scale);Object.assign(css,{width:944,height:232});s.render(e,0,'A01',.55,false,0);
- const reads=q.dom.reads;assert.equal(reads,4,'header measured only once per initial layout and resize');s.render(e,1,'A01',.55,false,0);assert.equal(q.dom.reads,reads,'steady frames never read HUD layout');
+ const reads=q.dom.reads;assert.equal(reads,4,'header measured only once per initial layout and resize');s.render(e,1,'A01',.55,false,0);const settledX=s.x;s.render(e,1,'A01',.55,false,0);assert.equal(s.x,settledX,'ordinary follow never eases back beneath the HUD');assert.equal(q.dom.reads,reads,'steady frames never read HUD layout');
  assert(Math.abs(s.scale-.9082059254116547)<1e-9,'HUD avoidance never adds zoom-out');const center=g.HonroCamera.screen(s,944,232,u).x,base=472-170*s.scale;assert(Math.abs(center-base)<50,'smallest lateral clearance stays below 50 CSS pixels');
  const metrics=[];for(const time of [0,Math.PI/2,Math.PI/6]){
   s.time=time;const marker=createCanvas(944,232),c=marker.getContext('2d');c.setTransform(s.scale,0,0,s.scale,472-s.x*s.scale,116-s.y*s.scale);s.activeMarker(c,u,u.y-g.HonroPartyPresentationHeight(u)-12);

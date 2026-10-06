@@ -13,7 +13,7 @@ G.HonroCamera={
  avoidHeaderX(unit,x,y,width,height,scale,header){
   if(!header)return x;const k=scale/Math.max(.16,scale),half=16*k,gap=6,sx=width/2+(unit.x-x)*scale,hp=height/2+(unit.y-(G.HonroPartyPresentationHeight?.(unit)||unit.h)-12-y)*scale;
   if(sx+half<=header.left-gap||sx-half>=header.right+gap||hp-7*k<=header.top-gap||hp-48*k>=header.bottom+gap)return x;
-  const options=[header.left-gap-half,header.right+gap+half].filter(v=>v>=half+gap&&v<=width-half-gap).sort((a,b)=>Math.abs(a-sx)-Math.abs(b-sx));
+  const options=[header.left-gap-half,header.right+gap+half].filter(v=>v>=half+gap&&v<=width-half-gap&&Math.abs(v-sx)<=Math.min(64,width*.12)).sort((a,b)=>Math.abs(a-sx)-Math.abs(b-sx));
   return options.length?x+(sx-options[0])/scale:x;
  },
  world(view,width,height,x,y){const z=view.scale??view.zoom;return{x:view.x+(x-width/2)/z,y:view.y+(y-height/2)/z};},
