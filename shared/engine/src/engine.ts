@@ -1,7 +1,7 @@
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
 import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
-import {terrainSurface,walkTerrain} from './locomotion';
+import {terrainSurface,exposedSurface,walkTerrain} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
 import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
@@ -489,7 +489,7 @@ export class Engine {
         return true;
     }
     /** Movement is a locomotion state; jumping is not a weapon flight. */
-    grounded(u: Unit) { return !u.jumping && !u.airborne && Math.abs(u.vx) < 3 && Math.abs(u.vy) < 2 && !!this.surface(u.x, u.y - 4, u.y + 5); }
+    grounded(u: Unit) { return !u.jumping && !u.airborne && Math.abs(u.vx) < 3 && Math.abs(u.vy) < 2 && !!this.contactSurface(u.x, u.y - 4, u.y + 5); }
     jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
     jump(u = this.active) { if (!u || u.dead || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
         return false; delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
@@ -582,6 +582,9 @@ export class Engine {
     releaseCarried(p:Projectile){for(const id of p.carry||[]){const u=this.unit(id);if(!u)continue;delete u.carriedBy;if(!u.dead){u.jumping=false;this.impulse(u,clamp(p.vx*.28,-240,240),-90);}}p.carry=[];}
     // Include seam neighbours and buried-surface occluders, preserving terrain order.
     surface(x:number,min=-1500,max=this.b.height+200){return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max);}
+    /** A landed body may stand/jump/fire on a steep top without making that
+     * face a walkable route. Vertical walls and ceilings never supply support. */
+    contactSurface(x:number,min:number,max:number){return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity);}
     item(kind: string) {
         if(this.active?.retreat)return false;
         if (!this.canAct() || !this.b.items[kind])
@@ -1686,7 +1689,7 @@ export class Engine {
             const env=environmentAt(this.b.physics??(this.b.physics=makePhysics()),u.x,u.y-u.h*.5);
             // A nearby surface supports a resting body, not one still arriving at impact speed.
             // Otherwise the 4-unit contact tolerance can erase a fall before contactDamage runs.
-            const ox = u.x, oy = u.y, support = this.surface(ox, oy - 3, oy + 4), supported = !!support && env.gravity.y>=0 && u.vy >= 0 && u.vy <= 3 && !u.jumping;
+            const ox = u.x, oy = u.y, support = this.contactSurface(ox, oy - 3, oy + 4), supported = !!support && env.gravity.y>=0 && u.vy >= 0 && u.vy <= 3 && !u.jumping;
              if (supported && Math.abs(u.vx) < 3) {
                 u.x = ox;
                 u.y = support!.y;
@@ -1725,7 +1728,7 @@ export class Engine {
             if (supported) {
                 // Following the support at the NEW x prevents tiny airborne gaps on downhill slopes.
                 const maxStep = Math.abs(nx - ox) * 1.7 + 5;
-                const next = this.surface(nx, oy - maxStep, oy + maxStep);
+                const next = this.contactSurface(nx, oy - maxStep, oy + maxStep);
                  if (next) {
                     u.y = next.y;
                     u.vy = 0;
@@ -1749,11 +1752,11 @@ export class Engine {
                     continue;
                 const h = segmentTerrain({ x: ox, y: oy - 0.05 }, { x: nx, y: ny }, t, 0);
                 const hx=h?ox+(nx-ox)*h.t:0,hy=h?oy+(ny-oy)*h.t:0;
-                const exposed=h&&!this.b.terrain.some(o=>o!==t&&!o.broken&&!o.oneWay&&terrainRectIntersects(o,hx-.15,hy+.25,.3,3,.01));
+                const exposed=h&&exposedSurface(this.b.terrain,t,hx,hy);
                 if (h && exposed && h.n.y < -.01 && (ny - oy) - (nx - ox) * terrainSlopeAt(t,hx,hy) >= -.001 && (!ground || h.t < ground.t))
                     ground = { x: ox + (nx - ox) * h.t, y: oy + (ny - oy) * h.t, t: h.t, n: h.n, terrain: t };
             }
-            const below = u.vy >= 0 ? this.surface(nx, oy - 2, ny + 2) : null;
+            const below = u.vy >= 0 ? this.contactSurface(nx, oy - 2, ny + 2) : null;
             if (ground || below && ny >= below.y) {
                 const t = ground?.terrain || below!.t;
                 u.x = clamp(nx, t.x + .01, t.x + t.w - .01);
