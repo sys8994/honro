@@ -38,6 +38,14 @@ for(const stage of [2,4,6])check(`Movable coalition and escort actions still adv
  queue(q,[u.id]);assert.notEqual(u.x,start);assert(q.e.grounded(u)||u.jumping||Math.abs(u.vy)>0);
  if(u.allyRole==='porter')assert(car.x>=carStart);
 });
+check('Act2 stage20 convoy still follows its leader using the shared walking path',()=>{
+ const q=battlefield(g,20),{b,e,app}=q,u=e.unit('objective'),hero=e.heroesAlive()[0],a=b.honroState.act2;
+ assert.equal(u.fixed,false);const steps=b.honroAct2Steps||app.stage.steps,first=steps.findIndex(s=>s.kind==='escort');assert(first>=0);
+ for(const step of steps.slice(0,first))a.done[step.id]=true;a.escort=true;
+ const start=u.x;Object.assign(hero,{x:u.x+400,y:u.y});
+ for(let n=0;n<120;n++){g.HonroAct2.tick(app,1/120);e.stepUnits(1/120);}
+ assert(u.x>start+30,'convoy cannot be accidentally frozen by the fixed guard');assert(e.grounded(u));
+});
 for(const kind of ['bat','crow','lantern'])check(`Legal ${kind} flight bypasses grounded walking and keeps airborne movement`,()=>{
  const q=battlefield(g,7),{b,e}=q;b.terrain=[];b.sceneVersion++;b.width=4000;b.height=3000;
  const u=g.HonroWorld.createEnemy(b,q.st,1000,kind,99,1000);b.units=[u];b.phase='enemy';b.active=u.id;u.acted=false;u.moveLeft=280;u.aiMove={round:b.round,path:[{x:1100,y:900,jump:false}],index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false};
