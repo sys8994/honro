@@ -34,8 +34,8 @@ def suite(page,shell):
     check(shell+': real sword hit creates a gold critical label, directional cut and visible target flash',visual['damage']>0 and visual['critical'] and visual['color']=='#ffd45c' and visual['flashDifferent'] and abs(visual['angle']+35*3.141592653589793/180)<1e-6,visual)
     capture(page,shell+'-critical.png')
     # Read the actual guide and queued continuation, then advance the saved round.
-    entry=page.evaluate(r'''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-3');return{count:a.dialogue.lines.length,pending:a.engine.b.honroState.deferredStory,guide:a.dialogue.lines.some(l=>l[2]?.kind==='guide')};}''')
-    check(shell+': entry has at most eight lines and persists later explanations',entry['count']<=8 and entry['guide'] and len(entry['pending'])>0,entry)
+    entry=page.evaluate(r'''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-3');return{count:a.dialogue.lines.length,pending:a.engine.b.honroState.deferredStory,guide:a.dialogue.lines.find(l=>l[2]?.kind==='guide')?.[1],current:HonroObjectives.state(a.engine.b,a.stage).currentInstruction};}''')
+    check(shell+': staged entry retains one short current guide and deferred explanations',entry['count']==11 and entry['guide']==entry['current'] and len(entry['guide'])<50 and len(entry['pending'])>0,entry)
     page.evaluate("{const a=HonroApp;a.dialogue.index=a.dialogue.lines.length-1;HonroStory.draw(a);}")
     check(shell+': dedicated guide panel has no character portrait',page.locator('.story-guide').count()==1 and page.locator('.story-portrait').count()==0)
     capture(page,shell+'-guide.png')

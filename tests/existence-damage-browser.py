@@ -48,7 +48,7 @@ with sync_playwright() as pw:
   assert result['qiDamage']>result['physical'][1]*3 and result['soulDamage']>result['qiDamage'],result
   assert len(result['trace'])==4 and result['canvas']>1000,result
   assert '피해 반응' in result['defense'] and '20%' in result['defense'] and '132%' in result['defense'],result
-  assert '공격 속성' in result['attack'] and '84%' in result['attack'],result
+  assert '공격 속성' in result['attack'] and all(part in result['attack'] for part in ['24%','6%','70%']),result
   host.locator('#unit-info').screenshot(path=str(ROOT/f'_local/reports/existence-info-{shell.lower()}.png'))
   print('PASS',shell,result,flush=True)
   page.close()

@@ -161,7 +161,7 @@ function basin(route,spec){const [left,right,level]=spec;let ps=route.filter(p=>
  const bed=[[x1,level],...route.filter(p=>p[0]>x1&&p[0]<x2),[x2,level]];return{surface:[[x1,level],[x2,level]],bottom:bed};}
 function makeRoute(route,xs){const out=[];for(let j=1;j<xs.length;j++)for(const p of pathBetween(route,xs[j-1],xs[j]))if(!out.length||!same(out.at(-1),p))out.push(p);return out;}
 function build(project){
- const p=clone(project),assetOrder=new Map(project.library.map((a,i)=>[a.id,i])),oldAssets=new Map(p.library.filter(a=>a.id.startsWith('act2:')).map(a=>[a.id,a]));
+ const p=clone(project),stageOrder=new Map(project.stages.map((s,i)=>[s.id,i])),assetOrder=new Map(project.library.map((a,i)=>[a.id,i])),oldAssets=new Map(p.library.filter(a=>a.id.startsWith('act2:')).map(a=>[a.id,a]));
  p.stages=p.stages.filter(s=>s.metadata?.act!==2);p.library=p.library.filter(a=>!a.id.startsWith('act2:'));
  // Existing portable SVG art survives deterministic terrain regeneration.
  p.library.push(...assets().map(a=>oldAssets.get(a.id)?.vector?clone(oldAssets.get(a.id)):a));
@@ -262,6 +262,7 @@ function build(project){
   st.meta={notes:'2-'+(i+1)+' '+d.name+' · 방 단면 개편 3 · '+plan.rounds.join('–')+'턴 설계',seed:2210+i};
   const errors=validateSpace(st);if(errors.length)throw Error(errors.join('\n'));p.stages.push(st);
  }
+ p.stages.sort((a,b)=>(stageOrder.get(a.id)??a.metadata.stageId)-(stageOrder.get(b.id)??b.metadata.stageId));
  const domain=project.stages.some(st=>st.terrainDomainVersion===1)&&G.HonroTerrainDomain?G.HonroTerrainDomain.author(p):p;
  return G.HonroObjectiveRevision&&project.stages.some(st=>st.initialState?.honroObjectiveRevision>=G.HonroObjectiveRevision.version)?G.HonroObjectiveRevision.author(domain,{minStage:11,maxStage:20}):domain;
 }

@@ -1,5 +1,6 @@
 import {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';
 import assert from 'node:assert/strict';
+import {plain} from './act2-spatial-contract-helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import vm from 'node:vm';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
@@ -65,6 +66,6 @@ check('Spirit manifestation is local and retains damage collision',()=>{const {b
 check('Existing revision 1 battles keep their original objective list',()=>{const {b}=fixture(14);delete b.honroAct2Steps;b.honroAct2Revision=1;b.honroState.act2.version=1;assert.equal(g.HonroAct2.steps(b).length,4);assert.equal(g.HonroAct2.current(b).id,'family-upper');});
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
 const regeneratedAct2=g.HonroMaps.finalize(await applyAct2SceneComposition(g.HonroAct2Design.build(g.HONRO_PROJECT)));
-check('Deterministic recipe preserves first act exactly',()=>{const project=regeneratedAct2;assert.equal(JSON.stringify(project),JSON.stringify(g.HONRO_PROJECT));});
+check('Deterministic recipe preserves all 30 canonical maps and their order',()=>{assert.deepEqual(plain(regeneratedAct2),plain(g.HONRO_PROJECT));});
 await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile('_local/reports/act2-revision/unit.json',JSON.stringify({checks:rows,metrics},null,2));
 console.log('PASS',rows.length,'revision checks');
