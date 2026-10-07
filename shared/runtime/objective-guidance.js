@@ -30,7 +30,7 @@ function failure(b,st,list,result){const parts=['동행 전원 전투불능'];co
  return parts.join(' / ');
 }
 function interactReason(b,st,s,m){const u=b.units.find(u=>u.id===b.active),point=s.target?b.units.find(v=>v.id===s.target):m;if(!point||!alive(u)||u.side!==0)return'';
- if(s.requiredClass&&u.cls!==s.requiredClass)return heroName(s.requiredClass)+'로 전환';
+ if(s.requiredClass&&u.cls!==s.requiredClass)return (G.HonroRestJourney?.towards?.(heroName(s.requiredClass))||({archer:'설오로',mage:'담허로',knight:'휘겸으로',occultist:'소단으로'}[s.requiredClass]||'동행으로'))+' 전환';
  if(Math.abs(u.y-point.y)>150)return'같은 층으로 이동';
  if(Math.hypot(u.x-point.x,(u.y-point.y)*.75)>260)return'표시 지점 가까이 이동';
  const threats=b.units.filter(v=>v.side===1&&alive(v)&&v.id!==m?.spiritId&&!v.honroSubdued);
