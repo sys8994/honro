@@ -12,7 +12,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['content','story-content','terrain-space','map-engine','battlefield-layouts',
-  'progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','act3-content','act3-encounters','act3-objectives','journey-content','act3-journey'];
+  'progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','act3-content','act3-encounters','act3-objectives','journey-content','act3-journey','story-staging'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeParts({vector=true,render=true,app=false}={}) {
