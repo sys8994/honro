@@ -117,6 +117,13 @@ export async function buildKoreanTownReview({input=path.join(ROOT,'shared/data/c
  const authored=g.HonroMaps.finalize(p);if(JSON.stringify(authored.stages.slice(0,20))!==JSON.stringify(original.stages.slice(0,20)))throw Error('Act 1/2 changed');
  const before=g.HonroMaps.finalize(original);for(let i=23;i<30;i++)if(JSON.stringify(authored.stages[i])!==JSON.stringify(before.stages[i]))throw Error('Nonrepresentative stage changed '+(i+1));
  for(const id of [21,22,23]){const a=authored.stages.find(s=>s.metadata.stageId===id),b=before.stages.find(s=>s.metadata.stageId===id);for(const key of ['terrains','materials','markers','events','objectives','routes'])if(JSON.stringify(a[key])!==JSON.stringify(b[key]))throw Error(`Required ${key} changed in ${id}`);}
- await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(output,JSON.stringify(authored,null,2)+'\n');await fs.writeFile(path.join(path.dirname(output),'collision-change-list.json'),JSON.stringify({baseline:'c97e67d',reviewOnly:true,changes},null,2)+'\n');return{g,p:authored,changes,output};
+ const collisions=[];
+ const solid=t=>Object.fromEntries(Object.entries(t).filter(([key])=>['id','type','x','y','w','h','points','oneWay','breakable','material','honroElementId'].includes(key)));
+ for(const id of [21,22,23]){
+  const old=g.HonroMaps.compile(before.stages.find(s=>s.metadata.stageId===id),before).terrain.map(solid);
+  const now=g.HonroMaps.compile(authored.stages.find(s=>s.metadata.stageId===id),authored).terrain.map(solid);
+  for(const tid of new Set([...old,...now].map(t=>t.id))){const a=old.find(t=>t.id===tid)||null,b=now.find(t=>t.id===tid)||null;if(JSON.stringify(a)!==JSON.stringify(b))collisions.push({stage:id,id:tid,before:a,after:b});}
+ }
+ await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(output,JSON.stringify(authored,null,2)+'\n');await fs.writeFile(path.join(path.dirname(output),'collision-change-list.json'),JSON.stringify({baseline:'c97e67d',reviewOnly:true,changes,compiledCollisions:collisions},null,2)+'\n');return{g,p:authored,changes,output};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){const r=await buildKoreanTownReview();console.log(JSON.stringify({output:r.output,changes:r.changes.length,reviewOnly:true},null,2));}
