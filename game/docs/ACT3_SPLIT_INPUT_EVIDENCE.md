@@ -43,6 +43,10 @@
 - `_local/reports/act3-split-normal-ui-2/`: 실제App방어·소모품미호출 공격 우선 실패
 - `_local/reports/act3-split-normal-ui-3/`: 공통35%방어 성공, 장별 source 지문·전 행동·대사·checkpoint, carry-audit37항목
 - `_local/reports/act3-low-hp-entry/result.json`: 실제 낮은HP 저장의 첫 방어 분기
-- `_local/reports/act3-split-cua/`: 실제 앞장 완료에서 추출한25A·26B·27양쪽 진입 프로필과 원본SHA manifest. 격리된 QA 전용이며 사용자의 정상13장 저장을 교체해서는 안 된다.
+- `_local/reports/act3-split-cua/`: 실제 앞장 완료에서 추출한25A·26B·27양쪽 진입 프로필과 원본SHA manifest. 격리된 QA 전용이며 개인의 정상 캠페인 원본을 덮어써서는 안 된다.
 
 전체회귀, 최종합류큐 보정과 실제 브라우저/Pages 결과는 별도 최종 통합 기록에서 확인한다.
+
+## 통합 큐 경계 보완
+
+중앙 집결은 실제 행동 경계에서 네 명의 현재 위치와 생존을 다시 확인한 뒤 확정한다. 통합 App/Story/Staging을 대역으로 교체하지 않은 추가 회귀에서 즉시 장면 잠금, 네 명 좌표·HP/MP·라운드·적턴 보존, 대사3줄의 한 번 전달을 확인했다. 이는 명시적 집결 상태 fixture이며 기존 세 번째 연속 승리 기록을 새 소스로 바꾸어 쓰지 않는다. 합류 전에 필수 동행을 잃는 경우에는 영구 대기 대신 명시적 실패로 끝낸다.
