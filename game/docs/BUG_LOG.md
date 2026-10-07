@@ -1,6 +1,12 @@
 ## 24–27 조사팀 상태 계약 — 2026-10-07 / 구현 중
 
 새24 분기 또는 명시적 재플레이에만2+2 roster·HPMP/상태carry·공유아이템·원정XP·분기재시도를 적용한다. 옛전투 Continue 및1–23/28–30은 보존한다. [계약/지도hook/검증한계](ACT3_SPLIT_CAMPAIGN.md). 전용App 상태회귀11묶음 통과. 기존 save-boundaries6/growth6/transition14/camp11/debug11 회귀 통과. test:act3 aggregate는 기존 act3-runtime.mjs의25장4인 고정기대(실제2인)에서 중단돼 통합 목표·지도 검사 갱신을 기다린다. 지도·목표·씬 통합과 정상전투/Pages·전체verify는 미완료이며 배포승인을 의미하지 않는다.
+# 제거 장치의 공간 목표 참조 정리 — 2026-10-07
+
+-통합finalize가12/13/15/17/20장의삭제한pin을가리키는design.space.sites와20 gate-exit prerequisite를검출했다.스키마는완화하지않았다.
+-공통objective author가삭제한정확ID를가리키는site와connections/routes.requires만정리한다.다른길의전제·충돌·목표는보존한다.동일범위의승인전후delta를갱신했다.
+-5개영향맵에삭제된target/objective/gate의공간참조0건정적검사통과.최종generator의schema finalize는통합측에서재실행한다.
+
 # 필수인물 진행 불능과 새 화재 위치 연결 — 2026-10-07
 
 -5장고리쇠가남았는데담허가쓰러진경우받이진을다시열수없어끝나지않던상태를명시적실패로처리한다.파괴후에는담허생존을추가요구하지않아원래1라운드안정화가가능하다.39목표집중검사통과.

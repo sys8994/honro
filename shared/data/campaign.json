@@ -263718,13 +263718,7 @@
                 "y": 3216,
                 "surfaceId": "floor-main"
               },
-              "requires": [
-                {
-                  "terrainId": "act2-floor",
-                  "state": "restored",
-                  "objectiveId": "rock-pin"
-                }
-              ]
+              "requires": []
             },
             {
               "id": "sign-yard-to-outer-mouth",
@@ -264266,13 +264260,7 @@
                   "surfaceId": "floor-main"
                 }
               ],
-              "requires": [
-                {
-                  "terrainId": "act2-floor",
-                  "state": "restored",
-                  "objectiveId": "rock-pin"
-                }
-              ]
+              "requires": []
             },
             {
               "id": "quarry-firing-shelf",
@@ -264313,23 +264301,6 @@
                 "x": 1900,
                 "y": 3637.5,
                 "surfaceId": "floor-main"
-              }
-            },
-            "rock-pin": {
-              "objectiveId": "rock-pin",
-              "roomId": "rockfall-cut",
-              "surfaceId": "floor-main",
-              "x": 3300,
-              "y": 3321.818181818182,
-              "standing": {
-                "x": 2520,
-                "y": 3504.3333333333335,
-                "surfaceId": "floor-main"
-              },
-              "target": {
-                "x": 3300,
-                "y": 2999.818181818182,
-                "terrainId": "rock-pin"
               }
             },
             "sign": {
@@ -268550,23 +268521,6 @@
                 "x": 2400,
                 "y": 3440,
                 "surfaceId": "floor-main"
-              }
-            },
-            "door-pin": {
-              "objectiveId": "door-pin",
-              "roomId": "stone-threshold",
-              "surfaceId": "floor-main",
-              "x": 3990,
-              "y": 3999.5,
-              "standing": {
-                "x": 3700,
-                "y": 3888.3333333333335,
-                "surfaceId": "floor-main"
-              },
-              "target": {
-                "x": 3990,
-                "y": 3847.5,
-                "terrainId": "door-pin"
               }
             },
             "gate": {
@@ -279525,23 +279479,6 @@
                 "surfaceId": "floor-main"
               }
             },
-            "shaft-pin": {
-              "objectiveId": "shaft-pin",
-              "roomId": "open-shaft",
-              "surfaceId": "floor-main",
-              "x": 4720,
-              "y": 4442.8125,
-              "standing": {
-                "x": 4430,
-                "y": 4420.15625,
-                "surfaceId": "floor-main"
-              },
-              "target": {
-                "x": 4720,
-                "y": 3790.8125,
-                "terrainId": "shaft-pin"
-              }
-            },
             "clear-gallery": {
               "objectiveId": "clear-gallery",
               "roomId": "carved-groove",
@@ -289755,23 +289692,6 @@
                 "x": 2410,
                 "y": 3723.898305084746,
                 "surfaceId": "floor-main"
-              }
-            },
-            "collapse-pin": {
-              "objectiveId": "collapse-pin",
-              "roomId": "supported-cut",
-              "surfaceId": "floor-main",
-              "x": 3420,
-              "y": 4098,
-              "standing": {
-                "x": 2750,
-                "y": 3839.1525423728813,
-                "surfaceId": "floor-main"
-              },
-              "target": {
-                "x": 3420,
-                "y": 3896,
-                "terrainId": "collapse-pin"
               }
             },
             "hoist": {
@@ -305567,13 +305487,7 @@
                 "y": 4101.764705882353,
                 "surfaceId": "floor-main"
               },
-              "requires": [
-                {
-                  "terrainId": "gate-exit",
-                  "state": "broken",
-                  "objectiveId": "exit-pin"
-                }
-              ]
+              "requires": []
             },
             {
               "id": "convoy-start-to-open-rest-shelf",
@@ -306227,13 +306141,7 @@
                   "surfaceId": "floor-main"
                 }
               ],
-              "requires": [
-                {
-                  "terrainId": "gate-exit",
-                  "state": "broken",
-                  "objectiveId": "exit-pin"
-                }
-              ]
+              "requires": []
             },
             {
               "id": "hero-side-perch",
@@ -306301,23 +306209,6 @@
                 "x": 1670,
                 "y": 4380.521739130435,
                 "surfaceId": "floor-main"
-              }
-            },
-            "exit-pin": {
-              "objectiveId": "exit-pin",
-              "roomId": "blocked-mouth",
-              "surfaceId": "floor-main",
-              "x": 2740,
-              "y": 4197.5,
-              "standing": {
-                "x": 2370,
-                "y": 4290,
-                "surfaceId": "floor-main"
-              },
-              "target": {
-                "x": 2740,
-                "y": 4025.5,
-                "terrainId": "exit-pin"
               }
             },
             "escort": {
