@@ -1303,3 +1303,7 @@ The final built Workshop is13,067,138bytes (JSON upload request13,986,332bytes, 
 - 집중 검증: 실제 월드10장×5난이도의 배치/정예/배수/접지/저장 검사, 50군집 실탄 명중, 육신악귀/기존 임무/XP/저장·실패·재시도 회귀 통과. 정상 App/엔진 입력봇은10장 모두 승리(7–24라운드). 개별 진입 세이브와 Native 실행이며 브라우저 연속캠페인·성능·사람 난이도 승인을 대신하지 않는다. 통합·배포 검수는 별도다.
 
 - 최종 소스 검수 추가: 생성기 재생성, 90개 맵 안전, 30장 roundtrip, 양HTML 빌드/typecheck, 단독 공방 Playtest, migration, 게임 Node 회귀 모두 통과. 주민을 포함한 모든 배우의 Game/Stage View 초기 좌표/수치가 같고 1·2막 및 적 외 3막 데이터는 보존된다. 브라우저 통합/성능·배포판 직접 확인은 별도이며, 이후 승인된 두 명 파티에는 이 네 명 편성을 그대로 적용하지 않는다.
+
+### 2026-10-07: Custom-map result return wording
+
+Custom-map win/loss results now say “원래 여정으로 돌아가기”, matching the existing action that restores the protected campaign. Normal campaign progression labels and all return/save behavior stay on their existing paths. A production App regression covers both custom outcomes, exact suspended-battle restoration and unchanged ordinary result wording.
