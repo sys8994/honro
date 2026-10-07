@@ -1097,3 +1097,8 @@
 - 원인/수정: Space keyup이 충전 시작 입력을 구분하지 않았고 pointercancel은 pointerId를 확인하지 않았다. 이제 포인터 소유 충전은 그 포인터가 놓거나 취소해야 끝난다. HUD 방어도 공통 defend()에서 입력을 즉시 취소해 F 방어와 같은 규칙을 적용한다. 방어의 회복·보호막·행동 종료 효과와 충전 속도/기예 물리는 변경하지 않는다.
 - 검증: tests/charge-input.mjs의 기존 126개 실제 충전량 조건, 기존 취소·중복 누름 조건, 혼합 입력 소유 3조건, 허공터/캠페인 × 키보드/포인터 방어 4조건, HUD 기예 전환 1조건이 수정 후 통과했다. 방어 결과는 같은 상황의 F 방어와 직접 비교한다. 다른 포인터의 실제 down→cancel 순서와 기존 포인터의 마지막 up도 검사한다.
 - 한계: DOM·시계·이벤트는 대역이며 실기기 멀티터치, 브라우저 pointer capture, 실제 청취를 검증한 결과가 아니다. 전체 통합 빌드·회귀·배포 검수는 이 소스 커밋을 통합한 후보에서 별도로 실행한다.
+# Terrain/background separation — 2026-10-07
+
+- Cause: foreground terrain and atmospheric shapes shared similar values; subpixel top rims weakened at mobile scale. Applying outlines indiscriminately also exposed approximate legacy sprite hitboxes outside their artwork.
+- Change: the common Scene reduces background saturation by 14% with one composite, and raster-caches thin paired-value edges on exposed real terrain. One-way surfaces show only their landing edge, hidden seams are omitted, water/decorations remain unoutlined. Approximate element hitboxes retain existing art; only the shared sampled-roof contract permits an added element edge. Physics, world continuity and UI semantics are unchanged.
+- Checks: focused `tests/terrain-readability.mjs` passed. Initial fixed-camera 400×760 Native before/after inspection found and excluded the legacy sprite wireframe issue. Full corrected captures, integrated regressions, browser/Pages and GPU performance are still pending at this checkpoint. See [design and reference observations](TERRAIN_READABILITY.md).

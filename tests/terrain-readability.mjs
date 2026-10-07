@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+class Path {moveTo(){}lineTo(){}}
+const g=vm.createContext({Path2D:Path,HonroScene:class {},HONRO_CORE:{poly:t=>t.vertices}});
+vm.runInContext(await readFile('shared/runtime/terrain-readability.js','utf8'),g);
+const box=(id,x,y,w,h,extra={})=>({id,x,y,w,h,vertices:[{x,y},{x:x+w,y},{x:x+w,y:y+h},{x,y:y+h}],...extra});
+const b={terrain:[box('ground',0,100,300,100),box('block',100,50,100,50)],sceneVersion:0},original=JSON.stringify(b),read=g.HonroTerrainReadability.prepare;
+let q=read(b);assert.equal(JSON.stringify(b),original);assert.equal(read(b),q);assert.equal(q.builds,1);
+const ground=q.groups.find(t=>t.id==='ground');assert.deepEqual(Array.from(ground.segments.filter(e=>e.walkable),e=>[e.a.x,e.z.x]),[[0,100],[200,300]],'only actual exposed ground gets a bright edge');
+assert(!q.groups.find(t=>t.id==='block').segments.some(e=>e.a.y===100&&e.z.y===100),'buried seams stay hidden');
+const one={terrain:[box('deck',30,30,120,20,{oneWay:true})],sceneVersion:0};q=read(one);assert.equal(q.groups[0].segments.length,1);assert(q.groups[0].segments[0].walkable,'one-way gets only a landing surface, no impassable side/underside');
+const decoration={terrain:[],honroLandmarks:[{id:'fake-roof',x:0,y:0,w:100,h:50}],sceneVersion:0};assert.equal(read(decoration).groups.length,0,'rear-only decorative roofs are never outlined');
+const water={terrain:[],honroSurfaceZones:[{kind:'water-pool',points:[[0,0],[100,0],[100,100],[0,100]]}],sceneVersion:0};assert.equal(read(water).groups.length,0,'water is not advertised as a hard platform');
+const sprite={terrain:[box('old-rock:collision:0',0,0,100,40,{honroElementCollision:true,honroElementId:'old-rock'})],honroLandmarks:[{id:'old-rock',asset:{params:{}}}]};assert.equal(read(sprite).groups.length,0,'approximate sprite hitboxes must not draw floating wireframes');
+sprite.honroLandmarks[0].asset.params.collisionSource='sampled-drawn-roof';sprite.sceneVersion=1;assert.equal(read(sprite).groups.length,1,'a sampled drawn roof may use its exact shared silhouette');sprite.honroLandmarks[0].asset.params.rearOnly=true;sprite.sceneVersion++;assert.equal(read(sprite).groups.length,0,'rearOnly wins over the roof silhouette contract');
+b.terrain[1].broken=true;b.sceneVersion++;q=read(b);assert.equal(q.builds,2);assert.equal(q.groups.length,1);assert.deepEqual(Array.from(q.groups[0].segments.filter(e=>e.walkable),e=>[e.a.x,e.z.x]),[[0,300]],'destruction invalidates exposure paths');
+const reversed=box('reversed',0,100,100,50);reversed.vertices.reverse();assert.equal(read({terrain:[reversed]}).groups[0].segments.filter(e=>e.walkable)[0].a.y,100,'polygon winding does not flip support direction');
+const composite=[];const ctx={globalAlpha:1,save(){},restore(){},fillRect(...args){composite.push({operation:this.globalCompositeOperation,alpha:this.globalAlpha,args});}};g.HonroScene.prototype.backgroundReadability(ctx,400,760);assert.equal(composite.length,1);assert.equal(composite[0].operation,'saturation');assert.equal(composite[0].alpha,.14);
+const source=await readFile('shared/runtime/renderer.js','utf8'),bundle=await readFile('shared/build.mjs','utf8');assert(bundle.includes("'terrain-readability'"));assert.equal(source.match(/this\.terrainReadability\?\./g)?.length,3);assert(source.indexOf('this.backgroundReadability?.')<source.indexOf('this.weatherParticles(c,b'));
+console.log('PASS terrain readability: exposure, winding, one-way, decoration/water exclusion, destruction, render purity/cache, one background blend, all shared Scene paths');
