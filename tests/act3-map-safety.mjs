@@ -15,7 +15,7 @@ for(const s of p.stages.slice(20)){
    Object.assign(u,{x:tx,y:s.height+90,vx:0,vy:600,fallApexY:pool.y-200});const before=u.hp;e.integrateBody(u,C.STEP);assert(!u.dead);assert(u.hp<before);assert(C.validTerrainContactPose(bb.terrain,u),`${s.id}/${cls}: recovery must choose a clear supported body pose`);
    rows.push({stage:s.metadata.stageId,test:'canal-knockback-recovery',hero:cls,poolX:tx,passed:true,hpLost:before-u.hp,returned:{x:u.x,y:u.y},support:e.surface(u.x,u.y-2,u.y+2)?.t?.id});
    Object.assign(u,{x:tx,y:s.height+90,hp:1,dead:false,vx:0,vy:600});e.integrateBody(u,C.STEP);assert(u.dead,'Low-HP fall must be allowed to fail');
-   const fresh=g.HonroMaps.createBattle(s,p,undefined,{origin:'campaign'}),fu=fresh.units.find(v=>v.side===0&&v.cls===cls);assert(!fu.dead&&fu.hp>0);assert(C.validTerrainContactPose(fresh.terrain,fu));assert.equal(fresh.honroState.act3,undefined,'A fresh map is not a copy of failed objective state');rows.push({stage:s.metadata.stageId,test:'death-then-fresh-map-retry',hero:cls,passed:true,spawn:{x:fu.x,y:fu.y}});
+   const fresh=g.HonroMaps.createBattle(s,p,undefined,{origin:'campaign'}),fu=fresh.units.find(v=>v.side===0&&v.cls===cls);assert(!fu.dead&&fu.hp>0);assert(C.validTerrainContactPose(fresh.terrain,fu));assert.equal(Object.keys(fresh.honroState.act3?.done||{}).length,0,'A fresh map is not a copy of failed objective state');rows.push({stage:s.metadata.stageId,test:'death-then-fresh-map-retry',hero:cls,passed:true,spawn:{x:fu.x,y:fu.y}});
   }
  }
 }
