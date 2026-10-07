@@ -26,3 +26,5 @@
 @media(max-width:430px){.honro .training-ranks{grid-template-columns:repeat(4,minmax(44px,1fr))}.honro .training-ranks button{min-height:44px;height:44px}}
 
 @media(max-height:520px) and (max-width:700px){.honro .training-heroes button{flex-direction:row;justify-content:center;gap:4px;padding:4px}.honro .training-heroes img{width:40px;height:54px}.honro .training-heroes small{display:none}}
+/* A 320px short screen cannot fit four horizontal portrait/name pairs. */
+@media(max-height:520px) and (max-width:430px){.honro .training-heroes{grid-template-columns:repeat(2,minmax(0,1fr))}}
