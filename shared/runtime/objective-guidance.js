@@ -24,7 +24,7 @@ function failure(b,st,list,result){const parts=['동행 전원 전투불능'];co
  const required=[...new Set(list.filter(s=>s.requiredClass&&!(st.act===3?G.HonroAct3.satisfied(b,s):result.allTargets?.find(t=>t.id===s.id)?.done)).map(s=>heroName(s.requiredClass)))];
  if(required.length)parts.push('필수 행동 전 '+required.join('·')+' 전투불능');
  if(st.id===10)parts.push('협력 시작 후 소단 전투불능');
- if(st.id===27&&!b.honroState?.act3?.done?.['fire-screen'])parts.push('불길 진압 전 12번째 적 턴 종료');
+ if(st.id===27&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen']))parts.push('불길 진압 전 12번째 적 턴 종료');
  return parts.join(' / ');
 }
 function interactReason(b,st,s,m){const u=b.units.find(u=>u.id===b.active),point=s.target?b.units.find(v=>v.id===s.target):m;if(!point||!alive(u)||u.side!==0)return'';
@@ -41,10 +41,11 @@ function enhance(b,st,result){if(b.honroCustom)return result;
  const A=st.act===3?G.HonroAct3:st.act===2?G.HonroAct2:null,list=A?.steps(b)||[],s=A?.current(b),checklist=list.map(q=>({id:q.id,text:stepText(q,st.id),done:!!result.allTargets?.find(t=>t.id===q.id)?.done}));
  let summary=result.summary,blockReason='';
  if(list.length){summary=summary.replace(/^(\d+\/\d+) · /,'완료 $1 · ');if(s){const m=A.marker?A.marker(b,s.id):(b.honroMarkers||[]).find(m=>m.id===s.id);
-   if(['interact','rescue'].includes(s.kind)){blockReason=interactReason(b,st,s,m);if(blockReason)summary+=' · '+blockReason;}
+   if(['interact','rescue'].includes(s.kind)&&!s.parallelGroup){blockReason=interactReason(b,st,s,m);if(blockReason)summary+=' · '+(blockReason.startsWith('E · ')?'E':blockReason);}
    if(s.kind==='destroy'){const t=b.terrain.find(t=>t.id===s.id);if(t)summary+=' · 내구도 '+Math.max(0,Math.ceil(t.hp))+'/'+Math.ceil(t.maxHp||t.hp);if(s.requiredClass)summary+=' · '+heroName(s.requiredClass)+'의 공격';}
    if(s.kind==='hold')summary=summary.replace(/(\d+\/\d+)턴/,st.act===3?'$1 적 턴':'$1라운드');
    if(s.kind==='escort')summary+=' · 운반자 앞 같은 층에서 가까이 동행';
+   if(s.parallelGroup)summary+=' · 두 지점 모두 E';
    if(s.kind==='reach'&&s.allHeroes){const group=heroes(b),inside=group.filter(u=>G.HonroAct3.sameFloor(u,m,s.radius||440)).length;summary+=' · 집결 '+inside+'/'+group.length;}
   }}
  return{...result,summary,blockReason,completionText:ending(b,st,list),failureText:failure(b,st,list,result),checklist};

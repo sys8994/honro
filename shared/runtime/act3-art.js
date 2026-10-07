@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Shared render-only guidance; authored geometry remains the sole collision.
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,A=G.HonroAct3;
-function guide(b){if(!A.active(b))return null;const s=A.steps(b).find(s=>!b.honroState?.act3?.done?.[s.id]);if(!s)return null;const m=A.marker(b,s.id);if(!m)return null;const h=b.honroState?.act3?.holds?.[s.id];return{step:s,marker:m,hold:h,remaining:b.honroStage===27&&!b.honroState?.act3?.done?.['fire-screen']?Math.max(0,12-(b.honroState?.act3?.fireTurns||0)):null};}
+function guide(b){if(!A.active(b))return null;const s=A.steps(b).find(s=>!b.honroState?.act3?.done?.[s.id]);if(!s)return null;const m=A.marker(b,s.id);if(!m)return null;const h=b.honroState?.act3?.holds?.[s.id];return{step:s,marker:m,hold:h,remaining:b.honroStage===27&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen'])?Math.max(0,12-(b.honroState?.act3?.fireTurns||0)):null};}
 function region(c,x,y,r){
  // Exact same-floor eligibility region: abs(dy)<=150 and dx²+(.75dy)²<=r².
  const half=Math.min(150,r/.75),edge=Math.sqrt(Math.max(0,r*r-(half*.75)**2));c.beginPath();c.moveTo(x-edge,y-half);c.lineTo(x+edge,y-half);
