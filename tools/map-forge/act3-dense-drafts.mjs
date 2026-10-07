@@ -104,7 +104,12 @@ export async function buildArchive(g){const p=project(g,'great-archive'),s=p.sta
 
  // Reuse only the ground-level shelf subpaths. Each cabinet is attached to its
  // own actual floor; never paste the three-storey frame across mismatched floors.
- const archiveSource=await readFile(path.join(root,'workshop/drafts/act3-town-assets/archive-cutaway-frame.svg'),'utf8'),group=archiveSource.match(/<g id="left-bay-archive-shelves">([\s\S]*?)<\/g>/)[1];
+ const archiveSource=await readFile(path.join(root,'workshop/drafts/act3-town-assets/archive-cutaway-frame.svg'),'utf8');
+ // Material refinements may contain nested named groups. Keep a balanced
+ // source subtree; a non-greedy closing-tag match cuts the first child in half.
+ const opening='<g id="left-bay-archive-shelves">',start=archiveSource.indexOf(opening);if(start<0)throw Error('Missing archive shelf group');let depth=0,stop=-1;
+ for(const m of archiveSource.slice(start).matchAll(/<\/?g(?:\s[^>]*)?>/g)){depth+=m[0].startsWith('</')?-1:1;if(depth===0){stop=start+m.index;break;}}
+ if(stop<0)throw Error('Unbalanced archive shelf group');const group=archiveSource.slice(start+opening.length,stop);
  const low=group.replace(/<path([^>]*?)d="([^"]+)"([^>]*)\/>/g,(all,a,d,z)=>{const ds=d.split(/(?=M)/).filter(Boolean).filter(part=>{const ts=part.match(/[MLHVZ]|-?\d+(?:\.\d+)?/g)||[];let x=0,y=0,min=Infinity;for(let i=0;i<ts.length;){const c=ts[i++];if(c==='M'||c==='L'){x=+ts[i++];y=+ts[i++];}else if(c==='H')x=+ts[i++];else if(c==='V')y=+ts[i++];min=Math.min(min,y);}return min>=-220;});return ds.length?`<path${a}d="${ds.join(' ')}"${z}/>`:'';});
  const cabinet=asset('draft:archive-bundle-cabinet','종이묶음 장부서가',low+R(-620,-28,340,28,'#847754'),[],[-620,-220,340,220]);
  for(const [i,x,y]of [[0,1180,2770],[5,5480,2770],[9,1360,1940],[13,5470,1940]]){s.elements=s.elements.filter(e=>e.id!=='archive-shelf-'+i);put(p,cabinet,'archive-bundle-cabinet-'+i,x,y,'back');}
