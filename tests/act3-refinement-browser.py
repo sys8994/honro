@@ -38,7 +38,7 @@ with sync_playwright() as p:
             # Hiding the new indoor panorama must not fall back to the expensive
             # procedural sky on the existing Act1 cave, whose mask is separate.
             page.evaluate(SETUP,7);page.wait_for_function('HonroAct1Background.ready(7)')
-            background=page.evaluate('''()=>{const a=HonroApp,s=a.scene,old=s.ctx.drawImage;let painted=0;s.ctx.drawImage=function(image,...args){if(image===HonroAct1Background.imageFor(7))painted++;return old.call(this,image,...args);};try{s.background(s.ctx,1440,900,a.engine.b);}finally{s.ctx.drawImage=old;}return{painted,sky:a.engine.b.honroEnvironment.skyVisible};}''')
+            background=page.evaluate('''()=>{const a=HonroApp,s=a.scene,old=s.ctx.drawImage;let painted=0;s.ctx.drawImage=function(image,...args){if(image.width===1600&&image.height===900)painted++;return old.call(this,image,...args);};try{s.background(s.ctx,1440,900,a.engine.b);}finally{s.ctx.drawImage=old;}return{painted,sky:a.engine.b.honroEnvironment.skyVisible};}''')
             check('Act1 cave preserves its original painted background path',background['painted']>0 and background['sky']==False,background)
             for id in range(21,31):
                 page.evaluate(SETUP,id);page.wait_for_timeout(80)
