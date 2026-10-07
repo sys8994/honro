@@ -47,11 +47,11 @@ function limitedArchiveCutaway(id){
  }
  parts.push(`<g transform="translate(0 -${gap*2})">${roofGroup}</g>`,R(-420,-7,840,17,'#93967c'));
  const a=asset(id,'누형 관창 · 한정된 세 층의 보관회랑',parts.join(''),roof.collision.map(ps=>ps.map(q=>[q.x,q.y-gap*2])),[-458,roof.bounds.y-gap*2,916,-roof.bounds.y+gap*2+19]);
- a.params={koreanType:'limited-three-level-archive',collisionSource:'sampled-drawn-roof',collisionRole:'solid',floorHeights:[0,-260,-520],historicalScope:'Fantasy expansion of a raised Korean archive; not a historical reconstruction'};return a;
+ a.params={koreanType:'limited-three-level-archive',collisionSource:'sampled-drawn-roof',floorHeights:[0,-260,-520],historicalScope:'Fantasy expansion of a raised Korean archive; not a historical reconstruction'};return a;
 }
 function addArchiveFlights(p,s){
  const cx=5070,cy=2730,rows=[['korean-customs-middle',[[-410,-260],[130,-260],[400,0],[440,0]]],['korean-customs-upper',[[-440,-260],[-410,-260],[-130,-520],[410,-520]]]];
- for(const [id,top]of rows){const poly=[...top,...top.slice().reverse().map(([x,y])=>[x,y+30])],a=asset('a3-korean:23:'+id,'열린 목재 계단과 보관회랑',P(poly,'#786348')+line(top,'#b7a176',5),[poly],[-450,-530,900,575]);a.oneWay=true;a.params={collisionRole:'platform',openStairAndGallery:true};element(p,s,a,id,cx,cy);}
+ for(const [id,top]of rows){const poly=[...top,...top.slice().reverse().map(([x,y])=>[x,y+30])],a=asset('a3-korean:23:'+id,'열린 목재 계단과 보관회랑',P(poly,'#786348')+line(top,'#b7a176',5),[poly],[-450,-530,900,575]);a.oneWay=true;a.params={openStairAndGallery:true};element(p,s,a,id,cx,cy);}
  s.design.act3.optionalRoutes.push({id:'customs-upper-storage',points:[{x:5520,y:2730},{x:5480,y:2730},{x:5340,y:2605.19},{x:5200,y:2470},{x:4900,y:2470},{x:4660,y:2470},{x:4790,y:2349.29},{x:4940,y:2210},{x:5350,y:2210}]});
 }
 function revise23(g,p,s,changes){
@@ -75,7 +75,7 @@ function revise23(g,p,s,changes){
   if(!hits.length)continue;const foot=hits[0].y;braces.push(R(x-7,top,14,foot-top,'#6a573b'),R(x-4,top,4,foot-top,'#a18a5e'),R(x-12,foot-5,24,5,'#84734c'));contacts.push({element:id,x,top,bottom:foot,support:hits[0].element});
  }
  const braceAsset=asset('a3-korean:23:roof-repair-braces','낮은 지붕 보수길의 짧은 받침',braces.join(''),[],[1430,upper,1250,400]);braceAsset.params={rearOnly:true,structuralSupports:contacts};element(p,s,braceAsset,'korean-roof-repair-braces',0,0);s.elements.unshift(s.elements.pop());
- for(const id of ['roof-entry','korean-watergate-roof-access']){const el=s.elements.find(e=>e.id===id),a=p.library.find(a=>a.id===el.assetId);a.material='wood';a.vector=compileSVG(a.vector.source.replaceAll('#627676','#746247').replaceAll('#aab29a','#b3a071'));a.params.collisionRole='solid-stair';}
+ for(const id of ['roof-entry','korean-watergate-roof-access']){const el=s.elements.find(e=>e.id===id),a=p.library.find(a=>a.id===el.assetId);a.material='wood';a.vector=compileSVG(a.vector.source.replaceAll('#627676','#746247').replaceAll('#aab29a','#b3a071'));}
  s.design.act3.optionalRoutes=[{id:'western-roof-gallery',points:[{x:40,y:2730,jumpTo:{x:100}},{x:150,y:2580-(80/380)*(2580-low)},{x:430,y:low},{x:650,y:low},{x:960,y:low},{x:1260,y:low},{x:1470,y:low},{x:1810,y:upper},{x:2280,y:upper},{x:2640,y:upper}]}];
  const oldCustoms=clone(s.elements.find(e=>e.id==='customs-hall')),newCustoms=replace(p,s,'customs-hall',limitedArchiveCutaway('a3-korean:23:customs-hall'));recordChange(changes,s,'customs-hall',oldCustoms,newCustoms,'Concentrate multi-storey play into one raised archive with actual 260-unit floors and open timber stairs');addArchiveFlights(p,s);
  const loftGuard=s.units.find(u=>u.id==='a3-23-enemy-7');if(loftGuard){const old=clone(loftGuard);loftGuard.y=2210;changes.push({stage:23,unit:loftGuard.id,reason:'Seat the existing upper guard on the third customs storage floor instead of the removed skeleton',before:old,after:clone(loftGuard)});}
