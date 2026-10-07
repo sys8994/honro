@@ -68,7 +68,11 @@ function revise22(p,s,changes){
   parts.push(R(526,floor-29,1700,24,'#675337'),R(3434,floor-29,1780,24,'#625036'),R(537,floor-29,1678,5,'#9b875e'),R(3444,floor-29,1758,5,'#93865d'));
  }
  parts.push(R(2620,2550,470,220,'#4e4e36'),R(2634,2565,218,196,'#4f6e55'),R(2867,2565,210,196,'#3e5b49'),R(2610,2544,490,16,'#9a8356'));
- replace(p,s,'archive-rear',asset('a3-korean:22:archive-rear','판문과 작은 상부창을 둔 사고 뒤벽',parts.join(''),[],[480,1490,4780,1295]));
+ // The panel bays do not overlap one another. Batch their identical fills
+ // instead of spending a vector-tree node on every rectangular muntin.
+ const paints=new Map();for(const part of parts){const fill=part.match(/fill="([^"]+)"/)[1],d=part.match(/d="([^"]+)"/)[1];if(!paints.has(fill))paints.set(fill,[]);paints.get(fill).push(d);}
+ const rearSvg=[...paints].map(([fill,ds])=>`<path fill="${fill}" d="${ds.join(' ')}"/>`).join('');
+ replace(p,s,'archive-rear',asset('a3-korean:22:archive-rear','판문과 작은 상부창을 둔 사고 뒤벽',rearSvg,[],[480,1490,4780,1295]));
  for(const [id,width,x] of [['archive-west-roof',1950,1350],['archive-east-roof',1870,4330]]){
   const old=clone(s.elements.find(e=>e.id===id)),full=koreanTownBuilding('a3-korean:22:'+id,{width,role:'office',roofType:'gable'});
   const roofGroup=full.vector.root.children.find(n=>n.id==='korean-gable-roof');if(!roofGroup)throw Error('Missing Korean roof group');full.vector={...full.vector,root:{tag:'g',children:[roofGroup]}};full.name='사고 익랑의 긴 맞배지붕';
