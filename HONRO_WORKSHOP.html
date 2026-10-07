@@ -15742,6 +15742,15 @@ function matches(w,s){
   return (w.progress===undefined||s.progress>=w.progress)&&(w.height===undefined||s.height<=w.height)&&(w.round===undefined||s.round>=w.round)&&(w.enemiesAtMost===undefined||s.enemies<=w.enemiesAtMost)&&(w.broken===undefined||s.broken>=w.broken)&&(w.collected===undefined||s.collected>=w.collected)&&(w.hold===undefined||s.hold>=w.hold)&&(!w.rescued||s.rescued)&&(!w.destroyed||s.terrain.find(t=>t.id===w.destroyed)?.broken);
 }
 function pending(b){return(b.honroEvents||[]).some(ev=>ev.required&&!b.honroState.flags['event:'+ev.id]);}
+function populationCap(b){
+  const base=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
+  // The old plan reserved its initial roster and objective defence waves only.
+  // Reserve the finite authored responses as well; otherwise a player who
+  // investigates or escorts past surviving guards can never see later entries.
+  // Read the battle's saved events, rather than upgrading a live save's roster.
+  const response=!b.honroCustom&&b.honroAct3ResponseRevision===1?(b.honroEvents||[]).filter(ev=>ev.once&&ev.action?.act3Authored&&ev.action.source===ev.id).reduce((n,ev)=>n+spawnCount(ev.action),0):0;
+  return Math.min((b.honroStage===4?Math.max(base,26):base)+response,b.honroState?.sodanCoop?G.HonroMission.FINALE_CAP:Infinity);
+}
 function update(app,dt,state){
   const e=app.engine,b=e.b,hs=b.honroState;
   if(['won','lost'].includes(b.phase)||app.done)return;
@@ -15768,8 +15777,7 @@ function flush(app){
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(combat(ev.action)){
-      const normalCap=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
-      const cap=Math.min(b.honroStage===4?Math.max(normalCap,26):normalCap,hs.sodanCoop?G.HonroMission.FINALE_CAP:Infinity);
+      const cap=populationCap(b);
       if(spawned||hs.lastCombatEventBoundary===boundary||enemies+spawnCount(ev.action)>cap)continue;
     }
     if(G.HonroAllies.execute(app,ev.action)===false)continue;
@@ -15794,7 +15802,7 @@ function attach(app,e){
   if(hs.lastEventBoundary!==boundary){hs.lastEventBoundary=boundary;actorEnd(app,b.active);}
   if(app.dialogue||b.phase!=='transition')return;next();
 };}
-G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,actorEnd,combat,spawnCount,balance};
+G.HonroEncounters={configure,matches,pending,update,flush,finishNarrative,attach,actorEnd,combat,spawnCount,balance,populationCap};
 })(globalThis);
 
 (function(G){'use strict';
