@@ -4,6 +4,7 @@ const xpAt=level=>{const n=Math.floor(level);return C.xpAtLevel(n)+Math.round((l
 // Stage rewards keep their established budget; only the amount required to level grows.
 const rewardXpAt=level=>{const n=Math.floor(level);return C.oldXpAtLevel12(n)+Math.round((level-n)*C.oldXpToNext12(n));};
 const plan=id=>config.stages[id-1];
+const campaignHero=(b,u)=>u.side===0&&!u.summoned&&(!(b.honroStage>=21&&b.honroStage<=30)||!u.enthrall);
 const joinLevel=st=>Math.max(1,Math.min(30,Math.floor(st.joinLevel??plan(st.id)?.exitLevel??(st.level||1)+1)));
 function alignRecruit(profile,st,b=profile.honroBattle){
   const cls=st.recruit;if(!cls||!profile.recruited.includes(cls))return;
@@ -84,7 +85,7 @@ function initialize(b,profile){
   if(!validLimit(state.limit)){
     // Ledger-only old saves have no ceiling: remove each companion's already
     // recorded combat XP before recovering the original party entry shift.
-    const entryXp=Math.max(0,...b.units.filter(u=>u.side===0&&!u.summoned).map(u=>(b.heroes[u.cls]?.xp||0)-(state.combat[u.cls]||0)));
+    const entryXp=Math.max(0,...b.units.filter(u=>campaignHero(b,u)).map(u=>(b.heroes[u.cls]?.xp||0)-(state.combat[u.cls]||0)));
     const shift=Math.max(0,entryXp-limit.start);limit.start+=shift;limit.end+=shift;
   }
   state.limit=clone(limit);
@@ -99,7 +100,7 @@ function awardCombat(e,source,amount){
   let changed=false;
   // Expedition XP is shared: NPC assistance and final-hit ownership cannot starve
   // a companion. The persistent per-stage budget also survives failure/retry.
-  for(const u of b.units.filter(u=>u.side===0&&!u.summoned)){
+  for(const u of b.units.filter(u=>campaignHero(b,u))){
     const h=b.heroes[u.cls],spent=state.combat[u.cls]||0,grant=Math.max(0,Math.min(Math.round(amount),g.limit.combat-spent,g.limit.end-h.xp));
     if(!grant)continue;
     changed=true;state.combat[u.cls]=spent+grant;const result=C.grantXP(h,grant);e.emit('xp',{cls:u.cls,value:result.actual});
@@ -115,7 +116,7 @@ function defeat(e,u,killer){
 function complete(b){
   if(!b.honroGrowth)return;
   const g=b.honroGrowth,state=g.ledger.stages[b.honroStage];if(state.cleared)return;
-  for(const u of b.units.filter(u=>u.side===0&&!u.summoned))C.grantXP(b.heroes[u.cls],Math.max(0,g.limit.end-b.heroes[u.cls].xp));
+  for(const u of b.units.filter(u=>campaignHero(b,u)))C.grantXP(b.heroes[u.cls],Math.max(0,g.limit.end-b.heroes[u.cls].xp));
   state.cleared=true;
 }
 // Camp allocates the next expedition while Continue owns an independent combat
