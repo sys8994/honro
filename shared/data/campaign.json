@@ -202389,14 +202389,7 @@
           "kind": "archive",
           "mainBuildings": [
             "archive-west-roof",
-            "archive-east-roof",
-            "archive-rear",
-            "archive-ground-west",
-            "archive-ground-east",
-            "archive-middle-west",
-            "archive-middle-east",
-            "archive-upper-west",
-            "archive-upper-east"
+            "archive-east-roof"
           ],
           "bridges": [
             "archive-ground-west",
@@ -202534,7 +202527,21 @@
               ]
             }
           ],
-          "approvedStudy": "great-archive"
+          "approvedStudy": "great-archive",
+          "architecturalSections": [
+            "archive-ground-west",
+            "archive-ground-east",
+            "archive-middle-west",
+            "archive-middle-atrium",
+            "archive-middle-east",
+            "archive-upper-west",
+            "archive-upper-atrium",
+            "archive-upper-east",
+            "archive-west-stairs",
+            "archive-east-stairs",
+            "archive-attic-gallery",
+            "archive-rear"
+          ]
         }
       },
       "playBounds": {
