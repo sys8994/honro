@@ -8,7 +8,7 @@ const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u)
 function memory(b){b.honroState??={flags:{},collected:[]};const a=b.honroState.act3??={version:1};a.done??={};a.holds??={};a.events??={};a.checkpoints??=[];a.escorts??={};return a;}
 const sameFloor=(u,p,r=260)=>!!p&&Math.abs(u.y-p.y)<=150&&Math.hypot(u.x-p.x,(u.y-p.y)*.75)<=r;
 function initialize(b){if(!active(b))return;memory(b);b.honroAct3Steps??=structuredClone(H.stages[b.honroStage-1].steps);
- for(const u of b.units){if(G.HonroWorld.archetypes[u.honroVariant]?.act3Human){u.honroAct3Human=true;u.honroNonlethal=true;}if(u.honroProtected)u.honroCivilian=true;}
+ for(const u of b.units)if(u.honroProtected)u.honroCivilian=true;
 }
 function sourceIssue(b){const list=steps(b);if(!list.length)return'이 장의 목표 자료가 준비되지 않았습니다.';
  for(const s of list){if(!marker(b,s.id))return'목표 위치가 준비되지 않았습니다: '+s.id;if(s.kind==='destroy'&&!b.terrain.some(t=>t.id===s.id))return'파괴 장치가 준비되지 않았습니다: '+s.id;if(s.target&&!b.units.some(u=>u.id===s.target))return'동행 대상이 준비되지 않았습니다: '+s.target;if(s.opens&&!b.terrain.some(t=>t.id===s.opens))return'통로가 준비되지 않았습니다: '+s.opens;if(s.wave&&!marker(b,'wave-'+s.id))return'방어 경로가 준비되지 않았습니다: '+s.id;}return null;
@@ -37,9 +37,9 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,s=b&&curr
  const point=interactionTarget(b,m);if(!point)return{ok:false,reason:'보호할 주민을 찾을 수 없음'};
  if(!sameFloor(u,point))return{ok:false,reason:Math.abs(u.y-point.y)>150?'같은 층으로 이동':'더 가까이 이동'};
  if(app.canInput&&!app.canInput())return{ok:false,reason:'현재 행동이 끝난 뒤'};
- // Only the immediate working space must be clear. Distant troops and other
+ // Only the immediate working space must be clear. Distant fiends and other
  // storeys never turn a retrieval objective into an extermination objective.
- if(b.units.some(v=>v.side===1&&alive(v)&&sameFloor(v,point,220)))return{ok:false,reason:'작업 지점 가까운 적부터 제압'};
+ if(b.units.some(v=>v.side===1&&alive(v)&&sameFloor(v,point,220)))return{ok:false,reason:'작업 지점 가까운 악귀부터 처치'};
  return{ok:true,reason:'E · '+s.label};
 }
 function openGate(b,id){if(!id)return;const t=b.terrain.find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}
@@ -51,13 +51,8 @@ function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=
  if(s.startsEscort){a.escorts[s.target]={started:true};u.fixed=false;u.maxMove=u.moveLeft=900;u.walkSpeed=Math.min(u.walkSpeed||280,320);}
  completeStep(app,s);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
-// Let an existing enthrall action finish and restore its original side first;
-// otherwise its queued release could turn a subdued civilian back into an enemy.
-function subdue(app,u){if(!u.honroAct3Human||u.honroSubdued||u.enthrall||u.hp>1||u.dead)return;
- const e=app.engine;G.HonroProgression.defeat(e,u,e.active);Object.assign(u,{hp:1,honroSubdued:true,side:2,fixed:true,acted:true,honroCivilian:true,vx:0,vy:0,loadout:[]});u.honroAlly=false;delete u.aiMove;delete u.moveTarget;delete u.meleeAction;e.b.queue=e.b.queue.filter(id=>id!==u.id);app.event(u.name+'를 전투 불능으로 제압했다.');app.dirty=true;
-}
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
- const hurt=e.hurt.bind(e);e.hurt=function(u,amount,...args){const source=e.unit(args[0]);if(u.honroSubdued||u.honroProtected&&source?.side===0)return;const out=hurt(u,amount,...args);subdue(app,u);return out;};
+ const hurt=e.hurt.bind(e);e.hurt=function(u,amount,...args){const source=e.unit(args[0]);if(u.honroProtected&&source?.side===0)return;return hurt(u,amount,...args);};
  const damage=e.damageTerrain.bind(e);e.damageTerrain=function(t,amount,depth=0,owner=e.b.active){const s=steps(e.b).find(q=>q.id===t.id),actor=e.unit(owner);
   if(s?.kind==='destroy'&&s.requiredClass&&actor?.cls!==s.requiredClass){e.message(H.hero[s.requiredClass].name+'의 사격이 필요하다.');return;}
   // Closed passages only open as the ordered objective is committed; direct
@@ -69,7 +64,7 @@ function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Atta
 function spawnHold(app,s,h){if(!s.wave||h.spawned>=s.wave.count)return true;const e=app.engine,b=e.b,m=marker(b,'wave-'+s.id);if(!m)return false;
  const before=new Set(b.units.map(u=>u.id)),key='act3-'+s.id,n=s.wave.count-h.spawned;
  if(G.HonroAllies.execute(app,{type:'spawn',kind:s.wave.kind,n,x:m.x,y:m.y,spacing:145,maxDistance:580,source:key})===false)return false;
- for(const u of b.units)if(!before.has(u.id)&&u.side===1){u.honroCohort='reinforcement';if(G.HonroWorld.archetypes[u.honroVariant]?.act3Human){u.honroAct3Human=true;u.honroNonlethal=true;}}
+ for(const u of b.units)if(!before.has(u.id)&&u.side===1)u.honroCohort='reinforcement';
  h.spawned+=n;memory(b).events[key]=true;app.event('길목에 '+n+'명의 위협이 다가온다.');app.dirty=true;return true;
 }
 function holdTick(app,s,m){const b=app.engine.b,a=memory(b),end=b.teamEnds?.[1]||0,h=a.holds[s.id]??={progress:0,spawned:0,lastEnemyEnd:end,continuous:false};
@@ -91,7 +86,7 @@ function failure(b){if(!active(b))return null;const a=memory(b);if(b.units.some(
  for(const s of steps(b))if(!satisfied(b,s)&&s.requiredClass&&!heroes(b).some(u=>u.cls===s.requiredClass))return H.hero[s.requiredClass].name+'이 쓰러져 남은 목표를 이어갈 수 없다. 이 장을 다시 시작하자.';
  if(b.honroStage===27&&!a.done['fire-screen']&&(a.fireTurns||0)>=12)return'불길이 핵심 기록에 닿았다. 수문과 차단막부터 다시 확보하자.';return null;
 }
-function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['won','lost'].includes(b.phase))return;initialize(b);const a=memory(b);for(const u of b.units)subdue(app,u);
+function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['won','lost'].includes(b.phase))return;initialize(b);const a=memory(b);
  if(sourceIssue(b))return; // Missing authoring is never a completed stage.
  if(b.honroStage===27&&!a.done['fire-screen']){const end=b.teamEnds?.[1]||0;a.fireStartEnd??=end;a.fireTurns=Math.max(0,end-a.fireStartEnd);}
  let s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}

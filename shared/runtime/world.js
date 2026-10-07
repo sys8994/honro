@@ -56,7 +56,7 @@ function top(b,x,reference,support){return G.HonroMapEngine.surfaceY(b.terrain,x
 function createEnemy(b,st,x,kind,index,y,absolute=false){const def=ARCHETYPES[kind]||ARCHETYPES.ghost,u=C.makeEnemy({role:def.role,x,y:y??top(b,x)},b.terrain,C.STAGES[st.id-1],index);const mult=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal;
  Object.assign(u,{id:'foe-'+index,name:def.name,honroType:def.look,h:def.h,r:def.r,x,y:y??top(b,x),awake:false,aggroUntil:0,group:Math.floor(x/(st.w/4)),fixed:!!def.flying,elite:st.id===1?false:index%11===10,cls:def.cls||u.cls,loadout:[...(def.skills||u.loadout)],intent:def.intent||u.intent,honroVariant:def.variant||kind});u.ranks={...u.ranks};for(const sid of u.loadout)u.ranks[sid]=Math.max(1,Math.min(4,1+Math.floor((st.level-1)/3)));
  if(def.flying&&!absolute)u.y-=170+(index%3)*85;
- C.migrateEnemySkills(u);u.armor=u.elite?.12:.04;u.spawnX=u.x;u.spawnY=u.y;u.honroDifficulty=b.difficulty;u.level=Math.floor(G.HonroProgression.plan(st.id).entryLevel);G.HonroProgression.tuneEnemy(st,u,kind);G.HonroProgression.enemyXP(b,u);C.migrateEnemySkills(u);if(def.act2)G.HonroAct2.configureEnemy(u,def);if(def.act3Human){u.honroAct3Human=true;u.honroNonlethal=true;}return u;
+ C.migrateEnemySkills(u);u.armor=u.elite?.12:.04;u.spawnX=u.x;u.spawnY=u.y;u.honroDifficulty=b.difficulty;u.level=Math.floor(G.HonroProgression.plan(st.id).entryLevel);G.HonroProgression.tuneEnemy(st,u,kind);G.HonroProgression.enemyXP(b,u);C.migrateEnemySkills(u);if(def.act2)G.HonroAct2.configureEnemy(u,def);if(def.act3Fiend){u.honroAct3Fiend=true;u.existenceDefense={...C.MONSTER_EXISTENCE.human};}return u;
 }
 function ally(b,st,id,role,x,y){
  const cls=role==='ritualist'||role==='healer'||role==='daoist'?'mage':role==='medium'?'occultist':'knight';
