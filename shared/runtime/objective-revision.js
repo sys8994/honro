@@ -30,7 +30,7 @@ for(const st of H.stages){
  if(goals[st.id])st.goal=goals[st.id];if(guides[st.id])st.guide=guides[st.id];
  if(st.id===22){const at=st.steps.findIndex(s=>s.id==='upper-latch');st.steps[at]={id:'upper-register',label:'상층 저문골 호적 확보',kind:'interact'};st.steps.find(s=>s.id==='ledger-case').label='중층 저문골 사건 보고 확보';st.steps.find(s=>s.id==='ledger-case').opens='upper-door';st.steps.find(s=>s.id==='archive-seal').label='하층 서고 봉인 열기';st.steps.find(s=>s.id==='compare-ledgers').label='상층에서 사건 보고와 호적 대조';}
  if(st.id===27){const water=st.steps.find(s=>s.id==='water-release');Object.assign(water,{kind:'interact',label:'수문을 열어 불길 막기',parallelGroup:'fire-control'});Object.assign(st.steps.find(s=>s.id==='fire-screen'),{parallelGroup:'fire-control',label:'차단막을 세워 불길 막기'});st.steps.splice(2,0,{id:'party-reunion',label:'두 조사팀이 중앙 뜰에 모이기',kind:'reach',allHeroes:true,radius:440,splitOnly:true});}
- if(st.act2Plan)st.act2Plan.sequence=clone(st.steps);
+ if(st.act2Plan&&removed[st.id])st.act2Plan.sequence=st.act2Plan.sequence.filter(s=>!removed[st.id].includes(typeof s==='string'?s:s.id));
 }
 replaceLine(H.stages[11].story,'저 바위를 받친','낙석이 아래 홈을 메웠소. 길표에 다가가려면 먼저 작업장을 비워야 하오.');
 replaceLine(H.stages[14].story,'활로 끊을','천장 아래 오래된 인양구가 보입니다. 먼저 발 디딜 바닥을 드러내고 남은 흔적을 살펴보겠습니다.');

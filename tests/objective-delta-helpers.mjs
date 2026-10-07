@@ -20,4 +20,6 @@ function undo(current,before,after,spatial=false){
  }
  return current;
 }
-export function beforeObjectiveRevision(project,content){const p=clone(project),c=clone(content);for(const q of delta.changes){const map=p.stages.find(s=>s.metadata.stageId===q.id);if(map)for(const [key,change] of Object.entries(q.fields))map[key]=undo(map[key],change.before,change.after,q.id>=21);const stage=c.stages[q.id-1];if(q.steps&&stage)stage.steps=undo(stage.steps,q.steps.before,q.steps.after);}return{project:p,content:c};}
+export function beforeObjectiveRevision(project,content){const p=clone(project),c=clone(content);for(const q of delta.changes){const map=p.stages.find(s=>s.metadata.stageId===q.id);if(map)for(const [key,change] of Object.entries(q.fields))map[key]=undo(map[key],change.before,change.after,q.id>=21);const stage=c.stages[q.id-1];if(q.steps&&stage)stage.steps=undo(stage.steps,q.steps.before,q.steps.after);if(stage)for(const [key,change] of Object.entries(q.contentFields||{}))stage[key]=undo(stage[key],change.before,change.after);}return{project:p,content:c};}
+
+export function beforeObjectiveContent(stage){const content={stages:Array.from({length:30},()=>({}))};content.stages[stage.id-1]=stage;return beforeObjectiveRevision({stages:[]},content).content.stages[stage.id-1];}

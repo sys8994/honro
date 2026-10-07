@@ -1,8 +1,10 @@
+import {beforeObjectiveContent} from './objective-delta-helpers.mjs';
 // Test-only semantic projection: world placement may change, gameplay may not.
 import {createHash} from 'node:crypto';
 export const plain=value=>JSON.parse(JSON.stringify(value));
 export const hash=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 export function semanticContent(stage){
+ stage=beforeObjectiveContent(stage);
  const {w,h,map,act2Plan,...content}=stage;
  const {size,sites,lamps,...plan}=act2Plan;
  return plain({...content,act2Plan:{...plan,lamps:lamps.length}});
