@@ -92,7 +92,7 @@ Preserve stages 1–20 exactly. Stage 21 begins at the actual first-clear stage-
 
 ## Implemented growth proposal and evidence
 
-`HonroProgression.legacyCampaignAnchor(20)` derives 61,569 XP by replaying existing first-clear and recruit-floor rules. Stage 20's unchanged budget is 5,347 XP, of which 2,139 is combat. The legacy reward curve is `round(180 + 90 × (level − 1)^1.65)` with its old level-25 cap; the current level cost is `round((180 + 90 × (level − 1)^1.65) × 1.5)` and the actual player cap is 30. Confusing the plan's old reward labels with actual current levels causes a false difficulty estimate, and extrapolating legacy rewards above 25 causes zero-XP stages.
+`HonroProgression.legacyCampaignAnchor(20)` derives 61,569 XP by replaying existing first-clear and recruit-floor rules. Stage 20's unchanged budget is 5,347 XP, of which 2,139 is combat. Its plan labels 17.4→18 are legacy reward inputs (54,865→60,212 raw XP), not current player levels. Recruit-floor shifts add 1,357 XP in a fresh sequential campaign, producing 56,222 XP on entry and 61,569 XP on completion under the current curve. The legacy reward curve is `round(180 + 90 × (level − 1)^1.65)` with its old level-25 cap; the current level cost is `round((180 + 90 × (level − 1)^1.65) × 1.5)` and the actual player cap is 30. Confusing the plan's old reward labels with actual current levels causes a false difficulty estimate, and extrapolating legacy rewards above 25 causes zero-XP stages.
 
 New `rewardCurve: current` stages alone use current-curve budgets. A higher pre-existing save keeps its existing XP shift and stage ceiling through the same persistent ledger. No old reward or earned skill is reset. This schedule is for implementation and balance tests, pending user review.
 
