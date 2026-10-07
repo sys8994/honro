@@ -1,11 +1,14 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {runtimeParts,root} from '../shared/build.mjs';
 import {buildGame} from '../game/build.mjs';
+import {packPlaytestTemplate} from '../shared/playtest-template.mjs';
 import path from 'node:path';
 const read=p=>readFile(path.join(root,p),'utf8');
 const game=await buildGame();
-const parts=await runtimeParts();
-parts.push('globalThis.HONRO_PLAYTEST_HTML='+JSON.stringify(game)+';');
+const runtime=await runtimeParts();
+// The app:false tail is stage-rules; all preceding parts are identical in Game.
+const packed=packPlaytestTemplate(game,runtime.slice(0,-1));
+const parts=[packed.shared,runtime.at(-1),packed.restore];
 parts.push(await read('workshop/src/app.js'));
 const html=(await read('workshop/src/index.html')).replace('/*STYLE*/',await read('workshop/src/style.css'))
  .replace('/*SCRIPT*/',()=>parts.join('\n').replace(/<\/script/gi,'<\\/script'));

@@ -1,3 +1,24 @@
+# 3막 한국 읍성·사고·수로 어휘와 열린 지붕 계단 — 2026-10-07
+
+- 원인: 민가·관아·기록고를 같은 높은 hall로 확대한 미술이 반복돼 역할/칸/층고의 구분이 약했다. 공식 화성·낙안·전주사고 사진을 참고해 낮은 민가, 석축 위 단층 문루, 판문/작은 상부창과 수평 포갑, 한정된 다층 관창으로 재구성했다. 역사 복원이 아닌 한국 판타지 설계다.
+- 범위: 대표 21–23장만 별도 review builder로 바꾸며, 기존 1–20장·미변경 24–30장·필수 길/물/목표/호송은 보존한다. 지붕 그림과 실제 고체를 함께 바꾸고 compiled world vertices의 정확한 이전/이후 목록을 출력한다. [미술 기준·공간 계약](ACT3_KOREAN_TOWN.md).
+- 접합부 수정: 낮아진 처마가 기존 경사로의 머리 공간을 침범해 폭과 위치를 조정했다. 새 열린 목재 접근 계단을 양방향 고체로 둔 경우, 석교 접근 도약 중 아래쪽에 부딪혀 피해가 났다. 열린 계단만 명시 oneWay로 고치고 실제 지붕 고체와 기존 필수 석교/경사로 좌표는 유지했다.
+- 검사: 4인 필수/선택 길 28건과 23 호송 모두 0피해, 물/스폰/재시도 35건, 실제/예측 탄도 9건, 구조 접점·oneWay 계약 통과. 같은 후보 Native 10뷰에서 renderPure 확인. 마지막 입구 책갑 미술은 비충돌 source만 교체했다.
+- 한계: Native는 브라우저 HUD 입력이나 정상 전투 완료가 아니다. 대표 3장 화면 리뷰 후 canonical 연결을 진행하며, 24–30장 확장·전체 통합 검사·master/Pages 활성화는 아직 별도다.
+
+# 3막 고밀도 도시 공통 재료 · 회랑/기록고/돌다리 — 2026-10-07
+
+- 요청: 높은 도시 밀도·물과 다리·대형 기록고 내부를 검토할 추가 미술 재료가 필요하다.
+- 변경: 개방형2층 회랑, 앞벽 없는3칸 기록고 절개, 3홍예 돌다리의 순수 SVG와 별도 extension manifest를 추가했다. 접지·floor·투명 여백·선택 solid polygon을 명시하고 실제 배치는 prototype에 맡긴다. 활성 campaign·registry·build·HTML은 기준 c0b6672와 동일하다.
+- 검증: 공통 SVG compiler/XML/벡터 bounds, 투명9곳, 접지11점, 실제 floor6면, 제안solid7개의 그림 정합, 축소/캐시/활성격리를 통과했다. Native 시트를 직접 검토했다.
+- 한계: 층간216은 순수 통로 높이가 아니다. 보 두께를 뺀 회랑187/기록고185wu를 실제 배율에 적용해야 한다. 점프·계단·사선과 교각 접지는 실제 맵에서 별도검사한다. 운영3막 활성화·맵 선택·실제 왕궁 설정을 하지 않았다. [추가 시안 명세](ACT3_DENSE_ASSET_DRAFT.md).
+
+# 3막 읍성 공통 미술 재료 · 비활성 시안 — 2026-10-07
+
+- 준비 이유: 3막 맵 후보 선택 전 공통으로 비교할 한국형 성문·관아 담장·관창의 재료가 필요하다. 지도·이야기·기믹 결정은 대기 상태다.
+- 변경: `workshop/drafts/act3-town-assets/`에 순수 SVG 3종과 접지·빈 공간·처마 bounds 명세를 추가했다. 기존 `compileSVG`·`HonroVectorArt`만 재사용한다. 자산 registry·campaign·shared build·두 HTML은 변경하지 않았다.
+- 검증: XML과 벡터 안전 검사, 실제 paint/처마 bounds, 접지 13점, 투명 여백 4곳, 390px/0.24배 카드 내 축소와 활성 소스 불변을 통과했다. 세 자산은 각 7KB 미만·44경로 이하이며 Native Canvas 컨택트 시트를 검토했다.
+- 한계: 현재는 inactive draft다. SVG는 충돌을 만들지 않고 실제 UI·맵·전투·브라우저·성능 검증 또는 사용자 미술 승인을 대신하지 않는다. 전체 빌드·배포 검수는 활성화 시 별도 수행한다. [시안 명세](ACT3_TOWN_ASSET_DRAFT.md).
 # 1–6장 화강암 그림과 기존 고체 외곽 일치 — 2026-10-07
 
 - 원인: 에셋 polish가 두 화강암의 외곽을 별도 정규화된 6면 그림으로 다시 만들면서 기존 independent collider는 보존했다. 1장 큰 바위의 왼쪽 그림이 고체 윗면보다 최대 157.5 world 낮아 접지한 발·윤곽선이 허공에 있는 것처럼 보일 수 있었다.
@@ -1105,6 +1126,66 @@
 - 원인/수정: Space keyup이 충전 시작 입력을 구분하지 않았고 pointercancel은 pointerId를 확인하지 않았다. 이제 포인터 소유 충전은 그 포인터가 놓거나 취소해야 끝난다. HUD 방어도 공통 defend()에서 입력을 즉시 취소해 F 방어와 같은 규칙을 적용한다. 방어의 회복·보호막·행동 종료 효과와 충전 속도/기예 물리는 변경하지 않는다.
 - 검증: tests/charge-input.mjs의 기존 126개 실제 충전량 조건, 기존 취소·중복 누름 조건, 혼합 입력 소유 3조건, 허공터/캠페인 × 키보드/포인터 방어 4조건, HUD 기예 전환 1조건이 수정 후 통과했다. 방어 결과는 같은 상황의 F 방어와 직접 비교한다. 다른 포인터의 실제 down→cancel 순서와 기존 포인터의 마지막 up도 검사한다.
 - 한계: DOM·시계·이벤트는 대역이며 실기기 멀티터치, 브라우저 pointer capture, 실제 청취를 검증한 결과가 아니다. 전체 통합 빌드·회귀·배포 검수는 이 소스 커밋을 통합한 후보에서 별도로 실행한다.
+
+### 3막 건축 미술 · 재료 깊이와 열린 건물 계약 — 2026-10-07
+
+- 원인: 기존 수로도시·기록고 미술 시안에서 넓은 지붕이 매끈한 판, 서책 묶음이 단색 상자로 읽혀 재료와 장소 구별이 약했다.
+- 변경: 기존 6종의 silhouette/viewBox/foot/ground/floor/solid/투명 통로를 보존하며 기와 중첩·서까래 그림자·목재 측면·큰 화강암과 수면 흔적·묶은 서책의 종이 단면을 보강했다. 열린 저택, 그을린 주조 공방, 수문 누각, 나루 하역 정자 4종을 production SVG와 위치 독립 manifest로 추가했다. 미술이 임무/위험/물리 의미를 임의로 만들지 않도록 collision은 비워두고 제안 고체·바닥·지지점만 제공한다.
+- 검증: 기존 6종 Native 검사 두 개가 통과했다. `tests/act3-architecture.mjs`는 production 10종의 SVG/그림 전체·지붕 bounds, 실제 접지, 완전 투명 통로, 바닥과 제안 고체의 그림 일치, 390/760/1440 크기를 공통 renderer로 검사한다.
+- 한계: 이 단위는 지도·runtime·HTML을 바꾸지 않는다. 실제 campaign 배치, 도달성, 전투와 Game/Workshop/Pages 브라우저 성능은 통합 후보에서 별도로 검증한다. 현재 계약은 `game/docs/ACT3_ARCHITECTURE.md`다.
+
+## Act 3 production runtime (2026-10-07, working branch)
+
+- Added stages 21–30 with ordered rescue, real gate opening, destructible controls, enemy-turn holds, grounded escort, fire prevention and party escape. The chapter contract is in `ACT3_RUNTIME_CONTRACT.md`. This is implementation work pending final map, normal-play, browser and user review.
+- Human recovery personnel are subdued at one HP and cannot act as allies. Required-class and protected-NPC loss has an explicit retryable failure. Missing source markers/gates/units prevent completion. Saved steps and completed actions survive reload, future target destruction cannot skip ordered narrative/gates, and repeated interaction/wave checks cannot duplicate work. Summoned and enthralled units do not count as party members.
+- Registered a separate city journey page and bounded ending at stage 30. Stage 31 cannot fall through to stage 1. Old Act 2 ending seen flags do not suppress the new ending. Existing stage-20 saves retain terrain, HP, objectives and ledger.
+- Growth remains a proposal: the unchanged first-clear/recruit rules derive 61,569 XP (level 15.69 / 31 points) at stage 20. New stages use the current 1.5× level-cost curve to reach 158,091 XP (level 22 / 45 points), with 40% combat share. Stages 1–20 continue using their unchanged legacy reward curve. Engine cap 30 and skills are unchanged; stale balance metadata now agrees with cap 30.
+- Focused tests: `tests/act3-growth.mjs` passed all five reward/old-save/retry cases. At the initial 21–23 map snapshot, `HONRO_ACT3_PARTIAL=1 node tests/act3-runtime.mjs` passed 14 state fixtures and `HONRO_ACT3_PARTIAL=1 node tests/act3-continuity.mjs` passed five App navigation/save fixtures. These fixtures are not ordinary combat wins, traversal proof or browser verification. Final `npm run test:act3` requires all ten maps and includes fire-pressure and stage-30 ending tests.
+
+### Full ten-map runtime verification
+
+On the production map snapshot through `193466c`, the serialized check finished successfully: `npm run test:act3` (30 objective/source cases, 6 growth cases, 6 App boundary cases), `tests/act2.mjs` (21 cases), `tests/rest-journey.mjs` (9 cases), `tests/campaign-continuity.mjs` (31 lifecycle fixtures covering all 30 stages), and `tests/camp-reward-budget.mjs` (4 cases). `tests/story-canon-v01.mjs` also passed the seven frozen Acts 1–2 contracts, and `tests/act3-foundation.mjs` passed 28 metadata/draft-isolation checks. Logs: `_local/reports/act3-runtime/full-regressions.log`. These are state and App fixtures, not normal-input combat victories. Native rendered evidence separately found and fixed phantom miniature buildings from unknown-marker fallback; internal route/wave points no longer render and live document/person/exit objectives use distinct symbols.
+
+The production-input bot (`npm run test:act3:normal -- 21`) records each dialogue page and ordinary movement/jump/skill/item/E/wait actions with source/map fingerprints. It uses an explicitly prepared chapter-entry save and DOM/Canvas/storage doubles. Its results must not be described as a browser pass, a real-device performance result, a human difficulty verdict, or a full earlier-act clear.
+
+## 2026-10-07 · Act 3 canonical city architecture and access seams
+
+New stages 21–30 are authored by `tools/map-forge/act3-production-maps.mjs` using canonical v6 terrain domains, production architecture SVGs, real roof/floor collisions and the shared environment renderer. Previous campaign stage objects 1–20 and their original library entries are preserved. The two approved studies become a three-level archive and dense canal district; seven later locations have different mansion, foundry, office, sluice and ferry silhouettes.
+
+Native probes found two misleading structural joins: an archive stair ending inside a separate floor slab, and a convoy ramp meeting a separate bridge slab under a low intermediate floor. These stopped normal movement or caused head-contact damage despite a visually flush path. The adjoining faces now form a single visible collision contour, and the obstructing intermediate bay is open. Four heroes passed all mandatory routes, the authored upper alternatives, and both carriers passed grounded routes without jumps or damage. Every destroy objective passed an actual normal-arrow hit from its authored marker; open-lane hits and architectural shot blocking were checked separately.
+
+Rear plinths, stone piers and chimney / garden / archive wall masses improve grounding without changing the collision arrays. The final ten-stage safety, environment and capture checks write evidence to the local report directory; source-only success is not browser input, performance, App retry, or normal campaign completion. See `ACT3_MAP_PRODUCTION.md` for exact commands and evidence boundaries. The runtime owner verifies mission phases, saves, growth and victory independently.
+
+
+### Act 3 map-owner final native checkpoint
+
+The final map source checkpoint `af247f3` passed the complete serial native suite on 2026-10-07 UTC: 52 hero routes with zero damage, 2 jump-free carrier routes, 29 real-arrow / occlusion checks, 90 map-safety checks, 30-map environment validation, eight unchanged hall geometry contracts and 40 state-pure map captures. The last safety pass found two canal guards overlapping a closed gate / sloping walkway; only their initial coordinates were corrected. Browser input, final deployment and normal campaign completion are not claimed by these probes.
+
+### 3막 후반 건축 비례·나루 용도와 화재 접지 — 2026-10-07
+
+- 원인: 27장 큰 hall은 사람 대비 높은 처마를 그대로 창 위치로 써 하단이 긴 빈 회벽으로 남았고, 30장은 관창 스타일만 반복해 건물 용도가 구분되지 않았다. 실제 불은 떠 있는 색면처럼 보였다.
+- 변경: 하단 문·창과 굵은 기둥, 낮은 대비의 매입 목재띠로 큰 벽을 분절한다. 나루는 천막 주막·매표집·빈 하역칸·밧줄창고·한쪽 폐쇄 판벽·상자로 큰 형태를 나눈다. 불 위치에 재·탄목과 국소 반사를 붙이고 소등 시 빛·연기는 제거하되 잔해는 남긴다. 새로운 물리면·위험·목표·미세 패턴은 추가하지 않는다.
+- 생성기 보완: archive SVG의 재료 그룹이 중첩되면서 비탐욕 regex가 첫 내부 닫는 태그에서 잘려 잘못된 SVG를 만들었다. 이름 있는 서가 그룹을 균형 있게 추출한다.
+- 검증: 98cf30b 대비 1–20장 객체(신규 1막 적 배정 포함)는 정확히 같고, 전30장의 compile collision/material·유닛·목표 마커·동선은 같다. 16종 48 Native 렌더와 두 불의 독립 소등/읽기 전용 검사가 통과했다. 같은 카메라의 27/30 전후 20뷰에서 renderer 상태 무변이를 확인했다.
+- 한계: Native 미술/생성기 검증이다. 정상 입력 완주·실제 브라우저·성능·Pages 검수와 구분한다. source/geometry provenance는 `_local/reports/act3-final-art/`에 남긴다.
+
+
+## 2026-10-07 · 3막의 육신형 악귀와 살아 있는 피신 주민
+
+- 설계 변경: 무고한 정상 병사와 싸우는 흐름 대신, 인근 읍성에 번진 들림으로 이미 죽은 육신이 악귀가 된 적을 상대한다. 수비병은 지키던 문, 기록고의 적은 숨기고 지우던 일의 사념을 되풀이한다. 전국 확산이나 모든 들림의 비가역성을 새 세계 법칙으로 단정하지 않는다.
+- 범위: 최초 육신형 적이 등장하는 23장 입장 대사에서 상태를 설명한다. 21장은 피신 주민의 증언으로 지역 상황을 연결한다. 정상 구조·호송 NPC, 1·2막 대사와 오브젝트, 기존 10맵의 충돌·길·기믹·marker는 보존한다.
+- 구현: 38개 초기 적과 해당 증원을 possessedGuard/possessedArcher로 이름 짓고 HP1 비살상/중립화 경로를 제거한다. 형1·기1·혼.88의 기존 인체형 반응, 몸 크기와 공격 수치는 유지한다. 이전 미공개 개발 세이브의 비살상 상태를 위한 마이그레이션은 추가하지 않는다.
+- 검사: 이전 canonical f2e9781의 전30장/공유 library를 해시로 고정하고 38개 enemy kind 외의 변경을 거부한다. 새 회귀는 초기 적·증원 사망, XP 중복 방지, 현혹 해제 및 현혹 중 사망, 정상 NPC 보호를 검사한다. 결과와 정상 입력 진단은 `_local/reports/act3-fiends/`에 기록한다. 아래에 따로 기록하는 실행 결과 전까지 소스 단위 보존은 최종 검증을 뜻하지 않는다.
+
+### Act 3 fiend fixture scope after authorized architecture revisions
+
+The one-time whole-project fiend conversion receipt rejected a legitimate later change: shared `HonroMaps.finalize` added the missing standard terrain `detail` objects to new Act 3 maps. The same overly broad receipt would also reject the separately authorized Korean architecture and optional-roof work. The original receipt and its strict assertions are now retained as an explicit historical audit; current fiend tests use exact semantic values extracted from the original f2e9781 baseline. No current values were substituted into the fixture.
+
+The current test still freezes all complete 1–20 maps and original assets, the 38-fiend roster/teams/stats, living NPC protections, marker identities/rules, device rules, initial mission state, ordered objectives and balance. It separates those contracts from Act 3 visual/geometry/placement authoring. A source-only positive check and 18 negative drift probes passed on cd4fe94, and the original strict receipt passed against the original a1a82f9 transition campaign snapshot. No engine, Native render, browser or aggregate verification was run in this maintenance unit; the release owner runs those on the final candidate.
+
+### 2026-10-07: Explicit corporeal-fiend damage classification
+
+The resumed existence audit found the two new Act3 archetypes absent from the central species response table. Live bodies already inherited the human response through their human look; registering both names explicitly keeps form 1, qi 1 and soul 0.88 and makes species-based lookup equally precise. The species completeness and exact-human-vector assertions cover this boundary. Final focused rerun is pending at this source checkpoint.
 # Terrain/background separation — 2026-10-07
 
 - Cause: foreground terrain and atmospheric shapes shared similar values; subpixel top rims weakened at mobile scale. Applying outlines indiscriminately also exposed approximate legacy sprite hitboxes outside their artwork.
@@ -1133,3 +1214,19 @@
 ### 2026-10-07: Combined terrain passage and visual verification
 
 The combined stable source passes the reviewed one-way routes, 140 physics cases, actual App save migration/rejection, standalone schema validation, 1,874 ground-contact and 82 App-ground-save cases, impact, migration, old campaign/story contracts, map/schema imports and environment checks. The fractional-tile uniform-alpha fixture now disables its replaced terrain edge hook too; the actual production Native scenes retain the new edge drawing. That focused Native rerun, final HTML build and actual Pages checks remain pending at this checkpoint. Existing saved battles retain their embedded granite artwork; their physical contours and progress are preserved.
+
+### 2026-10-07: Approved Korean representative architecture authoring
+
+The reviewed Korean gate-town, archive and canal-storehouse treatment now runs through the same production authoring recipe for chapters21–23. The object transform is shared with the review tool so regeneration retains the approved roof/stair design. First20 stages retain the latest stable passage/roster state; later24–30 are awaiting their separate Korean treatment. Canonical regeneration and integrated effects checks follow this source checkpoint; the HTML remains the stable20-stage release.
+
+### 2026-10-07: Freeze approved Korean Act3 architecture
+
+All ten Korean city/archive/courtyard/foundry/rampart/sluice/ferry compositions are now connected to the shared production authoring recipe following pixel review. The final step removes only unused a3-prefixed assets after both transforms; all existing105 assets and first20 stages are retained. Worker movement, escort, shot, spawn/water and final Native evidence passed; final combined regeneration/objective/save/type checks and one Act3 HTML build follow before release.
+
+Final integrated architecture validation at8525c64 completed all nine affected groups with exit0: TypeScript,30-stage canonical roundtrip, Act3 objectives/growth/App save boundaries, every authored four-companion route and escort, live projectiles, spawn/water safety, full regeneration, environment validation and production catalog. Runtime/source stayed clean throughout117.6seconds. Earlier unrelated terminal results remain separately attributed; this is not a rerun or blanket pass of the interrupted55-group attempt. The final shared HTML build and actual Pages validation are the following release steps.
+
+### 2026-10-07: Preserve standalone Workshop below the transfer ceiling
+
+The30-stage Workshop embedded the same common runtime twice: once for the editor and once inside the Game Playtest HTML. Its25.84MB file exceeded the remote tool request limit. The build now includes the common inline source once and synchronously captures its exact script text to reconstruct the original Game HTML for Playtest. No eval, network request, external JavaScript, asynchronous startup, asset-ID or saved-project change is added. Template guards require one identical common span and unique markers; focused tests cover closing-script escaping, independent child initialization, and later DOM/script removal. Full built-output equivalence and size validation follow this source checkpoint.
+
+The final built Workshop is13,067,138bytes (JSON upload request13,986,332bytes, below16MiB). Game is byte-identical to the fully checked30-stage candidate (SHA256d6729c025d434dc429dbacb493c073abc2bd9c89be6d7630576c40facbb19f12). Actual generated shared startup initializes all30 stages, validates the project, reconstructs exact Game HTML and survives later DOM/script removal; editor clones remain independent. Typecheck and focused escaping/error cases pass. Actual browser Workshop Playtest→Stop→Playtest remains a release verification step.

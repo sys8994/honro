@@ -50,6 +50,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  b.active=b.units.find(u=>u.side===0&&!u.summoned)?.id||b.units[0]?.id;
  b.honroActiveLimit=st.initialState?.honroActiveLimit??content.active;b.enemyLimit=b.honroActiveLimit;
  b.honroCounters={initialEnemies:b.units.filter(u=>u.side===1).length,allyActions:0,spawned:0};
+ G.HonroAct3?.initialize(b);
  G.HonroProgression.initialize(b,profile);
  // Compile the same initial elite roster for Game, Stage View and Playtest.
  // attach() remains idempotent for saved battles and later reinforcement waves.

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "maxLevel": 25,
+  "maxLevel": 30,
   "combatShare": 0.4,
   "stages": [
     {
@@ -356,22 +356,189 @@
         48
       ],
       "objectiveTurns": 8
+    },
+    {
+      "id": 21,
+      "act": 3,
+      "entryLevel": 15.69,
+      "exitLevel": 16.3,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 8,
+      "activeEnemies": 3,
+      "targetHits": 2.1,
+      "targetIncomingHpFraction": 0.065,
+      "maxAlive": 18,
+      "targetRounds": [
+        14,
+        24
+      ],
+      "objectiveTurns": 4
+    },
+    {
+      "id": 22,
+      "act": 3,
+      "entryLevel": 16.3,
+      "exitLevel": 16.9,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 7,
+      "activeEnemies": 3,
+      "targetHits": 2.135,
+      "targetIncomingHpFraction": 0.0665,
+      "maxAlive": 18,
+      "targetRounds": [
+        15,
+        26
+      ],
+      "objectiveTurns": 6
+    },
+    {
+      "id": 23,
+      "act": 3,
+      "entryLevel": 16.9,
+      "exitLevel": 17.5,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 8,
+      "activeEnemies": 3,
+      "targetHits": 2.17,
+      "targetIncomingHpFraction": 0.068,
+      "maxAlive": 18,
+      "targetRounds": [
+        16,
+        28
+      ],
+      "objectiveTurns": 6
+    },
+    {
+      "id": 24,
+      "act": 3,
+      "entryLevel": 17.5,
+      "exitLevel": 18.1,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 7,
+      "activeEnemies": 3,
+      "targetHits": 2.205,
+      "targetIncomingHpFraction": 0.0695,
+      "maxAlive": 18,
+      "targetRounds": [
+        17,
+        30
+      ],
+      "objectiveTurns": 5
+    },
+    {
+      "id": 25,
+      "act": 3,
+      "entryLevel": 18.1,
+      "exitLevel": 18.75,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 7,
+      "activeEnemies": 3,
+      "targetHits": 2.24,
+      "targetIncomingHpFraction": 0.071,
+      "maxAlive": 18,
+      "targetRounds": [
+        18,
+        32
+      ],
+      "objectiveTurns": 7
+    },
+    {
+      "id": 26,
+      "act": 3,
+      "entryLevel": 18.75,
+      "exitLevel": 19.4,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 8,
+      "activeEnemies": 3,
+      "targetHits": 2.275,
+      "targetIncomingHpFraction": 0.0725,
+      "maxAlive": 18,
+      "targetRounds": [
+        19,
+        34
+      ],
+      "objectiveTurns": 6
+    },
+    {
+      "id": 27,
+      "act": 3,
+      "entryLevel": 19.4,
+      "exitLevel": 20.05,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 8,
+      "activeEnemies": 3,
+      "targetHits": 2.31,
+      "targetIncomingHpFraction": 0.074,
+      "maxAlive": 18,
+      "targetRounds": [
+        20,
+        36
+      ],
+      "objectiveTurns": 8
+    },
+    {
+      "id": 28,
+      "act": 3,
+      "entryLevel": 20.05,
+      "exitLevel": 20.7,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 8,
+      "activeEnemies": 3,
+      "targetHits": 2.345,
+      "targetIncomingHpFraction": 0.0755,
+      "maxAlive": 18,
+      "targetRounds": [
+        21,
+        38
+      ],
+      "objectiveTurns": 6
+    },
+    {
+      "id": 29,
+      "act": 3,
+      "entryLevel": 20.7,
+      "exitLevel": 21.35,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 8,
+      "activeEnemies": 3,
+      "targetHits": 2.38,
+      "targetIncomingHpFraction": 0.077,
+      "maxAlive": 18,
+      "targetRounds": [
+        22,
+        40
+      ],
+      "objectiveTurns": 7
+    },
+    {
+      "id": 30,
+      "act": 3,
+      "entryLevel": 21.35,
+      "exitLevel": 22,
+      "rewardCurve": "current",
+      "balanceStatus": "proposed",
+      "initialEnemies": 7,
+      "activeEnemies": 3,
+      "targetHits": 2.415,
+      "targetIncomingHpFraction": 0.0785,
+      "maxAlive": 18,
+      "targetRounds": [
+        23,
+        42
+      ],
+      "objectiveTurns": 8
     }
   ],
   "futureActs": [
-    {
-      "act": 3,
-      "stageExitLevels": [
-        18.5,
-        19,
-        19.5,
-        20,
-        20.5,
-        21,
-        21.5,
-        22
-      ]
-    },
     {
       "act": 4,
       "stageExitLevels": [

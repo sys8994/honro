@@ -56,7 +56,7 @@ export function attackForSkill(skill:Pick<Skill,'id'|'cls'>):ExistenceVector{
 export const MONSTER_EXISTENCE:Record<string,ExistenceVector>={
  bow:mix(1,1,.78),crossbow:mix(1,1,.78),slinger:mix(1,1,.78),guard:mix(1,1,.78),leaper:mix(1,1,.78),
  fire:mix(1,1,.78),frost:mix(1,1,.78),storm:mix(1,1,.78),bomber:mix(1,1,.78),healer:mix(1,1,.78),ward:mix(1,1,.78),ballista:mix(.92,1,.55),
- human:mix(1,1,.88),hound:mix(.94,1.03,1.08),boar:mix(.96,1.03,1.08),stag:mix(.94,1.04,1.08),
+ human:mix(1,1,.88),possessedGuard:mix(1,1,.88),possessedArcher:mix(1,1,.88),hound:mix(.94,1.03,1.08),boar:mix(.96,1.03,1.08),stag:mix(.94,1.04,1.08),
  bat:mix(.90,1.06,1.10),crow:mix(.92,1.04,1.08),ghost:mix(.20,1.05,1.32),shade:mix(.24,1.05,1.28),lantern:mix(.18,1.10,1.34),
  warden:mix(.82,1.08,1.20),mourner:mix(.78,1.05,1.25),golem:mix(.83,1.06,1.23),medium:mix(1,1.08,1.16),
  minecart:mix(1,.95,.82),picks:mix(1,.95,.82),waterwheel:mix(1,.95,.82),stoneLantern:mix(1,.95,.82),hoist:mix(1,.95,.82),keeper:mix(1,.95,.82),

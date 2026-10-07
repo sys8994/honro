@@ -3,6 +3,7 @@ const eligible=u=>u&&!u.dead&&(u.side===1||u.side===2||u.summoned);
 const available=a=>a.screen==='battle'&&a.engine&&a.scene&&!a.dialogue&&!a.done&&!a.modal.classList.contains('open');
 const clamp=(v,min,max)=>Math.max(min,Math.min(Math.max(min,max),v));
 const S=G.HonroScene.prototype;
+function description(u){const identity=u.honroAct3Fiend&&G.HonroWorld.archetypes[u.honroVariant]?.intent;if(identity)return identity+(u.intent&&u.intent!==identity?' · '+u.intent:'');return u.intent||G.HonroWorld.archetypes[u.honroType]?.intent||(u.summoned?'소환자를 도와 동맹군 턴에 행동합니다.':u.allyRole==='civilian'?'전투에 휘말린 동행인. 안전하게 호위해야 합니다.':'함께 적을 상대하는 동행입니다.');}
 // The body-only mask follows the current pose; health bars, shadows and selection arrows are excluded.
 S.unitOutline=function(c,u){
  if(u.id!==this.hoverUnitId&&u.id!==this.inspectUnitId)return;
@@ -62,7 +63,7 @@ function tick(a){
   health.querySelector('i').style.width=clamp(u.hp/u.maxHp*100,0,100)+'%';
   const existence=el.querySelector('.unit-info-existence'),response=G.HONRO_CORE.effectiveDefenseForUnit(u),key=[u.id,response.form,response.qi,response.soul].join(':');
   if(existence.dataset.key!==key){existence.innerHTML=G.HONRO_CORE.existenceDefenseView(u);existence.dataset.key=key;}
- text('.unit-info-desc',u.intent||G.HonroWorld.archetypes[u.honroType]?.intent||(u.summoned?'소환자를 도와 동맹군 턴에 행동합니다.':u.allyRole==='civilian'?'전투에 휘말린 동행인. 안전하게 호위해야 합니다.':'함께 적을 상대하는 동행입니다.'));
+ text('.unit-info-desc',description(u));
  text('.unit-info-skills',skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
  const states=G.HonroCombatStatus.effects(a.engine.b,u);
  text('.unit-info-status',states.join(' · '));
@@ -75,5 +76,5 @@ function tick(a){
  el.style.top=(innerWidth<=600?Math.max(top,bottom-rect.height):clamp(y,top,bottom-rect.height))+'px';
 }
 document.addEventListener('pointerdown',e=>{const a=G.HonroApp;if(!a?.scene)return;if(!e.target.closest('#unit-info,#battlecanvas'))close(a);});
-G.HonroUnitInfo={bind,pick,tap,hover,close,tick};
+G.HonroUnitInfo={bind,pick,tap,hover,close,tick,description};
 })(globalThis);

@@ -4,6 +4,7 @@ const xpAt=level=>{const n=Math.floor(level);return C.xpAtLevel(n)+Math.round((l
 // Stage rewards keep their established budget; only the amount required to level grows.
 const rewardXpAt=level=>{const n=Math.floor(level);return C.oldXpAtLevel12(n)+Math.round((level-n)*C.oldXpToNext12(n));};
 const plan=id=>config.stages[id-1];
+const campaignHero=(b,u)=>u.side===0&&!u.summoned&&(!(b.honroStage>=21&&b.honroStage<=30)||!u.enthrall);
 const joinLevel=st=>Math.max(1,Math.min(30,Math.floor(st.joinLevel??plan(st.id)?.exitLevel??(st.level||1)+1)));
 function alignRecruit(profile,st,b=profile.honroBattle){
   const cls=st.recruit;if(!cls||!profile.recruited.includes(cls))return;
@@ -17,8 +18,19 @@ function recruit(profile,st,b){
   alignRecruit(profile,st,b);profile.party=[...profile.recruited];
   if(first){const cls=st.recruit,h=profile.heroes[cls];C.autoTrain(h,cls);C.sanitizeLoadout(profile,cls);if(b?.heroes){b.heroes[cls]=clone(h);for(const u of b.units||[])if(u.side===0&&!u.summoned&&u.cls===cls){u.loadout=[...profile.loadouts[cls]];C.applyHero(u,h);}}}
 }
-const budget=id=>{const p=plan(id),start=rewardXpAt(p.entryLevel),end=rewardXpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
-function entryHero(st){const h=C.freshHero('archer');h.xp=rewardXpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
+// Derive the bridge from the unchanged first-clear/recruit rules. Do not
+// hard-code 61,569 XP: a later authorized Act 1/2 change must surface in tests.
+function legacyCampaignAnchor(last=20){
+ const xp={archer:0,mage:0,knight:0,occultist:0},roster=['archer'];
+ for(const st of G.HONRO_CONTENT.stages.filter(s=>s.id<=last)){
+  const p=plan(st.id),start=rewardXpAt(p.entryLevel),end=rewardXpAt(p.exitLevel),shift=Math.max(0,...roster.map(cls=>xp[cls]-start));
+  for(const cls of roster)xp[cls]=Math.max(xp[cls],end+shift);
+  if(st.recruit){if(!roster.includes(st.recruit))roster.push(st.recruit);xp[st.recruit]=Math.max(xp[st.recruit],xpAt(joinLevel(st)));}
+ }
+ return Math.max(...roster.map(cls=>xp[cls]));
+}
+const budget=id=>{const p=plan(id),current=p.rewardCurve==='current',start=current?(id===21?legacyCampaignAnchor(20):xpAt(p.entryLevel)):rewardXpAt(p.entryLevel),end=current?xpAt(p.exitLevel):rewardXpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
+function entryHero(st){const h=C.freshHero('archer');h.xp=plan(st.id).rewardCurve==='current'?budget(st.id).start:rewardXpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
 function referenceStats(st){const h=entryHero(st),stats=C.heroStats(h,'archer',['A01']);return {...stats,shot:C.SKILLS.LA01.damage*(C.skillBalanceFactor?.(C.SKILLS.LA01)||1)*stats.attack*1.18*C.skillDamageFactor(h.ranks.A01)*.96};}
 function tuneEnemy(st,u,kind){
   const p=plan(st.id),r=referenceStats(st);
@@ -73,11 +85,12 @@ function initialize(b,profile){
   if(!validLimit(state.limit)){
     // Ledger-only old saves have no ceiling: remove each companion's already
     // recorded combat XP before recovering the original party entry shift.
-    const entryXp=Math.max(0,...b.units.filter(u=>u.side===0&&!u.summoned).map(u=>(b.heroes[u.cls]?.xp||0)-(state.combat[u.cls]||0)));
+    const entryXp=Math.max(0,...b.units.filter(u=>campaignHero(b,u)).map(u=>(b.heroes[u.cls]?.xp||0)-(state.combat[u.cls]||0)));
     const shift=Math.max(0,entryXp-limit.start);limit.start+=shift;limit.end+=shift;
   }
   state.limit=clone(limit);
-  const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0);
+  const act3Weight=id>=21&&id<=30&&!b.honroCustom?(G.HONRO_CONTENT.stages[id-1].steps||[]).reduce((n,s)=>n+(s.wave?actionWeight({type:'spawn',kind:s.wave.kind,n:s.wave.count}):0),0):0;
+  const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
   b.honroGrowth={ledger,limit,weight:Math.max(1,weight)};
   for(const u of b.units.filter(u=>u.side===1))enemyXP(b,u);
 }
@@ -87,7 +100,7 @@ function awardCombat(e,source,amount){
   let changed=false;
   // Expedition XP is shared: NPC assistance and final-hit ownership cannot starve
   // a companion. The persistent per-stage budget also survives failure/retry.
-  for(const u of b.units.filter(u=>u.side===0&&!u.summoned)){
+  for(const u of b.units.filter(u=>campaignHero(b,u))){
     const h=b.heroes[u.cls],spent=state.combat[u.cls]||0,grant=Math.max(0,Math.min(Math.round(amount),g.limit.combat-spent,g.limit.end-h.xp));
     if(!grant)continue;
     changed=true;state.combat[u.cls]=spent+grant;const result=C.grantXP(h,grant);e.emit('xp',{cls:u.cls,value:result.actual});
@@ -103,7 +116,7 @@ function defeat(e,u,killer){
 function complete(b){
   if(!b.honroGrowth)return;
   const g=b.honroGrowth,state=g.ledger.stages[b.honroStage];if(state.cleared)return;
-  for(const u of b.units.filter(u=>u.side===0&&!u.summoned))C.grantXP(b.heroes[u.cls],Math.max(0,g.limit.end-b.heroes[u.cls].xp));
+  for(const u of b.units.filter(u=>campaignHero(b,u)))C.grantXP(b.heroes[u.cls],Math.max(0,g.limit.end-b.heroes[u.cls].xp));
   state.cleared=true;
 }
 // Camp allocates the next expedition while Continue owns an independent combat
@@ -136,5 +149,5 @@ function syncRoster(profile,b){
   profile.heroes=heroes;
 }
 function persist(app){if(app.engine?.b.honroGrowth){rememberLimit(app.engine.b);app.profile.honroGrowth=clone(app.engine.b.honroGrowth.ledger);}}
-G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
+G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,legacyCampaignAnchor,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
 })(globalThis);

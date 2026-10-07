@@ -1,3 +1,4 @@
+import {act12Balance,act12Archetypes} from './campaign-scope-helpers.mjs';
 import assert from 'node:assert/strict';
 import {beforeExistenceProfiles,beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
@@ -24,8 +25,8 @@ check('Act 1 mission, recruitment and combat semantics remain unchanged beyond t
 check('All class stats and skill definitions retain the frozen balance',()=>{
  assert.deepEqual(plain(C.CLASSES),frozen.classes);
  assert.deepEqual(beforeExistenceProfiles(C.SKILLS),frozen.skills);
- assert.deepEqual(plain(g.HonroWorld.archetypes),frozen.archetypes);
- assert.deepEqual(JSON.parse(balanceSource),frozen.balance);
+ assert.deepEqual(plain(act12Archetypes(g.HonroWorld.archetypes)),frozen.archetypes);
+ assert.deepEqual(act12Balance(JSON.parse(balanceSource)),frozen.balance);
 });
 for(const before of frozen.stages)check(`${before.id}: objective order, classes, radii, scripts, waves, enemy stats and cohorts are frozen`,()=>{
  const q=battlefield(g,before.id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);

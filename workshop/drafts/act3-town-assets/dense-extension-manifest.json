@@ -1,0 +1,639 @@
+{
+  "version": 1,
+  "status": "inactive-art-draft",
+  "baseCommit": "c0b66724b48334b2e5081d1775fdb43d6f909b5d",
+  "runtimeRegistration": false,
+  "purpose": "Additional shared architectural materials for dense-city custom-map study. No campaign registration or map decision.",
+  "collision": [],
+  "assets": [
+    {
+      "id": "draft-act3-town:open-two-storey-gallery",
+      "name": "개방형 2층 회랑",
+      "file": "open-two-storey-gallery.svg",
+      "status": "inactive-art-draft",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 10.333333333333334,
+        "bounds": {
+          "x": -730,
+          "y": -610,
+          "w": 1460,
+          "h": 620
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.65
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -610,
+          0
+        ],
+        [
+          -219,
+          0
+        ],
+        [
+          220,
+          0
+        ],
+        [
+          610,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "lower-deck",
+          "y": -18,
+          "x1": -654,
+          "x2": 654
+        },
+        {
+          "name": "upper-deck",
+          "y": -234,
+          "x1": -654,
+          "x2": 654
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "lower-central-passage",
+          "x": -195,
+          "y": -194,
+          "w": 390,
+          "h": 166
+        },
+        {
+          "name": "upper-central-passage",
+          "x": -195,
+          "y": -420,
+          "w": 390,
+          "h": 176
+        }
+      ],
+      "roof": {
+        "groupId": "gallery-long-roof",
+        "bounds": {
+          "x": -718,
+          "y": -600,
+          "w": 1437,
+          "h": 171
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "lower-deck",
+          "material": "wood",
+          "points": [
+            [
+              -654,
+              -18
+            ],
+            [
+              654,
+              -18
+            ],
+            [
+              654,
+              0
+            ],
+            [
+              -654,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "upper-deck",
+          "material": "wood",
+          "points": [
+            [
+              -654,
+              -234
+            ],
+            [
+              654,
+              -234
+            ],
+            [
+              654,
+              -205
+            ],
+            [
+              -654,
+              -205
+            ]
+          ]
+        }
+      ],
+      "notes": "Open front and central bays. Posts and partial rails are rear scenery, not mandatory collision. Floor delta 216 world units; prototype scale 1.5 makes 324, and map-side stairs or intermediate landings must be validated. This does not certify jump reach."
+    },
+    {
+      "id": "draft-act3-town:archive-cutaway-frame",
+      "name": "대형 기록고 · 절개 내부",
+      "file": "archive-cutaway-frame.svg",
+      "status": "inactive-art-draft",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 13.75,
+        "bounds": {
+          "x": -750,
+          "y": -815,
+          "w": 1500,
+          "h": 825
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.65
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -650,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          650,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "lower-floor",
+          "y": -18,
+          "x1": -690,
+          "x2": 690
+        },
+        {
+          "name": "middle-floor",
+          "y": -234,
+          "x1": -690,
+          "x2": 388
+        },
+        {
+          "name": "upper-floor",
+          "y": -450,
+          "x1": -690,
+          "x2": 388
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "lower-central-bay",
+          "x": -185,
+          "y": -183,
+          "w": 370,
+          "h": 155
+        },
+        {
+          "name": "middle-central-bay",
+          "x": -185,
+          "y": -399,
+          "w": 370,
+          "h": 150
+        },
+        {
+          "name": "upper-central-bay",
+          "x": -185,
+          "y": -615,
+          "w": 370,
+          "h": 150
+        },
+        {
+          "name": "right-stair-well",
+          "x": 420,
+          "y": -610,
+          "w": 140,
+          "h": 582
+        }
+      ],
+      "roof": {
+        "groupId": "archive-roof-cutaway-cap",
+        "bounds": {
+          "x": -735,
+          "y": -807,
+          "w": 1471,
+          "h": 150
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "lower-floor",
+          "material": "wood",
+          "points": [
+            [
+              -690,
+              -18
+            ],
+            [
+              690,
+              -18
+            ],
+            [
+              690,
+              0
+            ],
+            [
+              -690,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "middle-floor",
+          "material": "wood",
+          "points": [
+            [
+              -690,
+              -234
+            ],
+            [
+              388,
+              -234
+            ],
+            [
+              388,
+              -203
+            ],
+            [
+              -690,
+              -203
+            ]
+          ]
+        },
+        {
+          "name": "upper-floor",
+          "material": "wood",
+          "points": [
+            [
+              -690,
+              -450
+            ],
+            [
+              388,
+              -450
+            ],
+            [
+              388,
+              -419
+            ],
+            [
+              -690,
+              -419
+            ]
+          ]
+        }
+      ],
+      "stairClearance": {
+        "x1": 400,
+        "x2": 635,
+        "yTop": -630,
+        "yBottom": -18,
+        "note": "No stairs are painted or physical. Keep the right well open; map author must connect each 216-unit level using validated steps/landings, scaled with the artwork."
+      },
+      "notes": "Three unequal shelf bays with open central circulation and no front wall. Shelves and structural posts are rear artwork. Anonymous bundles have no story identity. Scale 1.5 is allowed for 324-unit storey separation."
+    },
+    {
+      "id": "draft-act3-town:three-arch-stone-bridge",
+      "name": "세 홍예 돌다리",
+      "file": "three-arch-stone-bridge.svg",
+      "status": "inactive-art-draft",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 5.666666666666667,
+        "bounds": {
+          "x": -750,
+          "y": -330,
+          "w": 1500,
+          "h": 340
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.65
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -710,
+          0
+        ],
+        [
+          -240,
+          0
+        ],
+        [
+          240,
+          0
+        ],
+        [
+          710,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "bridge-deck",
+          "y": -264,
+          "x1": -730,
+          "x2": 730
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "water-arch-1",
+          "x": -585,
+          "y": -145,
+          "w": 210,
+          "h": 135
+        },
+        {
+          "name": "water-arch-2",
+          "x": -105,
+          "y": -145,
+          "w": 210,
+          "h": 135
+        },
+        {
+          "name": "water-arch-3",
+          "x": 375,
+          "y": -145,
+          "w": 210,
+          "h": 135
+        }
+      ],
+      "roof": {
+        "groupId": "broad-coping-and-level-deck",
+        "bounds": {
+          "x": -740,
+          "y": -266,
+          "w": 1481,
+          "h": 44
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "arch-body",
+          "material": "stone",
+          "points": [
+            [
+              -720,
+              -264
+            ],
+            [
+              720,
+              -264
+            ],
+            [
+              720,
+              0
+            ],
+            [
+              648,
+              0
+            ],
+            [
+              648,
+              -108
+            ],
+            [
+              641.389,
+              -142.146
+            ],
+            [
+              623.111,
+              -170.083
+            ],
+            [
+              595.5,
+              -191.812
+            ],
+            [
+              560.889,
+              -207.333
+            ],
+            [
+              521.611,
+              -216.646
+            ],
+            [
+              480.0,
+              -219.75
+            ],
+            [
+              438.389,
+              -216.646
+            ],
+            [
+              399.111,
+              -207.333
+            ],
+            [
+              364.5,
+              -191.812
+            ],
+            [
+              336.889,
+              -170.083
+            ],
+            [
+              318.611,
+              -142.146
+            ],
+            [
+              312.0,
+              -108.0
+            ],
+            [
+              312,
+              0
+            ],
+            [
+              168,
+              0
+            ],
+            [
+              168,
+              -108
+            ],
+            [
+              161.389,
+              -142.146
+            ],
+            [
+              143.111,
+              -170.083
+            ],
+            [
+              115.5,
+              -191.812
+            ],
+            [
+              80.889,
+              -207.333
+            ],
+            [
+              41.611,
+              -216.646
+            ],
+            [
+              0.0,
+              -219.75
+            ],
+            [
+              -41.611,
+              -216.646
+            ],
+            [
+              -80.889,
+              -207.333
+            ],
+            [
+              -115.5,
+              -191.812
+            ],
+            [
+              -143.111,
+              -170.083
+            ],
+            [
+              -161.389,
+              -142.146
+            ],
+            [
+              -168.0,
+              -108.0
+            ],
+            [
+              -168,
+              0
+            ],
+            [
+              -312,
+              0
+            ],
+            [
+              -312,
+              -108
+            ],
+            [
+              -318.611,
+              -142.146
+            ],
+            [
+              -336.889,
+              -170.083
+            ],
+            [
+              -364.5,
+              -191.812
+            ],
+            [
+              -399.111,
+              -207.333
+            ],
+            [
+              -438.389,
+              -216.646
+            ],
+            [
+              -480.0,
+              -219.75
+            ],
+            [
+              -521.611,
+              -216.646
+            ],
+            [
+              -560.889,
+              -207.333
+            ],
+            [
+              -595.5,
+              -191.812
+            ],
+            [
+              -623.111,
+              -170.083
+            ],
+            [
+              -641.389,
+              -142.146
+            ],
+            [
+              -648.0,
+              -108.0
+            ],
+            [
+              -648,
+              0
+            ],
+            [
+              -720,
+              0
+            ]
+          ],
+          "note": "One concave open-bottom polygon, sampled directly from the three inner SVG cubic arches. Not a rectangle over the water openings."
+        },
+        {
+          "name": "level-coping",
+          "material": "stone",
+          "points": [
+            [
+              -730,
+              -264
+            ],
+            [
+              730,
+              -264
+            ],
+            [
+              730,
+              -224
+            ],
+            [
+              -730,
+              -224
+            ]
+          ]
+        }
+      ],
+      "visualOnlyParts": [
+        "sparse-side-parapet-blocks"
+      ],
+      "notes": "Coping top y=-264. Sparse parapet blocks are back-rail scenery, not vertical walk blockers. Four support footprints require terrain/river-bed contact. No water, flow, destructibility or route is added. Arch-body samples preserve the three open bottoms."
+    }
+  ]
+}

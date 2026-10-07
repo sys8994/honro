@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {packPlaytestTemplate,escapeScript,SHARED_BEGIN,SHARED_END} from '../shared/playtest-template.mjs';
+const parts=['globalThis.sample={text:"</ScRiPt> 한글 \\u2028",nested:{x:1}};','globalThis.count=(globalThis.count||0)+1;'];
+const game='<!doctype html><script>/*before*/\n'+escapeScript(parts.join('\n'))+'\n/*after*/</script></html>\n';
+const packed=packPlaytestTemplate(game,parts),script=escapeScript(packed.shared+'\nglobalThis.editorLoaded=true;\n'+packed.restore),g={document:{currentScript:{textContent:script}}};
+vm.runInNewContext(script,g);assert.equal(g.HONRO_PLAYTEST_HTML,game,'Exact Game HTML, including script escapes and whitespace');assert.equal(g.count,1,'Shared runtime executes only once in the editor');assert(g.editorLoaded);g.document.currentScript.textContent='replaced after startup';g.document.currentScript=null;assert.equal(g.HONRO_PLAYTEST_HTML,game,'Later script removal or DOM insertion cannot change the captured Playtest document');
+const child={};vm.runInNewContext(g.HONRO_PLAYTEST_HTML.match(/<script>([\s\S]*)<\/script>/)[1],child);assert.equal(child.count,1);assert.equal(child.sample.text,g.sample.text);child.sample.nested.x=2;assert.equal(g.sample.nested.x,1,'Playtest creates an independent runtime');
+assert.throws(()=>packPlaytestTemplate('missing',parts),/exactly one/);assert.throws(()=>packPlaytestTemplate(game+game,parts),/exactly one/);assert.throws(()=>packPlaytestTemplate(game,[SHARED_BEGIN]),/unique/);
+assert.throws(()=>vm.runInNewContext(packed.restore,{document:{currentScript:null}}),/unavailable/);assert.throws(()=>vm.runInNewContext(packed.restore,{document:{currentScript:{textContent:SHARED_END}}}),/missing/);
+console.log('PASS standalone playtest template: exact HTML, escaping, one execution, independent child, and explicit invalid-template errors');

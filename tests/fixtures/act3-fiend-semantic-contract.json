@@ -1,0 +1,3260 @@
+{
+  "version": 1,
+  "sourceCommit": "f2e9781093b577b2d83c030197f6dad05e356b20",
+  "sourcePurpose": "Exact pre-fiend combat/mission values. Only the user-approved recovery→possessed kind rename is applied while deriving this fixture; no current-candidate values are imported.",
+  "historicalReceipt": "tests/fixtures/historical/act3-fiend-transition-f2e9781.json",
+  "kindRenames": {
+    "recoveryGuard": "possessedGuard",
+    "recoveryArcher": "possessedArcher"
+  },
+  "projectRules": {
+    "schema": "honro-map",
+    "version": 6,
+    "environmentVersion": 4,
+    "settings": {
+      "grid": 40,
+      "snap": true,
+      "autosave": true,
+      "adaptiveLOD": true
+    }
+  },
+  "legacyMaps": [
+    {
+      "id": 1,
+      "sha256": "13a4e86b558d61597a1c28c1ee2d08a61e4aad702ee6a5d405dc091d7369cda5"
+    },
+    {
+      "id": 2,
+      "sha256": "a1a1fdc73f655df7273450435b66946a7230d44879f8822a9a54844c314f272d"
+    },
+    {
+      "id": 3,
+      "sha256": "cff7f08d63eb039af7abb342aa1ba672c813fc988d47c8915d3bce62369d406f"
+    },
+    {
+      "id": 4,
+      "sha256": "70840af646ce0b4d75522191aa45ec29ef47e7864d6b055b4b43a6f802465383"
+    },
+    {
+      "id": 5,
+      "sha256": "7e28a03de4e94cd36830c0e68289786c76efc03a3ba1450fe2940b24d939de7c"
+    },
+    {
+      "id": 6,
+      "sha256": "8904a7757f080060334830f18eaa95e3188be03e91623c1fc0f2a6c327b6dac5"
+    },
+    {
+      "id": 7,
+      "sha256": "5c5ebf231dae875e1fb0c09acd08d9708f45f51cb2e4796a2b1dd157534f5ed4"
+    },
+    {
+      "id": 8,
+      "sha256": "824788628078ac121f0c4fcc880c3cebe4e3a940dce0d1a1d0b8e777bbe464f3"
+    },
+    {
+      "id": 9,
+      "sha256": "152a8c03bb06cff304233bd725bbc06b270476a1098226bcc60062faccfcf53f"
+    },
+    {
+      "id": 10,
+      "sha256": "efa39570832736125dbeaa8d7d19be4e98187163072c0c4befc770da1ad1a657"
+    },
+    {
+      "id": 11,
+      "sha256": "6ef349d8c85f1a37fff2c4abb0e274b1c2a8b16da97725a8ed4108c9fc234536"
+    },
+    {
+      "id": 12,
+      "sha256": "117be7c99b2d662e653cc165f2ef47cdd3f8df1f12992258aa87becef514a3f4"
+    },
+    {
+      "id": 13,
+      "sha256": "b1a849268d7f2faaa0afe43f1ea7401ad9308ff503f646b9ea035e55144b0063"
+    },
+    {
+      "id": 14,
+      "sha256": "1e0dcbe5ec6bb1dcd0843af677f282e2c067482663af41e7b92cc3da01dbd49a"
+    },
+    {
+      "id": 15,
+      "sha256": "f8cc64d09a550ad3c1aa15197b14908347866abf65ea2215b801d22d28150395"
+    },
+    {
+      "id": 16,
+      "sha256": "bbfef608a4d88f39fb6f8677da4813f8a0e507173d9a781ad184e27865086fbc"
+    },
+    {
+      "id": 17,
+      "sha256": "159cc9265ff2f8b6fe2abc4da9ce0ba9ac537f653ebccd6dca0bad16c206f043"
+    },
+    {
+      "id": 18,
+      "sha256": "15ec410f24cb0ccd5bec7c64999ca4cd7b280998ed7d6043f380ea24754a23a8"
+    },
+    {
+      "id": 19,
+      "sha256": "6b7c19a437c17de919aaa348f2a9b4d8d816622f44844513d2aad0a22c8d0704"
+    },
+    {
+      "id": 20,
+      "sha256": "13197297579b70ba3d805b4283007fd8a91ec046873ac3820eb4f294ccc31db7"
+    }
+  ],
+  "legacyAssets": [
+    {
+      "id": "rock_small",
+      "sha256": "0b685c355774902d13af20856de93440140873f774f8845f70833d84a14e52bd"
+    },
+    {
+      "id": "rock_large",
+      "sha256": "500d11e14b6b2026330273fa1d76418c0e70f88e72e5df6732343661a7a875b3"
+    },
+    {
+      "id": "rock_ledge",
+      "sha256": "6f2b80befd81dd2c3f741b91c16440c15a94de6d036abe7a9bba549e0158b943"
+    },
+    {
+      "id": "ancient_pine",
+      "sha256": "7a595a6960dcfc95cca7e89ed7747fac19aa217c5debfb41e38bf174d6382f3d"
+    },
+    {
+      "id": "dead_pine",
+      "sha256": "28c3a5212c01362c5df4a15fe1c147d5d62db07338820e53b1374407582d0752"
+    },
+    {
+      "id": "branch_thick",
+      "sha256": "cbe63a06e3d8a3fd7523a01d2f8144826c070a3119f8c98f23fb863cf9c944f9"
+    },
+    {
+      "id": "grass_tuft",
+      "sha256": "92f4d539888c0ffe6a3c1028c9acb9fe4be0f552351f600ea9c11d55c99850f7"
+    },
+    {
+      "id": "fern",
+      "sha256": "ea7f1007654c641b4143210752b18d6d58b7f587e0a3b3bd978005423d484b04"
+    },
+    {
+      "id": "reed",
+      "sha256": "a76b6d118648599d638fa19b42de93f262ee526c7f85004eff1b99463ed4c05c"
+    },
+    {
+      "id": "shrine_gate",
+      "sha256": "27af7058c93443265cb6f2c120496133ea234f43ef3c3c7a6c9ac6a74974706d"
+    },
+    {
+      "id": "hut",
+      "sha256": "331a4bc8541ca8d31a5c08ad8565ff7d1208a555fda8eeb5c3ee2651e62f8a9a"
+    },
+    {
+      "id": "warehouse",
+      "sha256": "7b4059dc3040dc6bfea6873a2d46390e7795f3e28212555984082e32cede57c8"
+    },
+    {
+      "id": "cart",
+      "sha256": "8ff39a8bca070cef853b882edfa98f921b1710ab2b5fc6bf35094dbcb09e52df"
+    },
+    {
+      "id": "lantern",
+      "sha256": "051c79fda7e68c74a781d7dfd4211faa1c368b7cda6fabea1d87be1d62c29401"
+    },
+    {
+      "id": "grave_post",
+      "sha256": "ec89c880e411048e00b9ca6d3b16ab09dbfecd5888de64ba94958903e32ebe6f"
+    },
+    {
+      "id": "env:ridge",
+      "sha256": "3613815699e6529fb505dd8c1a2d628d8b5a72544c52613da683b400153be249"
+    },
+    {
+      "id": "env:cliff",
+      "sha256": "c2430b6e6e4bf45c7c9df02cd49da18f65d5d0a43190e8a31bf5839e538e4f67"
+    },
+    {
+      "id": "env:cloud",
+      "sha256": "6ed20722dd73e549e26ee8acb2a1063cb5b3a78eddf8fd69d43b410613b0a27f"
+    },
+    {
+      "id": "builtin:ancientPine",
+      "sha256": "0fa6a30b39af7fb79307311a5cbadd82c85527fe847358c4cbe24c9a2e5383fe"
+    },
+    {
+      "id": "builtin:scree",
+      "sha256": "76b2c33e664a6bc2ceb781446a91a0c2452f217e624c82323a1598bd32ca1aed"
+    },
+    {
+      "id": "builtin:fernPatch",
+      "sha256": "1a83a1e2e9141838b8178773f67abfec895e9e3914cf315d24b5e0bb11aa3d81"
+    },
+    {
+      "id": "builtin:rockPile",
+      "sha256": "28944ee5571ddb50d39592f3e92ccb77ff5087c15fbb19b913994b4d1f7b0c0d"
+    },
+    {
+      "id": "builtin:giantPine",
+      "sha256": "cdc8e28b681a3d8f82ea5e5cb29ea08a6cb2a19647d1ec707b1c304459ab2388"
+    },
+    {
+      "id": "builtin:fallenTree",
+      "sha256": "d0e798684b24a5d887dc4be98148b6a815eaf58c54f1dac3183992702dc4d9b6"
+    },
+    {
+      "id": "builtin:spiritKnot",
+      "sha256": "ed80f3a50a4e12452eba505c7d981f4d3f4d13cce1afefd8b95f55b218fc38e5"
+    },
+    {
+      "id": "builtin:oldGate",
+      "sha256": "35ec5e608ada3cd09ad1a3e495239e5fefd443ce7d552883235bb4a7f1a39615"
+    },
+    {
+      "id": "builtin:ravinePine",
+      "sha256": "73226042e7346723efaed771829bc24339f1b652111934593811ca3da6125bf5"
+    },
+    {
+      "id": "builtin:funeralGate",
+      "sha256": "1337173e88bae11605036ebf043be1a8f1b90cf1cf0ef795b168aa285052410d"
+    },
+    {
+      "id": "builtin:reedBank",
+      "sha256": "286f428961cc35e154d03c6afa5b8f868abadc5ea4123be5d1f1314ebb489ace"
+    },
+    {
+      "id": "builtin:ferry",
+      "sha256": "86197964da8f6a12fdc7a7396baa9f676a5905a3757ee4f93dd08b72658c2350"
+    },
+    {
+      "id": "builtin:brokenDock",
+      "sha256": "dace83d9c3688346a4d70da1d4b09e99030f78d23513d2184bac84ed075fb31d"
+    },
+    {
+      "id": "builtin:waterShrine",
+      "sha256": "b20ae6ef1955aaa21bb35adbca15b29e0739d47eaa60346372f081a8e30f8b6f"
+    },
+    {
+      "id": "builtin:cargoScaffold",
+      "sha256": "6f3fdae8253f2de9bcd45fe76ae6724a2ee6d327fb841223a712770e41d530e3"
+    },
+    {
+      "id": "builtin:warehouse",
+      "sha256": "82a230c6d30316a52b1b36a892a9cf5119d62ca187b07dff028e838ec5480028"
+    },
+    {
+      "id": "builtin:oldHall",
+      "sha256": "a0301aa8539d0de0bbb7ed50bde9e070566ad4f0999429af7beb593f797943b2"
+    },
+    {
+      "id": "builtin:refugeeCarts",
+      "sha256": "4ad91e79341685f78cf6e1fe2683f2a5c683f5f61599974465fa12745e18117a"
+    },
+    {
+      "id": "builtin:villageWall",
+      "sha256": "f1294a4224766f55746f3129888b36548cfeb9ff1c4cbc96947f930a237bbcaf"
+    },
+    {
+      "id": "builtin:cliffFace",
+      "sha256": "265f343620bb2e6de664613de9409a8402ca2ca0619c61c07ffce6d28187c81a"
+    },
+    {
+      "id": "builtin:burnedHouses",
+      "sha256": "c54180962d268f8d0644f6ef3fb062c11c43aec6d1521ab703ae50029e51ca92"
+    },
+    {
+      "id": "builtin:watchtower",
+      "sha256": "535b09ea2ee21f716a0bf4fb8e2b53134c72e1b6b0f4473632566d416eaf5c02"
+    },
+    {
+      "id": "builtin:waterfall",
+      "sha256": "578107f3580f25639e2f18c9b14d0da80844236242906bb283e4160c6426c9fc"
+    },
+    {
+      "id": "builtin:receiverStone",
+      "sha256": "486894b324e3c779876bc24ad515b2ae3e5ee931b601ef55b1ad9e1a390446c1"
+    },
+    {
+      "id": "builtin:cliffShrine",
+      "sha256": "f6e8d2cdad9ae2e9eaca59c47f2662174271f2c729f1f943c01209bc440aac34"
+    },
+    {
+      "id": "builtin:deadPines",
+      "sha256": "5bdf232bb5da4e39cca3a6e6b346107458d1e7729253ea0867940a28c7c4689a"
+    },
+    {
+      "id": "builtin:brokenBridge",
+      "sha256": "05cea7bfc08de2eee3311b873388c2b2323b6ce25408f8b25cc0f08ea9aa2443"
+    },
+    {
+      "id": "builtin:bridgePillar",
+      "sha256": "398e94b7ab79b2cb78d331248d641bd11b493e32224dcbc57da4cd296aab6d14"
+    },
+    {
+      "id": "builtin:bell",
+      "sha256": "f538d7d60c133bd94feb01561dfee985f196f8c3c59834bb4d2974b45bab56a8"
+    },
+    {
+      "id": "builtin:greatTree",
+      "sha256": "58f51715af81c7f6f59306a618bd7d1dc23939ad033c105b7bd7e1d342caa9d0"
+    },
+    {
+      "id": "builtin:rootHut",
+      "sha256": "b85d63ea019ff1663263134b4c001136ae75cd8193a1af03245548021c984da3"
+    },
+    {
+      "id": "builtin:hollowRoot",
+      "sha256": "ba2e18f92ef98f5fe5530d69c6fa553f31f8c77da01e767437e43526faecdd86"
+    },
+    {
+      "id": "builtin:rootShrine",
+      "sha256": "2d201a3d3572e4c833a9b00943b09148a3287174158240bea6b04d2e5c1d3662"
+    },
+    {
+      "id": "builtin:gravePosts",
+      "sha256": "cd1b5b241110c13c4310145aaa3ae6706b78ce4612d285d1896a7df5aeecef35"
+    },
+    {
+      "id": "builtin:bierRest",
+      "sha256": "f8c182a0c4fc8e1bd877ca1b024be82cc612e5a3dc92698c189c548c5643933e"
+    },
+    {
+      "id": "builtin:incenseYard",
+      "sha256": "bc4b10f6245410c7b1a332546de36e263097b9fa749373488d63920a4e4710a8"
+    },
+    {
+      "id": "builtin:royalGate",
+      "sha256": "f4f45cd571116bf360615d05f9930866b30feb3fac434a52c28bf7b335c931b8"
+    },
+    {
+      "id": "builtin:ritualDais",
+      "sha256": "8705111eddbffb55e3cad8719515458b4127d960835b5dcc7d9db6899b915337"
+    },
+    {
+      "id": "builtin:upperShrine",
+      "sha256": "c861f4dbe13990741575a7d62cf11d76b979baafc273e86176264d5109e8cd38"
+    },
+    {
+      "id": "env:forest",
+      "sha256": "e2e3e574cb03c86465813d9be1f85899901a24b2b2b1516bae8e5165a23bb94f"
+    },
+    {
+      "id": "env:rock",
+      "sha256": "cf210a1cc29ce400f11a73e87044b8b4727eed7c62f3b3ac5d134af4e9d84a44"
+    },
+    {
+      "id": "env:shrine",
+      "sha256": "f096e05c1e1b368b47b93b126c083ab2cc5879cc8a71cc393c0877b492c575a5"
+    },
+    {
+      "id": "env:waterfall",
+      "sha256": "4756e460baa76c2d0d3a60fb788daa955d73315420c458211b2c4ac45f4f036d"
+    },
+    {
+      "id": "mockup-granite-large",
+      "sha256": "546c15c655aeda854d4f1b1a31bec0f609b7c08dcc02376dad7ffa11ebc53701"
+    },
+    {
+      "id": "mockup-granite-small",
+      "sha256": "c9369406a1736fd8ba485fa1cec14e04b08493f087b3c3ceb52b9591ffae4070"
+    },
+    {
+      "id": "mockup-granite-shelf",
+      "sha256": "b74ea168932460d605bf97e9590614c43182d5185094d8ce6541e300d481b071"
+    },
+    {
+      "id": "builtin:placeDetail",
+      "sha256": "32e4a593f5eff112d4f7debd44ae18bf9db1ceb48e26aecc41593ff3d4064a8b"
+    },
+    {
+      "id": "act2:cave-house",
+      "sha256": "8dfe1bf645ed1230c4086aaed83a2fc8c9712fbe65854422497118e31d310504"
+    },
+    {
+      "id": "act2:cave-house-lean",
+      "sha256": "bb5dcc83a5059a84c4d240bc35dc81a8b9d34fb224386ee551b7a112ae5cc972"
+    },
+    {
+      "id": "act2:cave-house-ruin",
+      "sha256": "70f9a37551d27e1935ca91e143f11718816c5103dfcc01edfdaf93edb4f954c0"
+    },
+    {
+      "id": "act2:temple",
+      "sha256": "5f1530c2fe2b1f4d4abf0064178e3f4471760bf8c506df31496a97554c9bd4a5"
+    },
+    {
+      "id": "act2:bell",
+      "sha256": "70f964f248c024448fe405b1c00a772f72729926bc9d8eb5878d1d7f8a23c183"
+    },
+    {
+      "id": "act2:hoist-frame",
+      "sha256": "01e853d6683d4e760464ce26d0bb320e708bbb28fefb915683907755c1164d71"
+    },
+    {
+      "id": "act2:lamp",
+      "sha256": "c436210a37747d22aeeba68fc17c29c5630e2aa8a9053e808f2f7d9e30beeb06"
+    },
+    {
+      "id": "act2:ritual",
+      "sha256": "2061849e68d17d18468be85d804fe3bc8fef5ad5f4a3bd6416c4884a75984a73"
+    },
+    {
+      "id": "act2:timber-rack",
+      "sha256": "3cede7fb66ac4349c4d09829751fab83ca31980af688f491839bfde4d31158c2"
+    },
+    {
+      "id": "act2:mine-rail",
+      "sha256": "fc6e2920893c6048f93bd3b4def9487ee34dec474c7bbcb227fd3c7e61769185"
+    },
+    {
+      "id": "act2:water-trough",
+      "sha256": "21128d48831e381c66b85589644cc4cf27132b5529ff0fafc48119cd3df3072c"
+    },
+    {
+      "id": "act2:memorial",
+      "sha256": "df57bcb0d1f02bf6744ff194a7da354435291d5eaeac6a4ded37efdaf5a55e3c"
+    },
+    {
+      "id": "act2:bundles",
+      "sha256": "924250371658331a93975034f75608747459fc5a7d0cb9acf2a474e7ac147a5b"
+    },
+    {
+      "id": "act2:rock-column",
+      "sha256": "f564d7b028a916e275e16700a1e6575c66f0ab4c36bea83b84320e7b8cfd1ee3"
+    },
+    {
+      "id": "act2:hanging-cloth",
+      "sha256": "17ce412ec8f8c392a69d986b553fda3669fb2872953e07c5e367e06c3d4ffdc6"
+    },
+    {
+      "id": "act2:stone-table",
+      "sha256": "f10eac9d4142bb4fe999a92c52a9cf02243a0a61d5e81bfdadbcf8a9e6b50b6b"
+    },
+    {
+      "id": "act2:old-soul-stone",
+      "sha256": "b0d8280e552a5366b8dc8a1234d647fac2ee8d8b067dbc10b4a3e4f7af22b4e4"
+    },
+    {
+      "id": "act2:rock-bank",
+      "sha256": "66f6f695fd422ac3f2be158900f1f47ffb39073e3aa6c6f33ac2fb3457b5fe7c"
+    },
+    {
+      "id": "act2:pine",
+      "sha256": "5213052405f7ad120c951e084a72193cf1afba68c2a6f5197dc1bca5978311f9"
+    },
+    {
+      "id": "act2:sluice",
+      "sha256": "24bc7844e75e2a6317ab1e8cef165421aee3a7e777a05df1223a321d4a268e35"
+    },
+    {
+      "id": "act2:scene-longhouse",
+      "sha256": "0d78292603598f2117a62ca958c28f69d19a19b0b6c3ff582df150fd811fb3ed"
+    },
+    {
+      "id": "act2:scene-market-awning",
+      "sha256": "6f7c2d281af362d8b4571d703ac08dbe79baf77543632821d9fa2e500c91f1bc"
+    },
+    {
+      "id": "act2:scene-temple-corridor",
+      "sha256": "158a021e5a18ed9f1aaed31aa694a768b7c8a07708c9d7ab42a5a49460e6ce71"
+    },
+    {
+      "id": "act2:scene-stone-threshold",
+      "sha256": "13a99d542fa75c11f577f77708a082a62117392ab2310f65ca280a0c63f9b43e"
+    },
+    {
+      "id": "act2:scene-work-shelter",
+      "sha256": "fd168b2395191bb003015fb7b939e8e67284656460910a89148b27d0bf9be10d"
+    },
+    {
+      "id": "act2:scene-market-walkway",
+      "sha256": "29c329d9cbad0e943bfcfd3c6c8abb5a8992a705da46df19b703968cdea7571e"
+    },
+    {
+      "id": "act2:scene-upper-stair",
+      "sha256": "549e89e095b7ab4616dce2538e96cf12f1ca6dd965fc51a84f02414872059912"
+    },
+    {
+      "id": "act2:scene-court-wall",
+      "sha256": "528fff7ef5e20ab499b39abecc9b3e89f3f20c0718174f843c83524abf004baa"
+    },
+    {
+      "id": "act1-scene:pine-grove",
+      "sha256": "97e22a99ec3b47d54b1fe3d476ace70aa08c5b95f3d4ff45dc669803488e77a6"
+    },
+    {
+      "id": "act1-scene:ritual-grove",
+      "sha256": "e817f1e5bd1d8a0e16d22c9760fba87b3be81f5ae53f7cac3e6473ab8c8a864f"
+    },
+    {
+      "id": "act1-scene:valley-granite",
+      "sha256": "53130769b0bb905ff8d2031f692b1975b62a21b5f2de717d88546f7b77f4175f"
+    },
+    {
+      "id": "act1-scene:ferry-house",
+      "sha256": "36880906c66f053b58362453f3f1d5a78c4aaf2af2d25491a78cb2da450050dc"
+    },
+    {
+      "id": "act1-scene:refuge-gate",
+      "sha256": "c695e315349adf742e97ef6ffcab23452526a28b951c996f333109129d1c93bf"
+    },
+    {
+      "id": "act1-scene:refuge-courtyard",
+      "sha256": "a13c93d01de16e4a04ff25616c7a1ff9ac8ffed879abffbf8a2703dd1ac69557"
+    },
+    {
+      "id": "act1-scene:bridge-abutment",
+      "sha256": "bd26e6e83e21cc30a23109a053add5e943594db295413f2d6494c46ad1c1f2c7"
+    },
+    {
+      "id": "act1-scene:ruined-court",
+      "sha256": "cd35e2ecc9e2e729823d7cccd3e6368da105ab51daeb837f5df72b5d47c60ea6"
+    },
+    {
+      "id": "act1-scene:root-sanctuary",
+      "sha256": "3f3fa66586a4869cc9e2735abfbc62d1733e08fa4034cbeea3f4d41e81dec6bd"
+    },
+    {
+      "id": "act1-scene:ritual-hall",
+      "sha256": "f90b532b59964e30789e1a256e68d3ba7b8cf1169eea92b69e031125ce2c06f4"
+    },
+    {
+      "id": "act1-scene:rooted-sacred",
+      "sha256": "c72e46d1301961d28e9908b001133d7c74624d42be743b576e93fff4b0a8940f"
+    },
+    {
+      "id": "act1-scene:rooted-pine",
+      "sha256": "92523de041020cac1da310ddb75522ce594e40783d39cff565ca864f4cab530c"
+    }
+  ],
+  "fiendCount": 38,
+  "archetypes": {
+    "possessedGuard": {
+      "look": "human",
+      "cls": "knight",
+      "skills": [
+        "S09"
+      ],
+      "role": "leaper",
+      "h": 98,
+      "r": 25
+    },
+    "possessedArcher": {
+      "look": "human",
+      "cls": "archer",
+      "skills": [
+        "A01"
+      ],
+      "role": "bow",
+      "h": 96,
+      "r": 24
+    }
+  },
+  "act3": [
+    {
+      "id": "stage-21",
+      "metadata": {
+        "stageId": 21,
+        "act": 3,
+        "actStage": 1,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "act3-resident",
+          "kind": "object:civilian",
+          "team": "npc",
+          "facing": 1,
+          "label": "주민",
+          "stageOverrides": {
+            "honroProtected": true
+          }
+        },
+        {
+          "id": "a3-21-enemy-0",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "gate"
+          }
+        },
+        {
+          "id": "a3-21-enemy-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "gate"
+          }
+        },
+        {
+          "id": "a3-21-enemy-2",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "gate"
+          }
+        },
+        {
+          "id": "a3-21-enemy-3",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "market"
+          }
+        },
+        {
+          "id": "a3-21-enemy-4",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "market"
+          }
+        },
+        {
+          "id": "a3-21-enemy-5",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "market"
+          }
+        },
+        {
+          "id": "a3-21-enemy-6",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "market"
+          }
+        },
+        {
+          "id": "a3-21-enemy-7",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "market"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "city-exit",
+          "type": "exit"
+        },
+        {
+          "id": "gate-resident",
+          "type": "act3",
+          "action": "act3",
+          "target": "act3-resident"
+        },
+        {
+          "id": "marker-wagon-lock",
+          "type": "act3",
+          "requiredClass": "archer",
+          "target": "wagon-lock"
+        },
+        {
+          "id": "refuge-hold",
+          "type": "act3"
+        },
+        {
+          "id": "wave-refuge-hold",
+          "type": "act3-wave"
+        }
+      ],
+      "devices": [
+        {
+          "id": "wagon-lock",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 21,
+        "act": 3,
+        "actStage": 1,
+        "level": 15,
+        "objective": "act3",
+        "requires": [
+          20
+        ],
+        "active": 3,
+        "enemies": 8,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "wagon-lock",
+            "kind": "destroy",
+            "requiredClass": "archer"
+          },
+          {
+            "id": "gate-resident",
+            "kind": "rescue",
+            "target": "act3-resident"
+          },
+          {
+            "id": "refuge-hold",
+            "kind": "hold",
+            "rounds": 2,
+            "wave": {
+              "kind": "hound",
+              "count": 2
+            },
+            "radius": 520,
+            "contestRadius": 230
+          },
+          {
+            "id": "city-exit",
+            "kind": "reach"
+          }
+        ]
+      },
+      "balance": {
+        "id": 21,
+        "act": 3,
+        "entryLevel": 15.69,
+        "exitLevel": 16.3,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 8,
+        "activeEnemies": 3,
+        "targetHits": 2.1,
+        "targetIncomingHpFraction": 0.065,
+        "maxAlive": 18,
+        "targetRounds": [
+          14,
+          24
+        ],
+        "objectiveTurns": 4
+      }
+    },
+    {
+      "id": "stage-22",
+      "metadata": {
+        "stageId": 22,
+        "act": 3,
+        "actStage": 2,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "a3-22-enemy-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "archive-lower"
+          }
+        },
+        {
+          "id": "a3-22-enemy-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "archive-lower"
+          }
+        },
+        {
+          "id": "a3-22-enemy-2",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "archive-lower"
+          }
+        },
+        {
+          "id": "a3-22-enemy-3",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "archive-lower"
+          }
+        },
+        {
+          "id": "a3-22-enemy-4",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "archive-upper"
+          }
+        },
+        {
+          "id": "a3-22-enemy-5",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "archive-upper"
+          }
+        },
+        {
+          "id": "a3-22-enemy-6",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "archive-upper"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "archive-exit",
+          "type": "exit"
+        },
+        {
+          "id": "archive-seal",
+          "type": "act3",
+          "action": "act3",
+          "requiredClass": "knight"
+        },
+        {
+          "id": "compare-ledgers",
+          "type": "act3"
+        },
+        {
+          "id": "ledger-case",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "marker-upper-latch",
+          "type": "act3",
+          "requiredClass": "archer",
+          "target": "upper-latch"
+        },
+        {
+          "id": "wave-compare-ledgers",
+          "type": "act3-wave"
+        }
+      ],
+      "devices": [
+        {
+          "id": "archive-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "upper-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "upper-latch",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 22,
+        "act": 3,
+        "actStage": 2,
+        "level": 16,
+        "objective": "act3",
+        "requires": [
+          21
+        ],
+        "active": 3,
+        "enemies": 7,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "archive-seal",
+            "kind": "interact",
+            "requiredClass": "knight",
+            "opens": "archive-door"
+          },
+          {
+            "id": "ledger-case",
+            "kind": "interact"
+          },
+          {
+            "id": "upper-latch",
+            "kind": "destroy",
+            "opens": "upper-door",
+            "requiredClass": "archer"
+          },
+          {
+            "id": "compare-ledgers",
+            "kind": "hold",
+            "rounds": 2,
+            "wave": {
+              "kind": "lantern",
+              "count": 2
+            },
+            "radius": 460,
+            "contestRadius": 230
+          },
+          {
+            "id": "archive-exit",
+            "kind": "reach"
+          }
+        ]
+      },
+      "balance": {
+        "id": 22,
+        "act": 3,
+        "entryLevel": 16.3,
+        "exitLevel": 16.9,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 7,
+        "activeEnemies": 3,
+        "targetHits": 2.135,
+        "targetIncomingHpFraction": 0.0665,
+        "maxAlive": 18,
+        "targetRounds": [
+          15,
+          26
+        ],
+        "objectiveTurns": 6
+      }
+    },
+    {
+      "id": "stage-23",
+      "metadata": {
+        "stageId": 23,
+        "act": 3,
+        "actStage": 3,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "act3-carrier",
+          "kind": "object:civilian",
+          "team": "npc",
+          "facing": 1,
+          "label": "기록 운반인",
+          "stageOverrides": {
+            "honroProtected": true,
+            "fixed": false,
+            "maxMove": 900,
+            "moveLeft": 900
+          }
+        },
+        {
+          "id": "a3-23-enemy-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-23-enemy-1",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-23-enemy-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-23-enemy-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "quay"
+          }
+        },
+        {
+          "id": "a3-23-enemy-4",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "quay"
+          }
+        },
+        {
+          "id": "a3-23-enemy-5",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "quay"
+          }
+        },
+        {
+          "id": "a3-23-enemy-6",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "quay"
+          }
+        },
+        {
+          "id": "a3-23-enemy-7",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "quay"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "carrier-start",
+          "type": "act3",
+          "action": "act3",
+          "target": "act3-carrier"
+        },
+        {
+          "id": "dispatch-bundle",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "dock-exit",
+          "type": "exit"
+        },
+        {
+          "id": "dock-mid",
+          "type": "act3",
+          "target": "act3-carrier"
+        },
+        {
+          "id": "marker-cargo-lock",
+          "type": "act3",
+          "target": "cargo-lock"
+        },
+        {
+          "id": "route:dock-exit:0",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-exit:1",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-exit:2",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-exit:3",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-exit:4",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-mid:0",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-mid:1",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-mid:2",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-mid:3",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:dock-mid:4",
+          "type": "act3-route"
+        }
+      ],
+      "devices": [
+        {
+          "id": "cargo-gate",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "cargo-lock",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 23,
+        "act": 3,
+        "actStage": 3,
+        "level": 16,
+        "objective": "act3",
+        "requires": [
+          22
+        ],
+        "active": 3,
+        "enemies": 8,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "cargo-lock",
+            "kind": "destroy",
+            "opens": "cargo-gate"
+          },
+          {
+            "id": "dispatch-bundle",
+            "kind": "interact"
+          },
+          {
+            "id": "carrier-start",
+            "kind": "interact",
+            "target": "act3-carrier",
+            "startsEscort": true
+          },
+          {
+            "id": "dock-mid",
+            "kind": "escort",
+            "target": "act3-carrier"
+          },
+          {
+            "id": "dock-exit",
+            "kind": "escort",
+            "target": "act3-carrier"
+          }
+        ]
+      },
+      "balance": {
+        "id": 23,
+        "act": 3,
+        "entryLevel": 16.9,
+        "exitLevel": 17.5,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 8,
+        "activeEnemies": 3,
+        "targetHits": 2.17,
+        "targetIncomingHpFraction": 0.068,
+        "maxAlive": 18,
+        "targetRounds": [
+          16,
+          28
+        ],
+        "objectiveTurns": 6
+      }
+    },
+    {
+      "id": "stage-24",
+      "metadata": {
+        "stageId": 24,
+        "act": 3,
+        "actStage": 4,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "a3-24-enemy-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-24-enemy-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-24-enemy-2",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-24-enemy-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-24-enemy-4",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-24-enemy-5",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-24-enemy-6",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "family-crest",
+          "type": "act3",
+          "action": "act3",
+          "requiredClass": "knight"
+        },
+        {
+          "id": "garden-exit",
+          "type": "exit"
+        },
+        {
+          "id": "land-register",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "marker-courtyard-latch",
+          "type": "act3",
+          "target": "courtyard-latch"
+        },
+        {
+          "id": "shrine-seal",
+          "type": "act3",
+          "action": "act3",
+          "requiredClass": "mage"
+        }
+      ],
+      "devices": [
+        {
+          "id": "courtyard-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "courtyard-latch",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        },
+        {
+          "id": "shrine-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 24,
+        "act": 3,
+        "actStage": 4,
+        "level": 17,
+        "objective": "act3",
+        "requires": [
+          23
+        ],
+        "active": 3,
+        "enemies": 7,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "courtyard-latch",
+            "kind": "destroy",
+            "opens": "courtyard-door"
+          },
+          {
+            "id": "family-crest",
+            "kind": "interact",
+            "requiredClass": "knight"
+          },
+          {
+            "id": "shrine-seal",
+            "kind": "interact",
+            "requiredClass": "mage",
+            "opens": "shrine-door"
+          },
+          {
+            "id": "land-register",
+            "kind": "interact"
+          },
+          {
+            "id": "garden-exit",
+            "kind": "reach"
+          }
+        ]
+      },
+      "balance": {
+        "id": 24,
+        "act": 3,
+        "entryLevel": 17.5,
+        "exitLevel": 18.1,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 7,
+        "activeEnemies": 3,
+        "targetHits": 2.205,
+        "targetIncomingHpFraction": 0.0695,
+        "maxAlive": 18,
+        "targetRounds": [
+          17,
+          30
+        ],
+        "objectiveTurns": 5
+      }
+    },
+    {
+      "id": "stage-25",
+      "metadata": {
+        "stageId": 25,
+        "act": 3,
+        "actStage": 5,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "a3-25-enemy-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-25-enemy-1",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-25-enemy-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-25-enemy-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-25-enemy-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-25-enemy-5",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-25-enemy-6",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "archive-hold",
+          "type": "act3"
+        },
+        {
+          "id": "back-exit",
+          "type": "exit"
+        },
+        {
+          "id": "hidden-latch",
+          "type": "act3",
+          "action": "act3",
+          "requiredClass": "knight"
+        },
+        {
+          "id": "investigation-record",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "marker-rear-latch",
+          "type": "act3",
+          "target": "rear-latch"
+        },
+        {
+          "id": "wave-archive-hold",
+          "type": "act3-wave"
+        }
+      ],
+      "devices": [
+        {
+          "id": "hidden-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "rear-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "rear-latch",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 25,
+        "act": 3,
+        "actStage": 5,
+        "level": 18,
+        "objective": "act3",
+        "requires": [
+          24
+        ],
+        "active": 3,
+        "enemies": 7,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "hidden-latch",
+            "kind": "interact",
+            "requiredClass": "knight",
+            "opens": "hidden-door"
+          },
+          {
+            "id": "archive-hold",
+            "kind": "hold",
+            "rounds": 3,
+            "wave": {
+              "kind": "possessedGuard",
+              "count": 3
+            },
+            "radius": 460,
+            "contestRadius": 230
+          },
+          {
+            "id": "investigation-record",
+            "kind": "interact"
+          },
+          {
+            "id": "rear-latch",
+            "kind": "destroy",
+            "opens": "rear-door"
+          },
+          {
+            "id": "back-exit",
+            "kind": "reach"
+          }
+        ]
+      },
+      "balance": {
+        "id": 25,
+        "act": 3,
+        "entryLevel": 18.1,
+        "exitLevel": 18.75,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 7,
+        "activeEnemies": 3,
+        "targetHits": 2.24,
+        "targetIncomingHpFraction": 0.071,
+        "maxAlive": 18,
+        "targetRounds": [
+          18,
+          32
+        ],
+        "objectiveTurns": 7
+      }
+    },
+    {
+      "id": "stage-26",
+      "metadata": {
+        "stageId": 26,
+        "act": 3,
+        "actStage": 6,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "act3-resident",
+          "kind": "object:civilian",
+          "team": "npc",
+          "facing": 1,
+          "label": "주민",
+          "stageOverrides": {
+            "honroProtected": true
+          }
+        },
+        {
+          "id": "a3-26-enemy-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-26-enemy-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-26-enemy-2",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-26-enemy-3",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-26-enemy-4",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-26-enemy-5",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-26-enemy-6",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        },
+        {
+          "id": "a3-26-enemy-7",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "artisan-resident",
+          "type": "act3",
+          "action": "act3",
+          "target": "act3-resident"
+        },
+        {
+          "id": "casting-tally",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "ledger-drying",
+          "type": "act3"
+        },
+        {
+          "id": "wave-ledger-drying",
+          "type": "act3-wave"
+        },
+        {
+          "id": "workshop-brace",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "workshop-exit",
+          "type": "exit"
+        }
+      ],
+      "devices": [
+        {
+          "id": "workshop-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 26,
+        "act": 3,
+        "actStage": 6,
+        "level": 18,
+        "objective": "act3",
+        "requires": [
+          25
+        ],
+        "active": 3,
+        "enemies": 8,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "workshop-brace",
+            "kind": "interact",
+            "opens": "workshop-door"
+          },
+          {
+            "id": "artisan-resident",
+            "kind": "rescue",
+            "target": "act3-resident"
+          },
+          {
+            "id": "ledger-drying",
+            "kind": "hold",
+            "rounds": 2,
+            "wave": {
+              "kind": "picks",
+              "count": 2
+            },
+            "radius": 500,
+            "contestRadius": 230
+          },
+          {
+            "id": "casting-tally",
+            "kind": "interact"
+          },
+          {
+            "id": "workshop-exit",
+            "kind": "reach"
+          }
+        ]
+      },
+      "balance": {
+        "id": 26,
+        "act": 3,
+        "entryLevel": 18.75,
+        "exitLevel": 19.4,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 8,
+        "activeEnemies": 3,
+        "targetHits": 2.275,
+        "targetIncomingHpFraction": 0.0725,
+        "maxAlive": 18,
+        "targetRounds": [
+          19,
+          34
+        ],
+        "objectiveTurns": 6
+      }
+    },
+    {
+      "id": "stage-27",
+      "metadata": {
+        "stageId": 27,
+        "act": 3,
+        "actStage": 7,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "act3-carrier",
+          "kind": "object:civilian",
+          "team": "npc",
+          "facing": 1,
+          "label": "기록 운반인",
+          "stageOverrides": {
+            "honroProtected": true,
+            "fixed": false,
+            "maxMove": 900,
+            "moveLeft": 900
+          }
+        },
+        {
+          "id": "a3-27-enemy-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-27-enemy-1",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-27-enemy-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-27-enemy-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-27-enemy-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-27-enemy-5",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-27-enemy-6",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        },
+        {
+          "id": "a3-27-enemy-7",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "carrier-start",
+          "type": "act3",
+          "action": "act3",
+          "target": "act3-carrier"
+        },
+        {
+          "id": "fire-east",
+          "type": "act3-fire"
+        },
+        {
+          "id": "fire-screen",
+          "type": "act3",
+          "action": "act3",
+          "requiredClass": "knight"
+        },
+        {
+          "id": "fire-west",
+          "type": "act3-fire"
+        },
+        {
+          "id": "marker-water-release",
+          "type": "act3",
+          "requiredClass": "archer",
+          "target": "water-release"
+        },
+        {
+          "id": "petition-record",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "roof-exit",
+          "type": "exit"
+        },
+        {
+          "id": "route:roof-exit:0",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:roof-exit:1",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:roof-exit:2",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:roof-exit:3",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:roof-exit:4",
+          "type": "act3-route"
+        },
+        {
+          "id": "route:roof-exit:5",
+          "type": "act3-route"
+        }
+      ],
+      "devices": [
+        {
+          "id": "fire-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "water-gate",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "water-release",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 27,
+        "act": 3,
+        "actStage": 7,
+        "level": 19,
+        "objective": "act3",
+        "requires": [
+          26
+        ],
+        "active": 3,
+        "enemies": 8,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "water-release",
+            "kind": "destroy",
+            "opens": "water-gate",
+            "requiredClass": "archer"
+          },
+          {
+            "id": "fire-screen",
+            "kind": "interact",
+            "requiredClass": "knight",
+            "opens": "fire-door"
+          },
+          {
+            "id": "petition-record",
+            "kind": "interact"
+          },
+          {
+            "id": "carrier-start",
+            "kind": "interact",
+            "target": "act3-carrier",
+            "startsEscort": true
+          },
+          {
+            "id": "roof-exit",
+            "kind": "escort",
+            "target": "act3-carrier"
+          }
+        ]
+      },
+      "balance": {
+        "id": 27,
+        "act": 3,
+        "entryLevel": 19.4,
+        "exitLevel": 20.05,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 8,
+        "activeEnemies": 3,
+        "targetHits": 2.31,
+        "targetIncomingHpFraction": 0.074,
+        "maxAlive": 18,
+        "targetRounds": [
+          20,
+          36
+        ],
+        "objectiveTurns": 8
+      }
+    },
+    {
+      "id": "stage-28",
+      "metadata": {
+        "stageId": 28,
+        "act": 3,
+        "actStage": 8,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "a3-28-enemy-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-28-enemy-1",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-28-enemy-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-28-enemy-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-28-enemy-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-28-enemy-5",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-28-enemy-6",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        },
+        {
+          "id": "a3-28-enemy-7",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "closure-order",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "marker-outer-chain",
+          "type": "act3",
+          "target": "outer-chain"
+        },
+        {
+          "id": "office-exit",
+          "type": "exit"
+        },
+        {
+          "id": "passage-hold",
+          "type": "act3"
+        },
+        {
+          "id": "suppression-order",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "wave-passage-hold",
+          "type": "act3-wave"
+        }
+      ],
+      "devices": [
+        {
+          "id": "outer-chain",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        },
+        {
+          "id": "outer-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 28,
+        "act": 3,
+        "actStage": 8,
+        "level": 20,
+        "objective": "act3",
+        "requires": [
+          27
+        ],
+        "active": 3,
+        "enemies": 8,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "outer-chain",
+            "kind": "destroy",
+            "opens": "outer-door"
+          },
+          {
+            "id": "closure-order",
+            "kind": "interact"
+          },
+          {
+            "id": "suppression-order",
+            "kind": "interact"
+          },
+          {
+            "id": "passage-hold",
+            "kind": "hold",
+            "rounds": 2,
+            "wave": {
+              "kind": "possessedArcher",
+              "count": 2
+            },
+            "radius": 520,
+            "contestRadius": 230
+          },
+          {
+            "id": "office-exit",
+            "kind": "reach"
+          }
+        ]
+      },
+      "balance": {
+        "id": 28,
+        "act": 3,
+        "entryLevel": 20.05,
+        "exitLevel": 20.7,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 8,
+        "activeEnemies": 3,
+        "targetHits": 2.345,
+        "targetIncomingHpFraction": 0.0755,
+        "maxAlive": 18,
+        "targetRounds": [
+          21,
+          38
+        ],
+        "objectiveTurns": 6
+      }
+    },
+    {
+      "id": "stage-29",
+      "metadata": {
+        "stageId": 29,
+        "act": 3,
+        "actStage": 9,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "a3-29-enemy-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-29-enemy-1",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-29-enemy-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-29-enemy-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-29-enemy-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-29-enemy-5",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-29-enemy-6",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        },
+        {
+          "id": "a3-29-enemy-7",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "flight-hold",
+          "type": "act3"
+        },
+        {
+          "id": "hyeonmuk-letter",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "marker-sluice-chain",
+          "type": "act3",
+          "target": "sluice-chain"
+        },
+        {
+          "id": "old-seal",
+          "type": "act3",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "sluice-exit",
+          "type": "exit"
+        },
+        {
+          "id": "wave-flight-hold",
+          "type": "act3-wave"
+        },
+        {
+          "id": "wave-old-seal",
+          "type": "act3-wave"
+        }
+      ],
+      "devices": [
+        {
+          "id": "old-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "sluice-chain",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        },
+        {
+          "id": "sluice-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 29,
+        "act": 3,
+        "actStage": 9,
+        "level": 20,
+        "objective": "act3",
+        "requires": [
+          28
+        ],
+        "active": 3,
+        "enemies": 8,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "old-seal",
+            "kind": "hold",
+            "rounds": 2,
+            "wave": {
+              "kind": "ghost",
+              "count": 2
+            },
+            "radius": 460,
+            "contestRadius": 230,
+            "requiredClass": "mage",
+            "opens": "old-door"
+          },
+          {
+            "id": "hyeonmuk-letter",
+            "kind": "interact"
+          },
+          {
+            "id": "sluice-chain",
+            "kind": "destroy",
+            "opens": "sluice-door"
+          },
+          {
+            "id": "flight-hold",
+            "kind": "hold",
+            "rounds": 2,
+            "wave": {
+              "kind": "possessedGuard",
+              "count": 2
+            },
+            "radius": 520,
+            "contestRadius": 230
+          },
+          {
+            "id": "sluice-exit",
+            "kind": "reach"
+          }
+        ]
+      },
+      "balance": {
+        "id": 29,
+        "act": 3,
+        "entryLevel": 20.7,
+        "exitLevel": 21.35,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 8,
+        "activeEnemies": 3,
+        "targetHits": 2.38,
+        "targetIncomingHpFraction": 0.077,
+        "maxAlive": 18,
+        "targetRounds": [
+          22,
+          40
+        ],
+        "objectiveTurns": 7
+      }
+    },
+    {
+      "id": "stage-30",
+      "metadata": {
+        "stageId": 30,
+        "act": 3,
+        "actStage": 10,
+        "campaign": true
+      },
+      "initialState": {
+        "honroAct3Revision": 1,
+        "honroActiveLimit": 3,
+        "honroState": {
+          "flags": {},
+          "collected": [],
+          "hold": 0,
+          "lastRound": 1,
+          "rescued": false,
+          "combatLog": []
+        }
+      },
+      "units": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-knight",
+          "kind": "knight",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "p-occultist",
+          "kind": "occultist",
+          "team": "player",
+          "facing": 1
+        },
+        {
+          "id": "a3-30-enemy-0",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-30-enemy-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-30-enemy-2",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "west"
+          }
+        },
+        {
+          "id": "a3-30-enemy-3",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-30-enemy-4",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-30-enemy-5",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "middle"
+          }
+        },
+        {
+          "id": "a3-30-enemy-6",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "stageOverrides": {
+            "honroCohort": "east"
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "ferry-hold",
+          "type": "act3"
+        },
+        {
+          "id": "marker-route-pin",
+          "type": "act3",
+          "requiredClass": "archer",
+          "target": "route-pin"
+        },
+        {
+          "id": "old-road",
+          "type": "exit"
+        },
+        {
+          "id": "transport-map",
+          "type": "act3",
+          "action": "act3"
+        },
+        {
+          "id": "wave-ferry-hold",
+          "type": "act3-wave"
+        }
+      ],
+      "devices": [
+        {
+          "id": "route-door",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100000,
+            "maxHp": 100000,
+            "honroAct3Gate": true
+          }
+        },
+        {
+          "id": "route-pin",
+          "type": "solid",
+          "baseMaterial": "wood",
+          "oneWay": false,
+          "breakable": true,
+          "properties": {
+            "hp": 100,
+            "maxHp": 100,
+            "honroAct3Target": true,
+            "honroSeal": true
+          }
+        }
+      ],
+      "objectives": [],
+      "events": [],
+      "encounters": [],
+      "stage": {
+        "id": 30,
+        "act": 3,
+        "actStage": 10,
+        "level": 21,
+        "objective": "act3",
+        "requires": [
+          29
+        ],
+        "active": 3,
+        "enemies": 7,
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "steps": [
+          {
+            "id": "transport-map",
+            "kind": "interact"
+          },
+          {
+            "id": "route-pin",
+            "kind": "destroy",
+            "opens": "route-door",
+            "requiredClass": "archer"
+          },
+          {
+            "id": "ferry-hold",
+            "kind": "hold",
+            "rounds": 3,
+            "wave": {
+              "kind": "hound",
+              "count": 3
+            },
+            "radius": 540,
+            "contestRadius": 230
+          },
+          {
+            "id": "old-road",
+            "kind": "reach",
+            "allHeroes": true,
+            "radius": 440
+          }
+        ]
+      },
+      "balance": {
+        "id": 30,
+        "act": 3,
+        "entryLevel": 21.35,
+        "exitLevel": 22,
+        "rewardCurve": "current",
+        "balanceStatus": "proposed",
+        "initialEnemies": 7,
+        "activeEnemies": 3,
+        "targetHits": 2.415,
+        "targetIncomingHpFraction": 0.0785,
+        "maxAlive": 18,
+        "targetRounds": [
+          23,
+          42
+        ],
+        "objectiveTurns": 8
+      }
+    }
+  ]
+}

@@ -277,6 +277,7 @@
       path('M474 100L513 84 542 91 574 75 602 88 614 106 651 111 644 123 602 117 575 97 547 112 515 102 485 121 451 126Z M889 623L918 598 940 607 956 640 938 632 920 616 906 637 879 643Z M1405 946L1448 914 1482 926 1520 911 1553 933 1572 952 1548 945 1522 929 1485 942 1450 933 1420 955Z', `url(#${id}-stone)`, 'opacity=".42"'));
   }
   function atlas(layer) {
+    if(layer==='city'&&G.HonroAct3Journey)return G.HonroAct3Journey.atlas();
     layer = layers.includes(layer) ? layer : 'surface';
     const key = `atlas:${layer}`;
     if (cache.has(key)) return cache.get(key);
