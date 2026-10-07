@@ -357,7 +357,7 @@ export function tickRedesign(e:Engine,dt:number){
   if(shove.life<=0||u.dead||Math.abs(u.vx)<20){delete u.shove;continue;}
   for(const v of b.units.filter(v=>!v.dead&&v.side===u.side&&v.id!==u.id&&!shove.hit.includes(v.id))){
    if(Math.abs(v.x-u.x)>v.r+u.r||Math.abs(v.y-u.y)>(u.h+v.h)*.5)continue;
-   shove.hit.push(v.id);e.hurt(v,shove.damage,shove.owner);e.impulse(v,u.vx*.70,-80);
+   shove.hit.push(v.id);e.hurt(v,shove.damage,shove.owner,false,undefined,undefined,'normal','A05');e.impulse(v,u.vx*.70,-80);
    if(shove.remaining>1)v.shove={...shove,remaining:shove.remaining-1,damage:shove.damage*.70,hit:[...shove.hit],life:1};delete u.shove;break;
   }
  }

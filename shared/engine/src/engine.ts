@@ -13,7 +13,7 @@ import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
-import {attackForHit,calculateDamage,existenceMultiplier} from './existence';
+import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier} from './existence';
 import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, segRect, segmentTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
@@ -622,7 +622,7 @@ export class Engine {
         u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12)); this.message(`${u.name} · 방어하며 대기`); this.finishAction(); }
     iceGourdReady(){return iceGourdReady(this);}
     detonateIceGourd(){return detonateIceGourd(this);}
-    hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'|'environment'='normal') {
+    hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'|'environment'='normal',damageSkill?:string) {
         if (u.dead || amount <= 0)
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
@@ -672,7 +672,7 @@ export class Engine {
         const defenseMultiplier=(damageSource==='normal'?1-clamp(armor*(p?.skill==='S02'?.65:1),0,.7):1)
             *(u.arrivalGuard!==undefined?.90:1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
-        const attack=damageSource==='normal'?attackForHit(p,rawSrc,src,SKILLS):undefined;
+        const attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
         const existence=attack?existenceMultiplier(attack,u,rawSrc||src):1;
         const layers=calculateDamage({skillDamage:dmg/(preCondition*criticalMultiplier),conditionBonuses,criticalMultiplier,existenceMultiplier:existence,defenseMultiplier});
         dmg=layers.finalDamage;
@@ -687,7 +687,7 @@ export class Engine {
             return;
         dmg = Math.max(1, Math.round(dmg));
         const debug=globalThis as any;
-        if(debug.HONRO_DEBUG_DAMAGE){const traces=debug.HONRO_DAMAGE_TRACE??=[];traces.push({skill:p?.skill||'(direct)',source:owner,target:u.id,...layers,finalDamage:dmg});if(traces.length>100)traces.shift();debug.HONRO_DAMAGE_TRACE=traces;}
+        if(debug.HONRO_DEBUG_DAMAGE){const traces=debug.HONRO_DAMAGE_TRACE??=[];traces.push({skill:p?.skill||damageSkill||'(direct)',source:owner,target:u.id,...layers,finalDamage:dmg});if(traces.length>100)traces.shift();debug.HONRO_DAMAGE_TRACE=traces;}
         const absorbed = Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
@@ -990,7 +990,7 @@ export class Engine {
             if(!owner||!target)continue;
             if(trap.skill==='O08')this.manifest(target,owner,trap.rank,-Math.floor(MANIFEST_TURNS[clamp(trap.rank,1,8)-1]/2));
             else this.applyCurse(target,owner,trap.skill==='O06'?'weak':'betray',trap.damage,trap.rank,0,true);
-            if(trap.damage>0)this.hurt(target,trap.damage,owner.id,false);
+            if(trap.damage>0)this.hurt(target,trap.damage,owner.id,false,undefined,undefined,'normal',trap.skill);
             this.fx('spark',trap.x,trap.y,'#c2b9a0',25);b.occultTraps=b.occultTraps!.filter(z=>z.id!==trap.id);
         }
         for(const anchor of b.units){if(anchor.dead||anchor.summonKind!=='earthbound')continue;
@@ -1126,7 +1126,7 @@ export class Engine {
             if(u.soulBonusUntil!==undefined&&u.soulBonusUntil<this.b.round){u.soulAffinityBonus=0;u.soulDefenseBonus=0;delete u.soulBonusUntil;}
             if(u.earthbind&&u.earthbind.until<this.b.round)delete u.earthbind;
             if(u.dead)continue;
-            if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster){u.slowed={factor:.24,expires:this.b.round};this.hurt(u,u.earthbind.damage,caster.id,false);}}
+            if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster){u.slowed={factor:.24,expires:this.b.round};this.hurt(u,u.earthbind.damage,caster.id,false,undefined,undefined,'normal','O10');}}
             if(!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner){this.hurt(u,u.curseDamage!,owner.id,false);this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
             u.curseTurns!--;if((u.curseTurns||0)<=0){u.curseTurns=0;u.curseDamage=0;u.curseAttack=0;u.curseArmor=0;u.betrayalUntil=0;u.curseOwner=undefined;}
         }

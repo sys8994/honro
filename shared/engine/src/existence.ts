@@ -4,18 +4,28 @@ import type {ExistenceVector,Projectile,Skill,Unit} from './types';
 const mix=(form:number,qi:number,soul:number):ExistenceVector=>({form,qi,soul});
 export const NEUTRAL_EXISTENCE=mix(1,1,1);
 
-// Explicitly grouped by what each implemented attack does, including the HONRO monster skills.
+// Authored by branch and physical effect. These are shares, never extra damage.
 const attackRows:[string,ExistenceVector][]=[
- ['A01 A02 A04 A05 A06 A07 A08 A09 A11 A12 A13 A14 A15 A99',mix(.96,.04,0)],
- ['A03',mix(.82,.18,0)],
- ['M01 M03 M04 M05 M07 M08 M11 M12 M14 M15 M99',mix(.08,.92,0)],
- ['M02 M06 M13',mix(.25,.75,0)],
- ['S00 S02 S03 S05 S07 S08',mix(.94,.06,0)],
- ['S01 S04 S06 S13 S15',mix(.82,.18,0)],
- ['S09 S10 S11 S12',mix(.55,.45,0)],
- ['O01 O02 O03 O04 O05 O16',mix(0,.16,.84)],
- ['O06 O07 O08 O10',mix(0,.28,.72)],
- ['O11 O12 O13 O14 O15',mix(0,.18,.82)],
+ // Seolo: material arrows; qi follows recovery, steering and tracking work.
+ ['A01',mix(.96,.04,0)],
+ ['A14 A04',mix(.98,.02,0)],['A02',mix(.94,.06,0)],['A06',mix(.70,.30,0)],['A99',mix(.90,.10,0)],
+ ['A11',mix(1,0,0)],['A09',mix(.78,.22,0)],['A13',mix(.64,.36,0)],['A12',mix(.74,.26,0)],['A15',mix(.70,.30,0)],
+ ['A05',mix(.90,.10,0)],['A07',mix(.88,.12,0)],['A03',mix(.72,.28,0)],['A08',mix(.92,.08,0)],
+ // Damheo: qi throughout; ceramic/ice/stakes carry the material share.
+ ['M01',mix(.08,.92,0)],
+ ['M06',mix(.28,.72,0)],['M02',mix(.34,.66,0)],['M04',mix(.18,.82,0)],['M13',mix(.20,.80,0)],['M05',mix(.02,.98,0)],
+ ['M03',mix(.14,.86,0)],['M11',mix(.06,.94,0)],['M12',mix(.10,.90,0)],['M14',mix(.04,.96,0)],['M15',mix(0,1,0)],
+ ['M07',mix(.38,.62,0)],['M08',mix(.20,.80,0)],['M99',mix(.12,.88,0)],
+ // Hwigyeom: steel and body first; projected blades genuinely carry more qi.
+ ['S00',mix(.96,.04,0)],
+ ['S03',mix(.94,.06,0)],['S05',mix(.90,.10,0)],['S07',mix(.98,.02,0)],['S08',mix(.82,.18,0)],['S02',mix(.76,.24,0)],
+ ['S01',mix(.86,.14,0)],['S06',mix(.68,.32,0)],['S04',mix(.90,.10,0)],['S15',mix(.80,.20,0)],['S13',mix(.72,.28,0)],
+ ['S09',mix(.40,.60,0)],['S10',mix(.58,.42,0)],['S11',mix(.32,.68,0)],['S12',mix(.24,.76,0)],
+ // Sodan: soul remains largest; manifests and charms have tangible carriers.
+ ['O01',mix(0,.16,.84)],['O02',mix(0,.04,.96)],['O03',mix(0,.30,.70)],['O04',mix(.24,.06,.70)],['O05',mix(0,.10,.90)],['O16',mix(0,.02,.98)],
+ ['O06',mix(.04,.40,.56)],['O07',mix(.04,.22,.74)],['O08',mix(.12,.34,.54)],['O10',mix(.10,.28,.62)],
+ // The summoning spell does no damage; these are the actual summoned attacks.
+ ['O11',mix(.35,.10,.55)],['O12',mix(0,.14,.86)],['O14',mix(0,.12,.88)],
  ['HBR01 HBR02 HWD01 HMO02',mix(.82,.18,0)],
  ['HWD02 HBT01 HBT02',mix(.25,.75,0)],
  ['HCW01 HCW02',mix(.85,.15,0)],
@@ -91,7 +101,7 @@ export function existenceMultiplier(attack:ExistenceVector,target:Unit,attacker?
 }
 export function attackForHit(p:Projectile|undefined,rawSource:Unit|undefined,source:Unit|undefined,skills:Record<string,Skill>):ExistenceVector|undefined{
  if(p)return p.existenceAttack||skills[p.skill]?.existenceAttack||attackForSkill(skills[p.skill]||{id:p.skill,cls:source?.cls||'knight'});
- if(rawSource?.summonKind)return ({stalker:mix(.35,.10,.55),charger:mix(.48,.10,.42),host:mix(.35,.15,.50),lantern:mix(0,.14,.86),warden:mix(.25,.25,.50),eater:mix(0,.12,.88),echo:mix(0,.14,.86),earthbound:mix(.32,.18,.50)} as const)[rawSource.summonKind];
+ if(rawSource?.summonKind)return ({stalker:ATTACK_EXISTENCE.O11,charger:mix(.48,.10,.42),host:mix(.35,.15,.50),lantern:ATTACK_EXISTENCE.O12,warden:mix(.25,.25,.50),eater:ATTACK_EXISTENCE.O14,echo:mix(0,.14,.86),earthbound:mix(.32,.18,.50)} as const)[rawSource.summonKind];
  if(!source)return undefined; // Falls, terrain and scripted environmental damage remain unchanged.
  return attackForSkill({id:'',cls:source.cls});
 }
