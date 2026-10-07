@@ -1102,3 +1102,11 @@
 - Cause: foreground terrain and atmospheric shapes shared similar values; subpixel top rims weakened at mobile scale. Applying outlines indiscriminately also exposed approximate legacy sprite hitboxes outside their artwork.
 - Change: the common Scene reduces background saturation by 14% with one composite, and raster-caches thin paired-value edges on exposed real terrain. One-way surfaces show only their landing edge, hidden seams are omitted, water/decorations remain unoutlined. Approximate element hitboxes retain existing art; only the shared sampled-roof contract permits an added element edge. Physics, world continuity and UI semantics are unchanged.
 - Checks: focused `tests/terrain-readability.mjs` passed. Initial fixed-camera 400×760 Native before/after inspection found and excluded the legacy sprite wireframe issue. Full corrected captures, integrated regressions, browser/Pages and GPU performance are still pending at this checkpoint. See [design and reference observations](TERRAIN_READABILITY.md).
+
+
+### 의도된 처마·회랑 발판의 양방향 충돌과 10장 연결 단차 — 2026-10-07
+
+- 저작 원인: 8장의 `west/east-eave`, 9·10장의 `west/east-gallery`는 각 장의 설계 문구에서 올라서는 선택 발판인데 `oneWay:false`였다. 5장 폭포 동굴과 7장 속빈 줄기의 지붕, 2막 천장은 실제 고체로 남긴다. 공중 polygon의 모양이나 재료로 자동 분류하지 않는다.
+- 저작 수정: 위 6개 boolean만 바꾸고 기존 꼭짓점은 유지했다. 10장 위쪽 회랑은 기존 마지막 발판에서 기본 점프 높이를 넘으므로 `gallery-link-west/east` 두 목재 발판을 더한다. 지상 주경로·기존 위치·지형·임무는 옮기지 않는다.
+- 원인 실험: 4인 실체형과 기존 지면에서 시작하는 실제 walk/jump A/B에서 연결 발판을 포함한 수정안의 24경로가 무피해 도착했다. 구 10장 경로는 실패했으며 서쪽 머리 충돌 피해가 있었다. 8/9는 바깥쪽으로 우회해 성공하는 입력도 있어 모든 점프가 실패했다고 일반화하지 않는다.
+- 회귀: `tests/one-way-platforms.mjs`는 발판 아래의 중간 보행 목표도 확인하는 더 엄격한 48개 A/B와 1–20장 충돌 의미 감사를 등록한다. `platform-passages.json`과 test-only 역투영은 정확한 6개 boolean 및 2개 신규 발판만 허용한다. 이 저장점의 새 정식 회귀와 통합·브라우저 검수는 아직 실행 전이다. 저장 Continue 보정은 별도 수정으로 이어진다.

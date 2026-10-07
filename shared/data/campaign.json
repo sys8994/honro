@@ -58076,7 +58076,7 @@
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,
@@ -58252,7 +58252,7 @@
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,
@@ -61318,7 +61318,7 @@
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,
@@ -61494,7 +61494,7 @@
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,
@@ -64583,7 +64583,7 @@
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,
@@ -64671,13 +64671,93 @@
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,
             "maxHp": 99999,
             "route": false,
             "surfaceKind": "rock",
+            "artSeed": 1
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "gallery-link-west",
+          "name": "서쪽 회랑 연결 발판",
+          "type": "solid",
+          "points": [
+            {
+              "x": 1190,
+              "y": 2350
+            },
+            {
+              "x": 1420,
+              "y": 2320
+            },
+            {
+              "x": 1420,
+              "y": 2356
+            },
+            {
+              "x": 1190,
+              "y": 2386
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "platform",
+            "artSeed": 1
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "gallery-link-east",
+          "name": "동쪽 회랑 연결 발판",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3510,
+              "y": 2320
+            },
+            {
+              "x": 3790,
+              "y": 2280
+            },
+            {
+              "x": 3790,
+              "y": 2316
+            },
+            {
+              "x": 3510,
+              "y": 2356
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "platform",
             "artSeed": 1
           },
           "layer": "terrain",
