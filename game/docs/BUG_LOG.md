@@ -4,6 +4,7 @@
 - 변경: 대화·서술 진행 버튼은 inline-flex 중앙 정렬, 같은 최소 44px 높이, 내용 사이 8px gap과 offset 없는 화살표를 사용한다. 모달/일반 action row·설정·상단 아이콘·닫기·쉼터 도구·허공터 도구를 역할별로 정리한다. 타이틀/일시정지/허공터는 48px, 일반 동작은 44px 기준이며 원래 의미별 색과 카드·지형 핀·전투 원형 조작의 전용 구조는 유지한다.
 - 미니맵: 전장 접기 버튼을 없애고 설정의 ‘미니맵 표시’ 체크박스로 옮겼다. 변경 즉시 dock 전체를 숨기거나 복구하고 `settings.minimapVisible`에 저장한다. 예전 저장에는 기본 표시를 적용하고, 디버그에서는 표시 설정만 일반 저장에 반영한다. Workshop/사용자 맵의 캠페인 저장 분리는 유지한다.
 - 검사: `node tests/ui-buttons.mjs` 12묶음 통과(기존 저장 기본값, 설정 markup, 즉시 숨김/표시, 설정 재진입, reload/전투 재진입, 디버그 진행 보존, Workshop 저장 분리, CSS 역할 계약). `node --check shared/runtime/main.js`, `git diff --check` 통과.
+- 추가 점검: 수련창의 header 내 닫기와 대상 정보 닫기도 44px로 맞추고 제목 공간을 확보했다. 수련창에 불필요한 오른쪽 reserve padding을 두지 않으며 타이틀 동작 행의 8px 수동 왼쪽 offset을 제거했다. 설정의 표시 label을 실제 input/select와 연결해 label의 44px 높이도 터치 표적으로 쓸 수 있다. 기존 modal-keyboard, battle-help 21조건, campaign-transition 14조건, story-canon-save 17조건도 통과했다.
 - 한계: 위 검사는 DOM/storage 대역과 소스 계약이다. Python Chromium은 socket EPERM로 시작하지 못했으며 실제 화면 검증으로 계산하지 않는다. 최종 HTML 빌드·통합 회귀·자체 클라우드 브라우저 before/after·Pages 직접검수는 별도 진행 중이다.
 
 # 스토리 v0.1 · 묵종 이송과 후속 기록 단서 — 2026-10-07

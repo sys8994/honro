@@ -233,7 +233,7 @@
 .honro{--ui-action-height:44px;--ui-action-gap:8px}
 .honro :is(.actions,.dialog-actions,.stat-invest-actions,.title-actions){gap:var(--ui-action-gap);align-items:stretch}
 .honro :is(.actions,.dialog-actions,.stat-invest-actions,.title-actions)>button{display:inline-flex;align-items:center;justify-content:center;gap:var(--ui-action-gap);min-height:var(--ui-action-height);line-height:1.3;margin:0}
-.honro .title-actions{display:flex;flex-wrap:wrap}
+.honro .title-actions{display:flex;flex-wrap:wrap;margin-left:0}
 .honro .title-actions>button{min-height:48px}
 .honro .dialog .dialog-actions>.btn{min-height:var(--ui-action-height)}
 .honro .top>button.icon,.honro .battle-head>button.icon{width:44px;height:44px;min-height:44px;flex:none;padding:0}

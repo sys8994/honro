@@ -1,9 +1,9 @@
 .honro .unit-info{position:fixed;z-index:35;box-sizing:border-box;width:290px;max-width:calc(100vw - 24px);padding:16px;background:linear-gradient(145deg,#233735f5,#101f25fa);border:1px solid #82918488;border-left:3px solid #acc6b2;border-radius:4px 14px 4px 14px;box-shadow:0 8px 28px #0007;color:#e1dfcd;overflow:auto;touch-action:pan-y;pointer-events:auto}
 .honro .unit-info[hidden]{display:none!important}
 .honro .unit-info[data-side=enemy]{border-left-color:#c4a18b}
-.honro .unit-info .unit-info-close{position:absolute;right:7px;top:7px;width:30px;height:30px;min-height:0;padding:0;display:grid;place-items:center;border:0;background:#15272b;color:#d7d9cc;border-radius:7px;cursor:pointer}
-.honro .unit-info-side{font-size:11px;letter-spacing:.08em;color:#b3bba9;padding-right:25px}
-.honro .unit-info h3{font-size:16px;line-height:1.5;margin:5px 20px 12px 0;overflow-wrap:anywhere}
+.honro .unit-info .unit-info-close{position:absolute;right:7px;top:7px;width:44px;height:44px;min-height:44px;padding:0;display:grid;place-items:center;border:0;background:#15272b;color:#d7d9cc;border-radius:7px;cursor:pointer}
+.honro .unit-info-side{font-size:11px;letter-spacing:.08em;color:#b3bba9;padding-right:44px}
+.honro .unit-info h3{font-size:16px;line-height:1.5;margin:5px 40px 12px 0;overflow-wrap:anywhere}
 .honro .unit-info-health{height:20px;position:relative;border-radius:4px;background:#102025;overflow:hidden;border:1px solid #8a9e8d40}
 .honro .unit-info-health i{display:block;height:100%;background:#759c85}
 .honro .unit-info[data-side=enemy] .unit-info-health i{background:#a57665}

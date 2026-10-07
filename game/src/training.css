@@ -20,5 +20,7 @@
 
 /* Toolbar peers share a row height; card and rank selectors retain their roles. */
 .honro .training-tools>button:not(.training-current){display:inline-flex;align-items:center;justify-content:center;width:44px!important;min-width:44px;height:48px!important;min-height:48px!important;padding:0;margin:0}
-.honro .training-heading{padding-right:64px}
+.honro .training-heading>div{min-width:0}
+.honro .training-heading h2{margin-right:0}
+.honro .training-heading>button.icon{width:44px;height:44px;min-height:44px;flex:none;padding:0}
 @media(max-width:430px){.honro .training-ranks{grid-template-columns:repeat(4,minmax(44px,1fr))}.honro .training-ranks button{min-height:44px;height:44px}}
