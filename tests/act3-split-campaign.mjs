@@ -76,4 +76,11 @@ await check('Carried damage statuses survive their old caster and tick only the 
  const archer=unit('archer'),before=archer.hp;assert.equal(archer.curseOwner,undefined);assert.equal(archer.earthbind.owner,'');app.engine.newRound();assert(archer.hp<before);assert.equal(archer.curseTurns,2);const loss=before-archer.hp;app.engine.newRound();assert.equal(archer.curseTurns,1);assert.equal(archer.hp,before-loss*2);
 });
 
+
+await check('Stopping at the 25/26 result boundary resumes only the next team, with no repeated reward or item refill',()=>{
+ let b=entry(24);unit('knight').hp-=140;unit('archer').hp-=110;b.items.heal=2;win();next();
+ for(const id of [25,26]){b=app.engine.b;assert.equal(b.honroStage,id);unit(id===25?'mage':'occultist').focus-=25;b.items.heal--;win();const xp=plain(app.profile.heroes),items=plain(b.items),vitals=plain(b.honroSplit.vitals);app.showTitle();app=h.reload();click('rest');b=ready();assert.equal(b.honroStage,id+1);assert.deepEqual(plain(b.items),items);assert.deepEqual(plain(b.heroes),xp);click('result-continue');assert.equal(app.engine.b,b);assert.deepEqual(plain(b.heroes),xp);for(const u of b.units.filter(S.hero))if(vitals[u.cls])assertVitals(vitals[u.cls],u);}
+ app.pause();assert(!app.modal.innerHTML.includes('data-action="rest"'));app.showTitle();assert(!app.root.innerHTML.includes('길 위의 쉼터'));
+});
+
 await report('act3-split-campaign',checks,{continuousSequence:[24,25,26,27],normalCombatClear:false});

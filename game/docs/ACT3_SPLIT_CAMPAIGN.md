@@ -33,3 +33,5 @@ battle.honroSplit/profile.honroSplitCampaign은 version, mode, stage, activeRost
 ## 검증 범위
 
 node tests/act3-split-campaign.mjs는 production App의 연속24→25→26→27 결과전환, 피해/자원 승계, export/import/Continue, 재시도, XP 상한, 옛저장, 직접재플레이, 쉼터우회를 검사한다. 명시적피해·종료 fixture와 DOM/Canvas double을 사용하므로 실제 정상전투 난도·지도 완주·브라우저/Pages 검수를 대신하지 않는다. 최종 무휴식 난도 검증은 표준성장·기본기술의24부터 연속 플레이로 수행해야 한다.
+
+2026-10-07 단독 소스 검증: 상태회귀11묶음과 기존 save-boundaries6/growth6/transition14/camp11/debug11을 통과했다. test:act3 aggregate의 stage25 인원4 고정기대는 새2인 계약 때문에 실패한다. 목표/지도 통합 담당과 해당 검사 계약을 갱신하고 전체 검사를 다시 수행해야 하며 현재 aggregate PASS가 아니다.
