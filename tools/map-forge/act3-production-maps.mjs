@@ -101,7 +101,29 @@ function foundationY(s,x){const t=s.terrains.find(t=>t.id==='a3-foundation');if(
 function rearArt(p,s,id,svg,bounds,material='wood'){put(p,s,asset(`a3-${s.metadata.stageId}:${id}`,id,svg,[],bounds,material),id,0,0);s.elements.unshift(s.elements.pop());}
 async function addStructuralScene(g,p,s){
  const id=s.metadata.stageId;
- if(id===23){const ts=g.HonroMaps.compile(s,p).terrain;let piers='';for(const name of ['office-upper','gate-upper']){const e=s.elements.find(e=>e.id===name);for(const offset of [-610,-219,220,610]){const x=e.x+offset,ys=ts.filter(t=>t.honroElementId!==e.id).flatMap(t=>g.HONRO_CORE.terrainSurfaces(t,x)).filter(q=>q.y>e.y+30&&Math.abs(q.slope)<1.35).map(q=>q.y).sort((a,b)=>a-b),foot=ys[0];if(Number.isFinite(foot))piers+=R(x-10,e.y,20,foot-e.y,'#736d50')+R(x-6,e.y,4,foot-e.y,'#ac9e73')+R(x-18,foot-12,36,12,'#8b9785');}}rearArt(p,s,'canal-upper-gallery-rear-piers',piers,[2200,1700,3900,1100]);return;}
+ if(id===23){
+  const ts=g.HonroMaps.compile(s,p).terrain,bank=ts.find(t=>t.id==='city-foundation');
+  if(!bank)throw Error('Stage23 structural support needs the canonical city foundation');
+  const ground=(x,top)=>g.HONRO_CORE.terrainSurfaces(bank,x).filter(q=>q.y>top+25&&Math.abs(q.slope)<1.35).map(q=>q.y).sort((a,b)=>a-b)[0];
+  let piers='';const supports=[];
+  // These rear posts carry the upper gallery to the bank, continuing behind
+  // the opaque lower facades instead of resting on an unrelated roof tile.
+  for(const name of ['office-upper','gate-upper']){const e=s.elements.find(e=>e.id===name);
+   for(const offset of [-610,-219,220,610]){const x=e.x+offset,foot=ground(x,e.y);if(!Number.isFinite(foot))throw Error('Missing gallery foundation at '+x);
+    piers+=R(x-10,e.y,20,foot-e.y,'#736d50')+R(x-6,e.y,4,foot-e.y,'#ac9e73')+R(x-21,foot-16,42,16,'#829081');supports.push({element:name,x,top:e.y,bottom:foot,foundation:'city-foundation'});
+   }
+  }
+  // Raised bridge houses have their own narrow stone piers in the rear plane.
+  // The front walking corridor and open water remain visible and unchanged.
+  for(const name of ['west-quay-tower','bridge-tower','canal-watch']){const e=s.elements.find(e=>e.id===name),a=p.library.find(a=>a.id===e.assetId),w=(a.bounds.w-100)*(e.scale||1);
+   for(const x of [e.x-w*.36,e.x+w*.36]){const foot=ground(x,e.y);if(!Number.isFinite(foot))throw Error('Missing bridge-house foundation at '+x);
+    piers+=R(x-19,e.y,38,foot-e.y,'#65796d')+R(x-12,e.y+4,7,foot-e.y-4,'#92a38b')+R(x-28,foot-16,56,16,'#7d9281');supports.push({element:name,x,top:e.y,bottom:foot,foundation:'city-foundation'});
+   }
+  }
+  rearArt(p,s,'canal-upper-gallery-rear-piers',piers,[0,1700,s.width,s.height-1700]);
+  p.library.find(a=>a.id==='a3-23:canal-upper-gallery-rear-piers').params.structuralSupports=supports;
+  return;
+ }
  if(id<24)return;
  const q=s.design.act3.primaryContour||[],ground=x=>foundationY(s,x),pieces=[];
  // The route is the front collision plane. These plinths and piers are the
