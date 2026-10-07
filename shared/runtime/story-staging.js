@@ -14,7 +14,8 @@ function point(b,p,context={}){
  else if(Number.isFinite(p.x)&&Number.isFinite(p.y))q=p;
  return q&&Number.isFinite(q.x)&&Number.isFinite(q.y)?{x:q.x+(p.dx||0),y:q.y+(p.dy||0)}:null;
 }
-function register(d){if(!d?.id||!Array.isArray(d.steps))throw Error('A staged scene needs an id and steps');registry.set(d.id,clone(d));}
+function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
+function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
  if(b.honroCustom||b.honroStage!==9)return;
  const s=state(b),u=actor(b,'npc-sodan');if(!u)return;
@@ -39,9 +40,12 @@ function opening(app,lines,options){
 }
 function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!meta?.stagingScene||s?.once[meta.stagingScene]!=='running')return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
 function active(app){return app.dialogue?.staging;}
-function draw(app,node){const s=active(app);if(!s||s.complete)return false;const step=s.steps[s.cursor];
- node.innerHTML=`<div class="story-overlay staging-overlay"><section class="staging-cue" role="dialog" aria-modal="true" aria-label="${esc(app.dialogue.title)}"><p id="story-line">${esc(step?.caption||'')}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">장면 넘기기</button></div></section></div>`;
- node.querySelector('[data-action="dialogue-skip"]')?.focus({preventScroll:true});return true;
+function snapshot(app){const s=active(app),c=app.scene;if(s&&c&&[c.x,c.y,c.scale].every(Number.isFinite))s.currentCamera={x:c.x,y:c.y,scale:c.scale,manual:!!c.manual};}
+function restore(app){const s=active(app),c=app.scene;if(!s||!c||s.complete)return;if(s.currentCamera)Object.assign(c,s.currentCamera);c.goalFocus=null;if(s.focusActor&&alive(actor(app.engine.b,s.focusActor)))c.storyFocus?.(s.focusActor,120);else if(s.focus)c.storyFocusPoint?.(s.focus.x,s.focus.y,350);}
+
+function draw(app,node){const s=active(app);if(!s||s.complete)return false;const step=s.steps[s.cursor],focused=node.contains?.(G.document?.activeElement)?G.document.activeElement?.dataset?.action:null;
+ node.innerHTML=`<div class="story-overlay staging-overlay"><section class="staging-cue" role="dialog" aria-modal="true" aria-label="${esc(app.dialogue.title)}"><p id="story-line">${esc(step?.caption||'')}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">장면 넘기기</button><button class="primary" data-action="dialogue-next">대화로 ›</button></div></section></div>`;
+ node.querySelector(`[data-action="${focused==='dialogue-skip'?'dialogue-skip':'dialogue-next'}"]`)?.focus({preventScroll:true});return true;
 }
 function move(app,s,step,dt,skip){
  const b=app.engine.b,u=step.reveal?reveal(b,step.actor):actor(b,step.actor),to=point(b,step.to,s.context);
@@ -64,10 +68,11 @@ function apply(app,s,step,skip=false,dt=0){
  const b=app.engine.b,key=s.cursor,first=!s.applied[key];
  if(first){s.applied[key]=true;
   if(step.type==='fx'&&!skip){if(step.sound)app.audio?.play(step.sound);const p=point(b,step.at,s.context);if(p&&step.effect)app.engine.fx(step.effect,p.x,p.y-15,step.color||'#c9b37f',step.radius||48);}
-  if(step.type==='look'&&!skip){const p=point(b,step.at,s.context);if(p&&app.scene){app.scene.goalFocus=p;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500));}}
+  if(step.type==='move'){const u=step.reveal?reveal(b,step.actor):actor(b,step.actor);if(alive(u)&&step.focus!==false){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}}
+  if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.at,s.context);if(p&&app.scene){s.focus=clone(p);delete s.focusActor;app.scene.goalFocus=null;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500));}}
  }
  if(step.type==='move'){const status=move(app,s,step,dt,skip);if(status){s.results[key]={...s.results[key],status};return true;}}
- if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x)u.facing=Math.sign(p.x-u.x);if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
+ if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x){const facing=Math.sign(p.x-u.x);if(facing!==u.facing&&Number.isFinite(u.angle))u.angle=180-u.angle;u.facing=facing;}if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
  return skip||s.elapsed+dt*1000>=(step.duration||0);
 }
 function settle(app,s){for(const u of app.engine.b.units){if(u.honroScenePose){delete u.honroScenePose;u.moving=0;}}}
@@ -80,7 +85,7 @@ function advance(app,dt,skip=false){
   s.cursor++;s.elapsed=0;settle(app,s);if(!skip)break;
  }
  if(s.cursor>=s.steps.length||s.steps[s.cursor]?.type==='dialogue')s.complete=true;
- app.engine.b.honroStory=clone(app.dialogue);app.dirty=true;
+ snapshot(app);app.engine.b.honroStory=clone(app.dialogue);app.dirty=true;
  return true;
 }
 function tick(app,now){
@@ -108,5 +113,5 @@ register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
   ['휘겸','사람 없는 자리부터 잇겠소. 믿으라고 다그쳐 봐야 손을 놓지는 못할 거요.']
  ]}
 ]});
-G.HonroStoryStaging={register,request,prepareFresh,receiver,opening,canSpeak,draw,tick,skipMotion,finish,point,actor,ID};
+G.HonroStoryStaging={register,describe,request,prepareFresh,receiver,opening,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,point,actor,ID};
 })(globalThis);

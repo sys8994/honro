@@ -14,7 +14,7 @@
 - `dialogue`: 마지막 단계에 기존 대사 튜플을 넣는다. 인물별 카메라·초상·대화 기록은 원래 Story 경로가 처리한다.
 - 위치의 `dx/dy`는 원래 anchor/marker에 더하는 작은 오프셋이다. `marker:'$trigger'`는 request context의 marker ID를 가리킨다. 존재하지 않는 actor/anchor, 죽은 인물, 막힌 경로 때문에 입력이 잠기지 않는다.
 
-정적 registry는 데이터이고 진행 cursor는 `b.honroStory.staging` 한 곳에만 둔다. cursor, elapsed, 적용한 단계, 이동 결과와 복원할 카메라를 기존 대사 저장과 함께 보존한다. `b.honroStaging.once`는 queued/running/done을 구별해 중복 상호작용·대사 기록 열람이 다시 등장시키지 못하게 한다.
+정적 registry는 데이터이고 진행 cursor는 `b.honroStory.staging` 한 곳에만 둔다. cursor, elapsed, 적용한 단계, 이동 결과, 현재 카메라/추적 대상과 복원할 카메라를 기존 대사 저장과 함께 보존한다. `b.honroStaging.once`는 queued/running/done을 구별해 중복 상호작용·대사 기록 열람이 다시 등장시키지 못하게 한다.
 
 Scene의 새 프레임 루프는 없다. 기존 `Story.tick`에서 짧은 연출 시간만 진행하며 App은 `dialogue`가 존재하는 동안 원래대로 전투 물리·임무·조작을 멈춘다. 숨긴 탭·열린 모달·기록 열람은 연출도 정지하고 돌아왔을 때 누적 시간을 따라잡지 않는다. 캐릭터 리그는 지정된 인물의 짧은 이동/방울 손동작만 표시하며 공격·피해·기력·투사체를 생성하지 않는다.
 
