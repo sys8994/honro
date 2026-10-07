@@ -5,7 +5,7 @@ const marker=(b,id)=>b.honroMarkers?.find(m=>m.id===id||m.id==='marker-'+id);
 const steps=b=>b.honroAct3Steps||H.stages[b.honroStage-1]?.steps||[];
 const alive=u=>!!u&&!u.dead&&u.hp>0;
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
-const memory=b=>(b.honroState??={flags:{},collected:[]},b.honroState.act3??={version:1,done:{},holds:{},events:{},checkpoints:[],escorts:{}});
+function memory(b){b.honroState??={flags:{},collected:[]};const a=b.honroState.act3??={version:1};a.done??={};a.holds??={};a.events??={};a.checkpoints??=[];a.escorts??={};return a;}
 const sameFloor=(u,p,r=260)=>!!p&&Math.abs(u.y-p.y)<=150&&Math.hypot(u.x-p.x,(u.y-p.y)*.75)<=r;
 function initialize(b){if(!active(b))return;memory(b);b.honroAct3Steps??=structuredClone(H.stages[b.honroStage-1].steps);
  for(const u of b.units){if(G.HonroWorld.archetypes[u.honroVariant]?.act3Human){u.honroAct3Human=true;u.honroNonlethal=true;}if(u.honroProtected)u.honroCivilian=true;}
