@@ -5,6 +5,8 @@ const g=vm.createContext({structuredClone}),read=p=>readFile(new URL('../'+p,imp
 for(const f of ['bounds','environment','vector-art','space-layout','schema','geometry','commands'])vm.runInContext(await read('shared/map/'+f+'.js'),g);
 g.HonroUnits={has:()=>true,teams:{player:0,enemy:1,ally:2,npc:3}};
 const E=g.HonroEnvironment,project=JSON.parse(await read('shared/data/campaign.json')),clone=x=>JSON.parse(JSON.stringify(x));
+// Standalone schema validation needs the complete implemented stage inventory.
+g.HONRO_CONTENT={stages:project.stages.map(s=>({id:s.metadata.stageId}))};
 assert.deepEqual(clone(E.validate(project)),[]);
 const forest=project.stages[0].environment;
 assert.equal(forest.groups.filter(g=>g.depthLayer==='L4').length,1,'Act 1 has one continuous far mountain');

@@ -13,7 +13,7 @@ for(let id=1;id<=30;id++){
   rows.push({stage:id,id:target.id,oneWay:!!target.oneWay,overhead,role:destroyIds.includes(target.id)?steps.find(s=>s.id===target.id).label:id===5?'절벽 틈의 고리쇠':id===8?'상여 결박':'파괴 장치'});
  }
 }
-assert.equal(rows.length,18,'All 30 chapter target inventory stays explicit');
+assert.deepEqual(rows.map(t=>[t.stage,t.id]),[[5,'cliff-cleat'],[8,'bier-knot-0'],[8,'bier-knot-1'],[18,'upper-chain']],'The four remaining required attack devices stay explicit across all 30 chapters');
 assert.deepEqual(rows.filter(t=>t.oneWay).map(t=>t.id),['bier-knot-0','bier-knot-1']);
 const roof=rows.find(t=>t.id==='cliff-cleat').overhead.find(t=>t.id==='waterfall-roof');assert(roof&&roof.gap>40&&roof.gap<45,'The ring hangs just below the sloped rock ceiling, with its existing side-shot window');
 const before=JSON.parse(await readFile('tests/fixtures/projectile-target-solids.json','utf8')),current=g.HONRO_PROJECT.stages[4].terrains.find(t=>t.id==='cliff-cleat');
@@ -30,5 +30,5 @@ for(const id of ['bier-knot-0','bier-knot-1']){
  for(let i=0;i<1800&&b.projectiles.length;i++)for(const p of [...b.projectiles])if(b.projectiles.includes(p))e.stepProjectile(p,C.STEP);
  assert(target.hp<hp);assert.equal(hits[0].id,id);assert(hits[0].normal.y<0);shots.push({stage:8,id,from:{x:u.x,y:u.y},aim,damage:hp-target.hp,hit:hits[0]});
 }
-await mkdir('_local/reports/projectile-platforms',{recursive:true});await writeFile('_local/reports/projectile-platforms/objective-targets.json',JSON.stringify({scope:'All thirty chapters, 18 explicit destruction devices. Stage 5 live ritual/shot/Continue is checked by waterfall-destruction; Act 2 and Act 3 actual target flights by their existing spatial/production-shot tests. Stage 8 one-way targets retain reachable upper surfaces.',rows,shots},null,2)+'\n');
+await mkdir('_local/reports/projectile-platforms',{recursive:true});await writeFile('_local/reports/projectile-platforms/objective-targets.json',JSON.stringify({scope:'All thirty chapters, four current required attack devices. Stage 5 live ritual/shot/Continue is checked by waterfall-destruction; surviving Act 2 targets and saved legacy targets use their spatial/production-shot tests. Stage 8 one-way targets retain reachable upper surfaces.',rows,shots},null,2)+'\n');
 console.log(`PASS 30-chapter / ${rows.length}-target collision-role audit and two live upper-face knot hits`);

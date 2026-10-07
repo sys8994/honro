@@ -9,7 +9,7 @@ checks=[];errors=[]
 def check(name,condition,detail=None):
     assert condition,(name,detail)
     checks.append({'name':name,'detail':detail});print('PASS',name,flush=True)
-SETUP='''id=>{const a=HonroApp;a.frame=()=>{};a.profile={...HONRO_TOOLS.fresh(),...HonroMaps.profileFor(HONRO_PROJECT.stages[id-1])};for(let i=1;i<id;i++)a.profile.cleared[i]={};a.profile.settings.sound=false;a.profile.settings.music=false;if(globalThis.HONRO_EMBEDDED)a.launchMap(HONRO_PROJECT,'stage-'+id,{story:false});else a.launch(id);for(let i=0;a.dialogue&&i<40;i++)HonroStory.finish(a);a.close();a.turnNotice=null;a.scene.storyTween=null;a.scene.goalFocus=null;a.scene.cinematic=null;a.scene.manual=true;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;a.updateHUD(true);return a.engine.b.honroStage;}'''
+SETUP='''id=>{const a=HonroApp;a.frame=()=>{};a.profile={...HONRO_TOOLS.fresh(),...HonroMaps.profileFor(HONRO_PROJECT.stages[id-1])};for(let i=1;i<id;i++)a.profile.cleared[i]={};a.profile.settings.sound=false;a.profile.settings.music=false;if(globalThis.HONRO_EMBEDDED)a.launchMap(HONRO_PROJECT,'stage-'+id,{story:false});else a.launch(id);for(let i=0;a.dialogue&&i<40;i++)HonroStory.finish(a);a.close();a.turnNotice=null;const notice=document.getElementById('event');if(notice)notice.textContent='';a.scene.storyTween=null;a.scene.goalFocus=null;a.scene.cinematic=null;a.scene.manual=true;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;a.updateHUD(true);return a.engine.b.honroStage;}'''
 with sync_playwright() as p:
     browser=launch(p)
     for shell,file in [('Game','HONRO.html'),('Playtest','HONRO_WORKSHOP.html')]:
