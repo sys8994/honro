@@ -1014,9 +1014,13 @@ export class Engine {
         }
         u.dead=true;u.hp=0;return true;
     }
-    private spawnSummon(owner:Unit,kind:NonNullable<Unit['summonKind']>,x:number,y:number,strong=1,rank=1,empowered=false){
+    private spawnSummon(owner:Unit,kind:NonNullable<Unit['summonKind']>,x:number,y:number,strong=1,rank=1,empowered=false,landing?:Collision){
         const hpScale=(1+.07*(rank-1))*strong*(empowered?1.20:1),atkScale=(1+.055*(rank-1))*strong;
-        const ground=this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
+        // Use the surface the seed actually hit. A fresh upward search can otherwise
+        // snap it onto a different one-way slab that it just passed from below.
+        const support=landing?.terrain?.oneWay&&landing.n.y<0?landing.terrain:undefined;
+        const onSupport=support&&x>=support.x&&x<=support.x+support.w;
+        const ground=onSupport?{t:support,y:topAt(support,x,y)}:this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
         const floating=['lantern','eater','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
         const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
@@ -1030,7 +1034,7 @@ export class Engine {
         }
         summon.spawnX=summon.x;summon.spawnY=summon.y;this.b.units.push(summon);this.fx('ring',summon.x,summon.y-summon.h*.45,'#aeb9aa',48);this.fx('spark',summon.x,summon.y-summon.h*.45,'#c4c7b4',24);return summon;
     }
-    private summonAtProjectile(p:Projectile,kind:Unit['summonKind']){const owner=this.creditUnit(this.unit(p.owner));if(!owner||!kind)return;this.spawnSummon(owner,kind,p.x,p.y,1,p.skillRank||1,!!p.soulBoost);this.remove(p);}
+    private summonAtProjectile(p:Projectile,kind:Unit['summonKind'],landing?:Collision){const owner=this.creditUnit(this.unit(p.owner));if(!owner||!kind)return;this.spawnSummon(owner,kind,p.x,p.y,1,p.skillRank||1,!!p.soulBoost,landing);this.remove(p);}
     /**
      * Summons act once after the four player heroes finish and before the enemy team.
      * Offensive ghosts may move and attack in the same summon turn; the old small
@@ -1158,7 +1162,7 @@ export class Engine {
             this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);for(const t of this.b.units)if(!t.dead&&t.side!==owner.side&&t.side!==2&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r)this.applyCurse(t,owner,p.mode==='curseDot'?'dot':'chain',p.damage*(p.mode==='curseDot'?.40:.30));this.remove(p);return true;
         }
         const kind:Record<string,Unit['summonKind']>={summonStalker:'stalker',summonLantern:'lantern',summonCharger:'charger',summonWarden:'warden',summonHost:'host',summonEater:'eater',summonEcho:'echo'};
-        if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode]);return true;}
+        if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12,1,false,h);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12,1,false,h);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode],h);return true;}
         return false;
     }
     impact(p: Projectile, h: Collision) {
