@@ -1,6 +1,7 @@
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
+import {beforeCaveBatRevision,caveBatRevision} from './act2-cave-bat-delta-helpers.mjs';
 // The fiend revision freezes combat/mission identity, not subsequently approved
 // Korean architecture, optional roofs, placement or schema-default geometry.
 import assert from 'node:assert/strict';
@@ -8,14 +9,6 @@ import {readFileSync} from 'node:fs';
 const encounterRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-encounter-contract.json',import.meta.url),'utf8'));
 const locationRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-location-semantic-contract.json',import.meta.url),'utf8'));
 const refinementRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-refinement-delta.json',import.meta.url),'utf8'));
-const caveBatRevision=JSON.parse(readFileSync(new URL('./fixtures/act2-cave-bat-delta.json',import.meta.url),'utf8'));
-function beforeCaveBatRevision(project){
- for(const row of caveBatRevision.rows){
-  const map=project.stages.find(s=>s.metadata.stageId===row.id);assert(map,'Reviewed cave roster stage '+row.id);
-  for(const change of row.kinds){const unit=map.units.find(u=>u.id===change.id);assert(unit,'Reviewed cave unit '+change.id);assert.equal(unit.kind,change.after,'Exact reviewed bat kind '+change.id);unit.kind=change.before;}
- }
- return project;
-}
 // Reverse only this request's explicit additions. The older contracts still
 // reject changes to mission rules, unit identity, protection or combat tuning.
 function beforeRefinementRevision(project,archetypes){

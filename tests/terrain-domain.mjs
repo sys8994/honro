@@ -2,6 +2,7 @@ import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import assert from 'node:assert/strict';
 import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
+import {beforeCaveBatRevision} from './act2-cave-bat-delta-helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
@@ -12,7 +13,7 @@ check('All implemented stages use a single canonical mesh containing stable play
 // Reverse only the exact reviewed roster fields for this historical units hash.
 // Every geometry/domain and runtime check below still reads the current project.
 const historicalProject=beforeObjectiveRevision(g.HONRO_PROJECT,g.HONRO_CONTENT).project;
-const historicalRoster=beforeExistenceRoster(historicalProject);
+const historicalRoster=beforeCaveBatRevision(beforeExistenceRoster(historicalProject));
 // The source-v0.1 story approval changed only these two Stage12 labels.
 // Validate their current wording before restoring the historical hash input.
 function historicalInitialState(st){
