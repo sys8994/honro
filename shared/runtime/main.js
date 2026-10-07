@@ -407,6 +407,7 @@
                 this.notify('아직 이어지지 않은 길이야.');
                 return;
             }
+            G.HonroSplitCampaign.prepareLaunch(this,id,training);
             this.stageId = st.id;
             this.training = training;
             this.stage = st;

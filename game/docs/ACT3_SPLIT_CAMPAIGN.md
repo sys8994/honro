@@ -35,3 +35,7 @@ battle.honroSplit/profile.honroSplitCampaign은 version, mode, stage, activeRost
 node tests/act3-split-campaign.mjs는 production App의 연속24→25→26→27 결과전환, 피해/자원 승계, export/import/Continue, 재시도, XP 상한, 옛저장, 직접재플레이, 쉼터우회를 검사한다. 명시적피해·종료 fixture와 DOM/Canvas double을 사용하므로 실제 정상전투 난도·지도 완주·브라우저/Pages 검수를 대신하지 않는다. 최종 무휴식 난도 검증은 표준성장·기본기술의24부터 연속 플레이로 수행해야 한다.
 
 2026-10-07 단독 소스 검증: 상태회귀11묶음과 기존 save-boundaries6/growth6/transition14/camp11/debug11을 통과했다. test:act3 aggregate의 stage25 인원4 고정기대는 새2인 계약 때문에 실패한다. 목표/지도 통합 담당과 해당 검사 계약을 갱신하고 전체 검사를 다시 수행해야 하며 현재 aggregate PASS가 아니다.
+
+## Workshop 복귀와 debug 선택 경계
+
+Workshop 임시 프로필에서 다른 장/훈련에 들어갈 때도 보호된 returnProfile의 정상 출정 제한을 검사한다. 정상 분할로 돌아가는 쉼터·모닥불은 보호된 저장 전투를 그대로 이어가며 무료 재준비 화면을 만들지 않는다. debug에서는 임시 복사본에서 어느 장이든 선택할 수 있다. 결과 전환/동일 장 재시도는 원래carry를 사용하고, 다른 장을 명시적으로 선택하면 그 QA 복사본의 carry만 새 재플레이로 준비한다. debug 해제 시 정상25의 피해/MP/가방은 그대로 복원된다.

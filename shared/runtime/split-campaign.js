@@ -82,14 +82,22 @@ function attach(app,e){if(!active(e.b)||e.honroSplitAttached)return;e.honroSplit
 function allPresent(b){return active(b)&&b.honroSplit.activeRoster.every(cls=>b.units.filter(u=>hero(u)&&u.cls===cls&&!u.dead&&u.hp>0).length===1);}
 function failure(b){if(!active(b)||b.honroStage===27)return null;return allPresent(b)?null:'조사팀 동행이 쓰러졌다. 현재 장의 시작 상태에서 다시 걷자.';}
 function locked(profile){const s=profile.honroSplitCampaign;return s?.version===VERSION&&!s.finished&&(s.stage>=25||s.nextStage===25);}
-function redirectRest(app){if(app.customMap||app.training||!locked(app.profile))return false;
+function redirectRest(app){
+ // The custom map has a temporary profile. Check its protected owner before
+ // offering rest/camp, then resume that owner's saved expedition unchanged.
+ if(app.customMap){if(!locked(app.customMap.returnProfile))return false;app.stopBattle();}
+ if(app.training||!locked(app.profile))return false;
  const s=app.profile.honroSplitCampaign;
  if(active(app.engine?.b)&&!app.done){app.close();return true;}
  if(app.profile.honroBattle&&active(app.profile.honroBattle)){app.continue();return true;}
  app.engine=null;app.launch(s.nextStage||s.stage);return true;
 }
-function allowLaunch(app,id,training){if(app.customMap||!locked(app.profile))return true;const s=app.profile.honroSplitCampaign;if(!training&&(id===s.stage||id===s.nextStage))return true;app.notify('두 조사팀은 쉬지 않고 합류합니다. 현재 장을 이어가거나 다시 걸어주세요.');return false;}
+function allowLaunch(app,id,training){if(app.debugMode)return true;const owner=app.customMap?.returnProfile||app.profile;if(!locked(owner))return true;const s=owner.honroSplitCampaign;if(!training&&(id===s.stage||id===s.nextStage))return true;app.notify('두 조사팀은 쉬지 않고 합류합니다. 현재 장을 이어가거나 다시 걸어주세요.');return false;}
+// Explicit QA chapter replacement discards only the temporary expedition's
+// carry chain. The normal profile remains owned by App.normalProfile; ordinary
+// result-continue and same-chapter retries still use their real checkpoints.
+function prepareLaunch(app,id,training){const s=app.profile.honroSplitCampaign;if(app.debugMode&&!training&&locked(app.profile)&&id!==s.stage&&id!==s.nextStage)delete app.profile.honroSplitCampaign;}
 function resultLabel(app){const b=app.engine?.b;if(!active(b)||b.honroSplit.finished)return null;return b.phase==='lost'?'현재 조사 다시 걷기':b.honroStage===24?'묘역 기록실로':b.honroStage===25?'공방 조사 이어가기':'문서고에서 합류하기';}
 function resultContinue(app){const b=app.engine?.b;if(!app.done||!active(b)||b.honroSplit.finished)return false;const id=b.honroSplit.nextStage||b.honroStage;app.engine=null;app.profile.honroBattle=null;app.close();app.launch(id);return true;}
-G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,attach,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,resultLabel,resultContinue,snapshot,restore};
+G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,attach,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,prepareLaunch,resultLabel,resultContinue,snapshot,restore};
 })(globalThis);
