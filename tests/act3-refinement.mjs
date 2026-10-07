@@ -4,6 +4,8 @@ import {appHarness,plain,report} from './app-regression-helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,checks=[];
 for(let id=21;id<=30;id++){
  const {b,st}=battlefield(g,id),events=b.honroEvents.filter(e=>e.id.startsWith('act3-response-'));assert(events.length>=2);
+ for(const u of b.units)if(!g.HonroWorld.archetypes[u.honroVariant]?.flying)assert(C.validTerrainContactPose(b.terrain,u),id+'/'+u.id+' fresh split/party body must be supported');
+ for(const tree of g.HONRO_PROJECT.stages[id-1].elements.filter(e=>e.id.includes('a3-refine:')&&e.id.includes('rooted-pine'))){const support=g.HonroMapEngine.surfaceY(b.terrain,tree.x,tree.y-2);assert(support&&Math.abs(support.y-tree.y)<1,'tree roots follow physical ground, never a multi-storey route '+tree.id);}
  const before=JSON.stringify(b),s=g.HonroObjectives.state(b,st);assert.equal(JSON.stringify(b),before,'reading guidance cannot mutate progress');assert.equal(s.visibleChecklist.length,1);assert(s.currentInstruction.length<65);
  const ordered=g.HonroAct3.steps(b);for(let i=0;i<ordered.length;i++){const q=ordered[i];b.honroState.act3.done[q.id]=true;const help=g.HonroObjectives.help({engine:{b},stage:st});assert(help.checklist.every(row=>row.done||row.current));assert(help.checklist.filter(row=>!row.done).length<=1);assert(help.checklist.every(row=>ordered.findIndex(s=>s.id===row.id)<=i+1||ordered[i+1]?.parallelGroup));}
  const emitted=[];b.units=b.units.filter(u=>u.side!==1);b.honroGrowth.ledger.stages[id].cleared=false;const e=new C.Engine(b,ev=>emitted.push(ev),true);e.checkEnd=()=>false;

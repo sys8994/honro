@@ -9,7 +9,7 @@ const path=(d,fill)=>`<path d="${d}" fill="${fill}"/>`;
 const pineSites={21:[[80,.57],[3740,.65],[6080,.72]],22:[[180,.65],[5350,.48]],23:[],24:[[650,.62],[1130,.80],[3570,.7],[4700,.87],[6960,.65]],25:[[95,.68],[735,.55],[5590,.73]],26:[[90,.68],[2050,.45],[5850,.64],[6680,.71]],27:[[60,.68],[2800,.56],[6840,.65]],28:[[80,.8],[850,.7],[1230,.6],[3290,.86],[3700,.57],[4760,.63],[5470,.81],[6970,.65]],29:[[230,.61],[900,.7],[6250,.62],[7070,.8]],30:[[45,.64],[550,.6],[2190,.67],[3520,.63],[6860,.6]]};
 // Unequal groups occupy selected shoulders; open work and gathering circles stay clear.
 const vignettes={21:[470,3550,5610],22:[260,5400],23:[370,3130,5760,7000],24:[390,3380,4590,6770],25:[340,1120,4350,5450],26:[790,2130,4050,6000,6610],27:[620,2910,4640,6750],28:[370,1150,3460,5140,6810],29:[650,1360,5440,6470],30:[430,1960,3360,5200,6760]};
-const shoulders={24:[[600,260,18],[3600,350,-24],[4380,200,16],[6900,240,-18]],25:[[200,170,12],[1020,180,-18],[5160,180,-16]],26:[[430,290,20],[2140,180,20],[6350,280,-25]],27:[[600,320,-20],[3100,180,18],[6800,220,-20]],28:[[450,250,-22],[1080,180,15],[3600,180,-20],[4980,240,-25],[7180,160,18]],29:[[500,220,-18],[1440,170,16],[6250,160,-18],[7050,120,-10]],30:[[430,260,-20],[1960,190,18],[3360,200,-15],[6860,150,-18]]};
+const shoulders={24:[[600,260,18],[3600,350,-24],[4380,200,16],[6900,240,-18]],25:[[200,170,12],[1020,180,-18],[5160,180,-16]],26:[[430,290,20],[2140,180,20],[6350,280,-25]],27:[[1460,130,-18],[3100,180,18],[6400,100,-16]],28:[[450,250,-22],[1080,180,15],[3600,180,-20],[4980,240,-25],[7180,160,18]],29:[[500,220,-18],[1440,170,16],[6250,160,-18],[7050,120,-10]],30:[[430,260,-20],[1960,190,18],[3360,200,-15],[6860,150,-18]]};
 function weatherContour(base,id){const patches=shoulders[id]||[],xs=new Set(base.map(v=>v[0]));for(const [x,r]of patches)for(let k=-4;k<=4;k++)xs.add(x+r*k/4);
  return [...xs].filter(x=>x>=0&&x<=base.at(-1)[0]).sort((a,b)=>a-b).map(x=>[x,at(base,x)+patches.reduce((n,[center,r,depth])=>{const d=Math.abs(x-center)/r;return n+(d<1?depth*(1+Math.cos(d*Math.PI))/2:0);},0)]);
 }
@@ -41,14 +41,14 @@ export function refineStage(p,s){const id=s.metadata.stageId;if(id<21||id>30)ret
   washes+=P([...top,[end-36,ye+75],[x+w*.16,yy+124],[x-38,yy+88],[xx+12,ys+62]],color)+path(`M${x-42} ${yy+100}Q${x+52} ${yy+78} ${end-36} ${ye+85}L${end-59} ${ye+117}Q${x+48} ${yy+137} ${x-56} ${yy+150}Z`,id>=29?'#203c3d':'#31493f');
  }
  add(p,s,'weathered-ground-washes',washes,[0,Math.min(...fq.map(v=>v[1])),s.width,700],'prop');
- for(const [i,x]of (vignettes[id]||[]).entries()){const y=at(q,x),w=80+[48,5,26,67,12][i%5],h=45+[27,62,14,39,18][i%5];let art=path(`M${x-94} ${y-2}Q${x-24} ${y-15} ${x+94} ${y-1}Q${x+26} ${y+9} ${x-94} ${y-2}Z`,'#233b36')+rock(x,y,w,h)+rock(x+w*.53,y+3,w*.37,h*.31);
+ for(const [i,x]of (vignettes[id]||[]).entries()){const y=at(id===22?fq:q,x),w=80+[48,5,26,67,12][i%5],h=45+[27,62,14,39,18][i%5];let art=path(`M${x-94} ${y-2}Q${x-24} ${y-15} ${x+94} ${y-1}Q${x+26} ${y+9} ${x-94} ${y-2}Z`,'#233b36')+rock(x,y,w,h)+rock(x+w*.53,y+3,w*.37,h*.31);
   if(id!==22&&id!==25)art+=reed(x-w*.65,y,i%2?-1:1);
   if([24,25,28,29].includes(id)&&i===0)art+=stoneLantern(x+90,y);
   if(id===23)art+=R(x+83,y-41,61,40,'#77654c')+R(x+88,y-37,51,7,'#a59168')+line([[x+113,y-40],[x+113,y]],'#423f31',5);
   if(id===26){art+=path(`M${x+32} ${y}L${x+16} ${y-46} ${x+53} ${y-66} ${x+83} ${y-41} ${x+80} ${y}Z`,'#4d4438')+path(`M${x+36} ${y-45}L${x+52} ${y-56} ${x+71} ${y-40} ${x+66} ${y-11} ${x+43} ${y-8}Z`,'#7c6d50');}
   add(p,s,'ground-vignette-'+i,art,[x-170,y-150,380,175]);
  }
- for(const [i,[x,scale]]of (pineSites[id]||[]).entries()){const y=at(q,x);if(![26,27].includes(id)){const tree=act3Pine(prefix+'pine-art-'+i,i+id);tree.params.rearOnly=true;put(p,s,tree,prefix+'rooted-pine-'+i,x,y,scale,'back');}
+ for(const [i,[x,scale]]of (pineSites[id]||[]).entries()){const y=at(id===22?fq:q,x);if(![26,27].includes(id)){const tree=act3Pine(prefix+'pine-art-'+i,i+id);tree.params.rearOnly=true;put(p,s,tree,prefix+'rooted-pine-'+i,x,y,scale,'back');}
   else {const h=235*scale;add(p,s,'burnt-trunk-'+i,path(`M${x-14} ${y}Q${x-6} ${y-h*.5} ${x-16} ${y-h}L${x-9} ${y-h-15} ${x+7} ${y-h*.72} ${x+43} ${y-h*.8} ${x+78} ${y-h*.75} ${x+47} ${y-h*.74} ${x+11} ${y-h*.65}Q${x+20} ${y-h*.30} ${x+13} ${y}Z`,'#2c3932')+line([[x-6,y-8],[x-3,y-h*.45],[x-10,y-h*.78]],'#77674b',5),[x-25,y-h-20,120,h+25]);}
  }
  // Place-specific low architecture frames open ground without turning it into
