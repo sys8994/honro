@@ -435,6 +435,7 @@
             // Preserve both passes: stage 5 contains overlapping terrain supports.
             if(!training)G.HonroStageRules.sanitizeStageBattle(battle);
             this.mount(battle);
+            if(!training&&battle.honroSplit?.mode==='replay')this.notify('분할 재플레이 · 지난 분기 기록 없이 현재 성장과 입장 준비값으로 시작합니다.');
             if (!training) {
                 this.profile.lastStage = st.id;
                 this.profile.honroBattle = clone(this.engine.b);
@@ -447,7 +448,7 @@
         }
         mount(b) { G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);b.honroActiveLimit=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
-            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); if (!this.training) {
+            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
@@ -849,6 +850,7 @@
                     this.showCamp();
                     break;
                 case 'training':
+                    if(!G.HonroSplitCampaign.allowLaunch(this,1,true))break;
                     this.trainingClass = 'archer';
                     this.trainingSkill = 'A01';
                     this.launch(1, true, 'A01');

@@ -12,6 +12,8 @@ function snapshot(b,u){
  for(const key of clocks)if(u[key]>=b.round)s.status[key]=u[key]-b.round;
  for(const [key,clock] of Object.entries(nested))if(u[key]?.[clock]>=b.round)s.status[key]={...clone(u[key]),[clock]:u[key][clock]-b.round};
  if(u.shieldUntil!==undefined)s.shieldTurns=Math.max(0,u.shieldUntil-(b.teamEnds?.[1]||0));
+ if((u.curseTurns||0)>0&&u.curseDamage>0)s.detachedCurse=true;
+ if(u.earthbind)s.detachedEarth=true;
  for(const [id,end] of Object.entries(u.cooldowns||{}))if(end>b.round)s.cooldowns[id]=end-b.round;
  return s;
 }
@@ -27,6 +29,8 @@ function restore(b,u,s){
  for(const [key,clock] of Object.entries(nested))if(u[key])u[key][clock]+=b.round;
  u.shield??=0;u.bound??=0;u.mark??=0;u.breaks??=0;
  if(s.shieldTurns!==undefined)u.shieldUntil=(b.teamEnds?.[1]||0)+s.shieldTurns;
+ if(s.detachedCurse){delete u.curseOwner;u.honroCarriedCurse=true;}
+ if(s.detachedEarth&&u.earthbind){u.earthbind.owner='';u.honroCarriedEarth=true;}
  u.cooldowns=Object.fromEntries(Object.entries(s.cooldowns||{}).map(([key,left])=>[key,b.round+left]));
 }
 function prepare(profile,id){
@@ -50,7 +54,7 @@ function initialize(b,profile){
   restore(b,u,s.vitals[u.cls]);
   if(id===27){const p=b.honroMapAnchors?.splitSpawns?.[u.cls];if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))Object.assign(u,{x:p.x,y:p.y,spawnX:p.x,spawnY:p.y});}
  }
- if(id===27)s.spawnReady=ALL.every(cls=>!!b.honroMapAnchors?.splitSpawns?.[cls]);
+ if(id===27)s.spawnReady=ALL.every(cls=>{const p=b.honroMapAnchors?.splitSpawns?.[cls];return Number.isFinite(p?.x)&&Number.isFinite(p?.y);});
  capture(b);s.starts[id]??={vitals:clone(s.vitals),items:clone(b.items)};
  b.active=b.units.find(u=>hero(u)&&!u.dead)?.id||b.units.find(hero)?.id||b.active;
 }
@@ -62,6 +66,18 @@ function outcome(app,won){const b=app.engine?.b;if(!active(b))return;const s=b.h
  if(won)for(const u of b.units.filter(hero))C.applyHero(u,b.heroes[u.cls]);
  capture(b);if(won){s.completed[b.honroStage]=true;s.nextStage=b.honroStage<27?b.honroStage+1:null;s.finished=b.honroStage===27;}else s.nextStage=b.honroStage;
  app.profile.honroSplitCampaign=clone(s);
+}
+// A carried curse must not disappear with its former map's caster, nor bind
+// to an unrelated next-map enemy that reuses the same unit ID. The ordinary
+// newRound still owns duration decrement and MP regeneration exactly once.
+function attach(app,e){if(!active(e.b)||e.honroSplitAttached)return;e.honroSplitAttached=true;
+ const next=e.newRound.bind(e);e.newRound=function(){
+  for(const u of e.b.units.filter(hero))if(!u.dead){
+   if(u.honroCarriedCurse&&!u.curseOwner&&(u.curseTurns||0)>0&&u.curseDamage>0)e.hurt(u,u.curseDamage,'',false);
+   if(u.honroCarriedEarth&&u.earthbind&&!u.earthbind.owner&&u.earthbind.until>=e.b.round+1){u.slowed={factor:.24,expires:e.b.round+1};e.hurt(u,u.earthbind.damage,'',false,undefined,undefined,'normal','O10');}
+  }
+  return next();
+ };
 }
 function allPresent(b){return active(b)&&b.honroSplit.activeRoster.every(cls=>b.units.filter(u=>hero(u)&&u.cls===cls&&!u.dead&&u.hp>0).length===1);}
 function failure(b){if(!active(b)||b.honroStage===27)return null;return allPresent(b)?null:'조사팀 동행이 쓰러졌다. 현재 장의 시작 상태에서 다시 걷자.';}
@@ -75,5 +91,5 @@ function redirectRest(app){if(app.customMap||app.training||!locked(app.profile))
 function allowLaunch(app,id,training){if(app.customMap||!locked(app.profile))return true;const s=app.profile.honroSplitCampaign;if(!training&&(id===s.stage||id===s.nextStage))return true;app.notify('두 조사팀은 쉬지 않고 합류합니다. 현재 장을 이어가거나 다시 걸어주세요.');return false;}
 function resultLabel(app){const b=app.engine?.b;if(!active(b)||b.honroSplit.finished)return null;return b.phase==='lost'?'현재 조사 다시 걷기':b.honroStage===24?'묘역 기록실로':b.honroStage===25?'공방 조사 이어가기':'문서고에서 합류하기';}
 function resultContinue(app){const b=app.engine?.b;if(!app.done||!active(b)||b.honroSplit.finished)return false;const id=b.honroSplit.nextStage||b.honroStage;app.engine=null;app.profile.honroBattle=null;app.close();app.launch(id);return true;}
-G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,resultLabel,resultContinue,snapshot,restore};
+G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,attach,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,resultLabel,resultContinue,snapshot,restore};
 })(globalThis);

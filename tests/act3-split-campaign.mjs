@@ -59,7 +59,7 @@ await check('26 retry keeps completed A25, restores B26 entry and prevents rewar
 });
 await check('Rest/camp/training cannot reset a live split; title reload resumes pending team transition',()=>{
  let b=entry(24);unit('mage').hp-=190;b.items.heal=1;win();const v=plain(b.honroSplit.vitals);app.showTitle();app=h.reload();click('rest');b=ready();assert.equal(b.honroStage,25);assertVitals(v.mage,unit('mage'));assert.equal(b.items.heal,1);
- unit('mage').hp-=23;const hp=unit('mage').hp,session=b.session;app.showCamp();assert.equal(app.engine.b.session,session);assert.equal(unit('mage').hp,hp);app.showRest();assert.equal(unit('mage').hp,hp);app.launch(1,true);assert.equal(app.engine.b.session,session);assert.match(app.lastNotice,/합류/);
+ unit('mage').hp-=23;const hp=unit('mage').hp,session=b.session;app.showCamp();assert.equal(app.engine.b.session,session);assert.equal(unit('mage').hp,hp);app.showRest();assert.equal(unit('mage').hp,hp);click('training');assert.equal(app.engine.b.session,session);assert.equal(app.training,false);app.launch(1,true);assert.equal(app.engine.b.session,session);assert.match(app.lastNotice,/합류/);
 });
 await check('Legacy 24–27 Continue keeps four heroes and original split-free state; new retry alone opts in',()=>{
  for(const id of [24,25,26,27]){const p=h.profileThrough(id-1),map=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id),b=g.HonroMaps.createBattle(map,g.HONRO_PROJECT,p,{origin:'campaign'});
@@ -70,4 +70,10 @@ await check('Legacy 24–27 Continue keeps four heroes and original split-free s
  click('retry');ready();assert.equal(app.engine.b.units.filter(S.hero).length,id===25||id===26?2:4);}
 });
 await check('Chapters 1–23 and 28–30 never acquire the split contract',()=>{for(const id of [1,9,23,28,30]){const b=entry(id);assert.equal(b.honroSplit,undefined);assert.equal(S.active(b),false);}});
+
+await check('Carried damage statuses survive their old caster and tick only the active team once',()=>{
+ let b=entry(24);const u=unit('archer');u.curseOwner='old-foe';u.curseTurns=3;u.curseDamage=18;u.shield=0;u.earthbind={owner:'old-foe',until:b.round+4,damage:9};win();b=next();const saved=plain(b.honroSplit.vitals.archer);app.engine.newRound();assert.deepEqual(plain(b.honroSplit.vitals.archer),saved);win();b=next();
+ const archer=unit('archer'),before=archer.hp;assert.equal(archer.curseOwner,undefined);assert.equal(archer.earthbind.owner,'');app.engine.newRound();assert(archer.hp<before);assert.equal(archer.curseTurns,2);const loss=before-archer.hp;app.engine.newRound();assert.equal(archer.curseTurns,1);assert.equal(archer.hp,before-loss*2);
+});
+
 await report('act3-split-campaign',checks,{continuousSequence:[24,25,26,27],normalCombatClear:false});
