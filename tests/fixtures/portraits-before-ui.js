@@ -28,10 +28,10 @@ function sourceFor(actor,cls){
  const result={source:retained,bounds:move(bounds),head:move(protectedBounds)};if(cache.size>=8)cache.delete(cache.keys().next().value);cache.set(key,result);return result;
 }
 function cropFor(bounds,head,width,height){
- const aspect=width/height,pad=bounds.height*.02,top=Math.min(bounds.top,head.top)-pad;
- // Frame the shoulders more closely, then expand if a wide gat/hairstyle
+ const aspect=width/height,pad=bounds.height*.035,top=Math.min(bounds.top,head.top)-pad;
+ // Start with the existing story bust depth, then expand if a wide gat/hairstyle
  // needs more room. Both sides and the very top of the head always remain safe.
- const cropHeight=Math.max(bounds.height*.4+pad,(head.right-head.left+pad*2)/aspect,head.bottom-top+pad);
+ const cropHeight=Math.max(bounds.height*.46+pad,(head.right-head.left+pad*2)/aspect,head.bottom-top+pad);
  const cropWidth=cropHeight*aspect,center=(head.left+head.right)/2;
  return {x:center-cropWidth/2,y:top,width:cropWidth,height:cropHeight};
 }

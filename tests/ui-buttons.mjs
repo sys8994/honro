@@ -1,0 +1,30 @@
+/** Persistent minimap preference and role-based CSS contracts.
+ * App harness uses DOM/storage doubles; real geometry is a browser check. */
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {appHarness,KEY,plain,report} from './app-regression-helpers.mjs';
+const h=await appHarness(),checks=[];
+const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
+const change=async(value)=>{for(const fn of h.listeners.get('change')||[])await fn({target:{type:'checkbox',checked:value,dataset:{setting:'minimapVisible'}}});};
+let app=h.load(h.profileThrough(2));
+check('Older profiles without the preference default to visible',()=>{const p=h.profileThrough(2);delete p.settings.minimapVisible;app=h.load(p);assert.equal(app.profile.settings.minimapVisible,true);});
+check('Settings contains an associated minimap checkbox and battle has no floating toggle',()=>{app.settings();assert.match(app.modal.innerHTML,/label for="minimap-setting"/);for(const key of ['sound','volume','music','musicVolume','difficulty','playerSpeed','speed','orientation']){assert(app.modal.innerHTML.includes(`label for="setting-${key}"`));assert(app.modal.innerHTML.includes(`id="setting-${key}"`));}assert.match(app.modal.innerHTML,/data-setting="minimapVisible" checked/);app.launch(1);h.finish(app);assert.doesNotMatch(app.root.innerHTML,/minimap-toggle|toggle-minimap|지도 접기/);});
+const before=plain(app.profile);let redraws=0;app.updateHUD=()=>redraws++;
+await change(false);
+check('Turning it off hides the whole dock immediately and persists false',()=>{assert.equal(app.minimapVisible,false);assert.equal(h.nodes.get('minimap-dock').hidden,true);assert.equal(JSON.parse(h.storage.get(KEY)).settings.minimapVisible,false);assert.equal(redraws,0);assert.deepEqual(plain(app.profile.heroes),before.heroes);assert.deepEqual(plain(app.profile.cleared),before.cleared);});
+check('Settings reopen reflects off',()=>{app.settings();assert.match(app.modal.innerHTML,/data-setting="minimapVisible" >/);});
+check('Reload and battle re-entry keep the preference off',()=>{app=h.reload();assert.equal(app.profile.settings.minimapVisible,false);app.launch(1);h.finish(app);assert.equal(app.minimapVisible,false);assert.match(app.root.innerHTML,/id="minimap-dock" hidden/);});
+await change(true);
+check('Turning it on restores the dock and saves it for the next load',()=>{assert.equal(app.minimapVisible,true);assert.equal(h.nodes.get('minimap-dock').hidden,false);assert.equal(JSON.parse(h.storage.get(KEY)).settings.minimapVisible,true);app=h.reload();app.launch(1);h.finish(app);assert.equal(app.minimapVisible,true);assert.doesNotMatch(app.root.innerHTML,/id="minimap-dock" hidden/);});
+h.App.prototype.showMap=function(){this.stopBattle();this.close();this.screen="map";};
+app.setDebugMode(true);app.launch(20);h.finish(app);const normal=JSON.parse(h.storage.get(KEY));await change(false);
+check('Debug preference persists without copying debug progress into normal save',()=>{const saved=JSON.parse(h.storage.get(KEY));assert.equal(saved.settings.minimapVisible,false);normal.settings.minimapVisible=false;assert.deepEqual(saved,normal);app=h.reload();assert.equal(app.debugMode,true);assert.equal(app.profile.settings.minimapVisible,false);});
+check('Leaving debug keeps the same saved minimap choice',()=>{app.setDebugMode(false);assert.equal(app.profile.settings.minimapVisible,false);});
+h.g.HONRO_EMBEDDED=true;const saved=h.storage.get(KEY);app=h.reload();await change(false);
+check('Workshop preference is session-only and never writes campaign storage',()=>{assert.equal(app.minimapVisible,false);assert.equal(h.storage.get(KEY),saved);});
+const controls=await readFile('game/src/controls.css','utf8'),presentation=await readFile('game/src/presentation.css','utf8'),journey=await readFile('game/src/journey.css','utf8'),training=await readFile('game/src/training.css','utf8');
+check('Hidden dock has a display override and obsolete floating toggle CSS is removed',()=>{assert.match(controls,/\.minimap-dock\[hidden\]\{display:none\}/);assert.doesNotMatch(controls,/#minimap-toggle|aria-expanded=false/);});
+check('Story actions use aligned inline flex and zero arrow offset',()=>{assert.match(presentation,/\.story-actions button,.narration-actions button\{display:inline-flex;align-items:center;justify-content:center;gap:8px/);assert.match(presentation,/\.story-actions b,.narration-actions b\{[^}]*line-height:1;[^}]*margin:0/);});
+check('Action controls have role-based touch minimums without erasing colors',()=>{assert.match(controls,/--ui-action-height:44px/);assert.match(controls,/\.title-actions>button\{min-height:48px\}/);assert.match(journey,/\.rest-tools button\{display:inline-flex;align-items:center/);assert.match(training,/\.training-tools>button:not\(\.training-current\)/);assert.match(training,/@media\(max-height:520px\) and \(max-width:430px\)\{\.honro \.training-heroes\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)\}/);assert.match(presentation,/\.story-actions \.primary,.narration-actions \.primary\{background:#c6b17d;color:#102126/);});
+await report('ui-buttons',checks,{limits:['DOM/storage doubles verify persistence and markup; actual CSS layout, taps, screenshots and Pages deployment require cloud browser verification.']});
+console.log(`UI button contracts: ${checks.length} passed`);
