@@ -50,12 +50,19 @@ export function validateCampaignCatalog({stages,acts,balance,project,places}){
 }
 
 /** Null means undecided, including newBoss/ending; it never means approved absence. */
-export function validateAct3Draft(draft,activeIds){
+export function validateAct3Draft(draft,activeProject={stages:[],library:[]},{baseline=false}={}){
  check(draft?.schema==='honro-act-draft'&&draft.version===1,'Unsupported act draft');
  check(draft.act===3&&draft.status==='awaiting-map-review'&&draft.campaignEnabled===false,'Draft must remain inactive and awaiting map review');
  const expected=Array.from({length:10},(_,i)=>i+21);
  check(same(draft.stageIds,expected),'Draft must cover source stages 3-1 through 3-10');
- check(draft.stageIds.every(id=>!activeIds.includes(id)),'Draft stage leaked into the active catalog');
+ // Numeric slots 21–30 also belong to independently authored production maps.
+ // The historical source outline is still inactive; only its actual draft
+ // authored IDs, geometry, or assets leaking into production is an error.
+ if(baseline){const activeIds=Array.isArray(activeProject)?activeProject:activeProject.stages.map(s=>s.metadata.stageId);check(draft.stageIds.every(id=>!activeIds.includes(id)),'Draft stage leaked into the baseline catalog');}
+ else {check(!Array.isArray(activeProject),'Production draft audit requires actual map and asset identities');
+  for(const st of activeProject.stages||[])check(!/^draft(?:-|:)/.test(st.id||'')&&!st.design?.draft,'Draft authored map leaked into active catalog');
+  for(const a of activeProject.library||[])check(!/^draft(?:-|:)/.test(a.id||'')&&!a.tags?.includes('act3-draft'),'Draft asset leaked into active catalog');
+ }
  check(draft.source?.pageCount===26&&draft.source?.version==='0.1'&&/^[a-f0-9]{64}$/.test(draft.source?.extractedTextSha256||''),'Source identity is required');
  check(Array.isArray(draft.stages)&&draft.stages.length===10,'Draft must retain all ten source slots');
  for(const key of ['mapConcept','objectiveModel','difficulty','newBoss','ending'])check(Object.hasOwn(draft.decisions||{},key)&&draft.decisions[key]===null,`Unreviewed decision must stay null: ${key}`);
@@ -68,20 +75,22 @@ export function validateAct3Draft(draft,activeIds){
  return {stageIds:expected,status:draft.status,campaignEnabled:false,implemented:false};
 }
 
-export async function loadFoundationInputs(root=ROOT){
+export async function loadFoundationInputs(root=ROOT,{baseline=false}={}){
  const json=async file=>JSON.parse(await readFile(path.join(root,file),'utf8'));
  const balance=await json('game/config/balance.json');
  // This content-only sandbox does not invoke the engine, compiler, builder,
  // profile loader, localStorage or the production app.
- const g=vm.createContext({HONRO_CORE:{SKILLS:{}},HONRO_BALANCE:plain(balance)});
- for(const name of ['content','story-content','act2-content','act2-plan','act2-drama','journey-content'])
+ const g=vm.createContext({HONRO_CORE:{SKILLS:{}},HONRO_BALANCE:plain(balance),HonroWorld:{archetypes:{}}});
+ for(const name of ['content','story-content','act2-content','act2-plan','act2-drama',...(!baseline?['act3-content']:[]),'journey-content',...(!baseline?['act3-journey']:[])])
   vm.runInContext(await readFile(path.join(root,'shared/runtime',name+'.js'),'utf8'),g,{filename:name+'.js'});
- return {catalog:{stages:plain(g.HONRO_CONTENT.stages),acts:plain(g.HONRO_CONTENT.acts),balance:balance.stages,project:await json('shared/data/campaign.json'),places:plain(g.HonroJourneyContent.places)},draft:await json('tools/map-forge/act3-draft.json'),nextAct:plain(g.HONRO_CONTENT.nextAct)};
+ const project=await json('shared/data/campaign.json');if(baseline){project.stages=project.stages.filter(s=>s.metadata.stageId<=20);project.library=project.library.filter(a=>!a.id.startsWith('a3-'));}
+ return {catalog:{stages:plain(g.HONRO_CONTENT.stages),acts:plain(g.HONRO_CONTENT.acts),balance:baseline?balance.stages.filter(s=>s.id<=20):balance.stages,project,places:plain(g.HonroJourneyContent.places)},draft:await json('tools/map-forge/act3-draft.json'),nextAct:plain(g.HONRO_CONTENT.nextAct)};
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
- const {catalog,draft,nextAct}=await loadFoundationInputs();
- const current=validateCampaignCatalog(catalog),planned=validateAct3Draft(draft,current.stageIds);
- check(nextAct.id===3&&nextAct.available===false,'Production Act 3 must remain unavailable');
- console.log(JSON.stringify({current,planned,proof:'Catalog consistency and inactive planning slots only; no new map, mission, save or gameplay implementation.'},null,2));
+ const baseline=process.argv.includes('--baseline');
+ const {catalog,draft,nextAct}=await loadFoundationInputs(ROOT,{baseline});
+ const current=validateCampaignCatalog(catalog),planned=validateAct3Draft(draft,catalog.project,{baseline});
+ check(nextAct.id===(baseline?3:4)&&nextAct.available===false,'The next unimplemented act must remain unavailable');
+ console.log(JSON.stringify({current,planned,proof:'Catalog consistency and historical inactive outline isolation only. Production slot coverage is not gameplay, geometry, browser or approval proof.'},null,2));
 }

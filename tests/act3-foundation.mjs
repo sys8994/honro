@@ -4,13 +4,14 @@ import {readFile,readdir} from 'node:fs/promises';
 import path from 'node:path';
 import {ROOT,loadFoundationInputs,validateCampaignCatalog,validateAct3Draft} from '../tools/map-forge/act3-foundation.mjs';
 
-const {catalog,draft,nextAct}=await loadFoundationInputs();
+const production=await loadFoundationInputs();
+const {catalog,draft,nextAct}=await loadFoundationInputs(ROOT,{baseline:true});
 const baseline=JSON.stringify(catalog),checks=[];
 const test=(name,fn)=>{fn();checks.push(name);};
-test('Current 20 chapter catalogs agree',()=>assert.deepEqual(validateCampaignCatalog(catalog).stageIds,Array.from({length:20},(_,i)=>i+1)));
-test('Act 3 remains unavailable and all design choices are undecided',()=>{
+test('Explicit preproduction baseline retains 20 matching chapters',()=>assert.deepEqual(validateCampaignCatalog(catalog).stageIds,Array.from({length:20},(_,i)=>i+1)));
+test('Historical outline remains inactive and cannot retrospectively grant production approval',()=>{
  assert.equal(nextAct.id,3);assert.equal(nextAct.available,false);
- assert.equal(validateAct3Draft(draft,catalog.stages.map(s=>s.id)).implemented,false);
+ assert.equal(validateAct3Draft(draft,catalog.project,{baseline:true}).implemented,false);
 });
 test('Audit leaves all current stage, map, asset, balance and journey records byte-equivalent',()=>assert.equal(JSON.stringify(catalog),baseline));
 
@@ -46,10 +47,12 @@ rejectCatalog('Wrong local chapter',v=>v.stages[20].actStage=2,/mismatch/);
 rejectCatalog('Missing prerequisite',v=>v.stages[20].requires=[99],/prerequisite/);
 rejectCatalog('Self prerequisite',v=>v.stages[20].requires=[21],/prerequisite/);
 rejectCatalog('Duplicate prerequisite',v=>v.stages[20].requires=[20,20],/duplicate/);
-test('Draft IDs cannot leak into active content',()=>assert.throws(()=>validateAct3Draft(draft,extended.stages.map(s=>s.id)),/leaked/));
-for(const [key,value] of [['campaignEnabled',true],['status','approved']])test('Reject unreviewed draft '+key,()=>assert.throws(()=>validateAct3Draft({...draft,[key]:value},catalog.stages.map(s=>s.id)),/inactive/));
-test('Reject silently chosen map concept',()=>assert.throws(()=>validateAct3Draft({...draft,decisions:{...draft.decisions,mapConcept:'A'}},[]),/null/));
-test('Reject draft pretending to be a canonical map',()=>{const copy=structuredClone(draft);copy.stages[0].canonicalStage={};assert.throws(()=>validateAct3Draft(copy,[]),/geometry/);});
+test('Complete production catalog covers all 30 slots and leaves Act 4 unavailable',()=>{assert.deepEqual(validateCampaignCatalog(production.catalog).stageIds,Array.from({length:30},(_,i)=>i+1));assert.equal(production.nextAct.id,4);assert.equal(production.nextAct.available,false);assert.equal(validateAct3Draft(draft,production.catalog.project).implemented,false);});
+for(const kind of ['map','asset'])test('Actual draft '+kind+' IDs cannot leak into active content',()=>{const p=structuredClone(production.catalog.project);if(kind==='map')p.stages[20].id='draft-act3-city';else p.library.push({id:'draft:archive',tags:['act3-draft']});assert.throws(()=>validateAct3Draft(draft,p),/leaked/);});
+test('Renaming a draft map without promoting authored design is rejected',()=>{const p=structuredClone(production.catalog.project);p.stages[20].design.draft={};assert.throws(()=>validateAct3Draft(draft,p),/leaked/);});
+for(const [key,value] of [['campaignEnabled',true],['status','approved']])test('Reject unreviewed draft '+key,()=>assert.throws(()=>validateAct3Draft({...draft,[key]:value},catalog.project,{baseline:true}),/inactive/));
+test('Reject silently chosen map concept',()=>assert.throws(()=>validateAct3Draft({...draft,decisions:{...draft.decisions,mapConcept:'A'}},{stages:[],library:[]}),/null/));
+test('Reject draft pretending to be a canonical map',()=>{const copy=structuredClone(draft);copy.stages[0].canonicalStage={};assert.throws(()=>validateAct3Draft(copy,{stages:[],library:[]}),/geometry/);});
 
 // Inspect the actual source trees and explicit shared builder. The preflight,
 // scaffold and tests must not become production input merely by existing.
@@ -64,4 +67,4 @@ async function scan(dir){for(const entry of await readdir(path.join(ROOT,dir),{w
 for(const dir of ['shared/runtime','shared/map','shared/data','shared/engine/src','workshop/src','game/src','game/config'])await scan(dir);
 assert(!/act3-(?:draft|foundation)/.test(await readFile(path.join(ROOT,'shared/build.mjs'),'utf8')));
 checks.push('No draft tooling reference in production source or shared bundle manifest');
-console.log('PASS '+checks.length+' Act 3 foundation checks; synthetic catalogs only, no new gameplay or save implementation');
+console.log('PASS '+checks.length+' Act 3 foundation checks; catalog scope and draft isolation only; not gameplay, browser or normal-play proof');
