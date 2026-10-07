@@ -27,7 +27,9 @@ for(const id of ids){const profile=profileThrough(id-1),st=g.HONRO_CONTENT.stage
   if(nearFoe&&s.kind!=='destroy'&&s.kind!=='escort'&&s.kind!=='hold'&&Math.hypot(nearFoe.x-goal.x,nearFoe.y-goal.y)<550){const distance=u.cls==='knight'?120:440;goal={x:nearFoe.x+(u.x<nearFoe.x?-distance:distance),y:nearFoe.y};}
   move(u,goal);drain();if(!e.canAct())continue;
   let action=null;
-  if(u.hp<u.maxHp*.28&&b.items.heal>0&&e.item('heal'))action={action:'heal'};
+  if(u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal'))action={action:'heal'};
+  else if(u.hp<u.maxHp*.25&&b.items.ward>0&&e.item('ward'))action={action:'ward'};
+  else if(u.focus<u.maxFocus*.15&&b.items.focus>0&&e.item('focus'))action={action:'focus'};
   else if(m.action&&A.eligibility(app,m).ok&&A.use(app,m))action={action:'interact',target:m.id};
   else if(t&&!t.broken&&(!s.requiredClass||u.cls===s.requiredClass)){
    const skill=C.SKILLS[C.baseSkill(u.cls)],direct=Math.atan2(u.y-u.h*.6-(t.y+t.h*.5),t.x+t.w/2-u.x)*180/Math.PI;let best=null;
@@ -38,6 +40,8 @@ for(const id of ids){const profile=profileThrough(id-1),st=g.HONRO_CONTENT.stage
   if(!action){e.wait();action={action:'defend'};}actions.push({round:b.round,actor:u.cls,goal:s.id,x:u.x,y:u.y,...action});
   if(count%8===0){console.log('PLAY',id,b.round,s.id,actions.length,e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,actions,dialogue}));}
  }
- if(b.phase==='won'){app.outcome();drain();}else drain();const row={stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,fingerprint,source,actions,dialogue,heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,x:u.x,y:u.y})),items:plain(b.items),scope:'Native production App/engine input bot with menu, Canvas and storage doubles. Prepared entry save. Not browser play or a human difficulty verdict.'};rows.push(row);await writeFile(`${out}/stage-${id}.json`,JSON.stringify(row,null,2));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,actions,dialogue}));console.log('RESULT',id,b.phase,b.round,row.goal,actions.length,row.reason);
+ if(b.phase==='won'){app.outcome();drain();}else drain();
+ const responses=b.honroEvents.filter(ev=>ev.id.startsWith('act3-response-')),reinforcements={authored:responses.length,committed:responses.filter(ev=>b.honroState.flags['event:'+ev.id]===true).length,units:b.units.filter(u=>u.honroSpawnSource?.startsWith('act3-response-')).length,pending:(b.honroState.pendingEvents||[]).filter(id=>id.startsWith('act3-response-'))};
+ const row={stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,fingerprint,source,actions,dialogue,reinforcements,heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,x:u.x,y:u.y})),items:plain(b.items),scope:'Native production App/engine input bot with menu, Canvas and storage doubles. Prepared entry save. Uses only available heal/ward/focus items, heals below 45% HP. Not browser play or a human difficulty verdict.'};rows.push(row);await writeFile(`${out}/stage-${id}.json`,JSON.stringify(row,null,2));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,actions,dialogue}));console.log('RESULT',id,b.phase,b.round,row.goal,actions.length,row.reason,'responses',reinforcements.committed+'/'+reinforcements.authored);
 }
 if(rows.some(r=>r.phase!=='won'))process.exitCode=1;
