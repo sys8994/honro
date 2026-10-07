@@ -4,8 +4,8 @@ Working branch only. Source: HONRO Story Design v0.1, pages 18–26. Stages 21�
 
 ## Map/runtime boundary
 
-- Every ordered step has a marker with the exact step ID and finite foot coordinates. Interactions use `action: 'act3'`; passive destroy/hold/reach/escort markers need no action. `requiredClass` is copied where applicable.
-- Destroy steps also have a real breakable terrain with the same ID. Their marker sits on a reachable shooting position; objective arrows point at the live terrain. Opening gates marks the named real gate terrain broken and increments `sceneVersion`.
+- Every ordered step has a marker with the exact step ID and finite foot coordinates, except destroy markers use `marker-<step-id>` with `target: <step-id>` to preserve global ID uniqueness. Interactions use `action: 'act3'`; passive destroy/hold/reach/escort markers need no action. `requiredClass` is copied where applicable.
+- Destroy steps also have a real breakable terrain with the exact step ID. Their marker sits on a reachable shooting position; objective arrows point at the live terrain. Opening gates marks the named real gate terrain broken and increments `sceneVersion`.
 - NPC records use kind `object:civilian`, team `npc`, `stageOverrides: { honroProtected: true }`; carrier additionally `fixed: false`, `maxMove: 900`, `moveLeft: 900`. No NPC personal name.
 - `target` refers to the live NPC, never a stale marker position. Escort destinations remain fixed map markers. Carrier route markers use `route:<step-id>:0`, `:1`, etc. if more than a continuous forward slope is needed. No teleporting.
 - Enemy records use ordinary existing kinds or `recoveryGuard` / `recoveryArcher`. Recovery personnel are nonlethal, with side 2 and disabled actions when subdued. Cohorts use `stageOverrides.honroCohort`; no stage requires total extermination.
@@ -85,6 +85,6 @@ Fire threat starts on first step; each full enemy turn advances loss pressure un
 4. old-road: reach, all surviving player heroes within 440 (same floor)
 Ending: three records joined, Seolo's home vicinity connects to the route, old road toward Mumeongsa is cut. Act 4 is unavailable/준비 중; stage 31 cannot launch.
 
-## Growth proposal (parent review pending)
+## Growth proposal (implementation/testing proposal; user final balance review pending)
 
 Preserve stages 1–20 exactly. Stage 21 begins at the actual first-clear stage-20 XP, approximately level 15.69. Stage 30 target is level 22.0 using current XP curve, with 40% combat share and existing per-stage retry ledger. Existing cap 30 and skills unchanged. New stages must never extrapolate the clamped legacy level-25 reward curve.
