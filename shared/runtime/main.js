@@ -376,10 +376,13 @@
             if(!map)throw Error('Stage not found '+stageId);
             const errors=G.HonroMaps.validate(project).filter(x=>x.level==='err');if(errors.length)throw Error(errors.map(x=>x.text).join('\n'));
             if(!map.units.some(u=>u.team==='player'))throw Error('플레이어 유닛을 먼저 배치하세요.');
-            if(this.engine)this.stopBattle();this.close();
+            // Retry/results may already have released the engine. End the old
+            // custom context first so its protected owner cannot become a QA copy.
+            this.stopBattle();this.close();
             this.customMap={project,stageId:map.id,returnProfile:this.profile,returnStageId:this.stageId};
-            this.profile={...fresh(),...G.HonroMaps.profileFor(map),...(options.profile||{})};
-            this.profile.settings={...this.customMap.returnProfile.settings,...options.profile?.settings};
+            const profileOverride=clone(options.profile||{});
+            this.profile={...fresh(),...G.HonroMaps.profileFor(map),...profileOverride};
+            this.profile.settings={...this.customMap.returnProfile.settings,...profileOverride.settings};
             this.stageId=map.metadata.stageId||1;this.training=false;
             this.stage={...H.stages[this.stageId-1],name:map.name,w:map.width,h:map.height,theme:map.backdrop};
             if(!map.metadata.campaign){this.stage={...this.stage,objective:'authored',goal:map.objectives.map(o=>o.label||o.type).join(' · ')||'맵 탐색',story:[],outro:[],storySummary:'작성한 목표를 달성했다.'};}
@@ -396,7 +399,7 @@
             const trainingMusic=training&&this.training&&this.engine&&this.screen==='battle'?(this.trainingMusicSession||this.engine.b.session):null;
             const st = H.stages[id - 1];
             if(!st||!training&&!G.HONRO_PROJECT.stages.some(m=>m.metadata?.stageId===st.id)){this.notify('아직 준비되지 않은 길입니다.');return;}
-            if (this.engine)
+            if (this.engine || this.customMap)
                 this.stopBattle();
             this.close();
             if (!training && !this.isOpen(st)) {
@@ -832,7 +835,7 @@
                     this.pendingJourneyLaunch=null;this.close();
                     break;
                 case 'result-continue':
-                    G.HonroRestJourney.resultContinue(this);
+                    if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);
                     break;
                 case 'map':
                     this.showMap();
@@ -966,6 +969,7 @@
                 case 'confirm-newgame':
                     if(this.debugMode)break;
                     this.engine = null;
+                    this.stopBattle();
                     this.profile = fresh();
                     this.normalProfile = this.profile;
                     this.persist();
@@ -1028,6 +1032,9 @@
                         throw Error('혼로의 기록 파일이 아니야.');
                     this.engine = null;
                     const migrated=fresh(); Object.assign(migrated,data); migrated.schema=4; migrated.settings={...fresh().settings,...data.settings}; if(migrated.honroBattle?.honroRevision!==20)migrated.honroBattle=null; C.migrateSkills(migrated);
+                    // Imported normal progress replaces the session, including
+                    // any pending custom return owner, before persistence resumes.
+                    this.stopBattle();
                     this.profile = migrated;
                     this.normalProfile = migrated;
                     G.HonroProgression.repairRecruits(this.profile);
