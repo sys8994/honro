@@ -115,8 +115,15 @@ export function koreanArchiveCabinet(id,{width=280,height=285,variant=0}={}){
   const left=18+(row%2)*7,right=w-20,space=right-left,top=row===0?17:shelfY[row-1]+13,hh=base-top-10;
   if(row===2&&variant%2===0){parts.push(rect(left,top+4,space,hh-4,'#857148'),rect(left-3,top,space+6,9,'#ae9968'),rect(left+space*.52,top+7,6,hh-7,'#514e34'),rect(left+space*.44,top+hh*.45,11,16,'#b8aa7c'));}
   else for(let j=0;j<2;j++){
-   const bw=space*.43,x=left+j*space*.53,y=top+(j+row)%2*5,body=Math.max(25,hh-6);
-   parts.push(rect(x,y,bw,body,'#b7aa82'),rect(x-2,y-4,bw+4,9,(j+row+variant)%2?'#536e64':'#86704a'),rect(x+4,y+body-8,bw-8,4,'#d0bf93'),rect(x+3,y+body*.33,bw-6,3,'#dccb9e'),rect(x+3,y+body*.66,bw-6,3,'#857c58'),rect(x+bw*.29,y-4,5,body+4,'#546344'),rect(x+bw*.77,y-4,5,body+4,'#546344'),rect(x+bw*.42,y+10,bw*.27,13,'#d1c097'));
+   const bw=space*.43,x=left+j*space*.53,th=Math.min(17,Math.max(10,(hh-4)/3)),papers=[],covers=[],ties=[],labels=[];
+   for(let book=0;book<3;book++){
+    const bx=x+[1,-3,4][book],by=base-(3-book)*(th+3)+2,ww=bw-[2,0,7][book];
+    papers.push(box(bx+3,by+4,ww-6,th-6));
+    covers.push(`M${bx-1} ${by+1}L${bx+ww-4} ${by-1}L${bx+ww+2} ${by+3}H${bx-1}Z`,box(bx,by+th-2,ww,3));
+    ties.push(box(bx+ww*(book===1?.23:.16),by+2,4,th-1));
+    if(book===2)labels.push(box(bx+ww*.61,by+5,ww*.22,4));
+   }
+   parts.push(path('#c8ba91',papers.join(' ')),path((j+row+variant)%2?'#546e63':'#7b6948',covers.join(' ')),path('#4f6148',ties.join(' ')),path('#e1cfa2',labels.join(' ')));
   }
   parts.push(rect(7,base,w-14,10,'#9e8758'),rect(9,base+7,w-18,4,'#4a4932'));
  }
