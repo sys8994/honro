@@ -2,7 +2,7 @@
 <title>밤 수문의 권양 누각</title>
 <desc>An elevated operating pavilion above two transparent water channels. Gates are raised and are rear artwork. All three stone abutments must contact river-bed supports. Water, gate interaction and hazards are authored separately.</desc>
 <defs>
-<linearGradient id="sluice-night-tiles" x1="0" y1="-852" x2="0" y2="-720" gradientUnits="userSpaceOnUse"><stop offset="0.00" stop-color="#7f8d87"/><stop offset="0.50" stop-color="#4c6972"/><stop offset="1.00" stop-color="#283f4c"/></linearGradient>
+<linearGradient id="sluice-night-tiles" x1="0" y1="-852" x2="0" y2="-720" gradientUnits="userSpaceOnUse"><stop offset="0.00" stop-color="#6d837d"/><stop offset="0.50" stop-color="#3f626a"/><stop offset="1.00" stop-color="#213c45"/></linearGradient>
 </defs>
 <g id="granite-water-abutments">
 <path fill="#526d69" d="M-640-385H-493L-488 0H-659Z M-74-385H73L85 0H-86Z M495-385H642L660 0H489Z"/>
@@ -43,10 +43,10 @@
 <g id="roof-sluice-night-tiles">
 <path fill="#203742" d="M-665 -726Q-621 -712 -561 -738L-514 -777L-480 -834H480L514 -777L561 -738Q625 -712 665 -730L657 -709L576 -706L534 -720H-534L-579 -705L-657 -708Z"/>
 <path fill="url(#sluice-night-tiles)" d="M-658 -728Q-623 -720 -561 -744L-514 -781L-476 -837H476L514 -781L561 -744Q626 -722 659 -734L649 -723L575 -720L533 -733H-533L-580 -719L-651 -719Z"/>
-<path fill="#7f8d87" d="M-497 -851L-480 -848H480L497 -853L492 -837L476 -841H-476L-493 -836Z"/>
+<path fill="#6d837d" d="M-497 -851L-480 -848H480L497 -853L492 -837L476 -841H-476L-493 -836Z"/>
 <path fill="#4b676c" d="M-474 -837h948v8h-948Z"/>
 <path fill="#263e47" d="M-491 -814Q0 -809 491 -814l5 6Q0 -803 -496 -808Z M-514 -789Q0 -784 514 -789l5 6Q0 -778 -519 -783Z M-536 -765Q0 -760 536 -765l5 6Q0 -754 -541 -759Z M-556 -743Q0 -738 556 -743l5 6Q0 -732 -561 -737Z"/>
-<path fill="none" stroke="#4c6972" stroke-width="3" d="M-446 -827L-500 -738 M-375 -827L-420 -738 M-304 -827L-340 -738 M-233 -827L-261 -738 M-162 -827L-181 -738 M-91 -827L-102 -738 M-20 -827L-22 -738 M51 -827L57 -738 M122 -827L137 -738 M193 -827L216 -738 M264 -827L296 -738 M335 -827L375 -738 M406 -827L455 -738"/>
+<path fill="none" stroke="#3f626a" stroke-width="3" d="M-446 -827L-500 -738 M-375 -827L-420 -738 M-304 -827L-340 -738 M-233 -827L-261 -738 M-162 -827L-181 -738 M-91 -827L-102 -738 M-20 -827L-22 -738 M51 -827L57 -738 M122 -827L137 -738 M193 -827L216 -738 M264 -827L296 -738 M335 -827L375 -738 M406 -827L455 -738"/>
 <path fill="#849087" d="M-529 -718h18v2h-18Z M-494 -718h18v2h-18Z M-459 -718h18v2h-18Z M-424 -718h18v2h-18Z M-389 -718h18v2h-18Z M-354 -718h18v2h-18Z M-319 -718h18v2h-18Z M-284 -718h18v2h-18Z M-249 -718h18v2h-18Z M-214 -718h18v2h-18Z M-179 -718h18v2h-18Z M-144 -718h18v2h-18Z M-109 -718h18v2h-18Z M-74 -718h18v2h-18Z M-39 -718h18v2h-18Z M-4 -718h18v2h-18Z M31 -718h18v2h-18Z M66 -718h18v2h-18Z M101 -718h18v2h-18Z M136 -718h18v2h-18Z M171 -718h18v2h-18Z M206 -718h18v2h-18Z M241 -718h18v2h-18Z M276 -718h18v2h-18Z M311 -718h18v2h-18Z M346 -718h18v2h-18Z M381 -718h18v2h-18Z M416 -718h18v2h-18Z M451 -718h18v2h-18Z M486 -718h18v2h-18Z M521 -718h18v2h-18Z"/>
 <path fill="#233c40" d="M-529 -715h18v7h-18Z M-494 -715h18v7h-18Z M-459 -715h18v7h-18Z M-424 -715h18v7h-18Z M-389 -715h18v7h-18Z M-354 -715h18v7h-18Z M-319 -715h18v7h-18Z M-284 -715h18v7h-18Z M-249 -715h18v7h-18Z M-214 -715h18v7h-18Z M-179 -715h18v7h-18Z M-144 -715h18v7h-18Z M-109 -715h18v7h-18Z M-74 -715h18v7h-18Z M-39 -715h18v7h-18Z M-4 -715h18v7h-18Z M31 -715h18v7h-18Z M66 -715h18v7h-18Z M101 -715h18v7h-18Z M136 -715h18v7h-18Z M171 -715h18v7h-18Z M206 -715h18v7h-18Z M241 -715h18v7h-18Z M276 -715h18v7h-18Z M311 -715h18v7h-18Z M346 -715h18v7h-18Z M381 -715h18v7h-18Z M416 -715h18v7h-18Z M451 -715h18v7h-18Z M486 -715h18v7h-18Z M521 -715h18v7h-18Z"/>
 </g>

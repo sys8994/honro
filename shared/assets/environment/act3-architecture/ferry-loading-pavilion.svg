@@ -2,7 +2,7 @@
 <title>나루의 하역 정자</title>
 <desc>A low covered landing with a weatherboard shelter, open cargo berth and a quiet shaded lantern. The hoist is rear artwork. Four stone footings require river-bed or bank contact; no water, cargo clue or traversal mechanic is embedded.</desc>
 <defs>
-<linearGradient id="ferry-slate" x1="0" y1="-675" x2="0" y2="-542" gradientUnits="userSpaceOnUse"><stop offset="0.00" stop-color="#859188"/><stop offset="0.50" stop-color="#526b70"/><stop offset="1.00" stop-color="#2b444c"/></linearGradient>
+<linearGradient id="ferry-slate" x1="0" y1="-675" x2="0" y2="-542" gradientUnits="userSpaceOnUse"><stop offset="0.00" stop-color="#929582"/><stop offset="0.50" stop-color="#61766f"/><stop offset="1.00" stop-color="#354d4d"/></linearGradient>
 </defs>
 <g id="pier-foundation-stones">
 <path fill="#526b64" d="M-620-115H-517L-510 0H-631Z M-231-115H-139V0H-238Z M213-115H302L309 0H207Z M542-115H633L644 0H538Z"/>
@@ -47,11 +47,13 @@
 <g id="roof-ferry-slate">
 <path fill="#203742" d="M-675 -548Q-631 -534 -571 -560L-524 -599L-490 -657H490L524 -599L571 -560Q635 -534 675 -552L667 -531L586 -528L544 -542H-544L-589 -527L-667 -530Z"/>
 <path fill="url(#ferry-slate)" d="M-668 -550Q-633 -542 -571 -566L-524 -603L-486 -660H486L524 -603L571 -566Q636 -544 669 -556L659 -545L585 -542L543 -555H-543L-590 -541L-661 -541Z"/>
-<path fill="#859188" d="M-507 -674L-490 -671H490L507 -676L502 -660L486 -664H-486L-503 -659Z"/>
+<path fill="#929582" d="M-507 -674L-490 -671H490L507 -676L502 -660L486 -664H-486L-503 -659Z"/>
 <path fill="#4b676c" d="M-484 -660h968v8h-968Z"/>
 <path fill="#263e47" d="M-501 -637Q0 -632 501 -637l5 6Q0 -626 -506 -631Z M-524 -612Q0 -607 524 -612l5 6Q0 -601 -529 -606Z M-546 -587Q0 -582 546 -587l5 6Q0 -576 -551 -581Z M-566 -565Q0 -560 566 -565l5 6Q0 -554 -571 -559Z"/>
-<path fill="none" stroke="#526b70" stroke-width="3" d="M-456 -650L-511 -560 M-385 -650L-431 -560 M-314 -650L-352 -560 M-243 -650L-272 -560 M-172 -650L-193 -560 M-101 -650L-113 -560 M-30 -650L-34 -560 M41 -650L46 -560 M112 -650L125 -560 M183 -650L205 -560 M254 -650L284 -560 M325 -650L364 -560 M396 -650L444 -560 M467 -650L523 -560"/>
+<path fill="none" stroke="#61766f" stroke-width="3" d="M-456 -650L-511 -560 M-385 -650L-431 -560 M-314 -650L-352 -560 M-243 -650L-272 -560 M-172 -650L-193 -560 M-101 -650L-113 -560 M-30 -650L-34 -560 M41 -650L46 -560 M112 -650L125 -560 M183 -650L205 -560 M254 -650L284 -560 M325 -650L364 -560 M396 -650L444 -560 M467 -650L523 -560"/>
 <path fill="#849087" d="M-539 -540h18v2h-18Z M-504 -540h18v2h-18Z M-469 -540h18v2h-18Z M-434 -540h18v2h-18Z M-399 -540h18v2h-18Z M-364 -540h18v2h-18Z M-329 -540h18v2h-18Z M-294 -540h18v2h-18Z M-259 -540h18v2h-18Z M-224 -540h18v2h-18Z M-189 -540h18v2h-18Z M-154 -540h18v2h-18Z M-119 -540h18v2h-18Z M-84 -540h18v2h-18Z M-49 -540h18v2h-18Z M-14 -540h18v2h-18Z M21 -540h18v2h-18Z M56 -540h18v2h-18Z M91 -540h18v2h-18Z M126 -540h18v2h-18Z M161 -540h18v2h-18Z M196 -540h18v2h-18Z M231 -540h18v2h-18Z M266 -540h18v2h-18Z M301 -540h18v2h-18Z M336 -540h18v2h-18Z M371 -540h18v2h-18Z M406 -540h18v2h-18Z M441 -540h18v2h-18Z M476 -540h18v2h-18Z M511 -540h18v2h-18Z"/>
 <path fill="#233c40" d="M-539 -537h18v7h-18Z M-504 -537h18v7h-18Z M-469 -537h18v7h-18Z M-434 -537h18v7h-18Z M-399 -537h18v7h-18Z M-364 -537h18v7h-18Z M-329 -537h18v7h-18Z M-294 -537h18v7h-18Z M-259 -537h18v7h-18Z M-224 -537h18v7h-18Z M-189 -537h18v7h-18Z M-154 -537h18v7h-18Z M-119 -537h18v7h-18Z M-84 -537h18v7h-18Z M-49 -537h18v7h-18Z M-14 -537h18v7h-18Z M21 -537h18v7h-18Z M56 -537h18v7h-18Z M91 -537h18v7h-18Z M126 -537h18v7h-18Z M161 -537h18v7h-18Z M196 -537h18v7h-18Z M231 -537h18v7h-18Z M266 -537h18v7h-18Z M301 -537h18v7h-18Z M336 -537h18v7h-18Z M371 -537h18v7h-18Z M406 -537h18v7h-18Z M441 -537h18v7h-18Z M476 -537h18v7h-18Z M511 -537h18v7h-18Z"/>
+<path fill="#435d5c" d="M306-638L356-639L409-585L486-562L438-560L373-584Z"/>
+<path fill="#738377" d="M305-638L314-638L381-585L446-562L437-561L372-583Z"/>
 </g>
 </svg>
