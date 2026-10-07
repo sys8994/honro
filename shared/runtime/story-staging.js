@@ -17,8 +17,8 @@ function point(b,p,context={}){
 function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
 function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
- if(b.honroCustom||b.honroStage!==9)return;
- const s=state(b),u=actor(b,'npc-sodan');if(!u)return;
+ if(b.honroCustom)return;
+ const s=state(b);if(b.honroStage!==9)return;const u=actor(b,'npc-sodan');if(!u)return;
  // Hidden cast is outside the engine roster, so it cannot leak via minimap,
  // hover, damage/collision, AI selection or speaker focus before its entrance.
  s.hidden[u.id]=u;b.units=b.units.filter(v=>v!==u);s.entrance=ID;
@@ -31,11 +31,13 @@ function request(app,id,context={}){
 }
 function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)request(app,ID,{marker:m.id});}
 function opening(app,lines,options){
- const r=lines[0]?.[2]?.stagingRequest;if(!r||options.staging)return{lines,options};
- const def=registry.get(r.id),b=app.engine?.b;if(!def||!b||state(b).once[r.id]==='done')return{lines:[],options};
+ const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
+ if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.requireSplit||b.honroSplit?.version===1)&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
+ if(!r)return{lines,options};
+ const def=registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
- const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},complete:false};
- const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
+ const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},position:def.position||'before',waitForDialogue:def.position==='after',complete:def.position==='after'};
+ const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines||lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
  return{lines:dialogue,options:{...options,title:def.title,staging}};
 }
 function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!meta?.stagingScene||s?.once[meta.stagingScene]!=='running')return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
@@ -48,7 +50,8 @@ function draw(app,node){const s=active(app);if(!s||s.complete)return false;const
  node.querySelector(`[data-action="${focused==='dialogue-skip'?'dialogue-skip':'dialogue-next'}"]`)?.focus({preventScroll:true});return true;
 }
 function move(app,s,step,dt,skip){
- const b=app.engine.b,u=step.reveal?reveal(b,step.actor):actor(b,step.actor),to=point(b,step.to,s.context);
+ const b=app.engine.b,u=step.reveal?reveal(b,step.actor):actor(b,step.actor),aim=point(b,step.towards,s.context);
+ const to=s.results[s.cursor]?.target||(step.towards?(alive(u)&&aim?{x:u.x+Math.sign(aim.x-u.x)*Math.min(step.distance||36,Math.abs(aim.x-u.x)),y:u.y}:null):point(b,step.to,s.context));
  if(!alive(u))return 'actor-unavailable';if(!to)return 'anchor-unavailable';if(!skip&&dt<=0)return null;
  if(u.airborne||u.jumping||Math.abs(u.vy||0)>3)return 'actor-airborne';
  const distance=to.x-u.x,max=step.maxDistance||800;
@@ -57,7 +60,7 @@ function move(app,s,step,dt,skip){
  const surface=G.HonroMapEngine.surfaceY(b.terrain,to.x,to.y);if(!surface||Math.abs(surface.y-to.y)>80)return 'support-unavailable';
  const saved={fixed:u.fixed,moveLeft:u.moveLeft,walkSpeed:u.walkSpeed,bound:u.bound},before=u.x;
  const speed=Math.max(30,Math.abs(s.results[s.cursor]?.distance??distance)/Math.max(.05,(step.duration||600)/1000));
- s.results[s.cursor]??={distance};
+ s.results[s.cursor]??={distance,target:clone(to)};
  Object.assign(u,{fixed:false,moveLeft:Math.abs(distance)+2,walkSpeed:speed,bound:0});
  try{app.engine.walk(u,Math.sign(distance),skip?Math.abs(distance)/speed:Math.min(dt,Math.abs(distance)/speed),true);}finally{Object.assign(u,saved);}
  u.honroScenePose={kind:'move',time:(s.elapsed+dt*1000)/1000};
@@ -95,7 +98,7 @@ function tick(app,now){
  const cursor=s.cursor;advance(app,dt);if(s.cursor!==cursor||s.complete){G.HonroStory.draw(app);G.HonroStory.save(app);}
 }
 function skipMotion(app){const s=active(app);if(!s||s.complete)return false;advance(app,0,true);settle(app,s);G.HonroStory.draw(app);return true;}
-function finish(app){const s=active(app);if(!s)return;advance(app,0,true);settle(app,s);state(app.engine.b).once[s.id]='done';app.stagingLastTime=null;}
+function finish(app,natural=false){const s=active(app);if(!s)return false;if(s.waitForDialogue){s.waitForDialogue=false;s.complete=false;app.stagingLastTime=null;if(natural){G.HonroStory.draw(app);G.HonroStory.save(app);return true;}}advance(app,0,true);settle(app,s);state(app.engine.b).once[s.id]='done';app.stagingLastTime=null;}
 register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
  {type:'fx',sound:'sodanBell',at:{marker:'$trigger'},effect:'ring',color:'#b8c999',duration:300,caption:'첫 받이진이 붉은 실의 힘을 받아 낸다. 위쪽에서 방울이 짧게 울린다.'},
  {type:'look',at:{anchor:'sodan'},duration:550,caption:'방울 소리가 난 사당 문간으로 시선이 향한다.'},
@@ -112,6 +115,17 @@ register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
   ['담허','방울로 혼을 다루는 이를 영매라 부르네. 저 아이는 부리는 것보다 붙잡는 데 힘을 다 쓰고 있어.'],
   ['휘겸','사람 없는 자리부터 잇겠소. 믿으라고 다그쳐 봐야 손을 놓지는 못할 거요.']
  ]}
+]});
+// The approved split uses the existing Act 3 outro verbatim, then takes only
+// short supported steps toward the two authored routes. No roster/carry edits.
+register({id:'act3-split-departure-v1',stage:24,on:'outcome',position:'after',requireSplit:true,title:'기록을 나누어 찾다',steps:[
+ {type:'look',at:{marker:'split-route-a'},duration:350,caption:'휘겸과 담허가 사당 뒤 기록실로 이어지는 길을 살핀다.'},
+ {type:'move',actor:'knight',towards:{marker:'split-route-a'},distance:36,duration:450,caption:'휘겸이 기록실 쪽으로 걸음을 옮긴다.'},
+ {type:'move',actor:'mage',towards:{marker:'split-route-a'},distance:28,duration:350,caption:'담허가 휘겸과 같은 길을 향한다.'},
+ {type:'look',at:{marker:'split-route-b'},duration:350,caption:'설오와 소단은 성 밖 공방으로 이어지는 길을 확인한다.'},
+ {type:'move',actor:'archer',towards:{marker:'split-route-b'},distance:36,duration:450,caption:'설오가 공방 쪽으로 걸음을 옮긴다.'},
+ {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단도 같은 방향으로 몸을 돌린다.'},
+ {type:'dialogue'}
 ]});
 G.HonroStoryStaging={register,describe,request,prepareFresh,receiver,opening,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,point,actor,ID};
 })(globalThis);
