@@ -4,7 +4,7 @@
 const alive=u=>!!u&&!u.dead&&u.hp>0;
 const heroName=cls=>G.HONRO_CONTENT.hero[cls]?.name||'동행';
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
-const action=s=>s.kind==='destroy'?'공격으로 파괴':s.kind==='interact'||s.kind==='rescue'?'E':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'남은 대상 0명':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
+const action=s=>s.id==='party-reunion'?'네 사람 집결 후 행동 종료':s.kind==='destroy'?'공격으로 파괴':s.kind==='interact'||s.kind==='rescue'?'E':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'남은 대상 0명':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
 const stepText=(s,id)=>`${s.label}${s.requiredClass&&!s.label.includes(heroName(s.requiredClass))?' · '+heroName(s.requiredClass):''} · ${s.kind==='hold'?(id>=21?'적 턴 ':'라운드 ')+s.rounds+'회 완료':action(s)}`;
 const endings={
  1:'동행 1명이 고개 끝 도착 지점에 닿으면 완료',
@@ -47,7 +47,7 @@ function enhance(b,st,result){if(b.honroCustom)return result;
    if(s.kind==='hold')summary=summary.replace(/(\d+\/\d+)턴/,st.act===3?'$1 적 턴':'$1라운드');
    if(s.kind==='escort')summary+=' · 운반자 앞 같은 층에서 가까이 동행';
    if(s.parallelGroup)summary+=' · 두 지점 모두 E';
-   if(s.kind==='reach'&&s.allHeroes){const group=heroes(b),inside=group.filter(u=>G.HonroAct3.sameFloor(u,m,s.radius||440)).length;summary+=' · 집결 '+inside+'/'+group.length;}
+   if(s.kind==='reach'&&s.allHeroes){const group=heroes(b),inside=group.filter(u=>G.HonroAct3.sameFloor(u,m,s.radius||440)).length;summary+=' · 집결 '+inside+'/'+group.length;if(s.id==='party-reunion')summary+=' · 집결 후 행동 종료';}
   }}
  return{...result,summary,blockReason,completionText:ending(b,st,list),failureText:failure(b,st,list,result),checklist};
 }

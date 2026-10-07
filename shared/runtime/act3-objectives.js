@@ -93,10 +93,12 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['wo
  if(sourceIssue(b))return; // Missing authoring is never a completed stage.
  if(b.honroStage===27&&!firesStopped(b)){const end=b.teamEnds?.[1]||0;a.fireStartEnd??=end;a.fireTurns=Math.max(0,end-a.fireStartEnd);}
  let s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
- if(s){const m=marker(b,s.id);if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const present=s.id!=='party-reunion'||b.honroSplit?.version!==1||G.HonroSplitCampaign?.allPresent(b)===true;if(present&&group.length&&(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r))))completeStep(app,s);}else if(s.kind==='escort')escortTick(app,s,m,dt);}
+ // Commit the reunion at the same actor boundary that opens its Story lock.
+ // A dash crossing the circle earlier in the action is not a completed meeting.
+ if(s){const m=marker(b,s.id);if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&b.honroSplit?.version===1,present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;if(safeBoundary&&present&&group.length&&(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r))))completeStep(app,s);}else if(s.kind==='escort')escortTick(app,s,m,dt);}
  s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  app.checkMission(e);
 }
-function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['설오',text]),...app.stage.story,['안내',app.stage.guide,{kind:'guide',storyId:'act3-guide-'+app.stage.id,storyTitle:app.stage.name,focus:state(app.engine?.b||{honroStage:app.stage.id,honroState:{},honroMarkers:[],terrain:[],units:[]}).targets[0]?.kind||'interact'}]];}
+function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',presentation:'inline'}]),...app.stage.story,['안내',app.stage.guide,{kind:'guide',storyId:'act3-guide-'+app.stage.id,storyTitle:app.stage.name,focus:state(app.engine?.b||{honroStage:app.stage.id,honroState:{},honroMarkers:[],terrain:[],units:[]}).targets[0]?.kind||'interact'}]];}
 G.HonroAct3={active,initialize,marker,steps,memory,current,state,sourceIssue,interactionTarget,eligibility,use,attach,tick,failure,entry,satisfied,heroes,sameFloor,readySteps,firesStopped};
 })(globalThis);
