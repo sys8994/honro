@@ -119,8 +119,8 @@ function revise22(p,s,changes){
  s.design.act3.koreanTown={revision:1,scope:'Korean archive board doors, small upper windows, horizontal folios and a limited fantasy multi-level storage plan',requiredFloorsUnchanged:true,roofBase:1710};
 }
 
-export async function buildKoreanTownReview({input=path.join(ROOT,'shared/data/campaign.json'),output=path.join(ROOT,'_local/reports/act3-korean-town/review-project.json')}={}){
- const g=await runtime({legacyMaps:false}),original=JSON.parse(await fs.readFile(input,'utf8')),p=clone(original),changes=[];
+export function applyKoreanTownProject(g,original){
+ const p=clone(original),changes=[];
  for(const id of [21,22,23]){const s=p.stages.find(s=>s.metadata.stageId===id);if(!s)throw Error('Missing stage '+id);if(id===21)revise21(g,p,s,changes);if(id===22)revise22(p,s,changes);if(id===23)revise23(g,p,s,changes);}
  const authored=g.HonroMaps.finalize(p);if(JSON.stringify(authored.stages.slice(0,20))!==JSON.stringify(original.stages.slice(0,20)))throw Error('Act 1/2 changed');
  const before=g.HonroMaps.finalize(original);for(let i=23;i<30;i++)if(JSON.stringify(authored.stages[i])!==JSON.stringify(before.stages[i]))throw Error('Nonrepresentative stage changed '+(i+1));
@@ -132,6 +132,10 @@ export async function buildKoreanTownReview({input=path.join(ROOT,'shared/data/c
   const now=g.HonroMaps.compile(authored.stages.find(s=>s.metadata.stageId===id),authored).terrain.map(solid);
   for(const tid of new Set([...old,...now].map(t=>t.id))){const a=old.find(t=>t.id===tid)||null,b=now.find(t=>t.id===tid)||null;if(JSON.stringify(a)!==JSON.stringify(b))collisions.push({stage:id,id:tid,before:a,after:b});}
  }
- await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(output,JSON.stringify(authored,null,2)+'\n');await fs.writeFile(path.join(path.dirname(output),'collision-change-list.json'),JSON.stringify({baseline:'c97e67d',reviewOnly:true,changes,compiledCollisions:collisions},null,2)+'\n');return{g,p:authored,changes,output};
+ return {p:authored,changes,collisions};
+}
+export async function buildKoreanTownReview({input=path.join(ROOT,'shared/data/campaign.json'),output=path.join(ROOT,'_local/reports/act3-korean-town/review-project.json')}={}){
+ const g=await runtime({legacyMaps:false}),original=JSON.parse(await fs.readFile(input,'utf8')),{p,changes,collisions}=applyKoreanTownProject(g,original);
+ await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(output,JSON.stringify(p,null,2)+'\n');await fs.writeFile(path.join(path.dirname(output),'collision-change-list.json'),JSON.stringify({baseline:'c97e67d',reviewOnly:true,changes,compiledCollisions:collisions},null,2)+'\n');return{g,p,changes,output};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){const r=await buildKoreanTownReview();console.log(JSON.stringify({output:r.output,changes:r.changes.length,reviewOnly:true},null,2));}

@@ -1206,3 +1206,7 @@ The resumed existence audit found the two new Act3 archetypes absent from the ce
 ### 2026-10-07: Combined terrain passage and visual verification
 
 The combined stable source passes the reviewed one-way routes, 140 physics cases, actual App save migration/rejection, standalone schema validation, 1,874 ground-contact and 82 App-ground-save cases, impact, migration, old campaign/story contracts, map/schema imports and environment checks. The fractional-tile uniform-alpha fixture now disables its replaced terrain edge hook too; the actual production Native scenes retain the new edge drawing. That focused Native rerun, final HTML build and actual Pages checks remain pending at this checkpoint. Existing saved battles retain their embedded granite artwork; their physical contours and progress are preserved.
+
+### 2026-10-07: Approved Korean representative architecture authoring
+
+The reviewed Korean gate-town, archive and canal-storehouse treatment now runs through the same production authoring recipe for chapters21–23. The object transform is shared with the review tool so regeneration retains the approved roof/stair design. First20 stages retain the latest stable passage/roster state; later24–30 are awaiting their separate Korean treatment. Canonical regeneration and integrated effects checks follow this source checkpoint; the HTML remains the stable20-stage release.
