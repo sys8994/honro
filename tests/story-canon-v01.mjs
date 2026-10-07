@@ -1,5 +1,6 @@
 import {act12Project,act12Balance} from './campaign-scope-helpers.mjs';
 import assert from 'node:assert/strict';
+import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {readFile} from 'node:fs/promises';
 import {content,plain,hash,gameplay,mapRules} from './story-canon-contract-helpers.mjs';
 const g=await content(),H=g.HONRO_CONTENT,J=g.HonroJourneyContent;
@@ -12,8 +13,8 @@ check('20 chapters retain every non-prose rule, stable scene/event IDs and rest 
  for(const before of frozen.gameplay){const s=H.stages[before.id-1];assert.equal(hash(gameplay(s,frozen.proseFields)),before.hash,'gameplay '+s.id);assert.deepEqual([...new Set([...s.story,...s.outro].map(l=>l[2]?.storyId).filter(Boolean))],before.sceneIds,'scene IDs '+s.id);assert.deepEqual(Object.keys(s.beats||{}),before.beatKeys,'event keys '+s.id);}
  for(const before of frozen.rest){const lines=J.interlude(before.id);assert.equal(lines.length,before.lines);assert(lines.every(l=>l[2].storyId===before.storyId&&!l[2].optional));}
 });
-check('Acts 1–2 authored geometry, actors, AI, quest state, assets and reward balance remain frozen',()=>{
- assert.equal(hash(mapRules(act12Project(project))),frozen.mapRules);
+check('Acts 1–2 story contracts retain all rules beyond the exact reviewed existence delta',()=>{
+ assert.equal(hash(mapRules(act12Project(beforeExistenceRoster(project)))),frozen.mapRules);
  assert.equal(hash(plain(act12Balance(g.HONRO_BALANCE))),frozen.balance);
 });
 check('Act 1 keeps future identities and the hidden temple out of player knowledge',()=>{

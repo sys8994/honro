@@ -1,11 +1,13 @@
 import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
+import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {writeFile,mkdir,readFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {legacyRuntime,migrate} from '../migration/migrate-stages.mjs';
 import vm from 'node:vm';
 const g=await runtime(),old=await legacyRuntime(),plain=x=>JSON.parse(JSON.stringify(x)),rows=[];
-const project=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));
+const activeProject=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));
+const project=beforeExistenceRoster(activeProject);
 const baseline=plain(await migrate());
 assert.deepEqual(project.stages[6].terrains.filter(t=>t.id===g.HonroStage7Reentry.id),[plain(g.HonroStage7Reentry.terrain())],'The only added Stage7 root exactly matches its shared recipe');
 // Compare historical terrain/gameplay identity independently of current combat
@@ -37,8 +39,8 @@ for(let id=1;id<=10;id++){
   for(const u of a.units){const v=b.units.find(v=>v.id===u.id);assert.ok(v,u.id);for(const [key,value] of Object.entries(plain(u))){if(balanceFields.has(key))continue;assert.deepEqual(plain(v[key]),value,`Stage ${id} ${difficulty} ${u.id}.${key}`);}}
   for(let i=0;i<a.honroLandmarks.length;i++){const original=plain(a.honroLandmarks[i]),actual=plain(b.honroLandmarks[i]);if(id===10&&original.kind==='ritualDais')original.layer='prop';for(const [key,value] of Object.entries(original))assert.deepEqual(actual[key],value,`Stage ${id} landmark ${i}.${key}`);}
  }
- const st=project.stages[id-1],roundtrip=g.HonroMaps.normalize(JSON.parse(g.HonroMaps.serialize(project)));
- assert.deepEqual(plain(roundtrip),project,`Stage ${id} lossless round-trip`);
+ const st=project.stages[id-1],roundtrip=g.HonroMaps.normalize(JSON.parse(g.HonroMaps.serialize(activeProject)));
+ assert.deepEqual(plain(roundtrip),activeProject,`Stage ${id} lossless round-trip`);
  rows.push({stage:id,terrain:st.terrains.length,units:st.units.length,passed:true});console.log('PASS migrated stage',id);
 }
 g.HONRO_PROJECT=project;
