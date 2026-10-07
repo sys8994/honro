@@ -51,7 +51,9 @@ function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=
  if(s.startsEscort){a.escorts[s.target]={started:true};u.fixed=false;u.maxMove=u.moveLeft=900;u.walkSpeed=Math.min(u.walkSpeed||280,320);}
  completeStep(app,s);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
-function subdue(app,u){if(!u.honroAct3Human||u.honroSubdued||u.hp>1||u.dead)return;
+// Let an existing enthrall action finish and restore its original side first;
+// otherwise its queued release could turn a subdued civilian back into an enemy.
+function subdue(app,u){if(!u.honroAct3Human||u.honroSubdued||u.enthrall||u.hp>1||u.dead)return;
  const e=app.engine;G.HonroProgression.defeat(e,u,e.active);Object.assign(u,{hp:1,honroSubdued:true,side:2,fixed:true,acted:true,honroCivilian:true,vx:0,vy:0,loadout:[]});u.honroAlly=false;delete u.aiMove;delete u.moveTarget;delete u.meleeAction;e.b.queue=e.b.queue.filter(id=>id!==u.id);app.event(u.name+'를 전투 불능으로 제압했다.');app.dirty=true;
 }
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
