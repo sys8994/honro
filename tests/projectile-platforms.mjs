@@ -19,13 +19,14 @@ function shot(f,id,angle=75,power=.6){const {e,u}=f;u.angle=angle;u.lastPower=po
 function trace(id,{terrain,angle=75,power=.6}={}){
  const f=arena(id,terrain),{b,e,u,s}=f,before=JSON.stringify(b),prediction=e.predict(u,s,angle,power);
  assert.equal(JSON.stringify(b),before,'guide mutated battle');
- const aiPrediction=e.predict(u,s,angle,power,undefined,false),p=shot(f,id,angle,power),samples=[at(p.x,p.y)],hits=[],impact=e.impact.bind(e);
+ const aiPrediction=e.predict(u,s,angle,power,undefined,false),p=shot(f,id,angle,power),samples=[at(p.x,p.y)],hits=[],blasts=[],impact=e.impact.bind(e),blast=e.blast.bind(e);
+ e.blast=(x,y,...rest)=>{blasts.push({x,y});return blast(x,y,...rest);};
  e.impact=(p,h)=>{hits.push({id:p.id,mode:p.mode,terrain:h.terrain?.id,x:h.x,y:h.y,n:h.n});return impact(p,h);};
  for(let i=0;i<1600&&b.projectiles.includes(p);i++){e.stepProjectile(p,C.STEP);samples.push(at(p.x,p.y));}
  assert(!b.projectiles.includes(p),`${id} still flying`);
  const error=Math.hypot(prediction.x-p.x,prediction.y-p.y);assert(error<.1,`${id} guide/live error ${error}`);
  const aiError=Math.hypot(aiPrediction.x-p.x,aiPrediction.y-p.y);assert(aiError<2,`${id} AI/live error ${aiError}`);
- return{...f,p,prediction,aiPrediction,samples,hits,error,aiError};
+ return{...f,p,prediction,aiPrediction,samples,hits,blasts,error,aiError};
 }
 function check(name,fn){const details=fn();rows.push({name,details});console.log('PASS',name);}
 check('Swept top-only entry handles slabs, side/corner, slopes, overlap and first of multiple layers',()=>{
@@ -41,7 +42,7 @@ check('Swept top-only entry handles slabs, side/corner, slopes, overlap and firs
  return{flatCases:10,slopeNormal:sh.n,firstLayer:'upper',embeddedLayer:'lower'};
 });
 check('Actual upward flight clears the slab, reaches apex and matches arrow, qi, stake and summon guides',()=>{
- const details=[];for(const id of ['A01','M01','M07','O11','O13']){const t=trace(id);assert(t.samples.some(p=>p.y<754),id+' must clear top');assert.equal(t.hits[0]?.terrain,'platform');assert(t.hits[0].n.y<0);assert(t.samples.length>20);if(id==='M07')assert.equal(t.b.stakes.length,1);if(id.startsWith('O')){const summon=t.b.units.find(u=>u.summoned);assert(summon);near(summon.y,760,'summon support');}details.push({id,error:t.error,firstHit:t.hits[0],samples:t.samples.length});}return details;
+ const details=[];for(const id of ['A01','M01','M07','O11','O13']){const t=trace(id);assert(t.samples.some(p=>p.y<754),id+' must clear top');assert.equal(t.hits[0]?.terrain,'platform');assert(t.hits[0].n.y<0);assert(t.samples.length>20);if(id==='M01'){assert(t.blasts.length);near(t.blasts[0].x,t.hits[0].x,'top impact blast x');near(t.blasts[0].y,t.hits[0].y,'top impact blast y');}if(id==='M07')assert.equal(t.b.stakes.length,1);if(id.startsWith('O')){const summon=t.b.units.find(u=>u.summoned);assert(summon);near(summon.y,760,'summon support');}details.push({id,error:t.error,firstHit:t.hits[0],samples:t.samples.length});}return details;
 });
 check('Reflected waves share guide/live top contacts and still reflect from solid sides and ceilings',()=>{
  const details=[];for(const id of ['M11','M12']){const t=trace(id);assert(t.hits.length>=2,id+' reflected contacts');assert(t.hits.every(h=>h.terrain==='platform'&&h.n.y<0));assert.equal(t.prediction.contacts.length,t.hits.length);for(let i=0;i<t.hits.length;i++){near(t.prediction.contacts[i].x,t.hits[i].x,'bounce x');near(t.prediction.contacts[i].y,t.hits[i].y,'bounce y');}details.push({id,error:t.error,contacts:t.hits.length});}
