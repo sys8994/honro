@@ -232,4 +232,4 @@ installOccultRedesign(SKILLS);
 installSkillRedesign(SKILLS);
 
 installWarriorSkills(SKILLS);
-for(const skill of Object.values(SKILLS))if(skill.damage>0||['O11','O12','O13','O14','O15'].includes(skill.id))skill.existenceAttack=attackForSkill(skill);
+for(const skill of Object.values(SKILLS))if(skill.damage>0||['O11','O12','O14'].includes(skill.id))skill.existenceAttack=attackForSkill(skill);

@@ -11,6 +11,7 @@ const checks=[
  ['build','npm',['run','build']],['typecheck','npm',['--prefix','game','run','typecheck']],['game-regressions','npm',['--prefix','game','test']],
  ['act3-runtime','npm',['run','test:act3']],['act3-maps','npm',['run','test:act3:maps']],['act3-art','npm',['run','test:act3:art']],['act3-foundation','node',['tests/act3-foundation.mjs']],
  ['ground-contact','npm',['run','test:ground-contact']],
+ ['rescue-physics','npm',['run','test:rescue-physics']],
  ['terrain-domain','npm',['run','test:terrain-domain']],
  ['aim-wind-audio','npm',['run','test:aim-wind-audio']],
  ['event-targets','npm',['run','test:event-targets']],['sodan-charge','npm',['run','test:sodan-charge']],['camera-follow','npm',['run','test:camera-follow']],['battle-help','npm',['run','test:battle-help']],['campaign-continuity','npm',['run','test:campaign-continuity']],['camp-persistence','npm',['run','test:camp-persistence']],['rest-journey','npm',['run','test:rest-journey']],['act1-spaces','npm',['run','test:act1:offline']],['act2-art-fidelity','node',['tests/act2-art-fidelity.mjs']],['act2-spatial-art','node',['tests/act2-spatial-art.mjs']],['act2-objective-guidance','node',['tests/act2-objective-readability.mjs']],['map-schema-v5','node',['tests/map-schema-v5.mjs']],['space-layout-import','node',['tests/space-layout-import.mjs']],['workshop-vector-selection','node',['tests/workshop-vector-selection.mjs']],['vector-assets','node',['tests/vector-assets.mjs']],['migration','node',['tests/migration.mjs']],['launch-visibility','npm',['run','test:launch-visibility']],

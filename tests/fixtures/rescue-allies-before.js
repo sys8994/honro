@@ -4,27 +4,8 @@ const aiming=new WeakMap();
 /** A non-player coalition, not a fifth selectable hero and not an immortal prop.
  * Turn schedule: heroes -> summons -> allied NPCs -> enemies. All queue state is serialized. */
 function attach(app,e){const b=e.b,baseTransition=e.completeTeamTransition.bind(e),baseTick=e.tick.bind(e);
- recoverFixedRescueTargets(e);
  e.completeTeamTransition=function(){if(e.checkEnd())return;const hs=b.honroState;const list=b.units.filter(u=>u.honroAlly&&!u.dead&&u.hp>0&&u.allyRole!=='channeler');if(b.honroStage===2&&list.length&&!list.some(u=>u.allyRole==='porter')){const bearer=list.find(u=>u.allyRole==='guard')||list[0];bearer.allyOriginalRole??=bearer.allyRole;bearer.allyRole='porter';app.event('남은 호위가 상여채를 이어받았다.');}if(b.side===0&&list.length&&hs.allyDoneRound!==b.round){hs.allyDoneRound=b.round;hs.allyQueue={ids:list.map(u=>u.id),index:0,returnActive:b.active,phase:'begin',elapsed:0,started:false};b.phase='ally';b.turnAge=0;e.emit('save');return;}if(b.side===0&&b.honroStage===2&&!list.length){const car=e.unit('objective'),nearHero=e.heroesAlive().find(u=>car&&Math.hypot(u.x-car.x,u.y-car.y)<820),clear=!e.alive(1).length;if(car&&(nearHero||clear)){const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&t.x>car.x-35&&t.x<car.x+720);const lead=nearHero?.x??car.x+900;car.x=Math.max(car.x,Math.min(car.x+(clear?420:240),lead+180,block?block.x-105:(b.honroEscortGoalX??b.width-180)));car.y=W.top(b,car.x,car.y);}}baseTransition();};
  e.tick=function(dt=C.STEP){if(b.phase==='ally'){tick(app,e,dt,baseTransition);C.tickRedesign(e,dt);return;}baseTick(dt);};
-}
-// Older builds let fixed rescue residents walk off ledges without gravity.
-// Recover only those stationary rescue targets, using the actual body sweep
-// on a probe. Keep supported saves exactly as-is and never reset them to a
-// marker/spawn, rewrite terrain, or charge the player for this invalid state.
-function recoverFixedRescueTargets(e){const b=e.b;
- const ids=new Set((b.honroMarkers||[]).filter(m=>m.action==='rescue').map(m=>m.target));
- for(const u of b.units){
-  if(!ids.has(u.id)||!u.fixed||!u.honroAlly||!u.honroCivilian||u.dead||u.hp<=0||!Number.isFinite(u.x)||!Number.isFinite(u.y)||u.airborne||u.carriedBy!==undefined||e.contactSurface(u.x,u.y-4,u.y+5))continue;
-  const probe={...u,vx:0,vy:0,jumping:false,fallApexY:undefined};
-  for(let n=0;n<2400;n++){
-   if(!e.integrateBody(probe,C.STEP,true))break;
-   if(e.grounded(probe)&&C.validTerrainContactPose(b.terrain,probe)){
-    b.honroContactRecoveries??=[];b.honroContactRecoveries.push({id:u.id,reason:'fixed-rescue-airwalk',from:{x:u.x,y:u.y},to:{x:probe.x,y:probe.y}});
-    Object.assign(u,{x:probe.x,y:probe.y,vx:0,vy:0,jumping:false,fallApexY:undefined});break;
-   }
-  }
- }
 }
 function coalition(e){return e.b.units.filter(u=>!u.dead&&u.hp>0&&(u.side===0||u.honroAlly||u.honroCivilian));}
 function safeAllyAim(e,u,skill,target){return C.finishPlanning(safeAllyAimSteps(e,u,skill,target));}
@@ -55,10 +36,6 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   else q.dest=(car?.x||hero?.x||u.x)+(u.allyRole==='guard'?310:-230);
   q.dest=clamp(q.dest,45,b.width-100);e.emit('change');
  }
- // A stationary actor may still heal/guard, but must not walk out of its
- // support while Engine.stepUnits intentionally excludes fixed bodies. Also
- // handle a save made midway through the old invalid movement phase.
- if(q.phase==='move'&&u.fixed){q.phase='act';q.elapsed=0;u.vx=u.vy=0;delete u.moveTarget;delete u.aiMove;}
  if(q.phase==='move'){
   const target=e.unit(q.targetId),distance=q.dest-u.x,old=u.x;e.walk(u,Math.sign(distance),dt);e.stepUnits(dt);
   if(Math.abs(u.x-old)<.01&&Math.abs(distance)>30&&e.grounded(u)&&u.moveLeft>80)e.jump(u);
