@@ -65,7 +65,7 @@
     "test:act3": "node tests/act3-runtime.mjs && node tests/act3-fiends.mjs && node tests/act3-growth.mjs && node tests/act3-continuity.mjs && node tests/act3-visual-cues.mjs && node tests/act3-save-boundaries.mjs",
     "test:act3:normal": "node tests/act3-playthrough.mjs",
     "test:ui-buttons": "node tests/ui-buttons.mjs && node tests/portrait-framing.mjs",
-    "test:act3:maps": "node tests/act3-production-maps.mjs && node tests/act3-production-shots.mjs && node tests/act3-map-safety.mjs",
+    "test:act3:maps": "node tests/act3-canonical-roundtrip.mjs && node tests/act3-production-maps.mjs && node tests/act3-production-shots.mjs && node tests/act3-map-safety.mjs",
     "test:act3:art": "node tests/act3-architecture.mjs && node tests/act3-hall-art.mjs && node tests/act3-art-regeneration.mjs && node tests/act3-canal-supports.mjs",
     "test:rescue-physics": "node tests/rescue-physics.mjs",
     "test:one-way-platforms": "node tests/platform-schema-standalone.mjs && node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
