@@ -14,7 +14,7 @@ for(const stage of [8,9,10]){
  // Migration itself edits only the reviewed flags and missing additive ledges.
  const direct=plain(old);assert(R.upgradeBattle(direct));assert.deepEqual(stable(direct),saved);assert.deepEqual(beforePlatformTerrain(direct.terrain,stage,g),oldTerrain);assert.deepEqual(beforePlatformTerrain(direct.honroWorldTerrain,stage,g),oldWorld);
  const once=JSON.stringify(direct);assert.equal(R.upgradeBattle(direct),false);assert.equal(JSON.stringify(direct),once);
- let rejected=0;for(const mutate of [b=>delete b.honroMapOrigin,b=>b.honroMapOrigin='workshop',b=>b.honroCustom=true,b=>b.honroAuthoredId='other',b=>b.terrain[0].vertices[0].x++,b=>b.honroWorldTerrain[0].vertices[0].x++,b=>b.honroMapAnchors.start.x++,b=>b.terrain.find(t=>R.targets[stage].includes(t.id)).vertices[0].x++]){
+ let rejected=0;for(const mutate of [b=>delete b.honroMapOrigin,b=>b.honroMapOrigin='workshop',b=>b.honroCustom=true,b=>b.honroAuthoredId='other',b=>b.terrain[0].vertices[0].x++,b=>b.honroWorldTerrain[0].vertices[0].x++,b=>b.honroMapAnchors.start.x++,b=>b.honroTerrainBounds.left--,b=>b.terrain.find(t=>R.targets[stage].includes(t.id)).vertices[0].x++]){
   const q=plain(old);mutate(q);const prior=JSON.stringify(q);assert.equal(R.upgradeBattle(q),false);assert.equal(JSON.stringify(q),prior);rejected++;
  }
  // Export and file import must preserve the original snapshot until Continue.

@@ -10,6 +10,7 @@ for(const explicit of [undefined,true,false]){
  const loaded=g.HonroMaps.normalize(JSON.parse(g.HonroMaps.serialize(p)));assert.deepEqual(plain(loaded),plain(p),'Workshop export/import keeps the explicit choice');
 }
 const platform={id:'old-platform',type:'platform',control:[{x:400,y:1100},{x:650,y:1080}],thickness:40};assert.equal(g.HonroGeometry.terrain(platform).oneWay,true);assert.equal(g.HonroGeometry.terrain({...platform,oneWay:false}).oneWay,false);
+const boundary={...platform,control:[{x:0,y:1100},{x:650,y:1080}]},domain=g.HonroTerrainDomain.author({stages:[{width:2000,height:2000,metadata:{stageId:1},terrains:[boundary]}]});assert.equal(domain.stages[0].terrains[0].playProjection,undefined,'A semantic platform is not extended into foundation terrain');
 const polygon={id:'floating-solid',type:'solid',points:[{x:300,y:500},{x:700,y:500},{x:700,y:600},{x:300,y:600}],baseMaterial:'wood'};assert.equal(g.HonroGeometry.terrain(polygon).oneWay,false,'No floating/material/name inference');
 for(const bad of ['true',1]){const p=plain(g.HONRO_PROJECT);p.stages[0].terrains[0].oneWay=bad;assert(g.HonroMaps.validate(p).some(x=>x.level==='err'&&x.text.includes('oneWay')));}
 {const p=plain(g.HONRO_PROJECT);p.stages[0].terrains[0].oneWay=true;p.stages[0].terrains[0].properties.honroCeiling=true;assert(g.HonroMaps.validate(p).some(x=>x.level==='err'&&x.text.includes('ceiling')));}

@@ -25,7 +25,7 @@ function extend(points,st,ceiling=false){
 function author(project){const p=clone(project);p.version=6;for(const st of p.stages){if(st.terrainBounds)continue;
  st.playBounds={left:0,top:0,right:st.width,bottom:st.height};st.terrainBounds={left:-6000,top:-24000,right:st.width+6000,bottom:st.height+24000};st.terrainDomainVersion=1;
  const simulationBottom=Math.max(st.height,...st.terrains.map(t=>{const q=G.HonroGeometry.terrain(t,st.height);return q.y+q.h;}));
- for(let i=0;i<st.terrains.length;i++){const t=st.terrains[i],raw=G.HonroGeometry.terrain(t,st.height);if(t.oneWay||t.breakable||raw.honroElementCollision)continue;if(!(raw.x<=EPS||raw.x+raw.w>=st.width-EPS||raw.honroCeiling&&raw.y<=EPS||raw.y+raw.h>=st.height-EPS))continue;
+ for(let i=0;i<st.terrains.length;i++){const t=st.terrains[i],raw=G.HonroGeometry.terrain(t,st.height);if(raw.oneWay||t.breakable||raw.honroElementCollision)continue;if(!(raw.x<=EPS||raw.x+raw.w>=st.width-EPS||raw.honroCeiling&&raw.y<=EPS||raw.y+raw.h>=st.height-EPS))continue;
   const points=extend(raw.vertices,st,!!raw.honroCeiling);if(JSON.stringify(points)===JSON.stringify(raw.vertices))continue;
   const q={...t,type:'solid',points,playProjection:{bounds:{left:0,top:0,right:st.width,bottom:simulationBottom},start:{...raw.vertices[0]}}};delete q.control;delete q.floor;delete q.thickness;st.terrains[i]=q;
  }
@@ -34,7 +34,7 @@ function validate(st){const out=[],fail=text=>out.push({level:'err',text:st.id+'
  if(!st.terrainBounds){if(st.playBounds||st.terrainDomainVersion||(st.terrains||[]).some(t=>t.playProjection))fail('incomplete terrain domain');return out;}
  const v=st.terrainBounds,p=st.playBounds;if(st.terrainDomainVersion!==1)fail('unsupported terrain domain');if(!box(p)||!box(v)||p.left!==0||p.top!==0||p.right!==st.width||p.bottom!==st.height||v.left>=p.left||v.top>=p.top||v.right<=p.right||v.bottom<=p.bottom){fail('terrainBounds must strictly contain the stable playBounds');return out;}
  for(const t of st.terrains||[]){const q=t.playProjection;
-  if(!Object.prototype.hasOwnProperty.call(t,'playProjection')){const ps=t.points||t.control;if(!t.oneWay&&Array.isArray(ps)&&ps.some(a=>a&&(a.x<p.left||a.x>p.right||a.y<p.top||a.y>p.bottom+512)))fail(t.id+' extended solid requires playProjection');continue;}
+  if(!Object.prototype.hasOwnProperty.call(t,'playProjection')){const ps=t.points||t.control;if(!G.HonroGeometry.oneWay(t)&&Array.isArray(ps)&&ps.some(a=>a&&(a.x<p.left||a.x>p.right||a.y<p.top||a.y>p.bottom+512)))fail(t.id+' extended solid requires playProjection');continue;}
   const points=t.points,validPoints=Array.isArray(points)&&points.length>=3&&points.length<=4096&&points.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=v.left-EPS&&p.x<=v.right+EPS&&p.y>=v.top-EPS&&p.y<=v.bottom+EPS);
   if(t.type!=='solid'||!validPoints||!q||typeof q!=='object'||!box(q.bounds)||!q.start||!Number.isFinite(q.start.x)||!Number.isFinite(q.start.y)||q.bounds.left!==p.left||q.bounds.right!==p.right||q.bounds.top!==p.top||q.bounds.bottom<p.bottom||q.bounds.bottom>v.bottom)fail(t.id+' invalid play projection');else if(clip(points,q.bounds).length<3)fail(t.id+' empty play projection');
  }return out;
