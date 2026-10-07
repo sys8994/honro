@@ -87,3 +87,24 @@ export function koreanCourtyardWall(id,{width=420,height=92,cap='earth',gate=fal
  const b={x:l-12,y:-Math.max(height+23,gate?139:0),w:w+24,h:Math.max(height+23,gate?139:0)+3},vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${b.x} ${b.y} ${b.w} ${b.h}"><title>Korean courtyard wall and gate, rear scenery</title>${parts.join('')}</svg>`);
  return{id,name:'골목의 낮은 돌담과 대문',category:'architecture',visual:[],vector,collision:[],anchor:{x:0,y:0},sockets:[],tags:['act3-rear-city','korean-courtyard'],params:{rearOnly:true},material:'stone',breakable:false,oneWay:false,bounds:b,reference:{heightM:b.h/60,bounds:b,foot:{x:0,y:0},scaleRange:[.7,1.4],backgroundRange:[.7,1.2]}};
 }
+
+export function koreanTownEnvironment(project,stage,{ground=2700,night=false}={}){
+ const clone=x=>JSON.parse(JSON.stringify(x)),old=clone(stage.environment),env={...old,groups:[],surfaces:[],placements:[]};
+ const mix=(color,to,t)=>{const a=color.slice(1).match(/../g).map(v=>parseInt(v,16)),b=to.slice(1).match(/../g).map(v=>parseInt(v,16));return '#'+a.map((v,i)=>Math.round(v+(b[i]-v)*t).toString(16).padStart(2,'0')).join('');};
+ const put=a=>{const i=project.library.findIndex(b=>b.id===a.id);if(i>=0)project.library[i]=a;else project.library.push(a);};
+ for(const [depth,y,scale,step,shift] of [['L3',ground-125,.84,695,120],['L2',ground-22,.94,865,420]]){
+  const id=`korean-town-${stage.metadata.stageId}-${depth}`,tint=night?'#455b5c':'#7e8c7b',weight=depth==='L3'?.67:.42;
+  env.groups.push({id,depthLayer:depth,verticalMode:'WORLD',zoneId:env.zones[0].id,x:0,y});env.surfaces.push({id:id+'-ground',groupId:id,kind:'rear-ground',points:[{x:-18000,y:0},{x:stage.width+18000,y:0}],bottom:18000});
+  const bankId=id+'-bank',bankBounds={x:0,y:0,w:3000,h:1400},bankSvg=rect(0,0,3000,1400,mix('#6c7155',tint,.67));put({id:bankId,name:'마을의 이어진 흙바닥',category:'architecture',visual:[],vector:compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 1400">${bankSvg}</svg>`),collision:[],anchor:{x:0,y:0},sockets:[],tags:['act3-rear-ground'],params:{rearOnly:true},bounds:bankBounds,reference:{bounds:bankBounds,foot:{x:0,y:0},heightM:1400/60,scaleRange:[1,1],backgroundRange:[1,1]}});
+  for(let x=-18000,n=0;x<stage.width+18000;x+=3000,n++)env.placements.push({id:id+'-bank-'+n,assetId:bankId,depthLayer:depth,groupId:id,supportId:id+'-ground',x,y:0,scale:1,rotation:0});
+  const roles=['house','house','shop','house','storehouse','house','office'];
+  for(let x=-2200,i=0;x<stage.width+2400;x+=step,i++){
+   const role=roles[(i+stage.metadata.stageId)%roles.length],width=role==='office'?670:role==='storehouse'?530:330+(i%3)*55,roofType=role==='house'?(i%3===2?'gable':'thatch'):role==='office'?'hip':'gable';
+   const a=koreanTownBuilding(id+'-house-'+i,{width,role,roofType,variant:i,collision:false});a.vector=compileSVG(a.vector.source.replace(/#[0-9a-f]{6}/gi,c=>mix(c,tint,weight)));a.tags=['act3-rear-city','korean-town'];put(a);
+   env.placements.push({id:a.id,assetId:a.id,depthLayer:depth,groupId:id,supportId:id+'-ground',x:x+shift+(i%3-1)*63,y:0,scale,rotation:0});
+   if(i%3!==1){const wall=koreanCourtyardWall(id+'-wall-'+i,{width:width*.76,height:role==='office'?104:80,cap:role==='office'?'tile':'earth',gate:i%2===0});wall.vector=compileSVG(wall.vector.source.replace(/#[0-9a-f]{6}/gi,c=>mix(c,tint,Math.max(0,weight-.08))));put(wall);env.placements.push({id:wall.id,assetId:wall.id,depthLayer:depth,groupId:id,supportId:id+'-ground',x:x+shift-64+(i%3-1)*63,y:0,scale,rotation:0});}
+  }
+ }
+ stage.environment=env;
+ return env;
+}
