@@ -1314,3 +1314,9 @@ The final built Workshop is13,067,138bytes (JSON upload request13,986,332bytes, 
 ### 2026-10-07: Custom-map result return wording
 
 Custom-map win/loss results now say “원래 여정으로 돌아가기”, matching the existing action that restores the protected campaign. Normal campaign progression labels and all return/save behavior stay on their existing paths. A production App regression covers both custom outcomes, exact suspended-battle restoration and unchanged ordinary result wording.
+## 2026-10-07: 승인된 3막 장소 분화와 25 기단 제거
+
+- 원인: 24–30의 기존 높은 연속 회랑을 유지한 채 건물을 낮추면서 받침 구조가 화면의 대부분이 됐다. 25의 기록실은 집 위 기단 연속으로 읽혔다.
+- 변경: 최신 project에23–30만 교체하는 독립 생성기, 실제 묘역 단면·지하 수로·공방·좌우 화재 접근·야외/수문/나루. 25/26 두 인원에 맞춘 군집과 행동상한을 분리했다.
+- 제작 중 검출/수정: 23 짐꾼 몸이 선택 점검로 밑면에 걸림, 26 선택 경사로가 필수 보행을 낚아챔, 23 후면 벽이 실제 다리 그림을 가림. 지형/그리기 순서를 직접 수정하고 관련 경로를 다시 검사했다.
+- 검증: 새 source/roundtrip/실제 출전·접지·물·27 양측 제어·문 차단·합류, 필수/선택/호송 경로, 39군집 기본탄. 현재 경계와 후속 통합검수는 ACT3_LOCATION_REBUILD.md를 따른다.
