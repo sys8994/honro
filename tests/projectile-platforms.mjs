@@ -33,6 +33,7 @@ check('Swept top-only entry handles slabs, side/corner, slopes, overlap and firs
  for(const [a,b] of [[at(800,950),at(800,600)],[at(800,810),at(800,790)],[at(800,790),at(800,750)],[at(300,790),at(600,790)],[at(500,757),at(600,757)],[at(800,760),at(800,800)],[at(800,761),at(800,900)]])assert.equal(hit(a,b),null);
  for(const [a,b,x] of [[at(800,600),at(800,1100),800],[at(340,600),at(360,900),350.46666666666664],[at(348,600),at(348,900),348]]){const h=hit(a,b);assert.equal(h?.terrain.id,'platform');near(h.y,757,'flat contact y');near(h.x,x,'flat contact x');near(h.n.y,-1,'top normal');}
  assert(e.collision(at(800,950),at(800,600),3,u.id,[],false),'generic collision remains solid');
+ const polygon={...flat,vertices:[at(350,760),at(2950,760),at(2950,830),at(350,830)]};assert.equal(C.segmentProjectileTerrain(at(348,600),at(348,900),polygon,3),null,'Authored polygon top must not grow a new side lip');assert(C.segmentProjectileTerrain(at(350,600),at(350,900),polygon,3),'Actual polygon top corner remains swept');
  const slope=g.HonroMapEngine.solid('slope',[[400,850],[1400,600],[1400,660],[400,910]],{oneWay:true,indestructible:true});e.b.terrain=[slope];e.b.sceneVersion++;
  const sh=hit(at(550,730),at(1300,730));assert.equal(sh?.terrain.id,'slope');assert(sh.n.x<0&&sh.n.y<0,'horizontal shot meets sloped upper face');assert.equal(hit(at(800,840),at(800,650)),null);
  e.b.terrain=[platform('lower',810),platform('upper',650)];e.b.sceneVersion++;assert.equal(hit(at(800,500),at(800,950))?.terrain.id,'upper');

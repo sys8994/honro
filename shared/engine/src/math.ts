@@ -101,8 +101,11 @@ export function segmentProjectileTerrain(a: Vec, b: Vec, t: Terrain, pad = 0): {
         if(time>1+epsilon||best&&time>=best.t)continue;
         const x=a.x+dx*time-nx*pad,y=a.y+dy*time-ny*pad;
         const along=((x-p.x)*ex+(y-p.y)*ey)/len;
-        // Retain radius overlap at a top corner, without adding side/underside faces.
-        if(along < -pad-epsilon||along > len+pad+epsilon)continue;
+        // Keep the existing narrow phase's footprint: boxes have padded corners,
+        // authored polygon edges end at their endpoints. Extending polygon tops
+        // sideways would add a new blocker where the old solid already allowed a shot.
+        const cornerPad=t.vertices?.length||t.slope?0:pad;
+        if(along < -cornerPad-epsilon||along > len+cornerPad+epsilon)continue;
         best={t:clamp(time,0,1),n:{x:nx,y:ny}};
     }
     return best;
