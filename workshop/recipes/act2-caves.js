@@ -171,7 +171,9 @@ function build(project){
  // library positions while appending genuinely new assets deterministically.
  p.library.sort((a,b)=>(assetOrder.get(a.id)??Number.MAX_SAFE_INTEGER)-(assetOrder.get(b.id)??Number.MAX_SAFE_INTEGER));
  for(let i=0;i<10;i++){
-  const id=i+11,d=G.HONRO_CONTENT.stages[id-1],plan=G.HonroAct2Plan.forStage(id),l=clone(layouts[i]),[width,height]=plan.size;
+  // Rebuild the approved spatial source, then project the current objectives.
+  // Removed target sites are still needed while constructing that source.
+  const id=i+11,d=(G.HonroObjectiveRevision?.legacy||G.HONRO_CONTENT.stages)[id-1],plan=G.HonroAct2Plan.forStage(id),l=clone(layouts[i]),[width,height]=plan.size;
   const route=contour(l.floor),ground=x=>yAt(route,x),roof=l.roof?contour(l.roof):null,cave=i>=3&&i<=8;
   const st=G.HonroMaps.emptyStage('stage-'+id,d.name,width,height);
   const space={version:1,geometryRevision:3,sharedSpaceId:l.sharedSpaceId||null,topologyId:l.topologyId,rooms:[],surfaces:[],connections:[],routes:[],sites:{},encounterSites:[],scenery:[],landmarks:[],lights:[],views:[]};
@@ -260,7 +262,8 @@ function build(project){
   st.meta={notes:'2-'+(i+1)+' '+d.name+' · 방 단면 개편 3 · '+plan.rounds.join('–')+'턴 설계',seed:2210+i};
   const errors=validateSpace(st);if(errors.length)throw Error(errors.join('\n'));p.stages.push(st);
  }
- return project.stages.some(st=>st.terrainDomainVersion===1)&&G.HonroTerrainDomain?G.HonroTerrainDomain.author(p):p;
+ const domain=project.stages.some(st=>st.terrainDomainVersion===1)&&G.HonroTerrainDomain?G.HonroTerrainDomain.author(p):p;
+ return G.HonroObjectiveRevision&&project.stages.some(st=>st.initialState?.honroObjectiveRevision>=G.HonroObjectiveRevision.version)?G.HonroObjectiveRevision.author(domain,{minStage:11,maxStage:20}):domain;
 }
 // Standalone, read-only authoring validation. Runtime import validation can call
 // this same function after loading the recipe; no mutation or geometry repair.

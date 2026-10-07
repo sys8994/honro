@@ -1,6 +1,7 @@
 // Structural/physics fixtures. These prove room contracts and isolated actions,
 // not normal-combat difficulty, human readability or browser rendering quality.
 import assert from 'node:assert/strict';
+import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {plain,hash} from './act2-spatial-contract-helpers.mjs';
@@ -8,6 +9,7 @@ import {openRoute,terrainFace,assertStanding,coordinates} from './act2-spatial-t
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
 const intent=JSON.parse(await readFile('tests/fixtures/act2-spatial-intent.json','utf8'));
+const historicalProject=beforeObjectiveRevision(g.HONRO_PROJECT,g.HONRO_CONTENT).project;
 const idFilter=process.argv.slice(2).map(Number);
 const check=(name,fn)=>{const detail=fn();rows.push({name,passed:true,detail});console.log('PASS',name);};
 const fixture=id=>{const q=battlefield(g,id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);return q;};
@@ -42,11 +44,12 @@ for(const expected of intent.stages.filter(s=>!idFilter.length||idFilter.include
    assert(rooms.has(link.from)&&rooms.has(link.to),link.id+' invalid rooms');
    assert(['walk','gated-walk','optional-jump'].includes(link.kind),link.id+' invents a movement mechanic');
    assert(space.routes.some(r=>r.id===link.routeId),link.id+' missing actual route');
-   if(link.kind==='gated-walk')assert(link.requires?.length,link.id+' must name an existing state prerequisite');
+   if(link.kind==='gated-walk'&&!link.requires?.length){const prior=historicalProject.stages[id-1].design.space.connections.find(r=>r.id===link.id),retired=new Set([...(g.HonroObjectiveRevision.removed[id]||[]),...(g.HonroObjectiveRevision.gates[id]||[])]);assert(prior?.requires?.length&&prior.requires.every(r=>retired.has(r.objectiveId)||retired.has(r.terrainId)),link.id+' lost an unrelated state prerequisite');}
    if(link.kind!=='optional-jump'){graph.get(link.from).push(link.to);graph.get(link.to).push(link.from);}
   }
   const reached=new Set(),queue=[space.rooms[0].id];while(queue.length){const key=queue.shift();if(reached.has(key))continue;reached.add(key);queue.push(...graph.get(key));}
   for(const [objectiveId,roomId] of Object.entries(expected.bindings)){
+   if(g.HonroObjectiveRevision.removed[id]?.includes(objectiveId)){assert(!space.sites[objectiveId],'retired attack target still has a live site');continue;}
    const site=space.sites[objectiveId];assert(site,objectiveId+' has no site');assert.equal(site.roomId,roomId,objectiveId+' moved into the wrong narrative room');
    assert(reached.has(roomId),objectiveId+' requires an optional jump');
    assert(surfaces.has(site.standing?.surfaceId),objectiveId+' has no standing surface');

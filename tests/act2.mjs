@@ -1,4 +1,5 @@
 import {act12Project} from './campaign-scope-helpers.mjs';
+import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';
 import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
@@ -8,6 +9,9 @@ import {openRoute,assertStanding} from './act2-spatial-test-helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x)),rows=[];
 const check=(name,fn)=>{fn();rows.push({name,passed:true});console.log('PASS',name);};
 const fixture=id=>{const q=battlefield(g,id);g.HonroAct2.attach(q.app,q.e);return q;};
+// These three removed-device tests cover retained pre-revision battles. All
+// ordinary objective/route tests below still use the current canonical maps.
+const legacyFixture=id=>{const current=g.HONRO_PROJECT;try{g.HONRO_PROJECT=beforeObjectiveRevision(current,g.HONRO_CONTENT).project;return fixture(id);}finally{g.HONRO_PROJECT=current;}};
 check('30 canonical maps retain independent Act 2 objectives and four companions',()=>{
  assert.equal(g.HONRO_PROJECT.stages.length,30);assert.equal(g.HONRO_CONTENT.stages.length,30);
  assert.deepEqual(plain(g.HonroStageRules.stageParty(10)),['archer','mage','knight']);
@@ -36,8 +40,8 @@ check('Resident extraction is nonlethal, one-time, and player damage cannot kill
  const spirit=e.unit(m.spiritId);spirit.hp=Math.floor(spirit.maxHp*.35);
  assert(g.HonroAct2.use(app,m));assert(resident.honroResolved&&!resident.dead);assert(spirit.dead);assert.equal(g.HonroAct2.memory(b).rescued.length,1);assert.equal(g.HonroAct2.use(app,m),false);
 });
-check('Continuous cave ceiling blocks a high shot while the bow target hangs below it',()=>{
- const {b,e}=fixture(15),u=e.active;u.angle=90;
+check('Retained legacy cave ceiling blocks a high shot while the bow target hangs below it',()=>{
+ const {b,e}=legacyFixture(15),u=e.active;u.angle=90;
  assert(b.terrain.some(t=>t.honroCeiling));const predicted=e.predict(u,C.SKILLS.A01,90,1,undefined,true);assert(b.terrain.find(t=>t.id===predicted.terrain)?.honroCeiling,'high shot must meet real cave collision');assert(e.fire('A01',90,1));
  let minY=Infinity;for(let i=0;i<500&&b.projectiles.length;i++){for(const p of [...b.projectiles]){minY=Math.min(minY,p.y);e.stepProjectile(p,1/120);}}
  assert.equal(b.projectiles.length,0);assert(minY>=predicted.y-20,`live arrow escaped predicted roof collision, minY=${minY}`);
@@ -47,11 +51,11 @@ check('Continuous cave ceiling blocks a high shot while the bow target hangs bel
  assert(!C.terrainContains(roof,hanger.x,target.y));
  assert(target.y>hanger.roofY+150,'target hangs inside the cavern, below the ceiling');
 });
-check('Breaking the unsupported brace creates a recoverable hazard, not a softlock',()=>{
- const {b,e,app}=fixture(17),t=b.terrain.find(t=>t.id==='collapse-pin');e.damageTerrain(t,1000);assert(g.HonroAct2.memory(b).collapse);assert(!b.terrain.find(t=>t.id==='gate-debris').broken);const m=b.honroMarkers.find(m=>m.id==='rebuild-brace');assert(!m.collected);g.HonroAct2.use(app,m);assert(g.HonroAct2.memory(b).rebuilt);assert(b.terrain.find(t=>t.id==='gate-debris').broken);
+check('Retained legacy brace creates a recoverable hazard, not a softlock',()=>{
+ const {b,e,app}=legacyFixture(17),t=b.terrain.find(t=>t.id==='collapse-pin');e.damageTerrain(t,1000);assert(g.HonroAct2.memory(b).collapse);assert(!b.terrain.find(t=>t.id==='gate-debris').broken);const m=b.honroMarkers.find(m=>m.id==='rebuild-brace');assert(!m.collected);g.HonroAct2.use(app,m);assert(g.HonroAct2.memory(b).rebuilt);assert(b.terrain.find(t=>t.id==='gate-debris').broken);
 });
 check('Rockfall changes the walkable route, and draining water keeps its bed below its surface',()=>{
- const {b,e}=fixture(12),floor=b.terrain.find(t=>t.id==='act2-floor'),restored=floor.honroRestoredVertices;assert(restored,'rockfall must retain a real route-restoration state');const sample=restored.map(p=>({x:p.x,y:p.y,old:C.topAt(floor,p.x,p.y)})).sort((a,b)=>(b.old-b.y)-(a.old-a.y))[0];assert(sample.old-sample.y>200,'restoration must change actual walkable terrain');e.damageTerrain(b.terrain.find(t=>t.id==='rock-pin'),1000);assert(Math.abs(C.topAt(floor,sample.x,sample.y)-sample.y)<.1);
+ const {b,e}=legacyFixture(12),floor=b.terrain.find(t=>t.id==='act2-floor'),restored=floor.honroRestoredVertices;assert(restored,'rockfall must retain a real route-restoration state');const sample=restored.map(p=>({x:p.x,y:p.y,old:C.topAt(floor,p.x,p.y)})).sort((a,b)=>(b.old-b.y)-(a.old-a.y))[0];assert(sample.old-sample.y>200,'restoration must change actual walkable terrain');e.damageTerrain(b.terrain.find(t=>t.id==='rock-pin'),1000);assert(Math.abs(C.topAt(floor,sample.x,sample.y)-sample.y)<.1);
  const q=fixture(15),water=q.b.waters[0],y=water.y,sluice=q.b.honroMarkers.find(m=>m.id==='sluice');q.b.honroState.act2.done['clear-water']=true;
  for(const u of q.e.alive(1))if(Math.hypot(u.x-sluice.x,u.y-sluice.y)<360){u.hp=0;u.dead=true;}
  assert(g.HonroAct2.use(q.app,sluice));const drained=q.b.waters[0];assert.equal(drained.y,y+120);assert(drained.bottom.slice(1,-1).every(p=>p.y>drained.y));assert(q.b.honroSurfaceZones.filter(z=>z.kind==='water-pool').every(z=>z.bottom.slice(1,-1).every(p=>p[1]>z.surface[0][1])));

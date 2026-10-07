@@ -27,7 +27,11 @@ with sync_playwright() as pw:
         page.wait_for_function('window.HonroAct1Background?.ready()')
         variations=page.evaluate('''()=>{const a=HonroApp,cv=document.createElement('canvas');cv.width=960;cv.height=540;
           const c=cv.getContext('2d'),images=[],graded=[],variants=[],light=[];for(let sid=1;sid<=10;sid++){
-            a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});const b=a.engine.b,s=a.scene;
+            a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});const live=a.engine.b,s=a.scene;
+            // Isolate the far painting from the later authored Act 1 scenery
+            // and enclosed caves. Full production backgrounds are captured below.
+            const b={...live,honroMap:{},honroCaveApproach:null,honroCaveEnvelope:null,
+              honroEnvironment:{...live.honroEnvironment,skyVisible:true,placements:[]}};
             Object.assign(s,{x:b.width*.5,y:b.height*.5});c.clearRect(0,0,960,540);s.background(c,960,540,b);images.push(cv.toDataURL());
             s.environmentTone(c,960,540,b);graded.push(cv.toDataURL());const pixels=c.getImageData(0,0,960,540).data;
             let l=0;for(let i=0;i<pixels.length;i+=4)l+=pixels[i]*.2126+pixels[i+1]*.7152+pixels[i+2]*.0722;light.push(l/(960*540));
@@ -37,7 +41,8 @@ with sync_playwright() as pw:
         for start in [0,5]:
             assert all(variations['light'][i]>variations['light'][i+1] for i in range(start,start+4)),variations
         parallax=page.evaluate('''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-6',{story:false});
-          const s=a.scene,b=a.engine.b,cv=document.createElement('canvas');cv.width=960;cv.height=540;const c=cv.getContext('2d'),calls=[],frames=[],draw=c.drawImage.bind(c);
+          const s=a.scene,live=a.engine.b,b={...live,honroMap:{},honroCaveApproach:null,honroCaveEnvelope:null,
+            honroEnvironment:{...live.honroEnvironment,skyVisible:true,placements:[]}},cv=document.createElement('canvas');cv.width=960;cv.height=540;const c=cv.getContext('2d'),calls=[],frames=[],draw=c.drawImage.bind(c);
           c.drawImage=(...args)=>{calls.push(args.slice(1));draw(...args);};
           for(const [x,y] of [[b.width/2,b.height/2],[b.width/2+500,b.height/2],[b.width/2,b.height/2+500],[-1e6,-1e6],[1e6,1e6]]){
             Object.assign(s,{x,y});c.clearRect(0,0,960,540);s.background(c,960,540,b);frames.push(cv.toDataURL());}

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {openRoute} from './act2-spatial-test-helpers.mjs';
 
@@ -54,7 +55,9 @@ for(let id=11;id<=20;id++)for(const z of g.HONRO_PROJECT.stages[id-1].materials.
 }
 assert.deepEqual(pools.map(p=>p.id),[14,15,19],'every Act 2 water zone must be audited');
 
-const {b,e,app}=battlefield(g,15);g.HonroAct2.attach(app,e);
+// The hanging attack target exists only in retained pre-revision battles.
+const liveProject=g.HONRO_PROJECT;g.HONRO_PROJECT=beforeObjectiveRevision(liveProject,g.HONRO_CONTENT).project;
+const {b,e,app}=battlefield(g,15);g.HONRO_PROJECT=liveProject;g.HonroAct2.attach(app,e);
 assert(b.terrain.some(t=>t.honroCeiling)&&!b.terrain.some(t=>t.id==='shaft-cap'));
 const target=b.terrain.find(t=>t.id==='shaft-pin'),archer=b.units.find(u=>u.cls==='archer'&&u.side===0),mage=b.units.find(u=>u.cls==='mage'&&u.side===0);
 const hp=target.hp;e.damageTerrain(target,hp+10,0,mage.id);assert.equal(target.hp,hp,'other classes cannot break Seol-o target');
