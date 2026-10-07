@@ -88,3 +88,23 @@ Ending: three records joined, Seolo's home vicinity connects to the route, old r
 ## Growth proposal (implementation/testing proposal; user final balance review pending)
 
 Preserve stages 1–20 exactly. Stage 21 begins at the actual first-clear stage-20 XP, approximately level 15.69. Stage 30 target is level 22.0 using current XP curve, with 40% combat share and existing per-stage retry ledger. Existing cap 30 and skills unchanged. New stages must never extrapolate the clamped legacy level-25 reward curve.
+
+
+## Implemented growth proposal and evidence
+
+`HonroProgression.legacyCampaignAnchor(20)` derives 61,569 XP by replaying existing first-clear and recruit-floor rules. Stage 20's unchanged budget is 5,347 XP, of which 2,139 is combat. The legacy reward curve is `round(180 + 90 × (level − 1)^1.65)` with its old level-25 cap; the current level cost is `round((180 + 90 × (level − 1)^1.65) × 1.5)` and the actual player cap is 30. Confusing the plan's old reward labels with actual current levels causes a false difficulty estimate, and extrapolating legacy rewards above 25 causes zero-XP stages.
+
+New `rewardCurve: current` stages alone use current-curve budgets. A higher pre-existing save keeps its existing XP shift and stage ceiling through the same persistent ledger. No old reward or earned skill is reset. This schedule is for implementation and balance tests, pending user review.
+
+| Stage | Total XP reward | Combat share | Completion XP | Actual exit level | Earned points |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 21 | 6953 | 2781 | 68522 | 16.3 | 33 |
+| 22 | 7226 | 2890 | 75748 | 16.9 | 33 |
+| 23 | 7887 | 3155 | 83635 | 17.5 | 35 |
+| 24 | 8157 | 3263 | 91792 | 18.1 | 37 |
+| 25 | 9584 | 3834 | 101376 | 18.75 | 37 |
+| 26 | 10156 | 4062 | 111532 | 19.4 | 39 |
+| 27 | 10588 | 4235 | 122120 | 20.05 | 41 |
+| 28 | 11478 | 4591 | 133598 | 20.7 | 41 |
+| 29 | 12016 | 4806 | 145614 | 21.35 | 43 |
+| 30 | 12477 | 4991 | 158091 | 22 | 45 |

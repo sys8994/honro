@@ -61,7 +61,8 @@
     "test:aim-wind-audio": "node tests/aim-guide-cleanup.mjs && node tests/weather-wind.mjs && node tests/audio.mjs",
     "test:terrain-domain": "node tests/terrain-domain.mjs && node tests/terrain-domain-render.mjs",
     "capture:terrain-domain": "node tools/environment/capture-terrain-domain.mjs",
-    "test:story-canon": "node tests/story-canon-v01.mjs && node tests/story-canon-save.mjs"
+    "test:story-canon": "node tests/story-canon-v01.mjs && node tests/story-canon-save.mjs",
+    "test:act3": "node tests/act3-runtime.mjs && node tests/act3-growth.mjs && node tests/act3-continuity.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

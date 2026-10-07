@@ -10,7 +10,8 @@ function finalConsonant(text){const last=String(text).charCodeAt(String(text).le
 function towards(place){const jong=finalConsonant(place);return place+(jong&&jong!==8?'으로':'로');}
 function together(name){return name+(finalConsonant(name)?'과':'와');}
 function speakerId(cls){return H.hero[cls]?.name;}
-function talkId(next,cls){return `rest-talk-v1-${next?.stageId||'end'}-${cls}`;}
+const endStoryKey=()=>H.stages.at(-1).id>20?'end-'+H.stages.at(-1).id:'end';
+function talkId(next,cls){return `rest-talk-v1-${next?.stageId||endStoryKey()}-${cls}`;}
 function restMarkup(app){const p=app.profile,d=data(),next=d.next(p),place=next||d.ending,previous=next?d.at(next.stageId-1):d.at(H.stages.at(-1).id),battle=active(p),s=state(p);
  const positions={archer:[36,84],mage:[44,79],knight:[61,82],occultist:[70,78]};
  const heroes=p.recruited.filter(cls=>H.hero[cls]).map(cls=>{const [x,y]=positions[cls]||[60,80],unread=!s.talked[talkId(next,cls)];return `<button class="rest-person rest-${cls}" data-action="rest-talk" data-class="${cls}" style="--person-x:${x}%;--person-y:${y}%" aria-label="${esc(together(speakerId(cls)))} 선택 대화${unread?' · 새 대화':''}"><canvas width="220" height="300" data-rest-person="${cls}" aria-hidden="true"></canvas><span class="rest-person-label">${esc(speakerId(cls))}${unread?'<i aria-hidden="true">···</i>':''}</span><small>이야기 듣기</small></button>`;}).join('');
@@ -41,13 +42,13 @@ function restoreStory(app){const saved=state(app.profile).story;if(!saved)return
  // still saved. Bind text to its original place; never regenerate a previous
  // place's dialogue from the new destination or let optional talk skip arrival.
  const nextStage=data().next(app.profile)?.stageId??null,match=/^rest-(?:interlude|talk)-v1-(\d+|end)(?:-|$)/.exec(saved.id||''),savedStage=saved.kind==='map'?(saved.completed>=H.stages.length?null:saved.completed+1):match?(match[1]==='end'?null:Number(match[1])):undefined;
- const completed=nextStage==null?H.stages.at(-1).id:nextStage-1,mapId=`map-story-v${G.HonroStoryContent.version}-${completed}`,arrivalId=`rest-interlude-v1-${nextStage??'end'}`;
+ const completed=nextStage==null?H.stages.at(-1).id:nextStage-1,mapId=`map-story-v${G.HonroStoryContent.version}-${completed}`,arrivalId=`rest-interlude-v1-${nextStage??endStoryKey()}`;
  const requiredPending=(!app.profile.seen[mapId]&&prelude(completed).length)||!app.profile.seen[arrivalId];
  if(savedStage!==nextStage||(saved.stageId!==undefined&&saved.stageId!==savedStage)||(saved.kind==='optional'&&requiredPending)){state(app.profile).story=null;app.persist();return false;}
  let lines;if(saved.kind==='map')lines=prelude(saved.completed);else if(saved.kind==='optional')lines=data().optional(app.profile,data().next(app.profile)?.stageId??null,saved.cls);else lines=data().required(app.profile,data().next(app.profile)?.stageId??null);if(!lines?.length){state(app.profile).story=null;return false;}return G.HonroStory.start(app,lines,{id:saved.id,index:saved.index||0,title:location(app.profile).restName,after:'rest',restKind:saved.kind,restClass:saved.cls,restCompleted:saved.completed});}
 function nextStory(app){if(app.screen!=='rest'||app.dialogue)return false;if(restoreStory(app))return true;const p=app.profile,next=data().next(p),completed=next?next.stageId-1:H.stages.at(-1).id,mapId=`map-story-v${G.HonroStoryContent.version}-${completed}`,mapLines=prelude(completed);
  if(mapLines?.length&&!p.seen[mapId])return G.HonroStory.start(app,mapLines,{id:mapId,index:p.honroMapStory?.id===mapId?p.honroMapStory.index:0,title:location(p).restName,after:'rest',restKind:'map',restCompleted:completed});
- const id=`rest-interlude-v1-${next?.stageId||'end'}`;if(p.seen[id])return false;const lines=data().required(p,next?.stageId??null);return lines?.length?G.HonroStory.start(app,lines,{id,title:location(p).restName,after:'rest',restKind:'arrival'}):false;
+ const id=`rest-interlude-v1-${next?.stageId||endStoryKey()}`;if(p.seen[id])return false;const lines=data().required(p,next?.stageId??null);return lines?.length?G.HonroStory.start(app,lines,{id,title:location(p).restName,after:'rest',restKind:'arrival'}):false;
 }
 function saveStory(app){if(app.screen!=='rest')return;const d=app.dialogue,s=state(app.profile);s.story=d?{id:d.id,index:d.index,kind:d.restKind,cls:d.restClass,completed:d.restCompleted,stageId:data().next(app.profile)?.stageId??null}:null;app.persist();}
 function finishStory(app,d){if(app.screen!=='rest'||d.after!=='rest')return false;const s=state(app.profile);s.story=null;if(d.restKind==='optional'){s.talked[d.id]=true;app.persist();app.root.innerHTML=restMarkup(app);startMotion(app);document.querySelector(`[data-action="rest-talk"][data-class="${d.restClass}"]`)?.focus?.({preventScroll:true});return true;}app.persist();if(!nextStory(app))document.querySelector('[data-action="camp"]')?.focus?.({preventScroll:true});return true;}
