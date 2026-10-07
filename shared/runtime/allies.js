@@ -15,7 +15,7 @@ function attach(app,e){const b=e.b,baseTransition=e.completeTeamTransition.bind(
 function recoverFixedRescueTargets(e){const b=e.b;
  const ids=new Set((b.honroMarkers||[]).filter(m=>m.action==='rescue').map(m=>m.target));
  for(const u of b.units){
-  if(!ids.has(u.id)||!u.fixed||!u.honroAlly||!u.honroCivilian||u.dead||u.hp<=0||u.airborne||u.carriedBy!==undefined||e.contactSurface(u.x,u.y-4,u.y+5))continue;
+  if(!ids.has(u.id)||!u.fixed||!u.honroAlly||!u.honroCivilian||u.dead||u.hp<=0||!Number.isFinite(u.x)||!Number.isFinite(u.y)||u.airborne||u.carriedBy!==undefined||e.contactSurface(u.x,u.y-4,u.y+5))continue;
   const probe={...u,vx:0,vy:0,jumping:false,fallApexY:undefined};
   for(let n=0;n<2400;n++){
    if(!e.integrateBody(probe,C.STEP,true))break;
