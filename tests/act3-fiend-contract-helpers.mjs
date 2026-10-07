@@ -3,6 +3,16 @@ import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 // The fiend revision freezes combat/mission identity, not subsequently approved
 // Korean architecture, optional roofs, placement or schema-default geometry.
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const encounterRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-encounter-contract.json',import.meta.url),'utf8'));
+function beforeEncounterRevision(actual,saved){
+ if(actual.initialState.honroAct3EncounterRevision!==1)return actual;
+ const reviewed=encounterRevision.rows.find(q=>q.id===actual.metadata.stageId);assert(reviewed,'Reviewed encounter revision');
+ assert.deepEqual(actual.units.filter(u=>u.team==='enemy'),reviewed.units,'Exact reviewed enemy roles, kinds and tuning');
+ assert.deepEqual(actual.encounters,reviewed.encounters,'Exact reviewed encounter groups');
+ assert.equal(actual.stage.enemies,reviewed.initialEnemies);assert.equal(actual.balance.initialEnemies,reviewed.initialEnemies);assert.equal(actual.balance.maxAlive,reviewed.maxAlive);
+ const out=plain(actual);out.units=[...out.units.filter(u=>u.team!=='enemy'),...saved.units.filter(u=>u.team==='enemy')];out.encounters=plain(saved.encounters);delete out.initialState.honroAct3EncounterRevision;out.stage.enemies=saved.stage.enemies;out.balance.initialEnemies=saved.balance.initialEnemies;out.balance.maxAlive=saved.balance.maxAlive;return out;
+}
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 export const plain=value=>JSON.parse(JSON.stringify(value));
@@ -36,14 +46,14 @@ export function assertFiendContract(project,content,balance,archetypes,baseline)
  const assetIds=project.library.map(a=>a.id);assert.equal(new Set(assetIds).size,assetIds.length,'Unique library IDs');
  for(const a of baseline.legacyAssets){const current=legacyProject.library.find(v=>v.id===a.id);assert(current,'Missing original asset '+a.id);assert.equal(hash(current),a.sha256,'Original Act 1/2 asset '+a.id);}
  for(const saved of baseline.legacyMaps){const current=legacyProject.stages.find(s=>s.metadata.stageId===saved.id);assert.equal(hash(current),saved.sha256,'Complete original Act 1/2 map '+saved.id);}
- for(const saved of baseline.act3){const id=saved.metadata.stageId,current=project.stages.find(s=>s.metadata.stageId===id);assert.deepEqual(missionContract(current,content.stages[id-1],balance.stages[id-1]),saved,'Act 3 combat/mission contract '+id);}
+ for(const saved of baseline.act3){const id=saved.metadata.stageId,current=project.stages.find(s=>s.metadata.stageId===id);assert.deepEqual(beforeEncounterRevision(missionContract(current,content.stages[id-1],balance.stages[id-1]),saved),saved,'Act 3 combat/mission contract '+id);}
  assert.deepEqual(archetypeContract(archetypes),baseline.archetypes,'Fiend body and attack definitions');
  // The compatibility rename is used only to derive the historical fixture.
  // Active production must contain the new fiends, never the old troop IDs.
  for(const s of project.stages.slice(20))for(const u of s.units)assert(!Object.hasOwn(kindRenames,u.kind),'Retired enemy kind '+u.kind);
  for(const s of content.stages.slice(20))for(const q of s.steps)if(q.wave)assert(!Object.hasOwn(kindRenames,q.wave.kind),'Retired reinforcement kind');
  const fiends=project.stages.slice(20).flatMap(s=>s.units).filter(u=>Object.values(kindRenames).includes(u.kind));
- assert.equal(fiends.length,baseline.fiendCount,'Exact approved fiend roster size');assert(fiends.every(u=>u.team==='enemy'),'Fiends remain enemies');
+ const revised=project.stages.slice(20).every(s=>s.initialState.honroAct3EncounterRevision===1);const expected=revised?encounterRevision.rows.flatMap(s=>s.units).filter(u=>Object.values(kindRenames).includes(u.kind)).length:baseline.fiendCount;assert.equal(fiends.length,expected,'Exact approved fiend roster size');assert(fiends.every(u=>u.team==='enemy'),'Fiends remain enemies');
 }
 // Content-only loading: no engine/renderer, dependency build, saved profile or
 // browser. A historical reader can use git show for the named source revision.

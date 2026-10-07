@@ -24,3 +24,7 @@
 스키마·렌더러·물리 변경은 tests/migration.mjs와 tests/integration.py를 통과해야 한다. migration/legacy는 비교 원본이며 활성 맵 소스가 아니다.
 저장 호환성과 기존 플레이 진행을 보존하고 BUG_LOG.md에 원인·변경·검증·한계를 기록한다.
 패치 노트·일회성 보고서·배포 압축본은 Git에서 제외된 _local/archive/에, 자동 검사 결과·스크린샷은 _local/reports/ 또는 _local/game-reports/에 둔다. 현재 명세·수정 맥락은 game/docs/, 검사 입력 기준 데이터는 tests/fixtures/ 및 game/tests/fixtures/에 남긴다.
+
+## 몬스터 배치
+
+캠페인 적 편성·배치를 수정할 때 `game/docs/ENCOUNTER_PLACEMENT.md`를 먼저 읽는다. 등간격 또는 등간격에 작은 오차를 더한 배치로 채우지 않는다. 장소·지형·서사에 맞는 역할 군집, 정예의 역할, 군집 사이 여백, 차폐·사선·교전거리·구출/호송 경로를 실제 월드에서 확인한다. 장별 초기 수·정예·유한 증원·동시 행동 상한과 난이도 배수를 각각 대조하고 Game·Stage View·Playtest와 원본 생성기를 일치시킨다. 이전 막의 구현 숫자를 사용자 확정 수치로 둔갑시키지 않는다. 진행 저장과 승인 전 승리조건/파티분할을 보존한다.
