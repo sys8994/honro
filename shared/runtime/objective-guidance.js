@@ -25,6 +25,7 @@ function failure(b,st,list,result){const parts=['동행 전원 전투불능'];co
  if(required.length)parts.push('필수 행동 전 '+required.join('·')+' 전투불능');
  if(st.id===5&&b.terrain.some(t=>t.id==='cliff-cleat'&&!t.broken))parts.push('고리쇠 파괴 전 담허 전투불능');
  if(st.id===10)parts.push('협력 시작 후 소단 전투불능');
+ if(st.id===27&&b.honroSplit?.version===1&&!b.honroState?.act3?.done?.['party-reunion'])parts.push('중앙 합류 전 조사팀 동행 전투불능');
  if(st.id===27&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen']))parts.push('불길 진압 전 12번째 적 턴 종료');
  return parts.join(' / ');
 }

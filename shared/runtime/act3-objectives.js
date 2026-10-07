@@ -85,7 +85,7 @@ function escortTick(app,s,m,dt){const e=app.engine,b=e.b,a=memory(b),npc=e.unit(
  if(dt>0&&dir&&lead&&!app.dialogue){npc.fixed=false;npc.moveLeft=900;e.walk(npc,dir,Math.min(dt,.05));}
  if(sameFloor(npc,m,170)&&heroes(b).some(u=>sameFloor(u,npc,540)))completeStep(app,s);
 }
-function failure(b){if(!active(b))return null;const a=memory(b);if(b.units.some(u=>u.honroProtected&&!alive(u)))return'지켜야 할 주민을 잃었다. 이 장을 다시 시작할 수 있다.';
+function failure(b){if(!active(b))return null;const a=memory(b);if(b.honroStage===27&&b.honroSplit?.version===1&&!a.done['party-reunion']&&G.HonroSplitCampaign?.allPresent(b)===false)return'합류하기 전에 동행을 잃어 두 조사팀이 모일 수 없다. 이 장을 다시 시작하자.';if(b.units.some(u=>u.honroProtected&&!alive(u)))return'지켜야 할 주민을 잃었다. 이 장을 다시 시작할 수 있다.';
  for(const s of steps(b))if(!satisfied(b,s)&&s.requiredClass&&!heroes(b).some(u=>u.cls===s.requiredClass))return H.hero[s.requiredClass].name+'이 쓰러져 남은 목표를 이어갈 수 없다. 이 장을 다시 시작하자.';
  if(b.honroStage===27&&!firesStopped(b)&&(a.fireTurns||0)>=12)return'불길이 핵심 기록에 닿았다. 수문과 차단막부터 다시 확보하자.';return null;
 }
