@@ -6,7 +6,7 @@
 - 원인: retry/result가 먼저 engine을 비운 뒤 launchMap의 조건부 stopBattle을 건너뛰어 임시 프로필을 다음 returnProfile로 잡았다. Import/새 여정도 customMap을 남겨 저장을 건너뛰고 제목에서 교체 프로필을 옛 반환값으로 덮었다. custom 승리의 다음 버튼은 임시 완료 정보를 근거로 정상 다음 장을 시작할 수 있었다.
 - 수정: 엔진 유무와 무관하게 custom 경계를 먼저 끝내 같은 원래 프로필·장으로 복원한다. Import/새 여정은 경계를 끝낸 뒤 새 정상 기록을 설치한다. custom 결과 다음은 원래 쉼터로 돌아가며, 다른 전투/연습 진입도 남은 custom 경계를 해제한다. 주입한 테스트 프로필은 깊은 복제로 원본 참조를 분리한다.
 - 보존: custom 중 명시적 기록 내보내기는 기존 QA 전투 snapshot을 계속 내보내며 자동 저장과 원래 프로필에는 쓰지 않는다. custom 종료 후 내보내기는 정상 기록이고 디버그 내보내기는 기존대로 보호한 정상 기록이다. 저장 스키마·전투/보상/성장·맵·대사·일반 retry는 바꾸지 않는다.
-- 검사: `test:custom-map-return`은 생산 App의 재시도·맵 교체·승리/패배 결과·제목/쉼터/지도·Import/새 여정·reload·debug·연습·embedded Playtest·참조 격리·내보내기를 검사한다. DOM/저장/다운로드는 대역이며 결과 fixture는 정상 완주 증거가 아니다. 최종 실행 수치, 빌드/타입/packing 및 실제 브라우저 검증은 이어서 기록한다.
+- 검사: `test:custom-map-return`은 생산 App의 재시도·맵 교체·승리/패배 결과·제목/쉼터/지도·Import/새 여정·reload·debug·연습·embedded Playtest·참조 격리·내보내기를 검사한다. DOM/저장/다운로드는 대역이며 결과 fixture는 정상 완주 증거가 아니다. 최종 통합 소스에서 17묶음과 debug parity 11묶음, 3막10장×5난이도 편성·50군집 사격·목표/저장/안전90·30장 왕복·natural-dialogue·1막 migration·타입 검사를 통과했다. 두 HTML은 통합 소스에서 한 번 빌드했으며 Workshop 원문 복원과 16MiB 전송 한계 검사를 통과했다(Game 13,031,892B, Workshop 13,140,861B, JSON 요청 14,067,958B). 전체 verify·브라우저 성능·Pages 실제 입력은 이 결과에 포함하지 않는다.
 
 ## 쉼터의 설오 해설체와 서술 역할 분리 — 2026-10-07 / 소스·비브라우저 검증
 
