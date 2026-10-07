@@ -38,7 +38,7 @@ function draw(c,id,options={}){
  const key=id+':'+(a.aimPart&&Number.isFinite(st.aim)?st.aim:0);let r=idleRasters.get(key);
  if(!r){const [x,y,w,h]=a.viewBox,margin=64,cv=document.createElement('canvas');cv.width=Math.ceil((w+margin*2)*2);cv.height=Math.ceil((h+margin*2)*2);r={canvas:cv,x:x-margin,y:y-margin,time:NaN};idleRasters.set(key,r);if(idleRasters.size>32)idleRasters.delete(idleRasters.keys().next().value);}
  if(r.time!==time){const cc=r.canvas.getContext('2d');cc.setTransform(1,0,0,1,0,0);cc.clearRect(0,0,r.canvas.width,r.canvas.height);cc.scale(2,2);cc.translate(-r.x,-r.y);drawVector(cc,id,{...options,detail:0});r.time=time;}
- c.drawImage(r.canvas,r.x,r.y,r.canvas.width/2,r.canvas.height/2);return{lod:0,parts:a.parts.length};
+ c.save();c.imageSmoothingQuality='high';c.drawImage(r.canvas,r.x,r.y,r.canvas.width/2,r.canvas.height/2);c.restore();return{lod:0,parts:a.parts.length};
 }
 return{draw,pose,state,assets,cacheSize:()=>cache.size};}
 G.HonroVectorParts={create};
