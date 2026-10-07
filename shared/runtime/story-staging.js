@@ -8,7 +8,7 @@ function actor(b,id){return b.units.find(u=>u.id===id)||b.units.find(u=>u.side==
 function alive(u){return !!u&&!u.dead&&u.hp>0;}
 function point(b,p,context={}){
  if(!p)return null;let q;
- if(p.actor){const u=actor(b,p.actor)||b.honroStaging?.hidden?.[p.actor];if(alive(u))q={x:u.x,y:u.y-(p.feet?0:u.h*.5)};}
+ if(p.actor){const id=p.actor==='$actor'?context.actor:p.actor,u=actor(b,id)||b.honroStaging?.hidden?.[id];if(alive(u))q={x:u.x,y:u.y-(p.feet?0:u.h*.5)};}
  else if(p.anchor)q=b.honroMapAnchors?.[p.anchor];
  else if(p.marker)q=b.honroMarkers?.find(m=>m.id===(p.marker==='$trigger'?context.marker:p.marker));
  else if(Number.isFinite(p.x)&&Number.isFinite(p.y))q=p;
@@ -30,14 +30,20 @@ function request(app,id,context={}){
  G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]]);return true;
 }
 function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)request(app,ID,{marker:m.id});}
+// Decorate only a newly queued authored event; its trigger, wait boundary and
+// original speech remain owned by the existing event system. Saved queues stay raw.
+function eligible(b,d){return !!b&&!b.honroCustom&&b.honroStaging?.version===1&&(!d.stage||d.stage===b.honroStage)&&(!d.requiredActors||d.requiredActors.every(id=>alive(actor(b,id))));}
+function decorateQueue(app,lines){const b=app.engine?.b;if(!lines.length||lines[0][2]?.stagingRequest)return lines;const story=lines[0][2]?.storyId;if(typeof story!=='string'||!story)return lines;const d=[...registry.values()].find(d=>d.onStory===story&&eligible(b,d)&&!state(b).once[d.id]);if(!d)return lines;state(b).once[d.id]='queued';return [['서술',d.title,{storyId:story,storyTitle:lines[0][2]?.storyTitle,stagingRequest:{id:d.id,context:{actor:b.active},dialogue:clone(lines)}}]];}
+function recoverQueued(b,lines){return lines.flatMap(line=>{const r=line[2]?.stagingRequest;if(!r?.dialogue)return[line];if(b?.honroStaging)state(b).once[r.id]='done';return r.dialogue;});}
 function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
- if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.requireSplit||b.honroSplit?.version===1)&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
+ if(!r&&['entry','outcome'].includes(options.after)&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on===options.after&&eligible(b,d)&&(!d.requireSplit||b.honroSplit?.version===1)&&!state(b).once[d.id]);if(d)r={id:d.id,context:{actor:b.active}};}
  if(!r)return{lines,options};
  const def=registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||state(b).once[r.id]==='done')return{lines:[],options};
- state(b).once[r.id]='running';
- const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},position:def.position||'before',waitForDialogue:def.position==='after',complete:def.position==='after'};
- const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines||lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
+ const supplied=r.dialogue||lines;if(!eligible(b,def)&&def.onStory)return{lines:supplied,options};state(b).once[r.id]='running';
+ const waitForIndex=def.beforeSpeaker?supplied.findIndex(l=>l[0]===def.beforeSpeaker):null;
+ const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},position:def.position||'before',waitForDialogue:def.position==='after',complete:def.position==='after'||waitForIndex>0,...(waitForIndex>0?{waitForIndex}:{})};
+ const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines||supplied).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
  return{lines:dialogue,options:{...options,title:def.title,staging}};
 }
 function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!meta?.stagingScene||s?.once[meta.stagingScene]!=='running')return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
@@ -45,7 +51,7 @@ function active(app){return app.dialogue?.staging;}
 function snapshot(app){const s=active(app),c=app.scene;if(s&&c&&[c.x,c.y,c.scale].every(Number.isFinite))s.currentCamera={x:c.x,y:c.y,scale:c.scale,manual:!!c.manual};}
 function restore(app){const s=active(app),c=app.scene;if(!s||!c||s.complete)return;if(s.currentCamera)Object.assign(c,s.currentCamera);c.goalFocus=null;if(s.focusActor&&alive(actor(app.engine.b,s.focusActor)))c.storyFocus?.(s.focusActor,120);else if(s.focus)c.storyFocusPoint?.(s.focus.x,s.focus.y,350);}
 
-function draw(app,node){const s=active(app);if(!s||s.complete)return false;const step=s.steps[s.cursor],focused=node.contains?.(G.document?.activeElement)?G.document.activeElement?.dataset?.action:null;
+function draw(app,node){const s=active(app);if(s?.waitForIndex!=null&&app.dialogue.index>=s.waitForIndex){delete s.waitForIndex;s.complete=false;app.stagingLastTime=null;G.HonroStory.save(app);}if(!s||s.complete)return false;const step=s.steps[s.cursor],focused=node.contains?.(G.document?.activeElement)?G.document.activeElement?.dataset?.action:null;
  node.innerHTML=`<div class="story-overlay staging-overlay"><section class="staging-cue" role="dialog" aria-modal="true" aria-label="${esc(app.dialogue.title)}"><p id="story-line">${esc(step?.caption||'')}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">장면 넘기기</button><button class="primary" data-action="dialogue-next">대화로 ›</button></div></section></div>`;
  node.querySelector(`[data-action="${focused==='dialogue-skip'?'dialogue-skip':'dialogue-next'}"]`)?.focus({preventScroll:true});return true;
 }
@@ -75,10 +81,10 @@ function apply(app,s,step,skip=false,dt=0){
   if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.at,s.context);if(p&&app.scene){s.focus=clone(p);delete s.focusActor;app.scene.goalFocus=null;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500));}}
  }
  if(step.type==='move'){const status=move(app,s,step,dt,skip);if(status){s.results[key]={...s.results[key],status};return true;}}
- if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x){const facing=Math.sign(p.x-u.x);if(facing!==u.facing&&Number.isFinite(u.angle))u.angle=180-u.angle;u.facing=facing;}if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
+ if(step.type==='look'&&(step.actor||step.actors)){const p=point(b,step.at,s.context);for(const id of step.actors||[step.actor]){const u=actor(b,id==='$actor'?s.context.actor:id);if(!alive(u))continue;const facing=step.facing||(p&&p.x!==u.x?Math.sign(p.x-u.x):u.facing);if(step.visualOnly){u.honroScenePose={kind:step.pose||'regard',time:(s.elapsed+dt*1000)/1000,duration:(step.duration||1)/1000,facing,visualOnly:true};}else{if(facing!==u.facing&&Number.isFinite(u.angle))u.angle=180-u.angle;u.facing=facing;if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}}
  return skip||s.elapsed+dt*1000>=(step.duration||0);
 }
-function settle(app,s){for(const u of app.engine.b.units){if(u.honroScenePose){delete u.honroScenePose;u.moving=0;}}}
+function settle(app,s){for(const u of app.engine.b.units){if(u.honroScenePose){if(!u.honroScenePose.visualOnly)u.moving=0;delete u.honroScenePose;}}}
 function advance(app,dt,skip=false){
  const s=active(app);if(!s||s.complete)return false;
  let budget=skip?s.steps.length:1;
@@ -98,7 +104,14 @@ function tick(app,now){
  const cursor=s.cursor;advance(app,dt);if(s.cursor!==cursor||s.complete){G.HonroStory.draw(app);G.HonroStory.save(app);}
 }
 function skipMotion(app){const s=active(app);if(!s||s.complete)return false;advance(app,0,true);settle(app,s);G.HonroStory.draw(app);return true;}
-function finish(app,natural=false){const s=active(app);if(!s)return false;if(s.waitForDialogue){s.waitForDialogue=false;s.complete=false;app.stagingLastTime=null;if(natural){G.HonroStory.draw(app);G.HonroStory.save(app);return true;}}advance(app,0,true);settle(app,s);state(app.engine.b).once[s.id]='done';app.stagingLastTime=null;}
+// Read-only foreground props for a short authored beat. They are not engine
+// units, pickup items, projectiles, collision, or new objective markers.
+function drawProps(scene,e){const b=e.b,s=b.honroStory?.staging;if(!s||s.complete)return;const step=s.steps[s.cursor],c=scene.ctx;if(!step?.props?.length)return;const t=Math.max(0,Math.min(1,s.elapsed/Math.max(1,step.duration||1))),a=Math.min(1,t*5,(1-t)*5);for(const prop of step.props){const p=point(b,prop.at,s.context);if(!p)continue;c.save();c.translate(p.x,p.y-8);c.globalAlpha*=Math.max(0,a);
+ if(prop.kind==='hammer'){c.rotate(-.15);c.fillStyle='#967753';c.fillRect(-3,-26,6,31);c.fillStyle='#9da5a0';c.fillRect(-20,-34,40,13);c.strokeStyle='#26363b';c.lineWidth=2;c.strokeRect(-20,-34,40,13);}
+ else if(prop.kind==='records'){for(let i=0;i<3;i++){const spread=26*(1-t)+7*t;c.save();c.translate((i-1)*spread,-18-i*4);c.rotate((i-1)*.13*(1-t));c.fillStyle=['#c5b593','#d2c5a7','#c6bcaa'][i];c.fillRect(-27,-32,54,36);c.strokeStyle='#625b4b';c.lineWidth=1.5;c.strokeRect(-27,-32,54,36);for(let j=0;j<3;j++){c.beginPath();c.moveTo(-19,-23+j*7);c.lineTo(15-j*4,-23+j*7);c.stroke();}c.restore();}}
+ else if(prop.kind==='departing-light'){for(let i=0;i<3;i++){c.fillStyle=['#d7c8a0','#bcd2c5','#d5dcbe'][i];c.beginPath();c.ellipse((i-1)*16+Math.sin(t*2+i)*5,-17-t*43-i*9,3.5,7,0,0,Math.PI*2);c.fill();}}
+ c.restore();}}
+function finish(app,natural=false){const s=active(app);if(!s)return false;if(s.waitForIndex!=null){delete s.waitForIndex;s.complete=false;}if(s.waitForDialogue){s.waitForDialogue=false;s.complete=false;app.stagingLastTime=null;if(natural){G.HonroStory.draw(app);G.HonroStory.save(app);return true;}}advance(app,0,true);settle(app,s);state(app.engine.b).once[s.id]='done';app.stagingLastTime=null;}
 register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
  {type:'fx',sound:'sodanBell',at:{marker:'$trigger'},effect:'ring',color:'#b8c999',duration:300,caption:'첫 받이진이 붉은 실의 힘을 받아 낸다. 위쪽에서 방울이 짧게 울린다.'},
  {type:'look',at:{anchor:'sodan'},duration:550,caption:'방울 소리가 난 사당 문간으로 시선이 향한다.'},
@@ -127,5 +140,5 @@ register({id:'act3-split-departure-v1',stage:24,on:'outcome',position:'after',re
  {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단도 같은 방향으로 몸을 돌린다.'},
  {type:'dialogue'}
 ]});
-G.HonroStoryStaging={register,describe,request,prepareFresh,receiver,opening,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,point,actor,ID};
+G.HonroStoryStaging={register,describe,decorateQueue,recoverQueued,request,prepareFresh,receiver,opening,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,drawProps,point,actor,ID};
 })(globalThis);

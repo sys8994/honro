@@ -270,6 +270,7 @@
                 this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
                 if(!G.HonroAct2||G.HonroAct2.visible(b,v))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
             }
+            G.HonroStoryStaging?.drawProps(this,e);
             if(!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
             this.terrainHealth(c,b,w,h);
             G.HONRO_CORE.drawCombatPassives(c,e,this.time);

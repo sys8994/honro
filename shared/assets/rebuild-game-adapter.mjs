@@ -79,13 +79,21 @@ export class HonroPoseVisual{
     const anim=this.asset.animation.animations.attack,prepare=anim.keyframes[1].t,load=anim.keyframes[2].t;
     return this.api.sampleAnimation(this.asset,'attack',raise<1?prepare*raise:prepare+(load-prepare)*draw,true);
   }
+  storyPose(tag){
+    const base=this.api.sampleAnimation(this.asset,'idle',0,true),p=structuredClone(base.targets),t=Math.max(0,tag.time||0),duration=Math.max(.1,tag.duration||1),a=Math.min(1,t/.24)*Math.min(1,Math.max(0,duration-t)/.24);
+    if(tag.kind==='indicate'){p.frontHand[0]+=38*a;p.frontHand[1]-=48*a;p.frontHandAngle-=18*a;p.weapon-=5*a;}
+    else if(tag.kind==='open-palms'){p.frontHand[0]+=22*a;p.frontHand[1]-=28*a;p.rearHand[0]-=12*a;p.rearHand[1]-=18*a;p.frontHandAngle+=28*a;p.rearHandAngle-=18*a;}
+    else if(tag.kind==='lower-hands'){p.frontHand[1]+=24*a;p.rearHand[1]+=20*a;p.weapon+=8*a;}
+    else if(tag.kind==='read-record'){p.frontHand[0]-=38*a;p.frontHand[1]-=30*a;p.rearHand[0]+=24*a;p.rearHand[1]-=28*a;}
+    p.spirit=p.qi=p.spiritAlpha=p.qiAlpha=p.draw=p.arrow=0;return this.api.solvePose(this.asset,p);
+  }
   pose(u,charge=0){
     const s=this.state(u),previousMode=s.mode,age=this.time-s.releaseAt,hitAge=this.time-s.hitAt,anim=this.asset.animation.animations.attack;
     const release=anim.events[0].t,duration=anim.duration_ms/1000,airborne=!!(u.jumping||u.airborne||Math.abs(u.vy||0)>3);
     if(charge>0&&s.chargeAt===null)s.chargeAt=this.time;if(charge<=0)s.chargeAt=null;
     let sample;
     if(u.portraitOnly){sample=this.api.sampleAnimation(this.asset,'idle',0,true);s.mode='idle';}
-    else if(u.honroScenePose){const p=u.honroScenePose;sample=this.api.sampleAnimation(this.asset,p.kind==='move'?'move':'attack',p.kind==='move'?(p.time*1.05)%1:.12+.12*Math.min(1,p.time/.45),true);if(p.kind!=='move'){const t=sample.targets;t.spirit=t.qi=t.spiritAlpha=t.qiAlpha=0;sample=this.api.solvePose(this.asset,t);}s.mode='scene';}
+    else if(u.honroScenePose){const p=u.honroScenePose;if(p.visualOnly&&p.kind!=='hold-bell'){sample=this.storyPose(p);}else{sample=this.api.sampleAnimation(this.asset,p.kind==='move'?'move':'attack',p.kind==='move'?(p.time*1.05)%1:.12+.12*Math.min(1,p.time/.45),true);if(p.kind!=='move'){const t=sample.targets;t.spirit=t.qi=t.spiritAlpha=t.qiAlpha=0;sample=this.api.solvePose(this.asset,t);}}s.mode='scene';}
     else if(hitAge>=0&&hitAge<.5&&s.hitAt>s.releaseAt){sample=this.api.sampleAnimation(this.asset,'hit',hitAge);s.mode='hit';}
     else if(age>=0&&age<(1-release)*duration){
       const phase=release+age/duration;sample=this.api.sampleAnimation(this.asset,'attack',phase,true);s.mode='release';
@@ -111,7 +119,7 @@ export class HonroPoseVisual{
     s.wasAirborne=airborne;s.lastTargets=structuredClone(sample.targets);sample.poses.root.x=0;sample.poses.root.y=0;
     return {sample,state:s};
   }
-  draw(ctx,u,charge=0){const {sample,state}=this.pose(u,charge),result=this.renderer.draw(ctx,{height:102,facing:u.facing||1,sample});state.draws++;return result;}
+  draw(ctx,u,charge=0){const {sample,state}=this.pose(u,charge),result=this.renderer.draw(ctx,{height:102,facing:(u.honroScenePose?.facing??u.facing)||1,sample});state.draws++;return result;}
 }
 export class HonroArcherVisual extends HonroPoseVisual{}
 export class HonroPartyVisual{
