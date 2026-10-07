@@ -35,6 +35,11 @@ with sync_playwright() as p:
         recovery=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,h=b.heroes[u.cls];h.xp=HONRO_CORE.xpAtLevel(Math.floor(HonroProgression.plan(b.honroStage).entryLevel))-1;HONRO_CORE.applyHero(u,h,false);u.hp=1;u.focus=1;u.moveLeft=1;u.acted=true;const before=u.level;HonroProgression.awardCombat(e,u,2);a.updateHUD(true);return{before,level:u.level,hp:u.hp,maxHp:u.maxHp,mp:u.focus,maxMp:u.maxFocus,move:u.moveLeft,maxMove:u.maxMove,acted:u.acted,xp:document.querySelector('.hud-xp i').style.width};}''')
         check(shell+' combat level restores vitals without another action',recovery['level']==recovery['before']+1 and recovery['hp']==recovery['maxHp'] and recovery['mp']==recovery['maxMp'] and recovery['move']==recovery['maxMove'] and recovery['acted'],recovery)
         if shell=='Game':
+            # Hiding the new indoor panorama must not fall back to the expensive
+            # procedural sky on the existing Act1 cave, whose mask is separate.
+            page.evaluate(SETUP,7);page.wait_for_function('HonroAct1Background.ready(7)')
+            background=page.evaluate('''()=>{const a=HonroApp,s=a.scene,old=s.ctx.drawImage;let painted=0;s.ctx.drawImage=function(image,...args){if(image===HonroAct1Background.imageFor(7))painted++;return old.call(this,image,...args);};try{s.background(s.ctx,1440,900,a.engine.b);}finally{s.ctx.drawImage=old;}return{painted,sky:a.engine.b.honroEnvironment.skyVisible};}''')
+            check('Act1 cave preserves its original painted background path',background['painted']>0 and background['sky']==False,background)
             for id in range(21,31):
                 page.evaluate(SETUP,id);page.wait_for_timeout(80)
                 page.evaluate('''()=>{const a=HonroApp,s=HONRO_PROJECT.stages[a.stage.id-1];Object.assign(a.scene,{x:s.width/2,y:2400,scale:Math.min(1370/s.width,.32),manual:true,time:2});a.scene.render(a.engine,0,'',.6,false,0);}''')
