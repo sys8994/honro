@@ -104,7 +104,7 @@ async function addStructuralScene(g,p,s){
  if(id===23){
   const ts=g.HonroMaps.compile(s,p).terrain,bank=ts.find(t=>t.id==='city-foundation');
   if(!bank)throw Error('Stage23 structural support needs the canonical city foundation');
-  const ground=(x,top)=>g.HONRO_CORE.terrainSurfaces(bank,x).filter(q=>q.y>top+25&&Math.abs(q.slope)<1.35).map(q=>q.y).sort((a,b)=>a-b)[0];
+  const ground=(x,top)=>g.HONRO_CORE.terrainSurfaces(bank,x).filter(q=>q.y>top+25).map(q=>q.y).sort((a,b)=>a-b)[0];
   let piers='';const supports=[];
   // These rear posts carry the upper gallery to the bank, continuing behind
   // the opaque lower facades instead of resting on an unrelated roof tile.

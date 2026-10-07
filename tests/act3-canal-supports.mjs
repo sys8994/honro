@@ -10,7 +10,7 @@ for(const q of supports){
  const house=s.elements.find(e=>e.id===q.element);
  assert(s.elements.indexOf(element)<s.elements.indexOf(house),'Existing opaque house facades occlude the rear posts');
  assert.equal(q.foundation,'city-foundation');assert.equal(q.top,house.y);
- const foot=g.HONRO_CORE.terrainSurfaces(bank,q.x).filter(v=>v.y>q.top+25&&Math.abs(v.slope)<1.35).map(v=>v.y).sort((a,b)=>a-b)[0];
+ const foot=g.HONRO_CORE.terrainSurfaces(bank,q.x).filter(v=>v.y>q.top+25).map(v=>v.y).sort((a,b)=>a-b)[0];
  assert.equal(q.bottom,foot,'Support reaches actual bank or canal bed, not an unrelated roof');
  assert(q.bottom>q.top);
 }
