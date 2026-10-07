@@ -119,7 +119,7 @@ export async function buildKoreanTownReview({input=path.join(ROOT,'shared/data/c
  const before=g.HonroMaps.finalize(original);for(let i=23;i<30;i++)if(JSON.stringify(authored.stages[i])!==JSON.stringify(before.stages[i]))throw Error('Nonrepresentative stage changed '+(i+1));
  for(const id of [21,22,23]){const a=authored.stages.find(s=>s.metadata.stageId===id),b=before.stages.find(s=>s.metadata.stageId===id);for(const key of ['terrains','materials','markers','events','objectives','routes'])if(JSON.stringify(a[key])!==JSON.stringify(b[key]))throw Error(`Required ${key} changed in ${id}`);}
  const collisions=[];
- const solid=t=>Object.fromEntries(Object.entries(t).filter(([key])=>['id','type','x','y','w','h','points','oneWay','breakable','material','honroElementId'].includes(key)));
+ const solid=t=>Object.fromEntries(Object.entries(t).filter(([key])=>['id','type','x','y','w','h','points','vertices','oneWay','breakable','indestructible','mat','surfaceKind','honroElementId'].includes(key)));
  for(const id of [21,22,23]){
   const old=g.HonroMaps.compile(before.stages.find(s=>s.metadata.stageId===id),before).terrain.map(solid);
   const now=g.HonroMaps.compile(authored.stages.find(s=>s.metadata.stageId===id),authored).terrain.map(solid);
