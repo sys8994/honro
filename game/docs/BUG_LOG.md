@@ -1230,3 +1230,11 @@ Final integrated architecture validation at8525c64 completed all nine affected g
 The30-stage Workshop embedded the same common runtime twice: once for the editor and once inside the Game Playtest HTML. Its25.84MB file exceeded the remote tool request limit. The build now includes the common inline source once and synchronously captures its exact script text to reconstruct the original Game HTML for Playtest. No eval, network request, external JavaScript, asynchronous startup, asset-ID or saved-project change is added. Template guards require one identical common span and unique markers; focused tests cover closing-script escaping, independent child initialization, and later DOM/script removal. Full built-output equivalence and size validation follow this source checkpoint.
 
 The final built Workshop is13,067,138bytes (JSON upload request13,986,332bytes, below16MiB). Game is byte-identical to the fully checked30-stage candidate (SHA256d6729c025d434dc429dbacb493c073abc2bd9c89be6d7630576c40facbb19f12). Actual generated shared startup initializes all30 stages, validates the project, reconstructs exact Game HTML and survives later DOM/script removal; editor clones remain independent. Typecheck and focused escaping/error cases pass. Actual browser Workshop Playtest→Stop→Playtest remains a release verification step.
+
+
+### 발판 투사체 하이브리드와 설치 지지면 — 2026-10-07
+
+- 원인: oneWay는 몸의 상향 통과만 지원하고 투사체는 범용 solid 충돌을 사용해 아래/옆의 탄도까지 닫았다. 일반 collision을 전역 변경하면 시야·몸 돌진·이동에 영향을 주므로 투사체 전용 경로로 분리한다.
+- 변경: oneWay의 위쪽 면만 이전→다음 위치와 면 법선으로 swept 검사한다. 아래에서 올라와 내부에 남은 탄, 옆 진입, 접선 이동은 받지 않는다. 경사·수평 진입과 고속·코너·여러 층의 첫 유효 면은 같은 판정으로 처리한다. solid 벽/바닥/동굴 천장과 phase 관통은 유지한다. 실제·예측·유도 획득·자탄·산포·반탄파/삼재파·진목/지상 소환에 적용하고, 설치는 실제 맞은 발판을 지지면으로 쓴다.
+- 범위: 유닛의 내려가기 입력, 고급 반사 예외, 탄도 수식·지도·저장 스키마 변경은 없다. 저장 중 탄도 새 필드를 요구하지 않는다. Workshop와 실제 게임 도움말을 같은 문구로 갱신했다.
+- 검증 상태: 첫 TypeScript 검사와 신규6그룹 중 swept·실제발사/예측·반사3그룹은 통과했다. 다층 설치 높이 회귀에서 발견한 실패를 수정한 뒤 후속 집중검사 중이다. 최종 전체 verify, Native, 실제 Pages 검증은 별도 후속으로 남아 있다.

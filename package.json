@@ -68,7 +68,7 @@
     "test:act3:maps": "node tests/act3-canonical-roundtrip.mjs && node tests/act3-production-maps.mjs && node tests/act3-production-shots.mjs && node tests/act3-map-safety.mjs",
     "test:act3:art": "node tests/act3-architecture.mjs && node tests/act3-hall-art.mjs && node tests/act3-art-regeneration.mjs && node tests/act3-canal-supports.mjs",
     "test:rescue-physics": "node tests/rescue-physics.mjs",
-    "test:one-way-platforms": "node tests/platform-schema-standalone.mjs && node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
+    "test:one-way-platforms": "node tests/projectile-platforms.mjs && node tests/platform-schema-standalone.mjs && node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
     "test:terrain-readability": "node tests/terrain-readability.mjs",
     "test:granite-visuals": "node tests/granite-history-delta.mjs && node tests/granite-visual-alignment.mjs",
     "test:playtest-template": "node tests/playtest-template.mjs"
