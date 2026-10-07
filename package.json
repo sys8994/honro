@@ -6,7 +6,7 @@
     "build": "node workshop/build.mjs",
     "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs",
     "verify": "npm run build && npm --prefix game run verify && npm run test:integration && npm run test:performance",
-    "test:integration": "node tests/migration.mjs && npm run test:terrain-domain && npm run test:ground-contact && npm run test:event-targets && npm run test:rescue-targets && npm run test:camp-persistence && npm run test:rest-journey && node tests/turnhold-physics-growth.mjs && npm run test:environment && npm run test:aim-wind-audio && python -X utf8 tests/integration.py && npm run test:controls && npm run test:camera && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:stage36 && npm run test:skills && npm run test:story && npm run test:current-update && npm run test:progress-hud && npm run test:monsters && npm run test:party && npm run test:actors && npm run test:map-art && npm run test:act2 && npm run test:debug-mode",
+    "test:integration": "npm run test:ui-buttons && node tests/migration.mjs && npm run test:terrain-domain && npm run test:ground-contact && npm run test:event-targets && npm run test:rescue-targets && npm run test:camp-persistence && npm run test:rest-journey && node tests/turnhold-physics-growth.mjs && npm run test:environment && npm run test:aim-wind-audio && python -X utf8 tests/integration.py && npm run test:controls && npm run test:camera && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:stage36 && npm run test:skills && npm run test:story && npm run test:current-update && npm run test:progress-hud && npm run test:monsters && npm run test:party && npm run test:actors && npm run test:map-art && npm run test:act2 && npm run test:debug-mode",
     "test:debug-mode": "python -X utf8 tests/debug-mode-browser.py",
     "test:controls": "python -X utf8 tests/defend-shortcut-browser.py",
     "test:camera": "node tests/camera-bounds.mjs && python -X utf8 tests/camera-bounds-browser.py",
@@ -61,7 +61,8 @@
     "test:aim-wind-audio": "node tests/aim-guide-cleanup.mjs && node tests/weather-wind.mjs && node tests/audio.mjs",
     "test:terrain-domain": "node tests/terrain-domain.mjs && node tests/terrain-domain-render.mjs",
     "capture:terrain-domain": "node tools/environment/capture-terrain-domain.mjs",
-    "test:story-canon": "node tests/story-canon-v01.mjs && node tests/story-canon-save.mjs"
+    "test:story-canon": "node tests/story-canon-v01.mjs && node tests/story-canon-save.mjs",
+    "test:ui-buttons": "node tests/ui-buttons.mjs && node tests/portrait-framing.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
