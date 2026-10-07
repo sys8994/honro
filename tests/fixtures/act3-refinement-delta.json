@@ -350,10 +350,11 @@
           "id": "act3-response-24-2",
           "once": true,
           "when": {
-            "objectiveDone": "land-register"
+            "objectiveDone": "shrine-seal",
+            "progress": 6100
           },
-          "warning": "문서를 챙기자 담장 끝에서 경비가 일어납니다.",
-          "text": "증원 진입 · 문서를 챙기자 담장 끝에서 경비가 일어납니다.",
+          "warning": "토지문서 쪽 담장 끝에서 경비가 일어납니다.",
+          "text": "증원 진입 · 토지문서 쪽 담장 끝에서 경비가 일어납니다.",
           "entry": {
             "x": 6910,
             "y": 2410
