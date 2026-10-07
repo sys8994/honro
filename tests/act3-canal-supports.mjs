@@ -20,6 +20,7 @@ if(s.design.act3.koreanTown){
   assert(q.bottom>q.top&&q.bottom-q.top<180,'Only short roof-bearing posts, no stretched empty tower');
   assert(s.elements.indexOf(braces.e)<s.elements.indexOf(get(q.element).e),'Real architecture occludes rear braces');
  }
+ for(const id of ['roof-entry','korean-watergate-roof-access']){const stair=get(id),t=compiled.find(t=>t.honroElementId===id);assert.equal(stair.a.oneWay,true);assert.equal(t.oneWay,true,'Authored open roof stairs allow upward passage');}
  const archive=get('customs-hall'),bank=compiled.find(t=>t.id==='city-foundation');
  assert.equal(archive.a.params.koreanType,'limited-three-level-archive');
  assert(g.HONRO_CORE.terrainSurfaces(bank,archive.e.x).some(q=>Math.abs(q.y-archive.e.y)<.01),'Three-level archive is founded on the real quay');
