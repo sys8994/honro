@@ -1,3 +1,4 @@
+import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 // The fiend revision freezes combat/mission identity, not subsequently approved
@@ -29,6 +30,7 @@ export function missionContract(map,stage,balance){
 }
 export function archetypeContract(archetypes){return Object.fromEntries(Object.entries(archetypes).filter(([id])=>Object.hasOwn(kindRenames,id)||Object.values(kindRenames).includes(id)).map(([id,a])=>[kind(id),without(a,['name','intent','act3Human','act3Fiend'])]));}
 export function assertFiendContract(project,content,balance,archetypes,baseline){
+ ({project,content}=beforeObjectiveRevision(project,content));
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');
  assert.deepEqual(projectRules(project),baseline.projectRules,'Global gameplay/schema settings');
@@ -74,7 +76,7 @@ export function assertFiendContractScope(project,content,balance,archetypes,base
  rejects('marker target',q=>q.stages[22].markers.find(m=>m.target==='act3-carrier').target='missing');
  rejects('marker action',q=>q.stages[22].markers.find(m=>m.action).action='other');
  rejects('required class',q=>q.stages[26].markers.find(m=>m.requiredClass).requiredClass='mage');
- rejects('device durability',q=>q.stages[22].terrains.find(t=>t.properties?.honroAct3Target).properties.hp++);
+ rejects('device durability',q=>q.stages[21].terrains.find(t=>t.properties?.honroAct3Gate).properties.hp++);
  rejects('initial active limit',q=>q.stages[22].initialState.honroActiveLimit++);
  rejects('objective order',(_,r)=>r.stages[22].steps.reverse());
  rejects('hold rules',(_,r)=>r.stages[24].steps.find(s=>s.kind==='hold').rounds++);
