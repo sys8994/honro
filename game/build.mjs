@@ -14,8 +14,9 @@ const sha=s=>createHash('sha256').update(s).digest('hex');
 export async function buildGame({vector=true,destination=path.join(root,'HONRO.html')}={}) {
   const reference=await read(path.join(here,'templates/body.html'));
   const shared=await runtimeParts({vector,app:true});
-  const logo=await readFile(path.join(root,'assets','rc11','honro-logo.png'));
-  const title='globalThis.HONRO_TITLE_IMAGE=null;globalThis.HONRO_TITLE_LOGO="data:image/png;base64,'+logo.toString('base64')+'";';
+  const scene=await read('shared/assets/environment/title-first-ferry.svg');
+  const logo=await readFile(path.join(root,'shared/assets/environment/title-wordmark.svg'));
+  const title='globalThis.HONRO_TITLE_SCENE='+JSON.stringify(scene)+';globalThis.HONRO_TITLE_LOGO="data:image/svg+xml;base64,'+logo.toString('base64')+'";';
   const stageArt={};for(let i=1;i<=10;i++){const buf=await readFile(path.join(root,'assets','rc11',`stage-${String(i).padStart(2,'0')}.jpg`));stageArt[i]='data:image/jpeg;base64,'+buf.toString('base64');}
   const parts=[title,'globalThis.HONRO_STAGE_INTRO_ART='+JSON.stringify(stageArt)+';',...shared];
   const portraits=JSON.parse(await read(path.join(here,'config/story-portraits.json')));
@@ -23,7 +24,7 @@ export async function buildGame({vector=true,destination=path.join(root,'HONRO.h
   parts.push('globalThis.HONRO_STORY_PORTRAITS='+JSON.stringify(portraits)+';');
   // Preserve the existing developer hash entry, with no save reset or timing patch.
   parts.push("if(location.hash==='#autostage2'){HonroApp.launch(2);}");
-  const css=(await read(path.join(base,'ui/arcfall-layout.css')))+'\n'+await read(path.join(base,'style.css'))+'\n'+await read(path.join(here,'src/hud.css'))+'\n'+await read(path.join(here,'src/presentation.css'))+'\n'+await read(path.join(here,'src/controls.css'))+'\n'+await read(path.join(here,'src/unit-info.css'))+'\n'+await read(path.join(here,'src/training.css'))+'\n'+await read(path.join(here,'src/guide.css'))+'\n'+await read(path.join(here,'src/skill-presentation.css'))+'\n'+await read(path.join(here,'src/journey.css'));
+  const css=(await read(path.join(base,'ui/arcfall-layout.css')))+'\n'+await read(path.join(base,'style.css'))+'\n'+await read(path.join(here,'src/hud.css'))+'\n'+await read(path.join(here,'src/presentation.css'))+'\n'+await read(path.join(here,'src/controls.css'))+'\n'+await read(path.join(here,'src/unit-info.css'))+'\n'+await read(path.join(here,'src/training.css'))+'\n'+await read(path.join(here,'src/guide.css'))+'\n'+await read(path.join(here,'src/skill-presentation.css'))+'\n'+await read(path.join(here,'src/journey.css'))+'\n'+await read(path.join(here,'src/title.css'))+'\n'+await read(path.join(here,'src/fonts.css'));
   const shell=reference;
   const html=`<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><style>${css}</style></head>${shell}<script>${parts.join('\n').replace(/<\/script/gi,'<\\/script')}</script></body></html>\n`;
   assert.ok(!/id="honro-06\d.*(?:patch|script)/.test(html),'No runtime patch stack');

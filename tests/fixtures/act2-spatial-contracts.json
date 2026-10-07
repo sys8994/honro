@@ -7590,7 +7590,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -7636,7 +7636,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -7682,7 +7682,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -7728,7 +7728,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -7774,7 +7774,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -7822,7 +7822,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 41,
+          "xpBudget": 44,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -7864,7 +7864,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 41,
+          "xpBudget": 44,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -7906,7 +7906,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 41,
+          "xpBudget": 44,
           "honroType": "bat",
           "elite": true,
           "honroVariant": "bat",
@@ -7948,7 +7948,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 41,
+          "xpBudget": 44,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -7988,7 +7988,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -8034,7 +8034,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 76,
+          "xpBudget": 80,
           "honroType": "minecart",
           "elite": true,
           "honroVariant": "minecart",
@@ -8080,7 +8080,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "minecart",
           "elite": true,
           "honroVariant": "minecart",
@@ -8126,7 +8126,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -8172,7 +8172,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -8196,42 +8196,38 @@
         },
         {
           "id": "a2-enemy-14",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 860,
-          "maxHp": 860,
-          "r": 26,
-          "h": 105,
+          "hp": 584,
+          "maxHp": 584,
+          "r": 28,
+          "h": 66,
           "focus": 142,
           "maxFocus": 142,
           "regen": 22,
           "level": 13,
-          "attack": 1.160175711576489,
+          "attack": 1.2336262242883187,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 61,
-          "honroType": "resonance",
+          "xpBudget": 44,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 661.3127367114239,
-          "combatBaseAttack": 1.0001514754969734,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 449.6926609637683,
+          "combatBaseAttack": 1.0634708830071715,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -8242,42 +8238,38 @@
         },
         {
           "id": "a2-enemy-15",
-          "name": "정예 공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1333,
-          "maxHp": 1333,
-          "r": 26,
-          "h": 105,
+          "hp": 905,
+          "maxHp": 905,
+          "r": 28,
+          "h": 66,
           "focus": 142,
           "maxFocus": 142,
           "regen": 22,
           "level": 13,
-          "attack": 1.3342020683129623,
+          "attack": 1.4186701579315664,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 61,
-          "honroType": "resonance",
+          "xpBudget": 44,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1025.034741902707,
-          "combatBaseAttack": 1.1501741968215193,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 697.0236244938409,
+          "combatBaseAttack": 1.2229915154582471,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -8288,42 +8280,38 @@
         },
         {
           "id": "a2-enemy-16",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 860,
-          "maxHp": 860,
-          "r": 26,
-          "h": 105,
+          "hp": 584,
+          "maxHp": 584,
+          "r": 28,
+          "h": 66,
           "focus": 142,
           "maxFocus": 142,
           "regen": 22,
           "level": 13,
-          "attack": 1.160175711576489,
+          "attack": 1.2336262242883187,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 61,
-          "honroType": "resonance",
+          "xpBudget": 44,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 661.3127367114239,
-          "combatBaseAttack": 1.0001514754969734,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 449.6926609637683,
+          "combatBaseAttack": 1.0634708830071715,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -8334,42 +8322,38 @@
         },
         {
           "id": "a2-enemy-17",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 860,
-          "maxHp": 860,
-          "r": 26,
-          "h": 105,
+          "hp": 584,
+          "maxHp": 584,
+          "r": 28,
+          "h": 66,
           "focus": 142,
           "maxFocus": 142,
           "regen": 22,
           "level": 13,
-          "attack": 1.160175711576489,
+          "attack": 1.2336262242883187,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 61,
-          "honroType": "resonance",
+          "xpBudget": 44,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 661.3127367114239,
-          "combatBaseAttack": 1.0001514754969734,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 449.6926609637683,
+          "combatBaseAttack": 1.0634708830071715,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -8402,7 +8386,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -8448,7 +8432,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -8494,7 +8478,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -8540,7 +8524,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 76,
+          "xpBudget": 80,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -8612,7 +8596,7 @@
           "ranks": {
             "H2RESONANCE": 4
           },
-          "xpBudget": 61,
+          "xpBudget": 64,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "resonance",
@@ -9042,7 +9026,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -9088,7 +9072,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -9134,7 +9118,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -9180,7 +9164,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -9226,7 +9210,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -9250,42 +9234,38 @@
         },
         {
           "id": "a2-enemy-5",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 870,
-          "maxHp": 870,
-          "r": 26,
-          "h": 105,
+          "hp": 591,
+          "maxHp": 591,
+          "r": 28,
+          "h": 66,
           "focus": 146,
           "maxFocus": 146,
           "regen": 22,
           "level": 13,
-          "attack": 1.184965790883679,
+          "attack": 1.259985758995334,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 57,
-          "honroType": "resonance",
+          "xpBudget": 41,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 669.239430473376,
-          "combatBaseAttack": 1.021522233520413,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 455.0828127218958,
+          "combatBaseAttack": 1.086194619823564,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -9296,42 +9276,38 @@
         },
         {
           "id": "a2-enemy-6",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 870,
-          "maxHp": 870,
-          "r": 26,
-          "h": 105,
+          "hp": 591,
+          "maxHp": 591,
+          "r": 28,
+          "h": 66,
           "focus": 146,
           "maxFocus": 146,
           "regen": 22,
           "level": 13,
-          "attack": 1.184965790883679,
+          "attack": 1.259985758995334,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 57,
-          "honroType": "resonance",
+          "xpBudget": 41,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 669.239430473376,
-          "combatBaseAttack": 1.021522233520413,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 455.0828127218958,
+          "combatBaseAttack": 1.086194619823564,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -9342,42 +9318,38 @@
         },
         {
           "id": "a2-enemy-7",
-          "name": "정예 공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1349,
-          "maxHp": 1349,
-          "r": 26,
-          "h": 105,
+          "hp": 916,
+          "maxHp": 916,
+          "r": 28,
+          "h": 66,
           "focus": 146,
           "maxFocus": 146,
           "regen": 22,
           "level": 13,
-          "attack": 1.3627106595162308,
+          "attack": 1.448983622844634,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 57,
-          "honroType": "resonance",
+          "xpBudget": 41,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1037.3211172337328,
-          "combatBaseAttack": 1.174750568548475,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 705.3783597189384,
+          "combatBaseAttack": 1.2491238127970985,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -9388,42 +9360,38 @@
         },
         {
           "id": "a2-enemy-8",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 870,
-          "maxHp": 870,
-          "r": 26,
-          "h": 105,
+          "hp": 591,
+          "maxHp": 591,
+          "r": 28,
+          "h": 66,
           "focus": 146,
           "maxFocus": 146,
           "regen": 22,
           "level": 13,
-          "attack": 1.184965790883679,
+          "attack": 1.259985758995334,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 57,
-          "honroType": "resonance",
+          "xpBudget": 41,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 669.239430473376,
-          "combatBaseAttack": 1.021522233520413,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 455.0828127218958,
+          "combatBaseAttack": 1.086194619823564,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -9434,42 +9402,38 @@
         },
         {
           "id": "a2-enemy-9",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 870,
-          "maxHp": 870,
-          "r": 26,
-          "h": 105,
+          "hp": 591,
+          "maxHp": 591,
+          "r": 28,
+          "h": 66,
           "focus": 146,
           "maxFocus": 146,
           "regen": 22,
           "level": 13,
-          "attack": 1.184965790883679,
+          "attack": 1.259985758995334,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 57,
-          "honroType": "resonance",
+          "xpBudget": 41,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 669.239430473376,
-          "combatBaseAttack": 1.021522233520413,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 455.0828127218958,
+          "combatBaseAttack": 1.086194619823564,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -9502,7 +9466,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 71,
+          "xpBudget": 76,
           "honroType": "minecart",
           "elite": true,
           "honroVariant": "minecart",
@@ -9548,7 +9512,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "minecart",
           "elite": true,
           "honroVariant": "minecart",
@@ -9594,7 +9558,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -9640,7 +9604,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -9686,7 +9650,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -9734,7 +9698,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 39,
+          "xpBudget": 41,
           "honroType": "bat",
           "elite": true,
           "honroVariant": "bat",
@@ -9776,7 +9740,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 39,
+          "xpBudget": 41,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -9818,7 +9782,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 39,
+          "xpBudget": 41,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -9860,7 +9824,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 39,
+          "xpBudget": 41,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -9902,7 +9866,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 39,
+          "xpBudget": 41,
           "honroType": "bat",
           "elite": true,
           "honroVariant": "bat",
@@ -9942,7 +9906,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -9988,7 +9952,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 71,
+          "xpBudget": 76,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -10034,7 +9998,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -10080,7 +10044,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -10152,7 +10116,7 @@
           "ranks": {
             "H2RESONANCE": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "resonance",
@@ -10222,7 +10186,7 @@
           "ranks": {
             "H2RESONANCE": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "resonance",
@@ -10292,7 +10256,7 @@
           "ranks": {
             "H2RESONANCE": 4
           },
-          "xpBudget": 57,
+          "xpBudget": 60,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "resonance",
@@ -10707,7 +10671,7 @@
           "ranks": {
             "H2WATER": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "waterwheel",
           "elite": false,
           "honroVariant": "waterwheel",
@@ -10753,7 +10717,7 @@
           "ranks": {
             "H2WATER": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "waterwheel",
           "elite": false,
           "honroVariant": "waterwheel",
@@ -10799,7 +10763,7 @@
           "ranks": {
             "H2WATER": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "waterwheel",
           "elite": false,
           "honroVariant": "waterwheel",
@@ -10845,7 +10809,7 @@
           "ranks": {
             "H2WATER": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "waterwheel",
           "elite": true,
           "honroVariant": "waterwheel",
@@ -10891,7 +10855,7 @@
           "ranks": {
             "H2WATER": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "waterwheel",
           "elite": false,
           "honroVariant": "waterwheel",
@@ -10937,7 +10901,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -10983,7 +10947,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -11029,7 +10993,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -11075,7 +11039,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -11123,7 +11087,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 50,
+          "xpBudget": 53,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -11165,7 +11129,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 63,
+          "xpBudget": 67,
           "honroType": "bat",
           "elite": true,
           "honroVariant": "bat",
@@ -11207,7 +11171,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 50,
+          "xpBudget": 53,
           "honroType": "bat",
           "elite": true,
           "honroVariant": "bat",
@@ -11249,7 +11213,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 50,
+          "xpBudget": 53,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -11291,7 +11255,7 @@
             "HBT01": 4,
             "HBT02": 4
           },
-          "xpBudget": 50,
+          "xpBudget": 53,
           "honroType": "bat",
           "elite": false,
           "honroVariant": "bat",
@@ -11331,7 +11295,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -11377,7 +11341,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "minecart",
           "elite": true,
           "honroVariant": "minecart",
@@ -11423,7 +11387,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -11469,7 +11433,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 79,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -11493,42 +11457,38 @@
         },
         {
           "id": "a2-enemy-18",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 925,
-          "maxHp": 925,
-          "r": 26,
-          "h": 105,
+          "hp": 629,
+          "maxHp": 629,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 14,
-          "attack": 1.2764883549331785,
+          "attack": 1.3573025998832988,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 74,
-          "honroType": "resonance",
+          "xpBudget": 53,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 711.5013079993729,
-          "combatBaseAttack": 1.1004209956320505,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 483.8208894395736,
+          "combatBaseAttack": 1.1700884481752578,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -11539,42 +11499,38 @@
         },
         {
           "id": "a2-enemy-19",
-          "name": "정예 공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1434,
-          "maxHp": 1434,
-          "r": 26,
-          "h": 105,
+          "hp": 975,
+          "maxHp": 975,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 14,
-          "attack": 1.467961608173155,
+          "attack": 1.5608979898657935,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 74,
-          "honroType": "resonance",
+          "xpBudget": 53,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1102.827027399028,
-          "combatBaseAttack": 1.2654841449768581,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 749.9223786313391,
+          "combatBaseAttack": 1.3456017154015463,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -11585,42 +11541,38 @@
         },
         {
           "id": "a2-enemy-20",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 925,
-          "maxHp": 925,
-          "r": 26,
-          "h": 105,
+          "hp": 629,
+          "maxHp": 629,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 14,
-          "attack": 1.2764883549331785,
+          "attack": 1.3573025998832988,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 74,
-          "honroType": "resonance",
+          "xpBudget": 53,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 711.5013079993729,
-          "combatBaseAttack": 1.1004209956320505,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 483.8208894395736,
+          "combatBaseAttack": 1.1700884481752578,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -11631,42 +11583,38 @@
         },
         {
           "id": "a2-enemy-21",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1156,
-          "maxHp": 1156,
-          "r": 26,
-          "h": 105,
+          "hp": 786,
+          "maxHp": 786,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 14,
-          "attack": 1.2764883549331785,
+          "attack": 1.3573025998832988,
           "armor": 0.12,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 92,
-          "honroType": "resonance",
+          "xpBudget": 67,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 889.3766349992161,
-          "combatBaseAttack": 1.1004209956320505,
-          "honroXpWeight": 1.25,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 604.776111799467,
+          "combatBaseAttack": 1.1700884481752578,
+          "honroXpWeight": 0.8500000000000001,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -12081,7 +12029,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -12127,7 +12075,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -12173,7 +12121,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -12219,7 +12167,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": true,
           "honroVariant": "stoneLantern",
@@ -12265,7 +12213,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -12311,7 +12259,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -12357,7 +12305,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -12403,7 +12351,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "resonance",
           "elite": true,
           "honroVariant": "monkVessel",
@@ -12449,7 +12397,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -12495,7 +12443,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -12541,7 +12489,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 85,
+          "xpBudget": 90,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -12587,7 +12535,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -12633,7 +12581,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -12679,7 +12627,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -12725,7 +12673,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -12749,42 +12697,38 @@
         },
         {
           "id": "a2-enemy-15",
-          "name": "정예 공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1451,
-          "maxHp": 1451,
-          "r": 26,
-          "h": 105,
+          "hp": 986,
+          "maxHp": 986,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 15,
-          "attack": 1.4980427886685068,
+          "attack": 1.592883604412224,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 49,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1115.7363738735985,
-          "combatBaseAttack": 1.2914161971280231,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 758.700734234047,
+          "combatBaseAttack": 1.3731755210450207,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -12795,42 +12739,38 @@
         },
         {
           "id": "a2-enemy-16",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 936,
-          "maxHp": 936,
-          "r": 26,
-          "h": 105,
+          "hp": 636,
+          "maxHp": 636,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 15,
-          "attack": 1.302645903190006,
+          "attack": 1.3851161777497603,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 49,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 719.829918628128,
-          "combatBaseAttack": 1.1229706061982812,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 489.48434466712706,
+          "combatBaseAttack": 1.1940656704739312,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -12841,42 +12781,38 @@
         },
         {
           "id": "a2-enemy-17",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 936,
-          "maxHp": 936,
-          "r": 26,
-          "h": 105,
+          "hp": 636,
+          "maxHp": 636,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 15,
-          "attack": 1.302645903190006,
+          "attack": 1.3851161777497603,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 49,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 719.829918628128,
-          "combatBaseAttack": 1.1229706061982812,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 489.48434466712706,
+          "combatBaseAttack": 1.1940656704739312,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -12887,42 +12823,38 @@
         },
         {
           "id": "a2-enemy-18",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 936,
-          "maxHp": 936,
-          "r": 26,
-          "h": 105,
+          "hp": 636,
+          "maxHp": 636,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 15,
-          "attack": 1.302645903190006,
+          "attack": 1.3851161777497603,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 49,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 719.829918628128,
-          "combatBaseAttack": 1.1229706061982812,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 489.48434466712706,
+          "combatBaseAttack": 1.1940656704739312,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -12933,42 +12865,38 @@
         },
         {
           "id": "a2-enemy-19",
-          "name": "정예 공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1451,
-          "maxHp": 1451,
-          "r": 26,
-          "h": 105,
+          "hp": 986,
+          "maxHp": 986,
+          "r": 28,
+          "h": 66,
           "focus": 150,
           "maxFocus": 150,
           "regen": 22,
           "level": 15,
-          "attack": 1.4980427886685068,
+          "attack": 1.592883604412224,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 49,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1115.7363738735985,
-          "combatBaseAttack": 1.2914161971280231,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 758.700734234047,
+          "combatBaseAttack": 1.3731755210450207,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -13001,7 +12929,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -13047,7 +12975,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 85,
+          "xpBudget": 90,
           "honroType": "stoneLantern",
           "elite": true,
           "honroVariant": "stoneLantern",
@@ -13093,7 +13021,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -13139,7 +13067,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "stoneLantern",
           "elite": true,
           "honroVariant": "stoneLantern",
@@ -13211,7 +13139,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 72,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -13640,7 +13568,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -13687,7 +13615,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -13734,7 +13662,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -13781,7 +13709,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -13828,7 +13756,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -13875,7 +13803,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -13922,7 +13850,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -13969,7 +13897,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "minecart",
           "elite": true,
           "honroVariant": "minecart",
@@ -14016,7 +13944,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -14063,7 +13991,7 @@
           "ranks": {
             "H2CART": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "minecart",
           "elite": false,
           "honroVariant": "minecart",
@@ -14088,42 +14016,38 @@
         },
         {
           "id": "a2-enemy-10",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1054,
-          "maxHp": 1054,
-          "r": 26,
-          "h": 105,
+          "hp": 717,
+          "maxHp": 717,
+          "r": 28,
+          "h": 66,
           "focus": 154,
           "maxFocus": 154,
           "regen": 22,
           "level": 15,
-          "attack": 0.9097528414529484,
+          "attack": 0.9673491279283508,
           "armor": 0.12,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 85,
-          "honroType": "resonance",
+          "xpBudget": 61,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 811.0036434266927,
-          "combatBaseAttack": 0.7842696909077141,
-          "honroXpWeight": 1.25,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 551.4824775301512,
+          "combatBaseAttack": 0.8339216620071991,
+          "honroXpWeight": 0.8500000000000001,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -14135,42 +14059,38 @@
         },
         {
           "id": "a2-enemy-11",
-          "name": "정예 공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1307,
-          "maxHp": 1307,
-          "r": 26,
-          "h": 105,
+          "hp": 889,
+          "maxHp": 889,
+          "r": 28,
+          "h": 66,
           "focus": 154,
           "maxFocus": 154,
           "regen": 22,
           "level": 15,
-          "attack": 1.0462157676708908,
+          "attack": 1.1124514971176034,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 48,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1005.6445178490991,
-          "combatBaseAttack": 0.9019101445438712,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 683.8382721373874,
+          "combatBaseAttack": 0.9590099113082788,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -14182,42 +14102,38 @@
         },
         {
           "id": "a2-enemy-12",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 843,
-          "maxHp": 843,
-          "r": 26,
-          "h": 105,
+          "hp": 574,
+          "maxHp": 574,
+          "r": 28,
+          "h": 66,
           "focus": 154,
           "maxFocus": 154,
           "regen": 22,
           "level": 15,
-          "attack": 0.9097528414529484,
+          "attack": 0.9673491279283508,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 48,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 648.8029147413542,
-          "combatBaseAttack": 0.7842696909077141,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 441.1859820241209,
+          "combatBaseAttack": 0.8339216620071991,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -14251,7 +14167,7 @@
           "ranks": {
             "H2HOIST": 4
           },
-          "xpBudget": 203,
+          "xpBudget": 214,
           "honroType": "hoist",
           "elite": true,
           "honroVariant": "hoist",
@@ -14276,42 +14192,38 @@
         },
         {
           "id": "a2-enemy-14",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 843,
-          "maxHp": 843,
-          "r": 26,
-          "h": 105,
+          "hp": 574,
+          "maxHp": 574,
+          "r": 28,
+          "h": 66,
           "focus": 154,
           "maxFocus": 154,
           "regen": 22,
           "level": 15,
-          "attack": 0.9097528414529484,
+          "attack": 0.9673491279283508,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 68,
-          "honroType": "resonance",
+          "xpBudget": 48,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 648.8029147413542,
-          "combatBaseAttack": 0.7842696909077141,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 441.1859820241209,
+          "combatBaseAttack": 0.8339216620071991,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -14345,7 +14257,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "resonance",
           "elite": true,
           "honroVariant": "monkVessel",
@@ -14392,7 +14304,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -14439,7 +14351,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -14486,7 +14398,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "resonance",
           "elite": false,
           "honroVariant": "monkVessel",
@@ -14533,7 +14445,7 @@
           "ranks": {
             "H2ECHO": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "resonance",
           "elite": true,
           "honroVariant": "monkVessel",
@@ -14580,7 +14492,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -14627,7 +14539,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 85,
+          "xpBudget": 89,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -14674,7 +14586,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -14721,7 +14633,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 68,
+          "xpBudget": 71,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -15170,7 +15082,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -15217,7 +15129,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -15264,7 +15176,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -15311,7 +15223,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "stoneLantern",
           "elite": true,
           "honroVariant": "stoneLantern",
@@ -15358,7 +15270,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -15405,7 +15317,7 @@
           "ranks": {
             "H2STONE": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "stoneLantern",
           "elite": false,
           "honroVariant": "stoneLantern",
@@ -15454,7 +15366,7 @@
             "H2RESONANCE": 4,
             "H2ECHO": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "bellCluster",
           "elite": false,
           "honroVariant": "bellCluster",
@@ -15503,7 +15415,7 @@
             "H2RESONANCE": 4,
             "H2ECHO": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "bellCluster",
           "elite": true,
           "honroVariant": "bellCluster",
@@ -15552,7 +15464,7 @@
             "H2RESONANCE": 4,
             "H2ECHO": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "bellCluster",
           "elite": false,
           "honroVariant": "bellCluster",
@@ -15601,7 +15513,7 @@
             "H2RESONANCE": 4,
             "H2ECHO": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "bellCluster",
           "elite": false,
           "honroVariant": "bellCluster",
@@ -15650,7 +15562,7 @@
             "H2RESONANCE": 4,
             "H2ECHO": 4
           },
-          "xpBudget": 74,
+          "xpBudget": 82,
           "honroType": "bellCluster",
           "elite": true,
           "honroVariant": "bellCluster",
@@ -15699,7 +15611,7 @@
             "H2RESONANCE": 4,
             "H2ECHO": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "bellCluster",
           "elite": true,
           "honroVariant": "bellCluster",
@@ -15746,7 +15658,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -15793,7 +15705,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -15840,7 +15752,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -15887,7 +15799,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "picks",
           "elite": true,
           "honroVariant": "picks",
@@ -15934,7 +15846,7 @@
           "ranks": {
             "H2PICK": 4
           },
-          "xpBudget": 59,
+          "xpBudget": 66,
           "honroType": "picks",
           "elite": false,
           "honroVariant": "picks",
@@ -15959,42 +15871,38 @@
         },
         {
           "id": "a2-enemy-17",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 893,
-          "maxHp": 893,
-          "r": 26,
-          "h": 105,
+          "hp": 607,
+          "maxHp": 607,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 0.9755184017897511,
+          "attack": 1.0372782938960239,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "resonance",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 686.433657322365,
-          "combatBaseAttack": 0.8409641394739235,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 466.77488697920813,
+          "combatBaseAttack": 0.8942054257724344,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16006,42 +15914,38 @@
         },
         {
           "id": "a2-enemy-18",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 893,
-          "maxHp": 893,
-          "r": 26,
-          "h": 105,
+          "hp": 607,
+          "maxHp": 607,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 0.9755184017897511,
+          "attack": 1.0372782938960239,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "resonance",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 686.433657322365,
-          "combatBaseAttack": 0.8409641394739235,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 466.77488697920813,
+          "combatBaseAttack": 0.8942054257724344,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16053,42 +15957,38 @@
         },
         {
           "id": "a2-enemy-19",
-          "name": "정예 공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1384,
-          "maxHp": 1384,
-          "r": 26,
-          "h": 105,
+          "hp": 941,
+          "maxHp": 941,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 1.1218461620582136,
+          "attack": 1.1928700379804273,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "resonance",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1063.9721688496659,
-          "combatBaseAttack": 0.9671087603950118,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 723.5010748177726,
+          "combatBaseAttack": 1.0283362396382996,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16100,42 +16000,38 @@
         },
         {
           "id": "a2-enemy-20",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 893,
-          "maxHp": 893,
-          "r": 26,
-          "h": 105,
+          "hp": 607,
+          "maxHp": 607,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 0.9755184017897511,
+          "attack": 1.0372782938960239,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "resonance",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 686.433657322365,
-          "combatBaseAttack": 0.8409641394739235,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 466.77488697920813,
+          "combatBaseAttack": 0.8942054257724344,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16147,42 +16043,38 @@
         },
         {
           "id": "a2-enemy-21",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1115,
-          "maxHp": 1115,
-          "r": 26,
-          "h": 105,
+          "hp": 758,
+          "maxHp": 758,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 0.9755184017897511,
+          "attack": 1.0372782938960239,
           "armor": 0.12,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 74,
-          "honroType": "resonance",
+          "xpBudget": 56,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 858.0420716529562,
-          "combatBaseAttack": 0.8409641394739235,
-          "honroXpWeight": 1.25,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 583.4686087240102,
+          "combatBaseAttack": 0.8942054257724344,
+          "honroXpWeight": 0.8500000000000001,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16194,42 +16086,38 @@
         },
         {
           "id": "a2-enemy-22",
-          "name": "공명혼",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 893,
-          "maxHp": 893,
-          "r": 26,
-          "h": 105,
+          "hp": 607,
+          "maxHp": 607,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 0.9755184017897511,
+          "attack": 1.0372782938960239,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "resonance",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "resonance",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 686.433657322365,
-          "combatBaseAttack": 0.8409641394739235,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 466.77488697920813,
+          "combatBaseAttack": 0.8942054257724344,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16241,44 +16129,38 @@
         },
         {
           "id": "a2-enemy-23",
-          "name": "정예 종울림 군집",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1384,
-          "maxHp": 1384,
-          "r": 37,
-          "h": 128,
+          "hp": 941,
+          "maxHp": 941,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 1.1632026094232053,
+          "attack": 1.1928700379804273,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE",
-            "H2ECHO"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4,
-            "H2ECHO": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "bellCluster",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "bellCluster",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1063.9721688496659,
-          "combatBaseAttack": 1.0027608701924184,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 723.5010748177726,
+          "combatBaseAttack": 1.0283362396382996,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16314,7 +16196,7 @@
             "H2KEEPER": 4,
             "H2RESONANCE": 4
           },
-          "xpBudget": 296,
+          "xpBudget": 330,
           "honroType": "keeper",
           "elite": true,
           "honroVariant": "keeper",
@@ -16340,44 +16222,38 @@
         },
         {
           "id": "a2-enemy-25",
-          "name": "종울림 군집",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 893,
-          "maxHp": 893,
-          "r": 37,
-          "h": 128,
+          "hp": 607,
+          "maxHp": 607,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 1.0114805299332221,
+          "attack": 1.0372782938960239,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE",
-            "H2ECHO"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4,
-            "H2ECHO": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "bellCluster",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "bellCluster",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 686.433657322365,
-          "combatBaseAttack": 0.8719659740803638,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 466.77488697920813,
+          "combatBaseAttack": 0.8942054257724344,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16389,44 +16265,38 @@
         },
         {
           "id": "a2-enemy-26",
-          "name": "종울림 군집",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 893,
-          "maxHp": 893,
-          "r": 37,
-          "h": 128,
+          "hp": 607,
+          "maxHp": 607,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 1.0114805299332221,
+          "attack": 1.0372782938960239,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE",
-            "H2ECHO"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4,
-            "H2ECHO": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "bellCluster",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": false,
-          "honroVariant": "bellCluster",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 686.433657322365,
-          "combatBaseAttack": 0.8719659740803638,
-          "honroXpWeight": 1,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 466.77488697920813,
+          "combatBaseAttack": 0.8942054257724344,
+          "honroXpWeight": 0.68,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",
@@ -16438,44 +16308,38 @@
         },
         {
           "id": "a2-enemy-27",
-          "name": "정예 종울림 군집",
-          "role": "fire",
-          "cls": "occultist",
+          "name": "정예 들린 산박쥐",
+          "role": "storm",
+          "cls": "mage",
           "side": 1,
-          "hp": 1384,
-          "maxHp": 1384,
-          "r": 37,
-          "h": 128,
+          "hp": 941,
+          "maxHp": 941,
+          "r": 28,
+          "h": 66,
           "focus": 158,
           "maxFocus": 158,
           "regen": 22,
           "level": 16,
-          "attack": 1.1632026094232053,
+          "attack": 1.1928700379804273,
           "armor": 0.04,
           "maxMove": 550,
           "walkSpeed": 290,
           "loadout": [
-            "H2RESONANCE",
-            "H2ECHO"
+            "HBT01",
+            "HBT02"
           ],
           "ranks": {
-            "H2RESONANCE": 4,
-            "H2ECHO": 4
+            "HBT01": 4,
+            "HBT02": 4
           },
-          "xpBudget": 59,
-          "honroType": "bellCluster",
+          "xpBudget": 45,
+          "honroType": "bat",
           "elite": true,
-          "honroVariant": "bellCluster",
+          "honroVariant": "bat",
           "honroDifficulty": "normal",
-          "combatBaseHp": 1063.9721688496659,
-          "combatBaseAttack": 1.0027608701924184,
-          "honroXpWeight": 1.6,
-          "honroAct2": true,
-          "existenceDefense": {
-            "form": 0.06,
-            "qi": 0.4,
-            "soul": 1.32
-          },
+          "combatBaseHp": 723.5010748177726,
+          "combatBaseAttack": 1.0283362396382996,
+          "honroXpWeight": 1.088,
           "honroAlly": false,
           "honroCivilian": false,
           "honroBehavior": "patrol",

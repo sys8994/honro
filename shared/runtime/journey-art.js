@@ -146,6 +146,8 @@
       group('fire-ground-light', glow(800, 758, 300, 103, `${id}-fire-ground`), 'data-rest-motion="fire-ground"') +
       path('M-30 847L60 826 117 835 167 821 228 839 289 830 352 851 428 854 469 870 565 864 634 886 737 882 817 909H-30Z M1082 906L1114 871 1197 854 1248 861 1304 835 1360 838 1415 813 1486 821 1533 801 1630 815V930Z', '#111f23') +
       path('M-18 851L-5 806 2 831 20 799 11 842 31 826 26 849Z M132 834L146 798 146 825 161 806 156 837Z M1472 823L1468 782 1480 802 1499 760 1493 807 1525 786 1512 814Z M1260 857L1273 830 1271 851 1290 831 1284 856Z', '#132626') +
+      group('wind-stirred-grass-left',path('M107 830q-11-44-34-61 28 9 43 51 1-45 20-67-10 32-8 70 17-23 37-29-18 16-25 36z','#52604d','opacity=".56"'),'data-rest-motion="grass" data-rest-phase=".2"') +
+      group('wind-stirred-grass-right',path('M1450 817q-9-34-29-52 26 11 40 44 4-42 28-62-17 30-17 65 18-17 40-17-23 9-31 26z','#5c6953','opacity=".45"'),'data-rest-motion="grass" data-rest-phase="1.9"') +
       rock(71, 860, .94, {...p, light:'#45504a'}) + rock(1502, 855, .76, {...p, light:'#414d48'}) +
       path('M377 793L403 790 414 800 405 807 376 805 367 800Z M1157 805L1182 799 1192 807 1185 815 1155 814Z M654 831L669 828 679 834 669 839 650 836Z', '#5d6254', 'opacity=".44"'));
   }
@@ -201,9 +203,15 @@
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-ground"><stop offset="0" stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>` +
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-halo"><stop offset="0" stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient></defs>`;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="${variant}" data-journey-layer="${layer}">` + defs +
-      (underground ? cavernBackdrop(p, id) : farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + campGround(p, id) + campProps(id) + '</svg>';
+      (underground ? cavernBackdrop(p, id) : farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + weather(variant, underground) + campGround(p, id) + campProps(id) + '</svg>';
     cache.set(key, svg);
     return svg;
+  }
+
+  function weather(variant, underground){
+    if(underground)return group('cave-condensation',path('M613 273l-2 18m447-1-2 20m196 112-2 17','none','stroke="#b2c5bd" stroke-width="2" stroke-linecap="round" opacity=".24"'),'data-rest-motion="rain" data-rest-phase=".36"');
+    if(variant!=='river')return '';
+    return group('passing-fine-rain',path('M982 375l-13 42m67-103-11 37m108 27-12 42m80-97-9 32m82 27-12 39m70-125-9 27m64 69-9 32m-423 64-8 28m161-8-8 29m281-4-8 29','none','stroke="#c6cfc0" stroke-width="2" stroke-linecap="round" opacity=".22"'),'data-rest-motion="rain" data-rest-phase=".15"');
   }
 
   // Deterministic, presentation-only motion. Only retained transforms/opacity
@@ -222,6 +230,8 @@
       case 'fire-halo': return {transform:around(800,737,1 + flicker * .09,1 + flicker * .11),opacity:String(n(.88 + flicker * .11))};
       case 'ember': {const u = ((t / 2.8 + phase) % 1 + 1) % 1;return {transform:`translate(${n(s(u * 5 + phase * 8) * 9)} ${n(-u * 78)})`,opacity:String(n(s(Math.PI * u) * .72))};}
       case 'pine-crown': return {transform:`rotate(${n(s(t * .85 + phase) * .42)} 0 -255)`};
+      case 'grass': return {transform:`translate(${n(s(t * .65 + phase) * 1.7)} ${n(s(t * .91 + phase) * .4)})`};
+      case 'rain': {const u=((t/8+phase)%1+1)%1;return {transform:`translate(${n(u*12)} ${n(u*55)})`,opacity:String(n(.35+s(Math.PI*u)*.65))};}
       case 'lantern': return {transform:`rotate(${n(s(t * 1.15) * 1.4)} 273 516)`,opacity:String(n(.92 + s(t * 2.3) * .06))};
       case 'cloud': return {transform:`translate(${n(s(t * .14) * 12)} 0)`};
       case 'mist': return {transform:`translate(${n(s(t * .23) * 9)} ${n(s(t * .31) * 1.6)})`,opacity:String(n(.94 + s(t * .39) * .06))};

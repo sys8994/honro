@@ -149,7 +149,19 @@ function assets(){const asset=(id,name,visual,heightM,category='architecture')=>
 }
 function bounds(visual){const ps=visual.flatMap(v=>v.points),xs=ps.map(p=>p.x),ys=ps.map(p=>p.y),x=Math.min(...xs),y=Math.min(...ys);return{x,y,w:Math.max(...xs)-x,h:Math.max(...ys)-y};}
 const encounterCenters=[[1500,3450,5530,6650],[1750,3180,4600,6500,7660],[1450,2450,4300,6150,7200],[1650,3000,4900,6100,7300],[1550,2450,4150,5750,6800],[1700,2550,4050,6150,7400],[1680,3350,4400,6200,7650],[2100,3350,5350,7100,8800],[1700,3050,4900,6950,8650],[1650,3000,5050,7050,8050]];
-const encounterKinds=[['hound','boar','resonance','picks'],['picks','minecart','bat','resonance','minecart'],['picks','bat','minecart','resonance','picks'],['picks','resonance','minecart','bat','picks'],['waterwheel','picks','bat','minecart','resonance'],['stoneLantern','monkVessel','picks','resonance','stoneLantern'],['picks','minecart','resonance','monkVessel','picks'],['stoneLantern','bellCluster','picks','resonance','bellCluster'],['echo','resonance','bellCluster','echo','resonance'],['bat','minecart','picks','resonance','minecart']];
+const encounterKinds=[
+ ['hound','boar','resonance','picks'],
+ ['picks','minecart','bat','resonance','minecart'],
+ ['picks','bat','minecart','bat','picks'],
+ ['picks','bat','minecart','bat','picks'],
+ ['waterwheel','picks','bat','minecart','bat'],
+ ['stoneLantern','monkVessel','picks','bat','stoneLantern'],
+ ['picks','minecart','bat','monkVessel','picks'],
+ ['stoneLantern','bellCluster','picks','bat','bat'],
+ // The release rite itself remains a spirit encounter by story design.
+ ['echo','resonance','bellCluster','echo','resonance'],
+ ['bat','minecart','picks','resonance','minecart']
+];
 const pair=p=>[p.x,p.y],same=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1])<1e-6;
 function cleanPolygon(p){const out=p.filter((v,i)=>!i||!same(v,p[i-1]));if(same(out[0],out.at(-1)))out.pop();return out;}
 function floorAnchor(route,x,surfaceId='floor-main'){return{x,y:yAt(route,x),surfaceId};}

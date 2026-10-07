@@ -7,6 +7,6 @@ const g=await runtime({legacyMaps:false});
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
 const before=JSON.stringify(g.HONRO_PROJECT.stages.filter(s=>s.metadata.act!==2));
 const project=g.HonroMaps.finalize(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(g.HONRO_PROJECT))));
-if(JSON.stringify(project.stages.slice(0,10))!==before)throw Error('Act 1 changed while authoring Act 2');
+if(JSON.stringify(project.stages.filter(s=>s.metadata.act!==2))!==before)throw Error('Other acts changed while authoring Act 2');
 await writeFile('shared/data/campaign.json',JSON.stringify(project,null,2)+'\n');
 console.log('Authored 10 Act 2 stages; Act 1 preserved.');

@@ -1,0 +1,4 @@
+/* Narrative typography is shared across the game; compact system readouts retain their own font. */
+:root,.honro,#app,.honro button,.honro input,.honro select{font-family:Batang, 'Noto Serif KR', serif}
+.honro .title-main .new-title,.honro .atlas-region strong,.honro .atlas-progress,.honro .dock-stage{font-family:Batang, 'Noto Serif KR', serif}
+.honro .debug-badge,.honro .context-interact .keycap,.honro .map-node .stage-index,.honro .atlas-progress span{font-family:system-ui,sans-serif}

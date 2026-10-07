@@ -1,0 +1,48 @@
+/* First ferry landing: independent ink landscape and wordmark. */
+.honro #app .honro-title{background:#07151b;isolation:isolate;overflow:hidden}
+.honro-title .title-bg{inset:0;overflow:hidden;background:#0a1b22;filter:none}
+.honro-title .title-bg:before{display:none}
+.honro-title .title-bg>svg{display:block;width:100%;height:100%;max-width:none}
+.honro-title:after{background:linear-gradient(90deg,#06141bea 0%,#081920d9 26%,#0b1b229c 44%,#0b1b221a 70%,transparent 100%),linear-gradient(0deg,#061319d9 0%,transparent 34%,#06121834 100%);pointer-events:none}
+.honro-title .top{z-index:3;min-height:66px;padding:16px 28px}
+.honro-title .top>.icon{margin-left:auto;border-color:#b8b69a58;background:#09192199;width:44px;height:44px}
+.honro-title .title-main{width:min(480px,42vw);max-width:none;margin:auto 0 auto clamp(30px,6vw,110px);padding:18px 0 34px;gap:0;animation:title-arrive .55s ease-out both}
+.honro-title .honro-logo-wrap{width:min(440px,100%);filter:drop-shadow(0 8px 24px #0009)}
+.honro-title .honro-logo{width:100%;mix-blend-mode:normal}
+.honro-title .title-tagline{font-size:clamp(12px,1.15vw,16px);color:#d4cfb9;letter-spacing:.08em;margin:2px 0 37px 7px;text-shadow:0 2px 11px #000}
+.honro-title .title-actions{display:flex;flex-direction:column;align-items:stretch;gap:5px;width:min(285px,90%);margin-left:5px}
+.honro-title .title-actions>button{position:relative;text-align:left;justify-content:flex-start;padding:13px 17px 13px 21px;min-height:49px;min-width:0;border:0;border-left:2px solid #a9a08155;border-radius:0;background:#0a1d23a8;color:#e8dfc8;font-size:17px;font-weight:400;letter-spacing:.08em;transition:background .18s,color .18s,border-color .18s,transform .18s}
+.honro-title .title-actions>button.primary{background:#b6a47a29;color:#f3e5c0;border-color:#a14e40}
+.honro-title .title-actions>button:hover,.honro-title .title-actions>button:focus-visible{background:#b6a47a3f;color:#fff0ca;border-color:#d2bd86;transform:translateX(3px)}
+.honro-title .title-actions>button:focus-visible{outline:2px solid #e7d4a1;outline-offset:3px}
+.honro-title .title-actions>button:after{content:"";position:absolute;left:21px;bottom:8px;width:0;height:1px;background:#dbc99e;transition:width .18s}
+.honro-title .title-actions>button:hover:after,.honro-title .title-actions>button:focus-visible:after{width:50px}
+.honro-title .footer{z-index:3;padding:16px clamp(24px,5vw,75px) max(14px,env(safe-area-inset-bottom));color:#abb5aa;align-items:center}
+.honro-title .footer .ghost{background:#091a2094;border:1px solid #9ba38b45;border-radius:2px;min-height:44px}
+.honro-title .footer>span:last-child{color:#b5bcae;letter-spacing:.08em}
+.honro-title #valley-mist{animation:title-mist 12s ease-in-out infinite alternate}
+.honro-title #way-lamp ellipse{animation:title-lamp 8s ease-in-out infinite alternate;transform-origin:1404px 711px}
+@keyframes title-mist{to{transform:translateX(3px);opacity:.82}}
+@keyframes title-lamp{to{opacity:.72;transform:scale(1.025)}}
+@keyframes title-arrive{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){
+ .honro-title #title-moon{display:none}
+ .honro-title:after{background:linear-gradient(0deg,#061319ed 0%,#07171dc7 43%,#07171d46 80%),linear-gradient(90deg,#06141b69,transparent)}
+ .honro-title .top{min-height:55px;padding:8px 12px}
+ .honro-title .title-main{width:100%;max-width:none;margin:0;padding:clamp(14px,3vh,32px) 6% 0;align-items:flex-start}
+ .honro-title .honro-logo-wrap{width:min(370px,90vw)}
+ .honro-title .title-tagline{margin:0 0 20px 5px;font-size:12px}
+ .honro-title .title-actions{position:absolute;top:clamp(280px,51dvh,520px);left:6%;width:88%;max-width:360px;margin:0}
+ .honro-title .footer{margin-top:auto;flex-wrap:wrap;padding:10px 6% max(13px,env(safe-area-inset-bottom));gap:5px}
+ .honro-title .footer>span:last-child{width:100%;font-size:9px}
+}
+@media(max-height:490px) and (orientation:landscape){
+ .honro-title .top{min-height:45px;padding:4px 12px}
+ .honro-title .title-main{width:min(410px,48vw);margin:auto 0 auto 5vw;padding:0}
+ .honro-title .honro-logo-wrap{width:270px}
+ .honro-title .title-tagline{margin:0 0 8px;font-size:10px}
+ .honro-title .title-actions{position:static;width:250px;gap:2px}
+ .honro-title .title-actions>button{min-height:42px;padding:8px 16px;font-size:13px}
+ .honro-title .footer{padding:4px 5vw}
+}
+@media(prefers-reduced-motion:reduce){.honro-title .title-main,.honro-title #valley-mist,.honro-title #way-lamp ellipse{animation:none}.honro-title .title-actions>button{transition:none}}

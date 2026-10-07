@@ -264,13 +264,29 @@ const observations={
  end:['하늘이 이렇게 넓었구나. 동굴을 나왔는데도 자꾸 위를 보게 되네.','한동안 종소리가 귀에 남을 줄 알았는데, 지금은 바람이 먼저 들리네.','길찬이 아버지 짐을 들었소. 노인도 이번에는 손을 펴고 걷더군.','아무것도 붙잡지 않고 앉아 있어도 되네요. 지금은 이대로 조금만 있을래요.']
 };
 const classes=['archer','mage','knight','occultist'],firstRest={archer:1,mage:3,knight:6,occultist:11};
+// Optional conversations carry discoveries forward; short observations remain
+// for quieter stops. Each tuple is a spoken turn, not narrator exposition.
+const conversations={
+ 6:{knight:[['휘겸','운반대 뒤에 남은 사람들 얼굴이 계속 생각나오. 걸음이 늦어진 아이가 하나 있었소.'],['설오','다리 건너편에서 손을 흔들던 아이요? 마지막 수레에 탔어요.'],['휘겸','그렇다면 다행이오. 앞으로도 맨 뒤까지 보고 건너겠소.']]},
+ 11:{occultist:[['소단','어젯밤에 손을 놓을 때, 그 혼들이 저를 따라올까 두려웠어요.'],['설오','그래도 사람들 곁에 남기로 했군요.'],['소단','제가 볼 수 있는 것을 그냥 지나치고 싶지는 않았어요. 이번엔 함께 묻고 풀어 볼래요.']]},
+ 13:{
+  mage:[['설오','석문 안으로 들어가면 하늘이 완전히 가려지겠죠.'],['담허','그렇지. 굴 안에서는 천뢰호를 쓰지 못하네. 호리병이 자리를 찍어도 하늘에서 내려오는 천뢰가 암벽에 막혀 버리거든.'],['휘겸','그럼 안에서는 무엇으로 길을 열겠소?'],['담허','짧은 불씨와 얼음으로 눈앞의 틈을 보겠네. 천장 아래에선 무리해서 큰 번개를 부르지 말게.']],
+  archer:[['설오','돌계단 끝이 보이지 않네요. 홍만 어르신의 지도에도 없는 길이에요.'],['휘겸','그렇기에 우리가 본 것을 남겨야 하오. 돌아올 때도 누군가 이 길을 찾을 수 있게.']],
+  occultist:[['소단','문 안쪽에서 혼이 여러 갈래로 겹쳐 들려요. 누군가 부르는 소리와 피하려는 소리가 달라요.'],['담허','하나의 울림으로 단정하지 말자는 거구나. 안에서 들은 방향을 함께 맞춰 보자.']]
+ },
+ 14:{knight:[['휘겸','이 집 문턱은 안에서 닳았소. 밖으로 나가던 발보다 안에서 기다리던 발이 더 많았던 모양이오.'],['설오','석공 어르신은 아직 아들을 기다리고 있어요. 길찬을 찾을 때까지 이 문을 닫지 말죠.']]},
+ 16:{mage:[['담허','수문 밑에 같은 날 새긴 자국과 한참 뒤에 덧댄 자국이 있었네. 하나의 사고로 묶을 수 없지.'],['휘겸','그럼 누가 다시 손을 댔는지 장부에서 찾아야겠소.'],['담허','맞네. 물길이 멎은 뒤에 기록된 이름부터 보세.']]},
+ 18:{knight:[['휘겸','축을 뺀 흔적이 손 높이에 있었소. 무너져서 막힌 길이 아니었소.'],['소단','그 안에서 두드린 분들이 있었어요. 왜 못 들은 척했을까요?'],['휘겸','모르겠소. 다만 누가 빼냈는지는 끝까지 찾아 적어 두겠소.']]},
+ 19:{occultist:[['소단','한데 뭉친 소리 같았는데, 이름을 부르니까 서로 다른 쪽에서 답했어요.'],['설오','누구의 이름부터 불러야 하나요?'],['소단','기록에 남은 순서대로요. 빠뜨린 이름이 있는지도 함께 살펴 주세요.']]},
+ 20:{archer:[['설오','다들 밖으로 나왔는데도 저 안에 남은 소리가 있네요.'],['담허','서두른다고 떠날 수 있는 혼은 아니네. 먼저 왜 여기에 붙들렸는지 알아야 해.'],['설오','그럼 기록을 챙겨요. 우리가 본 일과 그들이 겪은 일을 따로 적어 두죠.']]}
+};
 function optional(profile,nextStageId,cls){
  const p=context(profile,nextStageId),index=classes.indexOf(cls);
  if(!p||index<0||!profile?.recruited?.includes(cls))return [];
  const key=nextStageId==null?'end':p.stageId;
  if(key!=='end'&&p.stageId<firstRest[cls])return [];
- const text=observations[key]?.[index];if(!text)return [];
- return [[H.hero[cls].name,text,{storyId:`rest-optional-v1-${key}-${cls}`,storyTitle:p.restName+' · '+H.hero[cls].name,optional:true}]];
+ const text=observations[key]?.[index],lines=conversations[key]?.[cls]|| (text?[[H.hero[cls].name,text]]:[]);if(!lines.length)return [];
+ return lines.map(([who,line])=>[who,line,{storyId:`rest-optional-v1-${key}-${cls}`,storyTitle:p.restName+' · '+H.hero[cls].name,optional:true}]);
 }
 G.HonroJourneyContent={version,sources,places,ending,at,next,transitionAfter,interludeSources,interlude,required,optional};
 })(globalThis);

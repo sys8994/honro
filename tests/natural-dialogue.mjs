@@ -37,8 +37,12 @@ check('30 required scenes retain their IDs, paragraph counts and every source na
 });
 check('30 first battlefield speeches and rest voices do not describe Seolo in third person',()=>{
  const p=profileThrough(30);
- for(const st of H.stages){const first=st.story.find(l=>l[0]==='설오');if(first)assert.doesNotMatch(first[1],/설오는|설오가/);for(const [who,text] of J.optional(p,st.id,'archer')){assert.equal(who,'설오');assert.doesNotMatch(text,/설오는|설오가/);}}
+ for(const st of H.stages){const first=st.story.find(l=>l[0]==='설오');if(first)assert.doesNotMatch(first[1],/설오는|설오가/);const optional=J.optional(p,st.id,'archer');if(optional.length)assert.equal(optional[0][0],'설오');for(const [who,text] of optional)if(who==='설오')assert.doesNotMatch(text,/설오는|설오가/);}
  assert.deepEqual(plain(J.interlude(5).map(l=>l[0])),['설오','설오','담허']);assert.equal(J.interlude(6)[0][0],'휘겸');assert.equal(J.interlude(15)[1][0],'담허');
+});
+check('Cave warning and selected camp exchanges retain in-character, multi-speaker information',()=>{
+ const p=profileThrough(30),cave=J.optional(p,13,'mage');assert.deepEqual(plain(cave.map(l=>l[0])),['설오','담허','휘겸','담허']);assert(cave.some(l=>l[1].includes('천뢰호')&&l[1].includes('암벽')));assert(J.optional(p,24,'knight').length>=3);assert(J.optional(p,11,'occultist').length>=3);
+ for(const id of [11,13,16,18,19,21,24,25,27,30])for(const cls of p.recruited){const lines=J.optional(p,id,cls);for(const [who,text,meta] of lines){assert(text.trim());assert(['설오','담허','휘겸','소단'].includes(who));assert.equal(meta.optional,true);assert.equal(meta.storyId,`rest-optional-v1-${id}-${cls}`);}}
 });
 check('Every narration page renders as a record rather than Seolo or an illustrated cutaway',()=>{
  for(const st of H.stages){const app=load(profileThrough(st.id-1));click('rest');if(app.dialogue?.restKind==='map')g.HonroStory.finish(app);for(let i=0;i<app.dialogue.lines.length;i++){app.dialogue.index=i;g.HonroStory.draw(app);const [who,,meta]=app.dialogue.lines[i],html=nodes.get('dialogue-root').innerHTML;assert(!html.includes('narration-overlay'),`stage ${st.id}`);if(meta.kind==='narration'){assert.equal(who,'서술');assert(html.includes('길 위의 기록'));assert(!html.includes('aria-label="설오"'));}else assert(html.includes(`aria-label="${who}"`));}}
@@ -50,4 +54,4 @@ check('Direct transitions and saved old dialogue retain their existing read posi
  for(const id of [2,10,19]){const app=load(profileThrough(id-1));app.launch(id);assert(app.dialogue.lines.some(l=>l[0]==='서술'&&l[2].presentation==='inline'));for(let i=0;i<app.dialogue.lines.length;i++){if(app.dialogue.lines[i][0]!=='서술')continue;app.dialogue.index=i;g.HonroStory.draw(app);assert(nodes.get('dialogue-root').innerHTML.includes('길 위의 기록'));assert(!nodes.get('dialogue-root').innerHTML.includes('narration-overlay'));}}
  let app=load(profileThrough(1));app.launch(2);finish(app);const legacy=[['설오','이 높은 바위턱에서 활을 들었다.',{storyId:'rest-interlude-v1-2',storyTitle:'상여 위의 높은 길',optional:false}]];g.HonroStory.start(app,legacy,{after:'entry',index:0,title:app.stage.name});const old=plain(app.dialogue);app=reload();click('continue');assert.deepEqual(plain(app.dialogue),old);assert.equal(app.dialogue.index,0);
 });
-await report('natural-dialogue',checks,{stages:30,pageCounts,limits:['Authored first speech and optional Seolo lines reviewed across all 30 chapters.','Existing battle dialogue snapshots keep original prose; rest saves retain the same scene/page and load current prose.','No scene trigger, event, movement, objective, reward, recruitment or camera timing change.']});
+await report('natural-dialogue',checks,{stages:30,pageCounts,limits:['Authored first speech and optional Seolo lines reviewed across all 30 chapters.','Existing battle dialogue snapshots keep original prose; rest saves retain the same scene/page and load current prose.','Narrative fixtures do not prove the first-spirit battle trigger, movement or browser presentation.']});

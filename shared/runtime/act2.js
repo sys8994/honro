@@ -186,9 +186,25 @@ function failure(b){if(!active(b))return null;const list=steps(b),a=memory(b);
  for(const cls of new Set(needed))if(!b.units.some(u=>u.side===0&&u.cls===cls&&!u.dead&&u.hp>0))return H.hero[cls].name+'이 쓰러져 남은 의식을 이어갈 수 없다.';
  return null;
 }
+function firstSpiritEncounter(app,heroes){const b=app.engine?.b,key='act2:first-spirit-encounter';if(!b||app.screen!=='battle'||!G.HonroStory?.queue||app.profile?.seen?.[key]||!app.profile?.recruited?.includes('occultist')||app.dialogue)return;
+ const spirit=b.units.find(u=>u.side===1&&u.honroSpirit&&!u.dead&&u.hp>0&&heroes.some(h=>Math.hypot(h.x-u.x,h.y-u.y)<680));if(!spirit)return;
+ app.profile.seen??={};
+ app.profile.seen[key]=true;
+ const meta={storyId:key,storyTitle:'첫 혼령의 기척'};
+ G.HonroStory.queue(app,[
+  ['설오','저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],
+  ['휘겸','발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],
+  ['소단','혼이에요. 두 분 눈에는 흐려도 제 눈에는 보여요. 아직 길을 찾지 못한 혼이 저기 있어요.',meta],
+  ['설오','그럼 우리가 맞설 수 있게 해 줄 수 있나요?',meta],
+  ['소단','현형부를 붙이면 잠깐 이승의 형체가 잡혀요. 그때는 활과 검도 닿아요. 제가 있는 곳을 가리킬게요.',meta],
+  ['안내','소단의 현형부(O08)나 주변 원혼등불로 혼령을 현형시키면 동행의 형 공격도 유효해집니다.',{...meta,kind:'guide',guideTitle:'혼령과 현형'}]
+ ]);
+ G.HonroStory.save(app);
+}
 function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].includes(b.phase))return;
  const a=memory(b),heroes=e.heroesAlive();
  if(e.active?.side===0)a.viewerId=e.active.id;
+ firstSpiritEncounter(app,heroes);
  // Completion is captured immediately; the shared story queue waits for actor end.
  for(const s of steps(b)){if(a.done[s.id])continue;if(!satisfied(b,s))break;completeStep(app,s);}
  const s=current(b),m=s&&marker(b,s.id);
