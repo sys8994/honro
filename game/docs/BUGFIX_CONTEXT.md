@@ -1,6 +1,6 @@
 # HONRO 게임 수정 맥락
 
-**발판 투사체 하이브리드(2026-10-07):** `Engine.projectileCollision`과 `segmentProjectileTerrain`은 oneWay 지형의 윗면 외부→내부 swept 진입만 받는다. 아래/옆/시작겹침은 통과하며 solid 벽·동굴 천장은 유지한다. 실제 탄·모든 일반 자탄·유도 획득·발사 원점·화살 재생 예측·담허 반사파 예측은 같은 판정을 쓴다. 진목과 지상 소환은 실제 맞은 발판에 설치하여 가까운 다른 윗발판으로 끌어올리지 않는다. 명시 phase, ethereal 소환 광선·만혼귀결, 캐릭터 몸 돌진/시야/이동은 별도 기존 규칙이다. 저장 필드와 마이그레이션을 추가하지 않는다. 아래키+도약 내려가기는 이번 범위에 없다. 회귀는 `tests/projectile-platforms.mjs` 및 `test:one-way-platforms`; 과거 문서의 'oneWay도 투사체 양면 막힘' 설명은 이 개정으로 대체된다.
+**발판 투사체 하이브리드(2026-10-07):** `Engine.projectileCollision`과 `segmentProjectileTerrain`은 oneWay 지형의 윗면 외부→내부 swept 진입만 받는다. 아래/옆/시작겹침은 통과하며 solid 벽·동굴 천장은 유지한다. 실제 탄·모든 일반 자탄·유도 획득·발사 원점·화살 재생 예측·담허 반사파 예측은 같은 판정을 쓴다. 진목과 지상 소환은 실제 맞은 발판에 설치하여 가까운 다른 윗발판으로 끌어올리지 않는다. 명시 phase, ethereal 소환 광선·만혼귀결, 캐릭터 몸 돌진/시야/이동은 별도 기존 규칙이다. 새 투사체 저장 필드는 없다. 5장 고리쇠는 윗면이 고체 지붕 안에 묻힌 파괴 장치라 해당 저작 oneWay만 false로 고쳤고, `HonroProjectileTargets`가 정확한 campaign 원형 Continue에만 같은 한 flag를 보정한다. HP·의식·파괴 상태와 사용자 맵은 보존한다. 아래키+도약 내려가기는 이번 범위에 없다. 회귀는 `tests/projectile-platforms.mjs` 및 `test:one-way-platforms`; 과거 문서의 'oneWay도 투사체 양면 막힘' 설명은 이 개정으로 대체된다.
 
 **고정 주민 공중 보행(2026-10-07):** `fixed` 유닛은 공통 보행 명령을 거절하고, 동맹 턴은 이동을 건너뛰어 제자리 지원 행동만 실행한다. 고정 주민이 이동한 원인은 이 명령 계약 누락과 고정 몸의 중력 제외가 겹친 것이었다. rescue marker에 연결된 기존 공중 주민만 실제 중력/sweep의 안전한 착지 결과로 복구하며 정상 저장 좌표·HP·진행·지형은 유지한다. `test:rescue-physics`가 고정/이동/비행/점프/폭발 및 실제 App 저장을 구분해 검사한다. 아래 live target 추적 수정은 계속 유지한다.
 

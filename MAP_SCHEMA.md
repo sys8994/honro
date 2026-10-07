@@ -31,6 +31,7 @@ Project: `schema/version/name/activeStageId/settings/library/stages`. Settings�
 - 공통: `baseMaterial/oneWay/breakable/layer/properties`. Properties는 hp·임무 플래그 등 기존 속성을 보존합니다.
 - `oneWay:true`는 캐릭터가 아래/옆에서 통과하고 위쪽 면에 착지하는 발판입니다. 투사체는 아래·옆 진입을 통과하고 이전 위치에서 윗면 바깥에 있던 탄이 윗면 안쪽으로 들어올 때만 충돌합니다. 경사 윗면은 속도의 부호가 아니라 면의 법선과 swept 교차로 판정합니다. 반사파·진목·지상 소환탄도 같은 충돌을 쓰며 명시적 지형 관통 기예는 유지합니다. `false`는 벽·바닥·지붕의 양방향 고체이며, 모양·공중 배치·목재 재질·이름으로 자동 추정하지 않습니다. 새 `type:platform` 명령과 값이 생략된 명시적 platform은 기본 true, 명시적 false는 그대로 보존합니다. `type:solid`는 기본 false이며 oneWay true인 발판도 solid polygon으로 정확히 저작할 수 있습니다.
 - `properties.honroCeiling:true`는 실제 막힌 천장입니다. oneWay true와 동시에 지정할 수 없습니다. 건물의 기와지붕/동굴 천장은 고체, 노출 목재 회랑/연결 덱은 작가가 oneWay true로 지정합니다. 계단·경사 접근면의 solid 여부는 저작 의도를 따릅니다. Workshop의 `지형 충돌`에서 고체·발판·막힌 천장을 선택할 수 있습니다. 그림만 있는 뒤쪽 건물·벽은 별도의 충돌면이 없으면 지지 발판이 아닙니다.
+- 5장 `cliff-cleat`는 고체 지붕에 걸린 파괴 고리쇠로 `oneWay:false`입니다. 형상·내구도·목표를 그대로 두고 이 한 저작 flag만 고쳤습니다. 정확한 campaign 원형 Continue만 기존 flag를 보정하며 불명확한 출처·사용자/Workshop·변형 맵은 보존합니다. 8장 결박 두 개는 윗면 타격이 가능해 기존 oneWay를 유지합니다.
 - 8–10장 발판 수정은 6개의 명시 oneWay와 10장 연결 발판 2개로 제한합니다. 일반 Continue의 정확한 campaign 형상만 소규모 보정하고 사용자/Workshop 지형을 이름으로 추정 이관하지 않습니다. 자세한 회귀는 `npm run test:one-way-platforms`입니다.
 - Material: `id/terrainId/kind/x1/x2/reference?/depth/alpha`. 실제 지지면에서 생성합니다. 원본의 명시적 `points/surface/bottom`은 그대로 저장하므로 기존 재질은 지형 편집 시 자동으로 재설계되지 않습니다.
 - grass/moss/rock/scree/mud/soil/charred/stone 및 water/shallow-water를 실제 Scene 재질로 컴파일합니다. 물의 표면은 수평이고 바닥은 지지면을 따릅니다.
