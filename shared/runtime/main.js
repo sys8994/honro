@@ -479,7 +479,7 @@
         continue() { if (!this.profile.honroBattle) {
             this.showRest();
             return;
-        } const b = clone(this.profile.honroBattle); if(b.honroRevision!==20){this.profile.honroBattle=null;this.notify('지형 물리가 교체되어 현재 스테이지 입구에서 다시 시작합니다. 성장 정보는 유지됩니다.');this.launch(b.honroStage||1);return;} this.stageId = b.honroStage || 1; this.stage = H.stages[this.stageId - 1]; this.training = false; if(!this.customMap&&!G.HONRO_EMBEDDED){G.HonroStage7Reentry?.upgradeBattle(b);G.HonroPlatformPassages?.upgradeBattle(b);} this.mount(b); }
+        } const b = clone(this.profile.honroBattle); if(b.honroRevision!==20){this.profile.honroBattle=null;this.notify('지형 물리가 교체되어 현재 스테이지 입구에서 다시 시작합니다. 성장 정보는 유지됩니다.');this.launch(b.honroStage||1);return;} this.stageId = b.honroStage || 1; this.stage = H.stages[this.stageId - 1]; this.training = false; if(!this.customMap&&!G.HONRO_EMBEDDED){G.HonroStage7Reentry?.upgradeBattle(b);G.HonroPlatformPassages?.upgradeBattle(b);G.HonroProjectileTargets?.upgradeBattle(b);} this.mount(b); }
         checkMission(e) {
             const b = e.b;
             if (['won', 'lost'].includes(b.phase))
