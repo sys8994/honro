@@ -1640,6 +1640,10 @@ export class Engine {
     }
     private contactDamage(u:Unit,vx:number,vy:number,n:Vec,kind:'fall'|'wall',silent=false,scale=1,dropUnits?:number){
         if(silent||u.dead||u.summoned||(u.impactCooldown||0)>0)return;
+        // A voluntary jump may stop at a real ceiling without becoming a
+        // damaging knockback. impulse() already clears jumping for upward
+        // external force; retain damage for that case, excessive speed and walls.
+        if(kind==='wall'&&n.y>.30&&u.jumping&&Math.hypot(vx,vy)<=660*(1+passiveRank(u,'SP03')*.02)+1)return;
         const normalSpeed=Math.max(0,-vx*n.x-vy*n.y),damage=Math.round((kind==='fall'?fallDamage(u.maxHp,dropUnits||0):collisionDamage(u.maxHp,normalSpeed,kind))*scale);
         if(damage<=0)return;u.impactCooldown=.30;
         this.hurt(u,damage,'',false);this.fx('text',u.x,u.y-u.h-25,'#edb699',13,kind==='fall'?'낙하 충격':'충돌 충격');

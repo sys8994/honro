@@ -11,6 +11,13 @@
 - 변경: `workshop/drafts/act3-town-assets/`에 순수 SVG 3종과 접지·빈 공간·처마 bounds 명세를 추가했다. 기존 `compileSVG`·`HonroVectorArt`만 재사용한다. 자산 registry·campaign·shared build·두 HTML은 변경하지 않았다.
 - 검증: XML과 벡터 안전 검사, 실제 paint/처마 bounds, 접지 13점, 투명 여백 4곳, 390px/0.24배 카드 내 축소와 활성 소스 불변을 통과했다. 세 자산은 각 7KB 미만·44경로 이하이며 Native Canvas 컨택트 시트를 검토했다.
 - 한계: 현재는 inactive draft다. SVG는 충돌을 만들지 않고 실제 UI·맵·전투·브라우저·성능 검증 또는 사용자 미술 승인을 대신하지 않는다. 전체 빌드·배포 검수는 활성화 시 별도 수행한다. [시안 명세](ACT3_TOWN_ASSET_DRAFT.md).
+# 1–6장 화강암 그림과 기존 고체 외곽 일치 — 2026-10-07
+
+- 원인: 에셋 polish가 두 화강암의 외곽을 별도 정규화된 6면 그림으로 다시 만들면서 기존 independent collider는 보존했다. 1장 큰 바위의 왼쪽 그림이 고체 윗면보다 최대 157.5 world 낮아 접지한 발·윤곽선이 허공에 있는 것처럼 보일 수 있었다.
+- 변경: 큰/작은 바위의 첫 그림 polygon을 기존 collision 외곽 그대로 복사하고 나머지 5색면도 그 안에 둔다. 기존 6면·팔레트·bounds·contact·16배치·충돌·맵·저장 코드는 유지한다. `tools/environment/granite-visuals.mjs`를 polish generator가 호출하므로 재생성에도 고정된다.
+- 검사: `node tests/granite-visual-alignment.mjs`로 2외곽·12색면·16배치·6장 compiled terrain/material 불변·generator 순수/재현·옛 embedded art/terrain 보존 통과. 큰 바위 157.5와 작은 바위 81.9 local 최대 간격이 각각 0으로 줄었다. 실제 generator 재실행 뒤 다른 에셋과 모든 nonvisual campaign 필드 불변도 확인했다.
+- Native 추가 검수: 공통 production element painter에서 두 바위×0.25/0.4/1.5 줌의 solid mask 바깥 opaque 화소0·안쪽 누락0. 실제16배치 전후 overlay와400×760 Scene8장을 비교했고 큰 바위 왼쪽의 발이 가시 윗면에 닿으며 원래 숲 구도·팔레트를 유지하는 것을 직접 확인했다. readability runtime a7517e2와 source5a01235를 구분 기록하고, sprite outline 제외 정책은 유지했다.
+- 한계: 기존 진행 중인 저장은 저장 당시 그림을 유지한다. 인위적 접지 pose 비교는 정상 이동/완주 증거가 아니다. 통합 브라우저/Pages 검수는 별도이며 이 검사만으로 전체 verify 또는 브라우저 성능 통과를 주장하지 않는다. [현재 계약](GRANITE_VISUAL_ALIGNMENT.md).
 
 # 고정 구조 주민의 공중 보행 — 2026-10-07
 
@@ -1171,3 +1178,28 @@ The current test still freezes all complete 1–20 maps and original assets, the
 ### 2026-10-07: Explicit corporeal-fiend damage classification
 
 The resumed existence audit found the two new Act3 archetypes absent from the central species response table. Live bodies already inherited the human response through their human look; registering both names explicitly keeps form 1, qi 1 and soul 0.88 and makes species-based lookup equally precise. The species completeness and exact-human-vector assertions cover this boundary. Final focused rerun is pending at this source checkpoint.
+# Terrain/background separation — 2026-10-07
+
+- Cause: foreground terrain and atmospheric shapes shared similar values; subpixel top rims weakened at mobile scale. Applying outlines indiscriminately also exposed approximate legacy sprite hitboxes outside their artwork.
+- Change: the common Scene reduces background saturation by 14% with one composite, and raster-caches thin paired-value edges on exposed real terrain. One-way surfaces show only their landing edge, hidden seams are omitted, water/decorations remain unoutlined. Approximate element hitboxes retain existing art; only the shared sampled-roof contract permits an added element edge. Physics, world continuity and UI semantics are unchanged.
+- Checks: focused `tests/terrain-readability.mjs` passed. Initial fixed-camera 400×760 Native before/after inspection found and excluded the legacy sprite wireframe issue. Full corrected captures, integrated regressions, browser/Pages and GPU performance are still pending at this checkpoint. See [design and reference observations](TERRAIN_READABILITY.md).
+- Follow-up: all 14 corrected Native before/after views, unchanged battle state, 24 warm-frame tile/path reuse and grayscale checks at .25/.4/1.5 zoom passed. An integer-aligned .9px bright edge initially lost too much contrast through antialiasing; 1.2px bright/2.6px dark now preserve a 46.27/255 luminance range. Native chapter14/15 warm medians changed by +.11/+.12ms with unchanged tile memory; this is not a browser/GPU performance result. Final Game/Workshop/Pages verification remains with the integrated release.
+- Open geometry follow-up: stage1 `forest-boulder-a` / `mockup-granite-large` has a 57.225-world-unit art/collision top gap at world x661.732, up to157.5 at its leftmost vertex. `forest-boulder-b` / `mockup-granite-small` has the same independent-shape mismatch (26.7813 world units at local x−65.718 after scale .9). Exact IDs, coordinates and evidence limits are in [the open defect record](TERRAIN_READABILITY.md#open-follow-up-chapter-1-rock-artcollision-mismatch). This patch excludes their automatic outline and does not alter their collision.
+
+
+
+### 의도된 처마·회랑 발판의 양방향 충돌과 10장 연결 단차 — 2026-10-07
+
+- 저작 원인: 8장의 `west/east-eave`, 9·10장의 `west/east-gallery`는 각 장의 설계 문구에서 올라서는 선택 발판인데 `oneWay:false`였다. 5장 폭포 동굴과 7장 속빈 줄기의 지붕, 2막 천장은 실제 고체로 남긴다. 공중 polygon의 모양이나 재료로 자동 분류하지 않는다.
+- 저작 수정: 위 6개 boolean만 바꾸고 기존 꼭짓점은 유지했다. 10장 위쪽 회랑은 기존 마지막 발판에서 기본 점프 높이를 넘으므로 `gallery-link-west/east` 두 목재 발판을 더한다. 지상 주경로·기존 위치·지형·임무는 옮기지 않는다.
+- 원인 실험: 4인 실체형과 기존 지면에서 시작하는 실제 walk/jump A/B에서 연결 발판을 포함한 수정안의 24경로가 무피해 도착했다. 구 10장 경로는 실패했으며 서쪽 머리 충돌 피해가 있었다. 8/9는 바깥쪽으로 우회해 성공하는 입력도 있어 모든 점프가 실패했다고 일반화하지 않는다.
+- 회귀: `tests/one-way-platforms.mjs`는 발판 아래의 중간 보행 목표도 확인하는 더 엄격한 48개 A/B와 1–20장 충돌 의미 감사를 등록한다. `platform-passages.json`과 test-only 역투영은 정확한 6개 boolean 및 2개 신규 발판만 허용한다. 이 저장점의 새 정식 회귀와 통합·브라우저 검수는 아직 실행 전이다. 저장 Continue 보정은 별도 수정으로 이어진다.
+
+### 정상 점프의 천장 충돌 피해 분리 — 2026-10-07
+
+- 피해 경로는 `fallApexY` 기반 낙하 피해가 아니라 `integrateBody`의 머리/몸 sweep에서 호출하는 `contactDamage(...,'wall')`였다. 기본 점프 속도 660은 기존 벽 피해 문턱 340을 넘는다.
+- 정상 점프 상태이며 현재 속력이 해당 점프의 최대 초기 속도 안에 있고 접촉 법선이 천장 아래면인 경우만 충격 피해를 생략한다. 천장 sweep과 위치 제한·수직속도 정지는 유지한다. 기존 `impulse()`가 상향 외력을 받을 때 `jumping=false`로 바꾸므로 같은 속도라도 폭발/밀침은 면제되지 않는다. 신규 저장 상태는 없다.
+- `tests/one-way-platform-physics.mjs`에 네 체형×5 시간간격의 자발 점프/같은 속도 상향 외력/수평 벽/높이 기반 낙하/발판 고속·코너 sweep/경사 착지·보행과 발판 투사체 막힘을 등록했다. 이 저장점은 검사 실행 전이며 배포·브라우저 검증도 별도다.
+
+- 2026-10-07 focused follow-up: the committed ground-start routes passed 24/24 with zero damage and ordinary movement costs; the same direct inputs against the old map flags/steps were blocked in 24/24. The 137 authored terrain modes (1–20) and the Act 1 frozen semantic/save contracts passed. The 140 synthetic physics conditions, production App export/import/Continue and 27 ineligible-save variants, Workshop collision selector/roundtrip, and TypeScript passed. The wall-impulse fixture starts 20 units from the wall so it tests a damaging impact rather than friction stopping it below threshold. The existing terrain-domain stage-3 unit hash differs from the newer reviewed roster; that stale baseline comparison and full integration/browser/Pages checks remain separate gates.
+

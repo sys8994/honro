@@ -32,7 +32,7 @@ export function createWorld(stage: Stage): Pick<Battle,'terrain'|'waters'|'draft
         const w = Math.min(160, width - x), y = routeHeight(stage, x), end = routeHeight(stage, x + w);
         add(x, y, w, height + 200 - y, 'rock', 99999, `ground_${x}`, end - y, true);
     }
-    const platform = (x: number, w: number, lift: number, mat: Material = 'stone') => { const y = routeHeight(stage, x) - lift; return add(x, y, w, 22, mat, mat === 'wood' ? 140 : 180, `platform_${++n}`); };
+    const platform = (x: number, w: number, lift: number, mat: Material = 'stone') => { const y = routeHeight(stage, x) - lift; const t = add(x, y, w, 22, mat, mat === 'wood' ? 140 : 180, `platform_${++n}`); t.oneWay = true; return t; };
     const ramp = (x: number, w: number, start: number, end: number) => add(x, start, w, Math.max(26, end - start + 26), stage.region <= 1 ? 'wood' : stage.region === 2 || stage.region === 4 ? 'stone' : 'metal', 220, `ramp_${++n}`, end - start, true);
     const barrel = (x: number) => add(x, routeHeight(stage, x) - 45, 34, 45, 'barrel', 28, `barrel_${++n}`);
     const crystal = (x: number) => { const t = add(x, routeHeight(stage, x) - 85, 36, 85, 'device', 100, `ward_${++n}`); t.device = 'ward'; return t; };

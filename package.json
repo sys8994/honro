@@ -6,7 +6,7 @@
     "build": "node workshop/build.mjs",
     "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs && node tools/map-forge/apply-act1-roster.mjs",
     "verify": "npm run build && npm --prefix game run verify && npm run test:integration && npm run test:performance",
-    "test:integration": "npm run test:act3 && npm run test:act3:maps && npm run test:act3:art && node tests/act3-foundation.mjs && npm run test:ui-buttons && node tests/migration.mjs && npm run test:terrain-domain && npm run test:ground-contact && npm run test:event-targets && npm run test:rescue-targets && npm run test:camp-persistence && npm run test:rest-journey && node tests/turnhold-physics-growth.mjs && npm run test:environment && npm run test:aim-wind-audio && python -X utf8 tests/integration.py && npm run test:controls && npm run test:camera && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:stage36 && npm run test:skills && npm run test:story && npm run test:current-update && npm run test:progress-hud && npm run test:monsters && npm run test:party && npm run test:actors && npm run test:map-art && npm run test:act2 && npm run test:debug-mode",
+    "test:integration": "npm run test:act3 && npm run test:act3:maps && npm run test:act3:art && node tests/act3-foundation.mjs && npm run test:ui-buttons && node tests/migration.mjs && npm run test:terrain-domain && npm run test:ground-contact && npm run test:one-way-platforms && npm run test:terrain-readability && npm run test:granite-visuals && npm run test:event-targets && npm run test:rescue-targets && npm run test:camp-persistence && npm run test:rest-journey && node tests/turnhold-physics-growth.mjs && npm run test:environment && npm run test:aim-wind-audio && python -X utf8 tests/integration.py && npm run test:controls && npm run test:camera && python -X utf8 tests/editor-features.py && python -X utf8 tests/authored.py && python -X utf8 tests/audio-browser.py && python -X utf8 tests/bgm-transitions.py && python -X utf8 tests/stage12-browser.py && npm run test:stage36 && npm run test:skills && npm run test:story && npm run test:current-update && npm run test:progress-hud && npm run test:monsters && npm run test:party && npm run test:actors && npm run test:map-art && npm run test:act2 && npm run test:debug-mode",
     "test:debug-mode": "python -X utf8 tests/debug-mode-browser.py",
     "test:controls": "python -X utf8 tests/defend-shortcut-browser.py",
     "test:camera": "node tests/camera-bounds.mjs && python -X utf8 tests/camera-bounds-browser.py",
@@ -67,7 +67,10 @@
     "test:ui-buttons": "node tests/ui-buttons.mjs && node tests/portrait-framing.mjs",
     "test:act3:maps": "node tests/act3-production-maps.mjs && node tests/act3-production-shots.mjs && node tests/act3-map-safety.mjs",
     "test:act3:art": "node tests/act3-architecture.mjs && node tests/act3-hall-art.mjs && node tests/act3-art-regeneration.mjs && node tests/act3-canal-supports.mjs",
-    "test:rescue-physics": "node tests/rescue-physics.mjs"
+    "test:rescue-physics": "node tests/rescue-physics.mjs",
+    "test:one-way-platforms": "node tests/platform-schema-standalone.mjs && node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
+    "test:terrain-readability": "node tests/terrain-readability.mjs",
+    "test:granite-visuals": "node tests/granite-history-delta.mjs && node tests/granite-visual-alignment.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

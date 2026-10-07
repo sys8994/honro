@@ -1,3 +1,5 @@
+import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
+import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 // The fiend revision freezes combat/mission identity, not subsequently approved
 // Korean architecture, optional roofs, placement or schema-default geometry.
 import assert from 'node:assert/strict';
@@ -30,9 +32,10 @@ export function assertFiendContract(project,content,balance,archetypes,baseline)
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');
  assert.deepEqual(projectRules(project),baseline.projectRules,'Global gameplay/schema settings');
+ const legacyProject=beforeGraniteVisuals(beforePlatformPassages(plain(project)));
  const assetIds=project.library.map(a=>a.id);assert.equal(new Set(assetIds).size,assetIds.length,'Unique library IDs');
- for(const a of baseline.legacyAssets){const current=project.library.find(v=>v.id===a.id);assert(current,'Missing original asset '+a.id);assert.equal(hash(current),a.sha256,'Original Act 1/2 asset '+a.id);}
- for(const saved of baseline.legacyMaps){const current=project.stages.find(s=>s.metadata.stageId===saved.id);assert.equal(hash(current),saved.sha256,'Complete original Act 1/2 map '+saved.id);}
+ for(const a of baseline.legacyAssets){const current=legacyProject.library.find(v=>v.id===a.id);assert(current,'Missing original asset '+a.id);assert.equal(hash(current),a.sha256,'Original Act 1/2 asset '+a.id);}
+ for(const saved of baseline.legacyMaps){const current=legacyProject.stages.find(s=>s.metadata.stageId===saved.id);assert.equal(hash(current),saved.sha256,'Complete original Act 1/2 map '+saved.id);}
  for(const saved of baseline.act3){const id=saved.metadata.stageId,current=project.stages.find(s=>s.metadata.stageId===id);assert.deepEqual(missionContract(current,content.stages[id-1],balance.stages[id-1]),saved,'Act 3 combat/mission contract '+id);}
  assert.deepEqual(archetypeContract(archetypes),baseline.archetypes,'Fiend body and attack definitions');
  // The compatibility rename is used only to derive the historical fixture.

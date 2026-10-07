@@ -95,6 +95,7 @@
             this._landmarkLayer(cc,b.honroLandmarks||[],'mid');
             this._landmarkLayer(cc,b.honroLandmarks||[],'prop');
             this._landmarkLayer(cc,b.honroLandmarks||[],'front');
+            this.terrainReadability?.(cc,b);
             this._staticCacheBuild=oldAll;this._staticWorldCache={key,canvas:cv,rs,w:b.width,h:b.height,bytes:cv.width*cv.height*4};this._cacheStats.worldBuilds++;this._cacheStats.worldBuildMs+=performance.now()-t0;return this._staticWorldCache;
         }
         _drawStaticWorldCached(c,b,w,h){
@@ -130,6 +131,7 @@
                     this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
                     for(const t of terrain)if(!t.broken&&t.x+t.w>=left&&t.x<=left+size&&t.y+t.h>=top&&t.y<=top+size)this.terrain(cc,t);
                     this.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])this._landmarkLayer(cc,landmarks,layer);
+                    this.terrainReadability?.(cc,b,{left,top,right:left+size,bottom:top+size});
                     tile={canvas:cv,left,top};q.tiles.set(id,tile);this._cacheStats.domainTileBuilds=(this._cacheStats.domainTileBuilds||0)+1;this._cacheStats.worldBuildMs+=performance.now()-start;
                 }
                 const matrix=c.getTransform(),sx=Math.round(tile.left*matrix.a+matrix.e),sy=Math.round(tile.top*matrix.d+matrix.f),ex=Math.round((tile.left+size)*matrix.a+matrix.e),ey=Math.round((tile.top+size)*matrix.d+matrix.f);
@@ -190,6 +192,7 @@
             if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
             else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}
             if(this.background)this.background(c,w,h,b);
+            this.backgroundReadability?.(c,w,h,b);
             this.weatherParticles(c,b,w,h,effectDt);
             c.save();
             c.translate(w / 2, h / 2);
@@ -207,6 +210,7 @@
                 this._landmarkLayer(c,visibleLandmarks,'mid');
                 this._landmarkLayer(c,visibleLandmarks,'prop');
                 this._landmarkLayer(c,visibleLandmarks,'front');
+                this.terrainReadability?.(c,b,view);
             }
             // Animated water lives outside the world raster cache; its collision and
             // conduction geometry remain in the canonical static map.

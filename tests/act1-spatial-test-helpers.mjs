@@ -1,3 +1,4 @@
+import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import assert from 'node:assert/strict';
 // Test-only fixtures. They do not change production movement, AI or map rules.
 import {readFile} from 'node:fs/promises';
@@ -11,7 +12,7 @@ export const CLASSES=['archer','mage','knight','occultist'];
 // exactly when present, compare every other record, then author BOTH domains.
 // Callers separately require that the active project contains this exact root.
 export function applyCurrentTerrainRecipes(g,input){
- const project=structuredClone(input),plain=v=>JSON.parse(JSON.stringify(v));
+ const project=beforePlatformPassages(input),plain=v=>JSON.parse(JSON.stringify(v));
  for(const stage of project.stages||[]){if(stage.id!=='stage-7'||stage.metadata?.stageId!==7)continue;
   const roots=(stage.terrains||[]).filter(t=>t.id===g.HonroStage7Reentry.id);
   if(roots.length)assert.deepEqual(plain(roots),[plain(g.HonroStage7Reentry.terrain())],'Only the exact approved Stage7 root is a historical exception');
