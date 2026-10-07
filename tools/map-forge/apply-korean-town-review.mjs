@@ -27,7 +27,8 @@ function revise21(g,p,s,changes){
  for(const id of ['west-gate-wing','east-gate-wing']){const e=s.elements.find(e=>e.id===id),a=p.library.find(a=>a.id===e.assetId);a.collision=[];a.params.rearOnly=true;}
  remove(s,['rear-stair-piers']);
  const top=[[1730,2474],[2510,1996],[3570,1996]],bottom=[[3570,groundY(g,p,s,3570)],[2510,groundY(g,p,s,2510)],[1730,groundY(g,p,s,1730)]];
- const stone=P([...top,...bottom],'#737e69')+line(top,'#9ba48b',7)+line([[1900,2450],[2460,2250],[3540,2250]],'#566c5f',5);
+ const outline='M'+[...top,...bottom].map(q=>q.join(' ')).join(' L')+' Z';
+ const stone=`<path fill="#737e69" fill-rule="evenodd" d="${outline} M2567 2500V2372C2567 2165 2853 2165 2853 2372V2500Z"/>`+line(top,'#9ba48b',7)+line([[1900,2450],[2460,2250],[3540,2250]],'#566c5f',5);
  const e=element(p,s,asset('a3-korean:21:stair-retaining-wall','석축에 붙은 성벽 오름길',stone,[],[1690,1940,1920,730],'stone'),'korean-gate-retaining-wall',0,0);s.elements.unshift(s.elements.pop());
  const shop=p.library.find(a=>a.id===s.elements.find(e=>e.id==='entry-shop').assetId),peak=2640+Math.min(...shop.collision[0].map(p=>p.y));
  replace(p,s,'market-roof-stair',stairs('a3-korean:21:market-roof-stair',370,2495-peak,{thin:true}),{x:130,y:2495});
@@ -48,6 +49,15 @@ function revise23(g,p,s,changes){
  replace(p,s,'roof-west-link',deck('a3-korean:23:low-roof-link',215,24,{rail:false}),{x:900,y:low});
  element(p,s,stairs('a3-korean:23:watergate-roof-access',360,low-upper,{thin:true}),'korean-watergate-roof-access',1450,low);
  replace(p,s,'west-roof-bridge',deck('a3-korean:23:watergate-roof-walk',890,30,{rail:false}),{x:1810,y:upper});
+ // Short repair-walk supports end on the neighbouring real roofs. They
+ // do not recreate the removed tower-height posts or add collision barriers.
+ const compiled=g.HonroMaps.compile(s,p).terrain,braces=[],contacts=[];
+ for(const [id,x,top]of [['west-roof-bridge',2450,upper+30],['west-roof-bridge',2605,upper+30],['korean-watergate-roof-access',1550,low-(100/360)*(low-upper)+34]]){
+  const hits=compiled.filter(t=>t.honroElementId!==id&&t.honroElementId!=='roof-west-link').flatMap(t=>g.HONRO_CORE.terrainSurfaces(t,x).map(q=>({...q,element:t.honroElementId}))).filter(q=>q.y>=top&&q.y-top<180).sort((a,b)=>a.y-b.y);
+  if(!hits.length)continue;const foot=hits[0].y;braces.push(R(x-7,top,14,foot-top,'#6a573b'),R(x-4,top,4,foot-top,'#a18a5e'),R(x-12,foot-5,24,5,'#84734c'));contacts.push({element:id,x,top,bottom:foot,support:hits[0].element});
+ }
+ const braceAsset=asset('a3-korean:23:roof-repair-braces','낮은 지붕 보수길의 짧은 받침',braces.join(''),[],[1430,upper,1250,400]);braceAsset.params={rearOnly:true,structuralSupports:contacts};element(p,s,braceAsset,'korean-roof-repair-braces',0,0);s.elements.unshift(s.elements.pop());
+ for(const id of ['roof-entry','korean-watergate-roof-access']){const el=s.elements.find(e=>e.id===id),a=p.library.find(a=>a.id===el.assetId);a.material='wood';a.vector=compileSVG(a.vector.source.replaceAll('#627676','#746247').replaceAll('#aab29a','#b3a071'));a.params.collisionRole='solid-stair';}
  s.design.act3.optionalRoutes=[{id:'western-roof-gallery',points:[{x:40,y:2730,jumpTo:{x:100}},{x:150,y:2580-(80/380)*(2580-low)},{x:430,y:low},{x:650,y:low},{x:960,y:low},{x:1260,y:low},{x:1470,y:low},{x:1810,y:upper},{x:2280,y:upper},{x:2640,y:upper}]}];
  const loftGuard=s.units.find(u=>u.id==='a3-23-enemy-7');if(loftGuard){const old=clone(loftGuard),a=p.library.find(a=>a.id===s.elements.find(e=>e.id==='customs-hall').assetId);loftGuard.y=2730+Math.min(...a.collision[0].map(q=>q.y));changes.push({stage:23,unit:loftGuard.id,reason:'Seat the existing roof guard on the lower customs roof instead of the removed upper skeleton',before:old,after:clone(loftGuard)});}
  for(const [i,x,y,w]of [[0,1070,2730,185],[1,2950,2730,250],[2,5540,2730,180],[3,6740,2730,220]])wallScenery(p,s,'korean-quay-wall-'+i,x,y,w,i===1?'tile':'earth');
