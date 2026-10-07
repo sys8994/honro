@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // The same retained vector renderer serves game, Stage View, portraits and the art lab.
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-function create(assets){const cache=new Map();
+function create(assets){const cache=new Map(),idleRasters=new Map();
 function sample(keys,t){if(t<=keys[0][0])return keys[0][1];for(let i=1;i<keys.length;i++)if(t<=keys[i][0]){const a=keys[i-1],b=keys[i],f=(t-a[0])/(b[0]-a[0]),s=f*f*(3-2*f);return a[1]+(b[1]-a[1])*s;}return keys.at(-1)[1];}
 function compile(id){if(cache.has(id))return cache.get(id);const a=assets[id],byId=new Map(a.parts.map(p=>[p.id,p]));const parts=a.parts.map(p=>{const chain=[];let q=p;while(q){chain.unshift(q);q=byId.get(q.parent);}return{...p,chain,paths:p.paths.map(v=>({...v,path:new Path2D(v.d)}))};});const value={asset:a,parts};cache.set(id,value);return value;}
 function pose(a,time,state={}){
@@ -18,7 +18,7 @@ function pose(a,time,state={}){
  return result;
 }
 function state(u){return{move:(u.moving||0)>.01&&!u.airborne&&!u.jumping,attack:u.anim>.44?clamp((1-u.anim)/.56,0,1):undefined,hit:u.hurt>.4?clamp((.7-u.hurt)/.3,0,1):undefined,aim:u.angle};}
-function draw(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
+function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
  const q=compile(id),a=q.asset,poses=pose(a,time,st),lod=detail??(pixels>=120?2:pixels>=48?1:0);
  for(const p of q.parts){c.save();for(const joint of p.chain){const v=poses[joint.id],[x,y]=joint.pivot;c.translate(x+v.x,y+v.y);c.rotate(v.rotate*Math.PI/180);c.scale(v.scaleX,v.scaleY);c.translate(-x,-y);}
   for(const v of p.paths){if(v.lod>lod)continue;c.lineWidth=v.width;c.lineJoin='round';c.lineCap='round';
@@ -28,6 +28,17 @@ function draw(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
   }c.restore();
  }
  return{lod,parts:q.parts.length};
+}
+function draw(c,id,options={}){
+ const {time=0,state:st={},pixels=128,mode='paint',detail}=options,a=assets[id];
+ if(a.budget!=='act3-authored'||pixels>=48||mode!=='paint'||detail!==undefined||st.move||st.attack!==undefined||st.hit!==undefined||st.jump!==undefined||typeof document==='undefined')return drawVector(c,id,options);
+ // Reuse the exact current idle pose across a distant formation. One generously
+ // oversampled image per species/aim is refreshed every frame, so neither the
+ // vector source nor animation rate is reduced. Motion and close views stay vector.
+ const key=id+':'+(a.aimPart&&Number.isFinite(st.aim)?st.aim:0);let r=idleRasters.get(key);
+ if(!r){const [x,y,w,h]=a.viewBox,margin=64,cv=document.createElement('canvas');cv.width=Math.ceil(w+margin*2);cv.height=Math.ceil(h+margin*2);r={canvas:cv,x:x-margin,y:y-margin,time:NaN};idleRasters.set(key,r);if(idleRasters.size>32)idleRasters.delete(idleRasters.keys().next().value);}
+ if(r.time!==time){const cc=r.canvas.getContext('2d');cc.setTransform(1,0,0,1,0,0);cc.clearRect(0,0,r.canvas.width,r.canvas.height);cc.translate(-r.x,-r.y);drawVector(cc,id,{...options,detail:0});r.time=time;}
+ c.drawImage(r.canvas,r.x,r.y);return{lod:0,parts:a.parts.length};
 }
 return{draw,pose,state,assets,cacheSize:()=>cache.size};}
 G.HonroVectorParts={create};
