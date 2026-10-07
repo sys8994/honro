@@ -64,7 +64,7 @@
     "test:story-canon": "node tests/story-canon-v01.mjs && node tests/story-canon-save.mjs",
     "test:rescue-physics": "node tests/rescue-physics.mjs",
     "test:ui-buttons": "node tests/ui-buttons.mjs && node tests/portrait-framing.mjs",
-    "test:one-way-platforms": "node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
+    "test:one-way-platforms": "node tests/platform-schema-standalone.mjs && node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
     "test:terrain-readability": "node tests/terrain-readability.mjs",
     "test:granite-visuals": "node tests/granite-history-delta.mjs && node tests/granite-visual-alignment.mjs"
   },

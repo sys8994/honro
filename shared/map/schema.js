@@ -1,5 +1,8 @@
 (function(G){'use strict';
 const VERSION=6,clone=x=>JSON.parse(JSON.stringify(x)),C=G.HONRO_CORE;
+// Validation also runs in the standalone legacy importer, before Geometry is
+// loaded. Keep this pure default aligned with Geometry.oneWay (tested in a VM).
+const terrainOneWay=t=>t.oneWay===undefined?t.type==='platform':t.oneWay===true;
 const arrays=['terrains','materials','elements','units','events','encounters','objectives','markers','layers'];
 function layers(){return['far','mid','back','structural-back','terrain','interactive','prop','units','events','front','L2','L3','L4','L5'].map(id=>({id,name:id,visible:true,locked:false}));}
 function emptyStage(id='stage-new',name='새 스테이지',width=5000,height=3200){const st={id,name,width,height,backdrop:'forest',metadata:{stageId:1,campaign:false},terrains:[],materials:[],elements:[],units:[],events:[],encounters:[],objectives:[],markers:[],layers:layers(),meta:{notes:'',seed:12031},initialState:{}};st.environment=G.HonroEnvironment.makeEnvironment(st);return st;}
@@ -58,7 +61,7 @@ function validate(project){
   // Standalone map/environment tools may load the schema without game content.
   if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>(G.HONRO_CONTENT?.stages?.length??20))issue('err',`${st.id}: stageId must reference an implemented campaign stage`);
   const ids=unique(arrays.filter(k=>k!=='layers').flatMap(k=>st[k]||[]),st.id),terrainIds=new Set(st.terrains.map(t=>t.id));
-  for(const t of st.terrains){if(t.oneWay!==undefined&&typeof t.oneWay!=='boolean')issue('err',`${t.id}: oneWay must be boolean`);if(G.HonroGeometry.oneWay(t)&&t.properties?.honroCeiling)issue('err',`${t.id}: a solid ceiling cannot be a one-way platform`);const pts=t.type==='solid'?t.points:t.control;if(!Array.isArray(pts)||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!p||!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
+  for(const t of st.terrains){if(t.oneWay!==undefined&&typeof t.oneWay!=='boolean')issue('err',`${t.id}: oneWay must be boolean`);if(terrainOneWay(t)&&t.properties?.honroCeiling)issue('err',`${t.id}: a solid ceiling cannot be a one-way platform`);const pts=t.type==='solid'?t.points:t.control;if(!Array.isArray(pts)||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!p||!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
   for(const e of st.elements){if(!assets.has(e.assetId))issue('err',`${e.id}: missing asset ${e.assetId}`);if(!Number.isFinite(e.x)||!Number.isFinite(e.y))issue('err',`${e.id}: invalid position`);}
   for(const m of st.materials)if((m.terrainId||m.support)&&!terrainIds.has(m.terrainId||m.support))issue('err',`${m.id}: missing support`);
   for(const u of st.units){if(!G.HonroUnits.has(u.kind))issue('err',`${u.id}: unknown unit ${u.kind}`);if(!Number.isFinite(u.x)||!Number.isFinite(u.y))issue('err',`${u.id}: invalid position`);if(!(u.team in G.HonroUnits.teams))issue('err',`${u.id}: unknown team`);}
