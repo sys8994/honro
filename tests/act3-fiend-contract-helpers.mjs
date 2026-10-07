@@ -8,6 +8,14 @@ import {readFileSync} from 'node:fs';
 const encounterRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-encounter-contract.json',import.meta.url),'utf8'));
 const locationRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-location-semantic-contract.json',import.meta.url),'utf8'));
 const refinementRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-refinement-delta.json',import.meta.url),'utf8'));
+const caveBatRevision=JSON.parse(readFileSync(new URL('./fixtures/act2-cave-bat-delta.json',import.meta.url),'utf8'));
+function beforeCaveBatRevision(project){
+ for(const row of caveBatRevision.rows){
+  const map=project.stages.find(s=>s.metadata.stageId===row.id);assert(map,'Reviewed cave roster stage '+row.id);
+  for(const change of row.kinds){const unit=map.units.find(u=>u.id===change.id);assert(unit,'Reviewed cave unit '+change.id);assert.equal(unit.kind,change.after,'Exact reviewed bat kind '+change.id);unit.kind=change.before;}
+ }
+ return project;
+}
 // Reverse only this request's explicit additions. The older contracts still
 // reject changes to mission rules, unit identity, protection or combat tuning.
 function beforeRefinementRevision(project,archetypes){
@@ -62,7 +70,7 @@ export function assertFiendContract(project,content,balance,archetypes,baseline)
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');
  assert.deepEqual(projectRules(project),baseline.projectRules,'Global gameplay/schema settings');
- const legacyProject=beforeGraniteVisuals(beforePlatformPassages(plain(project)));
+ const legacyProject=beforeCaveBatRevision(beforeGraniteVisuals(beforePlatformPassages(plain(project))));
  const assetIds=project.library.map(a=>a.id);assert.equal(new Set(assetIds).size,assetIds.length,'Unique library IDs');
  for(const a of baseline.legacyAssets){const current=legacyProject.library.find(v=>v.id===a.id);assert(current,'Missing original asset '+a.id);assert.equal(hash(current),a.sha256,'Original Act 1/2 asset '+a.id);}
  for(const saved of baseline.legacyMaps){const current=legacyProject.stages.find(s=>s.metadata.stageId===saved.id);assert.equal(hash(current),saved.sha256,'Complete original Act 1/2 map '+saved.id);}
@@ -94,6 +102,7 @@ export function assertFiendContractScope(project,content,balance,archetypes,base
  assertFiendContract(p,c,b,a,baseline);
  const rejects=(label,mutate)=>{const q=plain(project),r=plain(content),v=plain(balance),defs=plain(archetypes);mutate(q,r,v,defs);assert.throws(()=>assertFiendContract(q,r,v,defs,baseline),undefined,label);};
  rejects('old map data',q=>q.stages[0].units[0].x++);
+ rejects('reviewed cave bat kind',q=>q.stages[12].units.find(u=>u.id===caveBatRevision.rows[0].kinds[0].id).kind='honroSpirit');
  rejects('old shared art',q=>q.library.find(v=>v.id===baseline.legacyAssets[0].id).name+=' changed');
  rejects('unit identity',q=>q.stages[22].units.find(u=>u.team==='enemy').id+='-changed');
  rejects('unit kind',q=>q.stages[22].units.find(u=>u.team==='enemy').kind='ghost');
