@@ -11,6 +11,8 @@ const scene=Object.assign(Object.create(g.HonroScene.prototype),{scale:.5,time:2
 function draw(){const calls=[],ctx=new Proxy({},{get:(o,k)=>k==='createRadialGradient'? (...args)=>{calls.push([k,...args]);return{addColorStop(){}};}:k in o?o[k]:(...args)=>calls.push([k,...args]),set:(o,k,v)=>(o[k]=v,true)});const before=JSON.stringify(b);g.HonroAct3Art.draw(ctx,scene,b);assert.equal(JSON.stringify(b),before,'art never initializes or changes objective state');return calls;}
 let calls=draw();assert.equal(calls.filter(c=>c[0]==='createRadialGradient').length,2);for(const id of ['fire-west','fire-east']){const p=g.HonroAct3.marker(b,id);assert(p);assert(calls.some(c=>c[0]==='translate'&&c[1]===p.x&&c[2]===p.y-8),'flame uses actual '+id);}
 b.honroState.act3.done['water-release']=true;calls=draw();assert.equal(calls.filter(c=>c[0]==='createRadialGradient').length,1);b.honroState.act3.done['fire-screen']=true;calls=draw();assert.equal(calls.filter(c=>c[0]==='createRadialGradient').length,0);
+assert(calls.some(c=>c[0]==='fillRect'&&c[1]===-67&&c[2]===-8),'charred timbers remain after both fires are controlled');
+assert(!calls.some(c=>c[0]==='bezierCurveTo'),'controlled fires emit no smoke');
 const health=scene.terrainHealthTargets(b).find(t=>t.id==='water-release');assert(health);assert.equal(health.label,'수문 고정구 끊어 서쪽 불길 막기');assert.equal(health.blocked,'설오의 사격 필요');
 const empty=structuredClone(b);delete empty.honroState.act3;const before=JSON.stringify(empty);g.HonroAct3Art.guide(empty);assert.equal(JSON.stringify(empty),before,'raw display queries stay pure before lifecycle initialization');
 console.log('PASS Act 3 cue purity, two authored fire sites, independent extinguishing, exact control labels and class hints');
