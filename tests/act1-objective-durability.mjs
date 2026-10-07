@@ -24,7 +24,7 @@ check('A nonfatal real damage call visibly reduces the remaining amount, includi
 check('Breaking the target removes the attack cue and preserves normal stabilization rules',()=>{
  e.damageTerrain(t,10000);assert(t.broken);const state=g.HonroObjectives.state(b,st);
  assert.match(state.summary,/고리쇠 파괴 완료/);assert(!state.targets.some(t=>t.kind==='seal'));
- assert(!state.complete,'Existing minimum-round/stabilization rules must still apply');
+ assert(!state.complete,'The real post-destruction stabilization round must still apply');
 });
 await mkdir('_local/reports/objective-durability',{recursive:true});
 await writeFile('_local/reports/objective-durability/summary.json',JSON.stringify({kind:'objective-damage-state-fixtures',status:'passed',checks:rows,

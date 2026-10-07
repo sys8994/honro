@@ -32,7 +32,7 @@ function state(b){const list=steps(b),s=current(b),a=memory(b),issue=sourceIssue
  const complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${list.filter(q=>a.done[q.id]).length}/${list.length} · ${s?.parallelGroup==='fire-control'?'불길 진압 '+list.filter(q=>q.parallelGroup==='fire-control'&&a.done[q.id]).length+'/2 · 설오 수문 / 휘겸 차단막'+detail:s?s.label+detail:'모든 목표 완료'}`,targets:targets.filter(t=>Number.isFinite(t.x)&&Number.isFinite(t.y)),allTargets:all};
 }
 function interactionTarget(b,m){if(!active(b)||m?.action!=='act3'||!m.target)return m;const s=steps(b).find(s=>s.id===m.id);if(!s||!['rescue','interact'].includes(s.kind))return m;const u=b.units.find(u=>u.id===m.target);return alive(u)&&!m.collected?u:null;}
-function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&current(b),s=b&&readySteps(b).find(q=>q.id===m.id);if(!active(b)||!alive(u)||u.side!==0||m.collected)return{ok:false,reason:'상호작용할 수 없음'};
+function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&current(b),s=b&&readySteps(b).find(q=>q.id===m.id);if(!active(b)||!alive(u)||u.side!==0||u.summoned||u.enthrall||m.collected)return{ok:false,reason:'상호작용할 수 없음'};
  if(!s)return{ok:false,reason:next?'먼저 '+next.label:'목표 완료'};
  if(!['interact','rescue'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};

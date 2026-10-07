@@ -86,7 +86,7 @@ await check('Mid-hold export/import/Continue preserves one spawned wave and coun
 });
 
 await check('Mid-escort export/import/Continue preserves the carrier and advances the same route without duplication',async()=>{
- const b=enter(23);completed(b,3);
+ const b=enter(23);completed(b,A.steps(b).findIndex(s=>s.id==='dock-mid'));
  const npc=app.engine.unit('act3-carrier'),a=A.memory(b),u=app.engine.heroesAlive()[0];
  a.escorts[npc.id]={started:true,waypoints:{'dock-mid':0}};
  npc.fixed=false;npc.moveLeft=npc.maxMove=900;npc.hp-=31;npc.shield=7;
