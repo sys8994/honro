@@ -21,7 +21,7 @@ function state(u){return{move:(u.moving||0)>.01&&!u.airborne&&!u.jumping,attack:
 function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
  const q=compile(id),a=q.asset,poses=pose(a,time,st),lod=detail??(pixels>=120?2:pixels>=48?1:0);
  for(const p of q.parts){c.save();for(const joint of p.chain){const v=poses[joint.id],[x,y]=joint.pivot;c.translate(x+v.x,y+v.y);c.rotate(v.rotate*Math.PI/180);c.scale(v.scaleX,v.scaleY);c.translate(-x,-y);}
-  for(const v of p.paths){if(v.lod>lod)continue;c.lineWidth=v.width;c.lineJoin='round';c.lineCap='round';
+  c.lineJoin='round';c.lineCap='round';for(const v of p.paths){if(v.lod>lod)continue;c.lineWidth=v.width;
    if(mode==='wire'){c.strokeStyle=v.lod===0?'#e3c98f':v.lod===1?'#8fbfaf':'#677c90';c.lineWidth=.3;c.stroke(v.path);continue;}
    if(v.fill){c.fillStyle=mode==='silhouette'?'#ddd7c1':a.palette[v.fill];c.fill(v.path);}
    if(v.stroke&&(mode!=='silhouette'||v.lod===0)){c.strokeStyle=mode==='silhouette'?'#ddd7c1':a.palette[v.stroke];c.stroke(v.path);}
