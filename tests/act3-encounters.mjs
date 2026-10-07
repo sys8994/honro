@@ -7,7 +7,7 @@ const authored=g.HONRO_PROJECT,again=clone(authored);applyEncounters(g,again);as
 for(let id=21;id<=30;id++){
  const s=authored.stages[id-1],plan=s.design.act3.encounterPlan,expected=ENCOUNTERS[id],{b,st}=battlefield(g,id),e=b.units.filter(u=>u.side===1),xs=e.map(u=>u.x).sort((a,b)=>a-b),gaps=xs.slice(1).map((x,i)=>x-xs[i]);
  assert.equal(e.length,plan.initial);assert.equal(e.filter(u=>u.elite).length,plan.elites);assert.equal(e.filter(u=>u.honroAct3Elite).length,plan.elites);
- assert.equal(s.encounters.length,5);assert.equal(new Set(e.map(u=>u.group)).size,5);assert.equal(b.enemyLimit,3);
+ assert.equal(s.encounters.length,expected.length);assert.equal(new Set(e.map(u=>u.group)).size,expected.length);assert.equal(b.enemyLimit,3);
  assert(e.length>=18&&e.length<=24);assert(plan.elites/e.length>=.18&&plan.elites/e.length<=.25);
  assert(gaps.some(v=>v>=400),'empty connection interval');assert(gaps.filter(v=>v<=300).length>=Math.floor(e.length/2),'meaningful local density');
  for(const q of expected){assert(s.markers.some(m=>m.id===q.anchor||m.target===q.anchor)||s.elements.some(v=>v.id===q.anchor)||s.terrains.some(v=>v.id===q.anchor),`stage ${id}: group anchor ${q.anchor} exists`);const us=e.filter(u=>u.honroCohort===q.id);assert.equal(us.length,q.members.length);assert.equal(new Set(us.map(u=>u.honroCluster)).size,1);}
