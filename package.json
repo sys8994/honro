@@ -72,7 +72,7 @@
     "test:terrain-readability": "node tests/terrain-readability.mjs",
     "test:granite-visuals": "node tests/granite-history-delta.mjs && node tests/granite-visual-alignment.mjs",
     "test:playtest-template": "node tests/playtest-template.mjs",
-    "test:objective-clarity": "node tests/objective-clarity.mjs && node tests/battle-help.mjs"
+    "test:objective-clarity": "node tests/objective-clarity.mjs && node tests/objective-revision.mjs && node tests/battle-help.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
