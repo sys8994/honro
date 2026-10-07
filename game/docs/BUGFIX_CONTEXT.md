@@ -1,3 +1,7 @@
+## 24–27 조사팀 상태 계약 — 2026-10-07 / 구현 중
+
+새24 분기 또는 명시적 재플레이에만2+2 roster·HPMP/상태carry·공유아이템·원정XP·분기재시도를 적용한다. 옛전투 Continue 및1–23/28–30은 보존한다. [계약/지도hook/검증한계](ACT3_SPLIT_CAMPAIGN.md). 전용App 상태회귀9묶음 통과. 지도·목표·씬 통합과 정상전투/Pages·전체verify는 미완료이며 배포승인을 의미하지 않는다.
+
 # HONRO 게임 수정 맥락
 
 **발판 투사체 하이브리드(2026-10-07):** `Engine.projectileCollision`과 `segmentProjectileTerrain`은 oneWay 지형의 윗면 외부→내부 swept 진입만 받는다. 아래/옆/시작겹침은 통과하며 solid 벽·동굴 천장은 유지한다. 실제 탄·모든 일반 자탄·유도 획득·발사 원점·화살 재생 예측·담허 반사파 예측은 같은 판정을 쓴다. 진목과 지상 소환은 실제 맞은 발판에 설치하여 가까운 다른 윗발판으로 끌어올리지 않는다. 명시 phase, ethereal 소환 광선·만혼귀결, 캐릭터 몸 돌진/시야/이동은 별도 기존 규칙이다. 새 투사체 저장 필드는 없다. 5장 고리쇠는 고체 지붕 아래 약42px 틈에 매달린 파괴 장치이며 기존 옆 사격을 보존해야 하므로 해당 저작 oneWay만 false로 고쳤고, `HonroProjectileTargets`가 정확한 campaign 원형 Continue에만 같은 한 flag를 보정한다. HP·의식·파괴 상태와 사용자 맵은 보존한다. 아래키+도약 내려가기는 이번 범위에 없다. 회귀는 `tests/projectile-platforms.mjs` 및 `test:one-way-platforms`; 과거 문서의 'oneWay도 투사체 양면 막힘' 설명은 이 개정으로 대체된다.
