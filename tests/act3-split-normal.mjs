@@ -1,5 +1,6 @@
 // Native production App/engine bot. Menu/Canvas/storage are doubles; normal
-// movement, jump, skills, items, interaction and wait inputs are used. Dialogue
+// movement, jump, skills, interaction and the App defense action are used.
+// Engine-only item commands are never used: HONRO has no visible supply UI. Dialogue
 // pages are explicitly advanced. No combat HP, position, objective or inventory
 // state is edited. Only the initial chapter-24 entry is a prepared fixture.
 // Chapters25–27 retain real preceding outcome resources; no per-stage reload.
@@ -14,7 +15,6 @@ const source=Object.fromEntries(await Promise.all(sourceFiles.map(async f=>[f,cr
 // Exactly one prepared entry, before chapter 24. Later chapters must be
 // reached through the ordinary App result-continue control in this same App.
 const profile=profileThrough(23);for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgression.budget(24).start;C.autoTrain(profile.heroes[cls],cls);C.sanitizeLoadout(profile,cls);}
-const engineItems=process.env.HONRO_BOT_ENGINE_ITEMS==='1';
 let app=load(profile);app.launch(24);
 const initialProfile=plain(profile);await writeFile(`${out}/entry-profile.json`,JSON.stringify(initialProfile));
 const entryHistory=[];
@@ -42,10 +42,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
   if(nearFoe&&s.kind!=='destroy'&&s.kind!=='escort'&&s.kind!=='hold'&&Math.hypot(nearFoe.x-goal.x,nearFoe.y-goal.y)<550){const distance=u.cls==='knight'?120:440;goal={x:nearFoe.x+(u.x<nearFoe.x?-distance:distance),y:nearFoe.y};}
   move(u,goal);drain();if(!e.canAct())continue;
   let action=null;
-  if(engineItems&&u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal'))action={action:'heal'};
-  else if(engineItems&&u.hp<u.maxHp*.5&&u.shield<u.maxHp*.1&&b.items.ward>0&&e.item('ward'))action={action:'ward'};
-  else if(engineItems&&u.focus<u.maxFocus*.15&&b.items.focus>0&&e.item('focus'))action={action:'focus'};
-  else if(m.action&&A.eligibility(app,m).ok&&A.use(app,m))action={action:'interact',target:m.id};
+  if(m.action&&A.eligibility(app,m).ok&&A.use(app,m))action={action:'interact',target:m.id};
   else if(t&&!t.broken&&(!s.requiredClass||u.cls===s.requiredClass)){
    const skill=C.SKILLS[C.baseSkill(u.cls)],direct=Math.atan2(u.y-u.h*.6-(t.y+t.h*.5),t.x+t.w/2-u.x)*180/Math.PI;let best=null;
    for(const angle of [direct,...Array.from({length:49},(_,i)=>-12+i*4)])for(const power of [.2,.35,.5,.7,.9,1]){const hit=e.predict(u,skill,angle,power,undefined,true);if(hit.terrain===t.id){best={angle,power};break;}if(best)break;}
@@ -56,7 +53,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
   if(count%8===0){console.log('PLAY',id,b.round,s.id,actions.length,e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));}
  }
  if(b.phase==='won'){app.outcome();drain();}else drain();
- const row={consumableInputMode:engineItems?'engine-only diagnostic, not exposed HONRO UI':'disabled: current HONRO UI has no consumable action',stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,fingerprint,source,entry,actions,dialogue,staging:plain(b.honroStaging||null),heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit),scope:'Continuous 24→27 native production App/engine input bot. One chapter-24 prepared entry only; later entries use result-continue. Menu, Canvas and storage doubles. No combat HP/position/objective/inventory edits. Not browser play or a human difficulty verdict.'};rows.push(row);
+ const row={consumableInputMode:'disabled: current HONRO UI has no consumable action',stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,fingerprint,source,entry,actions,dialogue,staging:plain(b.honroStaging||null),heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit),scope:'Continuous 24→27 native production App/engine input bot. One chapter-24 prepared entry only; later entries use result-continue. Menu, Canvas and storage doubles. No combat HP/position/objective/inventory edits. Not browser play or a human difficulty verdict.'};rows.push(row);
  await writeFile(`${out}/stage-${id}.json`,JSON.stringify(row,null,2));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));await writeFile(`${out}/summary.json`,JSON.stringify({source,rows,entryHistory},null,2));console.log('RESULT',id,b.phase,b.round,row.goal,actions.length,row.reason);
  if(b.phase!=='won')break;
  if(id<27)h.click('result-continue');
