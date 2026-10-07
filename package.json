@@ -71,7 +71,8 @@
     "test:one-way-platforms": "node tests/projectile-platforms.mjs && node tests/projectile-targets.mjs && node tests/projectile-target-save.mjs && node tests/platform-schema-standalone.mjs && node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
     "test:terrain-readability": "node tests/terrain-readability.mjs",
     "test:granite-visuals": "node tests/granite-history-delta.mjs && node tests/granite-visual-alignment.mjs",
-    "test:playtest-template": "node tests/playtest-template.mjs"
+    "test:playtest-template": "node tests/playtest-template.mjs",
+    "test:objective-clarity": "node tests/objective-clarity.mjs && node tests/battle-help.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

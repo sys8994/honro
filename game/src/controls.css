@@ -247,3 +247,8 @@
 .honro .settings-dialog .fullscreen-setting b{margin-left:auto}
 .honro .settings-dialog .setting select{min-width:0}
 @media(orientation:landscape) and (max-height:550px){.honro .top{height:56px;min-height:56px;padding-block:6px}}
+
+/* The current task and the actual finish condition are separate, always visible. */
+.honro #app .battle-info .mission-end{display:block;color:#b7c7bc;font-size:10px;line-height:1.35;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.honro .battle-help-dialog .mission-checklist{margin:0;padding-left:22px;font-size:13px;line-height:1.7}
+.honro .battle-help-dialog .mission-checklist .complete{color:#99b4a6}
