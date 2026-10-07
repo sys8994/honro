@@ -9,11 +9,11 @@ for(let id=21;id<=30;id++){
  const before=JSON.stringify(b),s=g.HonroObjectives.state(b,st);assert.equal(JSON.stringify(b),before,'reading guidance cannot mutate progress');assert.equal(s.visibleChecklist.length,1);assert(s.currentInstruction.length<65);
  const ordered=g.HonroAct3.steps(b);for(let i=0;i<ordered.length;i++){const q=ordered[i];b.honroState.act3.done[q.id]=true;const help=g.HonroObjectives.help({engine:{b},stage:st});assert(help.checklist.every(row=>row.done||row.current));assert(help.checklist.filter(row=>!row.done).length<=1);assert(help.checklist.every(row=>ordered.findIndex(s=>s.id===row.id)<=i+1||ordered[i+1]?.parallelGroup));}
  const emitted=[];b.units=b.units.filter(u=>u.side!==1);b.honroGrowth.ledger.stages[id].cleared=false;const e=new C.Engine(b,ev=>emitted.push(ev),true);e.checkEnd=()=>false;
- const notices=[],app={engine:e,stage:st,actorBoundary:null,dialogue:null,done:false,event:t=>notices.push(t),sayLines(){},dirty:false};
- b.honroState.act3.done={};g.HonroEncounters.update(app,0,{progress:b.width,collected:0,broken:0,height:0});assert.equal(b.honroState.pendingEvents.length,0,'no early response');
- for(const ev of events){b.honroState.act3.done[ev.when.objectiveDone]=true;app.actorBoundary=null;const old=b.units.length;g.HonroEncounters.update(app,0,{progress:b.width,collected:0,broken:0,height:0});
+ const notices=[],app={engine:e,stage:st,actorBoundary:null,dialogue:null,done:false,event:t=>notices.push(t),sayLines(){},checkMission(){return false;},dirty:false};
+ b.honroState.act3.done={};g.HonroMission.tick(app,0);assert.equal(b.honroState.pendingEvents.length,0,'no early response');
+ for(const ev of events){b.honroState.act3.done[ev.when.objectiveDone]=true;if(ev.when.progress){e.active.x=b.width-90;e.active.y=g.HonroWorld.top(b,e.active.x,e.active.y);}app.actorBoundary=null;const old=b.units.length;g.HonroMission.tick(app,0);
   assert(b.honroState.pendingEvents.includes(ev.id),'warning queued');assert.equal(old,b.units.length,'warning cannot spawn actors before a safe boundary');
-  app.actorBoundary=e.active?.id||'boundary';b.honroState.actorTurnSerial=(b.honroState.actorTurnSerial||0)+1;g.HonroEncounters.update(app,0,{progress:b.width,collected:0,broken:0,height:0});assert(b.honroState.flags['event:'+ev.id],'entry commits once');
+  app.actorBoundary=e.active?.id||'boundary';b.honroState.actorTurnSerial=(b.honroState.actorTurnSerial||0)+1;g.HonroMission.tick(app,0);assert(b.honroState.flags['event:'+ev.id],'normal mission loop commits one entry');
   const born=b.units.filter(u=>u.honroSpawnSource===ev.id);assert.equal(born.length,ev.action.n);for(const u of born){assert(u.awake);assert(C.validTerrainContactPose(b.terrain,u),id+'/'+ev.id+' supported reinforcement');assert(Math.abs(u.x-ev.entry.x)<650,'entry stays at authored doorway');assert(u.xpBudget>0);assert(u.honroAct3EncounterTuned);}
   const after=JSON.stringify(b);g.HonroEncounters.flush(app);assert.equal(JSON.stringify(b),after,'flushing a saved committed event never duplicates actors');
   // Defeat fixture frees population for the next entry; not a combat-playthrough.

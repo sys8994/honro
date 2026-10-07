@@ -30,7 +30,7 @@ with sync_playwright() as p:
         stage(sid)
         data = page.evaluate('''()=>{const b=HonroApp.engine.b;return{stage:b.honroStage,width:b.width,height:b.height,
           pools:b.honroSurfaceZones.filter(z=>z.kind==='water-pool').map(z=>({id:z.id,surface:z.surface,bottom:z.bottom,carved:!!z.honroCarvedBasin})),
-          forms:b.honroCaveForms||[],target:b.honroCaveHangingTarget||null,space:b.honroMap.space}}''')
+          forms:b.honroCaveForms||[],target:b.honroCaveHangingTarget||null,clue:b.honroCaveHangingClue||null,space:b.honroMap.space}}''')
         rows.append(data)
         for j, pool in enumerate(data['pools']):
             x = sum(pt[0] for pt in pool['surface']) / 2
@@ -43,8 +43,10 @@ with sync_playwright() as p:
             box = room['bounds']
             shot(f'stage-{sid}-{selected}', box['x'] + box['w'] / 2, box['y'] + box['h'] / 2, .5)
         if sid == 15:
-            t = data['target']
-            shot('stage-15-vault-target', t['x'], t['targetY'] + 500, .57)
+            assert data['target'] is None, 'Removed hanging attack target was reintroduced'
+            t = data['clue']
+            assert t and t['targetY'] > t['roofY'], 'Approved hanging clue is absent'
+            shot('stage-15-vault-clue', t['x'], t['targetY'] + 500, .57)
             used = page.evaluate('''()=>{const a=HonroApp,b=a.engine.b;HonroAct2.memory(b).done['clear-water']=true;
               for(const u of b.units)if(u.side===1){u.dead=true;u.hp=0;}
               return HonroAct2.use(a,b.honroMarkers.find(m=>m.id==='sluice'));}''')

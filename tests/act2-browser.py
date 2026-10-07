@@ -18,8 +18,8 @@ with sync_playwright() as p:
     for sid in range(11,21):
         data=page.evaluate('''id=>{const a=HonroApp;a.profile=HONRO_TOOLS.fresh();for(let j=1;j<id;j++)a.profile.cleared[j]={rounds:12};
           a.profile.recruited=['archer','mage','knight'];for(const cls of a.profile.recruited){a.profile.heroes[cls].xp=HONRO_CORE.xpAtLevel(12);HONRO_CORE.autoTrain(a.profile.heroes[cls],cls);}
-          a.launch(id);return{stage:a.engine.b.honroStage,party:a.engine.heroesAlive().map(u=>u.cls),entry:a.dialogue.lines.length}}''',sid)
-        check(f'2-{sid-10} entry and party',data['stage']==sid and len(data['party'])==4 and data['entry']<=8,data)
+          a.launch(id);return{stage:a.engine.b.honroStage,party:a.engine.heroesAlive().map(u=>u.cls),entry:a.dialogue.lines.length,guide:a.dialogue.lines.find(l=>l[2]?.kind==='guide')?.[1],current:HonroObjectives.state(a.engine.b,a.stage).currentInstruction}}''',sid)
+        check(f'2-{sid-10} staged entry, four companions and one short current guide',data['stage']==sid and len(data['party'])==4 and 0<data['entry']<=12 and data['guide']==data['current'] and len(data['guide'])<70,data)
         skip(page)
         data=page.evaluate('''()=>{const a=HonroApp,e=a.engine,u=e.active,x=u.x;a.keys.clear();for(let j=0;j<40;j++){e.move(1,1/120);e.tick(1/120);}const moved=u.x-x;
          const fired=e.fire(u.loadout.find(id=>!HONRO_CORE.SKILLS[id].passive),30,.35);for(let j=0;j<320&&e.b.projectiles.length;j++)e.tick(1/120);
