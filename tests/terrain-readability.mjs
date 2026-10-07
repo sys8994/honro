@@ -4,6 +4,7 @@ import {readFile} from 'node:fs/promises';
 class Path {moveTo(){}lineTo(){}}
 const g=vm.createContext({Path2D:Path,HonroScene:class {},HONRO_CORE:{poly:t=>t.vertices}});
 vm.runInContext(await readFile('shared/runtime/terrain-readability.js','utf8'),g);
+assert(g.HonroTerrainReadability.STYLE.topLightPixels>=1.2,'keep the tested half-pixel luminance floor');
 const box=(id,x,y,w,h,extra={})=>({id,x,y,w,h,vertices:[{x,y},{x:x+w,y},{x:x+w,y:y+h},{x,y:y+h}],...extra});
 const b={terrain:[box('ground',0,100,300,100),box('block',100,50,100,50)],sceneVersion:0},original=JSON.stringify(b),read=g.HonroTerrainReadability.prepare;
 let q=read(b);assert.equal(JSON.stringify(b),original);assert.equal(read(b),q);assert.equal(q.builds,1);

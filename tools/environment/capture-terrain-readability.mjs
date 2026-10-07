@@ -12,7 +12,7 @@ for(const fixture of fixtures){const {id,anchor,label}=fixture,st=g.HONRO_PROJEC
  const a=st.anchors[anchor]||st.design?.space?.sites?.[anchor]?.standing||st.anchors.start||st.anchors.spawn;
  for(const mode of ['before','after']){
   const b=structuredClone(original),e=new g.HONRO_CORE.Engine(b,()=>{},true),cv=canvas(400,760),s=new g.HonroScene(cv);
-  Object.assign(s,{x:a.x+230,y:a.y-220,scale:fixture.scale||.4,manual:true,time:2,skillPreview:true});
+  Object.assign(s,{x:a.x+(label==='close'?40:230),y:a.y-(label==='close'?80:220),scale:fixture.scale||.4,manual:true,time:2,skillPreview:true});
   for(const key in hooks)s[key]=mode==='after'?hooks[key]:()=>{};
   const state=JSON.stringify(b);s.render(e,0,'',.6,false,0);await new Promise(r=>setTimeout(r,20));s.render(e,0,'',.6,false,0);
   const built=s.renderCacheStats(),edges=s.terrainReadabilityStats?.builds,elapsed=[];

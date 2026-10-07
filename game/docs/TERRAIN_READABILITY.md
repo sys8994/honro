@@ -24,3 +24,9 @@ HONRO retains its existing Korean ink-and-light-wash shapes, material faces, lig
 `node tests/terrain-readability.mjs` covers exposure splitting, hidden seams, polygon winding, one-way landing-only cues, water/decorative exclusions, sprite-hitbox safety, sampled-roof opt-in, destruction invalidation, state purity, and all three common Scene render paths.
 
 Before/after Native Canvas captures must use identical battle, camera, zoom, time and viewport. Native evidence is not browser/GPU evidence; final integrated Game/Workshop/Pages checks and browser performance are tracked separately.
+
+`node tools/environment/capture-terrain-readability.mjs` reproduces 14 captures at 400×760: chapters 1 (grass/earth), 2 (rock), 8 (buildings), 14 (cave), 15 (water), and chapter 1 at 0.25/1.5 zoom. The two modes clone the same battle; only these two readability hooks are disabled for the baseline. Evidence goes to `_local/reports/terrain-readability/`.
+
+On 2026-10-07 the full Native run passed state purity, 24-frame warm tile/path reuse and three grayscale edge tests. At an integer-aligned edge, the luminance range was 46.27/255 at all three zooms; the initial 0.9-pixel line failed this check and was widened to 1.2 pixels. Direct inspection confirmed the chapter-1 sprite wireframe was gone, cave landing surfaces stood apart from rear houses/rock, the water surface stayed a water effect, and close zoom kept grass and the contact line readable.
+
+Warm Native median samples for chapter 14 were 5.95→6.06 ms, and chapter 15 5.11→5.23 ms. Early chapter-1 samples contained large warm-up variance and are not a speedup claim. All static-cache views kept the same tile memory (4.26–6.39 MB here), one edge-path preparation and no extra path/tile rebuild across warm frames. This supports the bounded draw-cost design; it does not establish browser/GPU frame-rate performance.
