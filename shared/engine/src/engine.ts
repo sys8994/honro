@@ -15,7 +15,7 @@ import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, 
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier} from './existence';
 import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
-import { G, STEP, WORLD_W, WORLD_H, clamp, rad, segRect, segmentTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
+import { G, STEP, WORLD_W, WORLD_H, clamp, rad, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
 const CURSES = new Set(['curseWeak','curseBetray','curseDot','curseBind','curseChain','curseManifest','curseEnthrall','curseEarth']);
@@ -201,7 +201,7 @@ export class Engine {
         const body=BODY.has(skill.mode),origin=this.origin(u,angle,body);
         if(body||skill.phase==='terrain'||skill.phase==='all')return origin;
         const radius=ARROWS.has(skill.mode)?3:skill.mode==='shieldthrow'?9:6;
-        const hit=this.collision({x:u.x,y:u.y-u.h*.63},origin,radius,u.id,[],false);
+        const hit=this.projectileCollision({x:u.x,y:u.y-u.h*.63},origin,radius,u.id,[],false);
         return hit?{x:hit.x+hit.n.x*.05,y:hit.y+hit.n.y*.05}:origin;
     }
     /** Data-only environmental patch; renderer cache and all future substeps see it immediately. */
@@ -244,13 +244,13 @@ export class Engine {
                 found.add(t);
         return [...found].sort((a, b) => this.terrainOrder.get(a)! - this.terrainOrder.get(b)!);
     }
-    collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true): Collision | null {
+    collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, projectile = false): Collision | null {
         let best: Collision | null = null;
         const left=Math.min(a.x,c.x)-r,right=Math.max(a.x,c.x)+r,top=Math.min(a.y,c.y)-r,bottom=Math.max(a.y,c.y)+r;
         if(terrain) for (const t of this.collisionTerrain(a, c, r)) {
             if (t.broken || skip.includes(t.id) || t.x > right || t.x + t.w < left || Math.min(t.y, t.y + (t.slope || 0)) > bottom || t.y + t.h < top)
                 continue;
-            const h = segmentTerrain(a, c, t, r);
+            const h = projectile ? segmentProjectileTerrain(a, c, t, r) : segmentTerrain(a, c, t, r);
             if (h && (!best || h.t < best.t))
                 best = { x: a.x + (c.x - a.x) * h.t, y: a.y + (c.y - a.y) * h.t, t: h.t, n: h.n, terrain: t };
         }
@@ -265,6 +265,10 @@ export class Engine {
                     best = { x: a.x + (c.x - a.x) * h.t, y: a.y + (c.y - a.y) * h.t, t: h.t, n: h.n, unit: u };
             }
         return best;
+    }
+    /** All flying weapons, their children and previews share this policy. No saved state. */
+    projectileCollision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true): Collision | null {
+        return this.collision(a,c,r,owner,hit,units,skip,terrain,true);
     }
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
@@ -304,7 +308,7 @@ export class Engine {
             if (target)
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase=skill.phase;
-            const h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, phase!=='terrain');
+            const h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, phase!=='terrain', !body);
             if (h) {
                 if ((skill.mode === 'bounce' || skill.mode === 'ricochet' || skill.mode === 'shieldthrow') && h.terrain && bounce === 0) {
                     const dot = vx * h.n.x + vy * h.n.y;
@@ -555,12 +559,12 @@ export class Engine {
       }
       if(v.remaining<=0)b.volley=undefined;
     }
-    /** Bounded angular steering, with a solid-terrain sight check and no target teleportation. */
+    /** Bounded angular steering, with the same directional terrain check as the shot and no target teleportation. */
     steer(x:number,y:number,vx:number,vy:number,owner:Unit,dt:number,hit:string[]=[],child=false){
       const range=(child?360:300)+(owner.side===0?Math.max(0,(owner.ranks[child?'A15':'A13']||1)-1)*20:0);let target:Unit|undefined,best=range;
       for(const u of this.b.units){if(u.dead||u.side===owner.side||u.side===2||hit.includes(u.id))continue;
         const d=Math.hypot(u.x-x,u.y-u.h*.5-y);if(d>=best)continue;
-        const blocked=this.collision({x,y},{x:u.x,y:u.y-u.h*.5},1,owner.id,[],false);if(blocked)continue;best=d;target=u;
+        const blocked=this.projectileCollision({x,y},{x:u.x,y:u.y-u.h*.5},1,owner.id,[],false);if(blocked)continue;best=d;target=u;
       }
       if(!target)return {vx,vy};const turn=1.75+(owner.side===0?Math.max(0,(owner.ranks[child?'A15':'A13']||1)-1)*.05:0),a=Math.atan2(vy,vx),desired=Math.atan2(target.y-target.h*.5-y,target.x-x),delta=Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),angle=a+clamp(delta,-turn*dt,turn*dt),speed=Math.hypot(vx,vy);return {vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed};
     }
@@ -1010,9 +1014,13 @@ export class Engine {
         }
         u.dead=true;u.hp=0;return true;
     }
-    private spawnSummon(owner:Unit,kind:NonNullable<Unit['summonKind']>,x:number,y:number,strong=1,rank=1,empowered=false){
+    private spawnSummon(owner:Unit,kind:NonNullable<Unit['summonKind']>,x:number,y:number,strong=1,rank=1,empowered=false,landing?:Collision){
         const hpScale=(1+.07*(rank-1))*strong*(empowered?1.20:1),atkScale=(1+.055*(rank-1))*strong;
-        const ground=this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
+        // Use the surface the seed actually hit. A fresh upward search can otherwise
+        // snap it onto a different one-way slab that it just passed from below.
+        const support=landing?.terrain?.oneWay&&landing.n.y<0?landing.terrain:undefined;
+        if(support)x=clamp(x,support.x,support.x+support.w);
+        const ground=support?{t:support,y:topAt(support,x,y)}:this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
         const floating=['lantern','eater','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
         const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
@@ -1026,7 +1034,7 @@ export class Engine {
         }
         summon.spawnX=summon.x;summon.spawnY=summon.y;this.b.units.push(summon);this.fx('ring',summon.x,summon.y-summon.h*.45,'#aeb9aa',48);this.fx('spark',summon.x,summon.y-summon.h*.45,'#c4c7b4',24);return summon;
     }
-    private summonAtProjectile(p:Projectile,kind:Unit['summonKind']){const owner=this.creditUnit(this.unit(p.owner));if(!owner||!kind)return;this.spawnSummon(owner,kind,p.x,p.y,1,p.skillRank||1,!!p.soulBoost);this.remove(p);}
+    private summonAtProjectile(p:Projectile,kind:Unit['summonKind'],landing?:Collision){const owner=this.creditUnit(this.unit(p.owner));if(!owner||!kind)return;this.spawnSummon(owner,kind,p.x,p.y,1,p.skillRank||1,!!p.soulBoost,landing);this.remove(p);}
     /**
      * Summons act once after the four player heroes finish and before the enemy team.
      * Offensive ghosts may move and attack in the same summon turn; the old small
@@ -1154,7 +1162,7 @@ export class Engine {
             this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);for(const t of this.b.units)if(!t.dead&&t.side!==owner.side&&t.side!==2&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r)this.applyCurse(t,owner,p.mode==='curseDot'?'dot':'chain',p.damage*(p.mode==='curseDot'?.40:.30));this.remove(p);return true;
         }
         const kind:Record<string,Unit['summonKind']>={summonStalker:'stalker',summonLantern:'lantern',summonCharger:'charger',summonWarden:'warden',summonHost:'host',summonEater:'eater',summonEcho:'echo'};
-        if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode]);return true;}
+        if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12,1,false,h);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12,1,false,h);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode],h);return true;}
         return false;
     }
     impact(p: Projectile, h: Collision) {
@@ -1426,7 +1434,7 @@ export class Engine {
         const target=p.targetId?this.unit(p.targetId):undefined;
         if(target&&!target.dead){const tx=target.x,ty=target.y-target.h*.52,desired=Math.atan2(ty-p.y,tx-p.x),cur=Math.atan2(p.vy,p.vx),delta=Math.atan2(Math.sin(desired-cur),Math.cos(desired-cur)),turn=p.mode==='arcBolt'?4.5:p.mode==='nightBolt'?4.0:3.1,ang=cur+clamp(delta,-turn*dt,turn*dt),speed=Math.max(220,Math.hypot(p.vx,p.vy));p.vx=Math.cos(ang)*speed;p.vy=Math.sin(ang)*speed;}
         const m=this.advanceProjectile({...p,gravityScale:0,drag:dragFor(SKILLS[p.skill],p.mode)},dt),nx=m.x,ny=m.y;p.vx=m.vx;p.vy=m.vy;this.passFields(p,p,{x:nx,y:ny});
-        const h=p.phaseMode==='all'?null:this.collision(p,{x:nx,y:ny},p.radius,p.owner,p.hit,true,[],p.phaseMode!=='terrain');if(h){p.x=h.x;p.y=h.y;p.directId=h.unit?.id;this.impact(p,h);return;}
+        const h=p.phaseMode==='all'?null:this.projectileCollision(p,{x:nx,y:ny},p.radius,p.owner,p.hit,true,[],p.phaseMode!=='terrain');if(h){p.x=h.x;p.y=h.y;p.directId=h.unit?.id;this.impact(p,h);return;}
         p.x=nx;p.y=ny;if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>24)p.trail.shift();}
         if(p.age>2.6||p.x<-100||p.x>this.b.width+100||p.y<-900||p.y>this.b.height+100)this.remove(p);
     }
@@ -1482,7 +1490,7 @@ export class Engine {
                 this.remove(p);
                 return;
             }
-            const wall = this.collision({ x: p.x, y: p.y - 6 }, { x: nx, y: sf.y - 8 }, 3, p.owner, p.hit, true);
+            const wall = this.projectileCollision({ x: p.x, y: p.y - 6 }, { x: nx, y: sf.y - 8 }, 3, p.owner, p.hit, true);
             if (wall?.terrain && wall.n.x) {
                 this.remove(p);
                 return;
@@ -1553,7 +1561,7 @@ export class Engine {
                     this.hurt(e, p.damage, p.owner, true, p, p);
                     this.fx('slash', e.x, e.y - e.h * .5, p.color, 55);
                 }
-        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,!SUMMONS.has(p.mode)&&p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],p.phaseMode!=='terrain');
+        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,!SUMMONS.has(p.mode)&&p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],p.phaseMode!=='terrain',!p.body);
         if(p.mode==='charge'||p.mode==='cataclysmCharge'){
           for(const f of this.b.units.filter(v=>v.side!==p.side&&v.side!==2&&v.fixed&&!v.dead)){const h=segRect({x:p.x,y:p.y},{x:nx,y:ny},f.x-f.r,f.y-f.h,f.r*2,f.h,p.radius);if(h&&(!hit||h.t<hit.t))hit={x:p.x+(nx-p.x)*h.t,y:p.y+(ny-p.y)*h.t,t:h.t,n:h.n,unit:f};}
           this.carrySweep(p,{x:p.x,y:p.y},hit||{x:nx,y:ny});

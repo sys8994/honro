@@ -1230,3 +1230,17 @@ Final integrated architecture validation at8525c64 completed all nine affected g
 The30-stage Workshop embedded the same common runtime twice: once for the editor and once inside the Game Playtest HTML. Its25.84MB file exceeded the remote tool request limit. The build now includes the common inline source once and synchronously captures its exact script text to reconstruct the original Game HTML for Playtest. No eval, network request, external JavaScript, asynchronous startup, asset-ID or saved-project change is added. Template guards require one identical common span and unique markers; focused tests cover closing-script escaping, independent child initialization, and later DOM/script removal. Full built-output equivalence and size validation follow this source checkpoint.
 
 The final built Workshop is13,067,138bytes (JSON upload request13,986,332bytes, below16MiB). Game is byte-identical to the fully checked30-stage candidate (SHA256d6729c025d434dc429dbacb493c073abc2bd9c89be6d7630576c40facbb19f12). Actual generated shared startup initializes all30 stages, validates the project, reconstructs exact Game HTML and survives later DOM/script removal; editor clones remain independent. Typecheck and focused escaping/error cases pass. Actual browser Workshop Playtest→Stop→Playtest remains a release verification step.
+
+
+### 발판 투사체 하이브리드와 설치 지지면 — 2026-10-07
+
+- 원인: oneWay는 몸의 상향 통과만 지원하고 투사체는 범용 solid 충돌을 사용해 아래/옆의 탄도까지 닫았다. 일반 collision을 전역 변경하면 시야·몸 돌진·이동에 영향을 주므로 투사체 전용 경로로 분리한다.
+- 변경: oneWay의 위쪽 면만 이전→다음 위치와 면 법선으로 swept 검사한다. 아래에서 올라와 내부에 남은 탄, 옆 진입, 접선 이동은 받지 않는다. 경사·수평 진입과 고속·코너·여러 층의 첫 유효 면은 같은 판정으로 처리한다. solid 벽/바닥/동굴 천장과 phase 관통은 유지한다. 실제·예측·유도 획득·자탄·산포·반탄파/삼재파·진목/지상 소환에 적용하고, 설치는 실제 맞은 발판을 지지면으로 쓴다.
+- 범위: 유닛의 내려가기 입력, 고급 반사 예외, 탄도 수식·지도·저장 스키마 변경은 없다. 저장 중 탄도 새 필드를 요구하지 않는다. Workshop와 실제 게임 도움말을 같은 문구로 갱신했다.
+- 검증 상태: 첫 TypeScript 검사와 신규6그룹 중 swept·실제발사/예측·반사3그룹은 통과했다. 다층 설치 높이 회귀에서 발견한 실패를 수정한 뒤 후속 집중검사 중이다. 최종 전체 verify, Native, 실제 Pages 검증은 별도 후속으로 남아 있다.
+
+- 후속 원인 검증: 8장 처마 끝의 고정 사격 회귀가 새 helper의 옆 확장에 막혀, 기존 polygon/box 윗면의 실제 끝 범위를 보존하도록 수정했다. 기존 사격 각도를 바꾸지 않고 1–10장 36개 고저차 표적의 실제 피해를 재확인했다.
+- 필수 목표 감사: 30장 18개 파괴 장치 중 oneWay였던 것은 5장 고리쇠와 8장 결박 둘뿐이다. 고리쇠 윗면 y2255.529와 그 x에서의 실제 경사 지붕 하단 y2213.529 사이에는 약42px 틈이 있다. 지붕 bounding box 하단으로 처음 추정한 매몰 설명은 부정확했다. 고리쇠는 보행 발판이 아닌 명시적 파괴 장치이고 기존 사격창의 옆 사격을 보존해야 하므로 한 flag만 solid로 지정했다. 새 규칙의 모든 가능한 윗면 사격이 불가능하다고 단정하지 않는다. 나머지 형상·그림·HP520·의식·주경로는 그대로다. 8장 결박은 윗면이 열린 상태에서 실제 사격 가능성을 별도 검사한다. 다른 15개 장치는 기존 solid를 유지한다.
+- 저장 보존: `shared/map/projectile-targets.js`는 명확한 campaign 출처와 전체 정식 지형/앵커/설계/경계 일치를 확인한 5장 Continue에만 collision/world의 같은 ID flag를 보정한다. HP·broken·의식·유닛·자원·진행은 수정하지 않고 반복 호출은 무변경이다. 불명확한 출처나 Workshop/편집본은 자동 보정하지 않는다.
+- 집중 검증 완료: 신규 6개 비행/예측 그룹, 30장 18장치 감사, 8장 두 결박의 실제 윗면 피해, 정확한 5장 App 저장 보정·거부·반복, 기존 고리쇠 35°/0.8 반복 타격·파괴·의식/저장 복원, 1막 고저차 36개와 5장 네 체형 주경로 무피해 통과, 2막6/3막9 필수장치 실제 사격, 3막10장 열린 사선/고체 처마, NPC/전술·소단1,008충전 조건·기예·발판/천장140물리·접지1,874 및 App저장82·migration·story canon·TypeScript·도움말 회귀가 통과했다.
+- Native 검수: 실제 공유 Scene에서 여섯 상황의 전/후 정책 비교12장(화살, 반탄파, 진목, 배회령, 고체 천장, 경사 삼재파)을 생성했고 예측/실제 종점 오차는 모두0이었다. 화면을 직접 확인했으며 위로 통과한 궤적과 윗면 반사/설치가 일치한다. `tools/physics/capture-projectile-platforms.mjs`가 가져오기용 작은 검수맵도 만든다. 금색 경로는 검사용 실제 위치 기록 오버레이이고 전 화면은 현행 Scene에서 과거 solid 충돌만 재생한 A/B다. 별도 고리쇠 Native HP/의식/파괴10항목도 통과했다. 브라우저 입력·GPU성능·정상30장 완주는 이 결과에 포함되지 않으며 최종 HTML/Pages 검증은 다음 단계다.

@@ -81,6 +81,35 @@ export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number
     }
     return best;
 }
+/** Projectile-only platform policy. Body movement and sight keep their own rules.
+ * A platform catches only a swept entry through an upward-facing surface. The
+ * previous centre must already be outside that padded face, so a shot travelling
+ * up through a thick slab cannot be caught on its next (still embedded) step.
+ * Signed normal motion, rather than vy, also handles sloped/horizontal shots. */
+export function segmentProjectileTerrain(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
+    if (!t.oneWay) return segmentTerrain(a, b, t, pad);
+    const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y,epsilon=1e-7;
+    let best:{t:number;n:Vec}|null=null;
+    for(let i=0;i<pts.length;i++){
+        const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y;
+        if(ex<=epsilon)continue; // Clockwise screen-space: only top faces.
+        const len=Math.hypot(ex,ey),nx=ey/len,ny=-ex/len,approach=dx*nx+dy*ny;
+        if(approach>=-epsilon)continue;
+        const start=(a.x-p.x)*nx+(a.y-p.y)*ny-pad;
+        if(start < -epsilon)continue;
+        const time=Math.max(0,start)/-approach;
+        if(time>1+epsilon||best&&time>=best.t)continue;
+        const x=a.x+dx*time-nx*pad,y=a.y+dy*time-ny*pad;
+        const along=((x-p.x)*ex+(y-p.y)*ey)/len;
+        // Keep the existing narrow phase's footprint: boxes have padded corners,
+        // authored polygon edges end at their endpoints. Extending polygon tops
+        // sideways would add a new blocker where the old solid already allowed a shot.
+        const cornerPad=t.vertices?.length||t.slope?0:pad;
+        if(along < -cornerPad-epsilon||along > len+cornerPad+epsilon)continue;
+        best={t:clamp(time,0,1),n:{x:nx,y:ny}};
+    }
+    return best;
+}
 export function escapeHTML(v: unknown) { return String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!)); }
 
 export const AIM_MIN=-85, AIM_MAX=265;

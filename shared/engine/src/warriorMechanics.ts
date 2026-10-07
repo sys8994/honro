@@ -141,11 +141,11 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
  const u=e.unit(p.owner);if(!u||u.dead){if(u)u.airborne=false;e.remove(p);return true;}
  const a={x:p.x,y:p.y},motion=e.advanceProjectile(p,dt);p.vx=motion.vx;p.vy=motion.vy;p.apexY=Math.min(p.apexY??p.y,motion.y);
  const rush=SKILLS[p.skill].branch==='rush';
- const wall=e.collision(a,motion,p.radius,p.owner,[],false);
+ const wall=e.collision(a,motion,p.radius,p.owner,[],false,[],true,!p.body);
  const end=wall||motion;
  e.passFields(p,a,end);if(!e.b.projectiles.includes(p))return true;
  if(p.orbit){
-  for(const blade of p.orbit.blades){const before=orbitPoint({...p,...a},blade,Math.max(0,p.age-dt)),after=orbitPoint({...p,x:end.x,y:end.y},blade),block=e.collision(before,after,5,p.owner,[],false),stop=block||after;
+  for(const blade of p.orbit.blades){const before=orbitPoint({...p,...a},blade,Math.max(0,p.age-dt)),after=orbitPoint({...p,x:end.x,y:end.y},blade),block=e.projectileCollision(before,after,5,p.owner,[],false),stop=block||after;
    for(const t of e.b.units.filter(t=>foe(u,t))){if((blade.hits[t.id]||0)>=2||p.age-(blade.lastHits[t.id]??-10)<.28)continue;if(segRect(before,stop,t.x-t.r,t.y-t.h,t.r*2,t.h,8)){blade.hits[t.id]=(blade.hits[t.id]||0)+1;blade.lastHits[t.id]=p.age;e.hurt(t,p.damage,p.owner,true,p,stop);}}
   }
  }else {

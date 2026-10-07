@@ -1,0 +1,46 @@
+{
+  "sourceCommit": "ce88ec0f42a8e0738b1df452b51699b97298bee0",
+  "stage": 5,
+  "target": {
+    "id": "cliff-cleat",
+    "name": "cliff-cleat",
+    "type": "solid",
+    "points": [
+      {
+        "x": 3278,
+        "y": 2255.529411764706
+      },
+      {
+        "x": 3362,
+        "y": 2255.529411764706
+      },
+      {
+        "x": 3362,
+        "y": 2403.529411764706
+      },
+      {
+        "x": 3278,
+        "y": 2403.529411764706
+      }
+    ],
+    "baseMaterial": "stone",
+    "oneWay": true,
+    "breakable": true,
+    "properties": {
+      "hp": 520,
+      "maxHp": 520,
+      "route": false,
+      "surfaceKind": "stone",
+      "device": "ward",
+      "honroSeal": true,
+      "artSeed": 1
+    },
+    "layer": "terrain",
+    "detail": {
+      "spacing": 18,
+      "roughness": 0,
+      "seed": 1,
+      "optimizeEpsilon": 0
+    }
+  }
+}

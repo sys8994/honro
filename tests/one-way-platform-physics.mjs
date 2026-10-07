@@ -23,15 +23,15 @@ for(const cls of ['archer','mage','knight','occultist'])for(const dt of [1/240,1
  // The existing measured-drop rule still damages a 15 m fall (900 units).
  {const {e,u}=fixture(cls,[floor()],500,100),hp=u.hp;for(let n=0;n<Math.ceil(5/dt);n++)e.integrateBody(u,dt);assert.equal(u.y,1000);assert(u.hp<hp);rows.push({cls,dt,kind:'height-based fall',damage:hp-u.hp});}
  // High-speed swept ascent, including the slab's side/corner, then downward
- // contact. oneWay is a body rule; ordinary projectiles still hit its polygon.
+ // contact. Generic solid queries and projectile top-entry policy remain separate.
  for(const diagonal of [false,true]){
   const platform=solid('one-way',300,700,1000,40,{oneWay:true}),{e,u}=fixture(cls,[floor(),platform],diagonal?285:500,940),hp=u.hp;
   u.vy=-1900;u.vx=diagonal?480:0;u.jumping=true;let above=false;
   for(let n=0;n<Math.ceil(.5/dt);n++){e.integrateBody(u,dt);above||=u.y<700;}
   assert(above,'Fast ascent passes underside/corner');assert.equal(u.hp,hp);
-  const hit=e.collision({x:700,y:900},{x:700,y:500},3,u.id,[],false);assert.equal(hit?.terrain?.id,'one-way','Projectile collision still sees the same slab');
+  const hit=e.collision({x:700,y:900},{x:700,y:500},3,u.id,[],false);assert.equal(hit?.terrain?.id,'one-way','Generic collision still sees the same slab');assert.equal(e.projectileCollision({x:700,y:900},{x:700,y:500},3,u.id,[],false),null,'Projectiles pass upward');assert.equal(e.projectileCollision({x:700,y:500},{x:700,y:900},3,u.id,[],false)?.terrain?.id,'one-way','Projectiles hit from above');
   Object.assign(u,{x:700,y:650,vy:1900,vx:0,jumping:false,fallApexY:650});for(let n=0;n<Math.ceil(.5/dt);n++)e.integrateBody(u,dt);assert.equal(u.y,700,'Swept feet land even at high downward speed');assert(e.grounded(u));assert.equal(u.hp,hp,'Short drop is harmless despite its artificial high speed');
-  rows.push({cls,dt,kind:diagonal?'corner sweep and landing':'vertical sweep and landing',projectileBlocked:true});
+  rows.push({cls,dt,kind:diagonal?'corner sweep and landing':'vertical sweep and landing',projectileTopOnly:true});
  }
  // A sloped one-way top is still a walkable support after downward crossing.
  {const platform=g.HonroMapEngine.solid('slope',[[300,800],[1300,550],[1300,590],[300,840]],{oneWay:true,indestructible:true}),{e,u}=fixture(cls,[floor(),platform],700,900),hp=u.hp;u.vy=-900;u.jumping=true;let above=false;for(let n=0;n<Math.ceil(2.5/dt);n++){e.integrateBody(u,dt);above||=u.y<700;}assert(above);assert.equal(u.y,700);assert.equal(u.hp,hp);const x=u.x;for(let n=0;n<Math.ceil(.25/dt);n++){e.walk(u,1,dt);e.integrateBody(u,dt);}assert(u.x>x);assert(e.grounded(u));rows.push({cls,dt,kind:'sloped platform ascent landing and walk'});}
