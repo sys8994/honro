@@ -9,3 +9,14 @@
 .staging-cue{width:min(680px,100%);padding:12px 18px;background:#0a1c25e8;border:1px solid #b49c6580;border-radius:8px;color:#e9dfc8;box-shadow:0 4px 20px #0008}
 .staging-cue p{font-size:15px;line-height:1.6;margin:0}.staging-cue .story-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
 @media(max-height:500px){.staging-overlay{padding:8px}.staging-cue{padding:8px 12px}.staging-cue p{font-size:13px}.staging-cue .story-actions{margin-top:2px}}
+
+/* Keep the authored world action visible above a compact dialogue strip. */
+.cinematic-story{padding:12px 24px;background:linear-gradient(0deg,#030b10df,transparent 45%)}
+.cinematic-story .story-scene{width:min(980px,100%);grid-template-columns:96px minmax(0,1fr);gap:18px;padding:14px 20px;animation:none}
+.cinematic-story .story-portrait{height:118px;margin:0;align-self:start}
+.cinematic-story .story-copy h2{font-size:20px;margin:7px 0}
+.cinematic-story .story-copy p{min-height:0;font-size:17px;line-height:1.65}
+.cinematic-story .story-actions{padding-top:10px;gap:8px}
+.cinematic-story .story-actions button{min-height:38px;padding:6px 12px}
+@media(max-width:650px){.cinematic-story{padding:8px}.cinematic-story .story-scene{grid-template-columns:60px minmax(0,1fr);gap:10px;padding:10px}.cinematic-story .story-portrait{height:82px}.cinematic-story .story-copy p{font-size:15px}.cinematic-story .story-copy h2{font-size:18px}}
+@media(orientation:landscape) and (max-height:550px){.cinematic-story .story-scene{grid-template-columns:64px minmax(0,1fr);padding:8px 12px}.cinematic-story .story-portrait{height:82px}.cinematic-story .story-copy p{font-size:14px;line-height:1.5}.cinematic-story .story-actions{padding-top:6px}}

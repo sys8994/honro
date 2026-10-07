@@ -79,13 +79,31 @@ export class HonroPoseVisual{
     const anim=this.asset.animation.animations.attack,prepare=anim.keyframes[1].t,load=anim.keyframes[2].t;
     return this.api.sampleAnimation(this.asset,'attack',raise<1?prepare*raise:prepare+(load-prepare)*draw,true);
   }
+  scenePose(p){
+    if(p.kind==='move')return this.api.sampleAnimation(this.asset,'move',(p.time*1.05)%1,true);
+    const ease=Math.min(1,p.time/.45),idle=this.api.sampleAnimation(this.asset,'idle',0,true).targets;
+    let target=structuredClone(idle);
+    if(p.kind==='hold-bell'||p.kind==='guard')target=this.api.sampleAnimation(this.asset,'attack',p.kind==='hold-bell'?.22:.12,true).targets;
+    else if(p.kind==='recoil')target=this.api.sampleAnimation(this.asset,'hit',.3,true).targets;
+    else if(p.kind==='inspect'||p.kind==='kneel'||p.kind==='bow'){
+      const drop=p.kind==='kneel'?28:p.kind==='bow'?12:8;
+      target.pelvis[1]+=drop;target.frontShoulder[1]+=drop+4;target.rearShoulder[1]+=drop+4;
+      target.frontHand[1]+=drop+10;target.rearHand[1]+=drop+10;
+    }else if(p.kind==='point'){
+      // Extend the free hand, retaining the weapon in the other hand.
+      const hand=this.asset.character_id==='seol_o'?'rearHand':'frontHand',shoulder=hand==='rearHand'?'rearShoulder':'frontShoulder';
+      target[hand]=[target[shoulder][0]+48,target[shoulder][1]+12];
+    }
+    target.spirit=target.qi=target.spiritAlpha=target.qiAlpha=target.draw=target.arrow=0;
+    return this.api.solvePose(this.asset,this.api.blendPoseTargets(idle,target,ease));
+  }
   pose(u,charge=0){
     const s=this.state(u),previousMode=s.mode,age=this.time-s.releaseAt,hitAge=this.time-s.hitAt,anim=this.asset.animation.animations.attack;
     const release=anim.events[0].t,duration=anim.duration_ms/1000,airborne=!!(u.jumping||u.airborne||Math.abs(u.vy||0)>3);
     if(charge>0&&s.chargeAt===null)s.chargeAt=this.time;if(charge<=0)s.chargeAt=null;
     let sample;
     if(u.portraitOnly){sample=this.api.sampleAnimation(this.asset,'idle',0,true);s.mode='idle';}
-    else if(u.honroScenePose){const p=u.honroScenePose;sample=this.api.sampleAnimation(this.asset,p.kind==='move'?'move':'attack',p.kind==='move'?(p.time*1.05)%1:.12+.12*Math.min(1,p.time/.45),true);if(p.kind!=='move'){const t=sample.targets;t.spirit=t.qi=t.spiritAlpha=t.qiAlpha=0;sample=this.api.solvePose(this.asset,t);}s.mode='scene';}
+    else if(u.honroScenePose){sample=this.scenePose(u.honroScenePose);s.mode='scene';}
     else if(hitAge>=0&&hitAge<.5&&s.hitAt>s.releaseAt){sample=this.api.sampleAnimation(this.asset,'hit',hitAge);s.mode='hit';}
     else if(age>=0&&age<(1-release)*duration){
       const phase=release+age/duration;sample=this.api.sampleAnimation(this.asset,'attack',phase,true);s.mode='release';

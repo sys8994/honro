@@ -190,7 +190,7 @@ function firstSpiritEncounter(app,heroes){const b=app.engine?.b,key='act2:first-
  const spirit=b.units.find(u=>u.side===1&&u.honroSpirit&&!u.dead&&u.hp>0&&heroes.some(h=>Math.hypot(h.x-u.x,h.y-u.y)<680));if(!spirit)return;
  app.profile.seen??={};
  app.profile.seen[key]=true;
- const meta={storyId:key,storyTitle:'첫 혼령의 기척'};
+ const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id};
  G.HonroStory.queue(app,[
   ['설오','저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],
   ['휘겸','발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],
