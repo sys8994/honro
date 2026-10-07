@@ -20,21 +20,50 @@ export function ramp(id,w,rise,{left=false,thin=false}={}){let poly=[[0,0],[w,-r
 export function hall(id,w,h,{roof=110,floors=1,wall='#a5a98f',timber='#655442',style='hall',cutaway=true,floorBreaks=[]}={}){
  const l=-w/2,r=w/2,eave=-h,peak=eave-roof,parts=[],solids=[];
  const roofPoly=[[l-42,eave-6],[l-8,eave-30],[-w*.2,peak+12],[0,peak],[w*.2,peak+12],[r+8,eave-30],[r+42,eave-6],[r+30,eave+21],[l-30,eave+21]];
- // Cutaway rear planes intentionally have no collision; visible floors and roof do.
- parts.push(R(l,eave+20,w,h-20,wall),R(l+18,eave+34,w-36,h-47,'#64756a'),R(l+w*.69,eave+35,w*.28,h-50,'#506560'));
- for(let f=0;f<floors;f++){const fy=-f*h/floors,hh=h/floors;for(let x=l+34,j=0;x<r-70;x+=112,j++){const wy=fy-hh+65;parts.push(R(x,wy,74,Math.min(150,hh-94),'#b7b79b'),R(x+6,wy+6,62,Math.min(138,hh-106),'#9ca78d'));for(let z=1;z<5;z++)parts.push(R(x+z*14,wy+6,3,Math.min(138,hh-106),'#61746b'));parts.push(R(x+4,wy+52,66,4,'#6a7d71'));}
+ // Geometry is intentionally unchanged. All material, window and joinery planes
+ // below are rear artwork; only the original floor ranges and roof are solids.
+ const burnt=style==='burnt',granary=style==='granary',market=style==='market';
+ const shade=burnt?'#384b46':granary?'#65715e':market?'#6f7866':'#697d70';
+ const plaster=burnt?'#797a61':wall, paper=market?'#c3b48e':'#b8b89b';
+ const batch=(fill,ds)=>ds.length?`<path fill="${fill}" d="${ds.join(' ')}"/>`:'',box=(x,y,ww,hh)=>`M${x} ${y}h${ww}v${hh}h${-ww}Z`;
+ const gradient=(name,y1,y2,top,bottom)=>`<linearGradient id="${name}" x1="${l}" y1="${y1}" x2="${r}" y2="${y2}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${top}"/><stop offset="1" stop-color="${bottom}"/></linearGradient>`;
+ parts.push('<defs>'+gradient('hall-plaster',eave,0,plaster,shade)+gradient('hall-roof',peak,eave,burnt?'#6f7970':granary?'#667d79':'#7b8e85',burnt?'#273b3d':'#2b4650')+'</defs>');
+ parts.push(R(l,eave+20,w,h-20,'url(#hall-plaster)'),P([[l+w*.7,eave+34],[r-16,eave+34],[r-16,-1],[l+w*.78,-1]],shade));
+ // Large limewash planes, side returns and an eave shadow replace a flat green wall.
+ parts.push(P([[l+18,eave+52],[l+w*.52,eave+48],[l+w*.43,eave+86],[l+w*.24,eave+80],[l+18,eave+108]],burnt?'#68715c':plaster),R(l+16,eave+34,14,h-34,'#445d51'),R(r-30,eave+34,14,h-34,'#3e554d'));
+ const recess=[],sheets=[],shutters=[],reveals=[],borders=[],muntins=[],paperLight=[],sillShadow=[];
+ for(let f=0;f<floors;f++){
+  const fy=-f*h/floors,hh=h/floors,wh=Math.max(35,Math.min(granary?88:market?125:158,hh-105));
+  for(let x=l+34,j=0;x<r-70;x+=112,j++){
+   const wy=fy-hh+65,ww=granary?78:84,closed=!granary&&((j+f+(market?1:0))%4===2);
+   recess.push(box(x-6,wy-7,ww+12,wh+17));borders.push(box(x-3,wy-4,ww+6,wh+8));
+   (closed?shutters:sheets).push(box(x+4,wy+4,ww-8,wh-4));
+   reveals.push(box(x+4,wy+4,ww-8,10),box(x+4,wy+13,7,wh-13));sillShadow.push(box(x,wy+wh+2,ww,7));
+   if(closed){muntins.push(box(x+ww/2-3,wy+7,6,wh-9),box(x+8,wy+wh*.3,ww-16,7),box(x+8,wy+wh*.77,ww-16,7));paperLight.push(box(x+9,wy+7,3,wh-13));}
+   else {for(let z=1;z<(granary?4:5);z++)muntins.push(box(x+z*ww/(granary?4:5),wy+14,3,wh-15));muntins.push(box(x+7,wy+Math.min(wh-11,wh*.53),ww-14,4));paperLight.push(box(x+ww-9,wy+15,3,wh-18));}
+  }
   const gaps=floorBreaks.filter(q=>q.floor===f),ranges=[];let start=l;for(const q of gaps.sort((a,b)=>a.x1-b.x1)){ranges.push([start,q.x1]);start=q.x2;}ranges.push([start,r]);
-  for(const [a,b]of ranges){if(b<=a)continue;const poly=[[a,fy],[b,fy],[b,fy+26],[a,fy+26]];parts.push(P(poly,'#73684f'),R(a,fy,b-a,7,'#b5a27b'));if(f>0||!cutaway)solids.push(poly);}
-  parts.push(R(l,fy-hh+27,w,14,timber));
+  for(const [a,b]of ranges){if(b<=a)continue;const poly=[[a,fy],[b,fy],[b,fy+26],[a,fy+26]];parts.push(P(poly,f===0?'#62766c':'#6b5a3f'),R(a,fy,b-a,7,f===0?'#b0b397':'#bdab7e'),R(a,fy+20,b-a,6,'#344e44'));if(f>0||!cutaway)solids.push(poly);}
+  parts.push(R(l,fy-hh+27,w,14,timber),R(l+15,fy-hh+41,w-30,24,'#4a5c47'));
  }
- for(let x=l+18;x<r;x+=Math.max(160,w/5))parts.push(R(x,eave+30,17,h-30,timber),R(x+3,eave+35,4,h-40,'#a28e67'));
+ parts.push(batch('#344b43',recess),batch('#8e9070',borders),batch(paper,sheets),batch(burnt?'#4d513e':'#846c45',shutters),batch('#6c765a',reveals),batch('#60735d',muntins),batch('#c6bc94',paperLight),batch('#425643',sillShadow));
+ const posts=[],postLight=[],postDark=[],braces=[],bracket=[],stones=[],stoneLight=[];
+ for(let x=l+18;x<r;x+=Math.max(160,w/5)){
+  posts.push(box(x,eave+30,17,h-30));postLight.push(box(x+3,eave+35,4,h-40));postDark.push(box(x+13,eave+42,4,h-42));
+  bracket.push(`M${x-8} ${eave+41}h36v10h-6v9h-23v-9h-7Z`);
+  if(x<r-100)braces.push(`M${x+16} ${eave+45}h9l29 30l-6 8Z`);
+  stones.push(`M${x-7} -18h29l5 18h-39Z`);stoneLight.push(`M${x-7} -18h29l2 6h-33Z`);
+ }
+ parts.push(batch(timber,posts),batch('#a98d5e',postLight),batch('#463f2e',postDark),batch('#675a3c',braces),batch('#365b4f',bracket),batch('#617468',stones),batch('#aab093',stoneLight));
  if(!cutaway){const body=[[l,eave+22],[r,eave+22],[r,0],[l,0]];solids.unshift(body);}
- if(style==='granary'){for(let x=l+40;x<r-60;x+=95){parts.push(R(x,-120,66,104,'#a08b58'),R(x,-120,66,10,'#c2ad78'),line([[x+5,-110],[x+61,-24],[x+61,-110],[x+5,-24]],'#695d40',4));}}
- if(style==='market')for(let x=l+35,j=0;x<r-80;x+=110,j++)parts.push(P([[x,-185],[x+95,-185],[x+122,-113],[x-20,-113]],j%2?'#987862':'#78968c'),R(x-14,-112,129,14,'#b5a58a'));
- if(style==='burnt'){parts.push(P([[l+20,eave+20],[l+w*.22,eave+70],[l+w*.32,-14],[l+20,-14]],'#394b49'));for(const x of [l+22,l+w*.38,r-38])parts.push(P([[x,eave+30],[x+19,eave-70],[x+31,0],[x+7,0]],'#343f3b'));}
- parts.push(P(roofPoly,'#29404a','#1c323a',4),P([[l-23,eave-8],[-w*.2,peak+17],[0,peak+7],[w*.18,peak+20],[r+25,eave-8],[r-13,eave+2],[0,peak+32],[l+14,eave+3]],style==='burnt'?'#526160':'#69817c'));
- for(let x=l+20;x<r;x+=54){const y=peak+29+Math.abs(x)/(w/2)*(roof-24);parts.push(line([[x,y],[x+(x<0?-20:20),eave+5]],'#8a9b8d',2));}
- parts.push(line([[l-34,eave+10],[r+34,eave+10]],'#a6aa90',5),R(l-10,eave+23,w+20,11,'#4d7062'));solids.push(roofPoly);
+ if(granary){const boards=[],edges=[],dark=[],covers=[];for(let x=l+32,j=0;x<r-50;x+=82,j++){boards.push(box(x,-132,64,113));edges.push(box(x+3,-124,5,98));dark.push(box(x+58,-127,6,108));covers.push(box(x,-132,64,9));}parts.push(batch('#7e6a45',boards),batch('#a38b58',edges),batch('#4a4732',dark),batch('#c0a772',covers));}
+ if(market){const light=[],dull=[],under=[];for(let x=l+35,j=0;x<r-80;x+=110,j++){(j%2?dull:light).push(pathD([[x,-185],[x+95,-185],[x+122,-113],[x-20,-113]]));under.push(box(x-14,-112,129,14));}parts.push(batch('#708e81',light),batch('#a28b68',dull),batch('#8c805d',under),R(l+33,-106,w-96,9,'#495a43'));}
+ if(burnt){parts.push(P([[l+20,eave+20],[l+w*.22,eave+70],[l+w*.32,-14],[l+20,-14]],'#394b49'));for(const x of [l+22,l+w*.38,r-38])parts.push(P([[x,eave+30],[x+19,eave-70],[x+31,0],[x+7,0]],'#343f3b'));}
+ parts.push(P(roofPoly,'url(#hall-roof)','#1c323a',4),P([[l-23,eave-8],[-w*.2,peak+17],[0,peak+7],[w*.18,peak+20],[r+25,eave-8],[r-13,eave+2],[0,peak+32],[l+14,eave+3]],burnt?'#526160':'#5f7978'));
+ const ribs=[];for(let x=l+20;x<r;x+=54){const y=peak+29+Math.abs(x)/(w/2)*(roof-24);ribs.push(`M${x} ${y}L${x+(x<0?-20:20)} ${eave+5}`);}
+ parts.push(`<path fill="none" stroke="#71877d" stroke-width="2" d="${ribs.join(' ')}"/>`);
+ const courses=[];for(const t of [.48,.75]){const y=peak+roof*t,hw=w*(.17+t*.28);courses.push(`M${-hw} ${y}Q0 ${y+5} ${hw} ${y}l5 5Q0 ${y+10} ${-hw-5} ${y+5}Z`);}parts.push(batch('#2c4650',courses));
+ parts.push(line([[l-34,eave+10],[r+34,eave+10]],'#9aab94',4),R(l-10,eave+23,w+20,11,'#385c4d'),R(l+8,eave+34,w-16,8,'#283f35'));solids.push(roofPoly);
  const a=asset(id,'실내가 열린 '+style,parts.join(''),solids,[l-50,peak-12,w+100,h+roof+45]);a.params.rearPlanes=['wall','windows','posts'];a.params.floorHeight=h/floors;a.params.style=style;return a;
 }
 export async function svgAsset(name){const dir=path.join(ROOT,'shared/assets/environment/act3-architecture');try{const m=JSON.parse(await readFile(path.join(dir,'production-manifest.json'),'utf8')),row=m.assets.find(a=>a.file===name);if(!row)return null;const v=compileSVG(await readFile(path.join(dir,name),'utf8')),a=asset(row.id,row.name,'',(row.suggestedSolids||[]).map(q=>q.points),v.viewBox);a.vector=v;a.reference=row.reference;a.params.collisionContract={file:name,solids:row.suggestedSolids};return a;}catch{return null;}}
