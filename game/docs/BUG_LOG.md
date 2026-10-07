@@ -1145,3 +1145,11 @@ Rear plinths, stone piers and chimney / garden / archive wall masses improve gro
 ### Act 3 map-owner final native checkpoint
 
 The final map source checkpoint `af247f3` passed the complete serial native suite on 2026-10-07 UTC: 52 hero routes with zero damage, 2 jump-free carrier routes, 29 real-arrow / occlusion checks, 90 map-safety checks, 30-map environment validation, eight unchanged hall geometry contracts and 40 state-pure map captures. The last safety pass found two canal guards overlapping a closed gate / sloping walkway; only their initial coordinates were corrected. Browser input, final deployment and normal campaign completion are not claimed by these probes.
+
+### 3막 후반 건축 비례·나루 용도와 화재 접지 — 2026-10-07
+
+- 원인: 27장 큰 hall은 사람 대비 높은 처마를 그대로 창 위치로 써 하단이 긴 빈 회벽으로 남았고, 30장은 관창 스타일만 반복해 건물 용도가 구분되지 않았다. 실제 불은 떠 있는 색면처럼 보였다.
+- 변경: 하단 문·창과 굵은 기둥, 낮은 대비의 매입 목재띠로 큰 벽을 분절한다. 나루는 천막 주막·매표집·빈 하역칸·밧줄창고·한쪽 폐쇄 판벽·상자로 큰 형태를 나눈다. 불 위치에 재·탄목과 국소 반사를 붙이고 소등 시 빛·연기는 제거하되 잔해는 남긴다. 새로운 물리면·위험·목표·미세 패턴은 추가하지 않는다.
+- 생성기 보완: archive SVG의 재료 그룹이 중첩되면서 비탐욕 regex가 첫 내부 닫는 태그에서 잘려 잘못된 SVG를 만들었다. 이름 있는 서가 그룹을 균형 있게 추출한다.
+- 검증: 98cf30b 대비 1–20장 객체(신규 1막 적 배정 포함)는 정확히 같고, 전30장의 compile collision/material·유닛·목표 마커·동선은 같다. 16종 48 Native 렌더와 두 불의 독립 소등/읽기 전용 검사가 통과했다. 같은 카메라의 27/30 전후 20뷰에서 renderer 상태 무변이를 확인했다.
+- 한계: Native 미술/생성기 검증이다. 정상 입력 완주·실제 브라우저·성능·Pages 검수와 구분한다. source/geometry provenance는 `_local/reports/act3-final-art/`에 남긴다.

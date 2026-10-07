@@ -26,3 +26,13 @@
 `node tests/act3-architecture.mjs`는 실제 `compileSVG`와 `HonroVectorArt`를 사용해 10종의 제한된 SVG 어휘, 16 KB/90 path 미만 예산, 전체/지붕 bounds, 접지, 투명 통로, 보행면과 제안 고체의 실제 픽셀 일치, 390/760/1440 크기 렌더를 확인한다. SVG 자체 충돌을 등록하거나 캠페인을 수정하지 않는다.
 
 기존 비활성 시안 검사 `tests/act3-town-assets.mjs`, `tests/act3-dense-assets.mjs`도 원래 접점 보존을 확인한다. Native 보고서는 `_local/reports/act3-architecture/`에 생성한다. 지도 배치, 실제 도달성/보행·탄도, Game/Workshop 브라우저 및 Pages 성능 검수는 통합 후보에서 별도로 수행해야 한다.
+
+## 큰 건축 비례와 장소별 후면 구조
+
+2026-10-07 최종 미술 보강은 큰 hall의 상단 창·긴 빈벽 문제를 다룬다. 아래 창과 양짝문은 실제 바닥에 붙고, 높은 벽의 추가 층감은 낮은 대비의 매입 목재띠로만 나타낸다. 그 띠는 밝은 상판·난간·돌출 발판을 갖지 않으며 보행면을 추가하지 않는다. 모든 기존 roof/floor collision, viewBox와 anchor를 보존한다.
+
+30장에는 주막 천막, 작은 매표집, 밧줄을 건 빈 하역칸, 서로 반대쪽이 닫힌 창고, 높은 창고 판벽과 상자, 옛길 쉼칸을 배정한다. 창호·문·기둥·큰 가구 덩어리로 용도를 구분하며 미세 선 패턴을 늘리지 않는다. 27장 화재 가까운 서가는 그을린 재질을 쓰고, 기존 두 불의 실제 위치에는 재·탄목·따뜻한 국소 반사와 얇은 연기를 표시한다. 기존 제어가 끝나면 빛·불·연기는 꺼지고 재·탄목은 남는다. 전투 상태를 읽기만 하며 불의 규칙·시간·피해를 바꾸지 않는다.
+
+`tests/act3-hall-art.mjs`는 16가지 건물의 원래 충돌/앵커/bounds와 48 Native 렌더를 검사한다. `tests/act3-visual-cues.mjs`는 두 불의 위치·독립 소등·제어 후 잔해·무연기와 상태 무변이를 검사한다. `tests/act3-art-regeneration.mjs`는 실제 생성기를 쓰되 파일을 바꾸지 않고, 1–20장 원본 객체 및 전30장의 compile collision/material, authored units/markers/design을 비교한다. 새 맵을 합법적으로 바꾸면 소스와 campaign을 함께 재생성한 뒤 검사한다.
+
+전후 캡처는 같은 runtime/camera에서 `capture-act3-production.mjs --stages 27,30 --facade-focus`로 재현한다. `--art-source <file>`은 fire renderer의 명시적 이전 버전을 비교할 때만 사용하며 보고서에 파일과 SHA를 남긴다. 기본 실행은 현재 실제 renderer다. 실제 브라우저·Pages와 정상 전투 완주는 이 미술 증거의 범위가 아니다.
