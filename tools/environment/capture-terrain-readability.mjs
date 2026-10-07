@@ -6,7 +6,7 @@ import {guidanceRuntime,canvas} from '../../tests/act2-guidance-helpers.mjs';
 const g=await guidanceRuntime(),out='_local/reports/terrain-readability',results=[];
 await mkdir(out,{recursive:true});
 const hooks={backgroundReadability:g.HonroScene.prototype.backgroundReadability,terrainReadability:g.HonroScene.prototype.terrainReadability};
-const fixtures=[{id:1,anchor:'start'},{id:2,anchor:'procession'},{id:8,anchor:'courtyard'},{id:14,anchor:'family-mid'},{id:15,anchor:'clear-water'},
+const fixtures=[{id:1,anchor:'start'},{id:2,anchor:'procession'},{id:8,anchor:'courtyard'},{id:14,anchor:'family-mid'},{id:15,anchor:'clear-gallery'},
  {id:1,anchor:'start',scale:.25,label:'zoom-out'},{id:1,anchor:'start',scale:1.5,label:'close'}];
 for(const fixture of fixtures){const {id,anchor,label}=fixture,st=g.HONRO_PROJECT.stages[id-1],original=g.HonroMaps.createBattle(st,g.HONRO_PROJECT);g.HonroStageRules.sanitizeStageBattle(original);
  const a=st.anchors[anchor]||st.design?.space?.sites?.[anchor]?.standing||st.anchors.start||st.anchors.spawn;
@@ -27,6 +27,6 @@ for(const fixture of fixtures){const {id,anchor,label}=fixture,st=g.HONRO_PROJEC
 // all three display scales, even with identical background and terrain hues.
 const luma=rgb=>.2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2],grayscale=[];
 for(const scale of [.25,.4,1.5]){const cv=canvas(160,100),c=cv.getContext('2d'),s=new g.HonroScene(cv),b={sceneVersion:0,terrain:[{id:'flat',x:0,y:50/scale,w:160/scale,h:100/scale,mat:'rock',vertices:[{x:0,y:50/scale},{x:160/scale,y:50/scale},{x:160/scale,y:150/scale},{x:0,y:150/scale}]}]};
- c.fillStyle='#45555a';c.fillRect(0,0,160,100);s.scale=scale;c.scale(scale,scale);s.terrainReadability(c,b);const data=c.getImageData(80,45,1,12).data,values=[];for(let i=0;i<data.length;i+=4)values.push(luma(data.slice(i,i+3)));const delta=Math.max(...values)-Math.min(...values);assert(delta>45,'edge loses luminance separation');grayscale.push({scale,luminanceRange:delta});cv.width=1;
+ c.fillStyle='#45555a';c.fillRect(0,0,160,100);s.scale=scale;c.scale(scale,scale);s.terrainReadability(c,b);const data=c.getImageData(80,45,1,12).data,values=[];for(let i=0;i<data.length;i+=4)values.push(luma(data.slice(i,i+3)));const delta=Math.max(...values)-Math.min(...values);assert(delta>45,`edge loses luminance separation at ${scale}: ${delta}`);grayscale.push({scale,luminanceRange:delta});cv.width=1;
 }
 await writeFile(`${out}/manifest.json`,JSON.stringify({sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),scope:'Native production Scene only; no browser/GPU/HUD validation',results,grayscale},null,2)+'\n');
