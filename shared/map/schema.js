@@ -58,7 +58,7 @@ function validate(project){
   // Standalone map/environment tools may load the schema without game content.
   if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>(G.HONRO_CONTENT?.stages?.length??20))issue('err',`${st.id}: stageId must reference an implemented campaign stage`);
   const ids=unique(arrays.filter(k=>k!=='layers').flatMap(k=>st[k]||[]),st.id),terrainIds=new Set(st.terrains.map(t=>t.id));
-  for(const t of st.terrains){const pts=t.type==='solid'?t.points:t.control;if(!Array.isArray(pts)||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!p||!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
+  for(const t of st.terrains){if(t.oneWay!==undefined&&typeof t.oneWay!=='boolean')issue('err',`${t.id}: oneWay must be boolean`);if(G.HonroGeometry.oneWay(t)&&t.properties?.honroCeiling)issue('err',`${t.id}: a solid ceiling cannot be a one-way platform`);const pts=t.type==='solid'?t.points:t.control;if(!Array.isArray(pts)||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!p||!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
   for(const e of st.elements){if(!assets.has(e.assetId))issue('err',`${e.id}: missing asset ${e.assetId}`);if(!Number.isFinite(e.x)||!Number.isFinite(e.y))issue('err',`${e.id}: invalid position`);}
   for(const m of st.materials)if((m.terrainId||m.support)&&!terrainIds.has(m.terrainId||m.support))issue('err',`${m.id}: missing support`);
   for(const u of st.units){if(!G.HonroUnits.has(u.kind))issue('err',`${u.id}: unknown unit ${u.kind}`);if(!Number.isFinite(u.x)||!Number.isFinite(u.y))issue('err',`${u.id}: invalid position`);if(!(u.team in G.HonroUnits.teams))issue('err',`${u.id}: unknown team`);}

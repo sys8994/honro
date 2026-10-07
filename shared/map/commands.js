@@ -14,7 +14,7 @@ function apply(input,commands){
   case'object.update':{const {o}=target(st,c.id);for(const [k,v] of Object.entries(c.values||{})){if(k==='id')throw Error('Use rename to change an ID');o[k]=clone(v);}break;}
   case'asset.add':if(p.library.some(a=>a.id===c.asset?.id))throw Error('Duplicate asset '+c.asset.id);p.library.push(clone(c.asset));break;
   case'terrain.add':case'terrain.addSolid':{
-   const solid=c.op==='terrain.addSolid'||c.type==='solid',t={id:c.id||uid('terrain'),name:c.name||'Terrain',type:solid?'solid':c.type||'ground',baseMaterial:c.material||'soil',breakable:!!c.breakable,oneWay:!!c.oneWay,layer:'terrain',detail:{spacing:c.spacing??18,roughness:c.roughness??0,seed:c.seed??42,optimizeEpsilon:c.optimizeEpsilon??0}};
+   const solid=c.op==='terrain.addSolid'||c.type==='solid',t={id:c.id||uid('terrain'),name:c.name||'Terrain',type:solid?'solid':c.type||'ground',baseMaterial:c.material||'soil',breakable:!!c.breakable,oneWay:c.oneWay??(!solid&&c.type==='platform'),layer:'terrain',detail:{spacing:c.spacing??18,roughness:c.roughness??0,seed:c.seed??42,optimizeEpsilon:c.optimizeEpsilon??0}};
    if(c.properties)t.properties=clone(c.properties);
    if(solid)t.points=points(c.points);else{t.control=points(c.control);t.floor=c.floor??st.height+180;t.thickness=c.thickness??80;}st.terrains.push(t);break;
   }

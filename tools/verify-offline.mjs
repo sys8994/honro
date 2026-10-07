@@ -10,6 +10,7 @@ const checks=[
  ['ui-buttons','npm',['run','test:ui-buttons']],
  ['build','npm',['run','build']],['typecheck','npm',['--prefix','game','run','typecheck']],['game-regressions','npm',['--prefix','game','test']],
  ['ground-contact','npm',['run','test:ground-contact']],
+ ['one-way-platforms','npm',['run','test:one-way-platforms']],
  ['rescue-physics','npm',['run','test:rescue-physics']],
  ['terrain-domain','npm',['run','test:terrain-domain']],
  ['aim-wind-audio','npm',['run','test:aim-wind-audio']],
