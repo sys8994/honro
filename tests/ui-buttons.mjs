@@ -16,7 +16,6 @@ check('Settings reopen reflects off',()=>{app.settings();assert.match(app.modal.
 check('Reload and battle re-entry keep the preference off',()=>{app=h.reload();assert.equal(app.profile.settings.minimapVisible,false);app.launch(1);h.finish(app);assert.equal(app.minimapVisible,false);assert.match(app.root.innerHTML,/id="minimap-dock" hidden/);});
 await change(true);
 check('Turning it on restores the dock and saves it for the next load',()=>{assert.equal(app.minimapVisible,true);assert.equal(h.nodes.get('minimap-dock').hidden,false);assert.equal(JSON.parse(h.storage.get(KEY)).settings.minimapVisible,true);app=h.reload();app.launch(1);h.finish(app);assert.equal(app.minimapVisible,true);assert.doesNotMatch(app.root.innerHTML,/id="minimap-dock" hidden/);});
-h.App.prototype.showMap=function(){this.stopBattle();this.close();this.screen="map";};
 app.setDebugMode(true);app.launch(20);h.finish(app);const normal=JSON.parse(h.storage.get(KEY));await change(false);
 check('Debug preference persists without copying debug progress into normal save',()=>{const saved=JSON.parse(h.storage.get(KEY));assert.equal(saved.settings.minimapVisible,false);normal.settings.minimapVisible=false;assert.deepEqual(saved,normal);app=h.reload();assert.equal(app.debugMode,true);assert.equal(app.profile.settings.minimapVisible,false);});
 check('Leaving debug keeps the same saved minimap choice',()=>{app.setDebugMode(false);assert.equal(app.profile.settings.minimapVisible,false);});

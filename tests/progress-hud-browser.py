@@ -51,7 +51,7 @@ with sync_playwright() as p:
     end=game.evaluate('({x:HonroApp.engine.active.x,width:HonroApp.engine.b.width,lines:HonroApp.dialogue.lines.length})')
     check('Actual keyboard walking into the exit starts the victory dialogue',end['x']<end['width'] and end['x']>start['x'] and end['lines']>=4,end)
     skip(game);check('Skipping victory applies the clear and opens Stage 2',game.evaluate('!!HonroApp.profile.cleared[1]&&HonroApp.isOpen(HONRO_CONTENT.stages[1])&&HonroApp.done'))
-    game.click('[data-action="result-map"]');game.evaluate('HonroApp.stageId=2;HonroApp.mapDock()');game.click('[data-action="launch"]')
+    game.click('[data-action="result-continue"]')
     check('Stage 2 starts from the resulting journey screen',game.evaluate('HonroApp.engine.b.honroStage===2&&!!HonroApp.dialogue'))
     game.close()
 

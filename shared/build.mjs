@@ -48,8 +48,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','act2-art','act3-art','act1-spatial-art','terrain-readability'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
-    for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));
-    parts.push(await read('shared/runtime/act2-journey.js'));
+    parts.push(await read('game/vendor/ui/fa.js'));
     for(const name of ['portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
       parts.push(await read(`shared/runtime/${name}.js`));
   }else parts.push(await read('shared/runtime/stage-rules.js'));

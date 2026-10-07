@@ -30,12 +30,12 @@ with sync_playwright() as p:
         page.evaluate('window.firstMusic=HonroApp.audio.music.current;HonroApp.showCamp()');page.wait_for_timeout(600)
         check(prefix+' noncombat UI retains Main Theme',page.evaluate('HonroApp.audio.music.current===firstMusic&&firstMusic.currentTime>.3'))
         page.evaluate('HonroApp.showTitle()')
-        page.click('[data-action="map"]')
+        page.click('.title-actions [data-action="rest"]')
         for _ in range(10):
             skip=page.locator('[data-action="dialogue-skip"]')
             if not skip.count():break
             skip.click();page.wait_for_timeout(100)
-        page.click('[data-action="launch"]')
+        page.click('[data-action="journey-enter"][data-id="1"]')
         page.wait_for_function('HonroApp.audio.music.status().track===2&&HonroApp.audio.music.current.currentTime>.1')
         page.wait_for_timeout(500)
         check(prefix+' normal stage entry dialogue already plays battle music',page.evaluate('!!HonroApp.dialogue&&HonroApp.audio.music.outgoing===null&&HonroApp.audio.music.status().playing===1'))

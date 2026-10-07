@@ -49,8 +49,8 @@ with sync_playwright() as p:
             check(f'Mobile {width} cave/exit {sid} tactical view',result['stage']==sid and not result['overflow'] and result['finite'] and abs(result['scale']-result['minimum'])<1e-6,result)
             page.screenshot(path=str(OUT/f'mobile-{width}-stage-{sid}.png'))
     page.set_viewport_size({'width':1440,'height':900});skip(page)
-    page.evaluate('HonroApp.showMap()');skip(page);page.click('[data-act-focus="11"]')
-    check('Journey has all Act 2 nodes and focus navigation',page.locator('.map-node').count()==20 and page.evaluate('HonroApp.stageId===11'))
+    page.evaluate('HonroApp.showMap()');skip(page);page.click('[data-action="journey-layer"][data-layer="surface"]');page.click('[data-action="journey-select"][data-id="11"]')
+    check('Journey uses the common Act 2 location and three-layer book',page.locator('.journey-screen').count()==1 and page.evaluate('HonroApp.journeySelection===11') and page.locator('[data-action="journey-layer"]').count()==3)
     page.screenshot(path=str(OUT/'journey.png'))
     # Explicit terminal fixtures exercise real application reward/unlock/outro.
     # Enemy deaths and hold completion here are controlled; Node checks each

@@ -57,18 +57,10 @@
         }
     }
     catch { } return fresh(); }
-    function debugProfile(normal) {
-        const p = clone(normal);
-        p.honroBattle = null;
-        delete p.honroCampPending;
-        p.cleared = {};
-        p.seen = {};
-        p.record = [];
-        p.honroFlags = {};
-        p.honroMapStory = null;
-        delete p.honroGrowth;
-        return p;
-    }
+    // Debug changes only access checks. Clone every campaign-owned value so
+    // story, growth, allocations and a suspended battle use normal semantics.
+    // This clone is session-only; only the normal profile is ever exported/saved.
+    function debugProfile(normal) { return clone(normal); }
     function save(p) { try {
         localStorage.setItem(KEY, JSON.stringify(p));
         return true;
@@ -296,7 +288,7 @@
     }
     function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,makeLegacyWorld);}
     class App {
-        constructor() { this.root = $('app'); this.modal = $('modal'); this.normalProfile = load(); this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.map = { x: 1100, y: 850, z: .6 }; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); this.showTitle(); requestAnimationFrame(t => this.frame(t)); }
+        constructor() { this.root = $('app'); this.modal = $('modal'); this.normalProfile = load(); this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); this.showTitle(); requestAnimationFrame(t => this.frame(t)); }
         persist() { if(G.HONRO_EMBEDDED||this.customMap)return; G.HonroProgression.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!save(this.profile) && !this.storageWarned) {
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
@@ -305,8 +297,8 @@
         top(title, back = 'title') { return `<header class="top"><button class="icon ghost" data-action="${back}" aria-label="뒤로">${fa('chevronUp',17,'back-icon')}</button><h2>${esc(title)}</h2>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="journal" aria-label="기록">${fa('bookOpen',18)}</button><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',18)}</button></header>`; }
         portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
         drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
-        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; const resumeRest=!!this.profile.honroJourney?.story&&!this.debugMode;this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg"></div><header class="top">${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap">${G.HONRO_TITLE_LOGO?`<img class="honro-logo" src="${G.HONRO_TITLE_LOGO}" alt="혼로 HONRO · 잊힌 혼들이 머무는 곳, 다시 흐르는 이야기">`:'<h1>혼로</h1>'}</div><p class="title-tagline">산도, 죽은 자도, 언젠가 다시 흐른다.</p><div class="title-actions"><button class="primary" data-action="${resumeRest?'rest':this.profile.honroBattle ? 'continue' : this.debugMode ? 'map' : 'rest'}">${resumeRest?'쉼터 대화 이어가기':this.profile.honroBattle ? '이어서 걷기' : this.debugMode ? '스테이지 검수' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? resumeRest?'<button class="ghost" data-action="continue">저장된 전투 이어서 걷기</button>':'<button class="ghost" data-action="rest">길 위의 쉼터</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
-        stopBattle() { this.disposeAtlas(); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
+        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; const resumeRest=!!this.profile.honroJourney?.story;this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg"></div><header class="top">${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap">${G.HONRO_TITLE_LOGO?`<img class="honro-logo" src="${G.HONRO_TITLE_LOGO}" alt="혼로 HONRO · 잊힌 혼들이 머무는 곳, 다시 흐르는 이야기">`:'<h1>혼로</h1>'}</div><p class="title-tagline">산도, 죽은 자도, 언젠가 다시 흐른다.</p><div class="title-actions"><button class="primary" data-action="${resumeRest?'rest':this.profile.honroBattle ? 'continue' : 'rest'}">${resumeRest?'쉼터 대화 이어가기':this.profile.honroBattle ? '이어서 걷기' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? resumeRest?'<button class="ghost" data-action="continue">저장된 전투 이어서 걷기</button>':'<button class="ghost" data-action="rest">길 위의 쉼터</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
+        stopBattle() { G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             this.persist();
@@ -314,17 +306,10 @@
           if(this.customMap){this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;}
         }
         isOpen(st) { return this.debugMode || st.requires.every(id => this.profile.cleared[id]); }
-        disposeAtlas(){if(this.atlas){this.atlasView=this.atlas.state();this.atlas.destroy();this.atlas=null;}}
         showRest(){return G.HonroRestJourney.showRest(this);}
-        showMap(){if(!this.debugMode&&G.HonroRestJourney)return G.HonroRestJourney.showBook(this);this.stopBattle();this.close();this.screen='map';this.selectedHub=null;this.root.innerHTML=G.HonroJourney.markup(this.profile,this.stageId,null,this.top('여정도'),this.debugMode);this.atlas=new C.AtlasController($('map-scroll'),$('map-board'),this.atlasView);if(!this.atlasView){const st=H.stages[this.stageId-1];this.atlas.focus(st.map[0]+140,st.map[1]-90,innerWidth<620?.34:.49);}this.mapDock();G.HonroStory.map(this);}
-        mapDock(hub){this.selectedHub=hub||null;const st=H.stages[this.stageId-1],h=H.hubs.find(x=>x.id===hub),J=G.HonroJourney;
-          if(h){$('map-dock').innerHTML=`<span class="dock-emblem" style="color:${J.cols[h.id]}">${C.icon(J.icons[h.id],'',29)}</span><div class="dock-copy"><h3>${h.name}</h3><div class="stage-meta">${h.id==='camp'?'동행 · 기예':'모든 동행과 기예 수련'}</div></div><span class="spacer"></span><button class="btn primary" data-action="${h.id}">들어가기</button>`;}
-          else{$('map-dock').innerHTML=`<span class="dock-emblem" style="color:${J.cols[st.theme]}">${C.icon(J.icons[st.theme],'',28)}</span><div class="dock-copy"><h3>${st.name}</h3><div class="stage-meta"><span>경지 ${st.level}</span><span>${st.goal}</span></div></div><span class="spacer"></span><button class="btn primary" data-action="launch" ${this.isOpen(st)?'':'disabled'}>${this.debugMode?'검수 시작':this.profile.cleared[st.id]?'다시 걷기':'들어가기'}</button>`;}
-          for(const n of document.querySelectorAll('.map-node'))n.classList.toggle('selected',!hub&&+n.dataset.id===this.stageId);for(const n of document.querySelectorAll('.atlas-hub'))n.classList.toggle('selected',n.dataset.id===hub);
-        }
-        renderMap(){/* Arcfall AtlasController owns transform, pointer capture and zoom. */}
+        showMap(){return G.HonroRestJourney.showBook(this);}
 
-        showCamp(cls=this.cls){const y=$('armory')?.scrollTop||0;this.stopBattle();this.close();this.screen='camp';if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;this.root.innerHTML=G.HonroUI.camp(this.profile,cls,this.top('모닥불 · 동행의 준비',this.debugMode?'map':'rest'),this.branch).replace('id="camp-scroll"','id="armory"');$('armory').scrollTop=y;}
+        showCamp(cls=this.cls){const y=$('armory')?.scrollTop||0;this.stopBattle();this.close();this.screen='camp';if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;this.root.innerHTML=G.HonroUI.camp(this.profile,cls,this.top('모닥불 · 동행의 준비','rest'),this.branch).replace('id="camp-scroll"','id="armory"');$('armory').scrollTop=y;}
 
         saveCampAllocation(cls=this.cls){G.HonroProgression.markCampAllocation(this.profile,cls);this.persist();}
 
@@ -351,7 +336,7 @@
             this.showCamp(this.cls);
             $('armory').scrollTop = y;
         }  }
-        settings() { const p=this.profile,s=p.settings;const speedOptions=v=>[1,1.25,1.5,2,3,4].map(n=>`<option value="${n}" ${+v===n?'selected':''}>×${n}</option>`).join('');this.open(`<h2>설정</h2><div class="settings settings-grid"><button class="fullscreen-setting primary" data-action="fullscreen">${fa('expand',18)}<span>전체화면</span><b>${document.fullscreenElement?'나가기':'켜기'}</b></button><div class="setting"><label for="setting-sound">효과음</label><div class="row"><button data-action="sound-test">시험</button><input type="checkbox" id="setting-sound" data-setting="sound" ${s.sound?'checked':''}></div></div><div class="setting"><label for="setting-volume">음량</label><input type="range" id="setting-volume" data-setting="volume" min="0" max="1" step=".05" value="${s.volume}"></div><div class="setting"><label for="setting-music">배경음악</label><input type="checkbox" id="setting-music" data-setting="music" ${s.music!==false?'checked':''}></div><div class="setting"><label for="setting-musicVolume">BGM 음량</label><input type="range" id="setting-musicVolume" data-setting="musicVolume" min="0" max="1" step=".05" value="${s.musicVolume??.65}"></div><div class="setting"><label for="setting-difficulty">난이도</label><select id="setting-difficulty" data-setting="difficulty">${Object.entries(C.DIFFICULTIES).map(([k,v])=>`<option value="${k}" ${s.difficulty===k?'selected':''}>${v.name}</option>`).join('')}</select></div><div class="setting"><label for="setting-playerSpeed">우리 행동 속도</label><select id="setting-playerSpeed" data-setting="playerSpeed">${speedOptions(s.playerSpeed||1)}</select></div><div class="setting"><label for="setting-speed">적 행동 속도</label><select id="setting-speed" data-setting="speed">${speedOptions(s.speed||1)}</select></div><div class="setting minimap-setting"><label for="minimap-setting">미니맵 표시</label><input id="minimap-setting" type="checkbox" data-setting="minimapVisible" ${s.minimapVisible!==false?'checked':''}></div><div class="setting"><label for="setting-orientation">화면 방향</label><select id="setting-orientation" data-setting="orientation">${[['auto','자동'],['landscape','가로'],['portrait','세로']].map(([a,b])=>`<option value="${a}" ${s.orientation===a?'selected':''}>${b}</option>`).join('')}</select></div>${G.HONRO_EMBEDDED?'':`<div class="setting debug-setting"><label for="debug-mode-setting">디버그 모드</label><input id="debug-mode-setting" type="checkbox" data-setting="debugMode" ${this.debugMode?'checked':''}></div><p class="debug-help">모든 스테이지에 들어갈 수 있습니다. 검수 중 성장·완료·대사 기록은 일반 여정에 남지 않고, 새로고침하면 검수 상태가 초기화됩니다.</p>`}</div><div class="actions"><button data-action="export">기록 내보내기</button>${this.debugMode?'':'<button data-action="import">가져오기</button>'}</div>${this.debugMode?'':'<div class="actions"><button class="danger ghost" data-action="newgame">새 여정</button></div>'}`,'settings-dialog'); }
+        settings() { const p=this.profile,s=p.settings;const speedOptions=v=>[1,1.25,1.5,2,3,4].map(n=>`<option value="${n}" ${+v===n?'selected':''}>×${n}</option>`).join('');this.open(`<h2>설정</h2><div class="settings settings-grid"><button class="fullscreen-setting primary" data-action="fullscreen">${fa('expand',18)}<span>전체화면</span><b>${document.fullscreenElement?'나가기':'켜기'}</b></button><div class="setting"><label for="setting-sound">효과음</label><div class="row"><button data-action="sound-test">시험</button><input type="checkbox" id="setting-sound" data-setting="sound" ${s.sound?'checked':''}></div></div><div class="setting"><label for="setting-volume">음량</label><input type="range" id="setting-volume" data-setting="volume" min="0" max="1" step=".05" value="${s.volume}"></div><div class="setting"><label for="setting-music">배경음악</label><input type="checkbox" id="setting-music" data-setting="music" ${s.music!==false?'checked':''}></div><div class="setting"><label for="setting-musicVolume">BGM 음량</label><input type="range" id="setting-musicVolume" data-setting="musicVolume" min="0" max="1" step=".05" value="${s.musicVolume??.65}"></div><div class="setting"><label for="setting-difficulty">난이도</label><select id="setting-difficulty" data-setting="difficulty">${Object.entries(C.DIFFICULTIES).map(([k,v])=>`<option value="${k}" ${s.difficulty===k?'selected':''}>${v.name}</option>`).join('')}</select></div><div class="setting"><label for="setting-playerSpeed">우리 행동 속도</label><select id="setting-playerSpeed" data-setting="playerSpeed">${speedOptions(s.playerSpeed||1)}</select></div><div class="setting"><label for="setting-speed">적 행동 속도</label><select id="setting-speed" data-setting="speed">${speedOptions(s.speed||1)}</select></div><div class="setting minimap-setting"><label for="minimap-setting">미니맵 표시</label><input id="minimap-setting" type="checkbox" data-setting="minimapVisible" ${s.minimapVisible!==false?'checked':''}></div><div class="setting"><label for="setting-orientation">화면 방향</label><select id="setting-orientation" data-setting="orientation">${[['auto','자동'],['landscape','가로'],['portrait','세로']].map(([a,b])=>`<option value="${a}" ${s.orientation===a?'selected':''}>${b}</option>`).join('')}</select></div>${G.HONRO_EMBEDDED?'':`<div class="setting debug-setting"><label for="debug-mode-setting">디버그 모드</label><input id="debug-mode-setting" type="checkbox" data-setting="debugMode" ${this.debugMode?'checked':''}></div><p class="debug-help">같은 쉼터와 여정첩에서 모든 스테이지를 선택할 수 있습니다. 현재 기록을 복제해 진행하며 전투·성장 규칙은 같습니다. 검수 기록은 일반 저장에 남지 않고, 새로고침하거나 모드를 끄면 원래 기록으로 돌아옵니다.</p>`}</div><div class="actions"><button data-action="export">기록 내보내기</button>${this.debugMode?'':'<button data-action="import">가져오기</button>'}</div>${this.debugMode?'':'<div class="actions"><button class="danger ghost" data-action="newgame">새 여정</button></div>'}`,'settings-dialog'); }
         setMinimapVisible(visible) {
             visible=!!visible;
             this.profile.settings.minimapVisible=this.minimapVisible=visible;
@@ -379,8 +364,9 @@
                 this.persist();
             }
             this.stageId=this.profile.lastStage||1;
-            this.atlasView=null;
-            this.showMap();
+            this.journeySelection=null;
+            this.journeyLayer=null;
+            this.showRest();
             this.notify(enabled?'디버그 모드 · 모든 스테이지를 검수할 수 있습니다.':'일반 여정으로 돌아왔습니다.');
         }
         journal() { G.HonroStory.journal(this); }
@@ -437,14 +423,6 @@
                 p.loadouts[this.trainingClass] = [skill || this.trainingSkill];
             }
             if (!training) p.recruited = G.HonroStageRules.stageParty(st.id);
-            if(this.debugMode&&!training){
-                const entryXp=G.HonroProgression.xpAt(G.HonroProgression.plan(st.id).entryLevel);
-                for(const cls of p.recruited){
-                    p.heroes[cls].xp=Math.max(p.heroes[cls].xp,entryXp);
-                    C.autoTrain(p.heroes[cls],cls);
-                    C.sanitizeLoadout(p,cls);
-                }
-            }
             const battle=makeWorld(st, p, training, this.trainingClass, skill || this.trainingSkill);
             if(!training)battle.honroJourneyReplay=!!this.profile.cleared[st.id];
             if(!training)delete this.profile.honroCampPending;
@@ -1018,12 +996,7 @@
                 case 'dialogue-skip':
                     G.HonroStory.finish(this);
                     break;
-                case 'map-fit':this.atlas?.fit();break;
-                case 'map-home':{const st=H.stages[this.stageId-1];this.atlas?.focus(st.map[0],st.map[1],innerWidth<620?.48:.64);break;}
-                case 'map-in':if(this.atlas)this.atlas.zoomAt(this.atlas.zoom*1.25,this.atlas.viewport.clientWidth/2,this.atlas.viewport.clientHeight/2);break;
-                case 'map-out':if(this.atlas)this.atlas.zoomAt(this.atlas.zoom/1.25,this.atlas.viewport.clientWidth/2,this.atlas.viewport.clientHeight/2);break;
-                case 'map-node':this.stageId=+id;this.mapDock();break;
-                case 'map-hub':this.mapDock(id);break;
+
                 case 'tuning':this.open('<h2>조율</h2><input type="range" min="0" max="1" step="0.05" id="tune" value="'+this.profile.tuning[this.cls]+'">');break;
             } });
             document.addEventListener('change', async (e) => { let el = e.target; if(el.id==='tune'){this.profile.tuning[this.cls]=+el.value;this.persist();} else if (el.dataset.setting) {
@@ -1095,8 +1068,6 @@
                 const dt = Math.min(.06, Math.max(0, (now - this.prev) / 1000));
                 this.prev = now; G.HonroStory.tick(this,now);
                 G.HonroRestJourney?.frame(this,dt);
-                if (this.screen === 'map')
-                    this.renderMap(dt);
                 if(this.preview)G.HonroSkillPreview.tick(this,this.preview,dt);
                 if (this.engine && this.scene && this.screen === 'battle') {
                     const e = this.engine;let simulated=0;
