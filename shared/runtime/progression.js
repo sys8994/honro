@@ -17,8 +17,19 @@ function recruit(profile,st,b){
   alignRecruit(profile,st,b);profile.party=[...profile.recruited];
   if(first){const cls=st.recruit,h=profile.heroes[cls];C.autoTrain(h,cls);C.sanitizeLoadout(profile,cls);if(b?.heroes){b.heroes[cls]=clone(h);for(const u of b.units||[])if(u.side===0&&!u.summoned&&u.cls===cls){u.loadout=[...profile.loadouts[cls]];C.applyHero(u,h);}}}
 }
-const budget=id=>{const p=plan(id),start=rewardXpAt(p.entryLevel),end=rewardXpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
-function entryHero(st){const h=C.freshHero('archer');h.xp=rewardXpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
+// Derive the bridge from the unchanged first-clear/recruit rules. Do not
+// hard-code 61,569 XP: a later authorized Act 1/2 change must surface in tests.
+function legacyCampaignAnchor(last=20){
+ const xp={archer:0,mage:0,knight:0,occultist:0},roster=['archer'];
+ for(const st of G.HONRO_CONTENT.stages.filter(s=>s.id<=last)){
+  const p=plan(st.id),start=rewardXpAt(p.entryLevel),end=rewardXpAt(p.exitLevel),shift=Math.max(0,...roster.map(cls=>xp[cls]-start));
+  for(const cls of roster)xp[cls]=Math.max(xp[cls],end+shift);
+  if(st.recruit){if(!roster.includes(st.recruit))roster.push(st.recruit);xp[st.recruit]=Math.max(xp[st.recruit],xpAt(joinLevel(st)));}
+ }
+ return Math.max(...roster.map(cls=>xp[cls]));
+}
+const budget=id=>{const p=plan(id),current=p.rewardCurve==='current',start=current?(id===21?legacyCampaignAnchor(20):xpAt(p.entryLevel)):rewardXpAt(p.entryLevel),end=current?xpAt(p.exitLevel):rewardXpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
+function entryHero(st){const h=C.freshHero('archer');h.xp=plan(st.id).rewardCurve==='current'?budget(st.id).start:rewardXpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
 function referenceStats(st){const h=entryHero(st),stats=C.heroStats(h,'archer',['A01']);return {...stats,shot:C.SKILLS.LA01.damage*(C.skillBalanceFactor?.(C.SKILLS.LA01)||1)*stats.attack*1.18*C.skillDamageFactor(h.ranks.A01)*.96};}
 function tuneEnemy(st,u,kind){
   const p=plan(st.id),r=referenceStats(st);
@@ -136,5 +147,5 @@ function syncRoster(profile,b){
   profile.heroes=heroes;
 }
 function persist(app){if(app.engine?.b.honroGrowth){rememberLimit(app.engine.b);app.profile.honroGrowth=clone(app.engine.b.honroGrowth.ledger);}}
-G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
+G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,legacyCampaignAnchor,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
 })(globalThis);

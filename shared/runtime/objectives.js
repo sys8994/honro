@@ -3,6 +3,7 @@ const durability=t=>Number.isFinite(t?.hp)?Math.max(0,Math.ceil(t.hp))+(Number.i
 // Rescue follows its referenced person in this battle, never its old authoring
 // point. Keep the original marker for collection/progress writes and saved maps.
 function interactionTarget(b,m){
+ if(G.HonroAct3?.active(b)&&m?.action==='act3')return G.HonroAct3.interactionTarget(b,m);
  if(m?.action!=='rescue')return m;
  if(m.collected||!b?.honroMarkers?.includes(m))return null;
  const u=b.units?.find(u=>u.id===m.target);
@@ -11,6 +12,7 @@ function interactionTarget(b,m){
 function state(b,st){
  if(b.honroCustom)return G.HonroAuthored.objectiveState(b);
  if(G.HonroAct2?.active(b))return G.HonroAct2.state(b);
+ if(G.HonroAct3?.active(b))return G.HonroAct3.state(b);
  const hs=b.honroState||{},markers=b.honroMarkers||[],heroes=b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead&&u.hp>0),obj=b.units.find(u=>u.id==='objective'),boss=b.units.find(u=>u.id==='boss'),seals=b.terrain.filter(t=>t.honroSeal),left=seals.filter(t=>!t.broken),foes=b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0),pending=G.HonroEncounters.pending(b);const all=[];const add=(kind,id,x,y,label,extra={})=>{const t={kind,id,x,y,label,...extra};all.push(t);return t;};
  seals.forEach((t,i)=>add('seal',t.id,t.x+t.w/2,t.y,st.id===5?'절벽 고리쇠 · '+durability(t):st.id===8?`상여 결박 ${i+1} · 공격`:`매듭 ${i+1} · 공격`,{done:!!t.broken,box:t}));
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
@@ -59,10 +61,10 @@ const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모�
 // Saved historical/custom maps may intentionally lack the new recovery root.
 function guideFor(app){let text=guides[app.stage.id];if(app.stage.id===7&&!app.engine?.b.terrain.some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
 const guideFocus=['exit','objective','interact','objective','interact','objective','interact','seal','interact','interact'];
-function entry(app,options={}){if(app.stage.act===2)return G.HonroAct2.entry(app,options);const n=(options.interlude===false?[]:(app.stage.narration||[])).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',guideFor(app),{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;
+function entry(app,options={}){if(app.stage.act===2)return G.HonroAct2.entry(app,options);if(app.stage.act===3)return G.HonroAct3.entry(app,options);const n=(options.interlude===false?[]:(app.stage.narration||[])).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',guideFor(app),{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;
  if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];const beats=(app.stage.storyFollowups||[]).map(x=>x.slice());if(remaining.length&&beats.length&&remaining.length+beats[0].length<=5)beats[0].push(...remaining);else for(let i=remaining.length;i>0;i-=5)beats.unshift(remaining.slice(Math.max(0,i-5),i));beats.forEach((lines,i)=>hs.deferredStory.push({round:2+i*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i*5,app.stage.name+' · 길 위에서',lines)}));}
  return [...opening,guide];}
-function help(app){return{summary:app.training?'적은 반격합니다 · 아군은 쓰러지지 않습니다':state(app.engine.b,app.stage).summary,guide:app.training?'기예를 선택하고 조준·이동·방어를 연습하세요.':app.engine.b.honroCustom?app.stage.goal:app.stage.act===2?(app.stage.guide||app.stage.goal):(guideFor(app)||app.stage.goal)};}
+function help(app){return{summary:app.training?'적은 반격합니다 · 아군은 쓰러지지 않습니다':state(app.engine.b,app.stage).summary,guide:app.training?'기예를 선택하고 조준·이동·방어를 연습하세요.':app.engine.b.honroCustom?app.stage.goal:app.stage.act>=2?(app.stage.guide||app.stage.goal):(guideFor(app)||app.stage.goal)};}
 function focus(app,kind){const s=state(app.engine.b,app.stage);return s.targets.find(t=>t.kind===kind)||s.allTargets.find(t=>t.kind===kind&&!t.done)||s.allTargets.find(t=>t.kind===kind);}
 function refresh(app){if(!app.engine||app.training)return;const s=state(app.engine.b,app.stage);app.scene.missionTargets=s.targets;const el=document.getElementById('objective-text');if(el)el.textContent=s.summary;}
 function draw(scene,e){

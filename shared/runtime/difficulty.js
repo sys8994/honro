@@ -8,7 +8,8 @@ function audit(stage,b){
   const incoming=u=>{const s=u.loadout.map(id=>C.SKILLS[id]);return s.reduce((n,s)=>n+s.damage*C.skillBalanceFactor(s)*u.attack*(1-r.armor),0)/Math.max(1,s.length)/r.hp;};
   const eventWaves=(b.honroEvents||[]).reduce((n,e)=>n+G.HonroEncounters.spawnCount(e.action),0);
   const act2Waves=b.honroAct2Revision>=2&&stage.id>=11&&stage.id<=20?G.HonroAct2Plan.forStage(stage.id).waveCount:0;
-  const reinforcements=eventWaves+act2Waves;
+  const act3Waves=stage.act===3?(stage.steps||[]).reduce((n,s)=>n+(s.wave?.count||0),0):0;
+  const reinforcements=eventWaves+act2Waves+act3Waves;
   const medianHits=median(ordinary.map(hits)),medianIncoming=median(ordinary.map(incoming));
   const issues=[];
   if(medianHits<(b.honroEncounterRevision?.35:.65)||medianHits>4)issues.push('ordinary enemy hit budget');

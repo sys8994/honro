@@ -397,10 +397,11 @@
             if(this.customMap&&!training&&id===this.stageId)return this.launchMap(this.customMap.project,this.customMap.stageId);
             // Changing a training loadout rebuilds combat, but stays in the same musical session.
             const trainingMusic=training&&this.training&&this.engine&&this.screen==='battle'?(this.trainingMusicSession||this.engine.b.session):null;
+            const st = H.stages[id - 1];
+            if(!st||!training&&!G.HONRO_PROJECT.stages.some(m=>m.metadata?.stageId===st.id)){this.notify('아직 준비되지 않은 길입니다.');return;}
             if (this.engine)
                 this.stopBattle();
             this.close();
-            const st = H.stages[id - 1] || H.stages[0];
             if (!training && !this.isOpen(st)) {
                 this.notify('아직 이어지지 않은 길이야.');
                 return;
@@ -453,7 +454,7 @@
         }
         mount(b) { G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);b.honroActiveLimit=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
-            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); if (!this.training) {
+            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
@@ -475,7 +476,7 @@
             const heroes = b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
             const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
             const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
-            const act2Failure=G.HonroAct2.failure(b);
+            const act2Failure=G.HonroAct2.failure(b)||G.HonroAct3.failure(b);
             if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);
@@ -543,7 +544,7 @@
             }
             G.HonroRestJourney?.recordOutcome(this,won);
             this.persist();
-            this.open(`<div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p><div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막은 준비 중입니다.</p>' : !won && st.act===2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}<div class="actions"><button data-action="retry">다시 걷기</button><button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
+            this.open(`<div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p><div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30 ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}<div class="actions"><button data-action="retry">다시 걷기</button><button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
             this.audio?.play(won ? 'win' : 'lose');
         }
         battleHelp() {

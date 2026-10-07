@@ -58,6 +58,7 @@ function tick(app,dt){
  const e=app.engine;if(!e||app.training)return;
  if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
  if(G.HonroAct2?.active(e.b)){G.HonroAct2.tick(app,dt);return;}
+ if(G.HonroAct3?.active(e.b)){G.HonroAct3.tick(app,dt);return;}
  const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
  if(st.id===7&&(hs.rescuedCount||0)>=3){const instruction=l=>l[2]?.storyId?.includes('entry-follow-7-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(instruction));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!instruction(l));}
  const lead=heroes.reduce((a,c)=>a.x>c.x?a:c),height=Math.min(...heroes.map(h=>h.y)),boundary=b.phase==='transition'&&!b.projectiles.length&&!e.settleBusy();
