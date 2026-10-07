@@ -7,6 +7,8 @@ const before=JSON.parse(await readFile('tests/fixtures/existence-profiles-before
 const restoredProfiles=beforeExistenceProfiles(C.SKILLS);
 for(const old of before.skills)assert.deepEqual(plain(restoredProfiles[old.id].existenceAttack??null),old.existenceAttack,'Only the exact reviewed attack delta is accepted');
 const rows=before.skills.filter(s=>/^[AMSO]\d\d$/.test(s.id));assert.equal(rows.length,64);
+for(const s of rows)assert(!['nightParade','curseDot','curseChain'].includes(C.SKILLS[s.id].mode),'Historical curse damage is not a current active path');
+for(const id of ['O99','LO99','LO08','LO10'])assert(C.SKILLS[id].enemyOnly,'Historical curse entry remains inaccessible: '+id);
 for(const old of before.skills){const s=C.SKILLS[old.id];for(const key of ['damage','cost','mode'])assert.equal(s[key],old[key],`${s.id} ${key} budget`);assert.equal(s.cooldown??null,old.cooldown,`${s.id} cooldown`);}
 for(const cls of ['archer','mage','knight','occultist']){
  const damaging=rows.filter(s=>s.cls===cls&&s.damage>0),profiles=damaging.map(s=>C.SKILLS[s.id].existenceAttack);
