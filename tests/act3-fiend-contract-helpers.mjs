@@ -6,6 +6,7 @@ import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const encounterRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-encounter-contract.json',import.meta.url),'utf8'));
+const locationRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-location-semantic-contract.json',import.meta.url),'utf8'));
 function beforeEncounterRevision(actual,saved){
  if(actual.initialState.honroAct3EncounterRevision!==1)return actual;
  const reviewed=encounterRevision.rows.find(q=>q.id===actual.metadata.stageId);assert(reviewed,'Reviewed encounter revision');
@@ -48,14 +49,14 @@ export function assertFiendContract(project,content,balance,archetypes,baseline)
  const assetIds=project.library.map(a=>a.id);assert.equal(new Set(assetIds).size,assetIds.length,'Unique library IDs');
  for(const a of baseline.legacyAssets){const current=legacyProject.library.find(v=>v.id===a.id);assert(current,'Missing original asset '+a.id);assert.equal(hash(current),a.sha256,'Original Act 1/2 asset '+a.id);}
  for(const saved of baseline.legacyMaps){const current=legacyProject.stages.find(s=>s.metadata.stageId===saved.id);assert.equal(hash(current),saved.sha256,'Complete original Act 1/2 map '+saved.id);}
- for(const saved of baseline.act3){const id=saved.metadata.stageId,current=project.stages.find(s=>s.metadata.stageId===id);assert.deepEqual(beforeEncounterRevision(missionContract(current,content.stages[id-1],balance.stages[id-1]),saved),saved,'Act 3 combat/mission contract '+id);}
+ for(const saved of baseline.act3){const id=saved.metadata.stageId,current=project.stages.find(s=>s.metadata.stageId===id),actual=missionContract(current,content.stages[id-1],balance.stages[id-1]);if(current.initialState.honroLocationRevision===1){const reviewed=locationRevision.rows.find(row=>row.metadata.stageId===id);assert(reviewed,'Reviewed location contract '+id);assert.deepEqual(actual,reviewed,'Exact approved location combat/mission contract '+id);}else assert.deepEqual(beforeEncounterRevision(actual,saved),saved,'Act 3 combat/mission contract '+id);}
  assert.deepEqual(archetypeContract(archetypes),baseline.archetypes,'Fiend body and attack definitions');
  // The compatibility rename is used only to derive the historical fixture.
  // Active production must contain the new fiends, never the old troop IDs.
  for(const s of project.stages.slice(20))for(const u of s.units)assert(!Object.hasOwn(kindRenames,u.kind),'Retired enemy kind '+u.kind);
  for(const s of content.stages.slice(20))for(const q of s.steps)if(q.wave)assert(!Object.hasOwn(kindRenames,q.wave.kind),'Retired reinforcement kind');
  const fiends=project.stages.slice(20).flatMap(s=>s.units).filter(u=>Object.values(kindRenames).includes(u.kind));
- const revised=project.stages.slice(20).every(s=>s.initialState.honroAct3EncounterRevision===1);const expected=revised?encounterRevision.rows.flatMap(s=>s.units).filter(u=>Object.values(kindRenames).includes(u.kind)).length:baseline.fiendCount;assert.equal(fiends.length,expected,'Exact approved fiend roster size');assert(fiends.every(u=>u.team==='enemy'),'Fiends remain enemies');
+ const revised=project.stages.slice(20).every(s=>s.initialState.honroAct3EncounterRevision===1);const expected=revised?project.stages.slice(20).flatMap(s=>(s.initialState.honroLocationRevision===1?locationRevision.rows.find(q=>q.metadata.stageId===s.metadata.stageId):encounterRevision.rows.find(q=>q.id===s.metadata.stageId)).units).filter(u=>Object.values(kindRenames).includes(u.kind)).length:baseline.fiendCount;assert.equal(fiends.length,expected,'Exact approved fiend roster size');assert(fiends.every(u=>u.team==='enemy'),'Fiends remain enemies');
 }
 // Content-only loading: no engine/renderer, dependency build, saved profile or
 // browser. A historical reader can use git show for the named source revision.

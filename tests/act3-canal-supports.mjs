@@ -4,7 +4,20 @@ import {readFile} from 'node:fs/promises';
 const g=await runtime({legacyMaps:false});
 const p=process.env.HONRO_PROJECT_FILE?JSON.parse(await readFile(process.env.HONRO_PROJECT_FILE,'utf8')):g.HONRO_PROJECT;
 const s=p.stages.find(v=>v.metadata.stageId===23);
-if(s.design.act3.koreanTown){
+if(s.design.act3.locationRevision===1){
+ const compiled=g.HonroMaps.compile(s,p).terrain;
+ const get=id=>{const e=s.elements.find(e=>e.id===id);assert(e,'Missing '+id);const a=p.library.find(a=>a.id===e.assetId);assert(a);return{e,a};};
+ for(const [id,arch] of [['west-stone-loading-bridge','west-masonry-water-arch'],['east-stone-loading-bridge','east-masonry-water-arch']]){
+  const {e,a}=get(id),t=compiled.find(t=>t.honroElementId===id);assert(t);assert.equal(a.params.collisionSource,'drawn-structural-polygons');assert.equal(a.collision.length,1);
+  const contour=a.collision[0].slice(0,a.collision[0].length/2);for(const point of contour)assert(g.HONRO_CORE.terrainSurfaces(t,point.x).some(q=>Math.abs(q.y-point.y)<.01),'Actual bridge top follows its drawn contour');
+  const back=get(arch);assert.equal(back.a.collision.length,0);assert.equal(back.e.layer,'back');assert(s.elements.indexOf(back.e)<s.elements.indexOf(e),'Stone bridge occludes rear arch');
+ }
+ const pier=get('canal-bridge-bearing-piers');assert.equal(pier.a.collision.length,0);assert.equal(pier.a.params.rearOnly,true);
+ for(const id of ['western-vault-wall','eastern-vault-wall']){const wall=get(id);assert.equal(wall.a.collision.length,0);assert.equal(wall.a.params.backgroundWall,true);assert(s.elements.indexOf(wall.e)<s.elements.indexOf(get('west-stone-loading-bridge').e),'Vault wall stays behind actual deck');}
+ assert(compiled.some(t=>t.honroLocationCeiling&&t.honroCeiling),'Underground canal has a real solid ceiling');
+ assert(!s.elements.some(e=>e.id==='korean-watergate-pavilion'),'Surface-city pavilion is not copied into the underground canal');
+ console.log('PASS underground Stage23: two real bridge contours, rear masonry order, explicit vault walls and solid ceiling');
+}else if(s.design.act3.koreanTown){
  const compiled=g.HonroMaps.compile(s,p).terrain;
  const get=id=>{const e=s.elements.find(e=>e.id===id);assert(e,'Missing '+id);return {e,a:p.library.find(a=>a.id===e.assetId)};};
  const pavilion=get('korean-watergate-pavilion');
