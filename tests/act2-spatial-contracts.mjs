@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {beforeExistenceProfiles} from './existence-delta-helpers.mjs';
+import {beforeExistenceProfiles,beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {plain,hash,semanticContent,unitContract} from './act2-spatial-contract-helpers.mjs';
@@ -13,8 +13,13 @@ function check(name,fn){fn();checks.push({name,passed:true});console.log('PASS',
 // ACT1 is now an authorized design surface. Its separately frozen gameplay
 // contracts replace the obsolete whole-map hash without weakening ACT2 checks.
 const act1Frozen=JSON.parse(await readFile('tests/fixtures/act1-spatial-contracts.json','utf8'));
-check('Act 1 mission, recruitment and combat semantics remain unchanged',()=>{
+check('Act 1 mission, recruitment and combat semantics remain unchanged beyond the reviewed roster delta',()=>{
+ const currentProject=g.HONRO_PROJECT;
+ try{
+  g.HONRO_PROJECT=beforeExistenceRoster(currentProject);
  for(const before of act1Frozen.stages){const q=battlefield(g,before.id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);const {w,h,map,...content}=q.st;assert.deepEqual(plain(content),before.content);assert.deepEqual(plain(q.b.units.map(unitContract)),before.units);assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);}
+ }finally{g.HONRO_PROJECT=currentProject;}
+ assert.equal(g.HONRO_PROJECT,currentProject,'Later acts and saved-battle checks use the current project');
 });
 check('All class stats and skill definitions retain the frozen balance',()=>{
  assert.deepEqual(plain(C.CLASSES),frozen.classes);
