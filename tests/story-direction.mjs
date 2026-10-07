@@ -7,7 +7,7 @@ function fresh(id){const a=load(profileThrough(id-1));a.launch(id);return a;}
 function next(a){g.HonroStory.next(a);}
 function to(a,who,text){for(let i=0;i<30&&a.dialogue;i++){const l=a.dialogue.lines[a.dialogue.index];if(l?.[0]===who&&l[1].includes(text))return;next(a);}throw Error('missing line '+who+text);}
 function check(name,fn){fn();checks.push(name);console.log('PASS',name);}
-const resources=b=>plain({round:b.round,phase:b.phase,active:b.active,teamEnds:b.teamEnds,projectiles:b.projectiles,terrain:b.terrain,units:[...b.units,...Object.values(b.honroStaging.hidden)].map(u=>({id:u.id,hp:u.hp,energy:u.energy,moveLeft:u.moveLeft,acted:u.acted,fixed:u.fixed})).sort((a,b)=>a.id.localeCompare(b.id))});
+const resources=b=>plain({round:b.round,phase:b.phase,active:b.active,teamEnds:b.teamEnds,projectiles:b.projectiles,terrain:b.terrain,units:[...b.units,...Object.values(b.honroStaging.hidden)].map(u=>({id:u.id,hp:u.hp,energy:u.energy,moveLeft:u.moveLeft,acted:u.acted,fixed:u.fixed,loadout:u.loadout,ranks:u.ranks})).sort((a,b)=>a.id.localeCompare(b.id))});
 check('All 30 campaign entries have authored actions without advancing combat, resources or objectives',()=>{
  for(let id=1;id<=30;id++){const a=fresh(id),b=a.engine.b;assert(a.dialogue?.staging?.cues?.some(xs=>xs.length),'stage '+id);const before=resources(b),text=plain(a.dialogue.lines.map(l=>l.slice(0,2)));
   for(let i=0;i<40&&a.dialogue;i++){tick(a,20);next(a);}assert(!a.dialogue);assert.deepEqual(resources(b),before,'combat paused in '+id);assert(!b.units.some(u=>u.honroScenePose));assert(a.profile.honroNarrative.some(record=>record.lines.some(l=>l[1]===text[0][1])));

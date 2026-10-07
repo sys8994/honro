@@ -1,3 +1,4 @@
+import {historicalSceneRoster} from './staging-history-helpers.mjs';
 import {act12Balance,act12Archetypes} from './campaign-scope-helpers.mjs';
 import assert from 'node:assert/strict';
 import {beforeExistenceProfiles,beforeExistenceRoster} from './existence-delta-helpers.mjs';
@@ -21,9 +22,9 @@ check('Act 1 mission, recruitment and combat semantics remain unchanged beyond t
  for(const before of act1Frozen.stages){const q=battlefield(g,before.id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);const {w,h,map,...content}=q.st,old=plain(before.content);
   // The approved receiver entrance now reveals Sodan on-site. Its dialogue and
   // visibility are verified by story-staging, while these mission/stats remain frozen.
-  if(before.id===9){for(const key of ['narration','story','storyFollowups']){delete content[key];delete old[key];}const hidden=q.b.honroStaging?.hidden?.['npc-sodan'];assert(hidden&&!q.b.units.some(u=>u.id===hidden.id));q.b.units.splice(before.units.findIndex(u=>u.id===hidden.id),0,plain(hidden));}
+  if(before.id===9){for(const key of ['narration','story','storyFollowups']){delete content[key];delete old[key];}}
   if(before.id===10){content.story=plain(content.story);const line=content.story.find(l=>l[1].includes('아래 세운 두 진을'));assert(line,'Reviewed lower/upper receiver clarification');line[1]=line[1].replace('아래 세운 두 진을 이 윗마당 양옆과 이어야','양옆 받이진을 이어야');}
-  assert.deepEqual(plain(content),old);assert.deepEqual(plain(q.b.units.map(unitContract)),before.units);assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);}
+  assert.deepEqual(plain(content),old);assert.deepEqual(plain(historicalSceneRoster(q.b,before.units).map(unitContract)),before.units);assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);}
  }finally{g.HONRO_PROJECT=currentProject;}
  assert.equal(g.HONRO_PROJECT,currentProject,'Later acts and saved-battle checks use the current project');
 });

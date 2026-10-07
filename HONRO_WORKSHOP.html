@@ -17743,10 +17743,12 @@ function prepareFresh(b){
  const s=state(b);s.cinematic=2;const c=G.HonroStoryDirection?.cast[b.honroStage],id=b.honroStage===9?'npc-sodan':c?.actor;if(!id)return;const u=actor(b,id);if(!u)return;
  // Hidden cast is outside the engine roster, so it cannot leak via minimap,
  // hover, damage/collision, AI selection or speaker focus before its entrance.
+ // Retained cast still receives the Engine's normal non-player skill mapping.
+ G.HONRO_CORE.migrateEnemySkills(u);
  const placed=G.HonroTerrain.place(b,u,{x:u.x,y:u.y,flying:false,maxDistance:16,clearance:0});if(placed)Object.assign(u,placed);
  s.hidden[u.id]=u;b.units=b.units.filter(v=>v!==u);if(b.honroStage===9)s.entrance=ID;
 }
-function reveal(b,id){const s=state(b);let u=actor(b,id);if(u)return u;u=s.hidden[id];if(!alive(u))return null;b.units.push(u);delete s.hidden[id];return u;}
+function reveal(b,id){const s=state(b);let u=actor(b,id);if(u)return u;u=s.hidden[id];if(!alive(u))return null;G.HONRO_CORE.migrateEnemySkills(u);b.units.push(u);delete s.hidden[id];return u;}
 function request(app,id,context={}){
  const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!G.HonroStory)return false;
  const s=state(b);if(s.once[id])return false;s.once[id]='queued';
