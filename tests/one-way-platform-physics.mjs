@@ -19,7 +19,7 @@ for(const cls of ['archer','mage','knight','occultist'])for(const dt of [1/240,1
   rows.push({cls,dt,kind:external?'upward impulse ceiling':'voluntary jump ceiling',damage:hp-u.hp,highestHead});
  }
  // Horizontal wall impacts remain damaging and cannot pass through the wall.
- {const {e,u}=fixture(cls,[floor(),solid('wall',600,700,100,400)]),hp=u.hp;e.impulse(u,480,0);for(let n=0;n<Math.ceil(1/dt);n++)e.integrateBody(u,dt);assert(u.x<600);assert(u.hp<hp);rows.push({cls,dt,kind:'horizontal wall impulse',damage:hp-u.hp});}
+ {const {e,u}=fixture(cls,[floor(),solid('wall',600,700,100,400)],580,1000),hp=u.hp;e.impulse(u,480,0);for(let n=0;n<Math.ceil(1/dt);n++)e.integrateBody(u,dt);assert(u.x<600);assert(u.hp<hp);rows.push({cls,dt,kind:'horizontal wall impulse',damage:hp-u.hp});}
  // The existing measured-drop rule still damages a 15 m fall (900 units).
  {const {e,u}=fixture(cls,[floor()],500,100),hp=u.hp;for(let n=0;n<Math.ceil(5/dt);n++)e.integrateBody(u,dt);assert.equal(u.y,1000);assert(u.hp<hp);rows.push({cls,dt,kind:'height-based fall',damage:hp-u.hp});}
  // High-speed swept ascent, including the slab's side/corner, then downward
