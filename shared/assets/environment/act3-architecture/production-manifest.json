@@ -1,0 +1,1720 @@
+{
+  "version": 1,
+  "status": "production-art",
+  "coordinateContract": "Ground foot (0,0); SVG y is upward-negative. Floor surfaces and proposed solids are artwork-local and must receive the same instance transform. Rear artwork never implies collision.",
+  "runtimeRegistration": "map-builder-owned",
+  "assets": [
+    {
+      "id": "act3-town:eupseong-gate",
+      "name": "읍성 성문 · 석축과 문루",
+      "file": "eupseong-gate.svg",
+      "role": "architecture",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 14.083333333333334,
+        "bounds": {
+          "x": -750,
+          "y": -835,
+          "w": 1500,
+          "h": 845
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.15
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -640,
+          0
+        ],
+        [
+          -300,
+          0
+        ],
+        [
+          300,
+          0
+        ],
+        [
+          640,
+          0
+        ]
+      ],
+      "clearRegions": [
+        {
+          "name": "arch-passage",
+          "x": -120,
+          "y": -185,
+          "w": 240,
+          "h": 177
+        }
+      ],
+      "roof": {
+        "groupId": "broad-paljak-roof",
+        "bounds": {
+          "x": -490,
+          "y": -819,
+          "w": 981,
+          "h": 215
+        }
+      },
+      "materialNotes": "Cool irregular granite masses, three-bay timber pavilion, muted green bracket band, restrained broad paljak roof.",
+      "placementNotes": "Split stone contacts sit on a common support. The arch is empty artwork, not a cut through terrain. A future map must author separate collision solids and retain passage clearance.",
+      "status": "production-art",
+      "sourceDraft": "draft-act3-town:eupseong-gate",
+      "collision": [],
+      "floorSurfaces": [],
+      "suggestedSolids": []
+    },
+    {
+      "id": "act3-town:office-wall-entry",
+      "name": "관아 담장 · 열린 문간",
+      "file": "office-wall-entry.svg",
+      "role": "architecture",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 9.166666666666666,
+        "bounds": {
+          "x": -720,
+          "y": -540,
+          "w": 1440,
+          "h": 550
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.15
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -640,
+          0
+        ],
+        [
+          -290,
+          0
+        ],
+        [
+          290,
+          0
+        ],
+        [
+          640,
+          0
+        ]
+      ],
+      "clearRegions": [
+        {
+          "name": "entry-passage",
+          "x": -68,
+          "y": -260,
+          "w": 136,
+          "h": 252
+        }
+      ],
+      "roof": {
+        "groupId": "entry-roof-and-eaves",
+        "bounds": {
+          "x": -254,
+          "y": -520,
+          "w": 512,
+          "h": 182
+        }
+      },
+      "materialNotes": "Long warm plaster planes over short granite courses; low tiled coping and a higher timber entry distinguish this from a fortress.",
+      "placementNotes": "Wall wings and post shoes contact y=0; threshold remains clear. An eave silhouette does not block arrows until corresponding collision is explicitly authored. No office name or insignia is assigned.",
+      "status": "production-art",
+      "sourceDraft": "draft-act3-town:office-wall-entry",
+      "collision": [],
+      "floorSurfaces": [],
+      "suggestedSolids": []
+    },
+    {
+      "id": "act3-town:granary-loading-wall",
+      "name": "관창 외벽 · 열린 하역칸",
+      "file": "granary-loading-wall.svg",
+      "role": "architecture",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 10.333333333333334,
+        "bounds": {
+          "x": -720,
+          "y": -610,
+          "w": 1440,
+          "h": 620
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.15
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -582,
+          0
+        ],
+        [
+          -288,
+          0
+        ],
+        [
+          50,
+          0
+        ],
+        [
+          390,
+          0
+        ],
+        [
+          625,
+          0
+        ]
+      ],
+      "clearRegions": [
+        {
+          "name": "open-loading-bay",
+          "x": 242,
+          "y": -300,
+          "w": 148,
+          "h": 137
+        },
+        {
+          "name": "under-deck-gap",
+          "x": 140,
+          "y": -84,
+          "w": 180,
+          "h": 75
+        }
+      ],
+      "roof": {
+        "groupId": "long-low-tiled-roof",
+        "bounds": {
+          "x": -701,
+          "y": -595,
+          "w": 1408,
+          "h": 221
+        }
+      },
+      "materialNotes": "Low wide roof, timber-clad clay wall, closed plank store door, high vent and an open cargo bay on raised stone piers.",
+      "placementNotes": "Five stone piers touch ground; loading deck is at y=-152. The opening is at deck height, not ground. No implied ramp, walkable deck, river, cargo record or destructible gate is added.",
+      "status": "production-art",
+      "sourceDraft": "draft-act3-town:granary-loading-wall",
+      "collision": [],
+      "floorSurfaces": [],
+      "suggestedSolids": []
+    },
+    {
+      "id": "act3-town:open-two-storey-gallery",
+      "name": "개방형 2층 회랑",
+      "file": "open-two-storey-gallery.svg",
+      "status": "production-art",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 10.333333333333334,
+        "bounds": {
+          "x": -730,
+          "y": -610,
+          "w": 1460,
+          "h": 620
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.65
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -610,
+          0
+        ],
+        [
+          -219,
+          0
+        ],
+        [
+          220,
+          0
+        ],
+        [
+          610,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "lower-deck",
+          "y": -18,
+          "x1": -654,
+          "x2": 654
+        },
+        {
+          "name": "upper-deck",
+          "y": -234,
+          "x1": -654,
+          "x2": 654
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "lower-central-passage",
+          "x": -195,
+          "y": -194,
+          "w": 390,
+          "h": 166
+        },
+        {
+          "name": "upper-central-passage",
+          "x": -195,
+          "y": -420,
+          "w": 390,
+          "h": 176
+        }
+      ],
+      "roof": {
+        "groupId": "gallery-long-roof",
+        "bounds": {
+          "x": -718,
+          "y": -600,
+          "w": 1437,
+          "h": 171
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "lower-deck",
+          "material": "wood",
+          "points": [
+            [
+              -654,
+              -18
+            ],
+            [
+              654,
+              -18
+            ],
+            [
+              654,
+              0
+            ],
+            [
+              -654,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "upper-deck",
+          "material": "wood",
+          "points": [
+            [
+              -654,
+              -234
+            ],
+            [
+              654,
+              -234
+            ],
+            [
+              654,
+              -205
+            ],
+            [
+              -654,
+              -205
+            ]
+          ]
+        }
+      ],
+      "notes": "Open front and central bays. Posts and partial rails are rear scenery, not mandatory collision. Floor delta 216 world units; prototype scale 1.5 makes 324, and map-side stairs or intermediate landings must be validated. This does not certify jump reach.",
+      "sourceDraft": "draft-act3-town:open-two-storey-gallery"
+    },
+    {
+      "id": "act3-town:archive-cutaway-frame",
+      "name": "대형 기록고 · 절개 내부",
+      "file": "archive-cutaway-frame.svg",
+      "status": "production-art",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 13.75,
+        "bounds": {
+          "x": -750,
+          "y": -815,
+          "w": 1500,
+          "h": 825
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.65
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -650,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          650,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "lower-floor",
+          "y": -18,
+          "x1": -690,
+          "x2": 690
+        },
+        {
+          "name": "middle-floor",
+          "y": -234,
+          "x1": -690,
+          "x2": 388
+        },
+        {
+          "name": "upper-floor",
+          "y": -450,
+          "x1": -690,
+          "x2": 388
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "lower-central-bay",
+          "x": -185,
+          "y": -183,
+          "w": 370,
+          "h": 155
+        },
+        {
+          "name": "middle-central-bay",
+          "x": -185,
+          "y": -399,
+          "w": 370,
+          "h": 150
+        },
+        {
+          "name": "upper-central-bay",
+          "x": -185,
+          "y": -615,
+          "w": 370,
+          "h": 150
+        },
+        {
+          "name": "right-stair-well",
+          "x": 420,
+          "y": -610,
+          "w": 140,
+          "h": 582
+        }
+      ],
+      "roof": {
+        "groupId": "archive-roof-cutaway-cap",
+        "bounds": {
+          "x": -735,
+          "y": -807,
+          "w": 1471,
+          "h": 150
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "lower-floor",
+          "material": "wood",
+          "points": [
+            [
+              -690,
+              -18
+            ],
+            [
+              690,
+              -18
+            ],
+            [
+              690,
+              0
+            ],
+            [
+              -690,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "middle-floor",
+          "material": "wood",
+          "points": [
+            [
+              -690,
+              -234
+            ],
+            [
+              388,
+              -234
+            ],
+            [
+              388,
+              -203
+            ],
+            [
+              -690,
+              -203
+            ]
+          ]
+        },
+        {
+          "name": "upper-floor",
+          "material": "wood",
+          "points": [
+            [
+              -690,
+              -450
+            ],
+            [
+              388,
+              -450
+            ],
+            [
+              388,
+              -419
+            ],
+            [
+              -690,
+              -419
+            ]
+          ]
+        }
+      ],
+      "stairClearance": {
+        "x1": 400,
+        "x2": 635,
+        "yTop": -630,
+        "yBottom": -18,
+        "note": "No stairs are painted or physical. Keep the right well open; map author must connect each 216-unit level using validated steps/landings, scaled with the artwork."
+      },
+      "notes": "Three unequal shelf bays with open central circulation and no front wall. Shelves and structural posts are rear artwork. Anonymous bundles have no story identity. Scale 1.5 is allowed for 324-unit storey separation.",
+      "sourceDraft": "draft-act3-town:archive-cutaway-frame"
+    },
+    {
+      "id": "act3-town:three-arch-stone-bridge",
+      "name": "세 홍예 돌다리",
+      "file": "three-arch-stone-bridge.svg",
+      "status": "production-art",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 5.666666666666667,
+        "bounds": {
+          "x": -750,
+          "y": -330,
+          "w": 1500,
+          "h": 340
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.85,
+          1.65
+        ],
+        "backgroundRange": [
+          0.85,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -710,
+          0
+        ],
+        [
+          -240,
+          0
+        ],
+        [
+          240,
+          0
+        ],
+        [
+          710,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "bridge-deck",
+          "y": -264,
+          "x1": -730,
+          "x2": 730
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "water-arch-1",
+          "x": -585,
+          "y": -145,
+          "w": 210,
+          "h": 135
+        },
+        {
+          "name": "water-arch-2",
+          "x": -105,
+          "y": -145,
+          "w": 210,
+          "h": 135
+        },
+        {
+          "name": "water-arch-3",
+          "x": 375,
+          "y": -145,
+          "w": 210,
+          "h": 135
+        }
+      ],
+      "roof": {
+        "groupId": "broad-coping-and-level-deck",
+        "bounds": {
+          "x": -740,
+          "y": -266,
+          "w": 1481,
+          "h": 44
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "arch-body",
+          "material": "stone",
+          "points": [
+            [
+              -720,
+              -264
+            ],
+            [
+              720,
+              -264
+            ],
+            [
+              720,
+              0
+            ],
+            [
+              648,
+              0
+            ],
+            [
+              648,
+              -108
+            ],
+            [
+              641.389,
+              -142.146
+            ],
+            [
+              623.111,
+              -170.083
+            ],
+            [
+              595.5,
+              -191.812
+            ],
+            [
+              560.889,
+              -207.333
+            ],
+            [
+              521.611,
+              -216.646
+            ],
+            [
+              480.0,
+              -219.75
+            ],
+            [
+              438.389,
+              -216.646
+            ],
+            [
+              399.111,
+              -207.333
+            ],
+            [
+              364.5,
+              -191.812
+            ],
+            [
+              336.889,
+              -170.083
+            ],
+            [
+              318.611,
+              -142.146
+            ],
+            [
+              312.0,
+              -108.0
+            ],
+            [
+              312,
+              0
+            ],
+            [
+              168,
+              0
+            ],
+            [
+              168,
+              -108
+            ],
+            [
+              161.389,
+              -142.146
+            ],
+            [
+              143.111,
+              -170.083
+            ],
+            [
+              115.5,
+              -191.812
+            ],
+            [
+              80.889,
+              -207.333
+            ],
+            [
+              41.611,
+              -216.646
+            ],
+            [
+              0.0,
+              -219.75
+            ],
+            [
+              -41.611,
+              -216.646
+            ],
+            [
+              -80.889,
+              -207.333
+            ],
+            [
+              -115.5,
+              -191.812
+            ],
+            [
+              -143.111,
+              -170.083
+            ],
+            [
+              -161.389,
+              -142.146
+            ],
+            [
+              -168.0,
+              -108.0
+            ],
+            [
+              -168,
+              0
+            ],
+            [
+              -312,
+              0
+            ],
+            [
+              -312,
+              -108
+            ],
+            [
+              -318.611,
+              -142.146
+            ],
+            [
+              -336.889,
+              -170.083
+            ],
+            [
+              -364.5,
+              -191.812
+            ],
+            [
+              -399.111,
+              -207.333
+            ],
+            [
+              -438.389,
+              -216.646
+            ],
+            [
+              -480.0,
+              -219.75
+            ],
+            [
+              -521.611,
+              -216.646
+            ],
+            [
+              -560.889,
+              -207.333
+            ],
+            [
+              -595.5,
+              -191.812
+            ],
+            [
+              -623.111,
+              -170.083
+            ],
+            [
+              -641.389,
+              -142.146
+            ],
+            [
+              -648.0,
+              -108.0
+            ],
+            [
+              -648,
+              0
+            ],
+            [
+              -720,
+              0
+            ]
+          ],
+          "note": "One concave open-bottom polygon, sampled directly from the three inner SVG cubic arches. Not a rectangle over the water openings."
+        },
+        {
+          "name": "level-coping",
+          "material": "stone",
+          "points": [
+            [
+              -730,
+              -264
+            ],
+            [
+              730,
+              -264
+            ],
+            [
+              730,
+              -224
+            ],
+            [
+              -730,
+              -224
+            ]
+          ]
+        }
+      ],
+      "visualOnlyParts": [
+        "sparse-side-parapet-blocks"
+      ],
+      "notes": "Coping top y=-264. Sparse parapet blocks are back-rail scenery, not vertical walk blockers. Four support footprints require terrain/river-bed contact. No water, flow, destructibility or route is added. Arch-body samples preserve the three open bottoms.",
+      "sourceDraft": "draft-act3-town:three-arch-stone-bridge"
+    },
+    {
+      "id": "act3-town:mansion-open-gallery",
+      "name": "열린 저택의 겹회랑",
+      "file": "mansion-open-gallery.svg",
+      "status": "production-art",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 15.866666666666667,
+        "bounds": {
+          "x": -760,
+          "y": -942,
+          "w": 1520,
+          "h": 952
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.65,
+          1.65
+        ],
+        "backgroundRange": [
+          0.65,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -674,
+          0
+        ],
+        [
+          -290,
+          0
+        ],
+        [
+          290,
+          0
+        ],
+        [
+          674,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "lower-gallery",
+          "y": -20,
+          "x1": -691,
+          "x2": 691
+        },
+        {
+          "name": "upper-gallery",
+          "y": -400,
+          "x1": -677,
+          "x2": 677
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "lower-centre",
+          "x": -200,
+          "y": -365,
+          "w": 400,
+          "h": 330
+        },
+        {
+          "name": "upper-centre",
+          "x": -200,
+          "y": -760,
+          "w": 400,
+          "h": 340
+        }
+      ],
+      "roof": {
+        "groupId": "roof-mansion-ceramic",
+        "bounds": {
+          "x": -740,
+          "y": -922,
+          "w": 1480,
+          "h": 146
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "lower-deck",
+          "material": "wood",
+          "points": [
+            [
+              -691,
+              -20
+            ],
+            [
+              691,
+              -20
+            ],
+            [
+              691,
+              0
+            ],
+            [
+              -691,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "upper-deck",
+          "material": "wood",
+          "points": [
+            [
+              -677,
+              -400
+            ],
+            [
+              677,
+              -400
+            ],
+            [
+              677,
+              -368
+            ],
+            [
+              -677,
+              -368
+            ]
+          ]
+        },
+        {
+          "name": "west-outer-post",
+          "material": "wood",
+          "points": [
+            [
+              -637,
+              -789
+            ],
+            [
+              -611,
+              -789
+            ],
+            [
+              -611,
+              -20
+            ],
+            [
+              -637,
+              -20
+            ]
+          ]
+        },
+        {
+          "name": "east-outer-post",
+          "material": "wood",
+          "points": [
+            [
+              612,
+              -789
+            ],
+            [
+              638,
+              -789
+            ],
+            [
+              638,
+              -20
+            ],
+            [
+              612,
+              -20
+            ]
+          ]
+        },
+        {
+          "name": "roof",
+          "material": "wood",
+          "points": [
+            [
+              -603,
+              -794
+            ],
+            [
+              -631,
+              -818
+            ],
+            [
+              -584,
+              -855
+            ],
+            [
+              -546,
+              -900
+            ],
+            [
+              546,
+              -900
+            ],
+            [
+              584,
+              -855
+            ],
+            [
+              631,
+              -818
+            ],
+            [
+              603,
+              -794
+            ]
+          ]
+        }
+      ],
+      "notes": "Two open circulation levels 380 units apart. Paper screens and internal columns are rear artwork. Only outer posts, decks and the roof silhouette are proposed solids. Both centre passages remain transparent."
+    },
+    {
+      "id": "act3-town:ruined-foundry",
+      "name": "그을린 주조 공방",
+      "file": "ruined-foundry.svg",
+      "status": "production-art",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 14.116666666666667,
+        "bounds": {
+          "x": -715,
+          "y": -837,
+          "w": 1430,
+          "h": 847
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.65,
+          1.65
+        ],
+        "backgroundRange": [
+          0.65,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -649,
+          0
+        ],
+        [
+          -360,
+          0
+        ],
+        [
+          362,
+          0
+        ],
+        [
+          650,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "lower-workfloor",
+          "y": -20,
+          "x1": -673,
+          "x2": 673
+        },
+        {
+          "name": "west-loft",
+          "y": -400,
+          "x1": -662,
+          "x2": -272
+        },
+        {
+          "name": "east-loft",
+          "y": -400,
+          "x1": 274,
+          "x2": 660
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "open-central-work-bay",
+          "x": -230,
+          "y": -705,
+          "w": 460,
+          "h": 668
+        }
+      ],
+      "roof": {
+        "groupId": "charred-trusses-and-broken-roof",
+        "bounds": {
+          "x": -686,
+          "y": -812,
+          "w": 1362,
+          "h": 360
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "lower-deck",
+          "material": "wood",
+          "points": [
+            [
+              -673,
+              -20
+            ],
+            [
+              673,
+              -20
+            ],
+            [
+              673,
+              0
+            ],
+            [
+              -673,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "west-loft",
+          "material": "wood",
+          "points": [
+            [
+              -662,
+              -400
+            ],
+            [
+              -272,
+              -400
+            ],
+            [
+              -272,
+              -368
+            ],
+            [
+              -662,
+              -368
+            ]
+          ]
+        },
+        {
+          "name": "east-loft",
+          "material": "wood",
+          "points": [
+            [
+              274,
+              -400
+            ],
+            [
+              660,
+              -400
+            ],
+            [
+              660,
+              -368
+            ],
+            [
+              274,
+              -368
+            ]
+          ]
+        },
+        {
+          "name": "west-outer-post",
+          "material": "wood",
+          "points": [
+            [
+              -649,
+              -723
+            ],
+            [
+              -623,
+              -723
+            ],
+            [
+              -623,
+              -20
+            ],
+            [
+              -649,
+              -20
+            ]
+          ]
+        },
+        {
+          "name": "east-outer-post",
+          "material": "wood",
+          "points": [
+            [
+              628,
+              -713
+            ],
+            [
+              654,
+              -713
+            ],
+            [
+              654,
+              -20
+            ],
+            [
+              628,
+              -20
+            ]
+          ]
+        }
+      ],
+      "notes": "A burned open workshop with a broken roof, separate loft landings and a clear central circulation well. Hearth and chimney are rear artwork, not an authored hazard or story clue. No whole roof collision is proposed over the missing roof."
+    },
+    {
+      "id": "act3-town:sluice-pavilion",
+      "name": "밤 수문의 권양 누각",
+      "file": "sluice-pavilion.svg",
+      "status": "production-art",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 14.883333333333333,
+        "bounds": {
+          "x": -710,
+          "y": -883,
+          "w": 1420,
+          "h": 893
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.65,
+          1.65
+        ],
+        "backgroundRange": [
+          0.65,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -620,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          620,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "operating-deck",
+          "y": -400,
+          "x1": -647,
+          "x2": 647
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "west-water-channel",
+          "x": -475,
+          "y": -355,
+          "w": 365,
+          "h": 345
+        },
+        {
+          "name": "east-water-channel",
+          "x": 110,
+          "y": -355,
+          "w": 365,
+          "h": 345
+        }
+      ],
+      "roof": {
+        "groupId": "roof-sluice-night-tiles",
+        "bounds": {
+          "x": -670,
+          "y": -856,
+          "w": 1340,
+          "h": 155
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "west-abutment",
+          "material": "stone",
+          "points": [
+            [
+              -631,
+              -385
+            ],
+            [
+              -499,
+              -385
+            ],
+            [
+              -499,
+              0
+            ],
+            [
+              -631,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "centre-abutment",
+          "material": "stone",
+          "points": [
+            [
+              -67,
+              -385
+            ],
+            [
+              67,
+              -385
+            ],
+            [
+              67,
+              0
+            ],
+            [
+              -67,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "east-abutment",
+          "material": "stone",
+          "points": [
+            [
+              501,
+              -385
+            ],
+            [
+              631,
+              -385
+            ],
+            [
+              631,
+              0
+            ],
+            [
+              501,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "operating-deck",
+          "material": "wood",
+          "points": [
+            [
+              -647,
+              -400
+            ],
+            [
+              647,
+              -400
+            ],
+            [
+              647,
+              -368
+            ],
+            [
+              -647,
+              -368
+            ]
+          ]
+        },
+        {
+          "name": "west-pavilion-post",
+          "material": "wood",
+          "points": [
+            [
+              -577,
+              -701
+            ],
+            [
+              -551,
+              -701
+            ],
+            [
+              -551,
+              -400
+            ],
+            [
+              -577,
+              -400
+            ]
+          ]
+        },
+        {
+          "name": "east-pavilion-post",
+          "material": "wood",
+          "points": [
+            [
+              552,
+              -701
+            ],
+            [
+              578,
+              -701
+            ],
+            [
+              578,
+              -400
+            ],
+            [
+              552,
+              -400
+            ]
+          ]
+        },
+        {
+          "name": "roof",
+          "material": "wood",
+          "points": [
+            [
+              -533,
+              -720
+            ],
+            [
+              -561,
+              -744
+            ],
+            [
+              -514,
+              -781
+            ],
+            [
+              -476,
+              -834
+            ],
+            [
+              476,
+              -834
+            ],
+            [
+              514,
+              -781
+            ],
+            [
+              561,
+              -744
+            ],
+            [
+              533,
+              -720
+            ]
+          ]
+        }
+      ],
+      "notes": "An elevated operating pavilion above two transparent water channels. Gates are raised and are rear artwork. All three stone abutments must contact river-bed supports. Water, gate interaction and hazards are authored separately."
+    },
+    {
+      "id": "act3-town:ferry-loading-pavilion",
+      "name": "나루의 하역 정자",
+      "file": "ferry-loading-pavilion.svg",
+      "status": "production-art",
+      "candidateLayer": "L1-back",
+      "reference": {
+        "heightM": 11.9,
+        "bounds": {
+          "x": -715,
+          "y": -704,
+          "w": 1430,
+          "h": 714
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.65,
+          1.65
+        ],
+        "backgroundRange": [
+          0.65,
+          1.15
+        ]
+      },
+      "groundContacts": [
+        [
+          -575,
+          0
+        ],
+        [
+          -184,
+          0
+        ],
+        [
+          257,
+          0
+        ],
+        [
+          590,
+          0
+        ]
+      ],
+      "floorSurfaces": [
+        {
+          "name": "loading-deck",
+          "y": -140,
+          "x1": -643,
+          "x2": 651
+        }
+      ],
+      "clearRegions": [
+        {
+          "name": "open-berth",
+          "x": -152,
+          "y": -480,
+          "w": 480,
+          "h": 322
+        },
+        {
+          "name": "under-west-deck",
+          "x": -493,
+          "y": -90,
+          "w": 237,
+          "h": 80
+        },
+        {
+          "name": "under-east-deck",
+          "x": 330,
+          "y": -90,
+          "w": 192,
+          "h": 80
+        }
+      ],
+      "roof": {
+        "groupId": "roof-ferry-slate",
+        "bounds": {
+          "x": -680,
+          "y": -679,
+          "w": 1360,
+          "h": 158
+        }
+      },
+      "collision": [],
+      "suggestedSolids": [
+        {
+          "name": "loading-deck",
+          "material": "wood",
+          "points": [
+            [
+              -643,
+              -140
+            ],
+            [
+              651,
+              -140
+            ],
+            [
+              651,
+              -108
+            ],
+            [
+              -643,
+              -108
+            ]
+          ]
+        },
+        {
+          "name": "west-outer-post",
+          "material": "wood",
+          "points": [
+            [
+              -614,
+              -529
+            ],
+            [
+              -588,
+              -529
+            ],
+            [
+              -588,
+              -140
+            ],
+            [
+              -614,
+              -140
+            ]
+          ]
+        },
+        {
+          "name": "east-outer-post",
+          "material": "wood",
+          "points": [
+            [
+              600,
+              -529
+            ],
+            [
+              626,
+              -529
+            ],
+            [
+              626,
+              -140
+            ],
+            [
+              600,
+              -140
+            ]
+          ]
+        },
+        {
+          "name": "roof",
+          "material": "wood",
+          "points": [
+            [
+              -543,
+              -542
+            ],
+            [
+              -571,
+              -566
+            ],
+            [
+              -524,
+              -603
+            ],
+            [
+              -486,
+              -657
+            ],
+            [
+              486,
+              -657
+            ],
+            [
+              524,
+              -603
+            ],
+            [
+              571,
+              -566
+            ],
+            [
+              543,
+              -542
+            ]
+          ]
+        }
+      ],
+      "notes": "A low covered landing with a weatherboard shelter, open cargo berth and a quiet shaded lantern. The hoist is rear artwork. Four stone footings require river-bed or bank contact; no water, cargo clue or traversal mechanic is embedded."
+    }
+  ]
+}
