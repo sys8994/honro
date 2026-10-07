@@ -6,6 +6,7 @@ import {readFile} from 'node:fs/promises';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
+import {beforeCaveBatRevision} from './act2-cave-bat-delta-helpers.mjs';
 import {hash,mapRules} from './story-canon-contract-helpers.mjs';
 import {graniteVisuals} from '../tools/environment/granite-visuals.mjs';
 const read=async p=>JSON.parse(await readFile(p,'utf8'));
@@ -13,7 +14,7 @@ const project=await read('shared/data/campaign.json'),baseline=await read('tests
 const snapshot=JSON.stringify(project),prior=beforeGraniteVisuals(project),expected=structuredClone(project);
 for(const old of baseline.assets)expected.library.find(a=>a.id===old.id).visual=structuredClone(old.visual);
 assert.deepEqual(prior,expected,'only the two reviewed visual arrays may be reversed');assert.equal(JSON.stringify(project),snapshot,'current source is never mutated');
-const historical=p=>hash(mapRules(act12Project(beforeGraniteVisuals(beforePlatformPassages(beforeExistenceRoster(beforeObjectiveRevision(p,{stages:[]}).project))))));
+const historical=p=>hash(mapRules(act12Project(beforeGraniteVisuals(beforePlatformPassages(beforeCaveBatRevision(beforeExistenceRoster(beforeObjectiveRevision(p,{stages:[]}).project)))))));
 assert.equal(historical(project),frozen.mapRules,'original story fixture remains exact');
 for(const id of baseline.assets.map(a=>a.id))for(const change of [a=>a.visual[0].fill='#ffffff',a=>a.visual[1].points[0].x+=1]){const p=structuredClone(project);change(p.library.find(a=>a.id===id));assert.throws(()=>beforeGraniteVisuals(p),/Unreviewed granite visual change/,'unreviewed visual drift cannot be normalized away');}
 for(const change of [

@@ -4,6 +4,7 @@ import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {act12Project,act12Balance} from './campaign-scope-helpers.mjs';
 import assert from 'node:assert/strict';
 import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
+import {beforeCaveBatRevision} from './act2-cave-bat-delta-helpers.mjs';
 import {readFile} from 'node:fs/promises';
 import {content,plain,hash,gameplay,mapRules} from './story-canon-contract-helpers.mjs';
 const g=await content(),H=g.HONRO_CONTENT,J=g.HonroJourneyContent;
@@ -17,7 +18,7 @@ check('20 chapters retain every non-prose rule, stable scene/event IDs and rest 
  for(const before of frozen.rest){const lines=J.interlude(before.id);assert.equal(lines.length,before.lines);assert(lines.every(l=>l[2].storyId===before.storyId&&!l[2].optional));}
 });
 check('Acts 1–2 story contracts retain all rules beyond the exact reviewed existence delta',()=>{
- assert.equal(hash(mapRules(act12Project(beforeGraniteVisuals(beforePlatformPassages(beforeExistenceRoster(beforeObjectiveRevision(project,{stages:[]}).project)))))),frozen.mapRules);
+ assert.equal(hash(mapRules(act12Project(beforeGraniteVisuals(beforePlatformPassages(beforeCaveBatRevision(beforeExistenceRoster(beforeObjectiveRevision(project,{stages:[]}).project))))))),frozen.mapRules);
  assert.equal(hash(plain(act12Balance(g.HONRO_BALANCE))),frozen.balance);
 });
 check('Act 1 keeps future identities and the hidden temple out of player knowledge',()=>{
