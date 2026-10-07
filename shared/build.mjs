@@ -21,7 +21,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   const parts=['globalThis.HONRO_BGM_TRACKS='+JSON.stringify(bgm.map(f=>'assets/bgm/'+f))+';',await buildCore(), 'globalThis.HONRO_BALANCE='+await read('game/config/balance.json')+';'];
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
-  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
+  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
   const project=await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json')))));
   parts.push('globalThis.HONRO_PROJECT=HonroAct1Roster.author('+JSON.stringify(project)+');');
   if(vector){
