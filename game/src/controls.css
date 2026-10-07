@@ -4,10 +4,9 @@
 .honro .debug-setting label{font-weight:650;color:#f1d6aa}
 .honro .debug-map .map-node.open:not(.selected) .atlas-pin{border-color:#d7aa69;color:#e9c995}
 @media(max-width:620px){.honro .debug-badge{font-size:9px;padding:2px 5px}.honro .battle-title-row .debug-badge{max-width:130px;overflow:hidden;text-overflow:ellipsis}}
-.honro #app .battle-screen .minimap-dock{position:absolute;top:10px;right:12px;z-index:5;display:flex;flex-direction:column;align-items:flex-end;gap:4px;max-width:35vw}
+.honro #app .battle-screen .minimap-dock{position:absolute;top:10px;right:12px;z-index:5;display:flex;flex-direction:column;align-items:flex-end;max-width:35vw}
 .honro #app .battle-screen .minimap-dock #minimap{position:static!important;inset:auto!important;min-width:0!important;max-width:100%!important;max-height:min(132px,calc(100dvh - 290px))!important;box-sizing:border-box}
-.honro #app .battle-screen .minimap-dock[aria-expanded=false] #minimap{display:none!important}
-.honro #app .battle-screen #minimap-toggle{min-height:25px;padding:3px 8px;border:1px solid #9fae9366;border-radius:6px;background:#11262cdb;color:#e4d4aa;font-size:10px;line-height:1.2}
+.honro #app .battle-screen .minimap-dock[hidden]{display:none}
 .honro #app .battle-title-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
 .honro #app .battle-title-row b{margin:0}
 .honro #app #turn-text{white-space:nowrap;color:#d9c28c;font-size:10px;font-weight:650}
@@ -72,8 +71,6 @@
 .honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:18px!important;height:18px!important;margin:0!important}
 .honro #app .honro-compact-hud .radial-actions #fire .fire-label{margin:0!important}
 #minimap{touch-action:none;user-select:none;cursor:grab}#minimap:active{cursor:grabbing}
-.honro #app .battle-screen #minimap{top:76px!important;right:12px!important;bottom:auto!important;max-height:clamp(50px,calc(100dvh - 290px),180px)!important}
-.honro #app .battle-screen:has(.training-tools) #minimap{top:122px!important;max-height:clamp(40px,calc(100dvh - 336px),150px)!important}
 .honro .dialog .close{display:grid;place-items:center;padding:0}
 .honro .pause-dialog h2{padding-right:30px}
 .honro .pause-menu{display:grid;grid-template-columns:1fr;gap:10px;align-items:stretch}
@@ -230,3 +227,23 @@
 .honro .battle-help-dialog .actions button{min-height:44px}
 .honro #app .battle-info .mission-help:focus-visible{outline:2px solid #dfcda7;outline-offset:3px}
 @media(max-width:420px){.honro .battle-help-dialog{padding:20px 16px}.honro .battle-help-dialog .actions button{flex:1;min-width:100px}}
+
+/* Role-based action rows: shared geometry, with existing semantic colors intact.
+   World pins, hero/skill cards and radial combat controls keep their own sizes. */
+.honro{--ui-action-height:44px;--ui-action-gap:8px}
+.honro :is(.actions,.dialog-actions,.stat-invest-actions,.title-actions){gap:var(--ui-action-gap);align-items:stretch}
+.honro :is(.actions,.dialog-actions,.stat-invest-actions,.title-actions)>button{display:inline-flex;align-items:center;justify-content:center;gap:var(--ui-action-gap);min-height:var(--ui-action-height);line-height:1.3;margin:0}
+.honro .title-actions{display:flex;flex-wrap:wrap}
+.honro .title-actions>button{min-height:48px}
+.honro .dialog .dialog-actions>.btn{min-height:var(--ui-action-height)}
+.honro .top>button.icon,.honro .battle-head>button.icon{width:44px;height:44px;min-height:44px;flex:none;padding:0}
+.honro .dialog>.close{width:44px;height:44px;min-height:44px;padding:0}
+.honro .dialog>h2{margin-right:44px}
+.honro .settings-dialog .setting{min-height:56px}
+.honro .settings-dialog .setting>label{display:flex;align-items:center;align-self:stretch;min-height:44px;flex:1}
+.honro .settings-dialog .setting input[type=checkbox]{width:24px;height:24px;flex:none;margin:0}
+.honro .settings-dialog :is(select,[data-action=sound-test]){min-height:44px}
+.honro .settings-dialog .fullscreen-setting{justify-content:flex-start;gap:var(--ui-action-gap);min-height:48px}
+.honro .settings-dialog .fullscreen-setting b{margin-left:auto}
+.honro .settings-dialog .setting select{min-width:0}
+@media(orientation:landscape) and (max-height:550px){.honro .top{height:56px;min-height:56px;padding-block:6px}}
