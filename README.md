@@ -59,7 +59,7 @@ npm.cmd run verify
 
 ## 소스와 문서
 
-맵 v6의 전20장은 [하나의 큰 지형 내부에 Play Bounds](game/docs/TERRAIN_DOMAIN.md)를 둡니다. 안팎은 같은 polygon·재질·renderer이며 충돌은 기존 시뮬레이션 범위로 투영합니다. 진행 저장은 유지하고 새 진입/재시도부터 적용합니다. `npm run test:terrain-domain`으로 확인합니다.
+맵 v6의 전30장은 [하나의 큰 지형 내부에 Play Bounds](game/docs/TERRAIN_DOMAIN.md)를 둡니다. 안팎은 같은 polygon·재질·renderer이며 충돌은 기존 시뮬레이션 범위로 투영합니다. 진행 저장은 유지하고 새 진입/재시도부터 적용합니다. `npm run test:terrain-domain`으로 확인합니다.
 
 플레이 경계·카메라 중심·시각 영역은 [카메라 경계 계약](game/docs/CAMERA_BOUNDS.md)을 따릅니다. 줌은 가로 전술 시야와 식별 크기로 결정하며, 큰 지형의 collision 투영은 기존 플레이 범위를 유지합니다. Workshop `Bounds`로 세 영역을 보고 `npm.cmd run test:camera`로 세로/가로 화면과 입력·저장·지형 연결을 검증합니다. 새 1장은 마지막 능선이 1,200만큼 확장되며 진행 중인 옛 저장은 옛 맵을 유지합니다.
 
@@ -78,7 +78,7 @@ npm.cmd run verify
 | `shared/engine/src/` | 실제 엔진, 물리·이동·전투, SFX/BGM |
 | `shared/runtime/` | Scene, 캐릭터 렌더링, 게임 앱·HUD·스토리·임무 |
 | `shared/map/` | schema, geometry, compiler, unit factory, commands |
-| `shared/data/campaign.json` | Stage 1~10과 요소 라이브러리의 활성 데이터 |
+| `shared/data/campaign.json` | Stage 1~30과 요소 라이브러리의 활성 데이터 |
 | `shared/assets/` | 실제 캐릭터 벡터 에셋 |
 | `workshop/src/` | 편집 UI·오버레이·히스토리·Playtest 호스트 |
 | `game/config/`, `game/src/`, `game/vendor/` | 기존 설정, 게임 CSS, UI 자산 |
