@@ -1,6 +1,7 @@
 import {applyCurrentTerrainRecipes} from './act1-spatial-test-helpers.mjs';
 import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
+import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import vm from 'node:vm';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
@@ -8,6 +9,8 @@ import {migrate} from '../migration/migrate-stages.mjs';
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,project=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
 const plain=x=>JSON.parse(JSON.stringify(x)),checks=[];
+// Only legacy recipe comparisons use this exact-verified roster reversal.
+const historicalProject=beforeExistenceRoster(project);
 // Historical place recipes are compared independently of later combat tuning,
 // one-way platform rules, habitat props, and the authored scenery library.
 const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mid','bridge-east','lower-lookout','pier-west','pier-east','tier-low','tier-mid','tier-upper','tier-crown','ramp-1','center-lookout']);
@@ -19,10 +22,10 @@ vm.runInContext(await readFile('workshop/recipes/stage12-forest-basin.js','utf8'
 vm.runInContext(await readFile('workshop/recipes/stage36-place-design.js','utf8'),g);
 const migrated=await migrate(),first=g.HonroCommands.apply(migrated,g.HonroStage12Design.commands(migrated));
 test('Active Stage 7 recovery root exactly matches its shared additive recipe',()=>assert.deepEqual(project.stages[6].terrains.filter(t=>t.id===g.HonroStage7Reentry.id),[plain(g.HonroStage7Reentry.terrain())]));
-test('Both Workshop recipes reproduce the active Stage 1–10 project',()=>assert.deepEqual(withoutHistoricalSodanAttack(g.HonroCommands.apply(first,g.HonroStage36Places.commands(first))),withoutHistoricalSodanAttack(project)));
+test('Both Workshop recipes reproduce the active Stage 1–10 project',()=>assert.deepEqual(withoutHistoricalSodanAttack(g.HonroCommands.apply(first,g.HonroStage36Places.commands(first))),withoutHistoricalSodanAttack(historicalProject)));
 test('Stages 3–6 receive the place redesign; 7–10 retain data with only verified root/domain exceptions',()=>{
  for(const sid of[3,4,5,6]){const a=first.stages[sid-1],b=project.stages[sid-1];assert.notDeepEqual(b.terrains[0].points,a.terrains[0].points);assert.equal(b.metadata.placeRevision,1);assert(b.detailStats.groundTop>=150);}
- const later=plain(project.stages.slice(6,10));
+ const later=plain(historicalProject.stages.slice(6,10));
  later[3].elements.find(e=>e.kind==='ritualDais').layer='back';
  assert.deepEqual(withoutHistoricalSodanAttack({stages:later}).stages,withoutHistoricalSodanAttack({stages:migrated.stages.slice(6)}).stages);
 });
