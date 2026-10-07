@@ -53,7 +53,7 @@ export function koreanTownBuilding(id,{width=420,role='house',roofType=null,vari
  const h=role==='pavilion'?205:role==='office'?230:role==='archive'?235:store?195:shop?177:158;
  const rise=role==='office'?138:role==='archive'?136:store?108:shop?94:83;
  const kind=roofType||(isPublic?'hip':store?'gable':variant%3===0?'thatch':'gable'),roofArt=roof(w,-h,rise,kind,variant%2===1);
- const bays=Math.max(3,Math.min(isPublic?7:5,Math.round(w/(isPublic?142:125)))),bay=w/bays,publicWood=burnt?'#514738':isPublic?'#76503c':'#68513a';
+ const bays=role==='pavilion'?3:Math.max(3,Math.min(isPublic?7:5,Math.round(w/(isPublic?142:125)))),bay=w/bays,publicWood=burnt?'#514738':isPublic?'#76503c':'#68513a';
  const parts=['<defs>'+gradient('tile',-h-rise,-h,burnt?'#626860':'#68776e','#293b3d')+gradient('straw',-h-rise,-h,burnt?'#8d8260':'#aa9a72',burnt?'#534e3b':'#7e7351')+gradient('plaster',-h,0,burnt?'#928975':'#b9ac89',burnt?'#666950':'#938d6c')+'</defs>'];
  parts.push(group('low-stone-foundation',[poly([[l-12,-9],[l+21,-18],[r-15,-16],[r+12,-5],[r+15,0],[l-15,0]],'#727c68'),path('#aaa68c',`M${l-10}-9L${l+21}-18H${r-15}L${r+10}-5H${l-12}Z`)]));
  if(role!=='pavilion')parts.push(rect(l,-h+15,w,h-29,'url(#plaster)'),rect(l+6,-h+21,w-12,19,'#655e43'));
