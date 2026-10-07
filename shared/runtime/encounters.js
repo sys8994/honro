@@ -41,6 +41,7 @@ function configure(b){
   if(b.honroStage>=4)for(const ev of b.honroEvents){const trim=a=>{if(!a)return;if(a.type==='spawn')a.n=Math.min(a.n,4);if(a.type==='multi')a.actions.forEach(trim);};trim(ev.action);}
 }
 function matches(w,s){
+  if(w.objectiveDone&&!s.objectives?.[w.objectiveDone])return false;
   if(w.region&&!(s.heroes||[]).some(u=>G.HonroAuthored.inside(u,w.region)))return false;
   if(w.after&&!s.flags['event:'+w.after])return false;
   if(w.any&&!w.any.some(c=>matches(c,s)))return false;
@@ -56,14 +57,15 @@ function update(app,dt,state){
     const key='event:'+ev.id;if(hs.flags[key])continue;
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
-    if(!matches(ev.when,{...state,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
-    if(!hs.pendingEvents.includes(ev.id)){hs.pendingEvents.push(ev.id);hs.eventActors??={};hs.eventActors[ev.id]={id:app.actorBoundary||b.active,round:b.round};app.dirty=true;}
+    if(!matches(ev.when,{...state,objectives:hs.act3?.done,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
+    if(!hs.pendingEvents.includes(ev.id)){hs.pendingEvents.push(ev.id);hs.eventActors??={};hs.eventActors[ev.id]={id:app.actorBoundary||b.active,round:b.round};if(ev.warning)app.event(ev.warning);app.dirty=true;}
   }
   flush(app);
 }
 function flush(app){
   const e=app.engine,b=e.b,hs=b.honroState;
   if(!app.actorBoundary||app.dialogue||['won','lost'].includes(b.phase))return;
+  const boundary=[hs.actorTurnSerial||0,b.round,...b.teamEnds,app.actorBoundary].join(':');
   let spawned=false;
   for(const id of [...(hs.pendingEvents||[])]){
     const ev=b.honroEvents.find(v=>v.id===id),key='event:'+id;
@@ -74,10 +76,11 @@ function flush(app){
     if(combat(ev.action)){
       const normalCap=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
       const cap=Math.min(b.honroStage===4?Math.max(normalCap,26):normalCap,hs.sodanCoop?G.HonroMission.FINALE_CAP:Infinity);
-      if(spawned||enemies+spawnCount(ev.action)>cap)continue;
+      if(spawned||hs.lastCombatEventBoundary===boundary||enemies+spawnCount(ev.action)>cap)continue;
     }
     if(G.HonroAllies.execute(app,ev.action)===false)continue;
-    hs.flags[key]=true;if(combat(ev.action))spawned=true;
+    if(ev.entry){e.fx('ring',ev.entry.x,ev.entry.y-12,'#c8b286',95);e.fx('text',ev.entry.x,ev.entry.y-125,'#d4b790',16,'증원');}
+    hs.flags[key]=true;if(combat(ev.action)){spawned=true;hs.lastCombatEventBoundary=boundary;}
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);
     hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);
     const lines=G.HonroStoryContent.eventLines(app,ev);app.event(lines?.[0]?.[2]?.storyTitle||ev.text);if(lines?.length)app.sayLines(lines);b.events.push('honro:'+ev.id);app.dirty=true;

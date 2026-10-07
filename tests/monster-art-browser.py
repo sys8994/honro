@@ -21,6 +21,7 @@ CONTRACT=r'''()=>{
  const V=HonroMonsterVisual,scene=Object.create(HonroScene.prototype);scene.time=0;scene.scale=1;scene.walkTime=0;
  const cv=document.createElement('canvas');cv.width=640;cv.height=640;const c=cv.getContext('2d'),rows=[];
  for(const [id,a] of Object.entries(V.assets)){
+  if(a.budget==='act3-authored')continue; // New authored species have separate, explicit budgets.
   const d=HonroWorld.archetypes[id],u={id:'qa-'+id,x:320,y:540,h:256,r:d.r,honroType:d.look,honroVariant:d.variant,cls:d.cls,side:1,facing:1,hp:100,maxHp:100,angle:0},before=JSON.stringify(u);
   let anchors=0,curves=0;const proxy=new Proxy(c,{get(target,key){const v=target[key];if(typeof v!=='function')return v;return(...args)=>{if(['moveTo','lineTo','quadraticCurveTo','bezierCurveTo'].includes(key))anchors++;if(['arc','ellipse','rect'].includes(key))curves++;return v.apply(target,args);};},set(target,k,v){target[k]=v;return true;}});
   V.legacyBody.call(scene,proxy,u);const legacy={anchors,curvedPrimitives:curves};
@@ -40,17 +41,17 @@ CONTRACT=r'''()=>{
  }
  // The monster layer delegates specials, summons and allies to the outer actor/party adapters.
  const fallback=[{side:1,honroType:'human',honroFinalBoss:true},{side:1,honroType:'human',id:'boss'},{side:1,honroType:'human',boss:2},{side:1,honroType:'ghost',summoned:true},{side:0,honroType:'lantern',summoned:true},{side:2,honroType:'warden'},{side:1,honroType:'unknown'}].every(u=>V.kind(u)===null);
- const coverage=Object.entries(HonroWorld.archetypes).filter(([,d])=>!d.act2).map(([id,d])=>({id,kind:V.kind({side:1,honroType:d.look,honroVariant:d.variant}),midboss:V.kind({side:1,honroType:d.look,honroVariant:d.variant,honroMidboss:true})}));
+ const coverage=Object.entries(HonroWorld.archetypes).filter(([,d])=>!d.act2&&!d.act3Fiend).map(([id,d])=>({id,kind:V.kind({side:1,honroType:d.look,honroVariant:d.variant}),midboss:V.kind({side:1,honroType:d.look,honroVariant:d.variant,honroMidboss:true})}));
  const aim=[30,60,150].map(angle=>V.pose(V.assets.human,0,V.state({angle}))['front-arm'].rotate);
  return{rows,fallback,coverage,aim,defaultBeast:V.kind({side:1,honroType:'beast'}),cache:V.cacheSize()};
 }'''
 
-ARENA=r'''()=>{const p=HonroMaps.normalize(HONRO_PROJECT),s=HonroMaps.emptyStage('monster-review','Monster art review',3600,1050);
- s.terrains=[{id:'floor',type:'solid',points:[{x:0,y:800},{x:3600,y:800},{x:3600,y:1050},{x:0,y:1050}],baseMaterial:'rock',breakable:false}];
+ARENA=r'''()=>{const p=HonroMaps.normalize(HONRO_PROJECT),width=800+Object.keys(HonroMonsterVisual.assets).length*280,s=HonroMaps.emptyStage('monster-review','Monster art review',width,1050);
+ s.terrains=[{id:'floor',type:'solid',points:[{x:0,y:800},{x:width,y:800},{x:width,y:1050},{x:0,y:1050}],baseMaterial:'rock',breakable:false}];
  s.units=[HonroUnits.record('archer','p-archer',220,800),...Object.keys(HonroMonsterVisual.assets).map((id,i)=>HonroUnits.record(id,'art-'+id,500+i*280,800))];
  s.events=[];p.stages=[s];p.activeStageId=s.id;return p;}'''
 
-SPRITES=r'''(scene,e)=>{const cv=document.createElement('canvas');cv.width=1400;cv.height=900;const c=cv.getContext('2d');scene.time=0;scene.walkTime=0;scene.scale=.85;Object.keys(HonroMonsterVisual.assets).forEach((id,i)=>scene.unitBody(c,{...e.unit('art-'+id),x:175+i%4*350,y:278+Math.floor(i/4)*300,h:160,angle:0}));return cv.toDataURL();}'''
+SPRITES=r'''(scene,e)=>{const cv=document.createElement('canvas');cv.width=1400;cv.height=Math.ceil(Object.keys(HonroMonsterVisual.assets).length/4)*300;const c=cv.getContext('2d');scene.time=0;scene.walkTime=0;scene.scale=.85;Object.keys(HonroMonsterVisual.assets).forEach((id,i)=>scene.unitBody(c,{...e.unit('art-'+id),x:175+i%4*350,y:278+Math.floor(i/4)*300,h:160,angle:0}));return cv.toDataURL();}'''
 RUNTIME=r'''()=>{const a=HonroApp;a.frame=()=>{};a.dialogue=null;a.turnNotice=null;a.done=false;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;
  const e=a.engine,b=e.b,V=HonroMonsterVisual;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,scale:.85,x:850,y:580,time:0});
  const before=JSON.stringify(b),image=(SPRITES)(a.scene,e),signatures=Object.keys(V.assets).map(id=>{const u=e.unit('art-'+id);return[id,V.kind(u),u.h,u.r];});

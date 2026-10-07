@@ -1,0 +1,380 @@
+{
+  "idle": {
+    "duration": 3,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "back-skirt",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            2.5
+          ],
+          [
+            0.75,
+            -2.5
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "jeonrip",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            1
+          ],
+          [
+            0.75,
+            -1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "loose-pages",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            7
+          ],
+          [
+            0.75,
+            -7
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "paper-mantle",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            4
+          ],
+          [
+            0.75,
+            -4
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "seal",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            5
+          ],
+          [
+            0.75,
+            -5
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "torso",
+        "channel": "scaleY",
+        "keys": [
+          [
+            0,
+            1
+          ],
+          [
+            0.5,
+            1.008
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    ]
+  },
+  "move": {
+    "duration": 0.72,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "left-leg",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            -16
+          ],
+          [
+            0.75,
+            16
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "right-leg",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            16
+          ],
+          [
+            0.75,
+            -16
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "attack": {
+    "duration": 0.56,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "back-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -4
+          ],
+          [
+            0.2,
+            -10
+          ],
+          [
+            0.45,
+            10
+          ],
+          [
+            0.75,
+            3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "front-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -14.4
+          ],
+          [
+            0.2,
+            -36
+          ],
+          [
+            0.45,
+            36
+          ],
+          [
+            0.75,
+            10.799999999999999
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "torso",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -1.6
+          ],
+          [
+            0.2,
+            -4
+          ],
+          [
+            0.45,
+            4
+          ],
+          [
+            0.75,
+            1.2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "hit": {
+    "duration": 0.3,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "back-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -10
+          ],
+          [
+            0.4,
+            3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "front-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -36
+          ],
+          [
+            0.4,
+            10.799999999999999
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "torso",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -4
+          ],
+          [
+            0.4,
+            1.2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "jump_fall": {
+    "duration": 0.9,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "left-leg",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.3,
+            -23
+          ],
+          [
+            0.7,
+            -17
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "right-leg",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.3,
+            18
+          ],
+          [
+            0.7,
+            12
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  }
+}

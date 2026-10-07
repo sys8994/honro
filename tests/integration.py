@@ -25,13 +25,14 @@ with sync_playwright() as p:
     game.goto((ROOT/'HONRO.html').as_uri());game.wait_for_function('window.HonroApp')
     game.evaluate('HonroApp.frame=()=>{}')
     project=editor.evaluate('HonroWorkshopAPI.getProject()')
-    check('Canonical Stage 1–20 loaded',len(project['stages'])==20)
+    stage_count=len(project['stages'])
+    check('Canonical Stage 1–30 loaded',stage_count==30)
     check('Edit mode has no audio engine',editor.evaluate('typeof window.HonroApp')=='undefined')
     # Fix both actual host canvas viewports. Screenshots read the world layer, overlay is separate.
     editor.add_style_tag(content='#stageView .canvas-wrap{position:fixed;left:0;top:0;width:960px;height:540px;z-index:99}#stageToolbar,.canvas-help,.hud-overlay{display:none!important}')
     game.add_style_tag(content='.battle-view{position:fixed!important;left:0!important;top:0!important;width:960px!important;height:540px!important}#battlecanvas{width:960px!important;height:540px!important}')
     editor.evaluate('HonroWorkshopAPI.setOverlay(false)')
-    for sid in range(1,21):
+    for sid in range(1,stage_count+1):
         editor.evaluate('id=>HonroWorkshopAPI.selectStage("stage-"+id)',sid)
         st=project['stages'][sid-1]
         camera={'x':st['width']/2,'y':st['height']/2,'zoom':.2}
@@ -42,9 +43,9 @@ with sync_playwright() as p:
         editor.evaluate('''()=>{HonroWorkshopAPI.getRuntime().scene.missionTargets=[];HonroWorkshopAPI.render()}''')
         game.evaluate('''([id,camera])=>{const a=HonroApp,st=HONRO_PROJECT.stages[id-1];
           a.profile={...HONRO_TOOLS.fresh(),...HonroMaps.profileFor(st)};
-          for(let i=1;i<=20;i++)a.profile.cleared[i]={};a.launch(id);if(a.dialogue)HonroStory.finish(a);
+          for(let i=1;i<=HONRO_PROJECT.stages.length;i++)a.profile.cleared[i]={};a.launch(id);if(a.dialogue)HonroStory.finish(a);
           a.turnNotice=null;Object.assign(a.scene,{time:0,walkTime:0,manual:true,storyTween:null,goalFocus:null,cinematic:null,x:camera.x,y:camera.y,scale:camera.zoom});
-          a.scene.missionTargets=[];a.scene.render(a.engine,0,'',.6,false,0);
+          a.scene.missionTargets=[];a.scene.editorView=true;a.scene.render(a.engine,0,'',.6,false,0);a.scene.editorView=false;
         }''',[sid,actual_camera])
         a=canvas_image(editor,'#stageCanvas');b=canvas_image(game,'#battlecanvas')
         assert a.size==b.size,(a.size,b.size)
@@ -52,9 +53,9 @@ with sync_playwright() as p:
         if sid in [1,2,8,10] or ratio>=.0001:
             a.save(OUT/f'editor-stage-{sid}.png');b.save(OUT/f'game-stage-{sid}.png');diff.save(OUT/f'diff-stage-{sid}.png')
         check(f'Rendering equivalence Stage {sid}',ratio<.0001,{'differentPixels':changed,'ratio':ratio,'bbox':diff.getbbox()})
-    # Exercise both acts through the real app and engine.
-    for sid in range(1,21):
-        smoke=game.evaluate('''sid=>{const a=HonroApp;a.profile={...HONRO_TOOLS.fresh(),...HonroMaps.profileFor(HONRO_PROJECT.stages[sid-1])};for(let i=1;i<=20;i++)a.profile.cleared[i]={};a.launch(sid);if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const e=a.engine;
+    # Exercise all three acts through the real app and engine.
+    for sid in range(1,stage_count+1):
+        smoke=game.evaluate('''sid=>{const a=HonroApp;a.profile={...HONRO_TOOLS.fresh(),...HonroMaps.profileFor(HONRO_PROJECT.stages[sid-1])};for(let i=1;i<=HONRO_PROJECT.stages.length;i++)a.profile.cleared[i]={};a.launch(sid);if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const e=a.engine;
           for(let i=0;i<240;i++){if(i<30)e.move(1,1/120);if(i===30)e.jump(e.active);if(i===140)e.fire(e.active.loadout[0],35,.5);e.tick(1/120);a.missionTick(1/120);if(i%60===0)a.scene.render(e,0);}
           return{finite:e.b.units.every(u=>Number.isFinite(u.x)&&Number.isFinite(u.y)),heroes:e.heroesAlive().length,shots:e.b.shots,error:a.lastError||null};}''',sid)
         check(f'Stage {sid} movement/jump/attack runtime smoke',smoke['finite'] and smoke['heroes']>0 and not smoke['error'],smoke)

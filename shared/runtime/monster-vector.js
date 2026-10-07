@@ -32,7 +32,9 @@ function draw(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
 return{draw,pose,state,assets,cacheSize:()=>cache.size};}
 G.HonroVectorParts={create};
 const api=create(G.HONRO_MONSTERS?.assets||{}),{assets,draw,state}=api;
-function kind(u){if(u.side!==1||u.boss||u.honroFinalBoss||u.id==='boss'||u.summoned)return null;const id=u.honroType==='beast'?(u.honroVariant||'stag'):u.honroType;return assets[id]?id:null;}
+function kind(u){if(u.side!==1||u.boss||u.honroFinalBoss||u.id==='boss'||u.summoned)return null;const variant=u.honroVariant;
+ if(assets[variant])return u.elite&&variant==='possessedGuard'?'gateMaster':u.elite&&variant==='possessedArcher'?'archerMaster':variant;
+ const id=u.honroType==='beast'?(variant||'stag'):u.honroType;return assets[id]?id:null;}
 const previous=G.HonroScene.prototype.unitBody;
 G.HonroScene.prototype.unitBody=function(c,u,charge=0){const id=kind(u);if(!id)return previous.call(this,c,u,charge);const a=assets[id],scale=u.h/a.baseHeight;c.save();c.translate(u.x,u.y);c.scale(scale*(u.facing||1),scale);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1,pixels=a.baseHeight*Math.hypot(m.c,m.d)/ratio;draw(c,id,{time:this.time||0,state:state(u),pixels});c.restore();};
 G.HonroMonsterVisual={...api,kind,legacyBody:previous};

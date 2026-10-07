@@ -56,10 +56,10 @@ const COVERAGE={minZoom:.16,maxViewport:{w:2560,h:1440},margin:240};
 const FINISH={L1:{haze:0,detail:1},L2:{haze:.18,detail:1},L3:{haze:.48,detail:.5},L4:{haze:.76,detail:.2}};
 // The painted SKY is a distant panorama, not a finite WORLD support. Its small
 // camera drift is deliberately independent of the L1-L4 projection and zoom.
-const ACT1_FAR={saturation:.45,brightness:{mountains:.80,gorge:.76,dawn:1},veil:'#1b2730',veilOpacity:.08,panX:.025,panY:.0035,marginX:.022,marginY:.007};
+const ACT1_FAR={saturation:.45,brightness:{mountains:.80,gorge:.76,dawn:1,act3:.86},veil:'#1b2730',veilOpacity:.08,panX:.025,panY:.0035,marginX:.022,marginY:.007};
 function act1Mood(stage){const n=Number(stage);if(!Number.isInteger(n)||n<1||n>10)return null;const t=(n-1)/9;
  return{stage:n,variant:n<6?'mountains':'gorge',tint:mixColor('#83968f','#52627e',t),opacity:.03+t*.12};}
-function campaignMood(stage){const first=act1Mood(stage);if(first)return first;const n=Number(stage);if(![11,12,20].includes(n))return null;
+function campaignMood(stage){const first=act1Mood(stage);if(first)return first;const n=Number(stage);if(n>=21&&n<=30)return{stage:n,variant:'act3',tint:mixColor('#9ba58e','#52667e',(n-21)/9),opacity:.025+(n-21)/9*.10};if(![11,12,20].includes(n))return null;
  return{stage:n,variant:n===12?'gorge':n===20?'dawn':'mountains',tint:n===20?'#d7c9a9':'#899b92',opacity:n===12?.06:.025};}
 function act1BackdropFrame(view,w,h,b,iw=1600,ih=900){const mx=w*ACT1_FAR.marginX,my=h*ACT1_FAR.marginY,
  s=Math.max((w+2*mx)/iw,(h+2*my)/ih),dw=iw*s,dh=ih*s,

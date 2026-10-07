@@ -32,6 +32,10 @@ for(let id=1;id<=10;id++){
   const p=g.HonroMaps.profileFor(project.stages[id-1]);p.settings.difficulty=difficulty;
   const a=battlefield(old,id,{profile:plain(p)}).b,b=g.HonroMaps.createBattle(g.HONRO_PROJECT.stages[id-1],g.HONRO_PROJECT,plain(p),{legacyBalance:true});
   g.HonroStageRules.sanitizeStageBattle(b);new g.HONRO_CORE.Engine(b,()=>{},true);
+  // The approved first-receiver scene now retains Sodan outside the active
+  // roster. Restore exactly that retained record for this historical import
+  // comparison; scene timing/visibility has its own production App regression.
+  if(id===9){assert(!b.units.some(u=>u.id==='npc-sodan'));const hidden=b.honroStaging?.hidden?.['npc-sodan'];assert(hidden,'Stage9 must retain its historical actor');b.units.push(plain(hidden));}
   assert.deepEqual(originalTerrain(b.terrain),originalTerrain(a.terrain),`Stage ${id} ${difficulty} terrain`);
   assert.deepEqual(plain(b.honroSurfaceZones).map(({terrainId,...z})=>z),plain(a.honroSurfaceZones),`Stage ${id} materials`);
   for(const field of ['honroEvents','honroMarkers','honroMapAnchors','honroMap','honroRoute','honroDetailStats','honroState','honroGrowth'])

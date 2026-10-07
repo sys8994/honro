@@ -485,6 +485,9 @@ export interface Profile {
     migrated?: boolean;
 }
 export interface Event {
+    damage?: number;
+    targetId?: string;
+    attackId?: string;
     critical?: boolean;
     type: 'fx' | 'sound' | 'change' | 'save' | 'result' | 'message' | 'xp' | 'level';
     name?: string;

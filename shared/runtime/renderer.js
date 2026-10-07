@@ -274,12 +274,6 @@
             this.terrainHealth(c,b,w,h);
             G.HONRO_CORE.drawCombatPassives(c,e,this.time);
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)&&(!G.HonroAct2||G.HonroAct2.visible(b,e.unit(id)))).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];
-            for(const row of this.reviewSummary){
-                const target=row.target;c.save();c.translate(target.x,target.y-target.h-58/this.scale);c.scale(1/this.scale,1/this.scale);
-                const caption=row.attacker+' → '+target.name;c.font='11px sans-serif';const width=Math.max(90,c.measureText(caption).width+22);
-                c.fillStyle='#0c1c22ec';c.fillRect(-width/2,-22,width,43);c.strokeStyle='#c3ad7650';c.lineWidth=1;c.strokeRect(-width/2,-22,width,43);
-                c.textAlign='center';c.fillStyle='#c7cbb9';c.fillText(caption,0,-7);c.font='bold 18px sans-serif';c.fillStyle='#efd0ad';c.fillText('−'+row.damage,0,14);c.restore();
-            }
             if(this.arcFx)this.arcFx.time=this.time;
             for (const q of b.projectiles || []) if (!q.dead) {
                 if(this.partyVisual?.projectile?.(c,q,e))continue;

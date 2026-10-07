@@ -14,6 +14,11 @@
 <script>/* RUNTIME */</script><script>
 /* METRICS */
 const V=HonroMonsterVisual,$=id=>document.getElementById(id),ids=Object.keys(V.assets);let playing=false,t=0,last=0;
+const baselineIds=ids.filter(id=>V.assets[id].budget!=='act3-authored');
+$('roster').height=Math.ceil(ids.length/4)*300;
+document.querySelector('header p').textContent='기존 일반 적 11종 · 3막 한국 악귀 6종 · 게임과 같은 벡터, 같은 동작.';
+document.querySelector('.badge').textContent='기존 3배 기준 · 신규 개별 예산';
+$('roster').previousElementSibling.textContent='전체 17종';
 $('species').innerHTML=ids.map(id=>`<option value="${id}">${V.assets[id].name}</option>`).join('');
 function text(c,s,x,y,size=14,color='#d7dbc7'){c.fillStyle=$('background').value==='#b7baa6'?'#273832':color;c.font=`${size}px system-ui`;c.fillText(s,x,y);}
 function clear(canvas){const c=canvas.getContext('2d');c.fillStyle=$('background').value;c.fillRect(0,0,canvas.width,canvas.height);return c;}
@@ -28,11 +33,11 @@ function render(){
  text(c,'형태의 기준',740,114,17);a.brief.identity.forEach((v,i)=>text(c,`${String(i+1).padStart(2,'0')}   ${v}`,740,155+i*33,18));
  text(c,'재질',740,280,15,'#aebcaf');text(c,a.brief.materials.join('  /  '),740,310,18);
  $('detail').textContent=`${a.name} · ${$('motion').selectedOptions[0].text} · ${t.toFixed(2)}초 · ${a.parts.length}개 파트`;$('time').value=t.toFixed(2);
- const rc=clear($('roster'));ids.forEach((id,i)=>{const x=i%4*350,y=Math.floor(i/4)*300;const m=metrics.assets.find(v=>v.id===id);text(rc,V.assets[id].name,x+22,y+30,18);text(rc,`${m.originalAnchors} → ${m.anchors} · ${m.anchorRatio.toFixed(2)}×`,x+22,y+53,12,'#aebcaf');baseline(rc,x+175,y+268,155);monster(rc,id,x+175,y+268,160);});
- const cc=clear($('comparison'));ids.forEach((id,i)=>{const x=i%3*466,y=Math.floor(i/3)*290;text(cc,V.assets[id].name,x+24,y+30,18);text(cc,'최초 원본',x+88,y+58,12,'#aebcaf');text(cc,'현재',x+320,y+58,12,'#c4d59f');baseline(cc,x+228,y+256,203);old(cc,id,x+116,y+256,135);monster(cc,id,x+346,y+256,135);});
+ const rc=clear($('roster'));ids.forEach((id,i)=>{const x=i%4*350,y=Math.floor(i/4)*300;const m=metrics.assets.find(v=>v.id===id);text(rc,V.assets[id].name,x+22,y+30,18);text(rc,m.budget==='act3-authored'?`${m.anchors} 앵커 · 신규 예산`: `${m.originalAnchors} → ${m.anchors} · ${m.anchorRatio.toFixed(2)}×`,x+22,y+53,12,'#aebcaf');baseline(rc,x+175,y+268,155);monster(rc,id,x+175,y+268,160);});
+ const cc=clear($('comparison'));baselineIds.forEach((id,i)=>{const x=i%3*466,y=Math.floor(i/3)*290;text(cc,V.assets[id].name,x+24,y+30,18);text(cc,'최초 원본',x+88,y+58,12,'#aebcaf');text(cc,'현재',x+320,y+58,12,'#c4d59f');baseline(cc,x+228,y+256,203);old(cc,id,x+116,y+256,135);monster(cc,id,x+346,y+256,135);});
  const sc=clear($('sizes'));text(sc,a.name,24,28,16);[256,128,96,64].forEach((size,j)=>{const x=[340,850,1080,1270][j];baseline(sc,x,300,j?90:265);monster(sc,id,x,300,size);text(sc,size+'px',x-23,322,12,'#aebcaf');});
 }
-$('stats').innerHTML=metrics.assets.map(a=>`<tr><td>${a.name}</td><td>${a.parts}</td><td>${a.paths}</td><td>${a.originalAnchors} → ${a.anchors} (${a.anchorRatio.toFixed(2)}×)</td><td>${a.controls}</td><td>${a.lodPaths.join(' / ')}</td><td>${(a.optimizedSvgBytes/1024).toFixed(1)} KB</td></tr>`).join('');
+$('stats').innerHTML=metrics.assets.map(a=>`<tr><td>${a.name}</td><td>${a.parts}</td><td>${a.paths}</td><td>${a.budget==='act3-authored'?`${a.anchors} / 최대 350`:`${a.originalAnchors} → ${a.anchors} (${a.anchorRatio.toFixed(2)}×)`}</td><td>${a.controls}</td><td>${a.lodPaths.join(' / ')}</td><td>${(a.optimizedSvgBytes/1024).toFixed(1)} KB</td></tr>`).join('');
 for(const id of ['species','motion','mode','background','flip'])$(id).onchange=()=>{if(id==='motion'||id==='species'){t=0;$('scrub').max=V.assets[$('species').value].clips[$('motion').value].duration;$('scrub').value=0;}render();};
 $('scrub').oninput=()=>{t=Number($('scrub').value);playing=false;$('pause').textContent='재생';render();};
 $('pause').onclick=()=>{playing=!playing;$('pause').textContent=playing?'정지':'재생';last=performance.now();};

@@ -187,3 +187,8 @@
 
 .honro .context-interact button{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:9px;align-items:center}
 .honro .context-interact .keycap{grid-row:1/3;display:grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border:1px solid #d8bf8370;border-radius:7px;background:#0a171be8;color:#ead9ae;font:700 12px/1 sans-serif;box-shadow:inset 0 -2px 0 #0007}
+
+/* Quiet experience line shared by compact desktop and touch HUDs. */
+.honro #app .arcfall-hud .hud-vitals{position:relative!important;padding-bottom:6px!important}
+.honro #app .arcfall-hud .hud-xp,.honro #app .honro-compact-hud .hud-xp{display:block!important;position:absolute!important;left:1px!important;right:1px!important;bottom:0!important;height:3px!important;overflow:hidden!important;background:#bdcaaa16!important;border-radius:2px!important}
+.honro #app .arcfall-hud .hud-xp i{display:block!important;height:100%!important;background:#b9b98b99!important;transition:width .18s ease-out}

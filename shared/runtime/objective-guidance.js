@@ -50,7 +50,42 @@ function enhance(b,st,result){if(b.honroCustom)return result;
    if(s.parallelGroup)summary+=' · 두 지점 모두 E';
    if(s.kind==='reach'&&s.allHeroes){const group=heroes(b),inside=group.filter(u=>G.HonroAct3.sameFloor(u,m,s.radius||440)).length;summary+=' · 집결 '+inside+'/'+group.length;if(s.id==='party-reunion')summary+=' · 집결 후 행동 종료';}
   }}
- return{...result,summary,blockReason,completionText:ending(b,st,list),failureText:failure(b,st,list,result),checklist};
+ const presentation=progressive(b,st,result,list,s);
+ return{...result,summary,blockReason,completionText:ending(b,st,list),failureText:failure(b,st,list,result),checklist,...presentation};
 }
-G.HonroObjectiveGuide={enhance,stepText,ending};
+function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=false)=>out.push({id,text,done}),marks=b.honroMarkers||[],boss=b.units.find(u=>u.id==='boss'),seals=b.terrain.filter(t=>t.honroSeal);
+ const hold=(text)=>add('settle',text,r.complete);
+ switch(st.id){
+ case 1:add('exit','표시된 도착 지점으로 이동하세요',r.complete);break;
+ case 2:add('escort','상여가 도착할 때까지 지켜 주세요',r.complete);break;
+ case 3:add('ledger','움막의 장부 앞에서 E를 누르세요',!!h.ledger);hold('일행을 1턴 보호하세요');break;
+ case 4:add('protect','피난문을 지키세요 · '+Math.max(0,8-(b.round-1))+'턴 남음',r.complete);break;
+ case 5:add('ritual','담허로 받이진 앞에서 E를 누르세요',!!h.ritual?.active||!seals.some(t=>!t.broken));add('cleat','설오로 표시된 고리쇠를 쏘세요',!seals.some(t=>!t.broken));hold('물길을 1턴 지키세요');break;
+ case 6:add('midboss','교각귀를 쓰러뜨리세요',!b.units.some(u=>u.honroMidboss&&!u.dead));add('rescue','운반대 가까이 이동하세요',!!h.rescued);add('escort','운반대 앞에서 길을 열어 주세요',r.complete);break;
+ case 7:marks.filter(m=>m.action==='rescue').forEach((m,i)=>add(m.id,'주민 '+(i+1)+' 곁에서 E를 누르세요',!!m.collected));hold('구조한 주민들을 2턴 보호하세요');break;
+ case 8:seals.forEach((t,i)=>add(t.id,'상여 결박 '+(i+1)+'을 공격하세요',!!t.broken));add('boss','빈 상여를 쓰러뜨리세요',!!boss?.dead);hold('주변을 1턴 지키세요');break;
+ case 9:marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+' 앞에서 E를 누르세요',!!m.collected));hold('일행을 2턴 보호하세요');break;
+ case 10:add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+' 앞에서 E를 누르세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',r.complete);break;
+ default:add('current',r.summary,r.complete);
+ }return out;
+}
+function progressive(b,st,result,list,current){
+ let chosen=current,rows,instruction;
+ if(list.length){
+  if(current?.parallelGroup){const cls=b.units.find(u=>u.id===b.active)?.cls;chosen=list.find(q=>q.parallelGroup===current.parallelGroup&&!result.allTargets?.find(t=>t.id===q.id)?.done&&q.requiredClass===cls)||current;}
+  rows=list.map(q=>({id:q.id,text:stepText(q,st.id),done:!!result.allTargets?.find(t=>t.id===q.id)?.done}));
+  if(chosen){const name=chosen.requiredClass&&!chosen.label.includes(heroName(chosen.requiredClass))?heroName(chosen.requiredClass)+' · ':'';
+   instruction=name+chosen.label;
+   if(['interact','rescue'].includes(chosen.kind))instruction+=' · E';
+   else if(chosen.kind==='destroy')instruction+=' · 공격';
+   else if(chosen.kind==='hold'){const a=st.act===3?b.honroState?.act3:b.honroState?.act2,h=a?.holds?.[chosen.id];instruction=h?.contested?'표시된 원 안의 적을 처치하세요':h?.guarded?'그 자리에서 '+Math.max(0,chosen.rounds-(h.progress||0))+'턴 더 버티세요':'표시된 원 안에서 '+chosen.rounds+'턴 버티세요';}
+   else if(chosen.kind==='escort')instruction='운반자 앞에서 출구까지 길을 열어 주세요';
+   else if(chosen.kind==='reach')instruction=chosen.allHeroes?chosen.id==='party-reunion'?'중앙에 네 사람을 모은 뒤 행동을 끝내세요':'살아 있는 동행을 도착 지점에 모으세요':'표시된 도착 지점으로 이동하세요';
+   if(st.id===27&&['water-release','fire-screen'].includes(chosen.id))instruction+=' · '+Math.max(0,12-(b.honroState?.act3?.fireTurns||0))+'턴 남음';
+  }
+ }else{rows=legacySteps(b,st,result);chosen=rows.find(q=>!q.done);instruction=chosen?.text;}
+ const visibleChecklist=rows.filter(q=>q.done||q.id===chosen?.id).map(q=>({...q,current:q.id===chosen?.id&&!q.done}));
+ return{currentInstruction:result.complete?'목표 완료':instruction||result.summary,currentObjectiveId:chosen?.id,visibleChecklist};
+}
+G.HonroObjectiveGuide={enhance,stepText,ending,progressive};
 })(globalThis);

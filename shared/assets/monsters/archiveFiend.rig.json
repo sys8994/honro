@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "baseHeight": 104,
+  "viewBox": [
+    -65,
+    -122,
+    137,
+    130
+  ],
+  "parts": [
+    {
+      "id": "back-skirt",
+      "pivot": [
+        -7,
+        -56
+      ],
+      "parent": null
+    },
+    {
+      "id": "back-arm",
+      "pivot": [
+        -13,
+        -83
+      ],
+      "parent": null
+    },
+    {
+      "id": "left-leg",
+      "pivot": [
+        -11,
+        -35
+      ],
+      "parent": null
+    },
+    {
+      "id": "right-leg",
+      "pivot": [
+        8,
+        -35
+      ],
+      "parent": null
+    },
+    {
+      "id": "torso",
+      "pivot": [
+        0,
+        -65
+      ],
+      "parent": null
+    },
+    {
+      "id": "head",
+      "pivot": [
+        0,
+        -91
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "jeonrip",
+      "pivot": [
+        0,
+        -106
+      ],
+      "parent": "head"
+    },
+    {
+      "id": "front-arm",
+      "pivot": [
+        10,
+        -84
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "weapon",
+      "pivot": [
+        39,
+        -64
+      ],
+      "parent": "front-arm"
+    },
+    {
+      "id": "loose-pages",
+      "pivot": [
+        45,
+        -61
+      ],
+      "parent": "weapon"
+    },
+    {
+      "id": "paper-mantle",
+      "pivot": [
+        -20,
+        -70
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "seal",
+      "pivot": [
+        -8,
+        -70
+      ],
+      "parent": "torso"
+    }
+  ]
+}

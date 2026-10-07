@@ -119,7 +119,7 @@ function customSpatialScenery(scene,c,w,h,b){const env=ensureBattle(b),custom=ne
  }
  if(scene.environmentStats){scene.environmentStats.groups+=active;scene.environmentStats.visibleAssets+=visible;scene.environmentStats.cachedPaths+=data.paths;}
 }
-Scene.prototype.background=function(c,w,h,b){if(G.HonroAct2SpatialArt?.background(c,b,this,w,h)){customSpatialScenery(this,c,w,h,b);return;}const env=ensureBattle(b),painted=E.campaignMood(b.honroStage)&&act1Ready(b.honroStage);if(painted){paintedSky(c,w,h,b,this);
+Scene.prototype.background=function(c,w,h,b){if(G.HonroAct2SpatialArt?.background(c,b,this,w,h)){customSpatialScenery(this,c,w,h,b);return;}const env=ensureBattle(b),painted=env.skyVisible!==false&&E.campaignMood(b.honroStage)&&act1Ready(b.honroStage);if(painted){paintedSky(c,w,h,b,this);
   // The authored far painting replaces only the generated backdrop. Workshop
   // scenery with its own ID still uses its support, depth and camera transform.
   const custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)).map(e=>e.id));let visible=0,active=0,paths=0;

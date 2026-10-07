@@ -6,6 +6,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {support} from './act3-map-kit.mjs';
 import {LOCATION_ENCOUNTERS} from './act3-location-encounters.mjs';
+import {authorReinforcements} from './act3-reinforcements.mjs';
 const unit=(kind,x,y=null,elite=false,role='frontline')=>({kind,x,y,elite,role});
 const h=(x,y,e=false)=>unit('hound',x,y,e),p=(x,y,e=false)=>unit('picks',x,y,e),
  l=(x,y,e=false)=>unit('lantern',x,y,e,'ranged'),g=(x,y,e=false)=>unit('ghost',x,y,e),
@@ -89,11 +90,12 @@ export function authorEncounters(g,p,s){
  s.units=s.units.filter(u=>u.team!=='enemy');s.encounters=[];
  for(const q of plan){const ids=[];for(const [i,row] of q.members.entries()){
   const ref=row.y??routeY(s,row.x),spot=support(g,ts,row.x,ref);if(!spot||Math.abs(spot.y-ref)>145)throw Error(`${s.id}/${q.id}/${i}: invalid authored support (${ref} -> ${spot?.y})`);
-  const id=`a3-${s.metadata.stageId}-${q.id}-${i}`;if(g.HonroWorld.archetypes[row.kind]?.flying)spot.y-=32;ids.push(id);s.units.push({id,kind:row.kind,team:'enemy',x:spot.x,y:spot.y,facing:-1,spawnIndex:s.units.filter(u=>u.team==='enemy').length,behavior:'patrol',encounterGroup:q.id,stageOverrides:{honroCohort:q.id,honroAct3Encounter:1,honroAct3Elite:row.elite,honroEncounterRole:row.role,honroEncounterSupport:spot.support}});
+  const id=`a3-${s.metadata.stageId}-${q.id}-${i}`,kind=row.kind==='ghost'&&[22,24].includes(s.metadata.stageId)?'archiveFiend':row.kind==='picks'&&[26,30].includes(s.metadata.stageId)?'kilnFiend':row.kind;if(g.HonroWorld.archetypes[kind]?.flying)spot.y-=32;ids.push(id);s.units.push({id,kind,team:'enemy',x:spot.x,y:spot.y,facing:-1,spawnIndex:s.units.filter(u=>u.team==='enemy').length,behavior:'patrol',encounterGroup:q.id,stageOverrides:{honroCohort:q.id,honroAct3Encounter:1,honroAct3Elite:row.elite,honroEncounterRole:row.role,honroEncounterSupport:spot.support}});
  }s.encounters.push({id:q.id,key:q.id,behavior:'patrol',unitIds:ids});}
  s.initialState.honroAct3EncounterRevision=1;
  if(location&&[25,26].includes(s.metadata.stageId))s.initialState.honroActiveLimit=2;
  s.design.act3.encounterPlan={version:1,groups:plan.map(q=>({id:q.id,purpose:q.purpose,anchor:q.anchor})),initial:plan.reduce((n,q)=>n+q.members.length,0),elites:plan.reduce((n,q)=>n+q.members.filter(u=>u.elite).length,0),activeLimit:location&&[25,26].includes(s.metadata.stageId)?2:3,scope:location?'Approved location-specific groups; 25/26 authored for two heroes with staggered sightlines. Normal continuous balance remains a required check.':'Four-person baseline. Re-author these spaces if approved team split or terrain changes. Existing objectives, wave counts and live saves remain unchanged.'};
+ authorReinforcements(s);
 }
 export function applyEncounters(g,p){for(const s of p.stages.filter(s=>s.metadata.stageId>=21))authorEncounters(g,p,s);return p;}
 if(process.argv[1]===fileURLToPath(import.meta.url)){const {runtime}=await import('../../game/tests/helpers.mjs'),g=await runtime({legacyMaps:false}),p=JSON.parse(await readFile('shared/data/campaign.json','utf8'));applyEncounters(g,p);await writeFile('shared/data/campaign.json',JSON.stringify(p,null,2)+'\n');console.log(p.stages.slice(20).map(s=>({id:s.id,...s.design.act3.encounterPlan,groups:undefined})));}

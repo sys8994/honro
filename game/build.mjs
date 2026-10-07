@@ -4,6 +4,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {runtimeParts} from '../shared/build.mjs';
+import {writeGenerated} from '../shared/write-generated.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url)),root=path.dirname(here);
 const base=path.join(here,'vendor');
@@ -26,7 +27,7 @@ export async function buildGame({vector=true,destination=path.join(root,'HONRO.h
   const shell=reference;
   const html=`<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><style>${css}</style></head>${shell}<script>${parts.join('\n').replace(/<\/script/gi,'<\\/script')}</script></body></html>\n`;
   assert.ok(!/id="honro-06\d.*(?:patch|script)/.test(html),'No runtime patch stack');
-  await writeFile(destination,html);
+  await writeGenerated(destination,html);
   if(vector){
     await mkdir(path.join(here,'../_local/game-reports'),{recursive:true});
     await writeFile(path.join(here,'../_local/game-reports/build.json'),JSON.stringify({entry:'HONRO.html',source:['shared/runtime','shared/engine/src','game/config/balance.json','shared/assets/rebuild-game-adapter.mjs','shared/assets/party.v006.runtime.js'],character_art:{seol_o:'v006',other_party:'v006'},baseline:'standalone-code-handoff',shell_sha256:sha(reference),html_bytes:Buffer.byteLength(html),html_sha256:sha(html),vector:true,external_runtime_dependencies:0,external_assets:['assets/bgm/01..05 MP3'],engine_change:'Shared HONRO runtime, canonical maps and streamed BGM; RC21 renderer caching, gameplay and authored campaign geometry preserved.'},null,2)+'\n');

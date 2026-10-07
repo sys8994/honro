@@ -35,7 +35,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     await buildMonsters();
     await buildActors();
     const act1Backdrops={};
-    for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg']]){
+    for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg'],['act3','act3-far.svg']]){
       const svg=await readFile(path.join(root,'shared/assets/environment',file));
       act1Backdrops[key]='data:image/svg+xml;base64,'+svg.toString('base64');
     }
@@ -45,7 +45,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     parts.push('globalThis.HONRO_ACT2_FAR_DATA='+JSON.stringify(act2Backdrops)+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','act2-art','act3-art','act1-spatial-art','terrain-readability'])parts.push(await read(`shared/runtime/${name}.js`));
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','act2-art','act3-art','act1-spatial-art','terrain-readability','combat-feedback'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     parts.push(await read('game/vendor/ui/fa.js'));

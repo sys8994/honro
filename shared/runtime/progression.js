@@ -58,7 +58,7 @@ function tuneBoss(b,st,u){
   u.combatBaseAttack=r.hp*p.bossIncomingHpFraction/(mean*(1-r.armor)*n.damage);
   u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.honroXpWeight=5;
 }
-function actionWeight(a){if(!a)return 0;if(a.type==='multi')return(a.actions||[]).reduce((n,a)=>n+actionWeight(a),0);if(a.type==='sniperAmbush')return a.n*.78;if(a.type==='spawn')return a.n*({bat:.68,crow:.78,lantern:.8,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[a.kind]||1);return 0;}
+function actionWeight(a){if(!a)return 0;if(a.type==='multi')return(a.actions||[]).reduce((n,a)=>n+actionWeight(a),0);if(a.type==='sniperAmbush')return a.n*.78;if(a.type==='spawn')return(a.n+(a.act3Authored&&a.elite ? .6 : 0))*({bat:.68,crow:.78,lantern:.8,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[a.kind]||1);return 0;}
 const validLimit=limit=>limit&&['start','end','total','combat'].every(key=>Number.isFinite(limit[key])&&limit[key]>=0)&&limit.end>=limit.start;
 function rememberLimit(b){
   const g=b?.honroGrowth,state=g?.ledger?.stages?.[b.honroStage];
@@ -105,7 +105,7 @@ function awardCombat(e,source,amount){
     const u=b.units.find(u=>campaignHero(b,u)&&u.cls===cls),h=b.heroes[cls],spent=state.combat[cls]||0,grant=Math.max(0,Math.min(Math.round(amount),g.limit.combat-spent,g.limit.end-h.xp));
     if(!grant)continue;
     changed=true;state.combat[cls]=spent+grant;const result=C.grantXP(h,grant);e.emit('xp',{cls,value:result.actual});
-    if(u&&result.after>result.before){C.applyHero(u,h);e.fx('text',u.x,u.y-u.h-35,'#f4d797',22,`경지 ${result.after}`);e.emit('level',{cls:u.cls,value:result.after});}
+    if(u&&result.after>result.before){C.applyHero(u,h,!u.dead);if(!u.dead){e.fx('rune',u.x,u.y-u.h*.5,'#dfca8a',85);e.fx('ring',u.x,u.y-4,'#c7ddbb',65);e.fx('text',u.x,u.y-u.h-35,'#f4d797',22,`경지 ${result.after}`);e.emit('sound',{name:'heal'});e.emit('level',{cls:u.cls,value:result.after});}}
   }
   if(changed)e.emit('save');
 }

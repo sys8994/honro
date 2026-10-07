@@ -11,6 +11,7 @@ import {koreanFoundry,koreanDock} from '../environment/korean-late-town-art.mjs'
 import {ROOT,P,R,line,asset,put,terrain,foundation,pool,marker,gate,npc,players,stage,cityEnvironment,settle} from './act3-map-kit.mjs';
 import {authorEncounters} from './act3-encounters.mjs';
 import {addLocationDetail} from './act3-location-detail.mjs';
+import {refineStage} from './act3-refinement.mjs';
 const clone=x=>JSON.parse(JSON.stringify(x));
 export const at=(q,x)=>{for(let i=1;i<q.length;i++){const a=q[i-1],b=q[i];if(x<=b[0])return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);}return q.at(-1)[1];};
 const body=a=>a.vector.source.replace(/^<svg[^>]*>/,'').replace(/<\/svg>\s*$/,'');
@@ -77,7 +78,7 @@ export function buildLocation30(g,p){const s=base(g,30,'남겨진 길',7400,3400
  players(s,230,2570);action(s,q,'transport-map',1550,'세 기록으로 옛 운송로 확인');mark(s,q,'ferry-hold',4780,'나루 퇴로 지키기');wave(s,q,'ferry-hold',5360);exit(s,q,'old-road',7040,'동행 전원 강변 옛길에 모이기');route(s,q,[230,1550,1590,2270,3290,3970,4780,5390,6040,6610,7040]);s.design.act3.departureGathering={x:7040,y:2750,radius:440,flatFrom:6610,flatTo:7400};return s;}
 export function applyAct3Locations(g,input,{objectives=true}={}){let p=clone(input);const before=JSON.stringify(p.stages.filter(s=>s.metadata.stageId<23));const builders=[buildLocation23,buildLocation24,buildLocation25,buildLocation26,buildLocation27,buildLocation28,buildLocation29,buildLocation30];
  p.library=p.library.filter(a=>!a.id.startsWith('a3-location:'));
- for(const build of builders){const s=build(g,p);addLocationDetail(p,s);const order=e=>{const a=p.library.find(a=>a.id===e.assetId);return a?.params?.backgroundWall?-2:a?.params?.rearOnly?-1:0;};s.elements.sort((a,b)=>order(a)-order(b));settle(g,p,s);s.design.act3.koreanTown.mainStructures=[...s.design.act3.mainBuildings];const i=p.stages.findIndex(q=>q.metadata.stageId===s.metadata.stageId);if(i<0)throw Error('Missing original stage '+s.metadata.stageId);p.stages[i]=s;}
+ for(const build of builders){const s=build(g,p);addLocationDetail(p,s);refineStage(p,s);const order=e=>{const a=p.library.find(a=>a.id===e.assetId);return a?.params?.backgroundWall?-2:a?.params?.rearOnly?-1:0;};s.elements.sort((a,b)=>order(a)-order(b));settle(g,p,s);s.design.act3.koreanTown.mainStructures=[...s.design.act3.mainBuildings];const i=p.stages.findIndex(q=>q.metadata.stageId===s.metadata.stageId);if(i<0)throw Error('Missing original stage '+s.metadata.stageId);p.stages[i]=s;}
  p=g.HonroMaps.finalize(g.HonroTerrainDomain.author(p));for(const s of p.stages.filter(s=>s.metadata.stageId>=23&&s.metadata.stageId<=30))authorEncounters(g,p,s);
  if(objectives&&g.HonroObjectiveRevision?.author)p=g.HonroObjectiveRevision.author(p,{minStage:23,maxStage:30})||p;
  if(JSON.stringify(p.stages.filter(s=>s.metadata.stageId<23))!==before)throw Error('Earlier stage changed by location-only rebuild');

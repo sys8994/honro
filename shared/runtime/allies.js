@@ -115,7 +115,8 @@ function prepareSpawn(b,st,a,hero){
  for(let i=0;i<(a.n||1);i++){
    const ambush=a.type==='sniperAmbush',id=b.nextId++,x=clamp(ambush?archer.x+420+(i%3)*160:a.x+(i-(a.n-1)/2)*(a.spacing??115),90,b.width-100);
    const y=ambush?Math.max(120,archer.y-100-(i%2)*120):a.y!==undefined?W.top(b,x,a.y,a.support):st.id===7&&!b.honroLayoutRevision?hero?.y:undefined;
-   const kind=ambush?'crow':a.kind,u=W.createEnemy(b,st,x,kind,id,y);
+     const kind=ambush?'crow':a.kind,u=W.createEnemy(b,st,x,kind,id,y);
+     if(a.act3Authored){u.honroAct3Encounter=1;u.honroAct3Elite=!!a.elite&&i===0;u.honroCohort='reinforcement';G.HonroAct3Encounters.tune(b,u,st);G.HonroProgression.enemyXP(b,u);}
    if(b.honroEncounterRevision){u.combatBaseHp*=.6;u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));}
    if(ambush)u.y=y;
    const position=G.HonroTerrain.place({...b,units:[...b.units,...list]},u,{flying:!!W.archetypes[kind]?.flying,maxDistance:a.maxDistance??1600,clearance:a.clearance??18});

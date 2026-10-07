@@ -93,4 +93,12 @@ Object.assign(G.HonroWorld.archetypes,{
  possessedArcher:{name:'궁수 악귀',look:'human',cls:'archer',skills:['A01'],role:'bow',h:96,r:24,intent:'악귀가 움직이는 죽은 육신 · 성벽과 기록을 지키던 사념으로 활을 든다',act3Fiend:true}
 });
 G.HonroAct3Content={chapters,roster,scene,revision:1};
+// These aliases have their own silhouettes and workplace identities. Combat
+// uses the existing, tested martial/projectile roles and ordinary growth budgets.
+Object.assign(G.HonroWorld.archetypes,{
+ gateMaster:{...G.HonroWorld.archetypes.possessedGuard,name:'수문장 악귀',variant:'gateMaster'},
+ archerMaster:{...G.HonroWorld.archetypes.possessedArcher,name:'별초 궁귀',variant:'archerMaster'},
+ archiveFiend:{name:'장부귀',look:'human',variant:'archiveFiend',cls:'mage',skills:['M01'],role:'bow',h:98,r:24,act3Fiend:true,intent:'기록을 지우라는 사념에 묶인 죽은 서리 · 흩어진 장부를 움켜쥔다'},
+ kilnFiend:{name:'주조귀',look:'human',variant:'kilnFiend',cls:'knight',skills:['S09'],role:'leaper',h:102,r:26,act3Fiend:true,intent:'종틀을 짊어진 죽은 주조공 · 굳은 쇳물과 그을린 망치가 몸에 붙었다'}
+});
 })(globalThis);

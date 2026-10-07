@@ -83,6 +83,7 @@ function allPresent(b){return active(b)&&b.honroSplit.activeRoster.every(cls=>b.
 function failure(b){if(!active(b)||b.honroStage===27)return null;return allPresent(b)?null:'조사팀 동행이 쓰러졌다. 현재 장의 시작 상태에서 다시 걷자.';}
 function locked(profile){const s=profile.honroSplitCampaign;return s?.version===VERSION&&!s.finished&&(s.stage>=25||s.nextStage===25);}
 function redirectRest(app){
+ if(app.debugMode)return false;
  // The custom map has a temporary profile. Check its protected owner before
  // offering rest/camp, then resume that owner's saved expedition unchanged.
  if(app.customMap){if(!locked(app.customMap.returnProfile))return false;app.stopBattle();}
