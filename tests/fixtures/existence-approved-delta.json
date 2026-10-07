@@ -1,0 +1,1187 @@
+{
+  "unitDeltas": [
+    {
+      "stage": 3,
+      "id": "foe-5",
+      "fields": {
+        "name": {
+          "before": "떠도는 혼",
+          "after": "들린 사람"
+        },
+        "role": {
+          "before": "fire",
+          "after": "bow"
+        },
+        "cls": {
+          "before": "occultist",
+          "after": "archer"
+        },
+        "h": {
+          "before": 105,
+          "after": 91
+        },
+        "attack": {
+          "before": 0.5804837613673873,
+          "after": 0.462469029039185
+        },
+        "loadout": {
+          "before": [
+            "HGS01",
+            "HGS02"
+          ],
+          "after": [
+            "LA01",
+            "LA02"
+          ]
+        },
+        "intent": {
+          "before": "망자의 한숨",
+          "after": "불규칙한 사격"
+        },
+        "ranks": {
+          "before": {
+            "HGS01": 1,
+            "HGS02": 1
+          },
+          "after": {
+            "LA01": 1,
+            "LA02": 1
+          }
+        },
+        "honroType": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "honroVariant": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "combatBaseAttack": {
+          "before": 0.5004170356615408,
+          "after": 0.39868019744757327
+        },
+        "kind": {
+          "before": "ghost",
+          "after": "human"
+        }
+      }
+    },
+    {
+      "stage": 5,
+      "id": "foe-3",
+      "fields": {
+        "name": {
+          "before": "떠도는 혼",
+          "after": "들린 사람"
+        },
+        "role": {
+          "before": "fire",
+          "after": "bow"
+        },
+        "cls": {
+          "before": "occultist",
+          "after": "archer"
+        },
+        "h": {
+          "before": 105,
+          "after": 91
+        },
+        "attack": {
+          "before": 0.7642861871889409,
+          "after": 0.6089036669427637
+        },
+        "loadout": {
+          "before": [
+            "HGS01",
+            "HGS02"
+          ],
+          "after": [
+            "LA01",
+            "LA02"
+          ]
+        },
+        "intent": {
+          "before": "망자의 한숨",
+          "after": "불규칙한 사격"
+        },
+        "ranks": {
+          "before": {
+            "HGS01": 2,
+            "HGS02": 2
+          },
+          "after": {
+            "LA01": 2,
+            "LA02": 2
+          }
+        },
+        "honroType": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "honroVariant": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "combatBaseAttack": {
+          "before": 0.6588674027490871,
+          "after": 0.5249169542610032
+        },
+        "kind": {
+          "before": "ghost",
+          "after": "human"
+        }
+      }
+    },
+    {
+      "stage": 5,
+      "id": "foe-7",
+      "fields": {
+        "name": {
+          "before": "떠도는 혼",
+          "after": "들린 숫사슴"
+        },
+        "role": {
+          "before": "fire",
+          "after": "leaper"
+        },
+        "cls": {
+          "before": "occultist",
+          "after": "knight"
+        },
+        "r": {
+          "before": 21,
+          "after": 38
+        },
+        "h": {
+          "before": 105,
+          "after": 116
+        },
+        "attack": {
+          "before": 0.7642861871889409,
+          "after": 0.6095259493202075
+        },
+        "loadout": {
+          "before": [
+            "HGS01",
+            "HGS02"
+          ],
+          "after": [
+            "HBR01",
+            "HBR02"
+          ]
+        },
+        "intent": {
+          "before": "망자의 한숨",
+          "after": "뿔 돌진과 뿌리쐐기"
+        },
+        "ranks": {
+          "before": {
+            "HGS01": 2,
+            "HGS02": 2
+          },
+          "after": {
+            "HBR01": 2,
+            "HBR02": 2
+          }
+        },
+        "honroType": {
+          "before": "ghost",
+          "after": "beast"
+        },
+        "honroVariant": {
+          "before": "ghost",
+          "after": "stag"
+        },
+        "combatBaseAttack": {
+          "before": 0.6588674027490871,
+          "after": 0.5254534045863859
+        },
+        "kind": {
+          "before": "ghost",
+          "after": "stag"
+        }
+      }
+    },
+    {
+      "stage": 7,
+      "id": "foe-7",
+      "fields": {
+        "name": {
+          "before": "혼을 삼킨 등불",
+          "after": "들린 산박쥐"
+        },
+        "role": {
+          "before": "fire",
+          "after": "storm"
+        },
+        "cls": {
+          "before": "occultist",
+          "after": "mage"
+        },
+        "r": {
+          "before": 25,
+          "after": 28
+        },
+        "h": {
+          "before": 92,
+          "after": 66
+        },
+        "attack": {
+          "before": 0.9869983134882045,
+          "after": 0.9279621697009145
+        },
+        "loadout": {
+          "before": [
+            "HLN01",
+            "HLN02"
+          ],
+          "after": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        "intent": {
+          "before": "혼불과 혼무",
+          "after": "초음파와 반향"
+        },
+        "ranks": {
+          "before": {
+            "HLN01": 3,
+            "HLN02": 3
+          },
+          "after": {
+            "HBT01": 3,
+            "HBT02": 3
+          }
+        },
+        "honroType": {
+          "before": "lantern",
+          "after": "bat"
+        },
+        "honroVariant": {
+          "before": "lantern",
+          "after": "bat"
+        },
+        "combatBaseAttack": {
+          "before": 0.8508606150760385,
+          "after": 0.7999673876732022
+        },
+        "kind": {
+          "before": "lantern",
+          "after": "bat"
+        }
+      }
+    },
+    {
+      "stage": 7,
+      "id": "foe-10",
+      "fields": {
+        "name": {
+          "before": "매듭진 수의귀",
+          "after": "들린 사람"
+        },
+        "role": {
+          "before": "ice",
+          "after": "bow"
+        },
+        "cls": {
+          "before": "occultist",
+          "after": "archer"
+        },
+        "r": {
+          "before": 22,
+          "after": 21
+        },
+        "h": {
+          "before": 115,
+          "after": 91
+        },
+        "attack": {
+          "before": 0.9892644587143881,
+          "after": 0.754169102100607
+        },
+        "loadout": {
+          "before": [
+            "HSH01",
+            "HSH02"
+          ],
+          "after": [
+            "LA01",
+            "LA02"
+          ]
+        },
+        "intent": {
+          "before": "수의가시와 매듭실",
+          "after": "불규칙한 사격"
+        },
+        "ranks": {
+          "before": {
+            "HSH01": 3,
+            "HSH02": 3
+          },
+          "after": {
+            "LA01": 3,
+            "LA02": 3
+          }
+        },
+        "honroType": {
+          "before": "shade",
+          "after": "human"
+        },
+        "honroVariant": {
+          "before": "shade",
+          "after": "human"
+        },
+        "combatBaseAttack": {
+          "before": 0.8528141885468863,
+          "after": 0.650145777672937
+        },
+        "kind": {
+          "before": "shade",
+          "after": "human"
+        }
+      }
+    },
+    {
+      "stage": 9,
+      "id": "foe-0",
+      "fields": {
+        "name": {
+          "before": "떠도는 혼",
+          "after": "들린 사람"
+        },
+        "role": {
+          "before": "fire",
+          "after": "bow"
+        },
+        "cls": {
+          "before": "occultist",
+          "after": "archer"
+        },
+        "h": {
+          "before": 105,
+          "after": 91
+        },
+        "attack": {
+          "before": 1.2327817179997598,
+          "after": 0.982152132555138
+        },
+        "loadout": {
+          "before": [
+            "HGS01",
+            "HGS02"
+          ],
+          "after": [
+            "LA01",
+            "LA02"
+          ]
+        },
+        "intent": {
+          "before": "망자의 한숨",
+          "after": "불규칙한 사격"
+        },
+        "ranks": {
+          "before": {
+            "HGS01": 3,
+            "HGS02": 3
+          },
+          "after": {
+            "LA01": 3,
+            "LA02": 3
+          }
+        },
+        "honroType": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "honroVariant": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "combatBaseAttack": {
+          "before": 1.0627428603446205,
+          "after": 0.8466828728923603
+        },
+        "kind": {
+          "before": "ghost",
+          "after": "human"
+        }
+      }
+    },
+    {
+      "stage": 9,
+      "id": "foe-8",
+      "fields": {
+        "name": {
+          "before": "떠도는 혼",
+          "after": "들린 사람"
+        },
+        "role": {
+          "before": "fire",
+          "after": "bow"
+        },
+        "cls": {
+          "before": "occultist",
+          "after": "archer"
+        },
+        "h": {
+          "before": 105,
+          "after": 91
+        },
+        "attack": {
+          "before": 1.2327817179997598,
+          "after": 0.982152132555138
+        },
+        "loadout": {
+          "before": [
+            "HGS01",
+            "HGS02"
+          ],
+          "after": [
+            "LA01",
+            "LA02"
+          ]
+        },
+        "intent": {
+          "before": "망자의 한숨",
+          "after": "불규칙한 사격"
+        },
+        "ranks": {
+          "before": {
+            "HGS01": 3,
+            "HGS02": 3
+          },
+          "after": {
+            "LA01": 3,
+            "LA02": 3
+          }
+        },
+        "honroType": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "honroVariant": {
+          "before": "ghost",
+          "after": "human"
+        },
+        "combatBaseAttack": {
+          "before": 1.0627428603446205,
+          "after": 0.8466828728923603
+        },
+        "kind": {
+          "before": "ghost",
+          "after": "human"
+        }
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "id": "M02",
+      "before": {
+        "form": 0.25,
+        "qi": 0.75,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.34,
+        "qi": 0.66,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M03",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.14,
+        "qi": 0.86,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M04",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.18,
+        "qi": 0.82,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M05",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.02,
+        "qi": 0.98,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M06",
+      "before": {
+        "form": 0.25,
+        "qi": 0.75,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.28,
+        "qi": 0.72,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M07",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.38,
+        "qi": 0.62,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M08",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.2,
+        "qi": 0.8,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M11",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.06,
+        "qi": 0.94,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M12",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.1,
+        "qi": 0.9,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A02",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.94,
+        "qi": 0.06,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A03",
+      "before": {
+        "form": 0.82,
+        "qi": 0.18,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.72,
+        "qi": 0.28,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A04",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.98,
+        "qi": 0.02,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A05",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.9,
+        "qi": 0.1,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A06",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.7,
+        "qi": 0.3,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A07",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.88,
+        "qi": 0.12,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A08",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.92,
+        "qi": 0.08,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A09",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.78,
+        "qi": 0.22,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A11",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 1,
+        "qi": 0,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A12",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.74,
+        "qi": 0.26,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S01",
+      "before": {
+        "form": 0.82,
+        "qi": 0.18,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.86,
+        "qi": 0.14,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S02",
+      "before": {
+        "form": 0.94,
+        "qi": 0.06,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.76,
+        "qi": 0.24,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S04",
+      "before": {
+        "form": 0.82,
+        "qi": 0.18,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.9,
+        "qi": 0.1,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S05",
+      "before": {
+        "form": 0.94,
+        "qi": 0.06,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.9,
+        "qi": 0.1,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S06",
+      "before": {
+        "form": 0.82,
+        "qi": 0.18,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.68,
+        "qi": 0.32,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S07",
+      "before": {
+        "form": 0.94,
+        "qi": 0.06,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.98,
+        "qi": 0.02,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S08",
+      "before": {
+        "form": 0.94,
+        "qi": 0.06,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.82,
+        "qi": 0.18,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S09",
+      "before": {
+        "form": 0.55,
+        "qi": 0.45,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.4,
+        "qi": 0.6,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S10",
+      "before": {
+        "form": 0.55,
+        "qi": 0.45,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.58,
+        "qi": 0.42,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S11",
+      "before": {
+        "form": 0.55,
+        "qi": 0.45,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.32,
+        "qi": 0.68,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S12",
+      "before": {
+        "form": 0.55,
+        "qi": 0.45,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.24,
+        "qi": 0.76,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M13",
+      "before": {
+        "form": 0.25,
+        "qi": 0.75,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.2,
+        "qi": 0.8,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M14",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.04,
+        "qi": 0.96,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M15",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0,
+        "qi": 1,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A13",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.64,
+        "qi": 0.36,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A14",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.98,
+        "qi": 0.02,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A15",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.7,
+        "qi": 0.3,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S13",
+      "before": {
+        "form": 0.82,
+        "qi": 0.18,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.72,
+        "qi": 0.28,
+        "soul": 0
+      }
+    },
+    {
+      "id": "S15",
+      "before": {
+        "form": 0.82,
+        "qi": 0.18,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.8,
+        "qi": 0.2,
+        "soul": 0
+      }
+    },
+    {
+      "id": "M99",
+      "before": {
+        "form": 0.08,
+        "qi": 0.92,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.12,
+        "qi": 0.88,
+        "soul": 0
+      }
+    },
+    {
+      "id": "A99",
+      "before": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.9,
+        "qi": 0.1,
+        "soul": 0
+      }
+    },
+    {
+      "id": "O02",
+      "before": {
+        "form": 0,
+        "qi": 0.16,
+        "soul": 0.84
+      },
+      "after": {
+        "form": 0,
+        "qi": 0.04,
+        "soul": 0.96
+      }
+    },
+    {
+      "id": "O03",
+      "before": {
+        "form": 0,
+        "qi": 0.16,
+        "soul": 0.84
+      },
+      "after": {
+        "form": 0,
+        "qi": 0.3,
+        "soul": 0.7
+      }
+    },
+    {
+      "id": "O04",
+      "before": {
+        "form": 0,
+        "qi": 0.16,
+        "soul": 0.84
+      },
+      "after": {
+        "form": 0.24,
+        "qi": 0.06,
+        "soul": 0.7
+      }
+    },
+    {
+      "id": "O05",
+      "before": {
+        "form": 0,
+        "qi": 0.16,
+        "soul": 0.84
+      },
+      "after": {
+        "form": 0,
+        "qi": 0.1,
+        "soul": 0.9
+      }
+    },
+    {
+      "id": "O06",
+      "before": {
+        "form": 0,
+        "qi": 0.28,
+        "soul": 0.72
+      },
+      "after": {
+        "form": 0.04,
+        "qi": 0.4,
+        "soul": 0.56
+      }
+    },
+    {
+      "id": "O07",
+      "before": {
+        "form": 0,
+        "qi": 0.28,
+        "soul": 0.72
+      },
+      "after": {
+        "form": 0.04,
+        "qi": 0.22,
+        "soul": 0.74
+      }
+    },
+    {
+      "id": "O08",
+      "before": {
+        "form": 0,
+        "qi": 0.28,
+        "soul": 0.72
+      },
+      "after": {
+        "form": 0.12,
+        "qi": 0.34,
+        "soul": 0.54
+      }
+    },
+    {
+      "id": "O10",
+      "before": {
+        "form": 0,
+        "qi": 0.28,
+        "soul": 0.72
+      },
+      "after": {
+        "form": 0.1,
+        "qi": 0.28,
+        "soul": 0.62
+      }
+    },
+    {
+      "id": "O11",
+      "before": {
+        "form": 0,
+        "qi": 0.18,
+        "soul": 0.82
+      },
+      "after": {
+        "form": 0.35,
+        "qi": 0.1,
+        "soul": 0.55
+      }
+    },
+    {
+      "id": "O12",
+      "before": {
+        "form": 0,
+        "qi": 0.18,
+        "soul": 0.82
+      },
+      "after": {
+        "form": 0,
+        "qi": 0.14,
+        "soul": 0.86
+      }
+    },
+    {
+      "id": "O13",
+      "before": {
+        "form": 0,
+        "qi": 0.18,
+        "soul": 0.82
+      },
+      "after": null
+    },
+    {
+      "id": "O14",
+      "before": {
+        "form": 0,
+        "qi": 0.18,
+        "soul": 0.82
+      },
+      "after": {
+        "form": 0,
+        "qi": 0.12,
+        "soul": 0.88
+      }
+    },
+    {
+      "id": "O15",
+      "before": {
+        "form": 0,
+        "qi": 0.18,
+        "soul": 0.82
+      },
+      "after": null
+    },
+    {
+      "id": "O16",
+      "before": {
+        "form": 0,
+        "qi": 0.16,
+        "soul": 0.84
+      },
+      "after": {
+        "form": 0,
+        "qi": 0.02,
+        "soul": 0.98
+      }
+    },
+    {
+      "id": "S00",
+      "before": {
+        "form": 0.94,
+        "qi": 0.06,
+        "soul": 0
+      },
+      "after": {
+        "form": 0.96,
+        "qi": 0.04,
+        "soul": 0
+      }
+    }
+  ]
+}

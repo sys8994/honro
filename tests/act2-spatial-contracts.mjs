@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {beforeExistenceProfiles} from './existence-delta-helpers.mjs';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {plain,hash,semanticContent,unitContract} from './act2-spatial-contract-helpers.mjs';
@@ -17,7 +18,7 @@ check('Act 1 mission, recruitment and combat semantics remain unchanged',()=>{
 });
 check('All class stats and skill definitions retain the frozen balance',()=>{
  assert.deepEqual(plain(C.CLASSES),frozen.classes);
- assert.deepEqual(plain(C.SKILLS),frozen.skills);
+ assert.deepEqual(beforeExistenceProfiles(C.SKILLS),frozen.skills);
  assert.deepEqual(plain(g.HonroWorld.archetypes),frozen.archetypes);
  assert.deepEqual(JSON.parse(balanceSource),frozen.balance);
 });

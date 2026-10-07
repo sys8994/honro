@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
@@ -9,8 +10,7 @@ const baseline=JSON.parse(await readFile('tests/fixtures/act1-roster-before.json
 assert.equal(hash(g.HonroAct1Roster.author(plain(project))),hash(project));
 assert.equal(hash(g.HonroAct1Roster.author(plain(project)).stages.slice(10)),hash(project.stages.slice(10)),'All later acts are untouched, including future production maps');
 assert.equal(hash(project.stages.slice(10,20)),baseline.laterActsHash,'Act 2+ source is byte-semantically unchanged');
-const original=plain(project);
-for(const {stage,unit} of baseline.units){const s=original.stages[stage-1];s.units[s.units.findIndex(u=>u.id===unit.id)]=unit;}
+const original=beforeExistenceRoster(project);
 for(const {id,hash:expected} of baseline.stageHashes)assert.equal(hash(original.stages[id-1]),expected,'Only seven explicitly reviewed units change: '+id);
 assert.equal(hash(g.HonroAct1Roster.author(plain(original))),hash(project),'Author reproduces exact reviewed roster');
 const spirit=u=>['ghost','shade','lantern'].includes(u.honroVariant||u.honroType),summary=[];

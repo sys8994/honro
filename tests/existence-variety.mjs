@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
+import {beforeExistenceProfiles} from './existence-delta-helpers.mjs';
 import {readFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,plain=v=>JSON.parse(JSON.stringify(v));
 const before=JSON.parse(await readFile('tests/fixtures/existence-profiles-before.json','utf8'));
+const restoredProfiles=beforeExistenceProfiles(C.SKILLS);
+for(const old of before.skills)assert.deepEqual(plain(restoredProfiles[old.id].existenceAttack??null),old.existenceAttack,'Only the exact reviewed attack delta is accepted');
 const rows=before.skills.filter(s=>/^[AMSO]\d\d$/.test(s.id));assert.equal(rows.length,64);
 for(const old of before.skills){const s=C.SKILLS[old.id];for(const key of ['damage','cost','mode'])assert.equal(s[key],old[key],`${s.id} ${key} budget`);assert.equal(s.cooldown??null,old.cooldown,`${s.id} cooldown`);}
 for(const cls of ['archer','mage','knight','occultist']){
