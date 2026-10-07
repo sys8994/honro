@@ -17,6 +17,10 @@ for(const stage of [8,9,10]){
  let rejected=0;for(const mutate of [b=>delete b.honroMapOrigin,b=>b.honroMapOrigin='workshop',b=>b.honroCustom=true,b=>b.honroAuthoredId='other',b=>b.terrain[0].vertices[0].x++,b=>b.honroWorldTerrain[0].vertices[0].x++,b=>b.honroMapAnchors.start.x++,b=>b.honroTerrainBounds.left--,b=>b.terrain.find(t=>R.targets[stage].includes(t.id)).vertices[0].x++]){
   const q=plain(old);mutate(q);const prior=JSON.stringify(q);assert.equal(R.upgradeBattle(q),false);assert.equal(JSON.stringify(q),prior);rejected++;
  }
+ if(stage===10)for(const change of ['missing','shape','solid']){
+  const current=g.HONRO_PROJECT,next=plain(current),st=next.stages[9],id='gallery-link-west';if(change==='missing')st.terrains=st.terrains.filter(t=>t.id!==id);else if(change==='shape')st.terrains.find(t=>t.id===id).points[0].y--;else st.terrains.find(t=>t.id===id).oneWay=false;
+  try{g.HONRO_PROJECT=next;const q=plain(old),prior=JSON.stringify(q);assert.equal(R.upgradeBattle(q),false);assert.equal(JSON.stringify(q),prior);}finally{g.HONRO_PROJECT=current;}
+ }
  // Export and file import must preserve the original snapshot until Continue.
  app.export();const exported=await h.exported();assert.deepEqual(plain(exported.honroBattle.terrain),oldTerrain);await h.import(exported);assert.deepEqual(plain(app.profile.honroBattle.terrain),oldTerrain);
  app.continue();h.finish(app);const resumed=app.engine.b;assert.equal(resumed.honroPlatformPassageRevision,1);assert.deepEqual(stable(resumed),saved,'Continue preserves all actor states, HP, positions, budget and progression');assert.deepEqual(beforePlatformTerrain(resumed.terrain,stage,g),oldTerrain);assert.deepEqual(beforePlatformTerrain(resumed.honroWorldTerrain,stage,g),oldWorld);
