@@ -55,8 +55,29 @@ function revise23(g,p,s,changes){
 }
 function revise22(p,s,changes){
  let n=0;for(const a of p.library.filter(a=>a.id.startsWith('a3-22:')&&/archive-shelf-/.test(a.id))){const replacement=koreanArchiveCabinet(a.id,{width:a.bounds.w,height:a.bounds.h,variant:n++});a.vector=replacement.vector;a.params={...a.params,storage:'horizontal-bound-books-and-chests'};}
- s.design.act3.koreanTown={revision:1,scope:'Horizontal bound records and chests; rear wall/roof review follows',requiredFloorsUnchanged:true};
+ // Keep the three playable storage levels, but replace the enormous glowing
+ // window walls with small upper paper lights and opaque lower timber doors.
+ const parts=[R(500,1490,4740,1290,'#3b493b'),R(620,1515,1580,1255,'#796f50'),R(3500,1515,1600,1255,'#626e50'),R(2390,1500,910,1270,'#7d8a70'),P([[2430,1500],[2690,1500],[3160,2770],[2460,2770]],'#94997c')];
+ for(const floor of [1940,2360,2770]){
+  for(const left of [675,3515])for(let bay=0;bay<5;bay++){
+   const x=left+bay*286,y=floor-254,w=202;
+   parts.push(R(x-7,y-8,w+14,222,'#493d2c'),R(x,y,w,62,'#acaa83'),R(x,y+71,w,135,'#416454'),R(x+4,y+77,w*.48-7,123,'#4c6e58'),R(x+w*.51,y+77,w*.48-4,123,'#395a4b'),R(x+w*.5-3,y+71,6,135,'#6c4e36'));
+   for(let j=1;j<5;j++)parts.push(R(x+w*j/5,y+4,4,54,'#676846'));parts.push(R(x+4,y+29,w-8,4,'#676846'),R(x+4,y+143,w-8,7,'#7f7752'),R(x+w*.46,y+157,6,17,'#a39564'),R(x+w*.55,y+157,6,17,'#a39564'));
+  }
+  for(const x of [540,1090,1640,2190,3450,3990,4540,5100])parts.push(P([[x,floor-405],[x+31,floor-405],[x+35,floor-9],[x-3,floor-9]],'#704b36'),R(x+5,floor-394,6,381,'#9a7950'),R(x-8,floor-15,51,15,'#84866c'));
+  parts.push(R(526,floor-29,1700,24,'#675337'),R(3434,floor-29,1780,24,'#625036'),R(537,floor-29,1678,5,'#9b875e'),R(3444,floor-29,1758,5,'#93865d'));
+ }
+ parts.push(R(2620,2550,470,220,'#4e4e36'),R(2634,2565,218,196,'#4f6e55'),R(2867,2565,210,196,'#3e5b49'),R(2610,2544,490,16,'#9a8356'));
+ replace(p,s,'archive-rear',asset('a3-korean:22:archive-rear','판문과 작은 상부창을 둔 사고 뒤벽',parts.join(''),[],[480,1490,4780,1295]));
+ for(const [id,width,x] of [['archive-west-roof',1950,1350],['archive-east-roof',1870,4330]]){
+  const old=clone(s.elements.find(e=>e.id===id)),full=koreanTownBuilding('a3-korean:22:'+id,{width,role:'office',roofType:'gable'});
+  const roofGroup=full.vector.root.children.find(n=>n.id==='korean-gable-roof');if(!roofGroup)throw Error('Missing Korean roof group');full.vector={...full.vector,root:{tag:'g',children:[roofGroup]}};full.name='사고 익랑의 긴 맞배지붕';
+  const now=replace(p,s,id,full,{x,y:1710});recordChange(changes,s,id,old,now,'Lower oversized roof cap and remove its obsolete closed front box; preserve the three storage floors and attic access');
+ }
+ const scroll=s.elements.find(e=>e.id==='archive-scrolls');if(scroll){const a=p.library.find(a=>a.id===scroll.assetId);a.vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="2320 1100 1000 1720">${R(2370,1580,34,850,'#65563b')+R(3220,1580,34,850,'#65563b')+R(2345,1740,91,171,'#a79769')+R(3194,1740,91,171,'#a79769')+R(2340,1736,101,10,'#534631')+R(3189,1736,101,10,'#534631')}</svg>`);a.bounds={x:2320,y:1100,w:1000,h:1720};a.reference.bounds=a.bounds;}
+ s.design.act3.koreanTown={revision:1,scope:'Korean archive board doors, small upper windows, horizontal folios and a limited fantasy multi-level storage plan',requiredFloorsUnchanged:true,roofBase:1710};
 }
+
 export async function buildKoreanTownReview({input=path.join(ROOT,'shared/data/campaign.json'),output=path.join(ROOT,'_local/reports/act3-korean-town/review-project.json')}={}){
  const g=await runtime({legacyMaps:false}),original=JSON.parse(await fs.readFile(input,'utf8')),p=clone(original),changes=[];
  for(const id of [21,22,23]){const s=p.stages.find(s=>s.metadata.stageId===id);if(!s)throw Error('Missing stage '+id);if(id===21)revise21(g,p,s,changes);if(id===22)revise22(p,s,changes);if(id===23)revise23(g,p,s,changes);}
