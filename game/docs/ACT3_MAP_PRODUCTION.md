@@ -42,3 +42,20 @@ Source: HONRO Story Design v0.1, 26 pages, Part II B–E. Source stages 3-1 thro
 - The capture supports `--runtime` and the native probes support `HONRO_RUNTIME_ROOT` for integration against the separately owned, real 21–30 runtime. This option is an explicit development input, not a stage-ID or template fallback.
 
 Current gameplay-scope limits: normal human campaign playthrough, browser HUD / input, performance under the deployed page, and all skills / enemies on every optional roof are separate verification. Source-only map success does not establish those results.
+
+
+## Final map-owner checkpoint · 2026-10-07 UTC
+
+Source checkpoint: `af247f3`. Canonical project SHA-256: `0d916982d6f85ece18c1af8a222574a3706f499a73132f66a6041e7a1750c93c`.
+
+The serial native suite exited 0 after the final two canal-guard spawn corrections:
+
+- 52 hero-route probes across all ten required routes and the three authored upper alternatives: all reached their destination with zero damage.
+- 2 civilian carrier routes: both completed with zero jumps and zero damage.
+- 29 arrow / sight-line probes: nine real breakable-device hits, ten real open-lane unit hits, and ten structural high-shot blocks passed.
+- 90 safety checks: initial support / body clearance for 106 non-flying bodies, canonical terrain domains, water-adjacent knockback recovery and low-HP death / fresh-map retry passed.
+- Shared environment validator: 30 maps, zero errors.
+- Eight hall geometry contracts and twenty-four native art samples passed with unchanged collision, anchors and bounds.
+- Forty final map views rendered without changing battle state. Panorama, landmark, 400px portrait and short landscape views were produced for every new map. Grounding / layer contrast corrections and the archive-fire close-up were inspected directly.
+
+Measured movement-only lower bounds are 3–5 full movement budgets per hero per required route. These are cleared-geometry lower bounds, not combat-round predictions. Runtime mission/save tests, final integrated regressions, deployed performance and direct Pages verification remain owned by integration.
