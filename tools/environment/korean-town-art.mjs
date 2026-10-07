@@ -18,7 +18,7 @@ function roof(w,eave,rise,kind,weathered=false){
  const l=-w/2,r=w/2,top=eave-rise,parts=[],thatch=kind==='thatch',rh=w*(kind==='gable'?.43:.27);
  let edge;
  if(thatch){edge=[[l-30,eave+1],...q([l-30,eave+1],[l-43,top+40],[l+w*.29,top+8]),...q([l+w*.29,top+8],[0,top-7],[r-w*.24,top+8]),...q([r-w*.24,top+8],[r+39,top+42],[r+31,eave+2])];}
- else edge=[[l-37,eave-9],...q([l-37,eave-9],[l+6,eave+3],[l+62,eave-33]),[-rh,top+12],[rh,top+12],[r-62,eave-33],...q([r-62,eave-33],[r-6,eave+3],[r+37,eave-9])];
+ else {const shoulder=kind==='gable'?rh+14:w/2-62;edge=[[l-37,eave-9],...q([l-37,eave-9],[l+6,eave+3],[-shoulder,eave-33]),[-rh,top+12],[rh,top+12],[shoulder,eave-33],...q([shoulder,eave-33],[r-6,eave+3],[r+37,eave-9])];}
  const end=edge.at(-1),start=edge[0],bottom=[...q(end,[0,eave+thatch*12+26],[start[0],eave+8],12)];
  const solid=[...edge,...bottom],fill=thatch?'url(#straw)':'url(#tile)';
  parts.push(poly(solid,fill));
@@ -79,8 +79,8 @@ export function koreanTownBuilding(id,{width=420,role='house',roofType=null,vari
 }
 export function koreanCourtyardWall(id,{width=420,height=92,cap='earth',gate=false}={}){
  const w=width,l=-w/2,r=w/2,body=cap==='tile'?'#a49675':'#827c59',parts=[path(body,`M${l} -${height}L${r} -${height-3}V0H${l}Z`),path('#6b735b',`M${l} -27L${l+71} -39L${l+127} -28L${l+202} -33L${r} -25V0H${l}Z`)];
- const rock=[],tops=[];for(let i=0;i<5;i++){const x=l+i*w/5+3,ww=w/5-7,y=-height+24+(i%2)*5;rock.push(`M${x} ${y+11}L${x+ww*.21} ${y}L${x+ww-3} ${y+6}L${x+ww} ${y+36}L${x+4} ${y+40}Z`);tops.push(`M${x+5} ${y+12}L${x+ww*.21} ${y+4}L${x+ww-8} ${y+10}V${y+14}Z`);}
- parts.push(path('#92927a',rock.join(' ')),path('#afa78a',tops.join(' ')));
+ const rock=[],tops=[],dark=[];for(let row=0;row<3;row++){const count=6+(row%2),cell=w/count,base=-height+14+row*(height-17)/3,rh=(height-23)/3;for(let i=0;i<count;i++){const x=l+i*cell+2,ww=cell-5,y=base+(i%3-1)*3;rock.push(`M${x} ${y+5}L${x+ww*.24} ${y}L${x+ww-4} ${y+3}L${x+ww} ${y+rh-3}L${x+ww*.72} ${y+rh}L${x+3} ${y+rh-2}Z`);tops.push(`M${x+4} ${y+6}L${x+ww*.24} ${y+3}L${x+ww-7} ${y+6}V${y+9}Z`);if((i+row)%3===0)dark.push(`M${x+7} ${y+11}H${x+ww-4}L${x+ww-7} ${y+rh-2}H${x+4}Z`);}}
+ parts.push(path('#93917a',rock.join(' ')),path('#afa58a',tops.join(' ')),path('#707a63',dark.join(' ')));
  if(cap==='tile')parts.push(path('#344749',`M${l-8} -${height+5}L${l+9} -${height+20}H${r-7}L${r+9} -${height+4}L${r+4} -${height-3}H${l-5}Z`),strokes([`M${l-3} -${height+2}H${r+4}`],'#879386',3));
  else parts.push(path('#b1a27b',`M${l-5} -${height}L${l+18} -${height+9}L${r-16} -${height+7}L${r+5} -${height-2}Z`));
  if(gate)parts.push(rect(-51,-127,102,127,'#4b4b35'),paperDoor(-46,-122,92,119,{wood:true,shut:true}),rect(-58,-135,116,12,'#786047'));
@@ -116,7 +116,7 @@ export function koreanArchiveCabinet(id,{width=280,height=285,variant=0}={}){
   if(row===2&&variant%2===0){parts.push(rect(left,top+4,space,hh-4,'#857148'),rect(left-3,top,space+6,9,'#ae9968'),rect(left+space*.52,top+7,6,hh-7,'#514e34'),rect(left+space*.44,top+hh*.45,11,16,'#b8aa7c'));}
   else for(let j=0;j<2;j++){
    const bw=space*.43,x=left+j*space*.53,y=top+(j+row)%2*5,body=Math.max(25,hh-6);
-   parts.push(rect(x,y,bw,body,'#b7aa82'),rect(x-2,y-4,bw+4,9,(j+row+variant)%2?'#536e64':'#86704a'),rect(x+4,y+body-8,bw-8,4,'#d0bf93'),rect(x+bw*.29,y-4,5,body+4,'#546344'),rect(x+bw*.77,y-4,5,body+4,'#546344'),rect(x+bw*.42,y+10,bw*.27,13,'#d1c097'));
+   parts.push(rect(x,y,bw,body,'#b7aa82'),rect(x-2,y-4,bw+4,9,(j+row+variant)%2?'#536e64':'#86704a'),rect(x+4,y+body-8,bw-8,4,'#d0bf93'),rect(x+3,y+body*.33,bw-6,3,'#dccb9e'),rect(x+3,y+body*.66,bw-6,3,'#857c58'),rect(x+bw*.29,y-4,5,body+4,'#546344'),rect(x+bw*.77,y-4,5,body+4,'#546344'),rect(x+bw*.42,y+10,bw*.27,13,'#d1c097'));
   }
   parts.push(rect(7,base,w-14,10,'#9e8758'),rect(9,base+7,w-18,4,'#4a4932'));
  }
