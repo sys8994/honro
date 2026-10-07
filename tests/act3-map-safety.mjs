@@ -1,8 +1,9 @@
 /** Geometry safety fixtures; this is deliberately not normal-play evidence. */
 import assert from 'node:assert/strict';import {readFile,writeFile,mkdir} from 'node:fs/promises';import path from 'node:path';import {pathToFileURL} from 'node:url';import {support} from '../tools/map-forge/act3-map-kit.mjs';
-const root=process.env.HONRO_RUNTIME_ROOT||process.cwd(),{runtime}=await import(pathToFileURL(path.join(root,'game/tests/helpers.mjs'))),g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,p=JSON.parse(await readFile('shared/data/campaign.json'));g.HONRO_PROJECT=p;const rows=[];
+const root=process.env.HONRO_RUNTIME_ROOT||process.cwd(),{runtime}=await import(pathToFileURL(path.join(root,'game/tests/helpers.mjs'))),g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,p=JSON.parse(await readFile(process.env.HONRO_PROJECT_FILE||'shared/data/campaign.json'));g.HONRO_PROJECT=p;const rows=[];
 assert.equal(g.HONRO_CONTENT.stages.length,30);
-for(const s of p.stages.slice(20)){
+const selectedIds=process.argv.slice(2).map(Number);
+for(const s of p.stages.slice(20).filter(s=>!selectedIds.length||selectedIds.includes(s.metadata.stageId))){
  const b=g.HonroMaps.createBattle(s,p,undefined,{origin:'campaign'}),pose=b.units.filter(u=>!g.HonroWorld.archetypes[u.honroVariant]?.flying).map(u=>({id:u.id,side:u.side,valid:C.validTerrainContactPose(b.terrain,u),x:u.x,y:u.y}));
  assert(pose.every(q=>q.valid),s.id+' exposed starting body: '+JSON.stringify(pose.filter(q=>!q.valid)));
  assert.deepEqual(JSON.parse(JSON.stringify(b.honroPlayBounds)),{left:0,top:0,right:s.width,bottom:s.height});assert(b.honroTerrainBounds.left<0&&b.honroTerrainBounds.right>s.width);assert(b.honroWorldTerrain?.length);
@@ -19,4 +20,4 @@ for(const s of p.stages.slice(20)){
   }
  }
 }
-await mkdir('_local/reports/act3-production',{recursive:true});await writeFile('_local/reports/act3-production/safety-checks.json',JSON.stringify({scope:'Native initial-body, terrain-domain, canal knockback recovery and fresh-map retry fixtures. Actual App retry/save is covered by the runtime regression suite, not this test. Water is not a new automatic-drowning mechanic.',rows},null,2)+'\n');console.log(`PASS Act3 map safety: ${rows.length} checks`);
+await mkdir('_local/reports/act3-production',{recursive:true});await writeFile('_local/reports/act3-production/safety-checks.json',JSON.stringify({projectFile:process.env.HONRO_PROJECT_FILE||'shared/data/campaign.json',scope:'Native initial-body, terrain-domain, canal knockback recovery and fresh-map retry fixtures. Actual App retry/save is covered by the runtime regression suite, not this test. Water is not a new automatic-drowning mechanic.',rows},null,2)+'\n');console.log(`PASS Act3 map safety: ${rows.length} checks`);

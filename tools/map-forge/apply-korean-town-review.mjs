@@ -75,7 +75,7 @@ function revise22(p,s,changes){
  replace(p,s,'archive-rear',asset('a3-korean:22:archive-rear','판문과 작은 상부창을 둔 사고 뒤벽',rearSvg,[],[480,1490,4780,1295]));
  for(const [id,width,x] of [['archive-west-roof',1950,1350],['archive-east-roof',1870,4330]]){
   const old=clone(s.elements.find(e=>e.id===id)),full=koreanTownBuilding('a3-korean:22:'+id,{width,role:'office',roofType:'gable'});
-  const roofGroup=full.vector.root.children.find(n=>n.id==='korean-gable-roof');if(!roofGroup)throw Error('Missing Korean roof group');full.vector={...full.vector,root:{tag:'g',children:[roofGroup]}};full.name='사고 익랑의 긴 맞배지붕';
+  const roofGroup=full.vector.source.match(/<g id="korean-gable-roof">[\s\S]*?<\/g>/)?.[0],defs=full.vector.source.match(/<defs>[\s\S]*?<\/defs>/)?.[0];if(!roofGroup||!defs)throw Error('Missing Korean roof group');full.vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${full.vector.viewBox.join(' ')}">${defs}${roofGroup}</svg>`);full.name='사고 익랑의 긴 맞배지붕';
   const now=replace(p,s,id,full,{x,y:1710});recordChange(changes,s,id,old,now,'Lower oversized roof cap and remove its obsolete closed front box; preserve the three storage floors and attic access');
  }
  const scroll=s.elements.find(e=>e.id==='archive-scrolls');if(scroll){const a=p.library.find(a=>a.id===scroll.assetId);a.vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="2320 1100 1000 1720">${R(2370,1580,34,850,'#65563b')+R(3220,1580,34,850,'#65563b')+R(2345,1740,91,171,'#a79769')+R(3194,1740,91,171,'#a79769')+R(2340,1736,101,10,'#534631')+R(3189,1736,101,10,'#534631')}</svg>`);a.bounds={x:2320,y:1100,w:1000,h:1720};a.reference.bounds=a.bounds;}
