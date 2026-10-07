@@ -39,7 +39,13 @@ S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call
  c.restore();
 };
 const terrain=S.terrain;
-S.terrain=function(c,t){if(t.honroLocationCeiling)return terrain.call(this,c,t);if(!t.honroCave&&!t.honroCeiling&&!(this.battle?.honroStage>=13&&this.battle?.honroStage<=19&&t.id==='act2-floor'))return terrain.call(this,c,t);
+S.terrain=function(c,t){if(t.honroFireBarrier){
+ const ps=C.poly(t),x=t.x,y=t.y,w=t.w,h=t.h;c.save();c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.fillStyle='#4f4432';c.fill();c.clip();
+ // The solid is a blocked timber doorway. Charred planks and cross-braces
+ // occupy that exact live polygon and disappear together when opened.
+ for(let k=0;k<4;k++){const xx=x+k*w/4;c.fillStyle=k%2?'#746045':'#63553d';c.fillRect(xx+3,y+6,w/4-7,h-11);c.fillStyle='#a18a5f';c.fillRect(xx+6,y+15,3,h-30);c.fillStyle='#2d3c33';c.fillRect(xx+w/4-7,y+3,5,h-6);}
+ c.lineCap='butt';for(const [a,z]of [[{x:x-5,y:y+h*.24},{x:x+w+4,y:y+h*.72}],[{x:x+3,y:y+h*.83},{x:x+w+7,y:y+h*.38}]]){c.strokeStyle='#293a31';c.lineWidth=23;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);c.stroke();c.strokeStyle='#8b7751';c.lineWidth=5;c.stroke();}c.restore();return;}
+ if(t.honroLocationCeiling)return terrain.call(this,c,t);if(!t.honroCave&&!t.honroCeiling&&!(this.battle?.honroStage>=13&&this.battle?.honroStage<=19&&t.id==='act2-floor'))return terrain.call(this,c,t);
  if(G.HonroCaveRock&&this.battle)return G.HonroCaveRock.terrain(c,t,this.battle);
  const ps=C.poly(t);c.save();c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();const grad=c.createLinearGradient(t.x,t.y,t.x+t.w*.4,t.y+Math.min(t.h,1200));grad.addColorStop(0,t.honroCeiling?'#252a30':'#444b50');grad.addColorStop(.5,'#30373d');grad.addColorStop(1,'#161f27');c.fillStyle=grad;c.fill();c.strokeStyle=t.honroCeiling?'#737c7d':'#919d99';c.lineWidth=t.honroCeiling?2:3;c.stroke();
  // A few broad mineral planes, clipped to the physical rock mass.
