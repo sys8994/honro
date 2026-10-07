@@ -3,3 +3,9 @@
 .guide-kicker{color:#f3cc75;font-size:13px;letter-spacing:.08em;font-weight:800}
 .story-guide h2{font-size:23px;margin:10px 0 18px}.story-guide p{font-size:18px;line-height:1.8;white-space:pre-line}.story-guide .story-actions{margin-top:22px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
 @media(max-width:600px){.story-guide{padding:20px}.story-guide p{font-size:16px}.story-guide h2{font-size:20px}}
+
+/* Brief world-space staging keeps the action visible; uses Story's input lock. */
+.staging-overlay{background:transparent!important;display:flex;align-items:flex-end;justify-content:center;padding:18px;pointer-events:auto}
+.staging-cue{width:min(680px,100%);padding:12px 18px;background:#0a1c25e8;border:1px solid #b49c6580;border-radius:8px;color:#e9dfc8;box-shadow:0 4px 20px #0008}
+.staging-cue p{font-size:15px;line-height:1.6;margin:0}.staging-cue .story-actions{display:flex;justify-content:flex-end;margin-top:8px}
+@media(max-height:500px){.staging-overlay{padding:8px}.staging-cue{padding:8px 12px}.staging-cue p{font-size:13px}.staging-cue .story-actions{margin-top:2px}}

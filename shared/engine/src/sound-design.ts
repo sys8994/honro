@@ -5,6 +5,7 @@ import type { Profile } from './types';
 export function soundSamples(name:string,sr=24000):Float32Array {
     const recipes:Record<string,number[]>={
         // seconds, body Hz, noise cutoff Hz, body gain, texture gain, decay
+        sodanBell:[.72,742,2600,.26,.018,5.5],
         arrow:[.27,146,1800,.29,.26,8], arrowhit:[.30,94,1150,.42,.38,10],
         sword:[.34,108,1900,.24,.40,7], fire:[.55,69,900,.42,.46,5],
         charge:[.22,122,580,.06,.08,9], meteor:[1.15,43,760,.58,.52,3.6],

@@ -1,0 +1,112 @@
+(function(G){'use strict';
+// A small presentation sequence on the existing Story lock and actor boundary.
+// No combat clock, pathfinder, second frame loop, or parallel save cursor.
+const clone=x=>JSON.parse(JSON.stringify(x)),registry=new Map(),ID='act1-sodan-first-receiver-v1';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function state(b){const s=b.honroStaging??={version:1};s.once??={};s.hidden??={};return s;}
+function actor(b,id){return b.units.find(u=>u.id===id)||b.units.find(u=>u.side===0&&!u.summoned&&u.cls===id)||null;}
+function alive(u){return !!u&&!u.dead&&u.hp>0;}
+function point(b,p,context={}){
+ if(!p)return null;let q;
+ if(p.actor){const u=actor(b,p.actor)||b.honroStaging?.hidden?.[p.actor];if(alive(u))q={x:u.x,y:u.y-(p.feet?0:u.h*.5)};}
+ else if(p.anchor)q=b.honroMapAnchors?.[p.anchor];
+ else if(p.marker)q=b.honroMarkers?.find(m=>m.id===(p.marker==='$trigger'?context.marker:p.marker));
+ else if(Number.isFinite(p.x)&&Number.isFinite(p.y))q=p;
+ return q&&Number.isFinite(q.x)&&Number.isFinite(q.y)?{x:q.x+(p.dx||0),y:q.y+(p.dy||0)}:null;
+}
+function register(d){if(!d?.id||!Array.isArray(d.steps))throw Error('A staged scene needs an id and steps');registry.set(d.id,clone(d));}
+function prepareFresh(b){
+ if(b.honroCustom||b.honroStage!==9)return;
+ const s=state(b),u=actor(b,'npc-sodan');if(!u)return;
+ // Hidden cast is outside the engine roster, so it cannot leak via minimap,
+ // hover, damage/collision, AI selection or speaker focus before its entrance.
+ s.hidden[u.id]=u;b.units=b.units.filter(v=>v!==u);s.entrance=ID;
+}
+function reveal(b,id){const s=state(b);let u=actor(b,id);if(u)return u;u=s.hidden[id];if(!alive(u))return null;b.units.push(u);delete s.hidden[id];return u;}
+function request(app,id,context={}){
+ const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!G.HonroStory)return false;
+ const s=state(b);if(s.once[id])return false;s.once[id]='queued';
+ G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]]);return true;
+}
+function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)request(app,ID,{marker:m.id});}
+function opening(app,lines,options){
+ const r=lines[0]?.[2]?.stagingRequest;if(!r||options.staging)return{lines,options};
+ const def=registry.get(r.id),b=app.engine?.b;if(!def||!b||state(b).once[r.id]==='done')return{lines:[],options};
+ state(b).once[r.id]='running';
+ const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},complete:false};
+ const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
+ return{lines:dialogue,options:{...options,title:def.title,staging}};
+}
+function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!meta?.stagingScene||s?.once[meta.stagingScene]!=='running')return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
+function active(app){return app.dialogue?.staging;}
+function draw(app,node){const s=active(app);if(!s||s.complete)return false;const step=s.steps[s.cursor];
+ node.innerHTML=`<div class="story-overlay staging-overlay"><section class="staging-cue" role="dialog" aria-modal="true" aria-label="${esc(app.dialogue.title)}"><p id="story-line">${esc(step?.caption||'')}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">장면 넘기기</button></div></section></div>`;
+ node.querySelector('[data-action="dialogue-skip"]')?.focus({preventScroll:true});return true;
+}
+function move(app,s,step,dt,skip){
+ const b=app.engine.b,u=step.reveal?reveal(b,step.actor):actor(b,step.actor),to=point(b,step.to,s.context);
+ if(!alive(u))return 'actor-unavailable';if(!to)return 'anchor-unavailable';if(!skip&&dt<=0)return null;
+ if(u.airborne||u.jumping||Math.abs(u.vy||0)>3)return 'actor-airborne';
+ const distance=to.x-u.x,max=step.maxDistance||800;
+ if(Math.abs(distance)>max)return 'route-too-long';
+ if(Math.abs(distance)<.001)return 'arrived';
+ const surface=G.HonroMapEngine.surfaceY(b.terrain,to.x,to.y);if(!surface||Math.abs(surface.y-to.y)>80)return 'support-unavailable';
+ const saved={fixed:u.fixed,moveLeft:u.moveLeft,walkSpeed:u.walkSpeed,bound:u.bound},before=u.x;
+ const speed=Math.max(30,Math.abs(s.results[s.cursor]?.distance??distance)/Math.max(.05,(step.duration||600)/1000));
+ s.results[s.cursor]??={distance};
+ Object.assign(u,{fixed:false,moveLeft:Math.abs(distance)+2,walkSpeed:speed,bound:0});
+ try{app.engine.walk(u,Math.sign(distance),skip?Math.abs(distance)/speed:Math.min(dt,Math.abs(distance)/speed),true);}finally{Object.assign(u,saved);}
+ u.honroScenePose={kind:'move',time:(s.elapsed+dt*1000)/1000};
+ if(Math.abs(to.x-u.x)<.6){const p=G.HonroTerrain.place(b,u,{x:to.x,y:surface.y,flying:false,maxDistance:1,clearance:0});if(p){Object.assign(u,p);return 'arrived';}}
+ return Math.abs(u.x-before)<.01?'path-blocked':null;
+}
+function apply(app,s,step,skip=false,dt=0){
+ const b=app.engine.b,key=s.cursor,first=!s.applied[key];
+ if(first){s.applied[key]=true;
+  if(step.type==='fx'&&!skip){if(step.sound)app.audio?.play(step.sound);const p=point(b,step.at,s.context);if(p&&step.effect)app.engine.fx(step.effect,p.x,p.y-15,step.color||'#c9b37f',step.radius||48);}
+  if(step.type==='look'&&!skip){const p=point(b,step.at,s.context);if(p&&app.scene){app.scene.goalFocus=p;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500));}}
+ }
+ if(step.type==='move'){const status=move(app,s,step,dt,skip);if(status){s.results[key]={...s.results[key],status};return true;}}
+ if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x)u.facing=Math.sign(p.x-u.x);if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
+ return skip||s.elapsed+dt*1000>=(step.duration||0);
+}
+function settle(app,s){for(const u of app.engine.b.units){if(u.honroScenePose){delete u.honroScenePose;u.moving=0;}}}
+function advance(app,dt,skip=false){
+ const s=active(app);if(!s||s.complete)return false;
+ let budget=skip?s.steps.length:1;
+ while(budget--&&s.cursor<s.steps.length){const step=s.steps[s.cursor];
+  if(step.type==='dialogue'){s.complete=true;break;}
+  if(!apply(app,s,step,skip,dt)){s.elapsed+=dt*1000;break;}
+  s.cursor++;s.elapsed=0;settle(app,s);if(!skip)break;
+ }
+ if(s.cursor>=s.steps.length||s.steps[s.cursor]?.type==='dialogue')s.complete=true;
+ app.engine.b.honroStory=clone(app.dialogue);app.dirty=true;
+ return true;
+}
+function tick(app,now){
+ const s=active(app);if(!s||s.complete){app.stagingLastTime=null;return;}
+ const dt=app.stagingLastTime==null?0:Math.min(.06,Math.max(0,(now-app.stagingLastTime)/1000));app.stagingLastTime=now;
+ if(G.document?.hidden||app.storyHistoryOpen||app.modal?.classList.contains('open'))return;
+ const cursor=s.cursor;advance(app,dt);if(s.cursor!==cursor||s.complete){G.HonroStory.draw(app);G.HonroStory.save(app);}
+}
+function skipMotion(app){const s=active(app);if(!s||s.complete)return false;advance(app,0,true);settle(app,s);G.HonroStory.draw(app);return true;}
+function finish(app){const s=active(app);if(!s)return;advance(app,0,true);settle(app,s);state(app.engine.b).once[s.id]='done';app.stagingLastTime=null;}
+register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
+ {type:'fx',sound:'sodanBell',at:{marker:'$trigger'},effect:'ring',color:'#b8c999',duration:300,caption:'첫 받이진이 붉은 실의 힘을 받아 낸다. 위쪽에서 방울이 짧게 울린다.'},
+ {type:'look',at:{anchor:'sodan'},duration:550,caption:'방울 소리가 난 사당 문간으로 시선이 향한다.'},
+ {type:'move',actor:'npc-sodan',reveal:true,to:{anchor:'sodan',dx:-76},duration:950,caption:'붉은 실에 손이 감긴 소단이 매듭을 붙든 채 문턱으로 나온다.'},
+ {type:'look',actor:'npc-sodan',at:{marker:'$trigger'},pose:'hold-bell',duration:450,caption:'방울 소리가 멎는다. 소단은 줄을 놓지 않은 채 아래를 살핀다.'},
+ {type:'dialogue',lines:[
+  ['소단','거기, 줄에 손대지 마요! 방금 아래에서 뭘 한 거예요?'],
+  ['설오','혼을 받을 진을 하나 폈습니다. 주민들이 말한 소단입니까? 덕수 씨 일행은 무사히 나갔습니다.'],
+  ['소단','덕수 아저씨가… 걸어서 나갔어요?'],
+  ['설오','예. 담허 어른이 몸에 든 혼을 떼어냈습니다. 당신도 도우러 왔습니다.'],
+  ['소단','한쪽에서 당기던 힘이 조금 줄었어요. 다른 빈자리에도 진을 놓는 건 막지 않겠지만, 가운데 제 줄에는 손대지 마요.'],
+  ['설오','손에서 피가 납니다. 남은 자리까지 받이진을 이으면 혼이 한꺼번에 사람에게 쏟아지는 걸 막을 수 있습니다.'],
+  ['소단','제가 놓으면 저 실들이 전부 아래로 쏟아져요. 쉬라고 하지 말아요.'],
+  ['담허','방울로 혼을 다루는 이를 영매라 부르네. 저 아이는 부리는 것보다 붙잡는 데 힘을 다 쓰고 있어.'],
+  ['휘겸','사람 없는 자리부터 잇겠소. 믿으라고 다그쳐 봐야 손을 놓지는 못할 거요.']
+ ]}
+]});
+G.HonroStoryStaging={register,request,prepareFresh,receiver,opening,canSpeak,draw,tick,skipMotion,finish,point,actor,ID};
+})(globalThis);
