@@ -198,7 +198,7 @@ function spawnChild(e:Engine,p:Projectile,mode:string,vx:number,vy:number,damage
 }
 function skyStrikePoint(e:Engine,point:Vec,owner:string):Vec{
  const start={x:point.x,y:Math.min(-170,point.y-600)};
- const hit=e.collision(start,point,3,owner,[],false);
+ const hit=e.projectileCollision(start,point,3,owner,[],false);
  return hit?{x:hit.x,y:hit.y}:point;
 }
 function gourdBurst(e:Engine,p:Projectile){
@@ -444,7 +444,7 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
  for(let i=0;i<Math.ceil((ice?iceGourdFuse(power):8)/STEP);i++){
   age+=STEP;time=age;if(ice&&age>=iceGourdFuse(power))break;
   const m=e.advanceProjectile(p,STEP);if(p.vy<0&&m.vy>=0)apex={x:p.x,y:p.y};p.vx=m.vx;p.vy=m.vy;time=age;
-  const h=e.collision(p,m,6,u.id,[],!ignoreUnits&&!s.mode.startsWith('stake')&&!['waveTriangle','waveBagua'].includes(s.mode));if(h)contact=h;
+  const h=e.projectileCollision(p,m,6,u.id,[],!ignoreUnits&&!s.mode.startsWith('stake')&&!['waveTriangle','waveBagua'].includes(s.mode));if(h)contact=h;
   if(h){p.x=h.x;p.y=h.y;
    if(ice||s.mode==='waveBounce'||s.mode==='waveTriangle'){
     if(!ice&&!h.terrain)break;contacts.push({x:h.x,y:h.y});reflect(p,h,ice?(h.unit?.72:.64):.84);
