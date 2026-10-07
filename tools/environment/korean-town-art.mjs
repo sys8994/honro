@@ -108,3 +108,19 @@ export function koreanTownEnvironment(project,stage,{ground=2700,night=false}={}
  stage.environment=env;
  return env;
 }
+
+export function koreanArchiveCabinet(id,{width=280,height=285,variant=0}={}){
+ const w=width,h=height,parts=[rect(0,0,w,h,'#544633'),rect(10,10,w-20,h-20,'#293e34')],shelfY=[Math.round(h*.34),Math.round(h*.67),h-10];
+ for(const [row,base] of shelfY.entries()){
+  const left=18+(row%2)*7,right=w-20,space=right-left,top=row===0?17:shelfY[row-1]+13,hh=base-top-10;
+  if(row===2&&variant%2===0){parts.push(rect(left,top+4,space,hh-4,'#857148'),rect(left-3,top,space+6,9,'#ae9968'),rect(left+space*.52,top+7,6,hh-7,'#514e34'),rect(left+space*.44,top+hh*.45,11,16,'#b8aa7c'));}
+  else for(let j=0;j<2;j++){
+   const bw=space*.43,x=left+j*space*.53,y=top+(j+row)%2*5,body=Math.max(25,hh-6);
+   parts.push(rect(x,y,bw,body,'#b7aa82'),rect(x-2,y-4,bw+4,9,(j+row+variant)%2?'#536e64':'#86704a'),rect(x+4,y+body-8,bw-8,4,'#d0bf93'),rect(x+bw*.29,y-4,5,body+4,'#546344'),rect(x+bw*.77,y-4,5,body+4,'#546344'),rect(x+bw*.42,y+10,bw*.27,13,'#d1c097'));
+  }
+  parts.push(rect(7,base,w-14,10,'#9e8758'),rect(9,base+7,w-18,4,'#4a4932'));
+ }
+ parts.push(rect(0,0,12,h,'#947d50'),rect(w-12,0,12,h,'#67533a'),rect(0,0,w,11,'#b69c66'));
+ const bounds={x:0,y:0,w,h},vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}"><title>Horizontal bound records and wooden archival chests</title>${parts.join('')}</svg>`);
+ return{id,name:'포갑과 목궤를 둔 서가',category:'architecture',visual:[],vector,collision:[],anchor:{x:0,y:0},sockets:[],tags:['act3-production','korean-archive'],params:{rearOnly:true,storage:'horizontal-bound-books-and-chests'},material:'wood',breakable:false,oneWay:false,bounds,reference:{heightM:h/60,bounds,foot:{x:w/2,y:h},scaleRange:[.7,1.5],backgroundRange:[.7,1.2]}};
+}
