@@ -77,7 +77,7 @@ export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number,
 
 /** Stable foot contact, bounded substeps, exact-x support, and body wall tests. */
 export function walkTerrain(e:any,u:Unit,direction:number,dt:number,requireSupport=false):boolean{
-  if(u.dead||!direction||dt<=0)return false;
+  if(u.dead||u.fixed||!direction||dt<=0)return false;
   const facing=Math.sign(direction);let changed=false;
   if(facing!==u.facing){u.angle=clamp(180-u.angle,AIM_MIN,AIM_MAX);u.facing=facing;changed=true;}
   if(u.moveLeft<=0||u.airborne)return changed;
