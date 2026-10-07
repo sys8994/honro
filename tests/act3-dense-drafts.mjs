@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';import {readFile,writeFile,mkdir} from 'node:fs/promises';import {runtime} from '../game/tests/helpers.mjs';import {traverse} from './act1-spatial-test-helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,kind=process.argv[2]||'canal-city',p=JSON.parse(await readFile(`workshop/drafts/act3-dense-city/${kind}.project.json`,'utf8')),st=p.stages[0];
-assert.equal(st.metadata.campaign,false);assert(st.id.startsWith('draft-act3-'));assert.equal(g.HONRO_PROJECT.stages.length,20);assert(!g.HONRO_PROJECT.stages.some(s=>s.id===st.id));assert.equal(g.HonroMaps.validate(p).filter(x=>x.level==='err').length,0);
+assert.equal(st.metadata.campaign,false);assert(st.id.startsWith('draft-act3-'));assert.equal(g.HONRO_PROJECT.stages.length,30);assert(!g.HONRO_PROJECT.stages.some(s=>s.id===st.id));assert.equal(g.HonroMaps.validate(p).filter(x=>x.level==='err').length,0);
 function inside(x,y,ps){let k=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],b=ps[j];if((a.y>y)!=(b.y>y)&&x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)k=!k;}return k;}
 function at(b,x,y){const ss=b.terrain.flatMap(t=>C.terrainSurfaces(t,x).map(a=>({...a,t}))).filter(q=>Math.abs(q.slope)<=1.35&&!b.terrain.some(t=>inside(x,q.y-2,C.poly(t))));ss.sort((a,b)=>Math.abs(a.y-y)-Math.abs(b.y-y));assert(ss.length,'Missing support '+x);return{x,y:ss[0].y,support:ss[0].t.id};}
 const rows=[];let route;

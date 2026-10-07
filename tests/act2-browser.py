@@ -87,7 +87,7 @@ with sync_playwright() as p:
     # Workshop uses the same compiled maps and gameplay rules in its iframe.
     editor=browser.new_page(viewport={'width':1440,'height':900});editor.on('pageerror',lambda e:errors.append(str(e)))
     editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene')
-    check('Workshop exposes all twenty maps',editor.evaluate('HonroWorkshopAPI.getProject().stages.length')==20)
+    check('Workshop exposes all thirty maps',editor.evaluate('HonroWorkshopAPI.getProject().stages.length')==30)
     for sid in [14,15,18,19,20]:
         editor.evaluate('id=>HonroWorkshopAPI.selectStage("stage-"+id)',sid)
         check(f'Workshop stage {sid} compiles',editor.evaluate('HonroWorkshopAPI.getRuntime().engine.b.honroStage')==sid)
