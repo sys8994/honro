@@ -54,7 +54,7 @@ function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
  const hurt=e.hurt.bind(e);e.hurt=function(u,amount,...args){const source=e.unit(args[0]);if(u.honroProtected&&source?.side===0)return;return hurt(u,amount,...args);};
  const damage=e.damageTerrain.bind(e);e.damageTerrain=function(t,amount,depth=0,owner=e.b.active){const s=steps(e.b).find(q=>q.id===t.id),actor=e.unit(owner);
-  if(s?.kind==='destroy'&&s.requiredClass&&actor?.cls!==s.requiredClass){e.message(H.hero[s.requiredClass].name+'의 사격이 필요하다.');return;}
+  if(s?.kind==='destroy'&&s.requiredClass&&(!actor||actor.side!==0||actor.summoned||actor.enthrall||actor.cls!==s.requiredClass)){e.message(H.hero[s.requiredClass].name+'의 사격이 필요하다.');return;}
   // Closed passages only open as the ordered objective is committed; direct
   // splash damage cannot skip a sealed archive or create an inconsistent save.
   if(steps(e.b).some(q=>q.opens===t.id)&&!t.broken)return;
