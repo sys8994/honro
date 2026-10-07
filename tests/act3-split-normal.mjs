@@ -21,7 +21,7 @@ else for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgressi
 const guardThreshold=Math.max(0,Math.min(.5,Number(process.env.HONRO_BOT_GUARD_THRESHOLD||0)));
 let app=load(profile);if(resumed)app.showRest();else app.launch(24);
 const initialProfile=plain(profile);await writeFile(`${out}/entry-profile.json`,JSON.stringify(initialProfile));
-const entryHistory=[];
+const entryHistory=[];let captureDone=false;
 for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transition did not reach '+id);
  const st=g.HONRO_CONTENT.stages[id-1],map=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id),e=app.engine,b=e.b,actions=[],dialogue=[],route=map.design.act3.requiredRoute,fingerprint=createHash('sha256').update(JSON.stringify({map,source})).digest('hex'),start=performance.now();let frames=0;
  const entry={stage:id,mode:b.honroSplit?.mode,session:b.session,heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit)};entryHistory.push(entry);
@@ -35,7 +35,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
  for(let count=0;count<Number(process.env.HONRO_BOT_ACTION_LIMIT||420)&&!['won','lost'].includes(b.phase);count++){
   while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames<800000){drain();tick();}drain();if(['won','lost'].includes(b.phase)||frames>=800000)break;
   if(g.HonroStory.turnPaused(app))await new Promise(resolve=>setTimeout(resolve,Math.max(1,Math.ceil(app.turnNotice.pauseUntil-performance.now()))));
-  if(process.env.HONRO_BOT_CAPTURE_GOAL===A.current(b)?.id){app.export();const exported=await h.exported();await writeFile(`${out}/capture-profile.json`,JSON.stringify(exported));await writeFile(`${out}/capture-manifest.json`,JSON.stringify({resumeFile,stage:id,goal:A.current(b)?.id,source,actions,dialogue,scope:'Recorded-outcome branch, ordinary inputs, requested pre-objective snapshot only; not a new full run or win.'},null,2));console.log('CAPTURE',id,A.current(b)?.id);process.exit(0);}
+  if(!captureDone&&process.env.HONRO_BOT_CAPTURE_GOAL===A.current(b)?.id){app.export();const exported=await h.exported();await writeFile(`${out}/capture-profile.json`,JSON.stringify(exported));await writeFile(`${out}/capture-manifest.json`,JSON.stringify({resumeFile,stage:id,goal:A.current(b)?.id,source,actions,dialogue,scope:'Recorded-outcome branch, ordinary inputs, requested pre-objective snapshot only; not a new full run or win.'},null,2));console.log('CAPTURE',id,A.current(b)?.id);captureDone=true;if(process.env.HONRO_BOT_CAPTURE_ONLY==='1')process.exit(0);}
   const ready=A.readySteps(b);if(!ready.length){app.checkMission(e);break;}
   const eligible=e.heroesAlive().filter(u=>!u.acted),required=ready.filter(s=>s.requiredClass).flatMap(s=>eligible.filter(u=>u.cls===s.requiredClass).map(u=>({u,s,d:Math.hypot(u.x-A.marker(b,s.id).x,u.y-A.marker(b,s.id).y)}))).sort((a,c)=>a.d-c.d);
   if(required[0])e.select(required[0].u.id);let u=e.active;if(!u||u.side!==0)continue;
@@ -48,6 +48,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
   move(u,goal);drain();if(!e.canAct())continue;
   let action=null;
   if(guardThreshold&&u.hp<u.maxHp*guardThreshold){if(!app.canInput())throw Error('Low-HP defense unavailable');app.defend();action={action:'defend-low',guardThreshold};}
+  else if(s.kind==='reach'&&s.allHeroes&&A.heroes(b).every(v=>A.sameFloor(v,m,s.radius||180))){app.defend();action={action:'finish-reach'};}
   else if(m.action&&A.eligibility(app,m).ok&&A.use(app,m))action={action:'interact',target:m.id};
   else if(t&&!t.broken&&(!s.requiredClass||u.cls===s.requiredClass)){
    const skill=C.SKILLS[C.baseSkill(u.cls)],direct=Math.atan2(u.y-u.h*.6-(t.y+t.h*.5),t.x+t.w/2-u.x)*180/Math.PI;let best=null;
@@ -59,7 +60,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
   if(count%8===0){console.log('PLAY',id,b.round,s.id,actions.length,e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));}
  }
  if(b.phase==='won'){app.outcome();drain();}else drain();
- const row={guardThreshold,consumableInputMode:'disabled: current HONRO UI has no consumable action',stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,simulationSeconds:frames/60,fingerprint,source,entry,actions,dialogue,staging:plain(b.honroStaging||null),heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit),scope:'Continuous 24→27 native production App/engine input bot. One chapter-24 prepared entry only; later entries use result-continue. Menu, Canvas and storage doubles. No combat HP/position/objective/inventory edits. Not browser play or a human difficulty verdict.'};rows.push(row);
+ const row={guardThreshold,consumableInputMode:'disabled: current HONRO UI has no consumable action',stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,simulationSeconds:frames/60,fingerprint,source,entry,actions,dialogue,staging:plain(b.honroStaging||null),heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit),scope:resumed?'Actual recorded-outcome continuation with ordinary inputs; a branch for focused validation, not a new full 24→27 run.':'Continuous 24→27 native production App/engine input bot. One chapter-24 prepared entry only; later entries use result-continue. Menu, Canvas and storage doubles. No combat HP/position/objective/inventory edits. Not browser play or a human difficulty verdict.'};rows.push(row);
  await writeFile(`${out}/stage-${id}.json`,JSON.stringify(row,null,2));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));await writeFile(`${out}/summary.json`,JSON.stringify({source,rows,entryHistory},null,2));console.log('RESULT',id,b.phase,b.round,row.goal,actions.length,row.reason);
  if(b.phase!=='won')break;
  if(id<27)h.click('result-continue');
