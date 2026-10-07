@@ -88,7 +88,8 @@ function initialize(b,profile){
     const shift=Math.max(0,entryXp-limit.start);limit.start+=shift;limit.end+=shift;
   }
   state.limit=clone(limit);
-  const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0);
+  const act3Weight=id>=21&&id<=30&&!b.honroCustom?(G.HONRO_CONTENT.stages[id-1].steps||[]).reduce((n,s)=>n+(s.wave?actionWeight({type:'spawn',kind:s.wave.kind,n:s.wave.count}):0),0):0;
+  const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
   b.honroGrowth={ledger,limit,weight:Math.max(1,weight)};
   for(const u of b.units.filter(u=>u.side===1))enemyXP(b,u);
 }

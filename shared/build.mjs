@@ -45,7 +45,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     parts.push('globalThis.HONRO_ACT2_FAR_DATA='+JSON.stringify(act2Backdrops)+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','act2-art','act1-spatial-art'])parts.push(await read(`shared/runtime/${name}.js`));
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','act2-art','act3-art','act1-spatial-art'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     for(const name of ['journey.js','ui/fa.js'])parts.push(await read('game/vendor/'+name));
