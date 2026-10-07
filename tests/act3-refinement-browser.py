@@ -1,8 +1,10 @@
 """Real bundles and DOM/Canvas evidence. Explicit progress/damage fixtures, not a campaign clear."""
-import json, base64
+import json, base64, sys
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
 OUT=ROOT/'_local/reports/act3-refinement-browser';OUT.mkdir(parents=True,exist_ok=True)
+BASE=next((arg.split('=',1)[1].rstrip('/')+'/' for arg in sys.argv[1:] if arg.startswith('--base=')),None)
+if BASE:OUT=ROOT/'_local/reports/act3-refinement-public';OUT.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[]
 def check(name,condition,detail=None):
     assert condition,(name,detail)
@@ -11,7 +13,7 @@ SETUP='''id=>{const a=HonroApp;a.frame=()=>{};a.profile={...HONRO_TOOLS.fresh(),
 with sync_playwright() as p:
     browser=launch(p)
     for shell,file in [('Game','HONRO.html'),('Playtest','HONRO_WORKSHOP.html')]:
-        owner=browser.new_page(viewport={'width':1440,'height':900});owner.on('pageerror',lambda e:errors.append(str(e)));owner.goto((ROOT/file).as_uri())
+        owner=browser.new_page(viewport={'width':1440,'height':900});owner.on('pageerror',lambda e:errors.append(str(e)));owner.goto(BASE+file if BASE else (ROOT/file).as_uri())
         if shell=='Playtest':
             owner.wait_for_function('HonroWorkshopAPI?.getRuntime()?.scene');owner.click('[data-tab="play"]');owner.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine');page=owner.frames[1]
         else:page=owner;page.wait_for_function('window.HonroApp')
@@ -25,6 +27,8 @@ with sync_playwright() as p:
         page.evaluate('HonroApp.close()')
         result=page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,first=HonroAct3.steps(b)[0];HonroAct3.memory(b).done[first.id]=true;HonroObjectives.refresh(a);const s=HonroObjectives.help(a);return{goal:document.getElementById('objective-text').textContent,rows:s.checklist.map(q=>({id:q.id,done:q.done,current:q.current}))};}''')
         check(shell+' next goal follows completion with past checkmark',len(result['rows'])==2 and result['rows'][0]['done'] and result['rows'][1]['current'] and result['goal']!=presentation['goal'],result)
+        entry=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,ev=b.honroEvents.find(v=>v.id==='act3-response-28-0');for(const u of e.alive(1))if(Math.abs(u.x-ev.entry.x)<900){u.dead=true;u.hp=0;}const count=e.alive(1).length;a.actorBoundary=null;HonroEncounters.update(a,0,{progress:0,height:0,broken:0,collected:0});a.updateHUD(true);const warned=document.getElementById('event').textContent,queued=b.honroState.pendingEvents.includes(ev.id),early=e.alive(1).length-count;e.active.acted=false;b.phase='aim';e.finishAction();for(let i=0;i<600&&!b.honroState.flags['event:'+ev.id];i++)e.tick(1/120);const born=b.units.filter(u=>u.honroSpawnSource===ev.id),committed=!!b.honroState.flags['event:'+ev.id];HonroEncounters.flush(a);return{queued,warned,early,committed,born:born.length,expected:ev.action.n,supported:born.every(u=>HONRO_CORE.validTerrainContactPose(b.terrain,u)),single:b.units.filter(u=>u.honroSpawnSource===ev.id).length===born.length};}''')
+        check(shell+' warning precedes one supported entry at a real action end',entry['queued'] and entry['warned'] and entry['early']==0 and entry['committed'] and entry['born']==entry['expected'] and entry['supported'] and entry['single'],entry)
         damage=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=b.units.find(u=>u.side===1);u.armor=0;u.shield=0;u.hp=u.maxHp=10000;u.existenceDefense=undefined;e.checkEnd=()=>false;const totals=[];b.shot=900;
          for(let i=0;i<3;i++){e.hurt(u,30,e.active.id,false,undefined,undefined,'environment');totals.push([...a.scene.damageNumbers.values()].at(-1).total);}b.shot=901;e.hurt(u,10,e.active.id,false,undefined,undefined,'environment');return{totals,last:[...a.scene.damageNumbers.values()].at(-1).total,count:a.scene.damageNumbers.size};}''')
         check(shell+' real damage events accumulate per attack then reset',damage['totals']==[30,60,90] and damage['last']==10 and damage['count']==2,damage)

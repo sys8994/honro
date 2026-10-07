@@ -188,6 +188,12 @@ npm.cmd run verify
 
 `roster.png`, `comparison.png`, 종별 `*-sizes.png`/`*-detail.png`/`*-attack.png`, `readability-dark.png`/`readability-light.png`/`readability-silhouette.png`, `wireframes.png`, `game*.png`, `workshop-stage*.png`, `workshop-playtest.png`, `metrics.json`, `browser.json`은 검사로 생성된다. 64/96px 도감은 큰 이미지를 축소하지 않고 실제 픽셀 크기로 직접 그린다. 직접 본 평가는 `VISUAL_REVIEW.md`에 남긴다. 초기 과밀 3종 시안은 `_local/archive/monster-art-v1/`에 보관했다. `_local/`은 Git에서 제외되므로 새 clone에서는 검수 산출물을 다시 생성해야 한다.
 
+## 3막 추가 악귀
+
+2026-10-07의 `act3-species.mjs`는 문지기·성벽 궁귀와 무예 정예 두 종, 장부귀·주조귀를 별도 제작한다. 기존 11종의 2.85–3.15배 원본 비교는 유지하고 새 6종은 `act3-authored` 예산(최대 350앵커/90경로/16색)을 적용한다. 전립·겹여민 군복과 들린 얼굴, 정예 갑옷·긴 무기, 두건/장부와 머리띠/종틀로 역할을 구별한다. 기준 높이와 충돌은 미술 배율과 분리한다. 17종 공방의 전후 비교는 원본이 있는 11종만 표시하며 새 종에 가짜 원본 비교를 만들지 않는다.
+
+`npm run test:act3:refinement`는 새 SVG와 실제 retained Canvas의 일치, 대기 발, 5동작·양방향과 128/96/64px 증거를 확인한다. 공통 Game/Stage View/Playtest 및 기존 11종의 예산·순수성은 `test:monsters`로 검사한다. [장소·편성 적용 계약](ACT3_REFINEMENT.md).
+
 ## 다음 투자 판단
 
 일반 적 11종에 대한 게임 화면 피드백을 수집하고 특수 보스의 형태 명세를 작성한다. 도구 투자는 실제로 드러난 문제에 따라 다음 순서로 판단한다.

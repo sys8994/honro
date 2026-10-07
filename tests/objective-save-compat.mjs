@@ -13,7 +13,7 @@ for(const id of [22,23,27]){
  await h.import(exported);app=h.reload();h.click('continue');
  for(const key of ['terrain','honroMarkers','honroAct3Steps','honroState','units','round','teamEnds','heroes','items','honroGrowth'])assert.deepEqual(plain(app.engine.b[key]),before[key],`old ${id}: Continue changed ${key}`);
  assert(!app.engine.b.honroObjectiveRevision);assert(A.steps(app.engine.b).some(s=>s.kind==='destroy'));assert.equal(app.engine.b.terrain.find(t=>t.id===device.id).hp,device.hp);
- const history=g.HonroObjectiveRevision.contentFor(app.engine.b,app.stage);assert.equal(g.HonroObjectives.help(app).guide,history.guide);
+ const history=g.HonroObjectiveRevision.contentFor(app.engine.b,app.stage),help=g.HonroObjectives.help(app),current=A.current(app.engine.b);assert(history.guide);assert.equal(help.currentObjectiveId,current.id);assert(help.guide.includes(current.label),'short guidance must name the saved historical step');assert.equal(help.checklist.filter(s=>!s.done).length,1);
  const ledger=plain(app.engine.b.honroGrowth.ledger),heroes=plain(app.engine.b.heroes);h.click('retry');h.finish(app);
  assert.equal(app.engine.b.honroObjectiveRevision,2);assert(!A.steps(app.engine.b).some(s=>s.kind==='destroy'));assert(!app.engine.b.terrain.some(t=>t.id===device.id));assert.deepEqual(plain(app.engine.b.heroes),heroes);assert.deepEqual(plain(app.engine.b.honroGrowth.ledger),ledger);
  assert.equal(app.engine.b.round,1);assert.equal(A.memory(app.engine.b).checkpoints.length,0);assert.equal(A.sourceIssue(app.engine.b),null);

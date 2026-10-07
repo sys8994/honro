@@ -4,7 +4,7 @@ const h=await appHarness(),g=h.g,A=g.HonroAct3,R=g.HonroObjectiveRevision,checks
 function party(id,roster){const p=h.profileThrough(id-1),app=h.load(p);app.launch(id);h.finish(app);const b=app.engine.b;
  // Before split-campaign is integrated, this declared two-person fixture tests
  // the actual App speaker filter. After integration the real launch must match.
- if(g.HonroSplitCampaign)assert.deepEqual(A.heroes(b).map(u=>u.cls).sort(),[...roster].sort());
+ if(g.HonroSplitCampaign)assert.deepEqual(plain(A.heroes(b).map(u=>u.cls).sort()),[...roster].sort());
  else b.units=b.units.filter(u=>u.side!==0||roster.includes(u.cls));
  if([25,26].includes(id)){assert.equal(app.stage.active,g.HONRO_BALANCE.stages[id-1].activeEnemies||3);if(g.HonroSplitCampaign)assert.equal(b.honroActiveLimit,2);}
  return{app,b,st:app.stage};}
