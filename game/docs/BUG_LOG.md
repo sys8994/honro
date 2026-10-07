@@ -5,7 +5,9 @@
 - 수정: 공통 `walkTerrain`에서 fixed 명령을 거절한다. 고정 동맹은 이동 단계를 즉시 넘어가되 기존 제자리 회복/보호/공격은 유지한다. 구버전 이동 단계 저장도 같은 경로로 처리한다. 보행 가능한 호송 동맹, 전용 비행 몬스터 경로, 플레이어 점프/폭발 밀림은 바꾸지 않는다.
 - 저장 복구: `HonroAllies.attach`는 rescue marker로 연결된 살아 있는 고정 주민 중 발 지지면이 없는 경우에만 실제 `integrateBody` 중력·바닥 sweep을 복사 몸으로 실행한다. 처음 도착한 유효 지면에만 반영하고 원래 x/진행/HP/보호막/해결 상태/지형/marker를 보존한다. 지원되지 않는 바닥이나 낙하 경로는 임의 좌표로 복구하지 않는다. 정상 접지·실제 비행/운반·비행 몬스터·문·상여는 대상이 아니다.
 - 검사: `test:rescue-physics` 22 기본 검사와 원본 정상 저장 선택 입력 1검사 통과. 수정 전 같은 회귀는 첫 고정 주민 좌표 불변 조건에서 실패했다. 실제 동맹 큐 3회×4 dt, 저장 중 이동 단계, 지원 행동 유지, 2/4/6장 이동·호송, 박쥐/까마귀/등불 비행, 점프·실제 blast 밀림·착지, 구버전 공중 위치 접지 및 실제 App 파일 왕복을 다룬다. `test:rescue-targets`와 명시적 offline verify에 연결했다.
-- 한계: 이 시점은 소스/집중 검사 저장 지점이다. 브라우저 전후 화면·전체 verify·두 HTML 빌드·원격 배포는 후속 결과로 별도 기록한다. 인위적 큐/지형 회귀는 정상 캠페인 완주 증거가 아니다.
+- 후속 검사(2026-10-07 00:56 UTC): 원본 정상 7장 저장을 포함한 `rescue-physics` 24조건, `rescue-targets` 16조건, `ground-contact`, `migration`, 32조건 `impact-audit`, 6묶음 `npc-latency`를 공통 검사 lock 아래 순차 실행해 모두 exit 0. 20장 생존자 행렬도 실제 Act2 tick→공통 walk 경로로 이동·접지를 유지한다.
+- 시각 증거: `node tools/physics/capture-rescue-physics.mjs`는 보존한 수정 전 allies 소스와 누락된 fixed guard 계약으로 두 동맹 큐를 재현하고, 동일 저장의 실제 접지 복구 전후를 공통 HonroScene으로 그린다. 월이의 바닥 간격은 518.636→0이다. 기준 fixture를 함께 보존하므로 로컬에만 있는 Git 객체가 없어도 재현할 수 있다.
+- 한계: Native Canvas 증거는 실제 브라우저가 아니다. Python `tests/integration.py`는 Chromium socket EPERM/SIGABRT로 시작하지 못했다. 넓은 offline 묶음은 character/UI/build/typecheck 4단계 완료 후 공유 검사 창 조율을 위해 game-regressions에서 중단했고, 전체 verify 통과로 표시하지 않는다. 최종 통합 HTML·원격 배포·공개판 직접 검수는 통합 결과로 별도 기록한다. 인위적 큐/지형 회귀는 정상 캠페인 완주 증거가 아니다.
 
 # 실제 배포 검수 후 동작 행의 중복 여백 제거 — 2026-10-07
 
