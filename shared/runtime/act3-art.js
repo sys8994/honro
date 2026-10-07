@@ -19,9 +19,18 @@ function draw(c,scene,b){const q=guide(b);if(!q||scene.editorView||scene.skillPr
   c.restore();}
  // Fire symbols are attached to the live control sites; stopping each control
  // visibly removes its pressure. They do not add hidden damage or world rules.
- if(q.remaining!==null)for(const [id,site] of [['water-release','fire-west'],['fire-screen','fire-east']])if(!b.honroState?.act3?.done?.[id]){const p=A.marker(b,site)||A.marker(b,id);if(!p)continue;c.save();c.translate(p.x,p.y-8);
-  const light=c.createRadialGradient(0,-100,8,0,-100,210);light.addColorStop(0,'#efb86555');light.addColorStop(1,'#e6934100');c.fillStyle=light;c.fillRect(-210,-310,420,420);
+ if(b.honroStage===27)for(const [id,site] of [['water-release','fire-west'],['fire-screen','fire-east']]){const p=A.marker(b,site)||A.marker(b,id);if(!p)continue;const burning=q.remaining!==null&&!b.honroState?.act3?.done?.[id];c.save();c.translate(p.x,p.y-8);
+  // Broad ash and scorched timbers stay attached to the source after it is
+  // controlled. Only active sources emit smoke and warm reflected light.
+  c.fillStyle='#263931aa';c.beginPath();c.moveTo(-132,7);c.quadraticCurveTo(-74,-16,-36,-8);c.lineTo(23,-15);c.quadraticCurveTo(78,-10,127,8);c.lineTo(69,18);c.lineTo(-93,17);c.closePath();c.fill();
+  c.fillStyle='#747363';c.beginPath();c.moveTo(-96,7);c.lineTo(-60,-1);c.lineTo(-20,5);c.lineTo(27,-5);c.lineTo(73,8);c.lineTo(31,13);c.lineTo(-28,10);c.closePath();c.fill();
+  c.fillStyle='#354132';c.save();c.translate(-22,-2);c.rotate(-.12);c.fillRect(-67,-8,129,14);c.restore();c.save();c.translate(27,1);c.rotate(.18);c.fillRect(-45,-7,99,12);c.restore();
+  if(!burning){c.restore();continue;}
+  c.fillStyle='#34443d24';c.beginPath();c.moveTo(-67,-40);c.bezierCurveTo(-118,-147,-8,-224,-65,-361);c.bezierCurveTo(-88,-410,-45,-444,-8,-466);c.bezierCurveTo(-30,-393,62,-331,35,-249);c.bezierCurveTo(7,-173,99,-103,64,-38);c.closePath();c.fill();
+  const light=c.createRadialGradient(-12,-62,8,-12,-62,258);light.addColorStop(0,'#ecb06b80');light.addColorStop(.48,'#ce773d38');light.addColorStop(1,'#a0522d00');c.fillStyle=light;c.fillRect(-280,-335,550,420);
+  c.fillStyle='#be804549';c.beginPath();c.moveTo(-125,9);c.quadraticCurveTo(-3,-5,118,9);c.lineTo(74,23);c.lineTo(-87,23);c.closePath();c.fill();
   for(const [i,x,scale] of [[0,-47,.8],[1,8,1.12],[2,48,.74]]){c.save();c.translate(x,0);c.scale(scale,scale);const sway=Math.sin((scene.time||0)*3+i*1.7)*14;c.fillStyle=i===1?'#ecb45baa':'#cb773dcc';c.beginPath();c.moveTo(-40,0);c.quadraticCurveTo(-58,-81,-14+sway,-155);c.quadraticCurveTo(-15,-73,8,-96);c.quadraticCurveTo(20,-166,37+sway,-221);c.quadraticCurveTo(72,-71,35,0);c.closePath();c.fill();c.restore();}c.restore();}
+
  c.restore();
 }
 const tone=S.environmentTone;S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(!A.active(b))return;c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);draw(c,this,b);c.restore();};
