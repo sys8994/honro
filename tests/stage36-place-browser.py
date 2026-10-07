@@ -50,7 +50,9 @@ with sync_playwright() as playwright:
         game.evaluate('''([sid,camera])=>{const a=HonroApp,st=HONRO_PROJECT.stages[sid-1];
           a.profile={...HONRO_TOOLS.fresh(),...HonroMaps.profileFor(st)};
           for(let i=1;i<=10;i++)a.profile.cleared[i]={};
-          a.launch(sid);if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;
+          // Compare the same authored instant. Finishing an intro now moves
+          // its cast; the editor preview has not played that choreography.
+          a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false,profile:a.profile});a.turnNotice=null;
           Object.assign(a.scene,{time:0,walkTime:0,manual:true,storyTween:null,goalFocus:null,
             cinematic:null,x:camera.x,y:camera.y,scale:camera.zoom});
           a.scene.render(a.engine,0,'',.6,false,0);

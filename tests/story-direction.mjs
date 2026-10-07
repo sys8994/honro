@@ -25,6 +25,14 @@ check('Dialogue and walking overlap; page rendering/history cannot restart movem
  const heldX=u.x;a.storyHistoryOpen=true;tick(a,20);assert.equal(u.x,heldX);assert.deepEqual(plain(a.dialogue.staging.cue),before);a.storyHistoryOpen=false;
  g.HonroStory.save(a);const d=plain(a.dialogue),p={x:u.x,y:u.y};a=reload();click('continue');assert.deepEqual(plain(a.dialogue),d);assert.equal(a.dialogue.index,index);assert.equal(a.engine.unit(u.id).x,p.x);tick(a,30);assert.equal(a.engine.unit(u.id).x,x+22);next(a);assert(!a.engine.unit(u.id).honroScenePose);finish(a);
 });
+check('A slower supported walk finishes before that actor starts the next gesture; save retains its actual cue start',()=>{
+ let a=fresh(11);to(a,'휘겸','길을 비우겠소');const u=a.engine.heroesAlive().find(u=>u.cls==='knight'),x=u.x,walk=a.engine.walk;
+ // Explicit timing fixture uses the same collision/support walk at slower dt.
+ a.engine.walk=function(unit,dir,dt,support){return walk.call(this,unit,dir,dt*.6,support);};
+ tick(a,20);assert(u.x>x&&u.x<x+22);assert.equal(u.honroScenePose.kind,'move');assert.equal(a.dialogue.staging.cue.started[1],undefined);
+ tick(a,18);assert.equal(u.x,x+22);assert.equal(u.honroScenePose.kind,'guard');assert(a.dialogue.staging.cue.started[1]>850);
+ const cue=plain(a.dialogue.staging.cue);g.HonroStory.save(a);a=reload();click('continue');assert.deepEqual(plain(a.dialogue.staging.cue),cue);finish(a);
+});
 check('Skip at different points yields the same entrances, positions, resources, journal and unlocked input',()=>{
  for(const id of [1,3,4,11,21,24,27]){let expected;for(const mode of ['instant','partial','read']){const a=fresh(id);if(mode==='partial'){tick(a,17);next(a);tick(a,7);}if(mode==='read'){for(let i=0;i<35&&a.dialogue;i++){tick(a,25);next(a);}}finish(a);a.turnNotice=null;const final=plain(a.engine.b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,energy:u.energy,facing:u.facing})));if(!expected)expected=final;else assert.deepEqual(final,expected,'stage '+id+' '+mode);assert(a.canInput());assert(!a.engine.b.units.some(u=>u.honroScenePose));}}
 });

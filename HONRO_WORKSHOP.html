@@ -17815,15 +17815,19 @@ function settle(app,s){for(const u of app.engine.b.units){if(u.honroScenePose){d
 // inside the same serialized dialogue; reading/rendering never restarts a cue.
 function lineStart(app,skip=false){
  const s=active(app),d=app.dialogue;if(!s?.cues||!s.complete||s.waitForDialogue||s.cue?.index===d.index)return;
- settle(app,s);s.cue={index:d.index,elapsed:0,applied:{},results:{},done:{}};
+ settle(app,s);s.cue={index:d.index,elapsed:0,applied:{},results:{},done:{},started:{}};
  delete s.focus;delete s.focusActor;cueAdvance(app,0,skip);
 }
 function cueAdvance(app,dt,skip=false){
- const s=active(app),cue=s?.cue;if(!cue)return false;let changed=false;
- for(const [i,step]of (s.cues[cue.index]||[]).entries()){
+ const s=active(app),cue=s?.cue;if(!cue)return false;let changed=false;const steps=s.cues[cue.index]||[];cue.started??={};
+ for(const [i,step]of steps.entries()){
    if(cue.done[i])continue;
   if(!skip&&cue.elapsed<(step.delay||0))continue;
-  const a={cursor:i,elapsed:Math.max(0,cue.elapsed-(step.delay||0)),context:s.context,applied:cue.applied,results:cue.results};
+  // A slope can make walking take longer than its authored timing. The next
+  // gesture of that actor waits for arrival; other actors continue in parallel.
+  if(!skip&&step.actor&&steps.slice(0,i).some((prior,j)=>prior.actor===step.actor&&!cue.done[j]))continue;
+  cue.started[i]??=cue.applied[i]?(step.delay||0):cue.elapsed;
+  const a={cursor:i,elapsed:Math.max(0,cue.elapsed-cue.started[i]),context:s.context,applied:cue.applied,results:cue.results};
   if(apply(app,a,step,skip,dt)){cue.done[i]=true;changed=true;}
   if(a.focus)s.focus=a.focus;if(a.focusActor)s.focusActor=a.focusActor;
  }
