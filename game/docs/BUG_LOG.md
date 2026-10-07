@@ -3,7 +3,8 @@
 - 원인: 에셋 polish가 두 화강암의 외곽을 별도 정규화된 6면 그림으로 다시 만들면서 기존 independent collider는 보존했다. 1장 큰 바위의 왼쪽 그림이 고체 윗면보다 최대 157.5 world 낮아 접지한 발·윤곽선이 허공에 있는 것처럼 보일 수 있었다.
 - 변경: 큰/작은 바위의 첫 그림 polygon을 기존 collision 외곽 그대로 복사하고 나머지 5색면도 그 안에 둔다. 기존 6면·팔레트·bounds·contact·16배치·충돌·맵·저장 코드는 유지한다. `tools/environment/granite-visuals.mjs`를 polish generator가 호출하므로 재생성에도 고정된다.
 - 검사: `node tests/granite-visual-alignment.mjs`로 2외곽·12색면·16배치·6장 compiled terrain/material 불변·generator 순수/재현·옛 embedded art/terrain 보존 통과. 큰 바위 157.5와 작은 바위 81.9 local 최대 간격이 각각 0으로 줄었다. 실제 generator 재실행 뒤 다른 에셋과 모든 nonvisual campaign 필드 불변도 확인했다.
-- 한계: 기존 진행 중인 저장은 저장 당시 그림을 유지한다. Native 전후 화면·통합 브라우저/Pages 검수는 별도 기록하며 이 검사만으로 전체 verify 또는 정상 플레이 통과를 주장하지 않는다. [현재 계약](GRANITE_VISUAL_ALIGNMENT.md).
+- Native 추가 검수: 공통 production element painter에서 두 바위×0.25/0.4/1.5 줌의 solid mask 바깥 opaque 화소0·안쪽 누락0. 실제16배치 전후 overlay와400×760 Scene8장을 비교했고 큰 바위 왼쪽의 발이 가시 윗면에 닿으며 원래 숲 구도·팔레트를 유지하는 것을 직접 확인했다. readability runtime a7517e2와 source5a01235를 구분 기록하고, sprite outline 제외 정책은 유지했다.
+- 한계: 기존 진행 중인 저장은 저장 당시 그림을 유지한다. 인위적 접지 pose 비교는 정상 이동/완주 증거가 아니다. 통합 브라우저/Pages 검수는 별도이며 이 검사만으로 전체 verify 또는 브라우저 성능 통과를 주장하지 않는다. [현재 계약](GRANITE_VISUAL_ALIGNMENT.md).
 
 # 고정 구조 주민의 공중 보행 — 2026-10-07
 

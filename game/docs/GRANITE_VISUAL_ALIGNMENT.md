@@ -12,4 +12,13 @@ This repair changes only the two assets' visual arrays in the campaign library. 
 
 On 2026-10-07 these source/engine checks passed. The maximum top-envelope mismatch is now zero for both asset sizes and all sixteen compiled instances. Running `node tools/environment/polish-assets.mjs` left all other assets and every nonvisual campaign field unchanged.
 
-Native Canvas before/after, low-zoom/mobile scenes, and final integrated Game/Workshop/Pages checks are tracked separately. Native images do not establish browser/GPU performance or normal-play completion.
+`node tools/environment/capture-granite-alignment.mjs` reproduces Native evidence under `_local/reports/granite-visual-alignment/`. An optional `--runtime-root=/path/to/checkout` tests the same two visual arrays against another integration candidate's common Scene; the manifest records the source and runtime commits separately.
+
+The 2026-10-07 Native run used the readability runtime `a7517e2` and granite source `5a01235`, with only the two visual arrays substituted between before/after:
+
+- Both assets at 0.25, 0.4 and 1.5 zoom: zero opaque pixels outside the canonical raster mask and zero missing solid-interior pixels through the production element painter.
+- Sixteen paired actual world transforms at 0.4 zoom: the diagnostic cyan collider overlay exactly follows each corrected drawing. This cyan line is inspection evidence, not a new game effect.
+- Eight 400×760 common Scene images: identical original-start cameras at 0.4/0.25, plus equal diagnostic contact poses on the large and small rocks. Rendering left battle state unchanged.
+- Direct visual review: the large rock's left-side supported feet now meet the visible rim; the small rock uses its actual narrow outline, including its lower recess. The original forest composition, background atmosphere and granite palette remain recognizable at mobile and low zoom. No automatic highlight was added to these sprite assets; the readability patch's safe exclusion remains intact.
+
+These contact poses are deliberate art/collision comparisons, not a claim that the player traversed there normally. Final integrated Game/Workshop/Pages checks remain with the release verification. Native images do not establish browser/GPU performance or normal-play completion.
