@@ -1,3 +1,10 @@
+# 두 조사팀의 발화와 중앙 합류 연결 — 2026-10-07
+
+-25장무명사주조기록은설오,26장수량비교/제작법유보는휘겸/담허에게있어2인파티의발화필터에서사라질수있었다.25는휘겸·담허의문서읽기,26은설오·소단의관찰과기록공백으로동일정보를전달한다.26은25의대도사/무명사조사결과를미리알지않는다.
+-24끝두조사경로를정하고27중앙실제4인집결후처음기록을공유한다.기존StoryStaging의look→dialogue만등록하며이동/새pose를추가하지않는다.한번예약된장면은반복하지않고로드시descriptor를재등록한다.옛4인전투의step/guide/beat뿐아니라outro와저널기록도legacy본문을사용한다.
+-새25/26 stage.active는balance.activeEnemies를따른다.mount는저장된honroActiveLimit을우선하여옛전투의행동수를보존한다.
+-검증:구문검사와content-only발화/정보순서/old본문/active메타/descriptor중복등록검사통과.실제App스피커필터·저장·합류에대한tests/objective-split-story.mjs는작성완료했으며CUA창종료후공용락회귀를실행한다.아직그App검사나실기를통과했다고표시하지않는다.
+
 # 제거 장치의 공간 목표 참조 정리 — 2026-10-07
 
 -통합finalize가12/13/15/17/20장의삭제한pin을가리키는design.space.sites와20 gate-exit prerequisite를검출했다.스키마는완화하지않았다.

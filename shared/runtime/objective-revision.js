@@ -39,6 +39,32 @@ replaceLine(H.stages[19].story,'출구까지 돌이','무너진 출구를 주민
 replaceLine(H.stages[20].story,'저 고리부터','수레 밑에 사람이 있습니다. 곁의 위협부터 치우고 꺼내겠습니다.');
 replaceLine(H.stages[21].story,'위층 걸쇠','위층 서가에도 장부가 남아 있습니다. 같은 해의 호적을 찾아오겠습니다.');
 replaceLine(H.stages[26].story,'수문 고정구','수문 쪽으로 가겠습니다. 물길을 열면 저쪽 불길을 막을 수 있습니다.');
+// The split party must hear every established fact from people actually there.
+// These are readings of existing records, not new expertise or later revelations.
+H.stages[23].outro=G.HonroAct3Content.scene('act3-r2-outro-24',H.stages[23].name,[
+ ['휘겸','사당 뒤 기록실은 담허 도사와 살피겠소. 가문의 문장이 있으면 내가 열 수 있을 것이오.'],
+ ['설오','소단과 성 밖 공방의 기록을 찾겠습니다. 관아 바깥 길에서 다시 만나겠습니다.'],
+ ['소단','운송 묶음의 수량과 날짜는 적어 둘게요. 서로 찾은 걸 나중에 맞춰 봐요.']
+]);
+H.stages[24].beats['investigation-record']=[
+ ['휘겸','조직적인 저항은 없었다. 대도사가 현장에서 주민 전원을 죽였다고… 선조가 증언을 모았소.'],
+ ['담허','그 뒤 무명사에서 대종을 주조하고 있었다는 기록도 있네.'],
+ ['휘겸','저문골에서 가져간 것들과 그 종이 이어져 있었소.']
+];
+H.stages[25].story[1]=['소단','종이는 넓게 펴 주세요. 마르는 동안 이쪽을 지킬게요.',{storyId:'act3-r2-entry-26',storyTitle:H.stages[25].name}];
+H.stages[25].beats['casting-tally']=[
+ ['설오','운송 묶음의 금속량과 이 장부의 주조량이 거의 같습니다. 유골과 재도 장례 때와는 다르게 처리했다고 적혀 있습니다.'],
+ ['소단','종 곁에 오래된 혼들이 겹쳐 있었어요. 사람의 흔적까지 쓴 걸까요?'],
+ ['소단','어떻게 썼는지는 이 조각에 없네요. 남은 기록을 더 찾아야겠어요.']
+];
+H.stages[26].beats['party-reunion']=[
+ ['휘겸','대도사가 저문골 주민 전원을 죽였다는 선조의 조사 기록을 찾았소. 참사 뒤 무명사에서 대종을 만든 기록도 있소.'],
+ ['설오','공방의 주조량이 저문골에서 거둔 금속량과 거의 맞았습니다. 유골과 재도 장례 때와는 다르게 처리했다고 합니다.'],
+ ['담허','어떤 공정으로 썼는지는 아직 모르네. 이제 함께 움직이며 남은 기록부터 지키세.']
+];
+let registeredStaging=null;
+function registerScenes(){const staging=G.HonroStoryStaging;if(!staging||registeredStaging===staging)return;staging.register({id:'act3-party-reunion-v1',stage:27,title:'다시 모인 기록',steps:[{type:'look',at:{marker:'party-reunion'},duration:450,caption:'두 조사팀이 중앙 뜰에서 서로 가져온 기록을 펼친다.'},{type:'dialogue',lines:H.stages[26].beats['party-reunion']}]});registeredStaging=staging;}
+function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)return false;registerScenes();if(app.engine.b.honroStaging?.once?.['act3-party-reunion-v1'])return true;return G.HonroStoryStaging.request(app,'act3-party-reunion-v1');}
 // Stale focus cues must never point at a deleted device.
 for(const id of [12,15,20,21,22,23,27])for(const row of H.stages[id-1].story||[])if(row[2]?.focus==='seal')row[2].focus='interact';
 function active(b){return !b?.honroCustom&&b?.honroObjectiveRevision>=REVISION;}
@@ -69,5 +95,5 @@ function author(project,options={}){
   return map;
  })};return p;
 }
-G.HonroObjectiveRevision={version:REVISION,active,contentFor,storedSteps,author,removed,gates,legacy};
+G.HonroObjectiveRevision={version:REVISION,active,contentFor,storedSteps,author,removed,gates,legacy,registerScenes,stageScene};
 })(globalThis);
