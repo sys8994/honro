@@ -2,7 +2,7 @@
 // attack surface; this proves hittability, not a normal-input traversal/clear.
 import assert from 'node:assert/strict';import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';import {support} from '../tools/map-forge/act3-map-kit.mjs';
-const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];g.HONRO_PROJECT=JSON.parse(await readFile(process.env.HONRO_PROJECT_FILE||'_local/reports/act3-locations/project.json','utf8'));
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];g.HONRO_PROJECT=JSON.parse(await readFile(process.env.HONRO_PROJECT_FILE||'shared/data/campaign.json','utf8'));
 for(const s of g.HONRO_PROJECT.stages.slice(22))for(const group of s.encounters){
  const b=g.HonroMaps.createBattle(s,g.HONRO_PROJECT),e=new C.Engine(b,()=>{},true),hero=b.units.find(u=>u.side===0&&u.cls===(s.metadata.stageId===25?'mage':'archer')),targets=b.units.filter(u=>group.unitIds.includes(u.id));e.checkEnd=()=>false;
  // The fixture concerns a reachable combat space after its authored door opens.
