@@ -215,7 +215,7 @@
             // nights retain the same readable combat colors in every entry point.
             if(this.environmentTone){c.save();c.setTransform(d,0,0,d,0,0);this.environmentTone(c,w,h,b);c.restore();}
             for (const a of b.honroMarkers || []) {
-                if (a.collected||a.type==='sector'||a.type?.startsWith('act2'))
+                if (a.collected||a.type==='sector'||a.type?.startsWith('act2')||G.HonroAct3?.active(b)&&(a.type?.startsWith('act3')||a.action==='act3'||a.type==='exit'))
                     continue;
                 const pulse = Math.sin(this.time * 3) * 3;
                 if (a.type === 'relic') {
@@ -306,17 +306,17 @@
         // Durability is combat state, never part of the static scenery bitmap.
         // Keep labels and bars in screen pixels at every gameplay zoom.
         terrainHealthTargets(b){
-            const objectives=(b.honroObjectives||[]).filter(o=>o.type==='destroy'),steps=G.HonroAct2?.active(b)?G.HonroAct2.steps(b):[];
+            const objectives=(b.honroObjectives||[]).filter(o=>o.type==='destroy'),steps=G.HonroAct2?.active(b)?G.HonroAct2.steps(b):G.HonroAct3?.active(b)?G.HonroAct3.steps(b):[];
             return (b.terrain||[]).flatMap(t=>{
                 if(t.broken||t.indestructible||!Number.isFinite(t.hp)||t.hp>=9999||!Number.isFinite(t.maxHp)||t.maxHp<=0)return [];
                 const objective=objectives.find(o=>o.targetId===t.id||o.targetId===t.honroElementId),step=steps.find(o=>o.kind==='destroy'&&o.id===t.id);
-                const event=!!(t.honroSeal||t.honroAct2Target||t.device||objective||step);
+                const event=!!(t.honroSeal||t.honroAct2Target||t.honroAct3Target||t.device||objective||step);
                 if(!event&&t.hp>=t.maxHp)return [];
                 const title=objective?.label||step?.label||(t.id==='cliff-cleat'?'고리쇠':t.id.startsWith('bier-knot-')?'상여 결박':t.honroSeal?'봉인':({ward:'결계 장치',sluice:'수문',wind:'바람 장치'})[t.device])||'파괴 가능한 지형';
                 let blocked='';
                 if(b.honroStage===5&&t.id==='cliff-cleat'&&!b.honroState?.ritual?.active)blocked='물틈 닫힘 · 담허의 받이진 필요';
                 else if(G.HonroAct2?.active(b)&&t.id==='upper-chain'&&!b.honroState?.act2?.silenced)blocked='공명 억제 후 파괴 가능';
-                else if(G.HonroAct2?.active(b)&&step?.requiredClass&&b.units.find(u=>u.id===b.active)?.cls!==step.requiredClass)blocked=(H.hero[step.requiredClass]?.name||'동행')+'의 사격 필요';
+                else if((G.HonroAct2?.active(b)||G.HonroAct3?.active(b))&&step?.requiredClass&&b.units.find(u=>u.id===b.active)?.cls!==step.requiredClass)blocked=(H.hero[step.requiredClass]?.name||'동행')+'의 사격 필요';
                 return [{id:t.id,x:t.x+t.w/2,y:t.y,label:title,event,blocked,hp:Math.max(0,t.hp),maxHp:t.maxHp}];
             });
         }
