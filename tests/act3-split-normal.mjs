@@ -14,9 +14,12 @@ for(const dir of ['shared/runtime','shared/engine/src','shared/map'])for(const f
 const source=Object.fromEntries(await Promise.all(sourceFiles.map(async f=>[f,createHash('sha256').update(await readFile(f)).digest('hex')])));
 // Exactly one prepared entry, before chapter 24. Later chapters must be
 // reached through the ordinary App result-continue control in this same App.
-const profile=profileThrough(23);for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgression.budget(24).start;C.autoTrain(profile.heroes[cls],cls);C.sanitizeLoadout(profile,cls);}
+const resumeFile=process.env.HONRO_BOT_RESUME_OUTCOME,resumed=resumeFile?JSON.parse(await readFile(resumeFile,'utf8')):null;
+const profile=resumed?.profile||profileThrough(23);
+if(resumed){if(resumed.b?.phase!=='won'||profile.honroSplitCampaign?.mode!=='continuous'||!profile.honroSplitCampaign.nextStage)throw Error('Resume requires a recorded continuous won outcome');ids.splice(0,ids.length,...[24,25,26,27].filter(id=>id>=profile.honroSplitCampaign.nextStage));}
+else for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgression.budget(24).start;C.autoTrain(profile.heroes[cls],cls);C.sanitizeLoadout(profile,cls);}
 const guardThreshold=Math.max(0,Math.min(.5,Number(process.env.HONRO_BOT_GUARD_THRESHOLD||0)));
-let app=load(profile);app.launch(24);
+let app=load(profile);if(resumed)app.showRest();else app.launch(24);
 const initialProfile=plain(profile);await writeFile(`${out}/entry-profile.json`,JSON.stringify(initialProfile));
 const entryHistory=[];
 for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transition did not reach '+id);
@@ -32,6 +35,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
  for(let count=0;count<Number(process.env.HONRO_BOT_ACTION_LIMIT||420)&&!['won','lost'].includes(b.phase);count++){
   while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames<800000){drain();tick();}drain();if(['won','lost'].includes(b.phase)||frames>=800000)break;
   if(g.HonroStory.turnPaused(app))await new Promise(resolve=>setTimeout(resolve,Math.max(1,Math.ceil(app.turnNotice.pauseUntil-performance.now()))));
+  if(process.env.HONRO_BOT_CAPTURE_GOAL===A.current(b)?.id){app.export();const exported=await h.exported();await writeFile(`${out}/capture-profile.json`,JSON.stringify(exported));await writeFile(`${out}/capture-manifest.json`,JSON.stringify({resumeFile,stage:id,goal:A.current(b)?.id,source,actions,dialogue,scope:'Recorded-outcome branch, ordinary inputs, requested pre-objective snapshot only; not a new full run or win.'},null,2));console.log('CAPTURE',id,A.current(b)?.id);process.exit(0);}
   const ready=A.readySteps(b);if(!ready.length){app.checkMission(e);break;}
   const eligible=e.heroesAlive().filter(u=>!u.acted),required=ready.filter(s=>s.requiredClass).flatMap(s=>eligible.filter(u=>u.cls===s.requiredClass).map(u=>({u,s,d:Math.hypot(u.x-A.marker(b,s.id).x,u.y-A.marker(b,s.id).y)}))).sort((a,c)=>a.d-c.d);
   if(required[0])e.select(required[0].u.id);let u=e.active;if(!u||u.side!==0)continue;
@@ -60,4 +64,4 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
  if(b.phase!=='won')break;
  if(id<27)h.click('result-continue');
 }
-if(rows.length!==4||rows.some(r=>r.phase!=='won'))process.exitCode=1;
+if(rows.length!==ids.length||rows.some(r=>r.phase!=='won'))process.exitCode=1;
