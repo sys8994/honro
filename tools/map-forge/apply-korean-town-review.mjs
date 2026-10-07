@@ -56,7 +56,7 @@ function addArchiveFlights(p,s){
 }
 function revise23(g,p,s,changes){
  koreanTownEnvironment(p,s,{ground:2720});
- const rows=[['west-shop','shop',500,'gable',480],['cloth-hall','shop',390,'gable',975],['market-house','office',680,'hip',2760],['granary','storehouse',380,'gable',3280],['east-granary','storehouse',360,'gable',7360]];rows.forEach(([id,role,w,roof,x],i)=>building(p,s,id,role,w,roof,i,changes,{x}));
+ const rows=[['west-shop','shop',500,'gable',480],['cloth-hall','shop',390,'gable',975],['market-house','office',440,'hip',2910],['granary','storehouse',320,'gable',3320],['east-granary','storehouse',360,'gable',7360]];rows.forEach(([id,role,w,roof,x],i)=>building(p,s,id,role,w,roof,i,changes,{x}));
  const obsolete=['office-upper','gate-upper','upper-rear-posts','canal-upper-gallery-rear-piers','west-quay-tower','bridge-tower','canal-watch','central-roof-bridge','east-roof-bridge','office-step-0','office-step-1','office-step-2','east-house'];
  for(const id of obsolete){const e=s.elements.find(e=>e.id===id);if(e)recordChange(changes,s,id,e,null,'Remove oversized suspended gallery or unused upper link; required quay and escort remain');}remove(s,obsolete);
  const pavilion=koreanTownBuilding('a3-korean:23:watergate-pavilion',{width:600,role:'pavilion',roofType:'hip'});element(p,s,pavilion,'korean-watergate-pavilion',2015,2600);s.design.act3.mainBuildings.push('korean-watergate-pavilion');
@@ -66,17 +66,17 @@ function revise23(g,p,s,changes){
  replace(p,s,'roof-entry',stairs('a3-korean:23:roof-entry',380,2580-low,{thin:true}),{x:70,y:2580});
  replace(p,s,'roof-west-link',deck('a3-korean:23:low-roof-link',215,24,{rail:false}),{x:900,y:low});
  element(p,s,stairs('a3-korean:23:watergate-roof-access',690,low-upper,{thin:true}),'korean-watergate-roof-access',1120,low);
- replace(p,s,'west-roof-bridge',deck('a3-korean:23:watergate-roof-walk',890,30,{rail:false}),{x:1810,y:upper});
+ replace(p,s,'west-roof-bridge',deck('a3-korean:23:watergate-roof-walk',600,30,{rail:false}),{x:1810,y:upper});
  // Short repair-walk supports end on the neighbouring real roofs. They
  // do not recreate the removed tower-height posts or add collision barriers.
  const compiled=g.HonroMaps.compile(s,p).terrain,braces=[],contacts=[];
- for(const [id,x,top]of [['west-roof-bridge',2450,upper+30],['west-roof-bridge',2605,upper+30],['korean-watergate-roof-access',1480,low-(360/690)*(low-upper)+34]]){
+ for(const [id,x,top]of [['west-roof-bridge',2300,upper+30],['west-roof-bridge',2330,upper+30],['korean-watergate-roof-access',1480,low-(360/690)*(low-upper)+34]]){
   const hits=compiled.filter(t=>t.honroElementId!==id&&t.honroElementId!=='roof-west-link').flatMap(t=>g.HONRO_CORE.terrainSurfaces(t,x).map(q=>({...q,element:t.honroElementId}))).filter(q=>q.y>=top&&q.y-top<180).sort((a,b)=>a.y-b.y);
   if(!hits.length)continue;const foot=hits[0].y;braces.push(R(x-7,top,14,foot-top,'#6a573b'),R(x-4,top,4,foot-top,'#a18a5e'),R(x-12,foot-5,24,5,'#84734c'));contacts.push({element:id,x,top,bottom:foot,support:hits[0].element});
  }
  const braceAsset=asset('a3-korean:23:roof-repair-braces','낮은 지붕 보수길의 짧은 받침',braces.join(''),[],[1430,upper,1250,400]);braceAsset.params={rearOnly:true,structuralSupports:contacts};element(p,s,braceAsset,'korean-roof-repair-braces',0,0);s.elements.unshift(s.elements.pop());
  for(const id of ['roof-entry','korean-watergate-roof-access']){const el=s.elements.find(e=>e.id===id),a=p.library.find(a=>a.id===el.assetId);a.material='wood';a.vector=compileSVG(a.vector.source.replaceAll('#627676','#746247').replaceAll('#aab29a','#b3a071'));}
- s.design.act3.optionalRoutes=[{id:'western-roof-gallery',points:[{x:40,y:2730,jumpTo:{x:100}},{x:150,y:2580-(80/380)*(2580-low)},{x:430,y:low},{x:650,y:low},{x:960,y:low},{x:1110,y:low},{x:1300,y:low-(180/690)*(low-upper)},{x:1530,y:low-(410/690)*(low-upper)},{x:1810,y:upper},{x:2280,y:upper},{x:2640,y:upper}]}];
+ s.design.act3.optionalRoutes=[{id:'western-roof-gallery',points:[{x:40,y:2730,jumpTo:{x:100}},{x:150,y:2580-(80/380)*(2580-low)},{x:430,y:low},{x:650,y:low},{x:960,y:low},{x:1110,y:low},{x:1300,y:low-(180/690)*(low-upper)},{x:1530,y:low-(410/690)*(low-upper)},{x:1810,y:upper},{x:2320,y:upper}]}];
  const oldCustoms=clone(s.elements.find(e=>e.id==='customs-hall')),newCustoms=replace(p,s,'customs-hall',limitedArchiveCutaway('a3-korean:23:customs-hall'));recordChange(changes,s,'customs-hall',oldCustoms,newCustoms,'Concentrate multi-storey play into one raised archive with actual 260-unit floors and open timber stairs');addArchiveFlights(p,s);
  const loftGuard=s.units.find(u=>u.id==='a3-23-enemy-7');if(loftGuard){const old=clone(loftGuard);loftGuard.y=2210;changes.push({stage:23,unit:loftGuard.id,reason:'Seat the existing upper guard on the third customs storage floor instead of the removed skeleton',before:old,after:clone(loftGuard)});}
  wallScenery(p,s,'korean-customs-service-yard',5660,2730,205,'earth');
