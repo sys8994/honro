@@ -108,3 +108,9 @@ New `rewardCurve: current` stages alone use current-curve budgets. A higher pre-
 | 28 | 11478 | 4591 | 133598 | 20.7 | 41 |
 | 29 | 12016 | 4806 | 145614 | 21.35 | 43 |
 | 30 | 12477 | 4991 | 158091 | 22 | 45 |
+
+## Prepared-entry input diagnostics
+
+The production App/engine input harness completed stage 21 in 10 rounds / 42 actions at source `a2f59ea`; the final-art map source `889c527` completed stage 22 in 8 rounds / 33 actions, stage 23 in 6 / 24, stage 27 in 9 / 43 and stage 30 in 13 / 59. All four companions survived each isolated run. Stage 27 used the water control in round 1 and fire screen in round 5, before the 12-enemy-turn deadline.
+
+Each run starts from a declared chapter-entry fixture with automatically allocated training and uses ordinary movement, jumps, skills, items, interactions, dialogue advances and defense. It does not edit combat HP, positions or objectives. Every runtime/engine/map source is fingerprinted, and actions/dialogue/checkpoints are recorded. These are Native diagnostics with DOM/storage/Canvas doubles, not actual browser play, an earlier-act clear, a human difficulty judgment or final art approval. Final release integration and Pages verification remain separate.
