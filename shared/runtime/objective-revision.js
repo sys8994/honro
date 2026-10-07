@@ -29,7 +29,7 @@ for(const st of H.stages){
  if(st.steps)st.steps=st.steps.filter(s=>!(removed[st.id]||[]).includes(s.id));
  if(goals[st.id])st.goal=goals[st.id];if(guides[st.id])st.guide=guides[st.id];
  if(st.id===22){const at=st.steps.findIndex(s=>s.id==='upper-latch');st.steps[at]={id:'upper-register',label:'상층 저문골 호적 확보',kind:'interact'};st.steps.find(s=>s.id==='ledger-case').label='중층 저문골 사건 보고 확보';st.steps.find(s=>s.id==='ledger-case').opens='upper-door';st.steps.find(s=>s.id==='archive-seal').label='하층 서고 봉인 열기';st.steps.find(s=>s.id==='compare-ledgers').label='상층에서 사건 보고와 호적 대조';}
- if(st.id===27){const water=st.steps.find(s=>s.id==='water-release');Object.assign(water,{kind:'interact',label:'수문을 열어 서쪽 불길 막기',parallelGroup:'fire-control'});st.steps.find(s=>s.id==='fire-screen').parallelGroup='fire-control';st.steps.splice(2,0,{id:'party-reunion',label:'두 조사팀이 중앙 뜰에 모이기',kind:'reach',allHeroes:true,radius:440,splitOnly:true});}
+ if(st.id===27){const water=st.steps.find(s=>s.id==='water-release');Object.assign(water,{kind:'interact',label:'수문을 열어 불길 막기',parallelGroup:'fire-control'});Object.assign(st.steps.find(s=>s.id==='fire-screen'),{parallelGroup:'fire-control',label:'차단막을 세워 불길 막기'});st.steps.splice(2,0,{id:'party-reunion',label:'두 조사팀이 중앙 뜰에 모이기',kind:'reach',allHeroes:true,radius:440,splitOnly:true});}
  if(st.act2Plan)st.act2Plan.sequence=clone(st.steps);
 }
 replaceLine(H.stages[11].story,'저 바위를 받친','낙석이 아래 홈을 메웠소. 길표에 다가가려면 먼저 작업장을 비워야 하오.');
@@ -58,7 +58,7 @@ function author(project,options={}){
   if(id===15){map.initialState.honroCaveHangingClue??=clone(map.initialState.honroCaveHangingTarget||{});delete map.initialState.honroCaveHangingTarget;}
   if(id===17){map.markers=map.markers.filter(m=>m.id!=='rebuild-brace');map.terrains=map.terrains.filter(t=>t.id!=='gate-debris');}
   if(id===22&&!map.markers.some(m=>m.id==='upper-register')){const base=map.markers.find(m=>m.id==='compare-ledgers');map.markers.push({id:'upper-register',type:'act3',action:'act3',x:base.x-260,y:base.y,label:'상층 저문골 호적 확보'});}
-  if(id===27){const old=original.markers.find(m=>m.id==='water-release'||m.id==='marker-water-release');map.markers.push({...clone(old),id:'water-release',type:'act3',action:'act3',requiredClass:'archer',label:'수문을 열어 서쪽 불길 막기'});delete map.markers.at(-1).target;if(!map.markers.some(m=>m.id==='party-reunion')){const base=map.markers.find(m=>m.id==='petition-record');map.markers.push({id:'party-reunion',type:'act3',x:base.x,y:base.y,label:'두 조사팀이 중앙 뜰에 모이기'});}}
+  if(id===27){const old=original.markers.find(m=>m.id==='water-release'||m.id==='marker-water-release');map.markers.push({...clone(old),id:'water-release',type:'act3',action:'act3',requiredClass:'archer',label:'수문을 열어 불길 막기'});delete map.markers.at(-1).target;if(!map.markers.some(m=>m.id==='party-reunion')){const base=map.markers.find(m=>m.id==='petition-record');map.markers.push({id:'party-reunion',type:'act3',x:base.x,y:base.y,label:'두 조사팀이 중앙 뜰에 모이기'});}}
   if(id===27)map.markers.sort((a,b)=>a.id.localeCompare(b.id));
   for(const s of st.steps||[]){const m=map.markers.find(m=>m.id===s.id||m.id==='marker-'+s.id);if(m){m.label=s.label;if(['interact','rescue'].includes(s.kind))m.action=id>=21?'act3':'act2';if(s.requiredClass)m.requiredClass=s.requiredClass;else delete m.requiredClass;}}
   for(const o of map.objectives||[])if(o.type==='campaign')o.label=st.goal;

@@ -21,7 +21,7 @@ export function missionContract(map,stage,balance){
   // Body/combat/protection overrides remain exact, including facing, class,
   // rank, HP, behavior, cohort and spawnIndex. Only world x/y may be reauthored.
   units:map.units.map(u=>({...without(u,['x','y']),kind:kind(u.kind)})),
-  markers:sorted(map.markers.map(m=>without(m,['x','y','label']))),
+  markers:sorted(map.markers.map(m=>without(m,['x','y','label','fireSite']))),
   devices:sorted(map.terrains.filter(t=>t.properties?.honroAct3Target||t.properties?.honroAct3Gate).map(t=>({id:t.id,type:t.type,baseMaterial:t.baseMaterial,oneWay:t.oneWay,breakable:t.breakable,properties:plain(t.properties)}))),
   objectives:plain(map.objectives),events:plain(map.events),encounters:plain(map.encounters),
   stage:{id:stage.id,act:stage.act,actStage:stage.actStage,level:stage.level,objective:stage.objective,requires:plain(stage.requires),active:stage.active,enemies:stage.enemies,playableRoster:plain(stage.playableRoster),steps:stage.steps.map(step)},

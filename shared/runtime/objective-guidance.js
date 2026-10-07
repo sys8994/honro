@@ -23,6 +23,7 @@ function failure(b,st,list,result){const parts=['동행 전원 전투불능'];co
  if(protectedUnits.length)parts.push([...new Set(protectedUnits.map(u=>u.name))].join('·')+' 상실');
  const required=[...new Set(list.filter(s=>s.requiredClass&&!(st.act===3?G.HonroAct3.satisfied(b,s):result.allTargets?.find(t=>t.id===s.id)?.done)).map(s=>heroName(s.requiredClass)))];
  if(required.length)parts.push('필수 행동 전 '+required.join('·')+' 전투불능');
+ if(st.id===5&&b.terrain.some(t=>t.id==='cliff-cleat'&&!t.broken))parts.push('고리쇠 파괴 전 담허 전투불능');
  if(st.id===10)parts.push('협력 시작 후 소단 전투불능');
  if(st.id===27&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen']))parts.push('불길 진압 전 12번째 적 턴 종료');
  return parts.join(' / ');
