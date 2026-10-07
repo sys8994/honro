@@ -19,7 +19,9 @@ function draw(c,scene,b){const q=guide(b);if(!q||scene.editorView||scene.skillPr
   c.restore();}
  // Fire symbols are attached to the live control sites; stopping each control
  // visibly removes its pressure. They do not add hidden damage or world rules.
- if(q.remaining!==null)for(const id of ['water-release','fire-screen'])if(!b.honroState?.act3?.done?.[id]){const p=A.marker(b,id);if(!p)continue;c.save();c.translate(p.x,p.y-18);const sway=Math.sin((scene.time||0)*3)*8;c.fillStyle='#bd704566';c.beginPath();c.moveTo(-35,0);c.quadraticCurveTo(-43,-55,-13+sway,-88);c.quadraticCurveTo(-12,-48,7,-60);c.quadraticCurveTo(32,-115,40+sway,-147);c.quadraticCurveTo(64,-54,35,0);c.closePath();c.fill();c.restore();}
+ if(q.remaining!==null)for(const [id,site] of [['water-release','fire-west'],['fire-screen','fire-east']])if(!b.honroState?.act3?.done?.[id]){const p=A.marker(b,site)||A.marker(b,id);if(!p)continue;c.save();c.translate(p.x,p.y-8);
+  const light=c.createRadialGradient(0,-100,8,0,-100,210);light.addColorStop(0,'#efb86555');light.addColorStop(1,'#e6934100');c.fillStyle=light;c.fillRect(-210,-310,420,420);
+  for(const [i,x,scale] of [[0,-47,.8],[1,8,1.12],[2,48,.74]]){c.save();c.translate(x,0);c.scale(scale,scale);const sway=Math.sin((scene.time||0)*3+i*1.7)*14;c.fillStyle=i===1?'#ecb45baa':'#cb773dcc';c.beginPath();c.moveTo(-40,0);c.quadraticCurveTo(-58,-81,-14+sway,-155);c.quadraticCurveTo(-15,-73,8,-96);c.quadraticCurveTo(20,-166,37+sway,-221);c.quadraticCurveTo(72,-71,35,0);c.closePath();c.fill();c.restore();}c.restore();}
  c.restore();
 }
 const tone=S.environmentTone;S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(!A.active(b))return;c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);draw(c,this,b);c.restore();};
