@@ -8,10 +8,21 @@ Working branch only. Source: HONRO Story Design v0.1, pages 18–26. Stages 21�
 - Destroy steps also have a real breakable terrain with the exact step ID. Their marker sits on a reachable shooting position; objective arrows point at the live terrain. Opening gates marks the named real gate terrain broken and increments `sceneVersion`.
 - NPC records use kind `object:civilian`, team `npc`, `stageOverrides: { honroProtected: true }`; carrier additionally `fixed: false`, `maxMove: 900`, `moveLeft: 900`. No NPC personal name.
 - `target` refers to the live NPC, never a stale marker position. Escort destinations remain fixed map markers. Carrier route markers use `route:<step-id>:0`, `:1`, etc. if more than a continuous forward slope is needed. No teleporting.
-- Enemy records use ordinary existing kinds or `recoveryGuard` / `recoveryArcher`. Recovery personnel are nonlethal, with side 2 and disabled actions when subdued. Cohorts use `stageOverrides.honroCohort`; no stage requires total extermination.
+- Enemy records use ordinary existing kinds or `possessedGuard` / `possessedArcher`. These are dead human bodies moved by irreversible local fiends; they use normal lethal combat and never surrender into side 2. Their form/qi/soul responses remain the existing corporeal human values (1 / 1 / .88). Cohorts use `stageOverrides.honroCohort`; no stage requires total extermination.
 - Each hold has a `wave-<step-id>` marker, on safe supported terrain away from the hold center. Initial enemies 6–10, active limit 3, finite reinforcement count 2–4.
 - `initialState.honroAct3Revision = 1`; runtime persists ordered progress in `honroState.act3`. Saved Act 1/2 battles are untouched.
 - Main and required upper-floor routes must work for all four heroes. Escort routes are continuous grounded walks. Marker height is a real reachable floor, never a decorative shelf.
+
+
+## Regional fiend revision (2026-10-07)
+
+The user chose local possession and irreversible fiends instead of fighting innocent living retrieval personnel. The playable city now shows survivors fleeing while dead, human-bodied fiends retain fragments of former duty: soldiers bar the gates, and archive enemies repeat the urge to hide or erase records. This establishes the nearby city/naru outbreak, not nationwide spread or a new universal rule for every possession.
+
+- Stage 21 introduces the nearby outbreak through a rescued resident. Stages 21–22 have beasts, tools and spirits; the first corporeal soldier enemies appear in stage 23. Its opening explicitly identifies already dead bodies that cannot return to life, before combat. The living carrier is identified in the same scene.
+- Normal survivor/rescue/carrier NPCs remain human. Their friendly-fire protection and enemy-damage/failure rules are unchanged. No blanket conversion of the city population is performed.
+- Existing body dimensions, movement, martial attacks, HP/attack budgets and physical/qi defenses remain. These units are not hidden, intangible soul-only enemies.
+- HP1 surrender, neutral-side conversion, nonlethal victory language and related tests have been replaced by normal defeat, one-time XP and ordinary enthrall release tests. No save migration is added for unreleased development-only surrender fixtures.
+- All ten maps, markers, gate IDs, paths and mechanisms are preserved. No Act 1/2 objects or dialogue are changed. The old massacre, post-event cover-up and later-act revelations retain their previous boundaries. Historical prototype documents describing a human recovery-force alternative are superseded only in this combat premise.
 
 ## Ordered stages
 
@@ -44,7 +55,7 @@ Working branch only. Source: HONRO Story Design v0.1, pages 18–26. Stages 21�
 
 25 — 폐가의 기록 / hidden archive
 1. hidden-latch: interact, knight, opens hidden-door
-2. archive-hold: hold 3 enemy turns, radius 460, wave recoveryGuard ×3
+2. archive-hold: hold 3 enemy turns, radius 460, wave possessedGuard ×3
 3. investigation-record: interact
 4. rear-latch: destroy, opens rear-door
 5. back-exit: reach
@@ -68,14 +79,14 @@ Fire threat starts on first step; each full enemy turn advances loss pressure un
 1. outer-chain: destroy, opens outer-door
 2. closure-order: interact
 3. suppression-order: interact
-4. passage-hold: hold 2 enemy turns, radius 520, wave recoveryArcher ×2
+4. passage-hold: hold 2 enemy turns, radius 520, wave possessedArcher ×2
 5. office-exit: reach
 
 29 — 현묵의 글 / night sluice, sealed storage
 1. old-seal: hold 2 enemy turns, mage, radius 460, wave ghost ×2; opens old-door
 2. hyeonmuk-letter: interact
 3. sluice-chain: destroy, opens sluice-door
-4. flight-hold: hold 2 enemy turns, radius 520, wave recoveryGuard ×2
+4. flight-hold: hold 2 enemy turns, radius 520, wave possessedGuard ×2
 5. sluice-exit: reach
 
 30 — 남겨진 길 / river ferry
