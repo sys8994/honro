@@ -21239,7 +21239,11 @@ S.event=function(ev){
 S.unitBody=function(c,u,charge=0){if(!u.elite||u.side!==1)return body.call(this,c,u,charge);
  c.save();c.translate(u.x,u.y);c.scale(1.12,1.12);c.translate(-u.x,-u.y);body.call(this,c,u,charge);c.restore();
 };
-S.render=function(e,...args){const out=render.call(this,e,...args),{w,h,d}=this.size(),c=this.ctx;
+S.render=function(e,...args){const out=render.call(this,e,...args);
+ if(!this.damageNumbers?.size)return out;
+ for(const [key,f]of this.damageNumbers)if((this.time||0)-f.updated>1.5)this.damageNumbers.delete(key);
+ if(!this.damageNumbers.size)return out;
+ const {w,h,d}=this.size(),c=this.ctx;
  c.save();c.setTransform(d,0,0,d,0,0);c.textAlign='center';c.textBaseline='middle';c.lineJoin='round';
  const top=document.querySelector?.('.battle-head')?.getBoundingClientRect?.().bottom||80;
  for(const f of this.damageNumbers?.values()||[]){const age=(this.time||0)-f.updated;if(age>1.5)continue;
