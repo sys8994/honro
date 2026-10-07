@@ -85,6 +85,13 @@ function revise23(g,p,s,changes){
 }
 function revise22(p,s,changes){
  let n=0;for(const a of p.library.filter(a=>a.id.startsWith('a3-22:')&&/archive-shelf-/.test(a.id))){const replacement=koreanArchiveCabinet(a.id,{width:a.bounds.w,height:a.bounds.h,variant:n++});a.vector=replacement.vector;a.params={...a.params,storage:'horizontal-bound-books-and-chests'};}
+ // Legacy entrance and bundle cabinets are separate art assets, not members
+ // of archive-shelf-*. Keep their original bounds while replacing every book
+ // face with the same visibly horizontal, bound folio construction.
+ const bundle=p.library.find(a=>a.id==='a3-22:archive-bundle-cabinet');
+ if(bundle){const b=bundle.bounds,c=koreanArchiveCabinet(bundle.id+'-folios',{width:b.w,height:b.h,variant:2});bundle.vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${b.x} ${b.y} ${b.w} ${b.h}"><g transform="translate(${b.x} ${b.y})">${body(c.vector.source)}</g></svg>`);bundle.params={...bundle.params,storage:'horizontal-bound-books-and-chests'};}
+ const entry=s.elements.find(e=>e.id==='entry-record-wall');
+ if(entry){const old=p.library.find(a=>a.id===entry.assetId),parts=[];for(const [i,x,w,h]of [[0,660,220,220],[1,1030,195,185]]){const c=koreanArchiveCabinet(old.id+'-'+i,{width:w,height:h,variant:i});parts.push(`<g transform="translate(${x} ${2770-h})">${body(c.vector.source)}</g>`);}old.vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="610 1940 660 840">${parts.join('')}</svg>`);old.params={...old.params,storage:'horizontal-bound-books-and-chests',rearOnly:true,groundedAt:2770};}
  // Keep the three playable storage levels, but replace the enormous glowing
  // window walls with small upper paper lights and opaque lower timber doors.
  const parts=[R(500,1490,4740,1290,'#3b493b'),R(620,1515,1580,1255,'#796f50'),R(3500,1515,1600,1255,'#626e50'),R(2390,1500,910,1270,'#7d8a70'),P([[2430,1500],[2690,1500],[3160,2770],[2460,2770]],'#94997c')];
