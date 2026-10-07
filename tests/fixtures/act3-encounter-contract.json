@@ -1,0 +1,3882 @@
+{
+  "version": 1,
+  "sourcePurpose": "User requested Act 3 non-uniform logical placement, density and elites on 2026-10-07. This explicit reviewed authoring delta changes only enemy rosters, encounter groups and population metadata; the historical fiend/mission baseline remains frozen.",
+  "rows": [
+    {
+      "id": 21,
+      "units": [
+        {
+          "id": "a3-21-wagon-cordon-0",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "wagon-cordon",
+          "stageOverrides": {
+            "honroCohort": "wagon-cordon",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-wagon-cordon-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "wagon-cordon",
+          "stageOverrides": {
+            "honroCohort": "wagon-cordon",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-wagon-cordon-2",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "wagon-cordon",
+          "stageOverrides": {
+            "honroCohort": "wagon-cordon",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-wagon-cordon-3",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "wagon-cordon",
+          "stageOverrides": {
+            "honroCohort": "wagon-cordon",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-gate-watch-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "gate-watch",
+          "stageOverrides": {
+            "honroCohort": "gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-gate-watch-1",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "gate-watch",
+          "stageOverrides": {
+            "honroCohort": "gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-gate-watch-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "gate-watch",
+          "stageOverrides": {
+            "honroCohort": "gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gate-wall-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-21-gate-watch-3",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "gate-watch",
+          "stageOverrides": {
+            "honroCohort": "gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gate-wall-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-21-market-pack-0",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "market-pack",
+          "stageOverrides": {
+            "honroCohort": "market-pack",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-market-pack-1",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "market-pack",
+          "stageOverrides": {
+            "honroCohort": "market-pack",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-market-pack-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "market-pack",
+          "stageOverrides": {
+            "honroCohort": "market-pack",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-stable-tools-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "stable-tools",
+          "stageOverrides": {
+            "honroCohort": "stable-tools",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-stable-tools-1",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "stable-tools",
+          "stageOverrides": {
+            "honroCohort": "stable-tools",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-stable-tools-2",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "stable-tools",
+          "stageOverrides": {
+            "honroCohort": "stable-tools",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-office-rearguard-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "office-rearguard",
+          "stageOverrides": {
+            "honroCohort": "office-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-office-rearguard-1",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "office-rearguard",
+          "stageOverrides": {
+            "honroCohort": "office-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-office-rearguard-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "office-rearguard",
+          "stageOverrides": {
+            "honroCohort": "office-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-21-office-rearguard-3",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "office-rearguard",
+          "stageOverrides": {
+            "honroCohort": "office-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "wagon-cordon",
+          "key": "wagon-cordon",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-21-wagon-cordon-0",
+            "a3-21-wagon-cordon-1",
+            "a3-21-wagon-cordon-2",
+            "a3-21-wagon-cordon-3"
+          ]
+        },
+        {
+          "id": "gate-watch",
+          "key": "gate-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-21-gate-watch-0",
+            "a3-21-gate-watch-1",
+            "a3-21-gate-watch-2",
+            "a3-21-gate-watch-3"
+          ]
+        },
+        {
+          "id": "market-pack",
+          "key": "market-pack",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-21-market-pack-0",
+            "a3-21-market-pack-1",
+            "a3-21-market-pack-2"
+          ]
+        },
+        {
+          "id": "stable-tools",
+          "key": "stable-tools",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-21-stable-tools-0",
+            "a3-21-stable-tools-1",
+            "a3-21-stable-tools-2"
+          ]
+        },
+        {
+          "id": "office-rearguard",
+          "key": "office-rearguard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-21-office-rearguard-0",
+            "a3-21-office-rearguard-1",
+            "a3-21-office-rearguard-2",
+            "a3-21-office-rearguard-3"
+          ]
+        }
+      ],
+      "initialEnemies": 18,
+      "maxAlive": 20
+    },
+    {
+      "id": 22,
+      "units": [
+        {
+          "id": "a3-22-lower-stair-ward-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "lower-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "lower-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-west-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-lower-stair-ward-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "lower-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "lower-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-west-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-lower-stair-ward-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "lower-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "lower-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "archive-west-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-lower-stair-ward-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "lower-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "lower-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-west-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-ledger-keepers-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-keepers",
+          "stageOverrides": {
+            "honroCohort": "ledger-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-west-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-ledger-keepers-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-keepers",
+          "stageOverrides": {
+            "honroCohort": "ledger-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-west-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-ledger-keepers-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-keepers",
+          "stageOverrides": {
+            "honroCohort": "ledger-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "archive-middle-atrium:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-ledger-keepers-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-keepers",
+          "stageOverrides": {
+            "honroCohort": "ledger-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-middle-atrium:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-ledger-keepers-4",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-keepers",
+          "stageOverrides": {
+            "honroCohort": "ledger-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "archive-attic-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-cross-gallery-0",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "cross-gallery",
+          "stageOverrides": {
+            "honroCohort": "cross-gallery",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "archive-attic-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-cross-gallery-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "cross-gallery",
+          "stageOverrides": {
+            "honroCohort": "cross-gallery",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-attic-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-cross-gallery-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "cross-gallery",
+          "stageOverrides": {
+            "honroCohort": "cross-gallery",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "archive-attic-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-upper-stair-ward-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "upper-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "upper-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-upper-stair-ward-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "upper-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "upper-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-upper-stair-ward-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "upper-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "upper-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-upper-stair-ward-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "upper-stair-ward",
+          "stageOverrides": {
+            "honroCohort": "upper-stair-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-comparison-keepers-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "comparison-keepers",
+          "stageOverrides": {
+            "honroCohort": "comparison-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-comparison-keepers-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "comparison-keepers",
+          "stageOverrides": {
+            "honroCohort": "comparison-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-comparison-keepers-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 18,
+          "behavior": "patrol",
+          "encounterGroup": "comparison-keepers",
+          "stageOverrides": {
+            "honroCohort": "comparison-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        },
+        {
+          "id": "a3-22-comparison-keepers-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 19,
+          "behavior": "patrol",
+          "encounterGroup": "comparison-keepers",
+          "stageOverrides": {
+            "honroCohort": "comparison-keepers",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "archive-east-stairs:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "lower-stair-ward",
+          "key": "lower-stair-ward",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-22-lower-stair-ward-0",
+            "a3-22-lower-stair-ward-1",
+            "a3-22-lower-stair-ward-2",
+            "a3-22-lower-stair-ward-3"
+          ]
+        },
+        {
+          "id": "ledger-keepers",
+          "key": "ledger-keepers",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-22-ledger-keepers-0",
+            "a3-22-ledger-keepers-1",
+            "a3-22-ledger-keepers-2",
+            "a3-22-ledger-keepers-3",
+            "a3-22-ledger-keepers-4"
+          ]
+        },
+        {
+          "id": "cross-gallery",
+          "key": "cross-gallery",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-22-cross-gallery-0",
+            "a3-22-cross-gallery-1",
+            "a3-22-cross-gallery-2"
+          ]
+        },
+        {
+          "id": "upper-stair-ward",
+          "key": "upper-stair-ward",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-22-upper-stair-ward-0",
+            "a3-22-upper-stair-ward-1",
+            "a3-22-upper-stair-ward-2",
+            "a3-22-upper-stair-ward-3"
+          ]
+        },
+        {
+          "id": "comparison-keepers",
+          "key": "comparison-keepers",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-22-comparison-keepers-0",
+            "a3-22-comparison-keepers-1",
+            "a3-22-comparison-keepers-2",
+            "a3-22-comparison-keepers-3"
+          ]
+        }
+      ],
+      "initialEnemies": 20,
+      "maxAlive": 22
+    },
+    {
+      "id": 23,
+      "units": [
+        {
+          "id": "a3-23-quay-gate-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "quay-gate",
+          "stageOverrides": {
+            "honroCohort": "quay-gate",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "west-water-bridge:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-quay-gate-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "quay-gate",
+          "stageOverrides": {
+            "honroCohort": "quay-gate",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "west-water-bridge:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-quay-gate-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "quay-gate",
+          "stageOverrides": {
+            "honroCohort": "quay-gate",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "west-water-bridge:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-quay-gate-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "quay-gate",
+          "stageOverrides": {
+            "honroCohort": "quay-gate",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "west-water-bridge:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-dispatch-guard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "dispatch-guard",
+          "stageOverrides": {
+            "honroCohort": "dispatch-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "west-quay-down:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-dispatch-guard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "dispatch-guard",
+          "stageOverrides": {
+            "honroCohort": "dispatch-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "city-foundation"
+          }
+        },
+        {
+          "id": "a3-23-dispatch-guard-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "dispatch-guard",
+          "stageOverrides": {
+            "honroCohort": "dispatch-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "city-foundation"
+          }
+        },
+        {
+          "id": "a3-23-dispatch-guard-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "dispatch-guard",
+          "stageOverrides": {
+            "honroCohort": "dispatch-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "west-roof-bridge:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-bridge-intercept-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "bridge-intercept",
+          "stageOverrides": {
+            "honroCohort": "bridge-intercept",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "grand-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-bridge-intercept-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "bridge-intercept",
+          "stageOverrides": {
+            "honroCohort": "bridge-intercept",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "grand-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-bridge-intercept-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "bridge-intercept",
+          "stageOverrides": {
+            "honroCohort": "bridge-intercept",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "grand-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-bridge-intercept-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "bridge-intercept",
+          "stageOverrides": {
+            "honroCohort": "bridge-intercept",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "grand-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-bridge-intercept-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "bridge-intercept",
+          "stageOverrides": {
+            "honroCohort": "bridge-intercept",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "grand-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-customs-flank-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "customs-flank",
+          "stageOverrides": {
+            "honroCohort": "customs-flank",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "city-foundation"
+          }
+        },
+        {
+          "id": "a3-23-customs-flank-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "customs-flank",
+          "stageOverrides": {
+            "honroCohort": "customs-flank",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "city-foundation"
+          }
+        },
+        {
+          "id": "a3-23-customs-flank-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "customs-flank",
+          "stageOverrides": {
+            "honroCohort": "customs-flank",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "city-foundation"
+          }
+        },
+        {
+          "id": "a3-23-customs-flank-3",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "customs-flank",
+          "stageOverrides": {
+            "honroCohort": "customs-flank",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "customs-hall:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-east-landing-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "east-landing",
+          "stageOverrides": {
+            "honroCohort": "east-landing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "east-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-east-landing-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 18,
+          "behavior": "patrol",
+          "encounterGroup": "east-landing",
+          "stageOverrides": {
+            "honroCohort": "east-landing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "east-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-east-landing-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 19,
+          "behavior": "patrol",
+          "encounterGroup": "east-landing",
+          "stageOverrides": {
+            "honroCohort": "east-landing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "east-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-east-landing-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 20,
+          "behavior": "patrol",
+          "encounterGroup": "east-landing",
+          "stageOverrides": {
+            "honroCohort": "east-landing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "east-convoy-quay:collision:0"
+          }
+        },
+        {
+          "id": "a3-23-east-landing-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 21,
+          "behavior": "patrol",
+          "encounterGroup": "east-landing",
+          "stageOverrides": {
+            "honroCohort": "east-landing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "east-convoy-quay:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "quay-gate",
+          "key": "quay-gate",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-23-quay-gate-0",
+            "a3-23-quay-gate-1",
+            "a3-23-quay-gate-2",
+            "a3-23-quay-gate-3"
+          ]
+        },
+        {
+          "id": "dispatch-guard",
+          "key": "dispatch-guard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-23-dispatch-guard-0",
+            "a3-23-dispatch-guard-1",
+            "a3-23-dispatch-guard-2",
+            "a3-23-dispatch-guard-3"
+          ]
+        },
+        {
+          "id": "bridge-intercept",
+          "key": "bridge-intercept",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-23-bridge-intercept-0",
+            "a3-23-bridge-intercept-1",
+            "a3-23-bridge-intercept-2",
+            "a3-23-bridge-intercept-3",
+            "a3-23-bridge-intercept-4"
+          ]
+        },
+        {
+          "id": "customs-flank",
+          "key": "customs-flank",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-23-customs-flank-0",
+            "a3-23-customs-flank-1",
+            "a3-23-customs-flank-2",
+            "a3-23-customs-flank-3"
+          ]
+        },
+        {
+          "id": "east-landing",
+          "key": "east-landing",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-23-east-landing-0",
+            "a3-23-east-landing-1",
+            "a3-23-east-landing-2",
+            "a3-23-east-landing-3",
+            "a3-23-east-landing-4"
+          ]
+        }
+      ],
+      "initialEnemies": 22,
+      "maxAlive": 22
+    },
+    {
+      "id": 24,
+      "units": [
+        {
+          "id": "a3-24-courtyard-watch-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "courtyard-watch",
+          "stageOverrides": {
+            "honroCohort": "courtyard-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-courtyard-watch-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "courtyard-watch",
+          "stageOverrides": {
+            "honroCohort": "courtyard-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-courtyard-watch-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "courtyard-watch",
+          "stageOverrides": {
+            "honroCohort": "courtyard-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-courtyard-watch-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "courtyard-watch",
+          "stageOverrides": {
+            "honroCohort": "courtyard-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-crest-ward-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "crest-ward",
+          "stageOverrides": {
+            "honroCohort": "crest-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-crest-ward-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "crest-ward",
+          "stageOverrides": {
+            "honroCohort": "crest-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-crest-ward-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "crest-ward",
+          "stageOverrides": {
+            "honroCohort": "crest-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-crest-ward-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "crest-ward",
+          "stageOverrides": {
+            "honroCohort": "crest-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-pond-watch-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "pond-watch",
+          "stageOverrides": {
+            "honroCohort": "pond-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-pond-watch-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "pond-watch",
+          "stageOverrides": {
+            "honroCohort": "pond-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-pond-watch-2",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "pond-watch",
+          "stageOverrides": {
+            "honroCohort": "pond-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-shrine-door-watch-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "shrine-door-watch",
+          "stageOverrides": {
+            "honroCohort": "shrine-door-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-shrine-door-watch-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "shrine-door-watch",
+          "stageOverrides": {
+            "honroCohort": "shrine-door-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-shrine-door-watch-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "shrine-door-watch",
+          "stageOverrides": {
+            "honroCohort": "shrine-door-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-register-ward-0",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "register-ward",
+          "stageOverrides": {
+            "honroCohort": "register-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-register-ward-1",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "register-ward",
+          "stageOverrides": {
+            "honroCohort": "register-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-register-ward-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "register-ward",
+          "stageOverrides": {
+            "honroCohort": "register-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-24-register-ward-3",
+          "kind": "ghost",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "register-ward",
+          "stageOverrides": {
+            "honroCohort": "register-ward",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "terraced-garden-walk:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "courtyard-watch",
+          "key": "courtyard-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-24-courtyard-watch-0",
+            "a3-24-courtyard-watch-1",
+            "a3-24-courtyard-watch-2",
+            "a3-24-courtyard-watch-3"
+          ]
+        },
+        {
+          "id": "crest-ward",
+          "key": "crest-ward",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-24-crest-ward-0",
+            "a3-24-crest-ward-1",
+            "a3-24-crest-ward-2",
+            "a3-24-crest-ward-3"
+          ]
+        },
+        {
+          "id": "pond-watch",
+          "key": "pond-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-24-pond-watch-0",
+            "a3-24-pond-watch-1",
+            "a3-24-pond-watch-2"
+          ]
+        },
+        {
+          "id": "shrine-door-watch",
+          "key": "shrine-door-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-24-shrine-door-watch-0",
+            "a3-24-shrine-door-watch-1",
+            "a3-24-shrine-door-watch-2"
+          ]
+        },
+        {
+          "id": "register-ward",
+          "key": "register-ward",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-24-register-ward-0",
+            "a3-24-register-ward-1",
+            "a3-24-register-ward-2",
+            "a3-24-register-ward-3"
+          ]
+        }
+      ],
+      "initialEnemies": 18,
+      "maxAlive": 18
+    },
+    {
+      "id": 25,
+      "units": [
+        {
+          "id": "a3-25-record-door-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "record-door",
+          "stageOverrides": {
+            "honroCohort": "record-door",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-record-door-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "record-door",
+          "stageOverrides": {
+            "honroCohort": "record-door",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-record-door-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "record-door",
+          "stageOverrides": {
+            "honroCohort": "record-door",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-record-door-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "record-door",
+          "stageOverrides": {
+            "honroCohort": "record-door",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-record-defense-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "record-defense",
+          "stageOverrides": {
+            "honroCohort": "record-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-record-defense-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "record-defense",
+          "stageOverrides": {
+            "honroCohort": "record-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-record-defense-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "record-defense",
+          "stageOverrides": {
+            "honroCohort": "record-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-record-defense-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "record-defense",
+          "stageOverrides": {
+            "honroCohort": "record-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-intrusion-corridor-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "intrusion-corridor",
+          "stageOverrides": {
+            "honroCohort": "intrusion-corridor",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-intrusion-corridor-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "intrusion-corridor",
+          "stageOverrides": {
+            "honroCohort": "intrusion-corridor",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-intrusion-corridor-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "intrusion-corridor",
+          "stageOverrides": {
+            "honroCohort": "intrusion-corridor",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-intrusion-corridor-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "intrusion-corridor",
+          "stageOverrides": {
+            "honroCohort": "intrusion-corridor",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-rear-stair-watch-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "rear-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "rear-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-rear-stair-watch-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "rear-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "rear-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-rear-stair-watch-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "rear-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "rear-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-rear-stair-watch-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "rear-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "rear-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-exit-rearguard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "exit-rearguard",
+          "stageOverrides": {
+            "honroCohort": "exit-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-exit-rearguard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "exit-rearguard",
+          "stageOverrides": {
+            "honroCohort": "exit-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-exit-rearguard-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 18,
+          "behavior": "patrol",
+          "encounterGroup": "exit-rearguard",
+          "stageOverrides": {
+            "honroCohort": "exit-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-exit-rearguard-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 19,
+          "behavior": "patrol",
+          "encounterGroup": "exit-rearguard",
+          "stageOverrides": {
+            "honroCohort": "exit-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "hidden-stair-and-gallery:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "record-door",
+          "key": "record-door",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-record-door-0",
+            "a3-25-record-door-1",
+            "a3-25-record-door-2",
+            "a3-25-record-door-3"
+          ]
+        },
+        {
+          "id": "record-defense",
+          "key": "record-defense",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-record-defense-0",
+            "a3-25-record-defense-1",
+            "a3-25-record-defense-2",
+            "a3-25-record-defense-3"
+          ]
+        },
+        {
+          "id": "intrusion-corridor",
+          "key": "intrusion-corridor",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-intrusion-corridor-0",
+            "a3-25-intrusion-corridor-1",
+            "a3-25-intrusion-corridor-2",
+            "a3-25-intrusion-corridor-3"
+          ]
+        },
+        {
+          "id": "rear-stair-watch",
+          "key": "rear-stair-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-rear-stair-watch-0",
+            "a3-25-rear-stair-watch-1",
+            "a3-25-rear-stair-watch-2",
+            "a3-25-rear-stair-watch-3"
+          ]
+        },
+        {
+          "id": "exit-rearguard",
+          "key": "exit-rearguard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-exit-rearguard-0",
+            "a3-25-exit-rearguard-1",
+            "a3-25-exit-rearguard-2",
+            "a3-25-exit-rearguard-3"
+          ]
+        }
+      ],
+      "initialEnemies": 20,
+      "maxAlive": 23
+    },
+    {
+      "id": 26,
+      "units": [
+        {
+          "id": "a3-26-resident-cordon-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "resident-cordon",
+          "stageOverrides": {
+            "honroCohort": "resident-cordon",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-26-resident-cordon-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "resident-cordon",
+          "stageOverrides": {
+            "honroCohort": "resident-cordon",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-26-resident-cordon-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "resident-cordon",
+          "stageOverrides": {
+            "honroCohort": "resident-cordon",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-26-kiln-entry-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-entry",
+          "stageOverrides": {
+            "honroCohort": "kiln-entry",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-kiln-entry-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-entry",
+          "stageOverrides": {
+            "honroCohort": "kiln-entry",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-kiln-entry-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-entry",
+          "stageOverrides": {
+            "honroCohort": "kiln-entry",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-kiln-entry-3",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-entry",
+          "stageOverrides": {
+            "honroCohort": "kiln-entry",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-ledger-defense-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-defense",
+          "stageOverrides": {
+            "honroCohort": "ledger-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-ledger-defense-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-defense",
+          "stageOverrides": {
+            "honroCohort": "ledger-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-ledger-defense-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-defense",
+          "stageOverrides": {
+            "honroCohort": "ledger-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-ledger-defense-3",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-defense",
+          "stageOverrides": {
+            "honroCohort": "ledger-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-ledger-defense-4",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "ledger-defense",
+          "stageOverrides": {
+            "honroCohort": "ledger-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-mill-channel-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "mill-channel",
+          "stageOverrides": {
+            "honroCohort": "mill-channel",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-mill-channel-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "mill-channel",
+          "stageOverrides": {
+            "honroCohort": "mill-channel",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-mill-channel-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "mill-channel",
+          "stageOverrides": {
+            "honroCohort": "mill-channel",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-mill-channel-3",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "mill-channel",
+          "stageOverrides": {
+            "honroCohort": "mill-channel",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-kiln-rearguard-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-rearguard",
+          "stageOverrides": {
+            "honroCohort": "kiln-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-kiln-rearguard-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-rearguard",
+          "stageOverrides": {
+            "honroCohort": "kiln-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-kiln-rearguard-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 18,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-rearguard",
+          "stageOverrides": {
+            "honroCohort": "kiln-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        },
+        {
+          "id": "a3-26-kiln-rearguard-3",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 19,
+          "behavior": "patrol",
+          "encounterGroup": "kiln-rearguard",
+          "stageOverrides": {
+            "honroCohort": "kiln-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "casting-yard-access:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "resident-cordon",
+          "key": "resident-cordon",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-26-resident-cordon-0",
+            "a3-26-resident-cordon-1",
+            "a3-26-resident-cordon-2"
+          ]
+        },
+        {
+          "id": "kiln-entry",
+          "key": "kiln-entry",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-26-kiln-entry-0",
+            "a3-26-kiln-entry-1",
+            "a3-26-kiln-entry-2",
+            "a3-26-kiln-entry-3"
+          ]
+        },
+        {
+          "id": "ledger-defense",
+          "key": "ledger-defense",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-26-ledger-defense-0",
+            "a3-26-ledger-defense-1",
+            "a3-26-ledger-defense-2",
+            "a3-26-ledger-defense-3",
+            "a3-26-ledger-defense-4"
+          ]
+        },
+        {
+          "id": "mill-channel",
+          "key": "mill-channel",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-26-mill-channel-0",
+            "a3-26-mill-channel-1",
+            "a3-26-mill-channel-2",
+            "a3-26-mill-channel-3"
+          ]
+        },
+        {
+          "id": "kiln-rearguard",
+          "key": "kiln-rearguard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-26-kiln-rearguard-0",
+            "a3-26-kiln-rearguard-1",
+            "a3-26-kiln-rearguard-2",
+            "a3-26-kiln-rearguard-3"
+          ]
+        }
+      ],
+      "initialEnemies": 20,
+      "maxAlive": 22
+    },
+    {
+      "id": 27,
+      "units": [
+        {
+          "id": "a3-27-fire-control-watch-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "fire-control-watch",
+          "stageOverrides": {
+            "honroCohort": "fire-control-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-fire-control-watch-1",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "fire-control-watch",
+          "stageOverrides": {
+            "honroCohort": "fire-control-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-petition-guard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "petition-guard",
+          "stageOverrides": {
+            "honroCohort": "petition-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-petition-guard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "petition-guard",
+          "stageOverrides": {
+            "honroCohort": "petition-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-petition-guard-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "petition-guard",
+          "stageOverrides": {
+            "honroCohort": "petition-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-petition-guard-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "petition-guard",
+          "stageOverrides": {
+            "honroCohort": "petition-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-gallery-watch-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "high-gallery-watch",
+          "stageOverrides": {
+            "honroCohort": "high-gallery-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-gallery-watch-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "high-gallery-watch",
+          "stageOverrides": {
+            "honroCohort": "high-gallery-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-gallery-watch-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "high-gallery-watch",
+          "stageOverrides": {
+            "honroCohort": "high-gallery-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-gallery-watch-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "high-gallery-watch",
+          "stageOverrides": {
+            "honroCohort": "high-gallery-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-roof-crossing-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "roof-crossing",
+          "stageOverrides": {
+            "honroCohort": "roof-crossing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-roof-crossing-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "roof-crossing",
+          "stageOverrides": {
+            "honroCohort": "roof-crossing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-roof-crossing-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "roof-crossing",
+          "stageOverrides": {
+            "honroCohort": "roof-crossing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-roof-crossing-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "roof-crossing",
+          "stageOverrides": {
+            "honroCohort": "roof-crossing",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-escape-rearguard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "escape-rearguard",
+          "stageOverrides": {
+            "honroCohort": "escape-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-escape-rearguard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "escape-rearguard",
+          "stageOverrides": {
+            "honroCohort": "escape-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-escape-rearguard-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "escape-rearguard",
+          "stageOverrides": {
+            "honroCohort": "escape-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-escape-rearguard-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "escape-rearguard",
+          "stageOverrides": {
+            "honroCohort": "escape-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "continuous-archive-roof-escape:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "fire-control-watch",
+          "key": "fire-control-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-fire-control-watch-0",
+            "a3-27-fire-control-watch-1"
+          ]
+        },
+        {
+          "id": "petition-guard",
+          "key": "petition-guard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-petition-guard-0",
+            "a3-27-petition-guard-1",
+            "a3-27-petition-guard-2",
+            "a3-27-petition-guard-3"
+          ]
+        },
+        {
+          "id": "high-gallery-watch",
+          "key": "high-gallery-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-high-gallery-watch-0",
+            "a3-27-high-gallery-watch-1",
+            "a3-27-high-gallery-watch-2",
+            "a3-27-high-gallery-watch-3"
+          ]
+        },
+        {
+          "id": "roof-crossing",
+          "key": "roof-crossing",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-roof-crossing-0",
+            "a3-27-roof-crossing-1",
+            "a3-27-roof-crossing-2",
+            "a3-27-roof-crossing-3"
+          ]
+        },
+        {
+          "id": "escape-rearguard",
+          "key": "escape-rearguard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-escape-rearguard-0",
+            "a3-27-escape-rearguard-1",
+            "a3-27-escape-rearguard-2",
+            "a3-27-escape-rearguard-3"
+          ]
+        }
+      ],
+      "initialEnemies": 18,
+      "maxAlive": 18
+    },
+    {
+      "id": 28,
+      "units": [
+        {
+          "id": "a3-28-wall-gate-watch-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "wall-gate-watch",
+          "stageOverrides": {
+            "honroCohort": "wall-gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-wall-gate-watch-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "wall-gate-watch",
+          "stageOverrides": {
+            "honroCohort": "wall-gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-wall-gate-watch-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "wall-gate-watch",
+          "stageOverrides": {
+            "honroCohort": "wall-gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-wall-gate-watch-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "wall-gate-watch",
+          "stageOverrides": {
+            "honroCohort": "wall-gate-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-closure-record-guard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "closure-record-guard",
+          "stageOverrides": {
+            "honroCohort": "closure-record-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-closure-record-guard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "closure-record-guard",
+          "stageOverrides": {
+            "honroCohort": "closure-record-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-closure-record-guard-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "closure-record-guard",
+          "stageOverrides": {
+            "honroCohort": "closure-record-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-closure-record-guard-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "closure-record-guard",
+          "stageOverrides": {
+            "honroCohort": "closure-record-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-closure-record-guard-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "closure-record-guard",
+          "stageOverrides": {
+            "honroCohort": "closure-record-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-court-crossfire-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "court-crossfire",
+          "stageOverrides": {
+            "honroCohort": "court-crossfire",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-court-crossfire-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "court-crossfire",
+          "stageOverrides": {
+            "honroCohort": "court-crossfire",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-court-crossfire-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "court-crossfire",
+          "stageOverrides": {
+            "honroCohort": "court-crossfire",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-court-crossfire-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "court-crossfire",
+          "stageOverrides": {
+            "honroCohort": "court-crossfire",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-suppression-guard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "suppression-guard",
+          "stageOverrides": {
+            "honroCohort": "suppression-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-suppression-guard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "suppression-guard",
+          "stageOverrides": {
+            "honroCohort": "suppression-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-suppression-guard-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "suppression-guard",
+          "stageOverrides": {
+            "honroCohort": "suppression-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-suppression-guard-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "suppression-guard",
+          "stageOverrides": {
+            "honroCohort": "suppression-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-suppression-guard-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "suppression-guard",
+          "stageOverrides": {
+            "honroCohort": "suppression-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-passage-rearguard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 18,
+          "behavior": "patrol",
+          "encounterGroup": "passage-rearguard",
+          "stageOverrides": {
+            "honroCohort": "passage-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-passage-rearguard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 19,
+          "behavior": "patrol",
+          "encounterGroup": "passage-rearguard",
+          "stageOverrides": {
+            "honroCohort": "passage-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-passage-rearguard-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 20,
+          "behavior": "patrol",
+          "encounterGroup": "passage-rearguard",
+          "stageOverrides": {
+            "honroCohort": "passage-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-passage-rearguard-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 21,
+          "behavior": "patrol",
+          "encounterGroup": "passage-rearguard",
+          "stageOverrides": {
+            "honroCohort": "passage-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-passage-rearguard-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 22,
+          "behavior": "patrol",
+          "encounterGroup": "passage-rearguard",
+          "stageOverrides": {
+            "honroCohort": "passage-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-28-passage-rearguard-5",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 23,
+          "behavior": "patrol",
+          "encounterGroup": "passage-rearguard",
+          "stageOverrides": {
+            "honroCohort": "passage-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "outer-rampart-and-office-walk:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "wall-gate-watch",
+          "key": "wall-gate-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-28-wall-gate-watch-0",
+            "a3-28-wall-gate-watch-1",
+            "a3-28-wall-gate-watch-2",
+            "a3-28-wall-gate-watch-3"
+          ]
+        },
+        {
+          "id": "closure-record-guard",
+          "key": "closure-record-guard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-28-closure-record-guard-0",
+            "a3-28-closure-record-guard-1",
+            "a3-28-closure-record-guard-2",
+            "a3-28-closure-record-guard-3",
+            "a3-28-closure-record-guard-4"
+          ]
+        },
+        {
+          "id": "court-crossfire",
+          "key": "court-crossfire",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-28-court-crossfire-0",
+            "a3-28-court-crossfire-1",
+            "a3-28-court-crossfire-2",
+            "a3-28-court-crossfire-3"
+          ]
+        },
+        {
+          "id": "suppression-guard",
+          "key": "suppression-guard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-28-suppression-guard-0",
+            "a3-28-suppression-guard-1",
+            "a3-28-suppression-guard-2",
+            "a3-28-suppression-guard-3",
+            "a3-28-suppression-guard-4"
+          ]
+        },
+        {
+          "id": "passage-rearguard",
+          "key": "passage-rearguard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-28-passage-rearguard-0",
+            "a3-28-passage-rearguard-1",
+            "a3-28-passage-rearguard-2",
+            "a3-28-passage-rearguard-3",
+            "a3-28-passage-rearguard-4",
+            "a3-28-passage-rearguard-5"
+          ]
+        }
+      ],
+      "initialEnemies": 24,
+      "maxAlive": 26
+    },
+    {
+      "id": 29,
+      "units": [
+        {
+          "id": "a3-29-seal-response-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "seal-response",
+          "stageOverrides": {
+            "honroCohort": "seal-response",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-seal-response-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "seal-response",
+          "stageOverrides": {
+            "honroCohort": "seal-response",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-seal-response-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "seal-response",
+          "stageOverrides": {
+            "honroCohort": "seal-response",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-seal-response-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "seal-response",
+          "stageOverrides": {
+            "honroCohort": "seal-response",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-letter-guard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "letter-guard",
+          "stageOverrides": {
+            "honroCohort": "letter-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-letter-guard-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "letter-guard",
+          "stageOverrides": {
+            "honroCohort": "letter-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-letter-guard-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "letter-guard",
+          "stageOverrides": {
+            "honroCohort": "letter-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-letter-guard-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "letter-guard",
+          "stageOverrides": {
+            "honroCohort": "letter-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-letter-guard-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "letter-guard",
+          "stageOverrides": {
+            "honroCohort": "letter-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-lock-basin-watch-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "lock-basin-watch",
+          "stageOverrides": {
+            "honroCohort": "lock-basin-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-lock-basin-watch-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "lock-basin-watch",
+          "stageOverrides": {
+            "honroCohort": "lock-basin-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-lock-basin-watch-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "lock-basin-watch",
+          "stageOverrides": {
+            "honroCohort": "lock-basin-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-lock-basin-watch-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "lock-basin-watch",
+          "stageOverrides": {
+            "honroCohort": "lock-basin-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-sluice-stair-watch-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "sluice-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "sluice-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "great-sluice-pavilion:collision:1"
+          }
+        },
+        {
+          "id": "a3-29-sluice-stair-watch-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "sluice-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "sluice-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-sluice-stair-watch-2",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "sluice-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "sluice-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-sluice-stair-watch-3",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "sluice-stair-watch",
+          "stageOverrides": {
+            "honroCohort": "sluice-stair-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-night-rearguard-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "night-rearguard",
+          "stageOverrides": {
+            "honroCohort": "night-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-night-rearguard-1",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 18,
+          "behavior": "patrol",
+          "encounterGroup": "night-rearguard",
+          "stageOverrides": {
+            "honroCohort": "night-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-night-rearguard-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 19,
+          "behavior": "patrol",
+          "encounterGroup": "night-rearguard",
+          "stageOverrides": {
+            "honroCohort": "night-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "great-sluice-pavilion:collision:3"
+          }
+        },
+        {
+          "id": "a3-29-night-rearguard-3",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 20,
+          "behavior": "patrol",
+          "encounterGroup": "night-rearguard",
+          "stageOverrides": {
+            "honroCohort": "night-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        },
+        {
+          "id": "a3-29-night-rearguard-4",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 21,
+          "behavior": "patrol",
+          "encounterGroup": "night-rearguard",
+          "stageOverrides": {
+            "honroCohort": "night-rearguard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sluice-inspection-and-exit-walk:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "seal-response",
+          "key": "seal-response",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-29-seal-response-0",
+            "a3-29-seal-response-1",
+            "a3-29-seal-response-2",
+            "a3-29-seal-response-3"
+          ]
+        },
+        {
+          "id": "letter-guard",
+          "key": "letter-guard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-29-letter-guard-0",
+            "a3-29-letter-guard-1",
+            "a3-29-letter-guard-2",
+            "a3-29-letter-guard-3",
+            "a3-29-letter-guard-4"
+          ]
+        },
+        {
+          "id": "lock-basin-watch",
+          "key": "lock-basin-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-29-lock-basin-watch-0",
+            "a3-29-lock-basin-watch-1",
+            "a3-29-lock-basin-watch-2",
+            "a3-29-lock-basin-watch-3"
+          ]
+        },
+        {
+          "id": "sluice-stair-watch",
+          "key": "sluice-stair-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-29-sluice-stair-watch-0",
+            "a3-29-sluice-stair-watch-1",
+            "a3-29-sluice-stair-watch-2",
+            "a3-29-sluice-stair-watch-3"
+          ]
+        },
+        {
+          "id": "night-rearguard",
+          "key": "night-rearguard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-29-night-rearguard-0",
+            "a3-29-night-rearguard-1",
+            "a3-29-night-rearguard-2",
+            "a3-29-night-rearguard-3",
+            "a3-29-night-rearguard-4"
+          ]
+        }
+      ],
+      "initialEnemies": 22,
+      "maxAlive": 26
+    },
+    {
+      "id": 30,
+      "units": [
+        {
+          "id": "a3-30-ferry-approach-0",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-approach",
+          "stageOverrides": {
+            "honroCohort": "ferry-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-ferry-approach-1",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-approach",
+          "stageOverrides": {
+            "honroCohort": "ferry-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-ferry-approach-2",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-approach",
+          "stageOverrides": {
+            "honroCohort": "ferry-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-ferry-approach-3",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-approach",
+          "stageOverrides": {
+            "honroCohort": "ferry-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-loading-guard-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "loading-guard",
+          "stageOverrides": {
+            "honroCohort": "loading-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-loading-guard-1",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "loading-guard",
+          "stageOverrides": {
+            "honroCohort": "loading-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-loading-guard-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "loading-guard",
+          "stageOverrides": {
+            "honroCohort": "loading-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-loading-guard-3",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "loading-guard",
+          "stageOverrides": {
+            "honroCohort": "loading-guard",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-east-loading-pack-0",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 8,
+          "behavior": "patrol",
+          "encounterGroup": "east-loading-pack",
+          "stageOverrides": {
+            "honroCohort": "east-loading-pack",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-east-loading-pack-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "east-loading-pack",
+          "stageOverrides": {
+            "honroCohort": "east-loading-pack",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-east-loading-pack-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "east-loading-pack",
+          "stageOverrides": {
+            "honroCohort": "east-loading-pack",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-east-loading-pack-3",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "east-loading-pack",
+          "stageOverrides": {
+            "honroCohort": "east-loading-pack",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-ferry-defense-0",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 12,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-defense",
+          "stageOverrides": {
+            "honroCohort": "ferry-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-30-ferry-defense-1",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 13,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-defense",
+          "stageOverrides": {
+            "honroCohort": "ferry-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-30-ferry-defense-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 14,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-defense",
+          "stageOverrides": {
+            "honroCohort": "ferry-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-30-ferry-defense-3",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 15,
+          "behavior": "patrol",
+          "encounterGroup": "ferry-defense",
+          "stageOverrides": {
+            "honroCohort": "ferry-defense",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "a3-foundation"
+          }
+        },
+        {
+          "id": "a3-30-old-road-watch-0",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 16,
+          "behavior": "patrol",
+          "encounterGroup": "old-road-watch",
+          "stageOverrides": {
+            "honroCohort": "old-road-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-old-road-watch-1",
+          "kind": "picks",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 17,
+          "behavior": "patrol",
+          "encounterGroup": "old-road-watch",
+          "stageOverrides": {
+            "honroCohort": "old-road-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-old-road-watch-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 18,
+          "behavior": "patrol",
+          "encounterGroup": "old-road-watch",
+          "stageOverrides": {
+            "honroCohort": "old-road-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        },
+        {
+          "id": "a3-30-old-road-watch-3",
+          "kind": "hound",
+          "team": "enemy",
+          "facing": -1,
+          "spawnIndex": 19,
+          "behavior": "patrol",
+          "encounterGroup": "old-road-watch",
+          "stageOverrides": {
+            "honroCohort": "old-road-watch",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "ferry-decks-to-old-road:collision:0"
+          }
+        }
+      ],
+      "encounters": [
+        {
+          "id": "ferry-approach",
+          "key": "ferry-approach",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-30-ferry-approach-0",
+            "a3-30-ferry-approach-1",
+            "a3-30-ferry-approach-2",
+            "a3-30-ferry-approach-3"
+          ]
+        },
+        {
+          "id": "loading-guard",
+          "key": "loading-guard",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-30-loading-guard-0",
+            "a3-30-loading-guard-1",
+            "a3-30-loading-guard-2",
+            "a3-30-loading-guard-3"
+          ]
+        },
+        {
+          "id": "east-loading-pack",
+          "key": "east-loading-pack",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-30-east-loading-pack-0",
+            "a3-30-east-loading-pack-1",
+            "a3-30-east-loading-pack-2",
+            "a3-30-east-loading-pack-3"
+          ]
+        },
+        {
+          "id": "ferry-defense",
+          "key": "ferry-defense",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-30-ferry-defense-0",
+            "a3-30-ferry-defense-1",
+            "a3-30-ferry-defense-2",
+            "a3-30-ferry-defense-3"
+          ]
+        },
+        {
+          "id": "old-road-watch",
+          "key": "old-road-watch",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-30-old-road-watch-0",
+            "a3-30-old-road-watch-1",
+            "a3-30-old-road-watch-2",
+            "a3-30-old-road-watch-3"
+          ]
+        }
+      ],
+      "initialEnemies": 20,
+      "maxAlive": 23
+    }
+  ],
+  "sourceBaseCommit": "4cb008d",
+  "authoringRevision": "act3-encounters-v1"
+}

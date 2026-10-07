@@ -62,7 +62,7 @@
     "test:terrain-domain": "node tests/terrain-domain.mjs && node tests/terrain-domain-render.mjs",
     "capture:terrain-domain": "node tools/environment/capture-terrain-domain.mjs",
     "test:story-canon": "node tests/story-canon-v01.mjs && node tests/story-canon-save.mjs",
-    "test:act3": "node tests/act3-runtime.mjs && node tests/act3-fiends.mjs && node tests/act3-growth.mjs && node tests/act3-continuity.mjs && node tests/act3-visual-cues.mjs && node tests/act3-save-boundaries.mjs",
+    "test:act3": "node tests/act3-runtime.mjs && node tests/act3-fiends.mjs && node tests/act3-growth.mjs && node tests/act3-continuity.mjs && node tests/act3-visual-cues.mjs && node tests/act3-save-boundaries.mjs && npm run test:act3:encounters",
     "test:act3:normal": "node tests/act3-playthrough.mjs",
     "test:ui-buttons": "node tests/ui-buttons.mjs && node tests/portrait-framing.mjs",
     "test:act3:maps": "node tests/act3-canonical-roundtrip.mjs && node tests/act3-production-maps.mjs && node tests/act3-production-shots.mjs && node tests/act3-map-safety.mjs",
@@ -71,7 +71,8 @@
     "test:one-way-platforms": "node tests/projectile-platforms.mjs && node tests/projectile-targets.mjs && node tests/projectile-target-save.mjs && node tests/platform-schema-standalone.mjs && node tests/one-way-platforms.mjs && node tests/one-way-platform-physics.mjs && node tests/one-way-platform-save.mjs && node tests/one-way-platform-authoring.mjs",
     "test:terrain-readability": "node tests/terrain-readability.mjs",
     "test:granite-visuals": "node tests/granite-history-delta.mjs && node tests/granite-visual-alignment.mjs",
-    "test:playtest-template": "node tests/playtest-template.mjs"
+    "test:playtest-template": "node tests/playtest-template.mjs",
+    "test:act3:encounters": "node tests/act3-encounters.mjs && node tests/act3-encounter-shots.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
