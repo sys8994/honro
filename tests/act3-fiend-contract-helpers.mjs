@@ -13,7 +13,7 @@ const step=s=>{const out=without(s,['label']);if(out.wave)out.wave.kind=kind(out
 export function projectRules(project){return {schema:project.schema,version:project.version,environmentVersion:project.environmentVersion,settings:plain(project.settings)};}
 export function missionContract(map,stage,balance){
  const initialState=without(map.initialState||{},['sceneVersion']);
- return {
+ return plain({
   id:map.id,metadata:plain(map.metadata),initialState,
   // Body/combat/protection overrides remain exact, including facing, class,
   // rank, HP, behavior, cohort and spawnIndex. Only world x/y may be reauthored.
@@ -23,7 +23,7 @@ export function missionContract(map,stage,balance){
   objectives:plain(map.objectives),events:plain(map.events),encounters:plain(map.encounters),
   stage:{id:stage.id,act:stage.act,actStage:stage.actStage,level:stage.level,objective:stage.objective,requires:plain(stage.requires),active:stage.active,enemies:stage.enemies,playableRoster:plain(stage.playableRoster),steps:stage.steps.map(step)},
   balance:plain(balance)
- };
+ });
 }
 export function archetypeContract(archetypes){return Object.fromEntries(Object.entries(archetypes).filter(([id])=>Object.hasOwn(kindRenames,id)||Object.values(kindRenames).includes(id)).map(([id,a])=>[kind(id),without(a,['name','intent','act3Human','act3Fiend'])]));}
 export function assertFiendContract(project,content,balance,archetypes,baseline){
