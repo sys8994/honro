@@ -18,7 +18,8 @@ test('Exit fallback uses saved anchors and then the live width',()=>{
  delete b.honroMapAnchors.exit;e.active.x=b.width-301;assert(!g.HonroObjectives.state(b,st).complete);e.active.x=b.width-300;assert(g.HonroObjectives.state(b,st).complete);
 });
 test('Escort and rescue still require their mission conditions at the displayed destination',()=>{
- const {b,e,st}=battlefield(g,2),car=e.unit('objective');car.x=b.honroEscortGoalX;assert(!g.HonroObjectives.state(b,st).complete);
+ const {b,e,st}=battlefield(g,2),car=e.unit('objective');car.x=b.honroEscortGoalX-1;assert(!g.HonroObjectives.state(b,st).complete);
+ car.x=b.honroEscortGoalX;assert(g.HonroObjectives.state(b,st).complete,'Arrival is not delayed by the removed round floor or distant foes');
  b.round=4;for(const u of e.alive(1)){u.hp=0;u.dead=true;}for(const ev of b.honroEvents)b.honroState.flags['event:'+ev.id]=true;
  assert(g.HonroObjectives.state(b,st).complete);assert.equal(g.HonroObjectives.state(b,st).allTargets.find(t=>t.kind==='exit').x,car.x);
  const r=battlefield(g,6),marker=r.b.honroMarkers.find(m=>m.type==='exit'),convoy=r.e.unit('objective');convoy.x=marker.x;r.b.honroState.rescued=true;r.b.honroState.objectiveReadyRound=11;r.b.round=12;

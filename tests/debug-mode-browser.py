@@ -55,7 +55,10 @@ with sync_playwright() as playwright:
     game.click('[data-action="pause"]')
     game.click('.pause-menu [data-action="settings"]')
     game.screenshot(path=str(OUT / 'settings-before.png'))
-    game.locator('#debug-mode-setting').check()
+    # This switch replaces the settings DOM immediately; check() would wait on
+    # its detached input after a successful click. Verify the new App state.
+    game.locator('#debug-mode-setting').click()
+    game.wait_for_function('HonroApp.debugMode')
     dismiss(game)
     original = game.evaluate('JSON.parse(localStorage.getItem("honro-first-act-profile-1"))')
     check('Debug opens the same rest screen and keeps an independent copy of the saved battle', game.evaluate('''() =>
@@ -109,7 +112,8 @@ with sync_playwright() as playwright:
         check(f'Chapter {stage} enters from shared book controls', game.evaluate(f'HonroApp.engine?.b.honroStage==={stage}'))
     game.click('[data-action="pause"]')
     game.click('.pause-menu [data-action="settings"]')
-    game.locator('#debug-mode-setting').uncheck()
+    game.locator('#debug-mode-setting').click()
+    game.wait_for_function('!HonroApp.debugMode')
     dismiss(game)
     check('Disabling debug restores normal locks and its exact saved battle', game.evaluate('''before => {
       const a=HonroApp;return !a.debugMode&&!a.isOpen(HONRO_CONTENT.stages[29])&&

@@ -40,9 +40,9 @@ def fixture_win(page,sid):
 with sync_playwright() as p:
     browser=launch(p)
     game=browser.new_page(viewport={'width':1440,'height':900});game.on('pageerror',lambda e:errors.append(str(e)));load(game)
-    game.evaluate('HonroApp.profile=HONRO_TOOLS.fresh();HonroApp.showMap()')
+    game.evaluate('HonroApp.profile=HONRO_TOOLS.fresh();HonroApp.showRest()')
     check('Tavern introduction establishes missing people and Hongman',game.evaluate('HonroApp.dialogue.lines.some(l=>l[1].includes("고향"))&&HonroApp.dialogue.lines.some(l=>l[1].includes("홍만"))'))
-    skip(game)
+    while game.locator('[data-action="dialogue-skip"]').count():skip(game)
     for sid in range(1,11):
         data=game.evaluate('''id=>{const a=HonroApp;const open=a.isOpen(HONRO_CONTENT.stages[id-1]);a.launch(id);return{open,id:a.engine.b.honroStage,party:a.engine.heroesAlive().map(u=>u.cls),lines:a.dialogue.lines.length,sodan:a.dialogue.lines.some(l=>l[0]==='소단')};}''',sid)
         expected=['archer']+(['mage'] if sid>=3 else [])+(['knight'] if sid>=6 else [])

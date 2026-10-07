@@ -1,5 +1,4 @@
 """Real wheel/pan, portrait overscan, old saves and shared Game/Editor/Playtest."""
-import hashlib
 import json
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
@@ -11,17 +10,12 @@ def check(name,ok,detail=None):
     assert ok,(name,detail)
     checks.append({'name':name,'detail':detail})
     print('PASS',name,flush=True)
-def digest(v):
-    return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
 baseline=json.loads((ROOT/'tests/fixtures/camera-bounds-baseline.json').read_text(encoding='utf8'))
 project=json.loads((ROOT/'shared/data/campaign.json').read_text(encoding='utf8'))
-for s,old in zip(project['stages'],baseline['stages']):
-    retained={t['id']:t for t in s['terrains'] if t['id'] in old['terrain']}
-    check(s['id']+': retained collision records preserved',
-          all(digest(t)==old['terrain'][tid] for tid,t in retained.items())
-          and (len(retained)==len(old['terrain']) if s['id']!='stage-2' else len(retained)==len(old['terrain'])-1))
-    if s['id'] not in ['stage-1','stage-2']:
-        check(s['id']+': gameplay data unchanged',digest({k:s.get(k) for k in ['width','height','terrains','materials','units','markers','objectives','events','encounters','initialState']})==old['gameplayHash'])
+# Exact historical collision/progression hashes are checked by terrain-domain.mjs,
+# including the reviewed objective/passages deltas. Here the browser must read
+# the current v6 world mesh rather than compare it with pre-domain raw polygons.
+check('Current camera fixtures use the unified terrain domain',project['version']==6 and all(s.get('terrainBounds') and any(t.get('playProjection') for t in s['terrains']) for s in project['stages']))
 
 SETUP='''sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
  a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});a.dialogue=null;a.turnNotice=null;a.close();
@@ -98,8 +92,8 @@ with sync_playwright() as pw:
     editor.click('[data-tab="play"]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
     frame=editor.frames[1];frame.evaluate(SETUP,1)
     same=frame.evaluate('''()=>{const a=HonroApp,s=a.scene,{w,h}=s.size();s.zoom(.001,w/2,h/2);s.render(a.engine,0,'A01',.6,false,0);
-      return {z:s.scale,min:HonroBounds.zoomLimits(w).min,paths:s.overscanStats.paths};}''')
-    check('Playtest uses the shared tactical zoom and skirt renderer',abs(same['z']-same['min'])<1e-9 and same['paths']>0,same)
+      return {z:s.scale,min:HonroBounds.zoomLimits(w).min,paths:s.overscanStats.paths,unified:s.overscanStats.unified,domain:HonroTerrainDomain.active(a.engine.b)};}''')
+    check('Playtest uses the shared tactical zoom and unified domain renderer',abs(same['z']-same['min'])<1e-9 and same['paths']==0 and same['unified'] and same['domain'],same)
     frame.locator('#battlecanvas').screenshot(path=str(OUT/'playtest.png'))
     mobile=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
     mobile.on('pageerror',lambda e:errors.append(str(e)))

@@ -1,7 +1,7 @@
 (function(G){'use strict';
 const V=G.HonroVectorParts.create(G.HONRO_ACTORS?.assets||{}),S=G.HonroScene.prototype;
 // Team overrides in authored maps must preserve a creature's species.
-function monsterKind(u){if(!u||u.side!==2||u.boss||u.summoned||G.resolveRebuildCharacter?.(u))return null;const id=u.honroType==='beast'?(u.honroVariant||'stag'):u.honroType;return G.HonroMonsterVisual.assets[id]?id:null;}
+function monsterKind(u){if(!u||u.side!==2||u.boss||u.summoned||G.resolveRebuildCharacter?.(u))return null;return G.HonroMonsterVisual.species(u);}
 function kind(u){
  if(!u)return null;
  // Summons share occultist class with Sodan, but must never resolve to her portrait.

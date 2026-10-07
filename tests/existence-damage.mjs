@@ -28,7 +28,7 @@ for(const skill of Object.values(C.SKILLS).filter(s=>s.damage>0)){
  }
 }
 for(const kind of Object.keys(g.HonroWorld.archetypes))assert(C.MONSTER_EXISTENCE[kind],`unclassified species ${kind}`);
-for(const kind of ['possessedGuard','possessedArcher'])assert.deepEqual(plain(C.MONSTER_EXISTENCE[kind]),plain(C.MONSTER_EXISTENCE.human),kind+' explicitly retains the human-body form/qi response');
+for(const kind of ['possessedGuard','possessedArcher','gateMaster','archerMaster','archiveFiend','kilnFiend'])assert.deepEqual(plain(C.MONSTER_EXISTENCE[kind]),plain(C.MONSTER_EXISTENCE.human),kind+' explicitly retains the human-body form/qi response');
 for(const role of Object.keys(C.ENEMIES))assert(C.MONSTER_EXISTENCE[role],`unclassified legacy enemy ${role}`);
 const sodan=C.makeUnit('occultist',1,900,970,{id:'sodan',role:'medium',honroType:'human'});
 const bier=C.makeUnit('knight',1,900,970,{id:'bier',role:'golem',honroType:'bier'});
