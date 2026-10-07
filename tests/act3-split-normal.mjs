@@ -29,6 +29,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
  drain();
  for(let count=0;count<Number(process.env.HONRO_BOT_ACTION_LIMIT||420)&&!['won','lost'].includes(b.phase);count++){
   while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames<800000){drain();tick();}drain();if(['won','lost'].includes(b.phase)||frames>=800000)break;
+  if(g.HonroStory.turnPaused(app))await new Promise(resolve=>setTimeout(resolve,Math.max(1,Math.ceil(app.turnNotice.pauseUntil-performance.now()))));
   const ready=A.readySteps(b);if(!ready.length){app.checkMission(e);break;}
   const eligible=e.heroesAlive().filter(u=>!u.acted),required=ready.filter(s=>s.requiredClass).flatMap(s=>eligible.filter(u=>u.cls===s.requiredClass).map(u=>({u,s,d:Math.hypot(u.x-A.marker(b,s.id).x,u.y-A.marker(b,s.id).y)}))).sort((a,c)=>a.d-c.d);
   if(required[0])e.select(required[0].u.id);let u=e.active;if(!u||u.side!==0)continue;
@@ -41,6 +42,8 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
   move(u,goal);drain();if(!e.canAct())continue;
   let action=null;
   if(u.hp<u.maxHp*.45&&b.items.heal>0&&e.item('heal'))action={action:'heal'};
+  else if(u.hp<u.maxHp*.5&&u.shield<u.maxHp*.1&&b.items.ward>0&&e.item('ward'))action={action:'ward'};
+  else if(u.focus<u.maxFocus*.15&&b.items.focus>0&&e.item('focus'))action={action:'focus'};
   else if(m.action&&A.eligibility(app,m).ok&&A.use(app,m))action={action:'interact',target:m.id};
   else if(t&&!t.broken&&(!s.requiredClass||u.cls===s.requiredClass)){
    const skill=C.SKILLS[C.baseSkill(u.cls)],direct=Math.atan2(u.y-u.h*.6-(t.y+t.h*.5),t.x+t.w/2-u.x)*180/Math.PI;let best=null;
@@ -48,7 +51,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
    if(best&&e.fire(skill.id,best.angle,best.power))action={action:'fire-control',target:t.id,...best};
   }
   if(!action){const foes=e.alive(1).sort((a,c)=>Number(A.sameFloor(c,m,300))-Number(A.sameFloor(a,m,300))||Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y));for(const foe of foes.slice(0,2)){if(Math.hypot(foe.x-u.x,foe.y-u.y)>1500)continue;const skills=u.loadout.map(k=>C.SKILLS[k]).filter(s=>!s.passive&&s.damage>0&&e.cooldownLeft(u,s.id)<=0&&e.manaCost(s,u)<=u.focus).sort((a,c)=>c.damage-a.damage);for(const skill of skills.slice(0,2)){let best=null;for(const aim of e.shotSeeds(u,skill,foe)){const q=C.shotViable(e,u,skill,foe,aim.angle,aim.power);if(q.ok&&q.risk<1&&q.miss<Math.max(85,skill.radius+foe.r+55)&&(!best||q.net>best.net))best={...aim,net:q.net};}if(best&&e.fire(skill.id,best.angle,best.power)){action={action:'fire',skill:skill.id,target:foe.id};break;}}if(action)break;}}
-  if(!action){e.wait();action={action:'defend'};}actions.push({round:b.round,actor:u.cls,goal:s.id,x:u.x,y:u.y,...action,heroes:b.units.filter(S.hero).map(v=>({cls:v.cls,hp:v.hp,mp:v.focus,dead:v.dead})),items:plain(b.items),enemyCount:e.alive(1).length,objective:A.state(b).summary});
+  if(!action){if(!app.canInput())throw Error('Defense input unavailable at '+id+':'+b.round);app.defend();action={action:'defend'};}actions.push({round:b.round,actor:u.cls,goal:s.id,x:u.x,y:u.y,...action,heroes:b.units.filter(S.hero).map(v=>({cls:v.cls,hp:v.hp,mp:v.focus,dead:v.dead})),items:plain(b.items),enemyCount:e.alive(1).length,objective:A.state(b).summary});
   if(count%8===0){console.log('PLAY',id,b.round,s.id,actions.length,e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));}
  }
  if(b.phase==='won'){app.outcome();drain();}else drain();
