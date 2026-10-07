@@ -1,3 +1,10 @@
+# 1–6장 화강암 그림과 기존 고체 외곽 일치 — 2026-10-07
+
+- 원인: 에셋 polish가 두 화강암의 외곽을 별도 정규화된 6면 그림으로 다시 만들면서 기존 independent collider는 보존했다. 1장 큰 바위의 왼쪽 그림이 고체 윗면보다 최대 157.5 world 낮아 접지한 발·윤곽선이 허공에 있는 것처럼 보일 수 있었다.
+- 변경: 큰/작은 바위의 첫 그림 polygon을 기존 collision 외곽 그대로 복사하고 나머지 5색면도 그 안에 둔다. 기존 6면·팔레트·bounds·contact·16배치·충돌·맵·저장 코드는 유지한다. `tools/environment/granite-visuals.mjs`를 polish generator가 호출하므로 재생성에도 고정된다.
+- 검사: `node tests/granite-visual-alignment.mjs`로 2외곽·12색면·16배치·6장 compiled terrain/material 불변·generator 순수/재현·옛 embedded art/terrain 보존 통과. 큰 바위 157.5와 작은 바위 81.9 local 최대 간격이 각각 0으로 줄었다. 실제 generator 재실행 뒤 다른 에셋과 모든 nonvisual campaign 필드 불변도 확인했다.
+- 한계: 기존 진행 중인 저장은 저장 당시 그림을 유지한다. Native 전후 화면·통합 브라우저/Pages 검수는 별도 기록하며 이 검사만으로 전체 verify 또는 정상 플레이 통과를 주장하지 않는다. [현재 계약](GRANITE_VISUAL_ALIGNMENT.md).
+
 # 고정 구조 주민의 공중 보행 — 2026-10-07
 
 - 재현: 새 7장 실제 동맹 턴 루프를 2회 실행하면 월이가 `(1174.350, 3320)`에서 지면보다 518.636, 칠복이 `(211.698, 2200)`에서 1988.563만큼 뜬다. 원본 정상 7장 2턴 저장의 주민들도 `fixed:true`인데 이미 동맹 이동 기록이 있다. 사용자 첨부 화면의 공중 주민과 같은 경로다.
