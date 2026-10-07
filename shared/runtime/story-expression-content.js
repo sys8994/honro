@@ -14,4 +14,9 @@ S.register({id:'act1-cooperation-gesture-v1',stage:10,onStory:'act1-v6:cooperati
  {type:'look',actor:'boss',at:{anchor:'receiverWest'},visualOnly:true,pose:'hold-bell',duration:1200,caption:'소단은 방울을 감싼 손을 놓지 않은 채 아래를 살핀다.'},
  {type:'dialogue'}
 ]});
+for(const n of [1,2,3])S.register({id:`act2-send-${n}-gesture-v1`,stage:19,onStory:`act2-v1:act2-19-send-${n}`,requiredActors:['occultist'],title:'손을 놓는 순간',steps:[
+ {type:'look',at:{marker:`send-${n}`},duration:300,caption:n===1?'내려놓은 망치 곁으로 시선이 향한다.':'이름을 부르던 자리의 울림이 잦아든다.'},
+ {type:'look',actor:'occultist',at:{marker:`send-${n}`},visualOnly:true,pose:n===3?'lower-hands':'open-palms',duration:700,props:[{kind:n===1?'hammer':'departing-light',at:{marker:`send-${n}`}}],caption:n===3?'소단이 천천히 손을 내린다.':'소단이 붙들던 손을 편다.'},
+ {type:'dialogue'}
+]});
 })(globalThis);
