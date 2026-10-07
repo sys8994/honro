@@ -6,7 +6,10 @@ const cast={
  3:{actor:'npc-hwigyeom',entry:true,dx:-64,caption:'나루에 남은 검객이 물가에서 한 걸음 나와 일행의 앞길을 막는다.'},
  4:{actor:'npc-chunrye',speaker:'춘례',dx:42,caption:'춘례가 피란문 안에서 걸어 나와 붕대를 쥔 손을 보인다.'}
 };
-const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,duration:650});
+// Existing civilian/escort bodies already represent these people in the scene.
+const speakers={13:{'석공':'resident-1'},14:{'주민':'resident-1'},16:{'승려':'resident-1','노승':'objective'},19:{'주민':'objective'},20:{'주민':'objective','길찬':'objective','석공':'objective'}};
+function speaker(app,who){const b=app.engine?.b;if(b?.honroStaging?.cinematic!==2||b.honroCustom)return null;const id=speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;}
+const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,scale:camera?1.05:undefined,duration:650});
 const shot=at=>({type:'look',at,duration:650,scale:1.05});
 const pose=(actor,kind,at)=>face(actor,at||{actor:'archer'},kind);
 const step=(actor,dx)=>({type:'move',actor,to:{origin:actor,dx},duration:850,focus:false});
@@ -66,6 +69,8 @@ const rules=[
  rule(15,'entry','휘겸','발판이 있소',[pose('knight','inspect',{marker:'groove'})]),
  rule(15,'groove','휘겸','최근에 대종',[pose('knight','inspect',{marker:'groove'}),shot({marker:'groove'})]),
  rule(16,'entry','소단','손은 놓지',[pose('occultist','hold-bell',{actor:'resident-1'})]),
+ rule(16,'entry','노승','내 제자',[pose('objective','inspect',{actor:'resident-1'}),shot({between:['objective','resident-1']})]),
+ rule(16,'monk','서술','먹을 소매',[pose('objective','inspect',{actor:'resident-1'}),face('resident-1',{actor:'objective'},'listen'),shot({between:['objective','resident-1']})]),
  rule(16,'witness','설오','꺼낼 수 있었',[pose('archer','recoil',{actor:'resident-1'})]),
  rule(17,'entry','휘겸','손으로 뽑아낸',[pose('knight','inspect',{marker:'repair'})]),
  rule(17,'entry','담허','천장이',[face('mage',{marker:'brace'},'point')]),
@@ -131,5 +136,5 @@ function build(app,lines,options={}){
  }return next;}
  return {id:`direction-v2:${entry?'entry-'+b.honroStage:outcome?'outcome-'+b.honroStage:lines[0]?.[2]?.storyId}`,context,head:head.map(resolve),cues:cues.map(xs=>{const delays={};return xs.map(x=>{const s=resolve(x);if(s.actor){s.delay=delays[s.actor]||0;delays[s.actor]=(s.delay||0)+(s.duration||0);}return s;});})};
 }
-G.HonroStoryDirection={build,cast,hiddenSpeech,rules};
+G.HonroStoryDirection={build,cast,hiddenSpeech,speaker,rules};
 })(globalThis);

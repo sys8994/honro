@@ -38,12 +38,13 @@ with sync_playwright() as p:
         camera={'x':st['width']/2,'y':st['height']/2,'zoom':.2}
         editor.evaluate('v=>HonroWorkshopAPI.setCamera(v)',camera)
         actual_camera=editor.evaluate('HonroWorkshopAPI.getEditorState().stageView')
+        # Compare fresh authored state before cinematic blocking changes actor positions.
         # World pixels share a renderer; objective labels use each host's HUD
         # safe area and are checked through their own UI/browser tests.
         editor.evaluate('''()=>{HonroWorkshopAPI.getRuntime().scene.missionTargets=[];HonroWorkshopAPI.render()}''')
         game.evaluate('''([id,camera])=>{const a=HonroApp,st=HONRO_PROJECT.stages[id-1];
           a.profile={...HONRO_TOOLS.fresh(),...HonroMaps.profileFor(st)};
-          for(let i=1;i<=HONRO_PROJECT.stages.length;i++)a.profile.cleared[i]={};a.launch(id);if(a.dialogue)HonroStory.finish(a);
+          for(let i=1;i<=HONRO_PROJECT.stages.length;i++)a.profile.cleared[i]={};a.launchMap(HONRO_PROJECT,'stage-'+id,{story:false});
           a.turnNotice=null;Object.assign(a.scene,{time:0,walkTime:0,manual:true,storyTween:null,goalFocus:null,cinematic:null,x:camera.x,y:camera.y,scale:camera.zoom});
           a.scene.missionTargets=[];a.scene.editorView=true;a.scene.render(a.engine,0,'',.6,false,0);a.scene.editorView=false;
         }''',[sid,actual_camera])

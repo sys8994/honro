@@ -82,7 +82,7 @@ function apply(app,s,step,skip=false,dt=0){
  if(first){s.applied[key]=true;
   if(step.type==='fx'&&!skip){if(step.sound)app.audio?.play(step.sound);const p=point(b,step.at,s.context);if(p&&step.effect)app.engine.fx(step.effect,p.x,p.y-15,step.color||'#c9b37f',step.radius||48);}
   if(step.type==='move'){const u=step.reveal?reveal(b,step.actor):actor(b,step.actor);if(alive(u)&&step.focus!==false){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}}
-  if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.at,s.context);if(p&&app.scene){s.focus=clone(p);delete s.focusActor;app.scene.goalFocus=null;const size=app.scene.size?.(),scale=step.scale&&size?Math.min(step.scale,size.w/((p.spanX||0)+240),(size.h*.55)/((p.spanY||0)+200)):step.scale;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500),scale);}}
+  if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.actor?{actor:step.actor}:step.at,s.context);if(p&&app.scene){s.focus=clone(p);delete s.focusActor;app.scene.goalFocus=null;const size=app.scene.size?.(),scale=step.scale&&size?Math.min(step.scale,size.w/((p.spanX||0)+240),(size.h*.55)/((p.spanY||0)+200)):step.scale;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500),scale);}}
  }
  if(step.type==='move'){const status=move(app,s,step,dt,skip);if(status){s.results[key]={...s.results[key],status};return true;}return skip||s.elapsed>Math.max(3000,(step.duration||600)*3);}
  if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x){const facing=Math.sign(p.x-u.x);if(facing!==u.facing&&Number.isFinite(u.angle))u.angle=180-u.angle;u.facing=facing;}if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
@@ -108,7 +108,7 @@ function cueAdvance(app,dt,skip=false){
  cue.elapsed+=dt*1000;snapshot(app);app.engine.b.honroStory=clone(app.dialogue);app.dirty=true;return changed;
 }
 function lineEnd(app){const s=active(app);if(!s?.cues)return;lineStart(app,true);cueAdvance(app,0,true);settle(app,s);}
-function focusLine(app,speaker,meta){const s=active(app);if(!s?.cues||!s.complete)return false;lineStart(app);const c=app.scene;if(!c)return false;
+function focusLine(app,speaker,meta){const s=active(app);if(!s?.cues||!s.complete)return false;lineStart(app);const c=app.scene;if(!c||meta?.focus)return false;
  if(s.focusActor&&alive(actor(app.engine.b,s.focusActor))){c.goalFocus=null;c.cinematic=s.focusActor;return true;}
  if(s.focus){c.goalFocus=null;c.cinematic=null;return true;}if(speaker&&!meta?.focus){c.goalFocus=null;c.cinematic=speaker.id;c.storyFocus?.(speaker.id,500,1.05,true);return true;}return false;
 }

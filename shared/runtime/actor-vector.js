@@ -20,6 +20,7 @@ function kind(u){
 function state(u,engine){
  const q=engine?.b.honroState?.allyQueue,active=q?.ids[q.index]===u.id;
  const st=V.state(u);
+ const p=u.honroScenePose;if(p){st.move=p.kind==='move';st.attack=['point','guard','hold-bell'].includes(p.kind)?.16*Math.min(1,p.time/.4):undefined;st.hit=p.kind==='recoil'?.25:undefined;st.jump=['kneel','bow','inspect'].includes(p.kind)?.42:undefined;return st;}
  if(active&&q.phase==='after'&&q.started)st.attack=Math.min(1,q.elapsed/.6);
  if(u.airborne||u.jumping)st.jump=u.vy<0?.35:.7;
  if(u.summoned)st.move=(u.moving||0)>.01;

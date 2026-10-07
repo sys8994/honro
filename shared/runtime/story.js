@@ -2,7 +2,7 @@
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=x=>JSON.parse(JSON.stringify(x));
 function host(app){let node=$('dialogue-root');if(!node){node=document.createElement('div');node.id='dialogue-root';app.root.appendChild(node);}node.onclick=e=>{const action=e.target.closest('[data-story-tool]')?.dataset.storyTool;if(!action)return;e.stopPropagation();app.storyHistoryOpen=action==='history';draw(app);};return node;}
-function actorFor(app,who){const actor=app.speakerUnits?.(who).find(u=>!u.dead&&u.hp>0);if(actor)return actor;const boss=app.engine?.b.units.find(u=>u.id==='boss'&&u.name===who&&!u.dead&&u.hp>0);return app.stage?.id===10&&who==='소단'?boss:null;}
+function actorFor(app,who){const bound=G.HonroStoryDirection?.speaker(app,who);if(bound)return bound;const actor=app.speakerUnits?.(who).find(u=>!u.dead&&u.hp>0);if(actor)return actor;const boss=app.engine?.b.units.find(u=>u.id==='boss'&&u.name===who&&!u.dead&&u.hp>0);return app.stage?.id===10&&who==='소단'?boss:null;}
 function allowed(app,who,meta){return G.HonroStoryStaging?.canSpeak(app,who,meta)||who==='서술'||who==='기록'||who==='안내'||app.screen!=='battle'||!!actorFor(app,who)||app.canSpeak(who);}
 function history(app){if(app.training)return[];if(app.engine?.b.honroCustom)return app.engine.b.honroState.narrative??=[];return app.profile.honroNarrative??=[];}
 function groups(lines){const result=[];for(const line of lines){const last=result.at(-1),a=last?.[0][2]||{},b=line[2]||{};if(last&&['storyId','waitActor','waitRound','afterAction'].every(key=>a[key]===b[key]))last.push(line);else result.push([line]);}return result;}
