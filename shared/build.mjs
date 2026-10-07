@@ -12,7 +12,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['content','story-content','terrain-space','map-engine','battlefield-layouts',
-  'progression','encounters','world','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','journey-content'];
+  'progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','journey-content'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeParts({vector=true,render=true,app=false}={}) {
@@ -23,7 +23,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   parts.push(await read('shared/runtime/camera.js'));
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
   const project=await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json')))));
-  parts.push('globalThis.HONRO_PROJECT='+JSON.stringify(project)+';');
+  parts.push('globalThis.HONRO_PROJECT=HonroAct1Roster.author('+JSON.stringify(project)+');');
   if(vector){
     await buildParty();
     parts.push(await read('shared/runtime/party-rig.js'));
