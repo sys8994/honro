@@ -1,3 +1,9 @@
+# 제거 장치의 공간 목표 참조 정리 — 2026-10-07
+
+-통합finalize가12/13/15/17/20장의삭제한pin을가리키는design.space.sites와20 gate-exit prerequisite를검출했다.스키마는완화하지않았다.
+-공통objective author가삭제한정확ID를가리키는site와connections/routes.requires만정리한다.다른길의전제·충돌·목표는보존한다.동일범위의승인전후delta를갱신했다.
+-5개영향맵에삭제된target/objective/gate의공간참조0건정적검사통과.최종generator의schema finalize는통합측에서재실행한다.
+
 # 필수인물 진행 불능과 새 화재 위치 연결 — 2026-10-07
 
 -5장고리쇠가남았는데담허가쓰러진경우받이진을다시열수없어끝나지않던상태를명시적실패로처리한다.파괴후에는담허생존을추가요구하지않아원래1라운드안정화가가능하다.39목표집중검사통과.

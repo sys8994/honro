@@ -52,6 +52,10 @@ function author(project,options={}){
   map.initialState??={};map.initialState.honroObjectiveRevision=REVISION;
   if(id>=11&&id<=20)map.initialState.honroAct2Steps=clone(st.steps);
   if(id>=21)map.initialState.honroAct3Steps=clone(st.steps);
+  // Spatial contracts name the same deleted objective/door IDs. Remove only
+  // these obsolete dependencies and sites; keep all unrelated route guards.
+  const retired=new Set([...drops,...(gates[id]||[])]),space=map.design?.space;
+  if(space){for(const record of [...(space.connections||[]),...(space.routes||[])])if(record.requires)record.requires=record.requires.filter(q=>!retired.has(q.objectiveId)&&!retired.has(q.terrainId));for(const [key,site] of Object.entries(space.sites||{}))if(retired.has(key)||retired.has(site.objectiveId)||retired.has(site.target?.terrainId))delete space.sites[key];}
   map.terrains=map.terrains.filter(t=>!drops.includes(t.id)&&!(gates[id]||[]).includes(t.id));
   map.markers=map.markers.filter(m=>!drops.some(key=>m.id===key||m.id==='marker-'+key));
   if(id===12){const floor=map.terrains.find(t=>t.id==='act2-floor'),restored=floor?.properties?.honroRestoredVertices;if(restored){const surface=new Map(restored.slice(0,-2).map(v=>[v.x,v.y]));for(const v of floor.points)if(surface.has(v.x)&&v.y<map.height)v.y=surface.get(v.x);delete floor.properties.honroRestoredVertices;}}
