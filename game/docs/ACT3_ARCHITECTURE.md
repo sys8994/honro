@@ -36,3 +36,9 @@
 `tests/act3-hall-art.mjs`는 16가지 건물의 원래 충돌/앵커/bounds와 48 Native 렌더를 검사한다. `tests/act3-visual-cues.mjs`는 두 불의 위치·독립 소등·제어 후 잔해·무연기와 상태 무변이를 검사한다. `tests/act3-art-regeneration.mjs`는 실제 생성기를 쓰되 파일을 바꾸지 않고, 1–20장 원본 객체 및 전30장의 compile collision/material, authored units/markers/design을 비교한다. 새 맵을 합법적으로 바꾸면 소스와 campaign을 함께 재생성한 뒤 검사한다.
 
 전후 캡처는 같은 runtime/camera에서 `capture-act3-production.mjs --stages 27,30 --facade-focus`로 재현한다. `--art-source <file>`은 fire renderer의 명시적 이전 버전을 비교할 때만 사용하며 보고서에 파일과 SHA를 남긴다. 기본 실행은 현재 실제 renderer다. 실제 브라우저·Pages와 정상 전투 완주는 이 미술 증거의 범위가 아니다.
+
+## Canal structure support followup
+
+Stage 23 upper-gallery posts now continue to the canonical city foundation behind the lower opaque facades. The three elevated bridge houses have six rear stone piers to the actual bank or canal bed. The fourteen contact records and back-layer ordering are checked by `tests/act3-canal-supports.mjs`; these assets have no collision polygons. The support lookup accepts steep bank surfaces because a structural foundation is not a walkable route.
+
+All thirty compiled terrain/materials, units, markers and route contracts stayed equal during regeneration; the first twenty stage objects stayed exact. A matching landmark view was inspected to verify rear occlusion and continuous supports. This art-only correction does not claim a new normal-play or browser result.
