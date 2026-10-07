@@ -9,6 +9,7 @@ const checks=[
  ['character-balance','npm',['run','test:character-balance']],
  ['ui-buttons','npm',['run','test:ui-buttons']],
  ['build','npm',['run','build']],['typecheck','npm',['--prefix','game','run','typecheck']],['game-regressions','npm',['--prefix','game','test']],
+ ['act3-runtime','npm',['run','test:act3']],['act3-maps','npm',['run','test:act3:maps']],['act3-art','npm',['run','test:act3:art']],['act3-foundation','node',['tests/act3-foundation.mjs']],
  ['ground-contact','npm',['run','test:ground-contact']],
  ['terrain-domain','npm',['run','test:terrain-domain']],
  ['aim-wind-audio','npm',['run','test:aim-wind-audio']],
