@@ -67,6 +67,7 @@ function registerScenes(){const staging=G.HonroStoryStaging;if(!staging||registe
 function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)return false;registerScenes();if(app.engine.b.honroStaging?.once?.['act3-party-reunion-v1'])return true;return G.HonroStoryStaging.request(app,'act3-party-reunion-v1');}
 // Stale focus cues must never point at a deleted device.
 for(const id of [12,15,20,21,22,23,27])for(const row of H.stages[id-1].story||[])if(row[2]?.focus==='seal')row[2].focus='interact';
+for(const row of H.stages[26].story){if(row[0]==='휘겸')row[2]={...row[2],focus:'fire-screen'};if(row[0]==='설오')row[2]={...row[2],focus:'water-release'};}
 function active(b){return !b?.honroCustom&&b?.honroObjectiveRevision>=REVISION;}
 function contentFor(b,st){return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
 function storedSteps(b,act){return contentFor(b,H.stages[b.honroStage-1]).steps||[];}
