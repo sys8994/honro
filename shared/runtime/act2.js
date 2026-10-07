@@ -51,7 +51,7 @@ function lowerPool(z,amount){
  const surface=[[bottom[0][0],level],[bottom.at(-1)[0],level]];
  return{...z,surface,bottom,points:[...surface,...bottom.slice().reverse()]};
 }
-const steps=b=>b.honroAct2Steps||(revision2(b)?H.stages[b.honroStage-1].steps:G.HonroAct2Content.legacySteps[b.honroStage-11]);
+const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
 function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;
@@ -115,7 +115,7 @@ function say(app,id,lines){if(!lines?.length)return;app.sayLines(G.HonroAct2Cont
 function completeStep(app,s){const e=app.engine,b=e.b,a=memory(b);if(a.done[s.id])return;
  a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round});
  const m=marker(b,s.id);if(m)m.collected=true;
- say(app,s.id,app.stage.beats?.[s.id]);app.event(s.label+' · 완료');app.dirty=true;
+ say(app,s.id,(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id]);app.event(s.label+' · 완료');app.dirty=true;
 }
 function wave(app,key,kind,n=2,siteKey=key,eliteEvery=4){const e=app.engine,b=e.b,a=memory(b);if(a.events[key])return true;
  const site=marker(b,'wave-'+siteKey)||marker(b,'wave');if(!site)return false;

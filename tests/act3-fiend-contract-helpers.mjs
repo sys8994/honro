@@ -1,3 +1,4 @@
+import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 // The fiend revision freezes combat/mission identity, not subsequently approved
@@ -5,6 +6,7 @@ import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const encounterRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-encounter-contract.json',import.meta.url),'utf8'));
+const locationRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-location-semantic-contract.json',import.meta.url),'utf8'));
 function beforeEncounterRevision(actual,saved){
  if(actual.initialState.honroAct3EncounterRevision!==1)return actual;
  const reviewed=encounterRevision.rows.find(q=>q.id===actual.metadata.stageId);assert(reviewed,'Reviewed encounter revision');
@@ -30,7 +32,7 @@ export function missionContract(map,stage,balance){
   // Body/combat/protection overrides remain exact, including facing, class,
   // rank, HP, behavior, cohort and spawnIndex. Only world x/y may be reauthored.
   units:map.units.map(u=>({...without(u,['x','y']),kind:kind(u.kind)})),
-  markers:sorted(map.markers.map(m=>without(m,['x','y','label']))),
+  markers:sorted(map.markers.map(m=>without(m,['x','y','label','fireSite']))),
   devices:sorted(map.terrains.filter(t=>t.properties?.honroAct3Target||t.properties?.honroAct3Gate).map(t=>({id:t.id,type:t.type,baseMaterial:t.baseMaterial,oneWay:t.oneWay,breakable:t.breakable,properties:plain(t.properties)}))),
   objectives:plain(map.objectives),events:plain(map.events),encounters:plain(map.encounters),
   stage:{id:stage.id,act:stage.act,actStage:stage.actStage,level:stage.level,objective:stage.objective,requires:plain(stage.requires),active:stage.active,enemies:stage.enemies,playableRoster:plain(stage.playableRoster),steps:stage.steps.map(step)},
@@ -39,6 +41,7 @@ export function missionContract(map,stage,balance){
 }
 export function archetypeContract(archetypes){return Object.fromEntries(Object.entries(archetypes).filter(([id])=>Object.hasOwn(kindRenames,id)||Object.values(kindRenames).includes(id)).map(([id,a])=>[kind(id),without(a,['name','intent','act3Human','act3Fiend'])]));}
 export function assertFiendContract(project,content,balance,archetypes,baseline){
+ ({project,content}=beforeObjectiveRevision(project,content));
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');
  assert.deepEqual(projectRules(project),baseline.projectRules,'Global gameplay/schema settings');
@@ -46,14 +49,14 @@ export function assertFiendContract(project,content,balance,archetypes,baseline)
  const assetIds=project.library.map(a=>a.id);assert.equal(new Set(assetIds).size,assetIds.length,'Unique library IDs');
  for(const a of baseline.legacyAssets){const current=legacyProject.library.find(v=>v.id===a.id);assert(current,'Missing original asset '+a.id);assert.equal(hash(current),a.sha256,'Original Act 1/2 asset '+a.id);}
  for(const saved of baseline.legacyMaps){const current=legacyProject.stages.find(s=>s.metadata.stageId===saved.id);assert.equal(hash(current),saved.sha256,'Complete original Act 1/2 map '+saved.id);}
- for(const saved of baseline.act3){const id=saved.metadata.stageId,current=project.stages.find(s=>s.metadata.stageId===id);assert.deepEqual(beforeEncounterRevision(missionContract(current,content.stages[id-1],balance.stages[id-1]),saved),saved,'Act 3 combat/mission contract '+id);}
+ for(const saved of baseline.act3){const id=saved.metadata.stageId,current=project.stages.find(s=>s.metadata.stageId===id),actual=missionContract(current,content.stages[id-1],balance.stages[id-1]);if(current.initialState.honroLocationRevision===1){const reviewed=locationRevision.rows.find(row=>row.metadata.stageId===id);assert(reviewed,'Reviewed location contract '+id);assert.deepEqual(actual,reviewed,'Exact approved location combat/mission contract '+id);}else assert.deepEqual(beforeEncounterRevision(actual,saved),saved,'Act 3 combat/mission contract '+id);}
  assert.deepEqual(archetypeContract(archetypes),baseline.archetypes,'Fiend body and attack definitions');
  // The compatibility rename is used only to derive the historical fixture.
  // Active production must contain the new fiends, never the old troop IDs.
  for(const s of project.stages.slice(20))for(const u of s.units)assert(!Object.hasOwn(kindRenames,u.kind),'Retired enemy kind '+u.kind);
  for(const s of content.stages.slice(20))for(const q of s.steps)if(q.wave)assert(!Object.hasOwn(kindRenames,q.wave.kind),'Retired reinforcement kind');
  const fiends=project.stages.slice(20).flatMap(s=>s.units).filter(u=>Object.values(kindRenames).includes(u.kind));
- const revised=project.stages.slice(20).every(s=>s.initialState.honroAct3EncounterRevision===1);const expected=revised?encounterRevision.rows.flatMap(s=>s.units).filter(u=>Object.values(kindRenames).includes(u.kind)).length:baseline.fiendCount;assert.equal(fiends.length,expected,'Exact approved fiend roster size');assert(fiends.every(u=>u.team==='enemy'),'Fiends remain enemies');
+ const revised=project.stages.slice(20).every(s=>s.initialState.honroAct3EncounterRevision===1);const expected=revised?project.stages.slice(20).flatMap(s=>(s.initialState.honroLocationRevision===1?locationRevision.rows.find(q=>q.metadata.stageId===s.metadata.stageId):encounterRevision.rows.find(q=>q.id===s.metadata.stageId)).units).filter(u=>Object.values(kindRenames).includes(u.kind)).length:baseline.fiendCount;assert.equal(fiends.length,expected,'Exact approved fiend roster size');assert(fiends.every(u=>u.team==='enemy'),'Fiends remain enemies');
 }
 // Content-only loading: no engine/renderer, dependency build, saved profile or
 // browser. A historical reader can use git show for the named source revision.
@@ -84,7 +87,7 @@ export function assertFiendContractScope(project,content,balance,archetypes,base
  rejects('marker target',q=>q.stages[22].markers.find(m=>m.target==='act3-carrier').target='missing');
  rejects('marker action',q=>q.stages[22].markers.find(m=>m.action).action='other');
  rejects('required class',q=>q.stages[26].markers.find(m=>m.requiredClass).requiredClass='mage');
- rejects('device durability',q=>q.stages[22].terrains.find(t=>t.properties?.honroAct3Target).properties.hp++);
+ rejects('device durability',q=>q.stages[21].terrains.find(t=>t.properties?.honroAct3Gate).properties.hp++);
  rejects('initial active limit',q=>q.stages[22].initialState.honroActiveLimit++);
  rejects('objective order',(_,r)=>r.stages[22].steps.reverse());
  rejects('hold rules',(_,r)=>r.stages[24].steps.find(s=>s.kind==='hold').rounds++);

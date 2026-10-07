@@ -1,3 +1,7 @@
+## 24–27 조사팀 상태 계약 — 2026-10-07 / 구현 중
+
+새24 분기 또는 명시적 재플레이에만2+2 roster·HPMP/상태carry·공유아이템·원정XP·분기재시도를 적용한다. 옛전투 Continue 및1–23/28–30은 보존한다. [계약/지도hook/검증한계](ACT3_SPLIT_CAMPAIGN.md). 전용App 상태회귀11묶음 통과. 기존 save-boundaries6/growth6/transition14/camp11/debug11 회귀 통과. test:act3 aggregate는 기존 act3-runtime.mjs의25장4인 고정기대(실제2인)에서 중단돼 통합 목표·지도 검사 갱신을 기다린다. 지도·목표·씬 통합과 정상전투/Pages·전체verify는 미완료이며 배포승인을 의미하지 않는다.
+
 # HONRO 게임 수정 맥락
 
 **Custom Map 반환 소유권(2026-10-07):** 재시도/결과가 engine을 먼저 비워도 custom 세션의 원래 정상 또는 debug 프로필·장을 복원한 뒤 재진입한다. Import/새 여정은 custom 경계를 끝내고 새 기록을 설치하며, custom 결과 다음은 원래 쉼터로 돌아간다. custom 중 명시적 내보내기는 기존 QA 전투 snapshot을 유지하고 자동 저장·원본은 보호한다. 주입 프로필은 깊은 복제로 분리한다. `test:custom-map-return`은 이 경계를 생산 App·DOM/저장 대역에서 검사하며 실제 브라우저 증거와 구분한다.

@@ -46,6 +46,10 @@ await check('Result retry after both won and lost fixtures keeps the original re
 await check('Custom result exit, rest and journey-book return keep original completion, story and battle',()=>{
  for(const route of ['result-continue','result-map','rest','map'])for(const phase of ['won','lost']){normal();custom();click('retry');if(route.startsWith('result')){app.engine.b.phase=phase;app.outcome(true);}click(route);assert.equal(app.customMap,null);assert.equal(app.profile.honroFlags.returnProbe,'original');assert.deepEqual(plain(app.profile.cleared),original.cleared);assert.deepEqual(plain(app.profile.record),original.record);assert.deepEqual(plain(app.profile.honroBattle),original.honroBattle);assert(!app.profile.honroFlags['cleared-1']);}
 });
+await check('Custom result return label describes the protected journey and leaves normal result wording intact',()=>{
+ for(const phase of ['won','lost']){normal();custom();click('retry');app.engine.b.phase=phase;app.outcome(true);assert.equal(g.HonroRestJourney.resultLabel(app),'원래 여정으로 돌아가기');assert.match(app.modal.innerHTML,/data-action="result-continue">원래 여정으로 돌아가기<\/button>/);click('result-continue');assert(!app.customMap);assert.equal(app.profile.honroFlags.returnProbe,'original');assert.deepEqual(plain(app.profile.honroBattle),original.honroBattle);}
+ normal();app.continue();app.engine.b.phase='won';app.outcome(true);assert.notEqual(g.HonroRestJourney.resultLabel(app),'원래 여정으로 돌아가기');assert(!app.modal.innerHTML.includes('원래 여정으로 돌아가기'));
+});
 await check('Normal battle, settings import and normal retry still preserve campaign growth and saves',async()=>{
  normal();app.continue();app.engine.b.heroes.archer.xp+=13;const xp=app.engine.b.heroes.archer.xp;click('retry');assert.equal(app.engine.b.honroStage,13);assert.equal(app.engine.b.heroes.archer.xp,xp);app.showTitle();assert.deepEqual(saved(),plain(app.profile));await h.import(original);restored();
 });

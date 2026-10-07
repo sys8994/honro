@@ -9,7 +9,7 @@ function interactionTarget(b,m){
  const u=b.units?.find(u=>u.id===m.target);
  return u&&!u.dead&&u.hp>0&&!u.honroResolved&&Number.isFinite(u.x)&&Number.isFinite(u.y)?u:null;
 }
-function state(b,st){
+function rawState(b,st){
  if(b.honroCustom)return G.HonroAuthored.objectiveState(b);
  if(G.HonroAct2?.active(b))return G.HonroAct2.state(b);
  if(G.HonroAct3?.active(b))return G.HonroAct3.state(b);
@@ -35,15 +35,21 @@ function state(b,st){
   case'sodan':complete=!!hs.sodanCoop&&(hs.coopHold||0)>=6;summary=!hs.sodanCoop?'소단의 주박을 비살상으로 낮추고 두 받이진 활성화':`소단 보호 · 혼매듭 ${hs.coopHold||0}/6턴 · 적 ${foes.length}명`;kinds=!hs.sodanCoop?['boss','interact']:['boss'];break;
   default:complete=!foes.length;
  }
- const objectiveReady=complete,minimumRound=[3,4,5,9,10,11,12,13,14,15][st.id-1]||1,settleRounds=({ledger:1,seals:1,rescue3:2,bierboss:1,prepare:2})[st.objective]||0;
+ const objectiveReady=complete,minimumRound=1,settleRounds=({ledger:1,seals:1,rescue3:2,bierboss:1,prepare:2})[st.objective]||0;
  const readyRound=hs.objectiveReadyRound,stable=settleRounds===0||readyRound!==undefined&&b.round-readyRound>=settleRounds;
  complete=complete&&b.round>=minimumRound&&stable;
- if(b.round<minimumRound)summary+=` · 안전 확보 ${Math.max(0,b.round-1)}/${minimumRound-1}턴`;
  if(objectiveReady&&settleRounds&&!stable)summary+=` · ${st.objective==='ledger'?'장부를 챙겨 철수':st.objective==='rescue3'?'구조한 주민 보호':'진과 주변 안정화'} ${Math.min(settleRounds,Math.max(0,b.round-(readyRound??b.round)))}/${settleRounds}턴`;
  const authored=G.HonroAuthored?.objectiveState(b);
  if(authored?.allTargets.length){complete=complete&&authored.complete;summary+=' · '+authored.summary;}
  return{complete,objectiveReady,minimumRound,settleRounds,summary,targets:[...all.filter(t=>kinds.includes(t.kind)&&!t.done),...(authored?.targets||[])],allTargets:[...all,...(authored?.allTargets||[])]};
 }
+function failure(b,st){
+ if(!b||b.honroCustom||st?.id!==5)return null;
+ const needsRitual=b.terrain.some(t=>t.id==='cliff-cleat'&&!t.broken)&&b.honroMarkers?.some(m=>m.action==='ritual');
+ if(needsRitual&&!b.units.some(u=>u.side===0&&u.cls==='mage'&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0))return '담허가 쓰러져 받이진을 이어갈 수 없다. 이 장을 다시 시작하자.';
+ return null;
+}
+function state(b,st){const result=rawState(b,st);return G.HonroObjectiveGuide?.enhance(b,st,result)||result;}
 const briefings={
  1:[],
  2:[['설오','행렬이 저 아래 길을 통과할 때까지 높은 놈부터 끊겠습니다.',{focus:'objective'}]],
@@ -64,9 +70,9 @@ const guideFocus=['exit','objective','interact','objective','interact','objectiv
 function entry(app,options={}){if(app.stage.act===2)return G.HonroAct2.entry(app,options);if(app.stage.act===3)return G.HonroAct3.entry(app,options);const n=(options.interlude===false?[]:(app.stage.narration||[])).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',guideFor(app),{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;
  if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];const beats=(app.stage.storyFollowups||[]).map(x=>x.slice());if(remaining.length&&beats.length&&remaining.length+beats[0].length<=5)beats[0].push(...remaining);else for(let i=remaining.length;i>0;i-=5)beats.unshift(remaining.slice(Math.max(0,i-5),i));beats.forEach((lines,i)=>hs.deferredStory.push({round:2+i*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i*5,app.stage.name+' · 길 위에서',lines)}));}
  return [...opening,guide];}
-function help(app){return{summary:app.training?'적은 반격합니다 · 아군은 쓰러지지 않습니다':state(app.engine.b,app.stage).summary,guide:app.training?'기예를 선택하고 조준·이동·방어를 연습하세요.':app.engine.b.honroCustom?app.stage.goal:app.stage.act>=2?(app.stage.guide||app.stage.goal):(guideFor(app)||app.stage.goal)};}
-function focus(app,kind){const s=state(app.engine.b,app.stage);return s.targets.find(t=>t.kind===kind)||s.allTargets.find(t=>t.kind===kind&&!t.done)||s.allTargets.find(t=>t.kind===kind);}
-function refresh(app){if(!app.engine||app.training)return;const s=state(app.engine.b,app.stage);app.scene.missionTargets=s.targets;const el=document.getElementById('objective-text');if(el)el.textContent=s.summary;}
+function help(app){const s=app.training?{}:state(app.engine.b,app.stage);return{...s,summary:app.training?'적은 반격합니다 · 아군은 쓰러지지 않습니다':s.summary,guide:app.training?'기예를 선택하고 조준·이동·방어를 연습하세요.':app.engine.b.honroCustom?app.stage.goal:app.stage.act>=2?((G.HonroObjectiveRevision?.contentFor(app.engine.b,app.stage)||app.stage).guide||app.stage.goal):(guideFor(app)||app.stage.goal)};}
+function focus(app,kind){const s=state(app.engine.b,app.stage);return s.targets.find(t=>t.id===kind)||s.allTargets.find(t=>t.id===kind)||s.targets.find(t=>t.kind===kind)||s.allTargets.find(t=>t.kind===kind&&!t.done)||s.allTargets.find(t=>t.kind===kind);}
+function refresh(app){if(!app.engine||app.training)return;const s=state(app.engine.b,app.stage);app.scene.missionTargets=s.targets;const el=document.getElementById('objective-text');if(el){el.textContent=s.summary;el.setAttribute?.('aria-label',s.summary+(s.completionText?' · 종료 조건: '+s.completionText:''));}const end=document.getElementById('objective-end-text');if(end){end.textContent=s.completionText?'종료 · '+s.completionText:'';end.hidden=!s.completionText;}}
 function draw(scene,e){
  const targets=scene.goalFocus?[scene.goalFocus]:scene.missionTargets;
  if(!targets?.length)return;
@@ -100,5 +106,5 @@ function draw(scene,e){
  c.restore();
 }
 function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);c.restore();}
-G.HonroObjectives={interactionTarget,state,lines,entry,help,focus,refresh,draw,minimap,briefings};
+G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings};
 })(globalThis);

@@ -7,6 +7,11 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);const out=process.env.HONRO_OFFLINE_REPORT_DIR||'_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
  ['playtest-template','npm',['run','test:playtest-template']],
+ ['custom-map-return','npm',['run','test:custom-map-return']],
+ ['objective-clarity','npm',['run','test:objective-clarity']],
+ ['act3-split','npm',['run','test:act3:split']],
+ ['act3-locations','npm',['run','test:act3:locations']],
+ ['story-staging','npm',['run','test:story-staging']],
  ['character-balance','npm',['run','test:character-balance']],
  ['ui-buttons','npm',['run','test:ui-buttons']],
  ['build','npm',['run','build']],['typecheck','npm',['--prefix','game','run','typecheck']],['game-regressions','npm',['--prefix','game','test']],

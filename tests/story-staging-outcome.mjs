@@ -1,0 +1,20 @@
+// Existing outcome dialogue precedes its approved short departure. Explicit
+// won/split/route fixtures; not a 24–27 campaign completion claim.
+import assert from 'node:assert/strict';
+import {appHarness,plain,report}from'./app-regression-helpers.mjs';
+const h=await appHarness(),{g,load,reload,profileThrough,click,finish}=h,checks=[];let now=1000;
+const ID='act3-split-departure-v1',lines=[['휘겸','기록실은 담허 도사와 살피겠소.'],['설오','소단과 공방을 살피겠습니다.'],['소단','찾은 것을 나중에 맞춰 봐요.']];
+const poses=a=>Object.fromEntries(a.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.cls,{x:u.x,y:u.y}]));
+function make(){const a=load(profileThrough(23));a.launch(24);finish(a);const b=a.engine.b;b.phase='won';b.honroSplit={version:1};b.honroState.storyQueue=[];b.honroState.deferredStory=[];
+ const units=b.units.filter(u=>u.side===0&&!u.summoned),x=Math.max(...units.map(u=>u.x))+250,y=units[0].y;b.honroMarkers.push({id:'split-route-a',x,y},{id:'split-route-b',x:x+80,y});a.outcomes=0;a.outcome=()=>a.outcomes++;return a;}
+function start(a){assert(g.HonroStory.start(a,lines,{title:a.stage.name,after:'outcome'}));}
+function read(a){for(let i=0;i<20&&a.dialogue?.staging?.waitForDialogue;i++)g.HonroStory.next(a);assert(a.dialogue?.staging&&!a.dialogue.staging.waitForDialogue&&!a.dialogue.staging.complete);}
+function tick(a){g.HonroStory.tick(a,now+=50);}
+function run(a){for(let i=0;i<200&&a.dialogue;i++)tick(a);assert(!a.dialogue);assert.equal(a.outcomes,1);assert.equal(a.engine.b.honroStaging.once[ID],'done');}
+function check(name,fn){fn();checks.push(name);console.log('PASS',name);}
+let expected;
+check('Existing outro is read first, then short supported departure returns to outcome exactly once',()=>{const a=make(),before=poses(a);start(a);assert(a.dialogue.staging.waitForDialogue);assert.deepEqual(plain(a.dialogue.lines.map(l=>l.slice(0,2))),lines);assert.deepEqual(poses(a),before);g.HonroStory.next(a);assert.deepEqual(poses(a),before);read(a);assert.equal(a.outcomes,0);run(a);expected=poses(a);for(const [cls,p]of Object.entries(expected)){assert(Math.abs(p.x-before[cls].x)<=36.001);assert(Number.isFinite(p.y));}assert.notDeepEqual(expected,before);});
+check('Skipping before or during the outro and during movement produces the same departure and no double carry',()=>{for(const step of ['before','dialogue','move']){const a=make();start(a);if(step==='dialogue')g.HonroStory.next(a);if(step==='move'){read(a);for(let i=0;i<30&&a.dialogue.staging.cursor<1;i++)tick(a);tick(a);}g.HonroStory.finish(a);assert.equal(a.outcomes,1);assert.deepEqual(poses(a),expected);g.HonroStory.finish(a);assert.equal(a.outcomes,1);}});
+check('Save/reload of the post-dialogue movement keeps the end cursor and never repeats the outro',()=>{let a=make();start(a);read(a);for(let i=0;i<50&&!(a.dialogue.staging.cursor===1&&a.dialogue.staging.elapsed>=100);i++)tick(a);g.HonroStory.save(a);const d=plain(a.dialogue),p=poses(a);assert.equal(d.index,d.lines.length);a=reload();click('continue');a.outcomes=0;a.outcome=()=>a.outcomes++;assert.equal(a.dialogue.index,d.index);assert.deepEqual(plain(a.dialogue.staging),d.staging);assert.deepEqual(poses(a),p);run(a);assert.deepEqual(poses(a),expected);});
+check('Old battles, old saved dialogue payloads and battles without the approved split keep original outcomes',()=>{for(const mode of ['old-battle','no-split','saved-dialogue']){const a=make(),before=poses(a);if(mode==='old-battle')delete a.engine.b.honroStaging;if(mode==='no-split')delete a.engine.b.honroSplit;assert(g.HonroStory.start(a,lines,{title:a.stage.name,after:'outcome',...(mode==='saved-dialogue'?{index:1}:{})}));assert(!a.dialogue.staging);finish(a);assert.deepEqual(poses(a),before);assert.equal(a.outcomes,1);}});
+await report('story-staging-outcome',checks,{limits:['Synthetic won/split/route fixtures.','Actual approved 24/27 map, split carry and objective integration are verified by the integration owner.']});

@@ -85,6 +85,7 @@ export class HonroPoseVisual{
     if(charge>0&&s.chargeAt===null)s.chargeAt=this.time;if(charge<=0)s.chargeAt=null;
     let sample;
     if(u.portraitOnly){sample=this.api.sampleAnimation(this.asset,'idle',0,true);s.mode='idle';}
+    else if(u.honroScenePose){const p=u.honroScenePose;sample=this.api.sampleAnimation(this.asset,p.kind==='move'?'move':'attack',p.kind==='move'?(p.time*1.05)%1:.12+.12*Math.min(1,p.time/.45),true);if(p.kind!=='move'){const t=sample.targets;t.spirit=t.qi=t.spiritAlpha=t.qiAlpha=0;sample=this.api.solvePose(this.asset,t);}s.mode='scene';}
     else if(hitAge>=0&&hitAge<.5&&s.hitAt>s.releaseAt){sample=this.api.sampleAnimation(this.asset,'hit',hitAge);s.mode='hit';}
     else if(age>=0&&age<(1-release)*duration){
       const phase=release+age/duration;sample=this.api.sampleAnimation(this.asset,'attack',phase,true);s.mode='release';

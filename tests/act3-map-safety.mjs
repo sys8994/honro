@@ -10,7 +10,7 @@ for(const s of p.stages.slice(20).filter(s=>!selectedIds.length||selectedIds.inc
  const exit=s.markers.findLast(m=>m.type==='exit');assert.equal(s.anchors.exit.x,exit.x);assert.equal(s.anchors.exit.y,exit.y);
  rows.push({stage:s.metadata.stageId,test:'spawn-body-and-canonical-domain',passed:true,pose});
  for(const pool of b.waters){const tx=pool.x+pool.w/2;assert(pool.depth>=0&&Number.isFinite(pool.depth));
-  for(const cls of ['archer','mage','knight','occultist']){const bb=g.HonroMaps.createBattle(s,p,undefined,{origin:'campaign'}),e=new C.Engine(bb,()=>{},true),u=bb.units.find(u=>u.side===0&&u.cls===cls);bb.units=[u];bb.active=u.id;e.checkEnd=()=>false;
+  for(const cls of (s.design.act3.party||['archer','mage','knight','occultist'])){const bb=g.HonroMaps.createBattle(s,p,undefined,{origin:'campaign'}),e=new C.Engine(bb,()=>{},true),u=bb.units.find(u=>u.side===0&&u.cls===cls);bb.units=[u];bb.active=u.id;e.checkEnd=()=>false;
    // A map-boundary knockback fixture invokes the actual recovery behavior.
    // Normal water does not drown; no new water/death rule is introduced.
    Object.assign(u,{x:tx,y:s.height+90,vx:0,vy:600,fallApexY:pool.y-200});const before=u.hp;e.integrateBody(u,C.STEP);assert(!u.dead);assert(u.hp<before);assert(C.validTerrainContactPose(bb.terrain,u),`${s.id}/${cls}: recovery must choose a clear supported body pose`);

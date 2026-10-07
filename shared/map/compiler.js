@@ -46,6 +46,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  }
  b.units=st.units.map(u=>G.HonroUnits.create(u,b,profile,content));
  for(const [i,group] of st.encounters.entries())if(group.behavior)for(const id of group.unitIds){const u=b.units.find(u=>u.id===id);if(u){u.group=i+1;u.honroCluster=group.key||group.id;if(group.behavior==='aggressive'){u.awake=true;u.aggroUntil=999;}if(group.behavior==='stationary')u.fixed=true;}}
+ G.HonroSplitCampaign?.initialize(b,profile);
  if(!options.legacyBalance)G.HonroEncounters.balance(b);
  b.active=b.units.find(u=>u.side===0&&!u.summoned)?.id||b.units[0]?.id;
  b.honroActiveLimit=st.initialState?.honroActiveLimit??content.active;b.enemyLimit=b.honroActiveLimit;
@@ -56,6 +57,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  // Compile the same initial elite roster for Game, Stage View and Playtest.
  // attach() remains idempotent for saved battles and later reinforcement waves.
  if(b.honroAct2Revision>=2)for(const u of b.units)if(u.side===1)G.HonroAct2?.tuneEncounter(u,b.honroStage);
+ G.HonroStoryStaging?.prepareFresh(b);
  return b;
 }
 // Imported legacy Workshop projects are normalized once; exported data is always v3.
