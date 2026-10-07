@@ -1,0 +1,18 @@
+{
+  "bundle": "HONRO_Act3_Original_History.bundle",
+  "bytes": 10671383,
+  "sha256": "a6f6c99dc66e33cf165f31553de6d83f73e263945273923e95109a58498578eb",
+  "gitBlob": "a4c79c5410faf4a9fa47ca0f6dcde180e4567d43",
+  "prerequisite": "c0235043cc712290e672375cd0b36bbdc73f911d",
+  "tip": "ce88ec0f42a8e0738b1df452b51699b97298bee0",
+  "tipTree": "417fdeeadb00cc2660efc34475f0db90eb0685a8",
+  "postPrerequisiteCommits": 238,
+  "listedSourceCheckpointsVerified": 127,
+  "allListedCommitObjectsRestored": true,
+  "oversizedIntermediateWorkshop": {
+    "commit": "2597d76e9ef5bc9b1f6e7b1ab0bcd435286dd5cc",
+    "bytes": 25841628,
+    "sha256": "945b4dfbc1539c0fe2c7d36a49c18dbb189030eb2189d22e2e1785eadd3c3fbc"
+  },
+  "verification": "Fresh bare repository fetched only the public prerequisite, verified and imported the bundle, then checked every listed source commit and original oversized HTML."
+}
