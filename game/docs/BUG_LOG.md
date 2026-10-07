@@ -1161,3 +1161,9 @@ The final map source checkpoint `af247f3` passed the complete serial native suit
 - 범위: 최초 육신형 적이 등장하는 23장 입장 대사에서 상태를 설명한다. 21장은 피신 주민의 증언으로 지역 상황을 연결한다. 정상 구조·호송 NPC, 1·2막 대사와 오브젝트, 기존 10맵의 충돌·길·기믹·marker는 보존한다.
 - 구현: 38개 초기 적과 해당 증원을 possessedGuard/possessedArcher로 이름 짓고 HP1 비살상/중립화 경로를 제거한다. 형1·기1·혼.88의 기존 인체형 반응, 몸 크기와 공격 수치는 유지한다. 이전 미공개 개발 세이브의 비살상 상태를 위한 마이그레이션은 추가하지 않는다.
 - 검사: 이전 canonical f2e9781의 전30장/공유 library를 해시로 고정하고 38개 enemy kind 외의 변경을 거부한다. 새 회귀는 초기 적·증원 사망, XP 중복 방지, 현혹 해제 및 현혹 중 사망, 정상 NPC 보호를 검사한다. 결과와 정상 입력 진단은 `_local/reports/act3-fiends/`에 기록한다. 아래에 따로 기록하는 실행 결과 전까지 소스 단위 보존은 최종 검증을 뜻하지 않는다.
+
+### Act 3 fiend fixture scope after authorized architecture revisions
+
+The one-time whole-project fiend conversion receipt rejected a legitimate later change: shared `HonroMaps.finalize` added the missing standard terrain `detail` objects to new Act 3 maps. The same overly broad receipt would also reject the separately authorized Korean architecture and optional-roof work. The original receipt and its strict assertions are now retained as an explicit historical audit; current fiend tests use exact semantic values extracted from the original f2e9781 baseline. No current values were substituted into the fixture.
+
+The current test still freezes all complete 1–20 maps and original assets, the 38-fiend roster/teams/stats, living NPC protections, marker identities/rules, device rules, initial mission state, ordered objectives and balance. It separates those contracts from Act 3 visual/geometry/placement authoring. A source-only positive check and 18 negative drift probes passed on cd4fe94, and the original strict receipt passed against the original a1a82f9 transition campaign snapshot. No engine, Native render, browser or aggregate verification was run in this maintenance unit; the release owner runs those on the final candidate.
