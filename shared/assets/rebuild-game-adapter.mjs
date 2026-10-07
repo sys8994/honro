@@ -86,16 +86,30 @@ export class HonroPoseVisual{
     if(p.kind==='hold-bell'||p.kind==='guard')target=this.api.sampleAnimation(this.asset,'attack',p.kind==='hold-bell'?.22:.12,true).targets;
     else if(p.kind==='recoil')target=this.api.sampleAnimation(this.asset,'hit',.3,true).targets;
     else if(p.kind==='inspect'||p.kind==='kneel'||p.kind==='bow'){
-      const drop=p.kind==='kneel'?28:p.kind==='bow'?12:8;
-      target.pelvis[1]+=drop;target.frontShoulder[1]+=drop+4;target.rearShoulder[1]+=drop+4;
-      target.frontHand[1]+=drop+10;target.rearHand[1]+=drop+10;
+      // Lower the whole connected body, keeping both feet on their contacts.
+      // Moving shoulders alone stretches the torso instead of making a bow.
+      const drop=p.kind==='kneel'?92:p.kind==='bow'?14:8,lean=p.kind==='bow'?32:16;
+      const chest=[...target.thorax],hip=[...target.pelvis];
+      target.pelvis[1]+=drop;target.thorax[0]+=lean;target.thorax[1]+=drop+(p.kind==='bow'?14:6);
+      const angle=Math.atan2(target.thorax[1]-target.pelvis[1],target.thorax[0]-target.pelvis[0])-Math.atan2(chest[1]-hip[1],chest[0]-hip[0]),c=Math.cos(angle),s=Math.sin(angle);
+      for(const side of ['rear','front']){
+        target[side+'Hip'][1]+=drop;
+        for(const part of ['Shoulder','Elbow','Hand']){const key=side+part,x=target[key][0]-chest[0],y=target[key][1]-chest[1];target[key]=[target.thorax[0]+x*c-y*s,target.thorax[1]+x*s+y*c];}
+      }
+      target.head=p.kind==='bow'?24:12;
     }else if(p.kind==='point'){
       // Extend the free hand, retaining the weapon in the other hand.
       const hand=this.asset.character_id==='seol_o'?'rearHand':'frontHand',shoulder=hand==='rearHand'?'rearShoulder':'frontShoulder';
       target[hand]=[target[shoulder][0]+48,target[shoulder][1]+12];
     }
     target.spirit=target.qi=target.spiritAlpha=target.qiAlpha=target.draw=target.arrow=0;
-    return this.api.solvePose(this.asset,this.api.blendPoseTargets(idle,target,ease));
+    const sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(idle,target,ease));
+    if(['inspect','kneel','bow'].includes(p.kind)){
+      // A long robe folds above the planted feet instead of entering the floor.
+      const drop=sample.targets.pelvis[1]-idle.pelvis[1],ground=Math.max(...['rear','front'].map(side=>idle[side+'Foot'][1]));
+      for(const side of ['rear','front']){const id=side+'_cloth',part=this.by[id],m=sample.poses[id]?.matrix;if(!part||!m)continue;const scale=Math.max(.3,1-drop/(ground-part.pivot[1])),a=m[2],b=m[3];m[2]*=scale;m[3]*=scale;m[4]+=(a-m[2])*part.pivot[1];m[5]+=(b-m[3])*part.pivot[1];}
+    }
+    return sample;
   }
   pose(u,charge=0){
     const s=this.state(u),previousMode=s.mode,age=this.time-s.releaseAt,hitAge=this.time-s.hitAt,anim=this.asset.animation.animations.attack;

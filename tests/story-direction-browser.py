@@ -18,6 +18,24 @@ def setup(page,id):
 def to(page,who,text):
     page.evaluate('''([who,text])=>{const a=HonroApp;for(let i=0;i<40&&a.dialogue;i++){const l=a.dialogue.lines[a.dialogue.index];if(l?.[0]===who&&l[1].includes(text))return;HonroStory.next(a);}throw Error('missing line');}''',[who,text])
 def skip(page):page.locator('[data-action=dialogue-skip]').click()
+def pose_proof(page):
+    proof=page.evaluate('''()=>{const a=HonroApp,combat=JSON.stringify(a.engine.b),assets=JSON.stringify(HONRO_PARTY),rows=[];
+      const point=(m,p)=>[m[0]*p[0]+m[2]*p[1]+m[4],m[1]*p[0]+m[3]*p[1]+m[5]],distance=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]));
+      const cv=document.createElement('canvas');cv.id='scene-pose-proof';cv.width=1200;cv.height=720;cv.style.cssText='position:fixed;left:0;top:0;z-index:99999';document.body.append(cv);
+      const ctx=cv.getContext('2d');ctx.fillStyle='#1d292d';ctx.fillRect(0,0,1200,720);ctx.font='18px sans-serif';
+      for(const [i,name]of ['seol_o','damheo','hwigyeom','sodan'].entries()){const v=a.scene.partyVisual.visuals[name],idle=v.api.sampleAnimation(v.asset,'idle',0,true);
+        for(const [j,kind]of ['inspect','bow','kneel'].entries()){
+          for(const time of [.12,.45,1]){const sample=v.scenePose({kind,time}),m=v.api.rigMatrices(v.asset,sample.poses);
+            const seams=['front','rear'].flatMap(side=>[distance(point(m.thorax,v.by[side+'_upper_arm'].pivot),sample.guide.joints[side+'_upper_arm']),distance(point(m.pelvis,v.by[side+'_thigh'].pivot),sample.guide.joints[side+'_thigh'])]);
+            rows.push({name,kind,time,seam:Math.max(...seams),feet:Math.max(...['front','rear'].map(side=>distance(sample.guide.joints[side+'_foot'],idle.targets[side+'Foot']))),reach:Math.max(...Object.values(sample.guide.reach)),lowered:sample.targets.thorax[1]>idle.targets.thorax[1]});
+          }
+          ctx.fillStyle='#fff';ctx.fillText(name+': '+kind,20+i*300,28+j*240);ctx.save();ctx.translate(150+i*300,222+j*240);v.renderer.draw(ctx,{height:185,facing:1,sample:v.scenePose({kind,time:1})});ctx.restore();
+        }
+      }
+      return {rows,pure:combat===JSON.stringify(a.engine.b)&&assets===JSON.stringify(HONRO_PARTY)};}''')
+    check('Live rigs: lowered bodies keep connected limbs and planted feet through interpolation',all(r['seam']<3 and r['feet']<.001 and r['reach']<.001 and r['lowered'] for r in proof['rows']),proof['rows'])
+    check('Live rigs: scene poses preserve combat and authored vector assets',proof['pure'])
+    page.screenshot(path=str(OUT/'scene-pose-proof.png'));page.evaluate("document.querySelector('#scene-pose-proof').remove()")
 def suite(page,owner,label):
     setup(page,3)
     check(label+': first meeting hides Hwigyeom until his supported entrance',page.evaluate("!!HonroApp.engine.b.honroStaging.hidden['npc-hwigyeom']"))
@@ -59,7 +77,7 @@ def suite(page,owner,label):
 with sync_playwright() as p:
     browser=launch(p)
     context=browser.new_context(viewport={'width':1440,'height':900})
-    page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.goto(url('HONRO.html'));page.wait_for_function('window.HonroApp');suite(page,page,'Game')
+    page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.goto(url('HONRO.html'));page.wait_for_function('window.HonroApp');suite(page,page,'Game');pose_proof(page)
     # Mid-move storage/reload uses actual Continue and actual running frames.
     setup(page,11);to(page,'휘겸','길을 비우겠소');page.wait_for_timeout(240);page.evaluate('HonroStory.save(HonroApp)')
     saved=page.evaluate('({index:HonroApp.dialogue.index,x:HonroApp.engine.heroesAlive().find(u=>u.cls==="knight").x,origin:HonroApp.dialogue.staging.context.origins.knight.x})')
