@@ -7,6 +7,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);const out=process.env.HONRO_OFFLINE_REPORT_DIR||'_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
  ['character-balance','npm',['run','test:character-balance']],
+ ['ui-buttons','npm',['run','test:ui-buttons']],
  ['build','npm',['run','build']],['typecheck','npm',['--prefix','game','run','typecheck']],['game-regressions','npm',['--prefix','game','test']],
  ['ground-contact','npm',['run','test:ground-contact']],
  ['rescue-physics','npm',['run','test:rescue-physics']],
