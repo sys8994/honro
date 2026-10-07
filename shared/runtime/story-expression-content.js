@@ -19,4 +19,14 @@ for(const n of [1,2,3])S.register({id:`act2-send-${n}-gesture-v1`,stage:19,onSto
  {type:'look',actor:'occultist',at:{marker:`send-${n}`},visualOnly:true,pose:n===3?'lower-hands':'open-palms',duration:700,props:[{kind:n===1?'hammer':'departing-light',at:{marker:`send-${n}`}}],caption:n===3?'소단이 천천히 손을 내린다.':'소단이 붙들던 손을 편다.'},
  {type:'dialogue'}
 ]});
+S.register({id:'act3-records-align-v1',stage:30,onStory:'act3-30-transport-map',title:'세 기록을 맞추다',steps:[
+ {type:'look',at:{marker:'transport-map'},duration:400,caption:'세 기록을 펼쳐 둔 자리로 시선이 모인다.'},
+ {type:'look',actor:'$actor',at:{marker:'transport-map'},visualOnly:true,pose:'read-record',duration:1100,props:[{kind:'records',at:{marker:'transport-map'}}],caption:'흩어 놓은 기록을 한 장씩 포개어 본다.'},
+ {type:'dialogue'}
+]});
+S.register({id:'act3-old-road-regard-v1',stage:30,on:'outcome',position:'after',title:'남은 길을 바라보다',steps:[
+ {type:'look',at:{marker:'old-road'},duration:400,caption:'일행이 모인 자리 너머로 옛길이 이어진다.'},
+ {type:'look',actors:['archer','mage','knight','occultist'],at:{marker:'old-road'},facing:1,visualOnly:true,pose:'regard',duration:1100,caption:'네 사람은 기록을 챙긴 채 같은 방향을 바라본다.'},
+ {type:'dialogue'}
+]});
 })(globalThis);
