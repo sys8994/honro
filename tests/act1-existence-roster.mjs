@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
+import {beforeCaveBatRevision} from './act2-cave-bat-delta-helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
@@ -11,7 +12,7 @@ const baseline=JSON.parse(await readFile('tests/fixtures/act1-roster-before.json
 // Raw canonical JSON and bundled Game/Workshop project use the same idempotent authoring.
 assert.equal(hash(g.HonroAct1Roster.author(plain(project))),hash(project));
 assert.equal(hash(g.HonroAct1Roster.author(plain(project)).stages.slice(10)),hash(project.stages.slice(10)),'All later acts are untouched, including future production maps');
-const historical=beforePlatformPassages(beforeObjectiveRevision(project,{stages:[]}).project);
+const historical=beforeCaveBatRevision(beforePlatformPassages(beforeObjectiveRevision(project,{stages:[]}).project));
 assert.equal(hash(historical.stages.slice(10,20)),baseline.laterActsHash,'Act 2 source outside the exact approved objective revision is unchanged');
 const original=beforeExistenceRoster(historical);
 for(const {id,hash:expected} of baseline.stageHashes)assert.equal(hash(original.stages[id-1]),expected,'Only seven explicitly reviewed units change: '+id);
