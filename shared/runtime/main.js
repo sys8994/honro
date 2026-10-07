@@ -470,7 +470,7 @@
             const heroes = G.HonroAct3.active(b)?G.HonroAct3.heroes(b):b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
             const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
             const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
-            const act2Failure=G.HonroSplitCampaign.failure(b)||G.HonroAct2.failure(b)||G.HonroAct3.failure(b);
+            const act2Failure=G.HonroSplitCampaign.failure(b)||G.HonroAct2.failure(b)||G.HonroAct3.failure(b)||G.HonroObjectives.failure(b,this.stage);
             if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);

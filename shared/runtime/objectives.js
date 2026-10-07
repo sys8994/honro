@@ -43,6 +43,12 @@ function rawState(b,st){
  if(authored?.allTargets.length){complete=complete&&authored.complete;summary+=' · '+authored.summary;}
  return{complete,objectiveReady,minimumRound,settleRounds,summary,targets:[...all.filter(t=>kinds.includes(t.kind)&&!t.done),...(authored?.targets||[])],allTargets:[...all,...(authored?.allTargets||[])]};
 }
+function failure(b,st){
+ if(!b||b.honroCustom||st?.id!==5)return null;
+ const needsRitual=b.terrain.some(t=>t.id==='cliff-cleat'&&!t.broken)&&b.honroMarkers?.some(m=>m.action==='ritual');
+ if(needsRitual&&!b.units.some(u=>u.side===0&&u.cls==='mage'&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0))return '담허가 쓰러져 받이진을 이어갈 수 없다. 이 장을 다시 시작하자.';
+ return null;
+}
 function state(b,st){const result=rawState(b,st);return G.HonroObjectiveGuide?.enhance(b,st,result)||result;}
 const briefings={
  1:[],
@@ -100,5 +106,5 @@ function draw(scene,e){
  c.restore();
 }
 function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);c.restore();}
-G.HonroObjectives={interactionTarget,state,lines,entry,help,focus,refresh,draw,minimap,briefings};
+G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings};
 })(globalThis);
