@@ -2,12 +2,13 @@
 // movement, jump, skills, items, interaction and wait inputs are used. Dialogue
 // pages are explicitly advanced. No combat HP, position, objective or inventory
 // state is edited. Entry saves are declared fixtures, not previous-act clears.
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g,C,load,profileThrough}=h,A=g.HonroAct3,ids=process.argv.slice(2).map(Number),rows=[];if(!ids.length)ids.push(...Array.from({length:10},(_,i)=>21+i));
 const out='_local/reports/act3-normal';await mkdir(out,{recursive:true});
-const sourceFiles=['shared/runtime/act3-content.js','shared/runtime/act3-objectives.js','shared/runtime/main.js','shared/runtime/progression.js','shared/engine/src/engine.ts','shared/engine/src/physics.ts','game/config/balance.json'];
+const sourceFiles=['shared/build.mjs','game/config/balance.json','tests/act3-playthrough.mjs','tests/app-regression-helpers.mjs'];
+for(const dir of ['shared/runtime','shared/engine/src','shared/map'])for(const file of await readdir(dir))if(/\.(js|ts)$/.test(file))sourceFiles.push(dir+'/'+file);sourceFiles.sort();
 const source=Object.fromEntries(await Promise.all(sourceFiles.map(async f=>[f,createHash('sha256').update(await readFile(f)).digest('hex')])));
 for(const id of ids){const profile=profileThrough(id-1),st=g.HONRO_CONTENT.stages[id-1],map=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);if(!map)throw Error('Unimplemented map '+id);
  for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgression.budget(id).start;C.autoTrain(profile.heroes[cls],cls);C.sanitizeLoadout(profile,cls);}
