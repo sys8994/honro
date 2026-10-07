@@ -100,7 +100,9 @@ export async function build30(g,p){const s=stage(g,30,'남겨진 길',7400,3400,
 function foundationY(s,x){const t=s.terrains.find(t=>t.id==='a3-foundation');if(!t)return s.height-400;const ps=t.points.slice(0,-2).map(p=>[p.x,p.y]);return yAt(ps,x);}
 function rearArt(p,s,id,svg,bounds,material='wood'){put(p,s,asset(`a3-${s.metadata.stageId}:${id}`,id,svg,[],bounds,material),id,0,0);s.elements.unshift(s.elements.pop());}
 async function addStructuralScene(g,p,s){
- const id=s.metadata.stageId;if(id<24)return;
+ const id=s.metadata.stageId;
+ if(id===23){const ts=g.HonroMaps.compile(s,p).terrain;let piers='';for(const name of ['office-upper','gate-upper']){const e=s.elements.find(e=>e.id===name);for(const offset of [-610,-219,220,610]){const x=e.x+offset,ys=ts.filter(t=>t.honroElementId!==e.id).flatMap(t=>g.HONRO_CORE.terrainSurfaces(t,x)).filter(q=>q.y>e.y+30&&Math.abs(q.slope)<1.35).map(q=>q.y).sort((a,b)=>a-b),foot=ys[0];if(Number.isFinite(foot))piers+=R(x-10,e.y,20,foot-e.y,'#736d50')+R(x-6,e.y,4,foot-e.y,'#ac9e73')+R(x-18,foot-12,36,12,'#8b9785');}}rearArt(p,s,'canal-upper-gallery-rear-piers',piers,[2200,1700,3900,1100]);return;}
+ if(id<24)return;
  const q=s.design.act3.primaryContour||[],ground=x=>foundationY(s,x),pieces=[];
  // The route is the front collision plane. These plinths and piers are the
  // explicit rear structural plane, terminating at the canonical ground below.
