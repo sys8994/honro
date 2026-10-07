@@ -79,7 +79,7 @@ const chapters=[
 ];
 const roster=['archer','mage','knight','occultist'];
 for(const [i,d] of chapters.entries()){
- const id=21+i,p=G.HONRO_BALANCE.stages[id-1],st={...d,id,act:3,actStage:i+1,level:Math.floor(p.entryLevel),template:1,objective:'act3',requires:[id-1],active:3,enemies:p.initialEnemies,w:9000,h:4200,playableRoster:roster,map:[7000+i*260,300+(i%3)*260],narration:[d.narration],narrationArt:'road',storySummary:d.summary};
+ const id=21+i,p=G.HONRO_BALANCE.stages[id-1],st={...d,id,act:3,actStage:i+1,level:Math.floor(p.entryLevel),template:1,objective:'act3',requires:[id-1],active:p.activeEnemies||3,enemies:p.initialEnemies,w:9000,h:4200,playableRoster:roster,map:[7000+i*260,300+(i%3)*260],narration:[d.narration],narrationArt:'road',storySummary:d.summary};
  st.story=scene('act3-entry-'+id,`3-${i+1} · ${d.name}`,d.story);st.outro=scene('act3-outro-'+id,d.name,d.outro);
  st.failure=[['휘겸','길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오.']];H.stages.push(st);
 }

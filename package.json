@@ -77,7 +77,8 @@
     "test:act3:encounters": "node tests/act3-encounters.mjs && node tests/act3-encounter-shots.mjs",
     "test:objective-clarity": "node tests/objective-clarity.mjs && node tests/objective-revision.mjs && node tests/objective-save-compat.mjs && node tests/battle-help.mjs",
     "test:act3:locations": "node tests/act3-location-contracts.mjs && node tests/act3-location-traversal.mjs 23 24 25 26 27 28 29 30 && node tests/act3-location-shots.mjs && node tests/act3-location-fire-sites.mjs",
-    "test:act3:split": "node tests/act3-split-campaign.mjs"
+    "test:act3:split": "node tests/act3-split-campaign.mjs",
+    "test:objective-split-story": "node tests/objective-split-story.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

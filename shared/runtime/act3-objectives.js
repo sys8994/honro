@@ -7,7 +7,7 @@ const alive=u=>!!u&&!u.dead&&u.hp>0;
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
 function memory(b){b.honroState??={flags:{},collected:[]};const a=b.honroState.act3??={version:1};a.done??={};a.holds??={};a.events??={};a.checkpoints??=[];a.escorts??={};return a;}
 const sameFloor=(u,p,r=260)=>!!p&&Math.abs(u.y-p.y)<=150&&Math.hypot(u.x-p.x,(u.y-p.y)*.75)<=r;
-function initialize(b){if(!active(b))return;memory(b);b.honroAct3Steps??=structuredClone(G.HonroObjectiveRevision?.storedSteps(b,3)||H.stages[b.honroStage-1].steps);
+function initialize(b){if(!active(b))return;G.HonroObjectiveRevision?.registerScenes();memory(b);b.honroAct3Steps??=structuredClone(G.HonroObjectiveRevision?.storedSteps(b,3)||H.stages[b.honroStage-1].steps);
  for(const u of b.units)if(u.honroProtected)u.honroCivilian=true;
 }
 function sourceIssue(b){const list=steps(b);if(!list.length)return'이 장의 목표 자료가 준비되지 않았습니다.';
@@ -46,7 +46,7 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&c
 }
 function openGate(b,id){if(!id)return;const t=b.terrain.find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}
 function completeStep(app,s){const b=app.engine.b,a=memory(b);if(a.done[s.id])return;a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round,enemyEnd:b.teamEnds?.[1]||0});const m=marker(b,s.id);if(m)m.collected=true;openGate(b,s.opens);
- const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length)app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines));app.event(s.label+' · 완료');app.dirty=true;
+ const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines));app.event(s.label+' · 완료');app.dirty=true;
 }
 function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=e.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=s.target&&e.unit(s.target);
  if(s.kind==='rescue'){u.honroResolved=true;u.shield=Math.max(u.shield||0,Math.round(u.maxHp*.3));}
