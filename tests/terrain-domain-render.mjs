@@ -4,9 +4,11 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {guidanceRuntime,canvas} from './act2-guidance-helpers.mjs';
 const g=await guidanceRuntime(),out='_local/reports/terrain-domain';await mkdir(out,{recursive:true});const results=[];
 const dispose=(s,cv)=>{for(const t of s._domainTiles?.tiles.values()||[])t.canvas.width=1;s._domainTiles?.tiles.clear();s._staticWorldCache=null;cv.width=1;};
+// The uniform half-alpha fixture replaces terrain paint and its edge cue together.
+// Production cache/purity cases below keep the real terrain/readability hooks active.
 for(const [width,height]of [[390,844],[1440,900]])for(const scale of [.05,.057352941176,.2193,.46,1.01]){
  const cv=canvas(width,height),scene=new g.HonroScene(cv),t={id:'one-mass',x:-6000,y:-24000,w:16000,h:50000,vertices:[{x:-6000,y:-24000},{x:10000,y:-24000},{x:10000,y:26000},{x:-6000,y:26000}]},b={width:4000,height:2000,terrain:[t],honroWorldTerrain:[t],honroTerrainDomainVersion:1,honroPlayBounds:{left:0,top:0,right:4000,bottom:2000},honroTerrainBounds:{left:-6000,top:-24000,right:10000,bottom:26000},honroLandmarks:[],sceneVersion:1};
- Object.assign(scene,{x:123.456,y:1789.123,scale,battle:b});scene.terrain=c=>{c.fillStyle='#20406080';c.fillRect(-6000,-24000,16000,50000);};scene.surfaceZones=()=>{};const c=cv.getContext('2d');c.translate(width/2,height/2);c.scale(scale,scale);c.translate(-scene.x,-scene.y);scene._drawStaticWorldCached(c,b,width,height);const image=c.getImageData(0,0,width,height).data;
+ Object.assign(scene,{x:123.456,y:1789.123,scale,battle:b});scene.terrain=c=>{c.fillStyle='#20406080';c.fillRect(-6000,-24000,16000,50000);};scene.surfaceZones=()=>{};scene.terrainReadability=()=>{};const c=cv.getContext('2d');c.translate(width/2,height/2);c.scale(scale,scale);c.translate(-scene.x,-scene.y);scene._drawStaticWorldCached(c,b,width,height);const image=c.getImageData(0,0,width,height).data;
  for(let y=0;y<height;y++)for(let x=0;x<width;x++){const wx=scene.x+(x-width/2)/scale;if(wx< -5980||wx>9980)continue;const i=(y*width+x)*4;assert.equal(image[i+3],128,`single alpha at ${width}/${scale}/${x}/${y}`);}
  results.push({kind:'fractional-tile-border',width,height,scale,passed:true});dispose(scene,cv);
 }
