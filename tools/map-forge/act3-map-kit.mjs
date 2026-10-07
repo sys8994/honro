@@ -17,30 +17,33 @@ export function pool(s,id,x1,x2,y,bottom){s.materials.push({id,kind:'water-pool'
 export function deck(id,w,h=36,{rail=true,stone=false}={}){const body=[[0,0],[w,0],[w,h],[0,h]],parts=[P(body,stone?'#718081':'#766649'),R(0,0,w,7,stone?'#b1b5a2':'#b7a371')];for(let x=20;x<w;x+=80)parts.push(line([[x,8],[x,h]],stone?'#4b6265':'#4e5141',2));if(rail){parts.push(R(0,-65,w,8,'#685e48'));for(let x=0;x<=w;x+=135)parts.push(R(x,-78,10,78,'#97886a'),R(x-3,-80,16,6,'#c1b088'));}return asset(id,stone?'돌다리·성벽길':'회랑·누마루',parts.join(''),[body],[-5,-88,w+20,h+95],stone?'stone':'wood');}
 export function stairs(id,w,rise,{left=false,thin=false}={}){const n=Math.ceil(rise/14),p=[[0,0]],parts=[];for(let i=0;i<n;i++){const x=(i+1)*w/n,y=-(i+1)*rise/n;p.push([x-w/n,y],[x,y]);parts.push(line([[x-w/n,y+5],[x,y+5]],'#aab29a',2));}if(thin){p.push([w,-rise+34],[0,34]);}else p.push([w,45],[0,45]);let all=P(p,'#627676')+parts.join('');if(left){const flip=p.map(([x,y])=>[w-x,y]);all=P(flip,'#627676')+parts.map(v=>`<g transform="matrix(-1 0 0 1 ${w} 0)">${v}</g>`).join('');return asset(id,'반대편 석계단',all,[flip],[0,-rise,w,rise+50],'stone');}return asset(id,'석계단',all,[p],[0,-rise,w,rise+50],'stone');}
 export function ramp(id,w,rise,{left=false,thin=false}={}){let poly=[[0,0],[w,-rise],[w,-rise+(thin?36:rise+45)],[0,thin?36:45]];if(left)poly=poly.map(([x,y])=>[w-x,y]);const parts=[P(poly,'#627676'),line(left?[[w,0],[0,-rise]]:[[0,0],[w,-rise]],'#aab29a',7)];for(let x=40;x<w;x+=80){const y=left?-rise+x*rise/w:-x*rise/w;parts.push(line([[x,y+8],[x,y+30]],'#465f63',2));}return asset(id,'하역 경사로',parts.join(''),[poly],[0,-rise,w,rise+50],'stone');}
-export function hall(id,w,h,{roof=110,floors=1,wall='#a5a98f',timber='#655442',style='hall',cutaway=true,floorBreaks=[]}={}){
+export function hall(id,w,h,{roof=110,floors=1,wall='#a5a98f',timber='#655442',style='hall',cutaway=true,floorBreaks=[],facade='auto'}={}){
  const l=-w/2,r=w/2,eave=-h,peak=eave-roof,parts=[],solids=[];
  const roofPoly=[[l-42,eave-6],[l-8,eave-30],[-w*.2,peak+12],[0,peak],[w*.2,peak+12],[r+8,eave-30],[r+42,eave-6],[r+30,eave+21],[l-30,eave+21]];
  // Geometry is intentionally unchanged. All material, window and joinery planes
  // below are rear artwork; only the original floor ranges and roof are solids.
  const burnt=style==='burnt',granary=style==='granary',market=style==='market';
+ const openBay=/rope|loading|shelter/.test(facade),closedStart=facade.includes('east')?r-w*.43:l,closedEnd=closedStart+w*.43;
  const shade=burnt?'#384b46':granary?'#65715e':market?'#6f7866':'#697d70';
  const plaster=burnt?'#797a61':wall, paper=market?'#c3b48e':'#b8b89b';
  const batch=(fill,ds)=>ds.length?`<path fill="${fill}" d="${ds.join(' ')}"/>`:'',box=(x,y,ww,hh)=>`M${x} ${y}h${ww}v${hh}h${-ww}Z`;
  const gradient=(name,y1,y2,top,bottom)=>`<linearGradient id="${name}" x1="${l}" y1="${y1}" x2="${r}" y2="${y2}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${top}"/><stop offset="1" stop-color="${bottom}"/></linearGradient>`;
  parts.push('<defs>'+gradient('hall-plaster',eave,0,plaster,shade)+gradient('hall-roof',peak,eave,burnt?'#6f7970':granary?'#667d79':'#7b8e85',burnt?'#273b3d':'#2b4650')+'</defs>');
- parts.push(R(l,eave+20,w,h-20,'url(#hall-plaster)'),P([[l+w*.7,eave+34],[r-16,eave+34],[r-16,-1],[l+w*.78,-1]],shade));
+ if(openBay)parts.push(R(closedStart,eave+20,w*.43,h-20,'url(#hall-plaster)'),R(l,eave+20,w,70,shade));
+ else parts.push(R(l,eave+20,w,h-20,'url(#hall-plaster)'),P([[l+w*.7,eave+34],[r-16,eave+34],[r-16,-1],[l+w*.78,-1]],shade));
  // Large limewash planes, side returns and an eave shadow replace a flat green wall.
  parts.push(P([[l+18,eave+52],[l+w*.52,eave+48],[l+w*.43,eave+86],[l+w*.24,eave+80],[l+18,eave+108]],burnt?'#68715c':plaster),R(l+16,eave+34,14,h-34,'#445d51'),R(r-30,eave+34,14,h-34,'#3e554d'));
  const recess=[],sheets=[],shutters=[],reveals=[],borders=[],muntins=[],paperLight=[],sillShadow=[],wallBands=[];
- const humanDoorX=w>=600?-54:Math.round(w*.18)-42;
+ const humanDoorX=openBay?closedStart+30:w>=600?-54:Math.round(w*.18)-42;
  for(let f=0;f<floors;f++){
   const fy=-f*h/floors,hh=h/floors;
   // Rear-wall tiers use flush timber ties, never projecting/bright fake floors.
   // The lower windows sit at human eye height rather than following a high eave.
   const tierRows=hh>380?[{wy:fy-hh+69,wh:Math.min(104,hh*.24),attic:true},{wy:fy-190,wh:126,attic:false}]:[{wy:fy-Math.min(190,hh-65),wh:Math.min(126,hh-110),attic:false}];
-  if(hh>380){const y=fy-Math.min(267,hh*.51);wallBands.push(box(l+19,y,w-38,11));parts.push(R(l+25,y+11,w-50,4,shade));}
+  if(hh>380&&!openBay){const y=fy-Math.min(267,hh*.51);wallBands.push(box(l+19,y,w-38,11));parts.push(R(l+25,y+11,w-50,4,shade));}
   for(const row of tierRows)for(let x=l+34,j=0;x<r-70;x+=112,j++){
    const {wy,attic}=row,wh=Math.max(35,granary&&attic?66:row.wh),ww=granary&&attic?78:84;
+   if(openBay&&(x<closedStart+12||x+ww>closedEnd-10))continue;
    if(!attic&&f===0&&x+ww>humanDoorX-8&&x<humanDoorX+104)continue;
    const closed=!granary&&((j+f+(market?1:0))%4===2);
    recess.push(box(x-6,wy-7,ww+12,wh+17));borders.push(box(x-3,wy-4,ww+6,wh+8));
@@ -67,15 +70,33 @@ export function hall(id,w,h,{roof=110,floors=1,wall='#a5a98f',timber='#655442',s
  const dx=humanDoorX;
  parts.push(R(dx-10,-195,116,195,'#4c513c'),R(dx,-184,96,182,'#354b40'),R(dx+7,-175,39,169,burnt?'#514a34':'#876b43'),R(dx+50,-175,39,169,burnt?'#454934':'#725f3d'),R(dx-13,-198,122,10,'#9f8b60'),R(dx+45,-172,5,166,'#3e4130'),R(dx+35,-90,7,19,'#b5a173'),R(dx+54,-90,7,19,'#b5a173'));
  if(!cutaway){const body=[[l,eave+22],[r,eave+22],[r,0],[l,0]];solids.unshift(body);}
- if(granary){const boards=[],edges=[],dark=[],covers=[];for(let x=l+32,j=0;x<r-50;x+=82,j++){if(x+64>dx-12&&x<dx+108)continue;boards.push(box(x,-132,64,113));edges.push(box(x+3,-124,5,98));dark.push(box(x+58,-127,6,108));covers.push(box(x,-132,64,9));}parts.push(batch('#7e6a45',boards),batch('#a38b58',edges),batch('#4a4732',dark),batch('#c0a772',covers));}
+ if(granary&&!openBay){const boards=[],edges=[],dark=[],covers=[];for(let x=l+32,j=0;x<r-50;x+=82,j++){if(x+64>dx-12&&x<dx+108)continue;boards.push(box(x,-132,64,113));edges.push(box(x+3,-124,5,98));dark.push(box(x+58,-127,6,108));covers.push(box(x,-132,64,9));}parts.push(batch('#7e6a45',boards),batch('#a38b58',edges),batch('#4a4732',dark),batch('#c0a772',covers));}
  if(market){const light=[],dull=[],under=[];for(let x=l+35,j=0;x<r-80;x+=110,j++){(j%2?dull:light).push(pathD([[x,-185],[x+95,-185],[x+122,-113],[x-20,-113]]));under.push(box(x-14,-112,129,14));}parts.push(batch('#708e81',light),batch('#a28b68',dull),batch('#8c805d',under),R(l+33,-106,w-96,9,'#495a43'));}
+ // Large occupation-specific forms sit behind the actors and never add solids.
+ if(facade==='river-inn'||facade==='ticket-house'){
+  const ax=facade==='river-inn'?l+26:l+18,aw=Math.min(w*.45,238);
+  parts.push(P([[ax+8,-221],[ax+aw-18,-221],[ax+aw+9,-169],[ax-9,-169]],facade==='river-inn'?'#93774e':'#65816f'),R(ax-9,-169,aw+18,10,'#b9a477'),R(ax,-159,7,157,timber),R(ax+aw-9,-159,7,157,timber),R(ax+17,-62,aw-30,9,'#8c7049'),R(ax+25,-53,10,51,'#5a5035'),R(ax+aw-34,-53,10,51,'#5a5035'));
+  if(facade==='river-inn')parts.push(R(r-53,-147,26,39,'#504e35'),R(r-49,-143,18,30,'#a29465'));
+ }
+ if(openBay){
+  const bayX=facade.includes('east')?l+37:closedEnd+17,bayW=Math.max(82,w*.49-29);
+  parts.push(R(bayX,eave+87,bayW,10,'#675a3e'),P([[bayX,eave+97],[bayX+12,eave+97],[bayX+47,eave+130],[bayX+40,eave+141]],'#685d40'));
+  if(facade.includes('rope'))parts.push(`<path fill="none" stroke="#9b9470" stroke-width="9" d="M${bayX+39} ${eave+98}v95q-39 24-15 67q21 30 44 0q18-30-8-53q-29-13-35 15q-2 16 18 19"/>`,R(bayX+bayW-83,-57,63,55,'#726342'),R(bayX+bayW-88,-62,72,9,'#a08b5e'));
+  else parts.push(R(bayX+15,-92,84,89,'#776444'),R(bayX+10,-99,96,10,'#b69d6b'),R(bayX+79,-88,13,85,'#4b5038'),R(bayX+112,-54,61,51,'#8d7d56'),R(bayX+107,-61,72,9,'#b0a072'));
+ }
+ if(facade==='night-warehouse'){
+  const bx=l+26,bw=Math.max(100,w*.32);parts.push(R(bx,-243,bw,219,'#4b5140'),R(bx+9,-230,bw-18,198,'#816d45'),R(bx+9,-226,bw-18,13,'#a28a58'),R(bx+9,-112,bw-18,10,'#a28a58'),R(bx+Math.round(bw*.55),-228,9,195,'#50503a'),R(r-105,-87,72,84,'#73684a'),R(r-110,-94,82,10,'#a5976a'));
+ }
+ if(facade==='archive-wall'){
+  const bx=l+31,bw=Math.min(123,w*.25);parts.push(R(bx,-149,bw,140,'#3c5145'),R(bx+8,-141,bw-16,127,'#6a684a'),R(bx+9,-91,bw-18,8,'#aaa076'),R(bx+9,-40,bw-18,8,'#aaa076'),R(bx+15,-132,bw-32,32,'#b2a276'),R(bx+15,-80,bw-45,30,'#8c9170'),R(bx+Math.floor(bw*.49),-132,6,32,'#536a51'));
+ }
  if(burnt){parts.push(P([[l+20,eave+20],[l+w*.22,eave+70],[l+w*.32,-14],[l+20,-14]],'#394b49'));for(const x of [l+22,l+w*.38,r-38])parts.push(P([[x,eave+30],[x+19,eave-70],[x+31,0],[x+7,0]],'#343f3b'));}
  parts.push(P(roofPoly,'url(#hall-roof)','#1c323a',4),P([[l-23,eave-8],[-w*.2,peak+17],[0,peak+7],[w*.18,peak+20],[r+25,eave-8],[r-13,eave+2],[0,peak+32],[l+14,eave+3]],burnt?'#526160':'#5f7978'));
  const ribs=[];for(let x=l+20;x<r;x+=54){const y=peak+29+Math.abs(x)/(w/2)*(roof-24);ribs.push(`M${x} ${y}L${x+(x<0?-20:20)} ${eave+5}`);}
  parts.push(`<path fill="none" stroke="#71877d" stroke-width="2" d="${ribs.join(' ')}"/>`);
  const courses=[];for(const t of [.48,.75]){const y=peak+roof*t,hw=w*(.17+t*.28);courses.push(`M${-hw} ${y}Q0 ${y+5} ${hw} ${y}l5 5Q0 ${y+10} ${-hw-5} ${y+5}Z`);}parts.push(batch('#2c4650',courses));
  parts.push(line([[l-34,eave+10],[r+34,eave+10]],'#9aab94',4),R(l-10,eave+23,w+20,11,'#385c4d'),R(l+8,eave+34,w-16,8,'#283f35'));solids.push(roofPoly);
- const a=asset(id,'실내가 열린 '+style,parts.join(''),solids,[l-50,peak-12,w+100,h+roof+45]);a.params.rearPlanes=['wall','windows','posts'];a.params.floorHeight=h/floors;a.params.style=style;return a;
+ const a=asset(id,'실내가 열린 '+style,parts.join(''),solids,[l-50,peak-12,w+100,h+roof+45]);a.params.rearPlanes=['wall','windows','posts'];a.params.floorHeight=h/floors;a.params.style=style;a.params.facade=facade;return a;
 }
 export async function svgAsset(name){const dir=path.join(ROOT,'shared/assets/environment/act3-architecture');try{const m=JSON.parse(await readFile(path.join(dir,'production-manifest.json'),'utf8')),row=m.assets.find(a=>a.file===name);if(!row)return null;const v=compileSVG(await readFile(path.join(dir,name),'utf8')),a=asset(row.id,row.name,'',(row.suggestedSolids||[]).map(q=>q.points),v.viewBox);a.vector=v;a.reference=row.reference;a.params.collisionContract={file:name,solids:row.suggestedSolids};return a;}catch{return null;}}
 export function marker(s,id,x,y,label,{action=false,requiredClass,target,type='act3'}={}){const m={id,type,x,y,label};if(action)m.action='act3';if(requiredClass)m.requiredClass=requiredClass;if(target)m.target=target;s.markers.push(m);return m;}
