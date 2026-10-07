@@ -5,7 +5,7 @@ import {appHarness,plain,report}from'./app-regression-helpers.mjs';
 const h=await appHarness(),{g,load,reload,profileThrough,click,finish}=h,checks=[];let now=1000;
 const ID='act3-split-departure-v1',lines=[['휘겸','기록실은 담허 도사와 살피겠소.'],['설오','소단과 공방을 살피겠습니다.'],['소단','찾은 것을 나중에 맞춰 봐요.']];
 const poses=a=>Object.fromEntries(a.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.cls,{x:u.x,y:u.y}]));
-function make(){const a=load(profileThrough(23));a.launch(24);finish(a);const b=a.engine.b;b.phase='won';b.honroSplit={version:1};b.honroState.storyQueue=[];b.honroState.deferredStory=[];
+function make(){const a=load(profileThrough(23));a.launch(24);finish(a);const b=a.engine.b;b.phase='won';assert.equal(b.honroSplit?.version,1);b.honroState.storyQueue=[];b.honroState.deferredStory=[];
  const units=b.units.filter(u=>u.side===0&&!u.summoned),x=Math.max(...units.map(u=>u.x))+250,y=units[0].y;b.honroMarkers.push({id:'split-route-a',x,y},{id:'split-route-b',x:x+80,y});a.outcomes=0;a.outcome=()=>a.outcomes++;return a;}
 function start(a){assert(g.HonroStory.start(a,lines,{title:a.stage.name,after:'outcome'}));}
 function read(a){for(let i=0;i<20&&a.dialogue?.staging?.waitForDialogue;i++)g.HonroStory.next(a);assert(a.dialogue?.staging&&!a.dialogue.staging.waitForDialogue&&!a.dialogue.staging.complete);}

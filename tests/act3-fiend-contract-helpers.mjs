@@ -7,6 +7,22 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const encounterRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-encounter-contract.json',import.meta.url),'utf8'));
 const locationRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-location-semantic-contract.json',import.meta.url),'utf8'));
+const refinementRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-refinement-delta.json',import.meta.url),'utf8'));
+// Reverse only this request's explicit additions. The older contracts still
+// reject changes to mission rules, unit identity, protection or combat tuning.
+function beforeRefinementRevision(project,archetypes){
+ const out=plain(project);
+ for(const reviewed of refinementRevision.rows){
+  const map=out.stages.find(s=>s.metadata.stageId===reviewed.id);
+  assert.equal(map.initialState.honroAct3ResponseRevision,1,'Finite response revision '+reviewed.id);
+  assert.equal(map.initialState.honroAct3SceneryRevision,1,'Authored scenery revision '+reviewed.id);
+  assert.deepEqual(map.events,reviewed.afterEvents,'Exact reviewed response triggers, entries and counts '+reviewed.id);
+  map.events=plain(reviewed.beforeEvents);delete map.initialState.honroAct3ResponseRevision;delete map.initialState.honroAct3SceneryRevision;
+  for(const change of reviewed.kinds){const u=map.units.find(u=>u.id===change.id);assert(u,'Reviewed species identity '+change.id);assert.equal(u.kind,change.after,'Reviewed species '+change.id);u.kind=change.before;}
+ }
+ for(const [id,definition]of Object.entries(refinementRevision.newArchetypes))assert.deepEqual(plain(archetypes[id]),definition,'Reviewed new fiend body and attacks '+id);
+ return out;
+}
 function beforeEncounterRevision(actual,saved){
  if(actual.initialState.honroAct3EncounterRevision!==1)return actual;
  const reviewed=encounterRevision.rows.find(q=>q.id===actual.metadata.stageId);assert(reviewed,'Reviewed encounter revision');
@@ -41,6 +57,7 @@ export function missionContract(map,stage,balance){
 }
 export function archetypeContract(archetypes){return Object.fromEntries(Object.entries(archetypes).filter(([id])=>Object.hasOwn(kindRenames,id)||Object.values(kindRenames).includes(id)).map(([id,a])=>[kind(id),without(a,['name','intent','act3Human','act3Fiend'])]));}
 export function assertFiendContract(project,content,balance,archetypes,baseline){
+ project=beforeRefinementRevision(project,archetypes);
  ({project,content}=beforeObjectiveRevision(project,content));
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');
@@ -94,4 +111,7 @@ export function assertFiendContractScope(project,content,balance,archetypes,base
  rejects('class requirement',(_,r)=>r.stages[26].steps[0].requiredClass='mage');
  rejects('growth/combat budget',(_,r,v)=>v.stages[22].targetHits++);
  rejects('archetype attack',(_,r,v,defs)=>defs.possessedGuard.skills=['S01']);
+ rejects('new species attack',(_,r,v,defs)=>defs.archiveFiend.skills=['S01']);
+ rejects('response population',q=>q.stages[22].events.find(e=>e.id.startsWith('act3-response-')).action.n++);
+ rejects('response prerequisite',q=>q.stages[22].events.find(e=>e.id.startsWith('act3-response-')).when.objectiveDone='missing');
 }

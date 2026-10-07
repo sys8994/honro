@@ -1,0 +1,1051 @@
+{
+  "version": 1,
+  "sourceCommit": "63149aa",
+  "purpose": "Reviewed October 7 Act3 refinement: exactly 29 finite entries and the archive/kiln species substitutions. Other mission, roster identity, protection, stats and legacy art contracts remain frozen.",
+  "rows": [
+    {
+      "id": 21,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-21-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "gate-resident"
+          },
+          "warning": "성문 동쪽에서 군화 소리가 들립니다.",
+          "text": "증원 진입 · 성문 동쪽에서 군화 소리가 들립니다.",
+          "entry": {
+            "x": 3550,
+            "y": 2608.5
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 3,
+            "x": 3550,
+            "y": 2608.5,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-21-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-21-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "refuge-hold"
+          },
+          "warning": "지나온 성벽에서 활시위가 울립니다.",
+          "text": "증원 진입 · 지나온 성벽에서 활시위가 울립니다.",
+          "entry": {
+            "x": 1990,
+            "y": 2500
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 1990,
+            "y": 2500,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-21-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        }
+      ],
+      "kinds": []
+    },
+    {
+      "id": 22,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-22-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "archive-seal"
+          },
+          "warning": "열린 서고 안에서 종이가 일제히 뒤집힙니다.",
+          "text": "증원 진입 · 열린 서고 안에서 종이가 일제히 뒤집힙니다.",
+          "entry": {
+            "x": 1420,
+            "y": 2600
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "archiveFiend",
+            "n": 2,
+            "x": 1420,
+            "y": 2600,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-22-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-22-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "ledger-case"
+          },
+          "warning": "동쪽 계단에서 장부귀들이 내려옵니다.",
+          "text": "증원 진입 · 동쪽 계단에서 장부귀들이 내려옵니다.",
+          "entry": {
+            "x": 3620,
+            "y": 2240
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "archiveFiend",
+            "n": 3,
+            "x": 3620,
+            "y": 2240,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-22-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-22-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "upper-register"
+          },
+          "warning": "호적을 꺼내자 위층 경비가 움직입니다.",
+          "text": "증원 진입 · 호적을 꺼내자 위층 경비가 움직입니다.",
+          "entry": {
+            "x": 4450,
+            "y": 1940
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 4450,
+            "y": 1940,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-22-2",
+            "act3Authored": true,
+            "elite": false
+          }
+        }
+      ],
+      "kinds": [
+        {
+          "id": "a3-22-lower-stair-ward-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-lower-stair-ward-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-lower-stair-ward-3",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-ledger-keepers-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-ledger-keepers-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-ledger-keepers-3",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-cross-gallery-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-upper-stair-ward-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-upper-stair-ward-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-upper-stair-ward-3",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-comparison-keepers-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-comparison-keepers-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-22-comparison-keepers-3",
+          "before": "ghost",
+          "after": "archiveFiend"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-23-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "dispatch-bundle"
+          },
+          "warning": "하역문 뒤에서 문지기들이 기록을 쫓아옵니다.",
+          "text": "증원 진입 · 하역문 뒤에서 문지기들이 기록을 쫓아옵니다.",
+          "entry": {
+            "x": 1650,
+            "y": 2660
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 3,
+            "x": 1650,
+            "y": 2660,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-23-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-23-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "carrier-start"
+          },
+          "warning": "점검로에 궁귀의 그림자가 나타납니다.",
+          "text": "증원 진입 · 점검로에 궁귀의 그림자가 나타납니다.",
+          "entry": {
+            "x": 3660,
+            "y": 2660
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 3660,
+            "y": 2660,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-23-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-23-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "carrier-start",
+            "after": "act3-response-23-1",
+            "progress": 4250
+          },
+          "warning": "동쪽 저장칸에서 또 다른 경비가 나옵니다.",
+          "text": "증원 진입 · 동쪽 저장칸에서 또 다른 경비가 나옵니다.",
+          "entry": {
+            "x": 5730,
+            "y": 2660
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 3,
+            "x": 5730,
+            "y": 2660,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-23-2",
+            "act3Authored": true,
+            "elite": true
+          }
+        }
+      ],
+      "kinds": []
+    },
+    {
+      "id": 24,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-24-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "family-crest"
+          },
+          "warning": "폐가 서재에서 지워진 이름들이 웅성거립니다.",
+          "text": "증원 진입 · 폐가 서재에서 지워진 이름들이 웅성거립니다.",
+          "entry": {
+            "x": 3670,
+            "y": 2470
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "archiveFiend",
+            "n": 2,
+            "x": 3670,
+            "y": 2470,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-24-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-24-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "shrine-seal"
+          },
+          "warning": "봉인이 풀린 사당 뒤로 장부귀가 모입니다.",
+          "text": "증원 진입 · 봉인이 풀린 사당 뒤로 장부귀가 모입니다.",
+          "entry": {
+            "x": 5550,
+            "y": 2546.6666666666665
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "archiveFiend",
+            "n": 3,
+            "x": 5550,
+            "y": 2546.6666666666665,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-24-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-24-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "land-register"
+          },
+          "warning": "문서를 챙기자 담장 끝에서 경비가 일어납니다.",
+          "text": "증원 진입 · 문서를 챙기자 담장 끝에서 경비가 일어납니다.",
+          "entry": {
+            "x": 6910,
+            "y": 2410
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 2,
+            "x": 6910,
+            "y": 2410,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-24-2",
+            "act3Authored": true,
+            "elite": true
+          }
+        }
+      ],
+      "kinds": [
+        {
+          "id": "a3-24-empty-court-watch-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-empty-court-watch-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-empty-court-watch-3",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-crest-room-watch-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-crest-room-watch-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-crest-room-watch-3",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-abandoned-garden-watch-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-abandoned-garden-watch-2",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-shrine-approach-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-shrine-approach-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-land-register-watch-0",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-land-register-watch-1",
+          "before": "ghost",
+          "after": "archiveFiend"
+        },
+        {
+          "id": "a3-24-land-register-watch-3",
+          "before": "ghost",
+          "after": "archiveFiend"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-25-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "hidden-latch"
+          },
+          "warning": "뒤쪽 석문에서 발소리가 들립니다.",
+          "text": "증원 진입 · 뒤쪽 석문에서 발소리가 들립니다.",
+          "entry": {
+            "x": 1950,
+            "y": 2700
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 2,
+            "x": 1950,
+            "y": 2700,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-25-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-25-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "archive-hold"
+          },
+          "warning": "기록함이 열리자 옆 통로의 장부귀가 깨어납니다.",
+          "text": "증원 진입 · 기록함이 열리자 옆 통로의 장부귀가 깨어납니다.",
+          "entry": {
+            "x": 3990,
+            "y": 2700
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "archiveFiend",
+            "n": 2,
+            "x": 3990,
+            "y": 2700,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-25-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-25-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "investigation-record"
+          },
+          "warning": "문서를 쫓는 수문장이 뒷길로 들어옵니다.",
+          "text": "증원 진입 · 문서를 쫓는 수문장이 뒷길로 들어옵니다.",
+          "entry": {
+            "x": 4790,
+            "y": 2700
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 2,
+            "x": 4790,
+            "y": 2700,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-25-2",
+            "act3Authored": true,
+            "elite": true
+          }
+        }
+      ],
+      "kinds": []
+    },
+    {
+      "id": 26,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-26-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "workshop-brace"
+          },
+          "warning": "받쳐 올린 들보 너머 종틀이 끌립니다.",
+          "text": "증원 진입 · 받쳐 올린 들보 너머 종틀이 끌립니다.",
+          "entry": {
+            "x": 2240,
+            "y": 2550
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "kilnFiend",
+            "n": 2,
+            "x": 2240,
+            "y": 2550,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-26-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-26-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "artisan-resident"
+          },
+          "warning": "주민의 목소리에 주조터의 악귀가 고개를 듭니다.",
+          "text": "증원 진입 · 주민의 목소리에 주조터의 악귀가 고개를 듭니다.",
+          "entry": {
+            "x": 3840,
+            "y": 2550
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "kilnFiend",
+            "n": 2,
+            "x": 3840,
+            "y": 2550,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-26-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-26-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "casting-tally"
+          },
+          "warning": "강둑의 궁귀들이 남은 장부를 겨눕니다.",
+          "text": "증원 진입 · 강둑의 궁귀들이 남은 장부를 겨눕니다.",
+          "entry": {
+            "x": 5980,
+            "y": 2520
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 5980,
+            "y": 2520,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-26-2",
+            "act3Authored": true,
+            "elite": false
+          }
+        }
+      ],
+      "kinds": [
+        {
+          "id": "a3-26-resident-tools-0",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-26-casting-basin-0",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-26-ledger-drying-guard-0",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-26-ledger-drying-guard-1",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-26-tool-shed-watch-1",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-26-river-exit-watch-0",
+          "before": "picks",
+          "after": "kilnFiend"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-27-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "party-reunion"
+          },
+          "warning": "불길이 잦아든 서쪽 회랑으로 경비가 따라옵니다.",
+          "text": "증원 진입 · 불길이 잦아든 서쪽 회랑으로 경비가 따라옵니다.",
+          "entry": {
+            "x": 2810,
+            "y": 2800
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 2,
+            "x": 2810,
+            "y": 2800,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-27-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-27-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "petition-record"
+          },
+          "warning": "청원서를 꺼내자 동쪽 회랑이 웅성거립니다.",
+          "text": "증원 진입 · 청원서를 꺼내자 동쪽 회랑이 웅성거립니다.",
+          "entry": {
+            "x": 4710,
+            "y": 2800
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "archiveFiend",
+            "n": 3,
+            "x": 4710,
+            "y": 2800,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-27-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-27-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "carrier-start"
+          },
+          "warning": "운반을 시작하자 수문 쪽 궁귀가 퇴로를 막습니다.",
+          "text": "증원 진입 · 운반을 시작하자 수문 쪽 궁귀가 퇴로를 막습니다.",
+          "entry": {
+            "x": 6100,
+            "y": 2800
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 6100,
+            "y": 2800,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-27-2",
+            "act3Authored": true,
+            "elite": false
+          }
+        }
+      ],
+      "kinds": []
+    },
+    {
+      "id": 28,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-28-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "closure-order"
+          },
+          "warning": "옛 파발길에서 봉쇄군이 돌아옵니다.",
+          "text": "증원 진입 · 옛 파발길에서 봉쇄군이 돌아옵니다.",
+          "entry": {
+            "x": 3400,
+            "y": 2260
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 3,
+            "x": 3400,
+            "y": 2260,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-28-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-28-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "suppression-order"
+          },
+          "warning": "은폐 기록을 꺼내자 능선 위 활시위가 울립니다.",
+          "text": "증원 진입 · 은폐 기록을 꺼내자 능선 위 활시위가 울립니다.",
+          "entry": {
+            "x": 5330,
+            "y": 2520
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 5330,
+            "y": 2520,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-28-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-28-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "passage-hold"
+          },
+          "warning": "봉쇄선 동쪽에서 마지막 경비가 들어옵니다.",
+          "text": "증원 진입 · 봉쇄선 동쪽에서 마지막 경비가 들어옵니다.",
+          "entry": {
+            "x": 6980,
+            "y": 2040
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 2,
+            "x": 6980,
+            "y": 2040,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-28-2",
+            "act3Authored": true,
+            "elite": true
+          }
+        }
+      ],
+      "kinds": []
+    },
+    {
+      "id": 29,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-29-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "old-seal"
+          },
+          "warning": "봉인이 풀리자 지나온 창고에서 종이가 흩날립니다.",
+          "text": "증원 진입 · 봉인이 풀리자 지나온 창고에서 종이가 흩날립니다.",
+          "entry": {
+            "x": 1040,
+            "y": 2780
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "archiveFiend",
+            "n": 2,
+            "x": 1040,
+            "y": 2780,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-29-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-29-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "hyeonmuk-letter"
+          },
+          "warning": "수문 바깥에서 글을 되찾으려는 경비가 다가옵니다.",
+          "text": "증원 진입 · 수문 바깥에서 글을 되찾으려는 경비가 다가옵니다.",
+          "entry": {
+            "x": 5490,
+            "y": 2780
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 3,
+            "x": 5490,
+            "y": 2780,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-29-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-29-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "flight-hold"
+          },
+          "warning": "나루길의 궁귀가 달빛 아래 모습을 드러냅니다.",
+          "text": "증원 진입 · 나루길의 궁귀가 달빛 아래 모습을 드러냅니다.",
+          "entry": {
+            "x": 6380,
+            "y": 2780
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 6380,
+            "y": 2780,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-29-2",
+            "act3Authored": true,
+            "elite": false
+          }
+        }
+      ],
+      "kinds": []
+    },
+    {
+      "id": 30,
+      "beforeEvents": [],
+      "afterEvents": [
+        {
+          "id": "act3-response-30-0",
+          "once": true,
+          "when": {
+            "objectiveDone": "transport-map"
+          },
+          "warning": "지도를 펴자 하역장 종틀이 움직입니다.",
+          "text": "증원 진입 · 지도를 펴자 하역장 종틀이 움직입니다.",
+          "entry": {
+            "x": 2870,
+            "y": 2570
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "kilnFiend",
+            "n": 2,
+            "x": 2870,
+            "y": 2570,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-30-0",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-30-1",
+          "once": true,
+          "when": {
+            "objectiveDone": "transport-map"
+          },
+          "warning": "나루 쪽에서 문지기들이 옛길을 가로막습니다.",
+          "text": "증원 진입 · 나루 쪽에서 문지기들이 옛길을 가로막습니다.",
+          "entry": {
+            "x": 5250,
+            "y": 2570
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 3,
+            "x": 5250,
+            "y": 2570,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-30-1",
+            "act3Authored": true,
+            "elite": false
+          }
+        },
+        {
+          "id": "act3-response-30-2",
+          "once": true,
+          "when": {
+            "objectiveDone": "ferry-hold"
+          },
+          "warning": "퇴로가 열리자 마지막 궁귀가 강둑으로 들어옵니다.",
+          "text": "증원 진입 · 퇴로가 열리자 마지막 궁귀가 강둑으로 들어옵니다.",
+          "entry": {
+            "x": 6530,
+            "y": 2590
+          },
+          "action": {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 2,
+            "x": 6530,
+            "y": 2590,
+            "spacing": 150,
+            "maxDistance": 380,
+            "source": "act3-response-30-2",
+            "act3Authored": true,
+            "elite": false
+          }
+        }
+      ],
+      "kinds": [
+        {
+          "id": "a3-30-sandbar-approach-2",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-30-riverbank-tools-0",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-30-ferry-landing-pack-1",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-30-ferry-rearguard-0",
+          "before": "picks",
+          "after": "kilnFiend"
+        },
+        {
+          "id": "a3-30-old-road-sandbar-1",
+          "before": "picks",
+          "after": "kilnFiend"
+        }
+      ]
+    }
+  ],
+  "newArchetypes": {
+    "gateMaster": {
+      "name": "수문장 악귀",
+      "look": "human",
+      "cls": "knight",
+      "skills": [
+        "S09"
+      ],
+      "role": "leaper",
+      "h": 98,
+      "r": 25,
+      "intent": "악귀가 움직이는 죽은 육신 · 지키던 문을 막는 사념이 남아 있다",
+      "act3Fiend": true,
+      "variant": "gateMaster"
+    },
+    "archerMaster": {
+      "name": "별초 궁귀",
+      "look": "human",
+      "cls": "archer",
+      "skills": [
+        "A01"
+      ],
+      "role": "bow",
+      "h": 96,
+      "r": 24,
+      "intent": "악귀가 움직이는 죽은 육신 · 성벽과 기록을 지키던 사념으로 활을 든다",
+      "act3Fiend": true,
+      "variant": "archerMaster"
+    },
+    "archiveFiend": {
+      "name": "장부귀",
+      "look": "human",
+      "variant": "archiveFiend",
+      "cls": "mage",
+      "skills": [
+        "M01"
+      ],
+      "role": "bow",
+      "h": 98,
+      "r": 24,
+      "act3Fiend": true,
+      "intent": "기록을 지우라는 사념에 묶인 죽은 서리 · 흩어진 장부를 움켜쥔다"
+    },
+    "kilnFiend": {
+      "name": "주조귀",
+      "look": "human",
+      "variant": "kilnFiend",
+      "cls": "knight",
+      "skills": [
+        "S09"
+      ],
+      "role": "leaper",
+      "h": 102,
+      "r": 26,
+      "act3Fiend": true,
+      "intent": "종틀을 짊어진 죽은 주조공 · 굳은 쇳물과 그을린 망치가 몸에 붙었다"
+    }
+  }
+}
