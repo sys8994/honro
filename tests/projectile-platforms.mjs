@@ -19,12 +19,13 @@ function shot(f,id,angle=75,power=.6){const {e,u}=f;u.angle=angle;u.lastPower=po
 function trace(id,{terrain,angle=75,power=.6}={}){
  const f=arena(id,terrain),{b,e,u,s}=f,before=JSON.stringify(b),prediction=e.predict(u,s,angle,power);
  assert.equal(JSON.stringify(b),before,'guide mutated battle');
- const p=shot(f,id,angle,power),samples=[at(p.x,p.y)],hits=[],impact=e.impact.bind(e);
+ const aiPrediction=e.predict(u,s,angle,power,undefined,false),p=shot(f,id,angle,power),samples=[at(p.x,p.y)],hits=[],impact=e.impact.bind(e);
  e.impact=(p,h)=>{hits.push({id:p.id,mode:p.mode,terrain:h.terrain?.id,x:h.x,y:h.y,n:h.n});return impact(p,h);};
  for(let i=0;i<1600&&b.projectiles.includes(p);i++){e.stepProjectile(p,C.STEP);samples.push(at(p.x,p.y));}
  assert(!b.projectiles.includes(p),`${id} still flying`);
  const error=Math.hypot(prediction.x-p.x,prediction.y-p.y);assert(error<.1,`${id} guide/live error ${error}`);
- return{...f,p,prediction,samples,hits,error};
+ const aiError=Math.hypot(aiPrediction.x-p.x,aiPrediction.y-p.y);assert(aiError<2,`${id} AI/live error ${aiError}`);
+ return{...f,p,prediction,aiPrediction,samples,hits,error,aiError};
 }
 function check(name,fn){const details=fn();rows.push({name,details});console.log('PASS',name);}
 check('Swept top-only entry handles slabs, side/corner, slopes, overlap and first of multiple layers',()=>{
@@ -46,7 +47,7 @@ check('Reflected waves share guide/live top contacts and still reflect from soli
  for(const [name,terrain,a,v,n] of [['ceiling',solid('ceiling',350,700,2000,70),at(800,900),at(0,-1500),'y'],['wall',solid('wall',1000,0,80,1100),at(800,800),at(1500,0),'x']]){const f=arena('M11',[floor(),terrain]),p=shot(f,'M11');Object.assign(p,a,{vx:v.x,vy:v.y,gravityScale:0,drag:0});f.e.stepProjectile(p,.2);assert.equal(p.bounces,1,name);assert(n==='y'?p.vy>0:p.vx<0);details.push({solid:name,bounces:p.bounces});}return details;
 });
 check('Ground installations keep the actual first valid top when an ignored slab is close overhead',()=>{
- const details=[];for(const id of ['M07','O11','O13']){const f=arena(id,[floor(),platform('upper',700,15),platform('lower',750,15)]),p=shot(f,id);Object.assign(p,{x:900,y:722,vx:0,vy:600,gravityScale:0,drag:0});f.e.stepProjectile(p,.1);assert(!f.b.projectiles.includes(p));const installed=id==='M07'?f.b.stakes[0]:f.b.units.find(u=>u.summoned);assert(installed);near(installed.y,750,'installation stays on lower hit surface');details.push({id,y:installed.y});}return details;
+ const details=[];for(const id of ['M07','O11','O13'])for(const x of [348,900]){const f=arena(id,[floor(),platform('upper',700,15),platform('lower',750,15)]),p=shot(f,id);Object.assign(p,{x,y:722,vx:0,vy:600,gravityScale:0,drag:0});f.e.stepProjectile(p,.1);assert(!f.b.projectiles.includes(p));const installed=id==='M07'?f.b.stakes[0]:f.b.units.find(u=>u.summoned);assert(installed);near(installed.y,750,'installation stays on lower hit surface');assert(installed.x>=350,'corner installation is supported');details.push({id,x:installed.x,y:installed.y});}return details;
 });
 check('Spread, emitted fragments and split arrows use the same rule; authored phasing remains',()=>{
  const details=[];

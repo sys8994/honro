@@ -1019,8 +1019,8 @@ export class Engine {
         // Use the surface the seed actually hit. A fresh upward search can otherwise
         // snap it onto a different one-way slab that it just passed from below.
         const support=landing?.terrain?.oneWay&&landing.n.y<0?landing.terrain:undefined;
-        const onSupport=support&&x>=support.x&&x<=support.x+support.w;
-        const ground=onSupport?{t:support,y:topAt(support,x,y)}:this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
+        if(support)x=clamp(x,support.x,support.x+support.w);
+        const ground=support?{t:support,y:topAt(support,x,y)}:this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
         const floating=['lantern','eater','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
         const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
