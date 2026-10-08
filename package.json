@@ -63,7 +63,7 @@
     "test:sodan-charge": "node tests/sodan-charge-range.mjs && node tests/charge-input.mjs",
     "test:rescue-targets": "node tests/rescue-targets.mjs && npm run test:rescue-physics",
     "test:event-targets": "node tests/event-target-health.mjs && node tests/waterfall-destruction.mjs",
-    "test:ground-contact": "node tests/ground-contact.mjs && node tests/ground-contact-save.mjs",
+    "test:ground-contact": "node tests/ground-contact.mjs && node tests/ground-contact-save.mjs && node tests/terrain-status-feedback.mjs",
     "test:aim-wind-audio": "node tests/aim-guide-cleanup.mjs && node tests/weather-wind.mjs && node tests/audio.mjs",
     "test:terrain-domain": "node tests/terrain-domain.mjs && node tests/terrain-domain-render.mjs",
     "capture:terrain-domain": "node tools/environment/capture-terrain-domain.mjs",

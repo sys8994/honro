@@ -71,7 +71,9 @@ function draw(c,b,u,time,scale,active){
  if(extra){c.fillStyle='#e4d9c0';c.font='bold 10px sans-serif';c.textAlign='left';c.fillText('+'+extra,shown.length*20,12);}
  c.restore();
 }
-function embedded(b,u){return b.terrain.some(t=>!t.broken&&!t.oneWay&&u.x>=t.x&&u.x<=t.x+t.w&&u.y>G.HonroTerrain.topAt(t,u.x)+3&&u.y<t.y+t.h-.1);}
+// A concave roof/arch's bounding column includes open cave air. Keep the
+// existing penetration tolerance, but require the foot probe inside its solid.
+function embedded(b,u){return b.terrain.some(t=>!t.broken&&!t.oneWay&&u.x>=t.x&&u.x<=t.x+t.w&&u.y>G.HonroTerrain.topAt(t,u.x)+3&&u.y<t.y+t.h-.1&&G.HONRO_CORE.terrainContains(t,u.x,u.y-3));}
 function reason(e,u,skill){
  const b=e.b;if(!u)return '행동할 동행이 없습니다';
  if(u.dead||u.hp<=0)return '전투 불능 · 다른 동행을 선택하세요';
