@@ -3,30 +3,48 @@
 // Engine-only item commands are never used: HONRO has no visible supply UI. Dialogue
 // pages are explicitly advanced. No combat HP, position, objective or inventory
 // state is edited. Only the initial chapter-24 entry is a prepared fixture.
-// Chapters25–27 retain real preceding outcome resources; no per-stage reload.
+// Frozen v1 chapters24–27 retain real preceding outcome resources; no per-stage reload.
+// This is a compatibility engine-input diagnostic, not current v2 combat or browser proof.
+import assert from 'node:assert/strict';
+import {splitV1Project} from './split-v1-test-helpers.mjs';
 import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g,C,load,profileThrough}=h,A=g.HonroAct3,S=g.HonroSplitCampaign,ids=[24,25,26,27],rows=[];
+const runContract={version:1,splitVersion:1,route:[24,25,26,27],allowEngineItems:false,initialFixture:'tests/fixtures/split-v1-entry24.json',scope:'Frozen v1 compatibility, production App/engine inputs with DOM/Canvas/storage doubles; not browser play or a human difficulty verdict.'};
+if(process.env.HONRO_BOT_ALLOW_ITEMS==='1')throw Error('Engine-only item input is prohibited: HONRO has no visible supply UI.');
+const entryFixture=JSON.parse(await readFile(runContract.initialFixture,'utf8'));
+assert.equal(entryFixture.sourceCommit,'dbaa565');
+g.HONRO_PROJECT=splitV1Project(g);g.HONRO_PROJECT.stages[g.HONRO_PROJECT.stages.findIndex(s=>s.metadata.stageId===24)]=plain(entryFixture.map);
+const assets=new Map(g.HONRO_PROJECT.library.map(a=>[a.id,a]));for(const a of entryFixture.library)assets.set(a.id,plain(a));g.HONRO_PROJECT.library=[...assets.values()];
+g.HONRO_CONTENT.stages[23]=plain(entryFixture.content);
 const out=process.env.HONRO_SPLIT_REPORT||'_local/reports/act3-split-normal';await mkdir(out,{recursive:true});
-const sourceFiles=['shared/build.mjs','game/config/balance.json','tests/act3-split-normal.mjs','shared/data/campaign.json','tests/app-regression-helpers.mjs'];
+const sourceFiles=['shared/build.mjs','game/config/balance.json','tests/act3-split-normal.mjs','shared/data/campaign.json','tests/app-regression-helpers.mjs','tests/split-v1-test-helpers.mjs','shared/data/split-campaign-v1.json',runContract.initialFixture];
 for(const dir of ['shared/runtime','shared/engine/src','shared/map'])for(const file of await readdir(dir))if(/\.(js|ts)$/.test(file))sourceFiles.push(dir+'/'+file);sourceFiles.sort();
 const source=Object.fromEntries(await Promise.all(sourceFiles.map(async f=>[f,createHash('sha256').update(await readFile(f)).digest('hex')])));
 // Exactly one prepared entry, before chapter 24. Later chapters must be
 // reached through the ordinary App result-continue control in this same App.
 const resumeFile=process.env.HONRO_BOT_RESUME_OUTCOME,resumed=resumeFile?JSON.parse(await readFile(resumeFile,'utf8')):null;
 const profile=resumed?.profile||profileThrough(23);
-if(resumed){if(resumed.b?.phase!=='won'||profile.honroSplitCampaign?.mode!=='continuous'||!profile.honroSplitCampaign.nextStage)throw Error('Resume requires a recorded continuous won outcome');ids.splice(0,ids.length,...[24,25,26,27].filter(id=>id>=profile.honroSplitCampaign.nextStage));}
-else for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgression.budget(24).start;C.autoTrain(profile.heroes[cls],cls);C.sanitizeLoadout(profile,cls);}
+if(resumed){if(resumed.runContract?.splitVersion!==1||resumed.runContract?.allowEngineItems!==false)throw Error('Resume requires explicit v1/no-items provenance from this diagnostic.');if(profile.honroSplitCampaign?.version!==1)throw Error('Cannot resume a v2 or unversioned record as v1.');if(resumed.b?.phase!=='won'||profile.honroSplitCampaign?.mode!=='continuous'||!profile.honroSplitCampaign.nextStage)throw Error('Resume requires a recorded continuous won outcome');ids.splice(0,ids.length,...[24,25,26,27].filter(id=>id>=profile.honroSplitCampaign.nextStage));}
+else {profile.honroSplitCampaign={version:1,mode:'continuous',stage:24,activeRoster:plain(S.roster(24,1)),vitals:{},starts:{},completed:{},items:null,nextStage:null,finished:false};for(const cls of profile.recruited){profile.heroes[cls].xp=g.HonroProgression.budget(24).start;C.autoTrain(profile.heroes[cls],cls);C.sanitizeLoadout(profile,cls);}}
 const guardThreshold=Math.max(0,Math.min(.5,Number(process.env.HONRO_BOT_GUARD_THRESHOLD||0)));
 let app=load(profile);if(resumed)app.showRest();else app.launch(24);
 const initialProfile=plain(profile);await writeFile(`${out}/entry-profile.json`,JSON.stringify(initialProfile));
 const entryHistory=[];let captureDone=false;
 for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transition did not reach '+id);
- const st=g.HONRO_CONTENT.stages[id-1],map=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id),e=app.engine,b=e.b,actions=[],dialogue=[],route=map.design.act3.requiredRoute,fingerprint=createHash('sha256').update(JSON.stringify({map,source})).digest('hex'),start=performance.now();let frames=0;
+ const st=app.stage,map=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id),e=app.engine,b=e.b,actions=[],dialogue=[],route=map.design.act3.requiredRoute,fingerprint=createHash('sha256').update(JSON.stringify({map,source})).digest('hex'),start=performance.now();let frames=0,engineOnlyItemCalls=0;e.item=()=>{engineOnlyItemCalls++;throw Error('Engine-only item input is prohibited.');};
  const entry={stage:id,mode:b.honroSplit?.mode,session:b.session,heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit)};entryHistory.push(entry);
+ if(b.honroSplit?.version!==1)throw Error('Lost explicit v1 provenance at '+id);
+ assert.deepEqual(plain(b.units.filter(S.hero).map(u=>u.cls).sort()),plain(S.roster(id,1)).sort());
  if(entry.mode!=='continuous')throw Error('Lost continuous provenance at '+id);
  if(id===27&&(!S.allPresent(b)||!b.honroSplit.spawnReady))throw Error('Missing four-hero authored split spawn');
+ if(process.env.HONRO_BOT_SETUP_ONLY==='1'){
+  assert.equal(id,24);assert.deepEqual(plain(map),entryFixture.map);assert.equal(b.honroWaterworksRevision,undefined);
+  for(const sid of [25,26,27])assert.deepEqual(plain(g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===sid)),plain(g.HONRO_SPLIT_V1.stages.find(s=>s.metadata.stageId===sid)));
+  await writeFile(`${out}/setup.json`,JSON.stringify({runContract,status:'fixture-verified',source,entry,engineOnlyItemCalls,scope:'Fixture and policy validation only. No combat actions or victories.'},null,2));console.log('PASS frozen v1 24–27 entry maps, continuous-v1 roster and no-items policy; no combat run');process.exit(0);
+ }
+
  function drain(){let presentationNow=performance.now();for(let i=0;app.dialogue&&i<800;i++){const d=app.dialogue,line=d.lines[d.index],staging=d.staging;dialogue.push({id:d.id,storyId:line?.[2]?.storyId,index:d.index,speaker:line?.[0],text:line?.[1],displayed:!staging||staging.complete,staging:staging?{id:staging.id,cursor:staging.cursor,complete:staging.complete}:null,round:b.round,enemyEnds:b.teamEnds[1],reunionDone:!!A.memory(b).done['party-reunion'],allPresent:S.allPresent(b),focus:plain(app.scene?.goalFocus||null),positions:b.units.filter(S.hero).map(u=>({cls:u.cls,x:u.x,y:u.y}))});if(staging&&!staging.complete){presentationNow+=60;g.HonroStory.tick(app,presentationNow);}else g.HonroStory.next(app);}if(app.dialogue)throw Error('Unresolved dialogue');}
  function tick(){if(app.dialogue){drain();return;}e.tick(1/60);if(!app.dialogue)g.HonroMission.tick(app,1/60);app.startQueuedStory();frames++;}
  function waypoint(u,goal){if(Math.abs(goal.y-u.y)<160)return goal;const near=route.reduce((best,p,i)=>Math.hypot(p.x-u.x,p.y-u.y)<best.d?{i,d:Math.hypot(p.x-u.x,p.y-u.y)}:best,{i:0,d:Infinity}),end=route.reduce((best,p,i)=>Math.hypot(p.x-goal.x,p.y-goal.y)<best.d?{i,d:Math.hypot(p.x-goal.x,p.y-goal.y)}:best,{i:0,d:Infinity});return route[Math.max(0,Math.min(route.length-1,near.i+Math.sign(end.i-near.i)))]||goal;}
@@ -35,7 +53,7 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
  for(let count=0;count<Number(process.env.HONRO_BOT_ACTION_LIMIT||420)&&!['won','lost'].includes(b.phase);count++){
   while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames<800000){drain();tick();}drain();if(['won','lost'].includes(b.phase)||frames>=800000)break;
   if(g.HonroStory.turnPaused(app))await new Promise(resolve=>setTimeout(resolve,Math.max(1,Math.ceil(app.turnNotice.pauseUntil-performance.now()))));
-  if(!captureDone&&process.env.HONRO_BOT_CAPTURE_GOAL===A.current(b)?.id){app.export();const exported=await h.exported();await writeFile(`${out}/capture-profile.json`,JSON.stringify(exported));await writeFile(`${out}/capture-manifest.json`,JSON.stringify({resumeFile,stage:id,goal:A.current(b)?.id,source,actions,dialogue,scope:'Recorded-outcome branch, ordinary inputs, requested pre-objective snapshot only; not a new full run or win.'},null,2));console.log('CAPTURE',id,A.current(b)?.id);captureDone=true;if(process.env.HONRO_BOT_CAPTURE_ONLY==='1')process.exit(0);}
+  if(!captureDone&&process.env.HONRO_BOT_CAPTURE_GOAL===A.current(b)?.id){app.export();const exported=await h.exported();await writeFile(`${out}/capture-profile.json`,JSON.stringify(exported));await writeFile(`${out}/capture-manifest.json`,JSON.stringify({runContract,resumeFile,stage:id,goal:A.current(b)?.id,source,actions,dialogue,scope:'Recorded-outcome branch, ordinary inputs, requested pre-objective snapshot only; not a new full run or win.'},null,2));console.log('CAPTURE',id,A.current(b)?.id);captureDone=true;if(process.env.HONRO_BOT_CAPTURE_ONLY==='1')process.exit(0);}
   const ready=A.readySteps(b);if(!ready.length){app.checkMission(e);break;}
   const eligible=e.heroesAlive().filter(u=>!u.acted),required=ready.filter(s=>s.requiredClass).flatMap(s=>eligible.filter(u=>u.cls===s.requiredClass).map(u=>({u,s,d:Math.hypot(u.x-A.marker(b,s.id).x,u.y-A.marker(b,s.id).y)}))).sort((a,c)=>a.d-c.d);
   if(required[0])e.select(required[0].u.id);let u=e.active;if(!u||u.side!==0)continue;
@@ -57,11 +75,11 @@ for(const id of ids){if(app.stageId!==id)throw Error('Continuous stage transitio
   }
   if(!action){const foes=e.alive(1).sort((a,c)=>Number(A.sameFloor(c,m,300))-Number(A.sameFloor(a,m,300))||Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y));for(const foe of foes.slice(0,2)){if(Math.hypot(foe.x-u.x,foe.y-u.y)>1500)continue;const skills=u.loadout.map(k=>C.SKILLS[k]).filter(s=>!s.passive&&s.damage>0&&e.cooldownLeft(u,s.id)<=0&&e.manaCost(s,u)<=u.focus).sort((a,c)=>c.damage-a.damage);for(const skill of skills.slice(0,2)){let best=null;for(const aim of e.shotSeeds(u,skill,foe)){const q=C.shotViable(e,u,skill,foe,aim.angle,aim.power);if(q.ok&&q.risk<1&&q.miss<Math.max(85,skill.radius+foe.r+55)&&(!best||q.net>best.net))best={...aim,net:q.net};}if(best&&e.fire(skill.id,best.angle,best.power)){action={action:'fire',skill:skill.id,target:foe.id};break;}}if(action)break;}}
   if(!action){if(!app.canInput())throw Error('Defense input unavailable at '+id+':'+b.round);app.defend();action={action:'defend'};}actions.push({round:b.round,actor:u.cls,goal:s.id,x:u.x,y:u.y,...action,heroes:b.units.filter(S.hero).map(v=>({cls:v.cls,hp:v.hp,mp:v.focus,dead:v.dead})),items:plain(b.items),enemyCount:e.alive(1).length,objective:A.state(b).summary});
-  if(count%8===0){console.log('PLAY',id,b.round,s.id,actions.length,e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));}
+  if(count%8===0){console.log('PLAY',id,b.round,s.id,actions.length,e.heroesAlive().map(v=>v.cls+':'+Math.round(v.hp/v.maxHp*100)).join('/'));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({runContract,id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));}
  }
  if(b.phase==='won'){app.outcome();drain();}else drain();
- const row={guardThreshold,consumableInputMode:'disabled: current HONRO UI has no consumable action',stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,simulationSeconds:frames/60,fingerprint,source,entry,actions,dialogue,staging:plain(b.honroStaging||null),heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit),scope:resumed?'Actual recorded-outcome continuation with ordinary inputs; a branch for focused validation, not a new full 24→27 run.':'Continuous 24→27 native production App/engine input bot. One chapter-24 prepared entry only; later entries use result-continue. Menu, Canvas and storage doubles. No combat HP/position/objective/inventory edits. Not browser play or a human difficulty verdict.'};rows.push(row);
- await writeFile(`${out}/stage-${id}.json`,JSON.stringify(row,null,2));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));await writeFile(`${out}/summary.json`,JSON.stringify({source,rows,entryHistory},null,2));console.log('RESULT',id,b.phase,b.round,row.goal,actions.length,row.reason);
+ const row={runContract,engineOnlyItemCalls,guardThreshold,consumableInputMode:'disabled: current HONRO UI has no consumable action',stage:id,phase:b.phase,round:b.round,goal:A.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,simulationSeconds:frames/60,fingerprint,source,entry,actions,dialogue,staging:plain(b.honroStaging||null),heroes:b.units.filter(S.hero).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,x:u.x,y:u.y,dead:u.dead})),items:plain(b.items),xp:plain(b.heroes),split:plain(b.honroSplit),scope:resumed?'Actual recorded-outcome continuation with ordinary inputs; a branch for focused validation, not a new full 24→27 run.':'Frozen v1 continuous 24→27 production App/engine input diagnostic. Engine-only items are prohibited. One chapter-24 prepared entry only; later entries use result-continue. Menu, Canvas and storage doubles. No combat HP/position/objective/inventory edits. Not browser play or a human difficulty verdict.'};rows.push(row);
+ await writeFile(`${out}/stage-${id}.json`,JSON.stringify(row,null,2));await writeFile(`${out}/checkpoint-${id}.json`,JSON.stringify({runContract,id,fingerprint,b,profile:app.profile,entryHistory,actions,dialogue}));await writeFile(`${out}/summary.json`,JSON.stringify({runContract,status:rows.length===ids.length&&rows.every(r=>r.phase==='won')?'passed':b.phase==='lost'?'failed':'incomplete',source,rows,entryHistory},null,2));console.log('RESULT',id,b.phase,b.round,row.goal,actions.length,row.reason);
  if(b.phase!=='won')break;
  if(id<27)h.click('result-continue');
 }
