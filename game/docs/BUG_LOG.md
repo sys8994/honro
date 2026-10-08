@@ -1537,3 +1537,9 @@ Stage 7 retains its three resident levels and gains asymmetric optional branch a
 ## 2026-10-08 · Stage 9 shrine roof clearance and low branch choices
 
 Actual Pages visual review found the reused stage-9 shrine roof hidden behind the east gallery and long supports. This was missed by the prior art pass. The existing shrine is re-positioned and sized as a small village hall; no stage-9 terrain, objective, actor or path is altered. The earlier additional-branch idea for this chapter was discarded because it would worsen the overlap. Native overview and targeted .59-scale captures show the full roof clear of the gallery. Chapters 1/3/4/5/6/8 gain one base-jump-reachable optional branch beside existing trees, preserving the location-specific docks/gate/waterfall/bridge/eaves. Focused approach, projectile and mandatory-route tests passed; this does not replace browser or normal-combat validation.
+
+## 물길 구간 재시도의 중복 피해 경험치 — 2026-10-08
+
+- 구간 재시도는 적의 HP·누적피해를 되돌리되 이미 지급한 경험치를 보존한다. 그러나 다음 타격 때 엔진이 지급량을 더 낮은 새 누적피해 보상으로 덮어, 같은 두 타격을 반복하면 공유 경험치를 다시 받았다.
+- 적별 지급량을 단조 증가시키고 이전 최고 지급량을 넘은 차액만 지급한다. 일반 최초 피해의 계산·처치 보상·공유/성장 처리 경로는 바꾸지 않는다.
+- 새 `stake-crossing-xp`는 수정 전 25장 첫 재타격에서 지급량 228→114 감소로 실패했고, 수정 후 25/27장 각각 실제 hurt→구간 retry 3회·새 피해 차액·저장 후 재시도와 공유 경험치 검사를 통과했다. `act3-growth`, `turnhold-physics-growth`, TypeScript도 통과했다. 타격 입력 fixture이며 정상 플레이 완주/브라우저 검수는 별도다.

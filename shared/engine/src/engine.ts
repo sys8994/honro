@@ -744,8 +744,10 @@ export class Engine {
                 u.aggroUntil = this.b.round + 3;
                 u.awake = true;
                 this.b.heroes[src.cls].damage += actual;
-                const sum = Object.values(u.damageBy).reduce((a, b) => a + b, 0), budget = Math.floor(Math.min(1, sum / u.maxHp) * u.xpBudget), xp = budget - u.xpGranted;
-                u.xpGranted = budget;
+                const sum = Object.values(u.damageBy).reduce((a, b) => a + b, 0), budget = Math.floor(Math.min(1, sum / u.maxHp) * u.xpBudget), granted = Math.max(u.xpGranted, budget), xp = granted - u.xpGranted;
+                // Checkpoint retry restores damage/HP but retains earned XP. Never
+                // lower that high-water mark when the same damage is replayed.
+                u.xpGranted = granted;
                 this.award(src, xp);
                 this.refreshActivation();
             }
