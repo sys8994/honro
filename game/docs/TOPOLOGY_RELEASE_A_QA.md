@@ -32,3 +32,17 @@
 - `HONRO_WORKSHOP.html` SHA-256: `bf1edc0b2e8c98ea752b978a89a5718ef3c524fb983af9bd8e346c94d30c15b0`
 
 검사 로그/초기 실패/재실행 요약은 검수 작업트리의 `_local/reports/topology-A-final/`에 남겼다. 명령 묶음은 `test:act3:waterworks`, `test:forest-cavern`, `test:act3:split`과 해당 개별 회귀 파일로 재현한다. `_local` 기록은 배포 파일이 아니다.
+
+
+## Public Pages and representative UI verification — 2026-10-08
+
+Release `cab313b9404c1cb4da82c62fdb017bbed1aae02b` completed [Pages workflow37719990814](https://github.com/sys8994/honro/actions/runs/37719990814). Both public HTML files returned HTTP200 and their full SHA256 matched the build recorded above.
+
+Actual cloud-browser UI inputs, visible DOM and screenshots verified:
+- Stage9 reused hall roof is clear of the old terrain/posts. Stage7 overview shows the connected tree branches; traversal/rescue completion was not tested there.
+- Stage15 camera-start Playtest permits repeated real jumps and landings with75 movement cost and unchanged755HP, then re-enables jump/fire. The HUD still incorrectly shows terrain embedding; actual horizontal movement/physical blockage was not established in this check. The dedicated status-only correction is reserved for B and requires a same-location recheck.
+- Game debug stage25 exposes the temporary fifth M09 card for the level1 untrained Damheo while preserving the normal four slots. In Workshop's default level18 pair, actual movement, M09 gate creation, Seol-o E crossing, mid-crossing retry, reinstallation and both companions' E arrivals complete the crossing. Retry restores the starting pair/resources and removes the old gates; M09 remains separate from the loadout.
+- Stage27's two-person team, first of three crossings, temporary M09 and retry fit desktop500×761 and125%-zoom CSS400×609 without horizontal overflow. The narrow retry/card interaction works. This is narrow-desktop evidence, not mobile-UA, touch or phone validation.
+- No non-extension game error appeared in the final100 inspected error logs from either tab. Debug was disabled and the original stage1 rest restored; normal saved progress was never imported/replaced.
+
+Not tested: stage25 whole battle/seal completion, all three stage27 crossings,23→28 sequential campaign UI, persistent export/import/reload UI, performance, or normal continuous campaign completion. Stage16 and B maps were not part of this deployment. Node/fixture coverage remains distinct from these actual UI checks.
