@@ -1,3 +1,6 @@
+import './act2-reviewed-routes.mjs';
+import {traverse} from './act1-spatial-test-helpers.mjs';
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
 // Structural/physics fixtures. These prove room contracts and isolated actions,
 // not normal-combat difficulty, human readability or browser rendering quality.
 import assert from 'node:assert/strict';
@@ -9,14 +12,15 @@ import {openRoute,terrainFace,assertStanding,coordinates} from './act2-spatial-t
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
 const intent=JSON.parse(await readFile('tests/fixtures/act2-spatial-intent.json','utf8'));
-const historicalProject=beforeObjectiveRevision(g.HONRO_PROJECT,g.HONRO_CONTENT).project;
+const beforeTopology=beforeForestCavernTopology(g.HONRO_PROJECT,{stages:[15]});
+const historicalProject=beforeObjectiveRevision(beforeTopology,g.HONRO_CONTENT).project;
 const idFilter=process.argv.slice(2).map(Number);
 const check=(name,fn)=>{const detail=fn();rows.push({name,passed:true,detail});console.log('PASS',name);};
 const fixture=id=>{const q=battlefield(g,id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);return q;};
 for(const expected of intent.stages.filter(s=>!idFilter.length||idFilter.includes(s.id))){
  const id=expected.id,st=g.HONRO_PROJECT.stages[id-1],space=st.design?.space;
  check(`${id}: distinct approved topology and canonical surface references`,()=>{
-  assert(space,'A paint-only room label is not a spatial design');assert.equal(space.version,1);assert.equal(space.geometryRevision,3);assert.equal(space.topologyId,expected.topologyId);
+  assert(space,'A paint-only room label is not a spatial design');assert.equal(space.version,1);assert.equal(space.geometryRevision,3);assert.equal(beforeTopology.stages[id-1].design.space.topologyId,expected.topologyId,'Original topology identity after exact approved path reversal');
   const rooms=new Map(space.rooms.map(r=>[r.id,r])),surfaces=new Map(space.surfaces.map(s=>[s.id,s]));
   assert.equal(rooms.size,space.rooms.length,'room IDs must be unique');assert.equal(surfaces.size,space.surfaces.length,'surface IDs must be unique');
   assert.deepEqual([...rooms.keys()].sort(),[...expected.rooms].sort());
@@ -37,7 +41,7 @@ for(const expected of intent.stages.filter(s=>!idFilter.length||idFilter.include
    const surface=surfaces.get(point.surfaceId);assert(surface,'main route references missing surface '+point.surfaceId);
    const face=terrainFace(st,surface,point.x,{restored:main.requires?.some(r=>r.terrainId===surface.terrainId&&r.state==='restored')});assert(face,'no canonical edge beneath main anchor');
    assert(Math.abs(face.y-point.y)<.1,`${id}: anchor is off canonical edge by ${face.y-point.y}`);
-   assert(Math.abs(face.slope)<=1.35,'required walking edge exceeds engine slope');
+   assert(Math.abs(face.slope)<=1.35,'required route anchor exceeds standing slope');
   }
   const graph=new Map([...rooms.keys()].map(id=>[id,[]]));
   for(const link of space.connections){
@@ -56,6 +60,16 @@ for(const expected of intent.stages.filter(s=>!idFilter.length||idFilter.include
    assert([site.x,site.y,site.standing.x,site.standing.y].every(Number.isFinite),objectiveId+' has nonfinite coordinates');
   }
   return{topology:space.topologyId,rooms:rooms.size,surfaces:surfaces.size,mainAnchors:main.anchors.length};
+ });
+ if(space.routes.find(r=>r.id==='main').defaultJump)check(`${id}: approved cavern route is reachable by all four unupgraded bodies`,()=>{
+  const rows=[];
+  for(const cls of ['archer','mage','knight','occultist']){
+   const {b,e}=fixture(id),u=e.heroesAlive().find(u=>u.cls===cls);assert(!u.ranks.SP03,'No jump training in this route proof');
+   b.units=[u];b.active=u.id;e.checkEnd=()=>false;openRoute(b);
+   const result=traverse(g,b,e,u,space.routes.find(r=>r.id==='main').anchors);
+   assert(result.passed,JSON.stringify({cls,failed:result.failed}));rows.push({cls,jumps:result.jumps,damage:result.damage});
+  }
+  return rows;
  });
  check(`${id}: mandatory route and every objective have exposed four-hero clearance`,()=>{
   const {b,e}=fixture(id);openRoute(b);let probes=0;

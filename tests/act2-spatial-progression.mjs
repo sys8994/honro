@@ -1,30 +1,39 @@
+import {assertReviewedRouteModes,traverseReviewedRoute} from './act2-reviewed-route-helpers.mjs';
 // Ordered physical-route fixture. Combat, defense duration and convoy arrival
 // are isolated explicitly, but no gate is pre-opened, no hero is teleported,
-// and every required interaction is reached by walking through its live state.
+// and every required interaction is reached through its live state. Chapter 15
+// alone uses the approved ordinary-jump route; all others remain walk-only.
 import assert from 'node:assert/strict';
 import {writeFile,mkdir} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {walkRoute,coordinates} from './act2-spatial-test-helpers.mjs';
 const g=await runtime({legacyMaps:false}),rows=[],guards=[];
+assertReviewedRouteModes(g.HONRO_PROJECT);
 const ids=process.argv.slice(2).map(Number),filtered=ids.length>0;if(!ids.length)ids.push(...Array.from({length:10},(_,i)=>i+11));
 for(const id of ids){
  const {b,e,app,st}=battlefield(g,id);g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);g.HonroAct2.attach(app,e);e.checkEnd=()=>false;
- const space=g.HONRO_PROJECT.stages[id-1].design.space,main=space.routes.find(r=>r.id==='main').anchors,heroes=e.heroesAlive(),state=g.HonroAct2.memory(b),steps=[];
+ const space=g.HONRO_PROJECT.stages[id-1].design.space,mainRoute=space.routes.find(r=>r.id==='main'),main=mainRoute.anchors,heroes=e.heroesAlive(),state=g.HonroAct2.memory(b),steps=[];
+ let routeCursor=0;
  // Explicit combat-resolution fixture. Do not conflate this with fighting the
  // roster through normal play; the test is about ordered geometry access.
  for(const enemy of e.alive(1))if(!enemy.honroAct2Boss){enemy.dead=true;enemy.hp=0;}
  let failed=null;
  for(const step of st.steps){
   const site=space.sites[step.id],standing=site.standing,actor=heroes.find(u=>u.cls===(step.requiredClass||(step.kind==='rescue'?'occultist':'archer'))),walks=[];
+  const goalIndex=mainRoute.defaultJump?main.findIndex(p=>p.x===standing.x&&Math.abs(p.y-standing.y)<.01&&p.surfaceId===standing.surfaceId):-1;
+  if(mainRoute.defaultJump)assert(goalIndex>=routeCursor,'Approved cavern objectives must follow the authored route order');
   for(const hero of heroes){
    b.phase='aim';b.side=0;b.active=hero.id;hero.acted=false;hero.vx=hero.vy=0;
    const direction=Math.sign(standing.x-hero.x),min=Math.min(hero.x,standing.x),max=Math.max(hero.x,standing.x);
    const anchors=main.filter(p=>p.x>min+8&&p.x<max-8).sort((a,b)=>direction*(a.x-b.x));
-   const route=[...new Map(anchors.map(p=>[p.x,p])).values(),standing];
-   const result=walkRoute(g,b,e,hero,route);walks.push({hero:hero.cls,passed:result.passed,ticks:result.ticks});
+   // The cavern's final descent passes the exit and returns beneath the arch.
+   // Preserve authored order and the 7800 turning point instead of sorting by X.
+   const route=mainRoute.defaultJump?main.slice(routeCursor+1,goalIndex+1):[...new Map(anchors.map(p=>[p.x,p])).values(),standing];
+   const result=traverseReviewedRoute(g,b,e,hero,route,mainRoute);walks.push({hero:hero.cls,passed:result.passed,ticks:result.ticks});
    if(!result.passed){failed={stage:id,objective:step.id,hero:hero.cls,...result.failed,closedGates:b.terrain.filter(t=>!t.broken&&(t.id.startsWith('gate-')||t.id==='water-gate')).map(t=>({id:t.id,x:t.x,y:t.y}))};break;}
   }
   if(failed)break;
+  if(mainRoute.defaultJump)routeCursor=goalIndex;
   b.phase='aim';b.side=0;b.active=actor.id;actor.acted=false;actor.vx=actor.vy=0;
   if(['clear','hold','reach','escort'].includes(step.kind)){
    if(step.kind==='hold')state.holds[step.id]={progress:step.rounds,spawned:step.wave.count,lastRound:b.round,continuous:true,guarded:true};
