@@ -16,7 +16,8 @@ function retry(app,reason){const e=app.engine,b=e?.b;if(!active(b))return false;
  // enemies, terrain and encounter triggers cannot be retained as free progress.
  // Earned XP remains monotonic; its existing capped ledger prevents refarming.
  const progress={heroes:clone(b.heroes),honroGrowth:clone(b.honroGrowth)},awarded=new Map(b.units.map(u=>[u.id,u.xpGranted||0]));
- const restored=clone(s.checkpoint);for(const k of Object.keys(b))delete b[k];Object.assign(b,restored,progress);
+ const sceneVersion=Math.max(b.sceneVersion||0,s.checkpoint.sceneVersion||0)+1;
+ const restored=clone(s.checkpoint);for(const k of Object.keys(b))delete b[k];Object.assign(b,restored,progress,{sceneVersion});
  b.honroStakeCrossing={...s,crossed:{},attempted:false,pairSeen:false,retries:(s.retries||0)+1,lastReason:reason};
  for(const u of b.units){u.xpGranted=Math.max(u.xpGranted||0,awarded.get(u.id)||0);if(u.side===0&&!u.summoned&&b.heroes[u.cls])C.applyHero(u,b.heroes[u.cls]);}
  b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');b.projectiles=[];b.volley=undefined;b.phase='aim';b.side=0;b.turnAge=0;
