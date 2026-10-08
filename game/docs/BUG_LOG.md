@@ -1662,3 +1662,7 @@ Both Act 2 recipe audits now invoke the same vector/scene, forest, cavern-place 
 
 - 강제 author가 옛 v2 수로의 저장 목표를 최신 수직 목표로 덮을 수 있었다. 9032b3c의25/27 content를 별도 동결하고 물길 revision1/2 지도에는 기존 단계·marker·지형을 그대로 보존한다. 단계가 빠진 오래된 자료만 그 동결 steps로 복구한다. 저장 전투의 guide/content fallback도 같은 버전을 사용한다. 새 revision3만 현재 저작 목표로 갱신한다.
 - `waterworks-v2-source`는 현재 콘텐츠를 의도적으로 바꾼 상태에서 옛 목표/label/terrain 정확성·원본 불변·누락 단계 fallback·v3 갱신을25/27 각각 검증했다. 기존 objective-author-versioned 및 v2 App전환/저장6묶음도 통과했다.
+
+### C independent authored-span fixture isolation
+
+The canonical M09/E audit manually places both heroes at each authored departure. V3 correctly preserves an existing gate pair across ordinary turns, so retaining the preceding fixture's pair made the next isolated shot replace only one endpoint. Each independent span fixture now explicitly clears its prior pair before placing actors. Actual M09 projectiles and both E interactions pass on all five stage25 and four stage27 spans. This is controlled-pose/no-enemy evidence; continuous movement, return routes, wind and normal combat remain separate tests.

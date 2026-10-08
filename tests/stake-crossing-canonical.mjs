@@ -5,6 +5,9 @@ const g=await runtime({legacyMaps:false}),P=g.HonroStakeCrossing,C=g.HONRO_CORE;
 for(const id of[25,27]){const{b,e,app}=battlefield(g,id),a=b.units.find(u=>u.side===0&&u.cls==='archer'),m=b.units.find(u=>u.side===0&&u.cls==='mage');b.units=[a,m];b.wind=0;m.loadout=['M01','M03','M06','M09'];m.ranks.M09=Math.max(1,m.ranks.M09||0);e.checkEnd=()=>false;app.updateHUD=()=>{};P.attach(app,e);
  for(const[i,c]of b.honroMap.act3.crossings.entries()){
   // Pose fixtures isolate each authored span. The shot and gate use are real.
+  // V3 intentionally preserves gate pairs between real turns; isolate this span
+  // explicitly instead of inheriting a pair from a different fixture pose.
+  b.stakes=[];
   for(const [j,u]of [a,m].entries())Object.assign(u,{x:c.from.x-90+j*90,y:c.from.y,vx:0,vy:0,jumping:false,airborne:false,acted:false,focus:180,moveLeft:u.maxMove});b.active=m.id;b.side=0;b.phase='aim';b.honroStakeCrossing.index=i;b.honroStakeCrossing.crossed={};b.honroStakeCrossing.armed=false;
   let shot;outer:for(let elevation=15;elevation<=85;elevation+=2)for(let power=.6;power<=1.001;power+=.025){const angle=c.to.x<m.x?180-elevation:elevation,hit=e.predict(m,C.SKILLS.M09,angle,power);if(hit.x>c.landing.left+80&&hit.x<c.landing.right-80&&Math.abs(hit.y-c.landing.y)<20){shot={angle,power};break outer;}}
   assert(shot,`chapter ${id} crossing ${i+1} has a basic M09 arc on authored terrain`);assert(e.fire('M09',shot.angle,shot.power));for(let tick=0;tick<3000&&b.phase!=='aim';tick++){e.tick(1/120);P.tick(app);}assert.equal(b.phase,'aim');assert.equal(b.stakes.length,2);assert.equal(b.honroStakeCrossing.retries,0);
