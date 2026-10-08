@@ -8,6 +8,14 @@ function next(a){g.HonroStory.next(a);}
 function to(a,who,text){for(let i=0;i<30&&a.dialogue;i++){const l=a.dialogue.lines[a.dialogue.index];if(l?.[0]===who&&l[1].includes(text))return;next(a);}throw Error('missing line '+who+text);}
 function check(name,fn){fn();checks.push(name);console.log('PASS',name);}
 const resources=b=>plain({round:b.round,phase:b.phase,active:b.active,teamEnds:b.teamEnds,projectiles:b.projectiles,terrain:b.terrain,units:[...b.units,...Object.values(b.honroStaging.hidden)].map(u=>({id:u.id,hp:u.hp,energy:u.energy,moveLeft:u.moveLeft,acted:u.acted,fixed:u.fixed,loadout:u.loadout,ranks:u.ranks})).sort((a,b)=>a.id.localeCompare(b.id))});
+check('Every authored direction resolves a real line in the currently compiled campaign script',()=>{
+ for(const r of g.HonroStoryDirection.rules){const st=g.HONRO_CONTENT.stages[r.stage-1];let lines=r.when==='entry'?st.story:r.when==='outcome'?st.outro:st.beats?.[r.when];
+  if(r.when==='event-1-witness')lines=g.HonroStoryContent.events[1].witness.lines;
+  if(r.when==='sodan-first-receiver')lines=S.describe(S.ID).steps.at(-1).lines;
+  if(r.when==='cooperation')lines=g.HonroStoryContent.cooperation();if(r.when==='finale-midpoint')lines=g.HonroStoryContent.finaleMidpoint();
+  assert(lines?.some(l=>l[0]===r.who&&l[1].includes(r.text)),`${r.stage}/${r.when}/${r.who}/${r.text}`);
+ }
+});
 check('All 30 campaign entries have authored actions without advancing combat, resources or objectives',()=>{
  for(let id=1;id<=30;id++){const a=fresh(id),b=a.engine.b;assert(a.dialogue?.staging?.cues?.some(xs=>xs.length),'stage '+id);const before=resources(b),text=plain(a.dialogue.lines.map(l=>l.slice(0,2)));
   for(let i=0;i<40&&a.dialogue;i++){tick(a,20);next(a);}assert(!a.dialogue);assert.deepEqual(resources(b),before,'combat paused in '+id);assert(!b.units.some(u=>u.honroScenePose));assert(a.profile.honroNarrative.some(record=>record.lines.some(l=>l[1]===text[0][1])));
@@ -32,6 +40,12 @@ check('A slower supported walk finishes before that actor starts the next gestur
  tick(a,20);assert(u.x>x&&u.x<x+22);assert.equal(u.honroScenePose.kind,'move');assert.equal(a.dialogue.staging.cue.started[1],undefined);
  tick(a,18);assert.equal(u.x,x+22);assert.equal(u.honroScenePose.kind,'guard');assert(a.dialogue.staging.cue.started[1]>850);
  const cue=plain(a.dialogue.staging.cue);g.HonroStory.save(a);a=reload();click('continue');assert.deepEqual(plain(a.dialogue.staging.cue),cue);finish(a);
+});
+check('Unread events merged before an outcome keep their own choreography and line indices',()=>{
+ const a=fresh(15);finish(a);const lines=g.HonroAct2Content.scene('act2-15-groove',a.stage.name,a.stage.beats.groove);
+ a.engine.b.honroState.storyQueue=plain(lines);g.HonroStory.start(a,a.stage.outro,{after:'outcome',title:a.stage.name});
+ const index=a.dialogue.lines.findIndex(l=>l[0]==='휘겸'&&l[1].includes('최근에 대종'));assert(index>=0);assert.equal(a.dialogue.lines[index][2].storyId,lines[index][2].storyId);
+ assert(a.dialogue.staging.cues[index].some(s=>s.actor==='knight'&&s.pose==='inspect'));finish(a);
 });
 check('Skip at different points yields the same entrances, positions, resources, journal and unlocked input',()=>{
  for(const id of [1,3,4,11,21,24,27]){let expected;for(const mode of ['instant','partial','read']){const a=fresh(id);if(mode==='partial'){tick(a,17);next(a);tick(a,7);}if(mode==='read'){for(let i=0;i<35&&a.dialogue;i++){tick(a,25);next(a);}}finish(a);a.turnNotice=null;const final=plain(a.engine.b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,energy:u.energy,facing:u.facing})));if(!expected)expected=final;else assert.deepEqual(final,expected,'stage '+id+' '+mode);assert(a.canInput());assert(!a.engine.b.units.some(u=>u.honroScenePose));}}
