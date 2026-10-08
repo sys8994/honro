@@ -20,13 +20,15 @@ function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;
 }
 const current=b=>steps(b).find(s=>!memory(b).done[s.id]);
 const readySteps=b=>{const s=current(b);return !s?[]:s.parallelGroup?steps(b).filter(q=>q.parallelGroup===s.parallelGroup&&!memory(b).done[q.id]):[s];};
+const reunionStage=b=>b.honroSplit?.version===2?28:27;
+const fireScenario=b=>b.honroStage===reunionStage(b)&&steps(b).some(s=>s.id==='water-release')&&steps(b).some(s=>s.id==='fire-screen');
 const firesStopped=b=>!!memory(b).done['water-release']&&!!memory(b).done['fire-screen'];
 function target(b,s){const m=marker(b,s.id),t=s.kind==='destroy'&&b.terrain.find(t=>t.id===s.id),u=s.target&&b.units.find(u=>u.id===s.target),liveUnit=['rescue','interact'].includes(s.kind)&&u;
  return{id:s.id,kind:t?'seal':['reach','escort'].includes(s.kind)?'exit':'interact',x:liveUnit?u.x:t?t.x+t.w/2:m?.x,y:liveUnit?u.y-u.h:t?t.y:m?.y,label:s.label,...(t?{box:t}:{}),...(liveUnit?{unitId:u.id}:{})};
 }
 function state(b){const list=steps(b),s=current(b),a=memory(b),issue=sourceIssue(b),all=list.map(q=>({...target(b,q),done:!!a.done[q.id]}));let detail='';
  if(s?.kind==='hold'){const h=a.holds[s.id];detail=` · ${h?.progress||0}/${s.rounds}턴${h?.contested?' · 가까운 적을 밀어내세요':h?.guarded?' · 지키는 중':' · 같은 층의 표시 범위에서 유지'}`;}
- if(b.honroStage===27&&!G.HonroStakeCrossing?.active(b)&&!firesStopped(b))detail+=` · 소각까지 ${Math.max(0,12-(a.fireTurns||0))} 적 턴`;
+ if(fireScenario(b)&&!firesStopped(b))detail+=` · 소각까지 ${Math.max(0,12-(a.fireTurns||0))} 적 턴`;
  const targets=readySteps(b).map(q=>target(b,q));
  if(s?.kind==='escort'){const u=b.units.find(u=>u.id===s.target);if(alive(u))targets.push({id:u.id,kind:'objective',x:u.x,y:u.y-u.h,unitId:u.id,label:'기록 운반자 · 가까이 동행'});}
  const complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${list.filter(q=>a.done[q.id]).length}/${list.length} · ${s?.parallelGroup==='fire-control'?'불길 진압 '+list.filter(q=>q.parallelGroup==='fire-control'&&a.done[q.id]).length+'/2 · 설오 수문 / 휘겸 차단막'+detail:s?s.label+detail:'모든 목표 완료'}`,targets:targets.filter(t=>Number.isFinite(t.x)&&Number.isFinite(t.y)),allTargets:all};
@@ -85,13 +87,13 @@ function escortTick(app,s,m,dt){const e=app.engine,b=e.b,a=memory(b),npc=e.unit(
  if(dt>0&&dir&&lead&&!app.dialogue){npc.fixed=false;npc.moveLeft=900;e.walk(npc,dir,Math.min(dt,.05));}
  if(sameFloor(npc,m,170)&&heroes(b).some(u=>sameFloor(u,npc,540)))completeStep(app,s);
 }
-function failure(b){if(!active(b))return null;const a=memory(b);if(b.honroStage===27&&b.honroSplit?.version===1&&!a.done['party-reunion']&&G.HonroSplitCampaign?.allPresent(b)===false)return'합류하기 전에 동행을 잃어 두 조사팀이 모일 수 없다. 이 장을 다시 시작하자.';if(b.units.some(u=>u.honroProtected&&!alive(u)))return'지켜야 할 주민을 잃었다. 이 장을 다시 시작할 수 있다.';
+function failure(b){if(!active(b))return null;const a=memory(b);if(b.honroStage===reunionStage(b)&&[1,2].includes(b.honroSplit?.version)&&!a.done['party-reunion']&&G.HonroSplitCampaign?.allPresent(b)===false)return'합류하기 전에 동행을 잃어 두 조사팀이 모일 수 없다. 이 장을 다시 시작하자.';if(b.units.some(u=>u.honroProtected&&!alive(u)))return'지켜야 할 주민을 잃었다. 이 장을 다시 시작할 수 있다.';
  for(const s of steps(b))if(!satisfied(b,s)&&s.requiredClass&&!heroes(b).some(u=>u.cls===s.requiredClass))return H.hero[s.requiredClass].name+'이 쓰러져 남은 목표를 이어갈 수 없다. 이 장을 다시 시작하자.';
- if(b.honroStage===27&&!G.HonroStakeCrossing?.active(b)&&!firesStopped(b)&&(a.fireTurns||0)>=12)return'불길이 핵심 기록에 닿았다. 수문과 차단막부터 다시 확보하자.';return null;
+ if(fireScenario(b)&&!firesStopped(b)&&(a.fireTurns||0)>=12)return'불길이 핵심 기록에 닿았다. 수문과 차단막부터 다시 확보하자.';return null;
 }
 function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['won','lost'].includes(b.phase))return;initialize(b);const a=memory(b);
  if(sourceIssue(b))return; // Missing authoring is never a completed stage.
- if(b.honroStage===27&&!G.HonroStakeCrossing?.active(b)&&!firesStopped(b)){const end=b.teamEnds?.[1]||0;a.fireStartEnd??=end;a.fireTurns=Math.max(0,end-a.fireStartEnd);}
+ if(fireScenario(b)&&!firesStopped(b)){const end=b.teamEnds?.[1]||0;a.fireStartEnd??=end;a.fireTurns=Math.max(0,end-a.fireStartEnd);}
  let s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  // Commit the reunion at the same actor boundary that opens its Story lock.
  // A dash crossing the circle earlier in the action is not a completed meeting.
