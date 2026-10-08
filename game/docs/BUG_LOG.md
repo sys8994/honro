@@ -1680,3 +1680,7 @@ The public author CLI must regenerate the entire canonical project exactly, and 
 ### C refinement audit revision boundary
 
 The current-map refinement audit classified only revision 1 investigation maps as waterworks, so the approved C revision 3 maps at stages 25/27 incorrectly entered the legacy response-wave assertion. The audit now pins revision 3 exactly at 25/27 and revision 1 exactly at 26/28, while retaining zero copied response waves, supported actors, objective guidance, population limits and the complete frozen-v1 response contracts. This is a test classification correction, not a runtime or balance change.
+
+### C generated environment inventory
+
+The final C Library appends 88 reviewed assets and changes stage 25/27 decoration usage. Regenerated `ENVIRONMENT_INVENTORY.md` from the canonical project with the existing inventory tool; its stale-document check now passes. No map, asset, renderer or runtime values changed.

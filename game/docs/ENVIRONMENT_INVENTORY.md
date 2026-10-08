@@ -324,16 +324,16 @@
 | a3-refine:30:pine-art-3 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-refine:30:pine-art-4 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act1-scene:guardian-tree | 27.6 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:continuous-masonry-waterline | 293.3333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:small-tally-office | 6 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:entry-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:stone-quay-0 | 53.46666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:great-sealed-store | 11.25 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:final-seal-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:stone-quay-1 | 53.46666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:broken-haulway-0 | 2.25 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:family-bundle-17 | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:25:family-bundle-18 | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks:25:continuous-masonry-waterline | 293.3333333333333 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:small-tally-office | 6 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:entry-lamp | 8.833333333333334 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:stone-quay-0 | 53.46666666666667 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:great-sealed-store | 11.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:final-seal-lamp | 8.833333333333334 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:stone-quay-1 | 53.46666666666667 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:broken-haulway-0 | 2.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:family-bundle-17 | 4.416666666666667 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:25:family-bundle-18 | 4.416666666666667 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | a3-location:26:water-work-bridge | 2.8333333333333335 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-location:26:far-ridge | 309.8333333333333 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | a3-location:26:burnt-casting-house | 5.75 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -356,25 +356,25 @@
 | a3-waterworks:26:burial-record-room-rear | 7 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-waterworks:26:ancestor-records | 2.9 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-waterworks:26:record-room-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:continuous-masonry-waterline | 303.3333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:small-tally-office | 6 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:entry-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:stone-quay-0 | 53.46666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:abandoned-loading-shed | 7.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:loading-oil-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:stone-quay-1 | 56.8 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:household-inspection-dais | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:inspection-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:stone-quay-2 | 50.13333333333333 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:great-sealed-store | 13.666666666666666 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:final-seal-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:stone-quay-3 | 53.46666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:broken-haulway-0 | 2.25 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:broken-haulway-1 | 2.25 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:broken-haulway-2 | 2.25 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:numbered-family-bundle | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:sunk-family-tools | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-waterworks:27:manifest-bundle | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks:27:continuous-masonry-waterline | 303.3333333333333 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:small-tally-office | 6 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:entry-lamp | 8.833333333333334 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:stone-quay-0 | 53.46666666666667 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:abandoned-loading-shed | 7.5 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:loading-oil-lamp | 8.833333333333334 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:stone-quay-1 | 56.8 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:household-inspection-dais | 5.5 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:inspection-lamp | 8.833333333333334 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:stone-quay-2 | 50.13333333333333 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:great-sealed-store | 13.666666666666666 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:final-seal-lamp | 8.833333333333334 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:stone-quay-3 | 53.46666666666667 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:broken-haulway-0 | 2.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:broken-haulway-1 | 2.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:broken-haulway-2 | 2.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:numbered-family-bundle | 4.416666666666667 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:sunk-family-tools | 4.416666666666667 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-waterworks:27:manifest-bundle | 4.416666666666667 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | a3-location:27:far-ridge | 309.8333333333333 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | a3-location:27:far-town-0 | 4.25 | building | 지형/지지면 필수 | L3 | a3-place-L3 / WORLD / act3-world | static / cached-vector |
 | a3-location:27:far-town-1 | 6.366666666666666 | building | 지형/지지면 필수 | L3 | a3-place-L3 / WORLD / act3-world | static / cached-vector |
@@ -408,6 +408,94 @@
 | a3-waterworks:23:surface-granary-0 | 5.283333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-waterworks:23:surface-granary-1 | 5.283333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-waterworks:23:surface-granary-2 | 5.283333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:vertical-depot-shell | 496.6666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:masonry-vault | 11.7 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-0 | 36.583333333333336 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-lamp-0 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:haul-number-0 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-1 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-lamp-1 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:haul-number-1 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-2 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-lamp-2 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:haul-number-2 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-3 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-lamp-3 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:haul-number-3 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-4 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-lamp-4 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:haul-number-4 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-5 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-lamp-5 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:haul-number-5 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-6 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:gallery-lamp-6 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:haul-number-6 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:west-maintenance-stairs | 10.333333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:inspection-room-roof | 2.033333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:inspection-room-east-wall | 2.3666666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:maintenance-recess | 5.75 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:west-lookout-roof | 2.033333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:west-lookout-wall | 11.033333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:west-lookout-recess | 9 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:upper-checkpoint-roof | 2.2 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:upper-checkpoint-east-wall | 51.53333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:sluice-side-pier | 10.133333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:upper-checkpoint | 7.583333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:lookout-stair | 5.333333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:lookout-balcony | 1.2 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:household-inspection-dais | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:inspection-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:great-sealed-store | 6.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:family-bundle-17 | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:family-bundle-18 | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:25:broken-haul-bridge | 2.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:vertical-depot-shell | 503.3333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:masonry-vault | 11.7 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-0 | 54.916666666666664 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-0 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-0 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-1 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-1 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-1 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-2 | 51.583333333333336 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-2 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-2 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-3 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-3 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-3 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-4 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-4 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-4 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-5 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-5 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-5 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-6 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-6 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-6 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-7 | 4.15 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:gallery-lamp-7 | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:haul-number-7 | 1.9166666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:entry-haul-stairs | 10.333333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:return-inspection-stairs | 10.333333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:manifest-stairs | 10.333333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:loading-office-roof | 1.7 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:loading-office-east-wall | 2.533333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:abandoned-loading-shed | 7.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:loading-oil-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:far-passage-roof | 2.8666666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:far-passage-wall | 51.03333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:far-passage-buttress | 35.13333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:far-sealed-store | 10.083333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:ledger-room-roof | 2.533333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:ledger-room-west-wall | 24.033333333333335 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:ledger-vault | 9.083333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:household-inspection-dais | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:inspection-lamp | 8.833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:numbered-family-bundle | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:sunk-family-tools | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:manifest-bundle | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-waterworks-v3:27:broken-haul-bridge | 2.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 
 ## 현재 맵
 
@@ -437,9 +525,9 @@
 | stage-22 | enclosed / enclosed | 36 / 3 / 1 | draft-world | 0 | 0 | 0 |
 | stage-23 | forest / forest | 13 / 1 / 2 | act3-world | 0 | 0 | 0 |
 | stage-24 | forest / forest | 22 / 2 / 0 | act3-world | 0 | 0 | 0 |
-| stage-25 | enclosed / enclosed | 10 / 1 / 1 | act3-world | 0 | 0 | 0 |
+| stage-25 | enclosed / enclosed | 42 / 1 / 1 | act3-world | 0 | 0 | 0 |
 | stage-26 | forest / forest | 22 / 3 / 1 | act3-world | 0 | 0 | 0 |
-| stage-27 | enclosed / enclosed | 19 / 1 / 3 | act3-world | 0 | 0 | 0 |
+| stage-27 | enclosed / enclosed | 46 / 1 / 1 | act3-world | 0 | 0 | 0 |
 | stage-28 | forest / forest | 26 / 5 / 0 | act3-world | 1 | 1 | 4 |
 | stage-29 | forest / forest | 15 / 3 / 1 | act3-world | 0 | 0 | 0 |
 | stage-30 | forest / forest | 19 / 1 / 1 | act3-world | 1 | 1 | 4 |
