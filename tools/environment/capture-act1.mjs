@@ -33,6 +33,7 @@ for(const id of ids){const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId=
   {name:'place',x:focus.x,y:focus.y-430,scale:.46,width:1440,height:960},
   {name:'portrait',x:spawn.x+340,y:spawn.y-280,scale:.52,width:720,height:1080}
  ];
+ if(process.argv.includes('--topology'))views.push(...(st.design?.topology?.views||[]));
  if(review){
   const reviewFocus={x:focus.x,y:focus.y-430};
   for(const [name,dx]of [['review-left',-600],['review-center',0],['review-right',600]])views.push({name,x:reviewFocus.x+dx,y:reviewFocus.y,scale:.46,width:1440,height:960});

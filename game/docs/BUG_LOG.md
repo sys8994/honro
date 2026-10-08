@@ -1518,3 +1518,6 @@ Custom-map win/loss results now say “원래 여정으로 돌아가기”, matc
 - 25/27 crossings 계약은 실제 M09 발사·쌍진목·E 사용을 재사용하며 영구 rank/슬롯은 수정하지 않는다. 두 동행의 실제 진목 사용 이력이 있어야 다음 횡단이 열린다.
 - 실패·만료·잘못된 연결·동행 사망은 현재 구간의 원래 전장/자원으로 복원한다. 기존 XP 및 제한 장부는 보존하여 재도전 경험치 중복을 막는다.
 - 집중 회귀 `node tests/stake-crossing-runtime.mjs` 통과. 본 커밋은 지도/내용 통합 전 저장 지점이며 기존 split 테스트와 실제 입력/브라우저 검수는 후속 통합에서 갱신·수행한다.
+## 2026-10-08 · Representative forest/cavern multi-level topology (work in progress)
+
+Stage 7 retains its three resident levels and gains asymmetric optional branch angles. Stage 15 replaces the single-floor cavern with two grounded, opposing granite overhangs and real upper/lower passages. Required travel uses base jumps; no purchased mobility is required. Existing battle saves are not re-authored. See `FOREST_CAVERN_TOPOLOGY.md` for verified isolated movement/projectile scope and pending release checks. This checkpoint is not a normal-combat, browser or final-art completion claim.

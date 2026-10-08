@@ -112114,16 +112114,32 @@
               "y": 3500
             },
             {
-              "x": 1900,
-              "y": 3595
+              "x": 1855,
+              "y": 3555
             },
             {
-              "x": 1150,
-              "y": 3945
+              "x": 1600,
+              "y": 3698
+            },
+            {
+              "x": 1330,
+              "y": 3830
+            },
+            {
+              "x": 1110,
+              "y": 3956
+            },
+            {
+              "x": 820,
+              "y": 4070
+            },
+            {
+              "x": 475,
+              "y": 4180
             },
             {
               "x": 180,
-              "y": 4295
+              "y": 4264
             }
           ],
           "baseMaterial": "wood",
@@ -112198,12 +112214,24 @@
               "y": 3000
             },
             {
-              "x": 3330,
-              "y": 3095
+              "x": 3290,
+              "y": 3032
+            },
+            {
+              "x": 3070,
+              "y": 3098
+            },
+            {
+              "x": 2880,
+              "y": 3057
+            },
+            {
+              "x": 2710,
+              "y": 3112
             },
             {
               "x": 2470,
-              "y": 3095
+              "y": 3060
             }
           ],
           "baseMaterial": "wood",
@@ -112286,12 +112314,28 @@
               "y": 2200
             },
             {
-              "x": 1900,
-              "y": 2295
+              "x": 1880,
+              "y": 2234
+            },
+            {
+              "x": 1620,
+              "y": 2271
+            },
+            {
+              "x": 1330,
+              "y": 2340
+            },
+            {
+              "x": 1050,
+              "y": 2270
+            },
+            {
+              "x": 830,
+              "y": 2310
             },
             {
               "x": 650,
-              "y": 2295
+              "y": 2238
             }
           ],
           "baseMaterial": "wood",
@@ -112374,12 +112418,28 @@
               "y": 1100
             },
             {
-              "x": 3000,
-              "y": 1200
+              "x": 2960,
+              "y": 1140
+            },
+            {
+              "x": 2660,
+              "y": 1230
+            },
+            {
+              "x": 2390,
+              "y": 1340
+            },
+            {
+              "x": 2120,
+              "y": 1370
+            },
+            {
+              "x": 1790,
+              "y": 1530
             },
             {
               "x": 1500,
-              "y": 1550
+              "y": 1500
             }
           ],
           "baseMaterial": "wood",
@@ -112567,6 +112627,183 @@
             "route": true,
             "surfaceKind": "wood",
             "artSeed": 1
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc7-west-watch",
+          "name": "fc7-west-watch",
+          "type": "solid",
+          "points": [
+            {
+              "x": 480,
+              "y": 3985
+            },
+            {
+              "x": 650,
+              "y": 3960
+            },
+            {
+              "x": 860,
+              "y": 3928
+            },
+            {
+              "x": 850,
+              "y": 3950
+            },
+            {
+              "x": 680,
+              "y": 4000
+            },
+            {
+              "x": 520,
+              "y": 4025
+            },
+            {
+              "x": 480,
+              "y": 4015
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc7-west-watch",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc7-middle-fork",
+          "name": "fc7-middle-fork",
+          "type": "solid",
+          "points": [
+            {
+              "x": 2250,
+              "y": 2835
+            },
+            {
+              "x": 2410,
+              "y": 2807
+            },
+            {
+              "x": 2570,
+              "y": 2825
+            },
+            {
+              "x": 2550,
+              "y": 2850
+            },
+            {
+              "x": 2440,
+              "y": 2855
+            },
+            {
+              "x": 2320,
+              "y": 2890
+            },
+            {
+              "x": 2250,
+              "y": 2870
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc7-middle-fork",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc7-hollow-lookout",
+          "name": "fc7-hollow-lookout",
+          "type": "solid",
+          "points": [
+            {
+              "x": 1230,
+              "y": 2055
+            },
+            {
+              "x": 1440,
+              "y": 2018
+            },
+            {
+              "x": 1600,
+              "y": 2030
+            },
+            {
+              "x": 1580,
+              "y": 2055
+            },
+            {
+              "x": 1450,
+              "y": 2050
+            },
+            {
+              "x": 1330,
+              "y": 2100
+            },
+            {
+              "x": 1230,
+              "y": 2090
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc7-hollow-lookout",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "optional": true
           },
           "layer": "terrain",
           "detail": {
@@ -112907,8 +113144,8 @@
           "role": "bow",
           "cls": "archer",
           "side": 1,
-          "x": 1530,
-          "y": 3672.6666666666665,
+          "x": 725,
+          "y": 3948.21,
           "vx": 0,
           "vy": 0,
           "hp": 653,
@@ -112941,8 +113178,8 @@
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 1530,
-          "spawnY": 3672.6666666666665,
+          "spawnX": 725,
+          "spawnY": 3948.21,
           "intent": "불규칙한 사격",
           "dead": false,
           "ranks": {
@@ -113475,8 +113712,8 @@
           "role": "bow",
           "cls": "archer",
           "side": 1,
-          "x": 2660,
-          "y": 1179.3333333333333,
+          "x": 1480,
+          "y": 2021,
           "vx": 0,
           "vy": 0,
           "hp": 653,
@@ -113509,8 +113746,8 @@
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 2660,
-          "spawnY": 1179.3333333333333,
+          "spawnX": 1480,
+          "spawnY": 2021,
           "intent": "불규칙한 사격",
           "dead": false,
           "ranks": {
@@ -113617,8 +113854,8 @@
           "role": "bow",
           "cls": "archer",
           "side": 1,
-          "x": 3250,
-          "y": 3000,
+          "x": 2420,
+          "y": 2808.125,
           "vx": 0,
           "vy": 0,
           "hp": 938,
@@ -113651,8 +113888,8 @@
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 3250,
-          "spawnY": 3000,
+          "spawnX": 2420,
+          "spawnY": 2808.125,
           "intent": "불규칙한 사격",
           "dead": false,
           "ranks": {
@@ -115095,6 +115332,89 @@
           ],
           "lights": [],
           "viewpoints": []
+        },
+        "topology": {
+          "version": 1,
+          "kind": "inhabited-living-boughs",
+          "encounters": [
+            {
+              "unitId": "foe-0",
+              "supportId": "fc7-west-watch",
+              "role": "low branch crossfire",
+              "x": 725,
+              "y": 3948.21
+            },
+            {
+              "unitId": "foe-10",
+              "supportId": "fc7-middle-fork",
+              "role": "middle fork intercept",
+              "x": 2420,
+              "y": 2808.125
+            },
+            {
+              "unitId": "foe-8",
+              "supportId": "fc7-hollow-lookout",
+              "role": "hollow flank overwatch",
+              "x": 1480,
+              "y": 2021
+            }
+          ],
+          "firingSites": [
+            {
+              "id": "lower-watch",
+              "x": 725,
+              "y": 3948.214285714286,
+              "supportId": "fc7-west-watch"
+            },
+            {
+              "id": "middle-fork",
+              "x": 2420,
+              "y": 2808.125,
+              "supportId": "fc7-middle-fork"
+            },
+            {
+              "id": "hollow-lookout",
+              "x": 1480,
+              "y": 2021,
+              "supportId": "fc7-hollow-lookout"
+            }
+          ],
+          "ordinaryRoutes": [
+            {
+              "id": "lower-watch",
+              "from": {
+                "x": 790,
+                "y": 3979.896907216495
+              },
+              "to": {
+                "x": 725,
+                "y": 3948.214285714286
+              }
+            },
+            {
+              "id": "middle-fork",
+              "from": {
+                "x": 2585,
+                "y": 3000
+              },
+              "to": {
+                "x": 2470,
+                "y": 2813.75
+              }
+            },
+            {
+              "id": "hollow-lookout",
+              "from": {
+                "x": 1510,
+                "y": 2200
+              },
+              "to": {
+                "x": 1480,
+                "y": 2021
+              }
+            }
+          ],
+          "preserved": "Three civilian homes and the complete original main climb; no movement skills required."
         }
       },
       "routes": [],
@@ -143441,51 +143761,51 @@
             },
             {
               "x": 14000,
-              "y": 2025.0000002782558
+              "y": 2203.9999999093093
             },
             {
               "x": 13500,
-              "y": 2060.9746333437574
+              "y": 2239.974631390374
             },
             {
               "x": 13000,
-              "y": 2138.2818273071775
+              "y": 2317.2818169650077
             },
             {
               "x": 12500,
-              "y": 2210.9965422444734
+              "y": 2389.996487487958
             },
             {
               "x": 12000,
-              "y": 2237.853442239531
+              "y": 2416.8531523317056
             },
             {
               "x": 11500,
-              "y": 2317.964120579742
+              "y": 2496.9625856656426
             },
             {
               "x": 11000,
-              "y": 2447.4615473718623
+              "y": 2626.453420784435
             },
             {
               "x": 10500,
-              "y": 2544.0585129794536
+              "y": 2723.0154868431746
             },
             {
               "x": 10000,
-              "y": 2540.611805563181
+              "y": 2719.384004112741
             },
             {
               "x": 9500,
-              "y": 2478.919993215247
+              "y": 2656.7139007024107
             },
             {
               "x": 9000,
-              "y": 2426.6189520648422
+              "y": 2599.233307255684
             },
             {
               "x": 8500,
-              "y": 2513.2716438830707
+              "y": 2658.462910975147
             },
             {
               "x": 8000,
@@ -143493,283 +143813,283 @@
             },
             {
               "x": 7925,
-              "y": 2818
+              "y": 2769
             },
             {
               "x": 7850,
-              "y": 2856
+              "y": 2758
             },
             {
               "x": 7775,
-              "y": 2894
+              "y": 2747
             },
             {
               "x": 7700,
-              "y": 2932
+              "y": 2736
             },
             {
               "x": 7625,
-              "y": 2970
+              "y": 2725
             },
             {
               "x": 7550,
-              "y": 3008
+              "y": 2714
             },
             {
               "x": 7475,
-              "y": 3046
+              "y": 2703
             },
             {
               "x": 7400,
-              "y": 3084
+              "y": 2692
             },
             {
               "x": 7325,
-              "y": 3122
+              "y": 2681
             },
             {
               "x": 7250,
-              "y": 3160
+              "y": 2670
             },
             {
               "x": 7175,
-              "y": 3168
+              "y": 2650
             },
             {
               "x": 7100,
-              "y": 3176
+              "y": 2630
             },
             {
               "x": 7025,
-              "y": 3184
+              "y": 2610
             },
             {
               "x": 6950,
-              "y": 3192
+              "y": 2590
             },
             {
               "x": 6875,
-              "y": 3200
+              "y": 2570
             },
             {
               "x": 6800,
-              "y": 3208
+              "y": 2550
             },
             {
               "x": 6725,
-              "y": 3216
+              "y": 2530
             },
             {
               "x": 6650,
-              "y": 3224
+              "y": 2510
             },
             {
               "x": 6575,
-              "y": 3232
+              "y": 2490
             },
             {
               "x": 6500,
-              "y": 3240
+              "y": 2470
             },
             {
               "x": 6425,
-              "y": 3139
+              "y": 2422
             },
             {
               "x": 6350,
-              "y": 3038
+              "y": 2374
             },
             {
               "x": 6275,
-              "y": 2937
+              "y": 2326
             },
             {
               "x": 6200,
-              "y": 2836
+              "y": 2278
             },
             {
               "x": 6125,
-              "y": 2735
-            },
-            {
-              "x": 6050,
-              "y": 2634
-            },
-            {
-              "x": 5975,
-              "y": 2533
-            },
-            {
-              "x": 5900,
-              "y": 2432
-            },
-            {
-              "x": 5825,
-              "y": 2331
-            },
-            {
-              "x": 5750,
               "y": 2230
             },
             {
-              "x": 5675,
-              "y": 2165
+              "x": 6050,
+              "y": 2182
             },
             {
-              "x": 5600,
-              "y": 2100
-            },
-            {
-              "x": 5525,
-              "y": 2035
-            },
-            {
-              "x": 5450,
-              "y": 1970
-            },
-            {
-              "x": 5375,
-              "y": 1905
-            },
-            {
-              "x": 5300,
-              "y": 1840
-            },
-            {
-              "x": 5225,
-              "y": 1775
-            },
-            {
-              "x": 5150,
-              "y": 1710
-            },
-            {
-              "x": 5075,
-              "y": 1645
-            },
-            {
-              "x": 5000,
-              "y": 1580
-            },
-            {
-              "x": 4925,
-              "y": 1586.6666666666667
-            },
-            {
-              "x": 4850,
-              "y": 1593.3333333333333
-            },
-            {
-              "x": 4775,
-              "y": 1600
-            },
-            {
-              "x": 4700,
-              "y": 1606.6666666666667
-            },
-            {
-              "x": 4625,
-              "y": 1613.3333333333333
-            },
-            {
-              "x": 4550,
-              "y": 1620
-            },
-            {
-              "x": 4475,
-              "y": 1626.6666666666667
-            },
-            {
-              "x": 4400,
-              "y": 1633.3333333333333
-            },
-            {
-              "x": 4325,
-              "y": 1640
-            },
-            {
-              "x": 4250,
-              "y": 1646.6666666666667
-            },
-            {
-              "x": 4175,
-              "y": 1653.3333333333333
-            },
-            {
-              "x": 4100,
-              "y": 1660
-            },
-            {
-              "x": 4025,
-              "y": 1739
-            },
-            {
-              "x": 3950,
-              "y": 1818
-            },
-            {
-              "x": 3875,
-              "y": 1897
-            },
-            {
-              "x": 3800,
-              "y": 1976
-            },
-            {
-              "x": 3725,
-              "y": 2055
-            },
-            {
-              "x": 3650,
+              "x": 5975,
               "y": 2134
             },
             {
+              "x": 5900,
+              "y": 2086
+            },
+            {
+              "x": 5825,
+              "y": 2038
+            },
+            {
+              "x": 5750,
+              "y": 1990
+            },
+            {
+              "x": 5675,
+              "y": 1938
+            },
+            {
+              "x": 5600,
+              "y": 1886
+            },
+            {
+              "x": 5525,
+              "y": 1834
+            },
+            {
+              "x": 5450,
+              "y": 1782
+            },
+            {
+              "x": 5375,
+              "y": 1730
+            },
+            {
+              "x": 5300,
+              "y": 1678
+            },
+            {
+              "x": 5225,
+              "y": 1626
+            },
+            {
+              "x": 5150,
+              "y": 1574
+            },
+            {
+              "x": 5075,
+              "y": 1522
+            },
+            {
+              "x": 5000,
+              "y": 1470
+            },
+            {
+              "x": 4925,
+              "y": 1479.1666666666667
+            },
+            {
+              "x": 4850,
+              "y": 1488.3333333333333
+            },
+            {
+              "x": 4775,
+              "y": 1497.5
+            },
+            {
+              "x": 4700,
+              "y": 1506.6666666666667
+            },
+            {
+              "x": 4625,
+              "y": 1515.8333333333333
+            },
+            {
+              "x": 4550,
+              "y": 1525
+            },
+            {
+              "x": 4475,
+              "y": 1534.1666666666667
+            },
+            {
+              "x": 4400,
+              "y": 1543.3333333333333
+            },
+            {
+              "x": 4325,
+              "y": 1552.5
+            },
+            {
+              "x": 4250,
+              "y": 1561.6666666666667
+            },
+            {
+              "x": 4175,
+              "y": 1570.8333333333333
+            },
+            {
+              "x": 4100,
+              "y": 1580
+            },
+            {
+              "x": 4025,
+              "y": 1646
+            },
+            {
+              "x": 3950,
+              "y": 1712
+            },
+            {
+              "x": 3875,
+              "y": 1778
+            },
+            {
+              "x": 3800,
+              "y": 1844
+            },
+            {
+              "x": 3725,
+              "y": 1910
+            },
+            {
+              "x": 3650,
+              "y": 1976
+            },
+            {
               "x": 3575,
-              "y": 2213
+              "y": 2042
             },
             {
               "x": 3500,
-              "y": 2292
+              "y": 2108
             },
             {
               "x": 3425,
-              "y": 2371
+              "y": 2174
             },
             {
               "x": 3350,
-              "y": 2450
+              "y": 2240
             },
             {
               "x": 3272.222222222222,
-              "y": 2518.8888888888887
+              "y": 2332.222222222222
             },
             {
               "x": 3194.4444444444443,
-              "y": 2587.777777777778
+              "y": 2424.4444444444443
             },
             {
               "x": 3116.6666666666665,
-              "y": 2656.6666666666665
+              "y": 2516.666666666667
             },
             {
               "x": 3038.8888888888887,
-              "y": 2725.5555555555557
+              "y": 2608.8888888888887
             },
             {
               "x": 2961.1111111111113,
-              "y": 2794.4444444444443
+              "y": 2701.1111111111113
             },
             {
               "x": 2883.3333333333335,
-              "y": 2863.3333333333335
+              "y": 2793.3333333333335
             },
             {
               "x": 2805.5555555555557,
-              "y": 2932.222222222222
+              "y": 2885.5555555555557
             },
             {
               "x": 2727.777777777778,
-              "y": 3001.1111111111113
+              "y": 2977.777777777778
             },
             {
               "x": 2650,
@@ -144028,6 +144348,470 @@
             ],
             "optional": true
           },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-west-arch",
+          "name": "fc15-west-arch",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3000,
+              "y": 3780
+            },
+            {
+              "x": 3300,
+              "y": 3500
+            },
+            {
+              "x": 3540,
+              "y": 3460
+            },
+            {
+              "x": 3660,
+              "y": 3300
+            },
+            {
+              "x": 3720,
+              "y": 3190
+            },
+            {
+              "x": 3870,
+              "y": 3190
+            },
+            {
+              "x": 4010,
+              "y": 3010
+            },
+            {
+              "x": 4200,
+              "y": 2990
+            },
+            {
+              "x": 4320,
+              "y": 3020
+            },
+            {
+              "x": 4360,
+              "y": 3480
+            },
+            {
+              "x": 4540,
+              "y": 3500
+            },
+            {
+              "x": 4590,
+              "y": 3650
+            },
+            {
+              "x": 4800,
+              "y": 3620
+            },
+            {
+              "x": 4910,
+              "y": 3740
+            },
+            {
+              "x": 4910,
+              "y": 4160
+            },
+            {
+              "x": 4780,
+              "y": 4110
+            },
+            {
+              "x": 4600,
+              "y": 4200
+            },
+            {
+              "x": 4470,
+              "y": 4160
+            },
+            {
+              "x": 4400,
+              "y": 4070
+            },
+            {
+              "x": 4140,
+              "y": 4020
+            },
+            {
+              "x": 3960,
+              "y": 4070
+            },
+            {
+              "x": 3820,
+              "y": 3980
+            },
+            {
+              "x": 3740,
+              "y": 4120
+            },
+            {
+              "x": 3680,
+              "y": 4350
+            },
+            {
+              "x": 3420,
+              "y": 4310
+            },
+            {
+              "x": 3330,
+              "y": 4080
+            },
+            {
+              "x": 3340,
+              "y": 3890
+            },
+            {
+              "x": 3180,
+              "y": 3860
+            },
+            {
+              "x": 3000,
+              "y": 3840
+            }
+          ],
+          "baseMaterial": "rock",
+          "oneWay": false,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "cave",
+            "honroCave": true,
+            "honroSpaceSurfaceId": "fc15-west-arch",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              11,
+              12
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-east-arch",
+          "name": "fc15-east-arch",
+          "type": "solid",
+          "points": [
+            {
+              "x": 6310,
+              "y": 4260
+            },
+            {
+              "x": 6500,
+              "y": 4070
+            },
+            {
+              "x": 6690,
+              "y": 4050
+            },
+            {
+              "x": 6830,
+              "y": 3860
+            },
+            {
+              "x": 6950,
+              "y": 3710
+            },
+            {
+              "x": 7110,
+              "y": 3660
+            },
+            {
+              "x": 7210,
+              "y": 3510
+            },
+            {
+              "x": 7400,
+              "y": 3500
+            },
+            {
+              "x": 7440,
+              "y": 3590
+            },
+            {
+              "x": 7560,
+              "y": 3760
+            },
+            {
+              "x": 7560,
+              "y": 3840
+            },
+            {
+              "x": 7500,
+              "y": 3850
+            },
+            {
+              "x": 7450,
+              "y": 4300
+            },
+            {
+              "x": 7190,
+              "y": 4400
+            },
+            {
+              "x": 7060,
+              "y": 4130
+            },
+            {
+              "x": 6910,
+              "y": 4120
+            },
+            {
+              "x": 6610,
+              "y": 4270
+            },
+            {
+              "x": 6430,
+              "y": 4360
+            },
+            {
+              "x": 6310,
+              "y": 4390
+            }
+          ],
+          "baseMaterial": "rock",
+          "oneWay": false,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "cave",
+            "honroCave": true,
+            "honroSpaceSurfaceId": "fc15-east-arch",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-west-shoulder",
+          "name": "fc15-west-shoulder",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4390,
+              "y": 3320
+            },
+            {
+              "x": 4540,
+              "y": 3295
+            },
+            {
+              "x": 4660,
+              "y": 3325
+            },
+            {
+              "x": 4600,
+              "y": 3388
+            },
+            {
+              "x": 4450,
+              "y": 3370
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc15-west-shoulder",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-water-toe",
+          "name": "fc15-water-toe",
+          "type": "solid",
+          "points": [
+            {
+              "x": 6090,
+              "y": 4410
+            },
+            {
+              "x": 6240,
+              "y": 4395
+            },
+            {
+              "x": 6300,
+              "y": 4435
+            },
+            {
+              "x": 6230,
+              "y": 4470
+            },
+            {
+              "x": 6110,
+              "y": 4450
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc15-water-toe",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-east-access",
+          "name": "fc15-east-access",
+          "type": "solid",
+          "points": [
+            {
+              "x": 7580,
+              "y": 3885
+            },
+            {
+              "x": 7760,
+              "y": 3860
+            },
+            {
+              "x": 7790,
+              "y": 3880
+            },
+            {
+              "x": 7630,
+              "y": 3920
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc15-east-access",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-west-descent",
+          "name": "fc15-west-descent",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4950,
+              "y": 3985
+            },
+            {
+              "x": 5140,
+              "y": 3970
+            },
+            {
+              "x": 5160,
+              "y": 4005
+            },
+            {
+              "x": 4970,
+              "y": 4020
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc15-west-descent",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
           "detail": {
             "spacing": 18,
             "roughness": 0,
@@ -144298,6 +145082,17 @@
           "snap": false,
           "layer": "prop",
           "depthLayer": "L1"
+        },
+        {
+          "id": "fc15-under-arch-lamp",
+          "assetId": "act2:lamp",
+          "x": 4260,
+          "y": 4398.666666666667,
+          "scale": 0.8,
+          "rotation": 0,
+          "snap": false,
+          "layer": "back",
+          "depthLayer": "L1"
         }
       ],
       "units": [
@@ -144442,8 +145237,8 @@
           "id": "a2-enemy-7",
           "kind": "picks",
           "team": "enemy",
-          "x": 2960,
-          "y": 4005.3333333333335,
+          "x": 3745,
+          "y": 3190,
           "facing": 1,
           "spawnIndex": 7,
           "behavior": "patrol",
@@ -144451,14 +145246,16 @@
             "honroCohort": "middle",
             "honroAct2Elite": true,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 3745,
+          "spawnY": 3190
         },
         {
           "id": "a2-enemy-8",
           "kind": "picks",
           "team": "enemy",
-          "x": 2622,
-          "y": 3881.4,
+          "x": 4540,
+          "y": 3295,
           "facing": 1,
           "spawnIndex": 8,
           "behavior": "patrol",
@@ -144466,14 +145263,16 @@
             "honroCohort": "west",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 4540,
+          "spawnY": 3295
         },
         {
           "id": "a2-enemy-9",
           "kind": "bat",
           "team": "enemy",
-          "x": 4055,
-          "y": 4180.583333333333,
+          "x": 4060,
+          "y": 2700,
           "facing": 1,
           "spawnIndex": 9,
           "behavior": "patrol",
@@ -144481,14 +145280,16 @@
             "honroCohort": "middle",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 4060,
+          "spawnY": 2700
         },
         {
           "id": "a2-enemy-10",
           "kind": "bat",
           "team": "enemy",
-          "x": 4132,
-          "y": 4202.4,
+          "x": 4540,
+          "y": 4290,
           "facing": 1,
           "spawnIndex": 10,
           "behavior": "patrol",
@@ -144496,14 +145297,16 @@
             "honroCohort": "middle",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 4540,
+          "spawnY": 4290
         },
         {
           "id": "a2-enemy-11",
           "kind": "bat",
           "team": "enemy",
-          "x": 4640,
-          "y": 4276.5625,
+          "x": 5030,
+          "y": 4140,
           "facing": 1,
           "spawnIndex": 11,
           "behavior": "patrol",
@@ -144511,14 +145314,16 @@
             "honroCohort": "middle",
             "honroAct2Elite": true,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 5030,
+          "spawnY": 4140
         },
         {
           "id": "a2-enemy-12",
           "kind": "bat",
           "team": "enemy",
-          "x": 4302,
-          "y": 4250.15625,
+          "x": 4710,
+          "y": 3020,
           "facing": 1,
           "spawnIndex": 12,
           "behavior": "patrol",
@@ -144526,14 +145331,16 @@
             "honroCohort": "middle",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 4710,
+          "spawnY": 3020
         },
         {
           "id": "a2-enemy-13",
           "kind": "bat",
           "team": "enemy",
-          "x": 4368,
-          "y": 4255.3125,
+          "x": 5480,
+          "y": 3690,
           "facing": 1,
           "spawnIndex": 13,
           "behavior": "patrol",
@@ -144541,14 +145348,16 @@
             "honroCohort": "middle",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 5480,
+          "spawnY": 3690
         },
         {
           "id": "a2-enemy-14",
           "kind": "minecart",
           "team": "enemy",
-          "x": 5625,
-          "y": 4755.833333333333,
+          "x": 7310,
+          "y": 3504.7368421052633,
           "facing": 1,
           "spawnIndex": 14,
           "behavior": "patrol",
@@ -144556,7 +145365,9 @@
             "honroCohort": "east",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 7310,
+          "spawnY": 3504.7368421052633
         },
         {
           "id": "a2-enemy-15",
@@ -144592,8 +145403,8 @@
           "id": "a2-enemy-17",
           "kind": "minecart",
           "team": "enemy",
-          "x": 5872,
-          "y": 4761.588235294118,
+          "x": 5890,
+          "y": 4749.411764705882,
           "facing": 1,
           "spawnIndex": 17,
           "behavior": "patrol",
@@ -144601,7 +145412,9 @@
             "honroCohort": "east",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 5890,
+          "spawnY": 4749.411764705882
         },
         {
           "id": "a2-enemy-18",
@@ -144622,8 +145435,8 @@
           "id": "a2-enemy-19",
           "kind": "bat",
           "team": "enemy",
-          "x": 7310,
-          "y": 3937,
+          "x": 7750,
+          "y": 3700,
           "facing": 1,
           "spawnIndex": 19,
           "behavior": "patrol",
@@ -144631,14 +145444,16 @@
             "honroCohort": "east",
             "honroAct2Elite": true,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 7750,
+          "spawnY": 3700
         },
         {
           "id": "a2-enemy-20",
           "kind": "bat",
           "team": "enemy",
-          "x": 6894,
-          "y": 4190.366666666667,
+          "x": 6680,
+          "y": 4340,
           "facing": 1,
           "spawnIndex": 20,
           "behavior": "patrol",
@@ -144646,14 +145461,16 @@
             "honroCohort": "east",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 6680,
+          "spawnY": 4340
         },
         {
           "id": "a2-enemy-21",
           "kind": "bat",
           "team": "enemy",
-          "x": 6972,
-          "y": 4142.266666666666,
+          "x": 6950,
+          "y": 4260,
           "facing": 1,
           "spawnIndex": 21,
           "behavior": "patrol",
@@ -144661,7 +145478,9 @@
             "honroCohort": "east",
             "honroAct2Elite": false,
             "honroAct2Revision": 2
-          }
+          },
+          "spawnX": 6950,
+          "spawnY": 4260
         }
       ],
       "events": [],
@@ -144896,7 +145715,7 @@
         "honroObjectiveRevision": 2,
         "honroCaveHangingClue": {
           "x": 4720,
-          "roofY": 1604.888888888889,
+          "roofY": 1504.2222222222222,
           "targetY": 3752.8125
         }
       },
@@ -145445,7 +146264,7 @@
           "version": 1,
           "geometryRevision": 3,
           "sharedSpaceId": null,
-          "topologyId": "low-sluice-high-shaft",
+          "topologyId": "unequal-granite-crowns-and-water-cleft",
           "rooms": [
             {
               "id": "wet-approach",
@@ -145474,9 +146293,9 @@
               ],
               "bounds": {
                 "x": 1800,
-                "y": 2627.142857142857,
+                "y": 2477.1428571428573,
                 "w": 1350,
-                "h": 1440
+                "h": 1589.9999999999995
               },
               "sky": "cave",
               "landmarkIds": []
@@ -145484,16 +146303,19 @@
             {
               "id": "open-shaft",
               "terrainIds": [
-                "act2-floor"
+                "act2-floor",
+                "fc15-west-arch",
+                "fc15-west-shoulder",
+                "fc15-west-descent"
               ],
               "ceilingIds": [
                 "cave-roof"
               ],
               "bounds": {
                 "x": 3150,
-                "y": 1580,
+                "y": 1470,
                 "w": 2150,
-                "h": 2957.8378378378375
+                "h": 3067.8378378378375
               },
               "sky": "cave",
               "landmarkIds": []
@@ -145501,16 +146323,17 @@
             {
               "id": "carved-groove",
               "terrainIds": [
-                "act2-floor"
+                "act2-floor",
+                "fc15-water-toe"
               ],
               "ceilingIds": [
                 "cave-roof"
               ],
               "bounds": {
                 "x": 5300,
-                "y": 1840,
+                "y": 1678,
                 "w": 1250,
-                "h": 2950
+                "h": 3112
               },
               "sky": "cave",
               "landmarkIds": []
@@ -145518,16 +146341,18 @@
             {
               "id": "temple-stair",
               "terrainIds": [
-                "act2-floor"
+                "act2-floor",
+                "fc15-east-arch",
+                "fc15-east-access"
               ],
               "ceilingIds": [
                 "cave-roof"
               ],
               "bounds": {
                 "x": 6550,
-                "y": 2780,
+                "y": 2483.3333333333335,
                 "w": 1450,
-                "h": 1715.471698113207
+                "h": 2012.1383647798734
               },
               "sky": "cave",
               "landmarkIds": []
@@ -145804,6 +146629,92 @@
                 "sluice-neck",
                 "dry-shoulder"
               ]
+            },
+            {
+              "id": "fc15-west-arch",
+              "terrainId": "fc15-west-arch",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                9,
+                11,
+                12
+              ],
+              "roomIds": [
+                "open-shaft"
+              ]
+            },
+            {
+              "id": "fc15-east-arch",
+              "terrainId": "fc15-east-arch",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "roomIds": [
+                "temple-stair"
+              ]
+            },
+            {
+              "id": "fc15-west-shoulder",
+              "terrainId": "fc15-west-shoulder",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1
+              ],
+              "roomIds": [
+                "open-shaft"
+              ]
+            },
+            {
+              "id": "fc15-water-toe",
+              "terrainId": "fc15-water-toe",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1
+              ],
+              "roomIds": [
+                "carved-groove"
+              ]
+            },
+            {
+              "id": "fc15-east-access",
+              "terrainId": "fc15-east-access",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "temple-stair"
+              ]
+            },
+            {
+              "id": "fc15-west-descent",
+              "terrainId": "fc15-west-descent",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "open-shaft"
+              ]
             }
           ],
           "connections": [
@@ -145927,143 +146838,8 @@
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 375,
-                  "y": 3643.3333333333335,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 450,
-                  "y": 3650,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 525,
-                  "y": 3656.6666666666665,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 600,
-                  "y": 3663.3333333333335,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 675,
-                  "y": 3670,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 750,
-                  "y": 3676.6666666666665,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 825,
-                  "y": 3683.3333333333335,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 900,
-                  "y": 3690,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 977.2727272727273,
-                  "y": 3700,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1054.5454545454545,
-                  "y": 3710,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1131.8181818181818,
-                  "y": 3720,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1209.090909090909,
-                  "y": 3730,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1286.3636363636365,
-                  "y": 3740,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1363.6363636363635,
-                  "y": 3750,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1440.909090909091,
-                  "y": 3760,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1518.1818181818182,
-                  "y": 3770,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1595.4545454545455,
-                  "y": 3780,
-                  "surfaceId": "floor-main"
-                },
-                {
                   "x": 1630,
                   "y": 3784.470588235294,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1672.7272727272727,
-                  "y": 3790,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1750,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1822.2222222222222,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1894.4444444444443,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 1966.6666666666667,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 2038.888888888889,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 2111.1111111111113,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 2183.3333333333335,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 2255.5555555555557,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 2327.777777777778,
-                  "y": 3800,
                   "surfaceId": "floor-main"
                 },
                 {
@@ -146072,233 +146848,88 @@
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 2400,
-                  "y": 3800,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 2475,
-                  "y": 3827.5,
-                  "surfaceId": "floor-main"
-                },
-                {
                   "x": 2490,
                   "y": 3833,
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 2550,
-                  "y": 3855,
+                  "x": 2630,
+                  "y": 3884.3333333333335,
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 2625,
-                  "y": 3882.5,
-                  "surfaceId": "floor-main"
+                  "x": 2820,
+                  "y": 3748.3333333333335,
+                  "surfaceId": "dry-shoulder"
                 },
                 {
-                  "x": 2700,
-                  "y": 3910,
-                  "surfaceId": "floor-main"
+                  "x": 3050,
+                  "y": 3733.3333333333335,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 2775,
-                  "y": 3937.5,
-                  "surfaceId": "floor-main"
+                  "x": 3300,
+                  "y": 3500,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 2850,
-                  "y": 3965,
-                  "surfaceId": "floor-main"
+                  "x": 3540,
+                  "y": 3460,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 2925,
-                  "y": 3992.5,
-                  "surfaceId": "floor-main"
+                  "x": 3660,
+                  "y": 3300,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 3000,
-                  "y": 4020,
-                  "surfaceId": "floor-main"
+                  "x": 3750,
+                  "y": 3190,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 3077.777777777778,
-                  "y": 4044.4444444444443,
-                  "surfaceId": "floor-main"
+                  "x": 3890,
+                  "y": 3164.285714285714,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 3155.5555555555557,
-                  "y": 4068.8888888888887,
-                  "surfaceId": "floor-main"
+                  "x": 4140,
+                  "y": 2996.315789473684,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 3233.3333333333335,
-                  "y": 4093.3333333333335,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3311.1111111111113,
-                  "y": 4117.777777777777,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3388.8888888888887,
-                  "y": 4142.222222222223,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3466.6666666666665,
-                  "y": 4166.666666666667,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3544.4444444444443,
-                  "y": 4191.111111111111,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3622.222222222222,
-                  "y": 4215.555555555556,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3700,
-                  "y": 4240,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3775,
-                  "y": 4261.25,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3850,
-                  "y": 4282.5,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 3925,
-                  "y": 4303.75,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4000,
-                  "y": 4325,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4075,
-                  "y": 4346.25,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4150,
-                  "y": 4367.5,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4225,
-                  "y": 4388.75,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4300,
-                  "y": 4410,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4380,
-                  "y": 4416.25,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4430,
-                  "y": 4420.15625,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4460,
-                  "y": 4422.5,
-                  "surfaceId": "floor-main"
+                  "x": 4250,
+                  "y": 3002.5,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
                   "x": 4540,
-                  "y": 4428.75,
-                  "surfaceId": "floor-main"
+                  "y": 3295,
+                  "surfaceId": "fc15-west-shoulder"
                 },
                 {
-                  "x": 4620,
-                  "y": 4435,
-                  "surfaceId": "floor-main"
+                  "x": 4710,
+                  "y": 3632.8571428571427,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 4700,
-                  "y": 4441.25,
-                  "surfaceId": "floor-main"
+                  "x": 4810,
+                  "y": 3630.909090909091,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 4780,
-                  "y": 4447.5,
-                  "surfaceId": "floor-main"
+                  "x": 4870,
+                  "y": 3696.3636363636365,
+                  "surfaceId": "fc15-west-arch"
                 },
                 {
-                  "x": 4860,
-                  "y": 4453.75,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 4940,
-                  "y": 4460,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5014,
-                  "y": 4476,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5088,
-                  "y": 4492,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5162,
-                  "y": 4508,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5236,
-                  "y": 4524,
-                  "surfaceId": "floor-main"
+                  "x": 5050,
+                  "y": 3977.1052631578946,
+                  "surfaceId": "fc15-west-descent"
                 },
                 {
                   "x": 5310,
                   "y": 4540,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5380,
-                  "y": 4592.5,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5450,
-                  "y": 4645,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5520,
-                  "y": 4697.5,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5590,
-                  "y": 4750,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5670,
-                  "y": 4763.333333333333,
                   "surfaceId": "floor-main"
                 },
                 {
@@ -146307,128 +146938,72 @@
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 5750,
-                  "y": 4776.666666666667,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5830,
-                  "y": 4790,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5898,
-                  "y": 4744,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5966,
-                  "y": 4698,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 6034,
-                  "y": 4652,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 6102,
-                  "y": 4606,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 6170,
-                  "y": 4560,
-                  "surfaceId": "floor-main"
-                },
-                {
                   "x": 6210,
                   "y": 4553.207547169811,
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 6245.714285714285,
-                  "y": 4547.142857142857,
-                  "surfaceId": "floor-main"
+                  "x": 6240,
+                  "y": 4395,
+                  "jumpTo": {
+                    "x": 6350,
+                    "support": "fc15-east-arch"
+                  },
+                  "surfaceId": "fc15-water-toe"
                 },
                 {
-                  "x": 6321.428571428572,
-                  "y": 4534.285714285715,
-                  "surfaceId": "floor-main"
+                  "x": 6350,
+                  "y": 4220,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6397.142857142857,
-                  "y": 4521.428571428572,
-                  "surfaceId": "floor-main"
+                  "x": 6500,
+                  "y": 4070,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6472.857142857143,
-                  "y": 4508.571428571428,
-                  "surfaceId": "floor-main"
+                  "x": 6680,
+                  "y": 4051.0526315789475,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6548.571428571428,
-                  "y": 4495.714285714285,
-                  "surfaceId": "floor-main"
+                  "x": 6830,
+                  "y": 3860,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6624.285714285715,
-                  "y": 4482.857142857143,
-                  "surfaceId": "floor-main"
+                  "x": 6980,
+                  "y": 3700.625,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6700,
-                  "y": 4470,
-                  "surfaceId": "floor-main"
+                  "x": 7180,
+                  "y": 3555,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6775,
-                  "y": 4423.75,
-                  "surfaceId": "floor-main"
+                  "x": 7310,
+                  "y": 3504.7368421052633,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6850,
-                  "y": 4377.5,
-                  "surfaceId": "floor-main"
+                  "x": 7440,
+                  "y": 3590,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 6925,
-                  "y": 4331.25,
-                  "surfaceId": "floor-main"
+                  "x": 7540,
+                  "y": 3731.6666666666665,
+                  "surfaceId": "fc15-east-arch"
                 },
                 {
-                  "x": 7000,
-                  "y": 4285,
-                  "surfaceId": "floor-main"
+                  "x": 7650,
+                  "y": 3875.277777777778,
+                  "surfaceId": "fc15-east-access"
                 },
                 {
-                  "x": 7075,
-                  "y": 4238.75,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 7150,
-                  "y": 4192.5,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 7225,
-                  "y": 4146.25,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 7300,
-                  "y": 4100,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 7377.777777777777,
-                  "y": 4076.6666666666665,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 7455.555555555556,
-                  "y": 4053.3333333333335,
+                  "x": 7800,
+                  "y": 3950,
                   "surfaceId": "floor-main"
                 },
                 {
@@ -146437,7 +147012,8 @@
                   "surfaceId": "floor-main"
                 }
               ],
-              "requires": []
+              "requires": [],
+              "defaultJump": true
             },
             {
               "id": "dry-shoulder",
@@ -146624,10 +147200,10 @@
               "unitId": "a2-enemy-7",
               "cohort": "middle",
               "roomId": "sluice-neck",
-              "surfaceId": "floor-main",
-              "x": 2960,
-              "y": 4005.3333333333335,
-              "supportY": 4005.3333333333335,
+              "surfaceId": "fc15-west-arch",
+              "x": 3745,
+              "y": 3190,
+              "supportY": 3190,
               "flying": false
             },
             {
@@ -146635,10 +147211,10 @@
               "unitId": "a2-enemy-8",
               "cohort": "west",
               "roomId": "sluice-neck",
-              "surfaceId": "floor-main",
-              "x": 2622,
-              "y": 3881.4,
-              "supportY": 3881.4,
+              "surfaceId": "fc15-west-shoulder",
+              "x": 4540,
+              "y": 3295,
+              "supportY": 3295,
               "flying": false
             },
             {
@@ -146647,9 +147223,9 @@
               "cohort": "middle",
               "roomId": "open-shaft",
               "surfaceId": "floor-main",
-              "x": 4055,
-              "y": 4180.583333333333,
-              "supportY": 4340.583333333333,
+              "x": 4060,
+              "y": 2700,
+              "supportY": 4342,
               "flying": true
             },
             {
@@ -146658,9 +147234,9 @@
               "cohort": "middle",
               "roomId": "open-shaft",
               "surfaceId": "floor-main",
-              "x": 4132,
-              "y": 4202.4,
-              "supportY": 4362.4,
+              "x": 4540,
+              "y": 4290,
+              "supportY": 4428.75,
               "flying": true
             },
             {
@@ -146669,9 +147245,9 @@
               "cohort": "middle",
               "roomId": "open-shaft",
               "surfaceId": "floor-main",
-              "x": 4640,
-              "y": 4276.5625,
-              "supportY": 4436.5625,
+              "x": 5030,
+              "y": 4140,
+              "supportY": 4479.459459459459,
               "flying": true
             },
             {
@@ -146680,9 +147256,9 @@
               "cohort": "middle",
               "roomId": "open-shaft",
               "surfaceId": "floor-main",
-              "x": 4302,
-              "y": 4250.15625,
-              "supportY": 4410.15625,
+              "x": 4710,
+              "y": 3020,
+              "supportY": 4442.03125,
               "flying": true
             },
             {
@@ -146691,9 +147267,9 @@
               "cohort": "middle",
               "roomId": "open-shaft",
               "surfaceId": "floor-main",
-              "x": 4368,
-              "y": 4255.3125,
-              "supportY": 4415.3125,
+              "x": 5480,
+              "y": 3690,
+              "supportY": 4667.5,
               "flying": true
             },
             {
@@ -146701,10 +147277,10 @@
               "unitId": "a2-enemy-14",
               "cohort": "east",
               "roomId": "carved-groove",
-              "surfaceId": "floor-main",
-              "x": 5625,
-              "y": 4755.833333333333,
-              "supportY": 4755.833333333333,
+              "surfaceId": "fc15-east-arch",
+              "x": 7310,
+              "y": 3504.7368421052633,
+              "supportY": 3504.7368421052633,
               "flying": false
             },
             {
@@ -146735,9 +147311,9 @@
               "cohort": "east",
               "roomId": "carved-groove",
               "surfaceId": "floor-main",
-              "x": 5872,
-              "y": 4761.588235294118,
-              "supportY": 4761.588235294118,
+              "x": 5890,
+              "y": 4749.411764705882,
+              "supportY": 4749.411764705882,
               "flying": false
             },
             {
@@ -146757,9 +147333,9 @@
               "cohort": "east",
               "roomId": "temple-stair",
               "surfaceId": "floor-main",
-              "x": 7310,
-              "y": 3937,
-              "supportY": 4097,
+              "x": 7750,
+              "y": 3700,
+              "supportY": 3965,
               "flying": true
             },
             {
@@ -146768,9 +147344,9 @@
               "cohort": "east",
               "roomId": "temple-stair",
               "surfaceId": "floor-main",
-              "x": 6894,
-              "y": 4190.366666666667,
-              "supportY": 4350.366666666667,
+              "x": 6680,
+              "y": 4340,
+              "supportY": 4473.396226415094,
               "flying": true
             },
             {
@@ -146779,9 +147355,9 @@
               "cohort": "east",
               "roomId": "temple-stair",
               "surfaceId": "floor-main",
-              "x": 6972,
-              "y": 4142.266666666666,
-              "supportY": 4302.266666666666,
+              "x": 6950,
+              "y": 4260,
+              "supportY": 4315.833333333333,
               "flying": true
             }
           ],
@@ -146895,6 +147471,18 @@
               "y": 4553.207547169811,
               "scale": 0.7,
               "footOffset": 0
+            },
+            {
+              "id": "fc15-under-arch-lamp",
+              "elementId": "fc15-under-arch-lamp",
+              "assetId": "act2:lamp",
+              "roomId": "open-shaft",
+              "surfaceId": "floor-main",
+              "x": 4260,
+              "y": 4398.666666666667,
+              "scale": 0.8,
+              "footOffset": 0,
+              "visualOnly": true
             }
           ],
           "landmarks": [],
@@ -146925,6 +147513,15 @@
               "kind": "oil",
               "radius": 370,
               "color": "#d6aa70"
+            },
+            {
+              "id": "fc15-under-arch-lamp",
+              "x": 4260,
+              "y": 4348.666666666667,
+              "roomId": "open-shaft",
+              "kind": "oil",
+              "radius": 260,
+              "color": "#a78b61"
             }
           ],
           "views": [
@@ -146969,6 +147566,892 @@
               "roomId": "carved-groove",
               "state": "drainable"
             }
+          ],
+          "rockCompositions": [
+            [
+              "wet-approach",
+              "shoulder",
+              0.23,
+              1400,
+              650,
+              -1
+            ],
+            [
+              "sluice-neck",
+              "quarry",
+              0.28,
+              1200,
+              700,
+              -1
+            ],
+            [
+              "open-shaft",
+              "buttress",
+              0.37,
+              1530,
+              1290,
+              1
+            ],
+            [
+              "temple-stair",
+              "shoulder",
+              0.4,
+              1350,
+              850,
+              1
+            ]
+          ],
+          "terrainPlanes": [
+            {
+              "terrainId": "cave-roof",
+              "fill": "#263744",
+              "points": [
+                [
+                  -7000,
+                  -25000
+                ],
+                [
+                  15000,
+                  -25000
+                ],
+                [
+                  15000,
+                  6000
+                ],
+                [
+                  -7000,
+                  6000
+                ]
+              ]
+            },
+            {
+              "terrainId": "cave-roof",
+              "fill": "#344654",
+              "points": [
+                [
+                  -6000,
+                  300
+                ],
+                [
+                  1600,
+                  880
+                ],
+                [
+                  3290,
+                  1680
+                ],
+                [
+                  4030,
+                  1520
+                ],
+                [
+                  5110,
+                  1340
+                ],
+                [
+                  6040,
+                  1740
+                ],
+                [
+                  8100,
+                  2200
+                ],
+                [
+                  14000,
+                  2080
+                ],
+                [
+                  14000,
+                  3100
+                ],
+                [
+                  7390,
+                  2810
+                ],
+                [
+                  6280,
+                  2480
+                ],
+                [
+                  5220,
+                  1890
+                ],
+                [
+                  4030,
+                  1940
+                ],
+                [
+                  2850,
+                  2850
+                ],
+                [
+                  700,
+                  2910
+                ],
+                [
+                  -6000,
+                  2800
+                ]
+              ]
+            },
+            {
+              "terrainId": "cave-roof",
+              "fill": "#40515d",
+              "points": [
+                [
+                  -6000,
+                  1870
+                ],
+                [
+                  720,
+                  2100
+                ],
+                [
+                  1990,
+                  2380
+                ],
+                [
+                  2820,
+                  2270
+                ],
+                [
+                  3330,
+                  1880
+                ],
+                [
+                  3850,
+                  1550
+                ],
+                [
+                  3150,
+                  2640
+                ],
+                [
+                  2380,
+                  3240
+                ],
+                [
+                  390,
+                  3060
+                ],
+                [
+                  -6000,
+                  2900
+                ]
+              ]
+            },
+            {
+              "terrainId": "cave-roof",
+              "fill": "#192b38",
+              "points": [
+                [
+                  3470,
+                  -2000
+                ],
+                [
+                  4000,
+                  1170
+                ],
+                [
+                  5100,
+                  890
+                ],
+                [
+                  6150,
+                  1290
+                ],
+                [
+                  7090,
+                  2320
+                ],
+                [
+                  8480,
+                  2330
+                ],
+                [
+                  10200,
+                  1750
+                ],
+                [
+                  15000,
+                  0
+                ],
+                [
+                  15000,
+                  -3000
+                ]
+              ]
+            },
+            {
+              "terrainId": "cave-roof",
+              "fill": "#52606a",
+              "points": [
+                [
+                  6060,
+                  1900
+                ],
+                [
+                  6630,
+                  2050
+                ],
+                [
+                  7280,
+                  2220
+                ],
+                [
+                  7890,
+                  2590
+                ],
+                [
+                  8200,
+                  2930
+                ],
+                [
+                  7280,
+                  2780
+                ],
+                [
+                  6650,
+                  2550
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-west-arch",
+              "fill": "#64717c",
+              "points": [
+                [
+                  2950,
+                  3730
+                ],
+                [
+                  3360,
+                  3460
+                ],
+                [
+                  3540,
+                  3410
+                ],
+                [
+                  3810,
+                  3060
+                ],
+                [
+                  4080,
+                  2960
+                ],
+                [
+                  3980,
+                  3260
+                ],
+                [
+                  3860,
+                  3570
+                ],
+                [
+                  3750,
+                  3870
+                ],
+                [
+                  3580,
+                  4160
+                ],
+                [
+                  3360,
+                  4040
+                ],
+                [
+                  3310,
+                  3790
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-west-arch",
+              "fill": "#394e5b",
+              "points": [
+                [
+                  4010,
+                  2930
+                ],
+                [
+                  4210,
+                  2950
+                ],
+                [
+                  4310,
+                  3020
+                ],
+                [
+                  4280,
+                  3510
+                ],
+                [
+                  4130,
+                  3750
+                ],
+                [
+                  4010,
+                  4030
+                ],
+                [
+                  3890,
+                  4020
+                ],
+                [
+                  3860,
+                  3670
+                ],
+                [
+                  3980,
+                  3320
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-west-arch",
+              "fill": "#203745",
+              "points": [
+                [
+                  4300,
+                  2990
+                ],
+                [
+                  4380,
+                  3240
+                ],
+                [
+                  4440,
+                  3540
+                ],
+                [
+                  4540,
+                  3690
+                ],
+                [
+                  4580,
+                  4150
+                ],
+                [
+                  4350,
+                  4230
+                ],
+                [
+                  4130,
+                  4090
+                ],
+                [
+                  4250,
+                  3750
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-west-arch",
+              "fill": "#52626e",
+              "points": [
+                [
+                  4390,
+                  3450
+                ],
+                [
+                  4630,
+                  3430
+                ],
+                [
+                  4800,
+                  3570
+                ],
+                [
+                  4920,
+                  3750
+                ],
+                [
+                  4880,
+                  4080
+                ],
+                [
+                  4700,
+                  3960
+                ],
+                [
+                  4590,
+                  3730
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-west-arch",
+              "fill": "#2d4350",
+              "points": [
+                [
+                  3360,
+                  3860
+                ],
+                [
+                  3600,
+                  3920
+                ],
+                [
+                  3750,
+                  3790
+                ],
+                [
+                  3750,
+                  4400
+                ],
+                [
+                  3340,
+                  4400
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-west-arch",
+              "fill": "#849086",
+              "points": [
+                [
+                  3310,
+                  3490
+                ],
+                [
+                  3530,
+                  3444
+                ],
+                [
+                  3555,
+                  3468
+                ],
+                [
+                  3335,
+                  3510
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-west-arch",
+              "fill": "#75877e",
+              "points": [
+                [
+                  3730,
+                  3186
+                ],
+                [
+                  3860,
+                  3183
+                ],
+                [
+                  3840,
+                  3208
+                ],
+                [
+                  3740,
+                  3213
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-east-arch",
+              "fill": "#5d707a",
+              "points": [
+                [
+                  6290,
+                  4240
+                ],
+                [
+                  6510,
+                  4030
+                ],
+                [
+                  6680,
+                  4020
+                ],
+                [
+                  6960,
+                  3680
+                ],
+                [
+                  7210,
+                  3470
+                ],
+                [
+                  7420,
+                  3480
+                ],
+                [
+                  7290,
+                  3730
+                ],
+                [
+                  7080,
+                  3860
+                ],
+                [
+                  6920,
+                  4100
+                ],
+                [
+                  6630,
+                  4310
+                ],
+                [
+                  6320,
+                  4400
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-east-arch",
+              "fill": "#294552",
+              "points": [
+                [
+                  7280,
+                  3450
+                ],
+                [
+                  7430,
+                  3510
+                ],
+                [
+                  7490,
+                  3730
+                ],
+                [
+                  7490,
+                  4220
+                ],
+                [
+                  7370,
+                  4460
+                ],
+                [
+                  7180,
+                  4470
+                ],
+                [
+                  7090,
+                  4160
+                ],
+                [
+                  7150,
+                  3830
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-east-arch",
+              "fill": "#455d69",
+              "points": [
+                [
+                  7440,
+                  3580
+                ],
+                [
+                  7590,
+                  3750
+                ],
+                [
+                  7570,
+                  3890
+                ],
+                [
+                  7460,
+                  4230
+                ],
+                [
+                  7350,
+                  4300
+                ],
+                [
+                  7410,
+                  3850
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-east-arch",
+              "fill": "#3b535d",
+              "points": [
+                [
+                  6480,
+                  4040
+                ],
+                [
+                  6720,
+                  4020
+                ],
+                [
+                  6970,
+                  3720
+                ],
+                [
+                  6930,
+                  4010
+                ],
+                [
+                  6720,
+                  4200
+                ],
+                [
+                  6480,
+                  4340
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc15-east-arch",
+              "fill": "#798b80",
+              "points": [
+                [
+                  6510,
+                  4067
+                ],
+                [
+                  6670,
+                  4045
+                ],
+                [
+                  6670,
+                  4063
+                ],
+                [
+                  6515,
+                  4088
+                ]
+              ]
+            }
+          ]
+        },
+        "topology": {
+          "version": 1,
+          "kind": "unequal-granite-arches-and-water-cleft",
+          "encounters": [
+            {
+              "unitId": "a2-enemy-7",
+              "supportId": "fc15-west-arch",
+              "role": "western crown guard",
+              "x": 3745,
+              "y": 3190
+            },
+            {
+              "unitId": "a2-enemy-8",
+              "supportId": "fc15-west-shoulder",
+              "role": "middle shoulder crossfire",
+              "x": 4540,
+              "y": 3295
+            },
+            {
+              "unitId": "a2-enemy-14",
+              "supportId": "fc15-east-arch",
+              "role": "eastern crown guard",
+              "x": 7310,
+              "y": 3504.7368421052633
+            },
+            {
+              "unitId": "a2-enemy-17",
+              "supportId": "floor-main",
+              "role": "water-cleft ambush",
+              "x": 5890,
+              "y": 4749.411764705882
+            },
+            {
+              "unitId": "a2-enemy-9",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 4060,
+              "y": 2700
+            },
+            {
+              "unitId": "a2-enemy-10",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 4540,
+              "y": 4290
+            },
+            {
+              "unitId": "a2-enemy-11",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 5030,
+              "y": 4140
+            },
+            {
+              "unitId": "a2-enemy-12",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 4710,
+              "y": 3020
+            },
+            {
+              "unitId": "a2-enemy-13",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 5480,
+              "y": 3690
+            },
+            {
+              "unitId": "a2-enemy-19",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 7750,
+              "y": 3700
+            },
+            {
+              "unitId": "a2-enemy-20",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 6680,
+              "y": 4340
+            },
+            {
+              "unitId": "a2-enemy-21",
+              "supportId": "floor-main",
+              "role": "airborne diagonal patrol",
+              "x": 6950,
+              "y": 4260
+            }
+          ],
+          "firingSites": [
+            {
+              "id": "west-crown",
+              "x": 4140,
+              "y": 2996.315789473684,
+              "supportId": "fc15-west-arch"
+            },
+            {
+              "id": "west-shoulder",
+              "x": 4540,
+              "y": 3295,
+              "supportId": "fc15-west-shoulder"
+            },
+            {
+              "id": "under-arch",
+              "x": 4210,
+              "y": 4384.5,
+              "supportId": "act2-floor"
+            },
+            {
+              "id": "water-cleft",
+              "x": 5620,
+              "y": 4755,
+              "supportId": "act2-floor"
+            },
+            {
+              "id": "east-crown",
+              "x": 7310,
+              "y": 3504.7368421052633,
+              "supportId": "fc15-east-arch"
+            }
+          ],
+          "ordinaryRoutes": [
+            {
+              "id": "western-arch",
+              "points": [
+                {
+                  "x": 2630,
+                  "y": 3884.3333333333335
+                },
+                {
+                  "x": 2820,
+                  "y": 3748.3333333333335
+                },
+                {
+                  "x": 3050,
+                  "y": 3733.3333333333335,
+                  "surfaceId": "fc15-west-arch"
+                },
+                {
+                  "x": 3300,
+                  "y": 3500,
+                  "surfaceId": "fc15-west-arch"
+                },
+                {
+                  "x": 3540,
+                  "y": 3460,
+                  "surfaceId": "fc15-west-arch"
+                },
+                {
+                  "x": 3660,
+                  "y": 3300,
+                  "surfaceId": "fc15-west-arch"
+                },
+                {
+                  "x": 3750,
+                  "y": 3190,
+                  "surfaceId": "fc15-west-arch"
+                },
+                {
+                  "x": 3890,
+                  "y": 3164.285714285714,
+                  "surfaceId": "fc15-west-arch"
+                },
+                {
+                  "x": 4140,
+                  "y": 2996.315789473684,
+                  "surfaceId": "fc15-west-arch"
+                }
+              ]
+            },
+            {
+              "id": "eastern-arch",
+              "points": [
+                {
+                  "x": 7800,
+                  "y": 3950
+                },
+                {
+                  "x": 7650,
+                  "y": 3875.277777777778
+                },
+                {
+                  "x": 7510,
+                  "y": 3689.1666666666665
+                },
+                {
+                  "x": 7390,
+                  "y": 3500.5263157894738
+                },
+                {
+                  "x": 7310,
+                  "y": 3504.7368421052633
+                }
+              ]
+            }
+          ],
+          "preserved": "Original lower walk, sluice, objective identities, water basin and solid cave roof. New crowns are solid rock with an open lower passage.",
+          "views": [
+            {
+              "name": "topology-default",
+              "x": 4090,
+              "y": 3810,
+              "scale": 0.46,
+              "width": 1440,
+              "height": 960
+            },
+            {
+              "name": "topology-portrait-west",
+              "x": 3980,
+              "y": 3770,
+              "scale": 0.46,
+              "width": 720,
+              "height": 1080
+            },
+            {
+              "name": "topology-portrait-water",
+              "x": 5720,
+              "y": 4250,
+              "scale": 0.46,
+              "width": 720,
+              "height": 1080
+            },
+            {
+              "name": "topology-portrait-east",
+              "x": 7130,
+              "y": 4050,
+              "scale": 0.46,
+              "width": 720,
+              "height": 1080
+            }
           ]
         }
       },
@@ -146978,408 +148461,136 @@
           "y": 3638.4444444444443
         },
         {
-          "x": 375,
-          "y": 3643.3333333333335
-        },
-        {
-          "x": 450,
-          "y": 3650
-        },
-        {
-          "x": 525,
-          "y": 3656.6666666666665
-        },
-        {
-          "x": 600,
-          "y": 3663.3333333333335
-        },
-        {
-          "x": 675,
-          "y": 3670
-        },
-        {
-          "x": 750,
-          "y": 3676.6666666666665
-        },
-        {
-          "x": 825,
-          "y": 3683.3333333333335
-        },
-        {
-          "x": 900,
-          "y": 3690
-        },
-        {
-          "x": 977.2727272727273,
-          "y": 3700
-        },
-        {
-          "x": 1054.5454545454545,
-          "y": 3710
-        },
-        {
-          "x": 1131.8181818181818,
-          "y": 3720
-        },
-        {
-          "x": 1209.090909090909,
-          "y": 3730
-        },
-        {
-          "x": 1286.3636363636365,
-          "y": 3740
-        },
-        {
-          "x": 1363.6363636363635,
-          "y": 3750
-        },
-        {
-          "x": 1440.909090909091,
-          "y": 3760
-        },
-        {
-          "x": 1518.1818181818182,
-          "y": 3770
-        },
-        {
-          "x": 1595.4545454545455,
-          "y": 3780
-        },
-        {
           "x": 1630,
           "y": 3784.470588235294
-        },
-        {
-          "x": 1672.7272727272727,
-          "y": 3790
-        },
-        {
-          "x": 1750,
-          "y": 3800
-        },
-        {
-          "x": 1822.2222222222222,
-          "y": 3800
-        },
-        {
-          "x": 1894.4444444444443,
-          "y": 3800
-        },
-        {
-          "x": 1966.6666666666667,
-          "y": 3800
-        },
-        {
-          "x": 2038.888888888889,
-          "y": 3800
-        },
-        {
-          "x": 2111.1111111111113,
-          "y": 3800
-        },
-        {
-          "x": 2183.3333333333335,
-          "y": 3800
-        },
-        {
-          "x": 2255.5555555555557,
-          "y": 3800
-        },
-        {
-          "x": 2327.777777777778,
-          "y": 3800
         },
         {
           "x": 2350,
           "y": 3800
         },
         {
-          "x": 2400,
-          "y": 3800
-        },
-        {
-          "x": 2475,
-          "y": 3827.5
-        },
-        {
           "x": 2490,
           "y": 3833
         },
         {
-          "x": 2550,
-          "y": 3855
+          "x": 2630,
+          "y": 3884.3333333333335
         },
         {
-          "x": 2625,
-          "y": 3882.5
+          "x": 2820,
+          "y": 3748.3333333333335
         },
         {
-          "x": 2700,
-          "y": 3910
+          "x": 3050,
+          "y": 3733.3333333333335
         },
         {
-          "x": 2775,
-          "y": 3937.5
+          "x": 3300,
+          "y": 3500
         },
         {
-          "x": 2850,
-          "y": 3965
+          "x": 3540,
+          "y": 3460
         },
         {
-          "x": 2925,
-          "y": 3992.5
+          "x": 3660,
+          "y": 3300
         },
         {
-          "x": 3000,
-          "y": 4020
+          "x": 3750,
+          "y": 3190
         },
         {
-          "x": 3077.777777777778,
-          "y": 4044.4444444444443
+          "x": 3890,
+          "y": 3164.285714285714
         },
         {
-          "x": 3155.5555555555557,
-          "y": 4068.8888888888887
+          "x": 4140,
+          "y": 2996.315789473684
         },
         {
-          "x": 3233.3333333333335,
-          "y": 4093.3333333333335
-        },
-        {
-          "x": 3311.1111111111113,
-          "y": 4117.777777777777
-        },
-        {
-          "x": 3388.8888888888887,
-          "y": 4142.222222222223
-        },
-        {
-          "x": 3466.6666666666665,
-          "y": 4166.666666666667
-        },
-        {
-          "x": 3544.4444444444443,
-          "y": 4191.111111111111
-        },
-        {
-          "x": 3622.222222222222,
-          "y": 4215.555555555556
-        },
-        {
-          "x": 3700,
-          "y": 4240
-        },
-        {
-          "x": 3775,
-          "y": 4261.25
-        },
-        {
-          "x": 3850,
-          "y": 4282.5
-        },
-        {
-          "x": 3925,
-          "y": 4303.75
-        },
-        {
-          "x": 4000,
-          "y": 4325
-        },
-        {
-          "x": 4075,
-          "y": 4346.25
-        },
-        {
-          "x": 4150,
-          "y": 4367.5
-        },
-        {
-          "x": 4225,
-          "y": 4388.75
-        },
-        {
-          "x": 4300,
-          "y": 4410
-        },
-        {
-          "x": 4380,
-          "y": 4416.25
-        },
-        {
-          "x": 4430,
-          "y": 4420.15625
-        },
-        {
-          "x": 4460,
-          "y": 4422.5
+          "x": 4250,
+          "y": 3002.5
         },
         {
           "x": 4540,
-          "y": 4428.75
+          "y": 3295
         },
         {
-          "x": 4620,
-          "y": 4435
+          "x": 4710,
+          "y": 3632.8571428571427
         },
         {
-          "x": 4700,
-          "y": 4441.25
+          "x": 4810,
+          "y": 3630.909090909091
         },
         {
-          "x": 4780,
-          "y": 4447.5
+          "x": 4870,
+          "y": 3696.3636363636365
         },
         {
-          "x": 4860,
-          "y": 4453.75
-        },
-        {
-          "x": 4940,
-          "y": 4460
-        },
-        {
-          "x": 5014,
-          "y": 4476
-        },
-        {
-          "x": 5088,
-          "y": 4492
-        },
-        {
-          "x": 5162,
-          "y": 4508
-        },
-        {
-          "x": 5236,
-          "y": 4524
+          "x": 5050,
+          "y": 3977.1052631578946
         },
         {
           "x": 5310,
           "y": 4540
         },
         {
-          "x": 5380,
-          "y": 4592.5
-        },
-        {
-          "x": 5450,
-          "y": 4645
-        },
-        {
-          "x": 5520,
-          "y": 4697.5
-        },
-        {
-          "x": 5590,
-          "y": 4750
-        },
-        {
-          "x": 5670,
-          "y": 4763.333333333333
-        },
-        {
           "x": 5700,
           "y": 4768.333333333333
-        },
-        {
-          "x": 5750,
-          "y": 4776.666666666667
-        },
-        {
-          "x": 5830,
-          "y": 4790
-        },
-        {
-          "x": 5898,
-          "y": 4744
-        },
-        {
-          "x": 5966,
-          "y": 4698
-        },
-        {
-          "x": 6034,
-          "y": 4652
-        },
-        {
-          "x": 6102,
-          "y": 4606
-        },
-        {
-          "x": 6170,
-          "y": 4560
         },
         {
           "x": 6210,
           "y": 4553.207547169811
         },
         {
-          "x": 6245.714285714285,
-          "y": 4547.142857142857
+          "x": 6240,
+          "y": 4395
         },
         {
-          "x": 6321.428571428572,
-          "y": 4534.285714285715
+          "x": 6350,
+          "y": 4220
         },
         {
-          "x": 6397.142857142857,
-          "y": 4521.428571428572
+          "x": 6500,
+          "y": 4070
         },
         {
-          "x": 6472.857142857143,
-          "y": 4508.571428571428
+          "x": 6680,
+          "y": 4051.0526315789475
         },
         {
-          "x": 6548.571428571428,
-          "y": 4495.714285714285
+          "x": 6830,
+          "y": 3860
         },
         {
-          "x": 6624.285714285715,
-          "y": 4482.857142857143
+          "x": 6980,
+          "y": 3700.625
         },
         {
-          "x": 6700,
-          "y": 4470
+          "x": 7180,
+          "y": 3555
         },
         {
-          "x": 6775,
-          "y": 4423.75
+          "x": 7310,
+          "y": 3504.7368421052633
         },
         {
-          "x": 6850,
-          "y": 4377.5
+          "x": 7440,
+          "y": 3590
         },
         {
-          "x": 6925,
-          "y": 4331.25
+          "x": 7540,
+          "y": 3731.6666666666665
         },
         {
-          "x": 7000,
-          "y": 4285
+          "x": 7650,
+          "y": 3875.277777777778
         },
         {
-          "x": 7075,
-          "y": 4238.75
-        },
-        {
-          "x": 7150,
-          "y": 4192.5
-        },
-        {
-          "x": 7225,
-          "y": 4146.25
-        },
-        {
-          "x": 7300,
-          "y": 4100
-        },
-        {
-          "x": 7377.777777777777,
-          "y": 4076.6666666666665
-        },
-        {
-          "x": 7455.555555555556,
-          "y": 4053.3333333333335
+          "x": 7800,
+          "y": 3950
         },
         {
           "x": 7530,
