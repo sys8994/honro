@@ -25,6 +25,7 @@
 - `node tests/cavern-transition-regeneration.mjs`: 원래2막 recipe부터 미술·장소 후처리·finalize를 거친 일곱 장이 canonical JSON과 정확히 같다.
 - `node tests/act2-spatial-contracts.mjs`: 2막의 기존 목표 순서·의식/제압 분류·반경·스크립트·파동·적 능력·군집과 진행 저장 보존 계약13건을 통과했다.
 - `node tests/act2-optional-routes.mjs 11 12 13 17 18 19 20`: 기존/신규 선택 발판56조건과 대표 활/법술 고저 사격4조건을 통과했다. 최초 배치 뒤 좌표·HP·이동량 보정 없이 Engine.move/jump/wait/tick만 쓴다.
+- 순서형 목표 접근 검사: `act2-spatial-progression`의 기존 로직을 담당7장의 walk-only 주동선으로 한정하여 실행했고51단계(7/5/6/7/8/12/6)를 통과했다. 관련 없는14·16의 새 경로를 검사하거나 통과 처리하지 않았다. 문은 사전에 열지 않고 원래 단계의 파괴/상호작용 훅으로 열었으며, 전투·방어 시간은 기존 검사처럼 명시적으로 격리했다.
 - 양HTML을 같은 런타임으로 빌드했다. 부모의 기본/전체 콘택트시트 검수에서 제한된 보강이 승인됐다.
 - Native Canvas의 공통 Game/Workshop renderer로 전체/기본/모바일 구도를 캡처하고 직접 확인한다. 이미지 decode 완료를 기다리고 정적 캐시 canvas를 임의로 축소하지 않는다.
 
