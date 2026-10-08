@@ -1,3 +1,4 @@
+import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
 import {readFile,readdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
@@ -24,7 +25,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
-  const project=applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true});
+  const project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
   parts.push('globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'));');
   if(vector){
     await buildParty();
