@@ -824,9 +824,6 @@
                 case 'journey-layer':
                     G.HonroRestJourney.showBook(this,this.journeySelection,el.dataset.layer);
                     break;
-                case 'journey-zoom':
-                    G.HonroRestJourney.zoomBook(this,el.dataset.zoom);
-                    break;
                 case 'rest-talk':
                     G.HonroRestJourney.talk(this,el.dataset.class);
                     break;

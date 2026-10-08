@@ -7,7 +7,7 @@ for(const layer of ['surface','underground','city']){
  assert.equal((html.match(/class="journey-route /g)||[]).length,Math.max(0,visible.length-1));
  assert.equal((html.match(/class="journey-pin /g)||[]).length,visible.length);
  if(visible.length)assert.match(html,/journey-region/);else assert.doesNotMatch(html,/journey-region/);
- assert.match(html,/data-action="journey-layer"/);assert.match(html,/data-action="journey-zoom"/);assert.doesNotMatch(html,/journey-pin unreached/);
+ assert.match(html,/data-action="journey-layer"/);assert.doesNotMatch(html,/data-action="journey-zoom"|journey-map-controls/);assert.doesNotMatch(html,/journey-pin unreached/);
  if(layer==='underground')assert.match(html,/aria-current="location"/);else assert.doesNotMatch(html,/aria-current="location"/);
 }
 const afterAct2=menuProfile(g,21);assert.equal(g.HonroJourneyContent.next(afterAct2).stageId,21);

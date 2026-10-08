@@ -48,16 +48,12 @@
 .honro #app .journey-pin.selected{z-index:6;color:#fff3ce;filter:drop-shadow(0 0 11px #dfc28999)}
 .honro #app .journey-pin.selected i{background:#a9804d;color:#111d20;border:3px solid #f7e0a4;box-shadow:0 0 0 6px #d9a96080,0 0 0 12px #d9a96038,0 0 22px #f3d4a1;transform:scale(1.14)}
 .honro #app .journey-pin.selected span{border:1px solid #e4c78a;background:#172822f2;padding:4px 8px;color:#fff1c4;box-shadow:0 4px 17px #031114bd}
-.honro #app .journey-map-controls{position:sticky;z-index:8;top:12px;left:calc(100% - 178px);display:flex;gap:4px;width:max-content;margin-bottom:-51px;padding:5px;border:1px solid #b7ab806b;border-radius:4px;background:#0b1c20e6;box-shadow:0 4px 16px #061216b0}
-.honro #app .journey-map-controls button{min-width:38px;min-height:40px;padding:4px 9px;border:1px solid #a6a08255;border-radius:2px;background:#203132;color:#e7dbbb;font-size:14px}
-.honro #app .journey-map-controls button:hover,.honro #app .journey-map-controls button:focus-visible{border-color:#e7d5a3;background:#3a463b}
-.honro #app .journey-map-controls button:last-child{font-size:11px}
 .honro #app .journey-map-legend{position:sticky;z-index:7;left:16px;bottom:12px;width:max-content;max-width:calc(100% - 30px);padding:6px 9px;border:1px solid #a4a38b50;background:#0a1b1ed6;pointer-events:none}
 .journey-city .journey-heading{background:#1f2e31;border-bottom:1px solid #9b997b66}
 .journey-city .journey-detail{background:#142429}
 .journey-underground .journey-heading{background:#121f25}
 .journey-surface .journey-heading{background:#172b2c}
-@media(max-width:700px){.honro #app .journey-map-controls{left:calc(100% - 155px);top:8px}.honro #app .journey-map-controls button{min-width:33px;min-height:39px;padding:4px 6px}.honro #app .journey-map-legend{font-size:8px;gap:8px;left:8px}}
+@media(max-width:700px){.honro #app .journey-map-legend{font-size:8px;gap:8px;left:8px}}
 @media(prefers-reduced-motion:reduce){.honro #app .journey-pin,.honro #app .journey-pin i,.honro #app .journey-pin span{transition:none}}
 /* The visible flame itself is part of the same native button hit area. */
 .honro #app .rest-fire{overflow:visible}

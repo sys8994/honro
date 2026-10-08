@@ -1036,16 +1036,12 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app .journey-pin.selected{z-index:6;color:#fff3ce;filter:drop-shadow(0 0 11px #dfc28999)}
 .honro #app .journey-pin.selected i{background:#a9804d;color:#111d20;border:3px solid #f7e0a4;box-shadow:0 0 0 6px #d9a96080,0 0 0 12px #d9a96038,0 0 22px #f3d4a1;transform:scale(1.14)}
 .honro #app .journey-pin.selected span{border:1px solid #e4c78a;background:#172822f2;padding:4px 8px;color:#fff1c4;box-shadow:0 4px 17px #031114bd}
-.honro #app .journey-map-controls{position:sticky;z-index:8;top:12px;left:calc(100% - 178px);display:flex;gap:4px;width:max-content;margin-bottom:-51px;padding:5px;border:1px solid #b7ab806b;border-radius:4px;background:#0b1c20e6;box-shadow:0 4px 16px #061216b0}
-.honro #app .journey-map-controls button{min-width:38px;min-height:40px;padding:4px 9px;border:1px solid #a6a08255;border-radius:2px;background:#203132;color:#e7dbbb;font-size:14px}
-.honro #app .journey-map-controls button:hover,.honro #app .journey-map-controls button:focus-visible{border-color:#e7d5a3;background:#3a463b}
-.honro #app .journey-map-controls button:last-child{font-size:11px}
 .honro #app .journey-map-legend{position:sticky;z-index:7;left:16px;bottom:12px;width:max-content;max-width:calc(100% - 30px);padding:6px 9px;border:1px solid #a4a38b50;background:#0a1b1ed6;pointer-events:none}
 .journey-city .journey-heading{background:#1f2e31;border-bottom:1px solid #9b997b66}
 .journey-city .journey-detail{background:#142429}
 .journey-underground .journey-heading{background:#121f25}
 .journey-surface .journey-heading{background:#172b2c}
-@media(max-width:700px){.honro #app .journey-map-controls{left:calc(100% - 155px);top:8px}.honro #app .journey-map-controls button{min-width:33px;min-height:39px;padding:4px 6px}.honro #app .journey-map-legend{font-size:8px;gap:8px;left:8px}}
+@media(max-width:700px){.honro #app .journey-map-legend{font-size:8px;gap:8px;left:8px}}
 @media(prefers-reduced-motion:reduce){.honro #app .journey-pin,.honro #app .journey-pin i,.honro #app .journey-pin span{transition:none}}
 /* The visible flame itself is part of the same native button hit area. */
 .honro #app .rest-fire{overflow:visible}
@@ -23465,11 +23461,47 @@ function bookMarkup(app){
  const regions=[...new Set(visible.map(v=>v.region))].map(region=>{const group=visible.filter(v=>v.region===region),x=group.reduce((sum,v)=>sum+v.map[0],0)/group.length,y=Math.max(100,Math.min(...group.map(v=>v.map[1]))-105);return `<span class="journey-region" style="left:${x/18}%;top:${y/10.5}%">${esc(region)}</span>`;}).join('');
  const endPin=finished&&layer===d.ending.layer?`<button class="journey-pin current ${app.journeySelection==='end'?'selected':''}" style="left:${d.ending.map[0]/18}%;top:${d.ending.map[1]/10.5}%" data-action="journey-select" data-id="end" aria-current="location" aria-pressed="${app.journeySelection==='end'}"><i>◎</i><span>${esc(d.ending.place)}</span><b>현 위치 · ${esc(d.ending.actEnd||'막 끝')}</b></button>`:'';
  const details=!selected?'<div><span>지도</span><h2>아직 열린 길이 없습니다</h2><p>이곳의 지형을 먼저 살펴보세요.</p></div>':`<div><span>${esc(selected.region)} · ${status(p,selected)}</span><h2>${esc(selected.place)}</h2><p>${esc(selected.event)}</p></div>${app.journeySelection==='end'?'<button class="primary" data-action="rest">쉼터로 돌아가기</button>':isCurrent?'<button class="primary" data-action="continue">저장된 전투 이어서 걷기</button>':app.debugMode?`<button class="primary" data-action="${done?'journey-replay':'journey-enter'}" data-id="${selected.stageId}">${done?'지난 전투 다시 걷기':'들어가기'}</button>`:done?`<button data-action="journey-replay" data-id="${selected.stageId}">지난 전투 다시 걷기</button>`:next?.stageId===selected.stageId?'<button class="primary" data-action="rest">현재 쉼터로 돌아가기</button>':''}`;
- return `<main class="screen journey-screen journey-${layer}">${app.top('여정첩','rest')}<div class="journey-heading"><div><span>걸어온 길을 펼치다</span><h1>${layer==='city'?'강변 읍성과 옛 나루':layer==='underground'?'땅 아래의 물길':'연목과 북쪽 산길'}</h1></div><nav aria-label="지도 층"><button data-action="journey-layer" data-layer="surface" aria-pressed="${layer==='surface'}">지상</button><button data-action="journey-layer" data-layer="underground" aria-pressed="${layer==='underground'}">지하</button><button data-action="journey-layer" data-layer="city" aria-pressed="${layer==='city'}">읍성</button></nav></div><section class="journey-map-scroll" aria-label="지리와 지나온 길"><div class="journey-map-controls" role="group" aria-label="여정첩 지도 확대·축소"><button data-action="journey-zoom" data-zoom="in" aria-label="지도 확대">＋</button><button data-action="journey-zoom" data-zoom="out" aria-label="지도 축소">−</button><button data-action="journey-zoom" data-zoom="reset" aria-label="지도 크기 되돌리기">원래 크기</button></div><div class="journey-map" style="--journey-zoom:${Math.max(.85,Math.min(1.35,Number(app.journeyZoom)||1))}">${G.HonroJourneyArt.atlas(layer)}<svg class="journey-route-overlay" viewBox="0 0 1800 1050" aria-hidden="true">${route}</svg>${regions}${pins}${endPin}</div><div class="journey-map-legend"><span>◎ 현 위치</span><span>✓ 지나온 길</span><span>드래그하여 지도 이동</span></div></section><section class="journey-detail" aria-live="polite">${details}</section></main>`;
+ return `<main class="screen journey-screen journey-${layer}">${app.top('여정첩','rest')}<div class="journey-heading"><div><span>걸어온 길을 펼치다</span><h1>${layer==='city'?'강변 읍성과 옛 나루':layer==='underground'?'땅 아래의 물길':'연목과 북쪽 산길'}</h1></div><nav aria-label="지도 층"><button data-action="journey-layer" data-layer="surface" aria-pressed="${layer==='surface'}">지상</button><button data-action="journey-layer" data-layer="underground" aria-pressed="${layer==='underground'}">지하</button><button data-action="journey-layer" data-layer="city" aria-pressed="${layer==='city'}">읍성</button></nav></div><section class="journey-map-scroll" aria-label="지리와 지나온 길"><div class="journey-map" style="--journey-zoom:${Math.max(.85,Math.min(1.35,Number(app.journeyZoom)||1))}">${G.HonroJourneyArt.atlas(layer)}<svg class="journey-route-overlay" viewBox="0 0 1800 1050" aria-hidden="true">${route}</svg>${regions}${pins}${endPin}</div><div class="journey-map-legend"><span>◎ 현 위치</span><span>✓ 지나온 길</span><span>드래그로 이동 · 휠 / 두 손가락으로 확대·축소</span></div></section><section class="journey-detail" aria-live="polite">${details}</section></main>`;
 }
 function revealBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),place=app.journeySelection==='end'?data().ending:data().at(app.journeySelection);if(!viewport||!map||!place||place.layer!==app.journeyLayer)return;viewport.scrollLeft=Math.max(0,place.map[0]/1800*map.clientWidth-viewport.clientWidth/2);viewport.scrollTop=Math.max(0,place.map[1]/1050*map.clientHeight-viewport.clientHeight/2);}
-function zoomBook(app,change,clientX,clientY){if(app.screen!=='journey')return;const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map');if(!viewport||!map)return;const old=Math.max(.85,Math.min(1.35,Number(app.journeyZoom)||1)),next=change==='reset'?1:Math.max(.85,Math.min(1.35,Math.round((old+(change==='in'?.12:-.12))*100)/100));if(next===old)return;const rect=viewport.getBoundingClientRect(),px=Number.isFinite(clientX)?clientX-rect.left:rect.width/2,py=Number.isFinite(clientY)?clientY-rect.top:rect.height/2,fx=(viewport.scrollLeft+px)/map.clientWidth,fy=(viewport.scrollTop+py)/map.clientHeight;app.journeyZoom=next;map.style.setProperty('--journey-zoom',String(next));viewport.scrollLeft=fx*map.clientWidth-px;viewport.scrollTop=fy*map.clientHeight-py;}
-function mountBook(app){const viewport=document.querySelector('.journey-map-scroll');if(!viewport||typeof viewport.addEventListener!=='function')return;let drag=null;viewport.addEventListener('pointerdown',e=>{if(e.target.closest('button')||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,left:viewport.scrollLeft,top:viewport.scrollTop};viewport.setPointerCapture?.(e.pointerId);viewport.classList.add('dragging');});viewport.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;viewport.scrollLeft=drag.left-(e.clientX-drag.x);viewport.scrollTop=drag.top-(e.clientY-drag.y);});const stop=e=>{if(drag?.id!==e.pointerId)return;drag=null;viewport.classList.remove('dragging');};viewport.addEventListener('pointerup',stop);viewport.addEventListener('pointercancel',stop);viewport.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();zoomBook(app,e.deltaY<0?'in':'out',e.clientX,e.clientY);},{passive:false});}
+function zoomBook(app,zoom,clientX,clientY,fromX=clientX,fromY=clientY){
+ if(app.screen!=='journey'||!Number.isFinite(zoom))return;
+ const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map');if(!viewport||!map)return;
+ const next=Math.max(.85,Math.min(1.35,zoom)),rect=viewport.getBoundingClientRect();
+ const px=clientX-rect.left,py=clientY-rect.top,fx=(viewport.scrollLeft+fromX-rect.left)/map.clientWidth,fy=(viewport.scrollTop+fromY-rect.top)/map.clientHeight;
+ app.journeyZoom=next;map.style.setProperty('--journey-zoom',String(next));
+ // Keep the same point under the wheel or between the fingers, including a
+ // moving pinch midpoint and a pan after reaching either zoom limit.
+ viewport.scrollLeft=fx*map.clientWidth-px;viewport.scrollTop=fy*map.clientHeight-py;
+}
+function mountBook(app){
+ const viewport=document.querySelector('.journey-map-scroll');if(!viewport||typeof viewport.addEventListener!=='function')return;
+ const contacts=new Map();let moved=false,pinchZoom=1;
+ const pinch=()=>{const [a,b]=contacts.values();return b?{x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.hypot(a.x-b.x,a.y-b.y)}:null;};
+ viewport.addEventListener('pointerdown',e=>{
+  if(e.button!==0)return;if(!contacts.size)moved=false;
+  contacts.set(e.pointerId,{x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY});
+  // Capture on the original pin so an unmoved touch still produces its normal
+  // click. Capture keeps a drag alive when it leaves the map's visible edge.
+  (e.target.closest('button')||viewport).setPointerCapture?.(e.pointerId);
+  if(contacts.size===2)pinchZoom=app.journeyZoom||1;
+  if(contacts.size>1){moved=true;viewport.classList.add('dragging');}
+ });
+ viewport.addEventListener('pointermove',e=>{
+  const point=contacts.get(e.pointerId);if(!point)return;
+  const before=pinch(),dx=e.clientX-point.x,dy=e.clientY-point.y;point.x=e.clientX;point.y=e.clientY;
+  if(before){const after=pinch();pinchZoom*=Math.max(1,after.gap)/Math.max(1,before.gap);zoomBook(app,pinchZoom,after.x,after.y,before.x,before.y);}
+  else if(moved||Math.hypot(point.x-point.startX,point.y-point.startY)>5){moved=true;viewport.classList.add('dragging');viewport.scrollLeft-=dx;viewport.scrollTop-=dy;}
+ });
+ const stop=e=>{contacts.delete(e.pointerId);if(contacts.size>1)pinchZoom=app.journeyZoom||1;if(!contacts.size)viewport.classList.remove('dragging');};
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])viewport.addEventListener(type,stop);
+ viewport.addEventListener('click',e=>{if(moved&&e.detail!==0){e.preventDefault();e.stopPropagation();}},{capture:true});
+ viewport.addEventListener('wheel',e=>{
+  e.preventDefault();if(!e.deltaY||contacts.size)return;
+  const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?viewport.clientHeight:1);
+  zoomBook(app,(app.journeyZoom||1)*Math.exp(-Math.max(-1000,Math.min(1000,delta))*.0014),e.clientX,e.clientY);
+ },{passive:false});
+}
 function showBook(app,id,layer){app.stopBattle();app.close();app.screen='journey';const d=data(),target=id==='end'?d.ending:d.at(+id)||d.at(app.journeySelection)||d.at(currentId(app.profile))||d.places[0];app.journeyLayer=layer||target.layer||'surface';app.journeyZoom??=1;const visible=d.places.filter(v=>v.layer===app.journeyLayer&&unlocked(app.profile,v,app.debugMode));app.journeySelection=id==='end'&&!active(app.profile)&&!d.next(app.profile)&&app.journeyLayer===d.ending.layer?'end':visible.some(v=>v.stageId===target.stageId)?target.stageId:(visible.at(-1)?.stageId??null);app.root.innerHTML=bookMarkup(app);mountBook(app);revealBook(app);app.updateAudio();}
 function selectBook(app,id){if(id!=='end'&&!data().at(+id))return;const place=id==='end'?data().ending:data().at(+id);if(id!=='end'&&!unlocked(app.profile,place,app.debugMode))return;app.journeySelection=id==='end'?'end':+id;app.root.innerHTML=bookMarkup(app);mountBook(app);revealBook(app);document.querySelector(`[data-action="journey-select"][data-id="${id}"]`)?.focus?.({preventScroll:true});}
 function launch(app,id,kind){app.pendingJourneyLaunch=null;delete state(app.profile).pendingDirect;app.launch(id);if(app.engine&&!app.training){app.engine.b.honroJourneyReplay=kind==='replay';app.profile.honroBattle=clone(app.engine.b);app.persist();}}
@@ -24306,9 +24338,6 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
                     break;
                 case 'journey-layer':
                     G.HonroRestJourney.showBook(this,this.journeySelection,el.dataset.layer);
-                    break;
-                case 'journey-zoom':
-                    G.HonroRestJourney.zoomBook(this,el.dataset.zoom);
                     break;
                 case 'rest-talk':
                     G.HonroRestJourney.talk(this,el.dataset.class);
