@@ -1,0 +1,13 @@
+{
+  "schema": "honro-water-reflection-baseline",
+  "version": 1,
+  "fixture": "water-reflection-baseline.environment-art.js",
+  "sourceRepository": "sys8994/honro",
+  "sourcePath": "shared/runtime/environment-art.js",
+  "capturedFromLocalCommit": "dbaa5655db2ed956a0962731a27e700b13dc0409",
+  "sourceGitBlob": "45a99281e8d2974174391ff5d7960d37946317ce",
+  "sha256": "dc405eaff9d8665a687eb5f2713163db0783acb1525b6079b5380efd6b6719bc",
+  "byteLength": 5329,
+  "purpose": "Exact pre-opt-in water renderer used for pixel parity at Scene times 0, 1.2 and 31.",
+  "provenanceNote": "Captured byte-for-byte from the local pre-reflection integration checkpoint. Its commit identifier is historical provenance only; the checked-in fixture and digest make tests independent of Git history and of this local object being present."
+}

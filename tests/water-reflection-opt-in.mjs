@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
-import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
-const native=createRequire(import.meta.url)('@napi-rs/canvas'),before=execFileSync('git',['show','dbaa565:shared/runtime/environment-art.js'],{encoding:'utf8'}),after=await readFile('shared/runtime/environment-art.js','utf8');
+const native=createRequire(import.meta.url)('@napi-rs/canvas');
+// The exact baseline is checked in: published/shallow clones need no local Git object.
+const baselineBytes=await readFile(new URL('./fixtures/water-reflection-baseline.environment-art.js',import.meta.url)),provenance=JSON.parse(await readFile(new URL('./fixtures/water-reflection-baseline.provenance.json',import.meta.url),'utf8'));
+assert.equal(baselineBytes.length,provenance.byteLength,'baseline byte length matches provenance');
+assert.equal(createHash('sha256').update(baselineBytes).digest('hex'),provenance.sha256,'exact pre-reflection baseline digest');
+const before=baselineBytes.toString('utf8'),after=await readFile('shared/runtime/environment-art.js','utf8');
 const atmosphere={waterBaseColor:'#0c2631',waterHighlightColor:'#527771',shadowTint:'#091c27',keyLightColor:'#a6afa1',waterfallFoamColor:'#91a391'};
 const E={mixColor(a,b,t){const rgb=x=>x.slice(1).match(/../g).map(x=>parseInt(x,16)),x=rgb(a),y=rgb(b);return '#'+x.map((v,i)=>Math.round(v+(y[i]-v)*t).toString(16).padStart(2,'0')).join('');}};
 function render(source,reflections,time){const ctx=vm.createContext({Path2D:native.Path2D,Math,HonroEnvironment:E,matchMedia:()=>({matches:false})});vm.runInContext(source,ctx);const cv=native.createCanvas(500,420),c=cv.getContext('2d');c.fillStyle='#be21ab';c.fillRect(0,0,500,420);const z={points:[[50,40],[450,40],[450,380],[50,380]],surface:[[50,40],[450,40]],...(reflections?{reflections}: {})};ctx.HonroEnvironmentArt.pool(c,z,atmosphere,time);return c.getImageData(0,0,500,420).data;}
