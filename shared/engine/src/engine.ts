@@ -1717,7 +1717,9 @@ export class Engine {
             const env=environmentAt(this.b.physics??(this.b.physics=makePhysics()),u.x,u.y-u.h*.5);
             // A nearby surface supports a resting body, not one still arriving at impact speed.
             // Otherwise the 4-unit contact tolerance can erase a fall before contactDamage runs.
-            const ox = u.x, oy = u.y, support = this.contactSurface(ox, oy - 3, oy + 4), supported = !!support && env.gravity.y>=0 && u.vy >= 0 && u.vy <= 3 && !u.jumping;
+            // Center resting support on the actual feet. A downward-biased
+            // range can prefer a nearby lower bank over an exact one-way deck.
+            const ox = u.x, oy = u.y, support = this.contactSurface(ox, oy - 4, oy + 4), supported = !!support && env.gravity.y>=0 && u.vy >= 0 && u.vy <= 3 && !u.jumping;
              if (supported && Math.abs(u.vx) < 3) {
                 u.x = ox;
                 u.y = support!.y;
