@@ -36,7 +36,9 @@ def suite(page,shell):
     # Read the actual guide and queued continuation, then advance the saved round.
     entry=page.evaluate(r'''()=>{const a=HonroApp;a.launchMap(HONRO_PROJECT,'stage-3');return{count:a.dialogue.lines.length,pending:a.engine.b.honroState.deferredStory,guide:a.dialogue.lines.find(l=>l[2]?.kind==='guide')?.[1],current:HonroObjectives.state(a.engine.b,a.stage).currentInstruction};}''')
     check(shell+': staged entry retains one short current guide and deferred explanations',entry['count']==11 and entry['guide']==entry['current'] and len(entry['guide'])<50 and len(entry['pending'])>0,entry)
-    page.evaluate("{const a=HonroApp;a.dialogue.index=a.dialogue.lines.length-1;HonroStory.draw(a);}")
+    # Read through the authored entrance as well as its lines. Moving only the
+    # text index leaves the new pre-dialogue choreography on screen.
+    page.evaluate("{const a=HonroApp;for(let i=0;i<30&&a.dialogue&&(!a.dialogue.staging?.complete||a.dialogue.index<a.dialogue.lines.length-1);i++)HonroStory.next(a);HonroStory.draw(a);}")
     check(shell+': dedicated guide panel has no character portrait',page.locator('.story-guide').count()==1 and page.locator('.story-portrait').count()==0)
     capture(page,shell+'-guide.png')
     if shell=='Game':
