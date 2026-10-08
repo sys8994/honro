@@ -1,3 +1,4 @@
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
 import {beforeGuardianScene} from './guardian-scene-history-helpers.mjs';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
@@ -19,7 +20,7 @@ check('20 chapters retain every non-prose rule, stable scene/event IDs and rest 
  for(const before of frozen.rest){const lines=J.interlude(before.id);assert.equal(lines.length,before.lines);assert(lines.every(l=>l[2].storyId===before.storyId&&!l[2].optional));}
 });
 check('Acts 1–2 story contracts retain all rules beyond the exact reviewed existence delta',()=>{
- assert.equal(hash(mapRules(act12Project(beforeGraniteVisuals(beforePlatformPassages(beforeCaveBatRevision(beforeExistenceRoster(beforeObjectiveRevision(beforeGuardianScene(project),{stages:[]}).project))))))),frozen.mapRules);
+ assert.equal(hash(mapRules(act12Project(beforeGraniteVisuals(beforePlatformPassages(beforeCaveBatRevision(beforeExistenceRoster(beforeObjectiveRevision(beforeGuardianScene(beforeForestCavernTopology(project)),{stages:[]}).project))))))),frozen.mapRules);
  assert.equal(hash(plain(act12Balance(g.HONRO_BALANCE))),frozen.balance);
 });
 check('Act 1 keeps future identities and the hidden temple out of player knowledge',()=>{

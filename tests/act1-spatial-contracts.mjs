@@ -1,3 +1,4 @@
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
 import {act2History,historicalAct2Maps} from './act1-act2-history-helpers.mjs';
 import {historicalSceneRoster,beforeStagingProse} from './staging-history-helpers.mjs';
 import {act12Balance,act12Archetypes} from './campaign-scope-helpers.mjs';
@@ -9,7 +10,7 @@ import {beforeExistenceRoster,beforeExistenceProfiles} from './existence-delta-h
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {act1Runtime,fixture,plain,hash,semanticContent,unitContract,reportRoot,canonicalGameplay} from './act1-spatial-test-helpers.mjs';
 const g=await act1Runtime(),C=g.HONRO_CORE,frozen=JSON.parse(await readFile('tests/fixtures/act1-spatial-contracts.json','utf8')),checks=[],awaitText=await readFile('game/config/balance.json','utf8');
-g.HONRO_PROJECT=beforeExistenceRoster(g.HONRO_PROJECT);
+g.HONRO_PROJECT=beforeExistenceRoster(beforeForestCavernTopology(g.HONRO_PROJECT,{stages:[1,3,4,5,6,7,8,9]}));
 function check(name,fn){fn();checks.push({name,passed:true});console.log('PASS',name);}
 check('ACT2 maps retain their reproducible historical content after exact approved deltas',()=>assert.equal(hash(historicalAct2Maps(g.HONRO_PROJECT,g.HonroTerrainDomain)),act2History.historicalAct2Hash));
 check('Every class, skill, enemy archetype and balance source is unchanged',()=>{assert.deepEqual(plain(C.CLASSES),frozen.classes);assert.deepEqual(beforeExistenceProfiles(C.SKILLS),frozen.skills);assert.deepEqual(plain(act12Archetypes(g.HonroWorld.archetypes)),frozen.archetypes);assert.deepEqual(act12Balance(JSON.parse(awaitText)),frozen.balance);});

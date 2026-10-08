@@ -1,3 +1,4 @@
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
 import {applyCurrentTerrainRecipes} from './act1-spatial-test-helpers.mjs';
 import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
@@ -10,7 +11,7 @@ import {migrate} from '../migration/migrate-stages.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,project=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
 const plain=x=>JSON.parse(JSON.stringify(x)),checks=[];
 // Only legacy recipe comparisons use this exact-verified roster reversal.
-const historicalProject=beforeExistenceRoster(project);
+const historicalProject=beforeExistenceRoster(beforeForestCavernTopology(project));
 // Historical place recipes are compared independently of later combat tuning,
 // one-way platform rules, habitat props, and the authored scenery library.
 const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mid','bridge-east','lower-lookout','pier-west','pier-east','tier-low','tier-mid','tier-upper','tier-crown','ramp-1','center-lookout']);
