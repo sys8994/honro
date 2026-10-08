@@ -195026,7 +195026,7 @@
           },
           {
             "id": "dock-exit",
-            "label": "짐꾼과 하역장 벗어나기",
+            "label": "짐꾼과 지상 하역장 벗어나기",
             "kind": "escort",
             "target": "act3-carrier"
           }
@@ -196538,7 +196538,7 @@
           "type": "exit",
           "x": 6800,
           "y": 2398.8786796564405,
-          "label": "숨은 기록실로 이동"
+          "label": "지상과 지하 두 조사길로 출발"
         },
         {
           "id": "split-route-a",
@@ -197433,14 +197433,15 @@
           "x": 1250,
           "y": 2700,
           "label": "담허와 수로 봉인 살피기",
-          "action": "act3"
+          "action": "act3",
+          "requiredClass": "mage"
         },
         {
           "id": "stake-arrival-1",
           "type": "act3",
           "x": 3010,
           "y": 2700,
-          "label": "두 동행이 건너편 석대에 모이기"
+          "label": "축지진목으로 두 동행 건너기"
         },
         {
           "id": "household-tally",
@@ -200092,21 +200093,21 @@
           "type": "act3",
           "x": 2790,
           "y": 3100,
-          "label": "두 동행이 다음 석대에 모이기"
+          "label": "두 동행이 위쪽 석대로 건너기"
         },
         {
           "id": "stake-arrival-2",
           "type": "act3",
           "x": 5240,
           "y": 3500,
-          "label": "두 동행이 다음 석대에 모이기"
+          "label": "두 동행이 아래 하역대로 건너기"
         },
         {
           "id": "stake-arrival-3",
           "type": "act3",
           "x": 7390,
           "y": 3300,
-          "label": "두 동행이 다음 석대에 모이기"
+          "label": "두 동행이 봉인 창고로 건너기"
         },
         {
           "id": "family-manifest",
@@ -201667,7 +201668,7 @@
           "type": "act3",
           "x": 3400,
           "y": 2800,
-          "label": "네 동행 중앙 뜰 합류"
+          "label": "네 동행이 뒤뜰에 모이기"
         },
         {
           "id": "petition-record",
