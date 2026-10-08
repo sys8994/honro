@@ -47,7 +47,8 @@ const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(!activ
  if(guardianBranch(b,t)){
   // Retain the real collision silhouette and bright walkable top. Bark is a
   // paint-only substitution: stone resistance and projectile passage stay put.
-  c.fillStyle=A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#85846b'],[.22,'#626957'],[.66,'#394940'],[1,'#203633']]);c.fill(q.branchBody||q.shape);c.clip(q.branchBody||q.shape);
+  const tip=Math.abs(t.x-2500)>Math.abs(t.x+t.w-2500)?t.x:t.x+t.w;
+  c.fillStyle=A.gradient(c,2500,t.y,tip,t.y+35,[[0,'#777568'],[.3,'#626957'],[1,'#394f43']]);c.fill(q.branchBody||q.shape);c.clip(q.branchBody||q.shape);
   c.strokeStyle='#253d34';c.lineWidth=4;if(q.branchGrain)c.stroke(q.branchGrain);
   c.strokeStyle='#c2c4a0';c.lineWidth=5;c.lineJoin='round';c.stroke(q.rim);c.restore();return;
  }
