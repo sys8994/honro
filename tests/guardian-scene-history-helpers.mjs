@@ -1,11 +1,16 @@
 // Exact approved stage 9 hall reuse / stage 10 guardian scene delta only.
 // The immutable older map hashes remain the final comparison authority.
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {beforeGuardianTerrain} from './guardian-terrain-history-helpers.mjs';
 export const guardianSceneDelta=JSON.parse(readFileSync(new URL('./fixtures/guardian-scene-delta.json',import.meta.url),'utf8'));
 export function beforeGuardianScene(project){
  const p=structuredClone(project);
+ const asset=guardianSceneDelta.addedAsset,added=p.library.filter(a=>a.id===asset.id);
+ assert.equal(added.length,1,'Exact one approved guardian asset');
+ assert.equal(createHash('sha256').update(JSON.stringify(added[0])).digest('hex'),asset.sha256,'Exact approved guardian asset');
+ p.library=p.library.filter(a=>a.id!==asset.id);
  for(const row of guardianSceneDelta.rows){
   let target=p.stages.find(s=>s.metadata.stageId===row.stage);
   for(const key of row.path.slice(0,-1))target=target[key];

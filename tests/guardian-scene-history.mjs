@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import {beforeGuardianScene,guardianSceneDelta} from './guardian-scene-history-helpers.mjs';
 const project=JSON.parse(readFileSync('shared/data/campaign.json','utf8')),snapshot=JSON.stringify(project),prior=beforeGuardianScene(project);
 assert.equal(JSON.stringify(project),snapshot,'Historical projection does not mutate current maps');
+{const p=structuredClone(project);p.library.find(a=>a.id===guardianSceneDelta.addedAsset.id).name+=' drift';assert.throws(()=>beforeGuardianScene(p),/Exact approved guardian asset/);}
 for(const row of guardianSceneDelta.rows){
  const p=structuredClone(project);let target=p.stages.find(s=>s.metadata.stageId===row.stage);
  for(const key of row.path.slice(0,-1))target=target[key];
