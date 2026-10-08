@@ -1602,3 +1602,7 @@ Actual Pages visual review found the reused stage-9 shrine roof hidden behind th
 ## 2026-10-08 · Stage 16 temple undercroft, follow-on unit 2B
 
 A real lower cave is cut beneath the original upper temple platform, with a connected stone support and a return step. The canonical scenery build's floor-only re-grounding is overridden only for explicitly authored `cavernLayers` stages, keeping the existing hall at its original upper y=4320. Base movement, return, three projectile lanes, mission/roster preservation, anchor clearance and roundtrip/idempotency checks pass. Native art was reviewed; this is held separately from the frozen 2A release while normal-combat/browser/aggregate validation remains outstanding.
+
+## 2026-10-08 · 2차 B 전환 동굴 선택 사격 자리
+
+11/12/13/17/18/19를 필요 범위만 보강했다.11·12는 상승 접근 구도,13은 낮은 문과 주동선을 유지하며 지반 명암과 선택 작업대를 보완했다.17은 후반 실제 고체 천장을 낮췄고18·19는 같은 종실의 두 목제 one-way 사격 자리를 공유한다.20은 전체 원본을 유지했다. 목표·NPC·적·군집·파동·최소턴과 필수 바닥/문을 보존하며 구매 기예를 요구하지 않는다. 기본 보행28조건·기본 점프 왕복24조건·실탄14자리 및 원본/다른장/저장 계약을 확인했다. 상세 범위와 브라우저/난도/배포 미검수 한계는 `CAVERN_TRANSITION_CHOICES.md`에 기록했다.
