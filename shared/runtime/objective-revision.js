@@ -78,7 +78,16 @@ function author(project,options={}){
  const p={...project,stages:project.stages.map(original=>{
   const id=original.metadata?.stageId;if(!original.metadata?.campaign||id<Math.max(11,options.minStage||11)||id>(options.maxStage||30)||!H.stages[id-1])return original;
   if(!options.force&&original.initialState?.honroObjectiveRevision>=REVISION)return original;
-  const map=clone(original),st=H.stages[id-1],drops=[...(removed[id]||[]),...(id===22?['upper-latch']:[]),...(id===27&&!st.hiddenWaterworks?['water-release']:[])];
+  const map=clone(original),waterworks=!!original.initialState?.honroWaterworksRevision,st=!waterworks&&H.stages[id-1].hiddenWaterworks?(G.HONRO_SPLIT_V1?.content.find(s=>s.id===id)||H.stages[id-1]):H.stages[id-1];
+  // v2 maps own their new topology and controls. Synchronize current objectives
+  // without replaying the older device removals or chapter-27 marker ordering.
+  if(waterworks){
+   map.initialState.honroObjectiveRevision=REVISION;map.initialState.honroAct3Steps=clone(st.steps);
+   for(const s of st.steps||[]){const m=map.markers.find(m=>m.id===s.id||m.id==='marker-'+s.id);if(!m)continue;m.label=s.label;if(['interact','rescue'].includes(s.kind))m.action='act3';if(s.requiredClass)m.requiredClass=s.requiredClass;else delete m.requiredClass;}
+   for(const o of map.objectives||[])if(o.type==='campaign')o.label=st.goal;
+   return map;
+  }
+  const drops=[...(removed[id]||[]),...(id===22?['upper-latch']:[]),...(id===27&&!st.hiddenWaterworks?['water-release']:[])];
   map.initialState??={};map.initialState.honroObjectiveRevision=REVISION;
   if(id>=11&&id<=20)map.initialState.honroAct2Steps=clone(st.steps);
   if(id>=21)map.initialState.honroAct3Steps=clone(st.steps);

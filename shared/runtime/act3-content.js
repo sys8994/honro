@@ -23,7 +23,7 @@ const chapters=[
  {name:'사라진 짐',hiddenWaterworks:true,place:'지상 관창 하역장',theme:'river',narration:'하늘이 열린 관창 하역장에 쓰러졌던 병사의 몸들이 다시 문을 막는다. 살아 있는 짐꾼은 마지막 장부 상자를 품에 안고 물러선다.',
  goal:'악귀가 막은 하역길을 열고 짐꾼과 운송 기록을 지켜 통과',
  story:[['수비병 악귀','지켜라… 문을… 아무도…'],['소단','숨은 이미 끊겼어요. 악귀가 남은 육신을 움직여요. 저 몸은 사람으로 되돌릴 수 없어요.'],['설오','저 너머 짐꾼은 살아 있습니다. 악귀를 처치하고 나올 길을 열겠습니다.',{focus:'seal'}]],
- steps:[step('dispatch-bundle','무명사 운송 묶음 확보'),step('carrier-start','짐꾼과 출발','interact',{target:'act3-carrier',startsEscort:true}),step('dock-mid','짐꾼을 석교까지 호송','escort',{target:'act3-carrier'}),step('dock-exit','짐꾼과 하역장 벗어나기','escort',{target:'act3-carrier'})],
+ steps:[step('dispatch-bundle','무명사 운송 묶음 확보'),step('carrier-start','짐꾼과 출발','interact',{target:'act3-carrier',startsEscort:true}),step('dock-mid','짐꾼을 석교까지 호송','escort',{target:'act3-carrier'}),step('dock-exit','짐꾼과 지상 하역장 벗어나기','escort',{target:'act3-carrier'})],
  beats:{'dispatch-bundle':[['휘겸','시신뿐이 아니오. 놋그릇, 농기구, 장신구, 문고리까지 무명사로 보냈소.'],['설오','죽은 마을의 밥그릇까지 왜 가져갔습니까?']],'carrier-start':[['짐꾼','다들 피했어요. 저 병사들은 죽은 뒤에도 지키던 문에서 떠나지 않았어요.'],['휘겸','당신은 우리와 나갑시다. 상자를 놓치지 마시오.']]},
  outro:[['휘겸','운송 문서에 토지 장부 번호가 남았소. 그 끝의 문장이 낯익군.']],summary:'저문골의 시신과 생활 금속이 함께 무명사로 옮겨졌음을 확인했다. 죽은 육신에 남은 수호의 사념을 돌파해 짐꾼과 운송 묶음을 지켰다.',
  guide:'기록을 챙긴 뒤 짐꾼 곁에서 출발시키세요. 짐꾼 앞의 실제 보행길을 확보하고 가까이 동행하세요. 길을 막는 수비병 악귀를 처치하며 살아 있는 짐꾼을 보호하세요.'},
