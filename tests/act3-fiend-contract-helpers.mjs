@@ -1,3 +1,5 @@
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {gunzipSync} from 'node:zlib';
 import {beforeGuardianScene} from './guardian-scene-history-helpers.mjs';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
@@ -7,6 +9,7 @@ import {beforeCaveBatRevision,caveBatRevision} from './act2-cave-bat-delta-helpe
 // Korean architecture, optional roofs, placement or schema-default geometry.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+const waterworksRevision=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/hidden-waterworks-semantic-delta.json.gz',import.meta.url))).toString('utf8'));
 const encounterRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-encounter-contract.json',import.meta.url),'utf8'));
 const locationRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-location-semantic-contract.json',import.meta.url),'utf8'));
 const refinementRevision=JSON.parse(readFileSync(new URL('./fixtures/act3-refinement-delta.json',import.meta.url),'utf8'));
@@ -58,8 +61,17 @@ export function missionContract(map,stage,balance){
  });
 }
 export function archetypeContract(archetypes){return Object.fromEntries(Object.entries(archetypes).filter(([id])=>Object.hasOwn(kindRenames,id)||Object.values(kindRenames).includes(id)).map(([id,a])=>[kind(id),without(a,['name','intent','act3Human','act3Fiend'])]));}
+export function beforeHiddenWaterworks(project,content,balance){
+ const p=plain(project),c=plain(content),b=plain(balance);
+ for(const row of waterworksRevision.rows){const i=p.stages.findIndex(s=>s.metadata.stageId===row.id),map=p.stages[i];
+  assert.deepEqual(missionContract(map,c.stages[row.id-1],b.stages[row.id-1]),row.after,'Exact approved hidden-waterworks combat/mission contract '+row.id);
+  p.stages[i]=plain(row.beforeMap);c.stages[row.id-1]=plain(row.beforeContent);b.stages[row.id-1]=plain(row.beforeBalance);
+ }
+ return {project:p,content:c,balance:b};
+}
 export function assertFiendContract(project,content,balance,archetypes,baseline){
- project=beforeRefinementRevision(project,archetypes);
+ ({project,content,balance}=beforeHiddenWaterworks(project,content,balance));
+ project=beforeRefinementRevision(beforeForestCavernTopology(project),archetypes);
  ({project,content}=beforeObjectiveRevision(project,content));
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');
@@ -112,12 +124,12 @@ export function assertFiendContractScope(project,content,balance,archetypes,base
  rejects('marker identity',q=>q.stages[22].markers[0].id+='-changed');
  rejects('marker target',q=>q.stages[22].markers.find(m=>m.target==='act3-carrier').target='missing');
  rejects('marker action',q=>q.stages[22].markers.find(m=>m.action).action='other');
- rejects('required class',q=>q.stages[26].markers.find(m=>m.requiredClass).requiredClass='mage');
+ rejects('required class',q=>q.stages[24].markers.find(m=>m.requiredClass).requiredClass='knight');
  rejects('device durability',q=>q.stages[21].terrains.find(t=>t.properties?.honroAct3Gate).properties.hp++);
  rejects('initial active limit',q=>q.stages[22].initialState.honroActiveLimit++);
  rejects('objective order',(_,r)=>r.stages[22].steps.reverse());
- rejects('hold rules',(_,r)=>r.stages[24].steps.find(s=>s.kind==='hold').rounds++);
- rejects('class requirement',(_,r)=>r.stages[26].steps[0].requiredClass='mage');
+ rejects('hold rules',(_,r)=>r.stages[28].steps.find(s=>s.kind==='hold').rounds++);
+ rejects('class requirement',(_,r)=>r.stages[26].steps[0].requiredClass='knight');
  rejects('growth/combat budget',(_,r,v)=>v.stages[22].targetHits++);
  rejects('archetype attack',(_,r,v,defs)=>defs.possessedGuard.skills=['S01']);
  rejects('new species attack',(_,r,v,defs)=>defs.archiveFiend.skills=['S01']);

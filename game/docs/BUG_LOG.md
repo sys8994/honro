@@ -1564,3 +1564,9 @@ Actual Pages visual review found the reused stage-9 shrine roof hidden behind th
 - 기존 목표·장소 검사에서 장 번호만으로 옛 25~27 파티와 27장 호송자를 가정했다. 고정된 v1 지도/미술/진행 프로필을 명시해 옛 불길 병렬 조작·합류·8개 장소 편성/수면복귀/양쪽 진입 검사를 그대로 보존했다.
 - 현재 production geometry는 21~30장을 전부 검사하고 별도로 v1 25~28장을 검사한다. 의도적으로 끊긴 25/27 물길은 각 착지면의 정상 걷기·점프를 검사하고, 석대 사이 연결은 기존 실제 M09/gate 회귀에서 검증한다. 호송자는 해당 지도에 실제 escort 단계가 있을 때 반드시 요구한다. 동일 구현을 location traversal에서도 사용한다.
 - objective-revision 31묶음, historical location contracts, current+v1 production geometry는 통과했다. 부분 공간 이동/목표 state fixture이며 정상 전투 완주나 브라우저 입력 증거는 아니다.
+
+## 새 23~28장과 악귀 역사 계약 — 2026-10-08
+
+- 기존 악귀 검사는 새 25~28장에 옛 응답 이벤트·대기 목표·파티·호송자가 있다고 가정했다. 승인된 23~28장의 정확한 임무/전투 semantic 계약을 `2f838f8` 소스로 동결하고, 검증한 경우에만 `21a8e77^`의 원래 여섯 지도를 역사 비교에 투영한다. 오래된 악귀 baseline/hash는 변경하지 않았다. 지형/미술 자유도는 기존 semantic 경계와 독립 공간 검사에 맡긴다.
+- 다른 24장·Library·입력은 불변이며 각 장의 적 식별자/HP·행동 상한·표식 동작·필수 목표·목표 순서·전투 수치 등 42개 변조를 모두 거부한다. 1·2막은 별도의 정확한 forest/cavern 승인 경로 projection을 먼저 통과한다.
+- 구 전투 fixture는 frozen v1 또는 더 오래된 objective delta의 정확한 저장 단계/파티를 명시해 생성한다. 악귀 9묶음·새 역사 42변조·구22/23/27 export/import/Continue·act3-runtime을 통과했다. 새 전투를 옛 것으로 간주하거나 정상 완주로 포장하지 않는다.
