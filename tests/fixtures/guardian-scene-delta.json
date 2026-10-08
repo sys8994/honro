@@ -1,0 +1,258 @@
+{
+  "sourceCommit": "fe531bc1109aa93c42d36faf0b70096b7049b2d7",
+  "approvedCommit": "72bcdb6523eea5f11b4593741bd2fabe59dbf20d",
+  "rows": [
+    {
+      "stage": 9,
+      "path": [
+        "elements",
+        7,
+        "scale"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.98,
+      "after": 1.25
+    },
+    {
+      "stage": 9,
+      "path": [
+        "design",
+        "act1Scene",
+        "scenery",
+        1,
+        "scale"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.98,
+      "after": 1.25
+    },
+    {
+      "stage": 10,
+      "path": [
+        "elements",
+        9,
+        "assetId"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "act1-scene:ritual-hall",
+      "after": "act1-scene:guardian-tree"
+    },
+    {
+      "stage": 10,
+      "path": [
+        "elements",
+        9,
+        "id"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "a1-scene-10-upper-ritual-hall",
+      "after": "a1-scene-10-guardian-tree"
+    },
+    {
+      "stage": 10,
+      "path": [
+        "elements",
+        9,
+        "scale"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 1.25,
+      "after": 1
+    },
+    {
+      "stage": 10,
+      "path": [
+        "elements",
+        9,
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 2631,
+      "after": 2500
+    },
+    {
+      "stage": 10,
+      "path": [
+        "elements",
+        9,
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 2224.815789473684,
+      "after": 2180
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "guardianTree"
+      ],
+      "hasBefore": false,
+      "hasAfter": true,
+      "after": {
+        "id": "a1-scene-10-guardian-tree",
+        "branches": [
+          "altar-step-1",
+          "altar-step-2",
+          "altar-step-3",
+          "altar-platform"
+        ]
+      }
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "places",
+        2
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "중앙 주박 의식대",
+      "after": "언덕 중앙의 당산나무"
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "rocks"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "western-foundation",
+          "x": 1310,
+          "y": 2760.4166666666665,
+          "width": 1850,
+          "height": 940,
+          "supportId": "outer-yard",
+          "kind": "shoulder",
+          "visualOnly": true
+        },
+        {
+          "id": "central-foundation",
+          "x": 2520,
+          "y": 2186.842105263158,
+          "width": 1700,
+          "height": 650,
+          "supportId": "outer-yard",
+          "kind": "shoulder",
+          "visualOnly": true
+        },
+        {
+          "id": "eastern-foundation",
+          "x": 3860,
+          "y": 2744,
+          "width": 1700,
+          "height": 900,
+          "supportId": "outer-yard",
+          "kind": "shoulder",
+          "visualOnly": true
+        }
+      ],
+      "after": [
+        {
+          "id": "western-foundation",
+          "x": 1310,
+          "y": 2760.4166666666665,
+          "width": 1850,
+          "height": 940,
+          "supportId": "outer-yard",
+          "kind": "shoulder",
+          "visualOnly": true
+        },
+        {
+          "id": "eastern-foundation",
+          "x": 3860,
+          "y": 2744,
+          "width": 1700,
+          "height": 900,
+          "supportId": "outer-yard",
+          "kind": "shoulder",
+          "visualOnly": true
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "scenery",
+        2,
+        "assetId"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "act1-scene:ritual-hall",
+      "after": "act1-scene:guardian-tree"
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "scenery",
+        2,
+        "id"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "a1-scene-10-upper-ritual-hall",
+      "after": "a1-scene-10-guardian-tree"
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "scenery",
+        2,
+        "scale"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 1.25,
+      "after": 1
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "scenery",
+        2,
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 2631,
+      "after": 2500
+    },
+    {
+      "stage": 10,
+      "path": [
+        "design",
+        "act1Scene",
+        "scenery",
+        2,
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 2224.815789473684,
+      "after": 2180
+    }
+  ]
+}

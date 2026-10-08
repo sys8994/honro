@@ -1,3 +1,4 @@
+import {beforeGuardianScene} from './guardian-scene-history-helpers.mjs';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
@@ -63,7 +64,7 @@ export function assertFiendContract(project,content,balance,archetypes,baseline)
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');
  assert.deepEqual(projectRules(project),baseline.projectRules,'Global gameplay/schema settings');
- const legacyProject=beforeCaveBatRevision(beforeGraniteVisuals(beforePlatformPassages(plain(project))));
+ const legacyProject=beforeCaveBatRevision(beforeGraniteVisuals(beforePlatformPassages(beforeGuardianScene(project))));
  const assetIds=project.library.map(a=>a.id);assert.equal(new Set(assetIds).size,assetIds.length,'Unique library IDs');
  for(const a of baseline.legacyAssets){const current=legacyProject.library.find(v=>v.id===a.id);assert(current,'Missing original asset '+a.id);assert.equal(hash(current),a.sha256,'Original Act 1/2 asset '+a.id);}
  for(const saved of baseline.legacyMaps){const current=legacyProject.stages.find(s=>s.metadata.stageId===saved.id);assert.equal(hash(current),saved.sha256,'Complete original Act 1/2 map '+saved.id);}
@@ -94,6 +95,12 @@ export function assertFiendContractScope(project,content,balance,archetypes,base
  const art=p.library.find(x=>x.id.startsWith('a3-'));assert(art);art.name+=' · reviewed art fixture';
  assertFiendContract(p,c,b,a,baseline);
  const rejects=(label,mutate)=>{const q=plain(project),r=plain(content),v=plain(balance),defs=plain(archetypes);mutate(q,r,v,defs);assert.throws(()=>assertFiendContract(q,r,v,defs,baseline),undefined,label);};
+ rejects('stage 9 reused hall position',q=>q.stages[8].elements.find(e=>e.id==='a1-scene-9-east-hall').x++);
+ rejects('stage 9 unapproved hall scale',q=>q.stages[8].elements.find(e=>e.id==='a1-scene-9-east-hall').scale+=.01);
+ rejects('stage 10 unapproved tree position',q=>q.stages[9].elements.find(e=>e.id==='a1-scene-10-guardian-tree').x++);
+ rejects('stage 10 unapproved branch geometry',q=>q.stages[9].terrains.find(t=>t.id==='altar-step-1').points[0].x++);
+ rejects('stage 10 unapproved branch durability',q=>q.stages[9].terrains.find(t=>t.id==='altar-step-1').properties.hp++);
+ rejects('stage 10 old mission data',q=>q.stages[9].units[0].x++);
  rejects('old map data',q=>q.stages[0].units[0].x++);
  rejects('reviewed cave bat kind',q=>q.stages[12].units.find(u=>u.id===caveBatRevision.rows[0].kinds[0].id).kind='honroSpirit');
  rejects('old shared art',q=>q.library.find(v=>v.id===baseline.legacyAssets[0].id).name+=' changed');
