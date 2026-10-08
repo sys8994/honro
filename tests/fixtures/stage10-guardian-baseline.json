@@ -1,0 +1,1603 @@
+{
+  "sourceCommit": "fe531bc1109aa93c42d36faf0b70096b7049b2d7",
+  "stages": [
+    {
+      "id": "stage-1",
+      "gameplay": "a08a4d344739075df79361fcc292de3ff6f95ffe79b09a86dea287d0f5350867",
+      "elements": "3961c9caaba9cb4e65be2271cb6b8e1fd09f7125ddd1ae744b8f6a85f33c8e44",
+      "design": "f7d43e99faed5a1fe3eee6c756a071a5f274ff800438989b828a5965bc53848c"
+    },
+    {
+      "id": "stage-2",
+      "gameplay": "dbc7520097ab55766002e2fbfc60c519b0119a41508ace1076c9ad796269d89b",
+      "elements": "72b1ef1b33909a9cf6c602a9b09ff54d750e7fe740147c3dee65642850c11f8a",
+      "design": "40cd26ce22884317422b1fdafa792ae916bc549dce01a03bc24ba1ae81b36d4d"
+    },
+    {
+      "id": "stage-3",
+      "gameplay": "15e0b5b0c913688214f38a6ba466006fbf6395e479157a2da66bdc1eacfab72a",
+      "elements": "3ff3f1dc6573535c2e0753fdb6883993a32bc489e9be973fc7566fc52ab100f9",
+      "design": "e7db914118b244e8167560fd2c250531e830bca1652fc5ccc837974b4af7329e"
+    },
+    {
+      "id": "stage-4",
+      "gameplay": "294ddb58087a24e55443f74d464e8926ccfbf5ccd71e2524619719ecdc933358",
+      "elements": "bed15a743abfd98dd27ed3dc6d74f1a27402e4b1fe6b14bb1aaf44e725b2b6a0",
+      "design": "59098c659c1e0e7d01ba025162d2648c0fc2cbe95c690f2c701746391e6de51d"
+    },
+    {
+      "id": "stage-5",
+      "gameplay": "64125e5a5cb78764d2966b43cc079fbc5ac1e6d908aa288ef08fc72e753f4a04",
+      "elements": "58376eebbeb01fccd4be2da875262fbb91152c682e183120410ff43d984523bf",
+      "design": "a92cd38aa8302a74f5b9131c969e696f6fabe5892ef29679e3743175d060dfed"
+    },
+    {
+      "id": "stage-6",
+      "gameplay": "914d88ca91d3b81a2ff3c74993aa06837217c1ff35d4d32230afadbf3b490877",
+      "elements": "4fe46e3cf2ea38b680bbea943171a163d54d0cc0eefa446a19e8c60f550d95ac",
+      "design": "cc8714cfe65a42485e4c9ac209f64d47b0461ca86c18b288707501514062e54e"
+    },
+    {
+      "id": "stage-7",
+      "gameplay": "7dbe113bf385515718b6137a91d4cf8dac90c1ee7b2e8167137c0a734d07c5bb",
+      "elements": "bdc3ab852b4ea0d658a5209619c7b9d462ea94ddb284effd16b2335584cf60a8",
+      "design": "501a2b2b0f09c180ec89a9c7d1ae893bc59f3f037513fdb958732d4e80b4b53f"
+    },
+    {
+      "id": "stage-8",
+      "gameplay": "a90f13027f7f57b42efe289ec748bcdccff9fb8eba56bad92ab50b870fdd3519",
+      "elements": "d48e6dbd7977e8253dadd860d510f9eafefd8682549d2f055d88bcabf8abe7b1",
+      "design": "1e461d2e41180a135bdb019464c604ded5bc36153f58de49e04ba265f61eb044"
+    },
+    {
+      "id": "stage-9",
+      "gameplay": "1ee1f8a87abe6c7fa8a893d10bc7691bb20e32fb7cebdab5d7737aead8bc3fdd",
+      "elements": "88b282a7a88eb79f55c158696877b992e9fb92d1c81238be97bbe82488979254",
+      "design": "8ddc0b6700cb3388d6aa855009e63fbb3ab7c27ef303fef32623579d9596f18a"
+    },
+    {
+      "id": "stage-10",
+      "gameplay": "026c33337d28ab684911a422f1614059348e086928dd91151e1f736d0ea8f812",
+      "elements": "654e364da2c1e042d6e38fe87214249552ff02ccc55db2f1e065b7d74e9d5c22",
+      "design": "bfebb01523b6c121f56e2fedc7dd72d7cf679585957005d56039cf638cd670b6"
+    },
+    {
+      "id": "stage-11",
+      "gameplay": "458bd7c88f7822a67c5958b9a007d5b42e93a5d610fd67cdb48c75e90247cf7d",
+      "elements": "4a2a8e1d89c3dfec05aaa836a8d2dbbd6ea40484c6963e16cbf94496c2c8cd0c",
+      "design": "a629211bbe0439e4ae2afceb400a312fc42d6e036776f3d77e2b21bc9ca3f74e"
+    },
+    {
+      "id": "stage-12",
+      "gameplay": "ce5fb7c8b3835c2bd8241ee5665f2cf0166c830ea758b8a97f97b4f05e8552ea",
+      "elements": "c2b98d03600b630e7ee0a27d9c673612f3107dd0aaec8bf07b8ea34607049cb5",
+      "design": "7971ef1f86c510d3a0974133b2d38da8d0400049dc7a01d2f190659b200f534a"
+    },
+    {
+      "id": "stage-13",
+      "gameplay": "1ed6115fe63cb70042251a0174cf9f1196afc471cd6bbfad11ebf1481c7520c1",
+      "elements": "7490e523e907dd813fa1d69333c096fd96ae84200ae91fc9021958cd0e40b859",
+      "design": "ab18784d77bf42316a223999da27381627f45b2f7cfcaa9d77d05c4c204100b1"
+    },
+    {
+      "id": "stage-14",
+      "gameplay": "5a3c34b2d8d63228cac154391e36efe46ee70d53bc75789acc4f5cc8a89e9271",
+      "elements": "df0b875b68f1333ff19d182b58c93c74f1d0555d6b64cf7511c5cc47dbb4b1a4",
+      "design": "1548119640400c159d3f58899463dce40e1fbf6a5919d0e13fc1ef41f1496d5e"
+    },
+    {
+      "id": "stage-15",
+      "gameplay": "9fc067ca0483d798fafc53036b92f6a1569043edffb0746056901f6f24d06d6a",
+      "elements": "09e395239b5ee5229e3e983092a65505e2cb256458a550af32aae78d78eec1b7",
+      "design": "5b6b5932dac306ddb2c9f220370c1752df694d81700cb110a33b16179085f943"
+    },
+    {
+      "id": "stage-16",
+      "gameplay": "40396971e230222cb3f77e95c3f6f4e0f2e29af202ecf3d2c15b733bbc2f177d",
+      "elements": "34e8c1593f3c064b518bf3d20192c20200a489044974ec11aee809beec32f233",
+      "design": "356aac81610807fb6a84102b2c5701090d0a5276f9b9eafb168ff92101146455"
+    },
+    {
+      "id": "stage-17",
+      "gameplay": "87db3f1fe3c4ae35586d1d61ae6bc25df2fe9a975ad6f3404cf77a7e974e205e",
+      "elements": "bdce96529fe919bdefb114221801f3772c2641ea0a0b7b8b723a41900d986fc4",
+      "design": "8c8400082d00a84900f2620e40745be2a1bbe60942c7883c97a1f6eddee61906"
+    },
+    {
+      "id": "stage-18",
+      "gameplay": "8a858eaac5cf517584e7e71027af11f0076fc54681d7c512c4c9b46910b50a6c",
+      "elements": "162e3ab07040fbcaa25b795f0b53ae1795bd0ec39b926fa9d4cb87b946fbd266",
+      "design": "6fd25c05cf3008f40596ff129c545f0130dcebd222fcca7520b49d1039ec7b13"
+    },
+    {
+      "id": "stage-19",
+      "gameplay": "1d941599e2a7c6f352053b9a11852e8923c2939c6ff689c18de62800e9eaeb62",
+      "elements": "d2a036987964297c55fde7944504e22eb5e5b9a067fc9e5faacc0607e11c22fa",
+      "design": "3ec2664481ab9ac59c8e01e13a8ca494a727981b81c4a18a9a4a19cf8d3f3c20"
+    },
+    {
+      "id": "stage-20",
+      "gameplay": "15b2ae73d03eb8322d73e35cf4ba25a2bc7b785aaf5f01ae0d4b1cc0b3bb609d",
+      "elements": "1a0c2a598bf4957409d8c5eab98054ed4683868a31fe9267e89ea1143da9a430",
+      "design": "941c31b98e7734aead15929f93d24eb1c6ae00ff07b5364359a1faaf74098de3"
+    },
+    {
+      "id": "stage-21",
+      "gameplay": "d3d25dbe2ebbb19757eabea4649e3ddb78c6a5b1b9416e5878f5799d249c06c6",
+      "elements": "5561932e17d80fa98e0531b8afc21540430e422537d6d4a9ff79da707ea7cbdd",
+      "design": "b3a47aa48834d82ac4f0c93fb961d846d6c1fa6429d5185a27d32ed713d3d868"
+    },
+    {
+      "id": "stage-22",
+      "gameplay": "2f453db6970b63f08dc9e10801961f818eb85a87e8b3d16bb820d70263188cb5",
+      "elements": "4be801556c7a1bc97699fee92b2949f3377637df4ca2e77f7808e793ff6c4dee",
+      "design": "2a4413271686c0baade8c9965b2bdc675867a2da02cc1e345ae445d9891634af"
+    },
+    {
+      "id": "stage-23",
+      "gameplay": "90ea84489b75fdc4d0bd20bad5f29b86a6955de4314a0ef4e7f37b9a58e13f6c",
+      "elements": "f09d1a79ac6ee0612e670c06f086c4829c1086492cd9153dd9c85f1c398a3a83",
+      "design": "3c9a050bd5160a65b2e359c67c1b739205948c447d0a2c9cc230739a835ae34f"
+    },
+    {
+      "id": "stage-24",
+      "gameplay": "59c1c26c0b454bf5df39fa4ba93b36212ebf649831e33886816ed49074690558",
+      "elements": "7c9cab305b4aff7d30f7f6d25059830f6e5cba05ef13404e706531c0485e4c40",
+      "design": "0485822eef6ac76ba692e0f4a8d2c6b9c9795fe85591ed98fbde05d856982a4d"
+    },
+    {
+      "id": "stage-25",
+      "gameplay": "6e77fe18ba3317369cd1102d340dc60b0631d20649019a2a991621441ebddb91",
+      "elements": "db84d1cce1cfbf1eb425548eda1a4c8f8fcae5916a840dc60f8fb0f5dbf39520",
+      "design": "3de2c81485ee36ef00834c0210edd41bb9c1f7e99310b1c620c00f7fde0adbec"
+    },
+    {
+      "id": "stage-26",
+      "gameplay": "c3f0ef3e38694c048bd4226de3b388d57f3400c9b4095f8797fc77c5287ee8f5",
+      "elements": "f4af6540339cb460660b6f22898a775a3b8a4d47532d2ec8001f6faa90bd153f",
+      "design": "dd78e3c6c19670b9388cdec007df3ad3b8397d379aa7d5d26fe5e10e52da934f"
+    },
+    {
+      "id": "stage-27",
+      "gameplay": "4f391a41f04797c5b667517f6e46c579c4bc231e8cad4cfef50bf073e5409ec3",
+      "elements": "25341e1e6bda267f5e6cbb3da652e922f43da0e04b25d6889a0811f796e8de9f",
+      "design": "2722fd60f0d8d29cd9ee643b39a3b2b75c7d142df2e231421c916e6bec86d33d"
+    },
+    {
+      "id": "stage-28",
+      "gameplay": "1227f8ec964ff2d4994f0c7f3601ee56ed5ad0aee29b468eeb735af2d6e91319",
+      "elements": "778954e84a52c63874f73437b4e71bfe65517e220988689caea7fd2b30fcd259",
+      "design": "d0db57e644bb062de1289d8b9810d3286b599bdebb6abd6d5ce700867a155add"
+    },
+    {
+      "id": "stage-29",
+      "gameplay": "b7c108fcca3bfcfdc0a4cf05dff3f9a854e13c3bb2d7d893608690ae792b309e",
+      "elements": "27db8628e770fd943d5786b1df40f9ecd40fc36c204e5f1967998accb92842dc",
+      "design": "9bf2e663ee0cbdcabcd71bca98c84021156104033479125023dd5a05b892c277"
+    },
+    {
+      "id": "stage-30",
+      "gameplay": "c7ea8f1ed5d32cb9322c93d49675a523f337707248740d8dd038f41551a690e4",
+      "elements": "99ec53027b1230fdcacae956ff07e0c34692f737f2b3eba041f4c08492b65c2b",
+      "design": "a7589919bda7e6bd1faf181b614c4c886889c3df078d78988cae0309e1b1b7b3"
+    }
+  ],
+  "library": [
+    {
+      "id": "rock_small",
+      "hash": "0b685c355774902d13af20856de93440140873f774f8845f70833d84a14e52bd"
+    },
+    {
+      "id": "rock_large",
+      "hash": "500d11e14b6b2026330273fa1d76418c0e70f88e72e5df6732343661a7a875b3"
+    },
+    {
+      "id": "rock_ledge",
+      "hash": "6f2b80befd81dd2c3f741b91c16440c15a94de6d036abe7a9bba549e0158b943"
+    },
+    {
+      "id": "ancient_pine",
+      "hash": "7a595a6960dcfc95cca7e89ed7747fac19aa217c5debfb41e38bf174d6382f3d"
+    },
+    {
+      "id": "dead_pine",
+      "hash": "28c3a5212c01362c5df4a15fe1c147d5d62db07338820e53b1374407582d0752"
+    },
+    {
+      "id": "branch_thick",
+      "hash": "cbe63a06e3d8a3fd7523a01d2f8144826c070a3119f8c98f23fb863cf9c944f9"
+    },
+    {
+      "id": "grass_tuft",
+      "hash": "92f4d539888c0ffe6a3c1028c9acb9fe4be0f552351f600ea9c11d55c99850f7"
+    },
+    {
+      "id": "fern",
+      "hash": "ea7f1007654c641b4143210752b18d6d58b7f587e0a3b3bd978005423d484b04"
+    },
+    {
+      "id": "reed",
+      "hash": "a76b6d118648599d638fa19b42de93f262ee526c7f85004eff1b99463ed4c05c"
+    },
+    {
+      "id": "shrine_gate",
+      "hash": "27af7058c93443265cb6f2c120496133ea234f43ef3c3c7a6c9ac6a74974706d"
+    },
+    {
+      "id": "hut",
+      "hash": "331a4bc8541ca8d31a5c08ad8565ff7d1208a555fda8eeb5c3ee2651e62f8a9a"
+    },
+    {
+      "id": "warehouse",
+      "hash": "7b4059dc3040dc6bfea6873a2d46390e7795f3e28212555984082e32cede57c8"
+    },
+    {
+      "id": "cart",
+      "hash": "8ff39a8bca070cef853b882edfa98f921b1710ab2b5fc6bf35094dbcb09e52df"
+    },
+    {
+      "id": "lantern",
+      "hash": "051c79fda7e68c74a781d7dfd4211faa1c368b7cda6fabea1d87be1d62c29401"
+    },
+    {
+      "id": "grave_post",
+      "hash": "ec89c880e411048e00b9ca6d3b16ab09dbfecd5888de64ba94958903e32ebe6f"
+    },
+    {
+      "id": "env:ridge",
+      "hash": "3613815699e6529fb505dd8c1a2d628d8b5a72544c52613da683b400153be249"
+    },
+    {
+      "id": "env:cliff",
+      "hash": "c2430b6e6e4bf45c7c9df02cd49da18f65d5d0a43190e8a31bf5839e538e4f67"
+    },
+    {
+      "id": "env:cloud",
+      "hash": "6ed20722dd73e549e26ee8acb2a1063cb5b3a78eddf8fd69d43b410613b0a27f"
+    },
+    {
+      "id": "builtin:ancientPine",
+      "hash": "0fa6a30b39af7fb79307311a5cbadd82c85527fe847358c4cbe24c9a2e5383fe"
+    },
+    {
+      "id": "builtin:scree",
+      "hash": "76b2c33e664a6bc2ceb781446a91a0c2452f217e624c82323a1598bd32ca1aed"
+    },
+    {
+      "id": "builtin:fernPatch",
+      "hash": "1a83a1e2e9141838b8178773f67abfec895e9e3914cf315d24b5e0bb11aa3d81"
+    },
+    {
+      "id": "builtin:rockPile",
+      "hash": "28944ee5571ddb50d39592f3e92ccb77ff5087c15fbb19b913994b4d1f7b0c0d"
+    },
+    {
+      "id": "builtin:giantPine",
+      "hash": "cdc8e28b681a3d8f82ea5e5cb29ea08a6cb2a19647d1ec707b1c304459ab2388"
+    },
+    {
+      "id": "builtin:fallenTree",
+      "hash": "d0e798684b24a5d887dc4be98148b6a815eaf58c54f1dac3183992702dc4d9b6"
+    },
+    {
+      "id": "builtin:spiritKnot",
+      "hash": "ed80f3a50a4e12452eba505c7d981f4d3f4d13cce1afefd8b95f55b218fc38e5"
+    },
+    {
+      "id": "builtin:oldGate",
+      "hash": "35ec5e608ada3cd09ad1a3e495239e5fefd443ce7d552883235bb4a7f1a39615"
+    },
+    {
+      "id": "builtin:ravinePine",
+      "hash": "73226042e7346723efaed771829bc24339f1b652111934593811ca3da6125bf5"
+    },
+    {
+      "id": "builtin:funeralGate",
+      "hash": "1337173e88bae11605036ebf043be1a8f1b90cf1cf0ef795b168aa285052410d"
+    },
+    {
+      "id": "builtin:reedBank",
+      "hash": "286f428961cc35e154d03c6afa5b8f868abadc5ea4123be5d1f1314ebb489ace"
+    },
+    {
+      "id": "builtin:ferry",
+      "hash": "86197964da8f6a12fdc7a7396baa9f676a5905a3757ee4f93dd08b72658c2350"
+    },
+    {
+      "id": "builtin:brokenDock",
+      "hash": "dace83d9c3688346a4d70da1d4b09e99030f78d23513d2184bac84ed075fb31d"
+    },
+    {
+      "id": "builtin:waterShrine",
+      "hash": "b20ae6ef1955aaa21bb35adbca15b29e0739d47eaa60346372f081a8e30f8b6f"
+    },
+    {
+      "id": "builtin:cargoScaffold",
+      "hash": "6f3fdae8253f2de9bcd45fe76ae6724a2ee6d327fb841223a712770e41d530e3"
+    },
+    {
+      "id": "builtin:warehouse",
+      "hash": "82a230c6d30316a52b1b36a892a9cf5119d62ca187b07dff028e838ec5480028"
+    },
+    {
+      "id": "builtin:oldHall",
+      "hash": "a0301aa8539d0de0bbb7ed50bde9e070566ad4f0999429af7beb593f797943b2"
+    },
+    {
+      "id": "builtin:refugeeCarts",
+      "hash": "4ad91e79341685f78cf6e1fe2683f2a5c683f5f61599974465fa12745e18117a"
+    },
+    {
+      "id": "builtin:villageWall",
+      "hash": "f1294a4224766f55746f3129888b36548cfeb9ff1c4cbc96947f930a237bbcaf"
+    },
+    {
+      "id": "builtin:cliffFace",
+      "hash": "265f343620bb2e6de664613de9409a8402ca2ca0619c61c07ffce6d28187c81a"
+    },
+    {
+      "id": "builtin:burnedHouses",
+      "hash": "c54180962d268f8d0644f6ef3fb062c11c43aec6d1521ab703ae50029e51ca92"
+    },
+    {
+      "id": "builtin:watchtower",
+      "hash": "535b09ea2ee21f716a0bf4fb8e2b53134c72e1b6b0f4473632566d416eaf5c02"
+    },
+    {
+      "id": "builtin:waterfall",
+      "hash": "578107f3580f25639e2f18c9b14d0da80844236242906bb283e4160c6426c9fc"
+    },
+    {
+      "id": "builtin:receiverStone",
+      "hash": "486894b324e3c779876bc24ad515b2ae3e5ee931b601ef55b1ad9e1a390446c1"
+    },
+    {
+      "id": "builtin:cliffShrine",
+      "hash": "f6e8d2cdad9ae2e9eaca59c47f2662174271f2c729f1f943c01209bc440aac34"
+    },
+    {
+      "id": "builtin:deadPines",
+      "hash": "5bdf232bb5da4e39cca3a6e6b346107458d1e7729253ea0867940a28c7c4689a"
+    },
+    {
+      "id": "builtin:brokenBridge",
+      "hash": "05cea7bfc08de2eee3311b873388c2b2323b6ce25408f8b25cc0f08ea9aa2443"
+    },
+    {
+      "id": "builtin:bridgePillar",
+      "hash": "398e94b7ab79b2cb78d331248d641bd11b493e32224dcbc57da4cd296aab6d14"
+    },
+    {
+      "id": "builtin:bell",
+      "hash": "f538d7d60c133bd94feb01561dfee985f196f8c3c59834bb4d2974b45bab56a8"
+    },
+    {
+      "id": "builtin:greatTree",
+      "hash": "58f51715af81c7f6f59306a618bd7d1dc23939ad033c105b7bd7e1d342caa9d0"
+    },
+    {
+      "id": "builtin:rootHut",
+      "hash": "b85d63ea019ff1663263134b4c001136ae75cd8193a1af03245548021c984da3"
+    },
+    {
+      "id": "builtin:hollowRoot",
+      "hash": "ba2e18f92ef98f5fe5530d69c6fa553f31f8c77da01e767437e43526faecdd86"
+    },
+    {
+      "id": "builtin:rootShrine",
+      "hash": "2d201a3d3572e4c833a9b00943b09148a3287174158240bea6b04d2e5c1d3662"
+    },
+    {
+      "id": "builtin:gravePosts",
+      "hash": "cd1b5b241110c13c4310145aaa3ae6706b78ce4612d285d1896a7df5aeecef35"
+    },
+    {
+      "id": "builtin:bierRest",
+      "hash": "f8c182a0c4fc8e1bd877ca1b024be82cc612e5a3dc92698c189c548c5643933e"
+    },
+    {
+      "id": "builtin:incenseYard",
+      "hash": "bc4b10f6245410c7b1a332546de36e263097b9fa749373488d63920a4e4710a8"
+    },
+    {
+      "id": "builtin:royalGate",
+      "hash": "f4f45cd571116bf360615d05f9930866b30feb3fac434a52c28bf7b335c931b8"
+    },
+    {
+      "id": "builtin:ritualDais",
+      "hash": "8705111eddbffb55e3cad8719515458b4127d960835b5dcc7d9db6899b915337"
+    },
+    {
+      "id": "builtin:upperShrine",
+      "hash": "c861f4dbe13990741575a7d62cf11d76b979baafc273e86176264d5109e8cd38"
+    },
+    {
+      "id": "env:forest",
+      "hash": "e2e3e574cb03c86465813d9be1f85899901a24b2b2b1516bae8e5165a23bb94f"
+    },
+    {
+      "id": "env:rock",
+      "hash": "cf210a1cc29ce400f11a73e87044b8b4727eed7c62f3b3ac5d134af4e9d84a44"
+    },
+    {
+      "id": "env:shrine",
+      "hash": "f096e05c1e1b368b47b93b126c083ab2cc5879cc8a71cc393c0877b492c575a5"
+    },
+    {
+      "id": "env:waterfall",
+      "hash": "4756e460baa76c2d0d3a60fb788daa955d73315420c458211b2c4ac45f4f036d"
+    },
+    {
+      "id": "mockup-granite-large",
+      "hash": "6ab56690cb40e2e439f0a51ca736e312214d083dde19b197adef1983c8da6f35"
+    },
+    {
+      "id": "mockup-granite-small",
+      "hash": "3c021237f368d2e83f8163939d40f457276c8a5e3f3c7a80b10d7d1cdac8aa68"
+    },
+    {
+      "id": "mockup-granite-shelf",
+      "hash": "b74ea168932460d605bf97e9590614c43182d5185094d8ce6541e300d481b071"
+    },
+    {
+      "id": "builtin:placeDetail",
+      "hash": "32e4a593f5eff112d4f7debd44ae18bf9db1ceb48e26aecc41593ff3d4064a8b"
+    },
+    {
+      "id": "act2:cave-house",
+      "hash": "8dfe1bf645ed1230c4086aaed83a2fc8c9712fbe65854422497118e31d310504"
+    },
+    {
+      "id": "act2:cave-house-lean",
+      "hash": "bb5dcc83a5059a84c4d240bc35dc81a8b9d34fb224386ee551b7a112ae5cc972"
+    },
+    {
+      "id": "act2:cave-house-ruin",
+      "hash": "70f9a37551d27e1935ca91e143f11718816c5103dfcc01edfdaf93edb4f954c0"
+    },
+    {
+      "id": "act2:temple",
+      "hash": "5f1530c2fe2b1f4d4abf0064178e3f4471760bf8c506df31496a97554c9bd4a5"
+    },
+    {
+      "id": "act2:bell",
+      "hash": "70f964f248c024448fe405b1c00a772f72729926bc9d8eb5878d1d7f8a23c183"
+    },
+    {
+      "id": "act2:hoist-frame",
+      "hash": "01e853d6683d4e760464ce26d0bb320e708bbb28fefb915683907755c1164d71"
+    },
+    {
+      "id": "act2:lamp",
+      "hash": "c436210a37747d22aeeba68fc17c29c5630e2aa8a9053e808f2f7d9e30beeb06"
+    },
+    {
+      "id": "act2:ritual",
+      "hash": "2061849e68d17d18468be85d804fe3bc8fef5ad5f4a3bd6416c4884a75984a73"
+    },
+    {
+      "id": "act2:timber-rack",
+      "hash": "3cede7fb66ac4349c4d09829751fab83ca31980af688f491839bfde4d31158c2"
+    },
+    {
+      "id": "act2:mine-rail",
+      "hash": "fc6e2920893c6048f93bd3b4def9487ee34dec474c7bbcb227fd3c7e61769185"
+    },
+    {
+      "id": "act2:water-trough",
+      "hash": "21128d48831e381c66b85589644cc4cf27132b5529ff0fafc48119cd3df3072c"
+    },
+    {
+      "id": "act2:memorial",
+      "hash": "df57bcb0d1f02bf6744ff194a7da354435291d5eaeac6a4ded37efdaf5a55e3c"
+    },
+    {
+      "id": "act2:bundles",
+      "hash": "924250371658331a93975034f75608747459fc5a7d0cb9acf2a474e7ac147a5b"
+    },
+    {
+      "id": "act2:rock-column",
+      "hash": "f564d7b028a916e275e16700a1e6575c66f0ab4c36bea83b84320e7b8cfd1ee3"
+    },
+    {
+      "id": "act2:hanging-cloth",
+      "hash": "17ce412ec8f8c392a69d986b553fda3669fb2872953e07c5e367e06c3d4ffdc6"
+    },
+    {
+      "id": "act2:stone-table",
+      "hash": "f10eac9d4142bb4fe999a92c52a9cf02243a0a61d5e81bfdadbcf8a9e6b50b6b"
+    },
+    {
+      "id": "act2:old-soul-stone",
+      "hash": "b0d8280e552a5366b8dc8a1234d647fac2ee8d8b067dbc10b4a3e4f7af22b4e4"
+    },
+    {
+      "id": "act2:rock-bank",
+      "hash": "66f6f695fd422ac3f2be158900f1f47ffb39073e3aa6c6f33ac2fb3457b5fe7c"
+    },
+    {
+      "id": "act2:pine",
+      "hash": "5213052405f7ad120c951e084a72193cf1afba68c2a6f5197dc1bca5978311f9"
+    },
+    {
+      "id": "act2:sluice",
+      "hash": "24bc7844e75e2a6317ab1e8cef165421aee3a7e777a05df1223a321d4a268e35"
+    },
+    {
+      "id": "act2:scene-longhouse",
+      "hash": "0d78292603598f2117a62ca958c28f69d19a19b0b6c3ff582df150fd811fb3ed"
+    },
+    {
+      "id": "act2:scene-market-awning",
+      "hash": "6f7c2d281af362d8b4571d703ac08dbe79baf77543632821d9fa2e500c91f1bc"
+    },
+    {
+      "id": "act2:scene-temple-corridor",
+      "hash": "158a021e5a18ed9f1aaed31aa694a768b7c8a07708c9d7ab42a5a49460e6ce71"
+    },
+    {
+      "id": "act2:scene-stone-threshold",
+      "hash": "13a99d542fa75c11f577f77708a082a62117392ab2310f65ca280a0c63f9b43e"
+    },
+    {
+      "id": "act2:scene-work-shelter",
+      "hash": "fd168b2395191bb003015fb7b939e8e67284656460910a89148b27d0bf9be10d"
+    },
+    {
+      "id": "act2:scene-market-walkway",
+      "hash": "29c329d9cbad0e943bfcfd3c6c8abb5a8992a705da46df19b703968cdea7571e"
+    },
+    {
+      "id": "act2:scene-upper-stair",
+      "hash": "549e89e095b7ab4616dce2538e96cf12f1ca6dd965fc51a84f02414872059912"
+    },
+    {
+      "id": "act2:scene-court-wall",
+      "hash": "528fff7ef5e20ab499b39abecc9b3e89f3f20c0718174f843c83524abf004baa"
+    },
+    {
+      "id": "act1-scene:pine-grove",
+      "hash": "97e22a99ec3b47d54b1fe3d476ace70aa08c5b95f3d4ff45dc669803488e77a6"
+    },
+    {
+      "id": "act1-scene:ritual-grove",
+      "hash": "e817f1e5bd1d8a0e16d22c9760fba87b3be81f5ae53f7cac3e6473ab8c8a864f"
+    },
+    {
+      "id": "act1-scene:valley-granite",
+      "hash": "53130769b0bb905ff8d2031f692b1975b62a21b5f2de717d88546f7b77f4175f"
+    },
+    {
+      "id": "act1-scene:ferry-house",
+      "hash": "36880906c66f053b58362453f3f1d5a78c4aaf2af2d25491a78cb2da450050dc"
+    },
+    {
+      "id": "act1-scene:refuge-gate",
+      "hash": "c695e315349adf742e97ef6ffcab23452526a28b951c996f333109129d1c93bf"
+    },
+    {
+      "id": "act1-scene:refuge-courtyard",
+      "hash": "a13c93d01de16e4a04ff25616c7a1ff9ac8ffed879abffbf8a2703dd1ac69557"
+    },
+    {
+      "id": "act1-scene:bridge-abutment",
+      "hash": "bd26e6e83e21cc30a23109a053add5e943594db295413f2d6494c46ad1c1f2c7"
+    },
+    {
+      "id": "act1-scene:ruined-court",
+      "hash": "cd35e2ecc9e2e729823d7cccd3e6368da105ab51daeb837f5df72b5d47c60ea6"
+    },
+    {
+      "id": "act1-scene:root-sanctuary",
+      "hash": "3f3fa66586a4869cc9e2735abfbc62d1733e08fa4034cbeea3f4d41e81dec6bd"
+    },
+    {
+      "id": "act1-scene:ritual-hall",
+      "hash": "f90b532b59964e30789e1a256e68d3ba7b8cf1169eea92b69e031125ce2c06f4"
+    },
+    {
+      "id": "act1-scene:rooted-sacred",
+      "hash": "c72e46d1301961d28e9908b001133d7c74624d42be743b576e93fff4b0a8940f"
+    },
+    {
+      "id": "act1-scene:rooted-pine",
+      "hash": "92523de041020cac1da310ddb75522ce594e40783d39cff565ca864f4cab530c"
+    },
+    {
+      "id": "a3-21:wall-stair",
+      "hash": "9a93d1a8f6bbfc981c3decc8e549e12091433f41458dd7f6e53a40a219018e69"
+    },
+    {
+      "id": "a3-21:gate-wall-walk",
+      "hash": "ea6aa800488403fdd57c6c13ab8936bfc7555ff8d6305bf816cf0020af0750b5"
+    },
+    {
+      "id": "a3-22:archive-ground-west",
+      "hash": "57243de907119451f8705abe5bd79d60c085a551a314e4536cc934f565d34dba"
+    },
+    {
+      "id": "a3-22:archive-ground-east",
+      "hash": "9ebcd70d6a0720d62989eea2f5a00d18751dffb2358fcf5bf40d644e8cb6c66e"
+    },
+    {
+      "id": "a3-22:archive-middle-west",
+      "hash": "6766e6aea31fc07111ab51db7cbc55327ec76f4ec5455095457077013e3ef2b6"
+    },
+    {
+      "id": "a3-22:archive-middle-atrium",
+      "hash": "035eba7b41b1266cf56df13bfa07d4cf735310b6abe9dfafec78a39f88e4edfa"
+    },
+    {
+      "id": "a3-22:archive-middle-east",
+      "hash": "3d42cdaedf8911cb7bf6fdb3768b9f997e30d03e709fe9d9a663530361735a1a"
+    },
+    {
+      "id": "a3-22:archive-upper-west",
+      "hash": "d2f9c16efed2fddd5081e61972ab3a267fb33bf9e10b0bf4cd04a2d758aaef55"
+    },
+    {
+      "id": "a3-22:archive-upper-east",
+      "hash": "16be823a02ce7dfee0d2648802c94dfa957858a4ce0cedaf6c94293cca8d689f"
+    },
+    {
+      "id": "a3-22:archive-upper-atrium",
+      "hash": "203342c5bf2246993a7137ae850dfbdaef7c52414171ba2a2038d9da807f5143"
+    },
+    {
+      "id": "a3-22:archive-shelf-1",
+      "hash": "a65194b397e36d8467b8656ff59dbaa06e092dd2c732e9af4c3a85f70c51d018"
+    },
+    {
+      "id": "a3-22:archive-shelf-2",
+      "hash": "2010e1dc1de47d346a01f528a0d59111c1aef9e22180dd445e0c85cb3a4b5a78"
+    },
+    {
+      "id": "a3-22:archive-shelf-3",
+      "hash": "55eb14defadd4fb2f4040208fb7b53f929d469fb06c33e2387e2fcc971591eef"
+    },
+    {
+      "id": "a3-22:archive-shelf-4",
+      "hash": "87151fc92fc52206ce9660a65b7edc5fce968f35267f90d5a3c3c050e08af7bd"
+    },
+    {
+      "id": "a3-22:archive-shelf-6",
+      "hash": "81e81a79ff889854dad41c3dea926858f038fe1be281250d8730f954601cb23e"
+    },
+    {
+      "id": "a3-22:archive-shelf-7",
+      "hash": "60293e57faaba52683ed5a2e4d2879ab36d9c09e1a8054eeeb76e58f1f103743"
+    },
+    {
+      "id": "a3-22:archive-shelf-8",
+      "hash": "843229af2be96330a33835c3a1269e75b508facba4f82f173cd104eff8993040"
+    },
+    {
+      "id": "a3-22:archive-shelf-10",
+      "hash": "4ba314055169aff66a281e01db723d59a53e8d9f2ca429b86c0829a1074797ce"
+    },
+    {
+      "id": "a3-22:archive-shelf-11",
+      "hash": "d1927d12fcded084bf9b2826442b391b38a2a0f7637b1f6fe699694997ef2261"
+    },
+    {
+      "id": "a3-22:archive-shelf-12",
+      "hash": "d1dcb5053b73ed84cb1571cfc098cae9cb3f3a48916b26039754c9396aedd074"
+    },
+    {
+      "id": "a3-22:archive-bundle-cabinet",
+      "hash": "cabbf77faa6dfc66478fb95eaf1b9664b94e24071f0895bd739ac34eb79ac733"
+    },
+    {
+      "id": "a3-22:archive-scrolls",
+      "hash": "f09b9051d95d891331e269934e4739825a1bd5cbe055036110fb065cb1a2559b"
+    },
+    {
+      "id": "a3-22:merged-archive-west-stairs",
+      "hash": "38817198a2cebbd89d159e3e74a7f57f5753617a63e07830ab635cf83cc4c58a"
+    },
+    {
+      "id": "a3-22:merged-archive-east-stairs",
+      "hash": "c5551dbb907d25ca592af90da48d12cf950490f7a0d1e78f243e32825d1f661b"
+    },
+    {
+      "id": "a3-22:archive-attic-gallery",
+      "hash": "56fe35acd5caa6890933eba738c071453663d380e1ea746ec7337dcc663e619d"
+    },
+    {
+      "id": "a3-22:attic-rear-piers",
+      "hash": "86046590ba230b968dea4f91080e85f689dba6eb0f8fc8d050b9637ff8aeeb3f"
+    },
+    {
+      "id": "a3-22:entry-record-wall",
+      "hash": "85ab5adee7505a0ed7bdb4892fa3784acd3b1bfcd9e440b5c112ab06f2bf5a54"
+    },
+    {
+      "id": "a3-korean-town-21-L3-bank",
+      "hash": "27fbea67889542a56d0e0e7f1b6fca413c78310e419d07c5081b1093926e77a1"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-0",
+      "hash": "73a700b21b596f1a69469294657e46e9c1bea3b3ec2e393924e7832560f24bd9"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-0",
+      "hash": "8fe01287aa010d9027fcd1dab5c87e7b983cd708f0c1654a44c49b6158dbf52e"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-1",
+      "hash": "2101952aa1253fb17282b69b5393031382e400a80914c63c95cbb08cc31e1149"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-2",
+      "hash": "22031b303ebf898d285d751e9746aaeecbfa2ff74a23b2b8ef011ebcab6c06ec"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-2",
+      "hash": "a3d72153b4fab04716acb9a8c39546b83ed21984ad8ec29c6d365e842e40e229"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-3",
+      "hash": "e2e1e9fadcb6a94c8b34711ffff8694a4394ee95b4291fd18a5f7fd35afeba0b"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-3",
+      "hash": "c91c6268ffe5741bd0e26f15e1554965bd20e72037f94655cd2f07c18796b196"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-4",
+      "hash": "a892d44ad576fba179d4759e8d2a99cb08aa046ee827d5230e5160f6f447596e"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-5",
+      "hash": "f551f114e08750577c9bf9397acf6a82e741a4847dc5e1347e187613ccc95dec"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-5",
+      "hash": "e8c2fe51eaa2c9d53528be9971ba2c682f6c4d163e36b987c3aad139490d13de"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-6",
+      "hash": "40ef07076181cb2e4ef5f71ee98062784aac1005efd367b049aa523e4c59aedd"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-6",
+      "hash": "795341d97ba02b4a5b10c3ccdbf3a0d325bdd404ba95bc105561053f0b5707b9"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-7",
+      "hash": "180641fef3edc96aa5a04cff8633475841d6578751dbbd217a6586eff8bf3e46"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-8",
+      "hash": "32c97762f55089b24c02d3a4bdac7e7e69d9acc8cb4d8ff3a0f12c6e1f490cac"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-8",
+      "hash": "034242752bf7a22c1e41c61e2c83cacad01c5a80173447f72541b9ce1f2381dd"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-9",
+      "hash": "d817c80ad6ca2b1f231b3bac9075ff7ca615317520bd1dda755c31866dec08d1"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-9",
+      "hash": "6e173982a2403bad727d8f381dfd22b6fb3a0cb3b0320914308ccffeff7640bd"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-10",
+      "hash": "38c32a228e1c11f649bce2c6a2e98cd270c7ac141bc18689e2b397b2799208d2"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-11",
+      "hash": "c3728ac80f95adb36c3e11d6c0bd4a234dd50c62f4e3e8a040cf9b6e9c781456"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-11",
+      "hash": "95477f22b71ffd6a0813584ea7c562fba4fac545a1d9b45b3f92aa5a3d5c6d71"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-12",
+      "hash": "ca700732fef03bb40897e5e33ebe80165c7d19263e268224025bb1d67c47a7e3"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-12",
+      "hash": "1c11049a0e648079cc647ace1e5488165f679be9e99897ca8ea3dd8f8ab22fea"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-13",
+      "hash": "e6ca28bdf09697f7742adf0a7c442cfc87b9286524aafbb5a2a1c00e72d1eca5"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-14",
+      "hash": "f458191878cf89e83d14bfc56bcf649ff2919f7069ba7c983cd7231aad062306"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-14",
+      "hash": "33961eade6bacd5e9e32256d5b180eed67d455ac696d9ef381cd97db26b9d09d"
+    },
+    {
+      "id": "a3-korean-town-21-L3-house-15",
+      "hash": "d561e3ed7e9ff676678f6df451d5b2b01e99b46a4a473ed1b1073469c4eb0032"
+    },
+    {
+      "id": "a3-korean-town-21-L3-wall-15",
+      "hash": "bdc88310823e612776233601c771c35a66d49f5526d929c4351f0e10844e1310"
+    },
+    {
+      "id": "a3-korean-town-21-L2-bank",
+      "hash": "4dbfa2c4a978db03e42158bf0bd80c155780be48ffeff1970ebaa8e29a0d5c8c"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-0",
+      "hash": "8a4cf741f34abb7bdcb1a85b7ebdd304ef0f8e3ccd3fb8345c2eed41936d43c5"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-0",
+      "hash": "9ccb84af5ff465813ba1e9f3f23c89890ae8986b8170e9cc5558052563b95527"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-1",
+      "hash": "2760f46948bea161d19496807a313b3b17dd913595b93e57cbbdadc41fb52727"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-2",
+      "hash": "3799e81d21d0e392b9a1350dca401f15a381f629bc8b8a2200fffa8efeb27767"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-2",
+      "hash": "578097299c6dfa19cfbf100a934cbb64f2ab1d2b4395d3977000097e4852756e"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-3",
+      "hash": "02f1814d446091074508a5ea3855b9929047e334c203d92e3a9d2ec1484e7bb6"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-3",
+      "hash": "2be4dab81dc9d4240c74a9c5d6bdd937f60b3013499ac68c68d80477610c2a9a"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-4",
+      "hash": "bff042e8c5f8a6787a1f48f7d5fa04ab81ecda5a6e9f1f247ff7550f25055497"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-5",
+      "hash": "cbc5dc9fe8992e59dd0315c279c4f627483ff00506268b131d6baa705514716c"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-5",
+      "hash": "2da06bd8c3a5ba13a1df29f6639186789a1d10c165cdba624139c2fcacb153c2"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-6",
+      "hash": "af68d7182084269cbcc10b651d899accf552f3bc8e528c7fcc3318173308bf36"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-6",
+      "hash": "383890c4af2efbd62890d12833b8f31ac6af9b3c1e251a40fc1073b174e3eee7"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-7",
+      "hash": "a868e0fd976c78e1eaf403b8e13bd7901658f21e761c869adb8cd73ae86c357a"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-8",
+      "hash": "ea428ffd87ca561fec627ede0cef21b176061af4afbca40ad5aa96b40444ca72"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-8",
+      "hash": "d40c928f60ae20ce0e7f8469e41ca6b860ff2227ab6dafb6900ad339b0e53189"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-9",
+      "hash": "c1ee78b353b5e348871674b5443a4ec9103320f4ae122baa17004e2a07130567"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-9",
+      "hash": "a4dd381dea743163ffb4a987f268a500665b600838d0444f586c5d6ae5d3d780"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-10",
+      "hash": "008ee98be2285ec34b9176193d3074286ec78cd0a4876aa130d4d42a5c5da1c1"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-11",
+      "hash": "f6d0e470fcf6bcbaa781f816e05a452589a6929453fdcb541adb9c12c1928937"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-11",
+      "hash": "52b6c9a2deb23f727bd5d3aec1a960a0c0a88aa3d49eaba3c37aba34aa4dab47"
+    },
+    {
+      "id": "a3-korean-town-21-L2-house-12",
+      "hash": "e427c8ec53b097d7eb78583e11d09338cceb79fc4a040922c1a9ce1876ebb2b5"
+    },
+    {
+      "id": "a3-korean-town-21-L2-wall-12",
+      "hash": "f87e2de6c0204e6c4cf67f11f90b137c4a54ea7f7d5d346b54ace94e32f8a1c8"
+    },
+    {
+      "id": "a3-korean:21:entry-shop",
+      "hash": "a325eaa1e468551e20ddda03fbacfc8311b7429ba087b00b13bbd6f248c7b17c"
+    },
+    {
+      "id": "a3-korean:21:cloth-yard",
+      "hash": "6434373e1f14dd06355e9ff39ffcf2a51b5dbfcb86c3ffab37e65ed1ade6073f"
+    },
+    {
+      "id": "a3-korean:21:west-gate-wing",
+      "hash": "db6ae3fc87c069b7ed83875749ca468774e55bb7846b67d3f9385f85bfd1be0f"
+    },
+    {
+      "id": "a3-korean:21:east-gate-wing",
+      "hash": "c700653bdd173d78c8e73be3b7cf7e71edc0bcd884a9a29e2328f499f0051483"
+    },
+    {
+      "id": "a3-korean:21:tea-market",
+      "hash": "4645936daf0336308b2797f31f617047703cbcd586eaad6c004beb330c08ea07"
+    },
+    {
+      "id": "a3-korean:21:east-stables",
+      "hash": "d2c7e54350887bb8275719d3eea35e417676b913ba9613121772a661ddde91ef"
+    },
+    {
+      "id": "a3-korean:21:office-porch",
+      "hash": "9c768a7ea4055a9001227774ffe9a5bc62dc22afcae8c20c0b611e701a968419"
+    },
+    {
+      "id": "a3-korean:21:east-watch",
+      "hash": "ad50b6077157af1391b895e1556bf7d43296761c5bc31f5798bb72d415dff1d9"
+    },
+    {
+      "id": "a3-korean:21:gate-tower",
+      "hash": "f75364d640d336d3a774c2ea1a135a5d6c603ed31f1e478d6a634b45f98b4a08"
+    },
+    {
+      "id": "a3-korean:21:stair-retaining-wall",
+      "hash": "2256c517931bc2ac6ff08079aa8eabb5bf7649bf658ab407c1e56289129812c5"
+    },
+    {
+      "id": "a3-korean:21:market-roof-stair",
+      "hash": "3121b705853a97641a0ff7686e474824716ae41090c51779c946f8333e95068a"
+    },
+    {
+      "id": "a3-korean:21:korean-street-wall-0",
+      "hash": "8d531c12a67547f0c443b10dc16531775d65064b6a1f600c2a6eeb526fd220ea"
+    },
+    {
+      "id": "a3-korean:21:korean-street-wall-1",
+      "hash": "141735f1d4d163183100b2c66a90f5c5447d1652eb8f1982565ac99b02870b36"
+    },
+    {
+      "id": "a3-korean:21:korean-street-wall-2",
+      "hash": "7e8ed8b9a7792e38b450488519371800de7c0422e1cce1bda169371d25c61b51"
+    },
+    {
+      "id": "a3-korean:22:archive-rear",
+      "hash": "b0661e0104a06bde518f6c5c338643eab1508aa6c6049efcd1c827bd04dc8dcb"
+    },
+    {
+      "id": "a3-korean:22:archive-west-roof",
+      "hash": "62f281fae446398511f00cfe63c0893e65c374e98248f041f0f18660cb61bbf9"
+    },
+    {
+      "id": "a3-korean:22:archive-east-roof",
+      "hash": "4c338efa72358afda3416d9271e24a6752d51e792e33b56ce27e9ab0f4d93fa2"
+    },
+    {
+      "id": "a3-location:23:west-stone-loading-bridge",
+      "hash": "aa96edda9f7de3f80f9095fe4160684a55a0ab885c60a8abd844bcfba1359217"
+    },
+    {
+      "id": "a3-location:23:east-stone-loading-bridge",
+      "hash": "e34bd4cb9924b0555c7c241701a15e28c43f9c9ac9bdc999223cdcf719f064c8"
+    },
+    {
+      "id": "a3-location:23:western-vault-wall",
+      "hash": "1c1e2ebc1ca6c9df6f674c234c766b5b5a96de38deba4066ee26a652cc65a071"
+    },
+    {
+      "id": "a3-location:23:eastern-vault-wall",
+      "hash": "44fb55540d13e2d09ef7a8a62e770160688bd8c2c1c8ef3a2313d7558d69e730"
+    },
+    {
+      "id": "a3-location:23:loading-bay-0",
+      "hash": "f7ee5fdff29e001e2a0e9bdbfd5448c8587238c0664c350ff2d208e3340b94db"
+    },
+    {
+      "id": "a3-location:23:loading-bay-1",
+      "hash": "e414d7d0af52b2d668cea5d3d9fdcf0c0cce64e2072722f9cbcad30290a257c7"
+    },
+    {
+      "id": "a3-location:23:loading-bay-2",
+      "hash": "309a7da1745d5ee572769c2558ca550fe0a5884fdbf7dba06641b31f49aeec00"
+    },
+    {
+      "id": "a3-location:23:loading-bay-3",
+      "hash": "4eec989a1f354adbd24430246c16f23f6918986418133c9f6b96a771e9fd94ea"
+    },
+    {
+      "id": "a3-location:23:loading-bay-4",
+      "hash": "b0b6eda5daffe825b4115944942e9bcf63e0395d9c6c1a1c605debdeb4dfb7b2"
+    },
+    {
+      "id": "a3-location:23:canal-maintenance-ledge",
+      "hash": "63d23826762e48a7c6ffc81d674f292ab6e43a59bc6a972ce0ef6e95303e02c4"
+    },
+    {
+      "id": "a3-location:23:canal-maintenance-access",
+      "hash": "9e5a40cf943123a30123ed670826dbd39df7199f598989fc1b2a92ff5bb3acca"
+    },
+    {
+      "id": "a3-location:23:canal-bridge-bearing-piers",
+      "hash": "81d62413b11d69541a5b78d6d8477c5a7e88031de4cc97a985d1197c152fd31e"
+    },
+    {
+      "id": "a3-location:23:west-masonry-water-arch",
+      "hash": "4622ead79edbef182625414fbfcf2c14268de8813b9aeef3160a77df152e5729"
+    },
+    {
+      "id": "a3-location:23:east-masonry-water-arch",
+      "hash": "f6c66c4a25bd42300dc1c42114ae1a980a8ee172921dcd7383484eafd4bbdf25"
+    },
+    {
+      "id": "a3-location:23:sluice-arches-and-loading-ports",
+      "hash": "70f8b65cd5e2f11d499312bc19b72acf104c862c75757b285ccce74d8d6d6c80"
+    },
+    {
+      "id": "a3-location:24:empty-servants-house",
+      "hash": "b07f978dd96e2c0ab1f07066bb6a0c89b408e6ba460d2923e122304484831a8c"
+    },
+    {
+      "id": "a3-location:24:family-main-hall",
+      "hash": "b9913b9030457d75a631cf33c9876350441e14674cfaf7aaa4fbe60f83658386"
+    },
+    {
+      "id": "a3-location:24:family-shrine-hall",
+      "hash": "af90629e48c5fc0fd3d54e385d1d4ddadc37a07f76a0e9a9e6db0f64ea40e417"
+    },
+    {
+      "id": "a3-location:24:abandoned-study",
+      "hash": "339caf4f965ea4184fd24f5a7930c0083350e4f92c6f0ccac117ddb2aab91ebd"
+    },
+    {
+      "id": "a3-location:24:wall-0",
+      "hash": "7f0fd91ecf7a35d6d5159357f8c4bbd329ea3f9df94be81d36338840427deaf4"
+    },
+    {
+      "id": "a3-location:24:wall-1",
+      "hash": "74adb39fe3cee698cabbed7d91fe3be8a6e8e86a2b77d107e66a5d82eb290cbf"
+    },
+    {
+      "id": "a3-location:24:wall-2",
+      "hash": "d09a5ff6fd52ba4c62f2690cf1b5af17c8b98a5fd7d5097f199347f87edc9aae"
+    },
+    {
+      "id": "a3-location:25:low-west-stone-passage",
+      "hash": "90b88c90be921bd8cd7b64105a7f392fd648db507638b2a3a3b8abad966833f6"
+    },
+    {
+      "id": "a3-location:25:record-chamber-rear",
+      "hash": "0f53a95b74d4d0641825f69834e56cb3646850bf41113368a9e579578218d511"
+    },
+    {
+      "id": "a3-location:25:low-east-stone-passage",
+      "hash": "29e1b91cb39196659f61f617ecda169fb57940f81ad6189c7de926b00333e507"
+    },
+    {
+      "id": "a3-location:25:low-jaesil-entry",
+      "hash": "ec18b0f39df54b104872f7758fcb4c3b50579f39e86fbc366fe0e37f9510b3f7"
+    },
+    {
+      "id": "a3-location:25:hidden-records-0",
+      "hash": "2d2f4c6cfc93e1ea2eb6396913e79d7293acb02fcce0ae51da0b9b8f15f300cd"
+    },
+    {
+      "id": "a3-location:25:hidden-records-1",
+      "hash": "1edd94987950c3dc365fcf949d333e1465f3c14c38849b10e08cf2d43cdc4418"
+    },
+    {
+      "id": "a3-location:25:visible-earth-roots",
+      "hash": "6b2becb952f1315e39c7b0e0125080cdbe6eb4a0bb117e18ca29c2efb6bbc60d"
+    },
+    {
+      "id": "a3-location:25:record-room-oil-lamps",
+      "hash": "5586c72713d32da4c34ff5792c90d0a5bdf52d491b43907c2f797336b0308781"
+    },
+    {
+      "id": "a3-location:25:record-chamber-retaining-masonry",
+      "hash": "85f1a9dbe3644f81675eff6f7c6473213fe90ccea4855d6c9a4c77a53508da3b"
+    },
+    {
+      "id": "a3-location:26:water-work-bridge",
+      "hash": "473f127f34dce94d5ff40d9e6686d930236934cafa6bd81772d18b945a98a88d"
+    },
+    {
+      "id": "a3-location:26:burnt-casting-house",
+      "hash": "81f3c19eedbd05bc1f724564ed19759b3d69fefbb86a3477e2fbf96cf2259601"
+    },
+    {
+      "id": "a3-location:26:artisan-home",
+      "hash": "95ee30bdc7c6f7a311c65288bdd4a6a657c1e6b36accdb095b329faa12514d75"
+    },
+    {
+      "id": "a3-location:26:tool-shed",
+      "hash": "ce231ae66b04b3f8758c62681a0f1a7820ae22437205873b9c51da758e621672"
+    },
+    {
+      "id": "a3-location:26:open-air-casting-tools",
+      "hash": "70bf0b75ea33bc4a6bcc743f22cce86a02a5b942336f0bdacea559a5ee8e98bc"
+    },
+    {
+      "id": "a3-location:26:optional-shooting-bank",
+      "hash": "f8d9d8423c64bf8dc5a0e98c2b38afc0547f1dc8590f257d1ab148e6bf299a94"
+    },
+    {
+      "id": "a3-location:26:drying-gallery-timber-supports",
+      "hash": "863a3f69daaa2a213f02570aae132a9f66e6b869c173e8c26cb68ca7207b8f94"
+    },
+    {
+      "id": "a3-location:26:foundry-kiln-cooling-and-metal-zones",
+      "hash": "5a25ba7b906d87cb4ea078ea2735b6a1cb7b2ba33699ca1391a37067cb139af9"
+    },
+    {
+      "id": "a3-location:27:far-town-0",
+      "hash": "d472a4ff746a265e9dce6838567bb5474fd0f52daf9269624cca7e203f53db03"
+    },
+    {
+      "id": "a3-location:27:far-town-1",
+      "hash": "46b04acd0a365c0cd15b785b6810902f97c906344fd502ba1405218e24383d5a"
+    },
+    {
+      "id": "a3-location:27:far-town-2",
+      "hash": "645304c2a570c70255758ad3bf9994e6e4d5b2ee4078017485a02e87e7e1287e"
+    },
+    {
+      "id": "a3-location:27:far-town-3",
+      "hash": "b5ba81b1dc8661b18551814fea097bdde58c8c14cf4576a5a3da47297ca38025"
+    },
+    {
+      "id": "a3-location:27:west-fire-gallery",
+      "hash": "47ab40fd7283731e9c51d977711f62d87de122e3fe326345dde4b54df3aa7eab"
+    },
+    {
+      "id": "a3-location:27:central-petition-hall",
+      "hash": "e9ae57596b796c9b0b327d1e12a96f6bd09db9aab90c3776321fb0286519b398"
+    },
+    {
+      "id": "a3-location:27:east-water-control",
+      "hash": "c399b10a1cae23331907c74bc0d376e513ccaf46d4a1aee9c5566197e9930b09"
+    },
+    {
+      "id": "a3-location:27:burnt-corridor-supports",
+      "hash": "7438340c302da41f8afe704ca591685d8ebf987a9344d642c6766fb299f8a5f8"
+    },
+    {
+      "id": "a3-location:27:charred-door-frames-and-archive-bays",
+      "hash": "87829ffdc1f47171fde4be6ed54857f75ce657d227792f301583f8fe03d132fa"
+    },
+    {
+      "id": "a3-location:28:old-courier-record-shed",
+      "hash": "b5bb585aa2619eafe4a150303670d2a93fe1c2e1a3a6ae064c56204d3e1c00b7"
+    },
+    {
+      "id": "a3-location:28:blocked-road-watch",
+      "hash": "2105398afe0054dd09eb0787919cb139af26587fb37c9acda7a007047c06c3b9"
+    },
+    {
+      "id": "a3-location:28:blockade-road-embankments",
+      "hash": "9eddfa41695a8c05a74622a5eb8a69307f354791d4ed0798e0e452394fd5c615"
+    },
+    {
+      "id": "a3-location:29:under-sluice-inspection-bridge",
+      "hash": "7250e8acd9f64ed1726e426a0fd18ac07ae499f9663ccad3837d3e4551516764"
+    },
+    {
+      "id": "a3-location:29:sealed-understore-rear",
+      "hash": "518ee16c3de0ddde31cb264f4bd601443b2ea4b765421e01546cf54151c8c2be"
+    },
+    {
+      "id": "a3-location:29:sealed-archive-chest",
+      "hash": "0c87cf218e63e41431183a9a45f51deb79791e1aa9d39305fda665e478fe5195"
+    },
+    {
+      "id": "a3-location:29:single-sluice-pavilion",
+      "hash": "95c0aebb53048382afcb7f1bedeee382eddf630db040bc491cae70de54580dfa"
+    },
+    {
+      "id": "a3-location:29:upper-sluice-road",
+      "hash": "ef318c32e7ccb988036202e2d8b8f035299cbfd1024b1d0bd6a98f51c10ba072"
+    },
+    {
+      "id": "a3-location:29:real-sluice-rear-piers",
+      "hash": "4c3306a36d200fc4913adb862254a3c2c537834e786dc93c41d9acd9e327ee2d"
+    },
+    {
+      "id": "a3-location:30:last-ferry-gangway",
+      "hash": "f02fad43ba1f753f624e638479a577875735749f47b37a78973d20b57fc64838"
+    },
+    {
+      "id": "a3-location:30:far-town-0",
+      "hash": "6a8e63bc2476c48b7bf275675a1acee7cdb50fab2be8b5834037b617a54d278e"
+    },
+    {
+      "id": "a3-location:30:far-town-1",
+      "hash": "7b3234f4d8da8ea887a1493563015a133ae9d39f17b4cf606d7ca25b73ce33ff"
+    },
+    {
+      "id": "a3-location:30:far-town-2",
+      "hash": "fac6f401f7c4c92abaabc690ddbd323eba61dfedd4508bcf4df52718d98ed304"
+    },
+    {
+      "id": "a3-location:30:far-town-3",
+      "hash": "3c1dd67d50e016ab7ceb0328bb44175aa796ced319f44eb3d7a24c0605101090"
+    },
+    {
+      "id": "a3-location:30:small-ferry-shelter",
+      "hash": "3ffbdccfcd5a29415a3b77b3531c7d6dda824340adf35d38c0856a5d8ad842dc"
+    },
+    {
+      "id": "a3-location:30:river-boatkeeper-house",
+      "hash": "aec8ba43d63c10625c1610734e9d89824748411228cf9ab97e111d9b44340afc"
+    },
+    {
+      "id": "a3-location:30:moored-ferry-boats",
+      "hash": "527040800ad22ff68f731282e7c7c14aa9194d9bbd15b9eec92cd59e833ecd1f"
+    },
+    {
+      "id": "a3-refine:21:weathered-ground-washes",
+      "hash": "6dc4621d44d02415987721bbf7a9dea68dd326c234db151356a9f4c4631ee39d"
+    },
+    {
+      "id": "a3-refine:21:ground-vignette-0",
+      "hash": "37cdcbdf56f07b2af5dcb5c98108ea2642f57ccf5eec9fca9fd871b30a83854b"
+    },
+    {
+      "id": "a3-refine:21:ground-vignette-1",
+      "hash": "ef047c712462359e379b1ac23c40dcc60235d1fe6883ea93a19546fa0134abcd"
+    },
+    {
+      "id": "a3-refine:21:ground-vignette-2",
+      "hash": "b97a8f92fa0ad6b6675c70b9631f942225b6bc15a0a4d26c5c4188a40163f267"
+    },
+    {
+      "id": "a3-refine:21:pine-art-0",
+      "hash": "bd4b62db2fef6c7cd29ee374bc974a177204a47809b05ea7461d59ae5eb0c8da"
+    },
+    {
+      "id": "a3-refine:21:pine-art-1",
+      "hash": "226d026e93b9bb2ef7708b776f574991883031a9ea4d9aef9a61c8ee048e1741"
+    },
+    {
+      "id": "a3-refine:21:pine-art-2",
+      "hash": "6129694aec6cbfcda1c2f268db32b3e8219aab3825fcc3e0c01ae3b4f7221556"
+    },
+    {
+      "id": "a3-refine:22:weathered-ground-washes",
+      "hash": "dda123a8ec9b7411eda70d8ffeb1d6d4335aa218b37cd05356c2f308fa13f690"
+    },
+    {
+      "id": "a3-refine:22:ground-vignette-0",
+      "hash": "366b98ad115194f3558fad34ad98adf064f147419a43678c704a069d8dacd5d0"
+    },
+    {
+      "id": "a3-refine:22:ground-vignette-1",
+      "hash": "62e0a164701d62f1fb5accb9416053f640984cb859431b27a00794bafb44c1b3"
+    },
+    {
+      "id": "a3-refine:22:pine-art-0",
+      "hash": "1b743ee69e0db040881e07c259f2cd58a139d0da5c0a16e42efb4d08657080b7"
+    },
+    {
+      "id": "a3-refine:22:pine-art-1",
+      "hash": "3f7775ae67343e412412b1c1d65645bb65528aec7e9e187c2e626ae24c65c067"
+    },
+    {
+      "id": "a3-refine:23:weathered-ground-washes",
+      "hash": "b0a81bcdd4ee698e8076ff06aa6038eca2bf994a295ea0074fe95bfda90c1910"
+    },
+    {
+      "id": "a3-refine:23:ground-vignette-0",
+      "hash": "279cbb13231f9d4d1e1343d8d72b44d188f14e046a928c02687cad5309f34690"
+    },
+    {
+      "id": "a3-refine:23:ground-vignette-1",
+      "hash": "1214233885660aad1256ee616ff13861ab8eeee03a9c41bce5b0bd595b18a7a4"
+    },
+    {
+      "id": "a3-refine:23:ground-vignette-2",
+      "hash": "88a72325d7791d900b1647e1c30726d1182b6522a1c85cc757efc5e3c4ab2f0e"
+    },
+    {
+      "id": "a3-refine:23:ground-vignette-3",
+      "hash": "324f5f4ece409f014975e06a82afeee293940b34dd1951082b0b89fb13faa05c"
+    },
+    {
+      "id": "a3-refine:24:weathered-ground-washes",
+      "hash": "a8361f0ae3946a4bd7d2d11d9cb7085ee67fde3b5e089c569906cc1f58643c23"
+    },
+    {
+      "id": "a3-refine:24:ground-vignette-0",
+      "hash": "b6322d9093daed805e8705600b4d0a765350189f5e68e23aced60f0d9ef29f1c"
+    },
+    {
+      "id": "a3-refine:24:ground-vignette-1",
+      "hash": "7c5f8706d1987432c83b2b0ef1ef8efb9587bd25771ad3ba626b711ac599aa66"
+    },
+    {
+      "id": "a3-refine:24:ground-vignette-2",
+      "hash": "36b3f84764ae978763af946f891f84f0bfedeea52f02d65fc52cf5f8547178d0"
+    },
+    {
+      "id": "a3-refine:24:ground-vignette-3",
+      "hash": "9678aa25f94958152639ddd77e7d78c578bc618494b51d3a83ce93909cc10e28"
+    },
+    {
+      "id": "a3-refine:24:pine-art-0",
+      "hash": "2d2f43b38afb7dc9b260cb1778fc6d931cfd88824a417caac1dc14d3bb1c7e97"
+    },
+    {
+      "id": "a3-refine:24:pine-art-1",
+      "hash": "e711c8f9e7c9e6b856748e33c1a09b048d257538d384847784cb4e461dfe62bc"
+    },
+    {
+      "id": "a3-refine:24:pine-art-2",
+      "hash": "d884801d2c327520ad5b14a42a7edfc66f7bb2a2ea701bb2a86b536d9843cb90"
+    },
+    {
+      "id": "a3-refine:24:pine-art-3",
+      "hash": "369eb5fb5ba6bd45584da54131ec35ea3acda9ebc9e5c789b1a9588b0fc7e721"
+    },
+    {
+      "id": "a3-refine:24:pine-art-4",
+      "hash": "fd745770b0188cfe54ab740727ca7c6da02d9811a3bc85f9d58943b9d4898fcd"
+    },
+    {
+      "id": "a3-refine:24:broken-garden-boundary",
+      "hash": "7d50cf2f6648787d536f08259f0b319af163be78cc348e05b433cd0b527d0f46"
+    },
+    {
+      "id": "a3-refine:25:weathered-ground-washes",
+      "hash": "b6373dc9764e3578e5c4495961ded432b3294fedc716f508a5eff797381680d0"
+    },
+    {
+      "id": "a3-refine:25:ground-vignette-0",
+      "hash": "e2fe86ba2758237dcd0568be20ca588b48b8b6b9696cbbd98b53cece2be31ae2"
+    },
+    {
+      "id": "a3-refine:25:ground-vignette-1",
+      "hash": "6b12beb51f9c4e665a8787b9be793fbf126330d4a69e358b3cee53daed013e87"
+    },
+    {
+      "id": "a3-refine:25:ground-vignette-2",
+      "hash": "70335f16f55cdf19d61307b6847ee7f440516d0259ea0fadbb839e6dde0ccff1"
+    },
+    {
+      "id": "a3-refine:25:ground-vignette-3",
+      "hash": "6fdbf0ed15afafd19cf6f4b8707e3b8cdfb1a8945aef74de26000fef1f5b7bad"
+    },
+    {
+      "id": "a3-refine:25:pine-art-0",
+      "hash": "7dd269fe5ce8a37aa3db456b73875acaf045e2ca95125a66e59ae0a3e027fb04"
+    },
+    {
+      "id": "a3-refine:25:pine-art-1",
+      "hash": "4584f8cb55655472e4e9940a0e374af75b957b38eff021f881bdc3b42c46ec8e"
+    },
+    {
+      "id": "a3-refine:25:pine-art-2",
+      "hash": "94b6273db1e25cc5749c7158f2f6a283e8cac82ddcfe21513dfb4b8c2f4fe477"
+    },
+    {
+      "id": "a3-refine:26:weathered-ground-washes",
+      "hash": "2478ad1371461f660d03bc35a6078e1d5dccde635007d7f416383f2c4f6bd8be"
+    },
+    {
+      "id": "a3-refine:26:ground-vignette-0",
+      "hash": "5fadb9208c99dbbb1dea9ce6a036c767ba9e05c00eb3728b7263f9b41198b3eb"
+    },
+    {
+      "id": "a3-refine:26:ground-vignette-1",
+      "hash": "b7f3b3bf61522c970de0efb3c0eb7f5d0254230f6809c10d0648ffe625647593"
+    },
+    {
+      "id": "a3-refine:26:ground-vignette-2",
+      "hash": "a00a716484ca7272dcefea2e2ccbe34f3087cb8a7a21297b81acd1d0d2d25e6a"
+    },
+    {
+      "id": "a3-refine:26:ground-vignette-3",
+      "hash": "fc1092d73b7d21f17f825d59ebb93ae44ffbdc6a5eaee2aee4d4698873a98202"
+    },
+    {
+      "id": "a3-refine:26:ground-vignette-4",
+      "hash": "18dac588803dadf30d5b652adb65dd7b8b28f8f265dcc194921974162ae75574"
+    },
+    {
+      "id": "a3-refine:26:burnt-trunk-0",
+      "hash": "5bc8a2e8eb6dcf215fa6163ae9d5af6782970d0ffd27e390c0b085b978b4cefc"
+    },
+    {
+      "id": "a3-refine:26:burnt-trunk-1",
+      "hash": "34282ccd67f91147747f26a9fd2299f39a41a5673c40f88131844c6cff4e4740"
+    },
+    {
+      "id": "a3-refine:26:burnt-trunk-2",
+      "hash": "e76834bf4de92ca1c0e0430a66b813a03fe4a41b499491cde3804c7029bfb49c"
+    },
+    {
+      "id": "a3-refine:26:burnt-trunk-3",
+      "hash": "e40fc0dfeb350494abb96e1dddde9bf769df46a17ad3db248f097adfec009b50"
+    },
+    {
+      "id": "a3-refine:27:weathered-ground-washes",
+      "hash": "8cb1a94ac1ab5ac5c915f1933510cb839a1ed8fb1ce88d368f0f001de0f1665b"
+    },
+    {
+      "id": "a3-refine:27:ground-vignette-0",
+      "hash": "cf7b65717be9f126feadcd2cf4baaa427c35771d682896bc18642f4e4b614308"
+    },
+    {
+      "id": "a3-refine:27:ground-vignette-1",
+      "hash": "256ba83e14b211b797d952b671dba4b84046ba29348eccddae2814278beaa285"
+    },
+    {
+      "id": "a3-refine:27:ground-vignette-2",
+      "hash": "4c026020a7a532b5eb2371679bcb6164b751390a7fd54314d4d88ecca0c54c95"
+    },
+    {
+      "id": "a3-refine:27:ground-vignette-3",
+      "hash": "098e69eb0b0774362acc6e20ce2cc22a76162111ba43ba2cc0c7a2272e1c16ca"
+    },
+    {
+      "id": "a3-refine:27:burnt-trunk-0",
+      "hash": "836b0a6c784e9f6445b3a7c4cc394f638d104a1cd9e09fe94dfc5b8c524cce0f"
+    },
+    {
+      "id": "a3-refine:27:burnt-trunk-1",
+      "hash": "028b507edfcc80b540a75d6a2e6e6d9e8656c0d6f8d3ad7f8fa5fb5165ab9f22"
+    },
+    {
+      "id": "a3-refine:27:burnt-trunk-2",
+      "hash": "b39fd428e478b95082b879eb063d3ea7944503a36e80e355d25f55a71a483a51"
+    },
+    {
+      "id": "a3-refine:28:weathered-ground-washes",
+      "hash": "6dfa7912e928dc20044775d9065ec7c44536eb3cca116c048d26b417949d9b2f"
+    },
+    {
+      "id": "a3-refine:28:ground-vignette-0",
+      "hash": "0ba4ab2833bb46443dbf922a111333d58d550ca30b7c371717e8e65739b1d52d"
+    },
+    {
+      "id": "a3-refine:28:ground-vignette-1",
+      "hash": "750ad26cd863a71738442a391bd2179cedaef5b4b5481c7b4b3fc29127a0bf53"
+    },
+    {
+      "id": "a3-refine:28:ground-vignette-2",
+      "hash": "aa4984e8c52c855884a36c56882c7085dfa2fcda3a9d587a8b4418530c92f4ca"
+    },
+    {
+      "id": "a3-refine:28:ground-vignette-3",
+      "hash": "ae64809518d23db950e7d2564b659c78fee31ef63a21f98006f6bb840c5aec17"
+    },
+    {
+      "id": "a3-refine:28:ground-vignette-4",
+      "hash": "00e3ee93447a53556be1ae044d9620a2cea72b34f58bfdab7b9aad93f0796c7f"
+    },
+    {
+      "id": "a3-refine:28:pine-art-0",
+      "hash": "2e59c3dcf2dcaf375ab6a01979a9a827cce494d0d70f8543ea307fe052f37eec"
+    },
+    {
+      "id": "a3-refine:28:pine-art-1",
+      "hash": "e1c78c3e8e0375d520eb7f591fa7392feb8c3b852831fdc6119b8dd8dcee0f2d"
+    },
+    {
+      "id": "a3-refine:28:pine-art-2",
+      "hash": "97eeeb858b0a15d81b0157d6ab7f7079821ca9b4f536c354b16ca9cb4bf036f1"
+    },
+    {
+      "id": "a3-refine:28:pine-art-3",
+      "hash": "112a2845e0f9475d38e4b88c0256f093a5286320cab2b9930ce06d757e61fa3c"
+    },
+    {
+      "id": "a3-refine:28:pine-art-4",
+      "hash": "d0995eee0c2fde0e828b4b4d6630d3a7240ddb3cc1db1482f93d8614da7de8b5"
+    },
+    {
+      "id": "a3-refine:28:pine-art-5",
+      "hash": "ab752d60175687144f1d25fe0c180b79fcb5d83d6cf1b9341126730555d21ee7"
+    },
+    {
+      "id": "a3-refine:28:pine-art-6",
+      "hash": "e883eec31543eacffb830e6d2112658d27f8469888be0df43217962f7ec69b6c"
+    },
+    {
+      "id": "a3-refine:28:pine-art-7",
+      "hash": "ba49342c1ff171467ef75edd5f661fc76cd2555785bc360ec4ddfbafcbe152c6"
+    },
+    {
+      "id": "a3-refine:28:broken-garden-boundary",
+      "hash": "effcdf383a0cfccd6eae2ead12273f7a24b742b62af81ec244c6b713eb78eada"
+    },
+    {
+      "id": "a3-refine:29:weathered-ground-washes",
+      "hash": "641f0f83f5140248b9c707988ccfe443ebc6e94390c093fedfa25b87ba33787d"
+    },
+    {
+      "id": "a3-refine:29:ground-vignette-0",
+      "hash": "3a133e3b3699ba15d1681095a7a4d7af579e2601e8b57e237d77ade8869c66e5"
+    },
+    {
+      "id": "a3-refine:29:ground-vignette-1",
+      "hash": "47b6d5ef039b82e90cfa3a312aa18024427d029d38e566bafcdf1979804f8619"
+    },
+    {
+      "id": "a3-refine:29:ground-vignette-2",
+      "hash": "e6237ad0808831c2857b6e982cf855be0fe35759392b43c9f2e3144ec6d90b5a"
+    },
+    {
+      "id": "a3-refine:29:ground-vignette-3",
+      "hash": "a30211ae017fee713d1404eafda6c002727df96c9d2d4382a9b89d9e43a2bde8"
+    },
+    {
+      "id": "a3-refine:29:pine-art-0",
+      "hash": "c58b4ac5aff832702ac0304869330c19ed8a8c7cd5a7e43a65c821d9ed3edb69"
+    },
+    {
+      "id": "a3-refine:29:pine-art-1",
+      "hash": "9f87c2f7a0510e019374cc95dcbcc218e3e9b6d940bc3bd6d7361c9ae15eb444"
+    },
+    {
+      "id": "a3-refine:29:pine-art-2",
+      "hash": "58a56d5208cfa0a662c294cf3b1ff96e28e3405c2048864a0e0316eee4c6b3c0"
+    },
+    {
+      "id": "a3-refine:29:pine-art-3",
+      "hash": "13a086bee140044654ea54854e347d86e076f76808b21f1e3fdf8ba9055f6a74"
+    },
+    {
+      "id": "a3-refine:30:weathered-ground-washes",
+      "hash": "0d6d3901f9bcb252815e8c31361ee644691fb383658b19531c1b27149aed2014"
+    },
+    {
+      "id": "a3-refine:30:ground-vignette-0",
+      "hash": "8693ff70049397fd883bc6de6c1203d3f9d3c61e9d270a1a74013e3263514607"
+    },
+    {
+      "id": "a3-refine:30:ground-vignette-1",
+      "hash": "b55a873802044f6aab6d6e4ebada877a75ed1c521bfc5544eb882f57743fade4"
+    },
+    {
+      "id": "a3-refine:30:ground-vignette-2",
+      "hash": "1752b3859c97ab6ee7664b5282fca08cfcf629e8d0f9f2ae73ac6a1c96233b9d"
+    },
+    {
+      "id": "a3-refine:30:ground-vignette-3",
+      "hash": "3dc89b2621e2a8501f318b1a596975d6f3f34a624eef223405dad4162059d654"
+    },
+    {
+      "id": "a3-refine:30:ground-vignette-4",
+      "hash": "3d221b1274b41cb75c63aee4ebaf3e5d27388cd602b3e35df34f93bdb2256097"
+    },
+    {
+      "id": "a3-refine:30:pine-art-0",
+      "hash": "e01ab867b9082b756654cd95c13278511efd55422f761900f6970ac6b052858d"
+    },
+    {
+      "id": "a3-refine:30:pine-art-1",
+      "hash": "093cd690a779616c9f07383364abe6d2d0670105fe221b33e2611ac306a0a670"
+    },
+    {
+      "id": "a3-refine:30:pine-art-2",
+      "hash": "6310e339a2039713033de736bcb15afccd37e985077ee2a5708a26d6f1972c1c"
+    },
+    {
+      "id": "a3-refine:30:pine-art-3",
+      "hash": "5078f05422086dae6ac492ca553411360eecda68de4f42f9c40da38642e6f533"
+    },
+    {
+      "id": "a3-refine:30:pine-art-4",
+      "hash": "03e684467f4085be2b8c5276ed6cc8f9a07a009038eba1b3b34ac3c5a0a4dc20"
+    }
+  ]
+}

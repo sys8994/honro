@@ -2,6 +2,7 @@
  * The original mission/terrain/actor data is retained; replacement lists affect
  * only legacy landmark paint. Every new foreground root uses a live map support. */
 import vm from 'node:vm';
+import {applyGuardianBranches} from '../map-forge/stage10-guardian-tree.mjs';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -43,6 +44,7 @@ const PLACES={
 export async function applyAct1SceneComposition(project){
  author.HonroStage7Reentry.applyProject(project);
  applyAct1CollisionRepair(project);
+ applyGuardianBranches(project);
  await applyAct1VectorArt(project);
  for(const st of project.stages){const n=st.metadata?.stageId;if(n<1||n>10)continue;
   st.elements=st.elements.filter(e=>!e.id.startsWith(PREFIX));st.design??={};st.design.act1Scene={version:1,theme:st.backdrop,places:PLACES[n],replaced:[],scenery:[],rocks:[],lights:[],viewpoints:[]};

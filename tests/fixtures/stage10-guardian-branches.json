@@ -1,0 +1,445 @@
+{
+  "sourceCommit": "fe531bc1109aa93c42d36faf0b70096b7049b2d7",
+  "branches": [
+    {
+      "id": "altar-step-1",
+      "before": {
+        "id": "altar-step-1",
+        "name": "altar-step-1",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2100,
+            "y": 2200
+          },
+          {
+            "x": 2450,
+            "y": 2160
+          },
+          {
+            "x": 2450,
+            "y": 2210
+          },
+          {
+            "x": 2100,
+            "y": 2250
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "platform",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      },
+      "after": {
+        "id": "altar-step-1",
+        "name": "altar-step-1",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2100,
+            "y": 2200
+          },
+          {
+            "x": 2210,
+            "y": 2192
+          },
+          {
+            "x": 2340,
+            "y": 2165
+          },
+          {
+            "x": 2450,
+            "y": 2155
+          },
+          {
+            "x": 2510,
+            "y": 2170
+          },
+          {
+            "x": 2480,
+            "y": 2240
+          },
+          {
+            "x": 2400,
+            "y": 2228
+          },
+          {
+            "x": 2320,
+            "y": 2205
+          },
+          {
+            "x": 2190,
+            "y": 2209
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "platform",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      }
+    },
+    {
+      "id": "altar-step-2",
+      "before": {
+        "id": "altar-step-2",
+        "name": "altar-step-2",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2280,
+            "y": 2040
+          },
+          {
+            "x": 2640,
+            "y": 2010
+          },
+          {
+            "x": 2640,
+            "y": 2060
+          },
+          {
+            "x": 2280,
+            "y": 2090
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "platform",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      },
+      "after": {
+        "id": "altar-step-2",
+        "name": "altar-step-2",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2390,
+            "y": 2030
+          },
+          {
+            "x": 2500,
+            "y": 2026
+          },
+          {
+            "x": 2620,
+            "y": 1992
+          },
+          {
+            "x": 2750,
+            "y": 1978
+          },
+          {
+            "x": 2860,
+            "y": 1984
+          },
+          {
+            "x": 2850,
+            "y": 1994
+          },
+          {
+            "x": 2740,
+            "y": 2004
+          },
+          {
+            "x": 2640,
+            "y": 2032
+          },
+          {
+            "x": 2540,
+            "y": 2082
+          },
+          {
+            "x": 2460,
+            "y": 2100
+          },
+          {
+            "x": 2400,
+            "y": 2080
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "platform",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      }
+    },
+    {
+      "id": "altar-step-3",
+      "before": {
+        "id": "altar-step-3",
+        "name": "altar-step-3",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2360,
+            "y": 1920
+          },
+          {
+            "x": 2700,
+            "y": 1900
+          },
+          {
+            "x": 2700,
+            "y": 1950
+          },
+          {
+            "x": 2360,
+            "y": 1970
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "platform",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      },
+      "after": {
+        "id": "altar-step-3",
+        "name": "altar-step-3",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2060,
+            "y": 1890
+          },
+          {
+            "x": 2190,
+            "y": 1878
+          },
+          {
+            "x": 2320,
+            "y": 1900
+          },
+          {
+            "x": 2450,
+            "y": 1882
+          },
+          {
+            "x": 2560,
+            "y": 1870
+          },
+          {
+            "x": 2560,
+            "y": 1950
+          },
+          {
+            "x": 2450,
+            "y": 1960
+          },
+          {
+            "x": 2340,
+            "y": 1942
+          },
+          {
+            "x": 2220,
+            "y": 1910
+          },
+          {
+            "x": 2100,
+            "y": 1908
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "platform",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      }
+    },
+    {
+      "id": "altar-platform",
+      "before": {
+        "id": "altar-platform",
+        "name": "altar-platform",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2300,
+            "y": 1780
+          },
+          {
+            "x": 2550,
+            "y": 1730
+          },
+          {
+            "x": 2820,
+            "y": 1780
+          },
+          {
+            "x": 2820,
+            "y": 1890
+          },
+          {
+            "x": 2550,
+            "y": 1840
+          },
+          {
+            "x": 2300,
+            "y": 1890
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "rock",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      },
+      "after": {
+        "id": "altar-platform",
+        "name": "altar-platform",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2410,
+            "y": 1740
+          },
+          {
+            "x": 2530,
+            "y": 1744
+          },
+          {
+            "x": 2640,
+            "y": 1713
+          },
+          {
+            "x": 2780,
+            "y": 1690
+          },
+          {
+            "x": 2930,
+            "y": 1686
+          },
+          {
+            "x": 2920,
+            "y": 1696
+          },
+          {
+            "x": 2790,
+            "y": 1720
+          },
+          {
+            "x": 2680,
+            "y": 1760
+          },
+          {
+            "x": 2570,
+            "y": 1810
+          },
+          {
+            "x": 2470,
+            "y": 1812
+          },
+          {
+            "x": 2410,
+            "y": 1800
+          }
+        ],
+        "baseMaterial": "rock",
+        "oneWay": true,
+        "breakable": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "rock",
+          "artSeed": 1
+        },
+        "layer": "terrain",
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      }
+    }
+  ]
+}

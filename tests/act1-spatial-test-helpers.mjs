@@ -1,3 +1,4 @@
+import {beforeGuardianStory} from './guardian-tree-history-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import assert from 'node:assert/strict';
 // Test-only fixtures. They do not change production movement, AI or map rules.
@@ -20,7 +21,7 @@ export function applyCurrentTerrainRecipes(g,input){
  }
  return g.HonroTerrainDomain.author(project);
 }
-export function semanticContent(stage){const {w,h,map,...content}=stage;return JSON.parse(JSON.stringify(content));}
+export function semanticContent(stage){const {w,h,map,...content}=stage;return beforeGuardianStory(content,stage.id);}
 export async function act1Runtime(){
  const g=await runtime({legacyMaps:false});
  g.document={getElementById(){return null;},addEventListener(){}};

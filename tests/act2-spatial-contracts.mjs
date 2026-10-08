@@ -1,3 +1,4 @@
+import {beforeGuardianStory} from './guardian-tree-history-helpers.mjs';
 import {historicalSceneRoster} from './staging-history-helpers.mjs';
 import {act12Balance,act12Archetypes} from './campaign-scope-helpers.mjs';
 import assert from 'node:assert/strict';
@@ -23,8 +24,7 @@ check('Act 1 mission, recruitment and combat semantics remain unchanged beyond t
   // The approved receiver entrance now reveals Sodan on-site. Its dialogue and
   // visibility are verified by story-staging, while these mission/stats remain frozen.
   if(before.id===9){for(const key of ['narration','story','storyFollowups']){delete content[key];delete old[key];}}
-  if(before.id===10){content.story=plain(content.story);const line=content.story.find(l=>l[1].includes('아래 세운 두 진을'));assert(line,'Reviewed lower/upper receiver clarification');line[1]=line[1].replace('아래 세운 두 진을 이 윗마당 양옆과 이어야','양옆 받이진을 이어야');}
-  assert.deepEqual(plain(content),old);assert.deepEqual(plain(historicalSceneRoster(q.b,before.units).map(unitContract)),before.units);assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);}
+  assert.deepEqual(beforeGuardianStory(content,before.id),old);assert.deepEqual(plain(historicalSceneRoster(q.b,before.units).map(unitContract)),before.units);assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);}
  }finally{g.HONRO_PROJECT=currentProject;}
  assert.equal(g.HONRO_PROJECT,currentProject,'Later acts and saved-battle checks use the current project');
 });
