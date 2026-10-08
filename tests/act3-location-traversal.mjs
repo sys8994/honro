@@ -1,21 +1,3 @@
-import assert from 'node:assert/strict';
-import {readFile,writeFile,mkdir} from 'node:fs/promises';
-import path from 'node:path';
-import {pathToFileURL} from 'node:url';
-import {traverse} from './act1-spatial-test-helpers.mjs';
-import {support} from '../tools/map-forge/act3-map-kit.mjs';
-const root=process.env.HONRO_RUNTIME_ROOT||process.cwd(),{runtime}=await import(pathToFileURL(path.join(root,'game/tests/helpers.mjs'))),g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,p=JSON.parse(await readFile(process.env.HONRO_PROJECT_FILE||'shared/data/campaign.json','utf8'));g.HONRO_PROJECT=p;
-const ids=process.argv.slice(2).map(Number),selected=p.stages.filter(s=>s.metadata.stageId>=21&&(!ids.length||ids.includes(s.metadata.stageId)));
-assert.equal(g.HONRO_CONTENT.stages.length,30,'Use real Act3 runtime, not a legacy template');
-const errors=g.HonroMaps.validate(p).filter(q=>q.level==='err');assert.equal(errors.length,0,JSON.stringify(errors));
-const results=[];
-for(const s of selected){assert.equal(s.metadata.campaign,true);assert(!s.metadata.templateStageId);assert.equal(s.initialState.honroAct3Revision,1);const rows=[];
- for(const cls of (s.design.act3.party||['archer','mage','knight','occultist'])){for(const r of [{id:'required',points:s.design.act3.requiredRoute},...s.design.act3.optionalRoutes]){
- const b=g.HonroMaps.createBattle(s,p,undefined,{origin:'campaign'}),e=new C.Engine(b,()=>{},true);e.checkEnd=()=>false;for(const t of b.terrain)if(t.honroAct3Gate||t.honroAct3Target)t.broken=true;
- const u=b.units.find(u=>u.cls===cls&&u.side===0);b.units=[u];b.active=u.id;const start=support(g,b.terrain.filter(t=>!t.broken),r.points[0].x,r.points[0].y);Object.assign(u,start,{vx:0,vy:0});let spent=0;for(const method of ['walk','jump']){const f=e[method].bind(e);e[method]=(...args)=>{const before=u.moveLeft;const q=f(...args);spent+=Math.max(0,before-u.moveLeft);return q;};}
- const damageEvents=[],jumpEvents=[],integrate=e.integrateBody.bind(e),jump=e.jump.bind(e);e.integrateBody=(actor,dt)=>{const before={x:actor.x,y:actor.y,hp:actor.hp,fallApexY:actor.fallApexY},out=integrate(actor,dt);if(actor.hp<before.hp)damageEvents.push({before,after:{x:actor.x,y:actor.y,hp:actor.hp},support:e.surface(actor.x,actor.y-5,actor.y+5)?.t?.id});return out;};e.jump=actor=>{const before={x:actor.x,y:actor.y,support:e.surface(actor.x,actor.y-5,actor.y+5)?.t?.id},out=jump(actor);if(out)jumpEvents.push(before);return out;};
- const q=traverse(g,b,e,u,r.points);rows.push({hero:cls,route:r.id,...q,damageEvents,jumpEvents,movementBudgetConsumed:spent,minMovementTurns:Math.ceil(spent/u.maxMove),maxMove:u.maxMove});console.log(s.id,cls,r.id,q.passed,q.failed?JSON.stringify(q.failed):'',q.damage);}}
- const b=g.HonroMaps.createBattle(s,p),ts=b.terrain.filter(t=>!t.honroAct3Gate&&!t.honroAct3Target);const markers=s.markers.filter(m=>!m.id.startsWith('wave-')).map(m=>({id:m.id,...support(g,ts,m.x,m.y),error:Math.abs((support(g,ts,m.x,m.y)?.y??Infinity)-m.y)}));assert(markers.every(q=>q.error<.01),'Markers are on exposed floors');
- let escort=null;if([23,27].includes(s.metadata.stageId)){const carrier=b.units.find(u=>u.id==='act3-carrier'),e=new C.Engine(b,()=>{},true);e.checkEnd=()=>false;for(const t of b.terrain)if(t.honroAct3Gate||t.honroAct3Target)t.broken=true;b.units=[carrier];b.active=carrier.id;carrier.fixed=false;carrier.maxMove=carrier.moveLeft=900;const route=s.design.act3.requiredRoute.filter(q=>q.x>=carrier.x);escort=traverse(g,b,e,carrier,route,{jump:false});console.log(s.id,'carrier',escort.passed,escort.failed?JSON.stringify(escort.failed):'');}
- results.push({stage:s.metadata.stageId,rows,markers,escort});}
-await mkdir('_local/reports/act3-locations',{recursive:true});await writeFile('_local/reports/act3-locations/geometry-checks.json',JSON.stringify({projectFile:process.env.HONRO_PROJECT_FILE||'shared/data/campaign.json',scope:'Real production stage IDs; isolated native movement with cleared combat and opened gates. Movement replenished between probe inputs. Not normal-play, browser-input or mission-completion evidence.',results},null,2)+'\n');if(results.some(s=>s.rows.some(r=>!r.passed||r.damage)||s.escort&&!s.escort.passed))process.exitCode=1;
+// Location and production geometry share the same versioned traversal contract.
+process.env.HONRO_GEOMETRY_REPORT_DIR??='_local/reports/act3-locations';
+await import('./act3-production-maps.mjs');

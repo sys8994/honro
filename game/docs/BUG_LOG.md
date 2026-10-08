@@ -1554,3 +1554,9 @@ Actual Pages visual review found the reused stage-9 shrine roof hidden behind th
 
 - checkpoint 복구는 terrain 객체를 복제하지만 이전 sceneVersion과 개수를 유지해 충돌 인덱스가 옛 객체를 반환했다. 복구 시 sceneVersion을 현재/저장 버전보다 크게 올려 기존 엔진의 정상 무효화 경로를 사용한다. 지형이나 물리 규칙은 바꾸지 않는다.
 - `stake-crossing-cache`는 25/27장에서 3회 연속 복구 후 모든 충돌 결과가 현재 terrain 객체이고, 정확한 저장 지형 및 새 엔진 surface 결과와 같음을 검사한다. 수정 전 버전 갱신 검사 실패, 수정 후 통과. XP 및 act3:split도 통과했다. 현행 불괴 지형에서 이 캐시 문제로 인한 진행 불능은 재현하지 않았다.
+
+## v1 장소 검사와 현재 물길 이동 검사 분리 — 2026-10-08
+
+- 기존 목표·장소 검사에서 장 번호만으로 옛 25~27 파티와 27장 호송자를 가정했다. 고정된 v1 지도/미술/진행 프로필을 명시해 옛 불길 병렬 조작·합류·8개 장소 편성/수면복귀/양쪽 진입 검사를 그대로 보존했다.
+- 현재 production geometry는 21~30장을 전부 검사하고 별도로 v1 25~28장을 검사한다. 의도적으로 끊긴 25/27 물길은 각 착지면의 정상 걷기·점프를 검사하고, 석대 사이 연결은 기존 실제 M09/gate 회귀에서 검증한다. 호송자는 해당 지도에 실제 escort 단계가 있을 때 반드시 요구한다. 동일 구현을 location traversal에서도 사용한다.
+- objective-revision 31묶음, historical location contracts, current+v1 production geometry는 통과했다. 부분 공간 이동/목표 state fixture이며 정상 전투 완주나 브라우저 입력 증거는 아니다.
