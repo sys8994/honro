@@ -254,15 +254,3 @@
 .honro .battle-help-dialog .mission-checklist .complete{color:#99b4a6}
 
 /* A field tool is separate from the four equipped skills: it never replaces a slot. */
-.honro .stake-crossing-tools{position:absolute;z-index:8;left:18px;top:106px;width:280px;max-width:calc(65vw - 30px);padding:10px 12px;border:1px solid #7eaaa066;border-radius:9px;background:#132b2be8;box-shadow:0 5px 18px #0004;color:#e0dfcc;backdrop-filter:blur(6px)}
-.honro .stake-crossing-tools[hidden]{display:none!important}
-.honro .stake-crossing-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;letter-spacing:.04em;color:#a8c5bb}
-.honro .stake-crossing-heading strong{font-size:10px;font-weight:400;color:#d3c298}
-.honro .stake-crossing-tools p{margin:6px 0 9px;font-size:11px;line-height:1.55;word-break:keep-all}
-.honro .stake-crossing-actions{display:flex;gap:7px;align-items:stretch}
-.honro .stake-crossing-actions button{min-height:40px;padding:6px 9px;background:#28433f;border:1px solid #779b8c8c;border-radius:6px;color:#e3e3d0;text-align:left;cursor:pointer;touch-action:manipulation}
-.honro .stake-crossing-actions button.selected{border-color:#e2c384;background:#415148;box-shadow:inset 0 0 0 1px #e2c38455}
-.honro .stake-crossing-actions strong{display:block;font-size:12px;font-weight:500}.honro .stake-crossing-actions small{display:block;font-size:9px;color:#b7c9bc;margin-top:2px}
-.honro .stake-crossing-actions .stake-retry{margin-left:auto;background:transparent;border-color:#7f958e55;font-size:10px;white-space:nowrap;color:#b9c6bc}
-@media(max-width:620px){.honro .stake-crossing-tools{left:10px;top:110px;padding:8px;max-width:calc(68vw - 20px)}.honro .stake-crossing-tools p{font-size:10px}.honro .stake-crossing-actions{gap:4px}.honro .stake-crossing-actions button{padding:5px 7px}.honro .stake-crossing-actions small{font-size:8px}}
-@media(max-height:550px) and (orientation:landscape){.honro .stake-crossing-tools{top:76px;width:260px;padding:7px 9px}.honro .stake-crossing-tools p{margin:3px 0 5px}}

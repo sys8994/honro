@@ -1636,3 +1636,9 @@ The guardian-tree audit still compared the current project directly with its pre
 ### B canonical recipe and legacy flying-target audit integration
 
 Both Act 2 recipe audits now invoke the same vector/scene, forest, cavern-place and transition postprocessors as canonical authoring before retaining their complete deep equality checks. Small stable per-stage digests bound mismatch diagnostics without replacing the full comparison. The old flying-ground-band audit keeps its 400-unit bound for every unrelated target; the two exactly approved stage15 crown/shoulder targets instead require a grounded authored firing site, a valid ordinary-arrow prediction and actual projectile damage. Their exact reviewed map projection remains mandatory. No enemy, threshold, skill, projectile or production physics was changed. The full objective/save/reward state fixture and all 82 revision checks pass; this remains separate from no-items normal combat.
+
+## 축지진목을 기존 장착칸에서 준비 — 2026-10-08
+
+- 물길 전용 다섯째 카드·5번 단축키·별도 HUD를 없애고 기존 1–4번 장착칸에 준비한다. 빈칸, 먼저 장착된 진목 계열(`branch: stake`), 첫 슬롯 순서다. 이미 장착한 M09는 그대로 둔다. 전장 `honroStakeLoadout`에 원래 선택과 교체 칸을 기록하고 영구 loadout·습득 랭크·선행 트리·포인트는 바꾸지 않는다. 미습득 M09는 기존 엔진의 기본 1랭크, 습득자는 현재 랭크를 사용한다. 새 맵은 영구 선택으로 생성되므로 자동 교체가 끝나며 수동 M09는 해제되지 않는다.
+- 분기 준비 기록은 `honroSplit.stakePreparation`으로 25→26→27에 유지한다. 실제 교체/빈칸 삽입 때만 기존 입장 대사에 담허 한 줄을 넣고 한 번 표시한다. 옛 진행 전투 Continue에는 교체 대사를 강제로 재생하지 않는다. 현재 목표에만 출발 모임→발사→두 동행 E 안내를 통합한다. 구간 재시도는 기존 일시정지 메뉴에 있고 ‘처음부터’는 원래 장 재시도로 되돌린다.
+- 현재까지 집중 검사: runtime 9묶음, 물리/실제 M09·E, 정본 맵 25/27 발사, XP 중복 방지, 캐시 무효화 통과. 새 수직 지도와 통합/브라우저/전체 verify는 후속 검수다.

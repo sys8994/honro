@@ -49,7 +49,7 @@ function failure(b,st){
  if(needsRitual&&!b.units.some(u=>u.side===0&&u.cls==='mage'&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0))return '담허가 쓰러져 받이진을 이어갈 수 없다. 이 장을 다시 시작하자.';
  return null;
 }
-function state(b,st){const result=rawState(b,st);return G.HonroObjectiveGuide?.enhance(b,st,result)||result;}
+function state(b,st){const result=rawState(b,st),guided=G.HonroObjectiveGuide?.enhance(b,st,result)||result,crossing=G.HonroStakeCrossing?.current(b);if(crossing&&guided.currentObjectiveId===crossing.markerId)guided.currentInstruction=G.HonroStakeCrossing.instruction(b)||guided.currentInstruction;return guided;}
 const briefings={
  1:[],
  2:[['설오','행렬이 저 아래 길을 통과할 때까지 높은 놈부터 끊겠습니다.',{focus:'objective'}]],
@@ -68,7 +68,7 @@ const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모�
 function guideFor(app){let text=guides[app.stage.id];if(app.stage.id===7&&!app.engine?.b.terrain.some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
 const guideFocus=['exit','objective','interact','objective','interact','objective','interact','seal','interact','interact'];
 function entry(app,options={}){const short=state(app.engine.b,app.stage).currentInstruction;
- if(app.stage.act>=2){const rows=(app.stage.act===2?G.HonroAct2:G.HonroAct3).entry(app,options);return rows.map(row=>row[2]?.kind==='guide'?[row[0],short||row[1],row[2]]:row);}
+ if(app.stage.act>=2){const rows=(app.stage.act===2?G.HonroAct2:G.HonroAct3).entry(app,options),preparation=G.HonroStakeCrossing?.preparationLines(app.engine.b)||[];rows.splice(Math.max(0,rows.length-1),0,...preparation);return rows.map(row=>row[2]?.kind==='guide'?[row[0],short||row[1],row[2]]:row);}
  const n=(options.interlude===false?[]:(app.stage.narration||[])).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',short||guideFor(app),{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],opening=all.slice(0,7),remaining=all.slice(7),hs=app.engine?.b.honroState;
  if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];const beats=(app.stage.storyFollowups||[]).map(x=>x.slice());if(remaining.length&&beats.length&&remaining.length+beats[0].length<=5)beats[0].push(...remaining);else for(let i=remaining.length;i>0;i-=5)beats.unshift(remaining.slice(Math.max(0,i-5),i));beats.forEach((lines,i)=>hs.deferredStory.push({round:2+i*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i*5,app.stage.name+' · 길 위에서',lines)}));}
  return [...opening,guide];}
