@@ -1,4 +1,5 @@
 import {beforeVerticalWaterworksLibrary} from './vertical-waterworks-history-helpers.mjs';
+import {beforeOpenStructureLibrary} from './open-structure-history-helpers.mjs';
 import './cavern-library-provenance.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -11,7 +12,7 @@ assert.deepEqual([...targets],[11,12,13,14,15,16,17,18,19]);
 assert.equal(JSON.stringify(p),snapshot,'Projection never mutates production input');
 for(const row of delta.hashes)assert.equal(hash(p.stages.find(s=>s.metadata.stageId===row.stage)),row.afterSha256,'Exact reviewed B stage '+row.stage);
 for(const st of p.stages)if(!targets.has(st.metadata.stageId))assert.deepEqual(prior.stages.find(s=>s.id===st.id),st,'Unchanged stages including stage20 remain intact');
-assert.deepEqual(prior.library,p.library,'Shared artwork is never projected');assert.equal(hash(beforeVerticalWaterworksLibrary(p.library)),delta.librarySha256,'Library equals approved public A');
+assert.deepEqual(prior.library,p.library,'Shared artwork is never projected');assert.equal(hash(beforeVerticalWaterworksLibrary(beforeOpenStructureLibrary(p.library))),delta.librarySha256,'Library equals approved public A after exact D/C reversal');
 const lean={stages:p.stages,library:[]};
 const locate=(project,row)=>{let target=project.stages.find(s=>s.metadata.stageId===row.stage);for(const step of row.path.slice(0,-1))target=typeof step==='object'?target.find(v=>Object.entries(step).every(([k,x])=>v[k]===x)):target[step];const last=row.path.at(-1);return {target,key:typeof last==='object'?target.findIndex(v=>Object.entries(last).every(([k,x])=>v[k]===x)):last};};
 for(const row of delta.rows){

@@ -1,4 +1,5 @@
 import {beforeVerticalWaterworks} from './vertical-waterworks-history-helpers.mjs';
+import {beforeOpenStructures} from './open-structure-history-helpers.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {gunzipSync} from 'node:zlib';
 import {beforeGuardianScene} from './guardian-scene-history-helpers.mjs';
@@ -63,7 +64,7 @@ export function missionContract(map,stage,balance){
 }
 export function archetypeContract(archetypes){return Object.fromEntries(Object.entries(archetypes).filter(([id])=>Object.hasOwn(kindRenames,id)||Object.values(kindRenames).includes(id)).map(([id,a])=>[kind(id),without(a,['name','intent','act3Human','act3Fiend'])]));}
 export function beforeHiddenWaterworks(project,content,balance){
- const projected=beforeVerticalWaterworks(project,content),p=projected.project,c=projected.content,b=plain(balance);
+ const projected=beforeVerticalWaterworks(beforeOpenStructures(project),content),p=projected.project,c=projected.content,b=plain(balance);
  for(const row of waterworksRevision.rows){const i=p.stages.findIndex(s=>s.metadata.stageId===row.id),map=p.stages[i];
   assert.deepEqual(missionContract(map,c.stages[row.id-1],b.stages[row.id-1]),row.after,'Exact approved hidden-waterworks combat/mission contract '+row.id);
   p.stages[i]=plain(row.beforeMap);c.stages[row.id-1]=plain(row.beforeContent);b.stages[row.id-1]=plain(row.beforeBalance);

@@ -1,0 +1,865 @@
+{
+  "sourceCommit": "c0b3124b585984b6e933dd7511c4e1e03bdb5f83",
+  "beforeProjectSha256": "e38504406fd3303b16dd31bfd1ddb8f7127f8ced0458e722a1626c02dc3ee2e7",
+  "afterProjectSha256": "e3020fcb81e7e6bfa9fa36d924b557a8718a765ee7ee01189732aa3ac85fd722",
+  "beforeLibrarySha256": "d5baa34952000d79dcb308866155d59f7820fec41f98057274442cfb9757d186",
+  "afterLibrarySha256": "957403d98a38a69a3832bcb6a7d28a383b26ef8fb378a79898cc97002352c94a",
+  "rows": [
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:entry-shop",
+      "elementId": "entry-shop",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:cloth-yard",
+      "elementId": "cloth-yard",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:gate-tower",
+      "elementId": "gate-tower",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:tea-market",
+      "elementId": "tea-market",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:east-stables",
+      "elementId": "east-stables",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:office-porch",
+      "elementId": "office-porch",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:east-watch",
+      "elementId": "east-watch",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-21:wall-stair",
+      "elementId": "wall-stair",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-21:gate-wall-walk",
+      "elementId": "gate-wall-walk",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 21,
+      "kind": "asset",
+      "id": "a3-korean:21:market-roof-stair",
+      "elementId": "market-roof-stair",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-korean:22:archive-west-roof",
+      "elementId": "archive-west-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-korean:22:archive-east-roof",
+      "elementId": "archive-east-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:archive-ground-west",
+      "elementId": "archive-ground-west",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:archive-ground-east",
+      "elementId": "archive-ground-east",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:archive-middle-atrium",
+      "elementId": "archive-middle-atrium",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:archive-middle-east",
+      "elementId": "archive-middle-east",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:archive-upper-west",
+      "elementId": "archive-upper-west",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:archive-upper-atrium",
+      "elementId": "archive-upper-atrium",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:merged-archive-west-stairs",
+      "elementId": "archive-west-stairs",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:merged-archive-east-stairs",
+      "elementId": "archive-east-stairs",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "a3-22:archive-attic-gallery",
+      "elementId": "archive-attic-gallery",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 23,
+      "kind": "asset",
+      "id": "a3-location:23:west-stone-loading-bridge",
+      "elementId": "west-stone-loading-bridge",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 23,
+      "kind": "asset",
+      "id": "a3-location:23:east-stone-loading-bridge",
+      "elementId": "east-stone-loading-bridge",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 23,
+      "kind": "asset",
+      "id": "a3-location:23:canal-maintenance-ledge",
+      "elementId": "canal-maintenance-ledge",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 23,
+      "kind": "asset",
+      "id": "a3-location:23:canal-maintenance-access",
+      "elementId": "canal-maintenance-access",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 24,
+      "kind": "asset",
+      "id": "a3-location:24:empty-servants-house",
+      "elementId": "empty-servants-house",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 24,
+      "kind": "asset",
+      "id": "a3-location:24:family-main-hall",
+      "elementId": "family-main-hall",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 24,
+      "kind": "asset",
+      "id": "a3-location:24:family-shrine-hall",
+      "elementId": "family-shrine-hall",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 24,
+      "kind": "asset",
+      "id": "a3-location:24:abandoned-study",
+      "elementId": "abandoned-study",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:gallery-1",
+      "elementId": "gallery-1",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:gallery-2",
+      "elementId": "gallery-2",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:gallery-3",
+      "elementId": "gallery-3",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:gallery-4",
+      "elementId": "gallery-4",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:gallery-5",
+      "elementId": "gallery-5",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:gallery-6",
+      "elementId": "gallery-6",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:west-maintenance-stairs",
+      "elementId": "west-maintenance-stairs",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:inspection-room-roof",
+      "elementId": "inspection-room-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:west-lookout-roof",
+      "elementId": "west-lookout-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:upper-checkpoint-roof",
+      "elementId": "upper-checkpoint-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:lookout-stair",
+      "elementId": "lookout-stair",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:lookout-balcony",
+      "elementId": "lookout-balcony",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 25,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:25:broken-haul-bridge",
+      "elementId": "broken-haul-bridge",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "a3-location:26:water-work-bridge",
+      "elementId": "water-work-bridge",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "a3-location:26:burnt-casting-house",
+      "elementId": "burnt-casting-house",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "a3-location:26:tool-shed",
+      "elementId": "tool-shed",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "a3-location:26:optional-shooting-bank",
+      "elementId": "optional-shooting-bank",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:gallery-1",
+      "elementId": "gallery-1",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:gallery-3",
+      "elementId": "gallery-3",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:gallery-4",
+      "elementId": "gallery-4",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:gallery-5",
+      "elementId": "gallery-5",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:gallery-6",
+      "elementId": "gallery-6",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:gallery-7",
+      "elementId": "gallery-7",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:entry-haul-stairs",
+      "elementId": "entry-haul-stairs",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:return-inspection-stairs",
+      "elementId": "return-inspection-stairs",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:manifest-stairs",
+      "elementId": "manifest-stairs",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:loading-office-roof",
+      "elementId": "loading-office-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:far-passage-roof",
+      "elementId": "far-passage-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:ledger-room-roof",
+      "elementId": "ledger-room-roof",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 27,
+      "kind": "asset",
+      "id": "a3-waterworks-v3:27:broken-haul-bridge",
+      "elementId": "broken-haul-bridge",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 28,
+      "kind": "asset",
+      "id": "a3-location:27:west-fire-gallery",
+      "elementId": "west-fire-gallery",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 28,
+      "kind": "asset",
+      "id": "a3-location:27:central-petition-hall",
+      "elementId": "central-petition-hall",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 28,
+      "kind": "asset",
+      "id": "a3-location:27:east-water-control",
+      "elementId": "east-water-control",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 28,
+      "kind": "terrain",
+      "id": "west-charred-passage-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "honroCeiling": true,
+          "honroLocationCeiling": true
+        }
+      },
+      "after": {
+        "oneWay": true
+      },
+      "propertyKeysBefore": [
+        "honroCeiling",
+        "honroLocationCeiling"
+      ],
+      "propertyKeysAfter": []
+    },
+    {
+      "stage": 28,
+      "kind": "terrain",
+      "id": "east-charred-passage-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "honroCeiling": true,
+          "honroLocationCeiling": true
+        }
+      },
+      "after": {
+        "oneWay": true
+      },
+      "propertyKeysBefore": [
+        "honroCeiling",
+        "honroLocationCeiling"
+      ],
+      "propertyKeysAfter": []
+    },
+    {
+      "stage": 29,
+      "kind": "asset",
+      "id": "a3-location:29:under-sluice-inspection-bridge",
+      "elementId": "under-sluice-inspection-bridge",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 29,
+      "kind": "asset",
+      "id": "a3-location:29:single-sluice-pavilion",
+      "elementId": "single-sluice-pavilion",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 29,
+      "kind": "asset",
+      "id": "a3-location:29:upper-sluice-road",
+      "elementId": "upper-sluice-road",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 30,
+      "kind": "asset",
+      "id": "a3-location:30:last-ferry-gangway",
+      "elementId": "last-ferry-gangway",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 30,
+      "kind": "asset",
+      "id": "a3-location:30:small-ferry-shelter",
+      "elementId": "small-ferry-shelter",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    },
+    {
+      "stage": 30,
+      "kind": "asset",
+      "id": "a3-location:30:river-boatkeeper-house",
+      "elementId": "river-boatkeeper-house",
+      "before": {
+        "oneWay": false
+      },
+      "after": {
+        "oneWay": true
+      }
+    }
+  ]
+}

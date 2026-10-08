@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runtime} from '../game/tests/helpers.mjs';
+import {beforeOpenStructures} from './open-structure-history-helpers.mjs';
 import {beforeVerticalWaterworks,beforeVerticalWaterworksLibrary,verticalWaterworksHistoryDelta as f,verticalHash as hash} from './vertical-waterworks-history-helpers.mjs';
-const g=await runtime({legacyMaps:false}),p=JSON.parse(readFileSync('shared/data/campaign.json','utf8')),c=JSON.parse(JSON.stringify(g.HONRO_CONTENT)),snapshot=JSON.stringify({p,c});
+const g=await runtime({legacyMaps:false}),p=beforeOpenStructures(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),c=JSON.parse(JSON.stringify(g.HONRO_CONTENT)),snapshot=JSON.stringify({p,c});
 function frozen(p,c){const old=beforeVerticalWaterworks(p,c);for(const row of f.hashes)assert.equal(hash(old.project.stages[row.stage-1]),row.beforeSha256,'Complete immutable B stage '+row.stage);return old;}
 const old=frozen(p,c);assert.equal(hash(p),f.afterProjectSha256,'Entire reviewed C canonical source');assert.equal(JSON.stringify({p,c}),snapshot,'C projection is read-only');
 for(const row of f.hashes)assert.equal(hash(p.stages[row.stage-1]),row.afterSha256,'Reviewed C canonical stage '+row.stage);
