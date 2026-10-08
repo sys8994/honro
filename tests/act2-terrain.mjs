@@ -10,14 +10,21 @@ assertReviewedRouteModes(g.HONRO_PROJECT);
 for(let id=11;id<=20;id++){
  const st=g.HONRO_PROJECT.stages[id-1],space=st.design?.space;
  assert(space,`${id}: missing authored space contract`);
- const slopes=[];
+ const slopes=[],reviewedWallEdges=[];
  for(const surface of space.surfaces.filter(s=>['floor','shelf'].includes(s.role))){
   const original=st.terrains.find(t=>t.id===surface.terrainId);assert(original,`${id}: missing ${surface.terrainId}`);const t=original.properties?.honroRestoredVertices?{...original,points:original.properties.honroRestoredVertices}:g.HonroTerrainDomain.projection(original);
   // Exact reviewed solid arch rims include jump-only slopes between safe stops.
   // Every pre-existing floor/shelf retains the original walk-only threshold.
   const jumpArch=id===15&&['fc15-west-arch','fc15-east-arch'].includes(surface.id);
-  for(const i of surface.edgeIndices){const a=t.points[i],b=t.points[(i+1)%t.points.length],slope=Math.abs((b.y-a.y)/(b.x-a.x));assert(Number.isFinite(slope),`${id}/${surface.id}: nonfinite edge`);if(!jumpArch)assert(slope<=1.35,`${id}/${surface.id}: required walk surface is too steep (${slope})`);slopes.push(slope);}
+  for(const i of surface.edgeIndices){const a=t.points[i],b=t.points[(i+1)%t.points.length],slope=Math.abs((b.y-a.y)/(b.x-a.x));assert(Number.isFinite(slope),`${id}/${surface.id}: nonfinite edge`);
+   // The six exact stage14 lower-floor segments are the solid western
+   // undercroft wall, not a route. Exact terrain SHA/path guards above pin
+   // their geometry; the required route stands on the inhabited shoulder.
+   const cavernWall=id===14&&surface.id==='floor-main'&&a.x>=3230&&b.x<=3675&&a.x<b.x;
+   if(cavernWall){assert(slope>1.35,'reviewed undercroft wall remains nonwalkable');reviewedWallEdges.push(i);assert(!space.routes.find(r=>r.id==='main').anchors.some(p=>p.surfaceId==='floor-main'&&p.x>=a.x&&p.x<=b.x),'required route cannot use the undercroft wall');}
+   else if(!jumpArch)assert(slope<=1.35,`${id}/${surface.id}: required walk surface is too steep (${slope})`);slopes.push(slope);}
  }
+ if(id===14)assert.deepEqual(reviewedWallEdges,[43,44,45,46,47,48],'Only the six reviewed western wall segments are exempt from walking');
  // Encounter composition is frozen separately. Here retain the existing
  // clustered pressure and isolated elite tactical-placement regression.
  const foes=st.units.filter(u=>u.team==='enemy'&&u.id.startsWith('a2-enemy'));
