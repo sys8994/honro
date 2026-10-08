@@ -1521,3 +1521,9 @@ Custom-map win/loss results now say “원래 여정으로 돌아가기”, matc
 ## 2026-10-08 · Representative forest/cavern multi-level topology (work in progress)
 
 Stage 7 retains its three resident levels and gains asymmetric optional branch angles. Stage 15 replaces the single-floor cavern with two grounded, opposing granite overhangs and real upper/lower passages. Required travel uses base jumps; no purchased mobility is required. Existing battle saves are not re-authored. See `FOREST_CAVERN_TOPOLOGY.md` for verified isolated movement/projectile scope and pending release checks. This checkpoint is not a normal-combat, browser or final-art completion claim.
+
+## 2026-10-08 · 승인된 지하 집하장과 지상 조사 재편 (2차 구현)
+- 원인: 23~28의 지하/지상 장소 차이와 팀별 조사 이유가 충분히 드러나지 않았고 기록함 방어가 반복됐다.
+- 변경: 23지상 하역장,24새팀 분기,25첫 진목 물길,26기록실+공방,27심부 다중석대,28불길/합류/왕실 문서 연결. 인공 석축·작업대·검수대·봉인창고와 가족 번호별 생활물품을 저작했다. 29/30 및1~22는 그대로다.
+- 검증: 영향범위 정확 보존·멱등 재생성·저장 왕복·신체 접지·목표 marker·26/28 일반 이동 native 통과. 최초 큰 gap은 실제 기본 M09 사거리에서 실패해 수정했고 최종 탄도/점프 불가 증거는 런타임 작업과 합쳐 검증한다.
+- 한계: 최종 미술/브라우저 입력/연속 캠페인/전투 밸런스 검수 전의 작업중 저장지점이며 배포 완료를 의미하지 않는다.

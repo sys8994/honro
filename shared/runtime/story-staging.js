@@ -37,7 +37,7 @@ function request(app,id,context={}){
 function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)request(app,ID,{marker:m.id});}
 function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
- if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.requireSplit||b.honroSplit?.version===1)&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
+ if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
  if(!r)return{lines,options};
  const def=registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
@@ -167,6 +167,16 @@ register({id:'act3-split-departure-v1',stage:24,on:'outcome',position:'after',re
  {type:'look',at:{marker:'split-route-b'},duration:350,caption:'설오와 소단은 성 밖 공방으로 이어지는 길을 확인한다.'},
  {type:'move',actor:'archer',towards:{marker:'split-route-b'},distance:36,duration:450,caption:'설오가 공방 쪽으로 걸음을 옮긴다.'},
  {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단도 같은 방향으로 몸을 돌린다.'},
+ {type:'dialogue'}
+]});
+// Version 2 keeps the old departure available only to an existing v1 expedition.
+register({id:'act3-split-departure-v2',stage:24,on:'outcome',position:'after',requireSplit:2,title:'지상과 지하로 나누어 찾다',steps:[
+ {type:'look',at:{marker:'split-route-a'},duration:350,caption:'설오와 담허가 사당 아래 수로의 끊긴 길을 살핀다.'},
+ {type:'move',actor:'archer',towards:{marker:'split-route-a'},distance:36,duration:450,caption:'설오가 수로 쪽으로 걸음을 옮긴다.'},
+ {type:'move',actor:'mage',towards:{marker:'split-route-a'},distance:28,duration:350,caption:'담허가 설오와 함께 지하 길을 향한다.'},
+ {type:'look',at:{marker:'split-route-b'},duration:350,caption:'휘겸과 소단은 묘역 기록실과 지상 공방으로 이어지는 길을 확인한다.'},
+ {type:'move',actor:'knight',towards:{marker:'split-route-b'},distance:36,duration:450,caption:'휘겸이 지상 기록실 쪽으로 향한다.'},
+ {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단이 휘겸을 따라 몸을 돌린다.'},
  {type:'dialogue'}
 ]});
 G.HonroStoryStaging={register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
