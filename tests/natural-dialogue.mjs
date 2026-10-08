@@ -5,6 +5,7 @@ import {appHarness,plain,report} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g,load,reload,profileThrough,click,finish,nodes}=h,J=g.HonroJourneyContent,H=g.HONRO_CONTENT,checks=[];
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
 const pageCounts=[2,3,3,2,3,3,3,2,3,3,3,3,3,4,3,3,3,3,3,3,...Array(10).fill(1)];
+pageCounts[23]=2;
 const details=[
  ['사라진 고향 사람','연목','몇 해 전','배에','뱃사공','홍만'],
  ['연목 나루','분지','장례 행렬','관을 메고','운반틀','상여','혼','짐승','바위턱','활'],
@@ -32,7 +33,7 @@ check('30 required scenes retain their IDs, paragraph counts and every source na
  for(const st of H.stages){const lines=J.interlude(st.id);assert.equal(lines.length,pageCounts[st.id-1],`stage ${st.id} page count`);assert.deepEqual(plain(J.interludeSources[st.id]),plain(st.narration));
   for(const [who,text,meta] of lines){assert(text.trim());assert.equal(meta.storyId,`rest-interlude-v1-${st.id}`);assert.equal(meta.optional,false);if(who==='서술'){assert.equal(meta.kind,'narration');assert.equal(meta.presentation,'inline');}else{assert(['설오','담허','휘겸'].includes(who));assert(!meta.kind);assert.doesNotMatch(text,/설오는|설오가|아무도 몰랐다|활을 들었다/);}}
   if(st.id<=20)for(const detail of details[st.id-1])assert(lines.map(l=>l[1]).join(' ').includes(detail),`${st.id} preserves ${detail}`);
-  else {assert(lines.every(l=>l[0]==='서술'));assert.deepEqual(plain(lines.map(l=>l[1])),plain(st.narration));}
+  else {const narration=lines.filter(l=>l[0]==='서술');assert.equal(lines.length,narration.length+(st.id===24?1:0));assert.deepEqual(plain(narration.map(l=>l[1])),plain(st.narration));if(st.id===24)assert.equal(lines.at(-1)[0],'담허');}
  }
 });
 check('30 first battlefield speeches and rest voices do not describe Seolo in third person',()=>{

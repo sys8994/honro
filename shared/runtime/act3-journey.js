@@ -38,7 +38,15 @@ const exchanges={
  }
 };
 for(const [i,row] of rows.entries()){const id=21+i,st=H.stages[id-1],[restName,variant,restDescription,map]=row;J.places.push({stageId:id,region:'강변 읍성',place:st.place,event:st.name,layer:'city',variant,restName,restDescription,map});J.interludeSources[id]=[...st.narration];}
-const interlude=id=>id>=21&&id<=30?H.stages[id-1].narration.map(text=>['서술',text,{storyId:`rest-interlude-v1-${id}`,storyTitle:H.stages[id-1].name,optional:false,kind:'narration',presentation:'inline'}]):old.interlude(id);
+const interlude=id=>{
+ if(!(id>=21&&id<=30))return old.interlude(id);
+ const meta={storyId:`rest-interlude-v1-${id}`,storyTitle:H.stages[id-1].name,optional:false};
+ const lines=H.stages[id-1].narration.map(text=>['서술',text,{...meta,kind:'narration',presentation:'inline'}]);
+ // Chapter 24 is the last existing rest before the uninterrupted split route.
+ // Append after its original page so saved scene IDs and page indices survive.
+ if(id===24)lines.push(['담허','짐꾼 말대로라면 윗길로 돌아가야겠군. 수로에 내려가기 전에 축지진목을 챙겨 두세.',{...meta}]);
+ return lines;
+};
 J.interlude=interlude;
 J.ending={stageId:30,region:'읍성 밖',place:'끊긴 옛길 입구',event:'남겨진 길',layer:'city',variant:'river',restName:'강변 쉼터',restDescription:'가져온 기록을 다시 묶었다. 강 건너 옛 운송로와 장례길은 오래전에 끊겼다. 다음 길을 살피며 잠시 머무른다.',map:[1650,930],actEnd:'셋째 막 끝',endingTitle:'기록을 품고, 옛길 앞에',nextText:'넷째 막 · 옛길과 장례길은 준비 중입니다.'};
 J.required=function(profile,id){if(id>=21&&id<=30)return H.stages[id-1].requires.every(n=>profile?.cleared?.[n])?interlude(id):[];if(id==null&&profile?.cleared?.[30])return[['설오','기록은 다 챙겼지. 끊긴 옛길을 이어 무명사로 가자. 오늘은 강가에서 잠시 쉬자.',{storyId:'rest-interlude-v1-end-30',storyTitle:J.ending.restName,optional:false}]];return old.required(profile,id);};
