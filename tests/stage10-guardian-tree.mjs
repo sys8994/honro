@@ -20,7 +20,7 @@ const historical=beforeApprovedTopology(beforeHiddenWaterworks(p,g.HONRO_CONTENT
 const preBranches=plain(p);preBranches.stages[9].terrains=beforeGuardianTerrain(preBranches.stages[9].terrains,10);
 assert.deepEqual(plain(applyGuardianBranches(preBranches)),p,'Guardian authoring changes only four exact bough polygons on all current maps');
 for(const live of historical.stages){const s=plain(live);s.terrains=beforeGuardianTerrain(s.terrains,s.metadata.stageId);const old=baseline.stages.find(v=>v.id===s.id);assert.equal(hash(Object.fromEntries(Object.entries(s).filter(([k])=>!['design','elements'].includes(k)))),old.gameplay,s.id+' only reviewed bough shapes differ; units/objectives/anchors/events/bounds/state unchanged');if(!['stage-9','stage-10'].includes(s.id)){assert.equal(hash(s.elements),old.elements,s.id+' existing scenery unchanged');assert.equal(hash(s.design),old.design,s.id+' scene design unchanged');}}
-for(const a of baseline.library)assert.equal(hash(p.library.find(v=>v.id===a.id)),a.hash,a.id+' existing asset preserved byte-for-byte');
+for(const a of baseline.library)assert.equal(hash(historical.library.find(v=>v.id===a.id)),a.hash,a.id+' existing asset preserved after the exact approved D flag reversal');
 const s=p.stages[9],tree=s.elements.find(e=>e.assetId==='act1-scene:guardian-tree');assert.deepEqual([tree.x,tree.y,tree.scale,tree.depthLayer,tree.layer],[2500,2180,1,'L1','back']);assert(!s.elements.some(e=>e.id==='a1-scene-10-upper-ritual-hall'));
 // The later exact forest composition rescales this hall; verify its original
 // guardian-era reuse after that approved path reversal.
