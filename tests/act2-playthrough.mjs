@@ -62,6 +62,8 @@ for(const id of ids){
   let nav=navigation.get(u.id);
   if(route&&!nav){nav={next:u.x<3500&&u.y>3900?4:route.reduce((best,p,i)=>Math.hypot(p.x-u.x,p.y-u.y)<best.distance?{i,distance:Math.hypot(p.x-u.x,p.y-u.y)}:best,{i:0,distance:Infinity}).i,jumpTo:null};navigation.set(u.id,nav);}
   if(u.x<3500&&u.y>3900&&nav.next>4){navigationLog.push({round:b.round,actor:u.cls,action:'return-to-west-approach',x:u.x,y:u.y});nav.next=4;nav.jumpTo=null;}
+  if(u.x>=6200&&u.x<7600&&u.y>4400&&nav.next>=26){navigationLog.push({round:b.round,actor:u.cls,action:'return-to-east-toe',x:u.x,y:u.y});nav.next=24;nav.jumpTo=null;}
+  if(u.x>4900&&u.x<5600&&u.y>4400&&nav.next<21){nav.next=21;nav.jumpTo=null;}
   let still=0;
   for(let j=0;j<650&&e.canAct()&&u.moveLeft>10;j++){
    // Stop on the route's firing support instead of walking back off its edge
@@ -73,6 +75,7 @@ for(const id of ids){
    if(reached){
     if(route&&p===route[nav.next]){
      navigationLog.push({round:b.round,actor:u.cls,waypoint:nav.next,x:u.x,y:u.y});
+     if(p.jumpTo&&u.moveLeft<e.jumpCost(u)+120)break;
      if(p.jumpTo&&e.jump(u)){nav.jumpTo={...route[nav.next+1],x:p.jumpTo.x};navigationLog.push({round:b.round,actor:u.cls,action:'planned-jump',waypoint:nav.next});}
      nav.next++;continue;
     }
@@ -80,14 +83,17 @@ for(const id of ids){
     break;
    }
     const before={x:u.x,y:u.y};
-   if(Math.abs(u.x-p.x)>10)e.move(Math.sign(p.x-u.x),1/60);
+   if(Math.abs(u.x-p.x)>(nav.jumpTo?3:10))e.move(Math.sign(p.x-u.x)*(nav.jumpTo?.35:1),1/60);
    if(route&&(still>10||Math.abs(u.x-p.x)<24&&u.y-p.y>100)&&e.grounded(u)){
     if(e.jump(u)){navigationLog.push({round:b.round,actor:u.cls,action:'jump',waypoint:nav.next,x:u.x,y:u.y});still=0;}
    }
    tick();
    if(Math.hypot(before.x-u.x,before.y-u.y)<.1){++still;}else still=0;
   }
-  for(let j=0;j<120&&!e.grounded(u)&&e.canAct();j++)tick();
+  for(let j=0;j<180&&!e.grounded(u)&&e.canAct();j++){
+   if(nav.jumpTo&&Math.abs(u.x-nav.jumpTo.x)>3)e.move(Math.sign(nav.jumpTo.x-u.x)*.35,1/60);
+   tick();
+  }
  };
  let frames=0,previous='';
  for(let turn=actions.length;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
