@@ -2,11 +2,14 @@
 // It never edits actors, enemy HP, inventory or objective state during play.
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {appHarness} from './app-regression-helpers.mjs';
 import {createHash} from 'node:crypto';
-const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
+const resumeApp=process.env.HONRO_BOT_APP_RESUME==='1'?await appHarness():null;
+const g=resumeApp?.g||await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
 const requested=process.argv.slice(2).map(Number),ids=requested.length?requested:Array.from({length:10},(_,i)=>11+i);
 const allowItems=process.env.HONRO_BOT_NO_ITEMS!=='1';
-if(process.env.HONRO_BOT_AUTHORED_ROUTE==='1'&&process.env.HONRO_BOT_RESUME==='1')throw Error('Authored-route evidence requires a fresh battle; navigation state is not resumed.');
+if(process.env.HONRO_BOT_AUTHORED_ROUTE==='1'&&process.env.HONRO_BOT_RESUME==='1'&&!resumeApp)throw Error('Authored-route checkpoint requires production App export/import/Continue.');
 const actionLimit=Number(process.env.HONRO_BOT_ACTION_LIMIT||620);
 for(const id of ids){
  const p=C.defaults();p.recruited=g.HonroStageRules.stageParty(id);
@@ -20,15 +23,26 @@ for(const id of ids){
  const canonical=g.HONRO_PROJECT.stages[id-1],space=canonical.design?.space;
  const geometryFingerprint=createHash('sha256').update(JSON.stringify({terrain:canonical.terrains,routes:canonical.routes,sites:space?.sites,units:canonical.units,materials:canonical.materials})).digest('hex');
  const checkpoint=`_local/reports/act2-revision/normal-checkpoint-${id}.json`;
- let actions=[];
+ let actions=[],resumeEvidence=null;
+ const initialHeroes=e.heroesAlive().map(u=>({cls:u.cls,level:u.level,xp:u.xp,hp:u.hp,focus:u.focus,loadout:[...u.loadout],ranks:{...u.ranks}}));
+ const initialItems={...b.items};
  if(process.env.HONRO_BOT_RESUME==='1'){
   const saved=JSON.parse(await readFile(checkpoint,'utf8'));
   if(saved.stage!==id||saved.b.honroAct2Revision!==2||saved.geometryFingerprint!==geometryFingerprint)throw Error('Checkpoint does not match current Act 2 geometry for stage '+id+'; run a fresh test instead of resuming an old clear.');
-  b=saved.b;e=new C.Engine(b,event=>events.push(event),false);app.engine=e;actions=saved.actions;
+  if(!allowItems&&saved.actions.some(a=>a.action.endsWith('-item')))throw Error('No-items resume cannot include prior item use.');
+  if(resumeApp){
+   const state=v=>JSON.parse(JSON.stringify({units:v.units.map(u=>({id:u.id,x:u.x,y:u.y,vx:u.vx,vy:u.vy,hp:u.hp,focus:u.focus,dead:u.dead,acted:u.acted,moveLeft:u.moveLeft,xp:u.xp,level:u.level})),terrain:v.terrain,items:v.items,round:v.round,phase:v.phase,side:v.side,active:v.active,honroState:v.honroState}));
+   const before=state(saved.b),a=resumeApp.load({...g.AppRegression.fresh(),...p});
+   a.engine=new C.Engine(saved.b,()=>{},false);a.stage=st;a.stageId=id;
+   a.export();const exported=await resumeApp.exported();
+   await writeFile(`_local/reports/act2-revision/normal-resume-profile-${id}.json`,JSON.stringify(exported));
+   await resumeApp.import(exported);a.continue();resumeApp.finish(a);
+   assert.deepEqual(state(a.engine.b),before,'App resume must preserve all gameplay positions, HP, focus, turns, terrain and progress');
+   app=a;e=a.engine;b=e.b;resumeEvidence={round:b.round,actions:saved.actions.length,method:'production App export/import/Continue with DOM/storage doubles',statePreserved:true};
+  }else{b=saved.b;e=new C.Engine(b,event=>events.push(event),false);app.engine=e;}
+  actions=saved.actions;
  }
  await mkdir('_local/reports/act2-revision',{recursive:true});
- const initialHeroes=e.heroesAlive().map(u=>({cls:u.cls,level:u.level,xp:u.xp,hp:u.hp,focus:u.focus,loadout:[...u.loadout],ranks:{...u.ranks}}));
- const initialItems={...b.items};
  const start=performance.now();
  app.checkMission=()=>{if(['won','lost'].includes(b.phase))return true;const failure=g.HonroAct2.failure(b);if(failure||!e.heroesAlive().length){b.phase='lost';b.winnerReason=failure||'Party defeated';return true;}if(g.HonroObjectives.state(b,st).complete){b.phase='won';return true;}return false;};
  e.checkEnd=app.checkMission;g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);g.HonroAct2.attach(app,e);
@@ -46,7 +60,7 @@ for(const id of ids){
   }
   const routeGoal=route?route.reduce((best,p,i)=>Math.hypot(p.x-x,p.y-y)<best.distance?{i,distance:Math.hypot(p.x-x,p.y-y)}:best,{i:0,distance:Infinity}).i:0;
   let nav=navigation.get(u.id);
-  if(route&&!nav){nav={next:4,jumpTo:null};navigation.set(u.id,nav);}
+  if(route&&!nav){nav={next:u.x<3500&&u.y>3900?4:route.reduce((best,p,i)=>Math.hypot(p.x-u.x,p.y-u.y)<best.distance?{i,distance:Math.hypot(p.x-u.x,p.y-u.y)}:best,{i:0,distance:Infinity}).i,jumpTo:null};navigation.set(u.id,nav);}
   if(u.x<3500&&u.y>3900&&nav.next>4){navigationLog.push({round:b.round,actor:u.cls,action:'return-to-west-approach',x:u.x,y:u.y});nav.next=4;nav.jumpTo=null;}
   let still=0;
   for(let j=0;j<650&&e.canAct()&&u.moveLeft>10;j++){
@@ -158,7 +172,7 @@ for(const id of ids){
   }
   if(!fired){defend();actions.push({round:b.round,actor:u.cls,action:'defend'});}
  }
- const row={stage:id,revision:b.honroAct2Revision,geometryFingerprint,geometryRevision:space?.geometryRevision,phase:b.phase,round:b.round,goal:g.HonroAct2.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,navigationMode:route?'authored normal-input route':'legacy x-only',navigationLog,initialHeroes,initialItems,policy:{allowItems,difficulty:p.settings?.difficulty??p.difficulty,entryLevel:g.HonroProgression.plan(id).entryLevel,autoTrain:true,occultistLoadout:p.loadouts.occultist},items:{...b.items},heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,x:u.x,y:u.y})),actions};rows.push(row);
+ const row={stage:id,revision:b.honroAct2Revision,geometryFingerprint,geometryRevision:space?.geometryRevision,phase:b.phase,round:b.round,goal:g.HonroAct2.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,navigationMode:route?'authored normal-input route':'legacy x-only',navigationLog,initialHeroes,initialItems,resumeEvidence,policy:{allowItems,difficulty:p.settings?.difficulty??p.difficulty,entryLevel:g.HonroProgression.plan(id).entryLevel,autoTrain:true,occultistLoadout:p.loadouts.occultist},items:{...b.items},heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,x:u.x,y:u.y})),actions};rows.push(row);
  console.log('RESULT',JSON.stringify({...row,actions:actions.length}));
  await writeFile(checkpoint,JSON.stringify({stage:id,geometryFingerprint,b,actions}));
  await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile(`_local/reports/act2-revision/normal-play-${id}.json`,JSON.stringify(row,null,2));
