@@ -6,7 +6,7 @@ import {LOCATION_ENCOUNTERS} from '../tools/map-forge/act3-location-encounters.m
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,clone=x=>JSON.parse(JSON.stringify(x)),rows=[];
 const authored=g.HONRO_PROJECT,again=clone(authored);applyEncounters(g,again);assert.deepEqual(again,clone(authored),'authoring is deterministic and does not scatter actors');
 for(let id=21;id<=30;id++){
- const s=authored.stages[id-1],plan=s.design.act3.encounterPlan,expected=(s.design.act3.locationRevision===1?LOCATION_ENCOUNTERS:ENCOUNTERS)[id],active=[25,26].includes(id)&&s.design.act3.locationRevision===1?2:3,{b,st}=battlefield(g,id),e=b.units.filter(u=>u.side===1),xs=e.map(u=>u.x).sort((a,b)=>a-b),gaps=xs.slice(1).map((x,i)=>x-xs[i]);
+ const s=authored.stages[id-1],plan=s.design.act3.encounterPlan,expected=plan.version===2?plan.groups:(s.design.act3.locationRevision===1?LOCATION_ENCOUNTERS:ENCOUNTERS)[id],active=plan.version===2?plan.activeLimit:[25,26].includes(id)&&s.design.act3.locationRevision===1?2:3,{b,st}=battlefield(g,id),e=b.units.filter(u=>u.side===1),xs=e.map(u=>u.x).sort((a,b)=>a-b),gaps=xs.slice(1).map((x,i)=>x-xs[i]);
  assert.equal(e.length,plan.initial);assert.equal(e.filter(u=>u.elite).length,plan.elites);assert.equal(e.filter(u=>u.honroAct3Elite).length,plan.elites);
  assert.equal(s.encounters.length,expected.length);assert.equal(new Set(e.map(u=>u.group)).size,expected.length);assert.equal(b.enemyLimit,active);
  assert.equal(e.length,expected.reduce((n,q)=>n+q.members.length,0));assert.equal(plan.elites,expected.reduce((n,q)=>n+q.members.filter(u=>u.elite).length,0));assert.equal(g.HONRO_BALANCE.stages[id-1].initialEnemies,e.length);assert.equal(g.HONRO_BALANCE.stages[id-1].activeEnemies,active);
@@ -23,5 +23,5 @@ for(let id=21;id<=30;id++){
  const wave=(st.steps||[]).reduce((n,q)=>n+(q.wave?.count||0),0);rows.push({id,name:st.name,initial:e.length,elite:plan.elites,groups:s.encounters.length,reinforcements:wave,active:b.enemyLimit,maxGap:Math.max(...gaps),minGap:Math.min(...gaps),gaps,difficulty,limits,poses});console.log('PASS',id,e.length,'enemies',plan.elites,'elites',s.encounters.length,'groups');
 }
 // Only the reviewed investigation stages use two-person fresh parties.
-for(const r of rows)assert.deepEqual(Array.from(g.HonroStageRules.stageParty(r.id)).sort(),(r.id===25?['knight','mage']:r.id===26?['archer','occultist']:['archer','mage','knight','occultist']).sort());
+for(const r of rows)assert.deepEqual(Array.from(g.HonroStageRules.stageParty(r.id)).sort(),([25,27].includes(r.id)?['archer','mage']:r.id===26?['knight','occultist']:['archer','mage','knight','occultist']).sort());
 await mkdir('_local/reports/act3-encounters',{recursive:true});await writeFile('_local/reports/act3-encounters/after.json',JSON.stringify({scope:'Actual compiled campaign battles across five difficulties; deterministic positions, roles, elites, body support, separation, difficulty and save idempotence. Not normal combat completion or browser evidence.',rows},null,2));

@@ -85,14 +85,15 @@ export const ENCOUNTERS={
  ]};
 function routeY(s,x){const route=s.design.act3.primaryContour?.map(([x,y])=>({x,y}))||s.design.act3.requiredRoute;for(let i=1;i<route.length;i++)if(x<=route[i].x){const a=route[i-1],b=route[i],t=(x-a.x)/(b.x-a.x||1);return a.y+(b.y-a.y)*t;}return route.at(-1).y;}
 export function authorEncounters(g,p,s){
- const location=s.design.act3.locationRevision===1,plan=(location?LOCATION_ENCOUNTERS:ENCOUNTERS)[s.metadata.stageId];if(!plan)return;
+ const waterworks=s.design.act3.encounterPlan?.version===2,location=s.design.act3.locationRevision===1,plan=waterworks?s.design.act3.encounterPlan.groups:(location?LOCATION_ENCOUNTERS:ENCOUNTERS)[s.metadata.stageId];if(!plan)return;
  const ts=g.HonroMaps.compile(s,p).terrain.filter(t=>!t.honroAct3Target&&!t.honroAct3Gate);
  s.units=s.units.filter(u=>u.team!=='enemy');s.encounters=[];
  for(const q of plan){const ids=[];for(const [i,row] of q.members.entries()){
   const ref=row.y??routeY(s,row.x),spot=support(g,ts,row.x,ref);if(!spot||Math.abs(spot.y-ref)>145)throw Error(`${s.id}/${q.id}/${i}: invalid authored support (${ref} -> ${spot?.y})`);
-  const id=`a3-${s.metadata.stageId}-${q.id}-${i}`,kind=row.kind==='ghost'&&[22,24].includes(s.metadata.stageId)?'archiveFiend':row.kind==='picks'&&[26,30].includes(s.metadata.stageId)?'kilnFiend':row.kind;if(g.HonroWorld.archetypes[kind]?.flying)spot.y-=32;ids.push(id);s.units.push({id,kind,team:'enemy',x:spot.x,y:spot.y,facing:-1,spawnIndex:s.units.filter(u=>u.team==='enemy').length,behavior:'patrol',encounterGroup:q.id,stageOverrides:{honroCohort:q.id,honroAct3Encounter:1,honroAct3Elite:row.elite,honroEncounterRole:row.role,honroEncounterSupport:spot.support}});
+  const id=`a3-${s.metadata.stageId}-${q.id}-${i}`,kind=!waterworks&&row.kind==='ghost'&&[22,24].includes(s.metadata.stageId)?'archiveFiend':!waterworks&&row.kind==='picks'&&[26,30].includes(s.metadata.stageId)?'kilnFiend':row.kind;if(g.HonroWorld.archetypes[kind]?.flying)spot.y-=32;ids.push(id);s.units.push({id,kind,team:'enemy',x:spot.x,y:spot.y,facing:-1,spawnIndex:s.units.filter(u=>u.team==='enemy').length,behavior:'patrol',encounterGroup:q.id,stageOverrides:{honroCohort:q.id,honroAct3Encounter:1,honroAct3Elite:row.elite,honroEncounterRole:row.role,honroEncounterSupport:spot.support}});
  }s.encounters.push({id:q.id,key:q.id,behavior:'patrol',unitIds:ids});}
  s.initialState.honroAct3EncounterRevision=1;
+ if(waterworks){s.initialState.honroActiveLimit=[25,26,27].includes(s.metadata.stageId)?2:3;s.design.act3.encounterPlan={version:2,groups:plan,activeLimit:s.initialState.honroActiveLimit,initial:plan.reduce((n,q)=>n+q.members.length,0),elites:plan.reduce((n,q)=>n+q.members.filter(u=>u.elite).length,0)};return;}
  if(location&&[25,26].includes(s.metadata.stageId))s.initialState.honroActiveLimit=2;
  s.design.act3.encounterPlan={version:1,groups:plan.map(q=>({id:q.id,purpose:q.purpose,anchor:q.anchor})),initial:plan.reduce((n,q)=>n+q.members.length,0),elites:plan.reduce((n,q)=>n+q.members.filter(u=>u.elite).length,0),activeLimit:location&&[25,26].includes(s.metadata.stageId)?2:3,scope:location?'Approved location-specific groups; 25/26 authored for two heroes with staggered sightlines. Normal continuous balance remains a required check.':'Four-person baseline. Re-author these spaces if approved team split or terrain changes. Existing objectives, wave counts and live saves remain unchanged.'};
  authorReinforcements(s);
