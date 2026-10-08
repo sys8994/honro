@@ -72,15 +72,20 @@ function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)retur
 for(const id of [12,15,20,21,22,23,27])for(const row of H.stages[id-1].story||[])if(row[2]?.focus==='seal')row[2].focus='interact';
 if(!H.stages[26].hiddenWaterworks)for(const row of H.stages[26].story){if(row[0]==='휘겸')row[2]={...row[2],focus:'fire-screen'};if(row[0]==='설오')row[2]={...row[2],focus:'water-release'};}
 function active(b){return !b?.honroCustom&&b?.honroObjectiveRevision>=REVISION;}
-function contentFor(b,st){if(b?.honroSplit?.version===1||b&&!b.honroWaterworksRevision){const old=G.HONRO_SPLIT_V1?.content.find(q=>q.id===b.honroStage);if(old)return old;}return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
+const historicalWaterworks=b=>[25,27].includes(b?.honroStage)&&b.honroWaterworksRevision>0&&b.honroWaterworksRevision<3?G.HONRO_WATERWORKS_V2?.content.find(q=>q.id===b.honroStage):null;
+function contentFor(b,st){if(b?.honroSplit?.version===1||b&&!b.honroWaterworksRevision){const old=G.HONRO_SPLIT_V1?.content.find(q=>q.id===b.honroStage);if(old)return old;}const waterworks=historicalWaterworks(b);if(waterworks)return waterworks;return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
 function storedSteps(b,act){return contentFor(b,H.stages[b.honroStage-1]).steps||[];}
 function author(project,options={}){
  const p={...project,stages:project.stages.map(original=>{
   const id=original.metadata?.stageId;if(!original.metadata?.campaign||id<Math.max(11,options.minStage||11)||id>(options.maxStage||30)||!H.stages[id-1])return original;
   if(!options.force&&original.initialState?.honroObjectiveRevision>=REVISION)return original;
   const map=clone(original),waterworks=!!original.initialState?.honroWaterworksRevision,st=!waterworks&&H.stages[id-1].hiddenWaterworks?(G.HONRO_SPLIT_V1?.content.find(s=>s.id===id)||H.stages[id-1]):H.stages[id-1];
-  // v2 maps own their new topology and controls. Synchronize current objectives
-  // without replaying the older device removals or chapter-27 marker ordering.
+  // Saved horizontal waterworks own their ordered goals and authored labels.
+  // A force-author pass must not mix current vertical goals into old geometry.
+  const historic=historicalWaterworks({honroStage:id,honroWaterworksRevision:original.initialState?.honroWaterworksRevision});
+  if(historic){map.initialState.honroObjectiveRevision=REVISION;map.initialState.honroAct3Steps??=clone(historic.steps);return map;}
+  // Current waterworks maps own their topology and controls; do not replay
+  // older device removals or chapter-27 marker ordering.
   if(waterworks){
    map.initialState.honroObjectiveRevision=REVISION;map.initialState.honroAct3Steps=clone(st.steps);
    for(const s of st.steps||[]){const m=map.markers.find(m=>m.id===s.id||m.id==='marker-'+s.id);if(!m)continue;m.label=s.label;if(['interact','rescue'].includes(s.kind))m.action='act3';if(s.requiredClass)m.requiredClass=s.requiredClass;else delete m.requiredClass;}

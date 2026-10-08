@@ -1657,3 +1657,8 @@ Both Act 2 recipe audits now invoke the same vector/scene, forest, cavern-place 
 - v3 지도에서는 출발범위/지정착지의 발사·E 거절과 빗나감/만료 자동복귀를 없앴다. 실제 접지 도착을 동행별로 기록해 둘의 공통 도착까지 traversal marker를 열고 문서 목표는 그대로 남긴다. 같은 착지영역에 두 동행이 접지해 있을 때만 안전 체크포인트를 갱신한다. 분리 탐색 후 죽으면 그 안전 지점에 대응하는 순서/도착 기록까지 복원하며 이미 얻은 XP와 현재지형 캐시 무효화는 보존한다. v2 옛 지도 계약은 별도 유지한다.
 - `stake-crossing-flexible`8묶음과 기존 runtime9/preparation7 통과. 진목과 빈칸이 함께 있으면 사용자 명시 우선순위에 따라 진목을 먼저 교체하는 회귀를 추가했다.
 - `npm run verify`는 build/typecheck 및 game Node 검사들을 통과한 뒤 rc20-browser의 Chromium socket 제한에서 중단됐다. 전체 verify·브라우저·성능 통과가 아니다. 같은 실행 경로를 더 반복하지 않는다.
+
+## v2 수로 목표 원본 동결 — 2026-10-08
+
+- 강제 author가 옛 v2 수로의 저장 목표를 최신 수직 목표로 덮을 수 있었다. 9032b3c의25/27 content를 별도 동결하고 물길 revision1/2 지도에는 기존 단계·marker·지형을 그대로 보존한다. 단계가 빠진 오래된 자료만 그 동결 steps로 복구한다. 저장 전투의 guide/content fallback도 같은 버전을 사용한다. 새 revision3만 현재 저작 목표로 갱신한다.
+- `waterworks-v2-source`는 현재 콘텐츠를 의도적으로 바꾼 상태에서 옛 목표/label/terrain 정확성·원본 불변·누락 단계 fallback·v3 갱신을25/27 각각 검증했다. 기존 objective-author-versioned 및 v2 App전환/저장6묶음도 통과했다.
