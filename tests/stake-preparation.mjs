@@ -5,8 +5,8 @@ import {appHarness,plain,report} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g}=h,C=g.HONRO_CORE,P=g.HonroStakeCrossing,checks=[];
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
 function raw(loadout,ranks={}){const u={id:'mage',side:0,cls:'mage',loadout:[...loadout],ranks:{...ranks}},b={honroStage:25,honroMap:{act3:{crossings:[{}]}},units:[u],honroSplit:{version:2}};return {u,b};}
-check('Empty slot first, then first real stake branch, then first equipped slot',()=>{
- for(const [before,after]of [[['M01','M06'],['M01','M06','M09']],[['M01',null,'M07','M06'],['M01','M09','M07','M06']],[['M01','M06','M10','M07'],['M01','M06','M09','M07']],[['M01','M08','M07','M10'],['M01','M09','M07','M10']],[['M01','M06','M03','M02'],['M09','M06','M03','M02']]]){const {b,u}=raw(before);P.prepare(b);assert.deepEqual(plain(u.loadout),after);assert.deepEqual(plain(b.honroStakeLoadout.originalLoadout),before);assert.equal(u.ranks.M09,undefined);}
+check('First real stake branch, then empty slot, then first equipped slot',()=>{
+ for(const [before,after]of [[['M01','M07'],['M01','M09']],[['M01','M06'],['M01','M06','M09']],[['M01',null,'M07','M06'],['M01',null,'M09','M06']],[['M01','M06','M10','M07'],['M01','M06','M09','M07']],[['M01','M08','M07','M10'],['M01','M09','M07','M10']],[['M01','M06','M03','M02'],['M09','M06','M03','M02']]]){const {b,u}=raw(before);P.prepare(b);assert.deepEqual(plain(u.loadout),after);assert.deepEqual(plain(b.honroStakeLoadout.originalLoadout),before);assert.equal(u.ranks.M09,undefined);}
 });
 check('Manual M09 keeps its slot and rank, without replacement narration',()=>{for(const rank of [0,1,8]){const {b,u}=raw(['M01','M09','M07','M06'],{M09:rank});P.prepare(b);assert.deepEqual(plain(u.loadout),['M01','M09','M07','M06']);assert.equal(u.ranks.M09,rank);assert.equal(b.honroStakeLoadout,undefined);assert.deepEqual(plain(P.preparationLines(b)),[]);}});
 function entry(id=25,p=h.profileThrough(id-1)){const app=h.load(p);app.launch(id);h.finish(app);app.turnNotice=null;return app;}
