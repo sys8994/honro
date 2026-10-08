@@ -1,10 +1,11 @@
 import './cavern-expansion-history.mjs';
 import assert from 'node:assert/strict';
 import {beforeCavernExpansion} from './cavern-expansion-history-helpers.mjs';
+import {beforeOpenAct1Structures} from './open-structure-history-helpers.mjs';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {beforeForestCavernTopology,forestCavernHistoryDelta as delta} from './forest-cavern-history-helpers.mjs';
-const p=beforeCavernExpansion(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),snapshot=JSON.stringify(p),hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const p=beforeCavernExpansion(beforeOpenAct1Structures(JSON.parse(readFileSync('shared/data/campaign.json','utf8')))),snapshot=JSON.stringify(p),hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const prior=beforeForestCavernTopology(p),targets=new Set(delta.hashes.map(r=>r.stage));
 function frozen(project){const old=beforeForestCavernTopology(project);for(const row of delta.hashes)assert.equal(hash(old.stages.find(s=>s.metadata.stageId===row.stage)),row.beforeSha256,'Complete pre-authoring stage '+row.stage);return old;}
 frozen(p);assert.equal(JSON.stringify(p),snapshot,'Pure projection leaves source untouched');

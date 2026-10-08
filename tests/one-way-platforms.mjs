@@ -18,7 +18,7 @@ for(const st of current.stages.filter(st=>st.metadata.stageId<=20)){
  const compiled=g.HonroMaps.compile(st,current);
  for(const t of st.terrains){const live=compiled.terrain.find(v=>v.id===t.id),world=compiled.worldTerrain?.find(v=>v.id===t.id);assert.equal(live.oneWay,!!t.oneWay,t.id+' authoring flag preserved');if(world)assert.equal(world.oneWay,live.oneWay,t.id+' world/collision mode');if(t.properties?.honroCeiling)assert.equal(live.oneWay,false,t.id+' cave ceiling stays solid');audit.push({stage:st.metadata.stageId,id:t.id,oneWay:live.oneWay,ceiling:!!live.honroCeiling});}
 }
-for(const [stage,ids] of [[5,['waterfall-roof']],[7,['hollow-roof']]])for(const id of ids)assert.equal(current.stages[stage-1].terrains.find(t=>t.id===id).oneWay,false);
+for(const [stage,ids] of [[5,['waterfall-roof']],[7,['hollow-roof']]])for(const id of ids)assert.equal(current.stages[stage-1].terrains.find(t=>t.id===id).oneWay,true,id+' explicitly reviewed open protrusion');
 for(const r of fixtures)for(const cls of ['archer','mage','knight','occultist'])for(const fixed of [false,true]){
  g.HONRO_PROJECT=fixed?current:previous;const {b,e}=battlefield(g,r.stage),u=structuredClone(party.find(u=>u.cls===cls)),floor=b.terrain.find(t=>t.id===r.floor);
  Object.assign(u,{x:r.start,y:C.topAt(floor,r.start),vx:0,vy:0,acted:false});b.units=[u];b.active=u.id;b.phase='aim';b.side=0;e.checkEnd=()=>false;

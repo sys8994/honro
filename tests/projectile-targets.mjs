@@ -9,13 +9,13 @@ for(let id=1;id<=30;id++){
   const special=id===8&&['bier-knot-0','bier-knot-1'].includes(target.id);
   assert.equal(!!target.oneWay,special,`${id}/${target.id}: unexpected one-way objective target`);
   const x=target.x+target.w/2,top=C.topAt(target,x),overhead=[];
-  for(const t of b.terrain.filter(t=>t!==target&&!t.broken&&!t.oneWay)){const pts=C.poly(t),ys=[];for(let i=0;i<pts.length;i++){const a=pts[i],z=pts[(i+1)%pts.length];if(a.x===z.x||x<Math.min(a.x,z.x)||x>Math.max(a.x,z.x))continue;ys.push(a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x));}const underside=Math.max(...ys);if(Number.isFinite(underside)&&underside<top)overhead.push({id:t.id,gap:top-underside});}
+  for(const t of b.terrain.filter(t=>t!==target&&!t.broken&&(!t.oneWay||id===5&&t.id==='waterfall-roof'))){const pts=C.poly(t),ys=[];for(let i=0;i<pts.length;i++){const a=pts[i],z=pts[(i+1)%pts.length];if(a.x===z.x||x<Math.min(a.x,z.x)||x>Math.max(a.x,z.x))continue;ys.push(a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x));}const underside=Math.max(...ys);if(Number.isFinite(underside)&&underside<top)overhead.push({id:t.id,gap:top-underside,oneWay:!!t.oneWay});}
   rows.push({stage:id,id:target.id,oneWay:!!target.oneWay,overhead,role:destroyIds.includes(target.id)?steps.find(s=>s.id===target.id).label:id===5?'절벽 틈의 고리쇠':id===8?'상여 결박':'파괴 장치'});
  }
 }
 assert.deepEqual(rows.map(t=>[t.stage,t.id]),[[5,'cliff-cleat'],[8,'bier-knot-0'],[8,'bier-knot-1'],[18,'upper-chain']],'The four remaining required attack devices stay explicit across all 30 chapters');
 assert.deepEqual(rows.filter(t=>t.oneWay).map(t=>t.id),['bier-knot-0','bier-knot-1']);
-const roof=rows.find(t=>t.id==='cliff-cleat').overhead.find(t=>t.id==='waterfall-roof');assert(roof&&roof.gap>40&&roof.gap<45,'The ring hangs just below the sloped rock ceiling, with its existing side-shot window');
+const roof=rows.find(t=>t.id==='cliff-cleat').overhead.find(t=>t.id==='waterfall-roof');assert(roof&&roof.oneWay&&roof.gap>40&&roof.gap<45,'The ring retains its exact gap below the reviewed open overhang and stays a solid attack device');
 const before=JSON.parse(await readFile('tests/fixtures/projectile-target-solids.json','utf8')),current=g.HONRO_PROJECT.stages[4].terrains.find(t=>t.id==='cliff-cleat');
 assert.deepEqual(JSON.parse(JSON.stringify({...current,oneWay:true})),before.target,'Exactly one canonical flag changed, with all art/shape/HP preserved');
 const shots=[];

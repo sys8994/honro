@@ -18,7 +18,11 @@ function reverse(target,row){
  target.oneWay=row.before.oneWay;
  if(row.before.properties){
   assert.deepEqual(Object.keys(target.properties||{}),row.propertyKeysAfter,label+' property keys');
-  for(const key of Object.keys(row.before.properties))assert(!Object.hasOwn(target.properties,key),label+' removed '+key);
+  for(const key of Object.keys(row.before.properties)){
+   const retained=Object.hasOwn(row.after.properties||{},key);
+   assert.equal(Object.hasOwn(target.properties,key),retained,label+' property presence '+key);
+   if(retained)assert.deepEqual(target.properties[key],row.after.properties[key],label+' property value '+key);
+  }
   const values={...target.properties,...row.before.properties};
   target.properties=Object.fromEntries(row.propertyKeysBefore.map(key=>[key,values[key]]));
  }
@@ -38,6 +42,17 @@ export function beforeOpenStructures(project){
    const instance=unique(stage.elements,row.elementId,label+' instance');assert.equal(instance.assetId,row.id,label+' asset binding');
    reverse(unique(out.library,row.id,label),row);
   }else{assert.equal(row.kind,'terrain',label+' kind');reverse(unique(stage.terrains,row.id,label),row);}
+ }
+ return out;
+}
+// The Act1 topology history has no Library dependency and is also used with
+// Act1/2-only projects. This narrow entry point reverses just the two reviewed
+// protrusions; callers already projected by beforeOpenStructures must opt out.
+export function beforeOpenAct1Structures(project){
+ const out=plain(project);
+ for(const row of openStructureHistoryDelta.rows.filter(r=>r.kind==='terrain'&&r.stage<=10)){
+  const label='Exact approved open structure Act1 '+row.stage+'/'+row.id,stages=out.stages.filter(s=>s.metadata?.stageId===row.stage);
+  assert.equal(stages.length,1,label+' unique stage');reverse(unique(stages[0].terrains,row.id,label),row);
  }
  return out;
 }

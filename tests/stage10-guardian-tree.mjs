@@ -14,7 +14,7 @@ const plain=v=>JSON.parse(JSON.stringify(v)),hash=v=>createHash('sha256').update
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,p=plain(g.HONRO_PROJECT),baseline=JSON.parse(await readFile('tests/fixtures/stage10-guardian-baseline.json'));
 // Later approved forest/cavern and waterworks revisions have independent exact
 // or semantic guards; keep the original guardian golden hashes unchanged.
-const historical=beforeApprovedTopology(beforeHiddenWaterworks(p,g.HONRO_CONTENT,g.HONRO_BALANCE).project);
+const historical=beforeApprovedTopology(beforeHiddenWaterworks(p,g.HONRO_CONTENT,g.HONRO_BALANCE).project,{openStructures:false});
 // Author the four original boughs on TODAY'S complete project. Every other
 // stage, field, asset and current waterworks geometry must remain byte-identical.
 const preBranches=plain(p);preBranches.stages[9].terrains=beforeGuardianTerrain(preBranches.stages[9].terrains,10);

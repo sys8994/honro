@@ -1,7 +1,7 @@
 {
   "sourceCommit": "c0b3124b585984b6e933dd7511c4e1e03bdb5f83",
   "beforeProjectSha256": "e38504406fd3303b16dd31bfd1ddb8f7127f8ced0458e722a1626c02dc3ee2e7",
-  "afterProjectSha256": "e3020fcb81e7e6bfa9fa36d924b557a8718a765ee7ee01189732aa3ac85fd722",
+  "afterProjectSha256": "a681e58d5cc838589f9a7f16a4a380aad3865ee8c45720e655e573b63017ccd6",
   "beforeLibrarySha256": "d5baa34952000d79dcb308866155d59f7820fec41f98057274442cfb9757d186",
   "afterLibrarySha256": "957403d98a38a69a3832bcb6a7d28a383b26ef8fb378a79898cc97002352c94a",
   "rows": [
@@ -860,6 +860,122 @@
       "after": {
         "oneWay": true
       }
+    },
+    {
+      "stage": 5,
+      "kind": "terrain",
+      "id": "waterfall-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "rock",
+          "artSeed": 1
+        }
+      },
+      "after": {
+        "oneWay": true,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "rock",
+          "artSeed": 1
+        }
+      },
+      "propertyKeysBefore": [
+        "hp",
+        "maxHp",
+        "route",
+        "surfaceKind",
+        "artSeed"
+      ],
+      "propertyKeysAfter": [
+        "hp",
+        "maxHp",
+        "route",
+        "surfaceKind",
+        "artSeed"
+      ]
+    },
+    {
+      "stage": 7,
+      "kind": "terrain",
+      "id": "hollow-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "wood",
+          "artSeed": 1
+        }
+      },
+      "after": {
+        "oneWay": true,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "wood",
+          "artSeed": 1
+        }
+      },
+      "propertyKeysBefore": [
+        "hp",
+        "maxHp",
+        "route",
+        "surfaceKind",
+        "artSeed"
+      ],
+      "propertyKeysAfter": [
+        "hp",
+        "maxHp",
+        "route",
+        "surfaceKind",
+        "artSeed"
+      ]
+    },
+    {
+      "stage": 26,
+      "kind": "terrain",
+      "id": "burial-record-earth-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "honroCeiling": true
+        }
+      },
+      "after": {
+        "oneWay": true
+      },
+      "propertyKeysBefore": [
+        "honroCeiling"
+      ],
+      "propertyKeysAfter": []
+    },
+    {
+      "stage": 29,
+      "kind": "terrain",
+      "id": "sluice-stone-ceiling",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "honroCeiling": true,
+          "honroLocationCeiling": true
+        }
+      },
+      "after": {
+        "oneWay": true
+      },
+      "propertyKeysBefore": [
+        "honroCeiling",
+        "honroLocationCeiling"
+      ],
+      "propertyKeysAfter": []
     }
   ]
 }
