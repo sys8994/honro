@@ -19,5 +19,5 @@ for(const id of [14,16])for(const mutate of [
  s=>s.design.space.routes.find(r=>r.id==='main').anchors.reverse(),
  s=>s.design.space.routes.push({id:'unapproved-route',kind:'optional-jump',anchors:[]}),
  s=>s.design.space.routes.find(r=>r.id==='main').playerStepOff=!s.design.space.routes.find(r=>r.id==='main').playerStepOff
-]){const q=structuredClone(lean);mutate(q.stages.find(s=>s.metadata.stageId===id));assert.throws(()=>assertReviewedRouteModes(q),/Exact approved layered cavern/,'Reject unreviewed layered cavern path/terrain '+id);}
+]){const q=structuredClone(lean);mutate(q.stages.find(s=>s.metadata.stageId===id));assert.throws(()=>assertReviewedRouteModes(q),/Exact approved (?:layered cavern|cavern expansion)/,'Reject unreviewed layered cavern path/terrain '+id);}
 console.log('PASS exact 14/15/16 route modes, seven unrelated jump negatives, six false/missing flags and ten geometry/path mutation negatives');

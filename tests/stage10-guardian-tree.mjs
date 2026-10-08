@@ -1,3 +1,6 @@
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
+import {beforeHiddenWaterworks} from './act3-fiend-contract-helpers.mjs';
+import {applyGuardianBranches} from '../tools/map-forge/stage10-guardian-tree.mjs';
 import {beforeGuardianTerrain,guardianTerrainDelta} from './guardian-terrain-history-helpers.mjs';
 // Canonical-source, actual Engine input and save-compatibility evidence.
 // No normal-combat clear, browser-input or human art approval is implied.
@@ -9,10 +12,19 @@ import {applyAct1SceneComposition} from '../tools/environment/act1-scene-composi
 import {beforeGuardianStory,guardianStoryDelta} from './guardian-tree-history-helpers.mjs';
 const plain=v=>JSON.parse(JSON.stringify(v)),hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,p=plain(g.HONRO_PROJECT),baseline=JSON.parse(await readFile('tests/fixtures/stage10-guardian-baseline.json'));
-for(const live of p.stages){const s=plain(live);s.terrains=beforeGuardianTerrain(s.terrains,s.metadata.stageId);const old=baseline.stages.find(v=>v.id===s.id);assert.equal(hash(Object.fromEntries(Object.entries(s).filter(([k])=>!['design','elements'].includes(k)))),old.gameplay,s.id+' only reviewed bough shapes differ; units/objectives/anchors/events/bounds/state unchanged');if(!['stage-9','stage-10'].includes(s.id)){assert.equal(hash(s.elements),old.elements,s.id+' existing scenery unchanged');assert.equal(hash(s.design),old.design,s.id+' scene design unchanged');}}
+// Later approved forest/cavern and waterworks revisions have independent exact
+// or semantic guards; keep the original guardian golden hashes unchanged.
+const historical=beforeApprovedTopology(beforeHiddenWaterworks(p,g.HONRO_CONTENT,g.HONRO_BALANCE).project);
+// Author the four original boughs on TODAY'S complete project. Every other
+// stage, field, asset and current waterworks geometry must remain byte-identical.
+const preBranches=plain(p);preBranches.stages[9].terrains=beforeGuardianTerrain(preBranches.stages[9].terrains,10);
+assert.deepEqual(plain(applyGuardianBranches(preBranches)),p,'Guardian authoring changes only four exact bough polygons on all current maps');
+for(const live of historical.stages){const s=plain(live);s.terrains=beforeGuardianTerrain(s.terrains,s.metadata.stageId);const old=baseline.stages.find(v=>v.id===s.id);assert.equal(hash(Object.fromEntries(Object.entries(s).filter(([k])=>!['design','elements'].includes(k)))),old.gameplay,s.id+' only reviewed bough shapes differ; units/objectives/anchors/events/bounds/state unchanged');if(!['stage-9','stage-10'].includes(s.id)){assert.equal(hash(s.elements),old.elements,s.id+' existing scenery unchanged');assert.equal(hash(s.design),old.design,s.id+' scene design unchanged');}}
 for(const a of baseline.library)assert.equal(hash(p.library.find(v=>v.id===a.id)),a.hash,a.id+' existing asset preserved byte-for-byte');
 const s=p.stages[9],tree=s.elements.find(e=>e.assetId==='act1-scene:guardian-tree');assert.deepEqual([tree.x,tree.y,tree.scale,tree.depthLayer,tree.layer],[2500,2180,1,'L1','back']);assert(!s.elements.some(e=>e.id==='a1-scene-10-upper-ritual-hall'));
-const hall=p.stages[8].elements.find(e=>e.id==='a1-scene-9-east-hall');assert.equal(hall.assetId,'act1-scene:ritual-hall');assert.equal(hall.scale,1.25);assert.equal(p.library.find(a=>a.id===hall.assetId).collision.length,0,'Reused hall never changes paths or actor collision');
+// The later exact forest composition rescales this hall; verify its original
+// guardian-era reuse after that approved path reversal.
+const hall=historical.stages[8].elements.find(e=>e.id==='a1-scene-9-east-hall');assert.equal(hall.assetId,'act1-scene:ritual-hall');assert.equal(hall.scale,1.25);assert.equal(p.library.find(a=>a.id===hall.assetId).collision.length,0,'Reused hall never changes paths or actor collision');
 assert.deepEqual(plain(await applyAct1SceneComposition(plain(p))),p,'Authoring regenerates the exact canonical project');
 assert.deepEqual(plain(g.HonroMaps.normalize(JSON.parse(g.HonroMaps.serialize(p)))),p,'Workshop save/reload keeps guardian metadata');
 const before=JSON.parse(await readFile('tests/fixtures/act1-spatial-legacy-save-10.json'));assert.equal(before.b.honroMap?.act1Scene?.guardianTree,undefined);const oldTerrain=JSON.stringify(before.b.terrain);g.HonroStageRules.sanitizeStageBattle(before.b);assert.equal(JSON.stringify(before.b.terrain),oldTerrain,'Existing stage10 saves retain every old surface');
