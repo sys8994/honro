@@ -1,3 +1,8 @@
+import {applyAct2VectorArt} from '../tools/environment/build-act2-art.mjs';
+import {applyCavernPlaceLayers} from '../tools/map-forge/cavern-place-layers.mjs';
+import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
+import {createHash} from 'node:crypto';
+const stable=v=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable(v[k])])):v;
 import {applyForestCavernTopology} from '../tools/map-forge/forest-cavern-topology.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {act12Project} from './campaign-scope-helpers.mjs';
@@ -20,9 +25,12 @@ check('30 canonical maps retain independent Act 2 objectives and four companions
  for(let id=11;id<=20;id++){const {b,e,st}=fixture(id);assert.equal(e.heroesAlive().length,4);assert.deepEqual(plain(st.requires),[id-1]);assert(!g.HonroObjectives.state(b,st).complete);assert(g.HonroAct2.entry({stage:st}).length<=8);assert(b.units.every(u=>Number.isFinite(u.attack)&&Number.isFinite(u.hp)));assert.equal(g.HonroDifficulty.audit(st,b).issues.length,0);}
 });
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
-const regeneratedAct2=g.HonroMaps.finalize(applyForestCavernTopology(await applyAct2SceneComposition(g.HonroAct2Design.build(act12Project(g.HONRO_PROJECT))),{stages:[15]}));
+const regeneratedAct2=g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(act12Project(g.HONRO_PROJECT)))),{stages:[15]}))));
 check('Act 2 recipe is deterministic and preserves the existing ten maps',()=>{
- const authored=regeneratedAct2;assert.deepEqual(plain(authored),plain(act12Project(g.HONRO_PROJECT)));assert.deepEqual(plain(g.HonroMaps.normalize(authored)),plain(authored));
+ const authored=regeneratedAct2,expected=plain(act12Project(g.HONRO_PROJECT)),digest=x=>createHash('sha256').update(JSON.stringify(stable(x))).digest('hex');
+ // Bound assertion output before the full comparison of the large asset graph.
+ for(const stage of authored.stages)assert.equal(digest(stage),digest(expected.stages.find(s=>s.id===stage.id)),stage.id+' canonical recipe including reviewed cavern postprocessors');
+ assert.equal(digest(authored.library),digest(expected.library),'canonical recipe library');assert.deepEqual(plain(authored),expected);assert.deepEqual(plain(g.HonroMaps.normalize(authored)),plain(authored));
 });
 check('Recruit repairs old Act 1 completion without changing skills, XP or Act 1 roster',()=>{
  const p=C.defaults();p.cleared[10]={rounds:20};p.recruited=['archer','mage','knight'];p.heroes.archer.xp=C.xpAtLevel(12);const old=plain(p.heroes.archer);g.HonroAct2.recruit(p);assert(p.recruited.includes('occultist'));assert(C.levelOf(p.heroes.occultist)>=12);assert.deepEqual(plain(p.heroes.archer),old);const once=plain(p);g.HonroAct2.recruit(p);assert.deepEqual(plain(p),once);

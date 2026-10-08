@@ -1,3 +1,10 @@
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
+import {applyForestCavernTopology} from '../tools/map-forge/forest-cavern-topology.mjs';
+import {applyCavernPlaceLayers} from '../tools/map-forge/cavern-place-layers.mjs';
+import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
+import {applyAct2VectorArt} from '../tools/environment/build-act2-art.mjs';
+import {createHash} from 'node:crypto';
+const stable=v=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable(v[k])])):v;
 import {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';
 import assert from 'node:assert/strict';
 import {plain} from './act2-spatial-contract-helpers.mjs';
@@ -18,7 +25,17 @@ for(const before of baseline.stages){
  check(id+' measured planning range agrees with balance data',()=>{assert.deepEqual(st.design.targetRounds,plan.rounds);assert.deepEqual(balance.stages.find(s=>s.id===id).targetRounds,Array.from(plan.rounds));assert.deepEqual(Array.from(st.design.expectedMinutes),Array.from(plan.rounds,r=>Math.round(r*1.35+5)));});
  if(id===14||id===16)check(id+' main buildings remain grounded and rear architecture has explicit world supports',()=>{const asset=id===14?'act2:cave-house':'act2:temple';assert(st.elements.some(e=>e.assetId===asset&&e.depthLayer==='L1'));for(const e of st.environment.placements.filter(e=>e.id.startsWith('a2-scene-'))){const group=st.environment.groups.find(g=>g.id===e.groupId),support=st.environment.surfaces.find(s=>s.id===e.supportId),a=g.HONRO_PROJECT.library.find(a=>a.id===e.assetId);assert.equal(e.depthLayer,'L2');assert.equal(group?.verticalMode,'WORLD');assert.equal(support?.groupId,group.id);assert.equal(support?.kind,'act2-rear-terrace');assert.equal(e.y,0);assert.equal(a.collision.length,0);}});
  if(id===14)check('14 foreground homes vary across unequal physical terraces',()=>{const homes=st.elements.filter(e=>e.assetId.startsWith('act2:cave-house')||e.assetId==='act2:scene-longhouse');assert(new Set(homes.map(e=>e.assetId)).size>=3);assert(homes.every(e=>e.depthLayer==='L1'));assert(Math.max(...homes.map(e=>e.y))-Math.min(...homes.map(e=>e.y))>1000,'homes must occupy unequal physical terraces');});
- check(id+' flying enemies stay within the playable ground band',()=>{for(const u of enemies.filter(v=>g.HonroWorld.archetypes[v.honroType]?.flying))assert(Math.abs(g.HonroWorld.top(b,u.x,u.y)-u.y)<=400,`${u.id} is out of shot range`);});
+ check(id+' flying enemies retain ground-band or exact reviewed crown shot access',()=>{for(const u of enemies.filter(v=>g.HonroWorld.archetypes[v.honroType]?.flying)){
+  if(Math.abs(g.HonroWorld.top(b,u.x,u.y)-u.y)<=400)continue;
+  // These two approved cavern targets face the upper crown/shoulder, not
+  // the floor directly below their X. Keep all unrelated 400-unit guards.
+  const firingId=id===15&&({'a2-enemy-12':'west-crown','a2-enemy-13':'west-shoulder'})[u.id];
+  assert(firingId,`${id}/${u.id} is out of shot range`);beforeApprovedTopology(g.HONRO_PROJECT,{stages:[15]});
+  const site=st.design.topology.firingSites.find(s=>s.id===firingId),q=fixture(id),shooter=q.e.heroesAlive().find(v=>v.cls==='archer'),target=q.e.unit(u.id),skill=C.SKILLS.A01;
+  Object.assign(shooter,{x:site.x,y:site.y,vx:0,vy:0});q.b.units=[shooter,target];q.b.active=shooter.id;q.b.phase='aim';q.b.side=0;q.e.checkEnd=()=>false;assert(q.e.grounded(shooter),'reviewed crown shot origin must be grounded');
+  const aim=q.e.shotSeeds(shooter,skill,target).find(a=>q.e.predict(shooter,skill,a.angle,a.power,target,false).unit===target.id);assert(aim,'reviewed crown target must have a legal basic-arrow lane');
+  const hp=target.hp;assert(q.e.fire(skill.id,aim.angle,aim.power));for(let f=0;f<1800&&q.b.projectiles.length;f++)for(const p of [...q.b.projectiles])if(q.b.projectiles.includes(p))q.e.stepProjectile(p,C.STEP);assert(target.hp<hp,'live basic arrow reaches reviewed crown target');
+ }});
  if(id>=17)check(id+' late-act correction is applied once to fresh and resumed enemies',()=>{
   assert.equal(plan.active,3);
   const u=enemies[0],before={hp:u.maxHp,attack:u.attack};
@@ -65,7 +82,7 @@ check('Defense needs presence, elapsed full rounds, and spawned waves',()=>{
 check('Spirit manifestation is local and retains damage collision',()=>{const {b,e}=fixture(18),souls=e.alive(1).filter(u=>u.honroSpirit),u=souls[0],far=souls.at(-1),archer=e.heroesAlive().find(u=>u.cls==='archer'),sodan=e.heroesAlive().find(u=>u.cls==='occultist');b.active=archer.id;assert(!g.HonroAct2.visible(b,u));const hp=u.hp;e.hurt(u,150,archer.id);assert(u.hp<hp&&!u.dead);b.active=sodan.id;assert(g.HonroAct2.visible(b,u));b.active=archer.id;g.HonroAct2.expose(b,b.round+2,u,50);assert(g.HonroAct2.visible(b,u));assert(!g.HonroAct2.visible(b,far));});
 check('Existing revision 1 battles keep their original objective list',()=>{const {b}=fixture(14);delete b.honroAct2Steps;b.honroAct2Revision=1;b.honroState.act2.version=1;assert.equal(g.HonroAct2.steps(b).length,4);assert.equal(g.HonroAct2.current(b).id,'family-upper');});
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
-const regeneratedAct2=g.HonroMaps.finalize(await applyAct2SceneComposition(g.HonroAct2Design.build(g.HONRO_PROJECT)));
-check('Deterministic recipe preserves all 30 canonical maps and their order',()=>{assert.deepEqual(plain(regeneratedAct2),plain(g.HONRO_PROJECT));});
+const regeneratedAct2=g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(g.HONRO_PROJECT))),{stages:[15]}))));
+check('Deterministic recipe preserves all 30 canonical maps and their order',()=>{const digest=x=>createHash('sha256').update(JSON.stringify(stable(x))).digest('hex');for(const s of regeneratedAct2.stages)assert.equal(digest(s),digest(g.HONRO_PROJECT.stages.find(q=>q.id===s.id)),s.id+' exact canonical recipe');assert.deepEqual(plain(regeneratedAct2),plain(g.HONRO_PROJECT));});
 await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile('_local/reports/act2-revision/unit.json',JSON.stringify({checks:rows,metrics},null,2));
 console.log('PASS',rows.length,'revision checks');
