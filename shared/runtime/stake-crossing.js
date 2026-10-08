@@ -10,7 +10,7 @@ const skills=(b,u)=>available(b,u)?[...new Set([...u.loadout,'M09'])]:u.loadout;
 function controls(b,u,selected){if(!active(b))return '';const s=b.honroStakeCrossing,c=current(b),extra=available(b,u)&&!u.loadout.includes('M09');return `${extra?`<button class="skill-button ${selected==='M09'?'selected':''}" data-action="combat-skill" data-skill="M09" aria-label="수로 임시 기예 축지진목"><span class="skill-name">축지진목</span><span class="mana-cost">${Math.round(C.SKILLS.M09.cost*C.skillManaFactor(u.ranks.M09||1))}</span><span class="rank-tiny">${u.ranks.M09?'기존 +'+u.ranks.M09:'이 구간 기본 기예'}</span></button>`:''}${c?`<button class="skill-button" data-action="stake-retry" title="두 동행과 전장을 이 구간 출발 상태로 되돌립니다. 회복 지점이 아닙니다."><span class="skill-name">구간 다시 준비</span><span class="rank-tiny">${(s?.index||0)+1}/${crossings(b).length} · ${Object.keys(s?.crossed||{}).length}/2 도착</span></button>`:''}`;}
 function takeCheckpoint(b){const state=b.honroStakeCrossing;const copy={...b};delete copy.honroStakeCrossing;delete copy.honroStory;state.checkpoint=clone(copy);}
 function initialize(b,capture=true){if(!active(b))return;const s=b.honroStakeCrossing??={version:1,index:0,crossed:{},attempted:false,retries:0};if(capture&&!s.checkpoint)takeCheckpoint(b);}
-function retry(app,reason){const e=app.engine,b=e?.b;if(!active(b))return false;initialize(b);const s=b.honroStakeCrossing;if(!s.checkpoint)return false;
+function retry(app,reason){const e=app.engine,b=e?.b;if(!active(b))return false;initialize(b);const s=b.honroStakeCrossing;if(!s.checkpoint||heroes(s.checkpoint).length!==2||heroes(s.checkpoint).some(u=>u.dead||u.hp<=0))return false;
  // Restore this attempt's complete battlefield, not just HP: spent items,
  // enemies, terrain and encounter triggers cannot be retained as free progress.
  // Earned XP remains monotonic; its existing capped ledger prevents refarming.
@@ -22,11 +22,13 @@ function retry(app,reason){const e=app.engine,b=e?.b;if(!active(b))return false;
  app.done=false;app.cancelInput?.();app.close?.();app.turnNotice=null;app.dirty=true;app.event?.(reason+' 두 동행과 자원을 구간 출발 때로 되돌렸습니다.');
  app.profile.honroBattle=clone(b);app.persist?.();app.updateHUD?.(true);return true;
 }
+function failure(b){if(!active(b))return null;const dead=heroes(b).some(u=>u.dead||u.hp<=0),cp=b.honroStakeCrossing?.checkpoint;return dead&&(!cp||heroes(cp).length!==2||heroes(cp).some(u=>u.dead||u.hp<=0))?'물길 출발 때부터 동행이 쓰러져 있습니다. 이 장을 다시 시작해야 합니다.':null;}
 function recoverFailure(app){const b=app.engine?.b;if(!active(b)||!current(b))return false;const dead=heroes(b).find(u=>u.dead||u.hp<=0||u.y>b.height-50);return dead?retry(app,(dead.cls==='mage'?'담허':'설오')+'가 물길에서 쓰러졌습니다.'):false;}
 function allowsStep(b,id){if(!active(b))return true;const n=crossings(b).findIndex(c=>c.markerId===id);return n<0||n<(b.honroStakeCrossing?.index||0);}
 function attach(app,e){if(!active(e.b)||e.honroStakeAttached)return;e.honroStakeAttached=true;initialize(e.b,false);
  const fire=e.fire.bind(e);e.fire=function(id,...args){const b=e.b,u=e.active;if(id!=='M09'||!available(b,u))return fire(id,...args);initialize(b);const c=current(b),s=b.honroStakeCrossing;
-  if(c&&!inside(u,c.fromZone)){e.message('현재 물길의 출발 석대에서 진목을 설치하세요.');return false;}
+  if(c&&!heroes(b).every(v=>inside(v,c.fromZone))){e.message('설오와 담허를 함께 출발 석대의 진목 표식으로 옮기세요.');return false;}
+  if(c&&!s.armed){s.armed=true;takeCheckpoint(b);}
   if(c&&Object.keys(s.crossed).length){e.message('두 동행이 모두 건넌 뒤 다음 진목을 설치하세요.');return false;}
   const old=u.loadout;try{u.loadout=skills(b,u);const ok=fire(id,...args);if(ok&&c){s.attempted=true;s.pairSeen=false;s.crossed={};}return ok;}finally{u.loadout=old;}
  };
@@ -37,14 +39,14 @@ function attach(app,e){if(!active(e.b)||e.honroStakeAttached)return;e.honroStake
 }
 function tick(app){const b=app.engine?.b;if(!active(b)||app.dialogue||app.done)return;initialize(b);if(recoverFailure(app))return;const s=b.honroStakeCrossing,c=current(b);if(!c)return;
  const team=heroes(b),gates=(b.stakes||[]).filter(z=>z.skill==='M09'&&z.side===0&&(z.expires===undefined||z.expires>b.round));
- if(team.length===2&&team.every(u=>s.crossed[u.cls]&&inside(u,c.landing))){s.index++;s.crossed={};s.attempted=false;s.pairSeen=false;b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');takeCheckpoint(b);app.dirty=true;app.event?.(current(b)?'두 동행이 건넜습니다. 다음 석대에 새 진목을 설치하세요.':'두 동행이 물길을 건넜습니다. 기록 조사로 이어갑니다.');app.updateHUD?.(true);return;}
+ if(team.length===2&&team.every(u=>s.crossed[u.cls]&&inside(u,c.landing))){s.index++;s.armed=false;s.crossed={};s.attempted=false;s.pairSeen=false;b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');takeCheckpoint(b);app.dirty=true;app.event?.(current(b)?'두 동행이 건넜습니다. 다음 석대에 새 진목을 설치하세요.':'두 동행이 물길을 건넜습니다. 기록 조사로 이어갑니다.');app.updateHUD?.(true);return;}
  if(s.attempted&&gates.length===2)s.pairSeen=true;
  if(s.attempted&&!b.projectiles.some(p=>p.skill==='M09')&&b.phase!=='flight'){
   if(gates.length!==2)return retry(app,s.pairSeen?'진목이 만료되어 동행이 고립되었습니다.':'진목이 안전한 석대에 닿지 않았습니다.');
   if(!gates.some(z=>inside(z,c.fromZone))||!gates.some(z=>inside(z,c.landing)))return retry(app,'진목이 다음 석대에 연결되지 않았습니다.');
  }
- // A jump, dash or lower floor cannot satisfy a crossing in place of M09.
- if(team.some(u=>inside(u,c.landing)&&!s.crossed[u.cls]))retry(app,'두 동행은 직접 설치한 축지진목으로 건너야 합니다.');
+ // The authored gap physically excludes jumps. Crossing provenance is an
+ // objective contract, never an invisible wall or forced spatial correction.
 }
-G.HonroStakeCrossing={active,crossings,current,available,skills,controls,initialize,takeCheckpoint,attach,tick,retry,recoverFailure,allowsStep};
+G.HonroStakeCrossing={active,crossings,current,available,skills,controls,initialize,takeCheckpoint,attach,tick,retry,recoverFailure,failure,allowsStep};
 })(globalThis);

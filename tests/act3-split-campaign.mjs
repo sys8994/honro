@@ -10,13 +10,13 @@ function ready(){finish(app);app.turnNotice=null;return app.engine.b;}
 function unit(cls,b=app.engine.b){return b.units.find(u=>S.hero(u)&&u.cls===cls);}
 function win(){app.engine.b.phase='won';app.outcome(true);assert(app.done);}
 function next(){click('result-continue');return ready();}
-function entry(id){const p=h.profileThrough(id-1);for(const cls of p.recruited)p.heroes[cls].xp=P.budget(id).start;app=h.load(p);app.launch(id);return ready();}
+function entry(id){const p=h.profileThrough(id-1);if(id>=24&&id<=28)p.honroSplitCampaign={version:1,mode:id===24?'continuous':'replay',stage:Math.min(id,27),activeRoster:plain(S.roster(id,1)),vitals:{},starts:{},completed:{},items:null,nextStage:null,finished:id===28};for(const cls of p.recruited)p.heroes[cls].xp=P.budget(id).start;app=h.load(p);app.launch(id);return ready();}
 function expected(s,u){return {hp:s.dead?0:Math.min(u.maxHp,s.hp+Math.max(0,u.maxHp-s.maxHp)),focus:Math.min(u.maxFocus,s.focus+Math.max(0,u.maxFocus-s.maxFocus))};}
 function assertVitals(s,u){const v=expected(s,u);assert.equal(u.hp,v.hp);assert.equal(u.focus,v.focus);assert.equal(!!u.dead,s.dead);}
 function checkpoint(){S.capture(app.engine.b);return plain(app.engine.b.honroSplit.vitals);}
 
-await check('New chapter 24 is explicit split-v1; chapter 25/26 direct replay uses its exact two-hero roster',()=>{
- for(const id of [24,25,26,27]){const b=entry(id);assert.equal(b.honroSplit.version,1);assert.equal(b.honroSplit.mode,id===24?'continuous':'replay');assert.deepEqual(plain(b.units.filter(S.hero).map(u=>u.cls).sort()),plain(S.roster(id)).sort());assert.deepEqual(plain(app.profile.recruited),['archer','mage','knight','occultist']);}
+await check('Legacy v1 pending chapters retain their exact historical rosters',()=>{
+ for(const id of [24,25,26,27]){const b=entry(id);assert.equal(b.honroSplit.version,1);assert.equal(b.honroSplit.mode,id===24?'continuous':'replay');assert.deepEqual(plain(b.units.filter(S.hero).map(u=>u.cls).sort()),plain(S.roster(id,1)).sort());assert.deepEqual(plain(app.profile.recruited),['archer','mage','knight','occultist']);}
 });
 let end24,end25,end26,start25,start26,start27,items25;
 await check('One continuous 24 result → 25 result → 26 result → 27 chain carries damaged HP/MP and shared consumables',()=>{
@@ -67,9 +67,9 @@ await check('Legacy 24–27 Continue keeps four heroes and original split-free s
  const all=g.HonroMaps.createBattle(g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===24),g.HONRO_PROJECT,p,{origin:'campaign'}).units.filter(S.hero);
  b.units=b.units.filter(u=>!S.hero(u)).concat(all);delete b.honroSplit;delete b.activeRoster;unit('mage',b).hp-=88;p.honroBattle=plain(b);delete p.honroSplitCampaign;
  app=h.load(p);click('continue');assert.equal(app.engine.b.units.filter(S.hero).length,4);assert.equal(app.engine.b.honroSplit,undefined);assert.equal(unit('mage').hp,unit('mage',b).hp);
- click('retry');ready();assert.equal(app.engine.b.units.filter(S.hero).length,id===25||id===26?2:4);}
+ click('retry');ready();assert.equal(app.engine.b.units.filter(S.hero).length,[25,26,27].includes(id)?2:4);}
 });
-await check('Chapters 1–23 and 28–30 never acquire the split contract',()=>{for(const id of [1,9,23,28,30]){const b=entry(id);assert.equal(b.honroSplit,undefined);assert.equal(S.active(b),false);}});
+await check('Chapters outside the split and already completed v1 chapter 28 do not acquire a new split',()=>{for(const id of [1,9,23,28,30]){const b=entry(id);assert.equal(b.honroSplit,undefined);assert.equal(S.active(b),false);}});
 
 await check('Carried damage statuses survive their old caster and tick only the active team once',()=>{
  let b=entry(24);const u=unit('archer');u.curseOwner='old-foe';u.curseTurns=3;u.curseDamage=18;u.shield=0;u.earthbind={owner:'old-foe',until:b.round+4,damage:9};win();b=next();const saved=plain(b.honroSplit.vitals.archer);app.engine.newRound();assert.deepEqual(plain(b.honroSplit.vitals.archer),saved);win();b=next();
