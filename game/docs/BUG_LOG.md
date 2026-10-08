@@ -1582,3 +1582,8 @@ Actual Pages visual review found the reused stage-9 shrine roof hidden behind th
 
 - 새 waterworks 5개 검사와 forest/cavern 6개 검사를 `test:integration`, `verify:offline`에 연결했다. split 기본 묶음에는 실제 구간 XP 중복·충돌 캐시·v1 편성 수용량 회귀를 추가했다.
 - 연결 전 각 waterworks/forest 묶음과 v1 수용량을 통과했다. 최종 source 변경 뒤 재검증은 별도 기록하며 offline은 브라우저 검증 또는 일반 전투 완주를 뜻하지 않는다.
+
+## 옛 불길 시각·저장 검사와 새 합류 28장 — 2026-10-08
+
+- 렌더 cue의 역사 27장 fixture가 현재 수로27장 단계 원문을 사용하던 오류를 원래 objective delta 단계로 고쳤다. 구 불길 두 곳·독립 소화·직업사격 안내 검사를 유지하고 새28장 실제 fireSite 연결/소화, 새27장 옛불길 표시 없음도 추가했다.
+- 저장 경계의 옛25장 hold는 명시v1 profile을 사용한다. 불길 저장/12번째 적턴 실패/재시도는 구v1 27장과 새v2 28장을 모두 검사한다. renderer cue와 App export/import/Continue/loss/retry 7묶음을 통과했다. Canvas/DOM recording fixture이며 브라우저 증거는 아니다.

@@ -8,8 +8,9 @@ const h=await appHarness(),{g,load,reload,profileThrough,click,finish}=h;
 const A=g.HonroAct3,P=g.HonroProgression,checks=[];
 let app;
 async function check(name,fn){await fn();checks.push(name);console.log('PASS',name);}
-function enter(id){
+function enter(id,version=2){
  const p=profileThrough(id-1);
+ if(version===1)p.honroSplitCampaign={version:1,stage:id,mode:'replay',finished:false,nextStage:null,activeRoster:g.HonroSplitCampaign.roster(id,1),vitals:{},starts:{},completed:{},items:null};
  for(const cls of p.recruited)p.heroes[cls].xp=P.budget(id).start;
  app=load(p);app.launch(id);finish(app);app.turnNotice=null;
  return app.engine.b;
@@ -59,8 +60,8 @@ function retryPreservesReward(before){
  return b;
 }
 
-await check('Mid-hold export/import/Continue preserves one spawned wave and counts each enemy end once',async()=>{
- const b=enter(25);completed(b,1);
+await check('Frozen v1 mid-hold export/import/Continue preserves one spawned wave and counts each enemy end once',async()=>{
+ const b=enter(25,1);completed(b,1);
  for(const u of app.engine.alive(1)){u.hp=0;u.dead=true;}
  const s=A.current(b),m=A.marker(b,s.id),u=app.engine.heroesAlive()[0];
  Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0});
@@ -111,8 +112,8 @@ await check('Mid-escort export/import/Continue preserves the carrier and advance
  assert.equal(fresh.hp,fresh.maxHp);assert.equal(fresh.honroProtected,true);
 });
 
-await check('Saved fire pressure resumes at the same enemy-turn deadline and loss retry resets only this mission',async()=>{
- const b=enter(27);A.tick(app,0);
+for(const [id,version] of [[27,1],[28,2]])await check(`v${version} stage ${id}: saved fire pressure resumes at the same deadline and retry resets this mission`,async()=>{
+ const b=enter(id,version);A.tick(app,0);
  b.teamEnds[1]=7;A.tick(app,0);
  assert.equal(A.memory(b).fireTurns,7);
  P.awardCombat(app.engine,app.engine.active,23);
@@ -122,7 +123,7 @@ await check('Saved fire pressure resumes at the same enemy-turn deadline and los
  rb.teamEnds[1]=12;A.tick(app,0);
  assert.equal(rb.phase,'lost');assert.match(rb.winnerReason,/불길/);
  const before=plain(rb);app.outcome();assert(app.done);
- assert(!app.profile.cleared[27]);assert.equal(app.profile.honroBattle,null);
+ assert(!app.profile.cleared[id]);assert.equal(app.profile.honroBattle,null);
  const fresh=retryPreservesReward(before);A.tick(app,0);
  assert.equal(A.memory(fresh).fireTurns,0);
 });
