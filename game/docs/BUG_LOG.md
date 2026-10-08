@@ -1450,3 +1450,8 @@ Custom-map win/loss results now say “원래 여정으로 돌아가기”, matc
 ### 통합 검사의 현재 제작 기준 반영
 
 과거 지형/산석 해시 비교에는 이미 승인된 목표 개편 차이만 역산한다. 삭제된 12장 고리의 지형 복원 검사는 옛 전투 자료를 명시적으로 컴파일해 유지하고, 현재 30장 공격 장치 재고는 네 개의 정확한 ID로 확인한다. 독립 환경 편집 시험은 구현된 30장 목록을 제공한다. 회귀 범위를 좁히거나 현재 게임의 목표를 되돌리지 않는다. 지형 계약·산석 변경 거부·실탄 결박 명중·4,230개 배경 접지/깊이/줌·이관/저작 검사 통과. 환경 분류 목록도 현재 354개 에셋으로 갱신했다. 전체 검사는 계속 진행 중이다.
+
+## Guided allegiance regression — 2026-10-08
+- Cause: guided arrows compared raw `side`, while authored allies and ownership/charm may represent allegiance separately. Locked ultimate and summon bolts also kept following targets after allegiance changed.
+- Change: guidance candidate selection and each steering step share a read-only effective-allegiance/visibility check; seven-arrow target allocation and chain guidance use it too. Ordinary collision and damage rules are unchanged.
+- Verification: `node tests/guided-allegiance.mjs` reproduces authored-ally steering before the fix and passes after it, including six live guided modes, summons/charm, dead/zero-HP/hidden targets, enemy guidance against allied NPCs, hit exclusion and manifestation. Typecheck passes. Browser/full aggregate verification remains an integration-stage check.

@@ -559,10 +559,24 @@ export class Engine {
       }
       if(v.remaining<=0)b.volley=undefined;
     }
+    /** Current allegiance, including authored allies and controlled/summoned actors. Never rewrites saved sides. */
+    allegiance(u:Unit,seen=new Set<string>()):Side {
+      if(seen.has(u.id))return u.side;seen.add(u.id);
+      const id=u.enthrall?.owner||u.summonOwner,owner=id?this.unit(id):undefined;
+      if(owner)return this.allegiance(owner,seen);
+      return (u as any).honroAlly||u.id==='objective'?0:u.side;
+    }
+    /** Guidance only: incidental collisions and damage retain their existing rules. */
+    guidanceTarget(owner:Unit|undefined,target:Unit|undefined):boolean {
+      if(!owner||!target||owner.id===target.id||target.dead||target.hp<=0)return false;
+      if(target.spiritHidden&&!target.manifested&&!target.revealSpiritToParty&&!owner.spiritSight&&!this.creditUnit(owner)?.spiritSight)return false;
+      const side=this.allegiance(owner),other=this.allegiance(target);
+      return side!==2&&other!==2&&side!==other;
+    }
     /** Bounded angular steering, with the same directional terrain check as the shot and no target teleportation. */
     steer(x:number,y:number,vx:number,vy:number,owner:Unit,dt:number,hit:string[]=[],child=false){
       const range=(child?360:300)+(owner.side===0?Math.max(0,(owner.ranks[child?'A15':'A13']||1)-1)*20:0);let target:Unit|undefined,best=range;
-      for(const u of this.b.units){if(u.dead||u.side===owner.side||u.side===2||hit.includes(u.id))continue;
+      for(const u of this.b.units){if(!this.guidanceTarget(owner,u)||hit.includes(u.id))continue;
         const d=Math.hypot(u.x-x,u.y-u.h*.5-y);if(d>=best)continue;
         const blocked=this.projectileCollision({x,y},{x:u.x,y:u.y-u.h*.5},1,owner.id,[],false);if(blocked)continue;best=d;target=u;
       }
@@ -1057,7 +1071,7 @@ export class Engine {
     }
     private stepSummonBolt(p:Projectile,dt:number){
         const t=p.targetId?this.unit(p.targetId):undefined;
-        if(!t||t.dead){this.remove(p);return;}
+        if(!t||!this.guidanceTarget(this.unit(p.owner),t)){this.remove(p);return;}
         const tx=t.x,ty=t.y-t.h*.5,dx=tx-p.x,dy=ty-p.y,n=Math.max(1,Math.hypot(dx,dy));
         p.vx=dx/n*1250;p.vy=dy/n*1250;
         const m=this.advanceProjectile(p,dt),h=segRect(p,m,t.x-t.r,t.y-t.h,t.r*2,t.h,p.radius);
@@ -1402,7 +1416,7 @@ export class Engine {
 
     private launchUltimateChildren(p:Projectile){
         const owner=this.unit(p.owner);if(!owner)return false;
-        const enemies=this.alive((p.side===0?1:0) as Side).filter(v=>v.side!==2);
+        const enemies=this.b.units.filter(v=>this.guidanceTarget(owner,v));
         if(p.mode==='arcaneJudgment'){
             const targets=enemies.map(v=>({v,d:Math.hypot(v.x-p.x,v.y-v.h*.5-p.y)})).filter(x=>x.d<1250).sort((a,b)=>a.d-b.d).slice(0,9);
             this.fx('burst',p.x,p.y,'#d89cff',150);this.fx('ring',p.x,p.y,'#b76cff',210);this.fx('rune',p.x,p.y,'#efe0ff',170);this.emit('sound',{name:'boom'});
@@ -1432,7 +1446,7 @@ export class Engine {
     }
     private stepUltimateBolt(p:Projectile,dt:number){
         const target=p.targetId?this.unit(p.targetId):undefined;
-        if(target&&!target.dead){const tx=target.x,ty=target.y-target.h*.52,desired=Math.atan2(ty-p.y,tx-p.x),cur=Math.atan2(p.vy,p.vx),delta=Math.atan2(Math.sin(desired-cur),Math.cos(desired-cur)),turn=p.mode==='arcBolt'?4.5:p.mode==='nightBolt'?4.0:3.1,ang=cur+clamp(delta,-turn*dt,turn*dt),speed=Math.max(220,Math.hypot(p.vx,p.vy));p.vx=Math.cos(ang)*speed;p.vy=Math.sin(ang)*speed;}
+        if(target&&this.guidanceTarget(this.unit(p.owner),target)){const tx=target.x,ty=target.y-target.h*.52,desired=Math.atan2(ty-p.y,tx-p.x),cur=Math.atan2(p.vy,p.vx),delta=Math.atan2(Math.sin(desired-cur),Math.cos(desired-cur)),turn=p.mode==='arcBolt'?4.5:p.mode==='nightBolt'?4.0:3.1,ang=cur+clamp(delta,-turn*dt,turn*dt),speed=Math.max(220,Math.hypot(p.vx,p.vy));p.vx=Math.cos(ang)*speed;p.vy=Math.sin(ang)*speed;}
         const m=this.advanceProjectile({...p,gravityScale:0,drag:dragFor(SKILLS[p.skill],p.mode)},dt),nx=m.x,ny=m.y;p.vx=m.vx;p.vy=m.vy;this.passFields(p,p,{x:nx,y:ny});
         const h=p.phaseMode==='all'?null:this.projectileCollision(p,{x:nx,y:ny},p.radius,p.owner,p.hit,true,[],p.phaseMode!=='terrain');if(h){p.x=h.x;p.y=h.y;p.directId=h.unit?.id;this.impact(p,h);return;}
         p.x=nx;p.y=ny;if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>24)p.trail.shift();}

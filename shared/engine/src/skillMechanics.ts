@@ -265,7 +265,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
   if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;return true;}
   if(p.mode==='return'&&p.hit.length<=1)return true;
   if(p.mode==='chainArrow'&&(p.chain||0)<Math.round(lerpRank(1,5,r))){
-   const next=e.b.units.filter(t=>enemy(p,t)&&!p.hit.includes(t.id)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260).sort((a,b)=>Math.hypot(a.x-p.x,a.y-a.h*.5-p.y)-Math.hypot(b.x-p.x,b.y-b.h*.5-p.y))[0];
+   const next=e.b.units.filter(t=>e.guidanceTarget(e.unit(p.owner),t)&&!p.hit.includes(t.id)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260).sort((a,b)=>Math.hypot(a.x-p.x,a.y-a.h*.5-p.y)-Math.hypot(b.x-p.x,b.y-b.h*.5-p.y))[0];
    if(next){const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.hypot(dx,dy);p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;return true;}
   }
  }
@@ -282,7 +282,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
 }
 
 export function splitSeven(e:Engine,p:Projectile){
- const targets=e.b.units.filter(u=>enemy(p,u)).sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y));
+ const targets=e.b.units.filter(u=>e.guidanceTarget(e.unit(p.owner),u)).sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y));
  for(let i=0;i<7;i++){const target=targets.length?targets[i%targets.length]:undefined,q=spawnChild(e,p,'seekChild',(i-3)*70+p.vx*.2,250,p.damage);q.secondary=false;q.maxAge=8;q.targetId=target?.id;q.apexY=p.apexY??p.y;}
  e.emit('sound',{name:'split'});e.remove(p);
 }
