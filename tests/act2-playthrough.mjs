@@ -37,7 +37,8 @@ for(const id of ids){
  const route=process.env.HONRO_BOT_AUTHORED_ROUTE==='1'&&id===15?space.routes.find(r=>r.id==='main').anchors:null;
  const navigation=new Map(),navigationLog=[];
  const move=(u,x,y)=>{
-  if(!route){
+  const routeActive=route&&['clear-gallery','groove','exit'].includes(g.HonroAct2.current(b)?.id);
+  if(!routeActive){
    let still=0;for(let j=0;j<650&&e.canAct()&&u.moveLeft>10&&Math.abs(u.x-x)>24;j++){
     const old=u.x;e.move(Math.sign(x-u.x),1/60);tick();
     if(Math.abs(old-u.x)<.1){if(++still>8&&e.grounded(u)){e.jump(u);still=0;}}else still=0;
@@ -45,10 +46,14 @@ for(const id of ids){
   }
   const routeGoal=route?route.reduce((best,p,i)=>Math.hypot(p.x-x,p.y-y)<best.distance?{i,distance:Math.hypot(p.x-x,p.y-y)}:best,{i:0,distance:Infinity}).i:0;
   let nav=navigation.get(u.id);
-  if(route&&!nav){nav={next:route.reduce((best,p,i)=>Math.hypot(p.x-u.x,p.y-u.y)<best.distance?{i,distance:Math.hypot(p.x-u.x,p.y-u.y)}:best,{i:0,distance:Infinity}).i,jumpTo:null};navigation.set(u.id,nav);}
+  if(route&&!nav){nav={next:4,jumpTo:null};navigation.set(u.id,nav);}
+  if(u.x<3500&&u.y>3900&&nav.next>4){navigationLog.push({round:b.round,actor:u.cls,action:'return-to-west-approach',x:u.x,y:u.y});nav.next=4;nav.jumpTo=null;}
   let still=0;
   for(let j=0;j<650&&e.canAct()&&u.moveLeft>10;j++){
-   let p=route&&nav.next<=routeGoal?route[nav.next]:{x,y};
+   // Stop on the route's firing support instead of walking back off its edge
+   // toward the target's x coordinate after reaching the intended elevation.
+   if(nav.next>routeGoal&&!nav.jumpTo)break;
+   let p=route[nav.next];
    if(route&&nav.jumpTo)p=nav.jumpTo;
    const reached=Math.abs(u.x-p.x)<22&&Math.abs(u.y-p.y)<100&&e.grounded(u);
    if(reached){
