@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import {readFile,mkdir,writeFile} from 'node:fs/promises';import {execFileSync} from 'node:child_process';
+import {act1Runtime,fixture,traverse} from './act1-spatial-test-helpers.mjs';import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
+const p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),old=JSON.parse(execFileSync('git',['show','4166518:shared/data/campaign.json'],{maxBuffer:30e6})),plain=x=>JSON.parse(JSON.stringify(x));
+assert.deepEqual(applyCavernTransitionLayers(plain(p)),p,'idempotent');
+for(let i=0;i<p.stages.length;i++){const s=p.stages[i],b=old.stages[i];if(![11,12,13,17,18,19].includes(i+1)){assert.deepEqual(s,b,'untouched stage '+(i+1));continue;}for(const key of ['units','objectives','events','markers','initialState','anchors','routes','encounters','elements'])assert.deepEqual(s[key],b[key],`${i+1} preserves ${key}`);assert.deepEqual(s.terrains.filter(t=>!t.id.startsWith('ct-')),b.terrains,'all original solids');}
+assert.deepEqual(p.stages[17].terrains.filter(t=>!t.breakable),p.stages[18].terrains.filter(t=>!t.breakable),'18/19 same physical space');
+const g=await act1Runtime();assert.deepEqual(plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(p)))),plain(g.HonroMaps.finalize(p)),'authoring roundtrip');const rows=[];
+for(const id of [11,12,13,17,18,19,20])for(const cls of ['archer','mage','knight','occultist']){
+ const st=g.HONRO_PROJECT.stages[id-1];for(const choice of st.design.cavernTransitions?.choices||[]){const{b,e}=fixture(g,id),u=e.heroesAlive().find(u=>u.cls===cls);b.units=[u];b.active=u.id;e.checkEnd=()=>false;Object.assign(u,choice.route[0],{vx:0,vy:0});const r=traverse(g,b,e,u,choice.route.slice(1));rows.push({id,cls,choice:choice.id,...r});console.log(id,cls,choice.id,r.passed,r.failed);}
+}
+await mkdir('_local/reports/cavern-transitions',{recursive:true});await writeFile('_local/reports/cavern-transitions/traversal.json',JSON.stringify(rows,null,2));assert(rows.every(r=>r.passed),'optional routes');console.log('PASS required geometry, mission, roster and 20/other stages unchanged; shared 18/19 solids, idempotency, authoring roundtrip, '+rows.length+' baseline-jump routes');
