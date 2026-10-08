@@ -1,8 +1,8 @@
 import {assertReviewedRouteModes,traverseReviewedRoute} from './act2-reviewed-route-helpers.mjs';
 // Ordered physical-route fixture. Combat, defense duration and convoy arrival
 // are isolated explicitly, but no gate is pre-opened, no hero is teleported,
-// and every required interaction is reached through its live state. Chapter 15
-// alone uses the approved ordinary-jump route; all others remain walk-only.
+// and every required interaction is reached through its live state. Exactly
+// reviewed 14/15/16 routes use baseline step-off/jumps; others remain walk-only.
 import assert from 'node:assert/strict';
 import {writeFile,mkdir} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
