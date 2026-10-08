@@ -1576,3 +1576,8 @@ Actual Pages visual review found the reused stage-9 shrine roof hidden behind th
 - 새25~27의 초기 편성에 맞춘 상한7/10/8이 버전1 지도에도 적용됐다. 기존27장은 초기18명인데 수용상한15(새8+옛증원7)로 줄어 정상 증원 경계가 달라졌다.
 - `populationCap`은 명시적 v1 원정에서 고정 보관된 초기 편성+그 버전의 방어 파동 수로 기존base16/17/18을 읽는다. 저장된 유한 응답6/6/7을 합한22/23/25를 보존한다. 새v2 예산과 실제 전투 인원·HP·자원은 변경하지 않는다.
 - `split-v1-population-cap`에서3개실제v1진입/직렬화후사망인원감소/응답개편전저장base/호출불변/새v2상한유지를통과했다. 정상v1연속완주 검사는 별도다.
+
+## 승인 지형 회귀의 기본 검사 연결 — 2026-10-08
+
+- 새 waterworks 5개 검사와 forest/cavern 6개 검사를 `test:integration`, `verify:offline`에 연결했다. split 기본 묶음에는 실제 구간 XP 중복·충돌 캐시·v1 편성 수용량 회귀를 추가했다.
+- 연결 전 각 waterworks/forest 묶음과 v1 수용량을 통과했다. 최종 source 변경 뒤 재검증은 별도 기록하며 offline은 브라우저 검증 또는 일반 전투 완주를 뜻하지 않는다.
