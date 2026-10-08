@@ -56,7 +56,7 @@ function commit(label,fn,before=deep(project)){try{fn(project);project=HonroMaps
 function undo(){if(!history.length)return;future.push({label:'redo',state:deep(project)});project=history.pop().state;previewProject=null;saveAutosave();renderAll();toast('되돌렸습니다')}
 function redo(){if(!future.length)return;history.push({label:'undo',state:deep(project)});project=future.pop().state;previewProject=null;saveAutosave();renderAll();toast('다시 적용했습니다')}
 function saveAutosave(){if(project.settings.autosave)try{localStorage.setItem('honro-workshop-v3',JSON.stringify(project))}catch(e){}}
-function loadAutosave(){try{const x=JSON.parse(localStorage.getItem('honro-workshop-v3')||localStorage.getItem('honro-workshop-v1'));return x?HonroMaps.normalize(x):null}catch{return null}}
+function loadAutosave(){try{const x=JSON.parse(localStorage.getItem('honro-workshop-v3')||localStorage.getItem('honro-workshop-v1'));if(!x)return null;const p=HonroMaps.normalize(x);globalThis.HonroOpenStructures?.upgradeProject(p);return p}catch{return null}}
 
 function setStatus(s){if(dom.status)dom.status.textContent=s}
 function toast(s){const t=$('#toast');t.textContent=s;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),1500)}

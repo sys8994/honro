@@ -1,3 +1,4 @@
+import {openStructureAsset} from '../map-forge/open-structure-policy.mjs';
 /** Original editable Korean-town vectors, informed by official heritage photographs.
  * A low everyday house, a broad public hall and a gate pavilion are different
  * building types. Roof bounds/solids come from the same sampled silhouette.
@@ -75,7 +76,7 @@ export function koreanTownBuilding(id,{width=420,role='house',roofType=null,vari
  parts.push(roofArt.svg);
  const bounds={x:l-48,y:roofArt.top-3,w:w+96,h:-roofArt.top+8};
  const vector=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.x} ${bounds.y} ${bounds.w} ${bounds.h}"><title>Korean ${role}: low ${kind} roof and ${bays} structural bays</title>${parts.join('')}</svg>`);
- return{id,name:{house:'낮은 민가',shop:'장터 가게',office:'관아 대청',archive:'목판문 서고',storehouse:'널문 창고',pavilion:'단층 수문 누각'}[role],category:'architecture',visual:[],vector,collision:collision?[roofArt.solid.map(([x,y])=>({x,y}))]:[],anchor:{x:0,y:0},sockets:[],tags:['act3-production','korean-town'],params:{style:role,koreanType:role,roofType:kind,eaveHeight:h,bayCount:bays,collisionSource:'sampled-drawn-roof'},material:'wood',breakable:false,oneWay:false,bounds,reference:{heightM:bounds.h/60,bounds,foot:{x:0,y:0},scaleRange:[.7,1.4],backgroundRange:[.7,1.2]}};
+ return{id,name:{house:'낮은 민가',shop:'장터 가게',office:'관아 대청',archive:'목판문 서고',storehouse:'널문 창고',pavilion:'단층 수문 누각'}[role],category:'architecture',visual:[],vector,collision:collision?[roofArt.solid.map(([x,y])=>({x,y}))]:[],anchor:{x:0,y:0},sockets:[],tags:['act3-production','korean-town'],params:{style:role,koreanType:role,roofType:kind,eaveHeight:h,bayCount:bays,collisionSource:'sampled-drawn-roof'},material:'wood',breakable:false,oneWay:openStructureAsset(id),bounds,reference:{heightM:bounds.h/60,bounds,foot:{x:0,y:0},scaleRange:[.7,1.4],backgroundRange:[.7,1.2]}};
 }
 export function koreanCourtyardWall(id,{width=420,height=92,cap='earth',gate=false}={}){
  const w=width,l=-w/2,r=w/2,body=cap==='tile'?'#a49675':'#827c59',parts=[path(body,`M${l} -${height}L${r} -${height-3}V0H${l}Z`),path('#6b735b',`M${l} -27L${l+71} -39L${l+127} -28L${l+202} -33L${r} -25V0H${l}Z`)];

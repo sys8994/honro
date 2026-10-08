@@ -1,3 +1,4 @@
+import {openStructureAsset,openStructureTerrain} from './open-structure-policy.mjs';
 /** Shared production authoring primitives. Every structural face uses its drawn polygon. */
 import {compileSVG} from '../environment/build-act2-art.mjs';
 import {readFile} from 'node:fs/promises';
@@ -9,9 +10,9 @@ export const pathD=a=>'M'+a.map(p=>p.join(' ')).join(' L')+' Z';
 export const P=(a,fill,stroke='',width=2)=>`<path d="${pathD(a)}" fill="${fill}"${stroke?` stroke="${stroke}" stroke-width="${width}"`:''}/>`;
 export const R=(x,y,w,h,c)=>P([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],c);
 export const line=(a,c,w=2)=>`<path d="M${a.map(p=>p.join(' ')).join(' L')}" fill="none" stroke="${c}" stroke-width="${w}"/>`;
-export function asset(id,name,svg,collision,bounds,material='wood') {const[x,y,w,h]=bounds;return{id,name,category:'architecture',visual:[],vector:compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.join(' ')}">${svg}</svg>`),collision:collision.map(pts),anchor:{x:0,y:0},sockets:[],tags:['act3-production'],params:{collisionSource:'drawn-structural-polygons'},material,breakable:false,oneWay:false,bounds:{x,y,w,h},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.35,2],backgroundRange:[.35,2]}};}
+export function asset(id,name,svg,collision,bounds,material='wood') {const[x,y,w,h]=bounds;return{id,name,category:'architecture',visual:[],vector:compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.join(' ')}">${svg}</svg>`),collision:collision.map(pts),anchor:{x:0,y:0},sockets:[],tags:['act3-production'],params:{collisionSource:'drawn-structural-polygons'},material,breakable:false,oneWay:openStructureAsset(id),bounds:{x,y,w,h},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.35,2],backgroundRange:[.35,2]}};}
 export function put(p,s,a,id,x,y,scale=1,layer='back'){if(!p.library.some(q=>q.id===a.id))p.library.push(a);s.elements.push({id,assetId:a.id,x,y,scale,rotation:0,snap:false,depthLayer:'L1',layer});return s.elements.at(-1);}
-export function terrain(s,id,p,material='stone',properties={}){s.terrains.push({id,name:id,type:'solid',points:pts(p),baseMaterial:material,oneWay:false,breakable:false,layer:'terrain',properties});return s.terrains.at(-1);}
+export function terrain(s,id,p,material='stone',properties={}){s.terrains.push({id,name:id,type:'solid',points:pts(p),baseMaterial:material,oneWay:false,breakable:false,layer:'terrain',properties});return openStructureTerrain(s.terrains.at(-1));}
 export function foundation(s,profile){terrain(s,'a3-foundation',[...profile,[s.width,s.height],[0,s.height]]);}
 export function pool(s,id,x1,x2,y,bottom){s.materials.push({id,kind:'water-pool',conductive:true,points:[[x1,y],[x2,y],[x2,bottom],[x1,bottom]],surface:[[x1,y],[x2,y]],bottom:[[x1,bottom],[x2,bottom]],attached:true});}
 export function deck(id,w,h=36,{rail=true,stone=false}={}){const body=[[0,0],[w,0],[w,h],[0,h]],parts=[P(body,stone?'#718081':'#766649'),R(0,0,w,7,stone?'#b1b5a2':'#b7a371')];for(let x=20;x<w;x+=80)parts.push(line([[x,8],[x,h]],stone?'#4b6265':'#4e5141',2));if(rail){parts.push(R(0,-65,w,8,'#685e48'));for(let x=0;x<=w;x+=135)parts.push(R(x,-78,10,78,'#97886a'),R(x-3,-80,16,6,'#c1b088'));}return asset(id,stone?'돌다리·성벽길':'회랑·누마루',parts.join(''),[body],[-5,-88,w+20,h+95],stone?'stone':'wood');}

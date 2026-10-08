@@ -1,3 +1,4 @@
+import {applyOpenStructures} from '../tools/map-forge/open-structure-policy.mjs';
 import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
 import {readFile,readdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
@@ -22,11 +23,13 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   if(bgm.length!==5||bgm.some((f,i)=>!f.startsWith(String(i+1).padStart(2,'0'))))throw Error('BGM prefixes 01 through 05 required');
   const parts=['globalThis.HONRO_BGM_TRACKS='+JSON.stringify(bgm.map(f=>'assets/bgm/'+f))+';',await buildCore(), 'globalThis.HONRO_BALANCE='+await read('game/config/balance.json')+';'];
   parts.push('globalThis.HONRO_SPLIT_V1='+await read('shared/data/split-campaign-v1.json')+';');
+  parts.push('globalThis.HONRO_OPEN_STRUCTURES='+await read('shared/data/open-structures.json')+';');
   parts.push('globalThis.HONRO_WATERWORKS_V2='+await read('shared/data/waterworks-v2-content.json')+';');
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
-  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
+  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
   const project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
+  applyOpenStructures(project);
   parts.push('globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'));');
   if(vector){
     await buildParty();

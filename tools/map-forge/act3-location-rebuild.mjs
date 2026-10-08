@@ -1,3 +1,4 @@
+import {openStructureTerrain} from './open-structure-policy.mjs';
 /** Approved distinct Act 3 locations. Applies only 23–30 to the caller's latest project.
  * Floors, ceilings, ramps and water are geography; rear artwork never hides a false plinth.
  */
@@ -24,7 +25,7 @@ function exit(s,q,id,x,label){mark(s,q,id,x,label,'exit');}
 function wave(s,q,id,x){mark(s,q,'wave-'+id,x,'증원 진입','act3-wave');}
 function realFloor(s,q,material='stone'){foundation(s,q);s.terrains.at(-1).baseMaterial=material;}
 function bridge(p,s,id,q){const points=[...q,...q.slice().reverse().map(([x,y])=>[x,y+30])],a=asset(`a3-location:${s.metadata.stageId}:${id}`,'실제 보행 교면',P(points,'#776f53')+line(q,'#c0b894',7),[points],[q[0][0],Math.min(...q.map(v=>v[1]))-4,q.at(-1)[0]-q[0][0],Math.max(...q.map(v=>v[1]))-Math.min(...q.map(v=>v[1]))+40]);put(p,s,a,id,0,0);s.design.act3.bridges.push(id);}
-function ceiling(s,id,top,bottom,material='stone'){const t=terrain(s,id,[...top,...bottom.slice().reverse()],material,{honroCeiling:true});t.properties.honroLocationCeiling=true;return t;}
+function ceiling(s,id,top,bottom,material='stone'){const t=terrain(s,id,[...top,...bottom.slice().reverse()],material,{honroCeiling:true});t.properties.honroLocationCeiling=true;return openStructureTerrain(t);}
 function environment(p,s,{mood='day',interior=false,ground=2500,nature=true,farCity=false}={}){
  cityEnvironment(p,s,{mood,interior:true,ground});s.environment.preset=interior?'enclosed':'forest';s.environment.skyVisible=!interior;s.environment.atmosphere.preset=interior?'enclosed':'forest';
  if(nature){const id=`a3-location:${s.metadata.stageId}:far-ridge`,profile=[[-18000,200],[-12000,120],[-7000,-70],[-3000,-260],[0,-210],[1900,-450],[3200,-570],[4600,-360],[6300,-410],[9000,-160],[15000,40],[s.width+18000,210]],poly=[...profile,[s.width+18000,18000],[-18000,18000]],c=mood==='night'?'#344e53':mood==='burnt'?'#78867a':'#7e9180';const a=asset(id,'한 겹의 먼 능선',P(poly,c)+P([[900,-275],[3100,-490],[4400,-335],[3200,-170]],mood==='night'?'#405756':'#96a089'),[],[-18000,-590,s.width+36000,18590]);a.reference.foot={x:0,y:0};a.tags=['act3-distant-landscape'];p.library.push(a);const gid='a3-place-L4';s.environment.groups.push({id:gid,depthLayer:'L4',verticalMode:'WORLD',zoneId:'act3-world',x:0,y:ground-150});s.environment.surfaces.push({id:gid+'-support',groupId:gid,kind:'rear-ground',points:[{x:-18000,y:0},{x:s.width+18000,y:0}],bottom:18000});s.environment.placements.push({id:gid+'-ridge',assetId:id,depthLayer:'L4',groupId:gid,supportId:gid+'-support',x:0,y:0,scale:1,rotation:0});}
