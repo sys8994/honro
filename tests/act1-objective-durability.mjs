@@ -13,7 +13,7 @@ check('Existing ritual interaction reveals the actual multi-hit durability',()=>
  Object.assign(mage,{x:m.x,y:m.y});b.active=mage.id;assert(g.HonroInteractions.use(app,m));
  const before=JSON.stringify(b),state=g.HonroObjectives.state(b,st);assert.equal(JSON.stringify(b),before);
  assert.match(state.summary,/내구도 520\/520/);assert.match(state.targets.find(t=>t.kind==='seal').label,/520\/520/);
- assert.match(g.HonroObjectives.help(app).guide,/여러 번/);
+ assert.equal(g.HonroObjectives.help(app).guide,'설오로 표시된 고리쇠를 쏘세요');
 });
 check('A nonfatal real damage call visibly reduces the remaining amount, including after serialization',()=>{
  e.damageTerrain(t,54.1585);assert.equal(t.hp,465.8415);assert(!t.broken);
