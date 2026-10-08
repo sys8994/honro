@@ -1666,3 +1666,7 @@ Both Act 2 recipe audits now invoke the same vector/scene, forest, cavern-place 
 ### C independent authored-span fixture isolation
 
 The canonical M09/E audit manually places both heroes at each authored departure. V3 correctly preserves an existing gate pair across ordinary turns, so retaining the preceding fixture's pair made the next isolated shot replace only one endpoint. Each independent span fixture now explicitly clears its prior pair before placing actors. Actual M09 projectiles and both E interactions pass on all five stage25 and four stage27 spans. This is controlled-pose/no-enemy evidence; continuous movement, return routes, wind and normal combat remain separate tests.
+
+### C versioned author regression boundary
+
+The force-author audit still required waterworks revision 1 for all six revised stages. It now pins revision 3 only for stages25/27 and revision 1 for 23/24/26/28. Terrain and marker identities/order remain exact, current source labels/classes/steps must agree, input and repeated force-author calls stay unchanged, and frozen v1 maps retain their original complete values. No old fixture or production author behavior was changed.
