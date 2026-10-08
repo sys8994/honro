@@ -1627,3 +1627,8 @@ The middle village retains its original resident/market surface above a connecte
 ## 2026-10-08 · Keep guardian checks exact across approved topology revisions
 
 The guardian-tree audit still compared the current project directly with its pre-forest/pre-waterworks 30-map snapshot. The first failure was the approved stage-1 low pine-root addition; the approved stage-9 hall rescale and stages 23–28 also belong to later authoring. Reuse the existing reviewed topology and waterworks projections for the immutable original hashes, and separately run the guardian branch author from the four original polygons on today's complete project. Its result must equal today's project exactly, preserving all other stages, fields and assets. Keep all four actual body climbs, original bough-shape checks, legacy saves, canonical regeneration and Workshop roundtrip checks. No production map, branch, balance or old golden hash changed. The repaired audit and exact 14/15/16 route-mode mutation guards pass; browser and normal combat are separate checks.
+### B14/16 canonical rear terrace contact derivation
+
+- The scene author initially derived visual rear-terrace skirts before cavern place terrain was cut, while runtime reauthoring read the already-cut floor. The resulting stage14 skirt bottoms differed despite identical collision and gameplay.
+- Place authoring now refreshes only rear-terrace `bottom`, `artBottom`, and `artBottomPoints` against the final floor. The saved canonical data uses that same derivation. Existing runtime visual output, terrain, room bounds, camera and collision are unchanged.
+- `node tests/cavern-rear-contacts.mjs` checks exact stage14/16 canonical regeneration and equality to the prior runtime scene-derived visual surfaces.

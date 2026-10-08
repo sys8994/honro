@@ -40,6 +40,19 @@ function rear(st,key,x,y,points,items){const env=st.environment,id=PREFIX+st.met
  env.groups.push(group);env.surfaces.push({id:supportId,groupId:id,kind:'act2-rear-terrace',points:pp,bottom,artBottom:bottom,artBottomPoints:contact,visualOnly:true});
  for(const [key,assetId,localX,scale=1]of items){env.placements.push({id:id+'-'+key,assetId,depthLayer:'L2',groupId:id,supportId,x:localX,y:0,scale,rotation:0});}
 }
+// Rear terrace skirts are visual derivatives of the final collision floor.
+// Recompute after optional terrain authors, without rebuilding props or rooms.
+export function refreshAct2RearTerraceContacts(st){
+ for(const surface of st.environment?.surfaces||[]){
+  if(surface.kind!=='act2-rear-terrace')continue;
+  const group=st.environment.groups.find(g=>g.id===surface.groupId);
+  if(!group)throw Error('Missing rear terrace group '+surface.groupId);
+  const contact=surface.points.map(p=>({x:p.x,y:ground(st,Math.max(0,Math.min(st.width,group.x+p.x)))-group.y+260})).reverse();
+  const bottom=Math.max(...surface.points.map(p=>p.y),...contact.map(p=>p.y))+800;
+  Object.assign(surface,{bottom,artBottom:bottom,artBottomPoints:contact});
+ }
+ return st;
+}
 function light(st,key,x,y,radius=260){st.design.space.lights.push({id:PREFIX+st.metadata.stageId+'-'+key,x,y,roomId:roomAt(st,x),kind:'oil',radius,color:'#bb9558'});}
 function clean(st){st.elements=st.elements.filter(e=>!e.id.startsWith(PREFIX));for(const key of ['groups','surfaces','placements'])st.environment[key]=st.environment[key].filter(e=>!e.id.startsWith(PREFIX));st.design.space.scenery=st.design.space.scenery.filter(e=>!e.id.startsWith(PREFIX));st.design.space.lights=st.design.space.lights.filter(e=>!e.id.startsWith(PREFIX));}
 export function applyAct2SceneComposition(project){
