@@ -1,3 +1,5 @@
+import './forest-cavern-history.mjs';
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
@@ -8,7 +10,7 @@ import {legacyRuntime,migrate} from '../migration/migrate-stages.mjs';
 import vm from 'node:vm';
 const g=await runtime(),old=await legacyRuntime(),plain=x=>JSON.parse(JSON.stringify(x)),rows=[];
 const activeProject=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));
-const project=beforeExistenceRoster(beforePlatformPassages(activeProject));
+const project=beforeExistenceRoster(beforePlatformPassages(beforeForestCavernTopology(activeProject)));
 const baseline=plain(await migrate());
 assert.deepEqual(project.stages[6].terrains.filter(t=>t.id===g.HonroStage7Reentry.id),[plain(g.HonroStage7Reentry.terrain())],'The only added Stage7 root exactly matches its shared recipe');
 // Compare historical terrain/gameplay identity independently of current combat
@@ -49,4 +51,4 @@ for(let id=1;id<=10;id++){
  rows.push({stage:id,terrain:st.terrains.length,units:st.units.length,passed:true});console.log('PASS migrated stage',id);
 }
 g.HONRO_PROJECT=project;
-await mkdir('_local/reports',{recursive:true});await writeFile('_local/reports/migration.json',JSON.stringify({rows,reproducible:true,redesignedStages:[1,2,3,4,5,6],comparison:'Original import for 1–6; stages 7–10 retain original data except ritual dais presentation and the exact shared Stage7 recovery root. Both Workshop recipes and bounded additive root reproduce the active project.',difficulties:['story','normal','veteran'],roundTrip:true},null,2)+'\n');
+await mkdir('_local/reports',{recursive:true});await writeFile('_local/reports/migration.json',JSON.stringify({rows,reproducible:true,redesignedStages:[1,2,3,4,5,6],comparison:'Original import for 1–6; stages 7–10 retain original data except ritual dais presentation and the exact shared Stage7 recovery root, after exact approved forest/cavern history projection. Both Workshop recipes and bounded additive root reproduce the active project.',difficulties:['story','normal','veteran'],roundTrip:true},null,2)+'\n');
