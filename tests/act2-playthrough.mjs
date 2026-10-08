@@ -24,15 +24,43 @@ for(const id of ids){
   if(saved.stage!==id||saved.b.honroAct2Revision!==2||saved.geometryFingerprint!==geometryFingerprint)throw Error('Checkpoint does not match current Act 2 geometry for stage '+id+'; run a fresh test instead of resuming an old clear.');
   b=saved.b;e=new C.Engine(b,event=>events.push(event),false);app.engine=e;actions=saved.actions;
  }
+ await mkdir('_local/reports/act2-revision',{recursive:true});
  const start=performance.now();
  app.checkMission=()=>{if(['won','lost'].includes(b.phase))return true;const failure=g.HonroAct2.failure(b);if(failure||!e.heroesAlive().length){b.phase='lost';b.winnerReason=failure||'Party defeated';return true;}if(g.HonroObjectives.state(b,st).complete){b.phase='won';return true;}return false;};
  e.checkEnd=app.checkMission;g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);g.HonroAct2.attach(app,e);
  const tick=()=>{e.tick(1/60);g.HonroMission.tick(app,1/60);};
  const defend=()=>e.wait();
- const move=(u,x,y)=>{let still=0;for(let j=0;j<650&&e.canAct()&&u.moveLeft>10&&Math.abs(u.x-x)>24;j++){
-   const old=u.x;e.move(Math.sign(x-u.x),1/60);tick();
-   if(Math.abs(old-u.x)<.1){if(++still>8&&e.grounded(u)){e.jump(u);still=0;}}else still=0;
- }for(let j=0;j<120&&!e.grounded(u)&&e.canAct();j++)tick();};
+ const route=process.env.HONRO_BOT_AUTHORED_ROUTE==='1'&&id===15?space.routes.find(r=>r.id==='main').anchors:null;
+ const navigation=new Map(),navigationLog=[];
+ const move=(u,x,y)=>{
+  const goal=g.HonroAct2.current(b),routeGoal=route?route.reduce((best,p,i)=>Math.hypot(p.x-x,p.y-y)<best.distance?{i,distance:Math.hypot(p.x-x,p.y-y)}:best,{i:0,distance:Infinity}).i:0;
+  let nav=navigation.get(u.id);
+  if(route&&!nav){nav={next:route.reduce((best,p,i)=>Math.hypot(p.x-u.x,p.y-u.y)<best.distance?{i,distance:Math.hypot(p.x-u.x,p.y-u.y)}:best,{i:0,distance:Infinity}).i,jumpTo:null};navigation.set(u.id,nav);}
+  let still=0;
+  for(let j=0;j<650&&e.canAct()&&u.moveLeft>10;j++){
+   let p=route&&nav.next<=routeGoal?route[nav.next]:{x,y};
+   if(route&&nav.jumpTo)p=nav.jumpTo;
+   const reached=Math.abs(u.x-p.x)<22&&Math.abs(u.y-p.y)<100&&e.grounded(u);
+   if(reached){
+    if(route&&p===route[nav.next]){
+     navigationLog.push({round:b.round,actor:u.cls,waypoint:nav.next,x:u.x,y:u.y});
+     if(p.jumpTo&&e.jump(u)){nav.jumpTo={...route[nav.next+1],x:p.jumpTo.x};navigationLog.push({round:b.round,actor:u.cls,action:'planned-jump',waypoint:nav.next});}
+     nav.next++;continue;
+    }
+    if(nav?.jumpTo){nav.jumpTo=null;continue;}
+    break;
+   }
+   if(!route&&Math.abs(u.x-x)<=24)break;
+   const before={x:u.x,y:u.y};
+   if(Math.abs(u.x-p.x)>10)e.move(Math.sign(p.x-u.x),1/60);
+   if(route&&(still>10||Math.abs(u.x-p.x)<24&&u.y-p.y>100)&&e.grounded(u)){
+    if(e.jump(u)){navigationLog.push({round:b.round,actor:u.cls,action:'jump',waypoint:nav.next,x:u.x,y:u.y});still=0;}
+   }
+   tick();
+   if(Math.hypot(before.x-u.x,before.y-u.y)<.1){if(++still>8&&!route&&e.grounded(u)){e.jump(u);still=0;}}else still=0;
+  }
+  for(let j=0;j<120&&!e.grounded(u)&&e.canAct();j++)tick();
+ };
  let frames=0,previous='';
  for(let turn=actions.length;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
   while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames++<1100000){if(b.phase==='aim'&&e.active?.dead){const next=e.heroesAlive().find(u=>!u.acted);if(next)e.select(next.id);}tick();}
@@ -116,7 +144,7 @@ for(const id of ids){
   }
   if(!fired){defend();actions.push({round:b.round,actor:u.cls,action:'defend'});}
  }
- const row={stage:id,revision:b.honroAct2Revision,geometryFingerprint,geometryRevision:space?.geometryRevision,phase:b.phase,round:b.round,goal:g.HonroAct2.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,items:{...b.items},heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,x:u.x,y:u.y})),actions};rows.push(row);
+ const row={stage:id,revision:b.honroAct2Revision,geometryFingerprint,geometryRevision:space?.geometryRevision,phase:b.phase,round:b.round,goal:g.HonroAct2.current(b)?.id,reason:b.winnerReason,seconds:(performance.now()-start)/1000,navigationMode:route?'authored normal-input route':'legacy x-only',navigationLog,policy:{difficulty:p.settings?.difficulty??p.difficulty,entryLevel:g.HonroProgression.plan(id).entryLevel,autoTrain:true,occultistLoadout:p.loadouts.occultist},items:{...b.items},heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,x:u.x,y:u.y})),actions};rows.push(row);
  console.log('RESULT',JSON.stringify({...row,actions:actions.length}));
  await writeFile(checkpoint,JSON.stringify({stage:id,geometryFingerprint,b,actions}));
  await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile(`_local/reports/act2-revision/normal-play-${id}.json`,JSON.stringify(row,null,2));
