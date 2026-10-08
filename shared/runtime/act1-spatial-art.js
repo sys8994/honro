@@ -30,7 +30,18 @@ function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.version===b.sceneVe
   for(const ps of [ [[.05,.01],[.45,.02],[.35,.24],[.23,.37],[.26,.67],[.07,.91]], [[.45,.02],[.70,.11],[.65,.35],[.42,.52],[.31,.82],[.22,.94],[.26,.67],[.23,.37],[.35,.24]], [[.71,.11],[.94,.23],[.90,.54],[.75,.63],[.68,.94],[.36,.98],[.47,.68],[.66,.43]], [[.06,.45],[.22,.39],[.26,.67],[.16,.92],[.03,.99]] ])cliffPlanes.push(map(ps));
  }
  const wood=t.mat==='wood';if(wood){const n=Math.max(1,Math.min(12,Math.floor(t.w/90)));for(let i=1;i<n;i++){const x=t.x+t.w*i/n,y=at(x);joints.push(line([[x,y+6],[x-4,Math.min(t.y+t.h,y+80)]]));}}
- q={source:t.vertices,version:b.sceneVersion,shape,rim,caps,planes,joints,edges,cliffPlanes,wood};terrainCache.set(t,q);return q;
+ let branchBody=null,branchGrain=null,branchNeck=null;
+ if(guardianBranch(b,t)&&edges.length){
+  // The contact edge stays exact; a tapered curved underside makes a living
+  // bough rather than a rectangular plank. One-way surfaces have no underside
+  // actor contact. Keep the unchanged polygon for all simulation/ballistics.
+  branchBody=new Path2D();const first=edges[0][0],last=edges[edges.length-1][1],joint=Math.max(first.x,Math.min(last.x,2500)),jy=at(joint),depth=Math.min(74,t.h*.66);
+  branchBody.moveTo(first.x,first.y);for(const [,z]of edges)branchBody.lineTo(z.x,z.y);
+  branchBody.lineTo(last.x,last.y+7);branchBody.quadraticCurveTo(joint+(last.x-joint)*.48,jy+depth,joint,jy+depth);branchBody.quadraticCurveTo(joint-(joint-first.x)*.65,jy+depth*.9,first.x,first.y+7);branchBody.closePath();
+  branchNeck=new Path2D();branchNeck.moveTo(joint-36,jy+12);branchNeck.quadraticCurveTo(joint-38,jy+67,2480,jy+124);branchNeck.lineTo(2532,jy+116);branchNeck.quadraticCurveTo(joint+29,jy+48,joint+42,jy+13);branchNeck.closePath();
+  branchGrain=new Path2D();branchGrain.moveTo(first.x+18,first.y+8);branchGrain.quadraticCurveTo(joint,jy+depth*.57,last.x-15,last.y+8);
+ }
+ q={source:t.vertices,version:b.sceneVersion,shape,rim,caps,planes,joints,edges,cliffPlanes,wood,branchBody,branchGrain,branchNeck};terrainCache.set(t,q);return q;
 }
 function groundGradient(c,t,b){const earth=t.mat==='earth'||t.surfaceKind==='soil',tall=t.h>500,top=tall?Math.min(...b.terrain.filter(q=>!q.oneWay&&!q.broken&&q.mat===t.mat).map(q=>q.y)):t.y,bottom=tall?b.height+30:t.y+t.h;
  const g=c.createLinearGradient(0,top,0,Math.max(top+60,bottom));g.addColorStop(0,earth?'#5a655e':'#62707a');g.addColorStop(.3,earth?'#3b4b47':'#43545e');g.addColorStop(.68,earth?'#283c3d':'#2e414b');g.addColorStop(1,earth?'#18282a':'#17282b');return g;}
@@ -39,8 +50,9 @@ const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(!activ
  if(guardianBranch(b,t)){
   // Retain the real collision silhouette and bright walkable top. Bark is a
   // paint-only substitution: stone resistance and projectile passage stay put.
-  c.fillStyle=A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#85846b'],[.22,'#626957'],[.66,'#394940'],[1,'#203633']]);c.fill(q.shape);c.clip(q.shape);
-  c.strokeStyle='#253d34';c.lineWidth=6;for(const [a,z]of q.edges){c.beginPath();c.moveTo(a.x+10,a.y+22);c.bezierCurveTo(a.x+(z.x-a.x)*.35,a.y+33,z.x-(z.x-a.x)*.28,z.y+14,z.x-8,z.y+28);c.stroke();}
+  if(q.branchNeck){c.fillStyle='#626957';c.fill(q.branchNeck);}
+  c.fillStyle=A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#85846b'],[.22,'#626957'],[.66,'#394940'],[1,'#203633']]);c.fill(q.branchBody||q.shape);c.clip(q.branchBody||q.shape);
+  c.strokeStyle='#253d34';c.lineWidth=4;if(q.branchGrain)c.stroke(q.branchGrain);
   c.strokeStyle='#c2c4a0';c.lineWidth=5;c.lineJoin='round';c.stroke(q.rim);c.restore();return;
  }
  const roof=/^(west-eave|east-eave|west-gallery|east-gallery|altar-platform)$/.test(t.id);c.fillStyle=/^climb-/.test(t.id)?'#405460':roof?'#2b3e48':q.wood?A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#6b6d5b'],[.28,'#484d41'],[1,'#26352e']]):groundGradient(c,t,b);c.fill(q.shape);c.clip(q.shape);

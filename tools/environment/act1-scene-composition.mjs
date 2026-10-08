@@ -88,7 +88,7 @@ export async function applyAct1SceneComposition(project){
    // Visual branch skins use the exact existing one-way collision polygons.
    // Keep their material, damage/ballistic rules, IDs, and saved geometry intact.
    st.design.act1Scene.guardianTree={id:'a1-scene-10-guardian-tree',branches:['altar-step-1','altar-step-2','altar-step-3','altar-platform']};
-   r('western-foundation',1310,2760,1850,940,'outer-yard');r('central-foundation',2520,2185,1700,650,'outer-yard');r('eastern-foundation',3860,2745,1700,900,'outer-yard');
+   r('western-foundation',1310,2760,1850,940,'outer-yard');r('eastern-foundation',3860,2745,1700,900,'outer-yard');
   }
   // Broad rear rock masses precede the living/ceremonial architecture within L1-back.
   const rear=st.elements.filter(e=>e.id.startsWith(PREFIX)&&e.assetId==='act1-scene:valley-granite');
