@@ -9,8 +9,10 @@
 
 ## Verified representative scope
 
-Production Engine: stage 7's original main climb, four body types; three new branch approaches, four body types; stage 15's complete authored required route, four body types, eight ordinary jumps, no movement skill or actor-position correction during travel. Initial fixture placement is explicit. Seven selected actual projectile shots hit their intended targets, including upper, middle and lower stage-15 firing choices. These are isolated movement and shot tests, not normal-combat victory or player input tests.
+Production Engine: stage 7's original main climb, four body types; three new branch approaches, four body types; stage 15's complete authored required route, four body types, seven ordinary jumps, no movement skill or actor-position correction during travel. Initial fixture placement is explicit. Three lower-area return routes across four base body types also pass without movement skills or position correction, including re-entry to both crowns. Seven selected actual projectile shots hit their intended targets, including upper, middle and lower stage-15 firing choices. These are isolated movement and shot tests, not normal-combat victory or player input tests.
 
 Native Canvas captures use the common production compiler, Engine and Scene. Overview, normal zoom and portrait views are available through `node tools/environment/capture-act1.mjs <tag> 7 15 --review --topology`. This is not browser DOM, HUD, touch input or performance validation.
 
-Still required before release: fall-return and all-enemy accessibility checks, ordinary combat completion, browser Game/Workshop/Playtest checks, aggregate regressions and final art approval. Geometry-sensitive historical tests may need an explicit approved-layout comparison rather than treating the new terrain as the old walk-only map.
+Control images for untouched stages 14 and 20 match the previous renderer byte-for-byte at overview, entry, place and portrait sizes (eight PNGs).
+
+Still required before release: all-enemy accessibility checks, ordinary combat completion, browser Game/Workshop/Playtest checks, aggregate regressions and final art approval. Geometry-sensitive historical tests may need an explicit approved-layout comparison rather than treating the new terrain as the old walk-only map.

@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {runtime} from '../game/tests/helpers.mjs';
+import {applyForestCavernTopology} from '../tools/map-forge/forest-cavern-topology.mjs';
+const g=await runtime({legacyMaps:false}),p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),plain=x=>JSON.parse(JSON.stringify(x));
+const authored=g.HonroMaps.finalize(applyForestCavernTopology(plain(p)));
+assert.deepEqual(plain(authored),p,'Canonical representative authoring must be idempotent');
+const q=plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(p))));
+assert.deepEqual(q,p,'Workshop roundtrip retains topology, scenery override and named clipped planes');
+const s7=p.stages[6],s15=p.stages[14];assert.equal(s7.units.filter(u=>u.id.startsWith('foe-')).length,11);assert.equal(s7.units.filter(u=>u.id.startsWith('resident-')).length,3);assert.equal(s15.units.filter(u=>u.team==='enemy').length,22);
+assert(s15.terrains.find(t=>t.id==='cave-roof').oneWay===false);
+for(const id of ['fc15-west-arch','fc15-east-arch'])assert(s15.terrains.find(t=>t.id===id).oneWay===false,id+' remains solid');
+for(const t of s7.terrains.filter(t=>t.id.startsWith('fc7-')))assert(t.oneWay);
+const base=plain(p);delete base.stages[14].design.space.rockCompositions;delete base.stages[14].design.space.terrainPlanes;
+const before=g.HonroMaps.compile(base.stages[14],base),after=g.HonroMaps.compile(s15,p);
+assert.deepEqual(plain(before.terrain),plain(after.terrain),'Authored rock art cannot alter collision');
+for(const n of [1,2,3,4,5,6,8,9,10,11,12,13,14,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30])assert.deepEqual(plain(authored.stages[n-1]),p.stages[n-1],'Representative authoring changed stage '+n);
+console.log('PASS representative idempotency, 30-stage roundtrip, non-target preservation, count/collision/art contracts');

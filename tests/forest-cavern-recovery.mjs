@@ -1,0 +1,9 @@
+import {act1Runtime,fixture,traverse} from './act1-spatial-test-helpers.mjs';
+import {mkdir,writeFile} from 'node:fs/promises';
+const g=await act1Runtime(),C=g.HONRO_CORE,rows=[];
+for(const cls of ['archer','mage','knight','occultist'])for(const name of ['west-undercut','east-undercut','east-exit']){
+ const {b,e}=fixture(g,15),u=e.heroesAlive().find(u=>u.cls===cls),st=g.HONRO_PROJECT.stages[14],floor=b.terrain.find(t=>t.id==='act2-floor'),at=x=>({x,y:C.topAt(floor,x)});b.units=[u];b.active=u.id;e.checkEnd=()=>false;
+ const route=name==='west-undercut'?[at(5430),{x:5380,y:4436.470588235294,jumpTo:{x:5315,support:'fc15-west-arch'}},{x:5230,y:4142.727272727273},{x:5110,y:3990},{x:4910,y:3740},{x:4800,y:3620},{x:4600,y:3648.5714285714284},{x:4450,y:3490},{x:4440,y:3311.6666666666665,jumpTo:{x:4410,support:'fc15-crown-return'}},{x:4370,y:3147.142857142857,jumpTo:{x:4290,support:'fc15-west-arch'}},{x:4140,y:2996.315789473684}]:name==='east-undercut'?[at(6210),{x:6240,y:4395,jumpTo:{x:6350,support:'fc15-east-arch'}},...st.design.space.routes[0].anchors.slice(st.design.space.routes[0].anchors.findIndex(p=>p.x===6350),st.design.space.routes[0].anchors.findIndex(p=>p.x===7310)+1)]:[{x:7650,y:3875.277777777778,jumpTo:{x:7510,support:'fc15-east-arch'}},{x:7390,y:3500.5263157894738},{x:7310,y:3504.7368421052633}];
+ Object.assign(u,at(name==='west-undercut'?4210:name==='east-undercut'?6810:7800),{vx:0,vy:0});const result=traverse(g,b,e,u,route);rows.push({cls,name,...result});console.log(JSON.stringify({cls,name,passed:result.passed,failed:result.failed,jumps:result.jumps,damage:result.damage}));
+}
+await mkdir('_local/reports/forest-cavern',{recursive:true});await writeFile('_local/reports/forest-cavern/recovery.json',JSON.stringify(rows,null,2));if(rows.some(r=>!r.passed))process.exitCode=1;
