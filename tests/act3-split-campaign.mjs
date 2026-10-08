@@ -65,7 +65,7 @@ await check('Legacy 24–27 Continue keeps four heroes and original split-free s
  for(const id of [24,25,26,27]){const p=h.profileThrough(id-1),map=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id),b=g.HonroMaps.createBattle(map,g.HONRO_PROJECT,p,{origin:'campaign'});
  // Reconstruct an old four-hero snapshot with legacy saved objectives.
  const all=g.HonroMaps.createBattle(g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===24),g.HONRO_PROJECT,p,{origin:'campaign'}).units.filter(S.hero);
- b.units=b.units.filter(u=>!S.hero(u)).concat(all);delete b.honroSplit;delete b.activeRoster;unit('mage',b).hp-=88;p.honroBattle=plain(b);delete p.honroSplitCampaign;
+ b.units=b.units.filter(u=>!S.hero(u)).concat(all);delete b.honroSplit;delete b.activeRoster;if(b.honroMap?.act3)delete b.honroMap.act3.crossings;unit('mage',b).hp-=88;p.honroBattle=plain(b);delete p.honroSplitCampaign;
  app=h.load(p);click('continue');assert.equal(app.engine.b.units.filter(S.hero).length,4);assert.equal(app.engine.b.honroSplit,undefined);assert.equal(unit('mage').hp,unit('mage',b).hp);
  click('retry');ready();assert.equal(app.engine.b.units.filter(S.hero).length,[25,26,27].includes(id)?2:4);}
 });
