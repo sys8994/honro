@@ -1,0 +1,2508 @@
+{
+  "sourceBeforeCommit": "dbaa565",
+  "scope": "Exact approved stage14/16 path pairs. Geometry hashes guard the player-step-off/basic-jump runner; this is not blanket permission for other chapters.",
+  "stages": {
+    "14": {
+      "before": {
+        "terrainSha256": "83d582ec263d5de7e4fa9b6af14c236895a3e018bf800451412e50843e45d703",
+        "routes": [
+          {
+            "id": "main",
+            "kind": "required",
+            "anchors": [
+              {
+                "x": 320,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 375,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 450,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 525,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 600,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 675,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 750,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 828.5714285714286,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 907.1428571428571,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 985.7142857142857,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1064.2857142857142,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1142.857142857143,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1221.4285714285713,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1300,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1378.5714285714284,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1457.142857142857,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1535.7142857142858,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1614.2857142857142,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1692.8571428571427,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1771.4285714285716,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1800,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1850,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1928.5714285714287,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2007.142857142857,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2085.714285714286,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2164.285714285714,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2242.857142857143,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2321.4285714285716,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2350,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2400,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2480,
+                "y": 3016,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2560,
+                "y": 3032,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2640,
+                "y": 3048,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2720,
+                "y": 3064,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2800,
+                "y": 3080,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2871.4285714285716,
+                "y": 3138.5714285714284,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2942.8571428571427,
+                "y": 3197.1428571428573,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3014.285714285714,
+                "y": 3255.714285714286,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3085.714285714286,
+                "y": 3314.285714285714,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3157.1428571428573,
+                "y": 3372.857142857143,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3228.5714285714284,
+                "y": 3431.4285714285716,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3300,
+                "y": 3490,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3375,
+                "y": 3566.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3450,
+                "y": 3642.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3525,
+                "y": 3718.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3600,
+                "y": 3795,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3675,
+                "y": 3871.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3750,
+                "y": 3947.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3825,
+                "y": 4023.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3900,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3978.5714285714284,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3980,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4057.1428571428573,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4135.714285714285,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4214.285714285715,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4292.857142857143,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4350,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4371.428571428572,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4450,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4522.222222222223,
+                "y": 4147.777777777777,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4594.444444444444,
+                "y": 4195.555555555556,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4666.666666666667,
+                "y": 4243.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4738.888888888889,
+                "y": 4291.111111111111,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4811.111111111111,
+                "y": 4338.888888888889,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4883.333333333333,
+                "y": 4386.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4955.555555555556,
+                "y": 4434.444444444444,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5027.777777777777,
+                "y": 4482.222222222223,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5100,
+                "y": 4530,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5175,
+                "y": 4587,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5250,
+                "y": 4644,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5325,
+                "y": 4701,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5400,
+                "y": 4758,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5475,
+                "y": 4815,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5550,
+                "y": 4872,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5625,
+                "y": 4929,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5700,
+                "y": 4986,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5775,
+                "y": 5043,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5850,
+                "y": 5100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5927.777777777777,
+                "y": 5156.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6005.555555555556,
+                "y": 5213.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6083.333333333333,
+                "y": 5270,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6161.111111111111,
+                "y": 5326.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6238.888888888889,
+                "y": 5383.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6316.666666666667,
+                "y": 5440,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6394.444444444444,
+                "y": 5496.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6472.222222222223,
+                "y": 5553.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6550,
+                "y": 5610,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6621.428571428572,
+                "y": 5632.857142857143,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6692.857142857143,
+                "y": 5655.714285714285,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6764.285714285715,
+                "y": 5678.571428571428,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6835.714285714285,
+                "y": 5701.428571428572,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6907.142857142857,
+                "y": 5724.285714285715,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6978.571428571428,
+                "y": 5747.142857142857,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7050,
+                "y": 5770,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7121.25,
+                "y": 5773.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7192.5,
+                "y": 5777.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7263.75,
+                "y": 5781.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7335,
+                "y": 5785,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7406.25,
+                "y": 5788.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7477.5,
+                "y": 5792.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7548.75,
+                "y": 5796.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7620,
+                "y": 5800,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7660,
+                "y": 5812,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7620,
+                "y": 5800,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7548.75,
+                "y": 5796.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7477.5,
+                "y": 5792.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7406.25,
+                "y": 5788.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7335,
+                "y": 5785,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7263.75,
+                "y": 5781.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7192.5,
+                "y": 5777.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7121.25,
+                "y": 5773.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7050,
+                "y": 5770,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6978.571428571428,
+                "y": 5747.142857142857,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6907.142857142857,
+                "y": 5724.285714285715,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6880,
+                "y": 5715.6,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6907.142857142857,
+                "y": 5724.285714285715,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6978.571428571428,
+                "y": 5747.142857142857,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7050,
+                "y": 5770,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7080,
+                "y": 5771.578947368421,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          },
+          {
+            "id": "market-perch",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 4430,
+                "y": 4100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4580,
+                "y": 4045.3846153846152,
+                "surfaceId": "market-perch"
+              },
+              {
+                "x": 4820,
+                "y": 4045.3846153846152,
+                "surfaceId": "market-perch"
+              },
+              {
+                "x": 4970,
+                "y": 4444,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          },
+          {
+            "id": "refuge-bridge-walkway",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 6400,
+                "y": 5500.714285714286,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6550,
+                "y": 5392,
+                "surfaceId": "refuge-bridge-walkway"
+              },
+              {
+                "x": 7250,
+                "y": 5392,
+                "surfaceId": "refuge-bridge-walkway"
+              },
+              {
+                "x": 7400,
+                "y": 5788.421052631579,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": [
+              {
+                "terrainId": "gate-bridge",
+                "state": "broken",
+                "objectiveId": "bridge"
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "terrainSha256": "bee397c2344b39079576b2646a3cf37cf0f1f9c27b1e2d6c5cba843b5d91369c",
+        "routes": [
+          {
+            "id": "main",
+            "kind": "required",
+            "anchors": [
+              {
+                "x": 320,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 375,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 450,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 525,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 600,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 675,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 750,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 828.5714285714286,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 907.1428571428571,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 985.7142857142857,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1064.2857142857142,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1142.857142857143,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1221.4285714285713,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1300,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1378.5714285714284,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1457.142857142857,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1535.7142857142858,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1614.2857142857142,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1692.8571428571427,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1771.4285714285716,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1800,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1850,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1928.5714285714287,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2007.142857142857,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2085.714285714286,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2164.285714285714,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2242.857142857143,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2321.4285714285716,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2350,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2400,
+                "y": 3000,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2480,
+                "y": 3016,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2560,
+                "y": 3032,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2640,
+                "y": 3048,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2720,
+                "y": 3064,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2800,
+                "y": 3080,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2871.4285714285716,
+                "y": 3138.5714285714284,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2942.8571428571427,
+                "y": 3197.1428571428573,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3014.285714285714,
+                "y": 3255.714285714286,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3085.714285714286,
+                "y": 3314.285714285714,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3157.1428571428573,
+                "y": 3372.857142857143,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3228.5714285714284,
+                "y": 3431.4285714285716,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3300,
+                "y": 3490,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3375,
+                "y": 3566.25,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3450,
+                "y": 3642.5,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3525,
+                "y": 3718.75,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3600,
+                "y": 3795,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3675,
+                "y": 3871.25,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3750,
+                "y": 3947.5,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3825,
+                "y": 4023.75,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3900,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3978.5714285714284,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 3980,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4057.1428571428573,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4135.714285714285,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4214.285714285715,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4292.857142857143,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4350,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4371.428571428572,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4450,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4522.222222222223,
+                "y": 4147.777777777777,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4594.444444444444,
+                "y": 4195.555555555556,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4666.666666666667,
+                "y": 4243.333333333333,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4800,
+                "y": 4375.333333333333,
+                "surfaceId": "fc14-east-return-upper"
+              },
+              {
+                "x": 5050,
+                "y": 4511.55,
+                "surfaceId": "fc14-east-return-lower"
+              },
+              {
+                "x": 5250,
+                "y": 4644,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5325,
+                "y": 4701,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5400,
+                "y": 4758,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5475,
+                "y": 4815,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5550,
+                "y": 4872,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5625,
+                "y": 4929,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5700,
+                "y": 4986,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5775,
+                "y": 5043,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5850,
+                "y": 5100,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5927.777777777777,
+                "y": 5156.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6005.555555555556,
+                "y": 5213.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6083.333333333333,
+                "y": 5270,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6161.111111111111,
+                "y": 5326.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6238.888888888889,
+                "y": 5383.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6316.666666666667,
+                "y": 5440,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6394.444444444444,
+                "y": 5496.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6472.222222222223,
+                "y": 5553.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6550,
+                "y": 5610,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6621.428571428572,
+                "y": 5632.857142857143,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6692.857142857143,
+                "y": 5655.714285714285,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6764.285714285715,
+                "y": 5678.571428571428,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6835.714285714285,
+                "y": 5701.428571428572,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6907.142857142857,
+                "y": 5724.285714285715,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6978.571428571428,
+                "y": 5747.142857142857,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7050,
+                "y": 5770,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7121.25,
+                "y": 5773.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7192.5,
+                "y": 5777.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7263.75,
+                "y": 5781.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7335,
+                "y": 5785,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7406.25,
+                "y": 5788.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7477.5,
+                "y": 5792.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7548.75,
+                "y": 5796.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7620,
+                "y": 5800,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7660,
+                "y": 5812,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7620,
+                "y": 5800,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7548.75,
+                "y": 5796.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7477.5,
+                "y": 5792.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7406.25,
+                "y": 5788.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7335,
+                "y": 5785,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7263.75,
+                "y": 5781.25,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7192.5,
+                "y": 5777.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7121.25,
+                "y": 5773.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7050,
+                "y": 5770,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6978.571428571428,
+                "y": 5747.142857142857,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6907.142857142857,
+                "y": 5724.285714285715,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6880,
+                "y": 5715.6,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6907.142857142857,
+                "y": 5724.285714285715,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6978.571428571428,
+                "y": 5747.142857142857,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7050,
+                "y": 5770,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7080,
+                "y": 5771.578947368421,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": [],
+            "defaultJump": true,
+            "playerStepOff": true
+          },
+          {
+            "id": "market-perch",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 4430,
+                "y": 4100,
+                "surfaceId": "fc14-inhabited-shoulder"
+              },
+              {
+                "x": 4580,
+                "y": 4045.3846153846152,
+                "surfaceId": "market-perch"
+              },
+              {
+                "x": 4820,
+                "y": 4045.3846153846152,
+                "surfaceId": "market-perch"
+              },
+              {
+                "x": 4970,
+                "y": 4516.75,
+                "surfaceId": "fc14-east-return-lower"
+              }
+            ],
+            "requires": []
+          },
+          {
+            "id": "refuge-bridge-walkway",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 6400,
+                "y": 5500.714285714286,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6550,
+                "y": 5392,
+                "surfaceId": "refuge-bridge-walkway"
+              },
+              {
+                "x": 7250,
+                "y": 5392,
+                "surfaceId": "refuge-bridge-walkway"
+              },
+              {
+                "x": 7400,
+                "y": 5788.421052631579,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": [
+              {
+                "terrainId": "gate-bridge",
+                "state": "broken",
+                "objectiveId": "bridge"
+              }
+            ]
+          },
+          {
+            "id": "market-undercroft",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 5400,
+                "y": 4758,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5090,
+                "y": 4637.6,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4680,
+                "y": 4743.142857142857,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4300,
+                "y": 4787.777777777777,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4050,
+                "y": 4755,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          }
+        ]
+      }
+    },
+    "16": {
+      "before": {
+        "terrainSha256": "8ad2d17c1792e2e3ec1df380ddb9abd840550bab2e767036417c4b7d701a1cd8",
+        "routes": [
+          {
+            "id": "main",
+            "kind": "required",
+            "anchors": [
+              {
+                "x": 320,
+                "y": 4975.111111111111,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 375,
+                "y": 4970.833333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 450,
+                "y": 4965,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 525,
+                "y": 4959.166666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 600,
+                "y": 4953.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 675,
+                "y": 4947.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 750,
+                "y": 4941.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 825,
+                "y": 4935.833333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 900,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 980,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1060,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1140,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1220,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1300,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1380,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1460,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1540,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1620,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1700,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1780,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1840,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1860,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1940,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2020,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2100,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2180,
+                "y": 4913,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2260,
+                "y": 4896,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2340,
+                "y": 4879,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2420,
+                "y": 4862,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2500,
+                "y": 4845,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2580,
+                "y": 4828,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2660,
+                "y": 4811,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2690,
+                "y": 4804.625,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2740,
+                "y": 4794,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2820,
+                "y": 4777,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2900,
+                "y": 4760,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2977.777777777778,
+                "y": 4730,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3055.5555555555557,
+                "y": 4700,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3133.3333333333335,
+                "y": 4670,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3211.1111111111113,
+                "y": 4640,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3288.8888888888887,
+                "y": 4610,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3366.6666666666665,
+                "y": 4580,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3444.4444444444443,
+                "y": 4550,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3522.222222222222,
+                "y": 4520,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3600,
+                "y": 4490,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3675,
+                "y": 4447.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3750,
+                "y": 4405,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3825,
+                "y": 4362.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3900,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3977.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4055,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4132.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4210,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4287.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4365,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4442.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4500,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4520,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4597.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4675,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4752.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4780,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4830,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4907.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4985,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5062.5,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5140,
+                "y": 4320,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5220,
+                "y": 4410,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5300,
+                "y": 4500,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5380,
+                "y": 4590,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5460,
+                "y": 4680,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5540,
+                "y": 4770,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5620,
+                "y": 4860,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5700,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5777.142857142857,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5854.285714285715,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5910,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5931.428571428572,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6008.571428571428,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6085.714285714285,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6162.857142857143,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6240,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6313.333333333333,
+                "y": 4918.888888888889,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6386.666666666667,
+                "y": 4887.777777777777,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6460,
+                "y": 4856.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6533.333333333333,
+                "y": 4825.555555555556,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6606.666666666667,
+                "y": 4794.444444444444,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6680,
+                "y": 4763.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6753.333333333333,
+                "y": 4732.222222222223,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6826.666666666667,
+                "y": 4701.111111111111,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6900,
+                "y": 4670,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6971.25,
+                "y": 4652.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7042.5,
+                "y": 4635,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7113.75,
+                "y": 4617.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7185,
+                "y": 4600,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7256.25,
+                "y": 4582.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7327.5,
+                "y": 4565,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7398.75,
+                "y": 4547.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7470,
+                "y": 4530,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7500,
+                "y": 4532.054794520548,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          },
+          {
+            "id": "court-side-pulpit",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 2440,
+                "y": 4857.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2415,
+                "y": 4665.375,
+                "surfaceId": "court-side-pulpit"
+              },
+              {
+                "x": 2205,
+                "y": 4665.375,
+                "surfaceId": "court-side-pulpit"
+              },
+              {
+                "x": 2055,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          },
+          {
+            "id": "record-side-shelf",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 6600,
+                "y": 4797.272727272727,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6580,
+                "y": 4608.181818181818,
+                "surfaceId": "record-side-shelf"
+              },
+              {
+                "x": 6380,
+                "y": 4608.181818181818,
+                "surfaceId": "record-side-shelf"
+              },
+              {
+                "x": 6230,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          }
+        ]
+      },
+      "after": {
+        "terrainSha256": "cf65461920ce00882fff3d4260f6685439f42168ba2508ba0c632e54dba95b0f",
+        "routes": [
+          {
+            "id": "main",
+            "kind": "required",
+            "anchors": [
+              {
+                "x": 320,
+                "y": 4975.111111111111,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 375,
+                "y": 4970.833333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 450,
+                "y": 4965,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 525,
+                "y": 4959.166666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 600,
+                "y": 4953.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 675,
+                "y": 4947.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 750,
+                "y": 4941.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 825,
+                "y": 4935.833333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 900,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 980,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1060,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1140,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1220,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1300,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1380,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1460,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1540,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1620,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1700,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1780,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1840,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1860,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 1940,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2020,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2100,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2180,
+                "y": 4913,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2260,
+                "y": 4896,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2340,
+                "y": 4879,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2420,
+                "y": 4862,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2500,
+                "y": 4845,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2580,
+                "y": 4828,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2660,
+                "y": 4811,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2690,
+                "y": 4804.625,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2740,
+                "y": 4794,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2820,
+                "y": 4777,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2900,
+                "y": 4760,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2977.777777777778,
+                "y": 4730,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3055.5555555555557,
+                "y": 4700,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3133.3333333333335,
+                "y": 4670,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3211.1111111111113,
+                "y": 4640,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3250,
+                "y": 4625,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3366.6666666666665,
+                "y": 4580,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3444.4444444444443,
+                "y": 4550,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3522.222222222222,
+                "y": 4520,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3600,
+                "y": 4490,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3675,
+                "y": 4447.5,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3750,
+                "y": 4405,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3825,
+                "y": 4362.5,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3900,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 3977.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4055,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4132.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4210,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4287.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4365,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4442.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4500,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4520,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4597.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4675,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4752.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4780,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4830,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4907.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 4985,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 5062.5,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 5140,
+                "y": 4320,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 5220,
+                "y": 4410,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 5300,
+                "y": 4500,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 5380,
+                "y": 4590,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 5460,
+                "y": 4680,
+                "surfaceId": "fc16-temple-buttress"
+              },
+              {
+                "x": 5570,
+                "y": 4858,
+                "surfaceId": "fc16-record-return-step"
+              },
+              {
+                "x": 5740,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5777.142857142857,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5854.285714285715,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5910,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5931.428571428572,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6008.571428571428,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6085.714285714285,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6162.857142857143,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6240,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6313.333333333333,
+                "y": 4918.888888888889,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6386.666666666667,
+                "y": 4887.777777777777,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6460,
+                "y": 4856.666666666667,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6533.333333333333,
+                "y": 4825.555555555556,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6606.666666666667,
+                "y": 4794.444444444444,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6680,
+                "y": 4763.333333333333,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6753.333333333333,
+                "y": 4732.222222222223,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6826.666666666667,
+                "y": 4701.111111111111,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6900,
+                "y": 4670,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6971.25,
+                "y": 4652.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7042.5,
+                "y": 4635,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7113.75,
+                "y": 4617.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7185,
+                "y": 4600,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7256.25,
+                "y": 4582.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7327.5,
+                "y": 4565,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7398.75,
+                "y": 4547.5,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7470,
+                "y": 4530,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 7500,
+                "y": 4532.054794520548,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": [],
+            "defaultJump": true
+          },
+          {
+            "id": "court-side-pulpit",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 2440,
+                "y": 4857.75,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 2415,
+                "y": 4665.375,
+                "surfaceId": "court-side-pulpit"
+              },
+              {
+                "x": 2205,
+                "y": 4665.375,
+                "surfaceId": "court-side-pulpit"
+              },
+              {
+                "x": 2055,
+                "y": 4930,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          },
+          {
+            "id": "record-side-shelf",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 6600,
+                "y": 4797.272727272727,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 6580,
+                "y": 4608.181818181818,
+                "surfaceId": "record-side-shelf"
+              },
+              {
+                "x": 6380,
+                "y": 4608.181818181818,
+                "surfaceId": "record-side-shelf"
+              },
+              {
+                "x": 6230,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          },
+          {
+            "id": "temple-undercroft",
+            "kind": "optional-jump",
+            "anchors": [
+              {
+                "x": 5740,
+                "y": 4950,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 5500,
+                "y": 5022.727272727273,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 4700,
+                "y": 5130,
+                "surfaceId": "floor-main"
+              },
+              {
+                "x": 3950,
+                "y": 5067.5,
+                "surfaceId": "floor-main"
+              }
+            ],
+            "requires": []
+          }
+        ]
+      }
+    }
+  }
+}

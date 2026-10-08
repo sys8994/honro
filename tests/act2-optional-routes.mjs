@@ -18,8 +18,10 @@ function makeTrial(template,cls,route){
 function tick(q){q.e.tick(dt);q.ticks++;}
 function budget(q){
  if(q.u.moveLeft>10)return true;
- if(!q.e.grounded(q.u)||!q.e.canAct()||!q.e.wait())return false;
- q.waits++;for(let j=0;j<2400&&!q.e.canAct()&&!q.u.dead;j++)tick(q);
+ if(!q.e.grounded(q.u)||!q.e.canAct())return false;
+ // Engine.wait is a command and intentionally returns undefined. Verify the
+ // resulting turn/budget instead of treating its return value as failure.
+ q.e.wait();q.waits++;for(let j=0;j<2400&&!q.e.canAct()&&!q.u.dead;j++)tick(q);
  return q.e.canAct()&&q.u.moveLeft>10;
 }
 function moveTo(q,x,{grounded=true,maxTicks=3000}={}){

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';import {runtime,battlefield} from '../game/tests/helpers.mjs';import {mkdir,writeFile} from 'node:fs/promises';
+const g=await runtime({legacyMaps:false}),rows=[];
+for(const resolved of [false,true])for(const dt of [1/120,1/60,1/30]){const{b,e,app}=battlefield(g,14),npcs=b.units.filter(u=>u.honroCivilian||u.honroProtected);e.checkEnd=()=>false;g.HonroAllies.attach(app,e);g.HonroAct2.attach(app,e);const before=npcs.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,fixed:u.fixed}));for(const u of npcs)if(u.id.startsWith('resident-'))u.honroResolved=resolved;
+ for(let i=0;i<Math.round(10/dt);i++)for(const u of npcs)e.integrateBody(u,dt);
+ for(const old of before){const u=e.unit(old.id);assert.equal(u.x,old.x,old.id+' lateral position');assert(Math.abs(u.y-old.y)<.01,old.id+' must not fall into the new lower cave');assert.equal(u.hp,old.hp,old.id+' HP');assert(e.grounded(u),old.id+' exposed support');}
+ const saved=JSON.parse(JSON.stringify(b)),resumed=new g.HONRO_CORE.Engine(saved,()=>{},true);g.HonroStageRules.sanitizeStageBattle(saved);for(const old of before){const u=resumed.unit(old.id);assert.equal(u.x,old.x);assert(Math.abs(u.y-old.y)<.01);assert.equal(u.hp,old.hp);}
+ rows.push({resolved,dt,residents:before,passed:true});console.log('PASS village resident support and snapshot resume',resolved,dt,before.map(u=>u.id).join(','));
+}
+for(const goal of ['family-upper','family-mid','family-lower']){
+ const {b,e,app}=battlefield(g,14);e.checkEnd=()=>false;g.HonroAllies.attach(app,e);g.HonroAct2.attach(app,e);const a=g.HonroAct2.memory(b),steps=g.HonroAct2.steps(b),m=b.honroMarkers.find(m=>m.id===goal);for(const step of steps){if(step.id===goal)break;a.done[step.id]=true;}
+ const hero=e.heroesAlive().find(u=>u.cls==='occultist'),resident=e.unit(m.target),spirit=e.unit(m.spiritId),before={x:resident.x,y:resident.y,hp:resident.hp};Object.assign(hero,{x:m.x,y:m.y});b.active=hero.id;b.phase='aim';b.side=0;b.units=b.units.filter(u=>u.side!==1||u.id===spirit?.id);if(spirit)spirit.hp=spirit.maxHp*.4;
+ assert(g.HonroAct2.eligibility(app,m).ok,goal+' fixture eligibility');assert(g.HonroAct2.use(app,m),goal+' actual rescue interaction');assert(resident.honroResolved);assert(a.rescued.includes(resident.id));assert.equal(resident.hp,before.hp);for(let n=0;n<600;n++)e.integrateBody(resident,1/60);assert.equal(resident.x,before.x);assert(Math.abs(resident.y-before.y)<.01);assert(e.grounded(resident));console.log('PASS actual rescue interaction keeps resident support/HP',goal);rows.push({goal,mode:'cleared-threat and weakened-spirit interaction fixture',passed:true});
+}
+await mkdir('_local/reports/forest-cavern',{recursive:true});await writeFile('_local/reports/forest-cavern/village-residents.json',JSON.stringify({scope:'Isolated actual body integration in unresolved/resolved state fixtures, not an earned rescue or normal combat claim.',rows},null,2));
