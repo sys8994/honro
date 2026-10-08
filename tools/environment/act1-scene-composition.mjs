@@ -87,8 +87,8 @@ export async function applyAct1SceneComposition(project){
   }
   if(n===10){
    suppress(st,e=>['builtin:royalGate','builtin:oldHall','builtin:upperShrine'].includes(e.assetId));add('outer-gate','refuge-gate',330,2996,.83,'outer-yard');add('western-hall','ruined-court',1650,2605,1.0,'outer-yard');add('guardian-tree','guardian-tree',2500,2180,1,'outer-yard');add('eastern-hall','refuge-courtyard',3550,2620,1.14,'outer-yard');add('outer-east-grove','ritual-grove',4540,2893,.77,'outer-yard');
-   // Visual branch skins use the exact existing one-way collision polygons.
-   // Keep their material, damage/ballistic rules, IDs, and saved geometry intact.
+   // Draw the reviewed bough polygons as the same real one-way surfaces.
+   // Keep material, damage/ballistic rules and IDs; never migrate live saves.
    st.design.act1Scene.guardianTree={id:'a1-scene-10-guardian-tree',branches:['altar-step-1','altar-step-2','altar-step-3','altar-platform']};
    r('western-foundation',1310,2760,1850,940,'outer-yard');r('eastern-foundation',3860,2745,1700,900,'outer-yard');
   }

@@ -45,8 +45,8 @@ function groundGradient(c,t,b){const earth=t.mat==='earth'||t.surfaceKind==='soi
 const oldGradient=G.HonroTerrainGradient;G.HonroTerrainGradient=(c,t,b)=>active(b)&&t.mat!=='wood'&&!t.honroSeal?groundGradient(c,t,b):oldGradient(c,t,b);
 const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
-  // Retain the real collision silhouette and bright walkable top. Bark is a
-  // paint-only substitution: stone resistance and projectile passage stay put.
+  // Use the authored collision silhouette and bright walkable top. The bark
+  // palette never changes resistance or the one-way projectile passage rule.
   const tip=Math.abs(t.x-2500)>Math.abs(t.x+t.w-2500)?t.x:t.x+t.w;
   c.fillStyle=A.gradient(c,2500,t.y,tip,t.y+35,[[0,'#777568'],[.3,'#626957'],[1,'#394f43']]);c.fill(q.branchBody||q.shape);c.clip(q.branchBody||q.shape);
   c.strokeStyle='#253d34';c.lineWidth=4;if(q.branchGrain)c.stroke(q.branchGrain);
