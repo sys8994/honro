@@ -27,6 +27,15 @@ function waterfall(c,x,y,width,height,a,time,{staticOnly=false}={}){
 function poolData(z){if(waterPaths.has(z))return waterPaths.get(z);const p=new Path2D(),pts=z.points;pts.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),left=Math.min(...xs),right=Math.max(...xs),top=z.surface?.[0]?.[1]??Math.min(...ys),bottom=Math.max(...ys),edge=new Path2D();edge.moveTo(left,top);edge.bezierCurveTo(left+(right-left)*.3,top+3,left+(right-left)*.7,top-2,right,top);const data={clip:p,edge,left,right,top,bottom};waterPaths.set(z,data);return data;}
 function pool(c,z,a,time){if(!z.points?.length)return;const q=poolData(z),{left,right,top,bottom}=q,w=right-left,h=Math.max(20,bottom-top);c.save();c.clip(q.clip);
  c.fillStyle=gradient(c,0,top,0,bottom,[[0,E.mixColor(a.waterBaseColor,a.waterHighlightColor,.28)],[.24,a.waterBaseColor],[1,a.shadowTint]]);c.fillRect(left,top,w,h);
+ // Optional authored reflections share this clipped water pass. No opt-in data means
+ // exactly the legacy pixels below; shapes fade before the bottom and never add a surface.
+ if(Array.isArray(z.reflections))for(const r of z.reflections.slice(0,4)){
+  if(![r.x,r.width,r.height].every(Number.isFinite)||r.width<=0||r.height<=0)continue;
+  c.save();c.translate(r.x+Math.sin(time*.12)*2,top+5);c.scale(Math.min(r.width,w),Math.min(r.height,h));
+  c.fillStyle=gradient(c,0,0,0,1,[[0,color(a.waterHighlightColor,.21)],[.32,color(a.waterHighlightColor,.10)],[1,color(a.waterHighlightColor,0)]]);
+  c.fill(path('authored-water-reflection','M-.46 0 L.45 0 L.34 .08 L.48 .13 L.29 .20 L.37 .30 L.18 .38 L.26 .48 L.09 .61 L.17 .7 L.01 .91 L-.08 1 L-.18 .77 L-.13 .63 L-.3 .54 L-.24 .4 L-.38 .29 L-.29 .21 L-.47 .11 Z'));
+  c.restore();
+ }
  // Five broad highlights, regardless of pool width; no per-frame wave mesh.
  const ripple=path('ripple','M-1 0 C-.75 -.5 -.4 .6 0 0 S.7 -.5 1 0');
  for(let i=0;i<5;i++){c.save();const phase=(time*(.055+i*.006)+i*.21)%1;c.translate(left+w*(.15+phase*.75),top+5+i*Math.min(12,h*.12));c.scale(w*(.12+(i%3)*.06),2+i*.35);c.globalAlpha*=.24+Math.sin(phase*Math.PI)*.40;c.strokeStyle=i%2?a.waterHighlightColor:a.waterfallFoamColor;c.lineWidth=1.1;c.stroke(ripple);c.restore();}

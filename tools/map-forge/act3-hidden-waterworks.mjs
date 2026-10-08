@@ -19,6 +19,7 @@ function podium(p,s,id,left,right,y,bottom){
  for(let row=0;row<4;row++){const yy=y+92+row*132,inset=n===2?row*44:row*9;let x=left+inset;for(let j=0;x<right-inset-55;j++){const bw=Math.min([278,341,226,309][(j+row+n)%4],right-inset-x),h=118;svg+=P([[x+5,yy+4],[x+bw-7,yy],[x+bw-2,yy+h-7],[x+8,yy+h]],['#536762','#455d5c','#4c615c','#3e5858'][(j+row)%4])+line([[x+8,yy+7],[x+bw-13,yy+4]],'#768376',3);x+=bw;}}
  if(n!==2){const bx=left+w*.22;svg+=P([[bx-35,y+190],[bx+67,y+188],[bx+115,y+565],[bx+164,bottom],[bx-115,bottom]],'#385453')+P([[bx-35,y+190],[bx-4,y+185],[bx+28,y+560],[bx+41,bottom],[bx-115,bottom]],'#60716a');}
  svg+=P([[right-85,y+68],[right-5,y+68],[right-35,y+385],[right-165,y+770],[right-245,bottom],[right-370,bottom]],'#193a42');
+ const wet=s.metadata.stageId===27?3690:3170;if(wet>y){svg+=line([[left+56,wet-35],[left+w*.28,wet-12],[left+w*.52,wet-31],[right-60,wet-8]],'#4e6457',7).replace('<path','<path opacity=".24"');}
  decor(p,s,id,svg,[left-150,y-4,w+310,bottom-y+8],[body]);
 }
 function lamp(p,s,id,x,y){let a=`<defs><radialGradient id="${id}-glow" cx="${x}" cy="${y-90}" r="250" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#dbad58" stop-opacity=".19"/><stop offset="1" stop-color="#dbad58" stop-opacity="0"/></radialGradient></defs>`+R(x-255,y-350,510,510,`url(#${id}-glow)`)+R(x-11,y-115,22,115,'#665a3e')+P([[x-26,y-115],[x+27,y-115],[x+18,y-158],[x-18,y-158]],'#bea36a')+R(x-20,y-146,40,27,'#d4ac63')+R(x-26,y-115,52,10,'#333f34');decor(p,s,id,a,[x-260,y-355,520,530]);}
@@ -28,11 +29,20 @@ function loadingShed(p,s,x,y){const l=x-380,r=x+380;let a=P([[l-38,y-350],[l+33,
 }
 function inspectionDais(p,s,x,y){let a=P([[x-240,y],[x-209,y-44],[x+224,y-44],[x+261,y]],'#6c7768')+R(x-156,y-178,316,28,'#9b9980')+R(x-127,y-149,42,105,'#52685e')+R(x+84,y-149,42,105,'#3b5350')+P([[x-166,y-179],[x-152,y-197],[x+149,y-197],[x+169,y-178]],'#b2ac8c')+R(x+266,y-302,20,302,'#6b6447')+R(x+169,y-303,260,18,'#8e7c50')+line([[x+277,y-285],[x+388,y-173]],'#5b5840',12)+line([[x+181,y-281],[x+181,y-98]],'#aba07b',4)+P([[x+134,y-99],[x+228,y-99],[x+211,y-71],[x+151,y-71]],'#5c7268');decor(p,s,'household-inspection-dais',a,[x-260,y-320,720,330]);lamp(p,s,'inspection-lamp',x-322,y);}
 function warehouse(p,s,id,x,y,w=750,h=620){
- const l=x-w/2,r=x+w/2,top=y-h;let art=R(l-65,top-90,w+130,h+90,'#253e42')+R(l-44,top-66,w+88,h+66,'#58655a')+R(l-15,top-33,w+30,h+33,'#132b32')+R(l+15,top+5,w-30,h-8,'#544e3c');
- for(let i=0;i<7;i++)art+=R(l+20+i*(w-40)/7,top+13,9,h-24,'#787255');
- art+=R(l+5,top+68,w-10,27,'#8a7954')+R(l+5,y-137,w-10,27,'#857551')+R(x-12,top+10,24,h-15,'#282f2b')+R(x-48,y-244,22,48,'#a7945c')+R(x+27,y-244,22,48,'#a7945c');
- const sh=Math.min(1,h/530);art+=P([[x-112*sh,y-350*sh],[x-74*sh,y-364*sh],[x+118*sh,y-152*sh],[x+77*sh,y-139*sh]],'#c4b895')+P([[x+89*sh,y-370*sh],[x+121*sh,y-342*sh],[x-67*sh,y-135*sh],[x-107*sh,y-162*sh]],'#9e9d7f')+R(l-74,top-100,w+148,35,'#88927c')+R(l-61,top-65,31,h+65,'#788370')+R(r+28,top-65,31,h+65,'#485e58');
- decor(p,s,id,art,[l-80,top-110,w+160,h+120]);
+ const l=x-w/2,r=x+w/2,top=y-h,scale=h/620;
+ let art=`<defs><linearGradient id="${id}-timber" x1="${l}" y1="${top}" x2="${r}" y2="${y}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8b7650"/><stop offset=".56" stop-color="#665b43"/><stop offset="1" stop-color="#414936"/></linearGradient></defs>`+P([[l-65,top-72],[r+70,top-72],[r+62,y],[l-69,y]],'#314847')+R(l-36,top-47,w+72,h+47,'#77806b')+R(l-13,top-24,w+26,h+24,'#142a2f')+R(l+12,top+2,w-24,h-6,'#26372f');
+ const bw=(w-36)/8;
+ for(let i=0;i<8;i++){const xx=l+18+i*bw,skew=[0,6,-4,3,-3,7,-5,0][i]*scale,notch=[8,2,14,4,18,3,9,2][i]*scale;art+=P([[xx+3,top+10+notch],[xx+bw-5,top+7],[xx+bw-1+skew,y-14-notch],[xx+bw*.63+skew,y-10-notch],[xx+bw*.56+skew,y-20-notch],[xx+skew,y-12]],`url(#${id}-timber)`)+P([[xx+4,top+18+notch],[xx+13,top+17+notch],[xx+10+skew,y-30],[xx+skew,y-29]],'#a18d62')+P([[xx+bw-15,top+15],[xx+bw-5,top+15],[xx+bw-2+skew,y-25],[xx+bw-11+skew,y-27]],'#3a4132');
+  if(i===1||i===5)art+=P([[xx+22,top+h*.42],[xx+36,top+h*.37],[xx+44,top+h*.67],[xx+31,top+h*.74]],'#4b4c37');}
+ for(const yy of [top+h*.19,top+h*.76]){art+=P([[l+4,yy],[x-9,yy-4],[x-9,yy+21*scale],[l+8,yy+26*scale]],'#a28b58')+P([[x+12,yy-1],[r-6,yy+3],[r-12,yy+25*scale],[x+12,yy+20*scale]],'#82734d');for(const xx of [l+24,x-32,x+33,r-26])art+=R(xx,yy+4,7*scale,9*scale,'#283c39');}
+ // Forged strap hinges sit on the actual door leaves; the central ring carries a hemp seal cord.
+ for(const [xx,side]of [[l+20,1],[r-20,-1]])for(const t of [.30,.70]){const yy=top+h*t;art+=P([[xx,yy-13*scale],[xx+side*w*.18,yy-10*scale],[xx+side*w*.21,yy],[xx+side*w*.17,yy+13*scale],[xx,yy+16*scale]],'#293e3d')+line([[xx+side*13,yy-7*scale],[xx+side*w*.16,yy-5*scale]],'#79816a',3);}
+ const sealY=top+h*.57;
+ art+=`<path d="M${x-25*scale} ${sealY-26*scale}q${-31*scale} ${-29*scale} ${-24*scale} ${21*scale}q${19*scale} ${26*scale} ${32*scale} ${-2*scale}m${32*scale} ${-19*scale}q${31*scale} ${-29*scale} ${24*scale} ${21*scale}q${-19*scale} ${26*scale} ${-32*scale} ${-2*scale}" fill="none" stroke="#b0a173" stroke-width="${6*scale}"/>`;
+ art+=line([[l+26,top+h*.38],[x-35*scale,sealY+19*scale],[x+30*scale,sealY+5*scale],[r-26,top+h*.4]],'#b7a273',6*scale)+line([[x-10*scale,sealY+3*scale],[x-28*scale,sealY+94*scale],[x+6*scale,sealY+111*scale]],'#cab485',4*scale);
+ art+=P([[x-31*scale,sealY-31*scale],[x+23*scale,sealY-27*scale],[x+35*scale,sealY+100*scale],[x-24*scale,sealY+107*scale]],'#c5b48b')+P([[x-14*scale,sealY-11*scale],[x+11*scale,sealY-8*scale],[x+13*scale,sealY+14*scale],[x-12*scale,sealY+13*scale]],'#975d46')+line([[x-8*scale,sealY+31*scale],[x+10*scale,sealY+38*scale],[x-7*scale,sealY+55*scale],[x+14*scale,sealY+65*scale],[x,sealY+85*scale]],'#755842',5*scale);
+ art+=P([[l-74,top-81],[r+77,top-77],[r+65,top-45],[l-65,top-47]],'#a0a18a')+P([[l-61,top-45],[l-33,top-42],[l-39,y],[l-67,y]],'#82917b')+P([[r+32,top-43],[r+60,top-45],[r+67,y],[r+38,y]],'#526c61')+P([[l-74,y-1],[r+75,y-1],[r+93,y+12],[l-89,y+15]],'#142c32')+line([[l-61,top+h*.54],[l-36,top+h*.54+5]],'#4c665d',5)+line([[r+35,top+h*.74],[r+61,top+h*.74-2]],'#263f40',5);
+ decor(p,s,id,art,[l-95,top-90,w+190,h+115]);
 }
 function belongings(p,s,id,x,y,groupNumber){
  let a=R(x-180,y-38,355,32,'#6f6449')+R(x-164,y-15,18,15,'#3c4235')+R(x+129,y-15,18,15,'#3c4235');
@@ -41,6 +51,11 @@ function belongings(p,s,id,x,y,groupNumber){
  for(const [dx,dy]of [[-32,-81],[-9,-68],[14,-92]])a+=line([[x+dx,y+dy],[x+dx+65,y+dy-75]],'#aa9f6f',7)+P([[x+dx+55,y+dy-77],[x+dx+70,y+dy-93],[x+dx+81,y+dy-82],[x+dx+71,y+dy-67]],'#b7ad7c');
  a+=line([[x+40,y-36],[x+143,y-239]],'#8b7550',13)+P([[x+124,y-247],[x+191,y-222],[x+171,y-179],[x+110,y-205]],'#697b73');
  a+=P([[x-38,y-192],[x+43,y-202],[x+60,y-74],[x-20,y-66]],'#b5a47b')+line([[x-17,y-177],[x+16,y-180]],'#414b41',5)+line([[x-13,y-162],[x+25,y-166]],'#414b41',5)+line([[x-8,y-146],[x+30,y-150]],'#414b41',5);
+ if(groupNumber==='열여덟'||groupNumber==='스물둘'){
+  a+=P([[x-171,y-42],[x-181,y-122],[x-155,y-160],[x-101,y-182],[x-53,y-157],[x-19,y-101],[x-28,y-43]],'#827e60')+P([[x-170,y-118],[x-142,y-143],[x-124,y-59],[x-166,y-51]],'#a09976')+P([[x-101,y-174],[x-78,y-135],[x-48,y-76],[x-28,y-47],[x-80,y-49]],'#5c6650')+line([[x-152,y-151],[x-115,y-95],[x-39,y-80]],'#c0ac7a',7)+line([[x-53,y-149],[x-109,y-105],[x-133,y-46]],'#ac9768',6);
+ }else if(groupNumber==='스물하나'){
+  a+=P([[x-169,y-57],[x-163,y-112],[x-151,y-138],[x-142,y-181],[x-84,y-183],[x-77,y-141],[x-62,y-115],[x-56,y-61],[x-89,y-39],[x-142,y-40]],'#5c736b')+P([[x-151,y-117],[x-135,y-131],[x-121,y-54],[x-148,y-53]],'#879588')+R(x-146,y-190,64,12,'#a29d7c')+R(x-141,y-177,54,9,'#304b49');
+ }
  a+=line([[x-137,y-114],[x+95,y-47],[x+137,y-111]],'#a98b56',9)+line([[x-58,y-208],[x-15,y-33]],'#b49a67',7);
  const aa=asset(`${prefix}${s.metadata.stageId}:${id}`,id,a,[],[x-190,y-255,400,265],'wood');aa.params.rearOnly=true;put(p,s,aa,id,x*.42,y*.42,.58);s.design.act3.householdBundles??=[];s.design.act3.householdBundles.push({id,familyNumber:groupNumber,contents:['숟가락','놋그릇','농기구','이름표'],matches:'지상 희생자 명단',x,y});
 }
@@ -80,7 +95,7 @@ function facility(p,s,pods,{deep=false}={}){
  wall+=`<path d="M${s.width*.14} ${waterY+266}Q${s.width*.32} ${waterY+171} ${s.width*.49} ${waterY+238}T${s.width*.88} ${waterY+219}Q${s.width*.74} ${waterY+302} ${s.width*.53} ${waterY+277}T${s.width*.14} ${waterY+299}Z" fill="#668176" opacity=".10"/>`;
  decor(p,s,'continuous-masonry-waterline',wall,[-16000,-10000,s.width+32000,s.height+13000]);
  for(let i=0;i<pods.length;i++){const q=pods[i],x=(q[0]+q[1])/2,y=q[2];if(i===0){warehouse(p,s,'small-tally-office',x-130,y,360,245);lamp(p,s,'entry-lamp',x+125,y);}else if(deep&&i===1)loadingShed(p,s,x,y);else if(deep&&i===2)inspectionDais(p,s,x,y);else {warehouse(p,s,'great-sealed-store',x+150,y,deep?1080:890,deep?705:560);lamp(p,s,'final-seal-lamp',x-420,y);}podium(p,s,'stone-quay-'+i,...q,s.height+1300);}
- for(let i=0;i<pods.length-1;i++){const q=pods[i],z=pods[i+1];pool(s,'black-water-'+i,q[1]+5,z[0]-5,waterY,s.height+800);const x=q[1]-150,y=q[2];decor(p,s,'broken-haulway-'+i,R(x,y-110,140,25,'#615d47')+P([[x+120,y-108],[x+218,y-77],[x+182,y-42],[x+128,y-75]],'#7f7351')+R(x+10,y-110,18,110,'#686449')+line([[x+32,y-103],[x+191,y-53]],'#a08e62',6),[x,y-120,240,135]);}
+ for(let i=0;i<pods.length-1;i++){const q=pods[i],z=pods[i+1];pool(s,'black-water-'+i,q[1]+5,z[0]-5,waterY,s.height+800);s.materials.at(-1).reflections=[{x:q[1]+130,width:205,height:720},{x:z[0]-155,width:240,height:530}];const x=q[1]-150,y=q[2];decor(p,s,'broken-haulway-'+i,R(x,y-110,140,25,'#615d47')+P([[x+120,y-108],[x+218,y-77],[x+182,y-42],[x+128,y-75]],'#7f7351')+R(x+10,y-110,18,110,'#686449')+line([[x+32,y-103],[x+191,y-53]],'#a08e62',6),[x,y-120,240,135]);}
  terrain(s,'deep-unwalkable-basin',[[-500,s.height+500],[s.width+500,s.height+500],[s.width+500,s.height+1500],[-500,s.height+1500]],'stone',{honroWaterworksBasin:true});
  s.design.act3.artContract={setting:'인공 지하 은폐 집하장',not:'자연동굴 또는 무명사 주조소',forms:['검은 수면','조적 석대','봉인 창고문','수위선','끊긴 운반로','큰 어둠'],deep};
 }

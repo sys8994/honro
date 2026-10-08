@@ -5,7 +5,7 @@ import {runtime} from '../game/tests/helpers.mjs';
 import {applyHiddenWaterworks} from '../tools/map-forge/act3-hidden-waterworks.mjs';
 import {traverse} from './act1-spatial-test-helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,clone=x=>JSON.parse(JSON.stringify(x));
-const input=JSON.parse(execFileSync('git',['show','dbaa565:shared/data/campaign.json'],{encoding:'utf8',maxBuffer:80*1024*1024})),p=applyHiddenWaterworks(g,input),rows=[];
+const input=JSON.parse(await readFile('shared/data/campaign.json','utf8')),p=applyHiddenWaterworks(g,input),rows=[];
 for(const id of [...Array.from({length:22},(_,i)=>i+1),29,30])assert.deepEqual(clone(p.stages[id-1]),input.stages[id-1],'preserve stage '+id);
 assert.equal(p.stages.length,30);assert.deepEqual(clone(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(p)))),clone(p),'canonical round-trip');
 assert.deepEqual(clone(applyHiddenWaterworks(g,p)),clone(p),'idempotent regeneration');
