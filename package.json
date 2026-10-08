@@ -89,7 +89,7 @@
     "test:forest-cavern": "node tests/forest-cavern-history.mjs && node tests/forest-cavern-topology.mjs && node tests/forest-cavern-shots.mjs && node tests/forest-cavern-recovery.mjs && node tests/forest-cavern-contracts.mjs && node tests/forest-approach-choices.mjs",
     "test:cavern-transitions": "node tests/cavern-transition-layers.mjs && node tests/cavern-transition-shots.mjs && node tests/cavern-transition-required-shots.mjs && node tests/cavern-transition-regeneration.mjs",
     "test:cavern-places": "node tests/cavern-rear-contacts.mjs && node tests/cavern-expansion-history.mjs && node tests/cavern-library-provenance.mjs && node tests/cavern-place-contracts.mjs && node tests/village-cavern-contracts.mjs && node tests/cavern-player-walk.mjs && node tests/cavern-place-layers.mjs && node tests/cavern-place-shots.mjs && node tests/village-cavern-residents.mjs",
-    "test:open-structures": "node tests/open-structure-history.mjs && node tests/open-structure-physics.mjs && node tests/open-structure-save.mjs"
+    "test:open-structures": "node tests/open-structure-history.mjs && node tests/open-structure-physics.mjs && node tests/open-structure-save.mjs && node tests/open-structure-seams.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

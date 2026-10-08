@@ -222330,12 +222330,10 @@
             }
           ],
           "baseMaterial": "earth",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "layer": "terrain",
-          "properties": {
-            "honroCeiling": true
-          },
+          "properties": {},
           "detail": {
             "spacing": 18,
             "roughness": 0,
@@ -227272,13 +227270,10 @@
             }
           ],
           "baseMaterial": "stone",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "layer": "terrain",
-          "properties": {
-            "honroCeiling": true,
-            "honroLocationCeiling": true
-          },
+          "properties": {},
           "detail": {
             "spacing": 18,
             "roughness": 0,

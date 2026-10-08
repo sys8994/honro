@@ -24,4 +24,4 @@ const old=plain(oldProject);assert(R.upgradeProject(old));assert.deepEqual(old,p
 // Unedited canonical autosaves upgrade, but any edited stage protects its shared assets.
 const custom=plain(oldProject);for(const s of custom.stages)s.width++;const prior=JSON.stringify(custom);assert.equal(R.upgradeProject(custom),false);assert.equal(JSON.stringify(custom),prior);
 const imported=g.HonroMaps.normalize(oldProject);assert.deepEqual(plain(imported),oldProject,'Generic normalization/import stays lossless');
-console.log('PASS twelve canonical Continue/export/import paths, exact 72 flags, actor/resources preservation, rejection/idempotence and bounded Workshop autosave migration');
+console.log('PASS twelve canonical Continue/export/import paths, exact 74 flags, actor/resources preservation, rejection/idempotence and bounded Workshop autosave migration');

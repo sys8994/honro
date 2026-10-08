@@ -739,6 +739,31 @@
         }
       },
       "reason": "Native Scene confirms an isolated overhang open below and beside it, not a closed enclosure"
+    },
+    {
+      "stage": 26,
+      "kind": "terrain",
+      "id": "burial-record-earth-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "honroCeiling": true
+        }
+      },
+      "reason": "Native Scene shows an independent building roof with open sky above and a room below"
+    },
+    {
+      "stage": 29,
+      "kind": "terrain",
+      "id": "sluice-stone-ceiling",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "honroCeiling": true,
+          "honroLocationCeiling": true
+        }
+      },
+      "reason": "Native Scene shows an independent building roof with open sky above and a room below"
     }
   ]
 }
