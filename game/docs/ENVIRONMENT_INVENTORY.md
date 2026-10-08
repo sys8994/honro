@@ -358,6 +358,7 @@
 | a3-refine:30:pine-art-2 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-refine:30:pine-art-3 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-refine:30:pine-art-4 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act1-scene:guardian-tree | 27.6 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 
 ## 현재 맵
 
