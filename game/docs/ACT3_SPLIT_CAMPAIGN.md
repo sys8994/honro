@@ -17,7 +17,7 @@
 ## 현재 검증과 한계
 
 - `act3-split-campaign`: 구v1 실제App 전환·손상상태·저장·재시도·XP·쉼터 차단11묶음
-- `act3-split-v2`: 새24→25→26→27→28 팀별손상·가방·좌우합류·Continue·이미완료v1 경계5묶음
+- `act3-split-v2`: 새24→25→26→27→28 팀별손상·가방·좌우합류·Continue·비행도중저장·이미완료v1 경계6묶음
 - `stake-crossing-runtime`: 임시기예/슬롯·높은랭크·기력부족·두인물·만료·양쪽사망·오설치·중간저장8묶음
 - `stake-crossing-physics`: 실제 걷기·기본M09발사·정상 턴 전환·두인물E, 최고 이동속도의 점프 범위
 - `stake-crossing-canonical`: 실제 저작 지형25/27의4연결에서 실제투사체·턴·E, 저장크기상한
