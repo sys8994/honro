@@ -24,6 +24,8 @@
 - `node tests/cavern-transition-required-shots.mjs`: 현행 유일한 필수 파괴 사격인18장 위쪽 사슬에 원래 서 있는 위치에서 기본 활 실탄이 명중하여105.24피해를 준다. 이전 개정에서 퇴역한 낙석핀을 현행 필수 목표로 되살리지 않는다.
 - `node tests/cavern-transition-regeneration.mjs`: 원래2막 recipe부터 미술·장소 후처리·finalize를 거친 일곱 장이 canonical JSON과 정확히 같다.
 - `node tests/act2-spatial-contracts.mjs`: 2막의 기존 목표 순서·의식/제압 분류·반경·스크립트·파동·적 능력·군집과 진행 저장 보존 계약13건을 통과했다.
+- `node tests/act2-optional-routes.mjs 11 12 13 17 18 19 20`: 기존/신규 선택 발판56조건과 대표 활/법술 고저 사격4조건을 통과했다. 최초 배치 뒤 좌표·HP·이동량 보정 없이 Engine.move/jump/wait/tick만 쓴다.
+- 양HTML을 같은 런타임으로 빌드했다. 부모의 기본/전체 콘택트시트 검수에서 제한된 보강이 승인됐다.
 - Native Canvas의 공통 Game/Workshop renderer로 전체/기본/모바일 구도를 캡처하고 직접 확인한다. 이미지 decode 완료를 기다리고 정적 캐시 canvas를 임의로 축소하지 않는다.
 
 이 기록은 브라우저 HUD 정상 전투 완주, 연속 캠페인의 자원 난도, 모든 난도, 성능 또는 GitHub Pages 배포 검수를 대신하지 않는다. 필수 경로 검사는 제거 가능한 기존 장치를 열린 상태로 만든 격리 물리 검사다. 사격 검사는 선택 위치에 초기 배치한 단일 사수의 실탄 검사다. 테스트에 화면에 없는 아이템 명령을 사용하지 않는다.
