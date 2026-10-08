@@ -4,6 +4,7 @@ import path from 'node:path';
 import {buildCore} from '../game/engine/build.mjs';
 import {buildMonsters} from '../tools/monster-forge/build.mjs';
 import {buildParty} from '../tools/party-forge/build.mjs';
+import {applyCavernPlaceLayers} from '../tools/map-forge/cavern-place-layers.mjs';
 import {applyAct1SceneComposition} from '../tools/environment/act1-scene-composition.mjs';
 import {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';
 import {applyAct2VectorArt} from '../tools/environment/build-act2-art.mjs';
@@ -23,7 +24,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
-  const project=await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json')))));
+  const project=applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true});
   parts.push('globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'));');
   if(vector){
     await buildParty();

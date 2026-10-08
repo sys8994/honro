@@ -1599,3 +1599,6 @@ Actual Pages visual review found the reused stage-9 shrine roof hidden behind th
 - 기존 x-only 봇이 새 지지다리 아래에서 정체한 것은 게임 불가의 근거가 아니었다. 테스트 전용 opt-in 경로 추적에 높이/기본 점프와 재진입을 추가했다. 추격 후 낡은 waypoint, 목표 x로 재접근하다 발판에서 이탈, 이동 끝의 계획 점프 조향 누락을 각각 실제 기록으로 확인해 보완했다.
 - 현행 UI에 없는 엔진 아이템을 쓰던 첫 탐색은 정상 플레이 검증 근거에서 제외하고 원본 로그를 보존했다. normal·실제Lv12·정상 자동 수련의 no-items 새 전투를 40/73턴 App 저장 재개로 이어서 74턴 won, 4인 생존, 기록행동323회로 완료했다. 위치·HP·기력·이동력·적·목표를 보정하거나 체크포인트를 조합하지 않았다. 기존 방어의 기력/비전투 HP 회복만 유지한다.
 - 이것은 정책 수정 후 저장 재개한 엔진 입력 봇 증거다. 최종 정책의 처음부터 풀런·연속 캠페인 난도·브라우저·사람 플레이 검수가 아니다. 목표별 소요, 정책, 소스 및 한계는 `FOREST_CAVERN_TOPOLOGY.md`에 기록했다. 생산 코드/밸런스 수정은 없다.
+## 2026-10-08 · Stage 16 temple undercroft, follow-on unit 2B
+
+A real lower cave is cut beneath the original upper temple platform, with a connected stone support and a return step. The canonical scenery build's floor-only re-grounding is overridden only for explicitly authored `cavernLayers` stages, keeping the existing hall at its original upper y=4320. Base movement, return, three projectile lanes, mission/roster preservation, anchor clearance and roundtrip/idempotency checks pass. Native art was reviewed; this is held separately from the frozen 2A release while normal-combat/browser/aggregate validation remains outstanding.

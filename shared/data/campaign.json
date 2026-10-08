@@ -163242,123 +163242,123 @@
             },
             {
               "x": 3366.6666666666665,
-              "y": 4580
+              "y": 4664.952380952382
             },
             {
               "x": 3444.4444444444443,
-              "y": 4550
+              "y": 4734.063492063492
             },
             {
               "x": 3522.222222222222,
-              "y": 4520
+              "y": 4803.174603174603
             },
             {
               "x": 3600,
-              "y": 4490
+              "y": 4872.285714285715
             },
             {
               "x": 3675,
-              "y": 4447.5
+              "y": 4938.928571428572
             },
             {
               "x": 3750,
-              "y": 4405
+              "y": 5005.571428571428
             },
             {
               "x": 3825,
-              "y": 4362.5
+              "y": 5052.916666666667
             },
             {
               "x": 3900,
-              "y": 4320
+              "y": 5061.666666666667
             },
             {
               "x": 3977.5,
-              "y": 4320
+              "y": 5070.708333333333
             },
             {
               "x": 4055,
-              "y": 4320
+              "y": 5079.75
             },
             {
               "x": 4132.5,
-              "y": 4320
+              "y": 5088.791666666667
             },
             {
               "x": 4210,
-              "y": 4320
+              "y": 5097.833333333333
             },
             {
               "x": 4287.5,
-              "y": 4320
+              "y": 5106.875
             },
             {
               "x": 4365,
-              "y": 4320
+              "y": 5115.916666666667
             },
             {
               "x": 4442.5,
-              "y": 4320
+              "y": 5121.416666666667
             },
             {
               "x": 4520,
-              "y": 4320
+              "y": 5124
             },
             {
               "x": 4597.5,
-              "y": 4320
+              "y": 5126.583333333333
             },
             {
               "x": 4675,
-              "y": 4320
+              "y": 5129.166666666667
             },
             {
               "x": 4752.5,
-              "y": 4320
+              "y": 5131.75
             },
             {
               "x": 4830,
-              "y": 4320
+              "y": 5134.333333333333
             },
             {
               "x": 4907.5,
-              "y": 4320
+              "y": 5136.916666666667
             },
             {
               "x": 4985,
-              "y": 4320
+              "y": 5139.5
             },
             {
               "x": 5062.5,
-              "y": 4320
+              "y": 5125.677083333333
             },
             {
               "x": 5140,
-              "y": 4320
+              "y": 5107.916666666667
             },
             {
               "x": 5220,
-              "y": 4410
+              "y": 5089.583333333333
             },
             {
               "x": 5300,
-              "y": 4500
+              "y": 5071.25
             },
             {
               "x": 5380,
-              "y": 4590
+              "y": 5052.916666666667
             },
             {
               "x": 5460,
-              "y": 4680
+              "y": 5034.583333333333
             },
             {
               "x": 5540,
-              "y": 4770
+              "y": 5008.181818181818
             },
             {
               "x": 5620,
-              "y": 4860
+              "y": 4979.090909090909
             },
             {
               "x": 5700,
@@ -164394,6 +164394,154 @@
             "seed": 1,
             "optimizeEpsilon": 0
           }
+        },
+        {
+          "id": "fc16-temple-buttress",
+          "name": "fc16-temple-buttress",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3300,
+              "y": 4605.714285714286
+            },
+            {
+              "x": 3600,
+              "y": 4490
+            },
+            {
+              "x": 3900,
+              "y": 4320
+            },
+            {
+              "x": 5140,
+              "y": 4320
+            },
+            {
+              "x": 5360,
+              "y": 4567.5
+            },
+            {
+              "x": 5480,
+              "y": 4702.5
+            },
+            {
+              "x": 5480,
+              "y": 4860
+            },
+            {
+              "x": 5270,
+              "y": 4840
+            },
+            {
+              "x": 5030,
+              "y": 4730
+            },
+            {
+              "x": 4800,
+              "y": 4690
+            },
+            {
+              "x": 4310,
+              "y": 4650
+            },
+            {
+              "x": 4030,
+              "y": 4695
+            },
+            {
+              "x": 3890,
+              "y": 4790
+            },
+            {
+              "x": 3730,
+              "y": 5010
+            },
+            {
+              "x": 3580,
+              "y": 5320
+            },
+            {
+              "x": 3310,
+              "y": 5220
+            },
+            {
+              "x": 3240,
+              "y": 4880
+            }
+          ],
+          "baseMaterial": "rock",
+          "oneWay": false,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": true,
+            "surfaceKind": "cave",
+            "honroCave": true,
+            "honroSpaceSurfaceId": "fc16-temple-buttress",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 16,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc16-record-return-step",
+          "name": "fc16-record-return-step",
+          "type": "solid",
+          "points": [
+            {
+              "x": 5500,
+              "y": 4865
+            },
+            {
+              "x": 5700,
+              "y": 4845
+            },
+            {
+              "x": 5710,
+              "y": 4878
+            },
+            {
+              "x": 5520,
+              "y": 4902
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": false,
+            "surfaceKind": "wood",
+            "honroCave": false,
+            "honroSpaceSurfaceId": "fc16-record-return-step",
+            "honroSurfaceRole": "shelf",
+            "honroWalkEdges": [
+              0
+            ],
+            "optional": true
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 16,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [],
@@ -164569,6 +164717,17 @@
           "x": 1900,
           "y": 4930,
           "scale": 1.12,
+          "rotation": 0,
+          "snap": false,
+          "layer": "back",
+          "depthLayer": "L1"
+        },
+        {
+          "id": "fc16-undercroft-lamp",
+          "assetId": "act2:lamp",
+          "x": 4690,
+          "y": 5129.666666666667,
+          "scale": 0.8,
           "rotation": 0,
           "snap": false,
           "layer": "back",
@@ -164762,8 +164921,8 @@
           "id": "a2-enemy-10",
           "kind": "picks",
           "team": "enemy",
-          "x": 4295,
-          "y": 4320,
+          "x": 3680,
+          "y": 4444.666666666667,
           "facing": 1,
           "spawnIndex": 10,
           "behavior": "patrol",
@@ -164777,8 +164936,8 @@
           "id": "a2-enemy-11",
           "kind": "picks",
           "team": "enemy",
-          "x": 4880,
-          "y": 4320,
+          "x": 5350,
+          "y": 4556.25,
           "facing": 1,
           "spawnIndex": 11,
           "behavior": "patrol",
@@ -164807,7 +164966,7 @@
           "id": "a2-enemy-13",
           "kind": "picks",
           "team": "enemy",
-          "x": 4542,
+          "x": 4790,
           "y": 4320,
           "facing": 1,
           "spawnIndex": 13,
@@ -164822,7 +164981,7 @@
           "id": "a2-enemy-14",
           "kind": "picks",
           "team": "enemy",
-          "x": 4608,
+          "x": 4540,
           "y": 4320,
           "facing": 1,
           "spawnIndex": 14,
@@ -164852,8 +165011,8 @@
           "id": "a2-enemy-16",
           "kind": "bat",
           "team": "enemy",
-          "x": 5962,
-          "y": 4790,
+          "x": 4790,
+          "y": 5013,
           "facing": 1,
           "spawnIndex": 16,
           "behavior": "patrol",
@@ -166471,7 +166630,8 @@
             {
               "id": "hall-terrace",
               "terrainIds": [
-                "act2-floor"
+                "act2-floor",
+                "fc16-temple-buttress"
               ],
               "ceilingIds": [
                 "cave-roof"
@@ -166480,7 +166640,7 @@
                 "x": 3300,
                 "y": 1980,
                 "w": 1950,
-                "h": 2625.7142857142853
+                "h": 3159.5
               },
               "sky": "cave",
               "landmarkIds": []
@@ -166488,7 +166648,8 @@
             {
               "id": "record-gallery",
               "terrainIds": [
-                "act2-floor"
+                "act2-floor",
+                "fc16-record-return-step"
               ],
               "ceilingIds": [
                 "cave-roof"
@@ -166497,7 +166658,7 @@
                 "x": 5250,
                 "y": 2583.636363636364,
                 "w": 1310,
-                "h": 2366.363636363636
+                "h": 2487.613636363636
               },
               "sky": "cave",
               "landmarkIds": []
@@ -166778,6 +166939,32 @@
             {
               "id": "record-side-shelf",
               "terrainId": "record-side-shelf",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "record-gallery"
+              ]
+            },
+            {
+              "id": "fc16-temple-buttress",
+              "terrainId": "fc16-temple-buttress",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "roomIds": [
+                "hall-terrace"
+              ]
+            },
+            {
+              "id": "fc16-record-return-step",
+              "terrainId": "fc16-record-return-step",
               "role": "shelf",
               "edgeIndices": [
                 0
@@ -167067,172 +167254,167 @@
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 3288.8888888888887,
-                  "y": 4610,
+                  "x": 3250,
+                  "y": 4625,
                   "surfaceId": "floor-main"
                 },
                 {
                   "x": 3366.6666666666665,
                   "y": 4580,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3444.4444444444443,
                   "y": 4550,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3522.222222222222,
                   "y": 4520,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3600,
                   "y": 4490,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3675,
                   "y": 4447.5,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3750,
                   "y": 4405,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3825,
                   "y": 4362.5,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3900,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 3977.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4055,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4132.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4210,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4287.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4365,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4442.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4500,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4520,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4597.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4675,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4752.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4780,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4830,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4907.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 4985,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 5062.5,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 5140,
                   "y": 4320,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 5220,
                   "y": 4410,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 5300,
                   "y": 4500,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 5380,
                   "y": 4590,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
                   "x": 5460,
                   "y": 4680,
-                  "surfaceId": "floor-main"
+                  "surfaceId": "fc16-temple-buttress"
                 },
                 {
-                  "x": 5540,
-                  "y": 4770,
-                  "surfaceId": "floor-main"
+                  "x": 5570,
+                  "y": 4858,
+                  "surfaceId": "fc16-record-return-step"
                 },
                 {
-                  "x": 5620,
-                  "y": 4860,
-                  "surfaceId": "floor-main"
-                },
-                {
-                  "x": 5700,
+                  "x": 5740,
                   "y": 4950,
                   "surfaceId": "floor-main"
                 },
@@ -167367,7 +167549,8 @@
                   "surfaceId": "floor-main"
                 }
               ],
-              "requires": []
+              "requires": [],
+              "defaultJump": true
             },
             {
               "id": "court-side-pulpit",
@@ -167422,6 +167605,33 @@
                 }
               ],
               "requires": []
+            },
+            {
+              "id": "temple-undercroft",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 5740,
+                  "y": 4950,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5500,
+                  "y": 5022.727272727273,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 4700,
+                  "y": 5130,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 3950,
+                  "y": 5067.5,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "requires": []
             }
           ],
           "sites": {
@@ -167452,25 +167662,25 @@
             "hall": {
               "objectiveId": "hall",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
+              "surfaceId": "fc16-temple-buttress",
               "x": 4500,
               "y": 4320,
               "standing": {
                 "x": 4500,
                 "y": 4320,
-                "surfaceId": "floor-main"
+                "surfaceId": "fc16-temple-buttress"
               }
             },
             "hold-hall": {
               "objectiveId": "hold-hall",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
+              "surfaceId": "fc16-temple-buttress",
               "x": 4780,
               "y": 4320,
               "standing": {
                 "x": 4780,
                 "y": 4320,
-                "surfaceId": "floor-main"
+                "surfaceId": "fc16-temple-buttress"
               }
             },
             "record": {
@@ -167626,10 +167836,10 @@
               "unitId": "a2-enemy-10",
               "cohort": "middle",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
-              "x": 4295,
-              "y": 4320,
-              "supportY": 4320,
+              "surfaceId": "fc16-temple-buttress",
+              "x": 3680,
+              "y": 4444.666666666667,
+              "supportY": 4444.666666666667,
               "flying": false
             },
             {
@@ -167637,10 +167847,10 @@
               "unitId": "a2-enemy-11",
               "cohort": "middle",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
-              "x": 4880,
-              "y": 4320,
-              "supportY": 4320,
+              "surfaceId": "fc16-temple-buttress",
+              "x": 5350,
+              "y": 4556.25,
+              "supportY": 4556.25,
               "flying": false
             },
             {
@@ -167648,7 +167858,7 @@
               "unitId": "a2-enemy-12",
               "cohort": "middle",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
+              "surfaceId": "fc16-temple-buttress",
               "x": 4464,
               "y": 4320,
               "supportY": 4320,
@@ -167659,8 +167869,8 @@
               "unitId": "a2-enemy-13",
               "cohort": "middle",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
-              "x": 4542,
+              "surfaceId": "fc16-temple-buttress",
+              "x": 4790,
               "y": 4320,
               "supportY": 4320,
               "flying": false
@@ -167670,8 +167880,8 @@
               "unitId": "a2-enemy-14",
               "cohort": "middle",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
-              "x": 4608,
+              "surfaceId": "fc16-temple-buttress",
+              "x": 4540,
               "y": 4320,
               "supportY": 4320,
               "flying": false
@@ -167693,9 +167903,9 @@
               "cohort": "east",
               "roomId": "record-gallery",
               "surfaceId": "floor-main",
-              "x": 5962,
-              "y": 4790,
-              "supportY": 4950,
+              "x": 4790,
+              "y": 5013,
+              "supportY": 5133,
               "flying": true
             },
             {
@@ -167804,7 +168014,7 @@
               "elementId": "a2-16-2",
               "assetId": "act2:temple",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
+              "surfaceId": "fc16-temple-buttress",
               "x": 4510,
               "y": 4320,
               "scale": 2.05,
@@ -167815,7 +168025,7 @@
               "elementId": "a2-16-3",
               "assetId": "act2:ritual",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
+              "surfaceId": "fc16-temple-buttress",
               "x": 4820,
               "y": 4320,
               "scale": 1.1,
@@ -167881,7 +168091,7 @@
               "elementId": "a2-16-goal-2",
               "assetId": "act2:ritual",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
+              "surfaceId": "fc16-temple-buttress",
               "x": 4500,
               "y": 4320,
               "scale": 0.7,
@@ -167892,7 +168102,7 @@
               "elementId": "a2-16-defense-3",
               "assetId": "act2:ritual",
               "roomId": "hall-terrace",
-              "surfaceId": "floor-main",
+              "surfaceId": "fc16-temple-buttress",
               "x": 4780,
               "y": 4320,
               "scale": 1,
@@ -167955,6 +168165,18 @@
               "scale": 1.12,
               "footOffset": 0,
               "visualOnly": true
+            },
+            {
+              "id": "fc16-undercroft-lamp",
+              "elementId": "fc16-undercroft-lamp",
+              "assetId": "act2:lamp",
+              "roomId": "hall-terrace",
+              "surfaceId": "floor-main",
+              "x": 4690,
+              "y": 5129.666666666667,
+              "scale": 0.8,
+              "footOffset": 0,
+              "visualOnly": true
             }
           ],
           "landmarks": [],
@@ -167985,6 +168207,15 @@
               "kind": "oil",
               "radius": 310,
               "color": "#bb9558"
+            },
+            {
+              "id": "fc16-undercroft-lamp",
+              "x": 4690,
+              "y": 5079.666666666667,
+              "roomId": "hall-terrace",
+              "kind": "oil",
+              "radius": 300,
+              "color": "#b49766"
             }
           ],
           "views": [
@@ -168019,6 +168250,969 @@
               "zoom": 0.5,
               "roomId": "rear-witness",
               "focus": "objective"
+            }
+          ],
+          "terrainPlanes": [
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#5d6e76",
+              "points": [
+                [
+                  3250,
+                  4550
+                ],
+                [
+                  3900,
+                  4280
+                ],
+                [
+                  4610,
+                  4290
+                ],
+                [
+                  4460,
+                  4470
+                ],
+                [
+                  4120,
+                  4510
+                ],
+                [
+                  3830,
+                  4680
+                ],
+                [
+                  3670,
+                  4930
+                ],
+                [
+                  3500,
+                  5310
+                ],
+                [
+                  3250,
+                  5250
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#354d59",
+              "points": [
+                [
+                  3850,
+                  4460
+                ],
+                [
+                  4060,
+                  4340
+                ],
+                [
+                  4210,
+                  4340
+                ],
+                [
+                  4120,
+                  4530
+                ],
+                [
+                  3930,
+                  4710
+                ],
+                [
+                  3810,
+                  5000
+                ],
+                [
+                  3610,
+                  5310
+                ],
+                [
+                  3700,
+                  4930
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#75858a",
+              "points": [
+                [
+                  3940,
+                  4320
+                ],
+                [
+                  4500,
+                  4320
+                ],
+                [
+                  4460,
+                  4400
+                ],
+                [
+                  4120,
+                  4430
+                ],
+                [
+                  3880,
+                  4540
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#78898b",
+              "points": [
+                [
+                  3330,
+                  4600
+                ],
+                [
+                  3570,
+                  4500
+                ],
+                [
+                  3670,
+                  4510
+                ],
+                [
+                  3510,
+                  4670
+                ],
+                [
+                  3400,
+                  4840
+                ],
+                [
+                  3330,
+                  4820
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#203947",
+              "points": [
+                [
+                  3590,
+                  4680
+                ],
+                [
+                  3660,
+                  4620
+                ],
+                [
+                  3620,
+                  4850
+                ],
+                [
+                  3550,
+                  5030
+                ],
+                [
+                  3550,
+                  5320
+                ],
+                [
+                  3460,
+                  5270
+                ],
+                [
+                  3500,
+                  4950
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#7e8c8b",
+              "points": [
+                [
+                  3760,
+                  4750
+                ],
+                [
+                  3840,
+                  4660
+                ],
+                [
+                  3950,
+                  4620
+                ],
+                [
+                  3900,
+                  4710
+                ],
+                [
+                  3830,
+                  4820
+                ],
+                [
+                  3770,
+                  4930
+                ],
+                [
+                  3730,
+                  4900
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#657a83",
+              "points": [
+                [
+                  4550,
+                  4320
+                ],
+                [
+                  4870,
+                  4320
+                ],
+                [
+                  4810,
+                  4470
+                ],
+                [
+                  4580,
+                  4560
+                ],
+                [
+                  4450,
+                  4540
+                ],
+                [
+                  4520,
+                  4430
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#243e4b",
+              "points": [
+                [
+                  4880,
+                  4310
+                ],
+                [
+                  5060,
+                  4310
+                ],
+                [
+                  4980,
+                  4540
+                ],
+                [
+                  5050,
+                  4720
+                ],
+                [
+                  4880,
+                  4780
+                ],
+                [
+                  4800,
+                  4550
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#74868d",
+              "points": [
+                [
+                  5060,
+                  4320
+                ],
+                [
+                  5180,
+                  4360
+                ],
+                [
+                  5260,
+                  4500
+                ],
+                [
+                  5220,
+                  4610
+                ],
+                [
+                  5140,
+                  4590
+                ],
+                [
+                  5100,
+                  4460
+                ],
+                [
+                  5010,
+                  4420
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#435f6b",
+              "points": [
+                [
+                  5260,
+                  4500
+                ],
+                [
+                  5400,
+                  4610
+                ],
+                [
+                  5510,
+                  4700
+                ],
+                [
+                  5510,
+                  4890
+                ],
+                [
+                  5350,
+                  4840
+                ],
+                [
+                  5220,
+                  4660
+                ]
+              ]
+            },
+            {
+              "terrainId": "fc16-temple-buttress",
+              "fill": "#16323f",
+              "points": [
+                [
+                  3800,
+                  4880
+                ],
+                [
+                  3990,
+                  4640
+                ],
+                [
+                  4310,
+                  4590
+                ],
+                [
+                  4800,
+                  4630
+                ],
+                [
+                  5030,
+                  4670
+                ],
+                [
+                  5270,
+                  4780
+                ],
+                [
+                  5510,
+                  4800
+                ],
+                [
+                  5510,
+                  4900
+                ],
+                [
+                  5270,
+                  4900
+                ],
+                [
+                  5030,
+                  4800
+                ],
+                [
+                  4800,
+                  4750
+                ],
+                [
+                  4320,
+                  4710
+                ],
+                [
+                  4060,
+                  4760
+                ],
+                [
+                  3900,
+                  4880
+                ],
+                [
+                  3790,
+                  5070
+                ],
+                [
+                  3730,
+                  5100
+                ]
+              ]
+            }
+          ]
+        },
+        "cavernLayers": {
+          "version": 1,
+          "kind": "temple-over-undercroft",
+          "requiredMain": [
+            {
+              "x": 320,
+              "y": 4975.111111111111,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 375,
+              "y": 4970.833333333333,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 450,
+              "y": 4965,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 525,
+              "y": 4959.166666666667,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 600,
+              "y": 4953.333333333333,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 675,
+              "y": 4947.5,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 750,
+              "y": 4941.666666666667,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 825,
+              "y": 4935.833333333333,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 900,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 980,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1060,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1140,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1220,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1300,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1380,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1460,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1540,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1620,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1700,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1780,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1840,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1860,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 1940,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2020,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2100,
+              "y": 4930,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2180,
+              "y": 4913,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2260,
+              "y": 4896,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2340,
+              "y": 4879,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2420,
+              "y": 4862,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2500,
+              "y": 4845,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2580,
+              "y": 4828,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2660,
+              "y": 4811,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2690,
+              "y": 4804.625,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2740,
+              "y": 4794,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2820,
+              "y": 4777,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2900,
+              "y": 4760,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 2977.777777777778,
+              "y": 4730,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 3055.5555555555557,
+              "y": 4700,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 3133.3333333333335,
+              "y": 4670,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 3211.1111111111113,
+              "y": 4640,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 3250,
+              "y": 4625,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 3366.6666666666665,
+              "y": 4580,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3444.4444444444443,
+              "y": 4550,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3522.222222222222,
+              "y": 4520,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3600,
+              "y": 4490,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3675,
+              "y": 4447.5,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3750,
+              "y": 4405,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3825,
+              "y": 4362.5,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3900,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 3977.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4055,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4132.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4210,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4287.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4365,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4442.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4500,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4520,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4597.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4675,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4752.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4780,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4830,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4907.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 4985,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 5062.5,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 5140,
+              "y": 4320,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 5220,
+              "y": 4410,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 5300,
+              "y": 4500,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 5380,
+              "y": 4590,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 5460,
+              "y": 4680,
+              "surfaceId": "fc16-temple-buttress"
+            },
+            {
+              "x": 5570,
+              "y": 4858,
+              "surfaceId": "fc16-record-return-step"
+            },
+            {
+              "x": 5740,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 5777.142857142857,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 5854.285714285715,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 5910,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 5931.428571428572,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6008.571428571428,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6085.714285714285,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6162.857142857143,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6240,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6313.333333333333,
+              "y": 4918.888888888889,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6386.666666666667,
+              "y": 4887.777777777777,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6460,
+              "y": 4856.666666666667,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6533.333333333333,
+              "y": 4825.555555555556,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6606.666666666667,
+              "y": 4794.444444444444,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6680,
+              "y": 4763.333333333333,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6753.333333333333,
+              "y": 4732.222222222223,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6826.666666666667,
+              "y": 4701.111111111111,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6900,
+              "y": 4670,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 6971.25,
+              "y": 4652.5,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7042.5,
+              "y": 4635,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7113.75,
+              "y": 4617.5,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7185,
+              "y": 4600,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7256.25,
+              "y": 4582.5,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7327.5,
+              "y": 4565,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7398.75,
+              "y": 4547.5,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7470,
+              "y": 4530,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 7500,
+              "y": 4532.054794520548,
+              "surfaceId": "floor-main"
+            }
+          ],
+          "optional": [
+            {
+              "x": 5740,
+              "y": 4950,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 5500,
+              "y": 5022.727272727273,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 4700,
+              "y": 5130,
+              "surfaceId": "floor-main"
+            },
+            {
+              "x": 3950,
+              "y": 5067.5,
+              "surfaceId": "floor-main"
+            }
+          ],
+          "return": [
+            {
+              "x": 5510,
+              "y": 5019.090909090909
+            },
+            {
+              "x": 5530,
+              "y": 4862,
+              "jumpTo": {
+                "x": 5460,
+                "support": "fc16-temple-buttress"
+              }
+            },
+            {
+              "x": 5300,
+              "y": 4500
+            },
+            {
+              "x": 5080,
+              "y": 4320
+            }
+          ],
+          "views": [
+            {
+              "name": "layers-default",
+              "x": 4500,
+              "y": 4600,
+              "scale": 0.46,
+              "width": 1440,
+              "height": 960
+            },
+            {
+              "name": "layers-portrait",
+              "x": 4500,
+              "y": 4600,
+              "scale": 0.46,
+              "width": 720,
+              "height": 1080
             }
           ]
         }
@@ -168185,8 +169379,8 @@
           "y": 4640
         },
         {
-          "x": 3288.8888888888887,
-          "y": 4610
+          "x": 3250,
+          "y": 4625
         },
         {
           "x": 3366.6666666666665,
@@ -168309,15 +169503,11 @@
           "y": 4680
         },
         {
-          "x": 5540,
-          "y": 4770
+          "x": 5570,
+          "y": 4858
         },
         {
-          "x": 5620,
-          "y": 4860
-        },
-        {
-          "x": 5700,
+          "x": 5740,
           "y": 4950
         },
         {
