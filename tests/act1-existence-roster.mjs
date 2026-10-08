@@ -1,4 +1,4 @@
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {beforeGuardianScene} from './guardian-scene-history-helpers.mjs';
 import assert from 'node:assert/strict';
 import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
@@ -14,7 +14,7 @@ const baseline=JSON.parse(await readFile('tests/fixtures/act1-roster-before.json
 // Raw canonical JSON and bundled Game/Workshop project use the same idempotent authoring.
 assert.equal(hash(g.HonroAct1Roster.author(plain(project))),hash(project));
 assert.equal(hash(g.HonroAct1Roster.author(plain(project)).stages.slice(10)),hash(project.stages.slice(10)),'All later acts are untouched, including future production maps');
-const historical=beforeCaveBatRevision(beforePlatformPassages(beforeObjectiveRevision(beforeGuardianScene(beforeForestCavernTopology(project)),{stages:[]}).project));
+const historical=beforeCaveBatRevision(beforePlatformPassages(beforeObjectiveRevision(beforeGuardianScene(beforeApprovedTopology(project)),{stages:[]}).project));
 assert.equal(hash(historical.stages.slice(10,20)),baseline.laterActsHash,'Act 2 source outside the exact approved objective revision is unchanged');
 const original=beforeExistenceRoster(historical);
 for(const {id,hash:expected} of baseline.stageHashes)assert.equal(hash(original.stages[id-1]),expected,'Only seven explicitly reviewed units change: '+id);

@@ -1,4 +1,4 @@
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 // The original ACT1 fixture hash cannot be reproduced from its named source.
 // This anchor is computed from that immutable source, not from today's maps.
 // Approved revisions are reversed narrowly; every other map field stays frozen.
@@ -8,7 +8,7 @@ import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {beforeCaveBatRevision} from './act2-cave-bat-delta-helpers.mjs';
 export const act2History=JSON.parse(readFileSync(new URL('./fixtures/act1-act2-history.json',import.meta.url),'utf8'));
 export function historicalAct2Maps(project,domain){
- const p=beforeCaveBatRevision(beforeObjectiveRevision(beforeForestCavernTopology(project,{stages:[15]}),{stages:[]}).project);
+ const p=beforeCaveBatRevision(beforeObjectiveRevision(beforeApprovedTopology(project,{stages:[15]}),{stages:[]}).project);
  for(const {stage,path,before,after} of act2History.proseDelta){
   let target=p.stages.find(s=>s.metadata.stageId===stage);
   for(const key of path.slice(0,-1))target=target[key];

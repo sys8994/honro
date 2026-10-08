@@ -1,5 +1,5 @@
 import './forest-cavern-history.mjs';
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
@@ -10,7 +10,7 @@ import {legacyRuntime,migrate} from '../migration/migrate-stages.mjs';
 import vm from 'node:vm';
 const g=await runtime(),old=await legacyRuntime(),plain=x=>JSON.parse(JSON.stringify(x)),rows=[];
 const activeProject=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));
-const project=beforeExistenceRoster(beforePlatformPassages(beforeForestCavernTopology(activeProject)));
+const project=beforeExistenceRoster(beforePlatformPassages(beforeApprovedTopology(activeProject)));
 const baseline=plain(await migrate());
 assert.deepEqual(project.stages[6].terrains.filter(t=>t.id===g.HonroStage7Reentry.id),[plain(g.HonroStage7Reentry.terrain())],'The only added Stage7 root exactly matches its shared recipe');
 // Compare historical terrain/gameplay identity independently of current combat

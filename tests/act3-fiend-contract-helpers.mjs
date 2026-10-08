@@ -1,4 +1,4 @@
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {gunzipSync} from 'node:zlib';
 import {beforeGuardianScene} from './guardian-scene-history-helpers.mjs';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
@@ -71,7 +71,7 @@ export function beforeHiddenWaterworks(project,content,balance){
 }
 export function assertFiendContract(project,content,balance,archetypes,baseline){
  ({project,content,balance}=beforeHiddenWaterworks(project,content,balance));
- project=beforeRefinementRevision(beforeForestCavernTopology(project),archetypes);
+ project=beforeRefinementRevision(beforeApprovedTopology(project),archetypes);
  ({project,content}=beforeObjectiveRevision(project,content));
  assert.equal(project.stages.length,30,'All thirty canonical maps remain required');
  assert.deepEqual(project.stages.map(s=>s.metadata.stageId),Array.from({length:30},(_,i)=>i+1),'Canonical ordering');

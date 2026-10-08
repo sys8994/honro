@@ -1,5 +1,5 @@
 import {applyForestCavernTopology} from '../tools/map-forge/forest-cavern-topology.mjs';
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {act12Project} from './campaign-scope-helpers.mjs';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';
@@ -13,7 +13,7 @@ const check=(name,fn)=>{fn();rows.push({name,passed:true});console.log('PASS',na
 const fixture=id=>{const q=battlefield(g,id);g.HonroAct2.attach(q.app,q.e);return q;};
 // These three removed-device tests cover retained pre-revision battles. All
 // ordinary objective/route tests below still use the current canonical maps.
-const legacyFixture=id=>{const current=g.HONRO_PROJECT;try{g.HONRO_PROJECT=beforeObjectiveRevision(beforeForestCavernTopology(current,{stages:[15]}),g.HONRO_CONTENT).project;return fixture(id);}finally{g.HONRO_PROJECT=current;}};
+const legacyFixture=id=>{const current=g.HONRO_PROJECT;try{g.HONRO_PROJECT=beforeObjectiveRevision(beforeApprovedTopology(current,{stages:[15]}),g.HONRO_CONTENT).project;return fixture(id);}finally{g.HONRO_PROJECT=current;}};
 check('30 canonical maps retain independent Act 2 objectives and four companions',()=>{
  assert.equal(g.HONRO_PROJECT.stages.length,30);assert.equal(g.HONRO_CONTENT.stages.length,30);
  assert.deepEqual(plain(g.HonroStageRules.stageParty(10)),['archer','mage','knight']);

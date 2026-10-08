@@ -1,7 +1,7 @@
 // Production App navigation/save paths with DOM, Canvas and storage doubles.
 // Terminal battle states below are explicit fixtures, not normal-play victories.
 import assert from 'node:assert/strict';
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {appHarness,plain,report,KEY} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g,load,reload,profileThrough,click,finish}=h,checks=[];
 let app;
@@ -52,7 +52,7 @@ for(const id of [3,6,7]){
  });
 }
 const currentProject=g.HONRO_PROJECT;
-g.HONRO_PROJECT=beforeForestCavernTopology(currentProject,{stages:[7]});
+g.HONRO_PROJECT=beforeApprovedTopology(currentProject,{stages:[7]});
 for(const origin of ['campaign','unmarked'])await check(`stage 7: App import/Continue preserves ${origin} old-map migration boundaries`,async()=>{
  suspended(7);const saved=plain(app.profile.honroBattle),id=g.HonroStage7Reentry.id;
  saved.terrain=saved.terrain.filter(t=>t.id!==id);if(origin==='unmarked')delete saved.honroMapOrigin;

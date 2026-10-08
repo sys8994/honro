@@ -1,4 +1,4 @@
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import assert from 'node:assert/strict';
@@ -13,7 +13,7 @@ const between=(points,x)=>{const ys=[];for(let i=0;i<points.length;i++){const a=
 check('All implemented stages use a single canonical mesh containing stable playBounds',()=>{assert.equal(g.HONRO_PROJECT.version,6);for(const st of g.HONRO_PROJECT.stages){assert.deepEqual(plain(st.playBounds),{left:0,top:0,right:st.width,bottom:st.height});assert(st.terrains.some(t=>t.playProjection));assert.equal(D.validate(st).length,0);assert.deepEqual(plain(D.author({stages:[st]}).stages[0]),plain(st));}});
 // Reverse only the exact reviewed roster fields for this historical units hash.
 // Every geometry/domain and runtime check below still reads the current project.
-const historicalProject=beforeObjectiveRevision(beforeForestCavernTopology(g.HONRO_PROJECT),g.HONRO_CONTENT).project;
+const historicalProject=beforeObjectiveRevision(beforeApprovedTopology(g.HONRO_PROJECT),g.HONRO_CONTENT).project;
 const historicalRoster=beforeCaveBatRevision(beforeExistenceRoster(historicalProject));
 // The source-v0.1 story approval changed only these two Stage12 labels.
 // Validate their current wording before restoring the historical hash input.

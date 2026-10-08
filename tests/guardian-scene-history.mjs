@@ -1,8 +1,8 @@
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {beforeGuardianScene,guardianSceneDelta} from './guardian-scene-history-helpers.mjs';
-const project=beforeForestCavernTopology(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),snapshot=JSON.stringify(project),prior=beforeGuardianScene(project);
+const project=beforeApprovedTopology(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),snapshot=JSON.stringify(project),prior=beforeGuardianScene(project);
 assert.equal(JSON.stringify(project),snapshot,'Historical projection does not mutate current maps');
 {const p=structuredClone(project);p.library.find(a=>a.id===guardianSceneDelta.addedAsset.id).name+=' drift';assert.throws(()=>beforeGuardianScene(p),/Exact approved guardian asset/);}
 for(const row of guardianSceneDelta.rows){

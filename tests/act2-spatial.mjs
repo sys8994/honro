@@ -1,6 +1,6 @@
 import './act2-reviewed-routes.mjs';
 import {traverse} from './act1-spatial-test-helpers.mjs';
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 // Structural/physics fixtures. These prove room contracts and isolated actions,
 // not normal-combat difficulty, human readability or browser rendering quality.
 import assert from 'node:assert/strict';
@@ -12,7 +12,7 @@ import {openRoute,terrainFace,assertStanding,coordinates} from './act2-spatial-t
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
 const intent=JSON.parse(await readFile('tests/fixtures/act2-spatial-intent.json','utf8'));
-const beforeTopology=beforeForestCavernTopology(g.HONRO_PROJECT,{stages:[15]});
+const beforeTopology=beforeApprovedTopology(g.HONRO_PROJECT,{stages:[15]});
 const historicalProject=beforeObjectiveRevision(beforeTopology,g.HONRO_CONTENT).project;
 const idFilter=process.argv.slice(2).map(Number);
 const check=(name,fn)=>{const detail=fn();rows.push({name,passed:true,detail});console.log('PASS',name);};

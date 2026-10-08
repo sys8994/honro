@@ -1,4 +1,4 @@
-import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
+import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {applyCurrentTerrainRecipes} from './act1-spatial-test-helpers.mjs';
 import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
@@ -18,7 +18,7 @@ vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design
 const baseline=await migrate(),project=plain(g.HONRO_PROJECT);
 // Historical recipe equality reverses only exact reviewed roster and topology deltas.
 // Current geometry, export/import and live runtime checks keep project unchanged.
-const historicalProject=beforeExistenceRoster(beforeForestCavernTopology(project));
+const historicalProject=beforeExistenceRoster(beforeApprovedTopology(project));
 check('Active Stage 7 recovery root exactly matches its shared additive recipe',()=>assert.deepEqual(project.stages[6].terrains.filter(t=>t.id===g.HonroStage7Reentry.id),[plain(g.HonroStage7Reentry.terrain())]));
 const firstDesign=plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline)));
 check('Workshop authoring recipe reproduces Stages 1 and 2 geometry',()=>assert.deepEqual(withoutHistoricalSodanAttack({stages:firstDesign.stages.slice(0,2)}),withoutHistoricalSodanAttack({stages:historicalProject.stages.slice(0,2)})));
