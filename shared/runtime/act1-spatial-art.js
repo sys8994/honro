@@ -4,6 +4,7 @@
 // their own landscape, and ACT2 never enters this renderer.
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,A=G.HonroEnvironmentArt,terrainCache=new WeakMap(),sceneCache=new WeakMap();
 const active=b=>b?.honroStage>=1&&b.honroStage<=10&&b.honroMap?.act1Scene?.version===1;
+const guardianBranch=(b,t)=>b.honroStage===10&&b.honroMap?.act1Scene?.guardianTree?.branches?.includes(t.id);
 function poly(points){const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();return p;}
 function line(points){const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));return p;}
 function liveTop(b,id,x,fallback){const t=b.terrain.find(t=>t.id===id&&!t.broken);return t?C.topAt(t,x,fallback):fallback;}
@@ -35,6 +36,13 @@ function groundGradient(c,t,b){const earth=t.mat==='earth'||t.surfaceKind==='soi
  const g=c.createLinearGradient(0,top,0,Math.max(top+60,bottom));g.addColorStop(0,earth?'#5a655e':'#62707a');g.addColorStop(.3,earth?'#3b4b47':'#43545e');g.addColorStop(.68,earth?'#283c3d':'#2e414b');g.addColorStop(1,earth?'#18282a':'#17282b');return g;}
 const oldGradient=G.HonroTerrainGradient;G.HonroTerrainGradient=(c,t,b)=>active(b)&&t.mat!=='wood'&&!t.honroSeal?groundGradient(c,t,b):oldGradient(c,t,b);
 const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+ if(guardianBranch(b,t)){
+  // Retain the real collision silhouette and bright walkable top. Bark is a
+  // paint-only substitution: stone resistance and projectile passage stay put.
+  c.fillStyle=A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#85846b'],[.22,'#626957'],[.66,'#394940'],[1,'#203633']]);c.fill(q.shape);c.clip(q.shape);
+  c.strokeStyle='#253d34';c.lineWidth=6;for(const [a,z]of q.edges){c.beginPath();c.moveTo(a.x+10,a.y+22);c.bezierCurveTo(a.x+(z.x-a.x)*.35,a.y+33,z.x-(z.x-a.x)*.28,z.y+14,z.x-8,z.y+28);c.stroke();}
+  c.strokeStyle='#c2c4a0';c.lineWidth=5;c.lineJoin='round';c.stroke(q.rim);c.restore();return;
+ }
  const roof=/^(west-eave|east-eave|west-gallery|east-gallery|altar-platform)$/.test(t.id);c.fillStyle=/^climb-/.test(t.id)?'#405460':roof?'#2b3e48':q.wood?A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#6b6d5b'],[.28,'#484d41'],[1,'#26352e']]):groundGradient(c,t,b);c.fill(q.shape);c.clip(q.shape);
  for(const [i,p]of q.cliffPlanes.entries()){c.fillStyle=['#a2b4bb28','#081e294f','#82979f24','#0e27335c'][i];c.fill(p);}
  for(const [i,f]of q.planes.entries()){c.fillStyle=q.wood?'#a5a27e1e':i%2?'#a2b0b71e':'#b0b9ba23';c.fill(f.lit);c.fillStyle=q.wood?'#16292369':'#10243155';c.fill(f.shadow);c.strokeStyle=q.wood?'#20352b50':'#172c3655';c.lineWidth=5;c.stroke(f.contact);}
@@ -57,7 +65,7 @@ function supports(c,b){
  // these narrow, darker members are scenery and never suggest extra floor.
  if(![3,4,6,8,9,10].includes(b.honroStage))return;
  const floors=b.terrain.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=b.height);
- for(const t of b.terrain){if(t.broken||t.honroSeal||t.honroElementCollision||(!t.oneWay&&!/gallery|eave|tier-|ramp-|bridge-/.test(t.id))||t.w<190)continue;
+ for(const t of b.terrain){if(guardianBranch(b,t)||t.broken||t.honroSeal||t.honroElementCollision||(!t.oneWay&&!/gallery|eave|tier-|ramp-|bridge-/.test(t.id))||t.w<190)continue;
   const under=(x,y)=>{const hits=floors.flatMap(f=>C.terrainSurfaces(f,x)).filter(p=>p.y>y+24);return hits.length?Math.min(...hits.map(p=>p.y)):b.height;};
   const pos=[t.x+t.w*.2,t.x+t.w*.8];for(const [i,x]of pos.entries()){const top=C.topAt(t,x,t.y)+t.h*.18,foot=under(x,top),max=b.honroStage===7?500:950,bottom=foot;if(bottom-top<30||bottom-top>max)continue;
    c.strokeStyle=b.honroStage===7?'#263b3299':'#263741';c.lineWidth=b.honroStage===7?32:18;c.lineCap='butt';c.beginPath();c.moveTo(x,top);c.lineTo(x+(i?-22:19),bottom);c.stroke();c.strokeStyle='#7381744f';c.lineWidth=3;c.beginPath();c.moveTo(x-4,top);c.lineTo(x+(i?-26:15),bottom);c.stroke();

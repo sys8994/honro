@@ -8,6 +8,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 // ground datum to an L1-back terrain surface, or a finite scenery support.
 // The compiler is shared with ACT2; no ACT2 source or existing asset is changed.
 export const ACT1_VECTOR_ART=Object.freeze({
+ 'act1-scene:guardian-tree':{file:'act1-scene-guardian-tree.svg',name:'언덕을 감싸는 거대한 당산나무',category:'tree',heightM:27.6,tags:['forest','guardian','outdoor'],stages:[10]},
  'act1-scene:rooted-sacred':{file:'act1-scene-rooted-sacred.svg',name:'경사지에 접지된 당산나무',category:'tree',heightM:11.2,tags:['forest','ritual','outdoor','single-root'],stages:[1,5,8,9,10]},
  'act1-scene:rooted-pine':{file:'act1-scene-rooted-pine.svg',name:'경사지에 접지된 한 그루 소나무',category:'tree',heightM:12.8,tags:['forest','pine','outdoor','single-root'],stages:[1,2,3,4,5,6,8]},
  'act1-scene:pine-grove':{file:'act1-scene-pine-grove.svg',name:'고갯길의 비대칭 솔숲',category:'tree',heightM:12.8,tags:['forest','pine','outdoor'],stages:[1,2,5,6]},

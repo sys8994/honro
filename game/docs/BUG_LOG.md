@@ -1460,3 +1460,9 @@ Custom-map win/loss results now say “원래 여정으로 돌아가기”, matc
 - Cause: minimap excluded player-side summons from both friendly categories, falling through to enemy red. A summon phase also replaced the cached team-banner key, replaying `아군 턴` when ordinary player control returned.
 - Change: minimap uses current effective allegiance and shows friendly summons/charmed actors in allied gold. Summon interludes retain the last real team notice; the engine's summon-queue announcement and real player/enemy/ally team banners remain. No turn-order or timing changes.
 - Verification: `node tests/summon-team-feedback.mjs` reproduces both prior failures and passes after the fix. The exact production minimap loop is drawn with Native Canvas and pixel-checked; production Story code is exercised through repeated summon interludes, enemy/allied turns, and the next player round. This is not a browser-input test; final Game/Workshop browser checks remain integration work.
+### 10장 중앙 수호나무와 가지 발판 — 2026-10-08
+
+- 요청: 소단이 있는 중앙 언덕의 제당을 거대한 나무로 바꾸고 가지를 실제 올라가는 선택 경로로 사용한다. 새 신격·보스 정체·승리조건은 추가하지 않는다.
+- 변경: 순수 SVG `act1-scene-guardian-tree.svg`를 L1-back 중앙 언덕에 접지한다. 네 중앙 발판은 기존 실제 충돌 polygon과 밝은 윗면을 그대로 따르는 나뭇가지로 그리며 목조 기둥을 제거한다. 기존 제당 에셋은 보존하고 9장 동쪽 제당에 10장의 기존 배율로 재사용한다. 짧은 도입 서술/휘겸의 말에만 나무와 가지를 언급한다.
+- 보존: 모든 장의 지형·재료·one-way·HP·파괴/포격 규칙·보스/배치·목표·진입 cue·대화 쪽 수는 불변이다. 나무 메타데이터가 없는 진행 중 저장은 기존 제당/발판 그림을 유지한다. 생성기는 동일 결과를 재현한다.
+- 검증 진행 중: `tests/story-staging.mjs` 통과. 실제 렌더/가지 등반·서사·발사 회귀는 후속 검수한다. `act1-spatial-contracts`는 변경하지 않은 ACT2의 기존 frozen hash 불일치로 첫 항목에서 중단되어 이 변경의 통과 근거로 세지 않는다.

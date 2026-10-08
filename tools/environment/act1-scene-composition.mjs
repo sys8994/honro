@@ -38,7 +38,7 @@ const PLACES={
  7:['아랫뿌리 거처','중간 굽이 피난집','속빈 줄기','윗사당'],
  8:['장례창고','서쪽 결박마당','빈 상여 회랑','동쪽 결박과 상여터'],
  9:['서쪽 받이진','바람 없는 우물마당','동쪽 받이진','사당 진입문'],
- 10:['서쪽 외문','서쪽 회랑','중앙 주박 의식대','동쪽 회랑']
+ 10:['서쪽 외문','서쪽 회랑','언덕 중앙의 당산나무','동쪽 회랑']
 };
 export async function applyAct1SceneComposition(project){
  author.HonroStage7Reentry.applyProject(project);
@@ -80,11 +80,14 @@ export async function applyAct1SceneComposition(project){
    r('west-eave-mass',2770,2375,1700,640,'bier-road');r('east-eave-mass',5560,2130,1600,760,'bier-road');
   }
   if(n===9){
-   suppress(st,e=>['builtin:oldHall','builtin:incenseYard'].includes(e.assetId));add('quiet-court','ruined-court',1820,2478,1.36,'yard-floor');add('east-hall','ritual-hall',3350,2390,.98,'yard-floor');add('west-grove','ritual-grove',330,2565,.70,'yard-floor');
+   suppress(st,e=>['builtin:oldHall','builtin:incenseYard'].includes(e.assetId));add('quiet-court','ruined-court',1820,2478,1.36,'yard-floor');add('east-hall','ritual-hall',3350,2390,1.25,'yard-floor');add('west-grove','ritual-grove',330,2565,.70,'yard-floor');
    r('western-court-shoulder',800,2560,1400,710,'yard-floor');r('eastern-court-shoulder',2920,2390,1400,680,'yard-floor');
   }
   if(n===10){
-   suppress(st,e=>['builtin:royalGate','builtin:oldHall','builtin:upperShrine'].includes(e.assetId));add('outer-gate','refuge-gate',330,2996,.83,'outer-yard');add('western-hall','ruined-court',1650,2605,1.0,'outer-yard');add('upper-ritual-hall','ritual-hall',2631,2225,1.25,'outer-yard');add('eastern-hall','refuge-courtyard',3550,2620,1.14,'outer-yard');add('outer-east-grove','ritual-grove',4540,2893,.77,'outer-yard');
+   suppress(st,e=>['builtin:royalGate','builtin:oldHall','builtin:upperShrine'].includes(e.assetId));add('outer-gate','refuge-gate',330,2996,.83,'outer-yard');add('western-hall','ruined-court',1650,2605,1.0,'outer-yard');add('guardian-tree','guardian-tree',2500,2180,1,'outer-yard');add('eastern-hall','refuge-courtyard',3550,2620,1.14,'outer-yard');add('outer-east-grove','ritual-grove',4540,2893,.77,'outer-yard');
+   // Visual branch skins use the exact existing one-way collision polygons.
+   // Keep their material, damage/ballistic rules, IDs, and saved geometry intact.
+   st.design.act1Scene.guardianTree={id:'a1-scene-10-guardian-tree',branches:['altar-step-1','altar-step-2','altar-step-3','altar-platform']};
    r('western-foundation',1310,2760,1850,940,'outer-yard');r('central-foundation',2520,2185,1700,650,'outer-yard');r('eastern-foundation',3860,2745,1700,900,'outer-yard');
   }
   // Broad rear rock masses precede the living/ceremonial architecture within L1-back.
