@@ -24,3 +24,15 @@ for(const mode of ['homing','seekChild','arcBolt','hunterBolt','nightBolt','summ
  b.projectiles=[];
 }
 console.log('PASS live guided modes, enemy opponents, ownership, visibility and hit exclusions');
+// Split target assignment must use the same allegiance as subsequent steering.
+b.units=[owner,target({honroAlly:true,id:'friendly'}),target({id:'foe'}),target({id:'hidden',spiritHidden:true})];
+b.projectiles=[];const parent={id:999,owner:owner.id,side:0,skill:'A15',mode:'seekRain',x:100,y:500,vx:100,vy:10,damage:10,fieldHits:[],hit:[],trail:[]};b.projectiles.push(parent);C.splitSeven(e,parent);
+assert.equal(b.projectiles.length,7);assert(b.projectiles.every(p=>p.targetId==='foe'));
+for(const mode of ['arcaneJudgment','starHunt','nightParade']){
+ b.projectiles=[];const p={...parent,mode,skill:'A15'};b.projectiles.push(p);e.launchUltimateChildren(p);
+ assert(b.projectiles.length>0);assert(b.projectiles.every(p=>p.targetId==='foe'),mode+' initial assignment excludes allies and hidden enemies');
+}
+b.units=[owner,target()];b.terrain=[{id:'wall',x:145,y:400,w:20,h:300,mat:'rock',hp:9999,maxHp:9999}];b.sceneVersion++;
+assert.equal(e.steer(100,500,1000,0,owner,.1).vy,0,'terrain line of sight retained');
+const saved=JSON.stringify(b);e.guidanceTarget(owner,b.units[1]);e.allegiance(owner);assert.equal(JSON.stringify(b),saved,'allegiance queries must not mutate battle saves');
+console.log('PASS initial split/ultimate allocation, terrain line of sight and read-only saves');
