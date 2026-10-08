@@ -104,7 +104,7 @@ function trainingWorld(st,profile,cls,skill,legacy){
 }
 function build(st,profile,training,cls,skill,legacy){
  if(training)return trainingWorld(st,profile,cls,skill,legacy);
- const project=G.HONRO_PROJECT,map=project.stages.find(s=>s.metadata.stageId===st.id);
+ const project=G.HONRO_PROJECT,map=(G.HonroSplitCampaign.legacy(profile,st.id)?G.HONRO_SPLIT_V1.stages:project.stages).find(s=>s.metadata.stageId===st.id);
  if(!map)throw Error('Missing canonical stage '+st.id);
  return G.HonroMaps.createBattle(map,project,profile,{origin:'campaign'});
 }

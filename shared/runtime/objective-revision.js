@@ -26,6 +26,7 @@ const guides={
 const goals={12:'길표의 돌림진을 풀고 채석장을 지나 함몰지 입구에 도착',13:'석공 구조와 석문 방어 후 마을 입구에 도착',15:'수문을 지켜 작업굴을 통과하고 옛 인양 흔적 조사',17:'인양틀을 복구하고 방어해 종지기의 작업 기록 확보',20:'생존자 행렬을 중간 쉼터와 바깥 산길까지 호송',21:'주민 구조와 길목 방어 후 성문 안 출구에 도착',22:'사건 보고와 호적을 확보·대조하고 관창 출구에 도착',23:'운송 기록을 확보하고 살아 있는 짐꾼과 하역장 통과',24:'문장과 토지문서를 조사하고 기록실로 이어지는 출구에 도착',25:'조사 기록함을 지키고 문서를 확보해 뒷길로 이탈',26:'주민과 작업 장부를 지키고 수량 대조 후 출구에 도착',27:'두 불길을 막고 조사 청원서와 운반자를 지켜 탈출',28:'승인문과 은폐 기록을 대조하고 퇴로 방어 후 이탈',29:'현묵의 글을 확보하고 수문 퇴로를 지켜 나루에 도착',30:'세 기록을 대조하고 나루 방어 후 동행 전원 집결'};
 function replaceLine(lines,find,text){for(const row of lines||[])if(row[1].includes(find))row[1]=text;}
 for(const st of H.stages){
+ if(st.hiddenWaterworks)continue;
  if(st.steps)st.steps=st.steps.filter(s=>!(removed[st.id]||[]).includes(s.id));
  if(goals[st.id])st.goal=goals[st.id];if(guides[st.id])st.guide=guides[st.id];
  if(st.id===22){const at=st.steps.findIndex(s=>s.id==='upper-latch');st.steps[at]={id:'upper-register',label:'상층 저문골 호적 확보',kind:'interact'};st.steps.find(s=>s.id==='ledger-case').label='중층 저문골 사건 보고 확보';st.steps.find(s=>s.id==='ledger-case').opens='upper-door';st.steps.find(s=>s.id==='archive-seal').label='하층 서고 봉인 열기';st.steps.find(s=>s.id==='compare-ledgers').label='상층에서 사건 보고와 호적 대조';}
@@ -41,6 +42,7 @@ replaceLine(H.stages[21].story,'위층 걸쇠','위층 서가에도 장부가 �
 replaceLine(H.stages[26].story,'수문 고정구','수문 쪽으로 가겠습니다. 물길을 열면 저쪽 불길을 막을 수 있습니다.');
 // The split party must hear every established fact from people actually there.
 // These are readings of existing records, not new expertise or later revelations.
+if(!H.stages[23].hiddenWaterworks){
 H.stages[23].outro=G.HonroAct3Content.scene('act3-r2-outro-24',H.stages[23].name,[
  ['휘겸','사당 뒤 기록실은 담허 도사와 살피겠소. 가문의 문장이 있으면 내가 열 수 있을 것이오.'],
  ['설오','소단과 성 밖 공방의 기록을 찾겠습니다. 관아 바깥 길에서 다시 만나겠습니다.'],
@@ -62,20 +64,21 @@ H.stages[26].beats['party-reunion']=[
  ['설오','공방의 주조량이 저문골에서 거둔 금속량과 거의 맞았습니다. 유골과 재도 장례 때와는 다르게 처리했다고 합니다.'],
  ['담허','어떤 공정으로 썼는지는 아직 모르네. 이제 함께 움직이며 남은 기록부터 지키세.']
 ];
+}
 let registeredStaging=null;
-function registerScenes(){const staging=G.HonroStoryStaging;if(!staging||registeredStaging===staging)return;staging.register({id:'act3-party-reunion-v1',stage:27,title:'다시 모인 기록',steps:[{type:'look',at:{marker:'party-reunion'},duration:450,caption:'두 조사팀이 중앙 뜰에서 서로 가져온 기록을 펼친다.'},{type:'dialogue',lines:H.stages[26].beats['party-reunion']}]});registeredStaging=staging;}
-function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)return false;registerScenes();if(app.engine.b.honroStaging?.once?.['act3-party-reunion-v1'])return true;return G.HonroStoryStaging.request(app,'act3-party-reunion-v1');}
+function registerScenes(){const staging=G.HonroStoryStaging;if(!staging||registeredStaging===staging)return;for(const version of [1,2]){const stage=version===1?27:28,content=version===1?G.HONRO_SPLIT_V1?.content.find(s=>s.id===27):H.stages[27];staging.register({id:'act3-party-reunion-v'+version,stage,title:'다시 모인 기록',steps:[{type:'look',at:{marker:'party-reunion'},duration:450,caption:'두 조사팀이 서로 가져온 기록을 펼친다.'},{type:'dialogue',lines:content?.beats?.['party-reunion']||[]}]});}registeredStaging=staging;}
+function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)return false;registerScenes();const id='act3-party-reunion-v'+(app.engine.b.honroSplit?.version===1?1:2);if(app.engine.b.honroStaging?.once?.[id])return true;return G.HonroStoryStaging.request(app,id);}
 // Stale focus cues must never point at a deleted device.
 for(const id of [12,15,20,21,22,23,27])for(const row of H.stages[id-1].story||[])if(row[2]?.focus==='seal')row[2].focus='interact';
-for(const row of H.stages[26].story){if(row[0]==='휘겸')row[2]={...row[2],focus:'fire-screen'};if(row[0]==='설오')row[2]={...row[2],focus:'water-release'};}
+if(!H.stages[26].hiddenWaterworks)for(const row of H.stages[26].story){if(row[0]==='휘겸')row[2]={...row[2],focus:'fire-screen'};if(row[0]==='설오')row[2]={...row[2],focus:'water-release'};}
 function active(b){return !b?.honroCustom&&b?.honroObjectiveRevision>=REVISION;}
-function contentFor(b,st){return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
+function contentFor(b,st){if(b?.honroSplit?.version===1){const old=G.HONRO_SPLIT_V1?.content.find(q=>q.id===b.honroStage);if(old)return old;}return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
 function storedSteps(b,act){return contentFor(b,H.stages[b.honroStage-1]).steps||[];}
 function author(project,options={}){
  const p={...project,stages:project.stages.map(original=>{
   const id=original.metadata?.stageId;if(!original.metadata?.campaign||id<Math.max(11,options.minStage||11)||id>(options.maxStage||30)||!H.stages[id-1])return original;
   if(!options.force&&original.initialState?.honroObjectiveRevision>=REVISION)return original;
-  const map=clone(original),st=H.stages[id-1],drops=[...(removed[id]||[]),...(id===22?['upper-latch']:[]),...(id===27?['water-release']:[])];
+  const map=clone(original),st=H.stages[id-1],drops=[...(removed[id]||[]),...(id===22?['upper-latch']:[]),...(id===27&&!st.hiddenWaterworks?['water-release']:[])];
   map.initialState??={};map.initialState.honroObjectiveRevision=REVISION;
   if(id>=11&&id<=20)map.initialState.honroAct2Steps=clone(st.steps);
   if(id>=21)map.initialState.honroAct3Steps=clone(st.steps);
@@ -89,7 +92,7 @@ function author(project,options={}){
   if(id===15){map.initialState.honroCaveHangingClue??=clone(map.initialState.honroCaveHangingTarget||{});delete map.initialState.honroCaveHangingTarget;}
   if(id===17){map.markers=map.markers.filter(m=>m.id!=='rebuild-brace');map.terrains=map.terrains.filter(t=>t.id!=='gate-debris');}
   if(id===22&&!map.markers.some(m=>m.id==='upper-register')){const base=map.markers.find(m=>m.id==='compare-ledgers');map.markers.push({id:'upper-register',type:'act3',action:'act3',x:base.x-260,y:base.y,label:'상층 저문골 호적 확보'});}
-  if(id===27){const old=original.markers.find(m=>m.id==='water-release'||m.id==='marker-water-release');map.markers.push({...clone(old),id:'water-release',type:'act3',action:'act3',requiredClass:'archer',label:'수문을 열어 불길 막기'});delete map.markers.at(-1).target;if(!map.markers.some(m=>m.id==='party-reunion')){const base=map.markers.find(m=>m.id==='petition-record');map.markers.push({id:'party-reunion',type:'act3',x:base.x,y:base.y,label:'두 조사팀이 중앙 뜰에 모이기'});}}
+  if(id===27&&!st.hiddenWaterworks){const old=original.markers.find(m=>m.id==='water-release'||m.id==='marker-water-release');map.markers.push({...clone(old),id:'water-release',type:'act3',action:'act3',requiredClass:'archer',label:'수문을 열어 불길 막기'});delete map.markers.at(-1).target;if(!map.markers.some(m=>m.id==='party-reunion')){const base=map.markers.find(m=>m.id==='petition-record');map.markers.push({id:'party-reunion',type:'act3',x:base.x,y:base.y,label:'두 조사팀이 중앙 뜰에 모이기'});}}
   if(id===27)map.markers.sort((a,b)=>a.id.localeCompare(b.id));
   for(const s of st.steps||[]){const m=map.markers.find(m=>m.id===s.id||m.id==='marker-'+s.id);if(m){m.label=s.label;if(['interact','rescue'].includes(s.kind))m.action=id>=21?'act3':'act2';if(s.requiredClass)m.requiredClass=s.requiredClass;else delete m.requiredClass;}}
   for(const o of map.objectives||[])if(o.type==='campaign')o.label=st.goal;

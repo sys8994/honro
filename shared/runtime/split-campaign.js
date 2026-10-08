@@ -1,8 +1,11 @@
 (function(G){'use strict';
-const C=G.HONRO_CORE,clone=x=>structuredClone(x),VERSION=1,ALL=['archer','mage','knight','occultist'];
-const roster=id=>id===25?['knight','mage']:id===26?['archer','occultist']:[...ALL];
+const C=G.HONRO_CORE,clone=x=>structuredClone(x),VERSION=2,ALL=['archer','mage','knight','occultist'];
+const roster=(id,version=VERSION)=>version===1?(id===25?['knight','mage']:id===26?['archer','occultist']:[...ALL]):id===25||id===27?['archer','mage']:id===26?['knight','occultist']:[...ALL];
+const last=s=>s?.version===1?27:28;
+const legacy=(profile,id)=>profile?.honroSplitCampaign?.version===1&&!profile.honroSplitCampaign.finished&&[25,26,27].includes(id);
+const content=(profile,id)=>legacy(profile,id)?G.HONRO_SPLIT_V1?.content.find(s=>s.id===id):null;
 const hero=u=>u.side===0&&!u.summoned&&!u.enthrall&&ALL.includes(u.cls);
-const active=b=>!!b&&!b.honroCustom&&b.honroSplit?.version===VERSION&&b.honroStage>=24&&b.honroStage<=27;
+const active=b=>!!b&&!b.honroCustom&&[1,VERSION].includes(b.honroSplit?.version)&&b.honroStage>=24&&b.honroStage<=last(b.honroSplit);
 const fields=['shield','bound','mark','markSide','breaks','stun','curseTurns','curseDamage','curseAttack','curseArmor','curseOwner','lastStandUsed','healUsed','nextSummonDiscount','soulRemnants','jucheon','jucheonReady','swordChain','harmony','bladeStored','soulAffinityBonus','soulDefenseBonus','manifested','revealSpiritToParty','formDamageTakenBonus'];
 const clocks=['stunUntil','betrayalUntil','manifestedUntil','soulBonusUntil'];
 const nested={prepared:'expires',slowed:'expires',earthbind:'until',martialGuard:'round',bladeScreen:'round'};
@@ -34,14 +37,15 @@ function restore(b,u,s){
  u.cooldowns=Object.fromEntries(Object.entries(s.cooldowns||{}).map(([key,left])=>[key,b.round+left]));
 }
 function prepare(profile,id){
- if(id<24||id>27)return null;
+ if(id<24||id>28)return null;
  const old=profile.honroSplitCampaign;
- if(old?.version===VERSION&&!old.finished&&(old.nextStage===id||old.stage===id))return clone(old);
+ if([1,VERSION].includes(old?.version)&&!old.finished&&(old.nextStage===id||old.stage===id))return clone(old);
  return {version:VERSION,mode:id===24?'continuous':'replay',stage:id,activeRoster:roster(id),vitals:{},starts:{},completed:{},items:null,nextStage:null,finished:false};
 }
 function initialize(b,profile){
- if(b.honroCustom||b.honroStage<24||b.honroStage>27)return;
- const id=b.honroStage,s=prepare(profile,id);s.stage=id;s.activeRoster=roster(id);s.nextStage=null;s.finished=false;
+ if(b.honroCustom||b.honroStage<24||b.honroStage>28)return;
+ if(b.honroStage===28&&profile.honroSplitCampaign?.version===1&&profile.honroSplitCampaign.finished)return;
+ const id=b.honroStage,s=prepare(profile,id);s.stage=id;s.activeRoster=roster(id,s.version);s.nextStage=null;s.finished=false;
  for(const key of Object.keys(s.completed))if(Number(key)>=id)delete s.completed[key];
  for(const key of Object.keys(s.starts))if(Number(key)>id)delete s.starts[key];
  b.honroSplit=s;b.activeRoster=[...s.activeRoster];
@@ -52,9 +56,9 @@ function initialize(b,profile){
  if(s.items)b.items=clone(s.items);
  for(const u of b.units.filter(hero)){
   restore(b,u,s.vitals[u.cls]);
-  if(id===27){const p=b.honroMapAnchors?.splitSpawns?.[u.cls];if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))Object.assign(u,{x:p.x,y:p.y,spawnX:p.x,spawnY:p.y});}
+  if(id===last(s)){const p=b.honroMapAnchors?.splitSpawns?.[u.cls];if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))Object.assign(u,{x:p.x,y:p.y,spawnX:p.x,spawnY:p.y});}
  }
- if(id===27)s.spawnReady=ALL.every(cls=>{const p=b.honroMapAnchors?.splitSpawns?.[cls];return Number.isFinite(p?.x)&&Number.isFinite(p?.y);});
+ if(id===last(s))s.spawnReady=ALL.every(cls=>{const p=b.honroMapAnchors?.splitSpawns?.[cls];return Number.isFinite(p?.x)&&Number.isFinite(p?.y);});
  capture(b);s.starts[id]??={vitals:clone(s.vitals),items:clone(b.items)};
  b.active=b.units.find(u=>hero(u)&&!u.dead)?.id||b.units.find(hero)?.id||b.active;
 }
@@ -64,7 +68,7 @@ function outcome(app,won){const b=app.engine?.b;if(!active(b))return;const s=b.h
  // Clear rewards can grow maximum stats even though the core clear path only
  // updates HeroProgress. Apply just the earned delta before checkpointing.
  if(won)for(const u of b.units.filter(hero))C.applyHero(u,b.heroes[u.cls]);
- capture(b);if(won){s.completed[b.honroStage]=true;s.nextStage=b.honroStage<27?b.honroStage+1:null;s.finished=b.honroStage===27;}else s.nextStage=b.honroStage;
+ capture(b);if(won){s.completed[b.honroStage]=true;s.nextStage=b.honroStage<last(s)?b.honroStage+1:null;s.finished=b.honroStage===last(s);}else s.nextStage=b.honroStage;
  app.profile.honroSplitCampaign=clone(s);
 }
 // A carried curse must not disappear with its former map's caster, nor bind
@@ -80,8 +84,8 @@ function attach(app,e){if(!active(e.b)||e.honroSplitAttached)return;e.honroSplit
  };
 }
 function allPresent(b){return active(b)&&b.honroSplit.activeRoster.every(cls=>b.units.filter(u=>hero(u)&&u.cls===cls&&!u.dead&&u.hp>0).length===1);}
-function failure(b){if(!active(b)||b.honroStage===27)return null;return allPresent(b)?null:'조사팀 동행이 쓰러졌다. 현재 장의 시작 상태에서 다시 걷자.';}
-function locked(profile){const s=profile.honroSplitCampaign;return s?.version===VERSION&&!s.finished&&(s.stage>=25||s.nextStage===25);}
+function failure(b){if(!active(b)||b.honroStage===last(b.honroSplit)||G.HonroStakeCrossing?.active(b))return null;return allPresent(b)?null:'조사팀 동행이 쓰러졌다. 현재 장의 시작 상태에서 다시 걷자.';}
+function locked(profile){const s=profile.honroSplitCampaign;return [1,VERSION].includes(s?.version)&&!s.finished&&(s.stage>=25||s.nextStage===25);}
 function redirectRest(app){
  if(app.debugMode)return false;
  // The custom map has a temporary profile. Check its protected owner before
@@ -98,7 +102,7 @@ function allowLaunch(app,id,training){if(app.debugMode)return true;const owner=a
 // carry chain. The normal profile remains owned by App.normalProfile; ordinary
 // result-continue and same-chapter retries still use their real checkpoints.
 function prepareLaunch(app,id,training){const s=app.profile.honroSplitCampaign;if(app.debugMode&&!training&&locked(app.profile)&&id!==s.stage&&id!==s.nextStage)delete app.profile.honroSplitCampaign;}
-function resultLabel(app){const b=app.engine?.b;if(!active(b)||b.honroSplit.finished)return null;return b.phase==='lost'?'현재 조사 다시 걷기':b.honroStage===24?'묘역 기록실로':b.honroStage===25?'공방 조사 이어가기':'문서고에서 합류하기';}
+function resultLabel(app){const b=app.engine?.b;if(!active(b)||b.honroSplit.finished)return null;return b.phase==='lost'?'현재 조사 다시 걷기':b.honroStage===24?'지하 수로로':b.honroStage===25?'공방 조사 이어가기':b.honroStage===26?'수로 심부로':'두 조사팀 합류하기';}
 function resultContinue(app){const b=app.engine?.b;if(!app.done||!active(b)||b.honroSplit.finished)return false;const id=b.honroSplit.nextStage||b.honroStage;app.engine=null;app.profile.honroBattle=null;app.close();app.launch(id);return true;}
-G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,attach,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,prepareLaunch,resultLabel,resultContinue,snapshot,restore};
+G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,attach,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,prepareLaunch,resultLabel,resultContinue,snapshot,restore,legacy,content};
 })(globalThis);

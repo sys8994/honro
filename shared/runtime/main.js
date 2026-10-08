@@ -398,7 +398,7 @@
             if(!G.HonroSplitCampaign.allowLaunch(this,id,training))return;
             // Changing a training loadout rebuilds combat, but stays in the same musical session.
             const trainingMusic=training&&this.training&&this.engine&&this.screen==='battle'?(this.trainingMusicSession||this.engine.b.session):null;
-            const st = H.stages[id - 1];
+            const st = G.HonroSplitCampaign.content(this.profile,id)||H.stages[id - 1];
             if(!st||!training&&!G.HONRO_PROJECT.stages.some(m=>m.metadata?.stageId===st.id)){this.notify('아직 준비되지 않은 길입니다.');return;}
             if (this.engine || this.customMap)
                 this.stopBattle();
@@ -427,7 +427,7 @@
                 }
                 p.loadouts[this.trainingClass] = [skill || this.trainingSkill];
             }
-            if (!training) p.recruited = G.HonroStageRules.stageParty(st.id);
+            if (!training) p.recruited = G.HonroSplitCampaign.legacy(this.profile,st.id)?G.HonroSplitCampaign.roster(st.id,1):G.HonroStageRules.stageParty(st.id);
             const battle=makeWorld(st, p, training, this.trainingClass, skill || this.trainingSkill);
             if(!training)battle.honroJourneyReplay=!!this.profile.cleared[st.id];
             if(!training)delete this.profile.honroCampPending;
@@ -449,7 +449,7 @@
         }
         mount(b) { G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
-            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); if (!this.training) {
+            this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
@@ -463,11 +463,12 @@
         continue() { if (!this.profile.honroBattle) {
             this.showRest();
             return;
-        } const b = clone(this.profile.honroBattle); if(b.honroRevision!==20){this.profile.honroBattle=null;this.notify('지형 물리가 교체되어 현재 스테이지 입구에서 다시 시작합니다. 성장 정보는 유지됩니다.');this.launch(b.honroStage||1);return;} this.stageId = b.honroStage || 1; this.stage = H.stages[this.stageId - 1]; this.training = false; if(!this.customMap&&!G.HONRO_EMBEDDED){G.HonroStage7Reentry?.upgradeBattle(b);G.HonroPlatformPassages?.upgradeBattle(b);G.HonroProjectileTargets?.upgradeBattle(b);} this.mount(b); }
+        } const b = clone(this.profile.honroBattle); if(b.honroRevision!==20){this.profile.honroBattle=null;this.notify('지형 물리가 교체되어 현재 스테이지 입구에서 다시 시작합니다. 성장 정보는 유지됩니다.');this.launch(b.honroStage||1);return;} this.stageId = b.honroStage || 1; this.stage = G.HonroSplitCampaign.content(this.profile,this.stageId)||H.stages[this.stageId - 1]; this.training = false; if(!this.customMap&&!G.HONRO_EMBEDDED){G.HonroStage7Reentry?.upgradeBattle(b);G.HonroPlatformPassages?.upgradeBattle(b);G.HonroProjectileTargets?.upgradeBattle(b);} this.mount(b); }
         checkMission(e) {
             const b = e.b;
             if (['won', 'lost'].includes(b.phase))
                 return true;
+            if(G.HonroStakeCrossing.recoverFailure(this))return false;
             const heroes = G.HonroAct3.active(b)?G.HonroAct3.heroes(b):b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
             const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
             const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
@@ -491,7 +492,7 @@
             }
             return false;
         }
-        missionTick(dt){if(G.HonroLayouts.upgrade(this.engine.b)){this.scene.manual=false;this.updateHUD(true);this.profile.honroBattle=clone(this.engine.b);this.persist();}G.HonroAllies.missionTick(this,dt);}
+        missionTick(dt){G.HonroStakeCrossing.tick(this);if(G.HonroLayouts.upgrade(this.engine.b)){this.scene.manual=false;this.updateHUD(true);this.profile.honroBattle=clone(this.engine.b);this.persist();}G.HonroAllies.missionTick(this,dt);}
 
         groundAt(x, oldY) { return G.HonroMapEngine.surfaceY(this.engine.b.terrain,x,oldY)?.y ?? Math.min(this.engine.b.height-140,oldY+8); }
         spawnWave(n) { let b = this.engine.b; for (let i = 0; i < n; i++) {
@@ -667,11 +668,11 @@
         }
         updateHUD(force = false) {
             const active=this.engine?.active;
-            if(active){const remembered=this.selectedByUnit[active.id];if(remembered&&active.loadout.includes(remembered))this.selected=remembered;if(!this.selectedByUnit[active.id])this.selectedByUnit[active.id]=this.selected||active.loadout.find(id=>!S[id]?.passive);}
+            if(active){const remembered=this.selectedByUnit[active.id];if(remembered&&G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered))this.selected=remembered;if(!this.selectedByUnit[active.id])this.selectedByUnit[active.id]=this.selected||active.loadout.find(id=>!S[id]?.passive);}
             if (!this.engine || this.screen !== 'battle') return;
             const e=this.engine,b=e.b,u=(e.active?.side===0&&!e.active.summoned?e.active:null)||b.units.find(v=>v.side===0&&!v.summoned&&!v.dead)||b.units[0];
             if(!u)return;
-            const id=u.loadout.includes(this.selected)?this.selected:u.loadout.find(id=>!S[id]?.passive);if(!this.charging)this.selected=id||this.selected;
+            const id=G.HonroStakeCrossing.skills(b,u).includes(this.selected)?this.selected:u.loadout.find(id=>!S[id]?.passive);if(!this.charging)this.selected=id||this.selected;
             if(u.meleeFollow==='ready'&&!e.skillAllowed(S[this.selected],u))this.selected='S00';
             const combatSkills=u.meleeFollow==='ready'&&!u.loadout.includes('S00')?['S00',...u.loadout]:u.loadout;
             const sk=S[this.selected],cost=sk?e.manaCost(sk,u,this.power):0,cd=sk?e.cooldownLeft(u,sk.id):0;
@@ -680,6 +681,7 @@
                 this.hudSig=sig;
                 $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted?'acted':''}" data-action="select-hero" data-id="${v.id}" ${v.dead?'disabled':''}>${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
                 $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span><span class="rank-tiny">${s.basic?'기본':s.capstone?'비기 '+(u.ranks?.[s.id]||1):s.ultimate?'비기':u.ranks?.[s.id]?'+'+u.ranks[s.id]:''}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
+                $('combat-skills').innerHTML+=G.HonroStakeCrossing.controls(b,u,this.selected);
                 this.drawPortraits();
             }
             const hero=b.heroes?.[u.cls],xp=$('hud-xp-fill'),xpBar=xp?.parentElement;if(hero&&xp){xp.style.width=(C.xpFraction(hero)*100)+'%';const level=C.levelOf(hero);xpBar.title=H.hero[u.cls].name+' · 경지 '+level+' · 경험치 '+Math.round(C.xpFraction(hero)*100)+'%';xpBar.setAttribute('aria-label',xpBar.title);xpBar.setAttribute('aria-valuenow',String(Math.round(C.xpFraction(hero)*100)));}
@@ -934,7 +936,10 @@
                     this.close();
                     this.defend();
                     break;
+                case 'stake-retry':
+                    G.HonroStakeCrossing.retry(this,'출발 상태로 다시 준비합니다.');break;
                 case 'retry':
+                    if(G.HonroStakeCrossing.active(this.engine?.b)&&!this.done){G.HonroStakeCrossing.retry(this,'현재 물길의 출발 상태로 다시 준비합니다.');break;}
                     if(this.engine&&!this.training&&!this.done){G.HonroProgression.syncRoster(this.profile,this.engine.b);this.persist();}
                     // Practice owns no campaign snapshot; restarting it must keep the suspended journey.
                     if(!this.training)this.profile.honroBattle = null;

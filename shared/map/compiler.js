@@ -20,7 +20,7 @@ function compile(st,project){
  return{terrain,worldTerrain,landmarks,elements,materials:st.materials.map(m=>Q.material(st,m,terrain))};
 }
 function createBattle(st,project,profile=profileFor(st),options={}){
- const sid=st.metadata?.stageId||1,content=G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});
+ const sid=st.metadata?.stageId||1,content=G.HonroSplitCampaign?.content(profile,sid)||G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});
  Object.assign(b,clone(st.initialState||{}));
  const map=compile(st,project);
  Object.assign(b,{stage:sid,honroStage:sid,honroRevision:20,honroMapRevision:20,honroLayoutRevision:G.HonroLayouts.revision,
