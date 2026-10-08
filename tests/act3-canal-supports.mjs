@@ -1,10 +1,21 @@
 import assert from 'node:assert/strict';
+import {buildLocation23} from '../tools/map-forge/act3-location-rebuild.mjs';
+import {addLocationDetail} from '../tools/map-forge/act3-location-detail.mjs';
+import {refineStage} from '../tools/map-forge/act3-refinement.mjs';
 import {runtime} from '../game/tests/helpers.mjs';
 import {readFile} from 'node:fs/promises';
 const g=await runtime({legacyMaps:false});
 const p=process.env.HONRO_PROJECT_FILE?JSON.parse(await readFile(process.env.HONRO_PROJECT_FILE,'utf8')):g.HONRO_PROJECT;
-const s=p.stages.find(v=>v.metadata.stageId===23);
-if(s.design.act3.locationRevision===1){
+function checkCanal(p,s){
+if(s.design.act3.waterworksRevision===1){
+ const ts=g.HonroMaps.compile(s,p).terrain;
+ assert.equal(s.design.act3.kind,'surface-granary-loading-yard');assert.equal(s.environment.skyVisible,true);assert(!ts.some(t=>t.honroLocationCeiling||t.honroCeiling));
+ for(const id of ['western-vault-wall','eastern-vault-wall','west-masonry-water-arch','east-masonry-water-arch'])assert(!s.elements.some(e=>e.id===id),'underground wall retired from surface yard');
+ for(const id of ['west-stone-loading-bridge','east-stone-loading-bridge']){const e=s.elements.find(e=>e.id===id),a=p.library.find(a=>a.id===e?.assetId),t=ts.find(t=>t.honroElementId===id);assert(a&&t);assert.equal(a.params.collisionSource,'drawn-structural-polygons');for(const point of a.collision[0].slice(0,a.collision[0].length/2))assert(g.HONRO_CORE.terrainSurfaces(t,point.x).some(q=>Math.abs(q.y-point.y)<.01));}
+ const pier=s.elements.find(e=>e.id==='canal-bridge-bearing-piers');assert(pier);assert.equal(p.library.find(a=>a.id===pier.assetId).collision.length,0);
+ for(const e of s.elements.filter(e=>e.id.startsWith('surface-loading-store-'))){const a=p.library.find(a=>a.id===e.assetId);assert(a);assert.equal(a.collision.length,0,'rear store cannot trap the maintenance-gallery actors');const floor=ts.find(t=>t.id==='a3-foundation');assert(g.HONRO_CORE.terrainSurfaces(floor,e.x).some(q=>Math.abs(q.y-e.y)<.01),'store base sits on actual loading yard');}
+ assert.equal(s.elements.filter(e=>e.id.startsWith('surface-loading-store-')).length,3);console.log('PASS surface Stage23: real bridge contours and bearing piers preserved; open sky and grounded rear stores');
+}else if(s.design.act3.locationRevision===1){
  const compiled=g.HonroMaps.compile(s,p).terrain;
  const get=id=>{const e=s.elements.find(e=>e.id===id);assert(e,'Missing '+id);const a=p.library.find(a=>a.id===e.assetId);assert(a);return{e,a};};
  for(const [id,arch] of [['west-stone-loading-bridge','west-masonry-water-arch'],['east-stone-loading-bridge','east-masonry-water-arch']]){
@@ -62,3 +73,8 @@ for(const q of supports){
 assert.deepEqual([...new Set(supports.map(q=>q.element))].sort(),['office-upper','gate-upper','west-quay-tower','bridge-tower','canal-watch'].sort());
 console.log('PASS Stage23 rear architecture:14 foundation contacts, five supported buildings, occlusion order, no collision');
 }
+
+}
+checkCanal(p,p.stages.find(v=>v.metadata.stageId===23));
+// The old underground location remains an explicit authoring fixture.
+const legacy=JSON.parse(JSON.stringify(p));legacy.library=legacy.library.filter(a=>!/^a3-(?:location|refine):23:/.test(a.id));const old=buildLocation23(g,legacy);addLocationDetail(legacy,old);refineStage(legacy,old);checkCanal(legacy,old);
