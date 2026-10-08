@@ -25,6 +25,10 @@ const sha=x=>createHash('sha256').update(x).digest('hex');
 await writeFile(path.join(out,'campaign.json'),JSON.stringify(g.HONRO_PROJECT,null,2)+'\n');
 const results=[],review=process.argv.includes('--review');const ids=process.argv.slice(3).filter(v=>/^\d+$/.test(v)).map(Number);if(!ids.length)ids.push(...Array.from({length:10},(_,i)=>1+i));
 for(const id of ids){const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);
+ for(let attempt=0;(id<=10||id===11||id===12||id===20)&&g.HonroAct1Background&&!g.HonroAct1Background.ready(id)&&attempt<200;attempt++)await new Promise(r=>setTimeout(r,10));
+ if((id<=10||id===11||id===12||id===20)&&g.HonroAct1Background&&!g.HonroAct1Background.ready(id))throw Error('Background decode incomplete for '+id);
+ for(let attempt=0;g.HonroAct2SpatialArt&&!g.HonroAct2SpatialArt.ready()&&attempt<200;attempt++)await new Promise(r=>setTimeout(r,10));
+ if(g.HonroAct2SpatialArt&&!g.HonroAct2SpatialArt.ready())throw Error('Act 2 image decode incomplete');
  const spawn=st.anchors.start||st.anchors.archerPerch||st.anchors.spawn,landmark=st.elements.find(x=>/bell$/.test(x.assetId))||st.markers.find(x=>/marker-(sluice|hall|hoist|family-mid|gate|sign|knot-east|escort-mid)$/.test(x.id));
  const route=st.routes||[],middle=route[Math.floor(route.length/2)]||spawn;
  const focus=st.anchors[({1:'cart',2:'procession',3:'cargo',4:'gate',5:'shotGap',6:'rescue',7:'resident2',8:'courtyard',9:'well',10:'ritual'})[id]]||landmark||middle;const views=[
@@ -33,6 +37,7 @@ for(const id of ids){const st=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId=
   {name:'place',x:focus.x,y:focus.y-430,scale:.46,width:1440,height:960},
   {name:'portrait',x:spawn.x+340,y:spawn.y-280,scale:.52,width:720,height:1080}
  ];
+ const focusArg=process.argv.find(v=>v.startsWith('--focus='));if(focusArg){const [x,y]=focusArg.slice(8).split(',').map(Number);if(Number.isFinite(x)&&Number.isFinite(y))views.push({name:'focus-default',x,y,scale:.59,width:1440,height:960},{name:'focus-portrait',x,y,scale:.46,width:720,height:1080});}
  if(process.argv.includes('--topology'))views.push(...(st.design?.topology?.views||[]));
  if(review){
   const reviewFocus={x:focus.x,y:focus.y-430};

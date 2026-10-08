@@ -82,7 +82,7 @@ export async function applyAct1SceneComposition(project){
    r('west-eave-mass',2770,2375,1700,640,'bier-road');r('east-eave-mass',5560,2130,1600,760,'bier-road');
   }
   if(n===9){
-   suppress(st,e=>['builtin:oldHall','builtin:incenseYard'].includes(e.assetId));add('quiet-court','ruined-court',1820,2478,1.36,'yard-floor');add('east-hall','ritual-hall',3350,2390,1.25,'yard-floor');add('west-grove','ritual-grove',330,2565,.70,'yard-floor');
+   suppress(st,e=>['builtin:oldHall','builtin:incenseYard'].includes(e.assetId));add('quiet-court','ruined-court',1820,2478,1.36,'yard-floor');add('east-hall','ritual-hall',3595,2390,.59,'yard-floor');add('west-grove','ritual-grove',330,2565,.70,'yard-floor');
    r('western-court-shoulder',800,2560,1400,710,'yard-floor');r('eastern-court-shoulder',2920,2390,1400,680,'yard-floor');
   }
   if(n===10){

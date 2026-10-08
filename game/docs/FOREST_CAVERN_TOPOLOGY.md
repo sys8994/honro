@@ -16,3 +16,11 @@ Native Canvas captures use the common production compiler, Engine and Scene. Ove
 Control images for untouched stages 14 and 20 match the previous renderer byte-for-byte at overview, entry, place and portrait sizes (eight PNGs).
 
 Still required before release: all-enemy accessibility checks, ordinary combat completion, browser Game/Workshop/Playtest checks, aggregate regressions and final art approval. Geometry-sensitive historical tests may need an explicit approved-layout comparison rather than treating the new terrain as the old walk-only map.
+
+## ACT1 restrained extension and stage 9 art correction
+
+Chapters 1, 3, 4, 5, 6 and 8 receive one low branch each, attached to an existing tree. They are optional and reachable with the base jump by all four body types. The ferry docks/warehouse, refugee gate, waterfall and broken bridge remain the dominant structures. Six real arrow shots from these additions hit existing enemies; all seven affected/checked chapters' original required routes (including unchanged stage-9 physics) pass across four bodies.
+
+Chapter 2 already has unequal left/right tree branches around the valley and is deliberately unchanged. Chapter 10 keeps the separately reviewed new guardian tree. Chapter 9 does not gain another branch: the old shrine's roof was severely occluded by the east gallery and its supports in the actual Pages review. The same shrine asset is moved to x=3595 and scale=.59, leaving the roof clear without touching collision, receivers, enemies or NPC paths. Full overview and a .59-scale targeted view verify the placement. This fixes an art-review omission in the previous release, not a new gameplay issue.
+
+The stage-15 first western suppression cohort is kept at the sluice approach. The middle shoulder uses an existing later-cohort minecart instead of moving a western prerequisite enemy far beyond the sluice. Enemy type counts, elites and objective cohort membership remain unchanged.

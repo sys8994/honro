@@ -115,8 +115,9 @@ function stage15(st){
  for(const p of main.anchors){if(p.surfaceId)continue;const hits=[];for(const t of st.terrains){for(const i of t.properties?.honroWalkEdges||[]){const a=t.points[i],b=t.points[i+1];if(b&&b.x>a.x&&p.x>=a.x&&p.x<=b.x)hits.push({id:t.properties.honroSpaceSurfaceId,dy:Math.abs(p.y-a.y-(b.y-a.y)*(p.x-a.x)/(b.x-a.x))});}}hits.sort((a,b)=>a.dy-b.dy);p.surfaceId=hits[0]?.id||'floor-main';}
  st.routes=main.anchors.map(({x,y})=>({x,y}));
  moveUnit(st,'a2-enemy-7',3745,3190,west.id,'western crown guard');
- moveUnit(st,'a2-enemy-8',4540,3295,'fc15-west-shoulder','middle shoulder crossfire');
- moveUnit(st,'a2-enemy-14',7310,3504.7368421052633,east.id,'eastern crown guard');
+ moveUnit(st,'a2-enemy-8',2622,ground(st,2622),'floor-main','sluice approach guard');
+ moveUnit(st,'a2-enemy-14',4540,3295,'fc15-west-shoulder','middle shoulder crossfire');
+ moveUnit(st,'a2-enemy-16',7310,3504.7368421052633,east.id,'eastern crown guard');
  moveUnit(st,'a2-enemy-17',5890,ground(st,5890),'floor-main','water-cleft ambush');
  for(const [id,x,y]of [['a2-enemy-9',4060,2700],['a2-enemy-10',4540,4290],['a2-enemy-11',5030,4140],['a2-enemy-12',4710,3020],['a2-enemy-13',5480,3690],['a2-enemy-19',7750,3700],['a2-enemy-20',6680,4340],['a2-enemy-21',6950,4260]]){moveUnit(st,id,x,y,'floor-main','airborne diagonal patrol');const r=st.design.space.encounterSites.find(r=>r.unitId===id);r.supportY=ground(st,x);}
 }

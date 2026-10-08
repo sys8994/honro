@@ -1534,3 +1534,6 @@ Stage 7 retains its three resident levels and gains asymmetric optional branch a
 
 - 강제 목표 재저작이 v2의 표식에 옛 27장 정렬·장치 제거 규칙을 함께 적용했고, 새 지도 생성기는 마지막에 목표 단계만 맞춰 표식 문구·직업 메타와 서로 달랐다. v2는 현재 단계 원문과 표식 메타만 동기화하며 지형·표식 순서는 그대로 보존한다. v1 지도는 보존된 v1 내용으로 재저작한다.
 - `objective-author-versioned`는 입력 불변·재적용 멱등·23~28장 목표/표식 일치·지형과 표식 순서 보존·보존된 v1 네 지도의 정확한 고정점을 통과했다. 정본 생성기의 마지막 author 호출과 재생성은 지도 담당의 후속 커밋으로 통합하며 전체 검수/브라우저 증거는 별도다.
+## 2026-10-08 · Stage 9 shrine roof clearance and low branch choices
+
+Actual Pages visual review found the reused stage-9 shrine roof hidden behind the east gallery and long supports. This was missed by the prior art pass. The existing shrine is re-positioned and sized as a small village hall; no stage-9 terrain, objective, actor or path is altered. The earlier additional-branch idea for this chapter was discarded because it would worsen the overlap. Native overview and targeted .59-scale captures show the full roof clear of the gallery. Chapters 1/3/4/5/6/8 gain one base-jump-reachable optional branch beside existing trees, preserving the location-specific docks/gate/waterfall/bridge/eaves. Focused approach, projectile and mandatory-route tests passed; this does not replace browser or normal-combat validation.
