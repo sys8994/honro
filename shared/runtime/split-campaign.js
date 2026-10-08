@@ -84,7 +84,7 @@ function attach(app,e){if(!active(e.b)||e.honroSplitAttached)return;e.honroSplit
  };
 }
 function allPresent(b){return active(b)&&b.honroSplit.activeRoster.every(cls=>b.units.filter(u=>hero(u)&&u.cls===cls&&!u.dead&&u.hp>0).length===1);}
-function failure(b){if(!active(b)||b.honroStage===last(b.honroSplit)||G.HonroStakeCrossing?.active(b))return null;return allPresent(b)?null:'조사팀 동행이 쓰러졌다. 현재 장의 시작 상태에서 다시 걷자.';}
+function failure(b){if(!active(b)||b.honroStage===last(b.honroSplit)||G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.current(b))return null;return allPresent(b)?null:'조사팀 동행이 쓰러졌다. 현재 장의 시작 상태에서 다시 걷자.';}
 function locked(profile){const s=profile.honroSplitCampaign;return [1,VERSION].includes(s?.version)&&!s.finished&&(s.stage>=25||s.nextStage===25);}
 function redirectRest(app){
  if(app.debugMode)return false;
