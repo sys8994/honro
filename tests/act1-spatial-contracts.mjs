@@ -1,3 +1,4 @@
+import {act2History,historicalAct2Maps} from './act1-act2-history-helpers.mjs';
 import {historicalSceneRoster} from './staging-history-helpers.mjs';
 import {act12Balance,act12Archetypes} from './campaign-scope-helpers.mjs';
 import {beforePlatformPassages,beforePlatformTerrain} from './platform-passage-delta-helpers.mjs';
@@ -10,7 +11,7 @@ import {act1Runtime,fixture,plain,hash,semanticContent,unitContract,reportRoot,c
 const g=await act1Runtime(),C=g.HONRO_CORE,frozen=JSON.parse(await readFile('tests/fixtures/act1-spatial-contracts.json','utf8')),checks=[],awaitText=await readFile('game/config/balance.json','utf8');
 g.HONRO_PROJECT=beforeExistenceRoster(g.HONRO_PROJECT);
 function check(name,fn){fn();checks.push({name,passed:true});console.log('PASS',name);}
-check('ACT2 playable canonical maps retain frozen content through the domain projection',()=>{const stages=plain(g.HONRO_PROJECT.stages.slice(10,20));for(const st of stages){delete st.playBounds;delete st.terrainBounds;delete st.terrainDomainVersion;st.terrains=st.terrains.map(t=>{const q=plain(g.HonroTerrainDomain.projection(t));delete q.playProjection;return q;});}assert.equal(hash(stages),frozen.act2);});
+check('ACT2 maps retain their reproducible historical content after exact approved deltas',()=>assert.equal(hash(historicalAct2Maps(g.HONRO_PROJECT,g.HonroTerrainDomain)),act2History.historicalAct2Hash));
 check('Every class, skill, enemy archetype and balance source is unchanged',()=>{assert.deepEqual(plain(C.CLASSES),frozen.classes);assert.deepEqual(beforeExistenceProfiles(C.SKILLS),frozen.skills);assert.deepEqual(plain(act12Archetypes(g.HonroWorld.archetypes)),frozen.archetypes);assert.deepEqual(act12Balance(JSON.parse(awaitText)),frozen.balance);});
 for(const before of frozen.stages)check(`${before.id}: story, objectives, waves, party and combat stats unchanged`,()=>{
  const {b,st}=fixture(g,before.id),authored=canonicalGameplay(beforePlatformPassages(g.HONRO_PROJECT).stages[before.id-1]),prior=plain(before.authoredGameplay),geometry=new Set(['points','control','floor','thickness','type','playProjection']);if(before.id===7)authored.terrain=authored.terrain.filter(t=>t.id!=='root-reentry');for(const data of [authored,prior])data.terrain=data.terrain.map(t=>Object.fromEntries(Object.entries(t).filter(([key])=>!geometry.has(key))));assert.deepEqual(authored,prior,'Authored collision flags, AI goals, mission state and items; exact geometry frozen separately in terrain-domain-baseline');assert.deepEqual(semanticContent(st),before.content);assert.deepEqual(plain(historicalSceneRoster(b,before.units).map(unitContract)),before.units);assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);

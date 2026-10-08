@@ -41,7 +41,7 @@
     "test:act2:normal": "node tests/act2-playthrough.mjs",
     "test:act2:combat-evidence": "node tools/collect-act2-combat.mjs",
     "capture:act1": "node tools/environment/capture-act1.mjs",
-    "test:act1:offline": "node tests/rescue-targets.mjs && node tests/stage7-reentry.mjs && node tests/act1-objective-durability.mjs && node tests/act1-spatial-contracts.mjs && node tests/act1-collision-repair.mjs && node tests/act1-missions.mjs && node tests/act1-traversal.mjs && node tests/act1-high-low-shots.mjs && node tests/act1-spatial-art.mjs",
+    "test:act1:offline": "node tests/rescue-targets.mjs && node tests/stage7-reentry.mjs && node tests/act1-objective-durability.mjs && node tests/act1-act2-history.mjs && node tests/act1-spatial-contracts.mjs && node tests/act1-collision-repair.mjs && node tests/act1-missions.mjs && node tests/act1-traversal.mjs && node tests/act1-high-low-shots.mjs && node tests/act1-spatial-art.mjs",
     "test:act1:normal": "node tests/act1-playthrough.mjs",
     "test:act1:combat-evidence": "node tests/act1-combat-evidence.mjs",
     "test:act2:guidance": "node tests/act2-objective-readability.mjs",

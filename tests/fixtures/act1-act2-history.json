@@ -1,0 +1,112 @@
+{
+  "sourceCommit": "c898ef097bd3dd16a304cc00af775ebf34da4f4c",
+  "sourcePath": "shared/data/campaign.json",
+  "historicalAct2Hash": "cff96d528da3a7884de5b5c8111f1267ebf028a7566e356e7bd7c13eb2cd6d22",
+  "supersededUnreproducibleHash": "c3683dcca2336896ffdcee69139b495bf36fdde928f98523b55fcea4785ba2e3",
+  "proseApprovalCommit": "40a6ff8a45f24d98cdc94f6aab24e82ee9daf5a9",
+  "proseDelta": [
+    {
+      "stage": 12,
+      "path": [
+        "name"
+      ],
+      "before": "돌산으로 가는 길",
+      "after": "돌아오는 산길"
+    },
+    {
+      "stage": 12,
+      "path": [
+        "meta",
+        "notes"
+      ],
+      "before": "2-2 돌산으로 가는 길 · 방 단면 개편 3 · 30–48턴 설계",
+      "after": "2-2 돌아오는 산길 · 방 단면 개편 3 · 30–48턴 설계"
+    },
+    {
+      "stage": 12,
+      "path": [
+        "design",
+        "title"
+      ],
+      "before": "돌산으로 가는 길",
+      "after": "돌아오는 산길"
+    },
+    {
+      "stage": 12,
+      "path": [
+        "design",
+        "description"
+      ],
+      "before": "채석장을 제압하고 낙석 길을 연 뒤 수레 습격을 버텨 석문에 도착하기",
+      "after": "채석장을 제압하고 돌림진의 한 축을 풀어 숨겨진 길 찾기"
+    },
+    {
+      "stage": 13,
+      "path": [
+        "name"
+      ],
+      "before": "석문",
+      "after": "숨은 석문"
+    },
+    {
+      "stage": 13,
+      "path": [
+        "meta",
+        "notes"
+      ],
+      "before": "2-3 석문 · 방 단면 개편 3 · 44–70턴 설계",
+      "after": "2-3 숨은 석문 · 방 단면 개편 3 · 44–70턴 설계"
+    },
+    {
+      "stage": 13,
+      "path": [
+        "design",
+        "title"
+      ],
+      "before": "석문",
+      "after": "숨은 석문"
+    },
+    {
+      "stage": 12,
+      "path": [
+        "markers",
+        2,
+        "label"
+      ],
+      "before": "옛 동굴길 표지 복구",
+      "after": "길표의 돌림진 한 축 풀기"
+    },
+    {
+      "stage": 12,
+      "path": [
+        "markers",
+        4,
+        "label"
+      ],
+      "before": "복구 중인 길표와 후방 지키기",
+      "after": "풀어 놓은 진의 축과 후방 지키기"
+    },
+    {
+      "stage": 12,
+      "path": [
+        "initialState",
+        "honroAct2Steps",
+        2,
+        "label"
+      ],
+      "before": "옛 동굴길 표지 복구",
+      "after": "길표의 돌림진 한 축 풀기"
+    },
+    {
+      "stage": 12,
+      "path": [
+        "initialState",
+        "honroAct2Steps",
+        3,
+        "label"
+      ],
+      "before": "복구 중인 길표와 후방 지키기",
+      "after": "풀어 놓은 진의 축과 후방 지키기"
+    }
+  ]
+}
