@@ -21,6 +21,8 @@
 
 - `node tests/cavern-transition-layers.mjs`: 원본 목표/배치/스토리/물리 조건 보존, 다른 장과20장 불변, 생성기 재적용 멱등성, 직렬화/재가져오기. 실제 공통 엔진으로 네 체형의 필수 보행28조건(기존 문/낙석 제거 뒤), 신규 선택 왕복24조건을 확인한다. 선택 점프는 기본 점프이며 체력 손실이 없다.
 - `node tests/cavern-transition-shots.mjs`: 일곱 장의 기존/신규 선택 사격 자리14곳에서 기존 적을 대상으로 기본 활의 실제 발사·비행·충돌·피해를 확인한다. 테스트는 현재 적 편성을 바꾸지 않는다.
+- `node tests/cavern-transition-required-shots.mjs`: 현행 유일한 필수 파괴 사격인18장 위쪽 사슬에 원래 서 있는 위치에서 기본 활 실탄이 명중하여105.24피해를 준다. 이전 개정에서 퇴역한 낙석핀을 현행 필수 목표로 되살리지 않는다.
+- `node tests/cavern-transition-regeneration.mjs`: 원래2막 recipe부터 미술·장소 후처리·finalize를 거친 일곱 장이 canonical JSON과 정확히 같다.
 - `node tests/act2-spatial-contracts.mjs`: 2막의 기존 목표 순서·의식/제압 분류·반경·스크립트·파동·적 능력·군집과 진행 저장 보존 계약13건을 통과했다.
 - Native Canvas의 공통 Game/Workshop renderer로 전체/기본/모바일 구도를 캡처하고 직접 확인한다. 이미지 decode 완료를 기다리고 정적 캐시 canvas를 임의로 축소하지 않는다.
 
