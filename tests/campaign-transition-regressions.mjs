@@ -1,6 +1,7 @@
 // Production App navigation/save paths with DOM, Canvas and storage doubles.
 // Terminal battle states below are explicit fixtures, not normal-play victories.
 import assert from 'node:assert/strict';
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
 import {appHarness,plain,report,KEY} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g,load,reload,profileThrough,click,finish}=h,checks=[];
 let app;
@@ -50,6 +51,8 @@ for(const id of [3,6,7]){
   if(id===7)assert(app.engine.b.terrain.some(t=>t.id===g.HonroStage7Reentry.id));
  });
 }
+const currentProject=g.HONRO_PROJECT;
+g.HONRO_PROJECT=beforeForestCavernTopology(currentProject,{stages:[7]});
 for(const origin of ['campaign','unmarked'])await check(`stage 7: App import/Continue preserves ${origin} old-map migration boundaries`,async()=>{
  suspended(7);const saved=plain(app.profile.honroBattle),id=g.HonroStage7Reentry.id;
  saved.terrain=saved.terrain.filter(t=>t.id!==id);if(origin==='unmarked')delete saved.honroMapOrigin;
@@ -60,6 +63,11 @@ for(const origin of ['campaign','unmarked'])await check(`stage 7: App import/Con
  app.export();await h.import(await h.exported());click('continue');
  assert.equal(app.engine.b.terrain.filter(t=>t.id===id).length,origin==='campaign'?1:0);
  assert.deepEqual(plain(app.engine.b.units),before.units);
+});
+g.HONRO_PROJECT=currentProject;
+await check('stage 7: removing an authored root from the new topology does not masquerade as the old positive migration',()=>{
+ suspended(7);const saved=plain(app.profile.honroBattle);saved.terrain=saved.terrain.filter(t=>t.id!==g.HonroStage7Reentry.id);const before=plain(saved);app.profile.honroBattle=saved;click('continue');
+ assert(!app.engine.b.terrain.some(t=>t.id===g.HonroStage7Reentry.id));assert.deepEqual(plain(app.engine.b.terrain),before.terrain);assert.deepEqual(plain(app.engine.b.units),before.units);
 });
 await check('practice retry without a campaign creates no campaign save',()=>{
  app=load(profileThrough(0));click('training');click('close');click('retry');click('rest');finish(app);
