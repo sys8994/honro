@@ -15,7 +15,7 @@
     "test:current-update": "node tests/current-update.mjs && python -X utf8 tests/current-update-browser.py",
     "test:monsters": "node tools/monster-forge/lab.mjs && python -X utf8 tests/monster-art-browser.py",
     "test:progress-hud": "node tests/progress-hud.mjs && python -X utf8 tests/progress-hud-browser.py",
-    "test:story-staging": "node tests/story-staging.mjs && node tests/story-staging-outcome.mjs && node tests/story-direction.mjs && node tests/story-residual-boundaries.mjs",
+    "test:story-staging": "node tests/story-staging.mjs && node tests/story-staging-outcome.mjs && node tests/story-direction.mjs && node tests/story-residual-boundaries.mjs && node tests/staging-history-prose.mjs",
     "test:story-direction:browser": "python -X utf8 tests/story-direction-browser.py",
     "test:story": "npm run test:story-staging && npm run test:story-canon && node tests/story-rewrite.mjs && python -X utf8 tests/story-rewrite-browser.py && npm run test:combat-story",
     "test:combat-story": "node tests/combat-story-update.mjs && python -X utf8 tests/combat-story-browser.py && npm run test:finale",

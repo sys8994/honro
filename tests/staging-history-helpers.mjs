@@ -9,3 +9,16 @@ export function historicalSceneRoster(b,expected){
  assert(!result.some(u=>u.id===id),'Hidden cast cannot also be an active actor');
  result.splice(index,0,actor);return result;
 }
+
+// Exact inverse of 79b7e4e's approved delayed first encounter; never a blanket
+// prose omission. Unrecognized new lines fail rather than refreshing history.
+import {readFileSync} from 'node:fs';
+const proseDelta=JSON.parse(readFileSync(new URL('./fixtures/staging-prose-delta.json',import.meta.url),'utf8'));
+export function beforeStagingProse(content){
+ const result=JSON.parse(JSON.stringify(content));if(result.id!==proseDelta.stage)return result;
+ for(const [key,expected]of Object.entries(proseDelta.after)){
+  assert.deepEqual(result[key],expected,`Only the approved delayed entrance may replace stage ${result.id} ${key}`);
+  result[key]=JSON.parse(JSON.stringify(proseDelta.before[key]));
+ }
+ return result;
+}
