@@ -134236,7 +134236,7 @@
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,
@@ -142789,7 +142789,7 @@
             }
           ],
           "baseMaterial": "wood",
-          "oneWay": false,
+          "oneWay": true,
           "breakable": false,
           "properties": {
             "hp": 99999,

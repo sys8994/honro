@@ -707,6 +707,38 @@
         "oneWay": false
       },
       "reason": "open roof, gallery, bridge or stair"
+    },
+    {
+      "stage": 5,
+      "kind": "terrain",
+      "id": "waterfall-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "rock",
+          "artSeed": 1
+        }
+      },
+      "reason": "Native Scene confirms an isolated overhang open below and beside it, not a closed enclosure"
+    },
+    {
+      "stage": 7,
+      "kind": "terrain",
+      "id": "hollow-roof",
+      "before": {
+        "oneWay": false,
+        "properties": {
+          "hp": 99999,
+          "maxHp": 99999,
+          "route": false,
+          "surfaceKind": "wood",
+          "artSeed": 1
+        }
+      },
+      "reason": "Native Scene confirms an isolated overhang open below and beside it, not a closed enclosure"
     }
   ]
 }

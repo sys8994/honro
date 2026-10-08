@@ -1691,3 +1691,7 @@ The final C Library appends 88 reviewed assets and changes stage 25/27 decoratio
 - 변경: 전30장 terrain 및 배치 에셋 전수조사 후 명시된 asset68개와28장 목조 지붕terrain2개만 oneWay로 전환했다. 잘못 붙은 두 목조 지붕의 ceiling 표식을 제거했다. 기존 좌표·미술·임무·전투 수치와 물리 엔진은 그대로다. 전체폭 천장·지면·기반·벽/기둥·파괴 목표는 유지한다. 1막후반 현정본의 열린 가지/처마는 이미 oneWay라 새 지형 변경은 없다.
 - 저장: 정확히 일치하는 정식 진행 battle에 한해 기존 collision boolean만 Continue에서 보정한다. 미편집 canonical Workshop 자동저장도 정확히 일치하는 stage/asset만 갱신한다. 임의 import/normalize·편집된 공유 에셋·출처 불명·다른 역사 형상은 보존한다.
 - 검증: 정본 재생성 및 schema 검사 통과. 저장/실제 상하향 물리/이력 회귀·공개 브라우저 검수는 이 단위 이후 이어서 수행하며 전체 통과를 아직 주장하지 않는다.
+
+### 5·7장 공간 폐쇄성 시각 재검수
+
+Native 공통 Scene에서 5장 waterfall-roof와7장 hollow-roof는 두꺼워도 아래/옆이 열린 독립 돌출부로 보였다. 최초 재질/두께 중심의 고체 유지 분류를 정정해 둘도 명시 oneWay로 바꾼다. source 좌표/미술/목표는 그대로이며 범위는72개다. 1막 재저작은1–10장에만 같은 policy를 적용하고12장 실제 Continue/내보내기/불러오기 및 Workshop 보호 검사를 통과했다. 실제 브라우저·전투 완주 검수는 별도다.
