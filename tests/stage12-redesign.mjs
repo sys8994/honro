@@ -1,3 +1,4 @@
+import {beforeForestCavernTopology} from './forest-cavern-history-helpers.mjs';
 import {applyCurrentTerrainRecipes} from './act1-spatial-test-helpers.mjs';
 import {applyAct1CollisionRepair} from '../tools/map-forge/act1-collision-repair.mjs';
 import assert from 'node:assert/strict';
@@ -15,12 +16,12 @@ const check=(name,fn)=>{try{const detail=fn();checks.push({name,passed:true,deta
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design.js',import.meta.url),'utf8'),g);
 const baseline=await migrate(),project=plain(g.HONRO_PROJECT);
-// Historical recipe equality excludes only the exact reviewed seven-slot delta.
+// Historical recipe equality reverses only exact reviewed roster and topology deltas.
 // Current geometry, export/import and live runtime checks keep project unchanged.
-const historicalProject=beforeExistenceRoster(project);
+const historicalProject=beforeExistenceRoster(beforeForestCavernTopology(project));
 check('Active Stage 7 recovery root exactly matches its shared additive recipe',()=>assert.deepEqual(project.stages[6].terrains.filter(t=>t.id===g.HonroStage7Reentry.id),[plain(g.HonroStage7Reentry.terrain())]));
 const firstDesign=plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline)));
-check('Workshop authoring recipe reproduces Stages 1 and 2 geometry',()=>assert.deepEqual(withoutHistoricalSodanAttack({stages:firstDesign.stages.slice(0,2)}),withoutHistoricalSodanAttack({stages:project.stages.slice(0,2)})));
+check('Workshop authoring recipe reproduces Stages 1 and 2 geometry',()=>assert.deepEqual(withoutHistoricalSodanAttack({stages:firstDesign.stages.slice(0,2)}),withoutHistoricalSodanAttack({stages:historicalProject.stages.slice(0,2)})));
 check('Stage 3–6 place recipe completes the canonical project',()=>assert.deepEqual(withoutHistoricalSodanAttack(g.HonroCommands.apply(firstDesign,g.HonroStage36Places.commands(firstDesign))),withoutHistoricalSodanAttack(historicalProject)));
 check('Stages 7 through 10 retain exact data apart from separately verified root and terrain authoring',()=>{const later=plain(historicalProject.stages.slice(6,10));later[3].elements.find(e=>e.kind==='ritualDais').layer='back';assert.deepEqual(withoutHistoricalSodanAttack({stages:later}).stages,withoutHistoricalSodanAttack({stages:baseline.stages.slice(6)}).stages);});
 check('Canonical editor export/import is lossless',()=>assert.deepEqual(plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(project)))),project));
