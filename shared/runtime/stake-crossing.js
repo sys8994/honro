@@ -58,7 +58,7 @@ function allowsStep(b,id){if(!active(b))return true;const n=crossings(b).findInd
 function attach(app,e){if(!active(e.b)||e.honroStakeAttached)return;e.honroStakeAttached=true;initialize(e.b,false);
  const fire=e.fire.bind(e);e.fire=function(id,...args){const b=e.b,u=e.active;if(id!=='M09'||!available(b,u))return fire(id,...args);initialize(b);const c=current(b),s=b.honroStakeCrossing;
   if(c&&!flexible(b)&&!heroes(b).every(v=>inside(v,c.fromZone))){e.message('설오와 담허를 함께 출발 석대의 진목 표식으로 옮기세요.');return false;}
-  if(c&&!s.armed&&heroes(b).every(v=>inside(v,c.fromZone)&&e.grounded(v))){s.armed=true;takeCheckpoint(b);}
+  if(c&&!s.armed&&(!flexible(b)||heroes(b).every(v=>inside(v,c.fromZone)&&e.grounded(v)))){s.armed=true;takeCheckpoint(b);}
   if(c&&!flexible(b)&&Object.keys(s.crossed).length){e.message('두 동행이 모두 건넌 뒤 다음 진목을 설치하세요.');return false;}
   const ok=fire(id,...args);if(ok&&c){s.attempted=true;s.pairSeen=false;s.crossed={};}return ok;
  };
@@ -71,7 +71,7 @@ function attach(app,e){if(!active(e.b)||e.honroStakeAttached)return;e.honroStake
 // A creative jump or longer shot can skip traversal markers, never documents.
 function tickFlexible(app){const e=app.engine,b=e.b,s=b.honroStakeCrossing,team=heroes(b),list=crossings(b);if(team.length!==2)return;
  s.reached??={};
- for(const u of team)if(!u.dead&&u.hp>0&&e.grounded(u))for(let i=s.index;i<list.length;i++)if(inside(u,list[i].landing))s.reached[u.cls]=Math.max(s.reached[u.cls]||s.index,i+1);
+ for(const u of team)if(!u.dead&&u.hp>0&&e.grounded(u))for(let i=s.index;i<list.length;i++)if(inside(u,list[i].landing)&&i+1>(s.reached[u.cls]||0)){s.reached[u.cls]=i+1;app.dirty=true;}
  const reached=Math.min(...team.map(u=>s.reached[u.cls]||s.index));
  s.crossed=Object.fromEntries(team.filter(u=>(s.reached[u.cls]||0)>s.index).map(u=>[u.cls,true]));
  const advanced=reached>s.index;
@@ -79,7 +79,7 @@ function tickFlexible(app){const e=app.engine,b=e.b,s=b.honroStakeCrossing,team=
  // Capture only a shared, grounded safe place. Split exploration keeps the
  // previous safe checkpoint and its matching objective/progress snapshot.
  const landing=list[s.index-1]?.landing;
- if((s.checkpointProgress?.index??0)<s.index&&team.every(u=>!u.dead&&u.hp>0&&e.grounded(u)&&inside(u,landing)))takeCheckpoint(b);
+ if((s.checkpointProgress?.index??0)<s.index&&team.every(u=>!u.dead&&u.hp>0&&e.grounded(u)&&inside(u,landing))){takeCheckpoint(b);app.dirty=true;}
  if(advanced){app.dirty=true;app.updateHUD?.(true);}
 }
 function tick(app){const b=app.engine?.b;if(!active(b)||app.dialogue||app.done)return;initialize(b);if(recoverFailure(app))return;const s=b.honroStakeCrossing,c=current(b);if(flexible(b))return tickFlexible(app);if(!c)return;
