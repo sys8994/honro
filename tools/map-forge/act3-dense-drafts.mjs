@@ -1,3 +1,4 @@
+import {openStructureAsset} from './open-structure-policy.mjs';
 /** Review-only Workshop geometry. Never imported by the production build. */
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
@@ -10,7 +11,7 @@ const pathD=a=>'M'+a.map(p=>p.join(' ')).join(' L')+' Z';
 const P=(a,fill,stroke='',width=2)=>`<path d="${pathD(a)}" fill="${fill}"${stroke?` stroke="${stroke}" stroke-width="${width}"`:''}/>`;
 const R=(x,y,w,h,c)=>P([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],c);
 const line=(a,c,w=2)=>`<path d="M${a.map(p=>p.join(' ')).join(' L')}" fill="none" stroke="${c}" stroke-width="${w}"/>`;
-function asset(id,name,svg,collision,bounds){const [x,y,w,h]=bounds;return{id,name,category:'architecture',visual:[],vector:compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.join(' ')}">${svg}</svg>`),collision:collision.map(pts),anchor:{x:0,y:0},sockets:[],tags:['inactive-act3-draft'],params:{},material:'wood',breakable:false,oneWay:false,bounds:{x,y,w,h},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.4,2],backgroundRange:[.4,2]}};}
+function asset(id,name,svg,collision,bounds){const [x,y,w,h]=bounds;return{id,name,category:'architecture',visual:[],vector:compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.join(' ')}">${svg}</svg>`),collision:collision.map(pts),anchor:{x:0,y:0},sockets:[],tags:['inactive-act3-draft'],params:{},material:'wood',breakable:false,oneWay:openStructureAsset(id),bounds:{x,y,w,h},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.4,2],backgroundRange:[.4,2]}};}
 function house(id,w,h,{roof=110,wall='#aaa58d',timber='#514840',open=false,floors=1}={}){
  const l=-w/2,r=w/2,eave=-h,peak=eave-roof,coll=[],pieces=[];
  const roofPoly=[[l-45,eave-5],[l-8,eave-27],[-w*.2,peak+12],[0,peak],[w*.2,peak+12],[r+8,eave-27],[r+45,eave-5],[r+28,eave+19],[l-28,eave+19]];
