@@ -72,7 +72,7 @@ function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)retur
 for(const id of [12,15,20,21,22,23,27])for(const row of H.stages[id-1].story||[])if(row[2]?.focus==='seal')row[2].focus='interact';
 if(!H.stages[26].hiddenWaterworks)for(const row of H.stages[26].story){if(row[0]==='휘겸')row[2]={...row[2],focus:'fire-screen'};if(row[0]==='설오')row[2]={...row[2],focus:'water-release'};}
 function active(b){return !b?.honroCustom&&b?.honroObjectiveRevision>=REVISION;}
-function contentFor(b,st){if(b?.honroSplit?.version===1){const old=G.HONRO_SPLIT_V1?.content.find(q=>q.id===b.honroStage);if(old)return old;}return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
+function contentFor(b,st){if(b?.honroSplit?.version===1||b&&!b.honroWaterworksRevision){const old=G.HONRO_SPLIT_V1?.content.find(q=>q.id===b.honroStage);if(old)return old;}return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
 function storedSteps(b,act){return contentFor(b,H.stages[b.honroStage-1]).steps||[];}
 function author(project,options={}){
  const p={...project,stages:project.stages.map(original=>{

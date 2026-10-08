@@ -2,7 +2,7 @@
 const C=G.HONRO_CORE,clone=x=>structuredClone(x),VERSION=2,ALL=['archer','mage','knight','occultist'];
 const roster=(id,version=VERSION)=>version===1?(id===25?['knight','mage']:id===26?['archer','occultist']:[...ALL]):id===25||id===27?['archer','mage']:id===26?['knight','occultist']:[...ALL];
 const last=s=>s?.version===1?27:28;
-const legacy=(profile,id)=>profile?.honroSplitCampaign?.version===1&&!profile.honroSplitCampaign.finished&&[25,26,27].includes(id);
+const legacy=(profile,id)=>profile?.honroSplitCampaign?.version===1&&(!profile.honroSplitCampaign.finished&&[25,26,27].includes(id)||profile.honroSplitCampaign.finished&&id===28);
 const content=(profile,id)=>legacy(profile,id)?G.HONRO_SPLIT_V1?.content.find(s=>s.id===id):null;
 const hero=u=>u.side===0&&!u.summoned&&!u.enthrall&&ALL.includes(u.cls);
 const active=b=>!!b&&!b.honroCustom&&[1,VERSION].includes(b.honroSplit?.version)&&b.honroStage>=24&&b.honroStage<=last(b.honroSplit);
