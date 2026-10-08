@@ -24,7 +24,7 @@ function prepare(b){
 function preparationLines(b){const record=(b?.honroSplit||b)?.stakePreparation;
  if(!active(b)||!record||record.announced||!b.honroStakeLoadout)return [];
  record.announced=true;
- const text=record.replaced?'이 물길에는 축지진목이 필요하겠군. '+(C.SKILLS[record.replaced]?.name||'다른 도술')+' 대신 챙겼네.':'이 물길에는 축지진목이 필요하겠군. 빈 자리에 챙겨 두었네.';
+ const text=record.replaced?'수로에서 쓸 진목으로 바꿔 두었네. 이걸로 길을 잇지.':'수로에서 쓸 진목을 챙겨 두었네. 이걸로 길을 잇지.';
  return [['담허',text,{storyId:'stake-preparation',storyTitle:'물길을 건널 준비'}]];
 }
 function instruction(b){if(!active(b)||!current(b))return null;const s=b.honroStakeCrossing,c=current(b),count=Object.keys(s?.crossed||{}).length;
