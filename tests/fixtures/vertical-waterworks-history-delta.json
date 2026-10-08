@@ -1,0 +1,5961 @@
+{
+  "version": 1,
+  "beforeRevision": "9032b3c4ef0509461ad31c5be9d91264d8becabc",
+  "afterRevision": "053ea215d6e64f4babc2bf0617501a7fc85ede27",
+  "beforeProjectSha256": "294afc3ff3a54438d9eb1f5dfa1e44fcb4788abf4d9bd4d63a8a6422289d8b7a",
+  "afterProjectSha256": "e38504406fd3303b16dd31bfd1ddb8f7127f8ced0458e722a1626c02dc3ee2e7",
+  "scope": "Exact C 25/27 map and content deltas only; unchanged fields remain visible. Additive C artwork is independently removed after exact ID/order/value checks. Original B/A and older fixtures are never rewritten.",
+  "hashes": [
+    {
+      "stage": 25,
+      "beforeSha256": "40b3f2774bdb54757bcf8ea205e3f4c6b8d37236507c168ddfa82b5b7f6020a6",
+      "afterSha256": "79dd0c390e892852e7047cbdc40cd88640578320ac2ff10b51a356404835b92e"
+    },
+    {
+      "stage": 27,
+      "beforeSha256": "2406a9b79840da3c598d507f729d3a9dfbe58cac50c6fbe9155c1ed8abc44447",
+      "afterSha256": "cdbf947bd35aca86e7615a760b201a3b5bcbbffcdb738e36fc3c4b5f493cc770"
+    }
+  ],
+  "library": {
+    "beforeLength": 404,
+    "beforeSha256": "9a355e51d027dff100f6b6d819c01dfe3ae96e3491904654fb7ca8e4b9f2f0cd",
+    "afterSha256": "d5baa34952000d79dcb308866155d59f7820fec41f98057274442cfb9757d186",
+    "assets": [
+      {
+        "id": "a3-waterworks-v3:25:vertical-depot-shell",
+        "sha256": "25e7ca466294500768ee33b1d08dc47e7a1e45d45b5140adbb5ab4a54a2460f7"
+      },
+      {
+        "id": "a3-waterworks-v3:25:masonry-vault",
+        "sha256": "488cfa0d26cfdb7bc439df0ea8dcfe231ef814386d0906537b722769bef51c51"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-0",
+        "sha256": "8b44ffe7f5b2063e44a888541afd702cc614503b53e2ddec5512ece3e97753a3"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-lamp-0",
+        "sha256": "c4eadbcabd60a49c433b0eb7d6ad1f3fca2c4f2643edbbe5581004b007f2e0ff"
+      },
+      {
+        "id": "a3-waterworks-v3:25:haul-number-0",
+        "sha256": "40e1b0beef82ddf670c6b9ad7e64f28b421e3b7da646cea7f21d533afbbb8676"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-1",
+        "sha256": "6712d7530067c4b662e331a2b30d7a485c1c6d7ef3e3e11381bee1ff0b4bfa50"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-lamp-1",
+        "sha256": "58f0fb0e5da349f231574d4da8661f9b8c08062afbec392e6deb70f4d7293057"
+      },
+      {
+        "id": "a3-waterworks-v3:25:haul-number-1",
+        "sha256": "240461ad1573a39758a408ebb3f1b3b9a1a84fec9c4ca57b00ed7047544d5ab3"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-2",
+        "sha256": "fd68243f41c913888a7408deae03011827f98e88f1664af2dca563b1f628a36c"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-lamp-2",
+        "sha256": "6782be9f4e37b9b1fc7f3ae87313d91b0086dcfcc49428a63067d99505c36d9a"
+      },
+      {
+        "id": "a3-waterworks-v3:25:haul-number-2",
+        "sha256": "9fba2f73e01edc2ccb272b31b1f888942a3e36a8fce4ab988b1c01bb6bc6f6a2"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-3",
+        "sha256": "1ab81a15780e54b5d84b499bfc3ec2e4cc58898df2b345ecbf92bf94e72bf338"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-lamp-3",
+        "sha256": "2de99ef262428dd5eb43e62fd668b24643f7edb2b3eb3320815a65724728a903"
+      },
+      {
+        "id": "a3-waterworks-v3:25:haul-number-3",
+        "sha256": "4168de231188b3368fa6f15977757612011f7cb39e13285272bd9316694e8427"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-4",
+        "sha256": "f44430da1ee22a4e2926f5c051a1f6057afaaa51819356274ba652d9d6d140f5"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-lamp-4",
+        "sha256": "99c2831fa47a43c73bb311050f3b967bff95b163f8328b5b1071923087c26c9c"
+      },
+      {
+        "id": "a3-waterworks-v3:25:haul-number-4",
+        "sha256": "9d89678ddb6d7f8ab5917c0b60f84718163c6c5e161287c5a9c04997aed992f9"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-5",
+        "sha256": "d165186985b7883c1d77abf6e02b9071b780960ebdcb12c2b66a0472b99485b8"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-lamp-5",
+        "sha256": "359fc7e0b270441da1e61e4bb4d310f576fe8235bba1d5de9dc82ca6a10d4071"
+      },
+      {
+        "id": "a3-waterworks-v3:25:haul-number-5",
+        "sha256": "a524aaa2fde25f764320fc61adb9d87767379988af8df9f3a9adb486ef37441a"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-6",
+        "sha256": "1cd1007d09b35dcacecdcd3c8543b9f9c33c249d0e6c0316163ba985c65615fd"
+      },
+      {
+        "id": "a3-waterworks-v3:25:gallery-lamp-6",
+        "sha256": "c70ff3ece83b7a7aaeff1fdbb5c5ea7898862d821a68d52bafa533329a0c9fd7"
+      },
+      {
+        "id": "a3-waterworks-v3:25:haul-number-6",
+        "sha256": "9dba8bdd74551e9f6f8461e7bbcc1a0597f387f6aa0521f51907fd3bdd6910af"
+      },
+      {
+        "id": "a3-waterworks-v3:25:west-maintenance-stairs",
+        "sha256": "9037516740e59c37294f1cf6aabd574032c9577c369e4f81abbbb06830ba6317"
+      },
+      {
+        "id": "a3-waterworks-v3:25:inspection-room-roof",
+        "sha256": "18ab8c11a216e9016a26e85452eb52466ba66581d87ebadcb829bdcc83c29387"
+      },
+      {
+        "id": "a3-waterworks-v3:25:inspection-room-east-wall",
+        "sha256": "0ce3b1cc4b131878fd3b2dd930902d33a6041d25dbdab8d39fa04c7715946902"
+      },
+      {
+        "id": "a3-waterworks-v3:25:maintenance-recess",
+        "sha256": "821d4b454a831dc6301d2fb5d370b8f80adcd5cdccb1a76f552eedf25c95e9b0"
+      },
+      {
+        "id": "a3-waterworks-v3:25:west-lookout-roof",
+        "sha256": "3d114fbb39e77b7d05807f41e4a414377aa0954eac2c8775eda1f252b199803c"
+      },
+      {
+        "id": "a3-waterworks-v3:25:west-lookout-wall",
+        "sha256": "804f24d41e800c20cb1aae46977c8bb98b5af44f4655bdddbab1d43ccebed52b"
+      },
+      {
+        "id": "a3-waterworks-v3:25:west-lookout-recess",
+        "sha256": "a7621f8b940e7609347444a43a5f8e3ab2de4aaa532f2c94432c2c73f67e003e"
+      },
+      {
+        "id": "a3-waterworks-v3:25:upper-checkpoint-roof",
+        "sha256": "26ad7bd3bbcf6f236b88daec3e2afc9f61711777071721a00355d11c81fc481f"
+      },
+      {
+        "id": "a3-waterworks-v3:25:upper-checkpoint-east-wall",
+        "sha256": "6e0427e486504c5a3decbe3af899357927e02af89c05d07d89c818489acd8371"
+      },
+      {
+        "id": "a3-waterworks-v3:25:sluice-side-pier",
+        "sha256": "6a31be36d476a599b060dce8043b91b8f5039e0dc2a49e3217b213d2c1428aed"
+      },
+      {
+        "id": "a3-waterworks-v3:25:upper-checkpoint",
+        "sha256": "f2a8bb02724c14eeac38fc7dae923c6ac90f3926e9075dd838606b25c51b939e"
+      },
+      {
+        "id": "a3-waterworks-v3:25:lookout-stair",
+        "sha256": "da0c3ddddc2c00aff9a1d05bef3012628a04bf533f51c80458ded308f65ef994"
+      },
+      {
+        "id": "a3-waterworks-v3:25:lookout-balcony",
+        "sha256": "59a5d297db1bd7ab39d4fbf9acb114157d93228a0551b0ac7a53adf36903560b"
+      },
+      {
+        "id": "a3-waterworks-v3:25:household-inspection-dais",
+        "sha256": "415aea4aad7c78d07192d22a918a0cffc920bd09b5606516b82804ac9c899a95"
+      },
+      {
+        "id": "a3-waterworks-v3:25:inspection-lamp",
+        "sha256": "f1207bd220913abe1c7107bcdd708fe34a87d9630a27f5b24f5324083f06e9f7"
+      },
+      {
+        "id": "a3-waterworks-v3:25:great-sealed-store",
+        "sha256": "781f63fdeb7ad8c36c3113001de632aa20cf164cb1586e79e1ebbd12ae649b28"
+      },
+      {
+        "id": "a3-waterworks-v3:25:family-bundle-17",
+        "sha256": "4b3b4cc02cc045bec0543017fd6b917f4410b8b9ad56b9fe18d1c859a89c23ff"
+      },
+      {
+        "id": "a3-waterworks-v3:25:family-bundle-18",
+        "sha256": "6696a08dcaad4bbd1d71ff44516085d0efa919f44e1d2f21573c05e2dcaa0553"
+      },
+      {
+        "id": "a3-waterworks-v3:25:broken-haul-bridge",
+        "sha256": "ebc55cd0fe24fc456e3452307022ac2f3eef5d0067250a83f967f87e331fd6be"
+      },
+      {
+        "id": "a3-waterworks-v3:27:vertical-depot-shell",
+        "sha256": "27753f45b99dd6a6a66b84a77f1c263c726cdd3df29616de4c87e45810324a11"
+      },
+      {
+        "id": "a3-waterworks-v3:27:masonry-vault",
+        "sha256": "42c2a7020076ce942f9c1744de90ac2fc3ca432cbef391125857d7a0ea76908c"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-0",
+        "sha256": "7682dad5c6765873b8fae21a3c9c3faa04f6361a3775be5840500c8460682c11"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-0",
+        "sha256": "d9fffa7fc15905233e5801b634b8d4dfe4725cc0afa55e89045b1f01538f8c39"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-0",
+        "sha256": "a4f1f8a37bdcb960057408feb3816d071f7807862248649ad83c126255209b24"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-1",
+        "sha256": "defc7554751aebc3696dc01d14c9274976dc40b9d33e791468a705c6cac1416a"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-1",
+        "sha256": "43f6a0ef50aa6ad5c688257dc8653868078ad4ca9700fcd48f176eebfd83e45d"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-1",
+        "sha256": "38281272eee8ae9ec5825c5f87230886e2c9c2137f172eac7a5b5a9514d1e048"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-2",
+        "sha256": "18f81e2246a1517481c36e47adba20f1e20748f7e4a57b48979fd44343a4a2a8"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-2",
+        "sha256": "abb70c6e2a4cc3a19b1878b2ba5d2a170ae66dc2f872a90003f08a372cd41072"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-2",
+        "sha256": "4d83cf0fcb24df9055743eb1a76d36f70e211f25398ca942ed5abd7d22b61b86"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-3",
+        "sha256": "556e9cb27ffa528c612f3f613e4170361dd5efc54f58639ce948522e457ec22b"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-3",
+        "sha256": "145d26e41e49d4694fc1b084dc656d3e6a84d2b5d91bc23cf39ee6e1ee38bc3f"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-3",
+        "sha256": "b95aafd8b9d2b7faba1283b2cdc515c4a6cf746a90f33a78550b60c88c331ceb"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-4",
+        "sha256": "98468e7b703de57ddb8c297664f8b27c540990cfcc754c037cd1c22440b7cfb5"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-4",
+        "sha256": "b3770927bc2f9565f7ef11f02d74f8ea0a7828004c11ef7c7a201a71329626bd"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-4",
+        "sha256": "610e01ce33def7fb41ff8ca9b88fdf6d4020649fa853aaf8c5c694a9cee190a0"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-5",
+        "sha256": "b5113dcbfef9abda52c142f00e9ed0f78420aff815905fe9dc8f53360d8ace10"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-5",
+        "sha256": "e4c9b76cbbd98d3cb6b3b49f9ccab1911d4db73b1a8b23c3834cbb8a3633ec72"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-5",
+        "sha256": "a4b13df1930fdcb87f07860c002303a1f4ab8190c04fa3b6bb07f74c45ce4699"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-6",
+        "sha256": "ec0a43f540459a6bc03b0e2d2918cdf29719647f77d50cc91a8ee47c6ef5f512"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-6",
+        "sha256": "95985b09cf808bab0da9a272e3fa517f8fae0df3ec892f18082164935caabef3"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-6",
+        "sha256": "392a7763a57bda6c694df9b1b7c60c393720fe5d81d9d7d4f67c7508e3460744"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-7",
+        "sha256": "2327226e6e6ba1f59cf0309746b5aae4b433afaa51b36453da761d51f73813c0"
+      },
+      {
+        "id": "a3-waterworks-v3:27:gallery-lamp-7",
+        "sha256": "b3907063761302c6c3cebfd12264372c97ec6d1ca4e407337c11e6f90b4ac8fd"
+      },
+      {
+        "id": "a3-waterworks-v3:27:haul-number-7",
+        "sha256": "209424c9849a857c1ea1f58e9a613fea831b87f173bbe0d47192df42dee5552f"
+      },
+      {
+        "id": "a3-waterworks-v3:27:entry-haul-stairs",
+        "sha256": "ece9b41171d09e3655a4907effbd6e608cab57f39bf9ab377af009432b83e076"
+      },
+      {
+        "id": "a3-waterworks-v3:27:return-inspection-stairs",
+        "sha256": "8ef7907ee2e4abbb37ccb6dfb733ce6b526081cfc5ba9c2f7a0af5509bb8c860"
+      },
+      {
+        "id": "a3-waterworks-v3:27:manifest-stairs",
+        "sha256": "5dcdc7229214f9dca13fbc62eafb500b5d07893878479468052f1a7ee49a3d81"
+      },
+      {
+        "id": "a3-waterworks-v3:27:loading-office-roof",
+        "sha256": "73fd4b475cbbf62a1a21ea31f9f28aebbab0b5994222aec35f6bb6dbce80c714"
+      },
+      {
+        "id": "a3-waterworks-v3:27:loading-office-east-wall",
+        "sha256": "34de896cbfab6d1d1d41fa69aed2b1f72b84b2dc421f2eecc66f6b8aaa138261"
+      },
+      {
+        "id": "a3-waterworks-v3:27:abandoned-loading-shed",
+        "sha256": "efb0b6d6e59df5b160dacc1b77801562bb7dc8d7d3f6f1bd8f5f69d0f66973f8"
+      },
+      {
+        "id": "a3-waterworks-v3:27:loading-oil-lamp",
+        "sha256": "4f8d0900607574d0b5fc233743255b7d31ccae256224a9f3db6f8616b4d4c1a0"
+      },
+      {
+        "id": "a3-waterworks-v3:27:far-passage-roof",
+        "sha256": "1c92ea235e02d8ba01be212f17c0fa8c0bdf50aa3d2bb6075e71522eb318cbff"
+      },
+      {
+        "id": "a3-waterworks-v3:27:far-passage-wall",
+        "sha256": "6dcb8de1670d6d93e4ab375ff15612648762a8993ad3aaad3303da9d68d80a3c"
+      },
+      {
+        "id": "a3-waterworks-v3:27:far-passage-buttress",
+        "sha256": "1bab2fde5afdeb33b14dafdce6d1695f04b330e97642b8d197d431a65600cdd3"
+      },
+      {
+        "id": "a3-waterworks-v3:27:far-sealed-store",
+        "sha256": "041a0d80c13f2ca4f6ba906957dfd23f9e1767b53cd1ef37a532e779358dc864"
+      },
+      {
+        "id": "a3-waterworks-v3:27:ledger-room-roof",
+        "sha256": "f43cbf9f76646ec8b86f75b19e98ca6d9b45c08063e2057797a1215381a7d7cc"
+      },
+      {
+        "id": "a3-waterworks-v3:27:ledger-room-west-wall",
+        "sha256": "c53e8aec3ebd6334777063ed4e70a59fb26cf54ca0e47fc040a22ffba93323ee"
+      },
+      {
+        "id": "a3-waterworks-v3:27:ledger-vault",
+        "sha256": "5102275d2c8d1c74d4da138b1daf28de9d0bdf6459c1125e7229fe35da3df322"
+      },
+      {
+        "id": "a3-waterworks-v3:27:household-inspection-dais",
+        "sha256": "6c94eb7cfb91bd9dcad22281c42974da8afdac82bbec6a6686f4aa3337a065c9"
+      },
+      {
+        "id": "a3-waterworks-v3:27:inspection-lamp",
+        "sha256": "6b3bac45ce02a4045f2f2f7e35d1dab38efde07a80e5d149d55399aef32cbf1f"
+      },
+      {
+        "id": "a3-waterworks-v3:27:numbered-family-bundle",
+        "sha256": "792753622b6e52af0de9d6ff78d78bf6665eac4a462e40a3e5301c72242a08ad"
+      },
+      {
+        "id": "a3-waterworks-v3:27:sunk-family-tools",
+        "sha256": "5a0d08a0abea023195ff355885332f7858890bc9df889f8e25d812f6d6d8cbf6"
+      },
+      {
+        "id": "a3-waterworks-v3:27:manifest-bundle",
+        "sha256": "9b916e1ff01421feb18833d100181ffca1044979dd49aedbdebc695392030642"
+      },
+      {
+        "id": "a3-waterworks-v3:27:broken-haul-bridge",
+        "sha256": "d7352f5fa165b6084ab2c6fe3dbcb270f90c3985d984d64535726bd0070bb886"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "width"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 7200,
+      "after": 5600
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "height"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 4600,
+      "after": 6800
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "terrains"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "deep-unwalkable-basin",
+          "name": "deep-unwalkable-basin",
+          "type": "solid",
+          "points": [
+            {
+              "x": -500,
+              "y": 5100
+            },
+            {
+              "x": 7700,
+              "y": 5100
+            },
+            {
+              "x": 7700,
+              "y": 6100
+            },
+            {
+              "x": 7700,
+              "y": 28600
+            },
+            {
+              "x": -500,
+              "y": 28600
+            },
+            {
+              "x": -500,
+              "y": 6100
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroWaterworksBasin": true
+          },
+          "playProjection": {
+            "bounds": {
+              "left": 0,
+              "top": 0,
+              "right": 7200,
+              "bottom": 6100
+            },
+            "start": {
+              "x": -500,
+              "y": 5100
+            }
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": "deep-unwalkable-basin",
+          "name": "deep-unwalkable-basin",
+          "type": "solid",
+          "points": [
+            {
+              "x": -500,
+              "y": 7300
+            },
+            {
+              "x": 6100,
+              "y": 7300
+            },
+            {
+              "x": 6100,
+              "y": 8300
+            },
+            {
+              "x": 6100,
+              "y": 30800
+            },
+            {
+              "x": -500,
+              "y": 30800
+            },
+            {
+              "x": -500,
+              "y": 8300
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroWaterworksBasin": true
+          },
+          "playProjection": {
+            "bounds": {
+              "left": 0,
+              "top": 0,
+              "right": 5600,
+              "bottom": 8300
+            },
+            "start": {
+              "x": -500,
+              "y": 7300
+            }
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "materials"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "black-water-0",
+          "kind": "water-pool",
+          "conductive": true,
+          "points": [
+            [
+              2105,
+              3170
+            ],
+            [
+              2795,
+              3170
+            ],
+            [
+              2795,
+              5400
+            ],
+            [
+              2105,
+              5400
+            ]
+          ],
+          "surface": [
+            [
+              2105,
+              3170
+            ],
+            [
+              2795,
+              3170
+            ]
+          ],
+          "bottom": [
+            [
+              2105,
+              5400
+            ],
+            [
+              2795,
+              5400
+            ]
+          ],
+          "attached": true,
+          "reflections": [
+            {
+              "x": 2230,
+              "width": 205,
+              "height": 720
+            },
+            {
+              "x": 2645,
+              "width": 240,
+              "height": 530
+            }
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "deep-basin-water",
+          "kind": "water-pool",
+          "conductive": true,
+          "points": [
+            [
+              0,
+              5980
+            ],
+            [
+              5600,
+              5980
+            ],
+            [
+              5600,
+              7500
+            ],
+            [
+              0,
+              7500
+            ]
+          ],
+          "surface": [
+            [
+              0,
+              5980
+            ],
+            [
+              5600,
+              5980
+            ]
+          ],
+          "bottom": [
+            [
+              0,
+              7500
+            ],
+            [
+              5600,
+              7500
+            ]
+          ],
+          "attached": true,
+          "reflections": [
+            {
+              "x": 1680,
+              "width": 250,
+              "height": 970
+            },
+            {
+              "x": 3808.0000000000005,
+              "width": 350,
+              "height": 800
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "elements"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "continuous-masonry-waterline",
+          "assetId": "a3-waterworks:25:continuous-masonry-waterline",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "small-tally-office",
+          "assetId": "a3-waterworks:25:small-tally-office",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "entry-lamp",
+          "assetId": "a3-waterworks:25:entry-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "stone-quay-0",
+          "assetId": "a3-waterworks:25:stone-quay-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "great-sealed-store",
+          "assetId": "a3-waterworks:25:great-sealed-store",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "final-seal-lamp",
+          "assetId": "a3-waterworks:25:final-seal-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "stone-quay-1",
+          "assetId": "a3-waterworks:25:stone-quay-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "broken-haulway-0",
+          "assetId": "a3-waterworks:25:broken-haulway-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "family-bundle-17",
+          "assetId": "a3-waterworks:25:family-bundle-17",
+          "x": 2095.7999999999997,
+          "y": 1134,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "family-bundle-18",
+          "assetId": "a3-waterworks:25:family-bundle-18",
+          "x": 2335.2,
+          "y": 1134,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        }
+      ],
+      "after": [
+        {
+          "id": "vertical-depot-shell",
+          "assetId": "a3-waterworks-v3:25:vertical-depot-shell",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "masonry-vault",
+          "assetId": "a3-waterworks-v3:25:masonry-vault",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-0",
+          "assetId": "a3-waterworks-v3:25:gallery-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-0",
+          "assetId": "a3-waterworks-v3:25:gallery-lamp-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-0",
+          "assetId": "a3-waterworks-v3:25:haul-number-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-1",
+          "assetId": "a3-waterworks-v3:25:gallery-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-1",
+          "assetId": "a3-waterworks-v3:25:gallery-lamp-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-1",
+          "assetId": "a3-waterworks-v3:25:haul-number-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-2",
+          "assetId": "a3-waterworks-v3:25:gallery-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-2",
+          "assetId": "a3-waterworks-v3:25:gallery-lamp-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-2",
+          "assetId": "a3-waterworks-v3:25:haul-number-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-3",
+          "assetId": "a3-waterworks-v3:25:gallery-3",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-3",
+          "assetId": "a3-waterworks-v3:25:gallery-lamp-3",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-3",
+          "assetId": "a3-waterworks-v3:25:haul-number-3",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-4",
+          "assetId": "a3-waterworks-v3:25:gallery-4",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-4",
+          "assetId": "a3-waterworks-v3:25:gallery-lamp-4",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-4",
+          "assetId": "a3-waterworks-v3:25:haul-number-4",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-5",
+          "assetId": "a3-waterworks-v3:25:gallery-5",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-5",
+          "assetId": "a3-waterworks-v3:25:gallery-lamp-5",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-5",
+          "assetId": "a3-waterworks-v3:25:haul-number-5",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-6",
+          "assetId": "a3-waterworks-v3:25:gallery-6",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-6",
+          "assetId": "a3-waterworks-v3:25:gallery-lamp-6",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-6",
+          "assetId": "a3-waterworks-v3:25:haul-number-6",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "west-maintenance-stairs",
+          "assetId": "a3-waterworks-v3:25:west-maintenance-stairs",
+          "x": 1180,
+          "y": 4500,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "inspection-room-roof",
+          "assetId": "a3-waterworks-v3:25:inspection-room-roof",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "inspection-room-east-wall",
+          "assetId": "a3-waterworks-v3:25:inspection-room-east-wall",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "maintenance-recess",
+          "assetId": "a3-waterworks-v3:25:maintenance-recess",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "west-lookout-roof",
+          "assetId": "a3-waterworks-v3:25:west-lookout-roof",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "west-lookout-wall",
+          "assetId": "a3-waterworks-v3:25:west-lookout-wall",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "west-lookout-recess",
+          "assetId": "a3-waterworks-v3:25:west-lookout-recess",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "upper-checkpoint-roof",
+          "assetId": "a3-waterworks-v3:25:upper-checkpoint-roof",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "upper-checkpoint-east-wall",
+          "assetId": "a3-waterworks-v3:25:upper-checkpoint-east-wall",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "sluice-side-pier",
+          "assetId": "a3-waterworks-v3:25:sluice-side-pier",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "upper-checkpoint",
+          "assetId": "a3-waterworks-v3:25:upper-checkpoint",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "lookout-stair",
+          "assetId": "a3-waterworks-v3:25:lookout-stair",
+          "x": 4700,
+          "y": 3600,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "lookout-balcony",
+          "assetId": "a3-waterworks-v3:25:lookout-balcony",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "household-inspection-dais",
+          "assetId": "a3-waterworks-v3:25:household-inspection-dais",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "inspection-lamp",
+          "assetId": "a3-waterworks-v3:25:inspection-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "great-sealed-store",
+          "assetId": "a3-waterworks-v3:25:great-sealed-store",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "family-bundle-17",
+          "assetId": "a3-waterworks-v3:25:family-bundle-17",
+          "x": 999.5999999999999,
+          "y": 1323,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "family-bundle-18",
+          "assetId": "a3-waterworks-v3:25:family-bundle-18",
+          "x": 1163.3999999999999,
+          "y": 1323,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "broken-haul-bridge",
+          "assetId": "a3-waterworks-v3:25:broken-haul-bridge",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "units"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "x": 320,
+          "y": 2700,
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "x": 420,
+          "y": 2700,
+          "facing": 1
+        },
+        {
+          "id": "a3-25-seal-approach-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 1060,
+          "y": 2700,
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "seal-approach",
+          "stageOverrides": {
+            "honroCohort": "seal-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-seal-approach-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 1320,
+          "y": 2668,
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "seal-approach",
+          "stageOverrides": {
+            "honroCohort": "seal-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "stone-quay-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-numbered-goods-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 4480,
+          "y": 2700,
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "numbered-goods",
+          "stageOverrides": {
+            "honroCohort": "numbered-goods",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-1:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-numbered-goods-1",
+          "kind": "minecart",
+          "team": "enemy",
+          "x": 4700,
+          "y": 2700,
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "numbered-goods",
+          "stageOverrides": {
+            "honroCohort": "numbered-goods",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-1:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-numbered-goods-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 5410,
+          "y": 2668,
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "numbered-goods",
+          "stageOverrides": {
+            "honroCohort": "numbered-goods",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "stone-quay-1:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-inner-store-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 6040,
+          "y": 2700,
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "inner-store",
+          "stageOverrides": {
+            "honroCohort": "inner-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-1:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-inner-store-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 6320,
+          "y": 2668,
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "inner-store",
+          "stageOverrides": {
+            "honroCohort": "inner-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "stone-quay-1:collision:0"
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "x": 300,
+          "y": 5400,
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "x": 400,
+          "y": 5400,
+          "facing": 1
+        },
+        {
+          "id": "a3-25-seal-approach-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 900,
+          "y": 5400,
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "seal-approach",
+          "stageOverrides": {
+            "honroCohort": "seal-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-seal-approach-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 1120,
+          "y": 5368,
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "seal-approach",
+          "stageOverrides": {
+            "honroCohort": "seal-approach",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gallery-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-numbered-goods-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 310,
+          "y": 4050,
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "numbered-goods",
+          "stageOverrides": {
+            "honroCohort": "numbered-goods",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-3:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-numbered-goods-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 560,
+          "y": 4018,
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "numbered-goods",
+          "stageOverrides": {
+            "honroCohort": "numbered-goods",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gallery-3:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-inner-store-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 4580,
+          "y": 3600,
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "inner-store",
+          "stageOverrides": {
+            "honroCohort": "inner-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-5:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-inner-store-1",
+          "kind": "minecart",
+          "team": "enemy",
+          "x": 4810,
+          "y": 3500,
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "inner-store",
+          "stageOverrides": {
+            "honroCohort": "inner-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "lookout-stair:collision:0"
+          }
+        },
+        {
+          "id": "a3-25-inner-store-2",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 5090,
+          "y": 3568,
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "inner-store",
+          "stageOverrides": {
+            "honroCohort": "inner-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gallery-5:collision:0"
+          }
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "encounters"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "seal-approach",
+          "key": "seal-approach",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-seal-approach-0",
+            "a3-25-seal-approach-1"
+          ]
+        },
+        {
+          "id": "numbered-goods",
+          "key": "numbered-goods",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-numbered-goods-0",
+            "a3-25-numbered-goods-1",
+            "a3-25-numbered-goods-2"
+          ]
+        },
+        {
+          "id": "inner-store",
+          "key": "inner-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-inner-store-0",
+            "a3-25-inner-store-1"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "seal-approach",
+          "key": "seal-approach",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-seal-approach-0",
+            "a3-25-seal-approach-1"
+          ]
+        },
+        {
+          "id": "numbered-goods",
+          "key": "numbered-goods",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-numbered-goods-0",
+            "a3-25-numbered-goods-1"
+          ]
+        },
+        {
+          "id": "inner-store",
+          "key": "inner-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-25-inner-store-0",
+            "a3-25-inner-store-1",
+            "a3-25-inner-store-2"
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "markers"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "depot-entry-seal",
+          "type": "act3",
+          "x": 1250,
+          "y": 2700,
+          "label": "담허와 수로 봉인 살피기",
+          "action": "act3",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "stake-arrival-1",
+          "type": "act3",
+          "x": 3010,
+          "y": 2700,
+          "label": "축지진목으로 두 동행 건너기"
+        },
+        {
+          "id": "household-tally",
+          "type": "act3",
+          "x": 5050,
+          "y": 2700,
+          "label": "생활물품의 가족 번호 확인",
+          "action": "act3"
+        },
+        {
+          "id": "waterworks-exit",
+          "type": "exit",
+          "x": 6840,
+          "y": 2700,
+          "label": "안쪽 집하장 입구로 이동"
+        }
+      ],
+      "after": [
+        {
+          "id": "stake-arrival-1",
+          "type": "act3",
+          "x": 2100,
+          "y": 4950,
+          "label": "두 동행이 동쪽 정비실에 모이기"
+        },
+        {
+          "id": "stake-arrival-2",
+          "type": "act3",
+          "x": 3100,
+          "y": 4500,
+          "label": "두 동행이 중앙 점검창에 모이기"
+        },
+        {
+          "id": "stake-arrival-3",
+          "type": "act3",
+          "x": 1650,
+          "y": 3600,
+          "label": "두 동행이 상층 물받이에 모이기"
+        },
+        {
+          "id": "stake-arrival-4",
+          "type": "act3",
+          "x": 3500,
+          "y": 3600,
+          "label": "두 동행이 맞은편 검문실에 모이기"
+        },
+        {
+          "id": "stake-arrival-5",
+          "type": "act3",
+          "x": 3080,
+          "y": 3150,
+          "label": "두 동행이 상층 봉인회랑에 모이기"
+        },
+        {
+          "id": "depot-entry-seal",
+          "type": "act3",
+          "x": 1080,
+          "y": 5400,
+          "label": "담허와 수로 봉인 살피기",
+          "action": "act3",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "household-tally",
+          "type": "act3",
+          "x": 2400,
+          "y": 3150,
+          "label": "생활물품의 가족 번호 확인",
+          "action": "act3"
+        },
+        {
+          "id": "waterworks-exit",
+          "type": "exit",
+          "x": 1760,
+          "y": 3150,
+          "label": "안쪽 집하장 입구로 이동"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "initialState",
+        "honroWaterworksRevision"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 1,
+      "after": 3
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "initialState",
+        "honroAct3Steps"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "depot-entry-seal",
+          "label": "담허와 수로 봉인 살피기",
+          "kind": "interact",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "축지진목으로 두 동행 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "household-tally",
+          "label": "생활물품의 가족 번호 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "waterworks-exit",
+          "label": "안쪽 집하장 입구로 이동",
+          "kind": "reach"
+        }
+      ],
+      "after": [
+        {
+          "id": "depot-entry-seal",
+          "label": "담허와 수로 봉인 살피기",
+          "kind": "interact",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "두 동행이 동쪽 정비실에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "두 동행이 중앙 점검창에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "두 동행이 상층 물받이에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-4",
+          "label": "두 동행이 맞은편 검문실에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-5",
+          "label": "두 동행이 상층 봉인회랑에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "household-tally",
+          "label": "생활물품의 가족 번호 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "waterworks-exit",
+          "label": "안쪽 집하장 입구로 이동",
+          "kind": "reach"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "skyTop"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#07171e",
+      "after": "#081821"
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "skyBottom"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#142e36",
+      "after": "#132f38"
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "hazeStrength"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.08,
+      "after": 0.085
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "mistStrength"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.025,
+      "after": 0.035
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "lightStrength"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.03,
+      "after": 0.025
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "waterBaseColor"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#0c2631",
+      "after": "#102b36"
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "waterHighlightColor"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#527771",
+      "after": "#769084"
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "environment",
+        "zones"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "act3-world",
+          "from": 0,
+          "to": 4600,
+          "blend": 200
+        }
+      ],
+      "after": [
+        {
+          "id": "act3-world",
+          "from": 0,
+          "to": 6800,
+          "blend": 200
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "kind"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "hidden-waterworks",
+      "after": "vertical-sluice-maintenance-shaft"
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "requiredRoute"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "x": 1250,
+          "y": 2700,
+          "support": "stone-quay-0:collision:0"
+        },
+        {
+          "x": 3010,
+          "y": 2700,
+          "support": "stone-quay-1:collision:0"
+        },
+        {
+          "x": 5050,
+          "y": 2700,
+          "support": "stone-quay-1:collision:0"
+        },
+        {
+          "x": 6840,
+          "y": 2700,
+          "support": "stone-quay-1:collision:0"
+        }
+      ],
+      "after": [
+        {
+          "x": 300,
+          "y": 5400
+        },
+        {
+          "x": 1080,
+          "y": 5400
+        },
+        {
+          "x": 1550,
+          "y": 5400
+        },
+        {
+          "x": 2110,
+          "y": 4950
+        },
+        {
+          "x": 2780,
+          "y": 4950
+        },
+        {
+          "x": 3550,
+          "y": 4950
+        },
+        {
+          "x": 3100,
+          "y": 4500
+        },
+        {
+          "x": 2300,
+          "y": 4500
+        },
+        {
+          "x": 1180,
+          "y": 4050
+        },
+        {
+          "x": 1050,
+          "y": 4050
+        },
+        {
+          "x": 1740,
+          "y": 3600
+        },
+        {
+          "x": 2500,
+          "y": 3600
+        },
+        {
+          "x": 3500,
+          "y": 3600
+        },
+        {
+          "x": 3550,
+          "y": 3600
+        },
+        {
+          "x": 3000,
+          "y": 3150
+        },
+        {
+          "x": 2400,
+          "y": 3150
+        },
+        {
+          "x": 1760,
+          "y": 3150
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "optionalRoutes"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [],
+      "after": [
+        {
+          "id": "observation-return",
+          "description": "낮은 천장의 전망자리에서 수직 구조를 살핀 뒤 열린 사격창으로 돌아온다.",
+          "points": [
+            {
+              "x": 2110,
+              "y": 4950,
+              "support": "gallery-1:collision:0"
+            },
+            {
+              "x": 2780,
+              "y": 4950,
+              "support": "gallery-1:collision:0"
+            },
+            {
+              "x": 3550,
+              "y": 4950,
+              "support": "gallery-1:collision:0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "waterworksRevision"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 1,
+      "after": 3
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "encounterPlan",
+        "groups"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "seal-approach",
+          "purpose": "입구 봉인을 지키는 들린 짐과 등불. 첫 진목 설치면은 비운다.",
+          "anchor": "depot-entry-seal",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 1060,
+              "y": 2700,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 1320,
+              "y": 2700,
+              "elite": true,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "numbered-goods",
+          "purpose": "건너편 착지면 뒤의 생활물품 무리. 가족 번호 조사면 동쪽을 막는다.",
+          "anchor": "household-tally",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 4480,
+              "y": 2700,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "minecart",
+              "x": 4700,
+              "y": 2700,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 5410,
+              "y": 2700,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "inner-store",
+          "purpose": "봉인창고 출구 앞에 남은 들린 운반도구.",
+          "anchor": "waterworks-exit",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 6040,
+              "y": 2700,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 6320,
+              "y": 2700,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "seal-approach",
+          "purpose": "입구 정비 도구와 등불. 첫 발사창을 비운다.",
+          "anchor": "depot-entry-seal",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 900,
+              "y": 5400,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 1120,
+              "y": 5400,
+              "elite": true,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "numbered-goods",
+          "purpose": "전망 통로 끝의 도구, 사격창 뒤로 분리.",
+          "anchor": "stake-arrival-2",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 310,
+              "y": 4050,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 560,
+              "y": 4050,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "inner-store",
+          "purpose": "검문실 뒤쪽에 남은 운반 도구.",
+          "anchor": "stake-arrival-4",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 4580,
+              "y": 3600,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "minecart",
+              "x": 4810,
+              "y": 3600,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 5090,
+              "y": 3600,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "artContract",
+        "forms"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        "검은 수면",
+        "조적 석대",
+        "봉인 창고문",
+        "수위선",
+        "끊긴 운반로",
+        "큰 어둠"
+      ],
+      "after": [
+        "수직 수문축",
+        "정비창",
+        "상층 검문회랑",
+        "봉인문"
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "householdBundles"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "family-bundle-17",
+          "familyNumber": "열일곱",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 4990,
+          "y": 2700
+        },
+        {
+          "id": "family-bundle-18",
+          "familyNumber": "열여덟",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 5560,
+          "y": 2700
+        }
+      ],
+      "after": [
+        {
+          "id": "family-bundle-17",
+          "familyNumber": "열일곱",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 2380,
+          "y": 3150
+        },
+        {
+          "id": "family-bundle-18",
+          "familyNumber": "열여덟",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 2770,
+          "y": 3150
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "crossings"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "waterworks-first",
+          "from": {
+            "x": 1960,
+            "y": 2700
+          },
+          "to": {
+            "x": 2940,
+            "y": 2700
+          },
+          "fromZone": {
+            "left": 1830,
+            "right": 2100,
+            "y": 2700
+          },
+          "landing": {
+            "left": 2800,
+            "right": 7200,
+            "y": 2700
+          },
+          "checkpoint": {
+            "x": 1570,
+            "y": 2700
+          },
+          "markerId": "stake-arrival-1"
+        }
+      ],
+      "after": [
+        {
+          "id": "vertical-25-1",
+          "from": {
+            "x": 1550,
+            "y": 5400
+          },
+          "to": {
+            "x": 2100,
+            "y": 4950
+          },
+          "fromZone": {
+            "left": 1425,
+            "right": 1675,
+            "y": 5400
+          },
+          "landing": {
+            "left": 1970,
+            "right": 3730,
+            "y": 4950
+          },
+          "checkpoint": {
+            "x": 1550,
+            "y": 5400
+          },
+          "markerId": "stake-arrival-1",
+          "label": "동쪽 정비실"
+        },
+        {
+          "id": "vertical-25-2",
+          "from": {
+            "x": 3550,
+            "y": 4950
+          },
+          "to": {
+            "x": 3100,
+            "y": 4500
+          },
+          "fromZone": {
+            "left": 3425,
+            "right": 3675,
+            "y": 4950
+          },
+          "landing": {
+            "left": 2320,
+            "right": 3280,
+            "y": 4500
+          },
+          "checkpoint": {
+            "x": 3550,
+            "y": 4950
+          },
+          "markerId": "stake-arrival-2",
+          "label": "중앙 점검창"
+        },
+        {
+          "id": "vertical-25-4",
+          "from": {
+            "x": 1050,
+            "y": 4050
+          },
+          "to": {
+            "x": 1650,
+            "y": 3600
+          },
+          "fromZone": {
+            "left": 925,
+            "right": 1155,
+            "y": 4050
+          },
+          "landing": {
+            "left": 1500,
+            "right": 2630,
+            "y": 3600
+          },
+          "checkpoint": {
+            "x": 1050,
+            "y": 4050
+          },
+          "markerId": "stake-arrival-3",
+          "label": "상층 물받이"
+        },
+        {
+          "id": "vertical-25-5",
+          "from": {
+            "x": 2500,
+            "y": 3600
+          },
+          "to": {
+            "x": 3500,
+            "y": 3600
+          },
+          "fromZone": {
+            "left": 2375,
+            "right": 2625,
+            "y": 3600
+          },
+          "landing": {
+            "left": 3370,
+            "right": 5330,
+            "y": 3600
+          },
+          "checkpoint": {
+            "x": 2500,
+            "y": 3600
+          },
+          "markerId": "stake-arrival-4",
+          "label": "맞은편 검문실"
+        },
+        {
+          "id": "vertical-25-6",
+          "from": {
+            "x": 3550,
+            "y": 3600
+          },
+          "to": {
+            "x": 3080,
+            "y": 3150
+          },
+          "fromZone": {
+            "left": 3425,
+            "right": 3675,
+            "y": 3600
+          },
+          "landing": {
+            "left": 1320,
+            "right": 3220,
+            "y": 3150
+          },
+          "checkpoint": {
+            "x": 3550,
+            "y": 3600
+          },
+          "markerId": "stake-arrival-5",
+          "label": "상층 봉인회랑"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3",
+        "walkingComponents"
+      ],
+      "hasBefore": false,
+      "hasAfter": true,
+      "after": [
+        {
+          "id": "entry",
+          "points": [
+            {
+              "x": 300,
+              "y": 5400
+            },
+            {
+              "x": 1080,
+              "y": 5400
+            },
+            {
+              "x": 1550,
+              "y": 5400
+            }
+          ]
+        },
+        {
+          "id": "choose-open-window",
+          "points": [
+            {
+              "x": 2110,
+              "y": 4950
+            },
+            {
+              "x": 2780,
+              "y": 4950
+            },
+            {
+              "x": 3550,
+              "y": 4950
+            }
+          ]
+        },
+        {
+          "id": "west-stair-return",
+          "points": [
+            {
+              "x": 3100,
+              "y": 4500
+            },
+            {
+              "x": 2300,
+              "y": 4500
+            },
+            {
+              "x": 1180,
+              "y": 4050
+            },
+            {
+              "x": 1050,
+              "y": 4050
+            }
+          ]
+        },
+        {
+          "id": "upper-water-trough",
+          "points": [
+            {
+              "x": 1740,
+              "y": 3600
+            },
+            {
+              "x": 2500,
+              "y": 3600
+            }
+          ]
+        },
+        {
+          "id": "far-checkpoint",
+          "points": [
+            {
+              "x": 3500,
+              "y": 3600
+            },
+            {
+              "x": 3550,
+              "y": 3600
+            }
+          ]
+        },
+        {
+          "id": "household-record",
+          "points": [
+            {
+              "x": 3000,
+              "y": 3150
+            },
+            {
+              "x": 2400,
+              "y": 3150
+            },
+            {
+              "x": 1760,
+              "y": 3150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "routes"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "x": 1250,
+          "y": 2700
+        },
+        {
+          "x": 3010,
+          "y": 2700
+        },
+        {
+          "x": 5050,
+          "y": 2700
+        },
+        {
+          "x": 6840,
+          "y": 2700
+        }
+      ],
+      "after": [
+        {
+          "x": 2100,
+          "y": 4950
+        },
+        {
+          "x": 3100,
+          "y": 4500
+        },
+        {
+          "x": 1650,
+          "y": 3600
+        },
+        {
+          "x": 3500,
+          "y": 3600
+        },
+        {
+          "x": 3080,
+          "y": 3150
+        },
+        {
+          "x": 1080,
+          "y": 5400
+        },
+        {
+          "x": 2400,
+          "y": 3150
+        },
+        {
+          "x": 1760,
+          "y": 3150
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "anchors",
+        "spawn",
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 320,
+      "after": 300
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "anchors",
+        "spawn",
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 2700,
+      "after": 5400
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "anchors",
+        "start",
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 320,
+      "after": 300
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "anchors",
+        "start",
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 2700,
+      "after": 5400
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "anchors",
+        "exit",
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 6840,
+      "after": 1760
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "anchors",
+        "exit",
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 2700,
+      "after": 3150
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "playBounds",
+        "right"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 7200,
+      "after": 5600
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "playBounds",
+        "bottom"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 4600,
+      "after": 6800
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "terrainBounds",
+        "right"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 13200,
+      "after": 11600
+    },
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "terrainBounds",
+        "bottom"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 28600,
+      "after": 30800
+    },
+    {
+      "domain": "content",
+      "stage": 25,
+      "path": [
+        "steps"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "depot-entry-seal",
+          "label": "담허와 수로 봉인 살피기",
+          "kind": "interact",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "축지진목으로 두 동행 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "household-tally",
+          "label": "생활물품의 가족 번호 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "waterworks-exit",
+          "label": "안쪽 집하장 입구로 이동",
+          "kind": "reach"
+        }
+      ],
+      "after": [
+        {
+          "id": "depot-entry-seal",
+          "label": "담허와 수로 봉인 살피기",
+          "kind": "interact",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "두 동행이 동쪽 정비실에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "두 동행이 중앙 점검창에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "두 동행이 상층 물받이에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-4",
+          "label": "두 동행이 맞은편 검문실에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-5",
+          "label": "두 동행이 상층 봉인회랑에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "household-tally",
+          "label": "생활물품의 가족 번호 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "waterworks-exit",
+          "label": "안쪽 집하장 입구로 이동",
+          "kind": "reach"
+        }
+      ]
+    },
+    {
+      "domain": "content",
+      "stage": 25,
+      "path": [
+        "guide"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "담허로 봉인을 살피고 축지진목을 건너편 석대에 직접 박으세요. 설오와 담허를 각각 골라 설치한 진목을 눌러 옮기세요. 두 사람이 모두 건넌 뒤 가족 번호를 확인하세요.",
+      "after": "담허로 봉인을 살피고 축지진목을 건너편 석대에 직접 박으세요. 설오와 담허를 각각 골라 설치한 진목을 눌러 옮기세요. 낮은 천장 아래에서는 전망을 살피고, 열린 점검창으로 돌아와 위쪽 길을 이으세요. 상층에서 가족 번호를 확인하세요."
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "width"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 9600,
+      "after": 8200
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "height"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 5200,
+      "after": 7200
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "terrains"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "deep-unwalkable-basin",
+          "name": "deep-unwalkable-basin",
+          "type": "solid",
+          "points": [
+            {
+              "x": -500,
+              "y": 5700
+            },
+            {
+              "x": 10100,
+              "y": 5700
+            },
+            {
+              "x": 10100,
+              "y": 6700
+            },
+            {
+              "x": 10100,
+              "y": 29200
+            },
+            {
+              "x": -500,
+              "y": 29200
+            },
+            {
+              "x": -500,
+              "y": 6700
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroWaterworksBasin": true
+          },
+          "playProjection": {
+            "bounds": {
+              "left": 0,
+              "top": 0,
+              "right": 9600,
+              "bottom": 6700
+            },
+            "start": {
+              "x": -500,
+              "y": 5700
+            }
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": "deep-unwalkable-basin",
+          "name": "deep-unwalkable-basin",
+          "type": "solid",
+          "points": [
+            {
+              "x": -500,
+              "y": 7700
+            },
+            {
+              "x": 8700,
+              "y": 7700
+            },
+            {
+              "x": 8700,
+              "y": 8700
+            },
+            {
+              "x": 8700,
+              "y": 31200
+            },
+            {
+              "x": -500,
+              "y": 31200
+            },
+            {
+              "x": -500,
+              "y": 8700
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroWaterworksBasin": true
+          },
+          "playProjection": {
+            "bounds": {
+              "left": 0,
+              "top": 0,
+              "right": 8200,
+              "bottom": 8700
+            },
+            "start": {
+              "x": -500,
+              "y": 7700
+            }
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "materials"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "black-water-0",
+          "kind": "water-pool",
+          "conductive": true,
+          "points": [
+            [
+              1905,
+              3690
+            ],
+            [
+              2595,
+              3690
+            ],
+            [
+              2595,
+              6000
+            ],
+            [
+              1905,
+              6000
+            ]
+          ],
+          "surface": [
+            [
+              1905,
+              3690
+            ],
+            [
+              2595,
+              3690
+            ]
+          ],
+          "bottom": [
+            [
+              1905,
+              6000
+            ],
+            [
+              2595,
+              6000
+            ]
+          ],
+          "attached": true,
+          "reflections": [
+            {
+              "x": 2030,
+              "width": 205,
+              "height": 720
+            },
+            {
+              "x": 2445,
+              "width": 240,
+              "height": 530
+            }
+          ]
+        },
+        {
+          "id": "black-water-1",
+          "kind": "water-pool",
+          "conductive": true,
+          "points": [
+            [
+              4105,
+              3690
+            ],
+            [
+              5045,
+              3690
+            ],
+            [
+              5045,
+              6000
+            ],
+            [
+              4105,
+              6000
+            ]
+          ],
+          "surface": [
+            [
+              4105,
+              3690
+            ],
+            [
+              5045,
+              3690
+            ]
+          ],
+          "bottom": [
+            [
+              4105,
+              6000
+            ],
+            [
+              5045,
+              6000
+            ]
+          ],
+          "attached": true,
+          "reflections": [
+            {
+              "x": 4230,
+              "width": 205,
+              "height": 720
+            },
+            {
+              "x": 4895,
+              "width": 240,
+              "height": 530
+            }
+          ]
+        },
+        {
+          "id": "black-water-2",
+          "kind": "water-pool",
+          "conductive": true,
+          "points": [
+            [
+              6505,
+              3690
+            ],
+            [
+              7195,
+              3690
+            ],
+            [
+              7195,
+              6000
+            ],
+            [
+              6505,
+              6000
+            ]
+          ],
+          "surface": [
+            [
+              6505,
+              3690
+            ],
+            [
+              7195,
+              3690
+            ]
+          ],
+          "bottom": [
+            [
+              6505,
+              6000
+            ],
+            [
+              7195,
+              6000
+            ]
+          ],
+          "attached": true,
+          "reflections": [
+            {
+              "x": 6630,
+              "width": 205,
+              "height": 720
+            },
+            {
+              "x": 7045,
+              "width": 240,
+              "height": 530
+            }
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "deep-basin-water",
+          "kind": "water-pool",
+          "conductive": true,
+          "points": [
+            [
+              0,
+              5690
+            ],
+            [
+              8200,
+              5690
+            ],
+            [
+              8200,
+              7900
+            ],
+            [
+              0,
+              7900
+            ]
+          ],
+          "surface": [
+            [
+              0,
+              5690
+            ],
+            [
+              8200,
+              5690
+            ]
+          ],
+          "bottom": [
+            [
+              0,
+              7900
+            ],
+            [
+              8200,
+              7900
+            ]
+          ],
+          "attached": true,
+          "reflections": [
+            {
+              "x": 2460,
+              "width": 250,
+              "height": 970
+            },
+            {
+              "x": 5576,
+              "width": 350,
+              "height": 800
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "elements"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "continuous-masonry-waterline",
+          "assetId": "a3-waterworks:27:continuous-masonry-waterline",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "small-tally-office",
+          "assetId": "a3-waterworks:27:small-tally-office",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "entry-lamp",
+          "assetId": "a3-waterworks:27:entry-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "stone-quay-0",
+          "assetId": "a3-waterworks:27:stone-quay-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "abandoned-loading-shed",
+          "assetId": "a3-waterworks:27:abandoned-loading-shed",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "loading-oil-lamp",
+          "assetId": "a3-waterworks:27:loading-oil-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "stone-quay-1",
+          "assetId": "a3-waterworks:27:stone-quay-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "household-inspection-dais",
+          "assetId": "a3-waterworks:27:household-inspection-dais",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "inspection-lamp",
+          "assetId": "a3-waterworks:27:inspection-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "stone-quay-2",
+          "assetId": "a3-waterworks:27:stone-quay-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "great-sealed-store",
+          "assetId": "a3-waterworks:27:great-sealed-store",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "final-seal-lamp",
+          "assetId": "a3-waterworks:27:final-seal-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "stone-quay-3",
+          "assetId": "a3-waterworks:27:stone-quay-3",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "broken-haulway-0",
+          "assetId": "a3-waterworks:27:broken-haulway-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "broken-haulway-1",
+          "assetId": "a3-waterworks:27:broken-haulway-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "broken-haulway-2",
+          "assetId": "a3-waterworks:27:broken-haulway-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "numbered-family-bundle",
+          "assetId": "a3-waterworks:27:numbered-family-bundle",
+          "x": 1583.3999999999999,
+          "y": 1302,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "sunk-family-tools",
+          "assetId": "a3-waterworks:27:sunk-family-tools",
+          "x": 2532.6,
+          "y": 1470,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "manifest-bundle",
+          "assetId": "a3-waterworks:27:manifest-bundle",
+          "x": 3666.6,
+          "y": 1386,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        }
+      ],
+      "after": [
+        {
+          "id": "vertical-depot-shell",
+          "assetId": "a3-waterworks-v3:27:vertical-depot-shell",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "masonry-vault",
+          "assetId": "a3-waterworks-v3:27:masonry-vault",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-0",
+          "assetId": "a3-waterworks-v3:27:gallery-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-0",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-0",
+          "assetId": "a3-waterworks-v3:27:haul-number-0",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-1",
+          "assetId": "a3-waterworks-v3:27:gallery-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-1",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-1",
+          "assetId": "a3-waterworks-v3:27:haul-number-1",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-2",
+          "assetId": "a3-waterworks-v3:27:gallery-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-2",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-2",
+          "assetId": "a3-waterworks-v3:27:haul-number-2",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-3",
+          "assetId": "a3-waterworks-v3:27:gallery-3",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-3",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-3",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-3",
+          "assetId": "a3-waterworks-v3:27:haul-number-3",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-4",
+          "assetId": "a3-waterworks-v3:27:gallery-4",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-4",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-4",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-4",
+          "assetId": "a3-waterworks-v3:27:haul-number-4",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-5",
+          "assetId": "a3-waterworks-v3:27:gallery-5",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-5",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-5",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-5",
+          "assetId": "a3-waterworks-v3:27:haul-number-5",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-6",
+          "assetId": "a3-waterworks-v3:27:gallery-6",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-6",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-6",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-6",
+          "assetId": "a3-waterworks-v3:27:haul-number-6",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-7",
+          "assetId": "a3-waterworks-v3:27:gallery-7",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "gallery-lamp-7",
+          "assetId": "a3-waterworks-v3:27:gallery-lamp-7",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "haul-number-7",
+          "assetId": "a3-waterworks-v3:27:haul-number-7",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "entry-haul-stairs",
+          "assetId": "a3-waterworks-v3:27:entry-haul-stairs",
+          "x": 1650,
+          "y": 4700,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "return-inspection-stairs",
+          "assetId": "a3-waterworks-v3:27:return-inspection-stairs",
+          "x": 5080,
+          "y": 3950,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "manifest-stairs",
+          "assetId": "a3-waterworks-v3:27:manifest-stairs",
+          "x": 2250,
+          "y": 3050,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "loading-office-roof",
+          "assetId": "a3-waterworks-v3:27:loading-office-roof",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "loading-office-east-wall",
+          "assetId": "a3-waterworks-v3:27:loading-office-east-wall",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "abandoned-loading-shed",
+          "assetId": "a3-waterworks-v3:27:abandoned-loading-shed",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "loading-oil-lamp",
+          "assetId": "a3-waterworks-v3:27:loading-oil-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "far-passage-roof",
+          "assetId": "a3-waterworks-v3:27:far-passage-roof",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "far-passage-wall",
+          "assetId": "a3-waterworks-v3:27:far-passage-wall",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "far-passage-buttress",
+          "assetId": "a3-waterworks-v3:27:far-passage-buttress",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "far-sealed-store",
+          "assetId": "a3-waterworks-v3:27:far-sealed-store",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "ledger-room-roof",
+          "assetId": "a3-waterworks-v3:27:ledger-room-roof",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "ledger-room-west-wall",
+          "assetId": "a3-waterworks-v3:27:ledger-room-west-wall",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "ledger-vault",
+          "assetId": "a3-waterworks-v3:27:ledger-vault",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "household-inspection-dais",
+          "assetId": "a3-waterworks-v3:27:household-inspection-dais",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "inspection-lamp",
+          "assetId": "a3-waterworks-v3:27:inspection-lamp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "numbered-family-bundle",
+          "assetId": "a3-waterworks-v3:27:numbered-family-bundle",
+          "x": 1092,
+          "y": 1785,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "sunk-family-tools",
+          "assetId": "a3-waterworks-v3:27:sunk-family-tools",
+          "x": 2171.4,
+          "y": 2037,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "manifest-bundle",
+          "assetId": "a3-waterworks-v3:27:manifest-bundle",
+          "x": 886.1999999999999,
+          "y": 1092,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "broken-haul-bridge",
+          "assetId": "a3-waterworks-v3:27:broken-haul-bridge",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "units"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "x": 330,
+          "y": 3300,
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "x": 430,
+          "y": 3300,
+          "facing": 1
+        },
+        {
+          "id": "a3-27-entry-hauling-remnants-0",
+          "kind": "minecart",
+          "team": "enemy",
+          "x": 950,
+          "y": 3300,
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "entry-hauling-remnants",
+          "stageOverrides": {
+            "honroCohort": "entry-hauling-remnants",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-entry-hauling-remnants-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 1180,
+          "y": 3268,
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "entry-hauling-remnants",
+          "stageOverrides": {
+            "honroCohort": "entry-hauling-remnants",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "stone-quay-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-numbered-store-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 3730,
+          "y": 3100,
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "high-numbered-store",
+          "stageOverrides": {
+            "honroCohort": "high-numbered-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-1:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-numbered-store-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 3940,
+          "y": 3068,
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "high-numbered-store",
+          "stageOverrides": {
+            "honroCohort": "high-numbered-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "stone-quay-1:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-lower-loading-store-0",
+          "kind": "minecart",
+          "team": "enemy",
+          "x": 5960,
+          "y": 3500,
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "lower-loading-store",
+          "stageOverrides": {
+            "honroCohort": "lower-loading-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-2:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-lower-loading-store-1",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 6200,
+          "y": 3500,
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "lower-loading-store",
+          "stageOverrides": {
+            "honroCohort": "lower-loading-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-2:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-sealed-manifest-store-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "x": 8580,
+          "y": 3300,
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "sealed-manifest-store",
+          "stageOverrides": {
+            "honroCohort": "sealed-manifest-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "stone-quay-3:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-sealed-manifest-store-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 8840,
+          "y": 3268,
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "sealed-manifest-store",
+          "stageOverrides": {
+            "honroCohort": "sealed-manifest-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "stone-quay-3:collision:0"
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": "p-archer",
+          "kind": "archer",
+          "team": "player",
+          "x": 300,
+          "y": 4700,
+          "facing": 1
+        },
+        {
+          "id": "p-mage",
+          "kind": "mage",
+          "team": "player",
+          "x": 400,
+          "y": 4700,
+          "facing": 1
+        },
+        {
+          "id": "a3-27-entry-hauling-remnants-0",
+          "kind": "minecart",
+          "team": "enemy",
+          "x": 960,
+          "y": 4700,
+          "facing": -1,
+          "spawnIndex": 0,
+          "behavior": "patrol",
+          "encounterGroup": "entry-hauling-remnants",
+          "stageOverrides": {
+            "honroCohort": "entry-hauling-remnants",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-entry-hauling-remnants-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 1170,
+          "y": 4668,
+          "facing": -1,
+          "spawnIndex": 1,
+          "behavior": "patrol",
+          "encounterGroup": "entry-hauling-remnants",
+          "stageOverrides": {
+            "honroCohort": "entry-hauling-remnants",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gallery-0:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-lower-loading-store-0",
+          "kind": "minecart",
+          "team": "enemy",
+          "x": 5180,
+          "y": 4850,
+          "facing": -1,
+          "spawnIndex": 2,
+          "behavior": "patrol",
+          "encounterGroup": "lower-loading-store",
+          "stageOverrides": {
+            "honroCohort": "lower-loading-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-2:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-lower-loading-store-1",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 5420,
+          "y": 4850,
+          "facing": -1,
+          "spawnIndex": 3,
+          "behavior": "patrol",
+          "encounterGroup": "lower-loading-store",
+          "stageOverrides": {
+            "honroCohort": "lower-loading-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-2:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-sealed-manifest-store-0",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "x": 7330,
+          "y": 4400,
+          "facing": -1,
+          "spawnIndex": 4,
+          "behavior": "patrol",
+          "encounterGroup": "sealed-manifest-store",
+          "stageOverrides": {
+            "honroCohort": "sealed-manifest-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-3:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-sealed-manifest-store-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 7600,
+          "y": 4368,
+          "facing": -1,
+          "spawnIndex": 5,
+          "behavior": "patrol",
+          "encounterGroup": "sealed-manifest-store",
+          "stageOverrides": {
+            "honroCohort": "sealed-manifest-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gallery-3:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-numbered-store-0",
+          "kind": "picks",
+          "team": "enemy",
+          "x": 1950,
+          "y": 2600,
+          "facing": -1,
+          "spawnIndex": 6,
+          "behavior": "patrol",
+          "encounterGroup": "high-numbered-store",
+          "stageOverrides": {
+            "honroCohort": "high-numbered-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "gallery-7:collision:0"
+          }
+        },
+        {
+          "id": "a3-27-high-numbered-store-1",
+          "kind": "lantern",
+          "team": "enemy",
+          "x": 2220,
+          "y": 2568,
+          "facing": -1,
+          "spawnIndex": 7,
+          "behavior": "patrol",
+          "encounterGroup": "high-numbered-store",
+          "stageOverrides": {
+            "honroCohort": "high-numbered-store",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged",
+            "honroEncounterSupport": "gallery-7:collision:0"
+          }
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "encounters"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "entry-hauling-remnants",
+          "key": "entry-hauling-remnants",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-entry-hauling-remnants-0",
+            "a3-27-entry-hauling-remnants-1"
+          ]
+        },
+        {
+          "id": "high-numbered-store",
+          "key": "high-numbered-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-high-numbered-store-0",
+            "a3-27-high-numbered-store-1"
+          ]
+        },
+        {
+          "id": "lower-loading-store",
+          "key": "lower-loading-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-lower-loading-store-0",
+            "a3-27-lower-loading-store-1"
+          ]
+        },
+        {
+          "id": "sealed-manifest-store",
+          "key": "sealed-manifest-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-sealed-manifest-store-0",
+            "a3-27-sealed-manifest-store-1"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "entry-hauling-remnants",
+          "key": "entry-hauling-remnants",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-entry-hauling-remnants-0",
+            "a3-27-entry-hauling-remnants-1"
+          ]
+        },
+        {
+          "id": "lower-loading-store",
+          "key": "lower-loading-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-lower-loading-store-0",
+            "a3-27-lower-loading-store-1"
+          ]
+        },
+        {
+          "id": "sealed-manifest-store",
+          "key": "sealed-manifest-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-sealed-manifest-store-0",
+            "a3-27-sealed-manifest-store-1"
+          ]
+        },
+        {
+          "id": "high-numbered-store",
+          "key": "high-numbered-store",
+          "behavior": "patrol",
+          "unitIds": [
+            "a3-27-high-numbered-store-0",
+            "a3-27-high-numbered-store-1"
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "markers"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "depot-route-ledger",
+          "type": "act3",
+          "x": 1180,
+          "y": 3300,
+          "label": "끊긴 운반로의 순서 확인",
+          "action": "act3"
+        },
+        {
+          "id": "stake-arrival-1",
+          "type": "act3",
+          "x": 2790,
+          "y": 3100,
+          "label": "두 동행이 위쪽 석대로 건너기"
+        },
+        {
+          "id": "stake-arrival-2",
+          "type": "act3",
+          "x": 5240,
+          "y": 3500,
+          "label": "두 동행이 아래 하역대로 건너기"
+        },
+        {
+          "id": "stake-arrival-3",
+          "type": "act3",
+          "x": 7390,
+          "y": 3300,
+          "label": "두 동행이 봉인 창고로 건너기"
+        },
+        {
+          "id": "family-manifest",
+          "type": "act3",
+          "x": 8830,
+          "y": 3300,
+          "label": "가족별 적재 명세 챙기기",
+          "action": "act3"
+        },
+        {
+          "id": "deep-depot-exit",
+          "type": "exit",
+          "x": 9320,
+          "y": 3300,
+          "label": "합류할 출구로 이동"
+        }
+      ],
+      "after": [
+        {
+          "id": "stake-arrival-1",
+          "type": "act3",
+          "x": 4650,
+          "y": 4850,
+          "label": "두 동행이 수몰 하역대에 모이기"
+        },
+        {
+          "id": "stake-arrival-2",
+          "type": "act3",
+          "x": 6300,
+          "y": 4400,
+          "label": "두 동행이 맞은편 봉인통로에 모이기"
+        },
+        {
+          "id": "stake-arrival-3",
+          "type": "act3",
+          "x": 6660,
+          "y": 3950,
+          "label": "두 동행이 회수 점검창에 모이기"
+        },
+        {
+          "id": "stake-arrival-4",
+          "type": "act3",
+          "x": 4100,
+          "y": 3050,
+          "label": "두 동행이 윗층 대조대에 모이기"
+        },
+        {
+          "id": "depot-route-ledger",
+          "type": "act3",
+          "x": 1130,
+          "y": 4700,
+          "label": "끊긴 운반로의 순서 확인",
+          "action": "act3"
+        },
+        {
+          "id": "family-manifest",
+          "type": "act3",
+          "x": 1790,
+          "y": 2600,
+          "label": "가족별 적재 명세 챙기기",
+          "action": "act3"
+        },
+        {
+          "id": "deep-depot-exit",
+          "type": "exit",
+          "x": 1260,
+          "y": 2600,
+          "label": "합류할 출구로 이동"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "initialState",
+        "honroWaterworksRevision"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 1,
+      "after": 3
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "initialState",
+        "honroAct3Steps"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "depot-route-ledger",
+          "label": "끊긴 운반로의 순서 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "두 동행이 위쪽 석대로 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "두 동행이 아래 하역대로 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "두 동행이 봉인 창고로 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "family-manifest",
+          "label": "가족별 적재 명세 챙기기",
+          "kind": "interact"
+        },
+        {
+          "id": "deep-depot-exit",
+          "label": "합류할 출구로 이동",
+          "kind": "reach"
+        }
+      ],
+      "after": [
+        {
+          "id": "depot-route-ledger",
+          "label": "끊긴 운반로의 순서 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "두 동행이 수몰 하역대에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "두 동행이 맞은편 봉인통로에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "두 동행이 회수 점검창에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-4",
+          "label": "두 동행이 윗층 대조대에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "family-manifest",
+          "label": "가족별 적재 명세 챙기기",
+          "kind": "interact"
+        },
+        {
+          "id": "deep-depot-exit",
+          "label": "합류할 출구로 이동",
+          "kind": "reach"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "skyTop"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#07171e",
+      "after": "#081821"
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "skyBottom"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#142e36",
+      "after": "#132f38"
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "hazeStrength"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.08,
+      "after": 0.085
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "mistStrength"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.025,
+      "after": 0.035
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "lightStrength"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 0.03,
+      "after": 0.025
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "waterBaseColor"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#0c2631",
+      "after": "#102b36"
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "atmosphere",
+        "overrides",
+        "waterHighlightColor"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "#527771",
+      "after": "#769084"
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "environment",
+        "zones"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "act3-world",
+          "from": 0,
+          "to": 5200,
+          "blend": 200
+        }
+      ],
+      "after": [
+        {
+          "id": "act3-world",
+          "from": 0,
+          "to": 7200,
+          "blend": 200
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "kind"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "hidden-waterworks",
+      "after": "sunken-loading-hall-return-galleries"
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "requiredRoute"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "x": 1180,
+          "y": 3300,
+          "support": "stone-quay-0:collision:0"
+        },
+        {
+          "x": 2790,
+          "y": 3100,
+          "support": "stone-quay-1:collision:0"
+        },
+        {
+          "x": 5240,
+          "y": 3500,
+          "support": "stone-quay-2:collision:0"
+        },
+        {
+          "x": 7390,
+          "y": 3300,
+          "support": "stone-quay-3:collision:0"
+        },
+        {
+          "x": 8830,
+          "y": 3300,
+          "support": "stone-quay-3:collision:0"
+        },
+        {
+          "x": 9320,
+          "y": 3300,
+          "support": "stone-quay-3:collision:0"
+        }
+      ],
+      "after": [
+        {
+          "x": 300,
+          "y": 4700
+        },
+        {
+          "x": 1130,
+          "y": 4700
+        },
+        {
+          "x": 1650,
+          "y": 4700
+        },
+        {
+          "x": 2450,
+          "y": 4250
+        },
+        {
+          "x": 2780,
+          "y": 4250
+        },
+        {
+          "x": 3350,
+          "y": 4250
+        },
+        {
+          "x": 4900,
+          "y": 4850
+        },
+        {
+          "x": 5700,
+          "y": 4850
+        },
+        {
+          "x": 6330,
+          "y": 4400
+        },
+        {
+          "x": 7100,
+          "y": 4400
+        },
+        {
+          "x": 6660,
+          "y": 3950
+        },
+        {
+          "x": 6180,
+          "y": 3950
+        },
+        {
+          "x": 5080,
+          "y": 3500
+        },
+        {
+          "x": 4750,
+          "y": 3500
+        },
+        {
+          "x": 4100,
+          "y": 3050
+        },
+        {
+          "x": 3350,
+          "y": 3050
+        },
+        {
+          "x": 2250,
+          "y": 2600
+        },
+        {
+          "x": 1790,
+          "y": 2600
+        },
+        {
+          "x": 1260,
+          "y": 2600
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "optionalRoutes"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [],
+      "after": [
+        {
+          "id": "observation-return",
+          "description": "낮은 천장의 전망자리에서 수직 구조를 살핀 뒤 열린 사격창으로 돌아온다.",
+          "points": [
+            {
+              "x": 2510,
+              "y": 4250,
+              "support": "gallery-1:collision:0"
+            },
+            {
+              "x": 2780,
+              "y": 4250,
+              "support": "gallery-1:collision:0"
+            },
+            {
+              "x": 3350,
+              "y": 4250,
+              "support": "gallery-1:collision:0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "waterworksRevision"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 1,
+      "after": 3
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "encounterPlan",
+        "groups"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "entry-hauling-remnants",
+          "purpose": "낮은 입구 석대의 들린 운반 도구. 첫 출발면은 비움.",
+          "anchor": "depot-route-ledger",
+          "members": [
+            {
+              "kind": "minecart",
+              "x": 950,
+              "y": 3300,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 1180,
+              "y": 3300,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "high-numbered-store",
+          "purpose": "높은 석대 창고의 원거리 등불. 착지 안전면 동쪽에 배치.",
+          "anchor": "stake-arrival-1",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 3730,
+              "y": 3100,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 3940,
+              "y": 3100,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "lower-loading-store",
+          "purpose": "낮은 수위선의 무거운 짐과 도구. 다음 출발 전 제거.",
+          "anchor": "stake-arrival-2",
+          "members": [
+            {
+              "kind": "minecart",
+              "x": 5960,
+              "y": 3500,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "picks",
+              "x": 6200,
+              "y": 3500,
+              "elite": false,
+              "role": "frontline"
+            }
+          ]
+        },
+        {
+          "id": "sealed-manifest-store",
+          "purpose": "마지막 봉인창고의 등불과 들린 육신. 집결면은 비운다.",
+          "anchor": "family-manifest",
+          "members": [
+            {
+              "kind": "possessedGuard",
+              "x": 8580,
+              "y": 3300,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 8840,
+              "y": 3300,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "entry-hauling-remnants",
+          "purpose": "입구 운반도구, 첫 발사면은 비움.",
+          "anchor": "depot-route-ledger",
+          "members": [
+            {
+              "kind": "minecart",
+              "x": 960,
+              "y": 4700,
+              "elite": false,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 1170,
+              "y": 4700,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "lower-loading-store",
+          "purpose": "수몰 하역장의 운반도구, 착지면과 분리.",
+          "anchor": "stake-arrival-1",
+          "members": [
+            {
+              "kind": "minecart",
+              "x": 5180,
+              "y": 4850,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "picks",
+              "x": 5420,
+              "y": 4850,
+              "elite": false,
+              "role": "frontline"
+            }
+          ]
+        },
+        {
+          "id": "sealed-manifest-store",
+          "purpose": "맞은편 봉인통로 안쪽의 잔재.",
+          "anchor": "stake-arrival-2",
+          "members": [
+            {
+              "kind": "possessedGuard",
+              "x": 7330,
+              "y": 4400,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 7600,
+              "y": 4400,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "high-numbered-store",
+          "purpose": "명세 보관실의 마지막 수비, 도착창은 비움.",
+          "anchor": "family-manifest",
+          "members": [
+            {
+              "kind": "picks",
+              "x": 1950,
+              "y": 2600,
+              "elite": true,
+              "role": "frontline"
+            },
+            {
+              "kind": "lantern",
+              "x": 2220,
+              "y": 2600,
+              "elite": false,
+              "role": "ranged"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "artContract",
+        "forms"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        "검은 수면",
+        "조적 석대",
+        "봉인 창고문",
+        "수위선",
+        "끊긴 운반로",
+        "큰 어둠"
+      ],
+      "after": [
+        "수몰 하역장",
+        "맞은편 봉인통로",
+        "층별 회수회랑",
+        "명세 보관실"
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "crossings"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "upper-quay",
+          "from": {
+            "x": 1760,
+            "y": 3300
+          },
+          "to": {
+            "x": 2740,
+            "y": 3100
+          },
+          "fromZone": {
+            "left": 1630,
+            "right": 1900,
+            "y": 3300
+          },
+          "landing": {
+            "left": 2600,
+            "right": 4100,
+            "y": 3100
+          },
+          "checkpoint": {
+            "x": 1220,
+            "y": 3300
+          },
+          "markerId": "stake-arrival-1"
+        },
+        {
+          "id": "lower-quay",
+          "from": {
+            "x": 3960,
+            "y": 3100
+          },
+          "to": {
+            "x": 5190,
+            "y": 3500
+          },
+          "fromZone": {
+            "left": 3830,
+            "right": 4100,
+            "y": 3100
+          },
+          "landing": {
+            "left": 5050,
+            "right": 6500,
+            "y": 3500
+          },
+          "checkpoint": {
+            "x": 3630,
+            "y": 3100
+          },
+          "markerId": "stake-arrival-2"
+        },
+        {
+          "id": "sealed-quay",
+          "from": {
+            "x": 6360,
+            "y": 3500
+          },
+          "to": {
+            "x": 7340,
+            "y": 3300
+          },
+          "fromZone": {
+            "left": 6230,
+            "right": 6500,
+            "y": 3500
+          },
+          "landing": {
+            "left": 7200,
+            "right": 9600,
+            "y": 3300
+          },
+          "checkpoint": {
+            "x": 5940,
+            "y": 3500
+          },
+          "markerId": "stake-arrival-3"
+        }
+      ],
+      "after": [
+        {
+          "id": "vertical-27-2",
+          "from": {
+            "x": 3350,
+            "y": 4250
+          },
+          "to": {
+            "x": 4650,
+            "y": 4850
+          },
+          "fromZone": {
+            "left": 3225,
+            "right": 3475,
+            "y": 4250
+          },
+          "landing": {
+            "left": 4520,
+            "right": 5980,
+            "y": 4850
+          },
+          "checkpoint": {
+            "x": 3350,
+            "y": 4250
+          },
+          "markerId": "stake-arrival-1",
+          "label": "수몰 하역대"
+        },
+        {
+          "id": "vertical-27-3",
+          "from": {
+            "x": 5700,
+            "y": 4850
+          },
+          "to": {
+            "x": 6300,
+            "y": 4400
+          },
+          "fromZone": {
+            "left": 5575,
+            "right": 5825,
+            "y": 4850
+          },
+          "landing": {
+            "left": 6170,
+            "right": 7880,
+            "y": 4400
+          },
+          "checkpoint": {
+            "x": 5700,
+            "y": 4850
+          },
+          "markerId": "stake-arrival-2",
+          "label": "맞은편 봉인통로"
+        },
+        {
+          "id": "vertical-27-4",
+          "from": {
+            "x": 7100,
+            "y": 4400
+          },
+          "to": {
+            "x": 6660,
+            "y": 3950
+          },
+          "fromZone": {
+            "left": 6975,
+            "right": 7225,
+            "y": 4400
+          },
+          "landing": {
+            "left": 6200,
+            "right": 6880,
+            "y": 3950
+          },
+          "checkpoint": {
+            "x": 7100,
+            "y": 4400
+          },
+          "markerId": "stake-arrival-3",
+          "label": "회수 점검창"
+        },
+        {
+          "id": "vertical-27-6",
+          "from": {
+            "x": 4750,
+            "y": 3500
+          },
+          "to": {
+            "x": 4100,
+            "y": 3050
+          },
+          "fromZone": {
+            "left": 4625,
+            "right": 4875,
+            "y": 3500
+          },
+          "landing": {
+            "left": 3370,
+            "right": 4230,
+            "y": 3050
+          },
+          "checkpoint": {
+            "x": 4750,
+            "y": 3500
+          },
+          "markerId": "stake-arrival-4",
+          "label": "윗층 대조대"
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "householdBundles"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "numbered-family-bundle",
+          "familyNumber": "스물하나",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 3770,
+          "y": 3100
+        },
+        {
+          "id": "sunk-family-tools",
+          "familyNumber": "스물둘",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 6030,
+          "y": 3500
+        },
+        {
+          "id": "manifest-bundle",
+          "familyNumber": "열일곱",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 8730,
+          "y": 3300
+        }
+      ],
+      "after": [
+        {
+          "id": "numbered-family-bundle",
+          "familyNumber": "스물하나",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 2600,
+          "y": 4250
+        },
+        {
+          "id": "sunk-family-tools",
+          "familyNumber": "스물둘",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 5170,
+          "y": 4850
+        },
+        {
+          "id": "manifest-bundle",
+          "familyNumber": "열일곱",
+          "contents": [
+            "숟가락",
+            "놋그릇",
+            "농기구",
+            "이름표"
+          ],
+          "matches": "지상 희생자 명단",
+          "x": 2110,
+          "y": 2600
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3",
+        "walkingComponents"
+      ],
+      "hasBefore": false,
+      "hasAfter": true,
+      "after": [
+        {
+          "id": "entry-stair-and-window",
+          "points": [
+            {
+              "x": 300,
+              "y": 4700
+            },
+            {
+              "x": 1130,
+              "y": 4700
+            },
+            {
+              "x": 1650,
+              "y": 4700
+            },
+            {
+              "x": 2450,
+              "y": 4250
+            },
+            {
+              "x": 2780,
+              "y": 4250
+            },
+            {
+              "x": 3350,
+              "y": 4250
+            }
+          ]
+        },
+        {
+          "id": "sunken-loading-floor",
+          "points": [
+            {
+              "x": 4900,
+              "y": 4850
+            },
+            {
+              "x": 5700,
+              "y": 4850
+            }
+          ]
+        },
+        {
+          "id": "sealed-passage-return",
+          "points": [
+            {
+              "x": 6330,
+              "y": 4400
+            },
+            {
+              "x": 7100,
+              "y": 4400
+            }
+          ]
+        },
+        {
+          "id": "inspection-stair-return",
+          "points": [
+            {
+              "x": 6660,
+              "y": 3950
+            },
+            {
+              "x": 6180,
+              "y": 3950
+            },
+            {
+              "x": 5080,
+              "y": 3500
+            },
+            {
+              "x": 4750,
+              "y": 3500
+            }
+          ]
+        },
+        {
+          "id": "manifest-stair",
+          "points": [
+            {
+              "x": 4100,
+              "y": 3050
+            },
+            {
+              "x": 3350,
+              "y": 3050
+            },
+            {
+              "x": 2250,
+              "y": 2600
+            },
+            {
+              "x": 1790,
+              "y": 2600
+            },
+            {
+              "x": 1260,
+              "y": 2600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "routes"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "x": 1180,
+          "y": 3300
+        },
+        {
+          "x": 2790,
+          "y": 3100
+        },
+        {
+          "x": 5240,
+          "y": 3500
+        },
+        {
+          "x": 7390,
+          "y": 3300
+        },
+        {
+          "x": 8830,
+          "y": 3300
+        },
+        {
+          "x": 9320,
+          "y": 3300
+        }
+      ],
+      "after": [
+        {
+          "x": 4650,
+          "y": 4850
+        },
+        {
+          "x": 6300,
+          "y": 4400
+        },
+        {
+          "x": 6660,
+          "y": 3950
+        },
+        {
+          "x": 4100,
+          "y": 3050
+        },
+        {
+          "x": 1130,
+          "y": 4700
+        },
+        {
+          "x": 1790,
+          "y": 2600
+        },
+        {
+          "x": 1260,
+          "y": 2600
+        }
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "anchors",
+        "spawn",
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 330,
+      "after": 300
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "anchors",
+        "spawn",
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 3300,
+      "after": 4700
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "anchors",
+        "start",
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 330,
+      "after": 300
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "anchors",
+        "start",
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 3300,
+      "after": 4700
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "anchors",
+        "exit",
+        "x"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 9320,
+      "after": 1260
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "anchors",
+        "exit",
+        "y"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 3300,
+      "after": 2600
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "playBounds",
+        "right"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 9600,
+      "after": 8200
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "playBounds",
+        "bottom"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 5200,
+      "after": 7200
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "terrainBounds",
+        "right"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 15600,
+      "after": 14200
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "terrainBounds",
+        "bottom"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": 29200,
+      "after": 31200
+    },
+    {
+      "domain": "content",
+      "stage": 27,
+      "path": [
+        "steps"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": [
+        {
+          "id": "depot-route-ledger",
+          "label": "끊긴 운반로의 순서 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "두 동행이 위쪽 석대로 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "두 동행이 아래 하역대로 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "두 동행이 봉인 창고로 건너기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "family-manifest",
+          "label": "가족별 적재 명세 챙기기",
+          "kind": "interact"
+        },
+        {
+          "id": "deep-depot-exit",
+          "label": "합류할 출구로 이동",
+          "kind": "reach"
+        }
+      ],
+      "after": [
+        {
+          "id": "depot-route-ledger",
+          "label": "끊긴 운반로의 순서 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "stake-arrival-1",
+          "label": "두 동행이 수몰 하역대에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-2",
+          "label": "두 동행이 맞은편 봉인통로에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-3",
+          "label": "두 동행이 회수 점검창에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "stake-arrival-4",
+          "label": "두 동행이 윗층 대조대에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 150
+        },
+        {
+          "id": "family-manifest",
+          "label": "가족별 적재 명세 챙기기",
+          "kind": "interact"
+        },
+        {
+          "id": "deep-depot-exit",
+          "label": "합류할 출구로 이동",
+          "kind": "reach"
+        }
+      ]
+    },
+    {
+      "domain": "content",
+      "stage": 27,
+      "path": [
+        "guide"
+      ],
+      "hasBefore": true,
+      "hasAfter": true,
+      "before": "현재 목표 석대에 진목을 직접 박고 두 동행을 차례로 옮기세요. 둘 다 도착해야 다음 연결이 열립니다. 같은 방식으로 세 석대를 이은 뒤 가족 명세를 챙기세요.",
+      "after": "현재 목표 석대에 진목을 직접 박고 두 동행을 차례로 옮기세요. 둘 다 도착해야 다음 연결이 열립니다. 수몰 하역대로 내려갔다가 맞은편 회랑을 올라 가족 명세를 챙기세요."
+    }
+  ],
+  "keyOrders": [
+    {
+      "domain": "map",
+      "stage": 25,
+      "path": [
+        "design",
+        "act3"
+      ],
+      "before": [
+        "version",
+        "kind",
+        "mainBuildings",
+        "bridges",
+        "requiredRoute",
+        "optionalRoutes",
+        "shotSamples",
+        "scope",
+        "waterworksRevision",
+        "party",
+        "encounterPlan",
+        "artContract",
+        "householdBundles",
+        "crossings"
+      ],
+      "after": [
+        "version",
+        "kind",
+        "mainBuildings",
+        "bridges",
+        "requiredRoute",
+        "optionalRoutes",
+        "shotSamples",
+        "scope",
+        "waterworksRevision",
+        "party",
+        "encounterPlan",
+        "crossings",
+        "householdBundles",
+        "artContract",
+        "walkingComponents"
+      ]
+    },
+    {
+      "domain": "map",
+      "stage": 27,
+      "path": [
+        "design",
+        "act3"
+      ],
+      "before": [
+        "version",
+        "kind",
+        "mainBuildings",
+        "bridges",
+        "requiredRoute",
+        "optionalRoutes",
+        "shotSamples",
+        "scope",
+        "waterworksRevision",
+        "party",
+        "encounterPlan",
+        "artContract",
+        "crossings",
+        "householdBundles"
+      ],
+      "after": [
+        "version",
+        "kind",
+        "mainBuildings",
+        "bridges",
+        "requiredRoute",
+        "optionalRoutes",
+        "shotSamples",
+        "scope",
+        "waterworksRevision",
+        "party",
+        "encounterPlan",
+        "crossings",
+        "householdBundles",
+        "artContract",
+        "walkingComponents"
+      ]
+    }
+  ]
+}

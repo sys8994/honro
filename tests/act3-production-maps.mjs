@@ -11,7 +11,17 @@ assert.equal(g.HONRO_CONTENT.stages.length,30,'Use real Act3 runtime, not a lega
 const errors=g.HonroMaps.validate(p).filter(q=>q.level==='err');assert.equal(errors.length,0,JSON.stringify(errors));
 const results=[];
 const old=splitV1Project(g,p),cases=[...selected.map(s=>({s,project:p,legacy:false})),...old.stages.filter(s=>[25,26,27,28].includes(s.metadata.stageId)&&(!ids.length||ids.includes(s.metadata.stageId))).map(s=>({s,project:old,legacy:true}))];
-function routes(s){const path=s.design.act3.requiredRoute,crossings=s.design.act3.crossings||[];if(!crossings.length)return[{id:'required',points:path},...s.design.act3.optionalRoutes];
+function routes(s){const path=s.design.act3.requiredRoute,crossings=s.design.act3.crossings||[];
+ if(s.initialState.honroWaterworksRevision===3){
+  // Vertical return galleries are ordered connected components, not increasing-x intervals.
+  const parts=s.design.act3.walkingComponents;assert(Array.isArray(parts),'V3 authored walking components');assert.equal(parts.length,crossings.length+1,'Every side of every crossing is walked');assert.equal(new Set(parts.map(r=>r.id)).size,parts.length);
+  assert.deepEqual(path,parts.flatMap(r=>r.points),'Required route retains the complete ordered component list');
+  for(const marker of s.markers.filter(m=>m.action||m.type==='exit'))assert(path.some(p=>p.x===marker.x&&p.y===marker.y),'Walking coverage includes independent document/action/exit '+marker.id);
+  for(const r of [...parts,...s.design.act3.optionalRoutes]){assert(r.points.length>=2);for(const p of r.points)assert(Number.isFinite(p.x)&&Number.isFinite(p.y),'Finite authored route point '+r.id);}
+  for(const [i,c] of crossings.entries()){const from=parts[i].points.at(-1),to=parts[i+1].points[0];assert.equal(from.x,c.from.x);assert.equal(from.y,c.from.y);assert(to.x>=c.landing.left&&to.x<=c.landing.right,'Walking resumes on the actual landing');assert.equal(to.y,c.landing.y);}
+  return [...parts,...s.design.act3.optionalRoutes];
+ }
+ if(!crossings.length)return[{id:'required',points:path},...s.design.act3.optionalRoutes];
  // Disconnected water landings intentionally reject ordinary jumps. Test each
  // walkable component here; actual M09 pair/gate crossing is asserted separately.
  const parts=[];let left=-Infinity,start=[];for(const [i,c]of crossings.entries()){parts.push({id:'required-component-'+i,points:[...start,...path.filter(p=>p.x>=left&&p.x<=c.fromZone.right),c.from]});left=c.landing.left;start=[c.to];}parts.push({id:'required-component-'+crossings.length,points:[...start,...path.filter(p=>p.x>=left)]});return[...parts,...s.design.act3.optionalRoutes];}
