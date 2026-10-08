@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {appHarness,plain,report} from './app-regression-helpers.mjs';
 const h=await appHarness(),g=h.g,A=g.HonroAct3;
-const app=h.load(h.profileThrough(26));app.launch(27);h.finish(app);app.turnNotice=null;
+const app=h.load(h.profileThrough(27));app.launch(28);h.finish(app);app.turnNotice=null;
 const b=app.engine.b,m=A.marker(b,'party-reunion'),memory=A.memory(b),group=A.heroes(b);
 assert.equal(group.length,4);memory.done['water-release']=memory.done['fire-screen']=true;
 for(const [i,u]of group.entries())Object.assign(u,{x:m.x+(i-1.5)*35,y:m.y,vx:0,vy:0,airborne:false,jumping:false});
@@ -10,13 +10,13 @@ const positions=()=>plain(group.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,focus:u.foc
 const before=positions(),clock=plain({round:b.round,teamEnds:b.teamEnds,fireTurns:memory.fireTurns});
 app.actorBoundary=null;A.tick(app,0);assert(!memory.done['party-reunion']);assert(!app.dialogue);
 app.actorBoundary=b.active;A.tick(app,0);app.actorBoundary=null;
-assert(memory.done['party-reunion']);assert.equal(app.dialogue?.staging?.id,'act3-party-reunion-v1');
-assert.equal(b.honroStaging.once['act3-party-reunion-v1'],'running');assert(!app.canInput());
+assert(memory.done['party-reunion']);assert.equal(app.dialogue?.staging?.id,'act3-party-reunion-v2');
+assert.equal(b.honroStaging.once['act3-party-reunion-v2'],'running');assert(!app.canInput());
 assert.deepEqual(positions(),before,'The actual Story lock starts while all four are still in range');
 for(let now=1000;now<2200;now+=50)g.HonroStory.tick(app,now);
 assert(app.dialogue.staging.complete);assert.equal(app.dialogue.lines.length,3);
 assert.deepEqual(positions(),before);assert.deepEqual(plain({round:b.round,teamEnds:b.teamEnds,fireTurns:memory.fireTurns}),clock);
-h.finish(app);assert.equal(b.honroStaging.once['act3-party-reunion-v1'],'done');
+h.finish(app);assert.equal(b.honroStaging.once['act3-party-reunion-v2'],'done');
 app.actorBoundary=b.active;A.tick(app,0);app.actorBoundary=null;assert(!app.dialogue,'Reunion cannot queue twice');
 await report('reunion-staging-boundary',['Actual in-range actor boundary immediately opens the real staging lock; four positions, HP/MP and combat clocks stay fixed; one three-line scene'],{scope:'Declared in-range/control-completed state; production queue and staging execute without replacing their APIs. DOM/Canvas are doubles. Not normal combat or browser evidence.'});
 console.log('PASS actual reunion staging boundary, fixed four-body pose, frozen clocks and single delivery');
