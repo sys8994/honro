@@ -49,7 +49,12 @@ function matches(w,s){
 }
 function pending(b){return(b.honroEvents||[]).some(ev=>ev.required&&!b.honroState.flags['event:'+ev.id]);}
 function populationCap(b){
-  const base=G.HonroProgression.plan(b.honroStage).maxAlive*(b.honroEncounterRevision?2:1);
+  // Explicit v1 expeditions retain the capacity of their frozen roster and
+  // defense waves. The new two-person depot budgets must not shrink an old run.
+  const historical=b.honroSplit?.version===1?G.HONRO_SPLIT_V1?.stages.find(s=>s.metadata.stageId===b.honroStage):null;
+  const historicalSteps=historical&&G.HONRO_SPLIT_V1.content.find(s=>s.id===b.honroStage)?.steps;
+  const capacity=historical&&historicalSteps?historical.units.filter(u=>u.team==='enemy').length+historicalSteps.reduce((n,s)=>n+(s.wave?.count||0),0):G.HonroProgression.plan(b.honroStage).maxAlive;
+  const base=capacity*(b.honroEncounterRevision?2:1);
   // The old plan reserved its initial roster and objective defence waves only.
   // Reserve the finite authored responses as well; otherwise a player who
   // investigates or escorts past surviving guards can never see later entries.
