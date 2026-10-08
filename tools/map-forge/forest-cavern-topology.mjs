@@ -108,6 +108,10 @@ function stage15(st){
  add(st,terrain('fc15-west-descent',[[5350,4440],[5520,4420],[5540,4455],[5370,4475]],{wood:true,oneWay:true,edges:[0]}),'open-shaft');
  st.design.topology.firingSites=[{id:'west-crown',x:4140,y:2996.315789473684,supportId:west.id},{id:'west-shoulder',x:4540,y:3295,supportId:'fc15-west-shoulder'},{id:'under-arch',x:4210,y:ground(st,4210),supportId:'act2-floor'},{id:'water-cleft',x:5620,y:ground(st,5620),supportId:'act2-floor'},{id:'east-crown',x:7310,y:3504.7368421052633,supportId:east.id}];
  st.design.topology.ordinaryRoutes=[{id:'western-arch',points:[{x:2630,y:ground(st,2630)},{x:2820,y:3748.3333333333335},{x:3050,y:3733.3333333333335},{x:3300,y:3500},{x:3540,y:3460},{x:3620,y:3353.3333333333335},{x:3750,y:3190},{x:3890,y:3164.285714285714},{x:4140,y:2996.315789473684}]},{id:'eastern-arch',points:[{x:7800,y:ground(st,7800)},{x:7650,y:3875.277777777778},{x:7510,y:3689.1666666666665},{x:7390,y:3500.5263157894738},{x:7310,y:3504.7368421052633}]}];
+ const shelf=st.terrains.find(t=>t.id==='dry-shoulder'),localShelf=st.design.space.routes.find(r=>r.id==='dry-shoulder');
+ // The short optional outing returns to the sluice approach. Continuing
+ // onto the crown is the separately authored mandatory main route.
+ if(localShelf)localShelf.anchors=[{x:2620,y:ground(st,2620),surfaceId:'floor-main'},{x:2770,y:shelf.points[0].y,surfaceId:'dry-shoulder'},{x:2940,y:shelf.points[0].y,surfaceId:'dry-shoulder'},{x:2620,y:ground(st,2620),surfaceId:'floor-main'}];
  const main=st.design.space.routes.find(r=>r.id==='main');
  const at=x=>({x,y:ground(st,x),surfaceId:'floor-main'});
  main.kind='required';main.defaultJump=true;
