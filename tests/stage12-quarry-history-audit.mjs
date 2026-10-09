@@ -79,6 +79,8 @@ const uiMutations=[
  ['duplicate original line',s=>s+'\n'+ui.before],['stage condition removed',s=>s.replace('b.honroStage===12&&','')],
  ['custom condition removed',s=>s.replace('!b.honroCustom&&','')],['revision condition widened',s=>s.replace('b.honroQuarryRevision===1','b.honroQuarryRevision>=1')],
  ['fallback changed',s=>s.replace("?'라운드':'턴'","?'라운드':'라운드'")],
+ ['legend condition widened',s=>s.replace("b.honroQuarryRevision===1?'실선:","b.honroQuarryRevision>=1?'실선:")],
+ ['legend fallback changed',s=>s.replace(":'실선: 방어 범위 / 점선: 적 진입 금지'",":'실선: 방어 범위 / 점선 안에 적이 오면 중단'")],
  ['adjacent one byte',s=>s.replace(ui.after,ui.after+' ')],['unrelated one byte',s=>s+' ']
 ];
 for(const [name,mutate]of uiMutations){const changed=mutate(sources[ui.path]);assert.notEqual(changed,sources[ui.path],name);

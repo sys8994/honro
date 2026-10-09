@@ -14,23 +14,28 @@ assert.equal(hash(g.HONRO_PROJECT),fixture.files['result.json'].sourceHash,'Actu
 const cases=[];
 async function capture(name,b,{fullScene=false,width=1440,height=960,unit='턴',suppressed=false}={}){
  const saved=JSON.stringify(b),step=A.current(b),hold=g.HonroAct2Art.holdGuide(b,step);assert(hold,'An existing real hold step is required');
- const expected=`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${unit} · ${hold.status}`,cv=canvas(width,height),ctx=cv.getContext('2d'),texts=[];
+ const expected=`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${unit} · ${hold.status}`,cv=canvas(width,height),ctx=cv.getContext('2d'),texts=[],textBounds=[];
  // Observation only: every string is forwarded unchanged to the real native
  // Canvas function. Production labels, context and battle are never replaced.
- const fillText=ctx.fillText;ctx.fillText=function(...args){texts.push(String(args[0]));return fillText.apply(this,args);};
+ const fillText=ctx.fillText;ctx.fillText=function(...args){const text=String(args[0]);texts.push(text);
+  if(text.includes(' 유지 · ')||text.startsWith('실선:')){const naturalWidth=this.measureText(text).width,shownWidth=Math.min(naturalWidth,args[3]??Infinity),start=args[1]-(this.textAlign==='center'?shownWidth/2:this.textAlign==='right'||this.textAlign==='end'?shownWidth:0),m=this.getTransform(),left=m.a*start+m.c*args[2]+m.e,right=m.a*(start+shownWidth)+m.c*args[2]+m.e;
+   textBounds.push({text,naturalWidth,maxWidth:args[3]??null,shownWidth,left,right});assert(left>=0&&right<=width,'Actual native fillText clamp keeps the full badge line inside the viewport');}
+  return fillText.apply(this,args);
+ };
  const scene=new g.HonroScene(cv);Object.assign(scene,{x:hold.x,y:hold.y,scale:.55,manual:true,time:2});
- if(fullScene){const e=new g.HONRO_CORE.Engine(b);assert.equal(JSON.stringify(b),saved,'Engine reload retains the complete recorded battle');scene.render(e,0);await new Promise(r=>setTimeout(r,20));texts.length=0;scene.render(e,0);}
+ if(fullScene){const e=new g.HONRO_CORE.Engine(b);assert.equal(JSON.stringify(b),saved,'Engine reload retains the complete recorded battle');scene.render(e,0);await new Promise(r=>setTimeout(r,20));texts.length=0;textBounds.length=0;scene.render(e,0);}
  else{ctx.save();ctx.fillStyle='#10212b';ctx.fillRect(0,0,width,height);ctx.translate(width/2,height/2);ctx.scale(scene.scale,scene.scale);ctx.translate(-scene.x,-scene.y);g.HonroAct2Art.objectiveGuide(ctx,scene,b);ctx.restore();}
- const labels=texts.filter(t=>t.includes(' 유지 · '));
+ const labels=texts.filter(t=>t.includes(' 유지 · ')),legends=texts.filter(t=>t.startsWith('실선:')),legend=unit==='라운드'?'실선: 방어 범위 / 점선 안에 적이 오면 중단':'실선: 방어 범위 / 점선: 적 진입 금지';
  if(suppressed)assert.deepEqual(labels,[],'Existing custom-map guide suppression is retained');else assert.deepEqual(labels,[expected],'Exactly one actual Native badge uses the scoped unit');
+ assert.deepEqual(legends,suppressed?[]:[legend],'Exactly one scoped Native legend describes contest interruption');
  assert.equal(JSON.stringify(b),saved,'Render cannot change any actor, terrain, resource, hold, wave or saved field');
  if(fullScene)await writeFile(`${out}/${name}.png`,cv.toBuffer('image/png'));
- const row={name,round:b.round,stage:b.honroStage,revision:b.honroQuarryRevision??null,custom:!!b.honroCustom,progress:hold.progress,required:hold.rounds,text:labels[0]??null,battleSha256:hash(saved),fullScene,width,height};cases.push(row);console.log('PASS',name,labels[0]??'(existing custom suppression)');return row;
+ const row={name,round:b.round,stage:b.honroStage,revision:b.honroQuarryRevision??null,custom:!!b.honroCustom,progress:hold.progress,required:hold.rounds,text:labels[0]??null,legend:legends[0]??null,textBounds,battleSha256:hash(saved),fullScene,width,height};cases.push(row);console.log('PASS',name,labels[0]??'(existing custom suppression)',legends[0]??'');return row;
 }
 for(const file of ['open-continue.json','hold-entry-round-checkpoint.json']){
  const data=fixture.files[file],b=plain(data.profile.honroBattle);assert.equal(b.honroStage,12);assert.equal(b.honroQuarryRevision,1);assert.equal(!!b.honroCustom,false);assert.equal(A.current(b).id,'hold-road');
  const name=file.replace('.json','');await capture('actual-'+name,b,{fullScene:true,unit:'라운드'});
- if(file==='hold-entry-round-checkpoint.json'){assert.equal(b.honroState.act2.holds['hold-road'].progress,1);await capture('actual-hold-portrait',b,{fullScene:true,width:900,height:1200,unit:'라운드'});}
+ if(file==='hold-entry-round-checkpoint.json'){assert.equal(b.honroState.act2.holds['hold-road'].progress,1);for(const [name,width,height]of [['portrait-ratio',900,1200],['small-portrait',390,844],['small-landscape',844,390]])await capture('actual-hold-'+name,b,{fullScene:true,width,height,unit:'라운드'});}
 }
 const actual=fixture.files['hold-entry-round-checkpoint.json'].profile.honroBattle;
 for(const revision of [undefined,0,2,'1']){const b=plain(actual);if(revision===undefined)delete b.honroQuarryRevision;else b.honroQuarryRevision=revision;await capture('isolated-revision-'+String(revision)+(typeof revision==='string'?'-string':''),b);}
@@ -43,5 +48,6 @@ const oldMap=plain(stage12QuarryOriginal.stage),old=g.HonroMaps.createBattle(old
 assert.equal(old.honroQuarryRevision,undefined);Object.assign(memory.done,{'clear-approach':true,sign:true});memory.holds={'hold-road':{progress:1,spawned:3}};
 await capture('isolated-immutable-old12',old);
 assert.equal(await readFile(new URL('./fixtures/stage12-quarry/completed-run.json',import.meta.url),'utf8'),fixtureText,'Actual saved profile fixture is never rewritten');
-const result={passed:true,sourceCommit:fixture.sourceCommit,gameplayProductionCommit:fixture.lastGameplayProductionCommit,actualSourceArtifacts:fixture.originalArtifacts,fixtureSha256:hash(fixtureText),projectSha256:hash(g.HONRO_PROJECT),runtimeSha256,rendererSha256:hash(sources[stage12QuarryHoldGuideDelta.path]),originalRendererSha256:hash(historical[stage12QuarryHoldGuideDelta.path]),cases,scope:'Three full-scene Native Canvas captures from two verbatim normal-run hold checkpoints; every battle byte preserved. Remaining scope controls are isolated wording fixtures. No browser, input, performance, difficulty or further gameplay-completion claim.'};
+assert.equal(cases.length,22);assert.equal(cases.filter(row=>row.fullScene).length,5);
+const result={passed:true,conditions:cases.length,fullSceneCaptures:cases.filter(row=>row.fullScene).length,sourceCommit:fixture.sourceCommit,gameplayProductionCommit:fixture.lastGameplayProductionCommit,actualSourceArtifacts:fixture.originalArtifacts,fixtureSha256:hash(fixtureText),projectSha256:hash(g.HONRO_PROJECT),runtimeSha256,rendererSha256:hash(sources[stage12QuarryHoldGuideDelta.path]),originalRendererSha256:hash(historical[stage12QuarryHoldGuideDelta.path]),cases,scope:'Five full-scene Native Canvas captures (including actual390x844/844x390 viewports and900x1200 portrait-ratio) from two verbatim normal-run hold checkpoints; every battle byte preserved. Seventeen remaining scope controls are isolated wording fixtures (22 total conditions). No browser, input, performance, difficulty or further gameplay-completion claim.'};
 await writeFile(out+'/summary.json',JSON.stringify(result,null,2)+'\n');

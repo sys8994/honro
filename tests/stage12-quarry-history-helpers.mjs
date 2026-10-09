@@ -26,7 +26,7 @@ export function stage12QuarryRuntimeSources(){return ferry.stage30FerryRuntimeSo
 export const stage12QuarryHoldGuideDelta=Object.freeze({
  path:'shared/runtime/act2-art.js',
  before:"  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}턴 · ${hold.status}`,'실선: 방어 범위 / 점선: 적 진입 금지'],color);",
- after:"  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'라운드':'턴'} · ${hold.status}`,'실선: 방어 범위 / 점선: 적 진입 금지'],color);"
+ after:"  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'라운드':'턴'} · ${hold.status}`,b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'실선: 방어 범위 / 점선 안에 적이 오면 중단':'실선: 방어 범위 / 점선: 적 진입 금지'],color);"
 });
 export function beforeStage12QuarryHoldGuideSource(source){
  const d=stage12QuarryHoldGuideDelta,row=f.runtime.files.find(r=>r.path===d.path);
