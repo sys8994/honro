@@ -193082,13 +193082,14 @@
           "facing": 1,
           "spawnIndex": 0,
           "behavior": "patrol",
-          "encounterGroup": "quarry-B",
+          "encounterGroup": "quarry-B-front",
           "stageOverrides": {
             "honroCohort": "west",
             "honroAct2Revision": 2,
             "honroAct2Elite": true,
             "honroQuarryCell": "B",
-            "honroEncounterRole": "upper carrier workface",
+            "honroQuarryActivationCell": "B-front",
+            "honroEncounterRole": "B-front",
             "honroEncounterSupport": "sq-north-quarry"
           }
         },
@@ -193101,13 +193102,14 @@
           "facing": 1,
           "spawnIndex": 1,
           "behavior": "patrol",
-          "encounterGroup": "quarry-B",
+          "encounterGroup": "quarry-B-front",
           "stageOverrides": {
             "honroCohort": "west",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "B",
-            "honroEncounterRole": "upper carrier workface",
+            "honroQuarryActivationCell": "B-front",
+            "honroEncounterRole": "B-front",
             "honroEncounterSupport": "sq-north-quarry"
           }
         },
@@ -193120,13 +193122,14 @@
           "facing": 1,
           "spawnIndex": 2,
           "behavior": "patrol",
-          "encounterGroup": "quarry-B",
+          "encounterGroup": "quarry-B-front",
           "stageOverrides": {
             "honroCohort": "west",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "B",
-            "honroEncounterRole": "upper carrier workface",
+            "honroQuarryActivationCell": "B-front",
+            "honroEncounterRole": "B-front",
             "honroEncounterSupport": "sq-north-quarry"
           }
         },
@@ -193139,13 +193142,14 @@
           "facing": 1,
           "spawnIndex": 3,
           "behavior": "patrol",
-          "encounterGroup": "quarry-B",
+          "encounterGroup": "quarry-B-front",
           "stageOverrides": {
             "honroCohort": "west",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "B",
-            "honroEncounterRole": "upper carrier workface",
+            "honroQuarryActivationCell": "B-front",
+            "honroEncounterRole": "B-front",
             "honroEncounterSupport": "sq-north-quarry"
           }
         },
@@ -193158,13 +193162,14 @@
           "facing": 1,
           "spawnIndex": 4,
           "behavior": "patrol",
-          "encounterGroup": "quarry-B",
+          "encounterGroup": "quarry-B-support",
           "stageOverrides": {
-            "honroCohort": "west",
+            "honroCohort": "quarry-B",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "B",
-            "honroEncounterRole": "upper carrier workface",
+            "honroQuarryActivationCell": "B-support",
+            "honroEncounterRole": "B-support",
             "honroEncounterSupport": "sq-north-quarry"
           }
         },
@@ -193177,13 +193182,14 @@
           "facing": 1,
           "spawnIndex": 5,
           "behavior": "patrol",
-          "encounterGroup": "quarry-B",
+          "encounterGroup": "quarry-B-support",
           "stageOverrides": {
-            "honroCohort": "west",
+            "honroCohort": "quarry-B",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "B",
-            "honroEncounterRole": "upper carrier workface",
+            "honroQuarryActivationCell": "B-support",
+            "honroEncounterRole": "B-support",
             "honroEncounterSupport": "sq-north-quarry"
           }
         },
@@ -193196,13 +193202,14 @@
           "facing": -1,
           "spawnIndex": 6,
           "behavior": "patrol",
-          "encounterGroup": "quarry-C",
+          "encounterGroup": "quarry-C-cut",
           "stageOverrides": {
             "honroCohort": "quarry-C",
             "honroAct2Revision": 2,
             "honroAct2Elite": true,
             "honroQuarryCell": "C",
-            "honroEncounterRole": "cut shoulder and cross-level contact",
+            "honroQuarryActivationCell": "C-cut",
+            "honroEncounterRole": "C-cut",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193215,13 +193222,14 @@
           "facing": -1,
           "spawnIndex": 7,
           "behavior": "patrol",
-          "encounterGroup": "quarry-C",
+          "encounterGroup": "quarry-C-cut",
           "stageOverrides": {
             "honroCohort": "quarry-C",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "C",
-            "honroEncounterRole": "cut shoulder and cross-level contact",
+            "honroQuarryActivationCell": "C-cut",
+            "honroEncounterRole": "C-cut",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193229,18 +193237,19 @@
           "id": "sq-c3",
           "kind": "bat",
           "team": "enemy",
-          "x": 5310,
-          "y": 3832.6923076923076,
+          "x": 5278,
+          "y": 3888.1179387499506,
           "facing": -1,
           "spawnIndex": 8,
           "behavior": "patrol",
-          "encounterGroup": "quarry-C",
+          "encounterGroup": "quarry-C-cut",
           "stageOverrides": {
             "honroCohort": "quarry-C",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "C",
-            "honroEncounterRole": "cut shoulder and cross-level contact",
+            "honroQuarryActivationCell": "C-cut",
+            "honroEncounterRole": "C-cut",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193253,13 +193262,14 @@
           "facing": -1,
           "spawnIndex": 9,
           "behavior": "patrol",
-          "encounterGroup": "quarry-C",
+          "encounterGroup": "quarry-C-hinge",
           "stageOverrides": {
             "honroCohort": "quarry-C",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "C",
-            "honroEncounterRole": "cut shoulder and cross-level contact",
+            "honroQuarryActivationCell": "C-hinge",
+            "honroEncounterRole": "C-hinge",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193272,13 +193282,14 @@
           "facing": -1,
           "spawnIndex": 10,
           "behavior": "patrol",
-          "encounterGroup": "quarry-C",
+          "encounterGroup": "quarry-C-hinge",
           "stageOverrides": {
             "honroCohort": "quarry-C",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "C",
-            "honroEncounterRole": "cut shoulder and cross-level contact",
+            "honroQuarryActivationCell": "C-hinge",
+            "honroEncounterRole": "C-hinge",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193291,13 +193302,14 @@
           "facing": -1,
           "spawnIndex": 11,
           "behavior": "patrol",
-          "encounterGroup": "quarry-D",
+          "encounterGroup": "quarry-D-work",
           "stageOverrides": {
             "honroCohort": "quarry-D",
             "honroAct2Revision": 2,
             "honroAct2Elite": true,
             "honroQuarryCell": "D",
-            "honroEncounterRole": "western load turn",
+            "honroQuarryActivationCell": "D-work",
+            "honroEncounterRole": "D-work",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193310,13 +193322,14 @@
           "facing": -1,
           "spawnIndex": 12,
           "behavior": "patrol",
-          "encounterGroup": "quarry-D",
+          "encounterGroup": "quarry-D-work",
           "stageOverrides": {
             "honroCohort": "quarry-D",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "D",
-            "honroEncounterRole": "western load turn",
+            "honroQuarryActivationCell": "D-work",
+            "honroEncounterRole": "D-work",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193329,13 +193342,14 @@
           "facing": -1,
           "spawnIndex": 13,
           "behavior": "patrol",
-          "encounterGroup": "quarry-D",
+          "encounterGroup": "quarry-D-work",
           "stageOverrides": {
             "honroCohort": "quarry-D",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "D",
-            "honroEncounterRole": "western load turn",
+            "honroQuarryActivationCell": "D-work",
+            "honroEncounterRole": "D-work",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193348,13 +193362,14 @@
           "facing": -1,
           "spawnIndex": 14,
           "behavior": "patrol",
-          "encounterGroup": "quarry-D",
+          "encounterGroup": "quarry-D-rear",
           "stageOverrides": {
             "honroCohort": "quarry-D",
             "honroAct2Revision": 2,
             "honroAct2Elite": true,
             "honroQuarryCell": "D",
-            "honroEncounterRole": "western load turn",
+            "honroQuarryActivationCell": "D-rear",
+            "honroEncounterRole": "D-rear",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193367,13 +193382,14 @@
           "facing": -1,
           "spawnIndex": 15,
           "behavior": "patrol",
-          "encounterGroup": "quarry-D",
+          "encounterGroup": "quarry-D-rear",
           "stageOverrides": {
             "honroCohort": "quarry-D",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "D",
-            "honroEncounterRole": "western load turn",
+            "honroQuarryActivationCell": "D-rear",
+            "honroEncounterRole": "D-rear",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193386,13 +193402,14 @@
           "facing": -1,
           "spawnIndex": 16,
           "behavior": "patrol",
-          "encounterGroup": "quarry-D",
+          "encounterGroup": "quarry-D-rear",
           "stageOverrides": {
             "honroCohort": "quarry-D",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "D",
-            "honroEncounterRole": "western load turn",
+            "honroQuarryActivationCell": "D-rear",
+            "honroEncounterRole": "D-rear",
             "honroEncounterSupport": "sq-west-quarry"
           }
         },
@@ -193405,13 +193422,14 @@
           "facing": -1,
           "spawnIndex": 17,
           "behavior": "patrol",
-          "encounterGroup": "quarry-E",
+          "encounterGroup": "quarry-E-hinge",
           "stageOverrides": {
             "honroCohort": "quarry-E",
             "honroAct2Revision": 2,
             "honroAct2Elite": true,
             "honroQuarryCell": "E",
-            "honroEncounterRole": "lower return with close upper-lower soul pair",
+            "honroQuarryActivationCell": "E-hinge",
+            "honroEncounterRole": "E-hinge",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193424,13 +193442,14 @@
           "facing": -1,
           "spawnIndex": 18,
           "behavior": "patrol",
-          "encounterGroup": "quarry-E",
+          "encounterGroup": "quarry-E-hinge",
           "stageOverrides": {
             "honroCohort": "quarry-E",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "E",
-            "honroEncounterRole": "lower return with close upper-lower soul pair",
+            "honroQuarryActivationCell": "E-hinge",
+            "honroEncounterRole": "E-hinge",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193438,18 +193457,19 @@
           "id": "sq-e3",
           "kind": "resonance",
           "team": "enemy",
-          "x": 5935,
-          "y": 4737.5,
+          "x": 5967,
+          "y": 4682.166666666667,
           "facing": -1,
           "spawnIndex": 19,
           "behavior": "patrol",
-          "encounterGroup": "quarry-E",
+          "encounterGroup": "quarry-E-hinge",
           "stageOverrides": {
             "honroCohort": "quarry-E",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "E",
-            "honroEncounterRole": "lower return with close upper-lower soul pair",
+            "honroQuarryActivationCell": "E-hinge",
+            "honroEncounterRole": "E-hinge",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193462,13 +193482,14 @@
           "facing": -1,
           "spawnIndex": 20,
           "behavior": "patrol",
-          "encounterGroup": "quarry-E",
+          "encounterGroup": "quarry-E-west",
           "stageOverrides": {
             "honroCohort": "quarry-E",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "E",
-            "honroEncounterRole": "lower return with close upper-lower soul pair",
+            "honroQuarryActivationCell": "E-west",
+            "honroEncounterRole": "E-west",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193481,13 +193502,14 @@
           "facing": -1,
           "spawnIndex": 21,
           "behavior": "patrol",
-          "encounterGroup": "quarry-E",
+          "encounterGroup": "quarry-E-west",
           "stageOverrides": {
             "honroCohort": "quarry-E",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "E",
-            "honroEncounterRole": "lower return with close upper-lower soul pair",
+            "honroQuarryActivationCell": "E-west",
+            "honroEncounterRole": "E-west",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193500,13 +193522,14 @@
           "facing": -1,
           "spawnIndex": 22,
           "behavior": "patrol",
-          "encounterGroup": "quarry-F",
+          "encounterGroup": "quarry-F-front",
           "stageOverrides": {
             "honroCohort": "quarry-F",
             "honroAct2Revision": 2,
             "honroAct2Elite": true,
             "honroQuarryCell": "F",
-            "honroEncounterRole": "sign defenders",
+            "honroQuarryActivationCell": "F-front",
+            "honroEncounterRole": "F-front",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193519,13 +193542,14 @@
           "facing": -1,
           "spawnIndex": 23,
           "behavior": "patrol",
-          "encounterGroup": "quarry-F",
+          "encounterGroup": "quarry-F-front",
           "stageOverrides": {
             "honroCohort": "quarry-F",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "F",
-            "honroEncounterRole": "sign defenders",
+            "honroQuarryActivationCell": "F-front",
+            "honroEncounterRole": "F-front",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193538,13 +193562,14 @@
           "facing": -1,
           "spawnIndex": 24,
           "behavior": "patrol",
-          "encounterGroup": "quarry-F",
+          "encounterGroup": "quarry-F-west",
           "stageOverrides": {
             "honroCohort": "quarry-F",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "F",
-            "honroEncounterRole": "sign defenders",
+            "honroQuarryActivationCell": "F-west",
+            "honroEncounterRole": "F-west",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193557,13 +193582,14 @@
           "facing": -1,
           "spawnIndex": 25,
           "behavior": "patrol",
-          "encounterGroup": "quarry-F",
+          "encounterGroup": "quarry-F-west",
           "stageOverrides": {
             "honroCohort": "quarry-F",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "F",
-            "honroEncounterRole": "sign defenders",
+            "honroQuarryActivationCell": "F-west",
+            "honroEncounterRole": "F-west",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193576,13 +193602,14 @@
           "facing": -1,
           "spawnIndex": 26,
           "behavior": "patrol",
-          "encounterGroup": "quarry-F",
+          "encounterGroup": "quarry-F-support",
           "stageOverrides": {
             "honroCohort": "quarry-F",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "F",
-            "honroEncounterRole": "sign defenders",
+            "honroQuarryActivationCell": "F-support",
+            "honroEncounterRole": "F-support",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193595,13 +193622,14 @@
           "facing": -1,
           "spawnIndex": 27,
           "behavior": "patrol",
-          "encounterGroup": "quarry-F",
+          "encounterGroup": "quarry-F-support",
           "stageOverrides": {
             "honroCohort": "quarry-F",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "F",
-            "honroEncounterRole": "sign defenders",
+            "honroQuarryActivationCell": "F-support",
+            "honroEncounterRole": "F-support",
             "honroEncounterSupport": "sq-lower-ground"
           }
         },
@@ -193614,13 +193642,14 @@
           "facing": -1,
           "spawnIndex": 28,
           "behavior": "patrol",
-          "encounterGroup": "quarry-G",
+          "encounterGroup": "quarry-G-road",
           "stageOverrides": {
             "honroCohort": "quarry-G",
             "honroAct2Revision": 2,
             "honroAct2Elite": true,
             "honroQuarryCell": "G",
-            "honroEncounterRole": "rear circuit guard",
+            "honroQuarryActivationCell": "G-road",
+            "honroEncounterRole": "G-road",
             "honroEncounterSupport": "sq-back-road"
           }
         },
@@ -193633,13 +193662,14 @@
           "facing": -1,
           "spawnIndex": 29,
           "behavior": "patrol",
-          "encounterGroup": "quarry-G",
+          "encounterGroup": "quarry-G-road",
           "stageOverrides": {
             "honroCohort": "quarry-G",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "G",
-            "honroEncounterRole": "rear circuit guard",
+            "honroQuarryActivationCell": "G-road",
+            "honroEncounterRole": "G-road",
             "honroEncounterSupport": "sq-back-road"
           }
         },
@@ -193647,18 +193677,19 @@
           "id": "sq-g3",
           "kind": "bat",
           "team": "enemy",
-          "x": 8290,
-          "y": 4279.791666666667,
+          "x": 8354,
+          "y": 4392.125,
           "facing": -1,
           "spawnIndex": 30,
           "behavior": "patrol",
-          "encounterGroup": "quarry-G",
+          "encounterGroup": "quarry-G-high",
           "stageOverrides": {
             "honroCohort": "quarry-G",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "G",
-            "honroEncounterRole": "rear circuit guard",
+            "honroQuarryActivationCell": "G-high",
+            "honroEncounterRole": "G-high",
             "honroEncounterSupport": "sq-back-road"
           }
         },
@@ -193666,18 +193697,19 @@
           "id": "sq-g4",
           "kind": "resonance",
           "team": "enemy",
-          "x": 8460,
-          "y": 4187.708333333333,
+          "x": 8613.2193,
+          "y": 4303.229359259259,
           "facing": -1,
           "spawnIndex": 31,
           "behavior": "patrol",
-          "encounterGroup": "quarry-G",
+          "encounterGroup": "quarry-G-high",
           "stageOverrides": {
             "honroCohort": "quarry-G",
             "honroAct2Revision": 2,
             "honroAct2Elite": false,
             "honroQuarryCell": "G",
-            "honroEncounterRole": "rear circuit guard",
+            "honroQuarryActivationCell": "G-high",
+            "honroEncounterRole": "G-high",
             "honroEncounterSupport": "sq-back-road"
           }
         }
@@ -193685,75 +193717,124 @@
       "events": [],
       "encounters": [
         {
-          "id": "quarry-B",
-          "key": "quarry-B",
+          "id": "quarry-B-front",
+          "key": "quarry-B-front",
           "behavior": "patrol",
           "unitIds": [
             "sq-b1",
             "sq-b2",
             "sq-b3",
-            "sq-b4",
+            "sq-b4"
+          ]
+        },
+        {
+          "id": "quarry-B-support",
+          "key": "quarry-B-support",
+          "behavior": "patrol",
+          "unitIds": [
             "sq-b5",
             "sq-b6"
           ]
         },
         {
-          "id": "quarry-C",
-          "key": "quarry-C",
+          "id": "quarry-C-cut",
+          "key": "quarry-C-cut",
           "behavior": "patrol",
           "unitIds": [
             "sq-c1",
             "sq-c2",
-            "sq-c3",
+            "sq-c3"
+          ]
+        },
+        {
+          "id": "quarry-C-hinge",
+          "key": "quarry-C-hinge",
+          "behavior": "patrol",
+          "unitIds": [
             "sq-c4",
             "sq-c5"
           ]
         },
         {
-          "id": "quarry-D",
-          "key": "quarry-D",
+          "id": "quarry-D-work",
+          "key": "quarry-D-work",
           "behavior": "patrol",
           "unitIds": [
             "sq-d1",
             "sq-d2",
-            "sq-d3",
+            "sq-d3"
+          ]
+        },
+        {
+          "id": "quarry-D-rear",
+          "key": "quarry-D-rear",
+          "behavior": "patrol",
+          "unitIds": [
             "sq-d4",
             "sq-d5",
             "sq-d6"
           ]
         },
         {
-          "id": "quarry-E",
-          "key": "quarry-E",
+          "id": "quarry-E-hinge",
+          "key": "quarry-E-hinge",
           "behavior": "patrol",
           "unitIds": [
             "sq-e1",
             "sq-e2",
-            "sq-e3",
+            "sq-e3"
+          ]
+        },
+        {
+          "id": "quarry-E-west",
+          "key": "quarry-E-west",
+          "behavior": "patrol",
+          "unitIds": [
             "sq-e4",
             "sq-e5"
           ]
         },
         {
-          "id": "quarry-F",
-          "key": "quarry-F",
+          "id": "quarry-F-front",
+          "key": "quarry-F-front",
           "behavior": "patrol",
           "unitIds": [
             "sq-f1",
-            "sq-f2",
+            "sq-f2"
+          ]
+        },
+        {
+          "id": "quarry-F-west",
+          "key": "quarry-F-west",
+          "behavior": "patrol",
+          "unitIds": [
             "sq-f3",
-            "sq-f4",
+            "sq-f4"
+          ]
+        },
+        {
+          "id": "quarry-F-support",
+          "key": "quarry-F-support",
+          "behavior": "patrol",
+          "unitIds": [
             "sq-f5",
             "sq-f6"
           ]
         },
         {
-          "id": "quarry-G",
-          "key": "quarry-G",
+          "id": "quarry-G-road",
+          "key": "quarry-G-road",
           "behavior": "patrol",
           "unitIds": [
             "sq-g1",
-            "sq-g2",
+            "sq-g2"
+          ]
+        },
+        {
+          "id": "quarry-G-high",
+          "key": "quarry-G-high",
+          "behavior": "patrol",
+          "unitIds": [
             "sq-g3",
             "sq-g4"
           ]
@@ -194267,19 +194348,19 @@
               ]
             },
             "hold-road-6": {
-              "x": 7180,
-              "y": 5019.354838709677,
+              "x": 5960,
+              "y": 4833.333333333333,
               "support": "sq-lower-ground",
               "spacing": 130,
-              "side": "cave-grade",
-              "warning": "새로 이어진 내리막에서 마지막 수레 둘이 올라온다. 다음 행동 뒤 동굴 쪽 길목을 살피세요.",
+              "side": "west-return",
+              "warning": "아래 회귀길의 안쪽 굽이에서 마지막 수레 둘이 올라온다. 다음 행동 뒤 서쪽 운반길을 살피세요.",
               "alternates": [
                 {
-                  "x": 7300,
-                  "y": 5150.645161290323,
+                  "x": 5700,
+                  "y": 4875.714285714285,
                   "support": "sq-lower-ground",
                   "spacing": 130,
-                  "side": "cave-grade"
+                  "side": "west-return"
                 }
               ]
             }
@@ -196093,8 +196174,8 @@
               "roomId": "quarry-C",
               "unitId": "sq-c3",
               "surfaceId": "sq-west-quarry",
-              "x": 5310,
-              "y": 3832.6923076923076
+              "x": 5278,
+              "y": 3888.1179387499506
             },
             {
               "id": "sq-c4-site",
@@ -196181,8 +196262,8 @@
               "roomId": "quarry-E",
               "unitId": "sq-e3",
               "surfaceId": "sq-lower-ground",
-              "x": 5935,
-              "y": 4737.5
+              "x": 5967,
+              "y": 4682.166666666667
             },
             {
               "id": "sq-e4-site",
@@ -196269,16 +196350,16 @@
               "roomId": "quarry-G",
               "unitId": "sq-g3",
               "surfaceId": "sq-back-road",
-              "x": 8290,
-              "y": 4279.791666666667
+              "x": 8354,
+              "y": 4392.125
             },
             {
               "id": "sq-g4-site",
               "roomId": "quarry-G",
               "unitId": "sq-g4",
               "surfaceId": "sq-back-road",
-              "x": 8460,
-              "y": 4187.708333333333
+              "x": 8613.2193,
+              "y": 4303.229359259259
             }
           ],
           "landmarks": [],
@@ -197429,8 +197510,8 @@
                   {
                     "id": "sq-c3",
                     "kind": "bat",
-                    "x": 5310,
-                    "y": 3832.6923076923076,
+                    "x": 5278,
+                    "y": 3888.1179387499506,
                     "elite": false,
                     "support": "sq-west-quarry"
                   },
@@ -197531,8 +197612,8 @@
                   {
                     "id": "sq-e3",
                     "kind": "resonance",
-                    "x": 5935,
-                    "y": 4737.5,
+                    "x": 5967,
+                    "y": 4682.166666666667,
                     "elite": false,
                     "support": "sq-lower-ground"
                   },
@@ -197633,16 +197714,16 @@
                   {
                     "id": "sq-g3",
                     "kind": "bat",
-                    "x": 8290,
-                    "y": 4279.791666666667,
+                    "x": 8354,
+                    "y": 4392.125,
                     "elite": false,
                     "support": "sq-back-road"
                   },
                   {
                     "id": "sq-g4",
                     "kind": "resonance",
-                    "x": 8460,
-                    "y": 4187.708333333333,
+                    "x": 8613.2193,
+                    "y": 4303.229359259259,
                     "elite": false,
                     "support": "sq-back-road"
                   }
