@@ -2,13 +2,13 @@
   "sourceCommit": "7b9713e23287292269dde6ae359acb7b35a8571f",
   "checkpoint": "WIP exact source checkpoint; regenerate after final geometry/runtime review",
   "beforeProjectSha256": "26d78521f28525b53deb15f30a0f71573030c3ab296f36a053689bf6f94d7bdb",
-  "afterProjectSha256": "a6351dc4370a13459325cb06fa669285bb6c61164703b5c1ded5be0dbce647c2",
+  "afterProjectSha256": "c6c1b86aadb4d4ba45a1d1d4eeb8742fdcce1d6a5d515c735522597a58b4421d",
   "beforeAct12ProjectSha256": "ce7814f5b318e88977167cd4f649523456640cdf7b6aa82588a3ff5d62245f54",
-  "afterAct12ProjectSha256": "cfd252076d06e89d1a9f74b00732b6e50b5630b8ccf299cfb7b94a344a75008b",
+  "afterAct12ProjectSha256": "0324b8034fd838d8cfce443a0e5e1c7c90155f970fad0948c26363ac6c8eebef",
   "beforeLibrarySha256": "33d088631e2a855f1632d8ecb6b8a317807f86140977d6ec12f937d9712c17f6",
-  "afterLibrarySha256": "0938a6fff50b577e876a30030e5abf7af9183d2df915b9b319b5238fae93a1fd",
+  "afterLibrarySha256": "aa302e4aca52d9efccc0e59f9b00829be9b91e5915dbe523ccd88915e609262f",
   "beforeAct12LibrarySha256": "aa02f44403645e19dc5f75a22521d77e1b3de34439e9c940d4a7c50e2b17b487",
-  "afterAct12LibrarySha256": "46de2fb27e84e9a11e755d2c15337567a0a3347d2d3d37ae559d65f9ef9114c3",
+  "afterAct12LibrarySha256": "319dca812bbb95d77fb56aff036c33a9dd6c90b2e431aa933715503cd680723a",
   "stageOrder": [
     "stage-1",
     "stage-2",
@@ -588,7 +588,7 @@
     {
       "id": "stage-18",
       "beforeSha256": "487c5ca18f8e582add210b6653f14645d440de42adf3f3f07fb180d7ba563ff5",
-      "afterSha256": "fa1b15a277c0d3d3403d4e9cbfd4f73007ec9f16a7dd97ffcb7c0e4b5e5156f2",
+      "afterSha256": "a336ae59ea8459c797af63c1ba0f5ed20b4ca644db97646057e2d9db287e2a94",
       "paths": [
         {
           "path": [
@@ -3293,15 +3293,19 @@
                 },
                 {
                   "x": 5650,
-                  "y": 3490
+                  "y": 3350
                 },
                 {
-                  "x": 5390,
-                  "y": 3390
+                  "x": 5430,
+                  "y": 3450
+                },
+                {
+                  "x": 5120,
+                  "y": 3510
                 },
                 {
                   "x": 5050,
-                  "y": 3380
+                  "y": 3410
                 }
               ],
               "baseMaterial": "rock",
@@ -3328,25 +3332,69 @@
               }
             },
             {
+              "id": "sb-west-crown-step",
+              "name": "sb-west-crown-step",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 5690,
+                  "y": 3350
+                },
+                {
+                  "x": 5890,
+                  "y": 3350
+                },
+                {
+                  "x": 5890,
+                  "y": 3415
+                },
+                {
+                  "x": 5690,
+                  "y": 3415
+                }
+              ],
+              "baseMaterial": "wood",
+              "breakable": false,
+              "oneWay": true,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "wood",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-west-crown-step",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
               "id": "sb-west-return-1",
               "name": "sb-west-return-1",
               "type": "solid",
               "points": [
                 {
                   "x": 5680,
-                  "y": 3470
+                  "y": 3500
                 },
                 {
                   "x": 5920,
-                  "y": 3470
+                  "y": 3500
                 },
                 {
                   "x": 5920,
-                  "y": 3540
+                  "y": 3570
                 },
                 {
                   "x": 5680,
-                  "y": 3540
+                  "y": 3570
                 }
               ],
               "baseMaterial": "wood",
@@ -3665,6 +3713,14 @@
                   "y": 5780
                 },
                 {
+                  "x": 5570,
+                  "y": 5780
+                },
+                {
+                  "x": 5570,
+                  "y": 5845
+                },
+                {
                   "x": 5510,
                   "y": 5845
                 },
@@ -3704,7 +3760,8 @@
                   1,
                   2,
                   3,
-                  4
+                  4,
+                  5
                 ],
                 "optional": false
               },
@@ -3774,33 +3831,37 @@
               "type": "solid",
               "points": [
                 {
-                  "x": 4350,
-                  "y": 4680
+                  "x": 4420,
+                  "y": 4515
                 },
                 {
-                  "x": 5080,
-                  "y": 4650
+                  "x": 4930,
+                  "y": 4490
                 },
                 {
                   "x": 5370,
                   "y": 4520
                 },
                 {
-                  "x": 5370,
-                  "y": 4585
+                  "x": 5350,
+                  "y": 4800
                 },
                 {
-                  "x": 5080,
-                  "y": 4715
+                  "x": 4980,
+                  "y": 5040
                 },
                 {
-                  "x": 4350,
-                  "y": 4745
+                  "x": 4620,
+                  "y": 4740
+                },
+                {
+                  "x": 4420,
+                  "y": 4615
                 }
               ],
               "baseMaterial": "rock",
               "breakable": false,
-              "oneWay": true,
+              "oneWay": false,
               "layer": "terrain",
               "properties": {
                 "surfaceKind": "cave",
@@ -4330,28 +4391,20 @@
                   "y": 6370
                 },
                 {
-                  "x": 9820,
-                  "y": 5850
+                  "x": 9800,
+                  "y": 5860
                 },
                 {
-                  "x": 10400,
-                  "y": 5140
+                  "x": 10150,
+                  "y": 5860
                 },
                 {
-                  "x": 10780,
-                  "y": 4790
+                  "x": 10150,
+                  "y": 5965
                 },
                 {
-                  "x": 10780,
-                  "y": 4895
-                },
-                {
-                  "x": 10400,
-                  "y": 5245
-                },
-                {
-                  "x": 9820,
-                  "y": 5955
+                  "x": 9800,
+                  "y": 5965
                 },
                 {
                   "x": 9400,
@@ -4375,8 +4428,7 @@
                 "honroWalkEdges": [
                   0,
                   1,
-                  2,
-                  3
+                  2
                 ],
                 "optional": true
               },
@@ -5404,6 +5456,169 @@
               }
             },
             {
+              "id": "sb-east-cave-return",
+              "name": "sb-east-cave-return",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 9450,
+                  "y": 5300
+                },
+                {
+                  "x": 9800,
+                  "y": 5680
+                },
+                {
+                  "x": 9800,
+                  "y": 5745
+                },
+                {
+                  "x": 9450,
+                  "y": 5365
+                }
+              ],
+              "baseMaterial": "rock",
+              "breakable": false,
+              "oneWay": true,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "cave",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-east-cave-return",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
+              "id": "sb-east-upper-cave",
+              "name": "sb-east-upper-cave",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 9590,
+                  "y": 5230
+                },
+                {
+                  "x": 9990,
+                  "y": 5030
+                },
+                {
+                  "x": 10460,
+                  "y": 5030
+                },
+                {
+                  "x": 10780,
+                  "y": 4790
+                },
+                {
+                  "x": 10780,
+                  "y": 4855
+                },
+                {
+                  "x": 10460,
+                  "y": 5095
+                },
+                {
+                  "x": 9990,
+                  "y": 5095
+                },
+                {
+                  "x": 9590,
+                  "y": 5295
+                }
+              ],
+              "baseMaterial": "rock",
+              "breakable": false,
+              "oneWay": true,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "cave",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-east-upper-cave",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0,
+                  1,
+                  2
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
+              "id": "sb-return-cave-buttress",
+              "name": "sb-return-cave-buttress",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 9100,
+                  "y": 5230
+                },
+                {
+                  "x": 9230,
+                  "y": 5220
+                },
+                {
+                  "x": 9370,
+                  "y": 5230
+                },
+                {
+                  "x": 9350,
+                  "y": 5780
+                },
+                {
+                  "x": 9140,
+                  "y": 5970
+                },
+                {
+                  "x": 8980,
+                  "y": 5710
+                },
+                {
+                  "x": 9010,
+                  "y": 5460
+                }
+              ],
+              "baseMaterial": "rock",
+              "breakable": false,
+              "oneWay": false,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "cave",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-return-cave-buttress",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0,
+                  1
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
               "id": "sb-east-resonance-mass",
               "name": "sb-east-resonance-mass",
               "type": "solid",
@@ -5484,15 +5699,23 @@
                 },
                 {
                   "x": 10650,
-                  "y": 4720
+                  "y": 4660
                 },
                 {
-                  "x": 10540,
-                  "y": 4890
+                  "x": 10595,
+                  "y": 4760
+                },
+                {
+                  "x": 10530,
+                  "y": 4780
+                },
+                {
+                  "x": 10460,
+                  "y": 4670
                 },
                 {
                   "x": 10400,
-                  "y": 4760
+                  "y": 4690
                 }
               ],
               "baseMaterial": "rock",
@@ -6156,6 +6379,17 @@
               "layer": "back"
             },
             {
+              "id": "sb-art-rear-rock-roots",
+              "assetId": "stage18:bell-rear-rock-roots",
+              "x": 0,
+              "y": 0,
+              "scale": 1,
+              "rotation": 0,
+              "snap": false,
+              "depthLayer": "L1",
+              "layer": "back"
+            },
+            {
               "id": "sb-art-rear-corbels",
               "assetId": "stage18:bell-rear-stone-corbels",
               "x": 0,
@@ -6185,39 +6419,7 @@
                   "sb-bell-east-yoke"
                 ],
                 "lipY": 6610,
-                "sourceRevision": 2
-              }
-            },
-            {
-              "id": "sb-art-west-stone-saddle",
-              "assetId": "stage18:bell-west-stone-saddle",
-              "x": 5250,
-              "y": 6810,
-              "scale": 1,
-              "rotation": 0,
-              "snap": false,
-              "depthLayer": "L1",
-              "layer": "mid",
-              "stage18Support": {
-                "terrainId": "sb-west-resting-saddle",
-                "x": 5250,
-                "y": 6810
-              }
-            },
-            {
-              "id": "sb-art-east-stone-saddle",
-              "assetId": "stage18:bell-east-stone-saddle",
-              "x": 8290,
-              "y": 6810,
-              "scale": 1,
-              "rotation": 0,
-              "snap": false,
-              "depthLayer": "L1",
-              "layer": "mid",
-              "stage18Support": {
-                "terrainId": "sb-east-resting-saddle",
-                "x": 8290,
-                "y": 6810
+                "sourceRevision": 3
               }
             },
             {
@@ -6298,6 +6500,38 @@
                 "terrainId": "act2-floor",
                 "x": 11680,
                 "y": 6180
+              }
+            },
+            {
+              "id": "sb-art-lamp-east-lower",
+              "assetId": "stage18:bell-low-stone-lamp",
+              "x": 9990,
+              "y": 5860,
+              "scale": 0.82,
+              "rotation": 0,
+              "snap": false,
+              "depthLayer": "L1",
+              "layer": "back",
+              "stage18Support": {
+                "terrainId": "sb-east-folded-stair",
+                "x": 9990,
+                "y": 5860
+              }
+            },
+            {
+              "id": "sb-art-lamp-east-hidden",
+              "assetId": "stage18:bell-low-stone-lamp",
+              "x": 9190,
+              "y": 5223.076923076923,
+              "scale": 0.82,
+              "rotation": 0,
+              "snap": false,
+              "depthLayer": "L1",
+              "layer": "back",
+              "stage18Support": {
+                "terrainId": "sb-return-cave-buttress",
+                "x": 9190,
+                "y": 5223.076923076923
               }
             }
           ]
@@ -9288,7 +9522,7 @@
                 "x": 5850,
                 "y": 7060,
                 "w": 3000,
-                "h": 420
+                "h": 560
               },
               {
                 "id": "west-refuge",
@@ -11585,6 +11819,7 @@
                 "sb-west-firing-ledge",
                 "sb-west-crown-bridge",
                 "sb-west-firing-crown",
+                "sb-west-crown-step",
                 "sb-west-return-1",
                 "sb-west-return-2",
                 "sb-west-return-3",
@@ -11690,6 +11925,7 @@
                 "act2-floor",
                 "sb-east-inner-rise",
                 "sb-keeper-side-approach",
+                "sb-east-folded-stair",
                 "sb-east-upper-return",
                 "sb-keeper-watch",
                 "sb-keeper-flank-step",
@@ -11721,6 +11957,9 @@
                 "sb-east-upper-return",
                 "sb-keeper-watch",
                 "sb-keeper-cover",
+                "sb-east-cave-return",
+                "sb-east-upper-cave",
+                "sb-return-cave-buttress",
                 "sb-east-resonance-mass",
                 "sb-east-throat-mass",
                 "sb-east-keeper-mass",
@@ -12236,6 +12475,17 @@
               ]
             },
             {
+              "id": "sb-west-crown-step",
+              "terrainId": "sb-west-crown-step",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "chain-shoulder"
+              ]
+            },
+            {
               "id": "sb-west-return-1",
               "terrainId": "sb-west-return-1",
               "role": "shelf",
@@ -12321,7 +12571,8 @@
                 1,
                 2,
                 3,
-                4
+                4,
+                5
               ],
               "roomIds": [
                 "lower-chain-floor"
@@ -12451,8 +12702,7 @@
               "edgeIndices": [
                 0,
                 1,
-                2,
-                3
+                2
               ],
               "roomIds": [
                 "east-return"
@@ -12672,6 +12922,42 @@
               ],
               "roomIds": [
                 "chain-shoulder"
+              ]
+            },
+            {
+              "id": "sb-east-cave-return",
+              "terrainId": "sb-east-cave-return",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "east-return"
+              ]
+            },
+            {
+              "id": "sb-east-upper-cave",
+              "terrainId": "sb-east-upper-cave",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1,
+                2
+              ],
+              "roomIds": [
+                "east-return"
+              ]
+            },
+            {
+              "id": "sb-return-cave-buttress",
+              "terrainId": "sb-return-cave-buttress",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1
+              ],
+              "roomIds": [
+                "east-return"
               ]
             },
             {
@@ -12897,8 +13183,8 @@
                 "y": 3268.4615384615386,
                 "surfaceId": "sb-west-firing-crown",
                 "dropTo": {
-                  "x": 5800,
-                  "support": "sb-west-return-1",
+                  "x": 5750,
+                  "support": "sb-west-crown-step",
                   "stepOffX": 5710
                 }
               },
@@ -13113,11 +13399,98 @@
               "exit": {
                 "x": 10780,
                 "y": 4790,
-                "surfaceId": "sb-east-folded-stair",
+                "surfaceId": "sb-east-upper-cave",
                 "jumpTo": {
                   "x": 10920,
                   "support": "sb-east-upper-return",
                   "speed": 0.6
+                }
+              },
+              "requires": []
+            },
+            {
+              "id": "east-hidden-firing-nook",
+              "from": "east-return",
+              "to": "east-return",
+              "kind": "optional-jump",
+              "routeId": "east-hidden-firing-nook",
+              "entry": {
+                "x": 9450,
+                "y": 5300,
+                "surfaceId": "sb-east-cave-return",
+                "jumpTo": {
+                  "x": 9320,
+                  "support": "sb-return-cave-buttress",
+                  "speed": 0.6
+                }
+              },
+              "exit": {
+                "x": 9350,
+                "y": 5228.571428571428,
+                "surfaceId": "sb-return-cave-buttress",
+                "jumpTo": {
+                  "x": 9470,
+                  "support": "sb-east-cave-return",
+                  "speed": 0.5
+                }
+              },
+              "requires": []
+            },
+            {
+              "id": "keeper-gallery-access",
+              "from": "keeper-ledge",
+              "to": "east-return",
+              "kind": "optional-jump",
+              "routeId": "keeper-gallery-access",
+              "entry": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "exit": {
+                "x": 9650,
+                "y": 6370,
+                "surfaceId": "sb-keeper-side-approach"
+              },
+              "requires": []
+            },
+            {
+              "id": "gallery-keeper-return",
+              "from": "east-return",
+              "to": "keeper-ledge",
+              "kind": "walk",
+              "routeId": "gallery-keeper-return",
+              "entry": {
+                "x": 9650,
+                "y": 6370,
+                "surfaceId": "sb-keeper-side-approach"
+              },
+              "exit": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "requires": []
+            },
+            {
+              "id": "maintenance-crown-ascent",
+              "from": "chain-shoulder",
+              "to": "chain-shoulder",
+              "kind": "optional-jump",
+              "routeId": "maintenance-crown-ascent",
+              "entry": {
+                "x": 5500,
+                "y": 4520,
+                "surfaceId": "sb-maintenance-shelf"
+              },
+              "exit": {
+                "x": 5715,
+                "y": 3350,
+                "surfaceId": "sb-west-crown-step",
+                "jumpTo": {
+                  "x": 5630,
+                  "support": "sb-west-firing-crown",
+                  "speed": 0.5
                 }
               },
               "requires": []
@@ -13175,12 +13548,48 @@
                 "surfaceId": "sb-east-upper-return",
                 "dropTo": {
                   "x": 10720,
-                  "support": "sb-east-folded-stair",
+                  "support": "sb-east-upper-cave",
                   "stepOffX": 10850
                 }
               },
               "exit": {
                 "x": 9550,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "requires": []
+            },
+            {
+              "id": "settled-inner-east-shortcut",
+              "from": "resonance-wall",
+              "to": "east-return",
+              "kind": "walk",
+              "routeId": "settled-inner-east-shortcut",
+              "entry": {
+                "x": 8170,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "exit": {
+                "x": 9510,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "requires": []
+            },
+            {
+              "id": "settled-east-inner-return",
+              "from": "east-return",
+              "to": "resonance-wall",
+              "kind": "walk",
+              "routeId": "settled-east-inner-return",
+              "entry": {
+                "x": 9510,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "exit": {
+                "x": 8170,
                 "y": 6370,
                 "surfaceId": "sb-east-gallery-sill"
               },
@@ -14283,14 +14692,24 @@
                   "y": 3268.4615384615386,
                   "surfaceId": "sb-west-firing-crown",
                   "dropTo": {
-                    "x": 5800,
-                    "support": "sb-west-return-1",
+                    "x": 5750,
+                    "support": "sb-west-crown-step",
                     "stepOffX": 5710
                   }
                 },
                 {
+                  "x": 5870,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step",
+                  "dropTo": {
+                    "x": 5840,
+                    "support": "sb-west-return-1",
+                    "stepOffX": 5950
+                  }
+                },
+                {
                   "x": 5700,
-                  "y": 3470,
+                  "y": 3500,
                   "surfaceId": "sb-west-return-1",
                   "dropTo": {
                     "x": 5480,
@@ -14633,18 +15052,28 @@
                   "surfaceId": "sb-maintenance-return"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4355,
+                  "y": 4684.1,
                   "surfaceId": "sb-maintenance-return"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4355,
+                  "y": 4684.1,
+                  "surfaceId": "sb-maintenance-return",
+                  "jumpTo": {
+                    "x": 4440,
+                    "support": "sb-maintenance-upper-link",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 4440,
+                  "y": 4514.019607843137,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 5080,
-                  "y": 4650,
+                  "x": 4930,
+                  "y": 4490,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
@@ -14686,18 +15115,28 @@
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 5080,
-                  "y": 4650,
+                  "x": 4930,
+                  "y": 4490,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4440,
+                  "y": 4514.019607843137,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4440,
+                  "y": 4514.019607843137,
+                  "surfaceId": "sb-maintenance-upper-link",
+                  "dropTo": {
+                    "x": 4430,
+                    "support": "sb-maintenance-return",
+                    "stepOffX": 4360
+                  }
+                },
+                {
+                  "x": 4430,
+                  "y": 4745.6,
                   "surfaceId": "sb-maintenance-return"
                 },
                 {
@@ -14715,14 +15154,14 @@
                   "y": 5611.969696969697,
                   "surfaceId": "sb-maintenance-return",
                   "dropTo": {
-                    "x": 5470,
+                    "x": 5500,
                     "support": "sb-maintenance-rise",
-                    "stepOffX": 5560
+                    "stepOffX": 5545
                   }
                 },
                 {
-                  "x": 5470,
-                  "y": 5816.363636363636,
+                  "x": 5500,
+                  "y": 5789.090909090909,
                   "surfaceId": "sb-maintenance-rise"
                 },
                 {
@@ -15064,7 +15503,7 @@
                   "jumpTo": {
                     "x": 10690,
                     "support": "sb-east-upper-arc",
-                    "speed": 0.8
+                    "speed": 1
                   }
                 },
                 {
@@ -15303,32 +15742,414 @@
                 },
                 {
                   "x": 9480,
-                  "y": 6270.952380952381,
+                  "y": 6268,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 9820,
-                  "y": 5850,
+                  "x": 9800,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 10400,
-                  "y": 5140,
+                  "x": 9840,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 10780,
-                  "y": 4790,
-                  "surfaceId": "sb-east-folded-stair"
-                },
-                {
-                  "x": 10780,
-                  "y": 4790,
+                  "x": 9840,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair",
+                  "jumpTo": {
+                    "x": 9790,
+                    "support": "sb-east-cave-return",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 9790,
+                  "y": 5669.142857142857,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9450,
+                  "y": 5300,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9450,
+                  "y": 5300,
+                  "surfaceId": "sb-east-cave-return",
+                  "jumpTo": {
+                    "x": 9620,
+                    "support": "sb-east-upper-cave",
+                    "speed": 0.65
+                  }
+                },
+                {
+                  "x": 9620,
+                  "y": 5215,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9990,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10460,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10780,
+                  "y": 4790,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10780,
+                  "y": 4790,
+                  "surfaceId": "sb-east-upper-cave",
                   "jumpTo": {
                     "x": 10920,
                     "support": "sb-east-upper-return",
                     "speed": 0.6
+                  }
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "east-hidden-firing-nook",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 9450,
+                  "y": 5300,
+                  "surfaceId": "sb-east-cave-return",
+                  "jumpTo": {
+                    "x": 9320,
+                    "support": "sb-return-cave-buttress",
+                    "speed": 0.6
+                  }
+                },
+                {
+                  "x": 9320,
+                  "y": 5226.428571428572,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9230,
+                  "y": 5220,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9160,
+                  "y": 5225.384615384615,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9230,
+                  "y": 5220,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9350,
+                  "y": 5228.571428571428,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9350,
+                  "y": 5228.571428571428,
+                  "surfaceId": "sb-return-cave-buttress",
+                  "jumpTo": {
+                    "x": 9470,
+                    "support": "sb-east-cave-return",
+                    "speed": 0.5
+                  }
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "keeper-gallery-access",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10850,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10790,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10790,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover",
+                  "jumpTo": {
+                    "x": 10640,
+                    "support": "sb-keeper-side-approach",
+                    "speed": 0.6
+                  }
+                },
+                {
+                  "x": 10640,
+                  "y": 6032.5,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10200,
+                  "y": 6060,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 9650,
+                  "y": 6370,
+                  "surfaceId": "sb-keeper-side-approach"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "gallery-keeper-return",
+              "kind": "return",
+              "anchors": [
+                {
+                  "x": 9650,
+                  "y": 6370,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10200,
+                  "y": 6060,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10650,
+                  "y": 6031.875,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10650,
+                  "y": 6031.875,
+                  "surfaceId": "sb-keeper-side-approach",
+                  "dropTo": {
+                    "x": 10810,
+                    "support": "sb-keeper-cover",
+                    "stepOffX": 10740
+                  }
+                },
+                {
+                  "x": 10810,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10850,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "maintenance-crown-ascent",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 5500,
+                  "y": 4520,
+                  "surfaceId": "sb-maintenance-shelf"
+                },
+                {
+                  "x": 5460,
+                  "y": 4520,
+                  "surfaceId": "sb-maintenance-shelf"
+                },
+                {
+                  "x": 5460,
+                  "y": 4520,
+                  "surfaceId": "sb-maintenance-shelf",
+                  "jumpTo": {
+                    "x": 5420,
+                    "support": "sb-west-return-6",
+                    "speed": 0.3
+                  }
+                },
+                {
+                  "x": 5420,
+                  "y": 4380,
+                  "surfaceId": "sb-west-return-6"
+                },
+                {
+                  "x": 5460,
+                  "y": 4380,
+                  "surfaceId": "sb-west-return-6"
+                },
+                {
+                  "x": 5460,
+                  "y": 4380,
+                  "surfaceId": "sb-west-return-6",
+                  "jumpTo": {
+                    "x": 5520,
+                    "support": "sb-west-return-5",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 5520,
+                  "y": 4230,
+                  "surfaceId": "sb-west-return-5"
+                },
+                {
+                  "x": 5500,
+                  "y": 4230,
+                  "surfaceId": "sb-west-return-5"
+                },
+                {
+                  "x": 5500,
+                  "y": 4230,
+                  "surfaceId": "sb-west-return-5",
+                  "jumpTo": {
+                    "x": 5470,
+                    "support": "sb-west-return-4",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 5470,
+                  "y": 4040,
+                  "surfaceId": "sb-west-return-4"
+                },
+                {
+                  "x": 5480,
+                  "y": 4040,
+                  "surfaceId": "sb-west-return-4"
+                },
+                {
+                  "x": 5480,
+                  "y": 4040,
+                  "surfaceId": "sb-west-return-4",
+                  "jumpTo": {
+                    "x": 5550,
+                    "support": "sb-west-return-3",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 5550,
+                  "y": 3850,
+                  "surfaceId": "sb-west-return-3"
+                },
+                {
+                  "x": 5510,
+                  "y": 3850,
+                  "surfaceId": "sb-west-return-3"
+                },
+                {
+                  "x": 5510,
+                  "y": 3850,
+                  "surfaceId": "sb-west-return-3",
+                  "jumpTo": {
+                    "x": 5520,
+                    "support": "sb-west-return-2",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 5520,
+                  "y": 3660,
+                  "surfaceId": "sb-west-return-2"
+                },
+                {
+                  "x": 5545,
+                  "y": 3660,
+                  "surfaceId": "sb-west-return-2"
+                },
+                {
+                  "x": 5545,
+                  "y": 3660,
+                  "surfaceId": "sb-west-return-2",
+                  "jumpTo": {
+                    "x": 5700,
+                    "support": "sb-west-return-1",
+                    "speed": 1
+                  }
+                },
+                {
+                  "x": 5700,
+                  "y": 3500,
+                  "surfaceId": "sb-west-return-1"
+                },
+                {
+                  "x": 5810,
+                  "y": 3500,
+                  "surfaceId": "sb-west-return-1"
+                },
+                {
+                  "x": 5810,
+                  "y": 3500,
+                  "surfaceId": "sb-west-return-1",
+                  "jumpTo": {
+                    "x": 5800,
+                    "support": "sb-west-crown-step",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 5800,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step"
+                },
+                {
+                  "x": 5715,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step"
+                },
+                {
+                  "x": 5715,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step",
+                  "jumpTo": {
+                    "x": 5630,
+                    "support": "sb-west-firing-crown",
+                    "speed": 0.5
                   }
                 }
               ],
@@ -15506,23 +16327,68 @@
                   "surfaceId": "sb-east-upper-return",
                   "dropTo": {
                     "x": 10720,
-                    "support": "sb-east-folded-stair",
+                    "support": "sb-east-upper-cave",
                     "stepOffX": 10850
                   }
                 },
                 {
                   "x": 10720,
-                  "y": 4845.263157894737,
+                  "y": 4835,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10460,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9990,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9610,
+                  "y": 5220,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9610,
+                  "y": 5220,
+                  "surfaceId": "sb-east-upper-cave",
+                  "dropTo": {
+                    "x": 9510,
+                    "support": "sb-east-cave-return",
+                    "stepOffX": 9550
+                  }
+                },
+                {
+                  "x": 9510,
+                  "y": 5365.142857142857,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9780,
+                  "y": 5658.285714285715,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9780,
+                  "y": 5658.285714285715,
+                  "surfaceId": "sb-east-cave-return",
+                  "dropTo": {
+                    "x": 9840,
+                    "support": "sb-east-folded-stair",
+                    "stepOffX": 9850
+                  }
+                },
+                {
+                  "x": 9840,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 10400,
-                  "y": 5140,
-                  "surfaceId": "sb-east-folded-stair"
-                },
-                {
-                  "x": 9820,
-                  "y": 5850,
+                  "x": 9800,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
@@ -15548,6 +16414,44 @@
               ],
               "requires": [],
               "defaultJump": true
+            },
+            {
+              "id": "settled-inner-east-shortcut",
+              "kind": "optional-walk",
+              "anchors": [
+                {
+                  "x": 8170,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                },
+                {
+                  "x": 9510,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true,
+              "bellState": "settled"
+            },
+            {
+              "id": "settled-east-inner-return",
+              "kind": "return",
+              "anchors": [
+                {
+                  "x": 9510,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                },
+                {
+                  "x": 8170,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true,
+              "bellState": "settled"
             }
           ]
         },
@@ -17429,6 +18333,24 @@
               "kind": "oil",
               "x": 11680,
               "y": 5961,
+              "radius": 330,
+              "color": "#c5ac7b"
+            },
+            {
+              "id": "sb-art-light-east-lower",
+              "stage18Art": true,
+              "kind": "oil",
+              "x": 9990,
+              "y": 5641,
+              "radius": 330,
+              "color": "#c5ac7b"
+            },
+            {
+              "id": "sb-art-light-east-hidden",
+              "stage18Art": true,
+              "kind": "oil",
+              "x": 9190,
+              "y": 5004.076923076923,
               "radius": 330,
               "color": "#c5ac7b"
             }
@@ -20202,15 +21124,19 @@
                 ],
                 [
                   5650,
-                  3490
+                  3350
                 ],
                 [
-                  5390,
-                  3390
+                  5430,
+                  3450
+                ],
+                [
+                  5120,
+                  3510
                 ],
                 [
                   5050,
-                  3380
+                  3410
                 ]
               ]
             },
@@ -20229,23 +21155,23 @@
                 ],
                 [
                   5356,
-                  3214.8
+                  3217.6
                 ],
                 [
                   5320,
-                  3272.4
+                  3278.8
                 ],
                 [
                   5224,
-                  3355.6
+                  3367.2
                 ],
                 [
                   5212,
-                  3394
+                  3408
                 ],
                 [
                   5050,
-                  3358.8
+                  3370.6
                 ]
               ]
             },
@@ -20256,7 +21182,7 @@
               "points": [
                 [
                   5434,
-                  3211.6
+                  3214.2
                 ],
                 [
                   5650,
@@ -20264,19 +21190,19 @@
                 ],
                 [
                   5650,
-                  3490
+                  3510
                 ],
                 [
                   5344,
-                  3490
+                  3510
                 ],
                 [
                   5374,
-                  3400.4
+                  3414.8
                 ],
                 [
                   5386,
-                  3365.2
+                  3377.4
                 ]
               ]
             },
@@ -20399,6 +21325,14 @@
                   5780
                 ],
                 [
+                  5570,
+                  5780
+                ],
+                [
+                  5570,
+                  5845
+                ],
+                [
                   5510,
                   5845
                 ],
@@ -20434,23 +21368,23 @@
                   5780
                 ],
                 [
-                  4586,
+                  4620.8,
                   5780
                 ],
                 [
-                  4432,
+                  4462.6,
                   5957.1
                 ],
                 [
-                  4300,
+                  4327,
                   6184.8
                 ],
                 [
-                  3948,
+                  3965.4,
                   6513.7
                 ],
                 [
-                  3904,
+                  3920.2,
                   6665.5
                 ],
                 [
@@ -20465,27 +21399,27 @@
               "fill": "#203b48",
               "points": [
                 [
-                  4718,
+                  4756.4,
                   5944.45
                 ],
                 [
-                  5510,
+                  5570,
                   5780
                 ],
                 [
-                  5510,
+                  5570,
                   7045
                 ],
                 [
-                  4388,
+                  4417.4,
                   7045
                 ],
                 [
-                  4498,
+                  4530.4,
                   6690.8
                 ],
                 [
-                  4542,
+                  4575.6,
                   6551.65
                 ]
               ]
@@ -20593,28 +21527,32 @@
               "fill": "#3c555d",
               "points": [
                 [
-                  4350,
-                  4680
+                  4420,
+                  4515
                 ],
                 [
-                  5080,
-                  4650
+                  4930,
+                  4490
                 ],
                 [
                   5370,
                   4520
                 ],
                 [
-                  5370,
-                  4585
+                  5350,
+                  4800
                 ],
                 [
-                  5080,
-                  4715
+                  4980,
+                  5040
                 ],
                 [
-                  4350,
-                  4745
+                  4620,
+                  4740
+                ],
+                [
+                  4420,
+                  4615
                 ]
               ]
             },
@@ -20624,32 +21562,32 @@
               "fill": "#657a77",
               "points": [
                 [
-                  4350,
-                  4520
+                  4420,
+                  4490
                 ],
                 [
-                  4941.6,
-                  4520
+                  4971,
+                  4490
                 ],
                 [
-                  4870.2,
-                  4551.5
+                  4904.5,
+                  4567
                 ],
                 [
-                  4809,
-                  4592
+                  4847.5,
+                  4666
                 ],
                 [
-                  4645.8,
-                  4650.5
+                  4695.5,
+                  4809
                 ],
                 [
-                  4625.4,
-                  4677.5
+                  4676.5,
+                  4875
                 ],
                 [
-                  4350,
-                  4652.75
+                  4420,
+                  4814.5
                 ]
               ]
             },
@@ -20659,28 +21597,28 @@
               "fill": "#203b48",
               "points": [
                 [
-                  5002.8,
-                  4549.25
+                  5028,
+                  4561.5
                 ],
                 [
                   5370,
-                  4520
+                  4490
                 ],
                 [
                   5370,
-                  4745
+                  5040
                 ],
                 [
-                  4849.8,
-                  4745
+                  4885.5,
+                  5040
                 ],
                 [
-                  4900.8,
-                  4682
+                  4933,
+                  4886
                 ],
                 [
-                  4921.2,
-                  4657.25
+                  4952,
+                  4825.5
                 ]
               ]
             },
@@ -22545,6 +23483,301 @@
             },
             {
               "stage18Art": true,
+              "terrainId": "sb-east-cave-return",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  9450,
+                  5300
+                ],
+                [
+                  9800,
+                  5680
+                ],
+                [
+                  9800,
+                  5745
+                ],
+                [
+                  9450,
+                  5365
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-cave-return",
+              "fill": "#657a77",
+              "points": [
+                [
+                  9450,
+                  5300
+                ],
+                [
+                  9653,
+                  5300
+                ],
+                [
+                  9628.5,
+                  5362.3
+                ],
+                [
+                  9607.5,
+                  5442.4
+                ],
+                [
+                  9551.5,
+                  5558.1
+                ],
+                [
+                  9544.5,
+                  5611.5
+                ],
+                [
+                  9450,
+                  5562.55
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-cave-return",
+              "fill": "#203b48",
+              "points": [
+                [
+                  9674,
+                  5357.85
+                ],
+                [
+                  9800,
+                  5300
+                ],
+                [
+                  9800,
+                  5745
+                ],
+                [
+                  9621.5,
+                  5745
+                ],
+                [
+                  9639,
+                  5620.4
+                ],
+                [
+                  9646,
+                  5571.45
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-upper-cave",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  9590,
+                  5230
+                ],
+                [
+                  9990,
+                  5030
+                ],
+                [
+                  10460,
+                  5030
+                ],
+                [
+                  10780,
+                  4790
+                ],
+                [
+                  10780,
+                  4855
+                ],
+                [
+                  10460,
+                  5095
+                ],
+                [
+                  9990,
+                  5095
+                ],
+                [
+                  9590,
+                  5295
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-upper-cave",
+              "fill": "#657a77",
+              "points": [
+                [
+                  9590,
+                  4790
+                ],
+                [
+                  10280.2,
+                  4790
+                ],
+                [
+                  10196.9,
+                  4860.7
+                ],
+                [
+                  10125.5,
+                  4951.6
+                ],
+                [
+                  9935.1,
+                  5082.9
+                ],
+                [
+                  9911.3,
+                  5143.5
+                ],
+                [
+                  9590,
+                  5087.95
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-upper-cave",
+              "fill": "#203b48",
+              "points": [
+                [
+                  10351.6,
+                  4855.65
+                ],
+                [
+                  10780,
+                  4790
+                ],
+                [
+                  10780,
+                  5295
+                ],
+                [
+                  10173.1,
+                  5295
+                ],
+                [
+                  10232.6,
+                  5153.6
+                ],
+                [
+                  10256.4,
+                  5098.05
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-return-cave-buttress",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  9100,
+                  5230
+                ],
+                [
+                  9230,
+                  5220
+                ],
+                [
+                  9370,
+                  5230
+                ],
+                [
+                  9350,
+                  5780
+                ],
+                [
+                  9140,
+                  5970
+                ],
+                [
+                  8980,
+                  5710
+                ],
+                [
+                  9010,
+                  5460
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-return-cave-buttress",
+              "fill": "#657a77",
+              "points": [
+                [
+                  8980,
+                  5220
+                ],
+                [
+                  9206.2,
+                  5220
+                ],
+                [
+                  9178.9,
+                  5325
+                ],
+                [
+                  9155.5,
+                  5460
+                ],
+                [
+                  9093.1,
+                  5655
+                ],
+                [
+                  9085.3,
+                  5745
+                ],
+                [
+                  8980,
+                  5662.5
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-return-cave-buttress",
+              "fill": "#203b48",
+              "points": [
+                [
+                  9229.6,
+                  5317.5
+                ],
+                [
+                  9370,
+                  5220
+                ],
+                [
+                  9370,
+                  5970
+                ],
+                [
+                  9171.1,
+                  5970
+                ],
+                [
+                  9190.6,
+                  5760
+                ],
+                [
+                  9198.4,
+                  5677.5
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
               "terrainId": "sb-east-resonance-mass",
               "fill": "#3c555d",
               "points": [
@@ -22667,15 +23900,23 @@
                 ],
                 [
                   10650,
-                  4720
+                  4660
                 ],
                 [
-                  10540,
-                  4890
+                  10595,
+                  4760
+                ],
+                [
+                  10530,
+                  4780
+                ],
+                [
+                  10460,
+                  4670
                 ],
                 [
                   10400,
-                  4760
+                  4690
                 ]
               ]
             },
@@ -22694,23 +23935,23 @@
                 ],
                 [
                   10527.5,
-                  4298.25
+                  4282.85
                 ],
                 [
                   10512.5,
-                  4422.1
+                  4386.9
                 ],
                 [
                   10472.5,
-                  4601.01
+                  4537.21
                 ],
                 [
                   10467.5,
-                  4683.58
+                  4606.58
                 ],
                 [
                   10400,
-                  4607.89
+                  4542.99
                 ]
               ]
             },
@@ -22721,7 +23962,7 @@
               "points": [
                 [
                   10560,
-                  4291.37
+                  4277.07
                 ],
                 [
                   10650,
@@ -22729,19 +23970,19 @@
                 ],
                 [
                   10650,
-                  4890
+                  4780
                 ],
                 [
                   10522.5,
-                  4890
+                  4780
                 ],
                 [
                   10535,
-                  4697.34
+                  4618.14
                 ],
                 [
                   10540,
-                  4621.65
+                  4554.55
                 ]
               ]
             },
@@ -23102,9 +24343,9 @@
             ],
             "activityBounds": [
               520,
-              3090,
+              3170,
               12500,
-              7480
+              7540
             ],
             "standing": {
               "suppression": {
@@ -23141,6 +24382,16 @@
                 "x": 3170,
                 "y": 5470,
                 "surfaceId": "sb-suppression-court"
+              },
+              "eastLowerShot": {
+                "x": 9980,
+                "y": 5860,
+                "surfaceId": "sb-east-folded-stair"
+              },
+              "eastHiddenShot": {
+                "x": 9230,
+                "y": 5220,
+                "surfaceId": "sb-return-cave-buttress"
               }
             },
             "art": {
@@ -23180,6 +24431,16 @@
                   "key": "keeper",
                   "terrainId": "act2-floor",
                   "x": 11680
+                },
+                {
+                  "key": "east-lower",
+                  "terrainId": "sb-east-folded-stair",
+                  "x": 9990
+                },
+                {
+                  "key": "east-hidden",
+                  "terrainId": "sb-return-cave-buttress",
+                  "x": 9190
                 }
               ]
             },
@@ -23203,7 +24464,7 @@
           "hasBefore": false,
           "hasAfter": true,
           "after": {
-            "revision": 2,
+            "revision": 3,
             "nativeVectorOnly": true,
             "source": "stage18-local-authored-terrain",
             "bodyElementId": "sb-bell-body",
@@ -23211,10 +24472,9 @@
             "visualTopY": 2290,
             "artAssetIds": [
               "stage18:bell-rear-cavern",
+              "stage18:bell-rear-rock-roots",
               "stage18:bell-rear-stone-corbels",
               "stage18:bell-hollow-body",
-              "stage18:bell-west-stone-saddle",
-              "stage18:bell-east-stone-saddle",
               "stage18:bell-low-stone-lamp"
             ],
             "budgets": {
@@ -23956,7 +25216,7 @@
     {
       "id": "stage-19",
       "beforeSha256": "faace7203145cef7cbbac494de5e3435d25c247021314e06c09a710a88fc4b74",
-      "afterSha256": "7a1ea54411830ad3339c9871fa9d6b763d488f45e6d816b4188dbf74bb1b1164",
+      "afterSha256": "c6692593edd7b4f43439034e87f9ad49be60d7c5a0e8c829ec5571ba18ab839d",
       "paths": [
         {
           "path": [
@@ -26621,15 +27881,19 @@
                 },
                 {
                   "x": 5650,
-                  "y": 3490
+                  "y": 3350
                 },
                 {
-                  "x": 5390,
-                  "y": 3390
+                  "x": 5430,
+                  "y": 3450
+                },
+                {
+                  "x": 5120,
+                  "y": 3510
                 },
                 {
                   "x": 5050,
-                  "y": 3380
+                  "y": 3410
                 }
               ],
               "baseMaterial": "rock",
@@ -26656,25 +27920,69 @@
               }
             },
             {
+              "id": "sb-west-crown-step",
+              "name": "sb-west-crown-step",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 5690,
+                  "y": 3350
+                },
+                {
+                  "x": 5890,
+                  "y": 3350
+                },
+                {
+                  "x": 5890,
+                  "y": 3415
+                },
+                {
+                  "x": 5690,
+                  "y": 3415
+                }
+              ],
+              "baseMaterial": "wood",
+              "breakable": false,
+              "oneWay": true,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "wood",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-west-crown-step",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
               "id": "sb-west-return-1",
               "name": "sb-west-return-1",
               "type": "solid",
               "points": [
                 {
                   "x": 5680,
-                  "y": 3470
+                  "y": 3500
                 },
                 {
                   "x": 5920,
-                  "y": 3470
+                  "y": 3500
                 },
                 {
                   "x": 5920,
-                  "y": 3540
+                  "y": 3570
                 },
                 {
                   "x": 5680,
-                  "y": 3540
+                  "y": 3570
                 }
               ],
               "baseMaterial": "wood",
@@ -26993,6 +28301,14 @@
                   "y": 5780
                 },
                 {
+                  "x": 5570,
+                  "y": 5780
+                },
+                {
+                  "x": 5570,
+                  "y": 5845
+                },
+                {
                   "x": 5510,
                   "y": 5845
                 },
@@ -27032,7 +28348,8 @@
                   1,
                   2,
                   3,
-                  4
+                  4,
+                  5
                 ],
                 "optional": false
               },
@@ -27102,33 +28419,37 @@
               "type": "solid",
               "points": [
                 {
-                  "x": 4350,
-                  "y": 4680
+                  "x": 4420,
+                  "y": 4515
                 },
                 {
-                  "x": 5080,
-                  "y": 4650
+                  "x": 4930,
+                  "y": 4490
                 },
                 {
                   "x": 5370,
                   "y": 4520
                 },
                 {
-                  "x": 5370,
-                  "y": 4585
+                  "x": 5350,
+                  "y": 4800
                 },
                 {
-                  "x": 5080,
-                  "y": 4715
+                  "x": 4980,
+                  "y": 5040
                 },
                 {
-                  "x": 4350,
-                  "y": 4745
+                  "x": 4620,
+                  "y": 4740
+                },
+                {
+                  "x": 4420,
+                  "y": 4615
                 }
               ],
               "baseMaterial": "rock",
               "breakable": false,
-              "oneWay": true,
+              "oneWay": false,
               "layer": "terrain",
               "properties": {
                 "surfaceKind": "cave",
@@ -27658,28 +28979,20 @@
                   "y": 6370
                 },
                 {
-                  "x": 9820,
-                  "y": 5850
+                  "x": 9800,
+                  "y": 5860
                 },
                 {
-                  "x": 10400,
-                  "y": 5140
+                  "x": 10150,
+                  "y": 5860
                 },
                 {
-                  "x": 10780,
-                  "y": 4790
+                  "x": 10150,
+                  "y": 5965
                 },
                 {
-                  "x": 10780,
-                  "y": 4895
-                },
-                {
-                  "x": 10400,
-                  "y": 5245
-                },
-                {
-                  "x": 9820,
-                  "y": 5955
+                  "x": 9800,
+                  "y": 5965
                 },
                 {
                   "x": 9400,
@@ -27703,8 +29016,7 @@
                 "honroWalkEdges": [
                   0,
                   1,
-                  2,
-                  3
+                  2
                 ],
                 "optional": true
               },
@@ -28732,6 +30044,169 @@
               }
             },
             {
+              "id": "sb-east-cave-return",
+              "name": "sb-east-cave-return",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 9450,
+                  "y": 5300
+                },
+                {
+                  "x": 9800,
+                  "y": 5680
+                },
+                {
+                  "x": 9800,
+                  "y": 5745
+                },
+                {
+                  "x": 9450,
+                  "y": 5365
+                }
+              ],
+              "baseMaterial": "rock",
+              "breakable": false,
+              "oneWay": true,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "cave",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-east-cave-return",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
+              "id": "sb-east-upper-cave",
+              "name": "sb-east-upper-cave",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 9590,
+                  "y": 5230
+                },
+                {
+                  "x": 9990,
+                  "y": 5030
+                },
+                {
+                  "x": 10460,
+                  "y": 5030
+                },
+                {
+                  "x": 10780,
+                  "y": 4790
+                },
+                {
+                  "x": 10780,
+                  "y": 4855
+                },
+                {
+                  "x": 10460,
+                  "y": 5095
+                },
+                {
+                  "x": 9990,
+                  "y": 5095
+                },
+                {
+                  "x": 9590,
+                  "y": 5295
+                }
+              ],
+              "baseMaterial": "rock",
+              "breakable": false,
+              "oneWay": true,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "cave",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-east-upper-cave",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0,
+                  1,
+                  2
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
+              "id": "sb-return-cave-buttress",
+              "name": "sb-return-cave-buttress",
+              "type": "solid",
+              "points": [
+                {
+                  "x": 9100,
+                  "y": 5230
+                },
+                {
+                  "x": 9230,
+                  "y": 5220
+                },
+                {
+                  "x": 9370,
+                  "y": 5230
+                },
+                {
+                  "x": 9350,
+                  "y": 5780
+                },
+                {
+                  "x": 9140,
+                  "y": 5970
+                },
+                {
+                  "x": 8980,
+                  "y": 5710
+                },
+                {
+                  "x": 9010,
+                  "y": 5460
+                }
+              ],
+              "baseMaterial": "rock",
+              "breakable": false,
+              "oneWay": false,
+              "layer": "terrain",
+              "properties": {
+                "surfaceKind": "cave",
+                "honroCave": true,
+                "honroBell": true,
+                "honroSpaceSurfaceId": "sb-return-cave-buttress",
+                "honroSurfaceRole": "shelf",
+                "honroWalkEdges": [
+                  0,
+                  1
+                ],
+                "optional": true
+              },
+              "detail": {
+                "spacing": 18,
+                "roughness": 0,
+                "seed": 18,
+                "optimizeEpsilon": 0
+              }
+            },
+            {
               "id": "sb-east-resonance-mass",
               "name": "sb-east-resonance-mass",
               "type": "solid",
@@ -28812,15 +30287,23 @@
                 },
                 {
                   "x": 10650,
-                  "y": 4720
+                  "y": 4660
                 },
                 {
-                  "x": 10540,
-                  "y": 4890
+                  "x": 10595,
+                  "y": 4760
+                },
+                {
+                  "x": 10530,
+                  "y": 4780
+                },
+                {
+                  "x": 10460,
+                  "y": 4670
                 },
                 {
                   "x": 10400,
-                  "y": 4760
+                  "y": 4690
                 }
               ],
               "baseMaterial": "rock",
@@ -29777,6 +31260,17 @@
               "layer": "back"
             },
             {
+              "id": "sb-art-rear-rock-roots",
+              "assetId": "stage18:bell-rear-rock-roots",
+              "x": 0,
+              "y": 0,
+              "scale": 1,
+              "rotation": 0,
+              "snap": false,
+              "depthLayer": "L1",
+              "layer": "back"
+            },
+            {
               "id": "sb-art-rear-corbels",
               "assetId": "stage18:bell-rear-stone-corbels",
               "x": 0,
@@ -29806,39 +31300,7 @@
                   "sb-bell-east-yoke"
                 ],
                 "lipY": 6810,
-                "sourceRevision": 2
-              }
-            },
-            {
-              "id": "sb-art-west-stone-saddle",
-              "assetId": "stage18:bell-west-stone-saddle",
-              "x": 5250,
-              "y": 6810,
-              "scale": 1,
-              "rotation": 0,
-              "snap": false,
-              "depthLayer": "L1",
-              "layer": "mid",
-              "stage18Support": {
-                "terrainId": "sb-west-resting-saddle",
-                "x": 5250,
-                "y": 6810
-              }
-            },
-            {
-              "id": "sb-art-east-stone-saddle",
-              "assetId": "stage18:bell-east-stone-saddle",
-              "x": 8290,
-              "y": 6810,
-              "scale": 1,
-              "rotation": 0,
-              "snap": false,
-              "depthLayer": "L1",
-              "layer": "mid",
-              "stage18Support": {
-                "terrainId": "sb-east-resting-saddle",
-                "x": 8290,
-                "y": 6810
+                "sourceRevision": 3
               }
             },
             {
@@ -29919,6 +31381,38 @@
                 "terrainId": "act2-floor",
                 "x": 11680,
                 "y": 6180
+              }
+            },
+            {
+              "id": "sb-art-lamp-east-lower",
+              "assetId": "stage18:bell-low-stone-lamp",
+              "x": 9990,
+              "y": 5860,
+              "scale": 0.82,
+              "rotation": 0,
+              "snap": false,
+              "depthLayer": "L1",
+              "layer": "back",
+              "stage18Support": {
+                "terrainId": "sb-east-folded-stair",
+                "x": 9990,
+                "y": 5860
+              }
+            },
+            {
+              "id": "sb-art-lamp-east-hidden",
+              "assetId": "stage18:bell-low-stone-lamp",
+              "x": 9190,
+              "y": 5223.076923076923,
+              "scale": 0.82,
+              "rotation": 0,
+              "snap": false,
+              "depthLayer": "L1",
+              "layer": "back",
+              "stage18Support": {
+                "terrainId": "sb-return-cave-buttress",
+                "x": 9190,
+                "y": 5223.076923076923
               }
             }
           ]
@@ -32032,7 +33526,7 @@
                 "x": 5850,
                 "y": 7060,
                 "w": 3000,
-                "h": 420
+                "h": 560
               },
               {
                 "id": "west-refuge",
@@ -34308,6 +35802,7 @@
                 "sb-west-firing-ledge",
                 "sb-west-crown-bridge",
                 "sb-west-firing-crown",
+                "sb-west-crown-step",
                 "sb-west-return-1",
                 "sb-west-return-2",
                 "sb-west-return-3",
@@ -34413,6 +35908,7 @@
                 "act2-floor",
                 "sb-east-inner-rise",
                 "sb-keeper-side-approach",
+                "sb-east-folded-stair",
                 "sb-east-upper-return",
                 "sb-keeper-watch",
                 "sb-keeper-flank-step",
@@ -34444,6 +35940,9 @@
                 "sb-east-upper-return",
                 "sb-keeper-watch",
                 "sb-keeper-cover",
+                "sb-east-cave-return",
+                "sb-east-upper-cave",
+                "sb-return-cave-buttress",
                 "sb-east-resonance-mass",
                 "sb-east-throat-mass",
                 "sb-east-keeper-mass",
@@ -34959,6 +36458,17 @@
               ]
             },
             {
+              "id": "sb-west-crown-step",
+              "terrainId": "sb-west-crown-step",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "chain-shoulder"
+              ]
+            },
+            {
               "id": "sb-west-return-1",
               "terrainId": "sb-west-return-1",
               "role": "shelf",
@@ -35044,7 +36554,8 @@
                 1,
                 2,
                 3,
-                4
+                4,
+                5
               ],
               "roomIds": [
                 "lower-chain-floor"
@@ -35174,8 +36685,7 @@
               "edgeIndices": [
                 0,
                 1,
-                2,
-                3
+                2
               ],
               "roomIds": [
                 "east-return"
@@ -35395,6 +36905,42 @@
               ],
               "roomIds": [
                 "chain-shoulder"
+              ]
+            },
+            {
+              "id": "sb-east-cave-return",
+              "terrainId": "sb-east-cave-return",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "east-return"
+              ]
+            },
+            {
+              "id": "sb-east-upper-cave",
+              "terrainId": "sb-east-upper-cave",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1,
+                2
+              ],
+              "roomIds": [
+                "east-return"
+              ]
+            },
+            {
+              "id": "sb-return-cave-buttress",
+              "terrainId": "sb-return-cave-buttress",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1
+              ],
+              "roomIds": [
+                "east-return"
               ]
             },
             {
@@ -35620,8 +37166,8 @@
                 "y": 3268.4615384615386,
                 "surfaceId": "sb-west-firing-crown",
                 "dropTo": {
-                  "x": 5800,
-                  "support": "sb-west-return-1",
+                  "x": 5750,
+                  "support": "sb-west-crown-step",
                   "stepOffX": 5710
                 }
               },
@@ -35836,11 +37382,98 @@
               "exit": {
                 "x": 10780,
                 "y": 4790,
-                "surfaceId": "sb-east-folded-stair",
+                "surfaceId": "sb-east-upper-cave",
                 "jumpTo": {
                   "x": 10920,
                   "support": "sb-east-upper-return",
                   "speed": 0.6
+                }
+              },
+              "requires": []
+            },
+            {
+              "id": "east-hidden-firing-nook",
+              "from": "east-return",
+              "to": "east-return",
+              "kind": "optional-jump",
+              "routeId": "east-hidden-firing-nook",
+              "entry": {
+                "x": 9450,
+                "y": 5300,
+                "surfaceId": "sb-east-cave-return",
+                "jumpTo": {
+                  "x": 9320,
+                  "support": "sb-return-cave-buttress",
+                  "speed": 0.6
+                }
+              },
+              "exit": {
+                "x": 9350,
+                "y": 5228.571428571428,
+                "surfaceId": "sb-return-cave-buttress",
+                "jumpTo": {
+                  "x": 9470,
+                  "support": "sb-east-cave-return",
+                  "speed": 0.5
+                }
+              },
+              "requires": []
+            },
+            {
+              "id": "keeper-gallery-access",
+              "from": "keeper-ledge",
+              "to": "east-return",
+              "kind": "optional-jump",
+              "routeId": "keeper-gallery-access",
+              "entry": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "exit": {
+                "x": 9650,
+                "y": 6370,
+                "surfaceId": "sb-keeper-side-approach"
+              },
+              "requires": []
+            },
+            {
+              "id": "gallery-keeper-return",
+              "from": "east-return",
+              "to": "keeper-ledge",
+              "kind": "walk",
+              "routeId": "gallery-keeper-return",
+              "entry": {
+                "x": 9650,
+                "y": 6370,
+                "surfaceId": "sb-keeper-side-approach"
+              },
+              "exit": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "requires": []
+            },
+            {
+              "id": "maintenance-crown-ascent",
+              "from": "chain-shoulder",
+              "to": "chain-shoulder",
+              "kind": "optional-jump",
+              "routeId": "maintenance-crown-ascent",
+              "entry": {
+                "x": 5500,
+                "y": 4520,
+                "surfaceId": "sb-maintenance-shelf"
+              },
+              "exit": {
+                "x": 5715,
+                "y": 3350,
+                "surfaceId": "sb-west-crown-step",
+                "jumpTo": {
+                  "x": 5630,
+                  "support": "sb-west-firing-crown",
+                  "speed": 0.5
                 }
               },
               "requires": []
@@ -35898,12 +37531,48 @@
                 "surfaceId": "sb-east-upper-return",
                 "dropTo": {
                   "x": 10720,
-                  "support": "sb-east-folded-stair",
+                  "support": "sb-east-upper-cave",
                   "stepOffX": 10850
                 }
               },
               "exit": {
                 "x": 9550,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "requires": []
+            },
+            {
+              "id": "settled-inner-east-shortcut",
+              "from": "resonance-wall",
+              "to": "east-return",
+              "kind": "walk",
+              "routeId": "settled-inner-east-shortcut",
+              "entry": {
+                "x": 8170,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "exit": {
+                "x": 9510,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "requires": []
+            },
+            {
+              "id": "settled-east-inner-return",
+              "from": "east-return",
+              "to": "resonance-wall",
+              "kind": "walk",
+              "routeId": "settled-east-inner-return",
+              "entry": {
+                "x": 9510,
+                "y": 6370,
+                "surfaceId": "sb-east-gallery-sill"
+              },
+              "exit": {
+                "x": 8170,
                 "y": 6370,
                 "surfaceId": "sb-east-gallery-sill"
               },
@@ -37131,14 +38800,24 @@
                   "y": 3268.4615384615386,
                   "surfaceId": "sb-west-firing-crown",
                   "dropTo": {
-                    "x": 5800,
-                    "support": "sb-west-return-1",
+                    "x": 5750,
+                    "support": "sb-west-crown-step",
                     "stepOffX": 5710
                   }
                 },
                 {
+                  "x": 5870,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step",
+                  "dropTo": {
+                    "x": 5840,
+                    "support": "sb-west-return-1",
+                    "stepOffX": 5950
+                  }
+                },
+                {
                   "x": 5700,
-                  "y": 3470,
+                  "y": 3500,
                   "surfaceId": "sb-west-return-1",
                   "dropTo": {
                     "x": 5480,
@@ -37481,18 +39160,28 @@
                   "surfaceId": "sb-maintenance-return"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4355,
+                  "y": 4684.1,
                   "surfaceId": "sb-maintenance-return"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4355,
+                  "y": 4684.1,
+                  "surfaceId": "sb-maintenance-return",
+                  "jumpTo": {
+                    "x": 4440,
+                    "support": "sb-maintenance-upper-link",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 4440,
+                  "y": 4514.019607843137,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 5080,
-                  "y": 4650,
+                  "x": 4930,
+                  "y": 4490,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
@@ -37534,18 +39223,28 @@
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 5080,
-                  "y": 4650,
+                  "x": 4930,
+                  "y": 4490,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4440,
+                  "y": 4514.019607843137,
                   "surfaceId": "sb-maintenance-upper-link"
                 },
                 {
-                  "x": 4350,
-                  "y": 4680,
+                  "x": 4440,
+                  "y": 4514.019607843137,
+                  "surfaceId": "sb-maintenance-upper-link",
+                  "dropTo": {
+                    "x": 4430,
+                    "support": "sb-maintenance-return",
+                    "stepOffX": 4360
+                  }
+                },
+                {
+                  "x": 4430,
+                  "y": 4745.6,
                   "surfaceId": "sb-maintenance-return"
                 },
                 {
@@ -37563,14 +39262,14 @@
                   "y": 5611.969696969697,
                   "surfaceId": "sb-maintenance-return",
                   "dropTo": {
-                    "x": 5470,
+                    "x": 5500,
                     "support": "sb-maintenance-rise",
-                    "stepOffX": 5560
+                    "stepOffX": 5545
                   }
                 },
                 {
-                  "x": 5470,
-                  "y": 5816.363636363636,
+                  "x": 5500,
+                  "y": 5789.090909090909,
                   "surfaceId": "sb-maintenance-rise"
                 },
                 {
@@ -37912,7 +39611,7 @@
                   "jumpTo": {
                     "x": 10690,
                     "support": "sb-east-upper-arc",
-                    "speed": 0.8
+                    "speed": 1
                   }
                 },
                 {
@@ -38151,32 +39850,414 @@
                 },
                 {
                   "x": 9480,
-                  "y": 6270.952380952381,
+                  "y": 6268,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 9820,
-                  "y": 5850,
+                  "x": 9800,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 10400,
-                  "y": 5140,
+                  "x": 9840,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 10780,
-                  "y": 4790,
-                  "surfaceId": "sb-east-folded-stair"
-                },
-                {
-                  "x": 10780,
-                  "y": 4790,
+                  "x": 9840,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair",
+                  "jumpTo": {
+                    "x": 9790,
+                    "support": "sb-east-cave-return",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 9790,
+                  "y": 5669.142857142857,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9450,
+                  "y": 5300,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9450,
+                  "y": 5300,
+                  "surfaceId": "sb-east-cave-return",
+                  "jumpTo": {
+                    "x": 9620,
+                    "support": "sb-east-upper-cave",
+                    "speed": 0.65
+                  }
+                },
+                {
+                  "x": 9620,
+                  "y": 5215,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9990,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10460,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10780,
+                  "y": 4790,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10780,
+                  "y": 4790,
+                  "surfaceId": "sb-east-upper-cave",
                   "jumpTo": {
                     "x": 10920,
                     "support": "sb-east-upper-return",
                     "speed": 0.6
+                  }
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "east-hidden-firing-nook",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 9450,
+                  "y": 5300,
+                  "surfaceId": "sb-east-cave-return",
+                  "jumpTo": {
+                    "x": 9320,
+                    "support": "sb-return-cave-buttress",
+                    "speed": 0.6
+                  }
+                },
+                {
+                  "x": 9320,
+                  "y": 5226.428571428572,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9230,
+                  "y": 5220,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9160,
+                  "y": 5225.384615384615,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9230,
+                  "y": 5220,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9350,
+                  "y": 5228.571428571428,
+                  "surfaceId": "sb-return-cave-buttress"
+                },
+                {
+                  "x": 9350,
+                  "y": 5228.571428571428,
+                  "surfaceId": "sb-return-cave-buttress",
+                  "jumpTo": {
+                    "x": 9470,
+                    "support": "sb-east-cave-return",
+                    "speed": 0.5
+                  }
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "keeper-gallery-access",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10850,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10790,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10790,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover",
+                  "jumpTo": {
+                    "x": 10640,
+                    "support": "sb-keeper-side-approach",
+                    "speed": 0.6
+                  }
+                },
+                {
+                  "x": 10640,
+                  "y": 6032.5,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10200,
+                  "y": 6060,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 9650,
+                  "y": 6370,
+                  "surfaceId": "sb-keeper-side-approach"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "gallery-keeper-return",
+              "kind": "return",
+              "anchors": [
+                {
+                  "x": 9650,
+                  "y": 6370,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10200,
+                  "y": 6060,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10650,
+                  "y": 6031.875,
+                  "surfaceId": "sb-keeper-side-approach"
+                },
+                {
+                  "x": 10650,
+                  "y": 6031.875,
+                  "surfaceId": "sb-keeper-side-approach",
+                  "dropTo": {
+                    "x": 10810,
+                    "support": "sb-keeper-cover",
+                    "stepOffX": 10740
+                  }
+                },
+                {
+                  "x": 10810,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10850,
+                  "y": 6140,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "sb-keeper-cover"
+                },
+                {
+                  "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "maintenance-crown-ascent",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 5500,
+                  "y": 4520,
+                  "surfaceId": "sb-maintenance-shelf"
+                },
+                {
+                  "x": 5460,
+                  "y": 4520,
+                  "surfaceId": "sb-maintenance-shelf"
+                },
+                {
+                  "x": 5460,
+                  "y": 4520,
+                  "surfaceId": "sb-maintenance-shelf",
+                  "jumpTo": {
+                    "x": 5420,
+                    "support": "sb-west-return-6",
+                    "speed": 0.3
+                  }
+                },
+                {
+                  "x": 5420,
+                  "y": 4380,
+                  "surfaceId": "sb-west-return-6"
+                },
+                {
+                  "x": 5460,
+                  "y": 4380,
+                  "surfaceId": "sb-west-return-6"
+                },
+                {
+                  "x": 5460,
+                  "y": 4380,
+                  "surfaceId": "sb-west-return-6",
+                  "jumpTo": {
+                    "x": 5520,
+                    "support": "sb-west-return-5",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 5520,
+                  "y": 4230,
+                  "surfaceId": "sb-west-return-5"
+                },
+                {
+                  "x": 5500,
+                  "y": 4230,
+                  "surfaceId": "sb-west-return-5"
+                },
+                {
+                  "x": 5500,
+                  "y": 4230,
+                  "surfaceId": "sb-west-return-5",
+                  "jumpTo": {
+                    "x": 5470,
+                    "support": "sb-west-return-4",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 5470,
+                  "y": 4040,
+                  "surfaceId": "sb-west-return-4"
+                },
+                {
+                  "x": 5480,
+                  "y": 4040,
+                  "surfaceId": "sb-west-return-4"
+                },
+                {
+                  "x": 5480,
+                  "y": 4040,
+                  "surfaceId": "sb-west-return-4",
+                  "jumpTo": {
+                    "x": 5550,
+                    "support": "sb-west-return-3",
+                    "speed": 0.4
+                  }
+                },
+                {
+                  "x": 5550,
+                  "y": 3850,
+                  "surfaceId": "sb-west-return-3"
+                },
+                {
+                  "x": 5510,
+                  "y": 3850,
+                  "surfaceId": "sb-west-return-3"
+                },
+                {
+                  "x": 5510,
+                  "y": 3850,
+                  "surfaceId": "sb-west-return-3",
+                  "jumpTo": {
+                    "x": 5520,
+                    "support": "sb-west-return-2",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 5520,
+                  "y": 3660,
+                  "surfaceId": "sb-west-return-2"
+                },
+                {
+                  "x": 5545,
+                  "y": 3660,
+                  "surfaceId": "sb-west-return-2"
+                },
+                {
+                  "x": 5545,
+                  "y": 3660,
+                  "surfaceId": "sb-west-return-2",
+                  "jumpTo": {
+                    "x": 5700,
+                    "support": "sb-west-return-1",
+                    "speed": 1
+                  }
+                },
+                {
+                  "x": 5700,
+                  "y": 3500,
+                  "surfaceId": "sb-west-return-1"
+                },
+                {
+                  "x": 5810,
+                  "y": 3500,
+                  "surfaceId": "sb-west-return-1"
+                },
+                {
+                  "x": 5810,
+                  "y": 3500,
+                  "surfaceId": "sb-west-return-1",
+                  "jumpTo": {
+                    "x": 5800,
+                    "support": "sb-west-crown-step",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 5800,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step"
+                },
+                {
+                  "x": 5715,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step"
+                },
+                {
+                  "x": 5715,
+                  "y": 3350,
+                  "surfaceId": "sb-west-crown-step",
+                  "jumpTo": {
+                    "x": 5630,
+                    "support": "sb-west-firing-crown",
+                    "speed": 0.5
                   }
                 }
               ],
@@ -38354,23 +40435,68 @@
                   "surfaceId": "sb-east-upper-return",
                   "dropTo": {
                     "x": 10720,
-                    "support": "sb-east-folded-stair",
+                    "support": "sb-east-upper-cave",
                     "stepOffX": 10850
                   }
                 },
                 {
                   "x": 10720,
-                  "y": 4845.263157894737,
+                  "y": 4835,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 10460,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9990,
+                  "y": 5030,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9610,
+                  "y": 5220,
+                  "surfaceId": "sb-east-upper-cave"
+                },
+                {
+                  "x": 9610,
+                  "y": 5220,
+                  "surfaceId": "sb-east-upper-cave",
+                  "dropTo": {
+                    "x": 9510,
+                    "support": "sb-east-cave-return",
+                    "stepOffX": 9550
+                  }
+                },
+                {
+                  "x": 9510,
+                  "y": 5365.142857142857,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9780,
+                  "y": 5658.285714285715,
+                  "surfaceId": "sb-east-cave-return"
+                },
+                {
+                  "x": 9780,
+                  "y": 5658.285714285715,
+                  "surfaceId": "sb-east-cave-return",
+                  "dropTo": {
+                    "x": 9840,
+                    "support": "sb-east-folded-stair",
+                    "stepOffX": 9850
+                  }
+                },
+                {
+                  "x": 9840,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
-                  "x": 10400,
-                  "y": 5140,
-                  "surfaceId": "sb-east-folded-stair"
-                },
-                {
-                  "x": 9820,
-                  "y": 5850,
+                  "x": 9800,
+                  "y": 5860,
                   "surfaceId": "sb-east-folded-stair"
                 },
                 {
@@ -38396,6 +40522,44 @@
               ],
               "requires": [],
               "defaultJump": true
+            },
+            {
+              "id": "settled-inner-east-shortcut",
+              "kind": "optional-walk",
+              "anchors": [
+                {
+                  "x": 8170,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                },
+                {
+                  "x": 9510,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true,
+              "bellState": "settled"
+            },
+            {
+              "id": "settled-east-inner-return",
+              "kind": "return",
+              "anchors": [
+                {
+                  "x": 9510,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                },
+                {
+                  "x": 8170,
+                  "y": 6370,
+                  "surfaceId": "sb-east-gallery-sill"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true,
+              "bellState": "settled"
             }
           ]
         },
@@ -40379,6 +42543,24 @@
               "kind": "oil",
               "x": 11680,
               "y": 5961,
+              "radius": 330,
+              "color": "#c5ac7b"
+            },
+            {
+              "id": "sb-art-light-east-lower",
+              "stage18Art": true,
+              "kind": "oil",
+              "x": 9990,
+              "y": 5641,
+              "radius": 330,
+              "color": "#c5ac7b"
+            },
+            {
+              "id": "sb-art-light-east-hidden",
+              "stage18Art": true,
+              "kind": "oil",
+              "x": 9190,
+              "y": 5004.076923076923,
               "radius": 330,
               "color": "#c5ac7b"
             }
@@ -43170,15 +45352,19 @@
                 ],
                 [
                   5650,
-                  3490
+                  3350
                 ],
                 [
-                  5390,
-                  3390
+                  5430,
+                  3450
+                ],
+                [
+                  5120,
+                  3510
                 ],
                 [
                   5050,
-                  3380
+                  3410
                 ]
               ]
             },
@@ -43197,23 +45383,23 @@
                 ],
                 [
                   5356,
-                  3214.8
+                  3217.6
                 ],
                 [
                   5320,
-                  3272.4
+                  3278.8
                 ],
                 [
                   5224,
-                  3355.6
+                  3367.2
                 ],
                 [
                   5212,
-                  3394
+                  3408
                 ],
                 [
                   5050,
-                  3358.8
+                  3370.6
                 ]
               ]
             },
@@ -43224,7 +45410,7 @@
               "points": [
                 [
                   5434,
-                  3211.6
+                  3214.2
                 ],
                 [
                   5650,
@@ -43232,19 +45418,19 @@
                 ],
                 [
                   5650,
-                  3490
+                  3510
                 ],
                 [
                   5344,
-                  3490
+                  3510
                 ],
                 [
                   5374,
-                  3400.4
+                  3414.8
                 ],
                 [
                   5386,
-                  3365.2
+                  3377.4
                 ]
               ]
             },
@@ -43367,6 +45553,14 @@
                   5780
                 ],
                 [
+                  5570,
+                  5780
+                ],
+                [
+                  5570,
+                  5845
+                ],
+                [
                   5510,
                   5845
                 ],
@@ -43402,23 +45596,23 @@
                   5780
                 ],
                 [
-                  4586,
+                  4620.8,
                   5780
                 ],
                 [
-                  4432,
+                  4462.6,
                   5957.1
                 ],
                 [
-                  4300,
+                  4327,
                   6184.8
                 ],
                 [
-                  3948,
+                  3965.4,
                   6513.7
                 ],
                 [
-                  3904,
+                  3920.2,
                   6665.5
                 ],
                 [
@@ -43433,27 +45627,27 @@
               "fill": "#203b48",
               "points": [
                 [
-                  4718,
+                  4756.4,
                   5944.45
                 ],
                 [
-                  5510,
+                  5570,
                   5780
                 ],
                 [
-                  5510,
+                  5570,
                   7045
                 ],
                 [
-                  4388,
+                  4417.4,
                   7045
                 ],
                 [
-                  4498,
+                  4530.4,
                   6690.8
                 ],
                 [
-                  4542,
+                  4575.6,
                   6551.65
                 ]
               ]
@@ -43561,28 +45755,32 @@
               "fill": "#3c555d",
               "points": [
                 [
-                  4350,
-                  4680
+                  4420,
+                  4515
                 ],
                 [
-                  5080,
-                  4650
+                  4930,
+                  4490
                 ],
                 [
                   5370,
                   4520
                 ],
                 [
-                  5370,
-                  4585
+                  5350,
+                  4800
                 ],
                 [
-                  5080,
-                  4715
+                  4980,
+                  5040
                 ],
                 [
-                  4350,
-                  4745
+                  4620,
+                  4740
+                ],
+                [
+                  4420,
+                  4615
                 ]
               ]
             },
@@ -43592,32 +45790,32 @@
               "fill": "#657a77",
               "points": [
                 [
-                  4350,
-                  4520
+                  4420,
+                  4490
                 ],
                 [
-                  4941.6,
-                  4520
+                  4971,
+                  4490
                 ],
                 [
-                  4870.2,
-                  4551.5
+                  4904.5,
+                  4567
                 ],
                 [
-                  4809,
-                  4592
+                  4847.5,
+                  4666
                 ],
                 [
-                  4645.8,
-                  4650.5
+                  4695.5,
+                  4809
                 ],
                 [
-                  4625.4,
-                  4677.5
+                  4676.5,
+                  4875
                 ],
                 [
-                  4350,
-                  4652.75
+                  4420,
+                  4814.5
                 ]
               ]
             },
@@ -43627,28 +45825,28 @@
               "fill": "#203b48",
               "points": [
                 [
-                  5002.8,
-                  4549.25
+                  5028,
+                  4561.5
                 ],
                 [
                   5370,
-                  4520
+                  4490
                 ],
                 [
                   5370,
-                  4745
+                  5040
                 ],
                 [
-                  4849.8,
-                  4745
+                  4885.5,
+                  5040
                 ],
                 [
-                  4900.8,
-                  4682
+                  4933,
+                  4886
                 ],
                 [
-                  4921.2,
-                  4657.25
+                  4952,
+                  4825.5
                 ]
               ]
             },
@@ -45513,6 +47711,301 @@
             },
             {
               "stage18Art": true,
+              "terrainId": "sb-east-cave-return",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  9450,
+                  5300
+                ],
+                [
+                  9800,
+                  5680
+                ],
+                [
+                  9800,
+                  5745
+                ],
+                [
+                  9450,
+                  5365
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-cave-return",
+              "fill": "#657a77",
+              "points": [
+                [
+                  9450,
+                  5300
+                ],
+                [
+                  9653,
+                  5300
+                ],
+                [
+                  9628.5,
+                  5362.3
+                ],
+                [
+                  9607.5,
+                  5442.4
+                ],
+                [
+                  9551.5,
+                  5558.1
+                ],
+                [
+                  9544.5,
+                  5611.5
+                ],
+                [
+                  9450,
+                  5562.55
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-cave-return",
+              "fill": "#203b48",
+              "points": [
+                [
+                  9674,
+                  5357.85
+                ],
+                [
+                  9800,
+                  5300
+                ],
+                [
+                  9800,
+                  5745
+                ],
+                [
+                  9621.5,
+                  5745
+                ],
+                [
+                  9639,
+                  5620.4
+                ],
+                [
+                  9646,
+                  5571.45
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-upper-cave",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  9590,
+                  5230
+                ],
+                [
+                  9990,
+                  5030
+                ],
+                [
+                  10460,
+                  5030
+                ],
+                [
+                  10780,
+                  4790
+                ],
+                [
+                  10780,
+                  4855
+                ],
+                [
+                  10460,
+                  5095
+                ],
+                [
+                  9990,
+                  5095
+                ],
+                [
+                  9590,
+                  5295
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-upper-cave",
+              "fill": "#657a77",
+              "points": [
+                [
+                  9590,
+                  4790
+                ],
+                [
+                  10280.2,
+                  4790
+                ],
+                [
+                  10196.9,
+                  4860.7
+                ],
+                [
+                  10125.5,
+                  4951.6
+                ],
+                [
+                  9935.1,
+                  5082.9
+                ],
+                [
+                  9911.3,
+                  5143.5
+                ],
+                [
+                  9590,
+                  5087.95
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-east-upper-cave",
+              "fill": "#203b48",
+              "points": [
+                [
+                  10351.6,
+                  4855.65
+                ],
+                [
+                  10780,
+                  4790
+                ],
+                [
+                  10780,
+                  5295
+                ],
+                [
+                  10173.1,
+                  5295
+                ],
+                [
+                  10232.6,
+                  5153.6
+                ],
+                [
+                  10256.4,
+                  5098.05
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-return-cave-buttress",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  9100,
+                  5230
+                ],
+                [
+                  9230,
+                  5220
+                ],
+                [
+                  9370,
+                  5230
+                ],
+                [
+                  9350,
+                  5780
+                ],
+                [
+                  9140,
+                  5970
+                ],
+                [
+                  8980,
+                  5710
+                ],
+                [
+                  9010,
+                  5460
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-return-cave-buttress",
+              "fill": "#657a77",
+              "points": [
+                [
+                  8980,
+                  5220
+                ],
+                [
+                  9206.2,
+                  5220
+                ],
+                [
+                  9178.9,
+                  5325
+                ],
+                [
+                  9155.5,
+                  5460
+                ],
+                [
+                  9093.1,
+                  5655
+                ],
+                [
+                  9085.3,
+                  5745
+                ],
+                [
+                  8980,
+                  5662.5
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
+              "terrainId": "sb-return-cave-buttress",
+              "fill": "#203b48",
+              "points": [
+                [
+                  9229.6,
+                  5317.5
+                ],
+                [
+                  9370,
+                  5220
+                ],
+                [
+                  9370,
+                  5970
+                ],
+                [
+                  9171.1,
+                  5970
+                ],
+                [
+                  9190.6,
+                  5760
+                ],
+                [
+                  9198.4,
+                  5677.5
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
               "terrainId": "sb-east-resonance-mass",
               "fill": "#3c555d",
               "points": [
@@ -45635,15 +48128,23 @@
                 ],
                 [
                   10650,
-                  4720
+                  4660
                 ],
                 [
-                  10540,
-                  4890
+                  10595,
+                  4760
+                ],
+                [
+                  10530,
+                  4780
+                ],
+                [
+                  10460,
+                  4670
                 ],
                 [
                   10400,
-                  4760
+                  4690
                 ]
               ]
             },
@@ -45662,23 +48163,23 @@
                 ],
                 [
                   10527.5,
-                  4298.25
+                  4282.85
                 ],
                 [
                   10512.5,
-                  4422.1
+                  4386.9
                 ],
                 [
                   10472.5,
-                  4601.01
+                  4537.21
                 ],
                 [
                   10467.5,
-                  4683.58
+                  4606.58
                 ],
                 [
                   10400,
-                  4607.89
+                  4542.99
                 ]
               ]
             },
@@ -45689,7 +48190,7 @@
               "points": [
                 [
                   10560,
-                  4291.37
+                  4277.07
                 ],
                 [
                   10650,
@@ -45697,19 +48198,19 @@
                 ],
                 [
                   10650,
-                  4890
+                  4780
                 ],
                 [
                   10522.5,
-                  4890
+                  4780
                 ],
                 [
                   10535,
-                  4697.34
+                  4618.14
                 ],
                 [
                   10540,
-                  4621.65
+                  4554.55
                 ]
               ]
             },
@@ -46070,9 +48571,9 @@
             ],
             "activityBounds": [
               520,
-              3090,
+              3170,
               12500,
-              7480
+              7540
             ],
             "standing": {
               "suppression": {
@@ -46109,6 +48610,16 @@
                 "x": 3170,
                 "y": 5470,
                 "surfaceId": "sb-suppression-court"
+              },
+              "eastLowerShot": {
+                "x": 9980,
+                "y": 5860,
+                "surfaceId": "sb-east-folded-stair"
+              },
+              "eastHiddenShot": {
+                "x": 9230,
+                "y": 5220,
+                "surfaceId": "sb-return-cave-buttress"
               }
             },
             "art": {
@@ -46148,6 +48659,16 @@
                   "key": "keeper",
                   "terrainId": "act2-floor",
                   "x": 11680
+                },
+                {
+                  "key": "east-lower",
+                  "terrainId": "sb-east-folded-stair",
+                  "x": 9990
+                },
+                {
+                  "key": "east-hidden",
+                  "terrainId": "sb-return-cave-buttress",
+                  "x": 9190
                 }
               ]
             },
@@ -46171,7 +48692,7 @@
           "hasBefore": false,
           "hasAfter": true,
           "after": {
-            "revision": 2,
+            "revision": 3,
             "nativeVectorOnly": true,
             "source": "stage18-local-authored-terrain",
             "bodyElementId": "sb-bell-body",
@@ -46179,10 +48700,9 @@
             "visualTopY": 2490,
             "artAssetIds": [
               "stage18:bell-rear-cavern",
+              "stage18:bell-rear-rock-roots",
               "stage18:bell-rear-stone-corbels",
               "stage18:bell-hollow-body",
-              "stage18:bell-west-stone-saddle",
-              "stage18:bell-east-stone-saddle",
               "stage18:bell-low-stone-lamp"
             ],
             "budgets": {
@@ -47390,7 +49910,7 @@
         "editable-native-vector"
       ],
       "params": {
-        "artRevision": 2,
+        "artRevision": 3,
         "collisionSource": "none",
         "nodeCount": 16,
         "rearOnly": true
@@ -47408,6 +49928,133 @@
           "y": -6000,
           "w": 28000,
           "h": 21000
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          4
+        ],
+        "backgroundRange": [
+          0.35,
+          4
+        ]
+      }
+    },
+    {
+      "id": "stage18:bell-rear-rock-roots",
+      "name": "실제 돌마당 뒤에서 공동의 천장과 바닥에 이어지는 암맥",
+      "category": "terrain",
+      "environmentRole": "mountain",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          900,
+          750,
+          12600,
+          7550
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#233b46",
+              "d": "M2756.8 1893.8Q3482.2 1793.8 4488.4 1913.8L5003.2 3439.7Q4535.2 3709.4 3880 3737.3Q3201.4 3346.7 2803.6 3476.9Q3154.6 2990 2756.8 1893.8Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#2d454e",
+              "d": "M3037.6 1913.8Q3482.2 2033.8 3669.4 3040Q3599.2 3393.2 4301.2 3551.3L4628.8 3411.8Q4160.8 3070 3950.2 1895.8Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#1c3541",
+              "d": "M2655.8 4444Q2558.8 4904.2 2752.8 5199.2Q2743.1 6650.576923076923 2549.1 7060.576923076923L3519.1 7060.576923076923Q3189.3 6690.576923076923 3354.2 5034L3393 4290.6Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#29434b",
+              "d": "M2781.9 4644.6Q2908 5140.2 2898.3 6480.576923076923Q2743.1 6780.576923076923 2801.3 7060.576923076923L3160.2 7060.576923076923Q3014.7 6790.576923076923 3140.8 6410.576923076923L3169.9 4774.4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#1c3541",
+              "d": "M4484.4 5103Q4388.4 5652.9 4580.4 6005.4Q4570.8 6992.173913043478 4378.8 7402.173913043478L5338.8 7402.173913043478Q5012.4 7032.173913043478 5175.6 5808L5214 4919.7Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#29434b",
+              "d": "M4609.2 5342.7Q4734 5934.9 4724.4 6822.173913043478Q4570.8 7122.173913043478 4628.4 7402.173913043478L4983.6 7402.173913043478Q4839.6 7132.173913043478 4964.4 6752.173913043478L4993.2 5497.8Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#233b46",
+              "d": "M8855.4 1882.7173913043478Q9249.1 1782.7173913043478 9795.2 1902.7173913043478L10074.6 3841.2Q9820.6 4212.4 9465 4250.8Q9096.7 3713.2 8880.8 3892.4Q9071.3 3290 8855.4 1882.7173913043478Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#2d454e",
+              "d": "M9007.8 1902.7173913043478Q9249.1 2022.7173913043478 9350.7 3340Q9312.6 3777.2 9693.6 3994.8L9871.4 3802.8Q9617.4 3370 9503.1 1884.7173913043478Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#1c3541",
+              "d": "M9034.6 5445Q8995.6 5737.5 9073.6 5925Q9069.7 7049.166666666667 9022.9 7459.166666666667L9307.6 7459.166666666667Q9249.1 7089.166666666667 9315.4 5820L9331 5347.5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#29434b",
+              "d": "M9085.3 5572.5Q9136 5887.5 9132.1 6879.166666666667Q9069.7 7179.166666666667 9093.1 7459.166666666667L9237.4 7459.166666666667Q9178.9 7189.166666666667 9229.6 6809.166666666667L9241.3 5655Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#1c3541",
+              "d": "M11062.4 5033Q10946.4 5582.9 11178.4 5935.4Q11166.8 5870 10934.8 6280L12094.8 6280Q11700.4 5910 11897.6 5738L11944 4849.7Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#29434b",
+              "d": "M11213.2 5272.7Q11364 5864.9 11352.4 5700Q11166.8 6000 11236.4 6280L11665.6 6280Q11491.6 6010 11642.4 5630L11677.2 5427.8Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"900 750 12600 7550\"><path d=\"M2756.8 1893.8Q3482.2 1793.8 4488.4 1913.8L5003.2 3439.7Q4535.2 3709.4 3880 3737.3Q3201.4 3346.7 2803.6 3476.9Q3154.6 2990 2756.8 1893.8Z\" fill=\"#233b46\"/><path d=\"M3037.6 1913.8Q3482.2 2033.8 3669.4 3040Q3599.2 3393.2 4301.2 3551.3L4628.8 3411.8Q4160.8 3070 3950.2 1895.8Z\" fill=\"#2d454e\"/><path d=\"M2655.8 4444Q2558.8 4904.2 2752.8 5199.2Q2743.1 6650.576923076923 2549.1 7060.576923076923L3519.1 7060.576923076923Q3189.3 6690.576923076923 3354.2 5034L3393 4290.6Z\" fill=\"#1c3541\"/><path d=\"M2781.9 4644.6Q2908 5140.2 2898.3 6480.576923076923Q2743.1 6780.576923076923 2801.3 7060.576923076923L3160.2 7060.576923076923Q3014.7 6790.576923076923 3140.8 6410.576923076923L3169.9 4774.4Z\" fill=\"#29434b\"/><path d=\"M4484.4 5103Q4388.4 5652.9 4580.4 6005.4Q4570.8 6992.173913043478 4378.8 7402.173913043478L5338.8 7402.173913043478Q5012.4 7032.173913043478 5175.6 5808L5214 4919.7Z\" fill=\"#1c3541\"/><path d=\"M4609.2 5342.7Q4734 5934.9 4724.4 6822.173913043478Q4570.8 7122.173913043478 4628.4 7402.173913043478L4983.6 7402.173913043478Q4839.6 7132.173913043478 4964.4 6752.173913043478L4993.2 5497.8Z\" fill=\"#29434b\"/><path d=\"M8855.4 1882.7173913043478Q9249.1 1782.7173913043478 9795.2 1902.7173913043478L10074.6 3841.2Q9820.6 4212.4 9465 4250.8Q9096.7 3713.2 8880.8 3892.4Q9071.3 3290 8855.4 1882.7173913043478Z\" fill=\"#233b46\"/><path d=\"M9007.8 1902.7173913043478Q9249.1 2022.7173913043478 9350.7 3340Q9312.6 3777.2 9693.6 3994.8L9871.4 3802.8Q9617.4 3370 9503.1 1884.7173913043478Z\" fill=\"#2d454e\"/><path d=\"M9034.6 5445Q8995.6 5737.5 9073.6 5925Q9069.7 7049.166666666667 9022.9 7459.166666666667L9307.6 7459.166666666667Q9249.1 7089.166666666667 9315.4 5820L9331 5347.5Z\" fill=\"#1c3541\"/><path d=\"M9085.3 5572.5Q9136 5887.5 9132.1 6879.166666666667Q9069.7 7179.166666666667 9093.1 7459.166666666667L9237.4 7459.166666666667Q9178.9 7189.166666666667 9229.6 6809.166666666667L9241.3 5655Z\" fill=\"#29434b\"/><path d=\"M11062.4 5033Q10946.4 5582.9 11178.4 5935.4Q11166.8 5870 10934.8 6280L12094.8 6280Q11700.4 5910 11897.6 5738L11944 4849.7Z\" fill=\"#1c3541\"/><path d=\"M11213.2 5272.7Q11364 5864.9 11352.4 5700Q11166.8 6000 11236.4 6280L11665.6 6280Q11491.6 6010 11642.4 5630L11677.2 5427.8Z\" fill=\"#29434b\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage18-bell",
+        "visual-only",
+        "editable-native-vector"
+      ],
+      "params": {
+        "artRevision": 3,
+        "collisionSource": "none",
+        "nodeCount": 13,
+        "rearOnly": true
+      },
+      "bounds": {
+        "x": 900,
+        "y": 750,
+        "w": 12600,
+        "h": 7550
+      },
+      "reference": {
+        "heightM": 125.83333333333333,
+        "bounds": {
+          "x": 900,
+          "y": 750,
+          "w": 12600,
+          "h": 7550
         },
         "foot": {
           "x": 0,
@@ -47477,7 +50124,7 @@
         "editable-native-vector"
       ],
       "params": {
-        "artRevision": 2,
+        "artRevision": 3,
         "collisionSource": "none",
         "nodeCount": 5,
         "rearOnly": true
@@ -47999,6 +50646,45 @@
             },
             {
               "tag": "g",
+              "id": "sound-window-recess",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "#0d222e",
+                  "id": "original-cast-side-sound-window",
+                  "d": "M620-590Q620-610 660-610H1308.97L1444-320H670Q620-320 620-360Z"
+                }
+              ]
+            },
+            {
+              "tag": "g",
+              "id": "cast-sound-window-frame",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "#52634a",
+                  "stroke": "#243c33",
+                  "lineWidth": 8,
+                  "id": "smooth-cast-upper-reveal",
+                  "d": "M589-618Q600-648 653-648H1302L1318-610H660Q620-610 620-572V-360Q620-320 670-320H1444L1469-288H668Q587-288 580-356V-565Q580-595 589-618Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "none",
+                  "stroke": "#a3976a",
+                  "lineWidth": 8,
+                  "d": "M603-623Q616-634 658-634H1304M590-565V-360Q596-303 668-303H1452"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#203b32",
+                  "id": "sound-window-underside-depth",
+                  "d": "M620-558L653-572V-374Q653-345 684-344H1428L1444-320H670Q620-320 620-360Z"
+                }
+              ]
+            },
+            {
+              "tag": "g",
               "id": "single-east-cast-bearing-ear",
               "children": [
                 {
@@ -48086,7 +50772,7 @@
             }
           ]
         },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1610 -4420 3670 4450\">\n<title>묵종: 용뉴와 음통, 두꺼운 청동벽 안의 빈 울림</title>\n<desc>Original editable Korean Buddhist bell seen from below. An unbroken rounded bronze exterior, dark underside cavity, continuous heavy mouth, dragon suspension crown and sound pipe. Initial world anchor 7200,6610; the whole bell settles 200 units onto the authored stone supports.</desc>\n<defs>\n<linearGradient id=\"bronze\" x1=\"-1510\" y1=\"-1900\" x2=\"1580\" y2=\"-1600\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#716650\"/><stop offset=\"0.18\" stop-color=\"#978364\"/><stop offset=\"0.34\" stop-color=\"#5c6355\"/><stop offset=\"0.65\" stop-color=\"#424e46\"/><stop offset=\"1\" stop-color=\"#283a38\"/></linearGradient>\n<linearGradient id=\"inner-wall\" x1=\"-1070\" y1=\"-1900\" x2=\"1190\" y2=\"-1700\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#374a45\"/><stop offset=\"0.18\" stop-color=\"#142a2e\"/><stop offset=\"0.55\" stop-color=\"#0b1b23\"/><stop offset=\"0.85\" stop-color=\"#182c30\"/><stop offset=\"1\" stop-color=\"#425449\"/></linearGradient>\n<radialGradient id=\"inner-void\" cx=\"100\" cy=\"-2160\" r=\"2030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#080f17\"/><stop offset=\"0.62\" stop-color=\"#0b1b24\"/><stop offset=\"1\" stop-color=\"#182f35\"/></radialGradient>\n<linearGradient id=\"bell-lip\" x1=\"-1600\" y1=\"-50\" x2=\"1640\" y2=\"-100\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#9b8b69\"/><stop offset=\"0.29\" stop-color=\"#776f54\"/><stop offset=\"0.67\" stop-color=\"#5c654f\"/><stop offset=\"1\" stop-color=\"#33473f\"/></linearGradient>\n<linearGradient id=\"aged-crown\" x1=\"-830\" y1=\"-3390\" x2=\"1000\" y2=\"-3030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#b09a73\"/><stop offset=\"0.32\" stop-color=\"#767458\"/><stop offset=\"1\" stop-color=\"#3c5046\"/></linearGradient>\n<linearGradient id=\"cavity-floor-bounce\" x1=\"0\" y1=\"-810\" x2=\"0\" y2=\"40\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#607b77\" stop-opacity=\"0\"/><stop offset=\"0.78\" stop-color=\"#607b77\" stop-opacity=\"0.09\"/><stop offset=\"1\" stop-color=\"#607b77\" stop-opacity=\"0.03\"/></linearGradient>\n</defs>\n<g id=\"crown-yongnyu-and-sound-pipe\" transform=\"matrix(1 0 0 1 0 -480)\">\n<path id=\"restrained-dragon-ring\" d=\"M-301-3375L-332-3517Q-356-3605-292-3682L-164-3795Q-106-3840-42-3825L49-3773L62-3719L7-3711L-22-3762Q-72-3791-111-3757L-215-3644Q-247-3595-226-3511L-208-3409Z\" fill=\"#444d3e\" stroke=\"#14292d\" stroke-width=\"18\"/>\n<path id=\"dragon-moon-facing-ridge\" d=\"M-289-3420L-310-3523Q-330-3604-274-3661L-151-3772Q-115-3805-76-3801L-33-3776L-63-3764Q-105-3783-134-3747L-240-3635Q-267-3591-245-3525L-222-3417Z\" fill=\"#8a8160\"/>\n<path id=\"dragon-head-and-horn\" d=\"M-47-3757L1-3798L47-3771L58-3730L108-3697L182-3690L209-3662L187-3637L107-3640L90-3607L52-3610L33-3651L-24-3677L-35-3712L-79-3720Z\" fill=\"#667052\" stroke=\"#213832\" stroke-width=\"13\"/>\n<path d=\"M48-3757L50-3803L87-3828L82-3777L110-3757L89-3733 M150-3690L173-3725L196-3709L184-3685\" fill=\"#8f8c68\"/>\n<path d=\"M33-3698L75-3684L50-3675Z M115-3659L178-3656\" fill=\"#c2b28a\" stroke=\"#a59873\" stroke-width=\"6\"/>\n<path id=\"dragon-claw-foot\" d=\"M-183-3452L-99-3433L-39-3471L2-3493L59-3479L91-3435L157-3425L186-3393L153-3367L84-3388L47-3420L9-3432L-29-3393L-127-3376L-190-3392Z\" fill=\"#6e7256\" stroke=\"#263d35\" stroke-width=\"12\"/>\n<path id=\"sound-pipe\" d=\"M304-3380L305-3694Q347-3725 407-3698L432-3387Z\" fill=\"#4c5947\" stroke=\"#243930\" stroke-width=\"14\"/>\n<path d=\"M316-3683L336-3683L350-3398L322-3398Z\" fill=\"#a1946b\"/>\n<path d=\"M302-3692Q349-3723 407-3698L409-3670Q352-3695 302-3665Z\" fill=\"#8b8562\"/>\n<path d=\"M317-3690Q350-3705 395-3692Q360-3684 317-3690Z\" fill=\"#101e23\"/>\n<path d=\"M307-3550Q358-3567 420-3553M310-3498Q363-3513 422-3501\" fill=\"none\" stroke=\"#7a805e\" stroke-width=\"11\"/>\n</g>\n<g id=\"unbroken-round-bronze-body\">\n<path id=\"complete-cast-body\" d=\"M-860-3370L-680-3670L-330-3850L320-3820L600-3660L790-3350L1020-2100L1340-450L1540-200L1620 0H-1550L-1490-180L-1320-390L-1130-2080Z\" fill=\"url(#bronze)\" stroke=\"#192c2c\" stroke-width=\"14\"/>\n<path id=\"round-shoulder-moon-plane\" d=\"M-860-3370Q-767-3690-330-3850L320-3820Q573-3731 790-3350Q146-3190-860-3370Z\" fill=\"url(#aged-crown)\"/>\n<path id=\"broad-front-bronze-volume\" d=\"M-859-3336Q-383-3175 693-3340L943-1915L1205-512Q228-210-1213-516L-1063-2133Z\" fill=\"url(#bronze)\"/>\n<path id=\"left-broad-lit-plane\" d=\"M-676-3631Q-529-3704-358-3729Q-405-3215-466-2800L-655-1730L-808-617L-1192-532L-1020-2150Q-956-2961-676-3631Z\" fill=\"#ab946b\" opacity=\"0.34\"/>\n<path id=\"right-unbroken-shadow-plane\" d=\"M306-3803Q601-3652 762-3360L990-2100L1310-443L1525-215L1586-49L1122-46L1029-500L754-1960L572-3201Q490-3561 306-3803Z\" fill=\"#183731\" opacity=\"0.56\"/>\n<path id=\"old-cast-patina-wash\" d=\"M-495-3261Q-327-3195-218-3280L-78-3090L-157-2585Q-332-2206-246-1791L-367-1237L-273-850L-528-671L-730-732L-625-1191Q-555-1670-674-2010L-531-2495Z\" fill=\"#476950\" opacity=\"0.30\"/>\n<path id=\"broad-lower-patina\" d=\"M123-2310Q454-2370 637-2090L769-1643Q650-1430 780-1065L601-729L313-556L13-795L-21-1130L110-1523L21-1867Z\" fill=\"#2c5144\" opacity=\"0.35\"/>\n<path id=\"continuous-upper-cast-band\" d=\"M-830-3300Q-167-3122 822-3282L843-3162Q-97-2999-853-3176Z\" fill=\"#6f7452\" stroke=\"#354f3d\" stroke-width=\"11\"/>\n<path d=\"M-829-3291Q-111-3115 823-3270M-849-3191Q-52-3029 838-3178\" fill=\"none\" stroke=\"#ad9e70\" stroke-width=\"10\"/>\n<path id=\"lower-outer-cast-band\" d=\"M-1348-360Q-171-186 1391-369L1460-276Q230-58-1424-266Z\" fill=\"#797453\" stroke=\"#40583f\" stroke-width=\"13\"/>\n<path d=\"M-1341-348Q-64-161 1391-354\" fill=\"none\" stroke=\"#b8a67c\" stroke-width=\"12\"/>\n</g>\n<g id=\"broad-korean-cast-reliefs\">\n<path id=\"west-nine-boss-panel\" d=\"M-794-3022Q-534-2949-184-2950L-229-2423Q-584-2444-871-2507Z\" fill=\"#53664b\" stroke=\"#958c61\" stroke-width=\"13\"/>\n<path id=\"east-nine-boss-panel\" d=\"M375-2962Q606-2984 838-3050L918-2535Q671-2460 447-2446Z\" fill=\"#496147\" stroke=\"#7f8559\" stroke-width=\"12\"/>\n<path id=\"nine-bosses-west\" d=\"M-729-2890q22-36 48-2q19 36-18 52q-35 1-30-50Z M-554-2854q22-36 48-2q19 36-18 52q-35 1-30-50Z M-372-2843q22-36 48-2q19 36-18 52q-35 1-30-50Z M-746-2745q22-36 48-2q19 36-18 52q-35 1-30-50Z M-570-2718q22-36 48-2q19 36-18 52q-35 1-30-50Z M-389-2708q22-36 48-2q19 36-18 52q-35 1-30-50Z M-766-2608q22-36 48-2q19 36-18 52q-35 1-30-50Z M-587-2583q22-36 48-2q19 36-18 52q-35 1-30-50Z M-408-2570q22-36 48-2q19 36-18 52q-35 1-30-50Z\" fill=\"#aba275\" stroke=\"#374b39\" stroke-width=\"8\"/>\n<path id=\"nine-bosses-east\" d=\"M449-2844q20-33 42-7q22 31-10 49q-32 5-32-42Z M595-2864q20-33 42-7q22 31-10 49q-32 5-32-42Z M748-2900q20-33 42-7q22 31-10 49q-32 5-32-42Z M469-2707q20-33 42-7q22 31-10 49q-32 5-32-42Z M615-2728q20-33 42-7q22 31-10 49q-32 5-32-42Z M770-2760q20-33 42-7q22 31-10 49q-32 5-32-42Z M489-2579q20-33 42-7q22 31-10 49q-32 5-32-42Z M636-2598q20-33 42-7q22 31-10 49q-32 5-32-42Z M790-2635q20-33 42-7q22 31-10 49q-32 5-32-42Z\" fill=\"#92976a\" stroke=\"#2d4938\" stroke-width=\"8\"/>\n<path id=\"single-large-lotus-strike\" d=\"M-794-1509Q-822-1740-672-1901Q-501-2016-346-1873Q-217-1730-254-1517Q-291-1303-470-1244Q-684-1223-794-1509Z\" fill=\"#617052\" stroke=\"#899366\" stroke-width=\"17\"/>\n<path d=\"M-747-1499Q-773-1698-643-1840Q-502-1931-379-1810Q-273-1684-301-1530Q-338-1351-483-1297Q-650-1282-747-1499Z\" fill=\"#3d5b47\" stroke=\"#999e72\" stroke-width=\"10\"/>\n<path id=\"eight-petal-lotus\" d=\"M-514-1776Q-471-1735-478-1676Q-421-1720-374-1698Q-378-1645-430-1615Q-358-1602-350-1554Q-396-1517-451-1535Q-432-1467-470-1429Q-518-1458-519-1510Q-557-1459-613-1470Q-627-1521-581-1560Q-642-1578-650-1633Q-593-1656-548-1624Q-567-1711-514-1776Z\" fill=\"#9b9b6a\"/>\n<path d=\"M-544-1627Q-490-1651-466-1600Q-445-1548-497-1529Q-553-1514-573-1567Q-589-1609-544-1627Z\" fill=\"#485f43\" stroke=\"#b3aa74\" stroke-width=\"8\"/>\n<path id=\"one-flowing-heavenly-robe-relief\" d=\"M407-1950Q353-2010 388-2080Q429-2130 477-2079Q510-2038 481-1980L435-1950L443-1886Q512-1859 529-1785Q604-1764 672-1812Q749-1869 815-1831Q720-1817 706-1762Q653-1693 551-1694L507-1558Q538-1481 613-1431Q713-1370 783-1245Q623-1300 539-1369Q423-1396 366-1482Q320-1408 227-1384Q183-1344 180-1268Q154-1396 237-1493Q319-1561 343-1666L332-1790Q261-1836 202-1789Q139-1721 60-1741Q180-1788 187-1865Q264-1946 347-1889L391-1917Z\" fill=\"#7f8860\" opacity=\"0.59\"/>\n<path d=\"M391-1980Q428-2001 467-1980M348-1829Q368-1776 398-1757L383-1639M444-1828Q478-1768 463-1697L431-1538Q455-1457 534-1413M249-1462Q333-1483 376-1541\" fill=\"none\" stroke=\"#b0a57a\" stroke-width=\"10\" opacity=\"0.48\"/>\n<path id=\"three-aged-bronze-catches\" d=\"M-984-2011Q-950-2167-912-2250M959-1320L1001-1050M-1200-865L-1227-667\" fill=\"none\" stroke=\"#b9ad83\" stroke-width=\"9\" opacity=\"0.35\"/>\n</g>\n<g id=\"underside-view-hollow-interior\">\n<path id=\"one-deep-elliptical-mouth\" d=\"M-1480-262Q-940-764 35-793Q1091-776 1530-264Q1109-7 48 23Q-967 29-1480-262Z\" fill=\"#233d38\" stroke=\"#7c8059\" stroke-width=\"14\"/>\n<path id=\"mouth-cast-thickness\" d=\"M-1480-262Q-940-764 35-793Q1091-776 1530-264L1345-244Q899-619 35-636Q-872-612-1295-219Z\" fill=\"url(#bell-lip)\"/>\n<path id=\"inner-cavern-under-bell\" d=\"M-1289-216Q-903-614 35-636Q914-619 1345-244Q983-51 49-24Q-836-19-1289-216Z\" fill=\"url(#inner-void)\"/>\n<path d=\"M-1267-215Q-841-519 43-544Q897-526 1314-242\" fill=\"none\" stroke=\"#526549\" stroke-width=\"22\" opacity=\"0.52\"/>\n<path id=\"near-rim-hidden-thickness\" d=\"M-1289-216Q-840-20 49-24Q986-54 1345-244L1497-140Q1033 0 35 0Q-1003 0-1480-156Z\" fill=\"#1b352f\"/>\n</g>\n<g id=\"single-east-cast-bearing-ear\">\n<path d=\"M1310-440H1990V-320H1350Z\" fill=\"#617452\" stroke=\"#1d392e\" stroke-width=\"13\"/>\n<path d=\"M1350-431H1981V-394H1364Z\" fill=\"#a2956c\"/>\n<path d=\"M1469-387H1950V-334H1492Z\" fill=\"#34573f\"/>\n<path d=\"M1875-425V-336M1505-425V-336\" fill=\"none\" stroke=\"#91a071\" stroke-width=\"16\"/>\n</g>\n<g id=\"one-continuous-heavy-mouth\">\n<path id=\"west-thick-lip\" d=\"M-1490-180L-1550 0H-980L-954-234Q-1186-224-1490-180Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"east-thick-lip\" d=\"M1061-234L1100 0H1620L1540-200Q1358-224 1061-234Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"mouth-front-ring\" d=\"M-1550 0H1620L1596-62Q940-114 30-104Q-897-100-1528-67Z\" fill=\"url(#bell-lip)\" stroke=\"#162d2a\" stroke-width=\"13\"/>\n<path d=\"M-1521-62Q-873-89 30-89Q968-99 1595-57\" fill=\"none\" stroke=\"#baab7f\" stroke-width=\"13\"/>\n<path d=\"M-1543-8H1612\" fill=\"none\" stroke=\"#7f8460\" stroke-width=\"11\"/>\n<path d=\"M-1487-171Q-1224-170-962-176M1075-176Q1375-176 1534-191\" fill=\"none\" stroke=\"#c3ae7f\" stroke-width=\"13\"/>\n<path id=\"heavy-lip-contact-shadow\" d=\"M-1539-29H-984L-980 0H-1550Z M1100 0L1095-27H1607L1620 0Z\" fill=\"#203c34\"/>\n</g>\n</svg>\n"
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1610 -4420 3670 4450\">\n<title>묵종: 용뉴와 음통, 두꺼운 청동벽 안의 빈 울림</title>\n<desc>Original editable Korean Buddhist bell seen from below. An unbroken rounded bronze exterior, dark underside cavity, continuous heavy mouth, dragon suspension crown and sound pipe. Initial world anchor 7200,6610; the whole bell settles 200 units onto the authored stone supports.</desc>\n<defs>\n<linearGradient id=\"bronze\" x1=\"-1510\" y1=\"-1900\" x2=\"1580\" y2=\"-1600\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#716650\"/><stop offset=\"0.18\" stop-color=\"#978364\"/><stop offset=\"0.34\" stop-color=\"#5c6355\"/><stop offset=\"0.65\" stop-color=\"#424e46\"/><stop offset=\"1\" stop-color=\"#283a38\"/></linearGradient>\n<linearGradient id=\"inner-wall\" x1=\"-1070\" y1=\"-1900\" x2=\"1190\" y2=\"-1700\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#374a45\"/><stop offset=\"0.18\" stop-color=\"#142a2e\"/><stop offset=\"0.55\" stop-color=\"#0b1b23\"/><stop offset=\"0.85\" stop-color=\"#182c30\"/><stop offset=\"1\" stop-color=\"#425449\"/></linearGradient>\n<radialGradient id=\"inner-void\" cx=\"100\" cy=\"-2160\" r=\"2030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#080f17\"/><stop offset=\"0.62\" stop-color=\"#0b1b24\"/><stop offset=\"1\" stop-color=\"#182f35\"/></radialGradient>\n<linearGradient id=\"bell-lip\" x1=\"-1600\" y1=\"-50\" x2=\"1640\" y2=\"-100\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#9b8b69\"/><stop offset=\"0.29\" stop-color=\"#776f54\"/><stop offset=\"0.67\" stop-color=\"#5c654f\"/><stop offset=\"1\" stop-color=\"#33473f\"/></linearGradient>\n<linearGradient id=\"aged-crown\" x1=\"-830\" y1=\"-3390\" x2=\"1000\" y2=\"-3030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#b09a73\"/><stop offset=\"0.32\" stop-color=\"#767458\"/><stop offset=\"1\" stop-color=\"#3c5046\"/></linearGradient>\n<linearGradient id=\"cavity-floor-bounce\" x1=\"0\" y1=\"-810\" x2=\"0\" y2=\"40\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#607b77\" stop-opacity=\"0\"/><stop offset=\"0.78\" stop-color=\"#607b77\" stop-opacity=\"0.09\"/><stop offset=\"1\" stop-color=\"#607b77\" stop-opacity=\"0.03\"/></linearGradient>\n</defs>\n<g id=\"crown-yongnyu-and-sound-pipe\" transform=\"matrix(1 0 0 1 0 -480)\">\n<path id=\"restrained-dragon-ring\" d=\"M-301-3375L-332-3517Q-356-3605-292-3682L-164-3795Q-106-3840-42-3825L49-3773L62-3719L7-3711L-22-3762Q-72-3791-111-3757L-215-3644Q-247-3595-226-3511L-208-3409Z\" fill=\"#444d3e\" stroke=\"#14292d\" stroke-width=\"18\"/>\n<path id=\"dragon-moon-facing-ridge\" d=\"M-289-3420L-310-3523Q-330-3604-274-3661L-151-3772Q-115-3805-76-3801L-33-3776L-63-3764Q-105-3783-134-3747L-240-3635Q-267-3591-245-3525L-222-3417Z\" fill=\"#8a8160\"/>\n<path id=\"dragon-head-and-horn\" d=\"M-47-3757L1-3798L47-3771L58-3730L108-3697L182-3690L209-3662L187-3637L107-3640L90-3607L52-3610L33-3651L-24-3677L-35-3712L-79-3720Z\" fill=\"#667052\" stroke=\"#213832\" stroke-width=\"13\"/>\n<path d=\"M48-3757L50-3803L87-3828L82-3777L110-3757L89-3733 M150-3690L173-3725L196-3709L184-3685\" fill=\"#8f8c68\"/>\n<path d=\"M33-3698L75-3684L50-3675Z M115-3659L178-3656\" fill=\"#c2b28a\" stroke=\"#a59873\" stroke-width=\"6\"/>\n<path id=\"dragon-claw-foot\" d=\"M-183-3452L-99-3433L-39-3471L2-3493L59-3479L91-3435L157-3425L186-3393L153-3367L84-3388L47-3420L9-3432L-29-3393L-127-3376L-190-3392Z\" fill=\"#6e7256\" stroke=\"#263d35\" stroke-width=\"12\"/>\n<path id=\"sound-pipe\" d=\"M304-3380L305-3694Q347-3725 407-3698L432-3387Z\" fill=\"#4c5947\" stroke=\"#243930\" stroke-width=\"14\"/>\n<path d=\"M316-3683L336-3683L350-3398L322-3398Z\" fill=\"#a1946b\"/>\n<path d=\"M302-3692Q349-3723 407-3698L409-3670Q352-3695 302-3665Z\" fill=\"#8b8562\"/>\n<path d=\"M317-3690Q350-3705 395-3692Q360-3684 317-3690Z\" fill=\"#101e23\"/>\n<path d=\"M307-3550Q358-3567 420-3553M310-3498Q363-3513 422-3501\" fill=\"none\" stroke=\"#7a805e\" stroke-width=\"11\"/>\n</g>\n<g id=\"unbroken-round-bronze-body\">\n<path id=\"complete-cast-body\" d=\"M-860-3370L-680-3670L-330-3850L320-3820L600-3660L790-3350L1020-2100L1340-450L1540-200L1620 0H-1550L-1490-180L-1320-390L-1130-2080Z\" fill=\"url(#bronze)\" stroke=\"#192c2c\" stroke-width=\"14\"/>\n<path id=\"round-shoulder-moon-plane\" d=\"M-860-3370Q-767-3690-330-3850L320-3820Q573-3731 790-3350Q146-3190-860-3370Z\" fill=\"url(#aged-crown)\"/>\n<path id=\"broad-front-bronze-volume\" d=\"M-859-3336Q-383-3175 693-3340L943-1915L1205-512Q228-210-1213-516L-1063-2133Z\" fill=\"url(#bronze)\"/>\n<path id=\"left-broad-lit-plane\" d=\"M-676-3631Q-529-3704-358-3729Q-405-3215-466-2800L-655-1730L-808-617L-1192-532L-1020-2150Q-956-2961-676-3631Z\" fill=\"#ab946b\" opacity=\"0.34\"/>\n<path id=\"right-unbroken-shadow-plane\" d=\"M306-3803Q601-3652 762-3360L990-2100L1310-443L1525-215L1586-49L1122-46L1029-500L754-1960L572-3201Q490-3561 306-3803Z\" fill=\"#183731\" opacity=\"0.56\"/>\n<path id=\"old-cast-patina-wash\" d=\"M-495-3261Q-327-3195-218-3280L-78-3090L-157-2585Q-332-2206-246-1791L-367-1237L-273-850L-528-671L-730-732L-625-1191Q-555-1670-674-2010L-531-2495Z\" fill=\"#476950\" opacity=\"0.30\"/>\n<path id=\"broad-lower-patina\" d=\"M123-2310Q454-2370 637-2090L769-1643Q650-1430 780-1065L601-729L313-556L13-795L-21-1130L110-1523L21-1867Z\" fill=\"#2c5144\" opacity=\"0.35\"/>\n<path id=\"continuous-upper-cast-band\" d=\"M-830-3300Q-167-3122 822-3282L843-3162Q-97-2999-853-3176Z\" fill=\"#6f7452\" stroke=\"#354f3d\" stroke-width=\"11\"/>\n<path d=\"M-829-3291Q-111-3115 823-3270M-849-3191Q-52-3029 838-3178\" fill=\"none\" stroke=\"#ad9e70\" stroke-width=\"10\"/>\n<path id=\"lower-outer-cast-band\" d=\"M-1348-360Q-171-186 1391-369L1460-276Q230-58-1424-266Z\" fill=\"#797453\" stroke=\"#40583f\" stroke-width=\"13\"/>\n<path d=\"M-1341-348Q-64-161 1391-354\" fill=\"none\" stroke=\"#b8a67c\" stroke-width=\"12\"/>\n</g>\n<g id=\"broad-korean-cast-reliefs\">\n<path id=\"west-nine-boss-panel\" d=\"M-794-3022Q-534-2949-184-2950L-229-2423Q-584-2444-871-2507Z\" fill=\"#53664b\" stroke=\"#958c61\" stroke-width=\"13\"/>\n<path id=\"east-nine-boss-panel\" d=\"M375-2962Q606-2984 838-3050L918-2535Q671-2460 447-2446Z\" fill=\"#496147\" stroke=\"#7f8559\" stroke-width=\"12\"/>\n<path id=\"nine-bosses-west\" d=\"M-729-2890q22-36 48-2q19 36-18 52q-35 1-30-50Z M-554-2854q22-36 48-2q19 36-18 52q-35 1-30-50Z M-372-2843q22-36 48-2q19 36-18 52q-35 1-30-50Z M-746-2745q22-36 48-2q19 36-18 52q-35 1-30-50Z M-570-2718q22-36 48-2q19 36-18 52q-35 1-30-50Z M-389-2708q22-36 48-2q19 36-18 52q-35 1-30-50Z M-766-2608q22-36 48-2q19 36-18 52q-35 1-30-50Z M-587-2583q22-36 48-2q19 36-18 52q-35 1-30-50Z M-408-2570q22-36 48-2q19 36-18 52q-35 1-30-50Z\" fill=\"#aba275\" stroke=\"#374b39\" stroke-width=\"8\"/>\n<path id=\"nine-bosses-east\" d=\"M449-2844q20-33 42-7q22 31-10 49q-32 5-32-42Z M595-2864q20-33 42-7q22 31-10 49q-32 5-32-42Z M748-2900q20-33 42-7q22 31-10 49q-32 5-32-42Z M469-2707q20-33 42-7q22 31-10 49q-32 5-32-42Z M615-2728q20-33 42-7q22 31-10 49q-32 5-32-42Z M770-2760q20-33 42-7q22 31-10 49q-32 5-32-42Z M489-2579q20-33 42-7q22 31-10 49q-32 5-32-42Z M636-2598q20-33 42-7q22 31-10 49q-32 5-32-42Z M790-2635q20-33 42-7q22 31-10 49q-32 5-32-42Z\" fill=\"#92976a\" stroke=\"#2d4938\" stroke-width=\"8\"/>\n<path id=\"single-large-lotus-strike\" d=\"M-794-1509Q-822-1740-672-1901Q-501-2016-346-1873Q-217-1730-254-1517Q-291-1303-470-1244Q-684-1223-794-1509Z\" fill=\"#617052\" stroke=\"#899366\" stroke-width=\"17\"/>\n<path d=\"M-747-1499Q-773-1698-643-1840Q-502-1931-379-1810Q-273-1684-301-1530Q-338-1351-483-1297Q-650-1282-747-1499Z\" fill=\"#3d5b47\" stroke=\"#999e72\" stroke-width=\"10\"/>\n<path id=\"eight-petal-lotus\" d=\"M-514-1776Q-471-1735-478-1676Q-421-1720-374-1698Q-378-1645-430-1615Q-358-1602-350-1554Q-396-1517-451-1535Q-432-1467-470-1429Q-518-1458-519-1510Q-557-1459-613-1470Q-627-1521-581-1560Q-642-1578-650-1633Q-593-1656-548-1624Q-567-1711-514-1776Z\" fill=\"#9b9b6a\"/>\n<path d=\"M-544-1627Q-490-1651-466-1600Q-445-1548-497-1529Q-553-1514-573-1567Q-589-1609-544-1627Z\" fill=\"#485f43\" stroke=\"#b3aa74\" stroke-width=\"8\"/>\n<path id=\"one-flowing-heavenly-robe-relief\" d=\"M407-1950Q353-2010 388-2080Q429-2130 477-2079Q510-2038 481-1980L435-1950L443-1886Q512-1859 529-1785Q604-1764 672-1812Q749-1869 815-1831Q720-1817 706-1762Q653-1693 551-1694L507-1558Q538-1481 613-1431Q713-1370 783-1245Q623-1300 539-1369Q423-1396 366-1482Q320-1408 227-1384Q183-1344 180-1268Q154-1396 237-1493Q319-1561 343-1666L332-1790Q261-1836 202-1789Q139-1721 60-1741Q180-1788 187-1865Q264-1946 347-1889L391-1917Z\" fill=\"#7f8860\" opacity=\"0.59\"/>\n<path d=\"M391-1980Q428-2001 467-1980M348-1829Q368-1776 398-1757L383-1639M444-1828Q478-1768 463-1697L431-1538Q455-1457 534-1413M249-1462Q333-1483 376-1541\" fill=\"none\" stroke=\"#b0a57a\" stroke-width=\"10\" opacity=\"0.48\"/>\n<path id=\"three-aged-bronze-catches\" d=\"M-984-2011Q-950-2167-912-2250M959-1320L1001-1050M-1200-865L-1227-667\" fill=\"none\" stroke=\"#b9ad83\" stroke-width=\"9\" opacity=\"0.35\"/>\n</g>\n<g id=\"underside-view-hollow-interior\">\n<path id=\"one-deep-elliptical-mouth\" d=\"M-1480-262Q-940-764 35-793Q1091-776 1530-264Q1109-7 48 23Q-967 29-1480-262Z\" fill=\"#233d38\" stroke=\"#7c8059\" stroke-width=\"14\"/>\n<path id=\"mouth-cast-thickness\" d=\"M-1480-262Q-940-764 35-793Q1091-776 1530-264L1345-244Q899-619 35-636Q-872-612-1295-219Z\" fill=\"url(#bell-lip)\"/>\n<path id=\"inner-cavern-under-bell\" d=\"M-1289-216Q-903-614 35-636Q914-619 1345-244Q983-51 49-24Q-836-19-1289-216Z\" fill=\"url(#inner-void)\"/>\n<path d=\"M-1267-215Q-841-519 43-544Q897-526 1314-242\" fill=\"none\" stroke=\"#526549\" stroke-width=\"22\" opacity=\"0.52\"/>\n<path id=\"near-rim-hidden-thickness\" d=\"M-1289-216Q-840-20 49-24Q986-54 1345-244L1497-140Q1033 0 35 0Q-1003 0-1480-156Z\" fill=\"#1b352f\"/>\n</g>\n<g id=\"sound-window-recess\">\n<path id=\"original-cast-side-sound-window\" d=\"M620-590Q620-610 660-610H1308.97L1444-320H670Q620-320 620-360Z\" fill=\"#0d222e\"/>\n</g>\n<g id=\"cast-sound-window-frame\">\n<path id=\"smooth-cast-upper-reveal\" d=\"M589-618Q600-648 653-648H1302L1318-610H660Q620-610 620-572V-360Q620-320 670-320H1444L1469-288H668Q587-288 580-356V-565Q580-595 589-618Z\" fill=\"#52634a\" stroke=\"#243c33\" stroke-width=\"8\"/>\n<path d=\"M603-623Q616-634 658-634H1304M590-565V-360Q596-303 668-303H1452\" fill=\"none\" stroke=\"#a3976a\" stroke-width=\"8\"/>\n<path id=\"sound-window-underside-depth\" d=\"M620-558L653-572V-374Q653-345 684-344H1428L1444-320H670Q620-320 620-360Z\" fill=\"#203b32\"/>\n</g>\n<g id=\"single-east-cast-bearing-ear\">\n<path d=\"M1310-440H1990V-320H1350Z\" fill=\"#617452\" stroke=\"#1d392e\" stroke-width=\"13\"/>\n<path d=\"M1350-431H1981V-394H1364Z\" fill=\"#a2956c\"/>\n<path d=\"M1469-387H1950V-334H1492Z\" fill=\"#34573f\"/>\n<path d=\"M1875-425V-336M1505-425V-336\" fill=\"none\" stroke=\"#91a071\" stroke-width=\"16\"/>\n</g>\n<g id=\"one-continuous-heavy-mouth\">\n<path id=\"west-thick-lip\" d=\"M-1490-180L-1550 0H-980L-954-234Q-1186-224-1490-180Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"east-thick-lip\" d=\"M1061-234L1100 0H1620L1540-200Q1358-224 1061-234Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"mouth-front-ring\" d=\"M-1550 0H1620L1596-62Q940-114 30-104Q-897-100-1528-67Z\" fill=\"url(#bell-lip)\" stroke=\"#162d2a\" stroke-width=\"13\"/>\n<path d=\"M-1521-62Q-873-89 30-89Q968-99 1595-57\" fill=\"none\" stroke=\"#baab7f\" stroke-width=\"13\"/>\n<path d=\"M-1543-8H1612\" fill=\"none\" stroke=\"#7f8460\" stroke-width=\"11\"/>\n<path d=\"M-1487-171Q-1224-170-962-176M1075-176Q1375-176 1534-191\" fill=\"none\" stroke=\"#c3ae7f\" stroke-width=\"13\"/>\n<path id=\"heavy-lip-contact-shadow\" d=\"M-1539-29H-984L-980 0H-1550Z M1100 0L1095-27H1607L1620 0Z\" fill=\"#203c34\"/>\n</g>\n</svg>\n"
       },
       "collision": [],
       "anchor": {
@@ -48100,15 +50786,42 @@
         "editable-native-vector"
       ],
       "params": {
-        "artRevision": 2,
+        "artRevision": 3,
         "collisionSource": "authored-stage-terrain",
-        "nodeCount": 56,
+        "nodeCount": 62,
         "koreanType": "beomjong-yongnyu-sound-pipe",
         "monumental": true,
         "continuousShell": true,
         "view": "below-the-lip",
         "localLipY": 0,
-        "descentDistance": 200
+        "descentDistance": 200,
+        "soundWindow": {
+          "localTop": -610,
+          "localBottom": -320,
+          "shellOpening": [
+            [
+              1016.372549,
+              -610
+            ],
+            [
+              1308.969697,
+              -610
+            ],
+            [
+              1444,
+              -320
+            ],
+            [
+              1056.078431,
+              -320
+            ]
+          ],
+          "interiorReveal": "M620-590Q620-610 660-610H1308.969697L1444-320H670Q620-320 620-360Z",
+          "overlays": [
+            "cast-sound-window-frame",
+            "single-east-cast-bearing-ear"
+          ]
+        }
       },
       "bounds": {
         "x": -1610,
@@ -48123,226 +50836,6 @@
           "y": -4420,
           "w": 3670,
           "h": 4450
-        },
-        "foot": {
-          "x": 0,
-          "y": 0
-        },
-        "scaleRange": [
-          0.35,
-          4
-        ],
-        "backgroundRange": [
-          0.35,
-          4
-        ]
-      }
-    },
-    {
-      "id": "stage18:bell-west-stone-saddle",
-      "name": "종의 무게를 받는 뒤벽 돌출 받침",
-      "category": "rock",
-      "environmentRole": "rock",
-      "visual": [],
-      "vector": {
-        "version": 1,
-        "viewBox": [
-          -12,
-          -12,
-          1014,
-          464
-        ],
-        "gradients": {},
-        "root": {
-          "tag": "g",
-          "children": [
-            {
-              "tag": "path",
-              "fill": "#596f70",
-              "stroke": "#273f48",
-              "lineWidth": 8,
-              "lineJoin": "round",
-              "lineCap": "round",
-              "id": "canonical-stone-saddle",
-              "d": "M70 240L380 10L530 0L990 0L970 250L600 330L260 440L0 350Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#a7aca0",
-              "d": "M0 0L990 0L990 43L0 43Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#435d65",
-              "d": "M0 46L990 46L990 440L584.1 440L633.6 224.4Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#78877e",
-              "d": "M8 51L584.1 51L504.9 420L0 428Z"
-            },
-            {
-              "tag": "path",
-              "fill": "none",
-              "stroke": "#304c57",
-              "lineWidth": 10,
-              "lineJoin": "round",
-              "lineCap": "round",
-              "id": "few-aged-stone-joints",
-              "d": "M178.2 52L148.5 425M653.4 4V37M564.3 246.40000000000003L722.6999999999999 272.8L986 259.59999999999997"
-            },
-            {
-              "tag": "path",
-              "fill": "none",
-              "stroke": "#c3c5af",
-              "lineWidth": 5,
-              "lineJoin": "round",
-              "lineCap": "round",
-              "d": "M12 12H978"
-            }
-          ]
-        },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-12 -12 1014 464\"><path id=\"canonical-stone-saddle\" d=\"M70 240L380 10L530 0L990 0L970 250L600 330L260 440L0 350Z\" fill=\"#596f70\" stroke=\"#273f48\" stroke-width=\"8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M0 0L990 0L990 43L0 43Z\" fill=\"#a7aca0\"/><path d=\"M0 46L990 46L990 440L584.1 440L633.6 224.4Z\" fill=\"#435d65\"/><path d=\"M8 51L584.1 51L504.9 420L0 428Z\" fill=\"#78877e\"/><path id=\"few-aged-stone-joints\" d=\"M178.2 52L148.5 425M653.4 4V37M564.3 246.40000000000003L722.6999999999999 272.8L986 259.59999999999997\" fill=\"none\" stroke=\"#304c57\" stroke-width=\"10\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M12 12H978\" fill=\"none\" stroke=\"#c3c5af\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"
-      },
-      "collision": [],
-      "anchor": {
-        "x": 0,
-        "y": 0
-      },
-      "sockets": [],
-      "tags": [
-        "stage18-bell",
-        "visual-only",
-        "editable-native-vector"
-      ],
-      "params": {
-        "artRevision": 2,
-        "collisionSource": "authored-stage-terrain",
-        "nodeCount": 7
-      },
-      "bounds": {
-        "x": -12,
-        "y": -12,
-        "w": 1014,
-        "h": 464
-      },
-      "reference": {
-        "heightM": 7.733333333333333,
-        "bounds": {
-          "x": -12,
-          "y": -12,
-          "w": 1014,
-          "h": 464
-        },
-        "foot": {
-          "x": 0,
-          "y": 0
-        },
-        "scaleRange": [
-          0.35,
-          4
-        ],
-        "backgroundRange": [
-          0.35,
-          4
-        ]
-      }
-    },
-    {
-      "id": "stage18:bell-east-stone-saddle",
-      "name": "종의 무게를 받는 뒤벽 돌출 받침",
-      "category": "rock",
-      "environmentRole": "rock",
-      "visual": [],
-      "vector": {
-        "version": 1,
-        "viewBox": [
-          -12,
-          -12,
-          914,
-          374
-        ],
-        "gradients": {},
-        "root": {
-          "tag": "g",
-          "children": [
-            {
-              "tag": "path",
-              "fill": "#596f70",
-              "stroke": "#273f48",
-              "lineWidth": 8,
-              "lineJoin": "round",
-              "lineCap": "round",
-              "id": "canonical-stone-saddle",
-              "d": "M0 0L570 0L840 180L890 350L560 310L270 230L0 250Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#a7aca0",
-              "d": "M0 0L890 0L890 43L0 43Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#435d65",
-              "d": "M0 46L890 46L890 350L525.1 350L569.6 178.5Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#78877e",
-              "d": "M8 51L525.1 51L453.9 330L0 338Z"
-            },
-            {
-              "tag": "path",
-              "fill": "none",
-              "stroke": "#304c57",
-              "lineWidth": 10,
-              "lineJoin": "round",
-              "lineCap": "round",
-              "id": "few-aged-stone-joints",
-              "d": "M160.2 52L133.5 335M587.4 4V37M507.29999999999995 196.00000000000003L649.6999999999999 217L886 206.5"
-            },
-            {
-              "tag": "path",
-              "fill": "none",
-              "stroke": "#c3c5af",
-              "lineWidth": 5,
-              "lineJoin": "round",
-              "lineCap": "round",
-              "d": "M12 12H878"
-            }
-          ]
-        },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-12 -12 914 374\"><path id=\"canonical-stone-saddle\" d=\"M0 0L570 0L840 180L890 350L560 310L270 230L0 250Z\" fill=\"#596f70\" stroke=\"#273f48\" stroke-width=\"8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M0 0L890 0L890 43L0 43Z\" fill=\"#a7aca0\"/><path d=\"M0 46L890 46L890 350L525.1 350L569.6 178.5Z\" fill=\"#435d65\"/><path d=\"M8 51L525.1 51L453.9 330L0 338Z\" fill=\"#78877e\"/><path id=\"few-aged-stone-joints\" d=\"M160.2 52L133.5 335M587.4 4V37M507.29999999999995 196.00000000000003L649.6999999999999 217L886 206.5\" fill=\"none\" stroke=\"#304c57\" stroke-width=\"10\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M12 12H878\" fill=\"none\" stroke=\"#c3c5af\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"
-      },
-      "collision": [],
-      "anchor": {
-        "x": 0,
-        "y": 0
-      },
-      "sockets": [],
-      "tags": [
-        "stage18-bell",
-        "visual-only",
-        "editable-native-vector"
-      ],
-      "params": {
-        "artRevision": 2,
-        "collisionSource": "authored-stage-terrain",
-        "nodeCount": 7
-      },
-      "bounds": {
-        "x": -12,
-        "y": -12,
-        "w": 914,
-        "h": 374
-      },
-      "reference": {
-        "heightM": 6.233333333333333,
-        "bounds": {
-          "x": -12,
-          "y": -12,
-          "w": 914,
-          "h": 374
         },
         "foot": {
           "x": 0,
@@ -48466,7 +50959,7 @@
         "editable-native-vector"
       ],
       "params": {
-        "artRevision": 2,
+        "artRevision": 3,
         "collisionSource": "authored-stage-terrain",
         "nodeCount": 11
       },
@@ -49062,9 +51555,9 @@
       {
         "path": "shared/runtime/stage18-bell-art.js",
         "beforeSha256": null,
-        "afterSha256": "100b257c2a83c88fc6061074ad884786ba2be749c9ce660b43411f34c8261704",
+        "afterSha256": "ca2810c911a943a7569c65b97d308a8824d7ddef5eb464f7fa2db97eecaebae6",
         "before": null,
-        "after": "(function(G){'use strict';\n// Opt-in material and event cues for the one authored hollow bell. The source\n// terrain and saved descent state remain the authority. No physics lives here.\nconst S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();\nconst active=b=>[18,19].includes(b?.honroStage)&&b.honroBellRevision===1;\nconst lowering=b=>active(b)&&b.honroState?.bellDescent?.status==='lowering';\nconst shellIds=new Set(['sb-bell-crown','sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-yoke']);\nconst omitReadability=(group,b)=>active(b)&&shellIds.has(group.id);\nfunction prepare(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;\n const shape=new Path2D(),ps=C.poly(t);ps.forEach((p,i)=>i?shape.lineTo(p.x,p.y):shape.moveTo(p.x,p.y));shape.closePath();\n q={shape,vertices:t.vertices,version:b.sceneVersion};cache.set(t,q);return q;\n}\nfunction shell(c,t,b){if(!active(b)||!(t.honroBellShell||t.honroBellBody))return false;const q=prepare(t,b);c.save();\n const g=c.createLinearGradient(t.x,t.y,t.x+t.w,t.y+t.h*.22);g.addColorStop(0,'#867957');g.addColorStop(.42,'#59634d');g.addColorStop(1,'#304b40');c.fillStyle=g;c.fill(q.shape);\n c.strokeStyle='#192f2c';c.lineWidth=9;c.lineJoin='round';c.stroke(q.shape);c.restore();return true;\n}\nconst stoneProxies=new WeakMap();\nconst terrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(lowering(b)&&shellIds.has(t.id))return;if(shell(c,t,b))return;\n // Old generic optional shelves are timber. These two named new rock ramps\n // retain their actual material without mutating the playable one-way flag.\n if(active(b)&&t.honroBell&&t.mat==='rock'&&t.oneWay&&t.optional){let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}return G.HonroAct2SpatialArt.terrain(c,q.view,b);}\n return terrain.call(this,c,t);\n};\n// The 0.9-second safe descent reuses the still cavern tiles. Only this one\n// retained SVG is drawn live, with the position already moved by the runtime.\nconst landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){return landmarks.call(this,c,lowering(this.battle)?list.filter(l=>l.id!=='sb-bell-body'):list,layer);};\nfunction movingBody(c,b){if(!lowering(b))return false;const body=b.honroLandmarks?.find(l=>l.id==='sb-bell-body');if(!body?.asset)return false;G.HonroVectorArt.draw(c,body.asset,body);return true;}\nfunction rect(zone){if(!zone)return null;const z=zone.bounds||zone;if([z.x,z.y,z.w,z.h].every(Number.isFinite))return z;if(Number.isFinite(z.x)&&Number.isFinite(z.y)&&Number.isFinite(z.radius))return{x:z.x-z.radius,y:z.y-110,w:z.radius*2,h:110};return null;}\nconst guideCache=new WeakMap();\nfunction sweepArt(b){const spec=b.honroBellDescent,shapes=G.HonroStage18Bell?.sweepGeometry(b)||[];let q=guideCache.get(spec);if(q?.source===shapes)return q;\n const fill=new Path2D();for(const shape of shapes){const ps=shape.vertices;let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=a.x*z.y-z.x*a.y;}const ordered=area<0?ps.slice().reverse():ps;ordered.forEach((p,i)=>i?fill.lineTo(p.x,p.y):fill.moveTo(p.x,p.y));fill.closePath();}\n // Reuse the common exposed-edge builder for the union outline. This scratch\n // geometry is read-only and never replaces any live terrain or saved state.\n const union={terrain:shapes,sceneVersion:0,honroLandmarks:[]},rim=new Path2D();for(const group of G.HonroTerrainReadability.prepare(union).groups)rim.addPath(group.edge);\n q={source:shapes,fill,rim};guideCache.set(spec,q);return q;\n}\nfunction descentGuide(c,b,scene){if(!active(b)||b.honroStage!==18)return false;const m=b.honroState?.bellDescent,spec=b.honroBellDescent;if(!m||!spec||!['warning','waiting','lowering'].includes(m.status))return false;\n const z=Math.max(.05,scene.scale||1),time=G.HonroEnvironmentArt?.time?.(scene)||0,pulse=.74+Math.sin(time*2.3)*.08;c.save();c.lineJoin='round';\n // Safe floor cues are intentionally quieter than the amber moving edge.\n for(const zone of spec.safeZones||[]){const r=rect(zone);if(!r)continue;c.fillStyle='#8cc7c811';c.fillRect(r.x,r.y,r.w,r.h);c.strokeStyle='#8ebfc991';c.lineWidth=1.25/z;c.beginPath();c.moveTo(r.x,r.y+r.h);c.lineTo(r.x+r.w,r.y+r.h);c.stroke();}\n const q=sweepArt(b);c.fillStyle='#e4a96025';c.fill(q.fill,'nonzero');c.strokeStyle=`rgba(222,170,98,${pulse})`;c.lineWidth=1.45/z;c.setLineDash([7/z,6/z]);c.stroke(q.rim);c.setLineDash([]);\n for(const id of ['sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-yoke']){const t=b.terrain.find(t=>t.id===id);if(!t)continue;const ps=C.poly(t),bottom=Math.max(...ps.map(p=>p.y)),feet=ps.filter(p=>Math.abs(p.y-bottom)<.5),xx=feet.reduce((sum,p)=>sum+p.x,0)/feet.length,yy=bottom+(spec.distance-(m.offset||0))-23/z,size=6/z;c.beginPath();c.moveTo(xx-size,yy-size);c.lineTo(xx,yy);c.lineTo(xx+size,yy-size);c.moveTo(xx-size,yy+5/z);c.lineTo(xx,yy+5/z+size);c.lineTo(xx+size,yy+5/z);c.stroke();}\n c.restore();return true;\n}\nconst water=S.liveWater;S.liveWater=function(c,b){const result=water?.call(this,c,b);movingBody(c,b);descentGuide(c,b,this);return result;};\nG.HonroStage18BellArt={active,lowering,prepare,shell,omitReadability,movingBody,sweepArt,descentGuide};\n})(globalThis);\n"
+        "after": "(function(G){'use strict';\n// Opt-in material and event cues for the one authored hollow bell. The source\n// terrain and saved descent state remain the authority. No physics lives here.\nconst S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();\nconst active=b=>[18,19].includes(b?.honroStage)&&b.honroBellRevision===1;\nconst lowering=b=>active(b)&&b.honroState?.bellDescent?.status==='lowering';\nconst shellIds=new Set(['sb-bell-crown','sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke']);\nconst interiorStoneIds=new Set(['sb-inner-upper-turn','sb-inner-sound-stone']);\nconst omitReadability=(group,b)=>active(b)&&(shellIds.has(group.id)||interiorStoneIds.has(group.id));\nfunction prepare(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;\n const shape=new Path2D(),ps=C.poly(t);ps.forEach((p,i)=>i?shape.lineTo(p.x,p.y):shape.moveTo(p.x,p.y));shape.closePath();\n q={shape,vertices:t.vertices,version:b.sceneVersion};cache.set(t,q);return q;\n}\nfunction shell(c,t,b){if(!active(b)||!(t.honroBellShell||t.honroBellBody))return false;const q=prepare(t,b);c.save();\n const g=c.createLinearGradient(t.x,t.y,t.x+t.w,t.y+t.h*.22);g.addColorStop(0,'#867957');g.addColorStop(.42,'#59634d');g.addColorStop(1,'#304b40');c.fillStyle=g;c.fill(q.shape);\n c.strokeStyle='#192f2c';c.lineWidth=9;c.lineJoin='round';c.stroke(q.shape);c.restore();return true;\n}\n// Broad curved mineral planes are clipped to each authored collider. The\n// exterior silhouette always comes from the terrain, never decorative rocks.\nconst rockForms=[\n ['M-90-160H1060V118Q763 18 529 162Q378 324 269 402Q94 509-70 404Z','M657-120Q470 107 576 314Q666 453 533 640Q451 849 548 1100H1080V-100Z','M-100 565Q142 412 308 506Q521 658 659 546Q781 455 1090 580V780Q817 615 636 726Q401 809 204 670Q46 606-100 745Z','M604-20Q533 103 546 245L491 373Q485 544 411 655Q354 779 392 941'],\n ['M-120-150H1040V195Q871 322 641 234Q423 114 311 251Q220 339 71 330L-100 490Z','M745-150Q672 230 535 351Q638 581 515 819L590 1120H1100V-120Z','M-60 494Q121 565 325 441Q517 327 748 426Q948 545 1070 467V664Q888 741 698 598Q527 535 353 647Q157 778-40 665Z','M259 48Q374 194 341 342Q285 476 357 579L348 851'],\n ['M-90-180H1090V93Q930 219 733 190Q520 63 359 185Q236 294 11 231Z','M792-130Q905 154 777 359Q652 576 754 769L722 1110H1120V-130Z','M-70 380Q174 257 337 369Q516 496 659 360Q842 260 1090 402V665Q841 527 648 655Q436 751 292 617Q96 494-70 590Z','M561 138Q649 231 558 349Q484 434 508 579Q552 667 471 874'],\n ['M-100-180H1100V159Q921 313 710 276Q553 304 403 418Q191 463 54 348L-100 455Z','M751-100Q587 33 695 257Q805 463 644 547Q563 719 668 1100H1110V-120Z','M-70 641Q181 469 375 540Q610 629 723 474Q865 377 1080 464V622Q882 548 768 696Q565 862 333 709Q132 639-70 789Z','M385 89Q340 183 419 298Q475 379 402 481L391 708Q357 824 403 947']\n].map(a=>a.map(d=>new Path2D(d)));\nfunction rock(c,t,b){if(!active(b)||!t.honroBell||t.mat!=='rock'||t.oneWay||['act2-floor','cave-roof'].includes(t.id)||t.w<170||t.h<170)return false;\n const q=prepare(t,b),index=/crown|court/.test(t.id)?2:/lower|buttress|saddle/.test(t.id)?1:/east|return/.test(t.id)?3:0,forms=rockForms[index];c.save();c.clip(q.shape);const base=c.createLinearGradient(t.x,t.y,t.x+t.w*.47,t.y+t.h);base.addColorStop(0,'#6c817b');base.addColorStop(.48,'#4d676b');base.addColorStop(1,'#263f4d');c.fillStyle=base;c.fill(q.shape);c.translate(t.x,t.y);c.scale(t.w/1000,t.h/1000);\n c.fillStyle='#8f9a822b';c.fill(forms[0]);c.fillStyle='#152f408f';c.fill(forms[1]);c.fillStyle='#91a08a13';c.fill(forms[2]);if(/west-middle|west-crown|maintenance-buttress|east-resonance-mass|east-keeper-mass|return-cave-buttress/.test(t.id)){c.strokeStyle='#203c486a';c.lineWidth=8;c.lineCap='round';c.stroke(forms[3]);c.strokeStyle='#a3ae901c';c.lineWidth=3;c.translate(-8,-5);c.stroke(forms[3]);}c.restore();return true;\n}\nconst stoneProxies=new WeakMap();\nconst terrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(active(b)&&interiorStoneIds.has(t.id))return;if(lowering(b)&&shellIds.has(t.id))return;if(shell(c,t,b))return;if(rock(c,t,b))return;\n // Old generic optional shelves are timber. These two named new rock ramps\n // retain their actual material without mutating the playable one-way flag.\n if(active(b)&&t.honroBell&&t.mat==='rock'&&t.oneWay&&t.optional){let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}return G.HonroAct2SpatialArt.terrain(c,q.view,b);}\n return terrain.call(this,c,t);\n};\n// The 0.9-second safe descent reuses the still cavern tiles. Only this one\n// retained SVG is drawn live, with the position already moved by the runtime.\nconst bellPaintCache=new WeakMap();\nfunction bellPaint(asset){let q=bellPaintCache.get(asset);if(q)return q;const spec=asset.params?.soundWindow;if(!spec)return null;const box=asset.bounds,clip=new Path2D(`M${box.x-20} ${box.y-20}h${box.w+40}v${box.h+40}h${-box.w-40}Z ${spec.interiorReveal}`);const overlays={...asset,vector:{...asset.vector,root:{...asset.vector.root,children:asset.vector.root.children.filter(node=>spec.overlays.includes(node.id))}}};q={clip,overlays};bellPaintCache.set(asset,q);return q;}\nfunction drawBell(c,body){const q=bellPaint(body.asset);if(!q)return G.HonroVectorArt.draw(c,body.asset,body);\n // The cast side aperture is transparent to the actual gallery and actors.\n // Its physical outer opening is authored in soundWindow.shellOpening; the\n // leftward reveal is the already-empty bell interior viewed through it.\n c.save();c.translate(body.x||0,body.y||0);c.rotate(body.rotation||0);c.scale(body.scale??1,body.scale??1);c.clip(q.clip,'evenodd');G.HonroVectorArt.draw(c,body.asset,{x:0,y:0,scale:1,rotation:0});c.restore();G.HonroVectorArt.draw(c,q.overlays,body);return true;\n}\nconst landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const body=list.find(l=>l.id==='sb-bell-body');const result=landmarks.call(this,c,list.filter(l=>l.id!=='sb-bell-body'),layer);if(body&&!lowering(b)&&(body.layer||'back')===layer)drawBell(c,body);return result;};\nfunction movingBody(c,b){if(!lowering(b))return false;const body=b.honroLandmarks?.find(l=>l.id==='sb-bell-body');if(!body?.asset)return false;return drawBell(c,body);}\n// These two fixed stones stand in the open mouth, in front of its dark\n// underside. Paint their actual polygons once, after the bell and before\n// actors. They are omitted from the cached terrain/readability passes above.\nfunction interiorStones(c,b,scene){if(!active(b))return false;for(const t of b.terrain||[]){if(!interiorStoneIds.has(t.id))continue;if(rock(c,t,b))continue;let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}G.HonroAct2SpatialArt.terrain(c,q.view,b);}\n const style=G.HonroTerrainReadability.STYLE,unit=1/Math.max(.05,scene.scale||1);c.save();c.lineJoin='round';c.lineCap='butt';for(const group of G.HonroTerrainReadability.prepare(b).groups){if(!interiorStoneIds.has(group.id))continue;c.strokeStyle=style.edgeInk;c.lineWidth=style.edgePixels*unit;c.stroke(group.edge);c.lineWidth=style.topInkPixels*unit;c.stroke(group.top);c.strokeStyle=style.topLight;c.lineWidth=style.topLightPixels*unit;c.stroke(group.top);}c.restore();return true;\n}\nfunction rect(zone){if(!zone)return null;const z=zone.bounds||zone;if([z.x,z.y,z.w,z.h].every(Number.isFinite))return z;if(Number.isFinite(z.x)&&Number.isFinite(z.y)&&Number.isFinite(z.radius))return{x:z.x-z.radius,y:z.y-110,w:z.radius*2,h:110};return null;}\nconst guideCache=new WeakMap();\nfunction sweepArt(b){const spec=b.honroBellDescent,shapes=G.HonroStage18Bell?.sweepGeometry(b)||[];let q=guideCache.get(spec);if(q?.source===shapes)return q;\n const fill=new Path2D();for(const shape of shapes){const ps=shape.vertices;let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=a.x*z.y-z.x*a.y;}const ordered=area<0?ps.slice().reverse():ps;ordered.forEach((p,i)=>i?fill.lineTo(p.x,p.y):fill.moveTo(p.x,p.y));fill.closePath();}\n // Reuse the common exposed-edge builder for the union outline. This scratch\n // geometry is read-only and never replaces any live terrain or saved state.\n const union={terrain:shapes,sceneVersion:0,honroLandmarks:[]},rims=G.HonroTerrainReadability.prepare(union).groups.map(group=>group.edge);\n q={source:shapes,fill,rims};guideCache.set(spec,q);return q;\n}\nfunction descentGuide(c,b,scene){if(!active(b)||b.honroStage!==18)return false;const m=b.honroState?.bellDescent,spec=b.honroBellDescent;if(!m||!spec||!['warning','waiting','lowering'].includes(m.status))return false;\n const z=Math.max(.05,scene.scale||1),time=G.HonroEnvironmentArt?.time?.(scene)||0,pulse=.74+Math.sin(time*2.3)*.08;c.save();c.lineJoin='round';\n // Safe floor cues are intentionally quieter than the amber moving edge.\n for(const zone of spec.safeZones||[]){const r=rect(zone);if(!r)continue;c.fillStyle='#8cc7c811';c.fillRect(r.x,r.y,r.w,r.h);c.strokeStyle='#8ebfc991';c.lineWidth=1.25/z;c.beginPath();c.moveTo(r.x,r.y+r.h);c.lineTo(r.x+r.w,r.y+r.h);c.stroke();}\n const q=sweepArt(b);c.fillStyle='#e4a96025';c.fill(q.fill,'nonzero');c.strokeStyle=`rgba(222,170,98,${pulse})`;c.lineWidth=1.45/z;c.setLineDash([7/z,6/z]);for(const rim of q.rims)c.stroke(rim);c.setLineDash([]);\n for(const id of ['sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke']){const t=b.terrain.find(t=>t.id===id);if(!t)continue;const ps=C.poly(t),bottom=Math.max(...ps.map(p=>p.y)),feet=ps.filter(p=>Math.abs(p.y-bottom)<.5),xx=feet.reduce((sum,p)=>sum+p.x,0)/feet.length,yy=bottom+(spec.distance-(m.offset||0))-23/z,size=6/z;c.beginPath();c.moveTo(xx-size,yy-size);c.lineTo(xx,yy);c.lineTo(xx+size,yy-size);c.moveTo(xx-size,yy+5/z);c.lineTo(xx,yy+5/z+size);c.lineTo(xx+size,yy+5/z);c.stroke();}\n c.restore();return true;\n}\nconst water=S.liveWater;S.liveWater=function(c,b){const result=water?.call(this,c,b);movingBody(c,b);interiorStones(c,b,this);descentGuide(c,b,this);return result;};\nG.HonroStage18BellArt={active,lowering,prepare,shell,rock,omitReadability,bellPaint,drawBell,movingBody,interiorStones,sweepArt,descentGuide};\n})(globalThis);\n"
       },
       {
         "path": "shared/runtime/stage18-bell.js",

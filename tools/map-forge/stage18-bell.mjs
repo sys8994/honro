@@ -34,8 +34,9 @@ export function createBellTerrains({settled=false}={}){
   plane('sb-west-firing-ledge',[[4060,3760],[4250,3780]],[[4240,4260],[4080,4370],[4020,4120]]),
   deck('sb-west-crown-rise',[[2300,3700],[2900,4380]],65,{material:'rock'}),
   deck('sb-west-crown-bridge',[[2100,3540],[2400,3540],[2710,3170],[5050,3170]],65,{material:'rock'}),
-  slab('sb-west-firing-crown',[[5050,3170],[5390,3180],[5650,3280]],210),
-  deck('sb-west-return-1',[[5680,3470],[5920,3470]]),
+  plane('sb-west-firing-crown',[[5050,3170],[5390,3180],[5650,3280]],[[5650,3350],[5430,3450],[5120,3510],[5050,3410]]),
+  deck('sb-west-crown-step',[[5690,3350],[5890,3350]],65),
+  deck('sb-west-return-1',[[5680,3500],[5920,3500]]),
   deck('sb-west-return-2',[[5260,3660],[5560,3660]]),
   deck('sb-west-return-3',[[5470,3850],[5740,3850]]),
   deck('sb-west-return-4',[[5260,4040],[5560,4040]]),
@@ -43,9 +44,9 @@ export function createBellTerrains({settled=false}={}){
   deck('sb-west-return-6',[[5260,4380],[5500,4380]]),
   slab('sb-maintenance-shelf',[[5370,4520],[5790,4520]],140,{optional:false}),
   // The underside route approaches the very same release from below.
-  deck('sb-maintenance-rise',[[3310,6980],[3810,6760],[4110,6760],[4630,6280],[4960,6280],[5510,5780]],65,{optional:false,material:'rock'}),
+  deck('sb-maintenance-rise',[[3310,6980],[3810,6760],[4110,6760],[4630,6280],[4960,6280],[5510,5780],[5570,5780]],65,{optional:false,material:'rock'}),
   deck('sb-maintenance-return',[[4350,4680],[4850,5090],[5510,5620]],65,{material:'rock'}),
-  deck('sb-maintenance-upper-link',[[4350,4680],[5080,4650],[5370,4520]],65,{material:'rock'}),
+  plane('sb-maintenance-upper-link',[[4420,4515],[4930,4490],[5370,4520]],[[5350,4800],[4980,5040],[4620,4740],[4420,4615]]),
   deck('sb-court-cave-mouth',[[4470,5950],[4740,5950]],75),
   deck('sb-court-cave-step',[[4290,6130],[4520,6130]],75),
   deck('sb-court-lower-step',[[4190,5770],[4450,5770]],70),
@@ -58,7 +59,7 @@ export function createBellTerrains({settled=false}={}){
   // H is folded around a deep eastern buttress, not a copy of the western climb.
   deck('sb-east-inner-rise',[[9330,7102.659574468085],[9950,6370],[10200,6060]],85,{optional:false,material:'rock'}),
   deck('sb-keeper-side-approach',[[9650,6370],[10200,6060],[10680,6030]],90,{material:'rock'}),
-  deck('sb-east-folded-stair',[[9170,6370],[9400,6370],[9820,5850],[10400,5140],[10780,4790]],105),
+  deck('sb-east-folded-stair',[[9170,6370],[9400,6370],[9800,5860],[10150,5860]],105),
   deck('sb-east-upper-arc',[[8830,3470],[9290,3470],[9800,3980],[10150,3980],[10700,4468.219178082192]],85,{optional:false,material:'rock'}),
   deck('sb-east-upper-return',[[10900,4610],[11280,4990],[11650,4990],[12030,5530],[12420,6030]],85,{optional:false,material:'rock'}),
   slab('sb-east-resonance-ledge',[[8220,3460],[8830,3470]],240),
@@ -79,8 +80,11 @@ export function createBellTerrains({settled=false}={}){
   plane('sb-west-crown-mass',[[2710,3170],[5050,3170]],[[5050,3550],[4670,3650],[4200,3610],[3590,3820],[3200,4070],[2800,4100],[2710,3990]]),
   plane('sb-lower-buttress-mass',[[3660,6826],[3810,6760],[4110,6760],[4630,6280],[4960,6280],[5310,5961.818181818182]],[[5310,6590],[4900,7090],[4550,7150],[4100,7150],[3700,7050]]),
   plane('sb-maintenance-buttress-mass',[[4350,4680],[4850,5090],[5310,5459.39393939394]],[[5310,5800],[5010,6090],[4710,5750],[4350,5380]]),
+  deck('sb-east-cave-return',[[9450,5300],[9800,5680]],65,{material:'rock'}),
+  deck('sb-east-upper-cave',[[9590,5230],[9990,5030],[10460,5030],[10780,4790]],65,{material:'rock'}),
+  plane('sb-return-cave-buttress',[[9100,5230],[9230,5220],[9370,5230]],[[9350,5780],[9140,5970],[8980,5710],[9010,5460]]),
   plane('sb-east-resonance-mass',[[8830,3470],[9290,3470],[9800,3980],[10100,3980]],[[10080,4750],[9660,4540],[9340,4270],[9000,4400],[8830,4000]]),
-  plane('sb-east-throat-mass',[[10400,4201.917808219178],[10650,4423.835616438356]],[[10650,4720],[10540,4890],[10400,4760]]),
+  plane('sb-east-throat-mass',[[10400,4201.917808219178],[10650,4423.835616438356]],[[10650,4660],[10595,4760],[10530,4780],[10460,4670],[10400,4690]]),
   plane('sb-east-keeper-mass',[[10900,4610],[11280,4990],[11650,4990],[12060,5568.461538461539]],[[12050,6020],[11720,5900],[11320,5790],[10900,5360]]),
  ];
  for(const id of BELL_BODY_IDS){const ps=BELL_SHELL[id].map(([x,y])=>[x,y+(settled?200:0)]);ts.push(plane(id,ps,[],{material:'iron',role:'wall',optional:false,honroBellBody:true,honroBellMoving:true,honroBellShell:true}));}
@@ -106,27 +110,33 @@ function authorGeometry(st,settled){
  const join=(...rs)=>rs.flat().filter((v,i,a)=>!i||JSON.stringify(v)!==JSON.stringify(a[i-1]));
  const jump=(id,x,to,y,speed=.5)=>({...at(id,x),jumpTo:{x:y,support:to,speed}});
  const drop=(id,x,to,y,stepOffX)=>({...at(id,x),dropTo:{x:y,support:to,...(stepOffX===undefined?{}:{stepOffX})}});
- const route=(id,kind,anchors)=>({id,kind,anchors,requires:[],defaultJump:true});
+ const route=(id,kind,anchors,extra={})=>({id,kind,anchors,requires:[],defaultJump:true,...extra});
  const routes=[
   route('entry-suppression','required',join(walk('act2-floor',520,1050),[jump('act2-floor',1050,'sb-entry-rise',1100,.4)],walk('sb-entry-rise',1100,2240),walk('sb-suppression-court',2240,3180))),
   route('west-high-circuit','optional-jump',join(walk('sb-entry-rise',1940,1400),[jump('sb-entry-rise',1400,'sb-west-upper-rise',1420,.3)],walk('sb-west-upper-rise',1420,4060),walk('sb-west-firing-ledge',4060,4210))),
   route('west-crown-circuit','optional-jump',join(walk('sb-west-firing-ledge',4210,4060),walk('sb-west-upper-rise',4060,2900),[jump('sb-west-upper-rise',2900,'sb-west-crown-rise',2890,.3)],walk('sb-west-crown-rise',2890,2300),[jump('sb-west-crown-rise',2300,'sb-west-crown-bridge',2320,.2)],walk('sb-west-crown-bridge',2320,5050),walk('sb-west-firing-crown',5050,5620))),
   route('west-firing-return','return',join(walk('sb-west-firing-ledge',4210,4060),walk('sb-west-upper-rise',4060,1420),[drop('sb-west-upper-rise',1420,'sb-entry-rise',1340,1340)],walk('sb-entry-rise',1340,2240),walk('sb-suppression-court',2240,3050))),
-  route('west-maintenance-return','return',join([drop('sb-west-firing-crown',5620,'sb-west-return-1',5800,5710)],[drop('sb-west-return-1',5700,'sb-west-return-2',5480,5640)],[drop('sb-west-return-2',5530,'sb-west-return-3',5630,5600)],[drop('sb-west-return-3',5490,'sb-west-return-4',5400,5420)],[drop('sb-west-return-4',5530,'sb-west-return-5',5630,5600)],[drop('sb-west-return-5',5490,'sb-west-return-6',5400,5420)],[drop('sb-west-return-6',5480,'sb-maintenance-shelf',5470,5540)])),
+  route('west-maintenance-return','return',join([drop('sb-west-firing-crown',5620,'sb-west-crown-step',5750,5710)],[drop('sb-west-crown-step',5870,'sb-west-return-1',5840,5950)],[drop('sb-west-return-1',5700,'sb-west-return-2',5480,5640)],[drop('sb-west-return-2',5530,'sb-west-return-3',5630,5600)],[drop('sb-west-return-3',5490,'sb-west-return-4',5400,5420)],[drop('sb-west-return-4',5530,'sb-west-return-5',5630,5600)],[drop('sb-west-return-5',5490,'sb-west-return-6',5400,5420)],[drop('sb-west-return-6',5480,'sb-maintenance-shelf',5470,5540)])),
   route('entry-under-bell','required',join(walk('act2-floor',520,8170))),
   route('under-bell-entry-return','return',join(walk('act2-floor',8170,520))),
-  route('lower-maintenance-approach','optional-jump',join(walk('act2-floor',4300,3310),[jump('act2-floor',3310,'sb-maintenance-rise',3340,.3)],walk('sb-maintenance-rise',3340,5510),[jump('sb-maintenance-rise',5510,'sb-maintenance-return',5510,.2)],walk('sb-maintenance-return',5510,4350),walk('sb-maintenance-upper-link',4350,5370),walk('sb-maintenance-shelf',5370,5500))),
-  route('maintenance-lower-return','return',join(walk('sb-maintenance-shelf',5500,5370),walk('sb-maintenance-upper-link',5370,4350),walk('sb-maintenance-return',4350,5500),[drop('sb-maintenance-return',5500,'sb-maintenance-rise',5470,5560)],walk('sb-maintenance-rise',5470,3320),[drop('sb-maintenance-rise',3320,'act2-floor',3230,3250)],walk('act2-floor',3230,5800))),
+  route('lower-maintenance-approach','optional-jump',join(walk('act2-floor',4300,3310),[jump('act2-floor',3310,'sb-maintenance-rise',3340,.3)],walk('sb-maintenance-rise',3340,5510),[jump('sb-maintenance-rise',5510,'sb-maintenance-return',5510,.2)],walk('sb-maintenance-return',5510,4355),[jump('sb-maintenance-return',4355,'sb-maintenance-upper-link',4440,.4)],walk('sb-maintenance-upper-link',4440,5370),walk('sb-maintenance-shelf',5370,5500))),
+  route('maintenance-lower-return','return',join(walk('sb-maintenance-shelf',5500,5370),walk('sb-maintenance-upper-link',5370,4440),[drop('sb-maintenance-upper-link',4440,'sb-maintenance-return',4430,4360)],walk('sb-maintenance-return',4430,5500),[drop('sb-maintenance-return',5500,'sb-maintenance-rise',5500,5545)],walk('sb-maintenance-rise',5500,3320),[drop('sb-maintenance-rise',3320,'act2-floor',3230,3250)],walk('act2-floor',3230,5800))),
   route('court-lower-turn','optional-jump',join(walk('sb-suppression-court',3180,4190),[drop('sb-suppression-court',4190,'sb-court-lower-step',4400,4350)],[drop('sb-court-lower-step',4420,'sb-court-cave-mouth',4600,4490)],[drop('sb-court-cave-mouth',4490,'sb-court-cave-step',4400,4410)],[drop('sb-court-cave-step',4500,'sb-maintenance-rise',4610,4580)],walk('sb-maintenance-rise',4610,3320))),
   route('under-bell-keeper','required',join(walk('act2-floor',7300,11500))),
   route('keeper-under-bell-return','return',join(walk('act2-floor',11500,7300))),
-  route('east-outer-arc','optional-walk',join(walk('act2-floor',11500,12420),[jump('act2-floor',12420,'sb-east-upper-return',12400,.2)],walk('sb-east-upper-return',12400,10905),[jump('sb-east-upper-return',10905,'sb-east-upper-arc',10690,.8)],walk('sb-east-upper-arc',10690,8830),walk('sb-east-resonance-ledge',8830,8290))),
+  route('east-outer-arc','optional-walk',join(walk('act2-floor',11500,12420),[jump('act2-floor',12420,'sb-east-upper-return',12400,.2)],walk('sb-east-upper-return',12400,10905),[jump('sb-east-upper-return',10905,'sb-east-upper-arc',10690,1)],walk('sb-east-upper-arc',10690,8830),walk('sb-east-resonance-ledge',8830,8290))),
   route('east-upper-return','return',join(walk('sb-east-resonance-ledge',8290,8830),walk('sb-east-upper-arc',8830,10680),[jump('sb-east-upper-arc',10680,'sb-east-upper-return',10920,.8)],walk('sb-east-upper-return',10920,12410),[drop('sb-east-upper-return',12410,'act2-floor',12490,12480)],walk('act2-floor',12490,11500))),
   route('east-folded-ascent','optional-walk',join(walk('act2-floor',8750,9330),[jump('act2-floor',9330,'sb-east-inner-rise',9340,.2)],walk('sb-east-inner-rise',9340,10200),walk('sb-keeper-side-approach',10200,10650))),
-  route('east-throat-ascent','optional-jump',join([jump('sb-keeper-side-approach',9650,'sb-east-gallery-sill',9600,.35)],walk('sb-east-gallery-sill',9600,9400),[jump('sb-east-gallery-sill',9400,'sb-east-folded-stair',9480,.4)],walk('sb-east-folded-stair',9480,10780),[jump('sb-east-folded-stair',10780,'sb-east-upper-return',10920,.6)])),
+  route('east-throat-ascent','optional-jump',join([jump('sb-keeper-side-approach',9650,'sb-east-gallery-sill',9600,.35)],walk('sb-east-gallery-sill',9600,9400),[jump('sb-east-gallery-sill',9400,'sb-east-folded-stair',9480,.4)],walk('sb-east-folded-stair',9480,9840),[jump('sb-east-folded-stair',9840,'sb-east-cave-return',9790,.4)],walk('sb-east-cave-return',9790,9450),[jump('sb-east-cave-return',9450,'sb-east-upper-cave',9620,.65)],walk('sb-east-upper-cave',9620,10780),[jump('sb-east-upper-cave',10780,'sb-east-upper-return',10920,.6)])),
+  route('east-hidden-firing-nook','optional-jump',join([jump('sb-east-cave-return',9450,'sb-return-cave-buttress',9320,.6)],walk('sb-return-cave-buttress',9320,9160),walk('sb-return-cave-buttress',9160,9350),[jump('sb-return-cave-buttress',9350,'sb-east-cave-return',9470,.5)])),
+  route('keeper-gallery-access','optional-jump',join(walk('act2-floor',11480,10940),walk('sb-keeper-cover',10940,10790),[jump('sb-keeper-cover',10790,'sb-keeper-side-approach',10640,.6)],walk('sb-keeper-side-approach',10640,9650))),
+  route('gallery-keeper-return','return',join(walk('sb-keeper-side-approach',9650,10650),[drop('sb-keeper-side-approach',10650,'sb-keeper-cover',10810,10740)],walk('sb-keeper-cover',10810,10940),walk('act2-floor',10940,11480))),
+  route('maintenance-crown-ascent','optional-jump',join(walk('sb-maintenance-shelf',5500,5460),[jump('sb-maintenance-shelf',5460,'sb-west-return-6',5420,.3)],walk('sb-west-return-6',5420,5460),[jump('sb-west-return-6',5460,'sb-west-return-5',5520,.4)],walk('sb-west-return-5',5520,5500),[jump('sb-west-return-5',5500,'sb-west-return-4',5470,.2)],walk('sb-west-return-4',5470,5480),[jump('sb-west-return-4',5480,'sb-west-return-3',5550,.4)],walk('sb-west-return-3',5550,5510),[jump('sb-west-return-3',5510,'sb-west-return-2',5520,.2)],walk('sb-west-return-2',5520,5545),[jump('sb-west-return-2',5545,'sb-west-return-1',5700,1)],walk('sb-west-return-1',5700,5810),[jump('sb-west-return-1',5810,'sb-west-crown-step',5800,.2)],walk('sb-west-crown-step',5800,5715),[jump('sb-west-crown-step',5715,'sb-west-firing-crown',5630,.5)])),
   route('inner-sound-gallery','optional-jump',join(walk('act2-floor',7620,7340),[jump('act2-floor',7340,'sb-inner-lower-approach',7345,.2)],walk('sb-inner-lower-approach',7345,7900),[jump('sb-inner-lower-approach',7900,'sb-inner-upper-turn',7900,.2)],walk('sb-inner-upper-turn',7900,7650),[jump('sb-inner-upper-turn',7650,'sb-east-gallery-sill',7870,.75)],walk('sb-east-gallery-sill',7870,8170))),
   route('inner-sound-return','return',join(walk('sb-east-gallery-sill',8170,7840),[drop('sb-east-gallery-sill',7840,'sb-inner-upper-turn',7700,7760)],walk('sb-inner-upper-turn',7700,7880),[drop('sb-inner-upper-turn',7880,'sb-inner-lower-approach',7880,7960)],walk('sb-inner-lower-approach',7880,7360),[drop('sb-inner-lower-approach',7360,'act2-floor',7280,7280)])),
-  route('east-gallery-return','return',join([drop('sb-east-upper-return',10905,'sb-east-folded-stair',10720,10850)],walk('sb-east-folded-stair',10720,9360),walk('sb-east-gallery-sill',9360,9550))),
+  route('east-gallery-return','return',join([drop('sb-east-upper-return',10905,'sb-east-upper-cave',10720,10850)],walk('sb-east-upper-cave',10720,9610),[drop('sb-east-upper-cave',9610,'sb-east-cave-return',9510,9550)],walk('sb-east-cave-return',9510,9780),[drop('sb-east-cave-return',9780,'sb-east-folded-stair',9840,9850)],walk('sb-east-folded-stair',9840,9360),walk('sb-east-gallery-sill',9360,9550))),
+  route('settled-inner-east-shortcut','optional-walk',walk('sb-east-gallery-sill',8170,9510),{bellState:'settled'}),
+  route('settled-east-inner-return','return',walk('sb-east-gallery-sill',9510,8170),{bellState:'settled'}),
  ];
  const nodes18={
   'clear-wards':at('sb-entry-rise',2020),silence:at('sb-suppression-court',3050),'hold-silence':at('sb-suppression-court',3050),
@@ -142,7 +152,7 @@ function authorGeometry(st,settled){
  const space={version:1,geometryRevision:9,topologyId:'hollow-bell-asymmetric-inside-outside-circuits',rooms:ZONES.map(z=>({id:z.id,terrainIds:ts.filter(t=>t.id!=='cave-roof'&&t.points.some(p=>p.x>=z.box[0]&&p.x<=z.box[0]+z.box[2]&&p.y>=z.box[1]&&p.y<=z.box[1]+z.box[3])).map(t=>t.id),ceilingIds:['cave-roof'],bounds:{x:z.box[0],y:z.box[1],w:z.box[2],h:z.box[3]},sky:'cave',landmarkIds:[]})),surfaces:ts.filter(t=>t.properties.honroWalkEdges.length).map(t=>({id:t.id,terrainId:t.id,role:t.properties.honroSurfaceRole,edgeIndices:clone(t.properties.honroWalkEdges),roomIds:[roomAt(t.points[0].x,t.points[0].y)]})),routes,connections:routes.map(r=>({id:r.id,from:roomAt(r.anchors[0].x,r.anchors[0].y),to:roomAt(r.anchors.at(-1).x,r.anchors.at(-1).y),kind:r.kind==='optional-jump'?'optional-jump':'walk',routeId:r.id,entry:clone(r.anchors[0]),exit:clone(r.anchors.at(-1)),requires:[]})),sites:{},encounterSites:[],landmarks:[],scenery:[],lights:[],views:[]};
  for(const[id,p]of Object.entries(nodes))if(!id.startsWith('wave')&&!id.startsWith('spirit-lamp'))space.sites[id]={objectiveId:id,roomId:roomAt(p.x,p.y),...p,standing:clone(p)};
  if(!settled)space.sites['upper-chain'].target={terrainId:'upper-chain',x:5625,y:4460};
- st.design={...st.design,space,bell:{version:1,zones:clone(ZONES),center:{x:7200,y:6610+(settled?200:0)},bodyIds:clone(BELL_BODY_IDS),activityBounds:[520,3090,12500,7480],standing:{suppression:at('sb-suppression-court',3050),farRelease:at('sb-west-firing-ledge',4210),closeRelease:at('sb-maintenance-shelf',5500),safeUnderBell:at('act2-floor',7480),keeper:at('act2-floor',11480),eastShot:at('sb-east-resonance-ledge',8290),reflection:at('sb-suppression-court',3170)},art:{bell:{x:7200,y:6610+(settled?200:0),terrainIds:clone(BELL_BODY_IDS)},lamps:[{key:'entry',terrainId:'sb-entry-rise',x:1550},{key:'suppression',terrainId:'sb-suppression-court',x:3030},{key:'maintenance',terrainId:'sb-maintenance-shelf',x:5770},{key:'basin',terrainId:'act2-floor',x:7340},{key:'keeper',terrainId:'act2-floor',x:11680}]}}};
+ st.design={...st.design,space,bell:{version:1,zones:clone(ZONES),center:{x:7200,y:6610+(settled?200:0)},bodyIds:clone(BELL_BODY_IDS),activityBounds:[520,3170,12500,7540],standing:{suppression:at('sb-suppression-court',3050),farRelease:at('sb-west-firing-ledge',4210),closeRelease:at('sb-maintenance-shelf',5500),safeUnderBell:at('act2-floor',7480),keeper:at('act2-floor',11480),eastShot:at('sb-east-resonance-ledge',8290),reflection:at('sb-suppression-court',3170),eastLowerShot:at('sb-east-folded-stair',9980),eastHiddenShot:at('sb-return-cave-buttress',9230)},art:{bell:{x:7200,y:6610+(settled?200:0),terrainIds:clone(BELL_BODY_IDS)},lamps:[{key:'entry',terrainId:'sb-entry-rise',x:1550},{key:'suppression',terrainId:'sb-suppression-court',x:3030},{key:'maintenance',terrainId:'sb-maintenance-shelf',x:5770},{key:'basin',terrainId:'act2-floor',x:7340},{key:'keeper',terrainId:'act2-floor',x:11680},{key:'east-lower',terrainId:'sb-east-folded-stair',x:9990},{key:'east-hidden',terrainId:'sb-return-cave-buttress',x:9190}]}}};
  delete st.design.cavernLayers;delete st.design.cavernTransitions;
  st.routes=routes.find(r=>r.id==='entry-under-bell').anchors.map(({x,y})=>({x,y}));st.anchors={spawn:at('act2-floor',520),start:at('act2-floor',520),exit:clone(nodes[settled?'old-soul':'clear-bell']),bell:{x:7200,y:6610+(settled?200:0)}};
  return{at,walk,nodes,space};
@@ -162,11 +172,11 @@ export const BELL_ROSTER=[
 export function createBellRoster(at,{roster='candidate41'}={}){
  const rows=roster==='baseline28'?BELL_ROSTER.filter(r=>r[7]):BELL_ROSTER;
  if(rows.length!==(roster==='baseline28'?28:41))throw Error('Bell roster budget mismatch '+rows.length);
- return rows.map(([key,kind,support,x,lift,elite,squad],i)=>{const p=at(support,x),id=key==='act2-keeper'?key:'sb-'+key;return{id,kind,team:'enemy',x,y:p.y+lift,facing:x<7200?-1:1,spawnIndex:100+i*11,behavior:'patrol',encounterGroup:squad,stageOverrides:{honroCohort:key.startsWith('a-')||key.startsWith('b-')?'west':key.startsWith('e-')||key.startsWith('f-')?'middle':'east',honroAct2Elite:elite,honroAct2Revision:2,elite:kind==='keeper',armor:.04,honroEncounterSupport:support,honroBellRole:squad,honroBellCell:squad}};});
+ return rows.map(([key,kind,support,x,lift,elite,squad],i)=>{const p=at(support,x),id=key==='act2-keeper'?key:'sb-'+key;return{id,kind,team:'enemy',x,y:p.y+lift,facing:x<7200?-1:1,spawnIndex:100+BELL_ROSTER.findIndex(r=>r[0]===key)*11,behavior:'patrol',encounterGroup:squad,stageOverrides:{honroCohort:key.startsWith('a-')||key.startsWith('b-')?'west':key.startsWith('e-')||key.startsWith('f-')?'middle':'east',honroAct2Elite:elite,honroAct2Revision:2,elite:kind==='keeper',armor:.04,honroEncounterSupport:support,honroBellRole:squad,honroBellCell:squad}};});
 }
 function makeDescent(at){const entry=(side,support,x,alternate)=>({...at(support,x),side,support,alternates:alternate.map(([id,x])=>({...at(id,x),support:id}))});return{distance:200,terrainIds:clone(BELL_BODY_IDS),elementIds:['sb-bell-body'],sweepPolygons:Object.entries(BELL_SHELL).flatMap(([id,ps])=>[{id:id+'-initial',points:ps.map(([x,y])=>({x,y}))},{id:id+'-final',points:ps.map(([x,y])=>({x,y:y+200}))},...ps.map(([x,y],i)=>{const [nx,ny]=ps[(i+1)%ps.length];return{id:id+'-edge-'+i,points:[{x,y},{x:nx,y:ny},{x:nx,y:ny+200},{x,y:y+200}]};})]),
  sweep:[{id:'crown',x:6280,y:2600,w:1770,h:1010},{id:'west-shell',x:5600,y:3160,w:1040,h:3650},{id:'east-shell',x:7720,y:3180,w:1150,h:3630},{id:'east-lug',x:8510,y:6040,w:740,h:480}],
- resting:{offsetY:200,lipY:6810,crownY:2960,bodyCenterX:7200},safeZones:[{id:'F-permanent-floor',x:5850,y:7060,w:3000,h:420},{id:'west-refuge',x:2800,y:6900,w:2200,h:570},{id:'east-refuge',x:10000,y:5700,w:2300,h:700}],
+ resting:{offsetY:200,lipY:6810,crownY:2960,bodyCenterX:7200},safeZones:[{id:'F-permanent-floor',x:5850,y:7060,w:3000,h:560},{id:'west-refuge',x:2800,y:6900,w:2200,h:570},{id:'east-refuge',x:10000,y:5700,w:2300,h:700}],
  escapeRoutes:['under-bell-entry-return','under-bell-keeper'],entries:{hold:[entry('west','sb-suppression-court',3970,[['sb-suppression-court',4100]]),entry('lower-west','act2-floor',5950,[['act2-floor',5750]])],keeper:[entry('east','act2-floor',12600,[['act2-floor',12940]])]}};}
 function remapElements(st,old,nodes,at){
  st.elements=[];
@@ -197,7 +207,7 @@ export function applyStage18Bell(project,{roster='candidate41',steps}={}){
   st.encounters=settled?clone(old.encounters):[...new Set(st.units.map(u=>u.encounterGroup).filter(Boolean))].map(id=>({id,key:id,behavior:'patrol',unitIds:st.units.filter(u=>u.encounterGroup===id).map(u=>u.id)}));
   remapElements(st,old,nodes,at);
   st.design.description='거대한 중공 대종의 안팎을 감싼 비대칭 암반 순환로. 억제진·사격턱·정비턱·종입술·동측 되오름을 나누어 맡는다.';
-  st.initialState.honroBellActivation=Object.fromEntries(st.encounters.map(c=>[c.key,c.key.includes('crown')||c.key.includes('arc')?1050:c.key.includes('basin')?900:780]));
+  if(!settled)st.initialState.honroBellActivation=Object.fromEntries([...new Set(BELL_ROSTER.map(r=>r[6]))].map(key=>[key,key.includes('crown')||key.includes('arc')?1050:key.includes('basin')?900:780]));
   st.design.bell.encounters={roster:settled?'preserved19':roster,initial:st.units.filter(u=>u.team==='enemy').length,elite:st.units.filter(u=>u.team==='enemy'&&u.stageOverrides.honroAct2Elite).length,wave:settled?10:12,activeLimit:3,xpPolicy:'Preserve the existing stage XP budget; do not multiply by population.',baselineInitial:28,candidateInitial:41};
  }
  return project;
