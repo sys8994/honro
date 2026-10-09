@@ -17,7 +17,7 @@ G.HonroWorld.createEnemy=function(b,st,...args){const u=factory(b,st,...args);if
  u.elite=false;u.armor=.04;G.HonroProgression.tuneEnemy(st,u,args[1]);G.HonroProgression.enemyXP(b,u);u.honroQuarryBase=true;return u;
 };
 const initialize=G.HonroProgression.initialize;
-G.HonroProgression.initialize=function(b,profile){if(!active(b))return initialize(b,profile);
+G.HonroProgression.initialize=function(b,profile){if(!active(b)||b.honroGrowth)return initialize(b,profile);
  // Fresh creation only. Final authored elite weights and all eight finite
  // minecarts share the unchanged chapter combat ceiling. Continue never calls
  // this path or rewrites xpGranted/ledger/remaining resources.
