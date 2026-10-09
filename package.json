@@ -32,8 +32,8 @@
     "test:actors": "node tools/actor-forge/lab.mjs && python -X utf8 tests/actor-art-browser.py",
     "test:map-art": "python -X utf8 tests/map-art-browser.py current",
     "test:environment": "node tests/environment-depth.mjs && node tests/environment-composition.mjs && node tools/environment/validate.mjs && node tools/environment/inventory.mjs --check && python -X utf8 tests/environment-browser.py && python -X utf8 tests/environment-composition-browser.py",
-    "test:act2": "npm run test:stage18-bell && npm run test:stage16-temple && npm run test:stage17-worksite && npm run test:stage11-ravine && node tests/act2-spatial-contracts.mjs && node tests/act2-spatial.mjs && node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-defense-contract.mjs && node tests/act2-terrain.mjs && node tests/act2-optional-routes.mjs && node tests/act2-spatial-progression.mjs && node tests/act2-traversal.mjs && python -X utf8 tests/act2-spatial-browser.py && python -X utf8 tests/act2-browser.py && python -X utf8 tests/act2-revision-browser.py regression && python -X utf8 tests/act2-terrain-browser.py regression && node tests/act2-playthrough.mjs",
-    "test:act2:offline": "npm run test:stage18-bell && npm run test:stage16-temple && npm run test:stage17-worksite && npm run test:stage11-ravine && node tests/act2-spatial-contracts.mjs && node tests/act2-spatial.mjs && node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-defense-contract.mjs && node tests/act2-terrain.mjs && node tests/act2-optional-routes.mjs && node tests/act2-spatial-progression.mjs && node tests/act2-traversal.mjs && node tests/act2-spirit-encounter.mjs",
+    "test:act2": "npm run test:stage12-quarry && npm run test:stage18-bell && npm run test:stage16-temple && npm run test:stage17-worksite && npm run test:stage11-ravine && node tests/act2-spatial-contracts.mjs && node tests/act2-spatial.mjs && node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-defense-contract.mjs && node tests/act2-terrain.mjs && node tests/act2-optional-routes.mjs && node tests/act2-spatial-progression.mjs && node tests/act2-traversal.mjs && python -X utf8 tests/act2-spatial-browser.py && python -X utf8 tests/act2-browser.py && python -X utf8 tests/act2-revision-browser.py regression && python -X utf8 tests/act2-terrain-browser.py regression && node tests/act2-playthrough.mjs",
+    "test:act2:offline": "npm run test:stage12-quarry && npm run test:stage18-bell && npm run test:stage16-temple && npm run test:stage17-worksite && npm run test:stage11-ravine && node tests/act2-spatial-contracts.mjs && node tests/act2-spatial.mjs && node tests/act2.mjs && node tests/act2-revision.mjs && node tests/act2-defense-contract.mjs && node tests/act2-terrain.mjs && node tests/act2-optional-routes.mjs && node tests/act2-spatial-progression.mjs && node tests/act2-traversal.mjs && node tests/act2-spirit-encounter.mjs",
     "test:launch-visibility": "node tests/aim-launch-collision.mjs && node tests/renderer-visibility.mjs",
     "verify:offline": "node tools/verify-offline.mjs",
     "capture:act2": "node tools/environment/capture-act2.mjs",
@@ -107,7 +107,12 @@
     "test:stage30-ferry:movement-sensitivity": "node tests/stage30-ferry-fullplay.mjs",
     "test:stage30-ferry:high": "HONRO_FULLPLAY_BUILD=conservative-rank1 HONRO_FULLPLAY_ROUTE=high node tests/stage30-ferry-fullplay.mjs",
     "test:stage30-ferry:original-budget": "HONRO_FULLPLAY_BUILD=conservative-rank1 HONRO_FULLPLAY_ROUTE=barge HONRO_FULLPLAY_ROSTER=originalBudget20e4 node tests/stage30-ferry-fullplay.mjs",
-    "test:stage30-ferry:native": "node --expose-gc tests/stage30-ferry-native-performance.mjs"
+    "test:stage30-ferry:native": "node --expose-gc tests/stage30-ferry-native-performance.mjs",
+    "test:stage12-quarry": "node tests/stage12-quarry-history-audit.mjs && node tests/stage12-quarry-entry.mjs && node tests/stage12-quarry-contracts.mjs && node tests/stage12-quarry-runtime.mjs && node tests/stage12-quarry-art.mjs && node tests/stage12-quarry-traversal.mjs && node tests/stage12-quarry-tactics.mjs",
+    "test:stage12-quarry:fullplay": "node tests/stage12-quarry-fullplay.mjs",
+    "test:stage12-quarry:baseline": "HONRO_FULLPLAY_ROSTER=originalBudget20e4 HONRO_FULLPLAY_OUT=_local/reports/stage12-quarry/fullplay-baseline node tests/stage12-quarry-fullplay.mjs",
+    "test:stage12-quarry:basic": "HONRO_FULLPLAY_BASIC_ONLY=1 HONRO_FULLPLAY_OUT=_local/reports/stage12-quarry/fullplay-basic node tests/stage12-quarry-fullplay.mjs",
+    "test:stage12-quarry:native": "node --expose-gc tests/stage12-quarry-native-art.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
