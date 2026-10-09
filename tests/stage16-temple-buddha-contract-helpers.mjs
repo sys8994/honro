@@ -1,3 +1,4 @@
+import {beforeStage18BellFingerprintParts} from './stage18-bell-history-helpers.mjs';
 /** Portable gameplay identity for the additive stone-Buddha art audit. */
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
@@ -11,7 +12,7 @@ export async function templeGameplayFingerprints(g){
  const stage=g.HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===16),parts=await runtimeParts({vector:false,render:false});
  return{
   project:buddhaHash({terrain:stage.terrains,units:stage.units,markers:stage.markers,anchors:stage.anchors,initialState:stage.initialState,events:stage.events,objectives:stage.objectives,materials:stage.materials,content:g.HONRO_CONTENT.stages[15]}),
-  runtime:buddhaHash([...parts.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(f=>readFile(`shared/runtime/${f}.js`,'utf8')))].join('\n'))
+  runtime:buddhaHash(beforeStage18BellFingerprintParts([...parts.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(f=>readFile(`shared/runtime/${f}.js`,'utf8')))]).join('\n'))
  };
 }
 export function templeBattleContract(g,project){

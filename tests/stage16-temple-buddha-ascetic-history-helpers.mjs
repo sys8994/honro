@@ -1,3 +1,4 @@
+import {beforeStage18Bell,beforeStage18BellLibrary} from './stage18-bell-history-helpers.mjs';
 /** Exact one-asset revision3 -> immutable 67-node revision2 boundary. */
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -9,7 +10,7 @@ const priorAssets=new Set([hash(f.beforeAsset),hash(previous.beforeAsset)]);
 const assets=library=>Array.isArray(library)?library.filter(a=>a?.id===f.assetId):[];
 const isPrior=library=>{const rows=assets(library);return rows.length===1&&priorAssets.has(hash(rows[0]));};
 export function beforeStage16BuddhaAsceticLibrary(library,{required=false}={}){
- const out=plain(library),rows=assets(out);
+ const out=beforeStage18BellLibrary(library),rows=assets(out);
  if(!required&&(!rows.length||isPrior(out)))return out;
  assert.equal(rows.length,1,'Exact ascetic Buddha needs one asset');
  assert.deepEqual(rows[0],f.afterAsset,'Exact reviewed ascetic Buddha asset values');
@@ -33,7 +34,7 @@ export function assertStage16BuddhaAsceticCurrent(project,{unrelated=true,librar
  if(library&&Array.isArray(project.library))beforeStage16BuddhaAsceticLibrary(project.library,{required:true});return st[0];
 }
 export function beforeStage16BuddhaAscetic(project,{unrelated=false,library=true}={}){
- const out=plain(project);
+ const out=beforeStage18Bell(project);
  if(!library||!Array.isArray(out.library)||!assets(out.library).length||isPrior(out.library))return out;
  const has16=(out.stages||[]).some(s=>s.metadata?.stageId===16||s.id==='stage-16');
  if(has16)assertStage16BuddhaAsceticCurrent(out,{unrelated,library});

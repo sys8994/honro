@@ -1,3 +1,4 @@
+import {beforeStage18Bell} from './stage18-bell-history-helpers.mjs';
 /** Exact current crowned first-art -> immutable revision3 audit projection.
  * This is a forward fallback in source history, not a repository reset. Existing
  * first-art/refinement/ascetic fixtures stay immutable; no duplicate asset delta. */
@@ -13,7 +14,7 @@ export const stage16BuddhaCrownedFallback={
  assetId:stage16BuddhaCrownedPrior.assetId
 };
 export function assertStage16BuddhaCrownedFallbackCurrent(project){
- project=plain(project); // Normalize VM-realm prototypes without mutating runtime data.
+ project=beforeStage18Bell(project); // Normalize VM-realm prototypes without mutating runtime data.
  const first=stage16BuddhaCrownedFirst,prior=stage16BuddhaCrownedPrior,id=stage16BuddhaCrownedFallback.assetId;
  const full=project.stages?.length===30,rows=full?prior.stages:prior.stages.filter(s=>Number(s.id.slice(6))<=20);
  assert.deepEqual(project.stages?.map(s=>s.id),rows.map(s=>s.id),'Fallback preserves exact full/Act12 stage membership and order');
@@ -30,7 +31,7 @@ export function assertStage16BuddhaCrownedFallbackCurrent(project){
 }
 export function beforeStage16BuddhaCrownedFallback(project){
  assertStage16BuddhaCrownedFallbackCurrent(project);
- const out=plain(project),f=stage16BuddhaCrownedPrior,full=out.stages.length===30;
+ const out=beforeStage18Bell(project),f=stage16BuddhaCrownedPrior,full=out.stages.length===30;
  out.library[out.library.findIndex(a=>a.id===f.assetId)]=plain(f.afterAsset);
  assert.equal(hash(out.library),full?f.afterLibrarySha256:f.afterAct12LibrarySha256,'One-asset projection exactly recovers the reviewed ascetic Library');
  assert.equal(hash(out),full?f.afterProjectSha256:f.afterAct12ProjectSha256,'One-asset projection exactly recovers the reviewed ascetic project');

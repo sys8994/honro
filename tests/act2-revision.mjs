@@ -1,3 +1,5 @@
+import {withHistoricalStage18} from './stage18-bell-history-helpers.mjs';
+import {authorStage18Bell} from '../tools/map-forge/apply-stage18-bell.mjs';
 import {withHistoricalStage16} from './stage16-temple-history-helpers.mjs';
 import {authorStage16Temple} from '../tools/map-forge/apply-stage16-temple.mjs';
 import {withHistoricalStage11} from './stage11-ravine-history-helpers.mjs';
@@ -59,7 +61,7 @@ for(const before of baseline.stages){
  if(id>=13&&id<=19)check(id+' stage-aware enclosure and authored background',()=>{if(id===13){assert(b.honroCaveApproach&&b.honroCaveApproach.start>0&&b.honroCaveApproach.end===b.width,'partial cave must preserve open forecourt');}else assert(b.honroCaveEnvelope?.portals.length>=1);assert(b.terrain.some(t=>t.honroCeiling));assert(st.environment.groups.length>0);if(id===13)assert(st.design.space.rooms.some(r=>r.sky==='open'),'sunken forecourt requires daylight');else assert.equal(st.environment.skyVisible,false);});
  check(id+' interactions cannot bypass the next combat objective',()=>{const all=b.honroMarkers.filter(m=>m.action==='act2'&&!m.id.startsWith('spirit-lamp'));for(const m of all){const s=g.HonroAct2.current(b);if(s?.id!==m.id)assert.equal(g.HonroAct2.use(app,m),false,m.id);}assert.equal(g.HonroAct2.state(b).complete,false);});
  };
- if(before.id===11)withHistoricalStage11(g,audit);else if(before.id===16)withHistoricalStage16(g,audit);else audit();
+ if(before.id===11)withHistoricalStage11(g,audit);else if(before.id===16)withHistoricalStage16(g,audit);else if(before.id===18||before.id===19)withHistoricalStage18(g,audit);else audit();
 }
 check('Only two chapters have manifestation lamps',()=>assert.equal(metrics.filter(m=>m.lamps>0).length,2));
 check('The final outdoor chapter has its own dawn panorama',()=>assert.equal(g.HonroEnvironment.campaignMood(20).variant,'dawn'));
@@ -90,7 +92,8 @@ check('Defense needs presence, elapsed full rounds, and spawned waves',()=>{
 check('Spirit manifestation is local and retains damage collision',()=>{const {b,e}=fixture(18),souls=e.alive(1).filter(u=>u.honroSpirit),u=souls[0],far=souls.at(-1),archer=e.heroesAlive().find(u=>u.cls==='archer'),sodan=e.heroesAlive().find(u=>u.cls==='occultist');b.active=archer.id;assert(!g.HonroAct2.visible(b,u));const hp=u.hp;e.hurt(u,150,archer.id);assert(u.hp<hp&&!u.dead);b.active=sodan.id;assert(g.HonroAct2.visible(b,u));b.active=archer.id;g.HonroAct2.expose(b,b.round+2,u,50);assert(g.HonroAct2.visible(b,u));assert(!g.HonroAct2.visible(b,far));});
 check('Existing revision 1 battles keep their original objective list',()=>{const {b}=fixture(14);delete b.honroAct2Steps;b.honroAct2Revision=1;b.honroState.act2.version=1;assert.equal(g.HonroAct2.steps(b).length,4);assert.equal(g.HonroAct2.current(b).id,'family-upper');});
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
-const regeneratedAct2=await authorStage16Temple(await authorStage17Worksite(await authorStage11Ravine(g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(g.HONRO_PROJECT))),{stages:[15]})))),g),g,{art:true}),g,{art:true});
+const regeneratedBeforeBell=await authorStage16Temple(await authorStage17Worksite(await authorStage11Ravine(g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(g.HONRO_PROJECT))),{stages:[15]})))),g),g,{art:true}),g,{art:true});
+const regeneratedAct2=await authorStage18Bell(regeneratedBeforeBell,g,{art:true});
 check('Deterministic recipe preserves all 30 canonical maps and their order',()=>{const digest=x=>createHash('sha256').update(JSON.stringify(stable(x))).digest('hex');for(const s of regeneratedAct2.stages)assert.equal(digest(s),digest(g.HONRO_PROJECT.stages.find(q=>q.id===s.id)),s.id+' exact canonical recipe');assert.deepEqual(plain(regeneratedAct2),plain(g.HONRO_PROJECT));});
 await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile('_local/reports/act2-revision/unit.json',JSON.stringify({checks:rows,metrics},null,2));
 console.log('PASS',rows.length,'revision checks');

@@ -34,7 +34,7 @@ function safeBoundary(app){const e=app.engine,b=e.b;return !!app.actorBoundary&&
 function shift(b,offset){const m=memory(b),delta=offset-(m.offset||0);if(Math.abs(delta)<1e-9)return;const spec=b.honroBellDescent||{},ids=new Set(spec.terrainIds||[]);
  for(const list of [b.terrain,b.honroWorldTerrain])for(const t of list||[])if(ids.has(t.id)){t.y+=delta;t.vertices=t.vertices?.map(p=>({...p,y:p.y+delta}));}
  const elements=new Set(spec.elementIds||[]);
- for(const list of [b.honroEnvironment?.placements,b.honroLandmarks,b.honroElements])for(const p of list||[])if(elements.has(p.id))p.y+=delta;
+ for(const list of [b.honroEnvironment?.placements,b.honroLandmarks,b.honroElements])for(const p of list||[])if(elements.has(p.id)){p.y+=delta;if(p.stage18Bell&&Number.isFinite(p.stage18Bell.lipY))p.stage18Bell.lipY=p.y;}
  m.offset=offset;if(m.status!=='lowering')b.sceneVersion=(b.sceneVersion||0)+1;
 }
 function settle(app){const b=app.engine.b,m=memory(b),spec=b.honroBellDescent;

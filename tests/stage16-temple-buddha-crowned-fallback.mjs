@@ -1,3 +1,4 @@
+import {beforeStage18Bell} from './stage18-bell-history-helpers.mjs';
 /** Forward fallback only: original crowned artwork, unchanged maps and gameplay.
  * No aggregate, normal combat, Continue, browser or fullplay rerun. */
 import assert from 'node:assert/strict';
@@ -11,7 +12,7 @@ import {assertStage16BuddhaAsceticCurrent} from './stage16-temple-buddha-ascetic
 import {beforeStage16BuddhaRefinement} from './stage16-temple-buddha-refinement-history-helpers.mjs';
 import {beforeStage16Buddha} from './stage16-temple-buddha-history-helpers.mjs';
 import {buddhaHash as hash,buddhaPlain as plain,templeGameplayFingerprints,templeBattleContract,templeFullplayGameplayProjectSha256,templeFullplayGameplayRuntimeSha256} from './stage16-temple-buddha-contract-helpers.mjs';
-const p=JSON.parse(readFileSync('shared/data/campaign.json','utf8')),snapshot=JSON.stringify(p);
+const p=beforeStage18Bell(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),snapshot=JSON.stringify(p);
 const asset=assertStage16BuddhaCrownedFallbackCurrent(p),prior=beforeStage16BuddhaCrownedFallback(p);
 assert.equal(first.afterSourceCommit,f.restoredFromSourceCommit);
 assert.equal(hash(readFileSync('tools/environment/stage16-temple-buddha-art.mjs','utf8')),f.restoredRecipeSha256,'Current source recipe is byte-exact dbef41ce crowned first art');
@@ -66,7 +67,7 @@ for(const historical of [previous.beforeAsset,previous.afterAsset]){
  const q=structuredClone(p);q.library[q.library.findIndex(a=>a.id===f.assetId)]=structuredClone(historical);
  assert.throws(()=>assertStage16BuddhaCrownedFallbackCurrent(q),'Rejected refinement/ascetic artwork cannot masquerade as crowned fallback');
 }
-const g=await runtime({legacyMaps:false});assert.equal(hash(g.HONRO_PROJECT),hash(p),'Actual runtime uses the exact restored project');
+const g=await runtime({legacyMaps:false});assert.equal(hash(beforeStage18Bell(g.HONRO_PROJECT)),hash(p),'Actual runtime uses the exact restored project');
 const fingerprints=await templeGameplayFingerprints(g);
 assert.deepEqual(fingerprints,first.gameplayFingerprints);assert.deepEqual(fingerprints,previous.gameplayFingerprints);
 assert.equal(fingerprints.project,templeFullplayGameplayProjectSha256);assert.equal(fingerprints.runtime,templeFullplayGameplayRuntimeSha256);
