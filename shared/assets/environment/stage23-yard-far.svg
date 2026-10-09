@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1050">
+<defs>
+<linearGradient id="yard-dusk" x1="0" y1="0" x2="0" y2="1050" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#344b52"/><stop offset="0.55" stop-color="#788b85"/><stop offset="1" stop-color="#a9ae94"/></linearGradient>
+<linearGradient id="yard-ink-mountain" x1="0" y1="390" x2="0" y2="1050" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5b7570"/><stop offset="0.56" stop-color="#71867a"/><stop offset="1" stop-color="#a0aa8c"/></linearGradient>
+<linearGradient id="yard-low-mist" x1="0" y1="680" x2="0" y2="1010" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#9eab94" stop-opacity="0"/><stop offset="0.68" stop-color="#adb49a" stop-opacity="0.6"/><stop offset="1" stop-color="#b5b79a" stop-opacity="0.92"/></linearGradient>
+<radialGradient id="yard-moon-glow" cx="1435" cy="200" r="115" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b8b797" stop-opacity="0.25"/><stop offset="1" stop-color="#abb69f" stop-opacity="0"/></radialGradient>
+</defs>
+<path id="quiet-dusk-sky" d="M0 0H1800V1050H0Z" fill="url(#yard-dusk)"/>
+<path d="M1320 85H1550V315H1320Z" fill="url(#yard-moon-glow)"/>
+<path d="M1435 178A22 22 0 1 0 1435 222A22 22 0 1 0 1435 178Z" fill="#b7b59a" opacity="0.54"/>
+<g id="one-broad-ink-mountain">
+<path d="M-90 825Q60 770 173 669Q250 636 284 559L325 546Q349 474 388 423L421 447Q453 397 478 328L502 313 523 362Q571 388 592 438L635 462Q659 526 710 541Q742 528 760 553L782 604Q846 610 889 658Q938 663 975 626L1024 643Q1054 588 1091 570L1123 581Q1155 526 1193 493L1225 504 1252 553Q1293 556 1328 591L1376 630Q1432 646 1473 691Q1538 691 1599 728Q1705 729 1885 798L1885 1080H-90Z" fill="url(#yard-ink-mountain)"/>
+<path d="M478 332L502 315 523 365Q562 394 587 435L635 463Q658 526 710 543L760 555 782 606Q854 619 889 661L981 667Q837 698 746 685Q702 627 640 619L608 550Q553 519 549 459L518 416Z" fill="#415e60" opacity="0.57"/>
+<path d="M388 427L421 448Q451 409 471 356L453 463 408 527Q359 558 346 627L301 684 252 717Q291 653 299 600L326 548Z" fill="#9aa590" opacity="0.48"/>
+<path d="M470 475Q499 504 507 564L543 591 582 663Q490 633 462 589L414 581 386 622 361 651Q380 587 421 552Z" fill="#899982" opacity="0.40"/>
+<path d="M1193 496L1226 506 1252 554Q1298 560 1328 594L1378 633 1450 671Q1322 666 1261 623L1225 566 1191 543Z" fill="#4a6764" opacity="0.53"/>
+<path d="M1091 573L1123 583Q1157 535 1188 507L1167 584 1132 626 1109 687 1041 719Q1065 674 1055 641Z" fill="#a1aa93" opacity="0.31"/>
+<path d="M128 744Q290 710 414 735Q542 768 661 748Q768 753 879 788Q974 783 1071 752Q1269 739 1458 786L1775 852 1800 1050H0V818Z" fill="#859780" opacity="0.33"/>
+</g>
+<path id="broad-valley-mist" d="M0 698Q339 759 548 722Q746 720 924 773Q1112 724 1320 768Q1537 745 1800 811V1050H0Z" fill="url(#yard-low-mist)"/>
+<path d="M-30 837Q182 799 332 837Q529 854 693 827Q923 813 1118 864Q1356 842 1534 864Q1657 886 1830 866L1830 902Q1638 922 1417 896Q1198 899 992 883Q791 862 580 890Q337 899 105 870L-30 871Z" fill="#b3b9a0" opacity="0.23"/>
+</svg>

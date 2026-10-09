@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
 import {authorStage18Bell} from '../tools/map-forge/apply-stage18-bell.mjs';
-import {stage12QuarryRuntimeSources,beforeStage12QuarryHoldGuideSources,quarryHistoryHash as hash,quarryHistoryPlain as plain,stage12QuarryBefore} from './stage12-quarry-history-helpers.mjs';
+import {stage12QuarryRuntimeSources,beforeStage12QuarryHoldGuideSources,quarryHistoryHash as hash,quarryHistoryPlain as plain,stage12QuarryBefore} from './stage23-escort-history-helpers.mjs';
 const p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),g=await runtime({legacyMaps:false});
 // Quarry12 is a separate active workstream. Protect every inherited runtime
 // source outside its three frozen shared-file exceptions against d7 directly.

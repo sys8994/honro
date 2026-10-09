@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtimeParts} from '../shared/build.mjs';
 import {guidanceRuntime,canvas} from './act2-guidance-helpers.mjs';
-import {quarryHistoryHash as hash,quarryHistoryPlain as plain,stage12QuarryOriginal,stage12QuarryHoldGuideDelta,beforeStage12QuarryRuntimeSources,stage12QuarryRuntimeSources} from './stage12-quarry-history-helpers.mjs';
+import {quarryHistoryHash as hash,quarryHistoryPlain as plain,stage12QuarryOriginal,stage12QuarryHoldGuideDelta,beforeStage12QuarryRuntimeSources,stage12QuarryRuntimeSources} from './stage23-escort-history-helpers.mjs';
 const out=process.env.HONRO_QUARRY_HOLD_GUIDE_OUT||'_local/reports/stage12-quarry/hold-guide';await mkdir(out,{recursive:true});
 const fixtureText=await readFile(new URL('./fixtures/stage12-quarry/completed-run.json',import.meta.url),'utf8'),fixture=JSON.parse(fixtureText),g=await guidanceRuntime(),A=g.HonroAct2;
 const sources=stage12QuarryRuntimeSources(),historical=beforeStage12QuarryRuntimeSources(sources),runtimeSha256=hash((await runtimeParts({vector:false,render:false})).join('\n'));

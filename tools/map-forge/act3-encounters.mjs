@@ -1,3 +1,4 @@
+import {authorYardEncounters} from './stage23-loading-yard.mjs';
 /** Authored encounter spaces, not a distance/grid population generator.
  * A row chooses its exact place and role. Terrain support may adjust only Y;
  * body clearance failure rejects the row instead of silently scattering it.
@@ -86,6 +87,7 @@ export const ENCOUNTERS={
  ]};
 function routeY(s,x){const route=s.design.act3.primaryContour?.map(([x,y])=>({x,y}))||s.design.act3.requiredRoute;for(let i=1;i<route.length;i++)if(x<=route[i].x){const a=route[i-1],b=route[i],t=(x-a.x)/(b.x-a.x||1);return a.y+(b.y-a.y)*t;}return route.at(-1).y;}
 export function authorEncounters(g,p,s){
+ if(s.metadata.stageId===23&&s.initialState?.honroEscortYardRevision===1)return authorYardEncounters(g,p,s,{roster:s.initialState.honroEscortYardRoster});
  if(s.metadata.stageId===30&&s.initialState?.honroFerryRevision===1)return authorFerryEncounters(g,p,s);
  const waterworks=s.design.act3.encounterPlan?.version===2,location=s.design.act3.locationRevision===1,plan=waterworks?s.design.act3.encounterPlan.groups:(location?LOCATION_ENCOUNTERS:ENCOUNTERS)[s.metadata.stageId];if(!plan)return;
  const ts=g.HonroMaps.compile(s,p).terrain.filter(t=>!t.honroAct3Target&&!t.honroAct3Gate);

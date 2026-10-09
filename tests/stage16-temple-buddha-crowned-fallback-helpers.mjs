@@ -1,4 +1,4 @@
-import {beforeStage18Bell} from './stage12-quarry-history-helpers.mjs';
+import {beforeStage18Bell} from './stage23-escort-history-helpers.mjs';
 /** Exact current crowned first-art -> immutable revision3 audit projection.
  * This is a forward fallback in source history, not a repository reset. Existing
  * first-art/refinement/ascetic fixtures stay immutable; no duplicate asset delta. */

@@ -1861,3 +1861,13 @@ The cavern migration negative test deliberately uses a historical map-only input
 `beforeStage12Quarry` now requires the Stage12 map to match either its immutable original hash or the exact reviewed current hash before checking the rest of the current project. The current globals, complete other maps, asset ordering, runtime and downstream history checks remain intact. Only Stage12 cavern-path negatives and the already-invalid repeat projection accept the new specific quarry-boundary error. No golden fixture, production map, combat rule or saved payload changes.
 
 Validation: the 292 changed/removed cavern-path negatives, nine immutable full-stage hashes, duplicate/reprojection rejection and input purity pass. The complete Stage12 history audit retains exact current→d7→30→18 projection and all seven immutable fixtures. Full `tests/migration.mjs` passes its forest/cavern history guards and all ten migrated stages. Logs are in `_local/reports/stage12-quarry/migration-boundary-fix/`; these are compatibility checks, not gameplay or browser evidence.
+
+## 2026-10-09 · 23장 관창 호송 개편 첫 WIP 저장점
+
+- 원인/목표: 기존23의 길이는 넓지만 고지 선행·NPC 운반·회귀 비용의 차이가 약했다. 새9800×6200 지형과 실제 연속 저지대 호송, 선택 고지 두 길, 유한 예고·점유 안전, 화물의 사선 전환을 stage23 opt-in으로 추가했다. 원본4목표/같은 NPC·150/65/950·walk260은 공유 함수 변경 없이 보존한다.
+- 입장: 정확 master7df220b의 실제 최초 완료/합류 장부로 XP75748/Lv16/수련33, rank1 네 슬롯·능력6·추가패시브0를 동결했다. 능력0 지형 검사는 별도다. 원본29지도·573 asset·128 runtime·구 fixture22를 동결했고 좁은 역투영 위에 기존12→30→18 경계를 유지한다.
+- 새23: 초기22/정예5를 먼저 저작했다. 28/정예6은 동형 비교 옵션이며 아직 최종 선택이 아니다. 유한3+2+3·행동3·XP3155 그대로, 마지막3은 실제 dock-mid 완료 뒤에만 예고된다. 전체 증원 생성/처치는 추가 승리 조건이 아니다.
+- 화물: 동일440×140 생활짐 한 묶음이 빈 경사로 한 번 미끄러진다. 공통 StoryStaging의 저장 cursor/Skip만 쓰고 원자적 최종 지형 교체를 한다. 실체 크기/충돌/sweep은 유지하며 tile 검색 bounds만 경로 전체로 넓혀 정착 그림 누락을 고쳤다.
+- 확인: 격리된 NPC 전후 무점프7294.1 실거리, stat0 네 직업14경로×전후112회, 실제 App/Story 안전14검사, 원본23/12/18/30 export→file-import→Continue/mount18회, 기존30 runtime와Act3 save7검사, generator fresh23 재생 검사가 통과했다. 고정A01은 D 화물 전 피해0/후 F궁귀239, E고지궁귀 실제석교탄은53피해를 기록했다.
+- 한계/보류: 2026-10-09 부모 미술검수에서 큰 삼각 기단면·지붕 위 공중 보행선·초대형 단색 화물경사·긴 판 같은 석교 하부를 지적하여 **미술 production 보류**다. 현재 물리면은 유지하고 그에 맞는 짧은 석축 층/인물 크기 창고 몸체/명확한 계단·운반목/교대·수로둑을 다음 단위로 다시 저작한다. Native 캡처는 정적 공통 Scene 렌더이며 실제 브라우저/성능 증거가 아니다.
+- 정상전투: 최초12라운드 prefix는 고지 도착을 기다리는 controller 임의 조건 때문에 NPC를 불필요하게 대기시켰다. 이 조건을 제거해 실제 안전한 E가 가능하면 즉시 출발하도록 했다. 이 prefix는 실패/진행중 자료로 남기며 정상 완주·최종 균형·최종정책28/22 비교·24진입·두HTML·브라우저·Pages를 합격으로 표시하지 않는다.
