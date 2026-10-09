@@ -18,10 +18,16 @@ const done=(b,id)=>!!A.memory(b).done[id];
 function satisfied(b,s){return active(b)&&s.kind==='bell-descent'?memory(b).status==='settled':null;}
 const alive=u=>!u.dead&&u.hp>0;
 const intersects=(a,z)=>a.x+a.w>z.x&&a.x<z.x+z.w&&a.y+a.h>z.y&&a.y<z.y+z.h;
-function occupants(b){const sweep=b.honroBellDescent?.sweep||[],out=[];
- for(const u of b.units)if(alive(u)&&sweep.some(z=>intersects({x:u.x-u.r-8,y:u.y-u.h-8,w:u.r*2+16,h:u.h+16},z)))out.push({kind:u.summoned?'summon':u.side===0?'hero':u.honroProtected?'resident':'enemy',id:u.id,label:u.name||u.id,x:u.x,y:u.y});
- for(const s of b.stakes||[])if(s.active!==false&&(!Number.isFinite(s.expires)||s.expires>b.round)&&sweep.some(z=>intersects({x:s.x-24,y:s.y-74,w:48,h:80},z)))out.push({kind:'stake',id:s.id,label:'진목',x:s.x,y:s.y});
- for(const p of b.projectiles||[])if(sweep.some(z=>intersects({x:p.x-(p.radius||6),y:p.y-(p.radius||6),w:(p.radius||6)*2,h:(p.radius||6)*2},z)))out.push({kind:'projectile',id:p.id,label:'날아가는 탄',x:p.x,y:p.y});
+const sweepCache=new WeakMap();
+function sweepGeometry(b){const spec=b.honroBellDescent;if(!spec)return[];if(sweepCache.has(spec))return sweepCache.get(spec);let polygons=spec.sweepPolygons;
+ if(!polygons?.length){polygons=[];for(const id of spec.terrainIds||[]){const t=b.terrain.find(t=>t.id===id);if(!t)continue;const ps=C.poly(t).map(p=>({x:p.x,y:p.y-(memory(b).offset||0)})),drop=spec.distance||200,moved=ps.map(p=>({x:p.x,y:p.y+drop}));polygons.push(ps,moved);for(let i=0;i<ps.length;i++){const j=(i+1)%ps.length;if(Math.abs(ps[i].x-ps[j].x)<.001)continue;polygons.push([ps[i],ps[j],moved[j],moved[i]]);}}}
+ const shapes=(polygons||[]).map(ps=>{const vertices=(ps.points||ps).map(p=>Array.isArray(p)?{x:p[0],y:p[1]}:{x:p.x,y:p.y}),xs=vertices.map(p=>p.x),ys=vertices.map(p=>p.y);return{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),vertices,broken:false,oneWay:false};});sweepCache.set(spec,shapes);return shapes;
+}
+function swept(b,box){const shapes=sweepGeometry(b);return shapes.length?shapes.some(t=>intersects(box,t)&&C.terrainRectIntersects(t,box.x,box.y,box.w,box.h,.01)):(b.honroBellDescent?.sweep||[]).some(z=>intersects(box,z));}
+function occupants(b){const out=[];
+ for(const u of b.units)if(alive(u)&&swept(b,{x:u.x-u.r-8,y:u.y-u.h-8,w:u.r*2+16,h:u.h+16}))out.push({kind:u.summoned?'summon':u.side===0?'hero':u.honroProtected?'resident':'enemy',id:u.id,label:u.name||u.id,x:u.x,y:u.y});
+ for(const s of b.stakes||[])if(s.active!==false&&(!Number.isFinite(s.expires)||s.expires>b.round)&&swept(b,{x:s.x-24,y:s.y-74,w:48,h:80}))out.push({kind:'stake',id:s.id,label:'진목',x:s.x,y:s.y});
+ for(const p of b.projectiles||[])if(swept(b,{x:p.x-(p.radius||6),y:p.y-(p.radius||6),w:(p.radius||6)*2,h:(p.radius||6)*2}))out.push({kind:'projectile',id:p.id,label:'날아가는 탄',x:p.x,y:p.y});
  return out;
 }
 function safeBoundary(app){const e=app.engine,b=e.b;return !!app.actorBoundary&&!app.dialogue&&!['flight','review','summon','won','lost'].includes(b.phase)&&!b.projectiles.length&&!b.volley&&!b.summonTurn&&!b.units.some(u=>u.meleeAction||u.meleeFollow==='ready')&&!e.settleBusy();}
@@ -29,7 +35,7 @@ function shift(b,offset){const m=memory(b),delta=offset-(m.offset||0);if(Math.ab
  for(const list of [b.terrain,b.honroWorldTerrain])for(const t of list||[])if(ids.has(t.id)){t.y+=delta;t.vertices=t.vertices?.map(p=>({...p,y:p.y+delta}));}
  const elements=new Set(spec.elementIds||[]);
  for(const list of [b.honroEnvironment?.placements,b.honroLandmarks,b.honroElements])for(const p of list||[])if(elements.has(p.id))p.y+=delta;
- m.offset=offset;b.sceneVersion=(b.sceneVersion||0)+1;
+ m.offset=offset;if(m.status!=='lowering')b.sceneVersion=(b.sceneVersion||0)+1;
 }
 function settle(app){const b=app.engine.b,m=memory(b),spec=b.honroBellDescent;
  shift(b,spec.distance);m.status='settled';m.count=1;m.completedSerial=b.honroState.actorTurnSerial||0;m.completedRound=b.round;m.blockers=[];m.reason='';
@@ -55,7 +61,7 @@ function transition(app){const e=app.engine,b=e.b,m=memory(b);if(!b.honroBellDes
  if(m.reason!==reason){m.reason=reason;app.dirty=true;}
  m.status=waiting.length?'warning':'waiting';
  if(waiting.length||blocks.length||!safeBoundary(app))return;
- m.status='lowering';m.elapsed=0;m.duration=.9;m.startOffset=m.offset||0;m.reason='대종이 받침에 내려앉는 중';app.dirty=true;
+ m.status='lowering';b.sceneVersion=(b.sceneVersion||0)+1;m.elapsed=0;m.duration=.9;m.startOffset=m.offset||0;m.reason='대종이 받침에 내려앉는 중';app.dirty=true;
  if(app.scene?.storyFocusPoint){m.camera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};const at=b.honroBellDescent.resting||{};app.scene.storyFocusPoint(at.x||7200,(at.y||7000)-400,180,.32);}
  app.event('청동 입술이 받침돌을 향해 천천히 내려온다.');e.emit?.('save');
 }
@@ -100,5 +106,5 @@ const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return 
  if(['warning','waiting','lowering'].includes(m.status)){out.summary='4/8 · '+m.reason;out.targets=[{id:'bell-descent',kind:'interact',x:b.honroBellDescent.resting?.x||7200,y:b.honroBellDescent.resting?.y||7100,label:m.reason}];}
  return out;
 };
-G.HonroStage18Bell={active,memory,steps,legacy,satisfied,occupants,safeBoundary,transition,shift,entryFor,prepareWaves};
+G.HonroStage18Bell={active,memory,steps,legacy,satisfied,sweepGeometry,swept,occupants,safeBoundary,transition,shift,entryFor,prepareWaves};
 })(globalThis);

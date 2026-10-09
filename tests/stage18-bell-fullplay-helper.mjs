@@ -20,16 +20,29 @@ export function navigator(g,b,e,{tick,ready,record}){
  for(const t of b.terrain.filter(t=>t.honroSpaceSurfaceId&&!t.honroCeiling)){const left=Math.max(25,t.x),right=Math.min(b.width-25,t.x+t.w);for(const x of [...Array.from({length:Math.floor((right-left)/80)+1},(_,i)=>left+i*80),right]){const y=C.topAt(t,x);if(!Number.isFinite(y)||y<0||y>b.height)continue;const p={...hero,x,y};if(C.validTerrainContactPose(b.terrain,p))node({x,y,surfaceId:t.id});}}
  for(const site of Object.values(stage.design.space.sites||{}))if(site.standing)node(site.standing);
  for(const [id,set]of bySurface){const list=[...set].sort((a,z)=>nodes[a].x-nodes[z].x);for(let j=1;j<list.length;j++){const a=nodes[list[j-1]],z=nodes[list[j]];if(distance(a,z)<430&&Math.abs(a.y-z.y)<=Math.abs(a.x-z.x)*1.35+.2)walk(a,z);}}
- for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],z=nodes[j];if(a.surfaceId!==z.surfaceId&&Math.abs(a.x-z.x)<95&&Math.abs(a.y-z.y)<35)walk(a,z);}
- function nearest(u){const s=surface(u);let best=0,score=Infinity;for(let i=0;i<nodes.length;i++){const v=distance(u,nodes[i])+(nodes[i].surfaceId===s?0:400);if(v<score){best=i;score=v;}}return best;}
- function route(u,point,enemy){const from=nearest(u),d=nodes.map(()=>Infinity),prev=nodes.map(()=>null),done=new Set();d[from]=0;for(let n=0;n<nodes.length;n++){let i=-1;for(let j=0;j<nodes.length;j++)if(!done.has(j)&&(i<0||d[j]<d[i]))i=j;if(i<0||!Number.isFinite(d[i]))break;done.add(i);for(const step of edges[i])if(d[i]+step.cost<d[step.to]){d[step.to]=d[i]+step.cost;prev[step.to]={from:i,...step};}}
+ // Small authored cover tops are legitimate landing surfaces too. Propose local
+ // basic jump/step-off links; live physics must still execute every crossing.
+ const usable=nodes.map(p=>C.validTerrainContactPose(b.terrain,{...hero,x:p.x,y:p.y}));
+ for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+  const a=nodes[i],z=nodes[j];if(a.surfaceId===z.surfaceId)continue;
+  if(Math.abs(a.x-z.x)<95&&Math.abs(a.y-z.y)<35){walk(a,z);continue;}
+  if(!usable[i]||!usable[j]||Math.abs(a.x-z.x)>210||Math.abs(a.y-z.y)>225)continue;
+  for(const [from,to]of [[a,z],[z,a]]){
+   const t=b.terrain.find(t=>t.id===from.surfaceId),dy=to.y-from.y;
+   if(dy>35){if(to.x>t.x-8&&to.x<t.x+t.w+8)continue;edge(from,to,{kind:'drop',x:to.x,support:to.surfaceId,stepOffX:to.x,speed:.65});}
+   else edge(from,to,{kind:'jump',x:to.x,support:to.surfaceId,speed:.65});
+  }
+ }
+
+ function nearest(u){const s=surface(u);let best=0,score=Infinity;for(let i=0;i<nodes.length;i++){if(!usable[i])continue;const v=distance(u,nodes[i])+(nodes[i].surfaceId===s?0:400);if(v<score){best=i;score=v;}}return best;}
+ function route(u,point,enemy){const from=nearest(u),d=nodes.map(()=>Infinity),prev=nodes.map(()=>null),done=new Set();d[from]=0;for(let n=0;n<nodes.length;n++){let i=-1;for(let j=0;j<nodes.length;j++)if(!done.has(j)&&(i<0||d[j]<d[i]))i=j;if(i<0||!Number.isFinite(d[i]))break;done.add(i);for(const step of edges[i])if(usable[step.to]&&d[i]+step.cost<d[step.to]){d[step.to]=d[i]+step.cost;prev[step.to]={from:i,...step};}}
   const range={archer:550,mage:420,knight:75,occultist:420}[u.cls];let best=-1,score=Infinity;
-  for(let i=0;i<nodes.length;i++){const p=nodes[i],delta=distance(p,point),dy=Math.abs(p.y-point.y);let penalty=delta*10;if(enemy){if(delta>1700||dy>(u.cls==='knight'?300:900))continue;penalty=Math.abs(delta-range)*2+Math.max(0,dy-(u.cls==='knight'?60:220))*5;}const total=d[i]+penalty;if(total<score){best=i;score=total;}}
+  for(let i=0;i<nodes.length;i++){if(!usable[i])continue;const p=nodes[i],delta=distance(p,point),dy=Math.abs(p.y-point.y);let penalty=delta*10;if(enemy){if(delta>1700||dy>(u.cls==='knight'?300:900))continue;penalty=Math.abs(delta-range)*2+Math.max(0,dy-(u.cls==='knight'?60:220))*5;}const total=d[i]+penalty;if(total<score){best=i;score=total;}}
   if(best<0||!Number.isFinite(score))return null;const links=[];for(let i=best;i!==from;){const step=prev[i];if(!step)return null;links.push({from:nodes[step.from],point:nodes[i],mode:step.mode});i=step.from;}links.reverse();if(distance(u,nodes[from])>13)links.unshift({from:{x:u.x,y:u.y},point:nodes[from]});return{links,index:0,point:{...point},enemy,goal:nodes[best]};
  }
  function advance(u,point,enemy=false){let state=nav.get(u.id);if(!state||state.point.id!==point.id||distance(state.point,point)>160||state.enemy!==enemy||state.index>=state.links.length){state=route(u,point,enemy);if(!state){record({op:'nav-blocked',hero:u.cls,reason:'no graph route',position:{x:u.x,y:u.y},goal:point});return;}nav.set(u.id,state);}const start={x:u.x,y:u.y};let still=0;
   for(let n=0;n<1600&&ready()&&u.moveLeft>8;n++){
-   if(state.air){const a=state.air,from=state.links[state.index]?.from;const departing=a.kind==='drop'&&!state.departed&&e.grounded(u)&&surface(u)===from?.surfaceId,aimX=departing?(a.stepOffX??a.x):a.x;if(!e.grounded(u)||surface(u)!==from?.surfaceId)state.departed=true;if(Math.abs(u.x-aimX)>3)e.move(Math.sign(aimX-u.x)*(a.speed||.35),C.STEP);tick();if(e.grounded(u)&&++state.airFrames>4&&(a.kind!=='drop'||state.departed&&surface(u)===a.support&&Math.abs(u.x-a.x)<18)){record({op:'land',hero:u.cls,x:u.x,y:u.y,support:surface(u),expected:a.support});state.air=null;state.index++;}continue;}
+   if(state.air){const a=state.air,from=state.links[state.index]?.from;const departing=a.kind==='drop'&&!state.departed&&e.grounded(u)&&surface(u)===from?.surfaceId,aimX=departing?(a.stepOffX??a.x):a.x;if(!e.grounded(u)||surface(u)!==from?.surfaceId)state.departed=true;if(Math.abs(u.x-aimX)>3)e.move(Math.sign(aimX-u.x)*(a.speed||.35),C.STEP);tick();if(e.grounded(u)&&++state.airFrames>4&&(a.kind!=='drop'||state.departed&&surface(u)===a.support&&Math.abs(u.x-a.x)<18)){record({op:'land',hero:u.cls,x:u.x,y:u.y,support:surface(u),expected:a.support,matched:surface(u)===a.support});state.air=null;state.index++;}continue;}
    const link=state.links[state.index];if(!link)break;const p=link.mode?link.from:link.point;const reached=Math.abs(u.x-p.x)<14&&Math.abs(u.y-p.y)<55&&e.grounded(u);
    if(reached){if(link.mode){if(link.mode.kind==='jump'){if(u.moveLeft<e.jumpCost(u)+Math.abs(link.mode.x-u.x)+65)break;if(!e.jump(u))break;record({op:'jump',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});}state.air=link.mode;state.airFrames=0;state.departed=false;continue;}state.index++;continue;}
    const old={x:u.x,y:u.y};if(Math.abs(u.x-p.x)>5)e.move(Math.sign(p.x-u.x)*(Math.abs(p.x-u.x)<22?.35:1),C.STEP);
@@ -44,8 +57,8 @@ export function navigator(g,b,e,{tick,ready,record}){
 
 /** Post-run trace analysis only. A turn may include locomotion before defend. */
 export function analyzeWaits(actions,maxRound){
- const rounds=Array.from({length:maxRound},(_,i)=>{const round=i+1,a=actions.filter(x=>x.round===round);return{round,fires:a.filter(x=>x.op==='fire').length,defends:a.filter(x=>x.op==='defend').length};});
+ const rounds=Array.from({length:maxRound},(_,i)=>{const round=i+1,a=actions.filter(x=>x.round===round);return{round,fires:a.filter(x=>['fire','fire-anchor'].includes(x.op)).length,defends:a.filter(x=>x.op==='defend').length};});
  const globalAttacklessRounds=[];let streak=[];for(const row of rounds){if(!row.fires)streak.push(row.round);else if(streak.length){globalAttacklessRounds.push(streak);streak=[];}}if(streak.length)globalAttacklessRounds.push(streak);
- const heroes={};for(const cls of ['archer','mage','knight','occultist']){const turns=new Map();for(const a of actions.filter(x=>x.hero===cls)){if(!turns.has(a.turn))turns.set(a.turn,{turn:a.turn,round:a.round,fire:0,defend:0});const row=turns.get(a.turn);if(a.op==='fire')row.fire++;if(a.op==='defend')row.defend++;}let run=[],longest=[],total=0;for(const row of turns.values()){if(row.defend&&!row.fire){run.push(row);total++;if(run.length>longest.length)longest=[...run];}else run=[];}heroes[cls]={attacklessDefendTurns:total,longestConsecutiveAttacklessDefendTurns:longest.length,rounds:longest.map(r=>r.round),firstTurn:longest[0]?.turn,lastTurn:longest.at(-1)?.turn};}
+ const heroes={};for(const cls of ['archer','mage','knight','occultist']){const turns=new Map();for(const a of actions.filter(x=>x.hero===cls)){if(!turns.has(a.turn))turns.set(a.turn,{turn:a.turn,round:a.round,fire:0,defend:0});const row=turns.get(a.turn);if(['fire','fire-anchor'].includes(a.op))row.fire++;if(a.op==='defend')row.defend++;}let run=[],longest=[],total=0;for(const row of turns.values()){if(row.defend&&!row.fire){run.push(row);total++;if(run.length>longest.length)longest=[...run];}else run=[];}heroes[cls]={attacklessDefendTurns:total,longestConsecutiveAttacklessDefendTurns:longest.length,rounds:longest.map(r=>r.round),firstTurn:longest[0]?.turn,lastTurn:longest.at(-1)?.turn};}
  return{definition:'An attackless defend turn is an actorTurnSerial with a defend action and no accepted fire by that hero. It can contain walking/jumping. Whole-party attackless rounds include final E-only round.',globalAttacklessRounds,heroes,rounds};
 }

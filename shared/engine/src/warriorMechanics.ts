@@ -1,8 +1,8 @@
 import type {Engine,Collision,Prediction} from './engine';
-import type {Unit,Skill,Projectile,Vec,Battle} from './types';
+import type {Unit,Skill,Projectile,Vec,Battle,Terrain} from './types';
 import {SKILLS} from './data';
 import {passiveRank} from './progression';
-import {clamp,rad,STEP,segRect,terrainRectIntersects} from './math';
+import {clamp,rad,STEP,segRect,terrainRectIntersects,poly} from './math';
 import {COMBO_HITS,ORBIT_BLADES} from './warriorData';
 
 const at=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
@@ -23,6 +23,18 @@ export function meleeContains(e:Engine,u:Unit,t:Unit,range:number,angle=-rad(u.a
   if(!e.collision(a,v,1,u.id,[],false))return true;
  }
  return false;
+}
+/** An authored device can explicitly receive the same real sword sector.
+ * Ordinary terrain, seals and every existing chapter remain opted out. */
+export function meleeTerrainContact(e:Engine,u:Unit,t:Terrain,range:number,angle:number,span:number):Vec|null{
+ if(!(t as any).honroMeleeTarget||t.broken||t.indestructible)return null;
+ const origin=at(u),ps=poly(t),points:Vec[]=[...ps];
+ for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,n=dx*dx+dy*dy,k=n?clamp(((origin.x-a.x)*dx+(origin.y-a.y)*dy)/n,0,1):0;points.push({x:a.x+dx*k,y:a.y+dy*k});}
+ for(const theta of [angle-span/2,angle,angle+span/2])points.push({x:origin.x+Math.cos(theta)*range,y:origin.y+Math.sin(theta)*range});
+ for(const point of points){const dx=point.x-origin.x,dy=point.y-origin.y,distance=Math.hypot(dx,dy);if(distance>range+1||distance<.001)continue;
+  const delta=Math.abs(Math.atan2(Math.sin(Math.atan2(dy,dx)-angle),Math.cos(Math.atan2(dy,dx)-angle)));if(delta>span/2+.001)continue;
+  const hit=e.collision(origin,point,1,u.id,[],false);if(hit?.terrain?.id===t.id)return{x:hit.x,y:hit.y};
+ }return null;
 }
 function stroke(e:Engine,u:Unit,range:number,facing=u.facing,color='#dbe2dd',variant=0,angle?:number,span?:number){
  const c=at(u);e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:facing,y2:variant,color,size:range,text:angle===undefined?undefined:JSON.stringify({angle,span})});u.anim=.55;
@@ -82,6 +94,7 @@ export function tickWarrior(e:Engine,dt:number){
      const current=targets.find(t=>t.id===a.target)||targets.sort((x,y)=>Math.hypot(x.x-u.x,x.y-u.y)-Math.hypot(y.x-u.x,y.y-u.y))[0];
      if(current){a.target=current.id;strike(e,u,current,a.damage,s,a.shot);}
     }else for(const t of targets)strike(e,u,t,a.damage,s,a.shot);
+    for(const t of e.b.terrain){const contact=meleeTerrainContact(e,u,t,a.range,angle,span);if(contact){e.damageTerrain(t,a.damage*(s.terrain||1),0,u.id);e.fx('spark',contact.x,contact.y,'#cfb783',22);}}
     stroke(e,u,a.range,facing,s.mode==='lifeSlash'?'#d8c4bd':'#dbe2dd',s.mode==='lifeSlash'?2:a.index%2,angle,span);a.index++;
    }
    if(a.index>=count&&a.elapsed>delay+(count-1)*interval+.17)delete u.meleeAction;

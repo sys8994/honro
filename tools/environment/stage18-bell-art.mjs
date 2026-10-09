@@ -36,9 +36,19 @@ function saddleRear(st){const floor=st.terrains.find(t=>t.id==='act2-floor');let
 }
 function lampAsset(){let b=path('M-92 0L-74-28L-48-42H50L80-25L95 0Z','#435c61','#243d46',6)+path('M-48-40L-35-173H34L48-40Z','#6f8075','#2c4851',6)+path('M-33-166H-10L-12-49H-44Z','#9ba58d')+path('M-58-188L-46-226H44L58-188L44-170H-44Z','#718779','#334f55',6)+path('M-43-231L-37-312H35L43-231Z','#3a5559','#233e46',7)+path('M-22-294H21V-244H-22Z','#c1aa75')+path('M-7-288H8V-251H-7Z','#e6d296')+path('M-82-312Q-52-306-24-345H25Q54-307 82-313L67-290H-67Z','#5d7670','#253e46',6)+path('M-69-312Q-44-312-24-338H24Q46-313 69-314','none','#a3ae97',6)+path('M-14-348Q-9-373 0-375Q13-369 14-348Z','#677c6a');return asset('low-stone-lamp','종의 어둠 아래 낮은 석등',svg(b,[-105,-390,210,403]));}
 function stonePlanes(st){const out=st.design.space.terrainPlanes;for(const t of st.terrains){if(t.baseMaterial==='wood'||t.breakable||t.properties?.honroBellBody||t.id.includes('resting-saddle'))continue;const ps=t.points.map(p=>[p.x,p.y]),xs=ps.map(p=>p[0]),ys=ps.map(p=>p[1]),x=Math.min(...xs),y=Math.min(...ys),w=Math.max(...xs)-x,h=Math.max(...ys)-y,ceiling=t.properties?.honroCeiling;
-  out.push({stage18Art:true,terrainId:t.id,fill:ceiling?'#243843':'#3c555d',points:ps});
-  if(w<200||h<100)continue;out.push({stage18Art:true,terrainId:t.id,fill:ceiling?'#354b54':'#657a77',points:[[x,y],[x+w*.58,y],[x+w*.45,y+h*.32],[x+w*.27,y+h*.7],[x,y+h*.59]]});
-  out.push({stage18Art:true,terrainId:t.id,fill:'#203b48',points:[[x+w*.64,y+h*.13],[x+w,y],[x+w,y+h],[x+w*.49,y+h],[x+w*.56,y+h*.61]]});
+  const put=(points,fill)=>out.push({stage18Art:true,terrainId:t.id,fill,points:points.map(p=>p.map(round))});
+  if(t.id==='act2-floor'||t.id==='cave-roof'){
+   // A single ink wash follows the real canyon profile. It never turns the
+   // enormous domain into a pair of visibly triangular colour panels.
+   put(ps,ceiling?'#1e303e':'#2a4350');
+   const sample=[...new Set(xs)].sort((a,z)=>a-z),at=xx=>{const hits=[];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(Math.abs(z[0]-a[0])>.01&&xx>=Math.min(a[0],z[0])-.01&&xx<=Math.max(a[0],z[0])+.01)hits.push(a[1]+(z[1]-a[1])*(xx-a[0])/(z[0]-a[0]));}return ceiling?Math.max(...hits):Math.min(...hits);},rim=sample.map(xx=>[xx,at(xx)]),direction=ceiling?-1:1;
+   put([...rim,...rim.slice().reverse().map(([xx,yy])=>[xx,yy+direction*(630+155*Math.sin(xx*.00054+.8))])],ceiling?'#2b414c':'#465f65');
+   put([...rim.map(([xx,yy])=>[xx,yy+direction*(440+112*Math.sin(xx*.00054+.8))]),...rim.slice().reverse().map(([xx,yy])=>[xx,yy+direction*(1010+205*Math.sin(xx*.00048))])],ceiling?'#253a47':'#344f5c');
+   continue;
+  }
+  put(ps,ceiling?'#243843':'#3c555d');if(w<200||h<100)continue;
+  put([[x,y],[x+w*.58,y],[x+w*.51,y+h*.14],[x+w*.45,y+h*.32],[x+w*.29,y+h*.58],[x+w*.27,y+h*.7],[x,y+h*.59]],ceiling?'#354b54':'#657a77');
+  put([[x+w*.64,y+h*.13],[x+w,y],[x+w,y+h],[x+w*.49,y+h],[x+w*.54,y+h*.72],[x+w*.56,y+h*.61]],'#203b48');
  }
 }
 export function applyStage18BellArt(project){
