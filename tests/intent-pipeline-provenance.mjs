@@ -32,15 +32,17 @@ test('builder writes and exact compiled-runtime changes fail closed after prepar
 test('art-only candidate rejects every gameplay field and other-stage/asset collision changes',async()=>{
  const {g}=await loadRuntime(),source=JSON.parse(await readFile(path.join(ROOT,'shared/data/campaign.json'))),project=structuredClone(source);
  assert.doesNotThrow(()=>validateArtProject(g,project,structuredClone(project)));
+ const bellId='stage18:bell-hollow-body',accent={points:[{x:-20,y:-40},{x:20,y:-40},{x:20,y:0},{x:-20,y:0}],fill:'#333222'};
+ assert(project.stages[17].elements.some(e=>e.assetId===bellId));assert(project.stages[18].elements.some(e=>e.assetId===bellId),'The negative control must actually be shared with current Stage19');
  const changes=[
   ['exit anchor',p=>{p.stages[17].anchors.exit.x-=1000;}],['width',p=>{p.stages[17].width+=100;}],['initial state',p=>{p.stages[17].initialState.honroActiveLimit=9;}],
   ['event',p=>{p.stages[17].events.push({id:'new-event',type:'spawn',x:400,y:500});}],['encounter',p=>{p.stages[17].encounters.push({id:'new-encounter',unitIds:[]});}],['objective',p=>{p.stages[17].objectives.push({id:'new-objective'});}],
-  ['shared visual asset',p=>{p.library.find(a=>a.id==='act2:bell').visual[0].fill='#333222';}],
+  ['shared visual asset',p=>{p.library.find(a=>a.id===bellId).visual.push(structuredClone(accent));}],
   ['other stage',p=>{p.stages[0].width+=10;}],['project setting',p=>{p.settings.grid+=10;}],['asset contract',p=>{p.library[0].collision=[[[0,0],[30,0],[0,30]]];}],
   ['collidable art element',p=>{const a=p.library.find(a=>a.collision.length);p.stages[17].elements.push({id:'new-collision-prop',assetId:a.id,x:400,y:5500,scale:1,rotation:0,snap:false,layer:'back',depthLayer:'L1'});}]
  ];
  for(const [name,mutate]of changes){const changed=structuredClone(project);mutate(changed);assert.throws(()=>validateArtProject(g,project,changed),name);}
- const visual=structuredClone(project);visual.stages[17].name='Visual-only name';const bell=structuredClone(visual.library.find(a=>a.id==='act2:bell'));bell.id='intent18:bell-art';bell.visual[0].fill='#555044';visual.library.push(bell);visual.stages[17].elements.find(e=>e.assetId==='act2:bell').assetId=bell.id;assert.doesNotThrow(()=>validateArtProject(g,project,visual));
+ const visual=structuredClone(project);visual.stages[17].name='Visual-only name';const bell=structuredClone(visual.library.find(a=>a.id===bellId));bell.id='intent18:bell-art';bell.visual.push({...structuredClone(accent),fill:'#555044'});visual.library.push(bell);visual.stages[17].elements.find(e=>e.assetId===bellId).assetId=bell.id;assert.doesNotThrow(()=>validateArtProject(g,project,visual));
 });
 
 test('both fingerprint routes cover environment composition, shared validation and approval orchestration',async()=>{

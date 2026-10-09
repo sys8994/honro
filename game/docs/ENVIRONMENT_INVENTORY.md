@@ -73,14 +73,14 @@
 | act2:cave-house-lean | 3.2 | building | 지형/지지면 필수 | L1, L2 | , a2-scene-14-upper-homes, a2-scene-14-market-hamlet, a2-scene-14-lower-homes / WORLD / world,  | static / cached-vector |
 | act2:cave-house-ruin | 3.3 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act2:temple | 5.2 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| act2:bell | 15.5 | light | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | glow / cached-vector |
+| act2:bell | 15.5 | light | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | glow / cached-vector |
 | act2:hoist-frame | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:lamp | 1.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:ritual | 2 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:timber-rack | 2.8 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:mine-rail | 0.65 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:water-trough | 1.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| act2:memorial | 2.2 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:memorial | 2.2 | prop | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act2:bundles | 1.5 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:rock-column | 10 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act2:hanging-cloth | 2.4 | prop | 지형/지지면 필수 | L1, L2 | , a2-scene-14-upper-homes, a2-scene-14-market-hamlet / WORLD / world,  | static / cached-vector |
@@ -544,6 +544,11 @@
 | stage16:temple-lower-prayer-ledge | 5.381481481481478 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | stage16:temple-stone-lamp | 4.533333333333333 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | stage16:temple-stone-buddha-cliff-colossus | 72.97036666666666 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage18:bell-rear-cavern | 350 | mountain | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage18:bell-rear-rock-roots | 125.83333333333333 | mountain | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage18:bell-rear-stone-corbels | 20 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage18:bell-hollow-body | 74.16666666666667 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage18:bell-low-stone-lamp | 6.716666666666667 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 
 ## 현재 맵
 
@@ -566,8 +571,8 @@
 | stage-15 | enclosed / enclosed | 11 / 10 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
 | stage-16 | enclosed / enclosed | 16 / 26 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 3 |
 | stage-17 | enclosed / enclosed | 22 / 41 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 0 |
-| stage-18 | enclosed / enclosed | 12 / 6 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 10 |
-| stage-19 | enclosed / enclosed | 23 / 5 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 10 |
+| stage-18 | enclosed / enclosed | 20 / 65 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 0 |
+| stage-19 | enclosed / enclosed | 26 / 64 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 0 |
 | stage-20 | valley / valley | 8 / 4 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
 | stage-21 | forest / temple | 23 / 1 / 0 | act3-world | 2 | 2 | 79 |
 | stage-22 | enclosed / enclosed | 36 / 3 / 1 | draft-world | 0 | 0 | 0 |

@@ -7450,6 +7450,41 @@ class Engine {
             this.integrateBody(u, dt);
         }
     }
+    /** A descending body can enter the END of a finite side face while its
+     * centre stays outside the solid. The horizontal wall sweeps see only the
+     * old height; even a diagonal sweep misses motion tangent to that face.
+     * Resolve only a new exterior-to-finite-side probe entry. This is not a
+     * general depenetration/save repair, and never changes support or one-way
+     * contacts, upward-facing slopes, feet, vertical velocity, or resources. */
+    descendingSideEntry(u, ox, oy, nx, ny) {
+        const radius = Math.min(6, Math.max(2, u.r - 2));
+        for (const t of this.collisionTerrain({ x: ox, y: oy }, { x: nx, y: ny }, radius)) {
+            if (t.broken || t.oneWay || nx < t.x - radius || nx > t.x + t.w + radius || ny < t.y || oy - u.h > t.y + t.h)
+                continue;
+            const vertices = (0, math_1.poly)(t);
+            for (let i = 0; i < vertices.length; i++) {
+                const a = vertices[i], b = vertices[(i + 1) % vertices.length], dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy);
+                if (len < 1e-8)
+                    continue;
+                const normal = { x: dy / len, y: -dx / len };
+                // Keep the existing upward-contact policy, including steep faces.
+                if (Math.abs(normal.x) < .98 || normal.y < -1e-7 || normal.y > .2)
+                    continue;
+                for (const offset of [u.h * .5, u.h * .52, u.h - 7]) {
+                    const py = ny - offset, oldY = oy - offset;
+                    const q = ((nx - a.x) * dx + (py - a.y) * dy) / (len * len), oldQ = ((ox - a.x) * dx + (oldY - a.y) * dy) / (len * len);
+                    const distance = (nx - a.x) * normal.x + (py - a.y) * normal.y, oldDistance = (ox - a.x) * normal.x + (oldY - a.y) * normal.y;
+                    if (q < 0 || q > 1 || oldQ >= 0 && oldQ <= 1 || distance < -1e-7 || oldDistance < -1e-7 || distance >= radius - .15)
+                        continue;
+                    // Only the local side clearance is resolved; falling continues.
+                    nx += (radius + .1 - distance) / normal.x;
+                    if (u.vx * normal.x < 0)
+                        u.vx = 0;
+                }
+            }
+        }
+        return nx;
+    }
     /** Shared contact integration for live units and read-only AI traversal probes. */
     integrateBody(u, dt, silent = false) {
         if (!silent)
@@ -7498,6 +7533,8 @@ class Engine {
                 break;
             }
         }
+        if (!supported && ny > oy)
+            nx = this.descendingSideEntry(u, ox, oy, nx, ny);
         u.x = nx;
         if (supported) {
             // Following the support at the NEW x prevents tiny airborne gaps on downhill slopes.

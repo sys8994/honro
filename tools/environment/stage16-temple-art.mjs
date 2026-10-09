@@ -157,7 +157,9 @@ function templeStoneFaces(st){
 }
 export function applyStage16TempleArt(project){
  const st=project.stages.find(s=>s.metadata?.stageId===16);if(!st)throw Error('Stage 16 missing');const art=st.design?.temple?.art;if(!art?.hall)throw Error('Stage 16 temple art needs the authored hall support');
- st.elements=st.elements.filter(e=>!e.id.startsWith('s16-art-'));project.library=project.library.filter(a=>!a.id.startsWith(STAGE16_ART_PREFIX));st.design.space.terrainPlanes=(st.design.space.terrainPlanes||[]).filter(p=>!p.stage16Art);st.design.space.rockCompositions=[];if(st.environment)st.environment.placements=(st.environment.placements||[]).filter(p=>p.assetId!=='env:cliff');
+ // add() replaces existing assets in place. Removing them first would move
+ // temple assets behind later chapters whenever this generator is rerun.
+ st.elements=st.elements.filter(e=>!e.id.startsWith('s16-art-'));st.design.space.terrainPlanes=(st.design.space.terrainPlanes||[]).filter(p=>!p.stage16Art);st.design.space.rockCompositions=[];if(st.environment)st.environment.placements=(st.environment.placements||[]).filter(p=>p.assetId!=='env:cliff');
  templeStoneFaces(st);add(project,st,rearTempleCavern(st),'rear-cavern-courts');const assets=createStage16TempleAssets(),hall=placeOn(project,st,assets.greatHall,'great-hall',art.hall),supports=[];
  const galleries=[
   {key:'folded-west-cloister',name:'높은 암반에 기대어 두 층으로 접힌 서회랑',terrainIds:['tm-cloister-return','tm-cloister-stair','tm-cloister-turn','tm-cloister-foot','tm-cloister-link'],postXs:[3310,3650,3990,4300],covered:true},
@@ -169,5 +171,8 @@ export function applyStage16TempleArt(project){
   {key:'lower-prayer-ledge',name:'기단 아래 암반에 맞춘 낮은 기도굴 선반',terrainIds:['tm-lower-prayer-ledge'],postXs:[4810,5090]}
  ];for(const spec of galleries){const q=galleryFrame(st,spec);add(project,st,q.asset,spec.key);supports.push({terrainIds:q.terrainIds,feet:q.supports});}
  st.design.space.lights=(st.design.space.lights||[]).filter(l=>!l.stage16Art);for(const[i,spec]of(art.lamps||[]).entries()){const e=placeOn(project,st,assets.stoneLamp,'lamp-'+(spec.key||i),spec);st.design.space.lights.push({id:'s16-light-'+(spec.key||i),stage16Art:true,kind:'oil',x:e.x,y:e.y-183*e.scale,radius:spec.radius??300,color:'#c4ad77'});}
- st.design.templeArt={revision:3,nativeVectorOnly:true,hallSupport:hall.stage16Support,supports,artAssetIds:[...new Set(st.elements.filter(e=>e.id.startsWith('s16-art-')).map(e=>e.assetId))],source:'stage16-local-authored-terrain',budgets:{maxNodesPerAsset:420}};return project;
+ st.design.templeArt={revision:3,nativeVectorOnly:true,hallSupport:hall.stage16Support,supports,artAssetIds:[...new Set(st.elements.filter(e=>e.id.startsWith('s16-art-')).map(e=>e.assetId))],source:'stage16-local-authored-terrain',budgets:{maxNodesPerAsset:420}};
+ // Retire stale architecture, but leave the separately authored Buddha in its slot.
+ project.library=project.library.filter(a=>!a.id.startsWith(STAGE16_ART_PREFIX)||st.design.templeArt.artAssetIds.includes(a.id)||a.id.startsWith(STAGE16_ART_PREFIX+'stone-buddha-'));
+ return project;
 }

@@ -5,12 +5,15 @@ import {createHash} from 'node:crypto';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {authorStage16Temple} from '../tools/map-forge/apply-stage16-temple.mjs';
 import {unitContract} from './act2-spatial-contract-helpers.mjs';
+import {beforeStage18Bell} from './stage18-bell-history-helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x)),hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const before=JSON.parse(await readFile('tests/fixtures/stage16-temple-before.json','utf8')),p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),st=p.stages[15],checks=[];
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
 const authored=await authorStage16Temple(plain(p),g);
 check('idempotent generator, runtime and Workshop normalization preserve the complete fresh map',()=>{assert.equal(hash(authored),hash(p));assert.deepEqual(plain(g.HONRO_PROJECT.stages[15]),st);assert.deepEqual(plain(g.HonroMaps.normalize(p).stages[15]),st);assert.deepEqual(plain(g.HonroMaps.finalize(p).stages[15]),st);});
-check('other29 maps and every original asset/order stay exact',()=>{for(const row of before.otherStages)assert.equal(hash(p.stages.find(s=>s.id===row.id)),row.sha256,row.id);const ids=new Set(before.libraryIds),original=p.library.filter(a=>ids.has(a.id));assert.equal(hash(original),before.librarySha256);assert.deepEqual(original.map(a=>a.id),before.libraryIds);for(const a of p.library.filter(a=>!ids.has(a.id)))assert(a.id.startsWith('stage16:temple-'));});
+const historical=beforeStage18Bell(p),historicalAuthored=await authorStage16Temple(plain(historical),g);
+check('original540 and current545 asset slots both remain generator-idempotent',()=>{assert.equal(hash(historicalAuthored),hash(historical));assert.deepEqual(plain(authored.library.map(a=>a.id)),p.library.map(a=>a.id));assert.deepEqual(plain(authored.stages),p.stages);assert.deepEqual(plain(authored.library),p.library);});
+check('other29 maps and every original asset/order stay exact',()=>{for(const row of before.otherStages)assert.equal(hash(historical.stages.find(s=>s.id===row.id)),row.sha256,row.id);const ids=new Set(before.libraryIds),original=historical.library.filter(a=>ids.has(a.id));assert.equal(hash(original),before.librarySha256);assert.deepEqual(original.map(a=>a.id),before.libraryIds);for(const a of historical.library.filter(a=>!ids.has(a.id)))assert(a.id.startsWith('stage16:temple-'));});
 const fixture=()=>{const q=battlefield(g,16);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);return q;};
 function setup(q){const a=g.HonroAct2.memory(q.b);for(const s of g.HonroAct2.steps(q.b)){if(s.id==='hold-hall')break;a.done[s.id]=true;}const m=q.b.honroMarkers.find(m=>m.id==='hold-hall');for(const [i,hero]of q.e.heroesAlive().entries())Object.assign(hero,{x:m.x+i*70,y:m.y});q.app.actorBoundary=null;return a;}
 const boundary=q=>{q.app.actorBoundary=q.e.active.id;q.b.honroState.actorTurnSerial=(q.b.honroState.actorTurnSerial||0)+1;g.HonroMission.tick(q.app,0);};
