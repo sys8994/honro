@@ -86,3 +86,7 @@
 승인된중간26/6은 단순간격희석이아니다. B6(전위4+지원2), C4(절개2+접합2), D4(작업2+후위2), E4(귀환3+운반1), F4(서쪽수레·곡괭이/동쪽정예수레·공중지원), G4(후면2+고지2)를남긴다. 제거대상은 c3/d3/d4/e5/f2/f5이며 실제초기HP총량4509를줄인다. 남은모든적의위치·HP·공격·방어·기력·이동·랭크·개별XP가중치는동일하다. C4/E3/F4 전술표적과 M04/O04/M11 비교는 다시통과해야한다. 지형·마커·나무·서사·유한8·성장combat1230·행동4는그대로다. 구32저장은32적/cap40/기지급XP를그대로Continue한다.
 
 최종26/20 비교는둘다 기본입력의산개지원점(spread-stations)과소단합류(scout-support) 선택을같이쓴다. 합류는본인에게보이는적이없고소단이직전행동으로혼을공격했을때 실제소단의현재지지점으로이동하는옵션이다. 숨은적좌표·직업강제·O08강제·무료자원·치유주입은없다. 이전독립/hold우선정책기록과혼합해개선전부를인원차이에귀속하지않는다.
+
+### Environment inventory regeneration (2026-10-09)
+
+The standard environment gate detected a stale generated inventory. The exact incoming master `d7b9fdf` independently fails the same inventory check: Stage30's already-approved15 assets and usage changes were not listed. Regenerating with the unchanged official inventory tool adds that existing30 footprint plus the new12's13 assets/geometry counts. No map, asset, renderer, or saved battle changes accompany this documentation unit. Environment depth/composition/validation and the regenerated inventory check pass. The next browser gate still fails at Chromium launch with `socket() failed: Operation not permitted`; it is not a browser pass. Baseline reproduction and current logs are preserved under `_local/reports/stage12-quarry/environment-inventory-baseline/` and `environment26-regenerated.log`.

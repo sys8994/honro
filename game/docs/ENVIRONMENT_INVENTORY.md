@@ -244,14 +244,14 @@
 | a3-location:29:single-sluice-pavilion | 5.033333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-location:29:upper-sluice-road | 0.6666666666666666 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-location:29:real-sluice-rear-piers | 18.333333333333332 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-location:30:last-ferry-gangway | 3.3333333333333335 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-location:30:far-town-0 | 4.25 | building | 지형/지지면 필수 | L3 | a3-place-L3 / WORLD / act3-world | static / cached-vector |
-| a3-location:30:far-town-1 | 6.366666666666666 | building | 지형/지지면 필수 | L3 | a3-place-L3 / WORLD / act3-world | static / cached-vector |
-| a3-location:30:far-town-2 | 4.25 | building | 지형/지지면 필수 | L3 | a3-place-L3 / WORLD / act3-world | static / cached-vector |
-| a3-location:30:far-town-3 | 5.283333333333333 | building | 지형/지지면 필수 | L3 | a3-place-L3 / WORLD / act3-world | static / cached-vector |
-| a3-location:30:small-ferry-shelter | 5.283333333333333 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-location:30:river-boatkeeper-house | 4.25 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-location:30:moored-ferry-boats | 4 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-location:30:last-ferry-gangway | 3.3333333333333335 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-location:30:far-town-0 | 4.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-location:30:far-town-1 | 6.366666666666666 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-location:30:far-town-2 | 4.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-location:30:far-town-3 | 5.283333333333333 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-location:30:small-ferry-shelter | 5.283333333333333 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-location:30:river-boatkeeper-house | 4.25 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-location:30:moored-ferry-boats | 4 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | a3-refine:21:weathered-ground-washes | 11.666666666666666 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-refine:21:ground-vignette-0 | 2.9166666666666665 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-refine:21:ground-vignette-1 | 2.9166666666666665 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -312,17 +312,17 @@
 | a3-refine:29:pine-art-1 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-refine:29:pine-art-2 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-refine:29:pine-art-3 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:weathered-ground-washes | 11.666666666666666 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:ground-vignette-0 | 2.9166666666666665 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:ground-vignette-1 | 2.9166666666666665 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:ground-vignette-2 | 2.9166666666666665 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:ground-vignette-3 | 2.9166666666666665 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:ground-vignette-4 | 2.9166666666666665 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:pine-art-0 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:pine-art-1 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:pine-art-2 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:pine-art-3 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| a3-refine:30:pine-art-4 | 8.333333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| a3-refine:30:weathered-ground-washes | 11.666666666666666 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:ground-vignette-0 | 2.9166666666666665 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:ground-vignette-1 | 2.9166666666666665 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:ground-vignette-2 | 2.9166666666666665 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:ground-vignette-3 | 2.9166666666666665 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:ground-vignette-4 | 2.9166666666666665 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:pine-art-0 | 8.333333333333334 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:pine-art-1 | 8.333333333333334 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:pine-art-2 | 8.333333333333334 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:pine-art-3 | 8.333333333333334 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| a3-refine:30:pine-art-4 | 8.333333333333334 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act1-scene:guardian-tree | 27.6 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-waterworks:25:continuous-masonry-waterline | 293.3333333333333 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | a3-waterworks:25:small-tally-office | 6 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
@@ -549,6 +549,34 @@
 | stage18:bell-rear-stone-corbels | 20 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | stage18:bell-hollow-body | 74.16666666666667 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | stage18:bell-low-stone-lamp | 6.716666666666667 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-far-river | 17.5 | mountain | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage30:ferry-deep-river-underlay | 410.3333333333333 | water | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-abandoned-hut | 8.433333333333334 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-map-stone | 3.9833333333333334 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-cape-pine | 20.04868913857678 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-east-pine | 16.45505617977528 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-old-road-pine | 17.022471910112362 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-reeds-0 | 4.883333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-reeds-1 | 4.883333333333334 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-old-funeral-sign | 6.5 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-quay-cargo | 2.9 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-mooring-post | 2.5833333333333335 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-settled-barge | 14.212 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-timber-bearing-frames | 55 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage30:ferry-recessed-grounded-supports | 39.166666666666664 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-far-mountain | 18 | mountain | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage12:quarry-one-waymark | 4.966666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-one-abandoned-cart | 4.083333333333333 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-fallen-cutting-tools | 4.066666666666666 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-bent-waymark-pine | 9.646067415730336 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-old-road-pine | 12.861423220973784 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-western-pine | 10.591760299625468 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-rear-root-pine | 7.376404494382023 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-weathered-stone-0 | 3.216666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-weathered-stone-1 | 3.216666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-recessed-mother-rock | 61.666666666666664 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-remaining-pillar | 7.966666666666667 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage12:quarry-carrier-rubble | 4.866666666666666 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 
 ## 현재 맵
 
@@ -565,7 +593,7 @@
 | stage-9 | forest / forest | 10 / 8 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 7 |
 | stage-10 | forest / otherworld | 13 / 11 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
 | stage-11 | forest / forest | 11 / 31 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
-| stage-12 | valley / valley | 8 / 3 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
+| stage-12 | forest / valley | 16 / 12 / 0 | upper-ridge, slope, valley-bottom | 0 | 0 | 0 |
 | stage-13 | valley / valley | 12 / 5 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 6 |
 | stage-14 | enclosed / enclosed | 20 / 8 / 1 | upper-ridge, slope, valley-bottom | 8 | 8 | 23 |
 | stage-15 | enclosed / enclosed | 11 / 10 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
@@ -583,7 +611,7 @@
 | stage-27 | enclosed / enclosed | 46 / 1 / 1 | act3-world | 0 | 0 | 0 |
 | stage-28 | forest / forest | 26 / 5 / 0 | act3-world | 1 | 1 | 4 |
 | stage-29 | forest / forest | 15 / 3 / 1 | act3-world | 0 | 0 | 0 |
-| stage-30 | forest / forest | 19 / 1 / 1 | act3-world | 1 | 1 | 4 |
+| stage-30 | forest / valley | 16 / 29 / 1 | upper-ridge, slope, valley-bottom | 0 | 0 | 0 |
 
 ## 코드가 생성하는 요소
 
