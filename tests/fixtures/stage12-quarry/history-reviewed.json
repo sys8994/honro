@@ -2,7 +2,7 @@
   "version": 1,
   "sourceCommit": "d7b9fdf6696c05e53012605b77200a5ba7389197",
   "sourceTree": "259267c90b40f03127d7fbe1a5d3b5960917aad4",
-  "label": "access-aware cells with nonmutating Continue cache rebuild; normal paired combat pending",
+  "label": "authorized26e6 candidate after rejected32 normal traces; same-policy20 comparison pending",
   "scope": {
     "stageIds": [
       12
@@ -1732,33 +1732,13 @@
         }
       },
       {
-        "id": "sq-c3",
-        "kind": "bat",
-        "team": "enemy",
-        "x": 5278,
-        "y": 3888.1179387499506,
-        "facing": -1,
-        "spawnIndex": 8,
-        "behavior": "patrol",
-        "encounterGroup": "quarry-C-cut",
-        "stageOverrides": {
-          "honroCohort": "quarry-C",
-          "honroAct2Revision": 2,
-          "honroAct2Elite": false,
-          "honroQuarryCell": "C",
-          "honroQuarryActivationCell": "C-cut",
-          "honroEncounterRole": "C-cut",
-          "honroEncounterSupport": "sq-west-quarry"
-        }
-      },
-      {
         "id": "sq-c4",
         "kind": "picks",
         "team": "enemy",
         "x": 5880,
         "y": 4509.411764705882,
         "facing": -1,
-        "spawnIndex": 9,
+        "spawnIndex": 8,
         "behavior": "patrol",
         "encounterGroup": "quarry-C-hinge",
         "stageOverrides": {
@@ -1778,7 +1758,7 @@
         "x": 5660,
         "y": 4170,
         "facing": -1,
-        "spawnIndex": 10,
+        "spawnIndex": 9,
         "behavior": "patrol",
         "encounterGroup": "quarry-C-hinge",
         "stageOverrides": {
@@ -1798,7 +1778,7 @@
         "x": 3700,
         "y": 4290,
         "facing": -1,
-        "spawnIndex": 11,
+        "spawnIndex": 10,
         "behavior": "patrol",
         "encounterGroup": "quarry-D-work",
         "stageOverrides": {
@@ -1818,7 +1798,7 @@
         "x": 3890,
         "y": 4202.307692307692,
         "facing": -1,
-        "spawnIndex": 12,
+        "spawnIndex": 11,
         "behavior": "patrol",
         "encounterGroup": "quarry-D-work",
         "stageOverrides": {
@@ -1828,46 +1808,6 @@
           "honroQuarryCell": "D",
           "honroQuarryActivationCell": "D-work",
           "honroEncounterRole": "D-work",
-          "honroEncounterSupport": "sq-west-quarry"
-        }
-      },
-      {
-        "id": "sq-d3",
-        "kind": "picks",
-        "team": "enemy",
-        "x": 4090,
-        "y": 4110,
-        "facing": -1,
-        "spawnIndex": 13,
-        "behavior": "patrol",
-        "encounterGroup": "quarry-D-work",
-        "stageOverrides": {
-          "honroCohort": "quarry-D",
-          "honroAct2Revision": 2,
-          "honroAct2Elite": false,
-          "honroQuarryCell": "D",
-          "honroQuarryActivationCell": "D-work",
-          "honroEncounterRole": "D-work",
-          "honroEncounterSupport": "sq-west-quarry"
-        }
-      },
-      {
-        "id": "sq-d4",
-        "kind": "resonance",
-        "team": "enemy",
-        "x": 3930,
-        "y": 3973.8461538461543,
-        "facing": -1,
-        "spawnIndex": 14,
-        "behavior": "patrol",
-        "encounterGroup": "quarry-D-rear",
-        "stageOverrides": {
-          "honroCohort": "quarry-D",
-          "honroAct2Revision": 2,
-          "honroAct2Elite": true,
-          "honroQuarryCell": "D",
-          "honroQuarryActivationCell": "D-rear",
-          "honroEncounterRole": "D-rear",
           "honroEncounterSupport": "sq-west-quarry"
         }
       },
@@ -1878,7 +1818,7 @@
         "x": 3550,
         "y": 4132.5,
         "facing": -1,
-        "spawnIndex": 15,
+        "spawnIndex": 12,
         "behavior": "patrol",
         "encounterGroup": "quarry-D-rear",
         "stageOverrides": {
@@ -1898,7 +1838,7 @@
         "x": 3420,
         "y": 4360,
         "facing": -1,
-        "spawnIndex": 16,
+        "spawnIndex": 13,
         "behavior": "patrol",
         "encounterGroup": "quarry-D-rear",
         "stageOverrides": {
@@ -1918,7 +1858,7 @@
         "x": 5510,
         "y": 4902.857142857143,
         "facing": -1,
-        "spawnIndex": 17,
+        "spawnIndex": 14,
         "behavior": "patrol",
         "encounterGroup": "quarry-E-hinge",
         "stageOverrides": {
@@ -1938,7 +1878,7 @@
         "x": 5740,
         "y": 4870,
         "facing": -1,
-        "spawnIndex": 18,
+        "spawnIndex": 15,
         "behavior": "patrol",
         "encounterGroup": "quarry-E-hinge",
         "stageOverrides": {
@@ -1958,7 +1898,7 @@
         "x": 5967,
         "y": 4682.166666666667,
         "facing": -1,
-        "spawnIndex": 19,
+        "spawnIndex": 16,
         "behavior": "patrol",
         "encounterGroup": "quarry-E-hinge",
         "stageOverrides": {
@@ -1978,27 +1918,7 @@
         "x": 4800,
         "y": 5003.396226415094,
         "facing": -1,
-        "spawnIndex": 20,
-        "behavior": "patrol",
-        "encounterGroup": "quarry-E-west",
-        "stageOverrides": {
-          "honroCohort": "quarry-E",
-          "honroAct2Revision": 2,
-          "honroAct2Elite": false,
-          "honroQuarryCell": "E",
-          "honroQuarryActivationCell": "E-west",
-          "honroEncounterRole": "E-west",
-          "honroEncounterSupport": "sq-lower-ground"
-        }
-      },
-      {
-        "id": "sq-e5",
-        "kind": "bat",
-        "team": "enemy",
-        "x": 5040,
-        "y": 4787.608695652174,
-        "facing": -1,
-        "spawnIndex": 21,
+        "spawnIndex": 17,
         "behavior": "patrol",
         "encounterGroup": "quarry-E-west",
         "stageOverrides": {
@@ -2018,7 +1938,7 @@
         "x": 6770,
         "y": 4800,
         "facing": -1,
-        "spawnIndex": 22,
+        "spawnIndex": 18,
         "behavior": "patrol",
         "encounterGroup": "quarry-F-front",
         "stageOverrides": {
@@ -2032,33 +1952,13 @@
         }
       },
       {
-        "id": "sq-f2",
-        "kind": "picks",
-        "team": "enemy",
-        "x": 6590,
-        "y": 4800,
-        "facing": -1,
-        "spawnIndex": 23,
-        "behavior": "patrol",
-        "encounterGroup": "quarry-F-front",
-        "stageOverrides": {
-          "honroCohort": "quarry-F",
-          "honroAct2Revision": 2,
-          "honroAct2Elite": false,
-          "honroQuarryCell": "F",
-          "honroQuarryActivationCell": "F-front",
-          "honroEncounterRole": "F-front",
-          "honroEncounterSupport": "sq-lower-ground"
-        }
-      },
-      {
         "id": "sq-f3",
         "kind": "picks",
         "team": "enemy",
         "x": 6340,
         "y": 4800,
         "facing": -1,
-        "spawnIndex": 24,
+        "spawnIndex": 19,
         "behavior": "patrol",
         "encounterGroup": "quarry-F-west",
         "stageOverrides": {
@@ -2078,7 +1978,7 @@
         "x": 6130,
         "y": 4805,
         "facing": -1,
-        "spawnIndex": 25,
+        "spawnIndex": 20,
         "behavior": "patrol",
         "encounterGroup": "quarry-F-west",
         "stageOverrides": {
@@ -2092,33 +1992,13 @@
         }
       },
       {
-        "id": "sq-f5",
-        "kind": "bat",
-        "team": "enemy",
-        "x": 6660,
-        "y": 4600,
-        "facing": -1,
-        "spawnIndex": 26,
-        "behavior": "patrol",
-        "encounterGroup": "quarry-F-support",
-        "stageOverrides": {
-          "honroCohort": "quarry-F",
-          "honroAct2Revision": 2,
-          "honroAct2Elite": false,
-          "honroQuarryCell": "F",
-          "honroQuarryActivationCell": "F-support",
-          "honroEncounterRole": "F-support",
-          "honroEncounterSupport": "sq-lower-ground"
-        }
-      },
-      {
         "id": "sq-f6",
         "kind": "resonance",
         "team": "enemy",
         "x": 6850,
         "y": 4625,
         "facing": -1,
-        "spawnIndex": 27,
+        "spawnIndex": 21,
         "behavior": "patrol",
         "encounterGroup": "quarry-F-support",
         "stageOverrides": {
@@ -2138,7 +2018,7 @@
         "x": 8130,
         "y": 4504.426229508197,
         "facing": -1,
-        "spawnIndex": 28,
+        "spawnIndex": 22,
         "behavior": "patrol",
         "encounterGroup": "quarry-G-road",
         "stageOverrides": {
@@ -2158,7 +2038,7 @@
         "x": 7960,
         "y": 4476.55737704918,
         "facing": -1,
-        "spawnIndex": 29,
+        "spawnIndex": 23,
         "behavior": "patrol",
         "encounterGroup": "quarry-G-road",
         "stageOverrides": {
@@ -2178,7 +2058,7 @@
         "x": 8354,
         "y": 4392.125,
         "facing": -1,
-        "spawnIndex": 30,
+        "spawnIndex": 24,
         "behavior": "patrol",
         "encounterGroup": "quarry-G-high",
         "stageOverrides": {
@@ -2198,7 +2078,7 @@
         "x": 8613.2193,
         "y": 4303.229359259259,
         "facing": -1,
-        "spawnIndex": 31,
+        "spawnIndex": 25,
         "behavior": "patrol",
         "encounterGroup": "quarry-G-high",
         "stageOverrides": {
@@ -2240,8 +2120,7 @@
         "behavior": "patrol",
         "unitIds": [
           "sq-c1",
-          "sq-c2",
-          "sq-c3"
+          "sq-c2"
         ]
       },
       {
@@ -2259,8 +2138,7 @@
         "behavior": "patrol",
         "unitIds": [
           "sq-d1",
-          "sq-d2",
-          "sq-d3"
+          "sq-d2"
         ]
       },
       {
@@ -2268,7 +2146,6 @@
         "key": "quarry-D-rear",
         "behavior": "patrol",
         "unitIds": [
-          "sq-d4",
           "sq-d5",
           "sq-d6"
         ]
@@ -2288,8 +2165,7 @@
         "key": "quarry-E-west",
         "behavior": "patrol",
         "unitIds": [
-          "sq-e4",
-          "sq-e5"
+          "sq-e4"
         ]
       },
       {
@@ -2297,8 +2173,7 @@
         "key": "quarry-F-front",
         "behavior": "patrol",
         "unitIds": [
-          "sq-f1",
-          "sq-f2"
+          "sq-f1"
         ]
       },
       {
@@ -2315,7 +2190,6 @@
         "key": "quarry-F-support",
         "behavior": "patrol",
         "unitIds": [
-          "sq-f5",
           "sq-f6"
         ]
       },
@@ -2864,8 +2738,8 @@
           }
         }
       },
-      "honroQuarryRoster": "candidate32e7",
-      "honroQuarryPopulationCap": 40,
+      "honroQuarryRoster": "candidate26e6",
+      "honroQuarryPopulationCap": 34,
       "honroQuarryActivation": {
         "B-front": {
           "radius": 1000,
@@ -4775,14 +4649,6 @@
             "y": 3905.294117647059
           },
           {
-            "id": "sq-c3-site",
-            "roomId": "quarry-C",
-            "unitId": "sq-c3",
-            "surfaceId": "sq-west-quarry",
-            "x": 5278,
-            "y": 3888.1179387499506
-          },
-          {
             "id": "sq-c4-site",
             "roomId": "quarry-C",
             "unitId": "sq-c4",
@@ -4813,22 +4679,6 @@
             "surfaceId": "sq-west-quarry",
             "x": 3890,
             "y": 4202.307692307692
-          },
-          {
-            "id": "sq-d3-site",
-            "roomId": "quarry-D",
-            "unitId": "sq-d3",
-            "surfaceId": "sq-west-quarry",
-            "x": 4090,
-            "y": 4110
-          },
-          {
-            "id": "sq-d4-site",
-            "roomId": "quarry-D",
-            "unitId": "sq-d4",
-            "surfaceId": "sq-west-quarry",
-            "x": 3930,
-            "y": 3973.8461538461543
           },
           {
             "id": "sq-d5-site",
@@ -4879,27 +4729,11 @@
             "y": 5003.396226415094
           },
           {
-            "id": "sq-e5-site",
-            "roomId": "quarry-E",
-            "unitId": "sq-e5",
-            "surfaceId": "sq-lower-ground",
-            "x": 5040,
-            "y": 4787.608695652174
-          },
-          {
             "id": "sq-f1-site",
             "roomId": "quarry-F",
             "unitId": "sq-f1",
             "surfaceId": "sq-lower-ground",
             "x": 6770,
-            "y": 4800
-          },
-          {
-            "id": "sq-f2-site",
-            "roomId": "quarry-F",
-            "unitId": "sq-f2",
-            "surfaceId": "sq-lower-ground",
-            "x": 6590,
             "y": 4800
           },
           {
@@ -4917,14 +4751,6 @@
             "surfaceId": "sq-lower-ground",
             "x": 6130,
             "y": 4805
-          },
-          {
-            "id": "sq-f5-site",
-            "roomId": "quarry-F",
-            "unitId": "sq-f5",
-            "surfaceId": "sq-lower-ground",
-            "x": 6660,
-            "y": 4600
           },
           {
             "id": "sq-f6-site",
@@ -6113,14 +5939,6 @@
                   "support": "sq-west-quarry"
                 },
                 {
-                  "id": "sq-c3",
-                  "kind": "bat",
-                  "x": 5278,
-                  "y": 3888.1179387499506,
-                  "elite": false,
-                  "support": "sq-west-quarry"
-                },
-                {
                   "id": "sq-c4",
                   "kind": "picks",
                   "x": 5880,
@@ -6157,22 +5975,6 @@
                   "x": 3890,
                   "y": 4202.307692307692,
                   "elite": false,
-                  "support": "sq-west-quarry"
-                },
-                {
-                  "id": "sq-d3",
-                  "kind": "picks",
-                  "x": 4090,
-                  "y": 4110,
-                  "elite": false,
-                  "support": "sq-west-quarry"
-                },
-                {
-                  "id": "sq-d4",
-                  "kind": "resonance",
-                  "x": 3930,
-                  "y": 3973.8461538461543,
-                  "elite": true,
                   "support": "sq-west-quarry"
                 },
                 {
@@ -6229,14 +6031,6 @@
                   "y": 5003.396226415094,
                   "elite": false,
                   "support": "sq-lower-ground"
-                },
-                {
-                  "id": "sq-e5",
-                  "kind": "bat",
-                  "x": 5040,
-                  "y": 4787.608695652174,
-                  "elite": false,
-                  "support": "sq-lower-ground"
                 }
               ]
             },
@@ -6254,14 +6048,6 @@
                   "support": "sq-lower-ground"
                 },
                 {
-                  "id": "sq-f2",
-                  "kind": "picks",
-                  "x": 6590,
-                  "y": 4800,
-                  "elite": false,
-                  "support": "sq-lower-ground"
-                },
-                {
                   "id": "sq-f3",
                   "kind": "picks",
                   "x": 6340,
@@ -6274,14 +6060,6 @@
                   "kind": "minecart",
                   "x": 6130,
                   "y": 4805,
-                  "elite": false,
-                  "support": "sq-lower-ground"
-                },
-                {
-                  "id": "sq-f5",
-                  "kind": "bat",
-                  "x": 6660,
-                  "y": 4600,
                   "elite": false,
                   "support": "sq-lower-ground"
                 },
@@ -6335,8 +6113,8 @@
               ]
             }
           ],
-          "initial": 32,
-          "elites": 7,
+          "initial": 26,
+          "elites": 6,
           "finite": 8,
           "activeLimit": 4
         }
@@ -9526,17 +9304,17 @@
       }
     }
   ],
-  "projectSha256": "cd9a57d7aba47b9dd859d0aec7ccb69748dcd56315ce89f52db37aa5698e96d2",
+  "projectSha256": "ee31bb22ff0c4ab6f24893b150e2e05bfe0487a60b14b908d0fd559d976211fa",
   "runtime": {
     "shared/build.mjs": "import {applyOpenStructures} from '../tools/map-forge/open-structure-policy.mjs';\nimport {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';\nimport {readFile,readdir} from 'node:fs/promises';\nimport {fileURLToPath} from 'node:url';\nimport path from 'node:path';\nimport {buildCore} from '../game/engine/build.mjs';\nimport {buildMonsters} from '../tools/monster-forge/build.mjs';\nimport {buildParty} from '../tools/party-forge/build.mjs';\nimport {applyCavernPlaceLayers} from '../tools/map-forge/cavern-place-layers.mjs';\nimport {applyAct1SceneComposition} from '../tools/environment/act1-scene-composition.mjs';\nimport {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';\nimport {applyAct2VectorArt} from '../tools/environment/build-act2-art.mjs';\nimport {buildActors} from '../tools/actor-forge/build.mjs';\n\nexport const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');\nconst read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\\r\\n/g,'\\n');\nexport const modelFiles=['content','story-content','terrain-space','map-engine','battlefield-layouts',\n  'split-campaign','stake-crossing','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','objective-guidance','journey-content','act3-journey','story-staging','story-direction'];\n\n// This is the only bundle manifest. Game, Stage view and playtest use it.\nexport async function runtimeParts({vector=true,render=true,app=false}={}) {\n  const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/^[0-9]{2}.*\\.mp3$/i.test(f)).sort();\n  if(bgm.length!==5||bgm.some((f,i)=>!f.startsWith(String(i+1).padStart(2,'0'))))throw Error('BGM prefixes 01 through 05 required');\n  const parts=['globalThis.HONRO_BGM_TRACKS='+JSON.stringify(bgm.map(f=>'assets/bgm/'+f))+';',await buildCore(), 'globalThis.HONRO_BALANCE='+await read('game/config/balance.json')+';'];\n  parts.push('globalThis.HONRO_SPLIT_V1='+await read('shared/data/split-campaign-v1.json')+';');\n  parts.push('globalThis.HONRO_OPEN_STRUCTURES='+await read('shared/data/open-structures.json')+';');\n  parts.push('globalThis.HONRO_WATERWORKS_V2='+await read('shared/data/waterworks-v2-content.json')+';');\n  for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));\n  parts.push(await read('shared/runtime/camera.js'));\n  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));\n  const project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});\n  applyOpenStructures(project);\n  parts.push('globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'));');\n  if(vector){\n    await buildParty();\n    parts.push(await read('shared/runtime/party-rig.js'));\n    parts.push(await read('shared/assets/party/party.runtime.js'));\n    parts.push((await read('shared/assets/rebuild-game-adapter.mjs')).replace(/^export /gm,'')+\n      '\\nglobalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');\n  }\n  if(render){\n    await buildMonsters();\n    await buildActors();\n    const act1Backdrops={};\n    for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg'],['act3','act3-far.svg']]){\n      const svg=await readFile(path.join(root,'shared/assets/environment',file));\n      act1Backdrops[key]='data:image/svg+xml;base64,'+svg.toString('base64');\n    }\n    parts.push('globalThis.HONRO_ACT1_FAR_DATA='+JSON.stringify(act1Backdrops)+';');\n    const act2Backdrops={};\n    for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+(await readFile(path.join(root,'shared/assets/environment',file))).toString('base64');\n    parts.push('globalThis.HONRO_ACT2_FAR_DATA='+JSON.stringify(act2Backdrops)+';');\n    parts.push(await read('shared/assets/monsters/monsters.runtime.js'));\n    parts.push(await read('shared/assets/actors/actors.runtime.js'));\n    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','combat-feedback'])parts.push(await read(`shared/runtime/${name}.js`));\n  }\n  if(app){\n    parts.push(await read('game/vendor/ui/fa.js'));\n    for(const name of ['portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])\n      parts.push(await read(`shared/runtime/${name}.js`));\n  }else parts.push(await read('shared/runtime/stage-rules.js'));\n  return parts;\n}\n",
-    "game/config/balance.json": "{\n  \"version\": 3,\n  \"maxLevel\": 30,\n  \"combatShare\": 0.4,\n  \"stages\": [\n    {\n      \"id\": 1,\n      \"entryLevel\": 1,\n      \"exitLevel\": 2,\n      \"initialEnemies\": 4,\n      \"activeEnemies\": 2,\n      \"targetHits\": 0.95,\n      \"targetIncomingHpFraction\": 0.05,\n      \"maxAlive\": 4,\n      \"targetRounds\": [\n        5,\n        6\n      ],\n      \"objectiveTurns\": 1.3\n    },\n    {\n      \"id\": 2,\n      \"entryLevel\": 2,\n      \"exitLevel\": 3,\n      \"initialEnemies\": 6,\n      \"activeEnemies\": 3,\n      \"targetHits\": 1.45,\n      \"targetIncomingHpFraction\": 0.065,\n      \"maxAlive\": 6,\n      \"recruit\": \"mage\",\n      \"targetRounds\": [\n        7,\n        8\n      ],\n      \"objectiveTurns\": 2.0\n    },\n    {\n      \"id\": 3,\n      \"entryLevel\": 3,\n      \"exitLevel\": 4,\n      \"initialEnemies\": 6,\n      \"activeEnemies\": 3,\n      \"targetHits\": 1.75,\n      \"targetIncomingHpFraction\": 0.075,\n      \"maxAlive\": 7,\n      \"midBossHits\": 5.5,\n      \"targetRounds\": [\n        8,\n        9\n      ],\n      \"objectiveTurns\": 1.8\n    },\n    {\n      \"id\": 4,\n      \"entryLevel\": 4,\n      \"exitLevel\": 5,\n      \"initialEnemies\": 7,\n      \"activeEnemies\": 3,\n      \"targetHits\": 1.95,\n      \"targetIncomingHpFraction\": 0.08,\n      \"maxAlive\": 7,\n      \"targetRounds\": [\n        9,\n        10\n      ],\n      \"objectiveTurns\": 1.0\n    },\n    {\n      \"id\": 5,\n      \"entryLevel\": 5,\n      \"exitLevel\": 6,\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.05,\n      \"targetIncomingHpFraction\": 0.085,\n      \"maxAlive\": 10,\n      \"recruit\": \"knight\",\n      \"targetRounds\": [\n        10,\n        11\n      ],\n      \"objectiveTurns\": 3.5\n    },\n    {\n      \"id\": 6,\n      \"entryLevel\": 6,\n      \"exitLevel\": 7,\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.15,\n      \"targetIncomingHpFraction\": 0.09,\n      \"maxAlive\": 11,\n      \"midBossHits\": 6.5,\n      \"targetRounds\": [\n        11,\n        12\n      ],\n      \"objectiveTurns\": 4.5\n    },\n    {\n      \"id\": 7,\n      \"entryLevel\": 7,\n      \"exitLevel\": 8.5,\n      \"initialEnemies\": 11,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.3,\n      \"targetIncomingHpFraction\": 0.092,\n      \"maxAlive\": 11,\n      \"targetRounds\": [\n        12,\n        13\n      ],\n      \"objectiveTurns\": 5.8\n    },\n    {\n      \"id\": 8,\n      \"entryLevel\": 8.5,\n      \"exitLevel\": 10,\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.4,\n      \"targetIncomingHpFraction\": 0.095,\n      \"maxAlive\": 11,\n      \"bossHits\": 10,\n      \"bossIncomingHpFraction\": 0.14,\n      \"targetRounds\": [\n        13,\n        14\n      ],\n      \"objectiveTurns\": 4.5\n    },\n    {\n      \"id\": 9,\n      \"entryLevel\": 10,\n      \"exitLevel\": 11,\n      \"initialEnemies\": 12,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.55,\n      \"targetIncomingHpFraction\": 0.1,\n      \"maxAlive\": 12,\n      \"reinforcements\": 6,\n      \"medianEnemyHitHpPercent\": 10,\n      \"medianHitsToKill\": 3.7,\n      \"targetRounds\": [\n        14,\n        15\n      ],\n      \"objectiveTurns\": 5.4\n    },\n    {\n      \"id\": 10,\n      \"entryLevel\": 11,\n      \"exitLevel\": 12,\n      \"initialEnemies\": 8,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.65,\n      \"targetIncomingHpFraction\": 0.105,\n      \"maxAlive\": 9,\n      \"bossHits\": 18,\n      \"bossIncomingHpFraction\": 0.19,\n      \"reinforcements\": 6,\n      \"medianEnemyHitHpPercent\": 11,\n      \"medianHitsToKill\": 3.9,\n      \"targetRounds\": [\n        15,\n        16\n      ],\n      \"objectiveTurns\": 2.5\n    },\n    {\n      \"id\": 11,\n      \"act\": 2,\n      \"entryLevel\": 12.0,\n      \"exitLevel\": 12.6,\n      \"initialEnemies\": 44,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.85,\n      \"targetIncomingHpFraction\": 0.112,\n      \"maxAlive\": 64,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        30,\n        48\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 12,\n      \"act\": 2,\n      \"entryLevel\": 12.6,\n      \"exitLevel\": 13.2,\n      \"initialEnemies\": 32,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.885,\n      \"targetIncomingHpFraction\": 0.1145,\n      \"maxAlive\": 36,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        30,\n        48\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 13,\n      \"act\": 2,\n      \"entryLevel\": 13.2,\n      \"exitLevel\": 13.8,\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.92,\n      \"targetIncomingHpFraction\": 0.117,\n      \"maxAlive\": 38,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        44,\n        70\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 14,\n      \"act\": 2,\n      \"entryLevel\": 13.8,\n      \"exitLevel\": 14.4,\n      \"initialEnemies\": 24,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.955,\n      \"targetIncomingHpFraction\": 0.1195,\n      \"maxAlive\": 40,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        55,\n        88\n      ],\n      \"objectiveTurns\": 10\n    },\n    {\n      \"id\": 15,\n      \"act\": 2,\n      \"entryLevel\": 14.4,\n      \"exitLevel\": 15.0,\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.99,\n      \"targetIncomingHpFraction\": 0.122,\n      \"maxAlive\": 38,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        33,\n        53\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 16,\n      \"act\": 2,\n      \"entryLevel\": 15.0,\n      \"exitLevel\": 15.6,\n      \"initialEnemies\": 34,\n      \"activeEnemies\": 4,\n      \"targetHits\": 3.025,\n      \"targetIncomingHpFraction\": 0.1245,\n      \"maxAlive\": 45,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        70,\n        130\n      ],\n      \"objectiveTurns\": 8\n    },\n    {\n      \"id\": 17,\n      \"act\": 2,\n      \"entryLevel\": 15.6,\n      \"exitLevel\": 16.2,\n      \"initialEnemies\": 36,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.06,\n      \"targetIncomingHpFraction\": 0.127,\n      \"maxAlive\": 46,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        52,\n        84\n      ],\n      \"objectiveTurns\": 9\n    },\n    {\n      \"id\": 18,\n      \"act\": 2,\n      \"entryLevel\": 16.2,\n      \"exitLevel\": 16.8,\n      \"initialEnemies\": 28,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.095,\n      \"targetIncomingHpFraction\": 0.1295,\n      \"maxAlive\": 44,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        80,\n        126\n      ],\n      \"objectiveTurns\": 10\n    },\n    {\n      \"id\": 19,\n      \"act\": 2,\n      \"entryLevel\": 16.8,\n      \"exitLevel\": 17.4,\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.13,\n      \"targetIncomingHpFraction\": 0.132,\n      \"maxAlive\": 34,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        44,\n        70\n      ],\n      \"objectiveTurns\": 13\n    },\n    {\n      \"id\": 20,\n      \"act\": 2,\n      \"entryLevel\": 17.4,\n      \"exitLevel\": 18.0,\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.165,\n      \"targetIncomingHpFraction\": 0.1345,\n      \"maxAlive\": 34,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        30,\n        48\n      ],\n      \"objectiveTurns\": 8\n    },\n    {\n      \"id\": 21,\n      \"act\": 3,\n      \"entryLevel\": 15.69,\n      \"exitLevel\": 16.3,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.1,\n      \"targetIncomingHpFraction\": 0.065,\n      \"maxAlive\": 20,\n      \"targetRounds\": [\n        14,\n        24\n      ],\n      \"objectiveTurns\": 4\n    },\n    {\n      \"id\": 22,\n      \"act\": 3,\n      \"entryLevel\": 16.3,\n      \"exitLevel\": 16.9,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 20,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.135,\n      \"targetIncomingHpFraction\": 0.0665,\n      \"maxAlive\": 22,\n      \"targetRounds\": [\n        15,\n        26\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 23,\n      \"act\": 3,\n      \"entryLevel\": 16.9,\n      \"exitLevel\": 17.5,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.17,\n      \"targetIncomingHpFraction\": 0.068,\n      \"maxAlive\": 22,\n      \"targetRounds\": [\n        16,\n        28\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 24,\n      \"act\": 3,\n      \"entryLevel\": 17.5,\n      \"exitLevel\": 18.1,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.205,\n      \"targetIncomingHpFraction\": 0.0695,\n      \"maxAlive\": 18,\n      \"targetRounds\": [\n        17,\n        30\n      ],\n      \"objectiveTurns\": 5\n    },\n    {\n      \"id\": 25,\n      \"act\": 3,\n      \"entryLevel\": 18.1,\n      \"exitLevel\": 18.75,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 7,\n      \"activeEnemies\": 2,\n      \"targetHits\": 2.24,\n      \"targetIncomingHpFraction\": 0.071,\n      \"maxAlive\": 7,\n      \"targetRounds\": [\n        18,\n        32\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 26,\n      \"act\": 3,\n      \"entryLevel\": 18.75,\n      \"exitLevel\": 19.4,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 2,\n      \"targetHits\": 2.275,\n      \"targetIncomingHpFraction\": 0.0725,\n      \"maxAlive\": 10,\n      \"targetRounds\": [\n        19,\n        34\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 27,\n      \"act\": 3,\n      \"entryLevel\": 19.4,\n      \"exitLevel\": 20.05,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 8,\n      \"activeEnemies\": 2,\n      \"targetHits\": 2.31,\n      \"targetIncomingHpFraction\": 0.074,\n      \"maxAlive\": 8,\n      \"targetRounds\": [\n        20,\n        36\n      ],\n      \"objectiveTurns\": 8\n    },\n    {\n      \"id\": 28,\n      \"act\": 3,\n      \"entryLevel\": 20.05,\n      \"exitLevel\": 20.7,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 11,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.345,\n      \"targetIncomingHpFraction\": 0.0755,\n      \"maxAlive\": 11,\n      \"targetRounds\": [\n        21,\n        38\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 29,\n      \"act\": 3,\n      \"entryLevel\": 20.7,\n      \"exitLevel\": 21.35,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.38,\n      \"targetIncomingHpFraction\": 0.077,\n      \"maxAlive\": 26,\n      \"targetRounds\": [\n        22,\n        40\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 30,\n      \"act\": 3,\n      \"entryLevel\": 21.35,\n      \"exitLevel\": 22,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 26,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.415,\n      \"targetIncomingHpFraction\": 0.0785,\n      \"maxAlive\": 23,\n      \"targetRounds\": [\n        23,\n        42\n      ],\n      \"objectiveTurns\": 8\n    }\n  ],\n  \"futureActs\": [\n    {\n      \"act\": 4,\n      \"stageExitLevels\": [\n        23,\n        24,\n        25,\n        25,\n        25,\n        25,\n        25,\n        25\n      ]\n    },\n    {\n      \"act\": 5,\n      \"stageExitLevels\": [\n        25,\n        25,\n        25,\n        25,\n        25,\n        25,\n        25,\n        25\n      ]\n    }\n  ]\n}\n",
+    "game/config/balance.json": "{\n  \"version\": 3,\n  \"maxLevel\": 30,\n  \"combatShare\": 0.4,\n  \"stages\": [\n    {\n      \"id\": 1,\n      \"entryLevel\": 1,\n      \"exitLevel\": 2,\n      \"initialEnemies\": 4,\n      \"activeEnemies\": 2,\n      \"targetHits\": 0.95,\n      \"targetIncomingHpFraction\": 0.05,\n      \"maxAlive\": 4,\n      \"targetRounds\": [\n        5,\n        6\n      ],\n      \"objectiveTurns\": 1.3\n    },\n    {\n      \"id\": 2,\n      \"entryLevel\": 2,\n      \"exitLevel\": 3,\n      \"initialEnemies\": 6,\n      \"activeEnemies\": 3,\n      \"targetHits\": 1.45,\n      \"targetIncomingHpFraction\": 0.065,\n      \"maxAlive\": 6,\n      \"recruit\": \"mage\",\n      \"targetRounds\": [\n        7,\n        8\n      ],\n      \"objectiveTurns\": 2.0\n    },\n    {\n      \"id\": 3,\n      \"entryLevel\": 3,\n      \"exitLevel\": 4,\n      \"initialEnemies\": 6,\n      \"activeEnemies\": 3,\n      \"targetHits\": 1.75,\n      \"targetIncomingHpFraction\": 0.075,\n      \"maxAlive\": 7,\n      \"midBossHits\": 5.5,\n      \"targetRounds\": [\n        8,\n        9\n      ],\n      \"objectiveTurns\": 1.8\n    },\n    {\n      \"id\": 4,\n      \"entryLevel\": 4,\n      \"exitLevel\": 5,\n      \"initialEnemies\": 7,\n      \"activeEnemies\": 3,\n      \"targetHits\": 1.95,\n      \"targetIncomingHpFraction\": 0.08,\n      \"maxAlive\": 7,\n      \"targetRounds\": [\n        9,\n        10\n      ],\n      \"objectiveTurns\": 1.0\n    },\n    {\n      \"id\": 5,\n      \"entryLevel\": 5,\n      \"exitLevel\": 6,\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.05,\n      \"targetIncomingHpFraction\": 0.085,\n      \"maxAlive\": 10,\n      \"recruit\": \"knight\",\n      \"targetRounds\": [\n        10,\n        11\n      ],\n      \"objectiveTurns\": 3.5\n    },\n    {\n      \"id\": 6,\n      \"entryLevel\": 6,\n      \"exitLevel\": 7,\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.15,\n      \"targetIncomingHpFraction\": 0.09,\n      \"maxAlive\": 11,\n      \"midBossHits\": 6.5,\n      \"targetRounds\": [\n        11,\n        12\n      ],\n      \"objectiveTurns\": 4.5\n    },\n    {\n      \"id\": 7,\n      \"entryLevel\": 7,\n      \"exitLevel\": 8.5,\n      \"initialEnemies\": 11,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.3,\n      \"targetIncomingHpFraction\": 0.092,\n      \"maxAlive\": 11,\n      \"targetRounds\": [\n        12,\n        13\n      ],\n      \"objectiveTurns\": 5.8\n    },\n    {\n      \"id\": 8,\n      \"entryLevel\": 8.5,\n      \"exitLevel\": 10,\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.4,\n      \"targetIncomingHpFraction\": 0.095,\n      \"maxAlive\": 11,\n      \"bossHits\": 10,\n      \"bossIncomingHpFraction\": 0.14,\n      \"targetRounds\": [\n        13,\n        14\n      ],\n      \"objectiveTurns\": 4.5\n    },\n    {\n      \"id\": 9,\n      \"entryLevel\": 10,\n      \"exitLevel\": 11,\n      \"initialEnemies\": 12,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.55,\n      \"targetIncomingHpFraction\": 0.1,\n      \"maxAlive\": 12,\n      \"reinforcements\": 6,\n      \"medianEnemyHitHpPercent\": 10,\n      \"medianHitsToKill\": 3.7,\n      \"targetRounds\": [\n        14,\n        15\n      ],\n      \"objectiveTurns\": 5.4\n    },\n    {\n      \"id\": 10,\n      \"entryLevel\": 11,\n      \"exitLevel\": 12,\n      \"initialEnemies\": 8,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.65,\n      \"targetIncomingHpFraction\": 0.105,\n      \"maxAlive\": 9,\n      \"bossHits\": 18,\n      \"bossIncomingHpFraction\": 0.19,\n      \"reinforcements\": 6,\n      \"medianEnemyHitHpPercent\": 11,\n      \"medianHitsToKill\": 3.9,\n      \"targetRounds\": [\n        15,\n        16\n      ],\n      \"objectiveTurns\": 2.5\n    },\n    {\n      \"id\": 11,\n      \"act\": 2,\n      \"entryLevel\": 12.0,\n      \"exitLevel\": 12.6,\n      \"initialEnemies\": 44,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.85,\n      \"targetIncomingHpFraction\": 0.112,\n      \"maxAlive\": 64,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        30,\n        48\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 12,\n      \"act\": 2,\n      \"entryLevel\": 12.6,\n      \"exitLevel\": 13.2,\n      \"initialEnemies\": 26,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.885,\n      \"targetIncomingHpFraction\": 0.1145,\n      \"maxAlive\": 36,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        30,\n        48\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 13,\n      \"act\": 2,\n      \"entryLevel\": 13.2,\n      \"exitLevel\": 13.8,\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.92,\n      \"targetIncomingHpFraction\": 0.117,\n      \"maxAlive\": 38,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        44,\n        70\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 14,\n      \"act\": 2,\n      \"entryLevel\": 13.8,\n      \"exitLevel\": 14.4,\n      \"initialEnemies\": 24,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.955,\n      \"targetIncomingHpFraction\": 0.1195,\n      \"maxAlive\": 40,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        55,\n        88\n      ],\n      \"objectiveTurns\": 10\n    },\n    {\n      \"id\": 15,\n      \"act\": 2,\n      \"entryLevel\": 14.4,\n      \"exitLevel\": 15.0,\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 4,\n      \"targetHits\": 2.99,\n      \"targetIncomingHpFraction\": 0.122,\n      \"maxAlive\": 38,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        33,\n        53\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 16,\n      \"act\": 2,\n      \"entryLevel\": 15.0,\n      \"exitLevel\": 15.6,\n      \"initialEnemies\": 34,\n      \"activeEnemies\": 4,\n      \"targetHits\": 3.025,\n      \"targetIncomingHpFraction\": 0.1245,\n      \"maxAlive\": 45,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        70,\n        130\n      ],\n      \"objectiveTurns\": 8\n    },\n    {\n      \"id\": 17,\n      \"act\": 2,\n      \"entryLevel\": 15.6,\n      \"exitLevel\": 16.2,\n      \"initialEnemies\": 36,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.06,\n      \"targetIncomingHpFraction\": 0.127,\n      \"maxAlive\": 46,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        52,\n        84\n      ],\n      \"objectiveTurns\": 9\n    },\n    {\n      \"id\": 18,\n      \"act\": 2,\n      \"entryLevel\": 16.2,\n      \"exitLevel\": 16.8,\n      \"initialEnemies\": 28,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.095,\n      \"targetIncomingHpFraction\": 0.1295,\n      \"maxAlive\": 44,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        80,\n        126\n      ],\n      \"objectiveTurns\": 10\n    },\n    {\n      \"id\": 19,\n      \"act\": 2,\n      \"entryLevel\": 16.8,\n      \"exitLevel\": 17.4,\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.13,\n      \"targetIncomingHpFraction\": 0.132,\n      \"maxAlive\": 34,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        44,\n        70\n      ],\n      \"objectiveTurns\": 13\n    },\n    {\n      \"id\": 20,\n      \"act\": 2,\n      \"entryLevel\": 17.4,\n      \"exitLevel\": 18.0,\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 3.165,\n      \"targetIncomingHpFraction\": 0.1345,\n      \"maxAlive\": 34,\n      \"bossHits\": 11,\n      \"bossIncomingHpFraction\": 0.135,\n      \"midBossHits\": 5.8,\n      \"targetRounds\": [\n        30,\n        48\n      ],\n      \"objectiveTurns\": 8\n    },\n    {\n      \"id\": 21,\n      \"act\": 3,\n      \"entryLevel\": 15.69,\n      \"exitLevel\": 16.3,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.1,\n      \"targetIncomingHpFraction\": 0.065,\n      \"maxAlive\": 20,\n      \"targetRounds\": [\n        14,\n        24\n      ],\n      \"objectiveTurns\": 4\n    },\n    {\n      \"id\": 22,\n      \"act\": 3,\n      \"entryLevel\": 16.3,\n      \"exitLevel\": 16.9,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 20,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.135,\n      \"targetIncomingHpFraction\": 0.0665,\n      \"maxAlive\": 22,\n      \"targetRounds\": [\n        15,\n        26\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 23,\n      \"act\": 3,\n      \"entryLevel\": 16.9,\n      \"exitLevel\": 17.5,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.17,\n      \"targetIncomingHpFraction\": 0.068,\n      \"maxAlive\": 22,\n      \"targetRounds\": [\n        16,\n        28\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 24,\n      \"act\": 3,\n      \"entryLevel\": 17.5,\n      \"exitLevel\": 18.1,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 18,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.205,\n      \"targetIncomingHpFraction\": 0.0695,\n      \"maxAlive\": 18,\n      \"targetRounds\": [\n        17,\n        30\n      ],\n      \"objectiveTurns\": 5\n    },\n    {\n      \"id\": 25,\n      \"act\": 3,\n      \"entryLevel\": 18.1,\n      \"exitLevel\": 18.75,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 7,\n      \"activeEnemies\": 2,\n      \"targetHits\": 2.24,\n      \"targetIncomingHpFraction\": 0.071,\n      \"maxAlive\": 7,\n      \"targetRounds\": [\n        18,\n        32\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 26,\n      \"act\": 3,\n      \"entryLevel\": 18.75,\n      \"exitLevel\": 19.4,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 10,\n      \"activeEnemies\": 2,\n      \"targetHits\": 2.275,\n      \"targetIncomingHpFraction\": 0.0725,\n      \"maxAlive\": 10,\n      \"targetRounds\": [\n        19,\n        34\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 27,\n      \"act\": 3,\n      \"entryLevel\": 19.4,\n      \"exitLevel\": 20.05,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 8,\n      \"activeEnemies\": 2,\n      \"targetHits\": 2.31,\n      \"targetIncomingHpFraction\": 0.074,\n      \"maxAlive\": 8,\n      \"targetRounds\": [\n        20,\n        36\n      ],\n      \"objectiveTurns\": 8\n    },\n    {\n      \"id\": 28,\n      \"act\": 3,\n      \"entryLevel\": 20.05,\n      \"exitLevel\": 20.7,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 11,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.345,\n      \"targetIncomingHpFraction\": 0.0755,\n      \"maxAlive\": 11,\n      \"targetRounds\": [\n        21,\n        38\n      ],\n      \"objectiveTurns\": 6\n    },\n    {\n      \"id\": 29,\n      \"act\": 3,\n      \"entryLevel\": 20.7,\n      \"exitLevel\": 21.35,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 22,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.38,\n      \"targetIncomingHpFraction\": 0.077,\n      \"maxAlive\": 26,\n      \"targetRounds\": [\n        22,\n        40\n      ],\n      \"objectiveTurns\": 7\n    },\n    {\n      \"id\": 30,\n      \"act\": 3,\n      \"entryLevel\": 21.35,\n      \"exitLevel\": 22,\n      \"rewardCurve\": \"current\",\n      \"balanceStatus\": \"proposed\",\n      \"initialEnemies\": 26,\n      \"activeEnemies\": 3,\n      \"targetHits\": 2.415,\n      \"targetIncomingHpFraction\": 0.0785,\n      \"maxAlive\": 23,\n      \"targetRounds\": [\n        23,\n        42\n      ],\n      \"objectiveTurns\": 8\n    }\n  ],\n  \"futureActs\": [\n    {\n      \"act\": 4,\n      \"stageExitLevels\": [\n        23,\n        24,\n        25,\n        25,\n        25,\n        25,\n        25,\n        25\n      ]\n    },\n    {\n      \"act\": 5,\n      \"stageExitLevels\": [\n        25,\n        25,\n        25,\n        25,\n        25,\n        25,\n        25,\n        25\n      ]\n    }\n  ]\n}\n",
     "shared/runtime/terrain-readability.js": "(function(G){'use strict';\n// Readability belongs to the collision silhouette, not the decoration's art.\n// Build exposed paths once per sceneVersion and rasterize them with world tiles.\nconst S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();\nconst STYLE=Object.freeze({backgroundDesaturation:.14,edgeInk:'#101d23d9',topLight:'#c7d0bd',woodLight:'#c8b994',edgePixels:1.5,topInkPixels:2.6,topLightPixels:1.2});\nconst cross=(ax,ay,bx,by)=>ax*by-ay*bx;\nfunction inside(x,y,ps){let yes=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],z=ps[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)yes=!yes;}return yes;}\nfunction cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,den=cross(dx,dy,ex,ey),len2=dx*dx+dy*dy;\n if(Math.abs(den)>1e-8){const t=cross(p.x-a.x,p.y-a.y,ex,ey)/den,u=cross(p.x-a.x,p.y-a.y,dx,dy)/den;if(t>0&&t<1&&u>=0&&u<=1)cuts.push(t);}\n else if(Math.abs(cross(p.x-a.x,p.y-a.y,dx,dy))<1e-6)for(const v of [p,q]){const t=((v.x-a.x)*dx+(v.y-a.y)*dy)/len2;if(t>0&&t<1)cuts.push(t);}\n}\nfunction prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prior=cache.get(b);if(prior?.source===ts&&prior.version===b.sceneVersion)return prior;\n const solids=ts.filter(t=>!t.broken).map(t=>({t,ps:C.poly(t)})),groups=[];\n for(const {t,ps}of solids){\n  // Some legacy sprite hitboxes deliberately enclose empty air. Outlining\n  // those would create a floating wireframe, so retain their authored rim.\n  // New roofs explicitly promise a single sampled art/collision silhouette.\n  if(t.honroElementCollision){const asset=b.honroLandmarks?.find(l=>l.id===t.honroElementId)?.asset;if(asset?.params?.rearOnly||asset?.params?.collisionSource!=='sampled-drawn-roof')continue;}\n  const edge=new Path2D(),top=new Path2D(),segments=[];let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=cross(a.x,a.y,z.x,z.y);}const sign=area>=0?1:-1;\n  for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<.01)continue;\n   const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;\n   const left=Math.min(a.x,z.x),right=Math.max(a.x,z.x),low=Math.min(a.y,z.y),high=Math.max(a.y,z.y),peers=solids.filter(o=>o.t!==t&&!o.t.oneWay&&o.t.x<=right+1&&o.t.x+o.t.w>=left-1&&o.t.y<=high+1&&o.t.y+o.t.h>=low-1),cuts=[0,1];\n   for(const o of peers)for(let j=0;j<o.ps.length;j++)cutAt(a,z,o.ps[j],o.ps[(j+1)%o.ps.length],cuts);cuts.sort((a,z)=>a-z);\n   for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;\n    const p={x:a.x+dx*start,y:a.y+dy*start},q={x:a.x+dx*end,y:a.y+dy*end};edge.moveTo(p.x,p.y);edge.lineTo(q.x,q.y);if(walkable){top.moveTo(p.x,p.y);top.lineTo(q.x,q.y);}segments.push({a:p,z:q,walkable});\n   }\n  }\n  if(segments.length)groups.push({id:t.id,wood:t.mat==='wood',edge,top,segments,bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h}});\n }\n const q={source:ts,version:b.sceneVersion,groups,builds:(prior?.builds||0)+1};cache.set(b,q);return q;\n}\nS.backgroundReadability=function(c,w,h){c.save();c.globalCompositeOperation='saturation';c.globalAlpha*=STYLE.backgroundDesaturation;c.fillStyle='#808080';c.fillRect(0,0,w,h);c.restore();};\nS.terrainReadability=function(c,b,view){const q=prepare(b),raster=this._staticCacheBuild?this._worldRasterScale(b,this.canvas.clientWidth):this.scale,unit=1/Math.max(.05,raster);\n c.save();c.lineJoin='round';c.lineCap='butt';for(const group of q.groups){if(G.HonroStage18BellArt?.omitReadability(group,b)||G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b))continue;const box=group.bounds;if(view&&(box.right<view.left-8*unit||box.left>view.right+8*unit||box.bottom<view.top-8*unit||box.top>view.bottom+8*unit))continue;\n  c.strokeStyle=STYLE.edgeInk;c.lineWidth=STYLE.edgePixels*unit;c.stroke(group.edge);\n  c.lineWidth=STYLE.topInkPixels*unit;c.stroke(group.top);\n  c.strokeStyle=group.wood?STYLE.woodLight:STYLE.topLight;c.lineWidth=STYLE.topLightPixels*unit;c.stroke(group.top);\n }c.restore();this.terrainReadabilityStats={builds:q.builds,groups:q.groups.length};\n};\nG.HonroTerrainReadability={STYLE,prepare};\n})(globalThis);\n",
-    "shared/runtime/stage12-quarry.js": "(function(G){'use strict';\n// Only newly authored quarry snapshots opt in. Saved old battles retain their\n// own geography, actors, steps, story payload and combat numbers.\nconst A=G.HonroAct2,W=G.HonroAllies,E=G.HonroEncounters,C=G.HONRO_CORE;\nconst clone=v=>JSON.parse(JSON.stringify(v)),active=b=>b?.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1;\nconst alive=u=>!!u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;\nconst sources=['hold-road-0','hold-road-3','hold-road-6'];\nconst memory=b=>(b.honroState.quarry??={version:1,gate:'closed',openCount:0,warnings:{},entries:{}});\nconst serial=b=>b.honroState.actorTurnSerial||0;\nconst paused=app=>!!app.dialogue||!!app.modal?.classList.contains('open')||!!app.charging||!!G.HonroStory?.turnPaused?.(app);\nconst ended=app=>app.done||['won','lost'].includes(app.engine.b.phase);\nconst safe=app=>!ended(app)&&!paused(app)&&!['flight','review','summon','ally'].includes(app.engine.b.phase)&&!(app.engine.b.projectiles||[]).length&&!app.engine.b.volley&&!app.engine.b.summonTurn&&!app.engine.b.units.some(u=>alive(u)&&(u.meleeAction||u.meleeFollow==='ready'))&&!app.engine.settleBusy();\nconst factory=G.HonroWorld.createEnemy;\nG.HonroWorld.createEnemy=function(b,st,...args){const u=factory(b,st,...args);if(!active(b))return u;\n // World factory's index%11 elite is historical, not an authored quarry role.\n // Re-run its base tuning with elite=false, rather than leave invisible HP/XP.\n u.elite=false;u.armor=.04;G.HonroProgression.tuneEnemy(st,u,args[1]);G.HonroProgression.enemyXP(b,u);u.honroQuarryBase=true;return u;\n};\nconst initialize=G.HonroProgression.initialize;\nG.HonroProgression.initialize=function(b,profile){if(!active(b)||b.honroGrowth)return initialize(b,profile);\n // Fresh creation only. Final authored elite weights and all eight finite\n // minecarts share the unchanged chapter combat ceiling. App mount does call\n // initialize again; existing growth exits above before any retuning/rebudget.\n for(const u of b.units)if(u.side===1)A.tuneEncounter(u,12);\n const out=initialize(b,profile);if(b.honroGrowth){const reserve=8+2*.6;b.honroGrowth.weight+=reserve;b.honroGrowth.quarryWaveWeight=reserve;b.honroGrowth.quarryRevision=1;for(const u of b.units)if(u.side===1)G.HonroProgression.enemyXP(b,u);}return out;\n};\nconst contentFor=G.HonroObjectiveRevision.contentFor;\nG.HonroObjectiveRevision.contentFor=function(b,st){if(!active(b)||!b.honroQuarryContent)return contentFor(b,st);const out=clone(b.honroQuarryContent),m=b.honroState?.quarry;if(m?.signLines)out.beats.sign=clone(m.signLines);return out;};\nconst entry=A.entry;A.entry=function(app,options={}){if(!active(app.engine?.b))return entry(app,options);const stage=G.HonroObjectiveRevision.contentFor(app.engine.b,app.stage);return entry({...app,stage},options);};\nconst near=(u,p,r=300)=>hero(u)&&!!p&&Math.hypot(u.x-p.x,u.y-p.y)<r&&Math.abs(u.y-p.y)<150;\nconst use=A.use;A.use=function(app,marker){const b=app.engine?.b;if(!active(b)||marker?.id!=='sign'||!A.eligibility(app,marker).ok)return use(app,marker);\n const m=memory(b),u=app.engine.active,mage=b.units.find(v=>v.side===0&&v.cls==='mage');\n if(!m.signInteractorId){m.signInteractorId=u?.id;m.signRequestSerial=serial(b);m.signMageNear=near(mage,marker);m.signLines=clone(b.honroQuarryContent.beats.sign);if(!m.signMageNear)for(const line of m.signLines)if(line[0]==='서술')line[1]=line[1].replace('담허가 겹친 획 하나를 풀었다.','담허의 설명을 따라 겹친 획 하나를 풀었다.');}\n m.shoePlaced=true;const out=use(app,marker);if(out&&A.memory(b).done.sign){if(m.gate==='closed')m.gate='waiting';}return out;\n};\nfunction gateOccupants(b){const t=b.terrain.find(t=>t.id===b.honroQuarrySpec?.gateTerrainId);if(!t||t.broken)return[];return b.units.filter(u=>alive(u)&&C.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01));}\nfunction signSceneDone(b){const m=b.honroState?.quarry,hs=b.honroState;if(!m?.signStoryId||b.honroStaging?.once?.[m.signStoryId]!=='done')return false;const sign=line=>line?.[2]?.storyId?.endsWith('act2-12-sign');return !(hs.storyQueue||[]).some(sign)&&!(hs.deferredStory||[]).some(q=>(q.lines||[]).some(sign))&&!(b.honroStory?.lines||[]).some(sign);}\nfunction openGate(app){const b=app.engine.b,m=memory(b);if(m.openCount||!A.memory(b).done.sign||!signSceneDone(b)||serial(b)<=(m.signRequestSerial??-1)||!safe(app)||gateOccupants(b).length)return false;\n const id=b.honroQuarrySpec?.gateTerrainId,lists=[b.terrain,b.honroWorldTerrain];if(!id||lists.some(ts=>!Array.isArray(ts)||ts.filter(t=>t.id===id).length!==1))return false;\n for(const ts of lists)ts.find(t=>t.id===id).broken=true;Object.assign(m,{gate:'open',openCount:1,openedRound:b.round,openedSerial:serial(b)});b.sceneVersion=(b.sceneVersion||0)+1;app.event('길표 뒤의 내리막이 이어졌다. 동굴까지 돌아 나올 수 있다.');app.engine.emit?.('save');app.dirty=true;return true;\n}\nfunction prepareWaves(app){const b=app.engine.b;if(!active(b)||ended(app)||paused(app))return;const step=A.current(b),h=A.memory(b).holds?.['hold-road'];if(step?.id!=='hold-road'||(h?.spawned||0)>=8)return;const point=b.honroMarkers.find(p=>p.id==='hold-road');if(!point||!app.engine.heroesAlive().some(u=>Math.hypot(u.x-point.x,u.y-point.y)<step.radius))return;\n const source='hold-road-'+(h?.spawned||0),m=memory(b),at=b.honroQuarrySpec?.entries?.[source];if(!at||m.warnings[source]||m.entries[source])return;m.warnings[source]={serial:serial(b),round:b.round,side:at.side};app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 진입로를 살피세요.');app.dirty=true;\n}\nconst execute=W.execute;W.execute=function(app,action){const b=app.engine?.b,source=action?.source;if(!active(b)||action?.type!=='spawn'||!sources.includes(source))return execute(app,action);\n const m=memory(b),at=b.honroQuarrySpec?.entries?.[source],warning=m.warnings[source];if(m.entries[source])return true;if(!at||!warning||serial(b)<=warning.serial||!app.actorBoundary||!safe(app))return false;\n const key=[serial(b),b.round,...b.teamEnds,app.actorBoundary].join(':'),n=action.n||1;if(b.honroState.lastCombatEventBoundary===key||app.engine.alive(1).length+n>E.populationCap(b))return false;\n for(const p of [at,...(at.alternates||[]).filter(q=>!q.side||q.side===at.side).map(q=>({...q,side:at.side}))]){const spacing=p.spacing??130,support=p.support||p.surfaceId;if(!support||!Array.from({length:n},(_,i)=>p.x+(i-(n-1)/2)*spacing).every(x=>G.HonroMapEngine.surfaceY(b.terrain,x,p.y,support)))continue;\n  const before=new Set(b.units.map(u=>u.id)),result=execute(app,{...action,x:p.x,y:p.y,support,spacing,maxDistance:0});if(result===false)continue;let index=0;for(const u of b.units)if(!before.has(u.id)){u.honroQuarryEntry=at.side;u.honroAct2Elite=++index===n&&n>=3;u.honroCohort='reinforcement';u.honroAct2Revision=2;A.tuneEncounter(u,12);G.HonroProgression.enemyXP(b,u);}m.entries[source]={side:at.side,x:p.x,y:p.y,support,count:n,round:b.round,serial:serial(b)};b.honroState.lastCombatEventBoundary=key;app.dirty=true;return result;\n }return false;\n};\nconst cap=E.populationCap;E.populationCap=function(b){return active(b)&&[28,40].includes(b.honroQuarryPopulationCap)?b.honroQuarryPopulationCap:cap(b);};\nlet directionInstalled=false;\nfunction installDirection(){if(directionInstalled||!G.HonroStoryDirection)return;directionInstalled=true;const build=G.HonroStoryDirection.build;\n G.HonroStoryDirection.build=function(app,lines,options){const out=build(app,lines,options),b=app.engine?.b;if(!active(b)||!lines.some(l=>/(?:^|:)act2-12-(sign|clear-approach)$/.test(l[2]?.storyId||'')))return out;\n  const m=memory(b),result=out||{id:'direction-v2:'+lines[0]?.[2]?.storyId,context:{},head:[],cues:lines.map(()=>[])};\n  if(lines.some(l=>l[2]?.storyId?.endsWith('act2-12-sign')))m.signStoryId=result.id;\n  for(const [i,[who,text,meta]]of lines.entries()){\n   if(meta?.storyId?.endsWith('act2-12-sign')&&who==='서술'){result.cues[i]=[];const marker=b.honroMarkers.find(p=>p.id==='sign'),actor=b.units.find(u=>u.id===(text.includes('담허가 겹친')?b.units.find(u=>u.side===0&&u.cls==='mage')?.id:m.signInteractorId));if(near(actor,marker))result.cues[i].push({type:'look',actor:actor.id,at:{marker:'sign'},pose:'inspect',duration:560});result.cues[i].push({type:'look',at:{marker:'sign'},duration:550});}\n   if(meta?.storyId?.endsWith('act2-12-clear-approach')&&who==='서술'&&text.includes('짚신')){const marker=b.honroMarkers.find(p=>p.id==='clear-approach'),actor=b.units.find(u=>u.side===0&&u.cls==='archer');result.cues[i]=[{type:'look',at:{marker:'clear-approach'},duration:450},...(near(actor,marker)?[{type:'look',actor:actor.id,pose:'inspect',duration:500}]:[])];}\n  }return result;\n };\n}\nfunction cellApproached(e,units,spec,heroes){return heroes.some(h=>{\n const support=e.contactSurface(h.x,h.y-30,h.y+80)?.t.id;\n const access=spec.supports.includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));\n return access&&units.some(u=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius);\n});}\nfunction installActivation(e){const b=e.b;if(!b.honroQuarryActivation||e.honroQuarryActivationAttached)return;e.honroQuarryActivationAttached=true;\n const refresh=e.refreshActivation.bind(e),combat=e.combatEnemies.bind(e);\n const update=write=>{const m=memory(b),alert=m.alert||{};if(write)m.alert=alert;const heroes=e.heroesAlive(),eligible=new Set();\n  for(const [cell,spec]of Object.entries(b.honroQuarryActivation)){const units=e.alive(1).filter(u=>u.honroQuarryActivationCell===cell);if(!units.length)continue;\n   const hit=units.some(u=>u.aggroUntil>=b.round),approached=cellApproached(e,units,spec,heroes);\n   if(write){if(hit||approached)alert[cell]=true;for(const u of units)u.awake=!!alert[cell];}\n   // Keep the saved alert after a retreat, while freeing the four action slots\n   // when only an occluded different level is nearby. Actual player damage\n   // retains the engine's three-round response, including a remote phase shot.\n   if(hit||approached)eligible.add(cell);\n  }e.honroQuarryEligibleCells=eligible;\n };\n e.refreshActivation=function(){refresh();update(true);};\n e.combatEnemies=function(){return combat().filter(u=>!u.honroQuarryActivationCell||!b.honroQuarryActivation[u.honroQuarryActivationCell]||e.honroQuarryEligibleCells?.has(u.honroQuarryActivationCell));};\n // Continue owns the saved awake flags, alert memory and admitted queue.\n // Rebuild only the transient access cache; normal movement/turns refresh later.\n if(Object.hasOwn(memory(b),'alert'))update(false);else e.refreshActivation();\n}\nconst attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();installActivation(e);return out;};\nconst tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);const out=tick(app,dt);if(!ended(app))openGate(app);return out;};\nconst state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const m=b.honroState?.quarry;if(m?.gate==='waiting')out.summary+=' · 길표 뒤 통로가 비워지면 이어집니다';return out;};\nG.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,installDirection,cellApproached,installActivation};\n})(globalThis);\n",
+    "shared/runtime/stage12-quarry.js": "(function(G){'use strict';\n// Only newly authored quarry snapshots opt in. Saved old battles retain their\n// own geography, actors, steps, story payload and combat numbers.\nconst A=G.HonroAct2,W=G.HonroAllies,E=G.HonroEncounters,C=G.HONRO_CORE;\nconst clone=v=>JSON.parse(JSON.stringify(v)),active=b=>b?.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1;\nconst alive=u=>!!u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;\nconst sources=['hold-road-0','hold-road-3','hold-road-6'];\nconst memory=b=>(b.honroState.quarry??={version:1,gate:'closed',openCount:0,warnings:{},entries:{}});\nconst serial=b=>b.honroState.actorTurnSerial||0;\nconst paused=app=>!!app.dialogue||!!app.modal?.classList.contains('open')||!!app.charging||!!G.HonroStory?.turnPaused?.(app);\nconst ended=app=>app.done||['won','lost'].includes(app.engine.b.phase);\nconst safe=app=>!ended(app)&&!paused(app)&&!['flight','review','summon','ally'].includes(app.engine.b.phase)&&!(app.engine.b.projectiles||[]).length&&!app.engine.b.volley&&!app.engine.b.summonTurn&&!app.engine.b.units.some(u=>alive(u)&&(u.meleeAction||u.meleeFollow==='ready'))&&!app.engine.settleBusy();\nconst factory=G.HonroWorld.createEnemy;\nG.HonroWorld.createEnemy=function(b,st,...args){const u=factory(b,st,...args);if(!active(b))return u;\n // World factory's index%11 elite is historical, not an authored quarry role.\n // Re-run its base tuning with elite=false, rather than leave invisible HP/XP.\n u.elite=false;u.armor=.04;G.HonroProgression.tuneEnemy(st,u,args[1]);G.HonroProgression.enemyXP(b,u);u.honroQuarryBase=true;return u;\n};\nconst initialize=G.HonroProgression.initialize;\nG.HonroProgression.initialize=function(b,profile){if(!active(b)||b.honroGrowth)return initialize(b,profile);\n // Fresh creation only. Final authored elite weights and all eight finite\n // minecarts share the unchanged chapter combat ceiling. App mount does call\n // initialize again; existing growth exits above before any retuning/rebudget.\n for(const u of b.units)if(u.side===1)A.tuneEncounter(u,12);\n const out=initialize(b,profile);if(b.honroGrowth){const reserve=8+2*.6;b.honroGrowth.weight+=reserve;b.honroGrowth.quarryWaveWeight=reserve;b.honroGrowth.quarryRevision=1;for(const u of b.units)if(u.side===1)G.HonroProgression.enemyXP(b,u);}return out;\n};\nconst contentFor=G.HonroObjectiveRevision.contentFor;\nG.HonroObjectiveRevision.contentFor=function(b,st){if(!active(b)||!b.honroQuarryContent)return contentFor(b,st);const out=clone(b.honroQuarryContent),m=b.honroState?.quarry;if(m?.signLines)out.beats.sign=clone(m.signLines);return out;};\nconst entry=A.entry;A.entry=function(app,options={}){if(!active(app.engine?.b))return entry(app,options);const stage=G.HonroObjectiveRevision.contentFor(app.engine.b,app.stage);return entry({...app,stage},options);};\nconst near=(u,p,r=300)=>hero(u)&&!!p&&Math.hypot(u.x-p.x,u.y-p.y)<r&&Math.abs(u.y-p.y)<150;\nconst use=A.use;A.use=function(app,marker){const b=app.engine?.b;if(!active(b)||marker?.id!=='sign'||!A.eligibility(app,marker).ok)return use(app,marker);\n const m=memory(b),u=app.engine.active,mage=b.units.find(v=>v.side===0&&v.cls==='mage');\n if(!m.signInteractorId){m.signInteractorId=u?.id;m.signRequestSerial=serial(b);m.signMageNear=near(mage,marker);m.signLines=clone(b.honroQuarryContent.beats.sign);if(!m.signMageNear)for(const line of m.signLines)if(line[0]==='서술')line[1]=line[1].replace('담허가 겹친 획 하나를 풀었다.','담허의 설명을 따라 겹친 획 하나를 풀었다.');}\n m.shoePlaced=true;const out=use(app,marker);if(out&&A.memory(b).done.sign){if(m.gate==='closed')m.gate='waiting';}return out;\n};\nfunction gateOccupants(b){const t=b.terrain.find(t=>t.id===b.honroQuarrySpec?.gateTerrainId);if(!t||t.broken)return[];return b.units.filter(u=>alive(u)&&C.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01));}\nfunction signSceneDone(b){const m=b.honroState?.quarry,hs=b.honroState;if(!m?.signStoryId||b.honroStaging?.once?.[m.signStoryId]!=='done')return false;const sign=line=>line?.[2]?.storyId?.endsWith('act2-12-sign');return !(hs.storyQueue||[]).some(sign)&&!(hs.deferredStory||[]).some(q=>(q.lines||[]).some(sign))&&!(b.honroStory?.lines||[]).some(sign);}\nfunction openGate(app){const b=app.engine.b,m=memory(b);if(m.openCount||!A.memory(b).done.sign||!signSceneDone(b)||serial(b)<=(m.signRequestSerial??-1)||!safe(app)||gateOccupants(b).length)return false;\n const id=b.honroQuarrySpec?.gateTerrainId,lists=[b.terrain,b.honroWorldTerrain];if(!id||lists.some(ts=>!Array.isArray(ts)||ts.filter(t=>t.id===id).length!==1))return false;\n for(const ts of lists)ts.find(t=>t.id===id).broken=true;Object.assign(m,{gate:'open',openCount:1,openedRound:b.round,openedSerial:serial(b)});b.sceneVersion=(b.sceneVersion||0)+1;app.event('길표 뒤의 내리막이 이어졌다. 동굴까지 돌아 나올 수 있다.');app.engine.emit?.('save');app.dirty=true;return true;\n}\nfunction prepareWaves(app){const b=app.engine.b;if(!active(b)||ended(app)||paused(app))return;const step=A.current(b),h=A.memory(b).holds?.['hold-road'];if(step?.id!=='hold-road'||(h?.spawned||0)>=8)return;const point=b.honroMarkers.find(p=>p.id==='hold-road');if(!point||!app.engine.heroesAlive().some(u=>Math.hypot(u.x-point.x,u.y-point.y)<step.radius))return;\n const source='hold-road-'+(h?.spawned||0),m=memory(b),at=b.honroQuarrySpec?.entries?.[source];if(!at||m.warnings[source]||m.entries[source])return;m.warnings[source]={serial:serial(b),round:b.round,side:at.side};app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 진입로를 살피세요.');app.dirty=true;\n}\nconst execute=W.execute;W.execute=function(app,action){const b=app.engine?.b,source=action?.source;if(!active(b)||action?.type!=='spawn'||!sources.includes(source))return execute(app,action);\n const m=memory(b),at=b.honroQuarrySpec?.entries?.[source],warning=m.warnings[source];if(m.entries[source])return true;if(!at||!warning||serial(b)<=warning.serial||!app.actorBoundary||!safe(app))return false;\n const key=[serial(b),b.round,...b.teamEnds,app.actorBoundary].join(':'),n=action.n||1;if(b.honroState.lastCombatEventBoundary===key||app.engine.alive(1).length+n>E.populationCap(b))return false;\n for(const p of [at,...(at.alternates||[]).filter(q=>!q.side||q.side===at.side).map(q=>({...q,side:at.side}))]){const spacing=p.spacing??130,support=p.support||p.surfaceId;if(!support||!Array.from({length:n},(_,i)=>p.x+(i-(n-1)/2)*spacing).every(x=>G.HonroMapEngine.surfaceY(b.terrain,x,p.y,support)))continue;\n  const before=new Set(b.units.map(u=>u.id)),result=execute(app,{...action,x:p.x,y:p.y,support,spacing,maxDistance:0});if(result===false)continue;let index=0;for(const u of b.units)if(!before.has(u.id)){u.honroQuarryEntry=at.side;u.honroAct2Elite=++index===n&&n>=3;u.honroCohort='reinforcement';u.honroAct2Revision=2;A.tuneEncounter(u,12);G.HonroProgression.enemyXP(b,u);}m.entries[source]={side:at.side,x:p.x,y:p.y,support,count:n,round:b.round,serial:serial(b)};b.honroState.lastCombatEventBoundary=key;app.dirty=true;return result;\n }return false;\n};\nconst cap=E.populationCap;E.populationCap=function(b){return active(b)&&[28,34,40].includes(b.honroQuarryPopulationCap)?b.honroQuarryPopulationCap:cap(b);};\nlet directionInstalled=false;\nfunction installDirection(){if(directionInstalled||!G.HonroStoryDirection)return;directionInstalled=true;const build=G.HonroStoryDirection.build;\n G.HonroStoryDirection.build=function(app,lines,options){const out=build(app,lines,options),b=app.engine?.b;if(!active(b)||!lines.some(l=>/(?:^|:)act2-12-(sign|clear-approach)$/.test(l[2]?.storyId||'')))return out;\n  const m=memory(b),result=out||{id:'direction-v2:'+lines[0]?.[2]?.storyId,context:{},head:[],cues:lines.map(()=>[])};\n  if(lines.some(l=>l[2]?.storyId?.endsWith('act2-12-sign')))m.signStoryId=result.id;\n  for(const [i,[who,text,meta]]of lines.entries()){\n   if(meta?.storyId?.endsWith('act2-12-sign')&&who==='서술'){result.cues[i]=[];const marker=b.honroMarkers.find(p=>p.id==='sign'),actor=b.units.find(u=>u.id===(text.includes('담허가 겹친')?b.units.find(u=>u.side===0&&u.cls==='mage')?.id:m.signInteractorId));if(near(actor,marker))result.cues[i].push({type:'look',actor:actor.id,at:{marker:'sign'},pose:'inspect',duration:560});result.cues[i].push({type:'look',at:{marker:'sign'},duration:550});}\n   if(meta?.storyId?.endsWith('act2-12-clear-approach')&&who==='서술'&&text.includes('짚신')){const marker=b.honroMarkers.find(p=>p.id==='clear-approach'),actor=b.units.find(u=>u.side===0&&u.cls==='archer');result.cues[i]=[{type:'look',at:{marker:'clear-approach'},duration:450},...(near(actor,marker)?[{type:'look',actor:actor.id,pose:'inspect',duration:500}]:[])];}\n  }return result;\n };\n}\nfunction cellApproached(e,units,spec,heroes){return heroes.some(h=>{\n const support=e.contactSurface(h.x,h.y-30,h.y+80)?.t.id;\n const access=spec.supports.includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));\n return access&&units.some(u=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius);\n});}\nfunction installActivation(e){const b=e.b;if(!b.honroQuarryActivation||e.honroQuarryActivationAttached)return;e.honroQuarryActivationAttached=true;\n const refresh=e.refreshActivation.bind(e),combat=e.combatEnemies.bind(e);\n const update=write=>{const m=memory(b),alert=m.alert||{};if(write)m.alert=alert;const heroes=e.heroesAlive(),eligible=new Set();\n  for(const [cell,spec]of Object.entries(b.honroQuarryActivation)){const units=e.alive(1).filter(u=>u.honroQuarryActivationCell===cell);if(!units.length)continue;\n   const hit=units.some(u=>u.aggroUntil>=b.round),approached=cellApproached(e,units,spec,heroes);\n   if(write){if(hit||approached)alert[cell]=true;for(const u of units)u.awake=!!alert[cell];}\n   // Keep the saved alert after a retreat, while freeing the four action slots\n   // when only an occluded different level is nearby. Actual player damage\n   // retains the engine's three-round response, including a remote phase shot.\n   if(hit||approached)eligible.add(cell);\n  }e.honroQuarryEligibleCells=eligible;\n };\n e.refreshActivation=function(){refresh();update(true);};\n e.combatEnemies=function(){return combat().filter(u=>!u.honroQuarryActivationCell||!b.honroQuarryActivation[u.honroQuarryActivationCell]||e.honroQuarryEligibleCells?.has(u.honroQuarryActivationCell));};\n // Continue owns the saved awake flags, alert memory and admitted queue.\n // Rebuild only the transient access cache; normal movement/turns refresh later.\n if(Object.hasOwn(memory(b),'alert'))update(false);else e.refreshActivation();\n}\nconst attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();installActivation(e);return out;};\nconst tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);const out=tick(app,dt);if(!ended(app))openGate(app);return out;};\nconst state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const m=b.honroState?.quarry;if(m?.gate==='waiting')out.summary+=' · 길표 뒤 통로가 비워지면 이어집니다';return out;};\nG.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,installDirection,cellApproached,installActivation};\n})(globalThis);\n",
     "shared/runtime/stage12-quarry-art.js": "(function(G){'use strict';\n// Stage-local painting over the exact physical granite union. No independent\n// collision, event clock, actor movement, or save writes live in this module.\nconst S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap(),skyCache=new WeakMap();\nconst active=b=>b?.honroStage===12&&b.honroQuarryRevision===1;\nconst path=ps=>{const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;};\nconst forms=[\n ['M-30-30H615L567 150 445 285 178 309-30 455Z','M770-30H1030V1030H595L532 765 695 514 608 341Z','M-30 643L155 547 402 611 545 526 720 648 1030 562V1030H-30Z'],\n ['M-30-30H358L583 108 539 316 235 417-30 365Z','M650-30H1030V1030H709L620 736 788 507 678 321Z','M-30 640L203 541 456 664 634 593 799 711 1030 692V1030H-30Z'],\n ['M-30-30H540L650 217 394 363 229 345-30 535Z','M851-30H1030V1030H619L581 846 727 636 666 428Z','M-30 745L282 643 521 751 705 626 1030 744V1030H-30Z']\n].map(xs=>xs.map(d=>new Path2D(d)));\nfunction prepare(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),indices=t.honroWalkEdges||[],edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}let key=0;for(const ch of t.id)key+=ch.charCodeAt(0);q={source:t.vertices,version:b.sceneVersion,shape:path(ps),edges,rim,forms:forms[key%forms.length]};cache.set(t,q);return q;}\nfunction terrain(c,t,b){if(!active(b)||!t.honroQuarry)return false;const q=prepare(t,b);c.save();c.clip(q.shape);const gradient=c.createLinearGradient(t.x,t.y,t.x+t.w*.16,t.y+Math.min(t.h,2400));gradient.addColorStop(0,t.honroCeiling?'#586a6c':'#98a397');gradient.addColorStop(.27,'#72898a');gradient.addColorStop(.64,'#45666d');gradient.addColorStop(1,'#203c4e');c.fillStyle=gradient;c.fill(q.shape);\n if(t.honroQuarryVeil){c.fillStyle='#28484e';c.fill(q.shape);c.strokeStyle='#a2af9388';c.lineWidth=4;c.beginPath();c.moveTo(t.x+t.w*.3,t.y+70);c.lineTo(t.x+t.w*.65,t.y+t.h*.31);c.lineTo(t.x+t.w*.35,t.y+t.h*.64);c.lineTo(t.x+t.w*.68,t.y+t.h-48);c.stroke();}\n else{c.save();c.translate(t.x,t.y);c.scale(t.w/1000,Math.min(t.h,2300)/1000);for(const[i,color]of ['#c1c2a92f','#17384789','#1838475c'].entries()){c.fillStyle=color;c.fill(q.forms[i]);}c.restore();c.strokeStyle='#d0d2b16f';c.lineWidth=15;c.stroke(q.rim);\n  // Three authored broad faces distinguish the work areas. No repeated\n  // rectangular tile/stamp detail: the rock's cut and shadow have a direction.\n  const panels=t.id==='sq-north-quarry'?[\n   [[5350,3762],[5800,3715],[6260,3560],[6400,3650],[6250,3900],[6000,4020],[5590,3910]],\n   [[6740,3550],[7130,3390],[7510,3320],[7790,3410],[7730,3720],[7500,4030],[7290,4170],[7000,3990]],\n   [[7900,3500],[8270,3720],[8610,3980],[8550,4140],[8220,4190],[7990,3990]]\n  ]:t.id==='sq-west-quarry'?[\n   [[3320,4395],[3720,4310],[4090,4135],[4260,4190],[4210,4410],[3890,4510],[3470,4480]],\n   [[4520,4070],[4850,3935],[5180,3910],[5330,4080],[5160,4270],[4920,4580],[4680,4530]],\n   [[5410,4180],[5730,4410],[5900,4530],[5630,4660],[5400,4560],[5240,4370]]\n  ]:[];\n  for(const [i,ps] of panels.entries()){c.fillStyle=['#bec3a736','#aebaa837','#213f5066'][i];c.fill(path(ps));}\n  const seams=t.id==='sq-north-quarry'?[[[7560,3350],[7520,3600],[7680,3800],[7560,4050],[7310,4210]],[[6190,3590],[6090,3750],[6200,3920],[6030,4030]]]:t.id==='sq-west-quarry'?[[[4850,3935],[4780,4150],[4870,4330],[4700,4570]],[[4080,4140],[3980,4320],[4070,4480]]]:[];\n  for(const ps of seams){c.lineWidth=13;c.strokeStyle='#1a3b4977';c.beginPath();ps.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke();c.save();c.translate(-7,-9);c.lineWidth=3;c.strokeStyle='#c3c5a43d';c.stroke();c.restore();}\n  if(t.id==='sq-lower-ground'){c.fillStyle='#b2ae8138';c.fill(path([[6060,4822],[6210,4805],[6510,4805],[6930,4805],[6990,4825],[6560,4835],[6250,4830],[6060,4850]]));}\n\n }c.restore();return true;}\nconst baseTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return baseTerrain.call(this,c,t);};\nconst skyAsset=b=>b.honroMap?.quarryArt?.backdropAsset;\nfunction skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1080;const c=cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}\nconst background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};\nconst shoe=new Path2D('M-26-3Q-20-17-2-19Q18-17 25-6L20 0Q-1 6-24 2Z'),lace=new Path2D('M-16-12L-9 1M-5-17L0 3M7-15L11 2');\nfunction storyProp(c,b){if(!active(b)||!b.honroState?.quarry?.shoePlaced)return;const m=b.honroMarkers.find(m=>m.id==='sign');if(!m)return;c.save();c.translate(m.x+44,m.y-9);c.fillStyle='#ac9b6c';c.fill(shoe);c.strokeStyle='#574f38';c.lineWidth=2;c.stroke(shoe);c.stroke(lace);c.restore();}\nconst live=S.liveWater;S.liveWater=function(c,b){const out=live?.call(this,c,b);storyProp(c,b);return out;};\n// Shared exposed-edge generation still owns every walkable edge and union.\nconst omitReadability=(group,b)=>active(b)&&group.id==='sq-turning-veil'&&!!group.broken;\nG.HonroStage12QuarryArt={active,prepare,terrain,skyAsset,skyRaster,storyProp,omitReadability};\n})(globalThis);\n"
   },
   "authoringSources": {
     "tools/map-forge/stage12-quarry-geometry.mjs": "6b7d67576e59229a35efb185212030e24dbd84d577b80cd00702f930eeece0b9",
-    "tools/map-forge/apply-stage12-quarry.mjs": "c97b510ff949d3b53bee564595ade6486a4ad81447b7fbc05aa3da648b57d5b3",
+    "tools/map-forge/apply-stage12-quarry.mjs": "7366012cffcdec2bec3c27b599ba7c9e07dcc6a0559c08c3320b1ac71e884e99",
     "tools/environment/stage12-quarry-art.mjs": "61bfd1dd1ed2411af57a56e55f93caeefd4c1a84737409b23d5b1921541b57b1",
     "shared/assets/environment/stage12-quarry-far.svg": "807576694f184ca2c9ff841189717caa985085251279fe8331573e03e35d3466"
   }

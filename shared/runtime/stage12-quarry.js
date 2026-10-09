@@ -49,7 +49,7 @@ const execute=W.execute;W.execute=function(app,action){const b=app.engine?.b,sou
   const before=new Set(b.units.map(u=>u.id)),result=execute(app,{...action,x:p.x,y:p.y,support,spacing,maxDistance:0});if(result===false)continue;let index=0;for(const u of b.units)if(!before.has(u.id)){u.honroQuarryEntry=at.side;u.honroAct2Elite=++index===n&&n>=3;u.honroCohort='reinforcement';u.honroAct2Revision=2;A.tuneEncounter(u,12);G.HonroProgression.enemyXP(b,u);}m.entries[source]={side:at.side,x:p.x,y:p.y,support,count:n,round:b.round,serial:serial(b)};b.honroState.lastCombatEventBoundary=key;app.dirty=true;return result;
  }return false;
 };
-const cap=E.populationCap;E.populationCap=function(b){return active(b)&&[28,40].includes(b.honroQuarryPopulationCap)?b.honroQuarryPopulationCap:cap(b);};
+const cap=E.populationCap;E.populationCap=function(b){return active(b)&&[28,34,40].includes(b.honroQuarryPopulationCap)?b.honroQuarryPopulationCap:cap(b);};
 let directionInstalled=false;
 function installDirection(){if(directionInstalled||!G.HonroStoryDirection)return;directionInstalled=true;const build=G.HonroStoryDirection.build;
  G.HonroStoryDirection.build=function(app,lines,options){const out=build(app,lines,options),b=app.engine?.b;if(!active(b)||!lines.some(l=>/(?:^|:)act2-12-(sign|clear-approach)$/.test(l[2]?.storyId||'')))return out;

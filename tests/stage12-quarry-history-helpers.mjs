@@ -35,7 +35,7 @@ function assertContract(stage){
  assert.deepEqual([stage.width,stage.height],[11200,8000]);assert.equal(init.honroQuarryRevision,1);assert.equal(init.honroObjectiveRevision,2);assert.equal(init.honroAct2Revision,2);assert.equal(init.honroActiveLimit,4);
  assert.deepEqual(init.honroAct2Steps,old.stage.initialState.honroAct2Steps,'Exact original five goals, class-free sign, four-round hold and eight finite carts');
  assert.deepEqual(stage.events,old.stage.events,'No extra authored responses');assert.deepEqual(stage.objectives,old.stage.objectives,'No substitute objective system');
- const budgets={candidate32e7:[32,7,40],originalBudget20e4:[20,4,28]},budget=budgets[init.honroQuarryRoster];assert(budget,'Named quarry roster required');
+ const budgets={candidate26e6:[26,6,34],candidate32e7:[32,7,40],originalBudget20e4:[20,4,28]},budget=budgets[init.honroQuarryRoster];assert(budget,'Named quarry roster required');
  const foes=stage.units.filter(u=>u.team==='enemy'),players=stage.units.filter(u=>u.team==='player');
  assert.deepEqual([foes.length,foes.filter(u=>u.stageOverrides?.honroAct2Elite).length,init.honroQuarryPopulationCap],budget,'Explicit initial/elite/population budgets');
  assert.deepEqual(players.map(u=>u.kind).sort(),['archer','knight','mage','occultist']);assert.equal(stage.units.length,foes.length+players.length,'No additional NPC or party split');
@@ -74,7 +74,7 @@ function assertRuntimeScope(sources){
   }else if(row.path==='shared/runtime/terrain-readability.js'){
    const expected=row.before.replace('G.HonroStage30FerryArt?.omitReadability(group,b)','G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b)');assert.notEqual(expected,row.before);assert.equal(source,expected,'Only the scoped quarry readability hook may change');
   }else if(row.path==='game/config/balance.json'){
-   const out=JSON.parse(source),old=JSON.parse(row.before);assert([20,32].includes(out.stages[11].initialEnemies),'Only the two named quarry initial budgets');out.stages[11].initialEnemies=old.stages[11].initialEnemies;assert.deepEqual(out,old,'Only Stage12 initialEnemies may change; global maxAlive36/action4 and all other balance stay exact');
+   const out=JSON.parse(source),old=JSON.parse(row.before);assert([20,26,32].includes(out.stages[11].initialEnemies),'Only the explicitly named quarry comparison budgets');out.stages[11].initialEnemies=old.stages[11].initialEnemies;assert.deepEqual(out,old,'Only Stage12 initialEnemies may change; global maxAlive36/action4 and all other balance stay exact');
   }else assert.fail('Unimplemented quarry runtime scope '+row.path);
  }
  for(const path of f.scope.allowedAddedRuntime)assert(typeof sources[path]==='string'&&sources[path].length>100,'Complete new quarry source '+path);return sources;
