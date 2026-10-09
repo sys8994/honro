@@ -1,0 +1,215 @@
+/** Stage30 normal-input proof. Gameplay, story and serialization are
+ * production App/Engine. DOM/render/storage/clock are doubles. The prior-clear
+ * XP ledger is an entry fixture, not a claim of playing Stages1–29. */
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import vm from 'node:vm';
+import {runtimeParts} from '../shared/build.mjs';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+import {navigator,campaignEntryReadiness,analyzeWaits,representativeTargets,representativeMelee,representativeBladePrediction} from './stage18-bell-fullplay-helper.mjs';
+const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
+const h=await appHarness(),{g,C}=h;
+vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
+const out=process.env.HONRO_FULLPLAY_OUT||'_local/reports/stage30-ferry/fullplay';await mkdir(out,{recursive:true});
+const resumePath=process.env.HONRO_FULLPLAY_CONTINUE,resume=resumePath?JSON.parse(await readFile(resumePath,'utf8')):null;
+const reflectionStudy=process.env.HONRO_FULLPLAY_REFLECTION==='1';
+const buildMode=process.env.HONRO_FULLPLAY_BUILD||'movement-basic';assert(['movement-basic','balanced','conservative-rank1'].includes(buildMode));
+const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',rolePrefix=false,representative=['balanced','conservative-rank1'].includes(buildMode)||process.env.HONRO_FULLPLAY_TACTICS==='1';assert(!(rolePrefix&&representative),'Separate the live role-prefix comparison and representative fullplay modes');
+assert(['canonical','originalBudget20e4'].includes(rosterMode),'Use the production candidate or the authored paired baseline');
+const canonicalProjectSha256=hash(g.HONRO_PROJECT),canonicalStage=plain(g.HONRO_PROJECT.stages[29]);
+let pairedBaseline=null;
+if(rosterMode==='originalBudget20e4'){
+ const {authorStage30Ferry}=await import('../tools/map-forge/apply-stage30-ferry.mjs');
+ const authored=await authorStage30Ferry(plain(g.HONRO_PROJECT),g,{roster:'originalBudget20e4'}),baseline=authored.stages[29];
+ for(const key of ['width','height','terrains','markers'])assert.deepEqual(plain(baseline[key]),canonicalStage[key],'Paired baseline preserves '+key);
+ const state=s=>Object.fromEntries(Object.entries(s.initialState).filter(([k])=>!['honroFerryRoster','honroFerryPopulationCap'].includes(k)));assert.deepEqual(plain(state(baseline)),state(canonicalStage),'Paired baseline preserves state except documented population cap/roster');
+ const players=s=>s.units.filter(u=>u.team==='player');assert.deepEqual(plain(players(baseline)),players(canonicalStage),'Paired baseline preserves all four authored spawns');
+ assert.equal(baseline.units.filter(u=>u.team==='enemy').length,20);
+ pairedBaseline={method:'Production authorStage30Ferry originalBudget20e4 option on a private pre-entry project clone; no repository or live battle edits',canonicalStageSha256:hash(canonicalStage),geometrySha256:hash(baseline.terrains),markersSha256:hash(baseline.markers),heroSpawnsSha256:hash(players(baseline)),canonicalInitial:canonicalStage.units.filter(u=>u.team==='enemy').length,baselineInitial:20};
+ g.HONRO_PROJECT=authored;
+}
+const parts=await runtimeParts({vector:false,render:false}),stage=g.HONRO_PROJECT.stages[29];
+const sourceHash=hash(g.HONRO_PROJECT),runtimeSha256=hash(parts.join('\n'));
+const gameplayProjectSha256=hash({terrain:stage.terrains,units:stage.units,markers:stage.markers,anchors:stage.anchors,initialState:stage.initialState,events:stage.events,objectives:stage.objectives,materials:stage.materials,content:g.HONRO_CONTENT.stages[29],routes:stage.design.ferry.routes,sites:stage.design.space?.sites});
+const gameplayRuntimeSha256=hash([...parts.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(f=>readFile(`shared/runtime/${f}.js`,'utf8')))].join('\n'));
+const provenance={mode:rolePrefix?'live-role-prefix':representative?'representative-fullplay':'basic-fullplay',rosterMode,canonicalProjectSha256,pairedBaseline,sourceHash,runtimeSha256,gameplayProjectSha256,gameplayRuntimeSha256,stageSha256:hash(stage),controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),helperSha256:hash(await readFile(new URL('./stage18-bell-fullplay-helper.mjs',import.meta.url),'utf8')),checkoutCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
+if(process.env.HONRO_FULLPLAY_PROVENANCE_ONLY==='1'){await writeFile(`${out}/provenance.json`,JSON.stringify(provenance,null,2));console.log(JSON.stringify(provenance));process.exit(0);}
+const readiness=campaignEntryReadiness(g,{through:29});await writeFile(`${out}/readiness-ledger.json`,JSON.stringify(readiness,null,2));
+const shotAttempts=new Map(resume?.shotAttempts||[]);
+const routeMode=process.env.HONRO_FULLPLAY_ROUTE||'auto';assert(['auto','barge'].includes(routeMode));if(resume?.routeMode)assert.equal(resume.routeMode,routeMode,'Resume preserves the declared input route policy');
+const approachMode=process.env.HONRO_FULLPLAY_APPROACH||'auto';assert(['auto','cape'].includes(approachMode));
+const capeRouteState=new Map(resume?.capeRouteState||[]);
+const crossedCape=new Set(resume?.crossedCape||[]);
+const crossedFerryReturn=new Set(resume?.crossedFerryReturn||[]);
+const basic={archer:'A01',mage:'M01',knight:'S00',occultist:'O01'},excluded=representative?['O11','M09']:rolePrefix?['O08','O11','M09']:['M11','M04','O08','O11','M09'];
+const p=resume?.profile||plain(g.AppRegression.fresh()),training=[];
+if(!resume){
+ p.recruited=g.HonroStageRules.stageParty(30);p.party=[...p.recruited];p.settings.difficulty='normal';p.cleared=plain(readiness.cleared);p.honroGrowth=plain(readiness.ledger);
+ // Four real slots. Optional skills are legally bought at rank one. Basic-only
+ // mode never fires them; representative mode uses its listed equipped tools
+ // contextually. Remaining entry points buy ordinary stats.
+ const slots={archer:['A01','A14','A11','A05'],mage:['M01','M03','M06','M07'],knight:['S00','S03','S01','S09'],occultist:['O01','O06','O02','O03']};
+ if(rolePrefix||representative)slots.mage=['M01','M04','M11','M03'];if(representative)slots.occultist=['O01','O04','O08','O06'];
+ const train=(hero,id)=>{if(hero.ranks[id])return;const n=C.TALENT_MAP[id];assert(n,id);if(n.prereq)train(hero,n.prereq);assert(C.train(hero,id),`${id}: ${C.trainReason(hero,id)}`);training.push({op:'train',skill:id,rank:hero.ranks[id]});};
+ const passivePlan={archer:['AP02','AP05'],mage:['MP01','MP02'],knight:['SP01','SP02'],occultist:['OP01','OP05']};
+ for(const cls of p.recruited){
+  const hero=p.heroes[cls];hero.xp=readiness.heroes[cls].xp;C.resetTalents(hero,cls);
+  for(const id of slots[cls])train(hero,id);
+  const buyStat=()=>{assert(C.investStat(hero,cls));training.push({op:'stat',hero:cls,rank:hero.statTraining});};
+  if(['balanced','conservative-rank1'].includes(buildMode)){
+   while(hero.statTraining<16&&C.pointsLeft(hero,cls)>0)buyStat();
+   for(const id of passivePlan[cls]){train(hero,id);while(hero.ranks[id]<(buildMode==='balanced'?2:1)&&!C.trainReason(hero,id)){assert(C.train(hero,id));training.push({op:'train',hero:cls,skill:id,rank:hero.ranks[id]});}}
+   while(buildMode==='balanced'&&C.pointsLeft(hero,cls)>0){const candidate=slots[cls].filter(id=>C.TALENT_MAP[id]&&!C.trainReason(hero,id)).sort((a,z)=>(hero.ranks[a]||0)-(hero.ranks[z]||0))[0];if(!candidate)break;assert(C.train(hero,candidate));training.push({op:'train',hero:cls,skill:candidate,rank:hero.ranks[candidate]});}
+  }else while(C.pointsLeft(hero,cls)>0)buyStat();
+  p.loadouts[cls]=slots[cls];C.sanitizeLoadout(p,cls);assert.equal(p.loadouts[cls].length,4);assert.deepEqual(plain(p.loadouts[cls]),slots[cls]);
+  if(buildMode!=='balanced')assert(Object.values(hero.ranks).every(n=>n===1),'Movement-heavy comparison keeps learned skills rank one');
+  assert(C.pointsSpent(hero,cls)<=C.pointsEarned(hero));for(const id of excluded)assert(!hero.ranks[id]&&!p.loadouts[cls].includes(id));
+ }
+
+}
+let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};
+let app=h.load(p);if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);app.continue();}else app.launch(30);
+let e=app.engine,b=e.b,nav,navOffset;assert.equal(b.honroStage,30);assert.equal(b.difficulty,'normal');assert.equal(b.seed,19388,'Untouched production compiler seed');assert(g.HonroStage30Ferry.active(b),'Fresh authored Stage30 must opt into the ferry revision');
+if(!resume){assert.deepEqual(plain(e.alive(1).map(u=>u.id)),plain(stage.units.filter(u=>u.team==='enemy').map(u=>u.id)));assert.equal(b.honroActiveLimit,3);}
+const initial=resume?.initial||plain({battle:b,profile:app.profile});
+const ferryRoutes=()=>stage.design.ferry.routes.filter(r=>r.ferryState!=='settled'||g.HonroStage30Ferry.memory(b).status==='settled');
+function rebuildNavigator(){nav=navigator(g,b,e,{tick,ready,record,stageId:30,routes:ferryRoutes()});navOffset=g.HonroStage30Ferry.memory(b).status;}
+assert(initial.battle.units.filter(u=>u.side===0).every(u=>u.level===readiness.level));
+for(const u of initial.battle.units.filter(u=>u.side===0)){assert.equal(u.loadout.length,4);if(buildMode!=='balanced')assert(Object.values(u.ranks).every(n=>n===1));for(const id of excluded)assert(!u.ranks[id]&&!u.loadout.includes(id));}
+const actions=resume?.actions||[],rounds=resume?.rounds||[],turns=resume?.turns||[],damage=resume?.damage||[],births=resume?.births||[],notices=resume?.notices||[],dialogs=resume?.dialogs||[],continues=resume?.continues||[],impacts=resume?.impacts||[],resources=resume?.resources||[],manifestations=resume?.manifestations||[],enemyActions=resume?.enemyActions||[],enemyFires=resume?.enemyFires||[],activations=resume?.activations||[],objectiveStates=resume?.objectiveStates||[],projectileGeometry=resume?.projectileGeometry||[];let lastObjectiveState='';
+const contestContacts=new Map(resume?.contestContacts||[]),bounceSeen=new Set(projectileGeometry.filter(v=>v.kind==='reflection').map(v=>v.projectile+':'+v.bounces)),phaseSeen=new Set(projectileGeometry.filter(v=>v.kind==='phase-inside-solid').map(v=>v.shot+':'+v.terrain));
+const enemyStarts=new Map(),completedEnemies=new Set(enemyActions.map(a=>a.round+':'+a.id)),awakened=new Set(activations.map(a=>a.id));
+let frames=resume?.frames||0,storyFrames=resume?.storyFrames||0,planningMs=resume?.planningMs||0,nativePhysicsMs=resume?.nativePhysicsMs||0,attackPlanningMs=resume?.attackPlanningMs||0,inputCount=resume?.inputCount||0,lastRound=0,lastSerial=-1,stopReason=null;
+const started=performance.now(),segmentStart={frames,storyFrames,nativePhysicsMs,attackPlanningMs},known=new Set(b.units.map(u=>u.id)),savedLabels=new Set(continues.map(v=>v.label));
+const distance=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),fraction=u=>u.hp/u.maxHp,terminal=()=>['won','lost'].includes(b.phase),ready=()=>app.canInput();
+const record=row=>actions.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,goal:g.HonroAct3.current(b)?.id,...plain(row),objective:g.HonroAct3.current(b)?.id});
+const heroRows=()=>b.units.filter(u=>u.side===0&&!u.summoned).map(u=>({id:u.id,cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,moveLeft:u.moveLeft,maxMove:u.maxMove,x:u.x,y:u.y,dead:u.dead,acted:u.acted}));
+function instrument(){
+ const event=app.event.bind(app);app.event=text=>{notices.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,text});return event(text);};
+ const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const before=u.hp,beforeSide=u.side,result=hurt(u,...args);if(u.hp<before)damage.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,target:u.id,side:beforeSide,sideAfter:u.side,owner:args[1],amount:before-u.hp,remaining:u.hp,dead:u.dead,source:args[5]||'normal',skill:args[6]||args[3]?.skill,shot:args[3]?.shot,projectileId:args[3]?.id,direct:!!args[2],origin:args[4]});return result;};
+ const stepProjectile=e.stepProjectile.bind(e);e.stepProjectile=(p,...args)=>{const before={x:p.x,y:p.y,bounces:p.bounces},result=stepProjectile(p,...args);if(p.owner?.startsWith('p-')){if(p.bounces>before.bounces&&!bounceSeen.has(p.id+':'+p.bounces)){bounceSeen.add(p.id+':'+p.bounces);projectileGeometry.push({kind:'reflection',projectile:p.id,round:b.round,frame:frames,shot:p.shot,owner:p.owner,skill:p.skill,from:before,to:{x:p.x,y:p.y},bounces:p.bounces});}if(p.skill==='O04')for(const t of b.terrain)if(!t.broken&&!t.oneWay&&C.terrainRectIntersects(t,p.x-.1,p.y-.1,.2,.2,.001)){const key=p.shot+':'+t.id;if(!phaseSeen.has(key)){phaseSeen.add(key);projectileGeometry.push({kind:'phase-inside-solid',round:b.round,frame:frames,shot:p.shot,owner:p.owner,skill:p.skill,terrain:t.id,x:p.x,y:p.y});}}}return result;};
+ const impact=e.impact.bind(e);e.impact=function(p,hit){const prior=p.skill==='O08'?b.units.filter(u=>u.side===1&&!u.dead).map(u=>({id:u.id,manifested:u.manifested,reveal:u.revealSpiritToParty,until:u.manifestedUntil})):null;impacts.push({round:b.round,frame:frames,shot:p.shot,owner:p.owner,skill:p.skill,x:hit.x,y:hit.y,unit:hit.unit?.id,terrain:hit.terrain?.id});const result=impact(p,hit);if(prior){const changed=prior.map(old=>({old,u:e.unit(old.id)})).filter(({old,u})=>u&&(old.manifested!==u.manifested||old.reveal!==u.revealSpiritToParty||old.until!==u.manifestedUntil));if(changed.length)manifestations.push({round:b.round,frame:frames,owner:p.owner,skill:p.skill,shot:p.shot,targets:changed.map(({old,u})=>({id:u.id,before:old,manifested:u.manifested,revealSpiritToParty:u.revealSpiritToParty,until:u.manifestedUntil,formDamageTakenBonus:u.formDamageTakenBonus}))});}return result;};
+ for(const name of ['move','jump','wait','select']){const fn=e[name].bind(e);e[name]=(...args)=>{inputCount++;return fn(...args);};}
+ const ai=e.enemyAction.bind(e);e.enemyAction=()=>{const u=e.active,key=b.round+':'+u?.id;if(u?.side===1&&!enemyStarts.has(key))enemyStarts.set(key,{x:u.x,y:u.y,support:e.contactSurface(u.x,u.y-5,u.y+5)?.t?.id});return ai();};
+ const finish=e.finishAction.bind(e);e.finishAction=(...args)=>{const u=e.active,round=b.round,turn=b.honroState.actorTurnSerial,key=round+':'+u?.id,result=finish(...args);if(u?.side===1&&!completedEnemies.has(key)&&(u.acted||b.active!==u.id||b.round!==round)){completedEnemies.add(key);enemyActions.push({round,turn,frame:frames,id:u.id,cohort:u.honroCohort,cell:u.honroFerryCell,intent:u.intent,from:enemyStarts.get(key),to:{x:u.x,y:u.y},support:e.contactSurface(u.x,u.y-5,u.y+5)?.t?.id,hp:u.hp,focus:u.focus,moveLeft:u.moveLeft,maxMove:u.maxMove,fired:enemyFires.some(f=>f.round===round&&f.id===u.id)});}return result;};
+ const fire=e.fire.bind(e);e.fire=(skill,angle,power,ai=false)=>{inputCount++;const u=e.active,before=u?.focus,cost=u?e.manaCost(C.SKILLS[skill],u,power):null,result=fire(skill,angle,power,ai);if(result&&u?.side===1)enemyFires.push({round:b.round,turn:b.honroState.actorTurnSerial,frame:frames,id:u.id,cohort:u.honroCohort,cell:u.honroFerryCell,skill,angle,power,shot:b.shot,from:{x:u.x,y:u.y},support:e.contactSurface(u.x,u.y-5,u.y+5)?.t?.id,before,after:u.focus,cost});if(result&&u?.side===0&&!u.summoned){if(representative)assert(u.loadout.includes(skill),'Only an actually paid/equipped representative skill is used');else assert.equal(skill,basic[u.cls],'Only the actual basic attack is used');assert.equal(before-u.focus,cost,'Production basic attack cost');if(['A01','M01','O01'].includes(skill))assert.equal(cost,0,'A01/M01/O01 are free');resources.push({round:b.round,frame:frames,hero:u.cls,skill,power,cost,before,after:u.focus});}return result;};
+ rebuildNavigator();
+}
+function stories(){if(app.dialogue){const d=app.dialogue;dialogs.push({round:b.round,frame:frames,title:d.title,index:d.index,line:plain(d.lines[d.index])});g.HonroStory.next(app);storyFrames++;virtualMs+=1000/60;return true;}if(['aim','enemy','ally','summon'].includes(b.phase))g.HonroStory.turn(app);if(g.HonroStory.turnPaused(app)){storyFrames++;virtualMs+=1000/60;return true;}return false;}
+function tick(){const begin=performance.now();virtualMs+=C.STEP*1000;e.tick(C.STEP);if(b.side===1)assert(b.queue.length<=3,'Actual enemy activation queue stays at three');if(!app.dialogue)app.missionTick(C.STEP);frames++;const holdMarker=b.honroMarkers.find(m=>m.id==='ferry-hold');for(const v of e.alive(1))if(g.HonroAct3.sameFloor(v,holdMarker,230)){const old=contestContacts.get(v.id);if(old){old.lastRound=b.round;old.lastFrame=frames;old.observedFrames++;}else contestContacts.set(v.id,{id:v.id,source:v.honroSpawnSource,cell:v.honroFerryCell,firstRound:b.round,firstFrame:frames,lastRound:b.round,lastFrame:frames,observedFrames:1});}const objectiveState={goal:g.HonroAct3.current(b)?.id,hold:plain(g.HonroAct3.memory(b).holds?.['ferry-hold']||{}),ferry:g.HonroStage30Ferry.memory(b).status};const objectiveKey=JSON.stringify(objectiveState);if(objectiveKey!==lastObjectiveState){lastObjectiveState=objectiveKey;objectiveStates.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,...objectiveState});}for(const u of b.units){if(u.side===1&&u.awake&&!awakened.has(u.id)){awakened.add(u.id);activations.push({round:b.round,frame:frames,id:u.id,cohort:u.honroCohort,cell:u.honroFerryCell,x:u.x,y:u.y});}}for(const u of b.units)if(!known.has(u.id)){known.add(u.id);births.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,id:u.id,source:u.honroSpawnSource,x:u.x,y:u.y});}const serial=b.honroState.actorTurnSerial||0;if(lastSerial!==serial){lastSerial=serial;turns.push({round:b.round,frame:frames,turn:serial,active:b.active,activeSide:e.unit(b.active)?.side,phase:b.phase,goal:g.HonroAct3.current(b)?.id,heroes:heroRows(),enemyCount:e.alive(1).length,ferry:plain(g.HonroStage30Ferry.memory(b)),hold:plain(g.HonroAct3.memory(b).holds?.['ferry-hold']||{})});}nativePhysicsMs+=performance.now()-begin;}
+const preserved=battle=>Object.fromEntries(['units','terrain','honroWorldTerrain','items','round','phase','side','active','honroState','honroGrowth','honroMarkers','honroEvents','honroFerrySpec'].map(key=>[key,battle[key]]));
+if(resume){assert.deepEqual(plain(preserved(b)),plain(preserved(resume.profile.honroBattle)));continues.push({label:'external-checkpoint',path:resumePath,round:b.round,phase:b.phase,statePreserved:true,previousProvenance:resume.provenance});}
+instrument();
+async function save(label='checkpoint'){
+ app.export();const profile=await h.exported();assert.deepEqual(profile.honroBattle.units,plain(b.units),'Production export preserves actors');
+ const data={sourceHash,runtimeSha256,provenance,initial,profile,actions,rounds,turns,damage,births,notices,dialogs,continues,impacts,resources,manifestations,enemyActions,enemyFires,activations,objectiveStates,projectileGeometry,contestContacts:[...contestContacts],frames,storyFrames,planningMs,nativePhysicsMs,attackPlanningMs,inputCount,virtualMs,shotAttempts:[...shotAttempts],crossedFerryReturn:[...crossedFerryReturn],crossedCape:[...crossedCape],capeRouteState:[...capeRouteState],routeMode,approachMode,buildMode};await writeFile(`${out}/${label}.json`,JSON.stringify(data));return data;
+}
+async function continueNow(label){const data=await save(label),before=plain(preserved(b));app=h.load(data.profile);app.continue();e=app.engine;b=e.b;assert.deepEqual(plain(preserved(b)),before,'Production App Continue preserves '+label);continues.push({label,round:b.round,phase:b.phase,statePreserved:true,method:'production export, profile load, App.continue; exact actors/terrain/items/turn/objectives/waves/progression'});savedLabels.add(label);instrument();record({op:'continue',label});}
+const missedAtPose=(u,target)=>{const last=shotAttempts.get(u.id+':'+target.id);return last&&target.hp>=last.hp&&(target.shield||0)>=last.shield&&distance(u,last.position)<120&&distance(target,last.targetPosition)<120&&(b.honroState.actorTurnSerial||0)>last.turn;};
+const rememberShot=(u,target,skill=basic[u.cls])=>shotAttempts.set(u.id+':'+target.id,{hp:target.hp,shield:target.shield||0,position:{x:u.x,y:u.y},targetPosition:{x:target.x,y:target.y},skill,turn:b.honroState.actorTurnSerial||0});
+function attack(u,target){const missed=missedAtPose(u,target);if(missed&&!representative)return false;const begin=performance.now();try{
+ const basicSkill=C.SKILLS[basic[u.cls]];
+ let meleeChoice=null;
+ if(basicSkill.martial&&basicSkill.branch==='sword'){
+  meleeChoice=representativeMelee(g,e,u,target,'S00');
+  if(representative){const wide=representativeMelee(g,e,u,target,'S03');if(wide&&wide.predictedTargets.length>=2&&(!meleeChoice||wide.net>meleeChoice.net*1.2))meleeChoice={...wide,tacticalReason:'equipped broad sword sector reaches multiple bodies'};}
+  if(meleeChoice&&e.fire(meleeChoice.skill,meleeChoice.angle,meleeChoice.power)){rememberShot(u,target,meleeChoice.skill);record({op:'fire',hero:u.cls,skill:meleeChoice.skill,target:target.id,hpBefore:target.hp,angle:meleeChoice.angle,power:meleeChoice.power,from:{x:u.x,y:u.y},shot:b.shot,predictedTargets:meleeChoice.predictedTargets,predictedEnemyDamage:meleeChoice.net,predictionMethod:'shared representativeMelee gross sector estimate before armor/shield/crit',support:nav.surface(u),tacticalReason:meleeChoice.tacticalReason||'ordinary basic sword'});return true;}
+  if(!representative)return false;
+ }
+ function plan(s,{reflect=false,multiple=false}={}){
+  if(!u.loadout.includes(s.id)||e.manaCost(s,u,.5)>u.focus||missed&&(shotAttempts.get(u.id+':'+target.id)?.skill||basic[u.cls])===s.id)return null;let best=null;const seen=new Set(),radius=e.effective(s,u).radius;
+  function inspect(aim){const key=aim.angle+':'+aim.power;if(seen.has(key)||e.manaCost(s,u,aim.power)>u.focus)return;seen.add(key);if(s.id==='S09'){const v=representativeBladePrediction(g,e,u,s,aim);if(v?.ok&&(!best||v.net>best.net))best={...aim,net:v.net,skill:s.id,predictedTargets:v.predictedTargets,predictedEnemyDamage:v.net,predictedFriendlyDamage:v.risk,predictionMethod:v.method,reflections:0};return;}const v=C.shotViable(e,u,s,target,aim.angle,aim.power),predictedTargets=representativeTargets(g,e,u,s,v.hit);const thunderMultiple=multiple&&s.mode==='gourdThunder'&&predictedTargets.length>=2;
+   if(!(v.risk<1&&(thunderMultiple||(v.ok||target.hp<=2&&v.enemyDamage>0)&&v.miss<Math.max(85,radius+target.r+55))))return;if(reflect&&!v.hit.contacts?.length)return;if(multiple&&predictedTargets.length<2)return;
+   const net=(v.net||0)+(s.mode==='gourdThunder'?e.effective(s,u).damage*.45*predictedTargets.length:0);if(!best||net>best.net)best={...aim,net,skill:s.id,predictedTargets,predictedEnemyDamage:v.enemyDamage,predictedFriendlyDamage:v.risk,predictionMethod:'production shotViable geometry and damage estimate',predictedHit:{x:v.hit.x,y:v.hit.y,unit:v.hit.unit,terrain:v.hit.terrain},reflections:v.hit.contacts?.length||0};}
+  for(const aim of e.shotSeeds(u,s,target)){inspect(aim);if(s.id==='S09'&&best)break;}
+  if(!best)inspect(e.bestShot(u,s,target));
+  if(!best&&reflect)for(const power of [.35,.55,.75,1])for(let angle=-80;angle<=260;angle+=4)inspect({angle,power});
+  return best;
+ }
+ let chosen=u.cls==='knight'?plan(C.SKILLS.S09):plan(basicSkill),reason=u.cls==='knight'?'equipped ranged blade after basic sword cannot reach':'free-basic';
+ if(representative&&u.cls==='archer'){for(const id of ['A14','A11','A05']){const special=plan(C.SKILLS[id]);if(special&&(!chosen||special.net>chosen.net*1.18)){chosen=special;reason='equipped archer technique has the stronger safe predicted shot';}}}
+ if(representative&&u.cls==='mage'){
+  const radius=260+10*((u.ranks.M04||1)-1),cluster=e.alive(1).filter(t=>distance(t,target)<radius*2+80).length;
+  if(cluster>=2){const area=plan(C.SKILLS.M04,{multiple:true});if(area&&(!chosen||area.net>chosen.net*1.2)){chosen=area;reason='equipped area reaches multiple bodies';}}
+  if(!chosen||reflectionStudy){const reflected=plan(C.SKILLS.M11,{reflect:true});if(reflected&&(!chosen||reflected.net>chosen.net*1.1)){chosen=reflected;reason='equipped actual-reflection line is safely predicted to improve the shot';}}
+ }
+ if(representative&&u.cls==='occultist'){
+  const supportUseful=(target.honroSpirit||target.spiritHidden||['balanced','conservative-rank1'].includes(buildMode)&&target.hp>e.effective(C.SKILLS.O01,u).damage*2)&&(!target.manifested||target.manifestedUntil<=b.round)&&!target.revealSpiritToParty&&e.heroesAlive().some(v=>v.id!==u.id&&distance(v,target)<1500);
+  if(supportUseful){const support=plan(C.SKILLS.O08);if(support){chosen=support;reason='equipped manifestation for nearby companions';}}
+  if(!chosen){chosen=plan(C.SKILLS.O04);reason='equipped terrain phase after basic line is blocked';}
+ }
+ if(chosen&&e.fire(chosen.skill,chosen.angle,chosen.power)){rememberShot(u,target,chosen.skill);record({op:'fire',hero:u.cls,skill:chosen.skill,target:target.id,hpBefore:target.hp,angle:chosen.angle,power:chosen.power,from:{x:u.x,y:u.y},tacticalReason:reason,predictedTargets:chosen.predictedTargets,shot:b.shot,support:nav.surface(u),predictedEnemyDamage:chosen.predictedEnemyDamage,predictedFriendlyDamage:chosen.predictedFriendlyDamage,predictionMethod:chosen.predictionMethod,predictedHit:chosen.predictedHit,predictedReflections:chosen.reflections});return true;}return false;
+ }finally{attackPlanningMs+=performance.now()-begin;}}
+// Only the optional C approach follows its authored anchors sequentially.
+// Navigator still handles each walk; jump/drop edges use ordinary live inputs
+// and preserve the real movement pool across rounds. No actor field is written.
+function followCapeApproach(u){
+ const points=['record-cape','cape-quay'].flatMap(id=>stage.design.ferry.routes.find(r=>r.id===id).anchors),state=capeRouteState.get(u.id)||{index:0};capeRouteState.set(u.id,state);
+ for(let limit=0;limit<points.length+2&&ready()&&u.moveLeft>8;limit++){
+  const p=points[state.index];if(!p){crossedCape.add(u.id);record({op:'cape-approach-reached',hero:u.cls,position:{x:u.x,y:u.y},support:nav.surface(u)});return true;}
+  const reached=()=>Math.abs(u.x-p.x)<22&&Math.abs(u.y-p.y)<55&&e.grounded(u);
+  if(!reached()&&state.index===points.length-1&&Math.abs(u.y-p.y)<80){
+   // The actual authored quay is directly walkable. The generic graph may
+   // incorrectly prefer a jump to the overlapping reflector above it.
+   const from={x:u.x,y:u.y};let still=0;for(let n=0;n<1600&&ready()&&u.moveLeft>8&&!reached();n++){const old={x:u.x,y:u.y};if(Math.abs(u.x-p.x)>5)e.move(Math.sign(p.x-u.x),C.STEP);if(still>12&&e.grounded(u)&&e.jump(u)){record({op:'recovery-jump',hero:u.cls,x:u.x,y:u.y,goal:p,reason:'ordinary recovery on the authored quay walk'});still=0;}tick();still=distance(old,u)<.02?still+1:0;if(still>100)break;}if(distance(from,u)>1)record({op:'move',hero:u.cls,from,to:{x:u.x,y:u.y},support:nav.surface(u),goal:{id:'cape-final-quay-walk',x:p.x,y:p.y}});nav.clear(u.id);
+  }else if(!reached())nav.advance(u,{id:'cape-anchor-'+state.index,x:p.x,y:p.y});if(!ready()||!reached())return false;
+  const z=p.jumpTo||p.dropTo;
+  if(z){const jump=!!p.jumpTo,from={x:u.x,y:u.y};if(jump&&(u.moveLeft<e.jumpCost(u)+Math.abs(z.x-u.x)+65||!e.jump(u)))return false;record({op:jump?'jump':'drop',hero:u.cls,from,to:{kind:jump?'jump':'drop',...z},reason:'sequential authored cape route input'});
+   let departed=jump||z.stepOffX===undefined;for(let n=0;n<(jump?240:600)&&ready();n++){const x=departed?z.x:z.stepOffX;if(Math.abs(u.x-x)>3)e.move(Math.sign(x-u.x)*(z.speed||(jump?.35:.8)),C.STEP);tick();if(!departed&&Math.abs(u.x-z.stepOffX)<8&&u.y>from.y+8)departed=true;if(n>30&&e.grounded(u)&&(!jump?nav.surface(u)===z.support&&Math.abs(u.x-z.x)<22:true))break;}
+   const matched=nav.surface(u)===z.support;record({op:matched?'land':'nav-replan',hero:u.cls,x:u.x,y:u.y,support:nav.surface(u),expected:z.support,matched,reason:matched?'authored C edge crossed by normal input':'authored C edge did not reach declared support'});nav.clear(u.id);if(!matched)return false;
+  }
+  state.index++;
+ }
+ return crossedCape.has(u.id);
+}
+await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial,training},null,2));
+const actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||1600),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||220);let lastSignature='',stalled=0;
+for(let turn=0;turn<actionLimit&&!terminal();turn++){
+ while(!ready()&&!terminal()){if(stories())continue;tick();if(frames>1800000){stopReason='native simulation budget';break;}}if(stopReason||terminal())break;
+ const ferry=g.HonroStage30Ferry.memory(b);
+ if(ferry.status!==navOffset)rebuildNavigator();
+ if(['warned','waiting'].includes(ferry.status)&&!savedLabels.has('warning-continue'))await continueNow('warning-continue');
+ if(g.HonroAct3.memory(b).done['ferry-hold']&&!savedLabels.has('post-hold-continue'))await continueNow('post-hold-continue');
+ if(lastRound!==b.round){lastRound=b.round;const row={round:b.round,goal:g.HonroAct3.current(b)?.id,hold:plain(g.HonroAct3.memory(b).holds?.['ferry-hold']||{}),ferry:plain(ferry),heroes:heroRows(),enemies:e.alive(1).map(u=>({id:u.id,hp:u.hp,x:u.x,y:u.y,awake:u.awake,cohort:u.honroCohort,cell:u.honroFerryCell})),done:plain(g.HonroAct3.memory(b).done)};rounds.push(row);console.log('ROUND',JSON.stringify({...row,enemies:row.enemies.length}));await save();await writeFile(`${out}/progress.json`,JSON.stringify(row,null,2));const signature=JSON.stringify({goal:row.goal,hold:row.hold.progress,enemies:row.enemies.map(u=>[u.id,Math.round(u.hp)]),heroes:row.heroes.map(u=>[u.cls,Math.round(u.x/40),Math.round(u.y/40)])});stalled=lastSignature===signature?stalled+1:0;lastSignature=signature;if(stalled>=10){stopReason='controller unchanged for 10 rounds';break;}if(b.round>roundLimit){stopReason='requested round observation limit';break;}}
+ const begin=performance.now(),goal=g.HonroAct3.current(b),m=b.honroMarkers.find(v=>v.id===goal?.id),u=e.active;if(!u||u.dead){stopReason='no usable active hero';break;}
+ const interact=()=>m?.action&&g.HonroInteractions.eligibility(app,m).ok&&g.HonroInteractions.use(app,m);
+ if(interact()){record({op:'E',hero:u.cls,target:m.id});nav.clear(u.id);planningMs+=performance.now()-begin;continue;}
+ const inHold=v=>g.HonroAct3.sameFloor(v,b.honroMarkers.find(v=>v.id==='ferry-hold'),540),inGather=v=>g.HonroAct3.sameFloor(v,b.honroMarkers.find(v=>v.id==='old-road'),440),guard=goal?.kind==='hold'&&inHold(u),arrived=goal?.kind==='reach'&&inGather(u);
+ const blockers=e.alive(1).filter(v=>m&&g.HonroAct3.sameFloor(v,m,goal?.kind==='interact'?220:goal?.kind==='hold'?230:300));
+ const foes=e.alive(1).sort((a,z)=>Number(blockers.includes(z))-Number(blockers.includes(a))||distance(a,u)-distance(z,u));
+ // Move toward the actual current objective every turn. A hold guard remains
+ // on station; other companions may use the same area without a forced split.
+ let point=m,enemy=false;
+ if(approachMode==='cape'&&goal?.id==='ferry-hold'&&!crossedCape.has(u.id)){const at=stage.design.ferry.routes.find(r=>r.id==='record-cape').anchors.at(-1);point={id:'cape-approach-waypoint',x:at.x,y:at.y};}
+ if(routeMode==='barge'&&goal?.id==='old-road'&&ferry.status==='settled'&&!crossedFerryReturn.has(u.id)){const returnRoute=stage.design.ferry.routes.find(r=>r.id==='quay-short-return'),at=returnRoute.anchors.at(-1);if(Math.hypot(u.x-at.x,u.y-at.y)<120||nav.surface(u)==='sf-settled-barge')crossedFerryReturn.add(u.id);else point={id:'barge-return-waypoint',x:at.x,y:at.y};}
+ if(guard&&blockers.length){point=blockers[0];enemy=true;}
+ if(guard&&!blockers.length||arrived)point=null;
+ const evacuating=['warned','waiting'].includes(ferry.status)&&g.HonroStage30Ferry.occupants(b).some(v=>v.id===u.id);
+ if(evacuating){point=b.honroMarkers.find(v=>v.id==='ferry-hold');enemy=false;}
+ if(point&&enemy)point={...point,approachRange:u.cls==='knight'?65:180};
+ if(approachMode==='cape'&&goal?.id!=='transport-map'&&!crossedCape.has(u.id))followCapeApproach(u);else if(point&&ready())nav.advance(u,point,enemy);if(routeMode==='barge'&&point?.id==='barge-return-waypoint'&&distance(u,point)<120){crossedFerryReturn.add(u.id);record({op:'ferry-return-reached',hero:u.cls,position:{x:u.x,y:u.y},support:nav.surface(u)});if(ready())nav.advance(u,m,false);}if(!ready()){planningMs+=performance.now()-begin;continue;}
+ if(interact()){record({op:'E',hero:u.cls,target:m.id});nav.clear(u.id);planningMs+=performance.now()-begin;continue;}
+ let fired=false;
+ for(const target of foes.filter(v=>!v.dead&&distance(v,u)<1700).slice(0,5))if(attack(u,target)){fired=true;break;}
+ if(!fired){const before={hp:u.hp,focus:u.focus};record({op:'defend',hero:u.cls,reason:guard?'hold-defense':arrived?'gather-wait':'no-useful-shot'});app.defend();resources.push({round:b.round,frame:frames,hero:u.cls,op:'defend',before,after:{hp:u.hp,focus:u.focus}});}planningMs+=performance.now()-begin;
+}
+if(!terminal()&&!stopReason)stopReason='controller action limit';const beforeReward=plain({heroes:b.heroes,items:b.items,resources:heroRows(),growth:b.honroGrowth});if(terminal()){for(let i=0;app.dialogue&&i<300;i++)stories();app.outcome();for(let i=0;app.dialogue&&i<300;i++)stories();}else await save();
+const mem=g.HonroStage30Ferry.memory(b),a=g.HonroAct3.memory(b),waveTelegraphs=Object.entries(mem.entries).map(([source,entry])=>({source,warning:mem.warnings[source],entry,births:births.filter(v=>v.source===source)}));
+let validationFailure=null,ending=null;try{if(b.phase==='won'){
+ assert.deepEqual(Object.keys(a.done),['transport-map','ferry-hold','old-road']);assert.equal(a.holds['ferry-hold'].progress,3);assert.equal(a.holds['ferry-hold'].spawned,3);assert(continues.length>=1,'At least one real save/Continue boundary');for(const wave of waveTelegraphs)assert(wave.warning&&wave.births.every(v=>v.turn>wave.warning.serial));assert.equal(births.length,10,'All and only the finite authored ten reinforcements');assert.equal(b.honroActiveLimit,3);assert.equal(b.enemyLimit,3);assert(e.heroesAlive().every(u=>g.HonroAct3.sameFloor(u,b.honroMarkers.find(v=>v.id==='old-road'),440)));
+ assert(app.done&&app.profile.cleared[30]);assert(!app.profile.cleared[31]);const resultHtml=app.modal.innerHTML;assert(resultHtml.includes('넷째 막은 준비 중'));h.click('result-continue');ending={screen:app.screen,stage:app.engine?.b?.honroStage,cleared30:app.profile.cleared[30],ending:g.HonroJourneyContent?.ending,resultHtml,profile:plain(app.profile)};assert(!app.engine||app.engine.b.honroStage<=30);assert.equal(g.HONRO_CONTENT.stages.length,30);
+}}catch(error){validationFailure=error;}
+assert.deepEqual(plain(b.items),initial.battle.items,'No consumables used');
+const holdDone=a.checkpoints.find(c=>c.id==='ferry-hold'),gatherDone=a.checkpoints.find(c=>c.id==='old-road');
+const summary=analyzeWaits(actions,b.round,{rounds,turns,damage,births,notices,continues,resources,frames});
+summary.stage30={objectiveStates,projectileGeometry,contestContacts:[...contestContacts.values()],holdEnemyEndBoundaries:a.holds['ferry-hold']?.progress,holdCompletion:holdDone,gatherCompletion:gatherDone,remainingEnemies:e.alive(1).map(u=>({id:u.id,hp:u.hp,x:u.x,y:u.y})),holdDefenseActions:actions.filter(v=>v.op==='defend'&&v.reason==='hold-defense'),gatherWaitActions:actions.filter(v=>v.op==='defend'&&v.reason==='gather-wait'),postHoldMovement:actions.filter(v=>['move','jump','drop','land'].includes(v.op)&&holdDone&&v.round>=holdDone.round&&v.objective==='old-road'),usedSupports:[...new Set(actions.flatMap(v=>[v.support,v.to?.support]).filter(Boolean))]};
+const cells=[...new Set(b.units.filter(u=>u.side===1).map(u=>u.honroFerryCell||u.honroCohort||u.honroSpawnSource||'unassigned'))];
+summary.stage30.reinforcements=b.units.filter(u=>u.honroSpawnSource).map(u=>({id:u.id,source:u.honroSpawnSource,birth:births.find(x=>x.id===u.id),actions:enemyActions.filter(a=>a.id===u.id),fires:enemyFires.filter(a=>a.id===u.id),damageToHeroes:damage.filter(d=>d.owner===u.id&&d.side===0).reduce((n,d)=>n+d.amount,0),damageFromHeroes:damage.filter(d=>d.target===u.id&&String(d.owner).startsWith('p-')).reduce((n,d)=>n+d.amount,0),contest:contestContacts.get(u.id)||null,final:{x:u.x,y:u.y,hp:u.hp,dead:u.dead}}));
+summary.stage30.manifestationFollowups=manifestations.map(m=>({...m,otherHeroDamage:damage.filter(d=>d.frame>m.frame&&d.side===1&&d.owner!==m.owner&&String(d.owner).startsWith('p-')&&m.targets.some(t=>t.id===d.target&&d.round<=t.until)).map(d=>({round:d.round,frame:d.frame,owner:d.owner,target:d.target,skill:d.skill,amount:d.amount})),scope:'Observed ally HP damage in the actual manifested window; no counterfactual multiplier claim.'}));
+summary.stage30.cells=cells.map(cell=>{const units=b.units.filter(u=>u.side===1&&(u.honroFerryCell||u.honroCohort||u.honroSpawnSource||'unassigned')===cell),ids=new Set(units.map(u=>u.id));return{cell,initial:initial.battle.units.filter(u=>ids.has(u.id)).length,total:units.length,remaining:units.filter(u=>!u.dead).length,activated:activations.filter(a=>ids.has(a.id)),completedEnemyActions:enemyActions.filter(a=>ids.has(a.id)),enemyShots:enemyFires.filter(a=>ids.has(a.id)),damageToHeroes:damage.filter(d=>d.side===0&&ids.has(d.owner)).reduce((n,d)=>n+d.amount,0),damageFromHeroes:damage.filter(d=>d.side===1&&ids.has(d.target)&&String(d.owner).startsWith('p-')).reduce((n,d)=>n+d.amount,0),targetedByPlayer:actions.filter(a=>a.op==='fire'&&ids.has(a.target)).length};});
+const shots=actions.filter(v=>v.op==='fire').map(v=>({...v,actualDamage:damage.filter(d=>d.shot===v.shot&&d.owner==='p-'+v.hero).map(d=>({target:d.target,side:d.side,amount:d.amount,dead:d.dead})),actualImpacts:impacts.filter(i=>i.shot===v.shot&&i.owner==='p-'+v.hero),actualGeometry:projectileGeometry.filter(i=>i.shot===v.shot&&i.owner==='p-'+v.hero)}));
+await writeFile(`${out}/shot-evidence.json`,JSON.stringify(shots,null,2));
+const result={...provenance,reflectionStudy,buildMode,buildClassification:buildMode==='balanced'?'high-investment-sensitivity':buildMode==='conservative-rank1'?'approved-representative-rank1':'movement-heavy-basic-sensitivity',routeMode,approachMode,completedAt:new Date().toISOString(),validationFailure:validationFailure?.message||null,phase:b.phase,round:b.round,stopReason,winnerReason:b.winnerReason,initialSeed:initial.battle.seed,initialRng:initial.battle.rng,initialEnemies:initial.battle.units.filter(u=>u.side===1).length,initialElites:initial.battle.units.filter(u=>u.side===1&&u.honroAct3Elite).length,enemyActionLimit:b.enemyLimit,observedEnemyActorsByRound:Object.fromEntries([...new Set(turns.map(t=>t.round))].map(r=>[r,[...new Set(turns.filter(t=>t.round===r&&t.activeSide===1).map(t=>t.active))]])),remainingEnemies:e.alive(1).length,enemyDefeats:b.units.filter(u=>u.side===1&&u.dead).length,done:plain(a.done),checkpoints:a.checkpoints,hold:a.holds?.['ferry-hold'],holdCompletionRound:holdDone?.round,gatherCompletionRound:gatherDone?.round,postHoldRounds:holdDone&&gatherDone?gatherDone.round-holdDone.round:null,ferry:mem,waveTelegraphs,wallSeconds:(performance.now()-started)/1000,simulationSeconds:frames*C.STEP,storyPauseSeconds:storyFrames/60,botAttackPlanningSeconds:attackPlanningMs/1000,nativePhysicsWallSeconds:nativePhysicsMs/1000,controllerWallSecondsIncludingMovement:planningMs/1000,frames,engineApiCallCount:inputCount,actions:actions.length,acceptedPlayerActions:actions.filter(a=>['fire','E','defend'].includes(a.op)).length,actionCounts:Object.fromEntries([...new Set(actions.map(a=>a.op))].map(op=>[op,actions.filter(a=>a.op===op).length])),entryRewardLimit:initial.battle.honroGrowth.limit,readinessXP:readiness.xp,readinessLevel:readiness.level,trainingBudget:Object.fromEntries(initial.profile.recruited.map(cls=>[cls,{earned:C.pointsEarned(initial.profile.heroes[cls]),spent:C.pointsSpent(initial.profile.heroes[cls],cls),unspent:C.pointsLeft(initial.profile.heroes[cls],cls),statTraining:initial.profile.heroes[cls].statTraining,ranks:initial.profile.heroes[cls].ranks,loadout:initial.profile.loadouts[cls]}])),initialHeroes:initial.battle.units.filter(u=>u.side===0).map(u=>({cls:u.cls,level:u.level,hp:u.hp,maxHp:u.maxHp,ranks:u.ranks,loadout:u.loadout,focus:u.focus})),heroes:heroRows(),initialItems:initial.battle.items,items:b.items,damageTaken:damage.filter(d=>d.side===0).reduce((n,d)=>n+d.amount,0),damageDealt:damage.filter(d=>d.side===1).reduce((n,d)=>n+d.amount,0),deaths:damage.filter(d=>d.dead&&d.side===0),births,continues,usedSkills:Object.fromEntries([...new Set(resources.filter(r=>r.skill).map(r=>r.skill))].map(id=>[id,{actions:resources.filter(r=>r.skill===id).length,totalCost:resources.filter(r=>r.skill===id).reduce((n,r)=>n+r.cost,0),costs:[...new Set(resources.filter(r=>r.skill===id).map(r=>r.cost))],hpDamage:damage.filter(d=>d.skill===id&&d.side===1&&String(d.owner).startsWith('p-')).reduce((n,d)=>n+d.amount,0)}])),dialogueLines:dialogs.length,limits:['Prior-clear ledger is a Stages1–29 first-clear/recruit reward fixture, not a prior campaign playthrough.','Native production App/Engine; DOM/render/storage and pause clock are test doubles.','A route graph and projectile simulations choose ordinary inputs. This is not browser UI, human-time or fun/balance approval.',representative?'Four real slots; legally paid representative skills/passives, ordinary stats and actual production costs; exact allocation is in trainingBudget.':'Four real slots; only basic A01/M01/O01/S00 attacks fired.','No consumables and no live actor/resource/objective/phase injection.']};
+await writeFile(`${out}/result.json`,JSON.stringify(result,null,2));await writeFile(`${out}/wait-analysis.json`,JSON.stringify(summary,null,2));await writeFile(`${out}/trace.json`,JSON.stringify({actions,rounds,turns,damage,births,notices,dialogs,continues,impacts,resources,manifestations,enemyActions,enemyFires,activations,objectiveStates,projectileGeometry,contestContacts:[...contestContacts.values()]},null,2));await writeFile(`${out}/final-battle.json`,JSON.stringify(b));if(ending)await writeFile(`${out}/ending.json`,JSON.stringify(ending,null,2));console.log('RESULT',JSON.stringify(result));if(validationFailure)throw validationFailure;if(b.phase!=='won')process.exitCode=1;

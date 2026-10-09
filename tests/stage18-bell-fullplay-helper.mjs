@@ -2,11 +2,12 @@ import assert from 'node:assert/strict';
 import {battlefield} from '../game/tests/helpers.mjs';
 import {unitContract} from './act2-spatial-contract-helpers.mjs';
 /** First-clear reward ledger fixture, not a playthrough of Stages1–17. */
-export function campaignEntryReadiness(g){
+export function campaignEntryReadiness(g,{through=17}={}){
+ assert(Number.isInteger(through)&&through>=1&&through<=29);
  const C=g.HONRO_CORE,P=g.HonroProgression,p=C.defaults(),rows=[];
- for(let id=1;id<=17;id++){const st=g.HONRO_CONTENT.stages[id-1];if(id===11)g.HonroAct2.recruit(p);const {b}=battlefield(g,id,{profile:p});P.complete(b);p.heroes=structuredClone(b.heroes);p.honroGrowth=structuredClone(b.honroGrowth.ledger);p.cleared[id]={visits:1,rounds:0};P.recruit(p,st);rows.push({stage:id,limit:structuredClone(b.honroGrowth.limit),xp:Object.fromEntries(p.recruited.map(c=>[c,p.heroes[c].xp])),level:Object.fromEntries(p.recruited.map(c=>[c,C.levelOf(p.heroes[c])]))});}
- const xp=P.legacyCampaignAnchor(17);for(const cls of p.recruited){assert.equal(p.heroes[cls].xp,xp,'Actual first-clear/recruit ledger agrees with campaign anchor');assert.equal(C.levelOf(p.heroes[cls]),C.levelOf(xp));}
- return{xp,level:C.levelOf(xp),heroes:p.heroes,cleared:p.cleared,ledger:p.honroGrowth,rows,scope:'Only a reward-ledger completion fixture of Stages1–17. It does not claim those stages were played.'};
+ for(let id=1;id<=through;id++){const st=g.HONRO_CONTENT.stages[id-1];if(id===11)g.HonroAct2.recruit(p);const {b}=battlefield(g,id,{profile:p});P.complete(b);p.heroes=structuredClone(b.heroes);p.honroGrowth=structuredClone(b.honroGrowth.ledger);p.cleared[id]={visits:1,rounds:0};P.recruit(p,st);rows.push({stage:id,limit:structuredClone(b.honroGrowth.limit),xp:Object.fromEntries(p.recruited.map(c=>[c,p.heroes[c].xp])),level:Object.fromEntries(p.recruited.map(c=>[c,C.levelOf(p.heroes[c])]))});}
+ const xp=through<=20?P.legacyCampaignAnchor(through):P.budget(through+1).start;for(const cls of p.recruited){assert.equal(p.heroes[cls].xp,xp,'Actual first-clear/recruit ledger agrees with the next stage entry budget');assert.equal(C.levelOf(p.heroes[cls]),C.levelOf(xp));}
+ return{xp,level:C.levelOf(xp),heroes:p.heroes,cleared:p.cleared,ledger:p.honroGrowth,rows,scope:`Only a reward-ledger completion fixture of Stages1–${through}. It does not claim those stages were played.`};
 }
 /** Read-only representative skill geometry. These functions inspect current
  * actors and production melee/prediction rules; they do not edit skills. */
@@ -30,16 +31,16 @@ export function representativeMelee(g,e,u,target,id){
 }
 /** Test-only input policy. Route graph proposes inputs; only Engine.move/jump
  * advances actors. No battle fields or movement budgets are edited here. */
-export function navigator(g,b,e,{tick,ready,record}){
- const C=g.HONRO_CORE,stage=g.HONRO_PROJECT.stages[17],nodes=[],edges=[],map=new Map(),bySurface=new Map(),nav=new Map(),failed=new Map();
+export function navigator(g,b,e,{tick,ready,record,stageId=18,routes=null}){
+ const C=g.HONRO_CORE,stage=g.HONRO_PROJECT.stages[stageId-1],nodes=[],edges=[],map=new Map(),bySurface=new Map(),nav=new Map(),failed=new Map();
  const distance=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),surface=u=>e.contactSurface(u.x,u.y-5,u.y+5)?.t?.id;
  function node(p){const key=`${p.surfaceId}:${p.x.toFixed(1)}:${p.y.toFixed(1)}`;if(map.has(key))return map.get(key);const i=nodes.length;nodes.push({...p});edges.push([]);map.set(key,i);if(!bySurface.has(p.surfaceId))bySurface.set(p.surfaceId,new Set());bySurface.get(p.surfaceId).add(i);return i;}
  function edge(a,z,mode=null){const from=node(a),to=node(z);if(from===to)return;const cost=distance(a,z)+(mode?.generated?850:mode?180:0);if(!edges[from].some(x=>x.to===to&&x.mode?.kind===mode?.kind))edges[from].push({to,cost,mode});}
  function walk(a,z){edge(a,z);if(Math.abs(a.y-z.y)<=Math.abs(a.x-z.x)*1.35+1)edge(z,a);}
- for(const r of stage.design.space.routes.filter(r=>r.bellState!=='settled'||g.HonroStage18Bell.memory(b).status==='settled')){for(let i=0;i<r.anchors.length;i++){let p=r.anchors[i];node(p);const leap=p.jumpTo||p.dropTo;if(leap){const t=b.terrain.find(t=>t.id===leap.support),landing={x:leap.x,y:C.topAt(t,leap.x),surfaceId:t.id};edge(p,landing,{kind:p.jumpTo?'jump':'drop',...leap});if(p.jumpTo&&Math.abs(p.x-landing.x)<=320&&Math.abs(p.y-landing.y)<=225&&(p.x<t.x-12||p.x>t.x+t.w+12))edge(landing,p,{kind:'jump',generated:true,x:p.x,support:p.surfaceId,speed:leap.speed||.35});p=landing;}const z=r.anchors[i+1];if(!z)continue;if(p.surfaceId===z.surfaceId){const t=b.terrain.find(t=>t.id===p.surfaceId),n=Math.max(1,Math.ceil(Math.abs(z.x-p.x)/90));let old=p;for(let j=1;j<=n;j++){const x=p.x+(z.x-p.x)*j/n,next={x,y:C.topAt(t,x),surfaceId:t.id};walk(old,next);old=next;}}else walk(p,z);}}
+ for(const r of routes||stage.design.space.routes.filter(r=>r.bellState!=='settled'||g.HonroStage18Bell.memory(b).status==='settled')){for(let i=0;i<r.anchors.length;i++){let p=r.anchors[i];node(p);const leap=p.jumpTo||p.dropTo;if(leap){const t=b.terrain.find(t=>t.id===leap.support),landing={x:leap.x,y:C.topAt(t,leap.x),surfaceId:t.id};edge(p,landing,{kind:p.jumpTo?'jump':'drop',...leap});if(p.jumpTo&&Math.abs(p.x-landing.x)<=320&&Math.abs(p.y-landing.y)<=225&&(p.x<t.x-12||p.x>t.x+t.w+12))edge(landing,p,{kind:'jump',generated:true,x:p.x,support:p.surfaceId,speed:leap.speed||.35});p=landing;}const z=r.anchors[i+1];if(!z)continue;if(p.surfaceId===z.surfaceId){const t=b.terrain.find(t=>t.id===p.surfaceId),n=Math.max(1,Math.ceil(Math.abs(z.x-p.x)/90));let old=p;for(let j=1;j<=n;j++){const x=p.x+(z.x-p.x)*j/n,next={x,y:C.topAt(t,x),surfaceId:t.id};walk(old,next);old=next;}}else walk(p,z);}}
  const hero=e.heroesAlive()[0];
  for(const t of b.terrain.filter(t=>t.honroSpaceSurfaceId&&!t.honroCeiling)){const left=Math.max(25,t.x),right=Math.min(b.width-25,t.x+t.w);for(const x of [...Array.from({length:Math.floor((right-left)/80)+1},(_,i)=>left+i*80),right]){const y=C.topAt(t,x);if(!Number.isFinite(y)||y<0||y>b.height)continue;const p={...hero,x,y};if(C.validTerrainContactPose(b.terrain,p))node({x,y,surfaceId:t.id});}}
- for(const site of Object.values(stage.design.space.sites||{}))if(site.standing)node(site.standing);
+ for(const site of Object.values(stage.design.space?.sites||{}))if(site.standing)node(site.standing);
  for(const [id,set]of bySurface){const list=[...set].sort((a,z)=>nodes[a].x-nodes[z].x);for(let j=1;j<list.length;j++){const a=nodes[list[j-1]],z=nodes[list[j]];if(distance(a,z)<430&&Math.abs(a.y-z.y)<=Math.abs(a.x-z.x)*1.35+.2)walk(a,z);}}
  // Small authored cover tops are legitimate landing surfaces too. Propose local
  // basic jump/step-off links; live physics must still execute every crossing.

@@ -102,7 +102,9 @@
     "test:stage18-bell:fullplay": "node tests/stage18-bell-fullplay.mjs",
     "test:stage18-bell:roles": "node tests/stage18-bell-live-role-choice.mjs",
     "test:stage18-bell:representative": "node tests/stage18-bell-representative.mjs",
-    "test:stage30-ferry": "node tests/stage30-ferry-history-audit.mjs && node tests/stage30-ferry-contracts.mjs && node tests/stage30-ferry-runtime.mjs && node tests/stage30-ferry-history.mjs && node tests/stage30-ferry-art.mjs && node tests/stage30-ferry-traversal.mjs"
+    "test:stage30-ferry": "node tests/stage30-ferry-history-audit.mjs && node tests/stage30-ferry-contracts.mjs && node tests/stage30-ferry-runtime.mjs && node tests/stage30-ferry-history.mjs && node tests/stage30-ferry-art.mjs && node tests/stage30-ferry-traversal.mjs",
+    "test:stage30-ferry:fullplay": "HONRO_FULLPLAY_BUILD=conservative-rank1 HONRO_FULLPLAY_ROUTE=barge node tests/stage30-ferry-fullplay.mjs",
+    "test:stage30-ferry:movement-sensitivity": "node tests/stage30-ferry-fullplay.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
