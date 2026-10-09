@@ -116,7 +116,7 @@
     "test:stage12-quarry:native-performance": "node --expose-gc tests/stage12-quarry-native-performance.mjs",
     "test:stage12-quarry:next-stage": "node tests/stage12-quarry-next-stage-app.mjs",
     "test:stage12-quarry:guide": "node tests/stage12-quarry-hold-guide.mjs",
-    "test:stage23-escort": "node tests/stage23-escort-entry.mjs && node tests/stage23-escort-history-audit.mjs && node tests/stage23-escort-runtime.mjs && node tests/stage23-escort-activation.mjs && node tests/stage23-escort-old-save.mjs && node tests/stage23-escort-art.mjs && node tests/stage23-escort-tactics.mjs && node tests/stage23-escort-geometry.mjs",
+    "test:stage23-escort": "node tests/stage23-escort-entry.mjs && node tests/stage23-escort-history-audit.mjs && node tests/stage23-escort-runtime.mjs && node tests/stage23-escort-growth-resume.mjs && node tests/stage23-escort-cargo-sweep.mjs && node tests/stage23-escort-activation.mjs && node tests/stage23-escort-old-save.mjs && node tests/stage23-escort-art.mjs && node tests/stage23-escort-tactics.mjs && node tests/stage23-escort-geometry.mjs",
     "test:stage23-escort:fullplay": "node tests/stage23-escort-fullplay.mjs",
     "test:stage23-escort:baseline": "HONRO_FULLPLAY_ROSTER=originalBudget22e5 HONRO_FULLPLAY_OUT=_local/reports/stage23-escort/fullplay-baseline node tests/stage23-escort-fullplay.mjs",
     "test:stage23-escort:candidate": "HONRO_FULLPLAY_ROSTER=candidate28e6 HONRO_FULLPLAY_OUT=_local/reports/stage23-escort/fullplay-candidate node tests/stage23-escort-fullplay.mjs",

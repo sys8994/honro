@@ -2,6 +2,16 @@
 // A battle snapshot opts in; Continue never replaces an old map or roster.
 const A=G.HonroAct3,W=G.HonroAllies,E=G.HonroEncounters,C=G.HONRO_CORE;
 const active=b=>b?.honroStage===23&&!b.honroCustom&&b.honroEscortYardRevision===1;
+// Repeat mounting must retain the crit values earned by an actual level-up.
+// The shared legacy initializer recalculates these two fields without ordinary
+// stat training even when it reuses a saved growth ledger. Preserve only finite
+// saved fields in opted-in battles; fresh initialization and missing old fields
+// still take the unchanged legacy path. No XP or stat calculation is replaced.
+const initializeGrowth=G.HonroProgression.initialize;
+G.HonroProgression.initialize=function(b,profile){
+ const saved=active(b)&&b.honroGrowth?.ledger?b.units.filter(u=>u.side===0&&!u.summoned||u.honroAlly).map(u=>({u,fields:Object.fromEntries(['critChance','critMultiplier'].filter(k=>Number.isFinite(u[k])).map(k=>[k,u[k]]))})):[];
+ const out=initializeGrowth(b,profile);for(const {u,fields}of saved)Object.assign(u,fields);return out;
+};
 const sources=['act3-response-23-0','act3-response-23-1','act3-response-23-2'];
 const SCENE='stage23-cargo-slide-v1';
 const cargo=b=>b.honroEscortYardSpec?.cargo||{};

@@ -1871,3 +1871,10 @@ Validation: the 292 changed/removed cavern-path negatives, nine immutable full-s
 - 확인: 격리된 NPC 전후 무점프7294.1 실거리, stat0 네 직업14경로×전후112회, 실제 App/Story 안전14검사, 원본23/12/18/30 export→file-import→Continue/mount18회, 기존30 runtime와Act3 save7검사, generator fresh23 재생 검사가 통과했다. 고정A01은 D 화물 전 피해0/후 F궁귀239, E고지궁귀 실제석교탄은53피해를 기록했다.
 - 한계/보류: 2026-10-09 부모 미술검수에서 큰 삼각 기단면·지붕 위 공중 보행선·초대형 단색 화물경사·긴 판 같은 석교 하부를 지적하여 **미술 production 보류**다. 현재 물리면은 유지하고 그에 맞는 짧은 석축 층/인물 크기 창고 몸체/명확한 계단·운반목/교대·수로둑을 다음 단위로 다시 저작한다. Native 캡처는 정적 공통 Scene 렌더이며 실제 브라우저/성능 증거가 아니다.
 - 정상전투: 최초12라운드 prefix는 고지 도착을 기다리는 controller 임의 조건 때문에 NPC를 불필요하게 대기시켰다. 이 조건을 제거해 실제 안전한 E가 가능하면 즉시 출발하도록 했다. 이 prefix는 실패/진행중 자료로 남기며 정상 완주·최종 균형·최종정책28/22 비교·24진입·두HTML·브라우저·Pages를 합격으로 표시하지 않는다.
+
+### 2026-10-09 · 23장 실전 Lv17 Continue와 화물 고체 관통 교정
+
+- 실제 고정 정책22/정예5 전투가 R16, XP77012/Lv17, dock-mid에 도달한 뒤 Continue 전체 비교에서 실패했다. 공통 progression.initialize는 저장 성장 장부를 재사용하기 전에 능력수련이 없는 heroStats로 두 치명타 값을 재계산해 네 동행의 실제 레벨업 값을 낮췄다. 이 실패 실행과 원본 export SHA256 db3399a0d18471af318787703dd381a3cf32d74fdd471f8ef70f91b60a0994cf는 보존한다. 정상 완주로 세지 않는다.
+- 새23 opt-in과 이미 존재하는 성장 장부에만 initialize 전후 유한한 critChance/critMultiplier 저장값을 보존한다. 공통 성장·XP·스킬 소스는 변경하지 않는다. 신규 입장, 실제 레벨업의 applyHero, 빠진/비정상 필드의 기존 보정, 구23/12/18/30 경로는 유지한다. 실제 전체 저장을 고정 fixture로 넣고 import/Continue/mount/initialize4회, 신규 입장 후 정상 XP 경계 레벨업과3회 재개, 누락 필드·scope 반례를 검사한다.
+- 독립 검수에서 첫 화물 swept polygon과 sy-stone-corner의 교집합11217.458을 찾았다. 시작 직후 서쪽220px/아래10px 해제 구간을 추가해 정적 full-solid 교차를0으로 만든다. 기존 시작/정착440×140 실체, 반사돌, NPC길, 전체배치/목표/보행경로는 그대로다. oneWay 상부 앞 보행대와의 교차는 별도 보고하며 배우 점유가 있으면 계속 대기한다. 뒤 하역홈과 앞 보행대의 명확한 깊이 표현은 다음 미술 검수 대상이다.
+- 이 단위는 실제 결함 교정 WIP다. 한국 관창 미술 보류와 정상22/28 최종 완주·두HTML·브라우저·Pages 미검수는 계속 유지한다.

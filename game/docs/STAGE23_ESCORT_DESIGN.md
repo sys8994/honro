@@ -51,3 +51,9 @@
 - `stage23-escort-fullplay.mjs`: 합법 입장에서 실제 입력만 수행하는 별도 고정정책 검수. 진행 중 실패/대기/죽음/회귀비용도 보존한다.
 
 첫 구현 단위 시점에는 최종 편성, 실제 정상 완주, 기본기 민감도,24 연결, 두 HTML/브라우저/Pages 검수를 아직 합격으로 처리하지 않는다.
+
+## Actual level-up resume guard
+
+The first fixed-policy 22/5 run reached R16/Lv17/dock-mid but failed full-state Continue: legacy progression initialization overwrote the four heroes' trained crit fields. `tests/fixtures/stage23-escort-level17-dock-mid.json` retains the actual App export and original run/source hashes. This is failure evidence, not a completion fixture. The Stage23 adapter retains only existing finite critChance/critMultiplier in opted-in battles with a growth ledger; it neither recalculates statistics nor alters fresh entry, XP grants, ordinary level-ups, missing-field migration or old chapter behavior. The regression compares the complete battle through four imports/Continues/mounts and checks a fresh entry's actual XP boundary separately.
+
+The cargo release segment moves220 west and10 down before descending. Full-solid intersection must remain zero; separately reported one-way front-walkway intersections require rear-chute/front-rim art layering. Occupancy covers the same whole sweep, including anyone standing on the front walkway.
