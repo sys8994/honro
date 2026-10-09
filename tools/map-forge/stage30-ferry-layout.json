@@ -1,0 +1,1378 @@
+{
+  "status": "production-authoring-in-progress",
+  "playBounds": {
+    "width": 11200,
+    "height": 7200
+  },
+  "altitudeDatumY": 6500,
+  "physics": {
+    "unitsPerMeter": 60,
+    "heroH": 92,
+    "heroR": 22,
+    "maxWalkSlope": 1.35,
+    "preferredRouteSlopeMax": 1.15,
+    "untrainedJumpVelocity": -660,
+    "jumpGravity": 1000,
+    "nominalApex": 217.8,
+    "authoredMandatoryJumpRiseMax": 150,
+    "authoredMandatoryJumpHorizontalMax": 220,
+    "minimumBodyClearance": 150,
+    "preferredBodyClearance": 220
+  },
+  "objectives": [
+    {
+      "id": "transport-map",
+      "kind": "interact",
+      "point": [
+        1320,
+        5400
+      ]
+    },
+    {
+      "id": "ferry-hold",
+      "kind": "hold",
+      "point": [
+        5550,
+        5470
+      ],
+      "rounds": 3,
+      "radius": 540,
+      "contestRadius": 230,
+      "sameFloorVertical": 150,
+      "wave": {
+        "kind": "hound",
+        "count": 3
+      }
+    },
+    {
+      "id": "old-road",
+      "kind": "reach",
+      "point": [
+        9300,
+        4850
+      ],
+      "radius": 440,
+      "allHeroes": true,
+      "sameFloorVertical": 150
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "sf-map-rock",
+      "zone": "A",
+      "top": [
+        [
+          0,
+          5440
+        ],
+        [
+          520,
+          5410
+        ],
+        [
+          1180,
+          5400
+        ],
+        [
+          1500,
+          5400
+        ],
+        [
+          1610,
+          5430
+        ],
+        [
+          1840,
+          5560
+        ]
+      ],
+      "role": "rock-mass",
+      "state": "both",
+      "bottom": [
+        [
+          1840,
+          6010
+        ],
+        [
+          1050,
+          6200
+        ],
+        [
+          0,
+          6220
+        ]
+      ]
+    },
+    {
+      "id": "sf-west-ford",
+      "zone": "B",
+      "top": [
+        [
+          1610,
+          5430
+        ],
+        [
+          1840,
+          5560
+        ],
+        [
+          2180,
+          6010
+        ],
+        [
+          2440,
+          6200
+        ],
+        [
+          2740,
+          6260
+        ],
+        [
+          3060,
+          6250
+        ],
+        [
+          3380,
+          6220
+        ],
+        [
+          3720,
+          6150
+        ],
+        [
+          4070,
+          6170
+        ],
+        [
+          4420,
+          6110
+        ],
+        [
+          4900,
+          6210
+        ],
+        [
+          5400,
+          6200
+        ],
+        [
+          5770,
+          6110
+        ],
+        [
+          6020,
+          6110
+        ],
+        [
+          6140,
+          6260
+        ],
+        [
+          6370,
+          6420
+        ],
+        [
+          6460,
+          6440
+        ]
+      ],
+      "role": "rock-mass",
+      "state": "both",
+      "bottom": [
+        [
+          6460,
+          7200
+        ],
+        [
+          0,
+          7200
+        ]
+      ],
+      "note": "하부 해안 원본. 서쪽 회복돌턱은6020→6460 표면이며 되짚으면 여울로 복귀. 동쪽 해안과 이어지지 않는다."
+    },
+    {
+      "id": "sf-cape-west-access",
+      "zone": "C",
+      "top": [
+        [
+          1550,
+          5405
+        ],
+        [
+          1850,
+          5240
+        ],
+        [
+          2170,
+          4980
+        ],
+        [
+          2580,
+          4660
+        ],
+        [
+          3040,
+          4640
+        ]
+      ],
+      "role": "oneWay-stone-stair",
+      "state": "both",
+      "oneWay": true,
+      "depth": 65,
+      "note": "서쪽 분기 목의 개방 석계단. B가 아래로 갈라지는 목을 큰 solid 쐐기로 메우지 않는다. 2170 이후는 실제 solid 곶 받침이 지지."
+    },
+    {
+      "id": "sf-granite-cape",
+      "zone": "C",
+      "top": [
+        [
+          3040,
+          4640
+        ],
+        [
+          3430,
+          4550
+        ],
+        [
+          3740,
+          4600
+        ],
+        [
+          4190,
+          4510
+        ],
+        [
+          4500,
+          4580
+        ],
+        [
+          4680,
+          4720
+        ],
+        [
+          5050,
+          4840
+        ],
+        [
+          5420,
+          4890
+        ]
+      ],
+      "role": "rock-mass",
+      "state": "both",
+      "bottom": [
+        [
+          5420,
+          5040
+        ],
+        [
+          4750,
+          5050
+        ],
+        [
+          4350,
+          5460
+        ],
+        [
+          3900,
+          5500
+        ],
+        [
+          3450,
+          5240
+        ],
+        [
+          3040,
+          5000
+        ]
+      ],
+      "note": "C 아래 B/선창 진입과 중첩하는 화강암 곶. 하부 통로의 몸 전체 유효높이는 구현 때 측정."
+    },
+    {
+      "id": "sf-landing-west-stairs",
+      "zone": "D",
+      "top": [
+        [
+          4190,
+          6020
+        ],
+        [
+          4440,
+          5830
+        ],
+        [
+          4610,
+          5670
+        ]
+      ],
+      "role": "oneWay-stone-stair",
+      "state": "both",
+      "oneWay": true,
+      "depth": 64,
+      "note": "돌선창 옆의 개방 석계단. 아래의 B→F 회귀 통로를 막는 통짜 삼각형 기반을 추가하지 않는다."
+    },
+    {
+      "id": "sf-ferry-court",
+      "zone": "D",
+      "top": [
+        [
+          4850,
+          5470
+        ],
+        [
+          6260,
+          5470
+        ]
+      ],
+      "role": "rock-mass",
+      "state": "both",
+      "bottom": [
+        [
+          6260,
+          5800
+        ],
+        [
+          5910,
+          5910
+        ],
+        [
+          5420,
+          5840
+        ],
+        [
+          4850,
+          5800
+        ]
+      ],
+      "note": "방어면은 단일 수평면. marker 중심5550, 반경540. 곶/윗석축 배우는 방어자로 세지 않는다."
+    },
+    {
+      "id": "sf-cape-east-descent",
+      "zone": "D",
+      "top": [
+        [
+          5420,
+          4890
+        ],
+        [
+          5720,
+          5110
+        ],
+        [
+          5960,
+          5130
+        ],
+        [
+          6140,
+          5350
+        ],
+        [
+          6260,
+          5320
+        ]
+      ],
+      "role": "oneWay-stone-stair",
+      "state": "both",
+      "depth": 90,
+      "note": "C→D 정/역주행 개방 석계단. C-E의 고정 목교 아래로 내려가는 목. E의 큰 solid 암반과 겹쳐 묻히면 안 된다.",
+      "oneWay": true
+    },
+    {
+      "id": "sf-quay-west-loft",
+      "zone": "D",
+      "top": [
+        [
+          4830,
+          5240
+        ],
+        [
+          5110,
+          5240
+        ],
+        [
+          5400,
+          5220
+        ]
+      ],
+      "role": "oneWay-wood-deck",
+      "state": "both",
+      "oneWay": true,
+      "depth": 58,
+      "note": "등불 지원용 작은 적재누마루. 밑면은 반사벽이 아니다."
+    },
+    {
+      "id": "sf-quay-east-loft",
+      "zone": "D",
+      "top": [
+        [
+          6100,
+          5270
+        ],
+        [
+          6500,
+          5240
+        ]
+      ],
+      "role": "oneWay-wood-deck",
+      "state": "both",
+      "oneWay": true,
+      "depth": 58
+    },
+    {
+      "id": "sf-quay-reflector",
+      "zone": "D",
+      "top": [
+        [
+          5940,
+          5320
+        ],
+        [
+          6060,
+          5320
+        ]
+      ],
+      "role": "solid-reflector",
+      "state": "both",
+      "bottom": [
+        [
+          6060,
+          5460
+        ],
+        [
+          5940,
+          5460
+        ]
+      ],
+      "note": "실제M11 반사면 후보. 오른쪽/위 기본사격 대안과 주경로 우회 보장."
+    },
+    {
+      "id": "sf-return-tooth-1",
+      "zone": "D",
+      "top": [
+        [
+          4710,
+          5670
+        ],
+        [
+          4840,
+          5670
+        ]
+      ],
+      "role": "recovery-stone",
+      "state": "both",
+      "depth": 45
+    },
+    {
+      "id": "sf-return-tooth-2",
+      "zone": "D",
+      "top": [
+        [
+          4490,
+          5820
+        ],
+        [
+          4710,
+          5820
+        ]
+      ],
+      "role": "recovery-stone",
+      "state": "both",
+      "depth": 45
+    },
+    {
+      "id": "sf-return-tooth-3",
+      "zone": "D",
+      "top": [
+        [
+          4690,
+          5970
+        ],
+        [
+          4830,
+          5970
+        ]
+      ],
+      "role": "recovery-stone",
+      "state": "both",
+      "depth": 45,
+      "note": "서쪽 엇갈린 뒤돌기. 선창 아래로 돌아 나오는 선택 경로이며 기본 석계단도 보존."
+    },
+    {
+      "id": "sf-bank-inner",
+      "zone": "E",
+      "top": [
+        [
+          6100,
+          4860
+        ],
+        [
+          6440,
+          4820
+        ],
+        [
+          6750,
+          4890
+        ],
+        [
+          7030,
+          4870
+        ],
+        [
+          7300,
+          4990
+        ],
+        [
+          7460,
+          4860
+        ],
+        [
+          7790,
+          4720
+        ],
+        [
+          8150,
+          4790
+        ],
+        [
+          8450,
+          4760
+        ]
+      ],
+      "role": "rock-mass",
+      "state": "both",
+      "bottom": [
+        [
+          8450,
+          5100
+        ],
+        [
+          7910,
+          5200
+        ],
+        [
+          7370,
+          5380
+        ],
+        [
+          6870,
+          5230
+        ],
+        [
+          6260,
+          5100
+        ],
+        [
+          6100,
+          5100
+        ]
+      ],
+      "note": "일정 높이의 평행층이 아니라 굽이와 두 갈래 시야가 있는 제방 덩어리."
+    },
+    {
+      "id": "sf-high-response-ledge",
+      "zone": "E",
+      "top": [
+        [
+          7870,
+          4670
+        ],
+        [
+          8500,
+          4670
+        ]
+      ],
+      "role": "oneWay-wood-deck",
+      "state": "both",
+      "oneWay": true,
+      "depth": 52,
+      "note": "낡은 장례길 바깥 점검마루. 최종집결면이 아니며 궁수2 진입 후보. 하부지지/접근은 검수."
+    },
+    {
+      "id": "sf-outbank-screen",
+      "zone": "E",
+      "top": [
+        [
+          6720,
+          5330
+        ],
+        [
+          6830,
+          5150
+        ],
+        [
+          6990,
+          5490
+        ]
+      ],
+      "role": "collapse-screen",
+      "state": "before",
+      "bottom": [
+        [
+          7350,
+          6120
+        ],
+        [
+          7070,
+          6440
+        ],
+        [
+          6640,
+          5790
+        ]
+      ],
+      "note": "정상 기본경로에 속하지 않는 외곽 덩어리. 불가시벽 금지. 유료도약/넉백으로 들어온 배우/진목이 있으면 전환보류; 선창·안쪽제방은 삭제하지 않음."
+    },
+    {
+      "id": "sf-settled-barge",
+      "zone": "F",
+      "top": [
+        [
+          6020,
+          6110
+        ],
+        [
+          6420,
+          6020
+        ],
+        [
+          6960,
+          5850
+        ],
+        [
+          7460,
+          5700
+        ]
+      ],
+      "role": "solid-wood-hull",
+      "state": "settled",
+      "depth": 145,
+      "note": "정착 전에는 보행충돌 없음. 두께 있는 한 척의넓은짐배/하역판. 이동발판 기능 없음.",
+      "bottom": [
+        [
+          7460,
+          5750
+        ],
+        [
+          7300,
+          5940
+        ],
+        [
+          6920,
+          6160
+        ],
+        [
+          6430,
+          6310
+        ],
+        [
+          6170,
+          6280
+        ],
+        [
+          6020,
+          6150
+        ]
+      ]
+    },
+    {
+      "id": "sf-east-landing-planks",
+      "zone": "F",
+      "top": [
+        [
+          7460,
+          5700
+        ],
+        [
+          7820,
+          5650
+        ],
+        [
+          8170,
+          5510
+        ],
+        [
+          8450,
+          5500
+        ]
+      ],
+      "role": "oneWay-wood-landing",
+      "state": "both",
+      "oneWay": true,
+      "depth": 64,
+      "note": "아래 회복해안과 교차하는 실제 목재 상륙길. 후면 지주가 돌해안에 닿되 통로 몸충돌을 만들지 않는다."
+    },
+    {
+      "id": "sf-east-recovery-shore",
+      "zone": "F",
+      "top": [
+        [
+          7210,
+          6440
+        ],
+        [
+          7400,
+          6440
+        ],
+        [
+          7700,
+          6170
+        ],
+        [
+          7910,
+          5970
+        ],
+        [
+          8110,
+          5750
+        ],
+        [
+          8270,
+          5610
+        ],
+        [
+          8450,
+          5500
+        ]
+      ],
+      "role": "recovery-shore",
+      "state": "both",
+      "bottom": [
+        [
+          8800,
+          7200
+        ],
+        [
+          7210,
+          7200
+        ]
+      ],
+      "note": "동쪽 회복돌턱에서 원래 낮은길로 기본보행 복귀. 위의oneWay목재상륙길 밑/옆을 통과. 서쪽돌턱과750간격,전폭강바닥없음."
+    },
+    {
+      "id": "sf-east-outer-grade",
+      "zone": "G",
+      "top": [
+        [
+          8450,
+          5500
+        ],
+        [
+          8660,
+          5290
+        ],
+        [
+          8780,
+          5140
+        ],
+        [
+          8920,
+          5000
+        ]
+      ],
+      "role": "rock-grade",
+      "state": "both",
+      "depth": 150,
+      "note": "낮은 길의 짧은 동쪽 암반 접근. 8990의 낮은 골과 9400–9650 작은 전투 어깨에서 사선/엄폐가 바뀐다. 정상 등반은 고지와 포개지되 큰 암반 내부를 걷지 않는다.",
+      "bottom": [
+        [
+          8980,
+          5540
+        ],
+        [
+          9020,
+          6270
+        ],
+        [
+          9200,
+          7200
+        ],
+        [
+          8450,
+          7200
+        ]
+      ]
+    },
+    {
+      "id": "sf-old-road-west-rise",
+      "zone": "G",
+      "top": [
+        [
+          8450,
+          4760
+        ],
+        [
+          8570,
+          4620
+        ],
+        [
+          8800,
+          4850
+        ]
+      ],
+      "role": "rock-shoulder",
+      "state": "both",
+      "depth": 180,
+      "bottom": [
+        [
+          8800,
+          5000
+        ],
+        [
+          8580,
+          5000
+        ],
+        [
+          8450,
+          5090
+        ]
+      ]
+    },
+    {
+      "id": "sf-old-road-gather",
+      "zone": "G",
+      "top": [
+        [
+          9200,
+          4850
+        ],
+        [
+          10020,
+          4850
+        ]
+      ],
+      "role": "rock-mass",
+      "state": "both",
+      "bottom": [
+        [
+          10020,
+          7200
+        ],
+        [
+          9350,
+          7200
+        ],
+        [
+          9200,
+          5250
+        ]
+      ],
+      "note": "평탄 집결면 10300–10940. 중심 10520. 네 생존 동행의 같은 층 집결. 추가 적/증원/목표 없음."
+    },
+    {
+      "id": "sf-old-road-west-bridge",
+      "zone": "G",
+      "top": [
+        [
+          8800,
+          4850
+        ],
+        [
+          9200,
+          4850
+        ]
+      ],
+      "role": "oneWay-wood-deck",
+      "state": "both",
+      "oneWay": true,
+      "depth": 54,
+      "note": "옛 장례길의 짧은 고정 목교. 하부 진입자가 아래에서 기본 점프로 올라올 수 있다. 밑면은 반사벽이 아니다."
+    },
+    {
+      "id": "sf-cape-bank-link",
+      "zone": "C/E",
+      "top": [
+        [
+          5520,
+          4886
+        ],
+        [
+          6100,
+          4860
+        ]
+      ],
+      "role": "oneWay-wood-bridge",
+      "state": "both",
+      "oneWay": true,
+      "depth": 65,
+      "note": "곶과 제방의 짧은 고정 목교. 아래로 선창 석계단이 엇갈린다. 큰 E 암반은6100부터 시작해 내려가는 몸이 매몰되지 않게 한다."
+    },
+    {
+      "id": "sf-cape-west-buttress",
+      "zone": "C",
+      "top": [
+        [
+          2170,
+          4980
+        ],
+        [
+          2580,
+          4660
+        ],
+        [
+          3040,
+          4640
+        ]
+      ],
+      "bottom": [
+        [
+          3040,
+          4940
+        ],
+        [
+          2510,
+          5200
+        ],
+        [
+          2170,
+          5450
+        ]
+      ],
+      "role": "rock-mass",
+      "state": "both",
+      "note": "서쪽 곶의 실제 두꺼운 받침. A 분기 목까지 확장해 B 하부를 봉쇄하지 않는다."
+    },
+    {
+      "id": "sf-east-quay-entry",
+      "zone": "D",
+      "top": [
+        [
+          6260,
+          5470
+        ],
+        [
+          6730,
+          5470
+        ]
+      ],
+      "depth": 140,
+      "role": "stone-entry-landing",
+      "state": "both",
+      "note": "동쪽 수비대의 좁은 선창 진입부. 본 마당과 연결, 고체 석축과 다른 입구."
+    },
+    {
+      "id": "sf-landing-upper-step",
+      "zone": "D",
+      "role": "stone-stair",
+      "oneWay": true,
+      "top": [
+        [
+          4770,
+          5520
+        ],
+        [
+          4850,
+          5470
+        ]
+      ],
+      "depth": 64
+    }
+  ],
+  "zones": [
+    {
+      "id": "A",
+      "name": "지도바위와 폐초가",
+      "bounds": [
+        400,
+        5250,
+        1500,
+        550
+      ]
+    },
+    {
+      "id": "B",
+      "name": "갈대여울과 낮은 우회턱",
+      "bounds": [
+        1700,
+        5840,
+        2800,
+        660
+      ]
+    },
+    {
+      "id": "C",
+      "name": "바람맞는 화강암곶",
+      "bounds": [
+        2500,
+        4350,
+        3000,
+        1100
+      ]
+    },
+    {
+      "id": "D",
+      "name": "안쪽 나루 돌선창",
+      "bounds": [
+        4500,
+        5100,
+        2200,
+        1150
+      ]
+    },
+    {
+      "id": "E",
+      "name": "끊긴 강둑과 적재 둔덕",
+      "bounds": [
+        6300,
+        4560,
+        2400,
+        1500
+      ]
+    },
+    {
+      "id": "F",
+      "name": "정착 계류선과 회복 돌턱",
+      "bounds": [
+        5900,
+        5560,
+        3100,
+        1040
+      ]
+    },
+    {
+      "id": "G",
+      "name": "옛 장례길의 높은 어깨",
+      "bounds": [
+        8380,
+        4480,
+        1840,
+        1200
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "ford-pocket",
+      "zone": "B",
+      "members": [
+        {
+          "id": "b1",
+          "kind": "hound",
+          "x": 2750,
+          "y": 6259.688,
+          "support": "sf-west-ford",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "b2",
+          "kind": "hound",
+          "x": 2910,
+          "y": 6254.688,
+          "support": "sf-west-ford",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "b3",
+          "kind": "kilnFiend",
+          "x": 3120,
+          "y": 6244.375,
+          "support": "sf-west-ford",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "b4",
+          "kind": "lantern",
+          "x": 3240,
+          "y": 6201.125,
+          "support": "sf-west-ford",
+          "elite": false,
+          "role": "rear-support",
+          "removeFor20": true
+        }
+      ]
+    },
+    {
+      "id": "cape-watch",
+      "zone": "C",
+      "members": [
+        {
+          "id": "c1",
+          "kind": "possessedGuard",
+          "x": 3110,
+          "y": 4623.846,
+          "support": "sf-granite-cape",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "c2",
+          "kind": "possessedGuard",
+          "x": 3280,
+          "y": 4584.615,
+          "support": "sf-granite-cape",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": true
+        },
+        {
+          "id": "c3",
+          "kind": "possessedArcher",
+          "x": 4110,
+          "y": 4526.0,
+          "support": "sf-granite-cape",
+          "elite": true,
+          "role": "high-support",
+          "removeFor20": false
+        },
+        {
+          "id": "c4",
+          "kind": "possessedArcher",
+          "x": 4350,
+          "y": 4546.129,
+          "support": "sf-granite-cape",
+          "elite": false,
+          "role": "high-support",
+          "removeFor20": false
+        }
+      ]
+    },
+    {
+      "id": "quay-west",
+      "zone": "D",
+      "members": [
+        {
+          "id": "dw1",
+          "kind": "kilnFiend",
+          "x": 4900,
+          "y": 5470.0,
+          "support": "sf-ferry-court",
+          "elite": true,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "dw2",
+          "kind": "hound",
+          "x": 5020,
+          "y": 5470.0,
+          "support": "sf-ferry-court",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "dw3",
+          "kind": "hound",
+          "x": 5140,
+          "y": 5470.0,
+          "support": "sf-ferry-court",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": true
+        },
+        {
+          "id": "dw4",
+          "kind": "lantern",
+          "x": 4980,
+          "y": 5208.0,
+          "support": "sf-quay-west-loft",
+          "elite": false,
+          "role": "rear-support",
+          "removeFor20": false
+        },
+        {
+          "id": "dw5",
+          "kind": "lantern",
+          "x": 5360,
+          "y": 5190.759,
+          "support": "sf-quay-west-loft",
+          "elite": false,
+          "role": "rear-support",
+          "removeFor20": false
+        }
+      ]
+    },
+    {
+      "id": "quay-east",
+      "zone": "D",
+      "members": [
+        {
+          "id": "de1",
+          "kind": "kilnFiend",
+          "x": 5880,
+          "y": 5470.0,
+          "support": "sf-ferry-court",
+          "elite": true,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "de2",
+          "kind": "possessedGuard",
+          "x": 5660,
+          "y": 5470.0,
+          "support": "sf-ferry-court",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "de3",
+          "kind": "possessedGuard",
+          "x": 5800,
+          "y": 5470.0,
+          "support": "sf-ferry-court",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "de4",
+          "kind": "possessedArcher",
+          "x": 6190,
+          "y": 5263.25,
+          "support": "sf-quay-east-loft",
+          "elite": false,
+          "role": "high-support",
+          "removeFor20": false
+        },
+        {
+          "id": "de5",
+          "kind": "possessedArcher",
+          "x": 6400,
+          "y": 5243.0,
+          "support": "sf-quay-east-loft",
+          "elite": false,
+          "role": "high-support",
+          "removeFor20": true
+        }
+      ]
+    },
+    {
+      "id": "bank-rearguard",
+      "zone": "E",
+      "members": [
+        {
+          "id": "e1",
+          "kind": "possessedGuard",
+          "x": 6970,
+          "y": 4874.286,
+          "support": "sf-bank-inner",
+          "elite": true,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "e2",
+          "kind": "hound",
+          "x": 7140,
+          "y": 4918.889,
+          "support": "sf-bank-inner",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "e3",
+          "kind": "possessedGuard",
+          "x": 7290,
+          "y": 4985.556,
+          "support": "sf-bank-inner",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": true
+        },
+        {
+          "id": "e4",
+          "kind": "possessedArcher",
+          "x": 7760,
+          "y": 4732.727,
+          "support": "sf-bank-inner",
+          "elite": false,
+          "role": "high-support",
+          "removeFor20": false
+        }
+      ]
+    },
+    {
+      "id": "escape-flank",
+      "zone": "F/G",
+      "members": [
+        {
+          "id": "fg1",
+          "kind": "possessedGuard",
+          "x": 8340,
+          "y": 5503.929,
+          "support": "sf-east-landing-planks",
+          "elite": true,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "fg2",
+          "kind": "hound",
+          "x": 8220,
+          "y": 5508.214,
+          "support": "sf-east-landing-planks",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": false
+        },
+        {
+          "id": "fg3",
+          "kind": "possessedArcher",
+          "x": 8660,
+          "y": 4217.727,
+          "support": "sf-old-road-west-rise",
+          "elite": true,
+          "role": "high-support",
+          "removeFor20": false
+        },
+        {
+          "id": "fg4",
+          "kind": "possessedGuard",
+          "x": 8730,
+          "y": 5050.0,
+          "support": "sf-east-outer-grade",
+          "elite": false,
+          "role": "frontline",
+          "removeFor20": true
+        }
+      ]
+    }
+  ],
+  "rosterVariants": {
+    "candidate26e6": {
+      "initial": 26,
+      "elite": 6,
+      "finite": 10,
+      "total": 36,
+      "enemyActionCap": 3,
+      "maxAliveBeforeAuthoredResponses": 29
+    },
+    "countControl20e6": {
+      "removeIds": [
+        "b4",
+        "c2",
+        "dw3",
+        "de5",
+        "e3",
+        "fg4"
+      ],
+      "initial": 20,
+      "elite": 6,
+      "finite": 10,
+      "total": 30,
+      "enemyActionCap": 3
+    },
+    "originalBudget20e4": {
+      "sameRemovalAs": "countControl20e6",
+      "downgradeEliteIds": [
+        "c3",
+        "fg1"
+      ],
+      "initial": 20,
+      "elite": 4,
+      "finite": 10,
+      "total": 30,
+      "enemyActionCap": 3,
+      "maxAliveBeforeAuthoredResponses": 23
+    }
+  }
+}

@@ -1,0 +1,1692 @@
+{
+  "sourceCommit": "b56bfb4f6e6d35166e05c37cad6dd21a6ccde236",
+  "projectSha256": "0d3b28a4e1a10214a00064cce67753d8d284bd8ba2ca3c83569e8e3f9fe7ce84",
+  "stage": {
+    "id": "stage-30",
+    "name": "남겨진 길",
+    "width": 7400,
+    "height": 3400,
+    "backdrop": "river",
+    "metadata": {
+      "stageId": 30,
+      "act": 3,
+      "actStage": 10,
+      "campaign": true
+    },
+    "terrains": [
+      {
+        "id": "a3-foundation",
+        "name": "a3-foundation",
+        "type": "solid",
+        "points": [
+          {
+            "x": 0,
+            "y": 2570
+          },
+          {
+            "x": 170,
+            "y": 2570
+          },
+          {
+            "x": 235,
+            "y": 2567.0710678118653
+          },
+          {
+            "x": 300,
+            "y": 2560
+          },
+          {
+            "x": 365,
+            "y": 2552.9289321881347
+          },
+          {
+            "x": 430,
+            "y": 2550
+          },
+          {
+            "x": 495,
+            "y": 2552.9289321881347
+          },
+          {
+            "x": 560,
+            "y": 2560
+          },
+          {
+            "x": 625,
+            "y": 2567.0710678118653
+          },
+          {
+            "x": 690,
+            "y": 2570
+          },
+          {
+            "x": 1590,
+            "y": 2570
+          },
+          {
+            "x": 1770,
+            "y": 2612.3529411764707
+          },
+          {
+            "x": 1817.5,
+            "y": 2626.1654507340268
+          },
+          {
+            "x": 1865,
+            "y": 2643.705882352941
+          },
+          {
+            "x": 1912.5,
+            "y": 2661.2463139718557
+          },
+          {
+            "x": 1960,
+            "y": 2675.0588235294117
+          },
+          {
+            "x": 2007.5,
+            "y": 2683.599255148326
+          },
+          {
+            "x": 2055,
+            "y": 2688.4117647058824
+          },
+          {
+            "x": 2102.5,
+            "y": 2693.2242742634385
+          },
+          {
+            "x": 2150,
+            "y": 2701.764705882353
+          },
+          {
+            "x": 2270,
+            "y": 2730
+          },
+          {
+            "x": 3160,
+            "y": 2730
+          },
+          {
+            "x": 3210,
+            "y": 2727.803300858899
+          },
+          {
+            "x": 3260,
+            "y": 2722.5
+          },
+          {
+            "x": 3290,
+            "y": 2719.0950712519534
+          },
+          {
+            "x": 3310,
+            "y": 2713.0790520822775
+          },
+          {
+            "x": 3360,
+            "y": 2700.5882352941176
+          },
+          {
+            "x": 3410,
+            "y": 2692.49081678816
+          },
+          {
+            "x": 3460,
+            "y": 2687.5
+          },
+          {
+            "x": 3510,
+            "y": 2682.50918321184
+          },
+          {
+            "x": 3560,
+            "y": 2674.4117647058824
+          },
+          {
+            "x": 3970,
+            "y": 2590
+          },
+          {
+            "x": 5390,
+            "y": 2590
+          },
+          {
+            "x": 5560,
+            "y": 3020
+          },
+          {
+            "x": 6450,
+            "y": 3020
+          },
+          {
+            "x": 6610,
+            "y": 2750
+          },
+          {
+            "x": 6710,
+            "y": 2750
+          },
+          {
+            "x": 6747.5,
+            "y": 2747.363961030679
+          },
+          {
+            "x": 6785,
+            "y": 2741
+          },
+          {
+            "x": 6822.5,
+            "y": 2734.636038969321
+          },
+          {
+            "x": 6860,
+            "y": 2732
+          },
+          {
+            "x": 6897.5,
+            "y": 2734.636038969321
+          },
+          {
+            "x": 6935,
+            "y": 2741
+          },
+          {
+            "x": 6972.5,
+            "y": 2747.363961030679
+          },
+          {
+            "x": 7010,
+            "y": 2750
+          },
+          {
+            "x": 7400,
+            "y": 2750
+          },
+          {
+            "x": 7900,
+            "y": 2592.7734375
+          },
+          {
+            "x": 8400,
+            "y": 2526.8029629629627
+          },
+          {
+            "x": 8900,
+            "y": 2583.0103703703703
+          },
+          {
+            "x": 9400,
+            "y": 2645.44
+          },
+          {
+            "x": 9900,
+            "y": 2649.026063100137
+          },
+          {
+            "x": 10400,
+            "y": 2552.4554183813443
+          },
+          {
+            "x": 10900,
+            "y": 2422.962962962963
+          },
+          {
+            "x": 11400,
+            "y": 2342.8532235939642
+          },
+          {
+            "x": 11900,
+            "y": 2315.99650094766
+          },
+          {
+            "x": 12400,
+            "y": 2243.281819507217
+          },
+          {
+            "x": 12900,
+            "y": 2165.974631870535
+          },
+          {
+            "x": 13400,
+            "y": 2130
+          },
+          {
+            "x": 13400,
+            "y": 27400
+          },
+          {
+            "x": -6000,
+            "y": 27400
+          },
+          {
+            "x": -6000,
+            "y": 2310
+          },
+          {
+            "x": -5500,
+            "y": 2275.7384458375855
+          },
+          {
+            "x": -5000,
+            "y": 2202.11255285027
+          },
+          {
+            "x": -4500,
+            "y": 2132.860475287943
+          },
+          {
+            "x": -4000,
+            "y": 2113.4773662551443
+          },
+          {
+            "x": -3500,
+            "y": 2211.1111111111113
+          },
+          {
+            "x": -3000,
+            "y": 2368.9300411522636
+          },
+          {
+            "x": -2500,
+            "y": 2486.625514403292
+          },
+          {
+            "x": -2000,
+            "y": 2526
+          },
+          {
+            "x": -1500,
+            "y": 2637.4814814814813
+          },
+          {
+            "x": -1000,
+            "y": 2737.8518518518517
+          },
+          {
+            "x": -500,
+            "y": 2693.046875
+          }
+        ],
+        "baseMaterial": "earth",
+        "oneWay": false,
+        "breakable": false,
+        "layer": "terrain",
+        "properties": {},
+        "playProjection": {
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "right": 7400,
+            "bottom": 3400
+          },
+          "start": {
+            "x": 0,
+            "y": 2570
+          }
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 1,
+          "optimizeEpsilon": 0
+        }
+      }
+    ],
+    "materials": [
+      {
+        "id": "wide-ferry-water",
+        "kind": "water-pool",
+        "conductive": true,
+        "points": [
+          [
+            5560,
+            2830
+          ],
+          [
+            6450,
+            2830
+          ],
+          [
+            6450,
+            3020
+          ],
+          [
+            5560,
+            3020
+          ]
+        ],
+        "surface": [
+          [
+            5560,
+            2830
+          ],
+          [
+            6450,
+            2830
+          ]
+        ],
+        "bottom": [
+          [
+            5560,
+            3020
+          ],
+          [
+            6450,
+            3020
+          ]
+        ],
+        "attached": true
+      }
+    ],
+    "elements": [
+      {
+        "id": "moored-ferry-boats",
+        "assetId": "a3-location:30:moored-ferry-boats",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "last-ferry-gangway",
+        "assetId": "a3-location:30:last-ferry-gangway",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "landscape-pine-0",
+        "assetId": "act1-scene:rooted-pine",
+        "x": 830,
+        "y": 2570,
+        "scale": 0.85,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "landscape-pine-1",
+        "assetId": "act1-scene:rooted-pine",
+        "x": 2460,
+        "y": 2730,
+        "scale": 0.7,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "landscape-pine-2",
+        "assetId": "act1-scene:rooted-pine",
+        "x": 3670,
+        "y": 2652,
+        "scale": 0.65,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "landscape-pine-3",
+        "assetId": "act1-scene:rooted-pine",
+        "x": 6980,
+        "y": 2750,
+        "scale": 0.82,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "small-ferry-shelter",
+        "assetId": "a3-location:30:small-ferry-shelter",
+        "x": 4700,
+        "y": 2590,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "river-boatkeeper-house",
+        "assetId": "a3-location:30:river-boatkeeper-house",
+        "x": 1230,
+        "y": 2570,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:weathered-ground-washes",
+        "assetId": "a3-refine:30:weathered-ground-washes",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "prop"
+      },
+      {
+        "id": "a3-refine:30:ground-vignette-0",
+        "assetId": "a3-refine:30:ground-vignette-0",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:ground-vignette-1",
+        "assetId": "a3-refine:30:ground-vignette-1",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:ground-vignette-2",
+        "assetId": "a3-refine:30:ground-vignette-2",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:ground-vignette-3",
+        "assetId": "a3-refine:30:ground-vignette-3",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:ground-vignette-4",
+        "assetId": "a3-refine:30:ground-vignette-4",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:rooted-pine-0",
+        "assetId": "a3-refine:30:pine-art-0",
+        "x": 45,
+        "y": 2570,
+        "scale": 0.64,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:rooted-pine-1",
+        "assetId": "a3-refine:30:pine-art-1",
+        "x": 550,
+        "y": 2558.912143413559,
+        "scale": 0.6,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:rooted-pine-2",
+        "assetId": "a3-refine:30:pine-art-2",
+        "x": 2190,
+        "y": 2711.1764705882356,
+        "scale": 0.67,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:rooted-pine-3",
+        "assetId": "a3-refine:30:pine-art-3",
+        "x": 3520,
+        "y": 2680.8896995106484,
+        "scale": 0.63,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      },
+      {
+        "id": "a3-refine:30:rooted-pine-4",
+        "assetId": "a3-refine:30:pine-art-4",
+        "x": 6860,
+        "y": 2732,
+        "scale": 0.6,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      }
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "kind": "archer",
+        "team": "player",
+        "x": 230,
+        "y": 2567.2963702878756,
+        "facing": 1
+      },
+      {
+        "id": "p-mage",
+        "kind": "mage",
+        "team": "player",
+        "x": 330,
+        "y": 2556.7364302406777,
+        "facing": 1
+      },
+      {
+        "id": "p-knight",
+        "kind": "knight",
+        "team": "player",
+        "x": 430,
+        "y": 2550,
+        "facing": 1
+      },
+      {
+        "id": "p-occultist",
+        "kind": "occultist",
+        "team": "player",
+        "x": 530,
+        "y": 2556.7364302406777,
+        "facing": 1
+      },
+      {
+        "id": "a3-30-sandbar-approach-0",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 1890,
+        "y": 2652.937688468159,
+        "facing": -1,
+        "spawnIndex": 0,
+        "behavior": "patrol",
+        "encounterGroup": "sandbar-approach",
+        "stageOverrides": {
+          "honroCohort": "sandbar-approach",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-sandbar-approach-1",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 2070,
+        "y": 2689.9315045661633,
+        "facing": -1,
+        "spawnIndex": 1,
+        "behavior": "patrol",
+        "encounterGroup": "sandbar-approach",
+        "stageOverrides": {
+          "honroCohort": "sandbar-approach",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-sandbar-approach-2",
+        "kind": "kilnFiend",
+        "team": "enemy",
+        "x": 2390,
+        "y": 2730,
+        "facing": -1,
+        "spawnIndex": 2,
+        "behavior": "patrol",
+        "encounterGroup": "sandbar-approach",
+        "stageOverrides": {
+          "honroCohort": "sandbar-approach",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": true,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-sandbar-approach-3",
+        "kind": "lantern",
+        "team": "enemy",
+        "x": 2600,
+        "y": 2698,
+        "facing": -1,
+        "spawnIndex": 3,
+        "behavior": "patrol",
+        "encounterGroup": "sandbar-approach",
+        "stageOverrides": {
+          "honroCohort": "sandbar-approach",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "ranged",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-riverbank-tools-0",
+        "kind": "kilnFiend",
+        "team": "enemy",
+        "x": 3100,
+        "y": 2730,
+        "facing": -1,
+        "spawnIndex": 4,
+        "behavior": "patrol",
+        "encounterGroup": "riverbank-tools",
+        "stageOverrides": {
+          "honroCohort": "riverbank-tools",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": true,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-riverbank-tools-1",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 3280,
+        "y": 2720.230047501302,
+        "facing": -1,
+        "spawnIndex": 5,
+        "behavior": "patrol",
+        "encounterGroup": "riverbank-tools",
+        "stageOverrides": {
+          "honroCohort": "riverbank-tools",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-riverbank-tools-2",
+        "kind": "lantern",
+        "team": "enemy",
+        "x": 3480,
+        "y": 2653.503673284736,
+        "facing": -1,
+        "spawnIndex": 6,
+        "behavior": "patrol",
+        "encounterGroup": "riverbank-tools",
+        "stageOverrides": {
+          "honroCohort": "riverbank-tools",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "ranged",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-riverbank-tools-3",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 3710,
+        "y": 2643.529411764706,
+        "facing": -1,
+        "spawnIndex": 7,
+        "behavior": "patrol",
+        "encounterGroup": "riverbank-tools",
+        "stageOverrides": {
+          "honroCohort": "riverbank-tools",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-ferry-landing-pack-0",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 4140,
+        "y": 2590,
+        "facing": -1,
+        "spawnIndex": 8,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-landing-pack",
+        "stageOverrides": {
+          "honroCohort": "ferry-landing-pack",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-ferry-landing-pack-1",
+        "kind": "kilnFiend",
+        "team": "enemy",
+        "x": 4310,
+        "y": 2590,
+        "facing": -1,
+        "spawnIndex": 9,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-landing-pack",
+        "stageOverrides": {
+          "honroCohort": "ferry-landing-pack",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-ferry-landing-pack-2",
+        "kind": "lantern",
+        "team": "enemy",
+        "x": 4540,
+        "y": 2558,
+        "facing": -1,
+        "spawnIndex": 10,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-landing-pack",
+        "stageOverrides": {
+          "honroCohort": "ferry-landing-pack",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "ranged",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-ferry-landing-pack-3",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 4740,
+        "y": 2590,
+        "facing": -1,
+        "spawnIndex": 11,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-landing-pack",
+        "stageOverrides": {
+          "honroCohort": "ferry-landing-pack",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-ferry-rearguard-0",
+        "kind": "kilnFiend",
+        "team": "enemy",
+        "x": 5030,
+        "y": 2590,
+        "facing": -1,
+        "spawnIndex": 12,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-rearguard",
+        "stageOverrides": {
+          "honroCohort": "ferry-rearguard",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": true,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-ferry-rearguard-1",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 5190,
+        "y": 2590,
+        "facing": -1,
+        "spawnIndex": 13,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-rearguard",
+        "stageOverrides": {
+          "honroCohort": "ferry-rearguard",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      },
+      {
+        "id": "a3-30-ferry-rearguard-2",
+        "kind": "lantern",
+        "team": "enemy",
+        "x": 5470,
+        "y": 2577.6923076923076,
+        "facing": -1,
+        "spawnIndex": 14,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-rearguard",
+        "stageOverrides": {
+          "honroCohort": "ferry-rearguard",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "ranged",
+          "honroEncounterSupport": "last-ferry-gangway:collision:0"
+        }
+      },
+      {
+        "id": "a3-30-ferry-rearguard-3",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 5630,
+        "y": 2649.076923076923,
+        "facing": -1,
+        "spawnIndex": 15,
+        "behavior": "patrol",
+        "encounterGroup": "ferry-rearguard",
+        "stageOverrides": {
+          "honroCohort": "ferry-rearguard",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "last-ferry-gangway:collision:0"
+        }
+      },
+      {
+        "id": "a3-30-old-road-sandbar-0",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 6160,
+        "y": 2750,
+        "facing": -1,
+        "spawnIndex": 16,
+        "behavior": "patrol",
+        "encounterGroup": "old-road-sandbar",
+        "stageOverrides": {
+          "honroCohort": "old-road-sandbar",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "last-ferry-gangway:collision:0"
+        }
+      },
+      {
+        "id": "a3-30-old-road-sandbar-1",
+        "kind": "kilnFiend",
+        "team": "enemy",
+        "x": 6320,
+        "y": 2750,
+        "facing": -1,
+        "spawnIndex": 17,
+        "behavior": "patrol",
+        "encounterGroup": "old-road-sandbar",
+        "stageOverrides": {
+          "honroCohort": "old-road-sandbar",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": true,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "last-ferry-gangway:collision:0"
+        }
+      },
+      {
+        "id": "a3-30-old-road-sandbar-2",
+        "kind": "lantern",
+        "team": "enemy",
+        "x": 6530,
+        "y": 2718,
+        "facing": -1,
+        "spawnIndex": 18,
+        "behavior": "patrol",
+        "encounterGroup": "old-road-sandbar",
+        "stageOverrides": {
+          "honroCohort": "old-road-sandbar",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "ranged",
+          "honroEncounterSupport": "last-ferry-gangway:collision:0"
+        }
+      },
+      {
+        "id": "a3-30-old-road-sandbar-3",
+        "kind": "hound",
+        "team": "enemy",
+        "x": 6680,
+        "y": 2750,
+        "facing": -1,
+        "spawnIndex": 19,
+        "behavior": "patrol",
+        "encounterGroup": "old-road-sandbar",
+        "stageOverrides": {
+          "honroCohort": "old-road-sandbar",
+          "honroAct3Encounter": 1,
+          "honroAct3Elite": false,
+          "honroEncounterRole": "frontline",
+          "honroEncounterSupport": "a3-foundation"
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "act3-response-30-0",
+        "once": true,
+        "when": {
+          "objectiveDone": "transport-map"
+        },
+        "warning": "지도를 펴자 하역장 종틀이 움직입니다.",
+        "text": "증원 진입 · 지도를 펴자 하역장 종틀이 움직입니다.",
+        "entry": {
+          "x": 2870,
+          "y": 2570
+        },
+        "action": {
+          "type": "spawn",
+          "kind": "kilnFiend",
+          "n": 2,
+          "x": 2870,
+          "y": 2570,
+          "spacing": 150,
+          "maxDistance": 380,
+          "source": "act3-response-30-0",
+          "act3Authored": true,
+          "elite": false
+        }
+      },
+      {
+        "id": "act3-response-30-1",
+        "once": true,
+        "when": {
+          "objectiveDone": "transport-map"
+        },
+        "warning": "나루 쪽에서 문지기들이 옛길을 가로막습니다.",
+        "text": "증원 진입 · 나루 쪽에서 문지기들이 옛길을 가로막습니다.",
+        "entry": {
+          "x": 5250,
+          "y": 2570
+        },
+        "action": {
+          "type": "spawn",
+          "kind": "possessedGuard",
+          "n": 3,
+          "x": 5250,
+          "y": 2570,
+          "spacing": 150,
+          "maxDistance": 380,
+          "source": "act3-response-30-1",
+          "act3Authored": true,
+          "elite": false
+        }
+      },
+      {
+        "id": "act3-response-30-2",
+        "once": true,
+        "when": {
+          "objectiveDone": "ferry-hold"
+        },
+        "warning": "퇴로가 열리자 마지막 궁귀가 강둑으로 들어옵니다.",
+        "text": "증원 진입 · 퇴로가 열리자 마지막 궁귀가 강둑으로 들어옵니다.",
+        "entry": {
+          "x": 6530,
+          "y": 2590
+        },
+        "action": {
+          "type": "spawn",
+          "kind": "possessedArcher",
+          "n": 2,
+          "x": 6530,
+          "y": 2590,
+          "spacing": 150,
+          "maxDistance": 380,
+          "source": "act3-response-30-2",
+          "act3Authored": true,
+          "elite": false
+        }
+      }
+    ],
+    "encounters": [
+      {
+        "id": "sandbar-approach",
+        "key": "sandbar-approach",
+        "behavior": "patrol",
+        "unitIds": [
+          "a3-30-sandbar-approach-0",
+          "a3-30-sandbar-approach-1",
+          "a3-30-sandbar-approach-2",
+          "a3-30-sandbar-approach-3"
+        ]
+      },
+      {
+        "id": "riverbank-tools",
+        "key": "riverbank-tools",
+        "behavior": "patrol",
+        "unitIds": [
+          "a3-30-riverbank-tools-0",
+          "a3-30-riverbank-tools-1",
+          "a3-30-riverbank-tools-2",
+          "a3-30-riverbank-tools-3"
+        ]
+      },
+      {
+        "id": "ferry-landing-pack",
+        "key": "ferry-landing-pack",
+        "behavior": "patrol",
+        "unitIds": [
+          "a3-30-ferry-landing-pack-0",
+          "a3-30-ferry-landing-pack-1",
+          "a3-30-ferry-landing-pack-2",
+          "a3-30-ferry-landing-pack-3"
+        ]
+      },
+      {
+        "id": "ferry-rearguard",
+        "key": "ferry-rearguard",
+        "behavior": "patrol",
+        "unitIds": [
+          "a3-30-ferry-rearguard-0",
+          "a3-30-ferry-rearguard-1",
+          "a3-30-ferry-rearguard-2",
+          "a3-30-ferry-rearguard-3"
+        ]
+      },
+      {
+        "id": "old-road-sandbar",
+        "key": "old-road-sandbar",
+        "behavior": "patrol",
+        "unitIds": [
+          "a3-30-old-road-sandbar-0",
+          "a3-30-old-road-sandbar-1",
+          "a3-30-old-road-sandbar-2",
+          "a3-30-old-road-sandbar-3"
+        ]
+      }
+    ],
+    "objectives": [],
+    "markers": [
+      {
+        "id": "transport-map",
+        "type": "act3",
+        "x": 1550,
+        "y": 2570,
+        "label": "세 기록으로 옛 운송로 확인",
+        "action": "act3"
+      },
+      {
+        "id": "ferry-hold",
+        "type": "act3",
+        "x": 4780,
+        "y": 2590,
+        "label": "일행이 빠져나갈 나루 지키기"
+      },
+      {
+        "id": "wave-ferry-hold",
+        "type": "act3-wave",
+        "x": 5360,
+        "y": 2590,
+        "label": "증원 진입"
+      },
+      {
+        "id": "old-road",
+        "type": "exit",
+        "x": 7040,
+        "y": 2750,
+        "label": "생존한 동행과 옛길 입구에 모이기"
+      }
+    ],
+    "layers": [
+      {
+        "id": "far",
+        "name": "far",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "mid",
+        "name": "mid",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "back",
+        "name": "back",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "structural-back",
+        "name": "structural-back",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "terrain",
+        "name": "terrain",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "interactive",
+        "name": "interactive",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "prop",
+        "name": "prop",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "units",
+        "name": "units",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "events",
+        "name": "events",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "front",
+        "name": "front",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "L2",
+        "name": "L2",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "L3",
+        "name": "L3",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "L4",
+        "name": "L4",
+        "visible": true,
+        "locked": false
+      },
+      {
+        "id": "L5",
+        "name": "L5",
+        "visible": true,
+        "locked": false
+      }
+    ],
+    "meta": {
+      "notes": "3-10 남겨진 길 · production architecture, ordinary movement",
+      "seed": 3030
+    },
+    "initialState": {
+      "honroAct3Revision": 1,
+      "honroActiveLimit": 3,
+      "honroState": {
+        "flags": {},
+        "collected": [],
+        "hold": 0,
+        "lastRound": 1,
+        "rescued": false,
+        "combatLog": []
+      },
+      "honroLocationRevision": 1,
+      "honroAct3EncounterRevision": 1,
+      "honroObjectiveRevision": 2,
+      "honroAct3Steps": [
+        {
+          "id": "transport-map",
+          "label": "세 기록으로 옛 운송로 확인",
+          "kind": "interact"
+        },
+        {
+          "id": "ferry-hold",
+          "label": "일행이 빠져나갈 나루 지키기",
+          "kind": "hold",
+          "rounds": 3,
+          "wave": {
+            "kind": "hound",
+            "count": 3
+          },
+          "radius": 540,
+          "contestRadius": 230
+        },
+        {
+          "id": "old-road",
+          "label": "생존한 동행과 옛길 입구에 모이기",
+          "kind": "reach",
+          "allHeroes": true,
+          "radius": 440
+        }
+      ],
+      "honroAct3ResponseRevision": 1,
+      "honroAct3SceneryRevision": 1
+    },
+    "environment": {
+      "version": 4,
+      "preset": "forest",
+      "skyVisible": true,
+      "atmosphere": {
+        "preset": "forest",
+        "overrides": {
+          "skyTop": "#152b3a",
+          "skyBottom": "#536e75",
+          "hazeStrength": 0.18,
+          "mistStrength": 0.035,
+          "lightStrength": 0.06,
+          "waterBaseColor": "#2b5165",
+          "waterHighlightColor": "#92b9c3"
+        }
+      },
+      "zones": [
+        {
+          "id": "act3-world",
+          "from": 0,
+          "to": 3400,
+          "blend": 200
+        }
+      ],
+      "groups": [
+        {
+          "id": "a3-place-L3",
+          "depthLayer": "L3",
+          "verticalMode": "WORLD",
+          "zoneId": "act3-world",
+          "x": 0,
+          "y": 2630
+        }
+      ],
+      "surfaces": [
+        {
+          "id": "a3-place-L3-support",
+          "groupId": "a3-place-L3",
+          "kind": "rear-ground",
+          "points": [
+            {
+              "x": -18000,
+              "y": 0
+            },
+            {
+              "x": 25400,
+              "y": 0
+            }
+          ],
+          "bottom": 18000
+        }
+      ],
+      "placements": [
+        {
+          "id": "a3-location:30:far-town-0",
+          "assetId": "a3-location:30:far-town-0",
+          "depthLayer": "L3",
+          "groupId": "a3-place-L3",
+          "supportId": "a3-place-L3-support",
+          "x": 1100,
+          "y": 0,
+          "scale": 0.7,
+          "rotation": 0
+        },
+        {
+          "id": "a3-location:30:far-town-1",
+          "assetId": "a3-location:30:far-town-1",
+          "depthLayer": "L3",
+          "groupId": "a3-place-L3",
+          "supportId": "a3-place-L3-support",
+          "x": 1800,
+          "y": 0,
+          "scale": 0.7,
+          "rotation": 0
+        },
+        {
+          "id": "a3-location:30:far-town-2",
+          "assetId": "a3-location:30:far-town-2",
+          "depthLayer": "L3",
+          "groupId": "a3-place-L3",
+          "supportId": "a3-place-L3-support",
+          "x": 2920,
+          "y": 0,
+          "scale": 0.7,
+          "rotation": 0
+        },
+        {
+          "id": "a3-location:30:far-town-3",
+          "assetId": "a3-location:30:far-town-3",
+          "depthLayer": "L3",
+          "groupId": "a3-place-L3",
+          "supportId": "a3-place-L3-support",
+          "x": 3800,
+          "y": 0,
+          "scale": 0.7,
+          "rotation": 0
+        }
+      ]
+    },
+    "design": {
+      "act3": {
+        "version": 1,
+        "kind": "wide-riverside-ferry",
+        "mainBuildings": [
+          "small-ferry-shelter",
+          "river-boatkeeper-house"
+        ],
+        "bridges": [
+          "last-ferry-gangway"
+        ],
+        "requiredRoute": [
+          {
+            "x": 230,
+            "y": 2567.2963702878756,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 1550,
+            "y": 2570,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 1590,
+            "y": 2570,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 2270,
+            "y": 2730,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 3290,
+            "y": 2719.0950712519534,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 3970,
+            "y": 2590,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 4780,
+            "y": 2590,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 5390,
+            "y": 2590,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 6040,
+            "y": 2750,
+            "support": "last-ferry-gangway:collision:0"
+          },
+          {
+            "x": 6610,
+            "y": 2750,
+            "support": "a3-foundation"
+          },
+          {
+            "x": 7040,
+            "y": 2750,
+            "support": "a3-foundation"
+          }
+        ],
+        "optionalRoutes": [],
+        "shotSamples": [],
+        "scope": "Approved 23–30 location rebuild. Source geometry; normal campaign and split continuity verified separately.",
+        "locationRevision": 1,
+        "koreanTown": {
+          "revision": 2,
+          "late": true,
+          "scope": "wide-riverside-ferry",
+          "requiredContourUnchanged": false,
+          "mainStructures": [
+            "small-ferry-shelter",
+            "river-boatkeeper-house"
+          ]
+        },
+        "primaryContour": [
+          [
+            0,
+            2570
+          ],
+          [
+            1590,
+            2570
+          ],
+          [
+            2270,
+            2730
+          ],
+          [
+            3290,
+            2730
+          ],
+          [
+            3970,
+            2590
+          ],
+          [
+            5390,
+            2590
+          ],
+          [
+            6040,
+            2750
+          ],
+          [
+            7400,
+            2750
+          ]
+        ],
+        "departureGathering": {
+          "x": 7040,
+          "y": 2750,
+          "radius": 440,
+          "flatFrom": 6610,
+          "flatTo": 7400
+        },
+        "encounterPlan": {
+          "version": 1,
+          "groups": [
+            {
+              "id": "sandbar-approach",
+              "purpose": "모래톱에 모인 짐승과 들린 도구. 지도 주변은 비운다.",
+              "anchor": "transport-map"
+            },
+            {
+              "id": "riverbank-tools",
+              "purpose": "강둑 낮은 바위 사이의 도구 군집.",
+              "anchor": "small-ferry-shelter"
+            },
+            {
+              "id": "ferry-landing-pack",
+              "purpose": "하역정자 앞에 모인 들림. 긴 강변 전체를 채우지 않는다.",
+              "anchor": "small-ferry-shelter"
+            },
+            {
+              "id": "ferry-rearguard",
+              "purpose": "나루 방어면 동쪽의 정예 도구와 들림.",
+              "anchor": "ferry-hold"
+            },
+            {
+              "id": "old-road-sandbar",
+              "purpose": "옛길 앞 마지막 군집. 네 명 집결부7040은 비운다.",
+              "anchor": "old-road"
+            }
+          ],
+          "initial": 20,
+          "elites": 4,
+          "activeLimit": 3,
+          "scope": "Approved location-specific groups; 25/26 authored for two heroes with staggered sightlines. Normal continuous balance remains a required check."
+        },
+        "responses": {
+          "version": 1,
+          "count": 3,
+          "enemies": 7,
+          "scope": "Finite objective-linked entries. Warning when queued; one group per safe actor boundary; population and XP caps retained."
+        },
+        "refinement": {
+          "version": 1,
+          "panorama": "act3-far.svg",
+          "vignettes": 5,
+          "groundedTrees": 5,
+          "baseFloor": [
+            [
+              0,
+              2570
+            ],
+            [
+              1590,
+              2570
+            ],
+            [
+              2270,
+              2730
+            ],
+            [
+              3290,
+              2730
+            ],
+            [
+              3970,
+              2590
+            ],
+            [
+              5390,
+              2590
+            ],
+            [
+              5560,
+              3020
+            ],
+            [
+              6450,
+              3020
+            ],
+            [
+              6610,
+              2750
+            ],
+            [
+              7400,
+              2750
+            ]
+          ],
+          "shoulders": 4,
+          "scope": "Editable grounded SVG art; small sampled real terrain shoulders with work/bridge levels preserved."
+        }
+      }
+    },
+    "routes": [
+      {
+        "x": 230,
+        "y": 2567.2963702878756
+      },
+      {
+        "x": 1550,
+        "y": 2570
+      },
+      {
+        "x": 1590,
+        "y": 2570
+      },
+      {
+        "x": 2270,
+        "y": 2730
+      },
+      {
+        "x": 3290,
+        "y": 2719.0950712519534
+      },
+      {
+        "x": 3970,
+        "y": 2590
+      },
+      {
+        "x": 4780,
+        "y": 2590
+      },
+      {
+        "x": 5390,
+        "y": 2590
+      },
+      {
+        "x": 6040,
+        "y": 2750
+      },
+      {
+        "x": 6610,
+        "y": 2750
+      },
+      {
+        "x": 7040,
+        "y": 2750
+      }
+    ],
+    "anchors": {
+      "spawn": {
+        "x": 230,
+        "y": 2567.2963702878756
+      },
+      "start": {
+        "x": 230,
+        "y": 2570
+      },
+      "exit": {
+        "x": 7040,
+        "y": 2750
+      }
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7400,
+      "bottom": 3400
+    },
+    "terrainBounds": {
+      "left": -6000,
+      "top": -24000,
+      "right": 13400,
+      "bottom": 27400
+    },
+    "terrainDomainVersion": 1
+  },
+  "balance": {
+    "id": 30,
+    "act": 3,
+    "entryLevel": 21.35,
+    "exitLevel": 22,
+    "rewardCurve": "current",
+    "balanceStatus": "proposed",
+    "initialEnemies": 20,
+    "activeEnemies": 3,
+    "targetHits": 2.415,
+    "targetIncomingHpFraction": 0.0785,
+    "maxAlive": 23,
+    "targetRounds": [
+      23,
+      42
+    ],
+    "objectiveTurns": 8
+  }
+}
