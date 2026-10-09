@@ -113,7 +113,8 @@
     "test:stage12-quarry:baseline": "HONRO_FULLPLAY_ROSTER=originalBudget20e4 HONRO_FULLPLAY_OUT=_local/reports/stage12-quarry/fullplay-baseline node tests/stage12-quarry-fullplay.mjs",
     "test:stage12-quarry:basic": "HONRO_FULLPLAY_BASIC_ONLY=1 HONRO_FULLPLAY_OUT=_local/reports/stage12-quarry/fullplay-basic node tests/stage12-quarry-fullplay.mjs",
     "test:stage12-quarry:native": "node --expose-gc tests/stage12-quarry-native-art.mjs",
-    "test:stage12-quarry:native-performance": "node --expose-gc tests/stage12-quarry-native-performance.mjs"
+    "test:stage12-quarry:native-performance": "node --expose-gc tests/stage12-quarry-native-performance.mjs",
+    "test:stage12-quarry:next-stage": "node tests/stage12-quarry-next-stage-app.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

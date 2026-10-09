@@ -2,7 +2,7 @@
 
 ## 동결 기준과 작업 상태
 
-기준 master d7b9fdf6696c05e53012605b77200a5ba7389197, tree 259267c90b40f03127d7fbe1a5d3b5960917aad4. 18·30 개편을 포함한다. 현재 기하·미술·목표·저장 구현을 마쳤으며, 정상 전투 결과에 따라26/정예6 중간 편성을 같은 정책20/4와 비교 검수 중이다. 아직 최종 채택·배포 승인 상태가 아니다.
+기준 master d7b9fdf6696c05e53012605b77200a5ba7389197, tree 259267c90b40f03127d7fbe1a5d3b5960917aad4. 18·30 개편을 포함한다. 현재 기하·미술·목표·저장 구현을 마쳤고, 동결된 동일 입력 정책의 정상26/정예6 R48·4인생존 및20/4 R53·4인생존 비교를 근거로26/6을 최종 편성으로 채택했다. 수치와 컨트롤러를 동결했다. 독립 재실행·최종 UI/미술·배포 확인을 마무리 중이며, 브라우저 검증 제한은 별도로 남긴다. 아래 이전32/26 실패 및 중간 상태는 역사 기록이며 현재 판정은 문서 끝의 최종 검수 항목을 따른다.
 
 - 실제 1–11장 최초 완료/합류 보상 장부: XP 23502, 경지11, 수련23. 이 입력은 앞선11장 플레이 영상이 아니다.
 - 보통 난이도, 네 동행 모두 일반 능력6, 추가 패시브0, 각 직업 합법4슬롯과 선행기예 모두 rank1. 잔여 수련11–14를 남긴다. 30장 경지12 패시브 AP05를 복사하지 않는다.
@@ -15,7 +15,7 @@
 
 신규입장11200×8000 비대칭2중고리: 상부오른쪽 옛길 → 운반대 → 절개사면 → 서쪽 채석장 → 하단회귀 → 길표 → 후면회로 → 운반대. 서로 다른 높이와 중앙 연결길을 유지한다. 길표 뒤에 실제 동굴통로가 열려도4라운드와 전멸을 건너뛰지 않는다. D/E 적도 전멸필수이며 선택경로라고 숨기지 않는다. CD/DE 빈걷기와 마지막1–3잔적 회수비용이 조기검수의 최우선 위험이다.
 
-현재 후보26/정예6 + 유한8/증원정예2, 동시행동4, 전체cap34. 최초 후보32/7은 정상 대표R76·방어 전2전사와 기본기R107 부담 때문에 최종안에서 제외했다. 같은 새 지형의20/정예4 비교와 원본 실제20/정예5를 구별한다. 원본은 index%11 자동정예 때문에 명시4보다 실제1마리가 많다. 새 revision만 자동정예의 HP·방어·XP까지 제거해 정확한 정예예산을 만든다. 기존 저장의 수치와 지형은 그대로 둔다.
+최종 편성26/정예6 + 유한8/증원정예2, 동시행동4, 전체cap34. 최초 후보32/7은 정상 대표R76·방어 전2전사와 기본기R107 부담 때문에 최종안에서 제외했다. 같은 새 지형의20/정예4 비교와 원본 실제20/정예5를 구별한다. 원본은 index%11 자동정예 때문에 명시4보다 실제1마리가 많다. 새 revision만 자동정예의 HP·방어·XP까지 제거해 정확한 정예예산을 만든다. 기존 저장의 수치와 지형은 그대로 둔다.
 
 ## 장면과 위치
 
@@ -108,3 +108,16 @@ Three bounded input-only diagnostics were then preserved:
 The four-round diagnostic is not a full-completion pass or a claim of optimal play. It supports one bounded position-taking policy for the next paired26/20 comparison: knight takes the western front, ranged companions occupy separate supported positions behind his actual arrival, and mandatory D approach precedes opportunistic E/F fire. A dynamic advancing front must replace indefinite parking at the two diagnostic coordinates. Further local policy-combination searches are not part of this correction. Normal-combat adoption remains pending.
 
 Evidence is under `_local/reports/stage12-quarry/5718fb7-candidate-spread-scout/`, `5718fb7-baseline-spread-scout/`, `5718-predeath-prefix/`, and the three `5718-cover*diagnostic/` folders. `5718-cover-diagnostic/compact-comparison.json` summarizes actual movement, damage, resources and audit counters; the full shots and saved profiles remain beside it.
+
+
+### 최종26 채택과 실제 완료 저장의13장 연결
+
+생산 전투 소스5718fb7, 동결 검사기306e6b2(`western-front-guard`, `spread-stations`, `scout-support`, left-first)에서26/6은 길표R33·R48 승리,34적 전멸·5목표·hold4라운드/finite8·4인생존을 기록했다. 최종 HP156/242/62/331, 실제 HP 피해3,351, 발사188, 전체 동행 이동46,960이다. 두 번의 정상 Continue와 외부 배우/자원 쓰기0·recover0·소모품0을 확인했다. 명시적 HP/공격력 하향이나 무료 회복은 적용하지 않았다. 보수 rank1/능력6 빌드에서 HP 여유가 작다는 한계는 남긴다.
+
+같은 소스·컨트롤러·입장 자원의20/4는 길표R32·R53 승리,28적 전멸·4인생존, 실제 HP 피해3,172, 발사162, 동행 이동50,433이다. R45 이후 마지막 숨은 G4 때문에 소단9발 동안 동료들은 방어24회로980HP를 회복했다. 약1,516 거리에서 검사기의 O08 지원조건1,500을 넘는 한계가 꼬리를 늘렸으므로 높은 최종HP나 R53을 곧바로 상대 난이도/지도 강제 비용으로 읽지 않는다. 두 실행 모두 같은 정책이며 이 문턱을 사후 조절해 결과를 바꾸지 않는다.
+
+26의 D 전위/후위는 R17/18/20/21에 전멸해 후반 D/E 재왕복이0이다. 마지막5체R43→3체R46→1체R48 동안 계속 실탄 교전했고 회복 방어 대기는0이었다. G2는 F 하부의 설오/담허/소단 실제 원거리 공격으로 처리했다. 마지막 G3는 기사 혼자 기본이동1,716 후 S00 한 발로 정리했고, 그 뒤 소단의 출구 이동1,565로 같은R48 종료했다. 네 명 모두 큰고리를 다시 돈 기록이 아니다. 실제 기예 기록에는 M04 다중타격16발, M11 실제반사7발, S03 다중1발/704피해, O04 실제암괴내통과11발, O08 현형5발과 현형창 안 동료피해19건이 있다.
+
+`test:stage12-quarry:next-stage`는 이 정상 완료의 실제 저장에서 잘라 보존한 프로필만 사용한다. 통로 개방R33·방어 진입R34·막바지 저장을 각각3회 Continue하여 전투 전체 객체를 exact 비교한다. 실제 승리 프로필을 다시 열어 정상 쉼터 대화를 마친 뒤13장 진입 버튼을 누르고, 최초 대사 종료 후 정상 입력 가능 및13장 Continue3회를 확인했다. 12 완료는1회/R48 그대로이며 XP·능력분배·4슬롯에 중복 지급/초기화가 없다. 13 전체 지도는 들어온 d7 master의 hash와 같다. 다음 장의 원래 full-entry HP/MP 생성은 전투 중 추가 회복과 구별한다. 포함 fixture는 실제 원본 파일 SHA256와306/5718 출처를 기록하며 임의 완료 플래그·좌표·HP를 만들지 않는다.
+
+이 검사는 Native App/Engine와 실제 입력/저장 자료이며 DOM·렌더·저장매체는 harness다. 브라우저/실제 Pages와13장 전투 완주 증거로 확장하지 않는다. 독립 검수는 동일306 정책으로 fresh26을 재실행 중이다.
