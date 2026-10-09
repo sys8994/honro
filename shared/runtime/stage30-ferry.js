@@ -2,6 +2,17 @@
 // A battle snapshot opts in; Continue never replaces an old map or roster.
 const A=G.HonroAct3,W=G.HonroAllies,E=G.HonroEncounters,C=G.HONRO_CORE;
 const active=b=>b?.honroStage===30&&!b.honroCustom&&b.honroFerryRevision===1;
+// Version2 reserves the existing upper-bank guard for the actual high route.
+// Contact with one of its authored connected supports is required: a low-quay
+// jump, summon or floating body merely passing above y5150 is not that choice.
+const upperBankSupports=new Set(['sf-granite-cape','sf-cape-east-descent','sf-cape-bank-link','sf-bank-inner','sf-high-response-ledge','sf-east-outer-grade','sf-old-road-west-rise','sf-old-road-west-bridge','sf-old-road-gather','sf-old-road-return-flight','sf-old-road-upper-flight']);
+function pressureEnemies(e,candidates){const b=e.b;if(!active(b)||b.honroFerrySpec?.pressureVersion!==2)return candidates;
+ const rear=e.alive(1).filter(u=>u.honroFerryCell==='bank-rearguard');if(!rear.length)return candidates;
+ const engaged=rear.some(u=>u.aggroUntil>0&&u.aggroUntil>=b.round)||b.units.some(u=>hero(u)&&u.y<5150&&!u.airborne&&!u.jumping&&upperBankSupports.has(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id)&&rear.some(v=>Math.hypot(u.x-v.x,u.y-v.y)<1800));
+ // Only remove unavailable E members. The shared awake/aggro eligibility,
+ // fairness sort, three-actor cap, target choice and attack checks remain final.
+ return engaged?candidates:candidates.filter(u=>u.honroFerryCell!=='bank-rearguard');
+}
 const sources=['act3-response-30-0','act3-response-30-1','act3-ferry-hold','act3-response-30-2'];
 const alive=u=>!!u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;
 function memory(b){b.honroState??={flags:{},collected:[]};return b.honroState.ferry??={version:1,status:'moored',elapsed:0,duration:.8,commitCount:0,warnings:{},entries:{},offered:{},blockers:[]};}
@@ -88,6 +99,7 @@ W.execute=function(app,action){const b=app.engine?.b,source=action?.source;if(!a
 };
 const cap=E.populationCap;E.populationCap=function(b){return active(b)&&[30,36].includes(b.honroFerryPopulationCap)?b.honroFerryPopulationCap:cap(b);};
 const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroFerryAttached)return out;e.honroFerryAttached=true;memory(e.b);
+ const combat=e.combatEnemies.bind(e);e.combatEnemies=function(){return pressureEnemies(e,combat());};
  const can=e.canAct.bind(e);e.canAct=function(){if(memory(e.b).status==='settling')return false;const ok=can();if(ok)offer(app);return ok;};
  const finish=e.finishAction.bind(e);e.finishAction=function(...args){const u=e.active,m=memory(e.b),previous=e.honroFerryAction;e.honroFerryAction=hero(u)&&!u.acted?{id:u.id,eligible:!!m.offered[u.id]}:null;try{return finish(...args);}finally{e.honroFerryAction=previous;}};
  const tick=e.tick.bind(e);e.tick=function(dt){if(cleanup(app))return tick(dt);const m=memory(e.b);if(m.status!=='settling')return tick(dt);

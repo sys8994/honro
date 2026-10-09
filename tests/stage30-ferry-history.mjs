@@ -49,4 +49,27 @@ for(const status of ['warned','waiting','settling','settled']){
 {
  const app=launch(),q=state(app);S.transition(app);defend(app);A.memory(q.b).holds['ferry-hold'].progress=2;boundary(app);q.e.tick(.25);assert.equal(S.memory(q.b).status,'settling');const before=geometry(q.b);q.b.phase='won';A.tick(app,0);assert.equal(S.memory(q.b).status,'cancelled');assert.deepEqual(geometry(q.b),before);assert.equal(S.memory(q.b).commitCount,0);rows.push({case:'terminal cleanup during settling preserves moored geography',passed:true});
 }
+// Persist the opt-in itself, not a recomputed campaign setting. These are
+// explicit low/upper placement fixtures using production export and Continue.
+for(const version of [undefined,1,2])for(const upper of [false,true]){
+ let app=h.load(h.profileThrough(29));app.launch(30);h.finish(app);now+=1000;let b=app.engine.b;b.round=4;
+ if(version===undefined)delete b.honroFerrySpec.pressureVersion;else b.honroFerrySpec.pressureVersion=version;
+ for(const v of app.engine.alive(1)){v.awake=true;v.aggroUntil=0;}
+ for(const u of app.engine.heroesAlive()){const t=b.terrain.find(t=>t.id==='sf-east-landing-planks');Object.assign(u,{x:7760,y:h.C.topAt(t,7760),vx:0,vy:0,airborne:false,jumping:false});assert(h.C.validTerrainContactPose(b.terrain,u));}
+ if(upper){const u=app.engine.heroesAlive()[0],t=b.terrain.find(t=>t.id==='sf-bank-inner');Object.assign(u,{x:6750,y:h.C.topAt(t,6750)});assert(h.C.validTerrainContactPose(b.terrain,u));}
+ const selected=e=>plain(e.combatEnemies().map(u=>u.id)),expected=selected(app.engine),hasE=expected.some(id=>app.engine.unit(id).honroFerryCell==='bank-rearguard');assert.equal(hasE,version!==2||upper,'Only pressure2 lower-only play filters the upper bank');
+ app.export();let profile=await h.exported();const before=retained(profile.honroBattle);await h.import(profile);app.continue();now+=1000;assert.deepEqual(retained(app.engine.b),before);assert.deepEqual(selected(app.engine),expected);
+ for(let n=0;n<3;n++){app.export();profile=await h.exported();app=h.load(profile);app.continue();now+=1000;assert.deepEqual(retained(app.engine.b),before,'Pressure spec, HP, actor history, queue and geometry remain exact');assert.deepEqual(selected(app.engine),expected);assert.equal(app.engine.b.honroFerrySpec.pressureVersion,version,'Continue never upgrades a saved pressure version');}
+ rows.push({case:'pressure '+(version??'absent')+' '+(upper?'upper-contact':'lower-only')+' import and three Continue calls',passed:true,eligible:expected,upperBankEligible:hasE});
+}
+{
+ let app=h.load(h.profileThrough(29));app.launch(30);h.finish(app);now+=1000;const b=app.engine.b;b.honroFerrySpec.pressureVersion=2;b.round=4;
+ const pose=(u,id,x)=>Object.assign(u,{x,y:h.C.topAt(b.terrain.find(t=>t.id===id),x),vx:0,vy:0,airborne:false,jumping:false});for(const v of app.engine.alive(1)){v.awake=true;v.aggroUntil=0;}for(const u of app.engine.heroesAlive())pose(u,'sf-east-landing-planks',7760);const u=app.engine.heroesAlive()[0];pose(u,'sf-bank-inner',7760);
+ b.phase='transition';app.engine.switchTeam();assert(b.queue.some(id=>app.engine.unit(id).honroFerryCell==='bank-rearguard'),'Actual original scheduler admitted upper-bank E on upper contact');
+ // Explicit interrupted-position fixture: a saved already-admitted actor is
+ // never deleted from the current turn when later eligibility changes.
+ pose(u,'sf-east-landing-planks',7760);assert(!app.engine.combatEnemies().some(v=>v.honroFerryCell==='bank-rearguard'));app.export();let profile=await h.exported();const before=retained(profile.honroBattle);
+ for(let n=0;n<3;n++){app=h.load(profile);app.continue();now+=1000;assert.deepEqual(retained(app.engine.b),before,'Continue keeps an admitted enemy queue, active actor and phase intact');assert(!app.engine.combatEnemies().some(v=>v.honroFerryCell==='bank-rearguard'));app.export();profile=await h.exported();}
+ rows.push({case:'pressure2 eligibility change never purges an already-admitted saved enemy queue',passed:true,phase:before.phase,active:before.active,queue:before.queue});
+}
 const hash=s=>createHash('sha256').update(s).digest('hex'),result={rows,sourceCommit:original.sourceCommit,runtimeSha256:hash(await readFile('shared/runtime/stage30-ferry.js','utf8')),scope:'Production App, save/export/import/Continue, DOM dialogue-skip. Geometry and goal prerequisite states are explicit fixtures. DOM/render/storage/clock are doubles. Not normal play or browser evidence.'};await mkdir('_local/reports/stage30-ferry',{recursive:true});await writeFile('_local/reports/stage30-ferry/history.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));

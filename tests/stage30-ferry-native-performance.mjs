@@ -13,12 +13,12 @@ import {createHash} from 'node:crypto';
 import {runtimeParts,root} from '../shared/build.mjs';
 
 const require=createRequire(import.meta.url),native=require('@napi-rs/canvas');
-const out=path.join(root,'_local/reports/stage30-ferry-native-performance');
+const out=path.join(root,process.env.HONRO_NATIVE_OUT||'_local/reports/stage30-ferry-native-performance');
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
 const sha=x=>createHash('sha256').update(x).digest('hex');
 const productionPaths=['shared','game/config','game/src','game/engine','tools/environment','tools/map-forge','tools/party-forge','tools/monster-forge','tools/actor-forge'];
-const sourceCommit=git('rev-parse','71a3f527'),checkoutCommit=git('rev-parse','HEAD');
-assert.equal(git('diff','--name-only',sourceCommit,'--',...productionPaths),'','Production files differ from the pinned 71a3f527 checkpoint; test-only commits are allowed');
+const sourceCommit=git('rev-parse',process.env.HONRO_NATIVE_SOURCE_COMMIT||'HEAD'),checkoutCommit=git('rev-parse','HEAD');
+assert.equal(git('diff','--name-only',sourceCommit,'--',...productionPaths),'','Production files differ from the explicitly recorded source checkpoint; commit the production unit before measuring it');
 const productionFiles=git('ls-files','-z','--',...productionPaths).split('\0').filter(Boolean).sort();
 async function sourceDigest(){const h=createHash('sha256');for(const file of productionFiles)h.update(file+'\0').update(await readFile(path.join(root,file)));return h.digest('hex');}
 const productionBefore=await sourceDigest(),startedAt=new Date().toISOString();

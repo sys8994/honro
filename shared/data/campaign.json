@@ -304562,20 +304562,26 @@
           "id": "act3-response-30-1",
           "once": true,
           "when": {
-            "objectiveDone": "transport-map"
+            "objectiveDone": "transport-map",
+            "region": {
+              "x": 5550,
+              "y": 5410,
+              "width": 1460,
+              "height": 580
+            }
           },
-          "warning": "동쪽 선창으로 수비병 악귀들이 내려온다.",
-          "text": "동쪽 선창으로 수비병 악귀들이 내려온다.",
+          "warning": "나루 서쪽 누각의 뒤편에서 수비병 셋이 내려온다. 위쪽 사선과 선창을 함께 살피세요.",
+          "text": "나루 서쪽 누각의 뒤편에서 수비병 셋이 내려온다. 위쪽 사선과 선창을 함께 살피세요.",
           "entry": {
-            "x": 6400,
-            "y": 5470
+            "x": 5195,
+            "y": 5234.137931034483
           },
           "action": {
             "type": "spawn",
             "kind": "possessedGuard",
             "n": 3,
-            "x": 6400,
-            "y": 5470,
+            "x": 5195,
+            "y": 5234.137931034483,
             "spacing": 110,
             "maxDistance": 260,
             "source": "act3-response-30-1",
@@ -304589,18 +304595,18 @@
           "when": {
             "objectiveDone": "ferry-hold"
           },
-          "warning": "높은 옛길 바깥 널판 위로 궁귀들의 그림자가 다가온다.",
-          "text": "높은 옛길 바깥 널판 위로 궁귀들의 그림자가 다가온다.",
+          "warning": "배 맞은편 동쪽 널판에 궁귀 둘이 다가온다. 낮은 퇴로의 사선을 피하거나 고지로 돌아가세요.",
+          "text": "배 맞은편 동쪽 널판에 궁귀 둘이 다가온다. 낮은 퇴로의 사선을 피하거나 고지로 돌아가세요.",
           "entry": {
-            "x": 8270,
-            "y": 4670
+            "x": 7820,
+            "y": 5650
           },
           "action": {
             "type": "spawn",
             "kind": "possessedArcher",
             "n": 2,
-            "x": 8270,
-            "y": 4670,
+            "x": 7820,
+            "y": 5650,
             "spacing": 110,
             "maxDistance": 260,
             "source": "act3-response-30-2",
@@ -304706,9 +304712,9 @@
         {
           "id": "wave-ferry-hold",
           "type": "act3-wave",
-          "x": 3780,
-          "y": 6153.428571428572,
-          "label": "갈대 여울에서 다가오는 산개"
+          "x": 4380,
+          "y": 5875.6,
+          "label": "서쪽 돌계단으로 다가오는 산개"
         }
       ],
       "layers": [
@@ -304846,6 +304852,7 @@
           "combatLog": []
         },
         "honroFerrySpec": {
+          "pressureVersion": 2,
           "enableTerrainIds": [
             "sf-settled-barge"
           ],
@@ -304955,41 +304962,48 @@
               ]
             },
             "act3-response-30-1": {
-              "x": 6400,
-              "y": 5470,
-              "support": "sf-east-quay-entry",
-              "side": "east",
+              "x": 5195,
+              "y": 5234.137931034483,
+              "support": "sf-quay-west-loft",
+              "spacing": 85,
+              "side": "west-quay",
               "alternates": [
                 {
-                  "x": 6580,
-                  "y": 5470,
-                  "support": "sf-east-quay-entry"
+                  "x": 5130,
+                  "y": 5238.620689655172,
+                  "support": "sf-quay-west-loft",
+                  "spacing": 80
                 }
               ]
             },
             "act3-ferry-hold": {
-              "x": 3780,
-              "y": 6153.428571428572,
-              "support": "sf-west-ford",
+              "x": 4380,
+              "y": 5875.6,
+              "support": "sf-landing-west-stairs",
+              "spacing": 95,
               "side": "low-west",
+              "warning": "서쪽 돌계단 아래에서 산개 셋이 올라온다. 다음 행동 뒤 나루의 서쪽 입구를 살피세요.",
               "alternates": [
                 {
-                  "x": 3500,
-                  "y": 6195.294117647059,
-                  "support": "sf-west-ford"
+                  "x": 4470,
+                  "y": 5801.764705882353,
+                  "support": "sf-landing-west-stairs",
+                  "spacing": 95
                 }
               ]
             },
             "act3-response-30-2": {
-              "x": 8270,
-              "y": 4670,
-              "support": "sf-high-response-ledge",
-              "side": "high-east",
+              "x": 7820,
+              "y": 5650,
+              "support": "sf-east-landing-planks",
+              "spacing": 170,
+              "side": "low-east",
               "alternates": [
                 {
-                  "x": 8050,
-                  "y": 4670,
-                  "support": "sf-high-response-ledge"
+                  "x": 7580,
+                  "y": 5683.333333333333,
+                  "support": "sf-east-landing-planks",
+                  "spacing": 150
                 }
               ]
             }
@@ -305695,7 +305709,7 @@
             "version": 1,
             "count": 3,
             "enemies": 7,
-            "scope": "Finite objective-linked2+3+2; separate existing hold3; warning and atomic same-side entries."
+            "scope": "Finite objective-linked2+3+2; separate existing hold3; pressure-v2 west-quay defense and east-plank retreat entries with one-action warning and atomic same-side reservation."
           },
           "encounterPlan": {
             "version": 3,

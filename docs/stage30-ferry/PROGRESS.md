@@ -84,3 +84,27 @@ Test doubles cover DOM, rendering/storage transport and pause clock. No live com
 Six supported-pose tactical fixtures pass with rank1 four-slot skills and16 ordinary-stat points, unchanged initial26 enemies. M04 damages four clustered opponents; M11 really reflects from the quay stone and hits the east guard, while same-angle M01 stops at stone with partial splash and another free M01 aim directly hits; O04 records multiple samples inside that solid before hitting, while ordinary O01 is blocked and a free O01 shot from the stone top hits; S01 moves and strikes while an ordinary walk plus S00 also reaches; C's eastern shoulder fires a free A01 shot to the E frontline; identical low A01 aim is stopped by the bank before settling and hits the F hound after settling. Every claim uses actual Engine.fire/tick HP/contact/resource evidence. Hero supported starting poses and static before/after boat states are explicit fixtures, not arrival or normal-event claims.
 
 Native production Scene QA covers3 boat states ×3 desktop/portrait/landscape viewports ×5 framing sites (45 samples,27 saved PNGs). Warm cache rebuilds0, resize/cache-versus-direct-vector branches, sceneVersion invalidation and battle-state purity all pass. On the final sequential run, ordinary close-up median/p95 render-call times span3.75–7.77/4.68–9.44ms desktop,1.37–3.29/1.85–5.54ms portrait,1.56–3.81/2.01–7.02ms landscape. The entire-world inspection zoom is more expensive and variable: maximum23.52/64.85ms, cold149.83ms. These are Native render-call timings, not game FPS, browser HUD cost or a human-device performance guarantee. Production baseline71a3f527 and test hashes are pinned in each report. The forthcoming gameplay pressure change needs a newly identified run, not relabeling this evidence.
+
+## Checkpoint 06: finite defense/withdrawal pressure and true upper-route choice
+
+No initial roster, terrain, goal, HP/XP, movement or global AI changes. The existing guard3 enters the western quay loft after map completion and actual quay-region approach, the original hound3 enters nearer the western steps, and the existing withdrawal archer2 enters the eastern landing planks. All warnings and same-side alternatives describe those actual entrances. Waves require the next safe actor boundary after their warning, not a separately completed player action; the boat's real `playerOpportunity` remains a distinct stronger condition.
+
+Only new saved `honroFerrySpec.pressureVersion===2` filters E's existing combat-candidate list when no actual ordinary companion is on its connected high supports within1800 and no existing hit aggro is valid. Low jumps/summons/NPCs do not falsely activate E. The original candidates' order, lastAct, queue cap3, target selection, shot/movement planner, stats and loaded queue are preserved. Old specs and other stages keep their original eligibility.
+
+The main acceptance evidence is now the choice of threats on the two real exits:
+
+| Conservative rank1/stat16 | Low26/6 | High26/6 (strict C support) | Low20/4 |
+|---|---:|---:|---:|
+| Final round / hold round |11 /8|11 /8|10 /7|
+| Post-hold gathering rounds |3|3|3|
+| Survivors / defeated / remaining |4 /7 /29|4 /7 /29|4 /5 /25|
+| Hero HP damage |854|797|808|
+| Enemy completed actions / shots |30 /18|30 /15|27 /17|
+
+Low26 defense guard2 physically drops from the loft to the quay, fires twice for159HP and enters the real hold-contest radius; the retreat archer2 fires twice for70HP. High26 instead passes the actual C launch support and E bank: E3 actions/2shots/71HP, F old guards3 actions/1shot/71HP, low retreat archers0actions. Low26 leaves E at0actions but takes F old guards4shots/129HP plus the new70HP. Low20 also sees defense113HP/2contesters and withdrawal70HP; E's late35HP occurs only on the final eastern ascent and is not claimed absent from every lower route. The unneeded west2 and hound3 have little/no damage contribution; the report does not credit all ten as attackers.
+
+Four strict high launches start x5406.94–5407.99 on the actual `sf-granite-cape`, within8 ofx5400, with no extra westward loop or navigation failure. A prior contact-seam high run is preserved as exploratory816HP evidence, not the strict797HP result. All current runs keep10 finite births, real settlement1, export/load/Continue2, no consumables, four paid rank1 slots with unused points, and Act4 unavailable. High-route live M11 reflection and O04 rock phase use actual costs and contacts.
+
+New safety: all initial30 actors retain complete fields in9 actual-geometry ingress cases (3groups × clear/primary-occupied/both-occupied); exact whole-wave spacing/support, same-side fallback, partial births0, repeated births0. Original factory comparison covers8 synthetic/real paths without stat/XP deletion. Runtime27 groups, App16 paths, Stage18 runtime8 and38 exact-history mutation rejections pass. Old after/before and original18 golden contracts are not overwritten; the separate current ferry review snapshot identifies this authorized delta.
+
+Build and typecheck, game unit suite, migration, current48 routes, art/schema, exact history, existing Act3 maps/locations and Stage18 history/contracts pass. Browser-dependent aggregate verify remains blocked, not passed. The final fixed-SHA independent normal replay/basic-only check and freshly pinned Native rendering remain separately tracked.
