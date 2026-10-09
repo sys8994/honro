@@ -22313,7 +22313,7 @@ globalThis.HONRO_ACTORS={"version":1,"sourceSha256":"1bf0f89f7122ec01dbd7fbbccdc
                 const title=objective?.label||step?.label||(t.id==='cliff-cleat'?'고리쇠':t.id.startsWith('bier-knot-')?'상여 결박':t.honroSeal?'봉인':({ward:'결계 장치',sluice:'수문',wind:'바람 장치'})[t.device])||'파괴 가능한 지형';
                 let blocked='';
                 if(b.honroStage===5&&t.id==='cliff-cleat'&&!b.honroState?.ritual?.active)blocked='물틈 닫힘 · 담허의 받이진 필요';
-                else if(G.HonroAct2?.active(b)&&t.id==='upper-chain'&&!b.honroState?.act2?.silenced)blocked='공명 억제 후 파괴 가능';
+                else if(G.HonroAct2?.active(b)&&t.id==='upper-chain'&&!b.honroState?.act2?.silenced)blocked=G.HonroStage18Bell?.active(b)?'담허가 억제를 시작하면 공격 가능':'공명 억제 후 파괴 가능';
                 else if((G.HonroAct2?.active(b)||G.HonroAct3?.active(b))&&step?.requiredClass&&b.units.find(u=>u.id===b.active)?.cls!==step.requiredClass)blocked=(H.hero[step.requiredClass]?.name||'동행')+'의 사격 필요';
                 return [{id:t.id,x:t.x+t.w/2,y:t.y,label:title,event,blocked,hp:Math.max(0,t.hp),maxHp:t.maxHp}];
             });

@@ -1,3 +1,4 @@
+import {withHistoricalStage18} from './stage18-bell-history-helpers.mjs';
 /** Real projectile and production Canvas fixtures. Not a normal battle playthrough. */
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
@@ -82,17 +83,19 @@ check('Leaving and restarting the ritual preserves partial damage and restores a
  mage.x=m.x;b.phase='aim';mage.acted=false;assert(g.HonroInteractions.use(app,m));assert.equal(ring.hp,remaining);e.damageTerrain(ring,50);assert.equal(ring.hp,remaining-50);
  mage.hp=0;g.HonroMission.tick(app,0);assert(!b.honroState.ritual.active);assert.match(scene.terrainHealthTargets(b).find(t=>t.id===ring.id).blocked,/받이진 필요/);
 });
-check('Older Act 2 saves use the same target labels and required-class rules',()=>{
+check('Older Act 2 saves use the same target labels and required-class rules',()=>withHistoricalStage18(g,()=>{
  const {b}=battlefield(g,18);delete b.honroAct2Steps;
  const step=g.HonroAct2.steps(b).find(s=>s.id==='upper-chain');b.honroState.act2={silenced:true,done:{},events:{},rescued:[],checkpoints:[]};b.active=b.units.find(u=>u.cls==='mage'&&u.side===0).id;
  const row=scene.terrainHealthTargets(b).find(t=>t.id===step.id);assert.equal(row.label,step.label);assert.match(row.blocked,/설오/);
-});
+}));
 check('Health bars remain 100 screen pixels at low and high zoom',()=>{
  const {b}=battlefield(g,5),calls=[],ctx=new Proxy({measureText:()=>({width:100})},{get:(o,k)=>k in o?o[k]:(...a)=>calls.push([k,...a]),set:(o,k,v)=>(o[k]=v,true)});
  for(const scale of [.2,.42,.6,1.3]){scene.scale=scale;calls.length=0;scene.terrainHealth(ctx,b,1440,960);assert(calls.some(x=>x[0]==='scale'&&x[1]===1/scale));assert(calls.some(x=>x[0]==='fillRect'&&x[3]===100&&x[4]===7));}
 });
 for(const portrait of [false,true]){
- const q=guidanceFixture(g,18,'upper-chain'),target=q.b.terrain.find(t=>t.id==='upper-chain'),v=canvas(portrait?390:1440,portrait?844:960),s=new g.HonroScene(v);
+ // Compile the immutable old18 map for these legacy locked-state captures.
+ // Current18 release guidance is covered by stage18-bell-release-guidance.mjs.
+ const q=withHistoricalStage18(g,()=>guidanceFixture(g,18,'upper-chain')),target=q.b.terrain.find(t=>t.id==='upper-chain'),v=canvas(portrait?390:1440,portrait?844:960),s=new g.HonroScene(v);
  Object.assign(s,{x:target.x+target.w/2,y:target.y+210,scale:portrait?.42:.6,manual:true,time:2,missionTargets:g.HonroAct2.state(q.b).targets});
  assert.match(s.terrainHealthTargets(q.b).find(t=>t.id===target.id).blocked,/공명/);
  const before=JSON.stringify(q.b);s.render(q.e,0);await new Promise(r=>setTimeout(r,20));s.render(q.e,0);assert.equal(JSON.stringify(q.b),before);
