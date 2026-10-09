@@ -26,3 +26,15 @@ export function quarryScoutSupport(u,scout,actions,enemies,round,visibleFoes){
  if(!target?.spiritHidden||target.manifested||target.revealSpiritToParty)return null;
  return{id:'scout-support-'+scout.id,x:scout.x,y:scout.y,scout:scout.id,observedShot:observed.shot,observedRound:observed.round};
 }
+
+/** The western formation starts after the ordinary C guards are cleared.
+ * A still-hidden C spirit remains a legal local target for its actual viewer. */
+export function quarryWesternEligible(goal,enemies){
+ return goal?.id==='sign'&&enemies.some(u=>u.honroQuarryCell==='D')&&!enemies.some(u=>u.honroQuarryCell==='C'&&(!u.spiritHidden||u.manifested||u.revealSpiritToParty));
+}
+export function quarryWesternPoint(C,b,u,x){
+ const support='sq-west-quarry',terrain=b.terrain.find(t=>t.id===support),y=C.topAt(terrain,x);
+ if(!Number.isFinite(y)||!C.validTerrainContactPose(b.terrain,{...u,x,y}))return null;
+ return{id:'western-front-'+u.cls,x,y,support};
+}
+export const quarryWesternOffsets=Object.freeze({archer:520,mage:720,occultist:870});
