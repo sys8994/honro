@@ -54,7 +54,7 @@ function lowerPool(z,amount){
 const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
-function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;
+function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const special=G.HonroStage18Bell?.satisfied(b,s);if(special!==null&&special!==undefined)return special;
  if(s.kind==='clear'){const plan=G.HonroAct2Plan.forStage(b.honroStage);if(s.cohorts==='all'&&(plan.bossWave&&!a.events['keeper-retaliation']||plan.progressWave&&!a.events['convoy-ambush']))return false;return enemiesFor(b,s).length===0;}
  if(s.kind==='hold'){const h=a.holds?.[s.id];return !!h&&h.progress>=s.rounds&&h.spawned>=(s.wave?.count||0);}
  if(s.kind==='destroy')return !!b.terrain.find(t=>t.id===s.id)?.broken;
@@ -206,7 +206,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  if(e.active?.side===0)a.viewerId=e.active.id;
  firstSpiritEncounter(app,heroes);
  // Completion is captured immediately; the shared story queue waits for actor end.
- for(const s of steps(b)){if(a.done[s.id])continue;if(!satisfied(b,s))break;completeStep(app,s);}
+ for(const s of steps(b)){if(a.done[s.id])continue;if(!satisfied(b,s)){if(s.parallelGroup)for(const peer of steps(b))if(peer.parallelGroup===s.parallelGroup&&!a.done[peer.id]&&satisfied(b,peer))completeStep(app,peer);break;}completeStep(app,s);}
  const s=current(b),m=s&&marker(b,s.id);
  if(revision2(b)&&s?.kind==='hold'&&m){
   a.holds??={};const h=a.holds[s.id]??={progress:0,spawned:0,lastRound:b.round,enteredRound:b.round,continuous:false};
@@ -244,5 +244,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
+G.HonroAct2={active,configureEnemy,recruit,memory,current,satisfied,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
 })(globalThis);

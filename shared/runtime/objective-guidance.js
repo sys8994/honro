@@ -47,7 +47,7 @@ function enhance(b,st,result){if(b.honroCustom)return result;
    if(s.kind==='destroy'){const t=b.terrain.find(t=>t.id===s.id);if(t)summary+=' · 내구도 '+Math.max(0,Math.ceil(t.hp))+'/'+Math.ceil(t.maxHp||t.hp);if(s.requiredClass)summary+=' · '+heroName(s.requiredClass)+'의 공격';}
    if(s.kind==='hold')summary=summary.replace(/(\d+\/\d+)턴/,st.act===3?'$1 적 턴':'$1라운드');
    if(s.kind==='escort')summary+=' · 운반자 앞 같은 층에서 가까이 동행';
-   if(s.parallelGroup)summary+=' · 두 지점 모두 E';
+   if(s.parallelGroup)summary+=s.parallelGroup==='bell-stabilize'?' · 유지와 기본 공격은 동시에 진행':' · 두 지점 모두 E';
    if(s.kind==='reach'&&s.allHeroes){const group=heroes(b),inside=group.filter(u=>G.HonroAct3.sameFloor(u,m,s.radius||440)).length;summary+=' · 집결 '+inside+'/'+group.length;if(s.id==='party-reunion')summary+=' · 집결 후 행동 종료';}
   }}
  const presentation=progressive(b,st,result,list,s);
@@ -72,7 +72,7 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
 function progressive(b,st,result,list,current){
  let chosen=current,rows,instruction;
  if(list.length){
-  if(current?.parallelGroup){const cls=b.units.find(u=>u.id===b.active)?.cls;chosen=list.find(q=>q.parallelGroup===current.parallelGroup&&!result.allTargets?.find(t=>t.id===q.id)?.done&&q.requiredClass===cls)||current;}
+  if(current?.parallelGroup){const cls=b.units.find(u=>u.id===b.active)?.cls;chosen=list.find(q=>q.parallelGroup===current.parallelGroup&&!result.allTargets?.find(t=>t.id===q.id)?.done&&(q.requiredClass===cls||current.parallelGroup==='bell-stabilize'&&cls!=='mage'&&q.kind==='destroy'))||current;}
   rows=list.map(q=>({id:q.id,text:stepText(q,st.id),done:!!result.allTargets?.find(t=>t.id===q.id)?.done}));
   if(chosen){const name=chosen.requiredClass&&!chosen.label.includes(heroName(chosen.requiredClass))?heroName(chosen.requiredClass)+' · ':'';
    instruction=name+chosen.label;
