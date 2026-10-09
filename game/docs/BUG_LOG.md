@@ -1828,3 +1828,12 @@ Native 공통 Scene에서 5장 waterfall-roof와7장 hollow-roof는 두꺼워도
 ### 기존 oneWay 상승 fixture의 시간 계산
 
 `open-structure-physics`의11장 높은 통나무 검사는 초기속도−6000으로 거리만 나눈 단일dt를 써 중력/drag가 적용된 실제 몸이 지붕 아래18.95px에서 아직 상승 중인데 실패했다. exact95와058에서 동일하며 새 하강 분기 호출은0이었다. 테스트만 고정 `C.STEP` 반복으로 바꾸고 상승 중/최대1200프레임을 유한 경계로 삼았다. 기존 위쪽 통과·HP 불변·하향 착지·실탄 판정은 유지한다. 현재299개 oneWay의1196 몸 상승/착지와1495실탄 경로 및 전체 `test:one-way-platforms`가 통과했다. 독립058/95 양쪽도 수정된 같은 테스트를 통과했으며058 이후 생산 소스와 두 HTML 변경은 없다.
+
+
+## 2026-10-09 · Stage12 quarry production redesign, working checkpoint
+
+Cause: the prior 8400×5200 diagonal route had no return circuit and sign use did not change physical geography. The original authored20/elite4 roster also produced an additional index-based elite at runtime. The shoe was narrated as placed at the sign while the approach encounter was elsewhere.
+
+Change: fresh12-only 11200×8000 asymmetric quarry loops, exactly32/7 plus original finite8/action4, scoped factory normalization, permanent sign passage, action-boundary telegraphed exact-support reinforcements, location-correct shoe discovery/placement and saved interactor/Damheo variant. Saved legacy12 and other29 maps/assets remain unchanged. Initial terrain-native granite/pine/waymark/cart art is authored through shared layers. Canonical Act2 replay calls the new author.
+
+Validation: real reward ledger XP23502/Lv11 and legal rank1/stat6/four-slot fixture; candidate32/7 versus same-geometry20/4, exact5goals/hold4R/8/action4; basic traversal88 cases and exposed union836 samples with damage/recovery/external-position-write0; required rise max143.758; isolated gate/story/wave/Continue checks pass. Added exact12→30→18 historical boundary preserves original fixtures. Working checkpoint only: normal input-only combat, final stray-enemy travel cost, mid/final visual review, full regression and deployed browser evidence remain pending. Native rendering must not be represented as browser play.
