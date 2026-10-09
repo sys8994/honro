@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1050">
+<title>저문 강굽이와 하나의 먼 산세</title>
+<defs>
+<linearGradient id="river-sky" x1="0" y1="0" x2="0" y2="1050" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#182c38"/><stop offset="0.57" stop-color="#53656a"/><stop offset="1" stop-color="#74817a"/></linearGradient>
+<linearGradient id="mountain-wash" x1="640" y1="310" x2="700" y2="845" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#344d56"/><stop offset="0.58" stop-color="#3a565c"/><stop offset="1" stop-color="#647b77"/></linearGradient>
+<linearGradient id="river-wash" x1="0" y1="640" x2="0" y2="1050" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#788984"/><stop offset="0.35" stop-color="#496769"/><stop offset="1" stop-color="#1c3948"/></linearGradient>
+<linearGradient id="mist" x1="0" y1="620" x2="0" y2="885" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#97a299" stop-opacity="0"/><stop offset="0.5" stop-color="#97a299" stop-opacity="0.21"/><stop offset="1" stop-color="#97a299" stop-opacity="0"/></linearGradient>
+</defs>
+<path d="M0 0H1800V1050H0Z" fill="url(#river-sky)"/>
+<g id="one-continuous-granite-range">
+<path d="M-110 684Q55 650 164 598Q238 553 319 575Q389 510 471 495Q518 421 591 423Q676 439 716 476Q780 503 830 552Q906 539 958 579Q1080 630 1207 594Q1306 589 1390 539Q1451 512 1521 558Q1580 547 1645 596Q1762 646 1880 634V894H-110Z" fill="url(#mountain-wash)"/>
+<path d="M170 599Q256 555 319 575Q392 510 471 495Q518 421 591 423Q553 470 537 531Q492 555 463 603Q399 658 289 678L213 672Q291 629 353 594Q275 608 170 623Z" fill="#70817a" opacity="0.24"/>
+<path d="M591 423Q676 439 716 476Q780 503 830 552Q780 569 752 615Q694 650 680 705L559 744Q571 685 618 644Q650 580 620 526Q602 467 591 423Z" fill="#263f4c" opacity="0.46"/>
+<path d="M958 579Q1080 630 1207 594Q1306 589 1390 539Q1451 512 1521 558Q1462 551 1430 597Q1389 640 1366 681L1251 713Q1268 671 1317 641Q1176 668 1103 640Z" fill="#87988e" opacity="0.12"/>
+<path d="M-50 714Q106 655 240 679Q348 716 456 689Q551 703 626 733Q746 703 839 735Q971 699 1090 728Q1211 708 1322 744Q1442 711 1554 731Q1691 697 1850 754V876H-50Z" fill="#536f70"/>
+</g>
+<g id="one-wide-river-bend">
+<path d="M-20 737Q259 716 559 752Q886 811 1254 756L1790 727 1830 1050H-20Z" fill="url(#river-wash)"/>
+<path d="M-20 749Q298 729 506 763Q658 794 860 797Q1055 799 1249 758L1415 747Q1121 826 899 825Q693 835 486 790Q233 747-20 777Z" fill="#91a297" opacity="0.29"/>
+<path d="M-20 773Q254 750 496 805Q633 839 819 846L780 875Q541 883 288 825L-20 818Z" fill="#38565a"/>
+<path d="M1163 843Q1391 779 1830 768V832Q1471 811 1239 880L1070 946 901 950Q938 905 1163 843Z" fill="#385359"/>
+<path d="M-20 795Q195 777 347 800M930 846Q1120 850 1264 810M223 936Q454 912 664 940" fill="none" stroke="#b1b8a3" stroke-width="2" opacity="0.17"/>
+</g>
+<path d="M0 620H1800V885H0Z" fill="url(#mist)"/>
+</svg>

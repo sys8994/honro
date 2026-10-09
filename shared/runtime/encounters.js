@@ -88,7 +88,7 @@ function flush(app){
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
     if(combat(ev.action)){
-      const cap=populationCap(b);
+      const cap=G.HonroEncounters.populationCap(b);
       if(spawned||hs.lastCombatEventBoundary===boundary||enemies+spawnCount(ev.action)>cap)continue;
     }
     if(G.HonroAllies.execute(app,ev.action)===false)continue;

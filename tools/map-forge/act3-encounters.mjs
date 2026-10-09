@@ -5,6 +5,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {support} from './act3-map-kit.mjs';
+import {authorFerryEncounters} from './stage30-ferry.mjs';
 import {LOCATION_ENCOUNTERS} from './act3-location-encounters.mjs';
 import {authorReinforcements} from './act3-reinforcements.mjs';
 const unit=(kind,x,y=null,elite=false,role='frontline')=>({kind,x,y,elite,role});
@@ -85,6 +86,7 @@ export const ENCOUNTERS={
  ]};
 function routeY(s,x){const route=s.design.act3.primaryContour?.map(([x,y])=>({x,y}))||s.design.act3.requiredRoute;for(let i=1;i<route.length;i++)if(x<=route[i].x){const a=route[i-1],b=route[i],t=(x-a.x)/(b.x-a.x||1);return a.y+(b.y-a.y)*t;}return route.at(-1).y;}
 export function authorEncounters(g,p,s){
+ if(s.metadata.stageId===30&&s.initialState?.honroFerryRevision===1)return authorFerryEncounters(g,p,s);
  const waterworks=s.design.act3.encounterPlan?.version===2,location=s.design.act3.locationRevision===1,plan=waterworks?s.design.act3.encounterPlan.groups:(location?LOCATION_ENCOUNTERS:ENCOUNTERS)[s.metadata.stageId];if(!plan)return;
  const ts=g.HonroMaps.compile(s,p).terrain.filter(t=>!t.honroAct3Target&&!t.honroAct3Gate);
  s.units=s.units.filter(u=>u.team!=='enemy');s.encounters=[];

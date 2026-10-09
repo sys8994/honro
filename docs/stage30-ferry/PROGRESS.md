@@ -41,3 +41,22 @@ All four classes × twelve declared routes passed using the existing Stage16 ord
 5. Production UI/browser input, responsive screenshots, performance, final review, remote master and existing Pages deployment.
 
 Remote writes and Library recovery are owned by the designated publisher. This branch has no independent push step. Existing Stage18 workspace remains read-only.
+
+## Checkpoint 02: integrated ferry revision and near, higher gathering
+
+The new battle is now activated with Korean river/stone/boat vector art and a shared Game/Workshop bundle. The nearby final gathering is `(9450,4300)`, datum-height2200, 210 above the granite cape summit. A short folded cut in the eastern rock replaces the earlier low-G experiment rather than moving the goal far away again.
+
+- Final terrain SHA256: `58ec5373f94f176a26181b1f7441e9f68b2a9fd50a7c38c3eaa7d11ef346a99f`.
+- All48 ordinary routes pass again. All30 initial bodies keep their authored positions without constructor repair; no overlap;8 seconds at1/120,1/60,1/30 preserves support/HP; all route and jump/drop anchors fit all four bodies.
+- D-center→west teeth→barge→final gathering radius: archer6379, mage6370, knight6374, occultist6715 move (3.30–3.59 untrained movement pools). The marker keeps its original same-floor150/radius440 acceptance, including nearby sloped arrivals; it does not require four actors on the exact marker center.
+- Candidate26/6 + finite10 uses saved population cap36 and action cap3. Original30 saves without the revision retain their original terrain, actors, goals and cap30/23. The only generic spawn change is calling the existing public cap hook.
+- Boat: progress1 warning, a genuinely offered/completed ordinary companion action, progress>=2, and a clear safe boundary. Occupancy covers body/summon/enemy/stake/projectile/field shapes in the actual hull sweep plus the removed bank.0.8-second visual settling ends with a single atomic broken-flag swap in both terrain arrays. No moving-body physics, teleport, actor damage or mandatory wait for victory. The original high exit stays open.
+- Old/new App export/import/Continue, dialogue Skip safety, settling interruption, repeated load and victory cancellation pass. The public animation-shortening function is tested separately; a dialogue Skip does not bypass a waiting boat.
+- Fifteen new local vector assets preserve all545 older assets and all29 other complete maps. C rear support is irregular granite; D rear piers are masonry; E is a recessed rock shoulder. These clearly rear-painted supports have no collision or false bright walk rims. Boat top is the exact solid polygon; wet recovery shores and the deep water gap remain distinct.
+- The new exact30 review boundary verifies all allowed deltas before reversing them into the unchanged Stage18 golden leaf.32 mutation-negative checks, current Stage18 history/contracts and shared Game/Workshop build pass. Regeneration keeps the new map in generic encounter/location/art rebuilds.
+
+### Combat evidence, separated from geometry
+
+The movement-specialized **legal** basic-only entry invested40 ordinary-stat points plus3 paid rank-one slot skills out of43. It is not the representative skill-build balance result. With actual input, enemy AI, resources and original seed, both finite10 and all four survivors reached the real ending: candidate26/6 at round8 with31 enemies alive; original20/4 at round7 with27 alive. Both took two rounds after their third valid defense enemy-end. Continue was exercised twice and Act4 remains unavailable. Prior29-stage XP is an explicit real-reward-ledger entry fixture, not a claim of playing29 chapters.
+
+Existing hold progress is retained across a contested enemy interval; the requirement is three valid defense enemy-ends, not three globally consecutive unbroken rounds. No hold rule was changed. A balanced16-stat/27-skill build, C approach comparison, skill-specific hit/occlusion tests, remaining older-map regressions and actual UI/browser/performance review remain separate work and are not claimed complete here.
