@@ -91,7 +91,8 @@ export function assertStage12QuarryCurrent(project,{review}={}){
 export function beforeStage12Quarry(project,{review}={}){
  const p=plain(project),rows=p.stages?.filter(s=>s.id==='stage-12'||s.metadata?.stageId===12)||[];assert.equal(rows.length,1,'Exactly one Stage12 at the quarry boundary');assert.equal(rows[0].id,'stage-12');assert.equal(rows[0].metadata.stageId,12);
  if(hash(rows[0])===hash(stage12QuarryOriginal.stage)){assert(!p.library?.some(newAsset),'Historical Stage12 cannot retain quarry artwork');return p;}
- assertStage12QuarryCurrent(p,{review});return assertStage12QuarryScope(p);
+ const r=currentReview(review);assert.equal(hash(rows[0]),hash(r.stage),'Only an exact historical or reviewed current stage-12 may cross the quarry boundary');
+ assertStage12QuarryCurrent(p,{review:r});return assertStage12QuarryScope(p);
 }
 export function beforeStage12QuarryLibrary(library,{review}={}){
  const out=plain(library);if(!out.some(newAsset))return out;const r=currentReview(review);assert.deepEqual(out.filter(newAsset),r.addedAssets,'Exact reviewed quarry additions');const {out:prior}=baseLibrary(out);assert.deepEqual(out.map(a=>a.id),[...prior.map(a=>a.id),...r.addedAssets.map(a=>a.id)],'Quarry library append order');return prior;
