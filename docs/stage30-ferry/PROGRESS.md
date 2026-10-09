@@ -67,7 +67,7 @@ Nine existing test files now validate the exact approved Stage30 boundary before
 
 Twelve affected checks passed: historical geometry84 routes (including original30 four-class routes and original20/4), current safety62 checks, canonical30 stages, art regeneration30 stages, runtime, fiend contract/scope, location shots36 and encounter shots46. Separate exact-boundary negative controls reject18 project,14 runtime and6 semantic mutations. The current48-route and normal-combat evidence remains separately identified. No production, bundle, actor, geometry or objective changes are included in this checkpoint.
 
-Browser availability was checked once using the cloud's installed Chromium. It exited before page creation with `socket() failed: Operation not permitted` in `process_singleton_posix.cc`. No security flags, permission change, retry or user-PC access was attempted. Actual browser keyboard/touch/UI/Pages and browser frame-rate validation remain unverified; Native canvas and Node App checks cannot stand in for them.
+Browser availability was checked once using the cloud's installed Chromium. It exited before page creation with `socket() failed: Operation not permitted` in `process_singleton_posix.cc`. The single launch used the installed Playwright default arguments (its log includes the framework's default `--no-sandbox`). No additional launch flags, system security/permission changes, bypass retry or user-PC access was attempted. Actual browser keyboard/touch/UI/Pages and browser frame-rate validation remain unverified; Native canvas and Node App checks cannot stand in for them.
 
 ## Checkpoint 04: reproducible conservative rank-one fullplay baseline
 
