@@ -26,9 +26,9 @@ assert.deepEqual(act1.library,p.library,'Act1 history entry point leaves the cur
 assert.throws(()=>beforeOpenAct1Structures(act1),/Exact approved open structure/,'Act1 D reversal cannot run twice');
 // Lean mutation inputs retain the complete identities and affected properties;
 // whole-source SHA checks above cover every unrelated coordinate and art value.
-// Keep the exact already-reversed Stage16/17 identities so their newer history
+// Keep the exact already-reversed Stage16/17/18/19 identities so their newer history
 // guards do not short-circuit the intended D flag/binding mutation checks.
-const lean={stages:p.stages.map(s=>[16,17].includes(s.metadata.stageId)?structuredClone(s):({id:s.id,metadata:s.metadata,elements:s.elements.map(({id,assetId})=>({id,assetId})),terrains:s.terrains.map(({id,oneWay,properties})=>({id,oneWay,properties}))})),library:p.library.map(({id,oneWay})=>({id,oneWay}))};
+const lean={stages:p.stages.map(s=>[16,17,18,19].includes(s.metadata.stageId)?structuredClone(s):({id:s.id,metadata:s.metadata,elements:s.elements.map(({id,assetId})=>({id,assetId})),terrains:s.terrains.map(({id,oneWay,properties})=>({id,oneWay,properties}))})),library:p.library.map(({id,oneWay})=>({id,oneWay}))};
 const locate=(q,row)=>{const stage=q.stages.find(s=>s.metadata.stageId===row.stage),items=row.kind==='asset'?q.library:stage.terrains;return {stage,items,target:items.find(t=>t.id===row.id)};};
 let rejected=0;
 for(const row of f.rows){

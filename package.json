@@ -98,9 +98,10 @@
     "test:stage16-temple:buddha-ascetic": "node tests/stage16-temple-buddha-ascetic-history.mjs && node tests/stage16-temple-buddha-refinement-history.mjs && node tests/stage16-temple-buddha-history.mjs",
     "test:stage16-temple:buddha-crowned-fallback": "node tests/stage16-temple-buddha-crowned-fallback.mjs && node tests/stage16-temple-buddha-ascetic-history.mjs && node tests/stage16-temple-buddha-refinement-history.mjs && node tests/stage16-temple-buddha-history.mjs",
     "test:stage16-temple:fullplay": "node tests/stage16-temple-fullplay.mjs",
-    "test:stage18-bell": "node tests/stage18-bell-history.mjs && node tests/stage18-bell-contracts.mjs && node tests/stage18-bell-runtime.mjs && node tests/stage18-bell-app-resume.mjs && node tests/stage18-bell-melee-release.mjs && node tests/stage18-bell-tactics.mjs && node tests/stage18-bell-release-guidance.mjs && node tests/stage18-bell-traversal.mjs && node tests/stage19-bell-marker-traversal.mjs",
+    "test:stage18-bell": "node tests/stage18-bell-history.mjs && node tests/stage18-bell-contracts.mjs && node tests/stage18-bell-runtime.mjs && node tests/stage18-bell-app-resume.mjs && node tests/stage18-bell-occupancy-movement.mjs && node tests/stage18-bell-melee-release.mjs && node tests/stage18-bell-tactics.mjs && node tests/stage18-bell-release-guidance.mjs && node tests/stage18-bell-traversal.mjs && node tests/stage19-bell-marker-traversal.mjs",
     "test:stage18-bell:fullplay": "node tests/stage18-bell-fullplay.mjs",
-    "test:stage18-bell:roles": "node tests/stage18-bell-live-role-choice.mjs"
+    "test:stage18-bell:roles": "node tests/stage18-bell-live-role-choice.mjs",
+    "test:stage18-bell:representative": "node tests/stage18-bell-representative.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

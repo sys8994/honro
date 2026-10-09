@@ -1,3 +1,4 @@
+import {beforeCurrentStage11Ravine} from './stage11-ravine-history-helpers.mjs';
 import {beforeVerticalWaterworks} from './vertical-waterworks-history-helpers.mjs';
 import {beforeOpenStructures} from './open-structure-history-helpers.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
@@ -102,6 +103,10 @@ export async function contractContent(read){
 // Keep the scope itself testable: a reviewed roof/placement change may pass,
 // while identity, protection, combat tuning and mission changes must fail.
 export function assertFiendContractScope(project,content,balance,archetypes,baseline){
+ // Validate every later exact history layer before deliberately varying Act3 art.
+ const raw=project;project=beforeCurrentStage11Ravine(raw);
+ const bellDrift=plain(raw);bellDrift.stages[17].routes[0].x++;
+ assert.throws(()=>beforeCurrentStage11Ravine(bellDrift),/Only an exact historical or reviewed current stage-18 may cross the bell boundary/,'Scope setup never hides unreviewed raw current18 drift');
  const p=plain(project),c=plain(content),b=plain(balance),a=plain(archetypes),map=p.stages[22];
  map.units[0].x+=41;map.units[0].y-=18;map.markers[0].x+=60;map.markers[0].y-=24;
  map.markers[0].label='표현만 다듬은 안내';map.terrains[0].detail={spacing:18,roughness:0,seed:1,optimizeEpsilon:0};map.terrains[0].points[0].y+=7;
