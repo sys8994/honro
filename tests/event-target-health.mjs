@@ -1,4 +1,4 @@
-import {withHistoricalStage18} from './stage30-ferry-history-helpers.mjs';
+import {withHistoricalStage18} from './stage12-quarry-history-helpers.mjs';
 /** Real projectile and production Canvas fixtures. Not a normal battle playthrough. */
 import assert from 'node:assert/strict';
 import vm from 'node:vm';

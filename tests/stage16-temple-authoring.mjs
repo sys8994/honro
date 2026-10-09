@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {authorStage16Temple} from '../tools/map-forge/apply-stage16-temple.mjs';
 import {unitContract} from './act2-spatial-contract-helpers.mjs';
-import {beforeStage18Bell} from './stage30-ferry-history-helpers.mjs';
+import {beforeStage18Bell} from './stage12-quarry-history-helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x)),hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const before=JSON.parse(await readFile('tests/fixtures/stage16-temple-before.json','utf8')),p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),st=p.stages[15],checks=[];
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};

@@ -1,4 +1,4 @@
-import {beforeStage30Ferry} from './stage30-ferry-history-helpers.mjs';
+import {beforeStage30Ferry} from './stage12-quarry-history-helpers.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
