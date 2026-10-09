@@ -1,4 +1,4 @@
-import {withHistoricalStage18} from './stage12-quarry-history-helpers.mjs';
+import {withHistoricalStage18,beforeStage12Quarry} from './stage12-quarry-history-helpers.mjs';
 import {authorStage18Bell} from '../tools/map-forge/apply-stage18-bell.mjs';
 import {withHistoricalStage16} from './stage16-temple-history-helpers.mjs';
 import {authorStage16Temple} from '../tools/map-forge/apply-stage16-temple.mjs';
@@ -92,8 +92,11 @@ check('Defense needs presence, elapsed full rounds, and spawned waves',()=>{
 check('Spirit manifestation is local and retains damage collision',()=>{const {b,e}=fixture(18),souls=e.alive(1).filter(u=>u.honroSpirit),u=souls[0],far=souls.at(-1),archer=e.heroesAlive().find(u=>u.cls==='archer'),sodan=e.heroesAlive().find(u=>u.cls==='occultist');b.active=archer.id;assert(!g.HonroAct2.visible(b,u));const hp=u.hp;e.hurt(u,150,archer.id);assert(u.hp<hp&&!u.dead);b.active=sodan.id;assert(g.HonroAct2.visible(b,u));b.active=archer.id;g.HonroAct2.expose(b,b.round+2,u,50);assert(g.HonroAct2.visible(b,u));assert(!g.HonroAct2.visible(b,far));});
 check('Existing revision 1 battles keep their original objective list',()=>{const {b}=fixture(14);delete b.honroAct2Steps;b.honroAct2Revision=1;b.honroState.act2.version=1;assert.equal(g.HonroAct2.steps(b).length,4);assert.equal(g.HonroAct2.current(b).id,'family-upper');});
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
-const regeneratedBeforeBell=await authorStage16Temple(await authorStage17Worksite(await authorStage11Ravine(g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(g.HONRO_PROJECT))),{stages:[15]})))),g),g,{art:true}),g,{art:true});
+// This recipe predates quarry12; validate and project that separate layer
+// before preserving the original all-map deterministic assertion.
+const historicalRecipeProject=beforeStage12Quarry(g.HONRO_PROJECT);
+const regeneratedBeforeBell=await authorStage16Temple(await authorStage17Worksite(await authorStage11Ravine(g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(historicalRecipeProject))),{stages:[15]})))),g),g,{art:true}),g,{art:true});
 const regeneratedAct2=await authorStage18Bell(regeneratedBeforeBell,g,{art:true});
-check('Deterministic recipe preserves all 30 canonical maps and their order',()=>{const digest=x=>createHash('sha256').update(JSON.stringify(stable(x))).digest('hex');for(const s of regeneratedAct2.stages)assert.equal(digest(s),digest(g.HONRO_PROJECT.stages.find(q=>q.id===s.id)),s.id+' exact canonical recipe');assert.deepEqual(plain(regeneratedAct2),plain(g.HONRO_PROJECT));});
+check('Historical recipe preserves all 30 canonical maps after exact quarry projection',()=>{const digest=x=>createHash('sha256').update(JSON.stringify(stable(x))).digest('hex');for(const s of regeneratedAct2.stages)assert.equal(digest(s),digest(historicalRecipeProject.stages.find(q=>q.id===s.id)),s.id+' exact canonical recipe');assert.deepEqual(plain(regeneratedAct2),plain(historicalRecipeProject));});
 await mkdir('_local/reports/act2-revision',{recursive:true});await writeFile('_local/reports/act2-revision/unit.json',JSON.stringify({checks:rows,metrics},null,2));
 console.log('PASS',rows.length,'revision checks');
