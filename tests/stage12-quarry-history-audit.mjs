@@ -85,7 +85,7 @@ if(!selfTest){
  for(const parts of [raw,temple])for(const mutate of [p=>p.push('unreviewed'),p=>p.push(sources['shared/runtime/stage12-quarry.js']),p=>{p[1]+=' ';}]){const q=[...parts];mutate(q);assert.throws(()=>Q.beforeStage12QuarryFingerprintParts(q,{sources,review}));fingerprintChecks++;}
  const g=await runtime({legacyMaps:false}),saved={project:g.HONRO_PROJECT,content:g.HONRO_CONTENT,balance:g.HONRO_BALANCE,plan:g.HonroAct2Plan};assert.equal(hash(g.HONRO_PROJECT),hash(p));
  for(const [fn,expected]of [[Q.withHistoricalStage12,f.projectSha256],[Q.withHistoricalStage30,F.stage30FerryBefore.projectSha256],[Q.withHistoricalStage18,B.stage18BellHistoryDelta.beforeProjectSha256]]){
-  fn(g,()=>{assert.equal(hash(g.HONRO_PROJECT),expected);assert.deepEqual(plain(g.HONRO_CONTENT.stages[11]),Q.stage12QuarryOriginal.content);assert.deepEqual(plain(g.HONRO_BALANCE.stages[11]),Q.stage12QuarryOriginal.balance);});
+  fn(g,()=>{assert.equal(typeof g.HonroAct2Plan.forStage,'function','Live plan API survives history scopes');for(const id of [12,18,19])assert.equal(g.HonroAct2Plan.forStage(id),g.HonroAct2Plan.stages[id-11],'Captured plan closure sees projected row '+id);assert.equal(hash(g.HONRO_PROJECT),expected);assert.deepEqual(plain(g.HONRO_CONTENT.stages[11]),Q.stage12QuarryOriginal.content);assert.deepEqual(plain(g.HONRO_BALANCE.stages[11]),Q.stage12QuarryOriginal.balance);});
   assert.throws(()=>fn(g,()=>{throw Error('restore sentinel');}),/restore sentinel/);
   assert.equal(g.HONRO_PROJECT,saved.project);assert.equal(g.HONRO_CONTENT,saved.content);assert.equal(g.HONRO_BALANCE,saved.balance);assert.equal(g.HonroAct2Plan,saved.plan);runtimeWrapperChecks+=2;
  }

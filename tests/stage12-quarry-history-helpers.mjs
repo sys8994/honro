@@ -129,10 +129,22 @@ export function beforeStage12QuarryContent(content,{review}={}){
  assert.deepEqual(row,expected,'Exact reviewed current Stage12 runtime content; only balance-derived count may change');out.stages[at]=plain(stage12QuarryOriginal.content);return out;
 }
 export function beforeStage12QuarryPlan(plan){const out=plain(plan),at=uniqueStage(out.stages);assert.deepEqual(out.stages[at],stage12QuarryOriginal.plan,'Exact original Stage12 runtime plan');return out;}
-function withGlobals(g,next,fn){const saved=Object.fromEntries(Object.keys(next).map(key=>[key,g[key]]));try{Object.assign(g,next);return fn();}finally{Object.assign(g,saved);}}
+function withHistoricalRows(g,next,fn){
+ // Runtime modules close over these original objects/arrays. Replace only
+ // reviewed rows so Act2's captured H and forStage's captured plans see the
+ // same historical fixture as global lookups; never clone away live methods.
+ const savedProject=g.HONRO_PROJECT,edits=[];
+ for(const [key,target]of Object.entries(next))if(key!=='HONRO_PROJECT'){
+  const source=g[key];assert.deepEqual(plain({...source,stages:[]}),plain({...target,stages:[]}),'Historical wrapper preserves non-stage globals '+key);
+  assert.deepEqual(source.stages.map(row=>row.id),target.stages.map(row=>row.id),'Historical wrapper preserves stage order '+key);
+  for(const [index,row]of target.stages.entries())if(hash(source.stages[index])!==hash(row))edits.push({rows:source.stages,index,before:source.stages[index],after:row});
+ }
+ try{g.HONRO_PROJECT=next.HONRO_PROJECT;for(const edit of edits)edit.rows[edit.index]=edit.after;return fn();}
+ finally{g.HONRO_PROJECT=savedProject;for(const edit of edits)edit.rows[edit.index]=edit.before;}
+}
 /** Synchronous fixture scope. Current Engine remains loaded and all original
  * global object references are restored, including on callback exceptions. */
-export function withHistoricalStage12(g,fn){beforeStage12QuarryRuntimeSources();beforeStage12QuarryPlan(g.HonroAct2Plan);return withGlobals(g,{HONRO_PROJECT:beforeStage12Quarry(g.HONRO_PROJECT),HONRO_BALANCE:beforeStage12QuarryBalance(g.HONRO_BALANCE),HONRO_CONTENT:beforeStage12QuarryContent(g.HONRO_CONTENT)},fn);}
+export function withHistoricalStage12(g,fn){beforeStage12QuarryRuntimeSources();beforeStage12QuarryPlan(g.HonroAct2Plan);return withHistoricalRows(g,{HONRO_PROJECT:beforeStage12Quarry(g.HONRO_PROJECT),HONRO_BALANCE:beforeStage12QuarryBalance(g.HONRO_BALANCE),HONRO_CONTENT:beforeStage12QuarryContent(g.HONRO_CONTENT)},fn);}
 
 // Compatibility entry points preserve the immutable 30 and 18 validators.
 export const ferryHistoryHash=hash,ferryHistoryPlain=plain,bellHistoryHash=hash,bellHistoryPlain=plain;
@@ -146,7 +158,7 @@ export const beforeStage30FerryRuntimeSources=(sources=stage12QuarryRuntimeSourc
 export function beforeStage30FerryFingerprintParts(parts,{sources=stage12QuarryRuntimeSources(),...options}={}){return ferry.beforeStage30FerryFingerprintParts(beforeStage12QuarryFingerprintParts(parts,{sources}),{...options,sources:beforeStage12QuarryRuntimeSources(sources)});}
 export const beforeStage30FerryBalance=(p,options)=>ferry.beforeStage30FerryBalance(beforeStage12QuarryBalance(p),options);
 export const beforeStage30FerryContent=(p,options)=>ferry.beforeStage30FerryContent(beforeStage12QuarryContent(p),options);
-export function withHistoricalStage30(g,fn){beforeStage30FerryRuntimeSources();beforeStage12QuarryPlan(g.HonroAct2Plan);return withGlobals(g,{HONRO_PROJECT:beforeStage30Ferry(g.HONRO_PROJECT),HONRO_BALANCE:beforeStage30FerryBalance(g.HONRO_BALANCE),HONRO_CONTENT:beforeStage30FerryContent(g.HONRO_CONTENT)},fn);}
+export function withHistoricalStage30(g,fn){beforeStage30FerryRuntimeSources();beforeStage12QuarryPlan(g.HonroAct2Plan);return withHistoricalRows(g,{HONRO_PROJECT:beforeStage30Ferry(g.HONRO_PROJECT),HONRO_BALANCE:beforeStage30FerryBalance(g.HONRO_BALANCE),HONRO_CONTENT:beforeStage30FerryContent(g.HONRO_CONTENT)},fn);}
 export const beforeStage18Bell=p=>ferry.beforeStage18Bell(beforeStage12Quarry(p));
 export const beforeStage18BellLibrary=(p,options)=>ferry.beforeStage18BellLibrary(beforeStage12QuarryLibrary(p),options);
 export const assertStage18BellCurrent=p=>ferry.assertStage18BellCurrent(beforeStage12Quarry(p));
@@ -156,5 +168,5 @@ export function beforeStage18BellFingerprintParts(parts,{sources=stage12QuarryRu
 export function withHistoricalStage18(g,fn){return withHistoricalStage30(g,()=>{
  const content=plain(g.HONRO_CONTENT),plan=plain(g.HonroAct2Plan),balance=plain(g.HONRO_BALANCE);
  for(const row of stage18BellHistoryDelta.runtime.stages){for(const [key,value]of Object.entries({content:content.stages[row.id-1],plan:plan.stages[row.id-11],balance:balance.stages[row.id-1]}))assert.deepEqual(value,row.after[key],'Exact reviewed current Stage'+row.id+' runtime '+key);content.stages[row.id-1]=plain(row.before.content);plan.stages[row.id-11]=plain(row.before.plan);balance.stages[row.id-1]=plain(row.before.balance);}
- return withGlobals(g,{HONRO_PROJECT:beforeStage18Bell(g.HONRO_PROJECT),HONRO_CONTENT:content,HonroAct2Plan:plan,HONRO_BALANCE:balance},fn);
+ return withHistoricalRows(g,{HONRO_PROJECT:beforeStage18Bell(g.HONRO_PROJECT),HONRO_CONTENT:content,HonroAct2Plan:plan,HONRO_BALANCE:balance},fn);
 });}
