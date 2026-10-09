@@ -1,4 +1,4 @@
-import {withHistoricalStage18} from './stage12-quarry-history-helpers.mjs';
+import {withHistoricalStage18,withHistoricalStage12,beforeStage12QuarryBalance} from './stage12-quarry-history-helpers.mjs';
 import {beforeStage16TempleContent,beforeStage16TempleUnitContracts} from './stage16-temple-history-helpers.mjs';
 import {beforeStage11RavineBalance,beforeStage11RavineContent,beforeStage11RavineUnitContracts} from './stage11-ravine-history-helpers.mjs';
 import {beforeStage17WorksiteContent,beforeStage17WorksiteUnitContracts} from './stage17-worksite-history-helpers.mjs';
@@ -13,7 +13,9 @@ import {plain,hash,semanticContent,unitContract} from './act2-spatial-contract-h
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
 const frozen=JSON.parse(await readFile('tests/fixtures/act2-spatial-contracts.json','utf8'));
-const balanceSource=await readFile('game/config/balance.json','utf8');
+const balanceSourceRaw=await readFile('game/config/balance.json','utf8');
+// Validate exact current12 before feeding the unchanged frozen balance audit.
+const balanceSource=withHistoricalStage12(g,()=>JSON.stringify(beforeStage12QuarryBalance(JSON.parse(balanceSourceRaw))));
 const readLegacy=await readFile('tests/fixtures/act2-spatial-legacy-save.json','utf8');
 const checks=[];
 function check(name,fn){fn();checks.push({name,passed:true});console.log('PASS',name);}
@@ -45,7 +47,7 @@ for(const before of frozen.stages)check(`${before.id}: objective order, classes,
  assert.deepEqual(before.id===11?beforeStage11RavineContent(content):before.id===17?beforeStage17WorksiteContent(content):before.id===16?beforeStage16TempleContent(content):content,before.content,'Only exact reviewed Stage11/16/17 deltas may change content planning');
  assert.deepEqual(before.id===11?beforeStage11RavineUnitContracts(units):before.id===17?beforeStage17WorksiteUnitContracts(units):before.id===16?beforeStage16TempleUnitContracts(units):units,before.units,'Only exact reviewed Stage11/16/17 roster deltas may change roster or XP allocation');
  assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);
- };if(before.id===18||before.id===19)withHistoricalStage18(g,audit);else audit();
+ };if(before.id===12)withHistoricalStage12(g,audit);else if(before.id===18||before.id===19)withHistoricalStage18(g,audit);else audit();
 });
 check('A real pre-redesign partial revision-2 save keeps its geometry, units and progress on resume',()=>{
  const saved=JSON.parse(readLegacy),b=plain(saved.b),st=g.HONRO_CONTENT.stages[13];
