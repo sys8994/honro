@@ -21,6 +21,24 @@ const globals=p=>Object.fromEntries(Object.entries(p).filter(([key])=>!['stages'
 const normalized=s=>s.replace(/\r\n/g,'\n');
 export function stage12QuarryReview(){return JSON.parse(readFileSync(new URL('./fixtures/stage12-quarry/history-reviewed.json',import.meta.url),'utf8'));}
 export function stage12QuarryRuntimeSources(){return ferry.stage30FerryRuntimeSources();}
+// A single later UI correction sits above the immutable quarry scope. These
+// exact line literals plus the frozen full-file digest authorize no other byte.
+export const stage12QuarryHoldGuideDelta=Object.freeze({
+ path:'shared/runtime/act2-art.js',
+ before:"  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}턴 · ${hold.status}`,'실선: 방어 범위 / 점선: 적 진입 금지'],color);",
+ after:"  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'라운드':'턴'} · ${hold.status}`,'실선: 방어 범위 / 점선: 적 진입 금지'],color);"
+});
+export function beforeStage12QuarryHoldGuideSource(source){
+ const d=stage12QuarryHoldGuideDelta,row=f.runtime.files.find(r=>r.path===d.path);
+ assert.equal(typeof source,'string','Complete current hold-guide source');
+ assert.equal(source.split(d.after).length-1,1,'Exactly one approved quarry hold-guide line');
+ assert.equal(source.split(d.before).length-1,0,'No original hold-guide line remains in current source');
+ const original=source.replace(d.after,d.before);
+ assert.equal(hash(original),row.sha256,'Exact original act2-art file after the single quarry UI reversal');return original;
+}
+export function beforeStage12QuarryHoldGuideSources(sources){
+ const d=stage12QuarryHoldGuideDelta;return{...sources,[d.path]:beforeStage12QuarryHoldGuideSource(sources[d.path])};
+}
 const baseSource=path=>{const row=f.runtime.files.find(r=>r.path===path);assert(row&&Object.hasOwn(row,'before'),'Stored original quarry source '+path);return row.before;};
 function currentReview(review){const r=review??stage12QuarryReview();assert.equal(r.version,1);assert.equal(r.sourceCommit,f.sourceCommit);assert.equal(r.sourceTree,f.sourceTree);assert.deepEqual(r.scope,f.scope,'Reviewed quarry scope is immutable');return r;}
 function baseLibrary(library){
@@ -80,7 +98,7 @@ function assertRuntimeScope(sources){
  for(const path of f.scope.allowedAddedRuntime)assert(typeof sources[path]==='string'&&sources[path].length>100,'Complete new quarry source '+path);return sources;
 }
 export function createStage12QuarryReview(project,sources,{label,authoringSources={}}={}){
- assert(typeof label==='string'&&label.trim(),'Explicit checkpoint label required');assertStage12QuarryScope(project);assertRuntimeScope(sources);
+ assert(typeof label==='string'&&label.trim(),'Explicit checkpoint label required');assertStage12QuarryScope(project);assertRuntimeScope(beforeStage12QuarryHoldGuideSources(sources));
  const stage=project.stages.find(s=>s.id==='stage-12');assert.equal(JSON.parse(sources['game/config/balance.json']).stages[11].initialEnemies,stage.units.filter(u=>u.team==='enemy').length,'Published balance matches the reviewed map roster');
  return{version:1,sourceCommit:f.sourceCommit,sourceTree:f.sourceTree,label,scope:plain(f.scope),stage:plain(stage),addedAssets:plain(project.library.filter(newAsset)),projectSha256:hash(project),runtime:Object.fromEntries([...f.scope.allowedChangedRuntime,...f.scope.allowedAddedRuntime].map(path=>[path,sources[path]])),authoringSources:plain(authoringSources)};
 }
@@ -100,8 +118,8 @@ export function beforeStage12QuarryLibrary(library,{review}={}){
 export function beforeStage12QuarryRuntimeSources(sources=stage12QuarryRuntimeSources(),{review}={}){
  const expected=f.runtime.files.map(r=>r.path).sort();
  if(Object.keys(sources).length===expected.length){assert.deepEqual(Object.keys(sources).sort(),expected,'Exact historical d7 runtime membership');for(const row of f.runtime.files)assert.equal(hash(sources[row.path]),row.sha256,'Exact historical d7 runtime '+row.path);ferry.beforeStage30FerryRuntimeSources(sources);return{...sources};}
- const r=currentReview(review);assertRuntimeScope(sources);assert.deepEqual(Object.keys(r.runtime).sort(),[...f.scope.allowedChangedRuntime,...f.scope.allowedAddedRuntime].sort(),'All reviewed quarry runtime snapshots are present');for(const [path,source]of Object.entries(r.runtime))assert.equal(sources[path],source,'Exact reviewed quarry runtime '+path);
- const out={...sources};for(const path of f.scope.allowedAddedRuntime)delete out[path];for(const path of f.scope.allowedChangedRuntime)out[path]=baseSource(path);return beforeStage12QuarryRuntimeSources(out);
+ const r=currentReview(review),projected=beforeStage12QuarryHoldGuideSources(sources);assertRuntimeScope(projected);assert.deepEqual(Object.keys(r.runtime).sort(),[...f.scope.allowedChangedRuntime,...f.scope.allowedAddedRuntime].sort(),'All reviewed quarry runtime snapshots are present');for(const [path,source]of Object.entries(r.runtime))assert.equal(sources[path],source,'Exact reviewed quarry runtime '+path);
+ const out={...projected};for(const path of f.scope.allowedAddedRuntime)delete out[path];for(const path of f.scope.allowedChangedRuntime)out[path]=baseSource(path);return beforeStage12QuarryRuntimeSources(out);
 }
 const projectPrefix='globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author(',projectSuffix='));';
 /** Accept only the frozen raw model-parts format or the older temple format

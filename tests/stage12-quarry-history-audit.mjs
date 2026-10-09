@@ -26,7 +26,9 @@ if(selfTest){
  // must still match the original complete d7 hash before any synthetic edit.
  p.stages[11]=plain(Q.stage12QuarryOriginal.stage);p.library=p.library.filter(a=>!a.id.startsWith(f.scope.addedAssetPrefix));assert.equal(hash(p),f.projectSha256);
  sources=Object.fromEntries(await Promise.all(f.runtime.files.map(async row=>[row.path,Object.hasOwn(row,'before')?row.before:await readFile(row.path,'utf8')])));
+ sources=Q.beforeStage12QuarryHoldGuideSources(sources);
  Q.beforeStage12QuarryRuntimeSources(sources);
+ const ui=Q.stage12QuarryHoldGuideDelta;sources[ui.path]=sources[ui.path].replace(ui.before,ui.after);
  sources['shared/build.mjs']=sources['shared/build.mjs'].replace("'stage30-ferry','objective-guidance'","'stage30-ferry','stage12-quarry','objective-guidance'").replace("'stage30-ferry-art','combat-feedback'","'stage30-ferry-art','stage12-quarry-art','combat-feedback'");
  sources['shared/runtime/terrain-readability.js']=sources['shared/runtime/terrain-readability.js'].replace('G.HonroStage30FerryArt?.omitReadability(group,b)','G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b)');
  const balance=JSON.parse(sources['game/config/balance.json']);balance.stages[11].initialEnemies=32;sources['game/config/balance.json']=JSON.stringify(balance,null,2)+'\n';
@@ -65,9 +67,25 @@ if(review.addedAssets.length)mutations.push(
 for(const [name,mutate]of mutations){const q=plain(p);mutate(q);assert.throws(()=>Q.beforeStage12Quarry(q,options),'Projection must not hide '+name);}
 for(const mutate of [r=>r.sourceCommit='unreviewed',r=>r.sourceTree='unreviewed',r=>r.scope.stageIds.push(13),r=>r.stage.units[0].x++]){const r=plain(review);mutate(r);assert.throws(()=>Q.beforeStage12Quarry(p,{review:r}),'Review identity/scope/current snapshot is exact');}
 const prior=Q.beforeStage12QuarryRuntimeSources(sources,options);assert.equal(Object.keys(prior).length,126);assert.deepEqual(Q.beforeStage12QuarryRuntimeSources(prior,options),prior);F.beforeStage30FerryRuntimeSources(prior);assert.equal(JSON.stringify(sources),sourceSnapshot,'Runtime projection is pure');
-const runtimePaths=['shared/runtime/stage12-quarry.js','shared/runtime/stage12-quarry-art.js','shared/build.mjs','shared/runtime/terrain-readability.js','game/config/balance.json','shared/runtime/stage30-ferry.js','shared/runtime/stage18-bell.js','shared/engine/src/engine.ts','shared/map/compiler.js'];
+const runtimePaths=['shared/runtime/act2-art.js','shared/runtime/stage12-quarry.js','shared/runtime/stage12-quarry-art.js','shared/build.mjs','shared/runtime/terrain-readability.js','game/config/balance.json','shared/runtime/stage30-ferry.js','shared/runtime/stage18-bell.js','shared/engine/src/engine.ts','shared/map/compiler.js'];
 for(const path of runtimePaths)assert.throws(()=>Q.beforeStage12QuarryRuntimeSources({...sources,[path]:sources[path]+' '},options),'Exact runtime byte drift '+path);
 assert.throws(()=>Q.beforeStage12QuarryRuntimeSources({...sources,'shared/runtime/unreviewed.js':'x'},options));const missing={...sources};delete missing['shared/runtime/stage12-quarry-art.js'];assert.throws(()=>Q.beforeStage12QuarryRuntimeSources(missing,options));
+const ui=Q.stage12QuarryHoldGuideDelta,originalUI=Q.beforeStage12QuarryHoldGuideSource(sources[ui.path]);
+assert.equal(originalUI,prior[ui.path],'UI inverse agrees with the complete runtime projection');
+const onlyUI=Q.beforeStage12QuarryHoldGuideSources(sources);assert.deepEqual(Object.keys(onlyUI),Object.keys(sources));
+for(const [path,source]of Object.entries(sources))if(path!==ui.path)assert.equal(onlyUI[path],source,'UI boundary preserves every other source '+path);
+const uiMutations=[
+ ['missing current correction',()=>originalUI],['duplicate corrected line',s=>s+'\n'+ui.after],
+ ['duplicate original line',s=>s+'\n'+ui.before],['stage condition removed',s=>s.replace('b.honroStage===12&&','')],
+ ['custom condition removed',s=>s.replace('!b.honroCustom&&','')],['revision condition widened',s=>s.replace('b.honroQuarryRevision===1','b.honroQuarryRevision>=1')],
+ ['fallback changed',s=>s.replace("?'라운드':'턴'","?'라운드':'라운드'")],
+ ['adjacent one byte',s=>s.replace(ui.after,ui.after+' ')],['unrelated one byte',s=>s+' ']
+];
+for(const [name,mutate]of uiMutations){const changed=mutate(sources[ui.path]);assert.notEqual(changed,sources[ui.path],name);
+ assert.throws(()=>Q.beforeStage12QuarryRuntimeSources({...sources,[ui.path]:changed},options),'Current UI rejects '+name);
+ assert.throws(()=>Q.createStage12QuarryReview(p,{...sources,[ui.path]:changed},{label:'rejected UI drift'}),'Recorder rejects '+name);
+}
+for(const changed of [originalUI+' ',originalUI.replace(ui.before,ui.after),originalUI+'\n'+ui.before])assert.throws(()=>Q.beforeStage12QuarryRuntimeSources({...prior,[ui.path]:changed},options),'Historical original UI remains exact');
 const alteredReview=plain(review);delete alteredReview.runtime['shared/build.mjs'];assert.throws(()=>Q.beforeStage12QuarryRuntimeSources(sources,{review:alteredReview}));
 const balance=JSON.parse(sources['game/config/balance.json']),content={stages:[{id:1,unchanged:true},plain(Q.stage12QuarryOriginal.content)]};content.stages[1].enemies=balance.stages[11].initialEnemies;
 const contentSnapshot=JSON.stringify(content),balanceSnapshot=JSON.stringify(balance),priorContent=Q.beforeStage12QuarryContent(content,options),priorBalance=Q.beforeStage12QuarryBalance(balance,options);
@@ -91,5 +109,5 @@ if(!selfTest){
  }
  for(const key of ['HONRO_CONTENT','HONRO_BALANCE','HonroAct2Plan']){const target=g[key].stages,index=key==='HonroAct2Plan'?1:11,original=target[index];target[index]={...plain(original),unreviewed:true};try{assert.throws(()=>Q.withHistoricalStage12(g,()=>assert.fail('Unreviewed semantic state entered callback')));}finally{target[index]=original;}runtimeWrapperChecks++;}
 }
-const result={passed:true,syntheticBoundarySelfTest:selfTest,currentProductionAccepted:!selfTest,label:review.label,sourceCommit:f.sourceCommit,unchangedMaps:29,unchangedAssets:f.library.length,addedAssets:review.addedAssets.length,protectedFixtureFiles:Object.keys(protectedFixtures).length,projectNegativeControls:mutations.length+4,runtimeNegativeControls:runtimePaths.length+3,semanticNegativeControls:10,fingerprintNegativeControls:fingerprintChecks,runtimeWrapperChecks,beforeProjectSha256:f.projectSha256,afterProjectSha256:hash(p),scope:selfTest?'Synthetic in-memory boundary tests only; no actual current checkpoint or gameplay acceptance.':'Exact current12 -> d7 -> original30 -> original18. Current Engine only. No gameplay, fullplay, visual or browser acceptance.'};
+const result={passed:true,syntheticBoundarySelfTest:selfTest,currentProductionAccepted:!selfTest,label:review.label,sourceCommit:f.sourceCommit,unchangedMaps:29,unchangedAssets:f.library.length,addedAssets:review.addedAssets.length,protectedFixtureFiles:Object.keys(protectedFixtures).length,projectNegativeControls:mutations.length+4,runtimeNegativeControls:runtimePaths.length+3,holdGuideNegativeControls:uiMutations.length*2+3,holdGuideOriginalSha256:hash(originalUI),semanticNegativeControls:10,fingerprintNegativeControls:fingerprintChecks,runtimeWrapperChecks,beforeProjectSha256:f.projectSha256,afterProjectSha256:hash(p),scope:selfTest?'Synthetic in-memory boundary tests only; no actual current checkpoint or gameplay acceptance.':'Exact current12 -> d7 -> original30 -> original18. Current Engine only. No gameplay, fullplay, visual or browser acceptance.'};
 await mkdir('_local/reports/stage12-quarry',{recursive:true});await writeFile('_local/reports/stage12-quarry/'+(selfTest?'history-boundary-self-test':'exact-history')+'.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
