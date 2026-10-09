@@ -85,7 +85,9 @@ function progressive(b,st,result,list,current){
   }
  }else{rows=legacySteps(b,st,result);chosen=rows.find(q=>!q.done);instruction=chosen?.text;}
  instruction=G.HonroStage11RavineEncounters?.rescueInstruction(b,chosen)||instruction;
- const visibleChecklist=rows.filter(q=>q.done||q.id===chosen?.id).map(q=>({...q,current:q.id===chosen?.id&&!q.done}));
+ if(G.HonroStage18Bell?.active(b)&&chosen?.kind==='bell-descent')instruction=G.HonroStage18Bell.memory(b).reason||chosen.label;
+ const parallelIds=new Set(chosen?.parallelGroup==='bell-stabilize'?list.filter(q=>q.parallelGroup===chosen.parallelGroup).map(q=>q.id):[]);
+ const visibleChecklist=rows.filter(q=>q.done||q.id===chosen?.id||parallelIds.has(q.id)).map(q=>({...q,current:(q.id===chosen?.id||parallelIds.has(q.id))&&!q.done}));
  return{currentInstruction:result.complete?'목표 완료':instruction||result.summary,currentObjectiveId:chosen?.id,visibleChecklist};
 }
 G.HonroObjectiveGuide={enhance,stepText,ending,progressive};

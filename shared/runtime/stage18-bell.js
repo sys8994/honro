@@ -36,6 +36,7 @@ function settle(app){const b=app.engine.b,m=memory(b),spec=b.honroBellDescent;
  for(const id of spec.openTerrainIds||[]){for(const list of [b.terrain,b.honroWorldTerrain]){const t=list?.find(t=>t.id===id);if(t)t.broken=true;}}
  // These named fixed links are authored in both maps; no actor is carried.
  b.sceneVersion++;app.dirty=true;app.event('대종이 받침에 멎었다. 아래 귀환길과 동쪽 측면길이 열려 있다.');
+ if(m.camera&&app.scene?.storyRelease)app.scene.storyRelease(m.camera,350);
  app.engine.emit?.('save');
 }
 function transition(app){const e=app.engine,b=e.b,m=memory(b);if(!b.honroBellDescent||m.status==='settled'||m.status==='lowering')return;
@@ -55,6 +56,7 @@ function transition(app){const e=app.engine,b=e.b,m=memory(b);if(!b.honroBellDes
  m.status=waiting.length?'warning':'waiting';
  if(waiting.length||blocks.length||!safeBoundary(app))return;
  m.status='lowering';m.elapsed=0;m.duration=.9;m.startOffset=m.offset||0;m.reason='대종이 받침에 내려앉는 중';app.dirty=true;
+ if(app.scene?.storyFocusPoint){m.camera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};const at=b.honroBellDescent.resting||{};app.scene.storyFocusPoint(at.x||7200,(at.y||7000)-400,180,.32);}
  app.event('청동 입술이 받침돌을 향해 천천히 내려온다.');e.emit?.('save');
 }
 function entryFor(b,source){const spec=b.honroBellDescent?.entries||{},index=source==='keeper-retaliation'?0:Math.floor(Number(source.split('-').at(-1))/3);const list=source==='keeper-retaliation'?spec.keeper:spec.hold;return list?.[index%(list?.length||1)];}
@@ -79,6 +81,7 @@ W.execute=function(app,action){const b=app.engine?.b,source=action?.source;
 };
 const cap=E.populationCap;E.populationCap=function(b){return active(b)?Math.max(cap(b),b.honroBellPopulationCap||53):cap(b);};
 const attach=A.attach;A.attach=function(app,e){const out=attach(app,e),b=e.b;if(!active(b)||e.honroBellAttached)return out;e.honroBellAttached=true;memory(b);
+ const recover=e.recover.bind(e);e.recover=function(u){const out=recover(u);A.subdue(e,u);return out;};
  const can=e.canAct.bind(e);e.canAct=function(){return memory(e.b).status!=='lowering'&&can();};
  const tick=e.tick.bind(e);e.tick=function(dt){const m=memory(e.b);if(m.status!=='lowering')return tick(dt);
   m.elapsed=Math.min(m.duration||.9,(m.elapsed||0)+Math.max(0,dt));const t=m.elapsed/(m.duration||.9),ease=t*t*(3-2*t);shift(e.b,(m.startOffset||0)+(e.b.honroBellDescent.distance-(m.startOffset||0))*ease);app.dirty=true;
@@ -91,7 +94,7 @@ const tick=A.tick;A.tick=function(app,dt){const b=app.engine?.b;if(!active(b))re
 };
 const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const a=A.memory(b),m=memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=b.terrain.find(t=>t.id==='upper-chain');
  if(done(b,'silence')&&(!A.satisfied(b,hold)||!anchor?.broken)){
-  const h=a.holds?.['hold-silence'],site=b.honroMarkers.find(s=>s.id==='hold-silence');out.summary=`2/8 · 병렬 안정화 · 억제 ${h?.progress||0}/4라운드${h?.contested?' (적 점유)':''} · 고정구 ${anchor?.broken?'해제':'남음'}`;
+  const h=a.holds?.['hold-silence'],site=b.honroMarkers.find(s=>s.id==='hold-silence');out.summary=`${A.steps(b).filter(s=>A.satisfied(b,s)).length}/8 · 병렬 안정화 · 억제 ${h?.progress||0}/4라운드${h?.contested?' (적 점유)':''} · 고정구 ${anchor?.broken?'해제':'남음'}`;
   out.targets=[...(!A.satisfied(b,hold)&&site?[{id:'hold-silence',kind:'interact',x:site.x,y:site.y,label:'담허 · 억제진 4라운드'}]:[]),...(!anchor?.broken&&anchor?[{id:'upper-chain',kind:'seal',x:anchor.x+anchor.w/2,y:anchor.y,label:'장력 고정구 · 기본 공격',box:anchor}]:[])];
  }
  if(['warning','waiting','lowering'].includes(m.status)){out.summary='4/8 · '+m.reason;out.targets=[{id:'bell-descent',kind:'interact',x:b.honroBellDescent.resting?.x||7200,y:b.honroBellDescent.resting?.y||7100,label:m.reason}];}

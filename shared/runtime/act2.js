@@ -154,6 +154,9 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=current(b);
  }
  if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
+function subdue(e,u,source){if(!u?.honroNonlethal||u.hp>1||u.dead||u.honroSubdued)return false;
+ G.HonroProgression.defeat(e,u,source);u.honroSubdued=true;u.side=2;u.fixed=true;u.acted=true;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;delete u.aiMove;e.b.queue=e.b.queue.filter(id=>id!==u.id);e.message('종지기를 전투 불능으로 제압했다.');return true;
+}
 function attach(app,e){if(!active(e.b))return;
  if(revision2(e.b))for(const u of e.b.units)if(u.side===1)tuneEncounter(u,e.b.honroStage);
  const manifest=e.manifest.bind(e);e.manifest=function(target,...args){const out=manifest(target,...args);if(target.honroSpirit&&target.manifested)target.formDamageTakenBonus=Math.max(target.formDamageTakenBonus,.92);return out;};
@@ -163,7 +166,7 @@ function attach(app,e){if(!active(e.b))return;
   if(u.honroAct2Boss&&!memory(e.b).done.leak)amount*=.12;
   if(u.honroSubdued)return;
   const out=damage(u,amount,...args);
-  if(u.honroNonlethal&&u.hp<=1&&!u.dead){G.HonroProgression.defeat(e,u,source);u.honroSubdued=true;u.side=2;u.fixed=true;u.acted=true;u.vx=u.vy=0;e.b.queue=e.b.queue.filter(id=>id!==u.id);e.message('종지기를 전투 불능으로 제압했다.');}
+  subdue(e,u,source);
   return out;
  };
  const terrain=e.damageTerrain.bind(e);e.damageTerrain=function(t,amount,depth=0,owner=e.b.active){
@@ -244,5 +247,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,satisfied,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
+G.HonroAct2={active,configureEnemy,recruit,memory,current,satisfied,subdue,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
 })(globalThis);

@@ -49,4 +49,14 @@ check('warning, occupied wait and mid-descent save resume once with exact displa
 check('early HP1 subdued keeper survives lowering without resurrection or reset',()=>{
  const q=fixture(),boss=q.e.unit('act2-keeper');Object.assign(boss,{hp:1,dead:false,honroSubdued:true,side:2,fixed:true,x:10000,y:6200});qualify(q);S.transition(q.app);allOpportunities(q);q.e.tick(1);assert.equal(boss.hp,1);assert(!boss.dead);assert(boss.honroSubdued);assert.equal(boss.side,2);assert(boss.fixed);
 });
+check('hostile keeper actually falls through Engine physics, reaches HP1 and completes defeat without dying',()=>{
+ let q=fixture();const boss=q.e.unit('act2-keeper');A.memory(q.b).done.leak=true;
+ // State fixture starts the hostile actor falling outside the play bounds.
+ // Damage is a real hurt call; physics invokes recover without a test call.
+ q.e.hurt(boss,boss.hp-Math.ceil(boss.maxHp*.1),q.e.active.id);assert(boss.hp>1);assert(!boss.honroSubdued);assert.equal(boss.side,1);
+ Object.assign(boss,{x:q.b.width-150,y:q.b.height+350,vx:0,vy:420,airborne:false,jumping:false,fixed:false});const hp=boss.hp;let recoverCalls=0;const recover=q.e.recover.bind(q.e);q.e.recover=u=>{recoverCalls++;return recover(u);};
+ for(let i=0;i<120&&!boss.honroSubdued;i++)q.e.tick(C.STEP);
+ assert.equal(recoverCalls,1);assert(hp>boss.hp);assert.equal(boss.hp,1);assert(!boss.dead);assert(boss.honroSubdued);assert.equal(boss.side,2);assert(boss.fixed);assert(A.satisfied(q.b,{id:'keeper',kind:'defeat',target:boss.id}));assert(!q.b.queue.includes(boss.id));
+ const before=plain(boss);q=resume(q);assert.deepEqual(plain(q.e.unit(boss.id)),before);assert(A.satisfied(q.b,{id:'keeper',kind:'defeat',target:boss.id}));
+});
 await mkdir('_local/reports/stage18-bell',{recursive:true});await writeFile('_local/reports/stage18-bell/runtime-contracts.json',JSON.stringify({checks,scope:'Synthetic transition state fixtures; no route, art, normal combat or browser claim.'},null,2));
