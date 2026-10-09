@@ -1,10 +1,13 @@
+import {historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
+// Scope: preserve every original Stage11 assertion on its exact public D map;
+// new Stage11 has separately required command, encounter and shot coverage.
 // Baseline optional-jump audit. Every trial stages once on the declared main
 // approach, then uses only Engine.move/jump/wait/tick. It never changes position,
 // HP, movement budget, ranks or velocity after staging. Combat is isolated.
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
-const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[],shotRows=[];
+const g=historicalStage11Runtime(await runtime({legacyMaps:false})),C=g.HONRO_CORE,rows=[],shotRows=[];
 const requested=process.argv.slice(2).map(Number),ids=requested.length?requested:Array.from({length:10},(_,i)=>i+11);
 const plain=x=>JSON.parse(JSON.stringify(x));
 const dt=C.STEP;

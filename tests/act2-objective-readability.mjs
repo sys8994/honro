@@ -31,7 +31,7 @@ for(let id=11;id<=20;id++)for(const step of g.HONRO_CONTENT.stages[id-1].steps){
    const before=JSON.stringify(b),guide=A.holdGuide(b,step);assert.equal(JSON.stringify(b),before,'guide is read-only');
    assert.equal(guide.radius,step.radius);assert.equal(guide.contestRadius,step.contestRadius);assert.equal(guide.x,m.x);assert.equal(guide.y,m.y);
    assert.equal(guide.guarded,item.guarded,item.name);assert.equal(guide.contested,!!item.contested,item.name);
-   const app={engine:e,stage:g.HONRO_CONTENT.stages[id-1],checkMission(){return false;}};g.HonroAct2.tick(app,0);
+   const app={engine:e,stage:g.HONRO_CONTENT.stages[id-1],event(){},checkMission(){return false;}};g.HonroAct2.tick(app,0);
    const actual=b.honroState.act2.holds[step.id];assert.equal(guide.guarded,actual.guarded,item.name+' matches engine guard');assert.equal(guide.contested,actual.contested,item.name+' matches engine contest');
   }
   const {c,calls}=traced();const before=JSON.stringify(b);A.objectiveGuide(c,scene(b),b);assert.equal(JSON.stringify(b),before);

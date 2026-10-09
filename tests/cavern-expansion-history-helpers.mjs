@@ -1,3 +1,4 @@
+import {beforeCurrentStage11Ravine} from './stage11-ravine-history-helpers.mjs';
 // Immutable, path-by-path reversal of the reviewed cavern expansion authoring.
 // Call before older scene/roster/objective projections. No entire stage or
 // gameplay category is omitted; unchanged fields remain visible to old hashes.
@@ -14,7 +15,7 @@ function keyAt(target,key,message){
  assert.equal(indexes.length,1,message+' unique named record');return indexes[0];
 }
 export function beforeCavernExpansion(project,{stages=cavernExpansionHistoryDelta.hashes.map(r=>r.stage)}={}){
- const out=structuredClone(project);
+ const out=beforeCurrentStage11Ravine(project);
  for(const row of cavernExpansionHistoryDelta.rows){
   if(!stages.includes(row.stage))continue;
   const message=label(row),maps=out.stages.filter(s=>s.metadata?.stageId===row.stage);

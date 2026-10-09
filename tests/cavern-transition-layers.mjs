@@ -1,11 +1,14 @@
+import {beforeCurrentStage11Ravine,historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
+// Original Stage11/17 transition checks remain active after exact reversal;
+// current ravine/worksite traversal, shots and combat are independently required.
 import assert from 'node:assert/strict';import {readFile,mkdir,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
 import {openRoute,walkRoute} from './act2-spatial-test-helpers.mjs';
 import {act1Runtime,fixture,traverse} from './act1-spatial-test-helpers.mjs';import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
-const p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),baseline=JSON.parse(await readFile('tests/fixtures/cavern-transition-preservation.json','utf8')).stages,hash=v=>createHash('sha256').update(JSON.stringify(v??null)).digest('hex'),plain=x=>JSON.parse(JSON.stringify(x));
+const p=beforeCurrentStage11Ravine(JSON.parse(await readFile('shared/data/campaign.json','utf8'))),baseline=JSON.parse(await readFile('tests/fixtures/cavern-transition-preservation.json','utf8')).stages,hash=v=>createHash('sha256').update(JSON.stringify(v??null)).digest('hex'),plain=x=>JSON.parse(JSON.stringify(x));
 const reauthored=applyCavernTransitionLayers(plain(p));assert.deepEqual(reauthored,p,'idempotent');
 for(let i=0;i<p.stages.length;i++){const s=p.stages[i],b=baseline[i+1];if(![11,12,13,17,18,19].includes(i+1)){assert.deepEqual(reauthored.stages[i],s,'transition postprocessor must not touch other stage '+(i+1));if(i===19)assert.equal(hash(s),b.stage,'stage20 deliberately remains original');continue;}for(const key of ['units','objectives','events','markers','initialState','anchors','routes','encounters','elements'])assert.equal(hash(s[key]),b.fields[key],`${i+1} preserves ${key}`);assert.equal(hash(s.terrains.filter(t=>!t.id.startsWith('ct-')&&!(i===16&&t.id==='cave-roof'))),b.terrains,'all original solids except reviewed stage17 roof');}
 assert.deepEqual(p.stages[17].terrains.filter(t=>!t.breakable),p.stages[18].terrains.filter(t=>!t.breakable),'18/19 same physical space');
-const g=await act1Runtime();assert.deepEqual(plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(p)))),plain(g.HonroMaps.finalize(p)),'authoring roundtrip');const rows=[];
+const g=historicalStage11Runtime(await act1Runtime());assert.deepEqual(plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(p)))),plain(g.HonroMaps.finalize(p)),'authoring roundtrip');const rows=[];
 for(const id of [11,12,13,17,18,19,20])for(const cls of ['archer','mage','knight','occultist']){
  const st=g.HONRO_PROJECT.stages[id-1];{const{b,e}=fixture(g,id),u=e.heroesAlive().find(u=>u.cls===cls);b.units=[u];b.active=u.id;e.checkEnd=()=>false;openRoute(b);const r=walkRoute(g,b,e,u,st.design.space.routes.find(r=>r.id==='main').anchors);rows.push({id,cls,choice:'main-after-destruction',...r});console.log(id,cls,'main',r.passed,r.failed);}for(const choice of st.design.cavernTransitions?.choices||[]){const{b,e}=fixture(g,id),u=e.heroesAlive().find(u=>u.cls===cls);b.units=[u];b.active=u.id;e.checkEnd=()=>false;Object.assign(u,choice.route[0],{vx:0,vy:0});const r=traverse(g,b,e,u,choice.route.slice(1));rows.push({id,cls,choice:choice.id,...r});console.log(id,cls,choice.id,r.passed,r.failed);}
 }

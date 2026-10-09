@@ -1,0 +1,14 @@
+/** Single-frame Native scene evidence from an actual full-play checkpoint.
+ * Loading is for rendering only. No simulated inputs or altered actor poses. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import path from 'node:path';import{createRequire}from'node:module';import{readFile,writeFile,mkdir}from'node:fs/promises';import{createHash}from'node:crypto';import{runtimeParts}from'../shared/build.mjs';
+const [input,viewId,output]=process.argv.slice(2);if(!input||!viewId||!output)throw Error('checkpoint.json viewId output.png');
+const views={entry:{x:1280,y:6270,scale:.66},west:{x:3510,y:5820,scale:.62},ritual:{x:7370,y:6540,scale:.59},refuge:{x:9470,y:8660,scale:.70},east:{x:11590,y:4960,scale:.7},trace:{x:14830,y:4900,scale:.62}};assert(views[viewId]);
+const native=createRequire(import.meta.url)('@napi-rs/canvas');native.GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');
+const canvas=(w=300,h=150)=>{const c=native.createCanvas(w,h);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});return c;};
+class Image extends native.Image{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;}get src(){return super.src;}}
+const g=vm.createContext({console,performance,structuredClone,Math,document:{createElement:()=>canvas()},Image,Path2D:native.Path2D,DOMMatrix:native.DOMMatrix,devicePixelRatio:1,matchMedia:()=>({matches:false}),navigator:{userAgent:'honro-native-fullplay-evidence'},setTimeout,clearTimeout});g.window=g;
+for(const part of await runtimeParts({vector:true,render:true}))vm.runInContext(part,g);
+const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex'),saved=JSON.parse(await readFile(input,'utf8'));assert.equal(hash(g.HONRO_PROJECT),saved.sourceHash,'Checkpoint and production renderer use the same project');
+for(let n=0;n<200&&(!g.HonroAct2SpatialArt.ready()||!g.HonroAct1Background.ready(11));n++)await new Promise(r=>setTimeout(r,10));
+const b=saved.b||saved.initial.battle,e=new g.HONRO_CORE.Engine(b,()=>{},false),cv=canvas(1440,960),scene=new g.HonroScene(cv);Object.assign(scene,{...views[viewId],manual:true,time:2});scene.render(e,0,'',.6,false,0);await new Promise(r=>setTimeout(r,30));scene.render(e,0,'',.6,false,0);
+await mkdir(path.dirname(output),{recursive:true});const bytes=cv.toBuffer('image/png');await writeFile(output,bytes);await writeFile(output+'.json',JSON.stringify({sourceHash:saved.sourceHash,round:b.round,phase:b.phase,input,viewId,view:views[viewId],pngSha256:createHash('sha256').update(bytes).digest('hex'),scope:'Production HonroScene Native Canvas, independent process, unmodified actual fresh-play checkpoint. No DOM/HUD/browser screenshot claim.'},null,2));console.log(output);

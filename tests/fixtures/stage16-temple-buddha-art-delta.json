@@ -1,0 +1,1494 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exactly one noncolliding Buddha asset and one L1-back element only. All original539 assets/order, other29 stages and every non-element Stage16 field remain exact.",
+  "beforeSourceCommit": "09cf792d82f9576fbd18e8539897e44e27e51ab8",
+  "afterSourceCommit": "dbef41ce1eefc897afcf17ee0ed2a17ce27aebf9",
+  "beforeProjectSha256": "71c1d14ab1bbb205d2e77929d30719fc298c23acc953c82dccb871f7219e0bdb",
+  "afterProjectSha256": "26d78521f28525b53deb15f30a0f71573030c3ab296f36a053689bf6f94d7bdb",
+  "beforeAct12ProjectSha256": "4fefe8d89864a779c3fc3ded6c780cd9e959f7e3865fbf47f964b83c408d92fb",
+  "afterAct12ProjectSha256": "ce7814f5b318e88977167cd4f649523456640cdf7b6aa82588a3ff5d62245f54",
+  "beforeStageSha256": "d953041ac404e375c59ff94804f9f36d9c9f3d9613eab6ac2d5fd2e431781815",
+  "afterStageSha256": "08f1f010f854acb445b7d3345c1026c3ad94c29d495b4ab9113cf54b287f895a",
+  "beforeLibrarySha256": "6e4bb139213a9509bab3e667cef8f56f0b803ddceba010c98344cd19c78e6b57",
+  "afterLibrarySha256": "33d088631e2a855f1632d8ecb6b8a317807f86140977d6ec12f937d9712c17f6",
+  "beforeAct12LibrarySha256": "196c33ba87daedc7c323338679873c877dbb579c621b6c32178b758fe172d35c",
+  "afterAct12LibrarySha256": "aa02f44403645e19dc5f75a22521d77e1b3de34439e9c940d4a7c50e2b17b487",
+  "stageOrder": [
+    "stage-1",
+    "stage-2",
+    "stage-3",
+    "stage-4",
+    "stage-5",
+    "stage-6",
+    "stage-7",
+    "stage-8",
+    "stage-9",
+    "stage-10",
+    "stage-11",
+    "stage-12",
+    "stage-13",
+    "stage-14",
+    "stage-15",
+    "stage-16",
+    "stage-17",
+    "stage-18",
+    "stage-19",
+    "stage-20",
+    "stage-21",
+    "stage-22",
+    "stage-23",
+    "stage-24",
+    "stage-25",
+    "stage-26",
+    "stage-27",
+    "stage-28",
+    "stage-29",
+    "stage-30"
+  ],
+  "otherStages": [
+    {
+      "id": "stage-1",
+      "sha256": "457c27e2c10ad51da571caccf0bee27d2edbbbdf63947aa1ff26e3e508b4ca9c"
+    },
+    {
+      "id": "stage-2",
+      "sha256": "a1a1fdc73f655df7273450435b66946a7230d44879f8822a9a54844c314f272d"
+    },
+    {
+      "id": "stage-3",
+      "sha256": "18f66a6414fefd6850ff1dcd954319c8bc9517e4d34ab6146e7d52f2576c3a13"
+    },
+    {
+      "id": "stage-4",
+      "sha256": "0ab0f4deeb0420881400f232a957f8506c89c2ee592a70b16c968fc7e1589913"
+    },
+    {
+      "id": "stage-5",
+      "sha256": "1efdb99b86a52b1c80756a9f6c6237d75497cec6d76f53c57213dac3e553c28a"
+    },
+    {
+      "id": "stage-6",
+      "sha256": "451528fb64e9b550e1064aeb7b55af8331265cf04ec9363346af9411193fe105"
+    },
+    {
+      "id": "stage-7",
+      "sha256": "7addcd18ef18a250df09ae6dc4745aabc824a2247c8086160645e77b120f2f3b"
+    },
+    {
+      "id": "stage-8",
+      "sha256": "bfeac852839ffc53d622479bc24190fea3a462cf26ee75ae52882d308e06f2e0"
+    },
+    {
+      "id": "stage-9",
+      "sha256": "b4f039fda1593010713003695cea67709fabbe46243cbe0e3bdf1cd08d341b72"
+    },
+    {
+      "id": "stage-10",
+      "sha256": "f498a8892d644f7f075dd25aded1033117c5d492b98b8a46f6a18bd0e211ab54"
+    },
+    {
+      "id": "stage-11",
+      "sha256": "b384f415c812a9ec03c5c2915c72fa02568c32a1f1c14da134094106ffe48e0d"
+    },
+    {
+      "id": "stage-12",
+      "sha256": "73f3f878546f944c9cdd0e8896a706dfe3e0c28d839941ab7cbd3e9237704c3a"
+    },
+    {
+      "id": "stage-13",
+      "sha256": "48d569283fc709e1fe2e45cec00399c0895a9a7212af17c3b93dc07fdb408ad2"
+    },
+    {
+      "id": "stage-14",
+      "sha256": "4f235ba1f7434b4e48e46a9987d1a1b847d28acd9050ed177f0ac69cf536f8ba"
+    },
+    {
+      "id": "stage-15",
+      "sha256": "e21063e3b0b69ebd35e5f22e6cf97d855e3dbddf38b57791e077b370d7198fd9"
+    },
+    {
+      "id": "stage-17",
+      "sha256": "fa78dfd0da1c5d99f188996788926ab97d17d20572b076096d4f9c940eaa25bd"
+    },
+    {
+      "id": "stage-18",
+      "sha256": "487c5ca18f8e582add210b6653f14645d440de42adf3f3f07fb180d7ba563ff5"
+    },
+    {
+      "id": "stage-19",
+      "sha256": "faace7203145cef7cbbac494de5e3435d25c247021314e06c09a710a88fc4b74"
+    },
+    {
+      "id": "stage-20",
+      "sha256": "a24e34643fd7ccb149838703a64822159007d8497506a89edceadbc047719697"
+    },
+    {
+      "id": "stage-21",
+      "sha256": "e664f75704c9daad7f9366fe3868d62c53df1ee575a85eccbfafc5e0b5bedcc7"
+    },
+    {
+      "id": "stage-22",
+      "sha256": "6b0cf7454099e9beef1621b6438daa831883a03d52f74119c4b2b4197e046ee1"
+    },
+    {
+      "id": "stage-23",
+      "sha256": "e9e765a0fee907199ccbc440b2f6f26713b11a91f0d144a3553e9a791f776144"
+    },
+    {
+      "id": "stage-24",
+      "sha256": "ec406dfc1e38e255d0ba5dde308b1af5d0fc274ae9a9e4d51e1d35f3f2b11776"
+    },
+    {
+      "id": "stage-25",
+      "sha256": "79dd0c390e892852e7047cbdc40cd88640578320ac2ff10b51a356404835b92e"
+    },
+    {
+      "id": "stage-26",
+      "sha256": "443ed37bbae8f8a95aefe9b416caec514f036025a6cd4af9daaa462adca736da"
+    },
+    {
+      "id": "stage-27",
+      "sha256": "cdbf947bd35aca86e7615a760b201a3b5bcbbffcdb738e36fc3c4b5f493cc770"
+    },
+    {
+      "id": "stage-28",
+      "sha256": "a721f959979129859d11adec8fec462b3db2d4016962ff2581f51c0dfbf6b86c"
+    },
+    {
+      "id": "stage-29",
+      "sha256": "860ff4b7d4050172b25c7d6c26e9bfeede4318ca3ca703645fe52bc2d25de0ec"
+    },
+    {
+      "id": "stage-30",
+      "sha256": "7f7013343137be78bbb1044e55b941a1bee42d859611dfadcf9092cd4c971353"
+    }
+  ],
+  "libraryOrderBefore": [
+    "rock_small",
+    "rock_large",
+    "rock_ledge",
+    "ancient_pine",
+    "dead_pine",
+    "branch_thick",
+    "grass_tuft",
+    "fern",
+    "reed",
+    "shrine_gate",
+    "hut",
+    "warehouse",
+    "cart",
+    "lantern",
+    "grave_post",
+    "env:ridge",
+    "env:cliff",
+    "env:cloud",
+    "builtin:ancientPine",
+    "builtin:scree",
+    "builtin:fernPatch",
+    "builtin:rockPile",
+    "builtin:giantPine",
+    "builtin:fallenTree",
+    "builtin:spiritKnot",
+    "builtin:oldGate",
+    "builtin:ravinePine",
+    "builtin:funeralGate",
+    "builtin:reedBank",
+    "builtin:ferry",
+    "builtin:brokenDock",
+    "builtin:waterShrine",
+    "builtin:cargoScaffold",
+    "builtin:warehouse",
+    "builtin:oldHall",
+    "builtin:refugeeCarts",
+    "builtin:villageWall",
+    "builtin:cliffFace",
+    "builtin:burnedHouses",
+    "builtin:watchtower",
+    "builtin:waterfall",
+    "builtin:receiverStone",
+    "builtin:cliffShrine",
+    "builtin:deadPines",
+    "builtin:brokenBridge",
+    "builtin:bridgePillar",
+    "builtin:bell",
+    "builtin:greatTree",
+    "builtin:rootHut",
+    "builtin:hollowRoot",
+    "builtin:rootShrine",
+    "builtin:gravePosts",
+    "builtin:bierRest",
+    "builtin:incenseYard",
+    "builtin:royalGate",
+    "builtin:ritualDais",
+    "builtin:upperShrine",
+    "env:forest",
+    "env:rock",
+    "env:shrine",
+    "env:waterfall",
+    "mockup-granite-large",
+    "mockup-granite-small",
+    "mockup-granite-shelf",
+    "builtin:placeDetail",
+    "act2:cave-house",
+    "act2:cave-house-lean",
+    "act2:cave-house-ruin",
+    "act2:temple",
+    "act2:bell",
+    "act2:hoist-frame",
+    "act2:lamp",
+    "act2:ritual",
+    "act2:timber-rack",
+    "act2:mine-rail",
+    "act2:water-trough",
+    "act2:memorial",
+    "act2:bundles",
+    "act2:rock-column",
+    "act2:hanging-cloth",
+    "act2:stone-table",
+    "act2:old-soul-stone",
+    "act2:rock-bank",
+    "act2:pine",
+    "act2:sluice",
+    "act2:scene-longhouse",
+    "act2:scene-market-awning",
+    "act2:scene-temple-corridor",
+    "act2:scene-stone-threshold",
+    "act2:scene-work-shelter",
+    "act2:scene-market-walkway",
+    "act2:scene-upper-stair",
+    "act2:scene-court-wall",
+    "act1-scene:pine-grove",
+    "act1-scene:ritual-grove",
+    "act1-scene:valley-granite",
+    "act1-scene:ferry-house",
+    "act1-scene:refuge-gate",
+    "act1-scene:refuge-courtyard",
+    "act1-scene:bridge-abutment",
+    "act1-scene:ruined-court",
+    "act1-scene:root-sanctuary",
+    "act1-scene:ritual-hall",
+    "act1-scene:rooted-sacred",
+    "act1-scene:rooted-pine",
+    "a3-21:wall-stair",
+    "a3-21:gate-wall-walk",
+    "a3-22:archive-ground-west",
+    "a3-22:archive-ground-east",
+    "a3-22:archive-middle-west",
+    "a3-22:archive-middle-atrium",
+    "a3-22:archive-middle-east",
+    "a3-22:archive-upper-west",
+    "a3-22:archive-upper-east",
+    "a3-22:archive-upper-atrium",
+    "a3-22:archive-shelf-1",
+    "a3-22:archive-shelf-2",
+    "a3-22:archive-shelf-3",
+    "a3-22:archive-shelf-4",
+    "a3-22:archive-shelf-6",
+    "a3-22:archive-shelf-7",
+    "a3-22:archive-shelf-8",
+    "a3-22:archive-shelf-10",
+    "a3-22:archive-shelf-11",
+    "a3-22:archive-shelf-12",
+    "a3-22:archive-bundle-cabinet",
+    "a3-22:archive-scrolls",
+    "a3-22:merged-archive-west-stairs",
+    "a3-22:merged-archive-east-stairs",
+    "a3-22:archive-attic-gallery",
+    "a3-22:attic-rear-piers",
+    "a3-22:entry-record-wall",
+    "a3-korean-town-21-L3-bank",
+    "a3-korean-town-21-L3-house-0",
+    "a3-korean-town-21-L3-wall-0",
+    "a3-korean-town-21-L3-house-1",
+    "a3-korean-town-21-L3-house-2",
+    "a3-korean-town-21-L3-wall-2",
+    "a3-korean-town-21-L3-house-3",
+    "a3-korean-town-21-L3-wall-3",
+    "a3-korean-town-21-L3-house-4",
+    "a3-korean-town-21-L3-house-5",
+    "a3-korean-town-21-L3-wall-5",
+    "a3-korean-town-21-L3-house-6",
+    "a3-korean-town-21-L3-wall-6",
+    "a3-korean-town-21-L3-house-7",
+    "a3-korean-town-21-L3-house-8",
+    "a3-korean-town-21-L3-wall-8",
+    "a3-korean-town-21-L3-house-9",
+    "a3-korean-town-21-L3-wall-9",
+    "a3-korean-town-21-L3-house-10",
+    "a3-korean-town-21-L3-house-11",
+    "a3-korean-town-21-L3-wall-11",
+    "a3-korean-town-21-L3-house-12",
+    "a3-korean-town-21-L3-wall-12",
+    "a3-korean-town-21-L3-house-13",
+    "a3-korean-town-21-L3-house-14",
+    "a3-korean-town-21-L3-wall-14",
+    "a3-korean-town-21-L3-house-15",
+    "a3-korean-town-21-L3-wall-15",
+    "a3-korean-town-21-L2-bank",
+    "a3-korean-town-21-L2-house-0",
+    "a3-korean-town-21-L2-wall-0",
+    "a3-korean-town-21-L2-house-1",
+    "a3-korean-town-21-L2-house-2",
+    "a3-korean-town-21-L2-wall-2",
+    "a3-korean-town-21-L2-house-3",
+    "a3-korean-town-21-L2-wall-3",
+    "a3-korean-town-21-L2-house-4",
+    "a3-korean-town-21-L2-house-5",
+    "a3-korean-town-21-L2-wall-5",
+    "a3-korean-town-21-L2-house-6",
+    "a3-korean-town-21-L2-wall-6",
+    "a3-korean-town-21-L2-house-7",
+    "a3-korean-town-21-L2-house-8",
+    "a3-korean-town-21-L2-wall-8",
+    "a3-korean-town-21-L2-house-9",
+    "a3-korean-town-21-L2-wall-9",
+    "a3-korean-town-21-L2-house-10",
+    "a3-korean-town-21-L2-house-11",
+    "a3-korean-town-21-L2-wall-11",
+    "a3-korean-town-21-L2-house-12",
+    "a3-korean-town-21-L2-wall-12",
+    "a3-korean:21:entry-shop",
+    "a3-korean:21:cloth-yard",
+    "a3-korean:21:west-gate-wing",
+    "a3-korean:21:east-gate-wing",
+    "a3-korean:21:tea-market",
+    "a3-korean:21:east-stables",
+    "a3-korean:21:office-porch",
+    "a3-korean:21:east-watch",
+    "a3-korean:21:gate-tower",
+    "a3-korean:21:stair-retaining-wall",
+    "a3-korean:21:market-roof-stair",
+    "a3-korean:21:korean-street-wall-0",
+    "a3-korean:21:korean-street-wall-1",
+    "a3-korean:21:korean-street-wall-2",
+    "a3-korean:22:archive-rear",
+    "a3-korean:22:archive-west-roof",
+    "a3-korean:22:archive-east-roof",
+    "a3-location:23:west-stone-loading-bridge",
+    "a3-location:23:east-stone-loading-bridge",
+    "a3-location:23:western-vault-wall",
+    "a3-location:23:eastern-vault-wall",
+    "a3-location:23:loading-bay-0",
+    "a3-location:23:loading-bay-1",
+    "a3-location:23:loading-bay-2",
+    "a3-location:23:loading-bay-3",
+    "a3-location:23:loading-bay-4",
+    "a3-location:23:canal-maintenance-ledge",
+    "a3-location:23:canal-maintenance-access",
+    "a3-location:23:canal-bridge-bearing-piers",
+    "a3-location:23:west-masonry-water-arch",
+    "a3-location:23:east-masonry-water-arch",
+    "a3-location:23:sluice-arches-and-loading-ports",
+    "a3-location:24:empty-servants-house",
+    "a3-location:24:family-main-hall",
+    "a3-location:24:family-shrine-hall",
+    "a3-location:24:abandoned-study",
+    "a3-location:24:wall-0",
+    "a3-location:24:wall-1",
+    "a3-location:24:wall-2",
+    "a3-location:25:low-west-stone-passage",
+    "a3-location:25:record-chamber-rear",
+    "a3-location:25:low-east-stone-passage",
+    "a3-location:25:low-jaesil-entry",
+    "a3-location:25:hidden-records-0",
+    "a3-location:25:hidden-records-1",
+    "a3-location:25:visible-earth-roots",
+    "a3-location:25:record-room-oil-lamps",
+    "a3-location:25:record-chamber-retaining-masonry",
+    "a3-location:28:old-courier-record-shed",
+    "a3-location:28:blocked-road-watch",
+    "a3-location:28:blockade-road-embankments",
+    "a3-location:29:under-sluice-inspection-bridge",
+    "a3-location:29:sealed-understore-rear",
+    "a3-location:29:sealed-archive-chest",
+    "a3-location:29:single-sluice-pavilion",
+    "a3-location:29:upper-sluice-road",
+    "a3-location:29:real-sluice-rear-piers",
+    "a3-location:30:last-ferry-gangway",
+    "a3-location:30:far-town-0",
+    "a3-location:30:far-town-1",
+    "a3-location:30:far-town-2",
+    "a3-location:30:far-town-3",
+    "a3-location:30:small-ferry-shelter",
+    "a3-location:30:river-boatkeeper-house",
+    "a3-location:30:moored-ferry-boats",
+    "a3-refine:21:weathered-ground-washes",
+    "a3-refine:21:ground-vignette-0",
+    "a3-refine:21:ground-vignette-1",
+    "a3-refine:21:ground-vignette-2",
+    "a3-refine:21:pine-art-0",
+    "a3-refine:21:pine-art-1",
+    "a3-refine:21:pine-art-2",
+    "a3-refine:22:weathered-ground-washes",
+    "a3-refine:22:ground-vignette-0",
+    "a3-refine:22:ground-vignette-1",
+    "a3-refine:22:pine-art-0",
+    "a3-refine:22:pine-art-1",
+    "a3-refine:23:weathered-ground-washes",
+    "a3-refine:23:ground-vignette-0",
+    "a3-refine:23:ground-vignette-1",
+    "a3-refine:23:ground-vignette-2",
+    "a3-refine:23:ground-vignette-3",
+    "a3-refine:24:weathered-ground-washes",
+    "a3-refine:24:ground-vignette-0",
+    "a3-refine:24:ground-vignette-1",
+    "a3-refine:24:ground-vignette-2",
+    "a3-refine:24:ground-vignette-3",
+    "a3-refine:24:pine-art-0",
+    "a3-refine:24:pine-art-1",
+    "a3-refine:24:pine-art-2",
+    "a3-refine:24:pine-art-3",
+    "a3-refine:24:pine-art-4",
+    "a3-refine:24:broken-garden-boundary",
+    "a3-refine:25:weathered-ground-washes",
+    "a3-refine:25:ground-vignette-0",
+    "a3-refine:25:ground-vignette-1",
+    "a3-refine:25:ground-vignette-2",
+    "a3-refine:25:ground-vignette-3",
+    "a3-refine:25:pine-art-0",
+    "a3-refine:25:pine-art-1",
+    "a3-refine:25:pine-art-2",
+    "a3-refine:28:weathered-ground-washes",
+    "a3-refine:28:ground-vignette-0",
+    "a3-refine:28:ground-vignette-1",
+    "a3-refine:28:ground-vignette-2",
+    "a3-refine:28:ground-vignette-3",
+    "a3-refine:28:ground-vignette-4",
+    "a3-refine:28:pine-art-0",
+    "a3-refine:28:pine-art-1",
+    "a3-refine:28:pine-art-2",
+    "a3-refine:28:pine-art-3",
+    "a3-refine:28:pine-art-4",
+    "a3-refine:28:pine-art-5",
+    "a3-refine:28:pine-art-6",
+    "a3-refine:28:pine-art-7",
+    "a3-refine:28:broken-garden-boundary",
+    "a3-refine:29:weathered-ground-washes",
+    "a3-refine:29:ground-vignette-0",
+    "a3-refine:29:ground-vignette-1",
+    "a3-refine:29:ground-vignette-2",
+    "a3-refine:29:ground-vignette-3",
+    "a3-refine:29:pine-art-0",
+    "a3-refine:29:pine-art-1",
+    "a3-refine:29:pine-art-2",
+    "a3-refine:29:pine-art-3",
+    "a3-refine:30:weathered-ground-washes",
+    "a3-refine:30:ground-vignette-0",
+    "a3-refine:30:ground-vignette-1",
+    "a3-refine:30:ground-vignette-2",
+    "a3-refine:30:ground-vignette-3",
+    "a3-refine:30:ground-vignette-4",
+    "a3-refine:30:pine-art-0",
+    "a3-refine:30:pine-art-1",
+    "a3-refine:30:pine-art-2",
+    "a3-refine:30:pine-art-3",
+    "a3-refine:30:pine-art-4",
+    "act1-scene:guardian-tree",
+    "a3-waterworks:25:continuous-masonry-waterline",
+    "a3-waterworks:25:small-tally-office",
+    "a3-waterworks:25:entry-lamp",
+    "a3-waterworks:25:stone-quay-0",
+    "a3-waterworks:25:great-sealed-store",
+    "a3-waterworks:25:final-seal-lamp",
+    "a3-waterworks:25:stone-quay-1",
+    "a3-waterworks:25:broken-haulway-0",
+    "a3-waterworks:25:family-bundle-17",
+    "a3-waterworks:25:family-bundle-18",
+    "a3-location:26:water-work-bridge",
+    "a3-location:26:far-ridge",
+    "a3-location:26:burnt-casting-house",
+    "a3-location:26:artisan-home",
+    "a3-location:26:tool-shed",
+    "a3-location:26:open-air-casting-tools",
+    "a3-location:26:optional-shooting-bank",
+    "a3-location:26:drying-gallery-timber-supports",
+    "a3-location:26:foundry-kiln-cooling-and-metal-zones",
+    "a3-refine:26:weathered-ground-washes",
+    "a3-refine:26:ground-vignette-0",
+    "a3-refine:26:ground-vignette-1",
+    "a3-refine:26:ground-vignette-2",
+    "a3-refine:26:ground-vignette-3",
+    "a3-refine:26:ground-vignette-4",
+    "a3-refine:26:burnt-trunk-0",
+    "a3-refine:26:burnt-trunk-1",
+    "a3-refine:26:burnt-trunk-2",
+    "a3-refine:26:burnt-trunk-3",
+    "a3-waterworks:26:burial-record-room-rear",
+    "a3-waterworks:26:ancestor-records",
+    "a3-waterworks:26:record-room-lamp",
+    "a3-waterworks:27:continuous-masonry-waterline",
+    "a3-waterworks:27:small-tally-office",
+    "a3-waterworks:27:entry-lamp",
+    "a3-waterworks:27:stone-quay-0",
+    "a3-waterworks:27:abandoned-loading-shed",
+    "a3-waterworks:27:loading-oil-lamp",
+    "a3-waterworks:27:stone-quay-1",
+    "a3-waterworks:27:household-inspection-dais",
+    "a3-waterworks:27:inspection-lamp",
+    "a3-waterworks:27:stone-quay-2",
+    "a3-waterworks:27:great-sealed-store",
+    "a3-waterworks:27:final-seal-lamp",
+    "a3-waterworks:27:stone-quay-3",
+    "a3-waterworks:27:broken-haulway-0",
+    "a3-waterworks:27:broken-haulway-1",
+    "a3-waterworks:27:broken-haulway-2",
+    "a3-waterworks:27:numbered-family-bundle",
+    "a3-waterworks:27:sunk-family-tools",
+    "a3-waterworks:27:manifest-bundle",
+    "a3-location:27:far-ridge",
+    "a3-location:27:far-town-0",
+    "a3-location:27:far-town-1",
+    "a3-location:27:far-town-2",
+    "a3-location:27:far-town-3",
+    "a3-location:27:west-fire-gallery",
+    "a3-location:27:central-petition-hall",
+    "a3-location:27:east-water-control",
+    "a3-location:27:burnt-corridor-supports",
+    "a3-location:27:charred-door-frames-and-archive-bays",
+    "a3-refine:27:weathered-ground-washes",
+    "a3-refine:27:ground-vignette-0",
+    "a3-refine:27:ground-vignette-1",
+    "a3-refine:27:ground-vignette-2",
+    "a3-refine:27:ground-vignette-3",
+    "a3-refine:27:burnt-trunk-0",
+    "a3-refine:27:burnt-trunk-1",
+    "a3-refine:27:burnt-trunk-2",
+    "a3-waterworks:28:separate-decisions-0",
+    "a3-waterworks:28:separate-decisions-1",
+    "a3-waterworks:28:court-wall-0",
+    "a3-waterworks:28:court-wall-1",
+    "a3-waterworks:28:court-wall-2",
+    "a3-waterworks:28:court-wall-3",
+    "a3-waterworks:28:petition-courtyard-store",
+    "a3-waterworks:28:salvaged-paper-0",
+    "a3-waterworks:28:salvaged-paper-1",
+    "a3-waterworks:28:salvaged-paper-2",
+    "a3-waterworks:28:court-charred-papers-and-beams",
+    "a3-waterworks:28:court-record-lamp",
+    "a3-waterworks:23:surface-granary-0",
+    "a3-waterworks:23:surface-granary-1",
+    "a3-waterworks:23:surface-granary-2",
+    "a3-waterworks-v3:25:vertical-depot-shell",
+    "a3-waterworks-v3:25:masonry-vault",
+    "a3-waterworks-v3:25:gallery-0",
+    "a3-waterworks-v3:25:gallery-lamp-0",
+    "a3-waterworks-v3:25:haul-number-0",
+    "a3-waterworks-v3:25:gallery-1",
+    "a3-waterworks-v3:25:gallery-lamp-1",
+    "a3-waterworks-v3:25:haul-number-1",
+    "a3-waterworks-v3:25:gallery-2",
+    "a3-waterworks-v3:25:gallery-lamp-2",
+    "a3-waterworks-v3:25:haul-number-2",
+    "a3-waterworks-v3:25:gallery-3",
+    "a3-waterworks-v3:25:gallery-lamp-3",
+    "a3-waterworks-v3:25:haul-number-3",
+    "a3-waterworks-v3:25:gallery-4",
+    "a3-waterworks-v3:25:gallery-lamp-4",
+    "a3-waterworks-v3:25:haul-number-4",
+    "a3-waterworks-v3:25:gallery-5",
+    "a3-waterworks-v3:25:gallery-lamp-5",
+    "a3-waterworks-v3:25:haul-number-5",
+    "a3-waterworks-v3:25:gallery-6",
+    "a3-waterworks-v3:25:gallery-lamp-6",
+    "a3-waterworks-v3:25:haul-number-6",
+    "a3-waterworks-v3:25:west-maintenance-stairs",
+    "a3-waterworks-v3:25:inspection-room-roof",
+    "a3-waterworks-v3:25:inspection-room-east-wall",
+    "a3-waterworks-v3:25:maintenance-recess",
+    "a3-waterworks-v3:25:west-lookout-roof",
+    "a3-waterworks-v3:25:west-lookout-wall",
+    "a3-waterworks-v3:25:west-lookout-recess",
+    "a3-waterworks-v3:25:upper-checkpoint-roof",
+    "a3-waterworks-v3:25:upper-checkpoint-east-wall",
+    "a3-waterworks-v3:25:sluice-side-pier",
+    "a3-waterworks-v3:25:upper-checkpoint",
+    "a3-waterworks-v3:25:lookout-stair",
+    "a3-waterworks-v3:25:lookout-balcony",
+    "a3-waterworks-v3:25:household-inspection-dais",
+    "a3-waterworks-v3:25:inspection-lamp",
+    "a3-waterworks-v3:25:great-sealed-store",
+    "a3-waterworks-v3:25:family-bundle-17",
+    "a3-waterworks-v3:25:family-bundle-18",
+    "a3-waterworks-v3:25:broken-haul-bridge",
+    "a3-waterworks-v3:27:vertical-depot-shell",
+    "a3-waterworks-v3:27:masonry-vault",
+    "a3-waterworks-v3:27:gallery-0",
+    "a3-waterworks-v3:27:gallery-lamp-0",
+    "a3-waterworks-v3:27:haul-number-0",
+    "a3-waterworks-v3:27:gallery-1",
+    "a3-waterworks-v3:27:gallery-lamp-1",
+    "a3-waterworks-v3:27:haul-number-1",
+    "a3-waterworks-v3:27:gallery-2",
+    "a3-waterworks-v3:27:gallery-lamp-2",
+    "a3-waterworks-v3:27:haul-number-2",
+    "a3-waterworks-v3:27:gallery-3",
+    "a3-waterworks-v3:27:gallery-lamp-3",
+    "a3-waterworks-v3:27:haul-number-3",
+    "a3-waterworks-v3:27:gallery-4",
+    "a3-waterworks-v3:27:gallery-lamp-4",
+    "a3-waterworks-v3:27:haul-number-4",
+    "a3-waterworks-v3:27:gallery-5",
+    "a3-waterworks-v3:27:gallery-lamp-5",
+    "a3-waterworks-v3:27:haul-number-5",
+    "a3-waterworks-v3:27:gallery-6",
+    "a3-waterworks-v3:27:gallery-lamp-6",
+    "a3-waterworks-v3:27:haul-number-6",
+    "a3-waterworks-v3:27:gallery-7",
+    "a3-waterworks-v3:27:gallery-lamp-7",
+    "a3-waterworks-v3:27:haul-number-7",
+    "a3-waterworks-v3:27:entry-haul-stairs",
+    "a3-waterworks-v3:27:return-inspection-stairs",
+    "a3-waterworks-v3:27:manifest-stairs",
+    "a3-waterworks-v3:27:loading-office-roof",
+    "a3-waterworks-v3:27:loading-office-east-wall",
+    "a3-waterworks-v3:27:abandoned-loading-shed",
+    "a3-waterworks-v3:27:loading-oil-lamp",
+    "a3-waterworks-v3:27:far-passage-roof",
+    "a3-waterworks-v3:27:far-passage-wall",
+    "a3-waterworks-v3:27:far-passage-buttress",
+    "a3-waterworks-v3:27:far-sealed-store",
+    "a3-waterworks-v3:27:ledger-room-roof",
+    "a3-waterworks-v3:27:ledger-room-west-wall",
+    "a3-waterworks-v3:27:ledger-vault",
+    "a3-waterworks-v3:27:household-inspection-dais",
+    "a3-waterworks-v3:27:inspection-lamp",
+    "a3-waterworks-v3:27:numbered-family-bundle",
+    "a3-waterworks-v3:27:sunk-family-tools",
+    "a3-waterworks-v3:27:manifest-bundle",
+    "a3-waterworks-v3:27:broken-haul-bridge",
+    "stage11:ravine-rear-cliff-contact",
+    "stage11:ravine-west",
+    "stage11:ravine-saddle",
+    "stage11:ravine-saddle-rv-saddle-canopy-landing",
+    "stage11:ravine-saddle-rv-saddle-fallen-trunk",
+    "stage11:ravine-saddle-rv-saddle-swept-bough",
+    "stage11:ravine-saddle-rv-saddle-broken-arm",
+    "stage11:ravine-ravine",
+    "stage11:ravine-ravine-rv-root-west-return",
+    "stage11:ravine-ravine-rv-root-east-descent",
+    "stage11:ravine-east",
+    "stage11:ravine-ritual-ledge-pine",
+    "stage11:ravine-cliff-ledge-pine",
+    "stage11:ravine-refuge-ledge-pine",
+    "stage11:ravine-ritual-clearing",
+    "stage11:ravine-refuge-bundle",
+    "stage11:ravine-shoulder-rv-ritual-reflection-ledge",
+    "stage11:ravine-shoulder-rv-east-upper-fire-bay",
+    "stage17:worksite-rear-cavern",
+    "stage17:worksite-low-vault-shoring",
+    "stage17:worksite-west-gallery",
+    "stage17:worksite-east-gallery",
+    "stage17:worksite-west-switchback-frame",
+    "stage17:worksite-shaft-service-frame",
+    "stage17:worksite-east-gallery-frame",
+    "stage17:worksite-trestle-ws-east-fire-access",
+    "stage17:worksite-trestle-ws-east-fire-deck",
+    "stage17:worksite-trestle-ws-service-tool-ledge",
+    "stage17:worksite-trestle-ws-notes-work-deck",
+    "stage17:worksite-main-hoist",
+    "stage17:worksite-control-drive-link",
+    "stage17:worksite-west-work-remains",
+    "stage17:worksite-lower-service-remains",
+    "stage17:worksite-timber-store",
+    "stage17:worksite-tool-bench",
+    "stage17:worksite-axle-tool-bench",
+    "stage17:worksite-oil-lamp",
+    "stage16:temple-rear-cavern-courts",
+    "stage16:temple-great-hall",
+    "stage16:temple-folded-west-cloister",
+    "stage16:temple-shelter-veranda",
+    "stage16:temple-hall-side-gallery",
+    "stage16:temple-east-return-gallery",
+    "stage16:temple-processional-crossing",
+    "stage16:temple-archive-cloister",
+    "stage16:temple-lower-prayer-ledge",
+    "stage16:temple-stone-lamp"
+  ],
+  "elementOrderBefore": [
+    "s16-art-rear-cavern-courts",
+    "s16-art-great-hall",
+    "s16-art-folded-west-cloister",
+    "s16-art-shelter-veranda",
+    "s16-art-hall-side-gallery",
+    "s16-art-east-return-gallery",
+    "s16-art-processional-crossing",
+    "s16-art-archive-cloister",
+    "s16-art-lower-prayer-ledge",
+    "s16-art-lamp-court",
+    "s16-art-lamp-shelter",
+    "s16-art-lamp-hall-west",
+    "s16-art-lamp-hall-east",
+    "s16-art-lamp-lower",
+    "s16-art-lamp-records"
+  ],
+  "elementOrderAfter": [
+    "s16-art-rear-cavern-courts",
+    "s16-buddha-stone-colossus",
+    "s16-art-great-hall",
+    "s16-art-folded-west-cloister",
+    "s16-art-shelter-veranda",
+    "s16-art-hall-side-gallery",
+    "s16-art-east-return-gallery",
+    "s16-art-processional-crossing",
+    "s16-art-archive-cloister",
+    "s16-art-lower-prayer-ledge",
+    "s16-art-lamp-court",
+    "s16-art-lamp-shelter",
+    "s16-art-lamp-hall-west",
+    "s16-art-lamp-hall-east",
+    "s16-art-lamp-lower",
+    "s16-art-lamp-records"
+  ],
+  "assets": [
+    {
+      "id": "stage16:temple-stone-buddha-cliff-colossus",
+      "name": "법당 밖 암벽에 반쯤 묻힌 잠운사 거대 석불",
+      "category": "architecture",
+      "environmentRole": "rock",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -1530,
+          -4313.222,
+          3680,
+          4378.222
+        ],
+        "gradients": {
+          "buddha-stone-mass": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#465e60",
+                "opacity": 1
+              },
+              {
+                "offset": 0.44,
+                "color": "#3e585c",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#233d48",
+                "opacity": 1
+              }
+            ],
+            "x1": -920,
+            "y1": 920,
+            "x2": 1530,
+            "y2": 2920
+          },
+          "buddha-face-stone": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#75867c",
+                "opacity": 1
+              },
+              {
+                "offset": 0.48,
+                "color": "#657a73",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#3d585a",
+                "opacity": 1
+              }
+            ],
+            "x1": -455,
+            "y1": 355,
+            "x2": 490,
+            "y2": 955
+          },
+          "buddha-lower-stone": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#334f56",
+                "opacity": 0
+              },
+              {
+                "offset": 0.68,
+                "color": "#2e4952",
+                "opacity": 0.68
+              },
+              {
+                "offset": 1,
+                "color": "#233d48",
+                "opacity": 1
+              }
+            ],
+            "x1": 200,
+            "y1": 2520,
+            "x2": 370,
+            "y2": 4160
+          },
+          "buddha-crown-plane": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#71827a",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#3e585b",
+                "opacity": 1
+              }
+            ],
+            "x1": -610,
+            "y1": 65,
+            "x2": 620,
+            "y2": 330
+          },
+          "buddha-canopy-shadow": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#263f4a",
+                "opacity": 0.56
+              },
+              {
+                "offset": 0.58,
+                "color": "#304c51",
+                "opacity": 0.2
+              },
+              {
+                "offset": 1,
+                "color": "#304c51",
+                "opacity": 0
+              }
+            ],
+            "x1": 0,
+            "y1": 338,
+            "x2": 0,
+            "y2": 568
+          }
+        },
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "g",
+              "transform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                -4208.222
+              ],
+              "id": "stone-colossus",
+              "children": [
+                {
+                  "tag": "g",
+                  "id": "unbroken-natural-stone",
+                  "children": [
+                    {
+                      "tag": "path",
+                      "fill": "url(#buddha-stone-mass)",
+                      "id": "natural-rock-body",
+                      "d": "M-605 868Q-822 1047-985 1137L-1168 1418Q-1372 1775-1390 2080L-1270 2452Q-1432 2805-1492 3188L-1288 3595L-1020 4058Q-722 4204-359 4212L286 4158L900 3972L1285 3618L1512 3228L1835 2930L2098 2802L1975 2482L1745 2268L1600 1850Q1470 1510 1130 1336L642 1138L369 886Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#4d6664",
+                      "id": "left-shoulder-broad-plane",
+                      "d": "M-611 903Q-836 1111-998 1194L-1107 1450Q-972 1724-789 1823L-583 2178L-461 2850L-1020 3695L-1174 3265L-1065 2810L-1142 2240L-1265 1945L-1154 1453Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#526a67",
+                      "id": "right-shoulder-turn",
+                      "d": "M359 916Q602 1064 918 1189L1203 1468Q1430 1643 1528 1889L1640 2232L1533 2391L1280 2068L1006 1801L862 1460Q700 1267 443 1203Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#29444f",
+                      "id": "right-rock-return",
+                      "d": "M1200 1470Q1408 1682 1456 1958L1509 2350L1700 2541L1964 2720L1833 2898L1519 2947L1309 3114L1254 2774L1139 2570L1304 2269L1212 1900Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#76887c",
+                      "lineWidth": 14,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "shoulder-chiseled-edge",
+                      "d": "M511 1047Q716 1135 926 1263L1114 1482Q1270 1658 1323 1833"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#2b454f",
+                      "id": "left-rock-deep-cleft",
+                      "d": "M-1040 1360L-969 1720L-827 1910L-719 2370L-772 2792L-596 3100L-783 3535L-718 3980L-904 3945L-1001 3500L-837 3060L-979 2720L-933 2300L-1038 1990L-1150 1670Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#243e48",
+                      "id": "right-rock-large-shadow",
+                      "d": "M1339 2390L1451 2691L1433 2931L1240 3231L1109 3510L902 3713L665 4100L886 3993L1313 3614L1520 3245L1835 2930L1682 2855L1540 2711Z"
+                    }
+                  ]
+                },
+                {
+                  "tag": "g",
+                  "id": "broad-shallow-robe-relief",
+                  "children": [
+                    {
+                      "tag": "path",
+                      "fill": "#4f6865",
+                      "id": "robe-one-heavy-drape",
+                      "d": "M-457 946Q-436 1060-226 1155Q-321 1399-174 1666Q67 1993 551 2037L908 2043Q1103 2284 1165 2588L963 2731Q694 2570 328 2481L-93 2100Q-372 1778-426 1449L-721 1280Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#344f56",
+                      "id": "robe-turning-shadow",
+                      "d": "M-413 1137Q-462 1387-239 1724Q66 2041 509 2151L827 2230L1001 2566L827 2534Q486 2399 288 2275L-12 1967Q-317 1658-478 1405Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#708279",
+                      "lineWidth": 21,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "robe-main-fold",
+                      "d": "M-571 1118Q-656 1378-391 1734Q-36 2193 680 2292"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#5e766f",
+                      "lineWidth": 18,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "robe-secondary-fold",
+                      "d": "M-660 1230Q-745 1607-298 2088Q-72 2330 292 2460"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#58706b",
+                      "id": "robe-chest-basin",
+                      "d": "M-255 1154Q86 1288 519 1168Q648 1299 730 1484Q575 1436 411 1450Q70 1465-174 1372Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#304b53",
+                      "lineWidth": 28,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "robe-wide-neck-opening",
+                      "d": "M-256 1154Q113 1272 492 1158"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#45615f",
+                      "id": "robe-heavy-right-sleeve",
+                      "d": "M731 1295Q1033 1457 1130 1766L1195 2114L1029 2292L751 2154L524 1866L492 1662Q570 1534 731 1295Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#304c54",
+                      "id": "robe-sleeve-weight",
+                      "d": "M989 1488Q1152 1855 1030 2090Q936 2188 751 2154L1029 2292L1195 2114L1130 1766Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#678075",
+                      "lineWidth": 21,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "robe-sleeve-broad-carving",
+                      "d": "M790 1501Q735 1766 863 1978Q957 2091 1046 2074"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#61786e",
+                      "id": "one-hand-emerging-from-rock",
+                      "d": "M961 1913Q947 1825 1007 1756L1040 1613Q1053 1578 1081 1596L1101 1736L1129 1588Q1144 1557 1165 1595L1164 1753L1202 1634Q1222 1615 1236 1658L1219 1805L1251 1725Q1273 1716 1275 1758L1248 1916Q1240 1993 1172 2040L1088 2033Q1036 1986 961 1913Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#49635f",
+                      "id": "palm-relief-shadow",
+                      "d": "M1101 1736L1119 1851Q1080 1870 1071 1937L1088 2033L1172 2040Q1240 1993 1248 1916L1258 1832L1218 1892Q1179 1940 1139 1910L1143 1807Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#36545a",
+                      "lineWidth": 13,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "palm-crease",
+                      "d": "M1099 1911Q1117 1871 1154 1861"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#405c5e",
+                      "id": "worn-lower-body",
+                      "d": "M-361 2493Q118 2730 304 3043L531 3634L790 3901L650 4105L212 4170L-308 4184Q-185 3828-397 3530L-568 3135Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#56716b",
+                      "lineWidth": 25,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "lower-relief-fold",
+                      "d": "M-248 2654Q14 2941 105 3251L252 3680Q312 3864 445 3982"
+                    }
+                  ]
+                },
+                {
+                  "tag": "g",
+                  "id": "neck-three-dimensional-mass",
+                  "children": [
+                    {
+                      "tag": "path",
+                      "fill": "#58716b",
+                      "id": "massive-neck",
+                      "d": "M-366 858L-347 1049Q-165 1210 107 1198L386 1148L424 905L208 832Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#3e595b",
+                      "id": "neck-right-plane",
+                      "d": "M107 1198L386 1148L424 905L207 892L187 1052Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#3c575a",
+                      "lineWidth": 16,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "neck-carved-bands",
+                      "d": "M-278 1040Q-39 1132 243 1072M-265 1091Q-60 1179 178 1136"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#708278",
+                      "lineWidth": 13,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "neck-plane-catch",
+                      "d": "M-293 1009Q-68 1097 220 1044"
+                    }
+                  ]
+                },
+                {
+                  "tag": "g",
+                  "id": "great-stone-face",
+                  "children": [
+                    {
+                      "tag": "path",
+                      "fill": "#657b70",
+                      "id": "left-long-ear",
+                      "d": "M-467 442Q-584 398-618 534L-603 812Q-585 1028-487 1070L-416 987L-405 683Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#3d595b",
+                      "id": "left-ear-hollow",
+                      "d": "M-506 499Q-567 481-569 594L-554 826Q-542 918-497 965L-483 871Q-527 808-516 699L-471 618Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#819082",
+                      "lineWidth": 13,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "left-ear-fold",
+                      "d": "M-540 559Q-518 535-494 566L-483 649"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#4b6662",
+                      "id": "right-long-ear",
+                      "d": "M427 445Q528 405 558 520L554 796Q545 1004 447 1065L396 979L381 637Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#304d53",
+                      "id": "right-ear-hollow",
+                      "d": "M465 516Q505 497 512 570L503 808Q489 918 451 966L444 874Q480 797 465 693L427 613Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#657e72",
+                      "lineWidth": 12,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "right-ear-catch",
+                      "d": "M509 528Q534 625 524 778"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "url(#buddha-face-stone)",
+                      "id": "large-broad-face",
+                      "d": "M-446 338Q-294 279-66 294Q207 278 420 370L447 661Q437 878 306 1001Q141 1096-76 1084Q-281 1082-402 941Q-491 792-490 637Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#47615e",
+                      "id": "face-right-turning-plane",
+                      "d": "M204 324Q356 349 420 370L447 661Q437 878 306 1001Q175 1082 74 1088L171 1009Q297 869 297 726L286 528Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#74867a",
+                      "id": "face-left-wide-light-plane",
+                      "d": "M-443 380Q-328 343-181 349L-135 475L-208 663L-264 755L-204 938L-285 1006Q-405 932-448 790L-474 601Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#6b8176",
+                      "id": "forehead-one-plane",
+                      "d": "M-383 387Q-119 302 237 374L268 481Q131 460 6 495Q-132 452-396 518Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#405e5c",
+                      "id": "left-brow-recess",
+                      "d": "M-402 541Q-297 466-173 491Q-101 505-58 560L-85 588Q-237 525-402 587Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#38565a",
+                      "id": "right-brow-recess",
+                      "d": "M49 556Q121 490 239 511Q310 528 337 576L320 600Q196 553 83 601Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#7b8d80",
+                      "id": "left-upper-eyelid-stone",
+                      "d": "M-384 561Q-246 506-96 574Q-217 548-372 597Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#6f8377",
+                      "id": "right-upper-eyelid-stone",
+                      "d": "M79 578Q207 534 318 584L315 611Q202 566 88 608Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#304f54",
+                      "lineWidth": 17,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "left-quiet-eye-cut",
+                      "d": "M-378 602Q-246 560-98 606"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#2d4b52",
+                      "lineWidth": 16,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "right-quiet-eye-cut",
+                      "d": "M93 613Q202 578 316 619"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#405c59",
+                      "id": "nose-right-shadow",
+                      "d": "M-19 549L63 577Q53 700 120 762L75 812L-51 809L-75 769L-7 676Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#859183",
+                      "id": "nose-front-plane",
+                      "d": "M-31 545Q-10 522 18 551L27 654L56 743Q23 779-50 766L-69 730L-39 642Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#5e786b",
+                      "id": "nose-wide-base",
+                      "d": "M-68 736Q-7 761 57 742L103 771L67 796L11 783L-37 791L-92 765Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#355459",
+                      "lineWidth": 11,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "nostril-cuts",
+                      "d": "M-75 770Q-54 754-34 778M33 779Q58 760 82 776"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#7a8b7c50",
+                      "id": "broad-left-cheek",
+                      "d": "M-386 675L-264 630Q-207 639-185 659L-149 778L-225 853L-351 827L-405 750Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#526e64",
+                      "id": "lower-cheek-turn",
+                      "d": "M184 682Q245 644 283 698L289 839L219 917L116 919L152 817Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#80907d",
+                      "id": "upper-lip-plane",
+                      "d": "M-183 878Q-107 843-37 861L12 871Q57 848 144 880L190 912Q-16 893-183 915Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#355258",
+                      "lineWidth": 15,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "closed-mouth-silent-cut",
+                      "d": "M-178 918Q-80 901-13 916Q70 902 169 924"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#748775",
+                      "id": "heavy-lower-lip",
+                      "d": "M-147 937Q-19 925 135 943Q54 982-44 974Q-105 970-147 937Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#687f71",
+                      "id": "chin-broad-volume",
+                      "d": "M-224 978Q-23 1031 184 980L140 1046Q-66 1100-224 1018Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#7e8e7e",
+                      "id": "urna-relief",
+                      "d": "M-60 415a24 22 0 1 0 48 0a24 22 0 1 0-48 0Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#304f5538",
+                      "id": "one-aged-cheek-wash",
+                      "d": "M304 622Q358 697 340 785L303 833L284 750L281 689Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#a2ab8e22",
+                      "id": "forehead-worn-patch",
+                      "d": "M-332 366Q-216 315-125 359L-161 400L-250 394L-283 436L-354 424Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "url(#buddha-canopy-shadow)",
+                      "id": "canopy-cast-shadow",
+                      "d": "M-446 338Q-134 378 399 356L406 465L351 547Q56 497-76 545L-406 549Z"
+                    }
+                  ]
+                },
+                {
+                  "tag": "g",
+                  "id": "one-low-korean-stone-canopy",
+                  "children": [
+                    {
+                      "tag": "path",
+                      "fill": "url(#buddha-crown-plane)",
+                      "id": "cylindrical-stone-crown",
+                      "d": "M-443 119Q-33 19 400 160L394 380Q115 431-164 394L-451 365Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#405c5d",
+                      "id": "crown-side-shadow",
+                      "d": "M190 107Q306 120 400 160L394 380L260 400L248 236Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#536d65",
+                      "id": "crown-bottom-rim",
+                      "d": "M-451 324Q-64 373 394 337L394 380Q88 427-451 365Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#879481",
+                      "lineWidth": 16,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "crown-worn-band",
+                      "d": "M-433 266Q-138 300 212 278"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#334f57",
+                      "id": "single-stone-canopy-volume",
+                      "d": "M-742 34Q-460 4-155 18L486 44L648 10L671 94L475 148Q-136 139-716 103Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#718278",
+                      "id": "canopy-upper-plane",
+                      "d": "M-742 34L-576-12L-164-28L452 15L648 10L595 51L445 79Q-205 62-742 65Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#5d756a",
+                      "id": "canopy-broad-front-edge",
+                      "d": "M-742 65Q-161 82 445 79L595 51L587 96L460 116L-711 101Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "none",
+                      "stroke": "#94a18a",
+                      "lineWidth": 13,
+                      "lineJoin": "round",
+                      "lineCap": "round",
+                      "id": "canopy-left-worn-catch",
+                      "d": "M-726 47Q-478 20-174 35L253 53"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#5e776c",
+                      "id": "low-lotus-finial",
+                      "d": "M-199-22Q-187-78-123-87Q-52-93-19-46L23-27L-29 5L-152 1Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#415d5d",
+                      "id": "finial-shadow",
+                      "d": "M-103-83Q-29-69-19-46L23-27L-29 5L-82-6Z"
+                    }
+                  ]
+                },
+                {
+                  "tag": "g",
+                  "id": "natural-rock-blend",
+                  "children": [
+                    {
+                      "tag": "path",
+                      "fill": "#2b4650",
+                      "id": "unhewn-right-head-contact",
+                      "d": "M538 443L616 579L611 736L724 968L813 1130L995 1281L1091 1454L937 1366L772 1240L673 1091L596 984L548 816L572 679Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#34515a",
+                      "id": "right-shoulder-native-rock-overlap",
+                      "d": "M1144 1538L1329 1688L1482 1940L1534 2213L1663 2415L1496 2533L1396 2281L1405 2031L1322 1824Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#9ca98b20",
+                      "id": "one-shoulder-weathered-facet",
+                      "d": "M722 1113L823 1163L985 1315L1118 1518L1010 1450L879 1327L727 1271Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#2b4751",
+                      "id": "right-unhewn-overlap",
+                      "d": "M1491 2558L1680 2710L1880 2805L1730 2990L1420 3177L1140 3558L930 3840L582 4158L295 4220L696 3818L816 3504L1160 3177L1178 2860Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "#304c54",
+                      "id": "left-unhewn-overlap",
+                      "d": "M-1292 2637L-1112 2827L-1030 3113L-802 3350L-815 3720L-614 4174L-1020 4058L-1288 3595L-1492 3188Z"
+                    },
+                    {
+                      "tag": "path",
+                      "fill": "url(#buddha-lower-stone)",
+                      "id": "broad-base-atmospheric-falloff",
+                      "d": "M-1263 2550Q-588 2350-49 2570L431 2700L893 2680L1440 2900L1236 3440L892 3840L303 4158L-358 4212L-1018 4060L-1275 3590Z"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1530 -4313.222 3680 4378.222\"><title>잠운사 법당 밖 암벽에 이어진 거대한 석불</title><g id=\"stone-colossus\" transform=\"translate(0 -4208.222)\"><defs>\n  <linearGradient id=\"buddha-stone-mass\" x1=\"-920\" y1=\"920\" x2=\"1530\" y2=\"2920\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#465e60\"/><stop offset=\".44\" stop-color=\"#3e585c\"/><stop offset=\"1\" stop-color=\"#233d48\"/></linearGradient>\n  <linearGradient id=\"buddha-face-stone\" x1=\"-455\" y1=\"355\" x2=\"490\" y2=\"955\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#75867c\"/><stop offset=\".48\" stop-color=\"#657a73\"/><stop offset=\"1\" stop-color=\"#3d585a\"/></linearGradient>\n  <linearGradient id=\"buddha-lower-stone\" x1=\"200\" y1=\"2520\" x2=\"370\" y2=\"4160\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#334f56\" stop-opacity=\"0\"/><stop offset=\".68\" stop-color=\"#2e4952\" stop-opacity=\".68\"/><stop offset=\"1\" stop-color=\"#233d48\" stop-opacity=\"1\"/></linearGradient>\n  <linearGradient id=\"buddha-crown-plane\" x1=\"-610\" y1=\"65\" x2=\"620\" y2=\"330\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#71827a\"/><stop offset=\"1\" stop-color=\"#3e585b\"/></linearGradient>\n  <linearGradient id=\"buddha-canopy-shadow\" x1=\"0\" y1=\"338\" x2=\"0\" y2=\"568\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#263f4a\" stop-opacity=\".56\"/><stop offset=\".58\" stop-color=\"#304c51\" stop-opacity=\".20\"/><stop offset=\"1\" stop-color=\"#304c51\" stop-opacity=\"0\"/></linearGradient>\n </defs><g id=\"unbroken-natural-stone\"><path id=\"natural-rock-body\" d=\"M-605 868Q-822 1047-985 1137L-1168 1418Q-1372 1775-1390 2080L-1270 2452Q-1432 2805-1492 3188L-1288 3595L-1020 4058Q-722 4204-359 4212L286 4158L900 3972L1285 3618L1512 3228L1835 2930L2098 2802L1975 2482L1745 2268L1600 1850Q1470 1510 1130 1336L642 1138L369 886Z\" fill=\"url(#buddha-stone-mass)\"/><path id=\"left-shoulder-broad-plane\" d=\"M-611 903Q-836 1111-998 1194L-1107 1450Q-972 1724-789 1823L-583 2178L-461 2850L-1020 3695L-1174 3265L-1065 2810L-1142 2240L-1265 1945L-1154 1453Z\" fill=\"#4d6664\"/><path id=\"right-shoulder-turn\" d=\"M359 916Q602 1064 918 1189L1203 1468Q1430 1643 1528 1889L1640 2232L1533 2391L1280 2068L1006 1801L862 1460Q700 1267 443 1203Z\" fill=\"#526a67\"/><path id=\"right-rock-return\" d=\"M1200 1470Q1408 1682 1456 1958L1509 2350L1700 2541L1964 2720L1833 2898L1519 2947L1309 3114L1254 2774L1139 2570L1304 2269L1212 1900Z\" fill=\"#29444f\"/><path id=\"shoulder-chiseled-edge\" d=\"M511 1047Q716 1135 926 1263L1114 1482Q1270 1658 1323 1833\" fill=\"none\" stroke=\"#76887c\" stroke-width=\"14\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"left-rock-deep-cleft\" d=\"M-1040 1360L-969 1720L-827 1910L-719 2370L-772 2792L-596 3100L-783 3535L-718 3980L-904 3945L-1001 3500L-837 3060L-979 2720L-933 2300L-1038 1990L-1150 1670Z\" fill=\"#2b454f\"/><path id=\"right-rock-large-shadow\" d=\"M1339 2390L1451 2691L1433 2931L1240 3231L1109 3510L902 3713L665 4100L886 3993L1313 3614L1520 3245L1835 2930L1682 2855L1540 2711Z\" fill=\"#243e48\"/></g><g id=\"broad-shallow-robe-relief\"><path id=\"robe-one-heavy-drape\" d=\"M-457 946Q-436 1060-226 1155Q-321 1399-174 1666Q67 1993 551 2037L908 2043Q1103 2284 1165 2588L963 2731Q694 2570 328 2481L-93 2100Q-372 1778-426 1449L-721 1280Z\" fill=\"#4f6865\"/><path id=\"robe-turning-shadow\" d=\"M-413 1137Q-462 1387-239 1724Q66 2041 509 2151L827 2230L1001 2566L827 2534Q486 2399 288 2275L-12 1967Q-317 1658-478 1405Z\" fill=\"#344f56\"/><path id=\"robe-main-fold\" d=\"M-571 1118Q-656 1378-391 1734Q-36 2193 680 2292\" fill=\"none\" stroke=\"#708279\" stroke-width=\"21\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"robe-secondary-fold\" d=\"M-660 1230Q-745 1607-298 2088Q-72 2330 292 2460\" fill=\"none\" stroke=\"#5e766f\" stroke-width=\"18\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"robe-chest-basin\" d=\"M-255 1154Q86 1288 519 1168Q648 1299 730 1484Q575 1436 411 1450Q70 1465-174 1372Z\" fill=\"#58706b\"/><path id=\"robe-wide-neck-opening\" d=\"M-256 1154Q113 1272 492 1158\" fill=\"none\" stroke=\"#304b53\" stroke-width=\"28\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"robe-heavy-right-sleeve\" d=\"M731 1295Q1033 1457 1130 1766L1195 2114L1029 2292L751 2154L524 1866L492 1662Q570 1534 731 1295Z\" fill=\"#45615f\"/><path id=\"robe-sleeve-weight\" d=\"M989 1488Q1152 1855 1030 2090Q936 2188 751 2154L1029 2292L1195 2114L1130 1766Z\" fill=\"#304c54\"/><path id=\"robe-sleeve-broad-carving\" d=\"M790 1501Q735 1766 863 1978Q957 2091 1046 2074\" fill=\"none\" stroke=\"#678075\" stroke-width=\"21\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"one-hand-emerging-from-rock\" d=\"M961 1913Q947 1825 1007 1756L1040 1613Q1053 1578 1081 1596L1101 1736L1129 1588Q1144 1557 1165 1595L1164 1753L1202 1634Q1222 1615 1236 1658L1219 1805L1251 1725Q1273 1716 1275 1758L1248 1916Q1240 1993 1172 2040L1088 2033Q1036 1986 961 1913Z\" fill=\"#61786e\"/><path id=\"palm-relief-shadow\" d=\"M1101 1736L1119 1851Q1080 1870 1071 1937L1088 2033L1172 2040Q1240 1993 1248 1916L1258 1832L1218 1892Q1179 1940 1139 1910L1143 1807Z\" fill=\"#49635f\"/><path id=\"palm-crease\" d=\"M1099 1911Q1117 1871 1154 1861\" fill=\"none\" stroke=\"#36545a\" stroke-width=\"13\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"worn-lower-body\" d=\"M-361 2493Q118 2730 304 3043L531 3634L790 3901L650 4105L212 4170L-308 4184Q-185 3828-397 3530L-568 3135Z\" fill=\"#405c5e\"/><path id=\"lower-relief-fold\" d=\"M-248 2654Q14 2941 105 3251L252 3680Q312 3864 445 3982\" fill=\"none\" stroke=\"#56716b\" stroke-width=\"25\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></g><g id=\"neck-three-dimensional-mass\"><path id=\"massive-neck\" d=\"M-366 858L-347 1049Q-165 1210 107 1198L386 1148L424 905L208 832Z\" fill=\"#58716b\"/><path id=\"neck-right-plane\" d=\"M107 1198L386 1148L424 905L207 892L187 1052Z\" fill=\"#3e595b\"/><path id=\"neck-carved-bands\" d=\"M-278 1040Q-39 1132 243 1072M-265 1091Q-60 1179 178 1136\" fill=\"none\" stroke=\"#3c575a\" stroke-width=\"16\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"neck-plane-catch\" d=\"M-293 1009Q-68 1097 220 1044\" fill=\"none\" stroke=\"#708278\" stroke-width=\"13\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></g><g id=\"great-stone-face\"><path id=\"left-long-ear\" d=\"M-467 442Q-584 398-618 534L-603 812Q-585 1028-487 1070L-416 987L-405 683Z\" fill=\"#657b70\"/><path id=\"left-ear-hollow\" d=\"M-506 499Q-567 481-569 594L-554 826Q-542 918-497 965L-483 871Q-527 808-516 699L-471 618Z\" fill=\"#3d595b\"/><path id=\"left-ear-fold\" d=\"M-540 559Q-518 535-494 566L-483 649\" fill=\"none\" stroke=\"#819082\" stroke-width=\"13\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"right-long-ear\" d=\"M427 445Q528 405 558 520L554 796Q545 1004 447 1065L396 979L381 637Z\" fill=\"#4b6662\"/><path id=\"right-ear-hollow\" d=\"M465 516Q505 497 512 570L503 808Q489 918 451 966L444 874Q480 797 465 693L427 613Z\" fill=\"#304d53\"/><path id=\"right-ear-catch\" d=\"M509 528Q534 625 524 778\" fill=\"none\" stroke=\"#657e72\" stroke-width=\"12\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"large-broad-face\" d=\"M-446 338Q-294 279-66 294Q207 278 420 370L447 661Q437 878 306 1001Q141 1096-76 1084Q-281 1082-402 941Q-491 792-490 637Z\" fill=\"url(#buddha-face-stone)\"/><path id=\"face-right-turning-plane\" d=\"M204 324Q356 349 420 370L447 661Q437 878 306 1001Q175 1082 74 1088L171 1009Q297 869 297 726L286 528Z\" fill=\"#47615e\"/><path id=\"face-left-wide-light-plane\" d=\"M-443 380Q-328 343-181 349L-135 475L-208 663L-264 755L-204 938L-285 1006Q-405 932-448 790L-474 601Z\" fill=\"#74867a\"/><path id=\"forehead-one-plane\" d=\"M-383 387Q-119 302 237 374L268 481Q131 460 6 495Q-132 452-396 518Z\" fill=\"#6b8176\"/><path id=\"left-brow-recess\" d=\"M-402 541Q-297 466-173 491Q-101 505-58 560L-85 588Q-237 525-402 587Z\" fill=\"#405e5c\"/><path id=\"right-brow-recess\" d=\"M49 556Q121 490 239 511Q310 528 337 576L320 600Q196 553 83 601Z\" fill=\"#38565a\"/><path id=\"left-upper-eyelid-stone\" d=\"M-384 561Q-246 506-96 574Q-217 548-372 597Z\" fill=\"#7b8d80\"/><path id=\"right-upper-eyelid-stone\" d=\"M79 578Q207 534 318 584L315 611Q202 566 88 608Z\" fill=\"#6f8377\"/><path id=\"left-quiet-eye-cut\" d=\"M-378 602Q-246 560-98 606\" fill=\"none\" stroke=\"#304f54\" stroke-width=\"17\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"right-quiet-eye-cut\" d=\"M93 613Q202 578 316 619\" fill=\"none\" stroke=\"#2d4b52\" stroke-width=\"16\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"nose-right-shadow\" d=\"M-19 549L63 577Q53 700 120 762L75 812L-51 809L-75 769L-7 676Z\" fill=\"#405c59\"/><path id=\"nose-front-plane\" d=\"M-31 545Q-10 522 18 551L27 654L56 743Q23 779-50 766L-69 730L-39 642Z\" fill=\"#859183\"/><path id=\"nose-wide-base\" d=\"M-68 736Q-7 761 57 742L103 771L67 796L11 783L-37 791L-92 765Z\" fill=\"#5e786b\"/><path id=\"nostril-cuts\" d=\"M-75 770Q-54 754-34 778M33 779Q58 760 82 776\" fill=\"none\" stroke=\"#355459\" stroke-width=\"11\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"broad-left-cheek\" d=\"M-386 675L-264 630Q-207 639-185 659L-149 778L-225 853L-351 827L-405 750Z\" fill=\"#7a8b7c50\"/><path id=\"lower-cheek-turn\" d=\"M184 682Q245 644 283 698L289 839L219 917L116 919L152 817Z\" fill=\"#526e64\"/><path id=\"upper-lip-plane\" d=\"M-183 878Q-107 843-37 861L12 871Q57 848 144 880L190 912Q-16 893-183 915Z\" fill=\"#80907d\"/><path id=\"closed-mouth-silent-cut\" d=\"M-178 918Q-80 901-13 916Q70 902 169 924\" fill=\"none\" stroke=\"#355258\" stroke-width=\"15\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"heavy-lower-lip\" d=\"M-147 937Q-19 925 135 943Q54 982-44 974Q-105 970-147 937Z\" fill=\"#748775\"/><path id=\"chin-broad-volume\" d=\"M-224 978Q-23 1031 184 980L140 1046Q-66 1100-224 1018Z\" fill=\"#687f71\"/><path id=\"urna-relief\" d=\"M-60 415a24 22 0 1 0 48 0a24 22 0 1 0-48 0Z\" fill=\"#7e8e7e\"/><path id=\"one-aged-cheek-wash\" d=\"M304 622Q358 697 340 785L303 833L284 750L281 689Z\" fill=\"#304f5538\"/><path id=\"forehead-worn-patch\" d=\"M-332 366Q-216 315-125 359L-161 400L-250 394L-283 436L-354 424Z\" fill=\"#a2ab8e22\"/><path id=\"canopy-cast-shadow\" d=\"M-446 338Q-134 378 399 356L406 465L351 547Q56 497-76 545L-406 549Z\" fill=\"url(#buddha-canopy-shadow)\"/></g><g id=\"one-low-korean-stone-canopy\"><path id=\"cylindrical-stone-crown\" d=\"M-443 119Q-33 19 400 160L394 380Q115 431-164 394L-451 365Z\" fill=\"url(#buddha-crown-plane)\"/><path id=\"crown-side-shadow\" d=\"M190 107Q306 120 400 160L394 380L260 400L248 236Z\" fill=\"#405c5d\"/><path id=\"crown-bottom-rim\" d=\"M-451 324Q-64 373 394 337L394 380Q88 427-451 365Z\" fill=\"#536d65\"/><path id=\"crown-worn-band\" d=\"M-433 266Q-138 300 212 278\" fill=\"none\" stroke=\"#879481\" stroke-width=\"16\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"single-stone-canopy-volume\" d=\"M-742 34Q-460 4-155 18L486 44L648 10L671 94L475 148Q-136 139-716 103Z\" fill=\"#334f57\"/><path id=\"canopy-upper-plane\" d=\"M-742 34L-576-12L-164-28L452 15L648 10L595 51L445 79Q-205 62-742 65Z\" fill=\"#718278\"/><path id=\"canopy-broad-front-edge\" d=\"M-742 65Q-161 82 445 79L595 51L587 96L460 116L-711 101Z\" fill=\"#5d756a\"/><path id=\"canopy-left-worn-catch\" d=\"M-726 47Q-478 20-174 35L253 53\" fill=\"none\" stroke=\"#94a18a\" stroke-width=\"13\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"low-lotus-finial\" d=\"M-199-22Q-187-78-123-87Q-52-93-19-46L23-27L-29 5L-152 1Z\" fill=\"#5e776c\"/><path id=\"finial-shadow\" d=\"M-103-83Q-29-69-19-46L23-27L-29 5L-82-6Z\" fill=\"#415d5d\"/></g><g id=\"natural-rock-blend\"><path id=\"unhewn-right-head-contact\" d=\"M538 443L616 579L611 736L724 968L813 1130L995 1281L1091 1454L937 1366L772 1240L673 1091L596 984L548 816L572 679Z\" fill=\"#2b4650\"/><path id=\"right-shoulder-native-rock-overlap\" d=\"M1144 1538L1329 1688L1482 1940L1534 2213L1663 2415L1496 2533L1396 2281L1405 2031L1322 1824Z\" fill=\"#34515a\"/><path id=\"one-shoulder-weathered-facet\" d=\"M722 1113L823 1163L985 1315L1118 1518L1010 1450L879 1327L727 1271Z\" fill=\"#9ca98b20\"/><path id=\"right-unhewn-overlap\" d=\"M1491 2558L1680 2710L1880 2805L1730 2990L1420 3177L1140 3558L930 3840L582 4158L295 4220L696 3818L816 3504L1160 3177L1178 2860Z\" fill=\"#2b4751\"/><path id=\"left-unhewn-overlap\" d=\"M-1292 2637L-1112 2827L-1030 3113L-802 3350L-815 3720L-614 4174L-1020 4058L-1288 3595L-1492 3188Z\" fill=\"#304c54\"/><path id=\"broad-base-atmospheric-falloff\" d=\"M-1263 2550Q-588 2350-49 2570L431 2700L893 2680L1440 2900L1236 3440L892 3840L303 4158L-358 4212L-1018 4060L-1275 3590Z\" fill=\"url(#buddha-lower-stone)\"/></g></g></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage16-stone-buddha",
+        "visual-only",
+        "editable-native-vector"
+      ],
+      "params": {
+        "artRevision": 1,
+        "nodeCount": 79,
+        "collisionSource": "none",
+        "referenceStyle": "Korean-colossal-stone-and-rock-carved-Buddhist-sculpture"
+      },
+      "bounds": {
+        "x": -1530,
+        "y": -4313.222,
+        "w": 3680,
+        "h": 4378.222
+      },
+      "reference": {
+        "heightM": 72.97036666666666,
+        "bounds": {
+          "x": -1530,
+          "y": -4313.222,
+          "w": 3680,
+          "h": 4378.222
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "s16-buddha-stone-colossus",
+      "assetId": "stage16:temple-stone-buddha-cliff-colossus",
+      "x": 6960,
+      "y": 5878.222222222223,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back",
+      "stage16Support": {
+        "terrainId": "act2-floor",
+        "x": 6960,
+        "y": 5878.222222222223
+      }
+    }
+  ],
+  "gameplayFingerprints": {
+    "project": "164bc145809ac88c35b1486d47a77f8217de9680f3938efe7e9c1298b287217b",
+    "runtime": "a35992a4a3482875861dfb7efaf5799b083ba96aa19a26e8fa90b20a4aa7d773"
+  },
+  "battleContractSha256": "bef607f6fe6b4f8284f7dbf9b6478bf69eae974584daa663d5aa73673174f0bf"
+}

@@ -1,8 +1,11 @@
+import {beforeCurrentStage11Ravine,historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
+// Original Stage11/17 transition checks remain active after exact reversal;
+// current ravine/worksite traversal, shots and combat are independently required.
 // Required attack sites are staged once; actual basic projectiles then hit the
 // original target with original collision geometry. This is not a combat clear.
 import assert from 'node:assert/strict';import {mkdir,writeFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';import {assertStanding,coordinates} from './act2-spatial-test-helpers.mjs';
-const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
+const g=historicalStage11Runtime(await runtime({legacyMaps:false})),C=g.HONRO_CORE,rows=[];
 const fixture=id=>{const q=battlefield(g,id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);return q;};
 const check=(name,fn)=>{const detail=fn();rows.push({name,passed:true,...detail});console.log('PASS',name,JSON.stringify(detail));};
 for(const id of [11,12,13,17,18,19,20]){const space=g.HONRO_PROJECT.stages[id-1].design.space;

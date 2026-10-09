@@ -72,15 +72,15 @@
 | act2:cave-house | 3.5 | building | 지형/지지면 필수 | L1, L2 | , a2-scene-14-upper-homes, a2-scene-14-market-hamlet, a2-scene-14-lower-homes / WORLD / world,  | static / cached-vector |
 | act2:cave-house-lean | 3.2 | building | 지형/지지면 필수 | L1, L2 | , a2-scene-14-upper-homes, a2-scene-14-market-hamlet, a2-scene-14-lower-homes / WORLD / world,  | static / cached-vector |
 | act2:cave-house-ruin | 3.3 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
-| act2:temple | 5.2 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:temple | 5.2 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act2:bell | 15.5 | light | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | glow / cached-vector |
-| act2:hoist-frame | 5.5 | building | 지형/지지면 필수 | L1, L2 | , a2-scene-17-hoist-rear-bay / WORLD / world,  | static / cached-vector |
+| act2:hoist-frame | 5.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:lamp | 1.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:ritual | 2 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| act2:timber-rack | 2.8 | prop | 지형/지지면 필수 | L1, L2 | , a2-scene-17-hoist-rear-bay / WORLD / world,  | static / cached-vector |
+| act2:timber-rack | 2.8 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:mine-rail | 0.65 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:water-trough | 1.4 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| act2:memorial | 2.2 | prop | 지형/지지면 필수 | L1, L2 | , a2-scene-16-court-wing / WORLD / world,  | static / cached-vector |
+| act2:memorial | 2.2 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:bundles | 1.5 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:rock-column | 10 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act2:hanging-cloth | 2.4 | prop | 지형/지지면 필수 | L1, L2 | , a2-scene-14-upper-homes, a2-scene-14-market-hamlet / WORLD / world,  | static / cached-vector |
@@ -91,12 +91,12 @@
 | act2:sluice | 6.133333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:scene-longhouse | 5.366666666666666 | building | 지형/지지면 필수 | L1, L2 | , a2-scene-14-market-hamlet / WORLD / world,  | static / cached-vector |
 | act2:scene-market-awning | 3.9833333333333334 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| act2:scene-temple-corridor | 5.8 | building | 지형/지지면 필수 | L1, L2 | , a2-scene-16-court-wing, a2-scene-16-hall-side-gallery / WORLD / world,  | static / cached-vector |
+| act2:scene-temple-corridor | 5.8 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act2:scene-stone-threshold | 16.333333333333332 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
-| act2:scene-work-shelter | 5.7 | building | 지형/지지면 필수 | L1, L2 | , a2-scene-17-hoist-rear-bay / WORLD / world,  | static / cached-vector |
+| act2:scene-work-shelter | 5.7 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | act2:scene-market-walkway | 10.833333333333334 | building | 지형/지지면 필수 | L2 | a2-scene-14-market-hamlet / WORLD / 미사용 | static / cached-vector |
 | act2:scene-upper-stair | 10.833333333333334 | building | 지형/지지면 필수 | L2 | a2-scene-14-upper-homes, a2-scene-14-lower-homes / WORLD / 미사용 | static / cached-vector |
-| act2:scene-court-wall | 4.116666666666666 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| act2:scene-court-wall | 4.116666666666666 | building | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act1-scene:pine-grove | 12.8 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act1-scene:ritual-grove | 11.2 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
 | act1-scene:valley-granite | 9.8 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
@@ -496,6 +496,54 @@
 | a3-waterworks-v3:27:sunk-family-tools | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-waterworks-v3:27:manifest-bundle | 4.416666666666667 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 | a3-waterworks-v3:27:broken-haul-bridge | 2.5 | building | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-rear-cliff-contact | 107.5 | mountain | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-west | 63.333333333333336 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-saddle | 11.113260490533579 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-saddle-rv-saddle-canopy-landing | 6.371091082834543 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-saddle-rv-saddle-fallen-trunk | 32.59682791173351 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-saddle-rv-saddle-swept-bough | 3.888562245533649 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-saddle-rv-saddle-broken-arm | 4.219114715100674 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-ravine | 6.354524088453308 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-ravine-rv-root-west-return | 31.293530870189535 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-ravine-rv-root-east-descent | 18.46076863637627 | tree | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-east | 60.35714285714286 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-ritual-ledge-pine | 8.5 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-cliff-ledge-pine | 8.5 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-refuge-ledge-pine | 8.5 | tree | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-ritual-clearing | 7.166666666666667 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-refuge-bundle | 3.1666666666666665 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage11:ravine-shoulder-rv-ritual-reflection-ledge | 1.580666666666669 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage11:ravine-shoulder-rv-east-upper-fire-bay | 3.297619047619052 | rock | 지형/지지면 필수 | 미사용 | 미사용 / 미사용 / 미사용 | static / cached-vector |
+| stage17:worksite-rear-cavern | 72.16666666666667 | mountain | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-low-vault-shoring | 12 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-west-gallery | 15.833333333333334 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-east-gallery | 15.833333333333334 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-west-switchback-frame | 25.25 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-shaft-service-frame | 24.5 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-east-gallery-frame | 35.44761904761905 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-trestle-ws-east-fire-access | 8.33137254901961 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-trestle-ws-east-fire-deck | 10.54320987654321 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-trestle-ws-service-tool-ledge | 3.4 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-trestle-ws-notes-work-deck | 5.316666666666666 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-main-hoist | 32.583333333333336 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-control-drive-link | 29.633333333333333 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-west-work-remains | 7.666666666666667 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-lower-service-remains | 7.666666666666667 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-timber-store | 6.083333333333333 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-tool-bench | 5.783333333333333 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-axle-tool-bench | 5.783333333333333 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage17:worksite-oil-lamp | 5.333333333333333 | prop | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-rear-cavern-courts | 80.91666666666667 | mountain | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-great-hall | 28.833333333333332 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-folded-west-cloister | 42.10555555555555 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-shelter-veranda | 13.574603174603165 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-hall-side-gallery | 11.166666666666666 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-east-return-gallery | 22.333333333333332 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-processional-crossing | 14.577777777777783 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-archive-cloister | 14.022222222222217 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-lower-prayer-ledge | 5.381481481481478 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-stone-lamp | 4.533333333333333 | architecture | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
+| stage16:temple-stone-buddha-cliff-colossus | 72.97036666666666 | rock | 지형/지지면 필수 | L1 | 미사용 / WORLD / world | static / cached-vector |
 
 ## 현재 맵
 
@@ -511,13 +559,13 @@
 | stage-8 | forest / temple | 14 / 12 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
 | stage-9 | forest / forest | 10 / 8 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 7 |
 | stage-10 | forest / otherworld | 13 / 11 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 2 |
-| stage-11 | forest / forest | 11 / 2 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
+| stage-11 | forest / forest | 11 / 31 / 0 | upper-ridge, slope, valley-bottom | 2 | 2 | 0 |
 | stage-12 | valley / valley | 8 / 3 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |
 | stage-13 | valley / valley | 12 / 5 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 6 |
 | stage-14 | enclosed / enclosed | 20 / 8 / 1 | upper-ridge, slope, valley-bottom | 8 | 8 | 23 |
 | stage-15 | enclosed / enclosed | 11 / 10 / 1 | upper-ridge, slope, valley-bottom | 3 | 3 | 7 |
-| stage-16 | enclosed / enclosed | 17 / 6 / 0 | upper-ridge, slope, valley-bottom | 7 | 7 | 14 |
-| stage-17 | enclosed / enclosed | 16 / 5 / 0 | upper-ridge, slope, valley-bottom | 4 | 4 | 10 |
+| stage-16 | enclosed / enclosed | 16 / 26 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 3 |
+| stage-17 | enclosed / enclosed | 22 / 41 / 0 | upper-ridge, slope, valley-bottom | 3 | 3 | 0 |
 | stage-18 | enclosed / enclosed | 12 / 6 / 0 | upper-ridge, slope, valley-bottom | 5 | 5 | 10 |
 | stage-19 | enclosed / enclosed | 23 / 5 / 1 | upper-ridge, slope, valley-bottom | 5 | 5 | 10 |
 | stage-20 | valley / valley | 8 / 4 / 0 | upper-ridge, slope, valley-bottom | 1 | 1 | 0 |

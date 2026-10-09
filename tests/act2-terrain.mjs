@@ -1,3 +1,6 @@
+import {historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
+// Scope: preserve every original Stage11 assertion on its exact public D map;
+// new Stage11 has separately required command, encounter and shot coverage.
 import {assertReviewedRouteModes,traverseReviewedRoute} from './act2-reviewed-route-helpers.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import assert from 'node:assert/strict';
@@ -5,7 +8,7 @@ import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {openRoute,terrainFace,assertStanding} from './act2-spatial-test-helpers.mjs';
 
-const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
+const g=historicalStage11Runtime(await runtime({legacyMaps:false})),C=g.HONRO_CORE,rows=[];
 assertReviewedRouteModes(g.HONRO_PROJECT);
 for(let id=11;id<=20;id++){
  const st=g.HONRO_PROJECT.stages[id-1],space=st.design?.space;

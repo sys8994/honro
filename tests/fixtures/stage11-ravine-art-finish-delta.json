@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "beforeSourceCommit": "c543ea543b90359d34e91220b2f1a4206ac7a224",
+  "afterSourceCommit": "eade5eef0b138662c758a0873d60911dcc2a1a9d",
+  "beforeProjectSha256": "35be4bcb82daa531f51707997752863da778cc03e812c1c84526c1509c2fc281",
+  "afterProjectSha256": "a41951de03ac11cc8b83a2408da7ade545a875241404be5d5cd9f31a4d1e494c",
+  "beforeStageSha256": "e7f8b466dc920eee19c46d069ddcc931aece92d259e211926d5e0c5df9f36705",
+  "afterStageSha256": "05ca1232bbb815d2e7a4a518d51614a56cdbe1c237498a0afc156c0cc8c5cd38",
+  "beforeLibrarySha256": "302cc88ffc20e25276b2c384b2386030d88f7b4c65500e45fcc6000a72863cd0",
+  "afterLibrarySha256": "38af02d1b5664df3e8467d5614a85fd65f1c9a31fcde35ec4fa064af6324bf7b",
+  "beforeAct12LibrarySha256": "505501e44626d06194c4dda863fd0452e72f295497ef8add1610991fe1242fe1",
+  "afterAct12LibrarySha256": "700019c77c4966093da716cd457e992bb6f1233f31be32af13bb026d8b303178",
+  "assets": [
+    {
+      "id": "stage11:ravine-shoulder-rv-ritual-reflection-ledge",
+      "name": "실제 사격턱에 붙은 짧은 암석 어깨",
+      "category": "terrain",
+      "environmentRole": "rock",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          6995,
+          6590,
+          650,
+          94.84000000000015
+        ],
+        "gradients": {
+          "ledge-stone": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#7f9285",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#34535b",
+                "opacity": 1
+              }
+            ],
+            "x1": 7000,
+            "y1": 6595,
+            "x2": 7640,
+            "y2": 6735
+          }
+        },
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "url(#ledge-stone)",
+              "d": "M7000 6640L7200 6610L7420 6595L7640 6640L7640 6675L7364.8 6679.84L7147.2 6661.19L7000 6675Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#728b7d",
+              "d": "M7000 6640L7200 6610L7147.2 6661.19L7000 6675Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3a5a60",
+              "d": "M7420 6595L7640 6640L7640 6675L7364.8 6679.84L7147.2 6661.19Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#afbaa0",
+              "lineWidth": 5,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M7000 6640L7200 6610L7420 6595L7640 6640"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#243f48",
+              "lineWidth": 8,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M7294.4 6611.56L7313.6 6634.25L7347.8 6676.84"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a0aa8d",
+              "lineWidth": 6,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M7057.6 6650.36Q7128 6651.8 7204.8 6627.67"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"6995 6590 650 94.84000000000015\"><defs><linearGradient id=\"ledge-stone\" x1=\"7000\" y1=\"6595\" x2=\"7640\" y2=\"6735\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#7f9285\"/><stop offset=\"1\" stop-color=\"#34535b\"/></linearGradient></defs><path d=\"M7000 6640L7200 6610L7420 6595L7640 6640L7640 6675L7364.8 6679.84L7147.2 6661.19L7000 6675Z\" fill=\"url(#ledge-stone)\"/><path d=\"M7000 6640L7200 6610L7147.2 6661.19L7000 6675Z\" fill=\"#728b7d\"/><path d=\"M7420 6595L7640 6640L7640 6675L7364.8 6679.84L7147.2 6661.19Z\" fill=\"#3a5a60\"/><path d=\"M7000 6640L7200 6610L7420 6595L7640 6640\" fill=\"none\" stroke=\"#afbaa0\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7294.4 6611.56L7313.6 6634.25L7347.8 6676.84\" fill=\"none\" stroke=\"#243f48\" stroke-width=\"8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7057.6 6650.36Q7128 6651.8 7204.8 6627.67\" fill=\"none\" stroke=\"#a0aa8d\" stroke-width=\"6\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage11-ravine",
+        "visual-only",
+        "editable-native-vector"
+      ],
+      "params": {
+        "artRevision": 1,
+        "collisionSource": "authored-stage-terrain",
+        "nodeCount": 7
+      },
+      "bounds": {
+        "x": 6995,
+        "y": 6590,
+        "w": 650,
+        "h": 94.84000000000015
+      },
+      "reference": {
+        "heightM": 1.580666666666669,
+        "bounds": {
+          "x": 6995,
+          "y": 6590,
+          "w": 650,
+          "h": 94.84000000000015
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          4
+        ],
+        "backgroundRange": [
+          0.35,
+          4
+        ]
+      }
+    },
+    {
+      "id": "stage11:ravine-shoulder-rv-east-upper-fire-bay",
+      "name": "실제 사격턱에 붙은 짧은 암석 어깨",
+      "category": "terrain",
+      "environmentRole": "rock",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          11275,
+          4872.142857142857,
+          430,
+          197.85714285714312
+        ],
+        "gradients": {
+          "ledge-stone": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#7f9285",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#34535b",
+                "opacity": 1
+              }
+            ],
+            "x1": 11280,
+            "y1": 4877.142857142857,
+            "x2": 11700,
+            "y2": 5017.142857142857
+          }
+        },
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "url(#ledge-stone)",
+              "d": "M11280 4877.14L11550 4940L11700 5030L11700 5065L11519.4 5009.74L11376.6 4948.54L11280 4912.14Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#728b7d",
+              "d": "M11280 4877.14L11550 4940L11376.6 4948.54L11280 4912.14Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3a5a60",
+              "d": "M11700 5030L11700 5030L11700 5065L11519.4 5009.74L11376.6 4948.54Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#afbaa0",
+              "lineWidth": 5,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M11280 4877.14L11550 4940L11700 5030"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#243f48",
+              "lineWidth": 8,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M11473.2 4930.12L11485.8 4957.05L11502.4 5006.74"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a0aa8d",
+              "lineWidth": 6,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M11317.8 4904.94Q11364 4927.7 11414.4 4926.43"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"11275 4872.142857142857 430 197.85714285714312\"><defs><linearGradient id=\"ledge-stone\" x1=\"11280\" y1=\"4877.142857142857\" x2=\"11700\" y2=\"5017.142857142857\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#7f9285\"/><stop offset=\"1\" stop-color=\"#34535b\"/></linearGradient></defs><path d=\"M11280 4877.14L11550 4940L11700 5030L11700 5065L11519.4 5009.74L11376.6 4948.54L11280 4912.14Z\" fill=\"url(#ledge-stone)\"/><path d=\"M11280 4877.14L11550 4940L11376.6 4948.54L11280 4912.14Z\" fill=\"#728b7d\"/><path d=\"M11700 5030L11700 5030L11700 5065L11519.4 5009.74L11376.6 4948.54Z\" fill=\"#3a5a60\"/><path d=\"M11280 4877.14L11550 4940L11700 5030\" fill=\"none\" stroke=\"#afbaa0\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M11473.2 4930.12L11485.8 4957.05L11502.4 5006.74\" fill=\"none\" stroke=\"#243f48\" stroke-width=\"8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M11317.8 4904.94Q11364 4927.7 11414.4 4926.43\" fill=\"none\" stroke=\"#a0aa8d\" stroke-width=\"6\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage11-ravine",
+        "visual-only",
+        "editable-native-vector"
+      ],
+      "params": {
+        "artRevision": 1,
+        "collisionSource": "authored-stage-terrain",
+        "nodeCount": 7
+      },
+      "bounds": {
+        "x": 11275,
+        "y": 4872.142857142857,
+        "w": 430,
+        "h": 197.85714285714312
+      },
+      "reference": {
+        "heightM": 3.297619047619052,
+        "bounds": {
+          "x": 11275,
+          "y": 4872.142857142857,
+          "w": 430,
+          "h": 197.85714285714312
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          4
+        ],
+        "backgroundRange": [
+          0.35,
+          4
+        ]
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "s11-art-shoulder-rv-ritual-reflection-ledge",
+      "assetId": "stage11:ravine-shoulder-rv-ritual-reflection-ledge",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "mid"
+    },
+    {
+      "id": "s11-art-shoulder-rv-east-upper-fire-bay",
+      "assetId": "stage11:ravine-shoulder-rv-east-upper-fire-bay",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "mid"
+    }
+  ],
+  "elementOrderBefore": [
+    "rv-goal-knot-west",
+    "rv-goal-knot-east",
+    "rv-goal-hold-knots",
+    "rv-goal-resident",
+    "rv-goal-trace",
+    "s11-art-rear-cliff-contact",
+    "s11-art-west",
+    "s11-art-saddle",
+    "s11-art-saddle-rv-saddle-canopy-landing",
+    "s11-art-saddle-rv-saddle-fallen-trunk",
+    "s11-art-saddle-rv-saddle-swept-bough",
+    "s11-art-saddle-rv-saddle-broken-arm",
+    "s11-art-ravine",
+    "s11-art-ravine-rv-root-west-return",
+    "s11-art-ravine-rv-root-east-descent",
+    "s11-art-east",
+    "s11-art-ritual-ledge-pine",
+    "s11-art-cliff-ledge-pine",
+    "s11-art-refuge-ledge-pine",
+    "s11-art-ritual-clearing",
+    "s11-art-refuge-bundle"
+  ],
+  "elementOrderAfter": [
+    "rv-goal-knot-west",
+    "rv-goal-knot-east",
+    "rv-goal-hold-knots",
+    "rv-goal-resident",
+    "rv-goal-trace",
+    "s11-art-rear-cliff-contact",
+    "s11-art-west",
+    "s11-art-saddle",
+    "s11-art-saddle-rv-saddle-canopy-landing",
+    "s11-art-saddle-rv-saddle-fallen-trunk",
+    "s11-art-saddle-rv-saddle-swept-bough",
+    "s11-art-saddle-rv-saddle-broken-arm",
+    "s11-art-ravine",
+    "s11-art-ravine-rv-root-west-return",
+    "s11-art-ravine-rv-root-east-descent",
+    "s11-art-east",
+    "s11-art-shoulder-rv-ritual-reflection-ledge",
+    "s11-art-shoulder-rv-east-upper-fire-bay",
+    "s11-art-ritual-ledge-pine",
+    "s11-art-cliff-ledge-pine",
+    "s11-art-refuge-ledge-pine",
+    "s11-art-ritual-clearing",
+    "s11-art-refuge-bundle"
+  ],
+  "artOrderBefore": [
+    "stage11:ravine-rear-cliff-contact",
+    "stage11:ravine-west",
+    "stage11:ravine-saddle",
+    "stage11:ravine-saddle-rv-saddle-canopy-landing",
+    "stage11:ravine-saddle-rv-saddle-fallen-trunk",
+    "stage11:ravine-saddle-rv-saddle-swept-bough",
+    "stage11:ravine-saddle-rv-saddle-broken-arm",
+    "stage11:ravine-ravine",
+    "stage11:ravine-ravine-rv-root-west-return",
+    "stage11:ravine-ravine-rv-root-east-descent",
+    "stage11:ravine-east",
+    "stage11:ravine-ritual-ledge-pine",
+    "stage11:ravine-cliff-ledge-pine",
+    "stage11:ravine-refuge-ledge-pine",
+    "stage11:ravine-ritual-clearing",
+    "stage11:ravine-refuge-bundle"
+  ],
+  "artOrderAfter": [
+    "stage11:ravine-rear-cliff-contact",
+    "stage11:ravine-west",
+    "stage11:ravine-saddle",
+    "stage11:ravine-saddle-rv-saddle-canopy-landing",
+    "stage11:ravine-saddle-rv-saddle-fallen-trunk",
+    "stage11:ravine-saddle-rv-saddle-swept-bough",
+    "stage11:ravine-saddle-rv-saddle-broken-arm",
+    "stage11:ravine-ravine",
+    "stage11:ravine-ravine-rv-root-west-return",
+    "stage11:ravine-ravine-rv-root-east-descent",
+    "stage11:ravine-east",
+    "stage11:ravine-shoulder-rv-ritual-reflection-ledge",
+    "stage11:ravine-shoulder-rv-east-upper-fire-bay",
+    "stage11:ravine-ritual-ledge-pine",
+    "stage11:ravine-cliff-ledge-pine",
+    "stage11:ravine-refuge-ledge-pine",
+    "stage11:ravine-ritual-clearing",
+    "stage11:ravine-refuge-bundle"
+  ]
+}

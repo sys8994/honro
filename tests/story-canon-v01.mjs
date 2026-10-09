@@ -1,3 +1,5 @@
+import {beforeReviewedStoryStage} from './story-canon-reviewed-history-helpers.mjs';
+import {beforeCurrentStage11Ravine,beforeStage11RavineBalance} from './stage11-ravine-history-helpers.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {beforeGuardianScene} from './guardian-scene-history-helpers.mjs';
 import {beforeGraniteVisuals} from './granite-delta-helpers.mjs';
@@ -12,16 +14,20 @@ import {content,plain,hash,gameplay,mapRules} from './story-canon-contract-helpe
 const g=await content(),H=g.HONRO_CONTENT,J=g.HonroJourneyContent;
 const frozen=JSON.parse(await readFile('tests/fixtures/story-canon-v01-baseline.json','utf8'));
 const project=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+const historicalMaps=beforeCurrentStage11Ravine(project);
 const text=id=>JSON.stringify(H.stages[id-1]),lineText=lines=>JSON.stringify(lines);
 let checks=0;const check=(name,fn)=>{fn();checks++;console.log('PASS',name);};
 check('20 chapters retain every non-prose rule, stable scene/event IDs and rest page count',()=>{
  assert.equal(H.stages.length,20);
- for(const before of frozen.gameplay){const s=H.stages[before.id-1];assert.equal(hash(gameplay(s,frozen.proseFields)),before.hash,'gameplay '+s.id);assert.deepEqual([...new Set([...s.story,...s.outro].map(l=>l[2]?.storyId).filter(Boolean))],before.sceneIds,'scene IDs '+s.id);assert.deepEqual(Object.keys(s.beats||{}),before.beatKeys,'event keys '+s.id);}
+ for(const before of frozen.gameplay){const s=H.stages[before.id-1];assert.equal(hash(gameplay(beforeReviewedStoryStage(s,project),frozen.proseFields)),before.hash,'gameplay '+s.id);assert.deepEqual([...new Set([...s.story,...s.outro].map(l=>l[2]?.storyId).filter(Boolean))],before.sceneIds,'scene IDs '+s.id);assert.deepEqual(Object.keys(s.beats||{}),before.beatKeys,'event keys '+s.id);}
  for(const before of frozen.rest){const lines=J.interlude(before.id);assert.equal(lines.length,before.lines);assert(lines.every(l=>l[2].storyId===before.storyId&&!l[2].optional));}
 });
 check('Acts 1–2 story contracts retain all rules beyond the exact reviewed existence delta',()=>{
  assert.equal(hash(mapRules(act12Project(beforeGraniteVisuals(beforePlatformPassages(beforeCaveBatRevision(beforeExistenceRoster(beforeObjectiveRevision(beforeGuardianScene(beforeApprovedTopology(project)),{stages:[]}).project))))))),frozen.mapRules);
- assert.equal(hash(plain(act12Balance(g.HONRO_BALANCE))),frozen.balance);
+ assert.equal(hash(plain(act12Balance(beforeStage11RavineBalance(g.HONRO_BALANCE)))),frozen.balance);
+});
+check('Reviewed story projection rejects unapproved geometry, planning, rules and prose before old hashes',()=>{
+ for(const id of [11,16,17])for(const mutate of [s=>s.w++,s=>s.enemies++,s=>s.act2Plan.initial++,s=>s.act2Plan.sites[Object.keys(s.act2Plan.sites)[0]][0]++,s=>s.steps[0].unreviewedRule=true,s=>s.story.push(['unreviewed','prose'])]){const changed=plain(H.stages[id-1]);mutate(changed);assert.throws(()=>beforeReviewedStoryStage(changed,project),'Reject unreviewed Stage'+id+' story projection');}
 });
 check('Act 1 keeps future identities and the hidden temple out of player knowledge',()=>{
  assert.doesNotMatch(JSON.stringify(g.HonroStoryContent),/백기곡|저문골|무명사|잠운사|대도사|현묵|유골|묵종/);
@@ -52,7 +58,7 @@ check('Old souls and place names first appear in the final discovery and lead to
 });
 check('Required rest sources and authored marker labels follow current canon without optional spoilers',()=>{
  for(const s of H.stages){assert.deepEqual(plain(J.interludeSources[s.id]),plain(s.narration));assert(s.story.length<=7,'entry plus guide remains at most 8');}
- for(const s of H.stages.slice(10)){const m=project.stages[s.id-1];assert.equal(m.name,s.name);assert.equal(m.design.title,s.name);assert.equal(m.design.description,s.goal);for(const step of s.steps){const marker=m.markers.find(m=>m.id===step.id);if(marker)assert.equal(marker.label,step.label);}}
+ for(const s of H.stages.slice(10)){const m=historicalMaps.stages[s.id-1];assert.equal(m.name,s.name);assert.equal(m.design.title,s.name);assert.equal(m.design.description,s.goal);for(const step of s.steps){const marker=m.markers.find(m=>m.id===step.id);if(marker)assert.equal(marker.label,step.label);}}
  const p={cleared:Object.fromEntries(Array.from({length:20},(_,i)=>[i+1,true])),recruited:['archer','mage','knight','occultist'],seen:{}};
  for(let id=1;id<=19;id++)for(const cls of p.recruited)assert.doesNotMatch(lineText(J.optional(p,id,cls)),/저문골|무명사|현묵|대도사/);
  assert.match(lineText(J.optional(p,20,'knight')),/무명사/);

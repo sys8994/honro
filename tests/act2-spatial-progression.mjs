@@ -1,3 +1,6 @@
+import {historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
+// Scope: preserve every original Stage11 assertion on its exact public D map;
+// new Stage11 has separately required command, encounter and shot coverage.
 import {assertReviewedRouteModes,traverseReviewedRoute} from './act2-reviewed-route-helpers.mjs';
 // Ordered physical-route fixture. Combat, defense duration and convoy arrival
 // are isolated explicitly, but no gate is pre-opened, no hero is teleported,
@@ -7,7 +10,7 @@ import assert from 'node:assert/strict';
 import {writeFile,mkdir} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {walkRoute,coordinates} from './act2-spatial-test-helpers.mjs';
-const g=await runtime({legacyMaps:false}),rows=[],guards=[];
+const g=historicalStage11Runtime(await runtime({legacyMaps:false})),rows=[],guards=[];
 assertReviewedRouteModes(g.HONRO_PROJECT);
 const ids=process.argv.slice(2).map(Number),filtered=ids.length>0;if(!ids.length)ids.push(...Array.from({length:10},(_,i)=>i+11));
 for(const id of ids){

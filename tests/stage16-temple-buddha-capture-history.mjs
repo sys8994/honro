@@ -1,0 +1,43 @@
+/** Freeze the reviewed additive art pass once; never replace the temple delta. */
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir,access} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {dirname,resolve} from 'node:path';
+import {runtime} from '../game/tests/helpers.mjs';
+import {buddhaHash as hash,buddhaPlain as plain,templeGameplayFingerprints,templeBattleContract,templeFullplayGameplayProjectSha256,templeFullplayGameplayRuntimeSha256} from './stage16-temple-buddha-contract-helpers.mjs';
+
+assert.equal(process.env.HONRO_CAPTURE_APPROVED_STAGE16_BUDDHA,'1','Explicit reviewed stone-Buddha art capture required');
+const local=process.argv.find(arg=>arg.startsWith('--output='))?.slice(9);
+if(local)assert(resolve(local).startsWith(resolve('_local')+'/'),'Provisional Buddha output must remain under ignored _local');
+const file=local||'tests/fixtures/stage16-temple-buddha-art-delta.json';
+try{await access(file);throw Error('Refusing to overwrite a frozen Buddha delta: '+file);}catch(error){if(error.code!=='ENOENT')throw error;}
+if(!local)execFileSync('git',['diff','--exit-code','HEAD','--','shared/data/campaign.json','tools/environment/stage16-temple-buddha-art.mjs'],{stdio:'pipe'});
+const beforeSourceCommit='09cf792d82f9576fbd18e8539897e44e27e51ab8',before=JSON.parse(execFileSync('git',['show',beforeSourceCommit+':shared/data/campaign.json'],{encoding:'utf8',maxBuffer:32*1024*1024}));
+const originalDelta=JSON.parse(await readFile('tests/fixtures/stage16-temple-history-delta.json','utf8'));
+assert.equal(hash(before),originalDelta.afterProjectSha256,'The post-art boundary begins at the complete original temple source');
+const after=JSON.parse(await readFile('shared/data/campaign.json','utf8')),g=await runtime({legacyMaps:false});
+assert.equal(hash(g.HONRO_PROJECT),hash(after),'Current runtime must use the exact canonical Buddha source');
+assert.deepEqual(after.stages.map(s=>s.id),before.stages.map(s=>s.id),'All thirty stages remain unique and ordered');
+const beforeStage=before.stages.find(s=>s.id==='stage-16'),afterStage=after.stages.find(s=>s.id==='stage-16');
+assert.equal(before.library.length,539,'All original529 and completed-temple10 assets are protected');
+assert.equal(hash(beforeStage),originalDelta.afterStageSha256,'Immutable completed-temple map boundary');
+for(const stage of before.stages)if(stage.id!=='stage-16')assert.deepEqual(after.stages.find(s=>s.id===stage.id),stage,'Every other map is unchanged: '+stage.id);
+const assetId='stage16:temple-stone-buddha-cliff-colossus',elementId='s16-buddha-stone-colossus';
+const asset=after.library.filter(a=>a.id===assetId),element=afterStage.elements.filter(e=>e.id===elementId);
+assert.equal(asset.length,1,'One exact Buddha asset');assert.equal(element.length,1,'One exact Buddha placement');
+assert.equal(element[0].assetId,assetId);assert.deepEqual(asset[0].collision,[],'Buddha art cannot create invisible collision');
+assert.equal(element[0].depthLayer,'L1');assert.equal(element[0].layer,'back');assert.equal(element[0].snap,false);
+assert.deepEqual(after.library.map(a=>a.id),[...before.library.map(a=>a.id),assetId],'Only one appended art asset; preserve all539 original values/order');
+assert.deepEqual(after.library.slice(0,-1),before.library,'Every old asset, including the original ten temple assets, is exact');
+const rear=afterStage.elements.findIndex(e=>e.id==='s16-art-rear-cavern-courts');assert.equal(afterStage.elements[rear+1]?.id,elementId,'Buddha is directly behind the retained temple structures');
+const prior=plain(after);prior.library.pop();prior.stages.find(s=>s.id==='stage-16').elements=prior.stages.find(s=>s.id==='stage-16').elements.filter(e=>e.id!==elementId);
+assert.deepEqual(prior,before,'Removing exactly one asset and placement recovers every original field, value and order');
+const fingerprints=await templeGameplayFingerprints(g);
+assert.equal(fingerprints.project,templeFullplayGameplayProjectSha256,'Same gameplay source as the completed47-round fresh play');
+assert.equal(fingerprints.runtime,templeFullplayGameplayRuntimeSha256,'Same gameplay runtime as the completed47-round fresh play');
+const currentBattle=templeBattleContract(g,after),priorBattle=templeBattleContract(g,before);
+assert.deepEqual(currentBattle,priorBattle,'Actual battle terrain, actors, markers, events, initialState, protected NPCs, rules, resources and growth remain exact');
+const act12=p=>({...p,stages:p.stages.filter(s=>s.metadata.stageId<=20),library:p.library.filter(a=>!a.id.startsWith('a3-'))});
+const f={schemaVersion:1,scope:'Exactly one noncolliding Buddha asset and one L1-back element only. All original539 assets/order, other29 stages and every non-element Stage16 field remain exact.',beforeSourceCommit,afterSourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),beforeProjectSha256:hash(before),afterProjectSha256:hash(after),beforeAct12ProjectSha256:hash(act12(before)),afterAct12ProjectSha256:hash(act12(after)),beforeStageSha256:hash(beforeStage),afterStageSha256:hash(afterStage),beforeLibrarySha256:hash(before.library),afterLibrarySha256:hash(after.library),beforeAct12LibrarySha256:hash(act12(before).library),afterAct12LibrarySha256:hash(act12(after).library),stageOrder:before.stages.map(s=>s.id),otherStages:before.stages.filter(s=>s.id!=='stage-16').map(s=>({id:s.id,sha256:hash(s)})),libraryOrderBefore:before.library.map(a=>a.id),elementOrderBefore:beforeStage.elements.map(e=>e.id),elementOrderAfter:afterStage.elements.map(e=>e.id),assets:plain(asset),elements:plain(element),gameplayFingerprints:fingerprints,battleContractSha256:hash(currentBattle)};
+await mkdir(dirname(file),{recursive:true});await writeFile(file,JSON.stringify(f,null,2)+'\n',{flag:'wx'});
+console.log('Captured exact Buddha art-only layer: one asset/placement; all539 original assets and29 other maps exact; gameplay/actual battle identity preserved.',local?'Provisional local output.':'Frozen reviewed fixture.');

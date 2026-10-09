@@ -1,3 +1,4 @@
+import {beforeCurrentStage11Ravine,beforeStage11RavineLibrary} from './stage11-ravine-history-helpers.mjs';
 // D is an exact flag layer above immutable C. Apply it once at a current-source
 // boundary, never recursively inside the older A/B/C projections.
 import assert from 'node:assert/strict';
@@ -28,12 +29,12 @@ function reverse(target,row){
  }
 }
 export function beforeOpenStructureLibrary(library){
- const out=plain(library);
+ const out=beforeStage11RavineLibrary(library);
  for(const row of openStructureHistoryDelta.rows.filter(r=>r.kind==='asset'))reverse(unique(out,row.id,'Exact approved open structure asset '+row.id),row);
  return out;
 }
 export function beforeOpenStructures(project){
- const out=plain(project);
+ const out=beforeCurrentStage11Ravine(project);
  for(const row of openStructureHistoryDelta.rows){
   const label='Exact approved open structure delta '+row.kind+'/'+row.stage+'/'+row.id;
   const stages=out.stages.filter(s=>s.metadata?.stageId===row.stage);assert.equal(stages.length,1,label+' unique stage');
@@ -49,7 +50,7 @@ export function beforeOpenStructures(project){
 // Act1/2-only projects. This narrow entry point reverses just the two reviewed
 // protrusions; callers already projected by beforeOpenStructures must opt out.
 export function beforeOpenAct1Structures(project){
- const out=plain(project);
+ const out=beforeCurrentStage11Ravine(project);
  for(const row of openStructureHistoryDelta.rows.filter(r=>r.kind==='terrain'&&r.stage<=10)){
   const label='Exact approved open structure Act1 '+row.stage+'/'+row.id,stages=out.stages.filter(s=>s.metadata?.stageId===row.stage);
   assert.equal(stages.length,1,label+' unique stage');reverse(unique(stages[0].terrains,row.id,label),row);

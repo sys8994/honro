@@ -84,6 +84,7 @@ function progressive(b,st,result,list,current){
    if(st.id===27&&['water-release','fire-screen'].includes(chosen.id))instruction+=' · '+Math.max(0,12-(b.honroState?.act3?.fireTurns||0))+'턴 남음';
   }
  }else{rows=legacySteps(b,st,result);chosen=rows.find(q=>!q.done);instruction=chosen?.text;}
+ instruction=G.HonroStage11RavineEncounters?.rescueInstruction(b,chosen)||instruction;
  const visibleChecklist=rows.filter(q=>q.done||q.id===chosen?.id).map(q=>({...q,current:q.id===chosen?.id&&!q.done}));
  return{currentInstruction:result.complete?'목표 완료':instruction||result.summary,currentObjectiveId:chosen?.id,visibleChecklist};
 }

@@ -1,3 +1,6 @@
+import {beforeStage16TempleContent,beforeStage16TempleUnitContracts} from './stage16-temple-history-helpers.mjs';
+import {beforeStage11RavineBalance,beforeStage11RavineContent,beforeStage11RavineUnitContracts} from './stage11-ravine-history-helpers.mjs';
+import {beforeStage17WorksiteContent,beforeStage17WorksiteUnitContracts} from './stage17-worksite-history-helpers.mjs';
 import {beforeGuardianStory} from './guardian-tree-history-helpers.mjs';
 import {historicalSceneRoster} from './staging-history-helpers.mjs';
 import {act12Balance,act12Archetypes} from './campaign-scope-helpers.mjs';
@@ -32,12 +35,13 @@ check('All class stats and skill definitions retain the frozen balance',()=>{
  assert.deepEqual(plain(C.CLASSES),frozen.classes);
  assert.deepEqual(beforeExistenceProfiles(C.SKILLS),frozen.skills);
  assert.deepEqual(plain(act12Archetypes(g.HonroWorld.archetypes)),frozen.archetypes);
- assert.deepEqual(act12Balance(JSON.parse(balanceSource)),frozen.balance);
+ assert.deepEqual(act12Balance(beforeStage11RavineBalance(JSON.parse(balanceSource))),frozen.balance);
 });
 for(const before of frozen.stages)check(`${before.id}: objective order, classes, radii, scripts, waves, enemy stats and cohorts are frozen`,()=>{
  const q=battlefield(g,before.id);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);
- assert.deepEqual(semanticContent(q.st),before.content,'Content is not a geometry-edit surface');
- assert.deepEqual(plain(q.b.units.map(unitContract)),before.units,'Unit re-placement must not rebalance or reassign cohorts');
+ const content=semanticContent(q.st),units=plain(q.b.units.map(unitContract));
+ assert.deepEqual(before.id===11?beforeStage11RavineContent(content):before.id===17?beforeStage17WorksiteContent(content):before.id===16?beforeStage16TempleContent(content):content,before.content,'Only exact reviewed Stage11/16/17 deltas may change content planning');
+ assert.deepEqual(before.id===11?beforeStage11RavineUnitContracts(units):before.id===17?beforeStage17WorksiteUnitContracts(units):before.id===16?beforeStage16TempleUnitContracts(units):units,before.units,'Only exact reviewed Stage11/16/17 roster deltas may change roster or XP allocation');
  assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);
 });
 check('A real pre-redesign partial revision-2 save keeps its geometry, units and progress on resume',()=>{

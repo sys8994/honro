@@ -1,10 +1,13 @@
+import {beforeCurrentStage17Worksite} from './stage17-worksite-history-helpers.mjs';
 import assert from 'node:assert/strict';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 
 const {g,load,reload,profileThrough,finish,click}=await appHarness();
-const counts=[];
+// Preserve the old cave-roster counts after the exact reviewed Stage16/17 deltas.
+// Live first-sighting/dialogue/save behavior below still uses the current runtime.
+const project=beforeCurrentStage17Worksite(g.HONRO_PROJECT),counts=[];
 for(const [id,bats,spirits] of [[13,8,1],[14,10,3],[15,9,0],[16,5,6],[17,4,5],[18,10,6]]){
- const units=g.HONRO_PROJECT.stages[id-1].units.filter(u=>u.team==='enemy');
+ const units=project.stages[id-1].units.filter(u=>u.team==='enemy');
  const actualBats=units.filter(u=>u.kind==='bat').length,actualSpirits=units.filter(u=>['resonance','echo','bellCluster','monkVessel'].includes(u.kind)).length;
  assert.equal(actualBats,bats,`stage ${id} bat group`);assert.equal(actualSpirits,spirits,`stage ${id} remaining story spirits`);
  counts.push([id,actualBats,actualSpirits]);

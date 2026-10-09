@@ -1,3 +1,4 @@
+import {historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
 import './act2-reviewed-routes.mjs';
 import {traverse} from './act1-spatial-test-helpers.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
@@ -11,6 +12,10 @@ import {plain,hash} from './act2-spatial-contract-helpers.mjs';
 import {openRoute,terrainFace,assertStanding,coordinates} from './act2-spatial-test-helpers.mjs';
 
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
+// Keep the original Stage11 room/geometry assertions on immutable public D;
+// stage11-ravine-traversal/semantics/history separately require the full new map.
+historicalStage11Runtime(g);
+console.log('SCOPE original Stage11 spatial contracts plus unchanged current12–20; new ravine has its separate command-only suite');
 const intent=JSON.parse(await readFile('tests/fixtures/act2-spatial-intent.json','utf8'));
 const beforeTopology=beforeApprovedTopology(g.HONRO_PROJECT,{stages:[15]});
 const historicalProject=beforeObjectiveRevision(beforeTopology,g.HONRO_CONTENT).project;

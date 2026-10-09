@@ -1,8 +1,9 @@
+import {beforeCurrentStage11Ravine} from './stage11-ravine-history-helpers.mjs';
 /** Exact D -> C preservation; old A/B/C fixtures remain independent and frozen. */
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {beforeOpenStructures,beforeOpenAct1Structures,beforeOpenStructureLibrary,openStructureHistoryDelta as f,openStructureHash as hash} from './open-structure-history-helpers.mjs';
-const p=JSON.parse(readFileSync('shared/data/campaign.json','utf8')),manifest=JSON.parse(readFileSync('shared/data/open-structures.json','utf8')),snapshot=JSON.stringify(p);
+const p=beforeCurrentStage11Ravine(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),manifest=JSON.parse(readFileSync('shared/data/open-structures.json','utf8')),snapshot=JSON.stringify(p);
 const identity=({stage,kind,id,elementId,before})=>({stage,kind,id,...(elementId?{elementId}:{}),before});
 assert.equal(manifest.sourceCommit,f.sourceCommit,'D is anchored to the independently recorded C source');
 assert.deepEqual(manifest.rows.map(identity),f.rows.map(identity),'Production manifest cannot expand the historical exception');
@@ -25,7 +26,9 @@ assert.deepEqual(act1.library,p.library,'Act1 history entry point leaves the cur
 assert.throws(()=>beforeOpenAct1Structures(act1),/Exact approved open structure/,'Act1 D reversal cannot run twice');
 // Lean mutation inputs retain the complete identities and affected properties;
 // whole-source SHA checks above cover every unrelated coordinate and art value.
-const lean={stages:p.stages.map(s=>({id:s.id,metadata:s.metadata,elements:s.elements.map(({id,assetId})=>({id,assetId})),terrains:s.terrains.map(({id,oneWay,properties})=>({id,oneWay,properties}))})),library:p.library.map(({id,oneWay})=>({id,oneWay}))};
+// Keep the exact already-reversed Stage16/17 identities so their newer history
+// guards do not short-circuit the intended D flag/binding mutation checks.
+const lean={stages:p.stages.map(s=>[16,17].includes(s.metadata.stageId)?structuredClone(s):({id:s.id,metadata:s.metadata,elements:s.elements.map(({id,assetId})=>({id,assetId})),terrains:s.terrains.map(({id,oneWay,properties})=>({id,oneWay,properties}))})),library:p.library.map(({id,oneWay})=>({id,oneWay}))};
 const locate=(q,row)=>{const stage=q.stages.find(s=>s.metadata.stageId===row.stage),items=row.kind==='asset'?q.library:stage.terrains;return {stage,items,target:items.find(t=>t.id===row.id)};};
 let rejected=0;
 for(const row of f.rows){

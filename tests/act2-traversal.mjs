@@ -1,7 +1,7 @@
 import {assertReviewedRouteModes,traverseReviewedRoute} from './act2-reviewed-route-helpers.mjs';
 // Isolated, cleared-route physics audit for every hero. Enemy turns and named
 // removable barriers are excluded; the actual walking/contact solver is used.
-// Only exactly reviewed 14/15/16 may use step-off/basic jumps; no position corrections.
+// Only exactly reviewed 11/14/15/16/17 may use step-off/basic jumps; no position corrections.
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {openRoute} from './act2-spatial-test-helpers.mjs';

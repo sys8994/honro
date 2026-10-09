@@ -1,0 +1,12 @@
+import {beforeRavineCompletion} from './stage11-ravine-completion-history-helpers.mjs';
+import assert from'node:assert/strict';import{readFileSync}from'node:fs';import{createHash}from'node:crypto';
+import{ravineFinishDelta as f,beforeStage11RavineFinish,beforeStage11RavineFinishLibrary}from'./stage11-ravine-finish-history-helpers.mjs';
+const p=beforeRavineCompletion(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex'),snapshot=JSON.stringify(p),first=JSON.parse(readFileSync('tests/fixtures/stage11-ravine-history-delta.json','utf8'));
+assert.equal(f.assets.length,2);assert.equal(f.elements.length,2);assert.equal(f.beforeProjectSha256,first.afterProjectSha256);assert.equal(f.beforeStageSha256,first.afterStageSha256);
+assert.equal(hash(p),f.afterProjectSha256,'Full final source matches exact two-shoulder layer');assert.equal(hash(p.library),f.afterLibrarySha256);
+const prior=beforeStage11RavineFinish(p);assert.equal(hash(prior),f.beforeProjectSha256,'Full first-ravine source recovered without rewriting its98 paths');assert.equal(hash(prior.library),f.beforeLibrarySha256);assert.deepEqual(beforeStage11RavineFinishLibrary(p.library),prior.library);
+assert.equal(JSON.stringify(p),snapshot,'Pure projection');assert.deepEqual(beforeStage11RavineFinish(prior),prior,'Exactly recognized prior boundary is stable');
+for(const key of['terrains','materials','units','events','encounters','objectives','markers','initialState','routes','anchors'])assert.deepEqual(p.stages[10][key],prior.stages[10][key],'Final art cannot change '+key);
+for(let i=0;i<30;i++)if(i!==10)assert.deepEqual(p.stages[i],prior.stages[i],'Final art cannot change stage'+(i+1));
+for(const mutate of[q=>q.stages[10].elements.at(-1).x++,q=>q.stages[10].elements.reverse(),q=>q.stages[10].terrains[0].points[0].y++,q=>q.stages[10].units[0].hp++,q=>q.library.find(a=>a.id===f.assets[0].id).name+=' drift',q=>q.library.splice(q.library.findIndex(a=>a.id===f.assets[1].id),1),q=>q.library.push(structuredClone(q.library.at(-1)))]){const q=structuredClone(p);mutate(q);assert.throws(()=>beforeStage11RavineFinish(q),'Changed, missing or duplicated final-art content is rejected');}
+console.log('PASS exact final art:2 noncolliding assets/2 placements, original98-path layer/full508-asset source intact, all gameplay and29 other stages unchanged,7 mutation guards');

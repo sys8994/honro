@@ -1,0 +1,12 @@
+/** Read-only pacing summary for a recorded command-only full play attempt. */
+import {readFile,writeFile} from 'node:fs/promises';
+const file=process.argv[2];if(!file)throw Error('Provide result.json');
+const r=JSON.parse(await readFile(file,'utf8')),turns=new Map();
+for(const a of r.actions){const key=a.round+':'+a.hero;if(!turns.has(key))turns.set(key,{round:a.round,hero:a.hero,ops:new Set()});turns.get(key).ops.add(a.op);}
+const classify=ops=>ops.has('fire')?'attack':ops.has('heal-stake')?'healing':ops.has('E')?'interaction':ops.has('move')||ops.has('jump')||ops.has('jump-recover')?'travel':'wait-only';
+const heroTurns={},rounds={combat:0,travelWithoutCombat:0,healingOrInteractionWithoutCombat:0,waitOnly:0},byRound=new Map();
+for(const t of turns.values()){const kind=classify(t.ops);heroTurns[kind]=(heroTurns[kind]||0)+1;if(!byRound.has(t.round))byRound.set(t.round,new Set());for(const op of t.ops)byRound.get(t.round).add(op);}
+let quietRun=0,longestQuiet=0;for(const[round,ops]of [...byRound].sort((a,b)=>a[0]-b[0])){if(ops.has('fire')){rounds.combat++;quietRun=0;}else{quietRun++;longestQuiet=Math.max(longestQuiet,quietRun);if(ops.has('move')||ops.has('jump')||ops.has('jump-recover'))rounds.travelWithoutCombat++;else if(ops.has('heal-stake')||ops.has('E'))rounds.healingOrInteractionWithoutCombat++;else rounds.waitOnly++;}}
+const goals=[];let goal;for(const row of r.rounds)if(row.goal!==goal){goals.push({round:row.round,goal:row.goal,foes:row.foes.length,resident:row.resident});goal=row.goal;}
+const summary={sourceHash:r.sourceHash,provenance:r.provenance,continues:r.continues,fallenHeroes:r.fallenHeroes,phase:r.phase,round:r.round,stopReason:r.stopReason,heroTurns,rounds,longestConsecutiveRoundsWithoutPlayerAttack:longestQuiet,goals,interactions:r.actions.filter(a=>a.op==='E'),healCasts:r.actions.filter(a=>a.op==='heal-stake').length,travelDistance:r.actions.filter(a=>a.op==='move').reduce((n,a)=>n+Math.hypot(a.to.x-a.from.x,a.to.y-a.from.y),0),heroes:r.heroes,resident:r.resident?{hp:r.resident.hp,resolved:r.resident.honroResolved}:null,lastRoundStartFoes:r.rounds.at(-1)?.foes,scope:'Turn classifications are exclusive (attack > healing > interaction > travel > wait). A combat round may contain travel/healing too. Travel distance is summed action endpoints, not full frame path. Controller limits are distinct from game losses.'};
+await writeFile(file.replace(/result\.json$/,'summary.json'),JSON.stringify(summary,null,2)+'\n');console.log(JSON.stringify(summary,null,2));

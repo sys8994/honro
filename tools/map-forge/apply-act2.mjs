@@ -1,3 +1,6 @@
+import {authorStage16Temple} from './apply-stage16-temple.mjs';
+import {authorStage17Worksite} from './apply-stage17-worksite.mjs';
+import {authorStage11Ravine} from './apply-stage11-ravine.mjs';
 import {applyCavernTransitionLayers} from './cavern-transition-layers.mjs';
 import {applyCavernPlaceLayers} from './cavern-place-layers.mjs';
 import {applyForestCavernTopology} from './forest-cavern-topology.mjs';
@@ -9,7 +12,7 @@ import {runtime} from '../../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false});
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
 const before=JSON.stringify(g.HONRO_PROJECT.stages.filter(s=>s.metadata.act!==2));
-const project=g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(g.HONRO_PROJECT))),{stages:[15]}))));
+const project=await authorStage16Temple(await authorStage17Worksite(await authorStage11Ravine(g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(g.HONRO_PROJECT))),{stages:[15]})))),g),g),g);
 if(JSON.stringify(project.stages.filter(s=>s.metadata.act!==2))!==before)throw Error('Other acts changed while authoring Act 2');
 await writeFile('shared/data/campaign.json',JSON.stringify(project,null,2)+'\n');
 console.log('Authored 10 Act 2 stages; Act 1 preserved.');

@@ -1,0 +1,7 @@
+import {beforeCurrentStage17Worksite} from './stage17-worksite-history-helpers.mjs';
+import assert from 'node:assert/strict';import{readFileSync}from'node:fs';import{completionDelta as f,completionHash as hash,beforeRavineCompletion}from'./stage11-ravine-completion-history-helpers.mjs';
+const p=beforeCurrentStage17Worksite(JSON.parse(readFileSync('shared/data/campaign.json','utf8'))),snapshot=JSON.stringify(p);assert.equal(hash(p),f.afterProjectSha256,'Complete current reviewed candidate');const prior=beforeRavineCompletion(p);assert.equal(hash(prior),f.beforeProjectSha256,'Entire reviewed4b draft restored');assert.equal(JSON.stringify(p),snapshot,'Projection is pure');assert.deepEqual(beforeRavineCompletion(prior),prior);
+for(const row of f.paths){const x=structuredClone(p);let q=x.stages[10];for(const k of row.path.slice(0,-1))q=q[k];q[row.path.at(-1)]='unreviewed';assert.throws(()=>beforeRavineCompletion(x),'Any changed completion path must be rejected');}
+for(const change of f.libraryChanges.filter(c=>c.hasAfter)){const x=structuredClone(p);x.library.find(a=>a.id===change.id).name+=' drift';assert.throws(()=>beforeRavineCompletion(x),'Any changed completion asset must be rejected');}
+const unchanged=(a,b)=>{const copy=structuredClone(a);copy.stages[10]=b.stages[10];copy.library=b.library;return copy;};assert.deepEqual(unchanged(p,prior),prior,'Only Stage11 and exact local art differ');
+console.log('PASS exact completion layer:',f.paths.length,'Stage11 paths;',f.libraryChanges.length,'local art changes; immutable reviewed draft restored');
