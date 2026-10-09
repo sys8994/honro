@@ -1,0 +1,2009 @@
+{
+  "version": 1,
+  "sourceCommit": "7df220ba9de5a0eeee3432091f92cf285cbc86f6",
+  "sourceTree": "2d961adc788f5d6cc17884b13c81f9ab6a0fcb96",
+  "scope": "Pre-entry first-clear/recruit reward-ledger fixture through22; not a Stages1–22 playthrough, normal22 export, combat victory, or live actor/resource edit.",
+  "contract": {
+    "stage": 23,
+    "through": 22,
+    "difficulty": "normal",
+    "seed": 19388,
+    "xp": 75748,
+    "level": 16,
+    "earned": 33,
+    "ordinaryStats": 6,
+    "extraPassives": 0,
+    "forbiddenSkills": [
+      "SP03",
+      "M09"
+    ],
+    "slots": {
+      "archer": [
+        "A01",
+        "A14",
+        "A11",
+        "A02"
+      ],
+      "mage": [
+        "M01",
+        "M04",
+        "M11",
+        "M03"
+      ],
+      "knight": [
+        "S00",
+        "S03",
+        "S01",
+        "S04"
+      ],
+      "occultist": [
+        "O01",
+        "O04",
+        "O08",
+        "O11"
+      ]
+    },
+    "limit": {
+      "start": 75748,
+      "end": 83635,
+      "total": 7887,
+      "combat": 3155
+    },
+    "policy": {
+      "consumablesUsed": 0,
+      "externalResourceWrites": 0,
+      "externalActorPositionWrites": 0,
+      "recoverCalls": 0
+    }
+  },
+  "readiness": {
+    "xp": 75748,
+    "level": 16,
+    "rows": [
+      {
+        "stage": 1,
+        "limit": {
+          "start": 0,
+          "end": 180,
+          "total": 180,
+          "combat": 72
+        },
+        "xp": {
+          "archer": 180
+        },
+        "level": {
+          "archer": 1
+        }
+      },
+      {
+        "stage": 2,
+        "limit": {
+          "start": 180,
+          "end": 450,
+          "total": 270,
+          "combat": 108
+        },
+        "xp": {
+          "archer": 450,
+          "mage": 675
+        },
+        "level": {
+          "archer": 2,
+          "mage": 3
+        }
+      },
+      {
+        "stage": 3,
+        "limit": {
+          "start": 675,
+          "end": 1137,
+          "total": 462,
+          "combat": 185
+        },
+        "xp": {
+          "archer": 1137,
+          "mage": 1137
+        },
+        "level": {
+          "archer": 3,
+          "mage": 3
+        }
+      },
+      {
+        "stage": 4,
+        "limit": {
+          "start": 1137,
+          "end": 1868,
+          "total": 731,
+          "combat": 292
+        },
+        "xp": {
+          "archer": 1868,
+          "mage": 1868
+        },
+        "level": {
+          "archer": 4,
+          "mage": 4
+        }
+      },
+      {
+        "stage": 5,
+        "limit": {
+          "start": 1868,
+          "end": 2934,
+          "total": 1066,
+          "combat": 426
+        },
+        "xp": {
+          "archer": 2934,
+          "mage": 2934,
+          "knight": 4066
+        },
+        "level": {
+          "archer": 5,
+          "mage": 5,
+          "knight": 6
+        }
+      },
+      {
+        "stage": 6,
+        "limit": {
+          "start": 4066,
+          "end": 5527,
+          "total": 1461,
+          "combat": 584
+        },
+        "xp": {
+          "archer": 5527,
+          "mage": 5527,
+          "knight": 5527
+        },
+        "level": {
+          "archer": 6,
+          "mage": 6,
+          "knight": 6
+        }
+      },
+      {
+        "stage": 7,
+        "limit": {
+          "start": 5527,
+          "end": 8644,
+          "total": 3117,
+          "combat": 1247
+        },
+        "xp": {
+          "archer": 8644,
+          "mage": 8644,
+          "knight": 8644
+        },
+        "level": {
+          "archer": 7,
+          "mage": 7,
+          "knight": 7
+        }
+      },
+      {
+        "stage": 8,
+        "limit": {
+          "start": 8644,
+          "end": 12812,
+          "total": 4168,
+          "combat": 1667
+        },
+        "xp": {
+          "archer": 12812,
+          "mage": 12812,
+          "knight": 12812
+        },
+        "level": {
+          "archer": 9,
+          "mage": 9,
+          "knight": 9
+        }
+      },
+      {
+        "stage": 9,
+        "limit": {
+          "start": 12812,
+          "end": 16371,
+          "total": 3559,
+          "combat": 1424
+        },
+        "xp": {
+          "archer": 16371,
+          "mage": 16371,
+          "knight": 16371
+        },
+        "level": {
+          "archer": 9,
+          "mage": 9,
+          "knight": 9
+        }
+      },
+      {
+        "stage": 10,
+        "limit": {
+          "start": 16371,
+          "end": 20571,
+          "total": 4200,
+          "combat": 1680
+        },
+        "xp": {
+          "archer": 20571,
+          "mage": 20571,
+          "knight": 20571
+        },
+        "level": {
+          "archer": 10,
+          "mage": 10,
+          "knight": 10
+        }
+      },
+      {
+        "stage": 11,
+        "limit": {
+          "start": 20571,
+          "end": 23502,
+          "total": 2931,
+          "combat": 1172
+        },
+        "xp": {
+          "archer": 23502,
+          "mage": 23502,
+          "knight": 23502,
+          "occultist": 23502
+        },
+        "level": {
+          "archer": 11,
+          "mage": 11,
+          "knight": 11,
+          "occultist": 11
+        }
+      },
+      {
+        "stage": 12,
+        "limit": {
+          "start": 23502,
+          "end": 26578,
+          "total": 3076,
+          "combat": 1230
+        },
+        "xp": {
+          "archer": 26578,
+          "mage": 26578,
+          "knight": 26578,
+          "occultist": 26578
+        },
+        "level": {
+          "archer": 11,
+          "mage": 11,
+          "knight": 11,
+          "occultist": 11
+        }
+      },
+      {
+        "stage": 13,
+        "limit": {
+          "start": 26578,
+          "end": 29945,
+          "total": 3367,
+          "combat": 1347
+        },
+        "xp": {
+          "archer": 29945,
+          "mage": 29945,
+          "knight": 29945,
+          "occultist": 29945
+        },
+        "level": {
+          "archer": 12,
+          "mage": 12,
+          "knight": 12,
+          "occultist": 12
+        }
+      },
+      {
+        "stage": 14,
+        "limit": {
+          "start": 29945,
+          "end": 33618,
+          "total": 3673,
+          "combat": 1469
+        },
+        "xp": {
+          "archer": 33618,
+          "mage": 33618,
+          "knight": 33618,
+          "occultist": 33618
+        },
+        "level": {
+          "archer": 12,
+          "mage": 12,
+          "knight": 12,
+          "occultist": 12
+        }
+      },
+      {
+        "stage": 15,
+        "limit": {
+          "start": 33618,
+          "end": 37445,
+          "total": 3827,
+          "combat": 1531
+        },
+        "xp": {
+          "archer": 37445,
+          "mage": 37445,
+          "knight": 37445,
+          "occultist": 37445
+        },
+        "level": {
+          "archer": 13,
+          "mage": 13,
+          "knight": 13,
+          "occultist": 13
+        }
+      },
+      {
+        "stage": 16,
+        "limit": {
+          "start": 37445,
+          "end": 41755,
+          "total": 4310,
+          "combat": 1724
+        },
+        "xp": {
+          "archer": 41755,
+          "mage": 41755,
+          "knight": 41755,
+          "occultist": 41755
+        },
+        "level": {
+          "archer": 13,
+          "mage": 13,
+          "knight": 13,
+          "occultist": 13
+        }
+      },
+      {
+        "stage": 17,
+        "limit": {
+          "start": 41755,
+          "end": 46235,
+          "total": 4480,
+          "combat": 1792
+        },
+        "xp": {
+          "archer": 46235,
+          "mage": 46235,
+          "knight": 46235,
+          "occultist": 46235
+        },
+        "level": {
+          "archer": 14,
+          "mage": 14,
+          "knight": 14,
+          "occultist": 14
+        }
+      },
+      {
+        "stage": 18,
+        "limit": {
+          "start": 46235,
+          "end": 51052,
+          "total": 4817,
+          "combat": 1927
+        },
+        "xp": {
+          "archer": 51052,
+          "mage": 51052,
+          "knight": 51052,
+          "occultist": 51052
+        },
+        "level": {
+          "archer": 14,
+          "mage": 14,
+          "knight": 14,
+          "occultist": 14
+        }
+      },
+      {
+        "stage": 19,
+        "limit": {
+          "start": 51052,
+          "end": 56222,
+          "total": 5170,
+          "combat": 2068
+        },
+        "xp": {
+          "archer": 56222,
+          "mage": 56222,
+          "knight": 56222,
+          "occultist": 56222
+        },
+        "level": {
+          "archer": 15,
+          "mage": 15,
+          "knight": 15,
+          "occultist": 15
+        }
+      },
+      {
+        "stage": 20,
+        "limit": {
+          "start": 56222,
+          "end": 61569,
+          "total": 5347,
+          "combat": 2139
+        },
+        "xp": {
+          "archer": 61569,
+          "mage": 61569,
+          "knight": 61569,
+          "occultist": 61569
+        },
+        "level": {
+          "archer": 15,
+          "mage": 15,
+          "knight": 15,
+          "occultist": 15
+        }
+      },
+      {
+        "stage": 21,
+        "limit": {
+          "start": 61569,
+          "end": 68522,
+          "total": 6953,
+          "combat": 2781
+        },
+        "xp": {
+          "archer": 68522,
+          "mage": 68522,
+          "knight": 68522,
+          "occultist": 68522
+        },
+        "level": {
+          "archer": 16,
+          "mage": 16,
+          "knight": 16,
+          "occultist": 16
+        }
+      },
+      {
+        "stage": 22,
+        "limit": {
+          "start": 68522,
+          "end": 75748,
+          "total": 7226,
+          "combat": 2890
+        },
+        "xp": {
+          "archer": 75748,
+          "mage": 75748,
+          "knight": 75748,
+          "occultist": 75748
+        },
+        "level": {
+          "archer": 16,
+          "mage": 16,
+          "knight": 16,
+          "occultist": 16
+        }
+      }
+    ],
+    "cleared": {
+      "1": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "2": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "3": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "4": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "5": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "6": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "7": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "8": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "9": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "10": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "11": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "12": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "13": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "14": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "15": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "16": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "17": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "18": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "19": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "20": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "21": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "22": {
+        "visits": 1,
+        "rounds": 0
+      }
+    },
+    "ledger": {
+      "version": 3,
+      "stages": {
+        "1": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 0,
+            "end": 180,
+            "total": 180,
+            "combat": 72
+          }
+        },
+        "2": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 180,
+            "end": 450,
+            "total": 270,
+            "combat": 108
+          }
+        },
+        "3": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 675,
+            "end": 1137,
+            "total": 462,
+            "combat": 185
+          }
+        },
+        "4": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 1137,
+            "end": 1868,
+            "total": 731,
+            "combat": 292
+          }
+        },
+        "5": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 1868,
+            "end": 2934,
+            "total": 1066,
+            "combat": 426
+          }
+        },
+        "6": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 4066,
+            "end": 5527,
+            "total": 1461,
+            "combat": 584
+          }
+        },
+        "7": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 5527,
+            "end": 8644,
+            "total": 3117,
+            "combat": 1247
+          }
+        },
+        "8": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 8644,
+            "end": 12812,
+            "total": 4168,
+            "combat": 1667
+          }
+        },
+        "9": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 12812,
+            "end": 16371,
+            "total": 3559,
+            "combat": 1424
+          }
+        },
+        "10": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 16371,
+            "end": 20571,
+            "total": 4200,
+            "combat": 1680
+          }
+        },
+        "11": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 20571,
+            "end": 23502,
+            "total": 2931,
+            "combat": 1172
+          }
+        },
+        "12": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 23502,
+            "end": 26578,
+            "total": 3076,
+            "combat": 1230
+          }
+        },
+        "13": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 26578,
+            "end": 29945,
+            "total": 3367,
+            "combat": 1347
+          }
+        },
+        "14": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 29945,
+            "end": 33618,
+            "total": 3673,
+            "combat": 1469
+          }
+        },
+        "15": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 33618,
+            "end": 37445,
+            "total": 3827,
+            "combat": 1531
+          }
+        },
+        "16": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 37445,
+            "end": 41755,
+            "total": 4310,
+            "combat": 1724
+          }
+        },
+        "17": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 41755,
+            "end": 46235,
+            "total": 4480,
+            "combat": 1792
+          }
+        },
+        "18": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 46235,
+            "end": 51052,
+            "total": 4817,
+            "combat": 1927
+          }
+        },
+        "19": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 51052,
+            "end": 56222,
+            "total": 5170,
+            "combat": 2068
+          }
+        },
+        "20": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 56222,
+            "end": 61569,
+            "total": 5347,
+            "combat": 2139
+          }
+        },
+        "21": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 61569,
+            "end": 68522,
+            "total": 6953,
+            "combat": 2781
+          }
+        },
+        "22": {
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 68522,
+            "end": 75748,
+            "total": 7226,
+            "combat": 2890
+          }
+        }
+      }
+    },
+    "scope": "Only a reward-ledger completion fixture of Stages1–22. It does not claim those stages were played."
+  },
+  "representative": {
+    "kind": "representative-stat6",
+    "profile": {
+      "version": 2,
+      "revision": 13,
+      "cleared": {
+        "1": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "2": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "3": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "4": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "5": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "6": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "7": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "8": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "9": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "10": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "11": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "12": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "13": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "14": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "15": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "16": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "17": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "18": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "19": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "20": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "21": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "22": {
+          "visits": 1,
+          "rounds": 0
+        }
+      },
+      "party": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "loadouts": {
+        "mage": [
+          "M01",
+          "M04",
+          "M11",
+          "M03"
+        ],
+        "archer": [
+          "A01",
+          "A14",
+          "A11",
+          "A02"
+        ],
+        "knight": [
+          "S00",
+          "S03",
+          "S01",
+          "S04"
+        ],
+        "occultist": [
+          "O01",
+          "O04",
+          "O08",
+          "O11"
+        ]
+      },
+      "tuning": {
+        "mage": 0.5,
+        "archer": 0.5,
+        "knight": 0.5,
+        "occultist": 0.5
+      },
+      "settings": {
+        "sound": true,
+        "music": false,
+        "volume": 0.35,
+        "assist": false,
+        "shake": true,
+        "quality": "high",
+        "difficulty": "normal",
+        "speed": 2,
+        "playerSpeed": 1,
+        "orientation": "landscape"
+      },
+      "saved": null,
+      "lastStage": 1,
+      "mapNode": 1,
+      "tutorial": false,
+      "heroes": {
+        "mage": {
+          "xp": 75748,
+          "ranks": {
+            "M01": 1,
+            "M06": 1,
+            "M02": 1,
+            "M04": 1,
+            "M03": 1,
+            "M11": 1
+          },
+          "statTraining": 6,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "archer": {
+          "xp": 75748,
+          "ranks": {
+            "A01": 1,
+            "A14": 1,
+            "A11": 1,
+            "A02": 1
+          },
+          "statTraining": 6,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "knight": {
+          "xp": 75748,
+          "ranks": {
+            "S00": 1,
+            "S03": 1,
+            "S01": 1,
+            "S06": 1,
+            "S04": 1
+          },
+          "statTraining": 6,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "occultist": {
+          "xp": 75748,
+          "ranks": {
+            "O01": 1,
+            "O02": 1,
+            "O03": 1,
+            "O04": 1,
+            "O06": 1,
+            "O07": 1,
+            "O08": 1,
+            "O11": 1
+          },
+          "statTraining": 6,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1,
+          "occultRevision": 1
+        }
+      },
+      "recruited": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "honroGrowth": {
+        "version": 3,
+        "stages": {
+          "1": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 0,
+              "end": 180,
+              "total": 180,
+              "combat": 72
+            }
+          },
+          "2": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 180,
+              "end": 450,
+              "total": 270,
+              "combat": 108
+            }
+          },
+          "3": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 675,
+              "end": 1137,
+              "total": 462,
+              "combat": 185
+            }
+          },
+          "4": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 1137,
+              "end": 1868,
+              "total": 731,
+              "combat": 292
+            }
+          },
+          "5": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 1868,
+              "end": 2934,
+              "total": 1066,
+              "combat": 426
+            }
+          },
+          "6": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 4066,
+              "end": 5527,
+              "total": 1461,
+              "combat": 584
+            }
+          },
+          "7": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 5527,
+              "end": 8644,
+              "total": 3117,
+              "combat": 1247
+            }
+          },
+          "8": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 8644,
+              "end": 12812,
+              "total": 4168,
+              "combat": 1667
+            }
+          },
+          "9": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 12812,
+              "end": 16371,
+              "total": 3559,
+              "combat": 1424
+            }
+          },
+          "10": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 16371,
+              "end": 20571,
+              "total": 4200,
+              "combat": 1680
+            }
+          },
+          "11": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 20571,
+              "end": 23502,
+              "total": 2931,
+              "combat": 1172
+            }
+          },
+          "12": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 23502,
+              "end": 26578,
+              "total": 3076,
+              "combat": 1230
+            }
+          },
+          "13": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 26578,
+              "end": 29945,
+              "total": 3367,
+              "combat": 1347
+            }
+          },
+          "14": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 29945,
+              "end": 33618,
+              "total": 3673,
+              "combat": 1469
+            }
+          },
+          "15": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 33618,
+              "end": 37445,
+              "total": 3827,
+              "combat": 1531
+            }
+          },
+          "16": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 37445,
+              "end": 41755,
+              "total": 4310,
+              "combat": 1724
+            }
+          },
+          "17": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 41755,
+              "end": 46235,
+              "total": 4480,
+              "combat": 1792
+            }
+          },
+          "18": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 46235,
+              "end": 51052,
+              "total": 4817,
+              "combat": 1927
+            }
+          },
+          "19": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 51052,
+              "end": 56222,
+              "total": 5170,
+              "combat": 2068
+            }
+          },
+          "20": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 56222,
+              "end": 61569,
+              "total": 5347,
+              "combat": 2139
+            }
+          },
+          "21": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 61569,
+              "end": 68522,
+              "total": 6953,
+              "combat": 2781
+            }
+          },
+          "22": {
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 68522,
+              "end": 75748,
+              "total": 7226,
+              "combat": 2890
+            }
+          }
+        }
+      }
+    },
+    "training": [
+      {
+        "op": "train",
+        "cls": "archer",
+        "skill": "A14",
+        "rank": 1,
+        "spent": 1
+      },
+      {
+        "op": "train",
+        "cls": "archer",
+        "skill": "A11",
+        "rank": 1,
+        "spent": 2
+      },
+      {
+        "op": "train",
+        "cls": "archer",
+        "skill": "A02",
+        "rank": 1,
+        "spent": 3
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "archer",
+        "rank": 1,
+        "spent": 4
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "archer",
+        "rank": 2,
+        "spent": 5
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "archer",
+        "rank": 3,
+        "spent": 6
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "archer",
+        "rank": 4,
+        "spent": 7
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "archer",
+        "rank": 5,
+        "spent": 8
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "archer",
+        "rank": 6,
+        "spent": 9
+      },
+      {
+        "op": "train",
+        "cls": "mage",
+        "skill": "M06",
+        "rank": 1,
+        "spent": 1
+      },
+      {
+        "op": "train",
+        "cls": "mage",
+        "skill": "M02",
+        "rank": 1,
+        "spent": 2
+      },
+      {
+        "op": "train",
+        "cls": "mage",
+        "skill": "M04",
+        "rank": 1,
+        "spent": 3
+      },
+      {
+        "op": "train",
+        "cls": "mage",
+        "skill": "M03",
+        "rank": 1,
+        "spent": 4
+      },
+      {
+        "op": "train",
+        "cls": "mage",
+        "skill": "M11",
+        "rank": 1,
+        "spent": 5
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "mage",
+        "rank": 1,
+        "spent": 6
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "mage",
+        "rank": 2,
+        "spent": 7
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "mage",
+        "rank": 3,
+        "spent": 8
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "mage",
+        "rank": 4,
+        "spent": 9
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "mage",
+        "rank": 5,
+        "spent": 10
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "mage",
+        "rank": 6,
+        "spent": 11
+      },
+      {
+        "op": "train",
+        "cls": "knight",
+        "skill": "S03",
+        "rank": 1,
+        "spent": 1
+      },
+      {
+        "op": "train",
+        "cls": "knight",
+        "skill": "S01",
+        "rank": 1,
+        "spent": 2
+      },
+      {
+        "op": "train",
+        "cls": "knight",
+        "skill": "S06",
+        "rank": 1,
+        "spent": 3
+      },
+      {
+        "op": "train",
+        "cls": "knight",
+        "skill": "S04",
+        "rank": 1,
+        "spent": 4
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "knight",
+        "rank": 1,
+        "spent": 5
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "knight",
+        "rank": 2,
+        "spent": 6
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "knight",
+        "rank": 3,
+        "spent": 7
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "knight",
+        "rank": 4,
+        "spent": 8
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "knight",
+        "rank": 5,
+        "spent": 9
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "knight",
+        "rank": 6,
+        "spent": 10
+      },
+      {
+        "op": "train",
+        "cls": "occultist",
+        "skill": "O02",
+        "rank": 1,
+        "spent": 1
+      },
+      {
+        "op": "train",
+        "cls": "occultist",
+        "skill": "O03",
+        "rank": 1,
+        "spent": 2
+      },
+      {
+        "op": "train",
+        "cls": "occultist",
+        "skill": "O04",
+        "rank": 1,
+        "spent": 3
+      },
+      {
+        "op": "train",
+        "cls": "occultist",
+        "skill": "O06",
+        "rank": 1,
+        "spent": 4
+      },
+      {
+        "op": "train",
+        "cls": "occultist",
+        "skill": "O07",
+        "rank": 1,
+        "spent": 5
+      },
+      {
+        "op": "train",
+        "cls": "occultist",
+        "skill": "O08",
+        "rank": 1,
+        "spent": 6
+      },
+      {
+        "op": "train",
+        "cls": "occultist",
+        "skill": "O11",
+        "rank": 1,
+        "spent": 7
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "occultist",
+        "rank": 1,
+        "spent": 8
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "occultist",
+        "rank": 2,
+        "spent": 9
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "occultist",
+        "rank": 3,
+        "spent": 10
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "occultist",
+        "rank": 4,
+        "spent": 11
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "occultist",
+        "rank": 5,
+        "spent": 12
+      },
+      {
+        "op": "ordinary-stat",
+        "cls": "occultist",
+        "rank": 6,
+        "spent": 13
+      }
+    ],
+    "resources": [
+      {
+        "cls": "archer",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 9,
+        "unspent": 24,
+        "ordinaryStats": 6,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A11": 1,
+          "A02": 1
+        },
+        "slots": [
+          "A01",
+          "A14",
+          "A11",
+          "A02"
+        ],
+        "hp": 962,
+        "maxHp": 962,
+        "mp": 225,
+        "maxMp": 225,
+        "move": 1886,
+        "maxMove": 1886,
+        "jumpCost": 75,
+        "regen": 23,
+        "defend": {
+          "hpCeiling": 38,
+          "mpCeiling": 27,
+          "shieldFloor": 115,
+          "endsAction": true
+        }
+      },
+      {
+        "cls": "mage",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 11,
+        "unspent": 22,
+        "ordinaryStats": 6,
+        "ranks": {
+          "M01": 1,
+          "M06": 1,
+          "M02": 1,
+          "M04": 1,
+          "M03": 1,
+          "M11": 1
+        },
+        "slots": [
+          "M01",
+          "M04",
+          "M11",
+          "M03"
+        ],
+        "hp": 1053,
+        "maxHp": 1053,
+        "mp": 326,
+        "maxMp": 326,
+        "move": 1909,
+        "maxMove": 1909,
+        "jumpCost": 75,
+        "regen": 23,
+        "defend": {
+          "hpCeiling": 42,
+          "mpCeiling": 39,
+          "shieldFloor": 126,
+          "endsAction": true
+        }
+      },
+      {
+        "cls": "knight",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 10,
+        "unspent": 23,
+        "ordinaryStats": 6,
+        "ranks": {
+          "S00": 1,
+          "S03": 1,
+          "S01": 1,
+          "S06": 1,
+          "S04": 1
+        },
+        "slots": [
+          "S00",
+          "S03",
+          "S01",
+          "S04"
+        ],
+        "hp": 1769,
+        "maxHp": 1769,
+        "mp": 253,
+        "maxMp": 253,
+        "move": 2223,
+        "maxMove": 2223,
+        "jumpCost": 75,
+        "regen": 23,
+        "defend": {
+          "hpCeiling": 71,
+          "mpCeiling": 30,
+          "shieldFloor": 212,
+          "endsAction": true
+        }
+      },
+      {
+        "cls": "occultist",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 13,
+        "unspent": 20,
+        "ordinaryStats": 6,
+        "ranks": {
+          "O01": 1,
+          "O02": 1,
+          "O03": 1,
+          "O04": 1,
+          "O06": 1,
+          "O07": 1,
+          "O08": 1,
+          "O11": 1
+        },
+        "slots": [
+          "O01",
+          "O04",
+          "O08",
+          "O11"
+        ],
+        "hp": 1240,
+        "maxHp": 1240,
+        "mp": 381,
+        "maxMp": 381,
+        "move": 1994,
+        "maxMove": 1994,
+        "jumpCost": 75,
+        "regen": 27,
+        "defend": {
+          "hpCeiling": 50,
+          "mpCeiling": 46,
+          "shieldFloor": 149,
+          "endsAction": true
+        }
+      }
+    ]
+  },
+  "geometry": {
+    "kind": "geometry-stat0",
+    "ordinaryStats": 0,
+    "resources": [
+      {
+        "cls": "archer",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 3,
+        "unspent": 30,
+        "ordinaryStats": 0,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A11": 1,
+          "A02": 1
+        },
+        "slots": [
+          "A01",
+          "A14",
+          "A11",
+          "A02"
+        ],
+        "hp": 815,
+        "maxHp": 815,
+        "mp": 186,
+        "maxMp": 186,
+        "move": 1640,
+        "maxMove": 1640,
+        "jumpCost": 75,
+        "regen": 23,
+        "defend": {
+          "hpCeiling": 33,
+          "mpCeiling": 23,
+          "shieldFloor": 98,
+          "endsAction": true
+        }
+      },
+      {
+        "cls": "mage",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 5,
+        "unspent": 28,
+        "ordinaryStats": 0,
+        "ranks": {
+          "M01": 1,
+          "M06": 1,
+          "M02": 1,
+          "M04": 1,
+          "M03": 1,
+          "M11": 1
+        },
+        "slots": [
+          "M01",
+          "M04",
+          "M11",
+          "M03"
+        ],
+        "hp": 870,
+        "maxHp": 870,
+        "mp": 240,
+        "maxMp": 240,
+        "move": 1660,
+        "maxMove": 1660,
+        "jumpCost": 75,
+        "regen": 23,
+        "defend": {
+          "hpCeiling": 35,
+          "mpCeiling": 29,
+          "shieldFloor": 104,
+          "endsAction": true
+        }
+      },
+      {
+        "cls": "knight",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 4,
+        "unspent": 29,
+        "ordinaryStats": 0,
+        "ranks": {
+          "S00": 1,
+          "S03": 1,
+          "S01": 1,
+          "S06": 1,
+          "S04": 1
+        },
+        "slots": [
+          "S00",
+          "S03",
+          "S01",
+          "S04"
+        ],
+        "hp": 1330,
+        "maxHp": 1330,
+        "mp": 209,
+        "maxMp": 209,
+        "move": 1750,
+        "maxMove": 1750,
+        "jumpCost": 75,
+        "regen": 23,
+        "defend": {
+          "hpCeiling": 53,
+          "mpCeiling": 25,
+          "shieldFloor": 160,
+          "endsAction": true
+        }
+      },
+      {
+        "cls": "occultist",
+        "xp": 75748,
+        "level": 16,
+        "earned": 33,
+        "spent": 7,
+        "unspent": 26,
+        "ordinaryStats": 0,
+        "ranks": {
+          "O01": 1,
+          "O02": 1,
+          "O03": 1,
+          "O04": 1,
+          "O06": 1,
+          "O07": 1,
+          "O08": 1,
+          "O11": 1
+        },
+        "slots": [
+          "O01",
+          "O04",
+          "O08",
+          "O11"
+        ],
+        "hp": 1000,
+        "maxHp": 1000,
+        "mp": 287,
+        "maxMp": 287,
+        "move": 1690,
+        "maxMove": 1690,
+        "jumpCost": 75,
+        "regen": 27,
+        "defend": {
+          "hpCeiling": 40,
+          "mpCeiling": 34,
+          "shieldFloor": 120,
+          "endsAction": true
+        }
+      }
+    ]
+  },
+  "originalStage23Growth": {
+    "limit": {
+      "start": 75748,
+      "end": 83635,
+      "total": 7887,
+      "combat": 3155
+    },
+    "weight": 33.6,
+    "initialWeight": 25,
+    "reserveWeight": 8.600000000000001,
+    "populationCap": 30,
+    "initialEnemies": 22,
+    "initialElites": 5,
+    "finiteResponses": [
+      {
+        "id": "act3-response-23-0",
+        "n": 3,
+        "elite": false
+      },
+      {
+        "id": "act3-response-23-1",
+        "n": 2,
+        "elite": false
+      },
+      {
+        "id": "act3-response-23-2",
+        "n": 3,
+        "elite": true
+      }
+    ],
+    "xpGranted": [
+      {
+        "id": "a3-23-loading-watch-0",
+        "weight": 1.6,
+        "budget": 150,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-loading-watch-1",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-loading-watch-2",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-loading-watch-3",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-west-bridge-watch-0",
+        "weight": 1.6,
+        "budget": 150,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-west-bridge-watch-1",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-west-bridge-watch-2",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-west-bridge-watch-3",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-maintenance-watch-0",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-maintenance-watch-1",
+        "weight": 1.6,
+        "budget": 150,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-maintenance-watch-2",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-maintenance-watch-3",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-east-bridge-intercept-0",
+        "weight": 1.6,
+        "budget": 150,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-east-bridge-intercept-1",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-east-bridge-intercept-2",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-east-bridge-intercept-3",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-east-bridge-intercept-4",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-exit-store-watch-0",
+        "weight": 1.6,
+        "budget": 150,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-exit-store-watch-1",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-exit-store-watch-2",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-exit-store-watch-3",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      },
+      {
+        "id": "a3-23-exit-store-watch-4",
+        "weight": 1,
+        "budget": 94,
+        "granted": 0
+      }
+    ],
+    "maxLevel": 30,
+    "xpCap": 372860
+  }
+}
