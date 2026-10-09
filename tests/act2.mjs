@@ -1,3 +1,5 @@
+import {authorStage12Quarry} from '../tools/map-forge/apply-stage12-quarry.mjs';
+import {authorStage18Bell} from '../tools/map-forge/apply-stage18-bell.mjs';
 import {withHistoricalStage16} from './stage16-temple-history-helpers.mjs';
 import {authorStage16Temple} from '../tools/map-forge/apply-stage16-temple.mjs';
 import {withHistoricalStage11} from './stage11-ravine-history-helpers.mjs';
@@ -31,11 +33,17 @@ check('30 canonical maps retain independent Act 2 objectives and four companions
  for(let id=11;id<=20;id++){const {b,e,st}=fixture(id);assert.equal(e.heroesAlive().length,4);assert.deepEqual(plain(st.requires),[id-1]);assert(!g.HonroObjectives.state(b,st).complete);assert(g.HonroAct2.entry({stage:st}).length<=8);assert(b.units.every(u=>Number.isFinite(u.attack)&&Number.isFinite(u.hp)));assert.equal(g.HonroDifficulty.audit(st,b).issues.length,0);}
 });
 vm.runInContext(await readFile('workshop/recipes/act2-caves.js','utf8'),g);
-const regeneratedAct2=await authorStage16Temple(await authorStage17Worksite(await authorStage11Ravine(g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(act12Project(g.HONRO_PROJECT)))),{stages:[15]})))),g),g,{art:true}),g,{art:true});
+const regeneratedBeforeBell=await authorStage16Temple(await authorStage17Worksite(await authorStage11Ravine(g.HonroMaps.finalize(applyCavernTransitionLayers(applyCavernPlaceLayers(applyForestCavernTopology(await applyAct2SceneComposition(await applyAct2VectorArt(g.HonroAct2Design.build(act12Project(g.HONRO_PROJECT)))),{stages:[15]})))),g),g,{art:true}),g,{art:true});
+// Match the production author chain. No historical map or asset-order
+// assertion is replaced: a pre-existing Library reorder must still fail.
+const regeneratedAct2=await authorStage12Quarry(await authorStage18Bell(regeneratedBeforeBell,g,{art:true}),g,{art:true});
 check('Act 2 recipe is deterministic and preserves the existing ten maps',()=>{
  const authored=regeneratedAct2,expected=plain(act12Project(g.HONRO_PROJECT)),digest=x=>createHash('sha256').update(JSON.stringify(stable(x))).digest('hex');
  // Bound assertion output before the full comparison of the large asset graph.
  for(const stage of authored.stages)assert.equal(digest(stage),digest(expected.stages.find(s=>s.id===stage.id)),stage.id+' canonical recipe including reviewed cavern postprocessors');
+ const assets=new Map(authored.library.map(asset=>[asset.id,asset]));assert.equal(assets.size,authored.library.length,'No duplicate canonical recipe asset IDs');assert.equal(assets.size,expected.library.length,'Exact canonical recipe asset membership');
+ for(const asset of expected.library){assert(assets.has(asset.id),'Missing canonical recipe asset '+asset.id);assert.equal(digest(assets.get(asset.id)),digest(asset),'Exact canonical recipe asset value '+asset.id);}
+ console.log('PASS canonical author chain: '+authored.stages.length+' complete maps and '+assets.size+' asset values/IDs; Library order remains a separate exact assertion');
  assert.equal(digest(authored.library),digest(expected.library),'canonical recipe library');assert.deepEqual(plain(authored),expected);assert.deepEqual(plain(g.HonroMaps.normalize(authored)),plain(authored));
 });
 check('Recruit repairs old Act 1 completion without changing skills, XP or Act 1 roster',()=>{
