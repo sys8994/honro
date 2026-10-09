@@ -68,19 +68,21 @@ function cellApproached(e,units,spec,heroes){return heroes.some(h=>{
 });}
 function installActivation(e){const b=e.b;if(!b.honroQuarryActivation||e.honroQuarryActivationAttached)return;e.honroQuarryActivationAttached=true;
  const refresh=e.refreshActivation.bind(e),combat=e.combatEnemies.bind(e);
- e.refreshActivation=function(){refresh();const m=memory(b);m.alert??={};const heroes=e.heroesAlive(),eligible=new Set();
+ const update=write=>{const m=memory(b),alert=m.alert||{};if(write)m.alert=alert;const heroes=e.heroesAlive(),eligible=new Set();
   for(const [cell,spec]of Object.entries(b.honroQuarryActivation)){const units=e.alive(1).filter(u=>u.honroQuarryActivationCell===cell);if(!units.length)continue;
    const hit=units.some(u=>u.aggroUntil>=b.round),approached=cellApproached(e,units,spec,heroes);
-   if(hit||approached)m.alert[cell]=true;
-   for(const u of units)u.awake=!!m.alert[cell];
+   if(write){if(hit||approached)alert[cell]=true;for(const u of units)u.awake=!!alert[cell];}
    // Keep the saved alert after a retreat, while freeing the four action slots
    // when only an occluded different level is nearby. Actual player damage
    // retains the engine's three-round response, including a remote phase shot.
    if(hit||approached)eligible.add(cell);
   }e.honroQuarryEligibleCells=eligible;
  };
+ e.refreshActivation=function(){refresh();update(true);};
  e.combatEnemies=function(){return combat().filter(u=>!u.honroQuarryActivationCell||!b.honroQuarryActivation[u.honroQuarryActivationCell]||e.honroQuarryEligibleCells?.has(u.honroQuarryActivationCell));};
- e.refreshActivation();
+ // Continue owns the saved awake flags, alert memory and admitted queue.
+ // Rebuild only the transient access cache; normal movement/turns refresh later.
+ if(Object.hasOwn(memory(b),'alert'))update(false);else e.refreshActivation();
 }
 const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();installActivation(e);return out;};
 const tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);const out=tick(app,dt);if(!ended(app))openGate(app);return out;};

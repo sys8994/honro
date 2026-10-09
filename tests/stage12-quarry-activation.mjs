@@ -28,6 +28,14 @@ function record(name,q){rows.push({name,cells:cells(q),awake:q.e.alive(1).filter
  const saved=plain(q.b),e=new C.Engine(saved,()=>{},false),app={...q.app,engine:e};g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);g.HonroAct2.attach(app,e);assert.deepEqual(plain(g.HonroStage12Quarry.memory(saved).alert),plain(g.HonroStage12Quarry.memory(q.b).alert));assert(e.combatEnemies().some(u=>u.id===target.id));
 }
 {
+ const q=fixture(),u=q.e.heroesAlive()[0],t=q.b.terrain.find(t=>t.id==='sq-old-road');
+ // A pending pose/previously admitted queue belongs to the serialized state,
+ // even if the next ordinary refresh will discover a newly accessible cell.
+ Object.assign(u,{x:8000,y:C.topAt(t,8000)});q.b.queue=['sq-b1'];q.b.side=1;q.b.phase='enemy';q.b.active='sq-b1';q.e.unit('sq-b1').awake=true;
+ const before=plain({units:q.b.units,queue:q.b.queue,memory:g.HonroStage12Quarry.memory(q.b)}),saved=plain(q.b),e=new C.Engine(saved,()=>{},false),app={...q.app,engine:e};g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);g.HonroAct2.attach(app,e);
+ assert.deepEqual(plain({units:saved.units,queue:saved.queue,memory:g.HonroStage12Quarry.memory(saved)}),before,'Mount restores cache only: saved awake/alerts and admitted queue are exact');e.refreshActivation();assert(g.HonroStage12Quarry.memory(saved).alert['B-front'],'Normal refresh, not mount, records the new approach');
+}
+{
  const q=fixture();delete q.b.honroQuarryActivation;const saved=plain(q.b),e=new C.Engine(saved,()=>{},false),app={...q.app,engine:e};g.HonroAct2.attach(app,e);assert(!e.honroQuarryActivationAttached,'Previously saved quarry revisions without authored approach rules keep shared behavior');
 }
 await mkdir('_local/reports/stage12-quarry',{recursive:true});await writeFile('_local/reports/stage12-quarry/activation.json',JSON.stringify({passed:true,scope:'Supported-position fixtures and production hurt/turn queue. Actual full combat and action efficiency require the paired normal traces.',rows},null,2)+'\n');console.log('PASS quarry access-aware small-cell activation and actual four-slot/remote-hit queues',JSON.stringify(rows));
