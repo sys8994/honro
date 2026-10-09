@@ -136,7 +136,7 @@ function withHistoricalRows(g,next,fn){
  const savedProject=g.HONRO_PROJECT,edits=[];
  for(const [key,target]of Object.entries(next))if(key!=='HONRO_PROJECT'){
   const source=g[key];assert.deepEqual(plain({...source,stages:[]}),plain({...target,stages:[]}),'Historical wrapper preserves non-stage globals '+key);
-  assert.deepEqual(source.stages.map(row=>row.id),target.stages.map(row=>row.id),'Historical wrapper preserves stage order '+key);
+  assert.deepEqual(plain(source.stages.map(row=>row.id)),plain(target.stages.map(row=>row.id)),'Historical wrapper preserves stage order '+key);
   for(const [index,row]of target.stages.entries())if(hash(source.stages[index])!==hash(row))edits.push({rows:source.stages,index,before:source.stages[index],after:row});
  }
  try{g.HONRO_PROJECT=next.HONRO_PROJECT;for(const edit of edits)edit.rows[edit.index]=edit.after;return fn();}
