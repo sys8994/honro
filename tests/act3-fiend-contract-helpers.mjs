@@ -1,3 +1,4 @@
+import {beforeStage30Ferry,beforeStage30FerryBalance,beforeStage30FerryContent} from './stage30-ferry-history-helpers.mjs';
 import {beforeCurrentStage11Ravine} from './stage11-ravine-history-helpers.mjs';
 import {beforeVerticalWaterworks} from './vertical-waterworks-history-helpers.mjs';
 import {beforeOpenStructures} from './open-structure-history-helpers.mjs';
@@ -73,6 +74,7 @@ export function beforeHiddenWaterworks(project,content,balance){
  return {project:p,content:c,balance:b};
 }
 export function assertFiendContract(project,content,balance,archetypes,baseline){
+ project=beforeStage30Ferry(project);balance=beforeStage30FerryBalance(balance);content=beforeStage30FerryContent(content);
  ({project,content,balance}=beforeHiddenWaterworks(project,content,balance));
  project=beforeRefinementRevision(beforeApprovedTopology(project,{openStructures:false}),archetypes);
  ({project,content}=beforeObjectiveRevision(project,content));
@@ -104,7 +106,7 @@ export async function contractContent(read){
 // while identity, protection, combat tuning and mission changes must fail.
 export function assertFiendContractScope(project,content,balance,archetypes,baseline){
  // Validate every later exact history layer before deliberately varying Act3 art.
- const raw=project;project=beforeCurrentStage11Ravine(raw);
+ const raw=beforeStage30Ferry(project);balance=beforeStage30FerryBalance(balance);content=beforeStage30FerryContent(content);project=beforeCurrentStage11Ravine(raw);
  const bellDrift=plain(raw);bellDrift.stages[17].routes[0].x++;
  assert.throws(()=>beforeCurrentStage11Ravine(bellDrift),/Only an exact historical or reviewed current stage-18 may cross the bell boundary/,'Scope setup never hides unreviewed raw current18 drift');
  const p=plain(project),c=plain(content),b=plain(balance),a=plain(archetypes),map=p.stages[22];

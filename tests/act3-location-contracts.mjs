@@ -1,3 +1,4 @@
+import {beforeStage30Ferry} from './stage30-ferry-history-helpers.mjs';
 import {splitV1Profile} from './split-v1-test-helpers.mjs';
 /** Isolated native contracts for the approved location rebuild; not campaign-completion evidence. */
 import assert from 'node:assert/strict';
@@ -6,7 +7,7 @@ import {runtime} from '../game/tests/helpers.mjs';
 import {applyAct3Locations} from '../tools/map-forge/act3-location-rebuild.mjs';
 import {LOCATION_ENCOUNTERS} from '../tools/map-forge/act3-location-encounters.mjs';
 import {traverse} from './act1-spatial-test-helpers.mjs';
-const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,clone=x=>JSON.parse(JSON.stringify(x)),source=JSON.parse(await readFile(process.env.HONRO_LOCATION_INPUT||'shared/data/campaign.json','utf8')),p=applyAct3Locations(g,source),rows=[];
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,clone=x=>JSON.parse(JSON.stringify(x)),current=JSON.parse(await readFile(process.env.HONRO_LOCATION_INPUT||'shared/data/campaign.json','utf8')),source=beforeStage30Ferry(current),p=applyAct3Locations(g,source),rows=[];
 g.HONRO_PROJECT=p;assert.deepEqual(clone(p.stages.slice(0,22)),source.stages.slice(0,22),'Only stages23–30 change');assert.deepEqual(clone(applyAct3Locations(g,p)),clone(p),'Location regeneration is idempotent');assert.deepEqual(clone(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(p)))),clone(p),'New locations round-trip canonically');
 const counts={23:[22,5],24:[18,4],25:[13,2],26:[15,3],27:[18,4],28:[24,5],29:[22,5],30:[20,4]};
 for(const s of p.stages.slice(22)){
@@ -33,4 +34,4 @@ const s=p.stages[26];assert.equal(s.markers.find(m=>m.id==='fire-screen').fireSi
 
  const free=run(true),opened=traverse(g,free.b,free.e,free.u,route);assert(opened.passed&&!opened.damage,'After controls '+cls+' reaches central court without damage');rows.push({stage:27,hero:cls,ownControl:controlResult.passed,closedWalkBlocked:!walkClosed.passed,closedJumpBypass:closed.passed,orderedControlsPreserved:true,openedRoute:opened.passed});
 }
-await mkdir('_local/reports/act3-locations',{recursive:true});await writeFile('_local/reports/act3-locations/contracts.json',JSON.stringify({scope:'Explicit historical v1 regenerated locations; native data, actual bodies, water recovery and ordinary split approach fixtures. After-state walking uses opened gate fixtures; separate actual control actions and closed-gate jump probes verify ordered objective protection. No continuous campaign, balance, UI or browser claim.',rows},null,2));console.log('PASS historical v1 location source, canonical round-trip, 8 authored formations, actual party rosters, water/body safety and 4 two-sided approaches');
+await mkdir('_local/reports/act3-locations',{recursive:true});await writeFile('_local/reports/act3-locations/contracts.json',JSON.stringify({scope:'Exact reviewed current30 is verified then projected to its immutable original before v1 location regeneration (including original20/4). Fresh30 contracts and all48 native route cases live in stage30-ferry-contracts/traversal. Explicit historical v1 regenerated locations; native data, actual bodies, water recovery and ordinary split approach fixtures. After-state walking uses opened gate fixtures; separate actual control actions and closed-gate jump probes verify ordered objective protection. No continuous campaign, balance, UI or browser claim.',rows},null,2));console.log('PASS historical v1 location source, canonical round-trip, 8 authored formations, actual party rosters, water/body safety and 4 two-sided approaches');

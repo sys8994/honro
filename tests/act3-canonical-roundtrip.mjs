@@ -1,8 +1,10 @@
+import {beforeStage30Ferry} from './stage30-ferry-history-helpers.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),plain=x=>JSON.parse(JSON.stringify(x));
 const project=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+beforeStage30Ferry(project); // Validate approved delta without replacing current data.
 assert.equal(project.stages.length,30);
 const restored=plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(project))));
 assert.deepEqual(restored,project,'Canonical Game/Workshop data must already include normalization defaults');

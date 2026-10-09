@@ -1,3 +1,4 @@
+import {beforeStage30Ferry} from './stage30-ferry-history-helpers.mjs';
 /** Rebuild authoring inputs without mutating the campaign; compare physical and mission contracts. */
 import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
@@ -6,6 +7,7 @@ import {applyHiddenWaterworks} from '../tools/map-forge/act3-hidden-waterworks.m
 import {buildProduction} from '../tools/map-forge/act3-production-maps.mjs';
 import {openStructureHistoryDelta} from './open-structure-history-helpers.mjs';
 const before=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+beforeStage30Ferry(before); // Validate current30 before testing the complete live generator output.
 const {g,p:authored}=await buildProduction({write:false});
 // The reviewed v2 authoring pipeline composes the depot revision after the
 // preserved foundation/location builders; never compare their v1 output alone
