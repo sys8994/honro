@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {battlefield} from '../game/tests/helpers.mjs';
+import {unitContract} from './act2-spatial-contract-helpers.mjs';
 /** First-clear reward ledger fixture, not a playthrough of Stages1–17. */
 export function campaignEntryReadiness(g){
  const C=g.HONRO_CORE,P=g.HonroProgression,p=C.defaults(),rows=[];
@@ -62,4 +63,37 @@ export function analyzeWaits(actions,maxRound){
  const globalAttacklessRounds=[];let streak=[];for(const row of rounds){if(!row.fires)streak.push(row.round);else if(streak.length){globalAttacklessRounds.push(streak);streak=[];}}if(streak.length)globalAttacklessRounds.push(streak);
  const heroes={};for(const cls of ['archer','mage','knight','occultist']){const turns=new Map();for(const a of actions.filter(x=>x.hero===cls)){if(!turns.has(a.turn))turns.set(a.turn,{turn:a.turn,round:a.round,fire:0,defend:0});const row=turns.get(a.turn);if(['fire','fire-anchor'].includes(a.op))row.fire++;if(a.op==='defend')row.defend++;}let run=[],longest=[],total=0;for(const row of turns.values()){if(row.defend&&!row.fire){run.push(row);total++;if(run.length>longest.length)longest=[...run];}else run=[];}heroes[cls]={attacklessDefendTurns:total,longestConsecutiveAttacklessDefendTurns:longest.length,rounds:longest.map(r=>r.round),firstTurn:longest[0]?.turn,lastTurn:longest.at(-1)?.turn};}
  return{definition:'An attackless defend turn is an actorTurnSerial with a defend action and no accepted fire by that hero. It can contain walking/jumping. Whole-party attackless rounds include final E-only round.',globalAttacklessRounds,heroes,rounds};
+}
+
+/** Continue the actual won App through its normal result button. The original19
+ * reference is separately compiled at the actually earned profile, not played. */
+export function enterStage19(g,h,app,battle18,beforeReward,original19){
+ const C=g.HONRO_CORE,plain=v=>JSON.parse(JSON.stringify(v));
+ assert.equal(battle18.phase,'won');assert.equal(app.engine.b,battle18);assert(app.done,'The real ending dialogue must have awarded completion');
+ const afterReward=plain(app.profile),rewardLimit=battle18.honroGrowth.limit;
+ assert.equal(afterReward.cleared[18].visits,1,'Exactly one first-clear result');assert(!afterReward.cleared[19]);assert.equal(afterReward.honroBattle,null);
+ const rewards=afterReward.recruited.map(cls=>{assert.equal(afterReward.heroes[cls].xp,rewardLimit.end,'Actual18 completion reward '+cls);return{cls,combatXp:beforeReward.heroes[cls].xp,completionXp:afterReward.heroes[cls].xp-beforeReward.heroes[cls].xp,afterXp:afterReward.heroes[cls].xp};});
+ assert.equal(g.HonroJourneyContent.transitionAfter(18),'direct');
+ app.event=h.App.prototype.event.bind(app);h.click('result-continue');
+ assert.equal(app.engine?.b.honroStage,19,'The ordinary result button directly enters19');
+ const next=app.engine.b,stage19=g.HONRO_PROJECT.stages[18];assert.equal(app.screen,'battle');assert(!app.done);assert.equal(next.round,1);assert.equal(next.side,0);assert.equal(g.HonroAct2.current(next).id,'route');
+ assert.deepEqual(plain(next.heroes),afterReward.heroes,'Entry preserves all earned XP, paid training, kills and damage records');
+ assert.deepEqual(plain(g.HonroAct2.memory(next).done),{},'Stage18 objective completion does not leak into19');
+ assert.equal(next.honroState.bellDescent.status,'settled');assert.equal(next.honroState.bellDescent.count,1);assert.equal(next.honroState.bellDescent.offset,200);
+ const heroes=next.units.filter(u=>u.side===0&&!u.summoned);assert.equal(heroes.length,4);
+ const heroResources=heroes.map(u=>{const expected=C.heroStats(afterReward.heroes[u.cls],u.cls,u.loadout);assert.equal(u.hp,expected.hp);assert.equal(u.maxHp,expected.hp);assert.equal(u.focus,expected.mp);assert.equal(u.maxFocus,expected.mp);assert.equal(u.moveLeft,expected.move);assert.equal(u.maxMove,expected.move);assert(!u.dead);assert.deepEqual(plain(u.ranks),afterReward.heroes[u.cls].ranks);assert.deepEqual(plain(u.loadout),afterReward.loadouts[u.cls]);return{cls:u.cls,xp:next.heroes[u.cls].xp,level:u.level,hp:u.hp,maxHp:u.maxHp,focus:u.focus,maxFocus:u.maxFocus,moveLeft:u.moveLeft,maxMove:u.maxMove,ranks:plain(u.ranks),loadout:plain(u.loadout)};});
+ assert.equal(next.projectiles.length,0);assert.equal((next.stakes||[]).length,0);assert(!next.units.some(u=>u.summoned));assert(!next.units.some(u=>u.id==='act2-keeper'));
+ const holds=plain(g.HonroAct2.steps(next).filter(s=>s.kind==='hold').map(s=>({id:s.id,rounds:s.rounds,waves:s.wave.count,requiredClass:s.requiredClass})));
+ assert.deepEqual(holds,[{id:'hold-first',rounds:3,waves:3,requiredClass:'occultist'},{id:'hold-second',rounds:3,waves:3,requiredClass:'occultist'},{id:'hold-last',rounds:4,waves:4,requiredClass:'occultist'}]);
+ const residents=next.units.filter(u=>u.honroProtected||u.honroCivilian).map(u=>({id:u.id,name:u.name,hp:u.hp,maxHp:u.maxHp,dead:u.dead,fixed:u.fixed,x:u.x,y:u.y,grounded:app.engine.grounded(u),protected:u.honroProtected}));assert.equal(residents.length,1);assert.equal(residents[0].id,'objective');assert.equal(residents[0].hp,1900);assert(!residents[0].dead&&residents[0].protected);
+ const shapes=list=>plain(list.filter(t=>t.id!=='upper-chain').map(t=>({id:t.id,x:t.x,y:t.y,w:t.w,h:t.h,vertices:t.vertices,mat:t.mat,oneWay:t.oneWay,indestructible:t.indestructible,broken:!!t.broken})));
+ assert.deepEqual(shapes(next.terrain),shapes(battle18.terrain),'Actually settled18 and actual19 collision are exact');assert.deepEqual(shapes(next.honroWorldTerrain),shapes(battle18.honroWorldTerrain),'Actual full world geography is exact');
+ const bellAnchors={};for(const key of ['honroElements','honroLandmarks']){const prior=battle18[key].find(v=>v.id==='sb-bell-body'),arrived=next[key].find(v=>v.id==='sb-bell-body');assert(prior&&arrived);assert.deepEqual(plain(arrived),plain(prior),'Actual bronze landmark '+key);bellAnchors[key]={id:arrived.id,x:arrived.x,y:arrived.y,scale:arrived.scale,rotation:arrived.rotation};}
+ for(const key of ['width','height','honroPlayBounds','honroTerrainBounds'])assert.deepEqual(plain(next[key]),plain(battle18[key]));
+ // Same actual post-win profile, original map; a compile-time reference only.
+ const referenceProject={...g.HONRO_PROJECT,stages:g.HONRO_PROJECT.stages.map(s=>s.id===original19.id?original19:s)},referenceProfile=plain(afterReward),old=g.HonroMaps.createBattle(original19,referenceProject,referenceProfile,{origin:'campaign'});
+ g.HonroStageRules.sanitizeStageBattle(old);const referenceEngine=new C.Engine(old,()=>{},true),referenceApp={engine:referenceEngine,profile:referenceProfile,stage:g.HONRO_CONTENT.stages[18],training:false,done:false,event(){},sayLines(){},checkMission(){return false;}};
+ g.HonroAllies.attach(referenceApp,referenceEngine);g.HonroEncounters.attach(referenceApp,referenceEngine);g.HonroAct2.attach(referenceApp,referenceEngine);
+ assert.deepEqual(plain(next.items),plain(old.items),'Actual entry items equal the original19 contract');assert.deepEqual(plain(next.honroGrowth),plain(old.honroGrowth),'Actual19 growth contract equals original19 at the earned profile');assert.deepEqual(plain(next.units.map(unitContract)),plain(old.units.map(unitContract)),'All actual19 actor resources and rules equal original19');assert.deepEqual(plain(g.HonroAct2.steps(next)),plain(g.HonroAct2.steps(old)));
+ return{summary:{arrived:true,method:'Actual18 ending/reward followed by the ordinary result-continue DOM action; stopped at19 introduction',transition:'direct',rewards,entryItems:plain(next.items),heroResources,residents,rituals:holds,initialEnemies:next.units.filter(u=>u.side===1).length,enemyActionLimit:next.honroActiveLimit,entryRewardLimit:plain(next.honroGrowth.limit),bellAnchors,matchedCollisionPieces:next.terrain.length,matchedWorldPieces:next.honroWorldTerrain.length,old19ActorContractsMatched:next.units.length,stage18StateCopied:false,scope:'Actual normal-input18 completion and normal19 arrival. Original19 is a separately compiled reference at the earned profile. No19 battle/ritual completion or browser claim.'},battle:plain(next),profile:plain(app.profile),profileAfter18:afterReward,original19ActorContracts:old.units.map(unitContract),actual19ActorContracts:next.units.map(unitContract),canonical19Markers:plain(stage19.markers)};
 }

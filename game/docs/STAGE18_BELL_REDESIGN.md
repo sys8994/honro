@@ -57,3 +57,5 @@
 원격 저장은 전담 게시자가 순서대로 진행한다. 2026-10-09 10:04 UTC에 원격 쓰기 승인 callback 대기가 발생했다. 현재 master 안정 트리는 그대로이며 `b26dbf5` 이후 WIP 저장 지점의 remote tree 확인 전에는 원격 저장 완료라고 말하지 않는다. 로컬 commit·복구 archive를 유지하고 승인 후 순서대로 대조한다.
 
 이번 저장 지점에서는 원19 주민/compiled 배우 전부·입장 아이템/성장·의식3/3/4·증원3/3/4·기존18 XP/종지기 전투계약, 그리고 하강18↔신규19의 실제 collision/world/종 앵커 대조7개가 통과했다. 두 HTML build와 현재 actual shell App 회귀4개도 통과했다. 역사 경계는 변경된18/19·추가 미술·runtime의 exact before/after delta를 검증한 뒤 기존 역사 검사에만 역투영한다. 새41개 mutation guard, spatial13, act2-revision82/30장 재생성,16 Buddha4종 및16/17/11 history를 모두 통과했고 기존 golden/540/539 assertion은 유지한다. 이것은 아직 E/H 경로 수정과 정상 완주가 남은 WIP이다.
+
+정상 완주 controller에 실제18승리/보상→결과창 Continue→19입장을 추가했다. 실획득 profile의 훈련/4슬롯, 정상HP/기력/이동회복, 원19 주민HP1900·3의식·미완료목표, 동일profile 원19 입장 compiled계약과18최종↔19지형을 대조하도록 한다. 현재 syntax만 확인됐고 실제 최신18 승리가 아직 없어 이 추가 흐름을 runtime PASS로 표시하지 않는다.
