@@ -9,7 +9,7 @@ import vm from 'node:vm';
 import {runtimeParts} from '../shared/build.mjs';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 import {navigator,campaignEntryReadiness,analyzeWaits,representativeTargets,representativeMelee,representativeBladePrediction} from './stage18-bell-fullplay-helper.mjs';
-import {auditQuarryEngine,quarryHoldStation} from './stage12-quarry-fullplay-helper.mjs';
+import {auditQuarryEngine,quarryHoldStation,quarryScoutSupport} from './stage12-quarry-fullplay-helper.mjs';
 import {quarryEntryProfile} from './stage12-quarry-entry-helper.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
 const h=await appHarness(),{g,C}=h;
@@ -19,6 +19,7 @@ const resumePath=process.env.HONRO_FULLPLAY_CONTINUE,resume=resumePath?JSON.pars
 const basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representative=true,representativeAttacks=!basicOnly,buildMode='rank1-stat6-four-slots',rolePrefix=false,reflectionStudy=false;
 const routeMode=process.env.HONRO_FULLPLAY_ROUTE||'left-first';assert(['left-first','short-loop-first'].includes(routeMode));const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical';assert(['canonical','originalBudget20e4'].includes(rosterMode));
 const holdPolicy=process.env.HONRO_FULLPLAY_HOLD_POLICY||'advance-before-fire';assert(['advance-before-fire','spread-stations'].includes(holdPolicy));
+const partyPolicy=process.env.HONRO_FULLPLAY_PARTY_POLICY||'independent';assert(['independent','scout-support'].includes(partyPolicy));
 const canonicalProjectSha256=hash(g.HONRO_PROJECT),canonicalStage=plain(g.HONRO_PROJECT.stages[11]);
 let pairedBaseline=null;
 if(rosterMode==='originalBudget20e4'){
@@ -35,7 +36,7 @@ const parts=await runtimeParts({vector:false,render:false}),stage=g.HONRO_PROJEC
 const sourceHash=hash(g.HONRO_PROJECT),runtimeSha256=hash(parts.join('\n'));
 const gameplayProjectSha256=hash({terrain:stage.terrains,units:stage.units,markers:stage.markers,anchors:stage.anchors,initialState:stage.initialState,events:stage.events,objectives:stage.objectives,materials:stage.materials,content:g.HONRO_CONTENT.stages[11],routes:stage.design.quarry.routes,sites:stage.design.space?.sites});
 const gameplayRuntimeSha256=hash([...parts.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(f=>readFile(`shared/runtime/${f}.js`,'utf8')))].join('\n'));
-const provenance={basicOnly,attackPolicy:basicOnly?'equipped-basics-only':representative?'representative-equipped':'basic-only',mode:basicOnly?'conservative-basic-only-fullplay':rolePrefix?'live-role-prefix':representative?'representative-fullplay':'basic-fullplay',rosterMode,canonicalProjectSha256,pairedBaseline,sourceHash,runtimeSha256,gameplayProjectSha256,gameplayRuntimeSha256,stageSha256:hash(stage),controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),helperSha256:hash(await readFile(new URL('./stage18-bell-fullplay-helper.mjs',import.meta.url),'utf8')),quarryFullplayHelperSha256:hash(await readFile(new URL('./stage12-quarry-fullplay-helper.mjs',import.meta.url),'utf8')),quarryEntryHelperSha256:hash(await readFile(new URL('./stage12-quarry-entry-helper.mjs',import.meta.url),'utf8')),checkoutCommit:process.env.HONRO_FULLPLAY_ARCHIVE_COMMIT?null:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceArchiveCommit:process.env.HONRO_FULLPLAY_ARCHIVE_COMMIT||null,holdPolicy,productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
+const provenance={basicOnly,attackPolicy:basicOnly?'equipped-basics-only':representative?'representative-equipped':'basic-only',mode:basicOnly?'conservative-basic-only-fullplay':rolePrefix?'live-role-prefix':representative?'representative-fullplay':'basic-fullplay',rosterMode,canonicalProjectSha256,pairedBaseline,sourceHash,runtimeSha256,gameplayProjectSha256,gameplayRuntimeSha256,stageSha256:hash(stage),controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),helperSha256:hash(await readFile(new URL('./stage18-bell-fullplay-helper.mjs',import.meta.url),'utf8')),quarryFullplayHelperSha256:hash(await readFile(new URL('./stage12-quarry-fullplay-helper.mjs',import.meta.url),'utf8')),quarryEntryHelperSha256:hash(await readFile(new URL('./stage12-quarry-entry-helper.mjs',import.meta.url),'utf8')),checkoutCommit:process.env.HONRO_FULLPLAY_ARCHIVE_COMMIT?null:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceArchiveCommit:process.env.HONRO_FULLPLAY_ARCHIVE_COMMIT||null,holdPolicy,partyPolicy,productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
 if(process.env.HONRO_FULLPLAY_PROVENANCE_ONLY==='1'){await writeFile(`${out}/provenance.json`,JSON.stringify(provenance,null,2));console.log(JSON.stringify(provenance));process.exit(0);}
 const fixture=quarryEntryProfile(g),readiness=fixture.readiness,training=fixture.training;await writeFile(`${out}/readiness-ledger.json`,JSON.stringify(readiness,null,2));
 const shotAttempts=new Map(resume?.shotAttempts||[]),basic={archer:'A01',mage:'M01',knight:'S00',occultist:'O01'},excluded=['SP03','O11','M09'];const p=resume?.profile||{...plain(g.AppRegression.fresh()),...plain(fixture.profile)};
@@ -130,6 +131,10 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
  let fired=false;if(goal?.kind!=='hold')for(const target of foes.filter(v=>distance(v,u)<1600).slice(0,4))if(attack(u,target)){fired=true;break;}if(fired){planningMs+=performance.now()-begin;continue;}
  const requiredFoes=goal?.id==='clear-approach'?foes.filter(v=>v.honroCohort==='west'):nextCell?foes.filter(v=>v.honroQuarryCell===nextCell):goal?.kind==='clear'?foes:[];
  let point=requiredFoes[0]||m,enemy=!!requiredFoes.length;
+ if(partyPolicy==='scout-support'&&goal?.kind!=='hold'){
+  const support=quarryScoutSupport(u,e.heroesAlive().find(v=>v.cls==='occultist'),actions,e.alive(1),b.round,foes);
+  if(support){point=distance(u,support)>55?support:null;enemy=false;record({op:'party-support-choice',hero:u.cls,policy:partyPolicy,destination:support,from:{x:u.x,y:u.y},withinSupport:!point});}
+ }
  if(goal?.kind==='hold'){
   if(holdPolicy==='spread-stations'){const station=quarryHoldStation(C,b,u);point=distance(u,station)>55?station:null;enemy=false;record({op:'hold-position-choice',hero:u.cls,policy:holdPolicy,destination:station,from:{x:u.x,y:u.y},withinStation:!point});}
   else{const contest=foes.find(v=>distance(v,holdMarker)<520);point=contest||(guard?null:holdMarker);enemy=!!contest;}

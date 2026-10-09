@@ -16,3 +16,13 @@ export function quarryHoldStation(C,b,u){
  if(!Number.isFinite(y)||Math.hypot(x-marker.x,y-marker.y)>=680||!C.validTerrainContactPose(b.terrain,{...u,x,y}))throw Error('Invalid authored hold station for '+u.cls);
  return{id:'hold-station-'+u.cls,x,y,support};
 }
+
+/** A companion follows a living scout's observed attack, not an unseen enemy
+ * position. Actual visibility and O08 cost/effect remain production rules. */
+export function quarryScoutSupport(u,scout,actions,enemies,round,visibleFoes){
+ if(!scout||scout.dead||scout.id===u.id||visibleFoes.length)return null;
+ const observed=[...actions].reverse().find(a=>a.op==='fire'&&a.hero===scout.cls&&a.round>=round-1);
+ const target=observed&&enemies.find(v=>v.id===observed.target&&!v.dead);
+ if(!target?.spiritHidden||target.manifested||target.revealSpiritToParty)return null;
+ return{id:'scout-support-'+scout.id,x:scout.x,y:scout.y,scout:scout.id,observedShot:observed.shot,observedRound:observed.round};
+}
