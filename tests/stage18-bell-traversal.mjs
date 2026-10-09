@@ -106,6 +106,7 @@ try{
 }catch(e){error=e;}
 await mkdir('_local/reports/stage18-bell',{recursive:true});
 const report={passed:!error,scope:'Isolated geometry only. Other actors removed; movement replenished; normal combat/resources/objective completion are not tested.',
+ collisionSha256:createHash('sha256').update(JSON.stringify(stage.terrains)).digest('hex'),routesSha256:createHash('sha256').update(JSON.stringify(stage.design.space.routes)).digest('hex'),
  projectSha256:createHash('sha256').update(JSON.stringify(g.HONRO_PROJECT)).digest('hex'),filters:{route:onlyRoute||null,cls:onlyClass||null},
  fixtures:{enemyAndAllyRemoval:true,movementRefill:true,initialPlacementOnly:true,postInitialTeleport:false,defaultBasicJumps:true,settledViaProductionShift:true},
  counts:{cases:rows.length,routes:stage.design.space.routes.length,classes:selectedClasses.length},

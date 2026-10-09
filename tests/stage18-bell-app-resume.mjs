@@ -42,6 +42,17 @@ for(const status of ['warning','waiting']){
  rows.push({case:'revision-absent old18 production Continue',passed:true,actors:app.engine.b.units.length,terrain:app.engine.b.terrain.length,steps:A.steps(app.engine.b).map(s=>s.id),dialoguePage:app.dialogue.index,checkedSnapshotFields:Object.keys(before).length});
 }
 {
+ const original=JSON.parse(await readFile('tests/fixtures/stage18-bell-before.json','utf8')).stages[1],project=g.HONRO_PROJECT;let profile;
+ try{
+  g.HONRO_PROJECT={...project,stages:project.stages.map(s=>s.id===original.id?plain(original):s)};
+  const app=h.load(h.profileThrough(18));app.launch(19);h.finish(app);now+=1000;assert(!S.active(app.engine.b));assert(!app.engine.b.honroBellRevision);
+  app.defend();for(let i=0;i<200&&app.engine.b.phase==='review';i++)app.engine.tick(C.STEP);
+  const key=Object.keys(app.stage.beats).find(k=>(app.stage.beats[k]?.length??0)>1);assert(key);g.HonroStory.start(app,app.stage.beats[key],{title:'19장 기존 저장'});g.HonroStory.next(app);assert(app.dialogue);app.export();profile=await h.exported();
+ }finally{g.HONRO_PROJECT=project;}
+ const before=keep(profile.honroBattle),dialogue=plain(profile.honroBattle.honroStory),app=h.load(profile);app.continue();assert.deepEqual(keep(app.engine.b),before,'Old19 full live snapshot preserved');assert(!S.active(app.engine.b));assert(!app.engine.b.honroBellRevision);assert.deepEqual(plain(A.steps(app.engine.b)),original.initialState.honroAct2Steps);assert.deepEqual(plain(app.engine.b.honroStory),dialogue);assert.equal(app.dialogue.index,dialogue.index);assert.deepEqual(plain(app.dialogue.lines),dialogue.lines);
+ rows.push({case:'revision-absent old19 production Continue',passed:true,actors:app.engine.b.units.length,terrain:app.engine.b.terrain.length,steps:A.steps(app.engine.b).map(s=>s.id),dialoguePage:app.dialogue.index,checkedSnapshotFields:Object.keys(before).length});
+}
+{
  let app=h.load(h.profileThrough(17));app.launch(18);h.finish(app);now+=1000;
  const b=app.engine.b,a=A.memory(b);a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:4,spawned:8,lastRound:b.round,guarded:true,continuous:true}};b.terrain.find(t=>t.id==='upper-chain').broken=true;
  assert.equal(S.occupants(b).length,0,'Authored initial actors are outside actual swept shell');S.transition(app);
@@ -50,4 +61,4 @@ for(const status of ['warning','waiting']){
  app.engine.tick(1);assert.equal(S.memory(app.engine.b).status,'settled');assert.equal(S.memory(app.engine.b).count,1);assert.equal(S.memory(app.engine.b).offset,200);const positions=b=>plain({terrain:b.terrain,world:b.honroWorldTerrain,environment:b.honroEnvironment,elements:b.honroElements,landmarks:b.honroLandmarks,offset:S.memory(b).offset,count:S.memory(b).count});const once=positions(app.engine.b);app.engine.tick(0);assert.deepEqual(positions(app.engine.b),once,'Settled geography does not shift twice');
  rows.push({case:'actual shell mid-descent production export/import/Continue',passed:true,offsetAtSave:before.descent.offset,finalOffset:200,count:1});
 }
-const hash=s=>createHash('sha256').update(s).digest('hex'),result={projectSha256:hash(JSON.stringify(g.HONRO_PROJECT)),runtimeSha256:hash(await readFile('shared/runtime/stage18-bell.js','utf8')),rows,scope:'Production App, DOM click action dialogue-skip, Story, export/import/Continue. Bell prerequisite/occupancy states are explicit synthetic fixtures; old18 snapshot uses immutable original map/content and one real defend. DOM/render/storage/clock are test doubles. Not browser or normal fullplay.'};await mkdir('_local/reports/stage18-bell',{recursive:true});await writeFile('_local/reports/stage18-bell/app-resume.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+const hash=s=>createHash('sha256').update(s).digest('hex'),result={projectSha256:hash(JSON.stringify(g.HONRO_PROJECT)),runtimeSha256:hash(await readFile('shared/runtime/stage18-bell.js','utf8')),rows,scope:'Production App, DOM click action dialogue-skip, Story, export/import/Continue. Bell prerequisite/occupancy states are explicit synthetic fixtures; old18/19 snapshots use immutable original maps/content and one real defend. DOM/render/storage/clock are test doubles. Not browser or normal fullplay.'};await mkdir('_local/reports/stage18-bell',{recursive:true});await writeFile('_local/reports/stage18-bell/app-resume.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));

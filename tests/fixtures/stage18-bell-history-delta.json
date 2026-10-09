@@ -2,13 +2,13 @@
   "sourceCommit": "7b9713e23287292269dde6ae359acb7b35a8571f",
   "checkpoint": "WIP exact source checkpoint; regenerate after final geometry/runtime review",
   "beforeProjectSha256": "26d78521f28525b53deb15f30a0f71573030c3ab296f36a053689bf6f94d7bdb",
-  "afterProjectSha256": "c6c1b86aadb4d4ba45a1d1d4eeb8742fdcce1d6a5d515c735522597a58b4421d",
+  "afterProjectSha256": "0d3b28a4e1a10214a00064cce67753d8d284bd8ba2ca3c83569e8e3f9fe7ce84",
   "beforeAct12ProjectSha256": "ce7814f5b318e88977167cd4f649523456640cdf7b6aa82588a3ff5d62245f54",
-  "afterAct12ProjectSha256": "0324b8034fd838d8cfce443a0e5e1c7c90155f970fad0948c26363ac6c8eebef",
+  "afterAct12ProjectSha256": "3d4b8c384888c475772c0a820143b1694f981cb93279ea39e4927870c6b11a7a",
   "beforeLibrarySha256": "33d088631e2a855f1632d8ecb6b8a317807f86140977d6ec12f937d9712c17f6",
-  "afterLibrarySha256": "aa302e4aca52d9efccc0e59f9b00829be9b91e5915dbe523ccd88915e609262f",
+  "afterLibrarySha256": "7df00cbf1d0fde894fa0cee1fb01b22509535d461a389d2b1b4ab3197f37c809",
   "beforeAct12LibrarySha256": "aa02f44403645e19dc5f75a22521d77e1b3de34439e9c940d4a7c50e2b17b487",
-  "afterAct12LibrarySha256": "319dca812bbb95d77fb56aff036c33a9dd6c90b2e431aa933715503cd680723a",
+  "afterAct12LibrarySha256": "0fffdac437f07e65e614340e2e500c6e668515d646ce6ba898c3eece5f0d0205",
   "stageOrder": [
     "stage-1",
     "stage-2",
@@ -588,7 +588,7 @@
     {
       "id": "stage-18",
       "beforeSha256": "487c5ca18f8e582add210b6653f14645d440de42adf3f3f07fb180d7ba563ff5",
-      "afterSha256": "a336ae59ea8459c797af63c1ba0f5ed20b4ca644db97646057e2d9db287e2a94",
+      "afterSha256": "616ccce25a7c12c362494355ec374492340621355e990c77cd0f2b15fd7792b9",
       "paths": [
         {
           "path": [
@@ -4805,28 +4805,28 @@
               "type": "solid",
               "points": [
                 {
-                  "x": 11840,
-                  "y": 6090
+                  "x": 11280,
+                  "y": 6040
                 },
                 {
-                  "x": 12130,
-                  "y": 6090
+                  "x": 11400,
+                  "y": 6040
                 },
                 {
-                  "x": 12130,
-                  "y": 6155
+                  "x": 11400,
+                  "y": 6105
                 },
                 {
-                  "x": 11840,
-                  "y": 6155
+                  "x": 11280,
+                  "y": 6105
                 }
               ],
-              "baseMaterial": "wood",
+              "baseMaterial": "rock",
               "breakable": false,
               "oneWay": true,
               "layer": "terrain",
               "properties": {
-                "surfaceKind": "wood",
+                "surfaceKind": "cave",
                 "honroCave": true,
                 "honroBell": true,
                 "honroSpaceSurfaceId": "sb-keeper-flank-step",
@@ -7233,7 +7233,7 @@
               "behavior": "patrol",
               "encounterGroup": "court-overwatch",
               "stageOverrides": {
-                "honroCohort": "west",
+                "honroCohort": "court-support",
                 "honroAct2Elite": false,
                 "honroAct2Revision": 2,
                 "elite": false,
@@ -7254,7 +7254,7 @@
               "behavior": "patrol",
               "encounterGroup": "court-spirits",
               "stageOverrides": {
-                "honroCohort": "west",
+                "honroCohort": "court-support",
                 "honroAct2Elite": false,
                 "honroAct2Revision": 2,
                 "elite": false,
@@ -7275,7 +7275,7 @@
               "behavior": "patrol",
               "encounterGroup": "court-spirits",
               "stageOverrides": {
-                "honroCohort": "west",
+                "honroCohort": "court-support",
                 "honroAct2Elite": true,
                 "honroAct2Revision": 2,
                 "elite": false,
@@ -7296,7 +7296,7 @@
               "behavior": "patrol",
               "encounterGroup": "court-overwatch",
               "stageOverrides": {
-                "honroCohort": "west",
+                "honroCohort": "court-support",
                 "honroAct2Elite": false,
                 "honroAct2Revision": 2,
                 "elite": false,
@@ -8186,7 +8186,7 @@
               "type": "act2",
               "x": 2020,
               "y": 5496.2962962962965,
-              "label": "공명진을 둘러싼 정예 제압"
+              "label": "억제진 진입 수비대 제압"
             },
             {
               "id": "silence",
@@ -8354,7 +8354,7 @@
           "after": [
             {
               "id": "clear-wards",
-              "label": "공명진을 둘러싼 정예 제압",
+              "label": "억제진 진입 수비대 제압",
               "kind": "clear",
               "cohorts": "west"
             },
@@ -11956,6 +11956,7 @@
                 "sb-east-upper-arc",
                 "sb-east-upper-return",
                 "sb-keeper-watch",
+                "sb-keeper-flank-step",
                 "sb-keeper-cover",
                 "sb-east-cave-return",
                 "sb-east-upper-cave",
@@ -13464,6 +13465,42 @@
                 "x": 9650,
                 "y": 6370,
                 "surfaceId": "sb-keeper-side-approach"
+              },
+              "exit": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "requires": []
+            },
+            {
+              "id": "keeper-watch-ascent",
+              "from": "keeper-ledge",
+              "to": "keeper-ledge",
+              "kind": "optional-jump",
+              "routeId": "keeper-watch-ascent",
+              "entry": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "exit": {
+                "x": 11060,
+                "y": 5920,
+                "surfaceId": "sb-keeper-watch"
+              },
+              "requires": []
+            },
+            {
+              "id": "keeper-watch-return",
+              "from": "keeper-ledge",
+              "to": "keeper-ledge",
+              "kind": "walk",
+              "routeId": "keeper-watch-return",
+              "entry": {
+                "x": 11060,
+                "y": 5920,
+                "surfaceId": "sb-keeper-watch"
               },
               "exit": {
                 "x": 11480,
@@ -15989,6 +16026,122 @@
               "defaultJump": true
             },
             {
+              "id": "keeper-watch-ascent",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11380,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11380,
+                  "y": 6180,
+                  "surfaceId": "act2-floor",
+                  "jumpTo": {
+                    "x": 11360,
+                    "support": "sb-keeper-flank-step",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 11360,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11310,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11310,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step",
+                  "jumpTo": {
+                    "x": 11230,
+                    "support": "sb-keeper-watch",
+                    "speed": 0.5
+                  }
+                },
+                {
+                  "x": 11230,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                },
+                {
+                  "x": 11060,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "keeper-watch-return",
+              "kind": "return",
+              "anchors": [
+                {
+                  "x": 11060,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                },
+                {
+                  "x": 11230,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                },
+                {
+                  "x": 11230,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch",
+                  "dropTo": {
+                    "x": 11330,
+                    "support": "sb-keeper-flank-step",
+                    "stepOffX": 11300
+                  }
+                },
+                {
+                  "x": 11330,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11380,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11380,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step",
+                  "dropTo": {
+                    "x": 11470,
+                    "support": "act2-floor",
+                    "stepOffX": 11450
+                  }
+                },
+                {
+                  "x": 11470,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
               "id": "maintenance-crown-ascent",
               "kind": "optional-jump",
               "anchors": [
@@ -17564,7 +17717,7 @@
                 "y": 5230,
                 "surfaceId": "sb-court-rear-ledge"
               },
-              "cohort": "west"
+              "cohort": "court-support"
             },
             {
               "id": "site-sb-b-spirit-left",
@@ -17578,7 +17731,7 @@
                 "y": 5551.851851851852,
                 "surfaceId": "sb-suppression-court"
               },
-              "cohort": "west"
+              "cohort": "court-support"
             },
             {
               "id": "site-sb-b-spirit-right",
@@ -17592,7 +17745,7 @@
                 "y": 5499.411764705882,
                 "surfaceId": "sb-suppression-court"
               },
-              "cohort": "west"
+              "cohort": "court-support"
             },
             {
               "id": "site-sb-b-spirit-high",
@@ -17606,7 +17759,7 @@
                 "y": 5230,
                 "surfaceId": "sb-court-rear-ledge"
               },
-              "cohort": "west"
+              "cohort": "court-support"
             },
             {
               "id": "site-sb-c-bat-front",
@@ -22454,6 +22607,29 @@
             },
             {
               "stage18Art": true,
+              "terrainId": "sb-keeper-flank-step",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  11280,
+                  6040
+                ],
+                [
+                  11400,
+                  6040
+                ],
+                [
+                  11400,
+                  6105
+                ],
+                [
+                  11280,
+                  6105
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
               "terrainId": "sb-keeper-cover",
               "fill": "#3c555d",
               "points": [
@@ -25216,7 +25392,7 @@
     {
       "id": "stage-19",
       "beforeSha256": "faace7203145cef7cbbac494de5e3435d25c247021314e06c09a710a88fc4b74",
-      "afterSha256": "c6692593edd7b4f43439034e87f9ad49be60d7c5a0e8c829ec5571ba18ab839d",
+      "afterSha256": "2abf7544463be343c72c7af50de8af9e74f6d6fb43e8a857a19ee1935525f62b",
       "paths": [
         {
           "path": [
@@ -29393,28 +29569,28 @@
               "type": "solid",
               "points": [
                 {
-                  "x": 11840,
-                  "y": 6090
+                  "x": 11280,
+                  "y": 6040
                 },
                 {
-                  "x": 12130,
-                  "y": 6090
+                  "x": 11400,
+                  "y": 6040
                 },
                 {
-                  "x": 12130,
-                  "y": 6155
+                  "x": 11400,
+                  "y": 6105
                 },
                 {
-                  "x": 11840,
-                  "y": 6155
+                  "x": 11280,
+                  "y": 6105
                 }
               ],
-              "baseMaterial": "wood",
+              "baseMaterial": "rock",
               "breakable": false,
               "oneWay": true,
               "layer": "terrain",
               "properties": {
-                "surfaceKind": "wood",
+                "surfaceKind": "cave",
                 "honroCave": true,
                 "honroBell": true,
                 "honroSpaceSurfaceId": "sb-keeper-flank-step",
@@ -35939,6 +36115,7 @@
                 "sb-east-upper-arc",
                 "sb-east-upper-return",
                 "sb-keeper-watch",
+                "sb-keeper-flank-step",
                 "sb-keeper-cover",
                 "sb-east-cave-return",
                 "sb-east-upper-cave",
@@ -37447,6 +37624,42 @@
                 "x": 9650,
                 "y": 6370,
                 "surfaceId": "sb-keeper-side-approach"
+              },
+              "exit": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "requires": []
+            },
+            {
+              "id": "keeper-watch-ascent",
+              "from": "keeper-ledge",
+              "to": "keeper-ledge",
+              "kind": "optional-jump",
+              "routeId": "keeper-watch-ascent",
+              "entry": {
+                "x": 11480,
+                "y": 6180,
+                "surfaceId": "act2-floor"
+              },
+              "exit": {
+                "x": 11060,
+                "y": 5920,
+                "surfaceId": "sb-keeper-watch"
+              },
+              "requires": []
+            },
+            {
+              "id": "keeper-watch-return",
+              "from": "keeper-ledge",
+              "to": "keeper-ledge",
+              "kind": "walk",
+              "routeId": "keeper-watch-return",
+              "entry": {
+                "x": 11060,
+                "y": 5920,
+                "surfaceId": "sb-keeper-watch"
               },
               "exit": {
                 "x": 11480,
@@ -40084,6 +40297,122 @@
                 },
                 {
                   "x": 10940,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "keeper-watch-ascent",
+              "kind": "optional-jump",
+              "anchors": [
+                {
+                  "x": 11480,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11380,
+                  "y": 6180,
+                  "surfaceId": "act2-floor"
+                },
+                {
+                  "x": 11380,
+                  "y": 6180,
+                  "surfaceId": "act2-floor",
+                  "jumpTo": {
+                    "x": 11360,
+                    "support": "sb-keeper-flank-step",
+                    "speed": 0.2
+                  }
+                },
+                {
+                  "x": 11360,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11310,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11310,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step",
+                  "jumpTo": {
+                    "x": 11230,
+                    "support": "sb-keeper-watch",
+                    "speed": 0.5
+                  }
+                },
+                {
+                  "x": 11230,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                },
+                {
+                  "x": 11060,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                }
+              ],
+              "requires": [],
+              "defaultJump": true
+            },
+            {
+              "id": "keeper-watch-return",
+              "kind": "return",
+              "anchors": [
+                {
+                  "x": 11060,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                },
+                {
+                  "x": 11230,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch"
+                },
+                {
+                  "x": 11230,
+                  "y": 5920,
+                  "surfaceId": "sb-keeper-watch",
+                  "dropTo": {
+                    "x": 11330,
+                    "support": "sb-keeper-flank-step",
+                    "stepOffX": 11300
+                  }
+                },
+                {
+                  "x": 11330,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11380,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step"
+                },
+                {
+                  "x": 11380,
+                  "y": 6040,
+                  "surfaceId": "sb-keeper-flank-step",
+                  "dropTo": {
+                    "x": 11470,
+                    "support": "act2-floor",
+                    "stepOffX": 11450
+                  }
+                },
+                {
+                  "x": 11470,
                   "y": 6180,
                   "surfaceId": "act2-floor"
                 },
@@ -46682,6 +47011,29 @@
             },
             {
               "stage18Art": true,
+              "terrainId": "sb-keeper-flank-step",
+              "fill": "#3c555d",
+              "points": [
+                [
+                  11280,
+                  6040
+                ],
+                [
+                  11400,
+                  6040
+                ],
+                [
+                  11400,
+                  6105
+                ],
+                [
+                  11280,
+                  6105
+                ]
+              ]
+            },
+            {
+              "stage18Art": true,
               "terrainId": "sb-keeper-cover",
               "fill": "#3c555d",
               "points": [
@@ -50614,19 +50966,19 @@
                   "stroke": "#7c8059",
                   "lineWidth": 14,
                   "id": "one-deep-elliptical-mouth",
-                  "d": "M-1480-262Q-940-764 35-793Q1091-776 1530-264Q1109-7 48 23Q-967 29-1480-262Z"
+                  "d": "M-1480-262Q-940-764 35-793Q850-794 1295-690L1444-320Q1109-7 48 23Q-967 29-1480-262Z"
                 },
                 {
                   "tag": "path",
                   "fill": "url(#bell-lip)",
                   "id": "mouth-cast-thickness",
-                  "d": "M-1480-262Q-940-764 35-793Q1091-776 1530-264L1345-244Q899-619 35-636Q-872-612-1295-219Z"
+                  "d": "M-1480-262Q-940-764 35-793Q850-794 1295-690L1308.97-610Q934-659 35-636Q-872-612-1295-219Z"
                 },
                 {
                   "tag": "path",
-                  "fill": "url(#inner-void)",
+                  "fill": "#0d222e",
                   "id": "inner-cavern-under-bell",
-                  "d": "M-1289-216Q-903-614 35-636Q914-619 1345-244Q983-51 49-24Q-836-19-1289-216Z"
+                  "d": "M-1289-216Q-903-614 35-636Q936-659 1308.97-610L1444-320Q1033-51 49-24Q-836-19-1289-216Z"
                 },
                 {
                   "tag": "path",
@@ -50634,7 +50986,7 @@
                   "stroke": "#526549",
                   "opacity": 0.52,
                   "lineWidth": 22,
-                  "d": "M-1267-215Q-841-519 43-544Q897-526 1314-242"
+                  "d": "M-1267-215Q-841-519 43-544Q940-557 1400-344"
                 },
                 {
                   "tag": "path",
@@ -50646,40 +50998,28 @@
             },
             {
               "tag": "g",
-              "id": "sound-window-recess",
-              "children": [
-                {
-                  "tag": "path",
-                  "fill": "#0d222e",
-                  "id": "original-cast-side-sound-window",
-                  "d": "M620-590Q620-610 660-610H1308.97L1444-320H670Q620-320 620-360Z"
-                }
-              ]
-            },
-            {
-              "tag": "g",
               "id": "cast-sound-window-frame",
               "children": [
                 {
                   "tag": "path",
-                  "fill": "#52634a",
-                  "stroke": "#243c33",
-                  "lineWidth": 8,
-                  "id": "smooth-cast-upper-reveal",
-                  "d": "M589-618Q600-648 653-648H1302L1318-610H660Q620-610 620-572V-360Q620-320 670-320H1444L1469-288H668Q587-288 580-356V-565Q580-595 589-618Z"
-                },
-                {
-                  "tag": "path",
                   "fill": "none",
-                  "stroke": "#a3976a",
-                  "lineWidth": 8,
-                  "d": "M603-623Q616-634 658-634H1304M590-565V-360Q596-303 668-303H1452"
+                  "stroke": "#0d222e",
+                  "lineWidth": 9,
+                  "lineJoin": "round",
+                  "id": "continuous-throat-shadow",
+                  "d": "M1303-610H660Q620-610 620-590V-360Q620-320 670-320H935"
                 },
                 {
                   "tag": "path",
-                  "fill": "#203b32",
-                  "id": "sound-window-underside-depth",
-                  "d": "M620-558L653-572V-374Q653-345 684-344H1428L1444-320H670Q620-320 620-360Z"
+                  "fill": "#50604b",
+                  "id": "one-heavy-inner-bronze-ledge",
+                  "d": "M935-333Q1150-326 1444-320L1469-276Q1157-286 957-298Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#273e34",
+                  "id": "receding-ledge-underside",
+                  "d": "M957-298Q1157-286 1469-276L1440-245Q1191-263 984-279Z"
                 }
               ]
             },
@@ -50689,27 +51029,27 @@
               "children": [
                 {
                   "tag": "path",
-                  "fill": "#617452",
-                  "stroke": "#1d392e",
+                  "fill": "#465f49",
+                  "stroke": "#203b31",
                   "lineWidth": 13,
                   "d": "M1310-440H1990V-320H1350Z"
                 },
                 {
                   "tag": "path",
-                  "fill": "#a2956c",
-                  "d": "M1350-431H1981V-394H1364Z"
+                  "fill": "#7a7d58",
+                  "d": "M1350-431H1981V-414H1358Z"
                 },
                 {
                   "tag": "path",
-                  "fill": "#34573f",
+                  "fill": "#2b493b",
                   "d": "M1469-387H1950V-334H1492Z"
                 },
                 {
                   "tag": "path",
                   "fill": "none",
-                  "stroke": "#91a071",
-                  "lineWidth": 16,
-                  "d": "M1875-425V-336M1505-425V-336"
+                  "stroke": "#718365",
+                  "lineWidth": 11,
+                  "d": "M1950-418V-336"
                 }
               ]
             },
@@ -50772,7 +51112,7 @@
             }
           ]
         },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1610 -4420 3670 4450\">\n<title>묵종: 용뉴와 음통, 두꺼운 청동벽 안의 빈 울림</title>\n<desc>Original editable Korean Buddhist bell seen from below. An unbroken rounded bronze exterior, dark underside cavity, continuous heavy mouth, dragon suspension crown and sound pipe. Initial world anchor 7200,6610; the whole bell settles 200 units onto the authored stone supports.</desc>\n<defs>\n<linearGradient id=\"bronze\" x1=\"-1510\" y1=\"-1900\" x2=\"1580\" y2=\"-1600\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#716650\"/><stop offset=\"0.18\" stop-color=\"#978364\"/><stop offset=\"0.34\" stop-color=\"#5c6355\"/><stop offset=\"0.65\" stop-color=\"#424e46\"/><stop offset=\"1\" stop-color=\"#283a38\"/></linearGradient>\n<linearGradient id=\"inner-wall\" x1=\"-1070\" y1=\"-1900\" x2=\"1190\" y2=\"-1700\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#374a45\"/><stop offset=\"0.18\" stop-color=\"#142a2e\"/><stop offset=\"0.55\" stop-color=\"#0b1b23\"/><stop offset=\"0.85\" stop-color=\"#182c30\"/><stop offset=\"1\" stop-color=\"#425449\"/></linearGradient>\n<radialGradient id=\"inner-void\" cx=\"100\" cy=\"-2160\" r=\"2030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#080f17\"/><stop offset=\"0.62\" stop-color=\"#0b1b24\"/><stop offset=\"1\" stop-color=\"#182f35\"/></radialGradient>\n<linearGradient id=\"bell-lip\" x1=\"-1600\" y1=\"-50\" x2=\"1640\" y2=\"-100\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#9b8b69\"/><stop offset=\"0.29\" stop-color=\"#776f54\"/><stop offset=\"0.67\" stop-color=\"#5c654f\"/><stop offset=\"1\" stop-color=\"#33473f\"/></linearGradient>\n<linearGradient id=\"aged-crown\" x1=\"-830\" y1=\"-3390\" x2=\"1000\" y2=\"-3030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#b09a73\"/><stop offset=\"0.32\" stop-color=\"#767458\"/><stop offset=\"1\" stop-color=\"#3c5046\"/></linearGradient>\n<linearGradient id=\"cavity-floor-bounce\" x1=\"0\" y1=\"-810\" x2=\"0\" y2=\"40\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#607b77\" stop-opacity=\"0\"/><stop offset=\"0.78\" stop-color=\"#607b77\" stop-opacity=\"0.09\"/><stop offset=\"1\" stop-color=\"#607b77\" stop-opacity=\"0.03\"/></linearGradient>\n</defs>\n<g id=\"crown-yongnyu-and-sound-pipe\" transform=\"matrix(1 0 0 1 0 -480)\">\n<path id=\"restrained-dragon-ring\" d=\"M-301-3375L-332-3517Q-356-3605-292-3682L-164-3795Q-106-3840-42-3825L49-3773L62-3719L7-3711L-22-3762Q-72-3791-111-3757L-215-3644Q-247-3595-226-3511L-208-3409Z\" fill=\"#444d3e\" stroke=\"#14292d\" stroke-width=\"18\"/>\n<path id=\"dragon-moon-facing-ridge\" d=\"M-289-3420L-310-3523Q-330-3604-274-3661L-151-3772Q-115-3805-76-3801L-33-3776L-63-3764Q-105-3783-134-3747L-240-3635Q-267-3591-245-3525L-222-3417Z\" fill=\"#8a8160\"/>\n<path id=\"dragon-head-and-horn\" d=\"M-47-3757L1-3798L47-3771L58-3730L108-3697L182-3690L209-3662L187-3637L107-3640L90-3607L52-3610L33-3651L-24-3677L-35-3712L-79-3720Z\" fill=\"#667052\" stroke=\"#213832\" stroke-width=\"13\"/>\n<path d=\"M48-3757L50-3803L87-3828L82-3777L110-3757L89-3733 M150-3690L173-3725L196-3709L184-3685\" fill=\"#8f8c68\"/>\n<path d=\"M33-3698L75-3684L50-3675Z M115-3659L178-3656\" fill=\"#c2b28a\" stroke=\"#a59873\" stroke-width=\"6\"/>\n<path id=\"dragon-claw-foot\" d=\"M-183-3452L-99-3433L-39-3471L2-3493L59-3479L91-3435L157-3425L186-3393L153-3367L84-3388L47-3420L9-3432L-29-3393L-127-3376L-190-3392Z\" fill=\"#6e7256\" stroke=\"#263d35\" stroke-width=\"12\"/>\n<path id=\"sound-pipe\" d=\"M304-3380L305-3694Q347-3725 407-3698L432-3387Z\" fill=\"#4c5947\" stroke=\"#243930\" stroke-width=\"14\"/>\n<path d=\"M316-3683L336-3683L350-3398L322-3398Z\" fill=\"#a1946b\"/>\n<path d=\"M302-3692Q349-3723 407-3698L409-3670Q352-3695 302-3665Z\" fill=\"#8b8562\"/>\n<path d=\"M317-3690Q350-3705 395-3692Q360-3684 317-3690Z\" fill=\"#101e23\"/>\n<path d=\"M307-3550Q358-3567 420-3553M310-3498Q363-3513 422-3501\" fill=\"none\" stroke=\"#7a805e\" stroke-width=\"11\"/>\n</g>\n<g id=\"unbroken-round-bronze-body\">\n<path id=\"complete-cast-body\" d=\"M-860-3370L-680-3670L-330-3850L320-3820L600-3660L790-3350L1020-2100L1340-450L1540-200L1620 0H-1550L-1490-180L-1320-390L-1130-2080Z\" fill=\"url(#bronze)\" stroke=\"#192c2c\" stroke-width=\"14\"/>\n<path id=\"round-shoulder-moon-plane\" d=\"M-860-3370Q-767-3690-330-3850L320-3820Q573-3731 790-3350Q146-3190-860-3370Z\" fill=\"url(#aged-crown)\"/>\n<path id=\"broad-front-bronze-volume\" d=\"M-859-3336Q-383-3175 693-3340L943-1915L1205-512Q228-210-1213-516L-1063-2133Z\" fill=\"url(#bronze)\"/>\n<path id=\"left-broad-lit-plane\" d=\"M-676-3631Q-529-3704-358-3729Q-405-3215-466-2800L-655-1730L-808-617L-1192-532L-1020-2150Q-956-2961-676-3631Z\" fill=\"#ab946b\" opacity=\"0.34\"/>\n<path id=\"right-unbroken-shadow-plane\" d=\"M306-3803Q601-3652 762-3360L990-2100L1310-443L1525-215L1586-49L1122-46L1029-500L754-1960L572-3201Q490-3561 306-3803Z\" fill=\"#183731\" opacity=\"0.56\"/>\n<path id=\"old-cast-patina-wash\" d=\"M-495-3261Q-327-3195-218-3280L-78-3090L-157-2585Q-332-2206-246-1791L-367-1237L-273-850L-528-671L-730-732L-625-1191Q-555-1670-674-2010L-531-2495Z\" fill=\"#476950\" opacity=\"0.30\"/>\n<path id=\"broad-lower-patina\" d=\"M123-2310Q454-2370 637-2090L769-1643Q650-1430 780-1065L601-729L313-556L13-795L-21-1130L110-1523L21-1867Z\" fill=\"#2c5144\" opacity=\"0.35\"/>\n<path id=\"continuous-upper-cast-band\" d=\"M-830-3300Q-167-3122 822-3282L843-3162Q-97-2999-853-3176Z\" fill=\"#6f7452\" stroke=\"#354f3d\" stroke-width=\"11\"/>\n<path d=\"M-829-3291Q-111-3115 823-3270M-849-3191Q-52-3029 838-3178\" fill=\"none\" stroke=\"#ad9e70\" stroke-width=\"10\"/>\n<path id=\"lower-outer-cast-band\" d=\"M-1348-360Q-171-186 1391-369L1460-276Q230-58-1424-266Z\" fill=\"#797453\" stroke=\"#40583f\" stroke-width=\"13\"/>\n<path d=\"M-1341-348Q-64-161 1391-354\" fill=\"none\" stroke=\"#b8a67c\" stroke-width=\"12\"/>\n</g>\n<g id=\"broad-korean-cast-reliefs\">\n<path id=\"west-nine-boss-panel\" d=\"M-794-3022Q-534-2949-184-2950L-229-2423Q-584-2444-871-2507Z\" fill=\"#53664b\" stroke=\"#958c61\" stroke-width=\"13\"/>\n<path id=\"east-nine-boss-panel\" d=\"M375-2962Q606-2984 838-3050L918-2535Q671-2460 447-2446Z\" fill=\"#496147\" stroke=\"#7f8559\" stroke-width=\"12\"/>\n<path id=\"nine-bosses-west\" d=\"M-729-2890q22-36 48-2q19 36-18 52q-35 1-30-50Z M-554-2854q22-36 48-2q19 36-18 52q-35 1-30-50Z M-372-2843q22-36 48-2q19 36-18 52q-35 1-30-50Z M-746-2745q22-36 48-2q19 36-18 52q-35 1-30-50Z M-570-2718q22-36 48-2q19 36-18 52q-35 1-30-50Z M-389-2708q22-36 48-2q19 36-18 52q-35 1-30-50Z M-766-2608q22-36 48-2q19 36-18 52q-35 1-30-50Z M-587-2583q22-36 48-2q19 36-18 52q-35 1-30-50Z M-408-2570q22-36 48-2q19 36-18 52q-35 1-30-50Z\" fill=\"#aba275\" stroke=\"#374b39\" stroke-width=\"8\"/>\n<path id=\"nine-bosses-east\" d=\"M449-2844q20-33 42-7q22 31-10 49q-32 5-32-42Z M595-2864q20-33 42-7q22 31-10 49q-32 5-32-42Z M748-2900q20-33 42-7q22 31-10 49q-32 5-32-42Z M469-2707q20-33 42-7q22 31-10 49q-32 5-32-42Z M615-2728q20-33 42-7q22 31-10 49q-32 5-32-42Z M770-2760q20-33 42-7q22 31-10 49q-32 5-32-42Z M489-2579q20-33 42-7q22 31-10 49q-32 5-32-42Z M636-2598q20-33 42-7q22 31-10 49q-32 5-32-42Z M790-2635q20-33 42-7q22 31-10 49q-32 5-32-42Z\" fill=\"#92976a\" stroke=\"#2d4938\" stroke-width=\"8\"/>\n<path id=\"single-large-lotus-strike\" d=\"M-794-1509Q-822-1740-672-1901Q-501-2016-346-1873Q-217-1730-254-1517Q-291-1303-470-1244Q-684-1223-794-1509Z\" fill=\"#617052\" stroke=\"#899366\" stroke-width=\"17\"/>\n<path d=\"M-747-1499Q-773-1698-643-1840Q-502-1931-379-1810Q-273-1684-301-1530Q-338-1351-483-1297Q-650-1282-747-1499Z\" fill=\"#3d5b47\" stroke=\"#999e72\" stroke-width=\"10\"/>\n<path id=\"eight-petal-lotus\" d=\"M-514-1776Q-471-1735-478-1676Q-421-1720-374-1698Q-378-1645-430-1615Q-358-1602-350-1554Q-396-1517-451-1535Q-432-1467-470-1429Q-518-1458-519-1510Q-557-1459-613-1470Q-627-1521-581-1560Q-642-1578-650-1633Q-593-1656-548-1624Q-567-1711-514-1776Z\" fill=\"#9b9b6a\"/>\n<path d=\"M-544-1627Q-490-1651-466-1600Q-445-1548-497-1529Q-553-1514-573-1567Q-589-1609-544-1627Z\" fill=\"#485f43\" stroke=\"#b3aa74\" stroke-width=\"8\"/>\n<path id=\"one-flowing-heavenly-robe-relief\" d=\"M407-1950Q353-2010 388-2080Q429-2130 477-2079Q510-2038 481-1980L435-1950L443-1886Q512-1859 529-1785Q604-1764 672-1812Q749-1869 815-1831Q720-1817 706-1762Q653-1693 551-1694L507-1558Q538-1481 613-1431Q713-1370 783-1245Q623-1300 539-1369Q423-1396 366-1482Q320-1408 227-1384Q183-1344 180-1268Q154-1396 237-1493Q319-1561 343-1666L332-1790Q261-1836 202-1789Q139-1721 60-1741Q180-1788 187-1865Q264-1946 347-1889L391-1917Z\" fill=\"#7f8860\" opacity=\"0.59\"/>\n<path d=\"M391-1980Q428-2001 467-1980M348-1829Q368-1776 398-1757L383-1639M444-1828Q478-1768 463-1697L431-1538Q455-1457 534-1413M249-1462Q333-1483 376-1541\" fill=\"none\" stroke=\"#b0a57a\" stroke-width=\"10\" opacity=\"0.48\"/>\n<path id=\"three-aged-bronze-catches\" d=\"M-984-2011Q-950-2167-912-2250M959-1320L1001-1050M-1200-865L-1227-667\" fill=\"none\" stroke=\"#b9ad83\" stroke-width=\"9\" opacity=\"0.35\"/>\n</g>\n<g id=\"underside-view-hollow-interior\">\n<path id=\"one-deep-elliptical-mouth\" d=\"M-1480-262Q-940-764 35-793Q1091-776 1530-264Q1109-7 48 23Q-967 29-1480-262Z\" fill=\"#233d38\" stroke=\"#7c8059\" stroke-width=\"14\"/>\n<path id=\"mouth-cast-thickness\" d=\"M-1480-262Q-940-764 35-793Q1091-776 1530-264L1345-244Q899-619 35-636Q-872-612-1295-219Z\" fill=\"url(#bell-lip)\"/>\n<path id=\"inner-cavern-under-bell\" d=\"M-1289-216Q-903-614 35-636Q914-619 1345-244Q983-51 49-24Q-836-19-1289-216Z\" fill=\"url(#inner-void)\"/>\n<path d=\"M-1267-215Q-841-519 43-544Q897-526 1314-242\" fill=\"none\" stroke=\"#526549\" stroke-width=\"22\" opacity=\"0.52\"/>\n<path id=\"near-rim-hidden-thickness\" d=\"M-1289-216Q-840-20 49-24Q986-54 1345-244L1497-140Q1033 0 35 0Q-1003 0-1480-156Z\" fill=\"#1b352f\"/>\n</g>\n<g id=\"sound-window-recess\">\n<path id=\"original-cast-side-sound-window\" d=\"M620-590Q620-610 660-610H1308.97L1444-320H670Q620-320 620-360Z\" fill=\"#0d222e\"/>\n</g>\n<g id=\"cast-sound-window-frame\">\n<path id=\"smooth-cast-upper-reveal\" d=\"M589-618Q600-648 653-648H1302L1318-610H660Q620-610 620-572V-360Q620-320 670-320H1444L1469-288H668Q587-288 580-356V-565Q580-595 589-618Z\" fill=\"#52634a\" stroke=\"#243c33\" stroke-width=\"8\"/>\n<path d=\"M603-623Q616-634 658-634H1304M590-565V-360Q596-303 668-303H1452\" fill=\"none\" stroke=\"#a3976a\" stroke-width=\"8\"/>\n<path id=\"sound-window-underside-depth\" d=\"M620-558L653-572V-374Q653-345 684-344H1428L1444-320H670Q620-320 620-360Z\" fill=\"#203b32\"/>\n</g>\n<g id=\"single-east-cast-bearing-ear\">\n<path d=\"M1310-440H1990V-320H1350Z\" fill=\"#617452\" stroke=\"#1d392e\" stroke-width=\"13\"/>\n<path d=\"M1350-431H1981V-394H1364Z\" fill=\"#a2956c\"/>\n<path d=\"M1469-387H1950V-334H1492Z\" fill=\"#34573f\"/>\n<path d=\"M1875-425V-336M1505-425V-336\" fill=\"none\" stroke=\"#91a071\" stroke-width=\"16\"/>\n</g>\n<g id=\"one-continuous-heavy-mouth\">\n<path id=\"west-thick-lip\" d=\"M-1490-180L-1550 0H-980L-954-234Q-1186-224-1490-180Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"east-thick-lip\" d=\"M1061-234L1100 0H1620L1540-200Q1358-224 1061-234Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"mouth-front-ring\" d=\"M-1550 0H1620L1596-62Q940-114 30-104Q-897-100-1528-67Z\" fill=\"url(#bell-lip)\" stroke=\"#162d2a\" stroke-width=\"13\"/>\n<path d=\"M-1521-62Q-873-89 30-89Q968-99 1595-57\" fill=\"none\" stroke=\"#baab7f\" stroke-width=\"13\"/>\n<path d=\"M-1543-8H1612\" fill=\"none\" stroke=\"#7f8460\" stroke-width=\"11\"/>\n<path d=\"M-1487-171Q-1224-170-962-176M1075-176Q1375-176 1534-191\" fill=\"none\" stroke=\"#c3ae7f\" stroke-width=\"13\"/>\n<path id=\"heavy-lip-contact-shadow\" d=\"M-1539-29H-984L-980 0H-1550Z M1100 0L1095-27H1607L1620 0Z\" fill=\"#203c34\"/>\n</g>\n</svg>\n"
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1610 -4420 3670 4450\">\n<title>묵종: 용뉴와 음통, 두꺼운 청동벽 안의 빈 울림</title>\n<desc>Original editable Korean Buddhist bell seen from below. An unbroken rounded bronze exterior, dark underside cavity, continuous heavy mouth, dragon suspension crown and sound pipe. Initial world anchor 7200,6610; the whole bell settles 200 units onto the authored stone supports.</desc>\n<defs>\n<linearGradient id=\"bronze\" x1=\"-1510\" y1=\"-1900\" x2=\"1580\" y2=\"-1600\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#716650\"/><stop offset=\"0.18\" stop-color=\"#978364\"/><stop offset=\"0.34\" stop-color=\"#5c6355\"/><stop offset=\"0.65\" stop-color=\"#424e46\"/><stop offset=\"1\" stop-color=\"#283a38\"/></linearGradient>\n<linearGradient id=\"inner-wall\" x1=\"-1070\" y1=\"-1900\" x2=\"1190\" y2=\"-1700\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#374a45\"/><stop offset=\"0.18\" stop-color=\"#142a2e\"/><stop offset=\"0.55\" stop-color=\"#0b1b23\"/><stop offset=\"0.85\" stop-color=\"#182c30\"/><stop offset=\"1\" stop-color=\"#425449\"/></linearGradient>\n<radialGradient id=\"inner-void\" cx=\"100\" cy=\"-2160\" r=\"2030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#080f17\"/><stop offset=\"0.62\" stop-color=\"#0b1b24\"/><stop offset=\"1\" stop-color=\"#182f35\"/></radialGradient>\n<linearGradient id=\"bell-lip\" x1=\"-1600\" y1=\"-50\" x2=\"1640\" y2=\"-100\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#9b8b69\"/><stop offset=\"0.29\" stop-color=\"#776f54\"/><stop offset=\"0.67\" stop-color=\"#5c654f\"/><stop offset=\"1\" stop-color=\"#33473f\"/></linearGradient>\n<linearGradient id=\"aged-crown\" x1=\"-830\" y1=\"-3390\" x2=\"1000\" y2=\"-3030\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#b09a73\"/><stop offset=\"0.32\" stop-color=\"#767458\"/><stop offset=\"1\" stop-color=\"#3c5046\"/></linearGradient>\n<linearGradient id=\"cavity-floor-bounce\" x1=\"0\" y1=\"-810\" x2=\"0\" y2=\"40\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#607b77\" stop-opacity=\"0\"/><stop offset=\"0.78\" stop-color=\"#607b77\" stop-opacity=\"0.09\"/><stop offset=\"1\" stop-color=\"#607b77\" stop-opacity=\"0.03\"/></linearGradient>\n</defs>\n<g id=\"crown-yongnyu-and-sound-pipe\" transform=\"matrix(1 0 0 1 0 -480)\">\n<path id=\"restrained-dragon-ring\" d=\"M-301-3375L-332-3517Q-356-3605-292-3682L-164-3795Q-106-3840-42-3825L49-3773L62-3719L7-3711L-22-3762Q-72-3791-111-3757L-215-3644Q-247-3595-226-3511L-208-3409Z\" fill=\"#444d3e\" stroke=\"#14292d\" stroke-width=\"18\"/>\n<path id=\"dragon-moon-facing-ridge\" d=\"M-289-3420L-310-3523Q-330-3604-274-3661L-151-3772Q-115-3805-76-3801L-33-3776L-63-3764Q-105-3783-134-3747L-240-3635Q-267-3591-245-3525L-222-3417Z\" fill=\"#8a8160\"/>\n<path id=\"dragon-head-and-horn\" d=\"M-47-3757L1-3798L47-3771L58-3730L108-3697L182-3690L209-3662L187-3637L107-3640L90-3607L52-3610L33-3651L-24-3677L-35-3712L-79-3720Z\" fill=\"#667052\" stroke=\"#213832\" stroke-width=\"13\"/>\n<path d=\"M48-3757L50-3803L87-3828L82-3777L110-3757L89-3733 M150-3690L173-3725L196-3709L184-3685\" fill=\"#8f8c68\"/>\n<path d=\"M33-3698L75-3684L50-3675Z M115-3659L178-3656\" fill=\"#c2b28a\" stroke=\"#a59873\" stroke-width=\"6\"/>\n<path id=\"dragon-claw-foot\" d=\"M-183-3452L-99-3433L-39-3471L2-3493L59-3479L91-3435L157-3425L186-3393L153-3367L84-3388L47-3420L9-3432L-29-3393L-127-3376L-190-3392Z\" fill=\"#6e7256\" stroke=\"#263d35\" stroke-width=\"12\"/>\n<path id=\"sound-pipe\" d=\"M304-3380L305-3694Q347-3725 407-3698L432-3387Z\" fill=\"#4c5947\" stroke=\"#243930\" stroke-width=\"14\"/>\n<path d=\"M316-3683L336-3683L350-3398L322-3398Z\" fill=\"#a1946b\"/>\n<path d=\"M302-3692Q349-3723 407-3698L409-3670Q352-3695 302-3665Z\" fill=\"#8b8562\"/>\n<path d=\"M317-3690Q350-3705 395-3692Q360-3684 317-3690Z\" fill=\"#101e23\"/>\n<path d=\"M307-3550Q358-3567 420-3553M310-3498Q363-3513 422-3501\" fill=\"none\" stroke=\"#7a805e\" stroke-width=\"11\"/>\n</g>\n<g id=\"unbroken-round-bronze-body\">\n<path id=\"complete-cast-body\" d=\"M-860-3370L-680-3670L-330-3850L320-3820L600-3660L790-3350L1020-2100L1340-450L1540-200L1620 0H-1550L-1490-180L-1320-390L-1130-2080Z\" fill=\"url(#bronze)\" stroke=\"#192c2c\" stroke-width=\"14\"/>\n<path id=\"round-shoulder-moon-plane\" d=\"M-860-3370Q-767-3690-330-3850L320-3820Q573-3731 790-3350Q146-3190-860-3370Z\" fill=\"url(#aged-crown)\"/>\n<path id=\"broad-front-bronze-volume\" d=\"M-859-3336Q-383-3175 693-3340L943-1915L1205-512Q228-210-1213-516L-1063-2133Z\" fill=\"url(#bronze)\"/>\n<path id=\"left-broad-lit-plane\" d=\"M-676-3631Q-529-3704-358-3729Q-405-3215-466-2800L-655-1730L-808-617L-1192-532L-1020-2150Q-956-2961-676-3631Z\" fill=\"#ab946b\" opacity=\"0.34\"/>\n<path id=\"right-unbroken-shadow-plane\" d=\"M306-3803Q601-3652 762-3360L990-2100L1310-443L1525-215L1586-49L1122-46L1029-500L754-1960L572-3201Q490-3561 306-3803Z\" fill=\"#183731\" opacity=\"0.56\"/>\n<path id=\"old-cast-patina-wash\" d=\"M-495-3261Q-327-3195-218-3280L-78-3090L-157-2585Q-332-2206-246-1791L-367-1237L-273-850L-528-671L-730-732L-625-1191Q-555-1670-674-2010L-531-2495Z\" fill=\"#476950\" opacity=\"0.30\"/>\n<path id=\"broad-lower-patina\" d=\"M123-2310Q454-2370 637-2090L769-1643Q650-1430 780-1065L601-729L313-556L13-795L-21-1130L110-1523L21-1867Z\" fill=\"#2c5144\" opacity=\"0.35\"/>\n<path id=\"continuous-upper-cast-band\" d=\"M-830-3300Q-167-3122 822-3282L843-3162Q-97-2999-853-3176Z\" fill=\"#6f7452\" stroke=\"#354f3d\" stroke-width=\"11\"/>\n<path d=\"M-829-3291Q-111-3115 823-3270M-849-3191Q-52-3029 838-3178\" fill=\"none\" stroke=\"#ad9e70\" stroke-width=\"10\"/>\n<path id=\"lower-outer-cast-band\" d=\"M-1348-360Q-171-186 1391-369L1460-276Q230-58-1424-266Z\" fill=\"#797453\" stroke=\"#40583f\" stroke-width=\"13\"/>\n<path d=\"M-1341-348Q-64-161 1391-354\" fill=\"none\" stroke=\"#b8a67c\" stroke-width=\"12\"/>\n</g>\n<g id=\"broad-korean-cast-reliefs\">\n<path id=\"west-nine-boss-panel\" d=\"M-794-3022Q-534-2949-184-2950L-229-2423Q-584-2444-871-2507Z\" fill=\"#53664b\" stroke=\"#958c61\" stroke-width=\"13\"/>\n<path id=\"east-nine-boss-panel\" d=\"M375-2962Q606-2984 838-3050L918-2535Q671-2460 447-2446Z\" fill=\"#496147\" stroke=\"#7f8559\" stroke-width=\"12\"/>\n<path id=\"nine-bosses-west\" d=\"M-729-2890q22-36 48-2q19 36-18 52q-35 1-30-50Z M-554-2854q22-36 48-2q19 36-18 52q-35 1-30-50Z M-372-2843q22-36 48-2q19 36-18 52q-35 1-30-50Z M-746-2745q22-36 48-2q19 36-18 52q-35 1-30-50Z M-570-2718q22-36 48-2q19 36-18 52q-35 1-30-50Z M-389-2708q22-36 48-2q19 36-18 52q-35 1-30-50Z M-766-2608q22-36 48-2q19 36-18 52q-35 1-30-50Z M-587-2583q22-36 48-2q19 36-18 52q-35 1-30-50Z M-408-2570q22-36 48-2q19 36-18 52q-35 1-30-50Z\" fill=\"#aba275\" stroke=\"#374b39\" stroke-width=\"8\"/>\n<path id=\"nine-bosses-east\" d=\"M449-2844q20-33 42-7q22 31-10 49q-32 5-32-42Z M595-2864q20-33 42-7q22 31-10 49q-32 5-32-42Z M748-2900q20-33 42-7q22 31-10 49q-32 5-32-42Z M469-2707q20-33 42-7q22 31-10 49q-32 5-32-42Z M615-2728q20-33 42-7q22 31-10 49q-32 5-32-42Z M770-2760q20-33 42-7q22 31-10 49q-32 5-32-42Z M489-2579q20-33 42-7q22 31-10 49q-32 5-32-42Z M636-2598q20-33 42-7q22 31-10 49q-32 5-32-42Z M790-2635q20-33 42-7q22 31-10 49q-32 5-32-42Z\" fill=\"#92976a\" stroke=\"#2d4938\" stroke-width=\"8\"/>\n<path id=\"single-large-lotus-strike\" d=\"M-794-1509Q-822-1740-672-1901Q-501-2016-346-1873Q-217-1730-254-1517Q-291-1303-470-1244Q-684-1223-794-1509Z\" fill=\"#617052\" stroke=\"#899366\" stroke-width=\"17\"/>\n<path d=\"M-747-1499Q-773-1698-643-1840Q-502-1931-379-1810Q-273-1684-301-1530Q-338-1351-483-1297Q-650-1282-747-1499Z\" fill=\"#3d5b47\" stroke=\"#999e72\" stroke-width=\"10\"/>\n<path id=\"eight-petal-lotus\" d=\"M-514-1776Q-471-1735-478-1676Q-421-1720-374-1698Q-378-1645-430-1615Q-358-1602-350-1554Q-396-1517-451-1535Q-432-1467-470-1429Q-518-1458-519-1510Q-557-1459-613-1470Q-627-1521-581-1560Q-642-1578-650-1633Q-593-1656-548-1624Q-567-1711-514-1776Z\" fill=\"#9b9b6a\"/>\n<path d=\"M-544-1627Q-490-1651-466-1600Q-445-1548-497-1529Q-553-1514-573-1567Q-589-1609-544-1627Z\" fill=\"#485f43\" stroke=\"#b3aa74\" stroke-width=\"8\"/>\n<path id=\"one-flowing-heavenly-robe-relief\" d=\"M407-1950Q353-2010 388-2080Q429-2130 477-2079Q510-2038 481-1980L435-1950L443-1886Q512-1859 529-1785Q604-1764 672-1812Q749-1869 815-1831Q720-1817 706-1762Q653-1693 551-1694L507-1558Q538-1481 613-1431Q713-1370 783-1245Q623-1300 539-1369Q423-1396 366-1482Q320-1408 227-1384Q183-1344 180-1268Q154-1396 237-1493Q319-1561 343-1666L332-1790Q261-1836 202-1789Q139-1721 60-1741Q180-1788 187-1865Q264-1946 347-1889L391-1917Z\" fill=\"#7f8860\" opacity=\"0.59\"/>\n<path d=\"M391-1980Q428-2001 467-1980M348-1829Q368-1776 398-1757L383-1639M444-1828Q478-1768 463-1697L431-1538Q455-1457 534-1413M249-1462Q333-1483 376-1541\" fill=\"none\" stroke=\"#b0a57a\" stroke-width=\"10\" opacity=\"0.48\"/>\n<path id=\"three-aged-bronze-catches\" d=\"M-984-2011Q-950-2167-912-2250M959-1320L1001-1050M-1200-865L-1227-667\" fill=\"none\" stroke=\"#b9ad83\" stroke-width=\"9\" opacity=\"0.35\"/>\n</g>\n<g id=\"underside-view-hollow-interior\">\n<path id=\"one-deep-elliptical-mouth\" d=\"M-1480-262Q-940-764 35-793Q850-794 1295-690L1444-320Q1109-7 48 23Q-967 29-1480-262Z\" fill=\"#233d38\" stroke=\"#7c8059\" stroke-width=\"14\"/>\n<path id=\"mouth-cast-thickness\" d=\"M-1480-262Q-940-764 35-793Q850-794 1295-690L1308.97-610Q934-659 35-636Q-872-612-1295-219Z\" fill=\"url(#bell-lip)\"/>\n<path id=\"inner-cavern-under-bell\" d=\"M-1289-216Q-903-614 35-636Q936-659 1308.97-610L1444-320Q1033-51 49-24Q-836-19-1289-216Z\" fill=\"#0d222e\"/>\n<path d=\"M-1267-215Q-841-519 43-544Q940-557 1400-344\" fill=\"none\" stroke=\"#526549\" stroke-width=\"22\" opacity=\"0.52\"/>\n<path id=\"near-rim-hidden-thickness\" d=\"M-1289-216Q-840-20 49-24Q986-54 1345-244L1497-140Q1033 0 35 0Q-1003 0-1480-156Z\" fill=\"#1b352f\"/>\n</g>\n<g id=\"cast-sound-window-frame\">\n<path id=\"continuous-throat-shadow\" d=\"M1303-610H660Q620-610 620-590V-360Q620-320 670-320H935\" fill=\"none\" stroke=\"#0d222e\" stroke-width=\"9\" stroke-linejoin=\"round\"/>\n<path id=\"one-heavy-inner-bronze-ledge\" d=\"M935-333Q1150-326 1444-320L1469-276Q1157-286 957-298Z\" fill=\"#50604b\"/>\n<path id=\"receding-ledge-underside\" d=\"M957-298Q1157-286 1469-276L1440-245Q1191-263 984-279Z\" fill=\"#273e34\"/>\n</g>\n<g id=\"single-east-cast-bearing-ear\">\n<path d=\"M1310-440H1990V-320H1350Z\" fill=\"#465f49\" stroke=\"#203b31\" stroke-width=\"13\"/>\n<path d=\"M1350-431H1981V-414H1358Z\" fill=\"#7a7d58\"/>\n<path d=\"M1469-387H1950V-334H1492Z\" fill=\"#2b493b\"/>\n<path d=\"M1950-418V-336\" fill=\"none\" stroke=\"#718365\" stroke-width=\"11\"/>\n</g>\n<g id=\"one-continuous-heavy-mouth\">\n<path id=\"west-thick-lip\" d=\"M-1490-180L-1550 0H-980L-954-234Q-1186-224-1490-180Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"east-thick-lip\" d=\"M1061-234L1100 0H1620L1540-200Q1358-224 1061-234Z\" fill=\"url(#bell-lip)\" stroke=\"#152e2b\" stroke-width=\"13\"/>\n<path id=\"mouth-front-ring\" d=\"M-1550 0H1620L1596-62Q940-114 30-104Q-897-100-1528-67Z\" fill=\"url(#bell-lip)\" stroke=\"#162d2a\" stroke-width=\"13\"/>\n<path d=\"M-1521-62Q-873-89 30-89Q968-99 1595-57\" fill=\"none\" stroke=\"#baab7f\" stroke-width=\"13\"/>\n<path d=\"M-1543-8H1612\" fill=\"none\" stroke=\"#7f8460\" stroke-width=\"11\"/>\n<path d=\"M-1487-171Q-1224-170-962-176M1075-176Q1375-176 1534-191\" fill=\"none\" stroke=\"#c3ae7f\" stroke-width=\"13\"/>\n<path id=\"heavy-lip-contact-shadow\" d=\"M-1539-29H-984L-980 0H-1550Z M1100 0L1095-27H1607L1620 0Z\" fill=\"#203c34\"/>\n</g>\n</svg>\n"
       },
       "collision": [],
       "anchor": {
@@ -50788,7 +51128,7 @@
       "params": {
         "artRevision": 3,
         "collisionSource": "authored-stage-terrain",
-        "nodeCount": 62,
+        "nodeCount": 60,
         "koreanType": "beomjong-yongnyu-sound-pipe",
         "monumental": true,
         "continuousShell": true,
@@ -51562,9 +51902,9 @@
       {
         "path": "shared/runtime/stage18-bell.js",
         "beforeSha256": null,
-        "afterSha256": "91decdd49ed7d2372c09c2465f0629849394d7ba3b62ab0698c09def472dcfd5",
+        "afterSha256": "777856165523184b75bdaee5b5e0d9cb82c53a9f108beb0d6cec7a7d5b0fd65f",
         "before": null,
-        "after": "(function(G){'use strict';\n// Fresh bell expeditions opt in explicitly. Never upgrade an old Continue.\nconst A=G.HonroAct2,W=G.HonroAllies,E=G.HonroEncounters,C=G.HONRO_CORE,H=G.HONRO_CONTENT;\nconst clone=x=>JSON.parse(JSON.stringify(x));\nconst legacy=clone(H.stages[17]),active=b=>b?.honroStage===18&&!b.honroCustom&&b.honroBellRevision===1;\nconst steps=legacy.steps.filter(s=>s.id!=='lower-chain').map(s=>s.id==='upper-chain'?{...s,label:'장력 고정구 해제',requiredClass:undefined,parallelGroup:'bell-stabilize'}:s.id==='hold-silence'?{...s,parallelGroup:'bell-stabilize'}:s);\nsteps.splice(steps.findIndex(s=>s.id==='leak'),0,{id:'bell-descent',label:'빈 쓸림면을 확인하고 대종 내려앉히기',kind:'bell-descent'});\n// Map authoring copies these steps; the battle snapshot remains the authority.\nObject.assign(H.stages[17],{steps:clone(steps),goal:'억제진과 장력 고정구를 함께 안정시켜 대종을 내리고, 누출혼과 종지기 제압',guide:'담허로 억제를 시작한 뒤 4라운드 유지와 장력 고정구 해제를 함께 진행하세요. 고정구는 서쪽 먼 사격턱의 기본 화살이나 가까운 정비턱의 기본 공격으로 풀 수 있습니다. 두 조건 뒤 종의 쓸림면을 비우면 한 번 내려앉습니다. 아래 영구바닥과 양쪽 귀환길은 남습니다. 소단의 누출혼 분리, 종지기 비살상 제압, 잔여 들림 제압으로 마칩니다.',beats:{...legacy.beats,\n 'hold-silence':[['서술','담허의 옷자락이 떨림을 멈췄다. 종소리 아래에서 서로 다른 숨소리가 들렸다.'],['담허','울림은 잡혔네. 고정구만 풀리면 받침으로 무게를 옮길 수 있어.']],\n 'upper-chain':[['서술','장력 고정구가 빠졌다. 긴 사슬이 느슨해졌지만, 종은 아직 위에 머물렀다.'],['휘겸','받침이 버티고 있소. 억제가 끝나면 종 아래 가장자리부터 비웁시다.']],\n 'bell-descent':[['서술','거대한 청동 입술이 천천히 내려와 받침돌에 멎었다. 종은 깨지지 않았다. 그 아래에는 사람이 돌아 나올 길이 남았다.'],['소단','이제 틈을 잡을 수 있어요. 안에 남은 혼부터 나눌게요.']]\n}});\nconst contentFor=G.HonroObjectiveRevision.contentFor;\nG.HonroObjectiveRevision.contentFor=function(b,st){return b?.honroStage===18&&!b.honroBellRevision?legacy:contentFor(b,st);};\nconst memory=b=>(b.honroState.bellDescent??={version:1,status:'suspended',offset:0,count:0,warnings:{},entries:{},opportunities:{}});\nconst done=(b,id)=>!!A.memory(b).done[id];\nfunction satisfied(b,s){return active(b)&&s.kind==='bell-descent'?memory(b).status==='settled':null;}\nconst alive=u=>!u.dead&&u.hp>0;\nconst intersects=(a,z)=>a.x+a.w>z.x&&a.x<z.x+z.w&&a.y+a.h>z.y&&a.y<z.y+z.h;\nconst sweepCache=new WeakMap();\nfunction sweepGeometry(b){const spec=b.honroBellDescent;if(!spec)return[];if(sweepCache.has(spec))return sweepCache.get(spec);let polygons=spec.sweepPolygons;\n if(!polygons?.length){polygons=[];for(const id of spec.terrainIds||[]){const t=b.terrain.find(t=>t.id===id);if(!t)continue;const ps=C.poly(t).map(p=>({x:p.x,y:p.y-(memory(b).offset||0)})),drop=spec.distance||200,moved=ps.map(p=>({x:p.x,y:p.y+drop}));polygons.push(ps,moved);for(let i=0;i<ps.length;i++){const j=(i+1)%ps.length;if(Math.abs(ps[i].x-ps[j].x)<.001)continue;polygons.push([ps[i],ps[j],moved[j],moved[i]]);}}}\n const shapes=(polygons||[]).map(ps=>{const vertices=(ps.points||ps).map(p=>Array.isArray(p)?{x:p[0],y:p[1]}:{x:p.x,y:p.y}),xs=vertices.map(p=>p.x),ys=vertices.map(p=>p.y);return{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),vertices,broken:false,oneWay:false};});sweepCache.set(spec,shapes);return shapes;\n}\nfunction swept(b,box){const shapes=sweepGeometry(b);return shapes.length?shapes.some(t=>intersects(box,t)&&C.terrainRectIntersects(t,box.x,box.y,box.w,box.h,.01)):(b.honroBellDescent?.sweep||[]).some(z=>intersects(box,z));}\nfunction occupants(b){const out=[];\n for(const u of b.units)if(alive(u)&&swept(b,{x:u.x-u.r-8,y:u.y-u.h-8,w:u.r*2+16,h:u.h+16}))out.push({kind:u.summoned?'summon':u.side===0?'hero':u.honroProtected?'resident':'enemy',id:u.id,label:u.name||u.id,x:u.x,y:u.y});\n for(const s of b.stakes||[])if(s.active!==false&&(!Number.isFinite(s.expires)||s.expires>b.round)&&swept(b,{x:s.x-24,y:s.y-74,w:48,h:80}))out.push({kind:'stake',id:s.id,label:'진목',x:s.x,y:s.y});\n for(const p of b.projectiles||[])if(swept(b,{x:p.x-(p.radius||6),y:p.y-(p.radius||6),w:(p.radius||6)*2,h:(p.radius||6)*2}))out.push({kind:'projectile',id:p.id,label:'날아가는 탄',x:p.x,y:p.y});\n return out;\n}\nfunction safeBoundary(app){const e=app.engine,b=e.b;return !!app.actorBoundary&&!app.dialogue&&!['flight','review','summon','won','lost'].includes(b.phase)&&!b.projectiles.length&&!b.volley&&!b.summonTurn&&!b.units.some(u=>u.meleeAction||u.meleeFollow==='ready')&&!e.settleBusy();}\nfunction shift(b,offset){const m=memory(b),delta=offset-(m.offset||0);if(Math.abs(delta)<1e-9)return;const spec=b.honroBellDescent||{},ids=new Set(spec.terrainIds||[]);\n for(const list of [b.terrain,b.honroWorldTerrain])for(const t of list||[])if(ids.has(t.id)){t.y+=delta;t.vertices=t.vertices?.map(p=>({...p,y:p.y+delta}));}\n const elements=new Set(spec.elementIds||[]);\n for(const list of [b.honroEnvironment?.placements,b.honroLandmarks,b.honroElements])for(const p of list||[])if(elements.has(p.id)){p.y+=delta;if(p.stage18Bell&&Number.isFinite(p.stage18Bell.lipY))p.stage18Bell.lipY=p.y;}\n m.offset=offset;if(m.status!=='lowering')b.sceneVersion=(b.sceneVersion||0)+1;\n}\nfunction settle(app){const b=app.engine.b,m=memory(b),spec=b.honroBellDescent;\n shift(b,spec.distance);m.status='settled';m.count=1;m.completedSerial=b.honroState.actorTurnSerial||0;m.completedRound=b.round;m.blockers=[];m.reason='';\n for(const id of spec.openTerrainIds||[]){for(const list of [b.terrain,b.honroWorldTerrain]){const t=list?.find(t=>t.id===id);if(t)t.broken=true;}}\n // These named fixed links are authored in both maps; no actor is carried.\n b.sceneVersion++;app.dirty=true;app.event('대종이 받침에 멎었다. 아래 귀환길과 동쪽 측면길이 열려 있다.');\n if(m.camera&&app.scene?.storyRelease)app.scene.storyRelease(m.camera,350);\n app.engine.emit?.('save');\n}\nfunction transition(app){const e=app.engine,b=e.b,m=memory(b);if(!b.honroBellDescent||m.status==='settled'||m.status==='lowering')return;\n const hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=b.terrain.find(t=>t.id==='upper-chain');\n if(!done(b,'silence')||!hold||!A.satisfied(b,hold)||!anchor?.broken)return;\n const serial=b.honroState.actorTurnSerial||0;\n if(m.status==='suspended'){\n  m.status='warning';m.warnedSerial=serial;m.warnedRound=b.round;m.opportunities={};m.warnedHeroes=e.heroesAlive().filter(u=>!u.summoned&&!u.enthrall).map(u=>u.id);\n  m.reason='각 동행이 경고 뒤 한 번 움직이거나 행동을 마치면 안전을 확인합니다.';\n  app.event('사슬의 장력이 풀린다. 종 가장자리의 황토빛 쓸림면을 비우세요. 아래 푸른 바닥과 양쪽 귀환길은 안전합니다. 각 동행에게 이동 기회가 남습니다.');app.dirty=true;return;\n }\n if(app.actorBoundary&&serial>m.warnedSerial&&m.warnedHeroes.includes(app.actorBoundary))m.opportunities[app.actorBoundary]=serial;\n const waiting=m.warnedHeroes.filter(id=>{const u=e.unit(id);return u&&alive(u)&&!m.opportunities[id];});\n const blocks=occupants(b);m.blockers=blocks;\n const reason=waiting.length?'이동 기회 대기 · '+waiting.map(id=>e.unit(id)?.name||id).join('·'):blocks.length?'하강 대기 · '+[...new Set(blocks.map(v=>v.label))].join('·')+' · 아래 바닥이나 양쪽 귀환길로 이동하세요':'쓸림면이 비었습니다. 다음 안전한 행동 종료에 내려앉습니다.';\n if(m.reason!==reason){m.reason=reason;app.dirty=true;}\n m.status=waiting.length?'warning':'waiting';\n if(waiting.length||blocks.length||!safeBoundary(app))return;\n m.status='lowering';b.sceneVersion=(b.sceneVersion||0)+1;m.elapsed=0;m.duration=.9;m.startOffset=m.offset||0;m.reason='대종이 받침에 내려앉는 중';app.dirty=true;\n if(app.scene?.storyFocusPoint){m.camera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};const at=b.honroBellDescent.resting||{};app.scene.storyFocusPoint(at.x||7200,(at.y||7000)-400,180,.32);}\n app.event('청동 입술이 받침돌을 향해 천천히 내려온다.');e.emit?.('save');\n}\nfunction entryFor(b,source){const spec=b.honroBellDescent?.entries||{},index=source==='keeper-retaliation'?0:Math.floor(Number(source.split('-').at(-1))/3);const list=source==='keeper-retaliation'?spec.keeper:spec.hold;return list?.[index%(list?.length||1)];}\nfunction warnWave(app,source){const b=app.engine.b,m=memory(b);if(m.warnings[source]||!entryFor(b,source))return;m.warnings[source]={serial:b.honroState.actorTurnSerial||0,round:b.round};\n app.event(source==='keeper-retaliation'?'동쪽 정비문에서 곡괭이 넷이 들린다. 다음 행동 뒤 들어올 마지막 보복조다.':entryFor(b,source).side==='west'?'서쪽 암틈에서 종울림이 모인다. 다음 행동 뒤 억제진으로 들어온다.':'종입술 바깥에서 잔울림이 엉긴다. 다음 행동 뒤 들어올 틈을 살피세요.');app.dirty=true;\n}\nfunction prepareWaves(app){const b=app.engine.b,a=A.memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),h=a.holds?.['hold-silence'];\n if(done(b,'silence')&&!done(b,'hold-silence')&&(h?.spawned||0)<(hold?.wave?.count||0)&&h?.waveRound!==b.round)warnWave(app,'hold-silence-'+(h?.spawned||0));\n const boss=app.engine.unit('act2-keeper');if(boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])warnWave(app,'keeper-retaliation');\n}\nconst execute=W.execute;\nW.execute=function(app,action){const b=app.engine?.b,source=action?.source;\n if(!active(b)||action?.type!=='spawn'||!(source==='keeper-retaliation'||/^hold-silence-(0|3|6)$/.test(source||'')))return execute(app,action);\n const mem=memory(b),warning=mem.warnings[source],entry=entryFor(b,source);if(!entry||!warning||(b.honroState.actorTurnSerial||0)<=warning.serial)return false;\n const n=action.n||1,choices=[entry,...(entry.alternates||[]).map(p=>({...p,side:entry.side}))],flying=!!G.HonroWorld.archetypes[action.kind]?.flying;\n const at=choices.find(p=>!b.units.some(u=>alive(u)&&u.side!==1&&Array.from({length:n},(_,i)=>p.x+(i-(n-1)/2)*110).some(x=>Math.abs(u.x-x)<u.r+220)&&Math.abs(u.y-(p.y-(flying?255:0)))<330));if(!at)return false;\n const previous=new Set(b.units.map(u=>u.id)),result=execute(app,{...action,x:at.x,y:at.y,support:at.surfaceId||at.support,spacing:110,maxDistance:260});if(result===false)return false;\n for(const u of b.units)if(u.side===1&&!previous.has(u.id)){\n  if(u.elite){u.combatBaseHp/=1.25;u.hp=u.maxHp=Math.round(u.combatBaseHp*C.DIFFICULTIES[b.difficulty].hp);u.honroXpWeight/=1.25;}u.elite=false;u.armor=.04;u.honroBellEntry=at.side;\n }\n mem.entries[source]={side:at.side,x:at.x,y:at.y,round:b.round,serial:b.honroState.actorTurnSerial||0};return result;\n};\nconst cap=E.populationCap;E.populationCap=function(b){return active(b)?Math.max(cap(b),b.honroBellPopulationCap||53):cap(b);};\nconst attach=A.attach;A.attach=function(app,e){const out=attach(app,e),b=e.b;if(!active(b)||e.honroBellAttached)return out;e.honroBellAttached=true;memory(b);\n const recover=e.recover.bind(e);e.recover=function(u){const out=recover(u);A.subdue(e,u);return out;};\n const can=e.canAct.bind(e);e.canAct=function(){return memory(e.b).status!=='lowering'&&can();};\n const tick=e.tick.bind(e);e.tick=function(dt){const m=memory(e.b);if(m.status!=='lowering')return tick(dt);\n  m.elapsed=Math.min(m.duration||.9,(m.elapsed||0)+Math.max(0,dt));const t=m.elapsed/(m.duration||.9),ease=t*t*(3-2*t);shift(e.b,(m.startOffset||0)+(e.b.honroBellDescent.distance-(m.startOffset||0))*ease);app.dirty=true;\n  if(t>=1)settle(app);\n };\n const refresh=e.refreshActivation.bind(e);e.refreshActivation=function(){refresh();const heroes=e.heroesAlive(),mem=memory(b);mem.alert??={};for(const [cell,radius]of Object.entries(b.honroBellActivation||{})){const units=e.alive(1).filter(u=>u.honroBellCell===cell);if(!units.length)continue;const alert=mem.alert[cell]||units.some(u=>u.aggroUntil>=b.round||heroes.some(h=>Math.hypot(h.x-u.x,(h.y-u.y)*.8)<radius));if(alert)mem.alert[cell]=true;else for(const u of units)u.awake=false;}};e.refreshActivation();return out;\n};\nconst tick=A.tick;A.tick=function(app,dt){const b=app.engine?.b;if(!active(b))return tick(app,dt);if(memory(b).status==='lowering')return;\n app.engine.refreshActivation();prepareWaves(app);transition(app);if(memory(b).status==='lowering')return;const out=tick(app,dt);transition(app);return out;\n};\nconst state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const a=A.memory(b),m=memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=b.terrain.find(t=>t.id==='upper-chain');\n if(done(b,'silence')&&(!A.satisfied(b,hold)||!anchor?.broken)){\n  const h=a.holds?.['hold-silence'],site=b.honroMarkers.find(s=>s.id==='hold-silence');out.summary=`${A.steps(b).filter(s=>A.satisfied(b,s)).length}/8 · 병렬 안정화 · 억제 ${h?.progress||0}/4라운드${h?.contested?' (적 점유)':''} · 고정구 ${anchor?.broken?'해제':'남음'}`;\n  out.targets=[...(!A.satisfied(b,hold)&&site?[{id:'hold-silence',kind:'interact',x:site.x,y:site.y,label:'담허 · 억제진 4라운드'}]:[]),...(!anchor?.broken&&anchor?[{id:'upper-chain',kind:'seal',x:anchor.x+anchor.w/2,y:anchor.y,label:'장력 고정구 · 기본 공격',box:anchor}]:[])];\n }\n if(['warning','waiting','lowering'].includes(m.status)){out.summary='4/8 · '+m.reason;out.targets=[{id:'bell-descent',kind:'interact',x:b.honroBellDescent.resting?.x||7200,y:b.honroBellDescent.resting?.y||7100,label:m.reason}];}\n return out;\n};\nG.HonroStage18Bell={active,memory,steps,legacy,satisfied,sweepGeometry,swept,occupants,safeBoundary,transition,shift,entryFor,prepareWaves};\n})(globalThis);\n"
+        "after": "(function(G){'use strict';\n// Fresh bell expeditions opt in explicitly. Never upgrade an old Continue.\nconst A=G.HonroAct2,W=G.HonroAllies,E=G.HonroEncounters,C=G.HONRO_CORE,H=G.HONRO_CONTENT;\nconst clone=x=>JSON.parse(JSON.stringify(x));\nconst legacy=clone(H.stages[17]),active=b=>b?.honroStage===18&&!b.honroCustom&&b.honroBellRevision===1;\nconst steps=legacy.steps.filter(s=>s.id!=='lower-chain').map(s=>s.id==='clear-wards'?{...s,label:'억제진 진입 수비대 제압'}:s.id==='upper-chain'?{...s,label:'장력 고정구 해제',requiredClass:undefined,parallelGroup:'bell-stabilize'}:s.id==='hold-silence'?{...s,parallelGroup:'bell-stabilize'}:s);\nsteps.splice(steps.findIndex(s=>s.id==='leak'),0,{id:'bell-descent',label:'빈 쓸림면을 확인하고 대종 내려앉히기',kind:'bell-descent'});\n// Map authoring copies these steps; the battle snapshot remains the authority.\nObject.assign(H.stages[17],{steps:clone(steps),goal:'억제진과 장력 고정구를 함께 안정시켜 대종을 내리고, 누출혼과 종지기 제압',guide:'입구와 암정 앞줄의 진입 수비대를 제압하세요. 상층과 혼 지원은 남아 반격합니다. 담허로 억제를 시작한 뒤 4라운드 유지와 장력 고정구 해제를 함께 진행하세요. 고정구는 서쪽 먼 사격턱의 기본 화살이나 가까운 정비턱의 기본 공격으로 풀 수 있습니다. 두 조건 뒤 종의 쓸림면을 비우면 한 번 내려앉습니다. 아래 영구바닥과 양쪽 귀환길은 남습니다. 소단의 누출혼 분리, 종지기 비살상 제압, 잔여 들림 제압으로 마칩니다.',beats:{...legacy.beats,\n 'clear-wards':[['서술','암정 앞줄이 물러섰다. 위쪽 석등과 들림은 돌턱 뒤에서 아직 움직였다.'],['담허','진까지 가는 길은 열렸네. 위의 것들은 내가 자리를 바꿔 가며 막겠네.']],\n 'hold-silence':[['서술','담허의 옷자락이 떨림을 멈췄다. 종소리 아래에서 서로 다른 숨소리가 들렸다.'],['담허','울림은 잡혔네. 무게가 받침으로 옮겨갈 때까지 이 자리를 지키겠네.']],\n 'upper-chain':[['서술','장력 고정구가 빠졌다. 긴 사슬이 느슨해졌지만, 종은 아직 위에 머물렀다.'],['휘겸','받침이 버티고 있소. 종 아래 가장자리에 남은 이가 없는지 확인합시다.']],\n 'bell-descent':[['서술','거대한 청동 입술이 천천히 내려와 받침돌에 멎었다. 종은 깨지지 않았다. 그 아래에는 사람이 돌아 나올 길이 남았다.'],['소단','이제 틈을 잡을 수 있어요. 안에 남은 혼부터 나눌게요.']]\n}});\nconst contentFor=G.HonroObjectiveRevision.contentFor;\nG.HonroObjectiveRevision.contentFor=function(b,st){return b?.honroStage===18&&!b.honroBellRevision?legacy:contentFor(b,st);};\nconst memory=b=>(b.honroState.bellDescent??={version:1,status:'suspended',offset:0,count:0,warnings:{},entries:{},opportunities:{}});\nconst done=(b,id)=>!!A.memory(b).done[id];\nfunction satisfied(b,s){return active(b)&&s.kind==='bell-descent'?memory(b).status==='settled':null;}\nconst alive=u=>!u.dead&&u.hp>0;\nconst intersects=(a,z)=>a.x+a.w>z.x&&a.x<z.x+z.w&&a.y+a.h>z.y&&a.y<z.y+z.h;\nconst sweepCache=new WeakMap();\nfunction sweepGeometry(b){const spec=b.honroBellDescent;if(!spec)return[];if(sweepCache.has(spec))return sweepCache.get(spec);let polygons=spec.sweepPolygons;\n if(!polygons?.length){polygons=[];for(const id of spec.terrainIds||[]){const t=b.terrain.find(t=>t.id===id);if(!t)continue;const ps=C.poly(t).map(p=>({x:p.x,y:p.y-(memory(b).offset||0)})),drop=spec.distance||200,moved=ps.map(p=>({x:p.x,y:p.y+drop}));polygons.push(ps,moved);for(let i=0;i<ps.length;i++){const j=(i+1)%ps.length;if(Math.abs(ps[i].x-ps[j].x)<.001)continue;polygons.push([ps[i],ps[j],moved[j],moved[i]]);}}}\n const shapes=(polygons||[]).map(ps=>{const vertices=(ps.points||ps).map(p=>Array.isArray(p)?{x:p[0],y:p[1]}:{x:p.x,y:p.y}),xs=vertices.map(p=>p.x),ys=vertices.map(p=>p.y);return{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),vertices,broken:false,oneWay:false};});sweepCache.set(spec,shapes);return shapes;\n}\nfunction swept(b,box){const shapes=sweepGeometry(b);return shapes.length?shapes.some(t=>intersects(box,t)&&C.terrainRectIntersects(t,box.x,box.y,box.w,box.h,.01)):(b.honroBellDescent?.sweep||[]).some(z=>intersects(box,z));}\nfunction occupants(b){const out=[];\n for(const u of b.units)if(alive(u)&&swept(b,{x:u.x-u.r-8,y:u.y-u.h-8,w:u.r*2+16,h:u.h+16}))out.push({kind:u.summoned?'summon':u.side===0?'hero':u.honroProtected?'resident':'enemy',id:u.id,label:u.name||u.id,x:u.x,y:u.y});\n for(const s of b.stakes||[])if(s.active!==false&&(!Number.isFinite(s.expires)||s.expires>b.round)&&swept(b,{x:s.x-24,y:s.y-74,w:48,h:80}))out.push({kind:'stake',id:s.id,label:'진목',x:s.x,y:s.y});\n for(const p of b.projectiles||[])if(swept(b,{x:p.x-(p.radius||6),y:p.y-(p.radius||6),w:(p.radius||6)*2,h:(p.radius||6)*2}))out.push({kind:'projectile',id:p.id,label:'날아가는 탄',x:p.x,y:p.y});\n return out;\n}\nfunction safeBoundary(app){const e=app.engine,b=e.b;return !!app.actorBoundary&&!app.dialogue&&!['flight','review','summon','won','lost'].includes(b.phase)&&!b.projectiles.length&&!b.volley&&!b.summonTurn&&!b.units.some(u=>u.meleeAction||u.meleeFollow==='ready')&&!e.settleBusy();}\nfunction shift(b,offset){const m=memory(b),delta=offset-(m.offset||0);if(Math.abs(delta)<1e-9)return;const spec=b.honroBellDescent||{},ids=new Set(spec.terrainIds||[]);\n for(const list of [b.terrain,b.honroWorldTerrain])for(const t of list||[])if(ids.has(t.id)){t.y+=delta;t.vertices=t.vertices?.map(p=>({...p,y:p.y+delta}));}\n const elements=new Set(spec.elementIds||[]);\n for(const list of [b.honroEnvironment?.placements,b.honroLandmarks,b.honroElements])for(const p of list||[])if(elements.has(p.id)){p.y+=delta;if(p.stage18Bell&&Number.isFinite(p.stage18Bell.lipY))p.stage18Bell.lipY=p.y;}\n m.offset=offset;if(m.status!=='lowering')b.sceneVersion=(b.sceneVersion||0)+1;\n}\nfunction settle(app){const b=app.engine.b,m=memory(b),spec=b.honroBellDescent;\n shift(b,spec.distance);m.status='settled';m.count=1;m.completedSerial=b.honroState.actorTurnSerial||0;m.completedRound=b.round;m.blockers=[];m.reason='';\n for(const id of spec.openTerrainIds||[]){for(const list of [b.terrain,b.honroWorldTerrain]){const t=list?.find(t=>t.id===id);if(t)t.broken=true;}}\n // These named fixed links are authored in both maps; no actor is carried.\n b.sceneVersion++;app.dirty=true;app.event('대종이 받침에 멎었다. 아래 귀환길과 동쪽 측면길이 열려 있다.');\n if(m.camera&&app.scene?.storyRelease)app.scene.storyRelease(m.camera,350);\n app.engine.emit?.('save');\n}\nfunction transition(app){const e=app.engine,b=e.b,m=memory(b);if(!b.honroBellDescent||m.status==='settled'||m.status==='lowering')return;\n const hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=b.terrain.find(t=>t.id==='upper-chain');\n if(!done(b,'silence')||!hold||!A.satisfied(b,hold)||!anchor?.broken)return;\n const serial=b.honroState.actorTurnSerial||0;\n if(m.status==='suspended'){\n  m.status='warning';m.warnedSerial=serial;m.warnedRound=b.round;m.opportunities={};m.warnedHeroes=e.heroesAlive().filter(u=>!u.summoned&&!u.enthrall).map(u=>u.id);\n  m.reason='각 동행이 경고 뒤 한 번 움직이거나 행동을 마치면 안전을 확인합니다.';\n  app.event('사슬의 장력이 풀린다. 종 가장자리의 황토빛 쓸림면을 비우세요. 아래 푸른 바닥과 양쪽 귀환길은 안전합니다. 각 동행에게 이동 기회가 남습니다.');app.dirty=true;return;\n }\n if(app.actorBoundary&&serial>m.warnedSerial&&m.warnedHeroes.includes(app.actorBoundary))m.opportunities[app.actorBoundary]=serial;\n const waiting=m.warnedHeroes.filter(id=>{const u=e.unit(id);return u&&alive(u)&&!m.opportunities[id];});\n const blocks=occupants(b);m.blockers=blocks;\n const reason=waiting.length?'이동 기회 대기 · '+waiting.map(id=>e.unit(id)?.name||id).join('·'):blocks.length?'하강 대기 · '+[...new Set(blocks.map(v=>v.label))].join('·')+' · 아래 바닥이나 양쪽 귀환길로 이동하세요':'쓸림면이 비었습니다. 다음 안전한 행동 종료에 내려앉습니다.';\n if(m.reason!==reason){m.reason=reason;app.dirty=true;}\n m.status=waiting.length?'warning':'waiting';\n if(waiting.length||blocks.length||!safeBoundary(app))return;\n m.status='lowering';b.sceneVersion=(b.sceneVersion||0)+1;m.elapsed=0;m.duration=.9;m.startOffset=m.offset||0;m.reason='대종이 받침에 내려앉는 중';app.dirty=true;\n if(app.scene?.storyFocusPoint){m.camera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};const at=b.honroBellDescent.resting||{};app.scene.storyFocusPoint(at.x||7200,(at.y||7000)-400,180,.32);}\n app.event('청동 입술이 받침돌을 향해 천천히 내려온다.');e.emit?.('save');\n}\nfunction entryFor(b,source){const spec=b.honroBellDescent?.entries||{},index=source==='keeper-retaliation'?0:Math.floor(Number(source.split('-').at(-1))/3);const list=source==='keeper-retaliation'?spec.keeper:spec.hold;return list?.[index%(list?.length||1)];}\nfunction warnWave(app,source){const b=app.engine.b,m=memory(b);if(m.warnings[source]||!entryFor(b,source))return;m.warnings[source]={serial:b.honroState.actorTurnSerial||0,round:b.round};\n app.event(source==='keeper-retaliation'?'동쪽 정비문에서 곡괭이 넷이 들린다. 다음 행동 뒤 들어올 마지막 보복조다.':entryFor(b,source).side==='west'?'서쪽 암틈에서 종울림이 모인다. 다음 행동 뒤 억제진으로 들어온다.':'종입술 바깥에서 잔울림이 엉긴다. 다음 행동 뒤 들어올 틈을 살피세요.');app.dirty=true;\n}\nfunction prepareWaves(app){const b=app.engine.b,a=A.memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),h=a.holds?.['hold-silence'];\n if(done(b,'silence')&&!done(b,'hold-silence')&&(h?.spawned||0)<(hold?.wave?.count||0)&&h?.waveRound!==b.round)warnWave(app,'hold-silence-'+(h?.spawned||0));\n const boss=app.engine.unit('act2-keeper');if(boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])warnWave(app,'keeper-retaliation');\n}\nconst execute=W.execute;\nW.execute=function(app,action){const b=app.engine?.b,source=action?.source;\n if(!active(b)||action?.type!=='spawn'||!(source==='keeper-retaliation'||/^hold-silence-(0|3|6)$/.test(source||'')))return execute(app,action);\n const mem=memory(b),warning=mem.warnings[source],entry=entryFor(b,source);if(!entry||!warning||(b.honroState.actorTurnSerial||0)<=warning.serial)return false;\n const n=action.n||1,choices=[entry,...(entry.alternates||[]).map(p=>({...p,side:entry.side}))],flying=!!G.HonroWorld.archetypes[action.kind]?.flying;\n const at=choices.find(p=>!b.units.some(u=>alive(u)&&u.side!==1&&Array.from({length:n},(_,i)=>p.x+(i-(n-1)/2)*110).some(x=>Math.abs(u.x-x)<u.r+220)&&Math.abs(u.y-(p.y-(flying?255:0)))<330));if(!at)return false;\n const previous=new Set(b.units.map(u=>u.id)),result=execute(app,{...action,x:at.x,y:at.y,support:at.surfaceId||at.support,spacing:110,maxDistance:260});if(result===false)return false;\n for(const u of b.units)if(u.side===1&&!previous.has(u.id)){\n  if(u.elite){u.combatBaseHp/=1.25;u.hp=u.maxHp=Math.round(u.combatBaseHp*C.DIFFICULTIES[b.difficulty].hp);u.honroXpWeight/=1.25;}u.elite=false;u.armor=.04;u.honroBellEntry=at.side;\n }\n mem.entries[source]={side:at.side,x:at.x,y:at.y,round:b.round,serial:b.honroState.actorTurnSerial||0};return result;\n};\nconst cap=E.populationCap;E.populationCap=function(b){return active(b)?Math.max(cap(b),b.honroBellPopulationCap||53):cap(b);};\nconst attach=A.attach;A.attach=function(app,e){const out=attach(app,e),b=e.b;if(!active(b)||e.honroBellAttached)return out;e.honroBellAttached=true;memory(b);\n const recover=e.recover.bind(e);e.recover=function(u){const out=recover(u);A.subdue(e,u);return out;};\n const can=e.canAct.bind(e);e.canAct=function(){return memory(e.b).status!=='lowering'&&can();};\n const tick=e.tick.bind(e);e.tick=function(dt){const m=memory(e.b);if(m.status!=='lowering')return tick(dt);\n  m.elapsed=Math.min(m.duration||.9,(m.elapsed||0)+Math.max(0,dt));const t=m.elapsed/(m.duration||.9),ease=t*t*(3-2*t);shift(e.b,(m.startOffset||0)+(e.b.honroBellDescent.distance-(m.startOffset||0))*ease);app.dirty=true;\n  if(t>=1)settle(app);\n };\n const refresh=e.refreshActivation.bind(e);e.refreshActivation=function(){refresh();const heroes=e.heroesAlive(),mem=memory(b);mem.alert??={};for(const [cell,radius]of Object.entries(b.honroBellActivation||{})){const units=e.alive(1).filter(u=>u.honroBellCell===cell);if(!units.length)continue;const alert=mem.alert[cell]||units.some(u=>u.aggroUntil>=b.round||heroes.some(h=>Math.hypot(h.x-u.x,(h.y-u.y)*.8)<radius));if(alert)mem.alert[cell]=true;else for(const u of units)u.awake=false;}};e.refreshActivation();return out;\n};\nconst tick=A.tick;A.tick=function(app,dt){const b=app.engine?.b;if(!active(b))return tick(app,dt);if(memory(b).status==='lowering')return;\n app.engine.refreshActivation();prepareWaves(app);transition(app);if(memory(b).status==='lowering')return;const out=tick(app,dt);transition(app);return out;\n};\nconst state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const a=A.memory(b),m=memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=b.terrain.find(t=>t.id==='upper-chain');\n if(done(b,'silence')&&(!A.satisfied(b,hold)||!anchor?.broken)){\n  const h=a.holds?.['hold-silence'],site=b.honroMarkers.find(s=>s.id==='hold-silence');out.summary=`${A.steps(b).filter(s=>A.satisfied(b,s)).length}/8 · 병렬 안정화 · 억제 ${h?.progress||0}/4라운드${h?.contested?' (적 점유)':''} · 고정구 ${anchor?.broken?'해제':'남음'}`;\n  out.targets=[...(!A.satisfied(b,hold)&&site?[{id:'hold-silence',kind:'interact',x:site.x,y:site.y,label:'담허 · 억제진 4라운드'}]:[]),...(!anchor?.broken&&anchor?[{id:'upper-chain',kind:'seal',x:anchor.x+anchor.w/2,y:anchor.y,label:'장력 고정구 · 기본 공격',box:anchor}]:[])];\n }\n if(['warning','waiting','lowering'].includes(m.status)){out.summary='4/8 · '+m.reason;out.targets=[{id:'bell-descent',kind:'interact',x:b.honroBellDescent.resting?.x||7200,y:b.honroBellDescent.resting?.y||7100,label:m.reason}];}\n return out;\n};\nG.HonroStage18Bell={active,memory,steps,legacy,satisfied,sweepGeometry,swept,occupants,safeBoundary,transition,shift,entryFor,prepareWaves};\n})(globalThis);\n"
       },
       {
         "path": "shared/runtime/stake-crossing.js",
@@ -51630,7 +51970,7 @@
       }
     ],
     "beforeFingerprintSha256": "a35992a4a3482875861dfb7efaf5799b083ba96aa19a26e8fa90b20a4aa7d773",
-    "afterFingerprintSha256": "04f59177edcf2b077ca48d84a2383819a10cca0282347ba4f5c9f0114ee6affb",
+    "afterFingerprintSha256": "0ac085075a51d7730272a89871bee1eca6fcf8087a3753973f94b7451540d8d0",
     "stages": [
       {
         "id": 18,
@@ -52106,11 +52446,11 @@
                 }
               ]
             ],
-            "guide": "담허로 억제를 시작한 뒤 4라운드 유지와 장력 고정구 해제를 함께 진행하세요. 고정구는 서쪽 먼 사격턱의 기본 화살이나 가까운 정비턱의 기본 공격으로 풀 수 있습니다. 두 조건 뒤 종의 쓸림면을 비우면 한 번 내려앉습니다. 아래 영구바닥과 양쪽 귀환길은 남습니다. 소단의 누출혼 분리, 종지기 비살상 제압, 잔여 들림 제압으로 마칩니다.",
+            "guide": "입구와 암정 앞줄의 진입 수비대를 제압하세요. 상층과 혼 지원은 남아 반격합니다. 담허로 억제를 시작한 뒤 4라운드 유지와 장력 고정구 해제를 함께 진행하세요. 고정구는 서쪽 먼 사격턱의 기본 화살이나 가까운 정비턱의 기본 공격으로 풀 수 있습니다. 두 조건 뒤 종의 쓸림면을 비우면 한 번 내려앉습니다. 아래 영구바닥과 양쪽 귀환길은 남습니다. 소단의 누출혼 분리, 종지기 비살상 제압, 잔여 들림 제압으로 마칩니다.",
             "steps": [
               {
                 "id": "clear-wards",
-                "label": "공명진을 둘러싼 정예 제압",
+                "label": "억제진 진입 수비대 제압",
                 "kind": "clear",
                 "cohorts": "west"
               },
@@ -52187,7 +52527,7 @@
                 ],
                 [
                   "휘겸",
-                  "받침이 버티고 있소. 억제가 끝나면 종 아래 가장자리부터 비웁시다."
+                  "받침이 버티고 있소. 종 아래 가장자리에 남은 이가 없는지 확인합시다."
                 ]
               ],
               "leak": [
@@ -52225,7 +52565,17 @@
                 ],
                 [
                   "담허",
-                  "울림은 잡혔네. 고정구만 풀리면 받침으로 무게를 옮길 수 있어."
+                  "울림은 잡혔네. 무게가 받침으로 옮겨갈 때까지 이 자리를 지키겠네."
+                ]
+              ],
+              "clear-wards": [
+                [
+                  "서술",
+                  "암정 앞줄이 물러섰다. 위쪽 석등과 들림은 돌턱 뒤에서 아직 움직였다."
+                ],
+                [
+                  "담허",
+                  "진까지 가는 길은 열렸네. 위의 것들은 내가 자리를 바꿔 가며 막겠네."
                 ]
               ],
               "bell-descent": [

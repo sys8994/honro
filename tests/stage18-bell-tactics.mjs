@@ -15,6 +15,11 @@ const clean=s=>assert(!s.damageEvents.some(d=>d.target.startsWith('p-')),'Repres
 {
  const area=shoot('mage','sb-suppression-court',3150,'M04',{angle:178.22341845531292,power:.5868074329134592}),q=fixture('archer','sb-suppression-court',3150),single=fire(q,'A01',aimAt(q,'A01','sb-b-center'));for(const id of ['sb-b-left','sb-b-center'])assert(area.damage[id]>0);assert.equal(['sb-b-left','sb-b-center'].filter(id=>single.damage[id]>0).length,1);clean(area);clean(single);assert.equal(single.focusSpent,0);rows.push({role:'Damheo: court frontline role cluster',area,single});console.log('PASS M04 reaches both real frontline bodies; basic arrow reaches one');
 }
+// The untouched raised B cluster has three bodies in the rank-one radius.
+// This supported-pose comparison does not replace the live hold-entry test.
+{
+ const area=shoot('mage','sb-suppression-court',3200,'M04',{angle:55,power:.65}),targets=['sb-b-high','sb-b-spirit-right','sb-b-spirit-high'];for(const id of targets)assert(area.damage[id]>0,id+' lies in the authored rank-one area');clean(area);rows.push({role:'Damheo: three distinct authored B support bodies',targets,area});console.log('PASS rank-one M04 pressures all three unchanged B support bodies');
+}
 // East D actually reverses on its solid wall and returns into the upper support.
 {
  const aim={angle:119,power:.35},target='sb-d-bat-front',bounced=shoot('mage','sb-east-resonance-ledge',8605,'M11',aim),blocked=shoot('mage','sb-east-resonance-ledge',8605,'M01',aim);assert(bounced.contacts.some(c=>c.id==='sb-east-reflection-wall'));assert(bounced.hits.some(h=>h.id===target&&h.reflectCount>=1));assert(bounced.damage[target]>0);assert.equal(blocked.damage[target]||0,0);assert(blocked.contacts.some(c=>c.id==='sb-east-reflection-wall'));clean(bounced);clean(blocked);
@@ -24,6 +29,11 @@ const clean=s=>assert(!s.damageEvents.some(d=>d.target.startsWith('p-')),'Repres
 // over the same unmodified pier is the ordinary movement/aim alternative.
 {
  const aim={angle:-5.492915009678983,power:.6541459238952495},target='sb-b-screen',piercing=shoot('occultist','sb-suppression-court',3150,'O04',aim),blocked=shoot('occultist','sb-suppression-court',3150,'O01',aim),alternative=shoot('archer','sb-suppression-court',3150,'A01',{angle:67,power:.35});assert(piercing.damage[target]>0);assert(piercing.crossings.some(c=>c.id==='sb-court-reflector'));assert.equal(piercing.contacts.length,0);assert.equal(blocked.damage[target]||0,0);assert(blocked.contacts.some(c=>c.id==='sb-court-reflector'));assert(alternative.damage[target]>0);assert.equal(alternative.focusSpent,0);for(const s of [piercing,blocked,alternative])clean(s);rows.push({role:'Sodan: screened court support',target,piercing,sameAimFreeBlocked:blocked,freeHighArcAlternative:alternative});console.log('PASS O04 crosses real stone; O01 stops; free high-arrow alternative hits');
+}
+// The bronze shell itself, not a substitute stone wall, is the O04 obstacle.
+// A second supported lower approach keeps this same occultist's free O01 valid.
+{
+ const aim={angle:-75.6403238045415,power:.703544423389673},target='sb-f-spirit-front',piercing=shoot('occultist','sb-maintenance-shelf',5788,'O04',aim),blocked=shoot('occultist','sb-maintenance-shelf',5788,'O01',aim),alternative=shoot('occultist','act2-floor',5970,'O01',{angle:45.29742488900882,power:.7542179690378951});assert(piercing.damage[target]>0);assert(piercing.crossings.some(c=>c.id==='sb-bell-west-wall'));assert.equal(blocked.damage[target]||0,0);assert(blocked.contacts.some(c=>c.id==='sb-bell-west-wall'));assert(alternative.damage[target]>0);assert.equal(alternative.focusSpent,0);for(const s of [piercing,blocked,alternative])clean(s);rows.push({role:'Sodan: actual bronze wall phase and free lower approach',target,piercing,sameAimFreeBlocked:blocked,freeSameHeroAlternative:alternative});console.log('PASS O04 crosses the intact bronze shell; O01 stops; free lower O01 hits');
 }
 // O08 itself reveals/weakens the unchanged hidden enemy. The comparison arrow
 // is identical, and the support action's own damage is recorded separately.

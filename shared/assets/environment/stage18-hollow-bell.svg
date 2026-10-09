@@ -49,25 +49,22 @@
 <path id="three-aged-bronze-catches" d="M-984-2011Q-950-2167-912-2250M959-1320L1001-1050M-1200-865L-1227-667" fill="none" stroke="#b9ad83" stroke-width="9" opacity="0.35"/>
 </g>
 <g id="underside-view-hollow-interior">
-<path id="one-deep-elliptical-mouth" d="M-1480-262Q-940-764 35-793Q1091-776 1530-264Q1109-7 48 23Q-967 29-1480-262Z" fill="#233d38" stroke="#7c8059" stroke-width="14"/>
-<path id="mouth-cast-thickness" d="M-1480-262Q-940-764 35-793Q1091-776 1530-264L1345-244Q899-619 35-636Q-872-612-1295-219Z" fill="url(#bell-lip)"/>
-<path id="inner-cavern-under-bell" d="M-1289-216Q-903-614 35-636Q914-619 1345-244Q983-51 49-24Q-836-19-1289-216Z" fill="url(#inner-void)"/>
-<path d="M-1267-215Q-841-519 43-544Q897-526 1314-242" fill="none" stroke="#526549" stroke-width="22" opacity="0.52"/>
+<path id="one-deep-elliptical-mouth" d="M-1480-262Q-940-764 35-793Q850-794 1295-690L1444-320Q1109-7 48 23Q-967 29-1480-262Z" fill="#233d38" stroke="#7c8059" stroke-width="14"/>
+<path id="mouth-cast-thickness" d="M-1480-262Q-940-764 35-793Q850-794 1295-690L1308.97-610Q934-659 35-636Q-872-612-1295-219Z" fill="url(#bell-lip)"/>
+<path id="inner-cavern-under-bell" d="M-1289-216Q-903-614 35-636Q936-659 1308.97-610L1444-320Q1033-51 49-24Q-836-19-1289-216Z" fill="#0d222e"/>
+<path d="M-1267-215Q-841-519 43-544Q940-557 1400-344" fill="none" stroke="#526549" stroke-width="22" opacity="0.52"/>
 <path id="near-rim-hidden-thickness" d="M-1289-216Q-840-20 49-24Q986-54 1345-244L1497-140Q1033 0 35 0Q-1003 0-1480-156Z" fill="#1b352f"/>
 </g>
-<g id="sound-window-recess">
-<path id="original-cast-side-sound-window" d="M620-590Q620-610 660-610H1308.97L1444-320H670Q620-320 620-360Z" fill="#0d222e"/>
-</g>
 <g id="cast-sound-window-frame">
-<path id="smooth-cast-upper-reveal" d="M589-618Q600-648 653-648H1302L1318-610H660Q620-610 620-572V-360Q620-320 670-320H1444L1469-288H668Q587-288 580-356V-565Q580-595 589-618Z" fill="#52634a" stroke="#243c33" stroke-width="8"/>
-<path d="M603-623Q616-634 658-634H1304M590-565V-360Q596-303 668-303H1452" fill="none" stroke="#a3976a" stroke-width="8"/>
-<path id="sound-window-underside-depth" d="M620-558L653-572V-374Q653-345 684-344H1428L1444-320H670Q620-320 620-360Z" fill="#203b32"/>
+<path id="continuous-throat-shadow" d="M1303-610H660Q620-610 620-590V-360Q620-320 670-320H935" fill="none" stroke="#0d222e" stroke-width="9" stroke-linejoin="round"/>
+<path id="one-heavy-inner-bronze-ledge" d="M935-333Q1150-326 1444-320L1469-276Q1157-286 957-298Z" fill="#50604b"/>
+<path id="receding-ledge-underside" d="M957-298Q1157-286 1469-276L1440-245Q1191-263 984-279Z" fill="#273e34"/>
 </g>
 <g id="single-east-cast-bearing-ear">
-<path d="M1310-440H1990V-320H1350Z" fill="#617452" stroke="#1d392e" stroke-width="13"/>
-<path d="M1350-431H1981V-394H1364Z" fill="#a2956c"/>
-<path d="M1469-387H1950V-334H1492Z" fill="#34573f"/>
-<path d="M1875-425V-336M1505-425V-336" fill="none" stroke="#91a071" stroke-width="16"/>
+<path d="M1310-440H1990V-320H1350Z" fill="#465f49" stroke="#203b31" stroke-width="13"/>
+<path d="M1350-431H1981V-414H1358Z" fill="#7a7d58"/>
+<path d="M1469-387H1950V-334H1492Z" fill="#2b493b"/>
+<path d="M1950-418V-336" fill="none" stroke="#718365" stroke-width="11"/>
 </g>
 <g id="one-continuous-heavy-mouth">
 <path id="west-thick-lip" d="M-1490-180L-1550 0H-980L-954-234Q-1186-224-1490-180Z" fill="url(#bell-lip)" stroke="#152e2b" stroke-width="13"/>

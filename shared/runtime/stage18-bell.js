@@ -3,12 +3,13 @@
 const A=G.HonroAct2,W=G.HonroAllies,E=G.HonroEncounters,C=G.HONRO_CORE,H=G.HONRO_CONTENT;
 const clone=x=>JSON.parse(JSON.stringify(x));
 const legacy=clone(H.stages[17]),active=b=>b?.honroStage===18&&!b.honroCustom&&b.honroBellRevision===1;
-const steps=legacy.steps.filter(s=>s.id!=='lower-chain').map(s=>s.id==='upper-chain'?{...s,label:'장력 고정구 해제',requiredClass:undefined,parallelGroup:'bell-stabilize'}:s.id==='hold-silence'?{...s,parallelGroup:'bell-stabilize'}:s);
+const steps=legacy.steps.filter(s=>s.id!=='lower-chain').map(s=>s.id==='clear-wards'?{...s,label:'억제진 진입 수비대 제압'}:s.id==='upper-chain'?{...s,label:'장력 고정구 해제',requiredClass:undefined,parallelGroup:'bell-stabilize'}:s.id==='hold-silence'?{...s,parallelGroup:'bell-stabilize'}:s);
 steps.splice(steps.findIndex(s=>s.id==='leak'),0,{id:'bell-descent',label:'빈 쓸림면을 확인하고 대종 내려앉히기',kind:'bell-descent'});
 // Map authoring copies these steps; the battle snapshot remains the authority.
-Object.assign(H.stages[17],{steps:clone(steps),goal:'억제진과 장력 고정구를 함께 안정시켜 대종을 내리고, 누출혼과 종지기 제압',guide:'담허로 억제를 시작한 뒤 4라운드 유지와 장력 고정구 해제를 함께 진행하세요. 고정구는 서쪽 먼 사격턱의 기본 화살이나 가까운 정비턱의 기본 공격으로 풀 수 있습니다. 두 조건 뒤 종의 쓸림면을 비우면 한 번 내려앉습니다. 아래 영구바닥과 양쪽 귀환길은 남습니다. 소단의 누출혼 분리, 종지기 비살상 제압, 잔여 들림 제압으로 마칩니다.',beats:{...legacy.beats,
- 'hold-silence':[['서술','담허의 옷자락이 떨림을 멈췄다. 종소리 아래에서 서로 다른 숨소리가 들렸다.'],['담허','울림은 잡혔네. 고정구만 풀리면 받침으로 무게를 옮길 수 있어.']],
- 'upper-chain':[['서술','장력 고정구가 빠졌다. 긴 사슬이 느슨해졌지만, 종은 아직 위에 머물렀다.'],['휘겸','받침이 버티고 있소. 억제가 끝나면 종 아래 가장자리부터 비웁시다.']],
+Object.assign(H.stages[17],{steps:clone(steps),goal:'억제진과 장력 고정구를 함께 안정시켜 대종을 내리고, 누출혼과 종지기 제압',guide:'입구와 암정 앞줄의 진입 수비대를 제압하세요. 상층과 혼 지원은 남아 반격합니다. 담허로 억제를 시작한 뒤 4라운드 유지와 장력 고정구 해제를 함께 진행하세요. 고정구는 서쪽 먼 사격턱의 기본 화살이나 가까운 정비턱의 기본 공격으로 풀 수 있습니다. 두 조건 뒤 종의 쓸림면을 비우면 한 번 내려앉습니다. 아래 영구바닥과 양쪽 귀환길은 남습니다. 소단의 누출혼 분리, 종지기 비살상 제압, 잔여 들림 제압으로 마칩니다.',beats:{...legacy.beats,
+ 'clear-wards':[['서술','암정 앞줄이 물러섰다. 위쪽 석등과 들림은 돌턱 뒤에서 아직 움직였다.'],['담허','진까지 가는 길은 열렸네. 위의 것들은 내가 자리를 바꿔 가며 막겠네.']],
+ 'hold-silence':[['서술','담허의 옷자락이 떨림을 멈췄다. 종소리 아래에서 서로 다른 숨소리가 들렸다.'],['담허','울림은 잡혔네. 무게가 받침으로 옮겨갈 때까지 이 자리를 지키겠네.']],
+ 'upper-chain':[['서술','장력 고정구가 빠졌다. 긴 사슬이 느슨해졌지만, 종은 아직 위에 머물렀다.'],['휘겸','받침이 버티고 있소. 종 아래 가장자리에 남은 이가 없는지 확인합시다.']],
  'bell-descent':[['서술','거대한 청동 입술이 천천히 내려와 받침돌에 멎었다. 종은 깨지지 않았다. 그 아래에는 사람이 돌아 나올 길이 남았다.'],['소단','이제 틈을 잡을 수 있어요. 안에 남은 혼부터 나눌게요.']]
 }});
 const contentFor=G.HonroObjectiveRevision.contentFor;
