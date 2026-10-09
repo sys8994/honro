@@ -19,7 +19,7 @@ for(let stage=1;stage<=30;stage++){
  const {b}=battlefield(g,stage);
  for(const original of b.terrain.filter(t=>t.oneWay&&!t.broken)){
   assert(!original.honroCeiling,`${stage}/${original.id}: actual cave ceiling cannot be one-way`);
-  const {x,y}=sample(original),bottom=original.y+original.h,body=[];
+  const {x,y}=sample(original),bottom=original.y+original.h,body=[],ascents=[];
   const q=fixture(original),r=3,above={x,y:original.y-100},below={x,y:bottom+100};
   assert.equal(q.e.projectileCollision(below,above,r,q.u.id,[],false),null,`${stage}/${original.id}: upward sweep`);
   const hit=q.e.projectileCollision(above,below,r,q.u.id,[],false);
@@ -27,8 +27,15 @@ for(let stage=1;stage<=30;stage++){
   assert(q.e.collision(below,above,r,q.u.id,[],false),`${original.id}: generic geometry stays intact`);
   for(const cls of ['archer','mage','knight','occultist']){
    const {e,u}=fixture(original,cls),start=Math.max(bottom+u.h+20,y+u.h+60),hp=u.hp;
-   Object.assign(u,{x,y:start,vy:-6000,jumping:true});e.integrateBody(u,(start-y+80)/6000);
+   Object.assign(u,{x,y:start,vy:-6000,jumping:true});
+   // A single distance/initial-speed dt ignores gravity and drag. On a tall
+   // authored trunk that stopped the fixture below the roof while still rising,
+   // even in the old engine. Keep the same forced speed and passage assertion,
+   // but advance real fixed physics steps until passage, apex, or a finite cap.
+   let ascentFrames=0;
+   while(u.y>=y&&u.vy<0&&ascentFrames<1200){e.integrateBody(u,C.STEP);ascentFrames++;}
    assert(u.y<y,`${stage}/${original.id}/${cls}: upward body passage`);assert.equal(u.hp,hp);
+   ascents.push({cls,start,roof:y,frames:ascentFrames,step:C.STEP,finishY:u.y,finishVy:u.vy});
    Object.assign(u,{x,y:y-40,vy:6000,vx:0,jumping:false,fallApexY:y-40});e.integrateBody(u,.05);
    near(u.y,y,`${stage}/${original.id}/${cls}: downward landing`);assert(e.grounded(u));assert.equal(u.hp,hp);
    body.push(cls);
@@ -48,7 +55,7 @@ for(let stage=1;stage<=30;stage++){
    if(id==='O11'||id==='O13'){const summon=b.units.find(v=>v.summoned);assert(summon);near(summon.y,y,'summon remains on roof');}
    skills.push(id);
   }
-  rows.push({stage,id:original.id,element:original.honroElementId||null,x,y,body,skills});
+  rows.push({stage,id:original.id,element:original.honroElementId||null,x,y,body,ascents,skills});
  }
 }
 assert(rows.length>0);
