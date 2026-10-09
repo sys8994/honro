@@ -123,3 +123,13 @@ R134 시작의 실제 저장을 다시 Continue해 마지막 O01→승리→보�
 기존 oneWay 상승 fixture의 단일 큰dt는 중력/drag를 무시했다. 원래 passage·HP·landing·실탄 assertion을 유지하고 고정 STEP로 실제 상승 중 유한 시간만 기다리도록 테스트만 좁혔다. 현재299개 oneWay의1196상승/착지와1495실탄이 통과했고, 전체 `test:one-way-platforms`도 종료코드0으로 재통과했다. 독립 검수는 같은 수정 테스트를058과기준95 양쪽에서 다시 통과시켰다. 생산 파일/두 HTML은058과 동일하다.
 
 전체 `npm run verify`는 build·TypeScript·게임 Node 회귀·rc21 map audit를 통과한 뒤 Chromium 생성의 `socket() ... Operation not permitted`에서 멈췄다. 뒤 브라우저 통합/성능 체인은 미실행이며 전체 green으로 표시하지 않는다. 별도 전체 offline의 기존7장 Continue·물길 자산순서·옛 balance/미술/schema/topology fixture 실패도 새18 회귀와 분리해 보존한다. 원격 master 반영과 기존 Pages의 실제 Game/Workshop·세로·입력·저장/하강 검수는 마지막 공개 게이트다.
+
+## 정착한 19장의 생성 필드 보존 (2026-10-09)
+
+기준 `d7b9fdf6696c05e53012605b77200a5ba7389197`의 수정하지 않은 archive에서도 기존 `act2-revision`은 `stage-19 exact canonical recipe`에서 실패했다. 원인은 동결된 19장에 이미 있는 빈 `initialState.honroBellActivation: {}`를 옛 레시피에서 다시 생성할 때 빠뜨리는 것이었다. 19장 구조를 정렬한 해시는 생성 결과 `2fdb65f7…`, 기존 canonical `7d0c765a…`였고 독립 새 runtime에서도 이 필드 하나의 차이를 확인했다.
+
+`tools/map-forge/stage18-bell.mjs`에 정착한 19장이면서 필드가 아예 없는 경우에만 `{}`를 추가하는 한 줄을 넣었다. 이미 명시된 값은 보존한다. 실제 18/19 지도, runtime, 저장 형식과 진행 payload는 변경하지 않는다.
+
+- `node tests/stage19-bell-authoring-preservation.mjs`: 누락 복원, 반복 저작, 명시 값 보존 3건. 전30 지도와 자산값을 대조하고, 18/19 전체 지도 및 기존 runtime123개·구맵/저장 fixture3개의 원본 해시를 확인한다. 복원된19의 정렬 해시는 기존 `7d0c765a…`와 같다.
+- `node tests/stage18-bell-app-resume.mjs`: warning/waiting Skip, 구18/19 Continue, 실제 하강 중 export/import/Continue의 5건 통과. 구18/19는 각각 전체36개 snapshot 필드와 대화 payload/쪽을 그대로 보존한다.
+- 기존 미술 생성기가 18장 자산을 Library 끝에 다시 붙이는 순서는 이 지도 필드 복구와 별개다. 기존 전체 프로젝트/Library 순서 assertion은 그대로 유지하며, 좁은 새 검사를 전체 레시피나 전체 회귀의 합격으로 대신하지 않는다.

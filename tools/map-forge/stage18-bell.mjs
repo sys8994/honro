@@ -196,6 +196,7 @@ export function applyStage18Bell(project,{roster='candidate41',steps}={}){
   st.initialState={...old.initialState,honroBellRevision:1,honroAct2GeometryRevision:9,honroActiveLimit:3,honroCaveForms:[],honroCaveEnvelope:{version:2,portals:[{side:'left',top:4420,bottom:5800},{side:'right',top:4770,bottom:6310}]},honroBellDescent:makeDescent(at)};
   if(!settled&&steps)st.initialState.honroAct2Steps=clone(steps);
   if(settled)st.initialState.honroState={...old.initialState.honroState,bellDescent:{version:1,status:'settled',offset:200,count:1}};
+  if(settled&&!Object.hasOwn(st.initialState,'honroBellActivation'))st.initialState.honroBellActivation={};
   const currentSteps=st.initialState.honroAct2Steps;
   st.markers=old.markers.filter(m=>m.id!=='lower-chain').map(m=>{const key=m.id==='marker-upper-chain'?'upper-chain':m.id,p=nodes[key];return p?{...m,x:key==='upper-chain'?5625:p.x,y:key==='upper-chain'?4460:p.y,...(key==='upper-chain'?{requiredClass:undefined,label:'장력 고정구 해제'}:{})}:m;});
   if(!settled&&!st.markers.some(m=>m.id==='bell-descent'))st.markers.push({id:'bell-descent',type:'act2',...nodes['bell-descent'],label:'종의 장력을 풀고 안전하게 내려앉히기'});
