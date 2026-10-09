@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-7000 -6000 28000 21000">
+<title>묵종의 공동: 깊은 먹벽과 한 줄기 묵은 빛</title>
+<desc>Original pure vector cavern. Three unequal granite shoulders and one deep recess leave the monumental bell as the sole central silhouette. These low-contrast distant forms never define playable collision.</desc>
+<defs>
+<linearGradient id="chamber-depth" x1="4300" y1="500" x2="7800" y2="9200" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#111d28"/><stop offset="0.46" stop-color="#1a303c"/><stop offset="0.78" stop-color="#18313a"/><stop offset="1" stop-color="#10212e"/></linearGradient>
+<linearGradient id="canyon-left" x1="1300" y1="2400" x2="4200" y2="7400" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#334751"/><stop offset="0.49" stop-color="#243c47"/><stop offset="1" stop-color="#102631"/></linearGradient>
+<linearGradient id="canyon-right" x1="10300" y1="2400" x2="11400" y2="7500" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#344b52"/><stop offset="0.55" stop-color="#223d47"/><stop offset="1" stop-color="#18333d"/></linearGradient>
+<linearGradient id="single-light-rift" x1="4870" y1="1100" x2="7250" y2="7620" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#aab7a3" stop-opacity="0.11"/><stop offset="0.47" stop-color="#aab7a3" stop-opacity="0.035"/><stop offset="1" stop-color="#aab7a3" stop-opacity="0"/></linearGradient>
+<linearGradient id="low-cavern-breath" x1="0" y1="6720" x2="0" y2="8470" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#748e89" stop-opacity="0"/><stop offset="0.47" stop-color="#748e89" stop-opacity="0.1"/><stop offset="1" stop-color="#748e89" stop-opacity="0"/></linearGradient>
+</defs>
+<path id="single-continuous-cavern-wash" d="M-7000-6000H21000V15000H-7000Z" fill="url(#chamber-depth)"/>
+<path id="one-deep-recess-behind-bell" d="M4180-2100Q6460-2180 8380-1090Q9570-94 10170 1660L9960 4160Q10150 5360 9400 6480L8860 8140H4790Q4010 6800 4380 5210Q4750 3430 4220 2520Q3850 1530 4180-2100Z" fill="#0d222e"/>
+<path id="west-fault-shoulder" d="M-4300 8400L-3990 3460Q-2810 2930-1630 1950Q-597 1580 70 958L827 1385Q987 2230 1584 2736L1746 3385Q2461 3618 2946 4031Q2783 4608 3230 5120L3126 5835Q3550 6430 3840 6880L3340 8160Z" fill="url(#canyon-left)"/>
+<path id="west-large-lit-plane" d="M70 958L827 1385Q987 2230 1584 2736L1746 3385L2290 3650Q1500 3760 1330 4270L984 5010L160 4700Q443 3780-16 2920L-487 2200Z" fill="#3a4f57" opacity="0.44"/>
+<path id="west-returning-shadow-plane" d="M1330 4270L2290 3650L2946 4031Q2783 4608 3230 5120L3126 5835Q3550 6430 3840 6880L3340 8160L2260 8280Q2790 7020 2210 6230L2020 5380L984 5010Z" fill="#132d39"/>
+<path id="west-fault-contact" d="M1746 3385L1670 3620Q1250 3990 1130 4390L1020 4640L1030 5040L938 4970L996 4380Q1140 3940 1540 3630L1584 2736Z" fill="#10232e"/>
+<path id="near-west-shoulder-dim" d="M-530 7410Q-261 5897 609 5390L987 5203Q1430 5650 1540 6130L1850 6470Q1710 7020 2070 7830L1840 8590H-1700Z" fill="#29404a"/>
+<path id="east-unbroken-granite-shoulder" d="M9330-80L10050-546Q10910-424 11330 419L11470 1290Q11250 2320 11880 3040L12250 3480L12110 4350Q12590 4870 12980 5010L13640 5270L13730 5950Q14580 6750 15920 7000L16500 8620H9680L9440 7840Q10070 6810 9660 5910L9910 5020Q10420 4290 10080 3490L9690 2930L9730 1650Z" fill="url(#canyon-right)"/>
+<path id="east-shoulder-moon-plane" d="M9330-80L10050-546Q10910-424 11330 419L11470 1290L11280 2060L11370 2710L10970 3190L10420 2680Q10570 1760 10040 972L9610 823Z" fill="#4a5b60" opacity="0.29"/>
+<path id="east-middle-shadow-cut" d="M10420 2680L10970 3190L11370 2710L11880 3040L12250 3480L12110 4350L11790 4710L11180 4260Q11000 3550 10670 3350L10080 3490L9690 2930L9820 2670Z" fill="#142d38"/>
+<path id="east-broad-plane-below-keepers-ledge" d="M11790 4710L12110 4350Q12590 4870 12980 5010L13640 5270L13730 5950L13210 6140L12720 5780Q12020 5740 11790 5340Z" fill="#40545a" opacity="0.37"/>
+<path id="old-fault-shoulder-at-floor" d="M9870 6360L10830 5950L11480 6220L12060 6860Q12830 7130 13030 7880L12640 8600H9310L9440 7850Z" fill="#203b45"/>
+<path id="floorward-mist-one-soft-band" d="M-3400 6880Q640 6430 2810 6970Q5090 7460 7230 6900Q9890 6370 12070 6800L17100 7310L16400 8500H-3600Z" fill="url(#low-cavern-breath)"/>
+<path id="single-slanting-light-rift" d="M4730 1050L4900 1090L7250 7640L6180 7720Z" fill="url(#single-light-rift)"/>
+<path id="far-ceiling-wash" d="M-7000-6000H21000V1730Q17730 945 14680 780Q12740 905 11130 239Q9520-497 7890 68Q6290 534 4900 1090L4730 1050Q3820 1550 2910 980Q1920 100-75 958Q-3700 2170-7000 1430Z" fill="#152631"/>
+</svg>
