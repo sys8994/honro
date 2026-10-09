@@ -194367,7 +194367,114 @@
           }
         },
         "honroQuarryRoster": "candidate32e7",
-        "honroQuarryPopulationCap": 40
+        "honroQuarryPopulationCap": 40,
+        "honroQuarryActivation": {
+          "B-front": {
+            "radius": 1000,
+            "supports": [
+              "sq-north-quarry",
+              "sq-old-road"
+            ]
+          },
+          "B-support": {
+            "radius": 550,
+            "supports": [
+              "sq-north-quarry"
+            ]
+          },
+          "C-cut": {
+            "radius": 900,
+            "supports": [
+              "sq-west-quarry",
+              "sq-north-quarry"
+            ]
+          },
+          "C-hinge": {
+            "radius": 800,
+            "supports": [
+              "sq-west-quarry",
+              "sq-inner-joint",
+              "sq-lower-ground"
+            ],
+            "maxHeight": 550
+          },
+          "D-work": {
+            "radius": 950,
+            "supports": [
+              "sq-west-quarry",
+              "sq-west-turn-high"
+            ]
+          },
+          "D-rear": {
+            "radius": 700,
+            "supports": [
+              "sq-west-quarry",
+              "sq-west-turn-high",
+              "sq-west-turn-low"
+            ]
+          },
+          "E-hinge": {
+            "radius": 850,
+            "supports": [
+              "sq-lower-ground",
+              "sq-inner-joint"
+            ]
+          },
+          "E-west": {
+            "radius": 750,
+            "supports": [
+              "sq-lower-ground",
+              "sq-west-turn-low"
+            ]
+          },
+          "F-front": {
+            "radius": 800,
+            "supports": [
+              "sq-lower-ground",
+              "sq-back-road"
+            ]
+          },
+          "F-west": {
+            "radius": 700,
+            "supports": [
+              "sq-lower-ground",
+              "sq-inner-joint"
+            ]
+          },
+          "F-support": {
+            "radius": 600,
+            "supports": [
+              "sq-lower-ground",
+              "sq-back-road"
+            ]
+          },
+          "G-road": {
+            "radius": 1050,
+            "supports": [
+              "sq-back-road",
+              "sq-east-turn"
+            ],
+            "extra": [
+              {
+                "support": "sq-north-quarry",
+                "minX": 8450
+              }
+            ]
+          },
+          "G-high": {
+            "radius": 650,
+            "supports": [
+              "sq-back-road",
+              "sq-east-turn"
+            ],
+            "extra": [
+              {
+                "support": "sq-north-quarry",
+                "minX": 8450
+              }
+            ]
+          }
+        }
       },
       "environment": {
         "version": 4,

@@ -14,11 +14,28 @@ export const QUARRY_GROUPS=[
  {id:'F',support:'sq-lower-ground',role:'sign defenders',members:[['f1','minecart',6770,0,true],['f2','picks',6590],['f3','picks',6340],['f4','minecart',6130,0,false,true],['f5','bat',6660,200,false,true],['f6','resonance',6850,175]]},
  {id:'G',support:'sq-back-road',role:'rear circuit guard',members:[['g1','minecart',8130,0,true],['g2','picks',7960],['g3','bat',8354,58,false,true],['g4','resonance',8613.2193,26.385]]}
 ];
+// Access is measured on actual connected walking surfaces. A lower layer does
+// not wake merely because its weighted screen distance to the upper road is low.
+export const QUARRY_ACTIVATION={
+ 'B-front':{radius:1000,supports:['sq-north-quarry','sq-old-road']},
+ 'B-support':{radius:550,supports:['sq-north-quarry']},
+ 'C-cut':{radius:900,supports:['sq-west-quarry','sq-north-quarry']},
+ 'C-hinge':{radius:800,supports:['sq-west-quarry','sq-inner-joint','sq-lower-ground'],maxHeight:550},
+ 'D-work':{radius:950,supports:['sq-west-quarry','sq-west-turn-high']},
+ 'D-rear':{radius:700,supports:['sq-west-quarry','sq-west-turn-high','sq-west-turn-low']},
+ 'E-hinge':{radius:850,supports:['sq-lower-ground','sq-inner-joint']},
+ 'E-west':{radius:750,supports:['sq-lower-ground','sq-west-turn-low']},
+ 'F-front':{radius:800,supports:['sq-lower-ground','sq-back-road']},
+ 'F-west':{radius:700,supports:['sq-lower-ground','sq-inner-joint']},
+ 'F-support':{radius:600,supports:['sq-lower-ground','sq-back-road']},
+ 'G-road':{radius:1050,supports:['sq-back-road','sq-east-turn'],extra:[{support:'sq-north-quarry',minX:8450}]},
+ 'G-high':{radius:650,supports:['sq-back-road','sq-east-turn'],extra:[{support:'sq-north-quarry',minX:8450}]}
+};
 export function authorQuarryEncounters(g,s,{roster='candidate32e7'}={}){if(!['candidate32e7','originalBudget20e4'].includes(roster))throw Error('Named quarry roster required');const baseline=roster==='originalBudget20e4';s.units=s.units.filter(u=>u.team==='player');s.encounters=[];const groups=[];
  for(const group of QUARRY_GROUPS){const members=[];for(const row of group.members){const [id,kind,x,lift=0,elite=false,remove=false]=row;if(baseline&&remove)continue;const authoredElite=elite&&!(baseline&&['e1','g1'].includes(id)),y=quarryY(group.support,x)-lift,u={id:'sq-'+id,kind,team:'enemy',x,y,facing:group.id==='B'?1:-1,spawnIndex:s.units.length-4,behavior:'patrol',encounterGroup:'quarry-'+activationCell(id),stageOverrides:{honroCohort:activationCell(id)==='B-front'?'west':'quarry-'+group.id,honroAct2Revision:2,honroAct2Elite:authoredElite,honroQuarryCell:group.id,honroQuarryActivationCell:activationCell(id),honroEncounterRole:activationCell(id),honroEncounterSupport:group.support}};s.units.push(u);members.push({id:u.id,kind,x,y,elite:authoredElite,support:group.support});}
   for(const cell of [...new Set(members.map(m=>activationCell(m.id.slice(3))))])s.encounters.push({id:'quarry-'+cell,key:'quarry-'+cell,behavior:'patrol',unitIds:members.filter(m=>activationCell(m.id.slice(3))===cell).map(m=>m.id)});groups.push({id:group.id,role:group.role,mandatory:true,members});
  }
- const foes=s.units.filter(u=>u.team==='enemy');s.design.quarry.encounters={groups,initial:foes.length,elites:foes.filter(u=>u.stageOverrides.honroAct2Elite).length,finite:8,activeLimit:4};s.design.space.encounterSites=groups.flatMap(group=>group.members.map(u=>({id:u.id+'-site',roomId:'quarry-'+group.id,unitId:u.id,surfaceId:u.support,x:u.x,y:u.y})));s.initialState.honroQuarryRoster=roster;s.initialState.honroQuarryPopulationCap=baseline?28:40;return s;
+ const foes=s.units.filter(u=>u.team==='enemy');s.design.quarry.encounters={groups,initial:foes.length,elites:foes.filter(u=>u.stageOverrides.honroAct2Elite).length,finite:8,activeLimit:4};s.design.space.encounterSites=groups.flatMap(group=>group.members.map(u=>({id:u.id+'-site',roomId:'quarry-'+group.id,unitId:u.id,surfaceId:u.support,x:u.x,y:u.y})));s.initialState.honroQuarryActivation=clone(QUARRY_ACTIVATION);s.initialState.honroQuarryRoster=roster;s.initialState.honroQuarryPopulationCap=baseline?28:40;return s;
 }
 export async function authorStage12Quarry(project,g,{roster='candidate32e7',art=true}={}){const before=JSON.stringify(project.stages.filter(s=>s.metadata?.stageId!==12)),p=authorStage12QuarryGeometry(g,project),s=p.stages.find(s=>s.metadata.stageId===12),old=JSON.parse(await readFile(new URL('../../tests/fixtures/stage12-quarry/before-stage12.json',import.meta.url),'utf8'));
  s.design={title:s.design.title,description:s.design.description,act:2,revision:3,targetRounds:s.design.targetRounds,expectedMinutes:s.design.expectedMinutes,space:s.design.space,quarry:s.design.quarry};s.events=[];

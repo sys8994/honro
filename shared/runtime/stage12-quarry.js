@@ -19,8 +19,8 @@ G.HonroWorld.createEnemy=function(b,st,...args){const u=factory(b,st,...args);if
 const initialize=G.HonroProgression.initialize;
 G.HonroProgression.initialize=function(b,profile){if(!active(b)||b.honroGrowth)return initialize(b,profile);
  // Fresh creation only. Final authored elite weights and all eight finite
- // minecarts share the unchanged chapter combat ceiling. Continue never calls
- // this path or rewrites xpGranted/ledger/remaining resources.
+ // minecarts share the unchanged chapter combat ceiling. App mount does call
+ // initialize again; existing growth exits above before any retuning/rebudget.
  for(const u of b.units)if(u.side===1)A.tuneEncounter(u,12);
  const out=initialize(b,profile);if(b.honroGrowth){const reserve=8+2*.6;b.honroGrowth.weight+=reserve;b.honroGrowth.quarryWaveWeight=reserve;b.honroGrowth.quarryRevision=1;for(const u of b.units)if(u.side===1)G.HonroProgression.enemyXP(b,u);}return out;
 };
@@ -61,8 +61,29 @@ function installDirection(){if(directionInstalled||!G.HonroStoryDirection)return
   }return result;
  };
 }
-const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();return out;};
+function cellApproached(e,units,spec,heroes){return heroes.some(h=>{
+ const support=e.contactSurface(h.x,h.y-30,h.y+80)?.t.id;
+ const access=spec.supports.includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));
+ return access&&units.some(u=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius);
+});}
+function installActivation(e){const b=e.b;if(!b.honroQuarryActivation||e.honroQuarryActivationAttached)return;e.honroQuarryActivationAttached=true;
+ const refresh=e.refreshActivation.bind(e),combat=e.combatEnemies.bind(e);
+ e.refreshActivation=function(){refresh();const m=memory(b);m.alert??={};const heroes=e.heroesAlive(),eligible=new Set();
+  for(const [cell,spec]of Object.entries(b.honroQuarryActivation)){const units=e.alive(1).filter(u=>u.honroQuarryActivationCell===cell);if(!units.length)continue;
+   const hit=units.some(u=>u.aggroUntil>=b.round),approached=cellApproached(e,units,spec,heroes);
+   if(hit||approached)m.alert[cell]=true;
+   for(const u of units)u.awake=!!m.alert[cell];
+   // Keep the saved alert after a retreat, while freeing the four action slots
+   // when only an occluded different level is nearby. Actual player damage
+   // retains the engine's three-round response, including a remote phase shot.
+   if(hit||approached)eligible.add(cell);
+  }e.honroQuarryEligibleCells=eligible;
+ };
+ e.combatEnemies=function(){return combat().filter(u=>!u.honroQuarryActivationCell||!b.honroQuarryActivation[u.honroQuarryActivationCell]||e.honroQuarryEligibleCells?.has(u.honroQuarryActivationCell));};
+ e.refreshActivation();
+}
+const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();installActivation(e);return out;};
 const tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);const out=tick(app,dt);if(!ended(app))openGate(app);return out;};
 const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const m=b.honroState?.quarry;if(m?.gate==='waiting')out.summary+=' · 길표 뒤 통로가 비워지면 이어집니다';return out;};
-G.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,installDirection};
+G.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,installDirection,cellApproached,installActivation};
 })(globalThis);
