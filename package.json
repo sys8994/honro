@@ -26,7 +26,7 @@
     "test:combat-turn-fixes": "node tests/totem-turn-behavior.mjs && node tests/flying-knockback.mjs && npm run test:ally-targeting",
     "test:skills": "npm run test:combat-turn-fixes && node tests/skill-redesign.mjs && node tests/skill-polish.mjs && node tests/skill-effects.mjs && node tests/field-polish.mjs && node tests/sodan-followup.mjs && npm run test:sodan-charge && python -X utf8 tests/skill-redesign-browser.py && python -X utf8 tests/skill-polish-browser.py && python -X utf8 tests/skill-effects-browser.py && python -X utf8 tests/field-polish-browser.py && python -X utf8 tests/sodan-followup-browser.py && npm run test:hwigyeom && npm run test:skill-presentation && npm run test:existence",
     "test:existence": "node tests/existence-damage.mjs && node tests/existence-variety.mjs && node tests/act1-existence-roster.mjs && python -X utf8 tests/existence-damage-browser.py",
-    "test:hwigyeom": "node tests/hwigyeom-p5.mjs && python -X utf8 tests/hwigyeom-p5-browser.py && npm run test:skill-tuning",
+    "test:hwigyeom": "node tests/combo-landing-turn.mjs && node tests/hwigyeom-p5.mjs && python -X utf8 tests/hwigyeom-p5-browser.py && npm run test:skill-tuning",
     "test:skill-tuning": "node tests/skill-tuning.mjs && python -X utf8 tests/skill-tuning-browser.py && python -X utf8 tests/aim-direction-browser.py",
     "test:party": "npm run test:character-balance && node tools/party-forge/lab.mjs && python -X utf8 tests/party-art-browser.py",
     "test:skill-presentation": "python -X utf8 tests/skill-presentation-browser.py",

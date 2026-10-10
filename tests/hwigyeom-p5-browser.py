@@ -56,6 +56,19 @@ def suite(page,shell):
     # The follow-up selector must block all non-melee skills, even when equipped.
     page.evaluate("{const {a,e,u}=martialArena('S13',8);u.loadout=['S13','S09','S02'];e.fire('S13',40,.6);advance();a.updateHUD(true);}")
     check(shell+': melee-only follow-up disables rush, blade and jump controls',page.locator('[data-skill=S13]').is_disabled() and page.locator('[data-skill=S09]').is_disabled() and not page.locator('[data-skill=S02]').is_disabled() and page.locator('#jump').is_disabled())
+    # Run the production frame once per input while the fixture's RAF remains paused.
+    page.evaluate("window.inputFrame=()=>{const a=HonroApp,now=performance.now();a.prev=now-20;a.acc=0;a.constructor.prototype.frame.call(a,now);};window.followOrigin=(()=>{const u=HonroApp.engine.active;return{x:u.x,y:u.y,move:u.moveLeft,focus:u.focus};})();")
+    owner=page if hasattr(page,'keyboard') else page.page
+    for code,direction in [('ArrowLeft',-1),('ArrowRight',1),('KeyA',-1),('KeyD',1)]:
+        owner.keyboard.down({'KeyA':'a','KeyD':'d'}.get(code,code));page.evaluate('inputFrame()');owner.keyboard.up({'KeyA':'a','KeyD':'d'}.get(code,code))
+        check(shell+': grounded follow-up turns with '+code,page.evaluate('(direction)=>{const u=HonroApp.engine.active,o=followOrigin;return u.facing===direction&&u.x===o.x&&u.y===o.y&&u.moveLeft===o.move&&u.focus===o.focus&&u.meleeFollow==="ready";}',direction))
+    for direction in [-1,1]:
+        box=page.locator('#joystick').bounding_box();x=box['x']+box['width']*(.5+direction*.35);y=box['y']+box['height']/2
+        session=owner.context.new_cdp_session(owner)
+        session.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':x,'y':y}]});page.evaluate('inputFrame()')
+        check(shell+': touch follow-up turns without moving '+str(direction),page.evaluate('(direction)=>{const u=HonroApp.engine.active,o=followOrigin;return u.facing===direction&&u.x===o.x&&u.y===o.y&&u.moveLeft===o.move&&u.meleeFollow==="ready";}',direction))
+        session.send('Input.dispatchTouchEvent',{'type':'touchCancel','touchPoints':[]});session.detach()
+        check(shell+': touch cancellation releases direction',page.evaluate('HonroApp.stick.x===0'))
     page.locator('[data-skill=S02]').click();fire(page)
     check(shell+': selecting life slash for the follow-up pays one-third HP before the strike',page.evaluate('HonroApp.engine.active.hp===467&&HonroApp.engine.active.meleeAction.lifeCost===233&&HonroApp.engine.active.meleeAction.skill==="S02"'))
     page.evaluate('advance();paint()')

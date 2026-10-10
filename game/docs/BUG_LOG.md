@@ -16,6 +16,13 @@
 - 전체 검사 한계: `npm run verify`는 build/typecheck 뒤 기존 Exact combat-only density project hash(d369e6… 대 4e6862…)에서 중단되어 뒤 integration/performance는 미실행이다. 별도 `tests/migration.mjs`는 기존 All580 original asset membership/order에서 실패, 별도 `tests/integration.py`는 Chromium 프로세스의 socket Operation not permitted로 시작하지 못했다. 엔진/캠페인/원본 에셋 파일 diff는 없다. 이 실패를 정상 통과로 처리하지 않는다.
 - 기존 `event-target-health` 실발사·의식·저장/재개·파괴 후속 회귀는 8항목 통과 후 historical18의 기존 Exact density source membership 불일치에서 중단된다. 역사 fixture와 판정을 느슨하게 변경하지 않았다. Native 증거는 실제 브라우저 입력·GPU·정상 플레이·전체 verify·배포 검수를 대신하지 않는다. 최종 통합에서 두 HTML을 재빌드하고 실제 Pages를 별도 확인한다.
 
+# 파진연격 착지 후 제자리 방향 전환 — 2026-10-10
+
+- 원인: S13의 착지 보너스 검술(`meleeFollow=ready`)에서 걷기를 막는 조기 반환이 좌우 방향 전환도 막았다. 조이스틱은 입력 가능 상태에서도 비활성처럼 흐려졌다.
+- 변경: 공통 `Engine.move`에서 해당 보너스 상태가 실제 접지했을 때만 방향과 조준각을 함께 반전한다. 좌표·속도·이동력·집중·남은 보너스 공격은 바꾸지 않으며, 보통 걷기·점프·다른 동행 전환 금지는 유지한다. 공중/돌격 비행 중에는 적용하지 않는다. 키보드와 가상 조이스틱은 기존 공통 입력 경로를 그대로 사용하고 조이스틱의 잘못된 흐림만 제거한다.
+- 검증: 새 `tests/combo-landing-turn.mjs`는 기존 코드에서 첫 방향 전환 실패를 재현했고 수정 후 통과했다. 실제 Engine에서 양방향 Arrow/A·D와 합성 touch 콜백, 반복 입력, 좌표/자원 불변, 터치 취소, 충전 취소 후 재시도, 다음 S07의 모든 연격 피해·방향 및 정상 종료, 죽음/공중/점프/미정착/비행 제외를 검사한다. 기존 hwigyeom-p5·charge-input 126개·타입 검사·양 HTML 공통 빌드도 통과했다.
+- 한계: 합성 DOM 검사는 실제 모바일 브라우저 검수가 아니다. 기존 양 HTML 브라우저 검사에 실제 키와 CDP touch 검사를 추가했지만 이 환경의 Chromium은 `socket() Operation not permitted`로 시작되지 않았다. `npm run verify`는 빌드·타입 검사 후 기존 encounter-density 역사 입력 해시 불일치에서 중단됐으며 이후 통합/성능 단계는 미도달이다. 최종 통합·원격 반영·Pages 실제 검수는 별도 수행한다.
+
 # 여정첩 데스크톱 빈 공간과 그림 확장 — 2026-10-10
 
 - 원인: 줌 최솟값 0.85에서 지도 자체가 화면 폭의 85%가 되어 오른쪽 15%가 비었다. 같은 스크롤 DOM 안의 sticky 범례는 별도 높이도 만들었다.

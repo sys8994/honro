@@ -502,7 +502,15 @@ export class Engine {
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
     move(direction: number, dt: number) { if (!this.canAct())
-        return; const u = this.active!; delete u.moveTarget; this.walk(u, direction, dt); this.refreshActivation(); this.campCheck(); }
+        return; const u = this.active!;
+        // S13's grounded bonus action permits turning, but never locomotion.
+        if(u.meleeFollow==='ready'){
+            if(!this.grounded(u)||!Number.isFinite(direction)||!direction||dt<=0)return;
+            const facing=Math.sign(direction);
+            if(facing!==u.facing){u.angle=clamp(180-u.angle,AIM_MIN,AIM_MAX);u.facing=facing;}
+            return;
+        }
+        delete u.moveTarget; this.walk(u, direction, dt); this.refreshActivation(); this.campCheck(); }
     kineticMultiplier(p: Pick<Projectile, 'vx' | 'vy' | 'body'>, u: Unit) { const speed = Math.hypot(p.vx, p.vy); if (u.cls === 'archer')
         return clamp((.70+.60*Math.pow(speed/780,1.35))*(1+.06*equippedRank(u,'AP04')),.70,1.90*(1+.06*equippedRank(u,'AP04'))); if (u.cls === 'knight' && p.body)
         return clamp(.76 + .62 * Math.pow(speed / 720, 1.25), .80, 1.95); return 1; }
