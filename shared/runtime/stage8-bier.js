@@ -112,7 +112,7 @@ function cancelScene(app){const b=app.engine.b,m=memory(b),owned=ownedScene(app)
 const waveLabels={'stage8-first-seal':'서쪽 창고 산개 3','stage8-settled-crows':'높은 가지 까마귀 3','stage8-low-health':'동쪽 후미 산개 2'};
 function noticeText(b){const m=memory(b),parts=[];if(['won','lost'].includes(b.phase))return'';
  if(m.status==='announced')parts.push('상여 → 중앙 아래뜰');else if(m.status==='blocked')parts.push('상여 이동 보류'+(m.blockers?.length?' ('+[...new Set(m.blockers.map(p=>p.label))].slice(0,2).join('·')+')':''));else if(m.status==='moving')parts.push('상여가 중앙 아래뜰로 이동 중');
- for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push((G.HonroEncounterDensity?.active(b)?({'stage8-first-seal':'서쪽 창고 산개 2 · 까마귀 1','stage8-settled-crows':'마당 위 까마귀 3','stage8-low-health':'동쪽 오름길 산개 1 · 혼불 1'}[source]):waveLabels[source])+(w.status==='blocked'?' 진입 보류':''));}
+ for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push((G.HonroEncounterDensity?.active(b)?({'stage8-first-seal':'서쪽 창고 산개 2 · 까마귀 1','stage8-settled-crows':'마당 위 까마귀 3','stage8-low-health':(w.entry?.label||'중앙 마당 동쪽 오름길')+' 산개 1 · 혼불 1'}[source]):waveLabels[source])+(w.status==='blocked'?' 진입 보류':''));}
  return parts.length?parts.join(' · ')+' · 다음 행동 끝에 안전 확인':'';
 }
 function publishNotice(app){const b=app.engine.b,m=memory(b),text=ended(app)?'':noticeText(b);if(text){if((typeof app.eventText==='string'?app.eventText:m.notice)!==text)app.event(text);m.notice=text;}else if(m.notice){if(app.eventText===m.notice){app.eventText='';app.eventUntil=0;app.dirty=true;}delete m.notice;}return text;}
@@ -129,7 +129,8 @@ function cleanup(app){const b=app.engine?.b;if(!active(b))return false;
  cancelScene(app);publishNotice(app);return over;
 }
 function warnWave(app,source){const b=app.engine.b,m=memory(b);if(m.warnings[source]||m.entries[source]||ended(app)||source!==sources[0]&&!alive(boss(b)))return;const at=entryFor(b,source);if(!at)return;
- m.warnings[source]={status:'announced',serial:serial(b),eligibleAfterSerial:serial(b)+1,round:b.round,side:at.side,offered:{}};b.honroState.flags['event:'+gate(source)]=true;
+ m.warnings[source]={status:'announced',serial:serial(b),eligibleAfterSerial:serial(b)+1,round:b.round,side:at.side,offered:{},...(G.HonroEncounterDensity?.active(b)&&source==='stage8-low-health'?{entry:clone(at),entryRegion:at.region}: {})};b.honroState.flags['event:'+gate(source)]=true;
+ if(G.HonroEncounterDensity?.active(b)&&source==='stage8-low-health'){const ev=(b.honroEvents||[]).find(ev=>ev.id===source);if(ev){ev.warning=ev.text=at.label+'에서 산개 한 마리와 혼불이 다가온다. 다음 행동에 그 입구를 살피세요.';ev.entry={x:at.x,y:at.y};}}
  publishNotice(app);app.dirty=true;offer(app);
 }
 function prepareWaves(app){const b=app.engine?.b;if(!active(b)||cleanup(app)||paused(app))return;const m=memory(b),seals=b.terrain.filter(t=>t.honroSeal);m.sealIdsSeen=seals.filter(t=>t.broken).map(t=>t.id);
@@ -166,7 +167,10 @@ function installScene(){const S=G.HonroStoryStaging;if(!S||installed)return;inst
  S.skipMotion=function(app){if(!active(app.engine?.b)||!ownedScene(app))return skip(app);if(scenePaused(app))return false;const out=advanceScene(app,0,true);if(ownedScene(app)){G.HonroStory.draw(app);G.HonroStory.save(app);}return out;};
  S.finish=function(app,natural=false){if(!active(app.engine?.b)||!ownedScene(app))return finish(app,natural);if(scenePaused(app))return true;if(!app.dialogue.staging.complete){advanceScene(app,0,true);if(!ownedScene(app))return true;if(!app.dialogue.staging.complete)return true;}return finish(app,natural);};
 }
-const entryFor=(b,source)=>spec(b).entries?.[source];
+function entryFor(b,source){const base=spec(b).entries?.[source];if(!base||source!=='stage8-low-health'||!G.HonroEncounterDensity?.active(b))return base;
+ const saved=b.honroState?.stage8Bier?.warnings?.[source]?.entry;if(saved)return saved;
+ const u=boss(b),choice=(base.variants||[]).find(v=>u&&u.x>=(v.minBossX??-Infinity)&&u.x<(v.maxBossX??Infinity))||base,out=clone(choice);delete out.variants;delete out.minBossX;delete out.maxBossX;return out;
+}
 function spawn(app,action){const e=app.engine,b=e.b,m=memory(b),source=action.source;cleanup(app);acceptOpportunity(app);if(ended(app)||source!==sources[0]&&!alive(boss(b)))return false;if(m.entries[source])return true;const w=m.warnings[source],entry=entryFor(b,source);
  if(!entry||!w||w.cancelled||!w.opportunity||serial(b)<=w.serial||m.status==='moving'||!safeBoundary(app))return false;const key=boundary(app),n=action.n||1;if(b.honroState.lastCombatEventBoundary===key||e.alive(1).length+n>E.populationCap(b))return false;
  const choices=[entry,...(entry.alternates||[]).filter(p=>!p.side||p.side===entry.side).map(p=>({...p,side:entry.side}))];
@@ -182,14 +186,23 @@ function tuneOrdinary(b,u,st,kind,elite=false){u.elite=!!elite;u.armor=elite?.12
 const balance=E.balance;E.balance=function(b){if(!active(b))return balance(b);if(b.honroStage8BierTuned)return;for(const u of b.units)if(u.side===1&&u.id!=='boss'&&!u.honroMidboss&&!u.honroFinalBoss)tuneOrdinary(b,u,G.HONRO_CONTENT.stages[7],u.honroVariant||u.honroType,!!u.honroStage8BierElite);b.honroStage8BierTuned=1;};
 const cap=E.populationCap;E.populationCap=function(b){return active(b)?(b.honroStage8BierRoster==='oldBudget20e0'?29:37):cap(b);};
 const execute=W.execute;W.execute=function(app,action){return active(app.engine?.b)&&action?.type==='spawn'&&sources.includes(action.source)?spawn(app,action):execute(app,action);};
+// In the denser fresh encounter the bier guards its own court. Legacy permanent
+// aggro must not pull it through every early local fight once ineffective remote
+// queues are removed. Any actual hit, local approach or the original two seals
+// engages normal unrestricted AI permanently. Early defeat remains possible.
+function bossGuardReady(e,write=true){const b=e.b,u=boss(b);if(!G.HonroEncounterDensity?.active(b)||b.honroStage8BierBossGuard!==1||!alive(u))return true;const m=memory(b);if(m.bossEngaged)return true;
+ const seals=b.terrain.filter(t=>t.honroSeal),approached=e.heroesAlive().some(h=>Math.hypot(h.x-u.x,h.y-u.y)<1450&&Math.abs(h.y-u.y)<900),struck=u.hp<u.maxHp||u.shield>0&&u.hurt>0,freed=seals.length===2&&seals.every(t=>t.broken);
+ if(!approached&&!struck&&!freed)return false;if(write)m.bossEngaged={round:b.round,serial:serial(b),reason:struck?'hit':freed?'seals':'approach'};return true;
+}
 const attach=E.attach;E.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroStage8BierAttached)return out;e.honroStage8BierAttached=true;memory(e.b);installScene();
+ if(G.HonroEncounterDensity?.active(e.b)&&e.b.honroStage8BierBossGuard===1){const combat=e.combatEnemies.bind(e);e.combatEnemies=function(){const ready=bossGuardReady(e);return combat().filter(u=>u.id!=='boss'||ready);};}
  const can=e.canAct.bind(e);e.canAct=function(){if(memory(e.b).status==='moving')return false;const ok=can();if(ok)offer(app);return ok;};
  const finish=e.finishAction.bind(e);e.finishAction=function(...args){const u=e.active,m=memory(e.b),previous=e.honroStage8BierAction;e.honroStage8BierAction=hero(u)&&!u.acted?{id:u.id,movement:!!m.offered[u.id],waves:Object.entries(m.warnings).filter(([,w])=>w.offered?.[u.id]&&!w.cancelled).map(([id])=>id)}:null;try{return finish(...args);}finally{e.honroStage8BierAction=previous;}};
  const tick=e.tick.bind(e);e.tick=function(...args){if(memory(e.b).status==='moving'){cleanup(app);return;}return tick(...args);};
- const hurt=e.hurt.bind(e);e.hurt=function(...args){const out=hurt(...args);cleanup(app);return out;};return out;
+ const hurt=e.hurt.bind(e);e.hurt=function(...args){const out=hurt(...args);if(args[0]?.id==='boss'&&args[1]>0&&e.unit(args[2])?.side===0&&G.HonroEncounterDensity?.active(e.b)&&e.b.honroStage8BierBossGuard===1&&!memory(e.b).bossEngaged)memory(e.b).bossEngaged={round:e.b.round,serial:serial(e.b),reason:'hit'};cleanup(app);return out;};return out;
 };
 const tick=G.HonroMission.tick;G.HonroMission.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);if(cleanup(app))return tick(app,dt);prepareWaves(app);offer(app);acceptOpportunity(app);const out=tick(app,dt);transition(app);publishNotice(app);return out;};
 const state=G.HonroObjectives.state;G.HonroObjectives.state=function(b,st){const out=state(b,st);if(active(b)){if(memory(b).reason)out.summary+=' · '+memory(b).reason;const notice=noticeText(b);if(notice){out.currentInstruction=notice;out.summary+=' · '+notice;}}return out;};
 const refreshObjectives=G.HonroObjectives.refresh;G.HonroObjectives.refresh=function(app,...args){const out=refreshObjectives(app,...args);if(active(app.engine?.b)&&!app.training){const text=noticeText(app.engine.b),node=G.document?.getElementById?.('objective-text');if(text&&node){node.textContent=text;node.setAttribute?.('aria-label',text+' · 눌러서 목표 보기');}}return out;};
-G.HonroStage8Bier={active,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary,cancelScene,noticeText,publishNotice};
+G.HonroStage8Bier={active,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary,cancelScene,noticeText,publishNotice,bossGuardReady};
 })(globalThis);

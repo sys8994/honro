@@ -3,10 +3,15 @@
  * This does not claim normal arrival, a chapter clear or browser validation. */
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {runtimeParts} from '../shared/build.mjs';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {authorStage8Bier} from '../tools/map-forge/stage8-bier.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,original=structuredClone(g.HONRO_PROJECT),rows=[];
-for(const source of ['stage8-first-seal','stage8-low-health'])for(const roster of ['candidate28e5','density36e9']){
+const sha=value=>createHash('sha256').update(value).digest('hex');
+const provenance={sourceHash:sha(JSON.stringify(original)),runtimeSha256:sha((await runtimeParts({vector:false,render:false})).join('\n')),observedAt:new Date().toISOString()};
+const sources=['stage8-first-seal','stage8-settled-crows','stage8-low-health'];
+for(const source of sources)for(const roster of ['candidate28e5','density36e9']){
  g.HONRO_PROJECT=await authorStage8Bier(original,g,{roster,art:false});const q=battlefield(g,8),{b,e,app}=q;
  g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);
  const entry=b.honroStage8BierSpec.entries[source],action=b.honroEvents.find(ev=>ev.id===source).action;
@@ -29,6 +34,6 @@ for(const source of ['stage8-first-seal','stage8-low-health'])for(const roster o
  assert.equal(actions.length,5,'The paired window contains exactly five actual enemy actions');
  const row={source,roster,initial,frames,actions,shots,damage,heroDamage:damage.filter(d=>d.side===0).reduce((n,d)=>n+d.amount,0),heroShieldDamage:damage.filter(d=>d.side===0).reduce((n,d)=>n+d.shieldDamage,0),final:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}))};rows.push(row);console.log(JSON.stringify({source,roster,frames,actions:actions.length,shots:shots.length,heroDamage:row.heroDamage,heroShieldDamage:row.heroShieldDamage}));
 }
-await mkdir('_local/reports/encounter-density',{recursive:true});await writeFile('_local/reports/encounter-density/stage8-response-pressure.json',JSON.stringify({rows,scope:'Matched supported player-pose / isolated real finite-wave setup; production enemy turns, movement and live projectile damage. Not normal chapter completion.'},null,2)+'\n');
-for(const source of ['stage8-first-seal','stage8-low-health']){const old=rows.find(r=>r.source===source&&r.roster==='candidate28e5'),dense=rows.find(r=>r.source===source&&r.roster==='density36e9');assert(dense.heroDamage+dense.heroShieldDamage>0,source+' actually hits the guarding party');assert(dense.heroDamage+dense.heroShieldDamage>old.heroDamage+old.heroShieldDamage,source+' improves on the remote old entrance');}
-console.log('PASS both Stage8 finite responses hit HP or guarding shields within five natural enemy actions');
+await mkdir('_local/reports/encounter-density',{recursive:true});await writeFile('_local/reports/encounter-density/stage8-response-pressure.json',JSON.stringify({provenance,rows,scope:'Matched supported player-pose / isolated real finite-wave setup; production enemy turns, movement and live projectile damage. Not normal chapter completion.'},null,2)+'\n');
+for(const source of sources){const old=rows.find(r=>r.source===source&&r.roster==='candidate28e5'),dense=rows.find(r=>r.source===source&&r.roster==='density36e9');assert(dense.heroDamage+dense.heroShieldDamage>0,source+' actually hits the guarding party');assert(dense.heroDamage+dense.heroShieldDamage>old.heroDamage+old.heroShieldDamage,source+' improves on the remote old entrance');}
+console.log('PASS all three Stage8 finite responses hit HP or guarding shields within five natural enemy actions');
