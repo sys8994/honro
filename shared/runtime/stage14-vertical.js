@@ -39,7 +39,7 @@ const enhance=G.HonroObjectiveGuide.enhance;
 G.HonroObjectiveGuide.enhance=function(b,st,result){const out=enhance(b,st,result);if(!active(b)||A.current(b)?.id!=='hold-refuge')return out;
  const h=b.honroState?.act2?.holds?.['hold-refuge']||{},m=b.honroState?.vertical14||{},progress=Math.min(6,h.progress||0),spawned=h.spawned||0;
  const blocked=Object.entries(m.warnings||{}).find(([id,w])=>!m.entries?.[id]&&!w.cancelled&&w.status==='blocked'),side={west:'서쪽',east:'동쪽',inner:'다리 안쪽'}[blocked?.[1]?.side]||'도구';
- const instruction=h.contested?'다리 안의 들림을 제압하세요':blocked&&progress>=6?side+' 진입로를 비워 주세요':progress>=6&&spawned<12?'다가오는 들림을 막아 주세요':'피난민을 지키세요 · '+progress+'/6턴';
+ const instruction=h.guarded===false?'표시된 원으로 돌아오세요':h.contested?'다리 안의 들림을 제압하세요':blocked&&progress>=6?side+' 진입로를 비워 주세요':progress>=6&&spawned<12?'다가오는 들림을 막아 주세요':'피난민을 지키세요 · '+progress+'/6턴';
  const detail='피난민 보호 · '+progress+'/6턴 · 굴에서 나온 들림 '+spawned+'/12'+(blocked?' · '+side+' 진입 대기':'');
  return{...out,currentInstruction:instruction,summary:detail,visibleChecklist:(out.visibleChecklist||[]).map(q=>q.id==='hold-refuge'?{...q,text:detail}:q),checklist:(out.checklist||[]).map(q=>q.id==='hold-refuge'?{...q,text:detail}:q)};
 };
@@ -144,6 +144,12 @@ A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroVertica
  return out;
 };
 const tick=A.tick;
-A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);const out=tick(app,dt);if(ended(app))cancel(app);else prepareWaves(app);return out;};
+A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);
+ // Act2's hold-start beat reads app.stage directly. Use the saved fresh-map
+ // content for this synchronous tick, without cloning at frame frequency or
+ // changing the App's canonical stage reference after success or failure.
+ const stage=app.stage,content=app.engine.b.honroVerticalStage14Content;let out;
+ try{if(content)app.stage=content;out=tick(app,dt);}finally{app.stage=stage;}
+ if(ended(app))cancel(app);else prepareWaves(app);return out;};
 G.HonroStage14Vertical={active,memory,sources,safe,paused,ended,cellApproached,installActivation,prepareWaves,offer,acceptOpportunity,cancel,formation};
 })(globalThis);
