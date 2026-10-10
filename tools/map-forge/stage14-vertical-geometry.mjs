@@ -1,0 +1,53 @@
+/** Fresh Stage14 only. Broad inhabited rock masses and two unequal return
+ * circuits; all collision remains in the shared terrain/locomotion model. */
+const clone=v=>JSON.parse(JSON.stringify(v));
+export const V14_REVISION=1;
+export const V14_LAYOUT={width:7600,height:10400,surfaces:[
+ {id:'v14-upper-hamlet',zone:'B',role:'inhabited-rock',top:[[0,1450],[1400,1450],[2200,2300],[3000,2300],[4100,3745]],bottom:[[4100,3805],[3500,3420],[3010,2760],[2180,2690],[1580,1900],[0,1880]]},
+ {id:'v14-market',zone:'C',role:'market-rock',top:[[4250,3850],[5100,3850]],bottom:[[5100,4150],[4690,4280],[4280,4190],[4250,4010]]},
+ {id:'v14-mineral-way',zone:'D',role:'covered-return',top:[[2200,4650],[3100,4650],[3480,4420],[3880,4095],[4100,3995]],bottom:[[4100,4115],[3460,4560],[3100,4770],[2200,4750]]},
+ {id:'v14-west-family-road',zone:'D',role:'lower-return',top:[[1800,4795],[2000,4795],[2450,5368],[2800,5814],[3200,6324],[3420,6605]],bottom:[[3420,6655],[3160,6460],[2750,6000],[2410,5540],[1940,4940],[1800,4900]]},
+ {id:'v14-east-crown-road',zone:'E',role:'upper-return',top:[[5300,3705],[5500,3705],[6080,4140],[6500,4510],[6770,4845],[6900,4845]],bottom:[[6900,4935],[6740,4935],[6450,4680],[6000,4290],[5440,3845],[5300,3810]]},
+ {id:'v14-east-steps',zone:'E',role:'terraced-rock',top:[[5100,4220],[5530,4220],[5530,4620],[5870,4620]],bottom:[[5870,4750],[5500,4790],[5100,4540]]},
+ {id:'v14-east-shoulder',zone:'E',role:'overwatch-rock',top:[[5650,4990],[6300,4990],[6600,5050],[6800,5150],[6970,5150],[7150,4990],[7180,4990]],bottom:[[7180,5090],[7010,5280],[6800,5310],[6260,5260],[5740,5180],[5650,5110]]},
+ {id:'v14-east-family-road',zone:'E',role:'lower-return',top:[[5200,6605],[5650,6330],[6400,5850],[7100,5480],[7400,5135],[7560,5135]],bottom:[[7560,5260],[7190,5650],[6460,6050],[5710,6520],[5200,6725]]},
+ {id:'v14-family-shoulders',zone:'F',role:'terraced-rock',top:[[4500,6210],[4880,6210],[4880,5800],[5230,5800],[5230,5400],[5620,5400]],bottom:[[5620,5540],[5400,5990],[5050,6450],[4500,6370]]},
+ {id:'v14-family-roof-step',zone:'F',role:'stone-lintel',top:[[4140,6535],[4480,6535]],depth:35},
+ {id:'v14-family-yard',zone:'F',role:'inhabited-rock',top:[[1800,8005],[1900,8005],[2200,7720],[2750,7280],[3280,6895],[3650,6750],[5025,6750]],bottom:[[5025,6920],[4500,7110],[3920,7050],[3650,6880],[3280,7025],[2750,7410],[2200,7850],[1900,8090],[1800,8090]]},
+ {id:'v14-refuge-ground',zone:'G',role:'river-ground',top:[[0,8850],[850,8600],[1200,8400],[1550,8150],[1670,8150],[1820,8350],[2020,8350],[2250,8150],[5100,8150],[5600,7920],[6400,8160],[7600,8780]],bottom:[[7600,10400],[0,10400]]}
+]};
+export function v14Y(id,x){const s=V14_LAYOUT.surfaces.find(s=>s.id===id);if(!s)throw Error('Unknown Stage14 support '+id);for(let i=1;i<s.top.length;i++){const a=s.top[i-1],z=s.top[i];if(z[0]!==a[0]&&x>=a[0]-1e-6&&x<=z[0]+1e-6)return a[1]+(z[1]-a[1])*(x-a[0])/(z[0]-a[0]);}throw Error('Stage14 support outside domain '+id+' @ '+x);}
+export const v14Pose=(id,x,extra={})=>({x,y:v14Y(id,x),surfaceId:id,...extra});
+export function v14Terrains(){return V14_LAYOUT.surfaces.map(s=>({id:s.id,name:s.id,type:'solid',points:[...s.top,...(s.bottom||s.top.slice().reverse().map(([x,y])=>[x,y+s.depth]))].map(([x,y])=>({x,y})),baseMaterial:'rock',breakable:false,oneWay:false,layer:'terrain',properties:{honroVerticalStage14:true,honroVerticalZone:s.zone,honroSpaceSurfaceId:s.id,honroSurfaceRole:s.role,honroWalkEdges:s.top.slice(1).flatMap((z,i)=>z[0]===s.top[i][0]?[]:[i]),surfaceKind:'cave',honroCave:true},detail:{spacing:24,roughness:0,seed:14,optimizeEpsilon:0}}));}
+const walk=(id,a,z)=>{const s=V14_LAYOUT.surfaces.find(s=>s.id===id),lo=Math.min(a,z),hi=Math.max(a,z);return[...new Set([a,...s.top.map(p=>p[0]).filter(x=>x>lo&&x<hi),z])].sort((a,b)=>a-b).map(x=>v14Pose(id,x)).sort((p,q)=>a<z?p.x-q.x:q.x-p.x);};
+const join=(...rs)=>rs.flat().filter((p,i,all)=>!i||JSON.stringify(p)!==JSON.stringify(all[i-1]));
+const jump=(id,x,to,tx,speed=1)=>v14Pose(id,x,{jumpTo:{x:tx,y:v14Y(to,tx),support:to,speed}});
+const drop=(id,x,to,tx,stepOffX)=>v14Pose(id,x,{dropTo:{x:tx,y:v14Y(to,tx),support:to,...(stepOffX===undefined?{}:{stepOffX})}});
+const route=(id,anchors,extra={})=>({id,kind:'required',anchors,requires:[],defaultJump:true,...extra});
+export const V14_NODES={A:v14Pose('v14-upper-hamlet',1000),B:v14Pose('v14-upper-hamlet',2675),C:v14Pose('v14-market',4700),D:v14Pose('v14-mineral-way',2800),E:v14Pose('v14-east-shoulder',6300),F:v14Pose('v14-family-yard',3950),G:v14Pose('v14-refuge-ground',3000),H:v14Pose('v14-refuge-ground',4400)};
+export function v14Routes(){return[
+ route('AB',walk('v14-upper-hamlet',1000,2675)),route('BA',walk('v14-upper-hamlet',2675,1000)),
+ route('BC',join(walk('v14-upper-hamlet',2675,4080),[jump('v14-upper-hamlet',4080,'v14-market',4300)],walk('v14-market',4300,4700))),
+ route('CB',join(walk('v14-market',4700,4280),[jump('v14-market',4280,'v14-upper-hamlet',4060)],walk('v14-upper-hamlet',4060,2675))),
+ route('CD',join(walk('v14-market',4700,4280),[drop('v14-market',4280,'v14-mineral-way',4070)],walk('v14-mineral-way',4070,2800))),
+ route('DC',join(walk('v14-mineral-way',2800,4080),[jump('v14-mineral-way',4080,'v14-market',4300)],walk('v14-market',4300,4700))),
+ route('DF',join(walk('v14-mineral-way',2800,2225),[jump('v14-mineral-way',2225,'v14-west-family-road',1990)],walk('v14-west-family-road',1990,3400),[jump('v14-west-family-road',3400,'v14-family-yard',3800)],walk('v14-family-yard',3800,3950))),
+ route('FD',join(walk('v14-family-yard',3950,3690),[jump('v14-family-yard',3690,'v14-west-family-road',3400)],walk('v14-west-family-road',3400,1970),[jump('v14-west-family-road',1970,'v14-mineral-way',2250)],walk('v14-mineral-way',2250,2800))),
+ route('CE',join(walk('v14-market',4700,5070),[jump('v14-market',5070,'v14-east-crown-road',5340)],walk('v14-east-crown-road',5340,6860),[jump('v14-east-crown-road',6860,'v14-east-shoulder',7100)],walk('v14-east-shoulder',7100,6300))),
+ route('EC',join(walk('v14-east-shoulder',6300,7100),[jump('v14-east-shoulder',7100,'v14-east-crown-road',6860)],walk('v14-east-crown-road',6860,5340),[jump('v14-east-crown-road',5340,'v14-market',5070)],walk('v14-market',5070,4700))),
+ route('EF',join(walk('v14-east-shoulder',6300,7150),[jump('v14-east-shoulder',7150,'v14-east-family-road',7440)],walk('v14-east-family-road',7440,5225),[jump('v14-east-family-road',5225,'v14-family-yard',4990)],walk('v14-family-yard',4990,3950))),
+ route('FE',join(walk('v14-family-yard',3950,4990),[jump('v14-family-yard',4990,'v14-east-family-road',5225)],walk('v14-east-family-road',5225,7440),[jump('v14-east-family-road',7440,'v14-east-shoulder',7150)],walk('v14-east-shoulder',7150,6300))),
+ route('CF',join(walk('v14-market',4700,5070),[drop('v14-market',5070,'v14-east-steps',5180),drop('v14-east-steps',5500,'v14-east-steps',5600),drop('v14-east-steps',5840,'v14-east-shoulder',5940),drop('v14-east-shoulder',5680,'v14-family-shoulders',5580),drop('v14-family-shoulders',5260,'v14-family-shoulders',5150),drop('v14-family-shoulders',4910,'v14-family-shoulders',4790),drop('v14-family-shoulders',4530,'v14-family-roof-step',4430),drop('v14-family-roof-step',4170,'v14-family-yard',4070)],walk('v14-family-yard',4070,3950)),{traversalMode:'fast-descent',defaultJump:false}),
+ route('FG',join(walk('v14-family-yard',3950,1830),[drop('v14-family-yard',1830,'v14-refuge-ground',1600)],walk('v14-refuge-ground',1600,3000))),
+ route('GF',join(walk('v14-refuge-ground',3000,1600),[jump('v14-refuge-ground',1600,'v14-family-yard',1850)],walk('v14-family-yard',1850,3950))),
+ route('GH',walk('v14-refuge-ground',3000,4400)),route('HG',walk('v14-refuge-ground',4400,3000))
+];}
+export function authorStage14VerticalGeometry(g,project){const p=clone(project),i=p.stages.findIndex(s=>s.metadata?.stageId===14),s=p.stages[i],before=JSON.stringify(p.stages.filter((_,j)=>j!==i));if(!s)throw Error('Missing Stage14');
+ s.width=V14_LAYOUT.width;s.height=V14_LAYOUT.height;for(const k of ['terrainBounds','playBounds','terrainDomainVersion','detailStats'])delete s[k];s.terrains=v14Terrains();s.materials=[];s.elements=[];s.camera={};s.encounters=[];s.events=[];
+ const nodes=clone(V14_NODES),routes=v14Routes(),sites={'clear-upper':nodes.B,'family-upper':v14Pose('v14-upper-hamlet',2980),'clear-middle':nodes.C,'family-mid':v14Pose('v14-market',4920),'family-lower':nodes.F,bridge:nodes.G,'hold-refuge':nodes.G,'clear-village':nodes.G,'wave-hold-refuge':v14Pose('v14-refuge-ground',5300),wave:v14Pose('v14-refuge-ground',5700)};
+ s.markers=s.markers.map(m=>sites[m.id]?{...m,...sites[m.id]}:m);s.units=s.units.filter(u=>u.team==='player').map((u,j)=>({...u,...v14Pose('v14-upper-hamlet',[790,900,1010,1120][j]),facing:1}));
+ const surfaces=V14_LAYOUT.surfaces.map(v=>({id:v.id,terrainId:v.id,role:v.role,edgeIndices:s.terrains.find(t=>t.id===v.id).properties.honroWalkEdges,roomIds:['v14-'+v.zone]}));
+ s.design={title:s.design.title,description:s.design.description,act:2,revision:3,targetRounds:s.design.targetRounds,expectedMinutes:s.design.expectedMinutes,space:{version:1,geometryRevision:4,topologyId:'vertical-inhabited-rock-three-way-descent',rooms:Object.entries(nodes).map(([id,n])=>({id:'v14-'+id,terrainIds:V14_LAYOUT.surfaces.filter(v=>v.zone===id||id==='A'&&v.zone==='B').map(v=>v.id),ceilingIds:[],bounds:{x:n.x-850,y:n.y-500,w:1700,h:1000},sky:'cave',landmarkIds:[]})),surfaces,routes,connections:routes.map(r=>({id:r.id,from:'v14-'+r.id[0],to:'v14-'+r.id[1],kind:'walk',routeId:r.id,entry:clone(r.anchors[0]),exit:clone(r.anchors.at(-1)),requires:[]})),sites:Object.fromEntries(Object.entries(sites).filter(([k])=>!k.startsWith('wave')).map(([k,n])=>[k,{objectiveId:k,roomId:'v14-'+(k.includes('upper')?'B':k.includes('mid')?'C':k.includes('lower')?'F':'G'),...n,standing:clone(n)}])),encounterSites:[],landmarks:[],scenery:[],lights:[],views:[]},vertical14:{revision:1,status:'greybox-not-gameplay-approved',nodes,routes,scope:'Basic movement only; no global physics or AI changes. Fast descent and separate left/right return circuits.'}};
+ s.routes=routes.filter(r=>['AB','BC','CF','FG'].includes(r.id)).flatMap(r=>r.anchors.map(({x,y,surfaceId})=>({x,y,surfaceId})));s.anchors={spawn:v14Pose('v14-upper-hamlet',790),start:clone(nodes.A),exit:clone(nodes.G)};s.initialState={...s.initialState,honroVerticalStage14Revision:1,honroAct2GeometryRevision:4,honroCaveForms:[]};delete s.initialState.honroCaveEnvelope;delete s.initialState.honroCaveApproach;
+ s.environment=g.HonroEnvironment.makeEnvironment(s,{preset:'enclosed'});s.environment.skyVisible=false;const out=g.HonroTerrainDomain.author(p);if(JSON.stringify(out.stages.filter((_,j)=>j!==i))!==before)throw Error('Vertical14 changed another stage');return out;
+}
