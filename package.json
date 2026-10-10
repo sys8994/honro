@@ -134,7 +134,9 @@
     "test:encounter-density": "node tests/encounter-density-runtime.mjs && node tests/encounter-density-integration.mjs && node tests/stage8-encounter-density.mjs && node tests/stage11-encounter-density.mjs && node tests/stage11-density-response-pressure.mjs && node tests/stage11-density-echo-lifecycle.mjs && node tests/stage11-density-real-save-continuation.mjs && node tests/stage12-encounter-density.mjs && node tests/stage161718-encounter-density.mjs && node tests/stage8-density-boss-role.mjs && node tests/stage8-density-regional-entry.mjs && node tests/stage8-density-response-pressure.mjs && node tests/stage2330-encounter-density.mjs && node tests/stage2330-density-response-pressure.mjs && node tests/stage161718-response-lifecycle.mjs && node tests/stage161718-response-pressure.mjs && node tests/encounter-density-history-audit.mjs && node tests/stage8-bier-seam-regression.mjs && node tests/stage8-density-ember-recovery.mjs",
     "test:workshop-responsive:static": "node tests/workshop-responsive.mjs",
     "test:workshop-responsive:browser": "python -X utf8 tests/workshop-responsive-browser.py",
-    "test:workshop-responsive": "npm run test:workshop-responsive:static && npm run test:workshop-responsive:browser"
+    "test:workshop-responsive": "npm run test:workshop-responsive:static && npm run test:workshop-responsive:browser",
+    "test:stage14-vertical": "node tests/stage14-vertical-composition.mjs && node tests/stage14-vertical-traversal.mjs && node tests/stage14-vertical-runtime.mjs && node tests/stage14-vertical-app-resume.mjs && node tests/stage14-vertical-bridge.mjs && node tests/stage14-vertical-tactics.mjs",
+    "capture:stage14-vertical": "node --expose-gc tests/stage14-vertical-native-art.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
