@@ -1,7 +1,8 @@
 /* Fullscreen owns the entire Escape press before any game/editor UI handler. */
 (function (G) {
     'use strict';
-    if (G.HonroFullscreenInput || typeof document === 'undefined' || typeof window === 'undefined') return;
+    if (G.HonroFullscreenInput || typeof document === 'undefined' || typeof window === 'undefined' ||
+        typeof document.addEventListener !== 'function' || typeof window.addEventListener !== 'function') return;
     let wasFullscreen = !!document.fullscreenElement;
     let escapeHeld = false, fullscreenPress = false, explicitExit = false;
     let nativeExitUntil = 0;

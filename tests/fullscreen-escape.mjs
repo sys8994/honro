@@ -3,6 +3,8 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 import {appHarness} from './app-regression-helpers.mjs';
 const source=await readFile('shared/runtime/fullscreen-input.js','utf8');
+// Render-only Native Canvas contexts expose DOM stubs but have no input event loop.
+assert.doesNotThrow(()=>vm.runInNewContext(source,{document:{},window:{}}));
 function harness(){
     const windowListeners=new Map(),documentListeners=new Map();
     let time=1000,exits=0,uiCalls=0,fail=false;
