@@ -91,6 +91,8 @@ export interface Decoration {
     variant: number;
 }
 export interface HeroProgress {
+    /** Session-only Honro QA allocation; never persisted to the normal profile. */
+    honroDebugSkills?: boolean;
     martialRevision?: number;
     skillRevision?: number;
     occultRevision?: number;

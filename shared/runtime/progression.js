@@ -8,7 +8,7 @@ const rewardClasses=b=>G.HonroSplitCampaign?.active(b)?C.CLASS_IDS:[...new Set(b
 const campaignHero=(b,u)=>u.side===0&&!u.summoned&&(!(b.honroStage>=21&&b.honroStage<=30)||!u.enthrall);
 const joinLevel=st=>Math.max(1,Math.min(30,Math.floor(st.joinLevel??plan(st.id)?.exitLevel??(st.level||1)+1)));
 function alignRecruit(profile,st,b=profile.honroBattle){
-  const cls=st.recruit;if(!cls||!profile.recruited.includes(cls))return;
+  const cls=st.recruit;if(!cls||!profile.recruited.includes(cls)||profile.heroes[cls]?.honroDebugSkills)return;
   const floor=Math.max(xpAt(joinLevel(st)),profile.heroes[cls]?.xp||0,b?.heroes?.[cls]?.xp||0);
   for(const heroes of [profile.heroes,b?.heroes])if(heroes?.[cls])C.grantXP(heroes[cls],Math.max(0,floor-heroes[cls].xp));
   for(const u of b?.units||[])if(u.side===0&&!u.summoned&&u.cls===cls&&u.level<C.levelOf(b.heroes[cls]))C.applyHero(u,b.heroes[cls]);
@@ -144,6 +144,7 @@ function syncRoster(profile,b){
     const h=profile.heroes[cls];
     if(profile.honroCampPending?.[cls]&&h&&heroes[cls]){
       heroes[cls].ranks=clone(h.ranks);
+      if(h.honroDebugSkills){heroes[cls].honroDebugSkills=true;heroes[cls].xp=h.xp;}
       heroes[cls].statTraining=C.statTrainingRank(h);delete heroes[cls].statRanks;
     }
   }

@@ -37,9 +37,10 @@
 @media(max-width:700px){.rest-background{bottom:90px}.honro #app .rest-fire,.honro #app .rest-sign{top:calc(var(--rest-ground,78%) + 82px)}}
 
 /* The book is a bounded map surface: its pins remain the same percentage of the art at every zoom. */
-.honro #app .journey-map-scroll{cursor:grab;touch-action:none;overscroll-behavior:contain;scrollbar-color:#8e947a60 #102025}
+.honro #app .journey-map-viewport{position:relative;flex:1;min-height:240px;container-type:size;overflow:hidden}
+.honro #app .journey-map-scroll{position:absolute;inset:0;min-height:0;cursor:grab;touch-action:none;overscroll-behavior:contain;scrollbar-color:#8e947a60 #102025}
 .honro #app .journey-map-scroll.dragging{cursor:grabbing;user-select:none}
-.honro #app .journey-map{min-width:0;width:max(calc(100% * var(--journey-zoom,1)),calc(880px * var(--journey-zoom,1)));max-height:none;aspect-ratio:1800/1050}
+.honro #app .journey-map{min-width:0;width:calc(max(100cqw,171.428572cqh,897.6px) * var(--journey-zoom,1) / .85);max-height:none;aspect-ratio:1800/1050}
 .honro #app .journey-pin{z-index:2;transition:filter .16s,transform .16s,color .16s}
 .honro #app .journey-pin i,.honro #app .journey-pin span{transition:background .16s,border-color .16s,box-shadow .16s,transform .16s,color .16s}
 .honro #app .journey-pin:hover,.honro #app .journey-pin:focus-visible{z-index:5;color:#fff0c8;transform:translate(-50%,-50%) scale(1.08)}
@@ -48,12 +49,12 @@
 .honro #app .journey-pin.selected{z-index:6;color:#fff3ce;filter:drop-shadow(0 0 11px #dfc28999)}
 .honro #app .journey-pin.selected i{background:#a9804d;color:#111d20;border:3px solid #f7e0a4;box-shadow:0 0 0 6px #d9a96080,0 0 0 12px #d9a96038,0 0 22px #f3d4a1;transform:scale(1.14)}
 .honro #app .journey-pin.selected span{border:1px solid #e4c78a;background:#172822f2;padding:4px 8px;color:#fff1c4;box-shadow:0 4px 17px #031114bd}
-.honro #app .journey-map-legend{position:sticky;z-index:7;left:16px;bottom:12px;width:max-content;max-width:calc(100% - 30px);padding:6px 9px;border:1px solid #a4a38b50;background:#0a1b1ed6;pointer-events:none}
+.honro #app .journey-map-legend{position:absolute;z-index:7;left:16px;bottom:12px;width:max-content;max-width:calc(100% - 30px);padding:6px 9px;border:1px solid #a4a38b50;background:#0a1b1ed6;pointer-events:none}
 .journey-city .journey-heading{background:#1f2e31;border-bottom:1px solid #9b997b66}
 .journey-city .journey-detail{background:#142429}
 .journey-underground .journey-heading{background:#121f25}
 .journey-surface .journey-heading{background:#172b2c}
-@media(max-width:700px){.honro #app .journey-map-legend{font-size:8px;gap:8px;left:8px}}
+@media(max-width:700px){.honro #app .journey-map-viewport{min-height:300px}.honro #app .journey-map-legend{font-size:8px;gap:8px;left:8px}}
 @media(prefers-reduced-motion:reduce){.honro #app .journey-pin,.honro #app .journey-pin i,.honro #app .journey-pin span{transition:none}}
 /* The visible flame itself is part of the same native button hit area. */
 .honro #app .rest-fire{overflow:visible}
