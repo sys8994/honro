@@ -120,10 +120,11 @@ export class HonroPoseVisual{
     else if(u.honroScenePose){sample=this.scenePose(u.honroScenePose);s.mode='scene';}
     else if(hitAge>=0&&hitAge<.5&&s.hitAt>s.releaseAt){sample=this.api.sampleAnimation(this.asset,'hit',hitAge);s.mode='hit';}
     else if(age>=0&&age<(1-release)*duration){
-      const phase=release+age/duration;sample=this.api.sampleAnimation(this.asset,'attack',phase,true);s.mode='release';
+      const sweep=this.asset.character_id==='hwigyeom'&&this.asset.motionRevision>=11;
+      const phase=sweep?(age<.08?anim.keyframes[2].t+(release-anim.keyframes[2].t)*poseClamp(age/.08):release+(1-release)*poseClamp((age-.08)/((1-release)*duration-.08))):release+age/duration;sample=this.api.sampleAnimation(this.asset,'attack',phase,true);s.mode='release';
       let p=sample.targets;
       if(this.asset.character_id==='seol_o')p=this.aimTargets(p,u,poseClamp((1-phase)/.2));
-      if(s.releaseFrom&&age<.1){const mixed=this.api.blendPoseTargets(s.releaseFrom,p,poseClamp(age/.1));mixed.spiritAlpha=p.spiritAlpha;mixed.qiAlpha=p.qiAlpha;p=mixed;}
+      if(s.releaseFrom&&age<(sweep?.025:.1)){const mixed=this.api.blendPoseTargets(s.releaseFrom,p,poseClamp(age/(sweep?.025:.1)));mixed.spiritAlpha=p.spiritAlpha;mixed.qiAlpha=p.qiAlpha;p=mixed;}
       p.draw=0;p.arrow=0;if(s.worldEffect){p.spiritAlpha=0;p.qiAlpha=0;}sample=this.api.solvePose(this.asset,p);sample.t=phase;
     }
     else if(charge>0){sample=this.chargingPose(u,charge,s);s.mode='charge';}

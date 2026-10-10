@@ -890,26 +890,27 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "weaponUnwrapped": true
         },
         {
           "name": "WIND UP",
           "t": 0.18,
           "pelvis": [
-            207.825,
-            255.986322
+            229.704,
+            242.599723
           ],
           "thorax": [
-            187.35,
-            145.251588
+            223.152,
+            129.35500224
           ],
           "frontHand": [
-            248.775,
-            61.585345
+            332,
+            130
           ],
           "rearHand": [
-            165.4125,
-            190.775868
+            197,
+            180
           ],
           "frontElbow": [
             311.6625,
@@ -920,43 +921,43 @@
             124.335028
           ],
           "rearFoot": [
-            180.0375,
-            459
+            180.038571,
+            458.99389088
           ],
           "frontFoot": [
-            321.9,
-            449.156913
+            311.955,
+            455.85021216
           ],
           "contacts": [
             "rear"
           ],
-          "weapon": 165,
-          "frontCloth": -4,
-          "rearCloth": 7,
+          "weapon": 140,
+          "frontCloth": -1.8,
+          "rearCloth": 3.15,
           "story": {
             "support": "rear",
             "moving": "front foot light",
             "force": "weight loads before sword accelerates"
           },
           "rearShoulder": [
-            145.938075,
-            121.402901
+            185.037684,
+            101.64352356
           ],
           "rearHip": [
-            185.8875,
-            255.986322
+            207.7665,
+            242.599723
           ],
           "rearKnee": [
             240.596813,
             353.750835
           ],
           "frontShoulder": [
-            218.414288,
-            113.137637
+            257.95507216,
+            99.83530156
           ],
           "frontHip": [
-            226.8375,
-            255.986322
+            248.7165,
+            242.599723
           ],
           "frontKnee": [
             320.367188,
@@ -965,7 +966,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": 140,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
@@ -973,27 +974,28 @@
           "qi": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "rearArmPlane": 0.8,
+          "frontArmPlane": 0.8,
+          "weaponUnwrapped": true
         },
         {
           "name": "STEP / LOAD",
           "t": 0.35,
           "pelvis": [
-            222.45,
-            255.986322
+            234.384,
+            242.599723
           ],
           "thorax": [
-            234.15,
-            148.942746
+            238.12800000000001,
+            130.5361728
           ],
           "frontHand": [
-            295.575,
-            41.89917
+            356,
+            88
           ],
           "rearHand": [
-            162.4875,
-            182.163166
+            208,
+            165
           ],
           "frontElbow": [
             349.6875,
@@ -1004,43 +1006,44 @@
             116.952712
           ],
           "rearFoot": [
-            180.0375,
-            459
+            180.038571,
+            458.99389088
           ],
           "frontFoot": [
-            381.8625,
-            429.470738
+            331.143,
+            459
           ],
           "contacts": [
-            "rear"
+            "rear",
+            "front"
           ],
-          "weapon": 175,
-          "frontCloth": -20,
-          "rearCloth": 5,
+          "weapon": 172,
+          "frontCloth": -9,
+          "rearCloth": 2.25,
           "story": {
             "support": "rear",
             "moving": "front foot travels",
             "force": "blade behind and above head / hips lead"
           },
           "rearShoulder": [
-            200.76045,
-            118.502022
+            202.58084399999998,
+            100.71524228
           ],
           "rearHip": [
-            200.5125,
-            255.986322
+            212.4465,
+            242.599723
           ],
           "rearKnee": [
             247.233188,
             356.641167
           ],
           "frontShoulder": [
-            273.452438,
-            125.286233
+            275.56728016,
+            103.72285228
           ],
           "frontHip": [
-            241.4625,
-            255.986322
+            253.3965,
+            242.599723
           ],
           "frontKnee": [
             350.817,
@@ -1049,7 +1052,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": 172,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
@@ -1057,27 +1060,28 @@
           "qi": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "rearArmPlane": 0.8,
+          "frontArmPlane": 0.8,
+          "weaponUnwrapped": true
         },
         {
           "name": "CUT",
           "t": 0.5,
           "pelvis": [
-            314.5875,
-            274.442111
+            263.868,
+            248.50557548
           ],
           "thorax": [
-            337.9875,
-            162.476991
+            271.356,
+            134.8671312
           ],
           "frontHand": [
-            551.272126,
-            162.094904
+            420,
+            173
           ],
           "rearHand": [
-            259.0125,
-            153.86429
+            218,
+            187
           ],
           "frontElbow": [
             479.85,
@@ -1088,11 +1092,11 @@
             110.800782
           ],
           "rearFoot": [
-            222.45,
-            446.696141
+            193.610571,
+            455.05665600000003
           ],
           "frontFoot": [
-            435.975,
+            348.459,
             459
           ],
           "frontKnee": [
@@ -1100,68 +1104,70 @@
             358.108354
           ],
           "contacts": [
+            "rear",
             "front"
           ],
           "rearFootAngle": 18,
-          "weapon": -55,
-          "frontCloth": -25,
-          "rearCloth": 25,
+          "weapon": 305,
+          "frontCloth": -11.25,
+          "rearCloth": 11.25,
           "story": {
             "support": "front",
             "moving": "rear heel lifts",
             "force": "rear leg pushes / hip turn / extended cut"
           },
           "rearShoulder": [
-            308.016038,
-            128.25615
+            236.90263216,
+            103.83656324
           ],
           "rearHip": [
-            292.65,
-            274.442111
+            241.9305,
+            248.50557548
           ],
           "rearKnee": [
             333.863813,
             376.785222
           ],
           "frontShoulder": [
-            379.784738,
-            140.113262
+            309.59361616,
+            108.46750156
           ],
           "frontHip": [
-            333.6,
-            274.442111
+            282.8805,
+            248.50557548
           ],
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": 305,
           "frontFootAngle": 0,
           "hair": 0,
           "spirit": 0,
           "qi": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "rearArmPlane": 0.8,
+          "frontArmPlane": 0.8,
+          "weaponUnwrapped": true
         },
         {
           "name": "FOLLOW",
           "t": 0.69,
           "pelvis": [
-            333.6,
-            281.824426
+            269.952,
+            250.86791628
           ],
           "thorax": [
-            361.3875,
-            177.241622
+            278.844,
+            139.59181312
           ],
           "frontHand": [
-            468.15,
-            270.750953
+            388,
+            255
           ],
           "rearHand": [
-            253.1625,
-            177.241622
+            230,
+            215
           ],
           "frontElbow": [
             449.1375,
@@ -1172,11 +1178,11 @@
             126.795799
           ],
           "rearFoot": [
-            241.4625,
-            446.696141
+            199.694571,
+            455.05665600000003
           ],
           "frontFoot": [
-            435.975,
+            348.459,
             459
           ],
           "frontKnee": [
@@ -1184,49 +1190,51 @@
             371.642599
           ],
           "contacts": [
+            "rear",
             "front"
           ],
           "rearFootAngle": 20,
-          "weapon": -15,
-          "frontCloth": -18,
-          "rearCloth": 31,
+          "weapon": 347,
+          "frontCloth": -8.1,
+          "rearCloth": 13.950000000000001,
           "story": {
             "support": "front",
             "moving": "rear leg follows pelvis",
             "force": "blade carries through after contact"
           },
           "rearShoulder": [
-            332.876513,
-            143.542426
+            244.85798416,
+            108.72817156
           ],
           "rearHip": [
-            311.6625,
-            281.824426
+            248.0145,
+            250.86791628
           ],
           "rearKnee": [
             357.7731,
             382.678184
           ],
           "frontShoulder": [
-            403.941638,
-            158.08715
+            317.32382416,
+            114.21914572
           ],
           "frontHip": [
-            352.6125,
-            281.824426
+            288.9645,
+            250.86791628
           ],
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": 347,
           "frontFootAngle": 0,
           "hair": 0,
           "spirit": 0,
           "qi": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": 1,
-          "frontArmPlane": -1
+          "rearArmPlane": 0.8,
+          "frontArmPlane": -0.45,
+          "weaponUnwrapped": true
         },
         {
           "name": "RECOVERY",
@@ -1296,11 +1304,11 @@
             307.275,
             459
           ],
-          "weapon": 0,
+          "weapon": 360,
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": 360,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -1311,7 +1319,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "weaponUnwrapped": true
         }
       ],
       "events": [

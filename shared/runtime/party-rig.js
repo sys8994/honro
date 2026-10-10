@@ -177,9 +177,9 @@ function completePose(asset,key){
   return complete;
 }
 function blendPoseTargets(a,b,u,{walking=false}={}){
-  const smooth=u*u*(3-2*u),p={t:a.t+(b.t-a.t)*u,contacts:a.contacts.filter(s=>b.contacts.includes(s))};
+  const smooth=u*u*(3-2*u),p={weaponUnwrapped:!!a.weaponUnwrapped,t:a.t+(b.t-a.t)*u,contacts:a.contacts.filter(s=>b.contacts.includes(s))};
   for(const k of poseKeys){const planted=walking&&k.endsWith('Foot')&&p.contacts.includes(k.startsWith('rear')?'rear':'front');const f=planted?u:smooth;p[k]=a[k].map((v,i)=>v+(b[k][i]-v)*f);}
-  for(const k of scalarKeys){let d=b[k]-a[k];if(k==='weapon')d=((d+540)%360)-180;p[k]=a[k]+d*smooth;}
+  for(const k of scalarKeys){let d=b[k]-a[k];if(k==='weapon'&&!a.weaponUnwrapped)d=((d+540)%360)-180;p[k]=a[k]+d*smooth;}
   // The arrow leaves on the release boundary. Never fade it during the load.
   p.arrow=u<1?a.arrow:b.arrow;if(a.draw===1&&b.draw===0)p.draw=u<1?1:0;
   return p;
