@@ -1,4 +1,4 @@
-import {beforeStage18BellFingerprintParts} from './stage23-escort-history-helpers.mjs';
+import {beforeStage18BellFingerprintParts} from './stage8-bier-history-helpers.mjs';
 /** Portable gameplay identity for the additive stone-Buddha art audit. */
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';

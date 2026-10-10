@@ -1,4 +1,4 @@
-import {beforeStage30Ferry} from './stage23-escort-history-helpers.mjs';
+import {beforeStage30Ferry} from './stage8-bier-history-helpers.mjs';
 /** Current map/entry/continuity contracts. State fixtures are not fullplay. */
 import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';

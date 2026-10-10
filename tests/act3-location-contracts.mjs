@@ -1,4 +1,4 @@
-import {beforeStage30Ferry} from './stage23-escort-history-helpers.mjs';
+import {beforeStage30Ferry} from './stage8-bier-history-helpers.mjs';
 import {splitV1Profile} from './split-v1-test-helpers.mjs';
 /** Isolated native contracts for the approved location rebuild; not campaign-completion evidence. */
 import assert from 'node:assert/strict';

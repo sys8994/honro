@@ -1,4 +1,4 @@
-import {beforeStage30Ferry} from './stage23-escort-history-helpers.mjs';
+import {beforeStage30Ferry} from './stage8-bier-history-helpers.mjs';
 import assert from 'node:assert/strict';import {readFile,writeFile,mkdir} from 'node:fs/promises';import path from 'node:path';import {pathToFileURL} from 'node:url';import {support} from '../tools/map-forge/act3-map-kit.mjs';
 const root=process.env.HONRO_RUNTIME_ROOT||process.cwd(),{runtime}=await import(pathToFileURL(path.join(root,'game/tests/helpers.mjs'))),g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,current=JSON.parse(await readFile(process.env.HONRO_PROJECT_FILE||'shared/data/campaign.json')),p=beforeStage30Ferry(current);g.HONRO_PROJECT=p;
 const ids=process.argv.slice(2).map(Number),stages=p.stages.filter(s=>s.metadata.stageId>=21&&(!ids.length||ids.includes(s.metadata.stageId))),rows=[];

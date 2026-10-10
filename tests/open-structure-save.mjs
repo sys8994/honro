@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {appHarness,plain} from './app-regression-helpers.mjs';
-import {withHistoricalStage23,stage30FerryOriginal,stage30FerryBefore,escortHistoryHash as hash} from './stage23-escort-history-helpers.mjs';
+import {withHistoricalStage23,stage30FerryOriginal,stage30FerryBefore,escortHistoryHash as hash} from './stage8-bier-history-helpers.mjs';
 const h=await appHarness(),{g}=h,R=g.HonroOpenStructures,rows=R.rows;
 const revert=p=>{p=plain(p);for(const r of rows){const t=r.kind==='asset'?p.library.find(a=>a.id===r.id):p.stages.find(s=>s.metadata.stageId===r.stage).terrains.find(t=>t.id===r.id);t.oneWay=false;if(r.kind==='terrain')t.properties=plain(r.before.properties);}return p;};
 // Capture only validated historical data in the synchronous boundary. Async

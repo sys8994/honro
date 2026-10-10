@@ -1,4 +1,4 @@
-import {beforeStage18Bell,beforeStage18BellLibrary} from './stage23-escort-history-helpers.mjs';
+import {beforeStage18Bell,beforeStage18BellLibrary} from './stage8-bier-history-helpers.mjs';
 /** Exact one-asset revision3 -> immutable 67-node revision2 boundary. */
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';

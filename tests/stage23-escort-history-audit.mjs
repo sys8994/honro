@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {runtimeParts} from '../shared/build.mjs';
 import {runtime} from '../game/tests/helpers.mjs';
 import {act12Project} from './campaign-scope-helpers.mjs';
-import * as S from './stage23-escort-history-helpers.mjs';
+import * as S from './stage8-bier-history-helpers.mjs';
 import * as Q from './stage12-quarry-history-helpers.mjs';
 const hash=S.escortHistoryHash,plain=S.escortHistoryPlain,f=S.stage23EscortBefore,p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),review=S.stage23EscortReview(),sources=S.stage23EscortRuntimeSources(),options={review},snapshot=JSON.stringify(p),sourceSnapshot=JSON.stringify(sources);
 const rawHash=bytes=>createHash('sha256').update(bytes).digest('hex');

@@ -121,7 +121,12 @@
     "test:stage23-escort:baseline": "HONRO_FULLPLAY_ROSTER=originalBudget22e5 HONRO_FULLPLAY_OUT=_local/reports/stage23-escort/fullplay-baseline node tests/stage23-escort-fullplay.mjs",
     "test:stage23-escort:candidate": "HONRO_FULLPLAY_ROSTER=candidate28e6 HONRO_FULLPLAY_OUT=_local/reports/stage23-escort/fullplay-candidate node tests/stage23-escort-fullplay.mjs",
     "test:stage23-escort:native": "node --expose-gc tests/stage23-escort-native-art.mjs",
-    "test:stage23-escort:cargo-branch": "node tests/stage23-escort-cargo-branch.mjs"
+    "test:stage23-escort:cargo-branch": "node tests/stage23-escort-cargo-branch.mjs",
+    "test:stage8-bier": "node tests/stage8-bier-entry.mjs && node tests/stage8-bier-history-audit.mjs && node tests/stage8-bier-old-save.mjs && node tests/stage8-bier-runtime.mjs && node tests/stage8-bier-runtime-budget.mjs && node tests/stage8-bier-runtime-geometry.mjs && node tests/stage8-bier-geometry.mjs",
+    "test:stage8-bier:fullplay": "node tests/stage8-bier-fullplay.mjs",
+    "test:stage8-bier:baseline": "HONRO_FULLPLAY_ROSTER=oldBudget20e0 HONRO_FULLPLAY_OUT=_local/reports/stage8-bier/fullplay-baseline node tests/stage8-bier-fullplay.mjs",
+    "test:stage8-bier:basic": "HONRO_FULLPLAY_BASIC_ONLY=1 HONRO_FULLPLAY_OUT=_local/reports/stage8-bier/fullplay-basic node tests/stage8-bier-fullplay.mjs",
+    "test:stage8-bier:native": "node --expose-gc tests/stage8-bier-native-art.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
