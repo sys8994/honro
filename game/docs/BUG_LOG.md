@@ -1891,3 +1891,7 @@ Validation: the 292 changed/removed cavern-path negatives, nine immutable full-s
 동일 역할정책22(R17/4생존/24진입)와28(R21/4생존/24진입)의 실제 기록에서 검수 navigator가 x5260 석교 경계4.2–4.6px 앞에서 멈추었다. 도착판정은 실제 지지면 일치를 요구하지만 이동은5px 이내면 멈춰22 소단4회,28 기사/소단7회 nav-blocked를 만들었다. 생산 물리나 NPC 이동 실패로 세지 않는다.
 
 테스트 helper만 같은높이의 지지면 경계에서 기존 경로 방향으로 기본 미세보행을 계속하게 교정했다. 실제22 R13 저장을 actor/resource setup 없이 가져와 정상 select/move/tick으로221tick, 이동예산516.46을 쓰며 x5255.3608→5726.7442/석교로 통과했다. 실제저장 전투 전체 exact, 외부쓰기/회복0이다. 외부 프로세스 재개의 full-battle assert도 명시했다. 역할·공격·호송 정책, 생산 지도/성장/스킬은 그대로다. 기존22/28 결과는 성공진단으로 보존하되 가짜정지 영향이 있어 최종 비교에는 교정 helper를 함께 사용한다.
+
+### 2026-10-09 · 새23 이후 실제12 완료 증거의 역사 경계
+
+Stage12 완료/hold 안내 두 검사는 전체 현행 runtime/project가 과거 완료 시점과 동일하다고 요구했고, 미술 검사는 신규23 자산7개까지 과거 비12 자산 수에 포함해 출처 게이트에서 중단됐다. 기존 Stage23 exact history adapter로 검토된23 delta만 투영해 불변 완료 지문/560개 원본 library를 대조한다. 실제 App Continue·12→13·Native 안내는 현재 production 소스를 그대로 실행하며 투영 함수의 현행 입력 불변도 검사한다. 원본 fixture/기대값과 생산 runtime는 변경하지 않는다. 실제12 저장9회·13 진입/Continue3회, 안내22조건/Native5화면, 접지·저작 멱등 검사가 모두 통과했다.

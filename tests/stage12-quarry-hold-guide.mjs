@@ -5,12 +5,16 @@ import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtimeParts} from '../shared/build.mjs';
 import {guidanceRuntime,canvas} from './act2-guidance-helpers.mjs';
-import {quarryHistoryHash as hash,quarryHistoryPlain as plain,stage12QuarryOriginal,stage12QuarryHoldGuideDelta,beforeStage12QuarryRuntimeSources,stage12QuarryRuntimeSources} from './stage23-escort-history-helpers.mjs';
+import {quarryHistoryHash as hash,quarryHistoryPlain as plain,stage12QuarryOriginal,stage12QuarryHoldGuideDelta,beforeStage12QuarryRuntimeSources,stage12QuarryRuntimeSources,beforeStage23EscortFingerprintParts,beforeStage23Escort} from './stage23-escort-history-helpers.mjs';
 const out=process.env.HONRO_QUARRY_HOLD_GUIDE_OUT||'_local/reports/stage12-quarry/hold-guide';await mkdir(out,{recursive:true});
 const fixtureText=await readFile(new URL('./fixtures/stage12-quarry/completed-run.json',import.meta.url),'utf8'),fixture=JSON.parse(fixtureText),g=await guidanceRuntime(),A=g.HonroAct2;
-const sources=stage12QuarryRuntimeSources(),historical=beforeStage12QuarryRuntimeSources(sources),runtimeSha256=hash((await runtimeParts({vector:false,render:false})).join('\n'));
-assert.equal(runtimeSha256,fixture.files['result.json'].runtimeSha256,'Actual checkpoints and current gameplay runtime are identical');
-assert.equal(hash(g.HONRO_PROJECT),fixture.files['result.json'].sourceHash,'Actual checkpoints and current authored campaign are identical');
+const sources=stage12QuarryRuntimeSources(),historical=beforeStage12QuarryRuntimeSources(sources),parts=await runtimeParts({vector:false,render:false}),runtimeSha256=hash(parts.join('\n')),projectSha256=hash(g.HONRO_PROJECT);
+// Compare immutable checkpoint fingerprints through the exact reviewed Stage23
+// projection while rendering and reloading with the untouched current runtime.
+const stage23ProjectedRuntimeSha256=hash(beforeStage23EscortFingerprintParts(parts,{sources}).join('\n')),stage23ProjectedProjectSha256=hash(beforeStage23Escort(g.HONRO_PROJECT));
+assert.equal(stage23ProjectedRuntimeSha256,fixture.files['result.json'].runtimeSha256,'Checkpoint gameplay fingerprint after exact reviewed Stage23 projection');
+assert.equal(stage23ProjectedProjectSha256,fixture.files['result.json'].sourceHash,'Checkpoint campaign fingerprint after exact reviewed Stage23 projection');
+assert.equal(hash(parts.join('\n')),runtimeSha256,'Fingerprint projection leaves current runtime parts unchanged');assert.equal(hash(g.HONRO_PROJECT),projectSha256,'Native guide keeps the current authored campaign after fingerprint projection');
 const cases=[];
 async function capture(name,b,{fullScene=false,width=1440,height=960,unit='턴',suppressed=false}={}){
  const saved=JSON.stringify(b),step=A.current(b),hold=g.HonroAct2Art.holdGuide(b,step);assert(hold,'An existing real hold step is required');
@@ -49,5 +53,5 @@ assert.equal(old.honroQuarryRevision,undefined);Object.assign(memory.done,{'clea
 await capture('isolated-immutable-old12',old);
 assert.equal(await readFile(new URL('./fixtures/stage12-quarry/completed-run.json',import.meta.url),'utf8'),fixtureText,'Actual saved profile fixture is never rewritten');
 assert.equal(cases.length,22);assert.equal(cases.filter(row=>row.fullScene).length,5);
-const result={passed:true,conditions:cases.length,fullSceneCaptures:cases.filter(row=>row.fullScene).length,sourceCommit:fixture.sourceCommit,gameplayProductionCommit:fixture.lastGameplayProductionCommit,actualSourceArtifacts:fixture.originalArtifacts,fixtureSha256:hash(fixtureText),projectSha256:hash(g.HONRO_PROJECT),runtimeSha256,rendererSha256:hash(sources[stage12QuarryHoldGuideDelta.path]),originalRendererSha256:hash(historical[stage12QuarryHoldGuideDelta.path]),cases,scope:'Five full-scene Native Canvas captures (including actual390x844/844x390 viewports and900x1200 portrait-ratio) from two verbatim normal-run hold checkpoints; every battle byte preserved. Seventeen remaining scope controls are isolated wording fixtures (22 total conditions). No browser, input, performance, difficulty or further gameplay-completion claim.'};
+const result={passed:true,conditions:cases.length,fullSceneCaptures:cases.filter(row=>row.fullScene).length,sourceCommit:fixture.sourceCommit,gameplayProductionCommit:fixture.lastGameplayProductionCommit,actualSourceArtifacts:fixture.originalArtifacts,fixtureSha256:hash(fixtureText),projectSha256,runtimeSha256,stage23ProjectedRuntimeSha256,stage23ProjectedProjectSha256,completedGameplayRuntimeSha256:fixture.files['result.json'].runtimeSha256,completedProjectSha256:fixture.files['result.json'].sourceHash,rendererSha256:hash(sources[stage12QuarryHoldGuideDelta.path]),originalRendererSha256:hash(historical[stage12QuarryHoldGuideDelta.path]),cases,scope:'Historical fingerprint comparison projects only the exact reviewed Stage23 delta; all reloads and renders use the current production runtime. Five full-scene Native Canvas captures (including actual390x844/844x390 viewports and900x1200 portrait-ratio) from two verbatim normal-run hold checkpoints; every battle byte preserved. Seventeen remaining scope controls are isolated wording fixtures (22 total conditions). No browser, input, performance, difficulty or further gameplay-completion claim.'};
 await writeFile(out+'/summary.json',JSON.stringify(result,null,2)+'\n');
