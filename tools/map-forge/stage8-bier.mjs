@@ -6,7 +6,7 @@ const SEEDS=[
  ['A-front','hound',1820,'s8-ground'],['A-front','boar',1940,'s8-ground'],['A-rear','hound',2100,'s8-ground'],['A-air','crow',2270,3570],
  ['B-front','hound',2400,'s8-ground'],['B-front','boar',2635,'s8-ground'],['B-front','hound',2780,'s8-ground'],['B-side','warden',3310,'s8-west-walk',true],['B-side','lantern',3430,3750],['B-rear','crow',3680,3940],
  ['C-front','hound',4080,'s8-west-court'],['C-front','boar',4190,'s8-west-court'],['C-front','hound',4300,'s8-west-court'],['C-support','lantern',5760,3860,true],['C-air','crow',6340,3550],
- ['D-west','crow',3250,3450],['D-west','crow',4630,2270],['D-east','crow',5520,2310,true],['D-east','ghost',5860,'s8-east-shoulder'],
+ ['D-west','crow',3560,3130],['D-west','crow',4630,2270],['D-east','crow',5520,2310,true],['D-east','ghost',5860,'s8-east-shoulder'],
  ['E-front','hound',6210,'s8-ground'],['E-front','boar',6330,'s8-ground'],['E-bend','warden',6880,'s8-ground',true],['E-rear','hound',7310,'s8-ground'],
  ['F-front','warden',7660,'s8-court',true],['F-front','hound',7790,'s8-court'],['F-rear','ghost',8650,'s8-ground'],['F-air','crow',8940,2260],['F-air','crow',9190,2390]
 ];
