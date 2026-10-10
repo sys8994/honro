@@ -13,7 +13,7 @@ import {auditQuarryEngine} from './stage12-quarry-fullplay-helper.mjs';
 import {authorStage8Bier} from '../tools/map-forge/stage8-bier.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex'),h=await appHarness(),{g,C}=h;
 const out=process.env.HONRO_FULLPLAY_OUT||'_local/reports/stage8-bier/fullplay';await mkdir(out,{recursive:true});
-const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,policy='bier-objectives-first-v2';
+const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,policy='bier-objectives-first-v3';
 assert(['canonical','candidate28e5','oldBudget20e0'].includes(rosterMode));
 if(rosterMode!=='canonical')g.HONRO_PROJECT=await authorStage8Bier(plain(g.HONRO_PROJECT),g,{roster:rosterMode});
 const stage=g.HONRO_PROJECT.stages[7],fixture=bierEntryProfile(g,{basicOnly}),parts=await runtimeParts({vector:false,render:false}),sourceHash=hash(g.HONRO_PROJECT),runtimeSha256=hash(parts.join('\n'));
@@ -80,7 +80,7 @@ function attackSeal(u,t){if(!t||t.broken)return false;const begin=performance.no
  }
  const aims=e.shotSeeds(u,s,target);for(const aim of aims){const p=e.predict(u,s,aim.angle,aim.power,undefined,false);if(p.terrain===t.id&&e.fire(s.id,aim.angle,aim.power)){record({op:'fire-seal',hero:u.cls,skill:s.id,target:t.id,hpBefore:t.hp,angle:aim.angle,power:aim.power,from:{x:u.x,y:u.y}});return true;}}return false;}finally{attackPlanningMs+=performance.now()-begin;}}
 const seals=()=>b.terrain.filter(t=>t.honroSeal),goal=()=>{const left=seals().filter(t=>!t.broken).sort((a,z)=>a.x-z.x);return left[0]||(!e.unit('boss')?.dead?e.unit('boss'):null);};
-function destination(u,target){if(target?.honroSeal){const site=Object.values(stage.design.space.sites).find(s=>s.objectiveId===target.id),p=site?.standing;if(p){const x=p.x-(u.cls==='mage'?130:u.cls==='archer'?230:0),t=b.terrain.find(t=>t.id===p.surfaceId),y=t?C.topAt(t,x):p.y,pose=Number.isFinite(y)&&C.validTerrainContactPose(b.terrain,{...u,x,y})?{...p,x,y}:p;return{id:target.id+'-approach',...pose};}}if(target)return{...target,approachRange:u.cls==='knight'?100:520};return null;}
+function destination(u,target){if(target?.honroSeal){const site=Object.values(stage.design.space.sites).find(s=>s.objectiveId===target.id),p=site?.standing;if(p){const x=p.x-(u.cls==='mage'?130:u.cls==='archer'?230:0),t=b.terrain.find(t=>t.id===p.surfaceId),y=t?C.topAt(t,x):p.y,pose=Number.isFinite(y)&&C.validTerrainContactPose(b.terrain,{...u,x,y})?{...p,x,y}:p;return{id:target.id+'-approach',...pose};}}if(target)return{...target,surfaceId:nav.surface(target),approachRange:u.cls==='knight'?100:520};return null;}
 await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial,training:fixture.training,readiness:fixture.readiness},null,2));if(!resume)await save('initial-export');
 const started=performance.now(),actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||450),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||65);let lastSignature='',stalled=0;
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
