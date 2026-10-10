@@ -53,7 +53,14 @@ function sampleAnimation(asset, name = 'idle', seconds = 0, normalized = false) 
   return {poses,controls,t};
 }
 function constrainedPaths(asset, matrices, controls = {}) {
-  if (!asset.constraints?.bowstring) return {paths:[]};
+  const extra=[];
+  if(asset.character_id==='sodan'&&controls.talismanOpacity>0){
+    const hand=asset.rig.parts.find(p=>p.id==='rear_hand').pivot,m=matrices.rear_hand;
+    const bend=controls.paperBend||0,xy=(x,y)=>point(m,[hand[0]+x,hand[1]+y]).map(v=>Number(v.toFixed(3))).join(' ');
+    extra.push({id:'held_talisman',d:`M${xy(2,0)} L${xy(17,-2)} Q${xy(23+bend,-24)} ${xy(17+bend,-48)} L${xy(1+bend,-46)} Q${xy(7,-20)} ${xy(2,0)}Z`,fill:'paper',opacity:controls.talismanOpacity});
+    extra.push({id:'held_talisman_ink',d:`M${xy(6,-10)} L${xy(13,-12)} M${xy(8,-8)} L${xy(10+bend*.5,-34)} M${xy(5,-23)} L${xy(16,-25)} M${xy(5+bend,-38)} L${xy(13+bend,-40)}`,stroke:'ochre',strokeWidth:2,opacity:controls.talismanOpacity});
+  }
+  if (!asset.constraints?.bowstring) return {paths:extra};
   const c = asset.constraints, bow = matrices[c.bowstring.part];
   const top = point(bow,c.bowstring.tips[0]), bottom = point(bow,c.bowstring.tips[1]);
   const rest = point(bow,c.bowstring.restNock), hand = point(matrices[c.bowstring.drawPart],c.bowstring.drawPoint);
@@ -63,7 +70,7 @@ function constrainedPaths(asset, matrices, controls = {}) {
   const d = p => p.map(v=>Number(v.toFixed(3))).join(' ');
   const string = {id:'bowstring_constraint',d:`M${d(top)} L${d(nock)} L${d(bottom)}`,stroke:c.bowstring.color||'old_paper',strokeWidth:c.bowstring.width||1.3,opacity:1};
   const arrow = {id:'arrow_constraint',d:`M${d(nock)} L${d(tip)} M${d([tip[0]-dx/len*8-dy/len*3,tip[1]-dy/len*8+dx/len*3])} L${d(tip)} L${d([tip[0]-dx/len*8+dy/len*3,tip[1]-dy/len*8-dx/len*3])}`,stroke:c.arrow.color||'old_paper',strokeWidth:c.arrow.width||1.8,opacity:controls.arrowOpacity || 0};
-  return {paths:[string,arrow],top,bottom,nock,grip,hand};
+  return {paths:[string,arrow,...extra],top,bottom,nock,grip,hand};
 }
 function createCanvasRenderer(asset) {
   const cache = new Map(asset.paths.map(p=>[p.id,new Path2D(p.d)]));
@@ -152,6 +159,7 @@ function solvePose(asset,target={}){
     m[0]+=dx*n[0];m[2]+=dx*n[1];m[1]+=dy*n[0];m[3]+=dy*n[1];
     m[4]=joints[id][0]-m[0]*a[0]-m[2]*a[1];m[5]=joints[id][1]-m[1]*a[0]-m[3]*a[1];world[side+'_sleeve']=m;
   }
+  if(by.prop_hip)world.prop_hip=multiply(world.pelvis,localMatrix(by.prop_hip.pivot,{r:target.propSwing||0}));
   if(by.weapon)world.weapon=multiply(world.front_hand,localMatrix(by.weapon.pivot,{r:(target.weapon||0)-(target.frontHandAngle||0)}));
   for(const side of ['rear','front'])if(by[side+'_cloth'])world[side+'_cloth']=multiply(world.pelvis,localMatrix(by[side+'_cloth'].pivot,{r:target[side+'Cloth']||0}));
   if(by.hair_tail)world.hair_tail=multiply(world.head,localMatrix(by.hair_tail.pivot,{r:target.hair||0}));
@@ -163,7 +171,7 @@ function solvePose(asset,target={}){
 }
 
 const poseKeys=['pelvis','thorax','rearShoulder','frontShoulder','rearHip','frontHip','rearElbow','frontElbow','rearKnee','frontKnee','rearHand','frontHand','rearFoot','frontFoot'];
-const scalarKeys=['weapon','head','pelvisAngle','rearHandAngle','frontHandAngle','rearFootAngle','frontFootAngle','frontCloth','rearCloth','hair','spirit','qi','draw','arrow','rearArmPlane','frontArmPlane'];
+const scalarKeys=['weapon','head','pelvisAngle','rearHandAngle','frontHandAngle','rearFootAngle','frontFootAngle','frontCloth','rearCloth','hair','spirit','qi','draw','arrow','rearArmPlane','frontArmPlane','propSwing'];
 const poseCache=new WeakMap();
 function completePose(asset,key){
   const p=solvePose(asset,key),j=p.guide.joints;

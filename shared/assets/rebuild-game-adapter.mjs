@@ -31,16 +31,17 @@ export class HonroPoseVisual{
     if(!this.states.has(u))this.states.set(u,{releaseAt:-Infinity,hitAt:-Infinity,lastAnim:0,lastHurt:0,chargeAt:null,mode:'idle',draws:0,raise:0,draw:0,lastTargets:null,releaseFrom:null,settleAt:-Infinity,settleFrom:null,riseSpeed:0,wasAirborne:false});
     return this.states.get(u);
   }
-  update(engine,time,walkDt=Math.max(0,time-this.time)){
+  update(engine,time,walkDt=Math.max(0,time-this.time),selected=''){
     const simulationDt=Math.max(0,time-this.time);this.time=time;
     for(const u of engine.b.units){
       if(resolveRebuildCharacter(u)!==this.asset.character_id)continue;
       const s=this.state(u);
+      if(engine.b.active===u.id&&selected)s.selectedSkill=selected;
       const distance=Math.max(0,(u.walkPhase||0)-(s.lastWalk??(u.walkPhase||0)))/.038;
       s.lastWalk=u.walkPhase||0;s.walkCycle??=0;
       const effort=Math.min(1,distance/Math.max(.001,(u.walkSpeed||330)*simulationDt));
       if(!u.jumping&&!u.airborne&&Math.abs(u.vy||0)<3)s.walkCycle=(s.walkCycle+Math.min(.1,Math.max(0,walkDt))*effort*WALK_CADENCE[this.asset.character_id]/120)%1;
-      if((u.anim||0)>s.lastAnim+.05){s.releaseAt=time;s.releaseFrom=s.mode==='charge'&&s.lastTargets?structuredClone(s.lastTargets):null;s.worldEffect=(engine.b.projectiles||[]).some(q=>q.owner===u.id&&!q.dead&&((this.asset.character_id==='sodan'&&q.skill==='O01')||(this.asset.character_id==='damheo'&&q.skill==='M01')));}
+      if((u.anim||0)>s.lastAnim+.05){s.releaseAt=time;s.releaseSkill=engine.b.cast?.owner===u.id?engine.b.cast.skill:s.selectedSkill;s.releaseFrom=s.mode==='charge'&&s.lastTargets?structuredClone(s.lastTargets):null;s.worldEffect=(engine.b.projectiles||[]).some(q=>q.owner===u.id&&!q.dead&&((this.asset.character_id==='sodan'&&q.skill==='O01')||(this.asset.character_id==='damheo'&&q.skill==='M01')));}
       if((u.hurt||0)>s.lastHurt+.05)s.hitAt=time;
       s.lastAnim=u.anim||0;s.lastHurt=u.hurt||0;
     }
@@ -54,7 +55,7 @@ export class HonroPoseVisual{
     const span=Math.min(Math.hypot(load.frontHand[0]-load.rearHand[0],load.frontHand[1]-load.rearHand[1]),Math.max(1,available));
     const hand=[nock[0]+d[0]*span,nock[1]+d[1]*span];p.frontHand=poseLerp(p.frontHand,hand,strength);
     const neutral=Math.atan2(load.frontHand[1]-load.rearHand[1],load.frontHand[0]-load.rearHand[0])*180/Math.PI;
-    p.weapon+=(-elevation-neutral)*strength;p.frontHandAngle=(-elevation-neutral)*strength*.55;
+    p.weapon+=(-elevation-neutral)*strength;p.frontHandAngle=this.asset.motionRevision>=11?p.weapon:(-elevation-neutral)*strength*.55;
     return p;
   }
   chargingPose(u,charge,s){
@@ -73,6 +74,7 @@ export class HonroPoseVisual{
       return this.api.solvePose(this.asset,target);
     }
     if(this.asset.character_id==='hwigyeom'){
+      if(this.asset.motionRevision>=11)return this.api.sampleAnimation(this.asset,'attack',this.asset.animation.animations.attack.keyframes[2].t*raise,true);
       const p=structuredClone(this.loaded);p.pelvis[1]+=charge*18;p.frontShoulder[1]+=charge*10;p.rearShoulder[1]+=charge*10;p.frontHand[1]+=charge*6;p.rearHand[1]+=charge*6;p.spirit=p.qi=p.spiritAlpha=p.qiAlpha=0;
       return this.api.solvePose(this.asset,this.api.blendPoseTargets(this.ready,p,raise));
     }
@@ -141,6 +143,12 @@ export class HonroPoseVisual{
       if(previousMode==='move'&&s.lastTargets){s.settleFrom=structuredClone(s.lastTargets);s.settleAt=this.time;}
       if(s.settleFrom&&this.time-s.settleAt<.12)sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.settleFrom,sample.targets,poseClamp((this.time-s.settleAt)/.12)));
     }
+    if(this.asset.character_id==='sodan'){
+      const talisman=/^O(06|07|08|09|10)$/.test(s.mode==='release'?s.releaseSkill:s.selectedSkill);
+      sample.controls.talismanOpacity=talisman&&(s.mode==='charge'||s.mode==='release'&&age<.035)?1:0;
+      sample.controls.paperBend=Math.sin(this.time*10)*1.5+(s.mode==='release'?4:0);
+      if(talisman)sample.poses.spirit.opacity=0;
+    }
     s.wasAirborne=airborne;s.lastTargets=structuredClone(sample.targets);sample.poses.root.x=0;sample.poses.root.y=0;
     return {sample,state:s};
   }
@@ -149,7 +157,7 @@ export class HonroPoseVisual{
 export class HonroArcherVisual extends HonroPoseVisual{}
 export class HonroPartyVisual{
   constructor(assets,api,archer){this.visuals={seol_o:archer,...Object.fromEntries(Object.entries(assets).filter(([id])=>id!=='seol_o').map(([id,a])=>[id,new HonroPoseVisual(a,api)]))};}
-  update(engine,time,walkDt){for(const [id,v]of Object.entries(this.visuals))if(id!=='seol_o')v.update(engine,time,walkDt);}
+  update(engine,time,walkDt,selected){for(const [id,v]of Object.entries(this.visuals))if(id!=='seol_o')v.update(engine,time,walkDt,selected);}
   draw(ctx,u,charge=0){const visual=this.visuals[resolveRebuildCharacter(u)];if(!visual)return false;visual.draw(ctx,u,charge);return true;}
   projectile(ctx,q,engine){
     if(q.body)return false;

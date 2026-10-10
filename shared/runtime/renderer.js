@@ -156,9 +156,9 @@
             this._cameraWidth=w;this._cameraHeight=h;
             this.time += effectDt;
             const walkDt=effectDt>0?dt:0;this.walkTime=(this.walkTime||0)+walkDt;
-            this.archerVisual?.update(e,this.time,walkDt);
+            this.archerVisual?.update(e,this.time,walkDt,selected);
             if(!this.partyVisual&&G.HonroPartyVisual)this.partyVisual=new G.HonroPartyVisual(G.HONRO_PARTY,G.HonroVectorRig,this.archerVisual);
-            this.partyVisual?.update(e,this.time,walkDt);
+            this.partyVisual?.update(e,this.time,walkDt,selected);
             const st = H.stages[(b.honroStage || 1) - 1] || H.stages[0];
             this.theme = b.honroBackdrop || st.theme;
             const ps = pal[this.theme];

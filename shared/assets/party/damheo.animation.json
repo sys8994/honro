@@ -84,7 +84,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.25,
@@ -163,7 +164,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.5,
@@ -242,7 +244,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.75,
@@ -321,7 +324,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 1,
@@ -400,7 +404,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         }
       ]
     },
@@ -485,7 +490,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.25,
@@ -563,7 +569,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.5,
@@ -642,7 +649,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.75,
@@ -720,7 +728,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 1,
@@ -799,7 +808,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         }
       ]
     },
@@ -890,26 +900,27 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "name": "GATHER",
           "t": 0.19,
           "pelvis": [
-            219.1425,
-            275.481557
+            232.699875,
+            265.5126682
           ],
           "thorax": [
-            201.76125,
-            175.792666
+            226.6164375,
+            164.3996493
           ],
           "frontHand": [
-            278.23875,
-            192.224901
+            350,
+            226
           ],
           "rearHand": [
-            165.84,
-            206.466171
+            236,
+            218
           ],
           "frontElbow": [
             294.46125,
@@ -924,40 +935,40 @@
             465
           ],
           "frontFoot": [
-            287.50875,
+            279.3975,
             465
           ],
           "contacts": [
             "rear",
             "front"
           ],
-          "weapon": -60,
-          "frontCloth": 3,
-          "rearCloth": 5,
+          "weapon": -10,
+          "frontCloth": 1.2000000000000002,
+          "rearCloth": 2,
           "story": {
             "support": "rear dominant",
             "moving": "weight retreats",
             "force": "staff and free arm gather behind torso"
           },
           "rearShoulder": [
-            168.692775,
-            154.520746
+            196.21278375,
+            139.86495355
           ],
           "rearHip": [
-            201.76125,
-            275.481557
+            215.318625,
+            265.5126682
           ],
           "rearKnee": [
             242.126588,
             363.798854
           ],
           "frontShoulder": [
-            226.045725,
-            146.684135
+            253.94569125,
+            137.834203
           ],
           "frontHip": [
-            234.20625,
-            275.481557
+            247.763625,
+            265.5126682
           ],
           "frontKnee": [
             293.139488,
@@ -966,7 +977,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -10,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
@@ -974,27 +985,28 @@
           "qi": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": 1,
-          "frontArmPlane": -1
+          "rearArmPlane": 0.65,
+          "frontArmPlane": 0.8,
+          "propSwing": -3
         },
         {
           "name": "STEP / LOAD",
           "t": 0.36,
           "pelvis": [
-            223.7775,
-            268.908663
+            234.322125,
+            263.2121553
           ],
           "thorax": [
-            221.46,
-            169.219772
+            233.511,
+            162.0991364
           ],
           "frontHand": [
-            307.2075,
-            145.11916
+            345,
+            215
           ],
           "rearHand": [
-            180.90375,
-            187.842971
+            225,
+            173
           ],
           "frontElbow": [
             282.87375,
@@ -1009,39 +1021,40 @@
             465
           ],
           "frontFoot": [
-            328.065,
-            439.803906
+            279.3975,
+            465
           ],
           "contacts": [
-            "rear"
+            "rear",
+            "front"
           ],
-          "weapon": -70,
-          "frontCloth": -12,
-          "rearCloth": 5,
+          "weapon": -14,
+          "frontCloth": -4.800000000000001,
+          "rearCloth": 2,
           "story": {
             "support": "rear",
             "moving": "front foot stepping",
             "force": "grounded back leg initiates sweep"
           },
           "rearShoulder": [
-            191.900175,
-            144.095374
+            204.33537375,
+            136.21607335000002
           ],
           "rearHip": [
-            206.39625,
-            268.908663
+            216.940875,
+            263.2121553
           ],
           "rearKnee": [
             235.141575,
             361.200115
           ],
           "frontShoulder": [
-            249.848588,
-            143.96372
+            262.2766933,
+            136.88205775
           ],
           "frontHip": [
-            238.84125,
-            268.908663
+            249.385875,
+            263.2121553
           ],
           "frontKnee": [
             318.788363,
@@ -1050,7 +1063,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -14,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
@@ -1058,27 +1071,28 @@
           "qi": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "rearArmPlane": 0.65,
+          "frontArmPlane": 0.8,
+          "propSwing": -5
         },
         {
           "name": "CAST",
           "t": 0.5,
           "pelvis": [
-            270.1275,
-            282.054451
+            250.544625,
+            267.8131811
           ],
           "thorax": [
-            294.46125,
-            186.747489
+            259.0614375,
+            168.23383735
           ],
           "frontHand": [
-            395.2725,
-            209.752618
+            365,
+            230
           ],
           "rearHand": [
-            419.701426,
-            157.147987
+            345,
+            165
           ],
           "frontElbow": [
             354.71625,
@@ -1093,16 +1107,16 @@
             465
           ],
           "frontFoot": [
-            360.51,
+            279.3975,
             465
           ],
           "contacts": [
             "rear",
             "front"
           ],
-          "weapon": 55,
-          "frontCloth": -12,
-          "rearCloth": 9,
+          "weapon": -8,
+          "frontCloth": -4.800000000000001,
+          "rearCloth": 3.6,
           "qi": 0.6,
           "story": {
             "support": "front receives",
@@ -1110,24 +1124,24 @@
             "force": "step / torso / staff and open hand / qi"
           },
           "rearShoulder": [
-            272.5809,
-            155.72607
+            232.5736275,
+            140.28681695
           ],
           "rearHip": [
-            252.74625,
-            282.054451
+            233.163375,
+            267.8131811
           ],
           "rearKnee": [
             266.65125,
             377.361414
           ],
           "frontShoulder": [
-            328.639313,
-            169.603093
+            289.85344705,
+            145.85583830000002
           ],
           "frontHip": [
-            285.19125,
-            282.054451
+            265.608375,
+            267.8131811
           ],
           "frontKnee": [
             352.903763,
@@ -1136,34 +1150,35 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -8,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
           "spirit": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": -1,
-          "frontArmPlane": 1
+          "rearArmPlane": 0.65,
+          "frontArmPlane": 0.8,
+          "propSwing": 3
         },
         {
           "name": "FOLLOW",
           "t": 0.7,
           "pelvis": [
-            277.08,
-            289.722828
+            252.978,
+            270.49711305
           ],
           "thorax": [
-            300.255,
-            196.60683
+            261.08925,
+            171.68460670000002
           ],
           "frontHand": [
-            408.01875,
-            256.858358
+            356,
+            245
           ],
           "rearHand": [
-            424.997598,
-            173.306472
+            330,
+            190
           ],
           "frontElbow": [
             357.03375,
@@ -1174,19 +1189,20 @@
             146.214643
           ],
           "rearFoot": [
-            201.76125,
+            195.9675,
             465
           ],
           "frontFoot": [
-            360.51,
+            279.3975,
             465
           ],
           "contacts": [
+            "rear",
             "front"
           ],
-          "weapon": 85,
-          "frontCloth": -10,
-          "rearCloth": 16,
+          "weapon": -3,
+          "frontCloth": -4,
+          "rearCloth": 6.4,
           "qi": 1,
           "story": {
             "support": "front",
@@ -1194,24 +1210,24 @@
             "force": "broad qi mass, no sword-slash effect"
           },
           "rearShoulder": [
-            278.036925,
-            166.304224
+            234.48323625,
+            143.98917085
           ],
           "rearHip": [
-            259.69875,
-            289.722828
+            235.59675000000001,
+            270.49711305
           ],
           "rearKnee": [
             280.660088,
             383.869068
           ],
           "frontShoulder": [
-            334.185113,
-            179.850841
+            291.79447705,
+            149.4425501
           ],
           "frontHip": [
-            292.14375,
-            289.722828
+            268.04175,
+            270.49711305
           ],
           "frontKnee": [
             368.181375,
@@ -1220,15 +1236,16 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -3,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
           "spirit": 0,
           "draw": 0,
           "arrow": 0,
-          "rearArmPlane": -1,
-          "frontArmPlane": 1
+          "rearArmPlane": 0.65,
+          "frontArmPlane": 0.8,
+          "propSwing": 7
         },
         {
           "name": "RECOVERY",
@@ -1313,7 +1330,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         }
       ],
       "events": [
@@ -1404,7 +1422,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.25,
@@ -1471,7 +1490,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -18,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
@@ -1480,7 +1499,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": -1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.5,
@@ -1547,7 +1567,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -20,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
@@ -1556,7 +1576,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": -1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.75,
@@ -1623,7 +1644,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -5,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "hair": 0,
@@ -1632,7 +1653,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": -1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 1,
@@ -1711,7 +1733,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         }
       ]
     },
@@ -1796,7 +1819,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.2,
@@ -1865,7 +1889,7 @@
           ],
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -24,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -1875,7 +1899,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.5,
@@ -1944,7 +1969,7 @@
           ],
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -14,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -1954,7 +1979,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 0.8,
@@ -2022,7 +2048,7 @@
           "head": 0,
           "pelvisAngle": 0,
           "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "frontHandAngle": -5,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -2033,7 +2059,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         },
         {
           "t": 1,
@@ -2112,7 +2139,8 @@
           "draw": 0,
           "arrow": 0,
           "rearArmPlane": 1,
-          "frontArmPlane": 1
+          "frontArmPlane": 1,
+          "propSwing": 0
         }
       ]
     }
