@@ -9,7 +9,8 @@ export function refinePhysicalMotion(a,rig){
  // Feet still articulate, but the actor's engine position owns displacement.
  clip.keyframes=old.map((f,i)=>{
   const p=copy(f);p.weaponUnwrapped=true;if(i===0||i===old.length-1)return p;
-  for(const k of ['pelvis','thorax','rearShoulder','frontShoulder','rearHip','frontHip','rearFoot','frontFoot'])p[k]=mix(idle[k],f[k],.32);
+  for(const k of ['pelvis','thorax','rearShoulder','frontShoulder','rearHip','frontHip'])p[k]=mix(idle[k],f[k],['thorax','rearShoulder','frontShoulder'].includes(k)?.45:.32);
+  p.rearFoot=copy(idle.rearFoot);p.frontFoot=copy(idle.frontFoot);p.contacts=['rear','front'];
   for(const k of ['pelvis','thorax','rearShoulder','frontShoulder','rearHip','frontHip'])p[k][1]+=4;
   const hands=[null,[380,145],[356,88],[420,173],[388,255]];
   p.frontHand=hands[i];p.rearHand=[[0,0],[197,180],[208,165],[218,187],[230,215]][i];

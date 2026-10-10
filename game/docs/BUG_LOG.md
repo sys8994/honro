@@ -1992,3 +1992,12 @@ runtime21·budget5와 독립14재현이 통과했다. 독립 범위는 정지8�
 독립 검토에서 없어진 gate-bridge 때문에 E가 지리를 열지 않는 결함을 찾았다. 실제 목교/아래 골/닫힌 돌걸쇠를 복원했고 네 체형의 유한 보행·점프 차단→실제 E 개방→전체 전장 Continue→개방 후 보행을 검사했다. 가족집에서 방어지까지 빈 이동도 실제 암반 끝/아래 통로를 당겨4345→3240으로 줄였다. 왼쪽 구출 선택 뒤 동쪽 고립 군집5체를 긴 왕복으로 청소할 위험은 F 바로 위 어깨로 재배치해 교정 중이며 전역 AI/행동상한은 그대로다.
 
 68 기본경로·다섯 난이도 정확 초기포즈/8초정지·runtime12/App6 재통과. 새 정상자원 완주는 진행 중이고 옛 공격우선 진단은 소단 사망/중층 구조 정체로 실패했다. Native16컷에서 후면 지지 연결은 개선됐으나 미술의 마을 밀도·자연 암반 덩어리는 여전히 불합격이다. 작업 브랜치 보존용이며 master/Pages 후보가 아니다.
+
+
+## 2026-10-10 — party prop/limb presentation continuity
+
+Cause: attack hand angles stayed neutral while implements rotated; the shortest sword lift crossed the torso; staff release reversed a long implement abruptly. One generic release path could restart at the loaded pose on combo anim pulses.
+
+Change: add the post-calibration authored motion overlay, fixed sword/caster foot contacts, outward sword preparation and coupled grip, bow follow-through, upright staff/free-hand casting and delayed hip-gourd response, and selected-skill paper talisman. Observe existing melee beat timing, reverse/alternating cuts, and body-projectile flight without changing simulation fields.
+
+Verification: deterministic production rig/adapter Native Canvas frames and actual Engine.fire/tick event captures; character balance/portrait regression passed. Browser integration launch is blocked by Chromium socket EPERM. Full verify stops at rc20-map-audit's exact combat-density project hash; migration stops at original580 asset membership/order. Both exact failures were reproduced on untouched public master ca0bddc6 in a separate worktree, not caused by the motion overlay. These aggregate failures and browser/Pages verification remain open; Native evidence is not deployed-browser play.

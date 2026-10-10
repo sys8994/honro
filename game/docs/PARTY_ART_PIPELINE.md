@@ -1,5 +1,24 @@
 # 네 동행 캐릭터 제작·검수 기준
 
+## v011 presentation motion overlay (2026-10-10)
+
+The v010 calibrated faces, height, palette, bind paths and Korean costume remain unchanged. `tools/party-forge/motion.mjs` runs after silhouette calibration; `motionRevision:11` identifies the new authored target tracks. Generated SVG/rig/animation/runtime and both HTML files are rebuilt, never edited directly.
+
+- Hwigyeom: outward lifting preparation, hand and hilt share an unwrapped rotation, compact hip/chest transfer over fixed attack-foot contacts, continuous accelerating cut and lower recovery. The production adapter observes the existing melee schedule (75 ms ordinary, 200 ms S02), with compact alternating S07 cuts and the S05 reverse cut. Body projectiles use an airborne forward-sword pose. Blade-projectile skills retain their immediate release branch. Physics, reach, damage, skill definitions and simulation events are untouched.
+- Seol-o: bow-hand orientation follows the rigid grip, drawn string still uses the hand constraint, and the bow arm holds the aiming line through follow-through. The existing draw/release boundary and arrow controls stay intact.
+- Damheo: a modest upright staff gesture replaces the abrupt horizontal reversal; the free hand opens forward. Feet remain planted and the hip-hung gourd has a small delayed rotational response, not an invented hand-held throw.
+- Sodan: compact bell/casting arm chain. The actual selected O06–O10 curse skills show a paper talisman attached to the free hand, then hide it after release; O01 retains its bell/spirit identity. The hand corner stays pinned while the paper tip bends subtly. This is a visual prop only, not a new projectile or skill.
+
+`npm run test:party-motion` exercises the production `HonroPoseVisual`, plus actual Engine.fire/tick for sword/body/blade events, and writes Native Canvas contact sheets under `_local/reports/party-motion/candidate`. The before source was captured from public master ca0bddc6 before editing, with source hashes in the baseline summary. Dense 60 Hz release sheets, both facings, whole clips, skill branches, interrupted airborne charging and rigid grip/limb checks are separate from browser gameplay QA. `test:character-balance` still pins facial geometry, palette, path budget, scale, event times, clip duration and contact continuity; its old v009 exact joint-angle comparison applies only to pre-overlay clips.
+
+References used as principles, not motion-capture or historical reconstruction:
+- Suwon official martial-art performance photographs (overhead preparation, counterbalancing free arm, rigid long implement): https://www.suwon.go.kr/sw-www/sw-visitsuwon/sw-visitsuwon-01/sw-visitsuwon-01-01/sw-visitsuwon-01-01-03.jsp
+- Suwon Cultural Foundation, martial arts 24 forms: https://www.swcf.or.kr/?idx=67&p=73&viewMode=view
+- World Archery, Kim Hyung-tak on wrist, balance and torso stability: https://www.worldarchery.sport/news/157499/coach-kim-hyung-taks-5-keys-great-recurve-archery-technique
+- World Archery, release-hand errors: https://www.worldarchery.sport/news/149488/9-common-recurve-archery-mistakes-and-how-fix-them
+
+Official still images were inspected; they establish poses, not measured velocity or frame timing. Modern recurve release principles are not copied as Korean thumb-release technique. The staff spell and talisman gesture are creative game animation, not claims of ritual authenticity.
+
 ## 현재 v010 · 키 보존과 성인 비율 (2026-10-06)
 
 v009의 전체 화면 키와 발 접지는 유지하면서 설오의 몸 폭은 20%, 담허·휘겸은 12.5% 넓혔다. 소단의 몸 폭·복식·연보라색·인물성은 유지한다. 등신은 **머리카락/갓 아래 두개골 정수리부터 턱까지** 한 머리, **그 정수리부터 발바닥까지**의 키로 측정한다. 보이는 얼굴 면만 재거나 갓·묶음머리까지 신장에 더하지 않는다. 정수리는 원본 시트의 조형에서 추정한 제작 기준점이며 골격의 의학적 측정이 아니다.

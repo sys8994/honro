@@ -177,7 +177,7 @@ function solvePose(asset,target={}){
   }
   if(by.prop_hip)world.prop_hip=multiply(world.pelvis,localMatrix(by.prop_hip.pivot,{r:target.propSwing||0}));
   if(by.weapon){
-    if(asset.rig.handSockets){const grip=point(world.front_hand,asset.rig.handSockets.front),w=by.weapon.pivot;world.weapon=localMatrix(w,{x:grip[0]-w[0],y:grip[1]-w[1],r:target.weapon||0});}
+    if(asset.rig.handSockets){const grip=point(world.front_hand,asset.rig.handSockets.front),w=by.weapon.pivot;world.weapon=localMatrix(w,{x:grip[0]-w[0],y:grip[1]-w[1],r:asset.rig.swordGrip?(target.frontHandAngle||0)+asset.rig.swordGrip.crossAxisOffset:target.weapon||0});}
     else world.weapon=multiply(world.front_hand,localMatrix(by.weapon.pivot,{r:(target.weapon||0)-(target.frontHandAngle||0)}));
   }
   for(const side of ['rear','front'])if(by[side+'_cloth'])world[side+'_cloth']=multiply(world.pelvis,localMatrix(by[side+'_cloth'].pivot,{r:target[side+'Cloth']||0}));

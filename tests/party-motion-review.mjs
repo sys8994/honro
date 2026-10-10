@@ -91,7 +91,7 @@ if(label==='candidate'){
   }
   if(initial.meleeAction){const expected=skill==='S02'?.2:.075;assert(cutEvents.length,`${skill} emits actual swordCut`);assert(Math.abs(cutEvents[0].time-expected)<=.0011,`${skill} hit timing`);assert(Math.abs(cutEvents[0].phase-assets.hwigyeom.animation.animations.attack.events[0].t)<.003,`${skill} first sword pose extreme aligns with hit`);}
   if(initial.meleeAction)for(const hit of cutEvents)if(Math.abs(hit.phase-assets.hwigyeom.animation.animations.attack.events[0].t)>.003)failures.push(`${skill} hit at ${hit.time}s pose phase ${hit.phase}, expected cut phase .5`);
-  if(skill==='S07')for(const [i,hit]of cutEvents.entries()){const angle=assets.hwigyeom.anatomyRevision>=12?(i%2?-50:15):(i%2?-125:-55);if(Math.abs(hit.weaponAngle-angle)>.01)failures.push(`${skillLabel} hit ${i+1} at ${hit.time}s weaponAngle ${hit.weaponAngle}, expected ${angle}`);assert(hit.metrics.gripGap<1e-6);}
+  if(skill==='S07')for(const [i,hit]of cutEvents.entries()){const angle=assets.hwigyeom.rig.swordGrip?(i%2?-55:assets.hwigyeom.animation.animations.attack.keyframes[3].frontHandAngle):assets.hwigyeom.anatomyRevision>=12?(i%2?-50:15):(i%2?-125:-55);if(Math.abs(hit.weaponAngle-angle)>.01)failures.push(`${skillLabel} hit ${i+1} at ${hit.time}s weaponAngle ${hit.weaponAngle}, expected ${angle}`);assert(hit.metrics.gripGap<1e-6);}
   if(skill==='S05')assert.equal(cutEvents[1].drawFacing,-u.facing,'S05 second hit is rendered backward without changing actor facing');
   adapterChecks.push({case:`actual-engine-${skillLabel}`,initial,records,cutEvents,events:events.filter(x=>x.event.name==='swordCut')});erow++;
  }
