@@ -153,7 +153,9 @@
     "test:vertical-current:contracts": "npm run test:stage14-vertical:behavior && npm run test:stage22-vertical:contracts",
     "test:stage22-vertical:traversal": "node tests/stage22-vertical-traversal.mjs",
     "test:stage22-vertical:fullplay": "node tests/stage22-vertical-fullplay.mjs",
-    "test:stage22-vertical:native": "node --expose-gc tests/stage22-vertical-native-art.mjs"
+    "test:stage22-vertical:native": "node --expose-gc tests/stage22-vertical-native-art.mjs",
+    "test:screen-cache": "node --expose-gc tests/static-screen-cache.mjs",
+    "test:screen-cache:performance": "node --expose-gc tests/static-screen-cache-performance.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"

@@ -98,8 +98,27 @@
             this.terrainReadability?.(cc,b);
             this._staticCacheBuild=oldAll;this._staticWorldCache={key,canvas:cv,rs,w:b.width,h:b.height,bytes:cv.width*cv.height*4};this._cacheStats.worldBuilds++;this._cacheStats.worldBuildMs+=performance.now()-t0;return this._staticWorldCache;
         }
+        // A second-level raster avoids resampling large static tiles/SVG scenery
+        // on every idle/aim frame. Require two identical views before allocation:
+        // camera motion and continuous zoom keep the existing live/tile path.
+        // Two slots, each capped at 6M pixels (24MB); replaced buffers release
+        // their backing stores immediately. Dynamic water, actors and FX stay live.
+        _screenRaster(c,key,w,h,paint,slot,world=true){
+            if(c.globalAlpha!==1||c.globalCompositeOperation!=='source-over')return false;
+            const m=c.getTransform(),d=m.a/(world?this.scale:1),pw=Math.round(w*d),ph=Math.round(h*d),signature=[key,pw,ph,m.a,m.b,m.c,m.d,m.e,m.f].join(':');
+            let q=this[slot];
+            if(q?.key===signature&&q.canvas){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);c.restore();this._cacheStats.screenHits=(this._cacheStats.screenHits||0)+1;this._cacheStats[world?'worldHits':'bgHits']++;return true;}
+            if(q?.key!==signature){if(q?.canvas){q.canvas.width=1;q.canvas.height=1;}this[slot]={key:signature};return false;}
+            if(pw*ph>6000000||pw<1||ph<1)return false;
+            const cv=this._makeLayerCanvas(pw,ph),cc=cv.getContext('2d');cc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);paint(cc);q.canvas=cv;q.bytes=pw*ph*4;
+            this._cacheStats.screenBuilds=(this._cacheStats.screenBuilds||0)+1;
+            c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c.restore();return true;
+        }
         _drawStaticWorldCached(c,b,w,h){
-            if(G.HonroTerrainDomain?.active(b))return this._drawTerrainDomainTiles(c,b,w,h);
+            if(G.HonroTerrainDomain?.active(b)){
+                if(this._screenRaster(c,this._worldCacheKey(b,w),w,h,cc=>this._drawTerrainDomainTiles(cc,b,w,h),'_screenWorldCache'))return;
+                return this._drawTerrainDomainTiles(c,b,w,h);
+            }
             const q=this._buildStaticWorld(b,w);c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,0,0,b.width,b.height);
             // The raster is bounded to the physical map; the artwork is not. Continue
             // boundary trees/buildings outside it without growing the memory-capped bitmap
@@ -141,7 +160,7 @@
             while(q.tiles.size>limit)q.tiles.delete(q.tiles.keys().next().value);
             this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
         }
-        renderCacheStats(){return{...this._cacheStats,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
+        renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
@@ -181,6 +200,8 @@
                 // automatic follow immediately; never steal manual/story focus.
                 if(resized&&!this.storyTween&&!this.goalFocus)this.y=ty;
                 else this.y+=(ty-this.y)*Math.min(1,dt*speed);
+                // End invisible follow tails instead of changing raster keys forever.
+                if(actorFollow){if(Math.abs(tx-this.x)*this.scale<.02)this.x=tx;if(Math.abs(ty-this.y)*this.scale<.02)this.y=ty;}
             }
             if(this.storyTween){
                 const tw=this.storyTween,now=performance.now(),raw=Math.max(0,Math.min(1,(now-tw.start)/tw.duration)),ease=raw*raw*(3-2*raw);
