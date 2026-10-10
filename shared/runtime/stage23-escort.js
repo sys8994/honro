@@ -106,7 +106,7 @@ W.execute=function(app,action){const b=app.engine?.b,source=action?.source;if(!a
  const m=memory(b);acceptOpportunity(app);if(ended(app)||m.ended)return false;if(m.entries[source])return true;const warning=m.warnings[source],entry=entryFor(b,source);if(!entry||!warning||!warning.opportunity||serial(b)<=warning.serial||m.status==='sliding'||!safeBoundary(app))return false;
  const key=boundary(app),n=action.n||1;if(b.honroState.lastCombatEventBoundary===key||app.engine.alive(1).length+n>E.populationCap(b))return false;
  const choices=[entry,...(entry.alternates||[]).filter(p=>!p.side||!entry.side||p.side===entry.side).map(p=>({...p,side:entry.side}))];
- for(const at of choices){const spacing=at.spacing??action.spacing??145,support=at.support||at.surfaceId;if(!support||!Number.isFinite(at.x)||!Number.isFinite(at.y))continue;
+ for(const at of choices){if(G.HonroEncounterDensity?.active(b)&&at.members){if(!G.HonroEncounterDensity.spawnMembers(app,action,at))continue;const list=b.units.slice(-at.members.length);for(const u of list)u.honroEscortYardEntry=at.side||source;m.entries[source]={x:at.x,y:at.y,support:at.support,side:at.side,round:b.round,serial:serial(b),count:list.length,ids:list.map(u=>u.id)};b.honroState.lastCombatEventBoundary=key;app.dirty=true;return true;}const spacing=at.spacing??action.spacing??145,support=at.support||at.surfaceId;if(!support||!Number.isFinite(at.x)||!Number.isFinite(at.y))continue;
   // MaxDistance zero means the common placement code must reserve every exact
   // authored slot. It cannot silently search another ledge or opposite bank.
   if(!Array.from({length:n},(_,i)=>at.x+(i-(n-1)/2)*spacing).every(x=>G.HonroMapEngine.surfaceY(b.terrain,x,at.y,support)))continue;
