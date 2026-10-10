@@ -57,3 +57,13 @@ for(const stage of [11,23]){
 }
 const main=await readFile(new URL('../shared/runtime/main.js',import.meta.url),'utf8');assert(main.includes('if(args[0]&&!e.projectileDamage(args[2]))'),'main coalition wrapper must permit projectile damage');
 console.log('PASS protected ally death callbacks and retained special protection');
+// Mount the production App so the outer coalition wrapper is exercised too.
+{
+ const {appHarness}=await import('./app-regression-helpers.mjs');const h=await appHarness(),app=h.load(h.profileThrough(22));app.launch(23);h.finish(app);
+ const e=app.engine,u=e.b.units.find(t=>t.side===0),ally=h.C.makeUnit('knight',2,u.x+200,u.y,{id:'mounted-ally',honroAlly:true,honroProtected:true,hp:20,maxHp:20,armor:0,shield:0});e.b.units.push(ally);
+ const p={id:900,mode:'arrow',skill:'A01',skillRank:1,owner:u.id,side:0,shot:1,damage:1000,body:false,vx:100,vy:0,launchX:u.x,launchY:u.y};
+ const hp=u.hp;e.hurt(u,10,ally.id,true,{...p,owner:ally.id,side:2});assert(u.hp<hp,'mounted allied shot hurts hero');
+ e.hurt(ally,1000,u.id,true,p);assert(ally.dead,'mounted hero shot defeats protected ally');assert(h.g.HonroAct3.failure(e.b));
+ assert(e.checkEnd(),'existing mounted mission check ends battle after protected death');assert.equal(e.b.phase,'lost');
+}
+console.log('PASS mounted production App bidirectional coalition damage and mission loss');

@@ -2046,3 +2046,9 @@ Verification: deterministic production rig/adapter Native Canvas frames and actu
 디버그 구현 21fdaec/6cee0f3와 여정첩 확장42aebdb/7d1f296을 충돌 없이 통합했다. 모닥불 경지 선택은 스크롤 내부에 두고, 기예 환불은 재방문 때 보존하며 내부 보조공격은 슬롯 목록에서 제외한다. 기존25/27장의 축지진목 임시 준비와 원래 장착 보존은 유지한다. 전체30장 선택/출발/재시도·4인 경지1–30·하향 능력치한도·환불/강화·일반저장/내보내기/Workshop 보호의12그룹, 기존 모닥불11·Custom Map 반환18·쉼터9그룹, 지도 레이아웃/아트/좌표·Playtest 산출물·TypeScript를 집중 검사했다. 양HTML은 통합 소스로 다시 생성했다.
 
 전체 verify는 기존 encounter-density 역사 입력 해시 d369e6f0…와 기대4e6862fc… 불일치로 rc20-map-audit에서 중단됐다. 수정전과 같은 map-history 검증 경계이며 이번 UI 변경에 맞춰 역사 해시를 완화하지 않았다. 로컬 Chromium은 socket() Operation not permitted로 시작하지 못했다. 따라서 실제 화면·입력·성능·Pages 검수는 이 집중검사와 별도이며 배포 검수자가 확인해야 한다.
+
+### Combat/UI integration checkpoint
+
+Integrated the c25d50c debug/journey build without altering either feature; only the appended bug-log sections needed manual conflict resolution. Production App tests pass all 12 debug groups, 11 camp-persistence cases, 18 custom-return cases, rest journey, journey layout and standalone Playtest contracts. Mounted App tests verify allied projectile damage in both directions and protected-NPC death reaching the existing lost outcome. The projectile help text now warns about friendly/protected actors.
+
+Build and typecheck pass. Full verify stops at the existing density historical hash (`d369e6f0…` vs `4e6862fc…`); migration stops at original580 asset membership/order. Both exact failures reproduce on untouched c25d50c. The existing combat-story formation assertion remains 36 vs 72 after its updated stake assertion passes. Browser integration cannot start Chromium because socket creation returns EPERM. Current special DOT/legacy lingering zones preserve their old policies; active projectile delayed explosions M05/M13 retain projectile damage context. Published Game/Workshop visual/input verification remains separate and pending.
