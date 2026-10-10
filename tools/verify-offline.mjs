@@ -7,7 +7,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);const out=process.env.HONRO_OFFLINE_REPORT_DIR||'_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
  ['vertical-regression-wiring','npm',['run','test:vertical-regression-wiring']],
- ['stage14-vertical-contracts','npm',['run','test:stage14-vertical:contracts']],
+ ['vertical-current-contracts','npm',['run','test:vertical-current:contracts']],
  ['encounter-density-contracts','npm',['run','test:encounter-density:contracts']],
  ['cavern-places','npm',['run','test:cavern-places']],
  ['cavern-transitions','npm',['run','test:cavern-transitions']],
