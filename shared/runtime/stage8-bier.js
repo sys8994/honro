@@ -89,7 +89,12 @@ function acceptOpportunity(app){const e=app.engine,b=e.b,m=memory(b),action=e.ho
  for(const source of action.waves||[]){const w=m.warnings[source];if(w&&!w.cancelled&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
 }
 function cancelScene(app){const b=app.engine.b;if(ownedScene(app)){app.dialogue.staging.complete=true;app.dialogue.staging.cursor=app.dialogue.staging.steps.length-1;G.HonroStory.finish(app);}if(b.honroStaging?.once)delete b.honroStaging.once[SCENE];app.stagingLastTime=null;}
-function cleanup(app){const b=app.engine?.b;if(!active(b))return false;const m=memory(b),dead=!alive(boss(b)),over=ended(app);if(!dead&&!over)return false;
+function cleanup(app){const b=app.engine?.b;if(!active(b))return false;
+ // Story pauses ordinary Engine ticks. If the last real companion was lost
+ // during this pause (or in a saved scene), run the existing loss decision
+ // before advancing any movement. Never invent a new mage/actor requirement.
+ if(!ended(app)&&!b.units.some(u=>alive(u)&&u.side===0&&!u.summoned))app.engine.checkEnd();
+ const m=memory(b),dead=!alive(boss(b)),over=ended(app);if(!dead&&!over)return false;
  for(const source of sources)if((over||source!==sources[0])&&!m.entries[source]){(m.warnings[source]??={serial:serial(b),round:b.round}).cancelled=over?'battle-ended':'boss-dead';b.honroState.flags['event:'+source]='cancelled:'+(over?'battle-ended':'boss-dead');b.honroState.pendingEvents=(b.honroState.pendingEvents||[]).filter(id=>id!==source);}
  if(m.status!=='cancelled'){m.status='cancelled';m.cancellationReason=over?'battle-ended':'boss-dead';m.blockers=[];m.reason='';b.honroState.storyQueue=(b.honroState.storyQueue||[]).filter(l=>l[2]?.stagingRequest?.id!==SCENE);cancelScene(app);app.dirty=true;}
  return over;
