@@ -269952,9 +269952,7 @@
           ],
           "encounters": {
             "initial": 50,
-            "elite": 14,
-            "ordinaryElite": 13,
-            "objectiveElite": 1,
+            "elite": 13,
             "wave": 10,
             "responseCount": 6,
             "totalEnemyBudget": 66,
@@ -289274,14 +289272,12 @@
           "encounters": {
             "roster": "dense55",
             "initial": 55,
-            "elite": 15,
+            "elite": 14,
             "wave": 12,
             "activeLimit": 3,
             "xpPolicy": "Preserve the existing stage XP budget; do not multiply by population.",
             "baselineInitial": 28,
             "candidateInitial": 55,
-            "ordinaryElite": 14,
-            "objectiveElite": 1,
             "responseCount": 6,
             "totalEnemyBudget": 73
           }
