@@ -36,7 +36,15 @@ A.entry=function(app,options={}){return active(app.engine?.b)&&app.engine.b.honr
 // One current action in the HUD; counts and delayed-entry detail stay in the
 // already-existing objective panel. Reading guidance never creates state.
 const enhance=G.HonroObjectiveGuide.enhance;
-G.HonroObjectiveGuide.enhance=function(b,st,result){const out=enhance(b,st,result);if(!active(b)||A.current(b)?.id!=='hold-refuge')return out;
+G.HonroObjectiveGuide.enhance=function(b,st,result){const out=enhance(b,st,result);if(!active(b))return out;
+ const current=A.current(b)?.id;
+ if(current==='clear-village'){
+  // Protection is still live after the timed hold. This changes only the
+  // current instruction, never NPC vulnerability or the original clear goal.
+  const instruction='피난민을 지키며 남은 들림을 제압하세요';
+  return{...out,currentInstruction:instruction,summary:instruction,visibleChecklist:(out.visibleChecklist||[]).map(q=>q.id===current?{...q,text:instruction}:q),checklist:(out.checklist||[]).map(q=>q.id===current?{...q,text:instruction}:q)};
+ }
+ if(current!=='hold-refuge')return out;
  const h=b.honroState?.act2?.holds?.['hold-refuge']||{},m=b.honroState?.vertical14||{},progress=Math.min(6,h.progress||0),spawned=h.spawned||0;
  const blocked=Object.entries(m.warnings||{}).find(([id,w])=>!m.entries?.[id]&&!w.cancelled&&w.status==='blocked'),side={west:'서쪽',east:'동쪽',inner:'다리 안쪽'}[blocked?.[1]?.side]||'도구';
  const instruction=h.guarded===false?'표시된 원으로 돌아오세요':h.contested?'다리 안의 들림을 제압하세요':blocked&&progress>=6?side+' 진입로를 비워 주세요':progress>=6&&spawned<12?'다가오는 들림을 막아 주세요':'피난민을 지키세요 · '+progress+'/6턴';
