@@ -1,7 +1,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {applyStage30Ferry} from './stage30-ferry.mjs';
-export async function authorStage30Ferry(project,g,{roster='candidate26e6',art=true}={}){
+export async function authorStage30Ferry(project,g,{roster=project.stages.find(s=>s.metadata?.stageId===30)?.initialState?.honroFerryRoster||'candidate26e6',art=true}={}){
  const before=JSON.stringify(project.stages.filter(s=>s.metadata?.stageId!==30));let p=applyStage30Ferry(g,project,{roster});
  if(art){const {applyStage30FerryArt}=await import('../environment/stage30-ferry-art.mjs');await applyStage30FerryArt(p);}
  if(JSON.stringify(p.stages.filter(s=>s.metadata?.stageId!==30))!==before)throw Error('Stage30 author changed another stage');return p;

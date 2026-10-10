@@ -1,5 +1,6 @@
 /** Stage30's folded ferry shore. Fresh battles opt in; saved battles own their terrain. */
 import {readFile} from 'node:fs/promises';
+import {FERRY_DENSITY_ROSTER,FERRY_DENSITY_GROUPS,FERRY_DENSITY_RESPONSES,FERRY_DENSITY_ACTIVATION,ferryDensityEntries,ferryDensityHold} from './stage30-density-roster.mjs';
 const clone=v=>JSON.parse(JSON.stringify(v));
 export const FERRY_REVISION=1;
 export const FERRY_LAYOUT=JSON.parse(await readFile(new URL('./stage30-ferry-layout.json',import.meta.url),'utf8'));
@@ -36,25 +37,26 @@ export function ferrySweep(){
  pts.sort((a,z)=>a.x-z.x||a.y-z.y);const cross=(a,z,p)=>(z.x-a.x)*(p.y-a.y)-(z.y-a.y)*(p.x-a.x),low=[],high=[];for(const p of pts){while(low.length>1&&cross(low.at(-2),low.at(-1),p)<=0)low.pop();low.push(p);}for(const p of pts.slice().reverse()){while(high.length>1&&cross(high.at(-2),high.at(-1),p)<=0)high.pop();high.push(p);}return{artFrom:from,sweepPolygons:[{id:'hull-settling-envelope',points:[...low.slice(0,-1),...high.slice(0,-1)]}]};
 }
 export function authorFerryEncounters(g,p,s,{roster=s.initialState?.honroFerryRoster||'candidate26e6'}={}){
- const baseline=roster!=='candidate26e6',oldBudget=roster==='originalBudget20e4';
- const groups=clone(FERRY_LAYOUT.encounters).map(group=>({
+ const dense=roster===FERRY_DENSITY_ROSTER,baseline=!dense&&roster!=='candidate26e6',oldBudget=roster==='originalBudget20e4';
+ const groups=clone(dense?FERRY_DENSITY_GROUPS:FERRY_LAYOUT.encounters).map(group=>({
   ...group,anchor:group.members[0].support,
   members:group.members.filter(u=>!baseline||!u.removeFor20).map(u=>({
    ...u,elite:u.elite&&!(oldBudget&&['c3','fg1'].includes(u.id))
   }))
  }));
- s.units=s.units.filter(u=>u.team!=='enemy');s.encounters=[];
+ s.units=s.units.filter(u=>u.team!=='enemy');s.encounters=[];const cells={};
  for(const [index,group] of groups.entries()){
   const ids=[];for(const [j,row]of group.members.entries()){
-   const id='sf-'+row.id,kind=row.kind,y=ferryY(row.support,row.x)-(g.HonroWorld.archetypes[kind]?.flying?32:0);ids.push(id);
-   s.units.push({id,kind,team:'enemy',x:row.x,y,facing:-1,spawnIndex:index*6+j,behavior:'patrol',encounterGroup:group.id,stageOverrides:{honroCohort:group.id,honroAct3Encounter:1,honroAct3Elite:row.elite,honroEncounterRole:row.role,honroEncounterSupport:row.support,honroFerryCell:group.id}});
+   const id='sf-'+row.id,cell=dense?(row.cell||group.id):group.id,kind=row.kind,y=ferryY(row.support,row.x)-(g.HonroWorld.archetypes[kind]?.flying?32:0);ids.push(id);(cells[cell]??=[]).push(id);
+   s.units.push({id,kind,team:'enemy',x:row.x,y,facing:-1,spawnIndex:index*6+j,behavior:'patrol',encounterGroup:cell,stageOverrides:{honroCohort:group.id,honroAct3Encounter:1,honroAct3Elite:row.elite,honroEncounterRole:row.role,honroEncounterSupport:row.support,honroFerryCell:group.id,...(dense?{honroFerryActivationCell:cell,honroDensityCell:cell}:{})}});
   }s.encounters.push({id:group.id,key:group.id,behavior:'patrol',unitIds:ids});
  }
- s.design.act3.encounterPlan={version:3,groups,initial:groups.reduce((n,g)=>n+g.members.length,0),elites:groups.reduce((n,g)=>n+g.members.filter(u=>u.elite).length,0),activeLimit:3,scope:'Fresh Stage30 exact role clusters; finite10; unchanged per-stage XP and combat stats.'};
- s.initialState.honroFerryRoster=roster;s.initialState.honroFerryPopulationCap=baseline?30:36;
+ if(dense)s.encounters=Object.entries(cells).map(([id,unitIds])=>({id,key:id,behavior:'patrol',unitIds}));
+ s.design.act3.encounterPlan={version:3,groups,initial:groups.reduce((n,g)=>n+g.members.length,0),elites:groups.reduce((n,g)=>n+g.members.filter(u=>u.elite).length,0),finite:dense?16:10,activeLimit:3,scope:dense?'Fresh dense40/e10 role clusters; mixed finite13 plus preserved hold3. Geometry/objectives/XP/stats unchanged.':'Fresh Stage30 exact role clusters; finite10; unchanged per-stage XP and combat stats.'};
+ s.initialState.honroFerryRoster=roster;s.initialState.honroFerryPopulationCap=dense?56:baseline?30:36;if(dense)Object.assign(s.initialState,{honroEncounterDensityRevision:1,honroEncounterDensityPopulationCap:56,honroDensityQueueReserve:1,honroEncounterDensityActivation:clone(FERRY_DENSITY_ACTIVATION)});
  return s;
 }
-export function applyStage30Ferry(g,project,{roster='candidate26e6'}={}){
+export function applyStage30Ferry(g,project,{roster=project.stages.find(s=>s.metadata?.stageId===30)?.initialState?.honroFerryRoster||'candidate26e6'}={}){
  const p=clone(project),at=p.stages.findIndex(s=>s.metadata?.stageId===30);if(at<0)throw Error('Stage30 source missing');const old=p.stages[at],s=clone(old);
  Object.assign(s,{width:11200,height:7200,name:'남겨진 길',backdrop:'river',terrains:ferryTerrains(),materials:[],elements:[],events:[],encounters:[],units:[],routes:[]});
  for(const key of ['terrainBounds','playBounds','terrainDomainVersion','detailStats'])delete s[key];
@@ -71,10 +73,12 @@ export function applyStage30Ferry(g,project,{roster='candidate26e6'}={}){
  'act3-ferry-hold':{x:4380,y:ferryY('sf-landing-west-stairs',4380),support:'sf-landing-west-stairs',spacing:95,side:'low-west',warning:'서쪽 돌계단 아래에서 산개 셋이 올라온다. 다음 행동 뒤 나루의 서쪽 입구를 살피세요.',alternates:[{x:4470,y:ferryY('sf-landing-west-stairs',4470),support:'sf-landing-west-stairs',spacing:95}]},
  'act3-response-30-2':{x:7820,y:ferryY('sf-east-landing-planks',7820),support:'sf-east-landing-planks',spacing:170,side:'low-east',alternates:[{x:7580,y:ferryY('sf-east-landing-planks',7580),support:'sf-east-landing-planks',spacing:150}]}
  };
+ if(roster===FERRY_DENSITY_ROSTER)Object.assign(entries,ferryDensityEntries(ferryY),{'act3-ferry-hold':ferryDensityHold(ferryY)});
  s.initialState.honroFerrySpec={pressureVersion:2,enableTerrainIds:['sf-settled-barge'],disableTerrainIds:['sf-outbank-screen'],...ferrySweep(),entries};
  const responses=[['act3-response-30-0','transport-map','kilnFiend',2,'지도를 폈던 서쪽 바위길에서 종틀이 끌리는 소리가 난다.'],['act3-response-30-1','transport-map','possessedGuard',3,'나루 서쪽 누각의 뒤편에서 수비병 셋이 내려온다. 위쪽 사선과 선창을 함께 살피세요.'],['act3-response-30-2','ferry-hold','possessedArcher',2,'배 맞은편 동쪽 널판에 궁귀 둘이 다가온다. 낮은 퇴로의 사선을 피하거나 고지로 돌아가세요.']];
  for(const [id,objective,kind,n,warning]of responses){const a=entries[id];s.events.push({id,once:true,when:{objectiveDone:objective,...(id==='act3-response-30-1'?{region:{x:5550,y:5410,width:1460,height:580}}:{})},warning,text:warning,entry:{x:a.x,y:a.y},action:{type:'spawn',kind,n,x:a.x,y:a.y,spacing:110,maxDistance:260,source:id,act3Authored:true,elite:false}});}
- s.design.act3.responses={version:1,count:3,enemies:7,scope:'Finite objective-linked2+3+2; separate existing hold3; pressure-v2 west-quay defense and east-plank retreat entries with one-action warning and atomic same-side reservation.'};
+ if(roster===FERRY_DENSITY_ROSTER)for(const q of FERRY_DENSITY_RESPONSES){const ev=s.events.find(e=>e.id===q.id),a=entries[q.id];Object.assign(ev,{warning:q.warning,text:q.warning,entry:{x:a.x,y:a.y},action:{...ev.action,kind:a.kind,n:a.members.length,x:a.x,y:a.y,elite:false}});}
+ s.design.act3.responses={version:1,count:3,enemies:roster===FERRY_DENSITY_ROSTER?13:7,scope:roster===FERRY_DENSITY_ROSTER?'Mixed finite4+5+4, plus unchanged defense3 reauthored as two loft archers and a low hound. All entries use actual supported doors and one-action warning.':'Finite objective-linked2+3+2; separate existing hold3; pressure-v2 west-quay defense and east-plank retreat entries with one-action warning and atomic same-side reservation.'};
  s.materials.push({id:'sf-main-river',kind:'water-pool',conductive:true,points:[[6460,6580],[7210,6580],[7210,7200],[6460,7200]],surface:[[6460,6580],[7210,6580]],bottom:[[6460,7200],[7210,7200]],attached:true});
  s.environment=g.HonroEnvironment.makeEnvironment(s,{preset:'forest'});s.environment.skyVisible=true;
  s.camera={};authorFerryEncounters(g,p,s,{roster});p.stages[at]=s;return g.HonroMaps.finalize(g.HonroTerrainDomain.author(p));

@@ -34,7 +34,7 @@ if(rosterMode==='originalBudget20e4'){
  g.HONRO_PROJECT=authored;
 }
 const parts=await runtimeParts({vector:false,render:false}),stage=g.HONRO_PROJECT.stages[11];
-const rosterBudget=stage.initialState.honroQuarryRoster,budget={candidate32e7:{initial:32,elites:7},candidate26e6:{initial:26,elites:6},originalBudget20e4:{initial:20,elites:4}}[rosterBudget];
+const rosterBudget=stage.initialState.honroQuarryRoster,budget={density38e10:{initial:38,elites:10},candidate32e7:{initial:32,elites:7},candidate26e6:{initial:26,elites:6},originalBudget20e4:{initial:20,elites:4}}[rosterBudget];
 assert(budget,'Explicitly audited named quarry population budget');
 assert.equal(stage.units.filter(u=>u.team==='enemy').length,budget.initial);
 assert.equal(stage.units.filter(u=>u.team==='enemy'&&u.stageOverrides.honroAct2Elite).length,budget.elites);

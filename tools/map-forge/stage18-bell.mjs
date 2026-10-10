@@ -162,22 +162,38 @@ function authorGeometry(st,settled){
 // Deliberately authored locations, never an evenly spaced fill of each corridor.
 // tuple: local id, class, support, x, flying lift, elite, squad, original budget.
 export const BELL_ROSTER=[
- ['a-front','picks','sb-entry-rise',1840,0,false,'entry-front',true],['a-side','picks','sb-entry-rise',1980,0,false,'entry-front',false],['a-lamp','stoneLantern','sb-entry-rise',2170,0,true,'entry-rear',true],['a-bat-low','bat','sb-entry-rise',1640,-230,false,'entry-roof',true],['a-bat-high','bat','sb-entry-rise',1940,-650,false,'entry-roof',true],
- ['b-left','stoneLantern','sb-suppression-court',2760,0,false,'court-west',true],['b-center','picks','sb-suppression-court',2890,0,false,'court-west',true],['b-screen','picks','sb-suppression-court',3520,0,false,'court-east',false],['b-east','stoneLantern','sb-suppression-court',3660,0,true,'court-east',true],['b-high','stoneLantern','sb-court-rear-ledge',3800,0,false,'court-overwatch',false],['b-spirit-left','bellCluster','sb-suppression-court',4030,-310,false,'court-spirits',true],['b-spirit-right','bellCluster','sb-suppression-court',3670,-290,true,'court-spirits',true],['b-spirit-high','bellCluster','sb-court-rear-ledge',3910,-245,false,'court-overwatch',true],
+ ['a-front','picks','sb-entry-rise',1810,0,false,'entry-front',true],['a-side','picks','sb-entry-rise',2010,0,false,'entry-front',false],['a-lamp','stoneLantern','sb-entry-rise',2170,0,true,'entry-rear',true],['a-bat-low','bat','sb-entry-rise',1640,-230,false,'entry-roof',true],['a-bat-high','bat','sb-entry-rise',1940,-650,false,'entry-roof',true],
+ ['b-left','stoneLantern','sb-suppression-court',2760,0,false,'court-west',true],['b-center','picks','sb-suppression-court',2945,0,false,'court-west',true],['b-screen','picks','sb-suppression-court',3520,0,false,'court-east',false],['b-east','stoneLantern','sb-suppression-court',3660,0,true,'court-east',true],['b-high','stoneLantern','sb-court-rear-ledge',3800,0,false,'court-overwatch',false],['b-spirit-left','bellCluster','sb-suppression-court',4030,-310,false,'court-spirits',true],['b-spirit-right','bellCluster','sb-suppression-court',3670,-290,true,'court-spirits',true],['b-spirit-high','bellCluster','sb-court-rear-ledge',3910,-245,false,'court-overwatch',true],
  ['c-bat-front','bat','sb-west-firing-ledge',4130,-40,false,'west-rise',true],['c-bat-side','bat','sb-west-upper-rise',3020,-210,false,'west-rise',true],['c-bat-crown','bat','sb-west-firing-crown',5260,-260,true,'west-crown',true],['c-bat-rear','bat','sb-west-firing-crown',5420,-375,false,'west-crown',true],['c-lamp','stoneLantern','sb-west-firing-crown',5140,0,false,'west-crown',true],
  ['d-bat-front','bat','sb-east-resonance-ledge',8650,-170,false,'east-ledge',true],['d-bat-roof','bat','sb-east-resonance-ledge',8810,-295,false,'east-ledge',true],['d-lamp','stoneLantern','sb-east-upper-arc',9040,0,true,'east-arc',true],['d-bat-flank','bat','sb-east-upper-arc',9240,-290,false,'east-arc',true],['d-spirit','bellCluster','sb-east-upper-arc',9480,-190,false,'east-arc',false],
- ['e-front','picks','act2-floor',4200,0,false,'lower-front',true],['e-screen','picks','act2-floor',4350,0,false,'lower-front',true],['e-flank','picks','act2-floor',4520,0,true,'lower-flank',false],['e-high','stoneLantern','sb-maintenance-rise',4540,0,false,'maintenance-watch',false],['e-ramp','picks','sb-maintenance-rise',4690,0,true,'maintenance-watch',false],['e-rear','stoneLantern','act2-floor',4770,0,false,'lower-flank',false],
+ ['e-front','picks','act2-floor',4190,0,false,'lower-front',true],['e-screen','picks','act2-floor',4380,0,false,'lower-front',true],['e-flank','picks','act2-floor',4520,0,true,'lower-flank',false],['e-high','stoneLantern','sb-maintenance-rise',4540,0,false,'maintenance-watch',false],['e-ramp','picks','sb-maintenance-rise',4690,0,true,'maintenance-watch',false],['e-rear','stoneLantern','act2-floor',4770,0,false,'lower-flank',false],
  ['f-spirit-front','bellCluster','act2-floor',6410,-200,false,'basin-west',true],['f-spirit-high','bellCluster','act2-floor',6560,-350,true,'basin-west',true],['f-spirit-side','bellCluster','act2-floor',8060,-220,false,'basin-east',true],['f-spirit-east','bellCluster','act2-floor',8230,-350,true,'basin-east',false],['f-tool-west','picks','act2-floor',6260,0,false,'basin-west',false],['f-tool-east','picks','act2-floor',8180,0,false,'basin-east',true],
  ['g-front','stoneLantern','act2-floor',10420,0,false,'keeper-front',false],['g-tool','picks','sb-keeper-side-approach',10300,0,false,'keeper-front',false],['g-lamp-high','stoneLantern','sb-keeper-watch',11180,0,true,'keeper-high',true],['g-bat-high','bat','sb-keeper-watch',11060,-70,false,'keeper-high',true],['g-bat-side','bat','act2-floor',11330,-200,false,'keeper-flank',false],
+ // Reinforce actual contested places. Leave the crown bridge, hanging
+ // shell sweep, center escape floor and return stair chain unoccupied.
+ ['a-point','picks','sb-entry-rise',1910,0,false,'entry-front',false],
+ ['a-air-screen','bat','sb-entry-rise',1720,-310,false,'entry-rear',false],
+ ['b-west-point','picks','sb-suppression-court',2665,0,false,'court-west',false],
+ ['b-west-lamp','stoneLantern','sb-suppression-court',2845,0,false,'court-west',false],
+ ['b-high-elite','stoneLantern','sb-court-rear-ledge',3575,0,true,'court-overwatch',false],
+ ['c-crown-elite','stoneLantern','sb-west-firing-crown',5230,0,true,'west-crown',false],
+ ['c-crown-support','bat','sb-west-firing-crown',5330,-490,false,'west-crown-air',false],
+ ['d-arc-point','picks','sb-east-upper-arc',9120,0,true,'east-arc',false],
+ ['d-arc-support','bat','sb-east-upper-arc',9160,-470,false,'east-arc-air',false],
+ ['e-point','picks','act2-floor',4280,0,false,'lower-front',false],
+ ['e-rear-elite','stoneLantern','act2-floor',4865,0,true,'lower-flank',false],
+ ['f-west-screen','picks','act2-floor',6345,0,false,'basin-west',false],
+ ['f-east-screen','picks','act2-floor',8265,0,false,'basin-east',false],
+ ['g-point','picks','act2-floor',10515,0,false,'keeper-front',false],
  ['act2-keeper','keeper','act2-floor',11480,0,false,'keeper-body',true]
 ];
 // These four normal, damageable rear supports are outside only the entry-clear
 // cohort. They remain available to contest the later four-round suppression.
-const COURT_SUPPORT_KEYS=new Set(['b-high','b-spirit-left','b-spirit-right','b-spirit-high']);
+const COURT_SUPPORT_KEYS=new Set(['b-high','b-high-elite','b-spirit-left','b-spirit-right','b-spirit-high']);
 export function createBellRoster(at,{roster='candidate41'}={}){
  const rows=roster==='baseline28'?BELL_ROSTER.filter(r=>r[7]):BELL_ROSTER;
- if(rows.length!==(roster==='baseline28'?28:41))throw Error('Bell roster budget mismatch '+rows.length);
- return rows.map(([key,kind,support,x,lift,elite,squad],i)=>{const p=at(support,x),id=key==='act2-keeper'?key:'sb-'+key;return{id,kind,team:'enemy',x,y:p.y+lift,facing:x<7200?-1:1,spawnIndex:100+BELL_ROSTER.findIndex(r=>r[0]===key)*11,behavior:'patrol',encounterGroup:squad,stageOverrides:{honroCohort:COURT_SUPPORT_KEYS.has(key)?'court-support':key.startsWith('a-')||key.startsWith('b-')?'west':key.startsWith('e-')||key.startsWith('f-')?'middle':'east',honroAct2Elite:elite,honroAct2Revision:2,elite:kind==='keeper',armor:.04,honroEncounterSupport:support,honroBellRole:squad,honroBellCell:squad}};});
+ if(rows.length!==(roster==='baseline28'?28:55))throw Error('Bell roster budget mismatch '+rows.length);
+ return rows.map(([key,kind,support,x,lift,elite,squad],i)=>{const p=at(support,x),id=key==='act2-keeper'?key:'sb-'+key;return{id,kind,team:'enemy',x,y:p.y+lift,facing:x<7200?-1:1,spawnIndex:100+BELL_ROSTER.findIndex(r=>r[0]===key)*11,behavior:'patrol',encounterGroup:squad,stageOverrides:{honroCohort:COURT_SUPPORT_KEYS.has(key)?'court-support':key.startsWith('a-')||key.startsWith('b-')?'west':key.startsWith('e-')||key.startsWith('f-')?'middle':'east',honroAct2Elite:elite,honroAct2Revision:2,elite:kind==='keeper',armor:.04,honroEncounterSupport:support,honroBellRole:squad,honroBellCell:squad,honroDensityCell:squad,honroEncounterRole:kind==='picks'?'melee-screen':kind==='stoneLantern'?'high-ranged-fire':kind==='keeper'?'keeper-body':elite?'elite-air-support':'air-support'}};});
 }
 function makeDescent(at){const entry=(side,support,x,alternate)=>({...at(support,x),side,support,alternates:alternate.map(([id,x])=>({...at(id,x),support:id}))});return{distance:200,terrainIds:clone(BELL_BODY_IDS),elementIds:['sb-bell-body'],sweepPolygons:Object.entries(BELL_SHELL).flatMap(([id,ps])=>[{id:id+'-initial',points:ps.map(([x,y])=>({x,y}))},{id:id+'-final',points:ps.map(([x,y])=>({x,y:y+200}))},...ps.map(([x,y],i)=>{const [nx,ny]=ps[(i+1)%ps.length];return{id:id+'-edge-'+i,points:[{x,y},{x:nx,y:ny},{x:nx,y:ny+200},{x,y:y+200}]};})]),
  sweep:[{id:'crown',x:6280,y:2600,w:1770,h:1010},{id:'west-shell',x:5600,y:3160,w:1040,h:3650},{id:'east-shell',x:7720,y:3180,w:1150,h:3630},{id:'east-lug',x:8510,y:6040,w:740,h:480}],
@@ -214,7 +230,21 @@ export function applyStage18Bell(project,{roster='candidate41',steps}={}){
   remapElements(st,old,nodes,at);
   st.design.description='거대한 중공 대종의 안팎을 감싼 비대칭 암반 순환로. 억제진·사격턱·정비턱·종입술·동측 되오름을 나누어 맡는다.';
   if(!settled)st.initialState.honroBellActivation=Object.fromEntries([...new Set(BELL_ROSTER.map(r=>r[6]))].map(key=>[key,key.includes('crown')||key.includes('arc')?1050:key.includes('basin')?900:780]));
-  st.design.bell.encounters={roster:settled?'preserved19':roster,initial:st.units.filter(u=>u.team==='enemy').length,elite:st.units.filter(u=>u.team==='enemy'&&u.stageOverrides.honroAct2Elite).length,wave:settled?10:12,activeLimit:3,xpPolicy:'Preserve the existing stage XP budget; do not multiply by population.',baselineInitial:28,candidateInitial:41};
+  st.design.bell.encounters={roster:settled?'preserved19':roster==='baseline28'?roster:'dense55',initial:st.units.filter(u=>u.team==='enemy').length,elite:st.units.filter(u=>u.team==='enemy'&&u.stageOverrides.honroAct2Elite).length,wave:settled?10:12,activeLimit:3,xpPolicy:'Preserve the existing stage XP budget; do not multiply by population.',baselineInitial:28,candidateInitial:settled?41:55};
+  if(!settled&&roster!=='baseline28'){
+   st.initialState.honroEncounterDensityRevision=1;
+   st.initialState.honroEncounterDensityPopulationCap=73;
+   st.initialState.honroBellPopulationCap=73;
+   st.initialState.honroEncounterDensityActivation=Object.fromEntries(st.encounters.map(q=>[q.id,{radius:q.id.includes('crown')||q.id.includes('arc')?900:740,maxHeight:650,supports:[...new Set(q.unitIds.map(id=>st.units.find(u=>u.id===id).stageOverrides.honroEncounterSupport))]}]));
+   Object.assign(st.design.bell.encounters,{responseCount:6,totalEnemyBudget:73});
+   const responses=[
+    {id:'bell-suppression-answer',objectiveDone:'silence',warning:'억제진이 켜지자 서쪽 입석문에서 곡괭이와 석등이 울린다. 뒤쪽 진입로에서 마지막 경비 셋이 응답한다.',rows:[['picks','sb-entry-rise',1880,false],['stoneLantern','sb-entry-rise',2010,true],['bat','sb-entry-rise',1930,false]],alternates:[['picks','sb-entry-rise',1510,false],['stoneLantern','sb-entry-rise',1640,true],['bat','sb-entry-rise',1560,false]]},
+    {id:'bell-descent-answer',objectiveDone:'bell-descent',warning:'대종이 받침에 멎자 동쪽 정비 통로에서 등불과 잔울림이 모인다. 종지기로 향하는 측면에 경비 셋이 들어온다.',rows:[['picks','sb-keeper-side-approach',9860,false],['stoneLantern','sb-keeper-side-approach',9990,true],['bellCluster','sb-keeper-side-approach',9910,false]],alternates:[['picks','sb-keeper-side-approach',10250,false],['stoneLantern','sb-keeper-side-approach',10370,true],['bellCluster','sb-keeper-side-approach',10300,false]]}
+   ];
+   st.events=(st.events||[]).filter(e=>!e.honroDensityResponse);
+   for(const q of responses){const actions=rows=>rows.map(([kind,support,x,elite])=>{const p=at(support,x),air=['bat','monkVessel','bellCluster'].includes(kind);return{type:'spawn',kind,n:1,...p,y:p.y-(air?230:0),air,support,maxDistance:0,honroDensityRole:elite?'elite':kind==='picks'?'front':'support',honroDensityElite:elite,source:q.id};}),entry=at(q.rows[0][1],q.rows[0][2]);st.events.push({id:q.id,once:true,honroDensityResponse:1,honroDensityTrigger:{objectiveDone:q.objectiveDone},when:{after:'density-gate-'+q.id},warning:q.warning,entry,action:{type:'multi',honroDensityResponse:1,source:q.id,actions:actions(q.rows)},honroDensityAlternatives:[actions(q.alternates)]});}
+  }
+
  }
  return project;
 }

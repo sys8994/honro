@@ -76,21 +76,79 @@ export function applyStage16Temple(project) {
  for(const[id,p]of Object.entries(nodes))space.sites[id]={objectiveId:id,roomId:room(p.x,p.y),...p,standing:clone(p)};
  st.routes=main.map(({x,y})=>({x,y}));st.anchors={spawn:at('act2-floor',350),start:at('act2-floor',350),exit:clone(nodes.witness)};
  st.markers=old.markers.map(m=>nodes[m.id]?{...m,x:nodes[m.id].x,y:nodes[m.id].y}:m.type==='act2-wave'?{...m,...at('tm-east-stone-stair',7980)}:m);
- const positions=[['a2-enemy-0','act2-floor',1620,0],['a2-enemy-1','act2-floor',1740,0],['a2-enemy-2','tm-processional-stair',2438,0],['a2-enemy-3','tm-processional-stair',2360,0],['a2-enemy-4','tm-processional-bridge',2790,0],['a2-enemy-5','tm-shelter-step',2460,-240],['a2-enemy-6','tm-cloister-stair',3590,-170],['a2-enemy-7','tm-cloister-landing',4560,-175],['a2-enemy-8','tm-cloister-stair',3680,-175],['a2-enemy-9','tm-processional-stair',2460,-155],['a2-enemy-10','tm-great-hall-plinth',4970,0],['a2-enemy-11','tm-great-hall-plinth',5230,0],['a2-enemy-12','tm-great-hall-plinth',5110,0],['a2-enemy-13','tm-great-hall-plinth',7050,0],['a2-enemy-14','tm-great-hall-plinth',7180,0],['a2-enemy-15','tm-hall-side-gallery',5320,-200],['a2-enemy-16','act2-floor',5970,-180],['a2-enemy-17','act2-floor',9280,-180],['a2-enemy-18','tm-archive-walk',9630,-180],['a2-enemy-19','tm-archive-walk',9870,-190],['a2-enemy-20','act2-floor',9120,0],['a2-enemy-21','act2-floor',9245,0],['a2-enemy-22','tm-archive-walk',9510,0],['a2-enemy-23','act2-floor',10070,0]];
+ // Each row is a place-specific body, not a spacing formula. Small cells
+ // separate the front, elevated fire and support even inside the same court.
+ const roster=[
+  ['tm-gate-point','picks','act2-floor',1490,0,false,'gate-front','west','melee-point'],
+  ['a2-enemy-0','stoneLantern','act2-floor',1670,0,false,'gate-front','west','ranged-screen'],
+  ['a2-enemy-1','stoneLantern','act2-floor',1765,0,false,'gate-front','west','ranged-screen'],
+  ['tm-gate-captain','picks','act2-floor',1585,0,true,'gate-command','west','elite-flank'],
+  ['tm-gate-bat','bat','act2-floor',1755,-190,false,'gate-command','west','air-support'],
+  ['tm-court-point','picks','tm-processional-stair',2350,0,true,'court-front','west','elite-melee'],
+  ['a2-enemy-2','stoneLantern','tm-processional-stair',2440,0,false,'court-front','west','ranged-screen'],
+  ['a2-enemy-3','stoneLantern','tm-processional-stair',2530,0,true,'court-front','west','elite-rear-fire'],
+  ['a2-enemy-4','stoneLantern','tm-processional-bridge',2770,0,false,'court-flank','west','bridge-fire'],
+  ['tm-court-flank','stoneLantern','tm-shelter-step',2660,0,false,'court-flank','west','shelf-fire'],
+  ['a2-enemy-5','monkVessel','tm-shelter-step',2505,-240,false,'court-support','west','air-support'],
+  ['a2-enemy-9','monkVessel','tm-processional-stair',2390,-260,false,'court-support','west','air-support'],
+  ['a2-enemy-6','monkVessel','tm-cloister-landing',4300,-170,false,'cloister-support','middle','screened-support'],
+  ['a2-enemy-8','monkVessel','tm-cloister-landing',4430,-265,false,'cloister-support','middle','air-support'],
+  ['a2-enemy-7','monkVessel','tm-cloister-landing',4560,-175,true,'cloister-support','middle','elite-support'],
+  ['tm-cloister-guard','stoneLantern','tm-cloister-landing',4395,0,true,'cloister-guard','middle','elite-high-fire'],
+  ['tm-cloister-point','picks','tm-cloister-landing',4310,0,false,'cloister-guard','middle','melee-screen'],
+  ['a2-enemy-10','picks','tm-great-hall-plinth',4940,0,false,'hall-west-front','middle','melee-point'],
+  ['a2-enemy-12','picks','tm-great-hall-plinth',5035,0,false,'hall-west-front','middle','melee-screen'],
+  ['a2-enemy-11','picks','tm-great-hall-plinth',5125,0,true,'hall-west-front','middle','elite-melee'],
+  ['tm-hall-west-flank','picks','tm-great-hall-plinth',5230,0,false,'hall-west-rear','middle','melee-flank'],
+  ['tm-hall-west-lamp','stoneLantern','tm-great-hall-plinth',5340,0,true,'hall-west-rear','middle','elite-rear-fire'],
+  ['tm-hall-screen','picks','tm-great-hall-plinth',6900,0,false,'hall-east-front','middle','melee-point'],
+  ['a2-enemy-13','picks','tm-great-hall-plinth',6995,0,false,'hall-east-front','middle','melee-screen'],
+  ['a2-enemy-14','picks','tm-great-hall-plinth',7080,0,false,'hall-east-front','middle','melee-flank'],
+  ['tm-hall-east-lamp','stoneLantern','tm-great-hall-plinth',7200,0,false,'hall-east-support','middle','rear-fire'],
+  ['tm-hall-echo','monkVessel','tm-great-hall-plinth',7130,-180,false,'hall-east-support','middle','air-support'],
+  ['a2-enemy-15','bat','tm-hall-side-gallery',5320,-200,true,'hall-overwatch','middle','elite-air-flank'],
+  ['tm-gallery-lantern','stoneLantern','tm-hall-side-gallery',5470,0,false,'hall-overwatch','middle','high-fire'],
+  ['tm-gallery-bat','bat','tm-hall-side-gallery',5440,-290,false,'hall-overwatch','middle','air-support'],
+  ['tm-lower-front','stoneLantern','act2-floor',4690,0,false,'undercroft-front','middle','low-fire'],
+  ['tm-lower-point','picks','act2-floor',4590,0,false,'undercroft-front','middle','melee-point'],
+  ['tm-lower-elite','stoneLantern','tm-lower-prayer-ledge',4890,0,true,'undercroft-overwatch','middle','elite-shelf-fire'],
+  ['tm-lower-bat','bat','tm-lower-prayer-ledge',4990,-170,false,'undercroft-overwatch','middle','air-support'],
+  ['tm-lower-flank','picks','act2-floor',6290,0,false,'undercroft-reflector','middle','melee-screen'],
+  ['tm-lower-captain','picks','act2-floor',6375,0,true,'undercroft-reflector','middle','elite-flank'],
+  ['a2-enemy-16','bat','act2-floor',6440,-210,false,'undercroft-reflector','middle','wall-support'],
+  ['tm-archive-front','stoneLantern','act2-floor',8990,0,false,'archive-front','east','ranged-screen'],
+  ['a2-enemy-20','stoneLantern','act2-floor',9080,0,false,'archive-front','east','ranged-screen'],
+  ['a2-enemy-21','stoneLantern','act2-floor',9165,0,false,'archive-front','east','rear-fire'],
+  ['tm-archive-point','picks','act2-floor',8900,0,false,'archive-front','east','melee-point'],
+  ['a2-enemy-17','bat','act2-floor',9140,-185,false,'archive-air','east','air-flank'],
+  ['a2-enemy-18','bat','tm-archive-walk',9630,-180,false,'archive-overwatch','east','air-support'],
+  ['a2-enemy-19','bat','tm-archive-walk',9790,-265,true,'archive-overwatch','east','elite-air-support'],
+  ['a2-enemy-22','stoneLantern','tm-archive-walk',9510,0,false,'archive-overwatch','east','high-fire'],
+  ['tm-archive-seal','stoneLantern','tm-archive-walk',9595,0,true,'archive-overwatch','east','elite-high-fire'],
+  ['a2-enemy-23','stoneLantern','act2-floor',10070,0,true,'archive-rear','east','elite-rear-fire'],
+  ['tm-archive-rear','monkVessel','act2-floor',10170,-185,false,'archive-rear','east','air-support']
+ ];
  const oldRoster=Object.fromEntries(old.units.map(u=>[u.id,u]));
  st.units=old.units.filter(u=>u.team==='player').map(u=>({...u,...at('act2-floor',350+['occultist','mage','archer','knight'].indexOf(u.kind)*110)}));
- for(const[id,support,x,lift]of positions){
-  const i=Number(id.split('-').at(-1)),p=at(support,x),u={id,kind:i<5||i>=20?'stoneLantern':i<10?'monkVessel':i<15?'picks':'bat',team:'enemy',facing:1,behavior:'patrol',x,y:p.y+lift,spawnIndex:i+Math.floor(i/10),stageOverrides:{honroCohort:i<10&&i!==7?'west':i<15?'middle':'east',honroAct2Elite:[3,7,11,15,19,23].includes(i),honroAct2Revision:2,elite:false,armor:.04,honroEncounterSupport:p.surfaceId}};
-  st.units.push(u);space.encounterSites.push({id:'site-'+id,unitId:id,roomId:room(x,u.y),...p,y:u.y,standing:p,cohort:u.stageOverrides.honroCohort});
+ for(const [index,[id,kind,support,x,lift,elite,cell,cohort,role]]of roster.entries()){
+  const p=at(support,x),u={id,kind,team:'enemy',x,y:p.y+lift,facing:-1,spawnIndex:index+Math.floor(index/10),behavior:'patrol',encounterGroup:cell,stageOverrides:{elite:false,armor:.04,honroCohort:cohort,honroAct2Elite:elite,honroAct2Revision:2,honroEncounterSupport:support,honroDensityCell:cell,honroEncounterRole:role}};
+  st.units.push(u);space.encounterSites.push({id:'site-'+id,unitId:id,roomId:room(x,u.y),...p,y:u.y,standing:p,group:cell,cohort});
  }
- const additions=[['tm-court-flank','stoneLantern','tm-shelter-step',2600,0,'west',false],['tm-cloister-guard','stoneLantern','tm-cloister-landing',4410,0,'middle',true],['tm-hall-screen','picks','tm-great-hall-plinth',6930,0,'middle',false],['tm-hall-echo','monkVessel','tm-great-hall-plinth',7350,-175,'middle',false],['tm-gallery-lantern','stoneLantern','tm-hall-side-gallery',5470,0,'middle',false],['tm-lower-front','stoneLantern','act2-floor',4680,0,'middle',false],['tm-lower-elite','stoneLantern','tm-lower-prayer-ledge',4900,0,'middle',true],['tm-lower-flank','picks','act2-floor',6320,0,'middle',false],['tm-archive-front','stoneLantern','act2-floor',9000,0,'east',false],['tm-archive-rear','monkVessel','act2-floor',10250,-170,'east',false]];
- for(const[id,kind,support,x,lift,cohort,elite]of additions){const p=at(support,x),u={id,kind,team:'enemy',x,y:p.y+lift,facing:1,spawnIndex:100+st.units.length*11,behavior:'patrol',stageOverrides:{elite:false,armor:.04,honroCohort:cohort,honroAct2Elite:elite,honroAct2Revision:2,honroEncounterSupport:support}};st.units.push(u);space.encounterSites.push({id:'site-'+id,unitId:id,roomId:room(x,u.y),...p,y:u.y,standing:p,cohort});}
  for(const id of ['resident-1','resident-spirit-1','objective']){const u=clone(oldRoster[id]),p=at('tm-shelter-veranda',id==='resident-1'?2990:id==='resident-spirit-1'?3080:3160);u.x=p.x;u.y=p.y+(id==='resident-spirit-1'?-155:0);st.units.push(u);}
  const squads=new Map();
- for(const u of st.units.filter(u=>u.team==='enemy')){const group=u.id==='resident-spirit-1'?'shelter-bound-spirit':u.y>5400?'undercroft-ward':u.x<2250?'gate-front':u.x<3000?'court-flank':u.x<4600?'cloister-ward':u.x<5900?(u.y<4000?'hall-overwatch':'hall-west-guard'):u.x<8000?'hall-east-guard':'archive-ward';u.encounterGroup=group;if(!squads.has(group))squads.set(group,[]);squads.get(group).push(u.id);}
+ for(const u of st.units.filter(u=>u.team==='enemy')){const group=u.encounterGroup||'shelter-bound-spirit';u.encounterGroup=group;if(!squads.has(group))squads.set(group,[]);squads.get(group).push(u.id);}
  st.encounters=[...squads].map(([id,unitIds])=>({id,key:id,behavior:'patrol',unitIds}));
  st.initialState.honroTempleDefenseEntries=[{side:'west',...at('tm-great-hall-plinth',4810),alternates:[at('tm-great-hall-plinth',5330)]},{side:'east',...at('tm-east-stone-stair',7770),alternates:[at('tm-east-stone-stair',8260)]}];
- st.design={...old.design,description:'거대한 동굴 사찰. 앞마당의 돌계단·접힌 서회랑·대법당 기단 아래를 오가며 승려를 구하고 기록함을 지킨다.',space,temple:{version:TEMPLE_VERSION,art:{hall:{terrainId:'tm-great-hall-plinth',x:5925},lamps:[{key:'court',terrainId:'tm-processional-stair',x:2240,scale:.8},{key:'shelter',terrainId:'tm-shelter-veranda',x:3250,scale:.65},{key:'hall-west',terrainId:'tm-great-hall-plinth',x:4700,scale:1.05},{key:'hall-east',terrainId:'tm-great-hall-plinth',x:7270,scale:1.05},{key:'lower',terrainId:'act2-floor',x:5440,scale:.65},{key:'records',terrainId:'act2-floor',x:9510,scale:.8}]},zones,activityBounds:[350,3400,10470,5960],encounters:{initial:35,elite:8,wave:10,activeLimit:4,groups:zones.map(z=>({id:z.id,name:z.name,units:space.encounterSites.filter(e=>e.roomId===z.id).map(e=>e.unitId)}))}}};
+ st.design={...old.design,description:'거대한 동굴 사찰. 앞마당의 돌계단·접힌 서회랑·대법당 기단 아래를 오가며 승려를 구하고 기록함을 지킨다.',space,temple:{version:TEMPLE_VERSION,art:{hall:{terrainId:'tm-great-hall-plinth',x:5925},lamps:[{key:'court',terrainId:'tm-processional-stair',x:2240,scale:.8},{key:'shelter',terrainId:'tm-shelter-veranda',x:3250,scale:.65},{key:'hall-west',terrainId:'tm-great-hall-plinth',x:4700,scale:1.05},{key:'hall-east',terrainId:'tm-great-hall-plinth',x:7270,scale:1.05},{key:'lower',terrainId:'act2-floor',x:5440,scale:.65},{key:'records',terrainId:'act2-floor',x:9510,scale:.8}]},zones,activityBounds:[350,3400,10470,5960],encounters:{initial:49,elite:13,wave:10,responseCount:6,totalEnemyBudget:65,activeLimit:4,groups:zones.map(z=>({id:z.id,name:z.name,units:space.encounterSites.filter(e=>e.roomId===z.id).map(e=>e.unitId)}))}}};
+ st.initialState.honroEncounterDensityRevision=1;
+ st.initialState.honroEncounterDensityPopulationCap=65;
+ st.initialState.honroEncounterDensityActivation=Object.fromEntries([...squads].filter(([id])=>id!=='shelter-bound-spirit').map(([id,ids])=>[id,{radius:id.startsWith('hall-')?820:680,maxHeight:650,supports:[...new Set(ids.map(key=>st.units.find(u=>u.id===key).stageOverrides.honroEncounterSupport))]}]));
+ const responses=[
+  {id:'temple-cloister-answer',objectiveDone:'monk',warning:'승려의 혼이 풀리자 서회랑 위에서 석등과 날갯짓이 모인다. 다음 행동 뒤 회랑 경비가 내려온다.',rows:[['picks','tm-cloister-landing',4475,false],['stoneLantern','tm-cloister-landing',4610,true],['bat','tm-cloister-landing',4505,false]],alternates:[['picks','tm-hall-side-gallery',5000,false],['stoneLantern','tm-hall-side-gallery',5120,true],['bat','tm-hall-side-gallery',5030,false]]},
+  {id:'temple-record-answer',objectiveDone:'hold-hall',warning:'기록함이 열리자 동쪽 돌계단에서 호위 셋이 응답한다. 기록방으로 향하는 측면을 살피세요.',rows:[['picks','tm-east-stone-stair',7620,false],['stoneLantern','tm-east-stone-stair',7740,true],['monkVessel','tm-east-stone-stair',7670,false]],alternates:[['picks','tm-east-stone-bridge',8360,false],['stoneLantern','tm-east-stone-bridge',8480,true],['monkVessel','tm-east-stone-bridge',8410,false]]}
+ ];
+ st.events=(st.events||[]).filter(e=>!e.honroDensityResponse);
+ for(const q of responses){const actions=rows=>rows.map(([kind,support,x,elite])=>{const p=at(support,x),air=['bat','monkVessel','bellCluster'].includes(kind);return{type:'spawn',kind,n:1,...p,y:p.y-(air?230:0),air,support,maxDistance:0,honroDensityRole:elite?'elite':kind==='picks'?'front':'support',honroDensityElite:elite,source:q.id};}),entry=at(q.rows[0][1],q.rows[0][2]);st.events.push({id:q.id,once:true,honroDensityResponse:1,honroDensityTrigger:{objectiveDone:q.objectiveDone},when:{after:'density-gate-'+q.id},warning:q.warning,entry,action:{type:'multi',honroDensityResponse:1,source:q.id,actions:actions(q.rows)},honroDensityAlternatives:[actions(q.alternates)]});}
  delete st.design.cavernLayers;
  return project;
 }

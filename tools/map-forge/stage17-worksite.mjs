@@ -83,35 +83,80 @@ export function applyStage17Worksite(project){
  st.initialState.honroWorksiteDefenseEntries=[{side:'west',...at('ws-east-hoist-buttress',7270)},{side:'east',...at('act2-floor',9620)}];
  st.routes=main.map(({x,y})=>({x,y}));st.anchors={spawn:at('act2-floor',320),start:at('act2-floor',320),exit:clone(nodes.notes),brace:clone(nodes.brace),hoist:clone(nodes.hoist),repair:clone(nodes.repair)};
  st.markers=old.markers.map(m=>nodes[m.id]?{...m,x:nodes[m.id].x,y:nodes[m.id].y}:m.type==='act2-wave'?{...m,...at('act2-floor',8850)}:m);
- const placements=[['a2-enemy-0','ws-west-work-buttress',1960,0],['a2-enemy-1','ws-west-work-buttress',2080,0],['a2-enemy-2','ws-west-work-buttress',2400,0],['a2-enemy-3','ws-west-work-buttress',2530,0],['a2-enemy-4','ws-west-lower-steps',2990,0],['a2-enemy-5','ws-west-work-buttress',3470,0],['a2-enemy-6','ws-west-work-buttress',3600,0],['a2-enemy-7','act2-floor',4330,0],['a2-enemy-8','act2-floor',4460,0],['a2-enemy-9','ws-east-hoist-buttress',6370,0],['a2-enemy-10','ws-west-upper-rock',4610,-210],['a2-enemy-11','ws-east-hoist-deck',6480,-190],['a2-enemy-12','ws-east-upper-rock',7580,-195],['act2-hoist','ws-east-hoist-buttress',6140,0],['a2-enemy-14','act2-floor',5850,-255],['a2-enemy-15','ws-east-hoist-buttress',7060,-140],['a2-enemy-16','ws-east-hoist-buttress',7180,-150],['a2-enemy-17','ws-east-hoist-buttress',6930,-160],['a2-enemy-18','ws-east-upper-rock',7440,-185],['a2-enemy-19','act2-floor',6980,-155],['a2-enemy-20','act2-floor',10040,0],['a2-enemy-21','ws-notes-work-deck',10125,0],['a2-enemy-22','ws-notes-work-deck',10260,0],['a2-enemy-23','act2-floor',10320,0]];
- const roster=Object.fromEntries(Array.from({length:24},(_,i)=>[i===13?'act2-hoist':'a2-enemy-'+i,{kind:i<5||i>=20?'picks':i<10?'minecart':i===13?'hoist':i<15?'bat':'monkVessel',cohort:i<5?'west':i<15?'middle':'east',elite:[3,7,11,15,19,23].includes(i)}]));
- const additions=[
- ['ws-core-front','picks','ws-hoist-service-bridge',5820,0,'middle',false],
- ['ws-core-brace','picks','ws-east-hoist-buttress',5980,0,'middle',false],
- ['ws-core-foreman','picks','ws-east-hoist-buttress',6270,0,'middle',true],
- ['ws-core-echo','monkVessel','ws-east-hoist-buttress',6470,-155,'middle',false],
- ['ws-upper-toolguard','picks','ws-west-upper-rock',4380,0,'middle',false],
- ['ws-upper-echo','monkVessel','ws-west-hoist-deck',4860,-170,'middle',false],
- ['ws-service-front','picks','act2-floor',4200,0,'middle',false],
- ['ws-service-rear','picks','ws-service-tool-ledge',4680,0,'middle',false],
- ['ws-gallery-picks','picks','act2-floor',6870,0,'east',false],
- ['ws-gallery-cart','minecart','act2-floor',7330,0,'east',false],
- ['ws-notes-front','picks','act2-floor',9840,0,'east',false],
- ['ws-notes-echo','monkVessel','act2-floor',10550,-170,'east',true]
+ // Dense work crews occupy the machines and their firing shelves; the
+ // switchback, central shaft ladders and repaired-door interaction stay open.
+ const roster=[
+  ['a2-enemy-0','picks','ws-west-work-buttress',1945,0,false,'west-point','west','melee-point'],
+  ['a2-enemy-1','picks','ws-west-work-buttress',2025,0,false,'west-point','west','melee-screen'],
+  ['ws-west-screen','picks','ws-west-work-buttress',2130,0,false,'west-point','west','melee-flank'],
+  ['a2-enemy-2','picks','ws-west-work-buttress',2370,0,false,'brace-front','west','melee-point'],
+  ['a2-enemy-3','picks','ws-west-work-buttress',2455,0,true,'brace-front','west','elite-melee'],
+  ['ws-brace-cart','minecart','ws-west-work-buttress',2565,0,false,'brace-rear','west','lane-pressure'],
+  ['ws-brace-captain','stoneLantern','ws-west-work-buttress',2680,0,true,'brace-rear','west','elite-rear-fire'],
+  ['a2-enemy-4','picks','ws-west-lower-steps',2930,0,false,'brace-overwatch','west','upper-melee-screen'],
+  ['ws-brace-bat','bat','ws-west-lower-steps',2845,-190,false,'brace-overwatch','west','air-flank'],
+  ['a2-enemy-5','minecart','ws-west-work-buttress',3500,0,false,'west-cart-line','middle','lane-pressure'],
+  ['a2-enemy-6','minecart','ws-west-work-buttress',3630,0,false,'west-cart-line','middle','lane-pressure'],
+  ['ws-west-cart-screen','picks','ws-west-work-buttress',3390,0,false,'west-cart-line','middle','melee-screen'],
+  ['ws-core-front','picks','ws-hoist-service-bridge',5810,0,false,'hoist-front','middle','melee-point'],
+  ['ws-core-brace','picks','ws-east-hoist-buttress',5940,0,false,'hoist-front','middle','melee-screen'],
+  ['ws-core-screen','picks','ws-east-hoist-buttress',6030,0,false,'hoist-front','middle','melee-flank'],
+  ['act2-hoist','hoist','ws-east-hoist-buttress',6140,0,false,'hoist-core','middle','hoist-core'],
+  ['ws-core-foreman','picks','ws-east-hoist-buttress',6280,0,true,'hoist-core','middle','elite-bodyguard'],
+  ['a2-enemy-9','minecart','ws-east-hoist-buttress',6380,0,false,'hoist-rear','middle','lane-pressure'],
+  ['ws-core-cart','minecart','ws-east-hoist-buttress',6500,0,true,'hoist-rear','middle','elite-lane-pressure'],
+  ['ws-core-echo','monkVessel','ws-east-hoist-buttress',6480,-185,false,'hoist-air','middle','air-support'],
+  ['ws-core-bat','bat','ws-east-hoist-buttress',6340,-285,false,'hoist-air','middle','air-flank'],
+  ['ws-upper-toolguard','picks','ws-west-upper-rock',4370,0,false,'upper-west-guard','middle','melee-screen'],
+  ['ws-upper-lantern','stoneLantern','ws-west-upper-rock',4460,0,true,'upper-west-guard','middle','elite-high-fire'],
+  ['a2-enemy-10','bat','ws-west-upper-rock',4520,-210,false,'upper-west-air','middle','air-flank'],
+  ['ws-upper-bat','bat','ws-west-upper-rock',4410,-310,false,'upper-west-air','middle','air-support'],
+  ['ws-upper-echo','monkVessel','ws-west-hoist-deck',4870,-170,false,'upper-west-return','middle','screened-support'],
+  ['a2-enemy-11','bat','ws-east-hoist-deck',6480,-190,true,'upper-east-entry','middle','elite-air-flank'],
+  ['ws-east-high-lamp','stoneLantern','ws-east-upper-rock',7420,0,true,'upper-east-guard','east','elite-high-fire'],
+  ['a2-enemy-12','bat','ws-east-upper-rock',7510,-195,false,'upper-east-guard','middle','air-flank'],
+  ['a2-enemy-18','monkVessel','ws-east-upper-rock',7400,-270,false,'upper-east-guard','east','air-support'],
+  ['a2-enemy-17','monkVessel','ws-east-hoist-buttress',6930,-160,false,'axle-guard','east','screened-support'],
+  ['a2-enemy-15','monkVessel','ws-east-hoist-buttress',7030,-270,true,'axle-guard','east','elite-support'],
+  ['a2-enemy-16','monkVessel','ws-east-hoist-buttress',7160,-150,false,'axle-guard','east','air-flank'],
+  ['ws-axle-point','picks','ws-east-hoist-buttress',7090,0,false,'axle-guard','east','melee-screen'],
+  ['ws-service-front','picks','act2-floor',4200,0,false,'service-front','middle','melee-point'],
+  ['a2-enemy-7','minecart','act2-floor',4310,0,true,'service-front','middle','elite-lane-pressure'],
+  ['a2-enemy-8','minecart','act2-floor',4420,0,false,'service-front','middle','lane-pressure'],
+  ['ws-service-captain','stoneLantern','ws-service-tool-ledge',4590,0,true,'service-shelf','middle','elite-low-fire'],
+  ['ws-service-rear','picks','ws-service-tool-ledge',4680,0,false,'service-shelf','middle','melee-screen'],
+  ['a2-enemy-14','bat','act2-floor',6760,-225,false,'service-east-air','middle','air-flank'],
+  ['a2-enemy-19','monkVessel','act2-floor',6980,-155,true,'service-east-air','east','elite-support'],
+  ['ws-gallery-picks','picks','act2-floor',6870,0,false,'service-east-ground','east','melee-screen'],
+  ['ws-gallery-cart','minecart','act2-floor',7080,0,false,'service-east-ground','east','lane-pressure'],
+  ['ws-notes-front','picks','act2-floor',9825,0,false,'notes-front','east','melee-point'],
+  ['ws-notes-cart','minecart','act2-floor',9940,0,false,'notes-front','east','lane-pressure'],
+  ['a2-enemy-20','picks','act2-floor',10030,0,false,'notes-front','east','melee-screen'],
+  ['a2-enemy-21','picks','ws-notes-work-deck',10115,0,false,'notes-overwatch','east','upper-melee-screen'],
+  ['a2-enemy-22','picks','ws-notes-work-deck',10200,0,false,'notes-overwatch','east','upper-melee-flank'],
+  ['a2-enemy-23','picks','act2-floor',10320,0,true,'notes-rear','east','elite-melee'],
+  ['ws-notes-echo','monkVessel','act2-floor',10420,-200,true,'notes-rear','east','elite-support']
  ];
- for(const [id,kind,support,x,lift,cohort,elite]of additions){placements.push([id,support,x,lift]);roster[id]={kind,cohort,elite};}
  st.units=old.units.filter(u=>u.team==='player').map(u=>({id:u.id,kind:u.kind,team:'player',...at('act2-floor',320+['archer','mage','knight','occultist'].indexOf(u.kind)*110),facing:1}));
  st.encounters=[];const cells=new Map();
- for(const [i,p]of placements.entries()){
-  const spec=roster[p[0]],support=at(p[1],p[2]),site={...support,y:support.y+p[3]},roomId=room(site.x,site.y);
-  const cell=p[1].includes('upper')||p[1].includes('hoist-deck')?'upper-overwatch':p[3]<0&&site.y>5600?'gallery-rearguard':site.y>5500?'service-tools':roomId;
-  if(!cells.has(cell))cells.set(cell,[]);cells.get(cell).push(p[0]);
-  space.encounterSites.push({id:'site-'+p[0],unitId:p[0],roomId,...site,standing:clone(support),group:cell,cohort:spec.cohort});
-  st.units.push({id:p[0],kind:spec.kind,team:'enemy',x:site.x,y:site.y,facing:1,spawnIndex:i+Math.floor(i/10),behavior:'patrol',encounterGroup:cell,stageOverrides:{elite:spec.kind==='hoist',armor:.04,honroCohort:spec.cohort,honroAct2Elite:spec.elite,honroAct2Revision:2,honroWorksiteRole:spec.kind==='bat'?'upper-pressure':spec.kind==='hoist'?'hoist-core':spec.kind==='monkVessel'?'screened-support':spec.kind==='minecart'?'lane-pressure':'close-guard',honroEncounterSupport:p[1]}});
+ for(const [index,[id,kind,supportId,x,lift,elite,cell,cohort,role]]of roster.entries()){
+  const support=at(supportId,x),site={...support,y:support.y+lift},roomId=room(site.x,site.y);
+  if(!cells.has(cell))cells.set(cell,[]);cells.get(cell).push(id);
+  space.encounterSites.push({id:'site-'+id,unitId:id,roomId,...site,standing:clone(support),group:cell,cohort});
+  st.units.push({id,kind,team:'enemy',x:site.x,y:site.y,facing:-1,spawnIndex:index+Math.floor(index/10),behavior:'patrol',encounterGroup:cell,stageOverrides:{elite:kind==='hoist',armor:.04,honroCohort:cohort,honroAct2Elite:elite,honroAct2Revision:2,honroWorksiteRole:role,honroDensityCell:cell,honroEncounterRole:role,honroEncounterSupport:supportId}});
  }
  for(const [id,unitIds]of cells)st.encounters.push({id,key:id,behavior:'patrol',unitIds});
 
- st.design={...old.design,description:'암반 기단·인양 작업대·축 정비굴을 오가며 하나의 작업장을 장악한다.',space,worksite:{version:WORKSITE_VERSION,zones:clone(zones),routeIntent:{upper:'long crossed shots; interrupted by rock shoulders and airborne pressure',middle:'short elevation changes; melee access and grouped area attacks',lower:'low ceilings and screened support; reflection and side entry'},junctions:[{id:'west',x:2300,y:4397},{id:'middle',x:5500,y:4820},{id:'east',x:8550,y:4580}],activityBounds:[320,3100,10720,6210],encounters:{initial:36,elite:8,wave:10,activeLimit:3,groups:zones.map(z=>({id:z.id,name:z.name,units:space.encounterSites.filter(e=>e.roomId===z.id).map(e=>e.unitId)}))}}};
+ st.design={...old.design,description:'암반 기단·인양 작업대·축 정비굴을 오가며 하나의 작업장을 장악한다.',space,worksite:{version:WORKSITE_VERSION,zones:clone(zones),routeIntent:{upper:'long crossed shots; interrupted by rock shoulders and airborne pressure',middle:'short elevation changes; melee access and grouped area attacks',lower:'low ceilings and screened support; reflection and side entry'},junctions:[{id:'west',x:2300,y:4397},{id:'middle',x:5500,y:4820},{id:'east',x:8550,y:4580}],activityBounds:[320,3100,10720,6210],encounters:{initial:50,elite:13,wave:10,responseCount:6,totalEnemyBudget:66,activeLimit:3,groups:zones.map(z=>({id:z.id,name:z.name,units:space.encounterSites.filter(e=>e.roomId===z.id).map(e=>e.unitId)}))}}};
+ st.initialState.honroEncounterDensityRevision=1;
+ st.initialState.honroEncounterDensityPopulationCap=66;
+ st.initialState.honroEncounterDensityActivation=Object.fromEntries([...cells].map(([id,ids])=>[id,{radius:id.startsWith('hoist-')?800:700,maxHeight:650,supports:[...new Set(ids.map(key=>st.units.find(u=>u.id===key).stageOverrides.honroEncounterSupport))]}]));
+ const responses=[
+  {id:'worksite-brace-answer',objectiveDone:'brace',warning:'버팀목이 고정되자 위 작업대에서 공구와 날갯짓이 응답한다. 인양틀로 가는 측면에 경비 셋이 들어온다.',rows:[['picks','ws-west-machine-plinth',3990,false],['stoneLantern','ws-west-machine-plinth',4110,true],['bat','ws-west-machine-plinth',4030,false]],alternates:[['picks','ws-west-machine-plinth',4520,false],['stoneLantern','ws-west-machine-plinth',4640,true],['bat','ws-west-machine-plinth',4560,false]]},
+  {id:'worksite-axle-answer',objectiveDone:'repair',warning:'인양축이 맞물리자 동쪽 기록방 궤도에서 수레와 공구가 움직인다. 복구문 너머의 유한 경비 셋이다.',rows:[['picks','act2-floor',9690,false],['minecart','act2-floor',9815,true],['monkVessel','act2-floor',9735,false]],alternates:[['picks','act2-floor',10480,false],['minecart','act2-floor',10610,true],['monkVessel','act2-floor',10530,false]]}
+ ];
+ st.events=(st.events||[]).filter(e=>!e.honroDensityResponse);
+ for(const q of responses){const actions=rows=>rows.map(([kind,support,x,elite])=>{const p=at(support,x),air=['bat','monkVessel','bellCluster'].includes(kind);return{type:'spawn',kind,n:1,...p,y:p.y-(air?230:0),air,support,maxDistance:0,honroDensityRole:elite?'elite':kind==='picks'?'front':'support',honroDensityElite:elite,source:q.id};}),entry=at(q.rows[0][1],q.rows[0][2]);st.events.push({id:q.id,once:true,honroDensityResponse:1,honroDensityTrigger:{objectiveDone:q.objectiveDone},when:{after:'density-gate-'+q.id},warning:q.warning,entry,action:{type:'multi',honroDensityResponse:1,source:q.id,actions:actions(q.rows)},honroDensityAlternatives:[actions(q.alternates)]});}
  delete st.design.cavernTransitions;
  return project;
 }
