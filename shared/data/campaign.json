@@ -317720,7 +317720,41 @@
         "honroEscortYardRoster": "density40e10",
         "honroEscortYardPopulationCap": 54,
         "honroEncounterDensityRevision": 1,
-        "honroEncounterDensityPopulationCap": 54
+        "honroEncounterDensityPopulationCap": 54,
+        "honroDensityQueueReserve": 1,
+        "honroEncounterDensityActivation": {
+          "response-west": {
+            "supports": [
+              "sy-ground"
+            ],
+            "extra": [],
+            "radius": 1100,
+            "maxHeight": 380
+          },
+          "response-upper": {
+            "supports": [
+              "sy-central-flank"
+            ],
+            "extra": [
+              {
+                "support": "sy-ground",
+                "minX": 2900,
+                "maxX": 4290
+              }
+            ],
+            "radius": 1600,
+            "maxHeight": 600
+          },
+          "response-east": {
+            "supports": [
+              "sy-ground",
+              "sy-stone-bridge"
+            ],
+            "extra": [],
+            "radius": 1350,
+            "maxHeight": 450
+          }
+        }
       },
       "environment": {
         "version": 4,
