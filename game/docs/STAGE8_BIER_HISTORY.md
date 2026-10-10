@@ -41,6 +41,26 @@ DOM·Canvas·오디오·저장소·다운로드·시계는 test double이다. �
 
 기존 asset runtime/SVG는 읽기만 하고 party/monster/actor 생성기를 실행하지 않는다. 두 비교에 같은 승인23 석재 renderer를 적용한다. RGBA, 기존 함수 대비 Canvas context, clipping 해제 및 직렬화 battle의 모든 필드를 확인하고, 별도의 명시적 활성8 재질 fixture는 실제 pixel 변화가 있음을 확인한다. 이 검사는 새8 지도나 미술 구도의 최종 승인·브라우저·완전한 호스트 화면·FPS 검사에 해당하지 않는다. 새8의 wrapper가 달라지면 재실행한다.
 
-## 준비 저장점의 한계
+## 준비 저장점과 검토 캡처
 
-2026-10-09 정적 역사 경계와29개 import-only 연결을 먼저 WIP로 저장했다. 아직 canonical8 교체/최종 지형·미술 검토본이 없으므로 `history-reviewed.json`은 생성하지 않았다. 이 단계에서 해당 검토본을 요구하는 전체 역사/old-save 검사는 대기 또는 의도적인 거부 상태다. 선언된 runtime/authoring 범위·JS 문법과 동결 옛8 payload의 실제 파일 가져오기/Continue smoke만 확인했으며, 이 준비 저장점을 전체회귀 합격으로 취급하지 않는다.
+2026-10-09 `d0ff899`의 정적 역사 경계와29개 import-only 연결은 먼저 WIP로 저장했다. 그 당시에는 canonical8 교체/최종 지형·미술 검토본이 없어서 `history-reviewed.json`을 생성하지 않았고, 전체 역사/old-save 검사는 대기 또는 의도적인 거부 상태였다. 선언된 source 범위·문법과 옛8 import/Continue smoke만 확인한 그 준비 저장점을 전체회귀 합격으로 취급하지 않는다.
+
+같은 날 v7 canonical과 저작·런타임 동결 후 `stage8-bier-v7-20261009-reviewed-canonical` 검토본을 별도로 기록했다. 생성기의 canonical byte 재현, 다른29장/580자산/130원본 runtime/31과거 fixture와 raw·temple fingerprint의 전체 역투영이 통과했다. 역사 audit는 지도·자산66/runtime271/authoring146/fingerprint10 negative control 및 wrapper 복원10개를 통과했다. 실제 App old-save 검사는23개 case, 옛 저장53회 roundtrip과 새8 retry 후3회 roundtrip을 통과했다. 이 결과는 새8 정상 전투·브라우저·시각 승인과 별도다.
+
+## Act1의 옛 지형·사격·미술 입력
+
+`stage8-bier-act1-history-helpers.mjs`는 옛8장의 `bier-road`, 처마, forest-choice와 기성 사격 aim을 전제하는 검사만을 위한 입력 facade다. 일반 `act1-spatial-test-helpers.mjs`와 그 `act1Runtime`의 현재 동작은 바꾸지 않는다. 옛 contracts/missions/traversal/high-low-shots/forest-approach-choices는 새 facade를 import하고, 옛 spatial-art는 같은 입력 projection을 명시적으로 적용한다.
+
+먼저 현재 런타임의 검토된 소스와 현재8장/전체기존지도를 검사한다. 이어8장 project/assets 및 count-derived balance/content8 행만 원본으로 돌린다. 현재 production Engine·renderer를 계속 실행하며 기존10장 loop, golden과 assertion은 하나도 건너뛰지 않는다. raw balance 비교도 assertion 전에 입력만 투영하며, 이미 승인된11/12/16/17장 balance 역투영은 기존 Act2 검사와 동일한 함수를 합성한다. Act2 spatial contracts의 첫 Act1 unit loop도 그 동기 블록에만 정확한8장 입력 projection을 적용하고 즉시 현재 참조로 복구한다. Stage3 충돌과 Stage5 내구도 검사는 그대로다.
+
+기존 normal bot/playthrough/evidence는 현재 helper를 유지한다. 역사 지형의 옛8 완주를 새8 정상 완주로 보고하지 않는다. 새8 지형/기예/전투/미술/일반입장은 전용 Stage8 production 검사가 담당한다.
+
+해당 입력 facade를 사용하는 Act1 spatial contracts/missions/traversal/high-low-shots/forest-approach-choices/spatial-art 및 Act2 spatial contracts의 기존 검사가 모두 통과했다. traversal은10장×4체형, 사격은10장×2기예×2방향의 옛 입력 검사다. 새8 정상 플레이의 근거로 합치지 않는다.
+
+## 기존 migration의 balance 입력
+
+RC21 비교 생성기는 자체 `legacyRuntime()`에서 현재 balance를 읽으므로 신규8의28을 그대로 주면 옛 spawn16개+보스1개를 생성한다. 검토된 옛 지도는10개+보스1개다. `stage8-bier-migration-history-helpers.mjs`는 원본 migration 파일과 두 legacy 참조파일의 bf8 SHA를 확인하고, 현재 exported `migrate` 함수 본문을 한 글자도 바꾸지 않은 채 `legacyRuntime` dependency에만 정확한 balance8 역투영을 주입한다. 현재 library와 Engine 및 기존 legacy 비교 코드는 그대로 실행하고 저장된 before-source 문자열은 실행하지 않는다. 현재 production의28은 유지한다.
+
+`stage12-redesign.mjs`(game rc20-map-audit 진입점)와 `migration.mjs`는 import 경로만 이 facade로 연결하며 기존 assertion·fixture는 유지한다. 별도 `stage8-bier-migration-history.mjs`는 원본 balance10/현재28 격리와 다른 balance·data·runtime·migration source·지도의13개 변이 거부를 확인한다.
+
+`one-way-platforms.mjs`의 첫20장 authored/compiled oneWay audit는 현재 새8을 포함한 전체 현재 지도를 유지한다. 고정된 옛 처마6경로만 검토된 새8→옛8 입력을 거친 다음 기존 platform 역투영으로 전후를 구성한다. 네 체형24회 성공/과거24회 막힘 assertion과 모든 좌표 fixture는 그대로이며, 마지막에 실제 현재 project로 되돌린다.

@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {writeFile,mkdir,readFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
-import {legacyRuntime,migrate} from '../migration/migrate-stages.mjs';
+import {legacyRuntime,migrate} from './stage8-bier-migration-history-helpers.mjs';
 import vm from 'node:vm';
 const g=await runtime(),old=await legacyRuntime(),plain=x=>JSON.parse(JSON.stringify(x)),rows=[];
 const activeProject=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8'));

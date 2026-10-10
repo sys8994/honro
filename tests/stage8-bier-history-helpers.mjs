@@ -7,7 +7,7 @@ import {createHash} from 'node:crypto';
 import * as E from './stage23-escort-history-helpers.mjs';
 export * from './stage23-escort-history-helpers.mjs';
 export const bierHistoryHash=E.escortHistoryHash,bierHistoryPlain=E.escortHistoryPlain;
-const hash=bierHistoryHash,plain=bierHistoryPlain,norm=s=>s.replace(/\r\n/g,'\n');
+const hash=bierHistoryHash,plain=bierHistoryPlain,norm=s=>s.replace(/\r\n/g,'\n'),repoRoot=new URL('../',import.meta.url);
 export const stage8BierBefore=JSON.parse(readFileSync(new URL('./fixtures/stage8-bier/history-before.json',import.meta.url),'utf8'));
 export const stage8BierOriginal=JSON.parse(readFileSync(new URL('./fixtures/stage8-bier/before-stage8.json',import.meta.url),'utf8'));
 const f=stage8BierBefore,o=stage8BierOriginal;
@@ -29,7 +29,10 @@ const globals=p=>Object.fromEntries(Object.entries(p).filter(([k])=>!['stages','
 const selected=(rows,s)=>s==='full'?rows:rows.filter(row=>Number((row.id||row).slice(6))<=20);
 function scopeOf(p){if(p.stages?.length===30)return'full';assert.equal(p.stages?.length,20,'Only complete full/Act12 projects cross Stage8');return'act12';}
 export function stage8BierReview(){return JSON.parse(readFileSync(new URL('./fixtures/stage8-bier/history-reviewed.json',import.meta.url),'utf8'));}
-export const stage8BierRuntimeSources=E.stage23EscortRuntimeSources;
+// Same raw source membership as the immutable collectors, resolved relative to
+// this module so npm --prefix game and repository-root audits see equal bytes.
+export function stage8BierRuntimeSources(){const dirs=['shared/runtime','shared/map','shared/engine/src'],extra=['shared/build.mjs','game/engine/build.mjs','game/config/balance.json',...readdirSync(new URL('shared/data',repoRoot)).filter(p=>p.endsWith('.json')&&p!=='campaign.json').map(p=>'shared/data/'+p)];return Object.fromEntries([...dirs.flatMap(dir=>readdirSync(new URL(dir,repoRoot)).filter(p=>/\.(js|ts)$/.test(p)).map(p=>dir+'/'+p)),...extra].sort().map(p=>[p,readFileSync(new URL(p,repoRoot),'utf8')]));}
+export const stage23EscortRuntimeSources=stage8BierRuntimeSources,stage12QuarryRuntimeSources=stage8BierRuntimeSources,stage30FerryRuntimeSources=stage8BierRuntimeSources,stage18BellRuntimeSources=stage8BierRuntimeSources;
 function reviewFor(review){const r=review??stage8BierReview();assert.equal(r.version,1);assert.equal(r.sourceCommit,f.sourceCommit);assert.equal(r.sourceTree,f.sourceTree);assert.deepEqual(r.scope,scope,'Immutable explicit Stage8 scope');return r;}
 function libraryBase(library,s){const out=plain(library).filter(a=>!added(a)),expected=f.library.filter(a=>s==='full'||!a.id.startsWith('a3-'));assert.deepEqual(out.map(a=>a.id),expected.map(a=>a.id),'All580 original asset membership/order (or exact Act12 subset)');for(const[i,a]of out.entries())assert.equal(hash(a),expected[i].sha256,'Exact original asset '+a.id);return out;}
 function contract(stage){
@@ -720,6 +723,6 @@ export const stage8BierApplyAct1Expected=applyAct1Before
  .replace("import {applyOpenStructures} from './open-structure-policy.mjs';", "import {applyOpenStructures} from './open-structure-policy.mjs';\nimport {authorStage8Bier} from './stage8-bier.mjs';\nimport {runtime} from '../../game/tests/helpers.mjs';")
  .replace('const project=applyForestApproachChoices(', 'let project=applyForestApproachChoices(')
  .replace("await writeFile(file,JSON.stringify(project,null,2)+'\\n');", "project=await authorStage8Bier(project,await runtime({legacyMaps:false}),{art:true});\nawait writeFile(file,JSON.stringify(project,null,2)+'\\n');");
-function files(dir){return readdirSync(dir,{withFileTypes:true}).flatMap(d=>d.isDirectory()?files(dir+'/'+d.name):[dir+'/'+d.name]);}
-export function stage8BierAuthoringSources(){const paths=['tools/map-forge','tools/environment','shared/assets/environment'].flatMap(files).filter(p=>p!=='tools/map-forge/record-stage8-bier-history.mjs');return Object.fromEntries(paths.sort().map(p=>[p,readFileSync(p)]));}
+function files(dir){return readdirSync(new URL(dir,repoRoot),{withFileTypes:true}).flatMap(d=>d.isDirectory()?files(dir+'/'+d.name):[dir+'/'+d.name]);}
+export function stage8BierAuthoringSources(){const paths=['tools/map-forge','tools/environment','shared/assets/environment'].flatMap(files).filter(p=>p!=='tools/map-forge/record-stage8-bier-history.mjs');return Object.fromEntries(paths.sort().map(p=>[p,readFileSync(new URL(p,repoRoot))]));}
 export function assertStage8BierAuthoringScope(sources){assert.deepEqual(Object.keys(sources).sort(),[...stage8BierAuthoringBefore.map(r=>r.path),...scope.allowedAddedAuthoring].sort(),'Complete original authoring source membership and explicit Stage8 additions');for(const row of stage8BierAuthoringBefore){if(row.path==='tools/map-forge/apply-act1.mjs'){assert.notEqual(stage8BierApplyAct1Expected,applyAct1Before);assert.equal(String(sources[row.path]),stage8BierApplyAct1Expected,'Only the exact canonical Stage8 authoring call');}else if(row.path==='tools/environment/act1-scene-composition.mjs'){const value=String(sources[row.path]),guard='  if(n===8&&st.initialState?.honroStage8BierRevision===1)continue;\n';assert.equal(value.split(guard).length-1,1,'Exactly one approved new8 scene guard');assert(value.includes('for(const st of project.stages){const n=st.metadata?.stageId;if(n<1||n>10)continue;\n'+guard),'Guard remains directly after existing Act1 range check');assert.equal(rawHash(value.replace(guard,'')),row.sha256,'Exact original ACT1 author after removing its one explicit opt-in guard');}else assert.equal(rawHash(sources[row.path]),row.sha256,'Unchanged original authoring source '+row.path);}for(const path of scope.allowedAddedAuthoring)assert(sources[path].length>100,'Complete new authoring source '+path);return sources;}

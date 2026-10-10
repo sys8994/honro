@@ -1,3 +1,4 @@
+import {useBeforeStage8Inputs} from './stage8-bier-act1-history-helpers.mjs';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
@@ -11,6 +12,7 @@ function canvas(w=300,h=150){const c=native.createCanvas(w,h);Object.definePrope
 const Image=class extends native.Image{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;}get src(){return super.src;}};
 const g=vm.createContext({console,performance,structuredClone,document:{createElement:()=>canvas()},Image,Path2D:native.Path2D,DOMMatrix:native.DOMMatrix,devicePixelRatio:1,matchMedia:()=>({matches:false}),setTimeout,clearTimeout});g.window=g;
 for(const source of await runtimeParts({vector:true,render:true}))vm.runInContext(source,g);
+useBeforeStage8Inputs(g); // Exact reviewed new8 -> original8; retain all ten original art assertions.
 const plain=v=>JSON.parse(JSON.stringify(v)),sha=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex'),before=plain(g.HONRO_PROJECT),composed=await applyAct1SceneComposition(plain(before));
 assert.deepEqual(plain(composed),before,'ACT1 composition must be idempotent');
 assert.deepEqual(composed.stages.slice(10),before.stages.slice(10),'ACT2 maps unchanged by ACT1 authoring');

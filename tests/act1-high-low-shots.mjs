@@ -2,7 +2,7 @@
 // removed to make a shot work. Includes the real overwatch and waterfall goals.
 import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
-import {act1Runtime,fixture,reportRoot} from './act1-spatial-test-helpers.mjs';
+import {act1Runtime,fixture,reportRoot} from './stage8-bier-act1-history-helpers.mjs';
 const g=await act1Runtime(),C=g.HONRO_CORE,ids=process.argv.slice(2).map(Number),rows=[];if(!ids.length)ids.push(...Array.from({length:10},(_,i)=>i+1));
 const hints=JSON.parse(await readFile('tests/fixtures/act1-shot-aims.json','utf8')).aims;
 const pairs={1:['pine-branch-east',2500,'forest-floor',2900],2:['left-tree-branch-lower',1530,'canyon-ground',1940],3:['warehouse-roof',5650,'ferry-ground',6150],4:['west-shoulder',1670,'west-step-2',1200],5:['archer-step',1980,'valley-floor',1470],6:['bridge-west',1400,'debris-step-2',1180],7:['tier-mid',2800,'tier-low',1750],8:['west-eave',3120,'bier-road',3200],9:['west-gallery',1210,'yard-floor',1530],10:['west-gallery',1620,'outer-yard',1900]};

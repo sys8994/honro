@@ -1,7 +1,7 @@
 // Explicit state fixtures separate mission-rule regression from normal combat.
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
-import {act1Runtime,fixture,reportRoot} from './act1-spatial-test-helpers.mjs';
+import {act1Runtime,fixture,reportRoot} from './stage8-bier-act1-history-helpers.mjs';
 const g=await act1Runtime(),rows=[];
 function check(name,fn){try{const detail=fn();rows.push({name,passed:true,detail});console.log('PASS',name);}catch(error){rows.push({name,passed:false,error:error.stack});console.error('FAIL',name,error.message);}}
 function ready(q){const {b,e,st}=q,hs=b.honroState;
