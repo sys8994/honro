@@ -19,3 +19,5 @@
 `npm run test:training-layout`은 새 전장의 구성, 실제 8초 신체 물리, 접지/HP/프로필 불변, 적 행동 상한, 각 구역의 실제 예측/발사, 중앙 다중 명중을 확인한다. 발사 검사는 영웅의 사격 지점과 기예를 통제한 격리 실험이며 정상 입력 완주가 아니다.
 
 `npm run capture:training-layout`은 d00c7bb와 현재 world.js를 같은 Native Canvas Scene/카메라로 캡처한다. 증거는 `_local/reports/training-layout/`에 생성한다. Native 이미지는 실제 브라우저·성능·Pages 검증을 대신하지 않는다. 캠페인 전용 encounter manifest의 stage 1–30에 허공터를 캠페인 장으로 거짓 등록하지 않는다. 브라우저 허공터 진입/반복 리셋/영웅 전환 및 게시본 검증은 최종 통합 검수에서 별도로 수행한다.
+
+검수 결과: 새 전장의 8초 실제 물리 전원 위치/HP 안정, 6구역 실탄 명중과 중앙 천뢰호 3체 피해, 시작 평지 평참 명중·진목의 실제 비행/착지, 두 HTML 빌드가 통과했다. `campaign-transition-regressions`는 3/6/7장 허공터 반복 재시도·복귀·즉시 reload/import 9조건을 통과한 뒤, 이후 캠페인 역사 fixture digest 불일치로 중단됐다. 전체 `verify`도 기존 `encounter-density-history-helpers`의 프로젝트 digest 불일치에서 중단됐다(기대 4e6862fc…, 실제 d369e6f0…). 기준 해시를 변경하거나 검사를 우회하지 않았다. 동일 카메라 전후 overview/근접/중앙/동쪽 Native 캡처를 직접 열람했다. 실제 브라우저와 게시본 검수는 여전히 별도다.
