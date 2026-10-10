@@ -15,7 +15,7 @@ const group=(id,body,x=0,y=0)=>`<g id="${id}"${x||y?` transform="translate(${N(x
 const ellipse=(x,y,rx,ry,fill,id='')=>path(`M${N(x-rx)} ${N(y)}a${rx} ${ry} 0 1 0 ${rx*2} 0a${rx} ${ry} 0 1 0 ${-rx*2} 0Z`,fill,'',1,id);
 const countNodes=node=>1+(node.children||[]).reduce((sum,n)=>sum+countNodes(n),0);
 function asset(key,name,body,box,{role='building',category='architecture',feet=[0],extra={}}={}){
- const source=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${box.join(' ')}"><title>${name}</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc>${body}</svg>`,vector=compileSVG(source),[x,y,w,h]=box,nodeCount=countNodes(vector.root);
+ const source=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${box.join(' ')}"><title>${name}</title><desc>Original pure vector village art. ${extra.rearOnly===false?'Exact terrain-interior surface dressing':'Rear scenery only'}; no embedded image, interactive object, or collision.</desc>${body}</svg>`,vector=compileSVG(source),[x,y,w,h]=box,nodeCount=countNodes(vector.root);
  if(nodeCount>120)throw Error('Stage14 art node budget exceeded: '+key);
  return{id:PREFIX+key,name,category,environmentRole:role,visual:[],vector,collision:[],anchor:{x:0,y:0},sockets:[],tags:['stage14-vertical','visual-only','editable-native-vector','korean-cavern'],params:{artRevision:1,nodeCount,rearOnly:true,collisionSource:'none',footXs:feet,...extra},bounds:{x,y,w,h},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.35,2],backgroundRange:[.35,2]}};
 }
@@ -69,6 +69,72 @@ function familyLintelBearing(stage){const terrain='v14-family-roof-step',lower=t
  b+=line([[xs[0],foot[0].y-20],[xs[1],top+13]],'#5a5b46',13)+line([[xs[0]+4,foot[0].y-26],[xs[1]-2,top+13]],'#a38f68',4);
  b+=poly([[xs[0]-32,top],[xs[1]+35,top],[xs[1]+31,top+16],[xs[0]-33,top+16]],'#77745a',C.ink,2);
  return{asset:asset('family-lintel-bearing','가족 마당의 짧은 돌턱 아래 실제 높이 목재받침',b,[xs[0]-46,top-4,xs[1]-xs[0]+94,Math.max(...foot.map(p=>p.y))-top+15],{role:'prop',category:'architecture',feet:[],extra:{kind:'lintel-bearing',undersideTerrainId:terrain,underside:lower,groundedSupports:foot,noDeck:true}}),feet:foot};
+}
+
+/** C is a carved-out room in a cliff, rather than a household pasted onto a
+ * distant panorama. The rear arch, its occluded hollow, and the exposed rock
+ * share a light direction. Only the two exact solid footprints get a surface
+ * dressing: Scene draws collision readability afterwards, then all actors.
+ * No new silhouette, landing, terrain, actor pose or route is authored here. */
+function marketCove(stage){
+ const n=stage.design.vertical14.nodes.C,local=p=>[N(p.x-n.x),N(p.y-n.y)],market=stage.terrains.find(t=>t.id===n.surfaceId),steps=stage.terrains.find(t=>t.id==='v14-east-steps');
+ if(!market||!steps)throw Error('Stage14 market cove needs actual market and descent solids');
+ const attachments=[market,steps].map(t=>({...terrainUnderside(stage,t.id),contact:'C room rear shoulder overlaps actual lower outline; no walk rim'}));
+ const feet=[-320,140,325].map(dx=>({terrainId:n.surfaceId,x:n.x+dx,y:actualY(stage,n.surfaceId,n.x+dx)}));
+ let b=`<defs>
+  <radialGradient id="v14-C-receding-room" cx="90" cy="90" r="1470" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#192930"/><stop offset=".59" stop-color="#192930"/><stop offset=".82" stop-color="#1c2e35" stop-opacity=".83"/><stop offset="1" stop-color="#1c2e35" stop-opacity="0"/></radialGradient>
+  <linearGradient id="v14-C-far-wall" x1="270" y1="-850" x2="990" y2="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#24373e"/><stop offset=".57" stop-color="#2c4145"/><stop offset="1" stop-color="#2b4044" stop-opacity="0"/></linearGradient>
+  <linearGradient id="v14-C-arch-stone" x1="-600" y1="-700" x2="120" y2="140" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#46524f"/><stop offset=".52" stop-color="#3d4b49"/><stop offset="1" stop-color="#293c3e"/></linearGradient>
+  <linearGradient id="v14-C-descending-buttress" x1="190" y1="330" x2="550" y2="1100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3b4c4b"/><stop offset=".63" stop-color="#314447"/><stop offset="1" stop-color="#293c42" stop-opacity="0"/></linearGradient>
+  <radialGradient id="v14-C-house-bounce" cx="135" cy="-120" r="335" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#998461" stop-opacity=".12"/><stop offset="1" stop-color="#998461" stop-opacity="0"/></radialGradient>
+ </defs>`;
+ // A local, edge-faded room removes the panoramic stripe through this cove.
+ // The distant face is visibly smaller in contrast than the close arch.
+ b+=path('M-1400-1430H1580V1580H-1400Z','url(#v14-C-receding-room)','','1','C-local-recess-with-two-dimensional-falloff');
+ b+=path('M265-950C516-850 638-697 662-469C680-308 805-208 924-75C846 127 856 315 1087 525L1230 1100H501C683 812 707 636 582 412C449 192 485-39 379-225C312-386 389-550 265-950Z','url(#v14-C-far-wall)','','1','C-far-receding-wall');
+ b+=path('M-631-729C-445-850-205-781-54-687C94-617 104-475 10-368C-48-302-66-187-36-88L-392 77C-424-78-396-171-464-263C-549-380-706-477-631-729Z','url(#v14-C-arch-stone)','','1','C-close-overhanging-rock-shoulder');
+ // Three substantial planes, with a broken curved crest rather than triangles.
+ b+=path('M-631-729C-514-795-410-762-329-711C-290-678-227-710-174-675C-107-642-82-594-65-542C-211-563-253-485-343-450C-452-409-482-339-464-263C-549-380-706-477-631-729Z','#4b5853','','1','C-arch-upper-lit-lobe');
+ b+=path('M-343-450C-253-485-211-563-65-542C-23-484-31-421-75-372C-164-355-224-304-245-225C-273-124-252-33-211 39L-392 77C-424-78-396-171-464-263C-482-339-452-409-343-450Z','#354745','','1','C-arch-return-plane');
+ b+=path('M-245-225C-208-364-45-402 103-407C239-411 331-310 352-166L382 44L-211 39C-252-33-273-124-245-225Z','#11272d','','1','C-deep-house-alcove');
+ b+=path('M103-407C240-456 328-387 385-303C436-252 444-166 473-99C502-37 544 28 596 92L512 161C397 105 369 14 352-166C331-310 239-411 103-407Z','#2f4241','','1','C-right-alcove-cheek');
+ b+=path('M173-398C271-424 330-346 358-289C401-240 414-176 421-127C363-180 364-281 311-310C273-354 225-374 173-398Z','#4a5650','','1','C-cheek-catches-one-side-of-light');
+ // A steep shadowed throat remains visibly open at the C-to-E jump/drop.
+ // It does not introduce another bright ledge into either required route.
+ b+=path('M453-157C485-40 572 95 650 217C628 340 570 411 616 543C658 665 621 793 707 1037L574 1180C470 913 477 728 407 569C373 480 457 392 431 283C419 153 379 43 382-29Z','#162c32','','1','C-open-descent-throat');
+ b+=path('M-432 131C-424 268-447 362-388 485C-346 586-332 673-217 717C-67 779 42 692 145 745C272 797 371 768 490 669C568 601 604 515 668 458C747 392 875 433 997 646L1098 1190L-478 1210C-573 935-520 724-535 568C-551 404-475 289-432 131Z','url(#v14-C-descending-buttress)','','1','C-broad-foot-buttress-and-step-shoulder');
+ b+=path('M-388 485C-325 548-258 571-200 583C-109 555-79 506-24 504C29 562 121 554 193 552C89 650-15 691-62 791C-151 866-230 907-359 917C-440 721-415 616-388 485Z','#263b3f','','1','C-underbody-occlusion-fold');
+ b+=path('M668 458C747 392 875 433 997 646L1083 844C934 778 901 674 811 624C730 586 689 616 626 672C604 587 613 517 668 458Z','#3b4c49','','1','C-near-step-buttress-face');
+ b+=path('M-260-480H520V90H-260Z','url(#v14-C-house-bounce)','','1','C-warm-recessed-house-bounce');
+ const rear=asset('market-cove-room','장터 절벽의 돌출 어깨·깊은 집굴·멀리 물러난 암면',b,[-1400,-1430,2980,3010],{role:'cliff',category:'terrain',feet:[],extra:{kind:'market-cove-room',noWalkRim:true,groundedSupports:feet,terrainAttachments:attachments,localDepthOrder:['distant-recess','close-arch','dark-alcove','underbody-buttress']}});
+
+ // The surface silhouette is copied byte-for-byte from the actual solid.
+ // All inner painted paths are contained in it and checked in static QA.
+ const outline=market.points.map(local),stepOutline=steps.points.map(local);
+ let skin=`<defs><linearGradient id="v14-C-exposed-rock" x1="-200" y1="0" x2="50" y2="590" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#59635e"/><stop offset=".48" stop-color="#485852"/><stop offset="1" stop-color="#344a4b"/></linearGradient><linearGradient id="v14-C-large-lit-face" x1="80" y1="72" x2="195" y2="536" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#697066"/><stop offset=".47" stop-color="#5c685f"/><stop offset="1" stop-color="#40544f"/></linearGradient><linearGradient id="v14-C-descent-rock" x1="600" y1="370" x2="1000" y2="945" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4e5d59"/><stop offset="1" stop-color="#304749"/></linearGradient></defs>`;
+ skin+=poly(outline,'url(#v14-C-exposed-rock)','','1','C-exact-collision-footprint');
+ skin+=path('M-450 0H400L380 95C269 118 221 84 150 75C24 28-17 54-138 102C-257 139-334 101-435 160Z','#5c665e','','1','C-shoulder-lip-curves-back-into-yard');
+ skin+=path('M-160 88C-28 40 75 56 150 75L262 170C225 226 246 239 270 220L360 430L120 540L-70 500C-23 388-91 284-109 254C-150 196-165 136-160 88Z','url(#v14-C-large-lit-face)','','1','C-one-convex-light-bearing-face');
+ skin+=path('M-435 160C-329 118-233 129-160 88C-165 136-150 196-109 254C-70 319-95 369-128 440C-147 484-165 524-200 590L-340 430L-380 230Z','#34494a','','1','C-deep-return-side-of-solid');
+ skin+=path('M-109 254C-55 207 11 190 90 202C120 270 56 314 42 345C-18 358-71 399-128 440C-95 369-70 319-109 254Z','#293f41','','1','C-single-broad-re-entrant-shadow');
+ skin+=path('M168 152C210 180 223 263 209 317C214 374 261 395 310 423L225 463C174 404 111 375 120 304C140 251 174 217 168 152Z','#72786a40','','1','C-rounded-front-plane-wash');
+ // Grounded retaining stones visibly carry the unchanged shop and house.
+ // These are below the real walking line, not a new decorative platform.
+ skin+=path('M-378 3H-139L-151 26C-206 43-283 32-370 39Z','#1b3032','','1','C-market-post-wide-contact-shadow');
+ skin+=poly([[-363,20],[-304,16],[-295,62],[-345,76],[-371,51]],'#7a7b66');
+ skin+=poly([[-300,18],[-234,14],[-227,54],[-289,63]],'#666f5f');
+ skin+=poly([[-224,16],[-159,21],[-169,68],[-224,55]],'#80816b');
+ skin+=poly([[-350,79],[-291,66],[-255,103],[-305,122],[-345,112]],'#4c5d52');
+ skin+=path('M-10 3H273L258 20C176 33 66 29-8 25Z','#142a2d','','1','C-house-plinth-to-cliff-contact-shadow');
+ skin+=poly([[3,26],[69,27],[80,61],[13,63]],'#79806b');
+ skin+=poly([[75,29],[161,30],[171,72],[84,67]],'#687663');
+ skin+=poly([[169,29],[255,24],[246,62],[178,74]],'#858770');
+ skin+=path('M18 65C88 79 156 67 239 65L220 92C133 105 71 91 29 87Z','#354c47','','1','C-stone-base-shadow-on-bearing-rock');
+ skin+=poly(stepOutline,'url(#v14-C-descent-rock)','','1','C-steps-exact-collision-footprint');
+ skin+=path('M441 388H813V763C751 733 723 664 709 615C683 546 620 479 573 461C527 453 492 429 441 388Z','#65706366','','1','C-stair-front-broad-round-return');
+ skin+=path('M836 787C909 811 997 809 1089 797L1119 863L1060 930L980 890L914 830Z','#56675c66','','1','C-lower-step-bearing-face');
+ const dressed=asset('market-rock-surface','장터 실제 암반 안쪽의 큰 명암면과 주거 석축 접촉면',skin,[-450,0,1620,950],{role:'cliff',category:'terrain',feet:[],extra:{kind:'terrain-surface-dressing',rearOnly:false,drawLayer:'prop',exactTerrainSilhouettes:[{terrainId:market.id,points:market.points},{terrainId:steps.id,points:steps.points}],groundedSupports:feet,collisionSource:'none',silhouettePolicy:'exact solid footprint; internal paint only; common terrain readability remains on top'}});
+ return{rear,dressed,origin:{x:n.x,y:n.y},feet};
 }
 export function createStage14VerticalAssets(){return{upperHome:upperHome(),familyHome:familyHome(),riverHome:riverHome(),marketStall:marketStall(),clothRack:clothRack(),refugeBundles:refugeBundles(),riverLamp:riverLamp(),vacantHome:vacantHome(),earthenWing:earthenWing(),householdYard:householdYard(),ondolHearth:ondolHearth()};}
 
@@ -130,9 +196,11 @@ export function applyStage14VerticalArt(project){
  const unchanged=JSON.stringify({terrains:stage.terrains,units:stage.units,markers:stage.markers,routes:stage.routes,events:stage.events,initialState:stage.initialState}),otherStages=JSON.stringify(project.stages.filter(s=>s!==stage)),n=stage.design.vertical14.nodes;
  stage.elements=stage.elements.filter(e=>!e.id.startsWith(ELEMENT));stage.design.space.scenery=(stage.design.space.scenery||[]).filter(e=>!e.id.startsWith(ELEMENT));stage.design.space.lights=(stage.design.space.lights||[]).filter(e=>!e.id.startsWith(ELEMENT));
  const back=cavern(stage);register(project,back.asset);stage.elements.unshift({id:ELEMENT+'cavern-depth',assetId:back.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage14Supports:back.feet});
- const bearing=familyLintelBearing(stage);register(project,bearing.asset);stage.elements.push({id:ELEMENT+'family-lintel-bearing',assetId:bearing.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage14Supports:bearing.feet});
  const a=createStage14VerticalAssets(),placed=[];a.marketPlinth=plinthHome(a.vacantHome,'home-market-stone-base',32);a.familyPlinth=plinthHome(a.familyHome,'home-family-stone-base',42);a.riverPlinth=plinthHome(a.riverHome,'home-river-stone-base',38);
- for(const spec of [{key:'upper',zone:'B',support:n.B.surfaceId,x:2600,width:780,height:530,variant:0},{key:'market',zone:'C',support:n.C.surfaceId,x:n.C.x,width:730,height:575,variant:1},{key:'family',zone:'F',support:n.F.surfaceId,x:4330,width:1130,height:430,variant:2},{key:'river',zone:'H',support:n.H.surfaceId,x:4450,width:1280,height:390,variant:0}])place(project,stage,householdRock(spec.key,spec.width,spec.height,spec.variant),'household-rock-'+spec.key,spec.support,spec.x,{zone:spec.zone,purpose:'Natural recessed rock cove behind the homes; no rim or collision.'});
+ for(const spec of [{key:'upper',zone:'B',support:n.B.surfaceId,x:2600,width:780,height:530,variant:0},{key:'family',zone:'F',support:n.F.surfaceId,x:4330,width:1130,height:430,variant:2},{key:'river',zone:'H',support:n.H.surfaceId,x:4450,width:1280,height:390,variant:0}])place(project,stage,householdRock(spec.key,spec.width,spec.height,spec.variant),'household-rock-'+spec.key,spec.support,spec.x,{zone:spec.zone,purpose:'Natural recessed rock cove behind the homes; no rim or collision.'});
+ const cove=marketCove(stage);for(const [a,key,layer]of [[cove.rear,'market-cove-room','back'],[cove.dressed,'market-rock-surface','prop']]){register(project,a);stage.elements.push({id:ELEMENT+key,assetId:a.id,...cove.origin,scale:1,rotation:0,snap:false,depthLayer:'L1',layer,stage14Supports:cove.feet});stage.design.space.scenery.push({id:ELEMENT+key,elementId:ELEMENT+key,assetId:a.id,roomId:'v14-C',surfaceId:n.C.surfaceId,...cove.origin,scale:1,footOffset:0,visualOnly:true,purpose:layer==='prop'?'Exact collision-interior rock painting and grounded retaining stones; common collision edge is drawn afterwards.':'Near overhanging shoulder, deep household alcove, and receding wall form one local market room.'});}
+ // Its feet were correct before, but the later family rock occluded the posts.
+ const bearing=familyLintelBearing(stage);register(project,bearing.asset);stage.elements.push({id:ELEMENT+'family-lintel-bearing',assetId:bearing.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage14Supports:bearing.feet});
  const on=(a,key,node,x,scale=1,purpose='Domestic scenery behind actors; no collision.')=>{const e=place(project,stage,a,key,node.surfaceId,x,{zone:Object.keys(n).find(k=>n[k]===node),scale,purpose});placed.push(e);return e;};
  on(a.vacantHome,'entry-empty-home',n.A,380,.90,'Empty upper-edge home establishes the inhabited cavern before the party descends.');
  on(a.householdYard,'entry-wash-yard',n.A,610,.72);
@@ -167,6 +235,6 @@ export function applyStage14VerticalArt(project){
  // terrain art and rendering machinery remain unchanged.
  stage.environment.placements=[];stage.environment.groups=[];stage.environment.surfaces=[];stage.environment.skyVisible=false;
  stage.environment.atmosphere={preset:'enclosed',overrides:{skyTop:'#101f29',skyBottom:'#243a3f',hazeStrength:.39,mistStrength:.065,lightStrength:.065}};
- stage.design.vertical14Art={revision:4,status:'awaiting-native-and-browser-visual-review',nativeVectorOnly:true,source:'tools/environment/stage14-vertical-art.mjs',geometrySource:'tools/map-forge/stage14-vertical-geometry.mjs',style:'Four grounded inhabited rock coves; eleven varied low Korean households and domestic yards; broad natural cavern vaults with restrained oil lamps and depth haze',collisionPolicy:'none-added; all elements L1-back; roofs and rails are visual only',supportPolicy:'actual declared walk edges cross-checked with v14Y; each local foot at support y; central rear rock meets actual terrain undersides',terrainAttachments:back.asset.params.terrainAttachments,artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage14Supports||[]).map(p=>({elementId:e.id,...p}))),houseElements:placed.filter(e=>project.library.find(a=>a.id===e.assetId).params.kind==='home').map(e=>e.id),budgets:{maxNodesPerAsset:120,repeatedNoisePaths:0,decorativeCollisionBodies:0},views:[{id:'upper-hamlet',x:n.B.x,y:n.B.y-100,scale:.7,width:1440,height:960},{id:'market-three-way',x:n.C.x,y:n.C.y+150,scale:.52,width:1440,height:960},{id:'family-reunion',x:n.F.x+200,y:n.F.y-50,scale:.62,width:1440,height:960},{id:'river-refuge',x:(n.G.x+n.H.x)/2,y:n.G.y-100,scale:.64,width:1440,height:960},{id:'family-portrait',x:n.F.x+260,y:n.F.y-60,scale:.52,width:720,height:1080}]};
+ stage.design.vertical14Art={revision:5,status:'C-room-candidate-awaiting-native-review',nativeVectorOnly:true,source:'tools/environment/stage14-vertical-art.mjs',geometrySource:'tools/map-forge/stage14-vertical-geometry.mjs',style:'C-only room study: overhanging close shoulder, dark household alcove, receding wall, exact-solid exposed rock painting and grounded retaining stones. Other inhabited coves retained.',collisionPolicy:'none-added; L1-back scenery plus C exact-collision-interior L1-prop paint; roofs and rails visual only',supportPolicy:'actual declared walk edges cross-checked with v14Y; each local foot at support y; central rear rock meets actual terrain undersides',terrainAttachments:[...back.asset.params.terrainAttachments,...cove.rear.params.terrainAttachments],artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage14Supports||[]).map(p=>({elementId:e.id,...p}))),houseElements:placed.filter(e=>project.library.find(a=>a.id===e.assetId).params.kind==='home').map(e=>e.id),budgets:{maxNodesPerAsset:120,repeatedNoisePaths:0,decorativeCollisionBodies:0},views:[{id:'upper-hamlet',x:n.B.x,y:n.B.y-100,scale:.7,width:1440,height:960},{id:'market-three-way',x:n.C.x,y:n.C.y+150,scale:.52,width:1440,height:960},{id:'family-reunion',x:n.F.x+200,y:n.F.y-50,scale:.62,width:1440,height:960},{id:'river-refuge',x:(n.G.x+n.H.x)/2,y:n.G.y-100,scale:.64,width:1440,height:960},{id:'family-portrait',x:n.F.x+260,y:n.F.y-60,scale:.52,width:720,height:1080}]};
  if(JSON.stringify({terrains:stage.terrains,units:stage.units,markers:stage.markers,routes:stage.routes,events:stage.events,initialState:stage.initialState})!==unchanged||JSON.stringify(project.stages.filter(s=>s!==stage))!==otherStages)throw Error('Stage14 art changed gameplay or another stage');return project;
 }
