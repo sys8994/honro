@@ -12,7 +12,7 @@ function arena(id){
 }
 const hit=(a,p,t)=>a.e.impact(p,{x:t.x,y:t.y-t.h*.5,t:0,n:{x:-1,y:0},unit:t});
 // Real launch and swept collision across the four projectile families.
-for(const id of ['A01','A02','A13','M01','M03','O01','O02','O04','S11','S12'])for(const flags of [{side:0},{side:2,honroAlly:true}]){
+for(const id of ['A01','A02','A13','M01','M03','O01','O02','O04','S09','S10','S11','S12'])for(const flags of [{side:0},{side:2,honroAlly:true}]){
  const a=arena(id),t=a.add(flags.side,500,flags),foe=a.add(1,1000),p=a.fire();
  assert(p,id);Object.assign(p,{x:430,y:t.y-t.h*.5,vx:1000,vy:0,gravityScale:0,wind:0});
  for(let n=0;n<30&&a.b.projectiles.includes(p)&&t.hp===t.maxHp;n++)a.e.stepProjectile(p,C.STEP);
@@ -43,7 +43,10 @@ console.log('PASS fragments, geometry, explosion, lightning and charm damage/sta
  const a=arena('O01');const hp=a.u.hp,p=a.fire();a.e.stepProjectile(p,C.STEP);assert.equal(a.u.hp,hp,'launch never collides with caster');assert(a.b.projectiles.includes(p));
  const echo=a.e.spawnSummon(a.u,'echo',600,1500,1,1);a.b.projectiles=[];a.b.phase='aim';a.u.acted=false;a.fire();const copy=a.b.projectiles.find(p=>p.echoSource===echo.id);assert(copy);assert(copy.hit.includes(echo.id),'echo emitter immune to own launch');assert(!copy.hit.includes(a.u.id),'no blanket friendly hit list');
 }
-console.log('PASS summoned ray, convergence and caster/echo launch safety');
+{
+ const a=arena('O08'),hidden=a.add(1,800,{spiritHidden:true}),p=a.fire();hit(a,p,hidden);assert(hidden.manifested,'manifest must still reveal hidden enemies');
+}
+console.log('PASS summoned ray, convergence, hidden-enemy manifest and caster/echo launch safety');
 // Real objective wrappers retain special protection while permitting projectile HP loss.
 for(const stage of [11,23]){
  const a=battlefield(g,stage),u=a.b.units.find(t=>t.side===0),t=C.makeUnit('knight',2,u.x+300,u.y,{id:'ff-protected',honroProtected:true,honroAlly:true,hp:20,maxHp:20,armor:0,shield:0});a.b.units.push(t);
