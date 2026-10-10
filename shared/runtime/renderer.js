@@ -233,6 +233,7 @@
                 this._landmarkLayer(c,visibleLandmarks,'front');
                 this.terrainReadability?.(c,b,view);
             }
+            this.objectDamage?.(c,b,w,h);
             // Animated water lives outside the world raster cache; its collision and
             // conduction geometry remain in the canonical static map.
             this.liveWater?.(c,b);
@@ -322,8 +323,8 @@
                 P(c,[[-3,0],[0,-1.5],[4,0],[0,2]],i%4?'#9daf9840':'#e0d4b259');c.restore();
             }
         }
-        // Durability is combat state, never part of the static scenery bitmap.
-        // Keep labels and bars in screen pixels at every gameplay zoom.
+        // Keep objective names and prerequisites readable; object durability is
+        // communicated by the live material-damage pass, never an HP panel.
         terrainHealthTargets(b){
             const objectives=(b.honroObjectives||[]).filter(o=>o.type==='destroy'),steps=G.HonroAct2?.active(b)?G.HonroAct2.steps(b):G.HonroAct3?.active(b)?G.HonroAct3.steps(b):[];
             return (b.terrain||[]).flatMap(t=>{
@@ -343,17 +344,11 @@
             const z=1/Math.max(.01,this.scale),left=this.x-w*z/2,right=this.x+w*z/2,top=this.y-h*z/2,bottom=this.y+h*z/2;
             for(const t of this.terrainHealthTargets(b)){
                 if(t.x<left-100*z||t.x>right+100*z||t.y<top-70*z||t.y>bottom+70*z)continue;
-                const width=t.event?100:64,ratio=Math.max(0,Math.min(1,t.hp/t.maxHp)),color=t.blocked?'#a3adb0':'#db9a88';
+                if(!t.event)continue;
                 c.save();c.translate(t.x,t.y);c.scale(z,z);c.textAlign='center';c.textBaseline='middle';
-                c.font='600 11px sans-serif';
-                const value=`${Math.ceil(t.hp)} / ${Math.ceil(t.maxHp)}`,label=t.event?t.label:'',caption=t.blocked;
-                const panel=Math.max(width+12,Math.min(250,c.measureText(label).width+14),Math.min(250,c.measureText(caption).width+14));
-                c.fillStyle='#0d2026ee';c.fillRect(-panel/2,-(caption?66:48),panel,44+(caption?18:0));
-                if(label){c.fillStyle='#ead2ad';c.fillText(label,0,-38,panel-12);}
-                c.fillStyle='#293c42';c.fillRect(-width/2,-27,width,7);c.fillStyle=color;c.fillRect(-width/2,-27,width*ratio,7);
-                c.strokeStyle='#bdbaa566';c.lineWidth=1;c.strokeRect(-width/2-.5,-27.5,width+1,8);
-                c.fillStyle='#eee7d5';c.fillText(value,0,-11);
-                if(caption){c.fillStyle='#c8d6d8';c.fillText(caption,0,-56,panel-12);}
+                c.font='600 11px sans-serif';c.strokeStyle='#102227ee';c.lineWidth=3;
+                c.strokeText(t.label,0,-15,250);c.fillStyle='#ead2ad';c.fillText(t.label,0,-15,250);
+                if(t.blocked){c.strokeText(t.blocked,0,-32,250);c.fillStyle='#c8d6d8';c.fillText(t.blocked,0,-32,250);}
                 c.restore();
             }
         }

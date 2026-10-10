@@ -25,7 +25,7 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
  const empowered=(u.soulRemnants||0)>=3;
  if(empowered){u.soulRemnants=0;e.fx('spark',u.x,u.y-u.h*.6,'#d8cfaa',34);}
  if(summon)u.nextSummonDiscount=0;
- for(const p of roots){p.soulBoost=empowered;if(soul)p.hit=e.alive(0).map(v=>v.id);if(empowered&&soul)p.damage*=1+.12+.02*(u.ranks.OP05||0);}
+ for(const p of roots){p.soulBoost=empowered;if(empowered&&soul)p.damage*=1+.12+.02*(u.ranks.OP05||0);}
  if(!soul)return;
  const prediction=e.predict(u,s,u.angle,u.lastPower,undefined,true);
  const point={x:prediction.x,y:prediction.y};
@@ -33,7 +33,7 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
  const echoes=e.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===u.id&&(v.summonExpires??0)>=e.b.round);
  for(const [i,echo] of echoes.entries()){
   const rank=clamp(echo.summonRank||1,1,8),aim=echoAim(e,echo,s,point,u.lastPower),o=e.origin(echo,aim.angle),v=e.velocity(echo,s,aim.angle,aim.power);
-  for(const root of roots){const copy:Projectile={...root,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit],trail:[o],child:false,echoUsed:true,echoSource:echo.id,echoDelay:.075*(i+1),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};e.b.projectiles.push(copy);}
+  for(const root of roots){const copy:Projectile={...root,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit,echo.id],trail:[o],child:false,echoUsed:true,echoSource:echo.id,echoDelay:.075*(i+1),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};e.b.projectiles.push(copy);}
  }
 }
 
@@ -69,10 +69,10 @@ export function stepConvergingSpirit(e:Engine,p:Projectile,dt:number){
  if(p.age<(c.delay||0))return;
  const t=clamp((p.age-(c.delay||0))/c.duration,0,1),next=convergencePoint(c,p.age);
  const old={x:p.x,y:p.y};p.vx=(next.x-old.x)/Math.max(dt,.001);p.vy=(next.y-old.y)/Math.max(dt,.001);p.x=next.x;p.y=next.y;
- for(const u of e.alive(1))if(!p.hit.includes(u.id)){
+ for(const u of e.b.units)if(!u.dead&&u.id!==p.owner&&u.id!==p.echoSource&&!p.hit.includes(u.id)){
   const h=segRect(old,next,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius);
   if(h){p.hit.push(u.id);e.hurt(u,p.damage,p.owner,true,p,next);}
  }
  if(p.age===dt||Math.floor(p.age*20)!==Math.floor((p.age-dt)*20)){p.trail.push(next);if(p.trail.length>14)p.trail.shift();}
- if(t>=1){for(const u of e.alive(1))if(Math.hypot(u.x-c.goal.x,u.y-u.h*.5-c.goal.y)<p.blast+u.r)e.hurt(u,p.damage*.55,p.owner,false,p,c.goal);e.remove(p);}
+ if(t>=1){for(const u of e.b.units)if(!u.dead&&Math.hypot(u.x-c.goal.x,u.y-u.h*.5-c.goal.y)<p.blast+u.r)e.hurt(u,p.damage*.55,p.owner,false,p,c.goal);e.remove(p);}
 }

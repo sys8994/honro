@@ -1,3 +1,41 @@
+# 추가 4건 통합 검증 — 2026-10-10
+
+- d00c7bb 위에 전체화면 Escape 우선순위, 오브젝트 체력 UI 대신 재질 손상, 허공터 군집 배치, 파진연격 착지 후 제자리 방향 전환을 통합했다. main.js 두 변경, 공통 번들 목록, package.json의 기존·신규 검사 목록을 모두 보존하고 두 HTML을 같은 소스로 재생성했다. Native Canvas의 이벤트 없는 DOM 대역에는 fullscreen 입력 가드를 설치하지 않도록 보정했다.
+- 최종 생산 소스 1625f26 기준 통과: S13 방향 전환 14조건, 입력126, fullscreen-escape, training-layout, object-damage, battle-help/modal-keyboard/aim-readout, ui-buttons/portrait-framing, playtest-template, debug-campaign-parity, combat-turn-fixes(토템·공중 넉백·아군 오사), sodan-followup, stage8-bier-renderer-isolation(120비교), act3-visual-cues, stage18-bell-release-guidance. S10 오사 기대값은 생산 변경 없이 별도 교정했으며 최종 hwigyeom-p5와 S13 검사를 실제 exit 0으로 재확인했다.
+- 전체 verify는 공통 build·TypeScript typecheck 후 기존 density 역사 해시(actual d369e6f0… / expected 4e6862fc…)에서 중단했다. migration은 기존 All580 membership/order 실패이며 수정 전 d00c7bb와 경로를 제외한 전체 실패 로그가 동일하다. integration.py는 Chromium socket Operation not permitted로 브라우저를 시작하지 못했다. 전체 integration/performance 통과로 보고하지 않는다.
+- Native 오브젝트 materials/8장 및 허공터 전체 화면도 통합 담당자가 직접 검토했다. 이 근거는 실제 브라우저 입력·GPU·현재 공개 개편맵의 성능 검수를 대체하지 않는다. 별도 성능 조사와 부하가 겹치지 않도록 추가 성능 벤치는 실행하지 않았으며, 공개 Pages 기능·성능 확인은 배포 후 별도로 남긴다.
+
+# 전체화면 Escape 입력 우선순위 — 2026-10-10
+
+- 원인: 전체화면 버튼은 Fullscreen API를 사용하지만 Escape는 바로 전투 일시정지·모달 닫기로 흘렀다. 허공터와 Workshop도 별도의 document keydown을 가지고 있어 화면별 수정만으로는 우선순위를 보장할 수 없었다.
+- 수정: Game·Workshop·Playtest가 동일하게 먼저 설치하는 window capture 가드에서 전체화면 Escape를 preventDefault/stopImmediatePropagation하고 exitFullscreen을 시도한다. 같은 누름의 반복 입력과 keyup도 소비한다. 브라우저가 fullscreenchange를 먼저 보내는 순서에는 최대 300ms의 짧은 보호 구간을 두고 keyup·다른 키·포인터 입력에서 즉시 지운다. 설정 버튼/API로 나가면 다음 Escape는 소비하지 않는다. 비전체화면의 기존 화면별 동작은 유지하며 길게 누르기는 한 번만 처리한다.
+- 검증: 두 HTML 빌드, test:fullscreen-escape(두 이벤트 순서·키다운 미전달·반복·API 실패·버튼 해제·blur·실제 App의 타이틀/쉼터/전투/모달/대화 라우팅 VM 검사), test:battle-help, modal-keyboard, aim-readout, playtest-template 통과. 집중 검사는 test:integration에 포함했다.
+- 전체 검사: npm run verify는 두 HTML 재빌드와 TypeScript typecheck를 통과한 뒤 기존 encounter-density 이력 해시에서 중단됐다(actual d369e6f0… / expected 4e6862fc…). 수정 전 d00c7bb 작업 트리에서도 node tests/stage12-redesign.mjs로 같은 실패를 재현했다. 이후 통합·성능 단계는 실행되지 않았다.
+- 한계: VM은 네이티브 브라우저 이벤트 타이밍 증거가 아니다. 실제 Fullscreen API/물리 Escape의 Game·Workshop·Playtest 공개 Pages 검수는 최종 통합 단계에서 별도로 확인한다. fullscreenchange에는 해제 원인이 없으므로 브라우저 UI에서 해제 직후 keyup도 포인터도 없는 300ms 이내 Escape는 동일 해제 누름으로 간주한다.
+
+# 파괴 가능한 오브젝트의 재질별 손상 표시 — 2026-10-10
+
+- 피격된 발판·오브젝트가 숫자 체력 패널을 띄워 풍경과 실물을 가렸다. 공통 `Scene.terrainHealth`와 새 8장 별도 표시에서 오브젝트 막대·HP 숫자·불투명 패널을 제거했다. 임무 대상 이름과 공격 선행 조건은 남기며 적·NPC·동행 체력 표시는 변경하지 않는다.
+- `object-damage.js`는 현재 HP 비율만 읽어 정상(100%), 낡음(2/3 초과), 금/패임(1/3 초과부터 2/3 이하), 심한 파손 흔적(1/3 이하)을 그린다. 목재의 결·쪼개짐, 석재의 금·떨어진 면, 금속의 눌림·찢김, 얼음/수정의 차가운 파단면을 구분한다. 고정된 소수 경로를 실제 polygon 안에 그려 경사 발판에서 떠다니는 선과 프레임마다 흔들리는 난수를 피한다.
+- 원본 미술·실루엣·맵·충돌·피해·수리·파괴 규칙을 보존한다. 손상은 정적 풍경 캐시 다음의 동적 패스라 HP 변화만으로 캐시를 다시 만들지 않는다. 렌더링은 전투 상태를 쓰지 않고 수리 시 이전 단계로 즉시 돌아가며 broken 객체는 기존 파괴 효과/제거와 같은 프레임부터 손상을 그리지 않는다.
+- `npm run test:object-damage`: 현재 전30장 파괴가능 terrain 13개 전수 목록, 6재질×4상태×3줌 Native 실제 공통 painter, 1/3/5/8/18장 동일 카메라 전후·수리, 실제 Engine 파괴, 원본/반복프레임 픽셀 동일성·저장 순수성·캐시 재사용을 검사한다. 실제 픽셀로 축소 목재/금속/석재의 단계와 3장 발판의 패널 제거 및 5장 적 체력바 보존을 확인했다.
+- 후속 확인: 두 HTML build와 typecheck PASS. 현재 Act3 목표 안내, 새18 억제/고정구 안내 PASS. 8장 wrapper 격리 검사는 공통 Native CJK canvas helper를 사용해 막대가 아닌 실제 한국어 이름으로 양수 픽셀 대조군을 유지했고, 구형/타장/커스텀 10경우×2화면×3함수×2회 총120개 픽셀·문맥·전체 battle 불변 비교를 통과했다. 8장 전후 자료의 before는 당시 별도 compact 표시까지 포함한다.
+- 전체 검사 한계: `npm run verify`는 build/typecheck 뒤 기존 Exact combat-only density project hash(d369e6… 대 4e6862…)에서 중단되어 뒤 integration/performance는 미실행이다. 별도 `tests/migration.mjs`는 기존 All580 original asset membership/order에서 실패, 별도 `tests/integration.py`는 Chromium 프로세스의 socket Operation not permitted로 시작하지 못했다. 엔진/캠페인/원본 에셋 파일 diff는 없다. 이 실패를 정상 통과로 처리하지 않는다.
+- 기존 `event-target-health` 실발사·의식·저장/재개·파괴 후속 회귀는 8항목 통과 후 historical18의 기존 Exact density source membership 불일치에서 중단된다. 역사 fixture와 판정을 느슨하게 변경하지 않았다. Native 증거는 실제 브라우저 입력·GPU·정상 플레이·전체 verify·배포 검수를 대신하지 않는다. 최종 통합에서 두 HTML을 재빌드하고 실제 Pages를 별도 확인한다.
+
+# S10 검기 오사 회귀 기대값 교정 — 2026-10-10
+
+- 앞선 파진연격 보고에서 기존 hwigyeom-p5 전체 검사를 통과로 잘못 기록했다. 실제 로그에는 S10의 옛 아군 무피해 기대값 실패가 있었으며, 마지막 출력만 확인한 보고 오류였다. 통합 담당자가 변경 전 d00c7bb에서도 같은 실패를 재현했다.
+- 이미 승인·구현된 검기 투사체 오사 규칙에 맞춰 테스트만 교정했다. 왼쪽/오른쪽 각각 일반 아군·동맹·적에게 S10 투사체가 43 피해를 주고 82 거리까지 끌어온다. 적에게만 추가 근접타 44(합계 87)와 swordCut 1회가 발생하며, 아군/동맹에는 후속 근접타가 없다. 기존 적 피해·거리 및 벽 통과 금지 검증을 유지했다. 생산 로직은 바꾸지 않았다.
+- 교정 후 hwigyeom-p5 전체 검사의 실제 종료 코드와 보고서에서 실패 0을 확인한다. 실제 브라우저와 전체 verify의 기존 환경·역사 해시 제한은 앞선 기록대로 남는다.
+
+# 파진연격 착지 후 제자리 방향 전환 — 2026-10-10
+
+- 원인: S13의 착지 보너스 검술(`meleeFollow=ready`)에서 걷기를 막는 조기 반환이 좌우 방향 전환도 막았다. 조이스틱은 입력 가능 상태에서도 비활성처럼 흐려졌다.
+- 변경: 공통 `Engine.move`에서 해당 보너스 상태가 실제 접지했을 때만 방향과 조준각을 함께 반전한다. 좌표·속도·이동력·집중·남은 보너스 공격은 바꾸지 않으며, 보통 걷기·점프·다른 동행 전환 금지는 유지한다. 공중/돌격 비행 중에는 적용하지 않는다. 키보드와 가상 조이스틱은 기존 공통 입력 경로를 그대로 사용하고 조이스틱의 잘못된 흐림만 제거한다.
+- 검증: 새 `tests/combo-landing-turn.mjs`는 기존 코드에서 첫 방향 전환 실패를 재현했고 수정 후 통과했다. 실제 Engine에서 양방향 Arrow/A·D와 합성 touch 콜백, 반복 입력, 좌표/자원 불변, 터치 취소, 충전 취소 후 재시도, 다음 S07의 모든 연격 피해·방향 및 정상 종료, 죽음/공중/점프/미정착/비행 제외를 검사한다. 기존 hwigyeom-p5·charge-input 126개·타입 검사·양 HTML 공통 빌드도 통과했다.
+- 한계: 합성 DOM 검사는 실제 모바일 브라우저 검수가 아니다. 기존 양 HTML 브라우저 검사에 실제 키와 CDP touch 검사를 추가했지만 이 환경의 Chromium은 `socket() Operation not permitted`로 시작되지 않았다. `npm run verify`는 빌드·타입 검사 후 기존 encounter-density 역사 입력 해시 불일치에서 중단됐으며 이후 통합/성능 단계는 미도달이다. 최종 통합·원격 반영·Pages 실제 검수는 별도 수행한다.
+
 # 여정첩 데스크톱 빈 공간과 그림 확장 — 2026-10-10
 
 - 원인: 줌 최솟값 0.85에서 지도 자체가 화면 폭의 85%가 되어 오른쪽 15%가 비었다. 같은 스크롤 DOM 안의 sticky 범례는 별도 높이도 만들었다.
@@ -2029,6 +2067,12 @@ Verification: deterministic production rig/adapter Native Canvas frames and actu
 
 공개 모션과 수직14 목표 표시·수직22 기록고 후보를 병합했다. 생산 소스는 서로 독립이며 package.json의 테스트 등록만 양쪽을 보존해 해결하고 두 HTML은 공통 빌드로 재생성했다. 기존22의128소스 고정 검사는 이미 공개된 party-rig/renderer 두 파일도 과거 해시로 고정하므로, 해당 두 파일의 정확한 전후 SHA256만 허용한다. 원래 fixture와 나머지126개 소스·29장·608기존 자산은 유지하고 두 모션 파일의 추가 변조도 음성검사로 거부한다. 이는 임의 모션이나 다른 생산 변경 허용이 아니다. 통합 검증 상태와 브라우저/전체검사 제한은 VERTICAL_MOTION_INTEGRATION.md에 별도 기록한다.
 
+## Combat turn, flying recoil and projectile damage consistency — 2026-10-10
+
+- Cause: M07 used a stake-wide round latch and M08 cast-time impulse; fixed flying enemies rejected every impulse. Soul casts prefilled friendly hit IDs, geometry/fragments/blades/convergence filtered enemies, lantern rays skipped intervening bodies, and campaign wrappers immunized coalition/protected actors.
+- Change: offensive stakes wait for the opposing team turn. Each stake records per-target round hits including splash; independent casts retain independent ledgers. M08 redirects collision-checked walking/flight within the existing movement budget and binds on contact, without immediate placement pull. Fixed flying species alone receive a short swept recoil. Projectile HP damage consistently reaches friendly bodies, including summons and protected allies; intentional guidance, healing, charm/status effects, melee/body-skill targeting and mission failure handlers remain separate. Echo launch ignores its emitter, not the whole coalition.
+- Verification at checkpoint: typecheck; projectile-friendly-fire, guided-allegiance, totem-turn-behavior, flying-knockback, skill-redesign, sodan-redesign, hwigyeom-p5, rescue-physics pass. Full verify/build and live Pages verification pending final integration.
+- Limits: projection/AI friendly-fire estimates remain first-impact estimates, not full secondary simulations. This is not a whole-campaign balance playthrough. See TOTEM_TURN_BEHAVIOR.md.
 ## 2026-10-10 · 디버그 장소별 쉼터·기예·경지 준비
 
 - 원인: 디버그는 장소 잠금만 우회했고 지도 버튼이 일반 전투 진입을 바로 호출했다. 모닥불은 일반 합류/수련 제한을 그대로 보였다.
@@ -2048,3 +2092,16 @@ A user screenshot identified Stage 11, “매듭을 거둔 아침”, western kn
 The correctly mounted isolated aim fixture showed stable terrain tiles (no warm rebuilds) but repeated scaled raster composition. Added a second-level screen raster for static domain terrain and Act 2 spatial backgrounds after two identical frames. Actors, aim, weather, water, moving-object live passes and user-authored custom scenery remain outside. Scene/appearance, backing dimensions, transform, camera, zoom and background readiness invalidate it. Continuous camera/zoom changes use the existing path without allocating new screen buffers. Each of two buffers is capped at 6M pixels/24MB (48MB combined; 44.96MB at 1910×1018 DPR1.7). Replaced backing stores are explicitly released. Automatic follow snaps only its final <0.02 screen-pixel tail to permit stable keys; story/manual camera semantics remain unchanged.
 
 Native paired rank-8 aim comparisons at fixed camera/seed/state have exact RGBA equality. Initial DPR1 paired medians were 36–37ms baseline and 20–21ms candidate; DPR1.7 measured 87.8ms and58.6ms. These are CPU Native raster-completion times, never browser FPS. `test:screen-cache` checks eight production landscape/portrait views (1/11/14/22), battle purity, continuous zoom/movement, scene invalidation and the allocation cap. `test:screen-cache:performance` alternates unchanged Scene/battle baseline/candidate, flushes deferred raster work and records all raw samples, source hashes, DPR1/1.25/1.5/1.7 and eleven stage entry/representative views. Browser DevTools was explicitly blocked by organization policy; no bypass was attempted. Actual browser input/playability, full verify and deployment remain separate verification gates.
+### Combat/UI integration checkpoint
+
+Integrated the c25d50c debug/journey build without altering either feature; only the appended bug-log sections needed manual conflict resolution. Production App tests pass all 12 debug groups, 11 camp-persistence cases, 18 custom-return cases, rest journey, journey layout and standalone Playtest contracts. Mounted App tests verify allied projectile damage in both directions and protected-NPC death reaching the existing lost outcome. The projectile help text now warns about friendly/protected actors.
+
+Build and typecheck pass. Full verify stops at the existing density historical hash (`d369e6f0…` vs `4e6862fc…`); migration stops at original580 asset membership/order. Both exact failures reproduce on untouched c25d50c. The existing combat-story formation assertion remains 36 vs 72 after its updated stake assertion passes. Browser integration cannot start Chromium because socket creation returns EPERM. Current special DOT/legacy lingering zones preserve their old policies; active projectile delayed explosions M05/M13 retain projectile damage context. Published Game/Workshop visual/input verification remains separate and pending.
+
+Final focused follow-through: tactics-audit 26 checks and npc-latency 6 groups pass after replacing the now-obsolete allied-NPC immunity expectation with nonzero friendly-damage cost/rejection. The shared Game and Workshop bundles rebuild cleanly and the standalone Playtest-template contract passes against those exact outputs.
+
+## 허공터 역할별 밀집 배치 · 2026-10-10
+
+- 원인: 적 12체가 5600 폭을 따라 거의 한 줄의 작은 간격 차이로 분산되어 범위 공격·근접·정밀·공중 사격 비교가 불명확했다.
+- 변경: 폭 6000의 기존 지형 종류 안에서 시작 평지/중앙 마당을 넓히고 20체를 근접/중앙 군집/공중/물가/정밀/정예로 저작했다. 행동 상한 2와 정예 1, 적 능력·내구 범위와 리셋/저장 규칙은 유지한다. 자세한 계약은 TRAINING_LAYOUT.md.
+- 검증: 전용 실제 물리·발사 회귀 및 동일 카메라 Native 캡처를 추가했다. 실제 브라우저, 전체 verify와 Pages는 통합 검수 대상이며 이 기록은 통과를 주장하지 않는다.
