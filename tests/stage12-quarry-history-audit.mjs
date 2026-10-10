@@ -7,6 +7,7 @@ import {runtimeParts} from '../shared/build.mjs';
 import {runtime} from '../game/tests/helpers.mjs';
 import {act12Project} from './campaign-scope-helpers.mjs';
 import * as Q from './stage8-bier-history-helpers.mjs';
+import {beforeEncounterDensityAuthoringSources} from './encounter-density-history-helpers.mjs';
 import * as F from './stage30-ferry-history-helpers.mjs';
 import * as B from './stage18-bell-history-helpers.mjs';
 const {quarryHistoryHash:hash,quarryHistoryPlain:plain}=Q,f=Q.stage12QuarryBefore,selfTest=process.argv.includes('--self-test');
@@ -99,7 +100,7 @@ for(const mutate of [p=>p.stages[1].enemies++,p=>p.stages[1].beats.sign[0][1]+='
 const plan={stages:[plain(Q.stage12QuarryOriginal.plan)]};assert.deepEqual(Q.beforeStage12QuarryPlan(plan),plan);plan.stages[0].active++;assert.throws(()=>Q.beforeStage12QuarryPlan(plan));
 let fingerprintChecks=0,runtimeWrapperChecks=0;
 if(!selfTest){
- for(const [path,digest]of Object.entries(review.authoringSources))assert.equal(hash(await readFile(path,'utf8')),digest,'Reviewed generator source '+path);
+ const historicalAuthors=beforeEncounterDensityAuthoringSources(Q.stage8BierAuthoringSources());for(const [path,digest]of Object.entries(review.authoringSources))assert.equal(hash(String(historicalAuthors[path])),digest,'Reviewed generator source after verified density projection '+path);
  const raw=await runtimeParts({vector:false,render:false}),rawSnapshot=JSON.stringify(raw),rawPrior=Q.beforeStage12QuarryFingerprintParts(raw,{sources,review});assert.equal(hash(rawPrior.join('\n')),f.runtime.beforeFingerprintSha256);assert.equal(JSON.stringify(raw),rawSnapshot);assert.deepEqual(Q.beforeStage12QuarryFingerprintParts(rawPrior,{sources,review}),rawPrior);
  const temple=[...raw.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(name=>readFile('shared/runtime/'+name+'.js','utf8')))];
  assert.equal(hash(Q.beforeStage18BellFingerprintParts(temple,{sources}).join('\n')),B.stage18BellHistoryDelta.runtime.beforeFingerprintSha256);

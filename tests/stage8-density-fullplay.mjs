@@ -9,7 +9,7 @@ import {runtimeParts} from '../shared/build.mjs';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 import {bierEntryProfile} from './stage8-bier-entry-helper.mjs';
 import {representativeTargets,representativeMelee,representativeBladePrediction,analyzeWaits} from './stage18-bell-fullplay-helper.mjs';
-import {escortNavigator} from './stage23-escort-fullplay-helper.mjs';
+import {escortNavigator} from './stage8-bier-fullplay-helper.mjs';
 import {auditQuarryEngine} from './stage12-quarry-fullplay-helper.mjs';
 import {authorStage8Bier} from '../tools/map-forge/stage8-bier.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex'),h=await appHarness(),{g,C}=h;
@@ -18,7 +18,7 @@ const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',basicOnly=proces
 assert(['canonical','density36e9','candidate28e5','oldBudget20e0'].includes(rosterMode));
 if(rosterMode!=='canonical')g.HONRO_PROJECT=await authorStage8Bier(plain(g.HONRO_PROJECT),g,{roster:rosterMode});
 const stage=g.HONRO_PROJECT.stages[7],fixture=bierEntryProfile(g,{basicOnly}),parts=await runtimeParts({vector:false,render:false}),sourceHash=hash(g.HONRO_PROJECT),runtimeSha256=hash(parts.join('\n'));
-const provenance={policy,rosterMode,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url))),navigatorSha256:hash(await readFile('tests/stage23-escort-fullplay-helper.mjs')),entrySha256:hash(await readFile('tests/stage8-bier-entry-helper.mjs')),sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim()};
+const provenance={policy,rosterMode,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url))),navigatorSha256:hash(await readFile('tests/stage8-bier-fullplay-helper.mjs')),entrySha256:hash(await readFile('tests/stage8-bier-entry-helper.mjs')),sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim()};
 const resume=process.env.HONRO_FULLPLAY_CONTINUE?JSON.parse(await readFile(process.env.HONRO_FULLPLAY_CONTINUE,'utf8')):null;
 if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);for(const k of ['controllerSha256','navigatorSha256','entrySha256','policy','basicOnly','rosterMode'])assert.equal(resume.provenance[k],provenance[k]);}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};let app=h.load(resume?.profile||{...plain(g.AppRegression.fresh()),...plain(fixture.profile)});if(resume)app.continue();else app.launch(8);let e=app.engine,b=e.b;if(resume)assert.deepEqual(plain(b),resume.profile.honroBattle,'Exact whole battle external Continue');

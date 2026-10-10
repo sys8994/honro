@@ -3,17 +3,17 @@
  * tests explicitly remove opponents to isolate the three reserved spawn bodies;
  * they are not ordinary gameplay, arrival, mission completion or browser proof. */
 import assert from 'node:assert/strict';
+import {runtimeParts} from '../shared/build.mjs';
+import {authorEncounterDensity} from '../tools/map-forge/apply-encounter-density.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime} from '../game/tests/helpers.mjs';
-import {authorStage16Temple} from '../tools/map-forge/apply-stage16-temple.mjs';
-import {authorStage17Worksite} from '../tools/map-forge/apply-stage17-worksite.mjs';
-import {authorStage18Bell} from '../tools/map-forge/apply-stage18-bell.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,D=g.HonroEncounterDensity,checks=[],bodyRows=[],tactics=[],entries=[];
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex'),plain=v=>JSON.parse(JSON.stringify(v));
 const sourceFile=process.argv.find(a=>a.startsWith('--project='))?.slice(10)||'shared/data/campaign.json';
 const original=JSON.parse(await readFile(sourceFile,'utf8'));
-let project=await authorStage16Temple(plain(original),g);project=await authorStage17Worksite(project,g);project=plain(await authorStage18Bell(project,g));
+const project=plain(await authorEncounterDensity(original,g,{stages:[16,17,18]}));
+const runtimeSha256=createHash('sha256').update((await runtimeParts({vector:false,render:false})).join('\n')).digest('hex'),stageSha256=Object.fromEntries([16,17,18].map(n=>[n,hash(project.stages[n-1])]));
 const specs={16:{initial:49,elite:13,wave:10,cap:65,active:4},17:{initial:50,elite:14,ordinaryElite:13,objectiveElite:1,wave:10,cap:66,active:3},18:{initial:55,elite:15,ordinaryElite:14,objectiveElite:1,wave:12,cap:73,active:3}};
 const check=(name,fn)=>{const detail=fn();checks.push({name,detail});console.log('PASS',name);};
 const profile=n=>{const p=C.defaults();p.settings.difficulty='normal';p.recruited=['archer','mage','knight','occultist'];for(const cls of p.recruited)p.heroes[cls].xp={16:37445,17:41755,18:46235}[n];return p;};
@@ -36,6 +36,8 @@ function train(h,id){if(h.ranks[id])return;const t=C.TALENT_MAP[id];if(t.prereq)
 function shotFixture(c,source=project){const p=profile(c.n);for(const id of ['M04','M11'])train(p.heroes.mage,id);p.loadouts.mage=['M01','M04','M11'];p.loadouts.archer=['A01'];const q=fixture(c.n,{p,source}),cls=c.skill.startsWith('M')?'mage':'archer',u=q.e.heroesAlive().find(u=>u.cls===cls),t=q.b.terrain.find(t=>t.id===c.support);Object.assign(u,{x:c.x,y:C.topAt(t,c.x),vx:0,vy:0,acted:false});q.b.active=u.id;q.b.side=0;q.b.phase='aim';assert(valid(q.b,u));assert.deepEqual(overlaps(q.b.units),[],'Tactical start does not overlap another body');return{...q,u};}
 function fire(c,source=project){const q=shotFixture(c,source),before=Object.fromEntries(q.b.units.map(u=>[u.id,u.hp])),terrain=JSON.stringify(q.b.terrain),ids=q.b.units.map(u=>u.id),contacts=[],hits=[],impact=q.e.impact.bind(q.e),focus=q.u.focus;q.e.impact=(p,h)=>{if(h.terrain)contacts.push({id:h.terrain.id,bounces:p.bounces});if(h.unit)hits.push({id:h.unit.id,bounces:p.bounces});return impact(p,h);};assert(q.e.fire(c.skill,c.aim.angle,c.aim.power));for(let tick=0;(q.b.projectiles.length||q.u.meleeAction)&&tick<1800;tick++)q.e.tick(C.STEP);assert(!q.b.projectiles.length);assert.equal(JSON.stringify(q.b.terrain),terrain);assert.deepEqual(q.b.units.map(u=>u.id),ids);const damaged=q.b.units.filter(u=>u.hp<before[u.id]);assert(!damaged.some(u=>u.side===0),'Representative shot does not rely on self/friendly damage');return{count:damaged.filter(u=>u.side===1).length,damage:Object.fromEntries(damaged.map(u=>[u.id,before[u.id]-u.hp])),contacts,hits,focusSpent:focus-q.u.focus};}
 const cases=[
+ {n:16,name:'temple gate melee screen and command',support:'act2-floor',x:1100,skill:'M04',aim:{angle:12.161015118903586,power:.7447168499788914},minimum:3,prior:2},
+ {n:16,name:'temple hall-east three-body front',support:'tm-great-hall-plinth',x:6500,skill:'M04',aim:{angle:16,power:.55},minimum:3,prior:2},
  {n:16,name:'temple hall-west melee and elite backline',support:'tm-great-hall-plinth',x:5700,skill:'M04',aim:{angle:125,power:.5},minimum:5,prior:3},
  {n:17,name:'worksite hoist bodyguards and rear cart',support:'ws-east-hoist-buttress',x:6740,skill:'M04',aim:{angle:145,power:.35},minimum:3,prior:2},
  {n:17,name:'worksite high lamp and air cover',support:'ws-east-upper-rock',x:7860,skill:'M04',aim:{angle:118.06177084232439,power:.8480753266097601},minimum:3,prior:2},
@@ -45,4 +47,4 @@ const cases=[
 ];
 const baselineFile=process.argv.find(a=>a.startsWith('--before='))?.slice(9),baseline=baselineFile?JSON.parse(await readFile(baselineFile,'utf8')):null;
 for(const c of cases)check(c.n+': actual '+c.name,()=>{const after=fire(c);assert(after.count>=c.minimum);if(c.wall){assert(after.contacts.some(h=>h.id===c.wall));assert(after.hits.some(h=>h.bounces>=1));const blocked=fire({...c,skill:'M01'});assert(blocked.count<after.count,'Identical free cast stops at the wall');after.blockedFree=blocked;}const previous=baseline?fire(c,baseline):null;if(previous&&c.prior!==undefined){assert.equal(previous.count,c.prior);assert(after.count>previous.count);}const row={...c,after,...previous?{before:previous}:{}};tactics.push(row);return{before:previous?.count,after:after.count};});
-await mkdir('_local/reports/encounter-density',{recursive:true});await writeFile('_local/reports/encounter-density/stage161718-contracts.json',JSON.stringify({projectSha256:hash(project),baselineSha256:baseline?hash(baseline):null,scope:'Authored bodies/geometry and supported-pose live rank-one attacks. No ordinary arrival, mission/fullplay, browser or difficulty-clear claim.',checks,bodyRows,entries,tactics},null,2)+'\n');
+await mkdir('_local/reports/encounter-density',{recursive:true});await writeFile('_local/reports/encounter-density/stage161718-contracts.json',JSON.stringify({projectSha256:hash(project),runtimeSha256,stageSha256,baselineSha256:baseline?hash(baseline):null,scope:'Authored bodies/geometry and supported-pose live rank-one attacks. No ordinary arrival, mission/fullplay, browser or difficulty-clear claim.',checks,bodyRows,entries,tactics},null,2)+'\n');
