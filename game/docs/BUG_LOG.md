@@ -12,6 +12,8 @@
 - `object-damage.js`는 현재 HP 비율만 읽어 정상(100%), 낡음(2/3 초과), 금/패임(1/3 초과부터 2/3 이하), 심한 파손 흔적(1/3 이하)을 그린다. 목재의 결·쪼개짐, 석재의 금·떨어진 면, 금속의 눌림·찢김, 얼음/수정의 차가운 파단면을 구분한다. 고정된 소수 경로를 실제 polygon 안에 그려 경사 발판에서 떠다니는 선과 프레임마다 흔들리는 난수를 피한다.
 - 원본 미술·실루엣·맵·충돌·피해·수리·파괴 규칙을 보존한다. 손상은 정적 풍경 캐시 다음의 동적 패스라 HP 변화만으로 캐시를 다시 만들지 않는다. 렌더링은 전투 상태를 쓰지 않고 수리 시 이전 단계로 즉시 돌아가며 broken 객체는 기존 파괴 효과/제거와 같은 프레임부터 손상을 그리지 않는다.
 - `npm run test:object-damage`: 현재 전30장 파괴가능 terrain 13개 전수 목록, 6재질×4상태×3줌 Native 실제 공통 painter, 1/3/5/8/18장 동일 카메라 전후·수리, 실제 Engine 파괴, 원본/반복프레임 픽셀 동일성·저장 순수성·캐시 재사용을 검사한다. 실제 픽셀로 축소 목재/금속/석재의 단계와 3장 발판의 패널 제거 및 5장 적 체력바 보존을 확인했다.
+- 후속 확인: 두 HTML build와 typecheck PASS. 현재 Act3 목표 안내, 새18 억제/고정구 안내 PASS. 8장 wrapper 격리 검사는 공통 Native CJK canvas helper를 사용해 막대가 아닌 실제 한국어 이름으로 양수 픽셀 대조군을 유지했고, 구형/타장/커스텀 10경우×2화면×3함수×2회 총120개 픽셀·문맥·전체 battle 불변 비교를 통과했다. 8장 전후 자료의 before는 당시 별도 compact 표시까지 포함한다.
+- 전체 검사 한계: `npm run verify`는 build/typecheck 뒤 기존 Exact combat-only density project hash(d369e6… 대 4e6862…)에서 중단되어 뒤 integration/performance는 미실행이다. 별도 `tests/migration.mjs`는 기존 All580 original asset membership/order에서 실패, 별도 `tests/integration.py`는 Chromium 프로세스의 socket Operation not permitted로 시작하지 못했다. 엔진/캠페인/원본 에셋 파일 diff는 없다. 이 실패를 정상 통과로 처리하지 않는다.
 - 기존 `event-target-health` 실발사·의식·저장/재개·파괴 후속 회귀는 8항목 통과 후 historical18의 기존 Exact density source membership 불일치에서 중단된다. 역사 fixture와 판정을 느슨하게 변경하지 않았다. Native 증거는 실제 브라우저 입력·GPU·정상 플레이·전체 verify·배포 검수를 대신하지 않는다. 최종 통합에서 두 HTML을 재빌드하고 실제 Pages를 별도 확인한다.
 
 # 여정첩 데스크톱 빈 공간과 그림 확장 — 2026-10-10

@@ -15,6 +15,7 @@ for(const [mat,kind] of [['wood','wood'],['support','wood'],['barrel','wood'],['
 const ratios=[1,.85,2/3,1/3],mats=['wood','stone','iron','ice','barrel','earth'];
 const oldG={HONRO_CONTENT:g.HONRO_CONTENT,HONRO_CORE:C};vm.createContext(oldG);
 vm.runInContext(execFileSync('git',['show','d00c7bb7341d8dcf66558464c8584e8969e9498c:shared/runtime/renderer.js'],{encoding:'utf8'}),oldG);
+vm.runInContext(execFileSync('git',['show','d00c7bb7341d8dcf66558464c8584e8969e9498c:shared/runtime/stage8-bier-art.js'],{encoding:'utf8'}),oldG);
 const oldHealth=oldG.HonroScene.prototype.terrainHealth;
 // Material matrix uses the actual shared painter at three gameplay zooms.
 for(const zoom of [.2,.5,1]){
@@ -66,6 +67,7 @@ scene.terrainHealth(ctx,{terrain:[{...template,hp:140}]},600,400);assert.equal(c
 scene.terrainHealth(ctx,{terrain:[{...template,hp:140,device:'ward'}]},600,400);assert(calls.some(c=>c[0]==='fillText'&&c[1]==='결계 장치'));assert(!calls.some(c=>c[0]==='fillRect'||c[0]==='strokeRect'));
 // Enemy/NPC rendering paths are byte-identical to the accepted baseline.
 const current=await readFile('shared/runtime/renderer.js','utf8'),baseline=execFileSync('git',['show','d00c7bb7341d8dcf66558464c8584e8969e9498c:shared/runtime/renderer.js'],{encoding:'utf8'});
+assert(current.indexOf('        tacticalUnitMarkers(')>0);
 assert.equal(current.slice(current.indexOf('        tacticalUnitMarkers(')),baseline.slice(baseline.indexOf('        tacticalUnitMarkers(')));
 await writeFile(`${out}/summary.json`,JSON.stringify({passed:true,thresholds:'Intact 100%; worn (2/3,1); cracked (1/3,2/3]; severe [0,1/3]; broken hidden',rows,inventory,scope:'Native production Canvas, real Engine destruction, render state purity and isolated HP fixtures. No browser/HUD input, full verify or normal play claim.'},null,2)+'\n');
 console.log(`PASS object damage: ${inventory.length} campaign objects inventoried; six materials × four states × three zooms; repair, real destruction, cache stability, no object bars, unchanged unit renderer.`);

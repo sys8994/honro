@@ -7,10 +7,14 @@ import {createRequire} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtimeParts} from '../shared/build.mjs';
+import {canvas as evidenceCanvas} from './act2-guidance-helpers.mjs';
 const native=createRequire(import.meta.url)('@napi-rs/canvas'),hash=v=>createHash('sha256').update(v).digest('hex'),loaded={};
 const read=async path=>{const bytes=await readFile(path);loaded[path]=hash(bytes);return bytes;};
 const text=async path=>(await read(path)).toString('utf8');
-function canvas(w=64,h=64){const cv=native.createCanvas(w,h);Object.defineProperties(cv,{clientWidth:{get:()=>w},clientHeight:{get:()=>h}});cv.getBoundingClientRect=()=>({left:0,top:0,width:w,height:h});return cv;}
+// Names now carry target guidance without rectangle panels. The common
+// Native harness supplies CJK glyphs so the visible-text control stays real.
+function canvas(w=64,h=64){return evidenceCanvas(w,h);}
+
 const images=[];class Image extends native.Image{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;images.push(this);}get src(){return super.src;}}
 const g=vm.createContext({console,performance:{now:()=>2000},structuredClone,Path2D:native.Path2D,DOMMatrix:native.DOMMatrix,Image,document:{createElement:()=>canvas(),querySelector:()=>null,getElementById:()=>null},navigator:{userAgent:'honro-native-stage8-render-isolation'},matchMedia:()=>({matches:false}),devicePixelRatio:1,setTimeout,clearTimeout});g.window=g;
 // The model builder transpiles current TypeScript in memory. With vector/render
