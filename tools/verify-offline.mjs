@@ -6,6 +6,9 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);const out=process.env.HONRO_OFFLINE_REPORT_DIR||'_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
+ ['vertical-regression-wiring','npm',['run','test:vertical-regression-wiring']],
+ ['stage14-vertical-contracts','npm',['run','test:stage14-vertical:contracts']],
+ ['encounter-density-contracts','npm',['run','test:encounter-density:contracts']],
  ['cavern-places','npm',['run','test:cavern-places']],
  ['cavern-transitions','npm',['run','test:cavern-transitions']],
  ['act3-waterworks','npm',['run','test:act3:waterworks']],
