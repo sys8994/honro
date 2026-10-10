@@ -1,0 +1,110 @@
+{
+  "schema": "honro-party-design-source-checkpoint/v1",
+  "sourceCommit": "e75d8813f58de40e7b49f6eb5ea4817be427cfc8",
+  "originalTree": "d69577d93064f9feaf09a3bfefdc1c65c5568af4",
+  "sourceParent": "76375d004829f21246e3c538ee57bc5999ff213f",
+  "remoteParent": "f053dee527c362489812ed79f6788f428f8d034d",
+  "baseTree": "3ecfff7664e434e202854545296a682aa533c9b5",
+  "branch": "codex/party-design-source-checkpoint-20261010",
+  "scope": "New requested anatomy/prop/depth WIP source snapshot only. Exact 15 changed paths from e75d8813; omitted preceding 151/e90/763 differences and generated HTML mean this branch is not an executable or deployable candidate and not the original full tree. Old cancelled PARTY_ART_PIPELINE.md blob is not retried.",
+  "priorExactRecovery": {
+    "libraryFileId": "libfile_ada330473e00819190281edbcae858f8",
+    "version": 0,
+    "scope": "Previous complete candidate through 76375d0; new e75 full-history Library update not yet confirmed",
+    "packetSHA256": "c04b409517ea756db66d30930bbe28d55b905628029d20f37b4de4853eb22e5e",
+    "bundleSHA256": "8614e37aa70561dae0bc4bbd9b58e0555c006662c04c657d4f37e9a525382646",
+    "prerequisite": "ca0bddc6269ceed2f0b49d721c3a983eb685c5ca"
+  },
+  "files": [
+    {
+      "path": "shared/assets/party/damheo.animation.json",
+      "sha": "5c68079fea477c23481a5adf24db3f14938aa270",
+      "bytes": 46917,
+      "sha256": "f87cdb47e693b80ee45341bae9eb5fec0e792521d5c2f55facc9dabc4ae5e1e7"
+    },
+    {
+      "path": "shared/assets/party/hwigyeom.animation.json",
+      "sha": "d91e50c85d1fd5df281da112e437a14369a50ac0",
+      "bytes": 47322,
+      "sha256": "e731518cedddcf64338b9921ac2d253cf24d707cd8f42ba35e4546b5b1423442"
+    },
+    {
+      "path": "shared/assets/party/hwigyeom.rig.json",
+      "sha": "178bf39c842e3f65c2ddd9d19e51cfdedeefd439",
+      "bytes": 5632,
+      "sha256": "8e590f8c62aafc85cfecaae61953a891c65290d6a7a2eaa8c727ea383d4f04e2"
+    },
+    {
+      "path": "shared/assets/party/hwigyeom.svg",
+      "sha": "e15eb04f23458ce2243beaca70b312e2be486ebb",
+      "bytes": 17619,
+      "sha256": "b0d81c2ec6631799ce9ddc6c975aaabbf5097bb93112def28cd1ae9a5f0204c9"
+    },
+    {
+      "path": "shared/assets/party/party.runtime.js",
+      "sha": "638ef63804762839791bf0ff8c872388eda7d273",
+      "bytes": 166059,
+      "sha256": "2745d716bdbc4ea2593a2d189a00e3e267927e75df6f82a07388bbb030e523e0"
+    },
+    {
+      "path": "shared/assets/party/seol_o.animation.json",
+      "sha": "348c43093bb2ddd6f9910a4b2a7ae9b09e122846",
+      "bytes": 46225,
+      "sha256": "c22d51354af65288aecc24988ed9c4add43da885913b1ea7202a3e9ac9ed92aa"
+    },
+    {
+      "path": "shared/assets/party/seol_o.rig.json",
+      "sha": "1ce326c37a159883af5d523e4cf3b7f9d0b876c1",
+      "bytes": 6373,
+      "sha256": "3ee7cdc7e5706ac2411c970083c02526e9bbf2e160a1c877b0619080348d94e7"
+    },
+    {
+      "path": "shared/assets/party/seol_o.svg",
+      "sha": "21efbf352ca8032e09143853b63ed2ef63df8195",
+      "bytes": 18745,
+      "sha256": "337952f4d307b5cfdfcc0ca20600d3f962142ef56c1bfd8711d4d03eb4cd673a"
+    },
+    {
+      "path": "shared/assets/party/sodan.animation.json",
+      "sha": "8cadd20ee94915f2acdc8ea19dd17edcd436038b",
+      "bytes": 45672,
+      "sha256": "da0f962752741d660a7c59558a75a9ae7d3a519269530fc78a1d75386e0f1767"
+    },
+    {
+      "path": "shared/assets/rebuild-game-adapter.mjs",
+      "sha": "28a5608d32c3ccd3489409ebede9a37bdcd8dd6a",
+      "bytes": 18642,
+      "sha256": "064b679866d7d9bc3b88bca084b6639b9e55011e5fb7b03647f1a76949143d0f"
+    },
+    {
+      "path": "shared/runtime/party-rig.js",
+      "sha": "be7a27d30f2143a1a1a8e5b6855440a4e6bff2e7",
+      "bytes": 20273,
+      "sha256": "dc70ee456ff16d83addbc2b9378e1e75e2d8e961f104210fa3c9c70afae49a96"
+    },
+    {
+      "path": "tests/party-anatomy-review.mjs",
+      "sha": "49dea993d7e6228131c949738c1aeb406b778599",
+      "bytes": 8471,
+      "sha256": "6f4340e5498a979d28549c43a5833ccce93326744a0e8392991ea1ec2c634f27"
+    },
+    {
+      "path": "tools/party-forge/anatomy.mjs",
+      "sha": "4cfe8f940f79e4200b278e7735c84e8ca9b6599c",
+      "bytes": 4319,
+      "sha256": "8550817c0c1c18f356163d545840dff6d55cd68d12beafeb787a117007af6c07"
+    },
+    {
+      "path": "tools/party-forge/build.mjs",
+      "sha": "528e44f16ba152eecfa79f4e9138da63723eeadc",
+      "bytes": 5674,
+      "sha256": "e3bbab873fe41b3ba972a8c2db879532dace6d1aec5390ada989ac76f6bad38a"
+    },
+    {
+      "path": "tools/party-forge/recipes.mjs",
+      "sha": "dcee46c58f8628a987ec0e33ad7c31b724166494",
+      "bytes": 10943,
+      "sha256": "52eae3a5e13d645f9c0df2af8149641f1f4c7a7b170de14c958130805bca1895"
+    }
+  ]
+}

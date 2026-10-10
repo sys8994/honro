@@ -85,7 +85,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.25,
@@ -165,7 +166,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.5,
@@ -245,7 +247,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.75,
@@ -325,7 +328,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 1,
@@ -405,7 +409,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         }
       ]
     },
@@ -491,7 +496,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.25,
@@ -570,7 +576,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.5,
@@ -650,7 +657,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.75,
@@ -729,7 +737,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 1,
@@ -809,7 +818,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         }
       ]
     },
@@ -888,8 +898,8 @@
           "weapon": 0,
           "head": 0,
           "pelvisAngle": 0,
-          "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "rearHandAngle": 7.971240877517218,
+          "frontHandAngle": -33.426641863672685,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -901,7 +911,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "name": "RAISE",
@@ -915,12 +926,12 @@
             141.557596
           ],
           "frontHand": [
-            422.7,
-            110.875431
+            438,
+            110
           ],
           "rearHand": [
-            362.22,
-            119.136014
+            258,
+            110
           ],
           "frontElbow": [
             337.02,
@@ -941,7 +952,7 @@
           "contacts": [
             "rear"
           ],
-          "weapon": -21,
+          "weapon": 0,
           "draw": 1,
           "arrow": 1,
           "story": {
@@ -950,8 +961,8 @@
             "force": "feet open before draw"
           },
           "rearShoulder": [
-            209.11692,
-            113.869892
+            265,
+            130
           ],
           "rearHip": [
             224.88,
@@ -975,8 +986,8 @@
           ],
           "head": 0,
           "pelvisAngle": 0,
-          "rearHandAngle": 0,
-          "frontHandAngle": -21,
+          "rearHandAngle": -87.49932221281298,
+          "frontHandAngle": -91.73795152393329,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -984,9 +995,10 @@
           "hair": 0,
           "spirit": 0,
           "qi": 0,
-          "rearArmPlane": 1,
-          "frontArmPlane": -1,
-          "propSwing": 0
+          "rearArmPlane": -1,
+          "frontArmPlane": 0.65,
+          "propSwing": 0,
+          "rearArmLayer": 1
         },
         {
           "name": "FULL DRAW",
@@ -1000,16 +1012,16 @@
             145.097846
           ],
           "rearShoulder": [
-            265.2,
-            129.756763
+            265,
+            130
           ],
           "frontHand": [
-            446.844554,
-            107.705401
+            438,
+            110
           ],
           "rearHand": [
-            257.64,
-            88.453848
+            258,
+            110
           ],
           "frontElbow": [
             369.78,
@@ -1031,7 +1043,7 @@
             "rear",
             "front"
           ],
-          "weapon": -21,
+          "weapon": 0,
           "draw": 1,
           "arrow": 1,
           "head": -2,
@@ -1061,8 +1073,8 @@
             348.136584
           ],
           "pelvisAngle": 0,
-          "rearHandAngle": 0,
-          "frontHandAngle": -21,
+          "rearHandAngle": -87.49932221281298,
+          "frontHandAngle": -107.13111812014824,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -1071,8 +1083,9 @@
           "spirit": 0,
           "qi": 0,
           "rearArmPlane": -1,
-          "frontArmPlane": 1,
-          "propSwing": 0
+          "frontArmPlane": 0.65,
+          "propSwing": 0,
+          "rearArmLayer": 1
         },
         {
           "name": "RELEASE",
@@ -1086,16 +1099,16 @@
             145.097846
           ],
           "rearShoulder": [
-            265.2,
-            129.756763
+            265,
+            130
           ],
           "frontHand": [
-            446.844554,
-            107.705401
+            438,
+            110
           ],
           "rearHand": [
-            219.84,
-            83.733515
+            237,
+            108
           ],
           "frontElbow": [
             369.78,
@@ -1117,7 +1130,7 @@
             "rear",
             "front"
           ],
-          "weapon": -21,
+          "weapon": 0,
           "draw": 0,
           "arrow": 0,
           "head": -2,
@@ -1147,8 +1160,8 @@
             348.136584
           ],
           "pelvisAngle": 0,
-          "rearHandAngle": 0,
-          "frontHandAngle": -21,
+          "rearHandAngle": -138.2486778992815,
+          "frontHandAngle": -107.13111812014824,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -1157,8 +1170,9 @@
           "spirit": 0,
           "qi": 0,
           "rearArmPlane": -1,
-          "frontArmPlane": 1,
-          "propSwing": 0
+          "frontArmPlane": 0.65,
+          "propSwing": 0,
+          "rearArmLayer": 1
         },
         {
           "name": "FOLLOW",
@@ -1172,16 +1186,16 @@
             147.458012
           ],
           "rearShoulder": [
-            271.5,
-            133.297013
+            265,
+            130
           ],
           "frontHand": [
-            446.844554,
-            107.705401
+            438,
+            110
           ],
           "rearHand": [
-            211.02,
-            86.093682
+            237,
+            108
           ],
           "frontElbow": [
             362.22,
@@ -1203,7 +1217,7 @@
             "rear",
             "front"
           ],
-          "weapon": -21,
+          "weapon": 0,
           "draw": 0,
           "arrow": 0,
           "story": {
@@ -1233,8 +1247,8 @@
           ],
           "head": 0,
           "pelvisAngle": 0,
-          "rearHandAngle": 0,
-          "frontHandAngle": -21,
+          "rearHandAngle": -138.2486778992815,
+          "frontHandAngle": -110.25325207363804,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -1243,8 +1257,9 @@
           "spirit": 0,
           "qi": 0,
           "rearArmPlane": -1,
-          "frontArmPlane": 1,
-          "propSwing": 0
+          "frontArmPlane": 0.65,
+          "propSwing": 0,
+          "rearArmLayer": 1
         },
         {
           "name": "RECOVERY",
@@ -1317,8 +1332,8 @@
           "weapon": 0,
           "head": 0,
           "pelvisAngle": 0,
-          "rearHandAngle": 0,
-          "frontHandAngle": 0,
+          "rearHandAngle": 7.971240877517218,
+          "frontHandAngle": -33.426641863672685,
           "rearFootAngle": 0,
           "frontFootAngle": 0,
           "frontCloth": 0,
@@ -1330,7 +1345,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         }
       ],
       "events": [
@@ -1422,7 +1438,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.25,
@@ -1499,7 +1516,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.5,
@@ -1576,7 +1594,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.75,
@@ -1653,7 +1672,8 @@
           "arrow": 0,
           "rearArmPlane": -1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 1,
@@ -1733,7 +1753,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         }
       ]
     },
@@ -1819,7 +1840,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.2,
@@ -1899,7 +1921,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.5,
@@ -1979,7 +2002,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 0.8,
@@ -2059,7 +2083,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         },
         {
           "t": 1,
@@ -2139,7 +2164,8 @@
           "arrow": 0,
           "rearArmPlane": 1,
           "frontArmPlane": 1,
-          "propSwing": 0
+          "propSwing": 0,
+          "rearArmLayer": 0
         }
       ]
     }

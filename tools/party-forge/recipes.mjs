@@ -1,6 +1,7 @@
 import {rebuildSheetFace,applySheetColors} from './sheet-faces.mjs';
 import {refineProportions} from './proportions.mjs';
 import {harmonizeHeads} from './head-scale.mjs';
+import {refineAnatomy} from './anatomy.mjs';
 import {refinePhysicalMotion} from './motion.mjs';
 import {balanceSilhouette} from './balance.mjs';
 // Author in the existing v006 bind space. Rig contacts and game dimensions stay fixed.
@@ -16,6 +17,7 @@ export function createParty(original,rig){
   harmonizeHeads(a);
   balanceSilhouette(a,rig);
   refinePhysicalMotion(a,rig);
+  refineAnatomy(a,rig);
  }
  return assets;
 }

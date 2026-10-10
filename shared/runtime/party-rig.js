@@ -52,6 +52,10 @@ function sampleAnimation(asset, name = 'idle', seconds = 0, normalized = false) 
   for (const key of ['draw','arrowOpacity']) controls[key] = interpolateTrack(animation.keyframes.filter(f => f.controls?.[key] !== undefined).map(f => [f.t,f.controls[key]]),t,0,ease);
   return {poses,controls,t};
 }
+function bowFlexPoint(asset,p,t){const f=asset.constraints?.bowFlex;if(!f)return p;const y=p[1]-f.pivot[1],w=Math.pow(Math.min(1,Math.abs(y)/128),1.7);return[p[0]-f.maxSweep*t*w,f.pivot[1]+y*(1-f.shortening*t)];}
+function bowTension(asset,m,c){if(!asset.constraints?.bowFlex||!c.draw)return 0;const b=asset.constraints.bowstring,p=point(inverse(m[b.part]),point(m[b.drawPart],b.drawPoint)),grip=asset.constraints.arrow.grip;return Math.max(0,Math.min(1,(grip[0]-p[0]-26)/145));}
+function flexPath(asset,d,t){return d.replace(/([MLQCZ])([^MLQCZ]*)/gi,(_,cmd,args)=>{const ns=(args.match(/[-+]?(?:\d*\.)?\d+/g)||[]).map(Number),out=[];for(let i=0;i<ns.length;i+=2)out.push(...bowFlexPoint(asset,[ns[i],ns[i+1]],t));return cmd+out.join(' ');});}
+function partDepth(asset,p,sample){if(asset.anatomyRevision>=12&&asset.character_id==='seol_o'&&sample.controls.rearArmLayer>.35){if(p.id==='rear_upper_arm')return 54;if(p.id==='rear_forearm')return 71;if(p.id==='rear_hand')return 74;}return p.z;}
 function constrainedPaths(asset, matrices, controls = {}) {
   const extra=[];
   if(asset.character_id==='sodan'&&controls.talismanOpacity>0){
@@ -62,14 +66,14 @@ function constrainedPaths(asset, matrices, controls = {}) {
   }
   if (!asset.constraints?.bowstring) return {paths:extra};
   const c = asset.constraints, bow = matrices[c.bowstring.part];
-  const top = point(bow,c.bowstring.tips[0]), bottom = point(bow,c.bowstring.tips[1]);
+  const flex=bowTension(asset,matrices,controls),top = point(bow,bowFlexPoint(asset,c.bowstring.tips[0],flex)), bottom = point(bow,bowFlexPoint(asset,c.bowstring.tips[1],flex));
   const rest = point(bow,c.bowstring.restNock), hand = point(matrices[c.bowstring.drawPart],c.bowstring.drawPoint);
   const draw = controls.draw || 0, nock = rest.map((v,i) => v+(hand[i]-v)*draw);
   const grip = point(matrices[c.arrow.part],c.arrow.grip), dx = grip[0]-nock[0], dy = grip[1]-nock[1], len = Math.hypot(dx,dy)||1;
   const tip = [grip[0]+dx/len*c.arrow.overhang,grip[1]+dy/len*c.arrow.overhang];
   const d = p => p.map(v=>Number(v.toFixed(3))).join(' ');
-  const string = {id:'bowstring_constraint',d:`M${d(top)} L${d(nock)} L${d(bottom)}`,stroke:c.bowstring.color||'old_paper',strokeWidth:c.bowstring.width||1.3,opacity:1};
-  const arrow = {id:'arrow_constraint',d:`M${d(nock)} L${d(tip)} M${d([tip[0]-dx/len*8-dy/len*3,tip[1]-dy/len*8+dx/len*3])} L${d(tip)} L${d([tip[0]-dx/len*8+dy/len*3,tip[1]-dy/len*8-dx/len*3])}`,stroke:c.arrow.color||'old_paper',strokeWidth:c.arrow.width||1.8,opacity:controls.arrowOpacity || 0};
+  const string = {id:'bowstring_constraint',d:`M${d(top)} L${d(nock)} L${d(bottom)}`,stroke:c.bowstring.color||'old_paper',strokeWidth:c.bowstring.width||1.3,opacity:1,z:72};
+  const arrow = {id:'arrow_constraint',d:`M${d(nock)} L${d(tip)} M${d([tip[0]-dx/len*8-dy/len*3,tip[1]-dy/len*8+dx/len*3])} L${d(tip)} L${d([tip[0]-dx/len*8+dy/len*3,tip[1]-dy/len*8-dx/len*3])}`,stroke:c.arrow.color||'old_paper',strokeWidth:c.arrow.width||1.8,opacity:controls.arrowOpacity || 0,z:73};
   return {paths:[string,arrow,...extra],top,bottom,nock,grip,hand};
 }
 function createCanvasRenderer(asset) {
@@ -84,10 +88,11 @@ function createCanvasRenderer(asset) {
       context.save(); context.translate(x,y); const scale=height/asset.canvas.visualHeight;
       context.scale(scale*(facing<0?-1:1),scale); context.translate(-asset.canvas.anchor[0],-asset.canvas.anchor[1]);
       const renderPath = (p,path) => { if(p.fill){context.fillStyle=silhouette?'#080A0B':asset.palette[p.fill];context.fill(path);} if(p.stroke){context.strokeStyle=silhouette?'#080A0B':asset.palette[p.stroke];context.lineWidth=p.strokeWidth||1;context.lineCap='round';context.lineJoin='round';context.stroke(path);} };
-      for(const part of sorted){ context.save();context.transform(...matrices[part.id]);context.globalAlpha*=sample.poses[part.id].opacity;
-        for(const p of groups.get(part.id))if((p.detail||0)<=lod)renderPath(p,cache.get(p.id));context.restore(); }
-      const constraint=constrainedPaths(asset,matrices,sample.controls);
-      for(const p of constraint.paths)if(p.opacity>0){context.save();context.globalAlpha*=p.opacity;renderPath(p,new Path2D(p.d));context.restore();}
+      const constraint=constrainedPaths(asset,matrices,sample.controls),pending=[...constraint.paths].sort((a,b)=>(a.z??100)-(b.z??100)),flex=bowTension(asset,matrices,sample.controls);
+      const paintConstraint=p=>{if(p.opacity>0){context.save();context.globalAlpha*=p.opacity;renderPath(p,new Path2D(p.d));context.restore();}};
+      for(const part of [...sorted].sort((a,b)=>partDepth(asset,a,sample)-partDepth(asset,b,sample))){while(pending.length&&(pending[0].z??100)<partDepth(asset,part,sample))paintConstraint(pending.shift()); context.save();context.transform(...matrices[part.id]);context.globalAlpha*=sample.poses[part.id].opacity;
+        for(const p of groups.get(part.id))if((p.detail||0)<=lod)renderPath(p,asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(p.id)?new Path2D(flexPath(asset,p.d,flex)):cache.get(p.id));context.restore(); }
+      for(const p of pending)paintConstraint(p);
       if(debug){context.strokeStyle='#62C9C7';context.lineWidth=1;for(const part of sorted){const [px,py]=point(matrices[part.id],part.pivot);context.beginPath();context.arc(px,py,2.5,0,Math.PI*2);context.stroke();}}
       context.restore();return {sample,matrices,constraint};
     }
@@ -160,18 +165,21 @@ function solvePose(asset,target={}){
     m[4]=joints[id][0]-m[0]*a[0]-m[2]*a[1];m[5]=joints[id][1]-m[1]*a[0]-m[3]*a[1];world[side+'_sleeve']=m;
   }
   if(by.prop_hip)world.prop_hip=multiply(world.pelvis,localMatrix(by.prop_hip.pivot,{r:target.propSwing||0}));
-  if(by.weapon)world.weapon=multiply(world.front_hand,localMatrix(by.weapon.pivot,{r:(target.weapon||0)-(target.frontHandAngle||0)}));
+  if(by.weapon){
+    if(asset.rig.handSockets){const grip=point(world.front_hand,asset.rig.handSockets.front),w=by.weapon.pivot;world.weapon=localMatrix(w,{x:grip[0]-w[0],y:grip[1]-w[1],r:target.weapon||0});}
+    else world.weapon=multiply(world.front_hand,localMatrix(by.weapon.pivot,{r:(target.weapon||0)-(target.frontHandAngle||0)}));
+  }
   for(const side of ['rear','front'])if(by[side+'_cloth'])world[side+'_cloth']=multiply(world.pelvis,localMatrix(by[side+'_cloth'].pivot,{r:target[side+'Cloth']||0}));
   if(by.hair_tail)world.hair_tail=multiply(world.head,localMatrix(by.hair_tail.pivot,{r:target.hair||0}));
   if(by.spirit)world.spirit=localMatrix(by.spirit.pivot,{x:(target.spirit||0)*112,y:-(target.spirit||0)*16,sx:.65+(target.spirit||0)*.55,sy:.65+(target.spirit||0)*.55});
   if(by.qi)world.qi=localMatrix(by.qi.pivot,{x:(target.qi||0)*70,sx:.5+(target.qi||0)*.6,sy:.5+(target.qi||0)*.6});
   function resolve(id){if(world[id])return world[id];world[id]=by[id].parent?resolve(by[id].parent):identity();return world[id];}
   for(const p of asset.rig.parts){resolve(p.id);poses[p.id]={matrix:multiply(inverse(p.parent?resolve(p.parent):identity()),world[p.id]),opacity:p.id==='spirit'?(target.spiritAlpha??(target.spirit?.75:0)):p.id==='qi'?(target.qiAlpha??(target.qi?.65:0)):1};}
-  return {poses,controls:{draw:target.draw||0,arrowOpacity:target.arrow||0},targets:target,guide:{pelvis,thorax,joints,reach,depth,contacts:target.contacts||['rear','front'],centerOfMass:[pelvis[0]*.55+thorax[0]*.45,pelvis[1]*.55+thorax[1]*.45]},t:target.t||0};
+  return {poses,controls:{draw:target.draw||0,arrowOpacity:target.arrow||0,rearArmLayer:target.rearArmLayer||0},targets:target,guide:{pelvis,thorax,joints,reach,depth,contacts:target.contacts||['rear','front'],centerOfMass:[pelvis[0]*.55+thorax[0]*.45,pelvis[1]*.55+thorax[1]*.45]},t:target.t||0};
 }
 
 const poseKeys=['pelvis','thorax','rearShoulder','frontShoulder','rearHip','frontHip','rearElbow','frontElbow','rearKnee','frontKnee','rearHand','frontHand','rearFoot','frontFoot'];
-const scalarKeys=['weapon','head','pelvisAngle','rearHandAngle','frontHandAngle','rearFootAngle','frontFootAngle','frontCloth','rearCloth','hair','spirit','qi','draw','arrow','rearArmPlane','frontArmPlane','propSwing'];
+const scalarKeys=['weapon','head','pelvisAngle','rearHandAngle','frontHandAngle','rearFootAngle','frontFootAngle','frontCloth','rearCloth','hair','spirit','qi','draw','arrow','rearArmPlane','frontArmPlane','propSwing','rearArmLayer'];
 const poseCache=new WeakMap();
 function completePose(asset,key){
   const p=solvePose(asset,key),j=p.guide.joints;
