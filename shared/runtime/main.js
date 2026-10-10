@@ -738,7 +738,7 @@
             if (!document.fullscreenElement)
                 await document.documentElement.requestFullscreen?.({ navigationUI: 'hide' });
             else
-                await document.exitFullscreen?.();
+                await G.HonroFullscreenInput.exit();
         }
         catch {
             this.notify('이 브라우저에서는 전체화면 전환이 제한돼.');

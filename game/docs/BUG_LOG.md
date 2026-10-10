@@ -1,3 +1,10 @@
+# 전체화면 Escape 입력 우선순위 — 2026-10-10
+
+- 원인: 전체화면 버튼은 Fullscreen API를 사용하지만 Escape는 바로 전투 일시정지·모달 닫기로 흘렀다. 허공터와 Workshop도 별도의 document keydown을 가지고 있어 화면별 수정만으로는 우선순위를 보장할 수 없었다.
+- 수정: Game·Workshop·Playtest가 동일하게 먼저 설치하는 window capture 가드에서 전체화면 Escape를 preventDefault/stopImmediatePropagation하고 exitFullscreen을 시도한다. 같은 누름의 반복 입력과 keyup도 소비한다. 브라우저가 fullscreenchange를 먼저 보내는 순서에는 최대 300ms의 짧은 보호 구간을 두고 keyup·다른 키·포인터 입력에서 즉시 지운다. 설정 버튼/API로 나가면 다음 Escape는 소비하지 않는다. 비전체화면의 기존 화면별 동작은 유지하며 길게 누르기는 한 번만 처리한다.
+- 검증: 두 HTML 빌드, test:fullscreen-escape(두 이벤트 순서·키다운 미전달·반복·API 실패·버튼 해제·blur·실제 App의 타이틀/쉼터/전투/모달/대화 라우팅 VM 검사), test:battle-help, modal-keyboard, aim-readout, playtest-template 통과. 집중 검사는 test:integration에 포함했다.
+- 한계: VM은 네이티브 브라우저 이벤트 타이밍 증거가 아니다. 전체 verify와 실제 Fullscreen API/물리 Escape의 Game·Workshop·Playtest 공개 Pages 검수는 최종 통합 단계에서 별도로 확인한다. fullscreenchange에는 해제 원인이 없으므로 브라우저 UI에서 해제 직후 keyup도 포인터도 없는 300ms 이내 Escape는 동일 해제 누름으로 간주한다.
+
 # 여정첩 데스크톱 빈 공간과 그림 확장 — 2026-10-10
 
 - 원인: 줌 최솟값 0.85에서 지도 자체가 화면 폭의 85%가 되어 오른쪽 15%가 비었다. 같은 스크롤 DOM 안의 sticky 범례는 별도 높이도 만들었다.
