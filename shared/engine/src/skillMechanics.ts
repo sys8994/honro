@@ -1,3 +1,4 @@
+import {triggerOffensiveStake} from './totemBehavior';
 import {jucheonBoost} from './combatPassives';
 import type {Battle,Unit,Projectile,Skill,Vec,Profile} from './types';
 import type {Engine,Collision,Prediction} from './engine';
@@ -185,7 +186,7 @@ function emitGeometry(e:Engine,g:SkillGeometry){
 function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit){
  emitGeometry(e,g);
  e.emit('sound',{name:'qiWave'});
- for(const u of e.b.units.filter(u=>enemy(p,u))){const h=geometryHits(g,u);let amount=p.damage*Math.max(h.count,u.id===directTarget?.id?1:0);
+ for(const u of e.b.units.filter(u=>!u.dead&&u.id!==p.owner)){const h=geometryHits(g,u);let amount=p.damage*Math.max(h.count,u.id===directTarget?.id?1:0);
   if(g.kind==='triangle'&&!h.count&&h.interior)amount=p.damage*16/38;
   if(g.kind==='ring')amount*=Math.max(.28,220/Math.max(220,g.radius));
   if(g.kind==='bagua'&&h.center)amount+=p.damage*62/34;
@@ -212,7 +213,7 @@ function gourdBurst(e:Engine,p:Projectile){
   for(let i=0;i<count;i++){const a=(i+.5)*Math.PI*2/count+(e.random()-.5)*.35;const q=spawnChild(e,p,ice?'frostChip':'fireChip',Math.cos(a)*330,Math.sin(a)*330,p.damage*(ice?.16:.18)*secondary,10);q.maxAge=.48;}
   if(ice)for(const t of e.b.units.filter(t=>enemy(p,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r))t.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};
  }
- if(p.mode==='gourdThunder')for(const t of e.b.units.filter(t=>enemy(p,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260+10*(r-1))){
+ if(p.mode==='gourdThunder')for(const t of e.b.units.filter(t=>!t.dead&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260+10*(r-1))){
   e.emit('fx',{name:'lightningBolt',x:p.x,y:p.y,x2:t.x,y2:t.y-t.h*.5,color:'#a8cfff',size:2.8});e.hurt(t,p.damage*.45*secondary,p.owner,false,{...p,secondary:false},p);
  }
  if(p.mode==='gourdBurst'){p.mode='microEmitter';p.age=0;p.vx=p.vy=0;p.emissions=0;p.fuseAt=undefined;return;}
@@ -237,7 +238,7 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
 export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(!newSkill(p))return false;
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.x=h.x;p.y=h.y;
- if(p.secondary){if(h.unit&&enemy(p,h.unit)){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip')h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
+ if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
  if(p.mode==='waveArc'){
   strikeGeometry(e,p,skillGeometry(s,r,h.x,h.y,Math.atan2(p.vy,p.vx),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost)),h.unit);e.remove(p);return true;
  }
@@ -370,20 +371,11 @@ export function tickRedesign(e:Engine,dt:number){
   const caster=e.unit(z.owner);if(!caster)continue;const boost=(1+passiveRank(caster,'MP01')*.02)*(1+(z.effectBoost||0)),trigger=45*Math.min(1.25,boost);
   const nearby=b.units.filter(u=>!u.dead&&(z.skill==='M10'?u.side===z.side||((u as any).honroAlly&&z.side===0):enemy(z,u))&&Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<trigger+u.r);
   const p={owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
+  if(z.skill==='M07'||z.skill==='M08'){triggerOffensiveStake(e,z,nearby,p,boost);continue;}
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){
    z.lastTriggerRound=b.round;const t=available[0];
    if(z.skill==='M10'){z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
-   if(z.skill==='M07')e.blast(z.x,z.y-20,95,z.damage,z.owner,false,p);
-   if(z.skill==='M08'){
-    e.hurt(t,z.damage,z.owner,false,p,z);
-    for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-v.h*.5-z.y)<(260+15*(z.rank-1))*boost)){
-     if(v.fixed){v.breaks=Math.max(v.breaks,1);continue;}
-     const dx=z.x-v.x,dy=z.y-v.y,d=Math.max(1,Math.hypot(dx,dy)),length=Math.min(d,(130+15*(z.rank-1))*boost);
-     // Physical impulse uses integrateBody's swept body/feet collisions on subsequent ticks.
-     e.impulse(v,dx/d*Math.min(480,length*2.4),-Math.min(180,length));
-    }
-   }
    if(z.skill==='M99'){z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
   }
   if(z.active){

@@ -2021,3 +2021,10 @@ Verification: deterministic production rig/adapter Native Canvas frames and actu
 ### 2026-10-10 · 공개 모션과 수직14/22 후보의 통합 경계
 
 공개 모션과 수직14 목표 표시·수직22 기록고 후보를 병합했다. 생산 소스는 서로 독립이며 package.json의 테스트 등록만 양쪽을 보존해 해결하고 두 HTML은 공통 빌드로 재생성했다. 기존22의128소스 고정 검사는 이미 공개된 party-rig/renderer 두 파일도 과거 해시로 고정하므로, 해당 두 파일의 정확한 전후 SHA256만 허용한다. 원래 fixture와 나머지126개 소스·29장·608기존 자산은 유지하고 두 모션 파일의 추가 변조도 음성검사로 거부한다. 이는 임의 모션이나 다른 생산 변경 허용이 아니다. 통합 검증 상태와 브라우저/전체검사 제한은 VERTICAL_MOTION_INTEGRATION.md에 별도 기록한다.
+
+## Combat turn, flying recoil and projectile damage consistency — 2026-10-10
+
+- Cause: M07 used a stake-wide round latch and M08 cast-time impulse; fixed flying enemies rejected every impulse. Soul casts prefilled friendly hit IDs, geometry/fragments/blades/convergence filtered enemies, lantern rays skipped intervening bodies, and campaign wrappers immunized coalition/protected actors.
+- Change: offensive stakes wait for the opposing team turn. Each stake records per-target round hits including splash; independent casts retain independent ledgers. M08 redirects collision-checked walking/flight within the existing movement budget and binds on contact, without immediate placement pull. Fixed flying species alone receive a short swept recoil. Projectile HP damage consistently reaches friendly bodies, including summons and protected allies; intentional guidance, healing, charm/status effects, melee/body-skill targeting and mission failure handlers remain separate. Echo launch ignores its emitter, not the whole coalition.
+- Verification at checkpoint: typecheck; projectile-friendly-fire, guided-allegiance, totem-turn-behavior, flying-knockback, skill-redesign, sodan-redesign, hwigyeom-p5, rescue-physics pass. Full verify/build and live Pages verification pending final integration.
+- Limits: projection/AI friendly-fire estimates remain first-impact estimates, not full secondary simulations. This is not a whole-campaign balance playthrough. See TOTEM_TURN_BEHAVIOR.md.

@@ -3,7 +3,8 @@
 import type {Engine} from './engine';
 import type {Unit,Skill,Vec,AIMovePlan} from './types';
 import {SKILLS} from './data';
-import {clamp,topAt,STEP,AIM_MIN,AIM_MAX} from './math';
+import {lureStakeFor,stakeBoost,stakeContact} from './totemBehavior';
+import {clamp,topAt,terrainRectIntersects,STEP,AIM_MIN,AIM_MAX} from './math';
 const HEAVY=new Set(['guard','leaper']);
 interface Stance extends Vec {cost:number;path:{x:number;y:number;jump:boolean;jumpX?:number}[];score:number;}
 export function finishPlanning<T>(steps:Generator<void,T,unknown>):T{let next=steps.next();while(!next.done)next=steps.next();return next.value;}
@@ -14,8 +15,27 @@ export function flyingEnemy(u:Unit){return u.side===1&&u.fixed&&['bat','crow','l
 export function flightClear(e:Engine,u:Unit,p:Vec){
  const pad=8,left=p.x-u.r-pad,right=p.x+u.r+pad,head=p.y-u.h-pad,feet=p.y+pad;
  if(left<0||right>e.b.width||head<12||feet>e.b.height)return false;
- if(e.b.terrain.some(t=>!t.broken&&right>t.x&&left<t.x+t.w&&feet>Math.min(topAt(t,Math.max(left,t.x)),topAt(t,Math.min(right,t.x+t.w)))&&head<t.y+t.h))return false;
+ if(e.b.terrain.some(t=>!t.broken&&terrainRectIntersects(t,left,head,right-left,feet-head,0)))return false;
  return e.b.units.every(v=>v.id===u.id||v.dead||Math.abs(v.x-p.x)>=u.r+v.r+10||feet<=v.y-v.h-4||head>=v.y+4);
+}
+/** Flying fixed bodies absorb most of an impulse, but retain a small positional recoil.
+ * Sweep the whole body in short steps so thin walls, ceilings and other actors stop it.
+ * Do not release fixed: these creatures must stay aloft after the hit and after Continue. */
+export function knockbackFlyingEnemy(e:Engine,u:Unit,vx:number,vy:number){
+ if(!flyingEnemy(u)||u.boss||u.dead||u.hp<=0||u.summonFloating||!Number.isFinite(vx)||!Number.isFinite(vy))return false;
+ const dx=clamp(vx*.16,-48,48),dy=clamp(vy*.12,-24,24),distance=Math.hypot(dx,dy);
+ if(distance<1e-6)return false;
+ delete u.moveTarget;delete u.aiMove;
+ const x=u.x,y=u.y,steps=Math.ceil(distance/2);
+ for(let i=1;i<=steps;i++){
+  const p={x:x+dx*i/steps,y:y+dy*i/steps};
+  if(!flightClear(e,u,p))break;
+  u.x=p.x;u.y=p.y;
+ }
+ u.vx=u.vy=0;
+ if(u.x===x&&u.y===y)return false;
+ u.moving=Math.max(u.moving||0,.12);
+ return true;
 }
 function flightLeg(e:Engine,u:Unit,to:Vec){
  const d=Math.hypot(to.x-u.x,to.y-u.y),steps=Math.ceil(d/6);
@@ -51,7 +71,7 @@ function advanceFlight(e:Engine,u:Unit,dt:number){
  if(Math.hypot(next.x-u.x,next.y-u.y)<1||u.moveLeft<=0)stop();
 }
 
-/** First-impact estimate, using live blast falloff, armor, shields and HONRO coalition immunity.
+/** First-impact estimate, using live blast falloff, armor, shields and coalition friendly-fire cost.
  * Delayed effects/secondary fragments are deliberately not counted as guaranteed damage. */
 export function shotImpactValue(e:Engine,u:Unit,skill:Skill,hit:{x:number;y:number;unit?:string},allowedTargetId?:string){
  const eff=e.effective(skill,u),radius=Math.max(1,eff.radius);let enemyDamage=0,friendlyDamage=0;
@@ -60,7 +80,6 @@ export function shotImpactValue(e:Engine,u:Unit,skill:Skill,hit:{x:number;y:numb
   const friendly=v.id!==allowedTargetId&&(u.side===1?v.side===1:v.side!==1);
   const opponent=v.id===allowedTargetId||(u.side===1?(v.side===0||(v.side===2&&((v as any).honroAlly||v.id==='objective'))):v.side===1);
   if(!friendly&&!opponent)continue;
-  if(friendly&&(u as any).honroAlly&&(v.side===0||v.side===2))continue;
   const d=Math.hypot(hit.x-v.x,hit.y-(v.y-v.h*.45)),direct=hit.unit===v.id;
   if(!direct&&d>=radius+v.r)continue;
   const factor=direct?1:.42+.58*(1-clamp(d/radius,0,1));
@@ -202,8 +221,29 @@ function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,numb
  }
  return best;
 }
+/** Lure spends the enemy's existing movement through ordinary swept locomotion.
+ * A blocked lure never teleports or grants an additional tactical move. */
+function* planLuredMove(e:Engine,u:Unit,target:Unit,z:NonNullable<ReturnType<typeof lureStakeFor>>):Generator<void,AIMovePlan|undefined,unknown>{
+ const boost=stakeBoost(e,z);if(stakeContact(z,u,boost)||u.moveLeft<5)return;
+ const flying=flyingEnemy(u);if(!flying&&(u.fixed||!e.grounded(u)))return;
+ const budget=Math.min(u.moveLeft,(130+15*(z.rank-1))*boost,flying?FLY_MOVE_BUDGET:610);
+ const goal={x:z.x,y:flying?z.y-10:z.y},dx=goal.x-u.x,dy=goal.y-u.y,d=Math.hypot(dx,dy);
+ const travel=Math.min(d,budget);
+ for(const fraction of [1,.75,.5,.25]){
+  const distance=travel*fraction;if(distance<5)continue;
+  const x=u.x+dx/Math.max(1,d)*distance;
+  const floor=flying?undefined:e.surface(x,u.y-190,u.y+190);
+  if(!flying&&!floor)continue;
+  const to={x,y:flying?u.y+dy/Math.max(1,d)*distance:floor!.y};
+  if(Math.hypot(to.x-z.x,to.y-z.y)>=Math.hypot(u.x-z.x,u.y-z.y)-2)continue;
+  const leg=flying?(flightLeg(e,u,to)?{cost:distance,jump:false}:null):(yield* traceTravelSteps(e,u,u,to,budget));yield;
+  if(!leg)continue;
+  return {round:e.b.round,targetId:target.id,path:[{...to,jump:leg.jump,...('jumpX' in leg&&leg.jumpX!==undefined?{jumpX:leg.jumpX as number}:{})}],index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'유인진목에 이끌림'};
+ }
+}
 export function planEnemyMove(e:Engine,u:Unit,target:Unit){return finishPlanning(planEnemyMoveSteps(e,u,target));}
 export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|undefined,unknown>{
+ const lure=lureStakeFor(e,u);if(lure)return yield* planLuredMove(e,u,target,lure);
  if(flyingEnemy(u))return yield* planFlight(e,u,target);
  if(u.fixed||u.dead||u.moveLeft<35||!e.grounded(u))return;
  const budget=Math.min(u.moveLeft,610),start={x:u.x,y:u.y},poses=candidates(e,u,target);

@@ -126,10 +126,10 @@ export function pullToFront(e:Engine,u:Unit,t:Unit){
 function bladeHit(e:Engine,p:Projectile,t:Unit){
  const u=e.unit(p.owner)!;
  if(p.mode==='bladePull'){
-  if(foe(u,t))e.hurt(t,p.damage,p.owner,true,p,p);
+  e.hurt(t,p.damage,p.owner,true,p,p);
   pullToFront(e,u,t);
   if(foe(u,t)&&meleeContains(e,u,t,SKILLS.S00.radius)){strike(e,u,t,52*u.attack*.85,SKILLS.S00,p.shot);stroke(e,u,SKILLS.S00.radius);}
- }else if(foe(u,t))e.hurt(t,p.damage,p.owner,true,p,p);
+ }else e.hurt(t,p.damage,p.owner,true,p,p);
 }
 function land(e:Engine,p:Projectile,h?:Collision){
  const u=e.unit(p.owner)!;u.airborne=false;u.jumping=false;u.vx=u.vy=0;
@@ -159,10 +159,10 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
  e.passFields(p,a,end);if(!e.b.projectiles.includes(p))return true;
  if(p.orbit){
   for(const blade of p.orbit.blades){const before=orbitPoint({...p,...a},blade,Math.max(0,p.age-dt)),after=orbitPoint({...p,x:end.x,y:end.y},blade),block=e.projectileCollision(before,after,5,p.owner,[],false),stop=block||after;
-   for(const t of e.b.units.filter(t=>foe(u,t))){if((blade.hits[t.id]||0)>=2||p.age-(blade.lastHits[t.id]??-10)<.28)continue;if(segRect(before,stop,t.x-t.r,t.y-t.h,t.r*2,t.h,8)){blade.hits[t.id]=(blade.hits[t.id]||0)+1;blade.lastHits[t.id]=p.age;e.hurt(t,p.damage,p.owner,true,p,stop);}}
+   for(const t of e.b.units.filter(t=>!t.dead&&t.id!==p.owner)){if((blade.hits[t.id]||0)>=2||p.age-(blade.lastHits[t.id]??-10)<.28)continue;if(segRect(before,stop,t.x-t.r,t.y-t.h,t.r*2,t.h,8)){blade.hits[t.id]=(blade.hits[t.id]||0)+1;blade.lastHits[t.id]=p.age;e.hurt(t,p.damage,p.owner,true,p,stop);}}
   }
  }else {
-  const targets=e.b.units.filter(t=>!t.dead&&t.id!==u.id&&!p.hit.includes(t.id)&&(p.mode==='bladePull'||foe(u,t))).map(t=>({t,h:segRect(a,end,t.x-t.r,t.y-t.h,t.r*2,t.h,rush?35:p.radius)})).filter(v=>v.h).sort((a,b)=>a.h!.t-b.h!.t);
+  const targets=e.b.units.filter(t=>!t.dead&&t.id!==u.id&&!p.hit.includes(t.id)&&(!rush||foe(u,t))).map(t=>({t,h:segRect(a,end,t.x-t.r,t.y-t.h,t.r*2,t.h,rush?35:p.radius)})).filter(v=>v.h).sort((a,b)=>a.h!.t-b.h!.t);
   for(const {t,h} of targets){p.hit.push(t.id);
    if(rush){if(p.mode==='warriorDive')continue;if(p.mode==='warriorLeap'){p.x=a.x+(end.x-a.x)*h!.t;p.y=a.y+(end.y-a.y)*h!.t;land(e,p,{...h!,x:p.x,y:p.y,unit:t});return true;}
     e.hurt(t,p.damage,p.owner,true,p,end);stroke(e,{...u,x:end.x,y:end.y+u.h*.5},70);

@@ -14,7 +14,7 @@ import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier} from './existence';
-import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
+import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -640,6 +640,7 @@ export class Engine {
         u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12)); this.message(`${u.name} · 방어하며 대기`); this.finishAction(); }
     iceGourdReady(){return iceGourdReady(this);}
     detonateIceGourd(){return detonateIceGourd(this);}
+    projectileDamage(p?:Projectile){return !!p&&Number.isFinite(p.id)&&!p.body&&p.mode!=='stake';}
     hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'|'environment'='normal',damageSkill?:string) {
         if (u.dead || amount <= 0)
             return;
@@ -769,8 +770,9 @@ export class Engine {
         }
         if(!u.dead&&u.summonKind==='eater'&&src?.side===1&&damageSource==='normal'&&(dmg>0||absorbed>0))this.growEater(u);
     }
-    impulse(u: Unit, vx: number, vy: number) { if (u.fixed || u.dead || u.summonFloating)
-        return; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
+    impulse(u: Unit, vx: number, vy: number) { if (u.dead || u.summonFloating) return;
+        if(flyingEnemy(u)){knockbackFlyingEnemy(this,u,vx,vy);return;}
+        if(u.fixed)return; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
         u.jumping = false; }
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active) {
         if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
@@ -1076,9 +1078,9 @@ export class Engine {
         if(!t||!this.guidanceTarget(this.unit(p.owner),t)){this.remove(p);return;}
         const tx=t.x,ty=t.y-t.h*.5,dx=tx-p.x,dy=ty-p.y,n=Math.max(1,Math.hypot(dx,dy));
         p.vx=dx/n*1250;p.vy=dy/n*1250;
-        const m=this.advanceProjectile(p,dt),h=segRect(p,m,t.x-t.r,t.y-t.h,t.r*2,t.h,p.radius);
-        // Dedicated ethereal ray per target: no friendly collision or incidental tank intercept.
-        if(h){p.x+= (m.x-p.x)*h.t;p.y+=(m.y-p.y)*h.t;this.hurt(t,p.damage,p.owner,true,p,p);this.fx('burst',p.x,p.y,p.color,35);this.remove(p);return;}
+        const m=this.advanceProjectile(p,dt),h=this.projectileCollision(p,m,p.radius,p.owner,p.hit,true,[],false);
+        // Guidance selects enemies, but every intervening body can intercept the ray.
+        if(h?.unit){p.x=h.x;p.y=h.y;this.hurt(h.unit,p.damage,p.owner,true,p,p);this.fx('burst',p.x,p.y,p.color,35);this.remove(p);return;}
         p.x=m.x;p.y=m.y;p.vx=m.vx;p.vy=m.vy;
         if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>28)p.trail.shift();}
         if(p.age>4.5)this.remove(p);
@@ -1165,13 +1167,13 @@ export class Engine {
             this.remove(p);return true;
         }
         if(p.mode==='curseManifest'){
-            for(const t of this.alive(1))if(Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1)this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);this.hurt(t,p.damage,p.owner,false,p,p);}
             if(h?.terrain&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
             this.remove(p);return true;
         }
         if(p.mode==='curseEnthrall'){if(h?.unit)this.captureEnemy(h.unit,owner,p.skillRank||1,!!p.soulBoost);this.remove(p);return true;}
         if(p.mode==='curseEarth'){
-            for(const t of this.alive(1))if(Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){t.earthbind={owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32};t.curseOwner=owner.id;this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){t.earthbind={owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32};t.curseOwner=owner.id;}this.hurt(t,p.damage,p.owner,false,p,p);}
             this.fx('ring',p.x,p.y,'#b9ae91',p.blast);this.remove(p);return true;
         }
         if(p.mode==='curseDot'||p.mode==='curseChain'){

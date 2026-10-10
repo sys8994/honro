@@ -453,7 +453,7 @@
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
-                if(args[0]){const src=e.unit(args[0]);if(src?.honroAlly&&(u.side===0||u.side===2))return;if(u.honroAlly&&src?.side===0)return;}
+                if(args[0]&&!e.projectileDamage(args[2])){const src=e.unit(args[0]);if(src?.honroAlly&&(u.side===0||u.side===2))return;if(u.honroAlly&&src?.side===0)return;}
                 if (u.id === 'boss' && e.b.terrain.some(t => t.honroSeal && !t.broken)) amount *= .20;
                 if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop){const floor=Math.ceil(u.maxHp*.36);amount=Math.min(amount,Math.max(0,u.hp-floor));}
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}

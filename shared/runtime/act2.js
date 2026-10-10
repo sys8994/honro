@@ -162,7 +162,7 @@ function attach(app,e){if(!active(e.b))return;
  const manifest=e.manifest.bind(e);e.manifest=function(target,...args){const out=manifest(target,...args);if(target.honroSpirit&&target.manifested)target.formDamageTakenBonus=Math.max(target.formDamageTakenBonus,.92);return out;};
  const damage=e.hurt.bind(e);e.hurt=function(u,amount,...args){
   const source=e.unit(args[0]);
-  if(u.honroProtected&&source?.side===0)return;
+  if(u.honroProtected&&source?.side===0&&!e.projectileDamage(args[2]))return;
   if(u.honroAct2Boss&&!memory(e.b).done.leak)amount*=.12;
   if(u.honroSubdued)return;
   const out=damage(u,amount,...args);
