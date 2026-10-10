@@ -1,33 +1,69 @@
 {
-  "schema": "honro-source-only-recovery/v1",
-  "sourceCommit": "1c19a856b8c8cfdf9e01c0cf211e44154cc5cc5b",
-  "sourceTree": "196c52e6ff579572378acd0b0d441adbf1eb64f4",
-  "suggestedBase": "62ed8e8cf8bd4724674dbc51576554f14026220d",
-  "scope": "WIP source-only backup, not an executable candidate or exact full tree. Generated HONRO.html, HONRO_WORKSHOP.html and canonical campaign.json intentionally excluded. Latest14 changes remain in the full Git bundle, not this Stage22 packet. Art iteration4 remains rejected pending F masonry improvement. Fresh normal003 won but individual melee roles and early no-shot slots remain under review.",
+  "schema": "honro-final-source-only-checkpoint/v2",
+  "sourceCommit": "416ec9ce14ace0a6fe0352459acea5716985939a",
+  "originalExactTree": "e2e25329092d00a0f05d853be77d0a596f074b2d",
+  "remoteParent": "41a8c849adca14a2b27111ec312b452b395a2341",
+  "baseTree": "17dd1734bb0262d08028446dfc0317bdaeed0005",
+  "scope": "Final source/test/document snapshot including latest Stage14 target counts and Stage22 candidate. Generated Game/Workshop HTML and canonical campaign are deliberately retained from the old backup base; this mixed source-only checkpoint is NOT executable, deployable, or the exact full candidate tree.",
+  "excludedGenerated": [
+    "HONRO.html",
+    "HONRO_WORKSHOP.html",
+    "shared/data/campaign.json"
+  ],
   "files": [
     {
+      "path": "game/docs/BUG_LOG.md",
+      "bytes": 468327,
+      "sha256": "ab260e2f6469112f16158c480322c440e66bd00d1b14d45d73d8101b82a805cc",
+      "gitBlob": "f24a89e58c1e8bd41362e7bac838616fb49723b0"
+    },
+    {
+      "path": "game/docs/VERTICAL_STAGE14_CANDIDATE_REVIEW.md",
+      "bytes": 4209,
+      "sha256": "b344e6762e35c21dfd154573227cf1e02a4aa4dda1429920841065b5e7839f7d",
+      "gitBlob": "84e22c4a65200f1bc358027b7cad2a3a8770c8f1"
+    },
+    {
+      "path": "game/docs/VERTICAL_STAGE14_VALIDATION.md",
+      "bytes": 13012,
+      "sha256": "a22ea901699559a9111de3d009846d9355dfb96a3503e11a1fc4047c1ec04836",
+      "gitBlob": "5d638a10a7e6770c0b47b1db769f5498426c74d9"
+    },
+    {
       "path": "game/docs/VERTICAL_STAGE22_ART_REVIEW.md",
-      "bytes": 18476,
-      "sha256": "1793be44e620afd4bc371b4f522521f0c8e14871d9279de015180e35d1533e53",
-      "gitBlob": "80600ef06ffb3a4e4f6e40161e3b1c8f9156574c"
+      "bytes": 23877,
+      "sha256": "43a866b08e2557af0a1f87aa5dfa7b013e0eb5bd7a3946bd3337fe124ce02c44",
+      "gitBlob": "7c450b32bf6b346858e8db7ed6fb484e4481a5f0"
     },
     {
       "path": "game/docs/VERTICAL_STAGE22_FULLPLAY.md",
-      "bytes": 16084,
-      "sha256": "c838ff7719a4a9d190b652726d1132c85f133d0fb7bb5592497681edc5de443e",
-      "gitBlob": "b6d1e29baacfd5af89cbad312ad445fb2f6c167b"
+      "bytes": 19899,
+      "sha256": "737e27f4f6062caa3fd72b2bb9aa6ce373907ed189961801658a6718c1dc3c47",
+      "gitBlob": "c765a9a3c8ed7d7a367cc8f35f0baeb78e882fcf"
     },
     {
       "path": "game/docs/VERTICAL_STAGE22_IMPLEMENTATION.md",
-      "bytes": 15726,
-      "sha256": "9090f8c193b8a56544bb2e2f179e7f10f6dcb644bf7589d3839a4db9ca6a8b95",
-      "gitBlob": "87eecd4776bc3ca5501438b3628d93af9860f346"
+      "bytes": 20059,
+      "sha256": "99a910aba3bc3959c0b3f0ea8edaeba338022c525a169a3b3e770077ef64b415",
+      "gitBlob": "1dd2d845262e7cdb42dcb6c1378454052067c685"
     },
     {
       "path": "game/docs/VERTICAL_STAGE22_RECOVERY.md",
       "bytes": 3441,
       "sha256": "cdefe63d8e615fb5a68f2b938a8f2648c7803d73bd7a9586d771175ad94b134e",
       "gitBlob": "f6d68b45e6b2ef87102f054c78ab1d9999a7c717"
+    },
+    {
+      "path": "game/docs/VERTICAL_STAGE22_VALIDATION.md",
+      "bytes": 7462,
+      "sha256": "8907cb7563b7f96c10a3df69ed5e1754f067ca99b1e632245af8b48e6f0897ab",
+      "gitBlob": "b2a923743192b2f82ba61f149d1ba872111d89ea"
+    },
+    {
+      "path": "package.json",
+      "bytes": 27628,
+      "sha256": "8278d3ee0c784c49b01f74a3d3ed31efecfe19c443b40e000e4f821aae482705",
+      "gitBlob": "ad946f8115d834666ed294c1100be5ef0489fccc"
     },
     {
       "path": "shared/build.mjs",
@@ -40,6 +76,12 @@
       "bytes": 43824,
       "sha256": "5a03b583c4da74279f9dd796b951e110ab76d066c18055b31748c07673774de8",
       "gitBlob": "3b46f86b23985b580414e8b7a537c6156bda0093"
+    },
+    {
+      "path": "shared/runtime/stage14-vertical.js",
+      "bytes": 14349,
+      "sha256": "bde2c80dd823dcf7b866f7af07baaaca5e593e82e9af5ef70fcb7fdd2df03bac",
+      "gitBlob": "4e69acb595733fa3a72a018c1562e28e980db580"
     },
     {
       "path": "shared/runtime/stage22-vertical.js",
@@ -58,6 +100,12 @@
       "bytes": 102503,
       "sha256": "0984c0f457fb6de9b50330a0e7b398294b4b06740c4621435c06cc65f38e756d",
       "gitBlob": "2a2a6eabb017942715df6ad2dffd611622d3c59e"
+    },
+    {
+      "path": "tests/stage14-vertical-defense-guidance.mjs",
+      "bytes": 11350,
+      "sha256": "f3bba1e4d54a698b515be7d4ef7ec76f5e3df8ed98f00c46f40b79d77191bd19",
+      "gitBlob": "4485922ed9bbb758c67f77ec919fe436bb079037"
     },
     {
       "path": "tests/stage22-vertical-activation.mjs",
@@ -79,9 +127,9 @@
     },
     {
       "path": "tests/stage22-vertical-composition.mjs",
-      "bytes": 4838,
-      "sha256": "465138a40e534a99afe18d74da4a030b50528cac83c87c72f7069e29df3a976f",
-      "gitBlob": "efa3ec152a0fd0be5d85a01973c315a256901141"
+      "bytes": 5833,
+      "sha256": "174873a791e48dec250d0481f67aaccd61716c0dcc003822dde1b29cd3fc1563",
+      "gitBlob": "7a83cac74a4364e96caafdc556318d79a5b4db43"
     },
     {
       "path": "tests/stage22-vertical-entry-helper.mjs",
@@ -103,9 +151,21 @@
     },
     {
       "path": "tests/stage22-vertical-native-art.mjs",
-      "bytes": 12859,
-      "sha256": "dd29d8491cf6c28f8459c95eaef0e486bcdc6bf13ce7f453fee00dc4b26df5a3",
-      "gitBlob": "6d6c6edf8c93126478dbb473851fd39c642c5d85"
+      "bytes": 16830,
+      "sha256": "5ae992d4e383a071c062413ffa231155c71b7f885ddc9529af2ae132efd9a4c4",
+      "gitBlob": "63e42fa085c7667615612703e7e077fd7eba125a"
+    },
+    {
+      "path": "tests/stage22-vertical-regeneration.mjs",
+      "bytes": 2113,
+      "sha256": "376a934bc55ca0e262c7407d8889af55a0174733c93db24fb6874188ad611d2a",
+      "gitBlob": "0cd423674d5644b1df52b3b89a0598a4e5a334ba"
+    },
+    {
+      "path": "tests/stage22-vertical-return-pressure.mjs",
+      "bytes": 12863,
+      "sha256": "24be7f9f67055ef50d7df3f097cb83f21f353c871718927f0e8c3487d1a88914",
+      "gitBlob": "ebf84db5119cb32b9cf160de0c887bf1f5c0a7bc"
     },
     {
       "path": "tests/stage22-vertical-runtime.mjs",
@@ -115,41 +175,50 @@
     },
     {
       "path": "tests/stage22-vertical-source-boundary.mjs",
-      "bytes": 6767,
-      "sha256": "a1844d942d29c946a6a5c57d44b8e4883caa0918d449210aa79e7580028622ca",
-      "gitBlob": "00b2605d2b62d4548d17a0f1aa75bd5346da6954"
+      "bytes": 9108,
+      "sha256": "918d02032a95575f6333c86d84d39f46fe9e00004c438caf155e028887f498ce",
+      "gitBlob": "1cd36b314b5a3d6947f8d1765d7b7d37b8e1c45f"
+    },
+    {
+      "path": "tests/vertical-regression-wiring.mjs",
+      "bytes": 3662,
+      "sha256": "5cdba261a412bcdae1b6b166afa83745b1f1822ee09f3af9a707c2935581ee68",
+      "gitBlob": "9e2d4e48f3f45ec20c9e01a79d2af2577d94c7ad"
     },
     {
       "path": "tools/environment/stage22-vertical-art.mjs",
-      "bytes": 46721,
-      "sha256": "e7186b013b8c6e16151a0180edcf2d08535ab2a200a671140d6e2d6fbd484c9b",
-      "gitBlob": "eecaaf0aa885194ce4e8ffd96f58faa61d19759f"
+      "bytes": 51809,
+      "sha256": "3d5d69c7e50c8adbb10067518bef88d58445cb22d266c3393ca2f6fecda9f1f6",
+      "gitBlob": "2c7a13403a81f81ca0c6a19caf2b99ec0f07ec80"
     },
     {
       "path": "tools/map-forge/apply-stage22-vertical.mjs",
       "bytes": 10263,
       "sha256": "7680a496b9cceea573d49a591b9a55ea9810fc593fb480776051cb12131732b7",
       "gitBlob": "42bce2e7a0675d9cacd8d768c155d6250c620749"
+    },
+    {
+      "path": "tools/verify-offline.mjs",
+      "bytes": 5536,
+      "sha256": "fff83207a5661659508f9de67834531fbf28572a335fdeb4e8904332984c18f0",
+      "gitBlob": "dcc965d9a10f51a3d96729a7890f05d18d4bb1b9"
     }
   ],
-  "knownLibraryBackup": {
+  "exactRecovery": {
     "libraryFileId": "libfile_273ad03db73481919899903af5f543e0",
-    "currentVersion": 2,
-    "zipBytes": 5392066,
-    "zipSha256": "db6d293a087ee310f87c93839759da316eee04bb71bfd490a5f72df9ec334b7d",
-    "bundleBytes": 206667,
-    "bundleSha256": "407c93c0be1ef4559b3c2b5ef66093b35fbda03e7fb4d99d79e1523571c48d1d",
-    "bundlePrerequisites": [
+    "version": 4,
+    "zipBytes": 11893881,
+    "zipSHA256": "614789ca5625fd94dbb5ebf63ea2af4e0756dd30023e7e3591722574c0b79e93",
+    "bundleBytes": 473413,
+    "bundleSHA256": "0a8be9fefd9fa79ed17978112135197e5e4efbf1e314b524cb2d4acf14b778d1",
+    "prerequisiteCommits": [
       "ca0bddc6269ceed2f0b49d721c3a983eb685c5ca",
       "62ed8e8cf8bd4724674dbc51576554f14026220d"
     ],
-    "verifiedHeads": {
-      "stage14": "72cc20e9711df726aa8a01a03b5f9156fd62bb50",
-      "stage22": "1c19a856b8c8cfdf9e01c0cf211e44154cc5cc5b"
-    },
-    "verification": "Owner verified bundle/fetch and exact heads/trees in a separate public clone; archive CRC and all 105 items verified."
+    "verifiedRestoredHeads": [
+      "72cc20e9711df726aa8a01a03b5f9156fd62bb50",
+      "416ec9ce14ace0a6fe0352459acea5716985939a"
+    ]
   },
-  "packetManifestSha256": "8871ae098d77a55486e5669e7dca071cc8849dc627e0f52adcdfec2679d00095",
-  "branch": "work/vertical-source-checkpoint-20261010",
-  "baseTree": "d59847def32b83cfa4cdffdab2c734e2c62a6dd5"
+  "publicationStatus": "Master remains ca0bddc6. Final Game blob 244272eac309e12bceeeacf1224377cdfe80f57f was still 404 on 2026-10-10 07:22 UTC after a long unanswered write. No release claim."
 }

@@ -119,3 +119,5 @@ R25의 더 좁힌 원시 재구성은 `_local/reports/vertical-stages/stage22-fu
 - M11 실제17발/23회 반사, O04 실제5발 고체 통과 뒤 적 피해를 원본 frame/shot으로 검토했다. 전술이 달라진 두 정상 실행의 종합 결과이며 모든 선택기예가 항상 필수라고 주장하지 않는다.
 
 원본과 읽기 전용 분석은 `_local/reports/vertical-stages/stage22-fullplay/` 아래 `attempt-003-local-activation/`, `analysis-003-local-activation.json`, `index-003-local-activation.json`, `packet-manifest-003-local-activation.json`에 있다. 분석 SHA256 `cdb275ad212ece7651012363b85326ac6afc0721816e09ed92cbf3f385a27e7d`, pointer index SHA256 `c525deda4c9148519f155466e0963c31a435968b9c73f5643e9a91e7c3e4cfd8`. Native App 증거이며 브라우저/Pages/최종 미술 승인은 아니다.
+
+후속 역할 검토: 원래 E3/E4를 유지한 조건부 FE귀환에서는 기존3슬롯이 두 수비병을 선택하고 실제 LS09피해20/35를 냈다. 기본 move/jump/wait로 얻은 도착 x/y를 R20 저장에 넣고 다음 phase를 준비한 국소 검사이며 `checkEnd` 억제/App임무·대사 미재생이다. 정상 주경로의 행동0과 정상FE분기완주 미검증은 그대로다. 전체 군집 전원발사를 위해 밀도나 원배치를 바꾸지 않았다. 재현/원자료/정확주입 범위는 VERTICAL_STAGE22_IMPLEMENTATION.md의 선택귀환 역할절과 tests/stage22-vertical-return-pressure.mjs를 따른다.
