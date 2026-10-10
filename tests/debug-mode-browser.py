@@ -33,7 +33,7 @@ def book(page, stage):
     page.click(f'[data-action="journey-select"][data-id="{stage}"]')
 
 def start_selected(page):
-    page.locator('.journey-detail button').click()
+    page.locator('.rest-sign[data-action="journey-enter"]').click()
     if page.locator('[data-action="confirm-journey-launch"]').count():
         page.click('[data-action="confirm-journey-launch"]')
     dismiss(page)
@@ -75,15 +75,22 @@ with sync_playwright() as playwright:
         game.screenshot(path=str(OUT / f'debug-book-{layer}.png'))
     check('Exactly 30 real chapter destinations are listed across the three layers', seen == set(range(1, 31)))
     book(game, 30)
-    game.click('.journey-detail [data-action="journey-enter"]')
+    check('Selecting the map pin opens its own rest before battle', game.evaluate('HonroApp.screen==="rest" && HonroApp.debugRestStage===30 && !HonroApp.engine'))
+    game.click('[data-action="camp"]')
+    for cls in ['archer','mage','knight','occultist']:
+        game.click(f'[data-action="hero"][data-class="{cls}"]')
+        game.select_option('#debug-hero-level', '30')
+        check(f'{cls} has every talent and selectable level', game.evaluate('(cls)=>HONRO_CORE.levelOf(HonroApp.profile.heroes[cls])===30 && HONRO_CORE.TALENTS.filter(t=>t.cls===cls).every(t=>HonroApp.profile.heroes[cls].ranks[t.id]>=1)', cls))
+    game.click('[data-action="rest"]')
+    game.click('.rest-sign[data-action="journey-enter"]')
     check('Changing chapter uses the real saved-battle replacement confirmation', game.locator('.journey-confirm').count() == 1)
     game.click('[data-action="cancel-journey-launch"]')
     check('Cancel leaves the original battle intact in both snapshots', game.evaluate('HonroApp.profile.honroBattle.honroStage===1 && HonroApp.normalProfile.honroBattle.honroStage===1'))
     start_selected(game)
-    check('Stage 30 uses campaign rules with no debug XP or skill grant', game.evaluate('''() => {
+    check('Stage 30 applies selected levels and keeps the ordinary stage team', game.evaluate('''() => {
       const a=HonroApp,b=a.engine.b;
       return b.honroStage===30 && b.mode==='campaign' && !a.training &&
-        JSON.stringify(b.heroes.archer)===JSON.stringify(a.normalProfile.heroes.archer) &&
+        HONRO_CORE.levelOf(b.heroes.archer)===30 && HONRO_CORE.TALENTS.filter(t=>t.cls==='archer').every(t=>b.heroes.archer.ranks[t.id]>=1) &&
         JSON.stringify(b.units.filter(u=>u.side===0&&!u.summoned).map(u=>u.cls).sort())===JSON.stringify(HonroStageRules.stageParty(30).sort());
     }'''))
     game.evaluate('HonroApp.scene.render(HonroApp.engine,0)')

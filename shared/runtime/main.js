@@ -57,7 +57,7 @@
         }
     }
     catch { } return fresh(); }
-    // Debug changes only access checks. Clone every campaign-owned value so
+    // Debug clones every campaign-owned value so
     // story, growth, allocations and a suspended battle use normal semantics.
     // This clone is session-only; only the normal profile is ever exported/saved.
     function debugProfile(normal) { return clone(normal); }
@@ -309,7 +309,26 @@
         showRest(){return G.HonroRestJourney.showRest(this);}
         showMap(){return G.HonroRestJourney.showBook(this);}
 
-        showCamp(cls=this.cls){if(G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0;this.stopBattle();this.close();this.screen='camp';if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;this.root.innerHTML=G.HonroUI.camp(this.profile,cls,this.top('모닥불 · 동행의 준비','rest'),this.branch).replace('id="camp-scroll"','id="armory"');$('armory').scrollTop=y;}
+        prepareDebugCamp(){
+            if(!this.debugMode||this.customMap||G.HONRO_EMBEDDED)return;
+            this.profile.recruited=[...ROSTER];
+            for(const cls of ROSTER){
+                const h=this.profile.heroes[cls];
+                if(!h.honroDebugSkills)for(const t of C.TALENTS.filter(t=>t.cls===cls))h.ranks[t.id]=Math.max(1,h.ranks[t.id]||0);
+                h.honroDebugSkills=true;
+                G.HonroProgression.markCampAllocation(this.profile,cls);
+            }
+        }
+
+        showCamp(cls=this.cls){if(G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0;this.stopBattle();this.close();this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;this.root.innerHTML=G.HonroUI.camp(this.profile,cls,this.top('모닥불 · 동행의 준비','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)this.root.innerHTML=this.root.innerHTML.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));$('armory').scrollTop=y;}
+
+        debugLevelMarkup(cls){const level=C.levelOf(this.profile.heroes[cls]);return `<div class="camp-resume-note debug-level-control"><label for="debug-hero-level">디버그 · ${esc(H.hero[cls].name)} 경지</label> <select id="debug-hero-level" data-debug-level="${cls}">${Array.from({length:C.levelOf(Number.MAX_SAFE_INTEGER)},(_,i)=>`<option value="${i+1}" ${level===i+1?'selected':''}>경지 ${i+1}</option>`).join('')}</select><p>기예는 자유롭게 선택합니다. 경지를 낮추면 능력치 수련을 해당 경지의 수련점 한도로 맞춥니다. 준비는 새 진입·다시 걷기에 적용됩니다.</p></div>`;}
+        setDebugLevel(cls,value){
+            if(!this.debugMode||this.customMap||G.HONRO_EMBEDDED||!ROSTER.includes(cls))return;
+            const level=Number(value),max=C.levelOf(Number.MAX_SAFE_INTEGER);if(!Number.isInteger(level)||level<1||level>max)return;
+            this.prepareDebugCamp();const h=this.profile.heroes[cls];h.xp=C.xpAtLevel(level);h.statTraining=Math.min(C.statTrainingRank(h),3+(level-1)*2);delete h.statRanks;
+            this.saveCampAllocation(cls);this.showCamp(cls);
+        }
 
         saveCampAllocation(cls=this.cls){G.HonroProgression.markCampAllocation(this.profile,cls);this.persist();}
 
@@ -336,7 +355,7 @@
             this.showCamp(this.cls);
             $('armory').scrollTop = y;
         }  }
-        settings() { const p=this.profile,s=p.settings;const speedOptions=v=>[1,1.25,1.5,2,3,4].map(n=>`<option value="${n}" ${+v===n?'selected':''}>×${n}</option>`).join('');this.open(`<h2>설정</h2><div class="settings settings-grid"><button class="fullscreen-setting primary" data-action="fullscreen">${fa('expand',18)}<span>전체화면</span><b>${document.fullscreenElement?'나가기':'켜기'}</b></button><div class="setting"><label for="setting-sound">효과음</label><div class="row"><button data-action="sound-test">시험</button><input type="checkbox" id="setting-sound" data-setting="sound" ${s.sound?'checked':''}></div></div><div class="setting"><label for="setting-volume">음량</label><input type="range" id="setting-volume" data-setting="volume" min="0" max="1" step=".05" value="${s.volume}"></div><div class="setting"><label for="setting-music">배경음악</label><input type="checkbox" id="setting-music" data-setting="music" ${s.music!==false?'checked':''}></div><div class="setting"><label for="setting-musicVolume">BGM 음량</label><input type="range" id="setting-musicVolume" data-setting="musicVolume" min="0" max="1" step=".05" value="${s.musicVolume??.65}"></div><div class="setting"><label for="setting-difficulty">난이도</label><select id="setting-difficulty" data-setting="difficulty">${Object.entries(C.DIFFICULTIES).map(([k,v])=>`<option value="${k}" ${s.difficulty===k?'selected':''}>${v.name}</option>`).join('')}</select></div><div class="setting"><label for="setting-playerSpeed">우리 행동 속도</label><select id="setting-playerSpeed" data-setting="playerSpeed">${speedOptions(s.playerSpeed||1)}</select></div><div class="setting"><label for="setting-speed">적 행동 속도</label><select id="setting-speed" data-setting="speed">${speedOptions(s.speed||1)}</select></div><div class="setting minimap-setting"><label for="minimap-setting">미니맵 표시</label><input id="minimap-setting" type="checkbox" data-setting="minimapVisible" ${s.minimapVisible!==false?'checked':''}></div><div class="setting"><label for="setting-orientation">화면 방향</label><select id="setting-orientation" data-setting="orientation">${[['auto','자동'],['landscape','가로'],['portrait','세로']].map(([a,b])=>`<option value="${a}" ${s.orientation===a?'selected':''}>${b}</option>`).join('')}</select></div>${G.HONRO_EMBEDDED?'':`<div class="setting debug-setting"><label for="debug-mode-setting">디버그 모드</label><input id="debug-mode-setting" type="checkbox" data-setting="debugMode" ${this.debugMode?'checked':''}></div><p class="debug-help">같은 쉼터와 여정첩에서 모든 스테이지를 선택할 수 있습니다. 현재 기록을 복제해 진행하며 전투·성장 규칙은 같습니다. 검수 기록은 일반 저장에 남지 않고, 새로고침하거나 모드를 끄면 원래 기록으로 돌아옵니다.</p>`}</div><div class="actions"><button data-action="export">기록 내보내기</button>${this.debugMode?'':'<button data-action="import">가져오기</button>'}</div>${this.debugMode?'':'<div class="actions"><button class="danger ghost" data-action="newgame">새 여정</button></div>'}`,'settings-dialog'); }
+        settings() { const p=this.profile,s=p.settings;const speedOptions=v=>[1,1.25,1.5,2,3,4].map(n=>`<option value="${n}" ${+v===n?'selected':''}>×${n}</option>`).join('');this.open(`<h2>설정</h2><div class="settings settings-grid"><button class="fullscreen-setting primary" data-action="fullscreen">${fa('expand',18)}<span>전체화면</span><b>${document.fullscreenElement?'나가기':'켜기'}</b></button><div class="setting"><label for="setting-sound">효과음</label><div class="row"><button data-action="sound-test">시험</button><input type="checkbox" id="setting-sound" data-setting="sound" ${s.sound?'checked':''}></div></div><div class="setting"><label for="setting-volume">음량</label><input type="range" id="setting-volume" data-setting="volume" min="0" max="1" step=".05" value="${s.volume}"></div><div class="setting"><label for="setting-music">배경음악</label><input type="checkbox" id="setting-music" data-setting="music" ${s.music!==false?'checked':''}></div><div class="setting"><label for="setting-musicVolume">BGM 음량</label><input type="range" id="setting-musicVolume" data-setting="musicVolume" min="0" max="1" step=".05" value="${s.musicVolume??.65}"></div><div class="setting"><label for="setting-difficulty">난이도</label><select id="setting-difficulty" data-setting="difficulty">${Object.entries(C.DIFFICULTIES).map(([k,v])=>`<option value="${k}" ${s.difficulty===k?'selected':''}>${v.name}</option>`).join('')}</select></div><div class="setting"><label for="setting-playerSpeed">우리 행동 속도</label><select id="setting-playerSpeed" data-setting="playerSpeed">${speedOptions(s.playerSpeed||1)}</select></div><div class="setting"><label for="setting-speed">적 행동 속도</label><select id="setting-speed" data-setting="speed">${speedOptions(s.speed||1)}</select></div><div class="setting minimap-setting"><label for="minimap-setting">미니맵 표시</label><input id="minimap-setting" type="checkbox" data-setting="minimapVisible" ${s.minimapVisible!==false?'checked':''}></div><div class="setting"><label for="setting-orientation">화면 방향</label><select id="setting-orientation" data-setting="orientation">${[['auto','자동'],['landscape','가로'],['portrait','세로']].map(([a,b])=>`<option value="${a}" ${s.orientation===a?'selected':''}>${b}</option>`).join('')}</select></div>${G.HONRO_EMBEDDED?'':`<div class="setting debug-setting"><label for="debug-mode-setting">디버그 모드</label><input id="debug-mode-setting" type="checkbox" data-setting="debugMode" ${this.debugMode?'checked':''}></div><p class="debug-help">여정첩에서 장소를 누르면 해당 쉼터로 이동합니다. 모닥불에서 네 동행의 모든 기예를 준비할 수 있으며, 전투의 출전 인원과 자원 규칙은 유지됩니다. 검수 기록은 일반 저장에 남지 않고, 새로고침하거나 모드를 끄면 원래 기록으로 돌아옵니다.</p>`}</div><div class="actions"><button data-action="export">기록 내보내기</button>${this.debugMode?'':'<button data-action="import">가져오기</button>'}</div>${this.debugMode?'':'<div class="actions"><button class="danger ghost" data-action="newgame">새 여정</button></div>'}`,'settings-dialog'); }
         setMinimapVisible(visible) {
             visible=!!visible;
             this.profile.settings.minimapVisible=this.minimapVisible=visible;
@@ -364,6 +383,7 @@
                 this.persist();
             }
             this.stageId=this.profile.lastStage||1;
+            this.debugRestStage=null;
             this.journeySelection=null;
             this.journeyLayer=null;
             this.showRest();
@@ -1012,7 +1032,7 @@
 
                 case 'tuning':this.open('<h2>조율</h2><input type="range" min="0" max="1" step="0.05" id="tune" value="'+this.profile.tuning[this.cls]+'">');break;
             } });
-            document.addEventListener('change', async (e) => { let el = e.target; if(el.id==='tune'){this.profile.tuning[this.cls]=+el.value;this.persist();} else if (el.dataset.setting) {
+            document.addEventListener('change', async (e) => { let el = e.target; if(el.dataset.debugLevel){this.setDebugLevel(el.dataset.debugLevel,el.value);} else if(el.id==='tune'){this.profile.tuning[this.cls]=+el.value;this.persist();} else if (el.dataset.setting) {
                 let k = el.dataset.setting, v = el.type === 'checkbox' ? el.checked : el.type === 'range' ? +el.value : el.value;
                 if(k==='debugMode'){this.setDebugMode(v);return;}
                 if(k==='minimapVisible'){this.setMinimapVisible(v);return;}
@@ -1066,7 +1086,7 @@
             this.scene.manual = false;
             this.updateHUD(true);
         } }
-        equipConfirm(i) { let id = this.equipIncoming, l = this.profile.loadouts[this.cls], j = l.indexOf(id), old = l[i]; l[i] = id; if (j >= 0 && j !== i) {
+        equipConfirm(i) { const incoming=S[this.equipIncoming];if(this.debugMode&&incoming?.cls===this.cls&&!incoming.passive&&!incoming.enemyOnly)this.profile.heroes[this.cls].ranks[this.equipIncoming]=Math.max(1,this.profile.heroes[this.cls].ranks[this.equipIncoming]||0); let id = this.equipIncoming, l = this.profile.loadouts[this.cls], j = l.indexOf(id), old = l[i]; l[i] = id; if (j >= 0 && j !== i) {
             if (old)
                 l[j] = old;
             else

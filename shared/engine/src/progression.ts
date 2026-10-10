@@ -173,11 +173,11 @@ export function statTrainingRank(h:HeroProgress){return h.statTraining??Object.v
 export function investStat(h:HeroProgress,cls:ClassId,delta=1){if(![1,-1].includes(delta))return false;const old=statTrainingRank(h);if(delta>0&&(pointsLeft(h,cls)<1||old>=60)||delta<0&&old<=0)return false;h.statTraining=old+delta;delete h.statRanks;return true;}
 export function statGainLabel(cls:ClassId,key:StatKey){const n=STAT_GAINS[cls][key];return key==='critMultiplier'?`+${n.toFixed(2)}×`:key==='armor'||key==='critChance'?`+${(n*100).toFixed(1)}%p`:`+${+(n*100).toFixed(1)}%`;}
 export function pointsSpent(h: HeroProgress, cls: ClassId) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (TALENT_MAP[id]?.cls === cls ? r - (id === baseSkill(cls) ? 1 : 0) : 0), 0)+statTrainingRank(h); }
-export function pointsLeft(h: HeroProgress, cls: ClassId) { return Math.max(0, pointsEarned(h) - pointsSpent(h, cls)); }
+export function pointsLeft(h: HeroProgress, cls: ClassId) { return Math.max(0, pointsEarned(h) - (h.honroDebugSkills ? statTrainingRank(h) : pointsSpent(h, cls))); }
 export function trainReason(h: HeroProgress, id: string) { const n = TALENT_MAP[id]; if (!n)
     return '알 수 없는 기술'; if (!h.ranks[baseSkill(n.cls)])
     return '다른 직업의 기술'; const rank = h.ranks[id] || 0; if (rank >= n.maxRank)
-    return '최대 랭크'; if (levelOf(h) < requiredRankLevel(n,rank+1))
+    return '최대 랭크'; if(h.honroDebugSkills)return ''; if (levelOf(h) < requiredRankLevel(n,rank+1))
     return `용병 Lv.${requiredRankLevel(n,rank+1)} 필요`; if (n.prereq && !(h.ranks[n.prereq] > 0))
     return `${TALENT_MAP[n.prereq].name} Lv.1 필요`; if (pointsLeft(h, n.cls) < 1)
     return '스킬 포인트 부족'; return ''; }
@@ -188,7 +188,7 @@ export function untrainReason(h: HeroProgress, id: string) {
  const rank=h.ranks[id]||0; if(rank<=0)return '미습득 기술';
  if(id===baseSkill(n.cls)&&rank<=1)return '기본기는 Lv.1 아래로 내릴 수 없습니다';
  // A rank above 1 can always be refunded because prerequisites only require Lv.1.
- if(rank>1)return '';
+ if(rank>1||h.honroDebugSkills)return '';
  const dependent=TALENTS.find(t=>t.cls===n.cls&&t.prereq===id&&(h.ranks[t.id]||0)>0);
  if(dependent)return `${dependent.name}의 선행 기술입니다`;
  return '';
@@ -211,7 +211,7 @@ export function autoTrain(h:HeroProgress,cls:ClassId){
   });train(h,candidates[0].id);
  }
 }
-export function knownSkills(h: HeroProgress, cls: ClassId) { const out=Object.values(SKILLS).filter(s => s.cls === cls && !s.enemyOnly && !s.ultimate && (s.basic || (h.ranks[s.id] || 0) > 0)).map(s => s.id); if(ultimateUnlocked(h,cls)&&SKILLS[ULTIMATES[cls]])out.push(ULTIMATES[cls]); return out; }
+export function knownSkills(h: HeroProgress, cls: ClassId) { const out=Object.values(SKILLS).filter(s => s.cls === cls && !s.enemyOnly && !s.ultimate && (s.basic || h.honroDebugSkills || (h.ranks[s.id] || 0) > 0)).map(s => s.id); if(ultimateUnlocked(h,cls)&&SKILLS[ULTIMATES[cls]])out.push(ULTIMATES[cls]); return out; }
 export function sanitizeLoadout(p: Profile, cls: ClassId) { const known = activeSkills(knownSkills(p.heroes[cls], cls)), base = baseSkill(cls); const list = [base, ...p.loadouts[cls].filter(s => s !== base && known.includes(s))]; for (const s of known)
     if (list.length < 4 && !list.includes(s))
         list.push(s); p.loadouts[cls] = [...new Set(list)].slice(0, 4); return p.loadouts[cls]; }
