@@ -1,4 +1,4 @@
-import {withHistoricalStage30} from './stage23-escort-history-helpers.mjs';
+import {withHistoricalStage30} from './stage8-bier-history-helpers.mjs';
 // Ordered state fixtures and source/runtime regressions. This is not a normal
 // input combat playthrough or a geometry/visual approval.
 import assert from 'node:assert/strict';

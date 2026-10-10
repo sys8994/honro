@@ -47,6 +47,7 @@ export async function applyAct1SceneComposition(project){
  applyGuardianBranches(project);
  await applyAct1VectorArt(project);
  for(const st of project.stages){const n=st.metadata?.stageId;if(n<1||n>10)continue;
+  if(n===8&&st.initialState?.honroStage8BierRevision===1)continue;
   st.elements=st.elements.filter(e=>!e.id.startsWith(PREFIX));st.design??={};st.design.act1Scene={version:1,theme:st.backdrop,places:PLACES[n],replaced:[],scenery:[],rocks:[],lights:[],viewpoints:[]};
   const add=(...args)=>place(st,...args),r=(...args)=>rock(st,...args);
   if(n===1){

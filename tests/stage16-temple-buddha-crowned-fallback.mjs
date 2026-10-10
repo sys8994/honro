@@ -1,4 +1,4 @@
-import {beforeStage18Bell} from './stage23-escort-history-helpers.mjs';
+import {beforeStage18Bell} from './stage8-bier-history-helpers.mjs';
 /** Forward fallback only: original crowned artwork, unchanged maps and gameplay.
  * No aggregate, normal combat, Continue, browser or fullplay rerun. */
 import assert from 'node:assert/strict';

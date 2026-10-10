@@ -6,7 +6,7 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtimeParts} from '../shared/build.mjs';
 import {runtime} from '../game/tests/helpers.mjs';
 import {act12Project} from './campaign-scope-helpers.mjs';
-import * as Q from './stage23-escort-history-helpers.mjs';
+import * as Q from './stage8-bier-history-helpers.mjs';
 import * as F from './stage30-ferry-history-helpers.mjs';
 import * as B from './stage18-bell-history-helpers.mjs';
 const {quarryHistoryHash:hash,quarryHistoryPlain:plain}=Q,f=Q.stage12QuarryBefore,selfTest=process.argv.includes('--self-test');

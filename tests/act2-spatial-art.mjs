@@ -1,4 +1,4 @@
-import {withHistoricalStage18} from './stage23-escort-history-helpers.mjs';
+import {withHistoricalStage18} from './stage8-bier-history-helpers.mjs';
 /** Offline art-state and canonical clipping checks. Not browser acceptance. */
 import assert from 'node:assert/strict';
 import {beforeObjectiveRevision} from './objective-delta-helpers.mjs';

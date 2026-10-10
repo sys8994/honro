@@ -4,7 +4,7 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {runtimeParts} from '../shared/build.mjs';
 import {runtime} from '../game/tests/helpers.mjs';
 import {act12Project} from './campaign-scope-helpers.mjs';
-import * as S from './stage23-escort-history-helpers.mjs';
+import * as S from './stage8-bier-history-helpers.mjs';
 import * as B from './stage18-bell-history-helpers.mjs';
 const {ferryHistoryHash:hash,ferryHistoryPlain:plain}=S,p=S.beforeStage12Quarry(JSON.parse(await readFile('shared/data/campaign.json','utf8'))),snapshot=JSON.stringify(p),f=S.stage30FerryBefore,review=S.stage30FerryReview();
 S.assertStage30FerryCurrent(p);const before=S.beforeStage30Ferry(p);assert.equal(hash(before),f.projectSha256);assert.equal(JSON.stringify(p),snapshot);assert.deepEqual(S.beforeStage30Ferry(before),before);assert.deepEqual(S.beforeStage30Ferry(act12Project(p)),act12Project(before));assert.deepEqual(S.beforeStage30FerryLibrary(p.library),before.library);assert.deepEqual(S.beforeStage30FerryLibrary(before.library),before.library);B.assertStage18BellCurrent(before);

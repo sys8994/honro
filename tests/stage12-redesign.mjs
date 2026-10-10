@@ -6,7 +6,7 @@ import {beforeExistenceRoster} from './existence-delta-helpers.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import vm from 'node:vm';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
-import {migrate} from '../migration/migrate-stages.mjs';
+import {migrate} from './stage8-bier-migration-history-helpers.mjs';
 const g=await runtime(),C=g.HONRO_CORE,checks=[],plain=x=>JSON.parse(JSON.stringify(x));
 // Compare historical terrain recipes independently of newer combat tuning,
 // one-way gameplay platforms, and the separately authored scenery library.

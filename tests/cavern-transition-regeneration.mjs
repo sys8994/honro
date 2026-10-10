@@ -1,4 +1,4 @@
-import {withHistoricalStage18} from './stage23-escort-history-helpers.mjs';
+import {withHistoricalStage18} from './stage8-bier-history-helpers.mjs';
 import {beforeCurrentStage11Ravine,historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
 // Original Stage11/17 transition checks remain active after exact reversal;
 // current ravine/worksite traversal, shots and combat are independently required.

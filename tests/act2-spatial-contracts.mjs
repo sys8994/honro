@@ -1,4 +1,4 @@
-import {withHistoricalStage18,withHistoricalStage12,beforeStage12QuarryBalance} from './stage23-escort-history-helpers.mjs';
+import {withHistoricalStage8,withHistoricalStage18,withHistoricalStage12,beforeStage12QuarryBalance} from './stage8-bier-history-helpers.mjs';
 import {beforeStage16TempleContent,beforeStage16TempleUnitContracts} from './stage16-temple-history-helpers.mjs';
 import {beforeStage11RavineBalance,beforeStage11RavineContent,beforeStage11RavineUnitContracts} from './stage11-ravine-history-helpers.mjs';
 import {beforeStage17WorksiteContent,beforeStage17WorksiteUnitContracts} from './stage17-worksite-history-helpers.mjs';
@@ -22,7 +22,8 @@ function check(name,fn){fn();checks.push({name,passed:true});console.log('PASS',
 // ACT1 is now an authorized design surface. Its separately frozen gameplay
 // contracts replace the obsolete whole-map hash without weakening ACT2 checks.
 const act1Frozen=JSON.parse(await readFile('tests/fixtures/act1-spatial-contracts.json','utf8'));
-check('Act 1 mission, recruitment and combat semantics remain unchanged beyond the reviewed roster delta',()=>{
+const currentAct2Project=g.HONRO_PROJECT;
+check('Act 1 mission, recruitment and combat semantics remain unchanged beyond the reviewed roster delta',()=>withHistoricalStage8(g,()=>{
  const currentProject=g.HONRO_PROJECT;
  try{
   g.HONRO_PROJECT=beforeExistenceRoster(currentProject);
@@ -33,7 +34,8 @@ check('Act 1 mission, recruitment and combat semantics remain unchanged beyond t
   assert.deepEqual(beforeGuardianStory(content,before.id),old);assert.deepEqual(plain(historicalSceneRoster(q.b,before.units).map(unitContract)),before.units);assert.deepEqual(plain(g.HonroStageRules.stageParty(before.id)),before.party);}
  }finally{g.HONRO_PROJECT=currentProject;}
  assert.equal(g.HONRO_PROJECT,currentProject,'Later acts and saved-battle checks use the current project');
-});
+}));
+assert.equal(g.HONRO_PROJECT,currentAct2Project,'Stage8 input projection restores the actual current project for later Act2 checks');
 check('All class stats and skill definitions retain the frozen balance',()=>{
  assert.deepEqual(plain(C.CLASSES),frozen.classes);
  assert.deepEqual(beforeExistenceProfiles(C.SKILLS),frozen.skills);

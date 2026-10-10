@@ -1,3 +1,4 @@
+import {beforeAct1HistoricalBalance} from './stage8-bier-act1-history-helpers.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {act2History,historicalAct2Maps} from './act1-act2-history-helpers.mjs';
 import {historicalSceneRoster,beforeStagingProse} from './staging-history-helpers.mjs';
@@ -8,8 +9,8 @@ import {beforePlatformPassages,beforePlatformTerrain} from './platform-passage-d
 import assert from 'node:assert/strict';
 import {beforeExistenceRoster,beforeExistenceProfiles} from './existence-delta-helpers.mjs';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
-import {act1Runtime,fixture,plain,hash,semanticContent,unitContract,reportRoot,canonicalGameplay} from './act1-spatial-test-helpers.mjs';
-const g=await act1Runtime(),C=g.HONRO_CORE,frozen=JSON.parse(await readFile('tests/fixtures/act1-spatial-contracts.json','utf8')),checks=[],awaitText=await readFile('game/config/balance.json','utf8');
+import {act1Runtime,fixture,plain,hash,semanticContent,unitContract,reportRoot,canonicalGameplay} from './stage8-bier-act1-history-helpers.mjs';
+const g=await act1Runtime(),C=g.HONRO_CORE,frozen=JSON.parse(await readFile('tests/fixtures/act1-spatial-contracts.json','utf8')),checks=[],awaitText=JSON.stringify(beforeAct1HistoricalBalance(JSON.parse(await readFile('game/config/balance.json','utf8'))));
 const currentProject=g.HONRO_PROJECT;
 g.HONRO_PROJECT=beforeExistenceRoster(beforeApprovedTopology(g.HONRO_PROJECT,{stages:[1,3,4,5,6,7,8,9]}));
 function check(name,fn){fn();checks.push({name,passed:true});console.log('PASS',name);}

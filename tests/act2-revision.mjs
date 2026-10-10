@@ -1,4 +1,4 @@
-import {withHistoricalStage18,beforeStage12Quarry} from './stage23-escort-history-helpers.mjs';
+import {withHistoricalStage18,beforeStage12Quarry} from './stage8-bier-history-helpers.mjs';
 import {authorStage18Bell} from '../tools/map-forge/apply-stage18-bell.mjs';
 import {withHistoricalStage16} from './stage16-temple-history-helpers.mjs';
 import {authorStage16Temple} from '../tools/map-forge/apply-stage16-temple.mjs';

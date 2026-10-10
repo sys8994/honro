@@ -6,7 +6,7 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 import {runtimeParts} from '../shared/build.mjs';
-import {beforeStage23EscortFingerprintParts,beforeStage23Escort} from './stage23-escort-history-helpers.mjs';
+import {beforeStage23EscortFingerprintParts,beforeStage23Escort} from './stage8-bier-history-helpers.mjs';
 const root=process.env.HONRO_QUARRY_COMPLETION||null,fixture=JSON.parse(await readFile(new URL('./fixtures/stage12-quarry/completed-run.json',import.meta.url),'utf8'));
 const out=process.env.HONRO_QUARRY_NEXT_OUT||'_local/reports/stage12-quarry/next-stage-app';
 const hash=x=>createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
