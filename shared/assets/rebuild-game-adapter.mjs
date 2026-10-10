@@ -65,8 +65,8 @@ export class HonroPoseVisual{
       let handAngle=p.frontHandAngle;
       for(let iteration=0;iteration<4;iteration++){
         const a=handAngle*Math.PI/180,offset=[Math.cos(a)*socket[0]-Math.sin(a)*socket[1],Math.sin(a)*socket[0]+Math.cos(a)*socket[1]];
-        const base=nock.map((v,i)=>v-offset[i]-p.frontShoulder[i]),dot=base[0]*d[0]+base[1]*d[1],reach=this.armLengths.front-.2;
-        const available=-dot+Math.sqrt(Math.max(0,dot*dot+reach*reach-base[0]*base[0]-base[1]*base[1])),span=Math.min(168,Math.max(1,available));
+        const base=nock.map((v,i)=>v-offset[i]-p.frontShoulder[i]),dot=base[0]*d[0]+base[1]*d[1],reach=this.armLengths.front*.985;
+        const available=-dot+Math.sqrt(Math.max(0,dot*dot+reach*reach-base[0]*base[0]-base[1]*base[1])),span=Math.max(1,available);
         const goal=nock.map((v,i)=>v+d[i]*span-offset[i]);p.frontHand=poseLerp(target.frontHand,goal,strength);
         const solved=this.api.solvePose(this.asset,p),e=solved.guide.joints.front_forearm,w=solved.guide.joints.front_hand;
         handAngle=Math.atan2(w[1]-e[1],w[0]-e[0])*180/Math.PI-90+6;

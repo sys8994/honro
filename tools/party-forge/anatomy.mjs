@@ -21,9 +21,9 @@ function sword(a,rig){
  const at=a.rig.parts.find(p=>p.id==='weapon').pivot;
  // Hwando: one spine and one continuous convex cutting edge. The handle is
  // crosswise in the palm rather than an extension of the wrist silhouette.
- path(a,'hwandao_blade',offset(at,'M14 -5 L154 -7 Q174 -8 188 -12 Q183 -1 166 5 Q95 12 14 7Z'));
- path(a,'blade_spine',offset(at,'M14 -5 L154 -7 Q174 -8 188 -12 L179 -6 Q164 -3 144 -3 L14 -1Z'));
- path(a,'blade_edge',offset(at,'M15 6 Q96 11 164 4 Q179 0 188 -12'));
+ path(a,'hwandao_blade',offset(at,'M14 -5 Q84 -2 141 -7 Q169 -10 188 -16 L181 -5 Q148 6 112 8 Q62 10 14 7Z'));
+ path(a,'blade_spine',offset(at,'M14 -5 Q84 -2 141 -7 Q169 -10 188 -16 L180 -10 Q161 -4 141 -3 Q82 2 14 -1Z'));
+ path(a,'blade_edge',offset(at,'M15 6 Q64 9 112 7 Q151 5 181 -5 L188 -16'));
  path(a,'sword_grip',offset(at,'M-20 -5 Q-4 -7 13 -5 L13 6 Q-5 8 -20 5Z'));
  path(a,'sword_guard',offset(at,'M11 -15 Q18 -17 20 -12 L19 15 Q16 18 10 15Z'));
  path(a,'grip_wrap',offset(at,'M-17 -4 L-11 5 M-10 -5 L-4 6 M-3 -5 L3 6 M4 -5 L10 5'));
