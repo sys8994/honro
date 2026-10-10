@@ -55,11 +55,11 @@ function sampleAnimation(asset, name = 'idle', seconds = 0, normalized = false) 
 function bowFlexPoint(asset,p,t){const f=asset.constraints?.bowFlex;if(!f)return p;const y=p[1]-f.pivot[1],w=Math.pow(Math.min(1,Math.abs(y)/128),1.7);return[p[0]-f.maxSweep*t*w,f.pivot[1]+y*(1-f.shortening*t)];}
 function bowTension(asset,m,c){if(!asset.constraints?.bowFlex||!c.draw)return 0;const b=asset.constraints.bowstring,p=point(inverse(m[b.part]),point(m[b.drawPart],b.drawPoint)),grip=asset.constraints.arrow.grip;return Math.max(0,Math.min(1,(grip[0]-p[0]-26)/145));}
 function flexPath(asset,d,t){return d.replace(/([MLQCZ])([^MLQCZ]*)/gi,(_,cmd,args)=>{const ns=(args.match(/[-+]?(?:\d*\.)?\d+/g)||[]).map(Number),out=[];for(let i=0;i<ns.length;i+=2)out.push(...bowFlexPoint(asset,[ns[i],ns[i+1]],t));return cmd+out.join(' ');});}
-function partDepth(asset,p,sample){if(asset.anatomyRevision>=12&&asset.character_id==='seol_o'&&sample.controls.rearArmLayer>.35){if(p.id==='rear_upper_arm')return 54;if(p.id==='rear_forearm')return 71;if(p.id==='rear_hand')return 74;}return p.z;}
+function partDepth(asset,p,sample){if(asset.anatomyRevision>=12&&sample.controls.rearArmLayer>0){if(p.id==='rear_forearm')return asset.character_id==='seol_o'?71:57;if(p.id==='rear_hand')return asset.character_id==='seol_o'?74:66;}return p.z;}
 function constrainedPaths(asset, matrices, controls = {}) {
   const extra=[];
   if(asset.character_id==='sodan'&&controls.talismanOpacity>0){
-    const hand=asset.rig.parts.find(p=>p.id==='rear_hand').pivot,m=matrices.rear_hand;
+    const hand=asset.rig.handSockets?.rear||asset.rig.parts.find(p=>p.id==='rear_hand').pivot,m=matrices.rear_hand;
     const bend=controls.paperBend||0,xy=(x,y)=>point(m,[hand[0]+x,hand[1]+y]).map(v=>Number(v.toFixed(3))).join(' ');
     extra.push({id:'held_talisman',d:`M${xy(2,0)} L${xy(17,-2)} Q${xy(23+bend,-24)} ${xy(17+bend,-48)} L${xy(1+bend,-46)} Q${xy(7,-20)} ${xy(2,0)}Z`,fill:'paper',opacity:controls.talismanOpacity});
     extra.push({id:'held_talisman_ink',d:`M${xy(6,-10)} L${xy(13,-12)} M${xy(8,-8)} L${xy(10+bend*.5,-34)} M${xy(5,-23)} L${xy(16,-25)} M${xy(5+bend,-38)} L${xy(13+bend,-40)}`,stroke:'ochre',strokeWidth:2,opacity:controls.talismanOpacity});
@@ -101,9 +101,12 @@ function createCanvasRenderer(asset) {
 function poseSVG(asset,animation='idle',time=0,{silhouette=false,sample:providedSample=null}={}) {
   const sample=providedSample||sampleAnimation(asset,animation,time,true),matrices=rigMatrices(asset,sample.poses);
   const paths=(p,d=p.d)=>`<path id="${p.id}" d="${d}" fill="${p.fill?(silhouette?'#080A0B':asset.palette[p.fill]):'none'}"${p.stroke?` stroke="${silhouette?'#080A0B':asset.palette[p.stroke]}" stroke-width="${p.strokeWidth||1}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
-  const parts=[...asset.rig.parts].sort((a,b)=>a.z-b.z||a.id.localeCompare(b.id));
-  let body=parts.map(p=>`<g id="${p.id}" transform="matrix(${matrices[p.id].map(n=>Number(n.toFixed(5))).join(' ')})" opacity="${sample.poses[p.id].opacity}">${asset.paths.filter(s=>s.part===p.id).map(p=>paths(p)).join('')}</g>`).join('\n');
-  body+=constrainedPaths(asset,matrices,sample.controls).paths.map(p=>`<g opacity="${p.opacity}">${paths(p)}</g>`).join('');
+  const flex=bowTension(asset,matrices,sample.controls),items=asset.rig.parts.map(p=>({z:partDepth(asset,p,sample),part:p}));
+  items.push(...constrainedPaths(asset,matrices,sample.controls).paths.map(p=>({z:p.z??100,path:p})));
+  const body=items.sort((a,b)=>a.z-b.z).map(item=>{
+    if(item.path)return `<g opacity="${item.path.opacity}">${paths(item.path)}</g>`;
+    const p=item.part;return `<g id="${p.id}" transform="matrix(${matrices[p.id].map(n=>Number(n.toFixed(5))).join(' ')})" opacity="${sample.poses[p.id].opacity}">${asset.paths.filter(s=>s.part===p.id).map(s=>paths(s,asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(s.id)?flexPath(asset,s.d,flex):s.d)).join('')}</g>`;
+  }).join('\n');
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.canvas.viewBox.join(' ')}" role="img" aria-label="HONRO ${asset.asset_id} ${animation}">${body}</svg>`;
 }
 
@@ -148,7 +151,15 @@ function solvePose(asset,target={}){
       const hint=target[side+(limb==='arm'?'Elbow':'Knee')]||point(parent,b);
       // Knees keep the anatomical forward bend. Arms may turn through depth
       // between authored elbow planes, never jump between two planar solutions.
-      const solved=solveTwoBone(start,end,length(sub(b,a)),length(sub(c,b)),hint,limb==='leg'?-1:target[side+'ArmPlane']);
+      let solved;
+      if(limb==='arm'&&target[side+'ElbowProjection']>0){
+        // An authored projected elbow preserves the camera-depth contraction
+        // of a drawing arm. Clamp to both bone discs, without choosing/flipping
+        // one of two planar circle intersections near the shoulder singularity.
+        const l1=length(sub(b,a)),l2=length(sub(c,b));let joint=[...hint];
+        for(let n=0;n<12;n++)for(const [center,radius]of [[start,l1],[end,l2]]){const delta=sub(joint,center),d=length(delta);if(d>radius)joint=add(center,delta.map(v=>v*radius/d));}
+        solved={joint,end:[...end],depth:Math.sqrt(Math.max(0,l1*l1-length(sub(joint,start))**2)),reachError:Math.max(0,length(sub(joint,start))-l1,length(sub(end,joint))-l2)};
+      }else solved=solveTwoBone(start,end,length(sub(b,a)),length(sub(c,b)),hint,limb==='leg'?-1:target[side+'ArmPlane']);
       world[upper]=segment(a,b,start,solved.joint);world[lower]=segment(b,c,solved.joint,solved.end);
       // Hands and feet are authored orientation controls, independent of elbow/knee bend.
       world[tip]=localMatrix(c,{x:solved.end[0]-c[0],y:solved.end[1]-c[1],r:target[side+(limb==='arm'?'HandAngle':'FootAngle')]||0});
@@ -179,7 +190,7 @@ function solvePose(asset,target={}){
 }
 
 const poseKeys=['pelvis','thorax','rearShoulder','frontShoulder','rearHip','frontHip','rearElbow','frontElbow','rearKnee','frontKnee','rearHand','frontHand','rearFoot','frontFoot'];
-const scalarKeys=['weapon','head','pelvisAngle','rearHandAngle','frontHandAngle','rearFootAngle','frontFootAngle','frontCloth','rearCloth','hair','spirit','qi','draw','arrow','rearArmPlane','frontArmPlane','propSwing','rearArmLayer'];
+const scalarKeys=['weapon','head','pelvisAngle','rearHandAngle','frontHandAngle','rearFootAngle','frontFootAngle','frontCloth','rearCloth','hair','spirit','qi','draw','arrow','rearArmPlane','frontArmPlane','propSwing','rearArmLayer','rearElbowProjection','frontElbowProjection'];
 const poseCache=new WeakMap();
 function completePose(asset,key){
   const p=solvePose(asset,key),j=p.guide.joints;
@@ -196,6 +207,8 @@ function blendPoseTargets(a,b,u,{walking=false}={}){
   const smooth=u*u*(3-2*u),p={weaponUnwrapped:!!a.weaponUnwrapped,t:a.t+(b.t-a.t)*u,contacts:a.contacts.filter(s=>b.contacts.includes(s))};
   for(const k of poseKeys){const planted=walking&&k.endsWith('Foot')&&p.contacts.includes(k.startsWith('rear')?'rear':'front');const f=planted?u:smooth;p[k]=a[k].map((v,i)=>v+(b[k][i]-v)*f);}
   for(const k of scalarKeys){let d=b[k]-a[k];if(k==='weapon'&&!a.weaponUnwrapped)d=((d+540)%360)-180;p[k]=a[k]+d*smooth;}
+  // Depth is a pose topology, not an interpolated opacity-like number.
+  p.rearArmLayer=a.rearArmLayer||b.rearArmLayer?1:0;
   // The arrow leaves on the release boundary. Never fade it during the load.
   p.arrow=u<1?a.arrow:b.arrow;if(a.draw===1&&b.draw===0)p.draw=u<1?1:0;
   return p;

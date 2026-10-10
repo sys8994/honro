@@ -94,9 +94,9 @@ export class HonroPoseVisual{
       const delta=[p.rearHand[0]-p.rearShoulder[0],p.rearHand[1]-p.rearShoulder[1]],distance=Math.hypot(...delta),shift=Math.max(0,distance-this.armLengths.rear+.1);
       if(shift>0)p.rearShoulder=p.rearShoulder.map((v,i)=>v+delta[i]/distance*shift);
       p.rearArmPlane=-1;p.draw=1;p.arrow=1;
-      if(this.asset.anatomyRevision>=12){const q=this.api.solvePose(this.asset,p),e=q.guide.joints.rear_forearm,w=q.guide.joints.rear_hand;p.rearHandAngle=Math.atan2(w[1]-e[1],w[0]-e[0])*180/Math.PI-90;p.rearArmLayer=1;}
-      const target=raise<1?this.api.blendPoseTargets(this.ready,p,raise):p;
-      target.draw=raise;target.arrow=raise>.65?1:0;target.spirit=target.qi=0;target.spiritAlpha=target.qiAlpha=0;
+      if(this.asset.anatomyRevision>=12){const eAngle=(u.facing||1)<0?180-(u.angle??136):(u.angle??44),r=-eAngle*Math.PI/180,forearm=Math.hypot(...this.by.rear_hand.pivot.map((v,i)=>v-this.by.rear_forearm.pivot[i]));p.rearElbow=p.rearHand.map((v,i)=>v-[Math.cos(r),Math.sin(r)][i]*forearm*.97);p.rearElbowProjection=1;const q=this.api.solvePose(this.asset,p),e=q.guide.joints.rear_forearm,w=q.guide.joints.rear_hand;p.rearHandAngle=Math.atan2(w[1]-e[1],w[0]-e[0])*180/Math.PI-90;p.rearArmLayer=1;}
+      const target=raise<1?this.api.blendPoseTargets(s.chargeFrom||this.ready,p,raise):p;
+      target.draw=raise;target.arrow=raise>.65?1:0;if(this.asset.anatomyRevision>=12)target.rearArmLayer=1;target.spirit=target.qi=0;target.spiritAlpha=target.qiAlpha=0;
       const reachable=this.api.solvePose(this.asset,target);
       for(const side of ['rear','front'])target[side+'Hand']=reachable.guide.joints[side+'_hand'];
       return this.api.solvePose(this.asset,target);
@@ -144,7 +144,7 @@ export class HonroPoseVisual{
   pose(u,charge=0){
     const s=this.state(u),previousMode=s.mode,age=this.time-s.releaseAt,hitAge=this.time-s.hitAt,anim=this.asset.animation.animations.attack;
     const release=anim.events[0].t,duration=anim.duration_ms/1000,airborne=!!(u.jumping||u.airborne||Math.abs(u.vy||0)>3);
-    if(charge>0&&s.chargeAt===null)s.chargeAt=this.time;if(charge<=0)s.chargeAt=null;
+    if(charge>0&&s.chargeAt===null){s.chargeAt=this.time;s.chargeFrom=s.lastTargets?structuredClone(s.lastTargets):this.ready;}if(charge<=0)s.chargeAt=null;
     let sample;
     if(u.portraitOnly){sample=this.api.sampleAnimation(this.asset,'idle',0,true);s.mode='idle';}
     else if(u.honroScenePose){sample=this.scenePose(u.honroScenePose);s.mode='scene';}
@@ -186,6 +186,12 @@ export class HonroPoseVisual{
       if(['move','charge','rush','release'].includes(previousMode)&&s.lastTargets){s.settleFrom=structuredClone(s.lastTargets);s.settleAt=this.time;}
       if(s.settleFrom&&this.time-s.settleAt<.12)sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.settleFrom,sample.targets,poseClamp((this.time-s.settleAt)/.12)));
     }
+    if(['move','jump','rush'].includes(s.mode)){
+      if(previousMode!==s.mode&&s.lastTargets){s.locomotionFrom=structuredClone(s.lastTargets);s.locomotionAt=this.time;}
+      const blendAge=this.time-(s.locomotionAt??-Infinity);
+      if(s.locomotionFrom&&blendAge<.1){const t=sample.t,controls=sample.controls;sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.locomotionFrom,sample.targets,poseClamp(blendAge/.1)));sample.t=t;sample.controls=controls;}
+    }
+    if(this.asset.character_id!=='hwigyeom'&&this.asset.anatomyRevision>=12&&['charge','release'].includes(s.mode))sample.controls.rearArmLayer=1;
     if(airborne&&['charge','release','guard'].includes(s.mode)){
       // Keep the action's arm chain, but never display planted stance legs in
       // midair. Translation is local artwork only; the engine owns actor motion.
