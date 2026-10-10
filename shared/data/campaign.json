@@ -269952,9 +269952,7 @@
           ],
           "encounters": {
             "initial": 50,
-            "elite": 14,
-            "ordinaryElite": 13,
-            "objectiveElite": 1,
+            "elite": 13,
             "wave": 10,
             "responseCount": 6,
             "totalEnemyBudget": 66,
@@ -289274,14 +289272,12 @@
           "encounters": {
             "roster": "dense55",
             "initial": 55,
-            "elite": 15,
+            "elite": 14,
             "wave": 12,
             "activeLimit": 3,
             "xpPolicy": "Preserve the existing stage XP budget; do not multiply by population.",
             "baselineInitial": 28,
             "candidateInitial": 55,
-            "ordinaryElite": 14,
-            "objectiveElite": 1,
             "responseCount": 6,
             "totalEnemyBudget": 73
           }
@@ -335063,48 +335059,48 @@
               "alternates": [
                 {
                   "kind": "hound",
-                  "x": 1910,
+                  "x": 1870,
                   "support": "sf-west-ford",
                   "role": "ford-response-rush",
                   "elite": false,
-                  "y": 5652.64705882353,
+                  "y": 5599.705882352941,
                   "activationCell": "act3-response-30-0",
                   "side": "west-ford",
                   "members": [
                     {
                       "kind": "hound",
-                      "x": 1910,
+                      "x": 1870,
                       "support": "sf-west-ford",
                       "role": "ford-response-rush",
                       "elite": false,
-                      "y": 5652.64705882353,
+                      "y": 5599.705882352941,
                       "activationCell": "act3-response-30-0"
                     },
                     {
                       "kind": "hound",
-                      "x": 2020,
+                      "x": 1980,
                       "support": "sf-west-ford",
                       "role": "ford-response-pair",
                       "elite": false,
-                      "y": 5798.235294117647,
+                      "y": 5745.294117647059,
                       "activationCell": "act3-response-30-0"
                     },
                     {
                       "kind": "possessedGuard",
-                      "x": 2130,
+                      "x": 2080,
                       "support": "sf-west-ford",
                       "role": "ford-response-command",
                       "elite": true,
-                      "y": 5943.823529411765,
+                      "y": 5877.64705882353,
                       "activationCell": "act3-response-30-0"
                     },
                     {
                       "kind": "possessedArcher",
-                      "x": 2240,
+                      "x": 2180,
                       "support": "sf-west-ford",
                       "role": "ford-response-shot",
                       "elite": false,
-                      "y": 6053.846153846154,
+                      "y": 6010,
                       "activationCell": "act3-response-30-0"
                     }
                   ]
@@ -335170,7 +335166,7 @@
               "alternates": [
                 {
                   "kind": "hound",
-                  "x": 5950,
+                  "x": 5955,
                   "support": "sf-quay-reflector",
                   "role": "quay-wall-rush",
                   "elite": false,
@@ -335180,7 +335176,7 @@
                   "members": [
                     {
                       "kind": "hound",
-                      "x": 5950,
+                      "x": 5955,
                       "support": "sf-quay-reflector",
                       "role": "quay-wall-rush",
                       "elite": false,
@@ -335189,7 +335185,7 @@
                     },
                     {
                       "kind": "hound",
-                      "x": 6040,
+                      "x": 6045,
                       "support": "sf-quay-reflector",
                       "role": "quay-wall-rush-pair",
                       "elite": false,
@@ -335216,7 +335212,7 @@
                     },
                     {
                       "kind": "possessedGuard",
-                      "x": 6560,
+                      "x": 6580,
                       "support": "sf-east-quay-entry",
                       "role": "quay-entry-retainer",
                       "elite": false,
