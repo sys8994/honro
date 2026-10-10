@@ -105,7 +105,7 @@
         // their backing stores immediately. Dynamic water, actors and FX stay live.
         _screenRaster(c,key,w,h,paint,slot,world=true){
             if(c.globalAlpha!==1||c.globalCompositeOperation!=='source-over')return false;
-            const m=c.getTransform(),d=m.a/(world?this.scale:1),pw=Math.round(w*d),ph=Math.round(h*d),signature=[key,pw,ph,m.a,m.b,m.c,m.d,m.e,m.f].join(':');
+            const m=c.getTransform(),pw=c.canvas.width,ph=c.canvas.height,signature=[key,w,h,pw,ph,m.a,m.b,m.c,m.d,m.e,m.f].join(':');
             let q=this[slot];
             if(q?.key===signature&&q.canvas){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);c.restore();this._cacheStats.screenHits=(this._cacheStats.screenHits||0)+1;this._cacheStats[world?'worldHits':'bgHits']++;return true;}
             if(q?.key!==signature){if(q?.canvas){q.canvas.width=1;q.canvas.height=1;}this[slot]={key:signature};return false;}

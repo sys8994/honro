@@ -47,6 +47,7 @@ for(const id of [1,11,14,22])for(const view of [{w:960,h:640,z:.82},{w:390,h:844
 }
 // Synthetic >6M view tests the cap without allocating the oversized target.
 const cv=canvas(20,20),scene=new g.HonroScene(cv),c=cv.getContext('2d');scene.scale=1;let calls=0;const draw=()=>calls++;
-assert.equal(scene._screenRaster(c,'large',3001,2000,draw,'_screenWorldCache'),false);assert.equal(scene._screenRaster(c,'large',3001,2000,draw,'_screenWorldCache'),false);assert.equal(calls,0);assert.equal(scene._screenWorldCache.canvas,undefined);
+const large={globalAlpha:1,globalCompositeOperation:'source-over',canvas:{width:3001,height:2000},getTransform:()=>c.getTransform()};
+assert.equal(scene._screenRaster(large,'large',3001,2000,draw,'_screenWorldCache'),false);assert.equal(scene._screenRaster(large,'large',3001,2000,draw,'_screenWorldCache'),false);assert.equal(calls,0);assert.equal(scene._screenWorldCache.canvas,undefined);
 c.globalAlpha=.5;assert.equal(scene._screenRaster(c,'alpha',20,20,draw,'_screenWorldCache'),false);assert.equal(calls,0);
 await mkdir('_local/reports/render-lag',{recursive:true});await writeFile('_local/reports/render-lag/contracts.json',JSON.stringify({passed:true,results,limits:['Native Canvas pixel/cache contracts, not browser frame rate or normal combat.']},null,2));console.log('PASS',results.length,'pixel-exact production views; movement, zoom, scene invalidation and 6M pixel cap');
