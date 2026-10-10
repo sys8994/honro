@@ -1912,3 +1912,9 @@ canonical 재생 뒤 네 직업+NPC/양끝/양방향/4dt/4소수 시작320회 �
 교대 교정71에서 같은 역할정책22는R17/NPC106피해/영웅1403,28은R20/NPC571/영웅1979로 네 명 생존·기존4목표·8실제증원·정상24 진입을 완료했다. 양쪽 nav-blocked0이다. 상부의 D→E/F→G는 실제 접지 복귀이고28은고지30발/8024실피해다. 부모 승인대로 최종28/정예6·유한8·행동cap3을 canonical/balance에 승격했다. 후보 실제 initial 전체전장·profile과 fresh canonical의 차이는 세션 문자열2개뿐임을 별도 검사한다. 비교 당시 source SHA와 private 후보 model hash를 최종canonical 원자료와 혼동하지 않는다. 특정 기예가 필수가 아닌 저지대 기본기85발/R24·4생존 검증은 교대 수정 전 b592 생산모델의 관찰로 분리해 보존한다. 새 기능/정책 탐색은 추가하지 않는다.
 
 최종 빌드/회귀: 두 HTML 재생성, TypeScript/game tests·migration·Playtest template/source 일치, 실제후보 입장동등성, final28 기예10/입구15·구저장/성장·교대320/NPC6·역사검사와12→13이 통과했다. 기존 D migration 검사는 현행23/30에 옛 요소가 없는 합법 no-op을 원본D upgrade와 분리했고, 이미 전체해시가 검증된 D 부정변이는 pure D leaf에서 기존381거절 의미를 유지한다. public history wrapper의 exact 상위검사는 약화하지 않았다. 공간schema 멤버십은 Act2 열장과 새23을 정확히 열거한다. 최종Native 실제저장20컷은 동일renderer bundle/전장무변경으로 배우·화물·목표 가림 없음이 확인됐다. npm run verify는 Chromium 시작의 socket() Operation not permitted로 중단되어 브라우저/HUD/성능/Pages는 합격으로 기록하지 않는다. 넓은 과거 Node suite의 사전존재/추가 테스트경계 실패는 별도 보고서에 구분하며 이 문구가 전체 suite 합격을 뜻하지 않는다.
+
+### 2026-10-09 — 23장 석축 확대 시 거대한 판석으로 읽히던 표면
+
+- 원인: 긴 후면 기단을2–3개 코스와 소수 수직 줄눈으로 그려 실제 인물보다 몇 배 큰 돌처럼 보였다.
+- 교정: `stage23-escort-art.js`에서만 원래 기단/교대 외곽을 유지한 채 높이51–76의 불균일하고 일부 끊긴 낮은 대비 줄눈, 드문 넓은 배수 흔적과 굵은 구조줄을 구분했다. 앞 solid 석교/교각도 같은 인물 기준을 사용한다. 수문/보행선/충돌/배우/카메라/저장 데이터는 그대로다.
+- 검증: `node tests/stage23-escort-stone-scale.mjs`, 실제 R10 및 전체 입장 상태 Native desktop/portrait before/after·whole-battle 순수성, canonical28 입장 exact, 생성 HTML 빌드. 원래bf8 검증 이미지와 실제 정상 전투는 보존하며 새 전투/브라우저 통과로 주장하지 않는다.
