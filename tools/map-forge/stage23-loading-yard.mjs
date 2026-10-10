@@ -4,9 +4,12 @@ import {pathToFileURL} from 'node:url';
 const clone=v=>JSON.parse(JSON.stringify(v));
 export const YARD_REVISION=1;
 export const YARD_LAYOUT={width:9800,height:6200,
+ // The bank walls end below the deck, inside 40px abutments. At exposed
+ // joins, both adjacent ground edges must be walkable: a steep notch sharing
+ // the deck endpoint makes exact-vertex slope lookup select the canal wall.
  main:[[0,4250],[1050,4250],[1600,4530],[1940,4700],[2600,4700],[3400,5100],[3980,5100],[4360,4940],[5050,4480],[5375,4350],[5950,4350],[6550,4620],[7250,4620],[8120,4400],[8620,4170],[9800,4170]],
  surfaces:[
-  {id:'sy-ground',zone:'lower',role:'continuous-carrier-road',top:[[0,4250],[1050,4250],[1600,4530],[1940,4700],[2600,4700],[3400,5100],[3980,5100],[4360,4940],[5050,4480],[5260,4396],[5360,5200],[5860,5200],[6020,4381.5],[6550,4620],[7250,4620],[8120,4400],[8620,4170],[9800,4170]],bottom:[[9800,6200],[0,6200]]},
+  {id:'sy-ground',zone:'lower',role:'continuous-carrier-road',top:[[0,4250],[1050,4250],[1600,4530],[1940,4700],[2600,4700],[3400,5100],[3980,5100],[4360,4940],[5050,4480],[5260,4396],[5300,4396],[5360,5200],[5860,5200],[5980,4379.5],[6020,4381.5],[6550,4620],[7250,4620],[8120,4400],[8620,4170],[9800,4170]],bottom:[[9800,6200],[0,6200]]},
   {id:'sy-stone-bridge',zone:'E',role:'solid-stone-bridge',top:[[5260,4396],[5375,4350],[5950,4350],[6020,4381.5]],depth:140},
   {id:'sy-bridge-west-pier',zone:'E',role:'solid-pier',top:[[5380,4490],[5490,4490]],bottom:[[5530,5200],[5350,5200]]},
   {id:'sy-bridge-east-pier',zone:'E',role:'solid-pier',top:[[5760,4490],[5870,4490]],bottom:[[5900,5200],[5730,5200]]},

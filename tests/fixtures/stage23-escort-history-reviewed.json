@@ -2,7 +2,7 @@
   "version": 1,
   "sourceCommit": "7df220ba9de5a0eeee3432091f92cf285cbc86f6",
   "sourceTree": "2d961adc788f5d6cc17884b13c81f9ab6a0fcb96",
-  "label": "stage23-wip-grounded-granary-asymmetric-roles-v3-policy-unverified",
+  "label": "Stage23 buried bridge abutments, unchanged walkline and WIP22 comparator",
   "scope": {
     "stageIds": [
       23
@@ -89,12 +89,20 @@
             "y": 4396
           },
           {
+            "x": 5300,
+            "y": 4396
+          },
+          {
             "x": 5360,
             "y": 5200
           },
           {
             "x": 5860,
             "y": 5200
+          },
+          {
+            "x": 5980,
+            "y": 4379.5
           },
           {
             "x": 6020,
@@ -251,7 +259,9 @@
             13,
             14,
             15,
-            16
+            16,
+            17,
+            18
           ],
           "surfaceKind": "earth",
           "hp": 99999,
@@ -4373,7 +4383,9 @@
               13,
               14,
               15,
-              16
+              16,
+              17,
+              18
             ],
             "roomIds": [
               "yard-A"
@@ -14685,7 +14697,7 @@
       }
     }
   ],
-  "projectSha256": "31fed130cd9fefc6f332893a2ad418f45ae35f6d715763c52635bccfc5dbb369",
+  "projectSha256": "321d2cb0c1f4c2cde6507fa13b16b75d41e45c90ba97ab4f1af3f7c41edbf73a",
   "runtime": {
     "shared/build.mjs": "import {applyOpenStructures} from '../tools/map-forge/open-structure-policy.mjs';\nimport {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';\nimport {readFile,readdir} from 'node:fs/promises';\nimport {fileURLToPath} from 'node:url';\nimport path from 'node:path';\nimport {buildCore} from '../game/engine/build.mjs';\nimport {buildMonsters} from '../tools/monster-forge/build.mjs';\nimport {buildParty} from '../tools/party-forge/build.mjs';\nimport {applyCavernPlaceLayers} from '../tools/map-forge/cavern-place-layers.mjs';\nimport {applyAct1SceneComposition} from '../tools/environment/act1-scene-composition.mjs';\nimport {applyAct2SceneComposition} from '../tools/environment/act2-scene-composition.mjs';\nimport {applyAct2VectorArt} from '../tools/environment/build-act2-art.mjs';\nimport {buildActors} from '../tools/actor-forge/build.mjs';\n\nexport const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');\nconst read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\\r\\n/g,'\\n');\nexport const modelFiles=['content','story-content','terrain-space','map-engine','battlefield-layouts',\n  'split-campaign','stake-crossing','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction'];\n\n// This is the only bundle manifest. Game, Stage view and playtest use it.\nexport async function runtimeParts({vector=true,render=true,app=false}={}) {\n  const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/^[0-9]{2}.*\\.mp3$/i.test(f)).sort();\n  if(bgm.length!==5||bgm.some((f,i)=>!f.startsWith(String(i+1).padStart(2,'0'))))throw Error('BGM prefixes 01 through 05 required');\n  const parts=['globalThis.HONRO_BGM_TRACKS='+JSON.stringify(bgm.map(f=>'assets/bgm/'+f))+';',await buildCore(), 'globalThis.HONRO_BALANCE='+await read('game/config/balance.json')+';'];\n  parts.push('globalThis.HONRO_SPLIT_V1='+await read('shared/data/split-campaign-v1.json')+';');\n  parts.push('globalThis.HONRO_OPEN_STRUCTURES='+await read('shared/data/open-structures.json')+';');\n  parts.push('globalThis.HONRO_WATERWORKS_V2='+await read('shared/data/waterworks-v2-content.json')+';');\n  for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));\n  parts.push(await read('shared/runtime/camera.js'));\n  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));\n  const project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});\n  applyOpenStructures(project);\n  parts.push('globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'));');\n  if(vector){\n    await buildParty();\n    parts.push(await read('shared/runtime/party-rig.js'));\n    parts.push(await read('shared/assets/party/party.runtime.js'));\n    parts.push((await read('shared/assets/rebuild-game-adapter.mjs')).replace(/^export /gm,'')+\n      '\\nglobalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');\n  }\n  if(render){\n    await buildMonsters();\n    await buildActors();\n    const act1Backdrops={};\n    for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg'],['act3','act3-far.svg']]){\n      const svg=await readFile(path.join(root,'shared/assets/environment',file));\n      act1Backdrops[key]='data:image/svg+xml;base64,'+svg.toString('base64');\n    }\n    parts.push('globalThis.HONRO_ACT1_FAR_DATA='+JSON.stringify(act1Backdrops)+';');\n    const act2Backdrops={};\n    for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+(await readFile(path.join(root,'shared/assets/environment',file))).toString('base64');\n    parts.push('globalThis.HONRO_ACT2_FAR_DATA='+JSON.stringify(act2Backdrops)+';');\n    parts.push(await read('shared/assets/monsters/monsters.runtime.js'));\n    parts.push(await read('shared/assets/actors/actors.runtime.js'));\n    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','combat-feedback'])parts.push(await read(`shared/runtime/${name}.js`));\n  }\n  if(app){\n    parts.push(await read('game/vendor/ui/fa.js'));\n    for(const name of ['portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])\n      parts.push(await read(`shared/runtime/${name}.js`));\n  }else parts.push(await read('shared/runtime/stage-rules.js'));\n  return parts;\n}\n",
     "shared/runtime/terrain-readability.js": "(function(G){'use strict';\n// Readability belongs to the collision silhouette, not the decoration's art.\n// Build exposed paths once per sceneVersion and rasterize them with world tiles.\nconst S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();\nconst STYLE=Object.freeze({backgroundDesaturation:.14,edgeInk:'#101d23d9',topLight:'#c7d0bd',woodLight:'#c8b994',edgePixels:1.5,topInkPixels:2.6,topLightPixels:1.2});\nconst cross=(ax,ay,bx,by)=>ax*by-ay*bx;\nfunction inside(x,y,ps){let yes=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],z=ps[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)yes=!yes;}return yes;}\nfunction cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,den=cross(dx,dy,ex,ey),len2=dx*dx+dy*dy;\n if(Math.abs(den)>1e-8){const t=cross(p.x-a.x,p.y-a.y,ex,ey)/den,u=cross(p.x-a.x,p.y-a.y,dx,dy)/den;if(t>0&&t<1&&u>=0&&u<=1)cuts.push(t);}\n else if(Math.abs(cross(p.x-a.x,p.y-a.y,dx,dy))<1e-6)for(const v of [p,q]){const t=((v.x-a.x)*dx+(v.y-a.y)*dy)/len2;if(t>0&&t<1)cuts.push(t);}\n}\nfunction prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prior=cache.get(b);if(prior?.source===ts&&prior.version===b.sceneVersion)return prior;\n const solids=ts.filter(t=>!t.broken).map(t=>({t,ps:C.poly(t)})),groups=[];\n for(const {t,ps}of solids){\n  // Some legacy sprite hitboxes deliberately enclose empty air. Outlining\n  // those would create a floating wireframe, so retain their authored rim.\n  // New roofs explicitly promise a single sampled art/collision silhouette.\n  if(t.honroElementCollision){const asset=b.honroLandmarks?.find(l=>l.id===t.honroElementId)?.asset;if(asset?.params?.rearOnly||asset?.params?.collisionSource!=='sampled-drawn-roof')continue;}\n  const edge=new Path2D(),top=new Path2D(),segments=[];let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=cross(a.x,a.y,z.x,z.y);}const sign=area>=0?1:-1;\n  for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<.01)continue;\n   const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;\n   const left=Math.min(a.x,z.x),right=Math.max(a.x,z.x),low=Math.min(a.y,z.y),high=Math.max(a.y,z.y),peers=solids.filter(o=>o.t!==t&&!o.t.oneWay&&o.t.x<=right+1&&o.t.x+o.t.w>=left-1&&o.t.y<=high+1&&o.t.y+o.t.h>=low-1),cuts=[0,1];\n   for(const o of peers)for(let j=0;j<o.ps.length;j++)cutAt(a,z,o.ps[j],o.ps[(j+1)%o.ps.length],cuts);cuts.sort((a,z)=>a-z);\n   for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;\n    const p={x:a.x+dx*start,y:a.y+dy*start},q={x:a.x+dx*end,y:a.y+dy*end};edge.moveTo(p.x,p.y);edge.lineTo(q.x,q.y);if(walkable){top.moveTo(p.x,p.y);top.lineTo(q.x,q.y);}segments.push({a:p,z:q,walkable});\n   }\n  }\n  if(segments.length)groups.push({id:t.id,wood:t.mat==='wood',edge,top,segments,bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h}});\n }\n const q={source:ts,version:b.sceneVersion,groups,builds:(prior?.builds||0)+1};cache.set(b,q);return q;\n}\nS.backgroundReadability=function(c,w,h){c.save();c.globalCompositeOperation='saturation';c.globalAlpha*=STYLE.backgroundDesaturation;c.fillStyle='#808080';c.fillRect(0,0,w,h);c.restore();};\nS.terrainReadability=function(c,b,view){const q=prepare(b),raster=this._staticCacheBuild?this._worldRasterScale(b,this.canvas.clientWidth):this.scale,unit=1/Math.max(.05,raster);\n c.save();c.lineJoin='round';c.lineCap='butt';for(const group of q.groups){if(G.HonroStage18BellArt?.omitReadability(group,b)||G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b)||G.HonroStage23EscortArt?.omitReadability(group,b))continue;const box=group.bounds;if(view&&(box.right<view.left-8*unit||box.left>view.right+8*unit||box.bottom<view.top-8*unit||box.top>view.bottom+8*unit))continue;\n  c.strokeStyle=STYLE.edgeInk;c.lineWidth=STYLE.edgePixels*unit;c.stroke(group.edge);\n  c.lineWidth=STYLE.topInkPixels*unit;c.stroke(group.top);\n  c.strokeStyle=group.wood?STYLE.woodLight:STYLE.topLight;c.lineWidth=STYLE.topLightPixels*unit;c.stroke(group.top);\n }c.restore();this.terrainReadabilityStats={builds:q.builds,groups:q.groups.length};\n};\nG.HonroTerrainReadability={STYLE,prepare};\n})(globalThis);\n",
@@ -14711,13 +14723,13 @@
     "tools/map-forge/stage18-bell.mjs": "b3d7e118e4730ca2eefbf9fce80295490640a652462bebb40e439fdc68efb2bc",
     "tools/map-forge/stage30-ferry-layout.json": "748736834432eee5f99837a0aea07a7ea95c974894aebf027c1efcc391df57e1",
     "tools/map-forge/stage30-ferry.mjs": "7be6bb2a238352636c830127963737a163764bf683430a8913238d53994a0f31",
-    "tools/map-forge/stage23-loading-yard.mjs": "9099dcd307683f11807bf1436e451e48445d9b5eb8e550689bf4aeb81811685b",
+    "tools/map-forge/stage23-loading-yard.mjs": "adaf2a087f1916be4a5276cc3e6eb22987662b226c41ee2159bd54c6b72f9da5",
     "tools/environment/stage23-yard-art.mjs": "16fa3858335ef0fa3123cce8fcc05f7a81a3eaa3cde86ded5b18787e88d962ae",
     "shared/assets/environment/stage23-yard-far.svg": "d41dc0bdda9eb84261832a799506a7ce2df62b3f9b6f04465e27c5cef15cd6d7"
   },
   "fingerprints": {
     "raw": {
-      "current": "cb28379c6959e5b662940926fe3c68913f2cbc28b4576ebfdd6e64c2e0954886",
+      "current": "ab845baffe4691eb3a331aa4d848aa86f365e4756780fd2c86f8740554657350",
       "before": "4f9c5e544632e4540a6263ed1533805ee5707e3092fc794fde1ab506c4d4738a"
     },
     "temple": {
