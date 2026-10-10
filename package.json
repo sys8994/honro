@@ -69,7 +69,7 @@
     "test:event-targets": "node tests/event-target-health.mjs && node tests/waterfall-destruction.mjs",
     "test:ground-contact": "node tests/ground-contact.mjs && node tests/ground-contact-save.mjs && node tests/descending-side-contact.mjs && node tests/terrain-status-feedback.mjs",
     "test:aim-wind-audio": "node tests/aim-guide-cleanup.mjs && node tests/weather-wind.mjs && node tests/audio.mjs",
-    "test:terrain-domain": "node tests/terrain-domain.mjs && node tests/terrain-domain-render.mjs",
+    "test:terrain-domain": "node tests/terrain-domain.mjs && node tests/terrain-domain-render.mjs && node --expose-gc tests/static-screen-cache.mjs",
     "capture:terrain-domain": "node tools/environment/capture-terrain-domain.mjs",
     "test:story-canon": "node tests/story-canon-v01.mjs && node tests/story-canon-save.mjs",
     "test:act3": "npm run test:stage23-escort && npm run test:stage30-ferry && node tests/act3-runtime.mjs && node tests/act3-fiends.mjs && node tests/act3-growth.mjs && node tests/act3-continuity.mjs && node tests/act3-visual-cues.mjs && node tests/act3-save-boundaries.mjs && npm run test:act3:encounters && npm run test:act3:refinement",

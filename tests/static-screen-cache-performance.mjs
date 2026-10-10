@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import {createRequire} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {runtimeParts} from '../shared/build.mjs';
 const native=createRequire(import.meta.url)('@napi-rs/canvas'),hash=v=>createHash('sha256').update(v).digest('hex'),loaded={};
 const read=async path=>{const bytes=await readFile(path);loaded[path]=hash(bytes);return bytes;};
@@ -27,10 +28,11 @@ for(const name of renderNames)vm.runInContext(await text('shared/runtime/'+name+
 await new Promise(resolve=>setTimeout(resolve,20));assert(images.length>0&&images.every(i=>i.complete&&i.naturalWidth>0),'Current background images decode before either paint');
 
 
-await mkdir('_local/reports/render-lag',{recursive:true});
+const out=process.env.HONRO_SCREEN_CACHE_OUT||'_local/reports/render-lag';await mkdir(out,{recursive:true});
+const sourceCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 const results=[],samples=12,warmups=4;
 const cases=[...[1,1.25,1.5,1.7].map(dpr=>({id:11,dpr})),...[1,8,12,14,16,17,18,22,23,30].map(id=>({id,dpr:1}))];
-for(const {id,dpr} of cases){
+for(const {id,dpr} of cases.filter(x=>!process.env.HONRO_SCREEN_CACHE_IDS||process.env.HONRO_SCREEN_CACHE_IDS.split(',').map(Number).includes(x.id))){
  g.devicePixelRatio=dpr;
  const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];
  const b=g.HonroMaps.createBattle(g.HONRO_PROJECT.stages[id-1],g.HONRO_PROJECT,profile,{origin:'campaign'});g.HonroStageRules.sanitizeStageBattle(b);g.HonroEncounters.configure(b);g.HonroProgression.initialize(b,profile);
@@ -48,10 +50,10 @@ for(const {id,dpr} of cases){
    await new Promise(r=>setTimeout(r,0));
   }
   const pixels=Buffer.from(cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data);if(!reference)reference=pixels;else assert(reference.equals(pixels),'Pixel-exact paired '+id+' DPR '+dpr);
-  if(id===11)await writeFile('_local/reports/render-lag/stage11-'+mode+'-dpr'+dpr+'.png',cv.toBuffer('image/png'));
+  if(id===11)await writeFile(out+'/stage11-'+mode+'-dpr'+dpr+'.png',cv.toBuffer('image/png'));
   const sorted=times.slice().sort((a,z)=>a-z);rows.push({mode,medianMs:sorted[Math.floor(sorted.length/2)],p95Ms:sorted[Math.ceil(sorted.length*.95)-1],rawMs:times,cache:scene.renderCacheStats()});
  }
- const result={id,dpr,viewport:{w:1910,h:1018},backing:{w:cv.width,h:cv.height},camera:{x:scene.x,y:scene.y,scale:scene.scale},pixelExact:true,rows};results.push(result);console.log(JSON.stringify({id,dpr,pixelExact:true,rows:rows.map(r=>({mode:r.mode,medianMs:r.medianMs,p95Ms:r.p95Ms}))}));
+ const result={id,dpr,rng:b.rng,battleFixtureSha256:hash(JSON.stringify(b)),viewport:{w:1910,h:1018},backing:{w:cv.width,h:cv.height},camera:{x:scene.x,y:scene.y,scale:scene.scale},pixelExact:true,rows};results.push(result);console.log(JSON.stringify({id,dpr,pixelExact:true,rows:rows.map(r=>({mode:r.mode,medianMs:r.medianMs,p95Ms:r.p95Ms}))}));
  for(const t of scene._domainTiles?.tiles?.values()||[])t.canvas.width=1;for(const name of ['_screenWorldCache','_screenBackgroundCache','_staticWorldCache','_backgroundCache'])if(scene[name]?.canvas)scene[name].canvas.width=1;cv.width=1;global.gc?.();
- await writeFile('_local/reports/render-lag/performance.json',JSON.stringify({source:loaded,modelSha256:hash(model.join('\n')),samples,warmups,results,limits:['Native Canvas CPU raster only. Every sample flushes deferred raster work; no browser FPS claim.','Same live Scene and battle, frozen effects, alternating baseline/candidate; baseline disables only the added screen raster.','Stage11 camera approximates supplied screenshot; other stages use entry cameras. No input-only combat or AI-turn benchmark.']},null,2));
+ await writeFile(out+'/performance.json',JSON.stringify({sourceCommit,source:loaded,modelSha256:hash(model.join('\n')),samples,warmups,results,limits:['Native Canvas CPU raster only. Every sample flushes deferred raster work; no browser FPS claim.','Same live Scene and battle, frozen effects, alternating baseline/candidate; baseline disables only the added screen raster.','Stage11 camera approximates supplied screenshot; other stages use entry cameras. No input-only combat or AI-turn benchmark.']},null,2));
 }

@@ -43,6 +43,13 @@ for(const id of [1,11,14,22])for(const view of [{w:960,h:640,z:.82},{w:390,h:844
  paint();const settled=scene.renderCacheStats();assert(settled.screenBuilds>stats.screenBuilds,'Settling builds once');paint();assert.equal(scene.renderCacheStats().screenBuilds,settled.screenBuilds);
  b.sceneVersion++;paint();assert.equal(scene._screenWorldCache.canvas,undefined,'Scene change evicts raster immediately');paint();assert(scene._screenWorldCache.canvas);b.sceneVersion--;
  assert.equal(JSON.stringify(b),snapshot,'Render and invalidation do not mutate battle');
+ if(id===1&&view.w===960){
+  scene.manual=false;scene.x=u.x-50;scene.y=u.y-50;
+  for(let i=0;i<180;i++){scene.render(e,1/60,'',.6,false,0);cv.getContext('2d').getImageData(0,0,1,1);}
+  const settledKey=scene._screenWorldCache.key,builds=scene.renderCacheStats().screenBuilds;
+  for(let i=0;i<5;i++){scene.render(e,1/60,'',.6,false,0);cv.getContext('2d').getImageData(0,0,1,1);}
+  assert.equal(scene._screenWorldCache.key,settledKey,'Automatic follow reaches a stable camera key');assert.equal(scene.renderCacheStats().screenBuilds,builds,'Settled automatic camera never rebuilds');
+ }
  results.push({id,view,pixelExact:true,continuousZoomBuilds:0,cache:scene.renderCacheStats()});release(scene,cv);
 }
 // Synthetic >6M view tests the cap without allocating the oversized target.
