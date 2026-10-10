@@ -128,7 +128,10 @@
     "test:stage8-bier:basic": "HONRO_FULLPLAY_BASIC_ONLY=1 HONRO_FULLPLAY_OUT=_local/reports/stage8-bier/fullplay-basic node tests/stage8-bier-fullplay.mjs",
     "test:stage8-bier:native": "node --expose-gc tests/stage8-bier-native-art.mjs",
     "test:stage8-bier:roles": "node tests/stage8-bier-live-roles.mjs",
-    "test:stage8-bier:render-isolation": "node --expose-gc tests/stage8-bier-renderer-isolation.mjs"
+    "test:stage8-bier:render-isolation": "node --expose-gc tests/stage8-bier-renderer-isolation.mjs",
+    "encounter:review": "node tools/testing/encounter-evidence-gate.mjs",
+    "test:encounter-evidence": "node --test tests/encounter-evidence-gate.mjs",
+    "test:encounter-density": "node tests/encounter-density-runtime.mjs && node tests/encounter-density-integration.mjs && node tests/stage8-encounter-density.mjs && node tests/stage11-encounter-density.mjs && node tests/stage12-encounter-density.mjs && node tests/stage161718-encounter-density.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
