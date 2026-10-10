@@ -304985,6 +304985,46 @@
           "stageOverrides": {
             "honroCohort": "C-front",
             "honroAct3Encounter": 1,
+            "honroAct3Elite": true,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sy-ground",
+            "honroEscortYardCell": "C-front",
+            "honroEscortYardActivationCell": "C-front"
+          }
+        },
+        {
+          "id": "s23-C-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "x": 3760,
+          "y": 5100,
+          "facing": -1,
+          "spawnIndex": 9,
+          "behavior": "patrol",
+          "encounterGroup": "C-front",
+          "stageOverrides": {
+            "honroCohort": "C-front",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sy-ground",
+            "honroEscortYardCell": "C-front",
+            "honroEscortYardActivationCell": "C-front"
+          }
+        },
+        {
+          "id": "s23-C-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "x": 3910,
+          "y": 5100,
+          "facing": -1,
+          "spawnIndex": 10,
+          "behavior": "patrol",
+          "encounterGroup": "C-front",
+          "stageOverrides": {
+            "honroCohort": "C-front",
+            "honroAct3Encounter": 1,
             "honroAct3Elite": false,
             "honroEncounterRole": "frontline",
             "honroEncounterSupport": "sy-ground",
@@ -304999,7 +305039,27 @@
           "x": 4030,
           "y": 4919.565217391304,
           "facing": -1,
-          "spawnIndex": 9,
+          "spawnIndex": 11,
+          "behavior": "patrol",
+          "encounterGroup": "C-support",
+          "stageOverrides": {
+            "honroCohort": "C-support",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged-support",
+            "honroEncounterSupport": "sy-central-flank",
+            "honroEscortYardCell": "C-support",
+            "honroEscortYardActivationCell": "C-support"
+          }
+        },
+        {
+          "id": "s23-C-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "x": 4230,
+          "y": 4801.818181818182,
+          "facing": -1,
+          "spawnIndex": 12,
           "behavior": "patrol",
           "encounterGroup": "C-support",
           "stageOverrides": {
@@ -305019,7 +305079,7 @@
           "x": 3670,
           "y": 3650,
           "facing": -1,
-          "spawnIndex": 10,
+          "spawnIndex": 13,
           "behavior": "patrol",
           "encounterGroup": "D-support",
           "stageOverrides": {
@@ -305039,7 +305099,7 @@
           "x": 4070,
           "y": 3650,
           "facing": -1,
-          "spawnIndex": 11,
+          "spawnIndex": 14,
           "behavior": "patrol",
           "encounterGroup": "D-support",
           "stageOverrides": {
@@ -305059,7 +305119,7 @@
           "x": 3270,
           "y": 3755.9615384615386,
           "facing": -1,
-          "spawnIndex": 12,
+          "spawnIndex": 15,
           "behavior": "patrol",
           "encounterGroup": "D-rear",
           "stageOverrides": {
@@ -305079,7 +305139,7 @@
           "x": 3390,
           "y": 3712.1153846153848,
           "facing": -1,
-          "spawnIndex": 13,
+          "spawnIndex": 16,
           "behavior": "patrol",
           "encounterGroup": "D-rear",
           "stageOverrides": {
@@ -305099,7 +305159,7 @@
           "x": 4970,
           "y": 4533.333333333333,
           "facing": -1,
-          "spawnIndex": 14,
+          "spawnIndex": 17,
           "behavior": "patrol",
           "encounterGroup": "E-front",
           "stageOverrides": {
@@ -305119,7 +305179,7 @@
           "x": 5100,
           "y": 4460,
           "facing": -1,
-          "spawnIndex": 15,
+          "spawnIndex": 18,
           "behavior": "patrol",
           "encounterGroup": "E-front",
           "stageOverrides": {
@@ -305139,7 +305199,7 @@
           "x": 5230,
           "y": 4408,
           "facing": -1,
-          "spawnIndex": 16,
+          "spawnIndex": 19,
           "behavior": "patrol",
           "encounterGroup": "E-front",
           "stageOverrides": {
@@ -305159,7 +305219,7 @@
           "x": 5490,
           "y": 4114.6551724137935,
           "facing": -1,
-          "spawnIndex": 17,
+          "spawnIndex": 20,
           "behavior": "patrol",
           "encounterGroup": "E-support",
           "stageOverrides": {
@@ -305179,7 +305239,7 @@
           "x": 6660,
           "y": 4620,
           "facing": -1,
-          "spawnIndex": 18,
+          "spawnIndex": 21,
           "behavior": "patrol",
           "encounterGroup": "F-front",
           "stageOverrides": {
@@ -305193,13 +305253,73 @@
           }
         },
         {
+          "id": "s23-F-1",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "x": 6800,
+          "y": 4620,
+          "facing": -1,
+          "spawnIndex": 22,
+          "behavior": "patrol",
+          "encounterGroup": "F-front",
+          "stageOverrides": {
+            "honroCohort": "F-front",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sy-ground",
+            "honroEscortYardCell": "F-front",
+            "honroEscortYardActivationCell": "F-front"
+          }
+        },
+        {
+          "id": "s23-F-2",
+          "kind": "possessedGuard",
+          "team": "enemy",
+          "x": 6940,
+          "y": 4620,
+          "facing": -1,
+          "spawnIndex": 23,
+          "behavior": "patrol",
+          "encounterGroup": "F-front",
+          "stageOverrides": {
+            "honroCohort": "F-front",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "frontline",
+            "honroEncounterSupport": "sy-ground",
+            "honroEscortYardCell": "F-front",
+            "honroEscortYardActivationCell": "F-front"
+          }
+        },
+        {
           "id": "s23-F-3",
           "kind": "possessedArcher",
           "team": "enemy",
           "x": 7350,
           "y": 3348.5714285714284,
           "facing": -1,
-          "spawnIndex": 19,
+          "spawnIndex": 24,
+          "behavior": "patrol",
+          "encounterGroup": "F-support",
+          "stageOverrides": {
+            "honroCohort": "F-support",
+            "honroAct3Encounter": 1,
+            "honroAct3Elite": false,
+            "honroEncounterRole": "ranged-support",
+            "honroEncounterSupport": "sy-east-upper",
+            "honroEscortYardCell": "F-support",
+            "honroEscortYardActivationCell": "F-support"
+          }
+        },
+        {
+          "id": "s23-F-4",
+          "kind": "possessedArcher",
+          "team": "enemy",
+          "x": 7890,
+          "y": 3372.7272727272725,
+          "facing": -1,
+          "spawnIndex": 25,
           "behavior": "patrol",
           "encounterGroup": "F-support",
           "stageOverrides": {
@@ -305219,7 +305339,7 @@
           "x": 8300,
           "y": 4317.2,
           "facing": -1,
-          "spawnIndex": 20,
+          "spawnIndex": 26,
           "behavior": "patrol",
           "encounterGroup": "G-front",
           "stageOverrides": {
@@ -305239,7 +305359,7 @@
           "x": 8510,
           "y": 4220.6,
           "facing": -1,
-          "spawnIndex": 21,
+          "spawnIndex": 27,
           "behavior": "patrol",
           "encounterGroup": "G-front",
           "stageOverrides": {
@@ -305380,7 +305500,9 @@
           "key": "C-front",
           "behavior": "patrol",
           "unitIds": [
-            "s23-C-0"
+            "s23-C-0",
+            "s23-C-1",
+            "s23-C-2"
           ]
         },
         {
@@ -305388,7 +305510,8 @@
           "key": "C-support",
           "behavior": "patrol",
           "unitIds": [
-            "s23-C-3"
+            "s23-C-3",
+            "s23-C-4"
           ]
         },
         {
@@ -305432,7 +305555,9 @@
           "key": "F-front",
           "behavior": "patrol",
           "unitIds": [
-            "s23-F-0"
+            "s23-F-0",
+            "s23-F-1",
+            "s23-F-2"
           ]
         },
         {
@@ -305440,7 +305565,8 @@
           "key": "F-support",
           "behavior": "patrol",
           "unitIds": [
-            "s23-F-3"
+            "s23-F-3",
+            "s23-F-4"
           ]
         },
         {
@@ -306322,8 +306448,8 @@
             "maxHeight": 450
           }
         },
-        "honroEscortYardRoster": "originalBudget22e5",
-        "honroEscortYardPopulationCap": 30
+        "honroEscortYardRoster": "candidate28e6",
+        "honroEscortYardPopulationCap": 36
       },
       "environment": {
         "version": 4,
@@ -307100,13 +307226,29 @@
                 "key": "C-front",
                 "behavior": "patrol",
                 "unitIds": [
-                  "s23-C-0"
+                  "s23-C-0",
+                  "s23-C-1",
+                  "s23-C-2"
                 ],
                 "purpose": "세 전위는400폭 다중피격 후보, 두 궁수는 낮은 측면 포치; 22판 C-1/C-2/C-4 제거",
                 "members": [
                   {
                     "id": "s23-C-0",
                     "x": 3620,
+                    "y": 5100,
+                    "support": "sy-ground",
+                    "elite": true
+                  },
+                  {
+                    "id": "s23-C-1",
+                    "x": 3760,
+                    "y": 5100,
+                    "support": "sy-ground",
+                    "elite": false
+                  },
+                  {
+                    "id": "s23-C-2",
+                    "x": 3910,
                     "y": 5100,
                     "support": "sy-ground",
                     "elite": false
@@ -307118,7 +307260,8 @@
                 "key": "C-support",
                 "behavior": "patrol",
                 "unitIds": [
-                  "s23-C-3"
+                  "s23-C-3",
+                  "s23-C-4"
                 ],
                 "purpose": "세 전위는400폭 다중피격 후보, 두 궁수는 낮은 측면 포치; 22판 C-1/C-2/C-4 제거",
                 "members": [
@@ -307126,6 +307269,13 @@
                     "id": "s23-C-3",
                     "x": 4030,
                     "y": 4919.565217391304,
+                    "support": "sy-central-flank",
+                    "elite": false
+                  },
+                  {
+                    "id": "s23-C-4",
+                    "x": 4230,
+                    "y": 4801.818181818182,
                     "support": "sy-central-flank",
                     "elite": false
                   }
@@ -307240,7 +307390,9 @@
                 "key": "F-front",
                 "behavior": "patrol",
                 "unitIds": [
-                  "s23-F-0"
+                  "s23-F-0",
+                  "s23-F-1",
+                  "s23-F-2"
                 ],
                 "purpose": "낮은 선별정예와 독립된 두 고지궁수; 22판 F-1/F-2/F-4 제거",
                 "members": [
@@ -307250,6 +307402,20 @@
                     "y": 4620,
                     "support": "sy-ground",
                     "elite": true
+                  },
+                  {
+                    "id": "s23-F-1",
+                    "x": 6800,
+                    "y": 4620,
+                    "support": "sy-ground",
+                    "elite": false
+                  },
+                  {
+                    "id": "s23-F-2",
+                    "x": 6940,
+                    "y": 4620,
+                    "support": "sy-ground",
+                    "elite": false
                   }
                 ]
               },
@@ -307258,7 +307424,8 @@
                 "key": "F-support",
                 "behavior": "patrol",
                 "unitIds": [
-                  "s23-F-3"
+                  "s23-F-3",
+                  "s23-F-4"
                 ],
                 "purpose": "낮은 선별정예와 독립된 두 고지궁수; 22판 F-1/F-2/F-4 제거",
                 "members": [
@@ -307266,6 +307433,13 @@
                     "id": "s23-F-3",
                     "x": 7350,
                     "y": 3348.5714285714284,
+                    "support": "sy-east-upper",
+                    "elite": false
+                  },
+                  {
+                    "id": "s23-F-4",
+                    "x": 7890,
+                    "y": 3372.7272727272725,
                     "support": "sy-east-upper",
                     "elite": false
                   }
@@ -307298,8 +307472,8 @@
                 ]
               }
             ],
-            "initial": 22,
-            "elites": 5,
+            "initial": 28,
+            "elites": 6,
             "finite": 8,
             "activeLimit": 3,
             "scope": "Original22e5 first; candidate28e6 is a named comparison. Real access cells; combat stats and stage XP unchanged."

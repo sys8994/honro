@@ -16,7 +16,7 @@ function fixture(cls,support,x,{escortStarted=false}={}){
  assert(t&&!t.broken);Object.assign(u,{x,y,vx:0,vy:0,acted:false});b.active=u.id;b.side=0;b.phase='aim';
  assert(C.validTerrainContactPose(b.terrain,u),'Body-clear supported fixture '+support+':'+x);assert(e.grounded(u));
  assert(!b.units.some(v=>v.id!==u.id&&!v.dead&&Math.abs(v.x-u.x)<v.r+u.r&&v.y>u.y-u.h&&v.y-v.h<u.y),'No overlapping setup actors');
- assert.deepEqual(plain(e.alive(1).map(u=>u.id)),originalIds);assert.equal(originalIds.length,22);assert.equal(b.enemyLimit,3);
+ assert.deepEqual(plain(e.alive(1).map(u=>u.id)),originalIds);assert.equal(originalIds.length,{originalBudget22e5:22,candidate28e6:28}[source.initialState.honroEscortYardRoster],'Complete explicitly named production roster remains live');assert.equal(b.enemyLimit,3);
  for(const h of e.heroesAlive()){assert.equal(h.level,16);assert.equal(b.heroes[h.cls].xp,75748);assert.equal(b.heroes[h.cls].statTraining,6);assert.deepEqual(plain(h.loadout),ESCORT_ENTRY.slots[h.cls]);assert(Object.values(h.ranks).every(r=>r===1));}
  if(escortStarted){const a=A.memory(b);a.done['dispatch-bundle']=a.done['carrier-start']=true;a.escorts['act3-carrier']={started:true};}
  // A native-call guard makes any later test-side coordinate/resource repair fail.

@@ -3,7 +3,7 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),project=JSON.parse(JSON.stringify(g.HONRO_PROJECT));
-assert.equal(project.stages.filter(st=>st.design?.space).length,10,'The authored cave space-layout contract covers exactly Act2');
+assert.deepEqual(project.stages.filter(st=>st.design?.space).map(st=>st.metadata.stageId),[11,12,13,14,15,16,17,18,19,20,23],'Exact reviewed Act2 and Stage23 space-layout membership');
 for(const st of project.stages.filter(st=>st.design?.space))assert.equal(g.HonroSpaceLayout.validate(st).length,0,st.id);
 assert.doesNotThrow(()=>g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(project))));
 const mutate=(fn,pattern)=>{const p=structuredClone(project);fn(p.stages[13]);assert.throws(()=>g.HonroMaps.finalize(p),pattern);};

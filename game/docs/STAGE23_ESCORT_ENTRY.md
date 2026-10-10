@@ -61,3 +61,8 @@ entry 검사는 CURRENT 엔진으로 원본23만 다시 컴파일하여 당시 a
 검사는 실제 보상 장부 재계산, 합법 선행/수련/슬롯, 대표/지형 자원 분리, 원본 성장 예산, 명시적 App 방어, 기존29지도/573 asset/역사 fixture 보호를 다룬다. 설치·HTML/에셋 build·브라우저를 실행하지 않는다.
 
 별도 독립 archive 실행도 XP/수련/대표 자원/원본 성장 값을 일치 확인했다. 이 entry 계약 자체는23 실제 보행·사격·승리·24 진입·Continue·신규 미술·브라우저·Pages를 합격시키지 않는다. 실제22 완료 저장, 정상23 대표 및 기본기 trace, 같은 실제 저장에서의 위치 선택 비교, 실제 App 저장 경계,24 연결은 다음 검수에서 각각 확보해야 한다.
+
+
+## 최종 canonical 28 승격
+
+최종28/정예6·유한8·cap36·행동cap3은 corrected71 실제 R20/4생존/24진입 후보와 동일하다. `stage23-escort-release-entry.mjs`는 그 실제 최초 export를 `stage23-escort-approved-entry.json`에 그대로 고정하고, 새 canonical 입장 전체 battle와 profile을 대조한다. 허용 차이는 `/battle/session`, `/profile/honroBattle/session` 두 문자열뿐이다. balance 메뉴 count28을 적용해도 HP/공격/기력/이동력/성장·XP 분모/개별 enemy budget/seed/목표/지형/배우가 재조정되지 않는다. 전체 전투 normal run은 이 동등성이 확인된 후보28 trace이며 새 canonical에서 추가 최적화나 배우·자원 조작을 하지 않는다.

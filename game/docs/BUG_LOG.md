@@ -1905,3 +1905,10 @@ Stage12 완료/hold 안내 두 검사는 전체 현행 runtime/project가 과거
 실제 후보28 R9 소단이 x6019.985598217379/y4381.493519197821에서 멈췄다. normal move100tick에도 예산과 위치가 변하지 않아 helper 조기정지와 구분했다. x6020에서 surface는 정상 지면을 선택하지만 slope 재조회가 같은 정점의 급한 수로둑−5.115625를 선택해 지지를 버렸다. 뒤이은 미세 발 직사각형이 기존 상판에 걸렸다. 공통 물리/허용오차/점프를 바꾸지 않고 ground에 (5300,4396),(5980,4379.5)를 추가해 급경사를 교대 안쪽40px/상판 아래16px로 분리했다. 노출 보행선·석교 끝·NPC 경로·배우·탄도는 그대로다.
 
 canonical 재생 뒤 네 직업+NPC/양끝/양방향/4dt/4소수 시작320회 유한예산 기본보행, 각 전체전장 exact Continue/export 후 재보행, 실제 NPC 선도 tick6회를 재확인했다. 원본 R9는 옛 저장 지형을 그대로 유지하며 결함도 재현되는 음성근거다. 새112경로/화물 전후 NPC1683tick·7293.8, full-solid sweep교차0, E궁수→석교53피해와 D A01 화물전0/후239, 원본29맵/573자산/22불변fixture 역사감사가 통과했다. 새 교정본22/28 실제완주·HTML·브라우저 검수는 별도다.
+
+
+### 2026-10-09 · 최종28 승격과 실제 입장 동등성
+
+교대 교정71에서 같은 역할정책22는R17/NPC106피해/영웅1403,28은R20/NPC571/영웅1979로 네 명 생존·기존4목표·8실제증원·정상24 진입을 완료했다. 양쪽 nav-blocked0이다. 상부의 D→E/F→G는 실제 접지 복귀이고28은고지30발/8024실피해다. 부모 승인대로 최종28/정예6·유한8·행동cap3을 canonical/balance에 승격했다. 후보 실제 initial 전체전장·profile과 fresh canonical의 차이는 세션 문자열2개뿐임을 별도 검사한다. 비교 당시 source SHA와 private 후보 model hash를 최종canonical 원자료와 혼동하지 않는다. 특정 기예가 필수가 아닌 저지대 기본기85발/R24·4생존 검증은 교대 수정 전 b592 생산모델의 관찰로 분리해 보존한다. 새 기능/정책 탐색은 추가하지 않는다.
+
+최종 빌드/회귀: 두 HTML 재생성, TypeScript/game tests·migration·Playtest template/source 일치, 실제후보 입장동등성, final28 기예10/입구15·구저장/성장·교대320/NPC6·역사검사와12→13이 통과했다. 기존 D migration 검사는 현행23/30에 옛 요소가 없는 합법 no-op을 원본D upgrade와 분리했고, 이미 전체해시가 검증된 D 부정변이는 pure D leaf에서 기존381거절 의미를 유지한다. public history wrapper의 exact 상위검사는 약화하지 않았다. 공간schema 멤버십은 Act2 열장과 새23을 정확히 열거한다. 최종Native 실제저장20컷은 동일renderer bundle/전장무변경으로 배우·화물·목표 가림 없음이 확인됐다. npm run verify는 Chromium 시작의 socket() Operation not permitted로 중단되어 브라우저/HUD/성능/Pages는 합격으로 기록하지 않는다. 넓은 과거 Node suite의 사전존재/추가 테스트경계 실패는 별도 보고서에 구분하며 이 문구가 전체 suite 합격을 뜻하지 않는다.

@@ -176,7 +176,7 @@ await check('same production spawn factory preserves original-map HP attack skil
 });
 
 await check('authoring and active-map geometry stay identical through the run',async()=>{
- const generated=await authorStage23LoadingYard(g,loadedProject,{art:false,roster:'originalBudget22e5'}),current=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+ const generated=await authorStage23LoadingYard(g,loadedProject,{art:false,roster:loadedProject.stages[22].initialState.honroEscortYardRoster}),current=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
  assert.equal(hash(stageGeometry(generated.stages[22])),startGeometry,'Active geometry matches the current no-art authoring source');
  assert.equal(hash(stageGeometry(current.stages[22])),startGeometry,'Geometry changed during the test: rerun against the final source');
  assert.equal(hash(stageGeometry(g.HONRO_PROJECT.stages[22])),startGeometry,'Tests never mutate the loaded production map');

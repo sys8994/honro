@@ -34,7 +34,12 @@ export function beforeOpenStructureLibrary(library){
  return out;
 }
 export function beforeOpenStructures(project){
- const out=beforeCurrentStage11Ravine(project);
+ return reverseOpenStructureDelta(beforeCurrentStage11Ravine(project));
+}
+// Pure D reversal for an already verified D snapshot. Public consumers keep
+// every newer exact history guard through beforeOpenStructures above.
+export function reverseOpenStructureDelta(project){
+ const out=plain(project);
  for(const row of openStructureHistoryDelta.rows){
   const label='Exact approved open structure delta '+row.kind+'/'+row.stage+'/'+row.id;
   const stages=out.stages.filter(s=>s.metadata?.stageId===row.stage);assert.equal(stages.length,1,label+' unique stage');
