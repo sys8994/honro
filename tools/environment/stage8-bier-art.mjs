@@ -17,8 +17,17 @@ function store(){const floor=x=>bierY('s8-ground',x),left=2130,right=2800,wallTo
  b+=roof(2470,3460,820,140);
  // Pale funeral cloth and an empty horizontal carrying frame distinguish the
  // store from a market or shrine. These are inert scenery, never extra actors.
- b+=path('M2270 3513Q2310 3524 2350 3513L2338 3650Q2311 3633 2282 3650Z','#b4b39a','#667765',3);b+=path('M2690 3510Q2722 3523 2758 3511L2746 3658Q2723 3640 2700 3658Z','#a5ad98','#667765',3);b+=line([[2365,3667],[2590,3667]],'#b6a276',14)+line([[2390,3692],[2560,3692]],'#5c523a',11)+poly([[2425,3620],[2510,3620],[2530,3660],[2405,3660]],'#606e5b');
- 
+ b+=path('M2270 3513Q2310 3524 2350 3513L2338 3650Q2311 3633 2282 3650Z','#b4b39a','#667765',3);b+=path('M2690 3510Q2722 3523 2758 3511L2746 3658Q2723 3640 2700 3658Z','#a5ad98','#667765',3);
+ // One empty carrying frame, roughly two people long and knee-high. Its
+ // trestles and loose binding rope meet the actual sloping stone threshold.
+ const fy=floor(2390);b+=line([[2280,fy-38],[2520,fy-38]],'#b6a276',10)+line([[2300,fy-15],[2500,fy-15]],'#5c523a',8);
+ b+=poly([[2328,fy-68],[2438,fy-68],[2464,fy-40],[2312,fy-40]],'#606e5b','#374f42',3);
+ for(const x of[2325,2470])b+=line([[x,fy-38],[x-8,floor(x)-4]],'#89784f',7);
+ b+=path(`M2360 ${fy-47}q15 16 29 0m-24 -5q10 10 20 0m-8 9q-11 27 10 32`,'none','#b1a27b',3);
+ // Folded hemp shroud and a small covered basket: readable beside a person,
+ // not a second building or bright prop cluster.
+ const cy=floor(2755);b+=poly([[2728,cy-39],[2784,cy-39],[2779,cy-4],[2732,cy-4]],'#675e42','#354c3d',3);
+ b+=poly([[2723,cy-40],[2746,cy-58],[2790,cy-52],[2785,cy-35]],'#b1ae92','#687665',2);
  return asset('funeral-store','반매몰 상여집·빈 가마채·바랜 소렴천',b,[2050,3300,1100,900],{buildingCount:1,doorHeight:146,groundedSupport:'s8-ground',feet:q});}
 function upper(){let b=poly([[7600,2670],[7890,2670],[7860,2960],[7610,2920]],'#6e7964','#354f42',4,'east-low-plinth');b+=poly([[7520,2680],[7800,2680],[7800,2825],[7495,2825]],'#5e715b');b+=roof(7950,2385,650,115);
  for(const x of[7660,7830,8080,8240]){b+=poly([[x-12,2398],[x+14,2398],[x+17,2670],[x-15,2670]],'#5d543b');b+=line([[x-3,2407],[x-4,2652]],'#b1a279',6);b+=poly([[x-32,2649],[x+33,2649],[x+41,2670],[x-39,2670]],'#929c82');}
@@ -28,29 +37,30 @@ function upper(){let b=poly([[7600,2670],[7890,2670],[7860,2960],[7610,2920]],'#
  for(const[x,y,w,h]of[[7560,2720,96,47],[7668,2720,121,48],[7545,2780,112,42],[7670,2780,93,42]]){b+=poly([[x,y],[x+w,y-3],[x+w-5,y+h],[x+3,y+h]],'#829078','#405b49',3);}
  return asset('east-bier-shelter','높은 동상여터의 낮은 석축과 빈 덧집','<g transform="translate(0 330)">'+b+'</g>',[7470,2570,840,750],{buildingCount:1,groundedSupport:'s8-court/s8-east-hatch',columnsFootY:2670});}
 function branch(){let b=path('M4815 2680Q4910 2610 4960 2460Q5000 2340 4930 2150L4980 2070Q5110 2300 5070 2470Q5150 2460 5220 2370L5260 2400Q5190 2560 5060 2585L5000 2660Z','#5a634b','#344e3d',7,'short-rooted-pine-trunk');b+=path('M4880 2640Q5040 2480 4990 2220','none','#b1a479',19);b+=path('M5030 2430Q5170 2490 5310 2420L5450 2370 5480 2400Q5320 2530 5070 2510Z','#647253');b+=path('M4905 2460Q4770 2400 4740 2240L4780 2220Q4820 2360 4950 2400Z','#52674e');
- for(const[d,c]of[['M4660 2180Q4730 2070 4840 2140Q4910 2040 5020 2130Q5120 2100 5170 2190Q5030 2225 4900 2200Q4750 2250 4660 2180Z','#4f6552'],['M5180 2330Q5270 2230 5370 2300Q5430 2240 5520 2320L5570 2390Q5440 2420 5350 2380Q5260 2420 5180 2330Z','#657b58'],['M4710 2250Q4790 2190 4880 2250Q4910 2200 4980 2260L5030 2330Q4900 2360 4800 2310Z','#768563']])b+=path(d,c);
- return asset('rooted-branch','암괴 틈에 뿌리내린 짧고 굽은 보조 소나무',b,[4620,2050,1000,660],{groundedSupport:'s8-west-shoulder',foot:{x:4850,y:2600},secondarySilhouette:true});}
+ b+=path('M4935 2220L4820 2160 4750 2040 4775 2030 4860 2130 4970 2160Z M4990 2190L5040 2110 5110 2050 5125 2070 5070 2150 5040 2250Z M5220 2400L5320 2280 5300 2200 5320 2190 5350 2290 5260 2420Z M5400 2410L5490 2310 5540 2320 5505 2340 5440 2440Z','#6f775b');
+ b+=path('M4950 2130L4980 2070 5000 2120 5006 2190Z','#b4ad87');b+=path('M5000 2350Q5030 2320 5050 2360Q5040 2400 5010 2400Z','#384d3b');
+ return asset('rooted-branch','암괴에 뿌리내린 마른 소나무의 굵은 줄기와 짧은 가지',b,[4620,2050,1000,660],{groundedSupport:'s8-west-shoulder',foot:{x:4850,y:2600},secondarySilhouette:true});}
 function supports(){let b='';
- // Rear rock joins explain the broad real stone shoulders. The near-side
- // walking tunnels remain dark open air, distinct from the collision faces.
- b+=path('M2840 3690L3130 3570 3490 3320 3770 3030 4230 2770 4700 2580 4930 2620 5200 2910 5460 3280 5620 3820 5530 4520 5060 4780 4310 4790 3880 4720 3480 4490 2990 4170Z','#3f5b4c');
- b+=path('M3280 3520Q3550 3470 3840 3140L4210 2910 4580 2770 4470 3080 4230 3370 3980 3660 3500 3810Z','#657963');
- b+=path('M4540 3460L4790 3180 4940 3080 5160 3360 5300 3950 5120 4460 4760 4700 4530 4560Z','#2e4b44');
- // The open front passage is visibly recessed into the backing rock. Its
- // exact solid ceiling, plank floor and exits come from authored terrain.
- b+=path('M3030 3750Q3320 3680 3570 3790L3970 4090 4150 4200 4180 4350 3910 4280 3510 3980 3150 3920Z','#243f3b');
- b+=path('M3970 4530Q4230 4380 4610 4480L5150 4460 5500 4380 5600 4640 5040 4770 4310 4770 3970 4690Z','#28463e');
- // Eastern back wall meets the lower ground. The near-side corridor is
- // visibly a shallow tunnel under the actual thick hillside ceiling.
- b+=path('M5430 4390L5850 4130 6420 3700 6760 3420 6930 3420 7420 3110 7800 2990 8000 3120 7880 3500 7390 4020 6870 4470 6030 4720Z','#405c4d');
- b+=path('M5910 4410L6240 4290 6660 4110 6860 4140 6500 4460 6150 4580Z','#657b5e');
- b+=path('M5990 4510L6430 4210 6660 4210 7140 3780 7630 3410 8030 3100 8290 3100 8290 3210 8030 3210 7630 3510 7140 3920 6720 4320 6480 4360 6070 4610Z','#29463e');
+ // These are the cave's recessed back walls, not foreground collision or
+ // fake supporting posts. Their bases meet the exact real ground profile.
+ // Only the two exterior mouths retain distant sky behind the traversable air.
+ const floor=BIER_LAYOUT.surfaces.find(t=>t.id==='s8-ground').top;
+ function wall(top,left,right,color){const lower=[left,...floor.map(p=>p[0]).filter(x=>x>left&&x<right),right].map(x=>[x,bierY('s8-ground',x)+22]);b+=poly([...top,...lower.reverse()],color);}
+ wall([[530,3970],[730,3740],[1080,3420],[1500,3280],[2150,3240],[2620,3270],[2900,3470],[3100,3630],[3500,3550],[3840,3760],[4110,3930],[4450,3860],[4910,4240]],530,4910,'#29473f');
+ wall([[3950,4230],[4780,4510],[5130,4510],[5480,4230],[5590,4230],[5790,4260],[6200,4260],[6400,4200],[6660,3960],[7200,3590],[7600,3360],[7800,3160],[8330,3010]],3950,8330,'#244239');
+ wall([[4880,2740],[5200,2720],[5500,2780],[5650,3740],[5790,4260]],4880,5790,'#26453b');
+ b+=path('M5030 2940L5290 2860 5450 3090 5390 3410 5240 3770 5260 4370 5070 4560 5110 4050 5120 3550Z','#304c3e');
+ b+=path('M770 3760Q1120 3500 1610 3450L2110 3390 2470 3450 2120 3570 1470 3580 980 3860Z','#42604d');
+ b+=path('M3020 3890Q3360 3750 3740 4020L4070 4310 4300 4450 4190 4520 3720 4210 3340 3980Z','#3d5b49');
+ b+=path('M4320 4650Q4790 4500 5280 4610L5620 4550 5500 4680 5070 4760 4580 4740Z','#355441');
+ b+=path('M5980 4500L6410 4270 6810 4100 7100 3800 6990 4130 6690 4380 6300 4590Z','#385a47');
+ b+=path('M7380 3520L7590 3290 7880 3140 8190 3100 8050 3230 7780 3270 7540 3440Z','#43614b');
  // Store footing is restrained dressed masonry at the real ground, not
  // floor-high giant blocks or a flat façade floating above a sloped triangle.
  for(const[x,w]of[[2130,103],[2244,119],[2375,98],[2480,105],[2598,94],[2705,77]]){const y=bierY('s8-ground',x);b+=poly([[x,y-17],[x+w,y-17],[x+w+4,bierY('s8-ground',x+w)+19],[x-2,y+19]],'#899477','#405b49',3);b+=line([[x+7,y-13],[x+w-5,y-13]],'#b0b294',4);}
- for(const[surface,x,base]of[['s8-west-walk',3150,3900],['s8-west-walk',3650,4330],['s8-drain-return',3890,4500],['s8-east-hatch',8140,3104],['s8-east-hatch',8330,3110]]){const top=bierY(surface,x)+22;b+=poly([[x-12,top],[x+13,top],[x+18,base],[x-17,base]],'#5b533a');b+=line([[x-4,top+2],[x-5,base-4]],'#a59363',5);}
- return asset('grounded-supports','상여집 석축과 큰 기단의 열린 앞회랑',b,[2050,3000,6400,1840],{rearOnly:true,noProjectileCover:true});}
-function details(){let b='';for(const[surface,x]of[['s8-ground',1120],['s8-ground',1490],['s8-court',5090],['s8-ground',6510],['s8-ground',8790]]){const y=bierY(surface,x);b+=path(`M${x-28} ${y}L${x-19} ${y-61}L${x+5} ${y-73}L${x+28} ${y-60}L${x+31} ${y}Z`,'#70816b','#425b48',3);b+=line([[x-13,y-48],[x+17,y-48]],'#b0b197',5);}
+ for(const[surface,x]of[['s8-west-walk',3150],['s8-west-walk',3650],['s8-drain-return',3890],['s8-central-step',5520],['s8-east-hatch',8140]]){const y=bierY(surface,x)+10;b+=line([[x-26,y],[x+27,y]],'#b3a16e',9);}
+ return asset('grounded-supports','상여집 석축과 큰 기단의 열린 앞회랑',b,[500,3000,8000,1840],{rearOnly:true,noProjectileCover:true});}
+function details(){let b='';for(const[surface,x]of[['s8-ground',1120],['s8-ground',1490],['s8-court',5910],['s8-ground',6510],['s8-ground',8790]]){const y=bierY(surface,x);b+=path(`M${x-28} ${y}L${x-19} ${y-61}L${x+5} ${y-73}L${x+28} ${y-60}L${x+31} ${y}Z`,'#70816b','#425b48',3);b+=line([[x-13,y-48],[x+17,y-48]],'#b0b197',5);}
  for(const[surface,x]of[['s8-ground',2040],['s8-ground',4790],['s8-ground',5540],['s8-court',7340],['s8-ground',8700]]){const y=bierY(surface,x);b+=path(`M${x-85} ${y}Q${x-37} ${y-42} ${x} ${y-21}Q${x+51} ${y-35} ${x+76} ${y}Z`,'#607650');b+=path(`M${x-12} ${y-6}Q${x-6} ${y-45} ${x+22} ${y-52}M${x+18} ${y-4}Q${x+28} ${y-30} ${x+51} ${y-27}`,'none','#8e9a6f',5);}
  b+=line([[4670,4235],[4860,4235]],'#beb18e',6)+line([[4740,4218],[4830,4218]],'#8f9976',5);
  return asset('quiet-court-details','낮은 석물·풀과 수습마당 흔적',b,[1000,2590,7920,2250],{grounded:true});}

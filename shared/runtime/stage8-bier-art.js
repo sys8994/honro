@@ -14,6 +14,24 @@ function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('s8-'))return false;con
  }else if(wood){
   if(branch){c.strokeStyle='#b7a67599';c.lineWidth=15;for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+32);c.lineTo(z.x,z.y+32);c.stroke();}c.strokeStyle='#364d3699';c.lineWidth=28;for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+100);c.lineTo(z.x,z.y+126);c.stroke();}}
   else{c.strokeStyle='#344d3bcc';c.lineWidth=4;for(const[a,z]of q.edges){const n=Math.max(1,Math.ceil(Math.hypot(z.x-a.x,z.y-a.y)/110));for(let i=1;i<n;i++){const x=a.x+(z.x-a.x)*i/n,y=a.y+(z.y-a.y)*i/n;c.beginPath();c.moveTo(x,y+9);c.lineTo(x+3,y+33);c.stroke();}}}
+ }else if(t.id==='s8-west-root'){
+  for(const[ps,col]of[[[[430,3930],[740,3540],[1190,3190],[1640,3120],[2070,3100],[1910,3210],[1360,3250],[910,3570],[570,4010]],'#b1ad8938'],[[[2180,3100],[2530,3210],[2780,3440],[2990,3610],[2800,3420],[2510,3340],[2220,3280]],'#193f3c43']]){c.fillStyle=col;c.fill(path(ps));}
+ }else if(t.id==='s8-west-shoulder'||t.id==='s8-east-shoulder'){
+  const faces=t.id==='s8-west-shoulder'?[
+   [[[3180,3640],[3480,3400],[3760,3100],[4240,2840],[4690,2650],[4580,3080],[4370,3400],[3860,3660]],'#b1b49537'],
+   [[[4700,2900],[4860,2740],[4960,3200],[5050,3680],[5090,4250],[4820,4450],[4680,4030],[4650,3580]],'#1a3e3e62'],
+   [[[3630,3520],[4090,3340],[4370,3470],[4190,3740],[3900,3720]],'#84957535']
+  ]:[[[[5520,2720],[5760,2910],[5940,3150],[6100,3410],[5860,3510],[5640,3320]],'#b6b39332'],[[[5440,3070],[5540,3400],[5590,3770],[5530,4150],[5480,4110],[5440,3640]],'#233f3d72']];
+  for(const[ps,color]of faces){c.fillStyle=color;c.fill(path(ps));}
+  // A few connected fractures divide broad weathered rock faces. They do
+  // not pretend the tall natural cliff is masonry made of giant blocks.
+  const joints=t.id==='s8-west-shoulder'?[
+   [[4580,2880],[4515,3070],[4540,3340],[4680,3500],[4780,3880],[4740,4200],[4840,4420]],
+   [[4850,3180],[4720,3310],[4540,3340],[4290,3420]],
+   [[5010,3880],[4910,3990],[4780,3880],[4640,3890]],
+   [[4860,4420],[5010,4300],[5110,4320]]
+  ]:[[[5540,2840],[5520,3120],[5650,3350],[5670,3600]],[[5460,3580],[5530,3770],[5505,4010]],[[5570,3230],[5780,3200],[5910,3310]]];
+  c.lineWidth=6;c.lineJoin='round';c.strokeStyle='#244b414f';for(const ps of joints){c.beginPath();ps.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.stroke();}
  }else if(t.id==='s8-court'){
   // This long object is weathered earth/bedrock under a thin dressed rim,
   // not a single building made of thousand-unit rectangular stone blocks.
@@ -25,6 +43,24 @@ function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('s8-'))return false;con
  }
  c.strokeStyle=wood?'#d2bf8e99':'#d0c8a494';c.lineWidth=earth?8:6;c.stroke(q.rim);c.restore();return true;}
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return oldTerrain.call(this,c,t);};
+// The two bindings retain the shared target/HP/visibility contract. Their
+// display is deliberately small enough to leave the 84-world-unit props and
+// nearby actors readable, including in the inspection overview.
+const sealId=id=>id==='bier-knot-0'||id==='bier-knot-1',oldHealth=S.terrainHealth;
+S.terrainHealth=function(c,b,w,h){
+ if(!active(b))return oldHealth.call(this,c,b,w,h);
+ const targets=this.terrainHealthTargets(b),other=targets.filter(t=>!sealId(t.id));
+ if(other.length)oldHealth.call(this,c,{...b,terrain:b.terrain.filter(t=>!sealId(t.id))},w,h);
+ const z=1/Math.max(.01,this.scale),left=this.x-w*z/2,right=this.x+w*z/2,top=this.y-h*z/2,bottom=this.y+h*z/2;
+ for(const t of targets.filter(t=>sealId(t.id))){
+  if(t.x<left-100*z||t.x>right+100*z||t.y<top-70*z||t.y>bottom+70*z)continue;
+  const width=76,ratio=Math.max(0,Math.min(1,t.hp/t.maxHp));
+  c.save();c.translate(t.x,t.y);c.scale(z,z);c.textAlign='center';c.textBaseline='middle';c.font='600 10px sans-serif';
+  c.fillStyle='#203c3dbb';c.fillRect(-width/2,-22,width,5);c.fillStyle=t.blocked?'#a3adb0':'#d9aa85';c.fillRect(-width/2,-22,width*ratio,5);
+  const value=`${Math.ceil(t.hp)} / ${Math.ceil(t.maxHp)}`;c.strokeStyle='#17352ed9';c.lineWidth=3;c.strokeText(value,0,-9);c.fillStyle='#f0e4c9';c.fillText(value,0,-9);
+  c.restore();
+ }
+};
 const skyAsset=b=>b.honroMap?.bierArt?.backdropAsset;
 function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1100;const c=cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
 const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
