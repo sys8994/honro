@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100">
+<title>상여집 너머 저녁 먹산</title><desc>낮은 채도의 한 겹 진경산수. 실제 전장 건물과 혼동되지 않는 넓은 산세, 비어 있는 하늘, 골짜기 연무.</desc>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#283b4b"/><stop offset="0.64" stop-color="#849298"/><stop offset="1" stop-color="#a3aba0"/></linearGradient><linearGradient id="mountain" x1="0" y1="270" x2="0" y2="980" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#41565e"/><stop offset="0.66" stop-color="#71827e"/><stop offset="1" stop-color="#98a49a"/></linearGradient><linearGradient id="mist" x1="0" y1="710" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#adb6a9" stop-opacity="0"/><stop offset="0.54" stop-color="#adb6a9" stop-opacity="0.44"/><stop offset="1" stop-color="#adb6a9" stop-opacity="0.72"/></linearGradient></defs>
+<path d="M0 0H1800V1100H0Z" fill="url(#sky)"/>
+<g id="single-unequal-mountain-mass"><path d="M-100 970L-40 747Q73 692 154 606L249 467 341 430 391 353 461 339 528 275 581 302 616 378 692 411 766 510 850 567Q915 588 990 575L1098 490 1160 364 1233 330 1281 246 1343 276 1399 398 1488 459 1537 585Q1626 685 1740 695L1880 858V1200H-100Z" fill="url(#mountain)"/>
+<path d="M528 275L485 441 458 578 504 665 448 793 346 830 411 647 376 544 391 353 461 339Z M1281 246L1260 410 1194 512 1232 613 1190 790 1070 895 1120 682 1098 568 1160 364 1233 330Z" fill="#a0ada0" opacity="0.22"/>
+<path d="M581 302L616 378 692 411 766 510 850 567 797 770 672 828 731 631 648 567 596 409Z M1343 276L1399 398 1488 459 1537 585 1630 710 1434 817 1451 610 1370 541Z" fill="#253e4c" opacity="0.24"/>
+<path d="M-80 809Q289 712 552 822Q797 941 1052 790Q1380 679 1890 873V1160H-80Z" fill="url(#mist)"/>
+<path d="M-60 944Q271 827 680 950Q930 1016 1221 916Q1512 835 1880 941V1160H-60Z" fill="#a7b0a0" opacity="0.17"/>
+</g></svg>

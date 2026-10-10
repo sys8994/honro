@@ -1,0 +1,14 @@
+/** Isolated ordinary geometry. Finite entry pools charged; turns refilled, no combat claim. */
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {runtime,battlefield} from '../game/tests/helpers.mjs';
+import {authorStage8Bier} from '../tools/map-forge/stage8-bier.mjs';
+import {traverse} from './stage16-temple-traverse-helper.mjs';
+import {bierEntryProfile} from './stage8-bier-entry-helper.mjs';
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,clone=v=>JSON.parse(JSON.stringify(v)),old=clone(g.HONRO_PROJECT);
+g.HONRO_PROJECT=await authorStage8Bier(old,g,{art:false});const s=g.HONRO_PROJECT.stages[7],profile=bierEntryProfile(g,{ordinaryStats:0,basicOnly:true}).profile,rows=[];
+assert.deepEqual(clone(g.HONRO_PROJECT.stages.filter((_,i)=>i!==7)),old.stages.filter((_,i)=>i!==7));assert.equal(g.HonroSpaceLayout.validate(s).length,0,JSON.stringify(g.HonroSpaceLayout.validate(s)));assert.deepEqual(clone(await authorStage8Bier(g.HONRO_PROJECT,g,{art:false})),clone(g.HONRO_PROJECT),'Idempotent source');
+const option=k=>process.argv.find(a=>a.startsWith('--'+k+'='))?.slice(k.length+3),onlyRoute=option('route'),onlyClass=option('class');let error;
+try{for(const r of s.design.space.routes.filter(r=>!onlyRoute||r.id===onlyRoute))for(const cls of onlyClass?[onlyClass]:['archer','mage','knight']){const{b,e}=battlefield(g,8,{profile:clone(profile),entry:false}),u=e.heroesAlive().find(u=>u.cls===cls);b.units=[u];b.active=u.id;e.checkEnd=()=>false;Object.assign(u,{x:r.anchors[0].x,y:r.anchors[0].y,vx:0,vy:0});assert(C.validTerrainContactPose(b.terrain,u),'Clear start '+r.id);let cost=0,jumpStart=null;const landings=[];for(const k of['walk','jump','integrateBody']){const fn=e[k].bind(e);e[k]=(...args)=>{const before=u.moveLeft,from={x:u.x,y:u.y};const out=fn(...args);if(k!=='integrateBody')cost+=Math.max(0,before-u.moveLeft);if(k==='jump'&&out)jumpStart=from;if(k==='integrateBody'&&jumpStart&&e.grounded(u)){landings.push({from:jumpStart,to:{x:u.x,y:u.y},rise:jumpStart.y-u.y});jumpStart=null;}return out;};}e.recover=()=>{throw Error('Recovery forbidden');};const result=traverse(g,b,e,u,r.anchors),row={route:r.id,cls,cost,movePool:u.maxMove,turnEquivalent:cost/u.maxMove,landings,...result};rows.push(row);console.log(result.passed?'PASS':'FAIL',r.id,cls,cost.toFixed(1),JSON.stringify(result.failed));assert(result.passed,JSON.stringify(row));assert.equal(result.damage,0);}}
+catch(e){error=e;}
+await mkdir('_local/reports/stage8-bier',{recursive:true});await writeFile('_local/reports/stage8-bier/geometry'+(onlyRoute?'-'+onlyRoute:'')+(onlyClass?'-'+onlyClass:'')+'.json',JSON.stringify({passed:!error,scope:'Actual walk/jump/physics with normal Lv7 move and jump costs; refill between actions, other actors removed, initial pose set per route. Not normal combat or UI.',rows,error:error?.message},null,2));if(error)throw error;
