@@ -96,3 +96,11 @@ S04 뒤 실제 다음 라운드를 기다린 기준 실행은 HP1769→1744(25 �
 8. 원본 지도 full-group factory 결과와 새 입구 생성체의 HP/maxHP, attack/baseAttack/baseHP, loadout/ranks, focus/maxFocus, armor/elite, XP weight/budget/granted, 몸 크기/maxMove를 정확히 비교한다.
 
 현재 고정 회귀는 총15검사이며 원본 예산과 후보 예산 비교를 포함한다. 정상 호송 전투에서 세 편대를 소진하고 승리했다는 증거는 별도 fullplay가 담당한다.
+
+## 실제 화물 대기 저장의 선택 분기
+
+`stage23-escort-cargo-branch.mjs`는 원본371의 실제 후보28 R8 export를 fixture에 profile 그대로 보존해 현행 App에 넣는다. 원래 저장 지형/성장/배우를 whole-battle exact로 재개하며, 새 입장 geometry로 덮지 않는다. 소단은 실제 기본 이동으로 낮은 포치의 화물 왼쪽으로 가고, 궁수는 경사 점유를 벗어나며 기사/도사는 석교에서 짐꾼을 지킨다. C3는 정상 발사로 처치하고 C4는 실제 적 행동으로 경사를 벗어난다. 그 결과 R16에 자연 슬라이드와 정착1회가 일어나고, 실제 waiting/중간 motion/settled 세 저장 Continue가 exact다.
+
+이 분기에서 궁수의 A01은 정착 전에 저장 화물에 실제 충돌하고 정착 뒤 D에서 F3에239피해를 낸다. 같은 낮은 포치의 O01은 정착 화물에 차단되고, 장착한 O04는 그 목재를 실제로 통과해 반대편 C4에322피해를 낸다. 원래 겨눈 B2보다 앞에 있던 C4가 첫 피격체였음을 별도 기록한다. 이것은 새 사선과 새 낮은 엄폐의 실제 이용 증거이며, AI 탄을 화물이 막아 준 보호량을 증명하지는 않는다. 네 명과 짐꾼이 살아 있고 외부 배우/자원 쓰기·강제삭제·회복 호출·아이템 사용은0이다. 전멸/화물정착을 새 목표로 만들지 않았으며 전체 스테이지 완주 정책과 별개의 선택 분기다.
+
+Native 실제 저장 renderer는 production 목표 refresh를 호출하고 전장 무변경을 검사한다. Native CJK 폰트 alias와 검사 카메라를 기록한다. 실제 desktop/portrait 배우/목표 가독성을 보조하지만 브라우저 DOM HUD·FPS·실제 입력 검증을 대신하지 않는다. 프로세스 archive의 git 탐색이 상위 작업트리 HEAD를 읽을 수 있으므로 fullplay의 explicit source commit을 주면 controller byte exact를 먼저 확인하며, model/runtime/controller/navigator 해시를 함께 근거로 쓴다.

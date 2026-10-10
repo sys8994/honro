@@ -1895,3 +1895,7 @@ Validation: the 292 changed/removed cavern-path negatives, nine immutable full-s
 ### 2026-10-09 · 새23 이후 실제12 완료 증거의 역사 경계
 
 Stage12 완료/hold 안내 두 검사는 전체 현행 runtime/project가 과거 완료 시점과 동일하다고 요구했고, 미술 검사는 신규23 자산7개까지 과거 비12 자산 수에 포함해 출처 게이트에서 중단됐다. 기존 Stage23 exact history adapter로 검토된23 delta만 투영해 불변 완료 지문/560개 원본 library를 대조한다. 실제 App Continue·12→13·Native 안내는 현재 production 소스를 그대로 실행하며 투영 함수의 현행 입력 불변도 검사한다. 원본 fixture/기대값과 생산 runtime는 변경하지 않는다. 실제12 저장9회·13 진입/Continue3회, 안내22조건/Native5화면, 접지·저작 멱등 검사가 모두 통과했다.
+
+### 2026-10-09 · 실제 화물 대기 해소와 저장·사선 검증
+
+원본371 실제28 R8 대기 저장을 변형 없이 fixture로 고정했다. 정상 이동/공격/적 행동만으로 점유자를 제거하거나 경사 밖으로 움직이게 하고 자연 슬라이드·중간 Continue·1회 정착을 검증했다. A01 저장 화물충돌→정착 후 F3 239피해, O01 정착 목재충돌→O04 목재 실제 통과/C4 322피해를 기록했다. 계획 표적B2와 실제 먼저 맞은 C4를 구분하며, 전체 전투완주·AI 피격방어량으로 확대하지 않는다. Native 실제 저장 렌더는 누락했던 production 목표 refresh/CJK alias를 추가하고 전장 무변경을 검사한다. 명시 archive source SHA 검증은 상위 작업트리HEAD가 바뀌는 출처 혼동을 막는다. 생산 게임 로직은 이 검증 단위에서 변경하지 않는다.
