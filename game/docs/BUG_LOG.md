@@ -1963,3 +1963,9 @@ runtime21·budget5와 독립14재현이 통과했다. 독립 범위는 정지8�
 검수기 자체는 기본검격 봉인입력 누락과 이동한 보스의 초기 surfaceId를 목적지로 쓰는 결함을 실제 저장에서 재현해 정상 입력 해석만 고쳤다. 피해량·물리·기하나 배우 자원을 통과 목적으로 바꾸지 않았다. 첫 진단들과 최종 v3 정상 완주는 별도로 보존한다. 통합/브라우저/배포의 최종 상태와 기존 회귀 제한은 STAGE8_BIER_VALIDATION.md에 구분한다.
 
 최종 보호 입력에서 기존 Act1/one-way와 migration의 옛8 fixture를 새 canonical과 혼동하던 경계를 정확한 역투영 facade로 분리했다. 원래 assertions·fixture·migration 함수 본문은 보존하고 current28/legacy10 및13개 부정변이와 root/game cwd를 확인했다. 새8 전체묶음과 기존23/12/30/18 역사검사가 통과했고 두 HTML을 생성했다. 최종 verify는 build/TS/game audit 통과 뒤 반복 rc20 완료 부근에서 세션 종료상태가 유실됐으므로 full pass가 아니다. 직접 rc20-browser/integration은 Chromium socket EPERM으로 시작 전에 차단됐다. 기존 terrain-domain Act2floor 전제 실패는 exact bf8에서도 재현돼 새8 회귀와 분리했다. 원격/Pages와 실제 브라우저 직접검증은 지정 게시 담당에게 남긴다.
+
+### 2026-10-10 · 수직14 교전·저장 초안의 독립 검사
+
+새14revision만43체/정예10과 현지 층별 교전 후보, 기존 유한12명의 저장형 예고/완료행동/원자진입을 연결했다. 옛 factory의 자동 정예와 저작 정예 중복·재개 시 XP 재계산을 피하고 성장예산을 최초 진입에서만 확정한다. 실제 canonical은 전역 물리/AI나 기존 구출·방어 목표를 바꾸지 않는다. build의 기존 Act2 미술은 존재하지 않는 act2-floor를 요구해 실패했으므로 새 수직14만 해당 옛 저작에서 제외했다.
+
+초기배치 다섯 난이도 raw→sanitize exact·8초 전신정지, runtime12, 실제 App 새/옛14와 막힌 부분XP 저장6시나리오는 통과했다. Native 전후에서는 중앙 암반의 시각적 지지 부족이 발견됐고, 독립 소스검토는 기존 걸쇠를 여는 실제 gate/bridge가 누락된 새 결함을 찾았다. 두 문제와 정상 전투의 현지 실효성은 아직 차단사항이며 이 단위를 배포 승인으로 보지 않는다.
