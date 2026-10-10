@@ -10,6 +10,12 @@ const oldStage=JSON.parse(await readFile('tests/fixtures/vertical-stages/before-
 assert(oldStage&&!oldStage.initialState.honroVerticalStage22Revision,'Explicit immutable horizontal22 fixture');
 assert.equal(oldStage.units.filter(u=>u.team==='enemy').length,20);
 const C=g.HONRO_CORE,base=g.HONRO_PROJECT,p=await authorStage22Vertical(base,g),s=p.stages[21],rows=[];
+// Do not normalize a broken canonical input by reauthoring it before checking.
+// Art is deliberately separate; every actual gameplay field must round-trip.
+const gameplayKeys=['terrains','units','markers','routes','events','initialState','encounters','anchors','width','height','camera','terrainBounds','playBounds','terrainDomainVersion','materials','objectives'];
+function canonicalExact(raw){for(const key of gameplayKeys)assert.deepEqual(plain(raw[key]??null),plain(s[key]??null),'Raw canonical vs author gameplay '+key);}
+canonicalExact(base.stages[21]);
+for(const [id,mutate] of [['enemy-pose',s=>s.units.find(u=>u.team==='enemy').x++],['activation-radius',s=>s.initialState.honroVerticalStage22Activation['register-rise'].radius++],['entry-pose',s=>s.initialState.honroVerticalStage22Spec.entries['act3-response-22-0'].members[0].x++]]){const corrupt=plain(base.stages[21]);mutate(corrupt);assert.throws(()=>canonicalExact(corrupt),'Canonical corruption must not be normalized: '+id);}
 assert.equal(JSON.stringify(p.stages.filter(s=>s.metadata.stageId!==22)),JSON.stringify(base.stages.filter(s=>s.metadata.stageId!==22)));
 assert.deepEqual(plain(await authorStage22Vertical(p,g)),plain(p),'Idempotent encounter author');
 assert.deepEqual(plain(s.initialState.honroAct3Steps),plain(oldStage.initialState.honroAct3Steps));

@@ -4,7 +4,7 @@
 
 ## 현재 소스 계약
 
-`stage22-vertical-source-boundary.mjs`의 불변 기준은 최신14 목표 수/완료 이력 수정 `72cc20e9711df726aa8a01a03b5f9156fd62bb50`다. 해당 기준의 다른29장(14포함),기존608라이브러리 자산·순서,전역 project,128production 원본을 비교한다. 원래22의5목표/초기목표상태/파티 비배치 속성/유한 이벤트 trigger·종류·수·source를 보존한다. 허용 source delta는 shared/build의22등록 하나와 art-dark의 정확한 새22 현재면 opt-in뿐이며15부정변이를 직접 거부했다. 신규22 전용 runtime의 동작은 아래 계약이 따로 검사한다.
+`stage22-vertical-source-boundary.mjs`의 불변 기준은 최신14 목표 수/완료 이력 수정 `72cc20e9711df726aa8a01a03b5f9156fd62bb50`다. 해당 기준의 다른29장(14포함),기존608라이브러리 자산·순서,전역 project,128production 원본을 비교한다. 원래22의5목표/초기목표상태/파티 비배치 속성/유한 이벤트 trigger·종류·수·source를 보존한다. 허용 source delta는 shared/build의22등록 하나와 art-dark의 정확한 새22 현재면 opt-in뿐이며20부정변이를 직접 거부했다. 신규22 전용 runtime의 동작은 아래 계약이 따로 검사한다. 독립 검수에서 재저작이 raw canonical의 손상을 가릴 수 있는 구멍을 찾았으므로, 현재 원본 JSON의 encounter revision/cap/초기26·정예6/activation/entry 목록을 먼저 직접 검사한다. composition은 원본의 실제 gameplay 필드와 저작 결과를 exact 대조하며 적 좌표·activation 반경·증원 좌표 손상도 부정변이로 거부한다. 미술 elements/design만 이 gameplay 대조 범위 밖이고 별도 미술 불변 검사가 담당한다.
 
 역사14 소스 경계 명령과 기존 golden fixture는 변경하지 않았다. 현재22가 활성화되면 과거14-only 전체 소스 경계가 실패하는 것이 맞다. `test:vertical-current:contracts`는 현재22 경계와 기존14 행동6개,22 composition/runtime/App/art-dispatch/actor-local 계약을 실행한다. `test:integration` 및 offline 목록은 이 현재 묶음을 사용하며, 원래 `test:stage14-vertical:contracts`는 역사14 범위 명령으로 남는다.22 traversal/fullplay/native와14의 장기 플레이·렌더는 별도 명시적 실행이며 fast aggregate에 숨겨 반복하지 않는다.
 

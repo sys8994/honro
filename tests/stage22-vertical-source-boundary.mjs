@@ -24,6 +24,12 @@ function boundary(p){
  for(const a of p.library)if(Object.hasOwn(f.librarySha256,a.id))assert.equal(hash(a),f.librarySha256[a.id],'Existing asset '+a.id);
  const s=p.stages[21];
  assert.equal(s.initialState.honroVerticalStage22Revision,1);
+ assert.equal(s.initialState.honroVerticalStage22EncounterRevision,1,'Raw canonical encounter opt-in');
+ assert.equal(s.initialState.honroVerticalStage22PopulationCap,35,'Raw canonical finite cap');
+ assert.equal(s.units.filter(u=>u.team==='enemy').length,26,'Raw canonical initial roster');
+ assert.equal(s.units.filter(u=>u.team==='enemy'&&u.stageOverrides?.honroAct3Elite).length,6,'Raw canonical elite roster');
+ assert.deepEqual(Object.keys(s.initialState.honroVerticalStage22Activation||{}),['seal-porch','lower-ramp','ledger-front','near-gallery','register-rise','register-court','comparison-court','seal-response','ledger-response','register-response','comparison-lanterns'],'Raw canonical authored activation cells');
+ assert.deepEqual(Object.keys(s.initialState.honroVerticalStage22Spec?.entries||{}),['act3-response-22-0','act3-response-22-1','act3-response-22-2','act3-compare-ledgers'],'Raw canonical finite entry inventory');
  assert.deepEqual(s.objectives,old.objectives,'Original victory rules');
  for(const[k,v]of Object.entries(old.initialState))assert.deepEqual(s.initialState[k],v,'Original initial state '+k);
  for(const k of Object.keys(s.initialState))assert(Object.hasOwn(old.initialState,k)||k.startsWith('honroVerticalStage22'),'No unrelated initial state extension '+k);
@@ -40,7 +46,12 @@ for(const[id,mutate]of [
  ['global',p=>p.name+=' drift'],['stage-order',p=>p.stages.reverse()],
  ['party-hp',p=>p.stages[21].units.find(u=>u.team==='player').hp=99999],
  ['objective',p=>p.stages[21].initialState.honroAct3Steps.at(-1).kind='clear'],
- ['response-count',p=>p.stages[21].events[0].action.n++]
+ ['response-count',p=>p.stages[21].events[0].action.n++],
+ ['missing-encounter-revision',p=>delete p.stages[21].initialState.honroVerticalStage22EncounterRevision],
+ ['wrong-cap',p=>p.stages[21].initialState.honroVerticalStage22PopulationCap=999],
+ ['missing-enemies',p=>p.stages[21].units=p.stages[21].units.filter(u=>u.team!=='enemy')],
+ ['missing-activation',p=>delete p.stages[21].initialState.honroVerticalStage22Activation],
+ ['missing-entry-spec',p=>delete p.stages[21].initialState.honroVerticalStage22Spec]
 ]){const q=plain(p);mutate(q);assert.throws(()=>boundary(q),id+' must not be hidden');negatives.push(id);}
 
 const buildMarker="'stage14-vertical','stage22-vertical']",oldBuildMarker="'stage14-vertical']";
