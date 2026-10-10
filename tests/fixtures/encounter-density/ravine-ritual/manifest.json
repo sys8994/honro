@@ -1,0 +1,32 @@
+{
+  "schema": "honro-normal-arrival-fixture/v1",
+  "stageId": 11,
+  "snapshotFile": "ritual-start.json.gz",
+  "snapshotSha256": "ec740e2890c510742372347a7b6102b66019255188776e8a6787aeccd0758200",
+  "gzipSha256": "0eff8d2d6e0ca148bc3acb8055c2b87b21d7c6ce977a5640ded99e8ddac06810",
+  "gzipMtime": 0,
+  "round": 37,
+  "phase": "aim",
+  "sourceProjectSha256": "ee8713508d27c31735aaf0a5154168fedc7dbaf1d6bf70bcf1094ef2514aa53d",
+  "stageSha256": "9ded32962ee074f6de15e90e6474b48374136d08eed08b34c4e4c0a3fc1cc95c",
+  "canonicalStageSha256": "9ded32962ee074f6de15e90e6474b48374136d08eed08b34c4e4c0a3fc1cc95c",
+  "runtimeSha256": "e4f8297cfa48a2cbbc883883a797f336810a0da29645c4ab2e1856f9797b3725",
+  "nonProjectRuntimeSha256": "6ef0a3d5eef370cfc3afeafefe14b1ada5046d37f929319ef31bfe22e865f69d",
+  "nonProjectRuntimeRule": "runtimeParts({vector:false,render:false}).join(newline), excluding the single globalThis.HONRO_PROJECT assignment line only",
+  "mainSha256": "a989559fdcfacf8f9894a802a85734d8ac052a6645eaa0d2f5e51d6694abe899",
+  "interactionsSha256": "a5fccf352f44d023d3cdf9baf35ceb1afbcd932c480add7921c4b4049ac86ed8",
+  "helpersSha256": "ecc1c96518717e6f38a714aec73ff2763aeb44d609fbf8476c44d3ae8a9c2e32",
+  "arrivalDriverSha256": "9d9109ede8d561eb8ce51a1fb6c864c83f8a5f555070c4b7b8db42bb2e19f7fc",
+  "originalInputPolicyDriverSha256": "0a24e6f038d520da998c3bab720369fc2f34afb202219b79255998ddf73bc423",
+  "arrivalRuntimeSha256": "e4f8297cfa48a2cbbc883883a797f336810a0da29645c4ab2e1856f9797b3725",
+  "arrivalCheckoutCommit": "cfdf4e4d59327918dc1ec45daf6ade7aacc5ae22",
+  "arrivalInitialEnemies": 53,
+  "arrivalEndRound": 45,
+  "ritualCompletedRound": 41,
+  "scope": "Unmodified full profile/battle saved at the first input-safe boundary after the real ritual warning. Fresh level-10 normal-input arrival from canonical entry, preserving the original fullplay input policy. No actor, HP, resource or objective edits. A subsequent wait-only Continue is a response branch, not a second full-stage playthrough.",
+  "limitations": [
+    "Native input, not browser or human difficulty approval.",
+    "The source project may differ in other stages; exact stage11 and every non-project runtime byte plus Continue/interaction/helper source are required.",
+    "Original fixed-policy arrival completed only the ritual prefix through round45, not the whole map."
+  ]
+}

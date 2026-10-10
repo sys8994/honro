@@ -45,6 +45,15 @@ W.execute=function(app,action){
   if(composed(b)){
    const n=action.source.endsWith('-3')?1:0,mem=composition(b),warning=mem.echoWarnings[n],serial=b.honroState.actorTurnSerial||0;
    if(!warning||serial<=warning.serial)return false;
+   const D=G.HonroEncounterDensity,exact=b.honroStage11DefenseEntries?.[n];
+   if(D?.active(b)&&Array.isArray(exact?.members)){
+    if(mem.entries[action.source])return true;
+    if(!D.memory(b).existingWarnings?.[action.source]?.opportunity||!D.safe(app))return false;
+    if(exact.members.some(m=>app.engine.heroesAlive().some(h=>Math.abs(h.x-m.x)<280&&Math.abs(h.y-m.y)<300)))return false;
+    const before=b.units.length;if(!D.spawnMembers(app,action,exact))return false;
+    mem.entries[action.source]={choice:0,x:exact.x,y:exact.y,round:b.round,serial,ids:b.units.slice(before).map(u=>u.id)};
+    return true; // Exact members already have one authored elite, never factory promotion.
+   }
    const alternate=b.honroStage11DefenseAlternates?.[n],choices=[{...action,spacing:90},...(alternate?[{...action,...alternate,spacing:90}]:[])];
    for(const choice of choices)if(safeEntry(b,[choice])&&execute(app,choice)!==false){result=true;mem.entries[action.source]={x:choice.x,y:choice.y,round:b.round};break;}
   }else result=execute(app,action);
@@ -95,7 +104,8 @@ A.attach=function(app,e){const out=attach(app,e),b=e.b;if(!composed(b)||e.honroR
 function prepareEchoWarning(app){const b=app.engine.b;if(!composed(b)||!done(b,'knot-east')||done(b,'hold-knots'))return;
  const count=b.honroState.act2?.holds?.['hold-knots']?.spawned||0;if(count>=6)return;const n=count<3?0:1,mem=composition(b);if(mem.echoWarnings[n])return;
  mem.echoWarnings[n]={serial:b.honroState.actorTurnSerial||0,round:b.round};
- app.event(n===0?'서쪽 매듭에서 잔향 셋이 뭉칩니다. 다음 행동 뒤에 들어오니 먼저 자리를 잡으세요.':'남은 잔향 셋은 동쪽 입구에서 모입니다. 이번 무리가 지나면 새 잔향은 없습니다.');app.dirty=true;
+ const exact=G.HonroEncounterDensity?.active(b)&&Array.isArray(b.honroStage11DefenseEntries?.[n]?.members);
+ app.event(exact?(n===0?'의식대 서쪽 낮은 턱에서 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구를 차지하면 기다립니다.':'의식대 동쪽 낮은 턱에서 마지막 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구를 차지하면 기다립니다.'):n===0?'서쪽 매듭에서 잔향 셋이 뭉칩니다. 다음 행동 뒤에 들어오니 먼저 자리를 잡으세요.':'남은 잔향 셋은 동쪽 입구에서 모입니다. 이번 무리가 지나면 새 잔향은 없습니다.');app.dirty=true;
 }
 function residentShelter(app,dt){const e=app.engine,b=e.b;if(!composed(b)||dt<=0||app.dialogue||!done(b,'resident')||b.side!==0||b.phase!=='aim'||b.projectiles.length)return;
  const m=b.honroMarkers.find(m=>m.id==='resident'),u=e.unit(m?.target),goal=b.honroStage11Shelter;if(!u||u.dead||!goal)return;

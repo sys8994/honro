@@ -23,11 +23,13 @@ const scenes=[
  {id:'crosswind-upper-court',source:'ravine-response-ravine-crosswind',support:'rv-ritual-buttress',xs:[7470,7570,7660,7950]},
  {id:'ritual-west-front',source:'ravine-response-ritual-west-pursuit',support:'rv-ritual-buttress',xs:[5570,5650,5730,5810]},
  {id:'ritual-east-court',source:'ravine-response-ritual-east-turn',support:'rv-ritual-buttress',xs:[7470,7570,7660,7950]},
- {id:'ritual-echo-flank-guard',source:'hold-knots',support:'rv-ritual-buttress',xs:[6590,6710,7480,8460]},
- {id:'ritual-two-echo-waves',source:'hold-knots',support:'rv-ritual-buttress',xs:[7470,7570,7660,7950]}
+ {id:'ritual-echo-flank-guard',source:'hold-knots',support:'rv-ritual-buttress',xs:[6590,6710,7480,8460],expectedBirths:{'hold-knots-0':0,'hold-knots-3':0},intent:'These legal old support positions occupy the new west mouth; no wave may overlap them.'},
+ {id:'ritual-two-echo-waves',source:'hold-knots',support:'rv-ritual-buttress',xs:[7470,7570,7660,7950],expectedBirths:{'hold-knots-0':3,'hold-knots-3':0},intent:'The east defender deliberately holds the new east mouth. West may enter; east must wait.'}
 ];
+const selectedScenes=scenes.filter(s=>!process.argv[2]||s.id===process.argv[2]);
+assert(selectedScenes.length,'Unknown response-pressure scene: '+process.argv[2]);
 const rows=[],failures=[];
-for(const scene of scenes.filter(s=>!process.argv[2]||s.id===process.argv[2])){
+for(const scene of selectedScenes){
  const profile=C.defaults();profile.recruited=g.HonroStageRules.stageParty(11);for(const cls of profile.recruited)profile.heroes[cls].xp=g.HonroProgression.legacyCampaignAnchor(10);
  const {b,e,app}=battlefield(g,11,{profile});g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);A.attach(app,e);
  assert.equal(e.alive(1).length,53);assert.equal(b.enemyLimit,4);assert(e.heroesAlive().every(u=>u.level===10));
@@ -55,10 +57,13 @@ for(const scene of scenes.filter(s=>!process.argv[2]||s.id===process.argv[2])){
  const waves=expected.map(source=>{const ids=new Set(births.filter(v=>v.source===source).map(v=>v.actorId)),waveActions=actions.filter(v=>ids.has(v.actorId)),waveShots=shots.filter(v=>ids.has(v.actorId)),effect=damage.filter(v=>ids.has(v.actorId)&&v.targetSide===0);return {source,births:births.filter(v=>v.source===source),actions:waveActions,shots:waveShots,damage:effect,firstAction:waveActions[0]||null,firstFire:waveShots[0]||null,firstEffect:effect[0]||null,hp:effect.reduce((n,v)=>n+v.hp,0),shield:effect.reduce((n,v)=>n+v.shield,0),status:effect.length?'actual-party-pressure':'no-party-pressure-observed'};});
  const row={...scene,method:'Declared completion flags and supported party poses; production warnings/defend/entry/AI with all 53 initial enemies retained',initial,notices,responses,actions,shots,damage,queues,births,waves,turns,frames,round:b.round,phase:b.phase,final:snapshot(),warnings:plain(D.memory(b).existingWarnings||{}),hold:plain(a.holds?.['hold-knots']||null)};rows.push(row);
  await writeFile(out+'/'+scene.id+'.json',JSON.stringify({provenance,row},null,2)+'\n');
- for(const wave of waves){const expectedCount=wave.source.startsWith('hold-knots-')?3:RAVINE_RESPONSES.find(r=>'ravine-response-'+r.id===wave.source).members.length;try{assert.equal(wave.births.length,expectedCount,'Exact finite wave '+wave.source);assert(wave.births.every(v=>v.warning?.opportunity),'Each actual birth follows recorded real player action');assert.equal(b.round,firstRound+turns,'Actual enemy turn window');}catch(err){failures.push({scene:scene.id,source:wave.source,detail:err.message});}console.log(JSON.stringify({scene:scene.id,source:wave.source,births:wave.births.length,actions:wave.actions.length,shots:wave.shots.length,hp:wave.hp,shield:wave.shield,firstEffect:wave.firstEffect,round:b.round}));}
+ for(const wave of waves){const expectedCount=scene.expectedBirths?.[wave.source]??(wave.source.startsWith('hold-knots-')?3:RAVINE_RESPONSES.find(r=>'ravine-response-'+r.id===wave.source).members.length);try{assert.equal(wave.births.length,expectedCount,'Exact finite wave '+wave.source);assert(wave.births.every(v=>v.warning?.opportunity),'Each actual birth follows recorded real player action');assert.equal(b.round,firstRound+turns,'Actual enemy turn window');}catch(err){failures.push({scene:scene.id,source:wave.source,detail:err.message});}console.log(JSON.stringify({scene:scene.id,source:wave.source,births:wave.births.length,actions:wave.actions.length,shots:wave.shots.length,hp:wave.hp,shield:wave.shield,firstEffect:wave.firstEffect,round:b.round}));}
 }
 const sources=[...new Set(rows.flatMap(r=>r.waves.map(w=>w.source)))];
-for(const source of sources)if(!rows.some(r=>r.waves.some(w=>w.source===source&&w.firstEffect)))failures.push({source,detail:'No actual pressure in any tested legal support fixture. Idle actions alone are not accepted as tactical effect.'});
+// Echo pressure is now replayed from a real unmodified ritual-start save in
+// stage11-density-real-save-continuation.mjs; these old poses explicitly test
+// occupied entry waiting, not an order to spawn through the companions.
+for(const source of sources.filter(s=>!s.startsWith('hold-knots-')))if(!rows.some(r=>r.waves.some(w=>w.source===source&&w.firstEffect)))failures.push({source,detail:'No actual pressure in any tested legal support fixture. Idle actions alone are not accepted as tactical effect.'});
 const report={provenance,scope:'Enemy pressure and vertical-line diagnostics with explicit objective/pose setup. Initial 53 retained; four-action cap unchanged; no damage, enemy removal, infinite resources, movement or AI injection. Not normal arrival, route execution, chapter clear, browser or visual approval.',initialInventory:[...RAVINE_ENCOUNTERS.map(q=>({id:q.id,purpose:q.purpose,memberIds:q.members.map((_,i)=>`rv11-${q.id}-${i}`),roles:q.members.map(m=>m.role)})),{id:'resident-spirit',memberIds:['resident-spirit-4'],purpose:'Existing attached-spirit rescue gate'}],rows,failures};
 await writeFile(out+'/summary.json',JSON.stringify(report,null,2)+'\n');
-if(failures.length){console.error('BLOCKED',JSON.stringify(failures));process.exitCode=1;}else console.log('PASS each exact finite wave has actual party pressure in at least one legal support fixture; no normal-clear claim');
+if(failures.length){console.error('BLOCKED',JSON.stringify(failures));process.exitCode=1;}else console.log('PASS five generic response groups have actual pressure; occupied exact echo mouths correctly wait. Echo gameplay uses the independent normal ritual-prefix trace; the actual-save replay covers Continue. No normal-clear claim');

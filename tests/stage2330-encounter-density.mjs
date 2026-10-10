@@ -63,11 +63,11 @@ function shotFixture(stage,support,x){const q=fixture(stage,{profile:plain(profi
 for(const c of[
  {stage:23,support:'sy-ground',x:2460,skill:'M04',angle:-10.719419780217482,power:.5869983137043493,minimum:3},
  {stage:23,support:'sy-ground',x:3390,skill:'M04',angle:-.21054195347867383,power:.5302858853895969,minimum:3},
- {stage:30,support:'sf-ferry-court',x:5500,skill:'M04',angle:149,power:.5,minimum:8},
+ {stage:30,support:'sf-ferry-court',x:5500,skill:'M04',angle:149,power:.5,minimum:7,exactEnemyIds:['sf-dw1','sf-dw2','sf-dw3','sf-dw4','sf-dw6','sf-dw8','sf-de8']},
  {stage:23,support:'sy-stone-bridge',x:5360,skill:'M11',angle:89,power:.35,minimum:1,reflection:true},
  {stage:30,support:'sf-ferry-court',x:5520,skill:'M11',angle:-59,power:.5,minimum:1,reflection:true}
 ])check(c.stage+': actual '+c.skill+' from '+c.support+'@'+c.x,()=>{
  const q=shotFixture(c.stage,c.support,c.x),hp=Object.fromEntries(q.b.units.map(u=>[u.id,u.hp])),hits=[],contact=[],impact=q.e.impact.bind(q.e),before=plain(q.b.terrain);q.e.impact=(p,v)=>{if(v.unit)hits.push({id:v.unit.id,bounces:p.bounces});if(v.terrain)contact.push({id:v.terrain.id,bounces:p.bounces});return impact(p,v);};assert(q.e.fire(c.skill,c.angle,c.power));let frames=0;while(q.b.projectiles.length||q.u.meleeAction){q.e.tick(C.STEP);assert(++frames<1800);}
- const damaged=q.b.units.filter(u=>u.hp<hp[u.id]);assert(!damaged.some(u=>u.side===0));assert(damaged.filter(u=>u.side===1).length>=c.minimum);assert.deepEqual(plain(q.b.terrain),before);if(c.reflection)assert(hits.some(h=>h.bounces>=1));const row={...c,hits,contact,damage:Object.fromEntries(damaged.map(u=>[u.id,hp[u.id]-u.hp]))};tactics.push(row);return row;
+ const damaged=q.b.units.filter(u=>u.hp<hp[u.id]);assert(!damaged.some(u=>u.side===0));assert(damaged.filter(u=>u.side===1).length>=c.minimum);if(c.exactEnemyIds)assert.deepEqual(damaged.filter(u=>u.side===1).map(u=>u.id).sort(),[...c.exactEnemyIds].sort(),'The seven original AoE defenders remain; the command archer now owns a separate live entry sightline');assert.deepEqual(plain(q.b.terrain),before);if(c.reflection)assert(hits.some(h=>h.bounces>=1));const row={...c,hits,contact,damage:Object.fromEntries(damaged.map(u=>[u.id,hp[u.id]-u.hp]))};tactics.push(row);return row;
 });
 await mkdir('_local/reports/encounter-density',{recursive:true});await writeFile('_local/reports/encounter-density/stage2330-contracts.json',JSON.stringify({sourceHash:hash(p),controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),scope:'Authoring, initial/spawn physics, exact snapshot reattach and legal level16 rank1 actual tactical shots. Not ordinary arrival/fullplay, browser or quality approval.',checks,bodies,entries,tactics},null,2)+'\n');
