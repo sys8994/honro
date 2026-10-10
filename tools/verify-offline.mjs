@@ -11,6 +11,7 @@ const checks=[
  ['act3-waterworks','npm',['run','test:act3:waterworks']],
  ['forest-cavern','npm',['run','test:forest-cavern']],
  ['playtest-template','npm',['run','test:playtest-template']],
+ ['workshop-responsive-static','npm',['run','test:workshop-responsive:static']],
  ['custom-map-return','npm',['run','test:custom-map-return']],
  ['objective-clarity','npm',['run','test:objective-clarity']],
  ['act3-split','npm',['run','test:act3:split']],
