@@ -84,8 +84,19 @@ const newDispatch=` // Fresh vertical22 opts only its authored, clipped current-
  // the existing painter. Other Act3 maps and old saves keep their old branch.
  const verticalArchivePlanes=(t.honroSpaceSurfaceId||t.honroAct3Gate)&&this.battle?.honroStage===22&&!this.battle.honroCustom&&this.battle.honroVerticalStage22Revision===1&&this.battle.honroMap?.vertical22Art?.revision===1&&this.battle.honroMap?.space?.terrainPlanes?.some(p=>p.terrainId===t.id);
  if(G.HonroAct2SpatialArt&&((t.honroSpaceSurfaceId&&G.HonroAct2SpatialArt.active(this.battle))||verticalArchivePlanes))return G.HonroAct2SpatialArt.terrain(c,t,this.battle);`;
+// Exact independently published party-motion integration, ca03e11 / public
+// master2322c6d (same tree). Keep the pre22 fixture and every other source
+// immutable; unknown motion changes still fail, including negative controls.
+const publishedMotion = Object.fromEntries([
+ ['shared/runtime/party-rig.js',{before:'6943fbaf7f51a8c58cfe3797837830d48e920b62697a11d64032a83079a76d63',after:'8ae6a0d5e5ffdd53bf57a1e9c1f43ba9ab2f59ac3c254275d4594a2d9ffbe405'}],
+ ['shared/runtime/renderer.js',{before:'38006988f48c26983d2a69db39cd531e05471afc51b108d848b814d4eefe642c',after:'68e8819039c46987c9d2ab6928731c6f32af66d4c96e1546c20b3dee2e5c0012'}]
+]);
 function sourceBoundary(source){
- for(const[path,sha]of Object.entries(f.unchangedFiles))assert.equal(hash(source[path]),sha,'Unchanged production source '+path);
+ for(const[path,sha]of Object.entries(f.unchangedFiles)){
+  const approved=publishedMotion[path],actual=hash(source[path]);
+  if(approved){assert.equal(sha,approved.before,'Immutable pre-motion source '+path);assert([approved.before,approved.after].includes(actual),'Exact published motion or pre-motion source '+path);}
+  else assert.equal(actual,sha,'Unchanged production source '+path);
+ }
  assert.equal(source['shared/build.mjs'].split(buildMarker).length,2,'Exactly one declared22 registration');
  assert.equal(hash(source['shared/build.mjs'].replace(buildMarker,oldBuildMarker)),f.buildBeforeSha256,'Only22 shared registration');
  assert.equal(source['shared/runtime/art-dark.js'].split(newDispatch).length,2,'Exactly the declared fresh22 painter opt-in');
@@ -93,9 +104,9 @@ function sourceBoundary(source){
 }
 const sources=Object.fromEntries(await Promise.all([...Object.keys(f.unchangedFiles),'shared/build.mjs','shared/runtime/art-dark.js'].map(async path=>[path,await readFile(path,'utf8')])));
 sourceBoundary(sources);
-for(const path of ['shared/runtime/stage14-vertical.js','shared/engine/src/physics.ts','shared/runtime/encounter-density.js','shared/build.mjs','shared/runtime/art-dark.js']){
+for(const path of ['shared/runtime/party-rig.js','shared/runtime/renderer.js','shared/runtime/stage14-vertical.js','shared/engine/src/physics.ts','shared/runtime/encounter-density.js','shared/build.mjs','shared/runtime/art-dark.js']){
  assert.throws(()=>sourceBoundary({...sources,[path]:sources[path]+'\n// unapproved drift\n'}),'Production drift must fail '+path);negatives.push('source:'+path);
 }
 await mkdir('_local/reports/vertical-stages',{recursive:true});
-await writeFile('_local/reports/vertical-stages/stage22-source-boundary.json',JSON.stringify({passed:true,sourceCommit:f.sourceCommit,sourceTree:f.sourceTree,baselineFixtureSha256:hash(bytes),nonTargetStages:29,includingLatest14:true,existingAssets:f.libraryOrder.length,addedAssetIds,unchangedProductionFiles:Object.keys(f.unchangedFiles).length,negativeControls:negatives,scope:'Current source preservation; original22 goals/party/response semantics, latest14, existing8 density maps and global physics. Dedicated22 runtime has separate behavioral contracts. No historical golden rewrite or browser/gameplay/visual approval.'},null,2)+'\n');
-console.log('PASS current22 boundary: exact29 stages,608 assets,128 sources and '+negatives.length+' negative controls');
+await writeFile('_local/reports/vertical-stages/stage22-source-boundary.json',JSON.stringify({passed:true,sourceCommit:f.sourceCommit,sourceTree:f.sourceTree,baselineFixtureSha256:hash(bytes),nonTargetStages:29,includingLatest14:true,existingAssets:f.libraryOrder.length,addedAssetIds,unchangedProductionFiles:Object.keys(f.unchangedFiles).length-Object.keys(publishedMotion).length,publishedMotionSources:publishedMotion,negativeControls:negatives,scope:'Current source preservation; original22 goals/party/response semantics, latest14, existing8 density maps and global physics. Dedicated22 runtime has separate behavioral contracts. No historical golden rewrite or browser/gameplay/visual approval.'},null,2)+'\n');
+console.log('PASS current22 boundary: exact29 stages,608 assets,126 fixed sources plus2 exact published-motion alternatives and '+negatives.length+' negative controls');

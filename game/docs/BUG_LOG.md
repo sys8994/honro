@@ -2017,3 +2017,7 @@ Cause: attack hand angles stayed neutral while implements rotated; the shortest 
 Change: add the post-calibration authored motion overlay, fixed sword/caster foot contacts, outward sword preparation and coupled grip, bow follow-through, upright staff/free-hand casting and delayed hip-gourd response, and selected-skill paper talisman. Observe existing melee beat timing, reverse/alternating cuts, and body-projectile flight without changing simulation fields.
 
 Verification: deterministic production rig/adapter Native Canvas frames and actual Engine.fire/tick event captures; character balance/portrait regression passed. Browser integration launch is blocked by Chromium socket EPERM. Full verify stops at rc20-map-audit's exact combat-density project hash; migration stops at original580 asset membership/order. Both exact failures were reproduced on untouched public master ca0bddc6 in a separate worktree, not caused by the motion overlay. These aggregate failures and browser/Pages verification remain open; Native evidence is not deployed-browser play.
+
+### 2026-10-10 · 공개 모션과 수직14/22 후보의 통합 경계
+
+공개 모션과 수직14 목표 표시·수직22 기록고 후보를 병합했다. 생산 소스는 서로 독립이며 package.json의 테스트 등록만 양쪽을 보존해 해결하고 두 HTML은 공통 빌드로 재생성했다. 기존22의128소스 고정 검사는 이미 공개된 party-rig/renderer 두 파일도 과거 해시로 고정하므로, 해당 두 파일의 정확한 전후 SHA256만 허용한다. 원래 fixture와 나머지126개 소스·29장·608기존 자산은 유지하고 두 모션 파일의 추가 변조도 음성검사로 거부한다. 이는 임의 모션이나 다른 생산 변경 허용이 아니다. 통합 검증 상태와 브라우저/전체검사 제한은 VERTICAL_MOTION_INTEGRATION.md에 별도 기록한다.
