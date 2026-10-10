@@ -4,6 +4,7 @@ import type {Engine} from './engine';
 import type {Battle,Unit,Projectile} from './types';
 import {passiveRank} from './progression';
 import {clamp} from './math';
+import {SKILLS} from './data';
 type Stake=NonNullable<Battle['stakes']>[number];
 const hostile=(z:Stake,u:Unit)=>!u.dead&&u.side!==z.side&&u.side!==2;
 export function stakeBoost(e:Engine,z:Stake){const caster=e.unit(z.owner);return caster?(1+passiveRank(caster,'MP01')*.02)*(1+(z.effectBoost||0)):1;}
@@ -28,7 +29,7 @@ export function triggerOffensiveStake(e:Engine,z:Stake,nearby:Unit[],p:Projectil
    if(!u.dead&&z.damage>15)e.impulse(u,Math.sign(u.x-x||1)*(1-d/(radius+u.r))*95,-45);
   }
   for(const u of fresh)z.usedRounds[u.id]=b.round;
-  for(const t of [...b.terrain]){if(t.broken||t.hp>=9999)continue;const d=Math.hypot(x-clamp(x,t.x,t.x+t.w),y-clamp(y,Math.min(t.y,t.y+(t.slope||0)),t.y+t.h));if(d<radius)e.damageTerrain(t,z.damage*(.5+.5*(1-d/radius)),0,z.owner);}
+  for(const t of [...b.terrain]){if(t.broken||t.hp>=9999)continue;const d=Math.hypot(x-clamp(x,t.x,t.x+t.w),y-clamp(y,Math.min(t.y,t.y+(t.slope||0)),t.y+t.h));if(d<radius)e.damageTerrain(t,z.damage*(SKILLS[z.skill]?.terrain||1)*(.5+.5*(1-d/radius)),0,z.owner);}
  }else{
   for(const u of fresh){z.usedRounds[u.id]=b.round;e.hurt(u,z.damage,z.owner,false,p,z);if(!u.boss){u.moveLeft=0;delete u.aiMove;delete u.moveTarget;u.moving=0;}e.fx('ring',u.x,u.y,p.color,45);}
  }
