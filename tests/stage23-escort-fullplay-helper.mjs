@@ -45,7 +45,12 @@ export function escortNavigator(g,b,e,{tick,ready,record,stageId=18,routes=null,
    const link=state.links[state.index];if(!link)break;const p=link.mode?link.from:link.point;const reached=Math.abs(u.x-p.x)<14&&Math.abs(u.y-p.y)<55&&e.grounded(u)&&(!p.surfaceId||surface(u)===p.surfaceId);
    if(reached){if(link.mode){if(link.mode.kind==='jump'){if(u.moveLeft<e.jumpCost(u)+Math.abs(link.mode.x-u.x)+65)break;if(!e.jump(u))break;record({op:'jump',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});}if(link.mode.kind==='drop')record({op:'drop',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});state.air=link.mode;state.airFrames=0;state.airStartY=u.y;state.departed=false;continue;}state.index++;continue;}
    if(!link.mode&&e.grounded(u)&&Math.abs(u.y-p.y)>350&&Math.abs(u.x-p.x)<180){record({op:'nav-replan',hero:u.cls,reason:'ordinary fall left a route waypoint above reach',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}
-   const old={x:u.x,y:u.y};if(Math.abs(u.x-p.x)>5)e.move(Math.sign(p.x-u.x)*(Math.abs(p.x-u.x)<22?.35:1),C.STEP);
+   const old={x:u.x,y:u.y},dx=p.x-u.x,surfaceSeam=p.surfaceId&&surface(u)!==p.surfaceId&&e.grounded(u)&&Math.abs(u.y-p.y)<55;
+   // A topological seam may be a few pixels beyond the old 5px stopping band.
+   // Continue ordinary fine walking into the declared surface, in the existing
+   // route's direction; never mark the neighbouring ground as the bridge.
+   if(Math.abs(dx)<=5&&surfaceSeam){const next=state.links[state.index+1]?.point||p,dir=Math.sign(next.x-(link.from?.x??u.x))||Math.sign(dx);if(dir)e.move(dir*.35,C.STEP);}
+   else if(Math.abs(dx)>5)e.move(Math.sign(dx)*(Math.abs(dx)<22?.35:1),C.STEP);
    if(e.grounded(u)&&(still>12&&Math.abs(u.x-p.x)>25||Math.abs(u.x-p.x)<25&&u.y-p.y>80)){if(recoveryCount>=3){record({op:'nav-replan',hero:u.cls,reason:'three ordinary recovery jumps did not reach waypoint',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}if(e.jump(u)){recoveryCount++;record({op:'recovery-jump',hero:u.cls,x:u.x,y:u.y,goal:p});still=0;}}
    tick();still=distance(old,u)<.02?still+1:0;if(still>100){record({op:'nav-blocked',hero:u.cls,position:{x:u.x,y:u.y},support:surface(u),goal:p});nav.delete(u.id);break;}
   }
