@@ -8,7 +8,7 @@ const files=script=>script.split(' && ').map(command=>{
  return command.slice('node tests/'.length,-'.mjs'.length);
 });
 assert.deepEqual(files(scripts['test:stage14-vertical:contracts']),[
- 'stage14-vertical-composition','stage14-vertical-runtime','stage14-vertical-app-resume',
+ 'stage14-vertical-source-boundary','stage14-vertical-composition','stage14-vertical-runtime','stage14-vertical-app-resume',
  'stage14-vertical-bridge','stage14-vertical-defense-guidance','stage14-vertical-legacy-save'
 ]);
 assert.deepEqual(files(scripts['test:encounter-density:contracts']),[
@@ -32,4 +32,4 @@ for(const name of [
 ])assert(fullDensity.includes(name),'The full historical/behavioral density suite retains '+name);
 for(const kind of ['traversal','tactics','fullplay'])assert.equal(scripts['test:stage14-vertical:'+kind],'node tests/stage14-vertical-'+kind+'.mjs');
 assert.equal(scripts['test:stage14-vertical:native'],'node --expose-gc tests/stage14-vertical-native-art.mjs');
-console.log('PASS vertical regression command scope: six14 contracts, seven density contracts, aggregate wiring and retained full density evidence');
+console.log('PASS vertical regression command scope: seven14 contracts, seven density contracts, aggregate wiring and retained full density evidence');

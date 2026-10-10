@@ -137,7 +137,7 @@
     "test:workshop-responsive": "npm run test:workshop-responsive:static && npm run test:workshop-responsive:browser",
     "test:stage14-vertical": "node tests/stage14-vertical-composition.mjs && node tests/stage14-vertical-traversal.mjs && node tests/stage14-vertical-runtime.mjs && node tests/stage14-vertical-app-resume.mjs && node tests/stage14-vertical-bridge.mjs && node tests/stage14-vertical-tactics.mjs && node tests/stage14-vertical-defense-guidance.mjs",
     "capture:stage14-vertical": "node --expose-gc tests/stage14-vertical-native-art.mjs",
-    "test:stage14-vertical:contracts": "node tests/stage14-vertical-composition.mjs && node tests/stage14-vertical-runtime.mjs && node tests/stage14-vertical-app-resume.mjs && node tests/stage14-vertical-bridge.mjs && node tests/stage14-vertical-defense-guidance.mjs && node tests/stage14-vertical-legacy-save.mjs",
+    "test:stage14-vertical:contracts": "node tests/stage14-vertical-source-boundary.mjs && node tests/stage14-vertical-composition.mjs && node tests/stage14-vertical-runtime.mjs && node tests/stage14-vertical-app-resume.mjs && node tests/stage14-vertical-bridge.mjs && node tests/stage14-vertical-defense-guidance.mjs && node tests/stage14-vertical-legacy-save.mjs",
     "test:stage14-vertical:traversal": "node tests/stage14-vertical-traversal.mjs",
     "test:stage14-vertical:tactics": "node tests/stage14-vertical-tactics.mjs",
     "test:stage14-vertical:fullplay": "node tests/stage14-vertical-fullplay.mjs",

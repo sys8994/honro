@@ -34,4 +34,6 @@ C 한 구역의 첫 표면 시안(`6de2339e…`)은 실제 collision polygon 안
 
 승인된 C의51면은 exact 보존하고, 상층 큰 암면·회귀 경사·F 기단·강변으로 같은 차가운 돌의 윗면/앞면/그늘을 확장했다. 큰 절리는4개 주 덩어리 중심이며 총279개 공통 `terrainPlanes`가 실제 충돌 외곽에 clip된다. 집 아래 석축 접촉과 F 목재 받침의 요소 순서를 보존하고 실제 목교24두께에 목재면을 적용했다. 하부 안개는 양끝이 갑자기 잘리지 않는 두 방향 감쇠다.
 
-저작 source SHA256은 `84e56a5c0c9f8cdf688675317aa2a8deb5d14cd3ea6c350e61209774a867bf16`이다. 순수 author/compile·반복생성·environment·SVG/Path2D, 기존 충돌/배우/동선과 다른29장 exact를 확인했다. `native-rock-language-full-03`의 동일카메라 전후16컷이 완료됐고 상·중·하층 정상줌과 세로/가로/전체 축소 검토를 진행한다. 원경의 큰 면 단순화는 남아 있으며 아직 전체 미술 승인 전이다. 이 commit은 저작 source만 보존하며 canonical/HTML 재생성은 다음 검수 단위다.
+저작 source SHA256은 `84e56a5c0c9f8cdf688675317aa2a8deb5d14cd3ea6c350e61209774a867bf16`이다. 순수 author/compile·반복생성·environment·SVG/Path2D, 기존 충돌/배우/동선과 다른29장 exact를 확인했다. `native-rock-language-full-03`의 동일카메라 전후16컷이 완료됐고 상·중·하층 정상줌과 세로/가로/전체 축소 검토를 진행한다. 원경의 큰 면 단순화는 남아 있으며 03:45 UTC 부모의 전체/상층/하층 직접 검토에서 사용자에게 보여줄 Native 검수 후보로 승인했다. 최종 Pages 미술 검수는 별개다. 이 commit은 저작 source만 보존하며 canonical/HTML 재생성은 다음 검수 단위다.
+
+최종14 후보에서는 이 승인된 전층 미술을 canonical 및 공통 생성HTML에 반영했다. 원경의 단순화/큰 암면 반복감은 후속 개선점이며 게임플레이 차단으로 보고되지는 않았다.
