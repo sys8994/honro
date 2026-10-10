@@ -6,15 +6,18 @@ import {runtime} from '../game/tests/helpers.mjs';
 import {authorStage22Vertical,V22_GROUPS} from '../tools/map-forge/apply-stage22-vertical.mjs';
 const plain=v=>JSON.parse(JSON.stringify(v)),g=await runtime({legacyMaps:false});
 if(!g.HonroStage22Vertical)vm.runInContext(await readFile('shared/runtime/stage22-vertical.js','utf8'),g);
+const oldStage=JSON.parse(await readFile('tests/fixtures/vertical-stages/before-stages.json','utf8')).stages.find(s=>s.metadata.stageId===22);
+assert(oldStage&&!oldStage.initialState.honroVerticalStage22Revision,'Explicit immutable horizontal22 fixture');
+assert.equal(oldStage.units.filter(u=>u.team==='enemy').length,20);
 const C=g.HONRO_CORE,base=g.HONRO_PROJECT,p=await authorStage22Vertical(base,g),s=p.stages[21],rows=[];
 assert.equal(JSON.stringify(p.stages.filter(s=>s.metadata.stageId!==22)),JSON.stringify(base.stages.filter(s=>s.metadata.stageId!==22)));
 assert.deepEqual(plain(await authorStage22Vertical(p,g)),plain(p),'Idempotent encounter author');
-assert.deepEqual(plain(s.initialState.honroAct3Steps),plain(base.stages[21].initialState.honroAct3Steps));
+assert.deepEqual(plain(s.initialState.honroAct3Steps),plain(oldStage.initialState.honroAct3Steps));
 assert.equal(s.units.filter(u=>u.team==='enemy').length,26);assert.equal(s.units.filter(u=>u.stageOverrides?.honroAct3Elite).length,6);
 assert.equal(g.HonroSpaceLayout.validate(s).length,0);assert.equal(g.HonroTerrainDomain.validate(s).length,0);
 assert.equal(s.initialState.honroActiveLimit,3);assert.equal(s.initialState.honroVerticalStage22PopulationCap,35);
 assert.equal(s.events.reduce((n,e)=>n+e.action.n,0),7);
-for(const ev of s.events){const old=base.stages[21].events.find(e=>e.id===ev.id);for(const key of ['id','once','when'])assert.deepEqual(plain(ev[key]),plain(old[key]));for(const key of ['type','kind','n','source','act3Authored','elite'])assert.equal(ev.action[key],old.action[key]);assert.deepEqual([ev.entry.x,ev.entry.y],[ev.action.x,ev.action.y]);assert.notDeepEqual([ev.action.x,ev.action.y],[old.action.x,old.action.y]);assert(ev.action.support.startsWith('v22-'));}
+for(const ev of s.events){const old=oldStage.events.find(e=>e.id===ev.id);for(const key of ['id','once','when'])assert.deepEqual(plain(ev[key]),plain(old[key]));for(const key of ['type','kind','n','source','act3Authored','elite'])assert.equal(ev.action[key],old.action[key]);assert.deepEqual([ev.entry.x,ev.entry.y],[ev.action.x,ev.action.y]);assert.notDeepEqual([ev.action.x,ev.action.y],[old.action.x,old.action.y]);assert(ev.action.support.startsWith('v22-'));}
 for(const difficulty of Object.keys(C.DIFFICULTIES)){
  const profile=C.defaults();profile.recruited=['archer','mage','knight','occultist'];profile.settings.difficulty=difficulty;for(const cls of profile.recruited)profile.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(22).entryLevel);
  const b=g.HonroMaps.createBattle(s,p,profile),raw=JSON.stringify(b.units.map(u=>[u.id,u.x,u.y,u.hp])),actors=plain(b.units);g.HonroStageRules.sanitizeStageBattle(b);assert.equal(JSON.stringify(b.units.map(u=>[u.id,u.x,u.y,u.hp])),raw,'No silent pose repair');const e=new C.Engine(b,()=>{},true);

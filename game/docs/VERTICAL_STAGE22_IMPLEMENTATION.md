@@ -6,10 +6,10 @@
 
 - `tools/map-forge/apply-stage22-vertical.mjs`: 검증된 별도 geometry author를 호출한 뒤 새22의 군집/유한 입구/저장용 명세만 작성한다. 다른29장 JSON은 exact이며 반복 적용 결과도 동일하다. 이 모듈은 기존 저장을 고치는 함수가 아니다.
 - `shared/runtime/stage22-vertical.js`: `honroStage===22`, 비custom, `honroVerticalStage22Revision===1`, `honroVerticalStage22EncounterRevision===1` 모두를 가진 전장만 opt-in한다. geometry만 적용한 옛 snapshot에도 교전 revision을 임의로 붙이지 않는다.
-- 독립 테스트 두 개는 공통 build 등록 없이 `vm.runInContext`로 위 런타임을 한 번 로드한다.
+- composition/runtime 테스트는 공통 build 등록이 있으면 그것을 사용하고, 독립 모드에서는 `vm.runInContext`로 런타임을 한 번 로드한다. 구22 비교의 기준은 현재 canonical이 아니라 `tests/fixtures/vertical-stages/before-stages.json`의 원본22다. 새22가 이미 canonical에 들어간 뒤에도 원래20체/구좌표/목표 계약을 검사한다.
 - 통합 담당자는 `shared/build.mjs`의 `modelFiles` 끝에서 `stage14-vertical` 다음에 `stage22-vertical`을 한 번 등록한다. `act3-objectives`, `act3-encounters`, `stage8-bier`, `encounter-density`보다 뒤에 둔다. 그 뒤 기존 새진입 canonical 저작 흐름에서 `authorStage22Vertical(project,g)`를 호출한다. 선택 미술 author는 이 호출 뒤에 적용한다. 기존 미술 build가 새22 지형을 예전 수평 관아로 덮지 않는지도 별도로 확인해야 한다.
 - 새 author의 CLI는 저장 canonical을 쓸 수 있으므로 통합 담당자만 실행한다. 이 작업자는 canonical, 공통 manifest, package, geometry, 14장, build/HTML을 편집하지 않았다.
-- 테스트 명령은 `node tests/stage22-vertical-composition.mjs --out-dir=<evidence-dir>`와 `node tests/stage22-vertical-runtime.mjs --out-dir=<evidence-dir>`다. 두 검사는 순차 실행한다.
+- 테스트 명령은 `node tests/stage22-vertical-composition.mjs --out-dir=<evidence-dir>`와 `node tests/stage22-vertical-runtime.mjs --out-dir=<evidence-dir>`다. 검사는 순차 실행한다. App 저장/이행 검사는 `node tests/stage22-vertical-app-resume.mjs --out-dir=<evidence-dir>`다.
 
 ## 원래 계약
 
@@ -48,7 +48,7 @@ G/H는240 떨어져 있고 방어원과 탈출원이 겹친다. x2535에 서서 
 - 대화/모달/이력/충전, 발사체/연사/소환/근접 후속/미정착, flight/review/ally/summon 상태에서는 진입하지 않는다. 한 actor 경계에는 최대 한 전투군집만 들어간다.
 - 전체 formation은 factory를 전혀 부르지 않는 크기만 있는 임시 몸으로 먼저 검사한다. 지면/공중, 전신 지형, 배우 간격, 진목/장판/발사체가 하나라도 막으면 IDs·배우·spawn 수·성장 예산을 쓰지 않는다. 같은 방향의 명시적 대안만 시험하고 모두 막히면 기다린다. 배우를 밀거나 다른 층으로 보정하지 않는다.
 - 완전 예약 뒤에만 정확한 좌표의 실제 적 전원을 한 번에 만든다. 새 ID, source, birth round, cell과 최종 Act3 weight를 저장한다. 중복 호출은 다시 생성하지 않는다.
-- 현재 실제 지지면/고도/거리 또는 피격 반응에 따라 현지 군집을 후보로 삼는다. 경보 기록은 저장하지만 멀어진 층이 계속 세 슬롯을 잠그지는 않게 한다. 새로 들어와 아직 행동하지 않은 현지 그룹에 기존3슬롯 중 하나를 예약할 수 있다. 전역 AI, 중력, 점프, 전체 스테이지 활성화는 바꾸지 않는다.
+- 군집 경보/awake는 저장하지만 큐 후보는 각 배우의 현재 지지면·고도·거리로 판정한다. 개별 피격 반응도 원래 고도/거리 안에서만 허용하며 다른 군집원에게 큐 자격을 빌려주지 않는다. E의 원거리 두 종류가 D 서측회랑에 내려쏘는 검증된 관계만 명시적 crossCover 명세로 별도 허용한다. 새로 들어와 아직 행동하지 않은 현지 그룹에 기존3슬롯 중 하나를 예약할 수 있다. 전역 AI, 중력, 점프, 전체 스테이지 활성화는 바꾸지 않는다.
 - Continue에서는 임시 후보 캐시만 재구성한다. 저장된 배우, awake, queue, 목표, 문, 경고/완료행동 기회, teamEnds, HP/자원/성장은 유지한다. 전투가 끝나면 미진입 경고를 취소하고 예산을 쓰지 않는다.
 
 ## 증거와 남은 승인
@@ -57,4 +57,48 @@ composition 검사는 다섯 난이도에서30배우의 raw compile→sanitize �
 
 runtime 검사는 실제 구현을 synthetic fixture로 격리한다. E의 순서/직업/층/주변 적과 문 파괴 방지, 예고→실제 완료행동, 원자성/factory미호출/동일방향 대안,35상한, 안전 경계, 각 반응과 등불의 warned/review/blocked/entered remount, 구 수평22와 부분진행 snapshot, 층별 후보·기존3슬롯 예약, 적팀 종료 방어·이탈/경쟁, 겹친 자연탈출·생존자/미진입파동 허용을 확인한다.
 
-이 증거는 fixture 위치/목표/배우를 직접 준비한다. 실제 App export/import/Continue, 렌더/미술, 전체 군집과 파동의 첫 유효 행동, 정상자원 완주, 전체 회귀와 기존 Pages 직접 검수는 미검증이다. 원래 geometry의 기본 이동 약7212는 제안 상한7000보다 약3% 길며, 숫자만 줄이거나 통과시켜 페이싱을 승인하지 않는다.
+이 증거는 fixture 위치/목표/배우를 직접 준비한다. production App export/import/Continue와23 진입은 아래 조건주입 harness 검사로 확인했다. 실제 화면/렌더/미술, 전체 군집과 파동의 첫 유효 행동, 정상자원 완주, 전체 회귀와 기존 Pages 직접 검수는 미검증이다. 원래 geometry의 기본 이동 약7212는 제안 상한7000보다 약3% 길며, 숫자만 줄이거나 통과시켜 페이싱을 승인하지 않는다.
+
+
+### 통합 canonical·production App 저장 검사 · 2026-10-10
+
+공통 build에 새22를 등록하고 canonical을 생성한 작업본에서도 composition 다섯 난이도와 runtime18그룹을 재통과했다. 현재 canonical을 구22로 간주해 새좌표가 자기 자신과 달라야 한다고 요구하던 테스트 결함을 고쳤다. 원래 수/목표/구좌표 assertions를 없애지 않고 명시적인 불변 구22 fixture에 연결했다.
+
+새 `tests/stage22-vertical-app-resume.mjs`는 production App 로직으로22개 시나리오,60번 전체 전장 snapshot equality를 통과했다.
+
+- 네 유한 진입 각각: 예고/미완료review/생성 후/반복생성 후를 일반 Continue와 실제 파일 import로 왕복한다. 저장된 진행중 대사도 동일하다.
+- 장부귀3과 공중등불2: 마지막 몸에 막힘을 주고 실제 defend 완료로 opportunity를 얻는다. blocked 상태의 중간 XP분배/배우별 xpGranted/성장원장을 저장·복구하고, blocker를 제거한 후 실제 다음 defend에서 전원을 한 번만 생성한다.
+- 실제 등불2 생성 후, 경쟁자 처리와 적팀 종료 횟수는 명시적 fixture로 주입한다. 방어0/1/2와 중간XP를 각각 export/import/Continue한다.
+- 구 수평22의20체/29cap/원래 목표/중간XP를 새 canonical 아래에서 두 번 이어도 새 revision이나 지형을 넣지 않는다.
+- 방어완료 조건을 준비한 뒤 실제 기본 짧은 보행으로 겹치는 출구에 닿는다. 먼 적이 살아 있어도 원래 승리이고, 실제 outcome/result/rest/journey 흐름으로23에 들어간다.22 clear/XP는 두 번 지급하지 않으며23의 원래 맵/목표/4인파티·입장자원, 빌드/성장 보존, 다시 export/import/Continue를 확인한다.22 전용 상태는23에 붙지 않는다.
+
+DOM/Canvas/storage/clock은 test double이고 목표·도착·막힘·중간 보상·경쟁자·적팀 종료는 explicit fixture다. 마지막 짧은 보행과23진입은 production 동작이지만22의 정상자원 전체 완주, 실제 전투의2턴 방어, Native 렌더 또는 브라우저 증거로 부르지 않는다.
+
+### 새22 전경 미술 dispatch 복구 · 2026-10-10
+
+새22 revision1, 미술 revision1, 현재 terrain ID와 일치하는 저작 plane이 있는 지지면/Act3 문에만 기존 Act2SpatialArt painter를 연결한다. 기존 Act2 경로는 그대로이며 다른 Act3/옛22/커스텀/미술 없는 geometry는 기존 렌더러를 쓴다. painter가 현재 고체에 clip하므로 미술이 충돌이나 사선을 만들지 않는다.
+
+이 변경은 미보존0374434의 남은 명시적 코드 내용을 다시 적용한 것이다. 당시 전체 파일 해시/테스트 본문은 확보하지 못했으므로 원래 tree와 동일하다고 표시하지 않는다. 새 `stage22-vertical-art-dispatch.mjs`는 현재 production prefix의40개 경계·불변 조건을 다시 검사한다. 원래 Native 이미지와 실행 raw는 현재 환경에서 접근되지 않아 재생성 전이며, 이 작은 계약은 미술/브라우저/정상플레이 증거가 아니다.
+
+
+### 실제 완료기록에서 발견한 E층 큐 점유 교정 · 2026-10-10
+
+정상정책 `attempt-002-restored`의 R25에서 동행 전원이 G의 y1200~1302에 있었지만 `[v22-e2,v22-e3,v22-g3]`가 선택됐다. E2/E3는 y2512/2621에서 사선 없음·방어로 끝나 기존3슬롯 중2개를 소모했다. 저장 R24의 E1/E2/E4 피격경보를 `units.some(hit)`로 셀 전체에 전파하던 후보 판정 때문에 피격기록이0인 E3까지 입장했다.
+
+수정은 군집의 저장 경보/awake와 개별 배우의 다음 큐 자격을 분리한다. 일반 자격은 해당 배우와 현재 동행 사이의 원래 `maxHeight/radius`와 접근 지지면을 검사한다. 실제로 동행과 같은 지지면까지 이동한 적은 출신 셀 때문에 고립시키지 않는다. 피격 반응은 그 배우 자신에게만 적용하고 현재 원래 거리/고도를 벗어나면 큐 자격을 주지 않는다. 이미 입장한 저장 큐를 즉시 갈아치우지 않으며 다음 원래 팀전환에서만 새 후보를 고른다.
+
+엄격한600 고도제한만 적용하면 실제 유효한 E→D 교차엄호도 사라진다. 기존 실행의 R15 원본은 다음과 같다.
+
+- E1 궁귀 `(1823,2345)` / east-register-rise → 휘겸 `(1527.86667,3255)` / west-gallery: 하향910, 거리956.66278, 기존 실행 피해39
+- E2 장부귀 `(1990,2512.142857)` / east-register-rise → 같은 휘겸: 하향742.85714, 거리874.87368, 기존 실행 피해28
+
+E의 일반범위1100/600은 바꾸지 않는다. 새 저작 명세에만 `crossCover=[{targetSupport:'v22-west-gallery',kinds:['possessedArcher','archiveFiend'],direction:'down',radius:1100,maxHeight:1000}]`을 추가했다. 다른 동행을 대리표적으로 삼아 일반 반경을 늘리는 보정이 아니다. 실제 검증된 두 원거리 종류의 E→D 하향 사선 관계이며 위쪽 G, 다른 support, 수비병, 범위 밖 배우에는 적용하지 않는다. R18의 E1→F 및 실제 F로 올라온 E4의 기존 유효 교전도 일반범위 후보로 보존한다.
+
+`tests/stage22-vertical-activation.mjs`의10그룹은 다음을 구분한다.
+
+1. `stage22-activation-r24-r25.json`의 R24 profile은 원본 `lantern-entry-continue.json`에서 exact 추출했다. production App Continue와 후보 조회 뒤 전체전장·기존큐·awake·경보·성장·명세가 동일하다. 새 crossCover 데이터를 오래된 저장에 삽입하지 않는다.
+2. R25 전체 전장 snapshot은 없다. R24 저장에 R25 원본 동행좌표를 적용한 명시적 재구성 다음경계는 `[event-145,event-144,v22-g3]`을 선택한다. 기존 상한3에서 두 등불과 G 궁귀가 들어가며 E2/E3는 제외된다. 이는 새 R25 전체 정상플레이 기록이 아니다.
+3. R15 두 발사/피격 자리와 R18 E1/E4 유효 F교전 자리에서 새 개별 후보 자격을 확인한다. 피해 수치는 기존 실제 실행 raw의 증거이며 수정판에서 다시 발사한 결과로 주장하지 않는다.
+4. 위쪽 표적, 잘못된 목표 support, 근접 종류, 고도초과, 거리초과를 각각 부정변이로 거부한다. 가까운 다른 턱에서 자신이 피격된 배우는 반응하고, 그 셀의 먼 미피격 동료는 반응하지 않는다.
+
+지형·배치·HP·목표·전투/유한/성장 예산은 바꾸지 않았다. 정상정책 전체 재실행과 렌더는 통합 담당의 별도 순차 검증으로 남는다.

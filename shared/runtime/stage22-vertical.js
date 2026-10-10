@@ -13,11 +13,27 @@ const safe=app=>!ended(app)&&!paused(app)&&!!app.actorBoundary&&!['flight','revi
 const boundary=app=>[serial(app.engine.b),app.engine.b.round,...app.engine.b.teamEnds,app.actorBoundary].join(':');
 const cap=E.populationCap;E.populationCap=function(b){return active(b)&&b.honroVerticalStage22PopulationCap===35?35:cap(b);};
 
-function cellApproached(e,units,spec,heroes){return heroes.some(h=>{const support=e.contactSurface(h.x,h.y-8,h.y+10)?.t.id,access=(spec.supports||[]).includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));return access&&units.some(u=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius);});}
+const supportOf=(e,u)=>e.contactSurface(u.x,u.y-8,u.y+10)?.t.id;
+const inRange=(u,h,spec)=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius;
+const supportsHero=(support,h,spec)=>(spec.supports||[]).includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));
+function actorApproached(e,u,spec,heroes){const ownSupport=supportOf(e,u);return heroes.some(h=>{if(!inRange(u,h,spec))return false;const support=supportOf(e,h);return supportsHero(support,h,spec)||!!support&&support===ownSupport;});}
+function actorCrossCover(e,u,spec,heroes){
+ // Explicit authored firing relationship, not a global range/AI increase.
+ // Only the recorded E ranged pair may shoot down toward the D gallery.
+ return(spec.crossCover||[]).some(rule=>rule.direction==='down'&&(rule.kinds||[]).includes(u.honroVariant||u.honroType)&&Number.isFinite(rule.radius)&&rule.radius>0&&Number.isFinite(rule.maxHeight)&&rule.maxHeight>0&&heroes.some(h=>h.y>u.y&&inRange(u,h,rule)&&supportOf(e,h)===rule.targetSupport));
+}
+function actorEligible(e,u,spec,heroes){
+ // A hit can answer from an unlisted nearby ledge, but neither its range nor
+ // its eligibility spreads to untouched members on another storey.
+ const hit=u.aggroUntil>0&&u.aggroUntil>=e.b.round;
+ return actorApproached(e,u,spec,heroes)||actorCrossCover(e,u,spec,heroes)||hit&&heroes.some(h=>inRange(u,h,spec));
+}
+function cellApproached(e,units,spec,heroes){return units.some(u=>actorApproached(e,u,spec,heroes)||actorCrossCover(e,u,spec,heroes));}
 function installActivation(e){const b=e.b,defs=b.honroVerticalStage22Activation;if(!defs||e.honroVerticalStage22ActivationAttached)return;e.honroVerticalStage22ActivationAttached=true;const refresh=e.refreshActivation.bind(e),combat=e.combatEnemies.bind(e);
- const update=write=>{const m=memory(b),eligible=new Set(),heroes=e.heroesAlive();for(const [cell,spec]of Object.entries(defs)){const units=e.alive(1).filter(u=>u.honroVertical22Cell===cell);if(!units.length)continue;const hit=units.some(u=>u.aggroUntil>0&&u.aggroUntil>=b.round),approached=cellApproached(e,units,spec,heroes);if(hit||approached)eligible.add(cell);if(write){if(hit||approached)m.alert[cell]=true;for(const u of units)u.awake=!!m.alert[cell];}}e.honroVerticalStage22Eligible=eligible;};
- e.refreshActivation=function(){refresh();update(true);};e.combatEnemies=function(){update(false);return combat().filter(u=>!u.honroVertical22Cell||!defs[u.honroVertical22Cell]||e.honroVerticalStage22Eligible.has(u.honroVertical22Cell));};
- // Rebuild transient eligibility only; a Continue must keep its admitted queue.
+ const update=write=>{const m=memory(b),eligible=new Set(),heroes=e.heroesAlive();for(const [cell,spec]of Object.entries(defs)){const units=e.alive(1).filter(u=>u.honroVertical22Cell===cell);if(!units.length)continue;const hit=units.some(u=>u.aggroUntil>0&&u.aggroUntil>=b.round),approached=cellApproached(e,units,spec,heroes);for(const u of units)if(actorEligible(e,u,spec,heroes))eligible.add(u.id);if(write){if(hit||approached)m.alert[cell]=true;for(const u of units)u.awake=!!m.alert[cell];}}e.honroVerticalStage22EligibleActors=eligible;};
+ e.refreshActivation=function(){refresh();update(true);};e.combatEnemies=function(){update(false);return combat().filter(u=>!u.honroVertical22Cell||!defs[u.honroVertical22Cell]||e.honroVerticalStage22EligibleActors.has(u.id));};
+ // Rebuild transient eligibility only. Saved alerts, awake flags and the
+ // already admitted queue stay exact; the next normal team boundary selects.
  update(false);
 }
 // Reserve one of the existing three actions for a newly arrived local group.
@@ -67,5 +83,5 @@ const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!activ
  const engineTick=e.tick.bind(e);e.tick=function(...args){const result=engineTick(...args);if(ended(app))cancel(app);return result;};return out;
 };
 const tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepare(app);const out=tick(app,dt);if(ended(app))cancel(app);else prepare(app);return out;};
-G.HonroStage22Vertical={active,memory,sources,safe,paused,ended,cellApproached,installActivation,reserveQueue,prepare,offer,acceptOpportunity,cancel,formation,spawnMembers};
+G.HonroStage22Vertical={active,memory,sources,safe,paused,ended,actorApproached,actorCrossCover,actorEligible,cellApproached,installActivation,reserveQueue,prepare,offer,acceptOpportunity,cancel,formation,spawnMembers};
 })(globalThis);

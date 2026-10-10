@@ -19,7 +19,7 @@ export const V22_ACTIVATION={
  'lower-ramp':{supports:['v22-lower-court','v22-report-approach'],radius:1200,maxHeight:800},
  'ledger-front':{supports:['v22-report-approach','v22-report-crossing','v22-west-gallery'],radius:1000,maxHeight:700},
  'near-gallery':{supports:['v22-report-crossing','v22-west-gallery'],radius:1000,maxHeight:650},
- 'register-rise':{supports:['v22-report-crossing','v22-east-register-rise','v22-register-mass'],radius:1100,maxHeight:600},
+ 'register-rise':{supports:['v22-report-crossing','v22-east-register-rise','v22-register-mass'],radius:1100,maxHeight:600,crossCover:[{targetSupport:'v22-west-gallery',kinds:['possessedArcher','archiveFiend'],direction:'down',radius:1100,maxHeight:1000}]},
  'register-court':{supports:['v22-east-register-rise','v22-register-mass','v22-comparison-mass'],extra:[{support:'v22-west-gallery',maxX:720}],radius:1150,maxHeight:650},
  'comparison-court':{supports:['v22-comparison-mass'],radius:1200,maxHeight:600},
  'seal-response':{supports:['v22-lower-court','v22-report-approach'],radius:1400,maxHeight:800},

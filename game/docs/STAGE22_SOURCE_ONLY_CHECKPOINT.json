@@ -1,0 +1,155 @@
+{
+  "schema": "honro-source-only-recovery/v1",
+  "sourceCommit": "1c19a856b8c8cfdf9e01c0cf211e44154cc5cc5b",
+  "sourceTree": "196c52e6ff579572378acd0b0d441adbf1eb64f4",
+  "suggestedBase": "62ed8e8cf8bd4724674dbc51576554f14026220d",
+  "scope": "WIP source-only backup, not an executable candidate or exact full tree. Generated HONRO.html, HONRO_WORKSHOP.html and canonical campaign.json intentionally excluded. Latest14 changes remain in the full Git bundle, not this Stage22 packet. Art iteration4 remains rejected pending F masonry improvement. Fresh normal003 won but individual melee roles and early no-shot slots remain under review.",
+  "files": [
+    {
+      "path": "game/docs/VERTICAL_STAGE22_ART_REVIEW.md",
+      "bytes": 18476,
+      "sha256": "1793be44e620afd4bc371b4f522521f0c8e14871d9279de015180e35d1533e53",
+      "gitBlob": "80600ef06ffb3a4e4f6e40161e3b1c8f9156574c"
+    },
+    {
+      "path": "game/docs/VERTICAL_STAGE22_FULLPLAY.md",
+      "bytes": 16084,
+      "sha256": "c838ff7719a4a9d190b652726d1132c85f133d0fb7bb5592497681edc5de443e",
+      "gitBlob": "b6d1e29baacfd5af89cbad312ad445fb2f6c167b"
+    },
+    {
+      "path": "game/docs/VERTICAL_STAGE22_IMPLEMENTATION.md",
+      "bytes": 15726,
+      "sha256": "9090f8c193b8a56544bb2e2f179e7f10f6dcb644bf7589d3839a4db9ca6a8b95",
+      "gitBlob": "87eecd4776bc3ca5501438b3628d93af9860f346"
+    },
+    {
+      "path": "game/docs/VERTICAL_STAGE22_RECOVERY.md",
+      "bytes": 3441,
+      "sha256": "cdefe63d8e615fb5a68f2b938a8f2648c7803d73bd7a9586d771175ad94b134e",
+      "gitBlob": "f6d68b45e6b2ef87102f054c78ab1d9999a7c717"
+    },
+    {
+      "path": "shared/build.mjs",
+      "bytes": 5688,
+      "sha256": "a4957452a84f9c253d6005277a8fb6f47e28279c180f72c32377c66aa4c9985d",
+      "gitBlob": "92e684131731ae05214a3679e1acfe8b4842d94c"
+    },
+    {
+      "path": "shared/runtime/art-dark.js",
+      "bytes": 43824,
+      "sha256": "5a03b583c4da74279f9dd796b951e110ab76d066c18055b31748c07673774de8",
+      "gitBlob": "3b46f86b23985b580414e8b7a537c6156bda0093"
+    },
+    {
+      "path": "shared/runtime/stage22-vertical.js",
+      "bytes": 12793,
+      "sha256": "20ac2bbb5eea3002c58449bdfd3d2cfac5e60e21cfe3dbabb947ad74ad8ed6f4",
+      "gitBlob": "02367c20767876ccf26b2bb49586f32d0838ec79"
+    },
+    {
+      "path": "tests/fixtures/vertical-stages/stage22-activation-r24-r25.json",
+      "bytes": 154868,
+      "sha256": "ce30ce98ad550790a6962a2c82acca00f75759ae0c6f1c10eebb391aa69fdfa8",
+      "gitBlob": "1920af0fb0c9834e5b3f4429f25a2885a4288be7"
+    },
+    {
+      "path": "tests/fixtures/vertical-stages/stage22-source-boundary.json",
+      "bytes": 102503,
+      "sha256": "0984c0f457fb6de9b50330a0e7b398294b4b06740c4621435c06cc65f38e756d",
+      "gitBlob": "2a2a6eabb017942715df6ad2dffd611622d3c59e"
+    },
+    {
+      "path": "tests/stage22-vertical-activation.mjs",
+      "bytes": 12306,
+      "sha256": "d9af15589f24e01bd796ff80e4c3608e442ffdc98b16fad1502db89b6442e65a",
+      "gitBlob": "a9ab4f582079c22e72fee6d8105ef21b211f606e"
+    },
+    {
+      "path": "tests/stage22-vertical-app-resume.mjs",
+      "bytes": 13556,
+      "sha256": "e82c3cb0923c8e3aae1dda4d90a0907480b06e223f0c30496826bad34058da83",
+      "gitBlob": "e91b30a6d67d801db208dadc964ab0dde08b9d5f"
+    },
+    {
+      "path": "tests/stage22-vertical-art-dispatch.mjs",
+      "bytes": 3287,
+      "sha256": "a732fa4f2f0ae126a1e68f3342da54a3594117583aab1d00f78b636349297897",
+      "gitBlob": "b5d3afc09c4acaa9d465b5b658053442828aa407"
+    },
+    {
+      "path": "tests/stage22-vertical-composition.mjs",
+      "bytes": 4838,
+      "sha256": "465138a40e534a99afe18d74da4a030b50528cac83c87c72f7069e29df3a976f",
+      "gitBlob": "efa3ec152a0fd0be5d85a01973c315a256901141"
+    },
+    {
+      "path": "tests/stage22-vertical-entry-helper.mjs",
+      "bytes": 2303,
+      "sha256": "0333cff84bc5ee9f3e0c5b6e26b3a2aa573e35b98b347d98165f5809ac46365c",
+      "gitBlob": "b61a0bf63e4420bba646deb709fcbc4cad7fdf30"
+    },
+    {
+      "path": "tests/stage22-vertical-fullplay-helper.mjs",
+      "bytes": 10718,
+      "sha256": "9863a63f57301f79ef567e47b4db1c479aebacd230dc522b1c06c105b71d11c5",
+      "gitBlob": "ebc7b9594a45795543b311cdfb46744f65181c6e"
+    },
+    {
+      "path": "tests/stage22-vertical-fullplay.mjs",
+      "bytes": 45044,
+      "sha256": "7624f9e5a2b24186d6f4f26fadbb53f227fece34dd476b33e4a66b83bd3117eb",
+      "gitBlob": "8ddaa2cb3a5d2499d05498c6600ba600e5b80ccd"
+    },
+    {
+      "path": "tests/stage22-vertical-native-art.mjs",
+      "bytes": 12859,
+      "sha256": "dd29d8491cf6c28f8459c95eaef0e486bcdc6bf13ce7f453fee00dc4b26df5a3",
+      "gitBlob": "6d6c6edf8c93126478dbb473851fd39c642c5d85"
+    },
+    {
+      "path": "tests/stage22-vertical-runtime.mjs",
+      "bytes": 18642,
+      "sha256": "2ef7f574e4876e1b007487f6aff6b584631dbc5015808640e42e89128ebdc2e3",
+      "gitBlob": "8617b47baca4fb94b15654af34bd9589190b9b6e"
+    },
+    {
+      "path": "tests/stage22-vertical-source-boundary.mjs",
+      "bytes": 6767,
+      "sha256": "a1844d942d29c946a6a5c57d44b8e4883caa0918d449210aa79e7580028622ca",
+      "gitBlob": "00b2605d2b62d4548d17a0f1aa75bd5346da6954"
+    },
+    {
+      "path": "tools/environment/stage22-vertical-art.mjs",
+      "bytes": 46721,
+      "sha256": "e7186b013b8c6e16151a0180edcf2d08535ab2a200a671140d6e2d6fbd484c9b",
+      "gitBlob": "eecaaf0aa885194ce4e8ffd96f58faa61d19759f"
+    },
+    {
+      "path": "tools/map-forge/apply-stage22-vertical.mjs",
+      "bytes": 10263,
+      "sha256": "7680a496b9cceea573d49a591b9a55ea9810fc593fb480776051cb12131732b7",
+      "gitBlob": "42bce2e7a0675d9cacd8d768c155d6250c620749"
+    }
+  ],
+  "knownLibraryBackup": {
+    "libraryFileId": "libfile_273ad03db73481919899903af5f543e0",
+    "currentVersion": 2,
+    "zipBytes": 5392066,
+    "zipSha256": "db6d293a087ee310f87c93839759da316eee04bb71bfd490a5f72df9ec334b7d",
+    "bundleBytes": 206667,
+    "bundleSha256": "407c93c0be1ef4559b3c2b5ef66093b35fbda03e7fb4d99d79e1523571c48d1d",
+    "bundlePrerequisites": [
+      "ca0bddc6269ceed2f0b49d721c3a983eb685c5ca",
+      "62ed8e8cf8bd4724674dbc51576554f14026220d"
+    ],
+    "verifiedHeads": {
+      "stage14": "72cc20e9711df726aa8a01a03b5f9156fd62bb50",
+      "stage22": "1c19a856b8c8cfdf9e01c0cf211e44154cc5cc5b"
+    },
+    "verification": "Owner verified bundle/fetch and exact heads/trees in a separate public clone; archive CRC and all 105 items verified."
+  },
+  "packetManifestSha256": "8871ae098d77a55486e5669e7dca071cc8849dc627e0f52adcdfec2679d00095",
+  "branch": "work/vertical-source-checkpoint-20261010",
+  "baseTree": "d59847def32b83cfa4cdffdab2c734e2c62a6dd5"
+}

@@ -21,7 +21,10 @@ Scene.prototype.landmark=function(c,l){c.save();c.translate(l.x,l.y);c.scale(l.s
  else if(/bell/i.test(k)){L(c,-53,0,-53,-173,'#5a564a',7);L(c,53,0,53,-173,'#5a564a',7);roof(c,0,-175,148,65);c.fillStyle='#5c6555';c.beginPath();c.moveTo(-31,-110);c.quadraticCurveTo(-23,-164,0,-164);c.quadraticCurveTo(23,-164,31,-110);c.lineTo(42,-69);c.lineTo(-42,-69);c.closePath();c.fill();for(let i=0;i<3;i++)L(c,-30-i*4,-109+i*18,30+i*4,-109+i*18,'#85836b',2);}
  else hall(c,0,0,/watchtower/i.test(k)?145:230,/watchtower/i.test(k)?240:155);c.restore();};
 Scene.prototype.terrain=function(c,t){
- if(t.honroSpaceSurfaceId&&G.HonroAct2SpatialArt?.active(this.battle))return G.HonroAct2SpatialArt.terrain(c,t,this.battle);
+ // Fresh vertical22 opts only its authored, clipped current-solid planes into
+ // the existing painter. Other Act3 maps and old saves keep their old branch.
+ const verticalArchivePlanes=(t.honroSpaceSurfaceId||t.honroAct3Gate)&&this.battle?.honroStage===22&&!this.battle.honroCustom&&this.battle.honroVerticalStage22Revision===1&&this.battle.honroMap?.vertical22Art?.revision===1&&this.battle.honroMap?.space?.terrainPlanes?.some(p=>p.terrainId===t.id);
+ if(G.HonroAct2SpatialArt&&((t.honroSpaceSurfaceId&&G.HonroAct2SpatialArt.active(this.battle))||verticalArchivePlanes))return G.HonroAct2SpatialArt.terrain(c,t,this.battle);
  const verts=C.poly(t),pts=verts.map(p=>[p.x,p.y]),wood=t.mat==='wood',ice=t.mat==='ice',seal=t.honroSeal,crystal=t.mat==='crystal',wet=t.mat==='water'||t.surfaceKind==='wet',earth=t.mat==='earth'||t.surfaceKind==='soil',rock=t.mat==='rock'||t.surfaceKind==='rock';
  const palette=G.HonroTerrainPalette(t);
  const grad=G.HonroTerrainGradient(c,t,this.battle);P(c,pts,grad,null,0);
