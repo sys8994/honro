@@ -360,6 +360,15 @@
       .replaceAll('M-30 258', 'M-190 258').replaceAll('1215 1069', '1261 1168')
       .replaceAll('M-30 222', 'M-190 222').replaceAll('L-30 289Z', 'L-190 289Z')
       .replaceAll('M-30 900', 'M-190 900').replaceAll('963-30 961Z', '963-190 961Z');
+    if (underground) svg = svg
+      .replace('M0 18L193', 'M-180 18L193').replace('1800 143V0H0Z M0 1004', '1980 143V-105H-180Z M-180 1004')
+      .replace('1800 969V1050H0Z', '1980 969V1155H-180Z');
+    if (city) svg = svg
+      .replace('M0 270l126', 'M-180 270L0 270l126').replace('v303H0z', 'h180v303H-180z')
+      .replace('M0 326q274', 'M-180 326L0 326q274').replace('v244H0z', 'h180v244H-180z')
+      .replace('M-30 796q231', 'M-180 796L-30 796q231').replace('v300H-30z', 'h180v410H-180z')
+      .replace('M-30 813q235', 'M-180 813L-30 813q235').replace('v251H-30z', 'h180v361H-180z')
+      .replace('M-25 800q227', 'M-180 800L-25 800q227').replace('162 22 357-12"', '162 22 537-12"');
     const outer = group('expanded-atlas-landscape',
       path('M-190 -48C43 12 102-83 286-59S576-10 769-69 1054-29 1265-61 1630 38 1990-31V-115H-190Z', underground ? '#526358' : '#536757', 'opacity=".23"') +
       path('M-190 1118C14 1054 119 1126 287 1102S577 1153 744 1106 1039 1165 1244 1119 1539 1161 1719 1097 1870 1131 1990 1094V1165H-190Z', underground ? '#617264' : '#657767', 'opacity=".18"') +
