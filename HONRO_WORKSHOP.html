@@ -19154,7 +19154,7 @@ function offer(app){const e=app.engine,b=e.b,m=memory(b);if(paused(app)||ended(a
 }
 function acceptOpportunity(app){const e=app.engine,b=e.b,m=memory(b),action=e.honroEscortYardAction,u=action&&e.unit(action.id);if(!action||app.actorBoundary!==action.id||!u?.acted||!hero(u))return;
  if(action.cargo&&serial(b)>m.warningActorSerial)m.playerOpportunity={id:u.id,round:b.round,serial:serial(b)};
- for(const source of action.waves||[]){const w=m.warnings[source];if(w&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
+ for(const source of action.waves||[]){const w=m.warnings[source];if(w&&(!G.HonroEncounterDensity?.active(b)||!w.opportunity)&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
 }
 function carrierInTrigger(b){const npc=b.units.find(u=>u.id==='act3-carrier'),r=cargo(b).triggerRegion;return alive(npc)&&!!r&&npc.x>=r.minX&&npc.x<=r.maxX&&Math.abs(npc.y-r.y)<=(r.tolerance??40);}
 function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))return;const m=memory(b);acceptOpportunity(app);if(['settled','sliding'].includes(m.status))return;

@@ -52,6 +52,7 @@ for(const scene of scenarios.filter(s=>!process.argv[2]||s.source===process.argv
  e.switchTeam=(...args)=>{const r=switcher(...args);if(b.side===1){assert(b.queue.length<=3);queues.push({round:b.round,ids:[...b.queue]});}return r;};
  const start=b.round;let frames=0;
  for(;frames<18000&&b.round<start+3&&!['won','lost'].includes(b.phase);frames++){if(e.canAct()){const u=e.active;playerResponses.push({actorId:u.id,round:b.round,kind:'defend',x:u.x,y:u.y,detail:'Hold the supported fixture position using the actual defensive action.'});e.wait();}e.tick(C.STEP);}
+ if(entryWarning?.opportunity)assert.deepEqual(plain(S.memory(b).warnings[source].opportunity),entryWarning.opportunity,'First offered opportunity stays immutable after spawn and later actual actions');
  const effective=damage.filter(v=>v.targetSide===0&&(v.hp>0||v.shield>0));
  const row={...scene,method:scene.direct?'Direct existing-wave tactical retreat fixture':'Real warning/defend/event entry from declared objective and pose setup',initialAlive:40,initial,notices,warning:entryWarning,entry:entryRecord,births,frames,round:b.round,phase:b.phase,playerResponses,actions,shots,damage,queues,firstFire:shots[0]||null,firstEffect:effective[0]||null,effectiveCount:effective.length,final:born.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,lastAct:u.lastAct,role:u.honroEncounterRole,intent:u.intent}))};
  rows.push(row);
