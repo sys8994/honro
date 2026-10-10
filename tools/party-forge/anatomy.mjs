@@ -27,14 +27,27 @@ function sword(a,rig){
  path(a,'sword_grip',offset(at,'M-20 -5 Q-4 -7 13 -5 L13 6 Q-5 8 -20 5Z'));
  path(a,'sword_guard',offset(at,'M11 -15 Q18 -17 20 -12 L19 15 Q16 18 10 15Z'));
  path(a,'grip_wrap',offset(at,'M-17 -4 L-11 5 M-10 -5 L-4 6 M-3 -5 L3 6 M4 -5 L10 5'));
+ // Grip local +X crosses the palm; local +Y is the wrist/finger long axis.
+ // One fixed rotational relationship prevents the handle sliding inside a fist.
+ a.rig.swordGrip={hand:'front_hand',crossAxisOffset:0,revision:13};
  const attack=a.animation.animations.attack;
- for(const clip of Object.values(a.animation.animations))for(const p of clip.keyframes)p.weapon=(p.weapon||0)+74;
- const angles=[65,-80,-100,15,72,65],hands=[null,[365,160],[360,122],[410,170],[390,246]],planes=[null,.5,0,.5,.35];
+ const hands=[null,[365,160],[360,122],[405,210],[344,296]],planes=[null,.5,0,.5,.35];
  for(let i=0;i<attack.keyframes.length;i++){
-  const p=attack.keyframes[i];p.weapon=angles[i];
-  if(hands[i]){p.frontHand=hands[i];p.frontArmPlane=planes[i];}
+  const p=attack.keyframes[i];if(hands[i]){p.frontHand=hands[i];p.frontArmPlane=planes[i];}
+  const j=rig.solvePose(a,p).guide.joints;p.frontElbow=[...j.front_forearm];
+  if(i===3)p.frontElbow=[382,150];if(i===4){p.frontElbow=[340,216];p.frontShoulder[1]+=12;p.rearShoulder[1]+=6;p.thorax[1]+=6;p.pelvis[1]+=2;}
+  p.frontElbowProjection=1;
  }
- for(const clip of Object.values(a.animation.animations))for(const p of clip.keyframes){const s=rig.solvePose(a,p),e=s.guide.joints.front_forearm,w=s.guide.joints.front_hand;const forearm=Math.atan2(w[1]-e[1],w[0]-e[0])*180/Math.PI;p.frontHandAngle=forearm-90+(clip===attack?[0,18,-12,20,8,0][clip.keyframes.indexOf(p)]:8);}
+ for(const clip of Object.values(a.animation.animations))for(const p of clip.keyframes){
+  const j=rig.solvePose(a,p).guide.joints,e=j.front_forearm,w=j.front_hand;
+  const forearm=Math.atan2(w[1]-e[1],w[0]-e[0])*180/Math.PI;
+  p.frontHandAngle=forearm-90+(clip===attack?[8,14,-8,10,18,8][clip.keyframes.indexOf(p)]:8);
+  p.weapon=p.frontHandAngle;
+ }
+ // A readable low finish precedes recovery; the hand itself is below the belt.
+ const low=structuredClone(attack.keyframes[4]);low.t=.78;attack.keyframes.splice(5,0,low);
+ a.followThroughRevision=14;
+
 }
 function bow(a,rig){
  // The anatomical right/draw arm is the rear_* chain in this rig, even after

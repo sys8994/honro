@@ -44,7 +44,7 @@ export class HonroPoseVisual{
       s.lastWalk=u.walkPhase||0;s.walkCycle??=0;
       const effort=Math.min(1,distance/Math.max(.001,(u.walkSpeed||330)*simulationDt));
       if(!u.jumping&&!u.airborne&&Math.abs(u.vy||0)<3)s.walkCycle=(s.walkCycle+Math.min(.1,Math.max(0,walkDt))*effort*WALK_CADENCE[this.asset.character_id]/120)%1;
-      if((u.anim||0)>s.lastAnim+.05&&!(u.meleeAction?.skill==='S07'&&u.meleeAction.index>1)){s.releaseAt=time-(u.meleeAction?.skill==='S05'&&u.meleeAction.index>1?s.meleeDelay:0);s.releaseSkill=engine.b.cast?.owner===u.id?engine.b.cast.skill:s.selectedSkill;s.releaseFrom=s.mode==='charge'&&s.lastTargets?structuredClone(s.lastTargets):null;s.worldEffect=(engine.b.projectiles||[]).some(q=>q.owner===u.id&&!q.dead&&((this.asset.character_id==='sodan'&&q.skill==='O01')||(this.asset.character_id==='damheo'&&q.skill==='M01')));}
+      if((u.anim||0)>s.lastAnim+.05&&!(u.meleeAction?.skill==='S07'&&u.meleeAction.index>1)){s.comboFinishAt=null;s.comboFinishFrom=null;s.releaseCutDelay=s.meleeDelay;s.releaseAt=time-(u.meleeAction?.skill==='S05'&&u.meleeAction.index>1?s.meleeDelay:0);s.releaseSkill=engine.b.cast?.owner===u.id?engine.b.cast.skill:s.selectedSkill;s.releaseFrom=s.mode==='charge'&&s.lastTargets?structuredClone(s.lastTargets):null;s.worldEffect=(engine.b.projectiles||[]).some(q=>q.owner===u.id&&!q.dead&&((this.asset.character_id==='sodan'&&q.skill==='O01')||(this.asset.character_id==='damheo'&&q.skill==='M01')));}
       if((u.hurt||0)>s.lastHurt+.05)s.hitAt=time;
       s.lastAnim=u.anim||0;s.lastHurt=u.hurt||0;
     }
@@ -144,6 +144,7 @@ export class HonroPoseVisual{
   }
   pose(u,charge=0){
     const s=this.state(u),previousMode=s.mode,age=this.time-s.releaseAt,hitAge=this.time-s.hitAt,anim=this.asset.animation.animations.attack;
+    const comboFinishAge=this.time-(s.comboFinishAt??Infinity),comboFinishing=this.asset.followThroughRevision>=14&&comboFinishAge>=0&&comboFinishAge<.525;
     const release=anim.events[0].t,duration=anim.duration_ms/1000,airborne=!!(u.jumping||u.airborne||Math.abs(u.vy||0)>3);
     if(charge>0&&s.chargeAt===null){s.chargeAt=this.time;s.chargeFrom=s.lastTargets?structuredClone(s.lastTargets):this.ready;}if(charge<=0)s.chargeAt=null;
     let sample;
@@ -152,26 +153,37 @@ export class HonroPoseVisual{
     else if(hitAge>=0&&hitAge<.5&&s.hitAt>s.releaseAt){sample=this.api.sampleAnimation(this.asset,'hit',hitAge);s.mode='hit';}
     else if(s.bodyFlight&&this.asset.character_id==='hwigyeom'){
       const p=structuredClone(this.api.sampleAnimation(this.asset,'jump_fall',.43,true).targets);
-      p.frontHand=[p.frontShoulder[0]+100,p.frontShoulder[1]+25];p.weapon=this.asset.anatomyRevision>=12?-12:-72;p.frontHandAngle=this.asset.anatomyRevision>=12?-78:-72;
+      p.frontHand=[p.frontShoulder[0]+100,p.frontShoulder[1]+25];p.weapon=this.asset.anatomyRevision>=12?-12:-72;p.frontHandAngle=this.asset.anatomyRevision>=12?-78:-72;if(this.asset.rig.swordGrip){const scale=this.asset.proportions.hwigyeomScale?.bodyMultiplier||1;p.frontHand=[p.frontShoulder[0]+80*scale,p.frontShoulder[1]+75*scale];p.frontHandAngle=-12;const r=68*Math.PI/180;p.frontElbow=p.frontHand.map((v,i)=>v-78*scale*[Math.cos(r),Math.sin(r)][i]);p.frontElbowProjection=1;}
       sample=this.api.solvePose(this.asset,p);s.mode='rush';
     }
-    else if(age>=0&&(age<(1-release)*duration||s.meleeSkill==='S07'&&s.meleeIndex>=1)){
+    else if(age>=0&&(age<(1-release)*duration||s.meleeSkill==='S07'&&s.meleeIndex>=1||comboFinishing)){
       const sweep=this.asset.character_id==='hwigyeom'&&this.asset.motionRevision>=11&&(!s.releaseSkill||['S00','S03','S05','S07','S02'].includes(s.releaseSkill));
-      const cutAt=s.meleeDelay||.075;
-      const phase=sweep?(age<cutAt?anim.keyframes[2].t+(release-anim.keyframes[2].t)*poseClamp(age/cutAt):release+(1-release)*poseClamp((age-cutAt)/((1-release)*duration-cutAt))):release+age/duration;sample=this.api.sampleAnimation(this.asset,'attack',phase,true);s.mode='release';
+      const cutAt=s.releaseCutDelay||s.meleeDelay||.075;
+      const phase=comboFinishing?release+(1-release)*poseClamp(comboFinishAge/.525):sweep?(age<cutAt?anim.keyframes[2].t+(release-anim.keyframes[2].t)*poseClamp(age/cutAt):release+(1-release)*poseClamp((age-cutAt)/((1-release)*duration-cutAt))):release+age/duration;sample=this.api.sampleAnimation(this.asset,'attack',phase,true);s.mode='release';
       let p=sample.targets;
-      if(s.meleeSkill==='S07'&&s.meleeIndex>=1&&s.meleeElapsed>=cutAt){
+      if(!comboFinishing&&s.meleeSkill==='S07'&&s.meleeIndex>=1&&s.meleeElapsed>=cutAt){
         // The engine's existing 100 ms combo beats alternate compact diagonal
         // cuts. Never restart at the overhead load on a damage-frame anim pulse.
         const beat=(s.meleeElapsed-cutAt)/.10,wave=(1-Math.cos(Math.PI*Math.min(s.comboHits-1,beat)))/2;
         p=structuredClone(this.api.completePose(this.asset,anim.keyframes[3]));
         p.weapon=this.asset.anatomyRevision>=12?15-65*wave:-55-70*wave;p.frontHandAngle=this.asset.anatomyRevision>=12?p.frontHandAngle:p.weapon;
         p.frontHand=this.asset.anatomyRevision>=12?[410-16*wave,170+45*wave]:[420-20*wave,173+50*wave];p.frontArmPlane=.8;
+        if(this.asset.rig.swordGrip){
+          // Start exactly at the authored first cut. Later beats travel between
+          // two complete hand/elbow poses, never teleport onto a combo overlay.
+          const base=this.api.completePose(this.asset,anim.keyframes[3]),scale=this.asset.proportions.hwigyeomScale?.bodyMultiplier||1;
+          p.frontHandAngle=base.frontHandAngle+(-55-base.frontHandAngle)*wave;p.weapon=p.frontHandAngle;
+          p.frontHand=base.frontHand.map((v,i)=>v+[30,-60][i]*scale*wave);
+          p.frontElbow=base.frontElbow.map((v,i)=>v+[-11,-45][i]*scale*wave);p.frontElbowProjection=1;
+        }
         p.thorax[0]-=4*wave;p.rearHand[0]+=6*wave;
+
+        if(this.asset.followThroughRevision>=14&&s.meleeIndex>=s.comboHits&&s.comboFinishAt==null){s.comboFinishAt=this.time;s.comboFinishFrom=structuredClone(p);}
       }
+      if(comboFinishing&&s.comboFinishFrom&&comboFinishAge<.12)p=this.api.blendPoseTargets(s.comboFinishFrom,p,poseClamp(comboFinishAge/.12));
       if(this.asset.character_id==='seol_o')p=this.aimTargets(p,u,poseClamp((1-phase)/.2));
       if(s.releaseFrom&&age<(sweep?.025:.1)){const mixed=this.api.blendPoseTargets(s.releaseFrom,p,poseClamp(age/(sweep?.025:.1)));mixed.spiritAlpha=p.spiritAlpha;mixed.qiAlpha=p.qiAlpha;p=mixed;}
-      p.draw=0;p.arrow=0;if(s.worldEffect){p.spiritAlpha=0;p.qiAlpha=0;}sample=this.api.solvePose(this.asset,p);sample.t=s.meleeSkill==='S07'&&s.meleeIndex>=1?.5:phase;
+      p.draw=0;p.arrow=0;if(s.worldEffect){p.spiritAlpha=0;p.qiAlpha=0;}sample=this.api.solvePose(this.asset,p);sample.t=!comboFinishing&&s.meleeSkill==='S07'&&s.meleeIndex>=1?.5:phase;
     }
     else if(charge>0){sample=this.chargingPose(u,charge,s);s.mode='charge';}
     else if(this.asset.character_id==='hwigyeom'&&u.martialGuard?.counter){sample=this.chargingPose(u,.25,{...s,chargeAt:this.time-.32});s.mode='guard';}
@@ -192,6 +204,8 @@ export class HonroPoseVisual{
       const blendAge=this.time-(s.locomotionAt??-Infinity);
       if(s.locomotionFrom&&blendAge<.1){const t=sample.t,controls=sample.controls;sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.locomotionFrom,sample.targets,poseClamp(blendAge/.1)));sample.t=t;sample.controls=controls;}
     }
+    if(previousMode==='rush'&&s.mode==='release'&&s.lastTargets){s.rushExitFrom=structuredClone(s.lastTargets);s.rushExitAt=this.time;}
+    if(s.mode==='release'&&s.rushExitFrom&&this.time-s.rushExitAt<.1){const t=sample.t,controls=sample.controls;sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.rushExitFrom,sample.targets,poseClamp((this.time-s.rushExitAt)/.1)));sample.t=t;sample.controls=controls;}
     if(this.asset.character_id!=='hwigyeom'&&this.asset.anatomyRevision>=12&&['charge','release'].includes(s.mode))sample.controls.rearArmLayer=1;
     if(airborne&&['charge','release','guard'].includes(s.mode)){
       // Keep the action's arm chain, but never display planted stance legs in

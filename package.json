@@ -48,6 +48,7 @@
     "test:act2:guidance": "node tests/act2-objective-readability.mjs",
     "capture:act2:guidance": "node tools/environment/capture-act2-guidance.mjs",
     "test:character-balance": "node tests/character-balance.mjs",
+    "test:party-motion": "node tests/party-motion-review.mjs candidate",
     "test:stage7-reentry": "node tests/stage7-reentry.mjs",
     "test:campaign-continuity": "node tests/campaign-continuity.mjs",
     "test:battle-help": "node tests/battle-help.mjs && node tests/modal-keyboard.mjs && node tests/aim-readout.mjs",
@@ -143,7 +144,9 @@
     "test:stage14-vertical:fullplay": "node tests/stage14-vertical-fullplay.mjs",
     "test:stage14-vertical:native": "node --expose-gc tests/stage14-vertical-native-art.mjs",
     "test:encounter-density:contracts": "node tests/encounter-density-runtime.mjs && node tests/stage8-encounter-density.mjs && node tests/stage11-encounter-density.mjs && node tests/stage12-encounter-density.mjs && node tests/stage8-density-regional-entry.mjs && node tests/stage161718-response-lifecycle.mjs && node tests/stage8-density-ember-recovery.mjs",
-    "test:vertical-regression-wiring": "node tests/vertical-regression-wiring.mjs"
+    "test:vertical-regression-wiring": "node tests/vertical-regression-wiring.mjs",
+    "test:party-anatomy-v013": "node tests/party-arm-layer-v013.mjs && node tests/hwigyeom-proportions-v013.mjs && node tests/sword-grip-v013.mjs",
+    "test:party-followthrough": "node tests/followthrough-v014.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
