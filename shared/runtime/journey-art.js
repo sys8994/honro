@@ -338,8 +338,41 @@
     cache.set(key, svg);
     return svg;
   }
+  // Expanded paper keeps authored places in their original world coordinates.
+  // The surrounding landscape is painted, not a CSS gutter or stretched bitmap.
+  const bookFrame = Object.freeze({ x: -180, y: -105, width: 2160, height: 1260 });
+  function bookAtlas(layer) {
+    const key = `book:${layer}`;
+    if (cache.has(key)) return cache.get(key);
+    let svg = atlas(layer).replace('viewBox="0 0 1800 1050"', 'viewBox="-180 -105 2160 1260"')
+      .replace('width="1800" height="1050"', 'width="2160" height="1260"');
+    const city = layer === 'city', underground = layer === 'underground';
+    const paper = city ? 'city-paper' : `honro-atlas-${layer}-paper`;
+    // Extend the existing paper gradient itself, avoiding a visible join.
+    svg = svg.replace(/M0 0H1800V1050H0Z|M0 0h1800v1050H0z/g, 'M-180 -105H1980V1155H-180Z')
+      .replace(/<path d="M43 99[^>]+\/>/, '');
+    // Move only clipping-edge endpoints outward; authored peaks, settlements
+    // and route landmarks keep their exact positions.
+    if (!city && !underground) svg = svg
+      .replaceAll('M-35 221', 'M-190 221').replaceAll('63 257-35 292Z', '63 257-190 292Z')
+      .replaceAll('M-25 781', 'M-190 781').replaceAll('L-25 944Z', 'L-190 944Z')
+      .replaceAll('1822 582V698', '1990 582V698').replaceAll('1824 981V1069', '1990 981V1165')
+      .replaceAll('M-30 258', 'M-190 258').replaceAll('1215 1069', '1261 1168')
+      .replaceAll('M-30 222', 'M-190 222').replaceAll('L-30 289Z', 'L-190 289Z')
+      .replaceAll('M-30 900', 'M-190 900').replaceAll('963-30 961Z', '963-190 961Z');
+    const outer = group('expanded-atlas-landscape',
+      path('M-190 -48C43 12 102-83 286-59S576-10 769-69 1054-29 1265-61 1630 38 1990-31V-115H-190Z', underground ? '#526358' : '#536757', 'opacity=".23"') +
+      path('M-190 1118C14 1054 119 1126 287 1102S577 1153 744 1106 1039 1165 1244 1119 1539 1161 1719 1097 1870 1131 1990 1094V1165H-190Z', underground ? '#617264' : '#657767', 'opacity=".18"') +
+      path('M-163 881Q-103 852-32 873M1841 953Q1902 929 1971 952M274 1095Q404 1078 502 1102M1351-57Q1476-32 1583-51', 'none', 'stroke="#aab49b" stroke-opacity=".12" stroke-width="2"'));
+    // The city sheet's original paper lives inside a named group, so place a
+    // full sheet behind it as well. IDs and original paths remain unchanged.
+    svg = svg.replace('</defs>', `</defs><path d="M-180 -105H1980V1155H-180Z" fill="url(#${paper})"/>`)
+      .replace('</svg>', outer + '</svg>');
+    cache.set(key, svg);
+    return svg;
+  }
   G.HonroJourneyArt = Object.freeze({
-    scene, atlas, variants, layers, motionFrame,
+    scene, atlas, bookAtlas, bookFrame, variants, layers, motionFrame,
     anchors: Object.freeze({
       fire: Object.freeze({ x: 800, y: 745, groundY: 765 }),
       signpost: Object.freeze({ x: 1370, y: 628, groundY: 769 }),
