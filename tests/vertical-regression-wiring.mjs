@@ -16,7 +16,10 @@ assert.deepEqual(files(scripts['test:encounter-density:contracts']),[
  'stage12-encounter-density','stage8-density-regional-entry',
  'stage161718-response-lifecycle','stage8-density-ember-recovery'
 ]);
-for(const script of ['test:vertical-regression-wiring','test:stage14-vertical:contracts','test:encounter-density:contracts']){
+assert.deepEqual(files(scripts['test:stage14-vertical:behavior']),files(scripts['test:stage14-vertical:contracts']).slice(1),'Preserve every14 behavioral contract while its old source-boundary command remains available');
+assert.deepEqual(files(scripts['test:stage22-vertical:contracts']),['stage22-vertical-source-boundary','stage22-vertical-composition','stage22-vertical-runtime','stage22-vertical-app-resume','stage22-vertical-art-dispatch','stage22-vertical-activation','stage22-vertical-regeneration']);
+assert.equal(scripts['test:vertical-current:contracts'],'npm run test:stage14-vertical:behavior && npm run test:stage22-vertical:contracts');
+for(const script of ['test:vertical-regression-wiring','test:vertical-current:contracts','test:encounter-density:contracts']){
  assert(scripts['test:integration'].includes('npm run '+script),script+' is wired into integration');
  assert(offline.includes("['run','"+script+"']"),script+' is wired into the offline check list');
 }
@@ -32,4 +35,7 @@ for(const name of [
 ])assert(fullDensity.includes(name),'The full historical/behavioral density suite retains '+name);
 for(const kind of ['traversal','tactics','fullplay'])assert.equal(scripts['test:stage14-vertical:'+kind],'node tests/stage14-vertical-'+kind+'.mjs');
 assert.equal(scripts['test:stage14-vertical:native'],'node --expose-gc tests/stage14-vertical-native-art.mjs');
-console.log('PASS vertical regression command scope: seven14 contracts, seven density contracts, aggregate wiring and retained full density evidence');
+for(const kind of ['traversal','fullplay'])assert.equal(scripts['test:stage22-vertical:'+kind],'node tests/stage22-vertical-'+kind+'.mjs');
+assert.equal(scripts['test:stage22-vertical:native'],'node --expose-gc tests/stage22-vertical-native-art.mjs');
+assert(!scripts['test:vertical-current:contracts'].match(/fullplay|native|traversal/),'Heavy evidence is a separate explicit run');
+console.log('PASS current14/22 fast contracts, preserved14 historical boundary, seven density contracts and separate heavy evidence');
