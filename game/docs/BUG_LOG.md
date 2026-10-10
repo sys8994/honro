@@ -1918,3 +1918,7 @@ canonical 재생 뒤 네 직업+NPC/양끝/양방향/4dt/4소수 시작320회 �
 - 원인: 긴 후면 기단을2–3개 코스와 소수 수직 줄눈으로 그려 실제 인물보다 몇 배 큰 돌처럼 보였다.
 - 교정: `stage23-escort-art.js`에서만 원래 기단/교대 외곽을 유지한 채 높이51–76의 불균일하고 일부 끊긴 낮은 대비 줄눈, 드문 넓은 배수 흔적과 굵은 구조줄을 구분했다. 앞 solid 석교/교각도 같은 인물 기준을 사용한다. 수문/보행선/충돌/배우/카메라/저장 데이터는 그대로다.
 - 검증: `node tests/stage23-escort-stone-scale.mjs`, 실제 R10 및 전체 입장 상태 Native desktop/portrait before/after·whole-battle 순수성, canonical28 입장 exact, 생성 HTML 빌드. 원래bf8 검증 이미지와 실제 정상 전투는 보존하며 새 전투/브라우저 통과로 주장하지 않는다.
+
+### 2026-10-09 · 새8장 한정 미술 연결과 검수 경계
+
+공통 Game/Stage View/Playtest manifest에 새8 렌더를 동일하게 연결하고 terrain-readability의8장 전용 훅만 추가했다. 구8 및11/12/16/17/18/23/30, custom8/미지원revision의 가로·세로·반복 Native120회에서 현재23 승인 렌더를 공통으로 적용한 전후 RGBA·Canvas상태·전체battle이 일치한다. 실제 합법경지7·세영웅 입력 controller는 한 행동의 기본이동/발사와 외부자원쓰기0만 확인했으며, 의도적인 관측상한 종료는 완주가 아니다. 검수 범위를 별도 명세로 고정했고 새 지형/미술 큰 실루엣은 아직 불합격 상태다. canonical8과 생성HTML은 이 저장점에서 교체하지 않는다.
