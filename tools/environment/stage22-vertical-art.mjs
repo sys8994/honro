@@ -193,9 +193,9 @@ function clipMasonryBox(points,left,top,right,bottom){
  }
  return out.length>=3&&Math.abs(out.reduce((v,a,i)=>{const b=out[(i+1)%out.length];return v+a[0]*b[1]-b[0]*a[1];},0))>1?out:[];
 }
-function registerMasonryCourses(bottom){
- const courses=[];for(let y=1888,row=0;y<bottom;row++){const height=[46,54,42,58,50][row%5],cells=[],offset=[0,89,27,117][row%4];let x=498-offset;
-  for(let col=0;x<1740;col++){const width=[154,188,169,207,176,194][(col+row*2)%6];cells.push({x,y,width,height,tone:[0,1,0,2,1,2,0][(col+row*3)%7]});x+=width;}
+function registerMasonryCourses(bottom,{top=1888,left=498,right=1740}={}){
+ const courses=[];for(let y=top,row=0;y<bottom;row++){const height=[46,54,42,58,50][row%5],cells=[],offset=[0,89,27,117][row%4];let x=left-offset;
+  for(let col=0;x<right;col++){const width=[154,188,169,207,176,194][(col+row*2)%6];cells.push({x,y,width,height,tone:[0,1,0,2,1,2,0][(col+row*3)%7]});x+=width;}
   courses.push({row,y,height,cells});y+=height;
  }
  return courses;
@@ -213,19 +213,30 @@ function registerRetainingMasonry(stage){
  const id='v22-register-mass',terrain=stage.terrains.find(t=>t.id===id),polygon=terrain.points.map(p=>[p.x,p.y]),bottom=Math.max(...polygon.map(p=>p[1])),courses=registerMasonryCourses(bottom),masonry=registerMasonryPieces(polygon,courses);
  return{planes:masonry.pieces.map(p=>({terrainId:id,id:ELEMENT+'register-masonry-'+p.key,stage22VerticalArt:true,points:p.points.map(q=>q.map(N)),fill:p.fill})),record:{terrainId:id,courseAxis:'horizontal',courseHeightRange:[42,58],jointWidth:4,bodyTones:['#748174','#667a6e','#818b78'],courses:courses.map(({row,y,height,cells})=>({row,y,height,joints:cells.slice(1).map(c=>c.x)})),cells:masonry.cells,fullClosedFace:true,physicalProfile:'continuous-ramp',drawnStepCount:0}};
 }
+/** Finish E/G's existing solid only. No extra scenic building, support, or
+ * deck is introduced; F's already reviewed geometry and art stay exact. */
+function upperTerraceMasonry(stage){
+ const planes=[],records=[];
+ for(const id of ['v22-east-register-rise','v22-comparison-mass']){const terrain=stage.terrains.find(t=>t.id===id),polygon=terrain.points.map(p=>[p.x,p.y]),xs=polygon.map(p=>p[0]),ys=polygon.map(p=>p[1]),courses=registerMasonryCourses(Math.max(...ys),{top:Math.min(...ys)-12,left:Math.min(...xs)-74,right:Math.max(...xs)+40}),masonry=registerMasonryPieces(polygon,courses);
+  planes.push(...masonry.pieces.map(p=>({terrainId:id,id:ELEMENT+'upper-masonry-'+id+'-'+p.key,stage22VerticalArt:true,points:p.points.map(q=>q.map(N)),fill:p.fill})));
+  records.push({terrainId:id,courseAxis:'horizontal',courseHeightRange:[42,58],jointWidth:4,cells:masonry.cells,continuousTrafficUnchanged:true,noNewCollision:true,closedRoom:id==='v22-comparison-mass'?{x:2140,y:1296,width:664,height:148,bays:4,belowFlatSurface:true}:null});
+ }
+ return{planes,records};
+}
 /** The remaining terraces share C's load-bearing architectural language,
  * with different uses and proportions. No foreground cliff prisms remain.
  * Closed wall sections are current-solid paint, never scenic collision. */
 function builtTerracePlanes(stage){
- const registerMasonry=registerRetainingMasonry(stage),planes=[],records=[],rampProfiles=[],add=(id,key,ps,fill)=>planes.push({terrainId:id,id:ELEMENT+'built-'+key,stage22VerticalArt:true,points:ps.map(p=>p.map(N)),fill}),box=(id,key,x,y,w,h,fill)=>add(id,key,[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],fill);
+ const registerMasonry=registerRetainingMasonry(stage),upperMasonry=upperTerraceMasonry(stage),planes=[],records=[],rampProfiles=[],add=(id,key,ps,fill)=>planes.push({terrainId:id,id:ELEMENT+'built-'+key,stage22VerticalArt:true,points:ps.map(p=>p.map(N)),fill}),box=(id,key,x,y,w,h,fill)=>add(id,key,[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],fill);
  const stone=(id,key,x,y,w,h,tone=0)=>{box(id,key,x,y,w,h,['#7c8977','#697f72','#89917c'][tone]);box(id,key+'-top',x+2,y,w-4,4,'#a9ae94');box(id,key+'-side',x+w-4,y+4,4,h-4,'#3b5550');box(id,key+'-bed',x,y+h-4,w,4,'#314c48');};
  const storey=(id,key,x,y,w,h,bays,{paper=false,dim=false}={})=>{box(id,key+'-wall',x,y,w,h,dim?'#576a59':paper?'#7f8169':'#6c735b');box(id,key+'-beam',x-5,y-13,w+10,19,'#4a4936');box(id,key+'-beam-light',x-3,y-12,w+6,4,'#a8946b');box(id,key+'-sill',x,y+h-16,w,16,'#404c3d');const dx=w/bays;
   for(let i=0;i<=bays;i++){const px=x+i*dx;box(id,key+'-post-'+i,px-7,y-12,15,h+11,'#62533c');box(id,key+'-post-light-'+i,px-5,y-5,4,h-2,'#a78b60');}
   for(let i=0;i<bays;i++){const px=x+i*dx+19,pw=dx-38,py=y+24,ph=h-60;if(pw<24)continue;box(id,key+'-closed-panel-'+i,px,py,pw,ph,paper?'#a39b7a':i%2?'#79805f':'#897e5d');box(id,key+'-panel-top-'+i,px,py,pw,8,'#4c5840');box(id,key+'-panel-center-'+i,px+pw*.5-2,py+8,5,ph-8,'#4f5840');for(const k of [.33,.72])box(id,key+'-panel-tie-'+i+'-'+k,px+2,py+ph*k,pw-4,5,paper?'#69725a':'#b1a176');}
   records.push({terrainId:id,key,kind:paper?'closed-paper-record-room':'closed-plank-record-room',storeyHeight:h,bays,closed:true});
  };
- for(const surface of V22_LAYOUT.surfaces.filter(s=>s.id!=='v22-report-crossing')){const id=surface.id,t=stage.terrains.find(t=>t.id===id);add(id,id+'-built-body',t.points.map(p=>[p.x,p.y]),id==='v22-lower-court'?'#3b514d':id==='v22-register-mass'?'#304941':'#4b6056');
+ for(const surface of V22_LAYOUT.surfaces.filter(s=>s.id!=='v22-report-crossing')){const id=surface.id,t=stage.terrains.find(t=>t.id===id);add(id,id+'-built-body',t.points.map(p=>[p.x,p.y]),id==='v22-lower-court'?'#3b514d':['v22-register-mass','v22-east-register-rise','v22-comparison-mass'].includes(id)?'#304941':'#4b6056');
   if(id==='v22-register-mass')planes.push(...registerMasonry.planes);
+  planes.push(...upperMasonry.planes.filter(p=>p.terrainId===id));
   for(let i=1;i<surface.top.length;i++){const a=surface.top[i-1],b=surface.top[i],key=id+'-edge-'+i,flat=Math.abs(a[1]-b[1])<.01;
    // The visible traffic band is continuous. It does not draw stepped ledges
    // into the air or imply different collision from the authored incline.
@@ -242,9 +253,9 @@ function builtTerracePlanes(stage){
  storey('v22-lower-court','lower-east-record-wing',1970,4637,1250,203,6,{dim:true});
  box('v22-lower-court','buried-west-foundation',0,5660,1590,940,'#354d48');box('v22-lower-court','buried-east-foundation',1610,4940,3200,1680,'#304a47');
  for(const [i,y]of [5590,5635].entries())for(const [j,x]of [360,515,684,850,1010,1166].entries())stone('v22-lower-court','clerk-foot-'+i+'-'+j,x,y,145+(j%2)*13,38,(i+j)%3);
- // B and E are solid circulation wings. Sparse upright timber members split
- // the inclined bearing body; there are no open holes through physical solids.
- for(const id of ['v22-report-approach','v22-east-register-rise']){const sf=V22_LAYOUT.surfaces.find(s=>s.id===id),xs=id==='v22-report-approach'?[1225,1435,1638]:[1840,1984,2140];for(const [i,x]of xs.entries()){const top=actualY(stage,id,x)+80,bottom=actualUnderside(stage,id,x);box(id,id+'-inset-post-'+i,x-7,top,15,Math.max(0,bottom-top),'#625a42');box(id,id+'-inset-post-light-'+i,x-5,top,4,Math.max(0,bottom-top-9),'#a08e65');}records.push({terrainId:id,key:'enclosed-circulation-wing',kind:'continuous-stone-ramp',profile:sf.top,drawnStepCount:0});}
+ // B keeps its existing timber circulation face. E now reads as a small
+ // stone return, with the same unaltered continuous traffic band as F/G.
+ for(const id of ['v22-report-approach']){const sf=V22_LAYOUT.surfaces.find(s=>s.id===id),xs=id==='v22-report-approach'?[1225,1435,1638]:[1840,1984,2140];for(const [i,x]of xs.entries()){const top=actualY(stage,id,x)+80,bottom=actualUnderside(stage,id,x);box(id,id+'-inset-post-'+i,x-7,top,15,Math.max(0,bottom-top),'#625a42');box(id,id+'-inset-post-light-'+i,x-5,top,4,Math.max(0,bottom-top-9),'#a08e65');}records.push({terrainId:id,key:'enclosed-circulation-wing',kind:'continuous-stone-ramp',profile:sf.top,drawnStepCount:0});}
  // D: a shallow timber sill under the occupied gallery, with short masonry
  // below; the west rise reads as its same supported returning corridor.
  box('v22-west-gallery','gallery-floor-timber',1010,3275,650,27,'#796b4d');box('v22-west-gallery','gallery-timber-bottom',1010,3296,650,14,'#384c3d');for(const [i,x]of [1020,1164,1320,1484].entries())stone('v22-west-gallery','gallery-low-foot-'+i,x,3315,137,38,i%3);
@@ -252,12 +263,12 @@ function builtTerracePlanes(stage){
  // passage. Rear orthogonal buildings stay separately grounded on D; their
  // lower-contrast masonry aligns with these level courses at the contact.
  records.push({terrainId:'v22-register-mass',key:'external-register-passage',kind:'coursed-stone-retaining-wall-under-external-ramp',frontWindows:0,drawnStepCount:0});
- // G: a light upper record room and a dark lower storey support the low
- // comparison hall. The original same-level240-unit exit stays unaltered.
- storey('v22-comparison-mass','comparison-upper-record-room',2115,1287,807,177,5,{paper:true});
- storey('v22-comparison-mass','comparison-lower-record-room',2036,1515,899,182,5,{dim:true});
- for(const [r,y]of [1711,1761].entries())for(const [i,x]of [1970,2131,2303,2460,2632,2790].entries())stone('v22-comparison-mass','comparison-foot-'+r+'-'+i,x+(r?53:0),y,149,42,(i+r)%3);
- return{planes,records,rampProfiles,registerMasonry:registerMasonry.record};
+ // G retains one shallow, upright closed record tier under the existing
+ // flat comparison hall. Its sloping approach and lower foundation are stone,
+ // with no second window row cropped into the diagonal underside.
+ storey('v22-comparison-mass','comparison-flat-record-tier',2140,1296,664,148,4,{dim:true});
+ records.push(...upperMasonry.records.map(r=>({terrainId:r.terrainId,key:'human-scale-coursed-retaining-face',kind:'coursed-stone-retaining-wall',drawnStepCount:0})));
+ return{planes,records,rampProfiles,registerMasonry:registerMasonry.record,upperFinish:upperMasonry.records};
 }
 function linkedTerraceFrames(stage){
  const groups=[{key:'east-return-bearing',top:'v22-east-register-rise',feet:'v22-report-crossing',xs:[1830,1990,2170],ties:[2895,3140],closed:false},{key:'comparison-archive-bearing',top:'v22-comparison-mass',feet:'v22-report-crossing',xs:[2050,2330,2610,2890],ties:[2130,2450,2730],closed:true},{key:'lower-return-bearing',top:'v22-report-approach',feet:'v22-lower-court',xs:[1450,1635,1730],ties:[4620,4900],closed:false}],rows=[];
@@ -323,6 +334,6 @@ export function applyStage22VerticalArt(project){
  for(const [key,support,x,zone]of [['seal-lamp','v22-lower-court',1010,'A'],['record-lamp','v22-report-crossing',2335,'E'],['gallery-lamp','v22-west-gallery',1048,'D'],['exit-lamp','v22-comparison-mass',2890,'H']]){const a=lantern(),e=place(project,stage,a,key,support,x,{zone,purpose:'Sparse low lamp, smaller than an actor and behind every combat element.'});stage.design.space.lights.push({id:e.id+'-light',x:e.x,y:e.y-96,roomId:'v22-'+zone,kind:'oil',radius:91,color:'#c2ad78',visualOnly:true});}
  for(const [support,xs,key]of [['v22-report-approach',[1167,1220,1435,1650,1743],'lower-return-rail'],['v22-east-register-rise',[1815,1860,2010,2140,2187],'register-rise-rail'],['v22-register-mass',[588,600,840,1040,1130],'optional-west-rail'],['v22-west-gallery',[95,350,530,700,1010],'west-gallery-return-rail'],['v22-comparison-mass',[1514,1560,1740,1880,1990],'comparison-ascent-rail'],['v22-report-crossing',[1510,1640,1780,1835,1890,2030,2160,2300],'continuous-report-passage-rail']]){const r=rearRail(stage,support,xs,key);register(project,r.asset);stage.elements.push({id:ELEMENT+key,assetId:r.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:r.feet});}
  stage.environment.placements=[];stage.environment.groups=[];stage.environment.surfaces=[];stage.environment.skyVisible=true;stage.environment.atmosphere={preset:'valley',overrides:{skyTop:'#172f39',skyBottom:'#435b5c',hazeStrength:.30,mistStrength:.045,lightStrength:.055}};
- stage.design.vertical22Art={revision:1,iteration:5,registerArchitecture:{foreground:'continuous-external-passage-over-coursed-stone-retaining-wall',masonry:built.registerMasonry,frontWindows:0,rearBuildings:registerBuildings.map(r=>r.record),thinRegisterFrameRemoved:true,noNewCollision:true},wholeArchitecture:{regions:['A','B','C','D','E','F','G','H'],rampProfiles:built.rampProfiles,columns:linked.flatMap(r=>r.columns),closedRoomSections:built.records,drawnStepCount:0},reportArchitecture:{closedStorageStoreys:2,storyHeight:222,stoneCourseHeight:[32,46],maxStoneWidth:187,rampJoints:section.joints,columns:frame.columns,undersideContacts:frame.heads,noNewCollision:true},status:'authored-awaiting-native-and-independent-review',source:'tools/environment/stage22-vertical-art.mjs',geometrySource:'tools/map-forge/stage22-vertical-geometry.mjs',nativeVectorOnly:true,style:'Korean administrative terraces: cut granite blocks, subdued gable and hip tile roofs, horizontal bound folios, square timber recesses. Upper-left key light, broad rear support shadows.',referenceSources:['tools/environment/korean-town-art.mjs: existing21/22/24 office/archive/cabinet assets','tools/environment/stage16-temple-art.mjs: broad plinth upper/side/shadow planes'],collisionPolicy:'Exact terrain/units/objectives/events/routes/gates unchanged. No scenic collision. Terrain paint is clipped to current solid by the shared renderer.',rearPolicy:'Six actual underside attachments descend to verified lower walking surfaces. No new front walk rim or decorative balcony deck.',terrainAttachments:wall.attachments,namedStoneMasses:materials.records,artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage22Supports||[]).map(p=>({elementId:e.id,...p}))),buildingElements:placed.map(e=>e.id),budgets:{maxNodesPerAsset:180,repeatedNoisePaths:0,decorativeCollisionBodies:0},views:[{id:'report-cross-cover',x:1740,y:3320,z:.55,w:1440,h:960},{id:'lower-seal-court',x:1270,y:5100,z:.57,w:1440,h:960},{id:'register-ascent',x:1580,y:2300,z:.55,w:1440,h:960},{id:'comparison-exit',x:2420,y:1180,z:.65,w:1440,h:960}]};
+ stage.design.vertical22Art={revision:1,iteration:6,upperTerraceFinish:built.upperFinish,registerArchitecture:{foreground:'continuous-external-passage-over-coursed-stone-retaining-wall',masonry:built.registerMasonry,frontWindows:0,rearBuildings:registerBuildings.map(r=>r.record),thinRegisterFrameRemoved:true,noNewCollision:true},wholeArchitecture:{regions:['A','B','C','D','E','F','G','H'],rampProfiles:built.rampProfiles,columns:linked.flatMap(r=>r.columns),closedRoomSections:built.records,drawnStepCount:0},reportArchitecture:{closedStorageStoreys:2,storyHeight:222,stoneCourseHeight:[32,46],maxStoneWidth:187,rampJoints:section.joints,columns:frame.columns,undersideContacts:frame.heads,noNewCollision:true},status:'authored-awaiting-native-and-independent-review',source:'tools/environment/stage22-vertical-art.mjs',geometrySource:'tools/map-forge/stage22-vertical-geometry.mjs',nativeVectorOnly:true,style:'Korean administrative terraces: cut granite blocks, subdued gable and hip tile roofs, horizontal bound folios, square timber recesses. Upper-left key light, broad rear support shadows.',referenceSources:['tools/environment/korean-town-art.mjs: existing21/22/24 office/archive/cabinet assets','tools/environment/stage16-temple-art.mjs: broad plinth upper/side/shadow planes'],collisionPolicy:'Exact terrain/units/objectives/events/routes/gates unchanged. No scenic collision. Terrain paint is clipped to current solid by the shared renderer.',rearPolicy:'Six actual underside attachments descend to verified lower walking surfaces. No new front walk rim or decorative balcony deck.',terrainAttachments:wall.attachments,namedStoneMasses:materials.records,artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage22Supports||[]).map(p=>({elementId:e.id,...p}))),buildingElements:placed.map(e=>e.id),budgets:{maxNodesPerAsset:180,repeatedNoisePaths:0,decorativeCollisionBodies:0},views:[{id:'report-cross-cover',x:1740,y:3320,z:.55,w:1440,h:960},{id:'lower-seal-court',x:1270,y:5100,z:.57,w:1440,h:960},{id:'register-ascent',x:1580,y:2300,z:.55,w:1440,h:960},{id:'comparison-exit',x:2420,y:1180,z:.65,w:1440,h:960}]};
  if(gameplay(stage)!==unchanged||JSON.stringify(project.stages.filter(s=>s!==stage))!==others)throw Error('Stage22 visual author changed gameplay or another stage');return project;
 }
