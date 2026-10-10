@@ -4432,6 +4432,7 @@ exports.FLY_MOVE_BUDGET = void 0;
 exports.finishPlanning = finishPlanning;
 exports.flyingEnemy = flyingEnemy;
 exports.flightClear = flightClear;
+exports.knockbackFlyingEnemy = knockbackFlyingEnemy;
 exports.shotImpactValue = shotImpactValue;
 exports.targetFor = targetFor;
 exports.dangerAt = dangerAt;
@@ -4444,6 +4445,7 @@ exports.shotViable = shotViable;
 exports.chooseEnemyShot = chooseEnemyShot;
 exports.chooseEnemyShotSteps = chooseEnemyShotSteps;
 const data_1 = require("./data");
+const totemBehavior_1 = require("./totemBehavior");
 const math_1 = require("./math");
 const HEAVY = new Set(['guard', 'leaper']);
 function finishPlanning(steps) { let next = steps.next(); while (!next.done)
@@ -4455,9 +4457,34 @@ function flightClear(e, u, p) {
     const pad = 8, left = p.x - u.r - pad, right = p.x + u.r + pad, head = p.y - u.h - pad, feet = p.y + pad;
     if (left < 0 || right > e.b.width || head < 12 || feet > e.b.height)
         return false;
-    if (e.b.terrain.some(t => !t.broken && right > t.x && left < t.x + t.w && feet > Math.min((0, math_1.topAt)(t, Math.max(left, t.x)), (0, math_1.topAt)(t, Math.min(right, t.x + t.w))) && head < t.y + t.h))
+    if (e.b.terrain.some(t => !t.broken && (0, math_1.terrainRectIntersects)(t, left, head, right - left, feet - head, 0)))
         return false;
     return e.b.units.every(v => v.id === u.id || v.dead || Math.abs(v.x - p.x) >= u.r + v.r + 10 || feet <= v.y - v.h - 4 || head >= v.y + 4);
+}
+/** Flying fixed bodies absorb most of an impulse, but retain a small positional recoil.
+ * Sweep the whole body in short steps so thin walls, ceilings and other actors stop it.
+ * Do not release fixed: these creatures must stay aloft after the hit and after Continue. */
+function knockbackFlyingEnemy(e, u, vx, vy) {
+    if (!flyingEnemy(u) || u.boss || u.dead || u.hp <= 0 || u.summonFloating || !Number.isFinite(vx) || !Number.isFinite(vy))
+        return false;
+    const dx = (0, math_1.clamp)(vx * .16, -48, 48), dy = (0, math_1.clamp)(vy * .12, -24, 24), distance = Math.hypot(dx, dy);
+    if (distance < 1e-6)
+        return false;
+    delete u.moveTarget;
+    delete u.aiMove;
+    const x = u.x, y = u.y, steps = Math.ceil(distance / 2);
+    for (let i = 1; i <= steps; i++) {
+        const p = { x: x + dx * i / steps, y: y + dy * i / steps };
+        if (!flightClear(e, u, p))
+            break;
+        u.x = p.x;
+        u.y = p.y;
+    }
+    u.vx = u.vy = 0;
+    if (u.x === x && u.y === y)
+        return false;
+    u.moving = Math.max(u.moving || 0, .12);
+    return true;
 }
 function flightLeg(e, u, to) {
     const d = Math.hypot(to.x - u.x, to.y - u.y), steps = Math.ceil(d / 6);
@@ -4522,7 +4549,7 @@ function advanceFlight(e, u, dt) {
     if (Math.hypot(next.x - u.x, next.y - u.y) < 1 || u.moveLeft <= 0)
         stop();
 }
-/** First-impact estimate, using live blast falloff, armor, shields and HONRO coalition immunity.
+/** First-impact estimate, using live blast falloff, armor, shields and coalition friendly-fire cost.
  * Delayed effects/secondary fragments are deliberately not counted as guaranteed damage. */
 function shotImpactValue(e, u, skill, hit, allowedTargetId) {
     const eff = e.effective(skill, u), radius = Math.max(1, eff.radius);
@@ -4533,8 +4560,6 @@ function shotImpactValue(e, u, skill, hit, allowedTargetId) {
         const friendly = v.id !== allowedTargetId && (u.side === 1 ? v.side === 1 : v.side !== 1);
         const opponent = v.id === allowedTargetId || (u.side === 1 ? (v.side === 0 || (v.side === 2 && (v.honroAlly || v.id === 'objective'))) : v.side === 1);
         if (!friendly && !opponent)
-            continue;
-        if (friendly && u.honroAlly && (v.side === 0 || v.side === 2))
             continue;
         const d = Math.hypot(hit.x - v.x, hit.y - (v.y - v.h * .45)), direct = hit.unit === v.id;
         if (!direct && d >= radius + v.r)
@@ -4754,8 +4779,41 @@ function* shotOpportunity(e, u, target, p) {
     }
     return best;
 }
+/** Lure spends the enemy's existing movement through ordinary swept locomotion.
+ * A blocked lure never teleports or grants an additional tactical move. */
+function* planLuredMove(e, u, target, z) {
+    const boost = (0, totemBehavior_1.stakeBoost)(e, z);
+    if ((0, totemBehavior_1.stakeContact)(z, u, boost) || u.moveLeft < 5)
+        return;
+    const flying = flyingEnemy(u);
+    if (!flying && (u.fixed || !e.grounded(u)))
+        return;
+    const budget = Math.min(u.moveLeft, (130 + 15 * (z.rank - 1)) * boost, flying ? exports.FLY_MOVE_BUDGET : 610);
+    const goal = { x: z.x, y: flying ? z.y - 10 : z.y }, dx = goal.x - u.x, dy = goal.y - u.y, d = Math.hypot(dx, dy);
+    const travel = Math.min(d, budget);
+    for (const fraction of [1, .75, .5, .25]) {
+        const distance = travel * fraction;
+        if (distance < 5)
+            continue;
+        const x = u.x + dx / Math.max(1, d) * distance;
+        const floor = flying ? undefined : e.surface(x, u.y - 190, u.y + 190);
+        if (!flying && !floor)
+            continue;
+        const to = { x, y: flying ? u.y + dy / Math.max(1, d) * distance : floor.y };
+        if (Math.hypot(to.x - z.x, to.y - z.y) >= Math.hypot(u.x - z.x, u.y - z.y) - 2)
+            continue;
+        const leg = flying ? (flightLeg(e, u, to) ? { cost: distance, jump: false } : null) : (yield* traceTravelSteps(e, u, u, to, budget));
+        yield;
+        if (!leg)
+            continue;
+        return { round: e.b.round, targetId: target.id, path: [{ ...to, jump: leg.jump, ...('jumpX' in leg && leg.jumpX !== undefined ? { jumpX: leg.jumpX } : {}) }], index: 0, elapsed: 0, stalled: 0, lastX: u.x, lastY: u.y, jumping: false, intent: '유인진목에 이끌림' };
+    }
+}
 function planEnemyMove(e, u, target) { return finishPlanning(planEnemyMoveSteps(e, u, target)); }
 function* planEnemyMoveSteps(e, u, target) {
+    const lure = (0, totemBehavior_1.lureStakeFor)(e, u);
+    if (lure)
+        return yield* planLuredMove(e, u, target, lure);
     if (flyingEnemy(u))
         return yield* planFlight(e, u, target);
     if (u.fixed || u.dead || u.moveLeft < 35 || !e.grounded(u))
@@ -5825,6 +5883,7 @@ class Engine {
     }
     iceGourdReady() { return (0, skillMechanics_1.iceGourdReady)(this); }
     detonateIceGourd() { return (0, skillMechanics_1.detonateIceGourd)(this); }
+    projectileDamage(p) { return !!p && Number.isFinite(p.id) && !p.body && p.mode !== 'stake'; }
     hurt(u, amount, owner, direct = false, p, source, damageSource = 'normal', damageSkill) {
         var _a;
         if (u.dead || amount <= 0)
@@ -5999,7 +6058,13 @@ class Engine {
             this.growEater(u);
     }
     impulse(u, vx, vy) {
-        if (u.fixed || u.dead || u.summonFloating)
+        if (u.dead || u.summonFloating)
+            return;
+        if ((0, enemyAI_1.flyingEnemy)(u)) {
+            (0, enemyAI_1.knockbackFlyingEnemy)(this, u, vx, vy);
+            return;
+        }
+        if (u.fixed)
             return;
         delete u.moveTarget;
         const resist = 1 - (0, progression_1.knockbackResistance)((0, progression_1.passiveRank)(u, 'SP02'));
@@ -6442,12 +6507,12 @@ class Engine {
         const tx = t.x, ty = t.y - t.h * .5, dx = tx - p.x, dy = ty - p.y, n = Math.max(1, Math.hypot(dx, dy));
         p.vx = dx / n * 1250;
         p.vy = dy / n * 1250;
-        const m = this.advanceProjectile(p, dt), h = (0, math_1.segRect)(p, m, t.x - t.r, t.y - t.h, t.r * 2, t.h, p.radius);
-        // Dedicated ethereal ray per target: no friendly collision or incidental tank intercept.
-        if (h) {
-            p.x += (m.x - p.x) * h.t;
-            p.y += (m.y - p.y) * h.t;
-            this.hurt(t, p.damage, p.owner, true, p, p);
+        const m = this.advanceProjectile(p, dt), h = this.projectileCollision(p, m, p.radius, p.owner, p.hit, true, [], false);
+        // Guidance selects enemies, but every intervening body can intercept the ray.
+        if (h?.unit) {
+            p.x = h.x;
+            p.y = h.y;
+            this.hurt(h.unit, p.damage, p.owner, true, p, p);
             this.fx('burst', p.x, p.y, p.color, 35);
             this.remove(p);
             return;
@@ -6694,9 +6759,10 @@ class Engine {
             return true;
         }
         if (p.mode === 'curseManifest') {
-            for (const t of this.alive(1))
-                if (Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) < p.blast + t.r) {
-                    this.manifest(t, owner, p.skillRank || 1, p.soulBoost ? 1 : 0);
+            for (const t of this.b.units)
+                if (!t.dead && Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) < p.blast + t.r) {
+                    if (t.side === 1)
+                        this.manifest(t, owner, p.skillRank || 1, p.soulBoost ? 1 : 0);
                     this.hurt(t, p.damage, p.owner, false, p, p);
                 }
             if (h?.terrain && (0, progression_1.passiveRank)(owner, 'OP01')) {
@@ -6715,10 +6781,12 @@ class Engine {
             return true;
         }
         if (p.mode === 'curseEarth') {
-            for (const t of this.alive(1))
-                if (Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) < p.blast + t.r) {
-                    t.earthbind = { owner: owner.id, until: this.b.round + 2 + Math.floor(((p.skillRank || 1) - 1) * 4 / 7) + (p.soulBoost ? 1 : 0), damage: p.damage * .32 };
-                    t.curseOwner = owner.id;
+            for (const t of this.b.units)
+                if (!t.dead && Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) < p.blast + t.r) {
+                    if (t.side === 1) {
+                        t.earthbind = { owner: owner.id, until: this.b.round + 2 + Math.floor(((p.skillRank || 1) - 1) * 4 / 7) + (p.soulBoost ? 1 : 0), damage: p.damage * .32 };
+                        t.curseOwner = owner.id;
+                    }
                     this.hurt(t, p.damage, p.owner, false, p, p);
                 }
             this.fx('ring', p.x, p.y, '#b9ae91', p.blast);
@@ -10603,8 +10671,6 @@ function beginOccultCast(e, u, s, roots) {
         u.nextSummonDiscount = 0;
     for (const p of roots) {
         p.soulBoost = empowered;
-        if (soul)
-            p.hit = e.alive(0).map(v => v.id);
         if (empowered && soul)
             p.damage *= 1 + .12 + .02 * (u.ranks.OP05 || 0);
     }
@@ -10621,7 +10687,7 @@ function beginOccultCast(e, u, s, roots) {
     for (const [i, echo] of echoes.entries()) {
         const rank = (0, math_1.clamp)(echo.summonRank || 1, 1, 8), aim = echoAim(e, echo, s, point, u.lastPower), o = e.origin(echo, aim.angle), v = e.velocity(echo, s, aim.angle, aim.power);
         for (const root of roots) {
-            const copy = { ...root, id: e.b.nextId++, x: o.x, y: o.y, vx: v.vx, vy: v.vy, prevVy: v.vy, launchX: o.x, launchY: o.y, returnX: echo.x, returnY: echo.y, damage: root.damage * occultData_1.ECHO_POWER[rank - 1], age: 0, hit: [...root.hit], trail: [o], child: false, echoUsed: true, echoSource: echo.id, echoDelay: .075 * (i + 1), targetPoint: { ...point }, targetId: prediction.unit, shot: root.shot };
+            const copy = { ...root, id: e.b.nextId++, x: o.x, y: o.y, vx: v.vx, vy: v.vy, prevVy: v.vy, launchX: o.x, launchY: o.y, returnX: echo.x, returnY: echo.y, damage: root.damage * occultData_1.ECHO_POWER[rank - 1], age: 0, hit: [...root.hit, echo.id], trail: [o], child: false, echoUsed: true, echoSource: echo.id, echoDelay: .075 * (i + 1), targetPoint: { ...point }, targetId: prediction.unit, shot: root.shot };
             e.b.projectiles.push(copy);
         }
     }
@@ -10674,8 +10740,8 @@ function stepConvergingSpirit(e, p, dt) {
     p.vy = (next.y - old.y) / Math.max(dt, .001);
     p.x = next.x;
     p.y = next.y;
-    for (const u of e.alive(1))
-        if (!p.hit.includes(u.id)) {
+    for (const u of e.b.units)
+        if (!u.dead && u.id !== p.owner && u.id !== p.echoSource && !p.hit.includes(u.id)) {
             const h = (0, math_1.segRect)(old, next, u.x - u.r, u.y - u.h, u.r * 2, u.h, p.radius);
             if (h) {
                 p.hit.push(u.id);
@@ -10688,8 +10754,8 @@ function stepConvergingSpirit(e, p, dt) {
             p.trail.shift();
     }
     if (t >= 1) {
-        for (const u of e.alive(1))
-            if (Math.hypot(u.x - c.goal.x, u.y - u.h * .5 - c.goal.y) < p.blast + u.r)
+        for (const u of e.b.units)
+            if (!u.dead && Math.hypot(u.x - c.goal.x, u.y - u.h * .5 - c.goal.y) < p.blast + u.r)
                 e.hurt(u, p.damage * .55, p.owner, false, p, c.goal);
         e.remove(p);
     }
@@ -11353,6 +11419,7 @@ exports.gateCandidate = gateCandidate;
 exports.useGate = useGate;
 exports.tickRedesign = tickRedesign;
 exports.redesignPrediction = redesignPrediction;
+const totemBehavior_1 = require("./totemBehavior");
 const combatPassives_1 = require("./combatPassives");
 const physics_1 = require("./physics");
 const data_1 = require("./data");
@@ -11709,7 +11776,7 @@ function emitGeometry(e, g) {
 function strikeGeometry(e, p, g, directTarget) {
     emitGeometry(e, g);
     e.emit('sound', { name: 'qiWave' });
-    for (const u of e.b.units.filter(u => enemy(p, u))) {
+    for (const u of e.b.units.filter(u => !u.dead && u.id !== p.owner)) {
         const h = geometryHits(g, u);
         let amount = p.damage * Math.max(h.count, u.id === directTarget?.id ? 1 : 0);
         if (g.kind === 'triangle' && !h.count && h.interior)
@@ -11759,7 +11826,7 @@ function gourdBurst(e, p) {
                 t.slowed = { factor: lerpRank(.20, .35, r), expires: e.b.round + 1 };
     }
     if (p.mode === 'gourdThunder')
-        for (const t of e.b.units.filter(t => enemy(p, t) && Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) <= 260 + 10 * (r - 1))) {
+        for (const t of e.b.units.filter(t => !t.dead && Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) <= 260 + 10 * (r - 1))) {
             e.emit('fx', { name: 'lightningBolt', x: p.x, y: p.y, x2: t.x, y2: t.y - t.h * .5, color: '#a8cfff', size: 2.8 });
             e.hurt(t, p.damage * .45 * secondary, p.owner, false, { ...p, secondary: false }, p);
         }
@@ -11818,9 +11885,9 @@ function redesignImpact(e, p, h) {
     p.x = h.x;
     p.y = h.y;
     if (p.secondary) {
-        if (h.unit && enemy(p, h.unit)) {
+        if (h.unit) {
             e.hurt(h.unit, p.damage, p.owner, false, p, h);
-            if (p.mode === 'frostChip')
+            if (p.mode === 'frostChip' && enemy(p, h.unit))
                 h.unit.slowed = { factor: lerpRank(.20, .35, r), expires: e.b.round + 1 };
         }
         e.remove(p);
@@ -12112,6 +12179,10 @@ function tickRedesign(e, dt) {
         const boost = (1 + (0, progression_1.passiveRank)(caster, 'MP01') * .02) * (1 + (z.effectBoost || 0)), trigger = 45 * Math.min(1.25, boost);
         const nearby = b.units.filter(u => !u.dead && (z.skill === 'M10' ? u.side === z.side || (u.honroAlly && z.side === 0) : enemy(z, u)) && Math.min(Math.hypot(u.x - z.x, u.y - z.y), Math.hypot(u.x - z.x, u.y - u.h * .5 - z.y)) < trigger + u.r);
         const p = { owner: z.owner, side: z.side, skill: z.skill, skillRank: z.rank, shot: z.shot, x: z.x, y: z.y, damage: z.damage, hit: [], id: z.id, vx: 0, vy: 0, prevVy: 0, age: 0, radius: 3, blast: 95, wind: 0, mode: 'stake', color: '#b9c4b1', bounces: 0, pierces: 0, apex: true, phase: 0, body: false, returnX: z.x, returnY: z.y, trail: [], child: false, rolled: 0 };
+        if (z.skill === 'M07' || z.skill === 'M08') {
+            (0, totemBehavior_1.triggerOffensiveStake)(e, z, nearby, p, boost);
+            continue;
+        }
         const available = z.skill === 'M10' ? nearby.filter(u => z.usedRounds?.[u.id] !== b.round) : nearby;
         if (!z.active && available.length && (z.skill === 'M10' || z.lastTriggerRound !== b.round)) {
             z.lastTriggerRound = b.round;
@@ -12124,20 +12195,6 @@ function tickRedesign(e, dt) {
                     ally.focus = Math.min(ally.maxFocus, ally.focus + ally.maxFocus * (.07 + .01 * z.rank) * boost);
                     ally.moveLeft = Math.min(ally.maxMove, ally.moveLeft + ally.maxMove * (.12 + .03 * z.rank) * boost);
                     e.fx('ring', ally.x, ally.y, '#bfcbb6', 35);
-                }
-            }
-            if (z.skill === 'M07')
-                e.blast(z.x, z.y - 20, 95, z.damage, z.owner, false, p);
-            if (z.skill === 'M08') {
-                e.hurt(t, z.damage, z.owner, false, p, z);
-                for (const v of b.units.filter(v => enemy(z, v) && Math.hypot(v.x - z.x, v.y - v.h * .5 - z.y) < (260 + 15 * (z.rank - 1)) * boost)) {
-                    if (v.fixed) {
-                        v.breaks = Math.max(v.breaks, 1);
-                        continue;
-                    }
-                    const dx = z.x - v.x, dy = z.y - v.y, d = Math.max(1, Math.hypot(dx, dy)), length = Math.min(d, (130 + 15 * (z.rank - 1)) * boost);
-                    // Physical impulse uses integrateBody's swept body/feet collisions on subsequent ticks.
-                    e.impulse(v, dx / d * Math.min(480, length * 2.4), -Math.min(180, length));
                 }
             }
             if (z.skill === 'M99') {
@@ -12415,12 +12472,12 @@ function installSkillRedesign(skills) {
         A05: '적을 밀어 뒤의 적과 충돌시킨다. 후속 충돌 18% 피해, 힘 70%, 최대 2~5회.', A04: '기존 확산각으로 3~10발을 동시에 발사한다. 연속 시위와 함께 각 사격 묶음이 이어진다.',
         A07: '무거운 살의 직격과 반경 70의 55% 충격. 파괴 가능한 지형에 4.5배 피해.', A03: '첫 적 이후 260 안의 다른 적에게 1~5회 도약한다. 매 도약 피해 72%.', A08: '직격 후 1.5초 동안 8~22개의 짧은 화살을 분출. 각 20%, 한 적의 자탄 피해 총합 65% 상한. 2R 재사용.',
         M01: '지팡이에서 회백색 기파를 보내 작은 압력파를 만든다. SP를 쓰지 않는 기본 공격.', M06: '도자기 호리병이 터지고 6~13개의 짧은 불꽃 파편을 흩뿌린다. 한 적 최대 2파편.',
-        M02: '적과 지형에서 튀다가 발사 버튼을 다시 누르면 폭발. 미입력 시 충전량에 따라 3.2~6.4초 뒤 자동 폭발. 얼음조각 6~13개, 맞은 적 1턴 20~35% 감속.', M04: '폭발점에서 260~330 안의 모든 적에게 각각 45% 번개. 다른 유닛과 벽을 무시하며 대상당 1회.',
+        M02: '적과 지형에서 튀다가 발사 버튼을 다시 누르면 폭발. 미입력 시 충전량에 따라 3.2~6.4초 뒤 자동 폭발. 얼음조각 6~13개, 맞은 적 1턴 20~35% 감속.', M04: '폭발점에서 260~330 안의 모든 유닛에게 각각 45% 번개. 다른 유닛과 벽을 무시하며 대상당 1회.',
         M13: '큰 폭발 후 1초 동안 반경 240에 작은 폭발 7~14회. 한 적은 최대 3회.', M05: '착탄점을 표시하고 0.35초 뒤 수직 천뢰가 내려온다. 상부 지형에 차폐될 수 있다. 2R 재사용.',
         M03: '적·지형에 닿으면 반경 150, 각도 52~94도의 원호가 충돌점에서 진행 방향에 수직으로 펼쳐진다.', M11: '지형에 2~7회 반사한다. 반사마다 피해 +8%, 최대 +48%. 적에게 닿으면 타격.',
         M12: '발사점과 두 지형 반사점의 삼각형. 경계 38(최대 2변), 내부 16 피해. 작은 삼각형은 내부 피해 없음.', M14: '충전으로 180~900 반지름을 정한다. 내부는 피해 없이 원주만 타격. 피해는 220/r, 최소 28%.',
-        M15: '목표에 팔방 기선과 팔각형 외곽 기문을 펼친다. 중심 62, 선 34, 같은 적 최대 3선. 2R 재사용.', M07: '바닥에 고정된 진목. 적이 반경 45에 들어오면 반경 95의 기파를 턴당 한 번 낸다. SP에 따라 2~5턴 유지.',
-        M10: '아군이 밟으면 체력 7~14%, 기력 8~15%, 이동력 15~36% 회복. 아군마다 턴당 1회, SP에 따라 4~7턴 반복 사용.', M08: '적이 밟으면 피해를 주고 260~365 범위 적을 끌어당긴다. 벽은 통과하지 않는다. 턴당 1회, SP에 따라 2~5턴 반복 사용.',
+        M15: '목표에 팔방 기선과 팔각형 외곽 기문을 펼친다. 중심 62, 선 34, 같은 적 최대 3선. 2R 재사용.', M07: '바닥에 고정된 진목. 적 턴에 반경 45를 밟으면 반경 95의 기파가 난다. 진목마다 같은 적은 턴당 1회 피해. SP에 따라 2~9턴 유지.',
+        M10: '아군이 밟으면 체력 7~14%, 기력 8~15%, 이동력 15~36% 회복. 아군마다 턴당 1회, SP에 따라 4~7턴 반복 사용.', M08: '적 턴에 260~365 범위 적의 이동을 진목으로 유인한다. 밟은 적은 턴당 1회 피해를 받고 남은 이동을 잃는다. 보스는 유인·구속 면역. 벽을 통과하지 않으며 SP에 따라 2~9턴 유지.',
         M09: '첫 설치는 발밑과 착탄점에 진목 한 쌍을 세운다. 최대 두 진목을 유지. 세 번째는 가장 오래된 것을 교체한다. 위에서 E·상호작용으로 건너가며 유닛당 턴에 한 번. 성장하면 도착 회복·방호.',
         M99: '적이 밟으면 오방 진목으로 SP에 따라 2~5턴 봉쇄. 내부 감속·이동 예산 감소, 경계를 넘으면 턴당 1회 피해와 안쪽 밀침. 2R 재사용.'
     };
@@ -14332,6 +14389,76 @@ exports.SUMMON_TUNING = {
 };
 
 },
+"totemBehavior": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.stakeBoost = stakeBoost;
+exports.stakeContact = stakeContact;
+exports.lureStakeFor = lureStakeFor;
+exports.triggerOffensiveStake = triggerOffensiveStake;
+const progression_1 = require("./progression");
+const math_1 = require("./math");
+const data_1 = require("./data");
+const hostile = (z, u) => !u.dead && u.side !== z.side && u.side !== 2;
+function stakeBoost(e, z) { const caster = e.unit(z.owner); return caster ? (1 + (0, progression_1.passiveRank)(caster, 'MP01') * .02) * (1 + (z.effectBoost || 0)) : 1; }
+function stakeContact(z, u, boost) { return Math.min(Math.hypot(u.x - z.x, u.y - z.y), Math.hypot(u.x - z.x, u.y - u.h * .5 - z.y)) < 45 * Math.min(1.25, boost) + u.r; }
+function lureStakeFor(e, u) {
+    if (u.dead || u.boss || u.side !== 1 || e.b.side !== u.side || u.fixed && !['bat', 'crow', 'lantern'].includes(u.honroType))
+        return undefined;
+    return (e.b.stakes || []).filter(z => z.skill === 'M08' && hostile(z, u) && e.unit(z.owner) && (z.expires === undefined || z.expires > e.b.round) && Math.hypot(u.x - z.x, u.y - u.h * .5 - z.y) < (260 + 15 * (z.rank - 1)) * stakeBoost(e, z)).sort((a, b) => Math.hypot(u.x - a.x, u.y - a.y) - Math.hypot(u.x - b.x, u.y - b.y) || a.id - b.id)[0];
+}
+function triggerOffensiveStake(e, z, nearby, p, boost) {
+    const b = e.b;
+    if (b.side === z.side || b.side === 2 || !['enemy', 'aim', 'flight', 'review'].includes(b.phase))
+        return;
+    z.usedRounds ?? (z.usedRounds = {});
+    // Each stake is an independent cast; each enemy can take its damage once per round.
+    const fresh = nearby.filter(u => z.usedRounds[u.id] !== b.round);
+    if (!fresh.length)
+        return;
+    z.lastTriggerRound = b.round;
+    if (z.skill === 'M07') {
+        const x = z.x, y = z.y - 20, radius = 95;
+        e.fx('burst', x, y, p.color, radius);
+        e.fx('ring', x, y, p.color, radius);
+        e.emit('sound', { name: 'hit', value: radius });
+        for (const u of b.units) {
+            if (u.dead || z.usedRounds[u.id] === b.round)
+                continue;
+            const d = Math.hypot(u.x - x, u.y - u.h * .45 - y);
+            if (d >= radius + u.r)
+                continue;
+            z.usedRounds[u.id] = b.round;
+            e.hurt(u, z.damage * (.42 + .58 * (1 - (0, math_1.clamp)(d / radius, 0, 1))), z.owner, false, p, { x, y });
+            if (!u.dead && z.damage > 15)
+                e.impulse(u, Math.sign(u.x - x || 1) * (1 - d / (radius + u.r)) * 95, -45);
+        }
+        for (const u of fresh)
+            z.usedRounds[u.id] = b.round;
+        for (const t of [...b.terrain]) {
+            if (t.broken || t.hp >= 9999)
+                continue;
+            const d = Math.hypot(x - (0, math_1.clamp)(x, t.x, t.x + t.w), y - (0, math_1.clamp)(y, Math.min(t.y, t.y + (t.slope || 0)), t.y + t.h));
+            if (d < radius)
+                e.damageTerrain(t, z.damage * (data_1.SKILLS[z.skill]?.terrain || 1) * (.5 + .5 * (1 - d / radius)), 0, z.owner);
+        }
+    }
+    else {
+        for (const u of fresh) {
+            z.usedRounds[u.id] = b.round;
+            e.hurt(u, z.damage, z.owner, false, p, z);
+            if (!u.boss) {
+                u.moveLeft = 0;
+                delete u.aiMove;
+                delete u.moveTarget;
+                u.moving = 0;
+            }
+            e.fx('ring', u.x, u.y, p.color, 45);
+        }
+    }
+}
+
+},
 "types": function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -14635,15 +14762,14 @@ function pullToFront(e, u, t) {
 function bladeHit(e, p, t) {
     const u = e.unit(p.owner);
     if (p.mode === 'bladePull') {
-        if (foe(u, t))
-            e.hurt(t, p.damage, p.owner, true, p, p);
+        e.hurt(t, p.damage, p.owner, true, p, p);
         pullToFront(e, u, t);
         if (foe(u, t) && meleeContains(e, u, t, data_1.SKILLS.S00.radius)) {
             strike(e, u, t, 52 * u.attack * .85, data_1.SKILLS.S00, p.shot);
             stroke(e, u, data_1.SKILLS.S00.radius);
         }
     }
-    else if (foe(u, t))
+    else
         e.hurt(t, p.damage, p.owner, true, p, p);
 }
 function land(e, p, h) {
@@ -14710,7 +14836,7 @@ function stepWarrior(e, p, dt) {
     if (p.orbit) {
         for (const blade of p.orbit.blades) {
             const before = orbitPoint({ ...p, ...a }, blade, Math.max(0, p.age - dt)), after = orbitPoint({ ...p, x: end.x, y: end.y }, blade), block = e.projectileCollision(before, after, 5, p.owner, [], false), stop = block || after;
-            for (const t of e.b.units.filter(t => foe(u, t))) {
+            for (const t of e.b.units.filter(t => !t.dead && t.id !== p.owner)) {
                 if ((blade.hits[t.id] || 0) >= 2 || p.age - (blade.lastHits[t.id] ?? -10) < .28)
                     continue;
                 if ((0, math_1.segRect)(before, stop, t.x - t.r, t.y - t.h, t.r * 2, t.h, 8)) {
@@ -14722,7 +14848,7 @@ function stepWarrior(e, p, dt) {
         }
     }
     else {
-        const targets = e.b.units.filter(t => !t.dead && t.id !== u.id && !p.hit.includes(t.id) && (p.mode === 'bladePull' || foe(u, t))).map(t => ({ t, h: (0, math_1.segRect)(a, end, t.x - t.r, t.y - t.h, t.r * 2, t.h, rush ? 35 : p.radius) })).filter(v => v.h).sort((a, b) => a.h.t - b.h.t);
+        const targets = e.b.units.filter(t => !t.dead && t.id !== u.id && !p.hit.includes(t.id) && (!rush || foe(u, t))).map(t => ({ t, h: (0, math_1.segRect)(a, end, t.x - t.r, t.y - t.h, t.r * 2, t.h, rush ? 35 : p.radius) })).filter(v => v.h).sort((a, b) => a.h.t - b.h.t);
         for (const { t, h } of targets) {
             p.hit.push(t.id);
             if (rush) {
@@ -19135,7 +19261,7 @@ function attach(app,e){if(!active(e.b))return;
  const manifest=e.manifest.bind(e);e.manifest=function(target,...args){const out=manifest(target,...args);if(target.honroSpirit&&target.manifested)target.formDamageTakenBonus=Math.max(target.formDamageTakenBonus,.92);return out;};
  const damage=e.hurt.bind(e);e.hurt=function(u,amount,...args){
   const source=e.unit(args[0]);
-  if(u.honroProtected&&source?.side===0)return;
+  if(u.honroProtected&&source?.side===0&&!e.projectileDamage(args[2]))return;
   if(u.honroAct2Boss&&!memory(e.b).done.leak)amount*=.12;
   if(u.honroSubdued)return;
   const out=damage(u,amount,...args);
@@ -19658,7 +19784,7 @@ function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=
  completeStep(app,s);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
- const hurt=e.hurt.bind(e);e.hurt=function(u,amount,...args){const source=e.unit(args[0]);if(u.honroProtected&&source?.side===0)return;return hurt(u,amount,...args);};
+ const hurt=e.hurt.bind(e);e.hurt=function(u,amount,...args){const source=e.unit(args[0]);if(u.honroProtected&&source?.side===0&&!e.projectileDamage(args[2]))return;return hurt(u,amount,...args);};
  const damage=e.damageTerrain.bind(e);e.damageTerrain=function(t,amount,depth=0,owner=e.b.active){const s=steps(e.b).find(q=>q.id===t.id),actor=e.unit(owner);
   if(s?.kind==='destroy'&&s.requiredClass&&(!actor||actor.side!==0||actor.summoned||actor.enthrall||actor.cls!==s.requiredClass)){e.message(H.hero[s.requiredClass].name+'의 사격이 필요하다.');return;}
   // Closed passages only open as the ordered objective is committed; direct
@@ -27219,7 +27345,7 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
             e.checkEnd = () => this.checkMission(e);
             const orig = e.hurt.bind(e);
             e.hurt = (u, amount, ...args) => {
-                if(args[0]){const src=e.unit(args[0]);if(src?.honroAlly&&(u.side===0||u.side===2))return;if(u.honroAlly&&src?.side===0)return;}
+                if(args[0]&&!e.projectileDamage(args[2])){const src=e.unit(args[0]);if(src?.honroAlly&&(u.side===0||u.side===2))return;if(u.honroAlly&&src?.side===0)return;}
                 if (u.id === 'boss' && e.b.terrain.some(t => t.honroSeal && !t.broken)) amount *= .20;
                 if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop){const floor=Math.ceil(u.maxHp*.36);amount=Math.min(amount,Math.max(0,u.hp-floor));}
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
@@ -27313,7 +27439,7 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
         battleHelp() {
             if(!this.engine||this.screen!=='battle'||this.dialogue)return;
             const help=G.HonroObjectives.help(this);
-            this.open(`<h2>목표·조작 안내</h2><section class="battle-help-goal"><h3>${esc(this.training?'허공터':this.stage.name)}</h3><p class="battle-help-current">${esc(help.summary)}</p></section>${help.checklist?.length?`<section><h3>지금까지의 목표</h3><ol class="mission-checklist">${help.checklist.map(q=>`<li${q.done?' class="complete"':''}>${q.done?'✓ ':q.current?'현재 · ':''}${esc(q.text)}</li>`).join('')}</ol></section>`:''}${help.failureText?`<section><h3>실패 조건</h3><p>${esc(help.failureText)}</p></section>`:''}<section><h3>화면 둘러보기</h3><p>빈 전장을 드래그해 화면을 옮깁니다. 마우스 휠 또는 두 손가락 오므리기·벌리기로 축소·확대합니다. 미니맵을 누르거나 드래그하면 그 위치를 봅니다. 행동 가능한 동행 초상을 누르면 다시 따라갑니다.</p></section><section><h3>키보드</h3><p>← → / A D 이동 · ↑ ↓ 조준 각도 · Ctrl 도약<br>Space 누른 채 충전, 떼어 발사 · F 방어<br>Tab 행동 가능한 동행 전환 · 1–4 기예 선택 · E 상호작용</p></section><section><h3>발판과 사격</h3><p>발판은 아래·옆으로 쏜 탄을 통과시키고, 위에서 내려오는 탄을 막습니다. 진목·소환탄도 윗면에 닿으면 놓입니다. 벽과 동굴 천장은 모든 방향의 탄을 막으며, 반사 기예는 막힌 면에서 튕깁니다.</p></section><section><h3>터치</h3><p>왼쪽 조이스틱의 좌우로 이동하고 위아래로 조준합니다. 발사 버튼을 누른 채 충전하고 떼면 발사합니다. 도약·방어·동행·기예·상호작용은 화면의 해당 버튼을 누릅니다.</p></section><div class="actions"><button data-action="pause">일시정지 메뉴</button><button class="primary" data-action="close">돌아가기</button></div>`,'battle-help-dialog');
+            this.open(`<h2>목표·조작 안내</h2><section class="battle-help-goal"><h3>${esc(this.training?'허공터':this.stage.name)}</h3><p class="battle-help-current">${esc(help.summary)}</p></section>${help.checklist?.length?`<section><h3>지금까지의 목표</h3><ol class="mission-checklist">${help.checklist.map(q=>`<li${q.done?' class="complete"':''}>${q.done?'✓ ':q.current?'현재 · ':''}${esc(q.text)}</li>`).join('')}</ol></section>`:''}${help.failureText?`<section><h3>실패 조건</h3><p>${esc(help.failureText)}</p></section>`:''}<section><h3>화면 둘러보기</h3><p>빈 전장을 드래그해 화면을 옮깁니다. 마우스 휠 또는 두 손가락 오므리기·벌리기로 축소·확대합니다. 미니맵을 누르거나 드래그하면 그 위치를 봅니다. 행동 가능한 동행 초상을 누르면 다시 따라갑니다.</p></section><section><h3>키보드</h3><p>← → / A D 이동 · ↑ ↓ 조준 각도 · Ctrl 도약<br>Space 누른 채 충전, 떼어 발사 · F 방어<br>Tab 행동 가능한 동행 전환 · 1–4 기예 선택 · E 상호작용</p></section><section><h3>발판과 사격</h3><p>투사체와 폭발은 동행·동맹·보호 대상에게도 피해를 줍니다. 유도탄은 적을 추적하지만 앞을 가로막은 아군에게 맞을 수 있습니다. 회복·부적의 특수 효과는 기존 대상에게만 적용됩니다.</p><p>발판은 아래·옆으로 쏜 탄을 통과시키고, 위에서 내려오는 탄을 막습니다. 진목·소환탄도 윗면에 닿으면 놓입니다. 벽과 동굴 천장은 모든 방향의 탄을 막으며, 반사 기예는 막힌 면에서 튕깁니다.</p></section><section><h3>터치</h3><p>왼쪽 조이스틱의 좌우로 이동하고 위아래로 조준합니다. 발사 버튼을 누른 채 충전하고 떼면 발사합니다. 도약·방어·동행·기예·상호작용은 화면의 해당 버튼을 누릅니다.</p></section><div class="actions"><button data-action="pause">일시정지 메뉴</button><button class="primary" data-action="close">돌아가기</button></div>`,'battle-help-dialog');
         }
         pause() { this.cancelInput(); this.open(`<h2>잠시 머무르기</h2><div class="pause-menu"><button class="primary" data-action="close">${fa('crosshairs',17)}<span>돌아가기</span></button><button data-action="settings">${fa('gear',17)}<span>설정</span></button><button data-action="battle-help"><span>목표·조작 안내</span></button><button data-action="journal"><span>대화와 장부 기록</span></button><button data-action="fullscreen">${fa('expand',17)}<span>전체화면</span></button>${G.HonroStakeCrossing.active(this.engine?.b)&&(G.HonroStakeCrossing.current(this.engine.b)||G.HonroStakeCrossing.flexible(this.engine.b))?'<button data-action="stake-retry"><span>현재 구간 다시 걷기</span></button>':''}<button data-action="retry">${fa('rotateRight',17)}<span>처음부터</span></button>${!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':`<button data-action="rest">${fa('map',17)}<span>길 위의 쉼터</span></button>`}<button data-action="map"><span>여정첩</span></button></div>`,'pause-dialog'); }
         defend() { if(!this.canInput()) return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }

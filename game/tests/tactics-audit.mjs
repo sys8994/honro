@@ -48,7 +48,7 @@ check('Useful splash may hit a teammate when opposing damage is greater',()=>{co
 check('Friendly-only shots remain rejected',()=>{const {b,e,u,target,skill}=exchange({foes:1});target.x=1500;const v=C.shotViable(e,u,skill,target,0,.5);assert.equal(v.ok,false);return v;});
 check('Higher friendly cost remains rejected',()=>{const {e,u,target,skill}=exchange({friends:3,foes:1});assert.equal(C.shotViable(e,u,skill,target,0,.5).ok,false);});
 check('A friendly shield also counts as a cost',()=>{const {b,e,u,target,skill}=exchange({friends:3,foes:1});for(const v of b.units.filter(v=>v.side===u.side))v.shield=1000;assert.equal(C.shotViable(e,u,skill,target,0,.5).ok,false);});
-check('Existing allied NPC friendly-damage immunity is considered',()=>{const {e,u,target,skill}=exchange({friends:3,foes:1,ally:true});const v=C.shotViable(e,u,skill,target,0,.5);assert.equal(v.ok,true);assert.equal(v.friendlyDamage,0);return v;});
+check('Allied NPC projectile friendly damage is included in shot cost',()=>{const {e,u,target,skill}=exchange({friends:3,foes:1,ally:true});const v=C.shotViable(e,u,skill,target,0,.5);assert.equal(v.ok,false);assert(v.friendlyDamage>0);return v;});
 check('Terrain impact without reachable opposing damage remains rejected',()=>{const {e,u,target,skill}=exchange();e.predict=()=>({x:300,y:950,terrain:'wall',points:[],closest:500,apex:false});assert.equal(C.shotViable(e,u,skill,target,0,.5).ok,false);});
 check('Betrayal target can be deliberately attacked',()=>{const {b,e,u,target,skill}=exchange({friends:0,foes:1});target.side=u.side;assert.equal(C.shotViable(e,u,skill,target,0,.5,target.id).ok,true);});
 check('Ally uses the same power for evaluation and actual firing',()=>{
