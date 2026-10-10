@@ -57,7 +57,7 @@ function light(st,key,x,y,radius=260){st.design.space.lights.push({id:PREFIX+st.
 function clean(st){st.elements=st.elements.filter(e=>!e.id.startsWith(PREFIX));for(const key of ['groups','surfaces','placements'])st.environment[key]=st.environment[key].filter(e=>!e.id.startsWith(PREFIX));st.design.space.scenery=st.design.space.scenery.filter(e=>!e.id.startsWith(PREFIX));st.design.space.lights=st.design.space.lights.filter(e=>!e.id.startsWith(PREFIX));}
 export function applyAct2SceneComposition(project){
  applyAct2SceneAssets(project);
- for(const st of project.stages){const n=st.metadata.stageId;if(![13,14,16,17].includes(n)||!st.design?.space||st.initialState?.honroWorksiteVersion||st.initialState?.honroTempleVersion)continue;clean(st);
+ for(const st of project.stages){const n=st.metadata.stageId;if(![13,14,16,17].includes(n)||!st.design?.space||st.initialState?.honroWorksiteVersion||st.initialState?.honroTempleVersion||st.initialState?.honroVerticalStage14Revision===1)continue;clean(st);
   if(n===13){
    // The portal intersects the existing thick roof and is occluded by the
    // canonical floor at its feet. It does not substitute a visual floor.
