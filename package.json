@@ -135,7 +135,7 @@
     "test:workshop-responsive:static": "node tests/workshop-responsive.mjs",
     "test:workshop-responsive:browser": "python -X utf8 tests/workshop-responsive-browser.py",
     "test:workshop-responsive": "npm run test:workshop-responsive:static && npm run test:workshop-responsive:browser",
-    "test:stage14-vertical": "node tests/stage14-vertical-composition.mjs && node tests/stage14-vertical-traversal.mjs && node tests/stage14-vertical-runtime.mjs && node tests/stage14-vertical-app-resume.mjs && node tests/stage14-vertical-bridge.mjs && node tests/stage14-vertical-tactics.mjs",
+    "test:stage14-vertical": "node tests/stage14-vertical-composition.mjs && node tests/stage14-vertical-traversal.mjs && node tests/stage14-vertical-runtime.mjs && node tests/stage14-vertical-app-resume.mjs && node tests/stage14-vertical-bridge.mjs && node tests/stage14-vertical-tactics.mjs && node tests/stage14-vertical-defense-guidance.mjs",
     "capture:stage14-vertical": "node --expose-gc tests/stage14-vertical-native-art.mjs"
   },
   "devDependencies": {
