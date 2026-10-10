@@ -23,11 +23,11 @@ check('Saved battle replacement is deferred until departure and cancellation is 
  const before=plain(app.profile.honroBattle);R.requestLaunch(app,30);assert(app.pendingJourneyLaunch);click('cancel-journey-launch');assert.deepEqual(plain(app.profile.honroBattle),before);R.requestLaunch(app,30);app.close();assert(!app.pendingJourneyLaunch);assert.deepEqual(plain(app.profile.honroBattle),before);
  R.requestLaunch(app,30);app.profile.honroBattle.session+='-changed';click('confirm-journey-launch');assert(!app.engine);assert.match(app.lastNotice,/바뀌었습니다/);
 });
-check('All 30 departures preserve chosen skills, ordinary stage teams, maps and difficulty',()=>{
+check('All 30 departures preserve chosen skills, ordinary stage teams and difficulty',()=>{
  for(let id=1;id<=30;id++){
   app=load(profileThrough(0));app.setDebugMode(true);finish(app);R.showBook(app,id);R.selectBook(app,id);
   for(const cls of C.CLASS_IDS){app.showCamp(cls);app.equipIncoming=C.knownSkills(app.profile.heroes[cls],cls).filter(id=>!C.SKILLS[id].passive&&id!==C.baseSkill(C.SKILLS[id].cls)).at(-1);app.equipConfirm(1);}
-  const loadouts=plain(app.profile.loadouts);click('rest');R.requestLaunch(app,id);assert.equal(app.engine.b.honroStage,id);assert.equal(app.engine.b.mode,'campaign');
+  const loadouts=plain(app.profile.loadouts);click('rest');R.requestLaunch(app,id);assert.equal(app.engine.b.honroStage,id);assert.equal(app.engine.b.mode,'campaign');assert.equal(app.engine.b.difficulty,app.profile.settings.difficulty);
   assert.deepEqual(plain(app.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>u.cls)).sort(),plain(g.HonroStageRules.stageParty(id)).sort());
   for(const u of app.engine.b.units.filter(u=>u.side===0&&!u.summoned))assert.deepEqual(plain((u.cls==='mage'?app.engine.b.honroStakeLoadout?.originalLoadout:null)||u.loadout),loadouts[u.cls],`stage ${id} ${u.cls}`);
   finish(app);click('retry');finish(app);assert.equal(app.engine.b.honroStage,id);for(const u of app.engine.b.units.filter(u=>u.side===0&&!u.summoned))assert.deepEqual(plain((u.cls==='mage'?app.engine.b.honroStakeLoadout?.originalLoadout:null)||u.loadout),loadouts[u.cls],`stage ${id} ${u.cls}`);
@@ -45,6 +45,12 @@ check('Each hero level is independently configurable from 1 to 30, preserving fr
  const heroes=plain(app.profile.heroes);click('rest');R.requestLaunch(app,30);finish(app);
  for(const u of app.engine.b.units.filter(u=>u.side===0&&!u.summoned)){const stats=C.heroStats(heroes[u.cls],u.cls,app.profile.loadouts[u.cls]);assert.equal(u.level,C.levelOf(heroes[u.cls]));assert.equal(u.maxHp,stats.hp);}
  click('retry');finish(app);for(const cls of C.CLASS_IDS)assert.equal(app.engine.b.heroes[cls].xp,heroes[cls].xp);assert.deepEqual(saved(),original);
+});
+check('Debug skill refunds persist, rank training is free, and slots exclude internal helper attacks',()=>{
+ app=load(profileThrough(0));app.setDebugMode(true);finish(app);R.showBook(app,30);R.selectBook(app,30);app.showCamp('mage');
+ const t=C.TALENTS.find(t=>t.cls==='mage'&&t.passive);app.changeRank(t.id,-1,false);assert.equal(app.profile.heroes.mage.ranks[t.id]||0,0);click('rest');click('camp');assert.equal(app.profile.heroes.mage.ranks[t.id]||0,0);
+ app.setDebugLevel('mage',1);assert.equal(C.trainReason(app.profile.heroes.mage,t.id),'');app.changeRank(t.id,1,false);assert.equal(app.profile.heroes.mage.ranks[t.id],1);
+ const ids=C.knownSkills(app.profile.heroes.mage,'mage');assert(!ids.includes('HBT01'));assert(ids.includes('M99'));
 });
 check('Direct book enter shortcut also routes to rest, then starts only on departure',()=>{
  app=load(profileThrough(0));app.setDebugMode(true);finish(app);R.showBook(app,19);click('journey-enter',{id:'19'});assert.equal(app.screen,'rest');assert(!app.engine);click('journey-enter',{id:'19'});assert.equal(app.engine.b.honroStage,19);finish(app);
