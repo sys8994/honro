@@ -37,6 +37,9 @@ function sword(a,rig){
  for(const clip of Object.values(a.animation.animations))for(const p of clip.keyframes){const s=rig.solvePose(a,p),e=s.guide.joints.front_forearm,w=s.guide.joints.front_hand;const forearm=Math.atan2(w[1]-e[1],w[0]-e[0])*180/Math.PI;p.frontHandAngle=forearm-90+(clip===attack?[0,18,-12,20,8,0][clip.keyframes.indexOf(p)]:8);}
 }
 function bow(a,rig){
+ // The anatomical right/draw arm is the rear_* chain in this rig, even after
+ // screen mirroring. Its whole chain must remain in front of torso garments.
+ for(const [id,z]of [['rear_upper_arm',65],['rear_forearm',66],['rear_hand',67]])a.rig.parts.find(p=>p.id===id).z=z;
  const at=a.rig.parts.find(p=>p.id==='weapon').pivot;
  // Grip-relative paired limbs; the two tips and string share this geometry.
  // Recurved tips are authored as continuous curves, not a kinked extra hook.
