@@ -95,7 +95,7 @@ function offer(app){const e=app.engine,b=e.b,m=memory(b);if(paused(app)||ended(a
 }
 function acceptOpportunity(app){const e=app.engine,b=e.b,m=memory(b),action=e.honroStage8BierAction,u=action&&e.unit(action.id);if(!action||app.actorBoundary!==action.id||!u?.acted||!hero(u))return;
  if(action.movement&&serial(b)>m.announcedSerial)m.playerOpportunity={id:u.id,round:b.round,serial:serial(b)};
- for(const source of action.waves||[]){const w=m.warnings[source];if(w&&!w.cancelled&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
+ for(const source of action.waves||[]){const w=m.warnings[source];if(w&&!w.cancelled&&!w.opportunity&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
 }
 function cancelScene(app){const b=app.engine.b,m=memory(b),owned=ownedScene(app);let changed=false;
  // Cancellation is not Skip/finish: a paused or invalidated move must never
@@ -112,7 +112,7 @@ function cancelScene(app){const b=app.engine.b,m=memory(b),owned=ownedScene(app)
 const waveLabels={'stage8-first-seal':'서쪽 창고 산개 3','stage8-settled-crows':'높은 가지 까마귀 3','stage8-low-health':'동쪽 후미 산개 2'};
 function noticeText(b){const m=memory(b),parts=[];if(['won','lost'].includes(b.phase))return'';
  if(m.status==='announced')parts.push('상여 → 중앙 아래뜰');else if(m.status==='blocked')parts.push('상여 이동 보류'+(m.blockers?.length?' ('+[...new Set(m.blockers.map(p=>p.label))].slice(0,2).join('·')+')':''));else if(m.status==='moving')parts.push('상여가 중앙 아래뜰로 이동 중');
- for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push(waveLabels[source]+(w.status==='blocked'?' 진입 보류':''));}
+ for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push((G.HonroEncounterDensity?.active(b)?({'stage8-first-seal':'서쪽 창고 산개 2 · 까마귀 1','stage8-settled-crows':'마당 위 까마귀 3','stage8-low-health':'동쪽 오름길 산개 1 · 혼불 1'}[source]):waveLabels[source])+(w.status==='blocked'?' 진입 보류':''));}
  return parts.length?parts.join(' · ')+' · 다음 행동 끝에 안전 확인':'';
 }
 function publishNotice(app){const b=app.engine.b,m=memory(b),text=ended(app)?'':noticeText(b);if(text){if((typeof app.eventText==='string'?app.eventText:m.notice)!==text)app.event(text);m.notice=text;}else if(m.notice){if(app.eventText===m.notice){app.eventText='';app.eventUntil=0;app.dirty=true;}delete m.notice;}return text;}
