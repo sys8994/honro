@@ -142250,7 +142250,7 @@
               "tag": "path",
               "fill": "url(#v14-cave-depth)",
               "id": "west-cavern-shoulder",
-              "d": "M-700 900Q80 700 1150 970L1750 1860Q1970 2740 1680 4250Q1600 5200 2230 6320L2780 6780Q2630 7610 2500 8150L420 8726.470588235294L-700 9076.470588235294Z"
+              "d": "M-700 900Q80 700 1150 970L1750 1860Q1970 2740 1680 4250Q1600 5200 2230 6320L2780 6780Q2630 7610 2500 8350L420 8726.470588235294L-700 9076.470588235294Z"
             },
             {
               "tag": "path",
@@ -142284,13 +142284,49 @@
             },
             {
               "tag": "path",
+              "fill": "#293b43",
+              "id": "central-inhabited-mother-rock",
+              "d": "M2200 4728L3100 4748L3460 4538L4100 4093L4250 3988L4280 4168L4690 4258L5100 4128Q5550 4470 5940 4810Q6250 5420 5950 6270L6240 6830Q6160 7600 6100 8070L4500 8150L2500 8350Q2590 7260 2970 6730Q2760 6180 2080 5610Q1510 5290 1660 4810Q1880 4730 2200 4728Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#35464d",
+              "id": "market-broad-underbody-face",
+              "d": "M4250 3988L4280 4168L4690 4258L5100 4128Q5480 4960 5250 5480L4740 5790Q4320 5720 3980 6200L3780 5820Q4230 5100 4250 3988Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#30424a",
+              "id": "connected-descent-rock-shoulder",
+              "d": "M5100 4518L5500 4768L5870 4728Q6260 5020 5840 5920L5620 5518L5620 5518L5400 5968L5050 6428L4500 6348Q4850 5280 5100 4518Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#20343d",
+              "id": "mineral-return-deep-side-face",
+              "d": "M2200 4728L3100 4748L3460 4538L4100 4093Q3910 5160 3360 5720Q3080 6230 3510 6820L3090 7690Q3040 6740 2530 6020Q1850 5240 2200 4728Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#39494e",
+              "id": "family-lintel-low-broad-outcrop",
+              "d": "M4140 6548L4480 6548Q4590 6660 4740 6750L3830 6750Q3950 6632 4140 6548Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#2a3d44",
+              "id": "family-outcrop-one-shadow-plane",
+              "d": "M4248 6555Q4260 6685 4120 6750L3830 6750Q3950 6632 4140 6548Z"
+            },
+            {
+              "tag": "path",
               "fill": "url(#v14-low-mist)",
               "id": "river-haze-broad-single-wash",
               "d": "M2050 7580Q3170 7240 4200 7540Q5360 7740 6960 7460L7520 8230L260 8310Z"
             }
           ]
         },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-730 670 8840 8436.470588235294\"><title>거친 무늬 없이 깊이를 나누는 비대칭 동굴 암면</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc><defs><linearGradient id=\"v14-cave-depth\" x1=\"0\" y1=\"1750\" x2=\"0\" y2=\"8150\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#142933\"/><stop offset=\".58\" stop-color=\"#1b343d\"/><stop offset=\"1\" stop-color=\"#203c42\"/></linearGradient><linearGradient id=\"v14-low-mist\" x1=\"0\" y1=\"7530\" x2=\"0\" y2=\"8280\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#77918b\" stop-opacity=\"0\"/><stop offset=\".7\" stop-color=\"#77918b\" stop-opacity=\".065\"/><stop offset=\"1\" stop-color=\"#77918b\" stop-opacity=\"0\"/></linearGradient></defs><path id=\"west-cavern-shoulder\" d=\"M-700 900Q80 700 1150 970L1750 1860Q1970 2740 1680 4250Q1600 5200 2230 6320L2780 6780Q2630 7610 2500 8150L420 8726.470588235294L-700 9076.470588235294Z\" fill=\"url(#v14-cave-depth)\"/><path id=\"west-large-lit-face\" d=\"M360 950L1180 1110Q1620 2020 1580 3970Q1300 4550 1740 6260L1520 7430L880 8296.470588235294Q1120 6640 830 5020Q1050 4170 650 2750Z\" fill=\"#294049\"/><path id=\"west-one-deep-cleft\" d=\"M-100 3970Q650 3750 1120 4530Q990 5310 1390 7030L980 8666.470588235294L420 8726.470588235294Q810 6720 290 5540Z\" fill=\"#112c36\"/><path id=\"east-high-asymmetric-rock\" d=\"M5450 2900Q6160 2530 6880 3050L7940 4650L8050 8858L7460 8707.666666666666L6880 8408Q7180 7360 6510 6340Q6200 5800 6430 5070Q6150 3470 5450 2900Z\" fill=\"#203944\"/><path id=\"east-broad-rock-plane\" d=\"M5960 3020Q6550 3140 6870 4300Q7060 5290 6780 5970L7260 6760Q7480 7640 7160 8228L6880 8408Q7180 7360 6510 6340Q6200 5800 6430 5070Z\" fill=\"#2c454d\"/><path id=\"east-deep-return-recess\" d=\"M7230 3640L7860 4940L7950 8867.666666666666L7460 8707.666666666666Q7730 7210 7410 6500Q7170 5380 7230 3640Z\" fill=\"#122e39\"/><path id=\"river-haze-broad-single-wash\" d=\"M2050 7580Q3170 7240 4200 7540Q5360 7740 6960 7460L7520 8230L260 8310Z\" fill=\"url(#v14-low-mist)\"/></svg>"
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-730 670 8840 8436.470588235294\"><title>거친 무늬 없이 깊이를 나누는 비대칭 동굴 암면</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc><defs><linearGradient id=\"v14-cave-depth\" x1=\"0\" y1=\"1750\" x2=\"0\" y2=\"8150\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#142933\"/><stop offset=\".58\" stop-color=\"#1b343d\"/><stop offset=\"1\" stop-color=\"#203c42\"/></linearGradient><linearGradient id=\"v14-low-mist\" x1=\"0\" y1=\"7530\" x2=\"0\" y2=\"8280\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#77918b\" stop-opacity=\"0\"/><stop offset=\".7\" stop-color=\"#77918b\" stop-opacity=\".065\"/><stop offset=\"1\" stop-color=\"#77918b\" stop-opacity=\"0\"/></linearGradient></defs><path id=\"west-cavern-shoulder\" d=\"M-700 900Q80 700 1150 970L1750 1860Q1970 2740 1680 4250Q1600 5200 2230 6320L2780 6780Q2630 7610 2500 8350L420 8726.470588235294L-700 9076.470588235294Z\" fill=\"url(#v14-cave-depth)\"/><path id=\"west-large-lit-face\" d=\"M360 950L1180 1110Q1620 2020 1580 3970Q1300 4550 1740 6260L1520 7430L880 8296.470588235294Q1120 6640 830 5020Q1050 4170 650 2750Z\" fill=\"#294049\"/><path id=\"west-one-deep-cleft\" d=\"M-100 3970Q650 3750 1120 4530Q990 5310 1390 7030L980 8666.470588235294L420 8726.470588235294Q810 6720 290 5540Z\" fill=\"#112c36\"/><path id=\"east-high-asymmetric-rock\" d=\"M5450 2900Q6160 2530 6880 3050L7940 4650L8050 8858L7460 8707.666666666666L6880 8408Q7180 7360 6510 6340Q6200 5800 6430 5070Q6150 3470 5450 2900Z\" fill=\"#203944\"/><path id=\"east-broad-rock-plane\" d=\"M5960 3020Q6550 3140 6870 4300Q7060 5290 6780 5970L7260 6760Q7480 7640 7160 8228L6880 8408Q7180 7360 6510 6340Q6200 5800 6430 5070Z\" fill=\"#2c454d\"/><path id=\"east-deep-return-recess\" d=\"M7230 3640L7860 4940L7950 8867.666666666666L7460 8707.666666666666Q7730 7210 7410 6500Q7170 5380 7230 3640Z\" fill=\"#122e39\"/><path id=\"central-inhabited-mother-rock\" d=\"M2200 4728L3100 4748L3460 4538L4100 4093L4250 3988L4280 4168L4690 4258L5100 4128Q5550 4470 5940 4810Q6250 5420 5950 6270L6240 6830Q6160 7600 6100 8070L4500 8150L2500 8350Q2590 7260 2970 6730Q2760 6180 2080 5610Q1510 5290 1660 4810Q1880 4730 2200 4728Z\" fill=\"#293b43\"/><path id=\"market-broad-underbody-face\" d=\"M4250 3988L4280 4168L4690 4258L5100 4128Q5480 4960 5250 5480L4740 5790Q4320 5720 3980 6200L3780 5820Q4230 5100 4250 3988Z\" fill=\"#35464d\"/><path id=\"connected-descent-rock-shoulder\" d=\"M5100 4518L5500 4768L5870 4728Q6260 5020 5840 5920L5620 5518L5620 5518L5400 5968L5050 6428L4500 6348Q4850 5280 5100 4518Z\" fill=\"#30424a\"/><path id=\"mineral-return-deep-side-face\" d=\"M2200 4728L3100 4748L3460 4538L4100 4093Q3910 5160 3360 5720Q3080 6230 3510 6820L3090 7690Q3040 6740 2530 6020Q1850 5240 2200 4728Z\" fill=\"#20343d\"/><path id=\"family-lintel-low-broad-outcrop\" d=\"M4140 6548L4480 6548Q4590 6660 4740 6750L3830 6750Q3950 6632 4140 6548Z\" fill=\"#39494e\"/><path id=\"family-outcrop-one-shadow-plane\" d=\"M4248 6555Q4260 6685 4120 6750L3830 6750Q3950 6632 4140 6548Z\" fill=\"#2a3d44\"/><path id=\"river-haze-broad-single-wash\" d=\"M2050 7580Q3170 7240 4200 7540Q5360 7740 6960 7460L7520 8230L260 8310Z\" fill=\"url(#v14-low-mist)\"/></svg>"
       },
       "collision": [],
       "anchor": {
@@ -142306,7 +142342,7 @@
       ],
       "params": {
         "artRevision": 1,
-        "nodeCount": 8,
+        "nodeCount": 14,
         "rearOnly": true,
         "collisionSource": "none",
         "footXs": [],
@@ -142315,13 +142351,38 @@
         "groundedSupports": [
           {
             "terrainId": "v14-refuge-ground",
+            "x": 2500,
+            "y": 8350
+          },
+          {
+            "terrainId": "v14-refuge-ground",
+            "x": 4500,
+            "y": 8150
+          },
+          {
+            "terrainId": "v14-refuge-ground",
+            "x": 6100,
+            "y": 8070
+          },
+          {
+            "terrainId": "v14-family-yard",
+            "x": 3830,
+            "y": 6750
+          },
+          {
+            "terrainId": "v14-family-yard",
+            "x": 4740,
+            "y": 6750
+          },
+          {
+            "terrainId": "v14-refuge-ground",
             "x": 420,
             "y": 8726.470588235294
           },
           {
             "terrainId": "v14-refuge-ground",
             "x": 2500,
-            "y": 8150
+            "y": 8350
           },
           {
             "terrainId": "v14-refuge-ground",
@@ -142334,8 +142395,183 @@
             "y": 8707.666666666666
           }
         ],
-        "coverageSource": "authored-v14-nodes-and-refuge-terrain",
-        "broadRockMasses": 2,
+        "coverageSource": "actual-v14-terrain-bottoms-and-refuge-surface",
+        "terrainAttachments": [
+          {
+            "terrainId": "v14-market",
+            "points": [
+              {
+                "x": 5100,
+                "y": 4150
+              },
+              {
+                "x": 4690,
+                "y": 4280
+              },
+              {
+                "x": 4280,
+                "y": 4190
+              },
+              {
+                "x": 4250,
+                "y": 4010
+              }
+            ],
+            "contact": "actual lower contour overlapped by recessed rear mass",
+            "rearOverlap": 22
+          },
+          {
+            "terrainId": "v14-mineral-way",
+            "points": [
+              {
+                "x": 4100,
+                "y": 4115
+              },
+              {
+                "x": 3460,
+                "y": 4560
+              },
+              {
+                "x": 3100,
+                "y": 4770
+              },
+              {
+                "x": 2200,
+                "y": 4750
+              }
+            ],
+            "contact": "actual lower contour overlapped by recessed rear mass",
+            "rearOverlap": 22
+          },
+          {
+            "terrainId": "v14-west-family-road",
+            "points": [
+              {
+                "x": 3420,
+                "y": 6655
+              },
+              {
+                "x": 3160,
+                "y": 6460
+              },
+              {
+                "x": 2750,
+                "y": 6000
+              },
+              {
+                "x": 2410,
+                "y": 5540
+              },
+              {
+                "x": 1940,
+                "y": 4940
+              },
+              {
+                "x": 1800,
+                "y": 4900
+              }
+            ],
+            "contact": "actual lower contour overlapped by recessed rear mass",
+            "rearOverlap": 22
+          },
+          {
+            "terrainId": "v14-east-steps",
+            "points": [
+              {
+                "x": 5870,
+                "y": 4750
+              },
+              {
+                "x": 5500,
+                "y": 4790
+              },
+              {
+                "x": 5100,
+                "y": 4540
+              }
+            ],
+            "contact": "actual lower contour overlapped by recessed rear mass",
+            "rearOverlap": 22
+          },
+          {
+            "terrainId": "v14-family-shoulders",
+            "points": [
+              {
+                "x": 5620,
+                "y": 5540
+              },
+              {
+                "x": 5400,
+                "y": 5990
+              },
+              {
+                "x": 5050,
+                "y": 6450
+              },
+              {
+                "x": 4500,
+                "y": 6370
+              }
+            ],
+            "contact": "actual lower contour overlapped by recessed rear mass",
+            "rearOverlap": 22
+          },
+          {
+            "terrainId": "v14-family-roof-step",
+            "points": [
+              {
+                "x": 4480,
+                "y": 6570
+              },
+              {
+                "x": 4140,
+                "y": 6570
+              }
+            ],
+            "contact": "actual lower contour overlapped by recessed rear mass",
+            "rearOverlap": 22
+          },
+          {
+            "terrainId": "v14-family-yard",
+            "points": [
+              {
+                "x": 5025,
+                "y": 7750
+              },
+              {
+                "x": 4500,
+                "y": 7750
+              },
+              {
+                "x": 3650,
+                "y": 7790
+              },
+              {
+                "x": 3280,
+                "y": 7860
+              },
+              {
+                "x": 2850,
+                "y": 7860
+              },
+              {
+                "x": 2700,
+                "y": 7970
+              },
+              {
+                "x": 2550,
+                "y": 8090
+              },
+              {
+                "x": 2450,
+                "y": 8090
+              }
+            ],
+            "contact": "actual lower contour overlapped by recessed rear mass",
+            "rearOverlap": 22
+          }
+        ],
+        "broadRockMasses": 3,
         "decorativePlatforms": 0
       },
       "bounds": {
@@ -144112,7 +144348,7 @@
         "viewBox": [
           -17,
           -77,
-          457,
+          527,
           84
         ],
         "gradients": {},
@@ -144144,7 +144380,7 @@
               "lineWidth": 2,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M186.2 0L185.2 -68L199.2 -71L201.2 0Z"
+              "d": "M218.4 0L217.4 -68L231.4 -71L233.4 0Z"
             },
             {
               "tag": "path",
@@ -144153,7 +144389,7 @@
               "lineWidth": 3,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M190.2 -63L191.2 -5"
+              "d": "M222.4 -63L223.4 -5"
             },
             {
               "tag": "path",
@@ -144162,7 +144398,7 @@
               "lineWidth": 2,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M413 0L412 -68L426 -71L428 0Z"
+              "d": "M483 0L482 -68L496 -71L498 0Z"
             },
             {
               "tag": "path",
@@ -144171,7 +144407,7 @@
               "lineWidth": 3,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M417 -63L418 -5"
+              "d": "M487 -63L488 -5"
             },
             {
               "tag": "path",
@@ -144180,7 +144416,7 @@
               "lineWidth": 2,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M-10 -60L202.2 -60L202.2 -50L-10 -50Z"
+              "d": "M-10 -60L234.4 -60L234.4 -50L-10 -50Z"
             },
             {
               "tag": "path",
@@ -144189,7 +144425,7 @@
               "lineWidth": 2,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M4 -54L189.2 -54"
+              "d": "M4 -54L221.4 -54"
             },
             {
               "tag": "path",
@@ -144198,7 +144434,7 @@
               "lineWidth": 4,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M5 -31L188.2 -28"
+              "d": "M5 -31L220.4 -28"
             },
             {
               "tag": "path",
@@ -144207,7 +144443,7 @@
               "lineWidth": 2,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M183.2 -60L429 -60L429 -50L183.2 -50Z"
+              "d": "M215.4 -60L499 -60L499 -50L215.4 -50Z"
             },
             {
               "tag": "path",
@@ -144216,7 +144452,7 @@
               "lineWidth": 2,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M197.2 -54L416 -54"
+              "d": "M229.4 -54L486 -54"
             },
             {
               "tag": "path",
@@ -144225,11 +144461,11 @@
               "lineWidth": 4,
               "lineJoin": "round",
               "lineCap": "round",
-              "d": "M198.2 -31L415 -28"
+              "d": "M230.4 -31L485 -28"
             }
           ]
         },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-17 -77 457 84\"><title>실제 피난길 가장자리의 낮은 뒷난간</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc><path d=\"M-7 0L-8 -68L6 -71L8 0Z\" fill=\"#343e34\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-3 -63L-2 -5\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M186.2 0L185.2 -68L199.2 -71L201.2 0Z\" fill=\"#343e34\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M190.2 -63L191.2 -5\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M413 0L412 -68L426 -71L428 0Z\" fill=\"#343e34\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M417 -63L418 -5\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-10 -60L202.2 -60L202.2 -50L-10 -50Z\" fill=\"#867d61\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M4 -54L189.2 -54\" fill=\"none\" stroke=\"#b1a17a\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M5 -31L188.2 -28\" fill=\"none\" stroke=\"#5e6654\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M183.2 -60L429 -60L429 -50L183.2 -50Z\" fill=\"#867d61\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M197.2 -54L416 -54\" fill=\"none\" stroke=\"#b1a17a\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M198.2 -31L415 -28\" fill=\"none\" stroke=\"#5e6654\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-17 -77 527 84\"><title>실제 피난길 가장자리의 낮은 뒷난간</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc><path d=\"M-7 0L-8 -68L6 -71L8 0Z\" fill=\"#343e34\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-3 -63L-2 -5\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M218.4 0L217.4 -68L231.4 -71L233.4 0Z\" fill=\"#343e34\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M222.4 -63L223.4 -5\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M483 0L482 -68L496 -71L498 0Z\" fill=\"#343e34\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M487 -63L488 -5\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-10 -60L234.4 -60L234.4 -50L-10 -50Z\" fill=\"#867d61\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M4 -54L221.4 -54\" fill=\"none\" stroke=\"#b1a17a\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M5 -31L220.4 -28\" fill=\"none\" stroke=\"#5e6654\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M215.4 -60L499 -60L499 -50L215.4 -50Z\" fill=\"#867d61\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M229.4 -54L486 -54\" fill=\"none\" stroke=\"#b1a17a\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M230.4 -31L485 -28\" fill=\"none\" stroke=\"#5e6654\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
       },
       "collision": [],
       "anchor": {
@@ -144254,18 +144490,18 @@
         "localFootSource": "actual-terrain-profile",
         "groundedSupports": [
           {
-            "terrainId": "v14-refuge-ground",
-            "x": 2720,
+            "terrainId": "refuge-bridge-walkway",
+            "x": 3155,
             "y": 8150
           },
           {
-            "terrainId": "v14-refuge-ground",
-            "x": 2913.2,
+            "terrainId": "refuge-bridge-walkway",
+            "x": 3380.4,
             "y": 8150
           },
           {
-            "terrainId": "v14-refuge-ground",
-            "x": 3140,
+            "terrainId": "refuge-bridge-walkway",
+            "x": 3645,
             "y": 8150
           }
         ]
@@ -144273,7 +144509,7 @@
       "bounds": {
         "x": -17,
         "y": -77,
-        "w": 457,
+        "w": 527,
         "h": 84
       },
       "reference": {
@@ -144281,7 +144517,7 @@
         "bounds": {
           "x": -17,
           "y": -77,
-          "w": 457,
+          "w": 527,
           "h": 84
         },
         "foot": {
@@ -222538,24 +222774,20 @@
           "type": "solid",
           "points": [
             {
-              "x": 1800,
+              "x": 2450,
               "y": 8005
             },
             {
-              "x": 1900,
+              "x": 2550,
               "y": 8005
             },
             {
-              "x": 2200,
-              "y": 7720
-            },
-            {
-              "x": 2750,
-              "y": 7280
+              "x": 2850,
+              "y": 7640
             },
             {
               "x": 3280,
-              "y": 6895
+              "y": 7120
             },
             {
               "x": 3650,
@@ -222582,19 +222814,19 @@
               "y": 7860
             },
             {
-              "x": 2750,
+              "x": 2850,
               "y": 7860
             },
             {
-              "x": 2200,
-              "y": 7850
+              "x": 2700,
+              "y": 7970
             },
             {
-              "x": 1900,
+              "x": 2550,
               "y": 8090
             },
             {
-              "x": 1800,
+              "x": 2450,
               "y": 8090
             }
           ],
@@ -222612,11 +222844,55 @@
               1,
               2,
               3,
-              4,
-              5
+              4
             ],
             "surfaceKind": "cave",
             "honroCave": true
+          },
+          "detail": {
+            "spacing": 24,
+            "roughness": 0,
+            "seed": 14,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "refuge-bridge-walkway",
+          "name": "refuge-bridge-walkway",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3130,
+              "y": 8150
+            },
+            {
+              "x": 3670,
+              "y": 8150
+            },
+            {
+              "x": 3670,
+              "y": 8174
+            },
+            {
+              "x": 3130,
+              "y": 8174
+            }
+          ],
+          "baseMaterial": "wood",
+          "breakable": false,
+          "oneWay": true,
+          "layer": "terrain",
+          "properties": {
+            "honroVerticalStage14": true,
+            "honroVerticalZone": "G",
+            "honroSpaceSurfaceId": "refuge-bridge-walkway",
+            "honroSurfaceRole": "timber-bridge",
+            "honroWalkEdges": [
+              0
+            ],
+            "surfaceKind": "cave",
+            "honroCave": true,
+            "honroBridge": true
           },
           "detail": {
             "spacing": 24,
@@ -222647,19 +222923,35 @@
               "y": 8150
             },
             {
-              "x": 1670,
+              "x": 2250,
               "y": 8150
             },
             {
-              "x": 1820,
+              "x": 2400,
               "y": 8350
             },
             {
-              "x": 2020,
+              "x": 2600,
               "y": 8350
             },
             {
-              "x": 2250,
+              "x": 2750,
+              "y": 8150
+            },
+            {
+              "x": 3150,
+              "y": 8150
+            },
+            {
+              "x": 3150,
+              "y": 8450
+            },
+            {
+              "x": 3650,
+              "y": 8450
+            },
+            {
+              "x": 3650,
               "y": 8150
             },
             {
@@ -222801,9 +223093,11 @@
               5,
               6,
               7,
-              8,
               9,
-              10
+              11,
+              12,
+              13,
+              14
             ],
             "surfaceKind": "cave",
             "honroCave": true
@@ -222826,6 +223120,47 @@
               "y": 8850
             }
           }
+        },
+        {
+          "id": "gate-bridge",
+          "name": "피난 다리의 닫힌 돌걸쇠",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3175,
+              "y": 7930
+            },
+            {
+              "x": 3225,
+              "y": 7930
+            },
+            {
+              "x": 3225,
+              "y": 8150
+            },
+            {
+              "x": 3175,
+              "y": 8150
+            }
+          ],
+          "baseMaterial": "rock",
+          "breakable": false,
+          "oneWay": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "broken": false,
+            "honroCave": true,
+            "honroSupportSurfaceId": "refuge-bridge-walkway",
+            "honroVerticalStage14": true
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 14,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [],
@@ -222843,13 +223178,38 @@
           "stage14Supports": [
             {
               "terrainId": "v14-refuge-ground",
+              "x": 2500,
+              "y": 8350
+            },
+            {
+              "terrainId": "v14-refuge-ground",
+              "x": 4500,
+              "y": 8150
+            },
+            {
+              "terrainId": "v14-refuge-ground",
+              "x": 6100,
+              "y": 8070
+            },
+            {
+              "terrainId": "v14-family-yard",
+              "x": 3830,
+              "y": 6750
+            },
+            {
+              "terrainId": "v14-family-yard",
+              "x": 4740,
+              "y": 6750
+            },
+            {
+              "terrainId": "v14-refuge-ground",
               "x": 420,
               "y": 8726.470588235294
             },
             {
               "terrainId": "v14-refuge-ground",
               "x": 2500,
-              "y": 8150
+              "y": 8350
             },
             {
               "terrainId": "v14-refuge-ground",
@@ -223006,7 +223366,7 @@
         {
           "id": "v14-art-refuge-bundles",
           "assetId": "stage14:vertical-refuge-bundles",
-          "x": 3520,
+          "x": 3880,
           "y": 8150,
           "scale": 1,
           "rotation": 0,
@@ -223015,18 +223375,18 @@
           "layer": "back",
           "stage14Support": {
             "terrainId": "v14-refuge-ground",
-            "x": 3520,
+            "x": 3880,
             "y": 8150
           },
           "stage14Supports": [
             {
               "terrainId": "v14-refuge-ground",
-              "x": 3416,
+              "x": 3776,
               "y": 8150
             },
             {
               "terrainId": "v14-refuge-ground",
-              "x": 3623,
+              "x": 3983,
               "y": 8150
             }
           ]
@@ -223090,7 +223450,7 @@
         {
           "id": "v14-art-refuge-rail",
           "assetId": "stage14:vertical-refuge-rail",
-          "x": 2720,
+          "x": 3155,
           "y": 8150,
           "scale": 1,
           "rotation": 0,
@@ -223099,18 +223459,18 @@
           "layer": "back",
           "stage14Supports": [
             {
-              "terrainId": "v14-refuge-ground",
-              "x": 2720,
+              "terrainId": "refuge-bridge-walkway",
+              "x": 3155,
               "y": 8150
             },
             {
-              "terrainId": "v14-refuge-ground",
-              "x": 2913.2,
+              "terrainId": "refuge-bridge-walkway",
+              "x": 3380.4,
               "y": 8150
             },
             {
-              "terrainId": "v14-refuge-ground",
-              "x": 3140,
+              "terrainId": "refuge-bridge-walkway",
+              "x": 3645,
               "y": 8150
             }
           ]
@@ -223556,8 +223916,8 @@
           "id": "v14-e1",
           "kind": "picks",
           "team": "enemy",
-          "x": 6050,
-          "y": 4990,
+          "x": 4560,
+          "y": 6210,
           "facing": -1,
           "spawnIndex": 21,
           "behavior": "patrol",
@@ -223568,15 +223928,15 @@
             "honroAct2Elite": true,
             "honroVerticalCell": "east-shoulder",
             "honroEncounterRole": "east-shoulder",
-            "honroEncounterSupport": "v14-east-shoulder"
+            "honroEncounterSupport": "v14-family-shoulders"
           }
         },
         {
           "id": "v14-e2",
           "kind": "picks",
           "team": "enemy",
-          "x": 6170,
-          "y": 4990,
+          "x": 4680,
+          "y": 6210,
           "facing": -1,
           "spawnIndex": 22,
           "behavior": "patrol",
@@ -223587,15 +223947,15 @@
             "honroAct2Elite": false,
             "honroVerticalCell": "east-shoulder",
             "honroEncounterRole": "east-shoulder",
-            "honroEncounterSupport": "v14-east-shoulder"
+            "honroEncounterSupport": "v14-family-shoulders"
           }
         },
         {
           "id": "v14-e3",
           "kind": "bat",
           "team": "enemy",
-          "x": 5980,
-          "y": 4850,
+          "x": 4510,
+          "y": 6020,
           "facing": -1,
           "spawnIndex": 23,
           "behavior": "patrol",
@@ -223606,15 +223966,15 @@
             "honroAct2Elite": false,
             "honroVerticalCell": "east-shoulder",
             "honroEncounterRole": "east-shoulder",
-            "honroEncounterSupport": "v14-east-shoulder"
+            "honroEncounterSupport": "v14-family-shoulders"
           }
         },
         {
           "id": "v14-e4",
           "kind": "bat",
           "team": "enemy",
-          "x": 6140,
-          "y": 4890,
+          "x": 4700,
+          "y": 6050,
           "facing": -1,
           "spawnIndex": 24,
           "behavior": "patrol",
@@ -223625,15 +223985,15 @@
             "honroAct2Elite": false,
             "honroVerticalCell": "east-shoulder",
             "honroEncounterRole": "east-shoulder",
-            "honroEncounterSupport": "v14-east-shoulder"
+            "honroEncounterSupport": "v14-family-shoulders"
           }
         },
         {
           "id": "v14-e5",
           "kind": "bat",
           "team": "enemy",
-          "x": 6310,
-          "y": 4902,
+          "x": 4840,
+          "y": 5990,
           "facing": -1,
           "spawnIndex": 25,
           "behavior": "patrol",
@@ -223644,7 +224004,7 @@
             "honroAct2Elite": false,
             "honroVerticalCell": "east-shoulder",
             "honroEncounterRole": "east-shoulder",
-            "honroEncounterSupport": "v14-east-shoulder"
+            "honroEncounterSupport": "v14-family-shoulders"
           }
         },
         {
@@ -223765,8 +224125,8 @@
           "id": "v14-g1",
           "kind": "bat",
           "team": "enemy",
-          "x": 2700,
-          "y": 8000,
+          "x": 2770,
+          "y": 8050,
           "facing": -1,
           "spawnIndex": 32,
           "behavior": "patrol",
@@ -223784,7 +224144,7 @@
           "id": "v14-g2",
           "kind": "bat",
           "team": "enemy",
-          "x": 2830,
+          "x": 2890,
           "y": 7980,
           "facing": -1,
           "spawnIndex": 33,
@@ -223803,8 +224163,8 @@
           "id": "v14-g3",
           "kind": "bat",
           "team": "enemy",
-          "x": 3180,
-          "y": 8010,
+          "x": 3030,
+          "y": 8020,
           "facing": -1,
           "spawnIndex": 34,
           "behavior": "patrol",
@@ -223822,7 +224182,7 @@
           "id": "v14-g4",
           "kind": "bat",
           "team": "enemy",
-          "x": 3320,
+          "x": 3700,
           "y": 7990,
           "facing": -1,
           "spawnIndex": 35,
@@ -224200,10 +224560,10 @@
         {
           "id": "hold-refuge",
           "type": "act2",
-          "x": 3000,
+          "x": 3400,
           "y": 8150,
           "label": "피난 다리에서 주민을 지키기",
-          "surfaceId": "v14-refuge-ground"
+          "surfaceId": "refuge-bridge-walkway"
         },
         {
           "id": "clear-village",
@@ -224427,10 +224787,12 @@
               "v14-east-shoulder",
               "v14-family-shoulders",
               "v14-east-crown-road",
-              "v14-east-family-road"
+              "v14-east-family-road",
+              "v14-family-yard",
+              "v14-family-roof-step"
             ],
-            "radius": 1300,
-            "maxHeight": 800
+            "radius": 1600,
+            "maxHeight": 900
           },
           "lower-house": {
             "supports": [
@@ -224445,12 +224807,13 @@
           },
           "bridge-air": {
             "supports": [
-              "v14-refuge-ground"
+              "v14-refuge-ground",
+              "refuge-bridge-walkway"
             ],
             "extra": [
               {
                 "support": "v14-family-yard",
-                "maxX": 2200
+                "maxX": 2700
               }
             ],
             "radius": 1500,
@@ -224458,28 +224821,32 @@
           },
           "refuge-approach": {
             "supports": [
-              "v14-refuge-ground"
+              "v14-refuge-ground",
+              "refuge-bridge-walkway"
             ],
             "radius": 2200,
             "maxHeight": 500
           },
           "hold-refuge-west": {
             "supports": [
-              "v14-refuge-ground"
+              "v14-refuge-ground",
+              "refuge-bridge-walkway"
             ],
             "radius": 1500,
             "maxHeight": 500
           },
           "hold-refuge-east": {
             "supports": [
-              "v14-refuge-ground"
+              "v14-refuge-ground",
+              "refuge-bridge-walkway"
             ],
             "radius": 2200,
             "maxHeight": 500
           },
           "hold-refuge-inner": {
             "supports": [
-              "v14-refuge-ground"
+              "v14-refuge-ground",
+              "refuge-bridge-walkway"
             ],
             "radius": 1800,
             "maxHeight": 500
@@ -224489,7 +224856,7 @@
           "entries": {
             "hold-refuge-0": {
               "x": 2450,
-              "y": 8150,
+              "y": 8350,
               "support": "v14-refuge-ground",
               "spacing": 130,
               "side": "west",
@@ -224497,7 +224864,7 @@
               "alternates": [
                 {
                   "x": 2640,
-                  "y": 8150,
+                  "y": 8296.666666666666,
                   "support": "v14-refuge-ground",
                   "spacing": 130,
                   "side": "west"
@@ -224522,7 +224889,7 @@
               ]
             },
             "hold-refuge-6": {
-              "x": 3710,
+              "x": 3900,
               "y": 8150,
               "support": "v14-refuge-ground",
               "spacing": 130,
@@ -224530,7 +224897,7 @@
               "warning": "가족집 아래 다리 안쪽 굴에서 곡괭이 소리가 납니다. 다음 행동 뒤 두 집 사이를 살피세요.",
               "alternates": [
                 {
-                  "x": 3900,
+                  "x": 4080,
                   "y": 8150,
                   "support": "v14-refuge-ground",
                   "spacing": 130,
@@ -224540,7 +224907,7 @@
             },
             "hold-refuge-9": {
               "x": 2460,
-              "y": 8150,
+              "y": 8350,
               "support": "v14-refuge-ground",
               "spacing": 130,
               "side": "west",
@@ -224548,7 +224915,7 @@
               "alternates": [
                 {
                   "x": 2670,
-                  "y": 8150,
+                  "y": 8256.666666666666,
                   "support": "v14-refuge-ground",
                   "spacing": 130,
                   "side": "west"
@@ -225022,6 +225389,7 @@
             {
               "id": "v14-G",
               "terrainIds": [
+                "refuge-bridge-walkway",
                 "v14-refuge-ground"
               ],
               "ceilingIds": [],
@@ -225194,11 +225562,21 @@
                 1,
                 2,
                 3,
-                4,
-                5
+                4
               ],
               "roomIds": [
                 "v14-F"
+              ]
+            },
+            {
+              "id": "refuge-bridge-walkway",
+              "terrainId": "refuge-bridge-walkway",
+              "role": "timber-bridge",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "v14-G"
               ]
             },
             {
@@ -225214,9 +225592,11 @@
                 5,
                 6,
                 7,
-                8,
                 9,
-                10
+                11,
+                12,
+                13,
+                14
               ],
               "roomIds": [
                 "v14-G"
@@ -226140,61 +226520,56 @@
                 },
                 {
                   "x": 3280,
-                  "y": 6895,
+                  "y": 7120,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 2750,
-                  "y": 7280,
+                  "x": 2850,
+                  "y": 7640,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 2200,
-                  "y": 7720,
-                  "surfaceId": "v14-family-yard"
-                },
-                {
-                  "x": 1900,
+                  "x": 2550,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 1830,
+                  "x": 2480,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 1830,
+                  "x": 2480,
                   "y": 8005,
                   "surfaceId": "v14-family-yard",
                   "dropTo": {
-                    "x": 1600,
+                    "x": 2240,
                     "y": 8150,
                     "support": "v14-refuge-ground"
                   }
                 },
                 {
-                  "x": 1600,
+                  "x": 2240,
                   "y": 8150,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1670,
-                  "y": 8150,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1820,
-                  "y": 8350,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 2020,
-                  "y": 8350,
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
                   "x": 2250,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2400,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2600,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2750,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 },
@@ -226217,64 +226592,59 @@
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
+                  "x": 2750,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2600,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2400,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
                   "x": 2250,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
-                  "x": 2020,
-                  "y": 8350,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1820,
-                  "y": 8350,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1670,
+                  "x": 2240,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
-                  "x": 1600,
-                  "y": 8150,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1600,
+                  "x": 2240,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground",
                   "jumpTo": {
-                    "x": 1850,
+                    "x": 2490,
                     "y": 8005,
                     "support": "v14-family-yard",
                     "speed": 1
                   }
                 },
                 {
-                  "x": 1850,
+                  "x": 2490,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 1900,
+                  "x": 2550,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 2200,
-                  "y": 7720,
-                  "surfaceId": "v14-family-yard"
-                },
-                {
-                  "x": 2750,
-                  "y": 7280,
+                  "x": 2850,
+                  "y": 7640,
                   "surfaceId": "v14-family-yard"
                 },
                 {
                   "x": 3280,
-                  "y": 6895,
+                  "y": 7120,
                   "surfaceId": "v14-family-yard"
                 },
                 {
@@ -226301,13 +226671,35 @@
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
+                  "x": 3100,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 3160,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3640,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3700,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
                   "x": 4400,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 }
               ],
               "requires": [],
-              "defaultJump": true
+              "defaultJump": true,
+              "gate": "gate-bridge",
+              "requiresObjective": "bridge"
             },
             {
               "id": "HG",
@@ -226319,13 +226711,35 @@
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
+                  "x": 3700,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 3640,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3160,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3100,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
                   "x": 3000,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 }
               ],
               "requires": [],
-              "defaultJump": true
+              "defaultJump": true,
+              "gate": "gate-bridge",
+              "requiresObjective": "bridge"
             }
           ],
           "connections": [
@@ -226712,13 +227126,13 @@
             "hold-refuge": {
               "objectiveId": "hold-refuge",
               "roomId": "v14-G",
-              "x": 3000,
+              "x": 3400,
               "y": 8150,
-              "surfaceId": "v14-refuge-ground",
+              "surfaceId": "refuge-bridge-walkway",
               "standing": {
-                "x": 3000,
+                "x": 3400,
                 "y": 8150,
-                "surfaceId": "v14-refuge-ground"
+                "surfaceId": "refuge-bridge-walkway"
               }
             },
             "clear-village": {
@@ -226905,43 +227319,43 @@
             },
             {
               "id": "v14-e1-site",
-              "roomId": "v14-E",
+              "roomId": "v14-F",
               "unitId": "v14-e1",
-              "surfaceId": "v14-east-shoulder",
-              "x": 6050,
-              "y": 4990
+              "surfaceId": "v14-family-shoulders",
+              "x": 4560,
+              "y": 6210
             },
             {
               "id": "v14-e2-site",
-              "roomId": "v14-E",
+              "roomId": "v14-F",
               "unitId": "v14-e2",
-              "surfaceId": "v14-east-shoulder",
-              "x": 6170,
-              "y": 4990
+              "surfaceId": "v14-family-shoulders",
+              "x": 4680,
+              "y": 6210
             },
             {
               "id": "v14-e3-site",
-              "roomId": "v14-E",
+              "roomId": "v14-F",
               "unitId": "v14-e3",
-              "surfaceId": "v14-east-shoulder",
-              "x": 5980,
-              "y": 4850
+              "surfaceId": "v14-family-shoulders",
+              "x": 4510,
+              "y": 6020
             },
             {
               "id": "v14-e4-site",
-              "roomId": "v14-E",
+              "roomId": "v14-F",
               "unitId": "v14-e4",
-              "surfaceId": "v14-east-shoulder",
-              "x": 6140,
-              "y": 4890
+              "surfaceId": "v14-family-shoulders",
+              "x": 4700,
+              "y": 6050
             },
             {
               "id": "v14-e5-site",
-              "roomId": "v14-E",
+              "roomId": "v14-F",
               "unitId": "v14-e5",
-              "surfaceId": "v14-east-shoulder",
-              "x": 6310,
-              "y": 4902
+              "surfaceId": "v14-family-shoulders",
+              "x": 4840,
+              "y": 5990
             },
             {
               "id": "v14-f1-site",
@@ -226996,15 +227410,15 @@
               "roomId": "v14-G",
               "unitId": "v14-g1",
               "surfaceId": "v14-refuge-ground",
-              "x": 2700,
-              "y": 8000
+              "x": 2770,
+              "y": 8050
             },
             {
               "id": "v14-g2-site",
               "roomId": "v14-G",
               "unitId": "v14-g2",
               "surfaceId": "v14-refuge-ground",
-              "x": 2830,
+              "x": 2890,
               "y": 7980
             },
             {
@@ -227012,15 +227426,15 @@
               "roomId": "v14-G",
               "unitId": "v14-g3",
               "surfaceId": "v14-refuge-ground",
-              "x": 3180,
-              "y": 8010
+              "x": 3030,
+              "y": 8020
             },
             {
               "id": "v14-g4-site",
               "roomId": "v14-G",
               "unitId": "v14-g4",
               "surfaceId": "v14-refuge-ground",
-              "x": 3320,
+              "x": 3700,
               "y": 7990
             },
             {
@@ -227127,9 +227541,9 @@
               "id": "v14-art-refuge-bundles",
               "elementId": "v14-art-refuge-bundles",
               "assetId": "stage14:vertical-refuge-bundles",
-              "roomId": "v14-G",
+              "roomId": "v14-H",
               "surfaceId": "v14-refuge-ground",
-              "x": 3520,
+              "x": 3880,
               "y": 8150,
               "scale": 1,
               "footOffset": 0,
@@ -227167,13 +227581,13 @@
               "elementId": "v14-art-refuge-rail",
               "assetId": "stage14:vertical-refuge-rail",
               "roomId": "v14-G",
-              "surfaceId": "v14-refuge-ground",
-              "x": 2720,
+              "surfaceId": "refuge-bridge-walkway",
+              "x": 3155,
               "y": 8150,
               "scale": 1,
               "footOffset": 0,
               "visualOnly": true,
-              "purpose": "Rear rail only; the actual refuge terrain remains the only deck and collision."
+              "purpose": "Rear rail only; the actual refuge bridge remains the only deck and collision."
             }
           ],
           "lights": [
@@ -228192,61 +228606,56 @@
                 },
                 {
                   "x": 3280,
-                  "y": 6895,
+                  "y": 7120,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 2750,
-                  "y": 7280,
+                  "x": 2850,
+                  "y": 7640,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 2200,
-                  "y": 7720,
-                  "surfaceId": "v14-family-yard"
-                },
-                {
-                  "x": 1900,
+                  "x": 2550,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 1830,
+                  "x": 2480,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 1830,
+                  "x": 2480,
                   "y": 8005,
                   "surfaceId": "v14-family-yard",
                   "dropTo": {
-                    "x": 1600,
+                    "x": 2240,
                     "y": 8150,
                     "support": "v14-refuge-ground"
                   }
                 },
                 {
-                  "x": 1600,
+                  "x": 2240,
                   "y": 8150,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1670,
-                  "y": 8150,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1820,
-                  "y": 8350,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 2020,
-                  "y": 8350,
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
                   "x": 2250,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2400,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2600,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2750,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 },
@@ -228269,64 +228678,59 @@
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
+                  "x": 2750,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2600,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 2400,
+                  "y": 8350,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
                   "x": 2250,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
-                  "x": 2020,
-                  "y": 8350,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1820,
-                  "y": 8350,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1670,
+                  "x": 2240,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
-                  "x": 1600,
-                  "y": 8150,
-                  "surfaceId": "v14-refuge-ground"
-                },
-                {
-                  "x": 1600,
+                  "x": 2240,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground",
                   "jumpTo": {
-                    "x": 1850,
+                    "x": 2490,
                     "y": 8005,
                     "support": "v14-family-yard",
                     "speed": 1
                   }
                 },
                 {
-                  "x": 1850,
+                  "x": 2490,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 1900,
+                  "x": 2550,
                   "y": 8005,
                   "surfaceId": "v14-family-yard"
                 },
                 {
-                  "x": 2200,
-                  "y": 7720,
-                  "surfaceId": "v14-family-yard"
-                },
-                {
-                  "x": 2750,
-                  "y": 7280,
+                  "x": 2850,
+                  "y": 7640,
                   "surfaceId": "v14-family-yard"
                 },
                 {
                   "x": 3280,
-                  "y": 6895,
+                  "y": 7120,
                   "surfaceId": "v14-family-yard"
                 },
                 {
@@ -228353,13 +228757,35 @@
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
+                  "x": 3100,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 3160,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3640,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3700,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
                   "x": 4400,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 }
               ],
               "requires": [],
-              "defaultJump": true
+              "defaultJump": true,
+              "gate": "gate-bridge",
+              "requiresObjective": "bridge"
             },
             {
               "id": "HG",
@@ -228371,13 +228797,35 @@
                   "surfaceId": "v14-refuge-ground"
                 },
                 {
+                  "x": 3700,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
+                  "x": 3640,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3160,
+                  "y": 8150,
+                  "surfaceId": "refuge-bridge-walkway"
+                },
+                {
+                  "x": 3100,
+                  "y": 8150,
+                  "surfaceId": "v14-refuge-ground"
+                },
+                {
                   "x": 3000,
                   "y": 8150,
                   "surfaceId": "v14-refuge-ground"
                 }
               ],
               "requires": [],
-              "defaultJump": true
+              "defaultJump": true,
+              "gate": "gate-bridge",
+              "requiresObjective": "bridge"
             }
           ],
           "scope": "Basic movement only; no global physics or AI changes. Fast descent and separate left/right return circuits.",
@@ -228581,48 +229029,48 @@
               },
               {
                 "id": "v14-group-east-shoulder",
-                "zone": "E",
-                "purpose": "Lower shared shoulder directly meets the fast descent so the optional outer road cannot strand this group.",
+                "zone": "F",
+                "purpose": "Last shoulder above the family yard cross-covers both the left return and fast descent. The outer east road offers a rear angle rather than mandatory cleanup.",
                 "members": [
                   {
                     "id": "v14-e1",
                     "kind": "picks",
-                    "x": 6050,
-                    "y": 4990,
+                    "x": 4560,
+                    "y": 6210,
                     "elite": true,
-                    "support": "v14-east-shoulder"
+                    "support": "v14-family-shoulders"
                   },
                   {
                     "id": "v14-e2",
                     "kind": "picks",
-                    "x": 6170,
-                    "y": 4990,
+                    "x": 4680,
+                    "y": 6210,
                     "elite": false,
-                    "support": "v14-east-shoulder"
+                    "support": "v14-family-shoulders"
                   },
                   {
                     "id": "v14-e3",
                     "kind": "bat",
-                    "x": 5980,
-                    "y": 4850,
+                    "x": 4510,
+                    "y": 6020,
                     "elite": false,
-                    "support": "v14-east-shoulder"
+                    "support": "v14-family-shoulders"
                   },
                   {
                     "id": "v14-e4",
                     "kind": "bat",
-                    "x": 6140,
-                    "y": 4890,
+                    "x": 4700,
+                    "y": 6050,
                     "elite": false,
-                    "support": "v14-east-shoulder"
+                    "support": "v14-family-shoulders"
                   },
                   {
                     "id": "v14-e5",
                     "kind": "bat",
-                    "x": 6310,
-                    "y": 4902,
+                    "x": 4840,
+                    "y": 5990,
                     "elite": false,
-                    "support": "v14-east-shoulder"
+                    "support": "v14-family-shoulders"
                   }
                 ]
               },
@@ -228689,15 +229137,15 @@
                   {
                     "id": "v14-g1",
                     "kind": "bat",
-                    "x": 2700,
-                    "y": 8000,
+                    "x": 2770,
+                    "y": 8050,
                     "elite": true,
                     "support": "v14-refuge-ground"
                   },
                   {
                     "id": "v14-g2",
                     "kind": "bat",
-                    "x": 2830,
+                    "x": 2890,
                     "y": 7980,
                     "elite": false,
                     "support": "v14-refuge-ground"
@@ -228705,15 +229153,15 @@
                   {
                     "id": "v14-g3",
                     "kind": "bat",
-                    "x": 3180,
-                    "y": 8010,
+                    "x": 3030,
+                    "y": 8020,
                     "elite": false,
                     "support": "v14-refuge-ground"
                   },
                   {
                     "id": "v14-g4",
                     "kind": "bat",
-                    "x": 3320,
+                    "x": 3700,
                     "y": 7990,
                     "elite": false,
                     "support": "v14-refuge-ground"
@@ -228768,14 +229216,189 @@
           }
         },
         "vertical14Art": {
-          "revision": 1,
+          "revision": 2,
           "status": "awaiting-native-and-browser-visual-review",
           "nativeVectorOnly": true,
           "source": "tools/environment/stage14-vertical-art.mjs",
           "geometrySource": "tools/map-forge/stage14-vertical-geometry.mjs",
           "style": "Korean low stone-foundation houses, asymmetric broad rock masses, restrained oil lamps",
           "collisionPolicy": "none-added; all elements L1-back; roofs and rails are visual only",
-          "supportPolicy": "actual declared walk edges cross-checked with v14Y; each local foot at support y",
+          "supportPolicy": "actual declared walk edges cross-checked with v14Y; each local foot at support y; central rear rock meets actual terrain undersides",
+          "terrainAttachments": [
+            {
+              "terrainId": "v14-market",
+              "points": [
+                {
+                  "x": 5100,
+                  "y": 4150
+                },
+                {
+                  "x": 4690,
+                  "y": 4280
+                },
+                {
+                  "x": 4280,
+                  "y": 4190
+                },
+                {
+                  "x": 4250,
+                  "y": 4010
+                }
+              ],
+              "contact": "actual lower contour overlapped by recessed rear mass",
+              "rearOverlap": 22
+            },
+            {
+              "terrainId": "v14-mineral-way",
+              "points": [
+                {
+                  "x": 4100,
+                  "y": 4115
+                },
+                {
+                  "x": 3460,
+                  "y": 4560
+                },
+                {
+                  "x": 3100,
+                  "y": 4770
+                },
+                {
+                  "x": 2200,
+                  "y": 4750
+                }
+              ],
+              "contact": "actual lower contour overlapped by recessed rear mass",
+              "rearOverlap": 22
+            },
+            {
+              "terrainId": "v14-west-family-road",
+              "points": [
+                {
+                  "x": 3420,
+                  "y": 6655
+                },
+                {
+                  "x": 3160,
+                  "y": 6460
+                },
+                {
+                  "x": 2750,
+                  "y": 6000
+                },
+                {
+                  "x": 2410,
+                  "y": 5540
+                },
+                {
+                  "x": 1940,
+                  "y": 4940
+                },
+                {
+                  "x": 1800,
+                  "y": 4900
+                }
+              ],
+              "contact": "actual lower contour overlapped by recessed rear mass",
+              "rearOverlap": 22
+            },
+            {
+              "terrainId": "v14-east-steps",
+              "points": [
+                {
+                  "x": 5870,
+                  "y": 4750
+                },
+                {
+                  "x": 5500,
+                  "y": 4790
+                },
+                {
+                  "x": 5100,
+                  "y": 4540
+                }
+              ],
+              "contact": "actual lower contour overlapped by recessed rear mass",
+              "rearOverlap": 22
+            },
+            {
+              "terrainId": "v14-family-shoulders",
+              "points": [
+                {
+                  "x": 5620,
+                  "y": 5540
+                },
+                {
+                  "x": 5400,
+                  "y": 5990
+                },
+                {
+                  "x": 5050,
+                  "y": 6450
+                },
+                {
+                  "x": 4500,
+                  "y": 6370
+                }
+              ],
+              "contact": "actual lower contour overlapped by recessed rear mass",
+              "rearOverlap": 22
+            },
+            {
+              "terrainId": "v14-family-roof-step",
+              "points": [
+                {
+                  "x": 4480,
+                  "y": 6570
+                },
+                {
+                  "x": 4140,
+                  "y": 6570
+                }
+              ],
+              "contact": "actual lower contour overlapped by recessed rear mass",
+              "rearOverlap": 22
+            },
+            {
+              "terrainId": "v14-family-yard",
+              "points": [
+                {
+                  "x": 5025,
+                  "y": 7750
+                },
+                {
+                  "x": 4500,
+                  "y": 7750
+                },
+                {
+                  "x": 3650,
+                  "y": 7790
+                },
+                {
+                  "x": 3280,
+                  "y": 7860
+                },
+                {
+                  "x": 2850,
+                  "y": 7860
+                },
+                {
+                  "x": 2700,
+                  "y": 7970
+                },
+                {
+                  "x": 2550,
+                  "y": 8090
+                },
+                {
+                  "x": 2450,
+                  "y": 8090
+                }
+              ],
+              "contact": "actual lower contour overlapped by recessed rear mass",
+              "rearOverlap": 22
+            }
+          ],
           "artAssetIds": [
             "stage14:vertical-cavern-depth",
             "stage14:vertical-home-upper",
@@ -228791,6 +229414,36 @@
             {
               "elementId": "v14-art-cavern-depth",
               "terrainId": "v14-refuge-ground",
+              "x": 2500,
+              "y": 8350
+            },
+            {
+              "elementId": "v14-art-cavern-depth",
+              "terrainId": "v14-refuge-ground",
+              "x": 4500,
+              "y": 8150
+            },
+            {
+              "elementId": "v14-art-cavern-depth",
+              "terrainId": "v14-refuge-ground",
+              "x": 6100,
+              "y": 8070
+            },
+            {
+              "elementId": "v14-art-cavern-depth",
+              "terrainId": "v14-family-yard",
+              "x": 3830,
+              "y": 6750
+            },
+            {
+              "elementId": "v14-art-cavern-depth",
+              "terrainId": "v14-family-yard",
+              "x": 4740,
+              "y": 6750
+            },
+            {
+              "elementId": "v14-art-cavern-depth",
+              "terrainId": "v14-refuge-ground",
               "x": 420,
               "y": 8726.470588235294
             },
@@ -228798,7 +229451,7 @@
               "elementId": "v14-art-cavern-depth",
               "terrainId": "v14-refuge-ground",
               "x": 2500,
-              "y": 8150
+              "y": 8350
             },
             {
               "elementId": "v14-art-cavern-depth",
@@ -228875,13 +229528,13 @@
             {
               "elementId": "v14-art-refuge-bundles",
               "terrainId": "v14-refuge-ground",
-              "x": 3416,
+              "x": 3776,
               "y": 8150
             },
             {
               "elementId": "v14-art-refuge-bundles",
               "terrainId": "v14-refuge-ground",
-              "x": 3623,
+              "x": 3983,
               "y": 8150
             },
             {
@@ -228910,20 +229563,20 @@
             },
             {
               "elementId": "v14-art-refuge-rail",
-              "terrainId": "v14-refuge-ground",
-              "x": 2720,
+              "terrainId": "refuge-bridge-walkway",
+              "x": 3155,
               "y": 8150
             },
             {
               "elementId": "v14-art-refuge-rail",
-              "terrainId": "v14-refuge-ground",
-              "x": 2913.2,
+              "terrainId": "refuge-bridge-walkway",
+              "x": 3380.4,
               "y": 8150
             },
             {
               "elementId": "v14-art-refuge-rail",
-              "terrainId": "v14-refuge-ground",
-              "x": 3140,
+              "terrainId": "refuge-bridge-walkway",
+              "x": 3645,
               "y": 8150
             }
           ],
@@ -229104,56 +229757,51 @@
         },
         {
           "x": 3280,
-          "y": 6895,
+          "y": 7120,
           "surfaceId": "v14-family-yard"
         },
         {
-          "x": 2750,
-          "y": 7280,
+          "x": 2850,
+          "y": 7640,
           "surfaceId": "v14-family-yard"
         },
         {
-          "x": 2200,
-          "y": 7720,
-          "surfaceId": "v14-family-yard"
-        },
-        {
-          "x": 1900,
+          "x": 2550,
           "y": 8005,
           "surfaceId": "v14-family-yard"
         },
         {
-          "x": 1830,
+          "x": 2480,
           "y": 8005,
           "surfaceId": "v14-family-yard"
         },
         {
-          "x": 1830,
+          "x": 2480,
           "y": 8005,
           "surfaceId": "v14-family-yard"
         },
         {
-          "x": 1600,
+          "x": 2240,
           "y": 8150,
-          "surfaceId": "v14-refuge-ground"
-        },
-        {
-          "x": 1670,
-          "y": 8150,
-          "surfaceId": "v14-refuge-ground"
-        },
-        {
-          "x": 1820,
-          "y": 8350,
-          "surfaceId": "v14-refuge-ground"
-        },
-        {
-          "x": 2020,
-          "y": 8350,
           "surfaceId": "v14-refuge-ground"
         },
         {
           "x": 2250,
+          "y": 8150,
+          "surfaceId": "v14-refuge-ground"
+        },
+        {
+          "x": 2400,
+          "y": 8350,
+          "surfaceId": "v14-refuge-ground"
+        },
+        {
+          "x": 2600,
+          "y": 8350,
+          "surfaceId": "v14-refuge-ground"
+        },
+        {
+          "x": 2750,
           "y": 8150,
           "surfaceId": "v14-refuge-ground"
         },

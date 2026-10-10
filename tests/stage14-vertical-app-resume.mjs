@@ -18,7 +18,7 @@ const record=(app,label)=>{const b=app.engine.b,m=b.honroState.vertical14;checkp
 function ready({old=false,blocked=false}={}){g.HONRO_PROJECT=plain(old?base:project);if(old)g.HONRO_PROJECT.stages[13]=plain(oldStage);const profile=h.profileThrough(13);for(const cls of profile.recruited)profile.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(14).entryLevel);profile.seen['act2:first-spirit-encounter']=true;
  const app=h.load(profile);app.launch(14);h.finish(app);now+=2000;if(old)return app;
  const b=app.engine.b,a=A.memory(b);for(const step of A.steps(b)){if(step.id==='hold-refuge')break;a.done[step.id]=true;}a.events['story:hold-refuge']=true;a.holds={'hold-refuge':{progress:0,spawned:0,lastRound:b.round,enteredRound:b.round,continuous:true}};
- const marker=b.honroMarkers.find(m=>m.id==='hold-refuge'),u=app.engine.heroesAlive()[0];Object.assign(u,{x:marker.x,y:marker.y,acted:false,airborne:false,jumping:false,vx:0,vy:0});b.active=u.id;b.phase='aim';b.side=0;
+ b.terrain.find(t=>t.id==='gate-bridge').broken=true;const marker=b.honroMarkers.find(m=>m.id==='hold-refuge'),u=app.engine.heroesAlive()[0];Object.assign(u,{x:marker.x,y:marker.y,acted:false,airborne:false,jumping:false,vx:0,vy:0});b.active=u.id;b.phase='aim';b.side=0;
  if(blocked){const at=b.honroVerticalStage14Spec.entries[S.sources[0]];b.stakes=[at,...at.alternates].map((p,i)=>({id:700+i,x:p.x,y:p.y,active:true,expires:999}));}
  assert(C.validTerrainContactPose(b.terrain,u),'Supported fixture arrival');assert(app.canInput());S.prepareWaves(app);return app;
 }
