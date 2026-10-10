@@ -2062,3 +2062,9 @@ Integrated the c25d50c debug/journey build without altering either feature; only
 Build and typecheck pass. Full verify stops at the existing density historical hash (`d369e6f0…` vs `4e6862fc…`); migration stops at original580 asset membership/order. Both exact failures reproduce on untouched c25d50c. The existing combat-story formation assertion remains 36 vs 72 after its updated stake assertion passes. Browser integration cannot start Chromium because socket creation returns EPERM. Current special DOT/legacy lingering zones preserve their old policies; active projectile delayed explosions M05/M13 retain projectile damage context. Published Game/Workshop visual/input verification remains separate and pending.
 
 Final focused follow-through: tactics-audit 26 checks and npc-latency 6 groups pass after replacing the now-obsolete allied-NPC immunity expectation with nonzero friendly-damage cost/rejection. The shared Game and Workshop bundles rebuild cleanly and the standalone Playtest-template contract passes against those exact outputs.
+
+## 허공터 역할별 밀집 배치 · 2026-10-10
+
+- 원인: 적 12체가 5600 폭을 따라 거의 한 줄의 작은 간격 차이로 분산되어 범위 공격·근접·정밀·공중 사격 비교가 불명확했다.
+- 변경: 폭 6000의 기존 지형 종류 안에서 시작 평지/중앙 마당을 넓히고 20체를 근접/중앙 군집/공중/물가/정밀/정예로 저작했다. 행동 상한 2와 정예 1, 적 능력·내구 범위와 리셋/저장 규칙은 유지한다. 자세한 계약은 TRAINING_LAYOUT.md.
+- 검증: 전용 실제 물리·발사 회귀 및 동일 카메라 Native 캡처를 추가했다. 실제 브라우저, 전체 verify와 Pages는 통합 검수 대상이며 이 기록은 통과를 주장하지 않는다.
