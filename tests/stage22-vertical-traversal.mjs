@@ -2,15 +2,42 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { runtime, battlefield } from '../game/tests/helpers.mjs';
-import { authorStage22VerticalGeometry, V22_LAYOUT, v22Y } from '../tools/map-forge/stage22-vertical-geometry.mjs';
+import { authorStage22VerticalGeometry, V22_LAYOUT, V22_NODES, v22Y, v22Routes } from '../tools/map-forge/stage22-vertical-geometry.mjs';
 import { followVerticalRoute } from './vertical-route-helpers.mjs';
 
+const MAIN=['AB','BC','CE','EF','FG','GH'];
+const option=k=>process.argv.find(a=>a.startsWith('--'+k+'='))?.slice(k.length+3);
+const outDir=option('out-dir')||'_local/reports/vertical-stages';
+function geometricCost(route){
+  let last=null,walk=0,walkHorizontal=0,walkRise=0,jumps=0,jumpHorizontal=0,jumpRise=0;
+  for(const p of route.anchors){
+    if(last){walk+=Math.hypot(p.x-last.x,p.y-last.y);walkHorizontal+=Math.abs(p.x-last.x);walkRise+=Math.max(0,last.y-p.y);}
+    if(p.jumpTo){jumps++;jumpHorizontal+=Math.abs(p.jumpTo.x-p.x);jumpRise+=p.y-p.jumpTo.y;last=p.jumpTo;}
+    else last=p;
+  }
+  return {route:route.id,walk,walkHorizontal,walkRise,jumps,jumpHorizontal,jumpRise,baseJumpCost:jumps*75,estimatedMove:walk+jumpHorizontal+jumps*75};
+}
+const geometricMain=v22Routes().filter(r=>MAIN.includes(r.id)).map(geometricCost);
+const estimatedMain=geometricMain.reduce((s,r)=>s+r.estimatedMove,0),comparison=V22_LAYOUT.surfaces.find(s=>s.id==='v22-comparison-mass'),court=comparison.top.slice(-2);
+assert.equal(V22_NODES.A.y-V22_NODES.H.y,4100,'Compression preserves used vertical height');
+assert.equal(court[1][0]-court[0][0],970,'Whole comparison court is retained');
+assert.equal(court[0][1],court[1][1]);assert.equal(V22_NODES.G.y,V22_NODES.H.y,'Comparison and exit remain on one level');
+assert(V22_NODES.G.x-460>=court[0][0]&&V22_NODES.G.x+460<=court[1][0],'Original defence radius fits the level floor');
+assert(court[1][0]-V22_NODES.H.x>=200,'Clear floor remains beyond the exit');
+assert(estimatedMain<7400,'Do not restore the long compulsory empty detours');
+for(const s of V22_LAYOUT.surfaces)for(let i=1;i<s.top.length;i++)assert(Math.abs((s.top[i][1]-s.top[i-1][1])/(s.top[i][0]-s.top[i-1][0]))<=1.35,s.id+' walk slope');
+if(process.argv.includes('--static')){
+  const result={scope:'Static polygon/route arithmetic only. Not collision, traversal, combat, or pacing approval.',usedHeight:4100,comparisonFloorWidth:970,geometricMain,estimatedMain};
+  await mkdir(outDir,{recursive:true});
+  await writeFile(outDir+'/stage22-static-geometry.json',JSON.stringify(result,null,2)+'\n');
+  console.log(JSON.stringify(result,null,2));process.exit(0);
+}
 const json=v=>JSON.parse(JSON.stringify(v)),g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
 const sha=value=>createHash('sha256').update(value).digest('hex');
 const fixture=JSON.parse(await readFile('tests/fixtures/vertical-stages/before-stages.json','utf8')).stages.find(s=>s.metadata.stageId===22);
 const input=json(g.HONRO_PROJECT);input.stages[21]=json(fixture);
 g.HONRO_PROJECT=authorStage22VerticalGeometry(g,input);
-const st=g.HONRO_PROJECT.stages[21],opt=k=>process.argv.find(a=>a.startsWith('--'+k+'='))?.slice(k.length+3),onlyRoute=opt('route'),onlyClass=opt('class'),rows=[];
+const st=g.HONRO_PROJECT.stages[21],onlyRoute=option('route'),onlyClass=option('class'),rows=[];
 assert.deepEqual(json(authorStage22VerticalGeometry(g,g.HONRO_PROJECT)),json(g.HONRO_PROJECT),'Idempotent authoring');
 assert.deepEqual(json(g.HONRO_PROJECT.stages.filter((_,i)=>i!==21)),input.stages.filter((_,i)=>i!==21),'Other 29 stages byte-equivalent JSON');
 assert.deepEqual(json(st.initialState.honroAct3Steps),fixture.initialState.honroAct3Steps,'Original five ordered objectives');
@@ -121,8 +148,10 @@ if(!onlyRoute){
   console.log('PASS ordered physical gate run knight; comparison defence deliberately pending');
 }
 assert(rows.length,'Unknown route or empty selection');
-await mkdir('_local/reports/vertical-stages',{recursive:true});
-const out='_local/reports/vertical-stages/stage22-traversal'+(onlyRoute?'-'+onlyRoute:'')+(onlyClass?'-'+onlyClass:'')+'.json';
+await mkdir(outDir,{recursive:true});
+const out=outDir+'/stage22-traversal'+(onlyRoute?'-'+onlyRoute:'')+(onlyClass?'-'+onlyClass:'')+'.json';
 const sources=Object.fromEntries(await Promise.all(['tools/map-forge/stage22-vertical-geometry.mjs','tests/stage22-vertical-traversal.mjs','tests/vertical-route-helpers.mjs','tests/fixtures/vertical-stages/before-stages.json'].map(async p=>[p,sha(await readFile(p))])));
-await writeFile(out,JSON.stringify({scope:'Whole-map geometry only. One initial pose, one level16 hero with SP03 absent, finite Engine move/jump/wait/tick. Other actors removed. Individual routes open declared gates as fixture preconditions; objectiveGateRun instead uses the original ordered E interactions without direct gate writes. No subsequent resource/pose/terrain repair. Not normal combat, art, browser, or old-save certification.',sources,stageDigest:sha(JSON.stringify(st)),otherStagesDigest:sha(JSON.stringify(input.stages.filter((_,i)=>i!==21))),passed:rows.every(r=>r.passed),gateRows,objectiveGateRun,headroom,rows},null,2)+'\n');
+const measuredMain=Object.fromEntries(classes.filter(cls=>MAIN.every(id=>rows.some(r=>r.cls===cls&&r.route===id))).map(cls=>[cls,rows.filter(r=>r.cls===cls&&MAIN.includes(r.route)).reduce((s,r)=>s+r.movementCost,0)]));
+for(const [cls,cost] of Object.entries(measuredMain))assert(cost<7400,'Finite basic movement keeps compression '+cls);
+await writeFile(out,JSON.stringify({scope:'Whole-map geometry only. One initial pose, one level16 hero with SP03 absent, finite Engine move/jump/wait/tick. Other actors removed. Individual routes open declared gates as fixture preconditions; objectiveGateRun instead uses the original ordered E interactions without direct gate writes. No subsequent resource/pose/terrain repair. Not normal combat, art, browser, or old-save certification.',sources,stageDigest:sha(JSON.stringify(st)),otherStagesDigest:sha(JSON.stringify(input.stages.filter((_,i)=>i!==21))),geometricMain,estimatedMain,measuredMain,passed:rows.every(r=>r.passed),gateRows,objectiveGateRun,headroom,rows},null,2)+'\n');
 assert(rows.every(r=>r.passed),out);
