@@ -61,7 +61,7 @@ function constrainedPaths(asset, matrices, controls = {}) {
   if(asset.character_id==='sodan'&&controls.talismanOpacity>0){
     const hand=asset.rig.handSockets?.rear||asset.rig.parts.find(p=>p.id==='rear_hand').pivot,m=matrices.rear_hand;
     const bend=controls.paperBend||0,xy=(x,y)=>point(m,[hand[0]+x,hand[1]+y]).map(v=>Number(v.toFixed(3))).join(' ');
-    extra.push({id:'held_talisman',d:`M${xy(2,0)} L${xy(17,-2)} Q${xy(23+bend,-24)} ${xy(17+bend,-48)} L${xy(1+bend,-46)} Q${xy(7,-20)} ${xy(2,0)}Z`,fill:'paper',opacity:controls.talismanOpacity});
+    extra.push({id:'held_talisman',d:`M${xy(2,0)} L${xy(17,-2)} Q${xy(23+bend,-24)} ${xy(17+bend,-48)} L${xy(1+bend,-46)} Q${xy(7,-20)} ${xy(2,0)}Z`,fill:'ivory',opacity:controls.talismanOpacity});
     extra.push({id:'held_talisman_ink',d:`M${xy(6,-10)} L${xy(13,-12)} M${xy(8,-8)} L${xy(10+bend*.5,-34)} M${xy(5,-23)} L${xy(16,-25)} M${xy(5+bend,-38)} L${xy(13+bend,-40)}`,stroke:'ochre',strokeWidth:2,opacity:controls.talismanOpacity});
   }
   if (!asset.constraints?.bowstring) return {paths:extra};

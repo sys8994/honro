@@ -61,6 +61,13 @@ function bow(a,rig){
 }
 
 function castingHands(a,rig,previous){
+ if(a.character_id==='sodan')path(a,'rear_sleeve_lining','M177 196 L205 198 L207 254.5857 L185 287.5557 L168 274.3677Z');
+ if(a.character_id==='damheo'){
+  // A pale, finger-like neck read as a third hand at the belt. Make the
+  // smaller vessel a clearly stoppered, warm wooden double-bellied gourd.
+  const small=a.paths.find(p=>p.id==='gourd_small');small.fill='leatherLight';
+  small.d='M196 269 L204 269 L204 278 Q216 281 212 289 Q209 295 215 300 Q216 312 204 313 Q190 313 190 302 Q190 296 195 291 Q189 284 198 278Z';
+ }
  const oldBy=Object.fromEntries(previous.rig.parts.map(p=>[p.id,p])),by=Object.fromEntries(a.rig.parts.map(p=>[p.id,p]));
  const delta=by.weapon.pivot.map((v,i)=>v-oldBy.weapon.pivot[i]);
  for(const p of a.paths.filter(p=>p.part==='weapon'))p.d=offset(delta,p.d);

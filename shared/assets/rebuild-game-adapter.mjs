@@ -102,12 +102,13 @@ export class HonroPoseVisual{
       return this.api.solvePose(this.asset,target);
     }
     if(this.asset.character_id==='hwigyeom'){
-      if(this.asset.motionRevision>=11)return this.api.sampleAnimation(this.asset,'attack',this.asset.animation.animations.attack.keyframes[2].t*raise,true);
+      if(this.asset.motionRevision>=11){const sample=this.api.sampleAnimation(this.asset,'attack',this.asset.animation.animations.attack.keyframes[2].t*raise,true);if(s.chargeFrom&&held<.15){const t=sample.t;const q=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.chargeFrom,sample.targets,poseClamp(held/.15)));q.t=t;return q;}return sample;}
       const p=structuredClone(this.loaded);p.pelvis[1]+=charge*18;p.frontShoulder[1]+=charge*10;p.rearShoulder[1]+=charge*10;p.frontHand[1]+=charge*6;p.rearHand[1]+=charge*6;p.spirit=p.qi=p.spiritAlpha=p.qiAlpha=0;
       return this.api.solvePose(this.asset,this.api.blendPoseTargets(this.ready,p,raise));
     }
     const anim=this.asset.animation.animations.attack,prepare=anim.keyframes[1].t,load=anim.keyframes[2].t;
-    return this.api.sampleAnimation(this.asset,'attack',raise<1?prepare*raise:prepare+(load-prepare)*draw,true);
+    const sample=this.api.sampleAnimation(this.asset,'attack',raise<1?prepare*raise:prepare+(load-prepare)*draw,true);
+    if(s.chargeFrom&&held<.15){const t=sample.t;const q=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.chargeFrom,sample.targets,poseClamp(held/.15)));q.t=t;return q;}return sample;
   }
   scenePose(p){
     if(p.kind==='move')return this.api.sampleAnimation(this.asset,'move',(p.time*1.05)%1,true);
@@ -183,7 +184,7 @@ export class HonroPoseVisual{
       sample=this.api.sampleAnimation(this.asset,'move',s.walkCycle||0,true);s.mode='move';
     }else{
       sample=this.api.sampleAnimation(this.asset,'idle',this.time);s.mode='idle';
-      if(['move','charge','rush','release'].includes(previousMode)&&s.lastTargets){s.settleFrom=structuredClone(s.lastTargets);s.settleAt=this.time;}
+      if(['move','jump','charge','rush','release'].includes(previousMode)&&s.lastTargets){s.settleFrom=structuredClone(s.lastTargets);s.settleAt=this.time;}
       if(s.settleFrom&&this.time-s.settleAt<.12)sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.settleFrom,sample.targets,poseClamp((this.time-s.settleAt)/.12)));
     }
     if(['move','jump','rush'].includes(s.mode)){
