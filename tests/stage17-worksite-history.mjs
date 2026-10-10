@@ -48,7 +48,7 @@ for(const asset of delta.addedAssets){const q=structuredClone(p);q.library.find(
 for(const mutate of [q=>q.stages[16].units[0].x++,q=>q.stages[16].initialState.honroAct2GeometryRevision++,q=>q.library.push(structuredClone(p.library.at(-1)))]){const q=structuredClone(prior);mutate(q);assert.throws(()=>beforeCurrentStage17Worksite(q),'An unmarked historical map must be exact and cannot retain new artwork');}
 
 const g=await runtime({legacyMaps:false}),currentProject=g.HONRO_PROJECT;
-const current=()=>{g.HONRO_PROJECT=beforeEncounterDensity(currentProject);let q;try{q=battlefield(g,17);}finally{g.HONRO_PROJECT=currentProject;}g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);return q;};
+const current=()=>{const input=g.HONRO_PROJECT;g.HONRO_PROJECT=beforeEncounterDensity(input);let q;try{q=battlefield(g,17);}finally{g.HONRO_PROJECT=input;}g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);g.HonroAct2.attach(q.app,q.e);return q;};
 const aq=current();
 assert.deepEqual(beforeStage17WorksiteUnitContracts(aq.b.units.map(unitContract)),delta.unitContracts.before);
 assert.deepEqual(beforeStage17WorksiteContent(semanticContent(aq.st)),delta.semanticContent.before);
