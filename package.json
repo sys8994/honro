@@ -145,7 +145,7 @@
     "test:encounter-density:contracts": "node tests/encounter-density-runtime.mjs && node tests/stage8-encounter-density.mjs && node tests/stage11-encounter-density.mjs && node tests/stage12-encounter-density.mjs && node tests/stage8-density-regional-entry.mjs && node tests/stage161718-response-lifecycle.mjs && node tests/stage8-density-ember-recovery.mjs",
     "test:vertical-regression-wiring": "node tests/vertical-regression-wiring.mjs",
     "test:stage14-vertical:behavior": "node tests/stage14-vertical-composition.mjs && node tests/stage14-vertical-runtime.mjs && node tests/stage14-vertical-app-resume.mjs && node tests/stage14-vertical-bridge.mjs && node tests/stage14-vertical-defense-guidance.mjs && node tests/stage14-vertical-legacy-save.mjs",
-    "test:stage22-vertical:contracts": "node tests/stage22-vertical-source-boundary.mjs && node tests/stage22-vertical-composition.mjs && node tests/stage22-vertical-runtime.mjs && node tests/stage22-vertical-app-resume.mjs && node tests/stage22-vertical-art-dispatch.mjs && node tests/stage22-vertical-activation.mjs",
+    "test:stage22-vertical:contracts": "node tests/stage22-vertical-source-boundary.mjs && node tests/stage22-vertical-composition.mjs && node tests/stage22-vertical-runtime.mjs && node tests/stage22-vertical-app-resume.mjs && node tests/stage22-vertical-art-dispatch.mjs && node tests/stage22-vertical-activation.mjs && node tests/stage22-vertical-regeneration.mjs",
     "test:vertical-current:contracts": "npm run test:stage14-vertical:behavior && npm run test:stage22-vertical:contracts",
     "test:stage22-vertical:traversal": "node tests/stage22-vertical-traversal.mjs",
     "test:stage22-vertical:fullplay": "node tests/stage22-vertical-fullplay.mjs",

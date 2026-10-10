@@ -17,7 +17,7 @@ assert.deepEqual(files(scripts['test:encounter-density:contracts']),[
  'stage161718-response-lifecycle','stage8-density-ember-recovery'
 ]);
 assert.deepEqual(files(scripts['test:stage14-vertical:behavior']),files(scripts['test:stage14-vertical:contracts']).slice(1),'Preserve every14 behavioral contract while its old source-boundary command remains available');
-assert.deepEqual(files(scripts['test:stage22-vertical:contracts']),['stage22-vertical-source-boundary','stage22-vertical-composition','stage22-vertical-runtime','stage22-vertical-app-resume','stage22-vertical-art-dispatch','stage22-vertical-activation']);
+assert.deepEqual(files(scripts['test:stage22-vertical:contracts']),['stage22-vertical-source-boundary','stage22-vertical-composition','stage22-vertical-runtime','stage22-vertical-app-resume','stage22-vertical-art-dispatch','stage22-vertical-activation','stage22-vertical-regeneration']);
 assert.equal(scripts['test:vertical-current:contracts'],'npm run test:stage14-vertical:behavior && npm run test:stage22-vertical:contracts');
 for(const script of ['test:vertical-regression-wiring','test:vertical-current:contracts','test:encounter-density:contracts']){
  assert(scripts['test:integration'].includes('npm run '+script),script+' is wired into integration');

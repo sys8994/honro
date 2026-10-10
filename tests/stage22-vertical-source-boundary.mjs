@@ -11,9 +11,33 @@ assert.equal(f.sourceCommit,'72cc20e9711df726aa8a01a03b5f9156fd62bb50');
 const p=JSON.parse(await readFile('shared/data/campaign.json'));
 const old=JSON.parse(await readFile('tests/fixtures/vertical-stages/before-stages.json')).stages.find(s=>s.metadata.stageId===22);
 assert.equal(hash(old),f.stageSha256[22],'Original22 fixture equals the declared baseline');
-// No Stage22 art has entered canonical yet. Final integration must enumerate
-// reviewed IDs here; a namespace wildcard cannot admit undeclared assets.
-const addedAssetIds=[];
+// Explicit reviewed iteration6 asset additions; no namespace wildcard can
+// admit undeclared assets. Existing608 assets remain byte-exact.
+const addedAssetIds=[
+ "stage22:vertical-connected-retaining-walls",
+ "stage22:vertical-east-return-bearing",
+ "stage22:vertical-comparison-archive-bearing",
+ "stage22:vertical-lower-return-bearing",
+ "stage22:vertical-west-register-wing",
+ "stage22:vertical-middle-register-wing",
+ "stage22:vertical-east-register-wing",
+ "stage22:vertical-report-archive-load-frame",
+ "stage22:vertical-lower-clerk-office",
+ "stage22:vertical-seal-record-bay",
+ "stage22:vertical-report-record-bay",
+ "stage22:vertical-main-document-archive",
+ "stage22:vertical-west-open-gallery",
+ "stage22:vertical-upper-register-bay",
+ "stage22:vertical-comparison-hall",
+ "stage22:vertical-comparison-table",
+ "stage22:vertical-record-lamp",
+ "stage22:vertical-lower-return-rail",
+ "stage22:vertical-register-rise-rail",
+ "stage22:vertical-optional-west-rail",
+ "stage22:vertical-west-gallery-return-rail",
+ "stage22:vertical-comparison-ascent-rail",
+ "stage22:vertical-continuous-report-passage-rail"
+];
 const party=u=>Object.fromEntries(Object.entries(u).filter(([k])=>!['x','y','surfaceId'].includes(k)));
 const event=e=>({id:e.id,once:e.once,when:e.when,action:Object.fromEntries(['type','kind','n','source','act3Authored','elite'].map(k=>[k,e.action[k]]))});
 function boundary(p){
