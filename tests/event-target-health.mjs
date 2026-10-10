@@ -46,8 +46,9 @@ for(let i=0;!ring.broken&&i<20;i++){
   await writeFile(`${out}/stage5-damaged-portrait.png`,portrait.toBuffer('image/png'));
   check('Nonlethal real arrow updates live HP with no scenery-cache rebuild',()=>{assert.equal(scene.renderCacheStats().worldBuilds,cacheBuilds);assert.equal(b.sceneVersion,sceneVersion);assert.equal(health().hp,ring.hp);assert(health().hp<520);});
   const calls=[],ctx=new Proxy({measureText:()=>({width:100})},{get:(o,k)=>k in o?o[k]:(...a)=>calls.push([k,...a]),set:(o,k,v)=>(o[k]=v,true)});
-  scene.terrainHealth(ctx,b,1440,960);assert(calls.some(x=>x[0]==='fillText'&&x[1]===`${Math.ceil(ring.hp)} / 520`));
-  assert(calls.some(x=>x[0]==='fillRect'&&Math.abs(x[3]-100*ring.hp/520)<1e-6));
+  scene.terrainHealth(ctx,b,1440,960);assert(calls.some(x=>x[0]==='fillText'&&x[1]===health().label));
+  assert(!calls.some(x=>x[0]==='fillRect'||x[0]==='fillText'&&/\d+ \/ \d+/.test(x[1])));
+  assert(g.HonroObjectDamage.stage(ring)>0);
  }
  if(i===3){
   const before=JSON.stringify(b),saved=JSON.parse(before);e=new C.Engine(saved,ev=>events.push(ev),false);b=e.b;app.engine=e;e.checkEnd=()=>false;ring=b.terrain.find(t=>t.id==='cliff-cleat');
@@ -64,7 +65,7 @@ check('Destruction permanently opens water, clears ritual and preserves stabiliz
 });
 await capture('stage5-destroyed');
 const broken=JSON.parse(JSON.stringify(b)),resumed=new C.Engine(broken,()=>{},false);app.engine=resumed;g.HonroMission.tick(app,0);assert(broken.terrain.find(t=>t.id===ring.id).broken);assert(broken.terrain.find(t=>t.id==='waterfall-veil').broken);
-check('Every campaign event target has a health panel; protected scenery never does',()=>{
+check('Every campaign event target retains its name; protected scenery has no durability UI',()=>{
  for(let id=1;id<=20;id++){
   const {b}=battlefield(g,id),list=scene.terrainHealthTargets(b);
   for(const t of b.terrain.filter(t=>!t.broken&&!t.indestructible&&t.hp<9999&&(t.honroSeal||t.honroAct2Target||t.device)))assert(list.some(row=>row.id===t.id),`Missing ${id}/${t.id}`);
@@ -88,9 +89,9 @@ check('Older Act 2 saves use the same target labels and required-class rules',()
  const step=g.HonroAct2.steps(b).find(s=>s.id==='upper-chain');b.honroState.act2={silenced:true,done:{},events:{},rescued:[],checkpoints:[]};b.active=b.units.find(u=>u.cls==='mage'&&u.side===0).id;
  const row=scene.terrainHealthTargets(b).find(t=>t.id===step.id);assert.equal(row.label,step.label);assert.match(row.blocked,/설오/);
 }));
-check('Health bars remain 100 screen pixels at low and high zoom',()=>{
+check('Objective names remain screen-sized at low and high zoom, without bars',()=>{
  const {b}=battlefield(g,5),calls=[],ctx=new Proxy({measureText:()=>({width:100})},{get:(o,k)=>k in o?o[k]:(...a)=>calls.push([k,...a]),set:(o,k,v)=>(o[k]=v,true)});
- for(const scale of [.2,.42,.6,1.3]){scene.scale=scale;calls.length=0;scene.terrainHealth(ctx,b,1440,960);assert(calls.some(x=>x[0]==='scale'&&x[1]===1/scale));assert(calls.some(x=>x[0]==='fillRect'&&x[3]===100&&x[4]===7));}
+ for(const scale of [.2,.42,.6,1.3]){scene.scale=scale;calls.length=0;scene.terrainHealth(ctx,b,1440,960);assert(calls.some(x=>x[0]==='scale'&&x[1]===1/scale));assert(calls.some(x=>x[0]==='fillText'));assert(!calls.some(x=>x[0]==='fillRect'));}
 });
 for(const portrait of [false,true]){
  // Compile the immutable old18 map for these legacy locked-state captures.

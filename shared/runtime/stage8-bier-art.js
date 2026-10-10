@@ -43,9 +43,7 @@ function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('s8-'))return false;con
  }
  c.strokeStyle=wood?'#d2bf8e99':'#d0c8a494';c.lineWidth=earth?8:6;c.stroke(q.rim);c.restore();return true;}
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return oldTerrain.call(this,c,t);};
-// The two bindings retain the shared target/HP/visibility contract. Their
-// display is deliberately small enough to leave the 84-world-unit props and
-// nearby actors readable, including in the inspection overview.
+// Preserve the quiet compact names of the two bindings without durability UI.
 const sealId=id=>id==='bier-knot-0'||id==='bier-knot-1',oldHealth=S.terrainHealth;
 S.terrainHealth=function(c,b,w,h){
  if(!active(b))return oldHealth.call(this,c,b,w,h);
@@ -54,10 +52,8 @@ S.terrainHealth=function(c,b,w,h){
  const z=1/Math.max(.01,this.scale),left=this.x-w*z/2,right=this.x+w*z/2,top=this.y-h*z/2,bottom=this.y+h*z/2;
  for(const t of targets.filter(t=>sealId(t.id))){
   if(t.x<left-100*z||t.x>right+100*z||t.y<top-70*z||t.y>bottom+70*z)continue;
-  const width=76,ratio=Math.max(0,Math.min(1,t.hp/t.maxHp));
   c.save();c.translate(t.x,t.y);c.scale(z,z);c.textAlign='center';c.textBaseline='middle';c.font='600 10px sans-serif';
-  c.fillStyle='#203c3dbb';c.fillRect(-width/2,-22,width,5);c.fillStyle=t.blocked?'#a3adb0':'#d9aa85';c.fillRect(-width/2,-22,width*ratio,5);
-  const value=`${Math.ceil(t.hp)} / ${Math.ceil(t.maxHp)}`;c.strokeStyle='#17352ed9';c.lineWidth=3;c.strokeText(value,0,-9);c.fillStyle='#f0e4c9';c.fillText(value,0,-9);
+  c.strokeStyle='#17352ed9';c.lineWidth=3;c.strokeText(t.label,0,-10,180);c.fillStyle='#f0e4c9';c.fillText(t.label,0,-10,180);
   c.restore();
  }
 };
