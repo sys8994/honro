@@ -33,6 +33,17 @@ G.HonroObjectiveRevision.contentFor=function(b,st){return active(b)&&b.honroVert
 const entry=A.entry;
 A.entry=function(app,options={}){return active(app.engine?.b)&&app.engine.b.honroVerticalStage14Content?entry({...app,stage:G.HonroObjectiveRevision.contentFor(app.engine.b,app.stage)},options):entry(app,options);};
 
+// One current action in the HUD; counts and delayed-entry detail stay in the
+// already-existing objective panel. Reading guidance never creates state.
+const enhance=G.HonroObjectiveGuide.enhance;
+G.HonroObjectiveGuide.enhance=function(b,st,result){const out=enhance(b,st,result);if(!active(b)||A.current(b)?.id!=='hold-refuge')return out;
+ const h=b.honroState?.act2?.holds?.['hold-refuge']||{},m=b.honroState?.vertical14||{},progress=Math.min(6,h.progress||0),spawned=h.spawned||0;
+ const blocked=Object.entries(m.warnings||{}).find(([id,w])=>!m.entries?.[id]&&!w.cancelled&&w.status==='blocked'),side={west:'서쪽',east:'동쪽',inner:'다리 안쪽'}[blocked?.[1]?.side]||'도구';
+ const instruction=h.contested?'다리 안의 들림을 제압하세요':blocked&&progress>=6?side+' 진입로를 비워 주세요':progress>=6&&spawned<12?'다가오는 들림을 막아 주세요':'피난민을 지키세요 · '+progress+'/6턴';
+ const detail='피난민 보호 · '+progress+'/6턴 · 굴에서 나온 들림 '+spawned+'/12'+(blocked?' · '+side+' 진입 대기':'');
+ return{...out,currentInstruction:instruction,summary:detail,visibleChecklist:(out.visibleChecklist||[]).map(q=>q.id==='hold-refuge'?{...q,text:detail}:q),checklist:(out.checklist||[]).map(q=>q.id==='hold-refuge'?{...q,text:detail}:q)};
+};
+
 function cellApproached(e,units,spec,heroes){return heroes.some(h=>{
  const support=e.contactSurface(h.x,h.y-8,h.y+10)?.t.id;
  const access=(spec.supports||[]).includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));
