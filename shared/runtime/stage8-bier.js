@@ -76,7 +76,16 @@ function probeRoute(app,points){const e=app.engine,u=boss(e.b);if(!alive(u)||u.f
  }return{points:clone(points),distance,end:{x:probe.x,y:probe.y}};
 }
 function chooseRoute(app){const b=app.engine.b,u=boss(b),movement=spec(b).movement||{},destinations=movement.destinations||[],routes=movement.routes||[];let blockers=[];
- for(const to of destinations){const candidates=[[to]];for(const r of routes)for(let i=0;i<(r.points||[]).length;i++)candidates.push([...r.points.slice(i),to]);candidates.sort((a,c)=>{const length=ps=>ps.reduce((q,p)=>(q.n+=Math.hypot(p.x-q.x,p.y-q.y),q.x=p.x,q.y=p.y,q),{x:u.x,y:u.y,n:0}).n;return length(a)-length(c);});
+ for(const to of destinations){
+  // A blocked final body cannot be rescued by a longer approach. Test each
+  // exact courtyard endpoint first, without spending thousands of walk steps.
+  const occupied=bodyBlockers(app.engine,{...u,x:to.x,y:to.y});if(occupied.length){if(!blockers.length)blockers=occupied;continue;}
+  const candidates=[[to]],seen=new Set([JSON.stringify([[to.x,to.y,to.support]])]);for(const r of routes)for(let i=0;i<(r.points||[]).length;i++){const path=[{x:u.x,y:u.y},...r.points.slice(i),to],reduced=[];for(const p of path){while(reduced.length>=2&&(reduced.at(-1).x-reduced.at(-2).x)*(p.x-reduced.at(-1).x)>0)reduced.pop();const previous=reduced.at(-1);if(previous&&p.x===previous.x&&p.y===previous.y&&p.support===previous.support)continue;reduced.push(p);}const points=reduced.slice(1),key=JSON.stringify(points.map(p=>[p.x,p.y,p.support]));
+   // With requireSupport and no jump/teleport, stop-only points on each
+   // monotonic run trace the same physical path. Keep actual turning points,
+   // but do not retry every suffix of the same approach/reversal repeatedly.
+   if(seen.has(key))continue;seen.add(key);candidates.push(points);
+  }candidates.sort((a,c)=>{const length=ps=>ps.reduce((q,p)=>(q.n+=Math.hypot(p.x-q.x,p.y-q.y),q.x=p.x,q.y=p.y,q),{x:u.x,y:u.y,n:0}).n;return length(a)-length(c);});
   for(const points of candidates){const result=probeRoute(app,points);if(!result.blocked)return{...result,targetVariant:to.id||'courtyard',routeVersion:1};if(!blockers.length)blockers=result.blocked;}
  }return{blocked:blockers.length?blockers:[{kind:'route',id:'missing',label:'중앙 마당의 경로'}]};
 }
@@ -88,7 +97,25 @@ function acceptOpportunity(app){const e=app.engine,b=e.b,m=memory(b),action=e.ho
  if(action.movement&&serial(b)>m.announcedSerial)m.playerOpportunity={id:u.id,round:b.round,serial:serial(b)};
  for(const source of action.waves||[]){const w=m.warnings[source];if(w&&!w.cancelled&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
 }
-function cancelScene(app){const b=app.engine.b;if(ownedScene(app)){app.dialogue.staging.complete=true;app.dialogue.staging.cursor=app.dialogue.staging.steps.length-1;G.HonroStory.finish(app);}if(b.honroStaging?.once)delete b.honroStaging.once[SCENE];app.stagingLastTime=null;}
+function cancelScene(app){const b=app.engine.b,m=memory(b),owned=ownedScene(app);let changed=false;
+ // Cancellation is not Skip/finish: a paused or invalidated move must never
+ // run its success dialogue/cues or leave that line in the journal. Discard
+ // only this scene, then use Story's normal draw/save to release its lock and
+ // camera. This path deliberately works while modal/history/hidden is paused.
+ if(owned){app.dialogue=null;app.acc=0;app.stagingLastTime=null;const u=boss(b);if(u?.honroScenePose){delete u.honroScenePose;u.moving=0;}changed=true;}
+ if(b.honroStory?.staging?.id===SCENE){b.honroStory=null;changed=true;}
+ const queue=b.honroState.storyQueue||[],kept=queue.filter(l=>l[2]?.stagingRequest?.id!==SCENE);if(queue.length!==kept.length){b.honroState.storyQueue=kept;changed=true;}
+ if(!m.completedOnce&&m.sceneJournal&&app.profile?.honroNarrative){const history=app.profile.honroNarrative,index=history.findIndex(row=>row.id===SCENE);if(m.sceneJournal.previous){if(index>=0)history[index]=clone(m.sceneJournal.previous);else history.splice(Math.min(m.sceneJournal.index,history.length),0,clone(m.sceneJournal.previous));}else if(index>=0)history.splice(index,1);delete m.sceneJournal;changed=true;}
+ if(b.honroStaging?.once?.[SCENE]){delete b.honroStaging.once[SCENE];changed=true;}
+ if(owned)G.HonroStory.draw(app);if(changed){G.HonroStory.save(app);app.dirty=true;}return changed;
+}
+const waveLabels={'stage8-first-seal':'서쪽 창고 산개 3','stage8-settled-crows':'높은 가지 까마귀 3','stage8-low-health':'동쪽 후미 산개 2'};
+function noticeText(b){const m=memory(b),parts=[];if(['won','lost'].includes(b.phase))return'';
+ if(m.status==='announced')parts.push('상여 → 중앙 아래뜰');else if(m.status==='blocked')parts.push('상여 이동 보류'+(m.blockers?.length?' ('+[...new Set(m.blockers.map(p=>p.label))].slice(0,2).join('·')+')':''));else if(m.status==='moving')parts.push('상여가 중앙 아래뜰로 이동 중');
+ for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push(waveLabels[source]+(w.status==='blocked'?' 진입 보류':''));}
+ return parts.length?parts.join(' · ')+' · 다음 행동 끝에 안전 확인':'';
+}
+function publishNotice(app){const b=app.engine.b,m=memory(b),text=ended(app)?'':noticeText(b);if(text){if((typeof app.eventText==='string'?app.eventText:m.notice)!==text)app.event(text);m.notice=text;}else if(m.notice){if(app.eventText===m.notice){app.eventText='';app.eventUntil=0;app.dirty=true;}delete m.notice;}return text;}
 function cleanup(app){const b=app.engine?.b;if(!active(b))return false;
  // Story pauses ordinary Engine ticks. If the last real companion was lost
  // during this pause (or in a saved scene), run the existing loss decision
@@ -96,27 +123,32 @@ function cleanup(app){const b=app.engine?.b;if(!active(b))return false;
  if(!ended(app)&&!b.units.some(u=>alive(u)&&u.side===0&&!u.summoned))app.engine.checkEnd();
  const m=memory(b),dead=!alive(boss(b)),over=ended(app);if(!dead&&!over)return false;
  for(const source of sources)if((over||source!==sources[0])&&!m.entries[source]){(m.warnings[source]??={serial:serial(b),round:b.round}).cancelled=over?'battle-ended':'boss-dead';b.honroState.flags['event:'+source]='cancelled:'+(over?'battle-ended':'boss-dead');b.honroState.pendingEvents=(b.honroState.pendingEvents||[]).filter(id=>id!==source);}
- if(m.status!=='cancelled'){m.status='cancelled';m.cancellationReason=over?'battle-ended':'boss-dead';m.blockers=[];m.reason='';b.honroState.storyQueue=(b.honroState.storyQueue||[]).filter(l=>l[2]?.stagingRequest?.id!==SCENE);cancelScene(app);app.dirty=true;}
- return over;
+ if(m.status!=='cancelled'){m.status='cancelled';m.cancellationReason=over?'battle-ended':'boss-dead';m.blockers=[];m.reason='';app.dirty=true;}
+ // Also clean an already-cancelled stale saved scene; status is not proof that
+ // the prior presentation lock, payload or pre-written journal was removed.
+ cancelScene(app);publishNotice(app);return over;
 }
 function warnWave(app,source){const b=app.engine.b,m=memory(b);if(m.warnings[source]||m.entries[source]||ended(app)||source!==sources[0]&&!alive(boss(b)))return;const at=entryFor(b,source);if(!at)return;
  m.warnings[source]={status:'announced',serial:serial(b),eligibleAfterSerial:serial(b)+1,round:b.round,side:at.side,offered:{}};b.honroState.flags['event:'+gate(source)]=true;
- app.event(source===sources[0]?'창고문 쪽에서 산개 셋이 울부짖는다. 다음 행동 뒤 진입할 자리를 살피세요.':source===sources[1]?'상여가 멎은 뒤 높은 가지에서 까마귀 셋이 날아오른다. 다음 행동 뒤 들어옵니다.':'동쪽 후미에서 산개 둘의 발소리가 들린다. 다음 행동 뒤 들어올 길을 살피세요.');app.dirty=true;offer(app);
+ publishNotice(app);app.dirty=true;offer(app);
 }
 function prepareWaves(app){const b=app.engine?.b;if(!active(b)||cleanup(app)||paused(app))return;const m=memory(b),seals=b.terrain.filter(t=>t.honroSeal);m.sealIdsSeen=seals.filter(t=>t.broken).map(t=>t.id);
  if(m.sealIdsSeen.length)warnWave(app,sources[0]);if(alive(boss(b))){if(m.completedOnce)warnWave(app,sources[1]);if(boss(b).hp<=boss(b).maxHp*.35)warnWave(app,sources[2]);}
 }
 function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))return;const m=memory(b),seals=b.terrain.filter(t=>t.honroSeal);acceptOpportunity(app);if(m.completedOnce||m.status==='moving'||m.status==='cancelled')return;
- if(m.status==='anchored'){if(paused(app)||seals.length!==2||seals.some(t=>!t.broken)||!alive(boss(b)))return;Object.assign(m,{status:'announced',triggerSerial:serial(b),announcedSerial:serial(b),eligibleAfterSerial:serial(b)+1,announcedRound:b.round,offered:{},playerOpportunity:null,reason:'두 결박이 풀렸다. 상여가 중앙 아래뜰을 향한다. 다음 행동에서 그 길을 비우세요.'});app.event(m.reason);app.dirty=true;offer(app);return;}
+ if(m.status==='anchored'){if(paused(app)||seals.length!==2||seals.some(t=>!t.broken)||!alive(boss(b)))return;Object.assign(m,{status:'announced',triggerSerial:serial(b),announcedSerial:serial(b),eligibleAfterSerial:serial(b)+1,announcedRound:b.round,offered:{},playerOpportunity:null,reason:'두 결박이 풀렸다. 상여가 중앙 아래뜰을 향한다. 다음 행동에서 그 길을 비우세요.'});publishNotice(app);app.dirty=true;offer(app);return;}
  offer(app);if(!m.playerOpportunity){m.reason='동행의 새로운 행동이 끝난 뒤 상여의 길을 확인합니다.';return;}m.status='blocked';
  if(!safeBoundary(app))return;const route=chooseRoute(app);m.blockers=route.blocked||[];
  if(route.blocked){m.reason='상여 이동 보류 · '+[...new Set(route.blocked.map(p=>p.label))].slice(0,2).join('·')+' · 지금 자리에서도 제압할 수 있습니다.';app.dirty=true;return;}
  Object.assign(m,{status:'moving',originActualPose:{x:boss(b).x,y:boss(b).y},lastValidPose:{x:boss(b).x,y:boss(b).y},route:route.points,routeVersion:route.routeVersion,targetVariant:route.targetVariant,reason:'빈 상여가 안전한 길을 따라 중앙 아래뜰로 움직인다.'});
  installScene();G.HonroStoryStaging.register({id:SCENE,stage:8,title:'줄을 놓친 빈 상여',steps:[...route.points.map(to=>({type:'move',actor:'boss',to,duration:Math.max(100,route.distance/900*1000/route.points.length),caption:m.reason})),{type:'dialogue',lines:[['서술','빈 상여가 아래뜰에 멎었다. 묶여 있던 천이 느슨해지고, 상여 안에서 낯선 혼의 울음이 샜다.']]}]});
+ // Story.start prewrites its dialogue to the journal. Keep only this run's
+ // replaced row so cancellation restores earlier legitimate replay history.
+ const journal=app.profile.honroNarrative||[],journalIndex=journal.findIndex(row=>row.id===SCENE);m.sceneJournal={index:journalIndex<0?journal.length:journalIndex,previous:journalIndex<0?null:clone(journal[journalIndex])};
  if(!G.HonroStoryStaging.request(app,SCENE)){m.status='blocked';m.reason='다음 안전한 행동 끝에 상여의 길을 다시 확인합니다.';return;}app.dirty=true;app.engine.emit?.('save');
 }
-function settle(app){const b=app.engine.b,m=memory(b);if(!alive(boss(b))||m.completedOnce)return false;m.status='settled';m.completedOnce=1;m.completedSerial=serial(b);m.completedRound=b.round;m.reason='빈 상여가 중앙 아래뜰에 멎었다.';m.blockers=[];delete boss(b).honroScenePose;app.dirty=true;return true;}
-function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,2).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);app.dirty=true;app.engine.emit?.('save');}
+function settle(app){const b=app.engine.b,m=memory(b);if(!alive(boss(b))||m.completedOnce)return false;m.status='settled';m.completedOnce=1;delete m.sceneJournal;m.completedSerial=serial(b);m.completedRound=b.round;m.reason='빈 상여가 중앙 아래뜰에 멎었다.';m.blockers=[];delete boss(b).honroScenePose;app.dirty=true;return true;}
+function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,2).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);publishNotice(app);app.dirty=true;app.engine.emit?.('save');}
 function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=app.dialogue?.staging;if(cleanup(app)||!ownedScene(app)||m.status!=='moving'||s.complete||scenePaused(app))return false;if(!safeMotion(app,true)){blockMotion(app,[{kind:'action',id:'busy',label:'진행 중인 행동'}]);return false;}
  let budget=skip?60000:Math.max(0,dt)*900,changed=false;
  while(budget>1e-7&&s.cursor<s.steps.length){const step=s.steps[s.cursor];if(step.type==='dialogue'){s.complete=true;settle(app);break;}const u=boss(b),to=step.to;if(!s.applied[s.cursor]){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}
@@ -156,7 +188,8 @@ const attach=E.attach;E.attach=function(app,e){const out=attach(app,e);if(!activ
  const tick=e.tick.bind(e);e.tick=function(...args){if(memory(e.b).status==='moving'){cleanup(app);return;}return tick(...args);};
  const hurt=e.hurt.bind(e);e.hurt=function(...args){const out=hurt(...args);cleanup(app);return out;};return out;
 };
-const tick=G.HonroMission.tick;G.HonroMission.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);if(cleanup(app))return tick(app,dt);prepareWaves(app);offer(app);acceptOpportunity(app);const out=tick(app,dt);transition(app);return out;};
-const state=G.HonroObjectives.state;G.HonroObjectives.state=function(b,st){const out=state(b,st);if(active(b)&&memory(b).reason)out.summary+=' · '+memory(b).reason;return out;};
-G.HonroStage8Bier={active,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary};
+const tick=G.HonroMission.tick;G.HonroMission.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);if(cleanup(app))return tick(app,dt);prepareWaves(app);offer(app);acceptOpportunity(app);const out=tick(app,dt);transition(app);publishNotice(app);return out;};
+const state=G.HonroObjectives.state;G.HonroObjectives.state=function(b,st){const out=state(b,st);if(active(b)){if(memory(b).reason)out.summary+=' · '+memory(b).reason;const notice=noticeText(b);if(notice){out.currentInstruction=notice;out.summary+=' · '+notice;}}return out;};
+const refreshObjectives=G.HonroObjectives.refresh;G.HonroObjectives.refresh=function(app,...args){const out=refreshObjectives(app,...args);if(active(app.engine?.b)&&!app.training){const text=noticeText(app.engine.b),node=G.document?.getElementById?.('objective-text');if(text&&node){node.textContent=text;node.setAttribute?.('aria-label',text+' · 눌러서 목표 보기');}}return out;};
+G.HonroStage8Bier={active,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary,cancelScene,noticeText,publishNotice};
 })(globalThis);

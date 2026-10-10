@@ -57,3 +57,13 @@
 - `tests/stage8-bier-runtime.mjs`: 실제 App/Engine/Story + 명시된 격리 지형/점유/HP fixture. 새 행동, 전신 쓸림, Skip, 사망, 정확한 전체 저장, 실제 전투XP 레벨업을 검사한다.
 - `tests/stage8-bier-runtime-budget.mjs`: 5난이도 옛 개체값, 초기29 생존 상태의 유한8 진입/37상한, 우연정예, 기존 피해/수습과 habitat 제외를 검사한다.
 - 이 상태/피해 검사는 정상 입력 완주·실제 화면·브라우저 검수를 대신하지 않는다. 전체 지형 왕복·실탄·기본기 완주·배포 검수는 별도 보고한다.
+
+### 일시정지 중 취소와 동시 예고
+
+이동 취소는 정상 Skip/finish를 호출하지 않는다. modal/history/hidden 중에도 해당 씬의 dialogue/저장 payload/대기열을 버리고 Story draw/save로 잠금·카메라만 해제한다. 실제로 정착하지 않은 성공서술의 미리 작성된 기록도 삭제한다. 이미 cancelled인 구 저장에 씬이 남아 있어도 다음 확인에서 다시 청소한다. 실제 정착 이력이 있으면 그 기록은 보존한다.
+
+두 결박과 HP35%가 같은 tick에 성립할 때 단일 이벤트 문구가 앞 파동을 덮지 않도록, 새8의 마지막 이벤트 표시와 실제 목표 HUD에 상여 이동·서쪽 산개3·동쪽 산개2를 함께 남긴다. 아직 진입하지 않은 파동은 원래 목표 도움말을 유지한 채 지속적으로 표시하고, 생성/취소 뒤 제외한다. 예고를 기록에만 남기는 것으로 새 행동 기회를 대신하지 않는다.
+
+경로 선검사는 같은 마당 목적지의 전신 점유부터 검사한다. 두 도착면이 모두 막히면 보행 경로를 재주행하지 않는다. 같은 방향의 중간 정차점만 추가한 suffix는 직접 경로와 물리 지지면이 같으므로 중복 제거하며, 실제 방향 전환을 포함한 접근은 유지한다. 최종 경로의 모든 실제 보행/전신 쓸림 검사는 그대로다.
+
+Cancellation snapshots only this run’s prewritten scene journal row before requesting Story. An interrupted replay restores that exact previous successful row; an early kill before any scene request never touches past history. Unknown older saved journal provenance is retained rather than deleting an earlier legitimate record.
