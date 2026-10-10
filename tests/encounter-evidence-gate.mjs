@@ -37,12 +37,12 @@ async function fixture() {
   const activity = {actions: [], playerResponses: [response], effects: [effect]};
   const packet = {schema: 'honro-encounter-observation/v1', ...context, observer: 'synthetic-observer', observedAt: now, method: 'native-input', rawEvidencePaths: [raw],
     clusters: manifest.stages[0].clusters.map(c => ({id: c.id, kind: 'cluster', status: 'observed', memberIds: c.memberIds, purpose: 'Synthetic gate test only', roleRelations: 'Synthetic support protects approach', emptySpacePurpose: 'Synthetic route option', supportIds: ['ground'], ...clone(activity)})),
-    waves: manifest.stages[0].waves.map(w => ({id: w.id, kind: 'wave', status: 'observed', phases: [{id: `${w.id}-0`, trigger: {event: w.id, round: 3}, warningBoundary: 'hero-action-3', entry: {boundary: 'hero-action-4', round: 4, x: 100, y: 200}, firstEffect: {kind: 'player-response', index: 0}, ...clone(activity)}]})),
+    waves: manifest.stages[0].waves.map(w => ({id: w.id, kind: 'wave', status: 'observed', phases: [{id: `${w.id}-0`, spawnedIds: [`${w.id}-spawn-1`], trigger: {event: w.id, round: 3}, warningBoundary: 'hero-action-3', entry: {boundary: 'hero-action-4', round: 4, x: 100, y: 200}, firstEffect: {kind: 'player-response', index: 0}, ...clone(activity)}]})),
   };
   const observations = await add('observations.json', packet, 'observation');
   const camera = {x: 100, y: 200, zoom: 1, width: 1280, height: 720};
   const comparison = await add('comparison.json', {schema: 'honro-encounter-comparison/v1', ...context, baselineRevision: 'synthetic-baseline', views: [{id: 'front', beforePath: before, afterPath: after, beforeCamera: camera, afterCamera: camera}]});
-  const play = await add('play.json', {schema: 'honro-encounter-normal-play/v1', ...context, method: 'native-input', debug: false, modifications: [], normalResources: true, completed: true, profile: {entryLevel: 7, skillAllocation: {A01: 1}, startingResources: {hp: 500}}, rawEvidencePaths: [raw]});
+  const play = await add('play.json', {schema: 'honro-encounter-normal-play/v1', ...context, observer: 'synthetic-observer', observedAt: now, method: 'native-input', debug: false, modifications: [], normalResources: true, completed: true, profile: {entryLevel: 7, skillAllocation: {A01: 1}, startingResources: {hp: 500}}, rawEvidencePaths: [raw]});
   const report = await add('independent-review.txt', 'Synthetic independent review fixture. No actual game approval.');
   const stage = manifest.stages[0];
   stage.clusters.forEach((c, i) => Object.assign(c, {status: 'observed', observation: {path: observations, pointer: `/clusters/${i}`}}));
@@ -141,6 +141,8 @@ test('open known failure blocks even with complete packet and reviewed report', 
   f.manifest.knownFailures = [{id: 'no-pressure', status: 'open', detail: 'Known ineffective wave', retestEvidencePaths: [f.observations]}];
   f.manifest.review.reviewDigest = reviewDigest(f.manifest); await blocked(f, /remains open/);
   f.manifest.knownFailures[0].status = 'resolved'; f.manifest.review.reviewDigest = reviewDigest(f.manifest);
+  await blocked(f, /naming its failure ID/);
+  await rewrite(f, f.observations, p => { p.resolvedFailureIds = ['no-pressure']; });
   assert.equal((await validateManifest(f.root, f.manifest)).status, 'evidence-records-complete');
 }));
 test('symlink and checkout traversal references are rejected', using(async f => {
@@ -151,4 +153,22 @@ test('symlink and checkout traversal references are rejected', using(async f => 
 }));
 test('runtime-only waves must name real source files and receive their own observation', using(async f => {
   f.manifest.stages[0].runtimeWaves = [{id: 'runtime-wave', sourcePaths: [f.raw]}]; await blocked(f, /actual runtime\/generator source/);
+}));
+
+test('impossible wave timing and empty normal-resource profile are rejected', using(async f => {
+  await rewrite(f, f.observations, p => { p.waves[0].phases[0].playerResponses[0].round = 1; });
+  await blocked(f, /response before trigger/);
+  await rewrite(f, f.observations, p => { const phase = p.waves[1].phases[0]; phase.actions = [{actorId: phase.spawnedIds[0], round: 1, kind: 'wait', x: 10, y: 20, targetId: null}]; });
+  await blocked(f, /action before entry/);
+  await rewrite(f, f.play, p => { p.profile.skillAllocation = {}; });
+  await blocked(f, /legal skill allocation and starting resources/);
+}));
+
+test('action and response actor IDs are bound to actual source members or the recorded spawned phase', using(async f => {
+  await rewrite(f, f.observations, p => { p.clusters[0].actions = [{actorId: 'invented-enemy', round: 4, kind: 'attack', x: 10, y: 20, targetId: 'hero'}]; });
+  await blocked(f, /not a member of this cluster\/spawn phase/);
+  await rewrite(f, f.observations, p => { p.clusters[0].actions = []; p.clusters[0].playerResponses[0].actorId = 'invented-hero'; });
+  await blocked(f, /not a current source party member/);
+  await rewrite(f, f.observations, p => { p.waves[0].phases[0].actions = [{actorId: 'wrong-wave-enemy', round: 4, kind: 'attack', x: 10, y: 20, targetId: 'hero'}]; });
+  await blocked(f, /not a member of this cluster\/spawn phase/);
 }));

@@ -45,7 +45,7 @@ export function inventory(project, stageIds) {
       for (const step of value) if (step?.wave) waves.push({id: `objective:${step.id}`, source: key});
     }
     need(waves.every(w => text(w.id)) && new Set(waves.map(w => w.id)).size === waves.length, `Stage ${stageId} duplicate/missing wave source IDs`);
-    return {stageId, clusters: [...groups].map(([id, memberIds]) => ({id, memberIds})), waves};
+    return {stageId, playerIds: (stage.units || []).filter(u => u.team === 'player').map(u => u.id), clusters: [...groups].map(([id, memberIds]) => ({id, memberIds})), waves};
   });
 }
 export function reviewDigest(manifest) {
@@ -80,10 +80,12 @@ function imageBytes(bytes) {
     bytes.subarray(0, 3).equals(Buffer.from([255,216,255])) ||
     (bytes.subarray(0, 4).toString() === 'RIFF' && bytes.subarray(8, 12).toString() === 'WEBP');
 }
-function activity(row, label) {
+function activity(row, label, enemyIds, playerIds) {
   need(Array.isArray(row.actions) && Array.isArray(row.playerResponses), `${label}: actions/playerResponses arrays required`);
   for (const a of row.actions) need(text(a.actorId) && Number.isInteger(a.round) && a.round >= 0 && text(a.kind) && Number.isFinite(a.x) && Number.isFinite(a.y) && Object.hasOwn(a, 'targetId') && (a.targetId === null || text(a.targetId)), `${label}: real actor/round/action/position/target fields required`);
   for (const r of row.playerResponses) need(text(r.actorId) && Number.isInteger(r.round) && r.round >= 0 && text(r.kind) && text(r.detail), `${label}: player response actor/round/kind/detail required`);
+  need(row.actions.every(a => enemyIds.includes(a.actorId)), `${label}: enemy action actorId is not a member of this cluster/spawn phase`);
+  need(row.playerResponses.every(r => playerIds.includes(r.actorId)), `${label}: response actorId is not a current source party member`);
   need(nonempty(row.effects), `${label}: no observed tactical effect; damage is not mandatory, empty effect is blocking`);
   for (const e of row.effects) {
     need(EFFECTS.has(e.type) && text(e.detail), `${label}: observed effect category/detail required`);
@@ -163,17 +165,19 @@ export async function validateManifest(root, manifest) {
       const row = observation(c.observation, stage.stageId, 'cluster', c.id);
       need(sameSet(row.memberIds, sourceCluster.memberIds), 'Observation does not cover actual source member IDs');
       need(text(row.purpose) && text(row.roleRelations) && text(row.emptySpacePurpose) && nonempty(row.supportIds) && row.supportIds.every(text), 'Cluster purpose/role relations/empty-space purpose/supports required');
-      activity(row, c.id);
+      activity(row, c.id, sourceCluster.memberIds, source.playerIds);
     });
     for (const wave of stage.waves || []) await guard(`stage ${source.stageId} wave ${wave.id}`, async () => {
       need(wave.status === 'observed', 'Unverified wave');
       const row = observation(wave.observation, stage.stageId, 'wave', wave.id);
       need(nonempty(row.phases) && new Set(row.phases.map(p => p.id)).size === row.phases.length, 'Individual phase IDs required');
       for (const phase of row.phases) {
-        need(text(phase.id) && text(phase.trigger?.event) && Number.isInteger(phase.trigger?.round), 'Trigger event/round required');
+        need(text(phase.id) && text(phase.trigger?.event) && Number.isInteger(phase.trigger?.round) && phase.trigger.round >= 0, 'Trigger event/round required');
         need(text(phase.warningBoundary) && text(phase.entry?.boundary) && phase.warningBoundary !== phase.entry.boundary, 'Distinct warning and entry action boundaries required');
         need(Number.isInteger(phase.entry?.round) && phase.entry.round >= phase.trigger.round && Number.isFinite(phase.entry?.x) && Number.isFinite(phase.entry?.y), 'Actual entry round/coordinates required');
-        activity(phase, `${wave.id}/${phase.id}`);
+        need(nonempty(phase.spawnedIds) && phase.spawnedIds.every(text) && new Set(phase.spawnedIds).size === phase.spawnedIds.length, 'Actual spawnedIds for each phase required');
+        activity(phase, `${wave.id}/${phase.id}`, phase.spawnedIds, source.playerIds);
+        need(phase.actions.every(a => a.round >= phase.entry.round) && phase.playerResponses.every(r => r.round >= phase.trigger.round), 'Wave action before entry or response before trigger');
         const first = phase.firstEffect;
         const list = first?.kind === 'actor-action' ? phase.actions : first?.kind === 'player-response' ? phase.playerResponses : null;
         need(list && Number.isInteger(first.index) && first.index >= 0 && first.index < list.length, 'First effective action/player response reference required');
@@ -200,7 +204,9 @@ export async function validateManifest(root, manifest) {
         const packet = row.evidencePaths.map(p => { try { return json(p); } catch { return null; } }).find(p => p?.schema === 'honro-encounter-normal-play/v1');
         need(packet, 'Structured normal-resource play evidence required'); bound(packet, stage.stageId);
         need(['native-input', 'browser-input'].includes(packet.method) && packet.debug === false && equal(packet.modifications, []) && packet.normalResources === true && packet.completed === true, 'Normal completed UI input with unchanged resources required');
-        need(Number.isInteger(packet.profile?.entryLevel) && packet.profile.entryLevel > 0 && packet.profile?.skillAllocation && packet.profile?.startingResources, 'Actual entry level, legal skill allocation and starting resources required');
+        const populated = value => value && typeof value === 'object' && Object.keys(value).length > 0;
+        need(text(packet.observer) && validTime(packet.observedAt), 'Normal play observer and actual observation time required');
+        need(Number.isInteger(packet.profile?.entryLevel) && packet.profile.entryLevel > 0 && populated(packet.profile?.skillAllocation) && populated(packet.profile?.startingResources), 'Actual entry level, legal skill allocation and starting resources required');
         paths(packet.rawEvidencePaths, 'Normal-input raw trace');
         need(!packet.rawEvidencePaths.some(p => row.evidencePaths.includes(p) && jsonSchema(p) === 'honro-encounter-normal-play/v1'), 'Play envelope cannot be its own raw trace');
       }
@@ -210,7 +216,7 @@ export async function validateManifest(root, manifest) {
   for (const failure of manifest?.knownFailures || []) await guard(`known failure ${failure.id}`, async () => {
     need(text(failure.id) && text(failure.detail) && failure.status === 'resolved', 'Known failure remains open or unverified');
     paths(failure.retestEvidencePaths, 'Current failure retest');
-    need(failure.retestEvidencePaths.some(p => { let packet; try { packet = json(p); } catch { return false; } return packet.sourceDigest === manifest.sourceDigest && packet.targetDigest === manifest.targetDigest; }), 'Known failure needs current-target retest packet');
+    need(failure.retestEvidencePaths.some(p => { let packet; try { packet = json(p); } catch { return false; } return packet.sourceDigest === manifest.sourceDigest && packet.targetDigest === manifest.targetDigest && packet.resolvedFailureIds?.includes(failure.id); }), 'Known failure needs current-target retest packet naming its failure ID');
   });
   await guard('independent review', async () => {
     const r = manifest.review;
@@ -220,7 +226,7 @@ export async function validateManifest(root, manifest) {
     need(Array.isArray(r.unresolvedFindings) && r.unresolvedFindings.length === 0, 'Independent review has unresolved findings');
   });
   return {schema: SCHEMA, status: errors.length ? 'blocked' : 'evidence-records-complete', quality: 'not-automatically-assessed', sourceDigest: current?.sourceDigest ?? null, targetDigest: current?.targetDigest ?? null, reviewDigest: reviewDigest(manifest), errors,
-    limits: ['File hashes and schemas do not prove truthful observations, reviewer identity or design quality.', 'Runtime-only wave/phase completeness and actual tactical/visual quality require independent source and evidence review.', 'This gate does not replace verify, browser/performance checks, final approval or Pages verification.']};
+    limits: ['File hashes and schemas do not prove truthful observations, reviewer identity or design quality.', 'Runtime-only wave/phase completeness, recorded spawnedIds versus raw births, and actual tactical/visual quality require independent source and evidence review.', 'This gate does not replace verify, browser/performance checks, final approval or Pages verification.']};
 }
 async function main() {
   const [command = 'help', ...args] = process.argv.slice(2), root = process.cwd();
