@@ -1,3 +1,10 @@
+# 추가 4건 통합 검증 — 2026-10-10
+
+- d00c7bb 위에 전체화면 Escape 우선순위, 오브젝트 체력 UI 대신 재질 손상, 허공터 군집 배치, 파진연격 착지 후 제자리 방향 전환을 통합했다. main.js 두 변경, 공통 번들 목록, package.json의 기존·신규 검사 목록을 모두 보존하고 두 HTML을 같은 소스로 재생성했다. Native Canvas의 이벤트 없는 DOM 대역에는 fullscreen 입력 가드를 설치하지 않도록 보정했다.
+- 최종 생산 소스 1625f26 기준 통과: S13 방향 전환 14조건, 입력126, fullscreen-escape, training-layout, object-damage, battle-help/modal-keyboard/aim-readout, ui-buttons/portrait-framing, playtest-template, debug-campaign-parity, combat-turn-fixes(토템·공중 넉백·아군 오사), sodan-followup, stage8-bier-renderer-isolation(120비교), act3-visual-cues, stage18-bell-release-guidance. S10 오사 기대값은 생산 변경 없이 별도 교정했으며 최종 hwigyeom-p5와 S13 검사를 실제 exit 0으로 재확인했다.
+- 전체 verify는 공통 build·TypeScript typecheck 후 기존 density 역사 해시(actual d369e6f0… / expected 4e6862fc…)에서 중단했다. migration은 기존 All580 membership/order 실패이며 수정 전 d00c7bb와 경로를 제외한 전체 실패 로그가 동일하다. integration.py는 Chromium socket Operation not permitted로 브라우저를 시작하지 못했다. 전체 integration/performance 통과로 보고하지 않는다.
+- Native 오브젝트 materials/8장 및 허공터 전체 화면도 통합 담당자가 직접 검토했다. 이 근거는 실제 브라우저 입력·GPU·현재 공개 개편맵의 성능 검수를 대체하지 않는다. 별도 성능 조사와 부하가 겹치지 않도록 추가 성능 벤치는 실행하지 않았으며, 공개 Pages 기능·성능 확인은 배포 후 별도로 남긴다.
+
 # 전체화면 Escape 입력 우선순위 — 2026-10-10
 
 - 원인: 전체화면 버튼은 Fullscreen API를 사용하지만 Escape는 바로 전투 일시정지·모달 닫기로 흘렀다. 허공터와 Workshop도 별도의 document keydown을 가지고 있어 화면별 수정만으로는 우선순위를 보장할 수 없었다.
