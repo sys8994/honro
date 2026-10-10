@@ -16,6 +16,12 @@
 - 전체 검사 한계: `npm run verify`는 build/typecheck 뒤 기존 Exact combat-only density project hash(d369e6… 대 4e6862…)에서 중단되어 뒤 integration/performance는 미실행이다. 별도 `tests/migration.mjs`는 기존 All580 original asset membership/order에서 실패, 별도 `tests/integration.py`는 Chromium 프로세스의 socket Operation not permitted로 시작하지 못했다. 엔진/캠페인/원본 에셋 파일 diff는 없다. 이 실패를 정상 통과로 처리하지 않는다.
 - 기존 `event-target-health` 실발사·의식·저장/재개·파괴 후속 회귀는 8항목 통과 후 historical18의 기존 Exact density source membership 불일치에서 중단된다. 역사 fixture와 판정을 느슨하게 변경하지 않았다. Native 증거는 실제 브라우저 입력·GPU·정상 플레이·전체 verify·배포 검수를 대신하지 않는다. 최종 통합에서 두 HTML을 재빌드하고 실제 Pages를 별도 확인한다.
 
+# S10 검기 오사 회귀 기대값 교정 — 2026-10-10
+
+- 앞선 파진연격 보고에서 기존 hwigyeom-p5 전체 검사를 통과로 잘못 기록했다. 실제 로그에는 S10의 옛 아군 무피해 기대값 실패가 있었으며, 마지막 출력만 확인한 보고 오류였다. 통합 담당자가 변경 전 d00c7bb에서도 같은 실패를 재현했다.
+- 이미 승인·구현된 검기 투사체 오사 규칙에 맞춰 테스트만 교정했다. 왼쪽/오른쪽 각각 일반 아군·동맹·적에게 S10 투사체가 43 피해를 주고 82 거리까지 끌어온다. 적에게만 추가 근접타 44(합계 87)와 swordCut 1회가 발생하며, 아군/동맹에는 후속 근접타가 없다. 기존 적 피해·거리 및 벽 통과 금지 검증을 유지했다. 생산 로직은 바꾸지 않았다.
+- 교정 후 hwigyeom-p5 전체 검사의 실제 종료 코드와 보고서에서 실패 0을 확인한다. 실제 브라우저와 전체 verify의 기존 환경·역사 해시 제한은 앞선 기록대로 남는다.
+
 # 파진연격 착지 후 제자리 방향 전환 — 2026-10-10
 
 - 원인: S13의 착지 보너스 검술(`meleeFollow=ready`)에서 걷기를 막는 조기 반환이 좌우 방향 전환도 막았다. 조이스틱은 입력 가능 상태에서도 비활성처럼 흐려졌다.
