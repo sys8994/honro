@@ -8,22 +8,23 @@ import {execFileSync} from 'node:child_process';
 import {runtimeParts} from '../shared/build.mjs';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 import {escortEntryProfile,ESCORT_ENTRY} from './stage23-escort-entry-helper.mjs';
-import {navigator,analyzeWaits,representativeTargets,representativeMelee,representativeBladePrediction} from './stage18-bell-fullplay-helper.mjs';
+import {analyzeWaits,representativeTargets,representativeMelee,representativeBladePrediction} from './stage18-bell-fullplay-helper.mjs';
+import {escortNavigator} from './stage23-escort-fullplay-helper.mjs';
 import {auditQuarryEngine} from './stage12-quarry-fullplay-helper.mjs';
 import {authorStage23LoadingYard,mainY,mainSupport,yardY} from '../tools/map-forge/stage23-loading-yard.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex'),h=await appHarness(),{g,C}=h;
 vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
 const out=process.env.HONRO_FULLPLAY_OUT||'_local/reports/stage23-escort/fullplay';await mkdir(out,{recursive:true});
-const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',policy='escort-high-cover-v2',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,reflectionStudy=false,buildMode='conservative-rank1';
-assert(['canonical','originalBudget22e5','candidate28e6'].includes(rosterMode));const canonical=plain(g.HONRO_PROJECT.stages[22]);
+const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',policy='escort-roles-first-v3',roleRoute=process.env.HONRO_FULLPLAY_ROUTE||'high',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,reflectionStudy=false,buildMode='conservative-rank1';
+assert(['canonical','originalBudget22e5','candidate28e6'].includes(rosterMode));assert(['high','lower'].includes(roleRoute));const canonical=plain(g.HONRO_PROJECT.stages[22]);
 if(rosterMode!=='canonical'){g.HONRO_PROJECT=await authorStage23LoadingYard(g,plain(g.HONRO_PROJECT),{roster:rosterMode});for(const key of ['terrains','markers','width','height','elements'])assert.deepEqual(plain(g.HONRO_PROJECT.stages[22][key]),canonical[key],'Same geometry/art/markers in population comparison');}
 const stage=g.HONRO_PROJECT.stages[22],budget={initial:stage.units.filter(u=>u.team==='enemy').length,elites:stage.units.filter(u=>u.team==='enemy'&&u.stageOverrides?.honroAct3Elite).length},fixture=escortEntryProfile(g),readiness=fixture.readiness,training=fixture.training;
-const parts=await runtimeParts({vector:false,render:false}),runtimeSha256=hash(parts.join('\n')),sourceHash=hash(g.HONRO_PROJECT),provenance={policy,rosterMode,budget,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),entrySha256:hash(await readFile('tests/stage23-escort-entry-helper.mjs')),sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()};
-const resumePath=process.env.HONRO_FULLPLAY_CONTINUE,resume=resumePath?JSON.parse(await readFile(resumePath,'utf8')):null;if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);assert.equal(resume.provenance.policy,policy);}
+const parts=await runtimeParts({vector:false,render:false}),runtimeSha256=hash(parts.join('\n')),sourceHash=hash(g.HONRO_PROJECT),provenance={policy,roleRoute,rosterMode,budget,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),navigatorSha256:hash(await readFile('tests/stage23-escort-fullplay-helper.mjs')),entrySha256:hash(await readFile('tests/stage23-escort-entry-helper.mjs')),sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()};
+const resumePath=process.env.HONRO_FULLPLAY_CONTINUE,resume=resumePath?JSON.parse(await readFile(resumePath,'utf8')):null;if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);assert.equal(resume.provenance.policy,policy);assert.equal(resume.provenance.controllerSha256,provenance.controllerSha256);assert.equal(resume.provenance.entrySha256,provenance.entrySha256);assert.equal(resume.provenance.navigatorSha256,provenance.navigatorSha256);assert.equal(resume.provenance.basicOnly,basicOnly);assert.deepEqual(resume.provenance.budget,budget);if(resume.provenance.roleRoute!==roleRoute){assert.equal(resume.frames,0,'Route comparison branches only at the actual initial role-choice export');assert.equal(resume.actions.length,0);}}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};let app=h.load(resume?.profile||{...plain(g.AppRegression.fresh()),...plain(fixture.profile)});if(resume)app.continue();else app.launch(23);let e=app.engine,b=e.b,A=g.HonroAct3,S=g.HonroStage23Escort;
 assert(S.active(b));assert.equal(b.seed,ESCORT_ENTRY.seed);assert.equal(b.difficulty,'normal');const initial=resume?.initial||plain({battle:b,profile:app.profile});
 const actions=resume?.actions||[],rounds=resume?.rounds||[],turns=resume?.turns||[],damage=resume?.damage||[],births=resume?.births||[],continues=resume?.continues||[],notices=resume?.notices||[],resources=resume?.resources||[],enemyActions=resume?.enemyActions||[],npcTrace=resume?.npcTrace||[],shots=resume?.shots||[];
-const shotAttempts=new Map(resume?.shotAttempts||[]),routeStates=new Map(resume?.routeStates||[]),basic={archer:'A01',mage:'M01',knight:'S00',occultist:'O01'};
+const shotAttempts=new Map(resume?.shotAttempts||[]),routeStates=new Map(resume?.routeStates||[]),roleStates=new Map(resume?.roleStates||[]),basic={archer:'A01',mage:'M01',knight:'S00',occultist:'O01'};
 let frames=resume?.frames||0,storyFrames=resume?.storyFrames||0,attackPlanningMs=resume?.attackPlanningMs||0,nativePhysicsMs=resume?.nativePhysicsMs||0,lastSerial=-1,lastRound=0,stopReason=null,nav,liveAudit;
 const distance=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),terminal=()=>['won','lost'].includes(b.phase),ready=()=>app.canInput(),heroRows=()=>e.heroesAlive().map(u=>({id:u.id,cls:u.cls,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,focus:u.focus,moveLeft:u.moveLeft,acted:u.acted})),carrier=()=>e.unit('act3-carrier');
 const record=row=>actions.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,objective:A.current(b)?.id,...plain(row)}),known=new Set(b.units.map(u=>u.id)),savedLabels=new Set(continues.map(r=>r.label));
@@ -32,13 +33,13 @@ function instrument(){
  const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const hp=u.hp,side=u.side,out=hurt(u,...args);if(hp>u.hp)damage.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,target:u.id,side,sideAfter:u.side,owner:args[1],amount:hp-u.hp,remaining:u.hp,dead:u.dead,skill:args[6]||args[3]?.skill,shot:args[3]?.shot,x:u.x,y:u.y});return out;};
  const finish=e.finishAction.bind(e);e.finishAction=function(...args){const u=e.active,acted=u?.acted,out=finish(...args);if(u?.side===1&&!acted&&u.acted)enemyActions.push({round:b.round,frame:frames,id:u.id,cell:u.honroEscortYardActivationCell,x:u.x,y:u.y,intent:u.intent});return out;};
  const fire=e.fire.bind(e);e.fire=function(skill,angle,power,...args){const u=e.active,focus=u?.focus,out=fire(skill,angle,power,...args);if(out&&u?.side===0&&!u.summoned){assert(u.loadout.includes(skill));if(basicOnly)assert.equal(skill,basic[u.cls]);resources.push({round:b.round,frame:frames,hero:u.cls,skill,before:focus,after:u.focus,cost:focus-u.focus});}return out;};
- nav=navigator(g,b,e,{tick,ready,record,stageId:23,routes:stage.design.escortYard.routes});liveAudit=auditQuarryEngine(b,e,()=>({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial}),{previous:liveAudit?.log||resume?.liveAudit});
+ const navigationState=nav?.snapshot()||resume?.navigatorState;nav=escortNavigator(g,b,e,{tick,ready,record,stageId:23,routes:stage.design.escortYard.routes,navigationState});liveAudit=auditQuarryEngine(b,e,()=>({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial}),{previous:liveAudit?.log||resume?.liveAudit});
 }
 function story(){if(app.dialogue){liveAudit.production(()=>g.HonroStory.next(app));virtualMs+=C.STEP*1000;storyFrames++;return true;}if(['aim','enemy','ally','summon'].includes(b.phase))g.HonroStory.turn(app);if(g.HonroStory.turnPaused(app)){virtualMs+=C.STEP*1000;storyFrames++;return true;}return false;}
 function tick(){const start=performance.now(),npc=carrier(),before=npc&&{x:npc.x,y:npc.y};virtualMs+=C.STEP*1000;e.tick(C.STEP);if(!app.dialogue)liveAudit.production(()=>app.missionTick(C.STEP));liveAudit.guard();frames++;if(b.side===1)assert(b.queue.length<=3);if(npc&&before&&(Math.abs(npc.x-before.x)>0||Math.abs(npc.y-before.y)>0))npcTrace.push({round:b.round,frame:frames,from:before,to:{x:npc.x,y:npc.y},distance:distance(before,npc),side:b.side,active:b.active,heroLead:e.heroesAlive().filter(u=>A.sameFloor(u,npc,950)&&u.x-npc.x>65).map(u=>u.id)});for(const u of b.units)if(!known.has(u.id)){known.add(u.id);births.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,id:u.id,source:u.honroSpawnSource,x:u.x,y:u.y,elite:!!u.elite});}const serial=b.honroState.actorTurnSerial||0;if(serial!==lastSerial){lastSerial=serial;turns.push({round:b.round,frame:frames,turn:serial,phase:b.phase,active:b.active,activeSide:e.active?.side,enemyCount:e.alive(1).length,heroes:heroRows(),npc:npc&&{x:npc.x,y:npc.y,hp:npc.hp},goal:A.current(b)?.id,cargo:S.memory(b).status});}nativePhysicsMs+=performance.now()-start;}
-const kept=b=>plain(Object.fromEntries(['units','terrain','honroWorldTerrain','items','round','phase','side','active','honroState','honroGrowth','honroMarkers','honroEvents','honroAct3Steps','honroStory','honroStaging','queue','teamEnds','honroEscortYardSpec'].map(k=>[k,b[k]])));
+const kept=b=>plain(b);
 instrument();
-async function save(label='checkpoint'){app.export();const profile=await h.exported();assert.deepEqual(profile.honroBattle.units,plain(b.units));const data={provenance,sourceHash,runtimeSha256,initial,profile,actions,rounds,turns,damage,births,continues,notices,resources,enemyActions,npcTrace,shots,shotAttempts:[...shotAttempts],routeStates:[...routeStates],frames,storyFrames,attackPlanningMs,nativePhysicsMs,virtualMs,liveAudit:liveAudit.log};await writeFile(`${out}/${label}.json`,JSON.stringify(data));return data;}
+async function save(label='checkpoint'){app.export();const profile=await h.exported();assert.deepEqual(profile.honroBattle.units,plain(b.units));const data={provenance,sourceHash,runtimeSha256,initial,profile,actions,rounds,turns,damage,births,continues,notices,resources,enemyActions,npcTrace,shots,shotAttempts:[...shotAttempts],routeStates:[...routeStates],roleStates:[...roleStates],navigatorState:nav.snapshot(),frames,storyFrames,attackPlanningMs,nativePhysicsMs,virtualMs,liveAudit:liveAudit.log};await writeFile(`${out}/${label}.json`,JSON.stringify(data));return data;}
 async function continueNow(label){const data=await save(label),before=kept(b);app=h.load(data.profile);app.continue();e=app.engine;b=e.b;assert.deepEqual(kept(b),before,'Exact actual Continue '+label);continues.push({label,round:b.round,frame:frames,exact:true});savedLabels.add(label);instrument();}
 const missedAtPose=(u,target)=>{const last=shotAttempts.get(u.id+':'+target.id);return last&&target.hp>=last.hp&&(target.shield||0)>=last.shield&&distance(u,last.position)<120&&distance(target,last.targetPosition)<120&&(b.honroState.actorTurnSerial||0)>last.turn;};
 const rememberShot=(u,target,skill=basic[u.cls])=>shotAttempts.set(u.id+':'+target.id,{hp:target.hp,shield:target.shield||0,position:{x:u.x,y:u.y},targetPosition:{x:target.x,y:target.y},skill,turn:b.honroState.actorTurnSerial||0});
@@ -79,12 +80,60 @@ function attack(u,target){const missed=missedAtPose(u,target);if(missed&&!repres
 // Sequential authored high loops preserve the actual retreat route rather
 // than let a graph opportunistically drop a scout through a different floor.
 function highRoute(u,id){const r=stage.design.escortYard.routes.find(r=>r.id===id),key=u.id+':'+id,state=routeStates.get(key)||{index:0};routeStates.set(key,state);
- for(let n=0;n<r.anchors.length+2&&ready()&&u.moveLeft>8;n++){const p=r.anchors[state.index];if(!p)return true;const reached=()=>Math.abs(u.x-p.x)<20&&Math.abs(u.y-p.y)<55&&e.grounded(u);if(!reached())nav.advance(u,{id:key+'-'+state.index,x:p.x,y:p.y});if(!ready()||!reached())return false;const z=p.jumpTo||p.dropTo;if(z){const jump=!!p.jumpTo,from={x:u.x,y:u.y};if(jump&&(u.moveLeft<e.jumpCost(u)+Math.abs(z.x-u.x)+65||!e.jump(u)))return false;record({op:jump?'jump':'drop',hero:u.cls,from,to:z,reason:id});let departed=jump||z.stepOffX===undefined;for(let i=0;i<(jump?240:600)&&ready();i++){const x=departed?z.x:z.stepOffX;if(Math.abs(u.x-x)>3)e.move(Math.sign(x-u.x)*(z.speed||(jump?.35:.8)),C.STEP);tick();if(!departed&&Math.abs(u.x-z.stepOffX)<8&&u.y>from.y+8)departed=true;if(i>30&&e.grounded(u)&&(jump||nav.surface(u)===z.support&&Math.abs(u.x-z.x)<22))break;}const matched=nav.surface(u)===z.support;record({op:matched?'land':'nav-replan',hero:u.cls,route:id,support:nav.surface(u),expected:z.support,matched,x:u.x,y:u.y});nav.clear(u.id);if(!matched)return false;}state.index++;}return state.index>=r.anchors.length;}
+ for(let n=0;n<r.anchors.length+3&&ready()&&u.moveLeft>8;n++){
+  if(state.air){const a=state.air,z=a.to;let matched=false;
+   for(let i=0;i<650&&ready();i++){
+    const correct=e.grounded(u)&&nav.surface(u)===z.support;if(correct&&Math.abs(u.x-z.x)<22){matched=true;break;}
+    // A drop can consume the rest of this turn. Keep its real lower landing
+    // state until the next action instead of returning to the upper launch.
+    if(u.moveLeft<=8&&e.grounded(u)&&correct)break;
+    const x=a.departed?z.x:z.stepOffX;if(Math.abs(u.x-x)>3&&u.moveLeft>8)e.move(Math.sign(x-u.x)*(z.speed||(a.jump?.35:.8)),C.STEP);tick();a.frames++;
+    if(!a.departed&&Math.abs(u.x-z.stepOffX)<8&&u.y>a.startY+8)a.departed=true;
+    if(a.frames>30&&e.grounded(u)&&nav.surface(u)!==z.support&&(a.jump||a.departed)){record({op:'nav-replan',hero:u.cls,route:id,reason:'ordinary route crossing landed on another support',expected:z.support,support:nav.surface(u),x:u.x,y:u.y});delete state.air;nav.clear(u.id);return false;}
+   }
+   if(!matched)return false;record({op:'land',hero:u.cls,route:id,support:nav.surface(u),expected:z.support,matched:true,x:u.x,y:u.y});delete state.air;state.index++;nav.clear(u.id);continue;
+  }
+  const p=r.anchors[state.index];if(!p)return true;const reached=()=>Math.abs(u.x-p.x)<20&&Math.abs(u.y-p.y)<55&&e.grounded(u)&&nav.surface(u)===p.surfaceId;
+  if(!reached())nav.advance(u,{id:key+'-'+state.index,x:p.x,y:p.y,surfaceId:p.surfaceId});if(!ready()||!reached())return false;
+  const z=p.jumpTo||p.dropTo;if(!z){state.index++;continue;}const jump=!!p.jumpTo,from={x:u.x,y:u.y};if(jump&&(u.moveLeft<e.jumpCost(u)+Math.abs(z.x-u.x)+65||!e.jump(u)))return false;
+  record({op:jump?'jump':'drop',hero:u.cls,from,to:z,reason:id});state.air={jump,to:plain(z),startY:u.y,departed:jump||z.stepOffX===undefined,frames:0};
+ }return state.index>=r.anchors.length&&!state.air;
+}
 function lowPoint(x,id='lower-station'){x=Math.max(100,Math.min(9300,x));return{id,x,y:mainY(x),surfaceId:mainSupport(x)};}
 function escortWalk(u,goalX){const npc=carrier(),from={x:u.x,y:u.y},cost=u.moveLeft;let still=0;for(let i=0;i<2200&&ready()&&u.moveLeft>12&&u.x<goalX-15;i++){
  const lead=u.x-npc.x,dy=Math.abs(u.y-npc.y),old=u.x;if(lead<180&&dy<137||u.x<npc.x+95)e.move(1,C.STEP);tick();if(Math.abs(u.x-old)<.01&&Math.abs(npc.x-u.x)>185)still++;else still=0;if(still>160)break;
  }record({op:'move',hero:u.cls,from,to:{x:u.x,y:u.y},goal:{id:'continuous-escort',x:goalX,y:mainY(goalX)},support:nav.surface(u),movementCost:cost-u.moveLeft,npc:{x:npc.x,y:npc.y}});nav.clear(u.id);}
+// Fixed tactical roles. Rear enemies are relevant only while they can threaten
+// the carrier's present/next segment or are close enough to endanger the hero.
+// A scout takes the real upper approach, supports the next low sector, then
+// pays the authored return path; no objective waits for a scout flag.
+function relevantFoes(u){const npc=carrier();return e.alive(1).filter(v=>distance(v,u)<360||v.x>=npc.x-420&&v.x<=npc.x+2400).sort((a,z)=>Number(A.sameFloor(z,npc,620))-Number(A.sameFloor(a,npc,620))||Number(distance(z,u)<360)-Number(distance(a,u)<360)||distance(a,u)-distance(z,u));}
+function advanceSupport(u){const npc=carrier(),state=roleStates.get(u.id)||{phase:'west-approach'};roleStates.set(u.id,state);const before={phase:state.phase,x:u.x,y:u.y,moveLeft:u.moveLeft};
+ if(roleRoute==='lower'){state.phase='lower-support';nav.advance(u,lowPoint(Math.min(9100,npc.x+220),'parallel-lower-support'));}
+ else {
+  if(state.phase==='west-approach'&&highRoute(u,'west-upper-approach'))state.phase='west-support';
+  if(state.phase==='west-support'){
+   const next=e.alive(1).some(v=>v.x>=npc.x-420&&v.x<=5750&&/^[CDE]-/.test(v.honroEscortYardCell||''));
+   if(npc.x>=4550||!next&&npc.x>=3650)state.phase='west-return';
+   else nav.advance(u,{id:'D-support-'+u.cls,x:u.cls==='archer'?4440:4240,y:3650,surfaceId:'sy-west-upper'});
+  }
+  if(state.phase==='west-return'&&highRoute(u,'D-E-return'))state.phase='bridge-support';
+  if(state.phase==='bridge-support'){
+   if(npc.x>=5350)state.phase='east-approach';else nav.advance(u,lowPoint(5740,'bridge-support'));
+  }
+  if(state.phase==='east-approach'&&highRoute(u,'E-F-approach'))state.phase='east-support';
+  if(state.phase==='east-support'){
+   const next=e.alive(1).some(v=>v.x>=npc.x-420&&v.x<=8900&&(/^[FG]-/.test(v.honroEscortYardCell||'')||v.honroEscortYardEntry==='east'));
+   if(npc.x>=7900||!next&&npc.x>=6900)state.phase='east-return';
+   else {const x=u.cls==='archer'?7810:7520;nav.advance(u,{id:'F-support-'+u.cls,x,y:yardY('sy-east-upper',x),surfaceId:'sy-east-upper'});}
+  }
+  if(state.phase==='east-return'&&highRoute(u,'F-G-return'))state.phase='exit-support';
+  if(state.phase==='exit-support')nav.advance(u,lowPoint(Math.min(9100,npc.x+180),'exit-support'));
+ }
+ record({op:'role-position',hero:u.cls,route:roleRoute,from:before,to:{phase:state.phase,x:u.x,y:u.y,moveLeft:u.moveLeft},movementCost:before.moveLeft-u.moveLeft,npc:{x:npc.x,y:npc.y,hp:npc.hp},support:nav.surface(u)});
+}
 await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial,training,readiness},null,2));
+if(!resume)await save('role-choice');
 const started=performance.now(),actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||1200),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||120);let lastSignature='',stalled=0;
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
  while(!ready()&&!terminal()){if(story())continue;tick();if(frames>1400000){stopReason='engine frame observation limit';break;}}if(stopReason||terminal())break;
@@ -96,28 +145,34 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
  // Start the carrier when the actual interaction is safe. High support is a
  // parallel choice, never a fabricated prerequisite or an idle escort wait.
  if(interact()){record({op:'E',hero:u.cls,target:m.id});continue;}
- const foes=e.alive(1).filter(v=>!v.dead).sort((a,z)=>Number(A.sameFloor(z,npc,350))-Number(A.sameFloor(a,npc,350))||distance(a,u)-distance(z,u));let fired=false;
- for(const target of foes.filter(v=>distance(v,u)<1550).slice(0,4))if(attack(u,target)){fired=true;break;}if(fired)continue;
- let destination=null,enemy=false;
- if(goal?.id==='dispatch-bundle')destination=m;
- else if(high&&upperThreats.length&&npc.x<5750){highRoute(u,'west-upper-approach');}
- else if(high&&nav.surface(u)==='sy-west-upper'){highRoute(u,'D-E-return');}
- else if(high&&goal?.id==='dock-exit'&&eastThreats.length){highRoute(u,'E-F-approach');}
- else if(high&&nav.surface(u)==='sy-east-upper'){highRoute(u,'F-G-return');}
- else if(goal?.id==='carrier-start')destination=lowPoint(u.cls==='knight'?2440:u.cls==='occultist'?2200:2600,'carrier-cover');
+ let foes=relevantFoes(u),fired=false;let destination=null,enemy=false;
+ // Only immediate body danger is attacked before role positioning. This avoids
+ // the old attack-first policy spending fifteen turns chasing the west reserve.
+ const immediate=foes.filter(v=>distance(v,u)<240&&Math.abs(v.y-u.y)<170);
+ for(const target of immediate)if(attack(u,target)){fired=true;break;}if(fired)continue;
+ if(high)advanceSupport(u);
+ else if(goal?.id==='dispatch-bundle')destination=m;
+ else if(goal?.id==='carrier-start')destination=lowPoint(u.cls==='knight'?2440:2200,'carrier-cover');
  else if(goal?.kind==='escort'){
-  const front=foes.filter(v=>Math.abs(v.y-mainY(v.x))<170&&v.x>=npc.x-350&&v.x<npc.x+900).sort((a,z)=>a.x-z.x)[0];
-  if(u.cls==='knight'&&front){destination={...front,approachRange:90};enemy=true;}
-  else if(u.cls==='knight'&&Math.abs(u.y-mainY(u.x))<40){escortWalk(u,Math.min(m.x,npc.x+1650));}
-  else destination=lowPoint(Math.min(m.x,npc.x+(u.cls==='occultist'?125:300)), 'escort-support-'+u.cls);
+  const front=foes.filter(v=>e.contactSurface(v.x,v.y-4,v.y+5)?.t.id===mainSupport(v.x)&&v.x>=npc.x-250&&v.x<npc.x+850).sort((a,z)=>a.x-z.x)[0];
+  if(u.cls==='knight'&&front){destination={...front,surfaceId:mainSupport(front.x),approachRange:90};enemy=true;}
+  else if(u.cls==='knight'&&Math.abs(u.y-mainY(u.x))<40&&u.x<npc.x+450)escortWalk(u,Math.min(m.x,npc.x+1650));
+  else destination=lowPoint(Math.min(m.x,npc.x+(u.cls==='occultist'?125:120)),'escort-support-'+u.cls);
  }
  if(destination&&ready())nav.advance(u,destination,enemy);if(!ready())continue;
  goal=A.current(b);m=b.honroMarkers.find(x=>x.id===goal?.id);if(interact()){record({op:'E',hero:u.cls,target:m.id});continue;}
- for(const target of foes.filter(v=>!v.dead&&distance(v,u)<1700).slice(0,5))if(attack(u,target)){fired=true;break;}
+ foes=relevantFoes(u);for(const target of foes.filter(v=>!v.dead&&distance(v,u)<1800).slice(0,5))if(attack(u,target)){fired=true;break;}
  if(!fired){const before={hp:u.hp,focus:u.focus};record({op:'defend',hero:u.cls,reason:'no-safe-shot-after-role-position'});liveAudit.production(()=>app.defend());resources.push({round:b.round,frame:frames,hero:u.cls,op:'defend',before,after:{hp:u.hp,focus:u.focus}});}
 }
 if(!terminal()&&!stopReason)stopReason='action observation limit';const beforeReward=plain({heroes:b.heroes,resources:heroRows(),growth:b.honroGrowth});if(terminal()){for(let i=0;app.dialogue&&i<300;i++)story();liveAudit.production(()=>app.outcome());for(let i=0;app.dialogue&&i<300;i++)story();}else await save();
 const summary=analyzeWaits(actions,b.round,{rounds,turns,damage,births,notices,continues,resources,frames,step:C.STEP}),mem=S.memory(b),a=A.memory(b);assert.equal(liveAudit.log.externalWrites.length,0);assert.equal(liveAudit.log.recoveries.length,0);assert.deepEqual(plain(b.items),initial.battle.items);
 const result={...provenance,phase:b.phase,round:b.round,stopReason,wallSeconds:(performance.now()-started)/1000,simulationSeconds:frames*C.STEP,storyFrames,attackPlanningMs,nativePhysicsMs,frames,done:plain(a.done),allFourSurvived:e.heroesAlive().length===4,heroes:heroRows(),npc:plain(carrier()),cargo:plain(mem),initialEnemies:budget.initial,initialElites:budget.elites,totalEnemies:b.units.filter(u=>u.side===1).length,remainingEnemies:e.alive(1).length,births,continues,damageTaken:damage.filter(d=>d.side===0).reduce((n,d)=>n+d.amount,0),npcDamage:damage.filter(d=>d.target==='act3-carrier').reduce((n,d)=>n+d.amount,0),liveAudit:liveAudit.log,npcDistance:npcTrace.reduce((n,r)=>n+r.distance,0),limits:['Actual first-clear/recruit reward fixture through22, not normal22 exported victory.','Native production inputs; DOM/render/storage/clock are doubles. Not browser or human play timing.','One fixed policy and legal rank1/stat6/four-slot profile; no consumables, live writes or recovery calls.']};
 await writeFile(`${out}/result.json`,JSON.stringify(result,null,2));await writeFile(`${out}/wait-analysis.json`,JSON.stringify(summary,null,2));await writeFile(`${out}/trace.json`,JSON.stringify({actions,rounds,turns,damage,births,continues,notices,resources,enemyActions,npcTrace,liveAudit:liveAudit.log},null,2));await writeFile(`${out}/final-battle.json`,JSON.stringify(b));if(b.phase==='won'){app.export();await writeFile(`${out}/victory-profile.json`,JSON.stringify({profile:await h.exported(),beforeReward,provenance}));assert.deepEqual(Object.keys(a.done),['dispatch-bundle','carrier-start','dock-mid','dock-exit']);assert(carrier().hp>0);assert.equal(b.enemyLimit,3);assert(app.done&&app.profile.cleared[23]);}
+if(b.phase==='won'){
+ const afterReward=plain(app.profile);assert.equal(afterReward.cleared[23].visits,1);assert(!afterReward.cleared[24]);for(const cls of afterReward.recruited)assert.equal(afterReward.heroes[cls].xp,b.honroGrowth.limit.end);
+ app.event=h.App.prototype.event.bind(app);h.click('result-continue');h.finish(app);assert.equal(app.screen,'rest');assert.equal(g.HonroJourneyContent.next(app.profile).stageId,24);h.click('journey-enter',{id:'24'});
+ const next=app.engine.b;assert.equal(next.honroStage,24);assert.equal(next.round,1);assert.equal(next.side,0);assert(!S.active(next));assert(!next.honroState.escortYard);assert(!next.terrain.some(t=>t.id.startsWith('sy-')));assert.deepEqual(plain(next.heroes),afterReward.heroes);
+ const nextHeroes=next.units.filter(u=>u.side===0&&!u.summoned);assert.equal(nextHeroes.length,4);for(const u of nextHeroes){const expected=C.heroStats(afterReward.heroes[u.cls],u.cls,u.loadout);assert.equal(u.hp,expected.hp);assert.equal(u.focus,expected.mp);assert.equal(u.moveLeft,expected.move);assert.deepEqual(plain(u.ranks),afterReward.heroes[u.cls].ranks);assert.deepEqual(plain(u.loadout),afterReward.loadouts[u.cls]);}
+ await writeFile(`${out}/stage24-entry.json`,JSON.stringify({arrived:true,method:'Actual won23 outcome, result button, required rest story and ordinary journey-enter24 action',scope:'Stopped at real24 introduction, not24 combat completion or browser',source:provenance,profileAfter23:afterReward,battle:plain(next),profile:plain(app.profile)},null,2));
+}
 console.log('RESULT',JSON.stringify({...result,liveAudit:undefined,npc:undefined,cargo:mem.status}));if(b.phase!=='won')process.exitCode=1;

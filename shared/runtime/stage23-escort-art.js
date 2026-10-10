@@ -6,17 +6,34 @@ const active=b=>b?.honroStage===23&&!b.honroCustom&&b.honroEscortYardRevision===
 const reduced=G.matchMedia?.('(prefers-reduced-motion: reduce)');
 const state=b=>b.honroState?.escortYard||{},spec=b=>b.honroEscortYardSpec?.cargo||{};
 function path(ps){const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;}
-function shape(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),edges=(t.honroWalkEdges||[]).map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}q={vertices:t.vertices,version:b.sceneVersion,body:path(ps),edges,rim};cache.set(t,q);return q;}
+function shape(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;
+ const ps=C.poly(t),profile=t.id==='sy-ground'?b.honroMap?.act3?.primaryContour:null;
+ // The extended v6 polygon starts outside Play Bounds. Its vertex indices are
+ // not the authored road indices; paint only the actual contour's top edge.
+ const pairs=profile?profile.slice(1).map((z,i)=>[profile[i],z].map(p=>({x:p[0],y:p[1]}))):(t.honroWalkEdges||[]).map(i=>[ps[i],ps[(i+1)%ps.length]]);
+ const edges=pairs.filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001&&Math.abs((a.y-z.y)/(a.x-z.x))<=1.35),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}
+ q={vertices:t.vertices,version:b.sceneVersion,body:path(ps),edges,rim};cache.set(t,q);return q;
+}
 function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('sy-'))return false;
  // The bound bundle asset is the visible body of both collision poses.
  if(t.id==='sy-cargo-stored'||t.id==='sy-cargo-settled')return true;
- const q=shape(t,b),wood=t.mat==='wood',g=c.createLinearGradient(t.x,t.y,t.x+t.w*.08,t.y+Math.min(2000,t.h));g.addColorStop(0,wood?'#b2a073':'#9ca59a');g.addColorStop(.2,wood?'#7b7155':'#748b84');g.addColorStop(.62,wood?'#4c5447':'#42646a');g.addColorStop(1,'#243f4d');c.save();c.clip(q.body);c.fillStyle=g;c.fill(q.body);
- // Broad supported foundations stay legible at the tactical zoom. Timber
- // deck joints differ from the larger irregular dressed-stone bridge blocks.
- if(wood){c.strokeStyle='#3d4a41';c.lineWidth=4;for(const f of [.19,.46,.81]){const x=t.x+t.w*f;c.beginPath();c.moveTo(x,t.y);c.lineTo(x+6,t.y+t.h);c.stroke();}}
- else if(/bridge|pier|reflector/.test(t.id)){c.strokeStyle='#304f5577';c.lineWidth=6;for(const f of [.34,.72]){c.beginPath();c.moveTo(t.x,t.y+t.h*f);c.lineTo(t.x+t.w,t.y+t.h*f+6);c.stroke();}for(const [x,y,h]of [[.23,0,.34],[.63,0,.34],[.46,.34,.38],[.81,.34,.38],[.31,.72,.28]]){c.beginPath();c.moveTo(t.x+t.w*x,t.y+t.h*y);c.lineTo(t.x+t.w*x+4,t.y+t.h*(y+h));c.stroke();}}
- else{c.fillStyle='#193c4b31';c.fill(path([[t.x,t.y+t.h*.35],[t.x+t.w*.38,t.y+t.h*.44],[t.x+t.w*.64,t.y+t.h*.33],[t.x+t.w,t.y+t.h*.51],[t.x+t.w,t.y+t.h],[t.x,t.y+t.h]]));}
- c.strokeStyle=wood?'#d4c59999':'#d0d2b878';c.lineWidth=12;c.stroke(q.rim);c.restore();return true;
+ const q=shape(t,b),earth=t.id==='sy-ground',wood=t.mat==='wood',stone=/bridge|pier|corner/.test(t.id),top=earth?4100:t.y,depth=earth?2200:Math.max(24,Math.min(850,t.h));
+ // Local vertical values, never the huge v6 world-bound width/height, own tone.
+ const g=c.createLinearGradient(0,top,0,top+depth);g.addColorStop(0,wood?'#ab9868':earth?'#727e65':'#88937a');g.addColorStop(.38,wood?'#7b6c48':earth?'#54674f':'#667d62');g.addColorStop(1,earth?'#304c40':'#3f5948');
+ c.save();c.clip(q.body);c.fillStyle=g;c.fill(q.body);
+ if(earth){
+  // A broad worn road and its compacted earth shoulder follow every true
+  // incline; the water-cut cliffs deliberately receive no walkable rim.
+  for(const[a,z]of q.edges){c.fillStyle='#9b9e7d';c.fill(path([[a.x,a.y],[z.x,z.y],[z.x,z.y+43],[a.x,a.y+43]]));c.fillStyle='#758367';c.fill(path([[a.x,a.y+43],[z.x,z.y+43],[z.x,z.y+112],[a.x,a.y+112]]));}
+ }else if(wood){c.strokeStyle='#3d4a36';c.lineWidth=4;for(const f of [.19,.46,.81]){const x=t.x+t.w*f;c.beginPath();c.moveTo(x,t.y);c.lineTo(x+6,t.y+t.h);c.stroke();}}
+ else if(stone){
+  // Human-scale dressed courses tie each true solid core to the rear masonry.
+  const rows=Math.max(1,Math.ceil(t.h/150));c.strokeStyle='#354d3d99';c.lineWidth=5;
+  for(let row=1;row<rows;row++){const y=t.y+t.h*row/rows;c.beginPath();c.moveTo(t.x,y);c.lineTo(t.x+t.w,y+4);c.stroke();}
+  for(let row=0;row<rows;row++)for(const f of row%2?[.32,.76]:[.53]){const x=t.x+t.w*f,y=t.y+t.h*row/rows;c.beginPath();c.moveTo(x,y+6);c.lineTo(x+3,y+t.h/rows-5);c.stroke();}
+  if(t.id==='sy-stone-corner'){c.fillStyle='#9ca183';c.fill(path([[t.x,t.y],[t.x+24,t.y],[t.x+24,t.y+t.h],[t.x,t.y+t.h]]));c.fillStyle='#314a3c66';c.fill(path([[t.x+t.w-30,t.y],[t.x+t.w,t.y],[t.x+t.w,t.y+t.h],[t.x+t.w-30,t.y+t.h]]));}
+ }
+ c.strokeStyle=wood?'#c9b88b99':earth?'#c3bea078':'#bdc0a278';c.lineWidth=earth?9:7;c.stroke(q.rim);c.restore();return true;
 }
 const originalTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return originalTerrain.call(this,c,t);};
 const skyAsset=b=>b.honroMap?.escortYardArt?.backdropAsset;
@@ -27,7 +44,11 @@ function motion(b){const s=state(b),ps=spec(b).path||[],u=s.status==='settled'?1
 function body(b){return b.honroLandmarks?.find(l=>l.id===(spec(b).elementId||'sy-art-cargo'));}
 function drawBody(c,l,m){c.save();c.translate(m.x,m.y);G.HonroVectorArt.draw(c,l.asset,l);c.restore();return true;}
 const landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const id=spec(b).elementId||'sy-art-cargo',l=list.find(l=>l.id===id),out=landmarks.call(this,c,list.filter(l=>l.id!==id),layer);if(l&&layer===(l.layer||'back')&&state(b).status!=='sliding')drawBody(c,l,motion(b));return out;};
-const live=S.liveWater;S.liveWater=function(c,b){const out=live?.call(this,c,b);if(active(b)&&state(b).status==='sliding'){const l=body(b);if(l?.asset)drawBody(c,l,motion(b));}return out;};
+// The loading trough sits behind the narrow upper front walkway. Repaint only
+// its actual 24-unit solid strip over the moving rear bundle, before actors and
+// aiming guides. Its occupants are still part of the unchanged safety sweep.
+function cargoForeground(c,b){const t=b.terrain.find(t=>t.id==='sy-west-upper');if(!t||t.broken)return;terrain(c,t,b);}
+const live=S.liveWater;S.liveWater=function(c,b){const out=live?.call(this,c,b);if(active(b)&&state(b).status==='sliding'){const l=body(b);if(l?.asset){drawBody(c,l,motion(b));cargoForeground(c,b);}}return out;};
 const omitReadability=(group,b)=>active(b)&&['sy-cargo-stored','sy-cargo-settled'].includes(group.id);
-G.HonroStage23EscortArt={active,shape,terrain,skyAsset,skyRaster,motion,body,drawBody,omitReadability};
+G.HonroStage23EscortArt={active,shape,terrain,skyAsset,skyRaster,motion,body,drawBody,cargoForeground,omitReadability};
 })(globalThis);
