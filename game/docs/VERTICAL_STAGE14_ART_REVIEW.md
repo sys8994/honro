@@ -23,3 +23,9 @@ C 한 구역의 첫 표면 시안(`6de2339e…`)은 실제 collision polygon 안
 ## 재현
 
 `tests/stage14-vertical-native-art.mjs`의 기본 실행은 전후16컷이다. `HONRO_NATIVE_VIEW`와 `HONRO_NATIVE_OUT`으로 단일 검토컷을 별도 출력할 수 있다. `tools/capture-vertical-style-references.mjs`는 명시적 stage/x/y 입력만 사용해 기존 stage를 같은0.5배율로 캡처하며 각 PNG와 project/runtime 해시, 상태불변을 기록한다. 모두 Native Canvas이고 브라우저 검수와 구분한다.
+
+## C 접점 방향 승인 · 03:37 UTC
+
+`afeaefcdc3c6e3b14a7f1ab49fa1d1b24138a3d65a790d98b59d7be4d537bc8b`의 C 전경은 기존11장 서로 붙은 돌 면과12장 방향성 절리를 실제 충돌 외곽 안에 적용했다. 집·차양의 석축/접촉 그림자는 전경 암반의 상단에 이어진다. Native `native-market-reuse-02/after-market-undercroft.png` SHA256은 `af6175c027e3a5da82113bb6d9c2f48cb5cfea1b475e6be2999f653d22aca107`이다.
+
+독립 부모 검토에서 돌로 읽히고 집 기단 접점이 분명해졌다는 방향 승인을 받았다. 이는 전체 미술 완료 판정이 아니다. 왼쪽 큰 면/램프와 주변·상하층을 같은 광원의 윗면·측면·그늘로 이어야 하며 같은 균열 문양을 일률 반복하지 않는다. 실제 지형·사선·배우는 동결한 상태로 확장한 뒤 정상줌과 전체 축소 전후컷을 다시 검토한다. 이 단계 source는 아직 canonical/HTML에 활성화하지 않았다.
