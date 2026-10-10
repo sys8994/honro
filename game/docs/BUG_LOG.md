@@ -1,3 +1,11 @@
+# Workshop 좁은 창의 Playtest iframe 잘림 — 2026-10-10
+
+- 공개 Pages의 일반 데스크톱 창 506×756에서 iframe이 약713px로 남아 오른쪽 대사·다음 버튼과 상단 Export/Stop이 잘렸다. `#app`의 암시적 가로 grid track이 줄바꿈 없는 topbar의 min-content 폭을 받아 넓어지고, body의 `overflow:hidden`이 가로 스크롤도 막았다. iframe 자체나 공통 Game의 반응형 CSS가 원인이 아니었다.
+- Workshop host CSS만 수정한다. 앱/중앙 track은 `minmax(0,1fr)`, header는 실제 줄바꿈 높이, topbar/동작 버튼은 wrap을 사용한다. Playtest view는 자동 높이의 controls와 남은 높이의 iframe을 grid로 배치하여 기존 40px 고정 inset을 제거한다. iframe에 transform/별도 게임 CSS를 주입하지 않으며 App·맵·대사·저장·Stop/재진입 JS는 그대로다.
+- `npm run build`로 양 HTML을 재생성했고 단독 `HONRO.html`은 stable 6e172737의 바이트와 동일하다. `test:workshop-responsive:static`은 host CSS의 축소/줄바꿈/가변 높이 계약과 실제 생성 Workshop에서 복원한 Game 문서의 전체 바이트 일치를 확인한다. 타입 검사, 기존 `test:playtest-template`, `test:ui-buttons`, Python 검사 파일 구문 및 `git diff --check`를 통과했다.
+- `test:workshop-responsive:browser`는 실제 1440×900→506×756→390×844→1440×900 resize, 대사 다음 버튼 입력, Stage 복귀/iframe 제거/재열기, project 불변과 단독 Game의 넓은/좁은 화면을 검사한다. `test:integration`에 연결하며 offline aggregate는 정적 검사만 실행한다. 정적 검사를 브라우저 통과로 세지 않는다.
+- 이 저장 지점의 실제 수정 후 브라우저 검수는 미실행이다. 로컬 Chromium의 기존 socket EPERM 및 baseline `village-cavern floor-main` 실패는 본 CSS 수정과 별개이고 전체 `verify` 통과를 주장하지 않는다. 중복 브라우저·대형 검사는 시작하지 않고 기존 공개 검수 세션에서 배포 후 동일 창과 Stage→Playtest→Stop→재열기, 단독 Game을 확인한다.
+
 # 고밀도 교전 후속 보정 — 2026-10-10 (검수 진행 중)
 
 - 11장 의식 잔향은 낮은 부유 입구를 정확 저작했다. 예전 동쪽 잔향은 고목 위에 빙의해 의식 바닥을 견제하지 못했고, 새 여섯 몸은 기존 두 라운드 빙의 뒤 의식대 지지면에 붙는다. 새 density 편성의 예고된 단일 서/동 입구가 점유되면 기다리며, 옛 저장의 대체입구는 유지한다. 초기53/유한19/cap4/HP와 원래 네 턴 목표는 그대로이고 행동 큐 예약이나 전역 AI 변경은 추가하지 않았다.
