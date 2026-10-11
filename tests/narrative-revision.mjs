@@ -19,4 +19,9 @@ const yes=(v,m)=>{assert(v,m);checks++};
 {
  const {b,st}=battlefield(g,15);delete b.honroNarrativeRevision;delete b.honroNarrativeContent;const before=JSON.stringify(b),old=g.HonroObjectiveRevision.contentFor(b,st);yes(old.story.some(l=>l[1].includes('수문')),'old payload retained');assert.equal(JSON.stringify(b),before);R.prepareFresh(b);assert.equal(JSON.stringify(b),before,'old battle is not upgraded');
 }
+{
+ const {b,st}=battlefield(g,5);const fresh=g.HonroObjectiveRevision.contentFor(b,st);yes(fresh.outro.some(l=>l[1].includes('방금 저 줄도')),'fresh witness observed the ring with the party');
+ delete b.honroNarrativeRevision;delete b.honroNarrativeContent;delete b.honroObjectiveRevision;
+ const old=g.HonroObjectiveRevision.contentFor(b,st);assert.deepEqual(JSON.parse(JSON.stringify(old.outro)),JSON.parse(JSON.stringify(g.HONRO_NARRATIVE_V0.content[4].outro)),'unsnapshotted act1 objective legacy clone uses frozen V0');yes(old.outro.some(l=>l[1].includes('돌아오는 길')),'old pending finish text remains frozen');
+}
 console.log(`PASS narrative revision ${checks} integrated initialization/target/dialogue/save contracts; projectile/browser/normal-resource play remain separate.`);

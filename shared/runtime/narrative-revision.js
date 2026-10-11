@@ -15,8 +15,9 @@ G.HonroObjectiveRevision.contentFor=function(b,st){if(active(b)&&b.honroNarrativ
  const result=contentFor(b,st);
  // Existing bespoke chapter snapshots and earlier objective/split revisions
  // remain their own authority. Only the old unsnapshotted current story needs
- // the frozen pre-redesign payload.
- if(b&&!b.honroCustom&&!active(b)&&result===st)return G.HONRO_NARRATIVE_V0?.content?.[b.honroStage-1]||result;
+ // the frozen pre-redesign payload. Act 1 has no objective text revision;
+ // its unsnapshotted clone also needs V0 rather than current story text.
+ if(b&&!b.honroCustom&&!active(b)&&(result===st||b.honroStage<=10&&result===G.HonroObjectiveRevision.legacy?.[b.honroStage-1]))return G.HONRO_NARRATIVE_V0?.content?.[b.honroStage-1]||result;
  return result;
 };
 function prepareFresh(b){if(!active(b))return;const st=G.HONRO_CONTENT.stages[b.honroStage-1];b.honroNarrativeContent=clone(contentFor(b,st));
