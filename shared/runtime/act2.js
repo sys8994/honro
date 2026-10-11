@@ -200,7 +200,7 @@ function firstSpiritEncounter(app,heroes){const b=app.engine?.b,key='act2:first-
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id};
  G.HonroStory.queue(app,[
   ['설오',b.honroNarrativeRevision===1?'저기 움직이는 것이 보입니까? 윤곽이 자꾸 흩어집니다.':'저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],
-  ['휘겸','발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],
+  ['휘겸',b.honroNarrativeRevision===1?'발소리도 그림자도 없소. 눈앞에서 윤곽만 흔들리는군.':'발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],
   ['소단','혼이에요. 두 분 눈에는 흐려도 제 눈에는 보여요. 아직 길을 찾지 못한 혼이 저기 있어요.',meta],
   ['설오','그럼 우리가 맞설 수 있게 해 줄 수 있나요?',meta],
   ['소단','현형부를 붙이면 잠깐 이승의 형체가 잡혀요. 그때는 활과 검도 닿아요. 제가 있는 곳을 가리킬게요.',meta],

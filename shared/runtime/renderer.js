@@ -273,6 +273,7 @@
             }
             G.HONRO_CORE.drawStakes(c,e,this.time);
             G.HonroAct1StoryArt?.draw(this,e);
+            G.HonroAct23StoryArt?.draw(this,e);
             G.HonroNarrativeArt?.draw(this,e);
             if(b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
             for (const z of b.zones || []) {
