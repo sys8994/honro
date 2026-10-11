@@ -13,7 +13,7 @@ check('Every authored direction resolves a real line in the currently compiled c
   if(r.when==='event-1-witness')lines=g.HonroStoryContent.events[1].witness.lines;
   if(r.when==='sodan-first-receiver')lines=S.describe(S.ID).steps.at(-1).lines;
   if(r.when==='event-3-transfer')lines=g.HonroStoryContent.events[3].transfer.lines;
-  if(r.when==='ritual-5')lines=g.HonroStoryContent.interaction({stage:{id:5},engine:{b:{honroState:{}}}},{action:'ritual'});
+  if(r.when==='ritual-5')lines=g.HonroStoryContent.interaction({stage:{id:5},engine:{b:{honroNarrativeRevision:1,honroState:{}}}},{action:'ritual'});
   if(r.when==='cooperation-defense')lines=g.HonroStoryContent.cooperationDefense();
   if(r.when==='cooperation')lines=g.HonroStoryContent.cooperation();if(r.when==='finale-midpoint')lines=g.HonroStoryContent.finaleMidpoint();
   assert(lines?.some(l=>l[0]===r.who&&l[1].includes(r.text)),`${r.stage}/${r.when}/${r.who}/${r.text}`);
@@ -47,7 +47,7 @@ check('A slower supported walk finishes before that actor starts the next gestur
 check('Unread events merged before an outcome keep their own choreography and line indices',()=>{
  const a=fresh(15);finish(a);const lines=g.HonroAct2Content.scene('act2-15-groove',a.stage.name,a.stage.beats.groove);
  a.engine.b.honroState.storyQueue=plain(lines);g.HonroStory.start(a,a.stage.outro,{after:'outcome',title:a.stage.name});
- const index=a.dialogue.lines.findIndex(l=>l[0]==='휘겸'&&l[1].includes('최근에 대종'));assert(index>=0);assert.equal(a.dialogue.lines[index][2].storyId,lines[index][2].storyId);
+ const index=a.dialogue.lines.findIndex(l=>l[0]==='휘겸'&&l[1].includes('큰 고정 자리'));assert(index>=0);assert.equal(a.dialogue.lines[index][2].storyId,lines[index][2].storyId);
  assert(a.dialogue.staging.cues[index].some(s=>s.actor==='knight'&&s.pose==='inspect'));finish(a);
 });
 check('Skip at different points yields the same entrances, positions, resources, journal and unlocked input',()=>{

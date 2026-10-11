@@ -76,7 +76,7 @@ function draw(scene,e){const b=e.b;if(b.honroCustom||b.honroNarrativeRevision!==
    for(let i=0;i<3;i++){c.beginPath();c.ellipse(0,0,31+i*4,48-i*5,i*Math.PI/3,0,Math.PI*2);c.stroke();}
    knot(c,{x:0,y:0},Math.max(0,(1-ratio)*13));c.restore();
    c.fillStyle='#171c24';c.fillRect(p.x-56,p.y-82,112,8);c.fillStyle='#be8aaf';c.fillRect(p.x-55,p.y-81,110*ratio,6);
-   c.font=`600 ${12/scene.scale}px sans-serif`;c.textAlign='center';c.fillStyle='#efd7bf';c.fillText('바깥 주박',p.x,p.y-96);
+   c.font=`600 ${12/scene.scale}px sans-serif`;c.textAlign='center';c.fillStyle='#efd7bf';if(!scene.missionTargets?.some(t=>t.id===a.id)&&scene.goalFocus?.id!==a.id)c.fillText('바깥 주박',p.x,p.y-96);
   }
   const offering=d.phase==='offering'||d.phase==='accepted',s=b.honroStory;
   // Gold reaches a real receiving stone during the small trial, before the
