@@ -14,11 +14,11 @@ function flask(c,u,t,receiving){if(!alive(u))return;const p={x:u.x+u.facing*24,y
 function evidence(b){const s=b.honroState||{},id=b.honroStage;
  if(id===3){const a=anchor(b,'ledger');if(!a)return null;return{kind:'eave',at:{x:a.x-65,y:a.y-185}};}
  if(id===4){const a=anchor(b,'gate');if(!a)return null;return{kind:'village',at:{x:a.x-120,y:a.y-178}};}
- if(id===5){const seal=b.terrain.find(t=>t.id==='cliff-cleat'),r=marker(b,'receiver-5');if(!seal||!r)return null;return{kind:'waterfall',at:{x:seal.x+seal.w/2,y:seal.y+seal.h*.4},broken:!!seal.broken,receiving:!!s.ritual?.active,receiver:r};}
+ if(id===5){const seal=b.terrain.find(t=>t.id==='cliff-cleat'),r=marker(b,'receiver-5');if(!seal||!r)return null;return{kind:'waterfall',at:{x:seal.x+seal.w/2,y:seal.y+seal.h*.4},broken:!!seal.broken,receiving:!!s.ritual?.active||!!seal.broken&&!!r.collected,receiver:r};}
  if(id===7){return{kind:'rescue',residents:(b.honroMarkers||[]).filter(m=>m.action==='rescue').map(m=>({marker:m,unit:actor(b,m.target)}))};}
  if(id===8){const mage=actor(b,'mage'),boss=actor(b,'boss'),seals=b.terrain.filter(t=>t.honroSeal);return{kind:'bier',mage,boss,seals,receiving:seals.some(t=>t.broken&&mage&&Math.hypot(t.x+t.w/2-mage.x,t.y-mage.y)<600)||!!boss?.dead&&mage&&Math.hypot(boss.x-mage.x,boss.y-mage.y)<600};}
- if(id===9){const v=actor(b,'npc-sodan')||b.honroStaging?.hidden?.['npc-sodan'];if(!v)return null;return{kind:'receivers',at:{x:v.x-8,y:v.y-v.h*.58},receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
- if(id===10){const binding=b.terrain.find(t=>t.id==='sodan-binding'),v=actor(b,'boss');if(!binding||!v||s.sodanCoop)return null;return{kind:'binding',binding,boss:v,phase:s.sodanBinding?.phase||'bound',hitCount:s.sodanBinding?.hitCount||0,receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
+ if(id===9){const v=actor(b,'npc-sodan')||b.honroStaging?.hidden?.['npc-sodan'];if(!alive(v))return null;return{kind:'receivers',at:{x:v.x-8,y:v.y-v.h*.58},receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
+ if(id===10){const binding=b.terrain.find(t=>t.id==='sodan-binding'),v=actor(b,'boss');if(!binding||!alive(v)||s.sodanCoop)return null;return{kind:'binding',binding,boss:v,phase:s.sodanBinding?.phase||'bound',hitCount:s.sodanBinding?.hitCount||0,receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
  return null;
 }
 function draw(scene,e){const b=e.b;if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';

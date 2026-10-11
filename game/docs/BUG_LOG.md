@@ -2155,3 +2155,8 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 15장 낮은 길에는 배수 시 드러날 실제 지지면을, 고지 길에는 물 위 연결면을 추가했다. `requiresTerrainActive`로 바닥의 실제 활성 전에는 A 경로가 끝나지 않는다. 현재는 지형 제안 구현이며 정상 자원/보행/브라우저 검증 완료를 뜻하지 않는다.
 
 검증: `node tests/act23-quest-redesign-author.mjs`(멱등성, 다른 막 보존, enemy 보존, 두 출구 독립 메타, 장례, 30장 침몰 spec 보존). 이동·사선·safe reveal·저장 재개와 전체 verify는 통합 후 검수 중이다.
+
+### 상태 연계 재검토
+- 고리 파괴 시 기존 임무가 ritual.active를 해제하므로, 완료된 받이진 마커를 통해 폭포 수습 결과 그림을 유지한다. 잘못된 active-only 조건으로 성공 뒤 시각 증거가 사라지는 것을 막았다.
+- 새 10장에서는 소단 몸을 별도 공격 목표 목록에 중복 등록하지 않는다. 대화의 배우 초점과 협력 뒤 보호 표시는 보존한다. 죽은/누락된 소단에 실만 그리지 않는다.
+- source 계약과 렌더 무변이/완료 결과 상태 검사 통과.
