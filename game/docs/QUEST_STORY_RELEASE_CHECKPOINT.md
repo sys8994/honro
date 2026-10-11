@@ -42,3 +42,4 @@ master 반영, 기존 GitHub Pages 게시 및 공식 URL 직접 검수는 원격
 - `1e4cf42`: 구 1막 unsnapshotted 전투의 objective legacy 복제가 fresh 본문을 우회 제공하던 경계를 V0로 복원했다. 저장된 별도 장 본문과 2/3막 이전 objective revision은 원래 우선권을 유지한다.
 - `_local/reports/cleat-damage-20261011/`의 같은 카메라/줌 1.0 Native 비교를 구현자와 통합 검수자가 직접 확인했다. 최초 무손상만 확인했던 이전 Native 증거를 손상 가독성 증거로 재사용하지 않았다.
 - 실제 생산 화살 반복→부분 피해 저장/재개→파괴→1턴 안정화 회귀, 통합 계약, 연출/자연 대사/쉼터, 일반 물체 6재질×4상태×3줌, 수리/파괴/캐시/HP바 없음, typecheck 통과. 화살 검사는 발사 위치·진행 상태를 고정한 fixture다. 새 버전 브라우저/정상 전투 검수와 앞서 기록한 aggregate 역사 실패는 여전히 별도다.
+- 후속 최종 실행: Game/Workshop HTML 재빌드 통과. `npm run verify`는 기존 encounter-density 역사 전체 프로젝트 계약에서 중단했다(기대 `4e6862fc…`, 현재 `f9103f71…`). 이 역사 실패를 완화하지 않았고 전체 integration/performance 통과를 주장하지 않는다.

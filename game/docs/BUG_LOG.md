@@ -2202,3 +2202,4 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - 검증: 동일 실제 맵·카메라·줌의 Native 단계 비교, HP 변화 시 정적 캐시 재생성 없음/완전 수리 복구/무변이, 실제 화살·저장·완료 회귀, 통합 퀘스트 계약(App 30그룹 포함), 자연 대사/쉼터/연출, 기존 일반 오브젝트 손상/HP바 없음, typecheck 통과. Game/Workshop 재빌드와 aggregate verify는 뒤이어 별도 기록한다. Native와 상태 fixture는 실제 브라우저·정상 자원 완주를 대신하지 않는다.
 - 신규 5장 종료는 휘겸이 현장에서 본 줄의 변화를 말하도록, 6장 진입 전 선택 쉼터는 아직 아래에 남은 운반대 구조 준비를 말하도록 고쳤다. 실제 보지 않은 아이의 손짓/마지막 수레 탑승은 제거했다. 7장의 구조 완료 뒤 회고와 V0 원문은 유지한다.
 - 추가 저장 경계 확인: 목적 수정 이전의 1막 unsnapshotted 전투는 현재 본문의 objective legacy 복제를 반환해 V0를 우회할 수 있었다. 그 1막 복제만 동결 V0로 보내고 별도 장 snapshot·2/3막 목적 revision을 우선하는 기존 경계는 유지했다.
+- 후속 Game/Workshop HTML 재빌드 통과. aggregate `verify`는 이미 남겨둔 encounter-density 역사 해시 계약에서 다시 중단했다(기대 `4e6862fc…`, 현재 `f9103f71…`). 일반 오브젝트 손상 6재질×4상태×3줌 검사는 이번 소스에서도 통과했으며, 새 고리 Native 비교 3패널은 각 원본 프레임과 픽셀 동일성까지 확인했다.
