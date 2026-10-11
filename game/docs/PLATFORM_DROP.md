@@ -19,8 +19,11 @@
 
 - `node tests/platform-drop.mjs`: 59개 실제 엔진 fixture; 네 동행·다섯 dt·얇은 하층·겹친/혼합 seam·경사·동일 polygon 아래층·반복입력·상태 취소.
 - 기존 `one-way-platform-physics`: 140개, `ground-contact`: 2,090개 통과. TypeScript 검사 통과.
-- 독립 검수의 271개 synthetic 물리 조건 통과. 이는 정상 캠페인 플레이 증거가 아니다.
-- `node tests/platform-drop-save.mjs`: 네 동행의 준비/낙하/착지 28개 중간시점을 실제 App export/import/Continue로 각각 두 번 재개하여 위치·속도·자원·접촉 edge 보존 확인.
+- 독립 검수의 307개 synthetic 물리 조건 통과. 네 동행, 작은 하층 간격, 중첩/혼합 이음새, 경사, 두 윗면을 가진 동일 polygon, 입력 경합과 취소를 포함한다. 이는 정상 캠페인 플레이 증거가 아니다.
+- `node tests/platform-drop-save.mjs`: 네 동행의 준비/낙하/착지 28개 중간시점을 실제 App export/import/Continue로 각각 두 번 재개(총 56회)하여 위치·속도·자원·접촉 edge 보존 확인. 독립 검수의 별도 36개 App 저장/상태 경계도 통과했다. 두 집계는 서로 다른 fixture 집합이다.
 - Native Canvas 네 동행 × 양방향 자세표에서 발 고정, 팔/다리 관절·무기 grip 유지, 낙하 중 비접지를 수치와 이미지로 확인. 담허 지팡이 끝의 준비 관통을 없애고 낙하→착지 상체를 90ms에 걸쳐 이어 준다.
-- `node --expose-gc tests/platform-drop-motion.mjs`는 자세표에 더해 동일 world/camera의 두 발판 사이 6단계 그림을 만든다. 추가 world-frame 첫 실행은 환경 메모리 부족으로 exit 137 중단되어 미검증이다. 후속 순차 재실행이 필요하다.
-- 두 HTML 빌드 완료. 실제 브라우저 HUD/Game/Playtest, 전체 verify, master 및 Pages 검수는 환경 자원 복구 뒤 진행 중이다. 중단/미실행을 통과로 세지 않는다.
+- `node --expose-gc tests/platform-drop-motion.mjs`는 자세표에 더해 동일 world/camera의 두 발판 사이 6단계 그림을 만든다. 추가 world-frame 첫 실행은 환경 자원 압박이 관찰된 시점에 exit 137로 중단됐다. 이후 동일 최종 엔진/어댑터의 독립 Native 검수를 캐릭터별로 순차 재실행해 통과했다. 4인의 고정 world 좌표 그림에서 상층 접지→통과→하강→하층 접지까지 확인했다. 구현자와 독립 검수자가 전부 직접 확인했으며, 이는 실제 브라우저 Scene 검수와 구분한다.
+- 독립 검수 기록과 이미지: `_local/reports/platform-drop/independent/final-manifest.json`, `physics-report.json`, `save-report.json`, `motion-*-report.json`, `world-*.png`. 원본 commit/hash는 manifest에 있다. Native 세계좌표 그림은 단순 두 발판 fixture와 실제 리그를 사용한다.
+- 두 HTML 빌드 완료. 공식 클라우드 브라우저는 file URL을 URL 보안정책으로 거절해 로컬 HTML UI 검수를 진행하지 않았다. 허용된 Pages HTTP(S)에서 Game/Workshop/Playtest 실제 UI 검수를 이어가야 한다.
+- 전체 `verify`는 통과하지 않았다. 독립 검사에서 `one-way-platforms`의 기존 density source-membership 실패는 기준 checkout에서도 재현했다. `migration`은 기존 미술 library membership/order에서 실패했으며 기준 실행은 아직 하지 않았다. 변경하지 않은 과거 원본 fixture를 이번 기능에 맞춰 덮어쓰지 않는다. 구현자의 `game test` 재실행은 자원 조율 중 중단했고 후속 단계는 실행되지 않았다.
+- master 및 Pages는 최종 통합/직접 검수 대기다. 중단/미실행을 통과로 세지 않는다.
