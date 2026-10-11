@@ -52,19 +52,20 @@ function tick(a){
  if(!available(a)){close(a);hover(a,null);return;}
  if(scene.inspectPointer)hover(a,scene.inspectPointer);
  const u=a.engine.unit(scene.inspectUnitId);if(!eligible(u)||G.HonroAct2&&!G.HonroAct2.visible(a.engine.b,u)){close(a);return;}
- el.hidden=false;el.dataset.unitId=u.id;el.dataset.side=u.side===1?'enemy':'ally';
- const side=u.side===1?'적군':u.summoned?'동맹군 · 소환귀':'동맹군';
+ const boundBody=G.HonroNarrativeRevision?.bodyBound(a.engine.b,u);el.hidden=false;el.dataset.unitId=u.id;el.dataset.side=boundBody?'ally':u.side===1?'enemy':'ally';
+ const side=boundBody?'주박을 붙들고 있는 사람':u.side===1?'적군':u.summoned?'동맹군 · 소환귀':'동맹군';
  const skills=(u.loadout||[]).map(id=>G.HONRO_CORE.SKILLS[id]).filter(s=>s&&!s.passive).slice(0,2);
  const text=(selector,value)=>{const n=el.querySelector(selector);if(n.textContent!==value)n.textContent=value;};
- text('.unit-info-side',`${side}${u.honroFinalBoss?' · 최종 우두머리':u.honroMidboss?' · 중간 우두머리':u.boss?' · 우두머리':u.elite?' · 정예':''}`);
- text('h3',`${u.name} · Lv. ${u.level||1}`);
+ text('.unit-info-side',`${side}${boundBody?'':u.honroFinalBoss?' · 최종 우두머리':u.honroMidboss?' · 중간 우두머리':u.boss?' · 우두머리':u.elite?' · 정예':''}`);
+ text('h3',boundBody?u.name:`${u.name} · Lv. ${u.level||1}`);
  text('.unit-info-health span',`${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}`);
- const health=el.querySelector('.unit-info-health');health.setAttribute('aria-valuemin','0');health.setAttribute('aria-valuemax',u.maxHp);health.setAttribute('aria-valuenow',Math.ceil(u.hp));
+ const health=el.querySelector('.unit-info-health');health.hidden=!!boundBody;health.setAttribute('aria-valuemin','0');health.setAttribute('aria-valuemax',u.maxHp);health.setAttribute('aria-valuenow',Math.ceil(u.hp));
   health.querySelector('i').style.width=clamp(u.hp/u.maxHp*100,0,100)+'%';
   const existence=el.querySelector('.unit-info-existence'),response=G.HONRO_CORE.effectiveDefenseForUnit(u),key=[u.id,response.form,response.qi,response.soul].join(':');
   if(existence.dataset.key!==key){existence.innerHTML=G.HONRO_CORE.existenceDefenseView(u);existence.dataset.key=key;}
- text('.unit-info-desc',description(u));
- text('.unit-info-skills',skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
+ existence.hidden=!!boundBody;
+ text('.unit-info-desc',boundBody?'소단의 몸을 공격하지 마세요. 사람과 떨어진 바깥 붉은 주박을 겨누세요.':description(u));
+ text('.unit-info-skills',!boundBody&&skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
  const states=G.HonroCombatStatus.effects(a.engine.b,u);
  text('.unit-info-status',states.join(' · '));
  const r=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();

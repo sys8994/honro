@@ -5476,5 +5476,2037 @@
         "storyTitle": "놓치지 않는 손"
       }
     ]
+  ],
+  "firstReceiverScene": {
+    "id": "act1-sodan-first-receiver-v1",
+    "stage": 9,
+    "title": "한쪽 줄이 느슨해질 때",
+    "steps": [
+      {
+        "type": "fx",
+        "sound": "sodanBell",
+        "at": {
+          "marker": "$trigger"
+        },
+        "effect": "ring",
+        "color": "#b8c999",
+        "duration": 300,
+        "caption": "첫 받이진이 붉은 실의 힘을 받아 낸다. 위쪽에서 방울이 짧게 울린다."
+      },
+      {
+        "type": "look",
+        "at": {
+          "anchor": "sodan"
+        },
+        "duration": 550,
+        "caption": "방울 소리가 난 사당 문간으로 시선이 향한다."
+      },
+      {
+        "type": "move",
+        "actor": "npc-sodan",
+        "reveal": true,
+        "to": {
+          "anchor": "sodan",
+          "dx": -76
+        },
+        "duration": 950,
+        "caption": "붉은 실에 손이 감긴 소단이 매듭을 붙든 채 문턱으로 나온다."
+      },
+      {
+        "type": "look",
+        "actor": "npc-sodan",
+        "at": {
+          "marker": "$trigger"
+        },
+        "pose": "hold-bell",
+        "duration": 450,
+        "caption": "방울 소리가 멎는다. 소단은 줄을 놓지 않은 채 아래를 살핀다."
+      },
+      {
+        "type": "dialogue",
+        "lines": [
+          [
+            "소단",
+            "거기, 줄에 손대지 마요! 방금 아래에서 뭘 한 거예요?"
+          ],
+          [
+            "설오",
+            "혼을 받을 진을 하나 폈습니다. 주민들이 말한 소단입니까? 덕수 씨 일행은 무사히 나갔습니다."
+          ],
+          [
+            "소단",
+            "덕수 아저씨가… 걸어서 나갔어요?"
+          ],
+          [
+            "설오",
+            "예. 담허 어른이 몸에 든 혼을 떼어냈습니다. 당신도 도우러 왔습니다."
+          ],
+          [
+            "소단",
+            "한쪽에서 당기던 힘이 조금 줄었어요. 다른 빈자리에도 진을 놓는 건 막지 않겠지만, 가운데 제 줄에는 손대지 마요."
+          ],
+          [
+            "설오",
+            "손에서 피가 납니다. 남은 자리까지 받이진을 이으면 혼이 한꺼번에 사람에게 쏟아지는 걸 막을 수 있습니다."
+          ],
+          [
+            "소단",
+            "제가 놓으면 저 실들이 전부 아래로 쏟아져요. 쉬라고 하지 말아요."
+          ],
+          [
+            "담허",
+            "방울로 혼을 다루는 이를 영매라 부르네. 저 아이는 부리는 것보다 붙잡는 데 힘을 다 쓰고 있어."
+          ],
+          [
+            "휘겸",
+            "사람 없는 자리부터 잇겠소. 믿으라고 다그쳐 봐야 손을 놓지는 못할 거요."
+          ]
+        ]
+      }
+    ]
+  },
+  "directionRules": [
+    {
+      "stage": 1,
+      "when": "entry",
+      "who": "설오",
+      "text": "접힌 쪽지",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "archer"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "when": "entry",
+      "who": "설오",
+      "text": "발자국",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "archer",
+          "to": {
+            "origin": "archer",
+            "dx": 18
+          },
+          "duration": 850,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "anchor": "cart"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "when": "event-1-witness",
+      "who": "나무꾼",
+      "text": "어젯밤",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-woodcutter",
+          "at": {
+            "anchor": "cart"
+          },
+          "pose": "point",
+          "camera": true,
+          "scale": 1.05,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "when": "event-1-witness",
+      "who": "설오",
+      "text": "더 올라오지",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "npc-woodcutter"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "actor": "npc-woodcutter",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "when": "entry",
+      "who": "담허",
+      "text": "위에 활",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-damheo",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "point",
+          "camera": true,
+          "scale": 1.05,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "npc-damheo"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "when": "entry",
+      "who": "설오",
+      "text": "위에서 돕",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "objective"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "archer"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "when": "outcome",
+      "who": "연실",
+      "text": "아버지, 이제",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-yeonsil",
+          "at": {
+            "actor": "objective"
+          },
+          "pose": "bow",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "between": [
+              "npc-yeonsil",
+              "objective"
+            ]
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "when": "outcome",
+      "who": "설오",
+      "text": "연목 나루의 홍만",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "archer"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "when": "outcome",
+      "who": "담허",
+      "text": "나도 함께",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-damheo",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "멈추시오",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-hwigyeom",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "guard",
+          "camera": true,
+          "scale": 1.05,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "when": "entry",
+      "who": "설오",
+      "text": "활을 내리지",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "npc-hwigyeom"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "눈을 끄는",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-hwigyeom",
+          "at": {
+            "actor": "boss"
+          },
+          "pose": "guard",
+          "camera": true,
+          "scale": 1.05,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "when": "entry",
+      "who": "담허",
+      "text": "혼자 남아",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "actor": "npc-hwigyeom"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "등 뒤의 문",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-hwigyeom",
+          "at": {
+            "anchor": "gate"
+          },
+          "pose": "guard",
+          "camera": true,
+          "scale": 1.05,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "when": "entry",
+      "who": "설오",
+      "text": "춘례 씨",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "npc-chunrye"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "npc-chunrye"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 5,
+      "when": "entry",
+      "who": "설오",
+      "text": "폭포 뒤",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "goal": "seal"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 5,
+      "when": "entry",
+      "who": "담허",
+      "text": "위험이 없다고",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 5,
+      "when": "entry",
+      "who": "설오",
+      "text": "바위에서 받는",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "goal": "interact"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "붕대를 흔드는",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "objective"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "먼저 저 사람",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "towards": {
+            "actor": "objective"
+          },
+          "distance": 48,
+          "duration": 950,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "actor": "objective"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 7,
+      "when": "entry",
+      "who": "설오",
+      "text": "활을 내린다",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "goal": "interact"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "goal": "interact"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 7,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "뒤는 내가",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "to": {
+            "origin": "knight",
+            "dx": -18
+          },
+          "duration": 850,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "anchor": "start"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 8,
+      "when": "entry",
+      "who": "설오",
+      "text": "발을 멈춘다",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "boss"
+          },
+          "pose": "recoil",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 8,
+      "when": "entry",
+      "who": "담허",
+      "text": "아니야",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "when": "entry",
+      "who": "설오",
+      "text": "방울 소리",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "anchor": "sodan"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "when": "sodan-first-receiver",
+      "who": "소단",
+      "text": "줄에 손대지",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-sodan",
+          "at": {
+            "marker": "$trigger"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "npc-sodan"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "when": "sodan-first-receiver",
+      "who": "소단",
+      "text": "걸어서 나갔",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-sodan",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "when": "sodan-first-receiver",
+      "who": "소단",
+      "text": "제가 놓으면",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "npc-sodan",
+          "at": {
+            "marker": "$trigger"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "when": "sodan-first-receiver",
+      "who": "휘겸",
+      "text": "사람 없는",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "$trigger"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "entry",
+      "who": "소단",
+      "text": "거기서 멈춰",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "boss",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "boss"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "entry",
+      "who": "설오",
+      "text": "끈에 긁힌",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "boss"
+          },
+          "pose": "recoil",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "entry",
+      "who": "소단",
+      "text": "방울을 끌어",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "boss",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "cooperation",
+      "who": "소단",
+      "text": "휘청이며",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "boss",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "recoil",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "boss"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "cooperation",
+      "who": "담허",
+      "text": "넘겨주게",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "actor": "boss"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "cooperation",
+      "who": "휘겸",
+      "text": "동쪽 전각",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "breach": "east"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "cooperation",
+      "who": "소단",
+      "text": "무릎을 꿇",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "boss",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "kneel",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "boss"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "finale-midpoint",
+      "who": "소단",
+      "text": "몸을 낮춰",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "boss",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "kneel",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "boss"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "when": "finale-midpoint",
+      "who": "설오",
+      "text": "제 목소리",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "boss"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 11,
+      "when": "entry",
+      "who": "소단",
+      "text": "이 줄을 묶은 손",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "marker": "knot-west"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 11,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "길을 비우겠소",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "to": {
+            "origin": "knight",
+            "dx": 22
+          },
+          "duration": 850,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "knot-west"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 12,
+      "when": "entry",
+      "who": "설오",
+      "text": "바위에 제가 낸",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "marker": "sign"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 12,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "지도에 적힌",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 12,
+      "when": "sign",
+      "who": "서술",
+      "text": "겹친 획",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "marker": "sign"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "marker": "sign"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 13,
+      "when": "entry",
+      "who": "설오",
+      "text": "안에 마을이",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 13,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "손바닥이 찢어졌소",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 14,
+      "when": "entry",
+      "who": "소단",
+      "text": "떼어낼게",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 14,
+      "when": "entry",
+      "who": "소단",
+      "text": "떼어낼게",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "move",
+          "actor": "knight",
+          "to": {
+            "origin": "knight",
+            "dx": 18
+          },
+          "duration": 850,
+          "focus": false
+        }
+      ]
+    },
+    {
+      "stage": 15,
+      "when": "entry",
+      "who": "담허",
+      "text": "수문을 열어야",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "marker": "sluice"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 15,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "발판이 있소",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "groove"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 15,
+      "when": "groove",
+      "who": "휘겸",
+      "text": "최근에 대종",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "groove"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "marker": "groove"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 16,
+      "when": "entry",
+      "who": "소단",
+      "text": "손은 놓지",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 16,
+      "when": "entry",
+      "who": "노승",
+      "text": "내 제자",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "objective",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "between": [
+              "objective",
+              "resident-1"
+            ]
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 16,
+      "when": "monk",
+      "who": "서술",
+      "text": "먹을 소매",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "objective",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "actor": "resident-1",
+          "at": {
+            "actor": "objective"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "between": [
+              "objective",
+              "resident-1"
+            ]
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 16,
+      "when": "witness",
+      "who": "설오",
+      "text": "꺼낼 수 있었",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "resident-1"
+          },
+          "pose": "recoil",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 17,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "손으로 뽑아낸",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "repair"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 17,
+      "when": "entry",
+      "who": "담허",
+      "text": "천장이",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "marker": "brace"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 17,
+      "when": "notes",
+      "who": "소단",
+      "text": "죽어 가는",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "occultist"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 18,
+      "when": "entry",
+      "who": "설오",
+      "text": "당신이 축을",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "boss"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 18,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "당신이 고른",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "to": {
+            "origin": "knight",
+            "dx": 22
+          },
+          "duration": 850,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "boss"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 18,
+      "when": "entry",
+      "who": "소단",
+      "text": "아직 안에서",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "goal": "seal"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 19,
+      "when": "entry",
+      "who": "소단",
+      "text": "기억하는 분",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "marker": "separate-1"
+          },
+          "pose": "hold-bell",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 19,
+      "when": "old-soul",
+      "who": "휘겸",
+      "text": "왕실의 봉인",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "old-soul"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 20,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "무너진 출구",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "objective"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 20,
+      "when": "entry",
+      "who": "설오",
+      "text": "중간 쉼터",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "objective"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 20,
+      "when": "escort-mid",
+      "who": "휘겸",
+      "text": "숨을 고르시오",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "towards": {
+            "actor": "objective"
+          },
+          "distance": 48,
+          "duration": 950,
+          "focus": false
+        }
+      ]
+    },
+    {
+      "stage": 21,
+      "when": "entry",
+      "who": "설오",
+      "text": "수레 밑에",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "actor": "act3-resident"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 21,
+      "when": "entry",
+      "who": "설오",
+      "text": "수레 밑에",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "act3-resident"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 21,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "길을 냅시다",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "to": {
+            "origin": "knight",
+            "dx": 36
+          },
+          "duration": 850,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "act3-resident"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 22,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "맞춰 봅시다",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "ledger-case"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 22,
+      "when": "compare-ledgers",
+      "who": "설오",
+      "text": "호적엔",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "between": [
+              "archer",
+              "knight"
+            ]
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 23,
+      "when": "entry",
+      "who": "설오",
+      "text": "짐꾼은 살아",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "act3-carrier"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 23,
+      "when": "carrier-start",
+      "who": "휘겸",
+      "text": "우리와 나갑시다",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "towards": {
+            "actor": "act3-carrier"
+          },
+          "distance": 48,
+          "duration": 950,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "act3-carrier"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 24,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "우리 집안",
+      "actions": [
+        {
+          "type": "move",
+          "actor": "knight",
+          "to": {
+            "origin": "knight",
+            "dx": 18
+          },
+          "duration": 850,
+          "focus": false
+        },
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "family-crest"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "knight"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 24,
+      "when": "family-crest",
+      "who": "휘겸",
+      "text": "관계는 듣지",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "lower-bow",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "actor": "knight"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 25,
+      "when": "entry",
+      "who": "설오",
+      "text": "발밑이",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "marker": "stake-arrival-1"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 25,
+      "when": "entry",
+      "who": "담허",
+      "text": "진목을",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "marker": "stake-arrival-1"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 25,
+      "when": "household-tally",
+      "who": "설오",
+      "text": "숟가락",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "marker": "household-tally"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 26,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "기록실",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "hidden-latch"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 26,
+      "when": "entry",
+      "who": "소단",
+      "text": "살아 있는",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "actor": "act3-resident"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 27,
+      "when": "entry",
+      "who": "설오",
+      "text": "살림이",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "marker": "depot-route-ledger"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 27,
+      "when": "family-manifest",
+      "who": "설오",
+      "text": "열일곱",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "marker": "family-manifest"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 28,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "서쪽",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "marker": "fire-screen"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 28,
+      "when": "entry",
+      "who": "설오",
+      "text": "물길",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "marker": "water-release"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 28,
+      "when": "party-reunion",
+      "who": "휘겸",
+      "text": "희생자",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "marker": "party-reunion"
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 28,
+      "when": "party-reunion",
+      "who": "소단",
+      "text": "이름과",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "actor": "occultist",
+          "at": {
+            "actor": "knight"
+          },
+          "pose": "listen",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 29,
+      "when": "entry",
+      "who": "담허",
+      "text": "",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "mage",
+          "at": {
+            "goal": "interact"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 29,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "knight"
+          },
+          "pose": "guard",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    },
+    {
+      "stage": 30,
+      "when": "entry",
+      "who": "휘겸",
+      "text": "저문골에서",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "knight",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "actor": "archer"
+          },
+          "pose": "inspect",
+          "camera": false,
+          "duration": 650
+        },
+        {
+          "type": "look",
+          "at": {
+            "between": [
+              "archer",
+              "knight"
+            ]
+          },
+          "duration": 650,
+          "scale": 1.05
+        }
+      ]
+    },
+    {
+      "stage": 30,
+      "when": "transport-map",
+      "who": "설오",
+      "text": "제 고향",
+      "actions": [
+        {
+          "type": "look",
+          "actor": "archer",
+          "at": {
+            "marker": "transport-map"
+          },
+          "pose": "point",
+          "camera": false,
+          "duration": 650
+        }
+      ]
+    }
   ]
 }

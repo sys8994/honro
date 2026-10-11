@@ -132,7 +132,7 @@ function build(app,lines,options={}){
  const origins={};for(const u of [...b.units,...(b.honroConvoyActors||[]),...Object.values(b.honroStaging.hidden||{})]){const p={x:u.x,y:u.y};origins[u.id]=p;if(u.side===0&&!u.summoned)origins[u.cls]=p;}
  for(const [i,[who,text,meta={}]]of lines.entries()){
   const id=meta.storyId||'',when=id||(entry?'entry':outcome?'outcome':'');
-  for(const r of rules)if(r.stage===b.honroStage&&when.includes(r.when)&&who===r.who&&text.includes(r.text))cues[i].push(...r.actions);
+  for(const r of (!b.honroNarrativeRevision&&G.HONRO_NARRATIVE_V0?.directionRules||rules))if(r.stage===b.honroStage&&when.includes(r.when)&&who===r.who&&text.includes(r.text))cues[i].push(...r.actions);
   if(id==='act2:first-spirit-encounter'){const part=who==='설오'?(/그럼|가리켜|맞설/.test(text)?3:0):who==='휘겸'?1:who==='소단'?(text.includes('현형부')?4:2):5;cues[i].push(...spirit[part]);}
   if(meta.kind==='guide'||meta.kind==='document')cues[i]=[];
   if(c?.speaker===who&&b.honroStaging.hidden[c.actor])cues[i].unshift({type:'move',actor:c.actor,reveal:true,to:{origin:c.actor,dx:c.dx},duration:900,focus:true});

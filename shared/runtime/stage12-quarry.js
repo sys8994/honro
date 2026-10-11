@@ -94,8 +94,11 @@ function installActivation(e){const b=e.b;if(!b.honroQuarryActivation||e.honroQu
  // Rebuild only the transient access cache; normal movement/turns refresh later.
  if(Object.hasOwn(memory(b),'alert'))update(false);else e.refreshActivation();
 }
-const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();installActivation(e);return out;};
+function installRouteGuard(e){if(!G.HonroRouteBranches?.active(e.b)||e.honroRouteGuardAttached)return;e.honroRouteGuardAttached=true;const walk=e.walk.bind(e);
+ e.walk=function(u,dir,dt,supported){const guard=u.honroRouteGuard;if(guard&&u.side===1&&!u.enthrall){const old=Math.hypot(u.x-guard.x,u.y-guard.y),next=Math.hypot(u.x+dir*(u.walkSpeed||260)*dt-guard.x,u.y-guard.y);if(next>guard.radius&&next>=old)return false;}return walk(u,dir,dt,supported);};
+}
+const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();installActivation(e);installRouteGuard(e);return out;};
 const tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);const out=tick(app,dt);if(!ended(app))openGate(app);return out;};
 const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const m=b.honroState?.quarry;if(m?.gate==='waiting')out.summary+=' · 길표 뒤 통로가 비워지면 이어집니다';return out;};
-G.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,prepareRoutePressure,installDirection,cellApproached,installActivation};
+G.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,prepareRoutePressure,installDirection,cellApproached,installActivation,installRouteGuard};
 })(globalThis);

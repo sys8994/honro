@@ -47,9 +47,11 @@ function beforeCooperation(app){const b=app.engine.b;if(!active(b))return null;c
  if(state.phase==='bound'){state.phase='offering';app.sayLines(G.HonroStoryContent.cooperation());app.dirty=true;return false;}
  return state.phase==='accepted';
 }
+for(const name of ['interaction','eventLines','resolveDeferred']){const current=G.HonroStoryContent[name];G.HonroStoryContent[name]=function(app,...args){const b=app.engine?.b;return b&&!b.honroCustom&&!active(b)?G.HonroStoryContentV0[name](app,...args):current(app,...args);};}
+function bodyBound(b,u){return active(b)&&b.honroStage===10&&u?.id==='boss'&&!b.honroState?.sodanCoop;}
 function attach(app,e){if(!active(e.b)||e.b.honroStage!==10||e.honroBindingAttached)return;e.honroBindingAttached=true;const hurt=e.hurt.bind(e),damage=e.damageTerrain.bind(e);
  e.hurt=function(u,amount,...args){if(u.id==='boss'&&!e.b.honroState.sodanCoop){if(amount>0)e.fx('text',u.x,u.y-u.h-28,'#d8c995',15,'바깥 붉은 주박을 겨누세요');return;}return hurt(u,amount,...args);};
  e.damageTerrain=function(t,amount,...args){const before=t.hp,out=damage(t,amount,...args);if(t.id===bindingId&&t.hp<before){const s=e.b.honroState.sodanBinding;s.lastHitTime=e.b.time||0;s.hitCount=(s.hitCount||0)+1;s.remaining=Math.max(0,t.hp/t.maxHp);e.fx('ring',t.x+t.w*.5,t.y+t.h*.5,'#c96865',48);app.event(t.broken?'바깥 주박이 느슨해졌다. 소단이 양옆 진을 살핀다.':'붉은 매듭이 풀린다.');}return out;};
 }
-G.HonroNarrativeRevision={active,author,prepareFresh,reveal,finishStory,bindingId,bindingReady,beforeCooperation,attach,updateConvoy,tick};
+G.HonroNarrativeRevision={active,author,prepareFresh,reveal,finishStory,bindingId,bindingReady,beforeCooperation,bodyBound,attach,updateConvoy,tick};
 })(globalThis);

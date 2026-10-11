@@ -1,3 +1,4 @@
+import {authorAct23QuestRedesign} from '../tools/map-forge/act23-quest-redesign.mjs';
 import {applyOpenStructures} from '../tools/map-forge/open-structure-policy.mjs';
 import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
 import {readFile,readdir} from 'node:fs/promises';
@@ -14,7 +15,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
-export const modelFiles=['content','story-content','terrain-space','map-engine','battlefield-layouts',
+export const modelFiles=['content','story-content-v0','story-content','terrain-space','map-engine','battlefield-layouts',
   'split-campaign','stake-crossing','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
@@ -29,7 +30,8 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
-  const project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
+  let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
+  project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   parts.push('globalThis.HONRO_PROJECT=HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+')));');
   if(vector){
