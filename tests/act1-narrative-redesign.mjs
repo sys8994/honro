@@ -22,7 +22,7 @@ test('Hongman is disclosed at Yeonsil’s reveal and Sodan chooses before defens
 });
 test('Every first-act authored direction still matches an active line',()=>{
  for(const r of g.HonroStoryDirection.rules.filter(r=>r.stage<=10)){
-  const st=H.stages[r.stage-1];let lines=r.when==='entry'?st.story:r.when==='outcome'?st.outro:r.when==='event-1-witness'?S.events[1].witness.lines:r.when==='sodan-first-receiver'?g.HonroStoryStaging.describe(g.HonroStoryStaging.ID).steps.at(-1).lines:r.when==='cooperation'?S.cooperation():r.when==='cooperation-defense'?S.cooperationDefense():r.when==='finale-midpoint'?S.finaleMidpoint():[];
+  const st=H.stages[r.stage-1];let lines=r.when==='entry'?st.story:r.when==='outcome'?st.outro:r.when==='event-1-witness'?S.events[1].witness.lines:r.when==='sodan-first-receiver'?g.HonroStoryStaging.describe(g.HonroStoryStaging.ID).steps.at(-1).lines:r.when==='cooperation'?S.cooperation():r.when==='cooperation-defense'?S.cooperationDefense():r.when==='finale-midpoint'?S.finaleMidpoint():r.when==='event-3-transfer'?S.events[3].transfer.lines:r.when==='ritual-5'?S.interaction({stage:{id:5},engine:{b:{honroState:{flags:{}}}}},{action:'ritual'}):[];
   assert(lines.some(l=>l[0]===r.who&&l[1].includes(r.text)),`${r.stage}/${r.when}/${r.who}/${r.text}`);
  }
  assert(g.HonroStoryDirection.rules.find(r=>r.stage===3&&r.text==='눈을 끄는').actions[0].at.actor==='midboss-stage3');

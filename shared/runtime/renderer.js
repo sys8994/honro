@@ -271,6 +271,7 @@
                 c.save();c.globalAlpha=.24;c.strokeStyle='#c8d2be';c.lineWidth=1/this.scale;c.setLineDash([3/this.scale,8/this.scale]);c.beginPath();c.arc(v.x,v.y-v.h*.5,200+Math.max(1,Math.min(8,v.summonRank||1))*15,0,Math.PI*2);c.stroke();c.restore();
             }
             G.HONRO_CORE.drawStakes(c,e,this.time);
+            G.HonroAct1StoryArt?.draw(this,e);
             if(b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
             for (const z of b.zones || []) {
                 if (z.dead)
