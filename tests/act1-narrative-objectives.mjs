@@ -1,0 +1,11 @@
+// Minimal battle snapshots exercise production objective readers only. These are
+// not combat completion fixtures or normal-play evidence.
+import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile}from'node:fs/promises';
+const g=vm.createContext({HONRO_CORE:{SKILLS:{}},HonroEncounters:{pending:()=>0},HonroAuthored:{objectiveState:()=>null}});
+for(const name of ['content','objectives','objective-guidance'])vm.runInContext(await readFile(`shared/runtime/${name}.js`,'utf8'),g);
+const battle=(stage,fresh=true)=>({honroStage:stage,...(fresh?{honroNarrativeRevision:1}:{}),honroState:{flags:{}},round:1,width:4000,units:[{id:'p-archer',cls:'archer',side:0,hp:100,x:0,y:500}],terrain:[],honroMarkers:[],honroMapAnchors:{}});
+const state=b=>g.HonroObjectives.state(b,g.HONRO_CONTENT.stages[b.honroStage-1]);
+for(const id of [8,9])for(const fresh of [false,true]){const b=battle(id,fresh);if(id===8)b.units.push({id:'boss',side:1,hp:0,dead:true,x:2000,y:500,h:100});else b.honroState.receivers=2;const before=JSON.stringify(b),s=state(b);assert.equal(s.settleRounds,fresh?0:id===8?1:2);assert.equal(s.complete,fresh);assert.equal(JSON.stringify(b),before,'objective read is pure');if(fresh)assert(!s.visibleChecklist.some(q=>q.id==='settle'));}
+for(const id of [3,5]){const b=battle(id);b.honroState.ledger=true;assert.equal(state(b).settleRounds,1);assert.equal(state(b).complete,false);}
+{const b=battle(10),boss={id:'boss',side:1,hp:100,maxHp:100,x:2000,y:500,h:100},binding={id:'sodan-binding',x:1715,y:345,w:96,h:126,hp:58,maxHp:58};b.units.push(boss);b.terrain.push(binding);b.honroState.receivers=2;const s=state(b);assert.equal(s.currentObjectiveId,'binding');assert.equal(s.targets.length,1);assert.equal(s.targets[0].id,'sodan-binding');assert(!s.allTargets.some(t=>t.id==='boss'),'the person is not a second attack target');boss.hp=1;assert.equal(state(b).currentObjectiveId,'binding','body HP never advances fresh objective');binding.broken=true;assert.equal(state(b).currentObjectiveId,'accept');b.honroState.sodanCoop=true;assert.equal(state(b).currentObjectiveId,'protect');assert(state(b).allTargets.some(t=>t.id==='boss'));}
+console.log('PASS Fresh 8/9 remove only post-task waiting; 3/5 retain waits; separate 10 binding precedes consent and protection, with read-only snapshots.');

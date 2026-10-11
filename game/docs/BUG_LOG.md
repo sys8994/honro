@@ -2160,3 +2160,6 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - 고리 파괴 시 기존 임무가 ritual.active를 해제하므로, 완료된 받이진 마커를 통해 폭포 수습 결과 그림을 유지한다. 잘못된 active-only 조건으로 성공 뒤 시각 증거가 사라지는 것을 막았다.
 - 새 10장에서는 소단 몸을 별도 공격 목표 목록에 중복 등록하지 않는다. 대화의 배우 초점과 협력 뒤 보호 표시는 보존한다. 죽은/누락된 소단에 실만 그리지 않는다.
 - source 계약과 렌더 무변이/완료 결과 상태 검사 통과.
+
+### 1막 목표 reader 집중 검사
+- `tests/act1-narrative-objectives.mjs`에서 신규/legacy 8·9장의 대기 차이, 3·5장 대기 유지, 소단의 신체 HP가 새 목표를 진행시키지 않는 것, 주박 파괴→동의→보호 순서와 reader 무변이를 확인했다. 최소 전투 snapshot 기반 검사이며 정상 전투 완주의 증거는 아니다.
