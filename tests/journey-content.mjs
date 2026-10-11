@@ -33,3 +33,11 @@ console.log('PASS chapter 5 present witness, chapter 6 pre-rescue / chapter 7 po
 assert.doesNotMatch(JSON.stringify(J.interlude(7)),/몸을 웅크리고|고개를 저었다/);
 assert.match(JSON.stringify(J.interlude(7)),/상태부터 살피겠습니다/);
 console.log('PASS chapter 7 rest and entry describe the same visible bindings without an unauthored crouch.');
+
+const before8=J.interlude(8).map(l=>l[1]).join(' ');
+assert.match(before8,/덕수 씨는 창고의 빈 상여가 움직였다고/);assert.match(before8,/돌아가는 길이 그 옆/);assert.match(before8,/먼저 창고 앞을 살펴봅시다/);
+assert.doesNotMatch(before8,/홍만|장사 지낸|빈 관|결박이 팽팽|저 상여가 움직입니다/);
+assert.match(H.stages[6].outro.map(l=>l[1]).join(' '),/창고의 빈 상여가 다시 움직였소.*돌아가는 길이 그 옆/);
+assert.match(H.stages[7].story.map(l=>l[1]).join(' '),/홍만 어르신을 모셨던 상여/);
+assert.match(H.stages[7].story.map(l=>l[1]).join(' '),/우리가 끊은 줄과 이어진 겁니까/);
+console.log('PASS chapter8 rest relays Duksu’s report and approach reason; battlefield keeps first recognition and earlier cut-line continuity.');
