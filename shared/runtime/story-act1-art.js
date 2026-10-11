@@ -56,7 +56,8 @@ function draw(scene,e){const b=e.b;if(b.honroCustom||b.honroNarrativeRevision!==
   const offering=d.phase==='offering'||d.phase==='accepted',s=b.honroStory;
   // Gold reaches a real receiving stone during the small trial, before the
   // character accepts and before the protection mission changes her team.
-  const hasOffered=offering&&(!s||s.index>=1);
+  const row=s?.lines?.[s.index],trialRow=row?.[2]?.storyId?.includes('cooperation')&&!row?.[2]?.storyId?.includes('defense');
+  const hasOffered=d.phase==='accepted'||offering&&trialRow&&s.lines.slice(0,s.index+1).some(l=>l[0]==='담허'&&l[1].includes('받았네'));
   for(const m of d.receivers){const to={x:m.x,y:m.y-15};curve(c,hand,to,hasOffered?100:Math.sin(t*10)*6,hasOffered?'#b29c77':'#874f55',2);ring(c,m,t,hasOffered);if(hasOffered)pulse(c,hand,to,100,t,3);}
  }
  c.restore();}

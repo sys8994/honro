@@ -2143,3 +2143,8 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - 새 장부 카드 수·쉼터 압축·소단 cue/선택을 검사 기대치에 반영했다. 구 cooperation 회귀는 명시한 legacy 전투 fixture에서 계속 검사하며 신규 브라우저 fixture는 분리된 주박 파괴→동의 대화 완료→보호 전환을 따라간다.
 - 새 주박 표적의 기본 나무 사각형·일반 균열·중복 장치 라벨만 제외한다. 실제 충돌/내구도는 그대로다. 마지막에 로드하는 전용 시각 모듈이 같은 saved target을 그린다.
 - 이번 단계의 실행 검사: `journey-content`, `act1-narrative-redesign`, `act1-story-art` source 검사와 JS/Python 구문 검사. 변경한 AppHarness/브라우저 검사는 통합 빌드 이후 실행 예정이며 이 저장 지점에서는 미실행이다.
+
+### 실제 플레이 지적 후 추가 정리
+- 4장 방어 대상은 문까지 도착한 피란민 행렬이고, 아직 안쪽 집에서 나오지 못한 주민은 별도로 남았음을 완료 대사에서 구별했다. 춘례가 실제 실을 가리킨 뒤 담허가 폭포 방향을 확인하는 순서를 유지한다.
+- 5장 첫 지칭을 실제 앞 장에서 본 마을 실에 맞췄다. 10장 시험의 금빛 흐름은 queued 상태만으로 앞선 다른 대화에서 켜지지 않으며, 담허의 받기 발화에 도달했을 때 시작한다.
+- 검사: 서사 source 계약 4개, 렌더 읽기 전용 계약 통과. 실제 Game 검수는 통합 후 남아 있다.

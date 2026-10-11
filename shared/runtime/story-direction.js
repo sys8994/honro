@@ -32,7 +32,7 @@ const rules=[
  rule(3,'entry','담허','혼자 남아',[face('mage',{actor:'npc-hwigyeom'},'listen')]),
  rule(4,'entry','휘겸','등 뒤의 문',[face('npc-hwigyeom',{anchor:'gate'},'guard',true)]),
  rule(4,'entry','설오','춘례 씨',[face('archer',{actor:'npc-chunrye'},'lower-bow'),shot({actor:'npc-chunrye'})]),
- rule(5,'entry','설오','집에서 본 줄',[face('archer',{goal:'seal'},'point')]),
+ rule(5,'entry','설오','마을에서 본 줄',[face('archer',{goal:'seal'},'point')]),
  rule(5,'entry','담허','다른 줄까지', [pose('mage','guard')]),
  rule(5,'entry','담허','받을 곳을',[face('mage',{goal:'interact'},'point')]),
  rule(6,'entry','휘겸','붕대를 흔드는',[face('knight',{actor:'objective'},'point')]),
