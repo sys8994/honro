@@ -76,6 +76,7 @@ function entry(app,options={}){const short=state(app.engine.b,app.stage).current
 function help(app){const s=app.training?{}:state(app.engine.b,app.stage);return{...s,summary:app.training?'적은 반격합니다 · 아군은 쓰러지지 않습니다':s.currentInstruction||s.summary,checklist:s.visibleChecklist||s.checklist,guide:s.currentInstruction|| (app.training?'기예를 선택하고 조준·이동·방어를 연습하세요.':app.engine.b.honroCustom?app.stage.goal:app.stage.act>=2?((G.HonroObjectiveRevision?.contentFor(app.engine.b,app.stage)||app.stage).guide||app.stage.goal):(guideFor(app)||app.stage.goal))};}
 function focus(app,kind){const s=state(app.engine.b,app.stage);return s.targets.find(t=>t.id===kind)||s.allTargets.find(t=>t.id===kind)||s.targets.find(t=>t.kind===kind)||s.allTargets.find(t=>t.kind===kind&&!t.done)||s.allTargets.find(t=>t.kind===kind);}
 function refresh(app){if(!app.engine||app.training)return;const s=state(app.engine.b,app.stage);app.scene.missionTargets=s.targets;const el=document.getElementById('objective-text');if(el){el.textContent=s.currentInstruction||s.summary;el.setAttribute?.('aria-label',(s.currentInstruction||s.summary)+' · 눌러서 지나온 목표 보기');}const end=document.getElementById('objective-end-text');if(end){end.textContent='';end.hidden=true;}}
+function markerLift(b,t){return b?.honroNarrativeRevision===1&&!b.honroCustom&&b.honroStage===5&&t.id==='cliff-cleat'&&t.box&&!t.box.broken?12:t.box&&!t.box.broken?88:26;}
 function draw(scene,e){
  const targets=scene.goalFocus?[scene.goalFocus]:scene.missionTargets;
  if(!targets?.length)return;
@@ -86,8 +87,9 @@ function draw(scene,e){
  for(const t of targets){
   const x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z,visible=x>30&&x<w-30&&y>top&&y<bottom;
   if(!visible&&outside++>0)continue;
-  // Terrain durability panels occupy the space immediately above the target.
-  const lift=t.box&&!t.box.broken?88:26;
+  // Keep existing panel clearance elsewhere. The fresh iron ring has no HP
+  // panel, so the arrow tip sits nine screen pixels above its real top edge.
+  const lift=markerLift(e.b,t);
   let px=Math.max(70,Math.min(w-70,x)),py=Math.max(top,Math.min(bottom,y-lift));
   const label=(visible?'':'화면 밖 · ')+t.label.split(' · ')[0],width=Math.min(w-24,c.measureText(label).width+16);
   if(mini&&px+width/2>mini.left-cv.left&&py-33<mini.bottom-cv.top&&py+5>mini.top-cv.top){
@@ -109,5 +111,5 @@ function draw(scene,e){
  c.restore();
 }
 function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);c.restore();}
-G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings};
+G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift};
 })(globalThis);

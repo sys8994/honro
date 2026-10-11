@@ -18,14 +18,35 @@ function floorArray(c,p,t,lit){c.save();c.lineCap='round';
  c.beginPath();c.moveTo(p.x-27,p.y-4);c.lineTo(p.x,p.y-13);c.lineTo(p.x+27,p.y-4);c.lineTo(p.x,p.y+5);c.closePath();c.stroke();
  if(lit){c.globalAlpha=.55+.18*Math.sin(t*2);for(const x of [-65,0,65]){c.fillStyle='#eedda4';c.beginPath();c.ellipse(p.x+x,p.y-5,3,3,0,0,Math.PI*2);c.fill();}}
  c.restore();}
-function cleat(c,a,damageOnly=false){if(a.broken)return;const x=a.x,y=a.y,w=a.w,h=a.h,ratio=Math.max(0,Math.min(1,a.hp/(a.maxHp||a.hp||1))),bend=(1-ratio)*8;c.save();
- // The entire existing hit rectangle is a visible iron backing plate. The
- // loop is hollow, but arrows through it hit that plate rather than empty air.
- if(!damageOnly){c.fillStyle='#424c4d';c.fillRect(x,y,w,h);c.fillStyle='#798887';c.fillRect(x+2,y+2,w-4,5);c.fillRect(x+2,y+7,4,h-9);c.fillStyle='#202c31';c.fillRect(x+w-7,y+7,5,h-9);c.fillRect(x+6,y+h-7,w-8,5);
+function cleatDamageStage(a){
+ // Share the existing durability thresholds. The fallback keeps isolated art
+ // previews identical without introducing a saved state or a second rule.
+ if(G.HonroObjectDamage)return G.HonroObjectDamage.stage(a);
+ if(a.broken||a.indestructible||!Number.isFinite(a.hp)||a.hp>=9999||!Number.isFinite(a.maxHp)||a.maxHp<=0||a.hp>=a.maxHp)return 0;
+ return a.hp/a.maxHp>2/3?1:a.hp/a.maxHp>1/3?2:3;
+}
+function cleat(c,a){if(a.broken)return;const x=a.x,y=a.y,w=a.w,h=a.h,level=cleatDamageStage(a);c.save();c.lineJoin='round';c.lineCap='round';
+ // Always show the whole unchanged collision rectangle as a solid backing
+ // plate, including behind the open ring. Damage deforms metal, not hitboxes.
+ c.fillStyle=['#424c4d','#465051','#3b4548','#323e42'][level];c.fillRect(x,y,w,h);c.fillStyle='#798887';c.fillRect(x+2,y+2,w-4,5);c.fillRect(x+2,y+7,4,h-9);c.fillStyle='#202c31';c.fillRect(x+w-7,y+7,5,h-9);c.fillRect(x+6,y+h-7,w-8,5);
  for(const [xx,yy]of [[x+12,y+14],[x+w-12,y+14],[x+12,y+h-14],[x+w-12,y+h-14]]){c.fillStyle='#a9b4ad';c.beginPath();c.arc(xx,yy,4,0,Math.PI*2);c.fill();}
- c.strokeStyle='#1b2429';c.lineWidth=13;c.beginPath();c.ellipse(x+w/2,y+h*.54,w*.33,h*.30,0,0,Math.PI*2);c.stroke();c.strokeStyle='#adb8b1';c.lineWidth=7;c.stroke();c.strokeStyle='#e0dcc0';c.lineWidth=2;c.beginPath();c.ellipse(x+w/2-1,y+h*.54-1,w*.33,h*.30,0,Math.PI,Math.PI*1.85);c.stroke();
- c.fillStyle='#bac1b1';c.fillRect(x+w*.34,y+h*.18,w*.32,10);}
- if(ratio<1){c.strokeStyle='#223033';c.lineWidth=2+bend*.22;c.beginPath();c.moveTo(x+w*.22,y+h*.37);c.lineTo(x+w*.42,y+h*.48);c.lineTo(x+w*.68,y+h*.41);c.stroke();if(ratio<.5){c.strokeStyle='#d3b18a';c.lineWidth=3;c.beginPath();c.moveTo(x+w*.66,y+h*.32);c.lineTo(x+w*.74+bend,y+h*.52);c.lineTo(x+w*.68,y+h*.7);c.stroke();}}
+ const path=points=>{c.beginPath();points.forEach(([u,v],i)=>i?c.lineTo(x+w*u,y+h*v):c.moveTo(x+w*u,y+h*v));};
+ if(level){
+  // Broad rubbed facets remain legible at the normal camera zoom.
+  path([[.15,.28],[.40,.22],[.58,.39],[.45,.52],[.20,.43]]);c.closePath();c.fillStyle='#b1b6a88c';c.fill();
+  path([[.20,.43],[.45,.52],[.58,.39]]);c.strokeStyle='#17272d';c.lineWidth=5;c.stroke();
+ }
+ if(level>=2){path([[.42,.51],[.80,.37],[.88,.72],[.59,.88],[.37,.72]]);c.closePath();c.fillStyle='#1a2a31';c.fill();path([[.44,.53],[.80,.40],[.85,.65]]);c.strokeStyle='#c3c5af';c.lineWidth=5;c.stroke();}
+ if(level>=3){path([[.56,.07],[.70,.17],[.59,.40],[.72,.62],[.59,.91],[.47,.81],[.54,.60],[.44,.34]]);c.closePath();c.fillStyle='#14232b';c.fill();path([[.68,.18],[.56,.40],[.68,.62],[.56,.87]]);c.strokeStyle='#d2c6a9';c.lineWidth=4;c.stroke();}
+ const loop=()=>{
+  c.beginPath();
+  if(level<2)c.ellipse(x+w/2,y+h*.54,w*.33,h*.30,0,0,Math.PI*2);
+  else if(level===2){c.moveTo(x+w*.52,y+h*.24);c.bezierCurveTo(x+w*.14,y+h*.25,x+w*.11,y+h*.68,x+w*.38,y+h*.82);c.bezierCurveTo(x+w*.71,y+h*.96,x+w*.88,y+h*.61,x+w*.69,y+h*.48);c.lineTo(x+w*.77,y+h*.34);c.quadraticCurveTo(x+w*.72,y+h*.23,x+w*.52,y+h*.24);}
+  else{c.moveTo(x+w*.71,y+h*.35);c.bezierCurveTo(x+w*.65,y+h*.17,x+w*.23,y+h*.22,x+w*.21,y+h*.44);c.bezierCurveTo(x+w*.10,y+h*.68,x+w*.23,y+h*.84,x+w*.47,y+h*.84);c.lineTo(x+w*.72,y+h*.76);}
+ };
+ loop();c.strokeStyle='#18252d';c.lineWidth=14;c.stroke();c.strokeStyle=level>=2?'#bcc1b4':'#adb8b1';c.lineWidth=8;c.stroke();c.strokeStyle='#e0dcc0';c.lineWidth=2;c.stroke();
+ c.fillStyle='#bac1b1';c.fillRect(x+w*.34,y+h*.18,w*.32,10);
+ if(level>=3){for(const [u,v]of [[.71,.35],[.72,.76]]){c.fillStyle='#e5d6b5';c.beginPath();c.arc(x+w*u,y+h*v,4,0,Math.PI*2);c.fill();}}
  c.restore();}
 function markerArt(scene,m){const b=scene.battle;if(b?.honroNarrativeRevision!==1||b.honroCustom)return false;
  // Drawing happens in the world pass, including already-collected arrays.
@@ -49,7 +70,7 @@ function draw(scene,e){const b=e.b;if(b.honroCustom||b.honroNarrativeRevision!==
  for(const m of b.honroMarkers||[])if(m.type==='receiver')floorArray(c,m,t,m.action==='ritual'?d.receiving:!!m.collected);
  if(d.kind==='eave'){const p=d.at,w=Math.sin(t*10)*5;curve(c,{x:p.x-90,y:p.y-10},{x:p.x+100,y:p.y-4},w);knot(c,{x:p.x,y:p.y+w/2});curve(c,{x:p.x,y:p.y},{x:p.x+5+w,y:p.y+45},4);}
  if(d.kind==='village'){const p=d.at;curve(c,{x:p.x-74,y:p.y+32},p,-8);knot(c,p);curve(c,p,{x:p.x+455,y:p.y-84},Math.sin(t*9)*7);}
- if(d.kind==='waterfall'){cleat(c,d.seal,true);const p=d.at,home={x:p.x-210,y:p.y-15},side={x:p.x+320,y:p.y-70};
+ if(d.kind==='waterfall'){cleat(c,d.seal);const p=d.at,home={x:p.x-210,y:p.y-15},side={x:p.x+320,y:p.y-70};
   // The near split knot visibly opens before intervention. Breaking only its
   // iron anchor relaxes this local line while the other line remains strained.
   const shake=d.broken?0:Math.sin(t*10)*7;
@@ -86,12 +107,14 @@ function draw(scene,e){const b=e.b;if(b.honroCustom||b.honroNarrativeRevision!==
   for(const m of d.receivers){const to={x:m.x,y:m.y-15};curve(c,hand,to,hasOffered?100:Math.sin(t*10)*6,hasOffered?'#b29c77':'#874f55',2);if(hasOffered)pulse(c,hand,to,100,t,3);}
  }
  c.restore();}
+// The fresh cleat is drawn once in the live world pass before actors, never
+// cached: nonlethal HP changes and repairs must update its ring silhouette.
 // Narrow fresh-only replacements; the old saved scene retains all its props.
 if(G.HonroScene){const S=G.HonroScene.prototype,damage=S.objectDamage,terrain=S.terrain,landmark=S.landmark;
  const fresh=b=>b?.honroNarrativeRevision===1&&!b.honroCustom;
- S.terrain=function(c,t,...args){if(fresh(this.battle)&&this.battle.honroStage===5&&t.id==='cliff-cleat'){cleat(c,t);return;}return terrain.call(this,c,t,...args);};
+ S.terrain=function(c,t,...args){if(fresh(this.battle)&&this.battle.honroStage===5&&t.id==='cliff-cleat'){return;}return terrain.call(this,c,t,...args);};
  S.landmark=function(c,l,...args){if(replacedLandmark(this.battle,l))return;return landmark.call(this,c,l,...args);};
  S.objectDamage=function(c,b,...args){const replaced=t=>b.honroStage===10&&t.id==='sodan-binding'||b.honroStage===5&&t.id==='cliff-cleat';return damage.call(this,c,fresh(b)?{...b,terrain:b.terrain.filter(t=>!replaced(t))}:b,...args);};
 }
-G.HonroAct1StoryArt={draw,evidence,marker:markerArt,replacedLandmark,cleat,floorArray};
+G.HonroAct1StoryArt={draw,evidence,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray};
 })(globalThis);
