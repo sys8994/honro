@@ -76,9 +76,9 @@ export async function authorAct23QuestRedesign(project,{minStage=11,maxStage=30}
    s.units=s.units.filter(u=>u.team!=='enemy');s.events=[];s.encounters=[];s.initialState.honroQuietFuneral=true;s.initialState.honroBellActivation={};
    const spots={'route':6550,'separate-1':6770,'send-1':6770,'separate-2':7010,'send-2':7010,'separate-3':7210,'send-3':7210,'old-soul':7340};
    s.markers=s.markers.filter(m=>Object.hasOwn(spots,m.id));for(const [id,x]of Object.entries(spots)){const q=REDESIGN_STEPS[19].find(q=>q.id===id);mark(s,id,x,heightAt(s,'act2-floor',x),q.label,q.requiredClass?{requiredClass:q.requiredClass}:{});}
-   s.elements=s.elements.filter(e=>!e.id.startsWith('a2-19-goal-')&&!e.id.startsWith('a2-19-defense-'));for(const [id,x]of Object.entries(spots))if(id.startsWith('separate'))upsert(s.elements,{id:'quest-funeral-'+id,assetId:'act2:ritual',x,y:heightAt(s,'act2-floor',x),scale:.7,rotation:0,snap:false,layer:'prop',depthLayer:'L1'});
+   s.elements=s.elements.filter(e=>!e.id.startsWith('a2-19-goal-')&&!e.id.startsWith('a2-19-defense-')&&!e.id.startsWith('quest-funeral-')&&!e.id.startsWith('quest-mourning-')&&!['act2:ritual','act2:lamp'].includes(e.assetId)&&e.id!=='sb-art-lamp-basin');
    for(const [i,u]of s.units.filter(u=>u.team==='player').entries()){u.x=6240+i*100;u.y=heightAt(s,'act2-floor',u.x);}const old=s.units.find(u=>u.id==='objective');if(old){old.x=6140;old.y=heightAt(s,'act2-floor',6140);old.label='함께 온 가족';}
-   civilian(s,'mourner-brother','동생을 잃은 형',6710,heightAt(s,'act2-floor',6710));civilian(s,'mourner-sister','언니를 잃은 동생',6950,heightAt(s,'act2-floor',6950));prop(p,s,'quest-mourning-hammer',6780,heightAt(s,'act2-floor',6780),'hammer');prop(p,s,'quest-mourning-bowl',7020,heightAt(s,'act2-floor',7020),'bowl');
+   civilian(s,'mourner-brother','동생을 잃은 형',6710,heightAt(s,'act2-floor',6710));civilian(s,'mourner-sister','언니를 잃은 동생',6950,heightAt(s,'act2-floor',6950));
    s.anchors.spawn={x:6240,y:heightAt(s,'act2-floor',6240)};s.anchors.start=clone(s.anchors.spawn);s.anchors.exit={x:7340,y:heightAt(s,'act2-floor',7340)};
   }
   if(id===20){const lead=s.units.find(u=>u.id==='objective');for(const [id,label,dx]of [['convoy-gilchan','길찬',-100],['convoy-mason','석공',-220]])civilian(s,id,label,lead.x+dx,heightAt(s,'act2-floor',lead.x+dx),{honroConvoyMember:{target:'objective',dx}});}

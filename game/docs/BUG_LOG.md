@@ -2190,3 +2190,5 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 검증: 본문, author, journey source, evidence art 계약 통과. Native Canvas 소도구 contact sheet에서 선/글자/도형을 확인했다. 이는 실제 게임 카메라와 브라우저 시인성 검사와 별개다. 통합자의 최종 runtime/source 검수와 Pages 검증은 남아 있다. 세부 승인 범위와 수락 증거는 ACT23_QUEST_STORY_REDESIGN.md에 추적한다.
 
 14장 후속 실제 배우 감사: 고도화된 맵의 중층 주민은 resident-3이며 과거 기본 맵의 resident-2가 없었다. 중층 화자를 실제 family-mid marker.target으로 연결하고, 진입·먼 피난 다리에서 하던 직접 대사는 중층 구조 직후의 설명으로 옮겼다. 종료에서는 그때 들은 우회길을 휘겸이 상기한다. 새 14장 전용 본문 snapshot도 동기화했다. 본문/author/journey 계약 통과. 12장 길표에서 상·하부 실제 출구까지의 일반 이동 검사도 최종 route-geometry 파일에 추가했으며 실행 결과는 통합 검수에 남긴다.
+
+19장 Native 화면에서 기존 generic 석등/제단이 가족의 망치·밥그릇을 가리는 것을 확인했다. 신생 19장의 중복 제단/등잔 소품을 제거하고 실제 separate-1/2/3 위치에 낮은 바닥선, 큰 망치와 열린 그릇을 읽기 전용 전경 그림으로 분리했다. 기존 종 본체·지형·배우·목표는 그대로다. evidence-art/author 계약 통과; 실제 생산 Scene 재촬영은 통합자에게 요청했다.
