@@ -2170,3 +2170,10 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 독립 검수의 13A 박쥐/담허 겹침,16B 소단/주민 겹침,30B 발끝 보정을 수정했다. 13/16/30 양쪽의 전원은 전체 NPC/적이 있는 compiler→sanitize 후에도 저작 좌표를 그대로 유지한다. 30장은 양쪽에 같은 초기 접촉 명단을 쓰고 낮은 진입에서도 그 군집이 활성화될 수 있도록 지원면을 맞췄다. 19장 배우 전원도 자동 배치 보정이 없다.
 
 검사 범위: 고립된 기하 시험은 적을 제거하고 이동 자원을 보충한다. 정상 전투 완주나 브라우저 검증이 아니다. 기록은 `_local/reports/act23-redesign/route-geometry.json`에 소스 SHA256과 함께 남긴다.
+
+### 2026-10-11 Quest story runtime edges
+- Fresh quarry prose now retains its per-run near/remote interactor line instead of hiding it behind the narrative snapshot.
+- Route guards constrain direct flight planning/steps as well as walking; player knockback stays outside this voluntary movement rule.
+- The funeral exposes all three available meetings and guides the nearest compatible one with prerequisites respected. Out-of-order progress is counted accurately.
+- Retired fixed-defense waves remain finite optional pressure: author-provided 13/15/16 budgets and quarry 3/3/2 entries require a real offered player action before safe entry, without becoming completion gates.
+- `tests/narrative-runtime-edges.mjs`: 10 production-runtime predicate/presentation checks PASS. Syntax checks PASS. Independent flight fixture PASS. These are not normal-resource combat or browser evidence; final pressure integration and visual QA remain pending.
