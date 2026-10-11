@@ -37,7 +37,7 @@ const rules=[
  rule(5,'entry','담허','받을 곳을',[face('mage',{goal:'interact'},'point')]),
  rule(6,'entry','휘겸','붕대를 흔드는',[face('knight',{actor:'objective'},'point')]),
  rule(6,'entry','휘겸','먼저 저 사람',[toward('knight',{actor:'objective'}),face('mage',{actor:'objective'},'listen')]),
- rule(7,'entry','설오','활을 내린다',[pose('archer','lower-bow',{goal:'interact'}),face('mage',{goal:'interact'},'inspect')]),
+ rule(7,'entry','설오','활은 내린 채',[pose('archer','lower-bow',{goal:'interact'}),face('mage',{goal:'interact'},'inspect')]),
  rule(7,'entry','휘겸','뒤는 내가',[step('knight',-18),face('knight',{anchor:'start'},'guard')]),
  rule(8,'entry','설오','발을 멈춘다',[pose('archer','recoil',{actor:'boss'})]),
  rule(8,'entry','담허','아니야',[face('mage',{actor:'archer'},'listen')]),

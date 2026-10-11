@@ -29,3 +29,7 @@ const legacy=JSON.parse(await readFile('shared/data/narrative-legacy-v0.json','u
 assert.match(legacy.content[4].outro.map(l=>l[1]).join(' '),/앞서 맡은 부상자들은 쉼터에 보냈소\. 돌아오는 길의 붉은 실/);
 assert.match(await readFile('shared/runtime/story-content-v0.js','utf8'),/앞서 맡은 부상자들은 쉼터에 보냈소\. 돌아오는 길의 붉은 실/);
 console.log('PASS chapter 5 present witness, chapter 6 pre-rescue / chapter 7 post-rescue rest chronology, stable optional scene IDs and unchanged frozen dialogue');
+
+assert.doesNotMatch(JSON.stringify(J.interlude(7)),/몸을 웅크리고|고개를 저었다/);
+assert.match(JSON.stringify(J.interlude(7)),/상태부터 살피겠습니다/);
+console.log('PASS chapter 7 rest and entry describe the same visible bindings without an unauthored crouch.');

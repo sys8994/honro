@@ -20,6 +20,12 @@ test('Hongman is disclosed at Yeonsil’s reveal and Sodan chooses before defens
  const pre=S.cooperation(),post=S.cooperationDefense();assert(pre.at(-1)[1].includes('놓을게요'));assert(!JSON.stringify(pre).includes('동쪽 전각'));assert(JSON.stringify(post).includes('지금 건 당신이 놓친 게 아닙니다'));
  assert(JSON.stringify(H.stages[9].outro).includes('같이 가죠. 남은 매듭부터 함께 정리하고요.'));
 });
+test('Chapter 7 keeps the rescue judgment and describes only supported resident presentation',()=>{
+ const st=H.stages[6],entry=JSON.stringify(st.story);
+ assert.match(entry,/활은 내린 채/);assert.match(entry,/먼저 손을 잡아드릴까요/);
+ for(const old of ['겨누던 활','저 사람까지 쏘면','몸을 웅크리고','고개를 저었다'])assert(!JSON.stringify(S).includes(old),old);
+ const cue=g.HonroStoryDirection.rules.find(r=>r.stage===7&&r.who==='설오');assert.equal(cue.text,'활은 내린 채');assert.equal(cue.actions[0].pose,'lower-bow');
+});
 test('Every first-act authored direction still matches an active line',()=>{
  for(const r of g.HonroStoryDirection.rules.filter(r=>r.stage<=10)){
   const st=H.stages[r.stage-1];let lines=r.when==='entry'?st.story:r.when==='outcome'?st.outro:r.when==='event-1-witness'?S.events[1].witness.lines:r.when==='sodan-first-receiver'?g.HonroStoryStaging.describe(g.HonroStoryStaging.ID).steps.at(-1).lines:r.when==='cooperation'?S.cooperation():r.when==='cooperation-defense'?S.cooperationDefense():r.when==='finale-midpoint'?S.finaleMidpoint():r.when==='event-3-transfer'?S.events[3].transfer.lines:r.when==='ritual-5'?S.interaction({stage:{id:5},engine:{b:{honroState:{flags:{}}}}},{action:'ritual'}):[];
