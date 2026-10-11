@@ -119,7 +119,11 @@ function prepareSpawn(b,st,a,hero){
      if(a.act3Authored){u.honroAct3Encounter=1;u.honroAct3Elite=!!a.elite&&i===0;u.honroCohort='reinforcement';G.HonroAct3Encounters.tune(b,u,st);G.HonroProgression.enemyXP(b,u);}
    if(b.honroEncounterRevision){u.combatBaseHp*=.6;u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));}
    if(ambush)u.y=y;
-   const position=G.HonroTerrain.place({...b,units:[...b.units,...list]},u,{flying:!!W.archetypes[kind]?.flying,maxDistance:a.maxDistance??1600,clearance:a.clearance??18});
+   const space={...b,units:[...b.units,...list]},flying=!!W.archetypes[kind]?.flying;
+   // Authored opt-in: reserve the same full-body air clearance used by flying
+   // movement, including one-way branches. Other spawn policies stay unchanged.
+   const accept=flying&&a.requireFlightClearance?(x,y)=>C.flightClear({b:space},u,{x,y}):null;
+   const position=G.HonroTerrain.place(space,u,{flying,maxDistance:a.maxDistance??1600,clearance:a.clearance??18,accept});
    if(!position)return null;
    Object.assign(u,position,{id:(ambush?'sniper-crow-':'event-')+id,awake:true,aggroUntil:b.round+(ambush?6:3),spawnX:position.x,spawnY:position.y});
    if(a.source)u.honroSpawnSource=a.source;

@@ -71,7 +71,8 @@ W.execute=function(app,action){
  const choices=composed(b)?[children,...(action.honroRavineAlternatives||[])]:[children];
  for(const [i,list]of choices.entries()){
   if(!safeEntry(b,list))continue;
-  const candidate=action.type==='multi'?{...action,actions:list}:action;
+  const prepared=composed(b)?list.map(a=>G.HonroWorld.archetypes[a.kind]?.flying?{...a,requireFlightClearance:true}:a):list;
+  const candidate=action.type==='multi'?{...action,actions:prepared}:prepared[0];
   if(execute(app,candidate)===false)continue;
   result=true;chosen=list;choiceIndex=i;break;
  }
@@ -92,8 +93,23 @@ W.execute=function(app,action){
 };
 const populationCap=E.populationCap;
 E.populationCap=function(b){return active(b)?b.honroStage11PopulationCap??populationCap(b):populationCap(b);};
+// Older revision-2 response saves can contain a flyer inside a thick one-way
+// bough: placement used to ignore it, while flight motion correctly blocked it.
+// Repair only those identified campaign response actors. Preserve HP, identity,
+// turn/quest state and every valid pose; never change terrain or the roster.
+function repairResponseFlights(app,e){const b=e.b;if(!composed(b)||b.honroMapOrigin!=='campaign')return 0;let count=0;
+ for(const u of b.units){
+  if(u.dead||u.hp<=0||!G.HONRO_CORE.flyingEnemy(u)||!u.honroStage11Response||u.honroStage11Response!==u.honroSpawnSource||!b.honroEvents?.some(ev=>owned(ev)&&ev.id===u.honroSpawnSource))continue;
+  const pad=8;if(!b.terrain.some(t=>!t.broken&&t.oneWay&&G.HONRO_CORE.terrainRectIntersects(t,u.x-u.r-pad,u.y-u.h-pad,u.r*2+pad*2,u.h+pad*2,0)))continue;
+  const point=G.HonroTerrain.place(b,u,{flying:true,maxDistance:256,clearance:18,accept:(x,y)=>G.HONRO_CORE.flightClear(e,u,{x,y})});
+  if(!point)continue;
+  const atSpawn=u.x===u.spawnX&&u.y===u.spawnY;Object.assign(u,point,{vx:0,vy:0});if(atSpawn)Object.assign(u,{spawnX:point.x,spawnY:point.y});delete u.aiMove;delete u.moveTarget;
+  app.dirty=true;count++;
+ }return count;
+}
 const attach=A.attach;
 A.attach=function(app,e){const out=attach(app,e),b=e.b;if(!composed(b)||e.honroRavineCompositionAttached)return out;e.honroRavineCompositionAttached=true;
+ repairResponseFlights(app,e);
  const refresh=e.refreshActivation.bind(e),mem=composition(b);
  e.refreshActivation=function(){refresh();const heroes=e.heroesAlive();for(const [cell,radius]of Object.entries(b.honroStage11Activation||{})){
   const units=e.alive(1).filter(u=>u.honroRavineCell===cell);if(!units.length)continue;
@@ -184,5 +200,5 @@ function rescueInstruction(b,s){
  if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 E':'동행으로 주민에게 다가가 E';
  return null;
 }
-G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction};
+G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,repairResponseFlights};
 })(globalThis);
