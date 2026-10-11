@@ -21,4 +21,13 @@ for(const fresh of [true,false]){
  g.HonroMission.finale(app);assert.equal(speeches.length,1,'midpoint still fires once at the existing boundary');
 }
 assert(legacy.finaleMidpoint.some(l=>l[1].includes('바로 앞에 있습니다')),'frozen V0 remains exact');
-console.log('PASS distant-party protection wording, real finale midpoint once-only event, unchanged positions/turn progress and explicit V0 dispatch.');
+const finish=g.HONRO_CONTENT.stages[9].outro.map(l=>l[1]).join(' ');
+assert.match(finish,/매듭을 풀 시간은 벌었소.*남은 것들은 경계하며/);assert.match(finish,/저희가 계속 경계하겠습니다/);
+assert.doesNotMatch(finish,/마지막 무리는 외문 밖으로 밀었소|앞은 아직 우리가 보고 있습니다/);
+assert.match(legacy.content[9].outro.map(l=>l[1]).join(' '),/마지막 무리는 외문 밖으로 밀었소/);
+g.HonroEncounters={pending:()=>1};vm.runInContext(await readFile('shared/runtime/objectives.js','utf8'),g);
+for(const remaining of [0,2]){
+ const b={honroStage:10,honroNarrativeRevision:1,round:10,width:5000,honroState:{sodanCoop:true,coopHold:6},terrain:[],honroMarkers:[],units:[{id:'archer',side:0,hp:100,x:500,y:1000},{id:'boss',side:2,hp:100,x:2500,y:1000,h:100},...Array.from({length:remaining},(_,i)=>({id:'enemy-'+i,side:1,hp:100,x:3500+i*100,y:1000}))]};
+ const before=JSON.stringify(b);assert(g.HonroObjectives.state(b,g.HONRO_CONTENT.stages[9]).complete,'six turns complete with '+remaining+' foes still alive');assert.equal(JSON.stringify(b),before);
+}
+console.log('PASS distant-party protection wording, real finale midpoint once-only event, unchanged positions/turn progress and explicit V0 dispatch; outro preserves six-turn completion with surviving enemies.');
