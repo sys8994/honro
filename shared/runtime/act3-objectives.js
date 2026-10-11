@@ -105,5 +105,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['wo
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',presentation:'inline'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,['안내',app.stage.guide,{kind:'guide',storyId:'act3-guide-'+app.stage.id,storyTitle:app.stage.name,focus:state(app.engine?.b||{honroStage:app.stage.id,honroState:{},honroMarkers:[],terrain:[],units:[]}).targets[0]?.kind||'interact'}]];}
-G.HonroAct3={active,initialize,marker,steps,memory,current,state,sourceIssue,interactionTarget,eligibility,use,attach,tick,failure,entry,satisfied,heroes,sameFloor,readySteps,firesStopped};
+G.HonroAct3={active,initialize,marker,steps,memory,current,state,sourceIssue,interactionTarget,eligibility,use,attach,tick,failure,entry,satisfied,heroes,sameFloor,readySteps,fireScenario,firesStopped};
 })(globalThis);

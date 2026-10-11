@@ -211,7 +211,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  if(e.active?.side===0)a.viewerId=e.active.id;
  firstSpiritEncounter(app,heroes);
  // Completion is captured immediately; the shared story queue waits for actor end.
- for(const s of steps(b)){if(a.done[s.id])continue;if(!satisfied(b,s)){if(s.parallelGroup)for(const peer of steps(b))if(peer.parallelGroup===s.parallelGroup&&!a.done[peer.id]&&satisfied(b,peer))completeStep(app,peer);break;}completeStep(app,s);}
+ for(const s of steps(b)){if(a.done[s.id]||s.optional&&!satisfied(b,s))continue;if(!satisfied(b,s)){if(s.parallelGroup)for(const peer of steps(b))if(peer.parallelGroup===s.parallelGroup&&!a.done[peer.id]&&satisfied(b,peer))completeStep(app,peer);break;}completeStep(app,s);}
  const s=current(b),m=s&&marker(b,s.id);
  if(revision2(b)&&s?.kind==='hold'&&m){
   a.holds??={};const h=a.holds[s.id]??={progress:0,spawned:0,lastRound:b.round,enteredRound:b.round,continuous:false};

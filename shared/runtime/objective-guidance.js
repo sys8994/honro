@@ -4,7 +4,7 @@
 const alive=u=>!!u&&!u.dead&&u.hp>0;
 const heroName=cls=>G.HONRO_CONTENT.hero[cls]?.name||'동행';
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
-const action=s=>s.id==='party-reunion'?'네 사람 집결 후 행동 종료':s.kind==='destroy'?'공격으로 파괴':s.kind==='interact'||s.kind==='rescue'?'E':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'남은 대상 0명':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
+const action=s=>s.id==='party-reunion'?'네 사람 집결 후 행동 종료':s.kind==='destroy'?'공격으로 파괴':s.kind==='interact'||s.kind==='rescue'?'E':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'남은 대상 0명':s.kind==='route'?'동행 1명 출구 도착':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
 const stepText=(s,id)=>`${s.label}${s.requiredClass&&!s.label.includes(heroName(s.requiredClass))?' · '+heroName(s.requiredClass):''} · ${s.kind==='hold'?(id>=21?'적 턴 ':'라운드 ')+s.rounds+'회 완료':action(s)}`;
 const endings={
  1:'동행 1명이 고개 끝 도착 지점에 닿으면 완료',
@@ -21,12 +21,12 @@ const endings={
 function ending(b,st,list){if(b.honroNarrativeRevision===1&&st.id===9)return '받이진 둘이 연결되면 완료';if(endings[st.id])return endings[st.id];const s=list.at(-1);return s?stepText(s,st.id)+'하면 완료':st.goal;}
 function failure(b,st,list,result){const parts=['동행 전원 전투불능'];const protectedUnits=b.units.filter(u=>u.honroProtected||u.id==='objective'||st.id===7&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&m.target===u.id));
  if(protectedUnits.length)parts.push([...new Set(protectedUnits.map(u=>u.name))].join('·')+' 상실');
- const required=[...new Set(list.filter(s=>s.requiredClass&&!(st.act===3?G.HonroAct3.satisfied(b,s):result.allTargets?.find(t=>t.id===s.id)?.done)).map(s=>heroName(s.requiredClass)))];
+ const required=[...new Set(list.filter(s=>!s.optional&&s.requiredClass&&!(st.act===3?G.HonroAct3.satisfied(b,s):result.allTargets?.find(t=>t.id===s.id)?.done)).map(s=>heroName(s.requiredClass)))];
  if(required.length)parts.push('필수 행동 전 '+required.join('·')+' 전투불능');
  if(st.id===5&&b.terrain.some(t=>t.id==='cliff-cleat'&&!t.broken))parts.push('고리쇠 파괴 전 담허 전투불능');
  if(st.id===10)parts.push('협력 시작 후 소단 전투불능');
  if(st.id===27&&b.honroSplit?.version===1&&!b.honroState?.act3?.done?.['party-reunion'])parts.push('중앙 합류 전 조사팀 동행 전투불능');
- if(st.id===27&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen']))parts.push('불길 진압 전 12번째 적 턴 종료');
+ if(G.HonroAct3?.fireScenario(b)&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen']))parts.push('불길 진압 전 12번째 적 턴 종료');
  return parts.join(' / ');
 }
 function interactReason(b,st,s,m){const u=b.units.find(u=>u.id===b.active),point=s.target?b.units.find(v=>v.id===s.target):m;if(!point||!alive(u)||u.side!==0)return'';
@@ -80,8 +80,9 @@ function progressive(b,st,result,list,current){
    else if(chosen.kind==='destroy')instruction+=' · 공격';
    else if(chosen.kind==='hold'){const a=st.act===3?b.honroState?.act3:b.honroState?.act2,h=a?.holds?.[chosen.id];instruction=h?.contested?'표시된 원 안의 적을 처치하세요':h?.guarded?'그 자리에서 '+Math.max(0,chosen.rounds-(h.progress||0))+'턴 더 버티세요':'표시된 원 안에서 '+chosen.rounds+'턴 버티세요';}
    else if(chosen.kind==='escort')instruction='운반자 앞에서 출구까지 길을 열어 주세요';
+   else if(chosen.kind==='route')instruction=chosen.label;
    else if(chosen.kind==='reach')instruction=chosen.allHeroes?chosen.id==='party-reunion'?'중앙에 네 사람을 모은 뒤 행동을 끝내세요':'살아 있는 동행을 도착 지점에 모으세요':'표시된 도착 지점으로 이동하세요';
-   if(st.id===27&&['water-release','fire-screen'].includes(chosen.id))instruction+=' · '+Math.max(0,12-(b.honroState?.act3?.fireTurns||0))+'턴 남음';
+   if(G.HonroAct3?.fireScenario(b)&&['water-release','fire-screen'].includes(chosen.id))instruction+=' · '+Math.max(0,12-(b.honroState?.act3?.fireTurns||0))+'턴 남음';
   }
  }else{rows=legacySteps(b,st,result);chosen=rows.find(q=>!q.done);instruction=chosen?.text;}
  instruction=G.HonroStage11RavineEncounters?.rescueInstruction(b,chosen)||instruction;

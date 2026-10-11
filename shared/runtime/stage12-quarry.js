@@ -39,9 +39,19 @@ function openGate(app){const b=app.engine.b,m=memory(b);if(m.openCount||!A.memor
  const id=b.honroQuarrySpec?.gateTerrainId,lists=[b.terrain,b.honroWorldTerrain];if(!id||lists.some(ts=>!Array.isArray(ts)||ts.filter(t=>t.id===id).length!==1))return false;
  for(const ts of lists)ts.find(t=>t.id===id).broken=true;Object.assign(m,{gate:'open',openCount:1,openedRound:b.round,openedSerial:serial(b)});b.sceneVersion=(b.sceneVersion||0)+1;app.event('길표 뒤의 내리막이 이어졌다. 동굴까지 돌아 나올 수 있다.');app.engine.emit?.('save');app.dirty=true;return true;
 }
-function prepareWaves(app){const b=app.engine.b;if(!active(b)||ended(app)||paused(app))return;const step=A.current(b),h=A.memory(b).holds?.['hold-road'];if(step?.id!=='hold-road'||(h?.spawned||0)>=8)return;const point=b.honroMarkers.find(p=>p.id==='hold-road');if(!point||!app.engine.heroesAlive().some(u=>Math.hypot(u.x-point.x,u.y-point.y)<step.radius))return;
+function prepareWaves(app){const b=app.engine.b;if(!active(b)||ended(app)||paused(app))return;if(G.HonroRouteBranches?.active(b)){prepareRoutePressure(app);return;}const step=A.current(b),h=A.memory(b).holds?.['hold-road'];if(step?.id!=='hold-road'||(h?.spawned||0)>=8)return;const point=b.honroMarkers.find(p=>p.id==='hold-road');if(!point||!app.engine.heroesAlive().some(u=>Math.hypot(u.x-point.x,u.y-point.y)<step.radius))return;
  const source='hold-road-'+(h?.spawned||0),m=memory(b),at=b.honroQuarrySpec?.entries?.[source];if(!at||m.warnings[source]||m.entries[source])return;m.warnings[source]={serial:serial(b),round:b.round,side:at.side};app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 진입로를 살피세요.');app.dirty=true;
 }
+
+function prepareRoutePressure(app){const b=app.engine.b,m=memory(b),source='hold-road-0',at=b.honroQuarrySpec?.entries?.[source];
+ if(!at||m.entries[source]||!A.memory(b).done.sign||!signSceneDone(b))return;
+ if(!m.warnings[source]){m.warnings[source]={serial:serial(b),round:b.round,side:at.side};app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 길목을 살피세요.');app.dirty=true;return;}
+ if(!app.actorBoundary||serial(b)<=m.warnings[source].serial||!safe(app))return;
+ // One finite existing entry, not the retired four-round defense or eight-kill
+ // gate. Reaching either valid exit never waits for this pressure to spawn.
+ W.execute(app,{type:'spawn',kind:'minecart',n:3,x:at.x,y:at.y,source});
+}
+
 const execute=W.execute;W.execute=function(app,action){const b=app.engine?.b,source=action?.source;if(!active(b)||action?.type!=='spawn'||!sources.includes(source))return execute(app,action);
  const m=memory(b),at=b.honroQuarrySpec?.entries?.[source],warning=m.warnings[source];if(m.entries[source])return true;if(!at||!warning||serial(b)<=warning.serial||!app.actorBoundary||!safe(app))return false;
  const key=[serial(b),b.round,...b.teamEnds,app.actorBoundary].join(':'),n=action.n||1;if(b.honroState.lastCombatEventBoundary===key||app.engine.alive(1).length+n>E.populationCap(b))return false;
@@ -87,5 +97,5 @@ function installActivation(e){const b=e.b;if(!b.honroQuarryActivation||e.honroQu
 const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroQuarryAttached)return out;e.honroQuarryAttached=true;memory(e.b);installDirection();installActivation(e);return out;};
 const tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepareWaves(app);const out=tick(app,dt);if(!ended(app))openGate(app);return out;};
 const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const m=b.honroState?.quarry;if(m?.gate==='waiting')out.summary+=' · 길표 뒤 통로가 비워지면 이어집니다';return out;};
-G.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,installDirection,cellApproached,installActivation};
+G.HonroStage12Quarry={active,memory,sources,safe,near,prepareWaves,gateOccupants,signSceneDone,openGate,prepareRoutePressure,installDirection,cellApproached,installActivation};
 })(globalThis);
