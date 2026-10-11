@@ -184,6 +184,14 @@ A.state=function(b){
  }
  return result;
 };
+// Make the existing local guard prerequisite visible before the player walks
+// up to a knot. A zero count keeps the standard class-specific/E instruction.
+function knotInstruction(b,s){
+ if(!composed(b)||!A.revision2(b)||s?.kind!=='interact'||!['knot-west','knot-east'].includes(s.id))return null;
+ const m=b.honroMarkers.find(m=>m.id===s.id);if(!m)return null;
+ const count=A.interactionThreats(b,m).length;
+ return count?(s.id==='knot-west'?'서쪽':'동쪽')+' 혼매듭 주변의 들림 '+count+'명을 먼저 제압하세요':null;
+}
 // Only the next actionable rescue instruction is shown. Use the production
 // eligibility result; this presentation does not change any gate or saved step.
 function rescueInstruction(b,s){
@@ -192,7 +200,7 @@ function rescueInstruction(b,s){
  const u=heroes.find(u=>u.id===b.active)||heroes[0];if(!m||!u)return null;
  const result=A.eligibility({engine:{b,active:u}},m),spirit=b.units.find(v=>v.id===m.spiritId),sodan=heroes.find(v=>v.cls==='occultist');
  if(!result.ok&&result.reason==='주변 들림을 먼저 제압하세요'){
-  const count=b.units.filter(v=>v.side===1&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360).length;
+  const count=A.interactionThreats(b,m).length;
   return '주민 주변의 적 '+count+'명을 처치하세요';
  }
  if(!result.ok&&result.reason==='붙은 혼을 먼저 약화시키세요 · 체력 40% 이하')return sodan?'붙은 혼의 체력을 40% 이하로 낮추세요':'주민에게 붙은 혼을 제압하세요';
@@ -200,5 +208,5 @@ function rescueInstruction(b,s){
  if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 E':'동행으로 주민에게 다가가 E';
  return null;
 }
-G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,repairResponseFlights};
+G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,knotInstruction,repairResponseFlights};
 })(globalThis);

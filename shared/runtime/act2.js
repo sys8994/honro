@@ -95,6 +95,8 @@ function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!sati
  const parallel=s?.parallelGroup?readySteps(b).filter(q=>q.parallelGroup===s.parallelGroup).map(q=>{const p=marker(b,q.id)||{};return{id:q.id,kind:'interact',x:p.x||0,y:p.y||0,label:q.label};}):null;
  const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||b.terrain.find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
 }
+// Shared by the actual interaction gate and read-only prerequisite guidance.
+function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
 function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=app.engine.active;
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'E · 낙석 치우기'};
  if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'E · 주변 원혼등불 밝히기'};
@@ -102,7 +104,7 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(['clear','hold','defeat','destroy','reach','escort','route'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
  if(revision2(b)){
-  const threats=b.units.filter(v=>v.side===1&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);
+  const threats=interactionThreats(b,m);
   if(threats.length)return{ok:false,reason:'주변 들림을 먼저 제압하세요'};
   const spirit=b.units.find(v=>v.id===m.spiritId);
   if(s.kind==='rescue'&&spirit&&!spirit.dead&&spirit.hp>spirit.maxHp*.4)return{ok:false,reason:'붙은 혼을 먼저 약화시키세요 · 체력 40% 이하'};
@@ -253,5 +255,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,satisfied,subdue,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
+G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,satisfied,subdue,state,eligibility,interactionThreats,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
 })(globalThis);
