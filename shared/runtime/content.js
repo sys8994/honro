@@ -9,9 +9,9 @@
       {id:5,name:'폭포 틈의 한 발',level:5,theme:'valley',template:5,objective:'seals',goal:'받이진을 지키며 절벽 틈의 고리쇠 파괴',w:10800,h:3000,map:[1810,360],requires:[4],recruit:'knight',joinLevel:6,enemies:10,active:4,narrationArt:'waterfall'},
       {id:6,name:'끊어진 나무다리',level:6,theme:'bridge',template:6,objective:'rescue',goal:'부상자 운반대를 북문 쉼터까지 호송',w:10400,h:2800,map:[2040,760],requires:[5],enemies:10,active:4,narrationArt:'bridge'},
       {id:7,name:'살아 있는 사람을 꺼내는 법',level:7,theme:'tree',template:7,objective:'rescue3',goal:'들린 주민 셋을 죽이지 않고 구조',w:6000,h:5600,map:[2350,760],requires:[6],enemies:11,active:4,narrationArt:'terrace'},
-      {id:8,name:'돌아오는 빈 상여',level:8,theme:'shrine',template:8,objective:'bierboss',goal:'빈 상여에 옮겨 붙는 원혼을 받이진 안에서 제압',w:10800,h:3200,map:[2600,590],requires:[7],enemies:10,active:4,narrationArt:'bier'},
+      {id:8,name:'돌아오는 빈 상여',level:8,theme:'shrine',template:8,objective:'bierboss',goal:'결박을 풀고 빈 상여를 멈춰 주민의 귀환로 확보',w:10800,h:3200,map:[2600,590],requires:[7],enemies:10,active:4,narrationArt:'bier'},
       {id:9,name:'바람 없는 마당',level:9,theme:'forest',template:9,objective:'prepare',goal:'주민을 대피시키고 두 받이진 준비',w:7600,h:2700,map:[2840,400],requires:[8],enemies:12,active:4,narrationArt:'yard'},
-      {id:10,name:'소단 — 놓지 못한 밤',level:10,theme:'shrine',template:10,objective:'sodan',goal:'소단의 주박을 비살상으로 풀고 밀려드는 원혼을 함께 막기',w:8800,h:3000,map:[3070,220],requires:[9],enemies:8,active:4,narrationArt:'upper-yard'}
+      {id:10,name:'소단 — 놓지 못한 밤',level:10,theme:'shrine',template:10,objective:'sodan',goal:'바깥 주박을 걷고 소단과 함께 밀려드는 원혼 막기',w:8800,h:3000,map:[3070,220],requires:[9],enemies:8,active:4,narrationArt:'upper-yard'}
     ];
     const hubs=[{id:'camp',name:'불씨터',x:1290,y:1080},{id:'training',name:'허공터',x:760,y:1080}];
     for(const s of Object.values(G.HONRO_CORE.SKILLS))if(s.redesigned)N[s.id]=s.name;

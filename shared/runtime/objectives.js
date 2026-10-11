@@ -16,6 +16,7 @@ function rawState(b,st){
  const hs=b.honroState||{},markers=b.honroMarkers||[],heroes=b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead&&u.hp>0),obj=b.units.find(u=>u.id==='objective'),boss=b.units.find(u=>u.id==='boss'),seals=b.terrain.filter(t=>t.honroSeal),left=seals.filter(t=>!t.broken),foes=b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0),pending=G.HonroEncounters.pending(b);const all=[];const add=(kind,id,x,y,label,extra={})=>{const t={kind,id,x,y,label,...extra};all.push(t);return t;};
  seals.forEach((t,i)=>add('seal',t.id,t.x+t.w/2,t.y,st.id===5?'절벽 고리쇠 · '+durability(t):st.id===8?`상여 결박 ${i+1} · 공격`:`매듭 ${i+1} · 공격`,{done:!!t.broken,box:t}));
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
+ const binding=b.honroNarrativeRevision===1&&st.id===10&&b.terrain.find(t=>t.id==='sodan-binding');if(binding&&!hs.sodanCoop)add('binding',binding.id,binding.x+binding.w/2,binding.y,'바깥 주박 · '+durability(binding),{done:!!binding.broken,box:binding});
  if(boss&&!boss.dead)add('boss',boss.id,boss.x,boss.y-boss.h,st.id===10?(hs.sodanCoop?'소단 · 혼매듭 의식 보호':'소단의 주박 · 비살상 제압'):'빈 상여 · 제압',{unitId:boss.id});for(const u of b.units.filter(u=>u.honroMidboss&&!u.dead&&u.id!=='boss'))add('midboss',u.id,u.x,u.y-u.h,`${u.name} · 중간 우두머리`,{unitId:u.id});
  for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?(hs.ritual?.active?'의식 유지 중 · 이탈 시 해제':'담허로 E · 의식 시작'):'E · 받이진 설치'}`);if(m.type==='resident'){const target=interactionTarget(b,m);if(target)add('interact',m.id,target.x,target.y-(target===m?0:target.h||0),`${m.label} · 구조`,target===m?{}:{unitId:target.id});}}
  // The saved/live map owns the exit. Content dimensions can belong to an older map.
@@ -32,10 +33,10 @@ function rawState(b,st){
   case'rescue3':complete=(hs.rescuedCount||0)>=3;summary=`들린 주민 구조 · ${hs.rescuedCount||0}/3${foes.length?' · 주변 위협 '+foes.length+'명':''}`;kinds=(hs.rescuedCount||0)<3?['interact']:[];break;
   case'bierboss':complete=!left.length&&!!boss?.dead;summary=left.length?`빈 상여의 결박부터 파괴 · ${seals.length-left.length}/${seals.length}`:boss&&!boss.dead?'빈 상여 본체 제압':'빈 상여 제압 완료 · 원혼 수습';kinds=left.length?['seal']:boss&&!boss.dead?['boss']:[];break;
   case'prepare':complete=(hs.receivers||0)>=2;summary=`주민 대피 후 받이진 준비 · ${hs.receivers||0}/2${foes.length?' · 위협 '+foes.length+'명':''}`;kinds=(hs.receivers||0)<2?['interact']:[];break;
-  case'sodan':complete=!!hs.sodanCoop&&(hs.coopHold||0)>=6;summary=!hs.sodanCoop?'소단의 주박을 비살상으로 낮추고 두 받이진 활성화':`소단 보호 · 혼매듭 ${hs.coopHold||0}/6턴 · 적 ${foes.length}명`;kinds=!hs.sodanCoop?['boss','interact']:['boss'];break;
+  case'sodan':complete=!!hs.sodanCoop&&(hs.coopHold||0)>=6;summary=!hs.sodanCoop?(binding?'바깥 주박을 걷고 양옆 진으로 접근':'소단의 주박을 비살상으로 낮추고 두 받이진 활성화'):`소단 보호 · 혼매듭 ${hs.coopHold||0}/6턴 · 적 ${foes.length}명`;kinds=!hs.sodanCoop?(binding?['binding']:['boss','interact']):['boss'];break;
   default:complete=!foes.length;
  }
- const objectiveReady=complete,minimumRound=1,settleRounds=({ledger:1,seals:1,rescue3:2,bierboss:1,prepare:2})[st.objective]||0;
+ const objectiveReady=complete,minimumRound=1,settleRounds=({ledger:1,seals:1,rescue3:2,bierboss:1,prepare:b.honroNarrativeRevision===1?0:2})[st.objective]||0;
  const readyRound=hs.objectiveReadyRound,stable=settleRounds===0||readyRound!==undefined&&b.round-readyRound>=settleRounds;
  complete=complete&&b.round>=minimumRound&&stable;
  if(objectiveReady&&settleRounds&&!stable)summary+=` · ${st.objective==='ledger'?'장부를 챙겨 철수':st.objective==='rescue3'?'구조한 주민 보호':'진과 주변 안정화'} ${Math.min(settleRounds,Math.max(0,b.round-(readyRound??b.round)))}/${settleRounds}턴`;
@@ -55,17 +56,17 @@ const briefings={
  2:[['설오','행렬이 저 아래 길을 통과할 때까지 높은 놈부터 끊겠습니다.',{focus:'objective'}]],
  3:[['담허','장부는 움막 안에 있겠지. 먼저 길에 붙은 것부터 떼어내세.']],
  4:[['휘겸','피란민이 나올 때마다 내가 문 앞에서 맞겠소. 그 길로 몰리는 놈들을 막아주시오.',{focus:'objective'}]],
- 5:[['설오','받이진을 세우면 폭포 뒤 고리쇠는 내가 쏘겠습니다.',{focus:'seal',onlyWhile:'sealsIntact'}]],
+ 5:[],
  6:[['휘겸','운반대는 내가 붙들겠소. 앞길을 열어주시오.',{focus:'objective'}]],
  7:[['안내','주민 곁으로 이동한 뒤 E 또는 구조 버튼으로 구출하세요.',{kind:'guide'}]],
- 8:[['담허','상여 자체보다 안에 든 것을 받을 곳이 필요하네. 결박부터 끊세.',{focus:'seal'}]],
- 9:[['휘겸','아래 사람은 내가 내보내겠소. 두 받이진만 준비합시다.']],
- 10:[['담허','소단의 몸은 치지 말게. 주박만 낮추고 받을 자리를 열어야 하네.',{focus:'boss'}]]
+ 8:[],
+ 9:[],
+ 10:[]
 };
 function lines(app){const fallback=app.engine.heroesAlive()[0]?.name||'설오';return(briefings[app.stage.id]||[]).map(([who,text,meta])=>[app.canSpeak(who)?who:fallback,text,meta]);}
 const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모두 처치할 필요는 없습니다.',2:'상여가 도착 지점에 닿도록 앞길을 엄호하세요. 길에서 떨어진 적은 남아도 됩니다.',3:'장부 곁에서 E 또는 장부 확인 버튼을 누르세요. 확보 후 한 턴 동안 일행을 지키며 철수합니다.',4:'피란민이 빠져나가는 여덟 턴 동안 문을 지키세요. 남은 적 수와 관계없이 대피가 끝나면 완료됩니다.',5:'담허로 받이진 안에서 E를 한 번 누르세요. 다음 턴부터는 그 자리에서 공격할 수 있습니다. 이동·도약으로 진을 벗어나면 물틈이 닫힙니다. 설오는 받이진 오른쪽의 돌선반으로 도약해 올라가 고리쇠를 겨누세요. 조준선의 첫 충돌점이 적이면 먼저 제압하고, 바위면 선반 위 위치나 각도를 조정하세요. 고리쇠는 여러 번 맞혀 내구도를 모두 깎아야 합니다. 부순 뒤 한 턴 동안 진을 안정시킵니다.',6:'운반대에 접근하고 교각귀를 제압한 뒤 도착 지점까지 호송하세요.',7:'주민 곁에서 E 또는 구조 버튼을 누르세요. 바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. 속빈 줄기에서는 왼쪽 끝을 벗어나지 말고 조금 안쪽에서 방향키를 놓고 제자리 도약하세요. 머리 위 비스듬한 뿌리에 내려앉은 뒤 오른쪽 위로 걸으면 윗사당에 닿습니다. 세 사람을 구출한 뒤 두 턴 동안 주민들을 지키며 대피를 돕습니다.',8:'결박을 끊고 빈 상여 본체를 제압하세요. 한 턴 동안 원혼을 수습하면 주변 적이 남아도 완료됩니다.',9:'두 받이진을 설치한 뒤 두 턴 동안 유지하세요. 진을 준비하고 생존하는 것이 목표입니다.',10:'두 받이진을 활성화하고 ‘소단의 주박’으로 표시된 대상을 공격하세요. 협력 전의 공격은 소단을 쓰러뜨리지 않고 주박을 약화시킵니다. 협력이 시작되면 소단을 향한 공격을 멈추세요. 소단은 혼매듭을 붙들어 이동·공격할 수 없습니다. 밀려드는 적을 막으며 최소 여섯 차례의 적 턴이 끝날 때까지 소단을 보호하세요. 소단이 쓰러지면 실패합니다.'};
 // Saved historical/custom maps may intentionally lack the new recovery root.
-function guideFor(app){let text=guides[app.stage.id];if(app.stage.id===7&&!app.engine?.b.terrain.some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
+function guideFor(app){let text=guides[app.stage.id];if(app.engine?.b.honroNarrativeRevision===1&&app.stage.id===9)return '두 받이진을 설치해 소단이 붙든 힘을 나눠 받으세요.';if(app.engine?.b.honroNarrativeRevision===1&&app.stage.id===10)return '사람과 떨어진 바깥 주박을 공격하세요. 소단이 맡긴 뒤에는 양쪽 전각에서 오는 적을 막아 의식을 지키세요.';if(app.stage.id===7&&!app.engine?.b.terrain.some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
 const guideFocus=['exit','objective','interact','objective','interact','objective','interact','seal','interact','interact'];
 function entry(app,options={}){const short=state(app.engine.b,app.stage).currentInstruction;
  if(app.stage.act>=2){const rows=(app.stage.act===2?G.HonroAct2:G.HonroAct3).entry(app,options),preparation=G.HonroStakeCrossing?.preparationLines(app.engine.b)||[];rows.splice(Math.max(0,rows.length-1),0,...preparation);return rows.map(row=>row[2]?.kind==='guide'?[row[0],short||row[1],row[2]]:row);}
