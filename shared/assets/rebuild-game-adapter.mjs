@@ -149,6 +149,9 @@ export class HonroPoseVisual{
     // Translate the entire shoulder/arm/weapon chain together, never squash it.
     for(const key of ['pelvis','thorax','rearHip','frontHip','rearShoulder','frontShoulder','rearElbow','frontElbow','rearHand','frontHand'])crouch[key][1]+=amount;
     for(const side of ['rear','front']){crouch[side+'Knee'][0]+=12;crouch[side+'Knee'][1]+=12;}
+    // Damheo keeps the staff tip resting on the platform while bending beneath
+    // the grip; lowering the whole staff would drive it through the support.
+    if(this.asset.character_id==='damheo'){crouch.frontHand[1]-=amount;crouch.frontElbow[1]-=amount*.6;}
     crouch.contacts=['rear','front'];crouch.draw=crouch.arrow=crouch.spirit=crouch.qi=crouch.spiritAlpha=crouch.qiAlpha=0;
     let target;
     if(d.phase==='prepare'){
@@ -160,13 +163,22 @@ export class HonroPoseVisual{
       const p=poseClamp(d.elapsed/.26),compression=p<.24?p/.24:1-(p-.24)/.76;
       target=this.api.blendPoseTargets(idle,crouch,.55+.45*compression);
       if(p>.24)target=this.api.blendPoseTargets(crouch,idle,poseClamp((p-.24)/.76));
+      if(s.mode!=='drop-land')s.dropLandFrom=s.lastTargets?structuredClone(s.lastTargets):null;
+      if(s.dropLandFrom&&d.elapsed<.09){
+        const from=structuredClone(s.dropLandFrom),delta=target.pelvis.map((v,i)=>v-from.pelvis[i]);
+        for(const key of ['pelvis','thorax','rearShoulder','frontShoulder','rearElbow','frontElbow','rearHand','frontHand'])from[key]=from[key].map((v,i)=>v+delta[i]);
+        const blend=this.api.blendPoseTargets(from,target,poseClamp(d.elapsed/.09));
+        for(const key of ['thorax','rearShoulder','frontShoulder','rearElbow','frontElbow','rearHand','frontHand','weapon','frontHandAngle','rearHandAngle','frontArmPlane','rearArmPlane','rearArmLayer'])target[key]=blend[key];
+        if(this.asset.character_id==='damheo')target.frontHand[1]=Math.min(idle.frontHand[1],target.frontHand[1]);
+      }
       // Contact is already physical: both soles stay at their real landing plane.
       target.rearFoot=[...idle.rearFoot];target.frontFoot=[...idle.frontFoot];target.contacts=['rear','front'];s.mode='drop-land';
     }
     const sample=this.api.solvePose(this.asset,target),lowering=Math.max(0,target.pelvis[1]-idle.pelvis[1]);
-    if(d.phase!=='fall'){
+    if(d.phase!=='fall'||d.elapsed<.16){
+      const fold=lowering*(d.phase==='fall'?1-poseClamp(d.elapsed/.16):1);
       const ground=Math.max(idle.rearFoot[1],idle.frontFoot[1]);
-      for(const side of ['rear','front']){const key=side+'_cloth',part=this.by[key],m=sample.poses[key]?.matrix;if(!part||!m)continue;const scale=Math.max(.3,1-lowering/(ground-part.pivot[1])),a=m[2],b=m[3];m[2]*=scale;m[3]*=scale;m[4]+=(a-m[2])*part.pivot[1];m[5]+=(b-m[3])*part.pivot[1];}
+      for(const side of ['rear','front']){const key=side+'_cloth',part=this.by[key],m=sample.poses[key]?.matrix;if(!part||!m)continue;const scale=Math.max(.3,1-fold/(ground-part.pivot[1])),a=m[2],b=m[3];m[2]*=scale;m[3]*=scale;m[4]+=(a-m[2])*part.pivot[1];m[5]+=(b-m[3])*part.pivot[1];}
     }
     return sample;
   }

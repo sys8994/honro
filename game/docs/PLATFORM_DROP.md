@@ -20,4 +20,7 @@
 - `node tests/platform-drop.mjs`: 59개 실제 엔진 fixture; 네 동행·다섯 dt·얇은 하층·겹친/혼합 seam·경사·동일 polygon 아래층·반복입력·상태 취소.
 - 기존 `one-way-platform-physics`: 140개, `ground-contact`: 2,090개 통과. TypeScript 검사 통과.
 - 독립 검수의 271개 synthetic 물리 조건 통과. 이는 정상 캠페인 플레이 증거가 아니다.
-- 저장 중간시점, Native Canvas 모션, 실제 브라우저 HUD/Game/Playtest, 전체 verify, master 및 Pages 검수는 첫 checkpoint 이후 진행 중이다.
+- `node tests/platform-drop-save.mjs`: 네 동행의 준비/낙하/착지 28개 중간시점을 실제 App export/import/Continue로 각각 두 번 재개하여 위치·속도·자원·접촉 edge 보존 확인.
+- Native Canvas 네 동행 × 양방향 자세표에서 발 고정, 팔/다리 관절·무기 grip 유지, 낙하 중 비접지를 수치와 이미지로 확인. 담허 지팡이 끝의 준비 관통을 없애고 낙하→착지 상체를 90ms에 걸쳐 이어 준다.
+- `node --expose-gc tests/platform-drop-motion.mjs`는 자세표에 더해 동일 world/camera의 두 발판 사이 6단계 그림을 만든다. 추가 world-frame 첫 실행은 환경 메모리 부족으로 exit 137 중단되어 미검증이다. 후속 순차 재실행이 필요하다.
+- 두 HTML 빌드 완료. 실제 브라우저 HUD/Game/Playtest, 전체 verify, master 및 Pages 검수는 환경 자원 복구 뒤 진행 중이다. 중단/미실행을 통과로 세지 않는다.
