@@ -43,13 +43,17 @@ function prepareWaves(app){const b=app.engine.b;if(!active(b)||ended(app)||pause
  const source='hold-road-'+(h?.spawned||0),m=memory(b),at=b.honroQuarrySpec?.entries?.[source];if(!at||m.warnings[source]||m.entries[source])return;m.warnings[source]={serial:serial(b),round:b.round,side:at.side};app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 진입로를 살피세요.');app.dirty=true;
 }
 
-function prepareRoutePressure(app){const b=app.engine.b,m=memory(b),source='hold-road-0',at=b.honroQuarrySpec?.entries?.[source];
- if(!at||m.entries[source]||!A.memory(b).done.sign||!signSceneDone(b))return;
- if(!m.warnings[source]){m.warnings[source]={serial:serial(b),round:b.round,side:at.side};app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 길목을 살피세요.');app.dirty=true;return;}
- if(!app.actorBoundary||serial(b)<=m.warnings[source].serial||!safe(app))return;
- // One finite existing entry, not the retired four-round defense or eight-kill
- // gate. Reaching either valid exit never waits for this pressure to spawn.
- W.execute(app,{type:'spawn',kind:'minecart',n:3,x:at.x,y:at.y,source});
+function prepareRoutePressure(app){const b=app.engine.b,m=memory(b),source=sources.find(id=>!m.entries[id]),at=b.honroQuarrySpec?.entries?.[source];
+ if(!source||!at||!A.memory(b).done.sign||!signSceneDone(b)||Object.values(m.entries).some(v=>v.round===b.round))return;
+ if(!m.warnings[source]){m.warnings[source]={serial:serial(b),round:b.round,side:at.side,offered:{}};app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 길목을 살피세요.');app.dirty=true;}
+ const warning=m.warnings[source],u=app.engine.active;warning.offered??={};
+ if(b.phase==='aim'&&b.side===0&&hero(u)&&!u.acted)warning.offered[u.id]=true;
+ const actor=app.actorBoundary&&app.engine.unit(app.actorBoundary);
+ if(hero(actor)&&actor.acted&&warning.offered[actor.id]&&serial(b)>warning.serial)warning.opportunity??={id:actor.id,serial:serial(b),round:b.round};
+ if(!warning.opportunity||!app.actorBoundary||!safe(app))return;
+ // The existing finite 3/3/2 minecart population stays available. Neither
+ // reaching an exit nor completing this chapter waits for all eight to spawn.
+ W.execute(app,{type:'spawn',kind:'minecart',n:source==='hold-road-6'?2:3,x:at.x,y:at.y,source});
 }
 
 const execute=W.execute;W.execute=function(app,action){const b=app.engine?.b,source=action?.source;if(!active(b)||action?.type!=='spawn'||!sources.includes(source))return execute(app,action);

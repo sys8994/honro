@@ -11,7 +11,7 @@ function author(project){return {...project,stages:project.stages.map(original=>
  }return st;
 })};}
 const contentFor=G.HonroObjectiveRevision.contentFor;
-G.HonroObjectiveRevision.contentFor=function(b,st){if(active(b)&&b.honroNarrativeContent)return b.honroNarrativeContent;
+G.HonroObjectiveRevision.contentFor=function(b,st){if(active(b)&&b.honroNarrativeContent){const snapshot=b.honroNarrativeContent,sign=b.honroStage===12&&b.honroState?.quarry?.signLines;return sign?{...snapshot,beats:{...snapshot.beats,sign:clone(sign)}}:snapshot;}
  const result=contentFor(b,st);
  // Existing bespoke chapter snapshots and earlier objective/split revisions
  // remain their own authority. Only the old unsnapshotted current story needs
@@ -31,7 +31,17 @@ function prepareFresh(b){if(!active(b))return;const st=G.HONRO_CONTENT.stages[b.
  }
 }
 function updateConvoy(b){for(const u of b.honroConvoyActors||[]){const leader=b.units.find(v=>v.id===u.honroConvoyMember.target);if(!leader)continue;const x=leader.x+u.honroConvoyMember.dx,hit=G.HonroMapEngine.surfaceY(b.terrain,x,leader.y);if(!hit||Math.abs(hit.y-leader.y)>160)continue;Object.assign(u,{x,y:hit.y,moving:leader.moving||0,facing:leader.facing||1,honroVisualOnly:true});}}
-function tick(app,dt){const b=app.engine.b;if(!active(b))return;if(!app.dialogue)updateConvoy(b);const a=b.honroState.act2;if(!a?.drainRevealPending)return;
+function pressure(app){const e=app.engine,b=e.b,A=G.HonroAct2,defs=b.honroNarrativePressure;if(!defs?.length||app.done||['won','lost'].includes(b.phase)||app.dialogue||app.charging||app.modal?.classList.contains('open'))return;
+ const mem=b.honroState.narrativePressure??={warnings:{},groups:{}},serial=b.honroState.actorTurnSerial||0;
+ for(const def of defs){if(!A.memory(b).done[def.after])continue;const group=mem.groups[def.id]??={spawned:0};if(group.spawned>=def.count||group.lastRound===b.round)continue;
+  const source=def.id+'-'+group.spawned;let w=mem.warnings[source];if(!w){w=mem.warnings[source]={serial,round:b.round,offered:{}};if(b.honroStage===16)G.HonroStage16Temple.memory(b).warnings[source]=w;app.event(def.warning||'지나온 길에서 들림이 움직인다. 다음 행동으로 사선을 살피세요.');app.dirty=true;}
+  const u=e.active;if(b.phase==='aim'&&b.side===0&&u?.side===0&&!u.summoned&&!u.enthrall&&!u.acted)w.offered[u.id]=true;
+  const actor=app.actorBoundary&&e.unit(app.actorBoundary);if(actor?.side===0&&!actor.summoned&&!actor.enthrall&&actor.acted&&w.offered[actor.id]&&serial>w.serial)w.opportunity??={id:actor.id,serial,round:b.round};
+  if(!w.opportunity||!app.actorBoundary||b.projectiles.length||b.volley||e.settleBusy()||['flight','review','summon','ally'].includes(b.phase))return;
+  const n=Math.min(3,def.count-group.spawned);if(A.wave(app,source,def.kind,n,def.id,def.eliteEvery||4)){group.spawned+=n;group.lastRound=b.round;}return;
+ }
+}
+function tick(app,dt){const b=app.engine.b;if(!active(b))return;if(!app.dialogue)updateConvoy(b);pressure(app);const a=b.honroState.act2;if(!a?.drainRevealPending)return;
  if(app.dialogue||app.modal?.classList.contains('open')||app.charging||['flight','review','summon','ally'].includes(b.phase)||b.projectiles.length||app.engine.settleBusy())return;
  const ids=b.honroDrainRevealTerrains||[],terrain=ids.map(id=>b.terrain.find(t=>t.id===id));if(terrain.some(t=>!t))return;
  if(terrain.some(t=>b.units.some(u=>!u.dead&&u.hp>0&&G.HONRO_CORE.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01))))return;
@@ -53,5 +63,5 @@ function attach(app,e){if(!active(e.b)||e.b.honroStage!==10||e.honroBindingAttac
  e.hurt=function(u,amount,...args){if(u.id==='boss'&&!e.b.honroState.sodanCoop){if(amount>0)e.fx('text',u.x,u.y-u.h-28,'#d8c995',15,'바깥 붉은 주박을 겨누세요');return;}return hurt(u,amount,...args);};
  e.damageTerrain=function(t,amount,...args){const before=t.hp,out=damage(t,amount,...args);if(t.id===bindingId&&t.hp<before){const s=e.b.honroState.sodanBinding;s.lastHitTime=e.b.time||0;s.hitCount=(s.hitCount||0)+1;s.remaining=Math.max(0,t.hp/t.maxHp);e.fx('ring',t.x+t.w*.5,t.y+t.h*.5,'#c96865',48);app.event(t.broken?'바깥 주박이 느슨해졌다. 소단이 양옆 진을 살핀다.':'붉은 매듭이 풀린다.');}return out;};
 }
-G.HonroNarrativeRevision={active,author,prepareFresh,reveal,finishStory,bindingId,bindingReady,beforeCooperation,bodyBound,attach,updateConvoy,tick};
+G.HonroNarrativeRevision={active,author,prepareFresh,reveal,finishStory,bindingId,bindingReady,beforeCooperation,bodyBound,attach,updateConvoy,pressure,tick};
 })(globalThis);

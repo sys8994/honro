@@ -11,6 +11,14 @@ export function finishPlanning<T>(steps:Generator<void,T,unknown>):T{let next=st
 
 export const FLY_MOVE_BUDGET=280;
 export function flyingEnemy(u:Unit){return u.side===1&&u.fixed&&['bat','crow','lantern'].includes((u as any).honroType);}
+// Only the authored alternative-exit guards defend this local territory.
+// This limits voluntary pursuit, never the player's knockback or projectiles.
+export function routeGuardAllows(e:Engine,u:Unit,p:Vec){
+ const guard=(u as any).honroRouteGuard,b=e.b as any;
+ if(!guard||b.honroCustom||b.honroRouteSpec?.revision!==1||u.side!==1||(u as any).enthrall)return true;
+ const distance=Math.hypot(p.x-guard.x,p.y-guard.y),now=Math.hypot(u.x-guard.x,u.y-guard.y);
+ return distance<=guard.radius||distance<now;
+}
 /** Full body clearance, including slopes and thin ceilings. Used by both planning and motion. */
 export function flightClear(e:Engine,u:Unit,p:Vec){
  const pad=8,left=p.x-u.r-pad,right=p.x+u.r+pad,head=p.y-u.h-pad,feet=p.y+pad;
@@ -47,7 +55,7 @@ function* planFlight(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|unde
  const poses:Stance[]=[],start={x:u.x,y:u.y};
  for(const distance of [budget*.5,budget])for(let i=0;i<12;i++){
   const angle=i*Math.PI/6,p={x:u.x+Math.cos(angle)*distance,y:u.y+Math.sin(angle)*distance};
-  if(flightLeg(e,u,p))poses.push({...p,cost:distance,path:[{...p,jump:false}],score:positionScore(e,u,target,p)-distance*.015});yield;
+  if(routeGuardAllows(e,u,p)&&flightLeg(e,u,p))poses.push({...p,cost:distance,path:[{...p,jump:false}],score:positionScore(e,u,target,p)-distance*.015});yield;
  }
  if(!poses.length)return;
  const stay=positionScore(e,u,target,start)+(yield* shotOpportunity(e,u,target,start));
@@ -64,7 +72,7 @@ function advanceFlight(e:Engine,u:Unit,dt:number){
  if(d<1){stop();return;}
  let left=Math.min(d,180*dt,u.moveLeft);
  while(left>1e-6){const step=Math.min(4,left),at={x:u.x+dx/d*step,y:u.y+dy/d*step};
-  if(!flightClear(e,u,at)){stop();return;}
+  if(!routeGuardAllows(e,u,at)||!flightClear(e,u,at)){stop();return;}
   u.x=at.x;u.y=at.y;u.moveLeft=Math.max(0,u.moveLeft-step);left-=step;
  }
  u.moving=.12;if(Math.abs(dx)>1)u.facing=Math.sign(dx);u.vx=u.vy=0;
@@ -175,6 +183,7 @@ function* traceTravelSteps(e:Engine,u:Unit,from:Vec,to:Vec,budget:number):Genera
 function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
  const found:Vec[]=[];
  const add=(x:number,y:number)=>{
+  if(!routeGuardAllows(e,u,{x,y}))return;
   if(x<30||x>e.b.width-30||Math.abs(x-u.x)>u.moveLeft||y<u.y-420||y>u.y+260)return;
   if(Math.hypot(x-u.x,y-u.y)<22||found.some(p=>Math.abs(p.x-x)<23&&Math.abs(p.y-y)<18))return;
   const foot=e.surface(x,y-3,y+4);if(!foot)return;

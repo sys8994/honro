@@ -87,12 +87,13 @@ function tuneEncounter(u,stage=0){
  if(u.honroAct2Elite&&!u.honroAct2Boss&&u.honroType!=='hoist'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.combatBaseHp*=1.55;u.attack*=1.15;u.combatBaseAttack*=1.15;u.honroXpWeight=(u.honroXpWeight||1)*1.6;u.name='정예 '+u.name;}
  if(late){scaleEncounter(u,.85,.65);u.honroAct2LateTuned=true;}
 }
-function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&b.terrain.find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=index<0?list.length:index;
+function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&b.terrain.find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=list.filter(q=>!q.optional&&satisfied(b,q)).length;
  const target=s?{id:s.id,kind:s.kind==='destroy'?'seal':s.kind==='defeat'?'boss':s.kind==='reach'||s.kind==='escort'?'exit':'interact',x:u?.x??m?.x??(t?t.x+t.w/2:0),y:u?u.y-u.h:m?.y??t?.y??0,label:s.label,unitId:u?.id,box:t}:null;
  let detail='';
  if(s?.kind==='clear'){const foes=enemiesFor(b,s),hero=b.units.find(u=>u.id===b.active),next=foes.filter(u=>visible(b,u)).sort((u,v)=>Math.hypot(u.x-(hero?.x||0),u.y-(hero?.y||0))-Math.hypot(v.x-(hero?.x||0),v.y-(hero?.y||0)))[0];detail=' · 남은 적 '+foes.length;if(next)Object.assign(target,{x:next.x,y:next.y-next.h,kind:'boss'});}
  if(s?.kind==='hold'){const hold=memory(b).holds?.[s.id];detail=` · ${hold?.progress||0}/${s.rounds}턴${hold?.contested?' · 진 안의 적을 밀어내세요':hold?.guarded?' · 방어 중':' · 표시 범위에서 유지'}`;}
- const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||b.terrain.find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
+ const parallel=s?.parallelGroup?readySteps(b).filter(q=>q.parallelGroup===s.parallelGroup).map(q=>{const p=marker(b,q.id)||{};return{id:q.id,kind:'interact',x:p.x||0,y:p.y||0,label:q.label};}):null;
+ const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||b.terrain.find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
 }
 function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=app.engine.active;
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'E · 낙석 치우기'};
@@ -252,5 +253,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,satisfied,subdue,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
+G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,satisfied,subdue,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
 })(globalThis);

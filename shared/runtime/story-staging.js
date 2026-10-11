@@ -11,6 +11,7 @@ function point(b,p,context={}){
  if(p.actor){const id=p.actor==='$spirit'?context.spirit:p.actor,u=actor(b,id)||b.honroStaging?.hidden?.[id];if(alive(u))q={x:u.x,y:u.y-(p.feet?0:u.h*.5)};}
  else if(p.origin)q=context.origins?.[p.origin];
  else if(p.between){const points=p.between.map(id=>point(b,{actor:id},context)).filter(Boolean);if(points.length)q={x:points.reduce((n,v)=>n+v.x,0)/points.length,y:points.reduce((n,v)=>n+v.y,0)/points.length,spanX:Math.max(...points.map(p=>p.x))-Math.min(...points.map(p=>p.x)),spanY:Math.max(...points.map(p=>p.y))-Math.min(...points.map(p=>p.y))};}
+ else if(p.markers){const points=p.markers.map(id=>point(b,{marker:id},context)).filter(Boolean);if(points.length)q={x:points.reduce((n,v)=>n+v.x,0)/points.length,y:points.reduce((n,v)=>n+v.y,0)/points.length,spanX:Math.max(...points.map(v=>v.x))-Math.min(...points.map(v=>v.x)),spanY:Math.max(...points.map(v=>v.y))-Math.min(...points.map(v=>v.y))};}
  else if(p.anchor)q=b.honroMapAnchors?.[p.anchor];
  else if(p.marker)q=b.honroMarkers?.find(m=>m.id===(p.marker==='$trigger'?context.marker:p.marker));
  else if(Number.isFinite(p.x)&&Number.isFinite(p.y))q=p;
