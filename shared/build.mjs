@@ -15,13 +15,14 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['content','story-content','terrain-space','map-engine','battlefield-layouts',
-  'split-campaign','stake-crossing','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical'];
+  'split-campaign','stake-crossing','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeParts({vector=true,render=true,app=false}={}) {
   const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/^[0-9]{2}.*\.mp3$/i.test(f)).sort();
   if(bgm.length!==5||bgm.some((f,i)=>!f.startsWith(String(i+1).padStart(2,'0'))))throw Error('BGM prefixes 01 through 05 required');
   const parts=[await read('shared/runtime/fullscreen-input.js'),'globalThis.HONRO_BGM_TRACKS='+JSON.stringify(bgm.map(f=>'assets/bgm/'+f))+';',await buildCore(), 'globalThis.HONRO_BALANCE='+await read('game/config/balance.json')+';'];
+  parts.push('globalThis.HONRO_NARRATIVE_V0='+await read('shared/data/narrative-legacy-v0.json')+';');
   parts.push('globalThis.HONRO_SPLIT_V1='+await read('shared/data/split-campaign-v1.json')+';');
   parts.push('globalThis.HONRO_OPEN_STRUCTURES='+await read('shared/data/open-structures.json')+';');
   parts.push('globalThis.HONRO_WATERWORKS_V2='+await read('shared/data/waterworks-v2-content.json')+';');
@@ -30,7 +31,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
   const project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
   applyOpenStructures(project);
-  parts.push('globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'));');
+  parts.push('globalThis.HONRO_PROJECT=HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+')));');
   if(vector){
     await buildParty();
     parts.push(await read('shared/runtime/party-rig.js'));

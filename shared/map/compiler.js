@@ -57,6 +57,8 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  // Compile the same initial elite roster for Game, Stage View and Playtest.
  // attach() remains idempotent for saved battles and later reinforcement waves.
  if(b.honroAct2Revision>=2)for(const u of b.units)if(u.side===1)G.HonroAct2?.tuneEncounter(u,b.honroStage);
+ G.HonroRouteBranches?.prepareFresh(b,profile);
+ G.HonroNarrativeRevision?.prepareFresh(b);
  G.HonroStoryStaging?.prepareFresh(b);
  return b;
 }

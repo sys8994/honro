@@ -10,15 +10,16 @@ const sameFloor=(u,p,r=260)=>!!p&&Math.abs(u.y-p.y)<=150&&Math.hypot(u.x-p.x,(u.
 function initialize(b){if(!active(b))return;G.HonroObjectiveRevision?.registerScenes();memory(b);b.honroAct3Steps??=structuredClone(G.HonroObjectiveRevision?.storedSteps(b,3)||H.stages[b.honroStage-1].steps);
  for(const u of b.units)if(u.honroProtected)u.honroCivilian=true;
 }
-function sourceIssue(b){const list=steps(b);if(!list.length)return'이 장의 목표 자료가 준비되지 않았습니다.';
+function sourceIssue(b){const routeIssue=G.HonroRouteBranches?.sourceIssue(b);if(routeIssue)return routeIssue;const list=steps(b);if(!list.length)return'이 장의 목표 자료가 준비되지 않았습니다.';
  for(const s of list){if(!marker(b,s.id))return'목표 위치가 준비되지 않았습니다: '+s.id;if(s.kind==='destroy'&&!b.terrain.some(t=>t.id===s.id))return'파괴 장치가 준비되지 않았습니다: '+s.id;if(s.target&&!b.units.some(u=>u.id===s.target))return'동행 대상이 준비되지 않았습니다: '+s.target;if(s.opens&&!b.terrain.some(t=>t.id===s.opens))return'통로가 준비되지 않았습니다: '+s.opens;if(s.wave&&!marker(b,'wave-'+s.id))return'방어 경로가 준비되지 않았습니다: '+s.id;}return null;
 }
 function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;
+ if(s.kind==='route')return !!b.honroRouteChoice?.selectedRoute;
  if(s.kind==='destroy')return !!b.terrain.find(t=>t.id===s.id)?.broken;
  if(s.kind==='hold'){const h=a.holds[s.id];return !!h&&h.progress>=s.rounds&&h.spawned>=(s.wave?.count||0);}
  return false;
 }
-const current=b=>steps(b).find(s=>!memory(b).done[s.id]);
+const current=b=>steps(b).find(s=>!s.optional&&!memory(b).done[s.id]);
 const readySteps=b=>{const s=current(b);return !s?[]:s.parallelGroup?steps(b).filter(q=>q.parallelGroup===s.parallelGroup&&!memory(b).done[q.id]):[s];};
 const reunionStage=b=>b.honroSplit?.version===2?28:27;
 const fireScenario=b=>b.honroStage===reunionStage(b)&&steps(b).some(s=>s.id==='water-release')&&steps(b).some(s=>s.id==='fire-screen');
@@ -29,7 +30,7 @@ function target(b,s){const m=marker(b,s.id),t=s.kind==='destroy'&&b.terrain.find
 function state(b){const list=steps(b),s=current(b),a=memory(b),issue=sourceIssue(b),all=list.map(q=>({...target(b,q),done:!!a.done[q.id]}));let detail='';
  if(s?.kind==='hold'){const h=a.holds[s.id];detail=` · ${h?.progress||0}/${s.rounds}턴${h?.contested?' · 가까운 적을 밀어내세요':h?.guarded?' · 지키는 중':' · 같은 층의 표시 범위에서 유지'}`;}
  if(fireScenario(b)&&!firesStopped(b))detail+=` · 소각까지 ${Math.max(0,12-(a.fireTurns||0))} 적 턴`;
- const targets=readySteps(b).map(q=>target(b,q));
+ const targets=G.HonroRouteBranches?.targets(b,s)||readySteps(b).map(q=>target(b,q));
  if(s?.kind==='escort'){const u=b.units.find(u=>u.id===s.target);if(alive(u))targets.push({id:u.id,kind:'objective',x:u.x,y:u.y-u.h,unitId:u.id,label:'기록 운반자 · 가까이 동행'});}
  const complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${list.filter(q=>a.done[q.id]).length}/${list.length} · ${s?.parallelGroup==='fire-control'?'불길 진압 '+list.filter(q=>q.parallelGroup==='fire-control'&&a.done[q.id]).length+'/2 · 설오 수문 / 휘겸 차단막'+detail:s?s.label+detail:'모든 목표 완료'}`,targets:targets.filter(t=>Number.isFinite(t.x)&&Number.isFinite(t.y)),allTargets:all};
 }
@@ -97,12 +98,12 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['wo
  let s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  // Commit the reunion at the same actor boundary that opens its Story lock.
  // A dash crossing the circle earlier in the action is not a completed meeting.
- if(s){const m=marker(b,s.id);if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&[1,2].includes(b.honroSplit?.version),present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;const crossing=G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.crossings(b).some(c=>c.markerId===s.id);if(G.HonroStakeCrossing?.allowsStep(b,s.id)!==false&&safeBoundary&&present&&group.length&&(crossing||(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r)))))completeStep(app,s);}else if(s.kind==='escort')escortTick(app,s,m,dt);}
+ if(s){const m=marker(b,s.id);if(s.kind==='route')G.HonroRouteBranches?.commit(app,s);else if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&[1,2].includes(b.honroSplit?.version),present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;const crossing=G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.crossings(b).some(c=>c.markerId===s.id);if(G.HonroStakeCrossing?.allowsStep(b,s.id)!==false&&safeBoundary&&present&&group.length&&(crossing||(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r)))))completeStep(app,s);}else if(s.kind==='escort')escortTick(app,s,m,dt);}
  s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  const group=heroes(b);
  G.HonroEncounters.update(app,dt,{progress:Math.max(0,...group.map(u=>u.x)),height:Math.min(b.height,...group.map(u=>u.y)),broken:b.terrain.filter(t=>t.broken).length,collected:b.honroMarkers.filter(m=>m.collected).length});
  app.checkMission(e);
 }
-function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',presentation:'inline'}]),...app.stage.story,['안내',app.stage.guide,{kind:'guide',storyId:'act3-guide-'+app.stage.id,storyTitle:app.stage.name,focus:state(app.engine?.b||{honroStage:app.stage.id,honroState:{},honroMarkers:[],terrain:[],units:[]}).targets[0]?.kind||'interact'}]];}
+function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',presentation:'inline'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,['안내',app.stage.guide,{kind:'guide',storyId:'act3-guide-'+app.stage.id,storyTitle:app.stage.name,focus:state(app.engine?.b||{honroStage:app.stage.id,honroState:{},honroMarkers:[],terrain:[],units:[]}).targets[0]?.kind||'interact'}]];}
 G.HonroAct3={active,initialize,marker,steps,memory,current,state,sourceIssue,interactionTarget,eligibility,use,attach,tick,failure,entry,satisfied,heroes,sameFloor,readySteps,firesStopped};
 })(globalThis);

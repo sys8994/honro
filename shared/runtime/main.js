@@ -433,6 +433,7 @@
             this.stage = st;
             if(!training){if(st.act===2)G.HonroAct2.recruit(this.profile);G.HonroProgression.repairRecruits(this.profile);}
             const p = clone(this.profile);
+            if(!training&&this.honroRouteRetry){p._honroRouteRetry=clone(this.honroRouteRetry);this.honroRouteRetry=null;}
             if (training) {
                 p.recruited = ROSTER.slice();
                 for (const c of ROSTER) {
@@ -449,6 +450,7 @@
             }
             if (!training) p.recruited = G.HonroSplitCampaign.legacy(this.profile,st.id)?G.HonroSplitCampaign.roster(st.id,1):G.HonroStageRules.stageParty(st.id);
             const battle=makeWorld(st, p, training, this.trainingClass, skill || this.trainingSkill);
+            if(!training&&battle.honroEntryVariant)delete this.profile.honroRouteHandoff;
             if(!training)battle.honroJourneyReplay=!!this.profile.cleared[st.id];
             if(!training)delete this.profile.honroCampPending;
             this.trainingMusicSession=training?(trainingMusic||battle.session):null;
@@ -467,7 +469,7 @@
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b) { G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b) { this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
@@ -479,7 +481,7 @@
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row"><b>${this.training ? '허공터' : this.stage.name}</b>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span id="turn-text"></span></div><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } G.HonroNarrativeRevision?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row"><b>${this.training ? '허공터' : this.stage.name}</b>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span id="turn-text"></span></div><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="event" id="event" hidden></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         continue() { if (!this.profile.honroBattle) {
             this.showRest();
             return;
@@ -551,7 +553,7 @@
             this.profile.honroBattle = null;
             if (won) {
                 const first = !this.profile.cleared[st.id];
-                this.profile.cleared[st.id] = { visits: (this.profile.cleared[st.id]?.visits || 0) + 1, rounds: b.round };
+                this.profile.cleared[st.id] = { visits: (this.profile.cleared[st.id]?.visits || 0) + 1, rounds: b.round, ...(G.HonroRouteBranches?.handoff(b)?{route:G.HonroRouteBranches.handoff(b)}:{}) };
                 if (first) {
                     this.profile.record.push({ place: st.name, text: st.outro.filter(x=>G.HonroStory.allowed(this,x[0])).map(x => x.slice(0,2).join(' · ')).join('\n') });
                 }
@@ -962,6 +964,7 @@
                 case 'stake-retry':
                     G.HonroStakeCrossing.retry(this,'출발 상태로 다시 준비합니다.');break;
                 case 'retry':
+                    if(!this.training)G.HonroRouteBranches?.retry(this);
                     if(this.engine&&!this.training&&!this.done){G.HonroProgression.syncRoster(this.profile,this.engine.b);this.persist();}
                     // Practice owns no campaign snapshot; restarting it must keep the suspended journey.
                     if(!this.training)this.profile.honroBattle = null;

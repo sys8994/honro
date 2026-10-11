@@ -13,14 +13,15 @@ function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('b
  const units=b.units.filter(u=>!before.has(u.id));for(let i=0;i<units.length;i++){const u=units[i];u.aggroUntil=b.round+10;if(i%2===0){u.honroTargetId=boss.id;u.honroTargetUntil=b.round+10;}}
  hs.finaleSites=sites;hs.finaleWaves??=[];hs.finaleWaves.push({index,round:b.round,units:units.map(u=>u.id),sources:actions.map(a=>a.source)});for(const site of sites)e.fx('ring',site.x,site.y-45,'#b85e5b',90);app.event(`${front.label}에서 짐승, ${rear.label}에서 까마귀가 몰려온다 · ${index+1}차 습격`);return true;}
 function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss');if(!sodan||sodan.dead)return;
- if(!hs.sodanCoop){if(!app.actorBoundary||(hs.receivers||0)<2||sodan.hp>sodan.maxHp*.42)return;
+ if(!hs.sodanCoop){if(!app.actorBoundary||(hs.receivers||0)<2)return;
+  if(G.HonroNarrativeRevision?.active(b)){if(!G.HonroNarrativeRevision.beforeCooperation(app))return;}else if(sodan.hp>sodan.maxHp*.42)return;
   const position=ritualPosition(b,sodan);if(!position)return;
   if(!rush(app,0))return;
   hs.sodanBreach={units:hs.finaleWaves[0].units,round:b.round,source:'east'};hs.sodanCoop=true;hs.coopHold=0;hs.finaleLastEnemyEnd=b.teamEnds[1]+(b.side===1?1:0);hs.finaleWave=0;
   channeler(b,sodan,position,.8);e.fx('ring',sodan.x,sodan.y-12,'#deb56e',80);
   b.queue=(b.queue||[]).filter(id=>id!==sodan.id);
   const beforeCoop=l=>l[2]?.storyId?.includes('entry-follow-10-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(beforeCoop));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!beforeCoop(l));
-  app.sayLines(G.HonroStoryContent.cooperation());
+  if(G.HonroNarrativeRevision?.active(b)){hs.sodanBinding.phase='protecting';app.sayLines(G.HonroStoryContent.cooperationDefense?.()||[]);}else app.sayLines(G.HONRO_NARRATIVE_V0?.cooperation||G.HonroStoryContent.cooperation());
  }
  // Old saves retain earned progress, but need six full enemy turns in total.
  if(hs.finaleRevision!==2){const position=ritualPosition(b,sodan);if(position)channeler(b,sodan,position,Math.min(1,sodan.hp/sodan.maxHp));}

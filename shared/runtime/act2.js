@@ -55,14 +55,16 @@ const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.stored
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
 function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const special=G.HonroStage18Bell?.satisfied(b,s);if(special!==null&&special!==undefined)return special;
+ if(s.kind==='route')return !!b.honroRouteChoice?.selectedRoute;
  if(s.kind==='clear'){const plan=G.HonroAct2Plan.forStage(b.honroStage);if(s.cohorts==='all'&&(plan.bossWave&&!a.events['keeper-retaliation']||plan.progressWave&&!a.events['convoy-ambush']))return false;return enemiesFor(b,s).length===0;}
  if(s.kind==='hold'){const h=a.holds?.[s.id];return !!h&&h.progress>=s.rounds&&h.spawned>=(s.wave?.count||0);}
  if(s.kind==='destroy')return !!b.terrain.find(t=>t.id===s.id)?.broken;
  if(s.kind==='defeat'){const u=b.units.find(u=>u.id===s.target);return !!u&&(u.dead||u.honroSubdued);}
  return false;
 }
-function current(b){return steps(b).find(s=>!satisfied(b,s));}
-function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.cohorts==='all'||s.cohorts===u.honroCohort));}
+function current(b){return steps(b).find(s=>!s.optional&&!satisfied(b,s));}
+function readySteps(b){const s=current(b);return steps(b).filter(q=>!satisfied(b,q)&&(q.optional||q.id===s?.id||s?.parallelGroup&&q.parallelGroup===s.parallelGroup)&&(q.requiresDone||[]).every(id=>!!memory(b).done[id]));}
+function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.defeatIds?s.defeatIds.includes(u.id):s.cohorts==='all'||s.cohorts===u.honroCohort));}
 function visible(b,u){if(!u?.honroSpirit||!u.spiritHidden||u.manifested||u.revealSpiritToParty)return true;const viewer=b.units.find(v=>v.id===b.active);return viewer?.side===0?!!viewer.spiritSight:!!b.units.find(v=>v.id===memory(b).viewerId)?.spiritSight;}
 function scaleEncounter(u,hp,attack){const ratio=u.maxHp>0?u.hp/u.maxHp:1;
  u.maxHp=Math.max(1,Math.round(u.maxHp*hp));u.hp=Math.max(u.dead?0:1,Math.round(u.maxHp*ratio));
@@ -85,18 +87,18 @@ function tuneEncounter(u,stage=0){
  if(u.honroAct2Elite&&!u.honroAct2Boss&&u.honroType!=='hoist'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.combatBaseHp*=1.55;u.attack*=1.15;u.combatBaseAttack*=1.15;u.honroXpWeight=(u.honroXpWeight||1)*1.6;u.name='정예 '+u.name;}
  if(late){scaleEncounter(u,.85,.65);u.honroAct2LateTuned=true;}
 }
-function state(b){const list=steps(b),index=list.findIndex(s=>!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&b.terrain.find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=index<0?list.length:index;
+function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&b.terrain.find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=index<0?list.length:index;
  const target=s?{id:s.id,kind:s.kind==='destroy'?'seal':s.kind==='defeat'?'boss':s.kind==='reach'||s.kind==='escort'?'exit':'interact',x:u?.x??m?.x??(t?t.x+t.w/2:0),y:u?u.y-u.h:m?.y??t?.y??0,label:s.label,unitId:u?.id,box:t}:null;
  let detail='';
  if(s?.kind==='clear'){const foes=enemiesFor(b,s),hero=b.units.find(u=>u.id===b.active),next=foes.filter(u=>visible(b,u)).sort((u,v)=>Math.hypot(u.x-(hero?.x||0),u.y-(hero?.y||0))-Math.hypot(v.x-(hero?.x||0),v.y-(hero?.y||0)))[0];detail=' · 남은 적 '+foes.length;if(next)Object.assign(target,{x:next.x,y:next.y-next.h,kind:'boss'});}
  if(s?.kind==='hold'){const hold=memory(b).holds?.[s.id];detail=` · ${hold?.progress||0}/${s.rounds}턴${hold?.contested?' · 진 안의 적을 밀어내세요':hold?.guarded?' · 방어 중':' · 표시 범위에서 유지'}`;}
- const complete=!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:`${done}/${list.length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:target?[target]:[],allTargets:list.map(q=>{const p=marker(b,q.id)||b.terrain.find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
+ const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||b.terrain.find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
 }
-function eligibility(app,m){const b=app.engine.b,s=current(b),a=memory(b),u=app.engine.active;
+function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=app.engine.active;
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'E · 낙석 치우기'};
  if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'E · 주변 원혼등불 밝히기'};
- if(!s||s.id!==m.id)return{ok:false,reason:s?'먼저 '+s.label:'목표 완료'};
- if(['clear','hold','defeat','destroy','reach','escort'].includes(s.kind))return{ok:false,reason:s.label};
+ if(!s)return{ok:false,reason:current(b)?'먼저 '+current(b).label:'목표 완료'};
+ if(['clear','hold','defeat','destroy','reach','escort','route'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
  if(revision2(b)){
   const threats=b.units.filter(v=>v.side===1&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);
@@ -125,7 +127,7 @@ function wave(app,key,kind,n=2,siteKey=key,eliteEvery=4){const e=app.engine,b=e.
  a.events[key]=true;a.pulseRound=b.round;a.pulseUntil=(b.time||0)+1.8;app.event('종의 잔울림을 따라 '+G.HonroWorld.archetypes[kind].name+' 등장');return true;
 }
 function expose(b,until,site,radius=Infinity){for(const u of b.units)if(u.honroSpirit&&!u.dead&&(!site||Math.hypot(u.x-site.x,u.y-site.y)<=radius)){u.manifested=true;u.revealSpiritToParty=true;u.manifestedUntil=Math.max(u.manifestedUntil||0,until);u.formDamageTakenBonus=Math.max(u.formDamageTakenBonus||0,.92);}}
-function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=current(b);
+function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=>q.id===m.id);
  if(!eligibility(app,m).ok)return false;
  if(m.id.startsWith('spirit-lamp')){expose(b,b.round+2,m,m.radius||1200);app.event('원혼등불 · 주변의 혼이 두 턴 동안 형태를 드러낸다.');}
  else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.');}
@@ -185,7 +187,7 @@ function attach(app,e){if(!active(e.b))return;
 }
 function failure(b){if(!active(b))return null;const list=steps(b),a=memory(b);
  if(b.units.some(u=>u.honroProtected&&(u.dead||u.hp<=0)))return '보호하던 주민을 잃었다. 구조 경로를 다시 확보해야 한다.';
- const needed=list.filter(s=>!satisfied(b,s)&&s.requiredClass).map(s=>s.requiredClass);
+ const needed=list.filter(s=>!s.optional&&!satisfied(b,s)&&s.requiredClass).map(s=>s.requiredClass);
  for(const cls of new Set(needed))if(!b.units.some(u=>u.side===0&&u.cls===cls&&!u.dead&&u.hp>0))return H.hero[cls].name+'이 쓰러져 남은 의식을 이어갈 수 없다.';
  return null;
 }
@@ -195,7 +197,7 @@ function firstSpiritEncounter(app,heroes){const b=app.engine?.b,key='act2:first-
  app.profile.seen[key]=true;
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id};
  G.HonroStory.queue(app,[
-  ['설오','저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],
+  ['설오','저기 움직이는 것이 보입니까? 윤곽이 자꾸 흩어집니다.',meta],
   ['휘겸','발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],
   ['소단','혼이에요. 두 분 눈에는 흐려도 제 눈에는 보여요. 아직 길을 찾지 못한 혼이 저기 있어요.',meta],
   ['설오','그럼 우리가 맞설 수 있게 해 줄 수 있나요?',meta],
@@ -221,6 +223,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
   if(app.actorBoundary&&guarded&&!a.events['story:'+s.id]){a.events['story:'+s.id]=true;say(app,s.id+'-start',app.stage.beats?.[s.id+':start']);}
   if(app.actorBoundary&&guarded&&h.spawned<(s.wave?.count||0)&&h.waveRound!==b.round){const n=Math.min(3,s.wave.count-h.spawned),key=s.id+'-'+h.spawned;if(wave(app,key,s.wave.kind,n,s.id,s.wave.eliteEvery)){h.spawned+=n;h.waveRound=b.round;}}
  }
+ if(s?.kind==='route')G.HonroRouteBranches?.commit(app,s);
  if(s?.kind==='reach'&&heroes.some(u=>Math.hypot(u.x-m.x,u.y-m.y)<150))completeStep(app,s);
  if(s?.kind==='escort'&&a.escort){const npc=e.unit('objective'),leader=heroes.filter(u=>u.y<=(npc?.y??0)+160).sort((u,v)=>v.x-u.x)[0];
   if(npc&&!npc.dead&&leader&&leader.x>npc.x+90&&dt>0){e.walk(npc,1,Math.min(dt,.05));npc.moveLeft=900;}
@@ -246,6 +249,6 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  }
  app.checkMission(e);
 }
-function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,satisfied,subdue,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
+function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
+G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,satisfied,subdue,state,eligibility,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter};
 })(globalThis);
