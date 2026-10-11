@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile}from'node:fs/promises';
+const calls=[],g=vm.createContext({HonroScene:class{terrain(c,t){calls.push(['terrain',t.id]);}landmark(c,l){calls.push(['landmark',l.id]);}objectDamage(c,b){calls.push(['damage',b.terrain.map(t=>t.id)]);}}});
+vm.runInContext(await readFile('shared/runtime/story-act1-art.js','utf8'),g);const A=g.HonroAct1StoryArt,c=new Proxy({},{get:(o,k)=>o[k]||(()=>{}),set:(o,k,v)=>(o[k]=v,true)}),scene=new g.HonroScene();scene.ctx=c;scene.time=0;
+const target={id:'cliff-cleat',x:3278,y:2255.529411764706,w:84,h:148,hp:520,maxHp:520},m={id:'receiver-5',type:'receiver',x:1450,y:2851},b={honroNarrativeRevision:1,honroStage:5,honroState:{},honroMarkers:[m],terrain:[target]};scene.battle=b;
+const original=JSON.stringify(b);scene.terrain(c,target);assert.equal(calls.length,0,'fresh ring does not use seal/house painter');
+for(const kind of ['cliffShrine','spiritKnot']){scene.landmark(c,{id:kind,kind:'canonical-element',asset:{kind},x:3320,y:2403.529411764706});}scene.landmark(c,{id:'receiver',kind:'canonical-element',asset:{kind:'receiverStone'},x:1450,y:2851});assert.equal(calls.length,0,'all three overlapping props are suppressed');
+assert(A.marker(scene,m),'receiver marker bypasses the generic building');assert(!A.marker(scene,{type:'rest',x:1450,y:2851}));
+scene.landmark(c,{id:'other-house',kind:'canonical-element',asset:{kind:'cliffShrine'},x:900,y:1800});assert.equal(calls.length,1,'unrelated architecture remains');scene.objectDamage(c,b);assert.deepEqual(calls.at(-1),['damage',[]]);assert.equal(JSON.stringify(b),original);
+delete b.honroNarrativeRevision;scene.terrain(c,target);assert.deepEqual(calls.at(-1),['terrain','cliff-cleat']);assert(!A.marker(scene,m),'legacy marker rendering is unchanged');
+console.log('PASS Fresh markers, anchored props and seal terrain select distinct floor-array/iron-loop art without changing hitboxes; unrelated props and legacy art are retained.');

@@ -2177,3 +2177,9 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - The funeral exposes all three available meetings and guides the nearest compatible one with prerequisites respected. Out-of-order progress is counted accurately.
 - Retired fixed-defense waves remain finite optional pressure: author-provided 13/15/16 budgets and quarry 3/3/2 entries require a real offered player action before safe entry, without becoming completion gates.
 - `tests/narrative-runtime-edges.mjs`: 10 production-runtime predicate/presentation checks PASS. Syntax checks PASS. Independent flight fixture PASS. These are not normal-resource combat or browser evidence; final pressure integration and visual QA remain pending.
+
+### 2026-10-11 · 고리쇠와 받이진의 집 실루엣 제거
+- 원인은 신규 선 그림이 아니라 겹친 세 기존 경로였다: 기본 상호작용 marker의 building(), 5장 고리 위치의 cliffShrine/spiritKnot 장식, honroSeal의 부적 석주 그림. 신규 서사 revision에서만 해당 실제 좌표의 renderer 선택을 바꿨다.
+- 받이진은 준비 전에도 바닥 이중 진/분할선으로 보이며 활성화하면 같은 도식이 밝아진다. 5·9·10장의 같은 좌표 receiverStone 장식과 generic marker 집을 함께 제거했다. 3장 장부 marker도 작은 책으로 식별한다.
+- 고리는 기존 84×148 공격 판정 전체와 일치하는 철제 받침판에 돌출된 큰 고리로 그린다. 고리 구멍 뒤에도 실제로 맞는 철판이 보이므로 빈 공간 명중이 아니다. 기존 충돌·피격·내구도·상호작용 좌표와 저장은 바꾸지 않았다. 파손 반응은 금속 눌림으로 그리며 일반 돌 균열을 중복하지 않는다.
+- `tests/act1-object-art.mjs`에서 실제 renderer 선택의 fresh/legacy 분기, 겹친 세 경로 억제, 무관한 건물 보존, 상태 무변이를 확인했다. 기존 서사 목표·렌더 검사도 통과했다. 실제 canonical 좌표의 기존/신규 object painter를 각각 호출한 경량 캔버스 비교 2장을 직접 확인했다. 이는 분리 렌더 fixture이며 통합 게임 화면/정상 플레이 검수와 구분한다.

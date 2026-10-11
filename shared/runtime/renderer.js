@@ -243,6 +243,7 @@
             for (const a of b.honroMarkers || []) {
                 if (a.collected||a.type==='sector'||a.type?.startsWith('act2')||G.HonroAct3?.active(b)&&(a.type?.startsWith('act3')||a.action==='act3'||a.type==='exit'))
                     continue;
+                if(G.HonroAct1StoryArt?.marker(this,a))continue;
                 const pulse = Math.sin(this.time * 3) * 3;
                 if (a.type === 'relic') {
                     glow(c, a.x, a.y - 25, 45, '#c6c594', .28);
