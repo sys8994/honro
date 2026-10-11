@@ -162,7 +162,7 @@
     "test:training-layout": "node tests/training-layout.mjs",
     "capture:training-layout": "node --expose-gc tests/training-layout-native.mjs",
     "test:object-damage": "node tests/object-damage-states.mjs && node tests/stage8-bier-art-contract.mjs",
-    "test:quest-story:contracts": "node tests/route-branches.mjs && node tests/narrative-revision.mjs && node tests/narrative-runtime-edges.mjs && node tests/quest-redesign-app-contracts.mjs && node tests/act1-narrative-redesign.mjs && node tests/chapter7-rescue-order.mjs && node tests/act1-narrative-objectives.mjs && node tests/act1-story-art.mjs && node tests/act1-object-art.mjs && node tests/act23-narrative-redesign.mjs && node tests/act23-quest-redesign-author.mjs && node tests/act23-evidence-art.mjs",
+    "test:quest-story:contracts": "node tests/route-branches.mjs && node tests/narrative-revision.mjs && node tests/narrative-runtime-edges.mjs && node tests/quest-redesign-app-contracts.mjs && node tests/act1-narrative-redesign.mjs && node tests/chapter7-rescue-order.mjs && node tests/stage8-goal-notice-consistency.mjs && node tests/act1-narrative-objectives.mjs && node tests/act1-story-art.mjs && node tests/act1-object-art.mjs && node tests/act23-narrative-redesign.mjs && node tests/act23-quest-redesign-author.mjs && node tests/act23-evidence-art.mjs",
     "test:quest-story:geometry": "node tests/act23-route-geometry.mjs",
     "capture:quest-story": "node --expose-gc tests/quest-story-native-art.mjs"
   },
