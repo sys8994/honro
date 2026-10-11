@@ -351,8 +351,9 @@
                 if(!t.event)continue;
                 c.save();c.translate(t.x,t.y);c.scale(z,z);c.textAlign='center';c.textBaseline='middle';
                 c.font='600 11px sans-serif';c.strokeStyle='#102227ee';c.lineWidth=3;
-                c.strokeText(t.label,0,-15,250);c.fillStyle='#ead2ad';c.fillText(t.label,0,-15,250);
-                if(t.blocked){c.strokeText(t.blocked,0,-32,250);c.fillStyle='#c8d6d8';c.fillText(t.blocked,0,-32,250);}
+                const ringLabel=b.honroNarrativeRevision===1&&!b.honroCustom&&b.honroStage===5&&t.id==='cliff-cleat'&&(this.goalFocus?[this.goalFocus]:this.missionTargets)?.some(q=>q.id===t.id);
+                if(!ringLabel){c.strokeText(t.label,0,-15,250);c.fillStyle='#ead2ad';c.fillText(t.label,0,-15,250);}
+                if(t.blocked){const y=ringLabel?-56:-32;c.strokeText(t.blocked,0,y,250);c.fillStyle='#c8d6d8';c.fillText(t.blocked,0,y,250);}
                 c.restore();
             }
         }
