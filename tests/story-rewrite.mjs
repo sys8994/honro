@@ -15,14 +15,14 @@ test('Campaign chronology preserves recruits and excludes later-act revelations'
  const text=JSON.stringify(g.HonroStoryContent);
  assert(!/백기곡|대천도|무명사|백기장/.test(text));
  for(const st of stages)assert(st.narration.length&&st.story.length&&st.outro.length&&st.storySummary);
- assert(stages[1].outro.length>=18&&stages[8].outro.length>=8&&stages[9].outro.length>=15);
+ assert(stages[1].outro.some(l=>l[2]?.revealName?.name==='홍만의 상여'));assert(stages[8].outro.length<=8);assert(stages[9].outro.some(l=>l[1].includes('같이 가죠.')));
 });
 test('Early-act clues distinguish past travelers from recent possession reports',()=>{
  const text=id=>JSON.stringify(g.HONRO_CONTENT.stages[id-1]);
  for(const term of ['고향','홍만','들림','행렬'])assert(text(1).includes(term),term);
  for(const term of ['세상을 떠났다','장부','담허'])assert(g.HonroStoryContent.summaries[2].includes(term),term);
  const {app}=battlefield(g,3),lines=g.HonroStoryContent.interaction(app,{action:'ledger'}),docs=lines.filter(l=>l[2]?.kind==='document');
- assert.equal(docs.length,2);assert.match(docs[0][1],/열셋.*아이 둘/);assert.match(docs[0][1],/연목 북문/);assert.match(docs[1][1],/붉은 실.*조용/);assert.match(docs[1][1],/바깥/);
+ assert.equal(docs.length,1);assert.equal(docs[0][1].split('\n').length,2);assert.match(docs[0][1],/열셋.*아이 둘/);assert.match(docs[0][1],/연목 주막.*북문/);assert.equal(lines.length,2);
  assert.match(text(8),/홍만 어르신은 장례 때 제대로 떠났/);
 });
 test('Canonical event mechanics remain authored; custom event dialogue is never replaced',()=>{
@@ -45,13 +45,13 @@ test('An exit reached before the turn boundary still delivers a triggered witnes
  g.HonroEncounters.finishNarrative(app);assert.equal(app.speeches.length,10);assert(b.honroState.flags['event:witness']);assert.equal(b.units.length,before);assert.deepEqual(plain(b.honroState.pendingEvents),['cart']);
  g.HonroEncounters.finishNarrative(app);assert.equal(app.speeches.length,10);
 });
-test('A blocked external wave cannot commit cooperation or partially duplicate spawns',()=>{
- const {app,b,e}=battlefield(g,10),boss=e.unit('boss');b.phase='transition';app.actorBoundary=b.active;b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
+test('Legacy blocked external wave cannot commit cooperation or partially duplicate spawns',()=>{
+ const {app,b,e}=battlefield(g,10),boss=e.unit('boss');delete b.honroNarrativeRevision;b.phase='transition';app.actorBoundary=b.active;b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
  const original=g.HonroAllies.execute,units=JSON.stringify(b.units);g.HonroAllies.execute=()=>false;
  try{g.HonroMission.tick(app,0);g.HonroMission.tick(app,0);assert(!b.honroState.sodanCoop);assert.equal(boss.side,1);assert.equal(JSON.stringify(b.units),units);assert.equal(app.speeches.length,0);}finally{g.HonroAllies.execute=original;}
 });
-test('Visible new enemies precede cooperation; resume and repeat never spawn the wave twice',()=>{
- const {app,b,e}=battlefield(g,10),boss=e.unit('boss');b.phase='transition';app.actorBoundary=b.active;b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
+test('Legacy visible enemies precede cooperation; resume and repeat never spawn the wave twice',()=>{
+ const {app,b,e}=battlefield(g,10),boss=e.unit('boss');delete b.honroNarrativeRevision;b.phase='transition';app.actorBoundary=b.active;b.projectiles=[];e.settleBusy=()=>false;b.honroState.receivers=2;boss.hp=boss.maxHp*.4;
  g.HonroMission.tick(app,0);assert(b.honroState.sodanCoop);assert.equal(boss.side,2);assert.equal(b.honroState.sodanBreach.units.length,8);
  const newUnits=b.honroState.sodanBreach.units.map(id=>e.unit(id));assert(newUnits.every(u=>u.side===1&&!u.dead));assert(newUnits.filter(u=>u.x>b.width*.5).length>=3);
  assert(app.speeches.some(l=>l[0]==='소단'));assert(app.speeches.some(l=>l[1].includes('바깥에서 들어오는')));

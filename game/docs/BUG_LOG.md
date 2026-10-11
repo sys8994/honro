@@ -2139,3 +2139,7 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - 12장 폐기된 방어의 파동을 전부 강제하지 않고 기존 입구/8체 예산 안의 유한 3체 압박으로 연결한다. 15장 배수 뒤 드러나는 지지면은 배우/탄의 안전 경계에서 활성화한다. 20장 두 화자는 기존 보호 행렬의 시각 구성원이며 추가 피격/실패 대상이 아니다. 27/28 화재 안내는 현재 실제 목표 조합에서 유도한다.
 - 현재 통과: OR/인계 합성 계약 35건, 통합 초기화·이름 공개·분리 표적·동의 순서·구저장 계약 18건, 막별 source/표현 순수성 계약. 독립 검수에서 승리 결과 저장 직후 인계 누락을 재현했고 수정했다. 해당 실제 App 재검증 진행 중.
 - 미검수: 분기 맵의 양쪽 정상 자원 완주, 실제 탄도·미술·카메라·상호작용, Game/Workshop 최신 HTML·전체 verify·master/Pages. 자동 단위 검사를 이들의 통과로 보지 않는다. 진행표는 QUEST_STORY_REDESIGN.md.
+### 1막 검사 기대치 이행
+- 새 장부 카드 수·쉼터 압축·소단 cue/선택을 검사 기대치에 반영했다. 구 cooperation 회귀는 명시한 legacy 전투 fixture에서 계속 검사하며 신규 브라우저 fixture는 분리된 주박 파괴→동의 대화 완료→보호 전환을 따라간다.
+- 새 주박 표적의 기본 나무 사각형·일반 균열·중복 장치 라벨만 제외한다. 실제 충돌/내구도는 그대로다. 마지막에 로드하는 전용 시각 모듈이 같은 saved target을 그린다.
+- 이번 단계의 실행 검사: `journey-content`, `act1-narrative-redesign`, `act1-story-art` source 검사와 JS/Python 구문 검사. 변경한 AppHarness/브라우저 검사는 통합 빌드 이후 실행 예정이며 이 저장 지점에서는 미실행이다.

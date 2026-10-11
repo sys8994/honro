@@ -60,5 +60,11 @@ function draw(scene,e){const b=e.b;if(b.honroCustom||b.honroNarrativeRevision!==
   for(const m of d.receivers){const to={x:m.x,y:m.y-15};curve(c,hand,to,hasOffered?100:Math.sin(t*10)*6,hasOffered?'#b29c77':'#874f55',2);ring(c,m,t,hasOffered);if(hasOffered)pulse(c,hand,to,100,t,3);}
  }
  c.restore();}
+// Load after material-damage art. Its ordinary cracks must not paint over a
+// cord target; the shared narrative layer owns terrain/label suppression.
+if(G.HonroScene){const S=G.HonroScene.prototype,damage=S.objectDamage;
+ const fresh=b=>b?.honroNarrativeRevision===1&&b.honroStage===10&&!b.honroCustom;
+ S.objectDamage=function(c,b,...args){return damage.call(this,c,fresh(b)?{...b,terrain:b.terrain.filter(t=>t.id!=='sodan-binding')}:b,...args);};
+}
 G.HonroAct1StoryArt={draw,evidence};
 })(globalThis);

@@ -4,19 +4,19 @@ import assert from 'node:assert/strict';
 import {appHarness,plain,report} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g,load,reload,profileThrough,click,finish,nodes}=h,J=g.HonroJourneyContent,H=g.HONRO_CONTENT,checks=[];
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
-const pageCounts=[2,3,3,2,3,3,3,2,3,3,3,3,3,4,3,3,3,3,3,3,...Array(10).fill(1)];
+const pageCounts=[2,3,3,1,1,3,3,2,3,1,3,3,3,4,3,3,3,3,3,3,...Array(10).fill(1)];
 pageCounts[23]=2;
 const details=[
  ['사라진 고향 사람','연목','몇 해 전','배에','뱃사공','홍만'],
  ['연목 나루','분지','장례 행렬','관을 메고','운반틀','상여','혼','짐승','바위턱','활'],
  ['홍만','돌아가셨','딸 연실','장부','담허','나루','빈 움막','검객','손'],
- ['장부','고향 사람','연목 주막','북문','피란민','좁은 문'],
- ['붉은 실','집 쪽','폭포 뒤','쇠고리','땅','혼','받이진','고리','주민'],
+ ['북문','피란민'],
+ ['물소리','춘례','가리킨'],
  ['피란민','쉼터','부상자 운반대','나무다리 아래','셋'],
  ['북문','주거지','세 분','붉은 실','웅크리','고개'],
  ['홍만','장사','창고','빈 상여','빈 관','결박','안에서'],
  ['소단','구조한 주민','지켜 준','아랫마당','담장','방울','이어졌','사당 문간','붉은 실'],
- ['윗마당','붉은 끈','발밑','주박','소단','방울','손'],
+ ['윗마당','거대한 나무','소단','줄'],
  ['연목','문을 열지','소단','손목','동쪽 고개','북쪽 돌산','줄 끝','바람'],
  ['갈라진 바위','마른 소나무','세 번째','돌탑','수레','발자국','같은 자리'],
  ['돌림진','석문','하늘빛','누구도','승강기','어르신','피 묻은 밧줄','곡괭이','벽'],
@@ -39,7 +39,7 @@ check('30 required scenes retain their IDs, paragraph counts and every source na
 check('30 first battlefield speeches and rest voices do not describe Seolo in third person',()=>{
  const p=profileThrough(30);
  for(const st of H.stages){const first=st.story.find(l=>l[0]==='설오');if(first)assert.doesNotMatch(first[1],/설오는|설오가/);const optional=J.optional(p,st.id,'archer');if(optional.length)assert.equal(optional[0][0],'설오');for(const [who,text] of optional)if(who==='설오')assert.doesNotMatch(text,/설오는|설오가/);}
- assert.deepEqual(plain(J.interlude(5).map(l=>l[0])),['설오','설오','담허']);assert.equal(J.interlude(6)[0][0],'휘겸');assert.equal(J.interlude(15)[1][0],'담허');
+ assert.deepEqual(plain(J.interlude(5).map(l=>l[0])),['설오']);assert.equal(J.interlude(6)[0][0],'휘겸');assert.equal(J.interlude(15)[1][0],'담허');
 });
 check('Cave warning and selected camp exchanges retain in-character, multi-speaker information',()=>{
  const p=profileThrough(30),cave=J.optional(p,13,'mage');assert.deepEqual(plain(cave.map(l=>l[0])),['설오','담허','휘겸','담허']);assert(cave.some(l=>l[1].includes('천뢰호')&&l[1].includes('암벽')));assert(J.optional(p,24,'knight').length>=3);assert(J.optional(p,11,'occultist').length>=3);

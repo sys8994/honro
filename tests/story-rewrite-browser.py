@@ -28,7 +28,10 @@ def fixture_win(page,sid):
       if(sid===6){hs.rescued=true;e.unit('objective').x=b.honroMarkers.find(m=>m.type==='exit').x;}
       if(sid===7)hs.rescuedCount=3;
       if(sid===9)hs.receivers=2;
-      if(sid===10){const boss=e.unit('boss');e.hurt(boss,1e9,e.heroesAlive()[0].id);if(boss.dead||boss.hp<=0)throw Error('Sodan died');boss.hp=boss.maxHp*.4;for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});hs.receivers=2;HonroEncounters.actorEnd(a,b.active);
+      if(sid===10){const boss=e.unit('boss'),bodyHp=boss.hp;e.hurt(boss,1e9,e.heroesAlive()[0].id);if(boss.dead||boss.hp!==bodyHp)throw Error('Sodan body changed before cooperation');
+        const binding=b.terrain.find(t=>t.id==='sodan-binding');if(!binding)throw Error('Missing separate binding');e.damageTerrain(binding,1e9);
+        for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});HonroEncounters.actorEnd(a,b.active);
+        if(hs.sodanCoop)throw Error('Cooperation preceded Sodan consent');if(!a.dialogue&&!a.startQueuedStory())throw Error('Missing small trial');HonroStory.finish(a);HonroEncounters.actorEnd(a,b.active);
         if(!hs.sodanCoop||hs.sodanBreach.units.length!==8)throw Error('Missing external breach');
         if(!a.dialogue&&!a.startQueuedStory())throw Error('Missing cooperation scene');
         if(!a.dialogue.lines.some(l=>l[0]==='소단'))throw Error('Filtered Sodan');HonroStory.finish(a);
@@ -63,17 +66,16 @@ with sync_playwright() as p:
       for(const u of e.alive(1)){u.dead=true;u.hp=0;}for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});
       Object.assign(e.active,{x:m.x,y:m.y});if(!HonroInteractions.use(a,m))throw Error('Cannot use ledger');e.finishAction(true);b.round=8;b.honroState.objectiveReadyRound=6;a.checkMission(e);}''')
     check('Victory begins with queued ledger discovery',game.evaluate('HonroApp.dialogue.lines[0][2].storyId.endsWith(":ledger")'))
-    game.click('[data-action="dialogue-next"]')
     check('Ledger is a real document panel',game.locator('.story-document').count()==1 and '아이 둘' in game.locator('#story-line').inner_text())
     game.screenshot(path=str(OUT/'ledger-desktop.png'))
     saved=game.evaluate('({index:HonroApp.dialogue.index,ledger:HonroApp.engine.b.honroState.ledger,heroes:HonroApp.profile.heroes})')
     game.reload();game.wait_for_function('window.HonroApp');game.evaluate('HonroApp.frame=()=>{}');game.click('[data-action="continue"]')
     check('Reload/continue restores exact document page and semantic discovery',game.evaluate('({index:HonroApp.dialogue.index,ledger:HonroApp.engine.b.honroState.ledger,heroes:HonroApp.profile.heroes})')==saved and game.locator('.story-document').count()==1)
-    game.click('[data-story-tool="history"]');game.locator('.story-record summary').filter(has_text='홍만이 남긴 두 기록').click()
-    check('History contains both ledger pages',game.locator('.story-history .record-document').count()==2)
-    game.keyboard.press('Escape');check('Closing history preserves document position',game.evaluate('!HonroApp.storyHistoryOpen&&HonroApp.dialogue.index===1'))
+    game.click('[data-story-tool="history"]');game.locator('.story-record summary').filter(has_text='홍만의 장부').click()
+    check('History contains the compact ledger card',game.locator('.story-history .record-document').count()==1)
+    game.keyboard.press('Escape');check('Closing history preserves document position',game.evaluate('!HonroApp.storyHistoryOpen&&HonroApp.dialogue.index===0'))
     skip(game);game.evaluate('HonroApp.journal()')
-    check('Skipped discoveries remain readable from journal',game.locator('#modal .record-document').count()==2)
+    check('Skipped discoveries remain readable from journal',game.locator('#modal .record-document').count()==1)
     game.evaluate('HonroApp.close()')
 
     custom=game.evaluate('''()=>{const a=HonroApp,prior=JSON.stringify(a.profile.honroNarrative),p=HonroMaps.normalize(HONRO_PROJECT),s=HonroMaps.emptyStage('story-test','작성한 마당',1600,1000);

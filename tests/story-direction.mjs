@@ -12,6 +12,9 @@ check('Every authored direction resolves a real line in the currently compiled c
  for(const r of g.HonroStoryDirection.rules){const st=g.HONRO_CONTENT.stages[r.stage-1];let lines=r.when==='entry'?st.story:r.when==='outcome'?st.outro:st.beats?.[r.when];
   if(r.when==='event-1-witness')lines=g.HonroStoryContent.events[1].witness.lines;
   if(r.when==='sodan-first-receiver')lines=S.describe(S.ID).steps.at(-1).lines;
+  if(r.when==='event-3-transfer')lines=g.HonroStoryContent.events[3].transfer.lines;
+  if(r.when==='ritual-5')lines=g.HonroStoryContent.interaction({stage:{id:5},engine:{b:{honroState:{}}}},{action:'ritual'});
+  if(r.when==='cooperation-defense')lines=g.HonroStoryContent.cooperationDefense();
   if(r.when==='cooperation')lines=g.HonroStoryContent.cooperation();if(r.when==='finale-midpoint')lines=g.HonroStoryContent.finaleMidpoint();
   assert(lines?.some(l=>l[0]===r.who&&l[1].includes(r.text)),`${r.stage}/${r.when}/${r.who}/${r.text}`);
  }
