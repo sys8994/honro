@@ -142,6 +142,34 @@ export class HonroPoseVisual{
     }
     return sample;
   }
+  dropPose(u,s){
+    const d=u.platformDrop,idle=this.api.sampleAnimation(this.asset,'idle',0,true).targets;
+    const crouch=structuredClone(idle),amount=38;
+    // Art-space body lowering, with unchanged ankle targets and planted soles.
+    // Translate the entire shoulder/arm/weapon chain together, never squash it.
+    for(const key of ['pelvis','thorax','rearHip','frontHip','rearShoulder','frontShoulder','rearElbow','frontElbow','rearHand','frontHand'])crouch[key][1]+=amount;
+    for(const side of ['rear','front']){crouch[side+'Knee'][0]+=12;crouch[side+'Knee'][1]+=12;}
+    crouch.contacts=['rear','front'];crouch.draw=crouch.arrow=crouch.spirit=crouch.qi=crouch.spiritAlpha=crouch.qiAlpha=0;
+    let target;
+    if(d.phase==='prepare'){
+      target=this.api.blendPoseTargets(idle,crouch,poseClamp(d.elapsed/.18));s.mode='drop-prepare';
+    }else if(d.phase==='fall'){
+      const falling=this.api.sampleAnimation(this.asset,'jump_fall',.5+.3*poseClamp((u.vy||0)/750),true).targets;
+      target=this.api.blendPoseTargets(crouch,falling,poseClamp(d.elapsed/.16));target.contacts=[];s.mode='drop-fall';
+    }else{
+      const p=poseClamp(d.elapsed/.26),compression=p<.24?p/.24:1-(p-.24)/.76;
+      target=this.api.blendPoseTargets(idle,crouch,.55+.45*compression);
+      if(p>.24)target=this.api.blendPoseTargets(crouch,idle,poseClamp((p-.24)/.76));
+      // Contact is already physical: both soles stay at their real landing plane.
+      target.rearFoot=[...idle.rearFoot];target.frontFoot=[...idle.frontFoot];target.contacts=['rear','front'];s.mode='drop-land';
+    }
+    const sample=this.api.solvePose(this.asset,target),lowering=Math.max(0,target.pelvis[1]-idle.pelvis[1]);
+    if(d.phase!=='fall'){
+      const ground=Math.max(idle.rearFoot[1],idle.frontFoot[1]);
+      for(const side of ['rear','front']){const key=side+'_cloth',part=this.by[key],m=sample.poses[key]?.matrix;if(!part||!m)continue;const scale=Math.max(.3,1-lowering/(ground-part.pivot[1])),a=m[2],b=m[3];m[2]*=scale;m[3]*=scale;m[4]+=(a-m[2])*part.pivot[1];m[5]+=(b-m[3])*part.pivot[1];}
+    }
+    return sample;
+  }
   pose(u,charge=0){
     const s=this.state(u),previousMode=s.mode,age=this.time-s.releaseAt,hitAge=this.time-s.hitAt,anim=this.asset.animation.animations.attack;
     const comboFinishAge=this.time-(s.comboFinishAt??Infinity),comboFinishing=this.asset.followThroughRevision>=14&&comboFinishAge>=0&&comboFinishAge<.525;
@@ -150,6 +178,7 @@ export class HonroPoseVisual{
     let sample;
     if(u.portraitOnly){sample=this.api.sampleAnimation(this.asset,'idle',0,true);s.mode='idle';}
     else if(u.honroScenePose){sample=this.scenePose(u.honroScenePose);s.mode='scene';}
+    else if(u.platformDrop){sample=this.dropPose(u,s);}
     else if(hitAge>=0&&hitAge<.5&&s.hitAt>s.releaseAt){sample=this.api.sampleAnimation(this.asset,'hit',hitAge);s.mode='hit';}
     else if(s.bodyFlight&&this.asset.character_id==='hwigyeom'){
       const p=structuredClone(this.api.sampleAnimation(this.asset,'jump_fall',.43,true).targets);
@@ -196,7 +225,7 @@ export class HonroPoseVisual{
       sample=this.api.sampleAnimation(this.asset,'move',s.walkCycle||0,true);s.mode='move';
     }else{
       sample=this.api.sampleAnimation(this.asset,'idle',this.time);s.mode='idle';
-      if(['move','jump','charge','rush','release'].includes(previousMode)&&s.lastTargets){s.settleFrom=structuredClone(s.lastTargets);s.settleAt=this.time;}
+      if(['move','jump','charge','rush','release','drop-land'].includes(previousMode)&&s.lastTargets){s.settleFrom=structuredClone(s.lastTargets);s.settleAt=this.time;}
       if(s.settleFrom&&this.time-s.settleAt<.12)sample=this.api.solvePose(this.asset,this.api.blendPoseTargets(s.settleFrom,sample.targets,poseClamp((this.time-s.settleAt)/.12)));
     }
     if(['move','jump','rush'].includes(s.mode)){

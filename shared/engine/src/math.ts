@@ -60,11 +60,12 @@ export function segRect(a: Vec, b: Vec, x: number, y: number, w: number, h: numb
     }
     return lo >= 0 && lo <= 1 ? { t: lo, n } : null;
 }
-export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0): { t: number; n: Vec; } | null {
-    if (!t.vertices?.length && !t.slope) return segRect(a,b,t.x,t.y,t.w,t.h,pad);
+export function segmentTerrain(a: Vec, b: Vec, t: Terrain, pad = 0, skipEdges?: number[]): { t: number; n: Vec; } | null {
+    if (!skipEdges && !t.vertices?.length && !t.slope) return segRect(a,b,t.x,t.y,t.w,t.h,pad);
     const pts=poly(t),dx=b.x-a.x,dy=b.y-a.y;let best:{t:number;n:Vec}|null=null;
     const left=Math.min(a.x,b.x)-pad,right=Math.max(a.x,b.x)+pad,top=Math.min(a.y,b.y)-pad,bottom=Math.max(a.y,b.y)+pad;
     for(let i=0;i<pts.length;i++){
+        if(skipEdges?.includes(i))continue;
         const p=pts[i],q=pts[(i+1)%pts.length],ex=q.x-p.x,ey=q.y-p.y;
         // Detailed ground contours have many distant edges. Reject those before
         // normalising; retain the narrow phase's extended endpoint tolerance.

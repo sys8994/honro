@@ -32,6 +32,7 @@ function bottom(){
  <div class="skill-strip" id="combat-skills"></div>
  <div class="radial-actions"><div class="shot-readout" id="read-aim"></div>
  <button class="icon-btn honro-defend" data-action="defend" aria-label="방어하며 기력 회복 후 턴 종료" aria-keyshortcuts="F" title="방어 · 턴 종료 (F)">${I('shieldHalved','',18)}<span>방어</span></button>
+ <button id="drop" class="icon-btn drop-button" data-action="drop" aria-label="발판 아래로 내려가기" title="아래로 내려가기">${I('arrowUp','drop-arrow',18)}</button>
  <button id="jump" class="fire-button jump-button" aria-label="도약"><span class="fire-inner">${I('arrowUp','',18)}<span>도약</span></span></button>
  <button id="fire" class="fire-button" aria-label="누른 채 충전, 손을 떼어 발사"><svg class="charge-dial" viewBox="0 0 100 100" aria-hidden="true"><circle class="charge-track" cx="50" cy="50" r="46"/><circle class="charge-history" cx="50" cy="50" r="37" pathLength="100"/><circle class="charge-live" cx="50" cy="50" r="46" pathLength="100"/></svg><span class="fire-inner">${I('crosshairs','',19)}<span class="fire-label">발사</span></span></button>
  </div></div></footer>`;

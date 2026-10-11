@@ -192,6 +192,8 @@ export interface Unit {
     lastStandUsed?: boolean;
     refundShot?: number;
     jumping?: boolean;
+    /** Voluntary one-way descent; only the contacted top edges are ignored. */
+    platformDrop?: {phase: 'prepare'|'fall'|'land'; elapsed: number; originY: number; contacts: {id: string; edge: number}[]};
     moving?: number;
     walkPhase?: number;
     landing?: number;

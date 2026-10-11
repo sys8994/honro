@@ -1,3 +1,4 @@
+import {poly} from './math';
 import {migrateSkills,SKILL_REVISION} from './skillMechanics';
 import {validPhysics} from './physics';
 import type { Profile, Battle, ClassId, HeroProgress, Roster } from './types';
@@ -145,6 +146,11 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         for (const k of ['moving', 'walkPhase', 'landing', 'stun', 'stunUntil'] as const)
             if (u[k] !== undefined && (!finite(u[k]) || u[k]! < 0 || u[k]! > 1e12))
                 return fail();
+        if(u.platformDrop){
+            const d=u.platformDrop;
+            if(!object(d)||!['prepare','fall','land'].includes(d.phase)||!nums(d,['elapsed','originY'])||d.elapsed<0||d.elapsed>120||Math.abs(d.originY)>20000||!Array.isArray(d.contacts)||d.contacts.length>64)return fail();
+            for(const c of d.contacts){const t=b.terrain.find(t=>t.id===c.id);if(!t||!t.oneWay||!Number.isInteger(c.edge)||c.edge<0||c.edge>=poly(t).length)return fail();const v=poly(t);if(v[(c.edge+1)%v.length].x<=v[c.edge].x)return fail();}
+        }
         if (u.jumping !== undefined && typeof u.jumping !== 'boolean')
             return fail();
     }

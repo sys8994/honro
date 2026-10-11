@@ -1,7 +1,7 @@
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
 import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
-import {terrainSurface,exposedSurface,walkTerrain} from './locomotion';
+import {terrainSurface,exposedSurface,walkTerrain,SEAM_GAP} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
 import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
@@ -83,8 +83,8 @@ export class Engine {
     heroesAlive() { return this.alive(0).filter(u => !u.summoned&&!u.enthrall); }
     creditUnit(u?:Unit){ const owner=u?.summonOwner||u?.enthrall?.owner;return owner?(this.unit(owner)||u):u; }
     unit(id: string) { return this.b.units.find(u => u.id === id); }
-    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.airborne; }
-    select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
+    canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.airborne && (!this.active.platformDrop||this.active.platformDrop.phase==='land'); }
+    select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready' || this.active?.platformDrop && this.active.platformDrop.phase!=='land') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
         return false; this.b.active = id; this.emit('change'); return true; }
     manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1); }
     skillAllowed(s:Skill,u=this.active){return !!u&&warriorAllowed(u,s);}
@@ -450,7 +450,7 @@ export class Engine {
         const b = this.b, u = this.active, s = SKILLS[skillId];
         if (!u || u.dead || u.retreat || !s || !warriorAllowed(u,s) || s.enemyOnly&&u.side===0&&!ai || s.passive || (!ai && (!this.canAct() || !this.grounded(u))) || (!u.loadout.includes(skillId)&&!(skillId==='S00'&&u.meleeFollow==='ready')) || (s.ultimate && u.side===0 && this.b.mode!=='practice' && !ultimateUnlocked(this.b.heroes[u.cls],u.cls)) || this.cooldownLeft(u,skillId)>0 || u.focus < this.manaCost(s, u,power))
             return false;
-        delete u.moveTarget;
+        delete u.platformDrop;delete u.moveTarget;
         u.moving = 0;
         const e = this.effective(s, u);
         const actualKiSpent=this.manaCost(s,u,power);u.focus-=actualKiSpent;
@@ -493,11 +493,41 @@ export class Engine {
         return true;
     }
     /** Movement is a locomotion state; jumping is not a weapon flight. */
-    grounded(u: Unit) { return !u.jumping && !u.airborne && Math.abs(u.vx) < 3 && Math.abs(u.vy) < 2 && !!this.contactSurface(u.x, u.y - 4, u.y + 5); }
+    grounded(u: Unit) { return (!u.platformDrop||u.platformDrop.phase==='land') && !u.jumping && !u.airborne && Math.abs(u.vx) < 3 && Math.abs(u.vy) < 2 && !!this.contactSurface(u.x, u.y - 4, u.y + 5); }
+    /** Exact exposed contact faces, including both sides of a synthetic seam.
+     * A shared solid contact always wins over a coincident one-way platform. */
+    private dropContacts(u:Unit){
+        const support=this.contactSurface(u.x,u.y-4,u.y+5);
+        if(!support)return [];
+        const seam=!this.b.terrain.includes(support.t),contacts:{id:string;edge:number}[]=[];
+        for(const t of this.collisionTerrain({x:u.x,y:u.y},{x:u.x,y:u.y},SEAM_GAP+1)){
+            if(t.broken)continue;
+            const x=clamp(u.x,t.x,t.x+t.w);
+            if(Math.abs(x-u.x)>(seam?SEAM_GAP:1e-7))continue;
+            for(const f of terrainSurfaces(t,x)){
+                if(Math.abs(f.y-support.y)>(seam?3:.15)||!exposedSurface(this.b.terrain,t,x,f.y))continue;
+                if(!t.oneWay)return [];
+                contacts.push({id:t.id,edge:f.edge});
+            }
+        }
+        return contacts;
+    }
+    canDrop(u=this.active){return !!u && u===this.active && this.canAct() && !u.dead && !u.fixed && !u.platformDrop && u.meleeFollow!=='ready' && this.grounded(u) && this.dropContacts(u).length>0;}
+    drop(u=this.active){
+        if(!this.canDrop(u))return false;
+        const actor=u!;delete actor.moveTarget;actor.moving=0;actor.landing=0;
+        actor.platformDrop={phase:'prepare',elapsed:0,originY:actor.y,contacts:this.dropContacts(actor)};
+        this.emit('change');this.emit('save');return true;
+    }
+    private dropEdges(u:Unit,t:Terrain){return t.oneWay&&u.platformDrop?.phase==='fall'?u.platformDrop.contacts.filter(c=>c.id===t.id).map(c=>c.edge):undefined;}
+    private bodySurface(u:Unit,x:number,min:number,max:number){
+        if(u.platformDrop?.phase!=='fall'||!u.platformDrop.contacts.length)return this.contactSurface(x,min,max);
+        return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
+    }
     jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
     jump(u = this.active) { if (!u || u.dead || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
-        return false; delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
-    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.meleeFollow==='ready')return;return walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);}
+        return false; delete u.platformDrop;delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
+    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;return walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);}
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
@@ -643,7 +673,7 @@ export class Engine {
         this.finishAction();
         return true;
     }
-    wait() { if (!this.canAct())
+    wait() { if (!this.canAct() || this.active?.platformDrop && this.active.platformDrop.phase!=='land')
         return; const u = this.active!; if(u.retreat){this.finishAction(true);return;} u.shield = Math.max(u.shield, Math.round(u.maxHp * .12)); u.shieldUntil = this.b.teamEnds[1] + 1; u.focus = Math.min(u.maxFocus, u.focus + u.regen); if (!this.combatEnemies().length)
         u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12)); this.message(`${u.name} · 방어하며 대기`); this.finishAction(); }
     iceGourdReady(){return iceGourdReady(this);}
@@ -780,7 +810,7 @@ export class Engine {
     }
     impulse(u: Unit, vx: number, vy: number) { if (u.dead || u.summonFloating) return;
         if(flyingEnemy(u)){knockbackFlyingEnemy(this,u,vx,vy);return;}
-        if(u.fixed)return; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
+        if(u.fixed)return; delete u.platformDrop; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
         u.jumping = false; }
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active) {
         if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
@@ -1626,6 +1656,7 @@ export class Engine {
         }
     }
     recover(u: Unit) {
+        delete u.platformDrop;
         if (u.dead)
             return;
         const fall = Math.ceil(u.maxHp * .2);
@@ -1685,7 +1716,7 @@ export class Engine {
     landUnit(u: Unit,silent=false) { if (u.jumping || u.vy > 95) {
         u.landing = .26;
         if(!silent)this.fx('spark', u.x, u.y, '#c9c3b1', 18);
-    } u.jumping = false; u.vy = 0; }
+    } if(u.platformDrop?.phase==='fall'){u.platformDrop.phase='land';u.platformDrop.elapsed=0;u.platformDrop.contacts=[];} u.jumping = false; u.vy = 0; }
     stepUnits(dt: number) {
         for (const u of this.b.units) {
             u.hurt = Math.max(0, u.hurt - dt);
@@ -1694,8 +1725,9 @@ export class Engine {
             u.landing = Math.max(0, (u.landing || 0) - dt);
             if(u.summonFloating){u.vx=u.vy=0;}
             if(flyingEnemy(u)&&!u.dead&&u.aiMove&&this.b.phase==='enemy'&&this.b.active===u.id&&!u.acted){advanceEnemyMove(this,u,dt);continue;}
-            if (u.dead || u.airborne || u.fixed || u.summonFloating || u.carriedBy!==undefined)
-                continue;
+            if (u.dead || u.airborne || u.fixed || u.summonFloating || u.carriedBy!==undefined){
+                delete u.platformDrop;continue;
+            }
             if(u.aiMove && this.b.phase==='enemy' && this.b.active===u.id && !u.acted){advanceEnemyMove(this,u,dt);}
             else if (u.moveTarget !== undefined && (this.b.phase === 'aim' || this.b.phase === 'enemy') && u.id === this.b.active && !u.acted) {
                 const target = u.moveTarget;
@@ -1753,13 +1785,38 @@ export class Engine {
     }
     /** Shared contact integration for live units and read-only AI traversal probes. */
     integrateBody(u:Unit,dt:number,silent=false):boolean{
+            const drop=u.platformDrop;
+            if(drop?.phase==='land'){drop.elapsed+=dt;if(drop.elapsed>=.26)delete u.platformDrop;}
+            else if(drop?.phase==='prepare'){
+                // No teleport: feet remain supported for the whole anticipation.
+                const contacts=this.dropContacts(u);
+                if(!contacts.length||Math.abs(u.vx)>3||Math.abs(u.vy)>3){delete u.platformDrop;}
+                else{
+                    const held=Math.min(dt,Math.max(0,.18-drop.elapsed));drop.elapsed+=held;dt-=held;
+                    if(drop.elapsed<.18-1e-8)return true;
+                    drop.phase='fall';drop.elapsed=0;drop.contacts=contacts;
+                    u.jumping=true;u.vy=30;u.fallApexY=u.y;
+                    if(!silent)this.emit('change');
+                    if(dt<=1e-8)return true;
+                }
+            }
+            if(u.platformDrop?.phase==='fall'){
+                const state=u.platformDrop;state.elapsed+=dt;
+                // The grace only lasts until the feet clear these top faces.
+                // Retain the falling phase for motion, never a map-wide exemption.
+                state.contacts=state.elapsed>.6?[]:state.contacts.filter(c=>{
+                    const t=this.b.terrain.find(t=>t.id===c.id);if(!t||t.broken||!t.oneWay)return false;
+                    const face=terrainSurfaces(t,clamp(u.x,t.x,t.x+t.w)).find(f=>f.edge===c.edge);
+                    return !!face&&u.y<=face.y+6;
+                });
+            }
             if(!silent)u.impactCooldown=Math.max(0,(u.impactCooldown||0)-dt);
             const env=environmentAt(this.b.physics??(this.b.physics=makePhysics()),u.x,u.y-u.h*.5);
             // A nearby surface supports a resting body, not one still arriving at impact speed.
             // Otherwise the 4-unit contact tolerance can erase a fall before contactDamage runs.
             // Center resting support on the actual feet. A downward-biased
             // range can prefer a nearby lower bank over an exact one-way deck.
-            const ox = u.x, oy = u.y, support = this.contactSurface(ox, oy - 4, oy + 4), supported = !!support && env.gravity.y>=0 && u.vy >= 0 && u.vy <= 3 && !u.jumping;
+            const ox = u.x, oy = u.y, support = this.bodySurface(u,ox, oy - 4, oy + 4), supported = !!support && env.gravity.y>=0 && u.vy >= 0 && u.vy <= 3 && !u.jumping;
              if (supported && Math.abs(u.vx) < 3) {
                 u.x = ox;
                 u.y = support!.y;
@@ -1799,7 +1856,7 @@ export class Engine {
             if (supported) {
                 // Following the support at the NEW x prevents tiny airborne gaps on downhill slopes.
                 const maxStep = Math.abs(nx - ox) * 1.7 + 5;
-                const next = this.contactSurface(nx, oy - maxStep, oy + maxStep);
+                const next = this.bodySurface(u,nx, oy - maxStep, oy + maxStep);
                  if (next) {
                     u.y = next.y;
                     u.vy = 0;
@@ -1821,13 +1878,13 @@ export class Engine {
             for (const t of this.collisionTerrain({ x: ox, y: oy }, { x: nx, y: ny }, 1)) {
                 if (t.broken)
                     continue;
-                const h = segmentTerrain({ x: ox, y: oy - 0.05 }, { x: nx, y: ny }, t, 0);
+                const h = segmentTerrain({ x: ox, y: oy - 0.05 }, { x: nx, y: ny }, t, 0, this.dropEdges(u,t));
                 const hx=h?ox+(nx-ox)*h.t:0,hy=h?oy-.05+(ny-oy+.05)*h.t:0;
                 const exposed=h&&exposedSurface(this.b.terrain,t,hx,hy);
                 if (h && exposed && h.n.y < -.01 && (ny - oy) - (nx - ox) * terrainSlopeAt(t,hx,hy) >= -.001 && (!ground || h.t < ground.t))
                     ground = { x: hx, y: hy, t: h.t, n: h.n, terrain: t };
             }
-            const below = u.vy >= 0 ? this.contactSurface(nx, oy - 2, ny + 2) : null;
+            const below = u.vy >= 0 ? this.bodySurface(u,nx, oy - 2, ny + 2) : null;
             if (ground || below && ny >= below.y) {
                 const t = ground?.terrain || below!.t;
                 u.x = clamp(nx, t.x + .01, t.x + t.w - .01);
@@ -1847,7 +1904,7 @@ export class Engine {
                 {if(silent)return false;this.recover(u);}
             return true;
     }
-    settleBusy() { return this.b.units.some(u => !u.dead && !u.fixed && (u.airborne || u.jumping || Math.abs(u.vx) > 3 || Math.abs(u.vy) > 3)); }
+    settleBusy() { return this.b.units.some(u => !u.dead && !u.fixed && (u.airborne || u.jumping || u.platformDrop?.phase==='prepare' || Math.abs(u.vx) > 3 || Math.abs(u.vy) > 3)); }
     applyZones(u: Unit) { for (const w of this.b.waters)
         if (w.kind === 'lava' && u.x > w.x && u.x < w.x + w.w && u.y >= w.y - 9 && u.y < w.y + w.depth + 20)
             this.hurt(u, Math.round(u.maxHp * .10), ''); for (const z of this.b.zones) {
@@ -1909,6 +1966,7 @@ export class Engine {
     actionReviewSeconds(){return this.active?.side!==0&&!Object.keys(this.b.reviewDamage||{}).length?.18:ACTION_REVIEW_SECONDS;}
     finishAction(reviewed=false) {
         const b = this.b, u = this.active;
+        if(u?.platformDrop&&u.platformDrop.phase!=='land')return;
         if(finishWarrior(this))return;
         if(u)arrowTurn(this,u);
         if(finishRedesign(this,reviewed))return;

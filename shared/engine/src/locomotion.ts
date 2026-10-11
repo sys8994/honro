@@ -48,12 +48,12 @@ export function validTerrainContactPose(terrain:Terrain[],u:Unit):boolean{
   }
   return true;
 }
-export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number,maxSlope=WALKABLE_SLOPE):{t:Terrain;y:number}|null{
+export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number,maxSlope=WALKABLE_SLOPE,skipFace?:(t:Terrain,edge:number)=>boolean):{t:Terrain;y:number}|null{
   let best:{t:Terrain;y:number}|null=null;
   for(const t of terrain){
     if(t.broken||x<t.x-1e-7||x>t.x+t.w+1e-7)continue;
     for(const h of terrainSurfaces(t,clamp(x,t.x,t.x+t.w))){
-      if(Math.abs(h.slope)>maxSlope)continue;
+      if(Math.abs(h.slope)>maxSlope||skipFace?.(t,h.edge))continue;
       const y=h.y;
       if(y<min||y>max)continue;
       // A surface buried inside another solid is not a floor. A roof with empty air below remains valid.
@@ -68,6 +68,7 @@ export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number,
   const left=terrain.filter(t=>!t.broken&&t.x+t.w<x&&x-(t.x+t.w)<=SEAM_GAP),right=terrain.filter(t=>!t.broken&&t.x>x&&t.x-x<=SEAM_GAP);
   for(const a of left)for(const b of right){
     const start=a.x+a.w,gap=b.x-start,ay=topAt(a,start),by=topAt(b,b.x);
+    if(terrainSurfaces(a,start).some(f=>Math.abs(f.y-ay)<1e-7&&skipFace?.(a,f.edge))||terrainSurfaces(b,b.x).some(f=>Math.abs(f.y-by)<1e-7&&skipFace?.(b,f.edge)))continue;
     if(gap>SEAM_GAP||Math.abs(by-ay)>3||Math.abs(terrainSlopeAt(a,start,ay))>WALKABLE_SLOPE||Math.abs(terrainSlopeAt(b,b.x,by))>WALKABLE_SLOPE)continue;
     const y=ay+(by-ay)*(x-start)/gap;if(y<min||y>max||best&&best.y<=y)continue;
     const t={...a,vertices:undefined,id:`seam:${a.id}:${b.id}`,x:start,y:ay,w:gap,slope:by-ay,h:Math.max(a.y+a.h,b.y+b.h)-ay};best={t,y};
@@ -77,7 +78,7 @@ export function terrainSurface(terrain:Terrain[],x:number,min:number,max:number,
 
 /** Stable foot contact, bounded substeps, exact-x support, and body wall tests. */
 export function walkTerrain(e:any,u:Unit,direction:number,dt:number,requireSupport=false):boolean{
-  if(u.dead||u.fixed||!direction||dt<=0)return false;
+  if(u.dead||u.fixed||u.platformDrop&&u.platformDrop.phase!=='land'||!direction||dt<=0)return false;
   const facing=Math.sign(direction);let changed=false;
   if(facing!==u.facing){u.angle=clamp(180-u.angle,AIM_MIN,AIM_MAX);u.facing=facing;changed=true;}
   if(u.moveLeft<=0||u.airborne)return changed;
@@ -120,6 +121,7 @@ export function walkTerrain(e:any,u:Unit,direction:number,dt:number,requireSuppo
     if(blocked)break;
     const travel=Math.hypot(nx-u.x,ny-u.y),cost=travel*(u.bound>0?1.6:1);
     if(cost>u.moveLeft+1e-5)break;
+    if(u.platformDrop?.phase==='land')delete u.platformDrop;
     u.x=nx;u.y=ny;u.moveLeft=Math.max(0,u.moveLeft-cost);u.moving=.12;u.walkPhase=(u.walkPhase||0)+travel*.038;
     remaining-=travel;changed=true;
   }
