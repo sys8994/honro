@@ -1,5 +1,6 @@
 (function(G){'use strict';
 const version=7;
+const rescueMethod='그래. 줄은 자르지 말고 손을 잡아 몸부터 가누게 해 주게. 가까이서 붙은 혼을 떼어내야 하네.';
 const intro={
  1:{art:'road',narration:['설오는 사라진 고향 사람들의 행방을 찾아 연목으로 왔다. 몇 해 전 그들을 배에 태웠다는 뱃사공, 홍만을 만나러 가는 길이다.'],story:[
   ['설오','(접힌 쪽지를 다시 편다) 홍만… 연목 나루. 이번에는 늦지 않았으면 좋겠는데.'],
@@ -41,9 +42,9 @@ const intro={
   ['담허','사라진 게 아니라 옮겨 다닌 걸 수도 있겠네.'],['휘겸','그래서 실이 이어진 곳을 직접 확인하려는 거요. 먼저 저 사람들부터 데려갑시다.']]},
  7:{art:'terrace',narration:['북문 안 주거지에서 인기척이 났다. 주민 셋의 몸에 붉은 실이 감겨 있었다. 그중 한 사람이 다가오는 일행에게 멈추라며 소리쳤다.'],story:[
   ['덕수','멀리 계시오! 아까도 내 손이 멋대로… 내 마누라한테….',{focus:'interact'}],['설오','우리 말을 알아듣습니다. 활은 내린 채 다가가겠습니다. 먼저 손을 잡아드릴까요?'],
-  ['담허','그래. 안에 든 혼에 몸을 빼앗기지 않으려고 버티는 중이네. 저 실도 사람을 가둔 건지 지킨 건지 아직 모르네.'],
+  ['담허',rescueMethod],
   ['설오','괜찮습니다. 화살은 안 쏩니다. 성함을 말해주실 수 있습니까?'],['덕수','덕수요. 목수 덕수… 제발 내 손 좀 잡아주시오.'],
-  ['휘겸','뒤는 내가 보겠소. 담허 어른과 함께 다가가시오.']],followups:[[['설오','묶인 줄을 잘라드리면 됩니까?'],['담허','잠깐. 줄 안쪽에서 혼이 밀고 있네. 먼저 빈 기둥으로 옮겨 받아야 해.'],['설오','알겠습니다. 줄을 잡고 계십시오. 하나씩 돕겠습니다.']]]},
+  ['휘겸','뒤는 내가 보겠소. 담허 어른과 함께 다가가시오.']]},
  8:{art:'bier',narration:['홍만을 장사 지낸 뒤 창고에 놓아둔 빈 상여가 움직였다. 관은 비어 있는데 결박은 안쪽에서 잡아당긴 듯 팽팽했다.'],story:[
   ['설오','(발을 멈춘다) 저건… 홍만 어르신을 모셨던 상여 아닙니까? 장례가 끝났는데 왜 움직이지요?',{focus:'boss'}],
   ['담허','아니야. 홍만 어르신은 장례 때 제대로 떠났네. 빈 상여를 다른 원혼이 그릇으로 삼은 거야.',{focus:'boss'}],
@@ -226,6 +227,9 @@ function eventLines(app,ev){
 }
 function resolveDeferred(app,entry){
  const b=app.engine.b,hs=b.honroState||{},id=entry.lines?.[0]?.[2]?.storyId||'';
+ // Older revision-1 saves can still queue the former round-2 tutorial.
+ // Keep unrelated deferred dialogue; never explain a rescue after its first use.
+ if(b.honroNarrativeRevision===1&&id.includes('entry-follow-7-')&&entry.lines.some(l=>/빈 기둥|묶인 줄을 잘라/.test(l[1])))return (hs.rescuedCount||0)>0?[]:[['담허',rescueMethod,{...entry.lines[0][2]}]];
  if(id.includes('entry-follow-7-')&&(hs.rescuedCount||0)>=3)return [];
  if(id.includes('entry-follow-9-')&&(hs.receivers||0)>=2)return [];
  if(id.includes('entry-follow-10-')&&hs.sodanCoop)return [];
