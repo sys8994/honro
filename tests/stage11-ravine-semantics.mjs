@@ -7,10 +7,11 @@ import {unitContract,plain} from './act2-spatial-contract-helpers.mjs';
 const before=JSON.parse(await readFile('tests/fixtures/stage11-ravine-before.json','utf8'));
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,q=battlefield(g,11),checks=[];
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
-check('original seven mission steps/classes/680-radius/four rounds/six echoes stay exact',()=>{
+check('approved trace-exit removes only global cleanup; classes/680-radius/four rounds/six echoes stay exact',()=>{
  assert.equal(q.b.honroRavineVersion,2);
- assert.deepEqual(plain(q.b.honroAct2Steps),before.legacyBattle.honroAct2Steps);
- assert.deepEqual(plain(q.st.steps),before.content.steps);
+ assert.equal(q.b.honroStage11TraceExitRevision,1);
+ assert.deepEqual(plain(q.b.honroAct2Steps),before.legacyBattle.honroAct2Steps.filter(s=>s.id!=='clear-road'));
+ assert.deepEqual(plain(q.st.steps),before.content.steps.filter(s=>s.id!=='clear-road'));
  assert.deepEqual(plain(g.HonroStageRules.stageParty(11)),['archer','mage','knight','occultist']);
  const hold=q.b.honroAct2Steps.find(s=>s.kind==='hold');assert.equal(hold.radius,680);assert.equal(hold.contestRadius,260);assert.equal(hold.rounds,4);assert.equal(hold.wave.kind,'echo');assert.equal(hold.wave.count,6);
  assert.equal(q.st.requires[0],10);assert.equal(g.HONRO_CONTENT.stages[11].requires[0],11);

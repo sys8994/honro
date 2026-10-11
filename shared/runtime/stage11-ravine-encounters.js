@@ -13,7 +13,7 @@ function blockedClear(b){
  if(!active(b))return null;
  const waiting=pending(b),foes=live(b);
  if(done(b,'knot-west')&&!done(b,'clear-west')&&!foes.some(u=>u.honroCohort==='west')&&waiting.some(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')))return'clear-west';
- if(done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';
+ if(!G.HonroStage11TraceExit?.active(b)&&done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';
  return null;
 }
 function ready(b,ev){
@@ -196,7 +196,8 @@ A.state=function(b){
  // All responses are due by the east-knot step, before the four-round defense.
  // This guard covers a blocked entry or an unusually fast saved-state resume:
  // the existing all-enemies objective must never silently miss queued bodies.
- if(blocked||(result.complete||done(b,'clear-road'))&&(waiting.length||foes.length)){
+  // The separately approved trace-exit revision makes that final cleanup optional.
+ if(blocked||!G.HonroStage11TraceExit?.active(b)&&(result.complete||done(b,'clear-road'))&&(waiting.length||foes.length)){
   const hero=b.units.find(u=>u.id===b.active)||b.units.find(u=>u.side===0);
   const target=foes.slice().sort((a,c)=>Math.hypot(a.x-(hero?.x||0),a.y-(hero?.y||0))-Math.hypot(c.x-(hero?.x||0),c.y-(hero?.y||0)))[0];
   const relevant=blocked==='clear-west'?waiting.filter(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')):waiting;
