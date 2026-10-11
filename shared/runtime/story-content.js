@@ -261,12 +261,12 @@ function cooperationDefense(){return scene('cooperation-defense','함께 막는 
  ['설오','지금 건 당신이 놓친 게 아닙니다. 저 문밖에서 들어왔어요.'],
  ['소단','그래서… 아무리 붙잡아도 줄지 않았군요.'],
  ['소단','(돌단에 무릎을 꿇는다) 매듭을 풀게요. 앞을 부탁해요.'],
- ['설오','앞은 제가 보고 있습니다.'],
+ ['설오','다가오는 것들은 제가 막겠습니다.'],
  ['안내','양옆 진이 혼을 받는 동안 소단을 보호하세요. 여섯 번의 적 턴이 지나면 의식이 끝납니다.',{kind:'guide'}]]);}
 function finaleMidpoint(){return scene('finale-midpoint','놓치지 않는 손',[
  ['소단','(몸을 낮춰 매듭을 붙든다) 반은 풀렸어요. 그런데 밖에서 자꾸… 손이 떨려요.'],
- ['설오','제 목소리 들립니까? 바로 앞에 있습니다. 바깥은 보지 마십시오.'],
+ ['설오','제 목소리 들립니까? 여기서 지키고 있습니다. 매듭에 집중하십시오.'],
  ['소단','…들려요. 조금만 더, 부탁해요.'],
- ['담허','양옆은 내가 받네. 숨을 내쉬게. 급하게 풀 필요 없어.']]);}
+ ['담허','양옆 진이 받고 있네. 숨을 내쉬게. 급하게 풀 필요 없어.']]);}
 G.HonroStoryContent={version,introductions:intro,mapScenes,outros,summaries,events,ledgerPages,scene,eventLines,resolveDeferred,beforeOutcome,interaction,cooperation,cooperationDefense,finaleMidpoint};
 })(globalThis);

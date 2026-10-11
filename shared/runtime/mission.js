@@ -28,7 +28,7 @@ function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss
  hs.finaleLastEnemyEnd??=b.teamEnds[1];hs.finaleWave??=hs.coopHold||0;hs.finaleDefenseTurns??=hs.coopHold||0;hs.finaleAnchor??={x:sodan.x,y:sodan.y};
  Object.assign(sodan,{...hs.finaleAnchor,side:2,honroAlly:true,allyRole:'channeler',fixed:true,vx:0,vy:0});delete sodan.moveTarget;delete sodan.aiMove;b.enemyLimit=b.honroActiveLimit=6;
  if(!app.actorBoundary)return;
- if(b.teamEnds[1]>hs.finaleLastEnemyEnd){const delta=b.teamEnds[1]-hs.finaleLastEnemyEnd,previous=hs.coopHold||0;hs.finaleLastEnemyEnd=b.teamEnds[1];hs.finaleDefenseTurns+=delta;hs.coopHold=Math.min(FINALE_TURNS,hs.finaleDefenseTurns);if(previous<3&&hs.coopHold>=3)app.sayLines(G.HonroStoryContent.finaleMidpoint());}
+ if(b.teamEnds[1]>hs.finaleLastEnemyEnd){const delta=b.teamEnds[1]-hs.finaleLastEnemyEnd,previous=hs.coopHold||0;hs.finaleLastEnemyEnd=b.teamEnds[1];hs.finaleDefenseTurns+=delta;hs.coopHold=Math.min(FINALE_TURNS,hs.finaleDefenseTurns);if(previous<3&&hs.coopHold>=3)app.sayLines(G.HonroNarrativeRevision?.active(b)?G.HonroStoryContent.finaleMidpoint():G.HONRO_NARRATIVE_V0?.finaleMidpoint||G.HonroStoryContent.finaleMidpoint());}
  // An unusually early conversion must not leave empty rounds until the campaign pacing floor.
  if(!G.HonroObjectives.state(b,app.stage).complete&&hs.finaleWave<hs.finaleDefenseTurns&&rush(app,hs.finaleDefenseTurns))hs.finaleWave=hs.finaleDefenseTurns;
 }
