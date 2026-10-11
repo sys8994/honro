@@ -48,12 +48,18 @@ const originalEngine=new C.Engine(plain(old));assert.equal(C.flightClear(origina
 let app=h.load(profile);app.continue();let b=app.engine.b,e=app.engine,u=e.unit(targetId);
 const maskPose=battle=>{const copy=plain(battle),unit=copy.units.find(v=>v.id===targetId);for(const key of ['x','y','spawnX','spawnY','vx','vy','aiMove','moveTarget'])delete unit[key];return copy;};
 assert(C.flightClear(e,u,u));assert(Math.hypot(u.x-oldTarget.x,u.y-oldTarget.y)<=256);
-assert.deepEqual(maskPose(b),maskPose(old),'Only the identified trapped actor pose may change on Continue');
+// The separately approved trace-exit migration applies to this same campaign
+// save. Permit exactly its removed cleanup step and revision metadata, while
+// comparing every other battle field (including all quest/history state).
+const expected=plain(old);assert.equal(expected.honroStage11TraceExitRevision,undefined);
+assert.equal(expected.honroAct2Steps.filter(s=>s.id==='clear-road').length,1);
+expected.honroAct2Steps=expected.honroAct2Steps.filter(s=>s.id!=='clear-road');expected.honroStage11TraceExitRevision=1;
+assert.deepEqual(maskPose(b),maskPose(expected),'Only the trapped pose and explicitly approved trace-exit plan migration may change on Continue');
 const repaired=plain(b);app.export();app=h.load(await h.exported());app.continue();
 assert.deepEqual(plain(app.engine.b),repaired,'Repeated production export/load/Continue keeps the recovered battle exactly');
 b=app.engine.b;e=app.engine;u=e.unit(targetId);
 rows.push({kind:'normal-save-repair',id:u.id,from:{x:oldTarget.x,y:oldTarget.y},to:{x:u.x,y:u.y},hp:u.hp,maxHp:u.maxHp});
-console.log('PASS Exact normal save repairs only the trapped pose, without healing, duplicates, quest or turn changes; repeat Continue is exact');
+console.log('PASS Exact normal save repairs the trapped pose plus approved trace-exit plan, without healing, duplicates, progress/history or turn changes; repeat Continue is exact');
 
 for(const change of [
  b=>b.honroCustom=true,b=>b.honroStage=12,b=>b.honroStage11EncounterRevision=1,

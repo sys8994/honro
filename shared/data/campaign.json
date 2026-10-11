@@ -155938,6 +155938,295 @@
           1.4
         ]
       }
+    },
+    {
+      "id": "quest-redesign:opening",
+      "name": "opening",
+      "category": "prop",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -120,
+          -250,
+          240,
+          260
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#172425",
+              "d": "M-82 0 L-82 -144 Q0 -220 82 -144 L82 0 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#707975",
+              "lineWidth": 18,
+              "d": "M-105 0 L-99 -157 Q0 -245 99 -157 L105 0"
+            },
+            {
+              "tag": "path",
+              "fill": "#9c9779",
+              "d": "M-98 -8 L-82 -19 L83 -19 L98 -8 Z"
+            }
+          ]
+        }
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "quest-redesign"
+      ],
+      "params": {},
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": -120,
+        "y": -250,
+        "w": 240,
+        "h": 260
+      },
+      "reference": {
+        "heightM": 4,
+        "bounds": {
+          "x": -120,
+          "y": -250,
+          "w": 240,
+          "h": 260
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.5,
+          2
+        ],
+        "backgroundRange": [
+          0.5,
+          2
+        ]
+      }
+    },
+    {
+      "id": "quest-redesign:tablet",
+      "name": "tablet",
+      "category": "prop",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -50,
+          -95,
+          100,
+          100
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#9b967d",
+              "d": "M-39 0 L-36 -53 L43 -51 L39 0 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#343f3e",
+              "lineWidth": 4,
+              "d": "M-25 -39 L26 -39 M-22 -25 L30 -25 M-19 -12 L13 -12"
+            }
+          ]
+        }
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "quest-redesign"
+      ],
+      "params": {},
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": -50,
+        "y": -95,
+        "w": 100,
+        "h": 100
+      },
+      "reference": {
+        "heightM": 1.5,
+        "bounds": {
+          "x": -50,
+          "y": -95,
+          "w": 100,
+          "h": 100
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.5,
+          2
+        ],
+        "backgroundRange": [
+          0.5,
+          2
+        ]
+      }
+    },
+    {
+      "id": "quest-redesign:hammer",
+      "name": "hammer",
+      "category": "prop",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -50,
+          -95,
+          100,
+          100
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#877255",
+              "d": "M-7 0 L1 -72 L11 -71 L4 0 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#77807b",
+              "d": "M-29 -84 L32 -79 L29 -55 L-31 -61 Z"
+            }
+          ]
+        }
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "quest-redesign"
+      ],
+      "params": {},
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": -50,
+        "y": -95,
+        "w": 100,
+        "h": 100
+      },
+      "reference": {
+        "heightM": 1.5,
+        "bounds": {
+          "x": -50,
+          "y": -95,
+          "w": 100,
+          "h": 100
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.5,
+          2
+        ],
+        "backgroundRange": [
+          0.5,
+          2
+        ]
+      }
+    },
+    {
+      "id": "quest-redesign:bowl",
+      "name": "bowl",
+      "category": "prop",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -50,
+          -95,
+          100,
+          100
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#b0a07b",
+              "d": "M-30 -20 Q0 16 30 -20 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#575345",
+              "d": "M-30 -20 Q0 -34 30 -20 Q0 -7 -30 -20 Z"
+            }
+          ]
+        }
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "quest-redesign"
+      ],
+      "params": {},
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": -50,
+        "y": -95,
+        "w": 100,
+        "h": 100
+      },
+      "reference": {
+        "heightM": 1.5,
+        "bounds": {
+          "x": -50,
+          "y": -95,
+          "w": 100,
+          "h": 100
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.5,
+          2
+        ],
+        "backgroundRange": [
+          0.5,
+          2
+        ]
+      }
     }
   ],
   "stages": [
@@ -216912,7 +217201,8 @@
         },
         "honroStage11CompletionRevision": 1,
         "honroEncounterDensityRevision": 1,
-        "honroEncounterDensityPopulationCap": 72
+        "honroEncounterDensityPopulationCap": 72,
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -222704,6 +222994,17 @@
             "x": 8100,
             "y": 5829
           }
+        },
+        {
+          "id": "quest-upper-quarry-mouth",
+          "assetId": "quest-redesign:opening",
+          "x": 8660,
+          "y": 4310.555555555556,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
         }
       ],
       "units": [
@@ -223420,7 +223721,13 @@
             "honroQuarryCell": "G",
             "honroQuarryActivationCell": "G-road",
             "honroEncounterRole": "G-road",
-            "honroEncounterSupport": "sq-back-road"
+            "honroEncounterSupport": "sq-back-road",
+            "honroRouteGuard": {
+              "x": 8370,
+              "y": 4440,
+              "radius": 650,
+              "support": "sq-back-road"
+            }
           }
         },
         {
@@ -223440,7 +223747,13 @@
             "honroQuarryCell": "G",
             "honroQuarryActivationCell": "G-road",
             "honroEncounterRole": "G-road",
-            "honroEncounterSupport": "sq-back-road"
+            "honroEncounterSupport": "sq-back-road",
+            "honroRouteGuard": {
+              "x": 8370,
+              "y": 4440,
+              "radius": 650,
+              "support": "sq-back-road"
+            }
           }
         },
         {
@@ -223460,7 +223773,13 @@
             "honroQuarryCell": "G",
             "honroQuarryActivationCell": "G-high",
             "honroEncounterRole": "G-high",
-            "honroEncounterSupport": "sq-back-road"
+            "honroEncounterSupport": "sq-back-road",
+            "honroRouteGuard": {
+              "x": 8370,
+              "y": 4440,
+              "radius": 650,
+              "support": "sq-back-road"
+            }
           }
         },
         {
@@ -223480,7 +223799,13 @@
             "honroQuarryCell": "G",
             "honroQuarryActivationCell": "G-high",
             "honroEncounterRole": "G-high",
-            "honroEncounterSupport": "sq-back-road"
+            "honroEncounterSupport": "sq-back-road",
+            "honroRouteGuard": {
+              "x": 8370,
+              "y": 4440,
+              "radius": 650,
+              "support": "sq-back-road"
+            }
           }
         },
         {
@@ -223500,7 +223825,13 @@
             "honroQuarryCell": "G",
             "honroQuarryActivationCell": "G-road",
             "honroEncounterRole": "G-road",
-            "honroEncounterSupport": "sq-back-road"
+            "honroEncounterSupport": "sq-back-road",
+            "honroRouteGuard": {
+              "x": 8370,
+              "y": 4440,
+              "radius": 650,
+              "support": "sq-back-road"
+            }
           }
         }
       ],
@@ -223639,14 +223970,6 @@
       "objectives": [],
       "markers": [
         {
-          "id": "clear-approach",
-          "type": "act2",
-          "x": 7600,
-          "y": 3310,
-          "label": "채석장 진입로 확보",
-          "surfaceId": "sq-north-quarry"
-        },
-        {
           "id": "sign",
           "type": "act2",
           "x": 6520,
@@ -223663,35 +223986,35 @@
           "surfaceId": "sq-lower-ground"
         },
         {
-          "id": "hold-road",
-          "type": "act2",
-          "x": 6520,
-          "y": 4800,
-          "label": "풀어 놓은 진의 축과 후방 지키기",
-          "surfaceId": "sq-lower-ground"
-        },
-        {
-          "id": "clear-quarry",
-          "type": "act2",
-          "x": 6520,
-          "y": 4800,
-          "label": "채석장 들린 도구 전부 제압",
-          "surfaceId": "sq-lower-ground"
-        },
-        {
-          "id": "exit",
-          "type": "exit",
-          "x": 8350,
-          "y": 5947.75,
-          "label": "함몰지 입구로 이동",
-          "surfaceId": "sq-lower-ground"
-        },
-        {
           "id": "wave",
           "type": "act2-wave",
           "x": 8300,
           "y": 4479.375,
           "surfaceId": "sq-back-road"
+        },
+        {
+          "id": "route-upper-exit",
+          "type": "act2",
+          "action": "act2",
+          "x": 8660,
+          "y": 4310.555555555556,
+          "label": "높은 작업굴 출구"
+        },
+        {
+          "id": "route-lower-exit",
+          "type": "act2",
+          "action": "act2",
+          "x": 8350,
+          "y": 5947.75,
+          "label": "열린 내리막 동굴 출구"
+        },
+        {
+          "id": "route-exit",
+          "type": "act2",
+          "action": "act2",
+          "x": 7370,
+          "y": 4627.5,
+          "label": "높은 작업굴 또는 열린 내리막"
         }
       ],
       "layers": [
@@ -223790,39 +224113,14 @@
         "honroActiveLimit": 4,
         "honroAct2Steps": [
           {
-            "id": "clear-approach",
-            "label": "채석장 진입로 확보",
-            "kind": "clear",
-            "cohorts": "west"
-          },
-          {
             "id": "sign",
             "label": "길표의 돌림진 한 축 풀기",
             "kind": "interact"
           },
           {
-            "id": "hold-road",
-            "label": "풀어 놓은 진의 축과 후방 지키기",
-            "kind": "hold",
-            "rounds": 4,
-            "wave": {
-              "kind": "minecart",
-              "count": 8,
-              "eliteEvery": 4
-            },
-            "radius": 680,
-            "contestRadius": 260
-          },
-          {
-            "id": "clear-quarry",
-            "label": "채석장 들린 도구 전부 제압",
-            "kind": "clear",
-            "cohorts": "all"
-          },
-          {
-            "id": "exit",
-            "label": "함몰지 입구로 이동",
-            "kind": "reach"
+            "id": "route-exit",
+            "kind": "route",
+            "label": "높은 작업굴 확보 후 이동 또는 열린 내리막으로 이탈"
           }
         ],
         "honroCaveForms": [],
@@ -223847,88 +224145,39 @@
         "honroQuarryContent": {
           "name": "돌아오는 산길",
           "theme": "valley",
-          "goal": "길표의 돌림진을 풀고 채석장을 지나 함몰지 입구에 도착",
+          "goal": "길표의 진을 풀고 높은 작업굴 또는 열린 내리막으로 이탈",
           "narration": [
             "갈라진 바위와 마른 소나무가 세 번째 나타났다. 돌탑 곁에 둔 수레도 그대로였다. 발자국은 앞을 향했는데 일행은 자꾸 같은 자리로 돌아왔다."
           ],
           "story": [
             [
               "설오",
-              "바위에 제가 낸 자국입니다. 해를 등지고 걸었는데 어떻게 다시 여기로 온 겁니까?",
+              "갈라진 바위와 마른 소나무입니다. 조금 전에도 이 둘 사이를 지났습니다.",
               {
-                "storyId": "act2-v1:act2-r2-entry-12",
-                "storyTitle": "돌아오는 산길"
-              }
-            ],
-            [
-              "휘겸",
-              "지도에 적힌 능선과 맞지 않소. 돌아선 갈림길도 없었는데.",
-              {
-                "storyId": "act2-v1:act2-r2-entry-12",
-                "storyTitle": "돌아오는 산길"
-              }
-            ],
-            [
-              "소단",
-              "혼은 같은 자리를 돌지 않아요. 계속 산 안쪽으로 가요.",
-              {
-                "storyId": "act2-v1:act2-r2-entry-12",
+                "storyId": "act2-r3-entry-12",
                 "storyTitle": "돌아오는 산길"
               }
             ],
             [
               "담허",
-              "우리가 길을 잃은 게 아니다. 길을 틀어놓은 거야.",
+              "길이 우리를 같은 곳으로 돌려보내는군. 저 길표부터 살펴보세.",
               {
-                "storyId": "act2-v1:act2-r2-entry-12",
-                "storyTitle": "돌아오는 산길"
-              }
-            ],
-            [
-              "휘겸",
-              "낙석이 아래 홈을 메웠소. 길표에 다가가려면 먼저 작업장을 비워야 하오.",
-              {
-                "storyId": "act2-v1:act2-r2-entry-12",
+                "storyId": "act2-r3-entry-12",
                 "storyTitle": "돌아오는 산길"
               }
             ]
           ],
-          "guide": "오른쪽 옛길에서 내려와 운반대의 적을 제압하세요. 서쪽 채석장과 아래 회귀길, 뒤쪽 바윗길의 적도 모두 제압해야 합니다. 중앙 길표를 E로 조사하고 표시 범위에서 4라운드 지키세요. 길표 뒤 동굴통로는 이어지지만, 유한 수레 8대와 모든 잔적을 제압한 뒤 출구에 도착해야 마칩니다.",
+          "guide": "중앙 길표를 조사하세요. 높은 작업굴의 수레막이를 제압하고 올라가거나, 열린 내리막으로 빠져나갈 수 있습니다. 한 동행이 선택한 출구에 닿으면 됩니다.",
           "steps": [
-            {
-              "id": "clear-approach",
-              "label": "채석장 진입로 확보",
-              "kind": "clear",
-              "cohorts": "west"
-            },
             {
               "id": "sign",
               "label": "길표의 돌림진 한 축 풀기",
               "kind": "interact"
             },
             {
-              "id": "hold-road",
-              "label": "풀어 놓은 진의 축과 후방 지키기",
-              "kind": "hold",
-              "rounds": 4,
-              "wave": {
-                "kind": "minecart",
-                "count": 8,
-                "eliteEvery": 4
-              },
-              "radius": 680,
-              "contestRadius": 260
-            },
-            {
-              "id": "clear-quarry",
-              "label": "채석장 들린 도구 전부 제압",
-              "kind": "clear",
-              "cohorts": "all"
-            },
-            {
-              "id": "exit",
-              "label": "함몰지 입구로 이동",
-              "kind": "reach"
+              "id": "route-exit",
+              "kind": "route",
+              "label": "높은 작업굴 확보 후 이동 또는 열린 내리막으로 이탈"
             }
           ],
           "beats": {
@@ -223941,47 +224190,31 @@
             "sign": [
               [
                 "서술",
-                "길표 밑의 마른 돌 위에 작은 짚신 한 짝을 놓았다."
-              ],
-              [
-                "담허",
-                "돌림진이네. 들어온 사람을 제자리로 돌려보내지. 이 획을 잇는 법은… 내가 배운 것과 같은 뿌리다."
+                "길표 밑에 작은 짚신 한 짝이 있었다. 설오는 젖지 않게 마른 돌 위에 옮겼다."
               ],
               [
                 "설오",
-                "풀 수 있겠습니까?"
+                "주인을 만나면 이곳에 두었다고 알려 주겠습니다."
               ],
               [
                 "담허",
-                "한 축은 풀 수 있네. 누가 이 산에 폈는지는 아직 모르겠어."
+                "돌림진이네. 발걸음을 제자리로 돌리는 법이지. 이 획은 내가 배운 것과 같은 뿌리야."
               ],
               [
                 "서술",
-                "담허가 겹친 획 하나를 풀었다. 돌탑 뒤로 전에 보이지 않던 내리막이 이어졌다. 그때 암벽 안에서 낮은 종소리가 울리고 수레의 바퀴가 일행 쪽으로 돌아섰다."
+                "담허가 겹친 획 하나를 풀었다. 돌탑 뒤로 내리막이 이어지고, 낮은 종소리에 수레바퀴가 돌아섰다."
               ],
               [
                 "소단",
-                "지금 들어갔어요. 산에서 나온 혼이 수레 안으로!"
-              ]
-            ],
-            "clear-approach": [
-              [
-                "서술",
-                "쓰러진 도구 사이에서 작은 짚신 한 짝이 나왔다."
-              ],
-              [
-                "설오",
-                "아이도 이 길로 내려왔습니다. 돌아올 때 주인을 찾을 수 있으면 좋겠습니다."
-              ]
-            ],
-            "hold-road": [
-              [
-                "서술",
-                "마지막 수레가 옆으로 쓰러졌다. 이번에는 돌탑이 뒤에 남았다. 처음 보는 절벽 아래로 바람이 빨려 들어갔다."
+                "종소리 뒤에 혼이 수레로 들어갔어요."
               ],
               [
                 "휘겸",
-                "드디어 다른 길이오. 누군가 산 안쪽을 오래 감춰 왔군."
+                "위 작업굴은 수레가 막았소. 밀어내면 곧장 닿겠소."
+              ],
+              [
+                "설오",
+                "아래 길도 열렸습니다. 바위 그늘로 내려갈 수 있겠습니다."
               ]
             ]
           },
@@ -223990,7 +224223,7 @@
               "설오",
               "절벽 뒤에 이런 함몰지가 있었군요. 지도에도 없던 돌계단과 거대한 석문이 보입니다.",
               {
-                "storyId": "act2-v1:act2-r2-outro-12",
+                "storyId": "act2-r3-outro-12",
                 "storyTitle": "돌아오는 산길"
               }
             ],
@@ -223998,7 +224231,7 @@
               "소단",
               "울림은 더 아래에서 와요. 여기까지 밀려 나온 것보다, 안에 남은 쪽이 훨씬 많아요.",
               {
-                "storyId": "act2-v1:act2-r2-outro-12",
+                "storyId": "act2-r3-outro-12",
                 "storyTitle": "돌아오는 산길"
               }
             ]
@@ -224272,7 +224505,37 @@
           }
         },
         "honroEncounterDensityRevision": 1,
-        "honroEncounterDensityPopulationCap": 46
+        "honroEncounterDensityPopulationCap": 46,
+        "honroNarrativeRevision": 1,
+        "honroRouteSpec": {
+          "revision": 1,
+          "toStage": 13,
+          "common": [
+            "sign"
+          ],
+          "routes": [
+            {
+              "id": "A",
+              "markerId": "route-upper-exit",
+              "defeatIds": [
+                "sq-g1",
+                "sq-g2",
+                "sq-g3",
+                "sq-g4",
+                "sq-g5"
+              ],
+              "requiresDone": []
+            },
+            {
+              "id": "B",
+              "markerId": "route-lower-exit",
+              "requiresDone": [],
+              "requiresTerrainOpen": [
+                "sq-turning-veil"
+              ]
+            }
+          ]
+        }
       },
       "environment": {
         "version": 4,
@@ -228076,6 +228339,35 @@
             "sq-art-bent-waymark-pine",
             "sq-art-abandoned-cart"
           ]
+        },
+        "questRoutes": {
+          "revision": 1,
+          "toStage": 13,
+          "common": [
+            "sign"
+          ],
+          "routes": [
+            {
+              "id": "A",
+              "markerId": "route-upper-exit",
+              "defeatIds": [
+                "sq-g1",
+                "sq-g2",
+                "sq-g3",
+                "sq-g4",
+                "sq-g5"
+              ],
+              "requiresDone": []
+            },
+            {
+              "id": "B",
+              "markerId": "route-lower-exit",
+              "requiresDone": [],
+              "requiresTerrainOpen": [
+                "sq-turning-veil"
+              ]
+            }
+          ]
         }
       },
       "routes": [
@@ -230007,13 +230299,6 @@
       "objectives": [],
       "markers": [
         {
-          "id": "clear-entry",
-          "type": "act2",
-          "x": 1500,
-          "y": 3245,
-          "label": "석문 앞 작업조 제압"
-        },
-        {
           "id": "resident",
           "type": "act2",
           "x": 2400,
@@ -230036,20 +230321,6 @@
           "type": "act2-wave",
           "x": 5540,
           "y": 4242.6
-        },
-        {
-          "id": "hold-gate",
-          "type": "act2",
-          "x": 4800,
-          "y": 4098,
-          "label": "석문 통로를 지켜 피난 시간 확보"
-        },
-        {
-          "id": "clear-depth",
-          "type": "act2",
-          "x": 6720,
-          "y": 4685.714285714285,
-          "label": "안쪽 회랑 전부 제압"
         },
         {
           "id": "exit",
@@ -230161,12 +230432,6 @@
         "honroActiveLimit": 4,
         "honroAct2Steps": [
           {
-            "id": "clear-entry",
-            "label": "석문 앞 작업조 제압",
-            "kind": "clear",
-            "cohorts": "west"
-          },
-          {
             "id": "resident",
             "label": "고립된 석공 구조",
             "kind": "rescue"
@@ -230175,25 +230440,6 @@
             "id": "gate",
             "label": "석문 빗장 열기",
             "kind": "interact"
-          },
-          {
-            "id": "hold-gate",
-            "label": "석문 통로를 지켜 피난 시간 확보",
-            "kind": "hold",
-            "rounds": 5,
-            "wave": {
-              "kind": "picks",
-              "count": 8,
-              "eliteEvery": 4
-            },
-            "radius": 680,
-            "contestRadius": 260
-          },
-          {
-            "id": "clear-depth",
-            "label": "안쪽 회랑 전부 제압",
-            "kind": "clear",
-            "cohorts": "all"
           },
           {
             "id": "exit",
@@ -230224,7 +230470,147 @@
           "roofEnd": 3370,
           "floorEnd": 4750
         },
-        "honroObjectiveRevision": 2
+        "honroObjectiveRevision": 2,
+        "honroNarrativeRevision": 1,
+        "honroEntryVariants": {
+          "revision": 1,
+          "fromStage": 12,
+          "variants": {
+            "A": {
+              "heroes": [
+                {
+                  "cls": "archer",
+                  "x": 2900,
+                  "y": 3380.25
+                },
+                {
+                  "cls": "mage",
+                  "x": 3000,
+                  "y": 3380.25
+                },
+                {
+                  "cls": "knight",
+                  "x": 3100,
+                  "y": 3380.25
+                },
+                {
+                  "cls": "occultist",
+                  "x": 3200,
+                  "y": 3380.25
+                }
+              ],
+              "units": [
+                {
+                  "id": "a2-enemy-0",
+                  "x": 2600,
+                  "y": 3460
+                },
+                {
+                  "id": "a2-enemy-1",
+                  "x": 2730,
+                  "y": 3473
+                },
+                {
+                  "id": "a2-enemy-2",
+                  "x": 3350,
+                  "y": 3734.375
+                },
+                {
+                  "id": "a2-enemy-3",
+                  "x": 3480,
+                  "y": 3794.5
+                },
+                {
+                  "id": "a2-enemy-4",
+                  "x": 3620,
+                  "y": 3857.6666666666665
+                },
+                {
+                  "id": "a2-enemy-7",
+                  "x": 3590,
+                  "y": 3645.375
+                }
+              ],
+              "lines": [
+                [
+                  "휘겸",
+                  "저 아래 사람이 있소. 위에서 길을 열겠소."
+                ]
+              ]
+            },
+            "B": {
+              "heroes": [
+                {
+                  "cls": "archer",
+                  "x": 900,
+                  "y": 3055.714285714286
+                },
+                {
+                  "cls": "mage",
+                  "x": 1000,
+                  "y": 3088.5714285714284
+                },
+                {
+                  "cls": "knight",
+                  "x": 1100,
+                  "y": 3121.4285714285716
+                },
+                {
+                  "cls": "occultist",
+                  "x": 1200,
+                  "y": 3154.285714285714
+                }
+              ],
+              "units": [
+                {
+                  "id": "a2-enemy-0",
+                  "x": 1610,
+                  "y": 3272.5
+                },
+                {
+                  "id": "a2-enemy-1",
+                  "x": 1750,
+                  "y": 3307.5
+                },
+                {
+                  "id": "a2-enemy-2",
+                  "x": 2860,
+                  "y": 3507.75
+                },
+                {
+                  "id": "a2-enemy-3",
+                  "x": 2980,
+                  "y": 3563.25
+                },
+                {
+                  "id": "a2-enemy-4",
+                  "x": 3120,
+                  "y": 3628
+                },
+                {
+                  "id": "a2-enemy-7",
+                  "x": 3590,
+                  "y": 3645.375
+                }
+              ],
+              "lines": [
+                [
+                  "설오",
+                  "안쪽에 사람이 있습니다. 먼저 붙은 혼부터 떼겠습니다."
+                ]
+              ]
+            }
+          }
+        },
+        "honroNarrativePressure": [
+          {
+            "id": "hold-gate",
+            "after": "gate",
+            "kind": "picks",
+            "count": 8,
+            "eliteEvery": 4
+          }
+        ]
       },
       "environment": {
         "version": 4,
@@ -237176,39 +237562,23 @@
           ],
           "story": [
             [
-              "주민",
-              "움직이지 말라고 묶은 줄이 아니에요. 몸을 빼앗겨도 돌아오는 길을 잊지 말라고 묶었어요.",
-              {
-                "storyId": "act2-v1:act2-r2-entry-14",
-                "storyTitle": "해가 닿지 않는 마을"
-              }
-            ],
-            [
               "소단",
               "사람 곁에서 같은 말을 되풀이하는 혼이 있어요. 제가 떼어낼게요. 살아 있는 몸을 치면 안 돼요.",
               {
-                "storyId": "act2-v1:act2-r2-entry-14",
+                "storyId": "act2-r3-entry-14",
                 "storyTitle": "해가 닿지 않는 마을"
               }
             ],
             [
               "설오",
-              "길찬이라는 아이를 찾고 있습니다. 아버지가 위에서 기다립니다.",
+              "석공 어르신의 아들 길찬을 찾아야 합니다. 위쪽 집부터 살펴보겠습니다.",
               {
-                "storyId": "act2-v1:act2-r2-entry-14",
-                "storyTitle": "해가 닿지 않는 마을"
-              }
-            ],
-            [
-              "주민",
-              "상층 돌집에 있어요. 아래 가족들도 아직 못 올라왔어요. 다리 걸쇠를 혼자 붙들고 있다가…",
-              {
-                "storyId": "act2-v1:act2-r2-entry-14",
+                "storyId": "act2-r3-entry-14",
                 "storyTitle": "해가 닿지 않는 마을"
               }
             ]
           ],
-          "guide": "상층과 장터의 들린 도구를 제압하고 세 집의 주민을 구조하세요. 장터 아래 광물길과 동쪽 능선은 다시 합류합니다. 가운데 돌턱은 뛰지 않고 걸어서 내려서세요. 피난 다리 걸쇠를 열고 표시 범위에서 6턴 동안 주민을 지킨 뒤 남은 들림을 모두 제압해야 합니다.",
+          "guide": "상층과 중층의 적을 각각 제압하며 주민을 구하세요. 소단의 분리는 붙은 혼을 체력 40% 이하로 낮춘 뒤 가능합니다. 하층 다리를 연 뒤 범위 안에서 6턴 방어하고 남은 적을 소탕해야 주민이 안전해집니다.",
           "steps": [
             {
               "id": "clear-upper",
@@ -237277,6 +237647,32 @@
                 "그 손으로 평생 돌을 깎았어요. 괜찮다고만 하셨을 텐데. 나가면 제가 짐을 들게 해 주세요."
               ]
             ],
+            "family-mid": [
+              [
+                "중층 주민",
+                "몸을 빼앗기면 가족을 해칠까 봐 서로 손목을 묶었어요. 정신이 돌아올 때까지 이름을 부르면서요."
+              ],
+              [
+                "중층 주민",
+                "아래층에는 제 가족도 남아 있어요. 함께 데려가 주세요."
+              ],
+              [
+                "중층 주민",
+                "남편은 종지기에게 따지러 법당에 갔소. 종이 울 때마다 왜 가족의 목소리가 들리는지 물으러."
+              ],
+              [
+                "담허",
+                "그 종지기는 절의 승려인가?"
+              ],
+              [
+                "중층 주민",
+                "외법사예요. 몇 해 전 종이 혼자 울기 시작한 뒤로 그 사람을 찾았지요. 왜 그 종이 여기 있는지는 우리도 몰라요. 할머니는 절보다 종이 먼저였다고만 하셨어요."
+              ],
+              [
+                "중층 주민",
+                "큰길은 잠겼지만 작업굴은 절까지 이어져요. 아래 수문길과 위 바윗길을 살펴보세요."
+              ]
+            ],
             "family-lower": [
               [
                 "소단",
@@ -237285,34 +237681,6 @@
               [
                 "담허",
                 "보낼 길이 막혀 있으니 빈자리를 계속 메우는 것이겠지. 아래에서 무엇을 막았는지 보아야겠네."
-              ],
-              [
-                "휘겸",
-                "다리 아래와 동쪽에서 도구들이 등잔집을 노리오. 다리에 닿는 대로 집 쪽 길부터 막겠소."
-              ]
-            ],
-            "bridge": [
-              [
-                "휘겸",
-                "걸쇠를 열었소. 표식의 동쪽 끝에서도 등잔집을 지킬 수 있겠소."
-              ],
-              [
-                "설오",
-                "위층에 남은 들림은 주민을 지킨 뒤 확인하겠습니다."
-              ]
-            ],
-            "family-mid": [
-              [
-                "주민",
-                "남편은 종지기에게 따지러 법당에 갔소. 종이 울 때마다 왜 가족의 목소리가 들리는지 물으러."
-              ],
-              [
-                "담허",
-                "그 종지기는 절의 승려인가?"
-              ],
-              [
-                "주민",
-                "외법사예요. 몇 해 전 종이 혼자 울기 시작한 뒤로 그 사람을 찾았지요. 왜 그 종이 여기 있는지는 우리도 몰라요. 할머니는 절보다 종이 먼저였다고만 하셨어요."
               ]
             ],
             "hold-refuge:start": [
@@ -237323,10 +237691,6 @@
               [
                 "길찬",
                 "저도 사람들을 부를게요. 이번에는 그냥 기다리지만 않을게요."
-              ],
-              [
-                "담허",
-                "등잔집으로 다가가는 것부터 막게. 잠시 고요해도 굴에서 오는 마지막 들림까지 살피세."
               ]
             ],
             "hold-refuge": [
@@ -237342,10 +237706,10 @@
           },
           "outro": [
             [
-              "주민",
-              "큰길은 잠겼지만 아래 작업굴은 절까지 이어져요. 수문을 열어야 사람이 지날 수 있어요.",
+              "휘겸",
+              "주민이 말한 작업굴로 갑시다. 아래 수문길과 위 바윗길이 있다 했소.",
               {
-                "storyId": "act2-v1:act2-r2-outro-14",
+                "storyId": "act2-r3-outro-14",
                 "storyTitle": "해가 닿지 않는 마을"
               }
             ],
@@ -237353,12 +237717,12 @@
               "설오",
               "돌아와서 함께 나가겠습니다. 이번에는 바깥까지 열린 길을 만들겠습니다.",
               {
-                "storyId": "act2-v1:act2-r2-outro-14",
+                "storyId": "act2-r3-outro-14",
                 "storyTitle": "해가 닿지 않는 마을"
               }
             ]
           ],
-          "summary": "세 주민을 비살상으로 구조하고 피난 다리를 열었다. 수문 아래 작업굴로 우회한다.",
+          "summary": "세 주민을 비살상으로 구조하고 피난 다리를 열었다. 아래 수문길이나 위 바윗길로 잠운사에 접근한다.",
           "id": 14,
           "act": 2,
           "actStage": 4,
@@ -237478,7 +237842,8 @@
               124
             ]
           }
-        }
+        },
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -258557,19 +258922,19 @@
             },
             {
               "x": 3740,
-              "y": 4120
+              "y": 4076.333333333333
             },
             {
               "x": 3680,
-              "y": 4350
+              "y": 4058.7142857142853
             },
             {
               "x": 3420,
-              "y": 4310
+              "y": 3977
             },
             {
               "x": 3330,
-              "y": 4080
+              "y": 3948.7142857142853
             },
             {
               "x": 3340,
@@ -258861,15 +259226,15 @@
             },
             {
               "x": 7450,
-              "y": 4300
+              "y": 3880
             },
             {
               "x": 7190,
-              "y": 4400
+              "y": 3992.833333333333
             },
             {
               "x": 7060,
-              "y": 4130
+              "y": 4073
             },
             {
               "x": 6910,
@@ -258881,11 +259246,11 @@
             },
             {
               "x": 6430,
-              "y": 4360
+              "y": 4340.8490566037735
             },
             {
               "x": 6310,
-              "y": 4390
+              "y": 4361.22641509434
             }
           ],
           "baseMaterial": "rock",
@@ -259147,44 +259512,221 @@
           }
         },
         {
-          "id": "fc15-west-descent",
-          "name": "fc15-west-descent",
+          "id": "fc15-dry-basin-rim",
+          "name": "fc15-dry-basin-rim",
           "type": "solid",
           "points": [
             {
-              "x": 5350,
-              "y": 4440
+              "x": 5310,
+              "y": 4245
             },
             {
-              "x": 5520,
-              "y": 4420
+              "x": 5500,
+              "y": 4280
             },
             {
-              "x": 5540,
-              "y": 4455
+              "x": 5780,
+              "y": 4290
             },
             {
-              "x": 5370,
-              "y": 4475
+              "x": 5970,
+              "y": 4380
+            },
+            {
+              "x": 6090,
+              "y": 4410
+            },
+            {
+              "x": 6090,
+              "y": 4454
+            },
+            {
+              "x": 5970,
+              "y": 4424
+            },
+            {
+              "x": 5780,
+              "y": 4334
+            },
+            {
+              "x": 5500,
+              "y": 4324
+            },
+            {
+              "x": 5310,
+              "y": 4289
             }
           ],
-          "baseMaterial": "wood",
-          "oneWay": true,
+          "baseMaterial": "rock",
           "breakable": false,
+          "oneWay": true,
+          "layer": "terrain",
           "properties": {
+            "honroQuestRoute": true,
+            "honroSpaceSurfaceId": "fc15-dry-basin-rim",
+            "honroSurfaceRole": "route-shelf",
+            "honroWalkEdges": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "surfaceKind": "granite",
+            "hp": 99999,
+            "maxHp": 99999
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-drained-ledge",
+          "name": "fc15-drained-ledge",
+          "type": "solid",
+          "points": [
+            {
+              "x": 5300,
+              "y": 4535
+            },
+            {
+              "x": 5480,
+              "y": 4600
+            },
+            {
+              "x": 5890,
+              "y": 4600
+            },
+            {
+              "x": 6100,
+              "y": 4480
+            },
+            {
+              "x": 6240,
+              "y": 4395
+            },
+            {
+              "x": 6240,
+              "y": 4465
+            },
+            {
+              "x": 6100,
+              "y": 4550
+            },
+            {
+              "x": 5890,
+              "y": 4670
+            },
+            {
+              "x": 5480,
+              "y": 4670
+            },
+            {
+              "x": 5300,
+              "y": 4605
+            }
+          ],
+          "baseMaterial": "rock",
+          "breakable": false,
+          "oneWay": false,
+          "layer": "terrain",
+          "properties": {
+            "honroQuestRoute": true,
+            "honroSpaceSurfaceId": "fc15-drained-ledge",
+            "honroSurfaceRole": "route-shelf",
+            "honroWalkEdges": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "surfaceKind": "granite",
             "hp": 99999,
             "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "wood",
-            "honroCave": false,
-            "honroSpaceSurfaceId": "fc15-west-descent",
-            "honroSurfaceRole": "shelf",
-            "honroWalkEdges": [
-              0
-            ],
-            "optional": true
+            "broken": true
           },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "fc15-safe-crown-descent",
+          "name": "fc15-safe-crown-descent",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4300,
+              "y": 3015
+            },
+            {
+              "x": 4460,
+              "y": 3155
+            },
+            {
+              "x": 4660,
+              "y": 3325
+            },
+            {
+              "x": 4880,
+              "y": 3590
+            },
+            {
+              "x": 5110,
+              "y": 3930
+            },
+            {
+              "x": 5330,
+              "y": 4245
+            },
+            {
+              "x": 5330,
+              "y": 4289
+            },
+            {
+              "x": 5110,
+              "y": 3974
+            },
+            {
+              "x": 4880,
+              "y": 3634
+            },
+            {
+              "x": 4660,
+              "y": 3369
+            },
+            {
+              "x": 4460,
+              "y": 3199
+            },
+            {
+              "x": 4300,
+              "y": 3059
+            }
+          ],
+          "baseMaterial": "rock",
+          "breakable": false,
+          "oneWay": true,
           "layer": "terrain",
+          "properties": {
+            "honroQuestRoute": true,
+            "honroSpaceSurfaceId": "fc15-safe-crown-descent",
+            "honroSurfaceRole": "route-shelf",
+            "honroWalkEdges": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "surfaceKind": "granite",
+            "hp": 99999,
+            "maxHp": 99999
+          },
           "detail": {
             "spacing": 18,
             "roughness": 0,
@@ -259448,8 +259990,8 @@
         {
           "id": "a2-15-goal-5",
           "assetId": "act2:ritual",
-          "x": 6210,
-          "y": 4553.207547169811,
+          "x": 6240,
+          "y": 4395,
           "scale": 0.7,
           "rotation": 0,
           "snap": false,
@@ -259466,6 +260008,28 @@
           "snap": false,
           "layer": "back",
           "depthLayer": "L1"
+        },
+        {
+          "id": "quest-new-cut-marks",
+          "assetId": "quest-redesign:tablet",
+          "x": 6200,
+          "y": 4380,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "quest-upper-water-mouth",
+          "assetId": "quest-redesign:opening",
+          "x": 7350,
+          "y": 3502.631578947369,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
         }
       ],
       "units": [
@@ -259863,18 +260427,11 @@
       "objectives": [],
       "markers": [
         {
-          "id": "clear-water",
-          "type": "act2",
-          "x": 1630,
-          "y": 3784.470588235294,
-          "label": "수문을 지키는 수차와 도구 제압"
-        },
-        {
           "id": "sluice",
           "type": "act2",
           "x": 2350,
           "y": 3800,
-          "label": "수문을 열어 수위 낮추기",
+          "label": "수문을 열어 낮은 길 드러내기",
           "action": "act2"
         },
         {
@@ -259884,39 +260441,42 @@
           "y": 4092.285714285714
         },
         {
-          "id": "hold-sluice",
-          "type": "act2",
-          "x": 2490,
-          "y": 3833,
-          "label": "역류가 잦아들 때까지 수문 지키기"
-        },
-        {
-          "id": "clear-gallery",
-          "type": "act2",
-          "x": 5700,
-          "y": 4768.333333333333,
-          "label": "수갱 아래 작업조 전부 제압"
-        },
-        {
           "id": "groove",
           "type": "act2",
-          "x": 6210,
-          "y": 4553.207547169811,
-          "label": "작업굴 바닥 홈 조사",
-          "action": "act2"
-        },
-        {
-          "id": "exit",
-          "type": "exit",
-          "x": 7530,
-          "y": 4031,
-          "label": "옛 작업굴 통과"
+          "action": "act2",
+          "x": 6240,
+          "y": 4395,
+          "label": "마른 발판의 옛 흔적과 새 작업 흔적"
         },
         {
           "id": "wave",
           "type": "act2-wave",
           "x": 7350,
           "y": 4085
+        },
+        {
+          "id": "route-lower-exit",
+          "type": "act2",
+          "action": "act2",
+          "x": 7530,
+          "y": 4031,
+          "label": "배수한 아랫길 출구"
+        },
+        {
+          "id": "route-upper-exit",
+          "type": "act2",
+          "action": "act2",
+          "x": 7350,
+          "y": 3502.631578947369,
+          "label": "고지 출구"
+        },
+        {
+          "id": "route-exit",
+          "type": "act2",
+          "action": "act2",
+          "x": 6240,
+          "y": 4395,
+          "label": "배수한 아랫길 또는 고지로 통과"
         }
       ],
       "layers": [
@@ -260015,44 +260575,20 @@
         "honroActiveLimit": 4,
         "honroAct2Steps": [
           {
-            "id": "clear-water",
-            "label": "수문을 지키는 수차와 도구 제압",
-            "kind": "clear",
-            "cohorts": "west"
-          },
-          {
             "id": "sluice",
-            "label": "수문을 열어 수위 낮추기",
-            "kind": "interact"
-          },
-          {
-            "id": "hold-sluice",
-            "label": "역류가 잦아들 때까지 수문 지키기",
-            "kind": "hold",
-            "rounds": 4,
-            "wave": {
-              "kind": "picks",
-              "count": 8,
-              "eliteEvery": 4
-            },
-            "radius": 680,
-            "contestRadius": 260
-          },
-          {
-            "id": "clear-gallery",
-            "label": "수갱 아래 작업조 전부 제압",
-            "kind": "clear",
-            "cohorts": "all"
+            "label": "수문을 열어 낮은 길 드러내기",
+            "kind": "interact",
+            "optional": true
           },
           {
             "id": "groove",
-            "label": "작업굴 바닥 홈 조사",
+            "label": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
             "kind": "interact"
           },
           {
-            "id": "exit",
-            "label": "옛 작업굴 통과",
-            "kind": "reach"
+            "id": "route-exit",
+            "kind": "route",
+            "label": "흔적 확인 후 배수한 아랫길 또는 고지로 통과"
           }
         ],
         "honroCaveForms": [],
@@ -260089,10 +260625,47 @@
         },
         "honroObjectiveRevision": 2,
         "honroCaveHangingClue": {
-          "x": 4720,
-          "roofY": 1504.2222222222222,
-          "targetY": 3752.8125
-        }
+          "x": 5990,
+          "roofY": 2163.6,
+          "targetY": 4090
+        },
+        "honroNarrativeRevision": 1,
+        "honroDrainRevealTerrains": [
+          "fc15-drained-ledge"
+        ],
+        "honroRouteSpec": {
+          "revision": 1,
+          "toStage": 16,
+          "common": [
+            "groove"
+          ],
+          "routes": [
+            {
+              "id": "A",
+              "markerId": "route-lower-exit",
+              "requiresDone": [
+                "sluice"
+              ],
+              "requiresTerrainActive": [
+                "fc15-drained-ledge"
+              ]
+            },
+            {
+              "id": "B",
+              "markerId": "route-upper-exit",
+              "requiresDone": []
+            }
+          ]
+        },
+        "honroNarrativePressure": [
+          {
+            "id": "hold-sluice",
+            "after": "sluice",
+            "kind": "picks",
+            "count": 8,
+            "eliteEvery": 4
+          }
+        ]
       },
       "environment": {
         "version": 4,
@@ -264028,6 +264601,164 @@
               "height": 1080
             }
           ]
+        },
+        "questRoutes": {
+          "revision": 1,
+          "toStage": 16,
+          "common": [
+            "groove"
+          ],
+          "routes": [
+            {
+              "id": "A",
+              "markerId": "route-lower-exit",
+              "requiresDone": [
+                "sluice"
+              ],
+              "requiresTerrainActive": [
+                "fc15-drained-ledge"
+              ]
+            },
+            {
+              "id": "B",
+              "markerId": "route-upper-exit",
+              "requiresDone": []
+            }
+          ],
+          "traversal": {
+            "A": [
+              {
+                "x": 320,
+                "y": 3638.4444444444443
+              },
+              {
+                "x": 2350,
+                "y": 3800
+              },
+              {
+                "x": 4300,
+                "y": 4410
+              },
+              {
+                "x": 5300,
+                "y": 4535
+              },
+              {
+                "x": 5480,
+                "y": 4600
+              },
+              {
+                "x": 5890,
+                "y": 4600
+              },
+              {
+                "x": 6100,
+                "y": 4480
+              },
+              {
+                "x": 6240,
+                "y": 4395
+              },
+              {
+                "x": 6360,
+                "y": 4527.735849056604
+              },
+              {
+                "x": 6700,
+                "y": 4470
+              },
+              {
+                "x": 7530,
+                "y": 4031
+              }
+            ],
+            "B": [
+              {
+                "x": 320,
+                "y": 3638.4444444444443
+              },
+              {
+                "x": 2600,
+                "y": 3873.3333333333335,
+                "jumpTo": {
+                  "x": 2790,
+                  "y": 3748.3333333333335,
+                  "support": "dry-shoulder",
+                  "speed": 0.65
+                }
+              },
+              {
+                "x": 2950,
+                "y": 3748.3333333333335
+              },
+              {
+                "x": 3200,
+                "y": 3593.3333333333335
+              },
+              {
+                "x": 4200,
+                "y": 2991.731778368601
+              },
+              {
+                "x": 4300,
+                "y": 3015
+              },
+              {
+                "x": 4460,
+                "y": 3155
+              },
+              {
+                "x": 4660,
+                "y": 3325
+              },
+              {
+                "x": 4880,
+                "y": 3590
+              },
+              {
+                "x": 5110,
+                "y": 3930
+              },
+              {
+                "x": 5330,
+                "y": 4270
+              },
+              {
+                "x": 5500,
+                "y": 4280
+              },
+              {
+                "x": 5780,
+                "y": 4290
+              },
+              {
+                "x": 5970,
+                "y": 4380
+              },
+              {
+                "x": 6100,
+                "y": 4409
+              },
+              {
+                "x": 6240,
+                "y": 4395,
+                "jumpTo": {
+                  "x": 6320,
+                  "y": 4250,
+                  "support": "fc15-east-arch",
+                  "speed": 0.45
+                }
+              },
+              {
+                "x": 6700,
+                "y": 4035.403722762418
+              },
+              {
+                "x": 7350,
+                "y": 3502.631578947369
+              }
+            ]
+          }
         }
       },
       "routes": [
@@ -266197,7 +266928,7 @@
           "x": 3160,
           "y": 4978.077922077922,
           "facing": 1,
-          "label": "피난 주민",
+          "label": "노승",
           "stageOverrides": {
             "honroProtected": true,
             "honroCivilian": true,
@@ -267352,7 +268083,7 @@
           "once": true,
           "honroDensityResponse": 1,
           "honroDensityTrigger": {
-            "objectiveDone": "hold-hall"
+            "objectiveDone": "hall"
           },
           "when": {
             "after": "density-gate-temple-record-answer"
@@ -267654,13 +268385,6 @@
       "objectives": [],
       "markers": [
         {
-          "id": "clear-court",
-          "type": "act2",
-          "x": 2090,
-          "y": 5374.6,
-          "label": "잠운사 앞마당 정예 제압"
-        },
-        {
           "id": "monk",
           "type": "act2",
           "x": 2950,
@@ -267675,7 +268399,7 @@
           "type": "act2",
           "x": 5650,
           "y": 4250,
-          "label": "기록방 문 열기",
+          "label": "받은 열쇠로 동쪽 기록방 열기",
           "action": "act2"
         },
         {
@@ -267686,13 +268410,6 @@
           "surfaceId": "tm-east-stone-stair"
         },
         {
-          "id": "hold-hall",
-          "type": "act2",
-          "x": 6250,
-          "y": 4250,
-          "label": "승려가 기록함을 여는 동안 법당 방어"
-        },
-        {
           "id": "record",
           "type": "act2",
           "x": 9360,
@@ -267701,19 +268418,12 @@
           "action": "act2"
         },
         {
-          "id": "clear-temple",
-          "type": "act2",
-          "x": 9910,
-          "y": 4771.666666666667,
-          "label": "후원과 회랑의 들림 전부 제압"
-        },
-        {
           "id": "witness",
           "type": "act2",
-          "x": 10470,
-          "y": 4750,
-          "label": "생존 승려의 증언 듣기",
-          "action": "act2"
+          "action": "act2",
+          "x": 3080,
+          "y": 4994,
+          "label": "구조 자리에서 증언과 열쇠 받기"
         },
         {
           "id": "wave",
@@ -267721,6 +268431,14 @@
           "x": 7980,
           "y": 4465,
           "surfaceId": "tm-east-stone-stair"
+        },
+        {
+          "id": "clear-rescue-threat",
+          "type": "act2",
+          "action": "act2",
+          "x": 3060,
+          "y": 4995,
+          "label": "구조 자리로 다가온 위협 제압"
         }
       ],
       "layers": [
@@ -267819,48 +268537,34 @@
         "honroActiveLimit": 4,
         "honroAct2Steps": [
           {
-            "id": "clear-court",
-            "label": "잠운사 앞마당 정예 제압",
-            "kind": "clear",
-            "cohorts": "west"
-          },
-          {
             "id": "monk",
             "label": "들린 승려 구조",
             "kind": "rescue"
           },
           {
-            "id": "hall",
-            "label": "기록방 문 열기",
+            "id": "clear-rescue-threat",
+            "label": "구조 자리로 다가온 위협 제압",
+            "kind": "clear",
+            "defeatIds": [
+              "a2-enemy-4",
+              "tm-court-flank",
+              "a2-enemy-5",
+              "a2-enemy-9"
+            ]
+          },
+          {
+            "id": "witness",
+            "label": "구조 자리에서 증언과 열쇠 받기",
             "kind": "interact"
           },
           {
-            "id": "hold-hall",
-            "label": "승려가 기록함을 여는 동안 법당 방어",
-            "kind": "hold",
-            "rounds": 5,
-            "wave": {
-              "kind": "stoneLantern",
-              "count": 10,
-              "eliteEvery": 4
-            },
-            "radius": 680,
-            "contestRadius": 260
+            "id": "hall",
+            "label": "받은 열쇠로 동쪽 기록방 열기",
+            "kind": "interact"
           },
           {
             "id": "record",
             "label": "대종 금기 문서 조사",
-            "kind": "interact"
-          },
-          {
-            "id": "clear-temple",
-            "label": "후원과 회랑의 들림 전부 제압",
-            "kind": "clear",
-            "cohorts": "all"
-          },
-          {
-            "id": "witness",
-            "label": "생존 승려의 증언 듣기",
             "kind": "interact"
           }
         ],
@@ -268065,7 +268769,127 @@
               "act2-floor"
             ]
           }
-        }
+        },
+        "honroNarrativeRevision": 1,
+        "honroEntryVariants": {
+          "revision": 1,
+          "fromStage": 15,
+          "variants": {
+            "A": {
+              "heroes": [
+                {
+                  "cls": "archer",
+                  "x": 570,
+                  "y": 5480
+                },
+                {
+                  "cls": "mage",
+                  "x": 460,
+                  "y": 5480
+                },
+                {
+                  "cls": "knight",
+                  "x": 680,
+                  "y": 5480
+                },
+                {
+                  "cls": "occultist",
+                  "x": 350,
+                  "y": 5480
+                }
+              ],
+              "units": [
+                {
+                  "id": "a2-enemy-4",
+                  "x": 2770,
+                  "y": 5188.454545454545
+                },
+                {
+                  "id": "tm-court-flank",
+                  "x": 2660,
+                  "y": 5162.666666666667
+                },
+                {
+                  "id": "a2-enemy-5",
+                  "x": 2505,
+                  "y": 4933
+                },
+                {
+                  "id": "a2-enemy-9",
+                  "x": 2390,
+                  "y": 5034.8
+                }
+              ],
+              "lines": [
+                [
+                  "설오",
+                  "아래 물길로 왔습니다. 저분부터 도와드리겠습니다."
+                ]
+              ]
+            },
+            "B": {
+              "heroes": [
+                {
+                  "cls": "archer",
+                  "x": 2650,
+                  "y": 5029.183673469388
+                },
+                {
+                  "cls": "mage",
+                  "x": 2750,
+                  "y": 5021.0204081632655
+                },
+                {
+                  "cls": "knight",
+                  "x": 2850,
+                  "y": 5012.857142857143
+                },
+                {
+                  "cls": "occultist",
+                  "x": 3380,
+                  "y": 4890.649350649351
+                }
+              ],
+              "units": [
+                {
+                  "id": "a2-enemy-4",
+                  "x": 3540,
+                  "y": 4840
+                },
+                {
+                  "id": "tm-court-flank",
+                  "x": 3700,
+                  "y": 4800
+                },
+                {
+                  "id": "a2-enemy-5",
+                  "x": 3900,
+                  "y": 4540
+                },
+                {
+                  "id": "a2-enemy-9",
+                  "x": 4050,
+                  "y": 4428.333333333333
+                }
+              ],
+              "lines": [
+                [
+                  "설오",
+                  "옆 회랑으로 들어왔습니다. 그 손, 놓지 마십시오."
+                ]
+              ]
+            }
+          }
+        },
+        "honroNarrativePressure": [
+          {
+            "id": "hold-hall",
+            "after": "hall",
+            "kind": "stoneLantern",
+            "count": 10,
+            "eliteEvery": 4
+          }
+        ]
       },
       "environment": {
         "version": 4,
@@ -285636,7 +286460,8 @@
               "act2-floor"
             ]
           }
-        }
+        },
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -307883,7 +308708,8 @@
               "act2-floor"
             ]
           }
-        }
+        },
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -323142,160 +323968,6 @@
       "materials": [],
       "elements": [
         {
-          "id": "sb-19-site-route",
-          "assetId": "act2:ritual",
-          "x": 1940,
-          "y": 5502.222222222223,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-separate-1",
-          "assetId": "act2:ritual",
-          "x": 3030,
-          "y": 5461.764705882353,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-hold-first",
-          "assetId": "act2:ritual",
-          "x": 3030,
-          "y": 5461.764705882353,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-send-1",
-          "assetId": "act2:ritual",
-          "x": 3260,
-          "y": 5475.294117647059,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-separate-2",
-          "assetId": "act2:ritual",
-          "x": 6770,
-          "y": 7187.142857142857,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-hold-second",
-          "assetId": "act2:ritual",
-          "x": 6770,
-          "y": 7187.142857142857,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-send-2",
-          "assetId": "act2:ritual",
-          "x": 7010,
-          "y": 7191.875,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-separate-3",
-          "assetId": "act2:ritual",
-          "x": 11140,
-          "y": 6180,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-hold-last",
-          "assetId": "act2:ritual",
-          "x": 11140,
-          "y": 6180,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-send-3",
-          "assetId": "act2:ritual",
-          "x": 11400,
-          "y": 6180,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-clear-souls",
-          "assetId": "act2:ritual",
-          "x": 11720,
-          "y": 6180,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-old-soul",
-          "assetId": "act2:ritual",
-          "x": 7340,
-          "y": 7379.310344827586,
-          "scale": 0.7,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-spirit-lamp-0",
-          "assetId": "act2:lamp",
-          "x": 3090,
-          "y": 5465.294117647059,
-          "scale": 1.3,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
-          "id": "sb-19-site-spirit-lamp-1",
-          "assetId": "act2:lamp",
-          "x": 7000,
-          "y": 7191.25,
-          "scale": 1.3,
-          "rotation": 0,
-          "snap": false,
-          "layer": "prop",
-          "depthLayer": "L1"
-        },
-        {
           "id": "sb-old-soul-stone",
           "assetId": "act2:old-soul-stone",
           "x": 7340,
@@ -323410,22 +324082,6 @@
           }
         },
         {
-          "id": "sb-art-lamp-basin",
-          "assetId": "stage18:bell-low-stone-lamp",
-          "x": 7340,
-          "y": 7379.310344827586,
-          "scale": 0.82,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back",
-          "stage18Support": {
-            "terrainId": "act2-floor",
-            "x": 7340,
-            "y": 7379.310344827586
-          }
-        },
-        {
           "id": "sb-art-lamp-keeper",
           "assetId": "stage18:bell-low-stone-lamp",
           "x": 11680,
@@ -323479,8 +324135,8 @@
           "id": "p-archer",
           "kind": "archer",
           "team": "player",
-          "x": 740,
-          "y": 5800,
+          "x": 6240,
+          "y": 7402.666666666667,
           "facing": 1,
           "surfaceId": "act2-floor"
         },
@@ -323488,8 +324144,8 @@
           "id": "p-mage",
           "kind": "mage",
           "team": "player",
-          "x": 630,
-          "y": 5800,
+          "x": 6340,
+          "y": 7347.272727272727,
           "facing": 1,
           "surfaceId": "act2-floor"
         },
@@ -323497,8 +324153,8 @@
           "id": "p-knight",
           "kind": "knight",
           "team": "player",
-          "x": 850,
-          "y": 5800,
+          "x": 6440,
+          "y": 7283.636363636364,
           "facing": 1,
           "surfaceId": "act2-floor"
         },
@@ -323506,307 +324162,19 @@
           "id": "p-occultist",
           "kind": "occultist",
           "team": "player",
-          "x": 520,
-          "y": 5800,
+          "x": 6540,
+          "y": 7220,
           "facing": 1,
           "surfaceId": "act2-floor"
-        },
-        {
-          "id": "a2-enemy-0",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 1650,
-          "y": 5357.692307692308,
-          "facing": 1,
-          "spawnIndex": 0,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "west",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-entry-rise"
-          }
-        },
-        {
-          "id": "a2-enemy-1",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 1650,
-          "y": 5177.692307692308,
-          "facing": 1,
-          "spawnIndex": 1,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "west",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-entry-rise"
-          }
-        },
-        {
-          "id": "a2-enemy-2",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 2700,
-          "y": 5307.894736842105,
-          "facing": 1,
-          "spawnIndex": 2,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "west",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-suppression-court"
-          }
-        },
-        {
-          "id": "a2-enemy-3",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 3710,
-          "y": 5050,
-          "facing": 1,
-          "spawnIndex": 3,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "west",
-            "honroAct2Elite": true,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-court-rear-ledge"
-          }
-        },
-        {
-          "id": "a2-enemy-4",
-          "kind": "resonance",
-          "team": "enemy",
-          "x": 4210,
-          "y": 5338.518518518518,
-          "facing": 1,
-          "spawnIndex": 4,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "west",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-suppression-court"
-          }
-        },
-        {
-          "id": "a2-enemy-5",
-          "kind": "resonance",
-          "team": "enemy",
-          "x": 3470,
-          "y": 5312.64705882353,
-          "facing": 1,
-          "spawnIndex": 5,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "west",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-suppression-court"
-          }
-        },
-        {
-          "id": "a2-enemy-6",
-          "kind": "resonance",
-          "team": "enemy",
-          "x": 3680,
-          "y": 5180,
-          "facing": 1,
-          "spawnIndex": 6,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "west",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-suppression-court"
-          }
-        },
-        {
-          "id": "a2-enemy-7",
-          "kind": "resonance",
-          "team": "enemy",
-          "x": 4210,
-          "y": 3760.7894736842104,
-          "facing": 1,
-          "spawnIndex": 7,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "middle",
-            "honroAct2Elite": true,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-west-firing-ledge"
-          }
-        },
-        {
-          "id": "a2-enemy-8",
-          "kind": "bellCluster",
-          "team": "enemy",
-          "x": 6310,
-          "y": 7185.333333333333,
-          "facing": 1,
-          "spawnIndex": 8,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "middle",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "act2-floor"
-          }
-        },
-        {
-          "id": "a2-enemy-9",
-          "kind": "bellCluster",
-          "team": "enemy",
-          "x": 6460,
-          "y": 6970.909090909091,
-          "facing": 1,
-          "spawnIndex": 9,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "middle",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "act2-floor"
-          }
-        },
-        {
-          "id": "a2-enemy-10",
-          "kind": "bellCluster",
-          "team": "enemy",
-          "x": 6620,
-          "y": 7018.571428571428,
-          "facing": 1,
-          "spawnIndex": 10,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "middle",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "act2-floor"
-          }
-        },
-        {
-          "id": "a2-enemy-11",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 8140,
-          "y": 7141.612903225807,
-          "facing": 1,
-          "spawnIndex": 11,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "east",
-            "honroAct2Elite": true,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "act2-floor"
-          }
-        },
-        {
-          "id": "a2-enemy-12",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 8040,
-          "y": 7035.581395348837,
-          "facing": 1,
-          "spawnIndex": 12,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "middle",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "act2-floor"
-          }
-        },
-        {
-          "id": "a2-enemy-13",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 8230,
-          "y": 7006.129032258064,
-          "facing": 1,
-          "spawnIndex": 13,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "east",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "act2-floor"
-          }
-        },
-        {
-          "id": "a2-enemy-14",
-          "kind": "echo",
-          "team": "enemy",
-          "x": 9940,
-          "y": 6161.817089910775,
-          "facing": 1,
-          "spawnIndex": 14,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "east",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-east-inner-rise"
-          }
-        },
-        {
-          "id": "a2-enemy-15",
-          "kind": "resonance",
-          "team": "enemy",
-          "x": 11040,
-          "y": 5860,
-          "facing": 1,
-          "spawnIndex": 15,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "east",
-            "honroAct2Elite": true,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-keeper-watch"
-          }
-        },
-        {
-          "id": "a2-enemy-16",
-          "kind": "resonance",
-          "team": "enemy",
-          "x": 12200,
-          "y": 6062.666666666667,
-          "facing": 1,
-          "spawnIndex": 16,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "east",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "act2-floor"
-          }
-        },
-        {
-          "id": "a2-enemy-17",
-          "kind": "resonance",
-          "team": "enemy",
-          "x": 11170,
-          "y": 5910,
-          "facing": 1,
-          "spawnIndex": 17,
-          "behavior": "patrol",
-          "stageOverrides": {
-            "honroCohort": "east",
-            "honroAct2Elite": false,
-            "honroAct2Revision": 2,
-            "honroEncounterSupport": "sb-keeper-watch"
-          }
         },
         {
           "id": "objective",
           "kind": "object:civilian",
           "team": "npc",
-          "x": 1600,
-          "y": 5535.384615384615,
+          "x": 6140,
+          "y": 7456,
           "facing": 1,
-          "label": "피난 주민",
+          "label": "함께 온 가족",
           "stageOverrides": {
             "honroProtected": true,
             "honroCivilian": true,
@@ -323819,6 +324187,42 @@
             "moveLeft": 850,
             "maxMove": 850
           }
+        },
+        {
+          "id": "mourner-brother",
+          "kind": "object:civilian",
+          "team": "npc",
+          "x": 6710,
+          "y": 7195.714285714285,
+          "facing": 1,
+          "label": "동생을 잃은 형",
+          "stageOverrides": {
+            "hp": 950,
+            "maxHp": 950,
+            "h": 92,
+            "r": 22,
+            "honroCivilian": true,
+            "fixed": true,
+            "honroProtected": false
+          }
+        },
+        {
+          "id": "mourner-sister",
+          "kind": "object:civilian",
+          "team": "npc",
+          "x": 6950,
+          "y": 7188.125,
+          "facing": 1,
+          "label": "언니를 잃은 동생",
+          "stageOverrides": {
+            "hp": 950,
+            "maxHp": 950,
+            "h": 92,
+            "r": 22,
+            "honroCivilian": true,
+            "fixed": true,
+            "honroProtected": false
+          }
         }
       ],
       "events": [],
@@ -323828,143 +324232,70 @@
         {
           "id": "route",
           "type": "act2",
-          "x": 1940,
-          "y": 5502.222222222223,
-          "label": "임시 천도진 열기",
           "action": "act2",
+          "x": 6550,
+          "y": 7218.571428571428,
+          "label": "임시 천도길 열기",
           "requiredClass": "mage"
         },
         {
           "id": "separate-1",
           "type": "act2",
-          "x": 3030,
-          "y": 5461.764705882353,
-          "label": "첫 혼군집 분리",
           "action": "act2",
-          "requiredClass": "occultist"
-        },
-        {
-          "id": "wave-hold-first",
-          "type": "act2-wave",
-          "x": 3970,
-          "y": 5542.962962962963
-        },
-        {
-          "id": "hold-first",
-          "type": "act2",
-          "x": 3030,
-          "y": 5461.764705882353,
-          "label": "첫 이름이 길을 찾을 때까지 천도진 유지",
+          "x": 6770,
+          "y": 7187.142857142857,
+          "label": "망치를 가져온 형과 혼 만나기",
           "requiredClass": "occultist"
         },
         {
           "id": "send-1",
           "type": "act2",
-          "x": 3260,
-          "y": 5475.294117647059,
-          "label": "첫 혼군집 보내기",
-          "action": "act2"
+          "action": "act2",
+          "x": 6770,
+          "y": 7187.142857142857,
+          "label": "동생의 혼 보내기"
         },
         {
           "id": "separate-2",
           "type": "act2",
-          "x": 6770,
-          "y": 7187.142857142857,
-          "label": "두 번째 혼군집 분리",
           "action": "act2",
-          "requiredClass": "occultist"
-        },
-        {
-          "id": "wave-hold-second",
-          "type": "act2-wave",
-          "x": 5900,
-          "y": 7506.666666666667
-        },
-        {
-          "id": "hold-second",
-          "type": "act2",
-          "x": 6770,
-          "y": 7187.142857142857,
-          "label": "두 번째 혼군집의 역류 막기",
+          "x": 7010,
+          "y": 7191.875,
+          "label": "언니를 부르는 동생과 혼 만나기",
           "requiredClass": "occultist"
         },
         {
           "id": "send-2",
           "type": "act2",
+          "action": "act2",
           "x": 7010,
           "y": 7191.875,
-          "label": "두 번째 혼군집 보내기",
-          "action": "act2"
+          "label": "언니의 혼 보내기"
         },
         {
           "id": "separate-3",
           "type": "act2",
-          "x": 11140,
-          "y": 6180,
-          "label": "마지막 혼군집 분리",
           "action": "act2",
-          "requiredClass": "occultist"
-        },
-        {
-          "id": "wave-hold-last",
-          "type": "act2-wave",
-          "x": 12500,
-          "y": 6198.666666666667
-        },
-        {
-          "id": "hold-last",
-          "type": "act2",
-          "x": 11140,
-          "y": 6180,
-          "label": "마지막 혼군집의 길을 지키기",
+          "x": 7210,
+          "y": 7262.758620689655,
+          "label": "이름 없는 혼 곁에 서기",
           "requiredClass": "occultist"
         },
         {
           "id": "send-3",
           "type": "act2",
-          "x": 11400,
-          "y": 6180,
-          "label": "마지막 혼군집 보내기",
-          "action": "act2"
-        },
-        {
-          "id": "clear-souls",
-          "type": "act2",
-          "x": 11720,
-          "y": 6180,
-          "label": "천도길에 남은 원혼 전부 제압"
+          "action": "act2",
+          "x": 7210,
+          "y": 7262.758620689655,
+          "label": "이름 없는 혼 보내기"
         },
         {
           "id": "old-soul",
           "type": "act2",
+          "action": "act2",
           "x": 7340,
           "y": 7379.310344827586,
-          "label": "종 밑의 오래된 흔적 조사",
-          "action": "act2"
-        },
-        {
-          "id": "spirit-lamp-0",
-          "type": "act2",
-          "action": "act2",
-          "label": "원혼등불 · 주변 혼령 현형",
-          "x": 3090,
-          "y": 5465.294117647059,
-          "radius": 1200
-        },
-        {
-          "id": "spirit-lamp-1",
-          "type": "act2",
-          "action": "act2",
-          "label": "원혼등불 · 주변 혼령 현형",
-          "x": 7000,
-          "y": 7191.25,
-          "radius": 1200
-        },
-        {
-          "id": "wave",
-          "type": "act2-wave",
-          "x": 12620,
-          "y": 6205.066666666667
+          "label": "종 받침의 오래된 표식 조사"
         }
       ],
       "layers": [
@@ -324064,94 +324395,61 @@
         "honroAct2Steps": [
           {
             "id": "route",
-            "label": "임시 천도진 열기",
+            "label": "임시 천도길 열기",
             "kind": "interact",
             "requiredClass": "mage"
           },
           {
             "id": "separate-1",
-            "label": "첫 혼군집 분리",
+            "label": "망치를 가져온 형과 혼 만나기",
             "kind": "interact",
-            "requiredClass": "occultist"
-          },
-          {
-            "id": "hold-first",
-            "label": "첫 이름이 길을 찾을 때까지 천도진 유지",
-            "kind": "hold",
-            "rounds": 3,
-            "wave": {
-              "kind": "echo",
-              "count": 3,
-              "eliteEvery": 4
-            },
             "requiredClass": "occultist",
-            "radius": 680,
-            "contestRadius": 260
+            "parallelGroup": "farewell"
           },
           {
             "id": "send-1",
-            "label": "첫 혼군집 보내기",
-            "kind": "interact"
+            "label": "동생의 혼 보내기",
+            "kind": "interact",
+            "parallelGroup": "farewell",
+            "requiresDone": [
+              "separate-1"
+            ]
           },
           {
             "id": "separate-2",
-            "label": "두 번째 혼군집 분리",
+            "label": "언니를 부르는 동생과 혼 만나기",
             "kind": "interact",
-            "requiredClass": "occultist"
-          },
-          {
-            "id": "hold-second",
-            "label": "두 번째 혼군집의 역류 막기",
-            "kind": "hold",
-            "rounds": 3,
-            "wave": {
-              "kind": "resonance",
-              "count": 3,
-              "eliteEvery": 4
-            },
             "requiredClass": "occultist",
-            "radius": 680,
-            "contestRadius": 260
+            "parallelGroup": "farewell"
           },
           {
             "id": "send-2",
-            "label": "두 번째 혼군집 보내기",
-            "kind": "interact"
+            "label": "언니의 혼 보내기",
+            "kind": "interact",
+            "parallelGroup": "farewell",
+            "requiresDone": [
+              "separate-2"
+            ]
           },
           {
             "id": "separate-3",
-            "label": "마지막 혼군집 분리",
+            "label": "이름 없는 혼 곁에 서기",
             "kind": "interact",
-            "requiredClass": "occultist"
-          },
-          {
-            "id": "hold-last",
-            "label": "마지막 혼군집의 길을 지키기",
-            "kind": "hold",
-            "rounds": 4,
-            "wave": {
-              "kind": "bellCluster",
-              "count": 4,
-              "eliteEvery": 4
-            },
             "requiredClass": "occultist",
-            "radius": 680,
-            "contestRadius": 260
+            "parallelGroup": "farewell"
           },
           {
             "id": "send-3",
-            "label": "마지막 혼군집 보내기",
-            "kind": "interact"
-          },
-          {
-            "id": "clear-souls",
-            "label": "천도길에 남은 원혼 전부 제압",
-            "kind": "clear",
-            "cohorts": "all"
+            "label": "이름 없는 혼 보내기",
+            "kind": "interact",
+            "parallelGroup": "farewell",
+            "requiresDone": [
+              "separate-3"
+            ]
           },
           {
             "id": "old-soul",
-            "label": "종 밑의 오래된 흔적 조사",
+            "label": "종 받침의 오래된 표식 조사",
             "kind": "interact"
           }
         ],
@@ -325331,7 +325629,9 @@
             ]
           }
         },
-        "honroBellActivation": {}
+        "honroBellActivation": {},
+        "honroNarrativeRevision": 1,
+        "honroQuietFuneral": true
       },
       "environment": {
         "version": 4,
@@ -336346,19 +336646,16 @@
       ],
       "anchors": {
         "spawn": {
-          "x": 520,
-          "y": 5800,
-          "surfaceId": "act2-floor"
+          "x": 6240,
+          "y": 7402.666666666667
         },
         "start": {
-          "x": 520,
-          "y": 5800,
-          "surfaceId": "act2-floor"
+          "x": 6240,
+          "y": 7402.666666666667
         },
         "exit": {
           "x": 7340,
-          "y": 7379.310344827586,
-          "surfaceId": "act2-floor"
+          "y": 7379.310344827586
         },
         "bell": {
           "x": 7200,
@@ -337948,6 +338245,50 @@
             "moveLeft": 850,
             "maxMove": 850
           }
+        },
+        {
+          "id": "convoy-gilchan",
+          "kind": "object:civilian",
+          "team": "npc",
+          "x": 3070,
+          "y": 4112.705882352941,
+          "facing": 1,
+          "label": "길찬",
+          "stageOverrides": {
+            "hp": 950,
+            "maxHp": 950,
+            "h": 92,
+            "r": 22,
+            "honroCivilian": true,
+            "fixed": true,
+            "honroProtected": false,
+            "honroConvoyMember": {
+              "target": "objective",
+              "dx": -100
+            }
+          }
+        },
+        {
+          "id": "convoy-mason",
+          "kind": "object:civilian",
+          "team": "npc",
+          "x": 2950,
+          "y": 4145,
+          "facing": 1,
+          "label": "석공",
+          "stageOverrides": {
+            "hp": 950,
+            "maxHp": 950,
+            "h": 92,
+            "r": 22,
+            "honroCivilian": true,
+            "fixed": true,
+            "honroProtected": false,
+            "honroConvoyMember": {
+              "target": "objective",
+              "dx": -220
+            }
+          }
         }
       ],
       "events": [],
@@ -338163,7 +338504,8 @@
             "holds": {}
           }
         },
-        "honroObjectiveRevision": 2
+        "honroObjectiveRevision": 2,
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -341604,7 +341946,8 @@
           }
         ],
         "honroAct3ResponseRevision": 1,
-        "honroAct3SceneryRevision": 1
+        "honroAct3SceneryRevision": 1,
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -345710,7 +346053,8 @@
               "purpose": "실제 공중 몸 전체로 진입하는 혼불 사격. 공중 좌표만으로 같은층 contest를 주장하지 않는다."
             }
           }
-        }
+        },
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -393407,7 +393751,8 @@
             "radius": 1350,
             "maxHeight": 450
           }
-        }
+        },
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -398352,7 +398697,8 @@
         ],
         "honroAct3ResponseRevision": 1,
         "honroAct3SceneryRevision": 1,
-        "honroWaterworksRevision": 1
+        "honroWaterworksRevision": 1,
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -399661,7 +400007,8 @@
             "label": "안쪽 집하장 입구로 이동",
             "kind": "reach"
           }
-        ]
+        ],
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -401355,7 +401702,8 @@
             "label": "관아 뒤뜰로 돌아가기",
             "kind": "reach"
           }
-        ]
+        ],
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -402830,7 +403178,8 @@
             "label": "합류할 출구로 이동",
             "kind": "reach"
           }
-        ]
+        ],
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -404613,7 +404962,8 @@
             "label": "기록을 가지고 봉쇄 벗어나기",
             "kind": "reach"
           }
-        ]
+        ],
+        "honroNarrativeRevision": 1
       },
       "environment": {
         "version": 4,
@@ -405550,6 +405900,112 @@
             "seed": 1,
             "optimizeEpsilon": 0
           }
+        },
+        {
+          "id": "quest-upper-sluice-ascent",
+          "name": "quest-upper-sluice-ascent",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3370,
+              "y": 2780
+            },
+            {
+              "x": 3620,
+              "y": 2585
+            },
+            {
+              "x": 3900,
+              "y": 2370
+            },
+            {
+              "x": 4200,
+              "y": 2140
+            },
+            {
+              "x": 4200,
+              "y": 2184
+            },
+            {
+              "x": 3900,
+              "y": 2414
+            },
+            {
+              "x": 3620,
+              "y": 2629
+            },
+            {
+              "x": 3370,
+              "y": 2824
+            }
+          ],
+          "baseMaterial": "stone",
+          "breakable": false,
+          "oneWay": true,
+          "layer": "terrain",
+          "properties": {
+            "honroQuestRoute": true,
+            "honroSpaceSurfaceId": "quest-upper-sluice-ascent",
+            "honroSurfaceRole": "route-shelf",
+            "honroWalkEdges": [
+              0,
+              1,
+              2
+            ],
+            "surfaceKind": "granite",
+            "hp": 99999,
+            "maxHp": 99999
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "quest-upper-sluice-exit",
+          "name": "quest-upper-sluice-exit",
+          "type": "solid",
+          "points": [
+            {
+              "x": 5090,
+              "y": 2140
+            },
+            {
+              "x": 5400,
+              "y": 2140
+            },
+            {
+              "x": 5400,
+              "y": 2184
+            },
+            {
+              "x": 5090,
+              "y": 2184
+            }
+          ],
+          "baseMaterial": "stone",
+          "breakable": false,
+          "oneWay": true,
+          "layer": "terrain",
+          "properties": {
+            "honroQuestRoute": true,
+            "honroSpaceSurfaceId": "quest-upper-sluice-exit",
+            "honroSurfaceRole": "route-shelf",
+            "honroWalkEdges": [
+              0
+            ],
+            "surfaceKind": "granite",
+            "hp": 99999,
+            "maxHp": 99999
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 1,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [
@@ -406036,8 +406492,8 @@
           "id": "a3-29-dark-lock-approach-0",
           "kind": "possessedGuard",
           "team": "enemy",
-          "x": 5410,
-          "y": 2780,
+          "x": 4820,
+          "y": 2140,
           "facing": -1,
           "spawnIndex": 13,
           "behavior": "patrol",
@@ -406072,8 +406528,8 @@
           "id": "a3-29-dark-lock-approach-2",
           "kind": "possessedArcher",
           "team": "enemy",
-          "x": 5790,
-          "y": 2780,
+          "x": 4950,
+          "y": 2140,
           "facing": -1,
           "spawnIndex": 15,
           "behavior": "patrol",
@@ -406250,7 +406706,7 @@
           "id": "act3-response-29-2",
           "once": true,
           "when": {
-            "objectiveDone": "flight-hold"
+            "after": "act3-response-29-1"
           },
           "warning": "나루길의 궁귀가 달빛 아래 모습을 드러냅니다.",
           "text": "증원 진입 · 나루길의 궁귀가 달빛 아래 모습을 드러냅니다.",
@@ -406357,13 +406813,6 @@
           "action": "act3"
         },
         {
-          "id": "flight-hold",
-          "type": "act3",
-          "x": 5760,
-          "y": 2780,
-          "label": "수문 퇴로 지키기"
-        },
-        {
           "id": "wave-flight-hold",
           "type": "act3-wave",
           "x": 6410,
@@ -406371,11 +406820,28 @@
           "label": "증원 진입"
         },
         {
-          "id": "sluice-exit",
-          "type": "exit",
-          "x": 6950,
-          "y": 2439.023689270622,
-          "label": "나루 쪽으로 이탈"
+          "id": "route-upper-exit",
+          "type": "act3",
+          "action": "act3",
+          "x": 5340,
+          "y": 2140,
+          "label": "높은 수문길 출구"
+        },
+        {
+          "id": "route-lower-exit",
+          "type": "act3",
+          "action": "act3",
+          "x": 5740,
+          "y": 2780,
+          "label": "기둥 아래 점검다리 출구"
+        },
+        {
+          "id": "route-exit",
+          "type": "act3",
+          "action": "act3",
+          "x": 3410,
+          "y": 2780,
+          "label": "높은 수문길 또는 아래 점검다리"
         }
       ],
       "layers": [
@@ -406503,25 +406969,34 @@
             "kind": "interact"
           },
           {
-            "id": "flight-hold",
-            "label": "수문 퇴로 지키기",
-            "kind": "hold",
-            "rounds": 2,
-            "wave": {
-              "kind": "possessedGuard",
-              "count": 2
-            },
-            "radius": 520,
-            "contestRadius": 230
-          },
-          {
-            "id": "sluice-exit",
-            "label": "나루 쪽으로 이탈",
-            "kind": "reach"
+            "id": "route-exit",
+            "kind": "route",
+            "label": "높은 수문길 또는 아래 점검다리로 이탈"
           }
         ],
         "honroAct3ResponseRevision": 1,
-        "honroAct3SceneryRevision": 1
+        "honroAct3SceneryRevision": 1,
+        "honroNarrativeRevision": 1,
+        "honroRouteSpec": {
+          "revision": 1,
+          "toStage": 30,
+          "common": [
+            "old-seal",
+            "hyeonmuk-letter"
+          ],
+          "routes": [
+            {
+              "id": "A",
+              "markerId": "route-upper-exit",
+              "requiresDone": []
+            },
+            {
+              "id": "B",
+              "markerId": "route-lower-exit",
+              "requiresDone": []
+            }
+          ]
+        }
       },
       "environment": {
         "version": 4,
@@ -406783,6 +407258,76 @@
             ],
             "shoulders": 4,
             "scope": "Editable grounded SVG art; small sampled real terrain shoulders with work/bridge levels preserved."
+          }
+        },
+        "questRoutes": {
+          "revision": 1,
+          "toStage": 30,
+          "common": [
+            "old-seal",
+            "hyeonmuk-letter"
+          ],
+          "routes": [
+            {
+              "id": "A",
+              "markerId": "route-upper-exit",
+              "requiresDone": []
+            },
+            {
+              "id": "B",
+              "markerId": "route-lower-exit",
+              "requiresDone": []
+            }
+          ],
+          "traversal": {
+            "A": [
+              {
+                "x": 3370,
+                "y": 2780
+              },
+              {
+                "x": 3620,
+                "y": 2585
+              },
+              {
+                "x": 3900,
+                "y": 2370
+              },
+              {
+                "x": 4200,
+                "y": 2140
+              },
+              {
+                "x": 5000,
+                "y": 2140
+              },
+              {
+                "x": 5340,
+                "y": 2140
+              }
+            ],
+            "B": [
+              {
+                "x": 3410,
+                "y": 2780
+              },
+              {
+                "x": 3880,
+                "y": 2660
+              },
+              {
+                "x": 4860,
+                "y": 2660
+              },
+              {
+                "x": 5370,
+                "y": 2780
+              },
+              {
+                "x": 5740,
+                "y": 2780
+              }
+            ]
           }
         }
       },
@@ -409220,8 +409765,8 @@
           "id": "sf-b1",
           "kind": "hound",
           "team": "enemy",
-          "x": 2680,
-          "y": 6248,
+          "x": 3500,
+          "y": 6195.294117647059,
           "facing": -1,
           "spawnIndex": 0,
           "behavior": "patrol",
@@ -409241,8 +409786,8 @@
           "id": "sf-b2",
           "kind": "hound",
           "team": "enemy",
-          "x": 2775,
-          "y": 6258.90625,
+          "x": 3610,
+          "y": 6172.64705882353,
           "facing": -1,
           "spawnIndex": 1,
           "behavior": "patrol",
@@ -409304,8 +409849,8 @@
           "id": "sf-b5",
           "kind": "hound",
           "team": "enemy",
-          "x": 2870,
-          "y": 6255.9375,
+          "x": 3720,
+          "y": 6150,
           "facing": -1,
           "spawnIndex": 4,
           "behavior": "patrol",
@@ -410952,7 +411497,8 @@
           "cape-front": {
             "supports": [
               "sf-granite-cape",
-              "sf-cape-west-access"
+              "sf-cape-west-access",
+              "sf-west-ford"
             ],
             "radius": 1200,
             "maxHeight": 650
@@ -411089,6 +411635,121 @@
             ],
             "radius": 1600,
             "maxHeight": 950
+          }
+        },
+        "honroNarrativeRevision": 1,
+        "honroEntryVariants": {
+          "revision": 1,
+          "fromStage": 29,
+          "variants": {
+            "A": {
+              "heroes": [
+                {
+                  "cls": "archer",
+                  "x": 2180,
+                  "y": 4972.195121951219
+                },
+                {
+                  "cls": "mage",
+                  "x": 2280,
+                  "y": 4894.1463414634145
+                },
+                {
+                  "cls": "knight",
+                  "x": 2390,
+                  "y": 4808.292682926829
+                },
+                {
+                  "cls": "occultist",
+                  "x": 2500,
+                  "y": 4722.4390243902435
+                }
+              ],
+              "units": [
+                {
+                  "id": "sf-c1",
+                  "x": 3500,
+                  "y": 4561.290322580645
+                },
+                {
+                  "id": "sf-c2",
+                  "x": 3610,
+                  "y": 4579.032258064516
+                },
+                {
+                  "id": "sf-c5",
+                  "x": 3720,
+                  "y": 4596.774193548387
+                }
+              ],
+              "markers": [
+                {
+                  "id": "transport-map",
+                  "x": 2650,
+                  "y": 4656.95652173913
+                }
+              ],
+              "lines": [
+                [
+                  "휘겸",
+                  "높은 수문길을 돌아왔소. 이 바위턱에서 기록을 맞춰 봅시다."
+                ]
+              ]
+            },
+            "B": {
+              "heroes": [
+                {
+                  "cls": "archer",
+                  "x": 1900,
+                  "y": 5639.411764705882
+                },
+                {
+                  "cls": "mage",
+                  "x": 2020,
+                  "y": 5798.235294117647
+                },
+                {
+                  "cls": "knight",
+                  "x": 2140,
+                  "y": 5957.058823529412
+                },
+                {
+                  "cls": "occultist",
+                  "x": 2260,
+                  "y": 6068.461538461538
+                }
+              ],
+              "units": [
+                {
+                  "id": "sf-c1",
+                  "x": 2680,
+                  "y": 6248
+                },
+                {
+                  "id": "sf-c2",
+                  "x": 2780,
+                  "y": 6258.75
+                },
+                {
+                  "id": "sf-c5",
+                  "x": 2880,
+                  "y": 6255.625
+                }
+              ],
+              "markers": [
+                {
+                  "id": "transport-map",
+                  "x": 2390,
+                  "y": 6163.461538461538
+                }
+              ],
+              "lines": [
+                [
+                  "설오",
+                  "점검다리 끝이 여울로 이어졌습니다. 돌 위에서 기록을 펼치겠습니다."
+                ]
+              ]
+            }
           }
         }
       },

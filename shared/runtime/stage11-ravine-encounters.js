@@ -13,7 +13,7 @@ function blockedClear(b){
  if(!active(b))return null;
  const waiting=pending(b),foes=live(b);
  if(done(b,'knot-west')&&!done(b,'clear-west')&&!foes.some(u=>u.honroCohort==='west')&&waiting.some(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')))return'clear-west';
- if(done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';
+ if(!G.HonroStage11TraceExit?.active(b)&&done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';
  return null;
 }
 function ready(b,ev){
@@ -34,6 +34,25 @@ function queue(app){const b=app.engine.b,hs=b.honroState;
 }
 const execute=W.execute;
 function safeEntry(b,actions){return !actions.some(a=>{const flying=!!G.HonroWorld.archetypes[a.kind]?.flying;return b.units.some(u=>u.side===0&&!u.dead&&u.hp>0&&Math.abs(u.x-a.x)<280&&Math.abs(u.y-(a.y-(flying?255:0)))<300);});}
+// Keep the announced low-air trio on its own support. If the exact entry is
+// occupied, try bounded outward offsets without moving occupants or dropping
+// members. The existing atomic body/hazard reservation still owns admission.
+function defenseEntries(b,index){
+ const at=b.honroStage11DefenseEntries?.[index];if(!at)return[];
+ const out=[at];if(!composed(b)||!G.HonroEncounterDensity?.active(b)||!Array.isArray(at.members))return out;
+ const direction=index===0?-1:1;
+ for(const distance of [160,240,320]){
+  const dx=direction*distance,members=at.members.map(m=>{
+   if(!m.air||!m.support)return null;
+   const before=G.HonroMapEngine.surfaceY(b.terrain,m.x,undefined,m.support),after=G.HonroMapEngine.surfaceY(b.terrain,m.x+dx,undefined,m.support);
+   if(!before||!after)return null;const y=m.y+after.y-before.y;
+   return Math.hypot(dx,y-m.y)<=320?{...m,x:m.x+dx,y}:null;
+  });
+  if(members.some(m=>!m))continue;
+  const before=G.HonroMapEngine.surfaceY(b.terrain,at.x,undefined,at.support),after=G.HonroMapEngine.surfaceY(b.terrain,at.x+dx,undefined,at.support);
+  if(before&&after)out.push({...at,x:at.x+dx,y:at.y+after.y-before.y,members});
+ }return out;
+}
 function unpromote(b,u){
  if(u.elite){u.combatBaseHp/=1.25;u.hp=u.maxHp=Math.round(u.combatBaseHp*G.HONRO_CORE.DIFFICULTIES[b.difficulty].hp);u.honroXpWeight/=1.25;}
  u.elite=false;u.armor=.04;
@@ -49,10 +68,12 @@ W.execute=function(app,action){
    if(D?.active(b)&&Array.isArray(exact?.members)){
     if(mem.entries[action.source])return true;
     if(!D.memory(b).existingWarnings?.[action.source]?.opportunity||!D.safe(app))return false;
-    if(exact.members.some(m=>app.engine.heroesAlive().some(h=>Math.abs(h.x-m.x)<280&&Math.abs(h.y-m.y)<300)))return false;
-    const before=b.units.length;if(!D.spawnMembers(app,action,exact))return false;
-    mem.entries[action.source]={choice:0,x:exact.x,y:exact.y,round:b.round,serial,ids:b.units.slice(before).map(u=>u.id)};
-    return true; // Exact members already have one authored elite, never factory promotion.
+    for(const [choice,at]of defenseEntries(b,n).entries()){
+     if(at.members.some(m=>app.engine.heroesAlive().some(h=>Math.abs(h.x-m.x)<280&&Math.abs(h.y-m.y)<300)))continue;
+     const before=b.units.length;if(!D.spawnMembers(app,action,at))continue;
+     mem.entries[action.source]={choice,x:at.x,y:at.y,round:b.round,serial,ids:b.units.slice(before).map(u=>u.id)};
+     return true; // Authored trio already has one elite, never factory promotion.
+    }return false;
    }
    const alternate=b.honroStage11DefenseAlternates?.[n],choices=[{...action,spacing:90},...(alternate?[{...action,...alternate,spacing:90}]:[])];
    for(const choice of choices)if(safeEntry(b,[choice])&&execute(app,choice)!==false){result=true;mem.entries[action.source]={x:choice.x,y:choice.y,round:b.round};break;}
@@ -121,7 +142,7 @@ function prepareEchoWarning(app){const b=app.engine.b;if(!composed(b)||!done(b,'
  const count=b.honroState.act2?.holds?.['hold-knots']?.spawned||0;if(count>=6)return;const n=count<3?0:1,mem=composition(b);if(mem.echoWarnings[n])return;
  mem.echoWarnings[n]={serial:b.honroState.actorTurnSerial||0,round:b.round};
  const exact=G.HonroEncounterDensity?.active(b)&&Array.isArray(b.honroStage11DefenseEntries?.[n]?.members);
- app.event(exact?(n===0?'의식대 서쪽 낮은 턱에서 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구를 차지하면 기다립니다.':'의식대 동쪽 낮은 턱에서 마지막 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구를 차지하면 기다립니다.'):n===0?'서쪽 매듭에서 잔향 셋이 뭉칩니다. 다음 행동 뒤에 들어오니 먼저 자리를 잡으세요.':'남은 잔향 셋은 동쪽 입구에서 모입니다. 이번 무리가 지나면 새 잔향은 없습니다.');app.dirty=true;
+ app.event(exact?(n===0?'의식대 서쪽 낮은 턱에서 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구 주변이 막히면 기다립니다.':'의식대 동쪽 낮은 턱에서 마지막 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구 주변이 막히면 기다립니다.'):n===0?'서쪽 매듭에서 잔향 셋이 뭉칩니다. 다음 행동 뒤에 들어오니 먼저 자리를 잡으세요.':'남은 잔향 셋은 동쪽 입구에서 모입니다. 이번 무리가 지나면 새 잔향은 없습니다.');app.dirty=true;
 }
 function residentShelter(app,dt){const e=app.engine,b=e.b;if(!composed(b)||dt<=0||app.dialogue||!done(b,'resident')||b.side!==0||b.phase!=='aim'||b.projectiles.length)return;
  const m=b.honroMarkers.find(m=>m.id==='resident'),u=e.unit(m?.target),goal=b.honroStage11Shelter;if(!u||u.dead||!goal)return;
@@ -169,12 +190,14 @@ const state=A.state;
 A.state=function(b){
  const result=state(b);if(!active(b))return result;
  const presented=A.current(b);if(presented?.kind==='clear')result.targets=result.targets.map(t=>t.id===presented.id?{...t,label:presented.label}:t);
+ const rescue=rescueTarget(b,presented);if(rescue)result.targets=result.targets.map(t=>t.id===presented.id?{...t,...rescue}:t);
  const waiting=pending(b),blocked=blockedClear(b);
  const foes=live(b);
  // All responses are due by the east-knot step, before the four-round defense.
  // This guard covers a blocked entry or an unusually fast saved-state resume:
  // the existing all-enemies objective must never silently miss queued bodies.
- if(blocked||(result.complete||done(b,'clear-road'))&&(waiting.length||foes.length)){
+  // The separately approved trace-exit revision makes that final cleanup optional.
+ if(blocked||!G.HonroStage11TraceExit?.active(b)&&(result.complete||done(b,'clear-road'))&&(waiting.length||foes.length)){
   const hero=b.units.find(u=>u.id===b.active)||b.units.find(u=>u.side===0);
   const target=foes.slice().sort((a,c)=>Math.hypot(a.x-(hero?.x||0),a.y-(hero?.y||0))-Math.hypot(c.x-(hero?.x||0),c.y-(hero?.y||0)))[0];
   const relevant=blocked==='clear-west'?waiting.filter(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')):waiting;
@@ -184,6 +207,16 @@ A.state=function(b){
  }
  return result;
 };
+// Duration alone cannot finish until the finite warned wave has entered.
+// Never ask the player to defend for zero more rounds while an entry is pending.
+function holdInstruction(b,s){
+ if(!composed(b)||s?.id!=='hold-knots'||s.kind!=='hold')return null;
+ const h=b.honroState.act2?.holds?.[s.id],left=Math.max(0,(s.wave?.count||0)-(h?.spawned||0));
+ if(!h||h.progress<s.rounds||!left)return null;
+ const prefix='방어 시간 충족 · 잔향 '+left+'명 진입 대기 · ';
+ if(!h.guarded)return prefix+'동행 1명을 표시된 원에 두세요';
+ const side=h.spawned<3?'서쪽':'동쪽';return prefix+side+' 진입로 주변을 비워 주세요';
+}
 // Make the existing local guard prerequisite visible before the player walks
 // up to a knot. A zero count keeps the standard class-specific/E instruction.
 function knotInstruction(b,s){
@@ -191,6 +224,18 @@ function knotInstruction(b,s){
  const m=b.honroMarkers.find(m=>m.id===s.id);if(!m)return null;
  const count=A.interactionThreats(b,m).length;
  return count?(s.id==='knot-west'?'서쪽':'동쪽')+' 혼매듭 주변의 들림 '+count+'명을 먼저 제압하세요':null;
+}
+// The body to weaken is the marker's linked spirit, never the protected
+// resident. Once the spirit is ready/gone, return the cue to the living resident.
+// This only reads positions/HP; visibility, damage and the rescue gate stay put.
+function rescueTarget(b,s){
+ if(!composed(b)||s?.id!=='resident'||s.kind!=='rescue')return null;
+ const m=b.honroMarkers.find(m=>m.id===s.id);if(!m||A.interactionThreats(b,m).length)return null;
+ const spirit=b.units.find(u=>u.id===m.spiritId),sodan=b.units.some(u=>u.side===0&&u.cls==='occultist'&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);
+ const weaken=spirit&&!spirit.dead&&spirit.hp>0&&(spirit.hp>spirit.maxHp*.4||!sodan&&!spirit.honroSubdued);
+ const target=weaken?spirit:b.units.find(u=>u.id===m.target);
+ if(!target||target.dead||target.hp<=0||!Number.isFinite(target.x)||!Number.isFinite(target.y))return null;
+ return{kind:weaken?'boss':'interact',unitId:target.id,x:target.x,y:target.y-target.h,label:weaken?'주민에게 붙은 '+(spirit.name||'혼'):'주민 · E'};
 }
 // Only the next actionable rescue instruction is shown. Use the production
 // eligibility result; this presentation does not change any gate or saved step.
@@ -208,5 +253,5 @@ function rescueInstruction(b,s){
  if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 E':'동행으로 주민에게 다가가 E';
  return null;
 }
-G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,knotInstruction,repairResponseFlights};
+G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,rescueTarget,knotInstruction,holdInstruction,defenseEntries,repairResponseFlights};
 })(globalThis);

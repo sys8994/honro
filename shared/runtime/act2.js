@@ -195,8 +195,15 @@ function failure(b){if(!active(b))return null;const list=steps(b),a=memory(b);
  for(const cls of new Set(needed))if(!b.units.some(u=>u.side===0&&u.cls===cls&&!u.dead&&u.hp>0))return H.hero[cls].name+'이 쓰러져 남은 의식을 이어갈 수 없다.';
  return null;
 }
-function firstSpiritEncounter(app,heroes){const b=app.engine?.b,key='act2:first-spirit-encounter';if(!b||app.screen!=='battle'||!G.HonroStory?.queue||app.profile?.seen?.[key]||!app.profile?.recruited?.includes('occultist')||app.dialogue)return;
+function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:first-spirit-encounter';if(!b||app.screen!=='battle'||!G.HonroStory?.queue||app.profile?.seen?.[key]||!app.profile?.recruited?.includes('occultist')||app.dialogue)return;
+ const sodan=heroes.find(u=>u.cls==='occultist'&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);if(!sodan)return;
  const spirit=b.units.find(u=>u.side===1&&u.honroSpirit&&!u.dead&&u.hp>0&&heroes.some(h=>Math.hypot(h.x-u.x,h.y-u.y)<680));if(!spirit)return;
+ const usable=id=>sodan.loadout?.includes(id)&&C.SKILLS[id]&&sodan.focus>=e.manaCost(C.SKILLS[id],sodan)&&!e.cooldownLeft(sodan,id);
+ const soul=['O01','O02','O03','O04','O05','O16'].find(usable),manifest=usable('O08');
+ const lamp=(b.honroMarkers||[]).find(m=>m.id?.startsWith('spirit-lamp')&&m.action==='act2'&&!m.collected&&(!m.requiredClass||heroes.some(u=>u.cls===m.requiredClass))&&Math.hypot(spirit.x-m.x,spirit.y-m.y)<=(m.radius||1200));
+ const soulGuide=soul?`소단의 ${C.SKILLS[soul].name}은 드러나지 않은 혼령도 공격할 수 있습니다.`:'소단의 혼 공격은 드러나지 않은 혼령에게도 유효합니다.';
+ const reply=manifest?'혼 공격은 바로 닿아요. 현형부로 형태를 잡으면 두 분의 활과 검도 제대로 닿아요.':lamp?'제 혼 공격은 바로 닿아요. 저 원혼등불을 밝히면 두 분의 활과 검도 제대로 닿아요.':'활과 검은 잘 듣지 않아요. 제가 혼 공격으로 맞설게요.';
+ const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 E로 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
  app.profile.seen??={};
  app.profile.seen[key]=true;
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id};
@@ -204,9 +211,9 @@ function firstSpiritEncounter(app,heroes){const b=app.engine?.b,key='act2:first-
   ['설오',b.honroNarrativeRevision===1?'저기 움직이는 것이 보입니까? 윤곽이 자꾸 흩어집니다.':'저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],
   ['휘겸',b.honroNarrativeRevision===1?'발소리도 그림자도 없소. 눈앞에서 윤곽만 흔들리는군.':'발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],
   ['소단','혼이에요. 두 분 눈에는 흐려도 제 눈에는 보여요. 아직 길을 찾지 못한 혼이 저기 있어요.',meta],
-  ['설오','그럼 우리가 맞설 수 있게 해 줄 수 있나요?',meta],
-  ['소단','현형부를 붙이면 잠깐 이승의 형체가 잡혀요. 그때는 활과 검도 닿아요. 제가 있는 곳을 가리킬게요.',meta],
-  ['안내','소단의 현형부(O08)나 주변 원혼등불로 혼령을 현형시키면 동행의 형 공격도 유효해집니다.',{...meta,kind:'guide',guideTitle:'혼령과 현형'}]
+  ['설오','어떻게 맞서면 되나요?',meta],
+  ['소단',reply,meta],
+  ['안내',guidance,{...meta,kind:'guide',guideTitle:manifest||lamp?'혼령과 현형':'혼령과 혼 공격'}]
  ]);
  G.HonroStory.save(app);
 }
