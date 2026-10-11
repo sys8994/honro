@@ -225,11 +225,13 @@ function eventLines(app,ev){
  if(app.stage.id===9&&ev.id==='evac-beasts'&&(hs.receivers||0)>=2)lines=[['휘겸','받이진은 섰소. 대피로를 따라 올라오는 놈들만 여기서 끊겠소.']];
  return scene('event-'+app.stage.id+'-'+ev.id,app.stage.name+' · '+eventTitles[ev.id],lines,{delivery:'dialogue'});
 }
+function rescueTutorialLine(l){return l[2]?.storyId?.includes('entry-follow-7-')&&(/빈 기둥|묶인 줄을 잘라/.test(l[1])||l[1]===rescueMethod);}
+function beforeOutcome(app,lines){const b=app.engine?.b;if(b?.honroCustom||b?.honroNarrativeRevision!==1||b.honroStage!==7)return lines;const obsolete=new Set(lines.filter(rescueTutorialLine).map(l=>l[2].storyId));return lines.filter(l=>!obsolete.has(l[2]?.storyId));}
 function resolveDeferred(app,entry){
  const b=app.engine.b,hs=b.honroState||{},id=entry.lines?.[0]?.[2]?.storyId||'';
  // Older revision-1 saves can still queue the former round-2 tutorial.
  // Keep unrelated deferred dialogue; never explain a rescue after its first use.
- if(b.honroNarrativeRevision===1&&id.includes('entry-follow-7-')&&entry.lines.some(l=>/빈 기둥|묶인 줄을 잘라/.test(l[1])))return (hs.rescuedCount||0)>0?[]:[['담허',rescueMethod,{...entry.lines[0][2]}]];
+ if(b.honroNarrativeRevision===1&&id.includes('entry-follow-7-')&&entry.lines.some(rescueTutorialLine))return (hs.rescuedCount||0)>0?[]:[['담허',rescueMethod,{...entry.lines[0][2]}]];
  if(id.includes('entry-follow-7-')&&(hs.rescuedCount||0)>=3)return [];
  if(id.includes('entry-follow-9-')&&(hs.receivers||0)>=2)return [];
  if(id.includes('entry-follow-10-')&&hs.sodanCoop)return [];
@@ -266,5 +268,5 @@ function finaleMidpoint(){return scene('finale-midpoint','놓치지 않는 손',
  ['설오','제 목소리 들립니까? 바로 앞에 있습니다. 바깥은 보지 마십시오.'],
  ['소단','…들려요. 조금만 더, 부탁해요.'],
  ['담허','양옆은 내가 받네. 숨을 내쉬게. 급하게 풀 필요 없어.']]);}
-G.HonroStoryContent={version,introductions:intro,mapScenes,outros,summaries,events,ledgerPages,scene,eventLines,resolveDeferred,interaction,cooperation,cooperationDefense,finaleMidpoint};
+G.HonroStoryContent={version,introductions:intro,mapScenes,outros,summaries,events,ledgerPages,scene,eventLines,resolveDeferred,beforeOutcome,interaction,cooperation,cooperationDefense,finaleMidpoint};
 })(globalThis);
