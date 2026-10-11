@@ -29,4 +29,22 @@ const yes=(v,m)=>{assert(v,m);checks++;};
  yes(!after.some(s=>s.id===third.id),'completed separation is no longer offered');
  yes(A.state(b).summary.startsWith('2/'),'out-of-order completion counted accurately');
 }
+{
+ // Scheduling-only fixture: wave execution is a spy, no enemies or resources altered.
+ const {b,e,app}=battlefield(g,16),A=g.HonroAct2,R=g.HonroNarrativeRevision,oldWave=A.wave,calls=[];
+ A.wave=(...args)=>{calls.push(args.slice(1));return true;};e.settleBusy=()=>false;
+ A.memory(b).done.hall=true;b.phase='aim';b.side=0;b.active=b.units.find(u=>u.side===0).id;e.active.acted=false;
+ R.pressure(app);yes(calls.length===0,'warning alone cannot spawn');
+ const enemy=b.units.find(u=>u.side===1);app.actorBoundary=enemy.id;enemy.acted=true;b.honroState.actorTurnSerial=(b.honroState.actorTurnSerial||0)+1;
+ R.pressure(app);yes(calls.length===0,'enemy boundary cannot spend player opportunity');
+ app.actorBoundary=b.active;e.active.acted=true;b.honroState.actorTurnSerial=(b.honroState.actorTurnSerial||0)+1;
+ R.pressure(app);yes(calls.length===1&&calls[0][2]===3,'real offered hero boundary schedules finite first batch');
+ R.pressure(app);yes(calls.length===1,'one pressure batch per round');
+ b.round++;e.active.acted=false;app.actorBoundary=null;R.pressure(app);
+ // A JSON save cannot retain JS object aliasing; each new tick reunites the
+ // authored temple warning with the narrative scheduler's saved warning.
+ e.b=JSON.parse(JSON.stringify(b));R.pressure(app);
+ const mem=e.b.honroState;yes(mem.narrativePressure.warnings['hold-hall-3']===mem.templeDefense.warnings['hold-hall-3'],'resume reconnects the temple entry gate to the same warning');
+ A.wave=oldWave;
+}
 console.log(`PASS ${checks} narrative runtime edges; no normal-resource or browser coverage claimed`);

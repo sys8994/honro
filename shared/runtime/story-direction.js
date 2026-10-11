@@ -66,7 +66,7 @@ const rules=[
  rule(11,'entry','소단','이 줄을 묶은 손',[pose('occultist','hold-bell',{marker:'knot-west'})]),
  rule(11,'entry','휘겸','길을 비우겠소',[step('knight',22),face('knight',{marker:'knot-west'},'guard')]),
  rule(12,'entry','설오','갈라진 바위',[face('archer',{marker:'sign'},'point')]),
- rule(12,'entry','휘겸','지도에 적힌',[pose('knight','inspect')]),
+ rule(12,'entry','담허','길이 우리를',[pose('mage','inspect',{marker:'sign'})]),
  rule(12,'sign','휘겸','위 작업굴',[{type:'look',at:{markers:['route-upper-exit','route-lower-exit']},scale:.8,duration:650},face('knight',{marker:'route-upper-exit'},'point')]),
  rule(12,'sign','설오','아래 길도',[face('archer',{marker:'route-lower-exit'},'point')]),
  rule(12,'sign','서술','겹친 획',[pose('mage','inspect',{marker:'sign'}),shot({marker:'sign'})]),
