@@ -2183,3 +2183,8 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - 받이진은 준비 전에도 바닥 이중 진/분할선으로 보이며 활성화하면 같은 도식이 밝아진다. 5·9·10장의 같은 좌표 receiverStone 장식과 generic marker 집을 함께 제거했다. 3장 장부 marker도 작은 책으로 식별한다.
 - 고리는 기존 84×148 공격 판정 전체와 일치하는 철제 받침판에 돌출된 큰 고리로 그린다. 고리 구멍 뒤에도 실제로 맞는 철판이 보이므로 빈 공간 명중이 아니다. 기존 충돌·피격·내구도·상호작용 좌표와 저장은 바꾸지 않았다. 파손 반응은 금속 눌림으로 그리며 일반 돌 균열을 중복하지 않는다.
 - `tests/act1-object-art.mjs`에서 실제 renderer 선택의 fresh/legacy 분기, 겹친 세 경로 억제, 무관한 건물 보존, 상태 무변이를 확인했다. 기존 서사 목표·렌더 검사도 통과했다. 실제 canonical 좌표의 기존/신규 object painter를 각각 호출한 경량 캔버스 비교 2장을 직접 확인했다. 이는 분리 렌더 fixture이며 통합 게임 화면/정상 플레이 검수와 구분한다.
+## 2026-10-11 · 발견물의 실물 그림과 휴식 시점 일치
+
+15장 마른 공통 관찰점 곁의 정 자국/끊긴 손잡이와 가까운 오래된 쇠고리, 16–30장 짧은 문서·표찰·지도·수거/주조량 비교를 읽기 전용 world pass로 저작했다. 28장 공유 그림은 합류 후에만 나타나며 사건 시계나 목표를 변경하지 않는다. 17/19장 휴식의 원본 snapshot과 실제 interlude를 새 본문에 맞췄고, 무배수 경로에서도 16장 휴식이 물을 뺐다고 말하지 않게 했다.
+
+검증: 본문, author, journey source, evidence art 계약 통과. Native Canvas 소도구 contact sheet에서 선/글자/도형을 확인했다. 이는 실제 게임 카메라와 브라우저 시인성 검사와 별개다. 통합자의 최종 runtime/source 검수와 Pages 검증은 남아 있다. 세부 승인 범위와 수락 증거는 ACT23_QUEST_STORY_REDESIGN.md에 추적한다.

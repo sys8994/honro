@@ -6,6 +6,8 @@ const h=await appHarness(),{g,load,reload,profileThrough,click,finish,nodes}=h,J
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
 const pageCounts=[2,3,3,1,1,3,3,2,3,1,3,3,3,4,3,3,3,3,3,3,...Array(10).fill(1)];
 pageCounts[23]=2;
+pageCounts[16]=2; // Stage 17: testimony precedes first-hand inspection.
+pageCounts[18]=2; // Stage 19: two distinct family members arrive at the same bell.
 const details=[
  ['사라진 고향 사람','연목','몇 해 전','배에','뱃사공','홍만'],
  ['연목 나루','분지','장례 행렬','관을 메고','운반틀','상여','혼','짐승','바위턱','활'],
@@ -23,9 +25,9 @@ const details=[
  ['벼랑','층층','저녁상','아이의 옷','등잔 기름','기다린','아래층','같은 이름'],
  ['나뭇조각','수면','밀려갔다','돌아옵','역류','물속 발판','손잡이','밧줄','끊어졌'],
  ['법당','향','재를','노승','제자','손바닥','이름 세 글자','다른 사람의 이름'],
- ['작업굴','삭은 밧줄','새로 잘린','축','녹','기름칠','벽 틈','다시 끼워 쓰지 못'],
+ ['막힌 작업굴','인양틀','승려','종지기','축을 빼냈다고 말했다','직접 확인'],
  ['둥근 청동 벽','산','밑동','손자국','바깥','사슬','종지기','내려다보지'],
- ['주민','망치','밥그릇','천으로 싼 짚신','빈손','무릎','소단','가장 먼저 불릴 이름'],
+ ['휘겸의 소식','가족들','열린 통로','한 남자','동생의 망치','한 여인','언니의 밥그릇','같은 자리'],
  ['종소리','옷 스치는','절뚝이는 발소리','가장 느린','바람','젖은 소매'],
 ];
 check('30 required scenes retain their IDs, paragraph counts and every source narration',()=>{

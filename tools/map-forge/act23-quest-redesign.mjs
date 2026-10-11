@@ -57,6 +57,7 @@ export async function authorAct23QuestRedesign(project,{minStage=11,maxStage=30}
    // approach. The runtime publishes it only at a safe simulation boundary.
    ribbon(s,'fc15-drained-ledge',[[5300,4535],[5480,4600],[5890,4600],[6100,4480],[6240,4395]],{oneWay:false,broken:true,depth:70});
    for(const archId of ['fc15-west-arch','fc15-east-arch']){const arch=s.terrains.find(t=>t.id===archId),firstBottom=Math.max(...arch.properties.honroWalkEdges)+2;for(let i=firstBottom;i<arch.points.length;i++){const v=arch.points[i];v.y=Math.min(v.y,heightAt(s,'act2-floor',v.x)-175);}}
+   s.initialState.honroCaveHangingClue={x:5990,roofY:2163.6,targetY:4090};
    s.initialState.honroDrainRevealTerrains=['fc15-drained-ledge'];
    mark(s,'groove',6240,4395,'마른 발판의 옛 흔적과 새 작업 흔적');
    for(const e of s.elements)if(e.id==='a2-15-goal-5')Object.assign(e,{x:6240,y:4395});
