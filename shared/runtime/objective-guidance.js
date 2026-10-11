@@ -86,7 +86,7 @@ function progressive(b,st,result,list,current){
    if(G.HonroAct3?.fireScenario(b)&&['water-release','fire-screen'].includes(chosen.id))instruction+=' · '+Math.max(0,12-(b.honroState?.act3?.fireTurns||0))+'턴 남음';
   }
  }else{rows=legacySteps(b,st,result);chosen=rows.find(q=>!q.done);instruction=chosen?.text;}
- instruction=G.HonroStage11RavineEncounters?.knotInstruction(b,chosen)||G.HonroStage11RavineEncounters?.rescueInstruction(b,chosen)||instruction;
+ instruction=G.HonroStage11RavineEncounters?.holdInstruction(b,chosen)||G.HonroStage11RavineEncounters?.knotInstruction(b,chosen)||G.HonroStage11RavineEncounters?.rescueInstruction(b,chosen)||instruction;
  if(G.HonroStage18Bell?.active(b)&&chosen?.kind==='bell-descent')instruction=G.HonroStage18Bell.memory(b).reason||chosen.label;
  const parallelIds=new Set(chosen?.parallelGroup==='bell-stabilize'?list.filter(q=>q.parallelGroup===chosen.parallelGroup).map(q=>q.id):chosen?.parallelGroup==='farewell'?(G.HonroAct2.readySteps(b)||[]).filter(q=>q.parallelGroup==='farewell').map(q=>q.id):[]);
  const visibleChecklist=rows.filter(q=>q.done||q.id===chosen?.id||parallelIds.has(q.id)).map(q=>({...q,current:(q.id===chosen?.id||parallelIds.has(q.id))&&!q.done}));

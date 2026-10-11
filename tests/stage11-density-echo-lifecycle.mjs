@@ -244,17 +244,17 @@ async function snapshotContinue(q, label) {
   console.log('PASS Stage 11 both echo waves: real waits, exact low-air trios, HP/elites, two-round possession, cap 4');
 }
 
-// A single occupied advertised entry holds the whole trio. A stake on the last
-// member also exercises spawnMembers' atomic reservation beyond the hero margin.
+// Blocking the advertised entry and its bounded same-support alternatives holds
+// the whole trio. Stakes also exercise atomic reservation beyond the hero margin.
 for (const [phase, source] of sources.entries()) for (const occupancy of ['hero', 'last-member-stake']) {
   let q = fixture({phase});
   const at = q.b.honroStage11DefenseEntries[phase];
   assert.equal(q.b.honroStage11DefenseAlternates.length, 0, 'No remote cleanup-lane alternate');
   const blocker = q.e.heroesAlive().find(u => u.cls === 'archer');
   const oldPose = plain({x:blocker.x, y:blocker.y, vx:blocker.vx, vy:blocker.vy});
-  if (occupancy === 'hero') safePose(q, blocker, at.members.at(-1).x);
-  else (q.b.stakes ??= []).push({id:'echo-lifecycle-fixture-stake', x:at.members.at(-1).x,
-    y:at.members.at(-1).y, active:true, expires:1000});
+  if (occupancy === 'hero') safePose(q, blocker, at.x+(phase?160:-160));
+  else for (const candidate of g.HonroStage11RavineEncounters.defenseEntries(q.b,phase)) (q.b.stakes ??= []).push({id:'echo-lifecycle-fixture-stake', x:candidate.members.at(-1).x,
+    y:candidate.members.at(-1).y, active:true, expires:1000});
   const w = warn(q, source), before = {count:q.b.units.length, nextId:q.b.nextId, counters:plain(q.b.honroCounters)};
   rejectSyntheticEnemyBoundary(q, source);
   const actor = waitAction(q);
@@ -296,7 +296,7 @@ for (const [phase, source] of sources.entries()) for (const terminal of ['won', 
   const q = fixture({phase}), at = q.b.honroStage11DefenseEntries[phase];
   const blocker = q.e.heroesAlive().find(u => u.cls === 'archer');
   const oldPose = plain({x:blocker.x, y:blocker.y, vx:blocker.vx, vy:blocker.vy});
-  safePose(q, blocker, at.members.at(-1).x);
+  safePose(q, blocker, at.x+(phase?160:-160));
   const w = warn(q, source);
   waitAction(q);
   until(q, () => !!w.opportunity);
