@@ -7,7 +7,7 @@ const cast={
  4:{actor:'npc-chunrye',speaker:'춘례',dx:42,caption:'춘례가 피란문 안에서 걸어 나와 붕대를 쥔 손을 보인다.'}
 };
 // Existing civilian/escort bodies already represent these people in the scene.
-const speakers={13:{'석공':'resident-1'},14:{'주민':'resident-1'},16:{'승려':'resident-1','노승':'objective'},19:{'주민':'objective'},20:{'주민':'objective','길찬':'objective','석공':'objective'}};
+const speakers={13:{'석공':'resident-1'},14:{'주민':'resident-2','중층 주민':'resident-2','길찬':'resident-1'},16:{'승려':'resident-1','노승':'objective'},19:{'동생을 잃은 형':'mourner-brother','언니를 잃은 동생':'mourner-sister'},20:{'주민':'objective','길찬':'convoy-gilchan','석공':'convoy-mason'}};
 function speaker(app,who){const b=app.engine?.b;if(b?.honroStaging?.cinematic!==2||b.honroCustom)return null;const id=speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;}
 const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,scale:camera?1.05:undefined,duration:650});
 const shot=at=>({type:'look',at,duration:650,scale:1.05});
@@ -57,7 +57,7 @@ const rules=[
  // Second act: different characters inspect, ward, and protect as they speak.
  rule(11,'entry','소단','이 줄을 묶은 손',[pose('occultist','hold-bell',{marker:'knot-west'})]),
  rule(11,'entry','휘겸','길을 비우겠소',[step('knight',22),face('knight',{marker:'knot-west'},'guard')]),
- rule(12,'entry','설오','바위에 제가 낸',[face('archer',{marker:'sign'},'point')]),
+ rule(12,'entry','설오','갈라진 바위',[face('archer',{marker:'sign'},'point')]),
  rule(12,'entry','휘겸','지도에 적힌',[pose('knight','inspect')]),
  rule(12,'sign','서술','겹친 획',[pose('mage','inspect',{marker:'sign'}),shot({marker:'sign'})]),
  rule(13,'entry','설오','안에 마을이',[face('archer',{actor:'resident-1'},'lower-bow')]),
@@ -66,47 +66,48 @@ const rules=[
  rule(14,'entry','소단','떼어낼게',[face('knight',{actor:'resident-1'},'guard'),step('knight',18)]),
  rule(15,'entry','담허','수문을 열어야',[pose('mage','inspect',{marker:'sluice'})]),
  rule(15,'entry','휘겸','발판이 있소',[pose('knight','inspect',{marker:'groove'})]),
- rule(15,'groove','휘겸','최근에 대종',[pose('knight','inspect',{marker:'groove'}),shot({marker:'groove'})]),
+ rule(15,'groove','휘겸','큰 고정 자리',[pose('knight','inspect',{marker:'groove'}),shot({marker:'groove'})]),
  rule(16,'entry','소단','손은 놓지',[pose('occultist','hold-bell',{actor:'resident-1'})]),
  rule(16,'entry','노승','내 제자',[pose('objective','inspect',{actor:'resident-1'}),shot({between:['objective','resident-1']})]),
  rule(16,'monk','서술','먹을 소매',[pose('objective','inspect',{actor:'resident-1'}),face('resident-1',{actor:'objective'},'listen'),shot({between:['objective','resident-1']})]),
  rule(16,'witness','설오','꺼낼 수 있었',[pose('archer','recoil',{actor:'resident-1'})]),
- rule(17,'entry','휘겸','손으로 뽑아낸',[pose('knight','inspect',{marker:'repair'})]),
+ rule(17,'repair','휘겸','부러진 자국',[pose('knight','inspect',{marker:'repair'}),shot({marker:'repair'})]),
  rule(17,'entry','담허','천장이',[face('mage',{marker:'brace'},'point')]),
  rule(17,'notes','소단','죽어 가는',[pose('occultist','lower-bow'),shot({actor:'occultist'})]),
- rule(18,'entry','설오','당신이 축을',[face('archer',{actor:'boss'},'guard')]),
- rule(18,'entry','휘겸','당신이 고른',[step('knight',22),face('knight',{actor:'boss'},'guard')]),
+ rule(18,'entry','설오','종지기입니까',[shot({actor:'act2-keeper'}),face('archer',{actor:'act2-keeper'},'guard')]),
+ rule(18,'entry','휘겸','당신이 고른',[step('knight',22),face('knight',{actor:'act2-keeper'},'guard')]),
  rule(18,'entry','소단','아직 안에서',[pose('occultist','hold-bell',{goal:'seal'})]),
- rule(19,'entry','소단','기억하는 분',[pose('occultist','hold-bell',{marker:'separate-1'})]),
+ rule(19,'entry','소단','이름을 불러',[pose('occultist','hold-bell',{marker:'separate-1'})]),
  rule(19,'old-soul','휘겸','왕실의 봉인',[pose('knight','inspect',{marker:'old-soul'})]),
  rule(20,'entry','휘겸','무너진 출구',[face('knight',{actor:'objective'},'point')]),
  rule(20,'entry','설오','중간 쉼터',[face('archer',{actor:'objective'},'lower-bow')]),
+ rule(20,'escort','길찬','밧줄은 제가',[toward('convoy-gilchan',{actor:'convoy-mason'}),shot({between:['convoy-gilchan','convoy-mason']})]),
  rule(20,'escort-mid','휘겸','숨을 고르시오',[toward('knight',{actor:'objective'})]),
  // Third act: evidence has physical weight; the two teams keep their own space.
  rule(21,'entry','설오','수레 밑에',[pose('occultist','listen',{actor:'act3-resident'})]),
  rule(21,'entry','설오','수레 밑에',[face('archer',{actor:'act3-resident'},'point')]),
  rule(21,'entry','휘겸','길을 냅시다',[step('knight',36),face('knight',{actor:'act3-resident'},'guard')]),
  rule(22,'entry','휘겸','맞춰 봅시다',[pose('knight','inspect',{marker:'ledger-case'})]),
- rule(22,'compare-ledgers','설오','호적엔',[pose('archer','inspect'),shot({between:['archer','knight']})]),
+ rule(22,'compare-ledgers','설오','이 사람들을',[pose('archer','inspect'),shot({between:['archer','knight']})]),
  rule(23,'entry','설오','짐꾼은 살아',[face('archer',{actor:'act3-carrier'},'point')]),
  rule(23,'carrier-start','휘겸','우리와 나갑시다',[toward('knight',{actor:'act3-carrier'}),face('knight',{actor:'act3-carrier'},'guard')]),
  rule(24,'entry','휘겸','우리 집안',[step('knight',18),pose('knight','inspect',{marker:'family-crest'}),shot({actor:'knight'})]),
  rule(24,'family-crest','휘겸','관계는 듣지',[pose('knight','lower-bow'),shot({actor:'knight'})]),
  rule(25,'entry','설오','발밑이',[face('archer',{marker:'stake-arrival-1'},'point')]),
  rule(25,'entry','담허','진목을',[pose('mage','inspect',{marker:'stake-arrival-1'})]),
- rule(25,'household-tally','설오','숟가락',[pose('archer','inspect',{marker:'household-tally'})]),
+ rule(25,'household-tally','설오','이름표',[pose('archer','inspect',{marker:'household-tally'})]),
  rule(26,'entry','휘겸','기록실',[pose('knight','inspect',{marker:'hidden-latch'})]),
  rule(26,'entry','소단','살아 있는',[face('occultist',{actor:'act3-resident'},'listen')]),
  rule(27,'entry','설오','살림이',[face('archer',{marker:'depot-route-ledger'},'point')]),
- rule(27,'family-manifest','설오','열일곱',[pose('archer','inspect',{marker:'family-manifest'})]),
+ rule(27,'family-manifest','설오','입구에서',[pose('archer','inspect',{marker:'family-manifest'})]),
  rule(28,'entry','휘겸','서쪽',[face('knight',{marker:'fire-screen'},'guard')]),
  rule(28,'entry','설오','물길',[face('archer',{marker:'water-release'},'point')]),
- rule(28,'party-reunion','휘겸','희생자',[pose('knight','inspect'),pose('archer','inspect'),shot({marker:'party-reunion'})]),
- rule(28,'party-reunion','소단','이름과',[face('mage',{actor:'archer'},'listen'),face('occultist',{actor:'knight'},'listen')]),
+ rule(28,'party-reunion','휘겸','대도사',[pose('knight','inspect'),pose('archer','inspect'),shot({marker:'party-reunion'})]),
+ rule(28,'party-reunion','소단','금속량',[face('mage',{actor:'archer'},'listen'),face('occultist',{actor:'knight'},'listen')]),
  rule(29,'entry','담허','',[pose('mage','inspect',{goal:'interact'})]),
  rule(29,'entry','휘겸','',[face('archer',{actor:'knight'},'guard')]),
- rule(30,'entry','휘겸','저문골에서',[pose('knight','inspect'),pose('archer','inspect'),shot({between:['archer','knight']})]),
- rule(30,'transport-map','설오','제 고향',[face('archer',{marker:'transport-map'},'point')])
+ rule(30,'entry','휘겸','세 기록',[pose('knight','inspect'),pose('archer','inspect'),shot({between:['archer','knight']})]),
+ rule(30,'transport-map','설오','고향 곁',[face('archer',{marker:'transport-map'},'point')])
 ];
 // The target is captured at the actual first encounter, not selected again later.
 const spirit=[
