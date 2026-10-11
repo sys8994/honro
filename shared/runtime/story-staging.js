@@ -91,7 +91,7 @@ function apply(app,s,step,skip=false,dt=0){
  if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x){const facing=Math.sign(p.x-u.x);if(facing!==u.facing&&Number.isFinite(u.angle))u.angle=180-u.angle;u.facing=facing;}if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
  return skip||s.elapsed+dt*1000>=(step.duration||0);
 }
-function settle(app,s){for(const u of app.engine.b.units){if(u.honroScenePose){delete u.honroScenePose;u.moving=0;}}}
+function settle(app,s){for(const u of [...app.engine.b.units,...app.engine.b.honroConvoyActors||[]]){if(u.honroScenePose){delete u.honroScenePose;u.moving=0;}}}
 // Dialogue directions run in parallel on Story's existing clock. Their state is
 // inside the same serialized dialogue; reading/rendering never restarts a cue.
 function lineStart(app,skip=false){
