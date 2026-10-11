@@ -42,44 +42,47 @@ export async function authorAct23QuestRedesign(project,{minStage=11,maxStage=30}
    routeSpec(s,13,['sign'],[{id:'A',markerId:'route-upper-exit',defeatIds:['sq-g1','sq-g2','sq-g3','sq-g4','sq-g5'],requiresDone:[]},{id:'B',markerId:'route-lower-exit',requiresDone:[],requiresTerrainOpen:['sq-turning-veil']}]);
    for(const u of s.units.filter(u=>/^sq-g[1-5]$/.test(u.id)))u.stageOverrides.honroRouteGuard={x:8370,y:4440,radius:650,support:'sq-back-road'};
   }
+  if([13,15,16].includes(id)){const [name,after,kind,count]=({13:['hold-gate','gate','picks',8],15:['hold-sluice','sluice','picks',8],16:['hold-hall','hall','stoneLantern',10]})[id];s.initialState.honroNarrativePressure=[{id:name,after,kind,count,eliteEvery:4}];}
   if(id===13){
-   setEntry(s,12,{A:{heroes:party(s,[2900,3000,3100,3200],'forecourt-shot-ledge'),units:positions(s,['a2-enemy-0','a2-enemy-1','a2-enemy-2','a2-enemy-3','a2-enemy-4'],[2600,2730,3350,3480,3620],'act2-floor'),lines:[['휘겸','저 아래 사람이 있소. 위에서 길을 열겠소.']]},B:{heroes:party(s,[900,1000,1100,1200],'act2-floor'),units:positions(s,['a2-enemy-0','a2-enemy-1','a2-enemy-2','a2-enemy-3','a2-enemy-4'],[1610,1750,2860,2980,3120],'act2-floor'),lines:[['설오','안쪽에 사람이 있습니다. 먼저 붙은 혼부터 떼겠습니다.']]}});
+   setEntry(s,12,{A:{heroes:party(s,[2900,3000,3100,3200],'forecourt-shot-ledge'),units:positions(s,['a2-enemy-0','a2-enemy-1','a2-enemy-2','a2-enemy-3','a2-enemy-4'],[2600,2730,3350,3480,3620],'act2-floor').concat(positions(s,['a2-enemy-7'],[3590],'act2-floor',[200])),lines:[['휘겸','저 아래 사람이 있소. 위에서 길을 열겠소.']]},B:{heroes:party(s,[900,1000,1100,1200],'act2-floor'),units:positions(s,['a2-enemy-0','a2-enemy-1','a2-enemy-2','a2-enemy-3','a2-enemy-4'],[1610,1750,2860,2980,3120],'act2-floor').concat(positions(s,['a2-enemy-7'],[3590],'act2-floor',[200])),lines:[['설오','안쪽에 사람이 있습니다. 먼저 붙은 혼부터 떼겠습니다.']]}});
   }
   if(id===14&&s.initialState.honroVerticalStage14Content){const d=chapters[3],old=s.initialState.honroVerticalStage14Content,scene=(when,rows)=>rows.map(([who,text,meta={}])=>[who,text,{storyId:`act2-r3-${when}-14`,storyTitle:old.name||'해가 닿지 않는 마을',...meta}]);s.initialState.honroVerticalStage14Content={...old,...clone(d),narration:[d.narration],steps:clone(old.steps),story:scene('entry',d.story),outro:scene('outro',d.outro)};}
   if(id===15){
    // A short dry connector joins the old west/east rock masses. It is not a
    // teleport or a request to jump across the entire water basin.
+   ribbon(s,'fc15-safe-crown-descent',[[4300,3015],[4460,3155],[4660,3325],[4880,3590],[5110,3930],[5330,4245]],{material:'rock'});
    ribbon(s,'fc15-dry-basin-rim',[[5310,4245],[5500,4280],[5780,4290],[5970,4380],[6090,4410]],{material:'rock'});
-   ribbon(s,'fc15-toe-east-rise',[[6100,4410],[6200,4360],[6310,4260]],{material:'rock'});
+   s.terrains=s.terrains.filter(t=>!['fc15-toe-east-rise','fc15-west-descent'].includes(t.id));
    // Receding water exposes a low bearing edge and its direct under-arch
    // approach. The runtime publishes it only at a safe simulation boundary.
-   ribbon(s,'fc15-drained-ledge',[[5300,4535],[5480,4600],[5910,4600],[6190,4556]],{oneWay:false,broken:true,depth:70});
+   ribbon(s,'fc15-drained-ledge',[[5300,4535],[5480,4600],[5890,4600],[6100,4480],[6240,4395]],{oneWay:false,broken:true,depth:70});
+   for(const archId of ['fc15-west-arch','fc15-east-arch']){const arch=s.terrains.find(t=>t.id===archId),firstBottom=Math.max(...arch.properties.honroWalkEdges)+2;for(let i=firstBottom;i<arch.points.length;i++){const v=arch.points[i];v.y=Math.min(v.y,heightAt(s,'act2-floor',v.x)-175);}}
    s.initialState.honroDrainRevealTerrains=['fc15-drained-ledge'];
-   mark(s,'groove',6190,4400,'마른 발판의 옛 흔적과 새 작업 흔적');
-   for(const e of s.elements)if(e.id==='a2-15-goal-5')Object.assign(e,{x:6190,y:4400});
+   mark(s,'groove',6240,4395,'마른 발판의 옛 흔적과 새 작업 흔적');
+   for(const e of s.elements)if(e.id==='a2-15-goal-5')Object.assign(e,{x:6240,y:4395});
    prop(p,s,'quest-new-cut-marks',6200,4380,'tablet');
-   mark(s,'route-lower-exit',7530,4031,'배수한 아랫길 출구');mark(s,'route-upper-exit',7350,heightAt(s,'fc15-east-arch',7350),'고지 출구');mark(s,'route-exit',6190,4400,'배수한 아랫길 또는 고지로 통과');prop(p,s,'quest-upper-water-mouth',7350,heightAt(s,'fc15-east-arch',7350));
+   mark(s,'route-lower-exit',7530,4031,'배수한 아랫길 출구');mark(s,'route-upper-exit',7350,heightAt(s,'fc15-east-arch',7350),'고지 출구');mark(s,'route-exit',6240,4395,'배수한 아랫길 또는 고지로 통과');prop(p,s,'quest-upper-water-mouth',7350,heightAt(s,'fc15-east-arch',7350));
    routeSpec(s,16,['groove'],[{id:'A',markerId:'route-lower-exit',requiresDone:['sluice'],requiresTerrainActive:['fc15-drained-ledge']},{id:'B',markerId:'route-upper-exit',requiresDone:[]}]);
-   s.design.questRoutes.traversal={A:[{x:4300,y:4410},{x:5300,y:4535},{x:5480,y:4600},{x:5910,y:4600},{x:6190,y:4556}],B:[{x:5200,y:4104.08},{x:5320,y:4246.84},{x:5500,y:4280},{x:5780,y:4290},{x:5970,y:4380},{x:6100,y:4410},{x:6200,y:4360},{x:6310,y:4260}]};
+   s.design.questRoutes.traversal={A:[{x:320,y:heightAt(s,'act2-floor',320)},{x:2350,y:3800},{x:4300,y:4410},{x:5300,y:4535},{x:5480,y:4600},{x:5890,y:4600},{x:6100,y:4480},{x:6240,y:4395},{x:6360,y:heightAt(s,'act2-floor',6360)},{x:6700,y:4470},{x:7530,y:4031}],B:[{x:320,y:heightAt(s,'act2-floor',320)},{x:2600,y:heightAt(s,'act2-floor',2600),jumpTo:{x:2790,y:3748.3333333333335,support:'dry-shoulder',speed:.65}},{x:2950,y:3748.3333333333335},{x:3200,y:heightAt(s,'fc15-west-arch',3200)},{x:4200,y:heightAt(s,'fc15-west-arch',4200)},{x:4300,y:3015},{x:4460,y:3155},{x:4660,y:3325},{x:4880,y:3590},{x:5110,y:3930},{x:5330,y:4270},{x:5500,y:4280},{x:5780,y:4290},{x:5970,y:4380},{x:6100,y:heightAt(s,'fc15-water-toe',6100)},{x:6240,y:4395,jumpTo:{x:6320,y:heightAt(s,'fc15-east-arch',6320),support:'fc15-east-arch',speed:.45}},{x:6700,y:heightAt(s,'fc15-east-arch',6700)},{x:7350,y:heightAt(s,'fc15-east-arch',7350)}]};
   }
   if(id===16){
    mark(s,'clear-rescue-threat',3060,4995,'구조 자리로 다가온 위협 제압');mark(s,'witness',3080,4994,'구조 자리에서 증언과 열쇠 받기');
    const ids=['a2-enemy-4','tm-court-flank','a2-enemy-5','a2-enemy-9'];
-   setEntry(s,15,{A:{heroes:party(s,[570,460,680,350],'act2-floor'),units:ids.map(id=>{const u=s.units.find(u=>u.id===id);return{id,x:u.x,y:u.y};}),lines:[['설오','아래 물길로 왔습니다. 저분부터 도와드리겠습니다.']]},B:{heroes:party(s,[2670,2760,2850,2940],'tm-shelter-veranda'),units:positions(s,ids,[3540,3700,3900,4050],'tm-processional-upper',[0,0,210,195]),lines:[['설오','옆 회랑으로 들어왔습니다. 그 손, 놓지 마십시오.']]}});
-   s.units.find(u=>u.id==='objective').label='노승';
+   setEntry(s,15,{A:{heroes:party(s,[570,460,680,350],'act2-floor'),units:ids.map(id=>{const u=s.units.find(u=>u.id===id);return{id,x:u.x,y:u.y};}),lines:[['설오','아래 물길로 왔습니다. 저분부터 도와드리겠습니다.']]},B:{heroes:party(s,[2650,2750,2850,3380],'tm-shelter-veranda'),units:positions(s,ids,[3540,3700,3900,4050],'tm-processional-upper',[0,0,210,195]),lines:[['설오','옆 회랑으로 들어왔습니다. 그 손, 놓지 마십시오.']]}});
+   s.units.find(u=>u.id==='objective').label='노승';for(const ev of s.events||[])if(ev.id==='temple-record-answer'){const raw=JSON.stringify(ev);Object.assign(ev,JSON.parse(raw.replaceAll('hold-hall','hall')));}
   }
   if(id===19){
    s.units=s.units.filter(u=>u.team!=='enemy');s.events=[];s.encounters=[];s.initialState.honroQuietFuneral=true;s.initialState.honroBellActivation={};
    const spots={'route':6550,'separate-1':6770,'send-1':6770,'separate-2':7010,'send-2':7010,'separate-3':7210,'send-3':7210,'old-soul':7340};
    s.markers=s.markers.filter(m=>Object.hasOwn(spots,m.id));for(const [id,x]of Object.entries(spots)){const q=REDESIGN_STEPS[19].find(q=>q.id===id);mark(s,id,x,heightAt(s,'act2-floor',x),q.label,q.requiredClass?{requiredClass:q.requiredClass}:{});}
    s.elements=s.elements.filter(e=>!e.id.startsWith('a2-19-goal-')&&!e.id.startsWith('a2-19-defense-'));for(const [id,x]of Object.entries(spots))if(id.startsWith('separate'))upsert(s.elements,{id:'quest-funeral-'+id,assetId:'act2:ritual',x,y:heightAt(s,'act2-floor',x),scale:.7,rotation:0,snap:false,layer:'prop',depthLayer:'L1'});
-   for(const [i,u]of s.units.filter(u=>u.team==='player').entries()){u.x=6370+i*95;u.y=heightAt(s,'act2-floor',u.x);}const old=s.units.find(u=>u.id==='objective');if(old){old.x=6470;old.y=heightAt(s,'act2-floor',6470);old.label='함께 온 가족';}
+   for(const [i,u]of s.units.filter(u=>u.team==='player').entries()){u.x=6240+i*100;u.y=heightAt(s,'act2-floor',u.x);}const old=s.units.find(u=>u.id==='objective');if(old){old.x=6140;old.y=heightAt(s,'act2-floor',6140);old.label='함께 온 가족';}
    civilian(s,'mourner-brother','동생을 잃은 형',6710,heightAt(s,'act2-floor',6710));civilian(s,'mourner-sister','언니를 잃은 동생',6950,heightAt(s,'act2-floor',6950));prop(p,s,'quest-mourning-hammer',6780,heightAt(s,'act2-floor',6780),'hammer');prop(p,s,'quest-mourning-bowl',7020,heightAt(s,'act2-floor',7020),'bowl');
-   s.anchors.spawn={x:6370,y:heightAt(s,'act2-floor',6370)};s.anchors.start=clone(s.anchors.spawn);s.anchors.exit={x:7340,y:heightAt(s,'act2-floor',7340)};
+   s.anchors.spawn={x:6240,y:heightAt(s,'act2-floor',6240)};s.anchors.start=clone(s.anchors.spawn);s.anchors.exit={x:7340,y:heightAt(s,'act2-floor',7340)};
   }
   if(id===20){const lead=s.units.find(u=>u.id==='objective');for(const [id,label,dx]of [['convoy-gilchan','길찬',-100],['convoy-mason','석공',-220]])civilian(s,id,label,lead.x+dx,heightAt(s,'act2-floor',lead.x+dx),{honroConvoyMember:{target:'objective',dx}});}
   if(id===29){
-   const steps=act3[8].steps;stripSteps(s,steps);
+   const steps=act3[8].steps;stripSteps(s,steps);for(const event of s.events||[])if(event.id==='act3-response-29-2')event.when={after:'act3-response-29-1'};
    ribbon(s,'quest-upper-sluice-ascent',[[3370,2780],[3620,2585],[3900,2370],[4200,2140]],{material:'stone'});
    ribbon(s,'quest-upper-sluice-exit',[[5090,2140],[5400,2140]],{material:'stone'});
    mark(s,'route-upper-exit',5340,2140,'높은 수문길 출구');mark(s,'route-lower-exit',5740,2780,'기둥 아래 점검다리 출구');mark(s,'route-exit',3410,2780,'높은 수문길 또는 아래 점검다리');
@@ -87,7 +90,7 @@ export async function authorAct23QuestRedesign(project,{minStage=11,maxStage=30}
    for(const [id,x]of [['a3-29-dark-lock-approach-0',4820],['a3-29-dark-lock-approach-2',4950]]){const u=s.units.find(u=>u.id===id);if(u){u.x=x;u.y=2140;}}
    s.design.questRoutes.traversal={A:[{x:3370,y:2780},{x:3620,y:2585},{x:3900,y:2370},{x:4200,y:2140},{x:5000,y:2140},{x:5340,y:2140}],B:[{x:3410,y:2780},{x:3880,y:2660},{x:4860,y:2660},{x:5370,y:2780},{x:5740,y:2780}]};
   }
-  if(id===30){setEntry(s,29,{A:{heroes:party(s,[2180,2280,2390,2500],'sf-cape-west-access'),units:positions(s,['sf-c1','sf-c2','sf-c5'],[3500,3610,3720],'sf-granite-cape'),markers:[{id:'transport-map',x:2650,y:heightAt(s,'sf-cape-west-access',2650)}],lines:[['휘겸','높은 수문길을 돌아왔소. 이 바위턱에서 기록을 맞춰 봅시다.']]},B:{heroes:party(s,[1840,1940,2040,2140],'sf-west-ford'),units:positions(s,['sf-b1','sf-b2','sf-b5'],[2820,2920,3010],'sf-west-ford'),markers:[{id:'transport-map',x:2390,y:heightAt(s,'sf-west-ford',2390)}],lines:[['설오','점검다리 끝이 여울로 이어졌습니다. 돌 위에서 기록을 펼치겠습니다.']]}});}
+  if(id===30){for(const row of positions(s,['sf-b1','sf-b2','sf-b5'],[3500,3610,3720],'sf-west-ford'))Object.assign(s.units.find(u=>u.id===row.id),row);const activation=s.initialState.honroEncounterDensityActivation?.['cape-front'];if(activation&&!activation.supports.includes('sf-west-ford'))activation.supports.push('sf-west-ford');setEntry(s,29,{A:{heroes:party(s,[2180,2280,2390,2500],'sf-cape-west-access'),units:positions(s,['sf-c1','sf-c2','sf-c5'],[3500,3610,3720],'sf-granite-cape'),markers:[{id:'transport-map',x:2650,y:heightAt(s,'sf-cape-west-access',2650)}],lines:[['휘겸','높은 수문길을 돌아왔소. 이 바위턱에서 기록을 맞춰 봅시다.']]},B:{heroes:party(s,[1900,2020,2140,2260],'sf-west-ford'),units:positions(s,['sf-c1','sf-c2','sf-c5'],[2680,2780,2880],'sf-west-ford'),markers:[{id:'transport-map',x:2390,y:heightAt(s,'sf-west-ford',2390)}],lines:[['설오','점검다리 끝이 여울로 이어졌습니다. 돌 위에서 기록을 펼치겠습니다.']]}});}
   if(id===29)s.initialState.honroAct3Steps=clone(act3[8].steps);
   const d=id<21?chapters[id-11]:act3[id-21];for(const q of s.objectives||[])if(q.type==='campaign')q.label=d.goal;
  }
