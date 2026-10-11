@@ -190,6 +190,7 @@ const state=A.state;
 A.state=function(b){
  const result=state(b);if(!active(b))return result;
  const presented=A.current(b);if(presented?.kind==='clear')result.targets=result.targets.map(t=>t.id===presented.id?{...t,label:presented.label}:t);
+ const rescue=rescueTarget(b,presented);if(rescue)result.targets=result.targets.map(t=>t.id===presented.id?{...t,...rescue}:t);
  const waiting=pending(b),blocked=blockedClear(b);
  const foes=live(b);
  // All responses are due by the east-knot step, before the four-round defense.
@@ -223,6 +224,18 @@ function knotInstruction(b,s){
  const count=A.interactionThreats(b,m).length;
  return count?(s.id==='knot-west'?'서쪽':'동쪽')+' 혼매듭 주변의 들림 '+count+'명을 먼저 제압하세요':null;
 }
+// The body to weaken is the marker's linked spirit, never the protected
+// resident. Once the spirit is ready/gone, return the cue to the living resident.
+// This only reads positions/HP; visibility, damage and the rescue gate stay put.
+function rescueTarget(b,s){
+ if(!composed(b)||s?.id!=='resident'||s.kind!=='rescue')return null;
+ const m=b.honroMarkers.find(m=>m.id===s.id);if(!m||A.interactionThreats(b,m).length)return null;
+ const spirit=b.units.find(u=>u.id===m.spiritId),sodan=b.units.some(u=>u.side===0&&u.cls==='occultist'&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);
+ const weaken=spirit&&!spirit.dead&&spirit.hp>0&&(spirit.hp>spirit.maxHp*.4||!sodan&&!spirit.honroSubdued);
+ const target=weaken?spirit:b.units.find(u=>u.id===m.target);
+ if(!target||target.dead||target.hp<=0||!Number.isFinite(target.x)||!Number.isFinite(target.y))return null;
+ return{kind:weaken?'boss':'interact',unitId:target.id,x:target.x,y:target.y-target.h,label:weaken?'주민에게 붙은 '+(spirit.name||'혼'):'주민 · E'};
+}
 // Only the next actionable rescue instruction is shown. Use the production
 // eligibility result; this presentation does not change any gate or saved step.
 function rescueInstruction(b,s){
@@ -239,5 +252,5 @@ function rescueInstruction(b,s){
  if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 E':'동행으로 주민에게 다가가 E';
  return null;
 }
-G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,knotInstruction,holdInstruction,defenseEntries,repairResponseFlights};
+G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,rescueTarget,knotInstruction,holdInstruction,defenseEntries,repairResponseFlights};
 })(globalThis);
