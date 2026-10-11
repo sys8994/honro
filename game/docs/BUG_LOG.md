@@ -2188,3 +2188,5 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 15장 마른 공통 관찰점 곁의 정 자국/끊긴 손잡이와 가까운 오래된 쇠고리, 16–30장 짧은 문서·표찰·지도·수거/주조량 비교를 읽기 전용 world pass로 저작했다. 28장 공유 그림은 합류 후에만 나타나며 사건 시계나 목표를 변경하지 않는다. 17/19장 휴식의 원본 snapshot과 실제 interlude를 새 본문에 맞췄고, 무배수 경로에서도 16장 휴식이 물을 뺐다고 말하지 않게 했다.
 
 검증: 본문, author, journey source, evidence art 계약 통과. Native Canvas 소도구 contact sheet에서 선/글자/도형을 확인했다. 이는 실제 게임 카메라와 브라우저 시인성 검사와 별개다. 통합자의 최종 runtime/source 검수와 Pages 검증은 남아 있다. 세부 승인 범위와 수락 증거는 ACT23_QUEST_STORY_REDESIGN.md에 추적한다.
+
+14장 후속 실제 배우 감사: 고도화된 맵의 중층 주민은 resident-3이며 과거 기본 맵의 resident-2가 없었다. 중층 화자를 실제 family-mid marker.target으로 연결하고, 진입·먼 피난 다리에서 하던 직접 대사는 중층 구조 직후의 설명으로 옮겼다. 종료에서는 그때 들은 우회길을 휘겸이 상기한다. 새 14장 전용 본문 snapshot도 동기화했다. 본문/author/journey 계약 통과. 12장 길표에서 상·하부 실제 출구까지의 일반 이동 검사도 최종 route-geometry 파일에 추가했으며 실행 결과는 통합 검수에 남긴다.

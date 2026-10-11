@@ -11,12 +11,16 @@ for(const id of[13,16,30])for(const[key,v]of Object.entries(original.stages[id-1
 }
 g.HONRO_PROJECT=original;
 for(const id of[19]){const{b}=battlefield(g,id);for(const u of b.units){const input=original.stages[id-1].units.find(v=>v.id===u.id);if(input)assert(Math.hypot(u.x-input.x,u.y-input.y)<.01,'quiet funeral exact supported cast '+u.id);}}
-for(const id of[15,29])for(const cls of['archer','mage','knight','occultist'])for(const[key,anchors]of Object.entries(original.stages[id-1].design.questRoutes.traversal)){
+const quarry=original.stages[11],qExit=id=>quarry.markers.find(m=>m.id===id),back=quarry.terrains.find(t=>t.id==='sq-back-road'),upper=qExit('route-upper-exit'),lower=qExit('route-lower-exit');
+const quarryRoutes={A:[...structuredClone(quarry.design.quarry.routes.find(r=>r.id==='FG').anchors),...back.points.slice(0,Math.max(...back.properties.honroWalkEdges)+2).filter(p=>p.x>8225&&p.x<upper.x),{x:upper.x,y:upper.y}],B:structuredClone(quarry.design.quarry.routes.find(r=>r.id==='FH').anchors)};
+assert.equal(quarryRoutes.B.at(-1).x,lower.x);assert.equal(quarryRoutes.B.at(-1).y,lower.y);
+for(const id of[12,15,29])for(const cls of['archer','mage','knight','occultist'])for(const[key,anchors]of Object.entries(id===12?quarryRoutes:original.stages[id-1].design.questRoutes.traversal)){
  const{b,e}=battlefield(g,id),u=e.heroesAlive().find(u=>u.cls===cls);b.units=[u];b.active=u.id;e.checkEnd=()=>false;
+ if(id===12)for(const list of[b.terrain,b.honroWorldTerrain])list.find(t=>t.id==='sq-turning-veil').broken=true;
  if(id===15&&key==='A')for(const list of[b.terrain,b.honroWorldTerrain])list.find(t=>t.id==='fc15-drained-ledge').broken=false;
  if(id===15&&key==='B')assert(b.terrain.find(t=>t.id==='fc15-drained-ledge').broken,'high path stays un-drained');
  Object.assign(u,{x:anchors[0].x,y:anchors[0].y,vx:0,vy:0});assert(g.HONRO_CORE.validTerrainContactPose(b.terrain,u));
  const r=traverse(g,b,e,u,anchors);rows.push({id,route:key,cls,...r});console.log(id,key,cls,r.passed?'PASS':'FAIL','damage',r.damage,r.failed||'');assert(r.passed&&r.damage===0,JSON.stringify(rows.at(-1)));
 }
 await mkdir('_local/reports/act23-redesign',{recursive:true});const digest=createHash('sha256').update(await readFile('shared/data/campaign.json')).digest('hex');await writeFile('_local/reports/act23-redesign/route-geometry.json',JSON.stringify({source:'shared/data/campaign.json',sha256:digest,scope:'Isolated real collision/movement with movement replenishment, no enemy combat or browser claim. Entry tests keep every NPC/enemy through compiler and sanitizer.',entries,rows},null,2)+'\n');
-console.log('Exact full-roster entries and Act15/29 ordinary traversal contracts passed.');
+console.log('Exact full-roster entries and Act12/15/29 ordinary traversal contracts passed.');

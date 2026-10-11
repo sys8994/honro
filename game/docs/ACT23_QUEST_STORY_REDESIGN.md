@@ -10,7 +10,7 @@
 | 11 | 소단의 명시적 동행 수락은 앞 장에서 받고 이후 발언은 실제 본 일에 한정 | act2-drama, journey-content; 10장은 1막 담당 |
 | 12 | 길표 발견 뒤 높은 작업굴 5체 국소 제압 OR 열린 내리막. 전체 소탕/4턴 제거. 짚신과 유한 경고 압박 보존 | act2-plan, map author route spec, story-direction; 공통 런타임 별도 |
 | 13 | 같은 석공/빙의혼/문 증언, 구조→문 개방→이탈. 5턴/전체 소탕 제거. 두 진입과 같은 곡괭이 명단 재배치 | act2-drama, act2-plan, entry variants |
-| 14 | 중층 주민/길찬 화자 구별, 손목 줄을 함부로 절단하지 않는 설명. 기존 고도·구조 군집 유지 | act2-drama, VerticalStage14Content snapshot |
+| 14 | 중층 주민/길찬 화자 구별, 실제 family-mid 구조 뒤 손목 줄과 우회길 설명. 기존 고도·구조 군집 유지 | act2-drama, VerticalStage14Content snapshot |
 | 15 | 수문 optional. 배수로 드러나는 실제 낮은 바닥 OR 무배수 고지. 마른 공통 관찰점의 오래된 쇠고리와 새 정 자국/손잡이 | map author, act2-plan, story-act23-art, CaveHangingClue |
 | 16 | 구조→주변 네 위협 해결→그 자리에서 증언·열쇠→기록함. 원거리 NPC 대사/5턴 제거 | act2-drama witness/hall, act2-plan, map markers |
 | 17 | 승려의 증언과 직접 축 관찰을 구별. 발견 전 녹/기름칠 단정 제거. 작업일지 3줄 | act2-drama, journey-content 17 source/interlude/optional |
@@ -46,7 +46,7 @@
 - [x] 17/19 interlude source와 실제 본문의 일치: tests/journey-content.mjs. tests/natural-dialogue의 해당 두 기대값만 새 인과로 갱신.
 - [x] 별도 실제 물리 probe: 13/16/30 전체 배우 유지한 24개 진입 좌표가 sanitize 전후 동일. 19장 배우도 동일.
 - [x] 별도 실제 물리 probe: 15 A/B × 네 직업의 보행/기본 도약 피해 0. 적 제거·이동 자원 보충을 사용한 **기하 검사**이며 전투 난이도 증거가 아니다.
-- [ ] 통합 최종 source hash로 tests/act23-route-geometry.mjs 전체 재실행(15/29 네 직업, exact entries).
+- [ ] 통합 최종 source hash로 tests/act23-route-geometry.mjs 전체 재실행(12 길표→양 출구 및15/29 네 직업, exact entries).
 - [ ] 12/15/29 각 C+A/C+B/공통 전 미완료/동시 도착/경로 변경을 실제 공통 판정으로 확인.
 - [ ] 분기 직전 저장, 승리 후 재개, 다음 장 재시작, 앞 장 재플레이, 구저장 유지 확인.
 - [ ] Game/Workshop 실제 화면에서 두 출구 프레이밍, 지지면 활성, 단서/화자/카메라와 읽기 크기 확인.

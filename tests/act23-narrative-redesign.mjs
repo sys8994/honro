@@ -8,6 +8,8 @@ const all=[];for(let n=11;n<=30;n++){const c=stage(n);for(const [key,rows]of Obj
 for(const {n,key,row:[who,text,meta]}of all){if(meta?.kind==='document'){assert(text.split('\n').length<=3,`${n}/${key}: at most three document lines`);assert(text.length<=100,`${n}/${key}: concise document rather than dense paragraphs`);}}
 assert(!stage(12).story.some(l=>l[1].includes('제가 낸 자국')));
 assert(stage(13).story.some(l=>l[1].includes('손에 혼')));
+assert(!stage(14).story.some(l=>l[0]==='중층 주민'),'distant middle resident waits until actual rescue');
+assert(stage(14).beats['family-mid'].some(l=>l[1].includes('서로 손목을 묶었어요')));
 assert(!stage(15).beats.groove.some(l=>l[1].includes('대종 밑동')));
 assert(!stage(16).beats.hall.some(l=>['노승','승려'].includes(l[0])),'remote NPCs do not speak at record room');
 assert(stage(16).beats.witness.some(l=>l[1].includes('열쇠를 가져가')));
