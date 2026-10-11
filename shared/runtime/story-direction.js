@@ -8,7 +8,7 @@ const cast={
 };
 // Existing civilian/escort bodies already represent these people in the scene.
 const speakers={13:{'석공':'resident-1'},14:{'주민':'resident-2','중층 주민':'resident-2','길찬':'resident-1'},16:{'승려':'resident-1','노승':'objective'},19:{'동생을 잃은 형':'mourner-brother','언니를 잃은 동생':'mourner-sister'},20:{'주민':'objective','길찬':'convoy-gilchan','석공':'convoy-mason'}};
-function speaker(app,who){const b=app.engine?.b;if(b?.honroStaging?.cinematic!==2||b.honroCustom)return null;const id=speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;}
+function speaker(app,who){const b=app.engine?.b;if(b?.honroStaging?.cinematic!==2||b.honroCustom)return null;const id=speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;}
 const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,scale:camera?1.05:undefined,duration:650});
 const shot=at=>({type:'look',at,duration:650,scale:1.05});
 const pose=(actor,kind,at)=>face(actor,at||{actor:'archer'},kind);
@@ -129,7 +129,7 @@ function hiddenSpeech(b,meta){const c=cast[b.honroStage];return !!c&&((c.entry||
 function build(app,lines,options={}){
  const b=app.engine?.b;if(app.screen!=='battle'||b?.honroCustom||b?.honroStaging?.cinematic!==2||options.index!==undefined)return null;
  const entry=options.after==='entry',outcome=options.after==='outcome',c=cast[b.honroStage],cues=lines.map(()=>[]),head=[];
- const origins={};for(const u of [...b.units,...Object.values(b.honroStaging.hidden||{})]){const p={x:u.x,y:u.y};origins[u.id]=p;if(u.side===0&&!u.summoned)origins[u.cls]=p;}
+ const origins={};for(const u of [...b.units,...(b.honroConvoyActors||[]),...Object.values(b.honroStaging.hidden||{})]){const p={x:u.x,y:u.y};origins[u.id]=p;if(u.side===0&&!u.summoned)origins[u.cls]=p;}
  for(const [i,[who,text,meta={}]]of lines.entries()){
   const id=meta.storyId||'',when=id||(entry?'entry':outcome?'outcome':'');
   for(const r of rules)if(r.stage===b.honroStage&&when.includes(r.when)&&who===r.who&&text.includes(r.text))cues[i].push(...r.actions);

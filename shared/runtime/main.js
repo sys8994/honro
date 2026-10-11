@@ -530,7 +530,7 @@
             b.units.push(u);
         } }
         event(text) { if(!text)return;this.eventText=text;this.eventUntil=performance.now()+2300;this.dirty=true; }
-        speakerUnits(who){return(this.engine?.b.units||[]).filter(v=>(v.side===0||v.honroAlly||v.honroCivilian)&&(v.name===who||v.side===0&&H.hero[v.cls]?.name===who));}
+        speakerUnits(who){return[...(this.engine?.b.units||[]),...(this.engine?.b.honroConvoyActors||[])].filter(v=>(v.side===0||v.honroAlly||v.honroCivilian)&&(v.name===who||v.side===0&&H.hero[v.cls]?.name===who));}
         canSpeak(who){if(!this.engine)return true;const units=this.speakerUnits(who),known=units.length||Object.values(H.hero).some(h=>h.name===who);return !known||units.some(u=>!u.dead&&u.hp>0);}
         focusSpeaker(who,duration=1700){if(!this.engine||!this.scene)return;const u=this.speakerUnits(who).find(v=>!v.dead&&v.hp>0);if(u)this.scene.focusUnit(u.id,duration,true);}
         say(who,text){if(this.canSpeak(who))G.HonroStory.queue(this,[[who,text]]);}
@@ -548,6 +548,7 @@
             this.cancelInput();
             const b = this.engine.b, won = b.phase === 'won', st = G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage;
             if(won)G.HonroProgression.complete(b);
+            if(won&&!b.honroJourneyReplay){const handoff=G.HonroRouteBranches?.handoff(b);if(handoff)this.profile.honroRouteHandoff=handoff;}
             G.HonroProgression.syncRoster(this.profile,b);
             delete this.profile.honroCampPending;
             this.profile.honroBattle = null;
@@ -563,7 +564,7 @@
             G.HonroSplitCampaign.outcome(this,won);
             G.HonroRestJourney?.recordOutcome(this,won);
             this.persist();
-            this.open(`<div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p><div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30 ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}<div class="actions"><button data-action="retry">다시 걷기</button><button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
+            this.open(`<div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p><div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30 ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}<div class="actions"><button data-action="retry">다시 걷기</button>${won&&b.honroJourneyReplay&&G.HonroRouteBranches?.handoff(b)?'<button data-action="route-continue">선택한 길로 다음 장</button>':''}<button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
             this.audio?.play(won ? 'win' : 'lose');
         }
         battleHelp() {
@@ -970,6 +971,9 @@
                     if(!this.training)this.profile.honroBattle = null;
                     this.engine = null;
                     this.launch(this.stageId, this.training, this.trainingSkill);
+                    break;
+                case 'route-continue':
+                    if(this.done&&G.HonroRouteBranches?.continueFrom(this,{replay:true})){const next=this.engine.b.honroRouteSpec.toStage;this.engine=null;this.profile.honroBattle=null;this.launch(next);}
                     break;
                 case 'result-map':
                     this.engine = null;

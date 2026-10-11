@@ -185,8 +185,8 @@
             c.clearRect(0, 0, w, h);
             const u = e.active,reviewing=b.phase==='review'||b.phase==='ally'&&b.honroState?.allyQueue?.phase==='after'||b.phase==='summon'&&b.summonTurn?.stage==='wait'&&!b.projectiles.length;
             if (!this.manual && u) {
-                const now=performance.now(),focus=this.focusId&&now<this.focusUntil?b.units.find(v=>v.id===this.focusId):null;
-                const speaking=this.speakerId&&now<this.speakerUntil?b.units.find(v=>v.id===this.speakerId):null;
+                const now=performance.now(),focus=this.focusId&&now<this.focusUntil?[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===this.focusId):null;
+                const speaking=this.speakerId&&now<this.speakerUntil?[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===this.speakerId):null;
                 const actorFollow=!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length;
                 if(resized&&actorFollow){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
                 let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
@@ -206,7 +206,7 @@
             if(this.storyTween){
                 const tw=this.storyTween,now=performance.now(),raw=Math.max(0,Math.min(1,(now-tw.start)/tw.duration)),ease=raw*raw*(3-2*raw);
                 let to=tw.to;
-                if(tw.kind==='unit'){const v=b.units.find(v=>v.id===tw.id&&!v.dead);if(v){const sc=tw.targetScale??this.storyScale(),mid=v.y-v.h*.48;to={x:v.x,y:mid-h*.12/sc,scale:sc};}}
+                if(tw.kind==='unit'){const v=[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===tw.id&&!v.dead);if(v){const sc=tw.targetScale??this.storyScale(),mid=v.y-v.h*.48;to={x:v.x,y:mid-h*.12/sc,scale:sc};}}
                 if(to){this.x=tw.from.x+(to.x-tw.from.x)*ease;this.y=tw.from.y+(to.y-tw.from.y)*ease;this.scale=tw.from.scale+(to.scale-tw.from.scale)*ease;}
                 if(raw>=1){if(tw.kind==='unit'){this.storyTween={...tw,from:to,to,duration:1,start:now-1};}else{this.manual=!!tw.manual;this.storyTween=null;}}
             }
@@ -272,6 +272,7 @@
             }
             G.HONRO_CORE.drawStakes(c,e,this.time);
             G.HonroAct1StoryArt?.draw(this,e);
+            G.HonroNarrativeArt?.draw(this,e);
             if(b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
             for (const z of b.zones || []) {
                 if (z.dead)
@@ -329,7 +330,7 @@
         terrainHealthTargets(b){
             const objectives=(b.honroObjectives||[]).filter(o=>o.type==='destroy'),steps=G.HonroAct2?.active(b)?G.HonroAct2.steps(b):G.HonroAct3?.active(b)?G.HonroAct3.steps(b):[];
             return (b.terrain||[]).flatMap(t=>{
-                if(t.broken||t.indestructible||!Number.isFinite(t.hp)||t.hp>=9999||!Number.isFinite(t.maxHp)||t.maxHp<=0)return [];
+                if(t.honroBinding||t.broken||t.indestructible||!Number.isFinite(t.hp)||t.hp>=9999||!Number.isFinite(t.maxHp)||t.maxHp<=0)return [];
                 const objective=objectives.find(o=>o.targetId===t.id||o.targetId===t.honroElementId),step=steps.find(o=>o.kind==='destroy'&&o.id===t.id);
                 const event=!!(t.honroSeal||t.honroAct2Target||t.honroAct3Target||t.device||objective||step);
                 if(!event&&t.hp>=t.maxHp)return [];

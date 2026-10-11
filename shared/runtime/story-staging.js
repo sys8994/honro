@@ -4,7 +4,7 @@
 const clone=x=>JSON.parse(JSON.stringify(x)),registry=new Map(),ID='act1-sodan-first-receiver-v1';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function state(b){const s=b.honroStaging??={version:1};s.once??={};s.hidden??={};return s;}
-function actor(b,id){return b.units.find(u=>u.id===id)||b.units.find(u=>u.side===0&&!u.summoned&&u.cls===id)||null;}
+function actor(b,id){return b.honroConvoyActors?.find(u=>u.id===id)||b.units.find(u=>u.id===id)||b.units.find(u=>u.side===0&&!u.summoned&&u.cls===id)||null;}
 function alive(u){return !!u&&!u.dead&&u.hp>0;}
 function point(b,p,context={}){
  if(!p)return null;let q;

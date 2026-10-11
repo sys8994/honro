@@ -140,6 +140,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
    resident.honroResolved=true;resident.shield=Math.max(resident.shield,Math.round(resident.maxHp*.3));a.rescued.push(resident.id);
   }
   if(s.id==='sluice'){
+   if(b.honroDrainRevealTerrains?.length)a.drainRevealPending=true;
    b.honroSurfaceZones=b.honroSurfaceZones.map(z=>z.kind==='water-pool'?lowerPool(z,120):z);
    const pools=b.honroSurfaceZones.filter(z=>z.kind==='water-pool'&&z.surface.length===2);
    b.waters=pools.map((z,j)=>({...(b.waters[j]||{}),x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y}))}));
@@ -208,6 +209,7 @@ function firstSpiritEncounter(app,heroes){const b=app.engine?.b,key='act2:first-
 }
 function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].includes(b.phase))return;
  const a=memory(b),heroes=e.heroesAlive();
+ G.HonroNarrativeRevision?.tick(app,dt);
  if(e.active?.side===0)a.viewerId=e.active.id;
  firstSpiritEncounter(app,heroes);
  // Completion is captured immediately; the shared story queue waits for actor end.

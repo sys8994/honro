@@ -16,7 +16,7 @@ function commonReady(b){if(!active(b)||(b.honroRouteSpec.common||[]).some(id=>!d
  return true;
 }
 function reaches(b,u,m){return !!m&&(b.honroStage>=21?G.HonroAct3.sameFloor(u,m,180):Math.hypot(u.x-m.x,u.y-m.y)<150);}
-function requirements(b,r){return (r.requiresDone||[]).every(id=>done(b,id))&&(r.defeatIds||[]).every(id=>{const u=b.units.find(q=>q.id===id);return !!u&&(!alive(u)||u.honroSubdued||u.side!==1);})&&(r.requiresTerrainOpen||[]).every(id=>!!b.terrain.find(t=>t.id===id)?.broken);}
+function requirements(b,r){return (r.requiresDone||[]).every(id=>done(b,id))&&(r.defeatIds||[]).every(id=>{const u=b.units.find(q=>q.id===id);return !!u&&(!alive(u)||u.honroSubdued||u.side!==1);})&&(r.requiresTerrainActive||[]).every(id=>{const t=b.terrain.find(t=>t.id===id);return !!t&&!t.broken;})&&(r.requiresTerrainOpen||[]).every(id=>!!b.terrain.find(t=>t.id===id)?.broken);}
 function candidates(b){if(!commonReady(b))return[];const group=heroes(b);return b.honroRouteSpec.routes.filter(r=>requirements(b,r)&&group.some(u=>reaches(b,u,marker(b,r.markerId))));}
 function commit(app,step){const b=app.engine.b;if(!active(b)||step?.kind!=='route')return false;const state=memory(b);if(state.selectedRoute)return true;
  // Array order is the authored, persisted marker order. The current actor wins
@@ -28,7 +28,7 @@ function commit(app,step){const b=app.engine.b;if(!active(b)||step?.kind!=='rout
 }
 function targets(b,step){if(!active(b)||step?.kind!=='route')return null;return b.honroRouteSpec.routes.map(r=>{const m=marker(b,r.markerId);return {id:r.markerId,kind:'exit',x:m?.x,y:m?.y,label:r.label||m?.label||r.id,done:b.honroRouteChoice?.selectedRoute===r.id,route:r.id};}).filter(t=>Number.isFinite(t.x)&&Number.isFinite(t.y));}
 function sourceIssue(b){if(!active(b))return null;const s=b.honroRouteSpec;if(![12,15,29].includes(b.honroStage)||s.toStage!==b.honroStage+1||s.routes?.length!==2||new Set(s.routes.map(r=>r.id)).size!==2)return '대체 출구 자료가 준비되지 않았습니다.';
- for(const r of s.routes){if(!marker(b,r.markerId))return '출구 위치가 준비되지 않았습니다: '+r.markerId;for(const id of r.defeatIds||[])if(!b.units.some(u=>u.id===id))return '출구 수비 대상이 준비되지 않았습니다: '+id;for(const id of r.requiresTerrainOpen||[])if(!b.terrain.some(t=>t.id===id))return '출구 지형이 준비되지 않았습니다: '+id;}return null;
+ for(const r of s.routes){if(!marker(b,r.markerId))return '출구 위치가 준비되지 않았습니다: '+r.markerId;for(const id of r.defeatIds||[])if(!b.units.some(u=>u.id===id))return '출구 수비 대상이 준비되지 않았습니다: '+id;for(const id of [...(r.requiresTerrainOpen||[]),...(r.requiresTerrainActive||[])])if(!b.terrain.some(t=>t.id===id))return '출구 지형이 준비되지 않았습니다: '+id;}return null;
 }
 function handoff(b){const s=b?.honroRouteChoice;return active(b)&&b.phase==='won'&&s?.selectedRoute&&s.sourceRun===b.session?{fromStage:b.honroStage,toStage:b.honroRouteSpec.toStage,choice:s.selectedRoute,revision:1,sourceRun:b.session}:null;}
 function continueFrom(app,{replay=false}={}){const b=app.engine?.b,h=handoff(b);if(!h||b.honroJourneyReplay&&!replay)return false;app.profile.honroRouteHandoff=h;app.persist();return true;}
