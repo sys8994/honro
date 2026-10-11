@@ -201,9 +201,9 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  const usable=id=>sodan.loadout?.includes(id)&&C.SKILLS[id]&&sodan.focus>=e.manaCost(C.SKILLS[id],sodan)&&!e.cooldownLeft(sodan,id);
  const soul=['O01','O02','O03','O04','O05','O16'].find(usable),manifest=usable('O08');
  const lamp=(b.honroMarkers||[]).find(m=>m.id?.startsWith('spirit-lamp')&&m.action==='act2'&&!m.collected&&(!m.requiredClass||heroes.some(u=>u.cls===m.requiredClass))&&Math.hypot(spirit.x-m.x,spirit.y-m.y)<=(m.radius||1200));
- const soulGuide=soul?`소단의 ${C.SKILLS[soul].name}(${soul})은 현형 없이도 유효합니다.`:'소단의 혼 공격은 현형 없이도 혼령에게 유효합니다.';
+ const soulGuide=soul?`소단의 ${C.SKILLS[soul].name}은 드러나지 않은 혼령도 공격할 수 있습니다.`:'소단의 혼 공격은 드러나지 않은 혼령에게도 유효합니다.';
  const reply=manifest?'혼 공격은 바로 닿아요. 현형부로 형태를 잡으면 두 분의 활과 검도 제대로 닿아요.':lamp?'제 혼 공격은 바로 닿아요. 저 원혼등불을 밝히면 두 분의 활과 검도 제대로 닿아요.':'활과 검은 잘 듣지 않아요. 제가 혼 공격으로 맞설게요.';
- const guidance=soulGuide+(manifest?' 현형부(O08)를 맞히면 동행도 혼령을 보고 형 공격을 제대로 가할 수 있습니다.':lamp?' 원혼등불에 다가가 E로 밝히면 주변 혼령이 현형되어 동행의 형 공격도 유효해집니다.':' 소단을 선택해 혼령을 상대하세요.');
+ const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 E로 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
  app.profile.seen??={};
  app.profile.seen[key]=true;
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id};

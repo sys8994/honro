@@ -32,10 +32,10 @@ function run(name,mutate=()=>{},expect={}){
  else{
   const lines=s.app.dialogue?.lines;assert(lines,name+' queues the encounter');
   const guide=lines.find(row=>row[0]==='안내');assert(guide,name+' has guide');
-  assert.match(guide[1],/현형 없이도/);assert.equal(guide[2].guideTitle,expect.manifest||expect.lamp?'혼령과 현형':'혼령과 혼 공격');
-  assert.equal(guide[1].includes('O08'),!!expect.manifest,name+' only mentions usable equipped O08');
+  assert.match(guide[1],/드러나지 않은 혼령/);assert(!/O\d{2}/.test(guide[1]),name+' does not expose internal skill IDs');assert.equal(guide[2].guideTitle,expect.manifest||expect.lamp?'혼령과 현형':'혼령과 혼 공격');
+  assert.equal(guide[1].includes('현형부'),!!expect.manifest,name+' only mentions usable equipped O08');
   assert.equal(guide[1].includes('원혼등불'),!!expect.lamp,name+' only mentions a usable relevant lamp');
-  if(expect.soul!==false)assert(guide[1].startsWith('소단의 '+C.SKILLS[expect.soul||'O01'].name+'('+(expect.soul||'O01')+')'),name+' leads with available soul skill');
+  if(expect.soul!==false)assert(guide[1].startsWith('소단의 '+C.SKILLS[expect.soul||'O01'].name+'은'),name+' leads with available soul skill');
   assert.equal(s.app.saves,1);assert.equal(s.p.seen[key],true);
   const queued=JSON.stringify(lines);s.app.dialogue=null;g.HonroAct2.tick(s.app,0);assert.equal(s.app.queues,1,name+' is one-time');assert.equal(s.app.saves,1);
   cases.push({name,guide:guide[1],title:guide[2].guideTitle,queued});return s;

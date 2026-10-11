@@ -9,7 +9,7 @@ const b=app.engine.b,spirit=b.units.find(u=>u.honroSpirit&&!u.dead),hero=app.eng
 assert(spirit);assert(!b.honroMarkers.some(m=>m.id.startsWith('spirit-lamp')));
 hero.x=spirit.x-320;hero.y=spirit.y;app.actorBoundary=hero.id;g.HonroAct2.tick(app,0);
 assert(app.profile.seen[key]);const guide=app.dialogue?.lines.find(l=>l[0]==='안내');
-assert(guide?.[1].includes('혼령탄(O01)'));assert(guide[1].includes('현형 없이도'));
+assert(guide?.[1].includes('혼령탄은 드러나지 않은 혼령도 공격할 수 있습니다'));assert(!/O\d{2}/.test(guide[1]));
 assert(!guide[1].includes('O08'));assert(!guide[1].includes('원혼등불'));
 const lines=plain(app.dialogue.lines);assert(app.profile.honroBattle.honroStory);
 app=h.reload();h.click('continue');assert.deepEqual(plain(app.dialogue.lines),lines);

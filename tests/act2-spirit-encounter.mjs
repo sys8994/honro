@@ -19,7 +19,7 @@ const spirit=app.engine.b.units.find(u=>u.honroSpirit&&!u.dead),hero=app.engine.
 hero.x=spirit.x-320;hero.y=spirit.y;app.actorBoundary=hero.id;g.HonroAct2.tick(app,0);
 assert(app.profile.seen['act2:first-spirit-encounter']);
 assert(app.dialogue?.lines.some(l=>l[1].includes('혼 공격')));
-assert(app.dialogue?.lines.some(l=>l[0]==='안내'&&l[1].includes('혼령탄(O01)')&&!l[1].includes('원혼등불')));
+assert(app.dialogue?.lines.some(l=>l[0]==='안내'&&l[1].includes('혼령탄은 드러나지 않은 혼령도 공격할 수 있습니다')&&!l[1].includes('원혼등불')));
 const lines=plain(app.dialogue.lines),saved=plain(app.profile.honroBattle);
 assert(saved.honroStory,'the encounter dialogue must be saved with its battle');
 app=reload();click('continue');assert.deepEqual(plain(app.dialogue.lines),lines);
