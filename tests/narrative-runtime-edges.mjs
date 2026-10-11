@@ -47,4 +47,11 @@ const yes=(v,m)=>{assert(v,m);checks++;};
  const mem=e.b.honroState;yes(mem.narrativePressure.warnings['hold-hall-3']===mem.templeDefense.warnings['hold-hall-3'],'resume reconnects the temple entry gate to the same warning');
  A.wave=oldWave;
 }
+{
+ const {b,app}=battlefield(g,15),R=g.HonroNarrativeRevision,A=g.HonroAct2,t=b.terrain.find(t=>t.id==='fc15-drained-ledge');
+ yes(t.broken,'the lower support is physically absent before drainage');
+ A.memory(b).drainRevealPending=true;app.dialogue={lines:[]};R.tick(app,0);yes(t.broken,'dialogue prevents a terrain activation');
+ app.dialogue=null;R.tick(app,0);yes(!t.broken&&b.honroState.act2.drainRevealed,'full authored roster does not block the safe exposed ledge');
+ yes(!b.honroWorldTerrain.find(t=>t.id==='fc15-drained-ledge').broken,'collision and world terrain switch together');
+}
 console.log(`PASS ${checks} narrative runtime edges; no normal-resource or browser coverage claimed`);

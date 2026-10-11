@@ -85,3 +85,8 @@
 - 19장 유품을 인물 비례로 줄였다(망치 약40 world px, 그릇 폭28). 낮은 바닥 자리로 구분하며 충돌 지형을 추가하지 않았다. 전체 Scene 재촬영에서 직접 확인했다.
 - 10장 주박의 목표 이름과 아트 이름 중복은 목표 마커가 표시될 때 아트 이름만 생략하여 줄였다. 몸·주박 판정과 상태 전이는 그대로다.
 - Game와 Workshop를 최신 소스로 재생성했다. 브라우저 검수는 공식 Pages 게시 후 진행하며 현재 Native/VM 증거로 대체하지 않는다.
+
+### 04:30 UTC 직렬 검사 종료
+- 제품 소스 `b3ef194`의 clean tree에서 TypeScript, `npm run test:quest-story:contracts` 전체, `story-direction` 전체 통과. 새 UI나 미술 범위를 더 늘리지 않았다.
+- 최종 `narrative-runtime-edges`19계약도 통과.15장 새 하부 지형은 초기 roster를 그대로 둔 상태에서 대화 중 보류/안전 경계 활성화를 확인했다.
+- 최종 증거/미검수 범위는 `QUEST_STORY_RELEASE_CHECKPOINT.md`에 정리했다. 공식 Pages 검수와 정상자원 완주는 여전히 별도 남은 항목이다.
