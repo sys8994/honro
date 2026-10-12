@@ -546,12 +546,8 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro .context-interact button{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:9px;align-items:center}
 .honro .context-interact .keycap{grid-row:1/3;display:grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border:1px solid #d8bf8370;border-radius:7px;background:#0a171be8;color:#ead9ae;font:700 12px/1 sans-serif;box-shadow:inset 0 -2px 0 #0007}
 
-/* Experience has its own readable track, including at zero progress.
-   The live percentage continues to come from updateHUD's aria-valuenow. */
+/* Experience belongs in character inspection, not a permanent HUD row. */
 .honro #app .arcfall-hud .hud-vitals{position:relative!important;padding-bottom:0!important}
-.honro #app .arcfall-hud .hud-xp,.honro #app .honro-compact-hud .hud-xp{display:block!important;position:relative!important;grid-column:1/-1!important;grid-row:2!important;inset:auto!important;margin:0!important;min-width:0!important;width:100%!important;height:var(--xp-row-height)!important;min-height:var(--xp-row-height)!important;overflow:hidden!important;background:#10252d!important;border:1px solid #8d956b88!important;border-radius:4px!important}
-.honro #app .arcfall-hud .hud-xp i{position:absolute!important;left:0!important;top:0!important;display:block!important;height:100%!important;background:#66683d!important;transition:width .18s ease-out}
-.honro #app .arcfall-hud .hud-xp::after{content:'경험치 ' attr(aria-valuenow) '%';position:absolute;inset:0;display:grid;place-items:center;color:#f1edcf;font:600 10px/1 system-ui,sans-serif;text-shadow:0 1px 2px #05100c;pointer-events:none}
 
 .story-lock{overflow:hidden}.story-overlay{position:fixed;inset:0;z-index:120;background:linear-gradient(0deg,#030b10f5 0%,#05111575 38%,transparent 72%);display:flex;align-items:flex-end;padding:clamp(12px,3vw,44px);pointer-events:auto}.story-scene{box-sizing:border-box;width:min(1120px,100%);margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px;align-items:stretch;padding:24px;max-height:calc(100dvh - 24px);overflow:auto;color:#e6dec7;background:linear-gradient(110deg,#142a2bf5,#0a171cf5);border:1px solid #baa37680;border-left:4px solid var(--speaker,#baa376);border-radius:3px 14px 14px 3px;box-shadow:0 12px 40px #0008;animation:story-in .2s ease-out}.story-portrait{height:264px;align-self:center;display:flex;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;border-radius:6px;background:radial-gradient(ellipse at 50% 30%,#53604b55,#07121788)}.story-portrait canvas,.story-portrait img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;flex:none}.story-portrait img{transform:scale(var(--portrait-zoom,1));transform-origin:50% 0}.story-copy{min-width:0;display:flex;flex-direction:column;padding:2px 0}.story-location{font-size:11px;letter-spacing:.12em;color:#9daba3;display:flex;justify-content:space-between;gap:16px}.story-copy h2{display:flex;align-items:center;gap:10px;font-size:25px;color:#efe0b7;margin:13px 0 12px;font-weight:750}.story-copy h2 i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--speaker,#baa376);box-shadow:0 0 12px var(--speaker,#baa376)}.story-copy p{font-size:clamp(16px,1.4vw,20px);line-height:1.85;margin:0;word-break:keep-all;min-height:74px}.story-actions,.narration-actions{display:flex;align-items:stretch;justify-content:flex-end;gap:12px;margin-top:auto;padding-top:22px}.story-actions>span,.narration-actions>span{align-self:center;font-size:11px;color:#71847e;margin-right:auto}.story-actions button,.narration-actions button{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:13px;line-height:1.3;min-height:44px;padding:8px 18px;margin:0;vertical-align:middle}.story-actions .primary,.narration-actions .primary{background:#c6b17d;color:#102126;border-color:#ead8a4;box-shadow:0 0 0 1px #ead8a433,0 6px 18px #0006}.story-actions b,.narration-actions b{display:block;font-size:20px;line-height:1;font-weight:inherit;margin:0;flex:none}.story-seal{font-size:38px;border:1px solid #aa94785e;color:#c1ad8170;line-height:1.5;padding:20px 24px;margin:auto}
 .narration-overlay{position:fixed;inset:0;z-index:121;background:#071217;display:grid;overflow:hidden}.narration-art{position:absolute;inset:0}.narration-art svg{width:100%;height:100%;display:block;filter:saturate(.72) contrast(1.06)}.narration-overlay:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#03101625 25%,#03101688 66%,#02090eef 100%);pointer-events:none}.narration-card{position:relative;z-index:2;align-self:end;width:min(900px,calc(100% - 48px));margin:0 auto clamp(24px,6vh,72px);padding:22px 28px 18px;color:#eee4ce;background:linear-gradient(100deg,#071419ef,#0b1b20d9);border-top:1px solid #c9b38266;border-bottom:1px solid #c9b38245;box-shadow:0 10px 55px #000a}.narration-kicker{font:600 11px/1.2 sans-serif;letter-spacing:.18em;color:#c6b27f;margin-bottom:12px}.narration-card p{max-width:820px;margin:0;font:400 clamp(17px,1.55vw,21px)/1.9 Batang, 'Noto Serif KR', serif;word-break:keep-all;color:#eee4d1}
@@ -613,7 +609,7 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app .battle-title-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
 .honro #app .battle-title-row b{margin:0}
 .honro #app #turn-text{white-space:nowrap;color:#d9c28c;font-size:10px;font-weight:650}
-.honro #app .honro-compact-hud .joystick .wind-gauge{position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);width:94px;z-index:4;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:1px}
+.honro #app .honro-compact-hud .joystick .wind-gauge{position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);width:var(--joystick-size);z-index:4;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:1px}
 .honro #app .wind-gauge-track{display:block;position:relative;width:100%;height:7px;border:1px solid #9aa59177;border-radius:5px;background:#172a2e;box-shadow:inset 0 1px 3px #071315}
 .honro #app .wind-gauge-track b{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:#e2d5b2;transform:translateX(-50%)}
 .honro #app .wind-gauge-track i{position:absolute;top:0;height:100%;background:linear-gradient(90deg,#95b7b5,#e0d4a9)}
@@ -621,14 +617,14 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app #wind-right{left:50%;border-radius:0 4px 4px 0}
 .honro #app .wind-gauge small{font-size:8px;line-height:1;color:#d7cbaa;text-shadow:0 1px 2px #061115}
 .honro #app .honro-compact-hud #joystick{transform:none!important}
-@media(max-width:620px){.honro #app .battle-screen .minimap-dock{top:8px;right:8px;max-width:31vw}.honro #app .battle-screen .minimap-dock #minimap{max-height:min(108px,calc(100dvh - 290px))!important}.honro #app .battle-title-row{gap:5px}.honro #app #turn-text{font-size:9px}.honro #app .honro-compact-hud .joystick .wind-gauge{width:76px}}
+@media(max-width:620px){.honro #app .battle-screen .minimap-dock{top:8px;right:8px;max-width:31vw}.honro #app .battle-screen .minimap-dock #minimap{max-height:min(108px,calc(100dvh - 290px))!important}.honro #app .battle-title-row{gap:5px}.honro #app #turn-text{font-size:9px}.honro #app .honro-compact-hud .joystick .wind-gauge{width:var(--joystick-size)}}
 .honro #app .honro-compact-hud .combat-status{min-height:16px;margin-top:3px;color:#a5b7b0;font-size:11px;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
 .honro #app .honro-compact-hud .combat-status[data-limited=true]{color:#ead09c}
 .honro #app .honro-compact-hud .player-chip.status-impaired small{color:#edbb85!important}
 .honro #app .battle-info .mission-help{display:block;max-width:100%;padding:2px 0;margin:0;border:0;background:none;color:#dcc998;font:inherit;font-size:11px;text-align:left;line-height:1.4;min-height:0;cursor:pointer;white-space:normal}
 .honro #app .battle-info .mission-help:hover{text-decoration:underline}
 .honro #app .battle-info .mission-help{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-height:2.8em}
-.honro #app .honro-compact-hud .hud-vitals{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:20px var(--xp-row-height)!important;gap:5px 7px!important;min-height:0!important;height:auto!important}
+.honro #app .honro-compact-hud .hud-vitals{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:20px!important;gap:5px 7px!important;min-height:0!important;height:auto!important}
 .honro #app .honro-compact-hud .hpmp{grid-template-columns:minmax(0,1fr)!important}
 .honro #app .honro-compact-hud .hpmp>.meter{grid-column:1!important;grid-row:1!important;width:100%!important}
 .honro #app .honro-compact-hud .meter label{display:flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;white-space:nowrap!important}
@@ -640,17 +636,17 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app .honro-compact-hud .hud-vitals>[data-vital=move]{grid-column:3!important;grid-row:1!important}
 /* All three secondary actions orbit the fire center at one radius.
    CSS angles run clockwise from 3 o'clock: 240/195/150 = 11/9:30/8.
-   The 44px circular targets retain a 5px minimum edge gap at radius 64px. */
+   Restore the original secondary/primary size hierarchy; the visible circle is
+   also the complete hit area, with no oversized invisible targets. */
 .honro #app .battle{
-  --action-size:44px;--action-radius:64px;
-  --joystick-size:96px;--hud-inline:20px;--xp-row-height:16px;--hud-skill-wrap:0px;
-  --action-height:calc(var(--action-radius) * (sin(60deg) + sin(30deg)) + var(--action-size));
-  --hud-roster-height:66px;--hud-vitals-height:calc(20px + 5px + var(--xp-row-height));
+  --action-size:38px;--fire-size:68px;--action-radius:calc((var(--fire-size) + var(--action-size)) / 2 + 5px);--fire-face-inset:12%;
+  --joystick-size:72px;--hud-inline:20px;--hud-skill-wrap:0px;
+  --action-height:max(calc(var(--action-radius) * (sin(60deg) + sin(30deg)) + var(--action-size)),calc(var(--action-radius) * sin(60deg) + var(--action-size) / 2 + var(--fire-size) / 2 + 12px));
+  --hud-roster-height:66px;--hud-vitals-height:20px;
   --hud-block-start:7px;--hud-block-end:max(18px,calc(env(safe-area-inset-bottom) + 10px));
   --hud-height:calc(var(--hud-roster-height) + var(--hud-vitals-height) + var(--action-height) + var(--hud-skill-wrap) + 10px + var(--hud-block-start) + var(--hud-block-end) + 1px)!important;
 }
 .honro #app .battle-bottom.honro-compact-hud{
-  --fire-size:68px;
   --jump-angle:240deg;--drop-angle:195deg;--defend-angle:150deg;
   --action-width:calc(var(--action-radius) * cos(15deg) + var(--action-size) / 2 + var(--fire-size) / 2);
   --fire-center-x:calc(var(--action-width) - var(--fire-size) / 2);
@@ -663,7 +659,7 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app .honro-compact-hud .radial-actions{
   position:relative!important;width:var(--action-width)!important;height:var(--action-height)!important;align-self:center!important;
 }
-.honro #app .honro-compact-hud .radial-actions .shot-readout{position:absolute!important;right:2px!important;top:calc(var(--fire-center-y) + var(--fire-size) / 2 + 3px)!important;width:calc(var(--fire-size) - 4px)!important;height:14px!important;font-size:9px!important;line-height:14px!important;text-align:center!important;color:#c9b98f!important}
+.honro #app .honro-compact-hud .radial-actions .shot-readout{position:absolute!important;right:4px!important;top:calc(var(--fire-center-y) + var(--fire-size) / 2 + 1px)!important;width:calc(var(--fire-size) - 8px)!important;height:11px!important;font-size:9px!important;line-height:11px!important;text-align:center!important;color:#c9b98f!important}
 .honro #app .honro-compact-hud .radial-actions .honro-defend,
 .honro #app .honro-compact-hud .radial-actions #drop,
 .honro #app .honro-compact-hud .radial-actions #jump{
@@ -694,10 +690,10 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app .honro-compact-hud .radial-actions #fire::before,
 .honro #app .honro-compact-hud .radial-actions #fire::after{display:none!important}
 .honro #app .honro-compact-hud .radial-actions #fire .fire-inner{
-  position:absolute!important;inset:18%!important;width:auto!important;height:auto!important;margin:0!important;
-  transform:none!important;font-size:10px!important;gap:1px!important;border:1px solid #ecd49d80!important;
+  position:absolute!important;inset:var(--fire-face-inset)!important;width:auto!important;height:auto!important;margin:0!important;
+  transform:none!important;font-size:11px!important;gap:1px!important;border:1px solid #ecd49d80!important;
 }
-.honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:18px!important;height:18px!important;margin:0!important}
+.honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:20px!important;height:20px!important;margin:0!important}
 .honro #app .honro-compact-hud .radial-actions #fire .fire-label{margin:0!important}
 #minimap{touch-action:none;user-select:none;cursor:grab}#minimap:active{cursor:grabbing}
 .honro .dialog .close{display:grid;place-items:center;padding:0}
@@ -707,9 +703,8 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro .pause-menu>button.primary{background:linear-gradient(135deg,#c5b487,#9f8a5c);color:#15272b}
 .honro .pause-menu>button:hover{filter:brightness(1.15)}
 @media(max-width:560px){
-  .honro #app .battle{--joystick-size:88px}
+  .honro #app .battle{--action-size:34px;--fire-size:62px;--joystick-size:72px}
   .honro #app .honro-compact-hud .hud-controls-row{grid-template-columns:var(--joystick-size) minmax(4px,1fr) auto minmax(4px,1fr) var(--action-width)!important}
-  .honro #app .battle-bottom.honro-compact-hud{--fire-size:62px}
 
   .honro #app .honro-compact-hud .skill-strip{grid-template-columns:repeat(2,52px)!important;gap:6px!important}
   .honro #app .honro-compact-hud .skill-button{width:52px!important;height:45px!important;padding:3px 2px 5px!important}
@@ -722,7 +717,7 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
   .honro .pause-menu>button{width:100%;min-height:48px;justify-content:flex-start;padding-inline:20px;font-size:14px}
 }
 @media(max-width:380px){
-  .honro #app .battle{--joystick-size:84px;--hud-inline:16px}
+  .honro #app .battle{--joystick-size:68px;--hud-inline:16px}
   .honro #app .honro-compact-hud .skill-strip{grid-template-columns:repeat(2,44px)!important;gap:4px!important}
   .honro #app .honro-compact-hud .skill-button{width:44px!important}
 }
@@ -734,11 +729,11 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
    collapse the three stacked HUD bands into one horizontal control rail:
    joystick | 2x2 party | stacked vitals | skills | actions. */
 @media (orientation:landscape) and (min-width:900px){
-  .honro #app .battle{--hud-block-start:7px;--hud-block-end:max(12px,calc(env(safe-area-inset-bottom) + 8px));--hud-height:calc(var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
+  .honro #app .battle{--action-size:35px;--fire-size:66px;--hud-block-start:7px;--hud-block-end:max(12px,calc(env(safe-area-inset-bottom) + 8px));--hud-height:calc(var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
   .honro #app .battle-bottom.honro-compact-hud{
     display:grid!important;
     grid-template-columns:var(--joystick-size) clamp(176px,20vw,220px) clamp(165px,20vw,235px) minmax(220px,1fr) var(--action-width)!important;
-    --fire-size:66px;grid-template-rows:var(--action-height)!important;
+    grid-template-rows:var(--action-height)!important;
     gap:0 clamp(6px,1vw,10px)!important;
     align-items:center!important;
     padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important;
@@ -771,14 +766,13 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 
   .honro #app .honro-compact-hud .hud-vitals{
     grid-column:3!important;grid-row:1!important;
-    display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(3,18px) var(--xp-row-height)!important;
+    display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(3,18px)!important;
     gap:5px!important;width:100%!important;height:auto!important;min-height:0!important;align-self:center!important;
   }
   .honro #app .honro-compact-hud .hud-vitals>[data-vital]{grid-column:1!important}
   .honro #app .honro-compact-hud .hud-vitals>[data-vital=hp]{grid-row:1!important}
   .honro #app .honro-compact-hud .hud-vitals>[data-vital=mp]{grid-row:2!important}
   .honro #app .honro-compact-hud .hud-vitals>[data-vital=move]{grid-row:3!important}
-  .honro #app .honro-compact-hud .hud-vitals>.hud-xp{grid-row:4!important}
   .honro #app .honro-compact-hud .hpmp{
     display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:1fr!important;
     width:100%!important;height:18px!important;min-height:18px!important;gap:5px!important;margin:0!important;
@@ -807,8 +801,8 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
     grid-column:5!important;grid-row:1!important;justify-self:end!important;align-self:center!important;
   }
   .honro #app .honro-compact-hud .radial-actions .shot-readout{font-size:8px!important}
-  .honro #app .honro-compact-hud .radial-actions #fire .fire-inner{font-size:9px!important}
-  .honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:17px!important;height:17px!important}
+  .honro #app .honro-compact-hud .radial-actions #fire .fire-inner{font-size:10px!important}
+  .honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:20px!important;height:20px!important}
 }
 
 /* Learned combat passives use static SVG geometry and update only when state changes. */
@@ -821,13 +815,13 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
   .honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
 }
 @media (orientation:portrait) and (max-width:380px){
-  .honro #app .honro-compact-hud .joystick .wind-gauge{width:76px!important}
+  .honro #app .honro-compact-hud .joystick .wind-gauge{width:64px!important}
 }
 
 /* Compact landscape phones use a two-band rail; the desktop rail starts at 900px. */
 @media (orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
-  .honro #app .battle{--hud-block-start:5px;--hud-block-end:max(10px,calc(env(safe-area-inset-bottom) + 6px));--hud-height:calc(44px + 4px + var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
-  .honro #app .battle-bottom.honro-compact-hud{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;--fire-size:56px;grid-template-rows:44px var(--action-height)!important;gap:4px 8px!important;padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important}
+  .honro #app .battle{--action-size:31px;--fire-size:56px;--hud-block-start:5px;--hud-block-end:max(10px,calc(env(safe-area-inset-bottom) + 6px));--hud-height:calc(40px + 4px + var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
+  .honro #app .battle-bottom.honro-compact-hud{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;grid-template-rows:40px var(--action-height)!important;gap:4px 8px!important;padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important}
   .honro #app .honro-compact-hud .hud-roster{grid-column:1!important;grid-row:1!important;min-width:0!important}
   .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important;height:40px!important;overflow:visible!important}
   .honro #app .honro-compact-hud .ally-chip,
@@ -836,7 +830,7 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
   .honro #app .honro-compact-hud .hud-controls-row{grid-column:1/3!important;grid-row:2!important;display:grid!important;grid-template-columns:var(--joystick-size) minmax(0,1fr) var(--action-width)!important;grid-template-rows:var(--action-height)!important;height:var(--action-height)!important;align-items:center!important}
   .honro #app .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:1!important;align-self:center!important;width:var(--joystick-size)!important;height:var(--joystick-size)!important;min-height:var(--joystick-size)!important;transform:none!important}
   .honro #app .honro-compact-hud .joystick-ring{width:var(--joystick-size)!important;height:var(--joystick-size)!important}
-  .honro #app .honro-compact-hud .joystick-ring i{width:42px!important;height:42px!important;margin:-21px!important}
+  .honro #app .honro-compact-hud .joystick-ring i{width:32px!important;height:32px!important;margin:-16px!important}
   .honro #app .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:2!important;grid-row:1!important;justify-self:center!important;display:grid!important;grid-template-columns:repeat(4,50px)!important;gap:4px!important;width:max-content!important}
   .honro #app .honro-compact-hud .skill-button{width:50px!important;height:50px!important}
   .honro #app .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:3!important;grid-row:1!important}
@@ -893,12 +887,12 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 }
 
 /* Reserve space instead of shrinking the joystick below a useful thumb target.
-   A 333px phone keeps one control row; only smaller viewports wrap skills. */
+   A 320px phone keeps one control row; only sub-300px viewports wrap skills. */
 .honro #app .honro-compact-hud .joystick,.honro #app .honro-compact-hud .joystick-ring{width:var(--joystick-size)!important;height:var(--joystick-size)!important;min-height:var(--joystick-size)!important}
 .honro #app .honro-compact-hud .joystick-ring{inset:0!important}
-.honro #app .honro-compact-hud .joystick-ring i{width:42px!important;height:42px!important;margin:-21px!important}
-@media(orientation:portrait) and (max-width:330px){
-  .honro #app .battle{--joystick-size:96px;--hud-skill-wrap:60px}
+.honro #app .honro-compact-hud .joystick-ring i{width:32px!important;height:32px!important;margin:-16px!important}
+@media(orientation:portrait) and (max-width:299px){
+  .honro #app .battle{--joystick-size:72px;--hud-skill-wrap:60px}
   .honro #app .honro-compact-hud .hud-controls-row{grid-template-columns:var(--joystick-size) minmax(8px,1fr) var(--action-width)!important;grid-template-rows:52px var(--action-height)!important;row-gap:8px!important;height:calc(var(--action-height) + var(--hud-skill-wrap))!important}
   .honro #app .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:1/4!important;grid-row:1!important;justify-self:center!important;grid-template-columns:repeat(4,44px)!important;gap:6px!important}
   .honro #app .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:2!important}
@@ -920,6 +914,14 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro .unit-info-skills,.honro .unit-info-status{font-size:11px;line-height:1.7;color:#c6b992}
 .honro .unit-info-status:empty,.honro .unit-info-skills:empty{display:none}
 @media(max-width:600px){.honro .unit-info{width:320px;padding:12px 15px}.honro .unit-info h3{margin-bottom:8px}.honro .unit-info-desc{margin-top:8px}}
+
+/* Character growth is inspected on demand, without a permanent battle HUD row. */
+.honro .unit-info-progress{margin-top:10px;padding-top:8px;border-top:1px solid #8a9e8d40}
+.honro .unit-info-progress[hidden]{display:none!important}
+.honro .unit-info-xp-label{margin-bottom:5px;color:#efdfb4;font-size:11px;font-weight:650;line-height:1.4}
+.honro .unit-info-xp{height:8px;overflow:hidden;border:1px solid #8d956b88;border-radius:4px;background:#10252d}
+.honro .unit-info-xp>i{display:block;height:100%;background:#c6af77;transition:width .18s ease-out}
+.honro .unit-info-xp-detail{margin-top:4px;color:#bec9bc;font-size:10px;line-height:1.5;font-variant-numeric:tabular-nums}
 
 .honro .training-tools{display:flex;gap:8px;align-items:center;max-width:calc(100% - 24px);flex-wrap:nowrap;padding:6px;background:#172222ed;border:1px solid #637067;border-radius:12px;box-shadow:0 6px 24px #0004}
 .honro .training-current{display:flex;align-items:center;gap:10px;padding:0 10px 0 0;text-align:left;background:none;border:0;width:auto!important;height:48px!important;min-height:48px!important;white-space:nowrap;flex:1 1 auto;min-width:0;color:#ece7d6}
@@ -1015,7 +1017,7 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app .honro-compact-hud .combat-status{display:block!important;position:relative;margin:2px 0 0;min-height:0;line-height:1.25;font-size:10px}
 /* Keep the touch/keyboard status details reachable beside the joystick on short landscape phones. */
 @media (orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
- .honro #app .honro-compact-hud .combat-status{position:absolute!important;left:calc(var(--joystick-size) + 12px)!important;top:46px!important;margin:0!important;z-index:4}
+ .honro #app .honro-compact-hud .combat-status{position:absolute!important;left:calc(var(--joystick-size) + 12px)!important;top:42px!important;margin:0!important;z-index:4}
  .honro #app .honro-compact-hud .status-details summary{min-height:20px;padding:1px 5px}
 }
 .honro .status-details{position:relative;width:max-content;max-width:100%}
@@ -1035,6 +1037,20 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 @media(max-width:540px),(orientation:landscape) and (max-height:540px){
  .honro .status-details summary{min-height:24px;padding:2px 5px;font-size:10px}
  .honro .status-popover{max-height:48dvh}
+}
+
+/* Portrait keeps status details reachable in the same row as the party. */
+@media(orientation:portrait) and (max-width:899px){
+ .honro #app .battle{--hud-roster-height:40px}
+ .honro #app .honro-compact-hud .hud-roster{display:grid!important;grid-template-columns:minmax(0,1fr) 36px!important;gap:6px!important;align-items:center!important}
+ .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
+ .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
+ .honro #app .honro-compact-hud .combat-status{margin:0!important;justify-self:end!important}
+ .honro #app .honro-compact-hud .status-details summary{width:36px;height:36px;min-height:36px;padding:0;flex-direction:column;justify-content:center;gap:1px}
+ .honro #app .honro-compact-hud .status-details summary>.status-glyph{font-size:0;gap:0}
+ .honro #app .honro-compact-hud .status-details summary>.status-glyph svg{width:18px;height:18px}
+ .honro #app .honro-compact-hud .status-details summary::after{content:'상태';display:block;margin:0;font-size:8px;line-height:9px;color:#b7cbbf}
+ .honro #app .honro-compact-hud .status-popover{left:auto;right:0;max-width:calc(100vw - 32px)}
 }
 
 /* Travelling rest scenes and the secondary, geographical journey book. */
@@ -36466,7 +36482,7 @@ function bottom(){
  const I=G.HonroFA?.icon||((n,c,s)=>''),vitals=[['hp','체력',''],['mp','기력','mp'],['move','이동도','movement']];
  return `<footer class="battle-bottom arcfall-hud honro-compact-hud" id="battle-bottom">
  <div class="hud-roster"><div class="hero-switches" id="hero-switches"></div><div id="combat-status" class="combat-status"></div></div>
- <div class="hud-vitals"><div id="combat-passives" class="combat-passives" hidden></div>${vitals.map(([id,name,style])=>`<div class="hpmp" data-vital="${id}"><div class="meter ${style}" role="group" aria-labelledby="${id}-name ${id}-label"><i id="${id}-fill"></i><label><span class="vital-name" id="${id}-name">${name}</span><span id="${id}-label"></span></label></div></div>`).join('')}<div class="hud-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="hud-xp-fill"></i></div></div>
+ <div class="hud-vitals"><div id="combat-passives" class="combat-passives" hidden></div>${vitals.map(([id,name,style])=>`<div class="hpmp" data-vital="${id}"><div class="meter ${style}" role="group" aria-labelledby="${id}-name ${id}-label"><i id="${id}-fill"></i><label><span class="vital-name" id="${id}-name">${name}</span><span id="${id}-label"></span></label></div></div>`).join('')}</div>
  <div class="hud-controls-row">
   <div class="joystick" id="joystick" role="application" aria-label="좌우 이동·위아래 조준"><div class="joystick-ring"><i id="stick-knob"></i><span class="axis-h"></span><span class="axis-v"></span></div><span class="stick-value" id="move-left"></span><div class="wind-gauge" role="meter" aria-label="바람" aria-valuemin="-30" aria-valuemax="30" aria-valuenow="0"><span class="wind-gauge-track"><i id="wind-left"></i><i id="wind-right"></i><b></b></span><small id="wind-value">바람 0</small></div></div>
  <div class="skill-strip" id="combat-skills"></div>
@@ -36618,7 +36634,8 @@ G.HonroInteractions={mount,refresh,nearest,use,key,candidates,eligibility};
 })(globalThis);
 
 (function(G){'use strict';
-const eligible=u=>u&&!u.dead&&(u.side===1||u.side===2||u.summoned);
+const player=u=>u?.side===0&&!u.summoned;
+const eligible=u=>u&&(player(u)||!u.dead&&(u.side===1||u.side===2||u.summoned));
 const available=a=>a.screen==='battle'&&a.engine&&a.scene&&!a.dialogue&&!a.done&&!a.modal.classList.contains('open');
 const clamp=(v,min,max)=>Math.max(min,Math.min(Math.max(min,max),v));
 const S=G.HonroScene.prototype;
@@ -36643,8 +36660,8 @@ S.unitOutline=function(c,u){
 function pick(a,p,touch=false){
  if(!available(a))return null;
  const scene=a.scene,w=scene.world(p.x,p.y),padding=(touch?12:4)/scene.scale;
- // Nearest body wins at dense spawn points; tapping does not change the active combatant.
- return a.engine.b.units.filter(u=>eligible(u)&&(!G.HonroAct2||G.HonroAct2.visible(a.engine.b,u))).map(u=>{
+ // Nearest visible body wins; fallen companions remain inspectable from their HUD portrait.
+ return a.engine.b.units.filter(u=>!u.dead&&eligible(u)&&(!G.HonroAct2||G.HonroAct2.visible(a.engine.b,u))).map(u=>{
   const visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h,half=Math.max(u.r,u.h*.24)+padding,cy=u.y-visualHeight*.5,hh=visualHeight*.55+padding;
   return {u,d:Math.pow((w.x-u.x)/half,2)+Math.pow((w.y-cy)/hh,2)};
  }).filter(x=>x.d<=1).sort((a,b)=>a.d-b.d)[0]?.u||null;
@@ -36653,7 +36670,7 @@ function close(a){if(!a.scene)return;a.scene.inspectUnitId=null;const el=documen
 function hover(a,p){if(!a.scene)return;a.scene.inspectPointer=p;const u=p&&pick(a,p);a.scene.hoverUnitId=u?.id||null;a.scene.canvas.style.cursor=u?'pointer':'';}
 function bind(a){
  const el=document.createElement('aside');el.id='unit-info';el.className='unit-info';el.hidden=true;el.setAttribute('aria-label','대상 정보');
-  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div>';
+  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div>';
  a.scene.canvas.parentElement.append(el);el.querySelector('button').onclick=()=>close(a);
  // Activating the card's close button must not also start a Space-key shot.
  for(const type of ['keydown','keyup'])el.addEventListener(type,e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();});
@@ -36662,9 +36679,14 @@ function bind(a){
  cv.addEventListener('pointerleave',()=>hover(a,null));
  cv.addEventListener('pointercancel',()=>{hover(a,null);close(a);});
 }
+function show(a,u){
+ if(!available(a)||!eligible(u)||G.HonroAct2&&!G.HonroAct2.visible(a.engine.b,u))return false;
+ a.scene.inspectUnitId=u.id;tick(a);return true;
+}
 function tap(a,p,touch){
  const u=pick(a,p,touch);if(!u){close(a);return false;}
- a.scene.inspectUnitId=u.id;tick(a);return true;
+ if(player(u))a.selectHero(u.id);
+ return show(a,u);
 }
 function tick(a){
  const scene=a.scene,el=document.getElementById('unit-info');if(!scene||!el)return;
@@ -36672,14 +36694,22 @@ function tick(a){
  if(scene.inspectPointer)hover(a,scene.inspectPointer);
  const u=a.engine.unit(scene.inspectUnitId);if(!eligible(u)||G.HonroAct2&&!G.HonroAct2.visible(a.engine.b,u)){close(a);return;}
  const boundBody=G.HonroNarrativeRevision?.bodyBound(a.engine.b,u);el.hidden=false;el.dataset.unitId=u.id;el.dataset.side=boundBody?'ally':u.side===1?'enemy':'ally';
- const side=boundBody?'주박을 붙들고 있는 사람':u.side===1?'적군':u.summoned?'동맹군 · 소환귀':'동맹군';
+ const side=boundBody?'주박을 붙들고 있는 사람':player(u)?'동행'+(u.dead?' · 전투불능':u.acted?' · 행동 완료':''):u.side===1?'적군':u.summoned?'동맹군 · 소환귀':'동맹군';
+ const C=G.HONRO_CORE,hero=player(u)&&a.engine.b.heroes?.[u.cls],level=hero?C.levelOf(hero):u.level||1;
  const skills=(u.loadout||[]).map(id=>G.HONRO_CORE.SKILLS[id]).filter(s=>s&&!s.passive).slice(0,2);
  const text=(selector,value)=>{const n=el.querySelector(selector);if(n.textContent!==value)n.textContent=value;};
  text('.unit-info-side',`${side}${boundBody?'':u.honroFinalBoss?' · 최종 우두머리':u.honroMidboss?' · 중간 우두머리':u.boss?' · 우두머리':u.elite?' · 정예':''}`);
- text('h3',boundBody?u.name:`${u.name} · Lv. ${u.level||1}`);
+ text('h3',boundBody?u.name:`${u.name} · ${player(u)?'경지 ':'Lv. '}${level}`);
  text('.unit-info-health span',`${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}`);
  const health=el.querySelector('.unit-info-health');health.hidden=!!boundBody;health.setAttribute('aria-valuemin','0');health.setAttribute('aria-valuemax',u.maxHp);health.setAttribute('aria-valuenow',Math.ceil(u.hp));
   health.querySelector('i').style.width=clamp(u.hp/u.maxHp*100,0,100)+'%';
+ const progress=el.querySelector('.unit-info-progress');progress.hidden=!hero;
+ if(hero){
+  const fraction=clamp(C.xpFraction(hero),0,1),percent=Math.round(fraction*100),maxed=level>=C.MAX_LEVEL,xp=el.querySelector('.unit-info-xp');
+  text('.unit-info-xp-label',maxed?'경험치 · 최대 경지':`경험치 · ${percent}%`);
+  text('.unit-info-xp-detail',maxed?`경지 ${level} · 성장 완료`:`${(hero.xp-C.xpAtLevel(level)).toLocaleString()} / ${C.xpToNext(level).toLocaleString()} XP`);
+  xp.querySelector('i').style.width=fraction*100+'%';xp.setAttribute('aria-valuenow',String(percent));xp.setAttribute('aria-valuetext',maxed?`경지 ${level} · 최대 경지`:`경지 ${level} · 경험치 ${percent}%`);
+ }
   const existence=el.querySelector('.unit-info-existence'),response=G.HONRO_CORE.effectiveDefenseForUnit(u),key=[u.id,response.form,response.qi,response.soul].join(':');
   if(existence.dataset.key!==key){existence.innerHTML=G.HONRO_CORE.existenceDefenseView(u);existence.dataset.key=key;}
  existence.hidden=!!boundBody;
@@ -36696,7 +36726,7 @@ function tick(a){
  el.style.top=(innerWidth<=600?Math.max(top,bottom-rect.height):clamp(y,top,bottom-rect.height))+'px';
 }
 document.addEventListener('pointerdown',e=>{const a=G.HonroApp;if(!a?.scene)return;if(!e.target.closest('#unit-info,#battlecanvas'))close(a);});
-G.HonroUnitInfo={bind,pick,tap,hover,close,tick,description};
+G.HonroUnitInfo={bind,pick,show,tap,hover,close,tick,description};
 })(globalThis);
 
 (function(G){'use strict';
@@ -38031,12 +38061,7 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
             cv.onpointerup = e => { if (!moved && this.contacts.size === 1 && this.engine) {
                 if(G.HonroUnitInfo.tap(this,pos(e),e.pointerType==='touch')){this.contacts.delete(e.pointerId);lastPair=null;return;}
                 let p = pos(e), v = this.scene.world(p.x, p.y), u = this.engine.b.units.find(u => u.side === 0 && !u.summoned && !u.dead && Math.hypot(u.x - v.x, u.y - u.h * .5 - v.y) < u.h);
-                if (u && this.canInput() && this.engine.select(u.id)) {
-                    this.cancelInput();
-                    this.selected = u.loadout.find(id => !S[id].passive) || this.selected;
-                    this.scene.manual = false;
-                    this.updateHUD(true);
-                }
+                if (u) { this.selectHero(u.id); G.HonroUnitInfo.show(this,u); }
             } this.contacts.delete(e.pointerId); lastPair = null; };
             cv.onpointercancel = e => { this.contacts.delete(e.pointerId); lastPair = null; moved = true; };
             cv.addEventListener('wheel', e => { e.preventDefault(); let p = pos(e); this.scene.zoom(Math.exp(-e.deltaY * .0014), p.x, p.y); }, { passive: false });
@@ -38069,11 +38094,10 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
             const players=b.units.filter(v=>v.side===0&&!v.summoned),sig=players.map(v=>[v.id,Math.round(v.hp),Math.round(v.focus),v.acted,v.dead].join(':')).join('|')+'|'+u.id+'|'+this.selected+'|'+b.round+'|'+u.meleeFollow+'|'+u.jucheonReady+'|'+u.harmony;
             if(force||sig!==this.hudSig){
                 this.hudSig=sig;
-                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted?'acted':''}" data-action="select-hero" data-id="${v.id}" ${v.dead?'disabled':''}>${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
+                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택 및 정보">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
                 $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span><span class="rank-tiny">${s.basic?'기본':s.capstone?'비기 '+(u.ranks?.[s.id]||1):s.ultimate?'비기':u.ranks?.[s.id]?'+'+u.ranks[s.id]:''}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
                 this.drawPortraits();
             }
-            const hero=b.heroes?.[u.cls],xp=$('hud-xp-fill'),xpBar=xp?.parentElement;if(hero&&xp){xp.style.width=(C.xpFraction(hero)*100)+'%';const level=C.levelOf(hero);xpBar.title=H.hero[u.cls].name+' · 경지 '+level+' · 경험치 '+Math.round(C.xpFraction(hero)*100)+'%';xpBar.setAttribute('aria-label',xpBar.title);xpBar.setAttribute('aria-valuenow',String(Math.round(C.xpFraction(hero)*100)));}
             $('hp-fill').style.width=(Math.max(0,u.hp)/u.maxHp*100)+'%';$('hp-label').textContent=Math.round(Math.max(0,u.hp))+' / '+u.maxHp;
             $('mp-fill').style.width=(u.focus/u.maxFocus*100)+'%';$('mp-label').textContent=Math.round(u.focus)+' / '+u.maxFocus;
             $('move-fill').style.width=(u.maxMove>0?clamp(u.moveLeft/u.maxMove*100,0,100):0)+'%';$('move-label').textContent=Math.round(Math.max(0,u.moveLeft))+' / '+Math.round(u.maxMove);
@@ -38383,6 +38407,7 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
                     break;
                 case 'select-hero':
                     this.selectHero(id);
+                    G.HonroUnitInfo.show(this,this.engine?.unit(id));
                     break;
                 case 'combat-skill':
                     // Battle HUD taps only select a skill. Detail modals belong to the camp/training UI.
