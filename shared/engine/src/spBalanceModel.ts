@@ -1,5 +1,7 @@
+import {SKILLS} from './data';
+import {skillScoreBreakdown} from './balanceModel';
 import type {ClassId,HeroProgress} from './types';
-import {heroStats,passiveRank,rankPower,volleyCount,volleyDamage,knockbackResistance} from './progression';
+import {heroStats,passiveRank,rankPower,volleyCount,volleyDamage,knockbackResistance,TALENT_MAP} from './progression';
 import {passiveTuning,HERO_ARMOR_CAP} from './passiveBalance';
 import {JUCHEON_THRESHOLD,JUCHEON_DISCOUNT,JUCHEON_EFFECT,SALHEUN_TURNS,SALHEUN_RATIO} from './warriorData';
 
@@ -21,6 +23,19 @@ const weights:Record<ClassId,SpAxes>={
  knight:{offense:.35,survival:.40,sustain:.10,mobility:.15},
  occultist:{offense:.40,survival:.25,sustain:.25,mobility:.10},
 };
+/** Four shared build roles, selected by mechanic, not fitted separately to each skill. */
+export const SP_ROLES:Record<string,SpAxes>={
+ striker:{offense:.60,survival:.20,sustain:.10,mobility:.10},
+ protector:{offense:.15,survival:.65,sustain:.10,mobility:.10},
+ channeler:{offense:.15,survival:.15,sustain:.60,mobility:.10},
+ skirmisher:{offense:.15,survival:.15,sustain:.10,mobility:.60},
+};
+export const SP_PASSIVE_ROLES:Record<string,string>={
+ MP01:'striker',MP02:'channeler',MP03:'channeler',MP04:'protector',MP05:'channeler',
+ AP01:'striker',AP02:'striker',AP03:'skirmisher',AP04:'striker',AP05:'striker',
+ SP01:'striker',SP02:'protector',SP03:'skirmisher',SP04:'channeler',SP05:'protector',
+ OP01:'striker',OP02:'striker',OP03:'protector',OP04:'channeler',OP05:'striker',
+};
 export const SP_SCENARIOS:SpScenario[]=[
  {id:'mixed-8-turn',turns:8,castCost:32,followupHit:.55,trajectory:.65,missRate:.25,secondaryShare:.30,geometryHit:.22,wardUse:.65,incomingHpPerTurn:.40,sameTarget:.60,chargedMelee:.70,bladeHit:.45,harmony:.25,lethalRisk:.20,retreatUse:.65,jumpUse:.20,summonShare:.45,markUptime:.65,summonAvailable:.65,largeHitShare:.45,hitHpFraction:.25,trapReentry:.35,naturalExpiry:.50,empoweredCast:.18,soulShare:.60,weights},
  {id:'specialist-12-turn',turns:12,castCost:38,followupHit:.80,trajectory:1,missRate:.40,secondaryShare:.55,geometryHit:.40,wardUse:.90,incomingHpPerTurn:.30,sameTarget:.90,chargedMelee:1,bladeHit:.80,harmony:1/3,lethalRisk:.45,retreatUse:.90,jumpUse:.40,summonShare:.65,markUptime:.90,summonAvailable:.90,largeHitShare:.70,hitHpFraction:.25,trapReentry:.65,naturalExpiry:.85,empoweredCast:.33,soulShare:.85,weights},
@@ -31,6 +46,7 @@ export type SpTuning=ReturnType<typeof passiveTuning>;
 export interface SpAuditHooks {
  stats?:(h:HeroProgress,cls:ClassId)=>SpAuditStats;
  tuning?:(rank:number)=>SpTuning;
+ salheunRatio?:number[];
 }
 /** EHP, useful expected damage, available paid actions and movement opportunity are kept separate. */
 export function spBuildAxes(h:HeroProgress,cls:ClassId,s:SpScenario=SP_SCENARIOS[0],hooks:SpAuditHooks={}):SpAxes {
@@ -54,7 +70,7 @@ export function spBuildAxes(h:HeroProgress,cls:ClassId,s:SpScenario=SP_SCENARIOS
   let follow=0;for(let n=1;n<volleyCount(r('AP01'));n++)follow+=t('AP01').volleyFirst*Math.pow(.66,n-1);
   offense*=1+s.followupHit*follow;
   offense*=1+(.40+t('AP04').trajectory)*s.trajectory;
-  const rank=r('AP05');if(rank){let history=0;for(let age=1;age<=Math.min(s.turns-1,SALHEUN_TURNS[rank-1]);age++)history+=Math.pow(.55,age-1)*Math.pow(s.sameTarget,age);offense*=1+SALHEUN_RATIO[rank-1]*history;}
+  const rank=r('AP05');if(rank){let history=0;for(let age=1;age<=Math.min(s.turns-1,SALHEUN_TURNS[rank-1]);age++)history+=Math.pow(.55,age-1)*Math.pow(s.sameTarget,age);offense*=1+(hooks.salheunRatio||SALHEUN_RATIO)[rank-1]*history;}
   if(r('AP03'))mobility*=1+s.retreatUse*t('AP03').retreat;
  }
  if(cls==='knight'){
@@ -94,3 +110,21 @@ export const SP_ACTIVE_AUDIT={
  sodanUnmodeledModes:['curseManifest','curseEnthrall','curseEarth','summonEater','summonEcho','spiritConverge'],
  note:'Do not treat legacy scoreSkill as a full contemporary ranking. Summon actions, control and O16 capstone are not fully priced there.',
 };
+
+/** Coverage, not a substitute numerical damage normalizer. Missing utility must not masquerade as zero. */
+export function currentActiveSpAudit(){
+ const mechanics:Record<string,string>={
+  curseManifest:'area existence/reveal change; inspect MANIFEST_TURNS',
+  curseEnthrall:'converted actor actions and power; inspect ENTHRALL_ACTIONS/POWER',
+  curseEarth:'timed binding damage plus on-death anchored spirit',
+  summonEater:'projectile interception and capped burst; no direct seed damage',
+  summonEcho:'extra owner-cast echoes; inspect ECHO_LIMIT/POWER/TURNS',
+  spiritConverge:'capstone convergence contacts; 10 + floor(rank/2) spirits',
+ };
+ return Object.values(SKILLS).filter(s=>!s.passive&&!s.enemyOnly&&!s.ultimate).map(s=>({
+  id:s.id,authoredTier:s.basic?0:(TALENT_MAP[s.id]?.row??0)+1,
+  runtimeFactor:skillScoreBreakdown(s).factor,legacy:skillScoreBreakdown(s),
+  coverage:s.redesigned?'authored-redesign':mechanics[s.mode]?'missing-legacy-utility':'legacy-estimate',
+  unpricedMechanic:mechanics[s.mode]||null,
+ }));
+}
