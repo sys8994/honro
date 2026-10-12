@@ -20,7 +20,9 @@ acquire these records. A fresh v4 stage stores evidence inside
 - **Required holds:** a total of 20 points divided over the authored required
   rounds. Only actors present throughout the qualifying unchallenged interval
   share that interval. Last-frame arrivals, interrupted maintenance, repeated
-  same-frame reads, and extra rounds while a wave is blocked add no points.
+  same-frame reads, and extra rounds while a wave is blocked add no hero
+  points. An actually completed interval without a traceable sustained holder
+  consumes its neutral share instead of inflating the remaining heroes' shares.
 - **Rescue approach:** a first observed outside-to-inside entry into the living
   resident's safe working area earns 18. This is a real boundary crossing,
   with no nearby live foe on that floor, not a periodic proximity reward.

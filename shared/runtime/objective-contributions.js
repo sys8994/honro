@@ -22,7 +22,7 @@ function approach(b,key,actors,point,radius=220,safe=true){const mem=evidence(b)
 }
 function interact(b,key,actor,{rescue=false,progress=false}={}){return award(b,'interact:'+key,[actor],rescue&&evidence(b)?.arrivals[key]||progress?2:5);}
 function maintain(b,key,h,guards,progressed,rounds,continuous,intervalEnded=false){if(!evidence(b))return;const ids=guards.filter(alive).map(u=>u.id),prior=h.contributionGuards;
- if(progressed){const sustained=(prior||[]).filter(id=>ids.includes(id));if(h.progress<=rounds&&sustained.length)award(b,'hold:'+key+':'+h.progress,sustained.map(id=>({id})),20/Math.max(1,rounds));h.contributionGuards=ids;}
+ if(progressed){const sustained=(prior||[]).filter(id=>ids.includes(id));if(h.progress<=rounds)award(b,'hold:'+key+':'+h.progress,sustained.length?sustained.map(id=>({id})):[{id:'_system',weight:1}],20/Math.max(1,rounds));h.contributionGuards=ids;}
  else if(intervalEnded&&continuous)h.contributionGuards=ids;
  else if(!continuous)h.contributionGuards=[];
  else h.contributionGuards=prior===undefined?ids:prior.filter(id=>ids.includes(id));
