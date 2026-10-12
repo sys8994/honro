@@ -69,3 +69,6 @@ const luminance=hex=>{const c=hex.match(/../g).map(n=>parseInt(n,16)/255).map(v=
 const xpText=hud.match(/hud-xp::after[^}]*color:#([\da-f]{6})/)[1];
 for(const bg of ['66683d','10252d'])assert((luminance(xpText)+.05)/(luminance(bg)+.05)>=4.5,'XP label must be readable on filled and empty track');
 console.log('PASS XP label contrast on both filled and zero-progress track');
+
+assert.match(hud,/hud-xp[^}]*margin:0!important;min-width:0!important;width:100%!important/,'Independent XP row must reset the legacy 25px label-column margin');
+console.log('PASS XP row resets legacy margin so both edges align to vitals');

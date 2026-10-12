@@ -2315,3 +2315,7 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 같은 계산을 세로3행(동료66px+자원/XP41px+원호), 짧은 가로2행(44px+원호)에도 적용했다. footer 행 높이와 전장 예약높이를 공통 변수로 맞추고, E 안내는 실제 HUD 계산높이+10px에 둔다. 세로의 구형226px 예약값 때문에 새 HUD 뒤로 전장 약48px가 숨어버리는 문제를 예방한다.
 
 경험치10px 라벨은 채워진 구간/빈 트랙 양쪽에서 최소4.5:1 명암비를 검증한다.
+
+### 실제 공개 DOM 검수 보정
+
+762a2f5 게시본(로컬a12a969과 전체동일)에서 desktop1244×933/세로400×746/333×622를 확인했다. 원호64px·240/195/150도·44px 원형68점 및5개 버튼 사이 빈 간격 hit-test는 통과하고 전장/HUD 경계도 일치했다. XP는 vendor의 margin-left25px를 상속하여 desktop에서 오른쪽으로 밀리고400px에서 오른쪽5px가 잘렸다. 최종 XP selector에서 margin0/min-width0을 명시해 자원행 양끝과 정렬한다. 333px 조작행은 scrollWidth/clientWidth301로 같고 조이스틱84px·좌측16px, 네 기예44×45px, 원호 사이겹침은 없다. 최종 screenshot은 이 보정 재게시 뒤 촬영한다.
