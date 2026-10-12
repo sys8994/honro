@@ -63,13 +63,24 @@
 /* Portrait keeps status details reachable in the same row as the party. */
 @media(orientation:portrait) and (max-width:899px){
  .honro #app .battle{--hud-roster-height:40px}
- .honro #app .honro-compact-hud .hud-roster{display:grid!important;grid-template-columns:minmax(0,1fr) 36px!important;gap:6px!important;align-items:center!important}
- .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
+ .honro #app .honro-compact-hud .hud-roster{display:grid!important;grid-template-columns:minmax(0,1fr) 36px!important;grid-template-rows:40px!important;gap:6px!important;align-items:center!important}
+ .honro #app .honro-compact-hud .hero-switches{grid-column:1!important;grid-row:1!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
  .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
- .honro #app .honro-compact-hud .combat-status{margin:0!important;justify-self:end!important}
+ .honro #app .honro-compact-hud .combat-status{grid-column:2!important;grid-row:1!important;margin:0!important;justify-self:end!important}
  .honro #app .honro-compact-hud .status-details summary{width:36px;height:36px;min-height:36px;padding:0;flex-direction:column;justify-content:center;gap:1px}
  .honro #app .honro-compact-hud .status-details summary>.status-glyph{font-size:0;gap:0}
  .honro #app .honro-compact-hud .status-details summary>.status-glyph svg{width:18px;height:18px}
  .honro #app .honro-compact-hud .status-details summary::after{content:'상태';display:block;margin:0;font-size:8px;line-height:9px;color:#b7cbbf}
  .honro #app .honro-compact-hud .status-popover{left:auto;right:0;max-width:calc(100vw - 32px)}
+}
+
+/* Legacy roster children spanned both columns; keep compact portrait placement explicit. */
+@media(orientation:portrait) and (max-width:899px){
+ .honro #app .honro-compact-hud .ally-chip span{flex:1;line-height:1.25!important}
+ .honro #app .honro-compact-hud .ally-chip strong,.honro #app .honro-compact-hud .ally-chip small{margin:0!important;line-height:1.25!important}
+}
+@media(orientation:portrait) and (max-width:380px){
+ .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{gap:2px!important}
+ .honro #app .honro-compact-hud .ally-chip canvas.portrait{width:24px!important}
+ .honro #app .honro-compact-hud .ally-chip[aria-label*=전투불능] small{font-size:7px!important}
 }

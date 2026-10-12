@@ -76,3 +76,9 @@ assert.match(presentation,/--hud-roster-height:40px/);
 assert.match(presentation,/grid-template-columns:minmax\(0,1fr\) 36px/);
 assert.match(presentation,/summary::after\{content:'상태'/);
 console.log('PASS portrait status remains reachable in the compact40px party row');
+
+assert.match(presentation,/hero-switches\{grid-column:1!important;grid-row:1!important;/,'Portrait party must not inherit the old full-row span');
+assert.match(presentation,/combat-status\{grid-column:2!important;grid-row:1!important;/,'Status stays beside the party rather than over the vital row');
+assert.match(presentation,/grid-template-rows:40px!important/);
+assert.match(presentation,/strong,\.honro #app \.honro-compact-hud \.ally-chip small\{margin:0!important;line-height:1\.25!important/);
+console.log('PASS explicit portrait roster placement and unclipped text line height');
