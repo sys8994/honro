@@ -3,6 +3,7 @@ import {existenceMultiplier} from './existence';
 // Optional runtime adapter: core/practice/preview consumers have no XP policy.
 const policy=()=> (globalThis as any).HonroProgression;
 export const ownerRegistered=(b:Battle,u:Unit)=>policy()?.registerOwner(b,u);
+export const environmentalLoss=(b:Battle,u:Unit,before:number)=>policy()?.recordDamage(b,u,'',Math.max(0,before-u.hp));
 export const healed=(b:Battle,u:Unit,owner:string,before:number)=>policy()?.recordHeal(b,u,owner,Math.max(0,u.hp-before));
 export const shielded=(b:Battle,u:Unit,owner:string,before:number)=>policy()?.shieldAdded(b,u,owner,before);
 export const settled=(e:any)=>policy()?.flushContribution(e);

@@ -1,5 +1,5 @@
 import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
-import {ownerRegistered,healed,shielded,settled,controlled,projectileCredit,beginHit,endHit,intercepted} from './contribution';
+import {environmentalLoss,ownerRegistered,healed,shielded,settled,controlled,projectileCredit,beginHit,endHit,intercepted} from './contribution';
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
 import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
@@ -179,7 +179,7 @@ export class Engine {
                 continue;
             this.b.awardIds.push(id);
             for (const u of this.heroesAlive()) {
-                u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .30));
+                const hpBefore=u.hp;u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .30));healed(this.b,u,'',hpBefore);
                 u.focus = Math.min(u.maxFocus, u.focus + Math.round(u.maxFocus * .45));
                 this.fx('ring', u.x, u.y - u.h * .5, '#a9d9ae', 70);
                 this.award(u, 24 + recommendedLevel(this.b.stageId) * 3);
@@ -1672,8 +1672,9 @@ export class Engine {
         delete u.platformDrop;
         if (u.dead)
             return;
-        const fall = Math.ceil(u.maxHp * .2);
+        const fall = Math.ceil(u.maxHp * .2),hpBefore=u.hp;
         u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - fall);
+        environmentalLoss(this.b,u,hpBefore);
         u.hurt = .7;
         this.fx('text', u.x, Math.min(this.b.height, u.y - u.h), '#efa797', 18, '−' + fall);
         if (u.hp === 0) {

@@ -48,6 +48,7 @@ function retry(app,reason){const e=app.engine,b=e?.b;if(!active(b))return false;
  b.honroStakeCrossing={...s,...(flexible(b)&&s.checkpointProgress?clone(s.checkpointProgress):{}),crossed:{},attempted:false,pairSeen:false,retries:(s.retries||0)+1,lastReason:reason};
  if(preparation)(b.honroSplit||b).stakePreparation=preparation;if(loadout)b.honroStakeLoadout=loadout;prepare(b);
  for(const u of b.units){u.xpGranted=Math.max(u.xpGranted||0,awarded.get(u.id)||0);if(u.side===0&&!u.summoned&&b.heroes[u.cls])C.applyHero(u,b.heroes[u.cls]);}
+ G.HonroProgression?.reconcileWounds(b);
  b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');b.projectiles=[];b.volley=undefined;b.phase='aim';b.side=0;b.turnAge=0;
  app.done=false;app.cancelInput?.();app.close?.();app.turnNotice=null;app.dirty=true;app.event?.(reason+' 두 동행과 자원을 구간 출발 때로 되돌렸습니다.');
  app.profile.honroBattle=clone(b);app.persist?.();app.updateHUD?.(true);return true;

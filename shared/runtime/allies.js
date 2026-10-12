@@ -71,7 +71,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
  }
  if(q.phase==='act'&&!q.started){q.started=true;let target=e.unit(q.targetId);if(!target||target.dead)target=e.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
   if(u.allyRole==='porter'){const car=e.unit('objective'),block=q.blockerId&&b.terrain.find(t=>t.id===q.blockerId&&!t.broken);if(block&&car&&block.x-car.x<260){e.damageTerrain(block,145+u.attack*35,0,u.id);log(e,u,'clear-road',block.id);e.fx('slash',block.x+block.w*.5,block.y+block.h*.4,'#c1b18c',70);if(block.broken)app.event('호위대가 길을 막은 뿌리를 잘라냈다.');}else if(car){car.shield=Math.max(car.shield,38);log(e,u,'escort',car.id);e.fx('ring',car.x,car.y-45,'#b6c1a2',40);}q.phase='after';q.elapsed=0;}
-  else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const near=coalition(e).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1350).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];if(near){if(u.allyRole==='healer'){const heal=Math.min(near.maxHp-near.hp,Math.round(near.maxHp*.11));near.hp+=heal;e.fx('text',near.x,near.y-near.h-10,'#b9c6a8',16,'+'+heal);log(e,u,'heal',near.id);}else{near.shield=Math.max(near.shield,75);log(e,u,'ward',near.id);}e.fx('line',u.x,u.y-55,'#91b9ad',2,undefined);e.fx('ring',near.x,near.y-45,'#9cb7a4',45);}q.phase='after';q.elapsed=0;}
+  else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const near=coalition(e).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1350).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];if(near){if(u.allyRole==='healer'){const heal=Math.min(near.maxHp-near.hp,Math.round(near.maxHp*.11));near.hp+=heal;G.HonroProgression.recordHeal(b,near,u.id,heal);e.fx('text',near.x,near.y-near.h-10,'#b9c6a8',16,'+'+heal);log(e,u,'heal',near.id);}else{const shieldBefore=near.shield;near.shield=Math.max(near.shield,75);G.HonroProgression.shieldAdded(b,near,u.id,shieldBefore);log(e,u,'ward',near.id);}e.fx('line',u.x,u.y-55,'#91b9ad',2,undefined);e.fx('ring',near.x,near.y-45,'#9cb7a4',45);}q.phase='after';q.elapsed=0;}
   else if((u.allyRole==='daoist'||u.allyRole==='medium')&&target&&!target.dead){const nearby=e.alive(1).filter(v=>Math.hypot(v.x-target.x,(v.y-target.y)*.8)<260).length,skill=u.allyRole==='daoist'?(nearby>=2?'M06':'M01'):(nearby>=2?'LO10':'LO09');u.loadout=[skill];u.ranks[skill]=Math.max(1,u.ranks[skill]||1);u.focus=999;let aim=null;
    const targets=[target,...e.alive(1).filter(v=>v!==target).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2)];
    const key=e.planningKey()+'|'+q.index+'|'+skill+'|'+targets.map(t=>t.id).join(',');let work=aiming.get(e);
@@ -88,7 +88,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
  if(q.phase==='after'){e.stepUnits(dt);if(q.elapsed>=e.actionReviewSeconds())finish(e,q);}
 }
 function missionTick(app,dt){G.HonroMission.tick(app,dt);}
-function restore(e,f){for(const u of coalition(e)){u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*f));if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*(f+.10)));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}}
+function restore(e,f){for(const u of coalition(e)){const hpBefore=u.hp;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*f));G.HonroProgression.recordHeal(e.b,u,'',u.hp-hpBefore);if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*(f+.10)));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}}
 function execute(app,a){const e=app.engine,b=e.b,st=app.stage,hero=e.heroesAlive()[0];if(!a)return true;
  if(a.type==='multi'){
    // Reserve all spawn positions before mutating the world: a blocked second group
@@ -105,7 +105,7 @@ function execute(app,a){const e=app.engine,b=e.b,st=app.stage,hero=e.heroesAlive
    b.nextId=shadow.nextId;b.units.push(...list);b.honroCounters.spawned+=list.length;return true;
  }
  if(a.type==='ally'){const x=clamp(a.x,50,b.width-60),y=st.id===7&&!b.honroLayoutRevision?(hero?.y||3500):undefined;const u=W.ally(b,st,'ally-'+b.nextId,a.role,x,y),p=G.HonroTerrain.place(b,u,{flying:false,maxDistance:1600});if(!p)return false;Object.assign(u,p,{spawnX:p.x,spawnY:p.y});b.nextId++;b.units.push(u);}
- if(a.type==='convoyWard'){if(a.actor&&!e.b.units.some(u=>u.id===a.actor&&!u.dead&&u.hp>0))return false;const car=e.unit('objective');for(const u of coalition(e).filter(v=>!car||Math.abs(v.x-car.x)<1200)){u.shield=Math.max(u.shield,90);e.fx('ring',u.x,u.y-u.h*.5,'#9ebaa8',48);}return;}
+ if(a.type==='convoyWard'){if(a.actor&&!e.b.units.some(u=>u.id===a.actor&&!u.dead&&u.hp>0))return false;const car=e.unit('objective');for(const u of coalition(e).filter(v=>!car||Math.abs(v.x-car.x)<1200)){const before=u.shield;u.shield=Math.max(u.shield,90);G.HonroProgression.shieldAdded(b,u,a.actor||'',before);e.fx('ring',u.x,u.y-u.h*.5,'#9ebaa8',48);}return;}
  if(a.type==='wind')b.wind=a.value;if(a.type==='fog')e.setEnvironment({dragScale:a.drag});if(a.type==='rest')restore(e,a.fraction);if(a.type==='break'){const t=b.terrain.find(t=>t.id===a.terrain);if(t){t.broken=true;t.hp=0;b.sceneVersion++;}}
 }
 function prepareSpawn(b,st,a,hero){

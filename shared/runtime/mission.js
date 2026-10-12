@@ -74,7 +74,7 @@ function tick(app,dt){
    // Only this authored layered encounter narrows the existing threat volume;
    // legacy saves and every other chapter retain their original rest contract.
    if(m.type==='rest'&&!m.collected&&!e.alive(1).some(v=>Math.abs(v.x-m.x)<470&&!v.fixed&&(b.honroStage!==8||!G.HonroEncounterDensity?.active(b)||Math.abs(v.y-m.y)<650))){
-     m.collected=true;for(const u of G.HonroAllies.coalition(e)){u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.30));if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*.40));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}e.emit('sound',{name:'heal'});app.event('불씨를 지켰다. 동행이 숨을 고른다.');
+     m.collected=true;for(const u of G.HonroAllies.coalition(e)){const hpBefore=u.hp;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.30));G.HonroProgression.recordHeal(b,u,'',u.hp-hpBefore);if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*.40));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}e.emit('sound',{name:'heal'});app.event('불씨를 지켰다. 동행이 숨을 고른다.');
    }
    if(m.type==='relic'&&!m.collected){m.collected=true;app.event('길에 남은 기록을 주웠다.');}
  }
