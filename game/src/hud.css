@@ -192,5 +192,5 @@
    The live percentage continues to come from updateHUD's aria-valuenow. */
 .honro #app .arcfall-hud .hud-vitals{position:relative!important;padding-bottom:0!important}
 .honro #app .arcfall-hud .hud-xp,.honro #app .honro-compact-hud .hud-xp{display:block!important;position:relative!important;grid-column:1/-1!important;grid-row:2!important;inset:auto!important;width:100%!important;height:var(--xp-row-height)!important;min-height:var(--xp-row-height)!important;overflow:hidden!important;background:#10252d!important;border:1px solid #8d956b88!important;border-radius:4px!important}
-.honro #app .arcfall-hud .hud-xp i{position:absolute!important;left:0!important;top:0!important;display:block!important;height:100%!important;background:#777948!important;transition:width .18s ease-out}
-.honro #app .arcfall-hud .hud-xp::after{content:'경험치 ' attr(aria-valuenow) '%';position:absolute;inset:0;display:grid;place-items:center;color:#f1edcf;font:600 9px/1 system-ui,sans-serif;text-shadow:0 1px 2px #05100c;pointer-events:none}
+.honro #app .arcfall-hud .hud-xp i{position:absolute!important;left:0!important;top:0!important;display:block!important;height:100%!important;background:#66683d!important;transition:width .18s ease-out}
+.honro #app .arcfall-hud .hud-xp::after{content:'경험치 ' attr(aria-valuenow) '%';position:absolute;inset:0;display:grid;place-items:center;color:#f1edcf;font:600 10px/1 system-ui,sans-serif;text-shadow:0 1px 2px #05100c;pointer-events:none}

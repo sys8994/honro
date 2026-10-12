@@ -64,3 +64,8 @@ console.log('PASS desktop battlefield reservation equals arc + shared padding + 
 assert.match(css,/--hud-height:calc\(var\(--hud-roster-height\) \+ var\(--hud-vitals-height\) \+ var\(--action-height\) \+ var\(--hud-skill-wrap\)/);
 assert.match(hud,/grid-template-rows:var\(--hud-roster-height\) var\(--hud-vitals-height\) calc\(var\(--action-height\) \+ var\(--hud-skill-wrap\)\)/);
 console.log('PASS portrait and compact landscape battlefield/context clearance use the same HUD rows');
+
+const luminance=hex=>{const c=hex.match(/../g).map(n=>parseInt(n,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722;};
+const xpText=hud.match(/hud-xp::after[^}]*color:#([\da-f]{6})/)[1];
+for(const bg of ['66683d','10252d'])assert((luminance(xpText)+.05)/(luminance(bg)+.05)>=4.5,'XP label must be readable on filled and empty track');
+console.log('PASS XP label contrast on both filled and zero-progress track');

@@ -2313,3 +2313,5 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 후속 경계 검토: 데스크톱의 전장 예약높이144px 상수도 제거한다. 실제 원호행131.4px+상단7px+하단12px+테두리1px인151.4px를 공통 padding 변수로 계산해 전장과 footer 경계가 일치한다. safe-area 하단이 늘어도 같은 계산을 따른다.
 
 같은 계산을 세로3행(동료66px+자원/XP41px+원호), 짧은 가로2행(44px+원호)에도 적용했다. footer 행 높이와 전장 예약높이를 공통 변수로 맞추고, E 안내는 실제 HUD 계산높이+10px에 둔다. 세로의 구형226px 예약값 때문에 새 HUD 뒤로 전장 약48px가 숨어버리는 문제를 예방한다.
+
+경험치10px 라벨은 채워진 구간/빈 트랙 양쪽에서 최소4.5:1 명암비를 검증한다.
