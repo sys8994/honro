@@ -1,3 +1,11 @@
+## Contribution XP policy4 (2026-10-12)
+
+Cause: campaign damage and defeat rewards were shared per companion, then clear topped all companions up to a common absolute XP target. Support effects and actual mission work had no individual accounting.
+
+Change: new stages use finite source-aware damage/support/objective contribution records, fixed party budget, differential enemy/action-boundary and clear settlement, split-reunion opportunity normalization, MAX_LEVEL redistribution, stable wave IDs and persistent retry tokens. Historical in-progress stages remain on v3; earned XP and allocations are preserved. `hurt` now measures final HP loss after nonlethal/last-stand rules and commits each HP interval before recursive effects. `initialize` keeps stat training when recomputing hero critical stats.
+
+Validation: focused pure ledger, actual engine, migration/split and objective suites; see [Contribution XP policy](CONTRIBUTION_XP.md) for contracts, test paths and explicit limits. Real stage16 normal save was read-only; no browser/full-campaign or public deployment claim is made by these headless checks.
+
 ## 전 스테이지 게임플레이·배경 시각 위계 — 2026-10-11
 
 - 원인: L1/back/prop은 투영·그리기 순서인데 장식 벡터와 실제 충돌·상호작용 사물이 같은 윤곽선을 사용했다. 17장 입구의 목재 더미·작업대처럼 장식 내부 선이 실제 발판/도구로 읽혔고, 별도 작성된 하늘·배경 경로는 공통 거리 마감과 분리되어 있었다.
