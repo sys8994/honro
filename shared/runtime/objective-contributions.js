@@ -12,7 +12,7 @@ function observe(b,actors){if(!evidence(b))return;const travel=b.honroState.obje
 function movement(b,actor,provider,from,to){if(!evidence(b)||!alive(actor)||!owner(b,provider)||!from||!to||Math.hypot(to.x-from.x,to.y-from.y)<1)return;
  (b.honroState.objectiveGateTravel??={})[actor.id]={provider:owner(b,provider).id,from:{x:from.x,y:from.y},to:{x:to.x,y:to.y},round:b.round,end:b.teamEnds?.[0]||0};
 }
-function arrivalContributors(b,actors,inside){const out=[];for(const u of actors.filter(alive)){const receipt=b.honroState.objectiveGateTravel?.[u.id],provider=receipt&&owner(b,receipt.provider),gate=provider&&provider.id!==u.id&&receipt.round===b.round&&receipt.end===(b.teamEnds?.[0]||0)&&!inside(receipt.from)&&inside(receipt.to)&&Math.hypot(u.x-receipt.to.x,u.y-receipt.to.y)<=200;out.push({id:u.id,weight:gate?.75:1});if(gate){out.push({id:provider.id,weight:.25});delete b.honroState.objectiveGateTravel[u.id];}}return out;}
+function arrivalContributors(b,actors,inside){const out=[];for(const u of actors.filter(alive)){const receipt=b.honroState.objectiveGateTravel?.[u.id],provider=receipt&&owner(b,receipt.provider),gate=provider&&provider.id!==u.id&&receipt.round===b.round&&receipt.end===(b.teamEnds?.[0]||0)&&!inside(receipt.from)&&inside(receipt.to)&&Math.hypot(u.x-receipt.to.x,u.y-receipt.to.y)<=200;out.push({id:u.id,weight:gate ? .75 : 1});if(gate){out.push({id:provider.id,weight:.25});delete b.honroState.objectiveGateTravel[u.id];}}return out;}
 function arrive(b,key,actors,inside,points=20){return award(b,'reach:'+key,arrivalContributors(b,actors,inside),points);}
 // Rescue entry is an actual outside→inside movement into a safe working area.
 // Merely ticking while someone is already beside the resident earns nothing.
@@ -33,13 +33,13 @@ function terrain(e,t,beforeHp,source){const b=e.b,mem=evidence(b);if(!mem||!t?.i
  const r=mem.terrain[t.id]??={maxDamage:0,maxHp:Math.max(1,t.maxHp||beforeHp),weights:{}},lost=Math.max(0,Math.min(beforeHp,beforeHp-t.hp));
  t.honroContributionDamage=Math.min(r.maxHp,(t.honroContributionDamage||0)+lost);const delta=Math.max(0,t.honroContributionDamage-r.maxDamage);r.maxDamage=Math.max(r.maxDamage,t.honroContributionDamage);
  const u=owner(b,source);if(delta&&u){let support=null;if(b.honroStage===5&&t.id==='cliff-cleat'){const ritual=b.honroState.ritual,holder=ritual?.active&&owner(b,ritual.holderId),m=b.honroMarkers.find(m=>m.id==='receiver-5');if(alive(holder)&&holder.cls==='mage'&&m&&Math.abs(holder.x-m.x)<=125&&Math.abs(holder.y-m.y)<=80)support=holder;}
-  r.weights[u.id]=(r.weights[u.id]||0)+delta*(support&&support.id!==u.id?.6:1);if(support&&support.id!==u.id)r.weights[support.id]=(r.weights[support.id]||0)+delta*.4;
+  r.weights[u.id]=(r.weights[u.id]||0)+delta*(support&&support.id!==u.id ? .6 : 1);if(support&&support.id!==u.id)r.weights[support.id]=(r.weights[support.id]||0)+delta*.4;
  }
  if(t.hp<=0||t.broken){const rows=Object.entries(r.weights).map(([id,weight])=>({id,weight})),known=rows.reduce((sum,r)=>sum+r.weight,0);rows.push({id:'_system',weight:Math.max(0,r.maxHp-known)});award(b,'terrain:'+t.id,rows,20);}
 }
 function finishEscort(b,key){const r=evidence(b)?.escorts[key];if(!r||!r.maxProgress)return false;const rows=Object.entries(r.weights).map(([id,weight])=>({id,weight})),known=rows.reduce((n,r)=>n+r.weight,0);rows.push({id:'_system',weight:Math.max(0,1-known)});return award(b,'escort:'+key,rows,20);}
 function escort(b,key,npc,goal,actors,before,radius=170){const mem=evidence(b);if(!mem||!npc||!goal||!before)return;const r=mem.escorts[key]??={distance:Math.max(1,Math.hypot(before.x-goal.x,before.y-goal.y)-radius),maxProgress:0,weights:{}};
- const remaining=Math.max(0,Math.hypot(npc.x-goal.x,npc.y-goal.y)-radius),progress=Math.min(1,Math.max(0,1-remaining/r.distance)),delta=Math.max(0,progress-r.maxProgress);r.maxProgress=Math.max(r.maxProgress,progress);
+ const fraction=p=>Math.min(1,Math.max(0,1-Math.max(0,Math.hypot(p.x-goal.x,p.y-goal.y)-radius)/r.distance)),progress=fraction(npc),prior=fraction(before),delta=Math.max(0,progress-Math.max(r.maxProgress,prior));r.maxProgress=Math.max(r.maxProgress,prior,progress);
  const rows=contributors(b,actors),weight=rows.reduce((n,r)=>n+r.weight,0),moved=Math.hypot(npc.x-before.x,npc.y-before.y)>.001;if(delta&&moved&&weight)for(const row of rows)r.weights[row.id]=(r.weights[row.id]||0)+delta*row.weight/weight;
  if(progress>=1)finishEscort(b,key);
 }
