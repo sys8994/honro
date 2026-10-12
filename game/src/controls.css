@@ -207,7 +207,7 @@
 }
 
 /* Learned combat passives use static SVG geometry and update only when state changes. */
-.hud-vitals{position:relative}.combat-passives{position:absolute;left:0;bottom:calc(100% + 5px);font-size:10px;line-height:20px;color:#c7d6cd;pointer-events:none}.combat-passives[hidden]{display:none}.jucheon-state,.sword-chain{display:flex;align-items:center;gap:5px;background:#102328d9;border-radius:4px;padding:0 5px}.jucheon-state svg{width:22px;height:22px;fill:none;stroke:#cbd9d0;stroke-width:1.5;transform:rotate(-90deg)}.jucheon-state .track{stroke:#53655c;stroke-width:1}.jucheon-state.ready{color:#eee3bd}.sword-chain i{font-style:normal;opacity:.4;border-bottom:1px solid #5b6960}.sword-chain i.linked{opacity:1;border-color:#d8cfb1}.sword-chain b{color:#ebd7a5}.skill-button:disabled{opacity:.32;filter:none;cursor:default}
+.hud-vitals{position:relative}.combat-passives{position:static;display:inline-flex;align-items:center;font-size:10px;line-height:16px;color:#c7d6cd;pointer-events:none}.combat-passives[hidden]{display:none}.jucheon-state,.sword-chain{display:flex;align-items:center;gap:5px;background:#102328d9;border-radius:4px;padding:0 5px}.jucheon-state svg{width:16px;height:16px;fill:none;stroke:#cbd9d0;stroke-width:1.5;transform:rotate(-90deg)}.passive-short{display:none}.jucheon-state .track{stroke:#53655c;stroke-width:1}.jucheon-state.ready{color:#eee3bd}.sword-chain i{font-style:normal;opacity:.4;border-bottom:1px solid #5b6960}.sword-chain i.linked{opacity:1;border-color:#d8cfb1}.sword-chain b{color:#ebd7a5}.skill-button:disabled{opacity:.32;filter:none;cursor:default}
 
 /* Four party controls must remain reachable on narrow portrait phones. */
 @media (orientation:portrait) and (max-width:420px){

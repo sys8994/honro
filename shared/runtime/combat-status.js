@@ -105,7 +105,7 @@ function refresh(app,u){
    const focused=el.contains(document.activeElement);el.dataset.sig=sig;el.dataset.unit=u.id;
    const short=why==='이동·발사 가능'?'상태':why.startsWith('기력 부족')?'기력 부족':why.startsWith('재사용')?'재사용 대기':why.startsWith('기절')?'기절':why.split(' · ')[0];
    const label=states.length?`${states[0].name}${states.length>1?' +'+(states.length-1):''}`:short;
-   el.innerHTML=`<div class="status-details"><button class="status-trigger" type="button" data-action="inspect-hero" data-id="${esc(u.id)}" aria-label="${esc(u.name)} 상태와 캐릭터 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span></button></div><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span><span class="status-announcement" id="combat-action-reason">${esc(why)}</span>`;
+   el.innerHTML=`<div class="status-details"><button class="status-trigger" type="button" data-action="inspect-hero" data-id="${esc(u.id)}" aria-label="${esc(u.name)} 상태와 캐릭터 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span><span id="combat-passives" class="combat-passives" hidden></span></button></div><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span><span class="status-announcement" id="combat-action-reason">${esc(why)}</span>`;
    const trigger=el.querySelector('.status-trigger');
    // Native Space/Enter activation opens information without also charging a shot.
    trigger.onkeydown=trigger.onkeyup=e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();};
@@ -120,11 +120,22 @@ function refresh(app,u){
  }
  const fire=document.getElementById('fire');if(fire){fire.title=fire.disabled?why:'누른 채 충전, 손을 떼어 발사';fire.setAttribute('aria-describedby','combat-action-reason');}
 }
-function passives(app,u){
- const host=document.getElementById('combat-passives');if(!host)return;const C=G.HONRO_CORE,r=u.ranks?.MP05||0,chain=u.swordChain||[],sig=[u.id,u.jucheon,u.jucheonReady,chain.join(','),u.harmony].join('|');if(host.dataset.sig===sig)return;host.dataset.sig=sig;
- if(u.cls==='mage'&&r){const percent=u.jucheonReady?100:Math.round(100*(u.jucheon||0)/C.JUCHEON_THRESHOLD[r-1]);host.hidden=false;host.innerHTML=`<span class="jucheon-state ${u.jucheonReady?'ready':''}" role="meter" aria-label="주천" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" class="track"/><circle cx="12" cy="12" r="9" pathLength="100" stroke-dasharray="${percent} 100"/></svg>${u.jucheonReady?'주천완성':`주천 ${percent}%`}</span>`;}
- else if(u.cls==='knight'&&u.ranks?.SP04){host.hidden=false;host.innerHTML=`<span class="sword-chain" aria-label="연세">${[['sword','검술'],['rush','돌격'],['blade','검기']].map(([id,name])=>`<i class="${chain.includes(id)?'linked':''}">${name}</i>`).join('')}${u.harmony?'<b>합세</b>':''}</span>`;}
- else {host.hidden=true;host.innerHTML='';}
+function passivePresentation(u){
+ const C=G.HONRO_CORE,r=u.ranks?.MP05||0,chain=u.swordChain||[];
+ if(u.cls==='mage'&&r){
+  const percent=u.jucheonReady?100:Math.max(0,Math.min(100,Math.round(100*(u.jucheon||0)/C.JUCHEON_THRESHOLD[r-1]))),description=u.jucheonReady?'주천완성':`주천 ${percent}%`;
+  return {kind:'jucheon',label:'주천',description,html:`<span class="jucheon-state ${u.jucheonReady?'ready':''}" role="meter" aria-label="주천" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" aria-valuetext="${description}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" class="track"/><circle cx="12" cy="12" r="9" pathLength="100" stroke-dasharray="${percent} 100"/></svg><span class="passive-full">${description}</span><span class="passive-short" aria-hidden="true">${u.jucheonReady?'완':`${percent}%`}</span></span>`};
+ }
+ if(u.cls==='knight'&&u.ranks?.SP04){
+  const schools=[['sword','검술','검'],['rush','돌격','돌'],['blade','검기','기']],description=u.harmony?'합세 준비':`연세 · ${schools.filter(([id])=>chain.includes(id)).map(([,name])=>name).join(' · ')||'아직 연결 없음'}`;
+  return {kind:'chain',label:u.harmony?'합세':'연세',description,html:`<span class="sword-chain" aria-label="${description}">${schools.map(([id,name,short])=>`<i class="${chain.includes(id)?'linked':''}" data-short="${short}">${name}</i>`).join('')}${u.harmony?'<b class="passive-full">합세</b>':''}</span>`};
+ }
+ return null;
 }
-G.HonroCombatStatus={entries,effects,draw,reason,embedded,refresh,passives};
+function passives(app,u){
+ const host=document.getElementById('combat-passives');if(!host)return;const trigger=document.getElementById('combat-status')?.querySelector('.status-trigger'),view=passivePresentation(u),sig=JSON.stringify([u.id,view]);if(host.dataset.sig===sig)return;host.dataset.sig=sig;
+ host.hidden=!view;host.innerHTML=view?.html||'';
+ if(trigger){if(view){trigger.dataset.passive=view.kind;trigger.dataset.passiveLabel=view.label;trigger.title=view.description+' · 상태와 캐릭터 정보';}else{delete trigger.dataset.passive;delete trigger.dataset.passiveLabel;trigger.removeAttribute?.('title');}}
+}
+G.HonroCombatStatus={entries,effects,draw,reason,embedded,refresh,passives,passivePresentation};
 })(globalThis);

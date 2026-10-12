@@ -84,6 +84,22 @@
  .honro #app .honro-compact-hud .ally-chip[aria-label*=전투불능] small{font-size:7px!important}
 }
 
+/* Live passive state shares the existing status button; it never sits over a portrait.
+   Short labels preserve the 36px target and the unchanged HUD row reservation. */
+@media(orientation:portrait) and (max-width:899px){
+ .honro #app .honro-compact-hud .status-trigger[data-passive]>.status-glyph{display:none}
+ .honro #app .honro-compact-hud .status-trigger[data-passive]::after{content:attr(data-passive-label)}
+ .honro #app .honro-compact-hud .combat-passives{width:28px;height:20px;justify-content:center}
+ .honro #app .honro-compact-hud .combat-passives .passive-full{display:none}
+ .honro #app .honro-compact-hud .combat-passives .passive-short{display:inline;font-size:7px;line-height:12px}
+ .honro #app .honro-compact-hud .combat-passives .jucheon-state{gap:1px;padding:0;background:none;line-height:18px}
+ .honro #app .honro-compact-hud .combat-passives .jucheon-state svg{width:13px;height:13px;flex:none}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain{gap:2px;padding:0;background:none;line-height:16px}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain i{font-size:0;line-height:16px}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain i::before{content:attr(data-short);font-size:7px}
+ .honro #app .honro-compact-hud .combat-status[data-limited=true] .status-trigger[data-passive]{border-color:#d6ab75}
+}
+
 /* Small portrait-phone trim: keep type and action sizes; reclaim only six pixels.
    Move the real joystick hit box with its ring/knob, but counter-offset the wind
    gauge so its screen position stays fixed and its gap grows from2px to6px. */
