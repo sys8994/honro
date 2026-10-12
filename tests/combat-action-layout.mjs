@@ -74,7 +74,7 @@ console.log('PASS all battlefield/context reservations match the reduced HUD row
 const presentation=await readFile('game/src/skill-presentation.css','utf8');
 assert.match(presentation,/--hud-roster-height:40px/);
 assert.match(presentation,/grid-template-columns:minmax\(0,1fr\) 36px/);
-assert.match(presentation,/summary::after\{content:'상태'/);
+assert.match(presentation,/status-trigger::after\{content:'상태'/);
 console.log('PASS portrait status remains reachable in the compact40px party row');
 
 assert.match(presentation,/hero-switches\{grid-column:1!important;grid-row:1!important;/,'Portrait party must not inherit the old full-row span');
@@ -99,3 +99,7 @@ const stickSize=72,lift=4,oldWindTop=stickSize+2,newStickTop=-lift,newWindTop=ne
 assert.equal(newWindTop,oldWindTop,'Wind stays in place while real input box and ring move together');
 assert.equal(newWindTop-(newStickTop+stickSize),6);
 console.log('PASS portrait micro-trim:36px party/18px row/16px bars; aligned joystick input and6px wind gap');
+
+assert.match(presentation,/\.status-details \.status-trigger\{font:inherit;line-height:inherit;margin:0/);
+assert.doesNotMatch(presentation,/status-details summary|webkit-details-marker/);
+console.log('PASS semantic status button keeps existing compact geometry and typography');

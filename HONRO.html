@@ -1018,13 +1018,12 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 /* Keep the touch/keyboard status details reachable beside the joystick on short landscape phones. */
 @media (orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
  .honro #app .honro-compact-hud .combat-status{position:absolute!important;left:calc(var(--joystick-size) + 12px)!important;top:42px!important;margin:0!important;z-index:4}
- .honro #app .honro-compact-hud .status-details summary{min-height:20px;padding:1px 5px}
+ .honro #app .honro-compact-hud .status-details .status-trigger{min-height:20px;padding:1px 5px}
 }
 .honro .status-details{position:relative;width:max-content;max-width:100%}
-.honro .status-details summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:5px;max-width:100%;min-height:24px;border:1px solid #63817570;border-radius:5px;padding:3px 7px;background:#10282ddd;color:#d6e0d2;white-space:nowrap}
-.honro .status-details summary::-webkit-details-marker{display:none}
-.honro .status-details summary::after{content:'⌃';color:#9daea4;margin-left:3px}
-.honro .status-details summary:focus-visible{outline:2px solid #edcd82;outline-offset:2px}
+.honro .status-details .status-trigger{font:inherit;line-height:inherit;margin:0;cursor:pointer;display:flex;align-items:center;gap:5px;max-width:100%;min-height:24px;border:1px solid #63817570;border-radius:5px;padding:3px 7px;background:#10282ddd;color:#d6e0d2;white-space:nowrap}
+.honro .status-details .status-trigger::after{content:'⌃';color:#9daea4;margin-left:3px}
+.honro .status-details .status-trigger:focus-visible{outline:2px solid #edcd82;outline-offset:2px}
 .honro .status-glyph{display:inline-flex;align-items:center;gap:3px;color:var(--status-color);font-weight:600}
 .honro .status-glyph svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linejoin:round;stroke-linecap:round}
 .honro .status-popover{position:absolute;bottom:calc(100% + 7px);left:0;z-index:15;width:min(290px,85vw);max-height:min(320px,55dvh);overflow:auto;padding:12px;background:#10232af5;border:1px solid #6b8377;border-radius:9px;box-shadow:0 6px 24px #0009;color:#d7ded6;font-size:12px;line-height:1.6;white-space:normal}
@@ -1035,7 +1034,7 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro .status-reason{padding-top:7px;border-top:1px solid #718a7040;color:#b9c8c0}
 .honro #app .combat-status .status-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:540px),(orientation:landscape) and (max-height:540px){
- .honro .status-details summary{min-height:24px;padding:2px 5px;font-size:10px}
+ .honro .status-details .status-trigger{min-height:24px;padding:2px 5px;font-size:10px}
  .honro .status-popover{max-height:48dvh}
 }
 
@@ -1046,10 +1045,10 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
  .honro #app .honro-compact-hud .hero-switches{grid-column:1!important;grid-row:1!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
  .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
  .honro #app .honro-compact-hud .combat-status{grid-column:2!important;grid-row:1!important;margin:0!important;justify-self:end!important}
- .honro #app .honro-compact-hud .status-details summary{width:36px;height:36px;min-height:36px;padding:0;flex-direction:column;justify-content:center;gap:1px}
- .honro #app .honro-compact-hud .status-details summary>.status-glyph{font-size:0;gap:0}
- .honro #app .honro-compact-hud .status-details summary>.status-glyph svg{width:18px;height:18px}
- .honro #app .honro-compact-hud .status-details summary::after{content:'상태';display:block;margin:0;font-size:8px;line-height:9px;color:#b7cbbf}
+ .honro #app .honro-compact-hud .status-details .status-trigger{width:36px;height:36px;min-height:36px;padding:0;flex-direction:column;justify-content:center;gap:1px}
+ .honro #app .honro-compact-hud .status-details .status-trigger>.status-glyph{font-size:0;gap:0}
+ .honro #app .honro-compact-hud .status-details .status-trigger>.status-glyph svg{width:18px;height:18px}
+ .honro #app .honro-compact-hud .status-details .status-trigger::after{content:'상태';display:block;margin:0;font-size:8px;line-height:9px;color:#b7cbbf}
  .honro #app .honro-compact-hud .status-popover{left:auto;right:0;max-width:calc(100vw - 32px)}
 }
 
@@ -26921,11 +26920,14 @@ function refresh(app,u){
  if(el){
   const sig=JSON.stringify([u.id,states,why]);
   if(el.dataset.sig!==sig){
-   const wasOpen=el.querySelector('details')?.open&&el.dataset.unit===u.id,focused=el.contains(document.activeElement);el.dataset.sig=sig;el.dataset.unit=u.id;
+   const focused=el.contains(document.activeElement);el.dataset.sig=sig;el.dataset.unit=u.id;
    const short=why==='이동·발사 가능'?'상태':why.startsWith('기력 부족')?'기력 부족':why.startsWith('재사용')?'재사용 대기':why.startsWith('기절')?'기절':why.split(' · ')[0];
    const label=states.length?`${states[0].name}${states.length>1?' +'+(states.length-1):''}`:short;
-   el.innerHTML=`<details class="status-details" ${wasOpen?'open':''}><summary aria-label="${esc(u.name)} 상태와 행동 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span></summary><div class="status-popover"><strong>${esc(u.name)}</strong>${states.length?states.map(s=>`<div class="status-entry status-glyph" style="--status-color:${s.color}">${glyph(s.key)}<span>${esc(s.detail)}</span></div>`).join(''):'<p>적용 중인 상태가 없습니다.</p>'}<p class="status-reason" id="combat-action-reason">${esc(why)}</p></div></details><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span>`;
-   if(focused)el.querySelector('summary').focus({preventScroll:true});
+   el.innerHTML=`<div class="status-details"><button class="status-trigger" type="button" data-action="inspect-hero" data-id="${esc(u.id)}" aria-label="${esc(u.name)} 상태와 캐릭터 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span></button></div><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span><span class="status-announcement" id="combat-action-reason">${esc(why)}</span>`;
+   const trigger=el.querySelector('.status-trigger');
+   // Native Space/Enter activation opens information without also charging a shot.
+   trigger.onkeydown=trigger.onkeyup=e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();};
+   if(focused)trigger.focus({preventScroll:true});
   }
   el.dataset.limited=why!=='이동·발사 가능'||u.bound>0||u.stun>0?'true':'false';
  }
@@ -36693,7 +36695,7 @@ function close(a){if(!a.scene)return;a.scene.inspectUnitId=null;const el=documen
 function hover(a,p){if(!a.scene)return;a.scene.inspectPointer=p;const u=p&&pick(a,p);a.scene.hoverUnitId=u?.id||null;a.scene.canvas.style.cursor=u?'pointer':'';}
 function bind(a){
  const el=document.createElement('aside');el.id='unit-info';el.className='unit-info';el.hidden=true;el.setAttribute('aria-label','대상 정보');
-  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div>';
+  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div><p class="unit-info-reason status-reason" hidden></p>';
  a.scene.canvas.parentElement.append(el);el.querySelector('button').onclick=()=>close(a);
  // Activating the card's close button must not also start a Space-key shot.
  for(const type of ['keydown','keyup'])el.addEventListener(type,e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();});
@@ -36739,7 +36741,9 @@ function tick(a){
  text('.unit-info-desc',boundBody?'소단의 몸을 공격하지 마세요. 사람과 떨어진 바깥 붉은 주박을 겨누세요.':description(u));
  text('.unit-info-skills',!boundBody&&skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
  const states=G.HonroCombatStatus.effects(a.engine.b,u);
- text('.unit-info-status',states.join(' · '));
+ text('.unit-info-status',states.join(' · ')||(player(u)?'적용 중인 상태가 없습니다.':''));
+ const actionReason=el.querySelector('.unit-info-reason');actionReason.hidden=!player(u);
+ if(player(u))text('.unit-info-reason',G.HonroCombatStatus.reason(a.engine,u,u.id===a.engine.b.active?C.SKILLS[a.selected]:undefined));
  const r=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
  const bottom=Math.min(r.bottom,hud?.top??innerHeight)-10,top=Math.max(76,r.top+8);
  el.style.maxHeight=Math.max(90,bottom-top)+'px';
@@ -38117,8 +38121,8 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
             const players=b.units.filter(v=>v.side===0&&!v.summoned),sig=players.map(v=>[v.id,Math.round(v.hp),Math.round(v.focus),v.acted,v.dead].join(':')).join('|')+'|'+u.id+'|'+this.selected+'|'+b.round+'|'+u.meleeFollow+'|'+u.jucheonReady+'|'+u.harmony;
             if(force||sig!==this.hudSig){
                 this.hudSig=sig;
-                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택 및 정보">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
-                $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span><span class="rank-tiny">${s.basic?'기본':s.capstone?'비기 '+(u.ranks?.[s.id]||1):s.ultimate?'비기':u.ranks?.[s.id]?'+'+u.ranks[s.id]:''}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
+                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
+                $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
                 this.drawPortraits();
             }
             $('hp-fill').style.width=(Math.max(0,u.hp)/u.maxHp*100)+'%';$('hp-label').textContent=Math.round(Math.max(0,u.hp))+' / '+u.maxHp;
@@ -38429,7 +38433,11 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
                     this.showTitle();
                     break;
                 case 'select-hero':
+                    G.HonroUnitInfo.close(this);
                     this.selectHero(id);
+                    break;
+                case 'inspect-hero':
+                    this.cancelInput();
                     G.HonroUnitInfo.show(this,this.engine?.unit(id));
                     break;
                 case 'combat-skill':

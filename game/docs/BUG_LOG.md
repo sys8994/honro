@@ -2345,3 +2345,7 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - 조이스틱 hit box와 ring/knob를 함께4px 위로 옮기고 바람표시를 부모 안에서4px 보정해 원래 높이에 둔다. 실제 간격은2→6px이며 updateStick의 DOM 중심과 시각 중심이 어긋나지 않는다. 입력 JS/저장/전투 로직은 변경하지 않는다.
 - 원본6ef7f39는 보존된 Library base+incremental bundle에서 strict 검증하여 복원했고 현재master471f68b와 대응한다. 정상16장1턴 export는 SHA ec1b890b2bddbce94709ad1807c699f11934ebb57a32ccc3a85b9f48905c9457로 별도 보존하며 검수는 새 브라우저의 분리 디버그15장으로 한다.
 - 소스 계약·양쪽 HTML 빌드·관련 회귀 검사를 실행하고, 실제 공개desktop/400/333 세로 전후 화면에서 줄 높이·텍스트·터치 hit box/시각 중심·바람 간격·HUD/전장 경계를 검수한다. 실물 휴대폰/노치/터치 검사는 별도 미검증이며 기존 역사fixture 실패를 약화하지 않는다.
+
+### 같은 요청의 후속: 선택과 정보 열기 분리·기예 단계 라벨 제거
+
+HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐릭터 클릭은 기존 정보 조회를 유지하며, 상태36px 버튼을 누르면 현재 동행의 XP·상태·행동 사유를 같은 캐릭터 정보창에서 읽는다. 기존 details/summary 팝오버를 실제button[data-action=inspect-hero]로 바꾸고 CSS는36px 배치와 접근성 이름/키보드 focus를 유지한다. 상태효과의 지속시간·저주 피해·행동제한 사유와 발사버튼 aria-describedby용 숨김 설명은 보존한다. Space/Enter 상태버튼 활성화는 발사 충전으로 전파하지 않는다. HUD 기예의 기본/단계(rank-tiny) 표시는 제거하되 기예이름·키·기력 비용·재사용 표시와 효과/성장은 유지한다. XP 보상 계산은 이번 UI 변경에서 수정하지 않는다.
