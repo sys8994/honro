@@ -37,3 +37,8 @@ for(const fire of [68,66,62,56]){
  console.log(`PASS combat arc fire=${fire}px: radius=${radius}px, action=${size}px, bounds=${width.toFixed(2)}x${height.toFixed(2)}`);
 }
 console.log('PASS shared jump/drop styling, preserved action bindings, one-angle-system arc');
+
+assert.match(css,/\.honro #app \.battle\{\s*--action-size:44px;--action-radius:64px;/);
+assert.match(css,/\.battle \.context-interact\{bottom:max\(calc\(130px \+ var\(--action-height\)\)/);
+assert.match(css,/\.battle \.context-interact\{bottom:max\(calc\(60px \+ var\(--action-height\)\)/);
+console.log('PASS contextual interaction clearance derives from the same arc height');
