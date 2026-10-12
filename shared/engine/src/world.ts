@@ -365,6 +365,10 @@ export function upgradeBattle(b: Battle, profile: Profile): Battle {
         for(const u of b.units){if(u.summoned)u.summonFloating=true;u.impactCooldown=0;}
         b.revision=11;
     }
+    return applySpBalanceMigration(b);
+}
+/** Public adapter shared by core saves and the application honroBattle save path. */
+export function applySpBalanceMigration(b:Battle):Battle {
     if((b.spBalanceRevision||0)<SP_BALANCE_REVISION){
         // Recalculate only playable heroes. Preserve resource fractions, progression,
         // wounds, action state, enemies, existing summons and already authored casts.

@@ -47,7 +47,7 @@ export function spBuildAxes(h:HeroProgress,cls:ClassId,s:SpScenario=SP_SCENARIOS
    const paid=Math.ceil(JUCHEON_THRESHOLD[rank-1]/s.castCost),cycle=paid+1;
    // A short encounter cannot claim a complete cycle it has not reached.
    const casts=s.turns>=cycle?1/cycle:0;
-   cost*=1-casts*JUCHEON_DISCOUNT[rank-1];offense*=1+casts*JUCHEON_EFFECT[rank-1];
+   cost*=1-casts*JUCHEON_DISCOUNT[rank-1];offense*=1+casts*(JUCHEON_EFFECT[rank-1]+t('MP05').jucheonExtraEffect);
   }
  }
  if(cls==='archer'){
@@ -72,7 +72,7 @@ export function spBuildAxes(h:HeroProgress,cls:ClassId,s:SpScenario=SP_SCENARIOS
   if(r('SP05'))survival*=1+s.lethalRisk*(.20+t('SP05').lastStandHp/(1-t('SP05').lastStandGuard));
  }
  if(cls==='occultist'){
-  const trap=r('OP01');if(trap){const duration=1+Math.floor(trap/3),reentry=1-(1-s.trapReentry)**duration;offense*=1+s.missRate*reentry*(.22+.045*trap);}
+  const trap=r('OP01');if(trap){const duration=1+Math.floor(trap/3),reentry=1-(1-s.trapReentry)**duration;offense*=1+s.missRate*reentry*t('OP01').trapDamage;}
   offense*=1+s.summonShare*s.markUptime*t('OP02').markedSummonDamage;
   mobility*=1+s.summonShare*s.markUptime*t('OP02').markedPriority/1800;
   survival/=1-s.summonAvailable*(t('OP03').soulShareThreshold?s.largeHitShare:1)*Math.min(t('OP03').soulShare,t('OP03').soulShareCap/s.hitHpFraction);
