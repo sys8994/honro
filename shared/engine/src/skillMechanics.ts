@@ -124,7 +124,7 @@ export function finishRedesign(e:Engine,reviewed:boolean){
   if(r&&cast.enemyDamage===0&&['gourd','wave'].includes(s.branch||'')){u.focus=Math.min(u.maxFocus,u.focus+cast.cost*passiveTuning(r).missRefund);e.fx('text',u.x,u.y-u.h-14,'#becbc6',14,'회기');}
  }
  if(b.mode!=='practice'&&reviewed&&cast?.owner===u.id&&SKILLS[cast.skill]?.cls==='archer'&&cast.skill!=='A10'&&passiveRank(u,'AP03')&&!u.dead){
-  u.retreat=true;u.moveLeft=u.maxMove*(.08+.04*passiveRank(u,'AP03'));b.phase='aim';b.cast=undefined;b.resolveAge=0;e.message('이탈보 · 이동/점프만 가능 · 대기로 종료');e.emit('change');e.emit('save');return true;
+  u.retreat=true;u.moveLeft=u.maxMove*passiveTuning(passiveRank(u,'AP03')).retreat;b.phase='aim';b.cast=undefined;b.resolveAge=0;e.message('이탈보 · 이동/점프만 가능 · 대기로 종료');e.emit('change');e.emit('save');return true;
  }
  return false;
 }
