@@ -42,6 +42,9 @@
   --action-size:44px;--action-radius:64px;
   --joystick-size:96px;--hud-inline:20px;--xp-row-height:16px;--hud-skill-wrap:0px;
   --action-height:calc(var(--action-radius) * (sin(60deg) + sin(30deg)) + var(--action-size));
+  --hud-roster-height:66px;--hud-vitals-height:calc(20px + 5px + var(--xp-row-height));
+  --hud-block-start:7px;--hud-block-end:max(18px,calc(env(safe-area-inset-bottom) + 10px));
+  --hud-height:calc(var(--hud-roster-height) + var(--hud-vitals-height) + var(--action-height) + var(--hud-skill-wrap) + 10px + var(--hud-block-start) + var(--hud-block-end) + 1px)!important;
 }
 .honro #app .battle-bottom.honro-compact-hud{
   --fire-size:68px;
@@ -220,7 +223,8 @@
 
 /* Compact landscape phones use a two-band rail; the desktop rail starts at 900px. */
 @media (orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
-  .honro #app .battle-bottom.honro-compact-hud{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;--fire-size:56px;grid-template-rows:44px var(--action-height)!important;gap:4px 8px!important;padding:5px max(var(--hud-inline),env(safe-area-inset-right)) max(10px,calc(env(safe-area-inset-bottom) + 6px)) max(var(--hud-inline),env(safe-area-inset-left))!important}
+  .honro #app .battle{--hud-block-start:5px;--hud-block-end:max(10px,calc(env(safe-area-inset-bottom) + 6px));--hud-height:calc(44px + 4px + var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
+  .honro #app .battle-bottom.honro-compact-hud{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;--fire-size:56px;grid-template-rows:44px var(--action-height)!important;gap:4px 8px!important;padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important}
   .honro #app .honro-compact-hud .hud-roster{grid-column:1!important;grid-row:1!important;min-width:0!important}
   .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important;height:40px!important;overflow:visible!important}
   .honro #app .honro-compact-hud .ally-chip,
@@ -282,10 +286,7 @@
 /* Leave contextual interaction above the taller arc instead of over the HUD.
    Match the existing three-band / two-band rails and preserve safe-area space. */
 @media(max-width:899px){
-  .honro #app .battle .context-interact{bottom:max(calc(152px + var(--action-height) + var(--hud-skill-wrap)),calc(env(safe-area-inset-bottom) + 142px + var(--action-height) + var(--hud-skill-wrap)))}
-}
-@media(orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
-  .honro #app .battle .context-interact{bottom:max(calc(76px + var(--action-height)),calc(env(safe-area-inset-bottom) + 66px + var(--action-height)))}
+  .honro #app .battle .context-interact{bottom:calc(var(--hud-height) + 10px)}
 }
 
 /* Reserve space instead of shrinking the joystick below a useful thumb target.

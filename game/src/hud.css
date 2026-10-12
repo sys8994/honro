@@ -87,10 +87,10 @@
 .honro #app .battle-bottom.honro-compact-hud{
   display:grid!important;
   grid-template-columns:1fr!important;
-  grid-template-rows:auto auto auto!important;
+  grid-template-rows:var(--hud-roster-height) var(--hud-vitals-height) calc(var(--action-height) + var(--hud-skill-wrap))!important;
   align-items:stretch!important;
   gap:5px!important;
-  padding:7px max(var(--hud-inline),env(safe-area-inset-right)) max(18px,calc(env(safe-area-inset-bottom) + 10px)) max(var(--hud-inline),env(safe-area-inset-left))!important;
+  padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important;
   background:linear-gradient(180deg,rgba(6,19,27,.18),rgba(6,19,27,.93) 20%,rgba(5,16,24,.985))!important;
   overflow:visible!important;
 }

@@ -39,8 +39,8 @@ for(const fire of [68,66,62,56]){
 console.log('PASS shared jump/drop styling, preserved action bindings, one-angle-system arc');
 
 assert.match(css,/\.honro #app \.battle\{\s*--action-size:44px;--action-radius:64px;/);
-assert.match(css,/\.battle \.context-interact\{bottom:max\(calc\(152px \+ var\(--action-height\) \+ var\(--hud-skill-wrap\)\)/);
-assert.match(css,/\.battle \.context-interact\{bottom:max\(calc\(76px \+ var\(--action-height\)\)/);
+assert.match(css,/\.battle \.context-interact\{bottom:calc\(var\(--hud-height\) \+ 10px\)/);
+assert.match(css,/--hud-height:calc\(44px \+ 4px \+ var\(--action-height\)/);
 console.log('PASS contextual interaction clearance derives from the same arc height');
 
 const hud=await readFile('game/src/hud.css','utf8');
@@ -60,3 +60,7 @@ for(const [viewport,padding,joystick,skills,gaps] of [[333,16,84,92,8],[360,16,8
 assert.match(css,/--hud-height:calc\(var\(--action-height\) \+ var\(--hud-block-start\) \+ var\(--hud-block-end\) \+ 1px\)/);
 assert.match(css,/padding:var\(--hud-block-start\) [^;]+var\(--hud-block-end\)/);
 console.log('PASS desktop battlefield reservation equals arc + shared padding + border');
+
+assert.match(css,/--hud-height:calc\(var\(--hud-roster-height\) \+ var\(--hud-vitals-height\) \+ var\(--action-height\) \+ var\(--hud-skill-wrap\)/);
+assert.match(hud,/grid-template-rows:var\(--hud-roster-height\) var\(--hud-vitals-height\) calc\(var\(--action-height\) \+ var\(--hud-skill-wrap\)\)/);
+console.log('PASS portrait and compact landscape battlefield/context clearance use the same HUD rows');

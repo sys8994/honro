@@ -2311,3 +2311,5 @@ Final focused checks pass: screen-cache8 production views, object-damage six mat
 - 두 HTML은 원본 소스에서 재빌드한다. UI/기하 집중 계약과 실제 공개화면 검수는 이 후속 저장점에서 다시 확인하며, 이전 전체 verify의 역사fixture 실패는 무관하므로 약화하지 않는다.
 
 후속 경계 검토: 데스크톱의 전장 예약높이144px 상수도 제거한다. 실제 원호행131.4px+상단7px+하단12px+테두리1px인151.4px를 공통 padding 변수로 계산해 전장과 footer 경계가 일치한다. safe-area 하단이 늘어도 같은 계산을 따른다.
+
+같은 계산을 세로3행(동료66px+자원/XP41px+원호), 짧은 가로2행(44px+원호)에도 적용했다. footer 행 높이와 전장 예약높이를 공통 변수로 맞추고, E 안내는 실제 HUD 계산높이+10px에 둔다. 세로의 구형226px 예약값 때문에 새 HUD 뒤로 전장 약48px가 숨어버리는 문제를 예방한다.
