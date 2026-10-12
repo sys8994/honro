@@ -1,0 +1,10 @@
+// Frozen cc699e01128bd8b945bd8756495fa582b5d4c607 coefficients for before/after audits only.
+export function legacySpHooks(C){
+ const gains={mage:[.035,.060,.040,.010,.005,.035,.025],archer:[.030,.035,.050,.008,.008,.050,.025],knight:[.055,.035,.030,.015,.004,.030,.045],occultist:[.040,.055,.040,.010,.006,.035,.030]};
+ const power=r=>Math.min(3,r)+Math.max(0,r-3)*.25;
+ return {salheunRatio:[.12,.15,.15,.18,.18,.21,.24,.24],stats(h,cls){
+  const i=C.CLASS_IDS.indexOf(cls),L=C.levelOf(h)-1,n=C.statTrainingRank(h),r=h.ranks,g=gains[cls],v=cls==='knight'?power(r.SP02||0):0,leap=cls==='knight'?power(r.SP03||0):0;
+  const cr={archer:[.08,1.75,.002,.015],mage:[.04,1.5,.001,.01],knight:[.05,1.6,.0012,.012],occultist:[.06,1.55,.0015,.012]}[cls],ap=cls==='archer'?(r.AP02||0):0;
+  return {hp:Math.round(([390,365,610,460][i]+L*[32,30,48,36][i])*(1+v*.05)*(1+n*g[0])),mp:Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(r.MP02||0)*.03:0))*(1+n*g[1])),attack:([1.75,1.75,1.75,1.86][i]+L*[.18,.18,.18,.19][i])*(1+n*g[2]),armor:Math.min(.75,[.06,.08,.22,.11][i]+L*.008+v*.03+n*g[3]),critChance:Math.min(.75,Math.min(.65,cr[0]+L*cr[2]+ap*.02)+n*g[4]),critMultiplier:Math.min(4,Math.min(3,cr[1]+L*cr[3]+ap*.04)+n*g[5]),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+leap*.1)*(1+n*g[6])),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?(r.MP02||0)*.5:0)};
+ },tuning(rank){const r=Math.max(0,Math.min(8,rank));return {...C.passiveTuning(r),jucheonExtraEffect:0,trapDamage:r?.22+.045*r:0,manaRegenFlat:.5*r,manaRegenMax:0,volleyFirst:.42+.02*Math.max(0,r-1),retreat:r?.08+.04*r:0,lastStandHp:.08*power(r),lastStandGuard:r?.18:0,soulShareCap:.12,soulShareThreshold:.14,expiryRecovery:r?.04+.018*r:0,expiryDiscount:Math.min(.24,.035*r),gourdSecondary:.03*r,geometry:.02*r,missRefund:r?.18+.04*(r-1):0,ward:r?.025+.0075*r:0,criticalChance:.02*r,criticalMultiplier:.04*r,trajectory:.025*r,swordCharge:.012*r,swordReach:.006*r,rushDamage:.025*r,bladeGeometry:.012*r,harmonyRecovery:r?.05+.00625*r:0,harmonyDiscount:r?.25:0,harmonyDamage:r?.15:0,harmonyGuard:r?.10:0,markedSummonDamage:0,soulShare:Math.min(.28,.04*r),remnantDamage:r?.12+.02*r:0};}};
+}

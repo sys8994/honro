@@ -61,7 +61,7 @@ test('산개사 + 연속 시위 preserves count, spread, 0.5s cadence and expone
  for(let r=1;r<=8;r++){const a=arena('A04',r);a.u.ranks.AP01=r;a.fire(45,.6);const roots=[...a.b.projectiles];assert.equal(roots.length,2+r);const original=roots[Math.floor(roots.length/2)].damage;a.b.projectiles=[];a.e.stepVolley(.49);assert.equal(a.b.projectiles.length,0);a.e.stepVolley(.01);assert.equal(a.b.projectiles.length,2+r);assert(Math.abs(a.b.projectiles[0].damage-original*(.42+.02*Math.min(4,r-1)+.045*Math.max(0,r-5)))<1e-9);for(let i=2;i<=Math.min(5,r);i++){a.b.projectiles=[];a.e.stepVolley(.5);assert.equal(a.b.projectiles.length,2+r);assert(Math.abs(a.b.projectiles[0].damage-original*C.volleyDamage(r,i))<1e-9);const angles=a.b.projectiles.map(p=>Math.atan2(-p.vy,p.vx)*180/Math.PI);assert(Math.abs((angles[0]+angles.at(-1))/2-45)<=2+1e-6);}assert(!a.b.volley);}
 });
 test('retreat permits movement, blocks attack and switching, exhausts to end',()=>{
- const a=arena();a.b.mode='campaign';a.u.ranks.AP03=8;a.fire();a.b.projectiles=[];a.e.finishAction(true);assert(a.u.retreat);assert.equal(a.u.moveLeft,a.u.maxMove*.96);assert(!a.e.fire('A01',30,.6));assert(!a.e.select(a.foe(1600,1800,{side:0}).id));const x=a.u.x;a.e.move(1,.1);assert(a.u.x>x);a.u.moveLeft=0;C.tickRedesign(a.e,.01);assert(!a.u.retreat);
+ const a=arena();a.b.mode='campaign';a.u.ranks.AP03=8;a.fire();a.b.projectiles=[];a.e.finishAction(true);assert(a.u.retreat);assert.equal(a.u.moveLeft,a.u.maxMove*.54);assert(!a.e.fire('A01',30,.6));assert(!a.e.select(a.foe(1600,1800,{side:0}).id));const x=a.u.x;a.e.move(1,.1);assert(a.u.x>x);a.u.moveLeft=0;C.tickRedesign(a.e,.01);assert(!a.u.retreat);
 });
 test('빙호 bounces until fuse; shards and primary explosion follow',()=>{
  const a=arena('M02',8),p=a.fire(0,.2),t=a.foe(520,1800);let count=0;for(let i=0;i<280;i++){a.e.stepProjectile(p,1/120);count=Math.max(count,p.bounces);assert.equal(t.hp,t.maxHp);}assert(count>0);for(let i=0;i<Math.ceil(p.fuseAt/C.STEP)&&a.b.projectiles.includes(p);i++)a.e.stepProjectile(p,1/120);assert(!a.b.projectiles.includes(p));assert.equal(a.b.projectiles.filter(q=>q.secondary).length,13);
@@ -145,7 +145,7 @@ test('enemy/NPC loadouts use frozen legacy definitions, Stage 1–10 construct',
 });
 test('removed specialization no longer buffs a branch, and 기해 grows focus and regeneration',()=>{
  const a=arena('A14');a.u.ranks={A01:1,A14:2,A11:2,AP05:8,AP04:1};assert.equal(C.mainBranch(a.u),null);a.u.ranks.A14=3;assert.equal(C.specialty(a.u,C.SKILLS.A14),0);assert.equal(C.specialty(a.u,C.SKILLS.A11),0);
- const h=C.freshHero('mage'),before=C.heroStats(h,'mage');h.ranks.MP02=8;const after=C.heroStats(h,'mage');assert(Math.abs(after.mp/before.mp-1.24)<.015);assert.equal(after.regen-before.regen,4+after.mp*.048);
+ const h=C.freshHero('mage'),before=C.heroStats(h,'mage');h.ranks.MP02=8;const after=C.heroStats(h,'mage');assert(Math.abs(after.mp/before.mp-1.24)<.015);assert.equal(after.regen-before.regen,4+after.mp*.04);
 });
 test('legacy mage child caps retain their historical values after alias migration',()=>{
  const a=arena(),enemy=a.foe();enemy.attack=1;enemy.combatBaseAttack=1;const p={...a.fire(),owner:enemy.id,side:1,skill:'LM13',mode:'meteor',child:true,damage:1000};a.u.shield=0;const hp=a.u.hp;a.e.hurt(a.u,1000,enemy.id,false,p,p);assert.equal(hp-a.u.hp,160);

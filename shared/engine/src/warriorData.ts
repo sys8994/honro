@@ -7,7 +7,7 @@ const WARRIOR_ICONS:Record<string,string>={S00:'sword',S03:'wave',S05:'spin',S07
 export const COMBO_HITS=[3,3,4,4,5,5,6,7];
 export const ORBIT_BLADES=[5,5,6,6,7,8,8,9];
 export const SALHEUN_TURNS=[1,1,2,2,3,3,3,4];
-export const SALHEUN_RATIO=[.12,.15,.15,.18,.18,.21,.24,.24];
+export const SALHEUN_RATIO=[.12,.15,.15,.18,.18,.21,.24,.26];
 export const JUCHEON_DISCOUNT=[.50,.55,.60,.65,.75,.85,.95,1];
 export const JUCHEON_EFFECT=[.04,.05,.06,.08,.10,.12,.14,.15];
 // Rank-scaled spell costs have a median of 38 at rank 1 and 25 at rank 8.
