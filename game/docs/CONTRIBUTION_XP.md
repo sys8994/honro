@@ -28,7 +28,7 @@ Enemy identity uses authored unit IDs or separate logical wave source+wave index
 
 An enemy's finite combat slice is finalized once at an action boundary following its defeat. All slices together can spend at most40% of the ordinary stage budget. Integer remainders and any unspent combat amount roll into chapter completion. Completion distributes the remaining stage budget using all effective chapter contributions. Final-hit bonus is0.
 
-No grant is revoked after a later contribution. A party defeat keeps earned XP and the complete current ledger; a retry reuses the original budget, accepted HP intervals, goal/threat tokens and settlement flags. Save interruption selects the newer serialized contribution sequence and recovers its already-earned XP; it does not overwrite it with a stale profile ledger.
+No grant is revoked after a later contribution. A party defeat keeps earned XP and the complete current ledger; a retry reuses the original budget, accepted HP intervals, goal/threat tokens and settlement flags. Save interruption selects the newer serialized contribution sequence and recovers its already-earned XP; it does not overwrite it with a stale profile ledger. Recovered level gains refresh real companion stats while preserving HP deficits and death, rather than resurrecting or transforming enthralled enemies.
 
 For every stage:
 
@@ -48,6 +48,7 @@ Focused headless tests:
 
 - tests/contribution-xp-ledger.mjs: proportional allocation, deterministic integer remainder, finite support, unknown/system share and MAX_LEVEL
 - tests/contribution-xp-engine.mjs: actual damage/healing/shields/weakness/manifestation/recursive effects/stun/missile removal/summon death/retry
+- tests/contribution-xp-app.mjs: real App export/import, Continue, retry and once-only completion through DOM/storage doubles
 - tests/contribution-xp-migration.mjs: policy migration, frozen budget, split reunion, joins, interrupted snapshots and read-only real stage16 save
 - tests/objective-contribution-invariants.mjs, objective-contribution-runtime.mjs and objective-wave-provenance.mjs: effective goal evidence, neutral shares, all30 goal-kind inventory and real repeated-wave producers
 - tests/act3-growth.mjs explicitly preserves the historical v3 migration/reward-curve contract; it no longer claims shared XP is the new policy.

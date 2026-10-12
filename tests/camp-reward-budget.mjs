@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {appHarness,plain,report} from './app-regression-helpers.mjs';
-const h=await appHarness(),{g,load,reload,profileThrough,click,finish}=h,P=g.HonroProgression,checks=[];
+const h=await appHarness(),{g,load,reload,profileThrough:baseProfileThrough,click,finish}=h,P=g.HonroProgression,checks=[];
+// This suite freezes the v3 ceiling contract for migrated in-progress saves.
+const profileThrough=id=>{const p=baseProfileThrough(id);p.honroGrowth={version:3,stages:{[id+1]:{policy:3,combat:{},cleared:false}}};return p;};
 let app=load(profileThrough(0));app.launch(1);finish(app);const initial=plain(app.engine.b.honroGrowth.limit);
 for(let i=0;i<3;i++){P.awardCombat(app.engine,app.engine.active,19);const xp=app.engine.b.heroes.archer.xp;click('retry');finish(app);assert.deepEqual(plain(app.engine.b.honroGrowth.limit),initial);assert.equal(app.engine.b.heroes.archer.xp,xp);}checks.push('retries cannot move original completion ceiling');
 P.awardCombat(app.engine,app.engine.active,11);app.engine.b.phase='lost';app.outcome(true);app=reload();app.launch(1);finish(app);assert.deepEqual(plain(app.engine.b.honroGrowth.limit),initial);checks.push('loss and reload preserve original ceiling');

@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import {battlefield} from '../game/tests/helpers.mjs';
 import {unitContract} from './act2-spatial-contract-helpers.mjs';
-/** First-clear reward ledger fixture, not a playthrough of Stages1–17. */
+/** Frozen v3 first-clear reward ledger fixture, not a playthrough of prior stages.
+ * New contribution entry readiness requires actual gameplay records, not fabricated clear credit. */
 export function campaignEntryReadiness(g,{through=17}={}){
  assert(Number.isInteger(through)&&through>=1&&through<=29);
  const C=g.HONRO_CORE,P=g.HonroProgression,p=C.defaults(),rows=[];
- for(let id=1;id<=through;id++){const st=g.HONRO_CONTENT.stages[id-1];if(id===11)g.HonroAct2.recruit(p);const {b}=battlefield(g,id,{profile:p});P.complete(b);p.heroes=structuredClone(b.heroes);p.honroGrowth=structuredClone(b.honroGrowth.ledger);p.cleared[id]={visits:1,rounds:0};P.recruit(p,st);rows.push({stage:id,limit:structuredClone(b.honroGrowth.limit),xp:Object.fromEntries(p.recruited.map(c=>[c,p.heroes[c].xp])),level:Object.fromEntries(p.recruited.map(c=>[c,C.levelOf(p.heroes[c])]))});}
- const xp=through<=20?P.legacyCampaignAnchor(through):P.budget(through+1).start;for(const cls of p.recruited){assert.equal(p.heroes[cls].xp,xp,'Actual first-clear/recruit ledger agrees with the next stage entry budget');assert.equal(C.levelOf(p.heroes[cls]),C.levelOf(xp));}
+ for(let id=1;id<=through;id++){const st=g.HONRO_CONTENT.stages[id-1];if(id===11)g.HonroAct2.recruit(p);p.honroGrowth??={version:3,stages:{}};p.honroGrowth.stages[id]??={policy:3,combat:{},cleared:false};const {b}=battlefield(g,id,{profile:p});P.complete(b);p.heroes=structuredClone(b.heroes);p.honroGrowth=structuredClone(b.honroGrowth.ledger);p.cleared[id]={visits:1,rounds:0};P.recruit(p,st);rows.push({stage:id,limit:structuredClone(b.honroGrowth.limit),xp:Object.fromEntries(p.recruited.map(c=>[c,p.heroes[c].xp])),level:Object.fromEntries(p.recruited.map(c=>[c,C.levelOf(p.heroes[c])]))});}
+ const xp=through<=20?P.legacyCampaignAnchor(through):P.budget(through+1).start;for(const cls of p.recruited){assert.equal(p.heroes[cls].xp,xp,'Historical v3 first-clear/recruit ledger agrees with the next stage entry budget');assert.equal(C.levelOf(p.heroes[cls]),C.levelOf(xp));}
  return{xp,level:C.levelOf(xp),heroes:p.heroes,cleared:p.cleared,ledger:p.honroGrowth,rows,scope:`Only a reward-ledger completion fixture of Stages1–${through}. It does not claim those stages were played.`};
 }
 /** Read-only representative skill geometry. These functions inspect current

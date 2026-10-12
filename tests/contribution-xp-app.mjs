@@ -1,0 +1,10 @@
+// Production App save/import/Continue/retry paths with DOM/storage doubles.
+import assert from 'node:assert/strict';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+const h=await appHarness(),{g,load,reload,click,finish}=h,P=g.HonroProgression,C=g.HONRO_CORE;
+const p=h.profileThrough(15);delete p.honroGrowth;for(const cls of C.CLASS_IDS)p.heroes[cls].xp=37445;
+let app=load(p);app.launch(16);finish(app);let b=app.engine.b;assert(P.isContributionBattle(b));assert.equal(P.contributionState(b).total,17240);const before=Object.fromEntries(C.CLASS_IDS.map(cls=>[cls,b.heroes[cls].xp]));
+const target=app.engine.alive(1)[0],targetId=target.id,archer=app.engine.heroesAlive().find(u=>u.cls==='archer');app.engine.random=()=>1;app.engine.hurt(target,1e8,archer.id,false,undefined,undefined,'salheun');P.flushContribution(app.engine);const paid=P.contributionState(b).spent;assert(paid>0);app.export();const exported=await h.exported();await h.import(exported);app=reload();click('continue');finish(app);b=app.engine.b;assert.equal(P.contributionState(b).spent,paid);assert.equal(b.heroes.archer.xp,before.archer+paid);const saved=plain(b.honroGrowth.ledger.stages[16].contribution);
+click('retry');finish(app);b=app.engine.b;assert.equal(P.contributionState(b).spent,paid);assert.equal(b.heroes.archer.xp,before.archer+paid);const again=app.engine.unit(targetId),mage=app.engine.heroesAlive().find(u=>u.cls==='mage');app.engine.hurt(again,1e8,mage.id,false,undefined,undefined,'salheun');P.flushContribution(app.engine);assert.equal(P.contributionState(b).spent,paid);assert.equal(b.heroes.mage.xp,before.mage);assert.deepEqual(plain(P.contributionState(b).enemies[targetId].damage),saved.enemies[targetId].damage);
+b.phase='won';app.outcome(true);assert.equal(app.profile.heroes.archer.xp-before.archer,17240);for(const cls of C.CLASS_IDS.filter(c=>c!=='archer'))assert.equal(app.profile.heroes[cls].xp,before[cls]);const final=plain(app.profile.heroes);app.outcome(true);assert.deepEqual(plain(app.profile.heroes),final);
+console.log('PASS production App v4 export/import, Continue, retry, unchanged prior HP credit and once-only clear');

@@ -10,6 +10,8 @@ let app;
 async function check(name,fn){await fn();checks.push(name);console.log('PASS',name);}
 function enter(id,version=2){
  const p=profileThrough(id-1);
+ // Historical synthetic mid-mission fixtures retain the v3 payout policy.
+ p.honroGrowth={version:3,stages:{[id]:{policy:3,combat:{},cleared:false}}};
  if(version===1)p.honroSplitCampaign={version:1,stage:id,mode:'replay',finished:false,nextStage:null,activeRoster:g.HonroSplitCampaign.roster(id,1),vitals:{},starts:{},completed:{},items:null};
  for(const cls of p.recruited)p.heroes[cls].xp=P.budget(id).start;
  app=load(p);app.launch(id);finish(app);app.turnNotice=null;

@@ -29,7 +29,7 @@ export function beginHit(b:Battle,u:Unit,raw:Unit|undefined,src:Unit|undefined,p
  let beforeDefense=final;
  if(normal&&raw?.side===1&&u.side!==1){
   const weak=q?.honroWeakFactor??raw.curseAttack??0,weakOwner=q?.honroWeakOwner||r.honroWeakOwner||raw.curseOwner;
-  const screen=q?.honroScreenProtection||{},screenSum=Object.values(screen as Record<string,number>).reduce((a,n)=>a+n,0),screenRatio=p&&p.damage>0?1+screenSum/p.damage:1;
+  const screen=q?.honroScreenProtection||{},screenSum=Object.values(screen as Record<string,number>).reduce((a,n)=>a+n,0),screenRatio=1+screenSum;
   const currentExistence=attack?existenceMultiplier(attack,u,raw):1,unwardedExistence=attack?existenceMultiplier(attack,{...u,soulDefenseBonus:0},raw):1,soulRatio=unwardedExistence/Math.max(.01,currentExistence);
   beforeDefense=rounded(uncapped/Math.max(.01,defense)/Math.max(.01,1-weak)*screenRatio*soulRatio);
   const add=(id:string|undefined,n:number)=>{if(id&&n>0)protections[id]=(protections[id]||0)+n;};
@@ -38,7 +38,7 @@ export function beginHit(b:Battle,u:Unit,raw:Unit|undefined,src:Unit|undefined,p
   if(u.arrivalGuard!==undefined)add(v.honroArrivalGuardOwner||u.id,final/.9-final);
   add(v.honroSoulDefenseOwner,Math.max(0,final*(soulRatio-1)));
   add(weakOwner,final/Math.max(.01,1-weak)-final);
-  for(const[id,n]of Object.entries(screen as Record<string,number>))add(id,p&&p.damage>0?final*n/p.damage:0);
+  for(const[id,n]of Object.entries(screen as Record<string,number>))add(id,final*n);
   // Approximate raw-layer weights only divide the exact finite HP prevention.
  }
  return {hp,shield,final,beforeDefense,assists,protections,enemy:raw?.side===1?raw:undefined,owner};

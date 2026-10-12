@@ -64,6 +64,7 @@ function rememberLimit(b){
   const g=b?.honroGrowth,state=g?.ledger?.stages?.[b.honroStage];
   if(state&&validLimit(g.limit))state.limit=clone(g.limit);
 }
+function recoverEarnedXp(b,roster){for(const cls of C.CLASS_IDS){const h=b.heroes[cls],saved=roster?.[cls];if(!h||!saved)continue;const result=C.grantXP(h,Math.max(0,saved.xp-h.xp));if(result.after>result.before)for(const u of b.units.filter(u=>campaignHero(b,u)&&!u.enthrall&&u.cls===cls))C.applyHero(u,h,false);}}
 function initialize(b,profile){
   for(const u of b.units)if(u.side===0&&!u.summoned||u.honroAlly){const stats=C.heroStats({...((u.side===0&&!u.summoned&&!u.enthrall?b.heroes?.[u.cls]:null)||{xp:C.xpAtLevel(u.level||1)}),ranks:u.ranks||{}},u.cls,u.loadout);u.critChance=stats.critChance;u.critMultiplier=stats.critMultiplier;}
   if(b.mode!=='campaign')return;
@@ -71,8 +72,9 @@ function initialize(b,profile){
     const live=b.honroGrowth.ledger.stages[b.honroStage],stored=profile.honroGrowth?.stages?.[b.honroStage];
     if(live.contribution?.version===4&&stored?.contribution?.version===4&&(stored.contribution.sequence||0)>(live.contribution.sequence||0)){
       b.honroGrowth.ledger.stages[b.honroStage]=clone(stored);
-      for(const cls of C.CLASS_IDS)if(b.heroes[cls]&&profile.heroes[cls])C.grantXP(b.heroes[cls],Math.max(0,profile.heroes[cls].xp-b.heroes[cls].xp));
+      recoverEarnedXp(b,profile.heroes);
     }
+    if(profile.cleared?.[b.honroStage]&&b.honroGrowth.ledger.stages[b.honroStage].contribution){b.honroGrowth.ledger.stages[b.honroStage].cleared=true;b.honroGrowth.ledger.stages[b.honroStage].contribution.completed=true;}
     rememberLimit(b);return;
   }
   const ledger=clone(profile.honroGrowth||{version:config.version,stages:{}});ledger.version=config.version;ledger.stages??={};
@@ -83,7 +85,7 @@ function initialize(b,profile){
     const old=ledger.stages[stageId]||{},combat={};
     for(const cls of new Set([...Object.keys(old.combat||{}),...Object.keys(recorded.combat||{})]))combat[cls]=Math.max(old.combat?.[cls]||0,recorded.combat?.[cls]||0);
     const recovered={...clone(recorded),...old,combat,cleared:!!(old.cleared||recorded.cleared||profile.cleared[stageId])};
-    if(recorded.contribution?.version===4){const live=recorded.contribution,stored=old.contribution;recovered.contribution=clone(!stored||(live.sequence||0)>=(stored.sequence||0)?live:stored);recovered.policy=4;if(!stored||(live.sequence||0)>=(stored.sequence||0))for(const cls of C.CLASS_IDS)if(b.heroes[cls]&&previous?.heroes?.[cls])C.grantXP(b.heroes[cls],Math.max(0,previous.heroes[cls].xp-b.heroes[cls].xp));}
+    if(recorded.contribution?.version===4){const live=recorded.contribution,stored=old.contribution;recovered.contribution=clone(!stored||(live.sequence||0)>=(stored.sequence||0)?live:stored);recovered.policy=4;if(!stored||(live.sequence||0)>=(stored.sequence||0))recoverEarnedXp(b,previous?.heroes);}
     if(+stageId===previous?.honroStage&&validLimit(saved.limit))recovered.limit=clone(saved.limit);
     ledger.stages[stageId]=recovered;
   }
@@ -114,7 +116,7 @@ function initialize(b,profile){
 }
 function enemyXP(b,u){if(b.honroGrowth){u.xpBudget=Math.max(1,Math.round(b.honroGrowth.limit.combat*(u.honroXpWeight||1)/b.honroGrowth.weight));u.xpGranted=0;}}
 function awardCombat(e,source,amount){
-  const b=e.b,g=b.honroGrowth,state=g.ledger.stages[b.honroStage];if(isContributionBattle(b)||amount<=0||state.cleared)return;
+  const b=e.b,g=b.honroGrowth,state=g.ledger.stages[b.honroStage];if(b.mode!=='campaign'||isContributionBattle(b)||amount<=0||state.cleared)return;
   let changed=false;
   // Expedition XP is shared: NPC assistance and final-hit ownership cannot starve
   // a companion. The persistent per-stage budget also survives failure/retry.
@@ -154,7 +156,7 @@ function shieldLayers(b,target,before){const s=contributionState(b);if(!s)return
 function shieldAdded(b,target,owner,before){const layers=shieldLayers(b,target,before);if(layers&&target.shield>before){registerOwner(b,b.units.find(u=>u.id===owner));layers[owner]=(layers[owner]||0)+target.shield-before;}}
 function shieldConsumed(b,target,before,absorbed){const layers=shieldLayers(b,target,before),out={};if(!layers||!before)return out;for(const[id,n]of Object.entries(layers)){out[id]=n*absorbed/before;layers[id]=Math.max(0,n-out[id]);}return out;}
 function objective(b,token,contributors,points=20){const s=contributionState(b);if(!s)return false;const credits={};for(const item of contributors||[]){const cls=item.id==='_system'?'_system':actorClass(b,item.id||item.cls);if(cls)credits[cls]=(credits[cls]||0)+Math.max(0,item.weight??1);}return X.objective(s,String(token),credits,points);}
-function applyContributionGrants(b,grants,e){const s=contributionState(b);for(const [cls,amount]of Object.entries(grants)){const h=b.heroes[cls];if(!h)continue;const result=C.grantXP(h,amount);s.capDiscarded??={};s.capDiscarded[cls]=(s.capDiscarded[cls]||0)+amount-result.actual;if(result.actual)e?.emit('xp',{cls,value:result.actual});for(const u of b.units.filter(u=>campaignHero(b,u)&&u.cls===cls))if(result.after>result.before){const hp=u.hp;C.applyHero(u,h,!u.dead);recordHeal(b,u,'',u.hp-hp);if(e&&!u.dead){e.fx('text',u.x,u.y-u.h-35,'#f4d797',22,`경지 ${result.after}`);e.emit('sound',{name:'heal'});e.emit('level',{cls,value:result.after});}}}if(Object.keys(grants).length)e?.emit('save');}
+function applyContributionGrants(b,grants,e){const s=contributionState(b);for(const [cls,amount]of Object.entries(grants)){const h=b.heroes[cls];if(!h)continue;const result=C.grantXP(h,amount);s.capDiscarded??={};s.capDiscarded[cls]=(s.capDiscarded[cls]||0)+amount-result.actual;if(result.actual)e?.emit('xp',{cls,value:result.actual});for(const u of b.units.filter(u=>campaignHero(b,u)&&!u.enthrall&&u.cls===cls))if(result.after>result.before){const hp=u.hp;C.applyHero(u,h,!u.dead);recordHeal(b,u,'',u.hp-hp);if(e&&!u.dead){e.fx('text',u.x,u.y-u.h-35,'#f4d797',22,`경지 ${result.after}`);e.emit('sound',{name:'heal'});e.emit('level',{cls,value:result.after});}}}if(Object.keys(grants).length)e?.emit('save');}
 const contributionCaps=b=>Object.fromEntries(C.CLASS_IDS.map(cls=>[cls,Math.max(0,C.xpAtLevel(C.MAX_LEVEL)-b.heroes[cls].xp)]));
 function flushContribution(e){const b=e.b,s=contributionState(b);if(!s||s.completed)return;for(const row of Object.values(s.enemies).filter(v=>v.defeated&&!v.settled).sort((a,b)=>a.id.localeCompare(b.id))){row.settled=true;X.touch(s);const amount=Math.min(s.combatLimit-s.combatSpent,Math.floor(s.combatLimit*row.weight/b.honroGrowth.weight)),before=s.spent+s.forfeited,grants=X.reserve(s,amount,X.scores(s,row.id),contributionCaps(b));s.combatSpent+=s.spent+s.forfeited-before;applyContributionGrants(b,grants,e);}}
 function completeContribution(b){const s=contributionState(b);if(!s||s.completed)return;G.HonroObjectiveContributions?.beforeComplete?.(b,G.HONRO_CONTENT.stages[b.honroStage-1]);const split=G.HonroSplitCampaign?.active(b),end=b.honroSplit?.version===1?27:28;
@@ -165,7 +167,7 @@ function completeContribution(b){const s=contributionState(b);if(!s||s.completed
   for(const cls of Object.keys(weights))weights[cls]/=opportunities[cls];
   // Normalize total expedition entitlement, then deduct already earned combat XP.
   const entitlement=X.apportion(states.reduce((n,q)=>n+q.total,0),weights),owed={};for(const[cls,n]of Object.entries(entitlement)){const prior=states.reduce((v,q)=>v+(cls==='_system'?q.forfeited:q.paid[cls]||0),0);if(n>prior)owed[cls]=n-prior;}
-  const grants={};for(const q of states){const left=q.total-q.spent-q.forfeited,part=X.reserve(q,left,owed,contributionCaps(b));if(!Object.keys(part).length)q.forfeited=q.total-q.spent;for(const[cls,n]of Object.entries(part)){grants[cls]=(grants[cls]||0)+n;owed[cls]=Math.max(0,(owed[cls]||0)-n);}applyContributionGrants(b,part);q.completed=true;q.deferred=false;q.reunionSettled=true;X.touch(q);}
+  const grants={};for(const q of states){const left=q.total-q.spent-q.forfeited,systemBefore=q.systemForfeited||0,part=X.reserve(q,left,owed,contributionCaps(b));if(!Object.keys(part).length)q.forfeited=q.total-q.spent;owed._system=Math.max(0,(owed._system||0)-((q.systemForfeited||0)-systemBefore));for(const[cls,n]of Object.entries(part)){grants[cls]=(grants[cls]||0)+n;owed[cls]=Math.max(0,(owed[cls]||0)-n);}applyContributionGrants(b,part);q.completed=true;q.deferred=false;q.reunionSettled=true;X.touch(q);}
   s.reunionGrants=grants;return;
  }
  const remaining=s.total-s.spent-s.forfeited,grants=X.reserve(s,remaining,X.scores(s),contributionCaps(b));if(!Object.keys(grants).length)s.forfeited=s.total-s.spent;s.completed=true;X.touch(s);applyContributionGrants(b,grants);

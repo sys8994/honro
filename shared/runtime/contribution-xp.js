@@ -27,7 +27,7 @@ function reserve(s,amount,weights,caps={}){
  const n=Math.max(0,Math.min(Math.floor(amount),s.total-s.spent-s.forfeited));if(!n||!sum(weights))return {};
  const initial=apportion(n,weights),system=initial._system||0;delete initial._system;const grants={},players=Object.fromEntries(Object.entries(weights).filter(([cls,v])=>cls!=='_system'&&v>0));let left=n-system;
  while(left>0){const eligible=Object.fromEntries(Object.entries(players).filter(([cls])=>(caps[cls]??Infinity)>(grants[cls]||0)));if(!sum(eligible))break;const batch=apportion(left,eligible);let used=0;for(const[cls,v]of Object.entries(batch)){const accepted=Math.min(v,Math.max(0,(caps[cls]??Infinity)-(grants[cls]||0)));add(grants,cls,accepted);used+=accepted;}if(!used)break;left-=used;}
- touch(s);const paid=sum(grants);s.spent+=paid;s.forfeited+=n-paid;for(const[cls,v]of Object.entries(grants))add(s.paid,cls,v);return grants;
+ touch(s);const paid=sum(grants);s.spent+=paid;s.forfeited+=n-paid;s.systemForfeited=(s.systemForfeited||0)+system;for(const[cls,v]of Object.entries(grants))add(s.paid,cls,v);return grants;
 }
 function reconcile(s){return {total:s.total,allocated:s.spent,forfeited:s.forfeited,pending:Math.max(0,s.total-s.spent-s.forfeited)};}
 G.HonroContributionXP={VERSION,touch,create,enemy,damage,threat,heal,control,block,objective,scores,enemyScores,apportion,reserve,reconcile};

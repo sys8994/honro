@@ -193,7 +193,7 @@ export function bladeScreenPass(e:Engine,p:Projectile,a:Vec,b:Vec){
   if(A<1e-8||D<0||C<0)continue;
   const ts=[(-B-Math.sqrt(D))/(2*A),(-B+Math.sqrt(D))/(2*A)];
   if(!ts.some(t=>t>=0&&t<=1&&(a.x+dx*t-c.x)*s.facing>=0))continue;
-  const beforeScreen={...p};p.fieldHits.push(key);s.hits++;const saved=p.damage*(.50+.20*(s.rank-1)/7);p.damage-=saved;const sources=((p as any).honroScreenProtection??={});sources[u.id]=(sources[u.id]||0)+saved;
+  const beforeScreen={...p};p.fieldHits.push(key);s.hits++;const saved=p.damage*(.50+.20*(s.rank-1)/7);p.damage-=saved;const sources=((p as any).honroScreenProtection??={}),remaining=p.damage/Math.max(.0001,p.damage+saved);for(const id of Object.keys(sources))sources[id]/=remaining;sources[u.id]=(sources[u.id]||0)+saved/Math.max(.0001,p.damage);
   u.bladeStored=Math.min(.35+.10*(s.rank-1)/7,(u.bladeStored||0)+saved/Math.max(1,u.attack*180));
   e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:s.facing,y2:1,color:'#becdc9',size:175});e.emit('sound',{name:'sword'});
   if(p.damage<5){intercepted(e,beforeScreen,u.id);e.remove(p);}
