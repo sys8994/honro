@@ -56,3 +56,7 @@ for(const [viewport,padding,joystick,skills,gaps] of [[333,16,84,92,8],[360,16,8
  assert(joystick+skills+arc+gaps+2*padding<=viewport,`HUD must fit without shrinking the ${joystick}px joystick at ${viewport}px`);
  console.log(`PASS ${viewport}px HUD width: ${joystick}px joystick, ${padding}px safe-side minimum, 44px+ skill targets, separate XP row`);
 }
+
+assert.match(css,/--hud-height:calc\(var\(--action-height\) \+ var\(--hud-block-start\) \+ var\(--hud-block-end\) \+ 1px\)/);
+assert.match(css,/padding:var\(--hud-block-start\) [^;]+var\(--hud-block-end\)/);
+console.log('PASS desktop battlefield reservation equals arc + shared padding + border');

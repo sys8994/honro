@@ -128,14 +128,14 @@
    collapse the three stacked HUD bands into one horizontal control rail:
    joystick | 2x2 party | stacked vitals | skills | actions. */
 @media (orientation:landscape) and (min-width:900px){
-  .honro #app .battle{--hud-height:144px!important}
+  .honro #app .battle{--hud-block-start:7px;--hud-block-end:max(12px,calc(env(safe-area-inset-bottom) + 8px));--hud-height:calc(var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
   .honro #app .battle-bottom.honro-compact-hud{
     display:grid!important;
     grid-template-columns:var(--joystick-size) clamp(176px,20vw,220px) clamp(165px,20vw,235px) minmax(220px,1fr) var(--action-width)!important;
     --fire-size:66px;grid-template-rows:var(--action-height)!important;
     gap:0 clamp(6px,1vw,10px)!important;
     align-items:center!important;
-    padding:7px max(var(--hud-inline),env(safe-area-inset-right)) max(12px,calc(env(safe-area-inset-bottom) + 8px)) max(var(--hud-inline),env(safe-area-inset-left))!important;
+    padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important;
     background:linear-gradient(180deg,rgba(6,19,27,.25),rgba(6,19,27,.94) 18%,rgba(5,16,24,.99))!important;
   }
   .honro #app .honro-compact-hud .hud-roster{
