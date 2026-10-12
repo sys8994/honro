@@ -64,6 +64,7 @@ function tick(app,dt){
  if(st.id===7&&(hs.rescuedCount||0)>=3){const instruction=l=>l[2]?.storyId?.includes('entry-follow-7-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(instruction));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!instruction(l));}
  const lead=heroes.reduce((a,c)=>a.x>c.x?a:c),height=Math.min(...heroes.map(h=>h.y)),boundary=b.phase==='transition'&&!b.projectiles.length&&!e.settleBusy();
  for(const m of b.honroMarkers||[]){
+   if(m.action==='rescue'&&!m.collected)G.HonroObjectiveContributions?.approach(b,m.id,heroes,e.unit(m.target),220);
    const distance=m.type==='sector'?430:m.type==='relic'?155:180;
    if(heroes.some(u=>Math.hypot(u.x-m.x,(u.y-m.y)*(m.type==='sector'?.6:1))<distance))m.honroPending=true;
    if(!m.honroPending)continue;
@@ -82,8 +83,8 @@ function tick(app,dt){
  const obj=e.unit('objective');
  if(st.objective==='rescue'&&obj&&!obj.dead){
    if(!hs.rescued&&heroes.some(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205))hs.rescuePending=true;
-   if(hs.rescuePending&&!hs.rescued){hs.rescued=true;app.event('뒤처진 피란민이 일행을 따라오기 시작한다.');}
-   if(hs.rescued&&lead.x>obj.x+65&&b.phase!=='ally'){obj.x+=Math.min(dt*360,lead.x-obj.x-60);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
+   if(hs.rescuePending&&!hs.rescued){const rescuer=heroes.find(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205);if(rescuer)G.HonroObjectiveContributions?.interact(b,'rescue-carrier',rescuer);hs.rescued=true;app.event('뒤처진 피란민이 일행을 따라오기 시작한다.');}
+   if(hs.rescued&&lead.x>obj.x+65&&b.phase!=='ally'){const before={x:obj.x,y:obj.y},exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-130,y:obj.y};obj.x+=Math.min(dt*360,lead.x-obj.x-60);obj.y=G.HonroWorld.top(b,obj.x,obj.y);G.HonroObjectiveContributions?.escort(b,'rescue-carrier',obj,{x:exit.x-140,y:exit.y},[lead],before,0);}
  }
  if(boundary&&b.side===0&&hs.lastRitualRound!==b.round){
    hs.lastRitualRound=b.round;hs.lastRound=b.round;
@@ -94,6 +95,8 @@ function tick(app,dt){
  reinforceHold(app,boundary);
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
  if(st.id===10)finale(app);
+ if(st.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=heroes.filter(u=>u.x>=exit.x-120);if(arrived.length)G.HonroObjectiveContributions?.arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}
+ G.HonroObjectiveContributions?.observe(b,heroes);
  app.checkMission(e);
 }
 G.HonroMission={tick,finale,finaleSites,FINALE_TURNS,FINALE_CAP};

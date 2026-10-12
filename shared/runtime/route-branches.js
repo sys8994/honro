@@ -22,6 +22,7 @@ function commit(app,step){const b=app.engine.b;if(!active(b)||step?.kind!=='rout
  // Array order is the authored, persisted marker order. The current actor wins
  // a simultaneous split-party arrival; otherwise that fixed order is stable.
  const choices=candidates(b),u=b.units.find(u=>u.id===b.active),r=choices.find(r=>heroes(b).includes(u)&&reaches(b,u,marker(b,r.markerId)))||choices[0];if(!r)return false;
+ const point=marker(b,r.markerId),arrived=heroes(b).filter(u=>reaches(b,u,point));G.HonroObjectiveContributions?.arrive(b,'route:'+step.id,[arrived.find(u=>u.id===b.active)||arrived[0]],p=>reaches(b,p,point));
  Object.assign(state,{selectedRoute:r.id,sourceRun:b.session,fromStage:b.honroStage,toStage:b.honroRouteSpec.toStage,exitId:r.markerId,round:b.round});
  act(b).memory(b).done[step.id]=true;act(b).memory(b).checkpoints.push({id:step.id,route:r.id,round:b.round});const m=marker(b,r.markerId);if(m)m.collected=true;
  if(r.lines?.length)app.sayLines(r.lines);app.event(r.label||m?.label||step.label);app.dirty=true;return true;

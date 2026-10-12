@@ -71,7 +71,7 @@ function attach(app,e){if(!active(e.b)||e.honroStakeAttached)return;e.honroStake
 // A creative jump or longer shot can skip traversal markers, never documents.
 function tickFlexible(app){const e=app.engine,b=e.b,s=b.honroStakeCrossing,team=heroes(b),list=crossings(b);if(team.length!==2)return;
  s.reached??={};
- for(const u of team)if(!u.dead&&u.hp>0&&e.grounded(u))for(let i=s.index;i<list.length;i++)if(inside(u,list[i].landing)&&i+1>(s.reached[u.cls]||0)){s.reached[u.cls]=i+1;app.dirty=true;}
+ for(const u of team)if(!u.dead&&u.hp>0&&e.grounded(u))for(let i=s.index;i<list.length;i++)if(inside(u,list[i].landing)&&i+1>(s.reached[u.cls]||0)){G.HonroObjectiveContributions?.arrive(b,'cross:'+list[i].markerId+':'+u.cls,[u],p=>inside(p,list[i].landing),10);s.reached[u.cls]=i+1;app.dirty=true;}
  const reached=Math.min(...team.map(u=>s.reached[u.cls]||s.index));
  s.crossed=Object.fromEntries(team.filter(u=>(s.reached[u.cls]||0)>s.index).map(u=>[u.cls,true]));
  const advanced=reached>s.index;
@@ -84,7 +84,7 @@ function tickFlexible(app){const e=app.engine,b=e.b,s=b.honroStakeCrossing,team=
 }
 function tick(app){const b=app.engine?.b;if(!active(b)||app.dialogue||app.done)return;initialize(b);if(recoverFailure(app))return;const s=b.honroStakeCrossing,c=current(b);if(flexible(b))return tickFlexible(app);if(!c)return;
  const team=heroes(b),gates=(b.stakes||[]).filter(z=>z.skill==='M09'&&z.side===0&&(z.expires===undefined||z.expires>b.round));
- if(team.length===2&&team.every(u=>s.crossed[u.cls]&&inside(u,c.landing))){s.index++;s.armed=false;s.crossed={};s.attempted=false;s.pairSeen=false;b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');takeCheckpoint(b);app.dirty=true;app.event?.(current(b)?'두 동행이 건넜습니다. 다음 석대에 새 진목을 설치하세요.':'두 동행이 물길을 건넜습니다. 기록 조사로 이어갑니다.');app.updateHUD?.(true);return;}
+ if(team.length===2&&team.every(u=>s.crossed[u.cls]&&inside(u,c.landing))){for(const u of team)G.HonroObjectiveContributions?.arrive(b,'cross:'+c.markerId+':'+u.cls,[u],p=>inside(p,c.landing),10);s.index++;s.armed=false;s.crossed={};s.attempted=false;s.pairSeen=false;b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');takeCheckpoint(b);app.dirty=true;app.event?.(current(b)?'두 동행이 건넜습니다. 다음 석대에 새 진목을 설치하세요.':'두 동행이 물길을 건넜습니다. 기록 조사로 이어갑니다.');app.updateHUD?.(true);return;}
  if(s.attempted&&gates.length===2)s.pairSeen=true;
  if(s.attempted&&!b.projectiles.some(p=>p.skill==='M09')&&b.phase!=='flight'){
   if(gates.length!==2)return retry(app,s.pairSeen?'진목이 만료되어 동행이 고립되었습니다.':'진목이 안전한 석대에 닿지 않았습니다.');

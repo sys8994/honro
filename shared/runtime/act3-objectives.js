@@ -52,8 +52,9 @@ function completeStep(app,s){const b=app.engine.b,a=memory(b);if(a.done[s.id])re
  const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines));app.event(s.label+' · 완료');app.dirty=true;
 }
 function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=e.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=s.target&&e.unit(s.target);
- if(s.kind==='rescue'){u.honroResolved=true;u.shield=Math.max(u.shield||0,Math.round(u.maxHp*.3));}
+ if(s.kind==='rescue'){G.HonroObjectiveContributions?.approach(b,s.id,heroes(b),u,220);u.honroResolved=true;u.shield=Math.max(u.shield||0,Math.round(u.maxHp*.3));}
  if(s.startsEscort){a.escorts[s.target]={started:true};u.fixed=false;u.maxMove=u.moveLeft=900;u.walkSpeed=Math.min(u.walkSpeed||280,320);}
+ G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
  completeStep(app,s);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
@@ -73,20 +74,21 @@ function spawnHold(app,s,h){if(!s.wave||h.spawned>=s.wave.count)return true;cons
  h.spawned+=n;memory(b).events[key]=true;app.event('길목에 '+n+'명의 위협이 다가온다.');app.dirty=true;return true;
 }
 function holdTick(app,s,m){const b=app.engine.b,a=memory(b),end=b.teamEnds?.[1]||0,h=a.holds[s.id]??={progress:0,spawned:0,lastEnemyEnd:end,continuous:false};
- const guarded=heroes(b).some(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),contested=b.units.some(u=>u.side===1&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
+ const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
  if(!guarded||contested)h.continuous=false;
  else if(end===h.lastEnemyEnd&&b.side!==1)h.continuous=true;
  if(end>h.lastEnemyEnd){if(h.continuous&&guarded&&!contested)h.progress++;h.lastEnemyEnd=end;h.continuous=guarded&&!contested;app.dirty=true;}
  if(h.guarded===undefined)h.continuous=guarded&&!contested;
+ G.HonroObjectiveContributions?.maintain(b,s.id,h,guards,h.progress>priorProgress,s.rounds,h.continuous,intervalEnded);
  h.guarded=guarded;h.contested=contested;
  if(app.actorBoundary&&guarded)spawnHold(app,s,h);
 }
 function escortTick(app,s,m,dt){const e=app.engine,b=e.b,a=memory(b),npc=e.unit(s.target),escort=a.escorts[s.target];if(!escort?.started||!alive(npc))return;
  const route=(b.honroMarkers||[]).filter(q=>q.id.startsWith('route:'+s.id+':')).sort((a,b)=>Number(a.id.split(':').at(-1))-Number(b.id.split(':').at(-1)));
  escort.waypoints??={};let index=escort.waypoints[s.id]||0;while(route[index]&&sameFloor(npc,route[index],90))index++;escort.waypoints[s.id]=index;
- const goal=route[index]||m,dir=Math.sign(goal.x-npc.x),lead=heroes(b).some(u=>sameFloor(u,npc,950)&&(u.x-npc.x)*dir>65);
- if(dt>0&&dir&&lead&&!app.dialogue){npc.fixed=false;npc.moveLeft=900;e.walk(npc,dir,Math.min(dt,.05));}
- if(sameFloor(npc,m,170)&&heroes(b).some(u=>sameFloor(u,npc,540)))completeStep(app,s);
+ const goal=route[index]||m,dir=Math.sign(goal.x-npc.x),leaders=heroes(b).filter(u=>sameFloor(u,npc,950)&&(u.x-npc.x)*dir>65),lead=leaders.length>0;
+ if(dt>0&&dir&&lead&&!app.dialogue){const before={x:npc.x,y:npc.y};npc.fixed=false;npc.moveLeft=900;e.walk(npc,dir,Math.min(dt,.05));G.HonroObjectiveContributions?.escort(b,s.id,npc,m,leaders,before);}
+ if(sameFloor(npc,m,170)&&heroes(b).some(u=>sameFloor(u,npc,540))){G.HonroObjectiveContributions?.finishEscort(b,s.id);completeStep(app,s);}
 }
 function failure(b){if(!active(b))return null;const a=memory(b);if(b.honroStage===reunionStage(b)&&[1,2].includes(b.honroSplit?.version)&&!a.done['party-reunion']&&G.HonroSplitCampaign?.allPresent(b)===false)return'합류하기 전에 동행을 잃어 두 조사팀이 모일 수 없다. 이 장을 다시 시작하자.';if(b.units.some(u=>u.honroProtected&&!alive(u)))return'지켜야 할 주민을 잃었다. 이 장을 다시 시작할 수 있다.';
  for(const s of steps(b))if(!satisfied(b,s)&&s.requiredClass&&!heroes(b).some(u=>u.cls===s.requiredClass))return H.hero[s.requiredClass].name+'이 쓰러져 남은 목표를 이어갈 수 없다. 이 장을 다시 시작하자.';
@@ -98,9 +100,11 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['wo
  let s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  // Commit the reunion at the same actor boundary that opens its Story lock.
  // A dash crossing the circle earlier in the action is not a completed meeting.
- if(s){const m=marker(b,s.id);if(s.kind==='route')G.HonroRouteBranches?.commit(app,s);else if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&[1,2].includes(b.honroSplit?.version),present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;const crossing=G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.crossings(b).some(c=>c.markerId===s.id);if(G.HonroStakeCrossing?.allowsStep(b,s.id)!==false&&safeBoundary&&present&&group.length&&(crossing||(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r)))))completeStep(app,s);}else if(s.kind==='escort')escortTick(app,s,m,dt);}
+ if(s){const m=marker(b,s.id);if(s.kind==='route')G.HonroRouteBranches?.commit(app,s);else if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&[1,2].includes(b.honroSplit?.version),present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;const crossing=G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.crossings(b).some(c=>c.markerId===s.id);if(G.HonroStakeCrossing?.allowsStep(b,s.id)!==false&&safeBoundary&&present&&group.length&&(crossing||(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r))))){if(!crossing){const arrived=group.filter(u=>sameFloor(u,m,r));G.HonroObjectiveContributions?.arrive(b,s.id,s.allHeroes?arrived:[arrived.find(u=>u.id===b.active)||arrived[0]],p=>sameFloor(p,m,r));}completeStep(app,s);}}else if(s.kind==='escort')escortTick(app,s,m,dt);}
  s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  const group=heroes(b);
+ for(const step of readySteps(b))if(step.kind==='rescue'){const point=b.units.find(u=>u.id===step.target)||marker(b,step.id);G.HonroObjectiveContributions?.approach(b,step.id,group,point,220,!b.units.some(v=>v.side===1&&alive(v)&&sameFloor(v,point,220)));}
+ G.HonroObjectiveContributions?.observe(b,group);
  G.HonroEncounters.update(app,dt,{progress:Math.max(0,...group.map(u=>u.x)),height:Math.min(b.height,...group.map(u=>u.y)),broken:b.terrain.filter(t=>t.broken).length,collected:b.honroMarkers.filter(m=>m.collected).length});
  app.checkMission(e);
 }

@@ -133,11 +133,12 @@ function expose(b,until,site,radius=Infinity){for(const u of b.units)if(u.honroS
 function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=>q.id===m.id);
  if(!eligibility(app,m).ok)return false;
  if(m.id.startsWith('spirit-lamp')){expose(b,b.round+2,m,m.radius||1200);app.event('원혼등불 · 주변의 혼이 두 턴 동안 형태를 드러낸다.');}
- else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.');}
+ else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;G.HonroObjectiveContributions?.interact(b,m.id,e.active);const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.');}
  else{
   if(!s||s.id!==m.id)return false;
   if(s.kind==='rescue'){
    const spirit=e.unit(m.spiritId),resident=e.unit(m.target);if(!resident||resident.dead)return false;
+   G.HonroObjectiveContributions?.approach(b,s.id,e.heroesAlive(),resident,220,!interactionThreats(b,m).length);
    // Extraction attacks the possessing spirit, never the person's HP.
    if(spirit&&!spirit.dead){G.HonroProgression.defeat(e,spirit,e.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}
    resident.honroResolved=true;resident.shield=Math.max(resident.shield,Math.round(resident.maxHp*.3));a.rescued.push(resident.id);
@@ -156,6 +157,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
   if(s.id.startsWith('separate-')){if(!revision2(b)){a.pendingWaves??=[];a.pendingWaves.push({key:s.id,kind:s.id==='separate-3'?'bellCluster':'echo',n:2});}expose(b,b.round+2,m,900);}
   if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.');}
   if(s.id==='escort')a.escort=true;
+  G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
   completeStep(app,s);
  }
  if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
@@ -227,19 +229,21 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  const s=current(b),m=s&&marker(b,s.id);
  if(revision2(b)&&s?.kind==='hold'&&m){
   a.holds??={};const h=a.holds[s.id]??={progress:0,spawned:0,lastRound:b.round,enteredRound:b.round,continuous:false};
-  const guarded=heroes.some(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),contested=b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
+  const guards=heroes.filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=b.round>h.lastRound,contested=b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
   if(!guarded||contested)h.continuous=false;
   if(b.round>h.lastRound){if(h.continuous&&guarded&&!contested)h.progress++;h.lastRound=b.round;h.continuous=guarded&&!contested;app.dirty=true;}
   if(h.guarded===undefined)h.continuous=guarded&&!contested;
+  G.HonroObjectiveContributions?.maintain(b,s.id,h,guards,h.progress>priorProgress,s.rounds,h.continuous,intervalEnded);
   h.guarded=guarded;h.contested=contested;
   if(app.actorBoundary&&guarded&&!a.events['story:'+s.id]){a.events['story:'+s.id]=true;say(app,s.id+'-start',app.stage.beats?.[s.id+':start']);}
   if(app.actorBoundary&&guarded&&h.spawned<(s.wave?.count||0)&&h.waveRound!==b.round){const n=Math.min(3,s.wave.count-h.spawned),key=s.id+'-'+h.spawned;if(wave(app,key,s.wave.kind,n,s.id,s.wave.eliteEvery)){h.spawned+=n;h.waveRound=b.round;}}
  }
  if(s?.kind==='route')G.HonroRouteBranches?.commit(app,s);
- if(s?.kind==='reach'&&heroes.some(u=>Math.hypot(u.x-m.x,u.y-m.y)<150))completeStep(app,s);
+ if(s?.kind==='rescue')G.HonroObjectiveContributions?.approach(b,s.id,heroes,e.unit(m.target)||m,220,!interactionThreats(b,m).length);
+ if(s?.kind==='reach'&&heroes.some(u=>Math.hypot(u.x-m.x,u.y-m.y)<150)){const arrived=heroes.filter(u=>Math.hypot(u.x-m.x,u.y-m.y)<150);G.HonroObjectiveContributions?.arrive(b,s.id,[arrived.find(u=>u.id===b.active)||arrived[0]],p=>Math.hypot(p.x-m.x,p.y-m.y)<150);completeStep(app,s);}
  if(s?.kind==='escort'&&a.escort){const npc=e.unit('objective'),leader=heroes.filter(u=>u.y<=(npc?.y??0)+160).sort((u,v)=>v.x-u.x)[0];
-  if(npc&&!npc.dead&&leader&&leader.x>npc.x+90&&dt>0){e.walk(npc,1,Math.min(dt,.05));npc.moveLeft=900;}
-  if(npc&&Math.hypot(npc.x-m.x,npc.y-m.y)<170)completeStep(app,s);
+  if(npc&&!npc.dead&&leader&&leader.x>npc.x+90&&dt>0){const before={x:npc.x,y:npc.y};e.walk(npc,1,Math.min(dt,.05));npc.moveLeft=900;G.HonroObjectiveContributions?.escort(b,s.id,npc,m,[leader],before);}
+  if(npc&&Math.hypot(npc.x-m.x,npc.y-m.y)<170){G.HonroObjectiveContributions?.finishEscort(b,s.id);completeStep(app,s);}
  }
  if(app.actorBoundary){
   a.pendingWaves??=[];
@@ -259,6 +263,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
    if(b.round-u.honroEchoBorn>=2&&!u.honroPossessed){const d=G.HonroWorld.archetypes.picks;u.honroPossessed=true;u.name='잔향이 든 곡괭이';u.honroType='picks';u.honroVariant='picks';u.loadout=[...d.skills];u.ranks.H2PICK=1;u.honroSpirit=false;u.spiritHidden=false;u.fixed=false;u.existenceDefense={form:1,qi:1,soul:1.1};u.y=G.HonroWorld.top(b,u.x,u.y);e.message('방치된 잔향혼이 작업도구에 들었다.');}
   }
  }
+ G.HonroObjectiveContributions?.observe(b,heroes);
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
