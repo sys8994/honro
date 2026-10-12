@@ -11,6 +11,16 @@
 
 고정 월드 위치를 위해 L1에 작성된 mountain 역할의 뒤 암벽은 투영·지지면을 움직이지 않고 L3 마감만 사용한다. 가까운 나무·작업대와 구분하기 위한 미술 깊이이며 충돌 분류를 대신하지 않는다. 대비 보존율도 같은 STYLE에 있으며 L1 1, L2 .97, L3 .88, L4 .84, SKY .80, 명암 기준값은 64/255다.
 
+## 새 요소의 공통 기본값과 선언
+
+새 지형과 캐릭터는 공통 Scene 진입점에서 항상 gameplay context로 들어간다. 새 요소는 collisionIds/자산 충돌/interactionType/실제 목표 연결이 있으면 gameplay, 없으면 decoration이다. 새 객체 이름이나 stage 번호를 renderer에 추가하지 않는다.
+
+순수 그림이 별도의 실제 사건 사물을 대신 표현한다면 instance 또는 asset의 `visualRole: "gameplay"`로 선언하거나 `gameplayLinks: {terrainIds: [...], unitIds: [...], markerIds: [...], objectiveIds: [...]}`로 실제 대상을 연결한다. 장식은 `visualRole: "decoration"`으로 명시할 수 있지만 실제 충돌/목표 링크가 있으면 gameplay가 우선한다. 미완성/유효하지 않은 링크는 게임성을 만들어 내지 않는다. asset.params에도 같은 선언을 둘 수 있다.
+
+`visualDepth: "L1" | "L2" | "L3" | "L4" | "SKY"`는 채색 깊이만 고른다. 투영·시차·지지면은 기존 depthLayer/group 설정을 계속 사용한다. 지형과 일반 사물의 윤곽선 강도는 같은 중앙 STYLE의 terrain/outline 항목으로 조절한다. 캐릭터의 승인된 재질/윤곽/정체성은 보존한다.
+
+명시적 연결을 저장하지 않던 기존 캠페인·저장에 한해 `legacyGameplay` 호환 adapter가 옛 종/호송짐/기계/의식 사물의 연관성을 읽는다. 이름 기반 예외는 이 adapter에만 격리하며 신규 요소의 작성 방식이 아니다. 스크린샷의 장식 통나무·작업대에는 스타일 예외가 없다.
+
 ## 경로와 캐시
 
 최종 `visual-hierarchy.js` 훅이 스테이지별 landmark/background override 이후 의미 스타일을 선택한다. elements와 vector-art 경로는 같은 정책을 쓰며 기존 저장/사용자 맵에도 적용된다. 환경 support/placement는 실제 group 깊이로 스타일을 대체한다. SKY SVG/벡터는 초기 이미지/래스터 작성 때만 처리한다. 승인 원본의 path/node/transform은 변경하지 않는다.

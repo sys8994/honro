@@ -9,7 +9,10 @@ function compile(st,project){
   const e=clone(instance);if(e.snap){const hit=G.HonroMapEngine.surfaceY(terrain,e.x,e.y);if(hit)e.y=hit.y;}
   if(asset.renderer==='landmark'){
    const {assetId,scale,rotation,snap,depthLayer,...native}=e;
-   landmarks.push({...native,layer:renderLayer(native.layer),kind:asset.kind,size:scale??e.size??1,rotation:rotation||0});
+   // Native landmarks have no embedded asset. Preserve only the common
+   // author-declared presentation semantics when compiling that route.
+   const semantics={};for(const key of ['visualRole','visualDepth','gameplayLinks']){const value=e[key]??asset[key]??asset.params?.[key];if(value!==undefined)semantics[key]=clone(value);}
+   landmarks.push({...native,...semantics,layer:renderLayer(native.layer),kind:asset.kind,size:scale??e.size??1,rotation:rotation||0});
   }else{
    const collision=Q.collision(asset,e);for(const t of collision){t.honroElementId=e.id;t.honroElementCollision=true;}terrain.push(...collision);
    const element={...e,kind:'canonical-element',asset:clone(asset),collisionIds:collision.map(t=>t.id)};

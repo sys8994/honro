@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Rendering-only policy. L1 is a projection depth, not an interaction role.
 // Keep alpha, geometry and gameplay paints independent; distant contrast is bounded.
-const STYLE=Object.freeze({version:2,saturation:Object.freeze({L1:.82,L2:.66,L3:.48,L4:.32,SKY:.28}),contrast:Object.freeze({L1:1,L2:.97,L3:.88,L4:.84,SKY:.80}),tonePivot:64,outline:'#12232bd9',outlinePixels:1.15,materialWidth:6});
+const STYLE=Object.freeze({version:2,saturation:Object.freeze({L1:.82,L2:.66,L3:.48,L4:.32,SKY:.28}),contrast:Object.freeze({L1:1,L2:.97,L3:.88,L4:.84,SKY:.80}),tonePivot:64,outline:'#12232bd9',outlinePixels:1.15,materialWidth:6,terrain:Object.freeze({edgeInk:'#101d23d9',topLight:'#c7d0bd',woodLight:'#c8b994',edgePixels:1.5,topInkPixels:2.6,topLightPixels:1.2})});
 const colors=new Map(),contexts=new WeakMap(),metadata=new WeakMap(),images=new WeakMap(),brushes=new Map();
 function color(value,layer='L1'){
  if(typeof value!=='string')return value;const amount=STYLE.saturation[layer]??STYLE.saturation.L1,contrast=STYLE.contrast[layer]??1,key=amount+':'+contrast+':'+value;if(colors.has(key))return colors.get(key);
@@ -11,7 +11,7 @@ function color(value,layer='L1'){
  const y=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722,light=STYLE.tonePivot+(y-STYLE.tonePivot)*contrast,result='#'+rgb.map(v=>Math.round(light+(v-y)*amount*contrast).toString(16).padStart(2,'0')).join('')+alpha;
  if(colors.size>=4096)colors.clear();colors.set(key,result);return result;
 }
-function depth(inst,asset=inst?.asset){if(inst?.depthLayer&&inst.depthLayer!=='L1')return inst.depthLayer;return asset?.environmentRole==='mountain'?'L3':asset?.environmentRole==='forest'?'L2':'L1';}
+function depth(inst,asset=inst?.asset){const declared=inst?.visualDepth||asset?.visualDepth||asset?.params?.visualDepth;if(Object.hasOwn(STYLE.saturation,declared))return declared;if(inst?.depthLayer&&inst.depthLayer!=='L1')return inst.depthLayer;return asset?.environmentRole==='mountain'?'L3':asset?.environmentRole==='forest'?'L2':'L1';}
 // CSS contrast pivots around 127.5. Pair it with brightness to use the same
 // restrained 64/255 atmospheric pivot as the cached vector palettes.
 function filter(layer='SKY',brightness=1){const k=STYLE.contrast[layer]??1,b=k+STYLE.tonePivot/127.5*(1-k);return `saturate(${STYLE.saturation[layer]??1}) contrast(${k/b}) brightness(${b*brightness})`;}
@@ -51,20 +51,29 @@ function context(input,layer='L1'){
  });metadata.set(proxy,{raw:c,layer});rows.set(layer,proxy);return proxy;
 }
 function contextLike(source,target){const layer=role(source);return layer?context(target,layer):target;}
+// Compatibility only: shipped maps/saves predate explicit visualRole and
+// gameplayLinks. New official/custom assets never need an entry in this table.
+const legacyMissionAssets=Object.freeze({11:['s11-art-ritual-clearing'],12:['sq-art-waymark','quest-upper-quarry-mouth'],15:['a2-15-0','quest-new-cut-marks','quest-upper-water-mouth'],17:['s17-art-main-hoist','s17-art-control-drive-link'],19:['sb-old-soul-stone'],30:['sf-art-map-stone']});
+function legacyGameplay(inst,b,asset){const id=inst.id,kind=asset?.kind||inst.kind;
+ if(asset?.id==='act2:bell'&&[18,19].includes(b?.honroStage))return true;
+ if(inst.stage18Bell?.terrainIds?.some(tid=>b?.terrain?.some(t=>t.id===tid))||inst.stage30FerryBody||inst.honroEscortYardCargo)return true;
+ if(legacyMissionAssets[b?.honroStage]?.includes(id)||asset?.id==='act2:ritual'||asset?.id==='act2:old-soul-stone')return true;
+ if(kind==='receiverStone'&&b?.honroMarkers?.some(m=>(m.type==='receiver'||m.action==='receiver')&&Math.hypot(m.x-inst.x,m.y-inst.y)<5))return true;
+ if(b?.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=b.terrain?.find(t=>t.id==='cliff-cleat');if(t&&Math.hypot(inst.x-(t.x+t.w/2),inst.y-(t.y+t.h))<5)return true;}
+ return !!(id==='sb-bell-body'&&b?.honroBellRevision===1||id===(b?.honroEscortYardSpec?.cargo?.elementId||'sy-art-cargo')&&b?.honroStage===23||id==='sf-art-settled-barge'&&b?.honroStage===30);
+}
 function classify(inst,b,asset=inst?.asset){
  if(!inst)return'decoration';const id=inst.id;
+ // Actual collision/interaction/mission links win over any decorative hint.
  if(asset?.collision?.length||asset?.interactionType||inst.collisionIds?.length)return'gameplay';
- if(b?.terrain?.some(t=>t.honroElementId===id))return'gameplay';
- if(b?.honroMarkers?.some(m=>m.elementId===id||m.targetId===id)||b?.honroObjectives?.some(o=>o.targetId===id))return'gameplay';
- // These authored bodies share real terrain and event motion, while their
- // visual assets intentionally have no second set of collision polygons.
- if(inst.stage18Bell?.terrainIds?.some(tid=>b?.terrain?.some(t=>t.id===tid))||inst.stage30FerryBody||inst.honroEscortYardCargo||asset?.params?.terrainId&&b?.terrain?.some(t=>t.id===asset.params.terrainId))return'gameplay';
+ if(id&&b?.terrain?.some(t=>t.honroElementId===id))return'gameplay';
+ if(id&&(b?.honroMarkers?.some(m=>m.elementId===id||m.targetId===id)||b?.honroObjectives?.some(o=>o.targetId===id)))return'gameplay';
+ if(asset?.params?.terrainId&&b?.terrain?.some(t=>t.id===asset.params.terrainId))return'gameplay';
  if(typeof asset?.params?.collisionSource==='string'&&asset.params.collisionSource.split(',').some(tid=>b?.terrain?.some(t=>t.id===tid)))return'gameplay';
- const missionAssets={11:['s11-art-ritual-clearing'],12:['sq-art-waymark','quest-upper-quarry-mouth'],15:['a2-15-0','quest-new-cut-marks','quest-upper-water-mouth'],17:['s17-art-main-hoist','s17-art-control-drive-link'],19:['sb-old-soul-stone'],30:['sf-art-map-stone']};
- if(missionAssets[b?.honroStage]?.includes(id)||asset?.id==='act2:ritual'||asset?.id==='act2:old-soul-stone')return'gameplay';
- if(['receiverStone','cliffShrine','spiritKnot'].includes(inst.kind)&&b?.honroMarkers?.some(m=>['receiver','cliff-cleat'].includes(m.action||m.id)&&Math.hypot(m.x-inst.x,m.y-inst.y)<5))return'gameplay';
- if(id==='sb-bell-body'&&b?.honroBellRevision===1||id===(b?.honroEscortYardSpec?.cargo?.elementId||'sy-art-cargo')&&b?.honroStage===23||id==='sf-art-settled-barge'&&b?.honroStage===30)return'gameplay';
- return'decoration';
+ for(const links of [inst.gameplayLinks,asset?.gameplayLinks,asset?.params?.gameplayLinks])if(links&&[['terrainIds',b?.terrain],['unitIds',b?.units],['markerIds',b?.honroMarkers],['objectiveIds',b?.honroObjectives]].some(([key,rows])=>Array.isArray(links[key])&&links[key].some(id=>typeof id==='string'&&rows?.some(row=>row.id===id))))return'gameplay';
+ const declared=inst.visualRole||asset?.visualRole||asset?.params?.visualRole;
+ if(declared==='gameplay'||declared==='decoration')return declared;
+ return legacyGameplay(inst,b,asset)?'gameplay':'decoration';
 }
 G.HonroVisualStyle={STYLE,color,depth,filter,raw,role,context,contextLike,image,classify,stats:()=>({colors:colors.size,brushes:brushes.size}),key:()=>`visual-${STYLE.version}-${Object.values(STYLE.saturation).join('-')}-${Object.values(STYLE.contrast).join('-')}-${STYLE.tonePivot}-${STYLE.outline}-${STYLE.outlinePixels}-${STYLE.materialWidth}`};
 })(globalThis);

@@ -11,7 +11,7 @@ function fogCard(tint){if(cards.has(tint))return cards.get(tint);const cv=docume
  for(const [x,y,rx,ry,a]of [[190,68,200,55,.42],[300,57,172,50,.37],[380,76,130,40,.24]])glow(c,x,y,rx,ry,tint,a);
  cards.set(tint,cv);if(cards.size>24)cards.delete(cards.keys().next().value);return cv;
 }
-function fog(c,x,y,w,h,tint,alpha,time=0,speed=0){c.save();c.globalAlpha*=alpha;c.drawImage(fogCard(tint),x-w/2+Math.sin(time*.07)*speed,y-h/2,w,h);c.restore();}
+function fog(c,x,y,w,h,tint,alpha,time=0,speed=0){const layer=G.HonroVisualStyle?.role(c);if(layer&&layer!=='gameplay')tint=G.HonroVisualStyle.color(tint,layer);c.save();c.globalAlpha*=alpha;c.drawImage(fogCard(tint),x-w/2+Math.sin(time*.07)*speed,y-h/2,w,h);c.restore();}
 function shaft(c,x,y,w,h,tint,alpha,time=0){c.save();c.translate(x,y);c.scale(w,h);c.globalAlpha*=alpha*(.92+.08*Math.sin(time*.13));c.fillStyle=gradient(c,0,0,0,1,[[0,color(tint,.45)],[.32,color(tint,.22)],[1,color(tint,0)]]);c.fill(path('shaft','M-.12 0 L.12 0 L1.3 1 L.18 1 Z'));c.restore();}
 function waterfall(c,x,y,width,height,a,time,{staticOnly=false}={}){
  c.save();c.translate(x,y);c.scale(width/100,height/540);
