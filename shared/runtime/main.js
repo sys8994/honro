@@ -698,8 +698,8 @@
             const players=b.units.filter(v=>v.side===0&&!v.summoned),sig=players.map(v=>[v.id,Math.round(v.hp),Math.round(v.focus),v.acted,v.dead].join(':')).join('|')+'|'+u.id+'|'+this.selected+'|'+b.round+'|'+u.meleeFollow+'|'+u.jucheonReady+'|'+u.harmony;
             if(force||sig!==this.hudSig){
                 this.hudSig=sig;
-                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택 및 정보">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
-                $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span><span class="rank-tiny">${s.basic?'기본':s.capstone?'비기 '+(u.ranks?.[s.id]||1):s.ultimate?'비기':u.ranks?.[s.id]?'+'+u.ranks[s.id]:''}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
+                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
+                $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
                 this.drawPortraits();
             }
             $('hp-fill').style.width=(Math.max(0,u.hp)/u.maxHp*100)+'%';$('hp-label').textContent=Math.round(Math.max(0,u.hp))+' / '+u.maxHp;
@@ -1010,7 +1010,11 @@
                     this.showTitle();
                     break;
                 case 'select-hero':
+                    G.HonroUnitInfo.close(this);
                     this.selectHero(id);
+                    break;
+                case 'inspect-hero':
+                    this.cancelInput();
                     G.HonroUnitInfo.show(this,this.engine?.unit(id));
                     break;
                 case 'combat-skill':

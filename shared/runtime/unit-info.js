@@ -35,7 +35,7 @@ function close(a){if(!a.scene)return;a.scene.inspectUnitId=null;const el=documen
 function hover(a,p){if(!a.scene)return;a.scene.inspectPointer=p;const u=p&&pick(a,p);a.scene.hoverUnitId=u?.id||null;a.scene.canvas.style.cursor=u?'pointer':'';}
 function bind(a){
  const el=document.createElement('aside');el.id='unit-info';el.className='unit-info';el.hidden=true;el.setAttribute('aria-label','대상 정보');
-  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div>';
+  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div><p class="unit-info-reason status-reason" hidden></p>';
  a.scene.canvas.parentElement.append(el);el.querySelector('button').onclick=()=>close(a);
  // Activating the card's close button must not also start a Space-key shot.
  for(const type of ['keydown','keyup'])el.addEventListener(type,e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();});
@@ -81,7 +81,9 @@ function tick(a){
  text('.unit-info-desc',boundBody?'소단의 몸을 공격하지 마세요. 사람과 떨어진 바깥 붉은 주박을 겨누세요.':description(u));
  text('.unit-info-skills',!boundBody&&skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
  const states=G.HonroCombatStatus.effects(a.engine.b,u);
- text('.unit-info-status',states.join(' · '));
+ text('.unit-info-status',states.join(' · ')||(player(u)?'적용 중인 상태가 없습니다.':''));
+ const actionReason=el.querySelector('.unit-info-reason');actionReason.hidden=!player(u);
+ if(player(u))text('.unit-info-reason',G.HonroCombatStatus.reason(a.engine,u,u.id===a.engine.b.active?C.SKILLS[a.selected]:undefined));
  const r=scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect();
  const bottom=Math.min(r.bottom,hud?.top??innerHeight)-10,top=Math.max(76,r.top+8);
  el.style.maxHeight=Math.max(90,bottom-top)+'px';

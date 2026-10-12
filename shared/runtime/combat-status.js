@@ -102,11 +102,14 @@ function refresh(app,u){
  if(el){
   const sig=JSON.stringify([u.id,states,why]);
   if(el.dataset.sig!==sig){
-   const wasOpen=el.querySelector('details')?.open&&el.dataset.unit===u.id,focused=el.contains(document.activeElement);el.dataset.sig=sig;el.dataset.unit=u.id;
+   const focused=el.contains(document.activeElement);el.dataset.sig=sig;el.dataset.unit=u.id;
    const short=why==='이동·발사 가능'?'상태':why.startsWith('기력 부족')?'기력 부족':why.startsWith('재사용')?'재사용 대기':why.startsWith('기절')?'기절':why.split(' · ')[0];
    const label=states.length?`${states[0].name}${states.length>1?' +'+(states.length-1):''}`:short;
-   el.innerHTML=`<details class="status-details" ${wasOpen?'open':''}><summary aria-label="${esc(u.name)} 상태와 행동 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span></summary><div class="status-popover"><strong>${esc(u.name)}</strong>${states.length?states.map(s=>`<div class="status-entry status-glyph" style="--status-color:${s.color}">${glyph(s.key)}<span>${esc(s.detail)}</span></div>`).join(''):'<p>적용 중인 상태가 없습니다.</p>'}<p class="status-reason" id="combat-action-reason">${esc(why)}</p></div></details><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span>`;
-   if(focused)el.querySelector('summary').focus({preventScroll:true});
+   el.innerHTML=`<div class="status-details"><button class="status-trigger" type="button" data-action="inspect-hero" data-id="${esc(u.id)}" aria-label="${esc(u.name)} 상태와 캐릭터 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span></button></div><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span><span class="status-announcement" id="combat-action-reason">${esc(why)}</span>`;
+   const trigger=el.querySelector('.status-trigger');
+   // Native Space/Enter activation opens information without also charging a shot.
+   trigger.onkeydown=trigger.onkeyup=e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();};
+   if(focused)trigger.focus({preventScroll:true});
   }
   el.dataset.limited=why!=='이동·발사 가능'||u.bound>0||u.stun>0?'true':'false';
  }

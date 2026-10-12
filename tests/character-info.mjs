@@ -42,7 +42,8 @@ function fixture(){
 const body=u=>({x:u.x,y:u.y-u.h*.5});
 const event=(p,id=1,type='mouse')=>({pointerId:id,pointerType:type,clientX:p.x,clientY:p.y,preventDefault(){}});
 const emit=(type,e)=>{for(const fn of listeners.get(type)||[])fn(e);};
-const click=(id)=>emit('click',{target:{closest:()=>({dataset:{action:'select-hero',id},disabled:false})}});
+const action=(action,id)=>emit('click',{target:{closest:()=>({dataset:{action,id},disabled:false})}});
+const click=id=>action('select-hero',id);
 const key=(code)=>emit('keydown',{code,repeat:false,target:{tagName:'BODY'},preventDefault(){}});
 let f=fixture();
 check('Map character tap keeps character/remembered-skill selection and opens a nonmodal card',()=>{
@@ -65,17 +66,35 @@ check('Live battle XP is authoritative, including zero, updates, level threshold
  f.a.profile=JSON.parse(normal);
 });
 check('Acted and fallen companions are inspectable without becoming the active unit',()=>{
- f.mage.acted=true;const before=f.b.active;click(f.mage.id);assert.equal(f.b.active,before);assert.equal(f.a.scene.inspectUnitId,f.mage.id);assert.match(f.el.querySelector('.unit-info-side').textContent,/행동 완료/);
- f.mage.dead=true;f.mage.hp=0;click(f.mage.id);assert.equal(f.b.active,before);assert(!f.el.hidden);assert.match(f.el.querySelector('.unit-info-side').textContent,/전투불능/);assert.equal(info.pick(f.a,body(f.mage)),null);
- const line=source.split('\n').find(x=>x.includes("$('hero-switches').innerHTML="));assert(!line.includes('disabled'),'Fallen portrait must remain keyboard/click inspectable');
+ f.mage.acted=true;const before=f.b.active;info.tap(f.a,body(f.mage),false);assert.equal(f.b.active,before);assert.equal(f.a.scene.inspectUnitId,f.mage.id);assert.match(f.el.querySelector('.unit-info-side').textContent,/행동 완료/);
+ click(f.mage.id);assert.equal(f.b.active,before);assert(f.el.hidden,'Even an unavailable portrait only selects and closes information');
+ f.mage.dead=true;f.mage.hp=0;info.show(f.a,f.mage);assert.equal(f.b.active,before);assert(!f.el.hidden);assert.match(f.el.querySelector('.unit-info-side').textContent,/전투불능/);assert.equal(info.pick(f.a,body(f.mage)),null);
+ click(f.mage.id);assert.equal(f.b.active,before);assert(f.el.hidden);
  f.mage.dead=false;f.mage.acted=false;f.mage.hp=f.mage.maxHp;
 });
-check('HUD portraits select and inspect; keyboard Tab switches without opening a card',()=>{
- click(f.mage.id);assert.equal(f.b.active,f.mage.id);assert.equal(f.a.scene.inspectUnitId,f.mage.id);info.close(f.a);key('Tab');assert.equal(f.b.active,f.archer.id);assert.equal(f.a.scene.inspectUnitId,null);
+check('HUD portraits only select and dismiss cards; keyboard Tab does not open information',()=>{
+ info.show(f.a,f.archer);click(f.mage.id);assert.equal(f.b.active,f.mage.id);assert.equal(f.a.selected,'M03');assert.equal(f.a.scene.inspectUnitId,null);assert(f.el.hidden);
+ click(f.mage.id);assert(f.el.hidden,'Reselecting the same portrait does not open information');
+ info.show(f.a,f.enemy);click(f.archer.id);assert.equal(f.b.active,f.archer.id);assert(f.el.hidden,'Portrait selection also closes enemy information');
+ key('Tab');assert.equal(f.b.active,f.mage.id);assert.equal(f.a.scene.inspectUnitId,null);click(f.archer.id);
+ const line=source.split('\n').find(x=>x.includes("$('hero-switches').innerHTML="));assert(!line.includes('선택 및 정보'),'Portrait label must describe selection only');
+});
+check('Status button opens selected-character information and preserves durations, damage and action restrictions',()=>{
+ const status=node('combat-status'),hero=f.archer,oldTerrain=f.b.terrain;
+ Object.assign(hero,{bound:2,curseTurns:3,curseDamage:9,curseArmor:.15,focus:0,jumping:false,airborne:false});f.a.selected='A05';
+ f.b.terrain=[{id:'fixture-floor',x:0,y:500,w:2000,h:500,mat:'rock',hp:9999,maxHp:9999}];f.b.sceneVersion++;
+ g.HonroCombatStatus.refresh(f.a,hero);assert.match(status.innerHTML,/button class="status-trigger" type="button" data-action="inspect-hero"/);assert(status.innerHTML.includes(`data-id="${hero.id}"`));assert(!status.innerHTML.includes('status-popover'));assert(status.innerHTML.includes('combat-action-reason'),'Fire control retains an accessible action-reason description');
+ f.a.charging=true;f.a.keys.add('Space');const before=JSON.stringify(f.b);action('inspect-hero',hero.id);assert.equal(JSON.stringify(f.b),before);assert(!f.a.charging);assert.equal(f.a.keys.size,0);assert.equal(f.a.scene.inspectUnitId,hero.id);assert(!f.a.modal.classList.contains('open'));
+ assert.match(f.el.querySelector('.unit-info-status').textContent,/결박 2회/);assert.match(f.el.querySelector('.unit-info-status').textContent,/저주 3턴/);assert.match(f.el.querySelector('.unit-info-status').textContent,/매 턴 피해 9/);assert.match(f.el.querySelector('.unit-info-reason').textContent,/기력 부족/);assert(!f.el.querySelector('.unit-info-reason').hidden);
+ const trigger=status.querySelector('.status-trigger');let stopped=0;for(const code of ['Space','Enter'])for(const type of ['onkeydown','onkeyup'])trigger[type]({code,stopPropagation(){stopped++;}});assert.equal(stopped,4,'Native activation must not reach the combat charge handlers');
+ Object.assign(hero,{bound:0,curseTurns:0,curseDamage:0,curseArmor:0,focus:hero.maxFocus});f.a.selected='A01';f.b.terrain=oldTerrain;f.b.sceneVersion++;info.close(f.a);
+});
+check('HUD skills retain icon, name, cost and number while omitting their rank label',()=>{
+ const line=source.split('\n').find(x=>x.includes("$('combat-skills').innerHTML="));assert(!line.includes('rank-tiny'));for(const token of ['class="key"','class="mana-cost"','this.sig(s.id)','class="skill-name"'])assert(line.includes(token));
 });
 check('Enemy inspection retains selection, level, health, defense and skills without hero XP',()=>{
  const before=JSON.stringify(f.b);info.tap(f.a,body(f.enemy),false);assert.equal(f.a.scene.inspectUnitId,f.enemy.id);assert.equal(JSON.stringify(f.b),before);
- assert.match(f.el.querySelector('h3').textContent,/Lv\./);assert.equal(f.el.dataset.side,'enemy');assert.equal(f.el.querySelector('.unit-info-progress').hidden,true);assert(f.el.querySelector('.unit-info-health span').textContent.includes('/'));assert(f.el.querySelector('.unit-info-existence').innerHTML);assert(f.el.querySelector('.unit-info-skills').textContent);
+ assert.match(f.el.querySelector('h3').textContent,/Lv\./);assert.equal(f.el.dataset.side,'enemy');assert.equal(f.el.querySelector('.unit-info-progress').hidden,true);assert(f.el.querySelector('.unit-info-reason').hidden);assert(f.el.querySelector('.unit-info-health span').textContent.includes('/'));assert(f.el.querySelector('.unit-info-existence').innerHTML);assert(f.el.querySelector('.unit-info-skills').textContent);
 });
 check('Summons and allies retain inspection without claiming their class hero XP',()=>{
  const summon=C.makeUnit('occultist',0,1250,500,{id:'summon-test',summoned:true,summonOwner:f.archer.id}),ally=C.makeUnit('knight',2,1300,500,{id:'ally-test'});f.b.units.push(summon,ally);
