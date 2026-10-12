@@ -11,7 +11,9 @@ acquire these records. A fresh v4 stage stores evidence inside
   campaign seal, carriage blocker, or Stage10 outer binding. Effective lost HP
   is accumulated by source; the final hit does not take the earlier damage.
   The token is committed on destruction. Environment/NPC damage consumes its
-  portion without assigning that portion to a hero.
+  portion as neutral `_system` score. That share is explicitly forfeited at
+  settlement, so an NPC's 99 HP plus a hero's 1 HP cannot assign the whole
+  stage reward to that last hero.
 - **Stage5 waterfall array:** when actual cleat damage is enabled by a living
   mage maintaining the array, 40% of that effective loss belongs to the holder
   and 60% to the attacker. Starting/restarting the ritual alone earns zero.
@@ -37,7 +39,8 @@ acquire these records. A fresh v4 stage stores evidence inside
   the goal is attributed to the actual forward leader responsible for movement
   in the existing escort predicate. Act3 selects the closest qualifying leader,
   rather than distributing to nearby spectators. Progress is committed when
-  the leg completes. Standing still, backwards movement, and returning over
+  the leg completes; any unowned portion remains neutral rather than being
+  redistributed to heroes. Standing still, backwards movement, and returning over
   already credited ground earn no additional score.
 - **M09 movement support:** traversal alone is zero. When that traversal takes
   the actor from outside to inside a new objective boundary, 25% of that
