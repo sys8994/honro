@@ -112,8 +112,8 @@ function background(c,b,scene,w,h){
  c.globalAlpha=.46;c.fillStyle='#111216';for(const p of forms.paths)c.fill(p.shade);
  c.globalAlpha=.19;c.strokeStyle='#686971';c.lineWidth=4;for(const p of forms.paths)c.stroke(p.line);
  if(b.honroCaveHangingTarget){const t=b.honroCaveHangingTarget;
-  c.globalAlpha=.7;c.strokeStyle='#756f60';c.lineWidth=4;c.beginPath();
-  c.moveTo(t.x,t.roofY-5);c.lineTo(t.x+5,t.roofY+80);c.lineTo(t.x,t.targetY+4);c.stroke();
+  const sceneryContext=c;c=G.HonroVisualStyle?.raw(c)||c;c.globalAlpha=.7;c.strokeStyle='#756f60';c.lineWidth=4;c.beginPath();
+  c.moveTo(t.x,t.roofY-5);c.lineTo(t.x+5,t.roofY+80);c.lineTo(t.x,t.targetY+4);c.stroke();c=sceneryContext;
  }
  c.restore();
 }

@@ -29,7 +29,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   parts.push('globalThis.HONRO_WATERWORKS_V2='+await read('shared/data/waterworks-v2-content.json')+';');
   for(const name of modelFiles)parts.push(await read(`shared/runtime/${name}.js`));
   parts.push(await read('shared/runtime/camera.js'));
-  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
+  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])parts.push(await read(`shared/map/${name}.js`));
   let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
@@ -46,16 +46,16 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     await buildActors();
     const act1Backdrops={};
     for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg'],['act3','act3-far.svg']]){
-      const svg=await readFile(path.join(root,'shared/assets/environment',file));
+      const svg=Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"'));
       act1Backdrops[key]='data:image/svg+xml;base64,'+svg.toString('base64');
     }
     parts.push('globalThis.HONRO_ACT1_FAR_DATA='+JSON.stringify(act1Backdrops)+';');
     const act2Backdrops={};
-    for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+(await readFile(path.join(root,'shared/assets/environment',file))).toString('base64');
+    for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"')).toString('base64');
     parts.push('globalThis.HONRO_ACT2_FAR_DATA='+JSON.stringify(act2Backdrops)+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','story-act23-art','narrative-art'])parts.push(await read(`shared/runtime/${name}.js`));
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','story-act23-art','narrative-art','visual-hierarchy'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     parts.push(await read('game/vendor/ui/fa.js'));

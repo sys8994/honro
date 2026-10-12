@@ -51,7 +51,7 @@ function drawRearMasonry(c,l){const qs=rearPaint(l.asset);if(!qs.length)return f
  for(const q of qs){c.fillStyle=q.fill;c.fill(q.body);c.strokeStyle=q.stroke;c.lineWidth=5;c.stroke(q.body);c.save();c.clip(q.body);drawMasonryDetail(c,q.detail);if(q.top){c.fillStyle=q.top.fill;c.fill(q.top.path);}if(q.side){c.fillStyle=q.side.fill;c.fill(q.side.path);}c.restore();}
  c.restore();return true;
 }
-const originalLandmark=S.landmark;S.landmark=function(c,l){if(!active(this.battle))return originalLandmark.call(this,c,l);if(l.id==='sy-art-rear-plinths'&&drawRearMasonry(c,l))return;const out=originalLandmark.call(this,c,l);if(l.id==='sy-art-stone-bridge')drawRearMasonry(c,l);return out;};
+const originalLandmark=S.landmark;S.landmark=function(c,l){if(!active(this.battle))return originalLandmark.call(this,c,l);if(l.id==='sy-art-rear-plinths'&&drawRearMasonry(c,l))return;const out=originalLandmark.call(this,c,l);if(l.id==='sy-art-stone-bridge')drawRearMasonry(G.HonroVisualStyle?.context(c,'L1')||c,l);return out;};
 function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('sy-'))return false;
  // The bound bundle asset is the visible body of both collision poses.
  if(t.id==='sy-cargo-stored'||t.id==='sy-cargo-settled')return true;
@@ -72,7 +72,7 @@ function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('sy-'))return false;
 }
 const originalTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return originalTerrain.call(this,c,t);};
 const skyAsset=b=>b.honroMap?.escortYardArt?.backdropAsset;
-function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1080;const c=cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
+function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1080;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
 const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
 function motion(b){const s=state(b),ps=spec(b).path||[],u=s.status==='settled'?1:s.status==='sliding'?(reduced?.matches?0:Math.max(0,Math.min(1,(s.elapsed||0)/(s.duration||1)))):0;if(ps.length<2)return{x:0,y:0,progress:u};
  const lengths=ps.slice(1).map((p,i)=>Math.hypot(p.x-ps[i].x,p.y-ps[i].y)),total=lengths.reduce((a,z)=>a+z,0);let remaining=total*(u*u*(3-2*u));for(let i=0;i<lengths.length;i++){if(remaining<=lengths[i]||i===lengths.length-1){const f=lengths[i]?Math.min(1,remaining/lengths[i]):1;return{x:ps[i].x+(ps[i+1].x-ps[i].x)*f-ps[0].x,y:ps[i].y+(ps[i+1].y-ps[i].y)*f-ps[0].y,progress:u};}remaining-=lengths[i];}return{x:0,y:0,progress:u};}

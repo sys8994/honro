@@ -110,7 +110,7 @@
             if(q?.key===signature&&q.canvas){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);c.restore();this._cacheStats.screenHits=(this._cacheStats.screenHits||0)+1;this._cacheStats[world?'worldHits':'bgHits']++;return true;}
             if(q?.key!==signature){if(q?.canvas){q.canvas.width=1;q.canvas.height=1;}this[slot]={key:signature};return false;}
             if(pw*ph>6000000||pw<1||ph<1)return false;
-            const cv=this._makeLayerCanvas(pw,ph),cc=cv.getContext('2d');cc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);paint(cc);q.canvas=cv;q.bytes=pw*ph*4;
+            const cv=this._makeLayerCanvas(pw,ph),cc=cv.getContext('2d');cc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);paint(G.HonroVisualStyle?.contextLike(c,cc)||cc);q.canvas=cv;q.bytes=pw*ph*4;
             this._cacheStats.screenBuilds=(this._cacheStats.screenBuilds||0)+1;
             c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c.restore();return true;
         }

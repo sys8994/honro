@@ -2,7 +2,7 @@
 // Readability belongs to the collision silhouette, not the decoration's art.
 // Build exposed paths once per sceneVersion and rasterize them with world tiles.
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();
-const STYLE=Object.freeze({backgroundDesaturation:.14,edgeInk:'#101d23d9',topLight:'#c7d0bd',woodLight:'#c8b994',edgePixels:1.5,topInkPixels:2.6,topLightPixels:1.2});
+const STYLE=Object.freeze({edgeInk:'#101d23d9',topLight:'#c7d0bd',woodLight:'#c8b994',edgePixels:1.5,topInkPixels:2.6,topLightPixels:1.2});
 const cross=(ax,ay,bx,by)=>ax*by-ay*bx;
 function inside(x,y,ps){let yes=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],z=ps[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)yes=!yes;}return yes;}
 function cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,den=cross(dx,dy,ex,ey),len2=dx*dx+dy*dy;
@@ -29,7 +29,6 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
  }
  const q={source:ts,version:b.sceneVersion,groups,builds:(prior?.builds||0)+1};cache.set(b,q);return q;
 }
-S.backgroundReadability=function(c,w,h){c.save();c.globalCompositeOperation='saturation';c.globalAlpha*=STYLE.backgroundDesaturation;c.fillStyle='#808080';c.fillRect(0,0,w,h);c.restore();};
 S.terrainReadability=function(c,b,view){const q=prepare(b),raster=this._staticCacheBuild?this._worldRasterScale(b,this.canvas.clientWidth):this.scale,unit=1/Math.max(.05,raster);
  c.save();c.lineJoin='round';c.lineCap='butt';for(const group of q.groups){if(G.HonroStage18BellArt?.omitReadability(group,b)||G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b)||G.HonroStage23EscortArt?.omitReadability(group,b)||G.HonroStage8BierArt?.omitReadability(group,b))continue;const box=group.bounds;if(view&&(box.right<view.left-8*unit||box.left>view.right+8*unit||box.bottom<view.top-8*unit||box.top>view.bottom+8*unit))continue;
   c.strokeStyle=STYLE.edgeInk;c.lineWidth=STYLE.edgePixels*unit;c.stroke(group.edge);

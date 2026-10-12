@@ -35,7 +35,7 @@ function terrain(c,t,b,live=false){if(!active(b)||!t.id?.startsWith('sf-'))retur
  for(const p of q.caps){c.fillStyle=wood?'#c5b88988':earth?'#bac09869':'#d0d1b578';c.fill(p);}c.restore();return true;}
 const originalTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return originalTerrain.call(this,c,t);};
 function skyAsset(b){return b.honroMap?.ferryArt?.backdropAsset;}
-function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1050;const c=cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});q=cv;skyCache.set(asset,q);return q;}
+function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1050;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});q=cv;skyCache.set(asset,q);return q;}
 const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),r=E.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,r.x,r.y,r.w,r.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
 function body(b){return b.honroLandmarks?.find(l=>l.id==='sf-art-settled-barge');}
 const initialMotion=b=>b.honroFerrySpec?.artFrom||{x:80,y:-145,rotation:.008};
