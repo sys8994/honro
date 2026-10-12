@@ -5,7 +5,7 @@ import {createRequire} from 'node:module';
 const native=createRequire(import.meta.url)('@napi-rs/canvas'),g=vm.createContext({Path2D:native.Path2D,console});
 for(const file of ['shared/map/visual-style.js','shared/map/vector-art.js'])vm.runInContext(await readFile(file,'utf8'),g);
 const V=g.HonroVisualStyle,cv=native.createCanvas(160,160),raw=cv.getContext('2d');
-let previous=2;for(const depth of ['L1','L2','L3','L4','SKY']){assert(V.STYLE.saturation[depth]<previous);previous=V.STYLE.saturation[depth];const rgb=V.color('#d8603acc',depth);assert(rgb.endsWith('cc'),'Alpha is unchanged');const channels=rgb.slice(1,7).match(/../g).map(v=>parseInt(v,16)),y=channels[0]*.2126+channels[1]*.7152+channels[2]*.0722;assert(Math.abs(y-(216*.2126+96*.7152+58*.0722))<.6,'Luminance preserved');}
+let previous=2;for(const depth of ['L1','L2','L3','L4','SKY']){assert(V.STYLE.saturation[depth]<previous);previous=V.STYLE.saturation[depth];const rgb=V.color('#d8603acc',depth);assert(rgb.endsWith('cc'),'Alpha is unchanged');const channels=rgb.slice(1,7).match(/../g).map(v=>parseInt(v,16)),y=channels[0]*.2126+channels[1]*.7152+channels[2]*.0722;assert(Math.abs(y-(V.STYLE.tonePivot+((216*.2126+96*.7152+58*.0722)-V.STYLE.tonePivot)*V.STYLE.contrast[depth]))<.6,'Bounded atmospheric contrast keeps the authored light ordering');}
 assert.equal(V.context(V.context(raw,'L1'),'L3'),V.context(raw,'L3'),'Nested depth replaces, never multiplies');
 assert.equal(V.raw(V.context(raw,'L2')),raw);assert.equal(V.contextLike(V.context(raw,'L4'),raw),V.context(raw,'L4'));
 const pixel=(x,y)=>Array.from(raw.getImageData(x,y,1,1).data);
@@ -15,6 +15,9 @@ c.strokeStyle='#668844';c.lineWidth=12;c.beginPath();c.moveTo(110,30);c.lineTo(1
 const before=V.stats().brushes;c.stroke();assert.equal(V.stats().brushes,before,'Material ribbon path is cached');
 const gradient=c.createLinearGradient(0,0,20,0);gradient.addColorStop(0,'#ff0000');gradient.addColorStop(1,'#ff0000');c.fillStyle=gradient;c.fillRect(0,0,20,20);assert(pixel(5,5)[1]>0,'Gradient stop receives layer saturation');
 const play=V.context(raw,'gameplay');play.fillStyle='#ff0000';play.fillRect(0,120,20,20);assert.deepEqual(pixel(5,125),[255,0,0,255],'Gameplay colors unchanged');play.strokeStyle='#ffffff';play.lineWidth=4;play.strokeRect(30,120,20,20);assert.equal(pixel(29,125)[0],255,'Gameplay contour unchanged');
+assert.equal(V.depth({depthLayer:'L1',asset:{environmentRole:'mountain'}}),'L3','World-aligned rear mountain has distant paint without changing projection');
+assert.equal(V.depth({depthLayer:'L1',asset:{environmentRole:'tree'}}),'L1','Grounded near trees stay near');
+assert.equal(V.depth({depthLayer:'L4',asset:{environmentRole:'tree'}}),'L4','Explicit scenic depth wins');
 assert.equal(V.classify({id:'deck',layer:'back',collisionIds:['solid']},{}),'gameplay');
 assert.equal(V.classify({id:'grass',layer:'prop',asset:{params:{collisionSource:'authored-stage-terrain'}}},{}),'decoration');
 assert.equal(V.classify({id:'event',asset:{}},{honroMarkers:[{elementId:'event'}]}),'gameplay');

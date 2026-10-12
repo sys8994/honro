@@ -1,22 +1,26 @@
 (function(G){'use strict';
 // Rendering-only policy. L1 is a projection depth, not an interaction role.
-// Keep luminance/alpha, geometry, and gameplay paints independent of scenery.
-const STYLE=Object.freeze({version:1,saturation:Object.freeze({L1:.82,L2:.66,L3:.48,L4:.32,SKY:.28}),outline:'#12232bd9',outlinePixels:1.15,materialWidth:6});
+// Keep alpha, geometry and gameplay paints independent; distant contrast is bounded.
+const STYLE=Object.freeze({version:2,saturation:Object.freeze({L1:.82,L2:.66,L3:.48,L4:.32,SKY:.28}),contrast:Object.freeze({L1:1,L2:.97,L3:.88,L4:.84,SKY:.80}),tonePivot:64,outline:'#12232bd9',outlinePixels:1.15,materialWidth:6});
 const colors=new Map(),contexts=new WeakMap(),metadata=new WeakMap(),images=new WeakMap(),brushes=new Map();
 function color(value,layer='L1'){
- if(typeof value!=='string')return value;const amount=STYLE.saturation[layer]??STYLE.saturation.L1,key=amount+':'+value;if(colors.has(key))return colors.get(key);
+ if(typeof value!=='string')return value;const amount=STYLE.saturation[layer]??STYLE.saturation.L1,contrast=STYLE.contrast[layer]??1,key=amount+':'+contrast+':'+value;if(colors.has(key))return colors.get(key);
  let rgb,alpha='',match;if((match=/^#([\da-f]{6})([\da-f]{2})?$/i.exec(value))){rgb=[0,2,4].map(i=>parseInt(match[1].slice(i,i+2),16));alpha=match[2]||'';}
  else if((match=/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)$/i.exec(value))){rgb=match.slice(1,4).map(Number);alpha=match[4]===undefined?'':Math.round(Number(match[4])*255).toString(16).padStart(2,'0');}
  else return value;
- const y=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722,result='#'+rgb.map(v=>Math.round(y+(v-y)*amount).toString(16).padStart(2,'0')).join('')+alpha;
+ const y=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722,light=STYLE.tonePivot+(y-STYLE.tonePivot)*contrast,result='#'+rgb.map(v=>Math.round(light+(v-y)*amount*contrast).toString(16).padStart(2,'0')).join('')+alpha;
  if(colors.size>=4096)colors.clear();colors.set(key,result);return result;
 }
+function depth(inst,asset=inst?.asset){if(inst?.depthLayer&&inst.depthLayer!=='L1')return inst.depthLayer;return asset?.environmentRole==='mountain'?'L3':asset?.environmentRole==='forest'?'L2':'L1';}
+// CSS contrast pivots around 127.5. Pair it with brightness to use the same
+// restrained 64/255 atmospheric pivot as the cached vector palettes.
+function filter(layer='SKY',brightness=1){const k=STYLE.contrast[layer]??1,b=k+STYLE.tonePivot/127.5*(1-k);return `saturate(${STYLE.saturation[layer]??1}) contrast(${k/b}) brightness(${b*brightness})`;}
 function raw(c){return metadata.get(c)?.raw||c;}
 function role(c){return metadata.get(c)?.layer||null;}
 function image(source,layer='SKY'){
  if(!source?.complete||!source.naturalWidth||typeof document==='undefined')return source;
  let rows=images.get(source);if(!rows){rows=new Map();images.set(source,rows);}const key=STYLE.version+':'+layer;if(rows.has(key))return rows.get(key);
- const cv=document.createElement('canvas');cv.width=source.naturalWidth;cv.height=source.naturalHeight;const c=cv.getContext('2d');c.filter=`saturate(${STYLE.saturation[layer]??1})`;c.drawImage(source,0,0);c.filter='none';rows.set(key,cv);return cv;
+ const cv=document.createElement('canvas');cv.width=source.naturalWidth;cv.height=source.naturalHeight;const c=cv.getContext('2d');c.filter=filter(layer);c.drawImage(source,0,0);c.filter='none';rows.set(key,cv);return cv;
 }
 // Legacy trees/braces use a wide open stroke as the material itself. Preserve
 // that silhouette as a cached filled ribbon, never as a contour. Fine lines,
@@ -62,5 +66,5 @@ function classify(inst,b,asset=inst?.asset){
  if(id==='sb-bell-body'&&b?.honroBellRevision===1||id===(b?.honroEscortYardSpec?.cargo?.elementId||'sy-art-cargo')&&b?.honroStage===23||id==='sf-art-settled-barge'&&b?.honroStage===30)return'gameplay';
  return'decoration';
 }
-G.HonroVisualStyle={STYLE,color,raw,role,context,contextLike,image,classify,stats:()=>({colors:colors.size,brushes:brushes.size}),key:()=>`visual-${STYLE.version}-${Object.values(STYLE.saturation).join('-')}-${STYLE.outline}-${STYLE.outlinePixels}-${STYLE.materialWidth}`};
+G.HonroVisualStyle={STYLE,color,depth,filter,raw,role,context,contextLike,image,classify,stats:()=>({colors:colors.size,brushes:brushes.size}),key:()=>`visual-${STYLE.version}-${Object.values(STYLE.saturation).join('-')}-${Object.values(STYLE.contrast).join('-')}-${STYLE.tonePivot}-${STYLE.outline}-${STYLE.outlinePixels}-${STYLE.materialWidth}`};
 })(globalThis);

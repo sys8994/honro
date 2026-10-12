@@ -2,7 +2,7 @@
 const Scene=G.HonroScene,Q=G.HonroGeometry;
 const nativeLandmark=Scene.prototype.landmark;
 function draw(c,asset,inst,scene){
- const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(inst,scene?.battle,asset)==='gameplay'?'gameplay':inst.depthLayer||'L1');
+ const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(inst,scene?.battle,asset)==='gameplay'?'gameplay':V.depth(inst,asset));
  if(G.HonroAct2SpatialArt?.element(c,asset,inst,scene))return;
  if(asset.vector&&G.HonroVectorArt?.draw(c,asset,inst))return;
  c.save();

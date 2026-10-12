@@ -6,7 +6,7 @@ const imageReady=img=>!!(img?.complete&&img.naturalWidth),act1ImageFor=stage=>ac
 const act1Ready=stage=>stage===undefined?['mountains','gorge','dawn'].every(k=>imageReady(act1Images[k])):imageReady(act1ImageFor(stage));
 function tonedBackdrop(stage){const mood=E.campaignMood(stage),key=mood.variant,cacheKey=key+':'+(V?.key()||'legacy');if(act1Tones.has(cacheKey))return act1Tones.get(cacheKey);
  const img=act1Images[key],cv=document.createElement('canvas'),tone=E.ACT1_FAR;cv.width=img.naturalWidth;cv.height=img.naturalHeight;
- const ctx=cv.getContext('2d');ctx.filter=`saturate(${V?.STYLE.saturation.SKY??(key==='dawn'?.78:tone.saturation)}) brightness(${tone.brightness[key]})`;ctx.drawImage(img,0,0);ctx.filter='none';
+ const ctx=cv.getContext('2d');ctx.filter=V?V.filter('SKY',tone.brightness[key]):`saturate(${key==='dawn'?.78:tone.saturation}) brightness(${tone.brightness[key]})`;ctx.drawImage(img,0,0);ctx.filter='none';
  ctx.globalAlpha=key==='dawn'?.025:tone.veilOpacity;ctx.fillStyle=tone.veil;ctx.fillRect(0,0,cv.width,cv.height);act1Tones.set(cacheKey,cv);return cv;
 }
 G.HonroAct1Background={images:act1Images,imageFor:act1ImageFor,ready:act1Ready,cacheSize:()=>act1Tones.size};
