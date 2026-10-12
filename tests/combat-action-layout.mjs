@@ -39,6 +39,33 @@ for(const fire of [68,66,62,56]){
 console.log('PASS shared jump/drop styling, preserved action bindings, one-angle-system arc');
 
 assert.match(css,/\.honro #app \.battle\{\s*--action-size:44px;--action-radius:64px;/);
-assert.match(css,/\.battle \.context-interact\{bottom:max\(calc\(130px \+ var\(--action-height\)\)/);
-assert.match(css,/\.battle \.context-interact\{bottom:max\(calc\(60px \+ var\(--action-height\)\)/);
+assert.match(css,/\.battle \.context-interact\{bottom:calc\(var\(--hud-height\) \+ 10px\)/);
+assert.match(css,/--hud-height:calc\(44px \+ 4px \+ var\(--action-height\)/);
 console.log('PASS contextual interaction clearance derives from the same arc height');
+
+const hud=await readFile('game/src/hud.css','utf8');
+assert.match(css,/--joystick-size:96px;--hud-inline:20px;--xp-row-height:16px/);
+assert.match(css,/--joystick-size:88px/);assert.match(css,/--joystick-size:84px;--hud-inline:16px/);
+assert.doesNotMatch(css,/\.(?:joystick|joystick-ring)\{[^}]*width:(48|56|64)px/);
+assert.match(hud,/content:'경험치 ' attr\(aria-valuenow\) '%'/);
+assert.match(hud,/hud-xp[^}]*position:relative!important[^}]*grid-column:1\/-1!important[^}]*height:var\(--xp-row-height\)/);
+assert.match(css,/grid-template-rows:repeat\(3,18px\) var\(--xp-row-height\)/);
+assert.match(css,/@media\(orientation:portrait\) and \(max-width:330px\)/);
+for(const [viewport,padding,joystick,skills,gaps] of [[333,16,84,92,8],[360,16,84,92,8],[390,20,88,110,8],[400,20,88,110,8]]){
+ const arc=radius*Math.cos(rad(15))+size/2+62/2;
+ assert(joystick+skills+arc+gaps+2*padding<=viewport,`HUD must fit without shrinking the ${joystick}px joystick at ${viewport}px`);
+ console.log(`PASS ${viewport}px HUD width: ${joystick}px joystick, ${padding}px safe-side minimum, 44px+ skill targets, separate XP row`);
+}
+
+assert.match(css,/--hud-height:calc\(var\(--action-height\) \+ var\(--hud-block-start\) \+ var\(--hud-block-end\) \+ 1px\)/);
+assert.match(css,/padding:var\(--hud-block-start\) [^;]+var\(--hud-block-end\)/);
+console.log('PASS desktop battlefield reservation equals arc + shared padding + border');
+
+assert.match(css,/--hud-height:calc\(var\(--hud-roster-height\) \+ var\(--hud-vitals-height\) \+ var\(--action-height\) \+ var\(--hud-skill-wrap\)/);
+assert.match(hud,/grid-template-rows:var\(--hud-roster-height\) var\(--hud-vitals-height\) calc\(var\(--action-height\) \+ var\(--hud-skill-wrap\)\)/);
+console.log('PASS portrait and compact landscape battlefield/context clearance use the same HUD rows');
+
+const luminance=hex=>{const c=hex.match(/../g).map(n=>parseInt(n,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722;};
+const xpText=hud.match(/hud-xp::after[^}]*color:#([\da-f]{6})/)[1];
+for(const bg of ['66683d','10252d'])assert((luminance(xpText)+.05)/(luminance(bg)+.05)>=4.5,'XP label must be readable on filled and empty track');
+console.log('PASS XP label contrast on both filled and zero-progress track');
