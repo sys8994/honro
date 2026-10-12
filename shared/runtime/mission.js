@@ -60,11 +60,11 @@ function tick(app,dt){
  if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
  if(G.HonroAct2?.active(e.b)){G.HonroAct2.tick(app,dt);return;}
  if(G.HonroAct3?.active(e.b)){G.HonroAct3.tick(app,dt);return;}
- const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
+ const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(b.phase==='won')G.HonroObjectiveContributions?.beforeComplete(b,st);if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
  if(st.id===7&&(hs.rescuedCount||0)>=3){const instruction=l=>l[2]?.storyId?.includes('entry-follow-7-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(instruction));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!instruction(l));}
  const lead=heroes.reduce((a,c)=>a.x>c.x?a:c),height=Math.min(...heroes.map(h=>h.y)),boundary=b.phase==='transition'&&!b.projectiles.length&&!e.settleBusy();
  for(const m of b.honroMarkers||[]){
-   if(m.action==='rescue'&&!m.collected)G.HonroObjectiveContributions?.approach(b,m.id,heroes,e.unit(m.target),220);
+   if(m.action==='rescue'&&!m.collected){const target=e.unit(m.target);G.HonroObjectiveContributions?.approach(b,m.id,heroes,target,220,!!target&&!e.alive(1).some(v=>Math.abs(v.y-target.y)<=150&&Math.hypot(v.x-target.x,(v.y-target.y)*.75)<=220));}
    const distance=m.type==='sector'?430:m.type==='relic'?155:180;
    if(heroes.some(u=>Math.hypot(u.x-m.x,(u.y-m.y)*(m.type==='sector'?.6:1))<distance))m.honroPending=true;
    if(!m.honroPending)continue;

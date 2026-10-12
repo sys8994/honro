@@ -3,9 +3,9 @@
 // positions, elapsed rounds or nearby bystanders earn points by themselves.
 const hero=u=>!!u&&u.side===0&&!u.summoned&&!u.enthrall&&!!u.cls;
 const alive=u=>hero(u)&&!u.dead&&u.hp>0;
-const state=b=>b?.honroGrowth?.ledger?.stages?.[b.honroStage]?.contribution;
+const state=b=>b?.honroCustom?null:b?.honroGrowth?.ledger?.stages?.[b.honroStage]?.contribution;
 function evidence(b){const s=state(b);if(!s||s.version!==4)return null;const mem=s.objectiveEvidence??={};mem.terrain??={};mem.escorts??={};mem.arrivals??={};return mem;}
-function owner(b,id){let u=typeof id==='object'?id:b.units.find(u=>u.id===id),seen=new Set();while(u&&(u.summoned||u.enthrall)&&!seen.has(u.id)){seen.add(u.id);u=b.units.find(v=>v.id===(u.summonOwner||u.enthrall?.owner));}return hero(u)?u:null;}
+function owner(b,id){const source=typeof id==='object'?id?.id:id;let u=typeof id==='object'?id:b.units.find(u=>u.id===id),seen=new Set();while(u&&(u.summoned||u.enthrall)&&!seen.has(u.id)){seen.add(u.id);u=b.units.find(v=>v.id===(u.summonOwner||u.enthrall?.owner));}if(hero(u))return u;const saved=state(b),cls=saved?.owners?.[source]||(saved?.actors?.includes(source)?source:null);return cls?(b.units.find(v=>hero(v)&&v.cls===cls)||{id:cls,cls,side:0}):null;}
 function contributors(b,actors){const out={};for(const item of actors||[]){if(!item)continue;const u=owner(b,item.id??item),weight=item.weight??1;if(u&&Number.isFinite(weight)&&weight>0)out[u.id]=(out[u.id]||0)+weight;}return Object.entries(out).map(([id,weight])=>({id,weight}));}
 function award(b,key,actors,points=20){if(!evidence(b)||!(points>0))return false;const list=contributors(b,actors);return list.length?G.HonroProgression.objective(b,'goal:'+key,list,points):false;}
 function observe(b,actors){if(!evidence(b))return;const travel=b.honroState.objectiveTravel??={};for(const u of actors.filter(alive))travel[u.id]={x:u.x,y:u.y};}
@@ -43,5 +43,7 @@ function escort(b,key,npc,goal,actors,before,radius=170){const mem=evidence(b);i
  const rows=contributors(b,actors),weight=rows.reduce((n,r)=>n+r.weight,0),moved=Math.hypot(npc.x-before.x,npc.y-before.y)>.001;if(delta&&moved&&weight)for(const row of rows)r.weights[row.id]=(r.weights[row.id]||0)+delta*row.weight/weight;
  if(progress>=1)finishEscort(b,key);
 }
-G.HonroObjectiveContributions={evidence,owner,award,observe,movement,arrive,approach,interact,maintain,terrain,escort,finishEscort};
+// The engine can confirm a win before the next mission tick (e.g. a final jump).
+function beforeComplete(b,st){if(!evidence(b))return;if(st?.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=b.units.filter(u=>alive(u)&&u.x>=exit.x-120);if(arrived.length)arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}if(st?.objective==='rescue')finishEscort(b,'rescue-carrier');}
+G.HonroObjectiveContributions={evidence,owner,award,observe,movement,arrive,approach,interact,maintain,terrain,escort,finishEscort,beforeComplete};
 })(globalThis);
