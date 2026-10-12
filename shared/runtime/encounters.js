@@ -91,7 +91,7 @@ function flush(app){
       const cap=G.HonroEncounters.populationCap(b);
       if(spawned||hs.lastCombatEventBoundary===boundary||enemies+spawnCount(ev.action)>cap)continue;
     }
-    if(G.HonroAllies.execute(app,ev.action)===false)continue;
+    if(G.HonroAllies.execute(app,ev.action?{...ev.action,source:ev.action.source||ev.id}:ev.action)===false)continue;
     if(ev.entry){e.fx('ring',ev.entry.x,ev.entry.y-12,'#c8b286',95);e.fx('text',ev.entry.x,ev.entry.y-125,'#d4b790',16,'증원');}
     hs.flags[key]=true;if(combat(ev.action)){spawned=true;hs.lastCombatEventBoundary=boundary;}
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);

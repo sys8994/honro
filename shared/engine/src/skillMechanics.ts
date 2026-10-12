@@ -1,4 +1,5 @@
 import {passiveTuning} from './passiveBalance';
+import {healed} from './contribution';
 import {triggerOffensiveStake} from './totemBehavior';
 import {jucheonBoost} from './combatPassives';
 import type {Battle,Unit,Projectile,Skill,Vec,Profile} from './types';
@@ -342,12 +343,13 @@ export function useGate(e:Engine,u=e.active){
  // A body's lower corners overlap a slope; that contact is not an arrival wall.
  const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y,support:floor.t}:null;}).find(v=>v&&!e.b.terrain.some(t=>!t.broken&&!t.oneWay&&t!==v.support&&terrainRectIntersects(t,v.x-u.r,v.y-u.h,u.r*2,u.h-2,.1))&&!e.b.units.some(t=>!t.dead&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
  if(!spot){e.message('도착 진목 주변에 설 자리가 없습니다.');return false;}
- const {x,y}=spot;u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
+ const {x,y}=spot,fromPoint={x:u.x,y:u.y};u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
  const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(to.effectBoost||0)):1;
  if(r>=2)u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(r===2?.08:.10)*boost);
- if(r>=4)u.hp=Math.min(u.maxHp,u.hp+u.maxHp*(r===4?.06:.08)*boost);
+ const hpBefore=u.hp;if(r>=4)u.hp=Math.min(u.maxHp,u.hp+u.maxHp*(r===4?.06:.08)*boost);
+ healed(e.b,u,to.owner,hpBefore);(globalThis as any).HonroObjectiveContributions?.movement(e.b,u,to.owner,fromPoint,{x,y});
  if(r>=6)u.moveLeft=Math.min(u.maxMove,u.moveLeft+u.maxMove*(r===6?.16:.24)*boost);
- if(r===8)u.arrivalGuard=e.b.teamEnds[1]+1;
+ if(r===8){u.arrivalGuard=e.b.teamEnds[1]+1;(u as any).honroArrivalGuardOwner=to.owner;}
  e.fx('ring',x,y,'#bbc4b5',28);e.emit('change');e.emit('save');return true;
 }
 export function tickRedesign(e:Engine,dt:number){
@@ -376,7 +378,7 @@ export function tickRedesign(e:Engine,dt:number){
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){
    z.lastTriggerRound=b.round;const t=available[0];
-   if(z.skill==='M10'){z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
+   if(z.skill==='M10'){z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);healed(b,ally,z.owner,hpBefore);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
    if(z.skill==='M99'){z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
   }
   if(z.active){

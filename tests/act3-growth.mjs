@@ -1,9 +1,11 @@
 // Deterministic reward-ledger simulation, not a playable campaign clear.
 import assert from 'node:assert/strict';
 import {writeFile,mkdir} from 'node:fs/promises';
-import {runtime,battlefield} from '../game/tests/helpers.mjs';
+import {runtime,battlefield as currentBattlefield} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,P=g.HonroProgression,plain=x=>JSON.parse(JSON.stringify(x)),checks=[],table=[];
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
+// Frozen v3 migration/reward-curve audit. New-policy behavior is tested in contribution-xp-* suites.
+function battlefield(g,id,options){const p=options.profile;p.honroGrowth??={version:3,stages:{}};p.honroGrowth.stages[id]??={policy:3,combat:{},cleared:!!p.cleared[id]};return currentBattlefield(g,id,options);}
 const p=C.defaults();p.recruited=['archer'];p.cleared={};delete p.honroGrowth;
 check('First-clear ledger reproduces unchanged Acts 1 and 2 through 61,569 XP',()=>{for(let id=1;id<=20;id++){const st=g.HONRO_CONTENT.stages[id-1];if(id===11)g.HonroAct2.recruit(p);const {b}=battlefield(g,id,{profile:p});P.complete(b);p.heroes=plain(b.heroes);p.honroGrowth=plain(b.honroGrowth.ledger);p.cleared[id]={rounds:1};P.recruit(p,st);const oldStart=P.rewardXpAt(P.plan(id).entryLevel),oldEnd=P.rewardXpAt(P.plan(id).exitLevel);assert.deepEqual(plain(P.budget(id)),{start:oldStart,end:oldEnd,total:oldEnd-oldStart,combat:Math.round((oldEnd-oldStart)*.4)});}assert.equal(p.heroes.archer.xp,61569);assert.equal(P.legacyCampaignAnchor(),61569);for(const cls of p.recruited){assert.equal(C.levelOf(p.heroes[cls]),15);assert.equal(C.pointsEarned(p.heroes[cls]),31);}});
 check('Ten new stage budgets use the current curve and reach level 22 with cap 30 unchanged',()=>{assert.equal(C.MAX_LEVEL,30);let prior=P.legacyCampaignAnchor();for(let id=21;id<=30;id++){const plan=P.plan(id),v=P.budget(id);assert.equal(plan.balanceStatus,'proposed');assert.equal(plan.rewardCurve,'current');assert.equal(v.start,prior);assert(v.total>0);assert.equal(v.end,P.xpAt(plan.exitLevel));assert.equal(v.combat,Math.round(v.total*.4));table.push({stage:id,entryXp:v.start,exitXp:v.end,totalXp:v.total,combatXp:v.combat,exitLevel:plan.exitLevel,pointsAtExit:C.pointsEarned({xp:v.end})});prior=v.end;}assert.equal(C.levelOf(prior),22);assert.equal(C.pointsEarned({xp:prior}),45);});

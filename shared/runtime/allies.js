@@ -94,7 +94,7 @@ function execute(app,a){const e=app.engine,b=e.b,st=app.stage,hero=e.heroesAlive
    // Reserve all spawn positions before mutating the world: a blocked second group
    // must not duplicate the first group every retry.
    const pending=[];const shadow={...b,units:[...b.units],nextId:b.nextId};
-   for(const q of a.actions||[])if(q.type==='spawn'||q.type==='sniperAmbush'){const list=prepareSpawn(shadow,st,q,hero);if(!list)return false;pending.push(...list);shadow.units.push(...list);}
+   for(const [qi,q] of (a.actions||[]).entries())if(q.type==='spawn'||q.type==='sniperAmbush'){const list=prepareSpawn(shadow,st,{...q,source:q.source||(a.source?a.source+':'+qi:undefined),contributionSource:q.contributionSource||((a.contributionSource||a.source)?(a.contributionSource||a.source)+':'+qi:undefined)},hero);if(!list)return false;pending.push(...list);shadow.units.push(...list);}
    b.nextId=shadow.nextId;b.units.push(...pending);b.honroCounters.spawned+=pending.length;
    for(const q of a.actions||[])if(q.type!=='spawn'&&q.type!=='sniperAmbush')execute(app,q);
    return true;
@@ -125,7 +125,7 @@ function prepareSpawn(b,st,a,hero){
    const accept=flying&&a.requireFlightClearance?(x,y)=>C.flightClear({b:space},u,{x,y}):null;
    const position=G.HonroTerrain.place(space,u,{flying,maxDistance:a.maxDistance??1600,clearance:a.clearance??18,accept});
    if(!position)return null;
-   Object.assign(u,position,{id:(ambush?'sniper-crow-':'event-')+id,awake:true,aggroUntil:b.round+(ambush?6:3),spawnX:position.x,spawnY:position.y});
+   Object.assign(u,position,{honroContributionId:'wave:'+(a.contributionSource||a.source||[a.type,a.kind,a.x,a.y].join(':'))+':'+i,id:(ambush?'sniper-crow-':'event-')+id,awake:true,aggroUntil:b.round+(ambush?6:3),spawnX:position.x,spawnY:position.y});
    if(a.source)u.honroSpawnSource=a.source;
    if(ambush){u.group=-2;u.honroTargetId=archer.id;u.honroTargetUntil=b.round+5;}
    list.push(u);

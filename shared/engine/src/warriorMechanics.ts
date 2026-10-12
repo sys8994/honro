@@ -1,4 +1,5 @@
 import {passiveTuning} from './passiveBalance';
+import {healed,intercepted} from './contribution';
 import type {Engine,Collision,Prediction} from './engine';
 import type {Unit,Skill,Projectile,Vec,Battle,Terrain} from './types';
 import {SKILLS} from './data';
@@ -56,7 +57,7 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
   if(s.mode==='counterStance'){
    const rank=u.ranks[s.id]||1,before=u.hp;
    u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*(.02+.005*(rank-1))));
-   if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
+   healed(e.b,u,u.id,before);if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
    u.martialGuard={round:e.b.round,reduction:.20+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
   }
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
@@ -192,10 +193,10 @@ export function bladeScreenPass(e:Engine,p:Projectile,a:Vec,b:Vec){
   if(A<1e-8||D<0||C<0)continue;
   const ts=[(-B-Math.sqrt(D))/(2*A),(-B+Math.sqrt(D))/(2*A)];
   if(!ts.some(t=>t>=0&&t<=1&&(a.x+dx*t-c.x)*s.facing>=0))continue;
-  p.fieldHits.push(key);s.hits++;const saved=p.damage*(.50+.20*(s.rank-1)/7);p.damage-=saved;
+  const beforeScreen={...p};p.fieldHits.push(key);s.hits++;const saved=p.damage*(.50+.20*(s.rank-1)/7);p.damage-=saved;const sources=((p as any).honroScreenProtection??={});sources[u.id]=(sources[u.id]||0)+saved;
   u.bladeStored=Math.min(.35+.10*(s.rank-1)/7,(u.bladeStored||0)+saved/Math.max(1,u.attack*180));
   e.emit('fx',{name:'swordCut',x:c.x,y:c.y,x2:s.facing,y2:1,color:'#becdc9',size:175});e.emit('sound',{name:'sword'});
-  if(p.damage<5)e.remove(p);
+  if(p.damage<5){intercepted(e,beforeScreen,u.id);e.remove(p);}
  }
 }
 export function warriorPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number):Prediction|null{
