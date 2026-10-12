@@ -1,3 +1,9 @@
+## 성장 UI·검사 연결 통합 — 2026-10-12
+
+- XP 정보창에 현재 전투의 개별 기여 성장·기존 장의 성장 유지·훈련/사용자 전투 제외를 구분해 표시한다. 숫자 XP 막대/수치는 정보창에만 있고, 전투 HUD 높이는 바꾸지 않는다.
+- 새 기여 원장·실제 엔진·마이그레이션/분기·목표 출처 검사와 SP/실 App 재개 검사를 실행 스크립트 및 전체/오프라인 집계에 연결한다. 기존 검사 항목이나 역사 fixture의 실패 조건은 제거하지 않는다.
+- 통합 XP 초기화의 저장 단련 반영으로 실 16장/23장 저장의 반복 App mount 뒤 치명 수치 재초기화 결함이 닫혔다. 2개 원본 기반 저장 검사와 정보창 15개 source 시나리오, XP 6개 suite가 통과했다. 화면 크기·실제 입력·공개본 검수는 별도 릴리스 단계다.
+
 ## Contribution XP policy4 (2026-10-12)
 
 Cause: campaign damage and defeat rewards were shared per companion, then clear topped all companions up to a common absolute XP target. Support effects and actual mission work had no individual accounting.

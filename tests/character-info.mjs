@@ -92,6 +92,12 @@ check('Status button opens selected-character information and preserves duration
 check('HUD skills retain icon, name, cost and number while omitting their rank label',()=>{
  const line=source.split('\n').find(x=>x.includes("$('combat-skills').innerHTML="));assert(!line.includes('rank-tiny'));for(const token of ['class="key"','class="mana-cost"','this.sig(s.id)','class="skill-name"'])assert(line.includes(token));
 });
+check('XP policy explains individual contribution, retained legacy stages and non-campaign exclusion only in the info card',()=>{
+ const old={mode:f.b.mode,honroStage:f.b.honroStage,honroGrowth:f.b.honroGrowth,honroCustom:f.b.honroCustom};
+ f.b.mode='campaign';f.b.honroStage=1;f.b.honroCustom=false;f.b.honroGrowth={ledger:{stages:{1:{contribution:{version:4}}}}};info.show(f.a,f.archer);assert.match(f.el.querySelector('.unit-info-xp-policy').textContent,/개별 성장/);
+ delete f.b.honroGrowth.ledger.stages[1].contribution;info.tick(f.a);assert.match(f.el.querySelector('.unit-info-xp-policy').textContent,/기존 성장/);
+ f.b.honroCustom=true;info.tick(f.a);assert.match(f.el.querySelector('.unit-info-xp-policy').textContent,/경험치 없음/);Object.assign(f.b,old);
+});
 check('Enemy inspection retains selection, level, health, defense and skills without hero XP',()=>{
  const before=JSON.stringify(f.b);info.tap(f.a,body(f.enemy),false);assert.equal(f.a.scene.inspectUnitId,f.enemy.id);assert.equal(JSON.stringify(f.b),before);
  assert.match(f.el.querySelector('h3').textContent,/Lv\./);assert.equal(f.el.dataset.side,'enemy');assert.equal(f.el.querySelector('.unit-info-progress').hidden,true);assert(f.el.querySelector('.unit-info-reason').hidden);assert(f.el.querySelector('.unit-info-health span').textContent.includes('/'));assert(f.el.querySelector('.unit-info-existence').innerHTML);assert(f.el.querySelector('.unit-info-skills').textContent);
