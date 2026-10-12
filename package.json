@@ -166,7 +166,7 @@
     "test:quest-story:geometry": "node tests/act23-route-geometry.mjs",
     "capture:quest-story": "node --expose-gc tests/quest-story-native-art.mjs",
     "test:sp-balance": "node tests/sp-passive-runtime.mjs && node tests/sp-marginal-balance.mjs && node tests/sp-build-survivability.mjs",
-    "test:contribution-xp": "node tests/contribution-xp-ledger.mjs && node tests/contribution-xp-engine.mjs && node tests/contribution-xp-migration.mjs && node tests/objective-contribution-invariants.mjs && node tests/objective-contribution-runtime.mjs && node tests/objective-wave-provenance.mjs",
+    "test:contribution-xp": "node tests/contribution-xp-ledger.mjs && node tests/contribution-xp-engine.mjs && node tests/contribution-xp-migration.mjs && node tests/contribution-xp-app.mjs && node tests/objective-contribution-invariants.mjs && node tests/objective-contribution-runtime.mjs && node tests/objective-wave-provenance.mjs",
     "test:growth-resume": "node tests/sp-balance-app-resume.mjs"
   },
   "devDependencies": {
