@@ -751,9 +751,9 @@ export class Engine {
         const absorbed = Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
-        if(u.side===0&&u.cls==='occultist'&&!u.summoned&&!u.enthrall&&passiveRank(u,'OP03')&&dmg>u.maxHp*.14){
+        if(u.side===0&&u.cls==='occultist'&&!u.summoned&&!u.enthrall&&passiveRank(u,'OP03')&&dmg>0){
             const near=this.alive(0).filter(v=>v.summoned&&v.summonOwner===u.id&&Math.hypot(v.x-u.x,v.y-u.y)<340).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
-            if(near){const shared=Math.min(Math.round(dmg*passiveTuning(passiveRank(u,'OP03')).soulShare),Math.round(u.maxHp*.12),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun');}
+            if(near){const shared=Math.min(Math.round(dmg*passiveTuning(passiveRank(u,'OP03')).soulShare),Math.round(u.maxHp*passiveTuning(passiveRank(u,'OP03')).soulShareCap),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun');}
         }
         if (absorbed)
             this.fx('ring', u.x, u.y - u.h * .5, '#b1daf4', 32);
@@ -766,7 +766,7 @@ export class Engine {
             const actual = Math.min(u.hp, dmg);
             if(!p)this.emit('sound',{name:'hit'});
             u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - dmg);
-            if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*.08*equippedRank(u,'SP05')));u.martialGuard={round:this.b.round,reduction:.18};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
+            if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*passiveTuning(passiveRank(u,'SP05')).lastStandHp));u.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(u,'SP05')).lastStandGuard};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
             u.hurt = .7;
             this.emit('fx',{name:'text',x:u.x,y:u.y-u.h-7,color:critical?'#ffd45c':u.side===0?'#ffaaa3':'#fff0d2',size:critical?26:19,text:(critical?'치명! −':'−')+dmg,critical:!!critical,damage:dmg,targetId:u.id,attackId:`${owner||'environment'}:${this.b.round}:${p?.shot??this.b.shot}`});
@@ -1067,8 +1067,8 @@ export class Engine {
         if(!u.summoned||u.dead||u.summonExpires===undefined||this.b.round<=u.summonExpires)return false;
         const owner=u.summonOwner?this.unit(u.summonOwner):undefined,rank=owner?passiveRank(owner,'OP04'):0;
         if(owner&&rank&&u.summonKind!=='earthbound'){
-            owner.focus=Math.min(owner.maxFocus,owner.focus+owner.maxFocus*(.04+.018*rank));
-            owner.nextSummonDiscount=Math.max(owner.nextSummonDiscount||0,Math.min(.24,.035*rank));
+            owner.focus=Math.min(owner.maxFocus,owner.focus+owner.maxFocus*passiveTuning(rank).expiryRecovery);
+            owner.nextSummonDiscount=Math.max(owner.nextSummonDiscount||0,passiveTuning(rank).expiryDiscount);
             this.fx('spark',u.x,u.y-u.h*.5,'#c8c1a9',24);
         }
         u.dead=true;u.hp=0;return true;

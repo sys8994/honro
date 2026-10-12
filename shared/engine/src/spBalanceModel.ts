@@ -51,11 +51,11 @@ export function spBuildAxes(h:HeroProgress,cls:ClassId,s:SpScenario=SP_SCENARIOS
   }
  }
  if(cls==='archer'){
-  let follow=0;for(let n=1;n<volleyCount(r('AP01'));n++)follow+=volleyDamage(r('AP01'),n);
+  let follow=0;for(let n=1;n<volleyCount(r('AP01'));n++)follow+=t('AP01').volleyFirst*Math.pow(.66,n-1);
   offense*=1+s.followupHit*follow;
   offense*=1+(.40+t('AP04').trajectory)*s.trajectory;
   const rank=r('AP05');if(rank){let history=0;for(let age=1;age<=Math.min(s.turns-1,SALHEUN_TURNS[rank-1]);age++)history+=Math.pow(.55,age-1)*Math.pow(s.sameTarget,age);offense*=1+SALHEUN_RATIO[rank-1]*history;}
-  if(r('AP03'))mobility*=1+s.retreatUse*(.08+.04*r('AP03'));
+  if(r('AP03'))mobility*=1+s.retreatUse*t('AP03').retreat;
  }
  if(cls==='knight'){
   // Three mutually exclusive cast families are averaged, never added as three full attacks.
@@ -69,14 +69,14 @@ export function spBuildAxes(h:HeroProgress,cls:ClassId,s:SpScenario=SP_SCENARIOS
   survival/=1-s.harmony*t('SP04').harmonyGuard;
   budget+=stats.mp*s.turns*s.harmony*t('SP04').harmonyRecovery;
   cost*=1-s.harmony*t('SP04').harmonyDiscount;
-  if(r('SP05'))survival*=1+s.lethalRisk*(.20+.08*rankPower(r('SP05'))/.82);
+  if(r('SP05'))survival*=1+s.lethalRisk*(.20+t('SP05').lastStandHp/(1-t('SP05').lastStandGuard));
  }
  if(cls==='occultist'){
   const trap=r('OP01');if(trap){const duration=1+Math.floor(trap/3),reentry=1-(1-s.trapReentry)**duration;offense*=1+s.missRate*reentry*(.22+.045*trap);}
   offense*=1+s.summonShare*s.markUptime*t('OP02').markedSummonDamage;
   mobility*=1+s.summonShare*s.markUptime*t('OP02').markedPriority/1800;
-  survival/=1-s.summonAvailable*s.largeHitShare*Math.min(t('OP03').soulShare,.12/s.hitHpFraction);
-  if(r('OP04')){const expiries=s.turns/5*s.naturalExpiry;budget+=stats.mp*expiries*(.04+.018*r('OP04'));budget+=s.castCost*expiries*Math.min(.24,.035*r('OP04'));}
+  survival/=1-s.summonAvailable*(t('OP03').soulShareThreshold?s.largeHitShare:1)*Math.min(t('OP03').soulShare,t('OP03').soulShareCap/s.hitHpFraction);
+  if(r('OP04')){const expiries=s.turns/5*s.naturalExpiry;budget+=stats.mp*expiries*t('OP04').expiryRecovery;budget+=s.castCost*expiries*t('OP04').expiryDiscount;}
   offense*=1+s.soulShare*s.empoweredCast*t('OP05').remnantDamage;
  }
  return {offense,survival,sustain:budget/Math.max(1,cost),mobility};
@@ -91,6 +91,6 @@ export function spMarginal(before:SpAxes,after:SpAxes,weights:SpAxes){
 export const SP_ACTIVE_AUDIT={
  legacyRuntimeModel:'balanceModel.ts: retained for legacy skills and the 16 current Sodan actives',
  redesignedDamageFactor:1,
- sodanUnmodeledModes:['curseManifest','curseEnthrall','curseEarth','summonEater','summonEcho','nightConvergence'],
+ sodanUnmodeledModes:['curseManifest','curseEnthrall','curseEarth','summonEater','summonEcho','spiritConverge'],
  note:'Do not treat legacy scoreSkill as a full contemporary ranking. Summon actions, control and O16 capstone are not fully priced there.',
 };

@@ -1,3 +1,4 @@
+import {SP_BALANCE_REVISION} from './passiveBalance';
 import {makePhysics,reinforceFields} from './physics';
 import { stageStrength, setDifficulty, enlargedGroup, makeElite, DIFFICULTIES, campaignEnemyCount, campaignEliteShare, ENEMY_GLOBAL_STAT } from './balance';
 import type { Battle, Stage, Terrain, ClassId, Unit, Profile, Material, EnemySpec, Decoration } from './types';
@@ -252,7 +253,7 @@ export function createBattle(stageId: number, profile: Profile, mode: Battle['mo
     }
     const fields = mode === 'practice' ? [] : world.vertical ? world.routePoints!.filter((_,i)=>i>2&&i%6===0).map((at,i)=>({id:'tower-field-'+i,kind:(i%2?'storm':'gravity') as 'storm'|'gravity',x:clamp(at.x+(i%2?150:-150),140,world.width-140),y:at.y-150,radius:135,strength:170})) : createFields(stage, world.width, world.terrain);
     reinforceFields(fields);
-    const battle: Battle = { version: 2, skillRevision:1, martialRevision:1, revision: 11, physics:makePhysics(stage.physics), controlMode: 'move', fields, reviewDamage:{}, reviewLeft:0, stageId, mode, difficulty: profile.settings.difficulty, round: 1, side: 0, phase: 'aim', active: units[0].id, units, ...world, projectiles: [], zones: [], wind: opts.wind ?? stage.wind[0], teamEnds: [0, 0, 0], queue: [], turnAge: 0, resolveAge: 0, nextId: 1, shot: 0, shotDamage: {}, shots: 0, hits: 0, kills: 0, items: { heal: 3, focus: 3, cleanse: 2, ward: 2 }, events: [], seed: stageId * 19381 + 7, rng: stageId * 19381 + 7, reinforced: 0, sceneVersion: 1, winnerReason: '', practiceWind: opts.wind, practiceDistance: opts.distance, startSide: opts.startSide, lastShots: {}, heroes, startXP: { mage: heroes.mage.xp, archer: heroes.archer.xp, knight: heroes.knight.xp, occultist: heroes.occultist.xp }, rewardGranted: false, awardIds: [], enemyLimit: 10, encounter: 0, session: `${Date.now().toString(36)}-${stageId}` };
+    const battle: Battle = { version: 2, spBalanceRevision:SP_BALANCE_REVISION, skillRevision:1, martialRevision:1, revision: 11, physics:makePhysics(stage.physics), controlMode: 'move', fields, reviewDamage:{}, reviewLeft:0, stageId, mode, difficulty: profile.settings.difficulty, round: 1, side: 0, phase: 'aim', active: units[0].id, units, ...world, projectiles: [], zones: [], wind: opts.wind ?? stage.wind[0], teamEnds: [0, 0, 0], queue: [], turnAge: 0, resolveAge: 0, nextId: 1, shot: 0, shotDamage: {}, shots: 0, hits: 0, kills: 0, items: { heal: 3, focus: 3, cleanse: 2, ward: 2 }, events: [], seed: stageId * 19381 + 7, rng: stageId * 19381 + 7, reinforced: 0, sceneVersion: 1, winnerReason: '', practiceWind: opts.wind, practiceDistance: opts.distance, startSide: opts.startSide, lastShots: {}, heroes, startXP: { mage: heroes.mage.xp, archer: heroes.archer.xp, knight: heroes.knight.xp, occultist: heroes.occultist.xp }, rewardGranted: false, awardIds: [], enemyLimit: 10, encounter: 0, session: `${Date.now().toString(36)}-${stageId}` };
     for(const u of battle.units)if(u.side===1&&u.role!=='dummy'){u.combatBaseHp=u.maxHp;u.combatBaseAttack=u.attack;}
     setDifficulty(battle,profile.settings.difficulty);
     return battle;
@@ -363,6 +364,17 @@ export function upgradeBattle(b: Battle, profile: Profile): Battle {
         b.physics=makePhysics(STAGES[b.stageId-1]?.physics);reinforceFields(b.fields);
         for(const u of b.units){if(u.summoned)u.summonFloating=true;u.impactCooldown=0;}
         b.revision=11;
+    }
+    if((b.spBalanceRevision||0)<SP_BALANCE_REVISION){
+        // Recalculate only playable heroes. Preserve resource fractions, progression,
+        // wounds, action state, enemies, existing summons and already authored casts.
+        for(const u of b.units.filter(v=>v.side===0&&!v.summoned&&!v.enthrall)){
+            const h=b.heroes[u.cls];if(!h)continue;
+            const hpRatio=u.maxHp?clamp(u.hp/u.maxHp,0,1):0,mpRatio=u.maxFocus?clamp(u.focus/u.maxFocus,0,1):0,moveRatio=u.maxMove?clamp(u.moveLeft/u.maxMove,0,1):0,dead=u.dead;
+            applyHero(u,{...h,ranks:{...u.ranks}},false);
+            u.hp=dead?0:Math.max(1,Math.floor(u.maxHp*hpRatio));u.focus=u.maxFocus*mpRatio;u.moveLeft=u.maxMove*moveRatio;u.dead=dead;
+        }
+        b.spBalanceRevision=SP_BALANCE_REVISION;
     }
     return b;
 }

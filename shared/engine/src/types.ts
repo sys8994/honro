@@ -370,6 +370,7 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    spBalanceRevision?: number;
     martialRevision?: number;
     occultRevision?: number;
     practiceCombat?: boolean;
