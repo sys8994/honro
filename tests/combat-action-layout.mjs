@@ -79,6 +79,23 @@ console.log('PASS portrait status remains reachable in the compact40px party row
 
 assert.match(presentation,/hero-switches\{grid-column:1!important;grid-row:1!important;/,'Portrait party must not inherit the old full-row span');
 assert.match(presentation,/combat-status\{grid-column:2!important;grid-row:1!important;/,'Status stays beside the party rather than over the vital row');
-assert.match(presentation,/grid-template-rows:40px!important/);
+assert.match(presentation,/grid-template-rows:var\(--hud-roster-height\)!important/);
 assert.match(presentation,/strong,\.honro #app \.honro-compact-hud \.ally-chip small\{margin:0!important;line-height:1\.25!important/);
 console.log('PASS explicit portrait roster placement and unclipped text line height');
+
+// Latest user request is a small portrait-only trim, not another action redesign.
+const micro=presentation.split('/* Small portrait-phone trim:')[1];
+assert.match(micro,/@media\(orientation:portrait\) and \(max-width:560px\)/);
+assert.match(micro,/--hud-roster-height:36px;--hud-vitals-height:18px;--joystick-lift:4px/);
+assert.match(css,/grid-template-rows:var\(--hud-vitals-height\)!important/);
+assert.match(micro,/height:var\(--hud-roster-height\)!important;min-height:var\(--hud-roster-height\)!important/);
+assert.match(micro,/canvas\.portrait\{height:30px!important/);
+assert.match(micro,/\.meter\{height:16px!important/);
+assert.match(micro,/#joystick\{top:calc\(0px - var\(--joystick-lift\)\)!important/);
+assert.match(micro,/wind-gauge\{top:calc\(100% \+ 2px \+ var\(--joystick-lift\)\)!important/);
+assert.doesNotMatch(micro,/font-size:|--action-size:|--fire-size:|--joystick-size:/);
+assert.equal((40+20)-(36+18),6,'HUD and battlefield reservation reclaim exactly six pixels');
+const stickSize=72,lift=4,oldWindTop=stickSize+2,newStickTop=-lift,newWindTop=newStickTop+stickSize+2+lift;
+assert.equal(newWindTop,oldWindTop,'Wind stays in place while real input box and ring move together');
+assert.equal(newWindTop-(newStickTop+stickSize),6);
+console.log('PASS portrait micro-trim:36px party/18px row/16px bars; aligned joystick input and6px wind gap');

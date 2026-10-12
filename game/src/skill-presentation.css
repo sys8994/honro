@@ -63,7 +63,7 @@
 /* Portrait keeps status details reachable in the same row as the party. */
 @media(orientation:portrait) and (max-width:899px){
  .honro #app .battle{--hud-roster-height:40px}
- .honro #app .honro-compact-hud .hud-roster{display:grid!important;grid-template-columns:minmax(0,1fr) 36px!important;grid-template-rows:40px!important;gap:6px!important;align-items:center!important}
+ .honro #app .honro-compact-hud .hud-roster{display:grid!important;grid-template-columns:minmax(0,1fr) 36px!important;grid-template-rows:var(--hud-roster-height)!important;gap:6px!important;align-items:center!important}
  .honro #app .honro-compact-hud .hero-switches{grid-column:1!important;grid-row:1!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
  .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
  .honro #app .honro-compact-hud .combat-status{grid-column:2!important;grid-row:1!important;margin:0!important;justify-self:end!important}
@@ -83,4 +83,16 @@
  .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{gap:2px!important}
  .honro #app .honro-compact-hud .ally-chip canvas.portrait{width:24px!important}
  .honro #app .honro-compact-hud .ally-chip[aria-label*=전투불능] small{font-size:7px!important}
+}
+
+/* Small portrait-phone trim: keep type and action sizes; reclaim only six pixels.
+   Move the real joystick hit box with its ring/knob, but counter-offset the wind
+   gauge so its screen position stays fixed and its gap grows from2px to6px. */
+@media(orientation:portrait) and (max-width:560px){
+ .honro #app .battle{--hud-roster-height:36px;--hud-vitals-height:18px;--joystick-lift:4px}
+ .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{height:var(--hud-roster-height)!important;min-height:var(--hud-roster-height)!important}
+ .honro #app .honro-compact-hud .ally-chip canvas.portrait{height:30px!important}
+ .honro #app .honro-compact-hud .meter{height:16px!important}
+ .honro #app .honro-compact-hud #joystick{top:calc(0px - var(--joystick-lift))!important}
+ .honro #app .honro-compact-hud .joystick .wind-gauge{top:calc(100% + 2px + var(--joystick-lift))!important}
 }
