@@ -11,6 +11,8 @@ export function passiveTuning(rank:number){
   manaRegenFlat:.5*r, manaRegenMax:.006*r,
   volleyFirst:.42+.02*Math.min(4,Math.max(0,r-1))+.045*Math.max(0,r-5),
   retreat:r?.12+.12*(r-1):0,
+  jucheonExtraEffect:.02*Math.max(0,r-1),
+  trapDamage:r?.265+.080*(r-1):0,
   missRefund:r?.18+.08*(r-1):0,
   ward:r?.025+.020*r:0, wardCap:.25,
   criticalChance:.04*r, criticalMultiplier:.08*r,

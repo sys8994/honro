@@ -5,7 +5,7 @@ import {passiveRank} from './progression';
 import {SALHEUN_TURNS,SALHEUN_RATIO,JUCHEON_DISCOUNT,JUCHEON_EFFECT,JUCHEON_THRESHOLD} from './warriorData';
 import {SKILLS} from './data';
 
-export function jucheonBoost(u:Unit,s:Skill){const r=passiveRank(u,'MP05');return u.cls==='mage'&&r&&u.jucheonReady&&s.cls==='mage'&&s.cost>0?JUCHEON_EFFECT[r-1]:0;}
+export function jucheonBoost(u:Unit,s:Skill){const r=passiveRank(u,'MP05');return u.cls==='mage'&&r&&u.jucheonReady&&s.cls==='mage'&&s.cost>0?JUCHEON_EFFECT[r-1]+passiveTuning(r).jucheonExtraEffect:0;}
 export function passiveCost(u:Unit,s:Skill,cost:number){
  if(jucheonBoost(u,s))cost*=1-JUCHEON_DISCOUNT[passiveRank(u,'MP05')-1];
  if(u.cls==='knight'&&u.harmony&&s.martial)cost*=1-passiveTuning(passiveRank(u,'SP04')).harmonyDiscount;
