@@ -665,12 +665,7 @@
             cv.onpointerup = e => { if (!moved && this.contacts.size === 1 && this.engine) {
                 if(G.HonroUnitInfo.tap(this,pos(e),e.pointerType==='touch')){this.contacts.delete(e.pointerId);lastPair=null;return;}
                 let p = pos(e), v = this.scene.world(p.x, p.y), u = this.engine.b.units.find(u => u.side === 0 && !u.summoned && !u.dead && Math.hypot(u.x - v.x, u.y - u.h * .5 - v.y) < u.h);
-                if (u && this.canInput() && this.engine.select(u.id)) {
-                    this.cancelInput();
-                    this.selected = u.loadout.find(id => !S[id].passive) || this.selected;
-                    this.scene.manual = false;
-                    this.updateHUD(true);
-                }
+                if (u) { this.selectHero(u.id); G.HonroUnitInfo.show(this,u); }
             } this.contacts.delete(e.pointerId); lastPair = null; };
             cv.onpointercancel = e => { this.contacts.delete(e.pointerId); lastPair = null; moved = true; };
             cv.addEventListener('wheel', e => { e.preventDefault(); let p = pos(e); this.scene.zoom(Math.exp(-e.deltaY * .0014), p.x, p.y); }, { passive: false });
@@ -703,11 +698,10 @@
             const players=b.units.filter(v=>v.side===0&&!v.summoned),sig=players.map(v=>[v.id,Math.round(v.hp),Math.round(v.focus),v.acted,v.dead].join(':')).join('|')+'|'+u.id+'|'+this.selected+'|'+b.round+'|'+u.meleeFollow+'|'+u.jucheonReady+'|'+u.harmony;
             if(force||sig!==this.hudSig){
                 this.hudSig=sig;
-                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted?'acted':''}" data-action="select-hero" data-id="${v.id}" ${v.dead?'disabled':''}>${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
+                $('hero-switches').innerHTML=players.map(v=>`<button class="ally-chip player-chip ${v.id===b.active?'active':''} ${v.acted||v.dead?'acted':''}" data-action="select-hero" data-id="${v.id}" aria-label="${H.hero[v.cls].name}${v.dead?' · 전투불능':''} · 선택 및 정보">${this.portrait(v.cls)}<span><strong>${H.hero[v.cls].name}</strong><small>${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%</small></span></button>`).join('');
                 $('combat-skills').innerHTML=[0,1,2,3].map(i=>{const s=S[combatSkills[i]],r=s?e.cooldownLeft(u,s.id):0;return s?`<button class="skill-button ${s.id===this.selected?'selected':''} ${u.focus<e.manaCost(s,u)||r?'unaffordable':''}" style="--skill:${s.color}" data-action="combat-skill" data-skill="${s.id}" aria-label="${s.name}" ${e.skillAllowed(s,u)?'':'disabled title="파진연격 · 검술만 가능"'}><span class="key">${i+1}</span><span class="mana-cost">${r?r+'회':e.manaCost(s,u)||''}</span>${this.sig(s.id)}<span class="skill-name">${s.name}</span><span class="rank-tiny">${s.basic?'기본':s.capstone?'비기 '+(u.ranks?.[s.id]||1):s.ultimate?'비기':u.ranks?.[s.id]?'+'+u.ranks[s.id]:''}</span></button>`:`<button class="skill-button empty" disabled>—</button>`;}).join('');
                 this.drawPortraits();
             }
-            const hero=b.heroes?.[u.cls],xp=$('hud-xp-fill'),xpBar=xp?.parentElement;if(hero&&xp){xp.style.width=(C.xpFraction(hero)*100)+'%';const level=C.levelOf(hero);xpBar.title=H.hero[u.cls].name+' · 경지 '+level+' · 경험치 '+Math.round(C.xpFraction(hero)*100)+'%';xpBar.setAttribute('aria-label',xpBar.title);xpBar.setAttribute('aria-valuenow',String(Math.round(C.xpFraction(hero)*100)));}
             $('hp-fill').style.width=(Math.max(0,u.hp)/u.maxHp*100)+'%';$('hp-label').textContent=Math.round(Math.max(0,u.hp))+' / '+u.maxHp;
             $('mp-fill').style.width=(u.focus/u.maxFocus*100)+'%';$('mp-label').textContent=Math.round(u.focus)+' / '+u.maxFocus;
             $('move-fill').style.width=(u.maxMove>0?clamp(u.moveLeft/u.maxMove*100,0,100):0)+'%';$('move-label').textContent=Math.round(Math.max(0,u.moveLeft))+' / '+Math.round(u.maxMove);
@@ -1017,6 +1011,7 @@
                     break;
                 case 'select-hero':
                     this.selectHero(id);
+                    G.HonroUnitInfo.show(this,this.engine?.unit(id));
                     break;
                 case 'combat-skill':
                     // Battle HUD taps only select a skill. Detail modals belong to the camp/training UI.
