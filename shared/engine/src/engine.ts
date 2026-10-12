@@ -1,3 +1,4 @@
+import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
 import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
@@ -112,7 +113,7 @@ export class Engine {
                 damage *= .9 + u.tune * .2;
         }
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
-        if(s.martial&&u.side===0){if(u.harmony)damage*=1.15;if(s.branch==='rush'){damage*=1+.025*passiveRank(u,'SP01');speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+.012*passiveRank(u,'SP01');}
+        if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
         if (u.bound > 0 && BODY.has(s.mode))
             speed *= .72;
         return { speed, damage, radius };
@@ -476,7 +477,7 @@ export class Engine {
             make(u.angle);
         beginOccultCast(this,u,s,b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot));
         const castBonus=beginPlayerCast(this,u,s,actualKiSpent);
-        for(const p of b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot)){p.effectBoost=castBonus.effectBoost;p.sizeBoost=s.martial&&s.branch==='blade'?1+.012*passiveRank(u,'SP01'):1;}
+        for(const p of b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot)){p.effectBoost=castBonus.effectBoost;p.sizeBoost=s.martial&&s.branch==='blade'?1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry:1;}
         initRedesignCast(this,s,u,actualKiSpent);startWarriorCast(this,s,u);
         const rank=passiveRank(u,'AP01');
         if(rank>0 && ARROWS.has(s.mode)){const roots=b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot);b.volley={template:JSON.parse(JSON.stringify(roots[s.mode==='triple'?Math.floor(roots.length/2):0])),remaining:volleyCount(rank)-1,elapsed:0,interval:VOLLEY_INTERVAL,index:0,angle:u.angle,power:u.lastPower};}
@@ -703,6 +704,8 @@ export class Engine {
             dmg *= this.b.difficulty === 'explorer' ? .48 : this.b.difficulty === 'story' ? .60 : this.b.difficulty === 'normal' ? .82 : this.b.difficulty === 'veteran' ? .98 : 1.08;
         if (src?.side === 1 && src.combatBaseAttack===undefined && this.b.mode === 'campaign' && this.b.stageId === 1)
             dmg *= .85;
+        // Soul-line damage is conditional on this medium's live mark; neither unrelated marks nor owner spells qualify.
+        if(damageSource==='normal'&&src?.side===0&&src.cls==='occultist'&&(rawSrc?.summoned||rawSrc?.enthrall)&&u.side===1&&((u.curseOwner===src.id&&(u.curseTurns||0)>0)||(u.earthbind?.owner===src.id&&u.earthbind.until>=this.b.round)))conditionBonuses.push(passiveTuning(passiveRank(src,'OP02')).markedSummonDamage);
         const preCondition=1+conditionBonuses.reduce((sum,bonus)=>sum+bonus,0);
         dmg*=preCondition*criticalMultiplier;
         if(p&&src&&newSkill(p))dmg=redrawDamage(this,p,src,u,dmg,source||p,direct,!!critical);
@@ -726,7 +729,7 @@ export class Engine {
             conditionBonuses.push(.22);
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
-        const defenseMultiplier=(damageSource==='normal'?1-clamp(armor*(p?.skill==='S02'?.65:1),0,.7):1)
+        const defenseMultiplier=(damageSource==='normal'?1-clamp(armor*(p?.skill==='S02'?.65:1),0,HERO_ARMOR_CAP):1)
             *(u.arrivalGuard!==undefined?.90:1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
         const attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
@@ -750,7 +753,7 @@ export class Engine {
         dmg -= absorbed;
         if(u.side===0&&u.cls==='occultist'&&!u.summoned&&!u.enthrall&&passiveRank(u,'OP03')&&dmg>u.maxHp*.14){
             const near=this.alive(0).filter(v=>v.summoned&&v.summonOwner===u.id&&Math.hypot(v.x-u.x,v.y-u.y)<340).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
-            if(near){const shared=Math.min(Math.round(dmg*Math.min(.28,.04*passiveRank(u,'OP03'))),Math.round(u.maxHp*.12),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun');}
+            if(near){const shared=Math.min(Math.round(dmg*passiveTuning(passiveRank(u,'OP03')).soulShare),Math.round(u.maxHp*.12),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun');}
         }
         if (absorbed)
             this.fx('ring', u.x, u.y - u.h * .5, '#b1daf4', 32);
@@ -775,7 +778,7 @@ export class Engine {
                 if(damageSource==='normal'&&p&&wardRank&&src.cls==='mage'&&!src.summoned&&SKILLS[p.skill]?.cls==='mage'&&src.mageWardShot!==p.shot){
                     src.mageWardShot=p.shot;
                     const ally=this.alive(0).filter(v=>!v.summoned&&!v.enthrall&&v.id!==src.id&&Math.hypot(v.x-u.x,(v.y-v.h*.5)-(u.y-u.h*.5))<520).sort((a,b)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(b.x-u.x,b.y-u.y))[0]||src;
-                    ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*.25),ally.shield+Math.round(ally.maxHp*(.025+.0075*wardRank))));
+                    ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*.25),ally.shield+Math.round(ally.maxHp*passiveTuning(wardRank).ward)));
                     ally.shieldUntil=Math.max(ally.shieldUntil||0,this.b.teamEnds[1]+1);
                     this.fx('ring',ally.x,ally.y-ally.h*.5,'#b4d8d1',34);
                 }

@@ -1,3 +1,4 @@
+import {passiveTuning} from './passiveBalance';
 import type {Engine,Collision,Prediction} from './engine';
 import type {Unit,Skill,Projectile,Vec,Battle,Terrain} from './types';
 import {SKILLS} from './data';
@@ -9,8 +10,8 @@ const at=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
 const foe=(u:Unit,t:Unit)=>!t.dead&&t.side!==u.side&&t.side!==2;
 export const meleeSkill=(s:Skill)=>!!s.martial&&s.branch==='sword';
 export function warriorAllowed(u:Unit,s:Skill){return u.meleeFollow!=='ready'||meleeSkill(s);}
-export function meleeRange(u:Unit,s:Skill,power:number){return s.radius*(1+(['counterStance','lifeSlash'].includes(s.mode)?0:power)*(.23+.006*passiveRank(u,'SP01')));}
-export function meleeFactor(u:Unit,power:number){return .88+(.47+.012*passiveRank(u,'SP01'))*power;}
+export function meleeRange(u:Unit,s:Skill,power:number){return s.radius*(1+(['counterStance','lifeSlash'].includes(s.mode)?0:power)*(.23+passiveTuning(passiveRank(u,'SP01')).swordReach));}
+export function meleeFactor(u:Unit,power:number){return .88+(.47+passiveTuning(passiveRank(u,'SP01')).swordCharge)*power;}
 export function meleeSpan(u:Unit,s:Skill,power=0){const base=s.mode==='meleeWide'?48:s.mode==='counterStance'?40:s.mode==='meleeCombo'?22:25;return rad(base+Math.max(0,(u.ranks[s.id]||1)-1)*1.5+clamp(power,0,1)*10+passiveRank(u,'SP01')*.5);}
 export function meleeContains(e:Engine,u:Unit,t:Unit,range:number,angle=-rad(u.angle),span=meleeSpan(u,SKILLS.S00)){
  const a=at(u),padding=6,bodyRadius=t.r+padding;

@@ -1,3 +1,4 @@
+import {passiveTuning} from './passiveBalance';
 import type {Engine} from './engine';
 import type {Projectile,Skill,Unit,Vec} from './types';
 import {clamp,segRect} from './math';
@@ -25,7 +26,7 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
  const empowered=(u.soulRemnants||0)>=3;
  if(empowered){u.soulRemnants=0;e.fx('spark',u.x,u.y-u.h*.6,'#d8cfaa',34);}
  if(summon)u.nextSummonDiscount=0;
- for(const p of roots){p.soulBoost=empowered;if(empowered&&soul)p.damage*=1+.12+.02*(u.ranks.OP05||0);}
+ for(const p of roots){p.soulBoost=empowered;if(empowered&&soul)p.damage*=1+passiveTuning(u.ranks.OP05||0).remnantDamage;}
  if(!soul)return;
  const prediction=e.predict(u,s,u.angle,u.lastPower,undefined,true);
  const point={x:prediction.x,y:prediction.y};

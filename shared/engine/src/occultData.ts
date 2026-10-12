@@ -28,7 +28,7 @@ update('O14',{name:'먹귀',tag:'초혼 · 투사체 포식',desc:'허공에 먹
  skills.O16={id:'O16',cls:'occultist',name:'만혼귀결',tag:'혼행 비기 · 귀결',desc:'흩어진 수많은 혼을 한 점으로 이끈다. 혼령들은 세상의 벽을 넘어 귀결점을 향해 모여든다.',cost:74,damage:76,radius:0,speed:1.55,wind:.10,mode:'spiritConverge',color:'#c4c8b6',icon:'resonance',terrain:.2,gravity:.20,capstone:true,fuse:2.25};
  for(const [id,name,desc,icon,color] of [
   ['OP01','잔부','빗나간 부적이 잠시 남아 닿은 적에게 약한 주박을 건다.','rune','#c7b597'],
-  ['OP02','혼맥','주박한 적을 소환령이 우선 찾아 공격한다.','target','#bdada0'],
+  ['OP02','혼맥','자신이 주박한 적을 소환령과 섭혼한 적이 우선 찾아 더욱 강하게 공격한다.','target','#bdada0'],
   ['OP03','분혼','큰 피해의 일부를 가까운 소환령과 나누어 받는다.','shield','#aebdb1'],
   ['OP04','매듭보전','수명이 다한 소환령이 기력을 돌려주고 다음 초혼을 가볍게 한다.','return','#b7b7a5'],
   ['OP05','잔혼','소단의 영향 아래 적이 쓰러지면 잔혼을 모아 다음 기예를 강화한다.','vortex','#c9bda7']

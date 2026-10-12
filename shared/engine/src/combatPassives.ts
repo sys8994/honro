@@ -1,3 +1,4 @@
+import {passiveTuning} from './passiveBalance';
 import type {Engine} from './engine';
 import type {Unit,Skill,Projectile} from './types';
 import {passiveRank} from './progression';
@@ -7,7 +8,7 @@ import {SKILLS} from './data';
 export function jucheonBoost(u:Unit,s:Skill){const r=passiveRank(u,'MP05');return u.cls==='mage'&&r&&u.jucheonReady&&s.cls==='mage'&&s.cost>0?JUCHEON_EFFECT[r-1]:0;}
 export function passiveCost(u:Unit,s:Skill,cost:number){
  if(jucheonBoost(u,s))cost*=1-JUCHEON_DISCOUNT[passiveRank(u,'MP05')-1];
- if(u.cls==='knight'&&u.harmony&&s.martial)cost*=.75;
+ if(u.cls==='knight'&&u.harmony&&s.martial)cost*=1-passiveTuning(passiveRank(u,'SP04')).harmonyDiscount;
  return Math.max(0,Math.round(cost));
 }
 /** Own action clock, including misses/wait; review and retreat must not age it twice. */
@@ -48,7 +49,7 @@ export function beginPlayerCast(e:Engine,u:Unit,s:Skill,actualKiSpent:number){
   const hadHarmony=!!u.harmony;u.harmony=false;
   const rank=passiveRank(u,'SP04');if(rank){
    u.swordChain??=[];if(!u.swordChain.includes(s.branch!))u.swordChain.push(s.branch!);
-   if(u.swordChain.length===3){u.swordChain=[];u.harmony=true;u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(.05+.00625*rank));u.martialGuard={round:e.b.round,reduction:.10};e.fx('text',u.x,u.y-u.h-18,'#cad4cd',16,'합세');e.emit('sound',{name:'sword'});}
+   if(u.swordChain.length===3){u.swordChain=[];u.harmony=true;u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*passiveTuning(rank).harmonyRecovery);u.martialGuard={round:e.b.round,reduction:passiveTuning(rank).harmonyGuard};e.fx('text',u.x,u.y-u.h-18,'#cad4cd',16,'합세');e.emit('sound',{name:'sword'});}
   }
   return {effectBoost:0,harmony:hadHarmony};
  }

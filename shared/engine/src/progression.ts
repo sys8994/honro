@@ -1,3 +1,4 @@
+import {HERO_ARMOR_CAP,passiveTuning,durabilityPower} from './passiveBalance';
 import {SALHEUN_TURNS,SALHEUN_RATIO,JUCHEON_DISCOUNT,JUCHEON_EFFECT,JUCHEON_THRESHOLD,COMBO_HITS,ORBIT_BLADES} from './warriorData';
 import {multishotProfile} from './projectileGrowth';
 import { STAGE_PLACES } from './atlasLayout';
@@ -112,11 +113,12 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
   const branchRows:EffectRow[]=s.cls==='archer'&&s.branch&&s.id!=='A10'?[row('계통 위력',s.branch==='distance'?`수평거리 1,800에서 최대 +${s.id==='A99'?60:40}%`:s.branch==='drop'?`낙차 900에서 최대 +${s.id==='A15'?55:s.id==='A13'?35:45}%`:`충돌 속력에 따라 최대 +${s.id==='A08'?35:45}%`)]:[];
   const multi=multishotProfile(s,rr);return [...(s.cls==='occultist'&&s.damage===0?[]:[row(s.mode==='triple'?'화살당 피해':'기본 피해',`${Math.round(dmg*(s.mode==='triple'?(multi?.damageScale||1):1)*10)/10}`)]),...(multi?[row(s.mode==='triple'?'화살 수':multi.waves>1?'파생탄 최대 수':'파생 투사체 수',`${multi.count}`)]:[]),...(s.mode==='triple'&&multi?[row('전체 확산각',`${(2*multi.halfAngle).toFixed(1)}°`)]:[]),...(s.cls==='occultist'?[]:[row('투사체 속도',`${s.speed.toFixed(2)}×`)]),...(s.radius>0&&!['O06','O07'].includes(id)?[row('효과 반경',`${rad}`)]:[]),row('MP',`${mp}`),...((s.redesigned||s.cls==='occultist')?extra[id]||[]:[]),...branchRows,...(s.branch==='stake'?[row('진목 지속',`${stakeDuration(id,rr)}턴`),row('반복 발동',id==='M10'?'아군마다 턴당 1회':id==='M09'?'유닛마다 턴당 1회':id==='M99'?'지속 봉쇄 · 경계 피해 턴당 1회':'턴당 1회')]:[]),...(s.cooldown?[row('재사용 대기',`${s.cooldown}턴`)]:[])];
  }
+ const t=passiveTuning(r),d=durabilityPower(r);
  const rows:Record<string,EffectRow[]>={
- MP01:[row('호리병 2차 효과',pct(.03*r)),row('파문 두께·진목 효력',pct(.02*r))],MP02:[row('최대 기력',pct(.03*r)),row('턴 회복',num(.5*r))],MP03:[row('미스 환급',pct(.18+.04*Math.max(0,r-1)))],MP04:[row('동행 방호',pct(.025+.0075*r)),row('한도',pct(.25)),row('발동','명중한 행동마다 1회')],MP05:[row('완성에 필요한 소비 기력',num(JUCHEON_THRESHOLD[Math.max(0,r-1)])),row('완성 후 비용 감소',pct(r?JUCHEON_DISCOUNT[r-1]:0)),row('도술 효과 강화',pct(r?JUCHEON_EFFECT[r-1]:0)),row('파문 범위 확대 상한','5%'),row('무료 도술','주천 충전 없음')],
- AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('추가 치명 확률',pct(.02*r)+'p'),row('추가 치명 배율','+'+(+.04*r).toFixed(2))],AP03:[row('후퇴 이동력',pct(r?.08+.04*r:0))],AP04:[row('계통 위력 가산','+'+pct(.025*r)+'p')],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
- SP01:[row('베기 각도 확대',num(.5*r)+'°'),row('최대 축세 추가 위력',pct(.012*r)),row('최대 축세 추가 사거리',pct(.006*r)),row('돌격 위력',pct(.025*r)),row('검기 속도·크기',pct(.012*r))],SP02:[row('최대 HP',pct(.05*p)),row('피해 감소',pct(.03*p)),row('밀치기 저항',pct(knockbackResistance(r)))],SP03:[row('이동 거리',pct(.10*p)),row('점프 높이 계수',pct((1+.02*r)**2-1)),row('돌격 속도',pct(.015*r)),row('점프 소비',num(Math.max(25,75-5*r)))],SP04:[row('합세 조건','서로 다른 세 계통 · 같은 계통 반복 시 유지'),row('합세 기력 회복',pct(.05+.00625*r)),row('다음 기예 비용','25% 감소'),row('다음 기예 피해','15% 증가'),row('합세 수세','10% 피해 감소 · 다음 내 턴까지')],SP05:[row('불굴 잔여 HP',pct(.08*p)),row('발동 횟수','전투당 1회'),row('회복 자세','18% 피해 감소 · 다음 내 턴까지')],
- OP01:[row('잔부 유지',`${1+Math.floor(r/3)}턴`),row('잔부 효과',pct(.22+.045*r))],OP02:[row('주박 대상 우선 탐색',`${170+35*r} 거리`) ],OP03:[row('피해 분담',pct(Math.min(.28,.04*r))),row('공격당 분담 한도',pct(.12))],OP04:[row('자연 소멸 기력 회수',pct(.04+.018*r)),row('다음 초혼 비용 감소',pct(Math.min(.24,.035*r)))],OP05:[row('잔혼 최대','3개'),row('다음 기예 강화',pct(.12+.02*r))]
+ MP01:[row('호리병 2차 효과',pct(t.gourdSecondary)),row('파문 두께·진목 효력',pct(t.geometry))],MP02:[row('최대 기력',pct(.03*r)),row('턴 회복',num(.5*r))],MP03:[row('미스 환급',pct(t.missRefund))],MP04:[row('동행 방호',pct(t.ward)),row('한도',pct(.25)),row('발동','명중한 행동마다 1회')],MP05:[row('완성에 필요한 소비 기력',num(JUCHEON_THRESHOLD[Math.max(0,r-1)])),row('완성 후 비용 감소',pct(r?JUCHEON_DISCOUNT[r-1]:0)),row('도술 효과 강화',pct(r?JUCHEON_EFFECT[r-1]:0)),row('파문 범위 확대 상한','5%'),row('무료 도술','주천 충전 없음')],
+ AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('추가 치명 확률',pct(t.criticalChance)+'p'),row('추가 치명 배율','+'+t.criticalMultiplier.toFixed(2))],AP03:[row('후퇴 이동력',pct(r?.08+.04*r:0))],AP04:[row('계통 위력 가산','+'+pct(t.trajectory)+'p')],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
+ SP01:[row('베기 각도 확대',num(.5*r)+'°'),row('최대 축세 추가 위력',pct(t.swordCharge)),row('최대 축세 추가 사거리',pct(t.swordReach)),row('돌격 위력',pct(t.rushDamage)),row('검기 속도·크기',pct(t.bladeGeometry))],SP02:[row('최대 HP',pct(.05*d)),row('피해 감소',pct(.03*d)),row('전체 방어 상한',pct(HERO_ARMOR_CAP)),row('밀치기 저항',pct(knockbackResistance(r)))],SP03:[row('이동 거리',pct(.10*p)),row('점프 높이 계수',pct((1+.02*r)**2-1)),row('돌격 속도',pct(.015*r)),row('점프 소비',num(Math.max(25,75-5*r)))],SP04:[row('합세 조건','서로 다른 세 계통 · 같은 계통 반복 시 유지'),row('합세 기력 회복',pct(t.harmonyRecovery)),row('다음 기예 비용',pct(t.harmonyDiscount)+' 감소'),row('다음 기예 피해',pct(t.harmonyDamage)+' 증가'),row('합세 수세',pct(t.harmonyGuard)+' 피해 감소 · 다음 내 턴까지')],SP05:[row('불굴 잔여 HP',pct(.08*p)),row('발동 횟수','전투당 1회'),row('회복 자세','18% 피해 감소 · 다음 내 턴까지')],
+ OP01:[row('잔부 유지',`${1+Math.floor(r/3)}턴`),row('잔부 효과',pct(.22+.045*r))],OP02:[row('주박 대상 우선 탐색',`${t.markedPriority} 거리`),row('주박 대상 소환 피해',pct(t.markedSummonDamage)),row('조건','자신의 주박·지박이 남은 적 · 소환령/섭혼 대상')],OP03:[row('피해 분담',pct(t.soulShare)),row('공격당 분담 한도',pct(.12))],OP04:[row('자연 소멸 기력 회수',pct(.04+.018*r)),row('다음 초혼 비용 감소',pct(Math.min(.24,.035*r)))],OP05:[row('잔혼 최대','3개'),row('다음 혼행 피해',pct(t.remnantDamage))]
  };return rows[id]||[];
 }
 export const activeSkills=(ids:string[])=>ids.filter(id=>SKILLS[id]&&!SKILLS[id].passive);
@@ -162,16 +164,17 @@ export function pointsEarned(h: HeroProgress) { return 3 + (levelOf(h) - 1) * 2;
 export const STAT_KEYS=['hp','mp','attack','armor','critChance','critMultiplier','move'] as const;
 export type StatKey=typeof STAT_KEYS[number];
 export const STAT_LABELS:Record<StatKey,string>={hp:'체력',mp:'기력',attack:'공격',armor:'방어',critChance:'치명 확률',critMultiplier:'치명 배율',move:'이동력'};
-// One SP strengthens the whole character. For each stat, the largest class gain is at most twice the smallest.
+// Generalist training trades half the former per-SP gains for unconditional coverage of seven axes.
+// Saved SP/ranks are unchanged; specialization has a larger gain on its supported axis.
 export const STAT_GAINS:Record<ClassId,Record<StatKey,number>>={
- mage:{hp:.035,mp:.060,attack:.040,armor:.010,critChance:.005,critMultiplier:.035,move:.025},
- archer:{hp:.030,mp:.035,attack:.050,armor:.008,critChance:.008,critMultiplier:.050,move:.025},
- knight:{hp:.055,mp:.035,attack:.030,armor:.015,critChance:.004,critMultiplier:.030,move:.045},
- occultist:{hp:.040,mp:.055,attack:.040,armor:.010,critChance:.006,critMultiplier:.035,move:.030}
+ mage:{hp:.0175,mp:.030,attack:.020,armor:.005,critChance:.0025,critMultiplier:.0175,move:.0125},
+ archer:{hp:.015,mp:.0175,attack:.025,armor:.004,critChance:.004,critMultiplier:.025,move:.0125},
+ knight:{hp:.0275,mp:.0175,attack:.015,armor:.0075,critChance:.002,critMultiplier:.015,move:.0225},
+ occultist:{hp:.020,mp:.0275,attack:.020,armor:.005,critChance:.003,critMultiplier:.0175,move:.015}
 };
 export function statTrainingRank(h:HeroProgress){return h.statTraining??Object.values(h.statRanks||{}).reduce((sum,n)=>sum+n,0);}
 export function investStat(h:HeroProgress,cls:ClassId,delta=1){if(![1,-1].includes(delta))return false;const old=statTrainingRank(h);if(delta>0&&(pointsLeft(h,cls)<1||old>=60)||delta<0&&old<=0)return false;h.statTraining=old+delta;delete h.statRanks;return true;}
-export function statGainLabel(cls:ClassId,key:StatKey){const n=STAT_GAINS[cls][key];return key==='critMultiplier'?`+${n.toFixed(2)}×`:key==='armor'||key==='critChance'?`+${(n*100).toFixed(1)}%p`:`+${+(n*100).toFixed(1)}%`;}
+export function statGainLabel(cls:ClassId,key:StatKey){const n=STAT_GAINS[cls][key];return key==='critMultiplier'?`+${+n.toFixed(4)}×`:key==='armor'||key==='critChance'?`+${+(n*100).toFixed(2)}%p`:`+${+(n*100).toFixed(2)}%`;}
 export function pointsSpent(h: HeroProgress, cls: ClassId) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (TALENT_MAP[id]?.cls === cls ? r - (id === baseSkill(cls) ? 1 : 0) : 0), 0)+statTrainingRank(h); }
 export function pointsLeft(h: HeroProgress, cls: ClassId) { return Math.max(0, pointsEarned(h) - (h.honroDebugSkills ? statTrainingRank(h) : pointsSpent(h, cls))); }
 export function trainReason(h: HeroProgress, id: string) { const n = TALENT_MAP[id]; if (!n)
@@ -219,14 +222,14 @@ export function sanitizeLoadout(p: Profile, cls: ClassId) { const known = active
 export function passiveBonus(h:HeroProgress,cls:ClassId,kind:Talent['passive'],branch?:number,loadout:string[]=[]){return 0;}
 export function criticalStats(cls:ClassId,level=1,ranks:Record<string,number>={}){
  const base={archer:[.08,1.75,.002,.015],mage:[.04,1.5,.001,.01],knight:[.05,1.6,.0012,.012],occultist:[.06,1.55,.0015,.012]}[cls],L=Math.max(0,level-1),pass=cls==='archer'?(ranks.AP02||0):0;
- return {critChance:Math.min(.65,base[0]+L*base[2]+pass*.02),critMultiplier:Math.min(3,base[1]+L*base[3]+pass*.04)};
+ return {critChance:Math.min(.65,base[0]+L*base[2]+passiveTuning(pass).criticalChance),critMultiplier:Math.min(3,base[1]+L*base[3]+passiveTuning(pass).criticalMultiplier)};
 }
 export function stakeDuration(id:string,rank=1){return (id==='M09'?6:id==='M10'?4:2)+Math.max(0,rank-1);}
 export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const level=levelOf(h),i=CLASS_IDS.indexOf(cls),L=level-1;
- const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=rank('SP02'),mobility=0,leap=rank('SP03'),defense=rank('SP02');
+ const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=cls==='knight'?durabilityPower(h.ranks.SP02||0):0,mobility=0,leap=rank('SP03'),defense=vitality;
  const hpBase=[390,365,610,460][i], hpGain=[32,30,48,36][i], armorBase=[.06,.08,.22,.11][i];
  const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+L*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks);
- return {...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(4,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp:Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(h.ranks.MP02||0)*.03:0))*(1+invested('mp'))),attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(.75,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?(h.ranks.MP02||0)*.5:0)};}
+ return {...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(4,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp:Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(h.ranks.MP02||0)*.03:0))*(1+invested('mp'))),attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?(h.ranks.MP02||0)*.5:0)};}
 export function applyHero(u:Unit,h:HeroProgress,full=false){const s=heroStats(h,u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove;u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+Math.max(0,dh),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+Math.max(0,dm),0,s.mp);u.maxFocus=s.mp;u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:Math.min(s.move,u.moveLeft+Math.max(0,s.move-oldMove));u.ranks={...h.ranks};}
 export function grantXP(h: HeroProgress, amount: number) { const before = levelOf(h); const actual = Math.max(0, Math.min(XP_CAP - h.xp, Math.round(amount))); h.xp += actual; return { actual, before, after: levelOf(h) }; }
 export function recommendedLevel(stage: number) { return [1,1,2,2,3,4,4,5,5,6,7,8,8,9,10,10,11,12,12,13,14,15,16,17,17,18,19,20,21,22,22,23,23,24,24,25][clamp(Math.floor(stage),1,36)-1]; }
