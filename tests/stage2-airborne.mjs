@@ -10,9 +10,15 @@ const q=battlefield(g,2);g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attac
  q.e.unit('foe-0').hp--;q.b.phase='flight';R.prepare(q.app);assert(q.b.honroState.stage2Airborne.warning.inProgress);
  q.e.finishAction();assert(!q.b.honroState.stage2Airborne.released,'Already-started attack completion is not a response');
  q.b.phase='aim';q.b.side=0;q.b.active='p-archer';q.e.active.acted=false;q.e.canAct();assert(!q.b.honroState.stage2Airborne.offered,'Same attack serial cannot be retroactively offered');
- q.b.honroState.actorTurnSerial=(q.b.honroState.actorTurnSerial||0)+1;q.b.round++;assert(q.e.canAct());assert(q.b.honroState.stage2Airborne.offered);q.e.wait();assert(q.b.honroState.stage2Airborne.released);
+ q.b.honroState.actorTurnSerial=(q.b.honroState.actorTurnSerial||0)+1;q.b.round++;assert(q.e.canAct());assert(!q.b.honroState.stage2Airborne.offered,'Readiness queries stay pure');q.e.wait();assert(q.b.honroState.stage2Airborne.offered);assert(q.b.honroState.stage2Airborne.released);
 }
 console.log('PASS A warning during flight cannot count that already-started attack; only a subsequent selectable player action releases it');
+{
+ const q=battlefield(g,2);g.HonroAllies.attach(q.app,q.e);q.e.unit('foe-0').hp--;q.app.charging=true;R.prepare(q.app);assert(q.b.honroState.stage2Airborne.warning.inProgress);
+ q.app.charging=false;assert(q.e.canAct());assert(!q.b.honroState.stage2Airborne.offered,'Releasing a charge begun before the warning is not a new offered choice');q.e.finishAction();assert(!q.b.honroState.stage2Airborne.released);
+}
+console.log('PASS A warning during an already-held charge also waits for a genuinely new player action');
+
 {
  const stage=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===2),p=g.HonroMaps.profileFor(stage),campaign=g.HonroMaps.createBattle(stage,g.HONRO_PROJECT,p,{origin:'campaign'}),preview=g.HonroMaps.createBattle(stage,g.HONRO_PROJECT,p);
  assert(R.active(preview),'Default authored Stage View/Playtest opt-in');assert.deepEqual(plain(preview.units),plain(campaign.units),'Default Game/Stage View/Playtest actors match');
