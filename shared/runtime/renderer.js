@@ -161,9 +161,10 @@
             this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
         }
         renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
-        render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt) {
+        render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt, paused = false) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
+            this.settleHitFeedback?.(e,paused||this.storyFrozen);
             const resized=this._cameraWidth!==undefined&&(this._cameraWidth!==w||this._cameraHeight!==h);
             // Read HUD layout only on first layout/resize, never per frame.
             // The full-width header container is transparent; only its info
