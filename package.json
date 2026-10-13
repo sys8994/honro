@@ -171,7 +171,9 @@
     "test:tactical-routes": "node tests/city-tactical-contracts.mjs && node tests/city-tactical-save.mjs && node tests/stage9-13-tactical-contracts.mjs && node tests/stage9-13-tactical-traversal.mjs && node tests/stage9-13-tactical-clearance.mjs && node tests/stage9-13-tactical-shots.mjs && npm run test:tactical-basic-access && npm run test:tactical-city-responses && npm run test:tactical-stage9-warning",
     "test:tactical-basic-access": "node tests/tactical-basic-access.mjs",
     "test:tactical-city-responses": "node tests/tactical-city-responses.mjs",
-    "test:tactical-stage9-warning": "node tests/tactical-stage9-warning.mjs"
+    "test:tactical-stage9-warning": "node tests/tactical-stage9-warning.mjs",
+    "test:stage18-bell-refinement": "node tests/stage18-bell-refinement.mjs && node tests/stage18-bell-refinement-resume.mjs",
+    "capture:stage18-bell-refinement": "node --expose-gc tests/stage18-bell-refinement-native.mjs before && node --expose-gc tests/stage18-bell-refinement-native.mjs final"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
