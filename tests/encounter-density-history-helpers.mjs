@@ -1,3 +1,4 @@
+import {campaignHistoryInput} from './historical-campaign-inputs.mjs';
 /** Verified outer combat-only boundary. All original historical validators and
  * fixtures remain authoritative after this exact separately pinned projection.
  * Never execute stored source strings or accept an arbitrary current golden. */
@@ -11,8 +12,8 @@ export const encounterDensityHistory=freeze(JSON.parse(bytes));
 const f=encounterDensityHistory;
 assert.equal(hash(bytes),'7e9357daba01e0cc77e415f997451674563ef15cd571f20da5e9161721d1181a','Exact independently scoped density checkpoint, never auto-refreshed');
 assert.equal(f.sourceCommit,'bb5eafb52054e0f8a1fb09045d85a4c3dd0ca964');assert.equal(f.beforeProjectSha256,'d3a326b89d61c79968be75e452c81043071588db8d8755fe4b2d8c6b1647c39d');assert.deepEqual(f.stageIds,[8,11,12,16,17,18,23,30]);
-export function beforeEncounterDensity(project){const p=plain(project);if(!p.stages?.some(s=>Object.hasOwn(s.initialState||{},'honroEncounterDensityRevision')))return p;
- const full=p.stages.length===30;assert(full||p.stages.length===20,'Complete full/Act12 density project required');assert.equal(hash(p),full?f.afterProjectSha256:f.afterAct12Sha256,'Exact combat-only density project: reject every map, art, order and global drift');
+export function beforeEncounterDensity(project){let p=plain(project);if(!p.stages?.some(s=>Object.hasOwn(s.initialState||{},'honroEncounterDensityRevision')))return p;
+ const full=p.stages.length===30;assert(full||p.stages.length===20,'Complete full/Act12 density project required');p=campaignHistoryInput(p,{scope:full?'full':'act12'});assert.equal(hash(p),full?f.afterProjectSha256:f.afterAct12Sha256,'Exact combat-only density project: reject every map, art, order and global drift');
  for(const s of p.stages){const row=f.stages[s.metadata.stageId];if(!row)continue;assert.equal(hash(s),row.afterSha256,'Exact density stage '+s.id);for(const[k,v]of Object.entries(row.fields))s[k]=plain(v);assert.equal(hash(s),row.beforeSha256,'Exact immutable before-stage '+s.id);}
  assert.equal(hash(p),full?f.beforeProjectSha256:f.beforeAct12Sha256,'Exact bb5eafb projection');return p;
 }
