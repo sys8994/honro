@@ -19,10 +19,10 @@ for(const [width,height] of [[280,600],[320,640],[333,622],[400,746],[620,800],[
  assert.equal(4*2+1*2+16*2+2,44,'border+padding+two lines exactly fill the fixed card');
  checks.push(`${width}×${height} CSS equation: card${cardWidth.toFixed(2)}×44, allies6px below, minimap reserve${map.toFixed(2)}px`);
 }
-for(const id of [7,28]){const a=h.load(h.profileThrough(29));a.launch(id);h.finish(a);const html=a.root.innerHTML;
+for(const id of [7,28])for(const debug of [false,true]){const a=h.load(h.profileThrough(29));a.debugMode=debug;a.launch(id);h.finish(a);const html=a.root.innerHTML;
  assert.match(html,/<div class="battle-title-row"><span class="battle-stage-heading" title="[^"]+">/);
  assert.match(html,/<div class="battle-objective-row"><span id="turn-text"><\/span><button type="button" id="objective-text"[^>]*data-action="battle-help"/);
- assert(html.includes(a.stage.name));const before=plain(a.engine.b);a.battleHelp();assert(a.modal.innerHTML.includes(a.stage.name));assert.deepEqual(plain(a.engine.b),before,'Opening full goal details remains read-only');
- checks.push(`Chapter${id}: long title survives in the tooltip, two-row markup, full goal help keeps battle unchanged`);
+ assert(html.includes(a.stage.name));assert.equal(html.includes('디버그 · 기록 분리'),debug);const before=plain(a.engine.b);a.battleHelp();assert(a.modal.innerHTML.includes(a.stage.name));assert.deepEqual(plain(a.engine.b),before,'Opening full goal details remains read-only');
+ checks.push(`Chapter${id}/${debug?'debug':'normal'}: long title survives in the tooltip, two-row markup, full goal help keeps battle unchanged`);
 }
 await report('battle-compact-header',checks,{limits:['Source and production-App DOM doubles only. No computed browser layout or physical device claim.']});console.log(checks.join('\n'));
