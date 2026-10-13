@@ -4,7 +4,8 @@
 - 변경: 대화는 240ms의 낮은 나무/종이 질감을 유지하고 156Hz 몸통·4ms attack으로 식별력을 높였다. PCM은 autoplay/device 요청 없이 24kHz·256표본 단위·idle slot 최대2ms 예산으로 미리 준비한다. WebAudio가 장치 표본율로 변환하며 기존 전투 파형 공식은 유지한다. 비동기 resume 진행 중인 80ms 이내 이벤트만 최신 종류별로 보류하며, 닫힌 대화·숨김·음소거·음량0·dispose는 큐를 취소한다. 다음/이전의 대화 voice는 한 개만 유지하고 전투 SFX를 자르지 않는다. 저장 데이터와 설정 스키마는 변경하지 않는다.
 - 집중 검증: typecheck, dialogue-controls-audio의 진행·저장·이전/다음/넘김 회귀, audio-latency의 autoplay/동시wake/느린resume/취소/연타/복귀 대역 검증을 적용했다. 합성 파형의 0.01 onset은 4.79→0.50ms, peak 시점은 20.71→8.08ms, 첫20ms RMS는 .0175→.0496다. 전체 RMS는 .0109→.0187(약4.7dB 증가), peak는 .0485→.1082로 전투 타격음보다 작게 유지한다. 이는 PCM 수치이며 실제 스피커 응답시간이 아니다.
 - 검수 중 발견: 기존 확정 제목의 ["혼","로"] glyph map을 대화 화자로 오인한 source-inventory 실패를 원본28b829a에서도 재현했다. main.js의 정확한 glyph pair/map/제목class 문맥만 분류하고, 실제 혼 화자·다른파일·다른본문은 제외되지 않는 negative 검사를 추가했다.
-- 한계: 브라우저 출력·실제 청취·기기/Bluetooth 지연은 별도 검수 대상이다. 전체 verify와 최종 두 HTML/공개 Pages는 합본 단계에서 확인하며 이 단위 커밋의 통과 범위로 주장하지 않는다.
+- 최종 합본: 두 HTML, BGM23/대화6/SFX9/독립기기표본율7, 현재159소스·8변형·902/48/50negative, 이전대화·화자·사건·피격 회귀 통과. 전체 verify는 title/current map/runtime/migration/story/binding/typecheck/game npmtest 및 rc21 mapaudit까지 통과한 뒤 Chromium socket/ptrace EPERM→SIGABRT로 페이지 진입 전에 중단됐다. rc21 성능과 뒤의 전체 integration/performance는 미실행이며 전체 통과가 아니다.
+- 한계: 실제 청취·브라우저 음 출력·기기/Bluetooth 지연·공개 Pages 음성은 미검증이다. 보안 우회는 하지 않았다. 정확한 범위와 raw log는 AUDIO_RELEASE_REVIEW.md에 기록했다.
 
 
 ## 2026-10-13 · 확정 한자 魂路 중심의 인트로 제목

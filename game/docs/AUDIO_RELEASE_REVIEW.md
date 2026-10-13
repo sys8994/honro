@@ -18,3 +18,18 @@ The approved runtime manifest appends one exact reversible audio delta after the
 ## Limits and remaining release gates
 
 No listening, physical speaker/Bluetooth/OS latency, actual device resampling quality, live browser startup timing, or public Pages behavior is established by these checks. Idle warm work yields in 256-sample blocks with an elapsed-time budget, but this is not a hard real-time guarantee: one measured VM-double callback reached approximately 4.50 ms under this executor's load. Exact browser aggregate status and published commit/Pages verification must be reported separately by the release owner; this document does not waive those gates or claim broad verification passed.
+
+## Final integrated aggregate run
+
+Final production source remains the exact reviewed `3b848dd` delta; integrated checks and rebuilt HTML are on `645484f290da2d4befab88387b5dd9d14ebb36cc`.
+
+`npm run verify` completed at 2026-10-13 12:18 UTC with exit 1 at the environment boundary, not a full pass:
+
+- PASS: both HTML builds; title tests; campaign metadata; independently replayed 30 maps/640 assets; all current runtime contracts/negative controls; migration ledger/current metadata; current story display; binding and narrative revision; game TypeScript; the complete game `npm test` chain (map, impact, audio, balance, charge and recruitment/pacing); and the repeated RC21 map audit.
+- BLOCKED before any page loaded: `game/tests/rc20-browser.py`, Chromium `process_singleton_posix.cc socket() failed: Operation not permitted`, `ptrace: Operation not permitted`, SIGABRT. The existing command was not changed or retried with security workarounds.
+- NOT RUN by this aggregate: `rc21-performance.py`, the following full root integration chain and root performance suite. Separate targeted passes remain independently valid: BGM 23, dialogue controls 6, SFX latency 9, independent device-rate/edge checks 7, speaker presentation 7, source inventory with title negatives, narrative event delivery 7 and dialogue hit-feedback 4.
+- A pre-existing inventory false positive on the approved title `["혼","로"]` glyph map reproduced on original `28b829a`. Only the exact main.js title glyph map is classified as title text. Five negative cases preserve rejection of real/unreviewed speaker tuples; story source text was not changed.
+
+Raw aggregate log: `_local/logs/audio-release-verify.log`. Waveform and timing evidence: `_local/reports/audio-latency/`, including before/after WAVs and `native-preparation-timing.json`. The native Node one-run measurement observed cold dialogue synthesis 16.05→7.47 ms (48→24 kHz); preparation constructor 0.34 ms, idle p95 1.42 ms and maximum 2.17 ms. This is executor/JIT/load-dependent synthesis timing, not browser/input/acoustic latency or a hard frame-time guarantee.
+
+No actual listening, public Pages playback, measured cold/warm browser startup or physical device output is claimed. Publication and public Game/Workshop UI verification belong to the release handoff and must be recorded separately.
