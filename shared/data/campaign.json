@@ -262961,8 +262961,7 @@
                 "act2-floor",
                 "fc15-west-arch",
                 "fc15-west-shoulder",
-                "fc15-crown-return",
-                "fc15-west-descent"
+                "fc15-crown-return"
               ],
               "ceilingIds": [
                 "cave-roof"
@@ -262980,7 +262979,8 @@
               "id": "carved-groove",
               "terrainIds": [
                 "act2-floor",
-                "fc15-water-toe"
+                "fc15-water-toe",
+                "fc15-dry-basin-rim"
               ],
               "ceilingIds": [
                 "cave-roof"
@@ -263465,14 +263465,17 @@
               ]
             },
             {
-              "id": "fc15-west-descent",
-              "terrainId": "fc15-west-descent",
+              "id": "fc15-dry-basin-rim",
+              "terrainId": "fc15-dry-basin-rim",
               "role": "shelf",
               "edgeIndices": [
-                0
+                0,
+                1,
+                2,
+                3
               ],
               "roomIds": [
-                "open-shaft"
+                "carved-groove"
               ]
             }
           ],
@@ -263698,8 +263701,8 @@
                 },
                 {
                   "x": 5450,
-                  "y": 4428.235294117647,
-                  "surfaceId": "fc15-west-descent"
+                  "y": 4270.789473684211,
+                  "surfaceId": "fc15-dry-basin-rim"
                 },
                 {
                   "x": 5590,
@@ -332111,260 +332114,7 @@
               }
             }
           },
-          "encounterSites": [
-            {
-              "id": "site-a2-enemy-0",
-              "unitId": "a2-enemy-0",
-              "roomId": "bell-entry",
-              "x": 1650,
-              "y": 5357.692307692308,
-              "surfaceId": "sb-entry-rise",
-              "standing": {
-                "x": 1650,
-                "y": 5527.692307692308,
-                "surfaceId": "sb-entry-rise"
-              },
-              "cohort": "west"
-            },
-            {
-              "id": "site-a2-enemy-1",
-              "unitId": "a2-enemy-1",
-              "roomId": "bell-entry",
-              "x": 1650,
-              "y": 5177.692307692308,
-              "surfaceId": "sb-entry-rise",
-              "standing": {
-                "x": 1650,
-                "y": 5527.692307692308,
-                "surfaceId": "sb-entry-rise"
-              },
-              "cohort": "west"
-            },
-            {
-              "id": "site-a2-enemy-2",
-              "unitId": "a2-enemy-2",
-              "roomId": "suppression-court",
-              "x": 2700,
-              "y": 5307.894736842105,
-              "surfaceId": "sb-suppression-court",
-              "standing": {
-                "x": 2700,
-                "y": 5467.894736842105,
-                "surfaceId": "sb-suppression-court"
-              },
-              "cohort": "west"
-            },
-            {
-              "id": "site-a2-enemy-3",
-              "unitId": "a2-enemy-3",
-              "roomId": "suppression-court",
-              "x": 3710,
-              "y": 5050,
-              "surfaceId": "sb-court-rear-ledge",
-              "standing": {
-                "x": 3710,
-                "y": 5230,
-                "surfaceId": "sb-court-rear-ledge"
-              },
-              "cohort": "west"
-            },
-            {
-              "id": "site-a2-enemy-4",
-              "unitId": "a2-enemy-4",
-              "roomId": "suppression-court",
-              "x": 4210,
-              "y": 5338.518518518518,
-              "surfaceId": "sb-suppression-court",
-              "standing": {
-                "x": 4210,
-                "y": 5578.518518518518,
-                "surfaceId": "sb-suppression-court"
-              },
-              "cohort": "west"
-            },
-            {
-              "id": "site-a2-enemy-5",
-              "unitId": "a2-enemy-5",
-              "roomId": "suppression-court",
-              "x": 3470,
-              "y": 5312.64705882353,
-              "surfaceId": "sb-suppression-court",
-              "standing": {
-                "x": 3470,
-                "y": 5487.64705882353,
-                "surfaceId": "sb-suppression-court"
-              },
-              "cohort": "west"
-            },
-            {
-              "id": "site-a2-enemy-6",
-              "unitId": "a2-enemy-6",
-              "roomId": "suppression-court",
-              "x": 3680,
-              "y": 5180,
-              "surfaceId": "sb-suppression-court",
-              "standing": {
-                "x": 3680,
-                "y": 5500,
-                "surfaceId": "sb-suppression-court"
-              },
-              "cohort": "west"
-            },
-            {
-              "id": "site-a2-enemy-7",
-              "unitId": "a2-enemy-7",
-              "roomId": "chain-shoulder",
-              "x": 4210,
-              "y": 3760.7894736842104,
-              "surfaceId": "sb-west-firing-ledge",
-              "standing": {
-                "x": 4210,
-                "y": 3775.7894736842104,
-                "surfaceId": "sb-west-firing-ledge"
-              },
-              "cohort": "middle"
-            },
-            {
-              "id": "site-a2-enemy-8",
-              "unitId": "a2-enemy-8",
-              "roomId": "leak-basin",
-              "x": 6310,
-              "y": 7185.333333333333,
-              "surfaceId": "act2-floor",
-              "standing": {
-                "x": 6310,
-                "y": 7365.333333333333,
-                "surfaceId": "act2-floor"
-              },
-              "cohort": "middle"
-            },
-            {
-              "id": "site-a2-enemy-9",
-              "unitId": "a2-enemy-9",
-              "roomId": "leak-basin",
-              "x": 6460,
-              "y": 6970.909090909091,
-              "surfaceId": "act2-floor",
-              "standing": {
-                "x": 6460,
-                "y": 7270.909090909091,
-                "surfaceId": "act2-floor"
-              },
-              "cohort": "middle"
-            },
-            {
-              "id": "site-a2-enemy-10",
-              "unitId": "a2-enemy-10",
-              "roomId": "leak-basin",
-              "x": 6620,
-              "y": 7018.571428571428,
-              "surfaceId": "act2-floor",
-              "standing": {
-                "x": 6620,
-                "y": 7208.571428571428,
-                "surfaceId": "act2-floor"
-              },
-              "cohort": "middle"
-            },
-            {
-              "id": "site-a2-enemy-11",
-              "unitId": "a2-enemy-11",
-              "roomId": "leak-basin",
-              "x": 8140,
-              "y": 7141.612903225807,
-              "surfaceId": "act2-floor",
-              "standing": {
-                "x": 8140,
-                "y": 7371.612903225807,
-                "surfaceId": "act2-floor"
-              },
-              "cohort": "east"
-            },
-            {
-              "id": "site-a2-enemy-12",
-              "unitId": "a2-enemy-12",
-              "roomId": "leak-basin",
-              "x": 8040,
-              "y": 7035.581395348837,
-              "surfaceId": "act2-floor",
-              "standing": {
-                "x": 8040,
-                "y": 7405.581395348837,
-                "surfaceId": "act2-floor"
-              },
-              "cohort": "middle"
-            },
-            {
-              "id": "site-a2-enemy-13",
-              "unitId": "a2-enemy-13",
-              "roomId": "leak-basin",
-              "x": 8230,
-              "y": 7006.129032258064,
-              "surfaceId": "act2-floor",
-              "standing": {
-                "x": 8230,
-                "y": 7386.129032258064,
-                "surfaceId": "act2-floor"
-              },
-              "cohort": "east"
-            },
-            {
-              "id": "site-a2-enemy-14",
-              "unitId": "a2-enemy-14",
-              "roomId": "east-return",
-              "x": 9940,
-              "y": 6161.817089910775,
-              "surfaceId": "sb-east-inner-rise",
-              "standing": {
-                "x": 9940,
-                "y": 6381.817089910775,
-                "surfaceId": "sb-east-inner-rise"
-              },
-              "cohort": "east"
-            },
-            {
-              "id": "site-a2-enemy-15",
-              "unitId": "a2-enemy-15",
-              "roomId": "keeper-ledge",
-              "x": 11040,
-              "y": 5860,
-              "surfaceId": "sb-keeper-watch",
-              "standing": {
-                "x": 11040,
-                "y": 5920,
-                "surfaceId": "sb-keeper-watch"
-              },
-              "cohort": "east"
-            },
-            {
-              "id": "site-a2-enemy-16",
-              "unitId": "a2-enemy-16",
-              "roomId": "keeper-ledge",
-              "x": 12200,
-              "y": 6062.666666666667,
-              "surfaceId": "act2-floor",
-              "standing": {
-                "x": 12200,
-                "y": 6182.666666666667,
-                "surfaceId": "act2-floor"
-              },
-              "cohort": "east"
-            },
-            {
-              "id": "site-a2-enemy-17",
-              "unitId": "a2-enemy-17",
-              "roomId": "keeper-ledge",
-              "x": 11170,
-              "y": 5910,
-              "surfaceId": "sb-keeper-watch",
-              "standing": {
-                "x": 11170,
-                "y": 5920,
-                "surfaceId": "sb-keeper-watch"
-              },
-              "cohort": "east"
-            }
-          ],
+          "encounterSites": [],
           "landmarks": [],
           "scenery": [
             {

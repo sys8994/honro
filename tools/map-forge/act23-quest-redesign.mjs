@@ -8,6 +8,25 @@ const clone=v=>JSON.parse(JSON.stringify(v));
 const roles=['archer','mage','knight','occultist'];
 const interact=(id,label,extra={})=>({id,label,kind:'interact',...extra});
 const route=label=>({id:'route-exit',kind:'route',label});
+// Only obsolete annotations from the explicitly authored route/funeral changes.
+// Never sweep arbitrary invalid references or alter saved/physical battle data.
+export function repairQuestSpaceReferences(s){
+ const space=s.design?.space,id=s.metadata?.stageId;if(!space)return s;
+ if(id===15){
+  const old='fc15-west-descent',next='fc15-dry-basin-rim';
+  if(s.terrains.some(t=>t.id===old))throw Error('Old descent still exists; do not rewrite its metadata');
+  const terrain=s.terrains.find(t=>t.id===next);if(!terrain)throw Error('Missing authored dry basin rim');
+  space.surfaces=space.surfaces.map(row=>row.id===old?{...row,id:next,terrainId:next,edgeIndices:[...terrain.properties.honroWalkEdges],roomIds:['carved-groove']}:row);
+  for(const room of space.rooms){room.terrainIds=room.terrainIds.filter(id=>id!==old);if(room.id==='carved-groove'&&!room.terrainIds.includes(next))room.terrainIds.push(next);}
+  for(const route of space.routes)for(const anchor of route.anchors||[])if(anchor.surfaceId===old){anchor.surfaceId=next;anchor.y=heightAt(s,next,anchor.x);}
+ }
+ if(id===19){
+  const removed=new Set(Array.from({length:18},(_,i)=>'a2-enemy-'+i));
+  if(s.units.some(u=>removed.has(u.id)))throw Error('Funeral enemies still exist; preserve their metadata');
+  space.encounterSites=space.encounterSites.filter(row=>!removed.has(row.unitId));
+ }
+ return s;
+}
 export const REDESIGN_STEPS={
  12:[interact('sign','길표의 돌림진 한 축 풀기'),route('높은 작업굴 확보 후 이동 또는 열린 내리막으로 이탈')],
  13:[{id:'resident',label:'고립된 석공 구조',kind:'rescue'},interact('gate','석문 빗장 열기'),{id:'exit',label:'마을 안쪽으로 이동',kind:'reach'}],
@@ -94,6 +113,7 @@ export async function authorAct23QuestRedesign(project,{minStage=11,maxStage=30}
   if(id===30){for(const row of positions(s,['sf-b1','sf-b2','sf-b5'],[3500,3610,3720],'sf-west-ford'))Object.assign(s.units.find(u=>u.id===row.id),row);const activation=s.initialState.honroEncounterDensityActivation?.['cape-front'];if(activation&&!activation.supports.includes('sf-west-ford'))activation.supports.push('sf-west-ford');setEntry(s,29,{A:{heroes:party(s,[2180,2280,2390,2500],'sf-cape-west-access'),units:positions(s,['sf-c1','sf-c2','sf-c5'],[3500,3610,3720],'sf-granite-cape'),markers:[{id:'transport-map',x:2650,y:heightAt(s,'sf-cape-west-access',2650)}],lines:[['휘겸','높은 수문길을 돌아왔소. 이 바위턱에서 기록을 맞춰 봅시다.']]},B:{heroes:party(s,[1900,2020,2140,2260],'sf-west-ford'),units:positions(s,['sf-c1','sf-c2','sf-c5'],[2680,2780,2880],'sf-west-ford'),markers:[{id:'transport-map',x:2390,y:heightAt(s,'sf-west-ford',2390)}],lines:[['설오','점검다리 끝이 여울로 이어졌습니다. 돌 위에서 기록을 펼치겠습니다.']]}});}
   if(id===29)s.initialState.honroAct3Steps=clone(act3[8].steps);
   const d=id<21?chapters[id-11]:act3[id-21];for(const q of s.objectives||[])if(q.type==='campaign')q.label=d.goal;
+  repairQuestSpaceReferences(s);
  }
  return p;
 }
