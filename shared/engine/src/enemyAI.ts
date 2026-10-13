@@ -204,7 +204,29 @@ function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
   return value(c)-value(a);
  }).slice(0,30);
 }
+/** The new waterfall encounter must score the same safe shots it can actually fire.
+ * Project only the shooter's body for blast accounting; never mutate the live roster. */
+function* waterfallShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
+ const probe:Engine=Object.create(e);
+ probe.b={...e.b,units:e.b.units.map(v=>v.id===u.id?ghost:v)};
+ const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
+ const best=-90;
+ for(const skill of skills){
+  if(!probe.npcShotInReach(ghost,skill))continue;
+  const right=target.x>=p.x;
+  const seeds=[...probe.shotSeeds(ghost,skill,target),...(target.y>p.y+80?[-35,35,78]:[18,50,82]).map(elev=>({angle:right?elev:180-elev,power:1}))];
+  for(const aim of seeds){
+   const outcome=shotViable(probe,ghost,skill,target,aim.angle,aim.power);
+   yield;
+   if(outcome.ok)return 35+clamp('net' in outcome?outcome.net:0,-120,60);
+  }
+ }
+ return best;
+}
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ const b=e.b as any;
+ if(b.honroStage===5&&b.honroStage5WaterfallRevision===1&&!b.honroCustom)return yield* waterfallShotOpportunity(e,u,target,p);
  if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
  const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
