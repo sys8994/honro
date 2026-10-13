@@ -9,21 +9,23 @@ function author(s,project){
  const n=s.metadata.stageId,floor=s.terrains.find(t=>t.id===(n===9?'yard-floor':'act2-floor')),ground=x=>surface(floor,x);
  const removed=n===9?['west-step-1','west-step-2','west-gallery','center-lookout','east-step-1','east-step-2','east-gallery']:['ct-gallery-work-deck'];
  s.terrains=s.terrains.filter(t=>!removed.includes(t.id)&&!t.id.startsWith('tactical-'));
+ const entryTop=[[1110,ground(1110)-180],[1250,2920],[1600,2920],[1840,3000],[2130,ground(2130)-180]],innerTop=[[5270,ground(5270)-200],[5480,3920],[5800,3920],[6050,4070],[6290,ground(6290)-200]],atTop=(top,x)=>surface({points:top.map(point)},x);
  const additions=n===9?[
  slab('tactical-west-collapsed-gallery',[[610,2340],[960,2310],[1340,2400]],45),
- slab('tactical-west-rubble-ascent',[[430,ground(430)-160],[660,2340]],25,true,'wood'),
- slab('tactical-west-rubble-return',[[1280,2386],[1550,ground(1550)-160]],25,true,'wood'),
+ slab('tactical-west-rubble-ascent',[[430,ground(430)-160],[610,2340],[660,2335.714285714286]],25,true,'wood'),
+ slab('tactical-west-rubble-return',[[1280,2385.7894736842104],[1340,2400],[1550,ground(1550)-160]],25,true,'wood'),
  slab('tactical-east-stone-shoulder',[[2520,1990],[2750,1970],[3020,2020]],65),
- slab('tactical-east-root-ascent',[[2140,ground(2140)-160],[2420,2180],[2600,1983]],25,true,'wood'),
- slab('tactical-east-root-return',[[2940,2005],[3140,2200],[3380,ground(3380)-160]],25,true,'wood')
+ slab('tactical-east-root-ascent',[[2140,ground(2140)-160],[2420,2080],[2520,1990],[2600,1983.0434782608695]],25,true,'wood'),
+ slab('tactical-east-root-return',[[2940,2005.1851851851852],[3020,2020],[3140,2200],[3380,ground(3380)-160]],25,true,'wood')
  ]:[
- slab('tactical-entry-shoulder',[[1110,ground(1110)-180],[1560,ground(1560)-245],[2130,ground(2130)-180]],50),
- slab('tactical-entry-west-ramp',[[820,ground(820)-160],[1180,ground(1110)-180+2]],25,true,'wood'),
- slab('tactical-mason-return',[[2080,ground(2130)-190],[2350,ground(2350)-160]],25,true,'wood'),
- slab('tactical-inner-gallery',[[5270,ground(5270)-200],[5700,ground(5700)-240],[6290,ground(6290)-200]],50),
- slab('tactical-inner-west-ramp',[[5020,ground(5020)-160],[5350,ground(5270)-176]],25,true,'wood'),
- slab('tactical-inner-east-ramp',[[6220,ground(6290)-218],[6530,ground(6530)-160]],25,true,'wood')
- ];s.terrains.push(...additions);
+ slab('tactical-entry-shoulder',entryTop,50),
+ slab('tactical-entry-west-ramp',[[820,ground(820)-160],[1110,ground(1110)-180],[1180,atTop(entryTop,1180)]],25,true,'wood'),
+ slab('tactical-mason-return',[[2080,atTop(entryTop,2080)],[2130,ground(2130)-180],[2350,ground(2350)-160]],25,true,'wood'),
+ slab('tactical-inner-gallery',innerTop,50),
+ slab('tactical-inner-west-ramp',[[5020,ground(5020)-160],[5270,ground(5270)-200],[5350,atTop(innerTop,5350)]],25,true,'wood'),
+ slab('tactical-inner-east-ramp',[[6220,atTop(innerTop,6220)],[6290,ground(6290)-200],[6530,ground(6530)-160]],25,true,'wood')
+ ];if(n===13){additions[0].points=[...entryTop,[2130,ground(2130)-130],[1900,3180],[1720,3100],[1460,3070],[1250,3015],[1110,ground(1110)-130]].map(point);additions[3].points=[...innerTop,[6290,ground(6290)-150],[6070,4210],[5750,4090],[5460,4035],[5270,ground(5270)-150]].map(point);}
+ s.terrains.push(...additions);
  const p=(x,t)=>({x,y:t?surface(additions.find(q=>q.id===t),x):ground(x),surfaceId:t||(n===9?'yard-floor':'floor-main')});
  const routes=n===9?[
  {id:'west-covered-floor',defaultJump:false,anchors:[p(430),p(850),p(1420),p(1800)]},
@@ -31,9 +33,9 @@ function author(s,project){
  {id:'east-root-loop',anchors:[p(2060),p(2190,'tactical-east-root-ascent'),p(2340,'tactical-east-root-ascent'),p(2600,'tactical-east-stone-shoulder'),p(2800,'tactical-east-stone-shoulder'),p(3070,'tactical-east-root-return'),p(3320,'tactical-east-root-return'),p(3480)]},
  {id:'receiver-return',defaultJump:false,anchors:[p(850),p(1400),p(1800),p(2300),p(2800),p(3380)]}
  ]:[
- {id:'entry-shoulder',anchors:[p(740),p(865,'tactical-entry-west-ramp'),p(1050,'tactical-entry-west-ramp'),p(1200,'tactical-entry-shoulder'),p(1550,'tactical-entry-shoulder'),p(2050,'tactical-entry-shoulder'),p(2190,'tactical-mason-return'),p(2290,'tactical-mason-return'),p(2430)]},
+ {id:'entry-shoulder',anchors:[p(740),p(865,'tactical-entry-west-ramp'),p(1050,'tactical-entry-west-ramp'),p(1200,'tactical-entry-shoulder'),p(1400,'tactical-entry-shoulder'),p(1650,'tactical-entry-shoulder'),p(1880,'tactical-entry-shoulder'),p(2050,'tactical-entry-shoulder'),p(2190,'tactical-mason-return'),p(2290,'tactical-mason-return'),p(2430)]},
  {id:'mason-covered-approach',defaultJump:false,anchors:[p(820),p(1300),p(1800),p(2400)]},
- {id:'inner-gallery',anchors:[p(4940),p(5070,'tactical-inner-west-ramp'),p(5190,'tactical-inner-west-ramp'),p(5400,'tactical-inner-gallery'),p(5700,'tactical-inner-gallery'),p(6200,'tactical-inner-gallery'),p(6360,'tactical-inner-east-ramp'),p(6470,'tactical-inner-east-ramp'),p(6620)]},
+ {id:'inner-gallery',anchors:[p(4940),p(5070,'tactical-inner-west-ramp'),p(5190,'tactical-inner-west-ramp'),p(5400,'tactical-inner-gallery'),p(5600,'tactical-inner-gallery'),p(5820,'tactical-inner-gallery'),p(6050,'tactical-inner-gallery'),p(6200,'tactical-inner-gallery'),p(6360,'tactical-inner-east-ramp'),p(6470,'tactical-inner-east-ramp'),p(6620)]},
  {id:'inner-low-passage',defaultJump:false,anchors:[p(5020),p(5400),p(5900),p(6400),p(6600)]}
  ];
  s.design.tacticalRoutes={version:1,geometryRevision:1,scope:'ordinary walking and default jump, no skill or reward required',routes:routes.map(r=>({...r,requires:[],bidirectional:true})),preserved:{bounds:true,encounters:true,objectives:true,npcFloor:true}};
