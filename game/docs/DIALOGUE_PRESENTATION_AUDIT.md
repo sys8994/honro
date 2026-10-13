@@ -8,8 +8,8 @@
 - 현재 1막 `story-content.js`, 2막 `act2-content.js` → `act2-drama.js`, 3막 `act3-content.js`, 현재 목표 변형 `objective-revision.js`/`narrative-revision.js`.
 - 쉼터 `journey-content.js`의 required/interlude/optional, `rest-journey.js`의 arrival 설명. 문서는 `kind:document`, 조작은 `kind:guide`.
 - 지도 사건은 최종 저작된 `HONRO_PROJECT.stages[].events/ interactions/ objectives`, 런타임 주입은 `story-content`의 interaction/cooperation/cooperationDefense/finaleMidpoint와 `say/sayLines/Story.queue` 경로.
-- `content.js`, `story-content-v0.js`, `shared/data/narrative-legacy-v0.json`, migration/legacy의 초기·역사 데이터는 현재 덮어쓰기 순서 및 구 저장 호환 경로와 구분한다. 옛 저장의 튜플·페이지·큐는 수정하지 않는다.
-- 재현 가능한 `tests/dialogue-source-inventory.mjs`는 최종 30장 대본/결말/목표 beats/서술, 쉼터 필수·선택, 지도 사건과 공개 주입 API를 열거한다. 현재 717개 튜플 발생 위치, 23개 화자 라벨을 검사한다. 중복 출처를 포함하는 저작 위치 수이며 고유 문장 수나 30장 정상 플레이 횟수가 아니다. 함수 안의 조건부 실행/구 저장은 별도 회귀로 확인한다.
+- `content.js`, `story-content-v0.js`, `shared/data/narrative-legacy-v0.json`, migration/legacy의 초기·역사 데이터는 현재 덮어쓰기 순서 및 구 저장 호환 경로와 구분한다. 옛 저장의 튜플·페이지·큐는 수정하지 않는다. 구 대본에만 남은 월이·칠복은 legacyOnly registry로 구분하고 초상을 만들지 않는다.
+- 재현 가능한 `tests/dialogue-source-inventory.mjs`는 최종 30장 대본/결말/목표 beats/서술, 쉼터 필수·선택, 지도 사건과 공개 주입 API를 열거한다. 현재 717개 튜플 발생 위치, 23개 화자 라벨을 검사한다. 중복 출처를 포함하는 저작 위치 수이며 고유 문장 수나 30장 정상 플레이 횟수가 아니다. 함수 안의 조건부 실행/구 저장은 별도 회귀로 확인한다. 추가 AST 조사는 모든 runtime 파일의 화자형 튜플 후보를 열거해 조건부 주입/역사 대본/비대화 레이블을 따로 기록하며 미검토 새 화자를 검사 실패로 만든다.
 
 ## 화자와 초상
 
