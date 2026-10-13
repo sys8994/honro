@@ -8,7 +8,7 @@ export const CITY_TACTICAL_SURFACES={
   ['wall-west-toe',[[1500,2622.5],[1730,2440]],true,'stone'],
   ['wall-east-return',[[3540,1960],[3720,2110],[3820,2110],[3990,2280],[4080,2280]],false,'stone',55],
   ['wall-east-toe',[[4080,2280],[4290,2500]],true,'wood'],
-  ['wall-buttress-plinth',[[3650,2500],[3760,2380],[3820,2380],[3900,2500]],false,'stone',300],
+  ['wall-buttress-plinth',[[3650,2500],[3760,2380],[3820,2380],[3920,2500]],false,'stone',300],
   ['market-west-rise',[[4090,2500],[4310,2270]],true,'wood'],
   ['market-side-gallery',[[4310,2270],[4620,2260],[4840,2280]],false,'stone'],
   ['market-east-return',[[4840,2280],[5150,2500]],true,'wood']
@@ -25,7 +25,7 @@ export const CITY_TACTICAL_SURFACES={
   ['court-west-ascent',[[2680,2791.272727272727],[3010,2635],[3260,2550]],true,'wood'],
   ['court-east-gallery',[[4400,2545],[4540,2530],[4760,2450]],false,'stone'],
   ['court-record-return',[[4760,2450],[5010,2533.913043478261]],true,'wood'],
-  ['court-low-charred-plinth',[[4030,2800],[4110,2690],[4190,2690],[4310,2800]],false,'stone',250]
+  ['court-low-charred-plinth',[[4030,2800],[4120,2690],[4190,2690],[4310,2800]],false,'stone',250]
  ]
 };
 function surface(s,id,top,oneWay,material,thickness){const depth=thickness??(oneWay?36:70);return{id:'ct'+s+'-'+id,name:id,type:'solid',points:[...top,...top.slice().reverse().map(([x,y])=>[x,y+depth])].map(([x,y])=>({x,y})),baseMaterial:material,oneWay,breakable:false,layer:'terrain',properties:{honroCityTactical:true,honroSpaceSurfaceId:'ct'+s+'-'+id,honroWalkEdges:top.slice(1).map((_,i)=>i),honroSurfaceRole:oneWay?'access-ramp':'cover-gallery',surfaceKind:material==='stone'?'granite':'wood'},detail:{spacing:18,roughness:0,seed:s,optimizeEpsilon:0}};}

@@ -5,6 +5,7 @@ import {runtime} from '../game/tests/helpers.mjs';
 import {applyCityTacticalRoutes,CITY_TACTICAL_SURFACES} from '../tools/map-forge/city-tactical-routes.mjs';
 const clone=v=>JSON.parse(JSON.stringify(v)),before=JSON.parse(execFileSync('git',['show','25ae85c:shared/data/campaign.json'],{encoding:'utf8',maxBuffer:40*1024*1024})),after=applyCityTacticalRoutes(before);
 assert.deepEqual(applyCityTacticalRoutes(after),after,'Idempotent stage-local author');
+for(const [n,rows] of Object.entries(CITY_TACTICAL_SURFACES))for(const [id,top] of rows)for(let i=1;i<top.length;i++)assert(Math.abs((top[i][1]-top[i-1][1])/(top[i][0]-top[i-1][0]))<=1.35,n+'/'+id+' ordinary walking slope');
 assert.deepEqual(after.library.filter(a=>!a.id.startsWith('city-tactical:')),before.library,'Existing art/collision library is preserved');
 const g=await runtime({legacyMaps:false}),rows=[];
 for(let i=0;i<before.stages.length;i++){
