@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node workshop/build.mjs",
     "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs && node tools/map-forge/apply-act1-roster.mjs",
-    "verify": "npm run build && npm run test:title && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm run test:current-story-display && npm run test:binding-detail && npm --prefix game run verify && npm run test:integration && npm run test:performance",
+    "verify": "npm run test:release-guard && npm run build && npm run test:title && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm run test:current-story-display && npm run test:binding-detail && npm --prefix game run verify && npm run test:integration && npm run test:performance",
     "test:binding-detail": "node tests/binding-detail-normalization.mjs && node tests/narrative-revision.mjs",
     "test:current-story-display": "node tests/current-story-display.mjs",
     "test:action-prompts": "node tests/action-prompts.mjs",
@@ -199,7 +199,8 @@
     "test:title": "node tests/title-redesign.mjs && node tests/title-letter-rendering.mjs",
     "test:title:browser": "python -X utf8 tests/title-redesign-browser.py",
     "capture:title:art": "node tools/testing/capture-title-hanja-native.mjs",
-    "test:eater-capture": "node tests/eater-capture.mjs && node tests/eater-independent-review.mjs && node tests/two-skill-balance-contracts.mjs && node tests/eater-contribution.mjs && node tests/eater-app-resume.mjs && node tests/eater-ui-boundaries.mjs && node tests/eater-inspector-review.mjs"
+    "test:eater-capture": "node tests/eater-capture.mjs && node tests/eater-independent-review.mjs && node tests/two-skill-balance-contracts.mjs && node tests/eater-contribution.mjs && node tests/eater-app-resume.mjs && node tests/eater-ui-boundaries.mjs && node tests/eater-inspector-review.mjs",
+    "test:release-guard": "python -X utf8 tests/release-guard.py"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

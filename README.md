@@ -24,6 +24,8 @@
 
 ## GitHub Pages 배포
 
+원격 반영의 단일 발행자·승인/IO/불확실 상태·재개·배포 영수증은 [Release operation guard](game/docs/RELEASE_OPERATION_GUARD.md)를 따른다. `npm run test:release-guard`로 오프라인 계약을 검사한다.
+
 `HONRO.html` 이름을 그대로 사용할 수 있습니다. 저장소의 **Settings → Pages → Deploy from a branch**에서 배포할 브랜치와 **/(root)**를 선택합니다.
 
 - 기본 주소 `https://<사용자>.github.io/<저장소>/`는 `index.html`을 통해 게임으로 이동합니다. 쿼리와 `#` 뒤의 진입 옵션도 유지합니다.

@@ -2685,3 +2685,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 소스 측정: 메인 파일 4,741,261바이트, 204.84초, 평균 약185kbps. FFmpeg로 48kHz mono float PCM 변환 시 첫 -45dBFS 초과 샘플은191.3ms, 첫0.5초 RMS -14.7dBFS, 다음0.5초 -19dBFS다. 수초 무음/긴 원본 fade는 확인되지 않았다. 이 수치는 실제 스피커 출력 지연 측정이 아니다.
 - 검사: `node tests/audio.mjs` 23항목 통과(단일 준비, muted/zero-volume/hidden, autoplay 거부·재입력, 선요청 실패, 기존 playlist/seek/동시채널/해제 회귀). 브라우저 기존 초기 잠금 검사는 미디어 미생성 대신 실제 locked/starts=0/paused를 확인하도록 갱신했다.
 - 한계: preload는 브라우저 힌트라 데이터 절약 정책 등에 따라 무시될 수 있고 느린 네트워크/즉시 입력에서는 남은 버퍼 대기가 있다. cold/warm 캐시 실제 브라우저 비교, 실제 청취 및 최종 통합 전체 verify·배포 검수는 별도 수행해야 한다. 입력 전 무음은 autoplay 정책 준수를 위해 유지한다.
+
+
+## 2026-10-13 · Release orchestration evidence and recovery
+
+- Cause: fragmented phase files, batch receipts and in-memory pending maps obscured approval versus submitted IO; historical backfill could delay the final snapshot.
+- Change: cooperative persisted release guard, one coordinator, bounded independent blobs, production-first scheduling, explicit uncertain/denied states, read-only reconciliation, confirmed no-effect recovery and four-URL/master/Pages-SHA receipt validation. See `RELEASE_OPERATION_GUARD.md`.
+- Validation: 16 deterministic offline tests pass. `npm run verify` was attempted and stopped during build because this isolated worktree has no installed TypeScript dependency; downstream aggregate/browser/performance tests did not run. No package installation or security workaround was attempted. Runtime sources and generated HTML are unchanged from f6da62d.
+- Limits: caller integration is required; this helper neither calls/cancels MCP nor grants approval. Publication evidence remains distinct from browser/normal-play/performance QA.
