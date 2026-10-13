@@ -806,7 +806,7 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 }
 
 /* Learned combat passives use static SVG geometry and update only when state changes. */
-.hud-vitals{position:relative}.combat-passives{position:absolute;left:0;bottom:calc(100% + 5px);font-size:10px;line-height:20px;color:#c7d6cd;pointer-events:none}.combat-passives[hidden]{display:none}.jucheon-state,.sword-chain{display:flex;align-items:center;gap:5px;background:#102328d9;border-radius:4px;padding:0 5px}.jucheon-state svg{width:22px;height:22px;fill:none;stroke:#cbd9d0;stroke-width:1.5;transform:rotate(-90deg)}.jucheon-state .track{stroke:#53655c;stroke-width:1}.jucheon-state.ready{color:#eee3bd}.sword-chain i{font-style:normal;opacity:.4;border-bottom:1px solid #5b6960}.sword-chain i.linked{opacity:1;border-color:#d8cfb1}.sword-chain b{color:#ebd7a5}.skill-button:disabled{opacity:.32;filter:none;cursor:default}
+.hud-vitals{position:relative}.combat-passives{position:static;display:inline-flex;align-items:center;font-size:10px;line-height:16px;color:#c7d6cd;pointer-events:none}.combat-passives[hidden]{display:none}.jucheon-state,.sword-chain{display:flex;align-items:center;gap:5px;background:#102328d9;border-radius:4px;padding:0 5px}.jucheon-state svg{width:16px;height:16px;fill:none;stroke:#cbd9d0;stroke-width:1.5;transform:rotate(-90deg)}.passive-short{display:none}.jucheon-state .track{stroke:#53655c;stroke-width:1}.jucheon-state.ready{color:#eee3bd}.sword-chain i{font-style:normal;opacity:.4;border-bottom:1px solid #5b6960}.sword-chain i.linked{opacity:1;border-color:#d8cfb1}.sword-chain b{color:#ebd7a5}.skill-button:disabled{opacity:.32;filter:none;cursor:default}
 
 /* Four party controls must remain reachable on narrow portrait phones. */
 @media (orientation:portrait) and (max-width:420px){
@@ -922,6 +922,8 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro .unit-info-xp{height:8px;overflow:hidden;border:1px solid #8d956b88;border-radius:4px;background:#10252d}
 .honro .unit-info-xp>i{display:block;height:100%;background:#c6af77;transition:width .18s ease-out}
 .honro .unit-info-xp-detail{margin-top:4px;color:#bec9bc;font-size:10px;line-height:1.5;font-variant-numeric:tabular-nums}
+
+.honro .unit-info-xp-policy{margin-top:3px;color:#a8b6ac;font-size:10px;line-height:1.4}
 
 .honro .training-tools{display:flex;gap:8px;align-items:center;max-width:calc(100% - 24px);flex-wrap:nowrap;padding:6px;background:#172222ed;border:1px solid #637067;border-radius:12px;box-shadow:0 6px 24px #0004}
 .honro .training-current{display:flex;align-items:center;gap:10px;padding:0 10px 0 0;text-align:left;background:none;border:0;width:auto!important;height:48px!important;min-height:48px!important;white-space:nowrap;flex:1 1 auto;min-width:0;color:#ece7d6}
@@ -1061,6 +1063,22 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
  .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{gap:2px!important}
  .honro #app .honro-compact-hud .ally-chip canvas.portrait{width:24px!important}
  .honro #app .honro-compact-hud .ally-chip[aria-label*=전투불능] small{font-size:7px!important}
+}
+
+/* Live passive state shares the existing status button; it never sits over a portrait.
+   Short labels preserve the 36px target and the unchanged HUD row reservation. */
+@media(orientation:portrait) and (max-width:899px){
+ .honro #app .honro-compact-hud .status-trigger[data-passive]>.status-glyph{display:none}
+ .honro #app .honro-compact-hud .status-trigger[data-passive]::after{content:attr(data-passive-label)}
+ .honro #app .honro-compact-hud .combat-passives{width:28px;height:20px;justify-content:center}
+ .honro #app .honro-compact-hud .combat-passives .passive-full{display:none}
+ .honro #app .honro-compact-hud .combat-passives .passive-short{display:inline;font-size:7px;line-height:12px}
+ .honro #app .honro-compact-hud .combat-passives .jucheon-state{gap:1px;padding:0;background:none;line-height:18px}
+ .honro #app .honro-compact-hud .combat-passives .jucheon-state svg{width:13px;height:13px;flex:none}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain{gap:2px;padding:0;background:none;line-height:16px}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain i{font-size:0;line-height:16px}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain i::before{content:attr(data-short);font-size:7px}
+ .honro #app .honro-compact-hud .combat-status[data-limited=true] .status-trigger[data-passive]{border-color:#d6ab75}
 }
 
 /* Small portrait-phone trim: keep type and action sizes; reclaim only six pixels.
@@ -4213,15 +4231,16 @@ exports.arrowTurn = arrowTurn;
 exports.recordSalheun = recordSalheun;
 exports.beginPlayerCast = beginPlayerCast;
 exports.cleanupPassiveHistory = cleanupPassiveHistory;
+const passiveBalance_1 = require("./passiveBalance");
 const progression_1 = require("./progression");
 const warriorData_1 = require("./warriorData");
 const data_1 = require("./data");
-function jucheonBoost(u, s) { const r = (0, progression_1.passiveRank)(u, 'MP05'); return u.cls === 'mage' && r && u.jucheonReady && s.cls === 'mage' && s.cost > 0 ? warriorData_1.JUCHEON_EFFECT[r - 1] : 0; }
+function jucheonBoost(u, s) { const r = (0, progression_1.passiveRank)(u, 'MP05'); return u.cls === 'mage' && r && u.jucheonReady && s.cls === 'mage' && s.cost > 0 ? warriorData_1.JUCHEON_EFFECT[r - 1] + (0, passiveBalance_1.passiveTuning)(r).jucheonExtraEffect : 0; }
 function passiveCost(u, s, cost) {
     if (jucheonBoost(u, s))
         cost *= 1 - warriorData_1.JUCHEON_DISCOUNT[(0, progression_1.passiveRank)(u, 'MP05') - 1];
     if (u.cls === 'knight' && u.harmony && s.martial)
-        cost *= .75;
+        cost *= 1 - (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP04')).harmonyDiscount;
     return Math.max(0, Math.round(cost));
 }
 /** Own action clock, including misses/wait; review and retreat must not age it twice. */
@@ -4313,8 +4332,8 @@ function beginPlayerCast(e, u, s, actualKiSpent) {
             if (u.swordChain.length === 3) {
                 u.swordChain = [];
                 u.harmony = true;
-                u.focus = Math.min(u.maxFocus, u.focus + u.maxFocus * (.05 + .00625 * rank));
-                u.martialGuard = { round: e.b.round, reduction: .10 };
+                u.focus = Math.min(u.maxFocus, u.focus + u.maxFocus * (0, passiveBalance_1.passiveTuning)(rank).harmonyRecovery);
+                u.martialGuard = { round: e.b.round, reduction: (0, passiveBalance_1.passiveTuning)(rank).harmonyGuard };
                 e.fx('text', u.x, u.y - u.h - 18, '#cad4cd', 16, '합세');
                 e.emit('sound', { name: 'sword' });
             }
@@ -4334,6 +4353,103 @@ function cleanupPassiveHistory(e) { for (const u of e.b.units) {
         u.jucheonReady = false;
     }
 } }
+
+},
+"contribution": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.controlled = exports.settled = exports.shielded = exports.healed = exports.environmentalLoss = exports.ownerRegistered = void 0;
+exports.projectileCredit = projectileCredit;
+exports.beginHit = beginHit;
+exports.endHit = endHit;
+exports.intercepted = intercepted;
+const existence_1 = require("./existence");
+// Optional runtime adapter: core/practice/preview consumers have no XP policy.
+const policy = () => globalThis.HonroProgression;
+const ownerRegistered = (b, u) => policy()?.registerOwner(b, u);
+exports.ownerRegistered = ownerRegistered;
+const environmentalLoss = (b, u, before) => policy()?.recordDamage(b, u, '', Math.max(0, before - u.hp));
+exports.environmentalLoss = environmentalLoss;
+const healed = (b, u, owner, before) => policy()?.recordHeal(b, u, owner, Math.max(0, u.hp - before));
+exports.healed = healed;
+const shielded = (b, u, owner, before) => policy()?.shieldAdded(b, u, owner, before);
+exports.shielded = shielded;
+const settled = (e) => policy()?.flushContribution(e);
+exports.settled = settled;
+const controlled = (b, u, owner, token) => policy()?.recordControl(b, u, owner, token);
+exports.controlled = controlled;
+function projectileCredit(b, p, u) { (0, exports.ownerRegistered)(b, u); const q = p, v = u; q.honroContributionOwner = u.summonOwner || u.enthrall?.owner || u.id; if (u.curseAttack) {
+    q.honroWeakOwner = v.honroWeakOwner || u.curseOwner;
+    q.honroWeakFactor = u.curseAttack;
+} }
+function beginHit(b, u, raw, src, p, attack, origin, uncapped, final, defense, armor, armorWithoutSupport, limit, normal) {
+    const v = u, q = p, r = raw, protections = {}, assists = {}, hp = u.hp, shield = u.shield, owner = q?.honroContributionOwner || raw?.summonOwner || raw?.enthrall?.owner || raw?.id || origin;
+    const rounded = (n) => Math.max(0, Math.round(Math.min(limit, n)));
+    if (normal && u.side === 1 && src?.side === 0) {
+        const actualExistence = attack ? (0, existence_1.existenceMultiplier)(attack, u, raw || src) : 1, without = { ...u, manifested: v.honroManifestOwner ? false : u.manifested };
+        const provider = raw?.honroSoulAffinityOwner, withoutSrc = provider ? { ...(raw || src), soulAffinityBonus: 0 } : raw || src;
+        const basicExistence = attack ? (0, existence_1.existenceMultiplier)(attack, without, withoutSrc) : 1;
+        const armorRatio = v.honroArmorOwner ? (1 - Math.min(.7, Math.max(0, armorWithoutSupport) * (p?.skill === 'S02' ? .65 : 1))) / Math.max(.01, 1 - Math.min(.7, Math.max(0, armor) * (p?.skill === 'S02' ? .65 : 1))) : 1;
+        const base = rounded(uncapped * armorRatio * basicExistence / Math.max(.01, actualExistence));
+        const benefit = Math.max(0, Math.min(hp, Math.max(0, final - shield)) - Math.min(hp, Math.max(0, base - shield)));
+        const weights = {};
+        const add = (id, n) => { if (id && n > 0)
+            weights[id] = (weights[id] || 0) + n; };
+        add(v.honroArmorOwner, Math.max(0, 1 - armorRatio));
+        add(v.honroManifestOwner, u.manifested ? (u.formDamageTakenBonus || 0) * (attack?.form || 0) : 0);
+        add(provider, Math.max(0, (raw?.soulAffinityBonus || 0) * (attack?.soul || 0)));
+        const sum = Object.values(weights).reduce((a, n) => a + n, 0);
+        for (const [id, n] of Object.entries(weights))
+            assists[id] = benefit * n / Math.max(.001, sum);
+    }
+    let beforeDefense = final;
+    if (normal && raw?.side === 1 && u.side !== 1) {
+        const weak = q?.honroWeakFactor ?? raw.curseAttack ?? 0, weakOwner = q?.honroWeakOwner || r.honroWeakOwner || raw.curseOwner;
+        const screen = q?.honroScreenProtection || {}, screenSum = Object.values(screen).reduce((a, n) => a + n, 0), screenRatio = 1 + screenSum;
+        const currentExistence = attack ? (0, existence_1.existenceMultiplier)(attack, u, raw) : 1, unwardedExistence = attack ? (0, existence_1.existenceMultiplier)(attack, { ...u, soulDefenseBonus: 0 }, raw) : 1, soulRatio = unwardedExistence / Math.max(.01, currentExistence);
+        beforeDefense = rounded(uncapped / Math.max(.01, defense) / Math.max(.01, 1 - weak) * screenRatio * soulRatio);
+        const add = (id, n) => { if (id && n > 0)
+            protections[id] = (protections[id] || 0) + n; };
+        add(u.id, Math.max(0, final / Math.max(.01, 1 - Math.min(.7, Math.max(0, armor))) - final));
+        if (u.martialGuard && u.martialGuard.round >= b.round)
+            add(u.id, final / Math.max(.01, 1 - u.martialGuard.reduction) - final);
+        if (u.arrivalGuard !== undefined)
+            add(v.honroArrivalGuardOwner || u.id, final / .9 - final);
+        add(v.honroSoulDefenseOwner, Math.max(0, final * (soulRatio - 1)));
+        add(weakOwner, final / Math.max(.01, 1 - weak) - final);
+        for (const [id, n] of Object.entries(screen))
+            add(id, final * n);
+        // Approximate raw-layer weights only divide the exact finite HP prevention.
+    }
+    return { hp, shield, final, beforeDefense, assists, protections, enemy: raw?.side === 1 ? raw : undefined, owner };
+}
+function endHit(b, u, receipt) {
+    const P = policy();
+    if (!P?.isContributionBattle(b))
+        return;
+    const actual = Math.max(0, receipt.hp - u.hp), benefit = Object.values(receipt.assists).reduce((a, n) => a + n, 0), scale = benefit > actual ? actual / benefit : 1;
+    for (const id of Object.keys(receipt.assists))
+        receipt.assists[id] *= scale;
+    P.recordDamage(b, u, receipt.owner, actual, receipt.assists);
+    const absorbed = Math.max(0, receipt.shield - u.shield), shields = P.shieldConsumed(b, u, receipt.shield, absorbed), raw = { ...receipt.protections };
+    for (const [id, n] of Object.entries(shields))
+        raw[id] = (raw[id] || 0) + n;
+    const threat = Math.min(receipt.hp, receipt.beforeDefense), prevented = Math.max(0, threat - actual);
+    if (prevented > 0 && !Object.values(raw).some(n => n > 0) && u.side === 0 && !u.summoned)
+        raw[u.id] = prevented;
+    const sum = Object.values(raw).reduce((a, n) => a + n, 0), protections = {};
+    for (const [id, n] of Object.entries(raw))
+        protections[id] = sum ? prevented * n / sum : 0;
+    P.recordThreat(b, receipt.enemy, u, receipt.hp, actual, protections);
+}
+/** Verified hostile missile removal is a small utility contribution, not
+ * an assertion about hypothetical HP damage. It shares the finite support cap. */
+function intercepted(e, p, provider) {
+    const P = policy(), enemy = e.unit(p.owner);
+    if (!P?.isContributionBattle(e.b) || p.side !== 1 || p.body || p.damage <= 0 || !enemy || enemy.side !== 1)
+        return;
+    P.recordBlock(e.b, enemy, provider, `${p.owner}:${p.shot}`, p.damage);
+}
 
 },
 "data": function(module,exports,require){
@@ -5147,6 +5263,8 @@ function* chooseEnemyShotSteps(e, u, target, skills) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
+const passiveBalance_1 = require("./passiveBalance");
+const contribution_1 = require("./contribution");
 const combatPassives_1 = require("./combatPassives");
 const warriorMechanics_1 = require("./warriorMechanics");
 const skillMechanics_1 = require("./skillMechanics");
@@ -5225,7 +5343,8 @@ class Engine {
     random() { let a = this.b.rng += 0x6D2B79F5; a = Math.imul(a ^ a >>> 15, 1 | a); a ^= a + Math.imul(a ^ a >>> 7, 61 | a); return ((a ^ a >>> 14) >>> 0) / 4294967296; }
     alive(side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0); }
     heroesAlive() { return this.alive(0).filter(u => !u.summoned && !u.enthrall); }
-    creditUnit(u) { const owner = u?.summonOwner || u?.enthrall?.owner; return owner ? (this.unit(owner) || u) : u; }
+    creditUnit(u) { if (u)
+        (0, contribution_1.ownerRegistered)(this.b, u); const owner = u?.summonOwner || u?.enthrall?.owner; return owner ? (this.unit(owner) || u) : u; }
     unit(id) { return this.b.units.find(u => u.id === id); }
     canAct() { return this.b.phase === 'aim' && this.b.side === 0 && !!this.active && !this.active.dead && !this.active.summoned && !this.active.enthrall && !this.active.acted && !this.active.airborne && (!this.active.platformDrop || this.active.platformDrop.phase === 'land'); }
     select(id) {
@@ -5267,13 +5386,13 @@ class Engine {
             damage *= 1 + (0, combatPassives_1.jucheonBoost)(u, s);
         if (s.martial && u.side === 0) {
             if (u.harmony)
-                damage *= 1.15;
+                damage *= 1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP04')).harmonyDamage;
             if (s.branch === 'rush') {
-                damage *= 1 + .025 * (0, progression_1.passiveRank)(u, 'SP01');
+                damage *= 1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP01')).rushDamage;
                 speed *= 1 + .015 * (0, progression_1.passiveRank)(u, 'SP03');
             }
             if (s.branch === 'blade')
-                speed *= 1 + .012 * (0, progression_1.passiveRank)(u, 'SP01');
+                speed *= 1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP01')).bladeGeometry;
         }
         if (u.bound > 0 && BODY.has(s.mode))
             speed *= .72;
@@ -5352,7 +5471,9 @@ class Engine {
                 continue;
             this.b.awardIds.push(id);
             for (const u of this.heroesAlive()) {
+                const hpBefore = u.hp;
                 u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .30));
+                (0, contribution_1.healed)(this.b, u, '', hpBefore);
                 u.focus = Math.min(u.maxFocus, u.focus + Math.round(u.maxFocus * .45));
                 this.fx('ring', u.x, u.y - u.h * .5, '#a9d9ae', 70);
                 this.award(u, 24 + (0, progression_1.recommendedLevel)(this.b.stageId) * 3);
@@ -5702,7 +5823,7 @@ class Engine {
         b.reviewFocus = undefined;
         b.shots += u.side === 0 ? 1 : 0;
         const origin = this.projectileOrigin(u, s, u.angle);
-        const make = (a, damage = e.damage, child = false) => { const origin = this.projectileOrigin(u, s, a), v = this.velocity(u, s, a, u.lastPower); const p = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX: origin.x, launchY: origin.y, repeatIndex: 0, carry: [], skillRank: s.ultimate ? 1 : (u.ranks[s.id] || 1), drag: (0, physics_1.dragFor)(s), gravityScale: s.gravity ?? 1, phaseMode: s.phase, fuseAt: s.fuse ? s.fuse * (s.mode === 'phaseWraith' ? (.55 + u.lastPower * 1.05) : 1) : undefined }; b.projectiles.push(p); return p; };
+        const make = (a, damage = e.damage, child = false) => { const origin = this.projectileOrigin(u, s, a), v = this.velocity(u, s, a, u.lastPower); const p = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX: origin.x, launchY: origin.y, repeatIndex: 0, carry: [], skillRank: s.ultimate ? 1 : (u.ranks[s.id] || 1), drag: (0, physics_1.dragFor)(s), gravityScale: s.gravity ?? 1, phaseMode: s.phase, fuseAt: s.fuse ? s.fuse * (s.mode === 'phaseWraith' ? (.55 + u.lastPower * 1.05) : 1) : undefined }; (0, contribution_1.projectileCredit)(b, p, u); b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan = (0, projectileGrowth_1.multishotProfile)(s, u.ranks[s.id] || 1);
             for (const angle of (0, projectileGrowth_1.volleyAngles)(s, plan.rank, u.angle))
@@ -5718,7 +5839,7 @@ class Engine {
         const castBonus = (0, combatPassives_1.beginPlayerCast)(this, u, s, actualKiSpent);
         for (const p of b.projectiles.filter(p => p.owner === u.id && p.shot === b.shot)) {
             p.effectBoost = castBonus.effectBoost;
-            p.sizeBoost = s.martial && s.branch === 'blade' ? 1 + .012 * (0, progression_1.passiveRank)(u, 'SP01') : 1;
+            p.sizeBoost = s.martial && s.branch === 'blade' ? 1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP01')).bladeGeometry : 1;
         }
         (0, skillMechanics_1.initRedesignCast)(this, s, u, actualKiSpent);
         (0, warriorMechanics_1.startWarriorCast)(this, s, u);
@@ -5830,7 +5951,7 @@ class Engine {
             return (0, math_1.clamp)(.76 + .62 * Math.pow(speed / 720, 1.25), .80, 1.95);
         return 1;
     }
-    stun(u) {
+    stun(u, owner = this.b.active) {
         if (u.dead || u.side === 2)
             return;
         if (u.boss) {
@@ -5840,6 +5961,7 @@ class Engine {
         }
         if ((u.stunUntil || 0) > this.b.round)
             return;
+        u.honroStunOwner = owner;
         u.stun = 1;
         u.stunUntil = this.b.round + 3;
         this.fx('rune', u.x, u.y - u.h - 6, '#f1d394', 25);
@@ -6056,6 +6178,7 @@ class Engine {
             return false;
         }
         this.b.items[kind]--;
+        const healBefore = u.hp, shieldBefore = u.shield;
         if (kind === 'heal')
             u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .45));
         if (kind === 'focus')
@@ -6070,6 +6193,8 @@ class Engine {
         }
         this.fx('ring', u.x, u.y - u.h * .5, '#a9e3c2', 65);
         this.emit('sound', { name: 'heal' });
+        (0, contribution_1.healed)(this.b, u, u.id, healBefore);
+        (0, contribution_1.shielded)(this.b, u, u.id, shieldBefore);
         this.message(`${u.name} · ${kind === 'heal' ? '회복약' : kind === 'focus' ? '마나 물약' : kind === 'ward' ? '방호 부적' : '정화약'} 사용`);
         this.finishAction();
         return true;
@@ -6082,11 +6207,14 @@ class Engine {
             this.finishAction(true);
             return;
         }
+        const healBefore = u.hp, shieldBefore = u.shield;
         u.shield = Math.max(u.shield, Math.round(u.maxHp * .12));
         u.shieldUntil = this.b.teamEnds[1] + 1;
         u.focus = Math.min(u.maxFocus, u.focus + u.regen);
         if (!this.combatEnemies().length)
             u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12));
+        (0, contribution_1.healed)(this.b, u, u.id, healBefore);
+        (0, contribution_1.shielded)(this.b, u, u.id, shieldBefore);
         this.message(`${u.name} · 방어하며 대기`);
         this.finishAction();
     }
@@ -6123,19 +6251,25 @@ class Engine {
             dmg *= this.b.difficulty === 'explorer' ? .48 : this.b.difficulty === 'story' ? .60 : this.b.difficulty === 'normal' ? .82 : this.b.difficulty === 'veteran' ? .98 : 1.08;
         if (src?.side === 1 && src.combatBaseAttack === undefined && this.b.mode === 'campaign' && this.b.stageId === 1)
             dmg *= .85;
+        // Soul-line damage is conditional on this medium's live mark; neither unrelated marks nor owner spells qualify.
+        if (damageSource === 'normal' && src?.side === 0 && src.cls === 'occultist' && (rawSrc?.summoned || rawSrc?.enthrall) && u.side === 1 && ((u.curseOwner === src.id && (u.curseTurns || 0) > 0) || (u.earthbind?.owner === src.id && u.earthbind.until >= this.b.round)))
+            conditionBonuses.push((0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(src, 'OP02')).markedSummonDamage);
         const preCondition = 1 + conditionBonuses.reduce((sum, bonus) => sum + bonus, 0);
         dmg *= preCondition * criticalMultiplier;
         if (p && src && (0, skillMechanics_1.newSkill)(p))
             dmg = (0, skillMechanics_1.redrawDamage)(this, p, src, u, dmg, source || p, direct, !!critical);
-        let armor = Math.max(0, u.armor - (u.curseArmor || 0));
+        let armorWithoutSupport = Math.max(0, u.armor), armor = Math.max(0, u.armor - (u.curseArmor || 0));
         if (u.role === 'guard' && source)
-            armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
+            armorWithoutSupport = armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
         if (u.boss && u.boss !== 5)
-            armor = (this.b.round % 2 === 0 ? .06 : .29);
-        if (u.side === 1 && this.b.terrain.some(t => !t.broken && t.device === 'ward'))
+            armorWithoutSupport = armor = (this.b.round % 2 === 0 ? .06 : .29);
+        if (u.side === 1 && this.b.terrain.some(t => !t.broken && t.device === 'ward')) {
             armor = Math.max(armor, .32);
+            armorWithoutSupport = Math.max(armorWithoutSupport, .32);
+        }
         if (u.breaks > 0) {
             armor *= .15;
+            armorWithoutSupport *= .15;
             u.breaks--;
         }
         if (direct && u.mark > 0 && src && u.markSide === src.side) {
@@ -6147,17 +6281,19 @@ class Engine {
             conditionBonuses.push(.22);
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
-        const defenseMultiplier = (damageSource === 'normal' ? 1 - (0, math_1.clamp)(armor * (p?.skill === 'S02' ? .65 : 1), 0, .7) : 1)
+        const defenseMultiplier = (damageSource === 'normal' ? 1 - (0, math_1.clamp)(armor * (p?.skill === 'S02' ? .65 : 1), 0, passiveBalance_1.HERO_ARMOR_CAP) : 1)
             * (u.arrivalGuard !== undefined ? .90 : 1)
             * (u.martialGuard && u.martialGuard.round >= this.b.round ? 1 - u.martialGuard.reduction : 1);
         const attack = damageSource === 'normal' ? (damageSkill && data_1.SKILLS[damageSkill] ? (0, existence_1.attackForSkill)(data_1.SKILLS[damageSkill]) : (0, existence_1.attackForHit)(p, rawSrc, src, data_1.SKILLS)) : undefined;
         const existence = attack ? (0, existence_1.existenceMultiplier)(attack, u, rawSrc || src) : 1;
         const layers = (0, existence_1.calculateDamage)({ skillDamage: dmg / (preCondition * criticalMultiplier), conditionBonuses, criticalMultiplier, existenceMultiplier: existence, defenseMultiplier });
         dmg = layers.finalDamage;
+        let contributionDamageLimit = Infinity;
         if (p?.child && !(0, skillMechanics_1.newSkill)(p) && p.mode !== 'convergeSpirit') {
             const key = p.shot + ':' + (p.repeatIndex || 0) + ':' + u.id;
             const legacyId = data_1.SKILLS[p.skill]?.legacyId || p.skill;
             const used = this.b.shotDamage[key] || 0, cap = (['M13', 'M14', 'M15'].includes(legacyId) ? 160 : legacyId === 'M06' ? 78 : legacyId === 'A11' ? 90 : 75) * (p.amplification || 1) * (src?.attack || 1) * (1 + Math.max(0, ((src?.ranks[p.skill] || 1) - 1)) * .16);
+            contributionDamageLimit = Math.max(0, cap - used);
             dmg = Math.min(dmg, cap - used);
             this.b.shotDamage[key] = used + Math.max(0, dmg);
         }
@@ -6172,13 +6308,14 @@ class Engine {
                 traces.shift();
             debug.HONRO_DAMAGE_TRACE = traces;
         }
+        const contribution = (0, contribution_1.beginHit)(this.b, u, rawSrc, src, p, attack, owner, layers.finalDamage, dmg, defenseMultiplier, armor, armorWithoutSupport, contributionDamageLimit, damageSource === 'normal');
         const absorbed = Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
-        if (u.side === 0 && u.cls === 'occultist' && !u.summoned && !u.enthrall && (0, progression_1.passiveRank)(u, 'OP03') && dmg > u.maxHp * .14) {
+        if (u.side === 0 && u.cls === 'occultist' && !u.summoned && !u.enthrall && (0, progression_1.passiveRank)(u, 'OP03') && dmg > 0) {
             const near = this.alive(0).filter(v => v.summoned && v.summonOwner === u.id && Math.hypot(v.x - u.x, v.y - u.y) < 340).sort((a, c) => Math.hypot(a.x - u.x, a.y - u.y) - Math.hypot(c.x - u.x, c.y - u.y))[0];
             if (near) {
-                const shared = Math.min(Math.round(dmg * Math.min(.28, .04 * (0, progression_1.passiveRank)(u, 'OP03'))), Math.round(u.maxHp * .12), near.hp);
+                const shared = Math.min(Math.round(dmg * (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'OP03')).soulShare), Math.round(u.maxHp * (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'OP03')).soulShareCap), near.hp);
                 dmg -= shared;
                 this.hurt(near, shared, owner, false, undefined, source, 'salheun');
             }
@@ -6193,17 +6330,20 @@ class Engine {
                 this.emit('fx', { name: 'inkImpact', x: u.x, y: u.y - u.h * .5, x2: p.vx, y2: p.vy, color: '#dde0d3', size: Math.min(52, 24 + Math.sqrt(dmg)) });
         }
         if (dmg) {
-            const actual = Math.min(u.hp, dmg);
+            const hpBefore = u.hp;
             if (!p)
                 this.emit('sound', { name: 'hit' });
             u.hp = Math.max((this.b.mode === 'practice' && this.b.practiceCombat && u.side !== 1) || u.honroNonlethal ? 1 : 0, u.hp - dmg);
             if (u.hp === 0 && !u.lastStandUsed && (0, progression_1.equippedRank)(u, 'SP05')) {
                 u.lastStandUsed = true;
-                u.hp = Math.max(1, Math.round(u.maxHp * .08 * (0, progression_1.equippedRank)(u, 'SP05')));
-                u.martialGuard = { round: this.b.round, reduction: .18 };
+                u.hp = Math.max(1, Math.round(u.maxHp * (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP05')).lastStandHp));
+                u.martialGuard = { round: this.b.round, reduction: (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP05')).lastStandGuard };
                 this.fx('spark', u.x, u.y - u.h * .5, '#ccd3c4', 24);
                 this.fx('text', u.x, u.y - u.h - 25, '#f4d6a3', 18, '불굴');
             }
+            const actual = Math.max(0, hpBefore - u.hp);
+            // Commit this HP interval before on-hit effects can recursively hurt again.
+            (0, contribution_1.endHit)(this.b, u, contribution);
             if (src && (src.side !== 2 || src.honroAlly)) {
                 (_a = this.b).reviewDamage ?? (_a.reviewDamage = {});
                 this.b.reviewDamage[u.id] = (this.b.reviewDamage[u.id] || 0) + actual;
@@ -6222,7 +6362,9 @@ class Engine {
                 if (damageSource === 'normal' && p && wardRank && src.cls === 'mage' && !src.summoned && data_1.SKILLS[p.skill]?.cls === 'mage' && src.mageWardShot !== p.shot) {
                     src.mageWardShot = p.shot;
                     const ally = this.alive(0).filter(v => !v.summoned && !v.enthrall && v.id !== src.id && Math.hypot(v.x - u.x, (v.y - v.h * .5) - (u.y - u.h * .5)) < 520).sort((a, b) => Math.hypot(a.x - u.x, a.y - u.y) - Math.hypot(b.x - u.x, b.y - u.y))[0] || src;
-                    ally.shield = Math.max(ally.shield, Math.min(Math.round(ally.maxHp * .25), ally.shield + Math.round(ally.maxHp * (.025 + .0075 * wardRank))));
+                    const shieldBefore = ally.shield;
+                    ally.shield = Math.max(ally.shield, Math.min(Math.round(ally.maxHp * .25), ally.shield + Math.round(ally.maxHp * (0, passiveBalance_1.passiveTuning)(wardRank).ward)));
+                    (0, contribution_1.shielded)(this.b, ally, src.id, shieldBefore);
                     ally.shieldUntil = Math.max(ally.shieldUntil || 0, this.b.teamEnds[1] + 1);
                     this.fx('ring', ally.x, ally.y - ally.h * .5, '#b4d8d1', 34);
                 }
@@ -6242,6 +6384,8 @@ class Engine {
                 this.refreshActivation();
             }
         }
+        if (!dmg)
+            (0, contribution_1.endHit)(this.b, u, contribution);
         if (u.hp <= 0 && !u.dead) {
             delete u.salheun;
             u.dead = true;
@@ -6292,6 +6436,7 @@ class Engine {
         }
         const before = t.hp;
         t.hp -= amount;
+        globalThis.HonroObjectiveContributions?.terrain(this, t, before, owner);
         if (amount > 0 && (t.honroSeal || t.honroAct2Target || t.device)) {
             this.fx('text', t.x + t.w / 2, t.y - 28, '#fff0d2', 19, '−' + Math.ceil(Math.min(before, amount)));
             this.b.reviewFocus = { x: t.x + t.w / 2, y: t.y + t.h * .5 };
@@ -6430,7 +6575,7 @@ class Engine {
             this.blast(p.x, impactY, p.blast * 1.38, p.damage * .52, p.owner, true, { ...p, child: true, echoUsed: true }, 1);
             for (const e of this.alive(1))
                 if (Math.hypot(e.x - p.x, e.y - e.h * .5 - impactY) < p.blast * 1.45)
-                    this.stun(e);
+                    this.stun(e, p.owner);
             this.emit('sound', { name: 'boom' });
         }
         u.landing = .32;
@@ -6438,7 +6583,7 @@ class Engine {
             for (const e of this.b.units)
                 if (e.side === 1 && !e.dead && Math.hypot(e.x - p.x, e.y - e.h * .5 - impactY) < p.blast + e.r) {
                     if (['slam', 'quake', 'lift', 'vault'].includes(p.mode) || e.id === p.directId && Math.hypot(p.vx, p.vy) > 680)
-                        this.stun(e);
+                        this.stun(e, p.owner);
                     this.impulse(e, Math.sign(e.x - p.x || u.facing) * (p.mode === 'quake' ? 340 : 150), -105);
                 }
         }
@@ -6459,12 +6604,16 @@ class Engine {
                 if (e.side !== u.side && !e.dead && Math.abs(e.x - p.x) < p.blast)
                     this.impulse(e, Math.sign(e.x - p.x || 1) * 100, -330);
         if (p.mode === 'guard') {
+            const shieldBefore = u.shield;
             u.shield += Math.round(44 * u.attack);
+            (0, contribution_1.shielded)(this.b, u, u.id, shieldBefore);
             u.shieldUntil = this.b.teamEnds[1 - u.side] + 1;
             this.fx('ring', u.x, u.y - u.h * .5, '#accded', 70);
         }
         if (u.side === 0 && u.cls === 'knight' && u.tune < .5) {
+            const shieldBefore = u.shield;
             u.shield += Math.round((.5 - u.tune) * 32);
+            (0, contribution_1.shielded)(this.b, u, u.id, shieldBefore);
             u.shieldUntil = this.b.teamEnds[1] + 1;
         }
         if (p.mode === 'recall') {
@@ -6483,6 +6632,13 @@ class Engine {
             return;
         const duration = Math.max(1, Math.ceil(((kind === 'weak' ? occultData_1.WEAK_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] : kind === 'betray' ? occultData_1.BETRAY_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] : kind === 'dot' ? 5 : kind === 'chain' ? 3 : 2) + bonus) * (trap ? .45 : 1))), strength = trap ? .5 : 1;
         target.curseOwner = owner.id;
+        const provenance = target;
+        if ((kind === 'weak' || kind === 'bind') && !(target.curseAttack || 0))
+            provenance.honroWeakOwner = owner.id;
+        if (kind === 'weak' && !(target.curseArmor || 0))
+            provenance.honroArmorOwner = owner.id;
+        if ((kind === 'dot' || kind === 'chain') && damage >= (target.curseDamage || 0))
+            provenance.honroDotOwner = owner.id;
         if (kind === 'weak') {
             target.curseTurns = Math.max(target.curseTurns || 0, duration);
             target.curseAttack = Math.max(target.curseAttack || 0, .12 * strength);
@@ -6507,6 +6663,7 @@ class Engine {
         if (target.dead || target.side !== 1)
             return;
         target.manifestedUntil = Math.max(target.manifestedUntil || 0, this.b.round + Math.max(1, occultData_1.MANIFEST_TURNS[(0, math_1.clamp)(rank, 1, 8) - 1] + bonus) - 1);
+        target.honroManifestOwner = owner.id;
         target.manifested = true;
         target.revealSpiritToParty = true;
         target.formDamageTakenBonus = .08 + .015 * rank;
@@ -6519,6 +6676,7 @@ class Engine {
         const power = occultData_1.ENTHRALL_POWER[(0, math_1.clamp)(rank, 1, 8) - 1], ratio = target.hp / target.maxHp;
         target.enthrall = { owner: owner.id, actions: occultData_1.ENTHRALL_ACTIONS[(0, math_1.clamp)(rank, 1, 8) - 1] + (empowered ? 1 : 0), captureRatio: ratio, originalMaxHp: target.maxHp, originalAttack: target.attack, originalArmor: target.armor, power };
         target.side = 0;
+        (0, contribution_1.ownerRegistered)(this.b, target);
         target.maxHp = Math.max(1, Math.round(target.maxHp * power));
         target.hp = Math.max(1, Math.round(target.maxHp * ratio));
         target.attack *= power;
@@ -6577,6 +6735,7 @@ class Engine {
             if (d > reach)
                 continue;
             if (d < eater.r + p.radius + 16) {
+                (0, contribution_1.intercepted)(this, p, eater.summonOwner || eater.id);
                 eater.summonAbsorbed = (eater.summonAbsorbed || 0) + p.damage;
                 this.remove(p);
                 this.fx('spark', cx, cy, '#b1b5a6', 18);
@@ -6641,8 +6800,8 @@ class Engine {
             return false;
         const owner = u.summonOwner ? this.unit(u.summonOwner) : undefined, rank = owner ? (0, progression_1.passiveRank)(owner, 'OP04') : 0;
         if (owner && rank && u.summonKind !== 'earthbound') {
-            owner.focus = Math.min(owner.maxFocus, owner.focus + owner.maxFocus * (.04 + .018 * rank));
-            owner.nextSummonDiscount = Math.max(owner.nextSummonDiscount || 0, Math.min(.24, .035 * rank));
+            owner.focus = Math.min(owner.maxFocus, owner.focus + owner.maxFocus * (0, passiveBalance_1.passiveTuning)(rank).expiryRecovery);
+            owner.nextSummonDiscount = Math.max(owner.nextSummonDiscount || 0, (0, passiveBalance_1.passiveTuning)(rank).expiryDiscount);
             this.fx('spark', u.x, u.y - u.h * .5, '#c8c1a9', 24);
         }
         u.dead = true;
@@ -6842,7 +7001,11 @@ class Engine {
                 for (const ally of this.alive(0)) {
                     if (Math.hypot(ally.x - center.x, ally.y - ally.h * .5 - center.y) > cfg.reach)
                         continue;
+                    const shieldBefore = ally.shield;
                     ally.shield = Math.max(ally.shield, Math.round(22 + u.attack * 10));
+                    (0, contribution_1.shielded)(b, ally, u.summonOwner || u.id, shieldBefore);
+                    ally.honroSoulAffinityOwner = u.summonOwner || u.id;
+                    ally.honroSoulDefenseOwner = u.summonOwner || u.id;
                     ally.shieldUntil = b.teamEnds[1] + 1;
                     ally.soulAffinityBonus = Math.max(ally.soulAffinityBonus || 0, .06 + .01 * (u.summonRank || 1));
                     ally.soulDefenseBonus = Math.max(ally.soulDefenseBonus || 0, .06 + .01 * (u.summonRank || 1));
@@ -6931,7 +7094,7 @@ class Engine {
                 continue;
             const owner = u.curseOwner ? this.unit(u.curseOwner) : undefined;
             if ((u.curseDamage || 0) > 0 && owner) {
-                this.hurt(u, u.curseDamage, owner.id, false);
+                this.hurt(u, u.curseDamage, u.honroDotOwner || owner.id, false);
                 this.fx('text', u.x, u.y - u.h - 24, '#c388d2', 13, '저주');
             }
             u.curseTurns--;
@@ -6961,7 +7124,7 @@ class Engine {
             }
             else if (h?.terrain && ['O06', 'O07'].includes(p.skill) && (0, progression_1.passiveRank)(owner, 'OP01')) {
                 (_a = this.b).occultTraps ?? (_a.occultTraps = []);
-                this.b.occultTraps.push({ id: this.b.nextId++, x: p.x, y: p.y, owner: owner.id, skill: p.skill, rank: p.skillRank || 1, damage: p.damage * (.22 + .045 * (0, progression_1.passiveRank)(owner, 'OP01')), expires: this.b.round + 1 + Math.floor((0, progression_1.passiveRank)(owner, 'OP01') / 3) });
+                this.b.occultTraps.push({ id: this.b.nextId++, x: p.x, y: p.y, owner: owner.id, skill: p.skill, rank: p.skillRank || 1, damage: p.damage * (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(owner, 'OP01')).trapDamage, expires: this.b.round + 1 + Math.floor((0, progression_1.passiveRank)(owner, 'OP01') / 3) });
                 if (this.b.occultTraps.length > 24)
                     this.b.occultTraps.shift();
             }
@@ -7616,8 +7779,9 @@ class Engine {
         delete u.platformDrop;
         if (u.dead)
             return;
-        const fall = Math.ceil(u.maxHp * .2);
+        const fall = Math.ceil(u.maxHp * .2), hpBefore = u.hp;
         u.hp = Math.max((this.b.mode === 'practice' && this.b.practiceCombat && u.side !== 1) || u.honroNonlethal ? 1 : 0, u.hp - fall);
+        (0, contribution_1.environmentalLoss)(this.b, u, hpBefore);
         u.hurt = .7;
         this.fx('text', u.x, Math.min(this.b.height, u.y - u.h), '#efa797', 18, '−' + fall);
         if (u.hp === 0) {
@@ -7956,6 +8120,8 @@ class Engine {
                 delete b.reviewDamage[s.id];
             delete b.lastShots[s.id];
         }
+        for (const u of removed)
+            (0, contribution_1.ownerRegistered)(b, u);
         const ids = new Set(removed.map(u => u.id));
         b.units = b.units.filter(u => !ids.has(u.id));
     }
@@ -8047,6 +8213,7 @@ class Engine {
         this.advanceAfterAction();
     }
     advanceAfterAction() {
+        (0, contribution_1.settled)(this);
         const b = this.b;
         if (this.checkEnd())
             return;
@@ -8083,15 +8250,19 @@ class Engine {
         return; if (this.b.side === 0 && this.runSummonTurn() > 0)
         return; this.completeTeamTransition(); }
     switchTeam() {
+        (0, contribution_1.settled)(this);
         const b = this.b;
         if (this.checkEnd())
             return;
         if (b.side === 0) {
             b.side = 1;
             this.refreshActivation();
+            const opportunityAllies = this.alive(0), opportunities = new Set(this.combatEnemies().sort((a, c) => a.lastAct - c.lastAct || Math.min(...opportunityAllies.map(p => Math.abs(p.x - a.x))) - Math.min(...opportunityAllies.map(p => Math.abs(p.x - c.x)))).slice(0, b.enemyLimit).map(u => u.id));
             const skipped = new Set();
             for (const v of this.alive(1))
                 if ((v.stun || 0) > 0) {
+                    if (opportunities.has(v.id))
+                        (0, contribution_1.controlled)(b, v, v.honroStunOwner || '', `${v.id}:${Math.min(9, Math.floor((v.honroContributionDamage || 0) / Math.max(1, v.maxHp) * 10))}`);
                     v.stun--;
                     v.stunnedRound = b.round;
                     skipped.add(v.id);
@@ -10885,8 +11056,8 @@ function installOccultRedesign(skills) {
     skills.O16 = { id: 'O16', cls: 'occultist', name: '만혼귀결', tag: '혼행 비기 · 귀결', desc: '흩어진 수많은 혼을 한 점으로 이끈다. 혼령들은 세상의 벽을 넘어 귀결점을 향해 모여든다.', cost: 74, damage: 76, radius: 0, speed: 1.55, wind: .10, mode: 'spiritConverge', color: '#c4c8b6', icon: 'resonance', terrain: .2, gravity: .20, capstone: true, fuse: 2.25 };
     for (const [id, name, desc, icon, color] of [
         ['OP01', '잔부', '빗나간 부적이 잠시 남아 닿은 적에게 약한 주박을 건다.', 'rune', '#c7b597'],
-        ['OP02', '혼맥', '주박한 적을 소환령이 우선 찾아 공격한다.', 'target', '#bdada0'],
-        ['OP03', '분혼', '큰 피해의 일부를 가까운 소환령과 나누어 받는다.', 'shield', '#aebdb1'],
+        ['OP02', '혼맥', '자신이 주박한 적을 소환령과 섭혼한 적이 우선 찾아 더욱 강하게 공격한다.', 'target', '#bdada0'],
+        ['OP03', '분혼', '방호 뒤 남은 피해의 일부를 가까운 소환령과 나누어 받는다.', 'shield', '#aebdb1'],
         ['OP04', '매듭보전', '수명이 다한 소환령이 기력을 돌려주고 다음 초혼을 가볍게 한다.', 'return', '#b7b7a5'],
         ['OP05', '잔혼', '소단의 영향 아래 적이 쓰러지면 잔혼을 모아 다음 기예를 강화한다.', 'vortex', '#c9bda7']
     ])
@@ -10908,6 +11079,7 @@ exports.convergenceCurve = convergenceCurve;
 exports.convergencePoint = convergencePoint;
 exports.convergeAt = convergeAt;
 exports.stepConvergingSpirit = stepConvergingSpirit;
+const passiveBalance_1 = require("./passiveBalance");
 const math_1 = require("./math");
 const occultData_1 = require("./occultData");
 exports.SOUL_SKILLS = new Set(['O01', 'O02', 'O03', 'O04', 'O05', 'O16']);
@@ -10941,7 +11113,7 @@ function beginOccultCast(e, u, s, roots) {
     for (const p of roots) {
         p.soulBoost = empowered;
         if (empowered && soul)
-            p.damage *= 1 + .12 + .02 * (u.ranks.OP05 || 0);
+            p.damage *= 1 + (0, passiveBalance_1.passiveTuning)(u.ranks.OP05 || 0).remnantDamage;
     }
     if (!soul)
         return;
@@ -11028,6 +11200,44 @@ function stepConvergingSpirit(e, p, dt) {
                 e.hurt(u, p.damage * .55, p.owner, false, p, c.goal);
         e.remove(p);
     }
+}
+
+},
+"passiveBalance": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.passiveRankValue = exports.SP_BALANCE_REVISION = exports.HERO_ARMOR_CAP = void 0;
+exports.durabilityPower = durabilityPower;
+exports.passiveTuning = passiveTuning;
+/** Shared authored SP coefficients. Runtime, tooltips and the marginal audit read these values. */
+exports.HERO_ARMOR_CAP = .70;
+exports.SP_BALANCE_REVISION = 1;
+const passiveRankValue = (rank) => Math.max(0, Math.min(8, Math.floor(rank)));
+exports.passiveRankValue = passiveRankValue;
+/** SP02 keeps its strong first three ranks; later ranks retain half their growth. */
+function durabilityPower(rank) { const r = (0, exports.passiveRankValue)(rank); return Math.min(r, 3) + Math.max(0, r - 3) * .5; }
+function passiveTuning(rank) {
+    const r = (0, exports.passiveRankValue)(rank);
+    return {
+        gourdSecondary: .09 * r, geometry: .06 * r,
+        manaRegenFlat: .5 * r, manaRegenMax: .005 * r,
+        volleyFirst: .42 + .02 * Math.min(4, Math.max(0, r - 1)) + .045 * Math.max(0, r - 5),
+        retreat: r ? .12 + .06 * (r - 1) : 0,
+        jucheonExtraEffect: .02 * Math.max(0, r - 1),
+        trapDamage: r ? .265 + .080 * (r - 1) : 0,
+        missRefund: r ? .18 + .08 * (r - 1) : 0,
+        ward: r ? .025 + .020 * r : 0, wardCap: .25,
+        criticalChance: .04 * r, criticalMultiplier: .08 * r,
+        trajectory: .085 * r,
+        swordCharge: .060 * r, swordReach: .018 * r, rushDamage: .060 * r, bladeGeometry: .040 * r,
+        harmonyRecovery: r ? .05 + .0125 * r : 0, harmonyDiscount: r ? .23 + .02 * r : 0,
+        harmonyDamage: r ? .10 + .05 * r : 0, harmonyGuard: r ? .08 + .02 * r : 0,
+        markedSummonDamage: .07 * r, markedPriority: r ? 170 + 35 * r : 0,
+        soulShare: .06 * Math.min(4, r) + .045 * Math.max(0, r - 4), soulShareCap: r ? .04 + .02 * r : 0, soulShareThreshold: 0,
+        expiryRecovery: r ? .058 + .05 * (r - 1) : 0, expiryDiscount: r ? .035 + .055 * (r - 1) : 0,
+        lastStandHp: r ? .08 + .08 * (r - 1) : 0, lastStandGuard: r ? .18 + .035 * (r - 1) : 0,
+        remnantDamage: r ? .14 + .16 * (r - 1) : 0,
+    };
 }
 
 },
@@ -11199,6 +11409,7 @@ exports.recommendedLevel = recommendedLevel;
 exports.isOpen = isOpen;
 exports.mapPath = mapPath;
 exports.nextStage = nextStage;
+const passiveBalance_1 = require("./passiveBalance");
 const warriorData_1 = require("./warriorData");
 const projectileGrowth_1 = require("./projectileGrowth");
 const atlasLayout_1 = require("./atlasLayout");
@@ -11237,7 +11448,7 @@ function skillRadiusFactor(rank) { const n = (0, math_1.clamp)(rank - 1, 0, 7); 
 function skillManaFactor(rank) { const n = (0, math_1.clamp)(rank - 1, 0, 7); return 1 - Math.min(2, n) * .08 - Math.max(0, n - 2) * .035; }
 function knockbackResistance(rank) { const r = (0, math_1.clamp)(rank, 0, 8); return Math.min(.80, Math.min(3, r) * .22 + Math.max(0, r - 3) * .028); }
 function volleyCount(rank) { return 1 + Math.min(5, Math.max(0, Math.floor(rank))); }
-function volleyDamage(rank, index = 1) { return (.42 + .02 * ((0, math_1.clamp)(rank, 1, 8) - 1)) * Math.pow(.66, Math.max(0, index - 1)); }
+function volleyDamage(rank, index = 1) { return (0, passiveBalance_1.passiveTuning)(rank).volleyFirst * Math.pow(.66, Math.max(0, index - 1)); }
 function requiredRankLevel(n, rank) { return Math.min(exports.MAX_LEVEL, n.required + Math.floor(Math.max(0, rank - 1) / 2)); }
 /** Keep rank plateaus, but omit mechanics that never change with investment. */
 function skillGrowthRows(id, rank) {
@@ -11316,11 +11527,12 @@ function skillEffectRows(id, rank) {
         const multi = (0, projectileGrowth_1.multishotProfile)(s, rr);
         return [...(s.cls === 'occultist' && s.damage === 0 ? [] : [row(s.mode === 'triple' ? '화살당 피해' : '기본 피해', `${Math.round(dmg * (s.mode === 'triple' ? (multi?.damageScale || 1) : 1) * 10) / 10}`)]), ...(multi ? [row(s.mode === 'triple' ? '화살 수' : multi.waves > 1 ? '파생탄 최대 수' : '파생 투사체 수', `${multi.count}`)] : []), ...(s.mode === 'triple' && multi ? [row('전체 확산각', `${(2 * multi.halfAngle).toFixed(1)}°`)] : []), ...(s.cls === 'occultist' ? [] : [row('투사체 속도', `${s.speed.toFixed(2)}×`)]), ...(s.radius > 0 && !['O06', 'O07'].includes(id) ? [row('효과 반경', `${rad}`)] : []), row('MP', `${mp}`), ...((s.redesigned || s.cls === 'occultist') ? extra[id] || [] : []), ...branchRows, ...(s.branch === 'stake' ? [row('진목 지속', `${stakeDuration(id, rr)}턴`), row('반복 발동', id === 'M10' ? '아군마다 턴당 1회' : id === 'M09' ? '유닛마다 턴당 1회' : id === 'M99' ? '지속 봉쇄 · 경계 피해 턴당 1회' : '턴당 1회')] : []), ...(s.cooldown ? [row('재사용 대기', `${s.cooldown}턴`)] : [])];
     }
+    const t = (0, passiveBalance_1.passiveTuning)(r), d = (0, passiveBalance_1.durabilityPower)(r);
     const rows = {
-        MP01: [row('호리병 2차 효과', pct(.03 * r)), row('파문 두께·진목 효력', pct(.02 * r))], MP02: [row('최대 기력', pct(.03 * r)), row('턴 회복', num(.5 * r))], MP03: [row('미스 환급', pct(.18 + .04 * Math.max(0, r - 1)))], MP04: [row('동행 방호', pct(.025 + .0075 * r)), row('한도', pct(.25)), row('발동', '명중한 행동마다 1회')], MP05: [row('완성에 필요한 소비 기력', num(warriorData_1.JUCHEON_THRESHOLD[Math.max(0, r - 1)])), row('완성 후 비용 감소', pct(r ? warriorData_1.JUCHEON_DISCOUNT[r - 1] : 0)), row('도술 효과 강화', pct(r ? warriorData_1.JUCHEON_EFFECT[r - 1] : 0)), row('파문 범위 확대 상한', '5%'), row('무료 도술', '주천 충전 없음')],
-        AP01: [row('추가 발사', `${Math.min(5, r)}발`), row('첫 후속타', pct(volleyDamage(r))), row('후속 감쇠', '66%')], AP02: [row('추가 치명 확률', pct(.02 * r) + 'p'), row('추가 치명 배율', '+' + (+.04 * r).toFixed(2))], AP03: [row('후퇴 이동력', pct(r ? .08 + .04 * r : 0))], AP04: [row('계통 위력 가산', '+' + pct(.025 * r) + 'p')], AP05: [row('기억하는 과거 내 턴', `${r ? warriorData_1.SALHEUN_TURNS[r - 1] : 0}턴`), row('직전 직접 피해 재현', pct(r ? warriorData_1.SALHEUN_RATIO[r - 1] : 0)), row('이전 턴마다 감쇠', '55%'), row('발동 제한', '한 행동 · 대상마다 1회'), row('후속/파편 화살', '연속 시위·철화 자탄 제외')],
-        SP01: [row('베기 각도 확대', num(.5 * r) + '°'), row('최대 축세 추가 위력', pct(.012 * r)), row('최대 축세 추가 사거리', pct(.006 * r)), row('돌격 위력', pct(.025 * r)), row('검기 속도·크기', pct(.012 * r))], SP02: [row('최대 HP', pct(.05 * p)), row('피해 감소', pct(.03 * p)), row('밀치기 저항', pct(knockbackResistance(r)))], SP03: [row('이동 거리', pct(.10 * p)), row('점프 높이 계수', pct((1 + .02 * r) ** 2 - 1)), row('돌격 속도', pct(.015 * r)), row('점프 소비', num(Math.max(25, 75 - 5 * r)))], SP04: [row('합세 조건', '서로 다른 세 계통 · 같은 계통 반복 시 유지'), row('합세 기력 회복', pct(.05 + .00625 * r)), row('다음 기예 비용', '25% 감소'), row('다음 기예 피해', '15% 증가'), row('합세 수세', '10% 피해 감소 · 다음 내 턴까지')], SP05: [row('불굴 잔여 HP', pct(.08 * p)), row('발동 횟수', '전투당 1회'), row('회복 자세', '18% 피해 감소 · 다음 내 턴까지')],
-        OP01: [row('잔부 유지', `${1 + Math.floor(r / 3)}턴`), row('잔부 효과', pct(.22 + .045 * r))], OP02: [row('주박 대상 우선 탐색', `${170 + 35 * r} 거리`)], OP03: [row('피해 분담', pct(Math.min(.28, .04 * r))), row('공격당 분담 한도', pct(.12))], OP04: [row('자연 소멸 기력 회수', pct(.04 + .018 * r)), row('다음 초혼 비용 감소', pct(Math.min(.24, .035 * r)))], OP05: [row('잔혼 최대', '3개'), row('다음 기예 강화', pct(.12 + .02 * r))]
+        MP01: [row('호리병 2차 효과', pct(t.gourdSecondary)), row('파문 두께·진목 효력', pct(t.geometry))], MP02: [row('최대 기력', pct(.03 * r)), row('턴 회복', num(t.manaRegenFlat) + ' + 최대 기력의 ' + pct(t.manaRegenMax))], MP03: [row('미스 환급', pct(t.missRefund))], MP04: [row('동행 방호', pct(t.ward)), row('한도', pct(.25)), row('발동', '명중한 행동마다 1회')], MP05: [row('완성에 필요한 소비 기력', num(warriorData_1.JUCHEON_THRESHOLD[Math.max(0, r - 1)])), row('완성 후 비용 감소', pct(r ? warriorData_1.JUCHEON_DISCOUNT[r - 1] : 0)), row('도술 효과 강화', pct(r ? warriorData_1.JUCHEON_EFFECT[r - 1] + t.jucheonExtraEffect : 0)), row('파문 범위 확대 상한', '5%'), row('무료 도술', '주천 충전 없음')],
+        AP01: [row('추가 발사', `${Math.min(5, r)}발`), row('첫 후속타', pct(volleyDamage(r))), row('후속 감쇠', '66%')], AP02: [row('추가 치명 확률', pct(t.criticalChance) + 'p'), row('추가 치명 배율', '+' + t.criticalMultiplier.toFixed(2))], AP03: [row('후퇴 이동력', pct(t.retreat))], AP04: [row('계통 위력 가산', '+' + pct(t.trajectory) + 'p')], AP05: [row('기억하는 과거 내 턴', `${r ? warriorData_1.SALHEUN_TURNS[r - 1] : 0}턴`), row('직전 직접 피해 재현', pct(r ? warriorData_1.SALHEUN_RATIO[r - 1] : 0)), row('이전 턴마다 감쇠', '55%'), row('발동 제한', '한 행동 · 대상마다 1회'), row('후속/파편 화살', '연속 시위·철화 자탄 제외')],
+        SP01: [row('베기 각도 확대', num(.5 * r) + '°'), row('최대 축세 추가 위력', pct(t.swordCharge)), row('최대 축세 추가 사거리', pct(t.swordReach)), row('돌격 위력', pct(t.rushDamage)), row('검기 속도·크기', pct(t.bladeGeometry))], SP02: [row('최대 HP', pct(.05 * d)), row('피해 감소', pct(.03 * d)), row('전체 방어 상한', pct(passiveBalance_1.HERO_ARMOR_CAP)), row('밀치기 저항', pct(knockbackResistance(r)))], SP03: [row('이동 거리', pct(.10 * p)), row('점프 높이 계수', pct((1 + .02 * r) ** 2 - 1)), row('돌격 속도', pct(.015 * r)), row('점프 소비', num(Math.max(25, 75 - 5 * r)))], SP04: [row('합세 조건', '서로 다른 세 계통 · 같은 계통 반복 시 유지'), row('합세 기력 회복', pct(t.harmonyRecovery)), row('다음 기예 비용', pct(t.harmonyDiscount) + ' 감소'), row('다음 기예 피해', pct(t.harmonyDamage) + ' 증가'), row('합세 수세', pct(t.harmonyGuard) + ' 피해 감소 · 다음 내 턴까지')], SP05: [row('불굴 잔여 HP', pct(t.lastStandHp)), row('발동 횟수', '전투당 1회'), row('회복 자세', pct(t.lastStandGuard) + ' 피해 감소 · 다음 내 턴까지')],
+        OP01: [row('잔부 유지', `${1 + Math.floor(r / 3)}턴`), row('잔부 효과', pct(t.trapDamage))], OP02: [row('주박 대상 우선 탐색', `${t.markedPriority} 거리`), row('주박 대상 소환 피해', pct(t.markedSummonDamage)), row('조건', '자신의 주박·지박이 남은 적 · 소환령/섭혼 대상')], OP03: [row('피해 분담', pct(t.soulShare)), row('공격당 분담 한도', pct(t.soulShareCap) + ' 최대 HP'), row('조건', '340 거리 안 소환령 · 방호 후 남은 피해 · 소환령 HP 한도')], OP04: [row('자연 소멸 기력 회수', pct(t.expiryRecovery)), row('다음 초혼 비용 감소', pct(t.expiryDiscount))], OP05: [row('잔혼 최대', '3개'), row('다음 혼행 피해', pct(t.remnantDamage))]
     };
     return rows[id] || [];
 }
@@ -11381,18 +11593,19 @@ function freshRoster() { return { mage: freshHero('mage'), archer: freshHero('ar
 function pointsEarned(h) { return 3 + (levelOf(h) - 1) * 2; }
 exports.STAT_KEYS = ['hp', 'mp', 'attack', 'armor', 'critChance', 'critMultiplier', 'move'];
 exports.STAT_LABELS = { hp: '체력', mp: '기력', attack: '공격', armor: '방어', critChance: '치명 확률', critMultiplier: '치명 배율', move: '이동력' };
-// One SP strengthens the whole character. For each stat, the largest class gain is at most twice the smallest.
+// Generalist training trades half the former per-SP gains for unconditional coverage of seven axes.
+// Saved SP/ranks are unchanged; specialization has a larger gain on its supported axis.
 exports.STAT_GAINS = {
-    mage: { hp: .035, mp: .060, attack: .040, armor: .010, critChance: .005, critMultiplier: .035, move: .025 },
-    archer: { hp: .030, mp: .035, attack: .050, armor: .008, critChance: .008, critMultiplier: .050, move: .025 },
-    knight: { hp: .055, mp: .035, attack: .030, armor: .015, critChance: .004, critMultiplier: .030, move: .045 },
-    occultist: { hp: .040, mp: .055, attack: .040, armor: .010, critChance: .006, critMultiplier: .035, move: .030 }
+    mage: { hp: .0175, mp: .030, attack: .020, armor: .005, critChance: .0025, critMultiplier: .0175, move: .0125 },
+    archer: { hp: .015, mp: .0175, attack: .025, armor: .004, critChance: .004, critMultiplier: .025, move: .0125 },
+    knight: { hp: .0275, mp: .0175, attack: .015, armor: .0075, critChance: .002, critMultiplier: .015, move: .0225 },
+    occultist: { hp: .020, mp: .0275, attack: .020, armor: .005, critChance: .003, critMultiplier: .0175, move: .015 }
 };
 function statTrainingRank(h) { return h.statTraining ?? Object.values(h.statRanks || {}).reduce((sum, n) => sum + n, 0); }
 function investStat(h, cls, delta = 1) { if (![1, -1].includes(delta))
     return false; const old = statTrainingRank(h); if (delta > 0 && (pointsLeft(h, cls) < 1 || old >= 60) || delta < 0 && old <= 0)
     return false; h.statTraining = old + delta; delete h.statRanks; return true; }
-function statGainLabel(cls, key) { const n = exports.STAT_GAINS[cls][key]; return key === 'critMultiplier' ? `+${n.toFixed(2)}×` : key === 'armor' || key === 'critChance' ? `+${(n * 100).toFixed(1)}%p` : `+${+(n * 100).toFixed(1)}%`; }
+function statGainLabel(cls, key) { const n = exports.STAT_GAINS[cls][key]; return key === 'critMultiplier' ? `+${+n.toFixed(4)}×` : key === 'armor' || key === 'critChance' ? `+${+(n * 100).toFixed(2)}%p` : `+${+(n * 100).toFixed(2)}%`; }
 function pointsSpent(h, cls) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (exports.TALENT_MAP[id]?.cls === cls ? r - (id === (0, exports.baseSkill)(cls) ? 1 : 0) : 0), 0) + statTrainingRank(h); }
 function pointsLeft(h, cls) { return Math.max(0, pointsEarned(h) - (h.honroDebugSkills ? statTrainingRank(h) : pointsSpent(h, cls))); }
 function trainReason(h, id) {
@@ -11477,15 +11690,15 @@ function sanitizeLoadout(p, cls) {
 function passiveBonus(h, cls, kind, branch, loadout = []) { return 0; }
 function criticalStats(cls, level = 1, ranks = {}) {
     const base = { archer: [.08, 1.75, .002, .015], mage: [.04, 1.5, .001, .01], knight: [.05, 1.6, .0012, .012], occultist: [.06, 1.55, .0015, .012] }[cls], L = Math.max(0, level - 1), pass = cls === 'archer' ? (ranks.AP02 || 0) : 0;
-    return { critChance: Math.min(.65, base[0] + L * base[2] + pass * .02), critMultiplier: Math.min(3, base[1] + L * base[3] + pass * .04) };
+    return { critChance: Math.min(.65, base[0] + L * base[2] + (0, passiveBalance_1.passiveTuning)(pass).criticalChance), critMultiplier: Math.min(3, base[1] + L * base[3] + (0, passiveBalance_1.passiveTuning)(pass).criticalMultiplier) };
 }
 function stakeDuration(id, rank = 1) { return (id === 'M09' ? 6 : id === 'M10' ? 4 : 2) + Math.max(0, rank - 1); }
 function heroStats(h, cls, loadout = []) {
     const level = levelOf(h), i = exports.CLASS_IDS.indexOf(cls), L = level - 1;
-    const rank = (id) => exports.TALENT_MAP[id]?.cls === cls ? rankPower(h.ranks[id] || 0) : 0, vitality = rank('SP02'), mobility = 0, leap = rank('SP03'), defense = rank('SP02');
+    const rank = (id) => exports.TALENT_MAP[id]?.cls === cls ? rankPower(h.ranks[id] || 0) : 0, vitality = cls === 'knight' ? (0, passiveBalance_1.durabilityPower)(h.ranks.SP02 || 0) : 0, mobility = 0, leap = rank('SP03'), defense = vitality;
     const hpBase = [390, 365, 610, 460][i], hpGain = [32, 30, 48, 36][i], armorBase = [.06, .08, .22, .11][i];
-    const gain = exports.STAT_GAINS[cls], invested = (key) => statTrainingRank(h) * gain[key], hp = (hpBase + L * hpGain) * (1 + vitality * .05) * (1 + invested('hp')), atkBase = [1.75, 1.75, 1.75, 1.86][i], atkGain = [.18, .18, .18, .19][i], crit = criticalStats(cls, level, h.ranks);
-    return { ...crit, critChance: Math.min(.75, crit.critChance + invested('critChance')), critMultiplier: Math.min(4, crit.critMultiplier + invested('critMultiplier')), level, hp: Math.round(hp), mp: Math.round(([120, 96, 104, 144][i] + L * [8, 6, 7, 9.5][i]) * (1 + (cls === 'mage' ? (h.ranks.MP02 || 0) * .03 : 0)) * (1 + invested('mp'))), attack: (atkBase + L * atkGain) * (1 + invested('attack')), armor: Math.min(.75, armorBase + L * .008 + defense * .03 + invested('armor')), move: Math.round(([1120, 1100, 1210, 1150][i] + L * 36) * (1 + mobility * .08 + leap * .10) * (1 + invested('move'))), speed: Math.round(([282, 305, 300, 296][i] + L * 5) * (1 + mobility * .04)), regen: [14, 14, 14, 18][i] + Math.floor(L * .6) + (cls === 'mage' ? (h.ranks.MP02 || 0) * .5 : 0) };
+    const gain = exports.STAT_GAINS[cls], invested = (key) => statTrainingRank(h) * gain[key], hp = (hpBase + L * hpGain) * (1 + vitality * .05) * (1 + invested('hp')), atkBase = [1.75, 1.75, 1.75, 1.86][i], atkGain = [.18, .18, .18, .19][i], crit = criticalStats(cls, level, h.ranks), mp = Math.round(([120, 96, 104, 144][i] + L * [8, 6, 7, 9.5][i]) * (1 + (cls === 'mage' ? (h.ranks.MP02 || 0) * .03 : 0)) * (1 + invested('mp')));
+    return { ...crit, critChance: Math.min(.75, crit.critChance + invested('critChance')), critMultiplier: Math.min(3.5, crit.critMultiplier + invested('critMultiplier')), level, hp: Math.round(hp), mp, attack: (atkBase + L * atkGain) * (1 + invested('attack')), armor: Math.min(passiveBalance_1.HERO_ARMOR_CAP, armorBase + L * .008 + defense * .03 + invested('armor')), move: Math.round(([1120, 1100, 1210, 1150][i] + L * 36) * (1 + mobility * .08 + leap * .10) * (1 + invested('move'))), speed: Math.round(([282, 305, 300, 296][i] + L * 5) * (1 + mobility * .04)), regen: [14, 14, 14, 18][i] + Math.floor(L * .6) + (cls === 'mage' ? (0, passiveBalance_1.passiveTuning)(h.ranks.MP02 || 0).manaRegenFlat + mp * (0, passiveBalance_1.passiveTuning)(h.ranks.MP02 || 0).manaRegenMax : 0) };
 }
 function applyHero(u, h, full = false) { const s = heroStats(h, u.cls, u.loadout), dh = s.hp - u.maxHp, dm = s.mp - u.maxFocus, oldMove = u.maxMove; u.level = s.level; u.hp = u.dead ? 0 : full ? s.hp : (0, math_1.clamp)(u.hp + Math.max(0, dh), 0, s.hp); u.maxHp = s.hp; u.focus = full ? s.mp : (0, math_1.clamp)(u.focus + Math.max(0, dm), 0, s.mp); u.maxFocus = s.mp; u.attack = s.attack; u.armor = s.armor; u.critChance = s.critChance; u.critMultiplier = s.critMultiplier; u.maxMove = s.move; u.walkSpeed = s.speed; u.regen = s.regen; u.moveLeft = full ? s.move : Math.min(s.move, u.moveLeft + Math.max(0, s.move - oldMove)); u.ranks = { ...h.ranks }; }
 function grantXP(h, amount) { const before = levelOf(h); const actual = Math.max(0, Math.min(exports.XP_CAP - h.xp, Math.round(amount))); h.xp += actual; return { actual, before, after: levelOf(h) }; }
@@ -11688,6 +11901,8 @@ exports.gateCandidate = gateCandidate;
 exports.useGate = useGate;
 exports.tickRedesign = tickRedesign;
 exports.redesignPrediction = redesignPrediction;
+const passiveBalance_1 = require("./passiveBalance");
+const contribution_1 = require("./contribution");
 const totemBehavior_1 = require("./totemBehavior");
 const combatPassives_1 = require("./combatPassives");
 const physics_1 = require("./physics");
@@ -11720,7 +11935,7 @@ function trajectoryMultiplier(p, u, hit) {
     const s = data_1.SKILLS[p.skill];
     if (!s?.redesigned || s.cls !== 'archer' || p.secondary)
         return 1;
-    const extra = .025 * ((0, progression_1.passiveRank)(u, 'AP04') + specialty(u, s));
+    const extra = (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'AP04')).trajectory;
     if (s.branch === 'distance')
         return 1 + ((s.id === 'A99' ? .60 : .40) + extra + (p.preparedRank ? lerpRank(.08, .22, p.preparedRank) : 0)) * (0, math_1.clamp)(Math.abs(hit.x - (p.launchX ?? p.x)) / 1800, 0, 1);
     if (s.branch === 'drop')
@@ -11935,13 +12150,13 @@ function finishRedesign(e, reviewed) {
         cast.refunded = true;
         const s = data_1.SKILLS[cast.skill], r = (0, progression_1.passiveRank)(u, 'MP03');
         if (r && cast.enemyDamage === 0 && ['gourd', 'wave'].includes(s.branch || '')) {
-            u.focus = Math.min(u.maxFocus, u.focus + cast.cost * lerpRank(.18, .46, r));
+            u.focus = Math.min(u.maxFocus, u.focus + cast.cost * (0, passiveBalance_1.passiveTuning)(r).missRefund);
             e.fx('text', u.x, u.y - u.h - 14, '#becbc6', 14, '회기');
         }
     }
     if (b.mode !== 'practice' && reviewed && cast?.owner === u.id && data_1.SKILLS[cast.skill]?.cls === 'archer' && cast.skill !== 'A10' && (0, progression_1.passiveRank)(u, 'AP03') && !u.dead) {
         u.retreat = true;
-        u.moveLeft = u.maxMove * (.08 + .04 * (0, progression_1.passiveRank)(u, 'AP03'));
+        u.moveLeft = u.maxMove * (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'AP03')).retreat;
         b.phase = 'aim';
         b.cast = undefined;
         b.resolveAge = 0;
@@ -12037,7 +12252,7 @@ function geometryHits(g, u) {
             count++;
     return { count: Math.min(3, count), center: d <= 70 + u.r, interior: false };
 }
-const geometryBoost = (u, s, boost = (0, combatPassives_1.jucheonBoost)(u, s)) => (1 + (0, progression_1.passiveRank)(u, 'MP01') * .02) * (1 + Math.min(.05, boost / 3));
+const geometryBoost = (u, s, boost = (0, combatPassives_1.jucheonBoost)(u, s)) => (1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'MP01')).geometry) * (1 + Math.min(.05, boost / 3));
 function emitGeometry(e, g) {
     // Serialize the exact hit shape as one event; renderer does no independent geometry reconstruction.
     e.emit('fx', { name: 'skillGeometry', x: g.x, y: g.y, color: '#ced4cd', text: JSON.stringify(g), size: g.radius });
@@ -12071,7 +12286,7 @@ function skyStrikePoint(e, point, owner) {
 }
 function gourdBurst(e, p) {
     const u = e.unit(p.owner);
-    const s = data_1.SKILLS[p.skill], r = rank(p), secondary = (1 + (0, progression_1.passiveRank)(u, 'MP01') * .03) * (1 + (p.effectBoost || 0) * .5);
+    const s = data_1.SKILLS[p.skill], r = rank(p), secondary = (1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'MP01')).gourdSecondary) * (1 + (p.effectBoost || 0) * .5);
     if (p.mode === 'gourdSky') {
         p.mode = 'skyWait';
         p.targetPoint = { x: p.x, y: p.y };
@@ -12323,7 +12538,7 @@ function redesignStep(e, p, dt) {
             else {
                 const radius = Math.sqrt(e.random()) * 240, x = p.x + Math.cos(a) * radius, seedY = p.y + Math.sin(a) * radius;
                 const y = seedY;
-                const secondary = (1 + (0, progression_1.passiveRank)(u, 'MP01') * .03) * (1 + (p.effectBoost || 0) * .5);
+                const secondary = (1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'MP01')).gourdSecondary) * (1 + (p.effectBoost || 0) * .5);
                 const q = spawnChild(e, p, 'microWait', 0, 0, p.damage * 14 / 48 * secondary, 55);
                 q.x = x;
                 q.y = y;
@@ -12382,7 +12597,7 @@ function useGate(e, u = e.active) {
         e.message('도착 진목 주변에 설 자리가 없습니다.');
         return false;
     }
-    const { x, y } = spot;
+    const { x, y } = spot, fromPoint = { x: u.x, y: u.y };
     u.x = x;
     u.y = y;
     u.vx = u.vy = 0;
@@ -12390,15 +12605,20 @@ function useGate(e, u = e.active) {
     u.jumping = false;
     delete u.moveTarget;
     u.gateTurn = token;
-    const r = to.rank, caster = e.unit(to.owner), boost = caster ? (1 + (0, progression_1.passiveRank)(caster, 'MP01') * .02) * (1 + (to.effectBoost || 0)) : 1;
+    const r = to.rank, caster = e.unit(to.owner), boost = caster ? (1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(caster, 'MP01')).geometry) * (1 + (to.effectBoost || 0)) : 1;
     if (r >= 2)
         u.focus = Math.min(u.maxFocus, u.focus + u.maxFocus * (r === 2 ? .08 : .10) * boost);
+    const hpBefore = u.hp;
     if (r >= 4)
         u.hp = Math.min(u.maxHp, u.hp + u.maxHp * (r === 4 ? .06 : .08) * boost);
+    (0, contribution_1.healed)(e.b, u, to.owner, hpBefore);
+    globalThis.HonroObjectiveContributions?.movement(e.b, u, to.owner, fromPoint, { x, y });
     if (r >= 6)
         u.moveLeft = Math.min(u.maxMove, u.moveLeft + u.maxMove * (r === 6 ? .16 : .24) * boost);
-    if (r === 8)
+    if (r === 8) {
         u.arrivalGuard = e.b.teamEnds[1] + 1;
+        u.honroArrivalGuardOwner = to.owner;
+    }
     e.fx('ring', x, y, '#bbc4b5', 28);
     e.emit('change');
     e.emit('save');
@@ -12445,7 +12665,7 @@ function tickRedesign(e, dt) {
         const caster = e.unit(z.owner);
         if (!caster)
             continue;
-        const boost = (1 + (0, progression_1.passiveRank)(caster, 'MP01') * .02) * (1 + (z.effectBoost || 0)), trigger = 45 * Math.min(1.25, boost);
+        const boost = (1 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(caster, 'MP01')).geometry) * (1 + (z.effectBoost || 0)), trigger = 45 * Math.min(1.25, boost);
         const nearby = b.units.filter(u => !u.dead && (z.skill === 'M10' ? u.side === z.side || (u.honroAlly && z.side === 0) : enemy(z, u)) && Math.min(Math.hypot(u.x - z.x, u.y - z.y), Math.hypot(u.x - z.x, u.y - u.h * .5 - z.y)) < trigger + u.r);
         const p = { owner: z.owner, side: z.side, skill: z.skill, skillRank: z.rank, shot: z.shot, x: z.x, y: z.y, damage: z.damage, hit: [], id: z.id, vx: 0, vy: 0, prevVy: 0, age: 0, radius: 3, blast: 95, wind: 0, mode: 'stake', color: '#b9c4b1', bounces: 0, pierces: 0, apex: true, phase: 0, body: false, returnX: z.x, returnY: z.y, trail: [], child: false, rolled: 0 };
         if (z.skill === 'M07' || z.skill === 'M08') {
@@ -12460,7 +12680,9 @@ function tickRedesign(e, dt) {
                 z.usedRounds ?? (z.usedRounds = {});
                 for (const ally of available) {
                     z.usedRounds[ally.id] = b.round;
+                    const hpBefore = ally.hp;
                     ally.hp = Math.min(ally.maxHp, ally.hp + ally.maxHp * (.06 + .01 * z.rank) * boost);
+                    (0, contribution_1.healed)(b, ally, z.owner, hpBefore);
                     ally.focus = Math.min(ally.maxFocus, ally.focus + ally.maxFocus * (.07 + .01 * z.rank) * boost);
                     ally.moveLeft = Math.min(ally.maxMove, ally.moveLeft + ally.maxMove * (.12 + .03 * z.rank) * boost);
                     e.fx('ring', ally.x, ally.y, '#bfcbb6', 35);
@@ -12694,11 +12916,11 @@ const notes = {
     S04: '비행 중 발사를 다시 누르면 급강하합니다. 높이 떨어질수록 충격이 강하며 재입력하지 않으면 약한 착지 공격이 됩니다.', S15: '지상의 적을 함께 밀며 전진합니다. 공중의 적은 베고 지나갑니다.',
     S13: '돌파하고 착지한 뒤 평참이나 검술을 한 번 더 씁니다. 후속 검술 전에는 이동할 수 없습니다.', S09: '전방으로 반달 모양의 검기를 날립니다.', S10: '맞은 자를 앞으로 끌어옵니다. 적은 가까이 오면 다시 베고, 아군은 피해 없이 옮깁니다. 벽과 절벽 앞에서는 멈춥니다.',
     S11: '지나가는 모든 적을 한 번씩 관통합니다.', S14: '전방의 적 투사체를 약화하고 그 힘을 모읍니다. 모은 검세는 다음 검기 한 번의 피해·크기·속도를 높입니다.', S12: '공전하는 여러 검기를 함께 날립니다. 각 검기는 같은 적을 최대 두 번 맞힙니다.',
-    SP01: '검술의 각도와 축세, 돌격 피해, 검기의 크기·속도를 강화합니다.', SP02: '최대 체력과 방어를 높이고 밀림을 줄입니다.', SP03: '이동과 도약을 강화하고 점프의 이동력 소모를 줄입니다.', SP04: '검술·돌격·검기를 이어 쓰면 합세가 완성됩니다. 기력을 회복하고 다음 기예는 비용 25% 감소·피해 15% 증가를 받습니다.', SP05: '전투마다 한 번 치명적인 피해를 버팁니다. 직후에는 잠시 받는 피해가 줄어듭니다.',
+    SP01: '검술의 각도와 축세, 돌격 피해, 검기의 크기·속도를 강화합니다.', SP02: '최대 체력과 방어를 높이고 밀림을 줄입니다.', SP03: '이동과 도약을 강화하고 점프의 이동력 소모를 줄입니다.', SP04: '검술·돌격·검기를 이어 쓰면 합세가 완성됩니다. 기력을 회복하고 다음 기예의 비용·피해와 잠시 받는 피해를 랭크에 따라 강화합니다.', SP05: '전투마다 한 번 치명적인 피해를 버팁니다. 직후에는 잠시 받는 피해가 줄어듭니다.',
     O01: '중력과 바람의 영향을 적게 받는 혼령탄을 날립니다.', O02: '지형과 적을 통과하며 피해를 남긴 뒤 폭발합니다. 오래 충전할수록 더 늦게 터집니다.', O03: '거꾸로 솟아오른 혼이 원혼비로 갈라져 아래를 덮칩니다.', O04: '벽을 통과하고 처음 닿은 적에게 강한 피해를 줍니다.', O05: '왕복하며 적을 관통합니다. 돌아오는 길에는 더 강한 피해를 줍니다.',
     O06: '공격력과 방어력을 낮추는 부적입니다. 경지가 높을수록 오래 갑니다.', O07: '맞은 적이 같은 편에게도 공격 대상으로 보입니다. 경지가 높을수록 오래 갑니다.', O08: '작은 범위의 적을 현형합니다. 숨은 혼령도 다른 동료에게 보입니다.', O09: '보스가 아닌 적을 잠시 동맹으로 돌립니다. 직접 행동한 횟수만큼 효력이 소모됩니다.', O10: '넓은 범위에 지박주를 남깁니다. 저주받은 적이 죽으면 그 자리에 지박령이 생깁니다.',
     O11: '배회령이 소단의 행동 직후 가까운 적을 쫓아 공격합니다.', O12: '등불귀가 소단의 행동 직후 먼 적에게 추적탄을 보냅니다. 높은 경지에서는 최대 두 적을 노립니다.', O13: '호혼령이 소단의 행동 직후 가까운 아군을 보호합니다.', O14: '허공에 머무르며 적의 탄을 끌어당겨 삼킵니다. 힘이 차면 주변 적에게 폭발합니다.', O15: '소단이 지정한 목표를 각자의 자리에서 함께 겨눕니다. 부적과 초혼은 반향하지 않습니다.', O16: '대표 혼령이 닿은 곳을 귀결점으로 삼습니다. 흩어져 돌아온 혼령이 경로와 귀결점에 피해를 줍니다.',
-    OP01: '빗나간 부적은 잠시 함정으로 남습니다. 섭혼부와 지박부에는 적용되지 않습니다.', OP02: '소환령이 주박한 적을 우선 찾아 공격합니다.', OP03: '큰 피해의 일부를 가까운 소환령과 나눕니다. 한 공격에서 나눌 수 있는 피해에는 한도가 있습니다.', OP04: '수명이 끝난 소환령에게서 기력을 돌려받고 다음 초혼 비용을 줄입니다.', OP05: '영향 아래 쓰러진 적의 잔혼 셋을 모아 다음 기예 하나를 강화합니다.'
+    OP01: '빗나간 부적은 잠시 함정으로 남습니다. 섭혼부와 지박부에는 적용되지 않습니다.', OP02: '자신의 주박·지박이 남은 적을 소환령과 섭혼한 적이 우선 찾고 더 강하게 공격합니다.', OP03: '방호 뒤 남은 피해의 일부를 가까운 소환령과 나눕니다. 한 공격에서 나눌 수 있는 피해에는 한도가 있습니다.', OP04: '수명이 끝난 소환령에게서 기력을 돌려받고 다음 초혼 비용을 줄입니다.', OP05: '영향 아래 쓰러진 적의 잔혼 셋을 모아 다음 기예 하나를 강화합니다.'
 };
 function skillPlayNotes(id) { const s = data_1.SKILLS[id]; if (!s)
     return ''; const branch = s.cls === 'archer' && s.id !== 'A10' ? { distance: ' 멀리서 맞힐수록 피해가 증가합니다.', drop: ' 높은 곳에서 떨어져 맞힐수록 피해가 증가합니다.', speed: ' 빠르게 충돌할수록 피해가 증가합니다.' }[s.branch || ''] || '' : ''; return (notes[id] || '') + branch; }
@@ -14009,6 +14231,147 @@ exports.AudioEngine = AudioEngine;
 AudioEngine.samples = soundSamples;
 
 },
+"spBalanceModel": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SP_ACTIVE_AUDIT = exports.SP_SCENARIOS = exports.SP_PASSIVE_ROLES = exports.SP_ROLES = void 0;
+exports.spBuildAxes = spBuildAxes;
+exports.spMarginal = spMarginal;
+exports.currentActiveSpAudit = currentActiveSpAudit;
+const data_1 = require("./data");
+const balanceModel_1 = require("./balanceModel");
+const progression_1 = require("./progression");
+const passiveBalance_1 = require("./passiveBalance");
+const warriorData_1 = require("./warriorData");
+const weights = {
+    mage: { offense: .40, survival: .20, sustain: .30, mobility: .10 },
+    archer: { offense: .55, survival: .20, sustain: .10, mobility: .15 },
+    knight: { offense: .35, survival: .40, sustain: .10, mobility: .15 },
+    occultist: { offense: .40, survival: .25, sustain: .25, mobility: .10 },
+};
+/** Four shared build roles, selected by mechanic, not fitted separately to each skill. */
+exports.SP_ROLES = {
+    striker: { offense: .60, survival: .20, sustain: .10, mobility: .10 },
+    protector: { offense: .15, survival: .65, sustain: .10, mobility: .10 },
+    channeler: { offense: .15, survival: .15, sustain: .60, mobility: .10 },
+    skirmisher: { offense: .15, survival: .15, sustain: .10, mobility: .60 },
+};
+exports.SP_PASSIVE_ROLES = {
+    MP01: 'striker', MP02: 'channeler', MP03: 'channeler', MP04: 'protector', MP05: 'channeler',
+    AP01: 'striker', AP02: 'striker', AP03: 'skirmisher', AP04: 'striker', AP05: 'striker',
+    SP01: 'striker', SP02: 'protector', SP03: 'skirmisher', SP04: 'channeler', SP05: 'protector',
+    OP01: 'striker', OP02: 'striker', OP03: 'protector', OP04: 'channeler', OP05: 'striker',
+};
+exports.SP_SCENARIOS = [
+    { id: 'mixed-8-turn', turns: 8, castCost: 32, followupHit: .55, trajectory: .65, missRate: .25, secondaryShare: .30, geometryHit: .22, wardUse: .65, incomingHpPerTurn: .40, sameTarget: .60, chargedMelee: .70, bladeHit: .45, harmony: .25, lethalRisk: .20, retreatUse: .65, jumpUse: .20, summonShare: .45, markUptime: .65, summonAvailable: .65, largeHitShare: .45, hitHpFraction: .25, trapReentry: .35, naturalExpiry: .50, empoweredCast: .18, soulShare: .60, weights },
+    { id: 'specialist-12-turn', turns: 12, castCost: 38, followupHit: .80, trajectory: 1, missRate: .40, secondaryShare: .55, geometryHit: .40, wardUse: .90, incomingHpPerTurn: .30, sameTarget: .90, chargedMelee: 1, bladeHit: .80, harmony: 1 / 3, lethalRisk: .45, retreatUse: .90, jumpUse: .40, summonShare: .65, markUptime: .90, summonAvailable: .90, largeHitShare: .70, hitHpFraction: .25, trapReentry: .65, naturalExpiry: .85, empoweredCast: .33, soulShare: .85, weights },
+    { id: 'short-low-uptime', turns: 3, castCost: 24, followupHit: .25, trajectory: .20, missRate: .10, secondaryShare: .10, geometryHit: .08, wardUse: .30, incomingHpPerTurn: .35, sameTarget: .15, chargedMelee: .30, bladeHit: .15, harmony: .08, lethalRisk: .05, retreatUse: .25, jumpUse: .05, summonShare: .15, markUptime: .20, summonAvailable: .25, largeHitShare: .15, hitHpFraction: .50, trapReentry: .10, naturalExpiry: 0, empoweredCast: .03, soulShare: .30, weights },
+];
+/** EHP, useful expected damage, available paid actions and movement opportunity are kept separate. */
+function spBuildAxes(h, cls, s = exports.SP_SCENARIOS[0], hooks = {}) {
+    const stats = (hooks.stats || progression_1.heroStats)(h, cls), tune = hooks.tuning || passiveBalance_1.passiveTuning;
+    const r = (id) => (0, progression_1.passiveRank)({ side: 0, ranks: h.ranks }, id), t = (id) => tune(r(id));
+    let offense = stats.attack * (1 + Math.min(.80, stats.critChance) * (Math.min(3.5, stats.critMultiplier) - 1));
+    let survival = stats.hp / (1 - Math.min(passiveBalance_1.HERO_ARMOR_CAP, stats.armor));
+    let budget = stats.mp + stats.regen * s.turns, cost = s.castCost, mobility = stats.move;
+    if (cls === 'mage') {
+        offense *= 1 + s.secondaryShare * t('MP01').gourdSecondary + s.geometryHit * t('MP01').geometry;
+        cost *= 1 - s.missRate * .85 * t('MP03').missRefund; // Stakes cannot trigger a miss refund.
+        survival *= 1 + Math.min(.25, t('MP04').ward) * s.wardUse / s.incomingHpPerTurn;
+        const rank = r('MP05');
+        if (rank) {
+            const paid = Math.ceil(warriorData_1.JUCHEON_THRESHOLD[rank - 1] / s.castCost), cycle = paid + 1;
+            // A short encounter cannot claim a complete cycle it has not reached.
+            const casts = s.turns >= cycle ? 1 / cycle : 0;
+            cost *= 1 - casts * warriorData_1.JUCHEON_DISCOUNT[rank - 1];
+            offense *= 1 + casts * (warriorData_1.JUCHEON_EFFECT[rank - 1] + t('MP05').jucheonExtraEffect);
+        }
+    }
+    if (cls === 'archer') {
+        let follow = 0;
+        for (let n = 1; n < (0, progression_1.volleyCount)(r('AP01')); n++)
+            follow += t('AP01').volleyFirst * Math.pow(.66, n - 1);
+        offense *= 1 + s.followupHit * follow;
+        offense *= 1 + (.40 + t('AP04').trajectory) * s.trajectory;
+        const rank = r('AP05');
+        if (rank) {
+            let history = 0;
+            for (let age = 1; age <= Math.min(s.turns - 1, warriorData_1.SALHEUN_TURNS[rank - 1]); age++)
+                history += Math.pow(.55, age - 1) * Math.pow(s.sameTarget, age);
+            offense *= 1 + (hooks.salheunRatio || warriorData_1.SALHEUN_RATIO)[rank - 1] * history;
+        }
+        if (r('AP03'))
+            mobility *= 1 + s.retreatUse * t('AP03').retreat;
+    }
+    if (cls === 'knight') {
+        // Three mutually exclusive cast families are averaged, never added as three full attacks.
+        const sword = (.88 + (.47 + t('SP01').swordCharge) * s.chargedMelee) / (.88 + .47 * s.chargedMelee);
+        const rush = 1 + t('SP01').rushDamage, blade = 1 + s.bladeHit * t('SP01').bladeGeometry;
+        offense *= (sword + rush + blade) / 3;
+        mobility *= 1 + .20 * t('SP01').swordReach;
+        mobility *= 1 + s.jumpUse * ((75 / Math.max(25, 75 - 5 * r('SP03')) - 1) + ((1 + .02 * r('SP03')) ** 2 - 1) * .25);
+        mobility *= 1 + .15 * (0, progression_1.knockbackResistance)(r('SP02'));
+        offense *= 1 + s.harmony * t('SP04').harmonyDamage;
+        survival /= 1 - s.harmony * t('SP04').harmonyGuard;
+        budget += stats.mp * s.turns * s.harmony * t('SP04').harmonyRecovery;
+        cost *= 1 - s.harmony * t('SP04').harmonyDiscount;
+        if (r('SP05'))
+            survival *= 1 + s.lethalRisk * (.20 + t('SP05').lastStandHp / (1 - t('SP05').lastStandGuard));
+    }
+    if (cls === 'occultist') {
+        const trap = r('OP01');
+        if (trap) {
+            const duration = 1 + Math.floor(trap / 3), reentry = 1 - (1 - s.trapReentry) ** duration;
+            offense *= 1 + s.missRate * reentry * t('OP01').trapDamage;
+        }
+        offense *= 1 + s.summonShare * s.markUptime * t('OP02').markedSummonDamage;
+        mobility *= 1 + s.summonShare * s.markUptime * t('OP02').markedPriority / 1800;
+        survival /= 1 - s.summonAvailable * (t('OP03').soulShareThreshold ? s.largeHitShare : 1) * Math.min(t('OP03').soulShare, t('OP03').soulShareCap / s.hitHpFraction);
+        if (r('OP04')) {
+            const expiries = s.turns / 5 * s.naturalExpiry;
+            budget += stats.mp * expiries * t('OP04').expiryRecovery;
+            budget += s.castCost * expiries * t('OP04').expiryDiscount;
+        }
+        offense *= 1 + s.soulShare * s.empoweredCast * t('OP05').remnantDamage;
+    }
+    return { offense, survival, sustain: budget / Math.max(1, cost), mobility };
+}
+/** Weighted geometric response, not a sum of damage% and HP%. Role weights are explicit assumptions. */
+function spMarginal(before, after, weights) {
+    const ratio = {};
+    let logUtility = 0;
+    for (const axis of ['offense', 'survival', 'sustain', 'mobility']) {
+        ratio[axis] = after[axis] / before[axis] - 1;
+        logUtility += weights[axis] * Math.log(after[axis] / before[axis]);
+    }
+    return { axes: ratio, utility: Math.expm1(logUtility) };
+}
+/** New active-skill audit metadata, separated from frozen legacy runtime damage calibration. */
+exports.SP_ACTIVE_AUDIT = {
+    legacyRuntimeModel: 'balanceModel.ts: retained for legacy skills and the 16 current Sodan actives',
+    redesignedDamageFactor: 1,
+    sodanUnmodeledModes: ['curseManifest', 'curseEnthrall', 'curseEarth', 'summonEater', 'summonEcho', 'spiritConverge'],
+    note: 'Do not treat legacy scoreSkill as a full contemporary ranking. Summon actions, control and O16 capstone are not fully priced there.',
+};
+/** Coverage, not a substitute numerical damage normalizer. Missing utility must not masquerade as zero. */
+function currentActiveSpAudit() {
+    const mechanics = {
+        curseManifest: 'area existence/reveal change; inspect MANIFEST_TURNS',
+        curseEnthrall: 'converted actor actions and power; inspect ENTHRALL_ACTIONS/POWER',
+        curseEarth: 'timed binding damage plus on-death anchored spirit',
+        summonEater: 'projectile interception and capped burst; no direct seed damage',
+        summonEcho: 'extra owner-cast echoes; inspect ECHO_LIMIT/POWER/TURNS',
+        spiritConverge: 'capstone convergence contacts; 10 + floor(rank/2) spirits',
+    };
+    return Object.values(data_1.SKILLS).filter(s => !s.passive && !s.enemyOnly && !s.ultimate).map(s => ({
+        id: s.id, authoredTier: s.basic ? 0 : (progression_1.TALENT_MAP[s.id]?.row ?? 0) + 1,
+        runtimeFactor: (0, balanceModel_1.skillScoreBreakdown)(s).factor, legacy: (0, balanceModel_1.skillScoreBreakdown)(s),
+        coverage: s.redesigned ? 'authored-redesign' : mechanics[s.mode] ? 'missing-legacy-utility' : 'legacy-estimate',
+        unpricedMechanic: mechanics[s.mode] || null,
+    }));
+}
+
+},
 "stageRules": function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -14300,6 +14663,8 @@ function validBattle(raw, legacyXp = false, oldXp = false) {
         return fail();
     if (b.occultRevision !== undefined && b.occultRevision !== 1)
         return fail();
+    if (b.spBalanceRevision !== undefined && b.spBalanceRevision !== 1)
+        return fail();
     const optionalNumber = (v, min = 0, max = 1e12) => v === undefined || finite(v) && v >= min && v <= max;
     for (const u of b.units) {
         if (!optionalNumber(u.arrowTurn) || u.arrowTurnToken !== undefined && !safe(u.arrowTurnToken) || !optionalNumber(u.salheunFlash, 0, 1) || !optionalNumber(u.jucheon, 0, 108) || !optionalNumber(u.bladeStored, 0, .450001))
@@ -14311,7 +14676,7 @@ function validBattle(raw, legacyXp = false, oldXp = false) {
             return fail();
         if (u.meleeFollow !== undefined && !['landing', 'ready', 'spent'].includes(u.meleeFollow))
             return fail();
-        if (u.martialGuard && (!nums(u.martialGuard, ['round', 'reduction']) || u.martialGuard.reduction < 0 || u.martialGuard.reduction > .300001 || u.martialGuard.counter !== undefined && typeof u.martialGuard.counter !== 'boolean' || !optionalNumber(u.martialGuard.rank, 1, 8)))
+        if (u.martialGuard && (!nums(u.martialGuard, ['round', 'reduction']) || u.martialGuard.reduction < 0 || u.martialGuard.reduction > .425001 || u.martialGuard.counter !== undefined && typeof u.martialGuard.counter !== 'boolean' || !optionalNumber(u.martialGuard.rank, 1, 8)))
             return fail();
         if (u.bladeScreen && (!nums(u.bladeScreen, ['round', 'rank', 'hits', 'facing']) || u.bladeScreen.rank < 1 || u.bladeScreen.rank > 8 || u.bladeScreen.hits < 0 || u.bladeScreen.hits > 7 || ![-1, 1].includes(u.bladeScreen.facing)))
             return fail();
@@ -14759,7 +15124,7 @@ const WARRIOR_ICONS = { S00: 'sword', S03: 'wave', S05: 'spin', S07: 'triple', S
 exports.COMBO_HITS = [3, 3, 4, 4, 5, 5, 6, 7];
 exports.ORBIT_BLADES = [5, 5, 6, 6, 7, 8, 8, 9];
 exports.SALHEUN_TURNS = [1, 1, 2, 2, 3, 3, 3, 4];
-exports.SALHEUN_RATIO = [.12, .15, .15, .18, .18, .21, .24, .24];
+exports.SALHEUN_RATIO = [.12, .15, .15, .18, .18, .21, .24, .26];
 exports.JUCHEON_DISCOUNT = [.50, .55, .60, .65, .75, .85, .95, 1];
 exports.JUCHEON_EFFECT = [.04, .05, .06, .08, .10, .12, .14, .15];
 // Rank-scaled spell costs have a median of 38 at rank 1 and 25 at rank 8.
@@ -14825,6 +15190,8 @@ exports.stepWarrior = stepWarrior;
 exports.finishWarrior = finishWarrior;
 exports.bladeScreenPass = bladeScreenPass;
 exports.warriorPrediction = warriorPrediction;
+const passiveBalance_1 = require("./passiveBalance");
+const contribution_1 = require("./contribution");
 const data_1 = require("./data");
 const progression_1 = require("./progression");
 const math_1 = require("./math");
@@ -14834,8 +15201,8 @@ const foe = (u, t) => !t.dead && t.side !== u.side && t.side !== 2;
 const meleeSkill = (s) => !!s.martial && s.branch === 'sword';
 exports.meleeSkill = meleeSkill;
 function warriorAllowed(u, s) { return u.meleeFollow !== 'ready' || (0, exports.meleeSkill)(s); }
-function meleeRange(u, s, power) { return s.radius * (1 + (['counterStance', 'lifeSlash'].includes(s.mode) ? 0 : power) * (.23 + .006 * (0, progression_1.passiveRank)(u, 'SP01'))); }
-function meleeFactor(u, power) { return .88 + (.47 + .012 * (0, progression_1.passiveRank)(u, 'SP01')) * power; }
+function meleeRange(u, s, power) { return s.radius * (1 + (['counterStance', 'lifeSlash'].includes(s.mode) ? 0 : power) * (.23 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP01')).swordReach)); }
+function meleeFactor(u, power) { return .88 + (.47 + (0, passiveBalance_1.passiveTuning)((0, progression_1.passiveRank)(u, 'SP01')).swordCharge) * power; }
 function meleeSpan(u, s, power = 0) { const base = s.mode === 'meleeWide' ? 48 : s.mode === 'counterStance' ? 40 : s.mode === 'meleeCombo' ? 22 : 25; return (0, math_1.rad)(base + Math.max(0, (u.ranks[s.id] || 1) - 1) * 1.5 + (0, math_1.clamp)(power, 0, 1) * 10 + (0, progression_1.passiveRank)(u, 'SP01') * .5); }
 function meleeContains(e, u, t, range, angle = -(0, math_1.rad)(u.angle), span = meleeSpan(u, data_1.SKILLS.S00)) {
     const a = at(u), padding = 6, bodyRadius = t.r + padding;
@@ -14901,6 +15268,7 @@ function startWarriorCast(e, s, u) {
         if (s.mode === 'counterStance') {
             const rank = u.ranks[s.id] || 1, before = u.hp;
             u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * (.02 + .005 * (rank - 1))));
+            (0, contribution_1.healed)(e.b, u, u.id, before);
             if (u.hp > before)
                 e.fx('ring', u.x, u.y - u.h * .5, '#b8d2bc', 28);
             u.martialGuard = { round: e.b.round, reduction: .20 + .10 * (rank - 1) / 7, counter: true, rank, angle: -(0, math_1.rad)(u.angle), span: meleeSpan(u, s, power) };
@@ -15205,6 +15573,7 @@ function finishWarrior(e) {
     return false;
 }
 function bladeScreenPass(e, p, a, b) {
+    var _a;
     if (p.body || p.damage <= 0)
         return;
     for (const u of e.b.units) {
@@ -15221,15 +15590,22 @@ function bladeScreenPass(e, p, a, b) {
         const ts = [(-B - Math.sqrt(D)) / (2 * A), (-B + Math.sqrt(D)) / (2 * A)];
         if (!ts.some(t => t >= 0 && t <= 1 && (a.x + dx * t - c.x) * s.facing >= 0))
             continue;
+        const beforeScreen = { ...p };
         p.fieldHits.push(key);
         s.hits++;
         const saved = p.damage * (.50 + .20 * (s.rank - 1) / 7);
         p.damage -= saved;
+        const sources = ((_a = p).honroScreenProtection ?? (_a.honroScreenProtection = {})), remaining = p.damage / Math.max(.0001, p.damage + saved);
+        for (const id of Object.keys(sources))
+            sources[id] /= remaining;
+        sources[u.id] = (sources[u.id] || 0) + saved / Math.max(.0001, p.damage);
         u.bladeStored = Math.min(.35 + .10 * (s.rank - 1) / 7, (u.bladeStored || 0) + saved / Math.max(1, u.attack * 180));
         e.emit('fx', { name: 'swordCut', x: c.x, y: c.y, x2: s.facing, y2: 1, color: '#becdc9', size: 175 });
         e.emit('sound', { name: 'sword' });
-        if (p.damage < 5)
+        if (p.damage < 5) {
+            (0, contribution_1.intercepted)(e, beforeScreen, u.id);
             e.remove(p);
+        }
     }
 }
 function warriorPrediction(e, u, s, angle, power) {
@@ -15498,6 +15874,8 @@ exports.makeEnemy = makeEnemy;
 exports.createBattle = createBattle;
 exports.createFields = createFields;
 exports.upgradeBattle = upgradeBattle;
+exports.applySpBalanceMigration = applySpBalanceMigration;
+const passiveBalance_1 = require("./passiveBalance");
 const physics_1 = require("./physics");
 const balance_1 = require("./balance");
 const math_1 = require("./math");
@@ -15808,7 +16186,7 @@ function createBattle(stageId, profile, mode = 'campaign', opts = {}) {
     }
     const fields = mode === 'practice' ? [] : world.vertical ? world.routePoints.filter((_, i) => i > 2 && i % 6 === 0).map((at, i) => ({ id: 'tower-field-' + i, kind: (i % 2 ? 'storm' : 'gravity'), x: (0, math_1.clamp)(at.x + (i % 2 ? 150 : -150), 140, world.width - 140), y: at.y - 150, radius: 135, strength: 170 })) : createFields(stage, world.width, world.terrain);
     (0, physics_1.reinforceFields)(fields);
-    const battle = { version: 2, skillRevision: 1, martialRevision: 1, revision: 11, physics: (0, physics_1.makePhysics)(stage.physics), controlMode: 'move', fields, reviewDamage: {}, reviewLeft: 0, stageId, mode, difficulty: profile.settings.difficulty, round: 1, side: 0, phase: 'aim', active: units[0].id, units, ...world, projectiles: [], zones: [], wind: opts.wind ?? stage.wind[0], teamEnds: [0, 0, 0], queue: [], turnAge: 0, resolveAge: 0, nextId: 1, shot: 0, shotDamage: {}, shots: 0, hits: 0, kills: 0, items: { heal: 3, focus: 3, cleanse: 2, ward: 2 }, events: [], seed: stageId * 19381 + 7, rng: stageId * 19381 + 7, reinforced: 0, sceneVersion: 1, winnerReason: '', practiceWind: opts.wind, practiceDistance: opts.distance, startSide: opts.startSide, lastShots: {}, heroes, startXP: { mage: heroes.mage.xp, archer: heroes.archer.xp, knight: heroes.knight.xp, occultist: heroes.occultist.xp }, rewardGranted: false, awardIds: [], enemyLimit: 10, encounter: 0, session: `${Date.now().toString(36)}-${stageId}` };
+    const battle = { version: 2, spBalanceRevision: passiveBalance_1.SP_BALANCE_REVISION, skillRevision: 1, martialRevision: 1, revision: 11, physics: (0, physics_1.makePhysics)(stage.physics), controlMode: 'move', fields, reviewDamage: {}, reviewLeft: 0, stageId, mode, difficulty: profile.settings.difficulty, round: 1, side: 0, phase: 'aim', active: units[0].id, units, ...world, projectiles: [], zones: [], wind: opts.wind ?? stage.wind[0], teamEnds: [0, 0, 0], queue: [], turnAge: 0, resolveAge: 0, nextId: 1, shot: 0, shotDamage: {}, shots: 0, hits: 0, kills: 0, items: { heal: 3, focus: 3, cleanse: 2, ward: 2 }, events: [], seed: stageId * 19381 + 7, rng: stageId * 19381 + 7, reinforced: 0, sceneVersion: 1, winnerReason: '', practiceWind: opts.wind, practiceDistance: opts.distance, startSide: opts.startSide, lastShots: {}, heroes, startXP: { mage: heroes.mage.xp, archer: heroes.archer.xp, knight: heroes.knight.xp, occultist: heroes.occultist.xp }, rewardGranted: false, awardIds: [], enemyLimit: 10, encounter: 0, session: `${Date.now().toString(36)}-${stageId}` };
     for (const u of battle.units)
         if (u.side === 1 && u.role !== 'dummy') {
             u.combatBaseHp = u.maxHp;
@@ -15953,11 +16331,31 @@ function upgradeBattle(b, profile) {
         }
         b.revision = 11;
     }
+    return applySpBalanceMigration(b);
+}
+/** Public adapter shared by core saves and the application honroBattle save path. */
+function applySpBalanceMigration(b) {
+    if ((b.spBalanceRevision || 0) < passiveBalance_1.SP_BALANCE_REVISION) {
+        // Recalculate only playable heroes. Preserve resource fractions, progression,
+        // wounds, action state, enemies, existing summons and already authored casts.
+        for (const u of b.units.filter(v => v.side === 0 && !v.summoned && !v.enthrall)) {
+            const h = b.heroes[u.cls];
+            if (!h)
+                continue;
+            const hpRatio = u.maxHp ? (0, math_1.clamp)(u.hp / u.maxHp, 0, 1) : 0, mpRatio = u.maxFocus ? (0, math_1.clamp)(u.focus / u.maxFocus, 0, 1) : 0, moveRatio = u.maxMove ? (0, math_1.clamp)(u.moveLeft / u.maxMove, 0, 1) : 0, dead = u.dead;
+            (0, progression_1.applyHero)(u, { ...h, ranks: { ...u.ranks } }, false);
+            u.hp = dead ? 0 : Math.max(1, Math.floor(u.maxHp * hpRatio));
+            u.focus = u.maxFocus * mpRatio;
+            u.moveLeft = u.maxMove * moveRatio;
+            u.dead = dead;
+        }
+        b.spBalanceRevision = passiveBalance_1.SP_BALANCE_REVISION;
+    }
     return b;
 }
 
 }};const cache={};function load(id){id=id.replace(/^\.\//,'').replace(/\.js$/,'');if(cache[id])return cache[id].exports;if(!modules[id])throw new Error('Missing internal module: '+id);const m={exports:{}};cache[id]=m;modules[id](m,m.exports,load);return m.exports;}
-globalThis.HONRO_CORE={...load('audio'),...load('bgm'),...load('campUI'),...load('icons'),...load('atlasControls'),...load('art'),...load('engine'),...load('data'),...load('world'),...load('store'),...load('math'),...load('progression'),...load('enemyAI'),...load('balance'),...load('balanceModel'),...load('stageRules'),...load('atlasLayout'),...load('physics'),...load('projectileGrowth'),...load('skillMechanics'),...load('skillVisuals'),...load('warriorData'),...load('warriorMechanics'),...load('combatPassives'),...load('warriorVisuals'),...load('summons'),...load('locomotion'),...load('existence')};
+globalThis.HONRO_CORE={...load('audio'),...load('bgm'),...load('campUI'),...load('icons'),...load('atlasControls'),...load('art'),...load('engine'),...load('data'),...load('world'),...load('store'),...load('math'),...load('progression'),...load('enemyAI'),...load('balance'),...load('balanceModel'),...load('passiveBalance'),...load('spBalanceModel'),...load('stageRules'),...load('atlasLayout'),...load('physics'),...load('projectileGrowth'),...load('skillMechanics'),...load('skillVisuals'),...load('warriorData'),...load('warriorMechanics'),...load('combatPassives'),...load('warriorVisuals'),...load('summons'),...load('locomotion'),...load('existence')};
 globalThis.HONRO_BALANCE={
   "version": 3,
   "maxLevel": 30,
@@ -25962,6 +26360,7 @@ function retry(app,reason){const e=app.engine,b=e?.b;if(!active(b))return false;
  b.honroStakeCrossing={...s,...(flexible(b)&&s.checkpointProgress?clone(s.checkpointProgress):{}),crossed:{},attempted:false,pairSeen:false,retries:(s.retries||0)+1,lastReason:reason};
  if(preparation)(b.honroSplit||b).stakePreparation=preparation;if(loadout)b.honroStakeLoadout=loadout;prepare(b);
  for(const u of b.units){u.xpGranted=Math.max(u.xpGranted||0,awarded.get(u.id)||0);if(u.side===0&&!u.summoned&&b.heroes[u.cls])C.applyHero(u,b.heroes[u.cls]);}
+ G.HonroProgression?.reconcileWounds(b);
  b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');b.projectiles=[];b.volley=undefined;b.phase='aim';b.side=0;b.turnAge=0;
  app.done=false;app.cancelInput?.();app.close?.();app.turnNotice=null;app.dirty=true;app.event?.(reason+' 두 동행과 자원을 구간 출발 때로 되돌렸습니다.');
  app.profile.honroBattle=clone(b);app.persist?.();app.updateHUD?.(true);return true;
@@ -25978,14 +26377,14 @@ function attach(app,e){if(!active(e.b)||e.honroStakeAttached)return;e.honroStake
  };
  const use=e.useGate.bind(e);e.useGate=function(){const b=e.b,c=current(b),u=e.active,s=b.honroStakeCrossing;if(!c)return use();if(flexible(b)){const ok=use();if(ok){tick(app);app.profile.honroBattle=clone(b);app.persist?.();}return ok;}const from=e.gateCandidate(),to=(b.stakes||[]).find(z=>z.skill==='M09'&&z.side===0&&z.id!==from?.id);
   if(!inside(from,c.fromZone)||!inside(to,c.landing)){e.message('출발 석대와 다음 석대를 잇는 진목 한 쌍이 필요합니다.');return false;}
-  const ok=use();if(ok&&inside(u,c.landing)){s.crossed[u.cls]=true;app.dirty=true;tick(app);app.profile.honroBattle=clone(b);app.persist?.();}return ok;
+  const ok=use();if(ok&&inside(u,c.landing)){G.HonroObjectiveContributions?.arrive(b,'cross:'+c.markerId+':'+u.cls,[u],p=>inside(p,c.landing),10);s.crossed[u.cls]=true;app.dirty=true;tick(app);app.profile.honroBattle=clone(b);app.persist?.();}return ok;
  };
 }
 // New vertical routes use real arrival places, not a prescribed pair of gates.
 // A creative jump or longer shot can skip traversal markers, never documents.
 function tickFlexible(app){const e=app.engine,b=e.b,s=b.honroStakeCrossing,team=heroes(b),list=crossings(b);if(team.length!==2)return;
  s.reached??={};
- for(const u of team)if(!u.dead&&u.hp>0&&e.grounded(u))for(let i=s.index;i<list.length;i++)if(inside(u,list[i].landing)&&i+1>(s.reached[u.cls]||0)){s.reached[u.cls]=i+1;app.dirty=true;}
+ for(const u of team)if(!u.dead&&u.hp>0&&e.grounded(u))for(let i=s.index;i<list.length;i++)if(inside(u,list[i].landing)&&i+1>(s.reached[u.cls]||0)){G.HonroObjectiveContributions?.arrive(b,'cross:'+list[i].markerId+':'+u.cls,[u],p=>inside(p,list[i].landing),10);s.reached[u.cls]=i+1;app.dirty=true;}
  const reached=Math.min(...team.map(u=>s.reached[u.cls]||s.index));
  s.crossed=Object.fromEntries(team.filter(u=>(s.reached[u.cls]||0)>s.index).map(u=>[u.cls,true]));
  const advanced=reached>s.index;
@@ -25998,7 +26397,7 @@ function tickFlexible(app){const e=app.engine,b=e.b,s=b.honroStakeCrossing,team=
 }
 function tick(app){const b=app.engine?.b;if(!active(b)||app.dialogue||app.done)return;initialize(b);if(recoverFailure(app))return;const s=b.honroStakeCrossing,c=current(b);if(flexible(b))return tickFlexible(app);if(!c)return;
  const team=heroes(b),gates=(b.stakes||[]).filter(z=>z.skill==='M09'&&z.side===0&&(z.expires===undefined||z.expires>b.round));
- if(team.length===2&&team.every(u=>s.crossed[u.cls]&&inside(u,c.landing))){s.index++;s.armed=false;s.crossed={};s.attempted=false;s.pairSeen=false;b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');takeCheckpoint(b);app.dirty=true;app.event?.(current(b)?'두 동행이 건넜습니다. 다음 석대에 새 진목을 설치하세요.':'두 동행이 물길을 건넜습니다. 기록 조사로 이어갑니다.');app.updateHUD?.(true);return;}
+ if(team.length===2&&team.every(u=>s.crossed[u.cls]&&inside(u,c.landing))){for(const u of team)G.HonroObjectiveContributions?.arrive(b,'cross:'+c.markerId+':'+u.cls,[u],p=>inside(p,c.landing),10);s.index++;s.armed=false;s.crossed={};s.attempted=false;s.pairSeen=false;b.stakes=(b.stakes||[]).filter(z=>z.skill!=='M09');takeCheckpoint(b);app.dirty=true;app.event?.(current(b)?'두 동행이 건넜습니다. 다음 석대에 새 진목을 설치하세요.':'두 동행이 물길을 건넜습니다. 기록 조사로 이어갑니다.');app.updateHUD?.(true);return;}
  if(s.attempted&&gates.length===2)s.pairSeen=true;
  if(s.attempted&&!b.projectiles.some(p=>p.skill==='M09')&&b.phase!=='flight'){
   if(gates.length!==2)return retry(app,s.pairSeen?'진목이 만료되어 동행이 고립되었습니다.':'진목이 안전한 석대에 닿지 않았습니다.');
@@ -26011,7 +26410,42 @@ G.HonroStakeCrossing={active,flexible,crossings,current,available,skills,prepare
 })(globalThis);
 
 (function(G){'use strict';
-const C=G.HONRO_CORE,config=G.HONRO_BALANCE,clone=x=>JSON.parse(JSON.stringify(x));
+// Data-only, deterministic accounting. No combat state or HeroProgress mutations.
+const touch=s=>{s.sequence=(s.sequence||0)+1;};
+const VERSION=4,finite=n=>Number.isFinite(n)?Math.max(0,n):0,sum=o=>Object.values(o||{}).reduce((n,v)=>n+finite(v),0);
+const add=(o,k,n)=>{if(k&&finite(n)>0)o[k]=(o[k]||0)+n;};
+function create(total,combat,actors,levels={}){
+ const values=Object.values(levels).sort((a,b)=>a-b),median=values.length?values[Math.floor(values.length/2)]:1;
+ return {version:VERSION,sequence:0,total:Math.round(total),combatLimit:Math.round(combat),actors:[...actors].sort(),factors:Object.fromEntries(actors.map(c=>[c,1+Math.min(.25,Math.max(0,median-(levels[c]||median))*.1)])),owners:{},enemies:{},objectives:{},objectiveEvidence:{},paid:{},spent:0,forfeited:0,combatSpent:0,completed:false};
+}
+function enemy(s,id,hp,weight=1){return s.enemies[id]??={id,hp:Math.max(1,finite(hp)),weight:Math.max(.01,finite(weight)),progress:0,damage:{},support:{},threats:{},wounds:{},controls:{},defeated:false,settled:false};}
+function damage(s,id,liveProgress,actual,credits){const e=s.enemies[id];if(!e||s.completed)return 0;const progress=Math.min(e.hp,finite(liveProgress)),delta=Math.max(0,progress-e.progress);e.progress=Math.max(e.progress,progress);if(!delta)return 0;touch(s);const current=Math.min(delta,finite(actual)),valid=Object.entries(credits).filter(([cls])=>s.actors.includes(cls)),total=valid.reduce((n,[,v])=>n+finite(v),0),scale=total>actual?finite(actual)/total:1;let assigned=0;for(const [cls,n]of valid){const share=actual>0?finite(n)*scale/actual*current:0;assigned+=share;add(e.damage,cls,share/e.hp*100*e.weight);}add(e.damage,'_system',Math.max(0,delta-assigned)/e.hp*100*e.weight);return delta;}
+// One high-water threat envelope per target and 10% enemy-HP progress band.
+// Time, reloads and repeated equal-strength attacks cannot refill that envelope.
+function threat(s,id,target,maxHp,hpBefore,loss,protections,liveProgress){const e=s.enemies[id];if(!e||s.completed)return;const band=Math.min(9,Math.floor(Math.min(e.progress,liveProgress??e.progress)/e.hp*10)),key=target+':'+band,raw=sum(protections),danger=Math.min(finite(hpBefore),finite(loss)+raw),prior=e.threats[key]||0,delta=Math.max(0,danger-prior);e.threats[key]=Math.max(prior,danger);if(!delta||!danger)return;touch(s);
+ const scale=delta/danger,unit=100*e.weight/Math.max(1,maxHp),protectedAmount=Math.min(raw,Math.max(0,danger-loss));
+ for(const [cls,n] of Object.entries(protections))if(s.actors.includes(cls))add(e.support,cls,n/Math.max(raw,1)*protectedAmount*scale*unit);
+ const hurt=Math.min(loss,danger)*scale;if(hurt>0){const wounds=e.wounds[target]=(e.wounds[target]||[]).filter(w=>w.hp>0),same=wounds.find(w=>w.unit===unit);if(same)same.hp+=hurt;else wounds.push({hp:hurt,unit});}
+}
+function heal(s,target,actual,cls){let left=finite(actual);if(!left||s.completed)return 0;let points=0;for(const e of Object.values(s.enemies))for(const w of e.wounds[target]||[]){const n=Math.min(left,w.hp);w.hp-=n;left-=n;if(n>0)touch(s);if(s.actors.includes(cls)){add(e.support,cls,n*w.unit);points+=n*w.unit;}if(!left)break;}return points;}
+function control(s,id,token,cls){const e=s.enemies[id];if(!e||s.completed||!s.actors.includes(cls)||e.controls[token]||Object.keys(e.controls).length>=2)return;touch(s);e.controls[token]=cls;add(e.support,cls,15*e.weight);}
+function block(s,id,band,token,cls,damage){const e=s.enemies[id];if(!e||s.completed||!s.actors.includes(cls)||damage<=0)return;const blocks=e.blocks??={};if(blocks[band]||Object.values(blocks).some(v=>v.token===token)||Object.keys(blocks).length>=5)return;const points=3*e.weight*Math.min(1,damage/20);touch(s);blocks[band]={token,cls,points};add(e.support,cls,points);}
+function objective(s,token,credits,points){if(s.completed||s.objectives[token])return false;const valid=Object.fromEntries(Object.entries(credits).filter(([cls,n])=>(s.actors.includes(cls)||cls==='_system')&&finite(n)>0)),total=sum(valid);if(!total)return false;touch(s);s.objectives[token]=Object.fromEntries(Object.entries(valid).map(([cls,n])=>[cls,n/total*finite(points)]));return true;}
+function enemyScores(e){const out={...e.damage},support=sum(e.support),scale=Math.min(1,60*e.weight/Math.max(1,support)),progress=e.defeated?1:Math.min(1,e.progress/e.hp);for(const [cls,n] of Object.entries(e.support))add(out,cls,n*scale*progress);return out;}
+function scores(s,id){const out={};for(const e of id?[s.enemies[id]].filter(Boolean):Object.values(s.enemies))for(const [cls,n] of Object.entries(enemyScores(e)))add(out,cls,n);if(!id)for(const o of Object.values(s.objectives))for(const [cls,n]of Object.entries(o))add(out,cls,n);for(const cls of Object.keys(out))out[cls]*=s.factors[cls]||1;return out;}
+function apportion(amount,weights){const budget=Math.max(0,Math.floor(amount)),rows=Object.entries(weights).filter(([,n])=>finite(n)>0).sort(([a],[b])=>a.localeCompare(b)),total=rows.reduce((n,[,v])=>n+v,0);if(!total)return {};const exact=rows.map(([cls,n])=>({cls,value:Math.floor(budget*n/total),fraction:budget*n/total%1}));let left=budget-exact.reduce((n,r)=>n+r.value,0);for(const r of [...exact].sort((a,b)=>b.fraction-a.fraction||a.cls.localeCompare(b.cls))){if(left--<=0)break;r.value++;}return Object.fromEntries(exact.map(r=>[r.cls,r.value]));}
+function reserve(s,amount,weights,caps={}){
+ const n=Math.max(0,Math.min(Math.floor(amount),s.total-s.spent-s.forfeited));if(!n||!sum(weights))return {};
+ const initial=apportion(n,weights),system=initial._system||0;delete initial._system;const grants={},players=Object.fromEntries(Object.entries(weights).filter(([cls,v])=>cls!=='_system'&&v>0));let left=n-system;
+ while(left>0){const eligible=Object.fromEntries(Object.entries(players).filter(([cls])=>(caps[cls]??Infinity)>(grants[cls]||0)));if(!sum(eligible))break;const batch=apportion(left,eligible);let used=0;for(const[cls,v]of Object.entries(batch)){const accepted=Math.min(v,Math.max(0,(caps[cls]??Infinity)-(grants[cls]||0)));add(grants,cls,accepted);used+=accepted;}if(!used)break;left-=used;}
+ touch(s);const paid=sum(grants);s.spent+=paid;s.forfeited+=n-paid;s.systemForfeited=(s.systemForfeited||0)+system;for(const[cls,v]of Object.entries(grants))add(s.paid,cls,v);return grants;
+}
+function reconcile(s){return {total:s.total,allocated:s.spent,forfeited:s.forfeited,pending:Math.max(0,s.total-s.spent-s.forfeited)};}
+G.HonroContributionXP={VERSION,touch,create,enemy,damage,threat,heal,control,block,objective,scores,enemyScores,apportion,reserve,reconcile};
+})(globalThis);
+
+(function(G){'use strict';
+const C=G.HONRO_CORE,config=G.HONRO_BALANCE,X=G.HonroContributionXP,clone=x=>JSON.parse(JSON.stringify(x));
 const xpAt=level=>{const n=Math.floor(level);return C.xpAtLevel(n)+Math.round((level-n)*C.xpToNext(n));};
 // Stage rewards keep their established budget; only the amount required to level grows.
 const rewardXpAt=level=>{const n=Math.floor(level);return C.oldXpAtLevel12(n)+Math.round((level-n)*C.oldXpToNext12(n));};
@@ -26076,40 +26510,60 @@ function rememberLimit(b){
   const g=b?.honroGrowth,state=g?.ledger?.stages?.[b.honroStage];
   if(state&&validLimit(g.limit))state.limit=clone(g.limit);
 }
+function recoverEarnedXp(b,roster){for(const cls of C.CLASS_IDS){const h=b.heroes[cls],saved=roster?.[cls];if(!h||!saved)continue;const result=C.grantXP(h,Math.max(0,saved.xp-h.xp));if(result.after>result.before)for(const u of b.units.filter(u=>campaignHero(b,u)&&!u.enthrall&&u.cls===cls))C.applyHero(u,h,false);}}
 function initialize(b,profile){
-  for(const u of b.units)if(u.side===0&&!u.summoned||u.honroAlly){const stats=C.heroStats({xp:C.xpAtLevel(u.level||1),ranks:u.ranks||{}},u.cls);u.critChance=stats.critChance;u.critMultiplier=stats.critMultiplier;}
+  for(const u of b.units)if(u.side===0&&!u.summoned||u.honroAlly){const stats=C.heroStats({...((u.side===0&&!u.summoned&&!u.enthrall?b.heroes?.[u.cls]:null)||{xp:C.xpAtLevel(u.level||1)}),ranks:u.ranks||{}},u.cls,u.loadout);u.critChance=stats.critChance;u.critMultiplier=stats.critMultiplier;}
   if(b.mode!=='campaign')return;
-  if(b.honroGrowth?.ledger?.version===config.version){rememberLimit(b);return;}
+  if(b.honroGrowth?.ledger?.stages?.[b.honroStage]){
+    const live=b.honroGrowth.ledger.stages[b.honroStage],stored=profile.honroGrowth?.stages?.[b.honroStage];
+    if(live.contribution?.version===4&&stored?.contribution?.version===4&&(stored.contribution.sequence||0)>(live.contribution.sequence||0)){
+      b.honroGrowth.ledger.stages[b.honroStage]=clone(stored);
+      recoverEarnedXp(b,profile.heroes);
+    }
+    if(profile.cleared?.[b.honroStage]&&b.honroGrowth.ledger.stages[b.honroStage].contribution){b.honroGrowth.ledger.stages[b.honroStage].cleared=true;b.honroGrowth.ledger.stages[b.honroStage].contribution.completed=true;}
+    reconcileWounds(b);rememberLimit(b);return;
+  }
   const ledger=clone(profile.honroGrowth||{version:config.version,stages:{}});ledger.version=config.version;ledger.stages??={};
   const id=b.honroStage,previous=profile.honroBattle,saved=previous?.honroGrowth;
   // Recover an old export's unfinished stage before its snapshot is replaced,
   // even when entering a different chapter. Keep all unrelated stage records.
-  const recorded=saved?.ledger?.stages?.[previous?.honroStage];
-  if(saved?.ledger?.version===config.version&&recorded){
-    const old=ledger.stages[previous.honroStage]||{},combat={};
+  for(const [stageId,recorded]of Object.entries(saved?.ledger?.stages||{})){
+    const old=ledger.stages[stageId]||{},combat={};
     for(const cls of new Set([...Object.keys(old.combat||{}),...Object.keys(recorded.combat||{})]))combat[cls]=Math.max(old.combat?.[cls]||0,recorded.combat?.[cls]||0);
-    const recovered={...clone(recorded),...old,combat,cleared:!!(old.cleared||recorded.cleared||profile.cleared[previous.honroStage])};
-    if(validLimit(saved.limit))recovered.limit=clone(saved.limit);
-    ledger.stages[previous.honroStage]=recovered;
+    const recovered={...clone(recorded),...old,combat,cleared:!!(old.cleared||recorded.cleared||profile.cleared[stageId])};
+    if(recorded.contribution?.version===4){const live=recorded.contribution,stored=old.contribution;recovered.contribution=clone(!stored||(live.sequence||0)>=(stored.sequence||0)?live:stored);recovered.policy=4;if(!stored||(live.sequence||0)>=(stored.sequence||0))recoverEarnedXp(b,previous?.heroes);}
+    if(+stageId===previous?.honroStage&&validLimit(saved.limit))recovered.limit=clone(saved.limit);
+    ledger.stages[stageId]=recovered;
   }
+  const hadRecord=!!ledger.stages[id],legacyBattle=!!b.honroGrowth&&!b.honroGrowth.ledger?.stages?.[id]?.contribution||previous?.honroStage===id&&!!saved&&!saved.ledger?.stages?.[id]?.contribution;
   ledger.stages[id]??={combat:{},cleared:!!profile.cleared[id]};
   const state=ledger.stages[id];state.combat??={};state.cleared||=!!profile.cleared[id];
+  const useContribution=!hadRecord&&!legacyBattle&&!state.cleared&&!b.honroCustom;
   const limit=validLimit(state.limit)?clone(state.limit):budget(id);
-  if(!validLimit(state.limit)){
+  if(!validLimit(state.limit)&&!useContribution){
     // Ledger-only old saves have no ceiling: remove each companion's already
     // recorded combat XP before recovering the original party entry shift.
     const entryXp=Math.max(0,...b.units.filter(u=>campaignHero(b,u)).map(u=>(b.heroes[u.cls]?.xp||0)-(state.combat[u.cls]||0)));
     const shift=Math.max(0,entryXp-limit.start);limit.start+=shift;limit.end+=shift;
   }
   state.limit=clone(limit);
+  // A recorded v3 stage is immutable policy-wise, including all retries.
+  if(useContribution){
+    const actors=[...new Set(b.units.filter(u=>campaignHero(b,u)).map(u=>u.cls))],split=G.HonroSplitCampaign?.active(b),levels=Object.fromEntries(actors.map(cls=>[cls,C.levelOf(b.heroes[cls])]));
+    state.contribution=X.create(limit.total*(split?4:actors.length),limit.combat*actors.length,actors,levels);
+    state.policy=4;
+  }else state.policy??=state.contribution?4:3;
+  if(state.contribution)ledger.version=Math.max(4,ledger.version||0);
   const act3Weight=id>=21&&id<=30&&!b.honroCustom?(G.HONRO_CONTENT.stages[id-1].steps||[]).reduce((n,s)=>n+(s.wave?actionWeight({type:'spawn',kind:s.wave.kind,n:s.wave.count}):0),0):0;
   const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
   b.honroGrowth={ledger,limit,weight:Math.max(1,weight)};
-  for(const u of b.units.filter(u=>u.side===1))enemyXP(b,u);
+  for(const u of b.units)registerOwner(b,u);
+  for(const u of b.units.filter(u=>u.side===1)){enemyXP(b,u);if(isContributionBattle(b))registerEnemy(b,u);}
+  reconcileWounds(b);
 }
 function enemyXP(b,u){if(b.honroGrowth){u.xpBudget=Math.max(1,Math.round(b.honroGrowth.limit.combat*(u.honroXpWeight||1)/b.honroGrowth.weight));u.xpGranted=0;}}
 function awardCombat(e,source,amount){
-  const b=e.b,g=b.honroGrowth,state=g.ledger.stages[b.honroStage];if(amount<=0||state.cleared)return;
+  const b=e.b,g=b.honroGrowth,state=g.ledger.stages[b.honroStage];if(b.mode!=='campaign'||isContributionBattle(b)||amount<=0||state.cleared)return;
   let changed=false;
   // Expedition XP is shared: NPC assistance and final-hit ownership cannot starve
   // a companion. The persistent per-stage budget also survives failure/retry.
@@ -26123,14 +26577,49 @@ function awardCombat(e,source,amount){
 }
 function defeat(e,u,killer){
   if(u.killRewarded||u.side!==1)return;u.killRewarded=true;
-  awardCombat(e,killer,Math.max(0,u.xpBudget-u.xpGranted));u.xpGranted=u.xpBudget;
+  if(isContributionBattle(e.b)){const row=registerEnemy(e.b,u);if(row){if(row.progress<row.hp)X.damage(contributionState(e.b),row.id,row.hp,row.hp-row.progress,{});if(!row.defeated)X.touch(contributionState(e.b));row.defeated=true;}}
+  else awardCombat(e,killer,Math.max(0,u.xpBudget-u.xpGranted));u.xpGranted=u.xpBudget;
   if(killer?.side===0)e.b.heroes[killer.cls].kills++;
 }
 function complete(b){
   if(!b.honroGrowth)return;
   const g=b.honroGrowth,state=g.ledger.stages[b.honroStage];if(state.cleared)return;
+  if(isContributionBattle(b)){completeContribution(b);state.cleared=true;return;}
   for(const cls of rewardClasses(b))C.grantXP(b.heroes[cls],Math.max(0,g.limit.end-b.heroes[cls].xp));
   state.cleared=true;
+}
+// Contribution policy is per stage, never inferred from a profile's global version.
+const contributionState=b=>b?.mode==='campaign'?b?.honroGrowth?.ledger?.stages?.[b.honroStage]?.contribution:null;
+const isContributionBattle=b=>contributionState(b)?.version===4;
+function registerOwner(b,u){const s=contributionState(b);if(!s||!u)return;const owner=u.summonOwner||u.enthrall?.owner;if(owner){const p=b.units.find(v=>v.id===owner);if(p&&p!==u)registerOwner(b,p);if(s.owners[owner])s.owners[u.id]=s.owners[owner];}else if(campaignHero(b,u)&&C.CLASS_IDS.includes(u.cls)){s.owners[u.id]=u.cls;if(!s.actors.includes(u.cls)){s.actors.push(u.cls);s.factors[u.cls]=1;}}}
+function actorClass(b,id){const s=contributionState(b);if(!s)return null;const u=b.units.find(v=>v.id===id);if(u){if(u.side!==0&&!u.summonOwner&&!u.enthrall)return null;registerOwner(b,u);}return s.owners[id]|| (s.actors.includes(id)?id:null);}
+function registerEnemy(b,u){const s=contributionState(b);if(!s||!u||u.summoned)return null;const id=u.honroContributionId||u.id;u.honroContributionId=id;const row=X.enemy(s,id,u.maxHp,u.honroXpWeight||1);if(!row.progress&&!Object.keys(row.threats).length){row.hp=Math.max(1,u.maxHp);row.weight=u.honroXpWeight||1;}return row;}
+function liveEnemyProgress(row,u){return Math.max(0,u.maxHp-u.hp)*row.hp/Math.max(1,u.maxHp);}
+function recordDamage(b,target,owner,actual,assists={}){const s=contributionState(b);if(!s||s.completed||target.side!==1||actual<=0)return;const row=registerEnemy(b,target);if(!row)return;target.honroContributionDamage=Math.max(target.honroContributionDamage||0,liveEnemyProgress(row,target));const cls=actorClass(b,owner),credits={},parts=Object.entries(assists).map(([id,n])=>[actorClass(b,id),Math.max(0,n)]).filter(([id])=>id),total=parts.reduce((n,[,v])=>n+v,0),scale=total>actual?actual/total:1;for(const [id,n]of parts)credits[id]=(credits[id]||0)+n*scale;if(cls)credits[cls]=(credits[cls]||0)+Math.max(0,actual-total*scale);const hpScale=row.hp/Math.max(1,target.maxHp);for(const id of Object.keys(credits))credits[id]*=hpScale;X.damage(s,row.id,target.honroContributionDamage,actual*hpScale,credits);}
+function recordThreat(b,enemy,target,hpBefore,loss,protections={}){const s=contributionState(b);if(!s||s.completed||!enemy||enemy.side!==1||target.side===1||target.summoned||(!campaignHero(b,target)&&!target.honroAlly&&!target.honroCivilian))return;const row=registerEnemy(b,enemy);if(!row)return;const credits={};for(const[id,n]of Object.entries(protections)){const cls=actorClass(b,id);if(cls)credits[cls]=(credits[cls]||0)+Math.max(0,n);}X.threat(s,row.id,target.id,target.maxHp,hpBefore,loss,credits,enemy.honroContributionDamage||liveEnemyProgress(row,enemy));}
+function recordHeal(b,target,owner,actual){const s=contributionState(b);if(!s||s.completed||actual<=0)return;const outstanding=Object.values(s.enemies).reduce((n,row)=>n+(row.wounds[target.id]||[]).reduce((v,w)=>v+w.hp,0),0),beforeDeficit=Math.max(0,target.maxHp-target.hp+actual);if(outstanding>beforeDeficit)X.heal(s,target.id,outstanding-beforeDeficit,null);X.heal(s,target.id,Math.min(actual,beforeDeficit),actorClass(b,owner));}
+function reconcileWounds(b){const s=contributionState(b);if(!s||s.completed)return;for(const u of b.units){const outstanding=Object.values(s.enemies).reduce((n,row)=>n+(row.wounds[u.id]||[]).reduce((v,w)=>v+w.hp,0),0),deficit=Math.max(0,u.maxHp-u.hp);if(outstanding>deficit)X.heal(s,u.id,outstanding-deficit,null);}}
+function recordControl(b,enemy,owner,token){const s=contributionState(b),cls=actorClass(b,owner);if(s&&cls){const row=registerEnemy(b,enemy);if(row){const band=Math.min(9,Math.floor(Math.min(row.progress,liveEnemyProgress(row,enemy))/row.hp*10));X.control(s,row.id,'band:'+band,cls);}}}
+function recordBlock(b,enemy,owner,token,damage){const s=contributionState(b),cls=actorClass(b,owner);if(!s||!cls||enemy?.side!==1)return;const row=registerEnemy(b,enemy);if(!row)return;const band=Math.min(9,Math.floor(Math.min(row.progress,enemy.honroContributionDamage||liveEnemyProgress(row,enemy))/row.hp*10));X.block(s,row.id,band,token,cls,damage);}
+function shieldLayers(b,target,before){const s=contributionState(b);if(!s)return null;const layers=target.honroShieldSources??={},sum=Object.values(layers).reduce((a,v)=>a+v,0);if(sum>before&&sum>0)for(const id of Object.keys(layers))layers[id]*=before/sum;else if(sum<before)layers['']=(layers['']||0)+before-sum;return layers;}
+function shieldAdded(b,target,owner,before){const layers=shieldLayers(b,target,before);if(layers&&target.shield>before){registerOwner(b,b.units.find(u=>u.id===owner));layers[owner]=(layers[owner]||0)+target.shield-before;}}
+function shieldConsumed(b,target,before,absorbed){const layers=shieldLayers(b,target,before),out={};if(!layers||!before)return out;for(const[id,n]of Object.entries(layers)){out[id]=n*absorbed/before;layers[id]=Math.max(0,n-out[id]);}return out;}
+function objective(b,token,contributors,points=20){const s=contributionState(b);if(!s)return false;const credits={};for(const item of contributors||[]){const cls=item.id==='_system'?'_system':actorClass(b,item.id||item.cls);if(cls)credits[cls]=(credits[cls]||0)+Math.max(0,item.weight??1);}return X.objective(s,String(token),credits,points);}
+function applyContributionGrants(b,grants,e){const s=contributionState(b);for(const [cls,amount]of Object.entries(grants)){const h=b.heroes[cls];if(!h)continue;const result=C.grantXP(h,amount);s.capDiscarded??={};s.capDiscarded[cls]=(s.capDiscarded[cls]||0)+amount-result.actual;if(result.actual)e?.emit('xp',{cls,value:result.actual});for(const u of b.units.filter(u=>campaignHero(b,u)&&!u.enthrall&&u.cls===cls))if(result.after>result.before){const hp=u.hp;C.applyHero(u,h,!u.dead);recordHeal(b,u,'',u.hp-hp);if(e&&!u.dead){e.fx('text',u.x,u.y-u.h-35,'#f4d797',22,`경지 ${result.after}`);e.emit('sound',{name:'heal'});e.emit('level',{cls,value:result.after});}}}if(Object.keys(grants).length)e?.emit('save');}
+const contributionCaps=b=>Object.fromEntries(C.CLASS_IDS.map(cls=>[cls,Math.max(0,C.xpAtLevel(C.MAX_LEVEL)-b.heroes[cls].xp)]));
+function flushContribution(e){const b=e.b,s=contributionState(b);if(!s||s.completed)return;for(const row of Object.values(s.enemies).filter(v=>v.defeated&&!v.settled).sort((a,b)=>a.id.localeCompare(b.id))){row.settled=true;X.touch(s);const amount=Math.min(s.combatLimit-s.combatSpent,Math.floor(s.combatLimit*row.weight/b.honroGrowth.weight)),before=s.spent+s.forfeited,grants=X.reserve(s,amount,X.scores(s,row.id),contributionCaps(b));s.combatSpent+=s.spent+s.forfeited-before;applyContributionGrants(b,grants,e);}}
+function completeContribution(b){const s=contributionState(b);if(!s||s.completed)return;G.HonroObjectiveContributions?.beforeComplete?.(b,G.HONRO_CONTENT.stages[b.honroStage-1]);const split=G.HonroSplitCampaign?.active(b),end=b.honroSplit?.version===1?27:28;
+ // Branch rewards wait for reunion; only active members earned the combat slice.
+ if(split&&b.honroStage>=25&&b.honroStage<end){s.completed=true;s.deferred=true;X.touch(s);return;}
+ if(split&&b.honroStage===end){const states=Object.entries(b.honroGrowth.ledger.stages).filter(([id,v])=>+id>=25&&+id<=end&&v.contribution?.version===4&&(v.contribution.deferred||+id===end)).map(([,v])=>v.contribution),weights={},opportunities={};let total=0;
+  for(const q of states){const scores=X.scores(q),sum=Object.values(scores).reduce((a,n)=>a+n,0),weight=q.total;for(const cls of q.actors){opportunities[cls]=(opportunities[cls]||0)+weight;if(sum>0)weights[cls]=(weights[cls]||0)+(scores[cls]||0)/sum*q.actors.length*weight;}if(sum>0&&scores._system){weights._system=(weights._system||0)+scores._system/sum*q.actors.length*weight;opportunities._system=(opportunities._system||0)+weight;}total+=q.total-q.spent-q.forfeited;}
+  for(const cls of Object.keys(weights))weights[cls]/=opportunities[cls];
+  // Normalize total expedition entitlement, then deduct already earned combat XP.
+  const entitlement=X.apportion(states.reduce((n,q)=>n+q.total,0),weights),owed={};for(const[cls,n]of Object.entries(entitlement)){const prior=states.reduce((v,q)=>v+(cls==='_system'?q.forfeited:q.paid[cls]||0),0);if(n>prior)owed[cls]=n-prior;}
+  const grants={};for(const q of states){const left=q.total-q.spent-q.forfeited,systemBefore=q.systemForfeited||0,part=X.reserve(q,left,owed,contributionCaps(b));if(!Object.keys(part).length)q.forfeited=q.total-q.spent;owed._system=Math.max(0,(owed._system||0)-((q.systemForfeited||0)-systemBefore));for(const[cls,n]of Object.entries(part)){grants[cls]=(grants[cls]||0)+n;owed[cls]=Math.max(0,(owed[cls]||0)-n);}applyContributionGrants(b,part);q.completed=true;q.deferred=false;q.reunionSettled=true;X.touch(q);}
+  s.reunionGrants=grants;return;
+ }
+ const remaining=s.total-s.spent-s.forfeited,grants=X.reserve(s,remaining,X.scores(s),contributionCaps(b));if(!Object.keys(grants).length)s.forfeited=s.total-s.spent;s.completed=true;X.touch(s);applyContributionGrants(b,grants);
 }
 // Camp allocates the next expedition while Continue owns an independent combat
 // snapshot. Only these choices cross the sync boundary; combat owns XP/counters.
@@ -26163,7 +26652,7 @@ function syncRoster(profile,b){
   profile.heroes=heroes;
 }
 function persist(app){if(app.engine?.b.honroGrowth){rememberLimit(app.engine.b);app.profile.honroGrowth=clone(app.engine.b.honroGrowth.ledger);}}
-G.HonroProgression={version:config.version,plan,budget,xpAt,rewardXpAt,legacyCampaignAnchor,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
+G.HonroProgression={version:config.version,contributionVersion:4,isContributionBattle,contributionState,registerOwner,recordDamage,recordThreat,recordHeal,reconcileWounds,recordControl,recordBlock,shieldAdded,shieldConsumed,objective,flushContribution,completeContribution,plan,budget,xpAt,rewardXpAt,legacyCampaignAnchor,joinLevel,recruit,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
 })(globalThis);
 
 (function(G){'use strict';
@@ -26259,7 +26748,7 @@ function flush(app){
       const cap=G.HonroEncounters.populationCap(b);
       if(spawned||hs.lastCombatEventBoundary===boundary||enemies+spawnCount(ev.action)>cap)continue;
     }
-    if(G.HonroAllies.execute(app,ev.action)===false)continue;
+    if(G.HonroAllies.execute(app,ev.action?{...ev.action,source:ev.action.source||ev.id}:ev.action)===false)continue;
     if(ev.entry){e.fx('ring',ev.entry.x,ev.entry.y-12,'#c8b286',95);e.fx('text',ev.entry.x,ev.entry.y-125,'#d4b790',16,'증원');}
     hs.flags[key]=true;if(combat(ev.action)){spawned=true;hs.lastCombatEventBoundary=boundary;}
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);
@@ -26535,7 +27024,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
  }
  if(q.phase==='act'&&!q.started){q.started=true;let target=e.unit(q.targetId);if(!target||target.dead)target=e.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
   if(u.allyRole==='porter'){const car=e.unit('objective'),block=q.blockerId&&b.terrain.find(t=>t.id===q.blockerId&&!t.broken);if(block&&car&&block.x-car.x<260){e.damageTerrain(block,145+u.attack*35,0,u.id);log(e,u,'clear-road',block.id);e.fx('slash',block.x+block.w*.5,block.y+block.h*.4,'#c1b18c',70);if(block.broken)app.event('호위대가 길을 막은 뿌리를 잘라냈다.');}else if(car){car.shield=Math.max(car.shield,38);log(e,u,'escort',car.id);e.fx('ring',car.x,car.y-45,'#b6c1a2',40);}q.phase='after';q.elapsed=0;}
-  else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const near=coalition(e).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1350).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];if(near){if(u.allyRole==='healer'){const heal=Math.min(near.maxHp-near.hp,Math.round(near.maxHp*.11));near.hp+=heal;e.fx('text',near.x,near.y-near.h-10,'#b9c6a8',16,'+'+heal);log(e,u,'heal',near.id);}else{near.shield=Math.max(near.shield,75);log(e,u,'ward',near.id);}e.fx('line',u.x,u.y-55,'#91b9ad',2,undefined);e.fx('ring',near.x,near.y-45,'#9cb7a4',45);}q.phase='after';q.elapsed=0;}
+  else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const near=coalition(e).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1350).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];if(near){if(u.allyRole==='healer'){const heal=Math.min(near.maxHp-near.hp,Math.round(near.maxHp*.11));near.hp+=heal;G.HonroProgression.recordHeal(b,near,u.id,heal);e.fx('text',near.x,near.y-near.h-10,'#b9c6a8',16,'+'+heal);log(e,u,'heal',near.id);}else{const shieldBefore=near.shield;near.shield=Math.max(near.shield,75);G.HonroProgression.shieldAdded(b,near,u.id,shieldBefore);log(e,u,'ward',near.id);}e.fx('line',u.x,u.y-55,'#91b9ad',2,undefined);e.fx('ring',near.x,near.y-45,'#9cb7a4',45);}q.phase='after';q.elapsed=0;}
   else if((u.allyRole==='daoist'||u.allyRole==='medium')&&target&&!target.dead){const nearby=e.alive(1).filter(v=>Math.hypot(v.x-target.x,(v.y-target.y)*.8)<260).length,skill=u.allyRole==='daoist'?(nearby>=2?'M06':'M01'):(nearby>=2?'LO10':'LO09');u.loadout=[skill];u.ranks[skill]=Math.max(1,u.ranks[skill]||1);u.focus=999;let aim=null;
    const targets=[target,...e.alive(1).filter(v=>v!==target).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2)];
    const key=e.planningKey()+'|'+q.index+'|'+skill+'|'+targets.map(t=>t.id).join(',');let work=aiming.get(e);
@@ -26552,13 +27041,13 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
  if(q.phase==='after'){e.stepUnits(dt);if(q.elapsed>=e.actionReviewSeconds())finish(e,q);}
 }
 function missionTick(app,dt){G.HonroMission.tick(app,dt);}
-function restore(e,f){for(const u of coalition(e)){u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*f));if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*(f+.10)));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}}
+function restore(e,f){for(const u of coalition(e)){const hpBefore=u.hp;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*f));G.HonroProgression.recordHeal(e.b,u,'',u.hp-hpBefore);if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*(f+.10)));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}}
 function execute(app,a){const e=app.engine,b=e.b,st=app.stage,hero=e.heroesAlive()[0];if(!a)return true;
  if(a.type==='multi'){
    // Reserve all spawn positions before mutating the world: a blocked second group
    // must not duplicate the first group every retry.
    const pending=[];const shadow={...b,units:[...b.units],nextId:b.nextId};
-   for(const q of a.actions||[])if(q.type==='spawn'||q.type==='sniperAmbush'){const list=prepareSpawn(shadow,st,q,hero);if(!list)return false;pending.push(...list);shadow.units.push(...list);}
+   for(const [qi,q] of (a.actions||[]).entries())if(q.type==='spawn'||q.type==='sniperAmbush'){const list=prepareSpawn(shadow,st,{...q,source:q.source||(a.source?a.source+':'+qi:undefined),contributionSource:q.contributionSource||((a.contributionSource||a.source)?(a.contributionSource||a.source)+':'+qi:undefined)},hero);if(!list)return false;pending.push(...list);shadow.units.push(...list);}
    b.nextId=shadow.nextId;b.units.push(...pending);b.honroCounters.spawned+=pending.length;
    for(const q of a.actions||[])if(q.type!=='spawn'&&q.type!=='sniperAmbush')execute(app,q);
    return true;
@@ -26569,7 +27058,7 @@ function execute(app,a){const e=app.engine,b=e.b,st=app.stage,hero=e.heroesAlive
    b.nextId=shadow.nextId;b.units.push(...list);b.honroCounters.spawned+=list.length;return true;
  }
  if(a.type==='ally'){const x=clamp(a.x,50,b.width-60),y=st.id===7&&!b.honroLayoutRevision?(hero?.y||3500):undefined;const u=W.ally(b,st,'ally-'+b.nextId,a.role,x,y),p=G.HonroTerrain.place(b,u,{flying:false,maxDistance:1600});if(!p)return false;Object.assign(u,p,{spawnX:p.x,spawnY:p.y});b.nextId++;b.units.push(u);}
- if(a.type==='convoyWard'){if(a.actor&&!e.b.units.some(u=>u.id===a.actor&&!u.dead&&u.hp>0))return false;const car=e.unit('objective');for(const u of coalition(e).filter(v=>!car||Math.abs(v.x-car.x)<1200)){u.shield=Math.max(u.shield,90);e.fx('ring',u.x,u.y-u.h*.5,'#9ebaa8',48);}return;}
+ if(a.type==='convoyWard'){if(a.actor&&!e.b.units.some(u=>u.id===a.actor&&!u.dead&&u.hp>0))return false;const car=e.unit('objective');for(const u of coalition(e).filter(v=>!car||Math.abs(v.x-car.x)<1200)){const before=u.shield;u.shield=Math.max(u.shield,90);G.HonroProgression.shieldAdded(b,u,a.actor||'',before);e.fx('ring',u.x,u.y-u.h*.5,'#9ebaa8',48);}return;}
  if(a.type==='wind')b.wind=a.value;if(a.type==='fog')e.setEnvironment({dragScale:a.drag});if(a.type==='rest')restore(e,a.fraction);if(a.type==='break'){const t=b.terrain.find(t=>t.id===a.terrain);if(t){t.broken=true;t.hp=0;b.sceneVersion++;}}
 }
 function prepareSpawn(b,st,a,hero){
@@ -26589,7 +27078,7 @@ function prepareSpawn(b,st,a,hero){
    const accept=flying&&a.requireFlightClearance?(x,y)=>C.flightClear({b:space},u,{x,y}):null;
    const position=G.HonroTerrain.place(space,u,{flying,maxDistance:a.maxDistance??1600,clearance:a.clearance??18,accept});
    if(!position)return null;
-   Object.assign(u,position,{id:(ambush?'sniper-crow-':'event-')+id,awake:true,aggroUntil:b.round+(ambush?6:3),spawnX:position.x,spawnY:position.y});
+   Object.assign(u,position,{honroContributionId:'wave:'+(a.contributionSource||a.source||[a.type,a.kind,a.x,a.y].join(':'))+':'+i,id:(ambush?'sniper-crow-':'event-')+id,awake:true,aggroUntil:b.round+(ambush?6:3),spawnX:position.x,spawnY:position.y});
    if(a.source)u.honroSpawnSource=a.source;
    if(ambush){u.group=-2;u.honroTargetId=archer.id;u.honroTargetUntil=b.round+5;}
    list.push(u);
@@ -26609,7 +27098,7 @@ function channeler(b,sodan,position,fraction){const C=G.HONRO_CORE,h=structuredC
 }
 function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('boss'),space=Math.max(0,FINALE_CAP-e.alive(1).length),n=Math.min(index===0?8:6,space);if(!n)return index>0;
  const before=new Set(b.units.map(u=>u.id)),sites=hs.finaleSites||finaleSites(b),front=sites[index%2===0?1:0],rear=sites[index%2===0?0:1];
- const actions=[{type:'spawn',n:Math.ceil(n*.5),kind:index%3===2?'boar':'hound',site:front},{type:'spawn',n:Math.floor(n*.5),kind:'crow',site:rear}].filter(a=>a.n).map(a=>({...a,x:a.site.x,y:a.site.y,support:a.site.support,spacing:140,maxDistance:288,source:a.site.id}));
+ const actions=[{type:'spawn',n:Math.ceil(n*.5),kind:index%3===2?'boar':'hound',site:front},{type:'spawn',n:Math.floor(n*.5),kind:'crow',site:rear}].filter(a=>a.n).map(a=>({...a,x:a.site.x,y:a.site.y,support:a.site.support,spacing:140,maxDistance:288,source:a.site.id,contributionSource:`finale:${index}:${a.site.id}`}));
  if(G.HonroAllies.execute(app,{type:'multi',actions})===false)return false;
  const units=b.units.filter(u=>!before.has(u.id));for(let i=0;i<units.length;i++){const u=units[i];u.aggroUntil=b.round+10;if(i%2===0){u.honroTargetId=boss.id;u.honroTargetUntil=b.round+10;}}
  hs.finaleSites=sites;hs.finaleWaves??=[];hs.finaleWaves.push({index,round:b.round,units:units.map(u=>u.id),sources:actions.map(a=>a.source)});for(const site of sites)e.fx('ring',site.x,site.y-45,'#b85e5b',90);app.event(`${front.label}에서 짐승, ${rear.label}에서 까마귀가 몰려온다 · ${index+1}차 습격`);return true;}
@@ -26650,8 +27139,9 @@ function reinforceHold(app,boundary){
  const n=Math.min(contested?2:4,minimum-foes,68-b.units.length);
  for(const item of ordered){const site=item.site;
   for(let count=n;count>=1;count--){
-   const spawned=G.HonroAllies.execute(app,{type:'spawn',n:count,kind:site.kind,x:site.x,y:site.y,support:site.support,spacing:contested?240:110,maxDistance:260,clearance:contested?100:18,source:site.id});
+   const spawned=G.HonroAllies.execute(app,{type:'spawn',n:count,kind:site.kind,x:site.x,y:site.y,support:site.support,spacing:contested?240:110,maxDistance:260,clearance:contested?100:18,source:site.id,contributionSource:`habitat:${st.objective}:${hs.habitatContributionWave||0}`});
    if(spawned===false)continue;
+   hs.habitatContributionWave=(hs.habitatContributionWave||0)+1;
    e.fx('ring',site.x,site.y-28,'#a46f73',56);app.event(`${site.label}에서 들린 짐승이 나타났다.`);return;
   }
  }
@@ -26661,10 +27151,11 @@ function tick(app,dt){
  if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
  if(G.HonroAct2?.active(e.b)){G.HonroAct2.tick(app,dt);return;}
  if(G.HonroAct3?.active(e.b)){G.HonroAct3.tick(app,dt);return;}
- const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
+ const b=e.b,st=app.stage,hs=b.honroState,heroes=e.heroesAlive();if(b.phase==='won')G.HonroObjectiveContributions?.beforeComplete(b,st);if(!hs||!heroes.length||['won','lost'].includes(b.phase))return;
  if(st.id===7&&(hs.rescuedCount||0)>=3){const instruction=l=>l[2]?.storyId?.includes('entry-follow-7-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(instruction));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!instruction(l));}
  const lead=heroes.reduce((a,c)=>a.x>c.x?a:c),height=Math.min(...heroes.map(h=>h.y)),boundary=b.phase==='transition'&&!b.projectiles.length&&!e.settleBusy();
  for(const m of b.honroMarkers||[]){
+   if(m.action==='rescue'&&!m.collected){const target=e.unit(m.target);G.HonroObjectiveContributions?.approach(b,m.id,heroes,target,220,!!target&&!e.alive(1).some(v=>Math.abs(v.y-target.y)<=150&&Math.hypot(v.x-target.x,(v.y-target.y)*.75)<=220));}
    const distance=m.type==='sector'?430:m.type==='relic'?155:180;
    if(heroes.some(u=>Math.hypot(u.x-m.x,(u.y-m.y)*(m.type==='sector'?.6:1))<distance))m.honroPending=true;
    if(!m.honroPending)continue;
@@ -26673,7 +27164,7 @@ function tick(app,dt){
    // Only this authored layered encounter narrows the existing threat volume;
    // legacy saves and every other chapter retain their original rest contract.
    if(m.type==='rest'&&!m.collected&&!e.alive(1).some(v=>Math.abs(v.x-m.x)<470&&!v.fixed&&(b.honroStage!==8||!G.HonroEncounterDensity?.active(b)||Math.abs(v.y-m.y)<650))){
-     m.collected=true;for(const u of G.HonroAllies.coalition(e)){u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.30));if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*.40));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}e.emit('sound',{name:'heal'});app.event('불씨를 지켰다. 동행이 숨을 고른다.');
+     m.collected=true;for(const u of G.HonroAllies.coalition(e)){const hpBefore=u.hp;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.30));G.HonroProgression.recordHeal(b,u,'',u.hp-hpBefore);if(!u.honroCivilian)u.focus=Math.min(u.maxFocus,u.focus+Math.round(u.maxFocus*.40));e.fx('ring',u.x,u.y-u.h*.5,'#a9b892',40);}e.emit('sound',{name:'heal'});app.event('불씨를 지켰다. 동행이 숨을 고른다.');
    }
    if(m.type==='relic'&&!m.collected){m.collected=true;app.event('길에 남은 기록을 주웠다.');}
  }
@@ -26683,8 +27174,8 @@ function tick(app,dt){
  const obj=e.unit('objective');
  if(st.objective==='rescue'&&obj&&!obj.dead){
    if(!hs.rescued&&heroes.some(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205))hs.rescuePending=true;
-   if(hs.rescuePending&&!hs.rescued){hs.rescued=true;app.event('뒤처진 피란민이 일행을 따라오기 시작한다.');}
-   if(hs.rescued&&lead.x>obj.x+65&&b.phase!=='ally'){obj.x+=Math.min(dt*360,lead.x-obj.x-60);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
+   if(hs.rescuePending&&!hs.rescued){const rescuer=heroes.find(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205);if(rescuer)G.HonroObjectiveContributions?.interact(b,'rescue-carrier',rescuer);hs.rescued=true;app.event('뒤처진 피란민이 일행을 따라오기 시작한다.');}
+   if(hs.rescued&&lead.x>obj.x+65&&b.phase!=='ally'){const before={x:obj.x,y:obj.y},exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-130,y:obj.y};obj.x+=Math.min(dt*360,lead.x-obj.x-60);obj.y=G.HonroWorld.top(b,obj.x,obj.y);G.HonroObjectiveContributions?.escort(b,'rescue-carrier',obj,{x:exit.x-140,y:exit.y},[lead],before,0);}
  }
  if(boundary&&b.side===0&&hs.lastRitualRound!==b.round){
    hs.lastRitualRound=b.round;hs.lastRound=b.round;
@@ -26695,6 +27186,8 @@ function tick(app,dt){
  reinforceHold(app,boundary);
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
  if(st.id===10)finale(app);
+ if(st.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=heroes.filter(u=>u.x>=exit.x-120);if(arrived.length)G.HonroObjectiveContributions?.arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}
+ G.HonroObjectiveContributions?.observe(b,heroes);
  app.checkMission(e);
 }
 G.HonroMission={tick,finale,finaleSites,FINALE_TURNS,FINALE_CAP};
@@ -26817,6 +27310,56 @@ G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refres
 })(globalThis);
 
 (function(G){'use strict';
+// Evidence lives in the stage ledger, so retries cannot refill a goal. No
+// positions, elapsed rounds or nearby bystanders earn points by themselves.
+const hero=u=>!!u&&u.side===0&&!u.summoned&&!u.enthrall&&!!u.cls;
+const alive=u=>hero(u)&&!u.dead&&u.hp>0;
+const state=b=>b?.honroCustom?null:b?.honroGrowth?.ledger?.stages?.[b.honroStage]?.contribution;
+function evidence(b){const s=state(b);if(!s||s.version!==4)return null;const mem=s.objectiveEvidence??={};mem.terrain??={};mem.escorts??={};mem.arrivals??={};return mem;}
+function owner(b,id){const source=typeof id==='object'?id?.id:id;let u=typeof id==='object'?id:b.units.find(u=>u.id===id),seen=new Set();while(u&&(u.summoned||u.enthrall)&&!seen.has(u.id)){seen.add(u.id);u=b.units.find(v=>v.id===(u.summonOwner||u.enthrall?.owner));}if(hero(u))return u;const saved=state(b),cls=saved?.owners?.[source]||(saved?.actors?.includes(source)?source:null);return cls?(b.units.find(v=>hero(v)&&v.cls===cls)||{id:cls,cls,side:0}):null;}
+function contributors(b,actors){const out={};for(const item of actors||[]){if(!item)continue;if(item.id==='_system'){const weight=item.weight??1;if(Number.isFinite(weight)&&weight>0)out._system=(out._system||0)+weight;continue;}const u=owner(b,item.id??item),weight=item.weight??1;if(u&&Number.isFinite(weight)&&weight>0)out[u.id]=(out[u.id]||0)+weight;}return Object.entries(out).map(([id,weight])=>({id,weight}));}
+function award(b,key,actors,points=20){if(!evidence(b)||!(points>0))return false;const list=contributors(b,actors);return list.length?G.HonroProgression.objective(b,'goal:'+key,list,points):false;}
+function observe(b,actors){if(!evidence(b))return;const travel=b.honroState.objectiveTravel??={};for(const u of actors.filter(alive))travel[u.id]={x:u.x,y:u.y};}
+function movement(b,actor,provider,from,to){if(!evidence(b)||!alive(actor)||!owner(b,provider)||!from||!to||Math.hypot(to.x-from.x,to.y-from.y)<1)return;
+ (b.honroState.objectiveGateTravel??={})[actor.id]={provider:owner(b,provider).id,from:{x:from.x,y:from.y},to:{x:to.x,y:to.y},round:b.round,end:b.teamEnds?.[0]||0};
+}
+function arrivalContributors(b,actors,inside){const out=[];for(const u of actors.filter(alive)){const receipt=b.honroState.objectiveGateTravel?.[u.id],provider=receipt&&owner(b,receipt.provider),gate=provider&&provider.id!==u.id&&receipt.round===b.round&&receipt.end===(b.teamEnds?.[0]||0)&&!inside(receipt.from)&&inside(receipt.to)&&Math.hypot(u.x-receipt.to.x,u.y-receipt.to.y)<=200;out.push({id:u.id,weight:gate ? .75 : 1});if(gate){out.push({id:provider.id,weight:.25});delete b.honroState.objectiveGateTravel[u.id];}}return out;}
+function arrive(b,key,actors,inside,points=20){return award(b,'reach:'+key,arrivalContributors(b,actors,inside),points);}
+// Rescue entry is an actual outside→inside movement into a safe working area.
+// Merely ticking while someone is already beside the resident earns nothing.
+function approach(b,key,actors,point,radius=220,safe=true){const mem=evidence(b);if(!mem||!safe||!point||mem.arrivals[key])return false;const inside=p=>Math.abs(p.y-point.y)<=150&&Math.hypot(p.x-point.x,(p.y-point.y)*.75)<=radius;
+ const arrivals=actors.filter(alive).filter(u=>{const old=b.honroState.objectiveTravel?.[u.id]||b.honroState.objectiveGateTravel?.[u.id]?.from;return old&&!inside(old)&&inside(u)&&Math.hypot(u.x-old.x,u.y-old.y)>1;});if(!arrivals.length)return false;
+ const actor=arrivals.find(u=>u.id===b.active)||arrivals[0];award(b,'approach:'+key,arrivalContributors(b,[actor],inside),18);mem.arrivals[key]=true;return true;
+}
+function interact(b,key,actor,{rescue=false,progress=false}={}){return award(b,'interact:'+key,[actor],rescue&&evidence(b)?.arrivals[key]||progress?2:5);}
+function maintain(b,key,h,guards,progressed,rounds,continuous,intervalEnded=false){if(!evidence(b))return;const ids=guards.filter(alive).map(u=>u.id),prior=h.contributionGuards;
+ if(progressed){const sustained=(prior||[]).filter(id=>ids.includes(id));if(h.progress<=rounds)award(b,'hold:'+key+':'+h.progress,sustained.length?sustained.map(id=>({id})):[{id:'_system',weight:1}],20/Math.max(1,rounds));h.contributionGuards=ids;}
+ else if(intervalEnded&&continuous)h.contributionGuards=ids;
+ else if(!continuous)h.contributionGuards=[];
+ else h.contributionGuards=prior===undefined?ids:prior.filter(id=>ids.includes(id));
+}
+function terrain(e,t,beforeHp,source){const b=e.b,mem=evidence(b);if(!mem||!t?.id||!Number.isFinite(beforeHp)||!Number.isFinite(t.hp)||t.hp>=beforeHp)return;
+ const authored=(G.HonroAct2?.active(b)?G.HonroAct2.steps(b):G.HonroAct3?.active(b)?G.HonroAct3.steps(b):[]).some(s=>s.kind==='destroy'&&s.id===t.id);
+ if(!authored&&!t.honroSeal&&!t.honroBlocker&&t.id!=='sodan-binding')return;
+ const r=mem.terrain[t.id]??={maxDamage:0,maxHp:Math.max(1,t.maxHp||beforeHp),weights:{}},lost=Math.max(0,Math.min(beforeHp,beforeHp-t.hp));
+ t.honroContributionDamage=Math.min(r.maxHp,(t.honroContributionDamage||0)+lost);const delta=Math.max(0,t.honroContributionDamage-r.maxDamage);r.maxDamage=Math.max(r.maxDamage,t.honroContributionDamage);
+ const u=owner(b,source);if(delta&&u){let support=null;if(b.honroStage===5&&t.id==='cliff-cleat'){const ritual=b.honroState.ritual,holder=ritual?.active&&owner(b,ritual.holderId),m=b.honroMarkers.find(m=>m.id==='receiver-5');if(alive(holder)&&holder.cls==='mage'&&m&&Math.abs(holder.x-m.x)<=125&&Math.abs(holder.y-m.y)<=80)support=holder;}
+  r.weights[u.id]=(r.weights[u.id]||0)+delta*(support&&support.id!==u.id ? .6 : 1);if(support&&support.id!==u.id)r.weights[support.id]=(r.weights[support.id]||0)+delta*.4;
+ }
+ if(t.hp<=0||t.broken){const rows=Object.entries(r.weights).map(([id,weight])=>({id,weight})),known=rows.reduce((sum,r)=>sum+r.weight,0);rows.push({id:'_system',weight:Math.max(0,r.maxHp-known)});award(b,'terrain:'+t.id,rows,20);}
+}
+function finishEscort(b,key){const r=evidence(b)?.escorts[key];if(!r||!r.maxProgress)return false;const rows=Object.entries(r.weights).map(([id,weight])=>({id,weight})),known=rows.reduce((n,r)=>n+r.weight,0);rows.push({id:'_system',weight:Math.max(0,1-known)});return award(b,'escort:'+key,rows,20);}
+function escort(b,key,npc,goal,actors,before,radius=170){const mem=evidence(b);if(!mem||!npc||!goal||!before)return;const r=mem.escorts[key]??={distance:Math.max(1,Math.hypot(before.x-goal.x,before.y-goal.y)-radius),maxProgress:0,weights:{}};
+ const fraction=p=>Math.min(1,Math.max(0,1-Math.max(0,Math.hypot(p.x-goal.x,p.y-goal.y)-radius)/r.distance)),progress=fraction(npc),prior=fraction(before),delta=Math.max(0,progress-Math.max(r.maxProgress,prior));r.maxProgress=Math.max(r.maxProgress,prior,progress);
+ const rows=contributors(b,actors),weight=rows.reduce((n,r)=>n+r.weight,0),moved=Math.hypot(npc.x-before.x,npc.y-before.y)>.001;if(delta&&moved&&weight)for(const row of rows)r.weights[row.id]=(r.weights[row.id]||0)+delta*row.weight/weight;
+ if(progress>=1)finishEscort(b,key);
+}
+// The engine can confirm a win before the next mission tick (e.g. a final jump).
+function beforeComplete(b,st){if(!evidence(b))return;if(st?.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=b.units.filter(u=>alive(u)&&u.x>=exit.x-120);if(arrived.length)arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}if(st?.objective==='rescue')finishEscort(b,'rescue-carrier');}
+G.HonroObjectiveContributions={evidence,owner,award,observe,movement,arrive,approach,interact,maintain,terrain,escort,finishEscort,beforeComplete};
+})(globalThis);
+
+(function(G){'use strict';
 const symbols={
  stun:'M8 1 9.5 5 14 5.5 10.5 8.5 11.5 13 8 10.5 4.5 13 5.5 8.5 2 5.5 6.5 5Z',
  bind:'M6 5 9 2Q12 0 14 3Q15 5 13 7L10 10M6 6 3 9Q1 12 4 14Q6 15 8 13L11 10M5 11 11 5',
@@ -26923,7 +27466,7 @@ function refresh(app,u){
    const focused=el.contains(document.activeElement);el.dataset.sig=sig;el.dataset.unit=u.id;
    const short=why==='이동·발사 가능'?'상태':why.startsWith('기력 부족')?'기력 부족':why.startsWith('재사용')?'재사용 대기':why.startsWith('기절')?'기절':why.split(' · ')[0];
    const label=states.length?`${states[0].name}${states.length>1?' +'+(states.length-1):''}`:short;
-   el.innerHTML=`<div class="status-details"><button class="status-trigger" type="button" data-action="inspect-hero" data-id="${esc(u.id)}" aria-label="${esc(u.name)} 상태와 캐릭터 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span></button></div><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span><span class="status-announcement" id="combat-action-reason">${esc(why)}</span>`;
+   el.innerHTML=`<div class="status-details"><button class="status-trigger" type="button" data-action="inspect-hero" data-id="${esc(u.id)}" aria-label="${esc(u.name)} 상태와 캐릭터 정보"><span class="status-glyph" style="--status-color:${states[0]?.color||'#b7cbbf'}">${glyph(states[0]?.key||'shield')}${esc(label)}</span><span id="combat-passives" class="combat-passives" hidden></span></button></div><span class="status-announcement" role="status" aria-live="polite">${esc(states.map(s=>s.detail).join(' / '))}</span><span class="status-announcement" id="combat-action-reason">${esc(why)}</span>`;
    const trigger=el.querySelector('.status-trigger');
    // Native Space/Enter activation opens information without also charging a shot.
    trigger.onkeydown=trigger.onkeyup=e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();};
@@ -26938,13 +27481,24 @@ function refresh(app,u){
  }
  const fire=document.getElementById('fire');if(fire){fire.title=fire.disabled?why:'누른 채 충전, 손을 떼어 발사';fire.setAttribute('aria-describedby','combat-action-reason');}
 }
-function passives(app,u){
- const host=document.getElementById('combat-passives');if(!host)return;const C=G.HONRO_CORE,r=u.ranks?.MP05||0,chain=u.swordChain||[],sig=[u.id,u.jucheon,u.jucheonReady,chain.join(','),u.harmony].join('|');if(host.dataset.sig===sig)return;host.dataset.sig=sig;
- if(u.cls==='mage'&&r){const percent=u.jucheonReady?100:Math.round(100*(u.jucheon||0)/C.JUCHEON_THRESHOLD[r-1]);host.hidden=false;host.innerHTML=`<span class="jucheon-state ${u.jucheonReady?'ready':''}" role="meter" aria-label="주천" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" class="track"/><circle cx="12" cy="12" r="9" pathLength="100" stroke-dasharray="${percent} 100"/></svg>${u.jucheonReady?'주천완성':`주천 ${percent}%`}</span>`;}
- else if(u.cls==='knight'&&u.ranks?.SP04){host.hidden=false;host.innerHTML=`<span class="sword-chain" aria-label="연세">${[['sword','검술'],['rush','돌격'],['blade','검기']].map(([id,name])=>`<i class="${chain.includes(id)?'linked':''}">${name}</i>`).join('')}${u.harmony?'<b>합세</b>':''}</span>`;}
- else {host.hidden=true;host.innerHTML='';}
+function passivePresentation(u){
+ const C=G.HONRO_CORE,r=u.ranks?.MP05||0,chain=u.swordChain||[];
+ if(u.cls==='mage'&&r){
+  const percent=u.jucheonReady?100:Math.max(0,Math.min(100,Math.round(100*(u.jucheon||0)/C.JUCHEON_THRESHOLD[r-1]))),description=u.jucheonReady?'주천완성':`주천 ${percent}%`;
+  return {kind:'jucheon',label:'주천',description,html:`<span class="jucheon-state ${u.jucheonReady?'ready':''}" role="meter" aria-label="주천" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" aria-valuetext="${description}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" class="track"/><circle cx="12" cy="12" r="9" pathLength="100" stroke-dasharray="${percent} 100"/></svg><span class="passive-full">${description}</span><span class="passive-short" aria-hidden="true">${u.jucheonReady?'완':`${percent}%`}</span></span>`};
+ }
+ if(u.cls==='knight'&&u.ranks?.SP04){
+  const schools=[['sword','검술','검'],['rush','돌격','돌'],['blade','검기','기']],description=u.harmony?'합세 준비':`연세 · ${schools.filter(([id])=>chain.includes(id)).map(([,name])=>name).join(' · ')||'아직 연결 없음'}`;
+  return {kind:'chain',label:u.harmony?'합세':'연세',description,html:`<span class="sword-chain" aria-label="${description}">${schools.map(([id,name,short])=>`<i class="${chain.includes(id)?'linked':''}" data-short="${short}">${name}</i>`).join('')}${u.harmony?'<b class="passive-full">합세</b>':''}</span>`};
+ }
+ return null;
 }
-G.HonroCombatStatus={entries,effects,draw,reason,embedded,refresh,passives};
+function passives(app,u){
+ const host=document.getElementById('combat-passives');if(!host)return;const trigger=document.getElementById('combat-status')?.querySelector('.status-trigger'),view=passivePresentation(u),sig=JSON.stringify([u.id,view]);if(host.dataset.sig===sig)return;host.dataset.sig=sig;
+ host.hidden=!view;host.innerHTML=view?.html||'';
+ if(trigger){if(view){trigger.dataset.passive=view.kind;trigger.dataset.passiveLabel=view.label;trigger.title=view.description+' · 상태와 캐릭터 정보';}else{delete trigger.dataset.passive;delete trigger.dataset.passiveLabel;trigger.removeAttribute?.('title');}}
+}
+G.HonroCombatStatus={entries,effects,draw,reason,embedded,refresh,passives,passivePresentation};
 })(globalThis);
 
 (function(G){'use strict';
@@ -28162,11 +28716,12 @@ function expose(b,until,site,radius=Infinity){for(const u of b.units)if(u.honroS
 function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=>q.id===m.id);
  if(!eligibility(app,m).ok)return false;
  if(m.id.startsWith('spirit-lamp')){expose(b,b.round+2,m,m.radius||1200);app.event('원혼등불 · 주변의 혼이 두 턴 동안 형태를 드러낸다.');}
- else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.');}
+ else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;G.HonroObjectiveContributions?.interact(b,m.id,e.active);const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.');}
  else{
   if(!s||s.id!==m.id)return false;
   if(s.kind==='rescue'){
    const spirit=e.unit(m.spiritId),resident=e.unit(m.target);if(!resident||resident.dead)return false;
+   G.HonroObjectiveContributions?.approach(b,s.id,e.heroesAlive(),resident,220,!interactionThreats(b,m).length);
    // Extraction attacks the possessing spirit, never the person's HP.
    if(spirit&&!spirit.dead){G.HonroProgression.defeat(e,spirit,e.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}
    resident.honroResolved=true;resident.shield=Math.max(resident.shield,Math.round(resident.maxHp*.3));a.rescued.push(resident.id);
@@ -28185,6 +28740,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
   if(s.id.startsWith('separate-')){if(!revision2(b)){a.pendingWaves??=[];a.pendingWaves.push({key:s.id,kind:s.id==='separate-3'?'bellCluster':'echo',n:2});}expose(b,b.round+2,m,900);}
   if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.');}
   if(s.id==='escort')a.escort=true;
+  G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
   completeStep(app,s);
  }
  if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
@@ -28256,19 +28812,21 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  const s=current(b),m=s&&marker(b,s.id);
  if(revision2(b)&&s?.kind==='hold'&&m){
   a.holds??={};const h=a.holds[s.id]??={progress:0,spawned:0,lastRound:b.round,enteredRound:b.round,continuous:false};
-  const guarded=heroes.some(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),contested=b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
+  const guards=heroes.filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=b.round>h.lastRound,contested=b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
   if(!guarded||contested)h.continuous=false;
   if(b.round>h.lastRound){if(h.continuous&&guarded&&!contested)h.progress++;h.lastRound=b.round;h.continuous=guarded&&!contested;app.dirty=true;}
   if(h.guarded===undefined)h.continuous=guarded&&!contested;
+  G.HonroObjectiveContributions?.maintain(b,s.id,h,guards,h.progress>priorProgress,s.rounds,h.continuous,intervalEnded);
   h.guarded=guarded;h.contested=contested;
   if(app.actorBoundary&&guarded&&!a.events['story:'+s.id]){a.events['story:'+s.id]=true;say(app,s.id+'-start',app.stage.beats?.[s.id+':start']);}
   if(app.actorBoundary&&guarded&&h.spawned<(s.wave?.count||0)&&h.waveRound!==b.round){const n=Math.min(3,s.wave.count-h.spawned),key=s.id+'-'+h.spawned;if(wave(app,key,s.wave.kind,n,s.id,s.wave.eliteEvery)){h.spawned+=n;h.waveRound=b.round;}}
  }
  if(s?.kind==='route')G.HonroRouteBranches?.commit(app,s);
- if(s?.kind==='reach'&&heroes.some(u=>Math.hypot(u.x-m.x,u.y-m.y)<150))completeStep(app,s);
+ if(s?.kind==='rescue')G.HonroObjectiveContributions?.approach(b,s.id,heroes,e.unit(m.target)||m,220,!interactionThreats(b,m).length);
+ if(s?.kind==='reach'&&heroes.some(u=>Math.hypot(u.x-m.x,u.y-m.y)<150)){const arrived=heroes.filter(u=>Math.hypot(u.x-m.x,u.y-m.y)<150);G.HonroObjectiveContributions?.arrive(b,s.id,[arrived.find(u=>u.id===b.active)||arrived[0]],p=>Math.hypot(p.x-m.x,p.y-m.y)<150);completeStep(app,s);}
  if(s?.kind==='escort'&&a.escort){const npc=e.unit('objective'),leader=heroes.filter(u=>u.y<=(npc?.y??0)+160).sort((u,v)=>v.x-u.x)[0];
-  if(npc&&!npc.dead&&leader&&leader.x>npc.x+90&&dt>0){e.walk(npc,1,Math.min(dt,.05));npc.moveLeft=900;}
-  if(npc&&Math.hypot(npc.x-m.x,npc.y-m.y)<170)completeStep(app,s);
+  if(npc&&!npc.dead&&leader&&leader.x>npc.x+90&&dt>0){const before={x:npc.x,y:npc.y};e.walk(npc,1,Math.min(dt,.05));npc.moveLeft=900;G.HonroObjectiveContributions?.escort(b,s.id,npc,m,[leader],before);}
+  if(npc&&Math.hypot(npc.x-m.x,npc.y-m.y)<170){G.HonroObjectiveContributions?.finishEscort(b,s.id);completeStep(app,s);}
  }
  if(app.actorBoundary){
   a.pendingWaves??=[];
@@ -28288,6 +28846,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
    if(b.round-u.honroEchoBorn>=2&&!u.honroPossessed){const d=G.HonroWorld.archetypes.picks;u.honroPossessed=true;u.name='잔향이 든 곡괭이';u.honroType='picks';u.honroVariant='picks';u.loadout=[...d.skills];u.ranks.H2PICK=1;u.honroSpirit=false;u.spiritHidden=false;u.fixed=false;u.existenceDefense={form:1,qi:1,soul:1.1};u.y=G.HonroWorld.top(b,u.x,u.y);e.message('방치된 잔향혼이 작업도구에 들었다.');}
   }
  }
+ G.HonroObjectiveContributions?.observe(b,heroes);
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
@@ -29705,8 +30264,9 @@ function completeStep(app,s){const b=app.engine.b,a=memory(b);if(a.done[s.id])re
  const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines));app.event(s.label+' · 완료');app.dirty=true;
 }
 function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=e.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=s.target&&e.unit(s.target);
- if(s.kind==='rescue'){u.honroResolved=true;u.shield=Math.max(u.shield||0,Math.round(u.maxHp*.3));}
+ if(s.kind==='rescue'){G.HonroObjectiveContributions?.approach(b,s.id,heroes(b),u,220);u.honroResolved=true;u.shield=Math.max(u.shield||0,Math.round(u.maxHp*.3));}
  if(s.startsEscort){a.escorts[s.target]={started:true};u.fixed=false;u.maxMove=u.moveLeft=900;u.walkSpeed=Math.min(u.walkSpeed||280,320);}
+ G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
  completeStep(app,s);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
@@ -29726,20 +30286,21 @@ function spawnHold(app,s,h){if(!s.wave||h.spawned>=s.wave.count)return true;cons
  h.spawned+=n;memory(b).events[key]=true;app.event('길목에 '+n+'명의 위협이 다가온다.');app.dirty=true;return true;
 }
 function holdTick(app,s,m){const b=app.engine.b,a=memory(b),end=b.teamEnds?.[1]||0,h=a.holds[s.id]??={progress:0,spawned:0,lastEnemyEnd:end,continuous:false};
- const guarded=heroes(b).some(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),contested=b.units.some(u=>u.side===1&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
+ const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
  if(!guarded||contested)h.continuous=false;
  else if(end===h.lastEnemyEnd&&b.side!==1)h.continuous=true;
  if(end>h.lastEnemyEnd){if(h.continuous&&guarded&&!contested)h.progress++;h.lastEnemyEnd=end;h.continuous=guarded&&!contested;app.dirty=true;}
  if(h.guarded===undefined)h.continuous=guarded&&!contested;
+ G.HonroObjectiveContributions?.maintain(b,s.id,h,guards,h.progress>priorProgress,s.rounds,h.continuous,intervalEnded);
  h.guarded=guarded;h.contested=contested;
  if(app.actorBoundary&&guarded)spawnHold(app,s,h);
 }
 function escortTick(app,s,m,dt){const e=app.engine,b=e.b,a=memory(b),npc=e.unit(s.target),escort=a.escorts[s.target];if(!escort?.started||!alive(npc))return;
  const route=(b.honroMarkers||[]).filter(q=>q.id.startsWith('route:'+s.id+':')).sort((a,b)=>Number(a.id.split(':').at(-1))-Number(b.id.split(':').at(-1)));
  escort.waypoints??={};let index=escort.waypoints[s.id]||0;while(route[index]&&sameFloor(npc,route[index],90))index++;escort.waypoints[s.id]=index;
- const goal=route[index]||m,dir=Math.sign(goal.x-npc.x),lead=heroes(b).some(u=>sameFloor(u,npc,950)&&(u.x-npc.x)*dir>65);
- if(dt>0&&dir&&lead&&!app.dialogue){npc.fixed=false;npc.moveLeft=900;e.walk(npc,dir,Math.min(dt,.05));}
- if(sameFloor(npc,m,170)&&heroes(b).some(u=>sameFloor(u,npc,540)))completeStep(app,s);
+ const goal=route[index]||m,dir=Math.sign(goal.x-npc.x),leaders=heroes(b).filter(u=>sameFloor(u,npc,950)&&(u.x-npc.x)*dir>65),lead=leaders.length>0;
+ if(dt>0&&dir&&lead&&!app.dialogue){const before={x:npc.x,y:npc.y};npc.fixed=false;npc.moveLeft=900;e.walk(npc,dir,Math.min(dt,.05));G.HonroObjectiveContributions?.escort(b,s.id,npc,m,[leaders.slice().sort((u,v)=>Math.hypot(u.x-before.x,u.y-before.y)-Math.hypot(v.x-before.x,v.y-before.y))[0]],before);}
+ if(sameFloor(npc,m,170)&&heroes(b).some(u=>sameFloor(u,npc,540))){G.HonroObjectiveContributions?.finishEscort(b,s.id);completeStep(app,s);}
 }
 function failure(b){if(!active(b))return null;const a=memory(b);if(b.honroStage===reunionStage(b)&&[1,2].includes(b.honroSplit?.version)&&!a.done['party-reunion']&&G.HonroSplitCampaign?.allPresent(b)===false)return'합류하기 전에 동행을 잃어 두 조사팀이 모일 수 없다. 이 장을 다시 시작하자.';if(b.units.some(u=>u.honroProtected&&!alive(u)))return'지켜야 할 주민을 잃었다. 이 장을 다시 시작할 수 있다.';
  for(const s of steps(b))if(!satisfied(b,s)&&s.requiredClass&&!heroes(b).some(u=>u.cls===s.requiredClass))return H.hero[s.requiredClass].name+'이 쓰러져 남은 목표를 이어갈 수 없다. 이 장을 다시 시작하자.';
@@ -29751,9 +30312,11 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['wo
  let s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  // Commit the reunion at the same actor boundary that opens its Story lock.
  // A dash crossing the circle earlier in the action is not a completed meeting.
- if(s){const m=marker(b,s.id);if(s.kind==='route')G.HonroRouteBranches?.commit(app,s);else if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&[1,2].includes(b.honroSplit?.version),present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;const crossing=G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.crossings(b).some(c=>c.markerId===s.id);if(G.HonroStakeCrossing?.allowsStep(b,s.id)!==false&&safeBoundary&&present&&group.length&&(crossing||(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r)))))completeStep(app,s);}else if(s.kind==='escort')escortTick(app,s,m,dt);}
+ if(s){const m=marker(b,s.id);if(s.kind==='route')G.HonroRouteBranches?.commit(app,s);else if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&[1,2].includes(b.honroSplit?.version),present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;const crossing=G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.crossings(b).some(c=>c.markerId===s.id);if(G.HonroStakeCrossing?.allowsStep(b,s.id)!==false&&safeBoundary&&present&&group.length&&(crossing||(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r))))){if(!crossing){const arrived=group.filter(u=>sameFloor(u,m,r));G.HonroObjectiveContributions?.arrive(b,s.id,s.allHeroes?arrived:[arrived.find(u=>u.id===b.active)||arrived[0]],p=>sameFloor(p,m,r));}completeStep(app,s);}}else if(s.kind==='escort')escortTick(app,s,m,dt);}
  s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  const group=heroes(b);
+ for(const step of readySteps(b))if(step.kind==='rescue'){const point=b.units.find(u=>u.id===step.target)||marker(b,step.id);G.HonroObjectiveContributions?.approach(b,step.id,group,point,220,!b.units.some(v=>v.side===1&&alive(v)&&sameFloor(v,point,220)));}
+ G.HonroObjectiveContributions?.observe(b,group);
  G.HonroEncounters.update(app,dt,{progress:Math.max(0,...group.map(u=>u.x)),height:Math.min(b.height,...group.map(u=>u.y)),broken:b.terrain.filter(t=>t.broken).length,collected:b.honroMarkers.filter(m=>m.collected).length});
  app.checkMission(e);
 }
@@ -31406,7 +31969,7 @@ function spawnMembers(app,action,at){const e=app.engine,b=e.b;if(!active(b)||!Ar
   if(!Number.isFinite(x)||!Number.isFinite(y)||!G.HonroWorld.archetypes[kind])return false;
   const contact=m.air&&flying?{y}:G.HonroMapEngine.surfaceY(b.terrain,x,y,support);if(!contact||!m.air&&(!support||Math.abs(contact.y-y)>.1))return false;
   const u=G.HonroWorld.createEnemy(shadow,app.stage,x,kind,next+i,y,true);tune(b,u,app.stage,m);
-  Object.assign(u,{id:'event-'+(next+i),awake:true,aggroUntil:b.round+3,honroSpawnSource:action.source,honroDensityBornRound:b.round,honroEncounterRole:m.role||m.honroDensityRole||'response',honroEncounterSupport:support,honroDensityCell:m.activationCell||null,honroCohort:m.cohort||m.honroCohort||'reinforcement',spawnX:x,spawnY:y,group:80+(b.honroEvents||[]).findIndex(ev=>ev.id===action.source)});
+  Object.assign(u,{honroContributionId:'wave:'+action.source+':'+i,id:'event-'+(next+i),awake:true,aggroUntil:b.round+3,honroSpawnSource:action.source,honroDensityBornRound:b.round,honroEncounterRole:m.role||m.honroDensityRole||'response',honroEncounterSupport:support,honroDensityCell:m.activationCell||null,honroCohort:m.cohort||m.honroCohort||'reinforcement',spawnX:x,spawnY:y,group:80+(b.honroEvents||[]).findIndex(ev=>ev.id===action.source)});
   shadow.units=[...b.units,...list];const point=G.HonroTerrain.place(shadow,u,{flying,maxDistance:0,clearance:18});
   if(!point||point.x!==x||Math.abs(point.y-y)>.1)return false;
   // Existing exact-body test includes low ceilings, actors, fields, projectiles
@@ -31701,7 +32264,7 @@ function spawnMembers(app,action,at){const e=app.engine,b=e.b;if(!formation(app,
  // Every exact pose has passed before the first factory call. Nothing below
  // searches a new surface, moves occupants, or can partially admit a group.
  for(const[i,m]of at.members.entries()){const u=G.HonroWorld.createEnemy(b,app.stage,m.x,m.kind,next+i,m.y,true);Object.assign(u,{honroAct3Encounter:1,honroAct3Elite:false});G.HonroAct3Encounters.tune(b,u,app.stage);G.HonroProgression.enemyXP(b,u);
-  Object.assign(u,{id:'event-'+(next+i),awake:true,aggroUntil:b.round+3,honroSpawnSource:action.source,honroVertical22Entry:action.source,honroVertical22BornRound:b.round,honroVertical22Cell:m.activationCell,honroEncounterRole:m.role||'response',honroEncounterSupport:m.support,honroCohort:'reinforcement',spawnX:m.x,spawnY:m.y,group:80+sources.indexOf(action.source)});list.push(u);
+  Object.assign(u,{honroContributionId:'wave:'+action.source+':'+i,id:'event-'+(next+i),awake:true,aggroUntil:b.round+3,honroSpawnSource:action.source,honroVertical22Entry:action.source,honroVertical22BornRound:b.round,honroVertical22Cell:m.activationCell,honroEncounterRole:m.role||'response',honroEncounterSupport:m.support,honroCohort:'reinforcement',spawnX:m.x,spawnY:m.y,group:80+sources.indexOf(action.source)});list.push(u);
  }b.nextId=next+list.length;b.units.push(...list);b.honroCounters.spawned+=list.length;return true;
 }
 const execute=W.execute;W.execute=function(app,action){const b=app.engine?.b,source=action?.source;if(!active(b)||action?.type!=='spawn'||!sources.includes(source))return execute(app,action);const m=memory(b);if(m.entries[source])return true;acceptOpportunity(app);const at=b.honroVerticalStage22Spec?.entries?.[source],w=m.warnings[source];if(!at||!w?.opportunity||w.cancelled||!safe(app))return false;
@@ -31744,6 +32307,7 @@ function commit(app,step){const b=app.engine.b;if(!active(b)||step?.kind!=='rout
  // Array order is the authored, persisted marker order. The current actor wins
  // a simultaneous split-party arrival; otherwise that fixed order is stable.
  const choices=candidates(b),u=b.units.find(u=>u.id===b.active),r=choices.find(r=>heroes(b).includes(u)&&reaches(b,u,marker(b,r.markerId)))||choices[0];if(!r)return false;
+ const point=marker(b,r.markerId),arrived=heroes(b).filter(u=>reaches(b,u,point));G.HonroObjectiveContributions?.arrive(b,'route:'+step.id,[arrived.find(u=>u.id===b.active)||arrived[0]],p=>reaches(b,p,point));
  Object.assign(state,{selectedRoute:r.id,sourceRun:b.session,fromStage:b.honroStage,toStage:b.honroRouteSpec.toStage,exitId:r.markerId,round:b.round});
  act(b).memory(b).done[step.id]=true;act(b).memory(b).checkpoints.push({id:step.id,route:r.id,round:b.round});const m=marker(b,r.markerId);if(m)m.collected=true;
  if(r.lines?.length)app.sayLines(r.lines);app.event(r.label||m?.label||step.label);app.dirty=true;return true;
@@ -36507,7 +37071,7 @@ function bottom(){
  const I=G.HonroFA?.icon||((n,c,s)=>''),vitals=[['hp','체력',''],['mp','기력','mp'],['move','이동도','movement']];
  return `<footer class="battle-bottom arcfall-hud honro-compact-hud" id="battle-bottom">
  <div class="hud-roster"><div class="hero-switches" id="hero-switches"></div><div id="combat-status" class="combat-status"></div></div>
- <div class="hud-vitals"><div id="combat-passives" class="combat-passives" hidden></div>${vitals.map(([id,name,style])=>`<div class="hpmp" data-vital="${id}"><div class="meter ${style}" role="group" aria-labelledby="${id}-name ${id}-label"><i id="${id}-fill"></i><label><span class="vital-name" id="${id}-name">${name}</span><span id="${id}-label"></span></label></div></div>`).join('')}</div>
+ <div class="hud-vitals">${vitals.map(([id,name,style])=>`<div class="hpmp" data-vital="${id}"><div class="meter ${style}" role="group" aria-labelledby="${id}-name ${id}-label"><i id="${id}-fill"></i><label><span class="vital-name" id="${id}-name">${name}</span><span id="${id}-label"></span></label></div></div>`).join('')}</div>
  <div class="hud-controls-row">
   <div class="joystick" id="joystick" role="application" aria-label="좌우 이동·위아래 조준"><div class="joystick-ring"><i id="stick-knob"></i><span class="axis-h"></span><span class="axis-v"></span></div><span class="stick-value" id="move-left"></span><div class="wind-gauge" role="meter" aria-label="바람" aria-valuemin="-30" aria-valuemax="30" aria-valuenow="0"><span class="wind-gauge-track"><i id="wind-left"></i><i id="wind-right"></i><b></b></span><small id="wind-value">바람 0</small></div></div>
  <div class="skill-strip" id="combat-skills"></div>
@@ -36646,9 +37210,11 @@ function linesFor(app,m){return G.HonroStoryContent.interaction(app,m)||[];}
 function use(app,m){const ok=eligibility(app,m);if(!ok.ok)return false;if(m?.action==='skillGate'){const used=app.engine.useGate();if(used){app.dirty=true;app.updateHUD(true);}refresh(app);return used;}const e=app.engine,b=e.b,hs=b.honroState,u=e.active;
  if(m.action==='act3'){const used=G.HonroAct3.use(app,m);refresh(app);return used;}
  if(m.action==='act2'){const used=G.HonroAct2.use(app,m);refresh(app);return used;}
- if(m.action==='authored'){if(m.authoredAction&&G.HonroAllies.execute(app,m.authoredAction)===false)return false;m.collected=true;hs.flags['interact:'+m.id]=true;if(m.lines?.length)app.sayLines(m.lines);app.event(m.label);if(!app.checkMission(e))e.finishAction();app.dirty=true;refresh(app);return true;}
+ if(m.action==='authored'){if(m.authoredAction&&G.HonroAllies.execute(app,m.authoredAction)===false)return false;m.collected=true;hs.flags['interact:'+m.id]=true;G.HonroObjectiveContributions?.interact(b,m.id,u);if(m.lines?.length)app.sayLines(m.lines);app.event(m.label);if(!app.checkMission(e))e.finishAction();app.dirty=true;refresh(app);return true;}
  if(m.action==='ritual'){hs.ritual={active:true,holderId:u.id};hs.waterfallSight=true;const veil=b.terrain.find(t=>t.id==='waterfall-veil');if(veil){veil.broken=true;b.sceneVersion++;}e.fx('ring',m.x,m.y-20,'#a5c9bd',95);const lines=hs.flags['ritual-explained']?[]:linesFor(app,m);hs.flags['ritual-explained']=true;if(lines.length)app.sayLines(lines);app.event('담허가 받이진을 유지한다. 설오로 바꾸어 열린 물틈의 고리쇠를 노리자.');if(!app.checkMission(e))e.finishAction();app.dirty=true;refresh(app);return true;}
+ if(m.action==='rescue'){const target=e.unit(m.target);G.HonroObjectiveContributions?.approach(b,m.id,[u],target,220,!!target&&!e.alive(1).some(v=>Math.abs(v.y-target.y)<=150&&Math.hypot(v.x-target.x,(v.y-target.y)*.75)<=220));}
  m.collected=true;if(m.action==='ledger')hs.ledger=true;if(m.action==='receiver'){hs.receivers=(hs.receivers||0)+1;e.fx('ring',m.x,m.y-20,'#b8c999',65);}if(m.action==='rescue'){hs.rescuedCount=(hs.rescuedCount||0)+1;const target=e.unit(m.target);if(target){target.shield=Math.max(target.shield||0,60);target.fixed=true;target.honroResolved=true;e.fx('ring',target.x,target.y-target.h*.5,'#a7c3ad',60);}}
+ G.HonroObjectiveContributions?.interact(b,m.id,u,{rescue:m.action==='rescue'});
  const lines=linesFor(app,m);if(lines.length)app.sayLines(lines);if(m.action==='receiver')G.HonroStoryStaging?.receiver(app,m);app.event(m.action==='ledger'?'홍만의 장부를 찾았다.':m.action==='receiver'?'받이진을 세웠다.':'들린 사람에게서 원혼을 떼어냈다.');if(!app.checkMission(e))e.finishAction();app.dirty=true;refresh(app);return true;
 }
 function refresh(app){const host=$('context-interact');if(!host)return;const near=candidates(app),one=near.find(x=>x.ok)||near[0],enabled=!!one?.ok,sig=one?`${one.marker.id}:${enabled}:${one.reason}:${near.length}`:'none';if(host.dataset.sig===sig)return;host.dataset.sig=sig;if(!one){host.hidden=true;host.innerHTML='';return;}host.hidden=false;const action=one.marker.action,holding=action==='ritual'&&app.engine.b.honroState.ritual?.active,label=action==='skillGate'?'축지':action==='ledger'?'장부 확인':action==='receiver'?'받이진 설치':action==='ritual'?'담허의 의식':['authored','act2','act3'].includes(action)?'상호작용':'구조';host.innerHTML=`<button ${enabled?'':'disabled'} data-context-interact="${one.marker.id}" aria-label="${label} · ${one.marker.label}">${holding?'':'<i class="keycap">E</i>'}<span>${label}</span><strong>${enabled?one.marker.label:one.reason}</strong></button>`;}
@@ -36695,7 +37261,7 @@ function close(a){if(!a.scene)return;a.scene.inspectUnitId=null;const el=documen
 function hover(a,p){if(!a.scene)return;a.scene.inspectPointer=p;const u=p&&pick(a,p);a.scene.hoverUnitId=u?.id||null;a.scene.canvas.style.cursor=u?'pointer':'';}
 function bind(a){
  const el=document.createElement('aside');el.id='unit-info';el.className='unit-info';el.hidden=true;el.setAttribute('aria-label','대상 정보');
-  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div><p class="unit-info-reason status-reason" hidden></p>';
+  el.innerHTML='<button class="unit-info-close" type="button" aria-label="대상 정보 닫기">'+G.HonroFA.icon('xmark','',14)+'</button><div class="unit-info-side"></div><h3></h3><div class="unit-info-health" role="meter" aria-label="체력"><i></i><span></span></div><div class="unit-info-progress" hidden><div class="unit-info-xp-label"></div><div class="unit-info-xp" role="progressbar" aria-label="경험치" aria-valuemin="0" aria-valuemax="100"><i></i></div><div class="unit-info-xp-detail"></div><div class="unit-info-xp-policy"></div></div><div class="unit-info-existence"></div><p class="unit-info-desc"></p><div class="unit-info-skills"></div><div class="unit-info-status"></div><p class="unit-info-reason status-reason" hidden></p>';
  a.scene.canvas.parentElement.append(el);el.querySelector('button').onclick=()=>close(a);
  // Activating the card's close button must not also start a Space-key shot.
  for(const type of ['keydown','keyup'])el.addEventListener(type,e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();});
@@ -36733,6 +37299,8 @@ function tick(a){
   const fraction=clamp(C.xpFraction(hero),0,1),percent=Math.round(fraction*100),maxed=level>=C.MAX_LEVEL,xp=el.querySelector('.unit-info-xp');
   text('.unit-info-xp-label',maxed?'경험치 · 최대 경지':`경험치 · ${percent}%`);
   text('.unit-info-xp-detail',maxed?`경지 ${level} · 성장 완료`:`${(hero.xp-C.xpAtLevel(level)).toLocaleString()} / ${C.xpToNext(level).toLocaleString()} XP`);
+  const b=a.engine.b,contribution=b.honroGrowth?.ledger?.stages?.[b.honroStage]?.contribution;
+  text('.unit-info-xp-policy',b.mode!=='campaign'||b.honroCustom?'훈련·사용자 전투는 경험치 없음':contribution?.version===4?'피해·유효 지원·목표 기여에 따라 개별 성장':'이 장은 기존 성장 방식 유지');
   xp.querySelector('i').style.width=fraction*100+'%';xp.setAttribute('aria-valuenow',String(percent));xp.setAttribute('aria-valuetext',maxed?`경지 ${level} · 최대 경지`:`경지 ${level} · 경험치 ${percent}%`);
  }
   const existence=el.querySelector('.unit-info-existence'),response=G.HONRO_CORE.effectiveDefenseForUnit(u),key=[u.id,response.form,response.qi,response.soul].join(':');
@@ -37892,7 +38460,7 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b) { this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b) { this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
@@ -37996,7 +38564,7 @@ G.HonroRestJourney={state,location,active,currentId,towards,startEntry,restMarku
             this.open(`<h2>목표·조작 안내</h2><section class="battle-help-goal"><h3>${esc(this.training?'허공터':this.stage.name)}</h3><p class="battle-help-current">${esc(help.summary)}</p></section>${help.checklist?.length?`<section><h3>지금까지의 목표</h3><ol class="mission-checklist">${help.checklist.map(q=>`<li${q.done?' class="complete"':''}>${q.done?'✓ ':q.current?'현재 · ':''}${esc(q.text)}</li>`).join('')}</ol></section>`:''}${help.failureText?`<section><h3>실패 조건</h3><p>${esc(help.failureText)}</p></section>`:''}<section><h3>화면 둘러보기</h3><p>빈 전장을 드래그해 화면을 옮깁니다. 마우스 휠 또는 두 손가락 오므리기·벌리기로 축소·확대합니다. 미니맵을 누르거나 드래그하면 그 위치를 봅니다. 행동 가능한 동행 초상을 누르면 다시 따라갑니다.</p></section><section><h3>키보드</h3><p>← → / A D 이동 · ↑ ↓ 조준 각도 · Ctrl 도약<br>Space 누른 채 충전, 떼어 발사 · F 방어<br>Tab 행동 가능한 동행 전환 · 1–4 기예 선택 · E 상호작용</p></section><section><h3>발판과 사격</h3><p>투사체와 폭발은 동행·동맹·보호 대상에게도 피해를 줍니다. 유도탄은 적을 추적하지만 앞을 가로막은 아군에게 맞을 수 있습니다. 회복·부적의 특수 효과는 기존 대상에게만 적용됩니다.</p><p>아래 화살표는 통과 가능한 발판 위에서만 사용할 수 있습니다. 잠깐 몸을 낮춘 뒤 아래층으로 내려갑니다. 단단한 땅에서는 사용할 수 없습니다.</p><p>발판은 아래·옆으로 쏜 탄을 통과시키고, 위에서 내려오는 탄을 막습니다. 진목·소환탄도 윗면에 닿으면 놓입니다. 벽과 동굴 천장은 모든 방향의 탄을 막으며, 반사 기예는 막힌 면에서 튕깁니다.</p></section><section><h3>터치</h3><p>왼쪽 조이스틱의 좌우로 이동하고 위아래로 조준합니다. 발사 버튼을 누른 채 충전하고 떼면 발사합니다. 도약·아래로 내려가기·방어·동행·기예·상호작용은 화면의 해당 버튼을 누릅니다.</p></section><div class="actions"><button data-action="pause">일시정지 메뉴</button><button class="primary" data-action="close">돌아가기</button></div>`,'battle-help-dialog');
         }
         pause() { this.cancelInput(); this.open(`<h2>잠시 머무르기</h2><div class="pause-menu"><button class="primary" data-action="close">${fa('crosshairs',17)}<span>돌아가기</span></button><button data-action="settings">${fa('gear',17)}<span>설정</span></button><button data-action="battle-help"><span>목표·조작 안내</span></button><button data-action="journal"><span>대화와 장부 기록</span></button><button data-action="fullscreen">${fa('expand',17)}<span>전체화면</span></button>${G.HonroStakeCrossing.active(this.engine?.b)&&(G.HonroStakeCrossing.current(this.engine.b)||G.HonroStakeCrossing.flexible(this.engine.b))?'<button data-action="stake-retry"><span>현재 구간 다시 걷기</span></button>':''}<button data-action="retry">${fa('rotateRight',17)}<span>처음부터</span></button>${!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':`<button data-action="rest">${fa('map',17)}<span>길 위의 쉼터</span></button>`}<button data-action="map"><span>여정첩</span></button></div>`,'pause-dialog'); }
-        defend() { if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
+        defend() { if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active,hpBefore=u.hp,shieldBefore=u.shield; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));G.HonroProgression.recordHeal(this.engine.b,u,u.id,u.hp-hpBefore);G.HonroProgression.shieldAdded(this.engine.b,u,u.id,shieldBefore);u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
         displayAngle(u) { return u.facing >= 0 ? u.angle : 180 - u.angle; }
         adjustAngle(u, v) { if (u.facing >= 0)
             u.angle = clamp(u.angle + v, C.AIM_MIN || -85, 90);
