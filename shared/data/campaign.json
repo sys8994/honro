@@ -341162,6 +341162,22 @@
               "y": 2500
             },
             {
+              "x": 3650,
+              "y": 2500
+            },
+            {
+              "x": 3760,
+              "y": 2380
+            },
+            {
+              "x": 3820,
+              "y": 2380
+            },
+            {
+              "x": 3900,
+              "y": 2500
+            },
+            {
               "x": 6400,
               "y": 2500
             },
@@ -341439,66 +341455,6 @@
             ],
             "honroSurfaceRole": "access-ramp",
             "surfaceKind": "wood"
-          },
-          "detail": {
-            "spacing": 18,
-            "roughness": 0,
-            "seed": 21,
-            "optimizeEpsilon": 0
-          }
-        },
-        {
-          "id": "ct21-wall-buttress-plinth",
-          "name": "wall-buttress-plinth",
-          "type": "solid",
-          "points": [
-            {
-              "x": 3650,
-              "y": 2500
-            },
-            {
-              "x": 3760,
-              "y": 2380
-            },
-            {
-              "x": 3820,
-              "y": 2380
-            },
-            {
-              "x": 3900,
-              "y": 2500
-            },
-            {
-              "x": 3900,
-              "y": 2800
-            },
-            {
-              "x": 3820,
-              "y": 2680
-            },
-            {
-              "x": 3760,
-              "y": 2680
-            },
-            {
-              "x": 3650,
-              "y": 2800
-            }
-          ],
-          "baseMaterial": "stone",
-          "oneWay": false,
-          "breakable": false,
-          "layer": "terrain",
-          "properties": {
-            "honroCityTactical": true,
-            "honroSpaceSurfaceId": "ct21-wall-buttress-plinth",
-            "honroWalkEdges": [
-              0,
-              1,
-              2
-            ],
-            "honroSurfaceRole": "cover-gallery",
-            "surfaceKind": "granite"
           },
           "detail": {
             "spacing": 18,
@@ -398278,24 +398234,20 @@
               "y": 2563.932584269663
             },
             {
-              "x": 4180,
-              "y": 2613.0337078651687
+              "x": 4020,
+              "y": 2578.88
             },
             {
-              "x": 4230,
-              "y": 2626.051010919047
+              "x": 4120,
+              "y": 2505
             },
             {
-              "x": 4280,
-              "y": 2642.38202247191
+              "x": 4250,
+              "y": 2505
             },
             {
-              "x": 4330,
-              "y": 2658.713034024773
-            },
-            {
-              "x": 4380,
-              "y": 2671.7303370786517
+              "x": 4390,
+              "y": 2673.67
             },
             {
               "x": 4400,
@@ -398707,66 +398659,6 @@
             ],
             "honroSurfaceRole": "access-ramp",
             "surfaceKind": "wood"
-          },
-          "detail": {
-            "spacing": 18,
-            "roughness": 0,
-            "seed": 24,
-            "optimizeEpsilon": 0
-          }
-        },
-        {
-          "id": "ct24-garden-low-retaining-foot",
-          "name": "garden-low-retaining-foot",
-          "type": "solid",
-          "points": [
-            {
-              "x": 4020,
-              "y": 2578.88
-            },
-            {
-              "x": 4120,
-              "y": 2505
-            },
-            {
-              "x": 4250,
-              "y": 2505
-            },
-            {
-              "x": 4390,
-              "y": 2673.67
-            },
-            {
-              "x": 4390,
-              "y": 2973.67
-            },
-            {
-              "x": 4250,
-              "y": 2805
-            },
-            {
-              "x": 4120,
-              "y": 2805
-            },
-            {
-              "x": 4020,
-              "y": 2878.88
-            }
-          ],
-          "baseMaterial": "stone",
-          "oneWay": false,
-          "breakable": false,
-          "layer": "terrain",
-          "properties": {
-            "honroCityTactical": true,
-            "honroSpaceSurfaceId": "ct24-garden-low-retaining-foot",
-            "honroWalkEdges": [
-              0,
-              1,
-              2
-            ],
-            "honroSurfaceRole": "cover-gallery",
-            "surfaceKind": "granite"
           },
           "detail": {
             "spacing": 18,
@@ -405026,6 +404918,22 @@
               "y": 2800
             },
             {
+              "x": 4030,
+              "y": 2800
+            },
+            {
+              "x": 4110,
+              "y": 2690
+            },
+            {
+              "x": 4190,
+              "y": 2690
+            },
+            {
+              "x": 4310,
+              "y": 2800
+            },
+            {
               "x": 4500,
               "y": 2800
             },
@@ -405484,66 +405392,6 @@
             ],
             "honroSurfaceRole": "access-ramp",
             "surfaceKind": "wood"
-          },
-          "detail": {
-            "spacing": 18,
-            "roughness": 0,
-            "seed": 28,
-            "optimizeEpsilon": 0
-          }
-        },
-        {
-          "id": "ct28-court-low-charred-plinth",
-          "name": "court-low-charred-plinth",
-          "type": "solid",
-          "points": [
-            {
-              "x": 4030,
-              "y": 2800
-            },
-            {
-              "x": 4110,
-              "y": 2690
-            },
-            {
-              "x": 4190,
-              "y": 2690
-            },
-            {
-              "x": 4310,
-              "y": 2800
-            },
-            {
-              "x": 4310,
-              "y": 3050
-            },
-            {
-              "x": 4190,
-              "y": 2940
-            },
-            {
-              "x": 4110,
-              "y": 2940
-            },
-            {
-              "x": 4030,
-              "y": 3050
-            }
-          ],
-          "baseMaterial": "stone",
-          "oneWay": false,
-          "breakable": false,
-          "layer": "terrain",
-          "properties": {
-            "honroCityTactical": true,
-            "honroSpaceSurfaceId": "ct28-court-low-charred-plinth",
-            "honroWalkEdges": [
-              0,
-              1,
-              2
-            ],
-            "honroSurfaceRole": "cover-gallery",
-            "surfaceKind": "granite"
           },
           "detail": {
             "spacing": 18,

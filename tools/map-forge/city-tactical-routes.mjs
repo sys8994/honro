@@ -56,7 +56,16 @@ export function applyCityTacticalRoutes(project){
  const p=clone(project);
  for(const s of p.stages){const n=s.metadata?.stageId,rows=CITY_TACTICAL_SURFACES[n];if(!rows||!s.metadata.campaign)continue;
   s.terrains=s.terrains.filter(t=>!t.properties?.honroCityTactical);
-  s.terrains.push(...rows.map(([id,top,oneWay,material,thickness])=>surface(n,id,top,oneWay,material,thickness)));
+  s.terrains.push(...rows.filter(r=>!(r[4]>=250)).map(([id,top,oneWay,material,thickness])=>surface(n,id,top,oneWay,material,thickness)));
+  // Low masonry is a real rise in the one canonical ground polygon, not a
+  // second overlapping solid whose lower silhouette bleeds through the earth.
+  const foundation=s.terrains.find(t=>t.id==='a3-foundation');
+  for(const [,top] of rows.filter(r=>r[4]>=250)){
+   const left=top[0][0],right=top.at(-1)[0];
+   const first=foundation.points.findIndex(v=>v.x>=left&&v.y<s.height);
+   let end=first;while(end<foundation.points.length&&foundation.points[end].x<=right&&foundation.points[end].y<s.height)end++;
+   foundation.points.splice(first,end-first,...top.map(([x,y])=>({x,y})));
+  }
   if(n===21){const u=s.units.find(u=>u.id==='a3-21-market-pack-0');if(u)u.y=2500;}
   // Keep the existing encounter identities/counts; place grounded occupants
   // on the newly raised masonry rather than let spawn sanitation repair them.
