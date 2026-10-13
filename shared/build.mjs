@@ -1,3 +1,4 @@
+import {applyStage9And13Tactical} from '../tools/map-forge/stage9-13-tactical.mjs';
 import {applyCityTacticalRoutes} from '../tools/map-forge/city-tactical-routes.mjs';
 import {authorAct23QuestRedesign} from '../tools/map-forge/act23-quest-redesign.mjs';
 import {applyOpenStructures} from '../tools/map-forge/open-structure-policy.mjs';
@@ -35,6 +36,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);
+  project=applyStage9And13Tactical(project);
   parts.push('globalThis.HONRO_PROJECT=HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+')));');
   if(vector){
     await buildParty();
