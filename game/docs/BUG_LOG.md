@@ -2,7 +2,7 @@
 
 - 원인: 실제 장면 유닛이 없는 쉼터 대화에서 주막주인 등 NPC의 class만 초상 함수로 전달되어 side:0 기본값과 함께 휘겸/담허 얼굴을 그렸다. 이름 표시는 정상이었으나 class는 인물 식별자가 아니다.
 - 변경: 대화 초상 전용 storyActor가 실제 유닛은 그대로 보존하고, 부재 NPC는 side:2와 명시한 민간인·나무꾼·아군 역할 벡터로 연결한다. 주막주인·문탁·생존자는 기존 민간인 그림, 백산은 호위, 복만은 짐꾼, 연실·춘례는 치료자 그림이다. 네 동행만 기존 class 초상 fallback을 쓴다. 초점·대사·맵·전투·저장은 변경하지 않는다.
-- 검증: tests/story-portrait-identity.mjs의 Native Canvas 검사에서 부재 NPC 8명과 실제 유닛 8명의 정체성, 네 동행 픽셀 동일성, 새 NPC 안전 fallback과 호출 연결을 통과했다. 주막주인 포함 8인 연락판을 직접 확인했다.
+- 검증: tests/story-portrait-identity.mjs의 Native Canvas 검사에서 부재 NPC 8명과 실제 유닛 8명의 정체성, 네 동행 픽셀 동일성, 새 NPC 안전 fallback과 호출 연결을 통과했다. 주막주인 포함 8인 연락판을 직접 확인했다. Native context를 브라우저와 같이 최초 속성으로 고정하고 8개 투명 모서리를 확인했다. test:character-balance 23항목과 두 HTML 빌드도 통과했다. 전체 verify는 stage12-redesign의 역사 맵 SHA 계약에서 중단했으며 수정 전 16d4dcb 독립 worktree에서도 같은 actual/expected SHA로 재현했다.
 - 한계: 기존 NPC 벡터를 재사용하며 새 인물 원화를 제작하지 않았다. 실제 브라우저의 첫 쉼터 2/12, 저장 재개, 두 HTML·Pages 확인과 통합 verify는 통합 검수에서 수행한다. Native 검사는 브라우저 CSS/실제 플레이 검증을 대신하지 않는다.
 
 ## 2026-10-13 · 첫나루 인트로 미술 재설계
