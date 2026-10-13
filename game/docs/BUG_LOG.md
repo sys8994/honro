@@ -2607,3 +2607,9 @@ SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBal
 ### 새5장 실제 R13 하부 낙수 몸 접촉 끼임
 
 정상 입력14R완주 원본에서 설오가 x2805.86/y3240.19 열린 낙수의 굽은 표면을 지형처럼 밟고 서쪽 이동·점프가 막혔다. 기존 pool fixture는 더 아래 y3400에서 시작하여 이 경계를 놓쳤다. 부모 승인에 따라 새5장만 몸 지형을 y2580에서 국소 clipping하고 전체 물표현/화살저항 sample은 honroWaterFluidVertices로 직렬화하여 동일하게 유지했다. 기존 revision1 중간저장은 terrain의 몸 투영과 sceneVersion만 한번 갱신하며 예전5장/커스텀/29장은 보존한다. 실제 R13 두 whole-battle복사와 양방향 기본귀환 및 네체형×3물상태를 추가했다. 정상 입력 전체재생과최종manifest/브라우저 검수는 이수정후 다시 수집해야 한다.
+
+## 2026-10-13 · Two-line battle header and allied-row clearance
+
+- The stage title, turn and objective wrapped beyond the fixed allied-roster top, letting the ally chips cover the card. The stage card now shares the pause button's44px border-box height: chapter/title on the first16px line and turn/current objective on the second16px line. Long titles/objectives ellipsize; title tooltip and existing goal dialog retain their full text.
+- Header and allied roster share top/inset/height variables. Allies begin6px below the header at phone, desktop and short-landscape breakpoints, and both reserve the existing minimap column. No lower-HUD sizes, inputs or battle state change.
+- `test:battle-chapter` checks all30 chapter labels,333/400/desktop and breakpoint geometry equations, plus production App7/28 long-title markup and read-only full objective help. These are source/DOM-double checks; actual browser layout, both rebuilt HTMLs and Pages remain separate final gates.

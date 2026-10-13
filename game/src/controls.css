@@ -300,18 +300,26 @@
   .honro #app .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:3!important;grid-row:2!important;justify-self:end!important}
 }
 
-/* Keep phone mission text beside the existing minimap, without shrinking either. */
+/* A fixed two-line stage card shares the pause-button height. The ally row
+   starts below that common edge, including narrow phones and short landscape. */
+.honro #app .battle-screen{--battle-head-top:10px;--battle-head-inset:12px;--battle-head-height:44px;--battle-map-reserve:min(152px,35vw)}
+.honro #app .battle-screen .battle-head{top:var(--battle-head-top)!important;left:var(--battle-head-inset)!important;right:calc(var(--battle-map-reserve) + var(--battle-head-inset) + 8px)!important;height:var(--battle-head-height);gap:8px;align-items:stretch}
+.honro #app .battle-screen .battle-head>.icon{width:var(--battle-head-height);height:var(--battle-head-height);min-height:var(--battle-head-height);flex:none}
+.honro #app .battle-screen .battle-info{flex:1;min-width:0;max-width:620px;height:var(--battle-head-height);box-sizing:border-box;padding:4px 7px!important;display:grid;grid-template-rows:16px 16px;row-gap:2px;overflow:hidden}
+.honro #app .battle-screen .battle-title-row,.honro #app .battle-screen .battle-objective-row{display:flex;align-items:center;gap:6px;min-width:0;min-height:0;flex-wrap:nowrap;line-height:16px}
+.honro #app .battle-screen .battle-title-row .debug-badge{max-width:40%;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box;padding:0 3px;font-size:8px;line-height:14px}
+.honro #app .battle-stage-heading{display:flex;align-items:baseline;gap:6px;flex:1;min-width:0;max-width:100%;white-space:nowrap;line-height:16px}
+.honro #app .battle-stage-heading b{min-width:0;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:16px}
+.honro #app .battle-chapter{flex:none;white-space:nowrap;font-size:10px;line-height:16px;color:#c6b78f;font-weight:400}
+.honro #app .battle-screen #turn-text{flex:none;white-space:nowrap;font-size:9px;line-height:16px}
+.honro #app .battle-screen .battle-info .mission-help{display:block;flex:1;min-width:0;max-width:100%;height:16px;min-height:0;max-height:16px;padding:0;line-height:16px;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:unset}
+.honro #app .battle-screen .battle-info .mission-end{display:none}
+.honro #app .battle-screen .allied-roster{top:calc(var(--battle-head-top) + var(--battle-head-height) + 6px)!important;left:var(--battle-head-inset)!important;right:calc(var(--battle-map-reserve) + var(--battle-head-inset) + 8px);max-width:none!important;margin:0}
 @media(max-width:620px){
- .honro #app .battle-screen .battle-head{left:8px!important;right:calc(31vw + 16px)!important;gap:8px}
- .honro #app .battle-screen .battle-head>.icon{flex:none}
- .honro #app .battle-screen .battle-info{flex:1;min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
- .honro #app .battle-screen .battle-title-row{min-width:0}
- .honro #app .battle-screen .battle-title-row .debug-badge{max-width:100%;box-sizing:border-box}
+ .honro #app .battle-screen{--battle-head-top:8px;--battle-head-inset:8px;--battle-map-reserve:min(118px,31vw)}
+ .honro #app .battle-stage-heading{gap:4px}
+ .honro #app .battle-chapter{font-size:9px}
+ .honro #app .battle-screen .battle-title-row,.honro #app .battle-screen .battle-objective-row{gap:4px}
+ .honro #app .battle-screen .battle-info .mission-help{font-size:9px}
 }
-
-/* The chapter stays to the left of the place name; long names wrap within the
-   mission column, leaving the existing minimap and lower controls untouched. */
-.honro #app .battle-stage-heading{display:flex;align-items:baseline;gap:7px;min-width:0;max-width:100%}
-.honro #app .battle-stage-heading b{min-width:0;overflow-wrap:anywhere}
-.honro #app .battle-chapter{flex:none;white-space:nowrap;font-size:10px;line-height:1.4;color:#c6b78f;font-weight:400}
-@media(max-width:620px){.honro #app .battle-stage-heading{gap:5px}.honro #app .battle-chapter{font-size:9px}}
+@media(orientation:landscape) and (max-height:540px){.honro #app .battle-screen{--battle-head-top:6px;--battle-head-inset:10px}}
