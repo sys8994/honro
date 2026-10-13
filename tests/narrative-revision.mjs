@@ -1,6 +1,7 @@
+import './hwigyeom-recruit-boundary.mjs';
 import assert from 'node:assert/strict';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
-const g=await runtime({legacyMaps:false}),R=g.HonroNarrativeRevision;let checks=0;
+const g=await runtime({legacyMaps:false}),R=g.HonroNarrativeRevision,C=g.HONRO_CORE;let checks=0;
 const yes=(v,m)=>{assert(v,m);checks++};
 {
  const {b}=battlefield(g,2),u=b.units.find(u=>u.id==='objective');yes(u.name==='장례 상여','public objective does not reveal Hongman early');
@@ -20,7 +21,12 @@ const yes=(v,m)=>{assert(v,m);checks++};
  const {b,st}=battlefield(g,15);delete b.honroNarrativeRevision;delete b.honroNarrativeContent;const before=JSON.stringify(b),old=g.HonroObjectiveRevision.contentFor(b,st);yes(old.story.some(l=>l[1].includes('수문')),'old payload retained');assert.equal(JSON.stringify(b),before);R.prepareFresh(b);assert.equal(JSON.stringify(b),before,'old battle is not upgraded');
 }
 {
- const {b,st}=battlefield(g,5);const fresh=g.HonroObjectiveRevision.contentFor(b,st);yes(fresh.outro.some(l=>l[1].includes('방금 저 줄도')),'fresh witness observed the ring with the party');
+ const {b,st}=battlefield(g,5);const fresh=g.HonroObjectiveRevision.contentFor(b,st);
+ const noAbsentSpeaker=value=>{if(Array.isArray(value)){assert.notEqual(value[0],'휘겸','Absent companion cannot speak anywhere in current chapter5');for(const child of value)noAbsentSpeaker(child);}else if(value&&typeof value==='object')for(const child of Object.values(value))noAbsentSpeaker(child);};
+ noAbsentSpeaker(fresh);yes(fresh.storySummary.includes('휘겸이 찾으러 간'),'Current chapter5 keeps companion on his separate rescue route');
+ const altered=JSON.parse(JSON.stringify(fresh));altered.outro.push(['휘겸','조기 동행']);assert.throws(()=>noAbsentSpeaker(altered),'Injected absent-companion speech must fail');
+ const p=C.defaults();p.recruited=['archer','mage'];p.party=[...p.recruited];g.HonroProgression.recruit(p,st,b);const noEarlyRecruit=profile=>assert(!profile.recruited.includes('knight'),'Chapter5 cannot recruit Hwigyeom');noEarlyRecruit(p);assert.throws(()=>noEarlyRecruit({...p,recruited:[...p.recruited,'knight']}),'Injected early recruitment must fail');
+ yes(g.HONRO_CONTENT.stages[5].story.some(l=>l[0]==='휘겸'&&l[1].includes('나도 동행')),'Companion voluntarily joins in chapter6');
  delete b.honroNarrativeRevision;delete b.honroNarrativeContent;delete b.honroObjectiveRevision;
  const old=g.HonroObjectiveRevision.contentFor(b,st);assert.deepEqual(JSON.parse(JSON.stringify(old.outro)),JSON.parse(JSON.stringify(g.HONRO_NARRATIVE_V0.content[4].outro)),'unsnapshotted act1 objective legacy clone uses frozen V0');yes(old.outro.some(l=>l[1].includes('돌아오는 길')),'old pending finish text remains frozen');
 }

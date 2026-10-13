@@ -2,7 +2,8 @@
 import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath, pathToFileURL} from 'node:url';
+import vm from 'node:vm';
 import {fingerprints, fileRef, localFile} from '../intent-pipeline/review-job.mjs';
 
 export const SCHEMA = 'honro-encounter-evidence/v1';
@@ -94,6 +95,149 @@ function activity(row, label, enemyIds, playerIds) {
     need(e.actionIndexes.every(i => Number.isInteger(i) && i >= 0 && i < row.actions.length) && e.responseIndexes.every(i => Number.isInteger(i) && i >= 0 && i < row.playerResponses.length), `${label}: effect observation index out of range`);
   }
 }
+// Deliberately reviewed, source-pinned adapter. A new chapter or changed trigger
+// must supply its own verifier; a disposition string is never an exemption.
+const HABITAT_VERIFIER = 'stage5-habitat/v1';
+const HABITAT_TRIGGER_DIGEST = 'bcafb0badc0e9ca18dd102edd734987b8285c07f2ec6e381956abc769fbefc14';
+const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
+const clone = value => structuredClone(value);
+const fullBattle = b => b && b.honroStage === 5 && b.honroStage5WaterfallRevision === 1 && !b.honroCustom &&
+  Number.isInteger(b.round) && b.round > 0 && Number.isInteger(b.side) && text(b.phase) &&
+  Number.isFinite(b.width) && Number.isFinite(b.height) && b.honroState &&
+  Array.isArray(b.units) && Array.isArray(b.terrain) && Array.isArray(b.honroMarkers) &&
+  Array.isArray(b.honroEvents) && Array.isArray(b.projectiles) && Array.isArray(b.teamEnds) &&
+  b.units.every(u => text(u.id) && Number.isFinite(u.hp) && Number.isInteger(u.side) && Number.isFinite(u.x) && Number.isFinite(u.y));
+
+/** Recomputes a narrow non-entry proof, not a gameplay/observer truth verdict.
+ * The ordinary sparse trace is accepted ONLY with a conservative, reconciled
+ * persistent-survivor lower bound. Preemption needs every pre-mission state. */
+export async function verifyStage5HabitatNonEntry(root, waveId, phase, trace) {
+  need(/^habitat-5-[01]$/.test(waveId) && phase.nonEntry?.verifier === HABITAT_VERIFIER, 'No reviewed non-entry verifier for this stage/wave');
+  need(['condition-not-met', 'objective-preempted'].includes(phase.disposition), 'Unknown conditional disposition');
+  need(text(phase.id) && text(phase.nonEntry.reason), 'Non-entry phase ID and reason required');
+  for (const key of ['spawnedIds', 'entry', 'firstEffect', 'effects']) need(phase[key] === 'N/A', `Non-entry ${key} must explicitly be N/A`);
+  need(equal(phase.actions, []) && equal(phase.playerResponses, []), 'Non-entry cannot hide observed actions/responses');
+  need(trace?.schema === 'honro-stage5-input-trace/v1' && ['native-input', 'browser-input', 'isolated-fixture'].includes(trace.method), 'Original Stage5 input trace required');
+  need(Number.isInteger(trace.frame) && trace.frame > 0 && trace.completed === true && fullBattle(trace.initial) && fullBattle(trace.final), 'Complete original initial/final battle and completed run required');
+  const terminal = {frame: trace.frame, round: trace.final.round, phase: trace.final.phase};
+  need(terminal.phase === 'won' && equal(phase.nonEntry.terminal, terminal), 'Non-entry terminal frame/round/phase must match original victory');
+  for (const key of ['snapshots', 'stateTrace', 'frames', 'frameInputs', 'hits', 'terrainHits', 'enemyActions', 'births', 'continues']) need(Array.isArray(trace[key]), `Missing original ${key} evidence`);
+  need(nonempty(trace.snapshots) && nonempty(trace.stateTrace) && nonempty(trace.frames), 'Original whole-state snapshots, state transitions and actor frames required');
+  need(trace.frameInputs.length === trace.frame && trace.frameInputs.every((f, i) => f.frame === i + 1 && Number.isFinite(f.now) && Array.isArray(f.keys) && Array.isArray(f.projectiles)), 'Missing/duplicate/out-of-order frame input evidence');
+  const ordered = rows => rows.every((r, i) => Number.isInteger(r.frame) && r.frame >= 0 && r.frame <= trace.frame && (!i || r.frame >= rows[i - 1].frame));
+  need(['snapshots', 'stateTrace', 'frames', 'hits', 'terrainHits', 'births'].every(k => ordered(trace[k])), 'Original event/state frame ordering invalid');
+  need(trace.snapshots.every(s => fullBattle(s.battle) && s.round === s.battle.round), 'Every snapshot must retain original whole battle');
+  need(trace.frames.every(f => Array.isArray(f.units) && Number.isInteger(f.round) && Number.isInteger(f.serial)), 'Actor frame unit/round/serial evidence required');
+  need(trace.stateTrace.every(f => f.state && Number.isInteger(f.round) && Number.isInteger(f.serial)), 'Original state transition evidence required');
+  need(trace.stateTrace.at(-1).frame === trace.frame && trace.stateTrace.at(-1).phase === 'won' && equal(trace.stateTrace.at(-1).state, trace.final.honroState), 'Final state trace does not bind terminal battle');
+  need(trace.frames.at(-1).frame === trace.frame && trace.frames.at(-1).phase === 'won', 'Final actor frame missing');
+  need(trace.continues.every(c => c.exact === true && Number.isInteger(c.frame)), 'Inexact Continue interrupts whole-run non-entry proof');
+  const whole = [trace.initial, ...trace.snapshots.map(s => s.battle), trace.final];
+  need(whole.every(b => b.honroMarkers.some(m => m.id === waveId && m.type === 'hauntHabitat')), 'Authored habitat source missing from whole battle');
+  need(!trace.births.some(u => /^habitat-5-/.test(u.source || '')) && !whole.some(b => b.units.some(u => /^habitat-5-/.test(u.honroSpawnSource || ''))), 'Actual habitat birth cannot be reclassified as non-entry; observed entry/effect evidence required');
+  const initialIds = trace.initial.units.map(u => u.id), birthIds = trace.births.map(u => u.id);
+  need(new Set([...initialIds, ...birthIds]).size === initialIds.length + birthIds.length && sameSet(trace.final.units.map(u => u.id), [...initialIds, ...birthIds]), 'Birth ledger and whole battle actor inventory disagree');
+  need(trace.enemyActions.every(a => initialIds.includes(a.id) || birthIds.includes(a.id)), 'Enemy action has no original actor/birth evidence');
+  for (let round = trace.initial.round; round < trace.final.round; round++) need(trace.snapshots.some(s => s.round === round), `Missing whole-battle observation for round ${round}`);
+
+  const mission = await readFile(await localFile(root, 'shared/runtime/mission.js'), 'utf8');
+  const objectives = await readFile(await localFile(root, 'shared/runtime/objectives.js'), 'utf8');
+  const geometry = await readFile(await localFile(root, 'shared/runtime/stage5-waterfall-geometry.js'), 'utf8');
+  const holdSource = mission.slice(mission.indexOf('function reinforceHold('), mission.indexOf('\nfunction tick(', mission.indexOf('function reinforceHold(')));
+  const objectiveSource = objectives.slice(objectives.indexOf('function rawState('), objectives.indexOf('\nfunction failure(', objectives.indexOf('function rawState(')));
+  need(sha256(holdSource + '\n' + objectiveSource + '\n' + geometry.slice(geometry.indexOf('const active='))) === HABITAT_TRIGGER_DIGEST, 'Conditional trigger/policy changed; reviewed adapter update required');
+  const {runtimeParts} = await import(pathToFileURL(await localFile(root, 'shared/build.mjs')).href);
+  const parts = await runtimeParts({vector: false, render: false});
+  need(trace.source?.runtime === sha256(parts.join('\n')) && trace.source?.campaign === sha256(await readFile(await localFile(root, 'shared/data/campaign.json'))), 'Non-entry original runtime/campaign digest is stale');
+  const g = vm.createContext({console, performance, structuredClone});
+  for (const part of parts) vm.runInContext(part, g);
+  vm.runInContext(`(function(G) { G.__reviewReinforceHold = ${holdSource}; })(globalThis);`, g);
+  const st = g.HONRO_CONTENT.stages.find(s => s.id === 5);
+  need(st?.objective === 'seals', 'Reviewed Stage5 objective contract changed');
+  // Execute the actual source function. The sink observes spawn requests before
+  // allocation; it never creates gameplay actors or executes evidence as code.
+  let calls = [];
+  g.HonroAllies.execute = (_app, action) => { calls.push(clone(action)); return false; };
+  const check = (battle, {warning = false, boundary = true} = {}) => {
+    const b = clone(battle), e = {b, alive: side => b.units.filter(u => u.side === side && !u.dead && u.hp > 0), heroesAlive: () => b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), fx() {}};
+    const app = {engine: e, stage: st, event() {}};
+    const objective = clone(g.HonroObjectives.state(b, st));
+    calls = []; g.__reviewReinforceHold(app, boundary);
+    return {round: b.round, objectiveReady: objective.objectiveReady, complete: objective.complete, settleRounds: objective.settleRounds, foes: e.alive(1).length, requested: calls.length, warning};
+  };
+  const finalObjective = check(trace.final);
+  need(finalObjective.complete && finalObjective.objectiveReady && finalObjective.settleRounds === 1, 'Original objective state does not independently establish one-round completion');
+  const evaluation = whole.map(b => check(b));
+
+  if (phase.disposition === 'condition-not-met') {
+    // A final count alone is insufficient: reconcile all positive damage with
+    // each persistent original enemy and every raw actor/whole-state sample.
+    need(trace.hits.every(h => text(h.target) && Number.isFinite(h.hp) && Number.isFinite(h.hpLoss) && h.hpLoss >= 0), 'Damage ledger missing actual nonnegative HP loss/state');
+    const survivors = trace.initial.units.filter(u => u.side === 1 && !u.dead && u.hp > 0).filter(initial => {
+      const hits = trace.hits.filter(h => h.target === initial.id); let hp = initial.hp;
+      for (const h of hits) { hp -= h.hpLoss; if (hp <= 0 || Math.abs(h.hp - hp) > 1e-6) return false; }
+      const final = trace.final.units.find(u => u.id === initial.id);
+      if (!final || final.dead || final.side !== 1 || Math.abs(final.hp - hp) > 1e-6) return false;
+      const samples = [{frame: 0, units: trace.initial.units}, ...trace.frames, ...trace.snapshots.map(s => ({frame: s.frame, units: s.battle.units})), {frame: trace.frame, units: trace.final.units}];
+      return samples.every(s => {
+        const u = s.units.find(u => u.id === initial.id);
+        if (!u || u.dead || u.hp <= 0 || (u.side !== undefined && u.side !== 1)) return false;
+        // Hooks record damage during the next App.frame; snapshots taken in a
+        // damage hook and end-of-frame samples can straddle that single frame.
+        const before = initial.hp - hits.filter(h => h.frame < s.frame).reduce((n, h) => n + h.hpLoss, 0);
+        const after = initial.hp - hits.filter(h => h.frame <= s.frame).reduce((n, h) => n + h.hpLoss, 0);
+        return u.hp <= before + 1e-6 && u.hp >= after - 1e-6;
+      });
+    }).map(u => u.id);
+    need(survivors.length >= 5, 'Cannot prove enemies >= 5 for the whole run; final count or sparse samples cannot excuse an eligible trigger');
+    need(evaluation.every(r => r.requested === 0), 'Actual trigger satisfied: missing spawn must not be hidden by condition-not-met');
+    // Force the original holding window on a clone to ensure the survivor
+    // lower bound really blocks this exact reviewed runtime trigger.
+    const worst = clone(trace.final); worst.phase = 'transition'; worst.side = 0;
+    worst.honroState.objectiveReadyRound = worst.round; delete worst.honroState.lastHabitatRound;
+    need(check(worst).requested === 0, 'Actual trigger permits entry despite claimed survivor bound');
+    return {verifier: HABITAT_VERIFIER, disposition: phase.disposition, terminal, survivorLowerBound: survivors.length, survivorIds: survivors, evaluations: evaluation};
+  }
+
+  // This richer capture is mandatory when low population makes a request
+  // possible. Every App.frame must retain state immediately before mission.tick
+  // plus its actual boundary flag; a few favorable snapshots cannot qualify.
+  need(Array.isArray(trace.missionFrames) && trace.missionFrames.length === trace.frame && trace.missionFrames.every((f, i) => f.frame === i + 1 && typeof f.boundary === 'boolean' && fullBattle(f.battle)), 'Objective-preempted requires every original pre-mission whole-state frame and boundary');
+  // Restore the actual Stage5 wrapper over the recording sink, preserving the
+  // warning-round policy instead of trusting a declared cancellation reason.
+  vm.runInContext(geometry, g);
+  const opportunities = [], readyFrames = [];
+  for (const f of trace.missionFrames) {
+    const b = f.battle;
+    need(sameSet(b.units.map(u => u.id), [...initialIds, ...trace.births.filter(u => u.frame < f.frame).map(u => u.id)]), 'Pre-mission actor inventory contradicts original birth ledger');
+    for (const u of b.units) {
+      const initial = trace.initial.units.find(v => v.id === u.id);
+      if (!initial) continue;
+      const hits = trace.hits.filter(h => h.target === u.id);
+      need(hits.every(h => Number.isFinite(h.hpLoss) && h.hpLoss >= 0), 'Pre-mission damage evidence missing');
+      const before = initial.hp - hits.filter(h => h.frame < f.frame).reduce((n, h) => n + h.hpLoss, 0);
+      const after = initial.hp - hits.filter(h => h.frame <= f.frame).reduce((n, h) => n + h.hpLoss, 0);
+      need(u.side === initial.side && u.hp <= before + 1e-6 && u.hp >= Math.max(0, after) - 1e-6 && (!u.dead || u.hp <= 0), 'Pre-mission population/HP contradicts original whole state and damage ledger');
+    }
+    const engine = new g.HONRO_CORE.Engine(clone(b), () => {}, true);
+    const actualBoundary = b.phase === 'transition' && !b.projectiles.length && !engine.settleBusy();
+    need(f.boundary === actualBoundary, 'Recorded mission boundary differs from actual runtime boundary');
+    need(b.round <= trace.final.round && !b.units.some(u => /^habitat-5-/.test(u.honroSpawnSource || '')), 'Pre-mission frame contradicts terminal/no-birth claim');
+    const result = check(b, {warning: true, boundary: f.boundary});
+    if (result.objectiveReady && !result.complete) readyFrames.push(f.frame);
+    need(result.requested === 0, 'Actual warned trigger satisfied before victory; missing birth is not objective preemption');
+    // Removing just warning gate must reveal at least one real original request.
+    const wrapped = g.HonroAllies.execute;
+    g.HonroAllies.execute = (_app, action) => { calls.push(clone(action)); return false; };
+    const original = check(b, {boundary: f.boundary}); g.HonroAllies.execute = wrapped;
+    if (original.requested > 0) opportunities.push({frame: f.frame, round: b.round});
+  }
+  need(opportunities.length > 0 && readyFrames.length > 0, 'No original trigger deferred by warning; use verified condition-not-met instead');
+  need(opportunities.every(o => o.round + 1 === terminal.round), 'Victory did not preempt the original next-round warning entry');
+  need(trace.final.honroState.objectiveReadyRound + 1 === terminal.round, 'Original one-round objective settlement was not preserved');
+  return {verifier: HABITAT_VERIFIER, disposition: phase.disposition, terminal, opportunities, evaluations: evaluation};
+}
+
 export async function validateManifest(root, manifest) {
   const errors = [], cache = new Map(), refs = new Map();
   const guard = async (label, fn) => { try { await fn(); } catch (e) { errors.push(`${label}: ${e.message}`); } };
@@ -172,6 +316,15 @@ export async function validateManifest(root, manifest) {
       const row = observation(wave.observation, stage.stageId, 'wave', wave.id);
       need(nonempty(row.phases) && new Set(row.phases.map(p => p.id)).size === row.phases.length, 'Individual phase IDs required');
       for (const phase of row.phases) {
+        if (phase.disposition && phase.disposition !== 'observed') {
+          need(stage.stageId === 5 && /^habitat-5-[01]$/.test(wave.id), 'No reviewed non-entry verifier for this stage/wave');
+          const packet = json(wave.observation.path), rawPath = phase.nonEntry?.tracePath;
+          need(text(rawPath) && packet.rawEvidencePaths.includes(rawPath), 'Non-entry trace must be original linked raw evidence');
+          const runtime = stage.runtimeWaves.find(w => w.id === wave.id);
+          need(runtime && ['shared/runtime/mission.js', 'shared/runtime/objectives.js', 'shared/runtime/stage5-waterfall-geometry.js'].every(p => runtime.sourcePaths.includes(p)), 'Non-entry inventory must bind actual trigger/objective/warning source');
+          await verifyStage5HabitatNonEntry(root, wave.id, phase, json(rawPath));
+          continue;
+        }
         need(text(phase.id) && text(phase.trigger?.event) && Number.isInteger(phase.trigger?.round) && phase.trigger.round >= 0, 'Trigger event/round required');
         need(text(phase.warningBoundary) && text(phase.entry?.boundary) && phase.warningBoundary !== phase.entry.boundary, 'Distinct warning and entry action boundaries required');
         need(Number.isInteger(phase.entry?.round) && phase.entry.round >= phase.trigger.round && Number.isFinite(phase.entry?.x) && Number.isFinite(phase.entry?.y), 'Actual entry round/coordinates required');

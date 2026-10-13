@@ -1,0 +1,20 @@
+import {beforeApprovedWaterfall} from './approved-waterfall-contract-helpers.mjs';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {runtime} from '../game/tests/helpers.mjs';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+const hash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex');
+const bytes=readFileSync('tests/fixtures/campaign-contracts/binding-detail-before.json');assert.equal(hash(bytes),'c6a5cb59a886ef8f4433878ff6343a356f026ee250ebf5873ead1d094418f11f');const f=JSON.parse(bytes),g=await runtime({legacyMaps:false});vm.runInContext('Date.now=()=>1780000000000',g);
+const current=plain(g.HONRO_PROJECT),before=plain(current),defaults={spacing:18,roughness:0,seed:1,optimizeEpsilon:0},terrain=current.stages[9].terrains.find(t=>t.id==='sodan-binding');
+assert.deepEqual(terrain,{...f.terrain,detail:defaults});before.stages[9].terrains[before.stages[9].terrains.findIndex(t=>t.id==='sodan-binding')]=plain(f.terrain);assert.equal(hash(beforeApprovedWaterfall(before,g,{variant:'runtime'})),f.runtimeProjectSha256,'Only this one generated terrain detail property changes across all30 stages');
+assert.deepEqual(plain(g.HonroNarrativeRevision.author(current)),current,'Author idempotence for all30');assert.deepEqual(plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(current)))),current,'All30 serialize/import exactly idempotent');assert.deepEqual(plain(g.HonroMaps.finalize(before)),current,'Added value is exactly the existing production schema default');
+// Existing authored terrains, including deliberately customized detail, are untouched.
+assert.deepEqual(plain(g.HonroNarrativeRevision.author(before)),before,'Existing old authored binding without detail is not rewritten');
+const custom=plain(before);custom.stages[9].terrains.find(t=>t.id==='sodan-binding').detail={spacing:7,roughness:2,seed:19,optimizeEpsilon:3};assert.deepEqual(plain(g.HonroNarrativeRevision.author(custom)),custom);
+const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];const rows=[];
+for(let i=0;i<30;i++){const a=plain(g.HonroMaps.createBattle(before.stages[i],before,plain(profile),{origin:'campaign'})),b=plain(g.HonroMaps.createBattle(current.stages[i],current,plain(profile),{origin:'campaign'}));assert.deepEqual(b,a,'Entire compiled actors/collision/HP/skills/goals stage '+(i+1));rows.push({stage:i+1,sha256:hash(a)});}
+const exact=p=>assert.deepEqual(p,current);for(const change of [p=>delete p.stages[9].terrains.find(t=>t.id==='sodan-binding').detail,p=>p.stages[9].terrains.find(t=>t.id==='sodan-binding').detail.seed++,p=>p.stages[9].terrains.find(t=>t.id==='sodan-binding').properties.hp++,p=>p.stages[9].terrains.find(t=>t.id==='sodan-binding').points[0].x++]){const p=plain(current);change(p);assert.throws(()=>exact(p));}
+const h=await appHarness(),app=h.load(h.profileThrough(9));app.launch(10);h.finish(app);const target=app.engine.b.terrain.find(t=>t.id==='sodan-binding');app.engine.damageTerrain(target,13);const saved=plain(target);assert(saved.hp<saved.maxHp&&!saved.broken);let active=app;for(let i=0;i<3;i++){active.export();await h.import(await h.exported());active=h.reload();h.click('continue');h.finish(active);assert.deepEqual(plain(active.engine.b.terrain.find(t=>t.id==='sodan-binding')),saved,'Partial binding target save/Continue remains exact');}
+mkdirSync('_local/reports/campaign-contracts',{recursive:true});writeFileSync('_local/reports/campaign-contracts/binding-detail.json',JSON.stringify({passed:true,beforeRuntimeProjectSha256:f.runtimeProjectSha256,afterRuntimeProjectSha256:hash(current),allowedDelta:'stage10 sodan-binding detail schema default only',rows,negativeControls:4,appContinues:3},null,2)+'\n');console.log('PASS exact one-field schema default,30 author/import/compiled battles,4 mutation negatives,3 partial-binding App Continues');

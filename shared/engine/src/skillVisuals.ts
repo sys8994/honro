@@ -126,6 +126,9 @@ export function drawRedesignProjectile(c:C,p:Projectile){
    c.rotate(p.age*13);c.fillStyle='#ecdbb6';c.strokeStyle='#a9bbb6';c.lineWidth=1;c.beginPath();c.moveTo(10,0);c.lineTo(-6,-3);c.lineTo(-2,0);c.lineTo(-6,3);c.closePath();c.fill();c.stroke();c.restore();return true;
   }
   const a=ARROW_STYLES[s.branch as keyof typeof ARROW_STYLES]||ARROW_STYLES.basic;
+  // A wet arrow remains legible against the pale falling sheet, at its true velocity angle.
+  if(p.waterfallTouched){c.save();c.strokeStyle='#263e43';c.lineWidth=a.width+2;c.lineJoin='round';c.beginPath();c.moveTo(15-a.length,0);c.lineTo(11,0);c.moveTo(19,0);c.lineTo(6,-a.head);c.lineTo(9,0);c.lineTo(6,a.head);c.closePath();for(const x of [18-a.length,24-a.length]){c.moveTo(x-6,-a.head-2);c.lineTo(x,0);c.lineTo(x-6,a.head+2);}c.stroke();c.restore();}
+
   c.strokeStyle=a.color;c.lineWidth=a.width;c.beginPath();c.moveTo(15-a.length,0);c.lineTo(11,0);c.stroke();c.fillStyle=a.color;c.beginPath();c.moveTo(19,0);c.lineTo(6,-a.head);c.lineTo(9,0);c.lineTo(6,a.head);c.closePath();c.fill();
   c.lineWidth=s.branch==='speed'?2.3:1;for(const x of [18-a.length,24-a.length]){c.beginPath();c.moveTo(x,0);c.lineTo(x-6,-a.head-2);c.moveTo(x,0);c.lineTo(x-6,a.head+2);c.stroke();}
   if(s.branch==='drop'){c.globalAlpha=.35;c.lineWidth=1;c.beginPath();c.moveTo(-20,0);c.quadraticCurveTo(-30,Math.sin(p.age*12)*7,-44,Math.sin(p.age*12+1)*4);c.stroke();}

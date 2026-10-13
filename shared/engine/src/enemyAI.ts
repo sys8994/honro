@@ -180,10 +180,17 @@ function* traceTravelSteps(e:Engine,u:Unit,from:Vec,to:Vec,budget:number):Genera
  }
  return null;
 }
+function waterfallTactics(e:Engine){const b=e.b as any;return b.honroStage===5&&b.honroStage5WaterfallRevision===1&&!b.honroCustom;}
+/** Destination selection only, not a new ground collision rule. Like flightClear,
+ * reserve every living body (opponent, teammate, ally or objective), not just enemies.
+ * The 10px horizontal margin covers the ordinary <=9px waypoint arrival tolerance. */
+function waterfallDestinationClear(e:Engine,u:Unit,p:Vec){
+ return e.b.units.every(v=>v.id===u.id||v.dead||Math.abs(v.x-p.x)>=u.r+v.r+10||p.y<=v.y-v.h-4||p.y-u.h>=v.y+4);
+}
 function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
  const found:Vec[]=[];
  const add=(x:number,y:number)=>{
-  if(!routeGuardAllows(e,u,{x,y}))return;
+  if(!routeGuardAllows(e,u,{x,y})||waterfallTactics(e)&&!waterfallDestinationClear(e,u,{x,y}))return;
   if(x<30||x>e.b.width-30||Math.abs(x-u.x)>u.moveLeft||y<u.y-420||y>u.y+260)return;
   if(Math.hypot(x-u.x,y-u.y)<22||found.some(p=>Math.abs(p.x-x)<23&&Math.abs(p.y-y)<18))return;
   const foot=e.surface(x,y-3,y+4);if(!foot)return;
@@ -204,7 +211,28 @@ function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
   return value(c)-value(a);
  }).slice(0,30);
 }
+/** The new waterfall encounter must score the same safe shots it can actually fire.
+ * Project only the shooter's body for blast accounting; never mutate the live roster. */
+function* waterfallShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
+ const probe:Engine=Object.create(e);
+ probe.b={...e.b,units:e.b.units.map(v=>v.id===u.id?ghost:v)};
+ const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
+ const best=-90;
+ for(const skill of skills){
+  if(!probe.npcShotInReach(ghost,skill))continue;
+  const right=target.x>=p.x;
+  const seeds=[...probe.shotSeeds(ghost,skill,target),...(target.y>p.y+80?[-35,35,78]:[18,50,82]).map(elev=>({angle:right?elev:180-elev,power:1}))];
+  for(const aim of seeds){
+   const outcome=shotViable(probe,ghost,skill,target,aim.angle,aim.power);
+   yield;
+   if(outcome.ok)return 35+clamp('net' in outcome?outcome.net:0,-120,60);
+  }
+ }
+ return best;
+}
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
  if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
  const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);

@@ -4,10 +4,16 @@ import path from 'node:path';
 import {runtime,battlefield,gameRoot} from './helpers.mjs';
 const g=await runtime(),C=g.HONRO_CORE,checks=[];
 const check=(name,fn)=>{const detail=fn();checks.push({name,passed:true,detail});};
-for(const [id,cls,level] of [[2,'mage',3],[5,'knight',6]])check(`Stage ${id}: ${cls} joins at level ${level} in profile and battle`,()=>{
+for(const [id,cls,level] of [[2,'mage',3]])check(`Stage ${id}: ${cls} joins at level ${level} in profile and battle`,()=>{
  const {b,p,st}=battlefield(g,id);p.recruited=['archer'];p.heroes[cls].xp=b.heroes[cls].xp=0;
  g.HonroProgression.recruit(p,st,b);assert.equal(C.levelOf(p.heroes[cls]),level);assert.equal(C.levelOf(b.heroes[cls]),level);
  const once=JSON.stringify(p);g.HonroProgression.recruit(p,st,b);assert.equal(JSON.stringify(p),once);return level;
+});
+check('Current stage5 does not recruit; completed5 enters6 with one level6 companion',()=>{
+ const p=C.defaults();p.recruited=['archer','mage'];p.party=[...p.recruited];p.heroes.knight.xp=0;
+ const before=JSON.stringify(p);g.HonroProgression.recruit(p,g.HONRO_CONTENT.stages[4]);assert.equal(JSON.stringify(p),before,'Stage5 completion recruit hook stays no-op');g.HonroProgression.recruitAtEntry(p,6);assert.equal(JSON.stringify(p),before,'No entry recruitment without stage5 completion');
+ p.cleared[5]={visits:1,rounds:1};const completed=JSON.stringify(p);g.HonroProgression.recruitAtEntry(p,5);assert.equal(JSON.stringify(p),completed,'Rest during stage5 cannot recruit');g.HonroProgression.recruitAtEntry(p,6);assert.equal(C.levelOf(p.heroes.knight),6);assert.equal(p.recruited.filter(c=>c==='knight').length,1);
+ const once=JSON.stringify(p);g.HonroProgression.recruitAtEntry(p,6);assert.equal(JSON.stringify(p),once);const {b}=battlefield(g,6,{profile:p,entry:false});assert.equal(C.levelOf(b.heroes.knight),6);assert.equal(b.units.filter(u=>u.side===0&&u.cls==='knight').length,1);return 6;
 });
 check('Future Sodan recruitment uses the same stage level contract',()=>{
  const {p,b}=battlefield(g,6);const st={id:7,recruit:'occultist',level:7};g.HonroProgression.recruit(p,st,b);
@@ -26,7 +32,8 @@ check('A stronger saved companion never loses XP, learned skills, or loadout',()
  assert.equal(JSON.stringify([p.heroes.mage,p.loadouts.mage]),before);assert.equal(C.levelOf(b.heroes.mage),12);
 });
 check('Named allied NPCs already have stage-appropriate levels when encountered',()=>{
- for(const id of [2,5]){const {b,st}=battlefield(g,id),u=b.units.find(u=>u.honroAlly&&u.cls===st.recruit);assert.equal(u.level,st.joinLevel);}
+ const {b,st}=battlefield(g,2),u=b.units.find(u=>u.honroAlly&&u.cls===st.recruit);assert.equal(u.level,st.joinLevel);
+ const five=battlefield(g,5).b;assert(!five.units.some(u=>u.side===0&&u.cls==='knight'),'Absent companion is not a chapter5 allied NPC or party actor');
 });
 function allyFixture(role){
  const f=battlefield(g,2),{e,b,st,app}=f,hero=e.active;

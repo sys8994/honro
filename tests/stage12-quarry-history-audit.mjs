@@ -1,3 +1,5 @@
+import {assertCurrentRuntimeParts} from './current-runtime-contract-helpers.mjs';
+import {historicalRuntimeParts,historicalRuntimeSources} from './historical-runtime-inputs.mjs';
 /** Exact current12 -> d7 -> immutable30 -> immutable18, with negative controls.
  * --self-test uses a clearly synthetic in-memory checkpoint; it never records
  * a review, changes production data or claims actual current-map acceptance. */
@@ -101,8 +103,9 @@ const plan={stages:[plain(Q.stage12QuarryOriginal.plan)]};assert.deepEqual(Q.bef
 let fingerprintChecks=0,runtimeWrapperChecks=0;
 if(!selfTest){
  const historicalAuthors=beforeEncounterDensityAuthoringSources(Q.stage8BierAuthoringSources());for(const [path,digest]of Object.entries(review.authoringSources))assert.equal(hash(String(historicalAuthors[path])),digest,'Reviewed generator source after verified density projection '+path);
- const raw=await runtimeParts({vector:false,render:false}),rawSnapshot=JSON.stringify(raw),rawPrior=Q.beforeStage12QuarryFingerprintParts(raw,{sources,review});assert.equal(hash(rawPrior.join('\n')),f.runtime.beforeFingerprintSha256);assert.equal(JSON.stringify(raw),rawSnapshot);assert.deepEqual(Q.beforeStage12QuarryFingerprintParts(rawPrior,{sources,review}),rawPrior);
- const temple=[...raw.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(name=>readFile('shared/runtime/'+name+'.js','utf8')))];
+ const currentRaw=await runtimeParts({vector:false,render:false});assertCurrentRuntimeParts(currentRaw);
+ const raw=historicalRuntimeParts(),rawSnapshot=JSON.stringify(raw),rawPrior=Q.beforeStage12QuarryFingerprintParts(raw,{sources,review});assert.equal(hash(rawPrior.join('\n')),f.runtime.beforeFingerprintSha256);assert.equal(JSON.stringify(raw),rawSnapshot);assert.deepEqual(Q.beforeStage12QuarryFingerprintParts(rawPrior,{sources,review}),rawPrior);
+ const temple=historicalRuntimeParts({variant:'temple'});
  assert.equal(hash(Q.beforeStage18BellFingerprintParts(temple,{sources}).join('\n')),B.stage18BellHistoryDelta.runtime.beforeFingerprintSha256);
  for(const parts of [raw,temple])for(const mutate of [p=>p.push('unreviewed'),p=>p.push(sources['shared/runtime/stage12-quarry.js']),p=>{p[1]+=' ';}]){const q=[...parts];mutate(q);assert.throws(()=>Q.beforeStage12QuarryFingerprintParts(q,{sources,review}));fingerprintChecks++;}
  const g=await runtime({legacyMaps:false}),saved={project:g.HONRO_PROJECT,content:g.HONRO_CONTENT,balance:g.HONRO_BALANCE,plan:g.HonroAct2Plan};assert.equal(hash(g.HONRO_PROJECT),hash(p));

@@ -1,3 +1,5 @@
+import {assertCurrentRuntimeParts} from './current-runtime-contract-helpers.mjs';
+import {historicalRuntimeParts,historicalRuntimeSources} from './historical-runtime-inputs.mjs';
 /** Exact Stage23 history isolation, including hostile mutation controls.
  * Source strings are compared/hashed only; current production Engine is loaded. */
 import assert from 'node:assert/strict';
@@ -30,7 +32,9 @@ let runtimeNegativeControls=0;for(const path of Object.keys(sources)){assert.thr
 for(const path of Object.keys(sources)){const q={...sources};delete q[path];assert.throws(()=>S.beforeStage23EscortRuntimeSources(q,options),'Runtime membership missing '+path);runtimeNegativeControls++;}assert.throws(()=>S.beforeStage23EscortRuntimeSources({...sources,'shared/runtime/unreviewed.js':'x'},options));runtimeNegativeControls++;
 const balancePath='game/config/balance.json';for(const mutate of [b=>b.stages[22].initialEnemies=29,b=>b.stages[22].maxAlive++,b=>b.stages[22].activeEnemies++,b=>b.stages[22].targetHits++,b=>b.maxLevel++,b=>b.stages[21].initialEnemies++]){const b=JSON.parse(sources[balancePath]);mutate(b);assert.throws(()=>S.createStage23EscortReview(p,{...sources,[balancePath]:JSON.stringify(b)},{label:'must reject'}),'Recorder protects XP/balance fields');runtimeNegativeControls++;}
 for(const mutate of [r=>r.sourceCommit='wrong',r=>r.scope.stageIds.push(24),r=>r.stage.units[0].x++,r=>r.addedAssets.reverse(),r=>delete r.runtime['shared/build.mjs']]){const r=plain(review);mutate(r);assert.throws(()=>{S.beforeStage23Escort(p,{review:r});S.beforeStage23EscortRuntimeSources(sources,{review:r});});}
-const raw=await runtimeParts({vector:false,render:false}),temple=[...raw.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(n=>readFile('shared/runtime/'+n+'.js','utf8')))];let fingerprintNegativeControls=0;
+const currentRaw=await runtimeParts({vector:false,render:false});assertCurrentRuntimeParts(currentRaw);assertCurrentRuntimeParts([...currentRaw.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(n=>readFile('shared/runtime/'+n+'.js','utf8')))],{variant:'temple'});
+// Explicit archive bytes, independently checked from current execution identity.
+const raw=historicalRuntimeParts(),temple=historicalRuntimeParts({variant:'temple'});let fingerprintNegativeControls=0;
 for(const parts of [raw,temple]){const saved=JSON.stringify(parts),pr=S.beforeStage23EscortFingerprintParts(parts,{sources,review});assert.equal(JSON.stringify(parts),saved);assert.deepEqual(S.beforeStage23EscortFingerprintParts(pr,{sources,review}),pr);for(const mutate of [p=>p.push('extra'),p=>p.push(sources['shared/runtime/stage23-escort.js']),p=>p.reverse(),p=>p[1]+=' ',p=>p.splice(1,1)]){const changed=[...parts];mutate(changed);assert.throws(()=>S.beforeStage23EscortFingerprintParts(changed,{sources,review}));fingerprintNegativeControls++;}}
 assert.equal(hash(S.beforeStage18BellFingerprintParts(temple,{sources}).join('\n')),Q.stage18BellHistoryDelta.runtime.beforeFingerprintSha256);
 const g=await runtime({legacyMaps:false}),saved={project:g.HONRO_PROJECT,content:g.HONRO_CONTENT,balance:g.HONRO_BALANCE,plan:g.HonroAct2Plan};let wrappers=0;

@@ -1,0 +1,10 @@
+/** Isolated four-body route probes; never a normal combat completion claim. */
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {runtime} from '../game/tests/helpers.mjs';
+import {isolatedHero,traverse} from './act1-spatial-test-helpers.mjs';
+const g=await runtime({legacyMaps:false}),out={scope:'Isolated real movement and ordinary jumps. Airborne pool starts are explicit geometry fixtures.',routes:[]};
+for(const cls of ['archer','mage','knight','occultist']){const q=isolatedHero(g,5,cls),a=q.b.honroMapAnchors,route=[a.receiver,{x:1800,y:2972.3809523809523,jumpTo:{x:1900,support:"archer-step"}},{x:2100,y:2636.1111111111113},a.shotGap,{x:2700,y:2475.8823529411766},a.shotGap,a.receiver];const r=traverse(g,q.b,q.e,q.u,route);g.HonroStage5WaterGeometry.setOpen(q.b,true);const cave=traverse(g,q.b,q.e,q.u,[{x:1800,y:2972.3809523809523,jumpTo:{x:1900,support:"archer-step"}},a.shotGap,{x:2785,y:2470.8823529411766,jumpTo:{x:2890,support:"hidden-ledge"}},{x:3090,y:2407.335640138408},a.shotGap,a.receiver]);out.routes.push({cls,...r,cave});console.log(cls,r.passed,r.failed);}
+out.poolReturns=[];
+for(const cls of ['archer','mage','knight','occultist'])for(const startX of [2410,2980,3460]){const q=isolatedHero(g,5,cls),startY=startX===2410?3150:3400,startHp=q.u.hp;Object.assign(q.u,{x:startX,y:startY,vx:0,vy:0,airborne:false});let fallTicks=0;for(;fallTicks<600;fallTicks++){q.e.integrateBody(q.u,1/60);if(fallTicks>10&&q.e.grounded(q.u))break;}const landed={x:q.u.x,y:q.u.y};const route=traverse(g,q.b,q.e,q.u,[{x:2310,y:3322.5},{x:2100,y:3146.25},{x:1830,y:2993.095238095238},q.b.honroMapAnchors.receiver]);out.poolReturns.push({cls,initialAirborne:{x:startX,y:startY},fallTicks,landed,...route,totalDamage:startHp-q.u.hp});assert(route.passed,JSON.stringify(out.poolReturns.at(-1)));}
+await mkdir('_local/reports/stage5-waterfall',{recursive:true});await writeFile('_local/reports/stage5-waterfall/route-probes.json',JSON.stringify(out,null,2));assert(out.routes.every(r=>r.passed&&r.cave.passed),'All four body routes must pass');console.log(JSON.stringify(out,null,2));

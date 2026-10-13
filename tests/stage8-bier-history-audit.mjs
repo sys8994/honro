@@ -1,3 +1,5 @@
+import {assertCurrentRuntimeParts} from './current-runtime-contract-helpers.mjs';
+import {historicalRuntimeParts,historicalRuntimeSources} from './historical-runtime-inputs.mjs';
 /** Exact outer history boundary with adversarial controls; no historical source
  * execution and no whole-playthrough or visual acceptance claim. */
 import assert from 'node:assert/strict';
@@ -29,7 +31,9 @@ const balancePath='game/config/balance.json';for(const mutate of [b=>b.stages[7]
 for(const mutate of [r=>r.sourceCommit='wrong',r=>r.sourceTree='wrong',r=>r.scope.stageIds.push(9),r=>r.stage.units[0].x++,r=>r.addedAssets.reverse(),r=>delete r.runtime['shared/build.mjs']]){const r=plain(review);mutate(r);assert.throws(()=>{S.beforeStage8Bier(p,{review:r});S.beforeStage8BierRuntimeSources(sources,{review:r});});}
 S.assertStage8BierAuthoringScope(authors);let authorNegativeControls=0;for(const row of S.stage8BierAuthoringBefore){const changed={...authors,[row.path]:Buffer.concat([authors[row.path],Buffer.from(' ')])};assert.throws(()=>S.assertStage8BierAuthoringScope(changed),'Immutable original authoring '+row.path);authorNegativeControls++;}assert.throws(()=>S.assertStage8BierAuthoringScope({...authors,'tools/map-forge/stage8-unreviewed.mjs':Buffer.from('unreviewed')}));authorNegativeControls++;
 const historicalAuthors=beforeEncounterDensityAuthoringSources(authors);for(const[path,digest]of Object.entries(review.authoringSources))assert.equal(rawHash(historicalAuthors[path]),digest,'Exact reviewed authoring source after verified density projection '+path);
-const raw=await runtimeParts({vector:false,render:false}),temple=[...raw.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(n=>readFile('shared/runtime/'+n+'.js','utf8')))];let fingerprintNegativeControls=0;
+const currentRaw=await runtimeParts({vector:false,render:false});assertCurrentRuntimeParts(currentRaw);assertCurrentRuntimeParts([...currentRaw.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(n=>readFile('shared/runtime/'+n+'.js','utf8')))],{variant:'temple'});
+// Explicit archive bytes, independently checked from current execution identity.
+const raw=historicalRuntimeParts(),temple=historicalRuntimeParts({variant:'temple'});let fingerprintNegativeControls=0;
 for(const parts of [raw,temple]){const saved=JSON.stringify(parts),pr=S.beforeStage8BierFingerprintParts(parts,{sources,review});assert.equal(JSON.stringify(parts),saved);assert.deepEqual(S.beforeStage8BierFingerprintParts(pr,{sources,review}),pr);for(const mutate of [p=>p.push('extra'),p=>p.push(sources['shared/runtime/stage8-bier.js']),p=>p.reverse(),p=>p[1]+=' ',p=>p.splice(1,1)]){const changed=[...parts];mutate(changed);assert.throws(()=>S.beforeStage8BierFingerprintParts(changed,{sources,review}));fingerprintNegativeControls++;}}
 assert.equal(hash(S.beforeStage18BellFingerprintParts(temple,{sources}).join('\n')),E.stage18BellHistoryDelta.runtime.beforeFingerprintSha256);
 const g=await runtime({legacyMaps:false}),saved={project:g.HONRO_PROJECT,content:g.HONRO_CONTENT,balance:g.HONRO_BALANCE,plan:g.HonroAct2Plan};let wrappers=0;

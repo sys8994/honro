@@ -16,7 +16,7 @@ export async function legacyRuntime(){
   C.defaults=()=>{const p=defaults();for(const [cls,second] of [['archer','A05'],['mage','M03']]){p.heroes[cls].ranks[second]=1;p.loadouts[cls]=[C.baseSkill(cls),second];}p.heroes.knight.ranks={S01:1,S09:1};p.loadouts.knight=['S01','S09'];for(const h of Object.values(p.heroes)){delete h.skillRevision;delete h.martialRevision;}return p;};
  }`,g);
  g.HONRO_BALANCE=JSON.parse(await read('game/config/balance.json'));
- for(const f of ['content','terrain-space','map-engine','battlefield-layouts','progression','encounters'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
+ for(const f of ['content','terrain-space','map-engine','battlefield-layouts','contribution-xp','progression','encounters'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
  for(const f of ['rc21-stage-maps','rc21-world'])vm.runInContext(await read(`migration/legacy/${f}.js`),g);
  for(const f of ['difficulty','allies','mission','stage-rules','objectives','combat-status'])vm.runInContext(await read(`shared/runtime/${f}.js`),g);
  for(const f of ['bounds','environment','vector-art','space-layout','schema','units'])vm.runInContext(await read(`shared/map/${f}.js`),g);

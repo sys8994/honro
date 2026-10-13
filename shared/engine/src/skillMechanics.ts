@@ -322,7 +322,7 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
    strikeGeometry(e,p,g);e.remove(p);return true;
   }
  }
- if(p.mode==='return'&&p.returning){
+ if(p.mode==='return'&&p.returning&&!e.inWaterfall(p)){
   p.returnAge=(p.returnAge||0)+dt;
   const a=Math.atan2(p.vy,p.vx),dest=Math.atan2((u.y-u.h*.5)-p.y,u.x-p.x),delta=Math.atan2(Math.sin(dest-a),Math.cos(dest-a)),next=a+clamp(delta,-2.5*dt,2.5*dt),speed=Math.max(400,Math.hypot(p.vx,p.vy));
   p.vx=Math.cos(next)*speed;p.vy=Math.sin(next)*speed;p.gravityScale=.12;

@@ -1,0 +1,38 @@
+{
+  "sourceCommit": "5ca1830b91fb3b94b0871cd5743b9425bd9cf8f3",
+  "metadataRepairCommit": "e987e410c765ddbfc5d33e4b54ede86945ad3947",
+  "runtimeProjectSha256": "0b41536fd696049e935bd2ee9a486eaa91e6cf83eb5cc04e2cdf8e65f29965e1",
+  "terrain": {
+    "id": "sodan-binding",
+    "name": "바깥 주박",
+    "type": "solid",
+    "points": [
+      {
+        "x": 2215,
+        "y": 2025
+      },
+      {
+        "x": 2311,
+        "y": 2025
+      },
+      {
+        "x": 2311,
+        "y": 2151
+      },
+      {
+        "x": 2215,
+        "y": 2151
+      }
+    ],
+    "baseMaterial": "wood",
+    "oneWay": false,
+    "breakable": true,
+    "layer": "terrain",
+    "properties": {
+      "device": "ward",
+      "honroBinding": true,
+      "hp": 800,
+      "maxHp": 800
+    }
+  }
+}

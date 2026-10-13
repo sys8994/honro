@@ -44,6 +44,12 @@
 - 변경: 공격 소유권과 분리한 autonomous 출처를 자동 생성 지점과 공통 충돌/피해/상태 경로에 전달한다. 연참·반격·회전검·소환/섭혼과 자동 후속탄은 아군/동맹/중립 NPC를 보호한다. 직접 조준 원탄/유도/반사/직접 설치 효과는 유지한다. 자동 지형 HP손상은 차단해 받침 붕괴·연쇄 폭발을 막지만 지형 충돌/반사는 보존한다.
 - 검증: 전용 격리 엔진 회귀의 전후/겹침·공중/근접 연참·킬 후 연계·저장 재개·회전검·소환 차례 종료·적 피해/XP 동일성 통과. 기존 targeting/summon/projectile, hwigyeom, combo, sodan, skill-effects, existence와 typecheck 통과. 새 출처 필드는 선택형이며 구 비행의 구조 표지로도 보호한다.
 - 한계: 독립 코드 검토, 통합 verify와 두 HTML/Pages 실제 화면 확인은 최종 통합 단계다. migration의 All580 asset membership/order 기존 실패는 원본 0372047에서도 재현했다. 자동 출처가 기록되지 않은 과거 설치 효과는 기존 규칙을 유지한다. 상세 범위는 [자동 공격 계약](AUTONOMOUS_ATTACK_SAFETY.md).
+## 휘겸의 폭포 부재와 나무다리 합류 (2026-10-13)
+
+- 원인: 4장 끝에 부상자를 쉼터로 데려간 휘겸이 5장 결말에서 설명 없이 발화하고 즉시 해금됐다.
+- 변경: 3장 첫 만남·4장 북문 호위는 유지한다. 4장 끝에 부상자를 인계하고 남은 운반대를 찾으러 갈라진다. 5장 결말은 설오·담허가 나무다리로 지원하러 향하며, 6장 길목에서 재회해 공동 구조와 실의 근원 조사에 동행하기로 한다. 신규5장 NPC 제거·주박목 기믹은 별도 폭포 변경과 통합해야 한다.
+- 경계: 5장 완료 결과에서는 새로 해금하지 않고, 진행 전투가 없는 6장 길목 쉼터 또는6장 직접 진입에서 합류한다. 기존 content의5장 recruit 값은 과거 성장 예산·stageParty·joinLevel의 호환 앵커이며 실제 해금은 recruitAtEntry에서 수행한다. 이미 합류한 프로필은 제거·재훈련하지 않는다. 진행 중 전투와 저장된 대사 스냅샷은 재작성하지 않는다.
+- 검증: hwigyeom-recruit-boundary의6개 경계, natural-dialogue, campaign-continuity 통과. DOM 대체 기반이므로 정상 전투·브라우저 렌더·Pages 검수는 별도다. story-canon-v01은 변경하지 않은 campaign.json의 기존 encounter-density 역사 해시에서 차단됨(기대4e6862, 실제536570).
 
 ## 2026-10-13 · 주막주인과 부재 NPC의 대화 초상 정체성
 
@@ -2529,3 +2535,75 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 ### 2장 후속 · 두 기존 파동의 예고후 행동기회
 
 전수trace에서 road-pressure와sniper-seen이 생성과같은경계에안내하고 다음플레이어입력전에공격하던 기존경계를 확인했다. 동일trigger·인원·기술·대사를유지하고 2장전용사전전술경고→실제새입력→안전actor경계입장을 추가했다. 진행중충전/발사/단순HUD확인은응답으로세지않으며, 점유/반복재개·Continue/죽음·승리·완료이벤트경계를검사한다. 원본회귀의공통기술migration/asset목록기대값실패는수정전에서도재현되므로 테스트를약화하지않는다. 최종합본검수는진행중이다.
+## 2026-10-13 · Stage 5 falling-water projectile drag
+- New revision 1 campaign Stage 5 only: the art's live sampled waterfall polygon is a fluid for airborne weapons. Body collision stays unchanged. Swept entry prevents fast shots skipping the sheet.
+- Horizontal velocity uses exact linear + quadratic resistance; vertical motion entrains into downward water flow. Water entry neither impacts nor reflects nor explodes a projectile. Real rock/unit collisions, fuses, children and existing lifetimes remain authoritative.
+- The shared integrator drives live and predicted flight. Homing/return/summon steering cannot repeatedly restore minimum speed inside water. Closed A01 shots fall onto actual rock; the held-open shot reaches the cleat.
+- Focused test `node tests/stage5-waterfall-drag.mjs` passes: 20–240 Hz identical homogeneous water result, swept 1,500–1,000,000 unit/s entries, closed/open shots, all other 29 chapters, old/custom snapshots, body policy and persisted velocity. New Engine typecheck passed. Browser, actual App Continue/dialogue and special-weapon matrix are still pending at this checkpoint; not final acceptance.
+- Follow-up focused validation: 42 requested skill probes include 41 successful fixture casts plus O99 correctly gated by its existing prerequisite, and seven guided/return flight probes. No fluid impact, runaway emission or infinite projectile lifetime was observed. Real App pause/dialogue, export, file import and Continue preserve in-water velocities and exactly reproduce the next step. This uses explicit shot/placement/resource fixtures and DOM/render/storage doubles.
+- Native production Scene sequence now shows the same arrow alive from horizontal entry through vertical descent (0.30–0.82 s). Wet arrows receive a thin dark contour so their velocity-aligned silhouette stays visible over pale water. Native screenshots are not browser evidence.
+- Final branch-only checkpoint after updated shared geometry f0b822e: 49 current A/M/O IDs covered (46 ballistic casts explicitly assert slowing/falling, A10 preparation and M14 stationary ring have no ballistic fall, O99 remains prerequisite-gated), plus seven guided/return fixtures. 40 live/preview closed/open endpoints match exactly; 121 closed and 217 open edge-interior samples are covered. Re-entry and downward friendly collision retain real behavior. Full `integration.py` was independently attempted and blocked at Chromium launch (`TargetClosedError`, socket permission/SIGABRT), with no bypass or browser pass claim. Latest release/FF integration remains the parent release task.
+- Performance follow-up: fluid inside/outside classification now uses polygon ray parity rather than the generic body function's nearest-distance calculation on every edge. The same 20,000-step Native/Node probe dropped from about 8.7 s to 0.46 s; this is a microbenchmark, not browser FPS. Closed/open preview, edge, special-skill and App results are unchanged. Old/custom projectile-solid collision and existing body-water collision are explicitly asserted.
+
+## 2026-10-13 새 폭포 최종 합본 접합 검수
+
+- 5ca1830의 플랫폼 중립 상호작용, 서술 이벤트 metadata, 쉼터 성장·제스처, 자동공격 아군 보호 및 2장 공중군집과 9a5a259의 폭포·낙수 저항·6장 휘겸 합류를 함께 보존했다. 새5장 안내에 남아 있던 E키 문구와 고체벽처럼 읽히던 낙수 문구를 교정했다.
+- 자동공격 실탄/저장 회귀 및 30장 플랫폼 중립 안내 검사를 통과했다. 정상 자원 완주·하부 파동 실효, 새5장 AI 점수 정합 후속, 전체 역사 계약·최종 브라우저/Pages 검수는 아직 대기 중이다. 생성 HTML은 병합한 소스에서 다시 빌드하며 이전 브랜치 산출물을 덮어쓰지 않는다.
+
+### 2026-10-13 · 현재15/19장 공간 메타 참조 정합
+
+5ca1830의 실제30장 canonical schema 검사에서15장 삭제된 fc15-west-descent의 surface/room 참조2개와19장 이미 제거된 적18명의 encounterSites 참조가 남아 있었다. 원인은 act23-quest-redesign 생성기가 실제 지형/편성을 바꾼 뒤 공간 설명을 정리하지 않은 것이다.15장은 기존 fc15-dry-basin-rim의 실제 edges0–3을 carved-groove에 연결하고 기존 route의 x5450은 유지한 채 support/y만 실제 바닥4270.789473684211로 맞춘다.19장은 정확히 a2-enemy-0…17의 설명 사이트만 제거한다. 알려지지 않은 잘못된 참조는 자동 삭제하지 않는다.
+
+`test:campaign-metadata`는 원본5ca1830의 공간 metadata fixture와 전체 project SHA를 고정하고, 명시한 변경 외 모든 필드 보존·생성기 재현/멱등·전체30장 schema·9개 대칭 음성변조를 검사한다. 현재 runtime에서 고정 시각으로 전30장 battle을 전후 컴파일해 허용된 honroMap.space 외 전체 상태(지형/actor/기술/목표/카메라설정/활성화 포함)가 동일함을 검증했다. 게임영역/지형/적수/스탯/저장 데이터는 변경하지 않았다. 이 검사는 실제 브라우저/조작 검수나 과거 density SHA 실패 해결을 주장하지 않는다. 두 HTML은 다음 통합 빌드에서 함께 재생성한다.
+
+### 2026-10-13 · 현재 canonical과 불변 역사 입력 검사의 분리
+
+기존 density SHA4e6862fc…는1973f07의 정확한30장/586자산이었다. 이후6ce25ff의14장 수직맵부터 의도한 후속 제작이 시작됐지만 역사 검사가 계속 현재 전체맵에 옛 SHA를 요구했다.0372047·6c836df·5ca1830의 raw canonical은 모두5365701b…/640자산으로 동일했다.580자산이 아니면 Act12로 추정하던 library helper도 full640을 잘못 분류했다.
+
+현재 source manifest와 불변1973f07 압축 데이터/출처/기존 SHA를 분리하고, 현재 계약을 통과한 입력에만 역사 데이터를 명시 선택한다.54추가/삭제0/기존 묵종1개 변경/21장 변경·나머지9장·모든순서/전역을 고정한다. 최신 생성기 전체 replay는30장/640자산을 재현하며 오래된5개 보존자산은 실제 도입commit 원본으로 검증한다.현재/역사에 대한12개 양방향 변조와 명시full/act12를 검사한다. 기존 역사fixture와runtime source/fingerprint 기대값은 수정하지 않았다.자세한 근거와 후속5장 별도승인 경계는 CAMPAIGN_HISTORY_CONTRACTS.md.
+
+데이터 분리 후 stage12-redesign은 기존 프로젝트SHA 차단점을 넘어 `Exact density source membership`에서 중단된다. 이는 새 runtime/data 모듈과 옛130소스 계약의 별도 불일치이며 이번 작업에서 완화하지 않는다. 전체 verify/브라우저/Pages 완료 주장은 하지 않는다.
+
+### 2026-10-13 · 현재 runtime/build와 역사 byte 계약 분리
+
+현재155소스와 density 역사133/Stage8 역사130을 명시 분리했다. 현재22추가/73변경/60원본동일/삭제0의 파일별 provenance·전후SHA·실제 build 모듈목록·TS컴파일·8가지번들/두HTML을 독립 검사한다.1973f07원본 source/parts는 실행하지 않는 압축 byte증거로 보존하고 기존133→130/golden/fingerprint값을 유지한다. 현재runtime fingerprint를 옛 정상플레이 fingerprint로 바꾸는 기능은 추가하지 않았다.
+
+6개 archive audit의 fingerprint부분만 현재실build검사와 명시history byte검사로 분리했다. 실제정상완주artifact/현재App·Scene을 함께 검사하는 quarry-next-stage-app와 hold-guide는 바꾸지 않았으며 별도호환성차단으로 남는다. 검사파일 목록과 음성검사·후속통합 경계는 RUNTIME_HISTORY_CONTRACTS.md. source분리 후 stage12-redesign은 migration legacyRuntime의 contribution-xp 누락으로실행중단을 드러냈다. 별도작은로더수정으로 다루며 stub/옛Engine으로회피하지않는다.
+
+### 2026-10-13 · legacy migration 실제기여원장 의존성 보완
+
+b81fefd6427be3d58291d4dc93e7269a0c27de02가 progression.initialize의 HonroContributionXP.create 의존성과 실제Game/Workshop build의 contribution-xp 등록을 추가했지만 migration/migrate-stages.mjs의 별도legacyRuntime 목록은 갱신하지 않았다. source/history검사 경계를 복구한 뒤 이실제누락이 드러났다. production과동일하게 progression 직전에 실제 shared/runtime/contribution-xp.js 하나를 등록한다.빈원장/항상통과stub/과거Engine을사용하지않는다.
+
+migration 원본SHA4b01ab3f…와legacy두원본소스기대값은그대로다. helper는새loader전체SHA8d7bbcb0…를먼저검증하고정확히한등록만되돌렸을때완전원본SHA로돌아오는지검증한다.원본migrate 함수본문은변경하지않았다. `test:migration-ledger`는20개실제현재/역사balance stage ledger의생성·반복초기화보존,10장실import,등록순서·중복·stub이름·다른byte변조거부를검사한다.기존 contribution-xp-migration8시나리오도PASS했다.
+
+후속stage12-redesign은현1/2장실행검사까지진행한다.옛맵비교에는이미승인된spBalanceRevision/honroContributionId 신규메타가추가되어3개비교가실패하며,current editor roundtrip은런타임 sodan-binding terrain의detail기본필드보충으로실패한다.이들은별도분석/승인대상이고이번loader수정으로숨기지않는다.전체verify/브라우저/Pages완료아님.
+
+### 2026-10-13 · 역사맵 양쪽의 동일 현migration 메타 경계
+
+SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBalanceRevision=1과 적 honroContributionId를 내보낸다.역사맵 fixture는 그대로 보존하고 양쪽 비교입력을 현HonroMaps.createBattle/Progression.initialize/CORE.applySpBalanceMigration에 통과시켜 얻은 정확한2종 annotation만 각원본복제에 추가한다.현재battle필드를삭제하거나구버전값으로낮추지않는다.다른raw필드·순서·원문전체는그대로검사한다.
+
+`test:migration-current-meta`는10장원본 불변·정확한ID=actorID/장내유일성·revision1·두번적용멱등·기존alias/중복ID/잘못된revision거부·실App3회export/import/Continue의ID/SP/성장원장/영웅XP동일을검증했다.기존XP migration8시나리오도앞단위에서PASS.이후stage12의1/2장recipe는PASS하며8/10장의이미변경된goal표시두문장과binding detail정규화는별도차단으로남아있다.이두종류를migration메타helper에섞지않는다.
+## 2026-10-13 · 새 5장 사격 위치 점수와 실제 발사 허용 정합 (검수 중)
+
+- 원인: 파동 사슴의 실탄은 자기·친군 폭발 위험 때문에 `shotViable`에서 거부되었으나, 같은 자리의 `shotOpportunity`는 직격 가산을 유지했다. 후보 자리의 자기 폭발 위험도 실제 이전 자리의 몸으로 계산했다.
+- 수정 범위: `honroStage===5`, `honroStage5WaterfallRevision===1`, 비custom 전투의 위치 기회 점수만 실제 `shotViable` 통과 때 가산한다. 읽기 전용 후보 전투에서 자기 몸만 후보 위치로 투영한다. 실제 발사 친군 안전·이동 예산·HP·피해·행동 상한은 그대로다. 다른 장·옛 5장·custom은 기존 분기를 따른다.
+- 원본 진단: 7bbaa2d의 자연 birth26 스냅샷을 실제 App.frame으로 재생한 event-141 첫 방어 지점. 체력·위치·적을 고친 정상 플레이가 아니라, 이미 관측한 전투를 고정한 진단 fixture다. 기존 정지 점수 −28.834, 수정 −152.655, 같은 110.167 이동량 안의 +90px 후보 −131.372로 이동 선택이 생긴다.
+- 검증 상태: TypeScript와 기존 26개 공중 이동/친군 사격 회귀 통과. 다른 29장·옛 저장·custom의 실제 이동 계획/조준 선택 비교와 전투 전체 읽기 전용 검사는 `tests/stage5-enemy-standoff.mjs`로 추가했고 실행 중이다. 첫 파동 턴 재생에서는 이동만 개선되고 유효 발사는 아직 없다. 후속 라운드 재생·정상 자원 입력·최신 합본 독립 검수·양 HTML/전체 verify/master/Pages는 별도 진행이다. 이 저장 지점은 소대 교전 품질 완료나 결함 전체 해결을 의미하지 않는다.
+
+### 새 5장 점유 후보 보강 (후속 검수 중)
+
+- 허위 사격 가산 제거 뒤에도 지상 후보 선택은 다른 몸과 겹치는 목적지를 허용했다. 새 5장만 후보 생성 때 본인/죽은 몸을 제외한 모든 몸(적·동행·동맹·목표)의 현재 AABB를 피한다. 이는 기존 실탄의 몸 판정 및 공중 후보의 전 팀 점유 정책과 같은 대상 범위다. 가로 10px 여백은 기존 도착 오차 9px를 포함한다. 지상 충돌·이동·통과 규칙, 후보 개수와 탐색 예산, 다음 턴 이동량은 바꾸지 않는다.
+- 고정된 원본 event-141 첫 방어 지점은 잔여 110px 안에 빈 후보가 없으므로 이동하지 않는다. 본래 550px을 가진 birth26부터 다시 재생하면 군집을 향해 겹치러 들어가는 선택을 피한다. 첫 6체 종료점은 실제 좌표로 몸 겹침 0이며 event-142는 원래 (1980,2722.778) 자리에서 26R frame13191에 발사, frame13221 담허 HP17/친군 HP12의 기존 안전 기준 내 실제 효과를 냈다.
+- 이전 94fd63b의 첫턴 미발사라는 초기 요약은 searchShot 반환만 관측한 계측 누락이었다. 실제 `Engine.fire`와 피해 계측은 event-144의26R frame13427 첫 피해를 확인했다. 최종 회귀는 계획/조준 반환이 아닌 실제 발사 성공·피해/방어막·행동 종료의 실제 점유를 기록한다. 서로 다른 정책의 첫 피해 라운드를 난이도 개선 수치로 직접 비교하지 않는다.
+- `tests/stage5-enemy-standoff-replay.mjs`는 고정 자연 birth와 보통 방어 입력의 진단이며 소대6체 모두의 유효 교전, 새 진입 정상 완주, 브라우저 품질을 대신하지 않는다. 전체 runtime/controller/engine hash와 commit을 기록한다. 다른 29장 중 새19장은 처음 적이 없으므로 그 장의 범위 차단 검사는 기록된 배우 fixture의 stage 태그만 바꾼 명시 진단으로 별도 표기한다.
+
+### 577cccf 동결 진단 결과
+
+- 29장/old/custom 실제 계획·조준 불변 및 전체 battle/RNG 읽기 전용 회귀 통과. TypeScript, 26개 tactical/flight, 8개 totem, 실탄 friendly-fire 회귀 통과.
+- 577cccf clean 소스의 같은 자연 birth26→42 보통 방어 입력에서 6체 모두 실제 발사와 담허 HP/방어막 효과를 관측했다. 최초 효과는142:26R/frame13221,141:31R/14592,143:31R/14752,145:32R/14916,146:32R/15135,144:41R/17976. 총23개 실제 행동 종료점 모두 다른 살아 있는 몸과 겹치지 않았고, 실제 발사 전의 모든 `shotViable`이 기존 친군/지형 안전 기준을 통과했다. 관측은42R 경계에서 종료했다.
+- 원본 전체 battle을 포함한 기록은 `_local/reports/stage5-enemy-standoff/replay42/replay.json`; runtime SHA256 `21275591b5db6fddec21a7f89fb6ba74b58531862c98f92c24f3a75031ce220b`, enemyAI SHA256 `82827d9128949d5e0d113e634ed0d468c16139d750354ea43dea9c53f5cb4f50`. 진단 fixture의 결과이며 최신 합본 정상 자원 입력·독립 검수·브라우저/Pages 완료를 주장하지 않는다.
+- `npm run test:stage5-waterfall:ai`는 범위 회귀와 짧은26→28 실제 발사/점유 진단을 공통 waterfall contracts에 연결한다. 확장 관측은 `HONRO_STANDOFF_UNTIL=42`로 지정한다. 실행 시작의 소스/컨트롤러 digest를 고정하고 끝에서 소스 불변을 확인하며, 실패한 관측도 원본을 먼저 보존한 뒤 gate를 실패시킨다.
+
+### 새5장 실제 R13 하부 낙수 몸 접촉 끼임
+
+정상 입력14R완주 원본에서 설오가 x2805.86/y3240.19 열린 낙수의 굽은 표면을 지형처럼 밟고 서쪽 이동·점프가 막혔다. 기존 pool fixture는 더 아래 y3400에서 시작하여 이 경계를 놓쳤다. 부모 승인에 따라 새5장만 몸 지형을 y2580에서 국소 clipping하고 전체 물표현/화살저항 sample은 honroWaterFluidVertices로 직렬화하여 동일하게 유지했다. 기존 revision1 중간저장은 terrain의 몸 투영과 sceneVersion만 한번 갱신하며 예전5장/커스텀/29장은 보존한다. 실제 R13 두 whole-battle복사와 양방향 기본귀환 및 네체형×3물상태를 추가했다. 정상 입력 전체재생과최종manifest/브라우저 검수는 이수정후 다시 수집해야 한다.

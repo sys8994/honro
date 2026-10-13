@@ -438,7 +438,7 @@
             this.stageId = st.id;
             this.training = training;
             this.stage = st;
-            if(!training){if(st.act===2)G.HonroAct2.recruit(this.profile);G.HonroProgression.repairRecruits(this.profile);}
+            if(!training){if(!this.customMap)G.HonroProgression.recruitAtEntry(this.profile,st.id);if(st.act===2)G.HonroAct2.recruit(this.profile);G.HonroProgression.repairRecruits(this.profile);}
             const p = clone(this.profile);
             if(!training&&this.honroRouteRetry){p._honroRouteRetry=clone(this.honroRouteRetry);this.honroRouteRetry=null;}
             if (training) {
