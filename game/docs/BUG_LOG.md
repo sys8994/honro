@@ -2557,3 +2557,9 @@ b81fefd6427be3d58291d4dc93e7269a0c27de02가 progression.initialize의 HonroContr
 migration 원본SHA4b01ab3f…와legacy두원본소스기대값은그대로다. helper는새loader전체SHA8d7bbcb0…를먼저검증하고정확히한등록만되돌렸을때완전원본SHA로돌아오는지검증한다.원본migrate 함수본문은변경하지않았다. `test:migration-ledger`는20개실제현재/역사balance stage ledger의생성·반복초기화보존,10장실import,등록순서·중복·stub이름·다른byte변조거부를검사한다.기존 contribution-xp-migration8시나리오도PASS했다.
 
 후속stage12-redesign은현1/2장실행검사까지진행한다.옛맵비교에는이미승인된spBalanceRevision/honroContributionId 신규메타가추가되어3개비교가실패하며,current editor roundtrip은런타임 sodan-binding terrain의detail기본필드보충으로실패한다.이들은별도분석/승인대상이고이번loader수정으로숨기지않는다.전체verify/브라우저/Pages완료아님.
+
+### 2026-10-13 · 역사맵 양쪽의 동일 현migration 메타 경계
+
+SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBalanceRevision=1과 적 honroContributionId를 내보낸다.역사맵 fixture는 그대로 보존하고 양쪽 비교입력을 현HonroMaps.createBattle/Progression.initialize/CORE.applySpBalanceMigration에 통과시켜 얻은 정확한2종 annotation만 각원본복제에 추가한다.현재battle필드를삭제하거나구버전값으로낮추지않는다.다른raw필드·순서·원문전체는그대로검사한다.
+
+`test:migration-current-meta`는10장원본 불변·정확한ID=actorID/장내유일성·revision1·두번적용멱등·기존alias/중복ID/잘못된revision거부·실App3회export/import/Continue의ID/SP/성장원장/영웅XP동일을검증했다.기존XP migration8시나리오도앞단위에서PASS.이후stage12의1/2장recipe는PASS하며8/10장의이미변경된goal표시두문장과binding detail정규화는별도차단으로남아있다.이두종류를migration메타helper에섞지않는다.
