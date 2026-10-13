@@ -21,7 +21,7 @@ with sync_playwright() as p:
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto((ROOT/'HONRO.html').as_uri());page.wait_for_function('window.HonroApp')
         prefix='mobile' if mobile else 'desktop'
-        check(prefix+' autoplay initially locked',page.evaluate('HonroApp.audio.music.current===null'))
+        check(prefix+' autoplay initially locked',page.evaluate('!HonroApp.audio.music.unlocked&&HonroApp.audio.music.starts===0&&HonroApp.audio.music.current?.paused'))
         check(prefix+' no track label before playback',page.locator('#bgm-now-playing').is_hidden())
         page.locator('[data-action="settings"]').first.click()
         page.wait_for_function('HonroApp.audio.music.current?.currentTime>.15')

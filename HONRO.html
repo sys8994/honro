@@ -4105,15 +4105,25 @@ class BgmPlayer {
         this.failed = new Set();
         this.restartRequested = false;
         this.requested = false;
+        this.firstPlay = true;
+        this.preloadFailed = false;
         this.battleSelected = false;
     }
     configure(enabled, volume) {
         this.enabled = enabled;
         this.volume = Math.max(0, Math.min(1, volume));
+        // Prepare only the current title song after applying the saved music settings.
+        // Fetching is allowed before a gesture; playback still requires unlock().
+        if (!this.current && this.state === 'main' && this.enabled && this.volume > 0)
+            this.select('main');
         this.applyPause();
         this.tick();
     }
-    unlock() { this.unlocked = true; this.requested = false; this.select(this.state); this.applyPause(); }
+    unlock() { if (this.preloadFailed) {
+        this.failed.delete(0);
+        this.silence();
+        this.preloadFailed = false;
+    } this.unlocked = true; this.requested = false; this.select(this.state); this.applyPause(); }
     select(state, battleSession) {
         // Different playlists start at their first song and zero seconds.
         // Repeated updates, pauses and unlocks in the same playlist never seek.
@@ -4143,7 +4153,10 @@ class BgmPlayer {
             this.silence();
             return;
         }
-        if (!this.unlocked || !this.tracks[track] || this.failed.has(track))
+        const prepareTitle = state === 'main' && this.enabled && this.volume > 0 && !this.paused && (typeof document === 'undefined' || !document.hidden);
+        if (!this.current && (!this.enabled || this.volume <= 0))
+            return;
+        if ((!this.unlocked && !prepareTitle) || !this.tracks[track] || this.failed.has(track))
             return;
         if (track === this.track && this.current) {
             if (this.restartRequested)
@@ -4162,8 +4175,9 @@ class BgmPlayer {
         this.restartRequested = false;
         this.track = track;
         const audio = this.current = this.makeAudio();
-        audio.preload = 'metadata';
+        audio.preload = prepareTitle ? 'auto' : 'metadata';
         audio.src = this.tracks[track];
+        this.firstPlay = true;
         audio.loop = state !== 'battle';
         audio.volume = 0;
         this.requested = false;
@@ -4175,6 +4189,7 @@ class BgmPlayer {
                 return;
             this.errors.push(`BGM ${track + 1}: ${audio.error?.code || 'media error'}`);
             this.failed.add(track);
+            this.preloadFailed = track === 0 && !this.unlocked;
             this.requested = false;
             if (this.state === 'battle' && [1, 2, 3].some(i => !this.failed.has(i))) {
                 this.battleIndex = (this.battleIndex + 1) % 3;
@@ -4196,6 +4211,13 @@ class BgmPlayer {
         if (this.current?.paused && !this.requested && !this.failed.has(this.track)) {
             const audio = this.current;
             this.requested = true;
+            // A prepared stream may have waited on the title for seconds. Fade from
+            // the actual play request, not from creation of the silent media element.
+            if (this.firstPlay) {
+                this.transitionStart = performance.now();
+                this.firstPlay = false;
+                this.tick(this.transitionStart);
+            }
             try {
                 const promise = audio.play();
                 this.starts++;
@@ -4204,8 +4226,10 @@ class BgmPlayer {
                         return;
                     this.errors.push(String(error?.name || error));
                     // Autoplay rejection waits for another real gesture. No per-frame retries.
-                    if (error?.name === 'NotAllowedError')
+                    if (error?.name === 'NotAllowedError') {
                         this.unlocked = false;
+                        this.firstPlay = true;
+                    }
                 });
             }
             catch (error) {
@@ -4214,7 +4238,7 @@ class BgmPlayer {
         }
     }
     tick(now = performance.now()) {
-        const mix = Math.max(0, Math.min(1, (now - this.transitionStart) / this.transitionMs)), volume = this.enabled ? this.volume : 0;
+        const mix = Math.max(0, Math.min(1, (now - this.transitionStart) / this.transitionMs)), volume = this.enabled && this.unlocked ? this.volume : 0;
         if (this.current)
             this.current.volume = volume * mix;
         if (this.outgoing) {
@@ -14293,11 +14317,11 @@ exports.AudioEngine = void 0;
 exports.soundSamples = soundSamples;
 const bgm_1 = require("./bgm");
 /** Damped material sounds: no UI bleeps, pitch sweeps or victory jingles. */
-function soundSamples(name, sr = 24000) {
+function* prepareSound(name, sr = 24000) {
     const recipes = {
         // seconds, body Hz, noise cutoff Hz, body gain, texture gain, decay
         // Soft low wooden/paper arrival, one note per message, no pitch sweep.
-        dialogue: [.24, 132, 380, .105, .025, 5.8],
+        dialogue: [.24, 156, 680, .145, .035, 6.2],
         sodanBell: [.72, 742, 2600, .26, .018, 5.5],
         arrow: [.27, 146, 1800, .29, .26, 8], arrowhit: [.30, 94, 1150, .42, .38, 10],
         sword: [.34, 108, 1900, .24, .40, 7], fire: [.55, 69, 900, .42, .46, 5],
@@ -14326,12 +14350,21 @@ function soundSamples(name, sr = 24000) {
         const modes = Math.sin(t * f * 6.28318) * Math.exp(-decay * q) + .32 * Math.sin(t * f * 1.71 * 6.28318) * Math.exp(-decay * 1.7 * q) + .16 * Math.sin(t * f * 2.63 * 6.28318) * Math.exp(-decay * 2.4 * q);
         const breath = name === 'qiWave' ? Math.sin(Math.PI * Math.min(1, t / .13)) * .3 + 1 : 1;
         const air = (low * .75 + brown * .25) * Math.exp(-decay * .9 * q) * breath;
-        const attack = Math.min(1, t / (name === 'dialogue' ? .022 : .008)), end = Math.min(1, (duration - t) / .035);
+        const attack = Math.min(1, t / (name === 'dialogue' ? .004 : .008)), end = Math.min(1, (duration - t) / .035);
         const v = (modes * body + air * texture) * attack * end;
         dc = .996 * dc + .004 * v;
         out[i] = Math.tanh((v - dc) * .85) * .8;
+        if (i % 256 === 255)
+            yield;
     }
     return out;
+}
+function soundSamples(name, sr = 24000) {
+    const preparation = prepareSound(name, sr);
+    let step = preparation.next();
+    while (!step.done)
+        step = preparation.next();
+    return step.value;
 }
 /** One context, unlocked by the same trusted gesture as the controls. */
 class AudioEngine {
@@ -14345,11 +14378,17 @@ class AudioEngine {
         this.voices = new Set();
         this.gainTarget = -1;
         this.warming = false;
+        this.disposed = false;
+        this.paused = false;
+        this.pcm = new Map();
+        this.resuming = null;
+        this.dialogueVoice = null;
         this.pending = [];
         this.lastPlayed = {};
         this.requestedAt = {};
         this.startedAt = {};
         this.playCount = 0;
+        this.warm();
     }
     configure(s) {
         const settings = s;
@@ -14361,13 +14400,22 @@ class AudioEngine {
             this.master.gain.setTargetAtTime(gain, this.context.currentTime, .015);
             this.gainTarget = gain;
         }
-        if (!this.enabled && (this.pending.length || this.voices.size))
+        if ((!this.enabled || this.volume <= 0) && (this.pending.length || this.voices.size))
             this.pause();
     }
-    async wake() {
+    wake() {
         this.music.unlock();
-        if (!this.enabled)
-            return false;
+        if (!this.enabled || this.volume <= 0 || this.paused || this.disposed)
+            return Promise.resolve(false);
+        if (this.resuming)
+            return this.resuming;
+        const task = this.resumeContext();
+        this.resuming = task;
+        void task.then(() => { if (this.resuming === task)
+            this.resuming = null; });
+        return task;
+    }
+    async resumeContext() {
         try {
             if (!this.context) {
                 const Constructor = globalThis.AudioContext || globalThis.webkitAudioContext;
@@ -14388,48 +14436,106 @@ class AudioEngine {
             if (this.context.state !== 'running')
                 await this.context.resume();
             const now = performance.now(), queue = this.pending.splice(0);
+            // An old visual event must not become sound on a later unrelated gesture.
+            if (this.context.state !== 'running' || this.paused || this.disposed)
+                return false;
             for (const item of queue)
-                if (now - item.at < 300)
+                if (now - item.at < 80)
                     this.play(item.name);
-            this.warm();
-            return this.context.state === 'running';
+            return true;
         }
         catch {
+            this.pending = [];
             return false;
         }
     }
+    samples(name) { let samples = this.pcm.get(name); if (!samples) {
+        samples = soundSamples(name, 24000);
+        if (samples.length)
+            this.pcm.set(name, samples);
+    } return samples; }
     buffer(name) { let buffer = this.buffers.get(name); if (!buffer && this.context) {
-        const samples = soundSamples(name, this.context.sampleRate);
+        const samples = this.samples(name);
         if (!samples.length)
             return;
-        buffer = this.context.createBuffer(1, samples.length, this.context.sampleRate);
+        buffer = this.context.createBuffer(1, samples.length, 24000);
         buffer.copyToChannel(samples, 0);
         this.buffers.set(name, buffer);
     } return buffer; }
-    warm() { if (this.warming)
-        return; this.warming = true; const names = ['dialogue', 'arrow', 'arrowhit', 'hit', 'sword', 'qiHit', 'break', 'down', 'fire', 'boom', 'qiWave', 'ricochet', 'split', 'ceramic', 'heal', 'turn', 'jump', 'charge', 'spiritCast', 'spiritImpact', 'spiritSummon', 'meteor', 'qiRebound', 'win', 'lose']; const step = () => { if (!this.context || this.context.state === 'closed')
-        return; const name = names.shift(); if (name)
-        this.buffer(name); if (names.length) {
-        if (typeof requestIdleCallback === 'function')
-            requestIdleCallback(step, { timeout: 250 });
-        else
-            setTimeout(step, 20);
-    } }; setTimeout(step, 0); }
+    warm() {
+        if (this.warming)
+            return;
+        this.warming = true;
+        const names = ['dialogue', 'arrow', 'arrowhit', 'hit', 'sword', 'qiHit', 'break', 'down', 'fire', 'boom', 'qiWave', 'ricochet', 'split', 'ceramic', 'heal', 'turn', 'jump', 'charge', 'spiritCast', 'spiritImpact', 'spiritSummon', 'meteor', 'qiRebound', 'win', 'lose', 'sodanBell'];
+        // Prepare PCM before the first gesture, without opening/unlocking an audio device.
+        let name, preparation;
+        const step = (deadline) => {
+            if (this.disposed)
+                return;
+            if (!preparation) {
+                name = names.shift();
+                if (!name)
+                    return;
+                if (this.pcm.has(name)) {
+                    schedule();
+                    return;
+                }
+                preparation = prepareSound(name);
+            }
+            // Yield after 256-sample blocks; use at most 2ms of an idle slot.
+            const started = performance.now();
+            let result = preparation.next(), blocks = 1;
+            while (!result.done && blocks < 8 && deadline && deadline.timeRemaining() > 1 && performance.now() - started < 2) {
+                result = preparation.next();
+                blocks++;
+            }
+            if (result.done) {
+                if (!this.pcm.has(name))
+                    this.pcm.set(name, result.value);
+                if (this.context)
+                    this.buffer(name);
+                preparation = undefined;
+            }
+            if (preparation || names.length)
+                schedule();
+        };
+        const schedule = () => { if (typeof requestIdleCallback === 'function')
+            requestIdleCallback(step, { timeout: 100 });
+        else if (typeof setTimeout === 'function')
+            setTimeout(step, 0); };
+        schedule();
+    }
+    stop(name) {
+        this.pending = this.pending.filter(item => item.name !== name);
+        if (name === 'dialogue' && this.dialogueVoice) {
+            const voice = this.dialogueVoice;
+            this.dialogueVoice = null;
+            try {
+                voice.stop();
+            }
+            catch { }
+            this.voices.delete(voice);
+        }
+    }
     play(name) {
-        if (!this.enabled || this.volume <= 0 || name === 'click')
+        if (!this.enabled || this.volume <= 0 || this.paused || this.disposed || name === 'click')
             return;
         const now = performance.now();
         this.requestedAt[name] = now;
         if (!this.context || this.context.state !== 'running') {
-            this.pending = this.pending.filter(p => now - p.at < 300 && p.name !== name);
-            this.pending.push({ name, at: now });
+            if (this.resuming) {
+                this.pending = this.pending.filter(p => now - p.at < 80 && p.name !== name);
+                this.pending.push({ name, at: now });
+            }
             return;
         }
-        if (now - (this.lastPlayed[name] ?? -1e9) < (name === 'arrowhit' ? 0 : name === 'qiHit' ? 24 : 45))
+        if (now - (this.lastPlayed[name] ?? -1e9) < (name === 'arrowhit' || name === 'dialogue' ? 0 : name === 'qiHit' ? 24 : 45))
             return;
         const buffer = this.buffer(name);
         if (!buffer)
             return;
+        if (name === 'dialogue')
+            this.stop('dialogue');
         if (this.voices.size >= 20) {
             const oldest = this.voices.values().next().value;
             oldest?.stop();
@@ -14440,7 +14546,10 @@ class AudioEngine {
         source.buffer = buffer;
         source.connect(this.master);
         this.voices.add(source);
-        source.onended = () => { this.voices.delete(source); source.disconnect(); };
+        if (name === 'dialogue')
+            this.dialogueVoice = source;
+        source.onended = () => { this.voices.delete(source); if (this.dialogueVoice === source)
+            this.dialogueVoice = null; source.disconnect(); };
         source.start();
         this.lastPlayed[name] = now;
         this.startedAt[name] = performance.now();
@@ -14451,11 +14560,12 @@ class AudioEngine {
             voice.stop();
         }
         catch { }
-    } this.voices.clear(); this.pending = []; }
+    } this.voices.clear(); this.dialogueVoice = null; this.pending = []; }
     setTheme(_n) { }
-    update(state, paused = false, battleSession) { this.music.setPaused(paused); if (state)
+    update(state, paused = false, battleSession) { this.paused = paused; if (paused)
+        this.pause(); this.music.setPaused(paused); if (state)
         this.music.select(state, battleSession); this.music.tick(); }
-    dispose() { this.pause(); this.music.dispose(); void this.context?.close(); }
+    dispose() { this.disposed = true; this.pause(); this.music.dispose(); void this.context?.close(); }
 }
 exports.AudioEngine = AudioEngine;
 AudioEngine.samples = soundSamples;
@@ -37885,7 +37995,7 @@ function focusLine(app,actor,meta){
  else if(actor)scene.storyFocus?.(actor.id,500);
  else scene.storyTween=null;
 }
-function draw(app){const node=host(app),d=app.dialogue;document.body.classList.toggle('story-lock',!!d);if(app.scene)app.scene.storyFrozen=!!d;if(!d){app.storyHistoryOpen=false;node.innerHTML='';if(app.scene){app.scene.goalFocus=null;app.scene.cinematic=null;app.scene.focusUntil=app.scene.speakerUntil=0;app.scene.storyRelease?.(app.storyCamera,450);}app.storyCamera=null;return;}if(G.HonroStoryStaging?.draw(app,node)){controls(node,app);if(app.storyHistoryOpen)historyView(app,node);return;}G.HonroStoryStaging?.lineStart(app);while(d.index<d.lines.length&&!allowed(app,d.lines[d.index][0],d.lines[d.index][2]))d.index++;if(d.index>=d.lines.length){finish(app,true);return;}let [who,line,meta={}] = d.lines[d.index];G.HonroNarrativeRevision?.reveal(app.engine?.b,d.lines[d.index]);const presentation=speakerPresentation(who,meta);meta={...meta,kind:presentation.kind};if(meta.kind==='guide'||who==='안내'){focusLine(app,null,meta);node.innerHTML=`<div class="story-overlay guide-overlay"><section class="story-guide" role="dialog" aria-modal="true" aria-labelledby="guide-title" aria-describedby="story-line"><div class="guide-kicker">길잡이 · 조작 안내</div><h2 id="guide-title">${esc(meta.guideTitle||'이번 여정의 목표')}</h2><p id="story-line">${esc(G.HonroActionPrompts?.text(line)??line)}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">안내 닫기</button><button class="primary" data-action="dialogue-next">확인 ›</button></div></section></div>`;controls(node,app);node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});if(app.storyHistoryOpen)historyView(app,node);save(app);return;}if(meta.kind==='document'){documentView(node,d,meta,line);controls(node,app);node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});if(app.storyHistoryOpen)historyView(app,node);save(app);return;}if(meta.kind==='narration'||who==='서술'){if(app.scene){app.scene.goalFocus=null;app.scene.cinematic=null;app.scene.storyTween=null;}narration(node,d,meta,line,app);controls(node,app);if(app.storyHistoryOpen){historyView(app,node);save(app);return;}node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});save(app);return;}const actor=actorFor(app,who);focusLine(app,actor,meta);const portrait=G.HONRO_STORY_PORTRAITS?.[who],cls=actor?.cls||portrait?.class,hasPortrait=!!(portrait?.src||actor?.cls||portrait?.actor&&portrait?.class||({'설오':'archer','담허':'mage','휘겸':'knight','소단':'occultist'}[who]===portrait?.class&&portrait?.class)),imageZoom=Math.max(1,Math.min(3,Number(portrait?.imageZoom)||1));const color=G.HONRO_CONTENT.hero[cls]?.color||'#c9b37f';node.innerHTML=`<div class="story-overlay ${d.staging?.cues?'cinematic-story':''}"><section class="story-scene dialogue-scene ${hasPortrait?'':'text-only-scene'}" data-speaker-kind="character" data-portrait-status="${hasPortrait?'available':'missing'}" style="--speaker:${color}" role="dialog" aria-modal="true" aria-labelledby="story-speaker" aria-describedby="story-line">${hasPortrait?`<div class="story-portrait" aria-label="${esc(who)}">${portrait?.src?`<img src="${esc(portrait.src)}" alt="${esc(who)}" style="--portrait-zoom:${imageZoom}">`:'<canvas id="story-portrait-canvas" width="400" height="440"></canvas>'}</div>`:''}<div class="story-copy"><div class="story-location">${esc(meta.storyTitle||d.title||app.stage?.name||'길 위')}<span>${d.index+1} / ${d.lines.length}</span></div><h2 id="story-speaker"><i></i>${esc(who)}</h2><p id="story-line">${esc(line)}</p><div class="story-actions"><span>Space / Enter</span><button class="ghost" data-action="dialogue-skip">대화 넘기기</button><button class="primary" data-action="dialogue-next">${d.index+1===d.lines.length?'계속 걷기':'다음'} <b>›</b></button></div></div></section></div>`;if(hasPortrait&&cls&&!portrait?.src)drawBust($('story-portrait-canvas'),actor,cls,who);controls(node,app);if(app.storyHistoryOpen){historyView(app,node);save(app);return;}node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});save(app);}
+function draw(app){const node=host(app),d=app.dialogue;document.body.classList.toggle('story-lock',!!d);if(app.scene)app.scene.storyFrozen=!!d;if(!d){app.audio?.stop?.('dialogue');app.storyHistoryOpen=false;node.innerHTML='';if(app.scene){app.scene.goalFocus=null;app.scene.cinematic=null;app.scene.focusUntil=app.scene.speakerUntil=0;app.scene.storyRelease?.(app.storyCamera,450);}app.storyCamera=null;return;}if(G.HonroStoryStaging?.draw(app,node)){controls(node,app);if(app.storyHistoryOpen)historyView(app,node);return;}G.HonroStoryStaging?.lineStart(app);while(d.index<d.lines.length&&!allowed(app,d.lines[d.index][0],d.lines[d.index][2]))d.index++;if(d.index>=d.lines.length){finish(app,true);return;}let [who,line,meta={}] = d.lines[d.index];G.HonroNarrativeRevision?.reveal(app.engine?.b,d.lines[d.index]);const presentation=speakerPresentation(who,meta);meta={...meta,kind:presentation.kind};if(meta.kind==='guide'||who==='안내'){focusLine(app,null,meta);node.innerHTML=`<div class="story-overlay guide-overlay"><section class="story-guide" role="dialog" aria-modal="true" aria-labelledby="guide-title" aria-describedby="story-line"><div class="guide-kicker">길잡이 · 조작 안내</div><h2 id="guide-title">${esc(meta.guideTitle||'이번 여정의 목표')}</h2><p id="story-line">${esc(G.HonroActionPrompts?.text(line)??line)}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">안내 닫기</button><button class="primary" data-action="dialogue-next">확인 ›</button></div></section></div>`;controls(node,app);node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});if(app.storyHistoryOpen)historyView(app,node);save(app);return;}if(meta.kind==='document'){documentView(node,d,meta,line);controls(node,app);node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});if(app.storyHistoryOpen)historyView(app,node);save(app);return;}if(meta.kind==='narration'||who==='서술'){if(app.scene){app.scene.goalFocus=null;app.scene.cinematic=null;app.scene.storyTween=null;}narration(node,d,meta,line,app);controls(node,app);if(app.storyHistoryOpen){historyView(app,node);save(app);return;}node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});save(app);return;}const actor=actorFor(app,who);focusLine(app,actor,meta);const portrait=G.HONRO_STORY_PORTRAITS?.[who],cls=actor?.cls||portrait?.class,hasPortrait=!!(portrait?.src||actor?.cls||portrait?.actor&&portrait?.class||({'설오':'archer','담허':'mage','휘겸':'knight','소단':'occultist'}[who]===portrait?.class&&portrait?.class)),imageZoom=Math.max(1,Math.min(3,Number(portrait?.imageZoom)||1));const color=G.HONRO_CONTENT.hero[cls]?.color||'#c9b37f';node.innerHTML=`<div class="story-overlay ${d.staging?.cues?'cinematic-story':''}"><section class="story-scene dialogue-scene ${hasPortrait?'':'text-only-scene'}" data-speaker-kind="character" data-portrait-status="${hasPortrait?'available':'missing'}" style="--speaker:${color}" role="dialog" aria-modal="true" aria-labelledby="story-speaker" aria-describedby="story-line">${hasPortrait?`<div class="story-portrait" aria-label="${esc(who)}">${portrait?.src?`<img src="${esc(portrait.src)}" alt="${esc(who)}" style="--portrait-zoom:${imageZoom}">`:'<canvas id="story-portrait-canvas" width="400" height="440"></canvas>'}</div>`:''}<div class="story-copy"><div class="story-location">${esc(meta.storyTitle||d.title||app.stage?.name||'길 위')}<span>${d.index+1} / ${d.lines.length}</span></div><h2 id="story-speaker"><i></i>${esc(who)}</h2><p id="story-line">${esc(line)}</p><div class="story-actions"><span>Space / Enter</span><button class="ghost" data-action="dialogue-skip">대화 넘기기</button><button class="primary" data-action="dialogue-next">${d.index+1===d.lines.length?'계속 걷기':'다음'} <b>›</b></button></div></div></section></div>`;if(hasPortrait&&cls&&!portrait?.src)drawBust($('story-portrait-canvas'),actor,cls,who);controls(node,app);if(app.storyHistoryOpen){historyView(app,node);save(app);return;}node.querySelector('[data-action="dialogue-next"]').focus({preventScroll:true});save(app);}
 function finish(app,natural=false){const d=app.dialogue,camera=clone(app.storyCamera||null);if(!d)return;if(G.HonroStoryStaging?.finish(app,natural))return;G.HonroNarrativeRevision?.finishStory(app,d);app.dialogue=null;save(app);draw(app);app.acc=0;if(d.journeyInterludeId){app.profile.seen[d.journeyInterludeId]=true;app.persist();}if(d.id){app.profile.seen[d.id]=true;app.profile.honroMapStory=null;app.persist();}if(G.HonroRestJourney?.finishStory(app,d))return;if(d.after==='outcome')app.outcome(true);else {app.storyCamera=camera;if(!drain(app)){app.storyCamera=null;if(d.after==='entry')turn(app,true);}}}
 function next(app){if(!app.dialogue||app.storyHistoryOpen)return;if(G.HonroStoryStaging?.skipMotion(app))return;G.HonroStoryStaging?.lineEnd(app);app.dialogue.index++;draw(app);}function key(app,e){if(app.storyHistoryOpen){if(e.code==='Tab'){e.preventDefault();const items=[...host(app).querySelectorAll('.story-history button,.story-history summary')],index=items.indexOf(document.activeElement);items[(index+(e.shiftKey?-1:1)+items.length)%items.length]?.focus();}if(e.code==='Escape'){e.preventDefault();app.storyHistoryOpen=false;draw(app);}return;}if(['Space','Enter'].includes(e.code)&&document.activeElement?.dataset.storyTool){e.preventDefault();if(!e.repeat)document.activeElement.click();return;}if(['Space','Enter','Escape','Tab'].includes(e.code))e.preventDefault();if(e.code==='Tab'){const buttons=[...host(app).querySelectorAll('button:not(:disabled)')],index=buttons.indexOf(document.activeElement);buttons[(index+(e.shiftKey?-1:1)+buttons.length)%buttons.length]?.focus();}else if(['Space','Enter'].includes(e.code)&&!e.repeat){if(document.activeElement?.disabled)return;if(document.activeElement?.dataset.action==='dialogue-prev')previous(app);else if(document.activeElement?.dataset.action==='dialogue-skip')finish(app);else next(app);}}
 function restoreQueuedSpeech(hs){hs.storyQueue=[...(hs.banterLine?[hs.banterLine.line]:[]),...(hs.storyBanter||[]).flat(),...(hs.storyQueue||[])];hs.storyBanter=[];hs.banterLine=null;}

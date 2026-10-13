@@ -1,3 +1,12 @@
+## 2026-10-13 · 대화 첫 타격과 공통 SFX 지연 방지
+
+- 원인: 기존 대화는 22ms attack·낮은 gain으로 첫 20ms가 약했고, 효과음의 첫 사용은 출력장치 표본율로 전체 파형을 동기 합성했다. 예열도 첫 제스처 후 시작했다. 중단된 컨텍스트는 최대 300ms 된 이벤트를 다음 제스처에 되살렸다.
+- 변경: 대화는 240ms의 낮은 나무/종이 질감을 유지하고 156Hz 몸통·4ms attack으로 식별력을 높였다. PCM은 autoplay/device 요청 없이 24kHz·256표본 단위·idle slot 최대2ms 예산으로 미리 준비한다. WebAudio가 장치 표본율로 변환하며 기존 전투 파형 공식은 유지한다. 비동기 resume 진행 중인 80ms 이내 이벤트만 최신 종류별로 보류하며, 닫힌 대화·숨김·음소거·음량0·dispose는 큐를 취소한다. 다음/이전의 대화 voice는 한 개만 유지하고 전투 SFX를 자르지 않는다. 저장 데이터와 설정 스키마는 변경하지 않는다.
+- 집중 검증: typecheck, dialogue-controls-audio의 진행·저장·이전/다음/넘김 회귀, audio-latency의 autoplay/동시wake/느린resume/취소/연타/복귀 대역 검증을 적용했다. 합성 파형의 0.01 onset은 4.79→0.50ms, peak 시점은 20.71→8.08ms, 첫20ms RMS는 .0175→.0496다. 전체 RMS는 .0109→.0187(약4.7dB 증가), peak는 .0485→.1082로 전투 타격음보다 작게 유지한다. 이는 PCM 수치이며 실제 스피커 응답시간이 아니다.
+- 검수 중 발견: 기존 확정 제목의 ["혼","로"] glyph map을 대화 화자로 오인한 source-inventory 실패를 원본28b829a에서도 재현했다. main.js의 정확한 glyph pair/map/제목class 문맥만 분류하고, 실제 혼 화자·다른파일·다른본문은 제외되지 않는 negative 검사를 추가했다.
+- 최종 합본: 두 HTML, BGM23/대화6/SFX9/독립기기표본율7, 현재159소스·8변형·902/48/50negative, 이전대화·화자·사건·피격 회귀 통과. 전체 verify는 title/current map/runtime/migration/story/binding/typecheck/game npmtest 및 rc21 mapaudit까지 통과한 뒤 Chromium socket/ptrace EPERM→SIGABRT로 페이지 진입 전에 중단됐다. rc21 성능과 뒤의 전체 integration/performance는 미실행이며 전체 통과가 아니다.
+- 한계: 실제 청취·브라우저 음 출력·기기/Bluetooth 지연·공개 Pages 음성은 미검증이다. 보안 우회는 하지 않았다. 정확한 범위와 raw log는 AUDIO_RELEASE_REVIEW.md에 기록했다.
+
 
 ## 2026-10-13 · 확정 한자 魂路 중심의 인트로 제목
 
@@ -2653,3 +2662,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 변경: 승인된 `魂路`와 기존 한글 원본 PNG를 그대로 유지하며 `혼`·`로`를 우하단의 세로 독음으로 표시한다. 원본 붓끝을 보존하는 상보 CSS clip과 원본 alpha 내부의 정지한 SVG 먹결을 사용해 밝기를 낮춘 회녹빛 잿빛으로 통일한다. 배경·메뉴·저장·전투·엔진·맵은 변경하지 않는다.
 - 검증: `test:title`의 다섯 저장 분기와 반복 진입/접근성/fallback, 두 PNG 바이트 동일성, 실제 SVG 픽셀 명도·alpha·상보 clip, 여섯 viewport 경계식이 통과했다. Native 333/400/desktop와 짧은 가로 화면을 생성했고 333/desktop 미술은 독립 검수로 승인받았다.
 - 한계: 로컬 Chromium은 시작 시 socket 권한 제한으로 차단됐다. Native 이미지와 소스·DOM-double 검사를 실제 브라우저나 배포 검수로 취급하지 않으며 공개 CSS filter/clip·실제 메뉴 검수는 최종 배포 과정에서 별도로 진행한다.
+
+## 메인 BGM 첫 입력 준비 지연 — 2026-10-13
+
+- 확인한 원인: `BgmPlayer`는 첫 입력 전에는 미디어를 만들지 않아, 첫 입력 시점부터 메인 곡 네트워크 요청/브라우저 버퍼 준비를 시작했다. MP3 전체를 AudioBuffer로 디코딩하거나 전체 다운로드를 기다리는 구현은 아니다. 기존 크로스페이드는 420ms다.
+- 변경: 저장된 음악 설정을 적용한 뒤 보이는 타이틀에서 메인 1곡만 `preload=auto`로 준비한다. 다른 4곡은 선요청하지 않으며, 실제 입력 전 play는 호출하지 않는다. 음악 끔/음량 0/숨겨진 첫 진입은 준비를 생략한다. 첫 play 요청부터 기존 420ms fade를 적용하고 autoplay 거부 시 다음 입력을 기다린다. 선요청의 일시적 실패는 첫 입력 때 한 번 다시 시도하며 프레임마다 재요청하지 않는다.
+- 소스 측정: 메인 파일 4,741,261바이트, 204.84초, 평균 약185kbps. FFmpeg로 48kHz mono float PCM 변환 시 첫 -45dBFS 초과 샘플은191.3ms, 첫0.5초 RMS -14.7dBFS, 다음0.5초 -19dBFS다. 수초 무음/긴 원본 fade는 확인되지 않았다. 이 수치는 실제 스피커 출력 지연 측정이 아니다.
+- 검사: `node tests/audio.mjs` 23항목 통과(단일 준비, muted/zero-volume/hidden, autoplay 거부·재입력, 선요청 실패, 기존 playlist/seek/동시채널/해제 회귀). 브라우저 기존 초기 잠금 검사는 미디어 미생성 대신 실제 locked/starts=0/paused를 확인하도록 갱신했다.
+- 한계: preload는 브라우저 힌트라 데이터 절약 정책 등에 따라 무시될 수 있고 느린 네트워크/즉시 입력에서는 남은 버퍼 대기가 있다. cold/warm 캐시 실제 브라우저 비교, 실제 청취 및 최종 통합 전체 verify·배포 검수는 별도 수행해야 한다. 입력 전 무음은 autoplay 정책 준수를 위해 유지한다.
