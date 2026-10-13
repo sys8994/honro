@@ -246,7 +246,7 @@ export class Engine {
                 found.add(t);
         return [...found].sort((a, b) => this.terrainOrder.get(a)! - this.terrainOrder.get(b)!);
     }
-    collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, projectile = false): Collision | null {
+    collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, projectile = false, attack?:Projectile): Collision | null {
         let best: Collision | null = null;
         const left=Math.min(a.x,c.x)-r,right=Math.max(a.x,c.x)+r,top=Math.min(a.y,c.y)-r,bottom=Math.max(a.y,c.y)+r;
         if(terrain) for (const t of this.collisionTerrain(a, c, r)) {
@@ -260,7 +260,7 @@ export class Engine {
             for (const u of this.b.units) {
                 // Most units are nowhere near this short substep; avoid allocating
                 // the slab-intersection arrays for every unit in every AI probe.
-                if (u.dead || u.id === owner || u.x-u.r>right || u.x+u.r<left || u.y-u.h>bottom || u.y<top || hit.includes(u.id))
+                if (u.dead || !this.attackAllows(u,owner,attack) || u.id === owner || u.x-u.r>right || u.x+u.r<left || u.y-u.h>bottom || u.y<top || hit.includes(u.id))
                     continue;
                 const h = segRect(a, c, u.x - u.r, u.y - u.h, u.r * 2, u.h, r);
                 if (h && (!best || h.t < best.t))
@@ -269,8 +269,8 @@ export class Engine {
         return best;
     }
     /** All flying weapons, their children and previews share this policy. No saved state. */
-    projectileCollision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true): Collision | null {
-        return this.collision(a,c,r,owner,hit,units,skip,terrain,true);
+    projectileCollision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, attack?:Projectile): Collision | null {
+        return this.collision(a,c,r,owner,hit,units,skip,terrain,true,attack || ('owner' in a ? a as Projectile : undefined));
     }
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
@@ -573,7 +573,7 @@ export class Engine {
         if(desired<1||(p.emissions||0)>=desired||this.b.projectiles.length>=220)return;
         const wave=p.emissions||0;p.emissions=wave+1;const count=waveCount(skill,rank,wave);
         const spawn=(vx:number,vy:number,mode:string,factor:number,blast:number)=>{
-            const child:Projectile={...p,id:this.b.nextId++,mode,vx,vy,prevVy:vy,damage:p.damage*factor*profile.damageScale,blast,radius:mode==='stormBolt'?5:4,age:0,child:true,body:false,apex:true,emissions:99,fieldHits:[...(p.fieldHits||[])],hit:[],trail:[{x:p.x,y:p.y}],bounces:0,pierces:0,drag:dragFor(skill,mode),gravityScale:mode==='stormBolt'?0:1};this.b.projectiles.push(child);
+            const child:Projectile={...p,id:this.b.nextId++,mode,vx,vy,prevVy:vy,damage:p.damage*factor*profile.damageScale,blast,radius:mode==='stormBolt'?5:4,age:0,child:true,autonomous:true,body:false,apex:true,emissions:99,fieldHits:[...(p.fieldHits||[])],hit:[],trail:[{x:p.x,y:p.y}],bounces:0,pierces:0,drag:dragFor(skill,mode),gravityScale:mode==='stormBolt'?0:1};this.b.projectiles.push(child);
         };
         if(p.mode==='emberOrb')for(let i=0;i<count;i++){const f=count<=1?0:(i/(count-1)-.5)*2;spawn(p.vx*.27+f*150*Math.sqrt(count/2),100+(i%2)*25,'blast',.36,45);}
         if(p.mode==='frostOrb')for(let i=0;i<count;i++){const a=wave*.64+i*2*Math.PI/count;spawn(Math.cos(a)*305+p.vx*.16,Math.sin(a)*305,'iceShard',.28,13);}
@@ -585,7 +585,7 @@ export class Engine {
         this.fx('burst',p.x,p.y,p.color,70);this.fx('ring',p.x,p.y,p.color,65);this.emit('sound',{name:'split'});
         for(let i=0;i<plan.count;i++){
             const f=plan.count<=1?0:2*i/(plan.count-1)-1,scale=Math.sqrt(plan.count/plan.base),seeking=p.mode==='seekRain',rain=p.mode==='rain',vx=(rain?69:seeking?155:195)*f*scale+p.vx*(rain?.18:.2),vy=seeking?250:rain?175:60+Math.abs(f)*60,mode=seeking?'seekChild':rain?'arrow':'blast';
-            const c:Projectile={...p,id:this.b.nextId++,mode,vx,vy,prevVy:vy,damage:p.damage*plan.damageScale,radius:rain||seeking?3:5,blast:rain||seeking?0:p.blast,age:0,apex:true,body:false,child:true,hit:[],trail:[],phase:0,fieldHits:[...(p.fieldHits||[])],drag:dragFor(s,mode),gravityScale:1};this.b.projectiles.push(c);
+            const c:Projectile={...p,id:this.b.nextId++,mode,vx,vy,prevVy:vy,damage:p.damage*plan.damageScale,radius:rain||seeking?3:5,blast:rain||seeking?0:p.blast,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[],phase:0,fieldHits:[...(p.fieldHits||[])],drag:dragFor(s,mode),gravityScale:1};this.b.projectiles.push(c);
         }
         this.remove(p);
     }
@@ -594,7 +594,7 @@ export class Engine {
       v.elapsed+=dt;
       while(v.remaining>0&&v.elapsed+1e-8>=v.interval){v.elapsed-=v.interval;v.remaining--;v.index++;
         const sk=SKILLS[v.template.skill],a=clamp(v.angle+(this.random()*2-1)*VOLLEY_SPREAD,AIM_MIN,AIM_MAX),angles=volleyAngles(sk,v.template.skillRank||u.ranks[sk.id]||1,a);
-        for(const angle of angles){const o=this.projectileOrigin(u,sk,angle),vel=this.velocity(u,sk,angle,v.power);const p:Projectile={...JSON.parse(JSON.stringify(v.template)),id:b.nextId++,x:o.x,y:o.y,...vel,prevVy:vel.vy,age:0,apex:false,hit:[],trail:[o],phase:0,bounces:0,pierces:0,emissions:0,rolled:0,fieldHits:[],amplification:1,damage:v.template.damage*volleyDamage(passiveRank(u,'AP01'),v.index),followup:true,repeatIndex:v.index,launchX:o.x,launchY:o.y,carry:[]};b.projectiles.push(p);}
+        for(const angle of angles){const o=this.projectileOrigin(u,sk,angle),vel=this.velocity(u,sk,angle,v.power);const p:Projectile={...JSON.parse(JSON.stringify(v.template)),id:b.nextId++,x:o.x,y:o.y,...vel,prevVy:vel.vy,age:0,apex:false,hit:[],trail:[o],phase:0,bounces:0,pierces:0,emissions:0,rolled:0,fieldHits:[],amplification:1,damage:v.template.damage*volleyDamage(passiveRank(u,'AP01'),v.index),followup:true,autonomous:true,repeatIndex:v.index,launchX:o.x,launchY:o.y,carry:[]};b.projectiles.push(p);}
         u.anim=.6;this.fx('ring',u.x,u.y-u.h*.6,sk.color,20);this.emit('sound',{name:'arrow'});
       }
       if(v.remaining<=0)b.volley=undefined;
@@ -606,7 +606,19 @@ export class Engine {
       if(owner)return this.allegiance(owner,seen);
       return (u as any).honroAlly||u.id==='objective'?0:u.side;
     }
-    /** Guidance only: incidental collisions and damage retain their existing rules. */
+    /** Provenance is independent of damage ownership. Legacy continuations are recognized
+     * from their structural flags, never a character or skill display name. */
+    autonomousAttack(owner:string,p?:Partial<Projectile>){
+      const actor=this.unit(owner);
+      return !!(actor?.summoned||actor?.enthrall||p?.autonomous||p?.child||p?.secondary||p?.followup||p?.echoSource);
+    }
+    attackAllows(target:Unit,owner:string,p?:Partial<Projectile>){
+      if(!this.autonomousAttack(owner,p))return true;
+      const actor=this.unit(owner),side=actor?this.allegiance(actor):p?.side;
+      const other=this.allegiance(target);
+      return side!==undefined&&side!==2&&other!==2&&side!==other;
+    }
+    /** Guidance remains enemy-only; directly aimed root shots retain friendly collision. */
     guidanceTarget(owner:Unit|undefined,target:Unit|undefined):boolean {
       if(!owner||!target||owner.id===target.id||target.dead||target.hp<=0)return false;
       if(target.spiritHidden&&!target.manifested&&!target.revealSpiritToParty&&!owner.spiritSight&&!this.creditUnit(owner)?.spiritSight)return false;
@@ -623,7 +635,7 @@ export class Engine {
       if(!target)return {vx,vy};const turn=1.75+(owner.side===0?Math.max(0,(owner.ranks[child?'A15':'A13']||1)-1)*.05:0),a=Math.atan2(vy,vx),desired=Math.atan2(target.y-target.h*.5-y,target.x-x),delta=Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),angle=a+clamp(delta,-turn*dt,turn*dt),speed=Math.hypot(vx,vy);return {vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed};
     }
     carrySweep(p:Projectile,a:Vec,end:Vec){const owner=this.unit(p.owner);if(!owner)return; p.carry??=[];
-      for(const u of this.b.units){if(u.dead||u.side===owner.side||u.side===2||u.fixed||p.hit.includes(u.id)||u.carriedBy!==undefined)continue;
+      for(const u of this.b.units){if(u.dead||!this.attackAllows(u,p.owner,p)||u.side===owner.side||u.side===2||u.fixed||p.hit.includes(u.id)||u.carriedBy!==undefined)continue;
         const contact=segRect(a,end,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius+5);if(!contact)continue;
         p.hit.push(u.id);this.hurt(u,p.damage,p.owner,true,p,{x:u.x,y:u.y-u.h*.5});this.fx('slash',u.x,u.y-u.h*.5,p.color,70);
         if(!u.dead){u.carriedBy=p.id;u.vx=u.vy=0;u.jumping=false;delete u.moveTarget;p.carry.push(u.id);}
@@ -683,8 +695,8 @@ export class Engine {
     iceGourdReady(){return iceGourdReady(this);}
     detonateIceGourd(){return detonateIceGourd(this);}
     projectileDamage(p?:Projectile){return !!p&&Number.isFinite(p.id)&&!p.body&&p.mode!=='stake';}
-    hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'|'environment'='normal',damageSkill?:string) {
-        if (u.dead || amount <= 0)
+    hurt(u: Unit, amount: number, owner: string, direct = false, p?: Projectile, source?: Vec,damageSource:'normal'|'salheun'|'environment'='normal',damageSkill?:string, provenance?:Partial<Projectile>) {
+        if (u.dead || amount <= 0 || !this.attackAllows(u,owner,p||provenance))
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
         let dmg = amount;
@@ -823,7 +835,9 @@ export class Engine {
         if(flyingEnemy(u)){knockbackFlyingEnemy(this,u,vx,vy);return;}
         if(u.fixed)return; delete u.platformDrop; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
         u.jumping = false; }
-    damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active) {
+    damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active, attack?:Partial<Projectile>) {
+        // Automatic attacks cannot remove support, trigger barrels or alter water under allies.
+        if(this.autonomousAttack(owner,attack))return;
         if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
             return;
         if((this.b as any).honroStage===5&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
@@ -877,7 +891,7 @@ export class Engine {
                         this.hurt(u, 70, this.b.active,false,undefined,undefined,'environment');
         }
     }
-    blast(x: number, y: number, r: number, damage: number, owner: string, body = false, p?: Projectile, depth = 0) {
+    blast(x: number, y: number, r: number, damage: number, owner: string, body = false, p?: Projectile, depth = 0, provenance?:Partial<Projectile>) {
         if (depth > 8)
             return;
         const radius = Math.max(r, 1), s = p ? SKILLS[p.skill] : undefined;
@@ -886,7 +900,7 @@ export class Engine {
         else {this.fx('burst', x, y, p?.color || '#edb16e', radius);this.fx('ring', x, y, p?.color || '#efc99b', radius);}
         this.emit('sound', { name: radius > 105 ? 'boom' : 'hit', value: radius });
         for (const u of this.b.units) {
-            if (u.dead || (body && u.id === owner) || ((p?.mode === 'spin'||p?.mode==='charge'||p?.mode==='cataclysmCharge') && p.hit.includes(u.id)))
+            if (u.dead || !this.attackAllows(u,owner,p||provenance) || (body && u.id === owner) || ((p?.mode === 'spin'||p?.mode==='charge'||p?.mode==='cataclysmCharge') && p.hit.includes(u.id)))
                 continue;
             const d = Math.hypot(u.x - x, (u.y - u.h * .45) - y);
             if (d < radius + u.r) {
@@ -902,12 +916,12 @@ export class Engine {
             const cx = clamp(x, t.x, t.x + t.w), cy = clamp(y, Math.min(t.y, t.y + (t.slope || 0)), t.y + t.h);
             const d = Math.hypot(x - cx, y - cy);
             if (d < radius)
-                this.damageTerrain(t, damage * (s?.terrain || 1) * (.5 + .5 * (1 - d / radius)), depth, owner);
+                this.damageTerrain(t, damage * (s?.terrain || 1) * (.5 + .5 * (1 - d / radius)), depth, owner,p||provenance);
         }
         const caster=this.unit(owner), echo=caster?equippedRank(caster,'MP01'):0;
-        if(p&&!newSkill(p)&&!p.child&&!p.echoUsed&&!body&&echo>0){p.echoUsed=true;const extra={...p,child:true,echoUsed:true,color:'#edd6ff'};this.blast(x,y,radius*.70,damage*.18*echo,owner,false,extra,depth+1);}
+        if(p&&!newSkill(p)&&!p.child&&!p.echoUsed&&!body&&echo>0){p.echoUsed=true;const extra={...p,child:true,autonomous:true,echoUsed:true,color:'#edd6ff'};this.blast(x,y,radius*.70,damage*.18*echo,owner,false,extra,depth+1);}
     }
-    createZone(p: Projectile, kind: Zone['kind'], attached?: Unit) { const z: Zone = { id: this.b.nextId++, kind, x: p.x, y: p.y, radius: p.blast || 80, owner: p.owner, side: p.side, damage: kind === 'fire' ? p.damage * .36 : kind === 'frost' ? p.damage * .20 : p.mode === 'sticky' ? 58 * (this.unit(p.owner)?.attack || 1) : p.damage, expires: this.b.round + 2 }; if (kind === 'delay' || kind === 'bomb') {
+    createZone(p: Projectile, kind: Zone['kind'], attached?: Unit) { const z: Zone = { autonomous:this.autonomousAttack(p.owner,p), id: this.b.nextId++, kind, x: p.x, y: p.y, radius: p.blast || 80, owner: p.owner, side: p.side, damage: kind === 'fire' ? p.damage * .36 : kind === 'frost' ? p.damage * .20 : p.mode === 'sticky' ? 58 * (this.unit(p.owner)?.attack || 1) : p.damage, expires: this.b.round + 2 }; if (kind === 'delay' || kind === 'bomb') {
         z.triggerSide = (1 - p.side) as Side;
         z.triggerCount = this.b.teamEnds[1 - p.side] + 1;
         z.expires = 999;
@@ -946,7 +960,7 @@ export class Engine {
         this.fx('slash', p.x, impactY, p.color, p.blast);
         if(p.mode==='cataclysmCharge'){
             this.fx('ring',p.x,impactY,'#e7c5ff',p.blast*1.65);this.fx('rune',p.x,impactY,'#f1ddff',p.blast*1.3);
-            this.blast(p.x,impactY,p.blast*1.38,p.damage*.52,p.owner,true,{...p,child:true,echoUsed:true},1);
+            this.blast(p.x,impactY,p.blast*1.38,p.damage*.52,p.owner,true,{...p,child:true,autonomous:true,echoUsed:true},1);
             for(const e of this.alive(1))if(Math.hypot(e.x-p.x,e.y-e.h*.5-impactY)<p.blast*1.45)this.stun(e,p.owner);
             this.emit('sound',{name:'boom'});
         }
@@ -962,11 +976,11 @@ export class Engine {
         if(equippedRank(u,'SP01')){const rank=equippedRank(u,'SP01'),reach=p.blast+65+rank*25;for(const e of this.alive(1))if(Math.hypot(e.x-p.x,e.y-e.h*.5-impactY)<reach){this.impulse(e,Math.sign(p.x-e.x)*(100+rank*40),-90);}this.fx('ring',p.x,impactY,'#d6c4a6',reach);}
         if (p.mode === 'quake')
             for (const e of this.b.units)
-                if (e.id !== u.id && !e.dead && dist({ x: e.x, y: e.y - e.h * .5 }, { x: p.x, y: impactY }) < p.blast + 20)
+                if (e.id !== u.id && !e.dead && this.attackAllows(e,p.owner,p) && dist({ x: e.x, y: e.y - e.h * .5 }, { x: p.x, y: impactY }) < p.blast + 20)
                     this.impulse(e, Math.sign(e.x - p.x || 1) * 260, -150);
         if (p.mode === 'lift')
             for (const e of this.b.units)
-                if (e.side !== u.side && !e.dead && Math.abs(e.x - p.x) < p.blast)
+                if (e.side !== u.side && !e.dead && this.attackAllows(e,p.owner,p) && Math.abs(e.x - p.x) < p.blast)
                     this.impulse(e, Math.sign(e.x - p.x || 1) * 100, -330);
         if (p.mode === 'guard') {
             const shieldBefore=u.shield;u.shield += Math.round(44 * u.attack);shielded(this.b,u,u.id,shieldBefore);
@@ -988,14 +1002,14 @@ export class Engine {
             this.recover(u);
         this.remove(p);
     }
-    private applyCurse(target:Unit,owner:Unit,kind:'weak'|'betray'|'dot'|'bind'|'chain',damage=0,rank=1,bonus=0,trap=false){
-        if(target.dead||target.side===owner.side||target.side===2)return;
+    private applyCurse(target:Unit,owner:Unit,kind:'weak'|'betray'|'dot'|'bind'|'chain',damage=0,rank=1,bonus=0,trap=false,attack?:Partial<Projectile>){
+        if(target.dead||!this.attackAllows(target,owner.id,attack)||target.side===owner.side||target.side===2)return;
         const duration=Math.max(1,Math.ceil(((kind==='weak'?WEAK_TURNS[clamp(rank,1,8)-1]:kind==='betray'?BETRAY_TURNS[clamp(rank,1,8)-1]:kind==='dot'?5:kind==='chain'?3:2)+bonus)*(trap?.45:1))),strength=trap?.5:1;
         target.curseOwner=owner.id;
         const provenance=target as any;if((kind==='weak'||kind==='bind')&&!(target.curseAttack||0))provenance.honroWeakOwner=owner.id;if(kind==='weak'&&!(target.curseArmor||0))provenance.honroArmorOwner=owner.id;if((kind==='dot'||kind==='chain')&&damage>=(target.curseDamage||0))provenance.honroDotOwner=owner.id;
         if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseAttack=Math.max(target.curseAttack||0,.12*strength);target.curseArmor=Math.max(target.curseArmor||0,.13*strength);}
         if(kind==='betray'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+duration-1);}
-        if(kind==='dot'||kind==='chain'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage));}
+        if(kind==='dot'||kind==='chain'){if(damage>=(target.curseDamage||0))target.curseAutonomous=this.autonomousAttack(owner.id,attack);target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage));}
         if(kind==='bind'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.bound=Math.max(target.bound,2);target.curseAttack=Math.max(target.curseAttack||0,.18);}
         this.fx('spark',target.x,target.y-target.h*.55,kind==='betray'?'#bd9c8f':'#c1b399',30);
     }
@@ -1045,7 +1059,7 @@ export class Engine {
                 if(p.damage>0&&eater.summonAbsorbed<burstThreshold)this.growEater(eater);
                 if(eater.summonAbsorbed>=burstThreshold){
                     const damage=eater.summonAbsorbed*(.36+.02*rank),radius=135+rank*7;
-                    for(const target of this.alive(1))if(Math.hypot(target.x-cx,target.y-target.h*.5-cy)<radius+target.r){this.hurt(target,damage,eater.id,false,undefined,{x:cx,y:cy});this.impulse(target,(target.x-cx)*.28,-35);}
+                    for(const target of this.alive(1))if(this.attackAllows(target,eater.id)&&Math.hypot(target.x-cx,target.y-target.h*.5-cy)<radius+target.r){this.hurt(target,damage,eater.id,false,undefined,{x:cx,y:cy});this.impulse(target,(target.x-cx)*.28,-35);}
                     eater.dead=true;eater.hp=0;this.fx('ring',cx,cy,'#c8c3ae',radius);
                 }
                 return true;
@@ -1068,7 +1082,7 @@ export class Engine {
         }
         for(const anchor of b.units){if(anchor.dead||anchor.summonKind!=='earthbound')continue;
             const token=String(b.round),cx=anchor.x,cy=anchor.y-anchor.h*.5;anchor.auraHits??={};
-            for(const target of this.alive(1))if(anchor.auraHits[target.id]!==token&&Math.hypot(target.x-cx,target.y-target.h*.5-cy)<180+target.r){
+            for(const target of this.alive(1))if(this.attackAllows(target,anchor.id)&&anchor.auraHits[target.id]!==token&&Math.hypot(target.x-cx,target.y-target.h*.5-cy)<180+target.r){
                 anchor.auraHits[target.id]=token;target.moveLeft*=.82;target.slowed={factor:.18,expires:b.round};this.hurt(target,Math.max(8,anchor.maxHp*.07),anchor.id,false);
             }
         }
@@ -1121,7 +1135,7 @@ export class Engine {
     }
     private launchSummonBolt(s:Unit,target:Unit){
         const x=s.x,y=s.y-s.h*.52,dx=target.x-x,dy=target.y-target.h*.5-y,n=Math.max(1,Math.hypot(dx,dy));
-        const p:Projectile={id:this.b.nextId++,skill:'O12',owner:s.id,side:0,x,y,vx:dx/n*1250,vy:dy/n*1250,prevVy:dy/n*1250,age:0,radius:6,damage:s.attack*SUMMON_TUNING.lantern.damage,blast:0,wind:0,mode:'summonBolt',color:'#acdded',bounces:0,pierces:0,apex:true,hit:[],phase:0,body:false,returnX:s.x,returnY:s.y,trail:[{x,y}],child:true,rolled:0,shot:this.b.shot,emissions:99,fieldHits:[],amplification:1,launchX:x,launchY:y,gravityScale:0,drag:.006,phaseMode:'all',targetId:target.id,skillRank:1};
+        const p:Projectile={id:this.b.nextId++,skill:'O12',owner:s.id,side:0,x,y,vx:dx/n*1250,vy:dy/n*1250,prevVy:dy/n*1250,age:0,radius:6,damage:s.attack*SUMMON_TUNING.lantern.damage,blast:0,wind:0,mode:'summonBolt',color:'#acdded',bounces:0,pierces:0,apex:true,hit:[],phase:0,body:false,returnX:s.x,returnY:s.y,trail:[{x,y}],child:true,autonomous:true,rolled:0,shot:this.b.shot,emissions:99,fieldHits:[],amplification:1,launchX:x,launchY:y,gravityScale:0,drag:.006,phaseMode:'all',targetId:target.id,skillRank:1};
         this.b.projectiles.push(p);
     }
     private stepSummonBolt(p:Projectile,dt:number){
@@ -1130,7 +1144,7 @@ export class Engine {
         const tx=t.x,ty=t.y-t.h*.5,dx=tx-p.x,dy=ty-p.y,n=Math.max(1,Math.hypot(dx,dy));
         p.vx=dx/n*1250;p.vy=dy/n*1250;
         const m=this.advanceProjectile(p,dt),h=this.projectileCollision(p,m,p.radius,p.owner,p.hit,true,[],false);
-        // Guidance selects enemies, but every intervening body can intercept the ray.
+        // Autonomous rays pass through coalition bodies without consuming the shot.
         if(h?.unit){p.x=h.x;p.y=h.y;this.hurt(h.unit,p.damage,p.owner,true,p,p);this.fx('burst',p.x,p.y,p.color,35);this.remove(p);return;}
         p.x=m.x;p.y=m.y;p.vx=m.vx;p.vy=m.vy;
         if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>28)p.trail.shift();}
@@ -1154,7 +1168,7 @@ export class Engine {
         if(t.stage==='approach'){
             if(!t.start){
                 const owner=u.summonOwner?this.unit(u.summonOwner):u.enthrall?.owner?this.unit(u.enthrall.owner):undefined,mark=owner?passiveRank(owner,'OP02'):0;
-                const enemies=this.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-a.h*.5-u.y+u.h*.5)-(mark&&(a.curseOwner===owner?.id||a.earthbind?.owner===owner?.id)?170+mark*35:0)-Math.hypot(c.x-u.x,c.y-c.h*.5-u.y+u.h*.5)+(mark&&(c.curseOwner===owner?.id||c.earthbind?.owner===owner?.id)?170+mark*35:0));
+                const enemies=this.alive(1).filter(v=>this.attackAllows(v,u.id)).sort((a,c)=>Math.hypot(a.x-u.x,a.y-a.h*.5-u.y+u.h*.5)-(mark&&(a.curseOwner===owner?.id||a.earthbind?.owner===owner?.id)?170+mark*35:0)-Math.hypot(c.x-u.x,c.y-c.h*.5-u.y+u.h*.5)+(mark&&(c.curseOwner===owner?.id||c.earthbind?.owner===owner?.id)?170+mark*35:0));
                 let target=enemies[0];if(kind==='warden'){target=this.heroesAlive().sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0]||target;}
                 if(!target){t.index=t.queue.length;return;}
                 t.targetId=target.id;t.start={x:u.x,y:u.y};const dx=target.x-u.x,dy=target.y-target.h*.5-(u.y-u.h*.5),distance=groundBound?Math.abs(dx):Math.hypot(dx,dy),stop=kind==='lantern'?cfg.reach*.58:cfg.reach*.62,travel=Math.min(cfg.move,Math.max(0,distance-stop));
@@ -1177,11 +1191,11 @@ export class Engine {
             const center={x:u.x,y:u.y-u.h*.5};
             if(kind==='warden'){let n=0;for(const ally of this.alive(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;const shieldBefore=ally.shield;ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));shielded(b,ally,u.summonOwner||u.id,shieldBefore);(ally as any).honroSoulAffinityOwner=u.summonOwner||u.id;(ally as any).honroSoulDefenseOwner=u.summonOwner||u.id;ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.emit('sound',{name:'spiritSummon'});this.message(`${u.name} · ${n}명 방호`);}
             else if(kind==='lantern'){
-                const targets=this.alive(1).filter(e=>Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r).sort((a,c)=>(c.curseOwner===u.summonOwner?1:0)-(a.curseOwner===u.summonOwner?1:0)).slice(0,(u.summonRank||1)<4?1:2);
+                const targets=this.alive(1).filter(e=>this.attackAllows(e,u.id)&&Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r).sort((a,c)=>(c.curseOwner===u.summonOwner?1:0)-(a.curseOwner===u.summonOwner?1:0)).slice(0,(u.summonRank||1)<4?1:2);
                 for(const target of targets)this.launchSummonBolt(u,target);
                 this.fx('rune',center.x,center.y,'#c4e6ef',90);this.message(`${u.name} · ${targets.length}명 동시 추적탄`);if(targets.length)this.emit('sound',{name:'spiritCast'});
             }else{
-                const target=this.alive(1).sort((a,c)=>Math.hypot(a.x-center.x,a.y-a.h*.5-center.y)-Math.hypot(c.x-center.x,c.y-c.h*.5-center.y))[0];
+                const target=this.alive(1).filter(v=>this.attackAllows(v,u.id)).sort((a,c)=>Math.hypot(a.x-center.x,a.y-a.h*.5-center.y)-Math.hypot(c.x-center.x,c.y-c.h*.5-center.y))[0];
                 if(target&&Math.hypot(target.x-center.x,target.y-target.h*.5-center.y)<=cfg.reach+target.r){
                     this.hurt(target,u.attack*cfg.damage,u.id,true,undefined,center);
                     if(kind==='charger')this.impulse(target,Math.sign(target.x-u.x||u.facing)*350,-160);
@@ -1203,8 +1217,8 @@ export class Engine {
             if(u.soulBonusUntil!==undefined&&u.soulBonusUntil<this.b.round){u.soulAffinityBonus=0;u.soulDefenseBonus=0;delete u.soulBonusUntil;}
             if(u.earthbind&&u.earthbind.until<this.b.round)delete u.earthbind;
             if(u.dead)continue;
-            if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster){u.slowed={factor:.24,expires:this.b.round};this.hurt(u,u.earthbind.damage,caster.id,false,undefined,undefined,'normal','O10');}}
-            if(!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner){this.hurt(u,u.curseDamage!,(u as any).honroDotOwner||owner.id,false);this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
+            if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster&&this.attackAllows(u,caster.id,u.earthbind)){u.slowed={factor:.24,expires:this.b.round};this.hurt(u,u.earthbind.damage,caster.id,false,undefined,undefined,'normal','O10');}}
+            if(!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner&&this.attackAllows(u,(u as any).honroDotOwner||owner.id,{autonomous:u.curseAutonomous})){this.hurt(u,u.curseDamage!,(u as any).honroDotOwner||owner.id,false);this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
             u.curseTurns!--;if((u.curseTurns||0)<=0){u.curseTurns=0;u.curseDamage=0;u.curseAttack=0;u.curseArmor=0;u.betrayalUntil=0;u.curseOwner=undefined;}
         }
     }
@@ -1213,28 +1227,29 @@ export class Engine {
         if(SUMMONS.has(p.mode))this.emit('sound',{name:'spiritSummon'});
         else if(!['curseDot','curseChain'].includes(p.mode)&&(h?.terrain||!p.damage||['curseManifest','curseEarth'].includes(p.mode)))this.emit('sound',{name:'spiritImpact'});
         if(['curseWeak','curseBetray','curseBind'].includes(p.mode)){
-            if(h?.unit){this.hurt(h.unit,p.damage,p.owner,true,p,h);this.applyCurse(h.unit,owner,p.mode==='curseWeak'?'weak':p.mode==='curseBetray'?'betray':'bind',p.damage*.28,p.skillRank||1,p.soulBoost?1:0);}
+            if(h?.unit){this.hurt(h.unit,p.damage,p.owner,true,p,h);this.applyCurse(h.unit,owner,p.mode==='curseWeak'?'weak':p.mode==='curseBetray'?'betray':'bind',p.damage*.28,p.skillRank||1,p.soulBoost?1:0,false,p);}
             else if(h?.terrain&&['O06','O07'].includes(p.skill)&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage*passiveTuning(passiveRank(owner,'OP01')).trapDamage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
             this.remove(p);return true;
         }
         if(p.mode==='curseManifest'){
-            for(const t of this.b.units)if(!t.dead&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1)this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1)this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);this.hurt(t,p.damage,p.owner,false,p,p);}
             if(h?.terrain&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
             this.remove(p);return true;
         }
         if(p.mode==='curseEnthrall'){if(h?.unit)this.captureEnemy(h.unit,owner,p.skillRank||1,!!p.soulBoost);this.remove(p);return true;}
         if(p.mode==='curseEarth'){
-            for(const t of this.b.units)if(!t.dead&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){t.earthbind={owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32};t.curseOwner=owner.id;}this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){t.earthbind={owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32,autonomous:this.autonomousAttack(p.owner,p)};t.curseOwner=owner.id;}this.hurt(t,p.damage,p.owner,false,p,p);}
             this.fx('ring',p.x,p.y,'#b9ae91',p.blast);this.remove(p);return true;
         }
         if(p.mode==='curseDot'||p.mode==='curseChain'){
-            this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);for(const t of this.b.units)if(!t.dead&&t.side!==owner.side&&t.side!==2&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r)this.applyCurse(t,owner,p.mode==='curseDot'?'dot':'chain',p.damage*(p.mode==='curseDot'?.40:.30));this.remove(p);return true;
+            this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&t.side!==owner.side&&t.side!==2&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r)this.applyCurse(t,owner,p.mode==='curseDot'?'dot':'chain',p.damage*(p.mode==='curseDot'?.40:.30),1,0,false,p);this.remove(p);return true;
         }
         const kind:Record<string,Unit['summonKind']>={summonStalker:'stalker',summonLantern:'lantern',summonCharger:'charger',summonWarden:'warden',summonHost:'host',summonEater:'eater',summonEcho:'echo'};
         if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12,1,false,h);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12,1,false,h);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode],h);return true;}
         return false;
     }
     impact(p: Projectile, h: Collision) {
+        if(h.unit&&!this.attackAllows(h.unit,p.owner,p))return;
         p.x = h.x;
         p.y = h.y;
         p.directId = h.unit?.id;
@@ -1262,7 +1277,7 @@ export class Engine {
         }
         if (p.body) {
             if (p.mode === 'dash' && h.terrain && h.terrain.hp < 9999 && p.pierces === 0) {
-                this.damageTerrain(h.terrain, 200 * u.attack, 0, p.owner);
+                this.damageTerrain(h.terrain, 200 * u.attack, 0, p.owner,p);
                 if (h.terrain.broken) {
                     p.pierces++;
                     p.x += Math.sign(p.vx) * 7;
@@ -1367,7 +1382,7 @@ export class Engine {
                     }
                 }
             for (const t of this.b.units)
-                if (!t.dead && dist({ x: t.x, y: t.y - t.h * .5 }, p) < p.blast)
+                if (!t.dead && this.attackAllows(t,p.owner,p) && dist({ x: t.x, y: t.y - t.h * .5 }, p) < p.blast)
                     t.bound = Math.max(t.bound, 1);
             this.remove(p);
             return;
@@ -1387,7 +1402,7 @@ export class Engine {
         }
         if (p.mode === 'gravity') {
             for (const t of this.b.units) {
-                if (t.dead || t.id === u.id)
+                if (t.dead || !this.attackAllows(t,p.owner,p) || t.id === u.id)
                     continue;
                 const d = dist({ x: t.x, y: t.y - t.h * .5 }, p);
                 if (d < p.blast) {
@@ -1452,7 +1467,7 @@ export class Engine {
                 }
             }
             if (h.terrain) {
-                this.damageTerrain(h.terrain, p.damage * s.terrain, 0, p.owner);
+                this.damageTerrain(h.terrain, p.damage * s.terrain, 0, p.owner,p);
                 if (p.mode === 'pierce' && p.pierces === 0 && h.terrain.mat === 'wood') {
                     p.pierces++;
                     p.damage *= .72;
@@ -1477,7 +1492,7 @@ export class Engine {
             this.fx('burst',p.x,p.y,'#d89cff',150);this.fx('ring',p.x,p.y,'#b76cff',210);this.fx('rune',p.x,p.y,'#efe0ff',170);this.emit('sound',{name:'boom'});
             if(!targets.length){this.blast(p.x,p.y,p.blast*1.3,p.damage*.7,p.owner,false,p);this.remove(p);return true;}
             for(const {v} of targets){const dx=v.x-p.x,dy=v.y-v.h*.5-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=920;
-                const c:Projectile={...p,id:this.b.nextId++,mode:'arcBolt',targetId:v.id,vx:dx/len*speed,vy:dy/len*speed,prevVy:dy/len*speed,wind:0,damage:p.damage*.72,blast:34,radius:5,age:0,apex:true,body:false,child:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);
+                const c:Projectile={...p,id:this.b.nextId++,mode:'arcBolt',targetId:v.id,vx:dx/len*speed,vy:dy/len*speed,prevVy:dy/len*speed,wind:0,damage:p.damage*.72,blast:34,radius:5,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);
                 this.fx('line',p.x,p.y,'#d8a6ff',42,undefined);
             }
             this.remove(p);return true;
@@ -1487,14 +1502,14 @@ export class Engine {
             this.fx('burst',p.x,p.y,'#f7df8c',115);this.fx('ring',p.x,p.y,'#fff2b2',170);this.emit('sound',{name:'split'});
             if(!targets.length){this.remove(p);return true;}
             for(const [i,{v}] of targets.entries()){const dx=v.x-p.x,dy=v.y-v.h*.5-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=1220;
-                const c:Projectile={...p,id:this.b.nextId++,mode:'hunterBolt',targetId:v.id,vx:dx/len*speed+(i-(targets.length-1)/2)*18,vy:dy/len*speed-35,prevVy:dy/len*speed-35,wind:0,damage:p.damage*.70,blast:0,radius:3,age:0,apex:true,body:false,child:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);
+                const c:Projectile={...p,id:this.b.nextId++,mode:'hunterBolt',targetId:v.id,vx:dx/len*speed+(i-(targets.length-1)/2)*18,vy:dy/len*speed-35,prevVy:dy/len*speed-35,wind:0,damage:p.damage*.70,blast:0,radius:3,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);
             }
             this.remove(p);return true;
         }
         if(p.mode==='nightParade'){
             const caster=this.creditUnit(owner)!;const targets=enemies.map(v=>({v,d:Math.hypot(v.x-p.x,v.y-v.h*.5-p.y)})).filter(x=>x.d<1450).sort((a,b)=>a.d-b.d).slice(0,10);
             this.fx('burst',p.x,p.y,'#a264dd',180);this.fx('ring',p.x,p.y,'#d39aff',240);this.fx('rune',p.x,p.y,'#ead8ff',210);this.emit('sound',{name:'boom'});
-            for(const {v} of targets){this.applyCurse(v,caster,'dot',p.damage*.22);const dx=v.x-p.x,dy=v.y-v.h*.5-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=940;const c:Projectile={...p,id:this.b.nextId++,mode:'nightBolt',targetId:v.id,vx:dx/len*speed,vy:dy/len*speed,prevVy:dy/len*speed,wind:0,gravityScale:0,phaseMode:'terrain',damage:p.damage*.62,blast:38,radius:6,age:0,apex:true,body:false,child:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);}
+            for(const {v} of targets){this.applyCurse(v,caster,'dot',p.damage*.22,1,0,false,{...p,autonomous:true});const dx=v.x-p.x,dy=v.y-v.h*.5-p.y,len=Math.max(1,Math.hypot(dx,dy)),speed=940;const c:Projectile={...p,id:this.b.nextId++,mode:'nightBolt',targetId:v.id,vx:dx/len*speed,vy:dy/len*speed,prevVy:dy/len*speed,wind:0,gravityScale:0,phaseMode:'terrain',damage:p.damage*.62,blast:38,radius:6,age:0,apex:true,body:false,child:true,autonomous:true,hit:[],trail:[{x:p.x,y:p.y}],fieldHits:[...(p.fieldHits||[])],emissions:99};this.b.projectiles.push(c);}
             this.spawnSummon(caster,'stalker',p.x-55,p.y,1.35);this.spawnSummon(caster,'charger',p.x+55,p.y,1.35);this.remove(p);return true;
         }
         return false;
@@ -1512,7 +1527,7 @@ export class Engine {
         if(p.phaseMode!=='all'||!['phaseWraith','wraithReturn'].includes(p.mode))return;
         const factor=p.mode==='phaseWraith'?.62:p.phase===0?.42:.78;
         for(const u of this.b.units){
-            if(u.dead||u.id===p.owner||p.hit.includes(u.id))continue;
+            if(u.dead||!this.attackAllows(u,p.owner,p)||u.id===p.owner||p.hit.includes(u.id))continue;
             const h=segRect(a,c,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius+2);if(!h)continue;
             const at={x:a.x+(c.x-a.x)*h.t,y:a.y+(c.y-a.y)*h.t};
             this.hurt(u,p.damage*factor,p.owner,true,p,at);p.hit.push(u.id);this.fx('burst',at.x,at.y,p.color,28);this.fx('text',u.x,u.y-u.h-10,'#d7b9ef',12,'투과');
@@ -1551,7 +1566,7 @@ export class Engine {
         // Low-gravity ultimate must open its gate inside the playable sky even when its ballistic apex would be far above the camera.
         if(p.mode==='nightParade'&&!p.ultimateBurst&&(p.age>1.35||p.y<-620)){p.ultimateBurst=true;if(this.launchUltimateChildren(p))return;}
         if(p.mode==='reverseGhost'&&(p.y<-420||p.age>2.55)){
-            this.fx('burst',p.x,p.y,p.color,90);for(let i=-3;i<=3;i++){const c:Projectile={...p,id:this.b.nextId++,mode:'spiritRain',vx:i*70,vy:210+Math.abs(i)*22,prevVy:210,age:0,gravityScale:.55,phaseMode:undefined,fuseAt:undefined,damage:p.damage*.48,blast:p.blast*.62,radius:5,child:true,hit:[],trail:[],apex:true};this.b.projectiles.push(c);}this.remove(p);return;
+            this.fx('burst',p.x,p.y,p.color,90);for(let i=-3;i<=3;i++){const c:Projectile={...p,id:this.b.nextId++,mode:'spiritRain',vx:i*70,vy:210+Math.abs(i)*22,prevVy:210,age:0,gravityScale:.55,phaseMode:undefined,fuseAt:undefined,damage:p.damage*.48,blast:p.blast*.62,radius:5,child:true,autonomous:true,hit:[],trail:[],apex:true};this.b.projectiles.push(c);}this.remove(p);return;
         }
         if (p.phase === 2) {
             const nx = p.x + p.vx * dt, sf = this.surface(nx, p.y - 22, p.y + 42);
@@ -1559,7 +1574,7 @@ export class Engine {
                 this.remove(p);
                 return;
             }
-            const wall = this.projectileCollision({ x: p.x, y: p.y - 6 }, { x: nx, y: sf.y - 8 }, 3, p.owner, p.hit, true);
+            const wall = this.projectileCollision({ x: p.x, y: p.y - 6 }, { x: nx, y: sf.y - 8 }, 3, p.owner, p.hit, true,[],true,p);
             if (wall?.terrain && wall.n.x) {
                 this.remove(p);
                 return;
@@ -1568,7 +1583,7 @@ export class Engine {
             p.y = sf.y - 6;
             p.rolled += Math.abs(p.vx * dt);
             for (const t of this.b.units)
-                if (!t.dead && !p.hit.includes(t.id) && t.id !== p.owner && Math.abs(t.x - p.x) < t.r + 24 && Math.abs(t.y - p.y) < 65) {
+                if (!t.dead && this.attackAllows(t,p.owner,p) && !p.hit.includes(t.id) && t.id !== p.owner && Math.abs(t.x - p.x) < t.r + 24 && Math.abs(t.y - p.y) < 65) {
                     this.hurt(t, p.damage, p.owner, true, p, p);
                     p.hit.push(t.id);
                     this.fx('slash', t.x, t.y - 25, p.color, 40);
@@ -1625,12 +1640,12 @@ export class Engine {
         this.emitSubProjectiles(p);
         if (p.mode === 'spin')
             for (const e of this.b.units)
-                if (!e.dead && e.id !== p.owner && !p.hit.includes(e.id) && dist({ x: e.x, y: e.y - e.h * .5 }, { x: nx, y: ny }) < 64) {
+                if (!e.dead && this.attackAllows(e,p.owner,p) && e.id !== p.owner && !p.hit.includes(e.id) && dist({ x: e.x, y: e.y - e.h * .5 }, { x: nx, y: ny }) < 64) {
                     p.hit.push(e.id);
                     this.hurt(e, p.damage, p.owner, true, p, p);
                     this.fx('slash', e.x, e.y - e.h * .5, p.color, 55);
                 }
-        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,!SUMMONS.has(p.mode)&&p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],p.phaseMode!=='terrain',!p.body);
+        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,!SUMMONS.has(p.mode)&&p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],p.phaseMode!=='terrain',!p.body,p);
         if(p.mode==='charge'||p.mode==='cataclysmCharge'){
           for(const f of this.b.units.filter(v=>v.side!==p.side&&v.side!==2&&v.fixed&&!v.dead)){const h=segRect({x:p.x,y:p.y},{x:nx,y:ny},f.x-f.r,f.y-f.h,f.r*2,f.h,p.radius);if(h&&(!hit||h.t<hit.t))hit={x:p.x+(nx-p.x)*h.t,y:p.y+(ny-p.y)*h.t,t:h.t,n:h.n,unit:f};}
           this.carrySweep(p,{x:p.x,y:p.y},hit||{x:nx,y:ny});
@@ -1922,10 +1937,10 @@ export class Engine {
     applyZones(u: Unit) { for (const w of this.b.waters)
         if (w.kind === 'lava' && u.x > w.x && u.x < w.x + w.w && u.y >= w.y - 9 && u.y < w.y + w.depth + 20)
             this.hurt(u, Math.round(u.maxHp * .10), ''); for (const z of this.b.zones) {
-        if (z.kind !== 'fire' && z.kind !== 'frost')
+        if (!this.attackAllows(u,z.owner,z) || z.kind !== 'fire' && z.kind !== 'frost')
             continue;
         if (Math.hypot(u.x - z.x, u.y - z.y) < z.radius + 15) {
-            this.hurt(u, z.damage, z.owner);
+            this.hurt(u,z.damage,z.owner,false,undefined,undefined,'normal',undefined,z);
             if (z.kind === 'frost')
                 u.bound = Math.max(u.bound, 1);
         }
@@ -2017,7 +2032,7 @@ export class Engine {
     }
     triggerDelays(side: Side) { const b = this.b; const due = b.zones.filter(z => z.triggerSide === side && z.triggerCount! <= b.teamEnds[side]); b.zones = b.zones.filter(z => !due.includes(z)); for (const z of due) {
         const at = z.attached ? this.unit(z.attached) : undefined;
-        this.blast(at?.x ?? z.x, at ? at.y - at.h * .5 : z.y, z.radius, z.damage, z.owner);
+        this.blast(at?.x ?? z.x, at ? at.y - at.h * .5 : z.y, z.radius,z.damage,z.owner,false,undefined,0,z);
         this.message('지연 표식이 폭발했다.');
     } for (const u of b.units)
         if (u.side !== side && u.shieldUntil !== undefined && u.shieldUntil <= b.teamEnds[side]) {

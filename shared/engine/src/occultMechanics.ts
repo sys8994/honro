@@ -34,7 +34,7 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
  const echoes=e.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===u.id&&(v.summonExpires??0)>=e.b.round);
  for(const [i,echo] of echoes.entries()){
   const rank=clamp(echo.summonRank||1,1,8),aim=echoAim(e,echo,s,point,u.lastPower),o=e.origin(echo,aim.angle),v=e.velocity(echo,s,aim.angle,aim.power);
-  for(const root of roots){const copy:Projectile={...root,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit,echo.id],trail:[o],child:false,echoUsed:true,echoSource:echo.id,echoDelay:.075*(i+1),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};e.b.projectiles.push(copy);}
+  for(const root of roots){const copy:Projectile={...root,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit,echo.id],trail:[o],child:false,echoUsed:true,echoSource:echo.id,autonomous:true,echoDelay:.075*(i+1),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};e.b.projectiles.push(copy);}
  }
 }
 
@@ -59,7 +59,7 @@ export function convergencePoint(c:NonNullable<Projectile['curve']>,age:number):
 export function convergeAt(e:Engine,p:Projectile){
  const goal={x:p.x,y:p.y},start={x:p.returnX,y:p.returnY-48},rank=clamp(p.skillRank||1,1,8),count=10+Math.floor(rank/2);
  for(let i=0;i<count;i++){
-  const c:Projectile={...p,id:e.b.nextId++,mode:'convergeSpirit',x:start.x,y:start.y,vx:0,vy:0,prevVy:0,age:0,radius:6,damage:p.damage*.22,blast:38,phaseMode:'all',gravityScale:0,wind:0,hit:[],trail:[start],child:true,echoUsed:true,color:'#bea9cf',curve:convergenceCurve(start,goal,p.id,i,count)};
+  const c:Projectile={...p,id:e.b.nextId++,mode:'convergeSpirit',x:start.x,y:start.y,vx:0,vy:0,prevVy:0,age:0,radius:6,damage:p.damage*.22,blast:38,phaseMode:'all',gravityScale:0,wind:0,hit:[],trail:[start],child:true,autonomous:true,echoUsed:true,color:'#bea9cf',curve:convergenceCurve(start,goal,p.id,i,count)};
   e.b.projectiles.push(c);
  }
  e.fx('ring',goal.x,goal.y,'#bec4ae',55);e.remove(p);

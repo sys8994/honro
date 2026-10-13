@@ -151,7 +151,7 @@ export interface Unit {
     gateTurn?: string;
     arrivalGuard?: number;
     slowed?: {factor:number;expires:number};
-    shove?: {owner:string;damage:number;remaining:number;hit:string[];life:number};
+    shove?: {autonomous?:boolean;owner:string;damage:number;remaining:number;hit:string[];life:number};
     elite?: boolean;
     summoned?: boolean;
     summonOwner?: string;
@@ -173,7 +173,7 @@ export interface Unit {
     soulDefenseBonus?: number;
     soulBonusUntil?: number;
     enthrall?: {owner:string;actions:number;captureRatio:number;originalMaxHp:number;originalAttack:number;originalArmor:number;power:number};
-    earthbind?: {owner:string;until:number;damage:number};
+    earthbind?: {autonomous?:boolean;owner:string;until:number;damage:number};
     nextSummonDiscount?: number;
     soulRemnants?: number;
     impactCooldown?: number;
@@ -182,6 +182,7 @@ export interface Unit {
     curseOwner?: string;
     curseTurns?: number;
     curseDamage?: number;
+    curseAutonomous?: boolean;
     curseAttack?: number;
     curseArmor?: number;
     betrayalUntil?: number;
@@ -258,6 +259,8 @@ export interface Unit {
     cooldowns?: Record<string, number>;
 }
 export interface Projectile {
+    /** Automatic continuation; inherited by child effects and serialized in flight. */
+    autonomous?: boolean;
     existenceAttack?: ExistenceVector;
     echoDelay?: number;
     echoSource?: string;
@@ -329,6 +332,7 @@ export interface Projectile {
     ultimateBurst?: boolean;
 }
 export interface Zone {
+    autonomous?: boolean;
     id: number;
     kind: 'fire' | 'frost' | 'delay' | 'bomb';
     x: number;
