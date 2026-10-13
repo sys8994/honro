@@ -4,7 +4,7 @@ import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 export const runtimeContractHash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex');
 const bytes=readFileSync(new URL('./fixtures/runtime-contracts/current-manifest.json',import.meta.url));
-assert.equal(runtimeContractHash(bytes),'ee2d67fed872cf8779ca23a47771b15a416a31b41c1c4aa3b828cd82a9148331','Reviewed current runtime provenance manifest');
+assert.equal(runtimeContractHash(bytes),'7a32f99ca7d529648f7f17a55560a24e1f19215ea62019818bd74ee451f096c2','Reviewed current runtime provenance manifest');
 const freeze=v=>{if(v&&typeof v==='object'){Object.values(v).forEach(freeze);Object.freeze(v);}return v;};
 export const currentRuntimeManifest=freeze(JSON.parse(bytes));
 const f=currentRuntimeManifest,root=new URL('../',import.meta.url);
