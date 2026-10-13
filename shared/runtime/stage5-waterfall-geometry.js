@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // The rendered sheet and projectile collider share these sampled cubic curves.
 function shape(start,segments){const out=[{x:start[0],y:start[1]}];for(const seg of segments){const a=out.at(-1),[bx,by,cx,cy,dx,dy]=seg;for(let i=1;i<=24;i++){const t=i/24,u=1-t;out.push({x:u*u*u*a.x+3*u*u*t*bx+3*u*t*t*cx+t*t*t*dx,y:u*u*u*a.y+3*u*u*t*by+3*u*t*t*cy+t*t*t*dy});}}return out;}
-const closed=shape([2798,1220],[[2770,1580,2825,1830,2782,2100],[2760,2490,2765,2860,2690,3285],[2850,3330,3100,3340,3280,3290],[3180,2920,3210,2540,3202,2120],[3170,1820,3230,1560,3210,1220]]);
+const closed=shape([2798,1220],[[2770,1580,2825,1830,2782,2100],[2760,2490,2765,2860,2690,3285],[2850,3330,3100,3340,3280,3290],[3180,2920,3100,2540,3130,2120],[3130,1820,3230,1560,3210,1220]]);
 const opened=shape([2798,1220],[[2770,1580,2870,1840,3070,2040],[3280,2140,3430,2210,3440,2330],[3500,2530,2780,2490,2770,2590],[2760,2810,2760,3140,2690,3285],[2850,3330,3100,3340,3280,3290],[3200,3040,3210,2770,3200,2600],[3200,2510,3760,2480,3750,2320],[3740,2100,3440,1990,3310,1850],[3190,1680,3230,1440,3210,1220]]);
 function setOpen(b,open){if(b.honroStage!==5||b.honroStage5WaterfallRevision!==1||b.honroCustom)return;const t=b.terrain.find(t=>t.id==='waterfall-veil');if(!t)return;const changed=t.honroWaterOpen!==open||t.broken;t.broken=false;if(!changed)return;const vertices=G.HONRO_CORE.canonicalPolygon((open?opened:closed).map(p=>({...p}))),xs=vertices.map(p=>p.x),ys=vertices.map(p=>p.y);Object.assign(t,{vertices,x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),honroWaterOpen:open});b.sceneVersion++;}
 const active=b=>b?.honroStage===5&&b.honroStage5WaterfallRevision===1&&!b.honroCustom;
