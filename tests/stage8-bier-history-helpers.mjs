@@ -1,3 +1,5 @@
+import {campaignHistoryLibrary} from './historical-campaign-inputs.mjs';
+import {currentCampaignManifest,campaignScope} from './current-campaign-contract-helpers.mjs';
 /** Exact Stage8 -> Stage23 -> Stage12 -> Stage30 -> Stage18 boundary.
  * Stored historical JavaScript is byte evidence, never evaluated. Every current
  * replacement is checked before projection; current production Engine runs. */
@@ -79,7 +81,7 @@ export function beforeStage8Bier(project,{review}={}){const p=beforeEncounterDen
  // layers still enforce their own exact maps/assets and original assertions.
  if(!p.library?.some(added)&&(!rows.length||hash(rows[0])===hash(o.stage)))return p;
  assertStage8BierCurrent(p,{review});return assertStage8BierScope(p);}
-export function beforeStage8BierLibrary(library,{review}={}){const p=plain(library);if(!p.some(added))return p;const r=reviewFor(review);assert.deepEqual(p.filter(added),r.addedAssets);const s=p.filter(a=>!added(a)).length===f.library.length?'full':'act12',out=libraryBase(p,s);assert.deepEqual(p.map(a=>a.id),[...out.map(a=>a.id),...r.addedAssets.map(a=>a.id)]);return out;}
+export function beforeStage8BierLibrary(library,{review,scope:libraryScope='full'}={}){campaignScope(libraryScope);let p=plain(library);if(p.some(a=>currentCampaignManifest.addedAssetIds.includes(a.id)))p=campaignHistoryLibrary(p,{scope:libraryScope});if(!p.some(added))return p;const r=reviewFor(review);assert.deepEqual(p.filter(added),r.addedAssets);const out=libraryBase(p,libraryScope);assert.deepEqual(p.map(a=>a.id),[...out.map(a=>a.id),...r.addedAssets.map(a=>a.id)]);return out;}
 export function beforeStage8BierRuntimeSources(sources=stage8BierRuntimeSources(),{review}={}){sources=beforeEncounterDensityRuntimeSources(sources);const expected=f.runtime.files.map(r=>r.path).sort();if(Object.keys(sources).length===expected.length){assert.deepEqual(Object.keys(sources).sort(),expected);const original=beforeStage23StoneScaleSources(sources);for(const row of f.runtime.files)assert.equal(hash(original[row.path]),row.sha256,'Exact frozen runtime '+row.path);return original;}
  const r=reviewFor(review);assertStage8BierRuntimeScope(sources);assert.deepEqual(Object.keys(r.runtime).sort(),reviewRuntimePaths.slice().sort());for(const[path,value]of Object.entries(r.runtime))assert.equal(sources[path],value,'Exact reviewed runtime '+path);const out={...sources};for(const path of scope.allowedAddedRuntime)delete out[path];for(const path of scope.allowedChangedRuntime)out[path]=baseSource(path);return beforeStage8BierRuntimeSources(out);}
 const projectPrefix='globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author(',projectSuffix='));';

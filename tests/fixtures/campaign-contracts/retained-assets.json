@@ -1,0 +1,969 @@
+[
+  {
+    "id": "stage14:vertical-home-family",
+    "sourceCommit": "6ce25ff6d8d5d03d2142f494ad79e925490469f7",
+    "sha256": "2411b7c3135f6eced9ee4675bb11601c676b6f2c028fa632fbf083af73bade71",
+    "asset": {
+      "id": "stage14:vertical-home-family",
+      "name": "가족의 낮은 초가와 덧댄 저장칸",
+      "category": "architecture",
+      "environmentRole": "building",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -230,
+          -259,
+          464,
+          263
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#596865",
+              "stroke": "#152a30",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "low-stone-foundation",
+              "d": "M-204 -30L206 -31L214 0L-214 0Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M-204 -30L206 -31L210 -22L-210 -21Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#33494c",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "few-large-foundation-stones",
+              "d": "M-208-9H211M-98.44-23V-11M55.64-24V-10"
+            },
+            {
+              "tag": "path",
+              "fill": "#7f8471",
+              "stroke": "#152a30",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "two-bay-family-house",
+              "d": "M-194 -161L153 -161L168 -30L-194 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#485c54",
+              "d": "M116 -157L153 -161L168 -30L120 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a3a28a",
+              "d": "M-185 -150h291v21h-291Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#343e34",
+              "d": "M-44 -153h72v125h-72Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#192c2e",
+              "d": "M-38 -148h60v119h-60Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#84795a",
+              "d": "M-34 -144h52v112h-52Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#343e34",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-8 -142v106M-32 -81.36h48"
+            },
+            {
+              "tag": "path",
+              "fill": "#152a30",
+              "d": "M-2.6 -88.5h3v9h-3Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#343e34",
+              "d": "M-159 -146h77v61h-77Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#948461",
+              "d": "M-154 -141h67v51h-67Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a59c79",
+              "d": "M-149 -136h57v41h-57Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#5f5140",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-120.5 -139v47M-152 -110.4h63"
+            },
+            {
+              "tag": "path",
+              "fill": "#343e34",
+              "d": "M43 -142h60v57h-60Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#728175",
+              "d": "M48 -137h50v47h-50Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#8b9481",
+              "d": "M53 -132h40v37h-40Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#5f5140",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M73 -135v43M50 -108.8h46"
+            },
+            {
+              "tag": "path",
+              "fill": "#5f5140",
+              "stroke": "#152a30",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-190 -161L-178 -161L-176 -30L-191 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#9a8967",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-187 -157L-187 -33"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M-195 -32L-173 -32L-171 -24L-197 -24Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5f5140",
+              "stroke": "#152a30",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M23 -161L35 -161L37 -30L22 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#9a8967",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M26 -157L26 -33"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M18 -32L40 -32L42 -24L16 -24Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5f5140",
+              "stroke": "#152a30",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M112 -161L124 -161L126 -30L111 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#9a8967",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M115 -157L115 -33"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M107 -32L129 -32L131 -24L105 -24Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#343e34",
+              "d": "M-200 -170h365v18h-365Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#777964",
+              "stroke": "#152a30",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "broad-low-thatched-roof",
+              "d": "M-223-164Q-212-200-173-219Q-125-247-78-251L35-248Q112-239 146-212L190-180 216-178 207-151Q97-147 5-151L-183-148Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a09b79",
+              "d": "M-211-169Q-202-203-163-222Q-108-246-79-245L38-244Q103-237 139-212L174-187Q102-184 60-190Q-45-203-211-169Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#535f51",
+              "d": "M55-247Q128-229 150-209L192-180 216-178 207-151L143-154Q142-203 55-247Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b2a581",
+              "lineWidth": 5,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "bundled-thatch-eave",
+              "d": "M-211-160Q-91-185 9-168Q98-158 205-162"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#6c6c54",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "four-thatch-binding-bands",
+              "d": "M-146-232Q-153-202-169-174M-42-250Q-51-216-49-180M64-242Q85-216 90-170M148-209L166-171"
+            },
+            {
+              "tag": "path",
+              "fill": "#606b58",
+              "d": "M149-117L204-105 206-33 153-31Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#938c68",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M160 -110L198 -101L200 -40"
+            },
+            {
+              "tag": "g",
+              "transform": [
+                1,
+                0,
+                0,
+                1,
+                93,
+                -62
+              ],
+              "id": "tiny-oil-lamp",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "#d4a75c13",
+                  "d": "M-19 -10a19 15 0 1 0 38 0a19 15 0 1 0 -38 0Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#a49773",
+                  "d": "M-8-5Q0 2 9-5L6 0H-5Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#d9b77c",
+                  "d": "M0-18Q-5-12-2-7Q4-6 4-11Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#6e634d",
+                  "d": "M-2 0h4v5h-4Z"
+                }
+              ]
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-230 -259 464 263\"><title>가족의 낮은 초가와 덧댄 저장칸</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc><path id=\"low-stone-foundation\" d=\"M-204 -30L206 -31L214 0L-214 0Z\" fill=\"#596865\" stroke=\"#152a30\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-204 -30L206 -31L210 -22L-210 -21Z\" fill=\"#89918a\"/><path id=\"few-large-foundation-stones\" d=\"M-208-9H211M-98.44-23V-11M55.64-24V-10\" fill=\"none\" stroke=\"#33494c\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path id=\"two-bay-family-house\" d=\"M-194 -161L153 -161L168 -30L-194 -30Z\" fill=\"#7f8471\" stroke=\"#152a30\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M116 -157L153 -161L168 -30L120 -30Z\" fill=\"#485c54\"/><path d=\"M-185 -150h291v21h-291Z\" fill=\"#a3a28a\"/><path d=\"M-44 -153h72v125h-72Z\" fill=\"#343e34\"/><path d=\"M-38 -148h60v119h-60Z\" fill=\"#192c2e\"/><path d=\"M-34 -144h52v112h-52Z\" fill=\"#84795a\"/><path d=\"M-8 -142v106M-32 -81.36h48\" fill=\"none\" stroke=\"#343e34\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-2.6 -88.5h3v9h-3Z\" fill=\"#152a30\"/><path d=\"M-159 -146h77v61h-77Z\" fill=\"#343e34\"/><path d=\"M-154 -141h67v51h-67Z\" fill=\"#948461\"/><path d=\"M-149 -136h57v41h-57Z\" fill=\"#a59c79\"/><path d=\"M-120.5 -139v47M-152 -110.4h63\" fill=\"none\" stroke=\"#5f5140\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M43 -142h60v57h-60Z\" fill=\"#343e34\"/><path d=\"M48 -137h50v47h-50Z\" fill=\"#728175\"/><path d=\"M53 -132h40v37h-40Z\" fill=\"#8b9481\"/><path d=\"M73 -135v43M50 -108.8h46\" fill=\"none\" stroke=\"#5f5140\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-190 -161L-178 -161L-176 -30L-191 -30Z\" fill=\"#5f5140\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-187 -157L-187 -33\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-195 -32L-173 -32L-171 -24L-197 -24Z\" fill=\"#89918a\"/><path d=\"M23 -161L35 -161L37 -30L22 -30Z\" fill=\"#5f5140\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M26 -157L26 -33\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M18 -32L40 -32L42 -24L16 -24Z\" fill=\"#89918a\"/><path d=\"M112 -161L124 -161L126 -30L111 -30Z\" fill=\"#5f5140\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M115 -157L115 -33\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M107 -32L129 -32L131 -24L105 -24Z\" fill=\"#89918a\"/><path d=\"M-200 -170h365v18h-365Z\" fill=\"#343e34\"/><path id=\"broad-low-thatched-roof\" d=\"M-223-164Q-212-200-173-219Q-125-247-78-251L35-248Q112-239 146-212L190-180 216-178 207-151Q97-147 5-151L-183-148Z\" fill=\"#777964\" stroke=\"#152a30\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-211-169Q-202-203-163-222Q-108-246-79-245L38-244Q103-237 139-212L174-187Q102-184 60-190Q-45-203-211-169Z\" fill=\"#a09b79\"/><path d=\"M55-247Q128-229 150-209L192-180 216-178 207-151L143-154Q142-203 55-247Z\" fill=\"#535f51\"/><path id=\"bundled-thatch-eave\" d=\"M-211-160Q-91-185 9-168Q98-158 205-162\" fill=\"none\" stroke=\"#b2a581\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path id=\"four-thatch-binding-bands\" d=\"M-146-232Q-153-202-169-174M-42-250Q-51-216-49-180M64-242Q85-216 90-170M148-209L166-171\" fill=\"none\" stroke=\"#6c6c54\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M149-117L204-105 206-33 153-31Z\" fill=\"#606b58\"/><path d=\"M160 -110L198 -101L200 -40\" fill=\"none\" stroke=\"#938c68\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g id=\"tiny-oil-lamp\" transform=\"translate(93 -62)\"><path d=\"M-19 -10a19 15 0 1 0 38 0a19 15 0 1 0 -38 0Z\" fill=\"#d4a75c13\"/><path d=\"M-8-5Q0 2 9-5L6 0H-5Z\" fill=\"#a49773\"/><path d=\"M0-18Q-5-12-2-7Q4-6 4-11Z\" fill=\"#d9b77c\"/><path d=\"M-2 0h4v5h-4Z\" fill=\"#6e634d\"/></g></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage14-vertical",
+        "visual-only",
+        "editable-native-vector",
+        "korean-cavern"
+      ],
+      "params": {
+        "artRevision": 1,
+        "nodeCount": 42,
+        "rearOnly": true,
+        "collisionSource": "none",
+        "footXs": [
+          -214,
+          214
+        ],
+        "kind": "home",
+        "doorHeight": 119,
+        "lightAnchor": {
+          "x": 93,
+          "y": -73
+        },
+        "silhouette": "broad-thatched-half-hip-with-side-store"
+      },
+      "bounds": {
+        "x": -230,
+        "y": -259,
+        "w": 464,
+        "h": 263
+      },
+      "reference": {
+        "heightM": 4.383333333333334,
+        "bounds": {
+          "x": -230,
+          "y": -259,
+          "w": 464,
+          "h": 263
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "stage14:vertical-home-river",
+    "sourceCommit": "6ce25ff6d8d5d03d2142f494ad79e925490469f7",
+    "sha256": "0b179627b715b5d3e6a4ccd349963f74d109f329ab3b59901642ce841696c0d3",
+    "asset": {
+      "id": "stage14:vertical-home-river",
+      "name": "강가 작은 돌집과 옆칸 처마",
+      "category": "architecture",
+      "environmentRole": "building",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -174,
+          -255,
+          358,
+          259
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#596865",
+              "stroke": "#152a30",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "low-stone-foundation",
+              "d": "M-165 -30L167 -31L175 0L-175 0Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M-165 -30L167 -31L171 -22L-171 -21Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#33494c",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "few-large-foundation-stones",
+              "d": "M-169-9H172M-80.5-23V-11M45.5-24V-10"
+            },
+            {
+              "tag": "path",
+              "fill": "#738071",
+              "stroke": "#152a30",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "riverside-stone-house",
+              "d": "M-128 -181L89 -181L109 -31L-129 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#415b55",
+              "d": "M62 -177L89 -181L109 -31L68 -31Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a0a38a",
+              "d": "M-122 -169L57 -170L58 -146L-123 -143Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#343e34",
+              "d": "M-37 -159h75v130h-75Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#192c2e",
+              "d": "M-31 -154h63v124h-63Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#75684d",
+              "d": "M-27 -151L9.32 -145L9.32 -30L-27 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b19a70",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-22 -145L-22 -37"
+            },
+            {
+              "tag": "path",
+              "fill": "#343e34",
+              "d": "M-113 -150h54v62h-54Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#948461",
+              "d": "M-108 -145h44v52h-44Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a59c79",
+              "d": "M-103 -140h34v42h-34Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#5f5140",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-86 -143v48M-106 -113.8h40"
+            },
+            {
+              "tag": "path",
+              "fill": "#5f5140",
+              "stroke": "#152a30",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-130 -177L-118 -177L-116 -30L-131 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#9a8967",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-127 -173L-127 -33"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M-135 -32L-113 -32L-111 -24L-137 -24Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5f5140",
+              "stroke": "#152a30",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M56 -177L68 -177L70 -30L55 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#9a8967",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M59 -173L59 -33"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M51 -32L73 -32L75 -24L49 -24Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#343e34",
+              "d": "M-136 -185h238v16h-238Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#263c43",
+              "stroke": "#152a30",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "offset-korean-roof",
+              "d": "M-161-187Q-135-190-101-220L-52-247 24-237 74-214Q99-195 132-201L121-177Q-18-163-151-172Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#445555",
+              "d": "M-147-188L-101-222-52-247 23-236 83-210 115-202 104-190Q-10-181-147-188Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#77817a",
+              "d": "M-145 -189L-100 -222L-52 -247L1 -238L-28 -190Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#99a394",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-151-182Q-17-169 125-188"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a0a794",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-63-247L-13-239 33-237"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#385054",
+              "lineWidth": 3,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M-103-218L-117-185M-30-237L-43-181M36-229L47-183"
+            },
+            {
+              "tag": "path",
+              "fill": "#566557",
+              "d": "M101 -132L157 -111L157 -35L111 -32Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#8b8d6d",
+              "stroke": "#152a30",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "lean-to-work-eave",
+              "d": "M89-137L119-146 174-115 164-102 99-123Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5f5140",
+              "stroke": "#152a30",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M151 -110L163 -110L165 -30L150 -30Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#9a8967",
+              "lineWidth": 2,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M154 -106L154 -33"
+            },
+            {
+              "tag": "path",
+              "fill": "#89918a",
+              "d": "M146 -32L168 -32L170 -24L144 -24Z"
+            },
+            {
+              "tag": "g",
+              "transform": [
+                1,
+                0,
+                0,
+                1,
+                20,
+                -72
+              ],
+              "id": "tiny-oil-lamp",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "#d4a75c13",
+                  "d": "M-19 -10a19 15 0 1 0 38 0a19 15 0 1 0 -38 0Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#a49773",
+                  "d": "M-8-5Q0 2 9-5L6 0H-5Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#d9b77c",
+                  "d": "M0-18Q-5-12-2-7Q4-6 4-11Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#6e634d",
+                  "d": "M-2 0h4v5h-4Z"
+                }
+              ]
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-174 -255 358 259\"><title>강가 작은 돌집과 옆칸 처마</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc><path id=\"low-stone-foundation\" d=\"M-165 -30L167 -31L175 0L-175 0Z\" fill=\"#596865\" stroke=\"#152a30\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-165 -30L167 -31L171 -22L-171 -21Z\" fill=\"#89918a\"/><path id=\"few-large-foundation-stones\" d=\"M-169-9H172M-80.5-23V-11M45.5-24V-10\" fill=\"none\" stroke=\"#33494c\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path id=\"riverside-stone-house\" d=\"M-128 -181L89 -181L109 -31L-129 -30Z\" fill=\"#738071\" stroke=\"#152a30\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M62 -177L89 -181L109 -31L68 -31Z\" fill=\"#415b55\"/><path d=\"M-122 -169L57 -170L58 -146L-123 -143Z\" fill=\"#a0a38a\"/><path d=\"M-37 -159h75v130h-75Z\" fill=\"#343e34\"/><path d=\"M-31 -154h63v124h-63Z\" fill=\"#192c2e\"/><path d=\"M-27 -151L9.32 -145L9.32 -30L-27 -30Z\" fill=\"#75684d\"/><path d=\"M-22 -145L-22 -37\" fill=\"none\" stroke=\"#b19a70\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-113 -150h54v62h-54Z\" fill=\"#343e34\"/><path d=\"M-108 -145h44v52h-44Z\" fill=\"#948461\"/><path d=\"M-103 -140h34v42h-34Z\" fill=\"#a59c79\"/><path d=\"M-86 -143v48M-106 -113.8h40\" fill=\"none\" stroke=\"#5f5140\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-130 -177L-118 -177L-116 -30L-131 -30Z\" fill=\"#5f5140\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-127 -173L-127 -33\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-135 -32L-113 -32L-111 -24L-137 -24Z\" fill=\"#89918a\"/><path d=\"M56 -177L68 -177L70 -30L55 -30Z\" fill=\"#5f5140\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M59 -173L59 -33\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M51 -32L73 -32L75 -24L49 -24Z\" fill=\"#89918a\"/><path d=\"M-136 -185h238v16h-238Z\" fill=\"#343e34\"/><path id=\"offset-korean-roof\" d=\"M-161-187Q-135-190-101-220L-52-247 24-237 74-214Q99-195 132-201L121-177Q-18-163-151-172Z\" fill=\"#263c43\" stroke=\"#152a30\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-147-188L-101-222-52-247 23-236 83-210 115-202 104-190Q-10-181-147-188Z\" fill=\"#445555\"/><path d=\"M-145 -189L-100 -222L-52 -247L1 -238L-28 -190Z\" fill=\"#77817a\"/><path d=\"M-151-182Q-17-169 125-188\" fill=\"none\" stroke=\"#99a394\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-63-247L-13-239 33-237\" fill=\"none\" stroke=\"#a0a794\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-103-218L-117-185M-30-237L-43-181M36-229L47-183\" fill=\"none\" stroke=\"#385054\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M101 -132L157 -111L157 -35L111 -32Z\" fill=\"#566557\"/><path id=\"lean-to-work-eave\" d=\"M89-137L119-146 174-115 164-102 99-123Z\" fill=\"#8b8d6d\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M151 -110L163 -110L165 -30L150 -30Z\" fill=\"#5f5140\" stroke=\"#152a30\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M154 -106L154 -33\" fill=\"none\" stroke=\"#9a8967\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M146 -32L168 -32L170 -24L144 -24Z\" fill=\"#89918a\"/><g id=\"tiny-oil-lamp\" transform=\"translate(20 -72)\"><path d=\"M-19 -10a19 15 0 1 0 38 0a19 15 0 1 0 -38 0Z\" fill=\"#d4a75c13\"/><path d=\"M-8-5Q0 2 9-5L6 0H-5Z\" fill=\"#a49773\"/><path d=\"M0-18Q-5-12-2-7Q4-6 4-11Z\" fill=\"#d9b77c\"/><path d=\"M-2 0h4v5h-4Z\" fill=\"#6e634d\"/></g></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage14-vertical",
+        "visual-only",
+        "editable-native-vector",
+        "korean-cavern"
+      ],
+      "params": {
+        "artRevision": 1,
+        "nodeCount": 38,
+        "rearOnly": true,
+        "collisionSource": "none",
+        "footXs": [
+          -175,
+          175
+        ],
+        "kind": "home",
+        "doorHeight": 124,
+        "lightAnchor": {
+          "x": 20,
+          "y": -83
+        },
+        "silhouette": "asymmetric-tile-home-with-small-lean-to"
+      },
+      "bounds": {
+        "x": -174,
+        "y": -255,
+        "w": 358,
+        "h": 259
+      },
+      "reference": {
+        "heightM": 4.316666666666666,
+        "bounds": {
+          "x": -174,
+          "y": -255,
+          "w": 358,
+          "h": 259
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "stage14:vertical-household-rock-market",
+    "sourceCommit": "2b8af00dd1fe016d4494581d245c00b74b792976",
+    "sha256": "f27c60bdfe02e89a56e16912411009480ec8361e2c61e553cb8c07e6c77d875f",
+    "asset": {
+      "id": "stage14:vertical-household-rock-market",
+      "name": "집터 뒤로 물러선 비대칭 자연 암벽 market",
+      "category": "terrain",
+      "environmentRole": "cliff",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -416.1,
+          -583,
+          832.1999999999999,
+          589
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#2b3f47",
+              "id": "broad-broken-rear-household-shoulder",
+              "d": "M-365 0L-379.6 -207L-189.8 -310.5L-248.2 -442.75L-29.2 -500.25L138.7 -575L262.8 -333.5L365 -161L365 0Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#35494e",
+              "id": "one-large-weathered-rock-face",
+              "d": "M-328.5 -253L-204.4 -414L-58.4 -517.5L58.4 -368Q-21.9 -218.5 -138.7 -97.75L-277.4 0Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#182f39",
+              "id": "open-sided-natural-rock-recess",
+              "d": "M-277.4 0Q-197.10000000000002 -115 -102.2 -276L80.3 -201.25Q197.10000000000002 -345 248.20000000000002 -419.75L335.8 -109.25L365 0Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#233942",
+              "d": "M138.7 -575L262.8 -304.75L365 -161L365 0L211.7 0L160.6 -189.75Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-416.1 -583 832.1999999999999 589\"><title>집터 뒤로 물러선 비대칭 자연 암벽 market</title><desc>Original pure vector village art. Rear scenery only; no embedded image, interactive object, or collision.</desc><path id=\"broad-broken-rear-household-shoulder\" d=\"M-365 0L-379.6 -207L-189.8 -310.5L-248.2 -442.75L-29.2 -500.25L138.7 -575L262.8 -333.5L365 -161L365 0Z\" fill=\"#2b3f47\"/><path id=\"one-large-weathered-rock-face\" d=\"M-328.5 -253L-204.4 -414L-58.4 -517.5L58.4 -368Q-21.9 -218.5 -138.7 -97.75L-277.4 0Z\" fill=\"#35494e\"/><path id=\"open-sided-natural-rock-recess\" d=\"M-277.4 0Q-197.10000000000002 -115 -102.2 -276L80.3 -201.25Q197.10000000000002 -345 248.20000000000002 -419.75L335.8 -109.25L365 0Z\" fill=\"#182f39\"/><path d=\"M138.7 -575L262.8 -304.75L365 -161L365 0L211.7 0L160.6 -189.75Z\" fill=\"#233942\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage14-vertical",
+        "visual-only",
+        "editable-native-vector",
+        "korean-cavern"
+      ],
+      "params": {
+        "artRevision": 1,
+        "nodeCount": 5,
+        "rearOnly": true,
+        "collisionSource": "none",
+        "footXs": [
+          -365,
+          365
+        ],
+        "kind": "household-rock",
+        "noWalkRim": true
+      },
+      "bounds": {
+        "x": -416.1,
+        "y": -583,
+        "w": 832.1999999999999,
+        "h": 589
+      },
+      "reference": {
+        "heightM": 9.816666666666666,
+        "bounds": {
+          "x": -416.1,
+          "y": -583,
+          "w": 832.1999999999999,
+          "h": 589
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "quest-redesign:hammer",
+    "sourceCommit": "2d7bcbf8245ee34bad067b79d082c31ca388da59",
+    "sha256": "76216bbb67cb8601cce29c6b2ab9440fa6bc737df1e192be689a79c37044a8a5",
+    "asset": {
+      "id": "quest-redesign:hammer",
+      "name": "hammer",
+      "category": "prop",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -50,
+          -95,
+          100,
+          100
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#877255",
+              "d": "M-7 0 L1 -72 L11 -71 L4 0 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#77807b",
+              "d": "M-29 -84 L32 -79 L29 -55 L-31 -61 Z"
+            }
+          ]
+        }
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "quest-redesign"
+      ],
+      "params": {},
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": -50,
+        "y": -95,
+        "w": 100,
+        "h": 100
+      },
+      "reference": {
+        "heightM": 1.5,
+        "bounds": {
+          "x": -50,
+          "y": -95,
+          "w": 100,
+          "h": 100
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.5,
+          2
+        ],
+        "backgroundRange": [
+          0.5,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "quest-redesign:bowl",
+    "sourceCommit": "2d7bcbf8245ee34bad067b79d082c31ca388da59",
+    "sha256": "e02eda71b4f10218b066fabf9995049a3598b213753ae14d5404755c75b5de67",
+    "asset": {
+      "id": "quest-redesign:bowl",
+      "name": "bowl",
+      "category": "prop",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -50,
+          -95,
+          100,
+          100
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#b0a07b",
+              "d": "M-30 -20 Q0 16 30 -20 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#575345",
+              "d": "M-30 -20 Q0 -34 30 -20 Q0 -7 -30 -20 Z"
+            }
+          ]
+        }
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "quest-redesign"
+      ],
+      "params": {},
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": -50,
+        "y": -95,
+        "w": 100,
+        "h": 100
+      },
+      "reference": {
+        "heightM": 1.5,
+        "bounds": {
+          "x": -50,
+          "y": -95,
+          "w": 100,
+          "h": 100
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.5,
+          2
+        ],
+        "backgroundRange": [
+          0.5,
+          2
+        ]
+      }
+    }
+  }
+]

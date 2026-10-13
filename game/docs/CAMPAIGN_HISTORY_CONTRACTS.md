@@ -1,0 +1,23 @@
+# Current canonical and immutable campaign history
+
+The full campaign at 5ca1830 (also 0372047 and6c836df) contains30 chapters and640 assets. The old density checkpoint1973f07 contains30 chapters and586 assets; the preceding Stage8 checkpoint contains580 assets. These are different contracts, not interchangeable goldens.
+
+## Provenance and independent checks
+
+`tests/fixtures/campaign-contracts/current-manifest.json` records the explicit post-density source commits, all current stage/asset hashes and ordering, source5ca1830, and metadata-only correction e987e41. Its own bytes are pinned. Against1973f07 there are21 changed chapters,54 added assets, zero deleted assets, and one changed original asset: the source-generated hollow bell. The other9 chapters and project globals remain exact. Runtime-authored project data has a separate explicit contract from raw JSON; neither authorizes changing historical runtime sources.
+
+`test:campaign-contracts` starts with immutable1973f07 data and executes current14/22/quest/tactical/warning/bell authors to reproduce all30 complete maps and all640 assets. Five retired editable assets are retained from their actual introduction commits, with complete bytes and independent digests.13/16 object-key insertion order is immaterial to semantic regeneration; exact raw serialized stage hashes are nevertheless required separately.15 terrain insertion order comes from the actual incremental bd61375 release; the replay requires exact IDs/values before restoring that declared order. Asset insertion order is likewise independently pinned. No asset namespace wildcard or arbitrary current golden refresh is allowed.
+
+The immutable checkpoint is stored as `density-1973f07.json.gz`, with both compressed-byte digest and the original JSON SHA4e6862fce73a458b6ca04566d898fb0531822a95934059eb981585eaf2469722 checked. New history checks do not depend on git history being present. Stored JavaScript is never evaluated. Historical density and earlier fixture digests remain unchanged.
+
+`campaignHistoryInput` first validates the entire separately approved current input, then supplies immutable historical DATA to the historical validators. Raw/current runtime variants are explicit and separately hashed. Existing behavior/save/actor/terrain tests still use today's production runtime. Library-only boundaries use explicit full/act12 scope; a640-asset full library is never guessed to be Act12. Current and historical tampering both fail, including asset deletion/addition/reordering and stage/global drift.
+
+## Metadata correction
+
+`test:campaign-metadata` independently pins5ca1830's before-spaces and verifies that only the reviewed15/19 annotations change. It compares all30 complete compiled battles, allowing only the exact honroMap.space metadata delta. Current canonical validation previously reported20 missing references and now reports zero. This does not change terrain, actor counts/stats, objectives, skills, current battle snapshots, or runtime code.
+
+## Future changes and remaining gates
+
+These contracts intentionally target5ca1830 plus e987e41. The proposed Stage5 waterfall redesign is not included. It and any later campaign change require a separately reviewed source-derived delta and paired current/historical negative controls, not automatic fixture regeneration.
+
+The older130-source runtime membership and fingerprint checks have NOT been changed, waived, or supplied with old runtime code. After the data boundary is repaired, stage12-redesign reaches `Exact density source membership`, exposing newer runtime/data modules. That is a separate release blocker requiring its own evidence and approval. Aggregate verify, browser Game/Workshop/Playtest, performance and public Pages acceptance remain independent gates; passing these new data contracts is not a claim that the release is ready.

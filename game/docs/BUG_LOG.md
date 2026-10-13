@@ -2555,3 +2555,11 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 5ca1830의 실제30장 canonical schema 검사에서15장 삭제된 fc15-west-descent의 surface/room 참조2개와19장 이미 제거된 적18명의 encounterSites 참조가 남아 있었다. 원인은 act23-quest-redesign 생성기가 실제 지형/편성을 바꾼 뒤 공간 설명을 정리하지 않은 것이다.15장은 기존 fc15-dry-basin-rim의 실제 edges0–3을 carved-groove에 연결하고 기존 route의 x5450은 유지한 채 support/y만 실제 바닥4270.789473684211로 맞춘다.19장은 정확히 a2-enemy-0…17의 설명 사이트만 제거한다. 알려지지 않은 잘못된 참조는 자동 삭제하지 않는다.
 
 `test:campaign-metadata`는 원본5ca1830의 공간 metadata fixture와 전체 project SHA를 고정하고, 명시한 변경 외 모든 필드 보존·생성기 재현/멱등·전체30장 schema·9개 대칭 음성변조를 검사한다. 현재 runtime에서 고정 시각으로 전30장 battle을 전후 컴파일해 허용된 honroMap.space 외 전체 상태(지형/actor/기술/목표/카메라설정/활성화 포함)가 동일함을 검증했다. 게임영역/지형/적수/스탯/저장 데이터는 변경하지 않았다. 이 검사는 실제 브라우저/조작 검수나 과거 density SHA 실패 해결을 주장하지 않는다. 두 HTML은 다음 통합 빌드에서 함께 재생성한다.
+
+### 2026-10-13 · 현재 canonical과 불변 역사 입력 검사의 분리
+
+기존 density SHA4e6862fc…는1973f07의 정확한30장/586자산이었다. 이후6ce25ff의14장 수직맵부터 의도한 후속 제작이 시작됐지만 역사 검사가 계속 현재 전체맵에 옛 SHA를 요구했다.0372047·6c836df·5ca1830의 raw canonical은 모두5365701b…/640자산으로 동일했다.580자산이 아니면 Act12로 추정하던 library helper도 full640을 잘못 분류했다.
+
+현재 source manifest와 불변1973f07 압축 데이터/출처/기존 SHA를 분리하고, 현재 계약을 통과한 입력에만 역사 데이터를 명시 선택한다.54추가/삭제0/기존 묵종1개 변경/21장 변경·나머지9장·모든순서/전역을 고정한다. 최신 생성기 전체 replay는30장/640자산을 재현하며 오래된5개 보존자산은 실제 도입commit 원본으로 검증한다.현재/역사에 대한12개 양방향 변조와 명시full/act12를 검사한다. 기존 역사fixture와runtime source/fingerprint 기대값은 수정하지 않았다.자세한 근거와 후속5장 별도승인 경계는 CAMPAIGN_HISTORY_CONTRACTS.md.
+
+데이터 분리 후 stage12-redesign은 기존 프로젝트SHA 차단점을 넘어 `Exact density source membership`에서 중단된다. 이는 새 runtime/data 모듈과 옛130소스 계약의 별도 불일치이며 이번 작업에서 완화하지 않는다. 전체 verify/브라우저/Pages 완료 주장은 하지 않는다.
