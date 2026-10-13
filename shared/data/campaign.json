@@ -184131,6 +184131,186 @@
           "points": [
             {
               "x": 0,
+              "y": 3450
+            },
+            {
+              "x": 1450,
+              "y": 3450
+            },
+            {
+              "x": 1900,
+              "y": 3410
+            },
+            {
+              "x": 2290,
+              "y": 3370
+            },
+            {
+              "x": 2500,
+              "y": 3580
+            },
+            {
+              "x": 2760,
+              "y": 3780
+            },
+            {
+              "x": 3290,
+              "y": 3820
+            },
+            {
+              "x": 3630,
+              "y": 3700
+            },
+            {
+              "x": 3950,
+              "y": 3400
+            },
+            {
+              "x": 4400,
+              "y": 3370
+            },
+            {
+              "x": 4900,
+              "y": 3196.550949556751
+            },
+            {
+              "x": 5400,
+              "y": 3127.5164428299076
+            },
+            {
+              "x": 5900,
+              "y": 3183.145129310352
+            },
+            {
+              "x": 6400,
+              "y": 3245.465452676027
+            },
+            {
+              "x": 6900,
+              "y": 3249.030870489665
+            },
+            {
+              "x": 7400,
+              "y": 3152.4563263799396
+            },
+            {
+              "x": 7900,
+              "y": 3022.963134461745
+            },
+            {
+              "x": 8400,
+              "y": 2942.8532559859
+            },
+            {
+              "x": 8900,
+              "y": 2915.9965070657063
+            },
+            {
+              "x": 9400,
+              "y": 2843.2818206627667
+            },
+            {
+              "x": 9900,
+              "y": 2765.9746320887903
+            },
+            {
+              "x": 10400,
+              "y": 2730.000000041223
+            },
+            {
+              "x": 10400,
+              "y": 28700
+            },
+            {
+              "x": -6000,
+              "y": 28700
+            },
+            {
+              "x": -6000,
+              "y": 3190
+            },
+            {
+              "x": -5500,
+              "y": 3155.7384458375855
+            },
+            {
+              "x": -5000,
+              "y": 3082.11255285027
+            },
+            {
+              "x": -4500,
+              "y": 3012.860475287943
+            },
+            {
+              "x": -4000,
+              "y": 2993.4773662551443
+            },
+            {
+              "x": -3500,
+              "y": 3091.1111111111113
+            },
+            {
+              "x": -3000,
+              "y": 3248.9300411522636
+            },
+            {
+              "x": -2500,
+              "y": 3366.625514403292
+            },
+            {
+              "x": -2000,
+              "y": 3406
+            },
+            {
+              "x": -1500,
+              "y": 3517.4814814814813
+            },
+            {
+              "x": -1000,
+              "y": 3617.8518518518517
+            },
+            {
+              "x": -500,
+              "y": 3573.046875
+            }
+          ],
+          "baseMaterial": "rock",
+          "oneWay": false,
+          "breakable": false,
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "route": true,
+            "surfaceKind": "wet",
+            "artSeed": 1
+          },
+          "layer": "terrain",
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 5,
+            "optimizeEpsilon": 0
+          },
+          "playProjection": {
+            "bounds": {
+              "left": 0,
+              "top": 0,
+              "right": 4400,
+              "bottom": 4700
+            },
+            "start": {
+              "x": 0,
+              "y": 3450
+            }
+          }
+        },
+        {
+          "id": "western-bank",
+          "name": "western-bank",
+          "type": "solid",
+          "points": [
+            {
+              "x": 0,
               "y": 2235
             },
             {
@@ -184162,92 +184342,76 @@
               "y": 3180
             },
             {
-              "x": 2390,
-              "y": 3290
+              "x": 2110,
+              "y": 3270
             },
             {
-              "x": 2680,
-              "y": 3500
+              "x": 1750,
+              "y": 3140
             },
             {
-              "x": 2910,
-              "y": 3830
+              "x": 1400,
+              "y": 3110
             },
             {
-              "x": 3250,
-              "y": 3890
+              "x": 990,
+              "y": 3040
             },
             {
-              "x": 3480,
-              "y": 3700
+              "x": 570,
+              "y": 3080
             },
             {
-              "x": 3680,
-              "y": 3350
+              "x": 0,
+              "y": 3100
             },
             {
-              "x": 3950,
-              "y": 3250
+              "x": -500,
+              "y": 3231.5850265490785
             },
             {
-              "x": 4400,
-              "y": 3200
+              "x": -1000,
+              "y": 3278.0026519218804
             },
             {
-              "x": 4900,
-              "y": 3015.735957594585
+              "x": -1500,
+              "y": 3177.93687151307
             },
             {
-              "x": 5400,
-              "y": 2944.6587627412046
+              "x": -2000,
+              "y": 3066.5129196441962
             },
             {
-              "x": 5900,
-              "y": 2999.9016352703397
+              "x": -2500,
+              "y": 3027.149299987751
             },
             {
-              "x": 6400,
-              "y": 3062.149087793378
+              "x": -3000,
+              "y": 2909.45587904774
             },
             {
-              "x": 6900,
-              "y": 3065.7007420826844
+              "x": -3500,
+              "y": 2751.637336638068
             },
             {
-              "x": 7400,
-              "y": 2969.123598379003
+              "x": -4000,
+              "y": 2654.0036649962303
             },
             {
-              "x": 7900,
-              "y": 2839.6299154609333
+              "x": -4500,
+              "y": 2673.386787857392
             },
             {
-              "x": 8400,
-              "y": 2759.519944247191
+              "x": -5000,
+              "y": 2742.6388680315595
             },
             {
-              "x": 8900,
-              "y": 2732.663177811071
-            },
-            {
-              "x": 9400,
-              "y": 2659.9484880997998
-            },
-            {
-              "x": 9900,
-              "y": 2582.6412989009605
-            },
-            {
-              "x": 10400,
-              "y": 2546.666666735372
-            },
-            {
-              "x": 10400,
-              "y": 28700
+              "x": -5500,
+              "y": 2816.264761512188
             },
             {
               "x": -6000,
-              "y": 28700
+              "y": 2850.5263157677773
             },
             {
               "x": -6000,
@@ -184787,7 +184951,7 @@
         },
         {
           "id": "cliff-cleat",
-          "name": "cliff-cleat",
+          "name": "주박목",
           "type": "solid",
           "points": [
             {
@@ -184807,7 +184971,7 @@
               "y": 2403.529411764706
             }
           ],
-          "baseMaterial": "stone",
+          "baseMaterial": "wood",
           "oneWay": false,
           "breakable": true,
           "properties": {
@@ -184832,8 +184996,8 @@
         {
           "id": "stage5-plunge-pool",
           "terrainId": "valley-floor",
-          "x1": 2390,
-          "x2": 3720,
+          "x1": 0,
+          "x2": 3960,
           "kind": "water",
           "surfaceY": 3300,
           "depth": 0,
@@ -184861,7 +185025,7 @@
           "size": 1,
           "id": "landmark-1",
           "x": 1450,
-          "y": 2833.714285714286,
+          "y": 2821.5714285714284,
           "layer": "back",
           "assetId": "builtin:receiverStone",
           "scale": 1,
@@ -185113,7 +185277,7 @@
           "combatBaseAttack": 0.5781837638494564,
           "honroXpWeight": 1,
           "honroCluster": "receiver-guard",
-          "honroSpawnReason": "받이진을 놓을 젖은 바위에 들림이 남았다.",
+          "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
           "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
           "honroEncounterRole": "guard",
           "kind": "hound",
@@ -185126,8 +185290,8 @@
           "role": "leaper",
           "cls": "knight",
           "side": 1,
-          "x": 2090,
-          "y": 3140.625,
+          "x": 1900,
+          "y": 3033.75,
           "vx": 0,
           "vy": 0,
           "hp": 446,
@@ -185160,8 +185324,8 @@
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 2090,
-          "spawnY": 3140.625,
+          "spawnX": 1900,
+          "spawnY": 3033.75,
           "intent": "무거운 돌진과 흙울음",
           "dead": false,
           "ranks": {
@@ -185326,7 +185490,7 @@
           "combatBaseAttack": 0.5249169542610032,
           "honroXpWeight": 1,
           "honroCluster": "cleat-guard",
-          "honroSpawnReason": "장막 뒤 고리쇠에 혼령이 붙었다.",
+          "honroSpawnReason": "장막 뒤 주박목에 혼령이 붙었다.",
           "honroTacticalReason": "담허 의식 후 열린 실제 사격창을 활용.",
           "honroEncounterRole": "guard",
           "kind": "human",
@@ -185397,7 +185561,7 @@
           "combatBaseAttack": 0.5781837638494564,
           "honroXpWeight": 1,
           "honroCluster": "receiver-guard",
-          "honroSpawnReason": "받이진을 놓을 젖은 바위에 들림이 남았다.",
+          "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
           "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
           "honroEncounterRole": "guard",
           "kind": "hound",
@@ -185410,8 +185574,8 @@
           "role": "leaper",
           "cls": "knight",
           "side": 1,
-          "x": 2190,
-          "y": 3194.3478260869565,
+          "x": 1990,
+          "y": 3084.375,
           "vx": 0,
           "vy": 0,
           "hp": 446,
@@ -185444,8 +185608,8 @@
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 2190,
-          "spawnY": 3194.3478260869565,
+          "spawnX": 1990,
+          "spawnY": 3084.375,
           "intent": "빠른 돌진과 흙파편",
           "dead": false,
           "ranks": {
@@ -185610,7 +185774,7 @@
           "combatBaseAttack": 0.5254534045863859,
           "honroXpWeight": 1,
           "honroCluster": "cleat-guard",
-          "honroSpawnReason": "장막 뒤 고리쇠에 혼령이 붙었다.",
+          "honroSpawnReason": "장막 뒤 주박목에 혼령이 붙었다.",
           "honroTacticalReason": "담허 의식 후 열린 실제 사격창을 활용.",
           "honroEncounterRole": "guard",
           "kind": "stag",
@@ -185681,7 +185845,7 @@
           "combatBaseAttack": 0.5781837638494564,
           "honroXpWeight": 1,
           "honroCluster": "receiver-guard",
-          "honroSpawnReason": "받이진을 놓을 젖은 바위에 들림이 남았다.",
+          "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
           "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
           "honroEncounterRole": "guard",
           "kind": "stag",
@@ -185694,8 +185858,8 @@
           "role": "leaper",
           "cls": "knight",
           "side": 1,
-          "x": 2290,
-          "y": 3242.1739130434785,
+          "x": 2090,
+          "y": 3140.625,
           "vx": 0,
           "vy": 0,
           "hp": 446,
@@ -185728,8 +185892,8 @@
           "anim": 0,
           "airborne": false,
           "fixed": false,
-          "spawnX": 2290,
-          "spawnY": 3242.1739130434785,
+          "spawnX": 2090,
+          "spawnY": 3140.625,
           "intent": "빠른 돌진과 흙파편",
           "dead": false,
           "ranks": {
@@ -185758,70 +185922,6 @@
           "kind": "hound",
           "team": "enemy",
           "runtimeTemplate": true
-        },
-        {
-          "id": "npc-hwigyeom",
-          "name": "휘겸",
-          "role": "ally-guard",
-          "cls": "knight",
-          "side": 2,
-          "x": 1850,
-          "y": 3005.625,
-          "vx": 0,
-          "vy": 0,
-          "hp": 858,
-          "maxHp": 858,
-          "r": 20,
-          "h": 90,
-          "focus": 160,
-          "maxFocus": 160,
-          "regen": 14,
-          "level": 6,
-          "attack": 2.0747999999999993,
-          "armor": 0.24,
-          "shield": 0,
-          "bound": 0,
-          "mark": 0,
-          "breaks": 0,
-          "acted": true,
-          "moveLeft": 900,
-          "maxMove": 900,
-          "walkSpeed": 260,
-          "angle": 44,
-          "lastPower": 0.55,
-          "loadout": [
-            "S01",
-            "S09"
-          ],
-          "tune": 0.5,
-          "facing": 1,
-          "hurt": 0,
-          "anim": 0,
-          "airborne": false,
-          "fixed": false,
-          "spawnX": 1850,
-          "spawnY": 3005.625,
-          "intent": "",
-          "dead": false,
-          "ranks": {
-            "S01": 3,
-            "S09": 3
-          },
-          "group": -1,
-          "awake": true,
-          "lastAct": 0,
-          "aggroUntil": 0,
-          "xpBudget": 0,
-          "xpGranted": 0,
-          "killRewarded": false,
-          "damageBy": {},
-          "honroAlly": true,
-          "allyRole": "guard",
-          "honroType": "ally",
-          "allyState": "follow",
-          "kind": "ally:guard",
-          "team": "ally",
-          "runtimeTemplate": true
         }
       ],
       "events": [
@@ -185833,9 +185933,9 @@
           "action": {
             "type": "spawn",
             "n": 3,
-            "x": 2290,
+            "x": 2020,
             "kind": "stag",
-            "y": 3242.1739130434785
+            "y": 3101.25
           },
           "text": "계곡 아래에서 들린 사슴들이 올라온다.",
           "lines": [],
@@ -185847,7 +185947,7 @@
             "broken": 1
           },
           "action": null,
-          "text": "절벽의 고리쇠가 깨지며 먼 곳에서 작은 방울 소리가 한 번 난다.",
+          "text": "절벽의 주박목가 깨지며 먼 곳에서 작은 방울 소리가 한 번 난다.",
           "lines": [
             [
               "설오",
@@ -185917,8 +186017,8 @@
           "id": "marker-1",
           "type": "sector",
           "x": 1450,
-          "y": 2833.714285714286,
-          "label": "받이진",
+          "y": 2821.5714285714284,
+          "label": "물길진",
           "sector": 1
         },
         {
@@ -185952,7 +186052,7 @@
           "type": "sector",
           "x": 3320,
           "y": 2403.529411764706,
-          "label": "장막 뒤 고리쇠",
+          "label": "장막 뒤 주박목",
           "sector": 3
         },
         {
@@ -185968,8 +186068,8 @@
           "id": "receiver-5",
           "type": "receiver",
           "x": 1450,
-          "y": 2833.714285714286,
-          "label": "담허의 받이진",
+          "y": 2821.5714285714284,
+          "label": "담허의 물길진",
           "action": "ritual",
           "requiredClass": "mage"
         },
@@ -186576,12 +186676,12 @@
         "start": {
           "x": 330,
           "y": 2246.25,
-          "support": "valley-floor"
+          "support": "western-bank"
         },
         "receiver": {
           "x": 1450,
-          "y": 2833.714285714286,
-          "support": "valley-floor"
+          "y": 2821.5714285714284,
+          "support": "western-bank"
         },
         "basin": {
           "x": 2260,

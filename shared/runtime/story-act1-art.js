@@ -66,7 +66,7 @@ function evidence(b){const s=b.honroState||{},id=b.honroStage;
  if(id===10){const binding=b.terrain.find(t=>t.id==='sodan-binding'),v=actor(b,'boss');if(!binding||!alive(v)||s.sodanCoop)return null;return{kind:'binding',binding,boss:v,phase:s.sodanBinding?.phase||'bound',hitCount:s.sodanBinding?.hitCount||0,receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
  return null;
 }
-function draw(scene,e){const b=e.b;if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';
+function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5WaterfallArt?.evidence(scene,e);if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';
  for(const m of b.honroMarkers||[])if(m.type==='receiver')floorArray(c,m,t,m.action==='ritual'?d.receiving:!!m.collected);
  if(d.kind==='eave'){const p=d.at,w=Math.sin(t*10)*5;curve(c,{x:p.x-90,y:p.y-10},{x:p.x+100,y:p.y-4},w);knot(c,{x:p.x,y:p.y+w/2});curve(c,{x:p.x,y:p.y},{x:p.x+5+w,y:p.y+45},4);}
  if(d.kind==='village'){const p=d.at;curve(c,{x:p.x-74,y:p.y+32},p,-8);knot(c,p);curve(c,p,{x:p.x+455,y:p.y-84},Math.sin(t*9)*7);}
