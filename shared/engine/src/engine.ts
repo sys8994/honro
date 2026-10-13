@@ -1,4 +1,4 @@
-import {waterfallSheet,insideWater,advanceWaterfall} from './waterfallPhysics';
+import {waterfallSheet,insideWater,advanceWaterfall,ensureWaterfallBody} from './waterfallPhysics';
 import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
 import {environmentalLoss,ownerRegistered,healed,shielded,settled,controlled,projectileCredit,beginHit,endHit,intercepted} from './contribution';
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
@@ -72,7 +72,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; ensureWaterfallBody(b); for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -260,7 +260,7 @@ export class Engine {
         const left=Math.min(a.x,c.x)-r,right=Math.max(a.x,c.x)+r,top=Math.min(a.y,c.y)-r,bottom=Math.max(a.y,c.y)+r;
         const water=projectile?waterfallSheet(this.b):undefined;
         if(terrain) for (const t of this.collisionTerrain(a, c, r)) {
-            if(t===water)continue;
+            if(t.id===water?.id)continue;
             if (t.broken || skip.includes(t.id) || t.x > right || t.x + t.w < left || Math.min(t.y, t.y + (t.slope || 0)) > bottom || t.y + t.h < top)
                 continue;
             const h = projectile ? segmentProjectileTerrain(a, c, t, r) : segmentTerrain(a, c, t, r);
@@ -939,7 +939,7 @@ export class Engine {
             // flag grants arbitrary immunity to an exposed wooden target.
             if ((this.b as any).honroStage5WaterfallRevision===1 && t.id==='cliff-cleat') {
                 const to={x:cx,y:cy};
-                if(this.b.terrain.some(w=>w!==t&&!w.broken&&(segmentProjectileTerrain({x,y},to,w,0)||terrainRectIntersects(w,x-.1,y-.1,.2,.2,0))))continue;
+                const sheet=waterfallSheet(this.b);if(this.b.terrain.some(w=>{if(w===t||w.broken)return false;const barrier=w.id===sheet?.id?sheet:w;return segmentProjectileTerrain({x,y},to,barrier,0)||terrainRectIntersects(barrier,x-.1,y-.1,.2,.2,0);}))continue;
             }
             if (d < radius)
                 this.damageTerrain(t, damage * (s?.terrain || 1) * (.5 + .5 * (1 - d / radius)), depth, owner,p||provenance);

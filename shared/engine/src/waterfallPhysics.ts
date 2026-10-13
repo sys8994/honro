@@ -1,12 +1,20 @@
-import type {Battle,Terrain} from './types';
-import {poly,segmentTerrain} from './math';
+import type {Battle,Terrain,Vec} from './types';
+import {poly,segmentTerrain,canonicalPolygon} from './math';
 import {advanceLinear} from './physics';
 export type Flight={x:number;y:number;vx:number;vy:number};
-/** Only the authored new campaign encounter opts in. Its current polygon is also the art source. */
+/** Body barrier stops below the cave floor (2460), leaving the plunge zone free. */
+export const WATERFALL_BODY_BOTTOM=2580;
+export function waterfallBodyShape(input:Vec[]):Vec[]{
+ const out:Vec[]=[];for(let i=0;i<input.length;i++){const a=input[i],b=input[(i+1)%input.length],ai=a.y<=WATERFALL_BODY_BOTTOM,bi=b.y<=WATERFALL_BODY_BOTTOM;if(ai)out.push({...a});if(ai!==bi){const k=(WATERFALL_BODY_BOTTOM-a.y)/(b.y-a.y);out.push({x:a.x+(b.x-a.x)*k,y:WATERFALL_BODY_BOTTOM});}}return canonicalPolygon(out);
+}
+const active=(b:Battle)=>{const q=b as any;return q.honroStage===5&&q.honroStage5WaterfallRevision===1&&!q.honroCustom;};
+const bounds=(vertices:Vec[])=>{const xs=vertices.map(p=>p.x),ys=vertices.map(p=>p.y);return{vertices,x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys)};};
+/** Upgrade only earlier new-waterfall saves; old/unversioned/custom saves remain exact. */
+export function ensureWaterfallBody(b:Battle){if(!active(b))return;const t=b.terrain.find(t=>t.id==='waterfall-veil');if(!t||t.honroWaterFluidVertices)return;t.honroWaterFluidVertices=poly(t).map(p=>({...p}));Object.assign(t,bounds(waterfallBodyShape(t.honroWaterFluidVertices)));b.sceneVersion++;}
+const sheets=new WeakMap<Terrain,{points:Vec[];sheet:Terrain}>();
+/** Art and airborne weapons use the entire serialized sheet, independently of its cave body gate. */
 export function waterfallSheet(b:Battle):Terrain|undefined{
- const q=b as any;
- if(q.honroStage!==5||q.honroStage5WaterfallRevision!==1||q.honroCustom)return;
- return b.terrain.find(t=>t.id==='waterfall-veil'&&!t.broken);
+ if(!active(b))return;const t=b.terrain.find(t=>t.id==='waterfall-veil'&&!t.broken);if(!t)return;const points=t.honroWaterFluidVertices;if(!points)return t;let cached=sheets.get(t);if(!cached||cached.points!==points){cached={points,sheet:{...t,...bounds(points)}};sheets.set(t,cached);}return cached.sheet;
 }
 export function insideWater(t:Terrain|undefined,p:{x:number;y:number}){
  if(!t||p.x<t.x||p.x>t.x+t.w||p.y<t.y||p.y>t.y+t.h)return false;

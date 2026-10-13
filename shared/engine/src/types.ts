@@ -39,6 +39,8 @@ export interface Skill {
     drag?: number;
 }
 export interface Terrain {
+    /** New Stage5 only: full visual/projectile fluid sheet; vertices remain its local body gate. */
+    honroWaterFluidVertices?: Vec[];
     /** Optional clockwise world-space solid polygon (screen coordinates, y downward). */
     vertices?: Vec[];
     surfaceKind?: string;

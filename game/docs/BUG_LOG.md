@@ -2603,3 +2603,7 @@ SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBal
 - 577cccf clean 소스의 같은 자연 birth26→42 보통 방어 입력에서 6체 모두 실제 발사와 담허 HP/방어막 효과를 관측했다. 최초 효과는142:26R/frame13221,141:31R/14592,143:31R/14752,145:32R/14916,146:32R/15135,144:41R/17976. 총23개 실제 행동 종료점 모두 다른 살아 있는 몸과 겹치지 않았고, 실제 발사 전의 모든 `shotViable`이 기존 친군/지형 안전 기준을 통과했다. 관측은42R 경계에서 종료했다.
 - 원본 전체 battle을 포함한 기록은 `_local/reports/stage5-enemy-standoff/replay42/replay.json`; runtime SHA256 `21275591b5db6fddec21a7f89fb6ba74b58531862c98f92c24f3a75031ce220b`, enemyAI SHA256 `82827d9128949d5e0d113e634ed0d468c16139d750354ea43dea9c53f5cb4f50`. 진단 fixture의 결과이며 최신 합본 정상 자원 입력·독립 검수·브라우저/Pages 완료를 주장하지 않는다.
 - `npm run test:stage5-waterfall:ai`는 범위 회귀와 짧은26→28 실제 발사/점유 진단을 공통 waterfall contracts에 연결한다. 확장 관측은 `HONRO_STANDOFF_UNTIL=42`로 지정한다. 실행 시작의 소스/컨트롤러 digest를 고정하고 끝에서 소스 불변을 확인하며, 실패한 관측도 원본을 먼저 보존한 뒤 gate를 실패시킨다.
+
+### 새5장 실제 R13 하부 낙수 몸 접촉 끼임
+
+정상 입력14R완주 원본에서 설오가 x2805.86/y3240.19 열린 낙수의 굽은 표면을 지형처럼 밟고 서쪽 이동·점프가 막혔다. 기존 pool fixture는 더 아래 y3400에서 시작하여 이 경계를 놓쳤다. 부모 승인에 따라 새5장만 몸 지형을 y2580에서 국소 clipping하고 전체 물표현/화살저항 sample은 honroWaterFluidVertices로 직렬화하여 동일하게 유지했다. 기존 revision1 중간저장은 terrain의 몸 투영과 sceneVersion만 한번 갱신하며 예전5장/커스텀/29장은 보존한다. 실제 R13 두 whole-battle복사와 양방향 기본귀환 및 네체형×3물상태를 추가했다. 정상 입력 전체재생과최종manifest/브라우저 검수는 이수정후 다시 수집해야 한다.
