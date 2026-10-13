@@ -76,7 +76,7 @@
     "test:act3": "npm run test:stage23-escort && npm run test:stage30-ferry && node tests/act3-runtime.mjs && node tests/act3-fiends.mjs && node tests/act3-growth.mjs && node tests/act3-continuity.mjs && node tests/act3-visual-cues.mjs && node tests/act3-save-boundaries.mjs && npm run test:act3:encounters && npm run test:act3:refinement",
     "test:act3:refinement": "node tests/act3-refinement.mjs && python -X utf8 tests/act3-refinement-browser.py",
     "test:act3:normal": "node tests/act3-playthrough.mjs",
-    "test:ui-buttons": "node tests/ui-buttons.mjs && node tests/portrait-framing.mjs && node tests/combat-action-layout.mjs && node tests/character-info.mjs && node tests/passive-status-layout.mjs",
+    "test:ui-buttons": "node tests/ui-buttons.mjs && node tests/portrait-framing.mjs && node tests/combat-action-layout.mjs && node tests/character-info.mjs && node tests/passive-status-layout.mjs && node tests/camp-stat-formatting.mjs",
     "test:act3:maps": "node tests/act3-canonical-roundtrip.mjs && node tests/act3-production-maps.mjs && node tests/act3-production-shots.mjs && node tests/act3-map-safety.mjs",
     "test:act3:art": "node tests/act3-architecture.mjs && node tests/act3-hall-art.mjs && node tests/act3-art-regeneration.mjs && node tests/act3-canal-supports.mjs",
     "test:rescue-physics": "node tests/rescue-physics.mjs",
