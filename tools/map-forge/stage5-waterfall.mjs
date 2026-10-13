@@ -16,7 +16,7 @@ export function authorStage5Waterfall(project,g){
  solid('waterfall-high-rib',[[2500,3090],[2510,2730],[2630,2480],[2800,2470],[2870,2570],[2790,3370],[2610,3550]]),
  solid('hidden-ledge',[[2840,2460],[2950,2410],[3290,2403.529411764706],[3630,2405],[3600,2570],[3240,2590],[2960,2560]],{oneWay:true}),
  // A broad western stepping shoulder is useful but never a mandatory skill gate.
- 
+
  {...clone(old.terrains.find(t=>t.id==='waterfall-veil')),points:clone(g.HonroStage5WaterGeometry.closed)},
  clone(old.terrains.find(t=>t.id==='cliff-cleat'))];
  for(const k of ['playBounds','terrainBounds','terrainDomainVersion'])delete s[k];
