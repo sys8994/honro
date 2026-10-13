@@ -109,3 +109,10 @@ for(const autonomous of [false,true]){
  const a=arena('M01'),enemy=a.add(1,800),p=a.fire();Object.assign(p,{owner:enemy.id,side:1,autonomous:true});const hp=a.u.hp;a.e.blast(a.u.x,a.u.y-a.u.h*.5,100,50,enemy.id,false,p);assert(a.u.hp<hp);
 }
 console.log('PASS delayed Continue, automatic DOT allegiance changes, counter ordering and opposing enemy attacks');
+// Legacy paired aimed crescents used child for damage caps, not automatic targeting.
+{
+ const a=arena('O01'),ally=a.add(0,800),p=a.fire();Object.assign(p,{mode:'crescent',child:true});delete p.autonomous;
+ assert.equal(a.e.autonomousAttack(p.owner,p),false);a.e.hurt(ally,30,p.owner,true,p,p);assert(ally.hp<ally.maxHp,'old aimed crescent remains direct');
+ const hp=ally.hp;p.echoSource='legacy-echo';a.e.hurt(ally,30,p.owner,true,p,p);assert.equal(ally.hp,hp,'copied old crescent remains automatic');
+}
+console.log('PASS legacy aimed crescent damage-cap flag and automatic copy distinction');

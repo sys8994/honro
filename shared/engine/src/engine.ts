@@ -473,7 +473,7 @@ export class Engine {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
             for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
         }
-        else if(s.mode==='twinCrescent'){const a=make(u.angle-4,e.damage,true),c=make(u.angle+4,e.damage,true);a.mode=c.mode='crescent';}
+        else if(s.mode==='twinCrescent'){const a=make(u.angle-4,e.damage,true),c=make(u.angle+4,e.damage,true);a.mode=c.mode='crescent';a.autonomous=c.autonomous=false;}
         else
             make(u.angle);
         beginOccultCast(this,u,s,b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot));
@@ -610,7 +610,11 @@ export class Engine {
      * from their structural flags, never a character or skill display name. */
     autonomousAttack(owner:string,p?:Partial<Projectile>){
       const actor=this.unit(owner);
-      return !!(actor?.summoned||actor?.enthrall||p?.autonomous||p?.child||p?.secondary||p?.followup||p?.echoSource);
+      if(actor?.summoned||actor?.enthrall)return true;
+      if(p?.autonomous!==undefined)return p.autonomous;
+      // Old twin-crescent roots used child solely for their shared damage cap.
+      // Their fixed, aimed crescent paths are not emitted automatic fragments.
+      return !!(p?.secondary||p?.followup||p?.echoSource||(p?.child&&p.mode!=='crescent'));
     }
     attackAllows(target:Unit,owner:string,p?:Partial<Projectile>){
       if(!this.autonomousAttack(owner,p))return true;
