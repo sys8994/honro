@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // A fresh authored battle explicitly opts in. No Continue upgrades, global
 // activation/range/cap changes, new victory conditions or growth changes.
-const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([8,11,12,16,17,18,23,30]);
+const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([8,11,12,16,17,18,21,23,24,30]);
 const active=b=>!!b&&!b.honroCustom&&stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1;
 const alive=u=>u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;
 const memory=b=>(b.honroState.encounterDensity??={version:1,alert:{},warnings:{},entries:{}});

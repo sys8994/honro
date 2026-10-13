@@ -343511,51 +343511,179 @@
           "id": "act3-response-21-0",
           "once": true,
           "when": {
-            "objectiveDone": "gate-resident"
+            "after": "density-gate-act3-response-21-0"
           },
-          "warning": "성문 동쪽에서 군화 소리가 들립니다.",
-          "text": "증원 진입 · 성문 동쪽에서 군화 소리가 들립니다.",
+          "warning": "성문 동쪽에서 군화 소리가 들립니다. 다음 행동 동안 성문 아래 진입로를 살피세요.",
+          "text": "증원 진입 · 성문 동쪽에서 군화 소리가 들립니다. 다음 행동 동안 성문 아래 진입로를 살피세요.",
           "entry": {
-            "x": 3550,
-            "y": 2608.5
+            "x": 3390,
+            "y": 2500
           },
           "action": {
-            "type": "spawn",
-            "kind": "possessedGuard",
-            "n": 3,
-            "x": 3550,
-            "y": 2608.5,
-            "spacing": 150,
-            "maxDistance": 380,
-            "source": "act3-response-21-0",
+            "type": "multi",
+            "honroDensityResponse": 1,
             "act3Authored": true,
-            "elite": false
-          }
+            "source": "act3-response-21-0",
+            "actions": [
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 3390,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 3510,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 3620,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              }
+            ]
+          },
+          "honroDensityResponse": 1,
+          "honroDensityTrigger": {
+            "objectiveDone": "gate-resident"
+          },
+          "honroDensityAlternatives": [
+            [
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 3270,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 3400,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 3530,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              }
+            ]
+          ]
         },
         {
           "id": "act3-response-21-1",
           "once": true,
           "when": {
-            "objectiveDone": "refuge-hold"
+            "after": "density-gate-act3-response-21-1"
           },
-          "warning": "지나온 성벽에서 활시위가 울립니다.",
-          "text": "증원 진입 · 지나온 성벽에서 활시위가 울립니다.",
+          "warning": "시장 동쪽 관아 진입로에서 활시위가 울립니다. 다음 행동 동안 높은 회랑과 낮은 퇴로를 살피세요.",
+          "text": "증원 진입 · 시장 동쪽 관아 진입로에서 활시위가 울립니다. 다음 행동 동안 높은 회랑과 낮은 퇴로를 살피세요.",
           "entry": {
-            "x": 1990,
+            "x": 5030,
             "y": 2500
           },
           "action": {
-            "type": "spawn",
-            "kind": "possessedArcher",
-            "n": 2,
-            "x": 1990,
-            "y": 2500,
-            "spacing": 150,
-            "maxDistance": 380,
-            "source": "act3-response-21-1",
+            "type": "multi",
+            "honroDensityResponse": 1,
             "act3Authored": true,
-            "elite": false
-          }
+            "source": "act3-response-21-1",
+            "actions": [
+              {
+                "type": "spawn",
+                "kind": "possessedArcher",
+                "n": 1,
+                "x": 5030,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "exit-cover"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedArcher",
+                "n": 1,
+                "x": 5170,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "exit-cover"
+              }
+            ]
+          },
+          "honroDensityResponse": 1,
+          "honroDensityTrigger": {
+            "objectiveDone": "refuge-hold"
+          },
+          "honroDensityAlternatives": [
+            [
+              {
+                "type": "spawn",
+                "kind": "possessedArcher",
+                "n": 1,
+                "x": 5060,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "exit-cover"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedArcher",
+                "n": 1,
+                "x": 5230,
+                "y": 2500,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-21-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "exit-cover"
+              }
+            ]
+          ]
         }
       ],
       "encounters": [
@@ -343777,7 +343905,8 @@
         "honroAct3ResponseRevision": 1,
         "honroAct3SceneryRevision": 1,
         "honroNarrativeRevision": 1,
-        "honroCityTacticalRevision": 1
+        "honroCityTacticalRevision": 1,
+        "honroEncounterDensityRevision": 1
       },
       "environment": {
         "version": 4,
@@ -345084,6 +345213,10 @@
             "market high gallery / sheltered low street"
           ],
           "verification": "pending actual four-body round trips, objective-state and normal-resource checks"
+        },
+        "tacticalCityResponses": {
+          "revision": 1,
+          "scope": "Existing finite responses, stable contribution IDs and counts. Real player action after warning; exact supported atomic entries or same-side alternatives/wait. No action-cap reservation."
         }
       },
       "routes": [
@@ -400608,77 +400741,262 @@
           "id": "act3-response-24-0",
           "once": true,
           "when": {
-            "objectiveDone": "family-crest"
+            "after": "density-gate-act3-response-24-0"
           },
-          "warning": "폐가 서재에서 지워진 이름들이 웅성거립니다.",
-          "text": "증원 진입 · 폐가 서재에서 지워진 이름들이 웅성거립니다.",
+          "warning": "폐가 서재에서 지워진 이름들이 웅성거립니다. 다음 행동 동안 후원 진입로를 살피세요.",
+          "text": "증원 진입 · 폐가 서재에서 지워진 이름들이 웅성거립니다. 다음 행동 동안 후원 진입로를 살피세요.",
           "entry": {
-            "x": 3670,
-            "y": 2470
+            "x": 3590,
+            "y": 2463.480333814052
           },
           "action": {
-            "type": "spawn",
-            "kind": "archiveFiend",
-            "n": 2,
-            "x": 3670,
-            "y": 2470,
-            "spacing": 150,
-            "maxDistance": 380,
-            "source": "act3-response-24-0",
+            "type": "multi",
+            "honroDensityResponse": 1,
             "act3Authored": true,
-            "elite": false
-          }
+            "source": "act3-response-24-0",
+            "actions": [
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 3590,
+                "y": 2463.480333814052,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              },
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 3750,
+                "y": 2506.8115889492547,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              }
+            ]
+          },
+          "honroDensityResponse": 1,
+          "honroDensityTrigger": {
+            "objectiveDone": "family-crest"
+          },
+          "honroDensityAlternatives": [
+            [
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 3450,
+                "y": 2455.560955356517,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              },
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 3620,
+                "y": 2470.2865103247327,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-0",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              }
+            ]
+          ]
         },
         {
           "id": "act3-response-24-1",
           "once": true,
           "when": {
-            "objectiveDone": "shrine-seal"
+            "after": "density-gate-act3-response-24-1"
           },
-          "warning": "봉인이 풀린 사당 뒤로 장부귀가 모입니다.",
-          "text": "증원 진입 · 봉인이 풀린 사당 뒤로 장부귀가 모입니다.",
+          "warning": "봉인이 풀린 사당 뒤로 장부귀가 모입니다. 다음 행동 동안 봉인 앞 퇴로를 살피세요.",
+          "text": "증원 진입 · 봉인이 풀린 사당 뒤로 장부귀가 모입니다. 다음 행동 동안 봉인 앞 퇴로를 살피세요.",
           "entry": {
-            "x": 5550,
-            "y": 2546.6666666666665
+            "x": 5380,
+            "y": 2600
           },
           "action": {
-            "type": "spawn",
-            "kind": "archiveFiend",
-            "n": 3,
-            "x": 5550,
-            "y": 2546.6666666666665,
-            "spacing": 150,
-            "maxDistance": 380,
-            "source": "act3-response-24-1",
+            "type": "multi",
+            "honroDensityResponse": 1,
             "act3Authored": true,
-            "elite": false
-          }
+            "source": "act3-response-24-1",
+            "actions": [
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 5380,
+                "y": 2600,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              },
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 5500,
+                "y": 2560,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              },
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 5620,
+                "y": 2520,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              }
+            ]
+          },
+          "honroDensityResponse": 1,
+          "honroDensityTrigger": {
+            "objectiveDone": "shrine-seal"
+          },
+          "honroDensityAlternatives": [
+            [
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 5320,
+                "y": 2620,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              },
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 5450,
+                "y": 2576.6666666666665,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              },
+              {
+                "type": "spawn",
+                "kind": "archiveFiend",
+                "n": 1,
+                "x": 5580,
+                "y": 2533.3333333333335,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-1",
+                "honroDensityElite": false,
+                "honroDensityRole": "record-response"
+              }
+            ]
+          ]
         },
         {
           "id": "act3-response-24-2",
           "once": true,
           "when": {
-            "objectiveDone": "shrine-seal",
-            "progress": 6100
+            "after": "density-gate-act3-response-24-2"
           },
-          "warning": "토지문서 쪽 담장 끝에서 경비가 일어납니다.",
-          "text": "증원 진입 · 토지문서 쪽 담장 끝에서 경비가 일어납니다.",
+          "warning": "토지문서 동쪽 낮은 마당에서 경비가 일어납니다. 다음 행동 동안 문서 곁 사선과 사당 위 길을 살피세요.",
+          "text": "증원 진입 · 토지문서 동쪽 낮은 마당에서 경비가 일어납니다. 다음 행동 동안 문서 곁 사선과 사당 위 길을 살피세요.",
           "entry": {
-            "x": 6910,
+            "x": 6440,
             "y": 2410
           },
           "action": {
-            "type": "spawn",
-            "kind": "possessedGuard",
-            "n": 2,
-            "x": 6910,
-            "y": 2410,
-            "spacing": 150,
-            "maxDistance": 380,
-            "source": "act3-response-24-2",
+            "type": "multi",
+            "honroDensityResponse": 1,
             "act3Authored": true,
-            "elite": true
-          }
+            "source": "act3-response-24-2",
+            "actions": [
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 6440,
+                "y": 2410,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-2",
+                "honroDensityElite": true,
+                "honroDensityRole": "entry-guard"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 6570,
+                "y": 2410,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-2",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              }
+            ]
+          },
+          "honroDensityResponse": 1,
+          "honroDensityTrigger": {
+            "objectiveDone": "shrine-seal",
+            "region": {
+              "x": 5900,
+              "y": 1800,
+              "width": 1100,
+              "height": 900
+            }
+          },
+          "honroDensityAlternatives": [
+            [
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 6480,
+                "y": 2410,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-2",
+                "honroDensityElite": true,
+                "honroDensityRole": "entry-guard"
+              },
+              {
+                "type": "spawn",
+                "kind": "possessedGuard",
+                "n": 1,
+                "x": 6610,
+                "y": 2410,
+                "support": "a3-foundation",
+                "maxDistance": 0,
+                "source": "act3-response-24-2",
+                "honroDensityElite": false,
+                "honroDensityRole": "entry-guard"
+              }
+            ]
+          ]
         }
       ],
       "encounters": [
@@ -400926,7 +401244,8 @@
         "honroAct3SceneryRevision": 1,
         "honroWaterworksRevision": 1,
         "honroNarrativeRevision": 1,
-        "honroCityTacticalRevision": 1
+        "honroCityTacticalRevision": 1,
+        "honroEncounterDensityRevision": 1
       },
       "environment": {
         "version": 4,
@@ -401290,6 +401609,10 @@
             "shrine side access after the existing seal"
           ],
           "verification": "pending actual four-body round trips, objective-state and normal-resource checks"
+        },
+        "tacticalCityResponses": {
+          "revision": 1,
+          "scope": "Existing finite responses, stable contribution IDs and counts. Real player action after warning; exact supported atomic entries or same-side alternatives/wait. No action-cap reservation."
         }
       },
       "routes": [
