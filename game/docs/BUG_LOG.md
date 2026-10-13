@@ -2461,3 +2461,9 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 - 이미 읽은 연출의 최전방 지점을 저장한다. 뒤로 읽거나 Continue 후 재진입해도 인물 이동/공개/효과 cue를 재실행하지 않는다. 완료 콜백과 보상은 기존 완료 경계를 그대로 사용한다.
 - 기존 사용자 제스처·음소거·볼륨·대기열 경로에 132Hz 중심/240ms/22ms attack의 낮은 합성 메시지음을 추가했다. redraw에는 재생하지 않고 표시된 페이지가 바뀔 때만 요청한다. 외부 음원 요청은 없다.
 - 검증 입력: `tests/dialogue-controls-audio.mjs`; 파형/WAV와 계약 결과는 `_local/reports/dialogue-controls-audio/`. 음색은 실제 청취가 아닌 샘플/주파수/진폭 코드 검증이며 물리 기기 출력은 보장하지 않는다. 모바일 실제 CSS·최종 통합·Pages 검수는 별도다.
+
+## 2026-10-13 · Stage 5 falling-water projectile drag
+- New revision 1 campaign Stage 5 only: the art's live sampled waterfall polygon is a fluid for airborne weapons. Body collision stays unchanged. Swept entry prevents fast shots skipping the sheet.
+- Horizontal velocity uses exact linear + quadratic resistance; vertical motion entrains into downward water flow. Water entry neither impacts nor reflects nor explodes a projectile. Real rock/unit collisions, fuses, children and existing lifetimes remain authoritative.
+- The shared integrator drives live and predicted flight. Homing/return/summon steering cannot repeatedly restore minimum speed inside water. Closed A01 shots fall onto actual rock; the held-open shot reaches the cleat.
+- Focused test `node tests/stage5-waterfall-drag.mjs` passes: 20–240 Hz identical homogeneous water result, swept 1,500–1,000,000 unit/s entries, closed/open shots, all other 29 chapters, old/custom snapshots, body policy and persisted velocity. New Engine typecheck passed. Browser, actual App Continue/dialogue and special-weapon matrix are still pending at this checkpoint; not final acceptance.

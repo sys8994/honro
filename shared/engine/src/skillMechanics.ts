@@ -238,7 +238,6 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
 
 /** Hook only redesigned impacts; collision detection and integration remain in Engine. */
 export function redesignImpact(e:Engine,p:Projectile,h:Collision){
- if((e.b as any).honroStage5WaterfallRevision===1&&SKILLS[p.skill]?.redesigned&&h.terrain?.id==='waterfall-veil'){e.fx('ring',h.x,h.y,'#c8e1d9',44);e.fx('spark',h.x,h.y,'#9fcbd0',34);}
  if(!newSkill(p))return false;
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.x=h.x;p.y=h.y;
  if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
@@ -323,7 +322,7 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
    strikeGeometry(e,p,g);e.remove(p);return true;
   }
  }
- if(p.mode==='return'&&p.returning){
+ if(p.mode==='return'&&p.returning&&!e.inWaterfall(p)){
   p.returnAge=(p.returnAge||0)+dt;
   const a=Math.atan2(p.vy,p.vx),dest=Math.atan2((u.y-u.h*.5)-p.y,u.x-p.x),delta=Math.atan2(Math.sin(dest-a),Math.cos(dest-a)),next=a+clamp(delta,-2.5*dt,2.5*dt),speed=Math.max(400,Math.hypot(p.vx,p.vy));
   p.vx=Math.cos(next)*speed;p.vy=Math.sin(next)*speed;p.gravityScale=.12;
