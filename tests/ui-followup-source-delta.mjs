@@ -20,3 +20,17 @@ export function assertExactFollowupDelta(current,change){
  assert.equal(lines.join('\n'),current,'Exact delta is reversible without dropping unrelated bytes');
  return previous;
 }
+
+/** Validate later refinements before reconstructing an earlier approved delta.
+ * Changes are chronological; every intermediate byte identity must join exactly.
+ * The returned prior source is archive evidence, never a current fingerprint. */
+export function assertExactFollowupDeltaChain(current,changes){
+ assert(changes.length,'At least one explicitly approved source delta required');
+ for(const [index,change] of changes.entries()){
+  assert.equal(change.path,changes[0].path,'One file per exact delta chain');
+  if(index)assert.equal(change.previousSha256,changes[index-1].sha256,'Contiguous approved source deltas');
+ }
+ let previous=current;
+ for(const change of [...changes].reverse())previous=assertExactFollowupDelta(previous,change);
+ return previous;
+}
