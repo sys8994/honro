@@ -9,6 +9,7 @@ import {historicalRuntimeSources,historicalRuntimeParts,sourceHistoryInput} from
 import {beforeEncounterDensityRuntimeSources,encounterDensityHistory} from './encounter-density-history-helpers.mjs';
 import {beforeStage8BierRuntimeSources,beforeStage8BierFingerprintParts,beforeStage18BellFingerprintParts,stage8BierReview,stage18BellHistoryDelta} from './stage8-bier-history-helpers.mjs';
 const sources=currentRuntimeSources(),archive=historicalRuntimeSources();assertCurrentRuntimeSources(sources);
+for(const delta of f.approvedDeltas||[]){assert.equal(delta.path,'shared/runtime/narrative-revision.js');const source=sources[delta.path];assert.equal(source.split(delta.exactAddedText).length,2);assert.equal(hash(source.replace(delta.exactAddedText,'')),delta.beforeSha256,'Exact approved creation-default source delta');assert.equal(hash(source),delta.afterSha256);for(const change of delta.buildChanges){assert.equal(f.variants[change.variant].parts[change.index],delta.afterSha256);assert.equal(f.variants[change.variant].sha256,change.afterSha256);}}
 assert.equal(Object.keys(sources).length,155);assert.equal(Object.keys(archive).length,133);
 assert.deepEqual(Object.keys(archive).sort(),Object.keys(encounterDensityHistory.runtime).sort());
 for(const[path,row]of Object.entries(encounterDensityHistory.runtime))assert.equal(hash(archive[path]),row.afterSha256,'Original source byte identity '+path);

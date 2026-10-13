@@ -32634,7 +32634,7 @@ function author(project){return {...project,stages:project.stages.map(original=>
  if(st.metadata.stageId===2){const u=st.units.find(u=>u.id==='objective');if(u)u.name='장례 상여';}
  if(st.metadata.stageId===10&&!st.terrains.some(t=>t.id===bindingId)){
   const u=st.units.find(u=>u.id==='boss'),x=(u?.x||2500)-285,y=(u?.y||2180)-155;
-  st.terrains.push({id:bindingId,name:'바깥 주박',type:'solid',points:[{x,y},{x:x+96,y},{x:x+96,y:y+126},{x,y:y+126}],baseMaterial:'wood',oneWay:false,breakable:true,layer:'terrain',properties:{device:'ward',honroBinding:true,hp:800,maxHp:800}});
+  st.terrains.push({id:bindingId,name:'바깥 주박',type:'solid',points:[{x,y},{x:x+96,y},{x:x+96,y:y+126},{x,y:y+126}],baseMaterial:'wood',oneWay:false,breakable:true,layer:'terrain',detail:{spacing:18,roughness:0,seed:1,optimizeEpsilon:0},properties:{device:'ward',honroBinding:true,hp:800,maxHp:800}});
  }return st;
 })};}
 const contentFor=G.HonroObjectiveRevision.contentFor;
