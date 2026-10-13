@@ -38,3 +38,16 @@ let goal=u.cls==='mage'?b.honroMapAnchors.receiver.x:b.honroMapAnchors.shotGap.x
 choice=choose(u);if(choice&&shoot(u,choice))continue;record('defend',{actorId:u.id,x:u.x,y:u.y,focus:u.focus,hp:u.hp,reason:'No safe shot after route movement; recover within ordinary defense'});app.defend();
 }
 if(!terminal()&&!stop)stop=requestedStop?'requested observation stop':'action observation budget';const result={schema:'honro-stage5-input-trace/v1',observedAt:new Date().toISOString(),source,method:'native-input',debug:false,modifications:[],normalResources:true,policy:{name:process.env.HONRO_STAGE5_POLICY||'combat',build:trained?'trained':'basic',stats:Number(process.env.HONRO_STAGE5_STATS||(trained?3:0))},entryFixture:'First-clear reward ledger through4 only; not 1–4 actual play',profile:p,readiness,training,initial,actions,hits,terrainHits,impacts,fires,enemyActions,births,notices,stateTrace,frames,frameInputs,continues,snapshots,final:plain(b),frame,stop,completed:b.phase==='won',limits:['DOM, render, clock, storage doubles; not browser/mobile evidence.','Fixed basic-only policy and finite real resources.','No injected actor HP, position, damage, resource or objective state.']};await writeFile(out+'/trace.json',JSON.stringify(result));await writeFile(out+'/summary.json',JSON.stringify({source,completed:result.completed,round:b.round,frame,stop,heroes:heroes(),enemies:e.alive(1).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),births,continues},null,2));console.log('RESULT',JSON.stringify({out,completed:result.completed,round:b.round,frame,stop}));
+// Completion gate is opt-in; investigative failed/partial policies retain traces.
+if(process.env.HONRO_STAGE5_REQUIRE_WIN==='1'){
+ assert.equal(result.completed,true,'Required normal-input policy must win');
+ assert.equal(result.debug,false);assert.deepEqual(result.modifications,[]);
+ assert.equal(result.frameInputs.length,result.frame,'Every App.frame input is recorded');
+ assert(result.actions.some(a=>a.kind==='charge-start'),'Real charge input required');
+ assert(result.fires.some(f=>f.side===0&&f.accepted),'Accepted player fire required');
+ assert(result.terrainHits.some(t=>t.id==='cliff-cleat'&&t.hpAfter<t.hpBefore),'Actual objective damage required');
+ assert(result.continues.some(c=>c.exact),'Whole-battle Continue verification required');
+ assert(result.actions.some(a=>a.kind==='pause-after-warning')&&result.actions.some(a=>a.kind==='resume-after-warning'),'Actual warning pause/resume required');
+ assert(result.frames.length&&result.stateTrace.length&&result.hits.length,'Raw actor/state/effect records required');
+ assert(result.final.units.filter(u=>u.side===0&&!u.summoned).every(u=>!u.dead&&u.hp>0),'Both companions must survive the gated policy');
+}
