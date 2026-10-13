@@ -43,4 +43,17 @@ check('portrait passive content fits the unchanged 36px status control without r
  const start=presentation.indexOf('/* Live passive state'),end=presentation.indexOf('/* Small portrait-phone trim:',start),patch=presentation.slice(start,end);assert(!/--hud-(?:height|roster-height|vitals-height)|grid-template-rows|padding:/.test(patch.replace(/padding:0/g,'')));
  assert.match(presentation,/--hud-roster-height:36px;--hud-vitals-height:18px;--joystick-lift:4px/);
 });
+check('phone mission header reserves the unchanged minimap lane instead of overlapping it',()=>{
+ const patch=controls.slice(controls.indexOf('/* Keep phone mission text'));
+ assert.match(patch,/@media\(max-width:620px\)/);
+ assert.match(patch,/battle-head\{left:8px;right:calc\(31vw \+ 16px\);gap:8px\}/);
+ assert.match(patch,/battle-head>\.icon\{flex:none\}/);
+ assert.match(patch,/battle-info\{flex:1;min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere\}/);
+ assert(!/font-size:|#minimap\{|--hud-height/.test(patch));
+ for(const width of [280,320,333,360,400,620]){
+  const headerRight=width-(width*.31+16),mapLeft=width-8-width*.31;
+  assert(Math.abs(mapLeft-headerRight-8)<1e-9);
+  assert(headerRight-8-44-8>100,'mission area keeps at least 100px beside pause');
+ }
+});
 console.log(`${count} passive HUD groups passed; actual browser layout remains separately verified.`);
