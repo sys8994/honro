@@ -27,3 +27,11 @@
 독립 코드 검토, 통합 전체 verify, Game/Workshop의 실제 화면과 최종 Pages 검수는 별도 기록한다. 격리 테스트는 캠페인 전체 완주나 사용자의 정상 저장 검증을 대신하지 않는다. 정상 저장은 수정하지 않는다.
 
 2026-10-13 통합 전 검사: targeting/hwigyeom/combo/sodan/skill-effects/existence/typecheck와 두 HTML 빌드 통과. migration은 All580 original asset membership/order 계약에서 실패했으며 변경 전 0372047 clean checkout에서도 같은 실패를 재현했다. 이 기존 실패를 수정하거나 기대값을 변경하지 않았다.
+
+## 독립 검토에 따른 경계 보정
+
+부모 검수에서 자동 공격의 보호를 적 진영까지 넓히면 적 자동 자탄/소환의 민간인·objective·지형 위협이 사라진다는 문제를 지적했다. `protectedAutomaticAttack`을 별도로 두어 현재 소유/동맹 기준 플레이어 진영에서만 보호하도록 수정했다. 적의 직접/자동 공격을 중립·동맹·objective·적/플레이어 대상으로 각각 HP·밀치기·지형 HP까지 수치 대조했다. 부모 없는 저장의 side 0/1/2/미상과 적 소유 소환의 stale side:0도 확인했다.
+
+직접 조준의 예외 경계는 두 가지다. 구 쌍월참의 두 crescent 원탄은 직접 공격이며 child 피해상한 플래그만으로 자동 공격으로 바꾸지 않는다. S12 중심탄은 기존 직접 조준·지형 충돌을 따르고, 별도 난수 궤도의 개별 회전 검에만 자동 출처를 전달한다.
+
+단일 재실행 명령: `npm run test:autonomous-friendly-fire`. 이는 엔진 회귀와 `tests/autonomous-friendly-fire-save.mjs`의 실제 App export/import/Continue 6개(소환/연참/회전검 × 새/구 출처)를 함께 실행한다. App 검사는 DOM·저장소 대역을 사용하며 브라우저 검수로 표현하지 않는다. 저장 재개 후 적 피해와 보호대상 HP를 실제 공격 종료까지 확인한다.
