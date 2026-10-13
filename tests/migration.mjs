@@ -1,3 +1,4 @@
+import {throughCurrentMigrationMetadata} from './current-migration-metadata-helpers.mjs';
 import './forest-cavern-history.mjs';
 import {beforeApprovedTopology} from './approved-topology-history-helpers.mjs';
 import {beforePlatformPassages} from './platform-passage-delta-helpers.mjs';
@@ -19,7 +20,7 @@ const platformIds=new Set(['hidden-ledge','upper-roost','bridge-west','bridge-mi
 // HBUG-091 is independently asserted above; every other terrain stays exact.
 const originalTerrain=items=>plain(items).filter(t=>t.id!=='root-reentry').map(t=>{if(platformIds.has(t.id))delete t.oneWay;return t;});
 const balanceFields=new Set(['xpBudget','attack','combatBaseAttack','hp','maxHp','combatBaseHp']);
-function mapWithoutSodanBalance(value){const copy=g.HonroTerrainDomain.author(applyAct1CollisionRepair(plain(value)));delete copy.library;for(const stage of copy.stages||[]){delete stage.environment;if(stage.design?.act1Scene){delete stage.design.act1Scene;if(!Object.keys(stage.design).length)delete stage.design;}stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-')&&!e.id?.startsWith('a1-scene-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));stage.terrains=originalTerrain(stage.terrains);for(const u of stage.units||[])for(const key of balanceFields)delete u[key];}return copy;}
+function mapWithoutSodanBalance(value){const migrated=throughCurrentMigrationMetadata(g,value),copy=g.HonroTerrainDomain.author(applyAct1CollisionRepair(plain(migrated)));delete copy.library;for(const stage of copy.stages||[]){delete stage.environment;if(stage.design?.act1Scene){delete stage.design.act1Scene;if(!Object.keys(stage.design).length)delete stage.design;}stage.elements=stage.elements?.filter(e=>!e.id?.startsWith('habitat-prop-')&&!e.id?.startsWith('a1-scene-'));stage.markers=stage.markers?.filter(m=>!m.id?.startsWith('habitat-'));stage.terrains=originalTerrain(stage.terrains);for(const u of stage.units||[])for(const key of balanceFields)delete u[key];}return copy;}
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage12-forest-basin.js',import.meta.url),'utf8'),g);
 vm.runInContext(await readFile(new URL('../workshop/recipes/stage36-place-design.js',import.meta.url),'utf8'),g);
 const firstDesign=plain(g.HonroCommands.apply(baseline,g.HonroStage12Design.commands(baseline)));
