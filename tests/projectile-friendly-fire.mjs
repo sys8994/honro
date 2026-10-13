@@ -12,7 +12,7 @@ function arena(id){
 }
 const hit=(a,p,t)=>a.e.impact(p,{x:t.x,y:t.y-t.h*.5,t:0,n:{x:-1,y:0},unit:t});
 // Real launch and swept collision across the four projectile families.
-for(const id of ['A01','A02','A13','M01','M03','O01','O02','O04','S09','S10','S11','S12'])for(const flags of [{side:0},{side:2,honroAlly:true}]){
+for(const id of ['A01','A02','A13','M01','M03','O01','O02','O04','S09','S10','S11'])for(const flags of [{side:0},{side:2,honroAlly:true}]){
  const a=arena(id),t=a.add(flags.side,500,flags),foe=a.add(1,1000),p=a.fire();
  assert(p,id);Object.assign(p,{x:430,y:t.y-t.h*.5,vx:1000,vy:0,gravityScale:0,wind:0});
  for(let n=0;n<30&&a.b.projectiles.includes(p)&&t.hp===t.maxHp;n++)a.e.stepProjectile(p,C.STEP);
@@ -21,7 +21,7 @@ for(const id of ['A01','A02','A13','M01','M03','O01','O02','O04','S09','S10','S1
 }
 console.log('PASS direct, piercing, guided, soul and martial projectile friendly collisions');
 for(const mode of ['fireChip','frostChip','ironChip']){
- const a=arena('M06'),t=a.add(0,800),p=a.fire();Object.assign(p,{mode,secondary:true,damage:30});hit(a,p,t);assert(t.hp<t.maxHp,mode);assert(!t.slowed,'frost special status remains enemy-only');
+ const a=arena('M06'),t=a.add(0,800),p=a.fire();Object.assign(p,{mode,secondary:true,damage:30});hit(a,p,t);assert.equal(t.hp,t.maxHp,mode+' automatic fragment protects ally');assert(!t.slowed,'frost special status remains enemy-only');
 }
 for(const id of ['M01','M03','M06','M04','M13','O08','O10']){
  const a=arena(id),t=a.add(0,800),p=a.fire();hit(a,p,t);assert(t.hp<t.maxHp,id+' area damage');assert(!t.manifested&&!t.earthbind&&!t.curseOwner,'charm status remains enemy-only');
@@ -31,13 +31,13 @@ console.log('PASS fragments, geometry, explosion, lightning and charm damage/sta
  const a=arena('O12'),ally=a.add(0,650),enemy=a.add(1,1100),spirit=a.e.spawnSummon(a.u,'lantern',400,1500,1,1);
  a.e.launchSummonBolt(spirit,enemy);const p=a.b.projectiles[0];p.y=ally.y-ally.h*.5;
  for(let i=0;i<90&&a.b.projectiles.includes(p);i++)a.e.stepProjectile(p,C.STEP);
- assert(ally.hp<ally.maxHp,'summon ray intercepted by ally');assert.equal(enemy.hp,enemy.maxHp);
+ assert.equal(ally.hp,ally.maxHp,'summon ray passes ally');assert(enemy.hp<enemy.maxHp);
 }
 {
  const a=arena('O16'),ally=a.add(0,700),p=a.fire();hit(a,p,ally);
  const children=a.b.projectiles.filter(q=>q.mode==='convergeSpirit');assert(children.length>=10);
  for(let i=0;i<300&&a.b.projectiles.length;i++)for(const q of [...a.b.projectiles])a.e.stepProjectile(q,C.STEP);
- assert(ally.hp<ally.maxHp,'convergence swept/terminal damage includes allies');
+ assert.equal(ally.hp,ally.maxHp,'convergence swept/terminal damage protects allies');
 }
 {
  const a=arena('O01');const hp=a.u.hp,p=a.fire();a.e.stepProjectile(p,C.STEP);assert.equal(a.u.hp,hp,'launch never collides with caster');assert(a.b.projectiles.includes(p));

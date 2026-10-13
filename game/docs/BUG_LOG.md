@@ -20,6 +20,12 @@
 - 원인: Unit.hurt는 Engine.tick에서 감소하고 피해 숫자·타격 FX는 전투 연출 시간으로 사라진다. 대화/모달은 두 시간을 모두 멈추므로 피격 직후 들어간 대화에서 빨간 캐릭터와 숫자·타격 선이 계속 남았다.
 - 변경: Scene의 대화/모달/턴 대기/결과 정지 경계에서 이미 발생한 피격 tint, 피해 숫자, swordCut/slash/inkLine/inkImpact만 렌더 상태로 종료한다. Unit.hurt와 전투 저장은 그대로이며, 재개 때 같은 옛 tint를 다시 그리지 않는다. 새 피해 이벤트·hurt 증가·새 유닛은 정상 피격 표현을 다시 허용한다. 투사체/폭발/zone/상태 이상/적대성/경고와 미완료 전투 액션은 유지한다.
 - 검증: `test:dialogue-hit-feedback`은 실제 App/Engine과 feedback 메서드, DOM·캔버스 double로 대화 180프레임·모달·긴 프레임 공백·Continue·모든 진영의 전체 전투 상태 동일, 실발사한 미완료 투사체 보존, 새 피격 복귀를 검사한다. `node tests/dialogue-hit-feedback-native.mjs`는 stage4 fixture의 실제 Engine.hurt와 production Scene을 Native Canvas로 그려 전후 색·숫자·잔상 제거 및 새 피격 복귀/전투 JSON 불변을 검사한다. 공개 Game/Workshop 브라우저 DOM·정상 플레이는 이 검사들만으로 입증하지 않으며 배포 검수에서 별도로 확인한다.
+## 2026-10-13 · 자동 공격의 아군 피해 차단
+
+- 원인: 공통 투사체 아군피해가 소환령 추적탄·반향 복제·자탄까지 적용됐다. 자동 근접/광역 일부는 저장된 side만 사용하여 동맹 속성을 놓쳤다.
+- 변경: 공격 소유권과 분리한 autonomous 출처를 자동 생성 지점과 공통 충돌/피해/상태 경로에 전달한다. 연참·반격·회전검·소환/섭혼과 자동 후속탄은 아군/동맹/중립 NPC를 보호한다. 직접 조준 원탄/유도/반사/직접 설치 효과는 유지한다. 자동 지형 HP손상은 차단해 받침 붕괴·연쇄 폭발을 막지만 지형 충돌/반사는 보존한다.
+- 검증: 전용 격리 엔진 회귀의 전후/겹침·공중/근접 연참·킬 후 연계·저장 재개·회전검·소환 차례 종료·적 피해/XP 동일성 통과. 기존 targeting/summon/projectile, hwigyeom, combo, sodan, skill-effects, existence와 typecheck 통과. 새 출처 필드는 선택형이며 구 비행의 구조 표지로도 보호한다.
+- 한계: 독립 코드 검토, 통합 verify와 두 HTML/Pages 실제 화면 확인은 최종 통합 단계다. 자동 출처가 기록되지 않은 과거 설치 효과는 기존 규칙을 유지한다. 상세 범위는 [자동 공격 계약](AUTONOMOUS_ATTACK_SAFETY.md).
 
 ## 2026-10-13 · 주막주인과 부재 NPC의 대화 초상 정체성
 

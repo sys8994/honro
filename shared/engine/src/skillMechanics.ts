@@ -197,7 +197,7 @@ function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit
 }
 function reflect(p:Projectile,h:Collision,restitution=.84){const dot=p.vx*h.n.x+p.vy*h.n.y;p.vx=(p.vx-2*dot*h.n.x)*restitution;p.vy=(p.vy-2*dot*h.n.y)*restitution;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);p.bounces++;}
 function spawnChild(e:Engine,p:Projectile,mode:string,vx:number,vy:number,damage:number,blast=0){
- const q:Projectile={...p,id:e.b.nextId++,mode,vx,vy,prevVy:vy,damage,blast,age:0,child:true,secondary:true,apex:true,hit:[],trail:[],bounces:0,pierces:0,fuseAt:undefined,phaseMode:undefined,gravityScale:1,drag:.025,radius:3,maxAge:.5};e.b.projectiles.push(q);return q;
+ const q:Projectile={...p,id:e.b.nextId++,mode,vx,vy,prevVy:vy,damage,blast,age:0,child:true,autonomous:true,secondary:true,apex:true,hit:[],trail:[],bounces:0,pierces:0,fuseAt:undefined,phaseMode:undefined,gravityScale:1,drag:.025,radius:3,maxAge:.5};e.b.projectiles.push(q);return q;
 }
 function skyStrikePoint(e:Engine,point:Vec,owner:string):Vec{
  const start={x:point.x,y:Math.min(-170,point.y-600)};
@@ -213,10 +213,10 @@ function gourdBurst(e:Engine,p:Projectile){
  if(p.mode==='gourdFire'||p.mode==='gourdIce'){
   const ice=p.mode==='gourdIce',count=5+r;
   for(let i=0;i<count;i++){const a=(i+.5)*Math.PI*2/count+(e.random()-.5)*.35;const q=spawnChild(e,p,ice?'frostChip':'fireChip',Math.cos(a)*330,Math.sin(a)*330,p.damage*(ice?.16:.18)*secondary,10);q.maxAge=.48;}
-  if(ice)for(const t of e.b.units.filter(t=>enemy(p,t)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r))t.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};
+  if(ice)for(const t of e.b.units.filter(t=>enemy(p,t)&&e.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r))t.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};
  }
- if(p.mode==='gourdThunder')for(const t of e.b.units.filter(t=>!t.dead&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260+10*(r-1))){
-  e.emit('fx',{name:'lightningBolt',x:p.x,y:p.y,x2:t.x,y2:t.y-t.h*.5,color:'#a8cfff',size:2.8});e.hurt(t,p.damage*.45*secondary,p.owner,false,{...p,secondary:false},p);
+ if(p.mode==='gourdThunder')for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,{...p,autonomous:true})&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260+10*(r-1))){
+  e.emit('fx',{name:'lightningBolt',x:p.x,y:p.y,x2:t.x,y2:t.y-t.h*.5,color:'#a8cfff',size:2.8});e.hurt(t,p.damage*.45*secondary,p.owner,false,{...p,secondary:false,autonomous:true},p);
  }
  if(p.mode==='gourdBurst'){p.mode='microEmitter';p.age=0;p.vx=p.vy=0;p.emissions=0;p.fuseAt=undefined;return;}
  e.remove(p);
@@ -264,7 +264,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(h.unit){
   const target=h.unit,prior=p.outboundHits?.includes(target.id),factor=p.returning?.7*(prior?1.2:1):1;
   const before=target.hp;e.hurt(target,p.damage*factor,p.owner,true,p,h);p.hit.push(target.id);
-  if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280,-130);target.shove={owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
+  if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280,-130);target.shove={autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
   if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;return true;}
   if(p.mode==='return'&&p.hit.length<=1)return true;
   if(p.mode==='chainArrow'&&(p.chain||0)<Math.round(lerpRank(1,5,r))){
@@ -272,12 +272,12 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
    if(next){const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.hypot(dx,dy);p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;return true;}
   }
  }
- if(h.terrain){e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner);
+ if(h.terrain){e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
   e.emit('sound',{name:'arrowhit'});
   if(p.mode==='pierce'&&h.terrain.mat==='wood'&&h.terrain.w<=90&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;p.x+=Math.sign(p.vx)*(h.terrain.w+8);return true;}
  }
  if(p.mode==='breakArrow'){
-  for(const t of e.b.units.filter(t=>!t.dead&&t.id!==h.unit?.id&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<70+t.r)){e.hurt(t,p.damage*.55,p.owner,false,p,h);e.impulse(t,Math.sign(t.x-p.x)*230,-110);}
+  for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,p)&&t.id!==h.unit?.id&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<70+t.r)){e.hurt(t,p.damage*.55,p.owner,false,p,h);e.impulse(t,Math.sign(t.x-p.x)*230,-110);}
   if(h.unit)e.impulse(h.unit,Math.sign(p.vx)*280,-120);e.fx('spark',p.x,p.y,'#aca799',30);
  }
  if(p.mode==='ironFlower'){p.mode='ironEmitter';p.age=0;p.emissions=0;p.vx=p.vy=0;p.x+=h.n.x*9;p.y+=h.n.y*9;return true;}
@@ -360,7 +360,7 @@ export function tickRedesign(e:Engine,dt:number){
   if(u.slowed&&u.slowed.expires<b.round)delete u.slowed;
   const shove=u.shove;if(!shove)continue;shove.life-=dt;
   if(shove.life<=0||u.dead||Math.abs(u.vx)<20){delete u.shove;continue;}
-  for(const v of b.units.filter(v=>!v.dead&&v.side===u.side&&v.id!==u.id&&!shove.hit.includes(v.id))){
+  for(const v of b.units.filter(v=>!v.dead&&e.attackAllows(v,shove.owner,shove)&&v.side===u.side&&v.id!==u.id&&!shove.hit.includes(v.id))){
    if(Math.abs(v.x-u.x)>v.r+u.r||Math.abs(v.y-u.y)>(u.h+v.h)*.5)continue;
    shove.hit.push(v.id);e.hurt(v,shove.damage,shove.owner,false,undefined,undefined,'normal','A05');e.impulse(v,u.vx*.70,-80);
    if(shove.remaining>1)v.shove={...shove,remaining:shove.remaining-1,damage:shove.damage*.70,hit:[...shove.hit],life:1};delete u.shove;break;
