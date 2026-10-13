@@ -232164,7 +232164,10 @@
             {
               "id": "sunken-forecourt",
               "terrainIds": [
-                "act2-floor"
+                "act2-floor",
+                "tactical-entry-shoulder",
+                "tactical-entry-west-ramp",
+                "tactical-mason-return"
               ],
               "ceilingIds": [],
               "bounds": {
@@ -232211,7 +232214,10 @@
             {
               "id": "low-gallery",
               "terrainIds": [
-                "act2-floor"
+                "act2-floor",
+                "tactical-inner-gallery",
+                "tactical-inner-west-ramp",
+                "tactical-inner-east-ramp"
               ],
               "ceilingIds": [
                 "cave-roof"
@@ -234451,32 +234457,125 @@
           ]
         },
         "cavernTransitions": {
-          "version": 1,
-          "decision": "preserve-low-throat",
+          "version": 2,
+          "decision": "short-asymmetric-stone-shoulder-and-inner-passage",
           "choices": [
             {
-              "id": "ct-gallery-work-deck",
-              "x": 5700,
-              "y": 4085,
+              "id": "tactical-entry-shoulder",
               "route": [
                 {
-                  "x": 5520,
-                  "y": 4234.8,
+                  "x": 740,
+                  "y": 3003.1428571428573,
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 5520,
-                  "y": 4085,
-                  "surfaceId": "ct-gallery-work-deck"
+                  "x": 865,
+                  "y": 2881.110837438424,
+                  "surfaceId": "tactical-entry-west-ramp"
                 },
                 {
-                  "x": 5865,
-                  "y": 4085,
-                  "surfaceId": "ct-gallery-work-deck"
+                  "x": 1050,
+                  "y": 2929.137931034483,
+                  "surfaceId": "tactical-entry-west-ramp"
                 },
                 {
-                  "x": 5995,
-                  "y": 4420.05,
+                  "x": 1200,
+                  "y": 2928.826530612245,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 1400,
+                  "y": 2920,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 1650,
+                  "y": 2936.6666666666665,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 1880,
+                  "y": 3030.689655172414,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 2050,
+                  "y": 3161.1206896551726,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 2190,
+                  "y": 3236.818181818182,
+                  "surfaceId": "tactical-mason-return"
+                },
+                {
+                  "x": 2290,
+                  "y": 3260.681818181818,
+                  "surfaceId": "tactical-mason-return"
+                },
+                {
+                  "x": 2430,
+                  "y": 3443,
+                  "surfaceId": "floor-main"
+                }
+              ]
+            },
+            {
+              "id": "tactical-inner-gallery",
+              "route": [
+                {
+                  "x": 4940,
+                  "y": 4102.2,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5070,
+                  "y": 3943.1399999999994,
+                  "surfaceId": "tactical-inner-west-ramp"
+                },
+                {
+                  "x": 5190,
+                  "y": 3939.636,
+                  "surfaceId": "tactical-inner-west-ramp"
+                },
+                {
+                  "x": 5400,
+                  "y": 3926.5904761904762,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 5600,
+                  "y": 3920,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 5820,
+                  "y": 3932,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 6050,
+                  "y": 4070,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 6200,
+                  "y": 4233.839285714285,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 6360,
+                  "y": 4368.809523809524,
+                  "surfaceId": "tactical-inner-east-ramp"
+                },
+                {
+                  "x": 6470,
+                  "y": 4426.428571428572,
+                  "surfaceId": "tactical-inner-east-ramp"
+                },
+                {
+                  "x": 6620,
+                  "y": 4650,
                   "surfaceId": "floor-main"
                 }
               ]
@@ -234484,20 +234583,20 @@
           ],
           "views": [
             {
-              "name": "ct-gallery-work-deck-default",
-              "x": 5700,
-              "y": 3985,
-              "scale": 0.59,
+              "name": "entry-shoulder",
+              "x": 1760,
+              "y": 3200,
+              "scale": 0.5,
               "width": 1440,
               "height": 960
             },
             {
-              "name": "ct-gallery-work-deck-portrait",
-              "x": 5700,
-              "y": 3985,
-              "scale": 0.46,
-              "width": 720,
-              "height": 1080
+              "name": "inner-passage",
+              "x": 5800,
+              "y": 4220,
+              "scale": 0.5,
+              "width": 1440,
+              "height": 960
             }
           ]
         },
