@@ -261,6 +261,7 @@ export interface Unit {
 export interface Projectile {
     /** Automatic continuation; inherited by child effects and serialized in flight. */
     autonomous?: boolean;
+    waterfallTouched?: boolean;
     existenceAttack?: ExistenceVector;
     echoDelay?: number;
     echoSource?: string;

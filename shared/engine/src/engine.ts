@@ -1,3 +1,4 @@
+import {waterfallSheet,insideWater,advanceWaterfall} from './waterfallPhysics';
 import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
 import {environmentalLoss,ownerRegistered,healed,shielded,settled,controlled,projectileCredit,beginHit,endHit,intercepted} from './contribution';
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
@@ -220,7 +221,15 @@ export class Engine {
         return {x:gx+k*env.flow.x,y:gy+k*env.flow.y,k};
     }
     acceleration(p:{x:number;y:number;wind:number;gravityScale?:number;vx?:number;vy?:number;drag?:number;skill?:string;mode?:string}){const a=this.forceSample(p);return{x:a.x-a.k*(p.vx||0),y:a.y-a.k*(p.vy||0)};}
-    advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string},dt:number){const a=this.forceSample(p);return advanceLinear(p.x,p.y,p.vx,p.vy,a.x,a.y,a.k,dt);}
+    inWaterfall(p:{x:number;y:number}){return insideWater(waterfallSheet(this.b),p);}
+    advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string;body?:boolean},dt:number){
+        const a=this.forceSample(p),air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
+        const water=!p.body&&!BODY.has(p.mode||'')?waterfallSheet(this.b):undefined;
+        return water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};
+    }
+    private waterEntry(p:Projectile,m:{waterEntered:boolean;waterEntryPoint?:Vec}){
+        if(m.waterEntered&&!p.waterfallTouched){p.waterfallTouched=true;const at=m.waterEntryPoint||p;this.fx('ring',at.x,at.y,'#c8e1d9',22);this.fx('spark',at.x,at.y,'#9fcbd0',16);}
+    }
     // Uniform broad phase: a large field need not scan every distant ground piece for each flight substep.
     collisionTerrain(a: Vec, c: Vec, r: number) {
         if (this.indexedVersion !== this.b.sceneVersion || this.indexedCount !== this.b.terrain.length) {
@@ -249,7 +258,9 @@ export class Engine {
     collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, projectile = false, attack?:Projectile): Collision | null {
         let best: Collision | null = null;
         const left=Math.min(a.x,c.x)-r,right=Math.max(a.x,c.x)+r,top=Math.min(a.y,c.y)-r,bottom=Math.max(a.y,c.y)+r;
+        const water=projectile?waterfallSheet(this.b):undefined;
         if(terrain) for (const t of this.collisionTerrain(a, c, r)) {
+            if(t===water)continue;
             if (t.broken || skip.includes(t.id) || t.x > right || t.x + t.w < left || Math.min(t.y, t.y + (t.slope || 0)) > bottom || t.y + t.h < top)
                 continue;
             const h = projectile ? segmentProjectileTerrain(a, c, t, r) : segmentTerrain(a, c, t, r);
@@ -286,7 +297,7 @@ export class Engine {
             // Match live pre-motion triggers, including reverseGhost's timed airburst.
             const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
             if((fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
-            if(skill.mode==='homing'&&i*dt>.12){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
+            if(skill.mode==='homing'&&i*dt>.12&&!this.inWaterfall({x,y})){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
             const gravity=skill.gravity??1;
             const motion = this.advanceProjectile({ x, y, vx,vy,wind: meteor ? 0 : skill.wind, gravityScale:gravity,drag:dragFor(skill,meteor?'meteor':skill.mode),skill:skill.id,mode:skill.mode },dt);
             const prev=vy;vx=motion.vx;vy=motion.vy;
@@ -848,7 +859,7 @@ export class Engine {
         if(this.protectedAutomaticAttack(owner,attack))return;
         if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
             return;
-        if((this.b as any).honroStage===5&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
+        if((this.b as any).honroStage===5&&(this.b as any).honroStage5WaterfallRevision!==1&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
             this.fx('text',t.x+t.w/2,t.y-28,'#c8d6d8',15,'물틈 닫힘 · 받이진 필요');return;
         }
         const before=t.hp;
@@ -923,6 +934,13 @@ export class Engine {
                 continue;
             const cx = clamp(x, t.x, t.x + t.w), cy = clamp(y, Math.min(t.y, t.y + (t.slope || 0)), t.y + t.h);
             const d = Math.hypot(x - cx, y - cy);
+            // New waterfall cave: blast pressure obeys its actual water/rock
+            // occlusion. A burst already inside the cave is allowed; no ritual
+            // flag grants arbitrary immunity to an exposed wooden target.
+            if ((this.b as any).honroStage5WaterfallRevision===1 && t.id==='cliff-cleat') {
+                const to={x:cx,y:cy};
+                if(this.b.terrain.some(w=>w!==t&&!w.broken&&(segmentProjectileTerrain({x,y},to,w,0)||terrainRectIntersects(w,x-.1,y-.1,.2,.2,0))))continue;
+            }
             if (d < radius)
                 this.damageTerrain(t, damage * (s?.terrain || 1) * (.5 + .5 * (1 - d / radius)), depth, owner,p||provenance);
         }
@@ -1150,8 +1168,8 @@ export class Engine {
         const t=p.targetId?this.unit(p.targetId):undefined;
         if(!t||!this.guidanceTarget(this.unit(p.owner),t)){this.remove(p);return;}
         const tx=t.x,ty=t.y-t.h*.5,dx=tx-p.x,dy=ty-p.y,n=Math.max(1,Math.hypot(dx,dy));
-        p.vx=dx/n*1250;p.vy=dy/n*1250;
-        const m=this.advanceProjectile(p,dt),h=this.projectileCollision(p,m,p.radius,p.owner,p.hit,true,[],false);
+        if(!this.inWaterfall(p)){p.vx=dx/n*1250;p.vy=dy/n*1250;}
+        const m=this.advanceProjectile(p,dt);this.waterEntry(p,m);const h=this.projectileCollision(p,m,p.radius,p.owner,p.hit,true,[],false);
         // Autonomous rays pass through coalition bodies without consuming the shot.
         if(h?.unit){p.x=h.x;p.y=h.y;this.hurt(h.unit,p.damage,p.owner,true,p,p);this.fx('burst',p.x,p.y,p.color,35);this.remove(p);return;}
         p.x=m.x;p.y=m.y;p.vx=m.vx;p.vy=m.vy;
@@ -1524,8 +1542,8 @@ export class Engine {
     }
     private stepUltimateBolt(p:Projectile,dt:number){
         const target=p.targetId?this.unit(p.targetId):undefined;
-        if(target&&this.guidanceTarget(this.unit(p.owner),target)){const tx=target.x,ty=target.y-target.h*.52,desired=Math.atan2(ty-p.y,tx-p.x),cur=Math.atan2(p.vy,p.vx),delta=Math.atan2(Math.sin(desired-cur),Math.cos(desired-cur)),turn=p.mode==='arcBolt'?4.5:p.mode==='nightBolt'?4.0:3.1,ang=cur+clamp(delta,-turn*dt,turn*dt),speed=Math.max(220,Math.hypot(p.vx,p.vy));p.vx=Math.cos(ang)*speed;p.vy=Math.sin(ang)*speed;}
-        const m=this.advanceProjectile({...p,gravityScale:0,drag:dragFor(SKILLS[p.skill],p.mode)},dt),nx=m.x,ny=m.y;p.vx=m.vx;p.vy=m.vy;this.passFields(p,p,{x:nx,y:ny});
+        if(target&&!this.inWaterfall(p)&&this.guidanceTarget(this.unit(p.owner),target)){const tx=target.x,ty=target.y-target.h*.52,desired=Math.atan2(ty-p.y,tx-p.x),cur=Math.atan2(p.vy,p.vx),delta=Math.atan2(Math.sin(desired-cur),Math.cos(desired-cur)),turn=p.mode==='arcBolt'?4.5:p.mode==='nightBolt'?4.0:3.1,ang=cur+clamp(delta,-turn*dt,turn*dt),speed=Math.max(220,Math.hypot(p.vx,p.vy));p.vx=Math.cos(ang)*speed;p.vy=Math.sin(ang)*speed;}
+        const m=this.advanceProjectile({...p,gravityScale:0,drag:dragFor(SKILLS[p.skill],p.mode)},dt);this.waterEntry(p,m);const nx=m.x,ny=m.y;p.vx=m.vx;p.vy=m.vy;this.passFields(p,p,{x:nx,y:ny});
         const h=p.phaseMode==='all'?null:this.projectileCollision(p,{x:nx,y:ny},p.radius,p.owner,p.hit,true,[],p.phaseMode!=='terrain');if(h){p.x=h.x;p.y=h.y;p.directId=h.unit?.id;this.impact(p,h);return;}
         p.x=nx;p.y=ny;if(this.counter%2===0){p.trail.push({x:p.x,y:p.y});if(p.trail.length>24)p.trail.shift();}
         if(p.age>2.6||p.x<-100||p.x>this.b.width+100||p.y<-900||p.y>this.b.height+100)this.remove(p);
@@ -1621,8 +1639,8 @@ export class Engine {
             }
             return;
         }
-        if((p.mode==='homing'||p.mode==='seekChild')&&p.age>.12){const v=this.steer(p.x,p.y,p.vx,p.vy,u,dt,p.targetId?this.b.units.filter(t=>t.id!==p.targetId).map(t=>t.id):p.hit,p.mode==='seekChild');p.vx=v.vx;p.vy=v.vy;}
-        const motion = this.advanceProjectile(p,dt);
+        if((p.mode==='homing'||p.mode==='seekChild')&&p.age>.12&&!this.inWaterfall(p)){const v=this.steer(p.x,p.y,p.vx,p.vy,u,dt,p.targetId?this.b.units.filter(t=>t.id!==p.targetId).map(t=>t.id):p.hit,p.mode==='seekChild');p.vx=v.vx;p.vy=v.vy;}
+        const motion = this.advanceProjectile(p,dt);this.waterEntry(p,motion);
         p.prevVy = p.vy;
         p.vx=motion.vx;p.vy=motion.vy;
         if (!p.apex && p.prevVy < 0 && p.vy >= 0) {

@@ -1,4 +1,5 @@
 import {applyOpenStructures} from './open-structure-policy.mjs';
+import {authorStage5Waterfall} from './stage5-waterfall.mjs';
 import {authorStage8Bier} from './stage8-bier.mjs';
 import {runtime} from '../../game/tests/helpers.mjs';
 /** Reapply ACT1 scene composition without touching later acts or live saves. */
@@ -11,5 +12,6 @@ let project=applyForestApproachChoices(applyForestCavernTopology(await applyAct1
 applyOpenStructures(project,{minStage:1,maxStage:10});
 if(JSON.stringify(project.stages.slice(10))!==later)throw Error('ACT1 authoring changed ACT2 stages');
 project=await authorStage8Bier(project,await runtime({legacyMaps:false}),{art:true});
+project=authorStage5Waterfall(project,await runtime({legacyMaps:false}));
 await writeFile(file,JSON.stringify(project,null,2)+'\n');
 console.log('Authored all 10 ACT1 outdoor scene compositions; ACT2 preserved.');

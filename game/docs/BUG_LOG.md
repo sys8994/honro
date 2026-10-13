@@ -44,6 +44,12 @@
 - 변경: 공격 소유권과 분리한 autonomous 출처를 자동 생성 지점과 공통 충돌/피해/상태 경로에 전달한다. 연참·반격·회전검·소환/섭혼과 자동 후속탄은 아군/동맹/중립 NPC를 보호한다. 직접 조준 원탄/유도/반사/직접 설치 효과는 유지한다. 자동 지형 HP손상은 차단해 받침 붕괴·연쇄 폭발을 막지만 지형 충돌/반사는 보존한다.
 - 검증: 전용 격리 엔진 회귀의 전후/겹침·공중/근접 연참·킬 후 연계·저장 재개·회전검·소환 차례 종료·적 피해/XP 동일성 통과. 기존 targeting/summon/projectile, hwigyeom, combo, sodan, skill-effects, existence와 typecheck 통과. 새 출처 필드는 선택형이며 구 비행의 구조 표지로도 보호한다.
 - 한계: 독립 코드 검토, 통합 verify와 두 HTML/Pages 실제 화면 확인은 최종 통합 단계다. migration의 All580 asset membership/order 기존 실패는 원본 0372047에서도 재현했다. 자동 출처가 기록되지 않은 과거 설치 효과는 기존 규칙을 유지한다. 상세 범위는 [자동 공격 계약](AUTONOMOUS_ATTACK_SAFETY.md).
+## 휘겸의 폭포 부재와 나무다리 합류 (2026-10-13)
+
+- 원인: 4장 끝에 부상자를 쉼터로 데려간 휘겸이 5장 결말에서 설명 없이 발화하고 즉시 해금됐다.
+- 변경: 3장 첫 만남·4장 북문 호위는 유지한다. 4장 끝에 부상자를 인계하고 남은 운반대를 찾으러 갈라진다. 5장 결말은 설오·담허가 나무다리로 지원하러 향하며, 6장 길목에서 재회해 공동 구조와 실의 근원 조사에 동행하기로 한다. 신규5장 NPC 제거·주박목 기믹은 별도 폭포 변경과 통합해야 한다.
+- 경계: 5장 완료 결과에서는 새로 해금하지 않고, 진행 전투가 없는 6장 길목 쉼터 또는6장 직접 진입에서 합류한다. 기존 content의5장 recruit 값은 과거 성장 예산·stageParty·joinLevel의 호환 앵커이며 실제 해금은 recruitAtEntry에서 수행한다. 이미 합류한 프로필은 제거·재훈련하지 않는다. 진행 중 전투와 저장된 대사 스냅샷은 재작성하지 않는다.
+- 검증: hwigyeom-recruit-boundary의6개 경계, natural-dialogue, campaign-continuity 통과. DOM 대체 기반이므로 정상 전투·브라우저 렌더·Pages 검수는 별도다. story-canon-v01은 변경하지 않은 campaign.json의 기존 encounter-density 역사 해시에서 차단됨(기대4e6862, 실제536570).
 
 ## 2026-10-13 · 주막주인과 부재 NPC의 대화 초상 정체성
 
@@ -2529,3 +2535,12 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 ### 2장 후속 · 두 기존 파동의 예고후 행동기회
 
 전수trace에서 road-pressure와sniper-seen이 생성과같은경계에안내하고 다음플레이어입력전에공격하던 기존경계를 확인했다. 동일trigger·인원·기술·대사를유지하고 2장전용사전전술경고→실제새입력→안전actor경계입장을 추가했다. 진행중충전/발사/단순HUD확인은응답으로세지않으며, 점유/반복재개·Continue/죽음·승리·완료이벤트경계를검사한다. 원본회귀의공통기술migration/asset목록기대값실패는수정전에서도재현되므로 테스트를약화하지않는다. 최종합본검수는진행중이다.
+## 2026-10-13 · Stage 5 falling-water projectile drag
+- New revision 1 campaign Stage 5 only: the art's live sampled waterfall polygon is a fluid for airborne weapons. Body collision stays unchanged. Swept entry prevents fast shots skipping the sheet.
+- Horizontal velocity uses exact linear + quadratic resistance; vertical motion entrains into downward water flow. Water entry neither impacts nor reflects nor explodes a projectile. Real rock/unit collisions, fuses, children and existing lifetimes remain authoritative.
+- The shared integrator drives live and predicted flight. Homing/return/summon steering cannot repeatedly restore minimum speed inside water. Closed A01 shots fall onto actual rock; the held-open shot reaches the cleat.
+- Focused test `node tests/stage5-waterfall-drag.mjs` passes: 20–240 Hz identical homogeneous water result, swept 1,500–1,000,000 unit/s entries, closed/open shots, all other 29 chapters, old/custom snapshots, body policy and persisted velocity. New Engine typecheck passed. Browser, actual App Continue/dialogue and special-weapon matrix are still pending at this checkpoint; not final acceptance.
+- Follow-up focused validation: 42 requested skill probes include 41 successful fixture casts plus O99 correctly gated by its existing prerequisite, and seven guided/return flight probes. No fluid impact, runaway emission or infinite projectile lifetime was observed. Real App pause/dialogue, export, file import and Continue preserve in-water velocities and exactly reproduce the next step. This uses explicit shot/placement/resource fixtures and DOM/render/storage doubles.
+- Native production Scene sequence now shows the same arrow alive from horizontal entry through vertical descent (0.30–0.82 s). Wet arrows receive a thin dark contour so their velocity-aligned silhouette stays visible over pale water. Native screenshots are not browser evidence.
+- Final branch-only checkpoint after updated shared geometry f0b822e: 49 current A/M/O IDs covered (46 ballistic casts explicitly assert slowing/falling, A10 preparation and M14 stationary ring have no ballistic fall, O99 remains prerequisite-gated), plus seven guided/return fixtures. 40 live/preview closed/open endpoints match exactly; 121 closed and 217 open edge-interior samples are covered. Re-entry and downward friendly collision retain real behavior. Full `integration.py` was independently attempted and blocked at Chromium launch (`TargetClosedError`, socket permission/SIGABRT), with no bypass or browser pass claim. Latest release/FF integration remains the parent release task.
+- Performance follow-up: fluid inside/outside classification now uses polygon ray parity rather than the generic body function's nearest-distance calculation on every edge. The same 20,000-step Native/Node probe dropped from about 8.7 s to 0.46 s; this is a microbenchmark, not browser FPS. Closed/open preview, edge, special-skill and App results are unchanged. Old/custom projectile-solid collision and existing body-water collision are explicitly asserted.
