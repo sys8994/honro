@@ -150,7 +150,7 @@ function residentShelter(app,dt){const e=app.engine,b=e.b;if(!composed(b)||dt<=0
  // The civilian never becomes another fighter. Wait for a safe short route;
  // use real walking and keep all original HP/protection/failure semantics.
  if(live(b).some(v=>Math.hypot(v.x-goal.x,v.y-goal.y)<430)||b.units.some(v=>v!==u&&!v.dead&&v.hp>0&&Math.abs(v.x-(u.x+Math.sign(goal.x-u.x)*12))<v.r+u.r+8&&Math.abs(v.y-u.y)<Math.min(v.h,u.h)))return;
- if(!s.started){s.started=true;s.status='walking';s.oldSpeed=u.walkSpeed;u.fixed=false;u.walkSpeed=110;u.moveLeft=Math.abs(goal.x-u.x)+30;app.event('분리된 주민이 가까운 짐 뒤로 몸을 피합니다.');}
+ if(!s.started){s.started=true;s.status='walking';s.oldSpeed=u.walkSpeed;u.fixed=false;u.walkSpeed=110;u.moveLeft=Math.abs(goal.x-u.x)+30;app.event('분리된 주민이 가까운 짐 뒤로 몸을 피합니다.',{kind:'narration',source:'resident-shelters'});}
  const old=u.x;e.walk(u,Math.sign(goal.x-u.x),Math.min(dt,.05),true);s.stalled=Math.abs(u.x-old)<.01?(s.stalled||0)+dt:0;
  if(Math.abs(goal.x-u.x)<3||s.stalled>2||u.moveLeft<=0){s.status=Math.abs(goal.x-u.x)<3?'done':'stopped';u.fixed=true;u.walkSpeed=s.oldSpeed;u.vx=u.vy=0;}app.dirty=true;
 }

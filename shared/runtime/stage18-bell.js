@@ -42,7 +42,7 @@ function settle(app){const b=app.engine.b,m=memory(b),spec=b.honroBellDescent;
  shift(b,spec.distance);m.status='settled';m.count=1;m.completedSerial=b.honroState.actorTurnSerial||0;m.completedRound=b.round;m.blockers=[];m.reason='';
  for(const id of spec.openTerrainIds||[]){for(const list of [b.terrain,b.honroWorldTerrain]){const t=list?.find(t=>t.id===id);if(t)t.broken=true;}}
  // These named fixed links are authored in both maps; no actor is carried.
- b.sceneVersion++;app.dirty=true;app.event('대종이 받침에 멎었다. 아래 귀환길과 동쪽 측면길이 열려 있다.');
+ b.sceneVersion++;app.dirty=true;app.event('대종이 받침에 멎었다. 아래 귀환길과 동쪽 측면길이 열려 있다.',{kind:'narration',source:'bell-settled'});
  if(m.camera&&app.scene?.storyRelease)app.scene.storyRelease(m.camera,350);
  app.engine.emit?.('save');
 }

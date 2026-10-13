@@ -25,7 +25,7 @@ function commit(app,step){const b=app.engine.b;if(!active(b)||step?.kind!=='rout
  const point=marker(b,r.markerId),arrived=heroes(b).filter(u=>reaches(b,u,point));G.HonroObjectiveContributions?.arrive(b,'route:'+step.id,[arrived.find(u=>u.id===b.active)||arrived[0]],p=>reaches(b,p,point));
  Object.assign(state,{selectedRoute:r.id,sourceRun:b.session,fromStage:b.honroStage,toStage:b.honroRouteSpec.toStage,exitId:r.markerId,round:b.round});
  act(b).memory(b).done[step.id]=true;act(b).memory(b).checkpoints.push({id:step.id,route:r.id,round:b.round});const m=marker(b,r.markerId);if(m)m.collected=true;
- if(r.lines?.length)app.sayLines(r.lines);app.event(r.label||m?.label||step.label);app.dirty=true;return true;
+ if(r.lines?.length)app.sayLines(r.lines);else app.event(r.label||m?.label||step.label,{kind:'narration',source:'route:'+step.id});app.dirty=true;return true;
 }
 function targets(b,step){if(!active(b)||step?.kind!=='route')return null;return b.honroRouteSpec.routes.map(r=>{const m=marker(b,r.markerId);return {id:r.markerId,kind:'exit',x:m?.x,y:m?.y,label:r.label||m?.label||r.id,done:b.honroRouteChoice?.selectedRoute===r.id,route:r.id};}).filter(t=>Number.isFinite(t.x)&&Number.isFinite(t.y));}
 function sourceIssue(b){if(!active(b))return null;const s=b.honroRouteSpec;if(![12,15,29].includes(b.honroStage)||s.toStage!==b.honroStage+1||s.routes?.length!==2||new Set(s.routes.map(r=>r.id)).size!==2)return '대체 출구 자료가 준비되지 않았습니다.';

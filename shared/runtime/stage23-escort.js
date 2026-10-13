@@ -55,7 +55,7 @@ function commit(app){const b=app.engine.b,m=memory(b);if(m.commitCount||m.status
  // This synchronous write is the sole collision change. Rendering and saves
  // can observe only the complete stored or complete settled geography.
  const spec=cargo(b);for(const list of [b.terrain,b.honroWorldTerrain])for(const t of list){if(spec.enableTerrainIds.includes(t.id))t.broken=false;else if(spec.disableTerrainIds.includes(t.id))t.broken=true;}
- Object.assign(m,{status:'settled',elapsed:m.duration,commitCount:1,committedRound:b.round,committedSerial:serial(b),finalShapeVersion:1,blockers:[],reason:'큰 화물묶음이 낮은 턱에 멎었다. 위 창고의 사선과 아래 엄폐가 바뀌었다.'});b.sceneVersion=(b.sceneVersion||0)+1;releaseCamera(app,m);app.event(m.reason);app.dirty=true;app.engine.emit?.('save');return true;
+ Object.assign(m,{status:'settled',elapsed:m.duration,commitCount:1,committedRound:b.round,committedSerial:serial(b),finalShapeVersion:1,blockers:[],reason:'큰 화물묶음이 낮은 턱에 멎었다. 위 창고의 사선과 아래 엄폐가 바뀌었다.'});b.sceneVersion=(b.sceneVersion||0)+1;releaseCamera(app,m);app.event(m.reason,{kind:'narration',source:'cargo-settled'});app.dirty=true;app.engine.emit?.('save');return true;
 }
 // Offers are recorded only before an actual living player's new action. An
 // enemy boundary, a summon, a late review completion, or a serial increment is

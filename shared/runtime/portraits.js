@@ -42,8 +42,8 @@ function storyActor(who,actor,portrait=G.HONRO_STORY_PORTRAITS?.[who]){
  if(actor)return actor;
  const party={'설오':'archer','담허':'mage','휘겸':'knight','소단':'occultist'};
  if(party[who]===portrait?.class)return null;
- if(!portrait?.class)return null;
- return {...(portrait.actor||{honroCivilian:true,honroType:'civilian'}),id:portrait.actor?.id||`story-npc-${who}`,name:who,cls:portrait.class,side:2};
+ if(!portrait?.class||!portrait.actor)return null;
+ return {...portrait.actor,id:portrait.actor?.id||`story-npc-${who}`,name:who,cls:portrait.class,side:2};
 }
 function draw(canvas,actor,cls=actor?.cls){
  if(!canvas||!cls)return null;const item=sourceFor(actor,cls),c=canvas.getContext('2d');c.clearRect(0,0,canvas.width,canvas.height);if(!item)return null;
