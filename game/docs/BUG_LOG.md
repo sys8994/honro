@@ -2660,4 +2660,5 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 변경: 저장된 음악 설정을 적용한 뒤 보이는 타이틀에서 메인 1곡만 `preload=auto`로 준비한다. 다른 4곡은 선요청하지 않으며, 실제 입력 전 play는 호출하지 않는다. 음악 끔/음량 0/숨겨진 첫 진입은 준비를 생략한다. 첫 play 요청부터 기존 420ms fade를 적용하고 autoplay 거부 시 다음 입력을 기다린다. 선요청의 일시적 실패는 첫 입력 때 한 번 다시 시도하며 프레임마다 재요청하지 않는다.
 - 소스 측정: 메인 파일 4,741,261바이트, 204.84초, 평균 약185kbps. FFmpeg로 48kHz mono float PCM 변환 시 첫 -45dBFS 초과 샘플은191.3ms, 첫0.5초 RMS -14.7dBFS, 다음0.5초 -19dBFS다. 수초 무음/긴 원본 fade는 확인되지 않았다. 이 수치는 실제 스피커 출력 지연 측정이 아니다.
 - 검사: `node tests/audio.mjs` 23항목 통과(단일 준비, muted/zero-volume/hidden, autoplay 거부·재입력, 선요청 실패, 기존 playlist/seek/동시채널/해제 회귀). 브라우저 기존 초기 잠금 검사는 미디어 미생성 대신 실제 locked/starts=0/paused를 확인하도록 갱신했다.
+- 추가 검사: `npm --prefix game run typecheck`와 두 HTML `npm run build` 통과. 기존 `python -X utf8 tests/audio-browser.py`는 첫 페이지를 열기 전 Chromium launch에서 `socket() failed: Operation not permitted`/SIGABRT로 중단됐다. 환경 권한을 우회하지 않았으며 브라우저 검사 통과로 집계하지 않는다.
 - 한계: preload는 브라우저 힌트라 데이터 절약 정책 등에 따라 무시될 수 있고 느린 네트워크/즉시 입력에서는 남은 버퍼 대기가 있다. cold/warm 캐시 실제 브라우저 비교, 실제 청취 및 최종 통합 전체 verify·배포 검수는 별도 수행해야 한다. 입력 전 무음은 autoplay 정책 준수를 위해 유지한다.
