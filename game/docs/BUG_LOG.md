@@ -3,7 +3,7 @@
 - 원인: 4장 끝에 부상자를 쉼터로 데려간 휘겸이 5장 결말에서 설명 없이 발화하고 즉시 해금됐다.
 - 변경: 3장 첫 만남·4장 북문 호위는 유지한다. 4장 끝에 부상자를 인계하고 남은 운반대를 찾으러 갈라진다. 5장 결말은 설오·담허가 나무다리로 지원하러 향하며, 6장 길목에서 재회해 공동 구조와 실의 근원 조사에 동행하기로 한다. 신규5장 NPC 제거·주박목 기믹은 별도 폭포 변경과 통합해야 한다.
 - 경계: 5장 완료 결과에서는 새로 해금하지 않고, 진행 전투가 없는 6장 길목 쉼터 또는6장 직접 진입에서 합류한다. 기존 content의5장 recruit 값은 과거 성장 예산·stageParty·joinLevel의 호환 앵커이며 실제 해금은 recruitAtEntry에서 수행한다. 이미 합류한 프로필은 제거·재훈련하지 않는다. 진행 중 전투와 저장된 대사 스냅샷은 재작성하지 않는다.
-- 검증: hwigyeom-recruit-boundary의6개 경계, natural-dialogue, campaign-continuity 통과. DOM 대체 기반이므로 정상 전투·브라우저 렌더·Pages 검수는 별도다. story-canon-v01은 변경하지 않은 campaign.json의 기존 encounter-density 역사 해시에서 차단됨(기대4e6862, 실제536570).
+- 검증: hwigyeom-recruit-boundary의6개 경계, natural-dialogue, campaign-continuity 통과. DOM 대체 기반이므로 정상 전투·브라우저 렌더·Pages 검수는 별도다. 두 HTML 빌드 성공. story-rewrite·camp-persistence·test:growth-resume도 통과. npm run verify와 story-canon-v01은 변경하지 않은 campaign.json의 기존 encounter-density 역사 해시에서 차단됨(기대4e6862, 실제536570). Chromium 브라우저 검사는 기본/승격 실행 모두 process_singleton socket 권한 오류로 시작하지 못함.
 
 ## 2026-10-13 · 주막주인과 부재 NPC의 대화 초상 정체성
 
