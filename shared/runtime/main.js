@@ -826,7 +826,7 @@
             } });
             window.addEventListener('blur', () => { this.cancelInput(); });
             document.addEventListener('click', e => { let el = e.target.closest('[data-action]'); if (!el || el.disabled)
-                return; if(this.dialogue&&!['dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill;  switch (a) {
+                return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill;  switch (a) {
                 case 'title':
                     this.showTitle();
                     break;
@@ -1032,6 +1032,9 @@
                     break;
                 case 'training-reset':
                     this.launch(1, true, this.trainingSkill);
+                    break;
+                case 'dialogue-prev':
+                    G.HonroStory.previous(this);
                     break;
                 case 'dialogue-next':
                     this.nextDialogue();

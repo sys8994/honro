@@ -45,3 +45,8 @@
 .honro .camp-v5 .hero-tab img{width:56px;height:68px}
 .honro .camp-v5 .summary-identity>img{width:78px;height:94px}
 @media(max-width:620px){.honro .camp-v5 .hero-tab img{width:44px;height:54px}.honro .camp-v5 .hero-tab{gap:9px}}
+
+/* Keep the three reading controls together even beside a narrow portrait. */
+.story-actions>button,.narration-actions>button{white-space:nowrap;flex-shrink:0}
+.story-actions>button:disabled,.narration-actions>button:disabled{opacity:.38;cursor:default;box-shadow:none}
+@media(max-width:650px){.dialogue-scene .story-copy{display:contents}.dialogue-scene .story-location,.dialogue-scene h2,.dialogue-scene #story-line{grid-column:2}.dialogue-scene .story-portrait{grid-column:1;grid-row:1 / 4}.dialogue-scene .story-actions{grid-column:1 / -1;flex-wrap:nowrap;gap:7px}.story-actions>button,.narration-actions>button{min-width:0}.narration-actions{flex-wrap:nowrap}}

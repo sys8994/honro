@@ -5,6 +5,8 @@ import type { Profile } from './types';
 export function soundSamples(name:string,sr=24000):Float32Array {
     const recipes:Record<string,number[]>={
         // seconds, body Hz, noise cutoff Hz, body gain, texture gain, decay
+        // Soft low wooden/paper arrival, one note per message, no pitch sweep.
+        dialogue:[.24,132,380,.105,.025,5.8],
         sodanBell:[.72,742,2600,.26,.018,5.5],
         arrow:[.27,146,1800,.29,.26,8], arrowhit:[.30,94,1150,.42,.38,10],
         sword:[.34,108,1900,.24,.40,7], fire:[.55,69,900,.42,.46,5],
@@ -30,7 +32,7 @@ export function soundSamples(name:string,sr=24000):Float32Array {
         const modes=Math.sin(t*f*6.28318)*Math.exp(-decay*q)+.32*Math.sin(t*f*1.71*6.28318)*Math.exp(-decay*1.7*q)+.16*Math.sin(t*f*2.63*6.28318)*Math.exp(-decay*2.4*q);
         const breath=name==='qiWave'?Math.sin(Math.PI*Math.min(1,t/.13))*.3+1:1;
         const air=(low*.75+brown*.25)*Math.exp(-decay*.9*q)*breath;
-        const attack=Math.min(1,t/.008),end=Math.min(1,(duration-t)/.035);
+        const attack=Math.min(1,t/(name==='dialogue'?.022:.008)),end=Math.min(1,(duration-t)/.035);
         const v=(modes*body+air*texture)*attack*end;
         dc=.996*dc+.004*v;out[i]=Math.tanh((v-dc)*.85)*.8;
     }
@@ -73,7 +75,7 @@ export class AudioEngine {
         }catch{return false;}
     }
     private buffer(name:string){let buffer=this.buffers.get(name);if(!buffer&&this.context){const samples=soundSamples(name,this.context.sampleRate);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,this.context.sampleRate);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}return buffer;}
-    private warm(){if(this.warming)return;this.warming=true;const names=['arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose'];const step=()=>{if(!this.context||this.context.state==='closed')return;const name=names.shift();if(name)this.buffer(name);if(names.length){if(typeof requestIdleCallback==='function')requestIdleCallback(step,{timeout:250});else setTimeout(step,20);}};setTimeout(step,0);}
+    private warm(){if(this.warming)return;this.warming=true;const names=['dialogue','arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose'];const step=()=>{if(!this.context||this.context.state==='closed')return;const name=names.shift();if(name)this.buffer(name);if(names.length){if(typeof requestIdleCallback==='function')requestIdleCallback(step,{timeout:250});else setTimeout(step,20);}};setTimeout(step,0);}
     play(name:string){
         if(!this.enabled||this.volume<=0||name==='click')return;
         const now=performance.now();this.requestedAt[name]=now;
