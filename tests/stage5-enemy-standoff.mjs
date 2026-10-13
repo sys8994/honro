@@ -24,7 +24,7 @@ assert.equal(JSON.stringify(birth),birthBefore);
 const clear=(p,pad=0)=>birth.units.every(v=>v.id===walker.id||v.dead||Math.abs(v.x-p.x)>=walker.r+v.r+pad||p.y<=v.y-v.h||p.y-walker.h>=v.y);
 for(const p of fullPlan.path){assert(C.traceTravel(moving,walker,walker,p,walker.moveLeft));assert(clear(p,10),'Candidate avoids every living body');}
 // Isolated movement execution selects the captured actor; full App replay is separate.
-birth.active=walker.id;birth.side=1;birth.phase='enemy';walker.aiMove=fullPlan;const movementBudget=walker.moveLeft;
+birth.active=walker.id;birth.side=1;birth.phase='enemy';const selectedPlan=plain(fullPlan);walker.aiMove=fullPlan;const movementBudget=walker.moveLeft;
 for(let i=0;i<1000&&walker.aiMove;i++)moving.stepUnits(C.STEP);
 assert(!walker.aiMove);assert(clear(walker),'Actual arrival avoids body overlap');assert(walker.moveLeft>=0&&walker.moveLeft<=movementBudget);
 const arrival={x:walker.x,y:walker.y,moveLeft:walker.moveLeft};
@@ -46,5 +46,5 @@ for(const mode of ['old','custom']){
  assert.deepEqual(plain(original.chooseEnemyShot(e,u,t,skills)),plain(C.chooseEnemyShot(e,u,t,skills)));
  assert.equal(JSON.stringify(b),before);scope.push(mode);
 }
-const report={scope:'Saved endpoint and unchanged actual plans/shot choices; not normal-input or browser evidence',fixtureFrame:fixture.frame,oldPlan:oldPlan??null,newPlan:plain(newPlan??null),fullPlan:plain(fullPlan),arrival,unchangedScopes:scope,readOnly:true};
+const report={scope:'Saved endpoint and unchanged actual plans/shot choices; not normal-input or browser evidence',fixtureFrame:fixture.frame,oldPlan:oldPlan??null,newPlan:plain(newPlan??null),fullPlan:selectedPlan,arrival,unchangedScopes:scope,readOnly:true};
 await mkdir('_local/reports/stage5-enemy-standoff',{recursive:true});await writeFile('_local/reports/stage5-enemy-standoff/contracts.json',JSON.stringify(report,null,2));console.log(report);
