@@ -46,7 +46,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
  if(q.phase==='begin'){
   b.reviewDamage={};b.reviewFocus=undefined;
   q.phase='move';q.elapsed=0;q.started=false;const support=u.allyRole==='daoist'||u.allyRole==='medium';u.moveLeft=u.maxMove=u.allyRole==='guard'?1400:support?1250:1180;u.walkSpeed=u.allyRole==='guard'?700:support?630:560;u.focus=u.maxFocus=180;
-  const own=coalition(e),hero=e.heroesAlive().sort((a,c)=>c.x-a.x)[0],car=e.unit('objective'),foes=e.alive(1);
+  const own=coalition(e),hero=e.heroesAlive().sort((a,c)=>c.x-a.x)[0],car=e.unit('objective'),foes=e.actors(1);
   const nearest=foes.slice().sort((a,c)=>Math.hypot(a.x-u.x,(a.y-u.y)*.8)-Math.hypot(c.x-u.x,(c.y-u.y)*.8))[0];q.targetId=nearest?.id;
   q.anchor=hero?.x||u.x;
   if(u.allyRole==='porter'){const threat=foes.filter(v=>car&&Math.abs(v.x-car.x)<1150&&Math.abs(v.y-car.y)<650).length;const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&car&&t.x>car.x-35&&t.x<car.x+900);q.blockerId=block?.id;const paused=(hs.carriagePauseUntilRound||-1)>=b.round;const escortFront=Math.max(car?.x||0,...own.filter(v=>v.honroAlly&&!v.honroCivilian&&v.allyRole!=='porter').map(v=>v.x));const pace=b.honroStage===2?escortFront+80:(hero?.x||escortFront)+120;q.carTarget=car?(paused||threat?car.x:Math.max(car.x,Math.min(car.x+560,pace+60,block?block.x-105:(b.honroEscortGoalX??b.width-180)))):u.x;q.dest=car?Math.max(45,Math.min(q.carTarget-95,car.x+420)):u.x;}
@@ -69,11 +69,11 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   const moveDone=Math.abs(distance)<28&&carriageDone;
   if(moveDone||(u.allyRole!=='porter'&&u.moveLeft<5)||q.elapsed>1.7){q.phase='act';q.elapsed=0;u.vx=0;}
  }
- if(q.phase==='act'&&!q.started){q.started=true;let target=e.unit(q.targetId);if(!target||target.dead)target=e.alive(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
+ if(q.phase==='act'&&!q.started){q.started=true;let target=e.unit(q.targetId);if(!target||target.dead||target.eaterCapturedBy)target=e.actors(1).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
   if(u.allyRole==='porter'){const car=e.unit('objective'),block=q.blockerId&&b.terrain.find(t=>t.id===q.blockerId&&!t.broken);if(block&&car&&block.x-car.x<260){e.damageTerrain(block,145+u.attack*35,0,u.id);log(e,u,'clear-road',block.id);e.fx('slash',block.x+block.w*.5,block.y+block.h*.4,'#c1b18c',70);if(block.broken)app.event('호위대가 길을 막은 뿌리를 잘라냈다.',{kind:'narration',source:'escort-road-cleared'});}else if(car){car.shield=Math.max(car.shield,38);log(e,u,'escort',car.id);e.fx('ring',car.x,car.y-45,'#b6c1a2',40);}q.phase='after';q.elapsed=0;}
   else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const near=coalition(e).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1350).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];if(near){if(u.allyRole==='healer'){const heal=Math.min(near.maxHp-near.hp,Math.round(near.maxHp*.11));near.hp+=heal;G.HonroProgression.recordHeal(b,near,u.id,heal);e.fx('text',near.x,near.y-near.h-10,'#b9c6a8',16,'+'+heal);log(e,u,'heal',near.id);}else{const shieldBefore=near.shield;near.shield=Math.max(near.shield,75);G.HonroProgression.shieldAdded(b,near,u.id,shieldBefore);log(e,u,'ward',near.id);}e.fx('line',u.x,u.y-55,'#91b9ad',2,undefined);e.fx('ring',near.x,near.y-45,'#9cb7a4',45);}q.phase='after';q.elapsed=0;}
-  else if((u.allyRole==='daoist'||u.allyRole==='medium')&&target&&!target.dead){const nearby=e.alive(1).filter(v=>Math.hypot(v.x-target.x,(v.y-target.y)*.8)<260).length,skill=u.allyRole==='daoist'?(nearby>=2?'M06':'M01'):(nearby>=2?'LO10':'LO09');u.loadout=[skill];u.ranks[skill]=Math.max(1,u.ranks[skill]||1);u.focus=999;let aim=null;
-   const targets=[target,...e.alive(1).filter(v=>v!==target).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2)];
+  else if((u.allyRole==='daoist'||u.allyRole==='medium')&&target&&!target.dead){const nearby=e.actors(1).filter(v=>Math.hypot(v.x-target.x,(v.y-target.y)*.8)<260).length,skill=u.allyRole==='daoist'?(nearby>=2?'M06':'M01'):(nearby>=2?'LO10':'LO09');u.loadout=[skill];u.ranks[skill]=Math.max(1,u.ranks[skill]||1);u.focus=999;let aim=null;
+   const targets=[target,...e.actors(1).filter(v=>v!==target).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2)];
    const key=e.planningKey()+'|'+q.index+'|'+skill+'|'+targets.map(t=>t.id).join(',');let work=aiming.get(e);
    if(!work||work.key!==key){work={key,steps:allyShot(e,u,C.SKILLS[skill],targets)};aiming.set(e,work);}
    const ready=e.continuePlanning(work.steps);if(!ready){q.started=false;return;}aiming.delete(e);

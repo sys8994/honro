@@ -752,9 +752,9 @@ export class Engine {
             armorWithoutSupport=armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
         if (u.boss && u.boss !== 5)
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
-        if (u.side === 1 && this.b.terrain.some(t => !t.broken && t.device === 'ward'))
+        if (u.side === 1 && u.summonKind!=='eater' && this.b.terrain.some(t => !t.broken && t.device === 'ward'))
             {armor = Math.max(armor, .32);armorWithoutSupport=Math.max(armorWithoutSupport,.32);}
-        if (u.breaks > 0) {
+        if (u.breaks > 0 && damageSource!=='eaterTransfer') {
             armor *= .15;armorWithoutSupport*=.15;
             u.breaks--;
         }
@@ -787,7 +787,7 @@ export class Engine {
         const debug=globalThis as any;
         if(debug.HONRO_DEBUG_DAMAGE){const traces=debug.HONRO_DAMAGE_TRACE??=[];traces.push({skill:p?.skill||damageSkill||'(direct)',source:owner,target:u.id,...layers,finalDamage:dmg});if(traces.length>100)traces.shift();debug.HONRO_DAMAGE_TRACE=traces;}
         const contribution=beginHit(this.b,u,rawSrc,src,p,attack,owner,layers.finalDamage,dmg,defenseMultiplier,armor,armorWithoutSupport,contributionDamageLimit,damageSource==='normal');
-        if(u.summonKind==='eater')dmg=Math.min(dmg,u.hp);
+        if(u.summonKind==='eater'){dmg=Math.min(dmg,u.hp);u.shield=0;}
         const absorbed = damageSource==='eaterTransfer'?0:Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
@@ -854,7 +854,7 @@ export class Engine {
             }
         }
         if(u.summonKind==='eater'){
-            if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,dmg,owner,false,undefined,source,'eaterTransfer');}
+            if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){const shared=Math.min(dmg,Math.max(0,u.maxHp-(u.eaterTransferred||0)));u.eaterTransferred=(u.eaterTransferred||0)+shared;for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,shared,owner,false,undefined,source,'eaterTransfer');}
             if(u.dead||u.hp<=0)releaseEater(this,u);
         }
     }
@@ -2182,11 +2182,11 @@ export class Engine {
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target=targetFor(this,u)||target;
         if(u.role==='healer'){
-            const hurt=this.actors(1).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<720&&v.hp<v.maxHp-40).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];
+            const hurt=this.actors(1).filter(v=>!v.summoned&&Math.hypot(v.x-u.x,v.y-u.y)<720&&v.hp<v.maxHp-40).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];
             if(hurt){const n=Math.min(hurt.maxHp-hurt.hp,Math.round(hurt.maxHp*.22));hurt.hp+=n;this.fx('ring',hurt.x,hurt.y-hurt.h*.5,'#9ae0b7',60);this.fx('text',hurt.x,hurt.y-hurt.h-10,'#acefc3',18,'+'+n);this.message(`${u.name} · 아군 회복`);this.emit('sound',{name:'heal'});this.finishAction();return;}
         }
         if(u.role==='ward'&&b.round%3===1){
-            for(const e of this.actors(1).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<700)){e.shield=Math.max(e.shield,Math.round(e.maxHp*.16));e.shieldUntil=b.teamEnds[0]+1;}
+            for(const e of this.actors(1).filter(v=>!v.summoned&&Math.hypot(v.x-u.x,v.y-u.y)<700)){e.shield=Math.max(e.shield,Math.round(e.maxHp*.16));e.shieldUntil=b.teamEnds[0]+1;}
             this.fx('ring',u.x,u.y-u.h*.5,'#beccea',75);this.message(`${u.name} · 방호 부여`);this.finishAction();return;
         }
         const available=u.loadout.map(id=>SKILLS[id]).filter(sk=>sk&&!sk.passive&&this.manaCost(sk,u)<=u.focus);

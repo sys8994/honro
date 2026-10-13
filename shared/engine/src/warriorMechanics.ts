@@ -119,7 +119,7 @@ export function pullToFront(e:Engine,u:Unit,t:Unit){
  for(let i=1;i<=steps;i++){
   const x=start.x+(desired-start.x)*i/steps,floor=e.surface(x,last.y-65,last.y+85);
   if(!floor||floor.y>e.b.height||e.b.terrain.some(v=>!v.broken&&!v.oneWay&&terrainRectIntersects(v,x-t.r,floor.y-t.h,t.r*2,t.h-2,.1)))break;
-  if(e.b.units.some(v=>!v.dead&&v.id!==t.id&&Math.abs(v.x-x)<v.r+t.r&&Math.abs(v.y-floor.y)<Math.min(v.h,t.h)))break;
+  if(e.b.units.some(v=>!v.dead&&!v.eaterCapturedBy&&v.id!==t.id&&Math.abs(v.x-x)<v.r+t.r&&Math.abs(v.y-floor.y)<Math.min(v.h,t.h)))break;
   last={x,y:floor.y};
  }
  t.x=last.x;t.y=last.y;t.vx=t.vy=0;t.airborne=t.jumping=false;delete t.moveTarget;

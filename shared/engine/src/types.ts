@@ -166,6 +166,7 @@ export interface Unit {
     eaterReleasedShot?: number;
     eaterOrigin?: {x:number;y:number};
     eaterRevision?: number;
+    eaterTransferred?: number;
     eaterCaptureCount?: number;
     eaterCaptureRadius?: number;
     eaterSwallow?: number;
