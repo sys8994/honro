@@ -36,9 +36,11 @@ const e=new g.HONRO_CORE.Engine(b,()=>{},true),base=b.units.find(u=>u.side===1),
 const eater={...base,id:'art-eater',name:'먹귀',cls:'occultist',summoned:true,summonKind:'eater',side:1,x:anchor.x+150,y:anchor.y,h:96,r:36.8,hp:205,maxHp:205,facing:1,dead:false,summonFloating:false,fixed:false};
 eater.y=g.HONRO_CORE.groundY(b.terrain,eater.x);
 b.units=[anchor,eater];b.phase='aim';const files=[];
+const echoes=[-1,1].map((side,i)=>({...base,id:'captured-'+i,dead:false,x:eater.x+side*140,y:eater.y,h:70,r:20,eaterOrigin:{x:eater.x+side*140,y:eater.y},eaterCapturedBy:eater.id}));
 for(const [label,count,swallow,facing,width,height,zoom,release] of [
- ['empty',0,0,1,960,640,.9,false],['one-held',1,0,1,960,640,.9,false],['many-held',10,0,1,960,640,.9,false],['swallow-open',3,.48,1,960,640,.9,false],['swallow-close',3,.18,-1,960,640,.9,false],['left-hit',5,0,-1,960,640,.9,false],['small-zoom',10,.48,-1,390,700,.4,false],['release',8,0,1,960,640,.9,true]]){
+ ['empty',0,0,1,960,640,.9,false],['one-held',1,0,1,960,640,.9,false],['many-held',10,0,1,960,640,.9,false],['swallow-pull',3,.78,1,960,640,.9,false],['swallow-open',3,.48,1,960,640,.9,false],['swallow-close',3,.18,-1,960,640,.9,false],['left-hit',5,0,-1,960,640,.9,false],['small-zoom',10,.48,-1,390,700,.4,false],['release',8,0,1,960,640,.9,true]]){
  Object.assign(eater,{eaterCaptureCount:count,eaterSwallow:swallow,summonGrowthHits:Math.min(5,count),h:96*(1+.14*Math.min(5,count)),r:36.8*(1+.14*Math.min(5,count)),facing,hurt:label==='left-hit'?.65:0,dead:release});
+ b.units=[anchor,eater,...(swallow>0?echoes:[])];
  const cv=canvas(width,height),scene=new g.HonroScene(cv);Object.assign(scene,{x:eater.x-30,y:eater.y-130,scale:zoom,manual:true,time:2,skillPreview:true});
  if(release){scene.event({type:'fx',name:'eaterRelease',x:eater.x,y:eater.y-eater.h*.5,size:190});scene.time+=.28;}
  const snapshot=JSON.stringify(b);scene.render(e,0,'',.6,false,0,false);assert.equal(JSON.stringify(b),snapshot,'Renderer is read-only');
