@@ -66,6 +66,7 @@ export function applyCityTacticalRoutes(project){
    let end=first;while(end<foundation.points.length&&foundation.points[end].x<=right&&foundation.points[end].y<s.height)end++;
    foundation.points.splice(first,end-first,...top.map(([x,y])=>({x,y})));
   }
+  if(n===24){const door=s.terrains.find(t=>t.id==='shrine-door'),bottom=Math.max(...door.points.map(v=>v.y));for(const v of door.points.slice(0,2))v.y=bottom-350;}
   if(n===21){const u=s.units.find(u=>u.id==='a3-21-market-pack-0');if(u)u.y=2500;}
   // Keep the existing encounter identities/counts; place grounded occupants
   // on the newly raised masonry rather than let spawn sanitation repair them.
