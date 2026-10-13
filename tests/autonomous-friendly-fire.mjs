@@ -116,3 +116,31 @@ console.log('PASS delayed Continue, automatic DOT allegiance changes, counter or
  const hp=ally.hp;p.echoSource='legacy-echo';a.e.hurt(ally,30,p.owner,true,p,p);assert.equal(ally.hp,hp,'copied old crescent remains automatic');
 }
 console.log('PASS legacy aimed crescent damage-cap flag and automatic copy distinction');
+// Enemy autonomy is not granted the player's safety policy: NPC and terrain damage match roots.
+for(const targetFlags of [{side:2},{side:2,honroAlly:true},{side:1},{side:0},{side:1,id:'objective'}]){
+ const results=[];
+ for(const autonomous of [false,true]){
+  const a=arena('M01'),owner=a.add(1,1800),target=a.add(targetFlags.side,800,targetFlags),p=a.fire();
+  Object.assign(p,{owner:owner.id,side:1,autonomous});a.e.blast(800,1460,100,60,owner.id,false,p);
+  const terrain={id:'enemy-destroyable',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(terrain);a.e.damageTerrain(terrain,40,0,owner.id,p);
+  results.push([target.hp,target.vx,target.vy,terrain.hp,terrain.broken]);
+ }
+ assert.deepEqual(results[0],results[1],JSON.stringify(targetFlags)+' enemy automatic baseline');
+}
+for(const side of [0,1,2,undefined]){
+ const a=arena('M01'),npc=a.add(2,800),p=a.fire();Object.assign(p,{owner:'missing-legacy-owner',side,autonomous:true});
+ const terrain={id:'orphan-ground',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(terrain);
+ a.e.blast(800,1460,100,60,p.owner,false,p);a.e.damageTerrain(terrain,40,0,p.owner,p);
+ assert.equal(npc.hp===npc.maxHp,side===0);assert.equal(!terrain.broken,side===0);
+}
+// A hostile actor's stale saved side cannot override its explicit current alliance or owner.
+{
+ const a=arena('M01'),npc=a.add(2,800),owner=a.add(1,1800,{honroAlly:true}),p=a.fire();Object.assign(p,{owner:owner.id,side:1,autonomous:true});a.e.blast(800,1460,100,60,owner.id,false,p);assert.equal(npc.hp,npc.maxHp);
+ owner.honroAlly=false;owner.summonOwner=a.u.id;owner.summoned=true;a.e.blast(800,1460,100,60,owner.id,false,p);assert.equal(npc.hp,npc.maxHp);
+}
+console.log('PASS player-only safety, exact hostile NPC/objective/terrain parity and orphan side fallback');
+{
+ const a=arena('M01'),master=a.add(1,1800),ghost=a.add(0,1400,{summoned:true,summonOwner:master.id}),npc=a.add(2,800),p=a.fire();Object.assign(p,{owner:ghost.id,side:0,child:true});
+ const terrain={id:'hostile-summon-support',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(terrain);a.e.blast(800,1460,100,60,ghost.id,false,p);assert(npc.hp<npc.maxHp);assert(terrain.broken,'hostile summon retains terrain damage despite saved side 0');
+}
+console.log('PASS enemy-owned summon current allegiance overrides stale side without extra immunity');
