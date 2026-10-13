@@ -2,11 +2,11 @@ import {BgmPlayer, type MusicState} from './bgm';
 import type { Profile } from './types';
 
 /** Damped material sounds: no UI bleeps, pitch sweeps or victory jingles. */
-export function soundSamples(name:string,sr=24000):Float32Array {
+function* prepareSound(name:string,sr=24000):Generator<void,Float32Array> {
     const recipes:Record<string,number[]>={
         // seconds, body Hz, noise cutoff Hz, body gain, texture gain, decay
         // Soft low wooden/paper arrival, one note per message, no pitch sweep.
-        dialogue:[.24,132,380,.105,.025,5.8],
+        dialogue:[.24,156,680,.18,.045,6.2],
         sodanBell:[.72,742,2600,.26,.018,5.5],
         arrow:[.27,146,1800,.29,.26,8], arrowhit:[.30,94,1150,.42,.38,10],
         sword:[.34,108,1900,.24,.40,7], fire:[.55,69,900,.42,.46,5],
@@ -32,11 +32,16 @@ export function soundSamples(name:string,sr=24000):Float32Array {
         const modes=Math.sin(t*f*6.28318)*Math.exp(-decay*q)+.32*Math.sin(t*f*1.71*6.28318)*Math.exp(-decay*1.7*q)+.16*Math.sin(t*f*2.63*6.28318)*Math.exp(-decay*2.4*q);
         const breath=name==='qiWave'?Math.sin(Math.PI*Math.min(1,t/.13))*.3+1:1;
         const air=(low*.75+brown*.25)*Math.exp(-decay*.9*q)*breath;
-        const attack=Math.min(1,t/(name==='dialogue'?.022:.008)),end=Math.min(1,(duration-t)/.035);
+        const attack=Math.min(1,t/(name==='dialogue'?.004:.008)),end=Math.min(1,(duration-t)/.035);
         const v=(modes*body+air*texture)*attack*end;
         dc=.996*dc+.004*v;out[i]=Math.tanh((v-dc)*.85)*.8;
+        if(i%256===255)yield;
     }
     return out;
+}
+
+export function soundSamples(name:string,sr=24000):Float32Array {
+    const preparation=prepareSound(name,sr);let step=preparation.next();while(!step.done)step=preparation.next();return step.value;
 }
 
 /** One context, unlocked by the same trusted gesture as the controls. */
@@ -44,7 +49,11 @@ export class AudioEngine {
     music=new BgmPlayer();
     enabled=true; volume=.55; context:AudioContext|null=null; master:GainNode|null=null;
     buffers=new Map<string,AudioBuffer>(); voices=new Set<AudioBufferSourceNode>();
-    private gainTarget=-1; private warming=false;
+    private gainTarget=-1; private warming=false; private disposed=false; private paused=false;
+    private pcm=new Map<string,Float32Array>();
+    private resuming:Promise<boolean>|null=null;
+    private dialogueVoice:AudioBufferSourceNode|null=null;
+    constructor(){this.warm();}
     pending:{name:string;at:number}[]=[];
     lastPlayed:Record<string,number>={};requestedAt:Record<string,number>={};startedAt:Record<string,number>={};playCount=0;
     static samples=soundSamples;
@@ -54,11 +63,17 @@ export class AudioEngine {
         this.enabled=!!s.sound;this.volume=Math.max(0,Math.min(1,Number(s.volume)||0));
         const gain=this.enabled?this.volume:0;
         if(this.master&&this.context&&gain!==this.gainTarget){this.master.gain.setTargetAtTime(gain,this.context.currentTime,.015);this.gainTarget=gain;}
-        if(!this.enabled&&(this.pending.length||this.voices.size))this.pause();
+        if((!this.enabled||this.volume<=0)&&(this.pending.length||this.voices.size))this.pause();
     }
-    async wake():Promise<boolean>{
+    wake():Promise<boolean>{
         this.music.unlock();
-        if(!this.enabled)return false;
+        if(!this.enabled||this.volume<=0||this.paused||this.disposed)return Promise.resolve(false);
+        if(this.resuming)return this.resuming;
+        const task=this.resumeContext();this.resuming=task;
+        void task.then(()=>{if(this.resuming===task)this.resuming=null;});
+        return task;
+    }
+    private async resumeContext():Promise<boolean>{
         try{
             if(!this.context){
                 const Constructor=globalThis.AudioContext||(globalThis as any).webkitAudioContext;if(!Constructor)return false;
@@ -69,28 +84,51 @@ export class AudioEngine {
             }
             if(this.context!.state!=='running')await this.context!.resume();
             const now=performance.now(),queue=this.pending.splice(0);
-            for(const item of queue)if(now-item.at<300)this.play(item.name);
-            this.warm();
-            return this.context!.state==='running';
-        }catch{return false;}
+            // An old visual event must not become sound on a later unrelated gesture.
+            if(this.context!.state!=='running'||this.paused||this.disposed)return false;
+            for(const item of queue)if(now-item.at<80)this.play(item.name);
+            return true;
+        }catch{this.pending=[];return false;}
     }
-    private buffer(name:string){let buffer=this.buffers.get(name);if(!buffer&&this.context){const samples=soundSamples(name,this.context.sampleRate);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,this.context.sampleRate);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}return buffer;}
-    private warm(){if(this.warming)return;this.warming=true;const names=['dialogue','arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose'];const step=()=>{if(!this.context||this.context.state==='closed')return;const name=names.shift();if(name)this.buffer(name);if(names.length){if(typeof requestIdleCallback==='function')requestIdleCallback(step,{timeout:250});else setTimeout(step,20);}};setTimeout(step,0);}
+    private samples(name:string){let samples=this.pcm.get(name);if(!samples){samples=soundSamples(name,24000);if(samples.length)this.pcm.set(name,samples);}return samples;}
+    private buffer(name:string){let buffer=this.buffers.get(name);if(!buffer&&this.context){const samples=this.samples(name);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,24000);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}return buffer;}
+    private warm(){
+        if(this.warming)return;this.warming=true;
+        const names=['dialogue','arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose','sodanBell'];
+        // Prepare PCM before the first gesture, without opening/unlocking an audio device.
+        let name:string|undefined,preparation:Generator<void,Float32Array>|undefined;
+        const step=()=>{
+            if(this.disposed)return;
+            if(!preparation){name=names.shift();if(!name)return;if(this.pcm.has(name)){schedule();return;}preparation=prepareSound(name);}
+            // At most 256 samples per task; never monopolize the first input/BGM frame.
+            const result=preparation.next();
+            if(result.done){if(!this.pcm.has(name!))this.pcm.set(name!,result.value);if(this.context)this.buffer(name!);preparation=undefined;}
+            if(preparation||names.length)schedule();
+        };
+        const schedule=()=>{if(typeof requestIdleCallback==='function')requestIdleCallback(step,{timeout:100});else if(typeof setTimeout==='function')setTimeout(step,0);};
+        schedule();
+    }
+    stop(name:string){
+        this.pending=this.pending.filter(item=>item.name!==name);
+        if(name==='dialogue'&&this.dialogueVoice){const voice=this.dialogueVoice;this.dialogueVoice=null;try{voice.stop();}catch{}this.voices.delete(voice);}
+    }
     play(name:string){
-        if(!this.enabled||this.volume<=0||name==='click')return;
+        if(!this.enabled||this.volume<=0||this.paused||this.disposed||name==='click')return;
         const now=performance.now();this.requestedAt[name]=now;
         if(!this.context||this.context.state!=='running'){
-            this.pending=this.pending.filter(p=>now-p.at<300&&p.name!==name);this.pending.push({name,at:now});return;
+            if(this.resuming){this.pending=this.pending.filter(p=>now-p.at<80&&p.name!==name);this.pending.push({name,at:now});}return;
         }
-        if(now-(this.lastPlayed[name]??-1e9)<(name==='arrowhit'?0:name==='qiHit'?24:45))return;
+        if(now-(this.lastPlayed[name]??-1e9)<(name==='arrowhit'||name==='dialogue'?0:name==='qiHit'?24:45))return;
         const buffer=this.buffer(name);if(!buffer)return;
+        if(name==='dialogue')this.stop('dialogue');
         if(this.voices.size>=20){const oldest=this.voices.values().next().value;oldest?.stop();if(oldest)this.voices.delete(oldest);}
         const source=this.context.createBufferSource();source.buffer=buffer;source.connect(this.master!);this.voices.add(source);
-        source.onended=()=>{this.voices.delete(source);source.disconnect();};source.start();
+        if(name==='dialogue')this.dialogueVoice=source;
+        source.onended=()=>{this.voices.delete(source);if(this.dialogueVoice===source)this.dialogueVoice=null;source.disconnect();};source.start();
         this.lastPlayed[name]=now;this.startedAt[name]=performance.now();this.playCount++;
     }
-    pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.pending=[];}
+    pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.dialogueVoice=null;this.pending=[];}
     setTheme(_n:number){}
-    update(state?:MusicState,paused=false,battleSession?:string){this.music.setPaused(paused);if(state)this.music.select(state,battleSession);this.music.tick();}
-    dispose(){this.pause();this.music.dispose();void this.context?.close();}
+    update(state?:MusicState,paused=false,battleSession?:string){this.paused=paused;if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession);this.music.tick();}
+    dispose(){this.disposed=true;this.pause();this.music.dispose();void this.context?.close();}
 }
