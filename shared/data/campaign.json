@@ -341065,11 +341065,11 @@
             },
             {
               "x": 1730,
-              "y": 2470
+              "y": 2476
             },
             {
               "x": 1500,
-              "y": 2652.5
+              "y": 2658.5
             }
           ],
           "baseMaterial": "stone",
@@ -341102,12 +341102,20 @@
               "y": 1960
             },
             {
-              "x": 3670,
-              "y": 2040
+              "x": 3720,
+              "y": 2110
             },
             {
-              "x": 3950,
-              "y": 2250
+              "x": 3820,
+              "y": 2110
+            },
+            {
+              "x": 3990,
+              "y": 2300
+            },
+            {
+              "x": 4080,
+              "y": 2300
             },
             {
               "x": 4290,
@@ -341115,19 +341123,27 @@
             },
             {
               "x": 4290,
-              "y": 2530
+              "y": 2536
             },
             {
-              "x": 3950,
-              "y": 2280
+              "x": 4080,
+              "y": 2336
             },
             {
-              "x": 3670,
-              "y": 2070
+              "x": 3990,
+              "y": 2336
+            },
+            {
+              "x": 3820,
+              "y": 2146
+            },
+            {
+              "x": 3720,
+              "y": 2146
             },
             {
               "x": 3540,
-              "y": 1990
+              "y": 1996
             }
           ],
           "baseMaterial": "stone",
@@ -341140,9 +341156,71 @@
             "honroWalkEdges": [
               0,
               1,
-              2
+              2,
+              3,
+              4
             ],
             "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 21,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct21-wall-buttress-plinth",
+          "name": "wall-buttress-plinth",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3650,
+              "y": 2500
+            },
+            {
+              "x": 3760,
+              "y": 2380
+            },
+            {
+              "x": 3950,
+              "y": 2380
+            },
+            {
+              "x": 4100,
+              "y": 2500
+            },
+            {
+              "x": 4100,
+              "y": 2800
+            },
+            {
+              "x": 3950,
+              "y": 2680
+            },
+            {
+              "x": 3760,
+              "y": 2680
+            },
+            {
+              "x": 3650,
+              "y": 2800
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct21-wall-buttress-plinth",
+            "honroWalkEdges": [
+              0,
+              1,
+              2
+            ],
+            "honroSurfaceRole": "cover-gallery",
             "surfaceKind": "granite"
           },
           "detail": {
@@ -341167,11 +341245,11 @@
             },
             {
               "x": 4310,
-              "y": 2300
+              "y": 2306
             },
             {
               "x": 4090,
-              "y": 2530
+              "y": 2536
             }
           ],
           "baseMaterial": "wood",
@@ -341213,15 +341291,15 @@
             },
             {
               "x": 4840,
-              "y": 2335
+              "y": 2350
             },
             {
               "x": 4620,
-              "y": 2315
+              "y": 2330
             },
             {
               "x": 4310,
-              "y": 2325
+              "y": 2340
             }
           ],
           "baseMaterial": "stone",
@@ -341260,11 +341338,11 @@
             },
             {
               "x": 5150,
-              "y": 2530
+              "y": 2536
             },
             {
               "x": 4840,
-              "y": 2310
+              "y": 2316
             }
           ],
           "baseMaterial": "wood",
@@ -341738,7 +341816,7 @@
           "kind": "hound",
           "team": "enemy",
           "x": 3970,
-          "y": 2500,
+          "y": 2396,
           "facing": -1,
           "spawnIndex": 8,
           "behavior": "patrol",
@@ -343377,12 +343455,20 @@
                   1960
                 ],
                 [
-                  3670,
-                  2040
+                  3720,
+                  2110
                 ],
                 [
-                  3950,
-                  2250
+                  3820,
+                  2110
+                ],
+                [
+                  3990,
+                  2300
+                ],
+                [
+                  4080,
+                  2300
                 ],
                 [
                   4290,
@@ -343391,6 +343477,30 @@
               ],
               true,
               "stone"
+            ],
+            [
+              "wall-buttress-plinth",
+              [
+                [
+                  3650,
+                  2500
+                ],
+                [
+                  3760,
+                  2380
+                ],
+                [
+                  3950,
+                  2380
+                ],
+                [
+                  4100,
+                  2500
+                ]
+              ],
+              false,
+              "stone",
+              300
             ],
             [
               "market-west-rise",
@@ -398124,11 +398234,11 @@
             },
             {
               "x": 2310,
-              "y": 2260
+              "y": 2266
             },
             {
               "x": 1950,
-              "y": 2581.176470588235
+              "y": 2587.176470588235
             }
           ],
           "baseMaterial": "wood",
@@ -398152,8 +398262,8 @@
           }
         },
         {
-          "id": "ct24-hall-east-return",
-          "name": "hall-east-return",
+          "id": "ct24-hall-garden-link",
+          "name": "hall-garden-link",
           "type": "solid",
           "points": [
             {
@@ -398161,16 +398271,16 @@
               "y": 2228
             },
             {
-              "x": 3660,
-              "y": 2468
+              "x": 3730,
+              "y": 2228
             },
             {
-              "x": 3660,
-              "y": 2498
+              "x": 3730,
+              "y": 2264
             },
             {
               "x": 3350,
-              "y": 2258
+              "y": 2264
             }
           ],
           "baseMaterial": "wood",
@@ -398179,7 +398289,7 @@
           "layer": "terrain",
           "properties": {
             "honroCityTactical": true,
-            "honroSpaceSurfaceId": "ct24-hall-east-return",
+            "honroSpaceSurfaceId": "ct24-hall-garden-link",
             "honroWalkEdges": [
               0
             ],
@@ -398194,75 +398304,33 @@
           }
         },
         {
-          "id": "ct24-garden-west-rise",
-          "name": "garden-west-rise",
-          "type": "solid",
-          "points": [
-            {
-              "x": 3500,
-              "y": 2450.68
-            },
-            {
-              "x": 3800,
-              "y": 2220
-            },
-            {
-              "x": 3800,
-              "y": 2250
-            },
-            {
-              "x": 3500,
-              "y": 2480.68
-            }
-          ],
-          "baseMaterial": "stone",
-          "oneWay": true,
-          "breakable": false,
-          "layer": "terrain",
-          "properties": {
-            "honroCityTactical": true,
-            "honroSpaceSurfaceId": "ct24-garden-west-rise",
-            "honroWalkEdges": [
-              0
-            ],
-            "honroSurfaceRole": "access-ramp",
-            "surfaceKind": "granite"
-          },
-          "detail": {
-            "spacing": 18,
-            "roughness": 0,
-            "seed": 24,
-            "optimizeEpsilon": 0
-          }
-        },
-        {
           "id": "ct24-garden-retaining-gallery",
           "name": "garden-retaining-gallery",
           "type": "solid",
           "points": [
             {
-              "x": 3800,
-              "y": 2220
+              "x": 3730,
+              "y": 2228
             },
             {
-              "x": 4050,
-              "y": 2240
+              "x": 3970,
+              "y": 2228
             },
             {
-              "x": 4290,
-              "y": 2310
-            },
-            {
-              "x": 4290,
-              "y": 2365
-            },
-            {
-              "x": 4050,
+              "x": 4240,
               "y": 2295
             },
             {
-              "x": 3800,
-              "y": 2275
+              "x": 4240,
+              "y": 2395
+            },
+            {
+              "x": 3970,
+              "y": 2328
+            },
+            {
+              "x": 3730,
+              "y": 2328
             }
           ],
           "baseMaterial": "stone",
@@ -398292,20 +398360,36 @@
           "type": "solid",
           "points": [
             {
-              "x": 4290,
-              "y": 2310
+              "x": 4240,
+              "y": 2295
             },
             {
-              "x": 4620,
+              "x": 4370,
+              "y": 2425
+            },
+            {
+              "x": 4480,
+              "y": 2425
+            },
+            {
+              "x": 4680,
               "y": 2660
             },
             {
-              "x": 4620,
-              "y": 2690
+              "x": 4680,
+              "y": 2696
             },
             {
-              "x": 4290,
-              "y": 2340
+              "x": 4480,
+              "y": 2461
+            },
+            {
+              "x": 4370,
+              "y": 2461
+            },
+            {
+              "x": 4240,
+              "y": 2331
             }
           ],
           "baseMaterial": "wood",
@@ -398316,10 +398400,72 @@
             "honroCityTactical": true,
             "honroSpaceSurfaceId": "ct24-garden-east-return",
             "honroWalkEdges": [
-              0
+              0,
+              1,
+              2
             ],
             "honroSurfaceRole": "access-ramp",
             "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 24,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct24-garden-low-retaining-foot",
+          "name": "garden-low-retaining-foot",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4020,
+              "y": 2578.88
+            },
+            {
+              "x": 4120,
+              "y": 2505
+            },
+            {
+              "x": 4250,
+              "y": 2505
+            },
+            {
+              "x": 4390,
+              "y": 2673.67
+            },
+            {
+              "x": 4390,
+              "y": 2973.67
+            },
+            {
+              "x": 4250,
+              "y": 2805
+            },
+            {
+              "x": 4120,
+              "y": 2805
+            },
+            {
+              "x": 4020,
+              "y": 2878.88
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct24-garden-low-retaining-foot",
+            "honroWalkEdges": [
+              0,
+              1,
+              2
+            ],
+            "honroSurfaceRole": "cover-gallery",
+            "surfaceKind": "granite"
           },
           "detail": {
             "spacing": 18,
@@ -398343,11 +398489,11 @@
             },
             {
               "x": 6580,
-              "y": 2280
+              "y": 2286
             },
             {
               "x": 6780,
-              "y": 2431
+              "y": 2437
             }
           ],
           "baseMaterial": "stone",
@@ -398798,7 +398944,7 @@
           "kind": "archiveFiend",
           "team": "enemy",
           "x": 4110,
-          "y": 2598.0898876404494,
+          "y": 2512.388,
           "facing": -1,
           "spawnIndex": 8,
           "behavior": "patrol",
@@ -399554,68 +399700,86 @@
               "wood"
             ],
             [
-              "hall-east-return",
+              "hall-garden-link",
               [
                 [
                   3350,
                   2228
                 ],
                 [
-                  3660,
-                  2468
+                  3730,
+                  2228
                 ]
               ],
               true,
               "wood"
-            ],
-            [
-              "garden-west-rise",
-              [
-                [
-                  3500,
-                  2450.68
-                ],
-                [
-                  3800,
-                  2220
-                ]
-              ],
-              true,
-              "stone"
             ],
             [
               "garden-retaining-gallery",
               [
                 [
-                  3800,
-                  2220
+                  3730,
+                  2228
                 ],
                 [
-                  4050,
-                  2240
+                  3970,
+                  2228
                 ],
                 [
-                  4290,
-                  2310
+                  4240,
+                  2295
                 ]
               ],
               false,
-              "stone"
+              "stone",
+              100
             ],
             [
               "garden-east-return",
               [
                 [
-                  4290,
-                  2310
+                  4240,
+                  2295
                 ],
                 [
-                  4620,
+                  4370,
+                  2425
+                ],
+                [
+                  4480,
+                  2425
+                ],
+                [
+                  4680,
                   2660
                 ]
               ],
               true,
               "wood"
+            ],
+            [
+              "garden-low-retaining-foot",
+              [
+                [
+                  4020,
+                  2578.88
+                ],
+                [
+                  4120,
+                  2505
+                ],
+                [
+                  4250,
+                  2505
+                ],
+                [
+                  4390,
+                  2673.67
+                ]
+              ],
+              false,
+              "stone",
+              300
             ],
             [
               "shrine-east-steps",
@@ -404890,15 +405054,15 @@
             },
             {
               "x": 3260,
-              "y": 2580
+              "y": 2586
             },
             {
               "x": 3010,
-              "y": 2665
+              "y": 2671
             },
             {
               "x": 2680,
-              "y": 2821.272727272727
+              "y": 2827.272727272727
             }
           ],
           "baseMaterial": "wood",
@@ -404941,15 +405105,15 @@
             },
             {
               "x": 4760,
-              "y": 2505
+              "y": 2520
             },
             {
               "x": 4540,
-              "y": 2585
+              "y": 2600
             },
             {
               "x": 4400,
-              "y": 2600
+              "y": 2615
             }
           ],
           "baseMaterial": "stone",
@@ -404988,11 +405152,11 @@
             },
             {
               "x": 5010,
-              "y": 2563.913043478261
+              "y": 2569.913043478261
             },
             {
               "x": 4760,
-              "y": 2480
+              "y": 2486
             }
           ],
           "baseMaterial": "wood",
@@ -405007,6 +405171,66 @@
             ],
             "honroSurfaceRole": "access-ramp",
             "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct28-court-low-charred-plinth",
+          "name": "court-low-charred-plinth",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4030,
+              "y": 2800
+            },
+            {
+              "x": 4110,
+              "y": 2690
+            },
+            {
+              "x": 4190,
+              "y": 2690
+            },
+            {
+              "x": 4310,
+              "y": 2800
+            },
+            {
+              "x": 4310,
+              "y": 3050
+            },
+            {
+              "x": 4190,
+              "y": 2940
+            },
+            {
+              "x": 4110,
+              "y": 2940
+            },
+            {
+              "x": 4030,
+              "y": 3050
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct28-court-low-charred-plinth",
+            "honroWalkEdges": [
+              0,
+              1,
+              2
+            ],
+            "honroSurfaceRole": "cover-gallery",
+            "surfaceKind": "granite"
           },
           "detail": {
             "spacing": 18,
@@ -405451,7 +405675,7 @@
           "kind": "possessedGuard",
           "team": "enemy",
           "x": 4250,
-          "y": 2800,
+          "y": 2745,
           "facing": -1,
           "spawnIndex": 6,
           "behavior": "patrol",
@@ -406291,6 +406515,30 @@
               ],
               true,
               "wood"
+            ],
+            [
+              "court-low-charred-plinth",
+              [
+                [
+                  4030,
+                  2800
+                ],
+                [
+                  4110,
+                  2690
+                ],
+                [
+                  4190,
+                  2690
+                ],
+                [
+                  4310,
+                  2800
+                ]
+              ],
+              false,
+              "stone",
+              250
             ]
           ],
           "roles": [

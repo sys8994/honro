@@ -6,31 +6,39 @@ const clone=v=>JSON.parse(JSON.stringify(v));
 export const CITY_TACTICAL_SURFACES={
  21:[
   ['wall-west-toe',[[1500,2622.5],[1730,2440]],true,'stone'],
-  ['wall-east-return',[[3540,1960],[3670,2040],[3950,2250],[4290,2500]],true,'stone'],
+  ['wall-east-return',[[3540,1960],[3720,2110],[3820,2110],[3990,2300],[4080,2300],[4290,2500]],true,'stone'],
+  ['wall-buttress-plinth',[[3650,2500],[3760,2380],[3950,2380],[4100,2500]],false,'stone',300],
   ['market-west-rise',[[4090,2500],[4310,2270]],true,'wood'],
   ['market-side-gallery',[[4310,2270],[4620,2260],[4840,2280]],false,'stone'],
   ['market-east-return',[[4840,2280],[5150,2500]],true,'wood']
  ],
  24:[
   ['hall-west-veranda',[[1950,2551.176470588235],[2310,2230]],true,'wood'],
-  ['hall-east-return',[[3350,2228],[3660,2468]],true,'wood'],
-  ['garden-west-rise',[[3500,2450.68],[3800,2220]],true,'stone'],
-  ['garden-retaining-gallery',[[3800,2220],[4050,2240],[4290,2310]],false,'stone'],
-  ['garden-east-return',[[4290,2310],[4620,2660]],true,'wood'],
+  ['hall-garden-link',[[3350,2228],[3730,2228]],true,'wood'],
+  ['garden-retaining-gallery',[[3730,2228],[3970,2228],[4240,2295]],false,'stone',100],
+  ['garden-east-return',[[4240,2295],[4370,2425],[4480,2425],[4680,2660]],true,'wood'],
+  ['garden-low-retaining-foot',[[4020,2578.88],[4120,2505],[4250,2505],[4390,2673.67]],false,'stone',300],
   ['shrine-east-steps',[[6780,2401],[6580,2250]],true,'stone']
  ],
  28:[
   ['court-west-ascent',[[2680,2791.272727272727],[3010,2635],[3260,2550]],true,'wood'],
   ['court-east-gallery',[[4400,2545],[4540,2530],[4760,2450]],false,'stone'],
-  ['court-record-return',[[4760,2450],[5010,2533.913043478261]],true,'wood']
+  ['court-record-return',[[4760,2450],[5010,2533.913043478261]],true,'wood'],
+  ['court-low-charred-plinth',[[4030,2800],[4110,2690],[4190,2690],[4310,2800]],false,'stone',250]
  ]
 };
-function surface(s,id,top,oneWay,material){const depth=oneWay?30:55;return{id:'ct'+s+'-'+id,name:id,type:'solid',points:[...top,...top.slice().reverse().map(([x,y])=>[x,y+depth])].map(([x,y])=>({x,y})),baseMaterial:material,oneWay,breakable:false,layer:'terrain',properties:{honroCityTactical:true,honroSpaceSurfaceId:'ct'+s+'-'+id,honroWalkEdges:top.slice(1).map((_,i)=>i),honroSurfaceRole:oneWay?'access-ramp':'cover-gallery',surfaceKind:material==='stone'?'granite':'wood'},detail:{spacing:18,roughness:0,seed:s,optimizeEpsilon:0}};}
+function surface(s,id,top,oneWay,material,thickness){const depth=thickness??(oneWay?36:70);return{id:'ct'+s+'-'+id,name:id,type:'solid',points:[...top,...top.slice().reverse().map(([x,y])=>[x,y+depth])].map(([x,y])=>({x,y})),baseMaterial:material,oneWay,breakable:false,layer:'terrain',properties:{honroCityTactical:true,honroSpaceSurfaceId:'ct'+s+'-'+id,honroWalkEdges:top.slice(1).map((_,i)=>i),honroSurfaceRole:oneWay?'access-ramp':'cover-gallery',surfaceKind:material==='stone'?'granite':'wood'},detail:{spacing:18,roughness:0,seed:s,optimizeEpsilon:0}};}
 export function applyCityTacticalRoutes(project){
  const p=clone(project);
  for(const s of p.stages){const n=s.metadata?.stageId,rows=CITY_TACTICAL_SURFACES[n];if(!rows||!s.metadata.campaign)continue;
   s.terrains=s.terrains.filter(t=>!t.properties?.honroCityTactical);
-  s.terrains.push(...rows.map(([id,top,oneWay,material])=>surface(n,id,top,oneWay,material)));
+  s.terrains.push(...rows.map(([id,top,oneWay,material,thickness])=>surface(n,id,top,oneWay,material,thickness)));
+  // Keep the existing encounter identities/counts; place grounded occupants
+  // on the newly raised masonry rather than let spawn sanitation repair them.
+  const feet=rows.filter(r=>r[4]>=250);
+  for(const u of s.units){if(u.team!=='enemy'||['lantern','bat','spirit'].includes(u.kind))continue;
+   for(const [,top] of feet)for(let i=1;i<top.length;i++){const [a,b]=[top[i-1],top[i]];if(u.x<a[0]||u.x>b[0])continue;const y=a[1]+(b[1]-a[1])*(u.x-a[0])/(b[0]-a[0]);if(u.y>y&&u.y-y<320)u.y=y;}
+  }
   s.initialState.honroCityTacticalRevision=1;
   s.design.cityTactical={revision:1,scope:'Optional basic movement circuits; original objectives, gates, split teams, resources, counts and dimensions retained. Route metadata is not traversal proof.',surfaces:clone(rows),roles:n===21?['west battlement rescue approach','east battlement return to defence','market high gallery / sheltered low street']:n===24?['open hall approach','garden high ledge / low retaining-wall return','shrine side access after the existing seal']:['western reunion approach','petition roof crossing','short return to the lower record slope'],verification:'pending actual four-body round trips, objective-state and normal-resource checks'};
  }
