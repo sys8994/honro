@@ -2485,3 +2485,10 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 - 고정된 원본 event-141 첫 방어 지점은 잔여 110px 안에 빈 후보가 없으므로 이동하지 않는다. 본래 550px을 가진 birth26부터 다시 재생하면 군집을 향해 겹치러 들어가는 선택을 피한다. 첫 6체 종료점은 실제 좌표로 몸 겹침 0이며 event-142는 원래 (1980,2722.778) 자리에서 26R frame13191에 발사, frame13221 담허 HP17/친군 HP12의 기존 안전 기준 내 실제 효과를 냈다.
 - 이전 94fd63b의 첫턴 미발사라는 초기 요약은 searchShot 반환만 관측한 계측 누락이었다. 실제 `Engine.fire`와 피해 계측은 event-144의26R frame13427 첫 피해를 확인했다. 최종 회귀는 계획/조준 반환이 아닌 실제 발사 성공·피해/방어막·행동 종료의 실제 점유를 기록한다. 서로 다른 정책의 첫 피해 라운드를 난이도 개선 수치로 직접 비교하지 않는다.
 - `tests/stage5-enemy-standoff-replay.mjs`는 고정 자연 birth와 보통 방어 입력의 진단이며 소대6체 모두의 유효 교전, 새 진입 정상 완주, 브라우저 품질을 대신하지 않는다. 전체 runtime/controller/engine hash와 commit을 기록한다. 다른 29장 중 새19장은 처음 적이 없으므로 그 장의 범위 차단 검사는 기록된 배우 fixture의 stage 태그만 바꾼 명시 진단으로 별도 표기한다.
+
+### 577cccf 동결 진단 결과
+
+- 29장/old/custom 실제 계획·조준 불변 및 전체 battle/RNG 읽기 전용 회귀 통과. TypeScript, 26개 tactical/flight, 8개 totem, 실탄 friendly-fire 회귀 통과.
+- 577cccf clean 소스의 같은 자연 birth26→42 보통 방어 입력에서 6체 모두 실제 발사와 담허 HP/방어막 효과를 관측했다. 최초 효과는142:26R/frame13221,141:31R/14592,143:31R/14752,145:32R/14916,146:32R/15135,144:41R/17976. 총23개 실제 행동 종료점 모두 다른 살아 있는 몸과 겹치지 않았고, 실제 발사 전의 모든 `shotViable`이 기존 친군/지형 안전 기준을 통과했다. 관측은42R 경계에서 종료했다.
+- 원본 전체 battle을 포함한 기록은 `_local/reports/stage5-enemy-standoff/replay42/replay.json`; runtime SHA256 `21275591b5db6fddec21a7f89fb6ba74b58531862c98f92c24f3a75031ce220b`, enemyAI SHA256 `82827d9128949d5e0d113e634ed0d468c16139d750354ea43dea9c53f5cb4f50`. 진단 fixture의 결과이며 최신 합본 정상 자원 입력·독립 검수·브라우저/Pages 완료를 주장하지 않는다.
+- `npm run test:stage5-waterfall:ai`는 범위 회귀와 짧은26→28 실제 발사/점유 진단을 공통 waterfall contracts에 연결한다. 확장 관측은 `HONRO_STANDOFF_UNTIL=42`로 지정한다. 실행 시작의 소스/컨트롤러 digest를 고정하고 끝에서 소스 불변을 확인하며, 실패한 관측도 원본을 먼저 보존한 뒤 gate를 실패시킨다.
