@@ -14,11 +14,22 @@ export const migrationSourceHashes=Object.freeze({
  'migration/legacy/rc21-stage-maps.js':'269f5f311be79adc3836a73571ff476349f439f1a791894bec7ad2e5cbd6ffe4',
  'migration/legacy/rc21-world.js':'df025e5c81af9ac130c4145f02fe1545bc3a115a5fe60dff6bb0f3523f0cb6e2'
 });
+// b81fefd added the real contribution ledger dependency to progression and the
+// production manifest, but omitted it from this legacy map-import loader.
+// Keep the original migration hash; reverse only this exact loader registration.
+export const migrationLedgerDependency=Object.freeze({introducedCommit:'b81fefd6427be3d58291d4dc93e7269a0c27de02',path:'migration/migrate-stages.mjs',module:'shared/runtime/contribution-xp.js',afterSha256:'8d7bbcb03014479b22e7f1d32df4d6ca0b54bc593b8400d737fa4fdf8c678347'});
+export function beforeMigrationLedgerDependency(source){
+ if(bierHistoryHash(source)===migrationSourceHashes[migrationLedgerDependency.path])return source;
+ assert.equal(bierHistoryHash(source),migrationLedgerDependency.afterSha256,'Only the exact missing real-ledger registration is allowed');
+ const after="['content','terrain-space','map-engine','battlefield-layouts','contribution-xp','progression','encounters']",before="['content','terrain-space','map-engine','battlefield-layouts','progression','encounters']";
+ assert.equal(source.split(after).length,2,'Exactly one explicit contribution-before-progression registration');
+ const original=source.replace(after,before);assert.equal(bierHistoryHash(original),migrationSourceHashes[migrationLedgerDependency.path],'Complete original migration source remains unchanged');return original;
+}
 export const migrationSources=()=>Object.fromEntries(Object.keys(migrationSourceHashes).map(path=>[path,readFileSync(new URL(path,root),'utf8')]));
 export function assertMigrationHistoryInputs({project=JSON.parse(readFileSync(new URL('shared/data/campaign.json',root),'utf8')),sources=stage8BierRuntimeSources(),migration=migrationSources()}={}){
  beforeStage8Bier(project);beforeStage8BierRuntimeSources(sources);
  assert.deepEqual(Object.keys(migration),Object.keys(migrationSourceHashes),'Exact original migration module membership');
- for(const[path,digest]of Object.entries(migrationSourceHashes))assert.equal(bierHistoryHash(migration[path]),digest,'Exact original/current migration source '+path);
+ for(const[path,digest]of Object.entries(migrationSourceHashes))assert.equal(bierHistoryHash(path===migrationLedgerDependency.path?beforeMigrationLedgerDependency(migration[path]):migration[path]),digest,'Exact original/current migration source '+path);
  return {sources,migration};
 }
 export async function legacyRuntime(){

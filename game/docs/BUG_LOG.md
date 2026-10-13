@@ -2569,3 +2569,11 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 현재155소스와 density 역사133/Stage8 역사130을 명시 분리했다. 현재22추가/73변경/60원본동일/삭제0의 파일별 provenance·전후SHA·실제 build 모듈목록·TS컴파일·8가지번들/두HTML을 독립 검사한다.1973f07원본 source/parts는 실행하지 않는 압축 byte증거로 보존하고 기존133→130/golden/fingerprint값을 유지한다. 현재runtime fingerprint를 옛 정상플레이 fingerprint로 바꾸는 기능은 추가하지 않았다.
 
 6개 archive audit의 fingerprint부분만 현재실build검사와 명시history byte검사로 분리했다. 실제정상완주artifact/현재App·Scene을 함께 검사하는 quarry-next-stage-app와 hold-guide는 바꾸지 않았으며 별도호환성차단으로 남는다. 검사파일 목록과 음성검사·후속통합 경계는 RUNTIME_HISTORY_CONTRACTS.md. source분리 후 stage12-redesign은 migration legacyRuntime의 contribution-xp 누락으로실행중단을 드러냈다. 별도작은로더수정으로 다루며 stub/옛Engine으로회피하지않는다.
+
+### 2026-10-13 · legacy migration 실제기여원장 의존성 보완
+
+b81fefd6427be3d58291d4dc93e7269a0c27de02가 progression.initialize의 HonroContributionXP.create 의존성과 실제Game/Workshop build의 contribution-xp 등록을 추가했지만 migration/migrate-stages.mjs의 별도legacyRuntime 목록은 갱신하지 않았다. source/history검사 경계를 복구한 뒤 이실제누락이 드러났다. production과동일하게 progression 직전에 실제 shared/runtime/contribution-xp.js 하나를 등록한다.빈원장/항상통과stub/과거Engine을사용하지않는다.
+
+migration 원본SHA4b01ab3f…와legacy두원본소스기대값은그대로다. helper는새loader전체SHA8d7bbcb0…를먼저검증하고정확히한등록만되돌렸을때완전원본SHA로돌아오는지검증한다.원본migrate 함수본문은변경하지않았다. `test:migration-ledger`는20개실제현재/역사balance stage ledger의생성·반복초기화보존,10장실import,등록순서·중복·stub이름·다른byte변조거부를검사한다.기존 contribution-xp-migration8시나리오도PASS했다.
+
+후속stage12-redesign은현1/2장실행검사까지진행한다.옛맵비교에는이미승인된spBalanceRevision/honroContributionId 신규메타가추가되어3개비교가실패하며,current editor roundtrip은런타임 sodan-binding terrain의detail기본필드보충으로실패한다.이들은별도분석/승인대상이고이번loader수정으로숨기지않는다.전체verify/브라우저/Pages완료아님.
