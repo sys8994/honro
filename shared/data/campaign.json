@@ -341049,6 +341049,243 @@
             "seed": 1,
             "optimizeEpsilon": 0
           }
+        },
+        {
+          "id": "ct21-wall-west-toe",
+          "name": "wall-west-toe",
+          "type": "solid",
+          "points": [
+            {
+              "x": 1500,
+              "y": 2622.5
+            },
+            {
+              "x": 1730,
+              "y": 2440
+            },
+            {
+              "x": 1730,
+              "y": 2470
+            },
+            {
+              "x": 1500,
+              "y": 2652.5
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct21-wall-west-toe",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 21,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct21-wall-east-return",
+          "name": "wall-east-return",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3540,
+              "y": 1960
+            },
+            {
+              "x": 3670,
+              "y": 2040
+            },
+            {
+              "x": 3950,
+              "y": 2250
+            },
+            {
+              "x": 4290,
+              "y": 2500
+            },
+            {
+              "x": 4290,
+              "y": 2530
+            },
+            {
+              "x": 3950,
+              "y": 2280
+            },
+            {
+              "x": 3670,
+              "y": 2070
+            },
+            {
+              "x": 3540,
+              "y": 1990
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct21-wall-east-return",
+            "honroWalkEdges": [
+              0,
+              1,
+              2
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 21,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct21-market-west-rise",
+          "name": "market-west-rise",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4090,
+              "y": 2500
+            },
+            {
+              "x": 4310,
+              "y": 2270
+            },
+            {
+              "x": 4310,
+              "y": 2300
+            },
+            {
+              "x": 4090,
+              "y": 2530
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct21-market-west-rise",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 21,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct21-market-side-gallery",
+          "name": "market-side-gallery",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4310,
+              "y": 2270
+            },
+            {
+              "x": 4620,
+              "y": 2260
+            },
+            {
+              "x": 4840,
+              "y": 2280
+            },
+            {
+              "x": 4840,
+              "y": 2335
+            },
+            {
+              "x": 4620,
+              "y": 2315
+            },
+            {
+              "x": 4310,
+              "y": 2325
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct21-market-side-gallery",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "honroSurfaceRole": "cover-gallery",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 21,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct21-market-east-return",
+          "name": "market-east-return",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4840,
+              "y": 2280
+            },
+            {
+              "x": 5150,
+              "y": 2500
+            },
+            {
+              "x": 5150,
+              "y": 2530
+            },
+            {
+              "x": 4840,
+              "y": 2310
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct21-market-east-return",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 21,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [],
@@ -341947,7 +342184,8 @@
         ],
         "honroAct3ResponseRevision": 1,
         "honroAct3SceneryRevision": 1,
-        "honroNarrativeRevision": 1
+        "honroNarrativeRevision": 1,
+        "honroCityTacticalRevision": 1
       },
       "environment": {
         "version": 4,
@@ -343111,6 +343349,105 @@
             "shoulders": 0,
             "scope": "Editable grounded SVG art; small sampled real terrain shoulders with work/bridge levels preserved."
           }
+        },
+        "cityTactical": {
+          "revision": 1,
+          "scope": "Optional basic movement circuits; original objectives, gates, split teams, resources, counts and dimensions retained. Route metadata is not traversal proof.",
+          "surfaces": [
+            [
+              "wall-west-toe",
+              [
+                [
+                  1500,
+                  2622.5
+                ],
+                [
+                  1730,
+                  2440
+                ]
+              ],
+              true,
+              "stone"
+            ],
+            [
+              "wall-east-return",
+              [
+                [
+                  3540,
+                  1960
+                ],
+                [
+                  3670,
+                  2040
+                ],
+                [
+                  3950,
+                  2250
+                ],
+                [
+                  4290,
+                  2500
+                ]
+              ],
+              true,
+              "stone"
+            ],
+            [
+              "market-west-rise",
+              [
+                [
+                  4090,
+                  2500
+                ],
+                [
+                  4310,
+                  2270
+                ]
+              ],
+              true,
+              "wood"
+            ],
+            [
+              "market-side-gallery",
+              [
+                [
+                  4310,
+                  2270
+                ],
+                [
+                  4620,
+                  2260
+                ],
+                [
+                  4840,
+                  2280
+                ]
+              ],
+              false,
+              "stone"
+            ],
+            [
+              "market-east-return",
+              [
+                [
+                  4840,
+                  2280
+                ],
+                [
+                  5150,
+                  2500
+                ]
+              ],
+              true,
+              "wood"
+            ]
+          ],
+          "roles": [
+            "west battlement rescue approach",
+            "east battlement return to defence",
+            "market high gallery / sheltered low street"
+          ],
+          "verification": "pending actual four-body round trips, objective-state and normal-resource checks"
         }
       },
       "routes": [
@@ -397771,6 +398108,267 @@
             "seed": 1,
             "optimizeEpsilon": 0
           }
+        },
+        {
+          "id": "ct24-hall-west-veranda",
+          "name": "hall-west-veranda",
+          "type": "solid",
+          "points": [
+            {
+              "x": 1950,
+              "y": 2551.176470588235
+            },
+            {
+              "x": 2310,
+              "y": 2230
+            },
+            {
+              "x": 2310,
+              "y": 2260
+            },
+            {
+              "x": 1950,
+              "y": 2581.176470588235
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct24-hall-west-veranda",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 24,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct24-hall-east-return",
+          "name": "hall-east-return",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3350,
+              "y": 2228
+            },
+            {
+              "x": 3660,
+              "y": 2468
+            },
+            {
+              "x": 3660,
+              "y": 2498
+            },
+            {
+              "x": 3350,
+              "y": 2258
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct24-hall-east-return",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 24,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct24-garden-west-rise",
+          "name": "garden-west-rise",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3500,
+              "y": 2450.68
+            },
+            {
+              "x": 3800,
+              "y": 2220
+            },
+            {
+              "x": 3800,
+              "y": 2250
+            },
+            {
+              "x": 3500,
+              "y": 2480.68
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct24-garden-west-rise",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 24,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct24-garden-retaining-gallery",
+          "name": "garden-retaining-gallery",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3800,
+              "y": 2220
+            },
+            {
+              "x": 4050,
+              "y": 2240
+            },
+            {
+              "x": 4290,
+              "y": 2310
+            },
+            {
+              "x": 4290,
+              "y": 2365
+            },
+            {
+              "x": 4050,
+              "y": 2295
+            },
+            {
+              "x": 3800,
+              "y": 2275
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct24-garden-retaining-gallery",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "honroSurfaceRole": "cover-gallery",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 24,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct24-garden-east-return",
+          "name": "garden-east-return",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4290,
+              "y": 2310
+            },
+            {
+              "x": 4620,
+              "y": 2660
+            },
+            {
+              "x": 4620,
+              "y": 2690
+            },
+            {
+              "x": 4290,
+              "y": 2340
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct24-garden-east-return",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 24,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct24-shrine-east-steps",
+          "name": "shrine-east-steps",
+          "type": "solid",
+          "points": [
+            {
+              "x": 6780,
+              "y": 2401
+            },
+            {
+              "x": 6580,
+              "y": 2250
+            },
+            {
+              "x": 6580,
+              "y": 2280
+            },
+            {
+              "x": 6780,
+              "y": 2431
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct24-shrine-east-steps",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 24,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [],
@@ -398698,7 +399296,8 @@
         "honroAct3ResponseRevision": 1,
         "honroAct3SceneryRevision": 1,
         "honroWaterworksRevision": 1,
-        "honroNarrativeRevision": 1
+        "honroNarrativeRevision": 1,
+        "honroCityTacticalRevision": 1
       },
       "environment": {
         "version": 4,
@@ -398934,6 +399533,112 @@
             "scope": "Editable grounded SVG art; small sampled real terrain shoulders with work/bridge levels preserved."
           },
           "waterworksRevision": 1
+        },
+        "cityTactical": {
+          "revision": 1,
+          "scope": "Optional basic movement circuits; original objectives, gates, split teams, resources, counts and dimensions retained. Route metadata is not traversal proof.",
+          "surfaces": [
+            [
+              "hall-west-veranda",
+              [
+                [
+                  1950,
+                  2551.176470588235
+                ],
+                [
+                  2310,
+                  2230
+                ]
+              ],
+              true,
+              "wood"
+            ],
+            [
+              "hall-east-return",
+              [
+                [
+                  3350,
+                  2228
+                ],
+                [
+                  3660,
+                  2468
+                ]
+              ],
+              true,
+              "wood"
+            ],
+            [
+              "garden-west-rise",
+              [
+                [
+                  3500,
+                  2450.68
+                ],
+                [
+                  3800,
+                  2220
+                ]
+              ],
+              true,
+              "stone"
+            ],
+            [
+              "garden-retaining-gallery",
+              [
+                [
+                  3800,
+                  2220
+                ],
+                [
+                  4050,
+                  2240
+                ],
+                [
+                  4290,
+                  2310
+                ]
+              ],
+              false,
+              "stone"
+            ],
+            [
+              "garden-east-return",
+              [
+                [
+                  4290,
+                  2310
+                ],
+                [
+                  4620,
+                  2660
+                ]
+              ],
+              true,
+              "wood"
+            ],
+            [
+              "shrine-east-steps",
+              [
+                [
+                  6780,
+                  2401
+                ],
+                [
+                  6580,
+                  2250
+                ]
+              ],
+              true,
+              "stone"
+            ]
+          ],
+          "roles": [
+            "open hall approach",
+            "garden high ledge / low retaining-wall return",
+            "shrine side access after the existing seal"
+          ],
+          "verification": "pending actual four-body round trips, objective-state and normal-resource checks"
         }
       },
       "routes": [
@@ -404165,6 +404870,150 @@
             "seed": 1,
             "optimizeEpsilon": 0
           }
+        },
+        {
+          "id": "ct28-court-west-ascent",
+          "name": "court-west-ascent",
+          "type": "solid",
+          "points": [
+            {
+              "x": 2680,
+              "y": 2791.272727272727
+            },
+            {
+              "x": 3010,
+              "y": 2635
+            },
+            {
+              "x": 3260,
+              "y": 2550
+            },
+            {
+              "x": 3260,
+              "y": 2580
+            },
+            {
+              "x": 3010,
+              "y": 2665
+            },
+            {
+              "x": 2680,
+              "y": 2821.272727272727
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct28-court-west-ascent",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct28-court-east-gallery",
+          "name": "court-east-gallery",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4400,
+              "y": 2545
+            },
+            {
+              "x": 4540,
+              "y": 2530
+            },
+            {
+              "x": 4760,
+              "y": 2450
+            },
+            {
+              "x": 4760,
+              "y": 2505
+            },
+            {
+              "x": 4540,
+              "y": 2585
+            },
+            {
+              "x": 4400,
+              "y": 2600
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct28-court-east-gallery",
+            "honroWalkEdges": [
+              0,
+              1
+            ],
+            "honroSurfaceRole": "cover-gallery",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct28-court-record-return",
+          "name": "court-record-return",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4760,
+              "y": 2450
+            },
+            {
+              "x": 5010,
+              "y": 2533.913043478261
+            },
+            {
+              "x": 5010,
+              "y": 2563.913043478261
+            },
+            {
+              "x": 4760,
+              "y": 2480
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct28-court-record-return",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "access-ramp",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [],
@@ -404963,7 +405812,8 @@
             "kind": "reach"
           }
         ],
-        "honroNarrativeRevision": 1
+        "honroNarrativeRevision": 1,
+        "honroCityTacticalRevision": 1
       },
       "environment": {
         "version": 4,
@@ -405384,6 +406234,71 @@
             "initial": 11,
             "elites": 3
           }
+        },
+        "cityTactical": {
+          "revision": 1,
+          "scope": "Optional basic movement circuits; original objectives, gates, split teams, resources, counts and dimensions retained. Route metadata is not traversal proof.",
+          "surfaces": [
+            [
+              "court-west-ascent",
+              [
+                [
+                  2680,
+                  2791.272727272727
+                ],
+                [
+                  3010,
+                  2635
+                ],
+                [
+                  3260,
+                  2550
+                ]
+              ],
+              true,
+              "wood"
+            ],
+            [
+              "court-east-gallery",
+              [
+                [
+                  4400,
+                  2545
+                ],
+                [
+                  4540,
+                  2530
+                ],
+                [
+                  4760,
+                  2450
+                ]
+              ],
+              false,
+              "stone"
+            ],
+            [
+              "court-record-return",
+              [
+                [
+                  4760,
+                  2450
+                ],
+                [
+                  5010,
+                  2533.913043478261
+                ]
+              ],
+              true,
+              "wood"
+            ]
+          ],
+          "roles": [
+            "western reunion approach",
+            "petition roof crossing",
+            "short return to the lower record slope"
+          ],
+          "verification": "pending actual four-body round trips, objective-state and normal-resource checks"
         }
       },
       "routes": [
