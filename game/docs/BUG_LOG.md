@@ -2543,3 +2543,9 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 현재 source manifest와 불변1973f07 압축 데이터/출처/기존 SHA를 분리하고, 현재 계약을 통과한 입력에만 역사 데이터를 명시 선택한다.54추가/삭제0/기존 묵종1개 변경/21장 변경·나머지9장·모든순서/전역을 고정한다. 최신 생성기 전체 replay는30장/640자산을 재현하며 오래된5개 보존자산은 실제 도입commit 원본으로 검증한다.현재/역사에 대한12개 양방향 변조와 명시full/act12를 검사한다. 기존 역사fixture와runtime source/fingerprint 기대값은 수정하지 않았다.자세한 근거와 후속5장 별도승인 경계는 CAMPAIGN_HISTORY_CONTRACTS.md.
 
 데이터 분리 후 stage12-redesign은 기존 프로젝트SHA 차단점을 넘어 `Exact density source membership`에서 중단된다. 이는 새 runtime/data 모듈과 옛130소스 계약의 별도 불일치이며 이번 작업에서 완화하지 않는다. 전체 verify/브라우저/Pages 완료 주장은 하지 않는다.
+
+### 2026-10-13 · 현재 runtime/build와 역사 byte 계약 분리
+
+현재155소스와 density 역사133/Stage8 역사130을 명시 분리했다. 현재22추가/73변경/60원본동일/삭제0의 파일별 provenance·전후SHA·실제 build 모듈목록·TS컴파일·8가지번들/두HTML을 독립 검사한다.1973f07원본 source/parts는 실행하지 않는 압축 byte증거로 보존하고 기존133→130/golden/fingerprint값을 유지한다. 현재runtime fingerprint를 옛 정상플레이 fingerprint로 바꾸는 기능은 추가하지 않았다.
+
+6개 archive audit의 fingerprint부분만 현재실build검사와 명시history byte검사로 분리했다. 실제정상완주artifact/현재App·Scene을 함께 검사하는 quarry-next-stage-app와 hold-guide는 바꾸지 않았으며 별도호환성차단으로 남는다. 검사파일 목록과 음성검사·후속통합 경계는 RUNTIME_HISTORY_CONTRACTS.md. source분리 후 stage12-redesign은 migration legacyRuntime의 contribution-xp 누락으로실행중단을 드러냈다. 별도작은로더수정으로 다루며 stub/옛Engine으로회피하지않는다.

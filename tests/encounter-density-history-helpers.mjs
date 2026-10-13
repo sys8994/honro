@@ -1,3 +1,4 @@
+import {sourceHistoryInput} from './historical-runtime-inputs.mjs';
 import {campaignHistoryInput} from './historical-campaign-inputs.mjs';
 /** Verified outer combat-only boundary. All original historical validators and
  * fixtures remain authoritative after this exact separately pinned projection.
@@ -18,7 +19,7 @@ export function beforeEncounterDensity(project){let p=plain(project);if(!p.stage
  assert.equal(hash(p),full?f.beforeProjectSha256:f.beforeAct12Sha256,'Exact bb5eafb projection');return p;
 }
 function beforeSources(sources,rows,marker){if(!Object.hasOwn(sources,marker))return sources;assert.deepEqual(Object.keys(sources).sort(),Object.keys(rows).sort(),'Exact density source membership');const out={};for(const[path,row]of Object.entries(rows)){assert.equal(hash(sources[path]),row.afterSha256,'Exact density source '+path);if(!row.beforeSha256)continue;if(Object.hasOwn(row,'before')){assert.equal(hash(row.before),row.beforeSha256,'Immutable stored before-source '+path);out[path]=Buffer.isBuffer(sources[path])?Buffer.from(row.before):row.before;}else out[path]=sources[path];}return out;}
-export const beforeEncounterDensityRuntimeSources=sources=>beforeSources(sources,f.runtime,'shared/runtime/encounter-density.js');
+export const beforeEncounterDensityRuntimeSources=sources=>beforeSources(sourceHistoryInput(sources),f.runtime,'shared/runtime/encounter-density.js');
 export const beforeEncounterDensityAuthoringSources=sources=>beforeSources(sources,f.authoring,'tools/map-forge/apply-encounter-density.mjs');
 export function beforeEncounterDensityFingerprintParts(parts){
  const rows=Object.entries(f.runtime).filter(([path,r])=>path.startsWith('shared/runtime/')&&(!r.beforeSha256||r.before)),digests=parts.map(hash),module=f.runtime['shared/runtime/encounter-density.js'].afterSha256,prefix='globalThis.HONRO_PROJECT=HonroObjectiveRevision.author(HonroAct1Roster.author(',suffix='));';
