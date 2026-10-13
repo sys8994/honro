@@ -175,5 +175,21 @@
     "image": null,
     "portraitPolicy": "scene-actor-or-text",
     "missingPortrait": "전용 초상 미제작. 해당 장면의 명시 배우가 없으면 이름과 본문만 표시."
+  },
+  "월이": {
+    "kind": "character",
+    "class": null,
+    "image": null,
+    "portraitPolicy": "scene-actor-or-text",
+    "legacyOnly": true,
+    "missingPortrait": "구형 대본 화자. 전용 초상 없음; 구 저장은 이름과 본문만 보존."
+  },
+  "칠복": {
+    "kind": "character",
+    "class": null,
+    "image": null,
+    "portraitPolicy": "scene-actor-or-text",
+    "legacyOnly": true,
+    "missingPortrait": "구형 대본 화자. 전용 초상 없음; 구 저장은 이름과 본문만 보존."
   }
 }
