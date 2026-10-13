@@ -11753,15 +11753,18 @@ function tickRedesign(e, dt) {
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e, u, s, angle, power, representative = false, ignoreUnits = false) {
     const b = structuredClone(e.b), Sim = e.constructor, sim = new Sim(b), actor = sim.unit(u.id);
-    const wave = s.mode === 'waveBounce', impact = sim.impact.bind(sim);
+    const wave = s.mode === 'waveBounce', waveContacts = [], impact = sim.impact.bind(sim);
     if (wave)
         sim.impact = (p, h) => { if (p.bounces >= 1) {
             p.x = h.x;
             p.y = h.y;
             sim.remove(p);
         }
-        else
-            impact(p, h); };
+        else {
+            if (h.terrain)
+                waveContacts.push({ x: h.x, y: h.y });
+            impact(p, h);
+        } };
     const collision = sim.collision.bind(sim);
     let contact = null, stepContact = null, terminalContact = null, capture = true;
     sim.collision = (a, z, r, owner, ignored, units = true, ...rest) => { const h = collision(a, z, r, owner, ignored, ignoreUnits ? false : units, ...rest); if (capture && h) {
@@ -11837,7 +11840,7 @@ function arrowPrediction(e, u, s, angle, power, representative = false, ignoreUn
             break;
     }
     const points = primary ? paths.get(primary.id) || [origin] : [origin], last = points.at(-1) || origin;
-    return { ...last, unit: contact?.unit?.id, terrain: terminalContact?.terrain?.id, points, paths: [...paths.values()], time, contacts: [], apex, closest: 99999 };
+    return { ...last, unit: contact?.unit?.id, terrain: terminalContact?.terrain?.id, points, paths: [...paths.values()], time, contacts: waveContacts, apex, closest: 99999 };
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
 function redesignPrediction(e, u, s, angle, power, representative = false, ignoreUnits = false) {
