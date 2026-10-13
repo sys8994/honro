@@ -51,6 +51,8 @@ npm.cmd run build
 npm.cmd run verify
 ```
 
+게임 집계 검증은 정적 감사(`npm --prefix game test`)와 RC21 브라우저·성능 검사(`npm --prefix game run test:rc21:browser`)를 순서대로 실행하여 Stage 1/2 지도를 한 번만 감사합니다. 독립 실행 `npm --prefix game run test:rc21`은 지도 감사부터 브라우저·성능까지 모두 실행합니다. `npm --prefix game run test:verification-plan`은 중복·누락·실패 무시가 없는 명령 구성을 빠르게 검사하며 실제 감사/브라우저 통과를 대신하지 않습니다.
+
 브라우저 검사는 Chrome/Edge 또는 Playwright Chromium을 찾습니다. 다른 실행 파일은 `HONRO_BROWSER` 환경 변수로 지정합니다. 성능 검사는 다른 브라우저 부하와 겹치지 않게 순차 실행합니다.
 
 `npm run build`는 게임과 Workshop을 함께 생성합니다. 기존 `python workshop/build.py`도 같은 빌더에 위임합니다. 생성 HTML을 직접 수정하지 않습니다.

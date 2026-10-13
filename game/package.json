@@ -6,7 +6,7 @@
     "build": "node build.mjs",
     "typecheck": "tsc --project engine/tsconfig.json",
     "test": "node tests/rc20-map-audit.mjs && node tests/impact-audit.mjs && node tests/audio-audit.mjs && node tests/balance-report.mjs && node tests/rc13-balance-audit.mjs && node tests/charge-audit.mjs && node tests/party-pacing.mjs",
-    "verify": "npm run typecheck && npm test && npm run test:rc21",
+    "verify": "npm run test:verification-plan && npm run typecheck && npm test && npm run test:rc21:browser",
     "test:rc11": "node tests/rc11-map-physics.mjs && python -X utf8 tests/rc11-browser.py",
     "test:legacy": "node tests/stage8-lock.mjs && node tests/impact-audit.mjs && node tests/audio-audit.mjs && node tests/balance-report.mjs && node tests/charge-audit.mjs && node tests/party-pacing.mjs",
     "test:rc12": "node tests/rc12-map-gameplay.mjs && python -X utf8 tests/rc12-browser.py",
@@ -18,7 +18,9 @@
     "test:rc18": "node tests/rc18-map-audit.mjs && python -X utf8 tests/rc18-browser.py",
     "test:rc19": "node tests/rc19-map-audit.mjs && python -X utf8 tests/rc19-browser.py",
     "test:rc20": "node tests/rc20-map-audit.mjs && python -X utf8 tests/rc20-browser.py && python -X utf8 tests/rc17-performance.py",
-    "test:rc21": "node tests/rc20-map-audit.mjs && python -X utf8 tests/rc20-browser.py && python -X utf8 tests/rc21-performance.py"
+    "test:rc21": "node tests/rc20-map-audit.mjs && npm run test:rc21:browser",
+    "test:rc21:browser": "python -X utf8 tests/rc20-browser.py && python -X utf8 tests/rc21-performance.py",
+    "test:verification-plan": "node --test tests/verification-plan.mjs"
   },
   "devDependencies": {
     "typescript": "5.8.3"
