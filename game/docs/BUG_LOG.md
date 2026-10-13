@@ -4,7 +4,7 @@
 - 요청/확정: 큰 한자 아래 작은 한글이라는 사용자 방향을 적용하고, 미확정 표기를 임의로 정하지 않도록 확인한 뒤 `魂路`(혼의 길)를 사용했다.
 - 변경: 투명 상아빛 한자 붓글씨를 기존 로고 영역의 주 제목으로 추가하고, 기존 `혼로` 원본은 한 번만 보조로 사용한다. 한글 이미지 높이는 한자의 30.76%, 두 표기 사이 여백은 화면별 3–7px다. 이전 HONRO 세 번째 줄은 제거했다. 배경 그림·tagline·버튼/저장 분기·전투·워크숍 코드는 변경하지 않았다. 두 이미지가 독립적으로 실패해도 고정된 영역에 정확한 HTML 글자가 남고 접근성 제목은 `혼로`로 한 번만 읽힌다.
 - 검증: title-redesign의 5개 저장 분기·반복 진입·표기·2계층·RGBA·비율·독립 fallback, modal-keyboard, fullscreen-escape, audio 22항목, typecheck, 두 HTML 빌드 통과. 6개 화면 크기의 Native 미술 합성과 390/263/170px 실제 표시크기 원본을 구현자와 독립 검수자가 검토했고 한자 구조·한글 비율·배경 조화와 미세 alpha 잔여에 문제가 없음을 확인했다.
-- 한계: Native 합성은 브라우저 CSS·터치·공개 Pages 증거가 아니다. 로컬 Chromium은 화면 로드 전 `socket() failed: Operation not permitted`로 실행되지 않았다. 실제 CSS 검사는 title-redesign-browser에 두 계층 비율·순서·실패 전후 높이 유지 검증을 추가했으며 공개 Pages에서 별도 실행해야 한다. 전체 verify는 별도로 기록하며 이 집중 검사 통과를 전체 검수 완료로 취급하지 않는다.
+- 한계: Native 합성은 브라우저 CSS·터치·공개 Pages 증거가 아니다. 로컬 Chromium은 화면 로드 전 `socket() failed: Operation not permitted`로 실행되지 않았다. 실제 CSS 검사는 title-redesign-browser에 두 계층 비율·순서·실패 전후 높이 유지 검증을 추가했으며 공개 Pages에서 별도 실행해야 한다. 전체 `npm run verify`는 `test:runtime-contracts`의 `shared/runtime/main.js` 승인 해시가 이전 제목 상태에 고정되어 차단됐다(현재 6cf5d8… / 기준 928690…). 제목 집중 검사는 verify에 연결했다. 병렬 HUD 변경도 같은 파일을 수정하므로 최종 합본의 승인 delta·provenance·8개 bundle manifest를 재검토해 갱신해야 하며, 단순 해시 무효화나 역사 계약 우회는 하지 않았다.
 ## 2026-10-13 · 대화·쉼터·자동공격 합본 독립검수
 
 - 범위: 쉼터 재배치/첫서술/새 SP/확대이동, 서술의 텍스트 전용 표현·화자 정체성, 수동서술·지속 전술큐, 대화 이전/반복입력/기록/Continue, E 도움말, 대화 정지 피격잔상, 자동공격 아군보호 및 A03 후속 자동재조준, 전장 막·장 표기를 합쳤다. 새 2장 AI/5장 폭포/휘겸 서사 작업은 포함하지 않았다.

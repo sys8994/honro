@@ -34,3 +34,5 @@
 - 한글은 한자 아래 3–7px 간격, 이미지 높이 약 31%. 가로/세로·낮은 화면의 로고 폭은 이전 수치를 유지한다. 배경, tagline, 메뉴 위치·동작·저장 분기는 변경하지 않는다.
 - Native 검수: 1440×900, 400×800, 333×740, 333×592, 844×390, 667×333의 원본 그림+실제 표시크기 로고 합성. 구현자와 독립 검수자가 한자 구조·한글 비율·배경 조화를 직접 확인했다. 원본의 미세 alpha 입자는 390/263/170px 표시에서 화면을 더럽히는 밝은 덩어리로 보이지 않았다. 붓끝을 인위적으로 지우지 않았다. `tools/testing/capture-title-hanja-native.mjs`는 미술 스케일 진단용이며 브라우저 CSS/기기 화면을 재현했다고 주장하지 않는다.
 - 계약 검사: 두 글자 표기·두 계층·RGBA/크기·31% 높이·5개 저장 분기·반복 진입·독립 이미지 실패 fallback·접근성. 실제 브라우저 검사는 같은 6개 viewport에서 비율·비겹침·실패 전후 높이·키보드·설정/기록 복귀를 확인하도록 확장했다. 로컬 Chromium은 페이지 실행 전 socket 권한 실패가 확인되어, 최종 공개 Pages 검수는 별도 담당이 수행해야 한다.
+
+- 전체 검수 상태: `npm run verify`는 current runtime provenance gate의 main.js 변경 감지에서 중단됐다. 새 제목과 병렬 HUD를 합친 최종 소스의 승인 delta/manifest 검토가 선행되어야 한다. `npm run test:title`은 source/App 계약, `npm run test:title:browser`는 실제 브라우저, `npm run capture:title:art`는 Native 미술 진단으로 각각 구분한다.
