@@ -225,10 +225,10 @@ export class Engine {
     advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string;body?:boolean},dt:number){
         const a=this.forceSample(p),air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
         const water=!p.body&&!BODY.has(p.mode||'')?waterfallSheet(this.b):undefined;
-        return water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false};
+        return water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};
     }
-    private waterEntry(p:Projectile,m:{waterEntered:boolean}){
-        if(m.waterEntered&&!p.waterfallTouched){p.waterfallTouched=true;this.fx('ring',p.x,p.y,'#c8e1d9',22);this.fx('spark',p.x,p.y,'#9fcbd0',16);}
+    private waterEntry(p:Projectile,m:{waterEntered:boolean;waterEntryPoint?:Vec}){
+        if(m.waterEntered&&!p.waterfallTouched){p.waterfallTouched=true;const at=m.waterEntryPoint||p;this.fx('ring',at.x,at.y,'#c8e1d9',22);this.fx('spark',at.x,at.y,'#9fcbd0',16);}
     }
     // Uniform broad phase: a large field need not scan every distant ground piece for each flight substep.
     collisionTerrain(a: Vec, c: Vec, r: number) {
