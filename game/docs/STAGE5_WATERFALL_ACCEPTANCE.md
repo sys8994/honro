@@ -8,6 +8,7 @@ Status: implementation and independent review in progress. This document is not 
 - The small recess contains 주박목, a paper-bound wooden curse tablet. Legacy IDs `cliff-cleat` and `receiver-5` remain for save/objective compatibility only.
 - Damheo uses the existing ritual action at 물길진. He must remain within the existing marker radius; moving away closes the shooting window. Seolo attacks through the opening. Hwigyeom is absent here; the independently owned Stage 6 recruitment boundary applies.
 - User's latest rule replaces the earlier solid projectile wall: entering arrows rapidly lose speed and fall with the water. The fluid polygon comes from the same sampled curves as art. Full fluid/prediction/Continue/special-shot evidence belongs to `stage5-waterfall-drag.mjs`; earlier wall-only WIP passes do not establish this final rule.
+- Body movement retains the existing torrent barrier while arrows use fluid drag. The opened gap admits ordinary jumping; there is no new body-current or drowning system.
 - Deep water uses the existing water rules, with no invented drowning or teleport recovery. The left pool shore returns to the ritual bank. The upper shooting ledge is reached by an ordinary jump near x1800→1900; the opened cave is reached by another ordinary jump from the front rib.
 
 ## Population and tactical inventory
@@ -37,3 +38,7 @@ Initial20, action cap4, population cap20, enemy stats, target HP and one-round s
 - `stage5-waterfall-fullplay-input.mjs`: production App input controller, legal entry reward fixture, actual movement/jump/charge/interaction/defend/pause/save input trace. No claim of playing Stages1–4 continuously.
 - `capture-stage5-waterfall.mjs`: production NativeCanvas renderer, fixed identical overview/focus/portrait cameras and explicit closed/open states. This is not browser/HUD/performance proof.
 - Final acceptance still requires the latest source's raw normal-play/replay trace, every group/conditional wave disposition, independent encounter review manifest, integrated regression suite and final browser/Pages verification.
+
+## Mandatory contract wiring
+
+`npm run test:stage5-waterfall:contracts` is required by both `test:integration` and the explicit offline verifier. It includes canonical sharing, geometry routes, narrative, conditional waves, old-save/new-retry, fluid trajectories, special projectiles and in-water App pause/Continue. A separate final normal-input replay and independent encounter manifest remain required release evidence; these isolated contracts cannot substitute for them.
