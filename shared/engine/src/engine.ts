@@ -614,7 +614,7 @@ export class Engine {
       if(p?.autonomous!==undefined)return p.autonomous;
       // Old twin-crescent roots used child solely for their shared damage cap.
       // Their fixed, aimed crescent paths are not emitted automatic fragments.
-      return !!(p?.secondary||p?.followup||p?.echoSource||(p?.child&&p.mode!=='crescent'));
+      return !!(p?.secondary||p?.followup||p?.echoSource||(p?.mode==='chainArrow'&&(p.chain||0)>0)||(p?.child&&p.mode!=='crescent'));
     }
     /** This safety rule belongs to the player coalition, not hostile AI attacks.
      * A removed legacy owner uses the saved projectile side; unknown origins retain

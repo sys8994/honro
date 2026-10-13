@@ -269,7 +269,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
   if(p.mode==='return'&&p.hit.length<=1)return true;
   if(p.mode==='chainArrow'&&(p.chain||0)<Math.round(lerpRank(1,5,r))){
    const next=e.b.units.filter(t=>e.guidanceTarget(e.unit(p.owner),t)&&!p.hit.includes(t.id)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260).sort((a,b)=>Math.hypot(a.x-p.x,a.y-a.h*.5-p.y)-Math.hypot(b.x-p.x,b.y-b.h*.5-p.y))[0];
-   if(next){const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.hypot(dx,dy);p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;return true;}
+   if(next){const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.hypot(dx,dy);p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;p.autonomous=true;return true;}
   }
  }
  if(h.terrain){e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
