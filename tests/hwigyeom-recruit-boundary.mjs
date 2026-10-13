@@ -1,0 +1,14 @@
+/** Production lifecycle with DOM doubles, not normal combat proof. */
+import assert from 'node:assert/strict';
+import {appHarness,plain,report} from './app-regression-helpers.mjs';
+const {g,load,reload,profileThrough,finish,nodes}=await appHarness(),checks=[];
+const freshSix=()=>{const p=profileThrough(5);p.recruited=['archer','mage'];p.party=[...p.recruited];p.heroes.knight.xp=0;return p;};
+let app=load(profileThrough(4));app.launch(5);finish(app);app.engine.b.phase='won';app.outcome(true);
+assert(!app.profile.recruited.includes('knight'));assert(!nodes.get('modal').innerHTML.includes('<strong>휘겸</strong>'));
+assert(g.HONRO_CONTENT.stages[4].outro.every(l=>l[0]!=='휘겸'));checks.push('new stage 5 outcome does not recruit or speak as absent Hwigyeom');
+app=load(freshSix());app.showRest();assert(app.profile.recruited.includes('knight'));assert.equal(g.HONRO_CORE.levelOf(app.profile.heroes.knight),6);assert(nodes.get('app').innerHTML.includes('rest-knight'));const first=plain(app.profile.heroes.knight);finish(app);app.showRest();assert.deepEqual(plain(app.profile.heroes.knight),first);checks.push('stage 6 meeting rest recruits once at level 6 before first combat');
+app=load(freshSix());app.launch(6);finish(app);assert(app.profile.recruited.includes('knight'));assert.equal(app.engine.b.units.filter(u=>u.side===0&&u.cls==='knight').length,1);app.engine.b.round=7;app.engine.b.units.find(u=>u.side===0&&u.cls==='knight').hp-=9;app.stopBattle();const saved=plain(app.profile.honroBattle);app=reload();app.continue();assert.deepEqual(plain(app.engine.b.units),saved.units);assert.equal(app.engine.b.round,7);app.launch(6);finish(app);assert.equal(app.engine.b.units.filter(u=>u.side===0&&u.cls==='knight').length,1);checks.push('direct stage 6 launch, retry and saved combat resume keep one companion and preserve snapshot');
+const legacy=profileThrough(5);legacy.heroes.knight.xp=g.HONRO_CORE.xpAtLevel(18);const prior=plain(legacy.heroes.knight);app=load(legacy);app.showRest();assert.deepEqual(plain(app.profile.heroes.knight),prior);assert(app.profile.party.includes('knight'));checks.push('legacy stage 5 completion retains recruited companion and high growth');
+app=load(profileThrough(4));app.launch(5);finish(app);app.stopBattle();const old=plain(app.profile.honroBattle);app=reload();app.showRest();assert(!app.profile.recruited.includes('knight'));assert.deepEqual(plain(app.profile.honroBattle),old);checks.push('unfinished stage 5 rest does not recruit or reset progress');
+assert(g.HONRO_CONTENT.stages[2].story.some(l=>l[0]==='휘겸'));assert(g.HONRO_CONTENT.stages[3].outro.some(l=>l[1].includes('쉼터')));assert(g.HONRO_CONTENT.stages[5].story.some(l=>l[1].includes('나도 동행')));checks.push('first meeting, separate escort and voluntary shared rescue form a continuous story');
+await report('hwigyeom-recruit-boundary',checks);console.log('PASS',checks.length,'Hwigyeom boundary contracts');
