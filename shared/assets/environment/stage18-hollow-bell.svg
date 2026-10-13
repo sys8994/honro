@@ -3,8 +3,8 @@
 <desc>Original editable Korean Buddhist bell seen from below. Rounded bronze shoulders, low-relief lotus bosses, worn nonfigurative inscriptions and a continuous cast mouth with a deep underside. No anthropomorphic relief. Initial world anchor 7200,6610; the whole bell settles 200 units onto the authored stone supports.</desc>
 <defs>
 <linearGradient id="bronze" x1="-1510" y1="-1900" x2="1580" y2="-1600" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#514f41"/><stop offset="0.18" stop-color="#81755c"/><stop offset="0.33" stop-color="#77745b"/><stop offset="0.48" stop-color="#5b6553"/><stop offset="0.71" stop-color="#42564b"/><stop offset="1" stop-color="#243b37"/></linearGradient>
-<linearGradient id="inner-wall" x1="-1070" y1="-1900" x2="1190" y2="-1700" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#374a45"/><stop offset="0.18" stop-color="#142a2e"/><stop offset="0.55" stop-color="#0b1b23"/><stop offset="0.85" stop-color="#182c30"/><stop offset="1" stop-color="#425449"/></linearGradient>
-<linearGradient id="inner-void" x1="-1320" y1="-410" x2="1400" y2="-270" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#11272a"/><stop offset="0.28" stop-color="#0b1b22"/><stop offset="0.58" stop-color="#102128"/><stop offset="1" stop-color="#1b272c"/></linearGradient>
+<linearGradient id="inner-wall" x1="-1320" y1="-410" x2="580" y2="-410" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#374a45"/><stop offset="0.32" stop-color="#142a2e"/><stop offset="0.62" stop-color="#15262b"/><stop offset="0.96" stop-color="#1b2429"/><stop offset="1" stop-color="#1b2429"/></linearGradient>
+<linearGradient id="inner-void" x1="-1320" y1="-410" x2="680" y2="-410" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#11272a"/><stop offset="0.28" stop-color="#0b1b22"/><stop offset="0.68" stop-color="#152329"/><stop offset="0.93" stop-color="#1b2429"/><stop offset="1" stop-color="#1b2429"/></linearGradient>
 <linearGradient id="bell-lip" x1="-1600" y1="-50" x2="1640" y2="-100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#9b8b69"/><stop offset="0.29" stop-color="#776f54"/><stop offset="0.67" stop-color="#5c654f"/><stop offset="1" stop-color="#33473f"/></linearGradient>
 <linearGradient id="aged-crown" x1="-830" y1="-3390" x2="1000" y2="-3030" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8d8064"/><stop offset="0.32" stop-color="#77765c"/><stop offset="0.68" stop-color="#526351"/><stop offset="1" stop-color="#304a41"/></linearGradient>
 <linearGradient id="cavity-floor-bounce" x1="0" y1="-810" x2="0" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#607b77" stop-opacity="0"/><stop offset="0.78" stop-color="#607b77" stop-opacity="0.09"/><stop offset="1" stop-color="#607b77" stop-opacity="0.03"/></linearGradient>
@@ -14,6 +14,7 @@
 <radialGradient id="aged-dark-wash" cx="575" cy="-1390" r="760" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#183b33" stop-opacity="0.26"/><stop offset="0.58" stop-color="#183b33" stop-opacity="0.14"/><stop offset="1" stop-color="#183b33" stop-opacity="0"/></radialGradient>
 <radialGradient id="worn-bronze-wash" cx="-940" cy="-1050" r="690" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ae9165" stop-opacity="0.18"/><stop offset="0.56" stop-color="#ae9165" stop-opacity="0.08"/><stop offset="1" stop-color="#ae9165" stop-opacity="0"/></radialGradient>
 <linearGradient id="lip-weight" x1="0" y1="-160" x2="0" y2="2" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#162e29" stop-opacity="0"/><stop offset="0.58" stop-color="#162e29" stop-opacity="0.13"/><stop offset="1" stop-color="#162e29" stop-opacity="0.65"/></linearGradient>
+<linearGradient id="receding-inner-highlight" x1="-1240" y1="0" x2="530" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6a7b64" stop-opacity="0.4"/><stop offset="0.64" stop-color="#6a7b64" stop-opacity="0.23"/><stop offset="1" stop-color="#6a7b64" stop-opacity="0"/></linearGradient>
 </defs>
 <g id="crown-yongnyu-and-sound-pipe" transform="matrix(1 0 0 1 0 -480)">
 <path id="restrained-dragon-ring" d="M-301-3375Q-361-3505-332-3590Q-310-3675-221-3741Q-128-3857-42-3825Q23-3803 49-3773L62-3719L7-3711Q-25-3792-87-3775Q-144-3756-215-3644Q-256-3584-226-3511L-208-3409Z" fill="#444d3e" stroke="#14292d" stroke-width="18"/>
@@ -64,10 +65,10 @@
 <path d="M-1436-275Q-899-737 34-760Q842-780 1299-658" fill="none" stroke="#979176" stroke-width="10" opacity="0.7"/>
 <path id="inner-cavern-under-bell" d="M-1406-184Q-874-627 35-652Q922-691 1340-584L1444-320Q1033-51 49-24Q-836-19-1406-184Z" fill="url(#inner-void)"/>
 <path id="receding-inner-cast-wall" d="M-1406-184Q-874-627 35-652Q922-691 1340-584L1380-475Q901-601 36-553Q-827-532-1351-139Z" fill="url(#inner-wall)"/>
-<path d="M-1351-139Q-827-532 36-553Q901-601 1380-475" fill="none" stroke="#6a7b64" stroke-width="9" opacity="0.34"/>
+<path d="M-1351-139Q-827-532 36-553Q901-601 1380-475" fill="none" stroke="url(#receding-inner-highlight)" stroke-width="9"/>
 </g>
 <g id="cast-sound-window-frame">
-<path id="continuous-throat-shadow" d="M1303-610H660Q620-610 620-590V-360Q620-320 670-320H935" fill="none" stroke="#1b272c" stroke-width="9" stroke-linejoin="round" opacity="0.24"/>
+<path id="continuous-throat-shadow" d="M1303-610H660Q620-610 620-590V-360Q620-320 670-320H935" fill="none" stroke="#1b2429" stroke-width="9" stroke-linejoin="round" opacity="0.15"/>
 <path id="one-heavy-inner-bronze-ledge" d="M935-333Q1150-326 1444-320L1469-276Q1157-286 957-298Z" fill="#50604b"/>
 <path id="receding-ledge-underside" d="M957-298Q1157-286 1469-276L1440-245Q1191-263 984-279Z" fill="#273e34"/>
 </g>
