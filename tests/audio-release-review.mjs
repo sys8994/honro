@@ -18,13 +18,16 @@ function harness(rate){
  vm.runInContext(ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS}}).outputText,g);
  return {a:new g.exports.AudioEngine(),buffers,voices,idle,resolve:()=>resume(),time:n=>now=n,samples:g.exports.soundSamples};
 }
-const baseline=harness(24000).samples('dialogue',24000);
+const names=['dialogue','arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose','sodanBell'];
+const synthesis=harness(24000),baselines=new Map(names.map(name=>[name,synthesis.samples(name,24000)]));
 for(const rate of [24000,44100,48000]){
- const h=harness(rate),p=h.a.wake();h.resolve();await p;h.a.play('dialogue');const b=h.buffers[0];
- assert.equal(h.a.context.sampleRate,rate);assert.equal(b.sampleRate,24000);assert.equal(b.duration,.24);assert.deepEqual(b.pcm,baseline);
+ const h=harness(rate),p=h.a.wake();h.resolve();await p;
+ assert.equal(h.a.context.sampleRate,rate);
+ for(const name of names){h.a.play(name);const b=h.a.buffers.get(name),pcm=baselines.get(name);assert(b,name);assert.equal(b.sampleRate,24000);assert.equal(b.duration,pcm.length/24000);assert.deepEqual(b.pcm,pcm,name+' preserves waveform and truthful rate');}
+ assert.equal(h.a.buffers.get('dialogue').duration,.24);assert.equal(h.buffers.length,26);
  // Playback receives identical fixed-rate PCM plus its truthful rate, independent
  // of the device rate: the browser, rather than a wrong sample-rate label, resamples.
- console.log('PASS PCM/rate/duration contract at device rate',rate);
+ console.log('PASS all 26 SFX PCM/rate/duration contracts at device rate',rate);
 }
 for(const cancel of [a=>{a.update('main',true);a.update('main',false);},a=>{a.configure({sound:false,volume:.55});a.configure({sound:true,volume:.55});},a=>{a.configure({sound:true,volume:0});a.configure({sound:true,volume:.55});}]){
  const h=harness(48000),p=h.a.wake();h.a.play('dialogue');cancel(h.a);h.resolve();await p;assert.equal(h.voices.length,0);assert.equal(h.a.pending.length,0);h.a.play('dialogue');assert.equal(h.voices.length,1);
