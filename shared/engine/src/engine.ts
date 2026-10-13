@@ -826,7 +826,7 @@ export class Engine {
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active) {
         if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
             return;
-        if((this.b as any).honroStage===5&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
+        if((this.b as any).honroStage===5&&(this.b as any).honroStage5WaterfallRevision!==1&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
             this.fx('text',t.x+t.w/2,t.y-28,'#c8d6d8',15,'물틈 닫힘 · 받이진 필요');return;
         }
         const before=t.hp;
@@ -901,6 +901,13 @@ export class Engine {
                 continue;
             const cx = clamp(x, t.x, t.x + t.w), cy = clamp(y, Math.min(t.y, t.y + (t.slope || 0)), t.y + t.h);
             const d = Math.hypot(x - cx, y - cy);
+            // New waterfall cave: blast pressure obeys its actual water/rock
+            // occlusion. A burst already inside the cave is allowed; no ritual
+            // flag grants arbitrary immunity to an exposed wooden target.
+            if ((this.b as any).honroStage5WaterfallRevision===1 && t.id==='cliff-cleat') {
+                const to={x:cx,y:cy};
+                if(this.b.terrain.some(w=>w!==t&&!w.broken&&(segmentProjectileTerrain({x,y},to,w,0)||terrainRectIntersects(w,x-.1,y-.1,.2,.2,0))))continue;
+            }
             if (d < radius)
                 this.damageTerrain(t, damage * (s?.terrain || 1) * (.5 + .5 * (1 - d / radius)), depth, owner);
         }
@@ -1235,6 +1242,9 @@ export class Engine {
         return false;
     }
     impact(p: Projectile, h: Collision) {
+        if((this.b as any).honroStage5WaterfallRevision===1&&!SKILLS[p.skill]?.redesigned&&h.terrain?.id==='waterfall-veil'){
+            this.fx('ring',h.x,h.y,'#c8e1d9',44);this.fx('spark',h.x,h.y,'#9fcbd0',34);
+        }
         p.x = h.x;
         p.y = h.y;
         p.directId = h.unit?.id;

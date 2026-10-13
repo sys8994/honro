@@ -238,6 +238,7 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
 
 /** Hook only redesigned impacts; collision detection and integration remain in Engine. */
 export function redesignImpact(e:Engine,p:Projectile,h:Collision){
+ if((e.b as any).honroStage5WaterfallRevision===1&&SKILLS[p.skill]?.redesigned&&h.terrain?.id==='waterfall-veil'){e.fx('ring',h.x,h.y,'#c8e1d9',44);e.fx('spark',h.x,h.y,'#9fcbd0',34);}
  if(!newSkill(p))return false;
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.x=h.x;p.y=h.y;
  if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
