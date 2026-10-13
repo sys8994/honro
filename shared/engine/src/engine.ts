@@ -616,11 +616,15 @@ export class Engine {
       // Their fixed, aimed crescent paths are not emitted automatic fragments.
       return !!(p?.secondary||p?.followup||p?.echoSource||(p?.child&&p.mode!=='crescent'));
     }
-    attackAllows(target:Unit,owner:string,p?:Partial<Projectile>){
-      if(!this.autonomousAttack(owner,p))return true;
+    /** This safety rule belongs to the player coalition, not hostile AI attacks.
+     * A removed legacy owner uses the saved projectile side; unknown origins retain
+     * their previous damage rules instead of silently dropping enemy damage. */
+    protectedAutomaticAttack(owner:string,p?:Partial<Projectile>){
       const actor=this.unit(owner),side=actor?this.allegiance(actor):p?.side;
-      const other=this.allegiance(target);
-      return side!==undefined&&side!==2&&other!==2&&side!==other;
+      return side===0&&this.autonomousAttack(owner,p);
+    }
+    attackAllows(target:Unit,owner:string,p?:Partial<Projectile>){
+      return !this.protectedAutomaticAttack(owner,p)||this.allegiance(target)===1;
     }
     /** Guidance remains enemy-only; directly aimed root shots retain friendly collision. */
     guidanceTarget(owner:Unit|undefined,target:Unit|undefined):boolean {
@@ -841,7 +845,7 @@ export class Engine {
         u.jumping = false; }
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active, attack?:Partial<Projectile>) {
         // Automatic attacks cannot remove support, trigger barrels or alter water under allies.
-        if(this.autonomousAttack(owner,attack))return;
+        if(this.protectedAutomaticAttack(owner,attack))return;
         if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
             return;
         if((this.b as any).honroStage===5&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
