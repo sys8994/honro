@@ -144,3 +144,32 @@ console.log('PASS player-only safety, exact hostile NPC/objective/terrain parity
  const terrain={id:'hostile-summon-support',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(terrain);a.e.blast(800,1460,100,60,ghost.id,false,p);assert(npc.hp<npc.maxHp);assert(terrain.broken,'hostile summon retains terrain damage despite saved side 0');
 }
 console.log('PASS enemy-owned summon current allegiance overrides stale side without extra immunity');
+// A03's manually aimed first leg is unchanged; a retargeted chain is autonomous.
+for(const resume of ['none','current','legacy'])for(const coalition of [true,false]){
+ const a=arena('A03'),first=a.add(coalition?1:0,600),ally=a.add(coalition?0:2,700),second=a.add(coalition?1:0,800),p=a.fire();
+ if(!coalition){a.u.side=1;p.side=1;}
+ Object.assign(p,{x:580,y:1460,vx:900,vy:0,gravityScale:0,wind:0});
+ for(let n=0;n<30&&!p.chain;n++)a.e.stepProjectile(p,C.STEP);
+ assert.equal(p.chain,1);assert.equal(p.autonomous,true,'first retarget records provenance');
+ let e=a.e,b=a.b,q=p;
+ if(resume!=='none'){b=JSON.parse(JSON.stringify(b));q=b.projectiles.find(t=>t.id===p.id);if(resume==='legacy')delete q.autonomous;e=new C.Engine(b);e.random=()=>.99;e.checkEnd=()=>false;}
+ for(let n=0;n<120&&b.projectiles.includes(q);n++)e.stepProjectile(q,C.STEP);
+ assert(e.unit(first.id).hp<first.maxHp);assert(e.unit(second.id).hp<second.maxHp);
+ assert.equal(e.unit(ally.id).hp===ally.maxHp,coalition,'player chain skips ally; hostile chain retains neutral collision '+resume);
+}
+for(const legacy of [false,true]){
+ const a=arena('A03'),ally=a.add(0,600),p=a.fire();Object.assign(p,{x:580,y:1460,vx:900,vy:0,gravityScale:0,wind:0});
+ if(legacy)delete p.autonomous;
+ for(let n=0;n<40&&a.b.projectiles.includes(p);n++)a.e.stepProjectile(p,C.STEP);
+ assert(ally.hp<ally.maxHp,'direct first leg preserves friendly collision');
+}
+// Chain provenance also protects secondary effects and destructible supports.
+for(const coalition of [true,false])for(const explicit of [true,false]){
+ const a=arena('A03'),ally=a.add(coalition?0:2,800,{fixed:false}),foe=a.add(coalition?1:0,800),p=a.fire();
+ if(!coalition){a.u.side=1;p.side=1;}
+ Object.assign(p,{chain:1,x:800,y:1460,blast:100,damage:50});if(explicit)p.autonomous=true;else delete p.autonomous;
+ const before=state(ally);a.e.blast(800,1460,100,50,a.u.id,false,p);a.e.createZone(p,'frost');a.e.applyZones(ally);
+ assert.equal(state(ally)===before,coalition);assert(foe.hp<foe.maxHp);
+ const t={id:'chain-support',x:780,y:1490,w:40,h:20,mat:'wood',hp:30,maxHp:30};a.b.terrain.push(t);a.e.damageTerrain(t,40,0,a.u.id,p);assert.equal(!t.broken,coalition);
+}
+console.log('PASS A03 automatic chain live/Continue/legacy safety, direct first leg and hostile neutral/status/impulse/terrain parity');
