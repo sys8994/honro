@@ -5,11 +5,11 @@
 - `landscape.webp` / `.jpg`: independently authored 16:9 composition, quiet water at left, small open ferry and amber lantern at lower right.
 - `portrait.webp` / `.jpg`: independently authored 9:16 composition, misted mountain opening above, ferry below; targeted second pass removed the boat canopy to match the landscape.
 - `hanja-wordmark.png`: genuine-alpha ivory brush lettering, exactly `魂路` (user-confirmed on 2026-10-13, “혼의 길”). Original 1859×846 built-in image-generation output; no programmatic alpha removal, stroke warping, or texture filtering. Large primary title.
-- `wordmark.png`: existing genuine-alpha ivory brush lettering, exactly `혼로`; reused once below the Hanja at 28% width, approximately 31% of its image height. No Latin H or red seal. The former Roman subtitle is no longer rendered.
+- `wordmark.png`: existing genuine-alpha ivory brush lettering, exactly `혼로`; reused as the upright `혼` / `로` reading at the Hanja’s lower-right; source-coordinate complementary clips preserve both full brush forms. No Latin H or red seal. The former Roman subtitle is no longer rendered.
 
 Production prompts: Korean dark fantasy, first ferry landing, ink-dark granite mountain silhouettes, still river, blue-grey mist, restrained warm lantern, fine dry-brush painterly texture. Leave calm left-side (landscape) or upper/middle (portrait) negative space for independent UI. No people, spoilers, Chinese/Japanese ornaments, floating objects, giant/cropped foreground trees, baked-in text or menu. Logo: two readable Hangul syllables, ㅎ+ㅗ+ㄴ / ㄹ+ㅗ, warm ivory brush ink, transparent background; no red seal, H, border, underline or glow.
 
-Only encoding/resizing is applied in production; no programmatic background removal or alpha reconstruction. Both background formats are embedded in Game's HTML by `game/build.mjs`; the existing world/map renderer is unchanged. Art must be reviewed at real UI scale, not just full-size source.
+The PNG sources receive no programmatic background removal or alpha reconstruction. The 2026-10-13 refinement applies an alpha-preserving code-native SVG ink wash at display time; original generated pixels remain unchanged. Both background formats are embedded in Game's HTML by `game/build.mjs`; the existing world/map renderer is unchanged. Art must be reviewed at real UI scale, not just full-size source.
 
 ## Hanja lettering prompt · 2026-10-13
 
@@ -31,3 +31,9 @@ Review files are reproducible local diagnostics, intentionally excluded from Git
 - `_local/reports/title-hanja/native/report.json`: asset SHA-256 and measured diagnostic layout values.
 
 The implementer reviewed the source and display-scale cuts; an independent reviewer directly opened the 1440×900 and 333×740 compositions and approved the glyph structures, Korean reading ratio, background fit and absence of disruptive residual alpha noise. These are Native Canvas art checks. Public browser/CSS verification follows integration and deployment separately.
+
+## Current display treatment · 2026-10-13 refinement
+
+The exact original Hanja and Hangul SHA-256 values remain 4bc7d957ebc4d57be206a70070cc53e9921822c865a30ada027456c2f5857111 and 696d0c688d361feefa4a66902ac0e8c327d77a1c05a4c45593e01683d9f8d5c0. No image generation or raster editing was needed for this code-native layout/material refinement. SVG fractal noise is stationary, coarse and low contrast; the color matrix produces dark gray-green ash and its output is composited only through original alpha. The Hangul is split by complementary CSS clips and displayed upright vertically, not rotated.
+
+Current diagnostics are `_local/reports/title-ashen/native/` (six intended-size compositions and `mark-real-size.png`) and `_local/reports/title-ashen/letter-rendering.json` (actual SVG alpha/pixel metrics). Earlier `title-hanja` evidence above documents the preceding ivory/centered-reading revision and is not current tone/layout proof. Current 333px/desktop art was directly reviewed and approved; real browser/CSS/Pages checks remain a separate deployment gate.

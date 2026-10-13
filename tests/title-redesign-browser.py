@@ -4,7 +4,7 @@ Profile fixtures cover title branches only; this is not normal campaign proof.
 import json, os
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
-OUT=ROOT/'_local/reports/title-redesign/browser'
+OUT=ROOT/'_local/reports/title-ashen/browser'
 OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.environ.get('HONRO_BASE_URL','')
 checks=[]
@@ -20,14 +20,18 @@ with sync_playwright() as pw:
           const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}};
           const hanja=rect(document.querySelector('.title-hanja')),hangul=rect(document.querySelector('.title-hangul'));
           const mark=rect(document.querySelector('.honro-logo-wrap')),tag=rect(document.querySelector('.title-tagline')),actions=rect(document.querySelector('.title-actions')),footer=rect(document.querySelector('.footer'));
-          const buttons=[...document.querySelectorAll('.honro-title button')].map(rect);
-          return {mark,hanja,hangul,tag,actions,footer,buttons,overflow:document.documentElement.scrollWidth>innerWidth,portrait:matchMedia('(orientation:portrait)').matches,source:document.querySelector('.title-painting img').currentSrc.slice(0,30),animation:getComputedStyle(document.querySelector('.title-main')).animationName};
+          const buttons=[...document.querySelectorAll('.honro-title button')].map(rect),syllables=[...document.querySelectorAll('.title-reading-glyph')].map(rect);
+          return {mark,hanja,hangul,tag,actions,footer,buttons,syllables,ink:getComputedStyle(document.querySelector('.title-brand')).filter,overflow:document.documentElement.scrollWidth>innerWidth,portrait:matchMedia('(orientation:portrait)').matches,source:document.querySelector('.title-painting img').currentSrc.slice(0,30),animation:getComputedStyle(document.querySelector('.title-main')).animationName};
         }''')
         assert not result['overflow'],(w,h,result)
-        assert 0.25 <= result['hangul']['h']/result['hanja']['h'] <= 0.35,(w,h,result)
-        assert result['hanja']['bottom'] < result['hangul']['y'],(w,h,result)
+        assert result['hangul']['x'] >= result['hanja']['x']+result['hanja']['w']*.95,(w,h,result)
+        assert result['hangul']['y'] > result['hanja']['y']+result['hanja']['h']*.5,(w,h,result)
+        assert result['hangul']['right'] <= w,(w,h,result)
+        assert len(result['syllables'])==2 and abs(result['syllables'][0]['x']-result['syllables'][1]['x'])<1,(w,h,result)
+        assert result['syllables'][0]['bottom'] <= result['syllables'][1]['y']+1,(w,h,result)
+        assert 'honro-title-ink' in result['ink']
         assert page.locator('.title-brand').get_attribute('aria-label') == '혼로'
-        assert page.locator('.honro-logo-hanja').count()==1 and page.locator('.honro-logo-hangul').count()==1
+        assert page.locator('.honro-logo-hanja').count()==1 and page.locator('.honro-logo-hangul').count()==2
         assert page.locator('.title-roman').count()==0
         assert result['mark']['bottom']<=result['tag']['y']+1,(w,h,result)
         assert result['tag']['bottom']<result['actions']['y'],(w,h,result)
@@ -50,9 +54,9 @@ with sync_playwright() as pw:
         page.locator('.honro-logo-hanja').evaluate('(i)=>i.onerror()')
         assert page.locator('.title-logo-fallback').is_visible()
         assert page.locator('.title-logo-fallback').inner_text()=='魂路'
-        page.locator('.honro-logo-hangul').evaluate('(i)=>i.onerror()')
-        assert page.locator('.title-reading-fallback').is_visible()
-        assert page.locator('.title-reading-fallback').inner_text()=='혼로'
+        page.locator('.honro-logo-hangul').evaluate_all('(images)=>images.forEach(i=>i.onerror())')
+        assert all(page.locator('.title-reading-fallback').nth(i).is_visible() for i in range(2))
+        assert page.locator('.title-reading-fallback').all_inner_texts()==['혼','로']
         after_failure=page.locator('.honro-logo-wrap').bounding_box()
         assert abs(before_failure['height']-after_failure['height']) < 1,(before_failure,after_failure)
         page.locator('.title-painting img').evaluate('(i)=>i.onerror()')

@@ -36,3 +36,13 @@
 - 계약 검사: 두 글자 표기·두 계층·RGBA/크기·31% 높이·5개 저장 분기·반복 진입·독립 이미지 실패 fallback·접근성. 실제 브라우저 검사는 같은 6개 viewport에서 비율·비겹침·실패 전후 높이·키보드·설정/기록 복귀를 확인하도록 확장했다. 로컬 Chromium은 페이지 실행 전 socket 권한 실패가 확인되어, 최종 공개 Pages 검수는 별도 담당이 수행해야 한다.
 
 - 전체 검수 상태: `npm run verify`는 current runtime provenance gate의 main.js 변경 감지에서 중단됐다. 새 제목과 병렬 HUD를 합친 최종 소스의 승인 delta/manifest 검토가 선행되어야 한다. `npm run test:title`은 source/App 계약, `npm run test:title:browser`는 실제 브라우저, `npm run capture:title:art`는 Native 미술 진단으로 각각 구분한다.
+
+## 우하단 세로 독음·잿빛 먹결 수정 · 2026-10-13
+
+- 사용자 요청은 한글 `혼로`를 한자 아래 정중앙에서 우하단의 세로 독음으로 옮기고, 제목색과 질감을 더 어둡고 음울하게 조정하는 것이다. 기존 확정 한자 `魂路`·붓획·나루 그림·메뉴 동작은 유지한다.
+- `title-brand`의 고정 1.85:1 영역 안에 한자를 기존 폭으로 두고, 한글을 왼쪽 97% / 위쪽 48% 위치에서 `혼` 다음 `로` 순으로 세운다. 글자나 단어 전체를 회전하지 않는다. 두 독음은 기존 1100×550 원본을 같은 축척으로 표시한다. x=575(위 380px), x=550(아래)의 상보적인 CSS clip 경계를 사용해 중앙을 넘는 `혼` 붓끝까지 보존하고 `로`에 앞 글자 파편이 붙지 않게 한다.
+- 두 원본 PNG 바이트와 alpha는 변경하지 않는다. 정지한 SVG fractal ink wash를 원래 `SourceGraphic` alpha 안으로만 합성해 회녹빛 잿빛 중간톤을 만든다. 낮은 대비의 넓은 먹얼룩이며 glow, bevel, 금빛, 반복 타일·미세 잡티·움직임을 추가하지 않는다. SVG를 사용할 수 없는 표시의 텍스트 fallback도 같은 잿빛 계열이다.
+- 기존 배경·태그라인·설정·기록·Workshop Map·저장 상태별 메뉴 동작과 H1의 단일 `혼로` 접근성 이름은 유지한다. 그림 실패 시 한자와 각 독음이 같은 예약 영역의 실제 텍스트로 대체된다.
+- `npm run test:title`은 다섯 저장 상태의 원본 App 분기·반복 진입·fallback 구조, 원본 PNG SHA-256, 실제 librsvg 렌더의 alpha 불변·명도 범위, 상보 clip과 여섯 화면의 경계 계산을 검사한다. `npm run capture:title:art`는 1440×900 / 400×800 / 333×740 / 333×592 / 844×390 / 667×333 Native Canvas+librsvg 진단과 390/263/170px 글자 표본을 만든다. 도구용 sharp는 개발 의존성이며 게임 다운로드에는 포함되지 않는다.
+- 현재 미술 초안의 333px/desktop 합성을 구현자와 독립 검수자가 직접 열어 우하단 배치·원본 한자 구조·밝기와 넓은 먹얼룩을 승인했다. 결과 경로는 `_local/reports/title-ashen/native/`이다. Native 합성은 실제 CSS/브라우저 화면·터치·Pages 검수 증거가 아니다.
+- 로컬 Chromium은 시작 단계의 `socket() failed: Operation not permitted`로 중단됐다. 제한 우회나 검사 생략을 통과로 보고하지 않는다. 수정한 `test:title:browser`는 여섯 화면의 computed filter/상하 글자 경계/버튼·fallback을 검사하도록 준비했으며, 실제 공개 브라우저 검수는 최종 배포에서 따로 확인한다.

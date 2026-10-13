@@ -16,8 +16,11 @@ assert(build.includes("titleAsset('hanja-wordmark.png','image/png')")&&build.inc
 const hanja=await readFile('shared/assets/environment/title/hanja-wordmark.png');
 assert.equal(hanja.toString('hex',0,8),'89504e470d0a1a0a');
 assert.equal(hanja.readUInt32BE(16),1859);assert.equal(hanja.readUInt32BE(20),846);assert.equal(hanja[25],6,'RGBA PNG preserves alpha');
-assert(css.includes('aspect-ratio:1859/846')&&css.includes('width:28%;aspect-ratio:2/1'),'failure fallback reserves the same two-tier footprint');
-const readingHeightRatio=(.28/2)/(846/1859);assert(readingHeightRatio>=.25&&readingHeightRatio<=.35,'Hangul image height is about 31% of Hanja');
+assert(css.includes('aspect-ratio:1859/846')&&css.includes('aspect-ratio:1.85'),'failure fallback reserves the complete title footprint');
+assert(css.includes('left:97%;top:48%')&&css.includes('flex-direction:column;width:11.5%'),'upright Hangul sits at the lower-right of Hanja');
+assert(css.includes('aspect-ratio:575/550')&&css.includes('left:-91.304347826%')&&css.includes('clip-path:polygon'),'complementary source clips preserve the full Hangul brush tips');
+assert(!css.includes('rotate('),'the whole word must never rotate');
+assert(main.includes('feTurbulence type="fractalNoise"')&&main.includes('feComposite in2="SourceGraphic" operator="in"'),'stationary organic ink colors only the approved alpha');
 let bytes=0;for(const file of ['landscape.webp','portrait.webp','landscape.jpg','portrait.jpg','wordmark.png','hanja-wordmark.png'])bytes+=(await stat('shared/assets/environment/title/'+file)).size;
 assert(bytes<1650000,`title art encoded budget: ${bytes}`);
 const h=await appHarness(),a=h.reload(),fresh=plain(a.profile);
@@ -36,9 +39,12 @@ for(const c of [
  for(const action of ['settings','import-map','journal'])assert(html.includes(`data-action="${action}"`));
  assert(html.includes('<h1 class="title-brand" aria-label="혼로">')&&html.includes('<picture'));
  assert.equal((html.match(/class="title-hanja"/g)||[]).length,1);assert.equal((html.match(/class="title-hangul"/g)||[]).length,1);
- assert(html.indexOf('title-hanja')<html.indexOf('title-hangul'));assert(html.includes('>魂路</span>')&&html.includes('>혼로</span>'));
+ assert(html.indexOf('title-hanja')<html.indexOf('title-hangul'));assert(html.includes('>魂路</span>')&&html.includes('>혼</span>')&&html.includes('>로</span>'));
+ assert.equal((html.match(/class="honro-logo honro-logo-hangul"/g)||[]).length,2);
+ assert(html.indexOf('title-reading-glyph-0')<html.indexOf('title-reading-glyph-1'));
+ assert.equal((html.match(/id="honro-title-ink"/g)||[]).length,1,'one stationary title ink filter per render');
  a.showTitle();assert.equal(a.root.innerHTML,html,'repeated title entry stable');
 }
 h.g.HONRO_TITLE_HANJA='';a.showTitle();assert(a.root.innerHTML.includes('<span class="title-logo-fallback">魂路</span>'));assert(a.root.innerHTML.includes('honro-logo-hangul'));
-h.g.HONRO_TITLE_LOGO='';a.showTitle();assert(a.root.innerHTML.includes('<span class="title-reading-fallback">혼로</span>'));assert(!a.root.innerHTML.includes('class="honro-logo '),'both missing images retain exact readable two-tier text');
-console.log(`PASS title contracts: confirmed 魂路 + 31%-height 혼로; separate art + fallback + accessibility + no delay; 5 save-state branches and repeat entry; ${bytes} encoded bytes. Browser and art approval are separate.`);
+h.g.HONRO_TITLE_LOGO='';a.showTitle();assert(a.root.innerHTML.includes('<span class="title-reading-fallback">혼</span>')&&a.root.innerHTML.includes('<span class="title-reading-fallback">로</span>')); assert(!a.root.innerHTML.includes('class="honro-logo '),'both missing images retain exact readable two-tier text');
+console.log(`PASS title contracts: confirmed 魂路 + upright lower-right 혼/로 + alpha-preserving ash ink; separate art + fallback + accessibility + no delay; 5 save-state branches and repeat entry; ${bytes} encoded bytes. Browser and art approval are separate.`);
