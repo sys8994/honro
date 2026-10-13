@@ -1,0 +1,38 @@
+import {SHARED_BEGIN,SHARED_END} from '../shared/playtest-template.mjs';
+/** Production identity, archive identity and behavior are distinct gates. */
+import assert from 'node:assert/strict';
+import {readFileSync,readdirSync,mkdirSync,writeFileSync} from 'node:fs';
+import {runtimeParts,modelFiles} from '../shared/build.mjs';
+import {buildCore} from '../game/engine/build.mjs';
+import {runtimeContractHash as hash,currentRuntimeManifest as f,currentRuntimeSources,assertCurrentRuntimeSources,assertCurrentRuntimeParts,assertCurrentBuildGraph} from './current-runtime-contract-helpers.mjs';
+import {historicalRuntimeSources,historicalRuntimeParts,sourceHistoryInput} from './historical-runtime-inputs.mjs';
+import {beforeEncounterDensityRuntimeSources,encounterDensityHistory} from './encounter-density-history-helpers.mjs';
+import {beforeStage8BierRuntimeSources,beforeStage8BierFingerprintParts,beforeStage18BellFingerprintParts,stage8BierReview,stage18BellHistoryDelta} from './stage8-bier-history-helpers.mjs';
+const sources=currentRuntimeSources(),archive=historicalRuntimeSources();assertCurrentRuntimeSources(sources);
+assert.equal(Object.keys(sources).length,155);assert.equal(Object.keys(archive).length,133);
+assert.deepEqual(Object.keys(archive).sort(),Object.keys(encounterDensityHistory.runtime).sort());
+for(const[path,row]of Object.entries(encounterDensityHistory.runtime))assert.equal(hash(archive[path]),row.afterSha256,'Original source byte identity '+path);
+for(const[k,n]of [['added',22],['changed',73],['unchanged',60]])assert.equal(f.sourceRows.filter(r=>r.kind===k).length,n);
+assert.deepEqual(Object.keys(archive).filter(p=>!Object.hasOwn(sources,p)),[],'No historical source removed');
+for(const row of f.sourceRows){if(row.kind==='unchanged'){assert.equal(hash(sources[row.path]),hash(archive[row.path]));assert.equal(row.sha256,row.beforeSha256);}else{assert(row.provenance.length>0);for(const entry of row.provenance)assert.match(entry,/^[0-9a-f]{40} .+/);assert.notEqual(row.sha256,row.beforeSha256);}if(row.beforeSha256)assert.equal(hash(archive[row.path]),row.beforeSha256);}
+for(const row of f.packagingSources){assert.equal(hash(readFileSync(row.path)),row.sha256,'Exact packaging dependency '+row.path);assert.match(row.provenance,/^[0-9a-f]{40} .+/);}
+assertCurrentBuildGraph({modelFiles,engineFiles:readdirSync('shared/engine/src').filter(p=>p.endsWith('.ts')).sort().map(p=>'shared/engine/src/'+p),core:await buildCore()});
+const partNegatives=[],builds=[];let currentRaw;
+for(const[key,row]of Object.entries(f.variants)){if(key==='temple')continue;const parts=await runtimeParts(row.options);assertCurrentRuntimeParts(parts,{variant:key});if(key==='v0r0a0')currentRaw=parts;
+ for(const[id,mutate]of [['missing',p=>p.splice(1,1)],['extra',p=>p.push('unexpected')],['duplicate',p=>p.push(p[0])],['reorder',p=>p.reverse()],['core-byte',p=>p[2]+=' '],['inline-project',p=>{const i=p.findIndex(s=>s.startsWith('globalThis.HONRO_PROJECT='));p[i]+=' ';}]]){const p=[...parts];mutate(p);assert.throws(()=>assertCurrentRuntimeParts(p,{variant:key}),key+'/'+id);partNegatives.push(key+'/'+id);}
+ const projectParts=parts.filter(s=>s.startsWith('globalThis.HONRO_PROJECT='));assert.equal(projectParts.length,1);assert(projectParts[0].startsWith('globalThis.HONRO_PROJECT=HonroStage2Airborne.author(HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('));
+ if(['v1r1a0','v1r1a1'].includes(key)){const file=key==='v1r1a0'?'HONRO_WORKSHOP.html':'HONRO.html',html=readFileSync(file,'utf8'),bundle=(key==='v1r1a0'?SHARED_BEGIN+parts.slice(0,-1).join('\n')+SHARED_END+'\n'+parts.at(-1):parts.join('\n')).replace(/<\/script/gi,'<\\/script');assert.equal(html.split(bundle).length,2,'Exactly one current complete ordered production bundle in '+file);}
+ builds.push({variant:key,parts:parts.length,sha256:hash(parts.join('\n'))});
+}
+const temple=[...currentRaw.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...['main','story','interactions','rest-journey','training'].map(n=>sources['shared/runtime/'+n+'.js'])];assertCurrentRuntimeParts(temple,{variant:'temple'});
+// Archive byte checking is explicit. Never feed these fingerprints to a current
+// gameplay-completion identity assertion, and never execute archived JavaScript.
+assert.deepEqual(sourceHistoryInput(sources),archive);assert.equal(Object.keys(beforeStage8BierRuntimeSources(archive)).length,130);assert.deepEqual(beforeEncounterDensityRuntimeSources(sources),beforeEncounterDensityRuntimeSources(archive));
+const archiveChecks=[];for(const variant of ['raw','temple']){const parts=historicalRuntimeParts({variant}),before=beforeStage8BierFingerprintParts(parts,{sources:archive});assert.equal(hash(before.join('\n')),stage8BierReview().fingerprints[variant].before);if(variant==='temple')assert.equal(hash(beforeStage18BellFingerprintParts(parts,{sources:archive}).join('\n')),stage18BellHistoryDelta.runtime.beforeFingerprintSha256);
+ for(const mutate of [p=>p.reverse(),p=>p.push(p[0]),p=>p.splice(1,1),p=>p[1]+=' ']){const p=[...parts];mutate(p);assert.throws(()=>beforeStage8BierFingerprintParts(p,{sources:archive}));}archiveChecks.push({variant,sha256:hash(parts.join('\n')),beforeStage8Sha256:hash(before.join('\n'))});}
+assert.throws(()=>beforeStage8BierFingerprintParts(currentRaw,{sources}),'Current behavior identity must NOT silently become an old gameplay fingerprint');
+let sourceNegatives=0;for(const row of f.sourceRows){const changed={...sources,[row.path]:sources[row.path]+' '};assert.throws(()=>assertCurrentRuntimeSources(changed));assert.throws(()=>sourceHistoryInput(changed));const missing={...sources};delete missing[row.path];assert.throws(()=>assertCurrentRuntimeSources(missing));assert.throws(()=>sourceHistoryInput(missing));sourceNegatives+=4;}
+assert.throws(()=>assertCurrentRuntimeSources({...sources,'shared/engine/src/unreviewed.ts':'export const injected=true;'}));assert.throws(()=>assertCurrentRuntimeSources(Object.fromEntries(Object.entries(sources).reverse())));
+assert.throws(()=>assertCurrentBuildGraph({modelFiles:[...modelFiles,modelFiles[0]],engineFiles:f.engineFiles,core:'invalid'}));assert.throws(()=>assertCurrentBuildGraph({modelFiles,engineFiles:[...f.engineFiles,'shared/engine/src/injected.ts'],core:'invalid'}));
+for(const path of Object.keys(archive)){assert.throws(()=>beforeStage8BierRuntimeSources({...archive,[path]:archive[path]+' '}),'Archive byte '+path);const missing={...archive};delete missing[path];assert.throws(()=>beforeStage8BierRuntimeSources(missing),'Archive membership '+path);sourceNegatives+=2;}
+mkdirSync('_local/reports/runtime-contracts',{recursive:true});writeFileSync('_local/reports/runtime-contracts/contracts.json',JSON.stringify({passed:true,currentSources:155,archiveSources:133,priorSources:130,added:22,changed:73,unchanged:60,sourceNegatives,partNegatives,builds,archiveChecks,currentGameplayFingerprintIsNotProjected:true,scope:'Actual current build identity and explicit nonexecuted archive byte identity. Current behavior/completed-run compatibility is a separate gate, not waived.'},null,2)+'\n');console.log('PASS current155 provenance/8 builds/twoHTML, immutable133→130 and old fingerprints; '+sourceNegatives+' source negatives, '+partNegatives.length+' current part negatives');

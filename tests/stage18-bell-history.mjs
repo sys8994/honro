@@ -1,3 +1,5 @@
+import {assertCurrentRuntimeParts} from './current-runtime-contract-helpers.mjs';
+import {historicalRuntimeParts,historicalRuntimeSources} from './historical-runtime-inputs.mjs';
 import {beforeStage30Ferry,beforeStage30FerryRuntimeSources,beforeStage30FerryFingerprintParts,withHistoricalStage18} from './stage8-bier-history-helpers.mjs';
 /** Exact current18/19 audit before all immutable older history projections. */
 import assert from 'node:assert/strict';
@@ -44,7 +46,8 @@ for(const mutate of [q=>q.reverse(),q=>q.pop(),q=>q[0].name+=' drift',q=>q.push(
 const sources=beforeStage30FerryRuntimeSources(stage18BellRuntimeSources());assertStage18BellRuntimeSources(sources);
 const runtimeMutations=['shared/runtime/act2.js','shared/runtime/objective-guidance.js','shared/runtime/terrain-readability.js','shared/runtime/stage18-bell.js','shared/engine/src/warriorMechanics.ts','shared/engine/src/engine.ts','shared/runtime/stage16-temple.js'];
 for(const path of runtimeMutations){const changed={...sources,[path]:sources[path]+' '};assert.throws(()=>assertStage18BellRuntimeSources(changed),'Reject even one runtime-hook character '+path);}
-const allParts=await runtimeParts({vector:false,render:false}),fingerprintParts=beforeStage30FerryFingerprintParts([...allParts.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...['main','story','interactions','rest-journey','training'].map(f=>readFileSync('shared/runtime/'+f+'.js','utf8'))]),inputSnapshot=JSON.stringify(fingerprintParts);
+const allParts=await runtimeParts({vector:false,render:false});assertCurrentRuntimeParts(allParts);
+const fingerprintParts=beforeStage30FerryFingerprintParts(historicalRuntimeParts({variant:'temple'}),{sources:historicalRuntimeSources()}),inputSnapshot=JSON.stringify(fingerprintParts);
 assert.equal(hash(beforeStage18BellFingerprintParts(fingerprintParts,{sources}).join('\n')),f.runtime.beforeFingerprintSha256);assert.equal(JSON.stringify(fingerprintParts),inputSnapshot,'Historical fingerprint conversion is pure');assert.throws(()=>beforeStage18BellFingerprintParts([...fingerprintParts,' '],{sources}),'No unknown runtime part');const changedParts=[...fingerprintParts];changedParts[1]+=' ';assert.throws(()=>beforeStage18BellFingerprintParts(changedParts,{sources}),'No unreviewed compiled core');
 const g=await runtime({legacyMaps:false});assert.equal(hash(beforeStage30Ferry(g.HONRO_PROJECT)),hash(p),'Production runtime/source exact current agreement after verified ferry projection');const saved=g.HONRO_PROJECT,saved18=g.HONRO_CONTENT.stages[17],saved19=g.HONRO_CONTENT.stages[18];
 withHistoricalStage18(g,()=>{assert.equal(hash(g.HONRO_PROJECT),hash(before));for(const row of f.runtime.stages){assert.deepEqual(plain(g.HONRO_CONTENT.stages[row.id-1]),row.before.content);const q=battlefield(g,row.id);g.HonroAct2.attach(q.app,q.e);assert(!g.HonroStage18Bell.active(q.b),'Only the historical audit sees an unmarked old battle');}});
