@@ -53,3 +53,6 @@
 
 /* No empty portrait column for narration or an unillustrated named speaker. */
 .story-overlay .story-scene.text-only-scene{grid-template-columns:minmax(0,1fr);gap:0}.narration-inline .story-copy h2{font-size:clamp(17px,2vw,22px);color:#c9b889}.narration-inline .story-copy p{min-height:0}.narration-inline .story-scene{width:min(920px,100%)}
+
+/* Tactical notices remain readable without freezing movement or demanding a modal. */
+.honro .event{display:flex;align-items:center;gap:10px;pointer-events:auto;max-width:min(560px,calc(100% - 28px));line-height:1.6}.event-copy{display:block}.event-copy small{display:block;color:#b9a778;font-size:10px}.honro .event button{flex:none;min-width:44px;min-height:44px;padding:6px 9px;border:1px solid #bda37488;border-radius:6px;background:#24363b;color:#eee1c1;font:inherit}.honro .event[hidden]{display:none!important}

@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {appHarness,plain,report} from './app-regression-helpers.mjs';
+const h=await appHarness(),{g}=h,S=g.HonroStory,checks=[];
+let a=h.load(h.profileThrough(20));a.launch(21);h.finish(a);let b=a.engine.b,hs=b.honroState;hs.storyQueue=[];hs.deferredStory=[];
+a.actorBoundary=null;a.event('길이 열렸다.',{kind:'narration',source:'test-route'});a.event('길이 열렸다.',{kind:'narration',source:'test-route'});a.event('기록을 찾았다.',{kind:'narration',source:'test-record'});assert(!a.dialogue);assert.equal(hs.storyQueue.length,2);assert.equal(hs.storyQueue[0][2].kind,'narration');checks.push('Narrative events queue in order and suppress identical pending duplicates');
+const saved=plain(hs.storyQueue);a.profile.honroBattle=plain(b);a.persist();a=h.reload();h.click('continue');b=a.engine.b;hs=b.honroState;assert.deepEqual(plain(hs.storyQueue),saved);checks.push('Continue preserves unread event order and source metadata');
+hs.actorTurnSerial=hs.storyQueue[0][2].afterAction;a.actorBoundary=b.active;S.drain(a);assert.equal(a.dialogue.lines[0][1],'길이 열렸다.');S.tick(a,1e12);assert(a.dialogue);S.finish(a);assert.equal(a.dialogue.lines[0][1],'기록을 찾았다.');S.finish(a);assert(!a.dialogue);assert.equal(hs.storyQueue.length,0);checks.push('Safe actor boundary opens manual narration; time cannot dismiss it; skip drains the next event');
+a.event('적이 움직인다.');a.event('동쪽에서 온다.');a.event('적이 움직인다.');assert(!a.dialogue);assert.equal(hs.tacticalNotices.length,2);assert.equal(a.eventUntil,Infinity);a.acknowledgeEvent();assert.equal(hs.tacticalNotices[0].text,'동쪽에서 온다.');checks.push('Tactical notices are nonmodal, persistent, ordered and explicitly acknowledged');
+a.actorBoundary=null;a.event('승리 직전 발견',{kind:'narration',source:'outcome-test'});b.phase='won';S.start(a,[['설오','마지막 대사']],{after:'outcome'});assert(a.dialogue.lines.some(l=>l[1]==='승리 직전 발견'));checks.push('Victory flushes unread discoveries before the outcome');
+await report('narrative-event-delivery',checks);console.log(checks.join('\n'));

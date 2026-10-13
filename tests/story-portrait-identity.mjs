@@ -34,7 +34,7 @@ for(const [who,kind] of Object.entries(expected)){
  await writeFile(`${out}/${who}.png`,cv.toBuffer('image/png'));
 }
 const unknown=g.HonroPortraits.storyActor('새 주민',null,{class:'knight'});
-assert.equal(g.resolveRebuildCharacter(unknown),null);assert.equal(g.HonroActorVisual.kind(unknown),'civilian');
+assert.equal(unknown,null,'unregistered class alone cannot invent an NPC identity');
 assert.equal(g.HonroPortraits.storyActor('기록',null),null);
 const story=await readFile('shared/runtime/story.js','utf8');
 assert(story.includes('HonroPortraits.storyActor(who,actor)'));assert(story.includes("drawBust($('story-portrait-canvas'),actor,cls,who)"));

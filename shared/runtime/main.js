@@ -529,7 +529,8 @@
             u.group = 0;
             b.units.push(u);
         } }
-        event(text) { if(!text)return;this.eventText=text;this.eventUntil=performance.now()+2300;this.dirty=true; }
+        event(text,options={}) { if(!text)return;if(options.kind==='narration'&&this.engine&&!this.training){G.HonroStory.event(this,text,options);return;}this.eventText=text;const hs=this.engine?.b.honroState;if(hs){hs.tacticalNotices??=[];if(!hs.tacticalNotices.some(x=>x.text===text))hs.tacticalNotices.push({text,round:this.engine.b.round});}this.eventUntil=Infinity;this.dirty=true; }
+        acknowledgeEvent(){const hs=this.engine?.b.honroState;if(hs?.tacticalNotices?.length){hs.tacticalNotices.shift();this.dirty=true;this.updateHUD(true);}}
         speakerUnits(who){return[...(this.engine?.b.units||[]),...(this.engine?.b.honroConvoyActors||[])].filter(v=>(v.side===0||v.honroAlly||v.honroCivilian)&&(v.name===who||v.side===0&&H.hero[v.cls]?.name===who));}
         canSpeak(who){if(!this.engine)return true;const units=this.speakerUnits(who),known=units.length||Object.values(H.hero).some(h=>h.name===who);return !known||units.some(u=>!u.dead&&u.hp>0);}
         focusSpeaker(who,duration=1700){if(!this.engine||!this.scene)return;const u=this.speakerUnits(who).find(v=>!v.dead&&v.hp>0);if(u)this.scene.focusUnit(u.id,duration,true);}
@@ -598,7 +599,7 @@
             this.scene.manual = false;
         } }
         drop() { if(this.canInput()&&this.engine.canDrop()){this.cancelInput();if(this.engine.drop()){this.scene.manual=false;this.updateHUD(true);}} }
-        cancelInput() { this.keys.clear(); this.charging = false; this.stick = { x: 0, y: 0 }; this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
+        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.stick = { x: 0, y: 0 }; this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
             k.style.transform = 'translate(0,0)'; }
         inputs() {
             const stick = $('joystick'), fire = $('fire'), jump = $('jump'), cv = $('battlecanvas');
@@ -718,7 +719,7 @@
             G.HonroObjectives.refresh(this);
             G.HonroInteractions?.refresh(this);
             G.HonroCombatStatus.refresh(this,u);G.HonroCombatStatus.passives(this,u);
-            this.tickBanter();const ev=$('event');ev.hidden=performance.now()>this.eventUntil;if(!ev.hidden)ev.textContent=this.eventText;
+            this.tickBanter();const ev=$('event'),notices=b.honroState?.tacticalNotices||[],notice=notices[0];ev.hidden=!notice||!!this.dialogue||this.done;if(!ev.hidden&&ev.dataset.noticeSig!==JSON.stringify(notices)){ev.dataset.noticeSig=JSON.stringify(notices);ev.innerHTML=`<span class="event-copy"><small>전장 알림 · ${notice.round}턴${notices.length>1?' · '+notices.length+'개':''}</small>${esc(notice.text)}</span><button data-action="event-acknowledge" aria-label="전장 알림 확인">확인</button>`;}
             // RC12: minimap draws the exact authored polygon geometry at the world aspect ratio.
             if(!this.minimapVisible)return;
             const mc=$('minimap'),ratio=b.width/b.height,mobile=innerWidth<620,maxW=mobile?118:152,maxH=innerHeight<550?86:(mobile?108:132);let cssW,cssH;
@@ -831,6 +832,9 @@
                     this.showTitle();
                     break;
 
+                case 'event-acknowledge':
+                    this.acknowledgeEvent();
+                    break;
                 case 'rest':
                     this.showRest();
                     break;

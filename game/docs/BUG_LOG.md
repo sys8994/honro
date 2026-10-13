@@ -1,3 +1,9 @@
+## 2026-10-13 · 자동소멸 서사와 전술 경고 분리
+
+- 원인: App.event가 모든 사건을 2.3초만 표시하고 다음 사건으로 덮었다.
+- 변경: 서사/발견/길 변화는 명시 source의 행동경계 수동서술, 기존 정식대사가 있는 요약은 중복제거. 전술경고는 게임을 멈추지 않는 지속 확인형 큐로 보존한다. 인물registry와 전용초상 없는12명의 텍스트 fallback을 명시했다.
+- 검증: 신규 source inventory 717튜플·23라벨, narrative-event-delivery 5묶음, speaker presentation 7항목 통과. 전체 검사는 후속 진행. 상세 계약은 DIALOGUE_PRESENTATION_AUDIT.md.
+
 ## 2026-10-13 · 서술의 가짜 초상 제거
 
 - 원인: inline/entry 서술을 인물 대사로 강제 변경해 혼로 인장과 빈 초상 열을 표시했다.
