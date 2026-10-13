@@ -1159,7 +1159,7 @@
                     else
                         this.acc = 0;
                     const frozen=this.dialogue||G.HonroStory.turnPaused(this,now)||this.modal.classList.contains('open');
-                    this.scene.render(e,this.dialogue||this.modal.classList.contains('open')?0:dt,this.selected,this.power,this.charging,frozen?0:this.charging?dt:simulated);
+                    this.scene.render(e,this.dialogue||this.modal.classList.contains('open')?0:dt,this.selected,this.power,this.charging,frozen?0:this.charging?dt:simulated,!!frozen||!!this.done);
                     G.HonroUnitInfo.tick(this);
                     this.updateChargeDisplay();
                     this.uiAge += dt;
