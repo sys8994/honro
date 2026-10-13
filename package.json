@@ -48,7 +48,7 @@
     "test:act1:combat-evidence": "node tests/act1-combat-evidence.mjs",
     "test:act2:guidance": "node tests/act2-objective-readability.mjs",
     "capture:act2:guidance": "node tools/environment/capture-act2-guidance.mjs",
-    "test:character-balance": "node tests/character-balance.mjs",
+    "test:character-balance": "node tests/character-balance.mjs && node tests/story-portrait-identity.mjs",
     "test:party-motion": "node tests/party-motion-review.mjs candidate",
     "test:stage7-reentry": "node tests/stage7-reentry.mjs",
     "test:campaign-continuity": "node tests/campaign-continuity.mjs",

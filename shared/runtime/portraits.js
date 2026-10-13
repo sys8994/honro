@@ -10,7 +10,7 @@ function alphaBounds(canvas,limitY=canvas.height){
 }
 function sourceFor(actor,cls){
  const u={...(actor||{}),portraitOnly:true,cls,x:0,y:0,h:100,r:22,side:actor?.side??0,dead:false,maxHp:0,angle:25,facing:1,moving:0,hurt:0,anim:0,jumping:false,airborne:false,vy:0};
- const key=JSON.stringify([cls,u.side,u.id,u.name,u.honroType,u.role,!!u.boss,!!u.honroFinalBoss,!!u.honroAlly,!!u.honroCivilian,!!u.summoned]);
+ const key=JSON.stringify([cls,u.side,u.id,u.name,u.honroType,u.role,u.allyRole,!!u.boss,!!u.honroFinalBoss,!!u.honroAlly,!!u.honroCivilian,!!u.summoned]);
  if(cache.has(key))return cache.get(key);
  const source=document.createElement('canvas');source.width=1200;source.height=1500;
  const c=source.getContext('2d'),scene=new G.HonroScene(source),origin=[600,1420],scale=7;
@@ -35,11 +35,21 @@ function cropFor(bounds,head,width,height){
  const cropWidth=cropHeight*aspect,center=(head.left+head.right)/2;
  return {x:center-cropWidth/2,y:top,width:cropWidth,height:cropHeight};
 }
+// A story class selects framing/color, not the identity of an absent speaker.
+// Live actors retain their authored identity; only the four named companions may
+// fall back to their party class when the scene has no corresponding unit.
+function storyActor(who,actor,portrait=G.HONRO_STORY_PORTRAITS?.[who]){
+ if(actor)return actor;
+ const party={'설오':'archer','담허':'mage','휘겸':'knight','소단':'occultist'};
+ if(party[who]===portrait?.class)return null;
+ if(!portrait?.class)return null;
+ return {...(portrait.actor||{honroCivilian:true,honroType:'civilian'}),id:portrait.actor?.id||`story-npc-${who}`,name:who,cls:portrait.class,side:2};
+}
 function draw(canvas,actor,cls=actor?.cls){
  if(!canvas||!cls)return null;const item=sourceFor(actor,cls),c=canvas.getContext('2d');c.clearRect(0,0,canvas.width,canvas.height);if(!item)return null;
  const crop=cropFor(item.bounds,item.head,canvas.width,canvas.height);
  c.drawImage(item.source,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);
  return {crop,head:item.head,bounds:item.bounds};
 }
-G.HonroPortraits=Object.freeze({draw,cropFor});
+G.HonroPortraits=Object.freeze({draw,cropFor,storyActor});
 })(globalThis);
