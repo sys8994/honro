@@ -1,26 +1,34 @@
 {
   "version": 1,
-  "baseHeight": 132,
+  "baseHeight": 142,
   "viewBox": [
-    -80,
-    -155,
-    160,
-    173
+    -96,
+    -150,
+    192,
+    156
   ],
   "parts": [
     {
       "id": "root",
       "pivot": [
         0,
-        -77.14285714285714
+        0
       ],
       "parent": null
+    },
+    {
+      "id": "ground-feet",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": "root"
     },
     {
       "id": "shroud",
       "pivot": [
         0,
-        -95
+        -77.35
       ],
       "parent": "root"
     },
@@ -28,7 +36,7 @@
       "id": "face",
       "pivot": [
         0,
-        -108
+        -88.39999999999999
       ],
       "parent": "shroud"
     },
@@ -36,7 +44,7 @@
       "id": "maw",
       "pivot": [
         0,
-        -70.71428571428571
+        -60.35
       ],
       "parent": "face"
     }
