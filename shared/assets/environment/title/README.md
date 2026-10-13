@@ -20,3 +20,14 @@ Built-in `image_gen`, `transparent_background: true`. Final prompt (verbatim):
 Generated pixels are saved unmodified.
 
 Pixels are reviewed over the existing dark title art and at desktop/mobile UI scale. Native Canvas composites are art review only; they are not browser layout or Pages verification.
+
+## Asset provenance and review evidence
+
+The Hanja PNG was newly generated for this repository with OpenAI's built-in image tool. No external image, commercial game logo, font file, or traced title was supplied to that generation. The Korean companion is the pre-existing generated `wordmark.png`; neither that source nor the existing paintings was edited in this change. No third-party font is required to display either image. System serif text is only an image-failure fallback.
+
+Review files are reproducible local diagnostics, intentionally excluded from Git:
+- `_local/reports/title-hanja/native/mark-real-size.png`: production alpha at 390, 263 and 170px widths over a dark ground.
+- `_local/reports/title-hanja/native/{1440x900,400x800,333x740,333x592,844x390,667x333}-native-art.png`: six scene/mark scale compositions.
+- `_local/reports/title-hanja/native/report.json`: asset SHA-256 and measured diagnostic layout values.
+
+The implementer reviewed the source and display-scale cuts; an independent reviewer directly opened the 1440×900 and 333×740 compositions and approved the glyph structures, Korean reading ratio, background fit and absence of disruptive residual alpha noise. These are Native Canvas art checks. Public browser/CSS verification follows integration and deployment separately.
