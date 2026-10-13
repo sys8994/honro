@@ -111,7 +111,10 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     }
     for(const u of b.units){
         if(u.summonFloating!==undefined&&typeof u.summonFloating!=='boolean'||u.summoned!==undefined&&typeof u.summoned!=='boolean')return fail();
-        if(u.summoned&&(!['stalker','lantern','charger','warden','host','eater','echo','earthbound'].includes(u.summonKind||'')||!ids.has(u.summonOwner||'')||!finite(u.summonExpires)||u.side!==0))return fail();
+        if(u.summoned&&(!['stalker','lantern','charger','warden','host','eater','echo','earthbound'].includes(u.summonKind||'')||!ids.has(u.summonOwner||'')||!finite(u.summonExpires)||(u.side!==0&&!(u.summonKind==='eater'&&u.side===1))))return fail();
+        if(u.eaterRevision!==undefined&&(u.eaterRevision!==1||u.summonKind!=='eater'))return fail();
+        if(u.eaterCapturedBy!==undefined&&(!safe(u.eaterCapturedBy)||u.side!==1||u.summoned||!b.units.some(v=>v.id===u.eaterCapturedBy&&v.summonKind==='eater'&&!v.dead)||!u.eaterOrigin||!nums(u.eaterOrigin,['x','y'])))return fail();
+        for(const key of ['eaterTransferred','eaterCaptureCount','eaterCaptureRadius','eaterSwallow','eaterReleasedShot'] as const)if(u[key]!==undefined&&(!finite(u[key])||u[key]!<0))return fail();
         if(u.enthrall&&(!ids.has(u.enthrall.owner)||u.side!==0||!nums(u.enthrall,['actions','captureRatio','originalMaxHp','originalAttack','originalArmor','power'])||u.enthrall.actions<0||u.enthrall.actions>7||u.enthrall.captureRatio<0||u.enthrall.captureRatio>1))return fail();
         if(u.spiritSight!==undefined&&typeof u.spiritSight!=='boolean'||u.spiritHidden!==undefined&&typeof u.spiritHidden!=='boolean'||u.manifested!==undefined&&typeof u.manifested!=='boolean'||u.revealSpiritToParty!==undefined&&typeof u.revealSpiritToParty!=='boolean')return fail();
         for(const key of ['summonRank','summonActionRound','summonAbsorbed','summonGrowthHits','manifestedUntil','formDamageTakenBonus','soulAffinityBonus','soulDefenseBonus','soulBonusUntil','nextSummonDiscount','soulRemnants'] as const)if(u[key]!==undefined&&!finite(u[key]))return fail();
@@ -197,6 +200,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             return fail();
         if (q.emissions !== undefined && (!finite(q.emissions) || q.emissions < 0 || q.emissions > 100))
             return fail();
+        if(q.reflectionVersion!==undefined&&(q.reflectionVersion!==1||q.mode!=='waveBounce'||!Number.isInteger(q.bounces)||q.bounces<0||q.bounces>3))return fail();
         if(q.targetId!==undefined&&(!safe(q.targetId)||!ids.has(q.targetId)))return fail();
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
         if(q.echoDelay!==undefined&&(!finite(q.echoDelay)||q.echoDelay<0||q.echoDelay>.3)||q.echoSource!==undefined&&!ids.has(q.echoSource)||q.soulBoost!==undefined&&typeof q.soulBoost!=='boolean')return fail();

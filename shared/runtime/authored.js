@@ -1,7 +1,7 @@
 (function(G){'use strict';
 function inside(u,r){return r.width!==undefined?Math.abs(u.x-r.x)<=r.width/2&&Math.abs(u.y-r.y)<=(r.height||r.width)/2:Math.hypot(u.x-r.x,u.y-r.y)<=(r.radius||160);}
 function objectiveState(b){
- const heroes=b.units.filter(u=>u.side===0&&!u.dead&&u.hp>0),foes=b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0),hs=b.honroState;
+ const heroes=b.units.filter(u=>u.side===0&&!u.dead&&u.hp>0),foes=b.units.filter(u=>u.side===1&&u.summonKind!=='eater'&&!u.dead&&u.hp>0),hs=b.honroState;
  const targets=(b.honroObjectives||[]).filter(o=>o.type!=='campaign').map(o=>{
   let done=false;
   if(o.type==='reach')done=heroes.some(u=>inside(u,o));

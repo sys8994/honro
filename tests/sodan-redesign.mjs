@@ -42,29 +42,22 @@ for(const [rank,actions,power] of [[1,2,.7],[2,3,.7],[3,3,.85],[4,4,.85],[5,4,1]
  assert.equal(spirit.summonActionRound,a.b.round);assert.notEqual(a.b.phase,'summon');
 }
 {
- const a=arena('O14',8);const eater=a.e.spawnSummon(a.u,'eater',630,1200,1,8);
- const shot=castAt(a,'O01')[0];shot.side=1;shot.x=700;shot.y=eater.y-eater.h*.5;shot.vx=-100;shot.vy=0;shot.damage=180;
- const before=Math.abs(shot.vx);a.e.stepProjectile(shot,C.STEP);assert(shot.vx< -before||!a.b.projectiles.includes(shot));
+ const a=arena('O14',8);a.foe.x=950;const eater=a.e.spawnSummon(a.u,'eater',950,1200,1,8);
+ assert.equal(eater.side,1);assert.equal(eater.summonFloating,false);assert.equal(eater.y,1400);assert.equal(eater.eaterCaptureCount,1);assert.equal(a.foe.eaterCapturedBy,eater.id);
+ const late=C.makeUnit('knight',1,970,1400,{id:'late',hp:1000,maxHp:1000});a.b.units.push(late);a.e.tickOccult();assert(!late.eaterCapturedBy,'capture happens once at activation');
+ assert.equal(typeof a.e.absorbHostileProjectile,'undefined','eater has no hostile-projectile feeding path');
 }
 {
- const a=arena('O14',8),eater=a.e.spawnSummon(a.u,'eater',630,1200,1,8),center=eater.y-eater.h*.5;
- const absorb=()=>{const p=castAt(a,'O01')[0];p.side=1;p.x=eater.x;p.y=center;p.damage=100;assert(a.e.absorbHostileProjectile(p,C.STEP));};
- for(let i=1;i<=4;i++){
-  absorb();assert.equal(eater.summonGrowthHits,i);assert(Math.abs(eater.h-96*(1+.14*i))<.001);assert(Math.abs(eater.r-36.8*(1+.14*i))<.001);assert(Math.abs(eater.y-eater.h*.5-center)<.001);assert(!eater.dead);
- }
- const saved=C.defaults();saved.saved=a.b;const restored=C.validate(plain(saved)).saved.units.find(u=>u.id===eater.id);
- assert.equal(restored.summonGrowthHits,4);assert.equal(restored.h,eater.h);
- const legacy=plain(saved),legacyEater=legacy.saved.units.find(u=>u.id===eater.id);delete legacyEater.summonGrowthHits;Object.assign(legacyEater,{h:120,r:46,y:center+60});
- const oldBattle=C.validate(legacy).saved,oldEngine=new C.Engine(oldBattle),oldUnit=oldBattle.units.find(u=>u.id===eater.id);
- oldEngine.hurt(oldUnit,5,a.foe.id);assert.equal(oldUnit.summonGrowthHits,1);assert(Math.abs(oldUnit.h-136.8)<.001);
- absorb();assert(eater.dead);assert.equal(eater.summonGrowthHits,4);
+ const a=arena('O14',8);a.foe.x=940;for(let i=0;i<9;i++)a.b.units.push(C.makeUnit('knight',1,930+i*5,1400,{id:'food'+i,hp:20000,maxHp:20000}));
+ const eater=a.e.spawnSummon(a.u,'eater',950,1200,1,8);assert.equal(eater.eaterCaptureCount,10);assert.equal(eater.summonGrowthHits,5);assert(Math.abs(eater.h-163.2)<.001);assert(Math.abs(eater.r-62.56)<.001);assert.equal(eater.y,1400,'growth anchors the feet');
+ const saved=C.defaults();saved.saved=a.b;const restored=C.validate(plain(saved)).saved,again=new C.Engine(restored),restoredEater=again.unit(eater.id);
+ assert.equal(restoredEater.eaterCaptureCount,10);assert.equal(restoredEater.h,eater.h);assert.equal(restoredEater.y,1400);assert.equal(again.unit(a.foe.id).eaterCapturedBy,eater.id);
+ const legacy=plain(a.b),oldUnit=legacy.units.find(u=>u.id===eater.id);for(const v of legacy.units){delete v.eaterCapturedBy;delete v.eaterOrigin;}delete oldUnit.eaterRevision;delete oldUnit.eaterCaptureCount;delete oldUnit.summonGrowthHits;Object.assign(oldUnit,{side:0,h:120,r:46,y:1200,summonFloating:true,fixed:true,summonAbsorbed:200});
+ const oldEngine=new C.Engine(legacy);assert.equal(oldUnit.side,1);assert(!oldUnit.summonFloating&&!oldUnit.fixed);assert.equal(oldUnit.eaterCaptureCount,0);assert(!oldEngine.unit(a.foe.id).eaterCapturedBy,'loading a legacy eater never captures');oldEngine.hurt(oldUnit,5,'',false,undefined,undefined,'environment');assert.equal(oldUnit.h,120,'damage never grows legacy eaters');
 }
 {
- const a=arena('O14',8),eater=a.e.spawnSummon(a.u,'eater',630,1200,1,8),hp=eater.hp;
- eater.shield=80;a.e.hurt(eater,20,a.foe.id);assert.equal(eater.summonGrowthHits,1);assert.equal(eater.hp,hp);
- eater.shield=0;a.e.hurt(eater,20,a.foe.id);assert.equal(eater.summonGrowthHits,2);assert(eater.hp<hp);
- a.e.hurt(eater,20,a.foe.id,false,undefined,undefined,'environment');assert.equal(eater.summonGrowthHits,2);
- for(let i=0;i<8;i++){eater.hp=eater.maxHp;a.e.hurt(eater,5,a.foe.id);}assert.equal(eater.summonGrowthHits,5);assert(Math.abs(eater.h-163.2)<.001);
+ const a=arena('O14',8);a.foe.x=950;const eater=a.e.spawnSummon(a.u,'eater',950,1200,1,8),height=eater.h,radius=eater.r,hp=eater.hp;
+ a.e.hurt(eater,20,'',false,undefined,undefined,'environment');assert.equal(eater.hp,hp-20);assert.equal(eater.h,height);assert.equal(eater.r,radius);assert.equal(eater.summonGrowthHits,1,'only captured count controls growth');
 }
 {
  const a=arena('O09');a.foe.x=560;a.foe.hp=10000;const other=C.makeUnit('knight',1,780,1400,{id:'other',fixed:true,hp:20000,maxHp:20000,armor:0,h:100,r:25,loadout:['LS09']});a.b.units.push(other);

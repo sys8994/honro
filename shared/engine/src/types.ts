@@ -161,6 +161,15 @@ export interface Unit {
     summonExpires?: number;
     summonRank?: number;
     summonActionRound?: number;
+    /** Captive remains alive for objectives but absent from combat until released. */
+    eaterCapturedBy?: string;
+    eaterReleasedShot?: number;
+    eaterOrigin?: {x:number;y:number};
+    eaterRevision?: number;
+    eaterTransferred?: number;
+    eaterCaptureCount?: number;
+    eaterCaptureRadius?: number;
+    eaterSwallow?: number;
     summonAbsorbed?: number;
     summonGrowthHits?: number;
     auraHits?: Record<string,string>;
@@ -318,6 +327,8 @@ export interface Projectile {
     wind: number;
     mode: string;
     color: string;
+    /** Missing on pre-split in-flight saves: retain their historical behavior. */
+    reflectionVersion?: 1;
     bounces: number;
     pierces: number;
     apex: boolean;

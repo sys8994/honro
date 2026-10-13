@@ -31,7 +31,7 @@
     "test:autonomous-friendly-fire": "node tests/autonomous-friendly-fire.mjs && node tests/autonomous-friendly-fire-save.mjs",
     "test:ally-targeting": "npm run test:autonomous-friendly-fire && node tests/guided-allegiance.mjs && node tests/summon-team-feedback.mjs && node tests/projectile-friendly-fire.mjs",
     "test:combat-turn-fixes": "node tests/totem-turn-behavior.mjs && node tests/flying-knockback.mjs && npm run test:ally-targeting",
-    "test:skills": "npm run test:combat-turn-fixes && node tests/skill-redesign.mjs && node tests/skill-polish.mjs && node tests/skill-effects.mjs && node tests/field-polish.mjs && node tests/sodan-followup.mjs && npm run test:sodan-charge && python -X utf8 tests/skill-redesign-browser.py && python -X utf8 tests/skill-polish-browser.py && python -X utf8 tests/skill-effects-browser.py && python -X utf8 tests/field-polish-browser.py && python -X utf8 tests/sodan-followup-browser.py && npm run test:hwigyeom && npm run test:skill-presentation && npm run test:existence",
+    "test:skills": "npm run test:splitting-reflection && npm run test:eater-capture && npm run test:combat-turn-fixes && node tests/skill-redesign.mjs && node tests/skill-polish.mjs && node tests/skill-effects.mjs && node tests/field-polish.mjs && node tests/sodan-followup.mjs && npm run test:sodan-charge && python -X utf8 tests/skill-redesign-browser.py && python -X utf8 tests/skill-polish-browser.py && python -X utf8 tests/skill-effects-browser.py && python -X utf8 tests/field-polish-browser.py && python -X utf8 tests/sodan-followup-browser.py && npm run test:hwigyeom && npm run test:skill-presentation && npm run test:existence",
     "test:existence": "node tests/existence-damage.mjs && node tests/existence-variety.mjs && node tests/act1-existence-roster.mjs && python -X utf8 tests/existence-damage-browser.py",
     "test:hwigyeom": "node tests/combo-landing-turn.mjs && node tests/hwigyeom-p5.mjs && python -X utf8 tests/hwigyeom-p5-browser.py && npm run test:skill-tuning",
     "test:skill-tuning": "node tests/skill-tuning.mjs && python -X utf8 tests/skill-tuning-browser.py && python -X utf8 tests/aim-direction-browser.py",
@@ -173,6 +173,8 @@
     "test:quest-story:contracts": "node tests/route-branches.mjs && node tests/narrative-revision.mjs && node tests/narrative-runtime-edges.mjs && node tests/quest-redesign-app-contracts.mjs && node tests/act1-narrative-redesign.mjs && node tests/chapter7-rescue-order.mjs && node tests/stage8-goal-notice-consistency.mjs && node tests/sodan-protection-wording.mjs && node tests/act1-narrative-objectives.mjs && node tests/act1-story-art.mjs && node tests/act1-object-art.mjs && node tests/act23-narrative-redesign.mjs && node tests/act23-quest-redesign-author.mjs && node tests/act23-evidence-art.mjs",
     "test:quest-story:geometry": "node tests/act23-route-geometry.mjs",
     "capture:quest-story": "node --expose-gc tests/quest-story-native-art.mjs",
+    "test:splitting-reflection": "node tests/splitting-reflection.mjs && node tests/splitting-reflection-app-resume.mjs",
+    "capture:splitting-reflection": "node --expose-gc tests/splitting-reflection-native.mjs",
     "test:sp-balance": "node tests/sp-passive-runtime.mjs && node tests/sp-marginal-balance.mjs && node tests/sp-build-survivability.mjs",
     "test:contribution-xp": "node tests/contribution-xp-ledger.mjs && node tests/contribution-xp-engine.mjs && node tests/contribution-xp-migration.mjs && node tests/contribution-xp-app.mjs && node tests/contribution-xp-healing-boundaries.mjs && node tests/objective-contribution-invariants.mjs && node tests/objective-contribution-runtime.mjs && node tests/objective-wave-provenance.mjs",
     "test:growth-resume": "node tests/sp-balance-app-resume.mjs",
@@ -196,7 +198,8 @@
     "test:stage5-waterfall:fullplay": "HONRO_STAGE5_POLICY=route HONRO_STAGE5_STATS=0 HONRO_STAGE5_RECOVER=1 HONRO_STAGE5_REQUIRE_WIN=1 HONRO_STAGE5_ACTION_LIMIT=180 HONRO_STAGE5_OUT=_local/reports/stage5-waterfall/mandatory-input node tests/stage5-waterfall-fullplay-input.mjs",
     "test:title": "node tests/title-redesign.mjs && node tests/title-letter-rendering.mjs",
     "test:title:browser": "python -X utf8 tests/title-redesign-browser.py",
-    "capture:title:art": "node tools/testing/capture-title-hanja-native.mjs"
+    "capture:title:art": "node tools/testing/capture-title-hanja-native.mjs",
+    "test:eater-capture": "node tests/eater-capture.mjs && node tests/eater-independent-review.mjs && node tests/two-skill-balance-contracts.mjs && node tests/eater-contribution.mjs && node tests/eater-app-resume.mjs && node tests/eater-ui-boundaries.mjs && node tests/eater-inspector-review.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

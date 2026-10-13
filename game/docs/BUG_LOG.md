@@ -1,3 +1,18 @@
+## 2026-10-13 먹귀 지상 포획 전환
+- 공중 투사체 흡수 소환을 지형 착지 시 주변 일반/정예 적 1회 포획으로 교체. 포획 원본을 살아있는 상태로 보존해 처치 목표와 저장 ID를 유지하며, 전장 actor와 목표 생존 수를 분리한다.
+- 아군/동맹이 먹귀에 실제 가한 HP 손실을 포획 적 각각에 재계산 없이 전달한다. 초과피해를 남은 먹귀 HP로 제한하며 먹귀 자체는 처치/XP 보상을 만들지 않는다.
+- 반경 215~320, 기존 HP 성장식, 수명 2~4 완전 적 라운드. 죽음/만료 방출, 정규 지형 복귀, 구버전 저장에서 무단 재포획 방지.
+- 최종 검증: 13 lifecycle·7 독립 사례·전 SP 정량·실제 기여장부·App Continue/반복 export-import·UI 목표 제외 및 반사파 전 SP/FPS/저장 회귀 통과. 실제 엔진 Native 먹귀20·반사10 프레임을 직접 검수했고 최종 생산 소스와 해시 일치를 확인했다.
+- 전체 verify: build/title/캠페인·161소스 9변형 exact 계약/마이그레이션 메타/스토리/타입/game 정적 suite/rc20 지도 회귀까지 통과. 첫 Chromium 검사에서 socket() EPERM 및 readonly Crash Reports로 페이지 로드 전에 종료했다. rc21 브라우저·성능 및 이후 전체 integration/performance는 미실행이며 전체 통과가 아니다. 실제 Pages 검수는 별도이며 환경 제한을 우회하지 않았다.
+- 추가 필수 migration.mjs는 Stage7 story honroGrowth의 적 HP 장부에서 실패했다. 원본26a5335에서도 같은 명령으로 재현했고 경로 정규화 전체 출력이 동일하므로 기존 실패로 분류했다. 역사 fixture/생산 코드를 변경하지 않았다.
+- 최종 동작·수치·피해 상한·검증 범위: EATER_CAPTURE.md. 생산 freeze fd9e853, exact build cf2d787; 이후 3f5dc89는 구형 브라우저 테스트 한 파일만 갱신했다.
+## 2026-10-13 · 반탄파 경지별 반사 분열
+
+- 변경: 최초 1발, 요청된 SP1~8 분열표와 최대 1/2/2/4/4/8/8/12개를 적용했다. 지형 접촉만 분열하고 세대별 82% 피해를 보존한다. 마지막 세대의 다음 지형 접촉·본체 명중·기존 수명으로 종료한다. 첫 반사 후손까지만 실제 엔진을 재생해 예상선을 그린다.
+- 호환: 새 발사에만 reflectionVersion=1을 부여했다. 옛 저장 비행탄은 옛 규칙으로 끝나며 SP/기예/진행 초기화가 없다. 파생탄은 기존 자동 공격 아군 보호를 따른다.
+- 검증: TypeScript, 전체 skill-redesign, projectile-platforms, 전 SP 분열·피해·본체/지형·접선 대칭·lineage 상한·30/60/120 FPS 및 실제 App Continue·반복 import/export 통과. Production Scene Native Canvas 검수는 브라우저 증거가 아니다. 전체 verify·최종 합본·Pages 검수는 별도 단계다.
+- 명세와 한계: [SPLITTING_REFLECTION.md](SPLITTING_REFLECTION.md).
+
 ## 2026-10-13 · 대화 첫 타격과 공통 SFX 지연 방지
 
 - 원인: 기존 대화는 22ms attack·낮은 gain으로 첫 20ms가 약했고, 효과음의 첫 사용은 출력장치 표본율로 전체 파형을 동기 합성했다. 예열도 첫 제스처 후 시작했다. 중단된 컨텍스트는 최대 300ms 된 이벤트를 다음 제스처에 되살렸다.

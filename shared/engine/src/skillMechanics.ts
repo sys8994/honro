@@ -1,3 +1,5 @@
+import {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
+export {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 import {passiveTuning} from './passiveBalance';
 import {healed} from './contribution';
 import {triggerOffensiveStake} from './totemBehavior';
@@ -15,7 +17,7 @@ export const iceGourdFuse=(power:number)=>ICE_GOURD_FUSE+3.2*clamp(power,0,1);
 export const newSkill=(p:Pick<Projectile,'skill'>)=>!!SKILLS[p.skill]?.redesigned;
 const rank=(p:Projectile)=>p.skillRank||1;
 const at=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
-const enemy=(p:Pick<Projectile,'side'>,u:Unit)=>!u.dead&&u.side!==p.side&&u.side!==2;
+const enemy=(p:Pick<Projectile,'side'>,u:Unit)=>!u.dead&&!u.eaterCapturedBy&&u.side!==p.side&&u.side!==2;
 const lerpRank=(a:number,b:number,r:number)=>a+(b-a)*(r-1)/7;
 export function mainBranch(u:Pick<Unit,'ranks'>,cls='archer'){
  const sums:Record<string,number>={};for(const [id,r] of Object.entries(u.ranks)){const s=SKILLS[id];if(s?.cls===cls&&s.branch&&!s.passive)sums[s.branch]=(sums[s.branch]||0)+r;}
@@ -108,7 +110,7 @@ export function initRedesignCast(e:Engine,s:Skill,u:Unit,actualKiSpent=e.manaCos
  e.b.cast={owner:u.id,skill:s.id,shot:e.b.shot,cost:actualKiSpent,enemyDamage:0};
  if(u.prepared&&u.prepared.expires<e.b.round)delete u.prepared;
  const roots=e.b.projectiles.filter(p=>p.owner===u.id&&p.shot===e.b.shot);
- for(const p of roots){if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
+ for(const p of roots){if(s.mode==='waveBounce')p.reflectionVersion=1;if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
  if(s.branch==='distance'&&s.id!=='A10')delete u.prepared;
  if(s.mode==='prepare'){e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));u.prepared={rank:u.ranks[s.id]||1,expires:e.b.round+2};e.fx('ring',u.x,u.y-u.h*.6,'#c8cebf',22);}
  if(['waveRing','waveBagua'].includes(s.mode))for(const p of roots){
@@ -252,6 +254,24 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
   if(p.mode==='gourdIce'){reflect(p,h,h.unit?.72:.64);e.fx('ring',p.x,p.y,'#b5c9cb',14);e.emit('sound',{name:'ceramic'});return true;}
   gourdBurst(e,p);return true;
  }
+ if(p.mode==='waveBounce'&&p.reflectionVersion===1){
+  if(h.terrain){
+   const count=waveReflectionPlan(r)[p.bounces];
+   if(!count){e.remove(p);return true;}
+   const velocities=waveReflectionVelocities(p,h.n,count);
+   // Retain launch age, credit, shot and owner: descendants share the original
+   // 12-second lifetime and never reset their generation on a terrain corner.
+   p.contacts=[...(p.contacts||[]),{x:h.x,y:h.y}];p.bounces++;
+   p.damage*=WAVE_REFLECTION_DECAY;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);
+   p.child=true;p.autonomous=true;p.trail=[{x:p.x,y:p.y}];
+   for(const [i,v] of velocities.entries()){
+    const q=i===0?p:{...p,id:e.b.nextId++,hit:[...p.hit],contacts:[...p.contacts],trail:[{x:p.x,y:p.y}]};
+    Object.assign(q,v,{prevVy:v.vy});if(i)e.b.projectiles.push(q);
+   }
+   e.fx('inkImpact',h.x,h.y,'#dce3da',30);e.emit('sound',{name:'qiRebound'});
+  }else if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);e.remove(p);}
+  return true;
+ }
  if(p.mode==='waveBounce'||p.mode==='waveTriangle'){
   if(h.terrain){p.contacts??=[];p.contacts.push({x:h.x,y:h.y});reflect(p,h);
    e.fx('inkImpact',h.x,h.y,'#dce3da',30);
@@ -341,7 +361,7 @@ export function useGate(e:Engine,u=e.active){
  const to=e.b.stakes!.find(s=>s.skill==='M09'&&s.side===u.side&&s.id!==from.id)!;
  // Feet stand on the exact-x support, as in walking and scripted placement.
  // A body's lower corners overlap a slope; that contact is not an arrival wall.
- const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y,support:floor.t}:null;}).find(v=>v&&!e.b.terrain.some(t=>!t.broken&&!t.oneWay&&t!==v.support&&terrainRectIntersects(t,v.x-u.r,v.y-u.h,u.r*2,u.h-2,.1))&&!e.b.units.some(t=>!t.dead&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
+ const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y,support:floor.t}:null;}).find(v=>v&&!e.b.terrain.some(t=>!t.broken&&!t.oneWay&&t!==v.support&&terrainRectIntersects(t,v.x-u.r,v.y-u.h,u.r*2,u.h-2,.1))&&!e.b.units.some(t=>!t.dead&&!t.eaterCapturedBy&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
  if(!spot){e.message('도착 진목 주변에 설 자리가 없습니다.');return false;}
  const {x,y}=spot,fromPoint={x:u.x,y:u.y};u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
  const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(to.effectBoost||0)):1;
@@ -355,6 +375,7 @@ export function useGate(e:Engine,u=e.active){
 export function tickRedesign(e:Engine,dt:number){
  const b=e.b;
  for(const u of b.units){
+  if(u.eaterCapturedBy)continue;
   if(u.prepared&&u.prepared.expires<b.round)delete u.prepared;
   if(u.arrivalGuard!==undefined&&u.arrivalGuard<=b.teamEnds[1])delete u.arrivalGuard;
   if(u.slowed&&u.slowed.expires<b.round)delete u.slowed;
@@ -372,7 +393,7 @@ export function tickRedesign(e:Engine,dt:number){
   if(z.expires!==undefined&&b.round>=z.expires){b.stakes=b.stakes!.filter(s=>s.id!==z.id);continue;}
   if(z.skill==='M09')continue;
   const caster=e.unit(z.owner);if(!caster)continue;const boost=(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(z.effectBoost||0)),trigger=45*Math.min(1.25,boost);
-  const nearby=b.units.filter(u=>!u.dead&&(z.skill==='M10'?u.side===z.side||((u as any).honroAlly&&z.side===0):enemy(z,u))&&Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<trigger+u.r);
+  const nearby=b.units.filter(u=>!u.dead&&!u.eaterCapturedBy&&(z.skill==='M10'?u.side===z.side||((u as any).honroAlly&&z.side===0):enemy(z,u))&&Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<trigger+u.r);
   const p={owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
   if(z.skill==='M07'||z.skill==='M08'){triggerOffensiveStake(e,z,nearby,p,boost);continue;}
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
@@ -400,6 +421,8 @@ export interface SkillPrediction extends Prediction {time:number;geometry?:Skill
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
  const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
+ const wave=s.mode==='waveBounce',waveContacts:Vec[]=[],impact=sim.impact.bind(sim);
+ if(wave)sim.impact=(p,h)=>{if(p.bounces>=1){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
  const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
  sim.collision=(a,z,r,owner,ignored,units=true,...rest)=>{const h=collision(a,z,r,owner,ignored,ignoreUnits?false:units,...rest);if(capture&&h){stepContact=h;if(h.unit&&!contact)contact=h;}return h;};
  b.active=actor.id;b.side=0;b.phase='aim';b.mode='practice';b.projectiles=[];b.volley=undefined;
@@ -417,7 +440,7 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
   for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex,wasSplit=representative&&p===tracked&&p.mode==='seekRain',nextId=b.nextId;capture=!representative||p===tracked;stepContact=null;sim.stepProjectile(p,STEP);
    if(p===tracked&&!b.projectiles.includes(p))terminalContact=stepContact;
    if(p===primary&&!wasApex&&p.apex)apex={x:p.x,y:p.apexY??p.y};
-   if(!p.secondary&&(!representative||p===tracked)){const key=representative?primary.id:p.id,list=paths.get(key)||[];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(key,list);}
+   if(!p.secondary&&(!representative||p===tracked)){const key=representative?primary.id:p.id,list=paths.get(key)||[...(p.trail.slice(0,1))];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(key,list);}
    // Keep all seven in the replay so their collisions and kills affect homing exactly as in combat.
    // Only the middle child's samples extend the visible parent path.
    if(wasSplit&&!b.projectiles.includes(p)){const children=b.projectiles.filter(q=>q.id>=nextId&&q.mode==='seekChild');if(children.length===7){tracked=children[3];contact=null;terminalContact=null;}}
@@ -426,11 +449,12 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
   if(representative&&tracked&&!b.projectiles.includes(tracked))break;
  }
  const points=primary?paths.get(primary.id)||[origin]:[origin],last=points.at(-1)||origin;
- return {...last,unit:(contact as Collision|null)?.unit?.id,terrain:(terminalContact as Collision|null)?.terrain?.id,points,paths:[...paths.values()],time,contacts:[],apex,closest:99999};
+ return {...last,unit:(contact as Collision|null)?.unit?.id,terrain:(terminalContact as Collision|null)?.terrain?.id,points,paths:[...paths.values()],time,contacts:waveContacts,apex,closest:99999};
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
 export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction|null{
  if(!s.redesigned)return null;
+ if(s.mode==='waveBounce')return arrowPrediction(e,u,s,angle,power,false,ignoreUnits);
  if(s.cls==='archer')return arrowPrediction(e,u,s,angle,power,representative,ignoreUnits);
  if(s.cls!=='mage')return null;
  const r=u.ranks[s.id]||1,origin=e.projectileOrigin(u,s,angle),v=e.velocity(u,s,angle,power),points:Vec[]=[origin],contacts:Vec[]=[];

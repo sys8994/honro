@@ -8,7 +8,7 @@ import {clamp,rad,STEP,segRect,terrainRectIntersects,poly} from './math';
 import {COMBO_HITS,ORBIT_BLADES} from './warriorData';
 
 const at=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
-const foe=(u:Unit,t:Unit)=>!t.dead&&t.side!==u.side&&t.side!==2;
+const foe=(u:Unit,t:Unit)=>!t.dead&&!t.eaterCapturedBy&&t.side!==u.side&&t.side!==2;
 export const meleeSkill=(s:Skill)=>!!s.martial&&s.branch==='sword';
 export function warriorAllowed(u:Unit,s:Skill){return u.meleeFollow!=='ready'||meleeSkill(s);}
 export function meleeRange(u:Unit,s:Skill,power:number){return s.radius*(1+(['counterStance','lifeSlash'].includes(s.mode)?0:power)*(.23+passiveTuning(passiveRank(u,'SP01')).swordReach));}
@@ -119,7 +119,7 @@ export function pullToFront(e:Engine,u:Unit,t:Unit){
  for(let i=1;i<=steps;i++){
   const x=start.x+(desired-start.x)*i/steps,floor=e.surface(x,last.y-65,last.y+85);
   if(!floor||floor.y>e.b.height||e.b.terrain.some(v=>!v.broken&&!v.oneWay&&terrainRectIntersects(v,x-t.r,floor.y-t.h,t.r*2,t.h-2,.1)))break;
-  if(e.b.units.some(v=>!v.dead&&v.id!==t.id&&Math.abs(v.x-x)<v.r+t.r&&Math.abs(v.y-floor.y)<Math.min(v.h,t.h)))break;
+  if(e.b.units.some(v=>!v.dead&&!v.eaterCapturedBy&&v.id!==t.id&&Math.abs(v.x-x)<v.r+t.r&&Math.abs(v.y-floor.y)<Math.min(v.h,t.h)))break;
   last={x,y:floor.y};
  }
  t.x=last.x;t.y=last.y;t.vx=t.vy=0;t.airborne=t.jumping=false;delete t.moveTarget;

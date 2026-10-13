@@ -117,7 +117,8 @@ export function currentActiveSpAudit(){
   curseManifest:'area existence/reveal change; inspect MANIFEST_TURNS',
   curseEnthrall:'converted actor actions and power; inspect ENTHRALL_ACTIONS/POWER',
   curseEarth:'timed binding damage plus on-death anchored spirit',
-  summonEater:'projectile interception and capped burst; no direct seed damage',
+  summonEater:'one-time enemy capture; 2–4 round denial and per-target ally-damage copying capped by remaining prison HP; inspect tests/two-skill-balance-contracts.mjs',
+  waveBounce:'terrain-conditioned branching contacts with generation decay; inspect tests/two-skill-balance-contracts.mjs',
   summonEcho:'extra owner-cast echoes; inspect ECHO_LIMIT/POWER/TURNS',
   spiritConverge:'capstone convergence contacts; 10 + floor(rank/2) spirits',
  };

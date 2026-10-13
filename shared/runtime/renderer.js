@@ -268,10 +268,17 @@
                 const rr = f.r || f.radius || 100;
                 this.field(c, f.x, f.y, rr, f.kind || f.type || 'gravity');
             }
-            // The boundary is the exact projectile attraction radius in Engine.
-            for(const v of b.units)if(!v.dead&&v.summonKind==='eater'){
-                c.save();c.globalAlpha=.24;c.strokeStyle='#c8d2be';c.lineWidth=1/this.scale;c.setLineDash([3/this.scale,8/this.scale]);c.beginPath();c.arc(v.x,v.y-v.h*.5,200+Math.max(1,Math.min(8,v.summonRank||1))*15,0,Math.PI*2);c.stroke();c.restore();
+            // Captured spirits remain inside the body; avoid a permanent range circle.
+            for(const v of b.units)if(!v.dead&&v.summonKind==='eater'&&(v.eaterSwallow||0)>0){
+                const progress=1-Math.min(1,v.eaterSwallow/.9),ease=1-Math.pow(1-progress,3),shrink=Math.max(.08,1-ease*.94);
+                // These are visual echoes only: captured records never re-enter gameplay/HUD.
+                let echoes=0;for(const captive of b.units){if(captive.eaterCapturedBy!==v.id||captive.dead||echoes++>=6)continue;const origin=captive.eaterOrigin||captive,h=captive.h*shrink;c.save();c.globalAlpha=(1-progress)*.64;this.unitBody(c,{...captive,eaterCapturedBy:undefined,x:origin.x+(v.x-origin.x)*ease,y:origin.y+(v.y-v.h*.5+h*.5-origin.y)*ease,h,r:captive.r*shrink,hurt:0,anim:0},0);c.restore();}
+                const pulse=Math.sin(Math.PI*Math.min(1,(v.eaterSwallow||0)/.9)),reach=Math.min(150,v.h*.9);
+                c.save();c.globalAlpha=.32*pulse;c.strokeStyle='#b7c2aa';c.lineWidth=1.4/this.scale;
+                for(let i=0;i<5;i++){const a=i*1.256+this.time*.7,dx=Math.cos(a),dy=Math.sin(a);c.beginPath();c.moveTo(v.x+dx*reach,v.y-v.h*.5+dy*reach*.55);c.quadraticCurveTo(v.x+dx*reach*.3-dy*15,v.y-v.h*.5+dy*reach*.25,v.x,v.y-v.h*.5);c.stroke();}c.restore();
             }
+            this.eaterReleaseFx=(this.eaterReleaseFx||[]).filter(f=>this.time-f.start<.7);
+            for(const f of this.eaterReleaseFx){const p=Math.max(0,(this.time-f.start)/.7),r=Math.min(260,f.size||160);c.save();c.globalAlpha=(1-p)*.6;c.strokeStyle='#b3bfa9';c.lineWidth=(3-2*p)/this.scale;c.beginPath();c.ellipse(f.x,f.y,r*p,r*p*.62,0,0,Math.PI*2);c.stroke();for(let i=0;i<9;i++){const a=i*2.399,rr=r*(.15+.8*p);c.beginPath();c.moveTo(f.x+Math.cos(a)*rr*.6,f.y+Math.sin(a)*rr*.55);c.quadraticCurveTo(f.x+Math.cos(a+.15)*rr,f.y+Math.sin(a+.15)*rr*.6,f.x+Math.cos(a)*rr,f.y+Math.sin(a)*rr*.62);c.stroke();}c.restore();}
             G.HONRO_CORE.drawStakes(c,e,this.time);
             G.HonroAct1StoryArt?.draw(this,e);
             G.HonroAct23StoryArt?.draw(this,e);
@@ -291,7 +298,7 @@
             if(!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
             const visibleUnits=[];
             for (const v of b.units || []) {
-                if (v.dead || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
+                if (v.dead || v.eaterCapturedBy || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
                     continue;
                 visibleUnits.push(v);
                 this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);

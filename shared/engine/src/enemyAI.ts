@@ -24,7 +24,7 @@ export function flightClear(e:Engine,u:Unit,p:Vec){
  const pad=8,left=p.x-u.r-pad,right=p.x+u.r+pad,head=p.y-u.h-pad,feet=p.y+pad;
  if(left<0||right>e.b.width||head<12||feet>e.b.height)return false;
  if(e.b.terrain.some(t=>!t.broken&&terrainRectIntersects(t,left,head,right-left,feet-head,0)))return false;
- return e.b.units.every(v=>v.id===u.id||v.dead||Math.abs(v.x-p.x)>=u.r+v.r+10||feet<=v.y-v.h-4||head>=v.y+4);
+ return e.b.units.every(v=>v.id===u.id||v.dead||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||feet<=v.y-v.h-4||head>=v.y+4);
 }
 /** Flying fixed bodies absorb most of an impulse, but retain a small positional recoil.
  * Sweep the whole body in short steps so thin walls, ceilings and other actors stop it.
@@ -84,7 +84,7 @@ function advanceFlight(e:Engine,u:Unit,dt:number){
 export function shotImpactValue(e:Engine,u:Unit,skill:Skill,hit:{x:number;y:number;unit?:string},allowedTargetId?:string){
  const eff=e.effective(skill,u),radius=Math.max(1,eff.radius);let enemyDamage=0,friendlyDamage=0;
  for(const v of e.b.units){
-  if(v.dead)continue;
+  if(v.dead||v.eaterCapturedBy)continue;
   const friendly=v.id!==allowedTargetId&&(u.side===1?v.side===1:v.side!==1);
   const opponent=v.id===allowedTargetId||(u.side===1?(v.side===0||(v.side===2&&((v as any).honroAlly||v.id==='objective'))):v.side===1);
   if(!friendly&&!opponent)continue;
@@ -102,12 +102,12 @@ export function targetFor(e:Engine,u:Unit):Unit|undefined{
  const b=e.b;
  const scriptedId=(u as any).honroTargetId, scriptedUntil=(u as any).honroTargetUntil||0;
  if(scriptedId&&scriptedUntil>=b.round){const scripted=e.unit(scriptedId);if(scripted&&!scripted.dead&&scripted.hp>0)return scripted;}
- const cursed=e.alive(u.side).filter(v=>v.id!==u.id&&(v.betrayalUntil||0)>=b.round&&Math.hypot(v.x-u.x,v.y-u.y)<1450).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
+ const cursed=e.actors(u.side).filter(v=>v.id!==u.id&&(v.betrayalUntil||0)>=b.round&&Math.hypot(v.x-u.x,v.y-u.y)<1450).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
  if(cursed)return cursed;
  if(['escort','defend'].includes(e.stage.objective)&&b.mode==='campaign'&&b.round%2===0){
   const obj=e.unit('objective');if(obj&&!obj.dead&&Math.hypot(obj.x-u.x,obj.y-u.y)<1100)return obj;
  }
- const friendlyTargets=(b as any).honroStage?e.b.units.filter(v=>!v.dead&&v.hp>0&&(v.side===0||(v.side===2&&(v as any).honroAlly)||v.id==='objective')):e.alive(0);
+ const friendlyTargets=(b as any).honroStage?e.b.units.filter(v=>!v.dead&&v.hp>0&&(v.side===0||(v.side===2&&(v as any).honroAlly)||v.id==='objective')):e.actors(0);
  return friendlyTargets.sort((a,c)=>{
   const priority=(v:Unit)=>{
    const distance=Math.hypot(v.x-u.x,(v.y-u.y)*.82);
@@ -146,14 +146,14 @@ function positionScore(e:Engine,u:Unit,target:Unit,p:Vec){
  const distance=Math.hypot(p.x-target.x,(p.y-target.y)*.72);
  let score=-Math.max(0,lo-distance)*.29-Math.max(0,distance-hi)*.36-dangerAt(e,u,p);
  // Distinct firing positions reduce splash risk; clustering to get shields is handled below.
- for(const f of e.alive(1))if(f.id!==u.id){const d=Math.hypot(p.x-f.x,p.y-f.y);if(d<165)score-=(165-d)*.18;}
+ for(const f of e.actors(1))if(f.id!==u.id){const d=Math.hypot(p.x-f.x,p.y-f.y);if(d<165)score-=(165-d)*.18;}
  score+=clamp((target.y-p.y)*.045,-22,22);
  score-=Math.max(0,p.y-target.y-85)*(HEAVY.has(u.role)?.19:.14);
  if(u.role==='healer'){
-  const hurt=e.alive(1).filter(v=>v.id!==u.id&&v.hp<v.maxHp*.82).sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
+  const hurt=e.actors(1).filter(v=>!v.summoned&&v.id!==u.id&&v.hp<v.maxHp*.82).sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
   if(hurt)score-=Math.max(0,Math.hypot(p.x-hurt.x,p.y-hurt.y)-610)*.30;
  }
- if(u.role==='ward')score+=e.alive(1).filter(v=>v.id!==u.id&&Math.hypot(p.x-v.x,p.y-v.y)<620).length*5;
+ if(u.role==='ward')score+=e.actors(1).filter(v=>!v.summoned&&v.id!==u.id&&Math.hypot(p.x-v.x,p.y-v.y)<620).length*5;
  return score;
 }
 /** Read-only travel probe. At most one normal jump on this leg, with swept body collisions. */
@@ -185,7 +185,7 @@ function waterfallTactics(e:Engine){const b=e.b as any;return b.honroStage===5&&
  * reserve every living body (opponent, teammate, ally or objective), not just enemies.
  * The 10px horizontal margin covers the ordinary <=9px waypoint arrival tolerance. */
 function waterfallDestinationClear(e:Engine,u:Unit,p:Vec){
- return e.b.units.every(v=>v.id===u.id||v.dead||Math.abs(v.x-p.x)>=u.r+v.r+10||p.y<=v.y-v.h-4||p.y-u.h>=v.y+4);
+ return e.b.units.every(v=>v.id===u.id||v.dead||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||p.y<=v.y-v.h-4||p.y-u.h>=v.y+4);
 }
 function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
  const found:Vec[]=[];
@@ -331,10 +331,10 @@ export function advanceEnemyMove(e:Engine,u:Unit,dt:number){
 export function friendlyFireRisk(e:Engine,u:Unit,skill:Skill,angle:number,power:number,allowedTargetId?:string){
  const hit=e.predict(u,skill,angle,power,undefined,false),blast=e.effective(skill,u).radius;let risk=0;
  if(hit.unit){const unit=e.unit(hit.unit);if(unit?.side===u.side&&unit.id!==allowedTargetId)risk+=3;}
- for(const f of e.alive(u.side)){if(f.id===u.id||f.id===allowedTargetId)continue;const d=Math.hypot(hit.x-f.x,hit.y-(f.y-f.h*.5));if(d<Math.max(28,blast+f.r))risk+=blast>0?2:1;}
+ for(const f of e.actors(u.side)){if(f.id===u.id||f.id===allowedTargetId)continue;const d=Math.hypot(hit.x-f.x,hit.y-(f.y-f.h*.5));if(d<Math.max(28,blast+f.r))risk+=blast>0?2:1;}
  // Direct allies between shooter and impact are especially dangerous even for tiny projectiles.
  const dx=hit.x-u.x,dy=hit.y-(u.y-u.h*.55),len2=dx*dx+dy*dy||1;
- for(const f of e.alive(u.side)){if(f.id===u.id||f.id===allowedTargetId)continue;const fx=f.x-u.x,fy=(f.y-f.h*.5)-(u.y-u.h*.55),t=clamp((fx*dx+fy*dy)/len2,0,1);if(t<=.04||t>=.96)continue;const d=Math.hypot(u.x+dx*t-f.x,(u.y-u.h*.55)+dy*t-(f.y-f.h*.5));if(d<f.r+16)risk+=2;}
+ for(const f of e.actors(u.side)){if(f.id===u.id||f.id===allowedTargetId)continue;const fx=f.x-u.x,fy=(f.y-f.h*.5)-(u.y-u.h*.55),t=clamp((fx*dx+fy*dy)/len2,0,1);if(t<=.04||t>=.96)continue;const d=Math.hypot(u.x+dx*t-f.x,(u.y-u.h*.55)+dy*t-(f.y-f.h*.5));if(d<f.r+16)risk+=2;}
  return risk;
 }
 
@@ -356,7 +356,7 @@ export function* chooseEnemyShotSteps(e:Engine,u:Unit,target:Unit,skills:Skill[]
  // Scripted bosses retain telegraphed cadence, mobile enemies compare affordable attacks.
  if(u.boss===6||u.boss===5){const id=u.boss===6?(e.b.round%3===0?'M06':'M07'):(e.b.round%2===0?'S06':'S01'),skill=skills.find(s=>s.id===id)||skills[0];return {skill,aim:yield* e.searchShot(u,skill,target)};}
  let best:{skill:Skill;aim:{angle:number;power:number;score:number};value:number}|undefined;
- const crowd=e.alive(target.side).filter(v=>Math.hypot(v.x-target.x,v.y-target.y)<180).length;
+ const crowd=e.actors(target.side).filter(v=>Math.hypot(v.x-target.x,v.y-target.y)<180).length;
  const ordered=skills.slice(0,3).sort((a,b)=>crowd>1?Number(b.radius>30)-Number(a.radius>30):0);
  for(const skill of ordered){
   const aim=yield* e.searchShot(u,skill,target);
