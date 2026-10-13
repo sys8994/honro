@@ -7,6 +7,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);const out=process.env.HONRO_OFFLINE_REPORT_DIR||'_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
  ['stage5-waterfall-contracts','npm',['run','test:stage5-waterfall:contracts']],
+ ['stage5-waterfall-normal-input','npm',['run','test:stage5-waterfall:fullplay']],
  ['tactical-routes','npm',['run','test:tactical-routes']],
  ['contribution-xp','npm',['run','test:contribution-xp']],
  ['sp-marginal-balance','npm',['run','test:sp-balance']],

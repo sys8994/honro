@@ -43,3 +43,5 @@ Initial20, action cap4, population cap20, enemy stats, target HP and one-round s
 ## Mandatory contract wiring
 
 `npm run test:stage5-waterfall:contracts` is required by both `test:integration` and the explicit offline verifier. It includes canonical sharing, geometry routes, narrative, conditional waves, old-save/new-retry, fluid trajectories, special projectiles and in-water App pause/Continue. A separate final normal-input replay and independent encounter manifest remain required release evidence; these isolated contracts cannot substitute for them.
+
+`test:stage5-waterfall:fullplay` is also mandatory in integration/offline: normal difficulty, legal Stage1–4 reward ledger, basic A01/M01, zero stat training, actual observed fall→pool floor→shore→ritual return, re-approach and victory with both companions alive. Actual App charge, objective damage, warning pause/resume and exact Continue are asserted. The first passing corrected-body run completed in17 rounds (146/450 HP). This is not an old-map equal-difficulty proof or every-wave activation claim.
