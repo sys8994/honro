@@ -19,7 +19,7 @@ export const CITY_TACTICAL_SURFACES={
   ['garden-retaining-gallery',[[3730,2228],[3970,2228],[4240,2295]],false,'stone',100],
   ['garden-east-return',[[4240,2295],[4370,2425],[4480,2425],[4680,2660]],true,'wood'],
   ['garden-low-retaining-foot',[[4020,2578.88],[4120,2505],[4250,2505],[4390,2673.67]],false,'stone',300],
-  ['shrine-east-steps',[[6780,2401],[6580,2250]],true,'stone']
+  ['shrine-east-steps',[[6550,2190],[6640,2190],[6840,2394.636038969321]],true,'stone']
  ],
  28:[
   ['court-west-ascent',[[2680,2791.272727272727],[3010,2635],[3260,2550]],true,'wood'],
