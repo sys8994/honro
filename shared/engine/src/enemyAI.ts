@@ -180,10 +180,17 @@ function* traceTravelSteps(e:Engine,u:Unit,from:Vec,to:Vec,budget:number):Genera
  }
  return null;
 }
+function waterfallTactics(e:Engine){const b=e.b as any;return b.honroStage===5&&b.honroStage5WaterfallRevision===1&&!b.honroCustom;}
+/** Destination selection only, not a new ground collision rule. Like flightClear,
+ * reserve every living body (opponent, teammate, ally or objective), not just enemies.
+ * The 10px horizontal margin covers the ordinary <=9px waypoint arrival tolerance. */
+function waterfallDestinationClear(e:Engine,u:Unit,p:Vec){
+ return e.b.units.every(v=>v.id===u.id||v.dead||Math.abs(v.x-p.x)>=u.r+v.r+10||p.y<=v.y-v.h-4||p.y-u.h>=v.y+4);
+}
 function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
  const found:Vec[]=[];
  const add=(x:number,y:number)=>{
-  if(!routeGuardAllows(e,u,{x,y}))return;
+  if(!routeGuardAllows(e,u,{x,y})||waterfallTactics(e)&&!waterfallDestinationClear(e,u,{x,y}))return;
   if(x<30||x>e.b.width-30||Math.abs(x-u.x)>u.moveLeft||y<u.y-420||y>u.y+260)return;
   if(Math.hypot(x-u.x,y-u.y)<22||found.some(p=>Math.abs(p.x-x)<23&&Math.abs(p.y-y)<18))return;
   const foot=e.surface(x,y-3,y+4);if(!foot)return;
@@ -225,8 +232,7 @@ function* waterfallShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<
  return best;
 }
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
- const b=e.b as any;
- if(b.honroStage===5&&b.honroStage5WaterfallRevision===1&&!b.honroCustom)return yield* waterfallShotOpportunity(e,u,target,p);
+ if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
  if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
  const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
