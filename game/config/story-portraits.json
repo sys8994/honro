@@ -17,34 +17,67 @@
   },
   "문탁": {
     "class": "knight",
-    "image": null
+    "image": null,
+    "actor": {
+      "honroCivilian": true,
+      "honroType": "civilian"
+    }
   },
   "백산": {
     "class": "knight",
-    "image": null
+    "image": null,
+    "actor": {
+      "honroAlly": true,
+      "allyRole": "guard"
+    }
   },
   "생존자": {
     "class": "mage",
-    "image": null
+    "image": null,
+    "actor": {
+      "honroCivilian": true,
+      "honroType": "civilian"
+    }
   },
   "주막주인": {
     "class": "knight",
-    "image": null
+    "image": null,
+    "actor": {
+      "honroCivilian": true,
+      "honroType": "civilian"
+    }
   },
   "나무꾼": {
     "class": "knight",
-    "image": null
+    "image": null,
+    "actor": {
+      "id": "npc-woodcutter",
+      "honroAlly": true,
+      "allyRole": "scout"
+    }
   },
   "연실": {
     "class": "mage",
-    "image": null
+    "image": null,
+    "actor": {
+      "honroAlly": true,
+      "allyRole": "healer"
+    }
   },
   "춘례": {
     "class": "mage",
-    "image": null
+    "image": null,
+    "actor": {
+      "honroAlly": true,
+      "allyRole": "healer"
+    }
   },
   "복만": {
     "class": "knight",
-    "image": null
+    "image": null,
+    "actor": {
+      "honroAlly": true,
+      "allyRole": "porter"
+    }
   }
 }
