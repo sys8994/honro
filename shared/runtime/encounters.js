@@ -96,7 +96,7 @@ function flush(app){
     hs.flags[key]=true;if(combat(ev.action)){spawned=true;hs.lastCombatEventBoundary=boundary;}
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);
     hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);
-    const lines=G.HonroStoryContent.eventLines(app,ev);app.event(lines?.[0]?.[2]?.storyTitle||ev.text);if(lines?.length)app.sayLines(lines);b.events.push('honro:'+ev.id);app.dirty=true;
+    const lines=G.HonroStoryContent.eventLines(app,ev);if(lines?.length)app.sayLines(lines);else app.event(ev.text,{kind:'narration',source:'encounter:'+ev.id});b.events.push('honro:'+ev.id);app.dirty=true;
     if(app.dialogue)break;
   }
 }

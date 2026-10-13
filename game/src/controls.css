@@ -308,3 +308,10 @@
  .honro #app .battle-screen .battle-title-row{min-width:0}
  .honro #app .battle-screen .battle-title-row .debug-badge{max-width:100%;box-sizing:border-box}
 }
+
+/* The chapter stays to the left of the place name; long names wrap within the
+   mission column, leaving the existing minimap and lower controls untouched. */
+.honro #app .battle-stage-heading{display:flex;align-items:baseline;gap:7px;min-width:0;max-width:100%}
+.honro #app .battle-stage-heading b{min-width:0;overflow-wrap:anywhere}
+.honro #app .battle-chapter{flex:none;white-space:nowrap;font-size:10px;line-height:1.4;color:#c6b78f;font-weight:400}
+@media(max-width:620px){.honro #app .battle-stage-heading{gap:5px}.honro #app .battle-chapter{font-size:9px}}

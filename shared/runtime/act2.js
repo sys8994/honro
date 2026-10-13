@@ -98,8 +98,8 @@ function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!sati
 // Shared by the actual interaction gate and read-only prerequisite guidance.
 function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
 function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=app.engine.active;
- if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'E · 낙석 치우기'};
- if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'E · 주변 원혼등불 밝히기'};
+ if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'낙석 치우기'};
+ if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'주변 원혼등불 밝히기'};
  if(!s)return{ok:false,reason:current(b)?'먼저 '+current(b).label:'목표 완료'};
  if(['clear','hold','defeat','destroy','reach','escort','route'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
@@ -114,13 +114,13 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
   const spirit=b.units.find(v=>v.id===m.spiritId);
   if(spirit&&!spirit.dead&&!spirit.honroSubdued)return{ok:false,reason:'소단으로 분리하거나 곁의 혼을 먼저 제압'};
  }
- return{ok:true,reason:'E · '+m.label};
+ return{ok:true,reason:m.label};
 }
 function say(app,id,lines){if(!lines?.length)return;app.sayLines(G.HonroAct2Content.scene('act2-'+app.stage.id+'-'+id,app.stage.name,lines));}
 function completeStep(app,s){const e=app.engine,b=e.b,a=memory(b);if(a.done[s.id])return;
  a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round});
  const m=marker(b,s.id);if(m)m.collected=true;
- say(app,s.id,(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id]);app.event(s.label+' · 완료');app.dirty=true;
+ const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];say(app,s.id,lines);if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
 }
 function wave(app,key,kind,n=2,siteKey=key,eliteEvery=4){const e=app.engine,b=e.b,a=memory(b);if(a.events[key])return true;
  const site=marker(b,'wave-'+siteKey)||marker(b,'wave');if(!site)return false;
@@ -133,7 +133,7 @@ function expose(b,until,site,radius=Infinity){for(const u of b.units)if(u.honroS
 function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=>q.id===m.id);
  if(!eligibility(app,m).ok)return false;
  if(m.id.startsWith('spirit-lamp')){expose(b,b.round+2,m,m.radius||1200);app.event('원혼등불 · 주변의 혼이 두 턴 동안 형태를 드러낸다.');}
- else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;G.HonroObjectiveContributions?.interact(b,m.id,e.active);const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.');}
+ else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;G.HonroObjectiveContributions?.interact(b,m.id,e.active);const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.',{kind:'narration',source:'brace-restored'});}
  else{
   if(!s||s.id!==m.id)return false;
   if(s.kind==='rescue'){
@@ -155,7 +155,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
   if(s.id==='leak'){expose(b,b.round+3);for(const u of b.units.filter(u=>u.honroSpirit&&!u.dead)){u.shield=0;u.bound=Math.max(u.bound,1);}}
   if(s.id==='route'){a.routeOpen=true;for(const u of b.units.filter(u=>u.honroProtected))u.shield=Math.max(u.shield,80);}
   if(s.id.startsWith('separate-')){if(!revision2(b)){a.pendingWaves??=[];a.pendingWaves.push({key:s.id,kind:s.id==='separate-3'?'bellCluster':'echo',n:2});}expose(b,b.round+2,m,900);}
-  if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.');}
+  if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.',{kind:'narration',source:'soul-released'});}
   if(s.id==='escort')a.escort=true;
   G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
   completeStep(app,s);
@@ -185,7 +185,7 @@ function attach(app,e){if(!active(e.b))return;
   if(!before&&t.broken){
    if(t.id==='rock-pin'){const floor=e.b.terrain.find(t=>t.id==='act2-floor');if(floor?.honroRestoredVertices){floor.vertices=floor.honroRestoredVertices.map(p=>({...p}));delete floor.honroRestoredVertices;e.b.sceneVersion++;}}
    if(t.id==='exit-pin'){const gate=e.b.terrain.find(t=>t.id==='gate-exit');if(gate){gate.broken=true;e.b.sceneVersion++;}}
-   if(t.id==='collapse-pin'&&!memory(e.b).done.brace){memory(e.b).collapse=true;for(const p of e.heroesAlive())if(Math.abs(p.x-t.x)<550)e.hurt(p,p.maxHp*.18,undefined,false,undefined,undefined,'environment');const m=marker(e.b,'rebuild-brace');if(m)m.collected=false;const debris=e.b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=false;e.b.sceneVersion++;e.message('버팀목 없이 돌이 무너졌다. 안전 지지대를 세우고 낙석을 치워야 한다.');}
+   if(t.id==='collapse-pin'&&!memory(e.b).done.brace){memory(e.b).collapse=true;for(const p of e.heroesAlive())if(Math.abs(p.x-t.x)<550)e.hurt(p,p.maxHp*.18,undefined,false,undefined,undefined,'environment');const m=marker(e.b,'rebuild-brace');if(m)m.collected=false;const debris=e.b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=false;e.b.sceneVersion++;app.event('버팀목 없이 돌이 무너졌다. 안전 지지대를 세우고 낙석을 치워야 한다.',{kind:'narration',source:'quarry-collapse'});}
    if(t.honroRockfall){for(const p of e.b.units)if(!p.dead&&p.x>t.x-150&&p.x<t.x+t.w+150&&p.y>t.y)e.hurt(p,Math.round(p.maxHp*.28),owner,false,undefined,undefined,'environment');}
   }
   return out;
@@ -205,7 +205,7 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  const lamp=(b.honroMarkers||[]).find(m=>m.id?.startsWith('spirit-lamp')&&m.action==='act2'&&!m.collected&&(!m.requiredClass||heroes.some(u=>u.cls===m.requiredClass))&&Math.hypot(spirit.x-m.x,spirit.y-m.y)<=(m.radius||1200));
  const soulGuide=soul?`소단의 ${C.SKILLS[soul].name}은 드러나지 않은 혼령도 공격할 수 있습니다.`:'소단의 혼 공격은 드러나지 않은 혼령에게도 유효합니다.';
  const reply=manifest?'혼 공격은 바로 닿아요. 현형부로 형태를 잡으면 두 분의 활과 검도 제대로 닿아요.':lamp?'제 혼 공격은 바로 닿아요. 저 원혼등불을 밝히면 두 분의 활과 검도 제대로 닿아요.':'활과 검은 잘 듣지 않아요. 제가 혼 공격으로 맞설게요.';
- const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 E로 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
+ const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
  app.profile.seen??={};
  app.profile.seen[key]=true;
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id};

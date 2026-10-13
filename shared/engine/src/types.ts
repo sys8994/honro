@@ -151,7 +151,7 @@ export interface Unit {
     gateTurn?: string;
     arrivalGuard?: number;
     slowed?: {factor:number;expires:number};
-    shove?: {owner:string;damage:number;remaining:number;hit:string[];life:number};
+    shove?: {autonomous?:boolean;owner:string;damage:number;remaining:number;hit:string[];life:number};
     elite?: boolean;
     summoned?: boolean;
     summonOwner?: string;
@@ -173,7 +173,7 @@ export interface Unit {
     soulDefenseBonus?: number;
     soulBonusUntil?: number;
     enthrall?: {owner:string;actions:number;captureRatio:number;originalMaxHp:number;originalAttack:number;originalArmor:number;power:number};
-    earthbind?: {owner:string;until:number;damage:number};
+    earthbind?: {autonomous?:boolean;owner:string;until:number;damage:number};
     nextSummonDiscount?: number;
     soulRemnants?: number;
     impactCooldown?: number;
@@ -182,6 +182,7 @@ export interface Unit {
     curseOwner?: string;
     curseTurns?: number;
     curseDamage?: number;
+    curseAutonomous?: boolean;
     curseAttack?: number;
     curseArmor?: number;
     betrayalUntil?: number;
@@ -258,6 +259,8 @@ export interface Unit {
     cooldowns?: Record<string, number>;
 }
 export interface Projectile {
+    /** Automatic continuation; inherited by child effects and serialized in flight. */
+    autonomous?: boolean;
     existenceAttack?: ExistenceVector;
     echoDelay?: number;
     echoSource?: string;
@@ -329,6 +332,7 @@ export interface Projectile {
     ultimateBurst?: boolean;
 }
 export interface Zone {
+    autonomous?: boolean;
     id: number;
     kind: 'fire' | 'frost' | 'delay' | 'bomb';
     x: number;
@@ -379,7 +383,7 @@ export interface Battle {
     stakes?: {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean;afterActor?:boolean};
-    occultTraps?: {id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number}[];
+    occultTraps?: {autonomous?:boolean;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number}[];
     vertical?: boolean;
     routePoints?: Vec[];
     volley?: {template: Projectile; remaining: number; elapsed: number; interval: number; index: number; angle: number; power: number};

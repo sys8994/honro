@@ -60,3 +60,44 @@
 .honro #app .rest-fire{overflow:visible}
 .rest-fire::before{content:'';position:absolute;bottom:100%;left:50%;width:110px;height:115px;transform:translateX(-50%);background:transparent}
 @media(max-width:700px){.rest-fire::before{height:135px;transform:translateX(calc(-50% + 17vw))}}
+
+/* Rest camera: title/actions are viewport UI, every actor and fire target lives
+   in the same transformed world as the artwork. No bottom toolbar surface. */
+.honro #app .rest-screen{overflow:hidden}
+.honro #app .rest-screen>.top{background:transparent;border:0;padding:8px 14px}
+.honro #app .rest-screen>.top h2{display:none}
+.honro #app .rest-landscape{min-height:0;touch-action:none;overscroll-behavior:contain;cursor:grab}
+.rest-landscape.dragging{cursor:grabbing;user-select:none}
+.rest-world{position:absolute;width:111.111112%;height:111.111112%;left:-5.555556%;top:-5.555556%;transform-origin:50% 50%;isolation:isolate;background:#111d22}
+.rest-world .rest-background{inset:0 0 140px;z-index:-1}
+.rest-world .rest-background::after{content:"";position:absolute;left:0;right:0;bottom:-140px;height:180px;background:linear-gradient(to bottom,transparent,#111d22 40px);pointer-events:none}
+.rest-location{left:6%;top:5%;max-width:88%;pointer-events:none;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.rest-location>span{font-size:11px;letter-spacing:.08em;white-space:nowrap}
+.rest-location h1{font-size:clamp(25px,3vw,42px);margin:0;letter-spacing:.04em}
+.honro #app .rest-world .rest-person{top:calc(var(--rest-ground,75%) + 32px);width:110px;height:174px}
+.rest-world .rest-person canvas{height:150px;width:110px}
+.rest-world .rest-person-label{font-size:11px;height:24px;box-sizing:border-box}
+.rest-world .rest-person-label i{top:-54px;right:7%;min-width:50px;min-height:50px;display:grid;place-items:center;font-size:22px;padding:0 6px 7px;box-sizing:border-box}
+.honro #app .rest-world .rest-fire{left:50%;top:calc(var(--rest-ground,75%) + 43px);transform:translateX(-50%);min-width:126px;min-height:52px;padding:7px 12px;gap:3px;background:#101e20dc;box-shadow:none}
+.rest-world .rest-fire span{font-size:17px}.rest-world .rest-fire small{font-size:9px}
+.rest-world .rest-fire::before{display:none}
+.honro #app .rest-world .rest-fire.has-new-sp{border-color:#f0cc83;box-shadow:0 0 0 2px #e7b96835,0 0 26px #e5a64c55;background:#342d1fea}
+.rest-world .rest-fire.has-new-sp small{color:#ffe1a7}
+.rest-actions{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:6%;right:6%;display:flex;align-items:center;justify-content:center;gap:10px;z-index:2;background:none;border:0;padding:0}
+.honro #app .rest-actions>button{display:inline-flex;justify-content:center;align-items:center;gap:6px;min-height:46px;padding:10px 16px;margin:0;border:1px solid #9aab9859;border-radius:4px;background:#14262ad9;color:#d9ded0;font-size:12px;white-space:nowrap;line-height:1.3;box-shadow:0 3px 12px #07111440}
+.rest-actions svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}
+.honro #app .rest-actions>.rest-training{background:#0b191b96;border-color:#879b8747;color:#becbbd}
+.honro #app .rest-actions>.primary{background:#b6a371;color:#152222;border-color:#dcc996;font-weight:600}
+.honro #app .rest-actions>.primary:hover{background:#d1be89}
+.rest-actions button:focus-visible{outline:2px solid #f3d89b;outline-offset:3px}
+.rest-ending{position:absolute;left:10%;right:10%;bottom:85px;text-align:center;color:#d8d7bb;pointer-events:none}.rest-ending span{display:block;font-size:11px;margin-top:8px}
+@media(max-width:700px){
+ .rest-location{left:6%;top:5%;gap:8px}.rest-location>span{font-size:10px}.rest-location h1{font-size:27px}
+ .honro #app .rest-world .rest-person{width:76px;height:128px}.rest-world .rest-person canvas{width:76px;height:104px}.rest-world .rest-person-label{font-size:10px}
+ .honro #app .rest-world .rest-archer{left:20%}.honro #app .rest-world .rest-mage{left:36%}.honro #app .rest-world .rest-knight{left:65%}.honro #app .rest-world .rest-occultist{left:81%}
+ .rest-world .rest-person-label i{top:-54px;right:0;font-size:19px}
+ .rest-actions{left:12px;right:12px;gap:6px;bottom:max(18px,env(safe-area-inset-bottom))}
+ .honro #app .rest-actions>button{font-size:11px;min-height:46px;padding:9px 8px;gap:4px;flex:1}
+ .honro #app .rest-actions>.rest-next{flex:1.55}.rest-actions svg{width:16px;height:16px}
+}
+@media(max-height:460px){.rest-location{top:2%}.rest-location h1{font-size:23px}.honro #app .rest-world .rest-person{height:110px;width:63px}.rest-world .rest-person canvas{height:86px;width:63px}.rest-world .rest-person-label i{top:-54px}.rest-actions{bottom:8px}.honro #app .rest-world .rest-fire{top:calc(var(--rest-ground,75%) + 13px);min-height:46px;padding:5px 9px}}

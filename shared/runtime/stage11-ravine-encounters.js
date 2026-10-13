@@ -150,7 +150,7 @@ function residentShelter(app,dt){const e=app.engine,b=e.b;if(!composed(b)||dt<=0
  // The civilian never becomes another fighter. Wait for a safe short route;
  // use real walking and keep all original HP/protection/failure semantics.
  if(live(b).some(v=>Math.hypot(v.x-goal.x,v.y-goal.y)<430)||b.units.some(v=>v!==u&&!v.dead&&v.hp>0&&Math.abs(v.x-(u.x+Math.sign(goal.x-u.x)*12))<v.r+u.r+8&&Math.abs(v.y-u.y)<Math.min(v.h,u.h)))return;
- if(!s.started){s.started=true;s.status='walking';s.oldSpeed=u.walkSpeed;u.fixed=false;u.walkSpeed=110;u.moveLeft=Math.abs(goal.x-u.x)+30;app.event('분리된 주민이 가까운 짐 뒤로 몸을 피합니다.');}
+ if(!s.started){s.started=true;s.status='walking';s.oldSpeed=u.walkSpeed;u.fixed=false;u.walkSpeed=110;u.moveLeft=Math.abs(goal.x-u.x)+30;app.event('분리된 주민이 가까운 짐 뒤로 몸을 피합니다.',{kind:'narration',source:'resident-shelters'});}
  const old=u.x;e.walk(u,Math.sign(goal.x-u.x),Math.min(dt,.05),true);s.stalled=Math.abs(u.x-old)<.01?(s.stalled||0)+dt:0;
  if(Math.abs(goal.x-u.x)<3||s.stalled>2||u.moveLeft<=0){s.status=Math.abs(goal.x-u.x)<3?'done':'stopped';u.fixed=true;u.walkSpeed=s.oldSpeed;u.vx=u.vy=0;}app.dirty=true;
 }
@@ -235,7 +235,7 @@ function rescueTarget(b,s){
  const weaken=spirit&&!spirit.dead&&spirit.hp>0&&(spirit.hp>spirit.maxHp*.4||!sodan&&!spirit.honroSubdued);
  const target=weaken?spirit:b.units.find(u=>u.id===m.target);
  if(!target||target.dead||target.hp<=0||!Number.isFinite(target.x)||!Number.isFinite(target.y))return null;
- return{kind:weaken?'boss':'interact',unitId:target.id,x:target.x,y:target.y-target.h,label:weaken?'주민에게 붙은 '+(spirit.name||'혼'):'주민 · E'};
+ return{kind:weaken?'boss':'interact',unitId:target.id,x:target.x,y:target.y-target.h,label:weaken?'주민에게 붙은 '+(spirit.name||'혼'):'주민 · 구조'};
 }
 // Only the next actionable rescue instruction is shown. Use the production
 // eligibility result; this presentation does not change any gate or saved step.
@@ -249,8 +249,8 @@ function rescueInstruction(b,s){
   return '주민 주변의 적 '+count+'명을 처치하세요';
  }
  if(!result.ok&&result.reason==='붙은 혼을 먼저 약화시키세요 · 체력 40% 이하')return sodan?'붙은 혼의 체력을 40% 이하로 낮추세요':'주민에게 붙은 혼을 제압하세요';
- if(!result.ok&&result.reason==='소단으로 분리하거나 곁의 혼을 먼저 제압')return sodan?'소단으로 주민에게 다가가 E':'주민에게 붙은 혼을 제압하세요';
- if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 E':'동행으로 주민에게 다가가 E';
+ if(!result.ok&&result.reason==='소단으로 분리하거나 곁의 혼을 먼저 제압')return sodan?'소단으로 주민에게 다가가 혼을 분리하세요':'주민에게 붙은 혼을 제압하세요';
+ if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 혼을 분리하세요':'동행으로 주민에게 다가가 구조하세요';
  return null;
 }
 G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,rescueTarget,knotInstruction,holdInstruction,defenseEntries,repairResponseFlights};
