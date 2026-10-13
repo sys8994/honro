@@ -1,3 +1,5 @@
+import {authorStage5Waterfall} from '../tools/map-forge/stage5-waterfall.mjs';
+import {beforeApprovedWaterfall} from './approved-waterfall-contract-helpers.mjs';
 import{runtime}from'../game/tests/helpers.mjs';import{readFileSync,mkdirSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';import{authorStage14Vertical}from'../tools/map-forge/apply-stage14-vertical.mjs';import{authorStage22Vertical}from'../tools/map-forge/apply-stage22-vertical.mjs';import{applyStage22VerticalArt}from'../tools/environment/stage22-vertical-art.mjs';import{authorAct23QuestRedesign}from'../tools/map-forge/act23-quest-redesign.mjs';import{applyCityTacticalRoutes}from'../tools/map-forge/city-tactical-routes.mjs';import{applyStage9And13Tactical}from'../tools/map-forge/stage9-13-tactical.mjs';import{applyTacticalCityResponses}from'../tools/map-forge/tactical-city-responses.mjs';import{applyTacticalWaveWarnings}from'../tools/map-forge/tactical-wave-warnings.mjs';import{refineStage18BellArt}from'../tools/environment/refine-stage18-bell-art.mjs';
 import assert from 'node:assert/strict';
 import {campaignHash as hash,currentCampaignManifest as f,assertCurrentCampaign,assertCurrentCampaignLibrary,scopeCampaign} from './current-campaign-contract-helpers.mjs';
@@ -6,7 +8,7 @@ import {beforeEncounterDensity} from './encounter-density-history-helpers.mjs';
 import {beforeStage8BierLibrary} from './stage8-bier-history-helpers.mjs';
 const raw=JSON.parse(readFileSync('shared/data/campaign.json')),old=historicalCampaign();
 assertCurrentCampaign(raw);assert.equal(raw.stages.length,30);assert.equal(raw.library.length,640);
-assert.deepEqual(f.changedStageIds,[9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
+assert.deepEqual(f.changedStageIds,[5,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
 assert.deepEqual(raw.stages.filter((s,i)=>hash(s)!==hash(old.stages[i])).map(s=>s.metadata.stageId),f.changedStageIds);
 assert.deepEqual(raw.library.filter(a=>!old.library.some(b=>b.id===a.id)).map(a=>a.id),f.addedAssetIds);assert.equal(f.addedAssetIds.length,54);
 assert.deepEqual(old.library.filter(a=>!raw.library.some(b=>b.id===a.id)),[],'No original asset deletion');
@@ -15,9 +17,12 @@ const bell=JSON.parse(JSON.stringify(refineStage18BellArt(structuredClone(old)))
 const retainedBytes=readFileSync('tests/fixtures/campaign-contracts/retained-assets.json');assert.equal(hash(retainedBytes),f.retainedAssetsSha256);const retained=JSON.parse(retainedBytes);
 assert.deepEqual(retained.map(r=>r.id),['stage14:vertical-home-family','stage14:vertical-home-river','stage14:vertical-household-rock-market','quest-redesign:hammer','quest-redesign:bowl']);for(const r of retained){assert.equal(hash(r.asset),r.sha256);assert.deepEqual(raw.library.find(a=>a.id===r.id),r.asset,'Retained original authored asset '+r.sourceCommit+'/'+r.id);}
 const g=await runtime({legacyMaps:false});assertCurrentCampaign(JSON.parse(JSON.stringify(g.HONRO_PROJECT)),{variant:'runtime'});assert.deepEqual(JSON.parse(JSON.stringify(g.HonroMaps.validate(raw))).filter(e=>e.level==='err'),[]);
+const waterfallDelta=f.approvedDeltas.find(d=>d.kind==='stage5-waterfall');assert(waterfallDelta);assert.equal(hash(readFileSync(waterfallDelta.author)),waterfallDelta.authorSha256);assert.equal(hash(readFileSync(waterfallDelta.originalFixture)),waterfallDelta.originalFixtureSha256);assert.deepEqual([waterfallDelta.addedAssets,waterfallDelta.removedAssets,waterfallDelta.changedAssets],[0,0,0]);
+const preWaterfall=beforeApprovedWaterfall(raw,g);assert.deepEqual(preWaterfall.stages[4],old.stages[4],'Original stage5 agrees with immutable1973 checkpoint');
+for(const mutate of [p=>p.stages[4].units[0].hp++,p=>p.stages[4].terrains[0].points[0].x++,p=>p.stages[4].initialState.honroStage5WaterfallRevision++,p=>p.stages[4].terrains.reverse()]){const p=structuredClone(raw);mutate(p);assert.throws(()=>beforeApprovedWaterfall(p,g),'Unapproved waterfall changes must fail');}
 // Replay every later map author from the original checkpoint, not from current
 // target maps. The five retired editable assets remain separately immutable.
-let made=await authorStage14Vertical(historicalCampaign(),g);made=applyStage22VerticalArt(await authorStage22Vertical(made,g));made=await authorAct23QuestRedesign(made);made=applyCityTacticalRoutes(made);made=applyStage9And13Tactical(made);made=applyTacticalCityResponses(made);made=applyTacticalWaveWarnings(made);made=refineStage18BellArt(made);
+let made=await authorStage14Vertical(historicalCampaign(),g);made=applyStage22VerticalArt(await authorStage22Vertical(made,g));made=await authorAct23QuestRedesign(made);made=applyCityTacticalRoutes(made);made=applyStage9And13Tactical(made);made=applyTacticalCityResponses(made);made=applyTacticalWaveWarnings(made);made=refineStage18BellArt(made);made=JSON.parse(JSON.stringify(authorStage5Waterfall(made,g)));
 for(const r of retained){assert(!made.library.some(a=>a.id===r.id),'Explicitly retired author output, not overriding current output');made.library.push(structuredClone(r.asset));}
 // Preserve insertion order from the actual sequential authored releases. These
 // explicit permutations cannot conceal membership or value drift. Current raw

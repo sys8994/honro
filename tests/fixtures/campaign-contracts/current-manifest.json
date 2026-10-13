@@ -6,7 +6,7 @@
   "approvedSourceCommit": "5ca1830b91fb3b94b0871cd5743b9425bd9cf8f3",
   "metadataRepairCommit": "e987e410c765ddbfc5d33e4b54ede86945ad3947",
   "retainedAssetsSha256": "1342a2fdcf3b17a456de35226ce3bc5960ea66e1067b7a6a67cea4473d33f584",
-  "scope": "Exact current 5ca1830 plus e987e41 metadata correction. Stage5 waterfall and all future changes require a separately reviewed delta; never auto-refresh.",
+  "scope": "Exact5ca1830 + e987e41 metadata + b7ae179 binding schema default + explicitly approved final Stage5 waterfall. Full30/640 with54 original post-density additions; only added chapter delta5 beyond prior21. No automatic refresh.",
   "provenance": [
     "6ce25ff6d8d5d03d2142f494ad79e925490469f7 feat(stage14): integrate vertical encounter and saved response draft",
     "602d6a8af47d5cff393cb557ab07a7d83215ecc4 fix(stage14): restore physical bridge and shorten refuge approach",
@@ -39,6 +39,7 @@
     "bd6fa8c61489529b68204fb92ac006cf85812130 Apply the reviewed hollow-bell vector without changing any stage data"
   ],
   "changedStageIds": [
+    5,
     9,
     11,
     12,
@@ -136,7 +137,7 @@
     "fc15-safe-crown-descent"
   ],
   "raw": {
-    "sha256": "40656900ea1db84a3874500572202e1ba241498b511d44b8231bb17c8f1f1642",
+    "sha256": "b02754fdc26dc83f6b95e5b47124b58e30e9df46ef49252f40c7ecd64ad4bc87",
     "globals": {
       "schema": "honro-map",
       "version": 6,
@@ -178,7 +179,7 @@
       {
         "id": "stage-5",
         "stageId": 5,
-        "sha256": "1efdb99b86a52b1c80756a9f6c6237d75497cec6d76f53c57213dac3e553c28a"
+        "sha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5"
       },
       {
         "id": "stage-6",
@@ -2870,7 +2871,7 @@
     ]
   },
   "runtime": {
-    "sha256": "b0c19e9a3fd231ff0eeb7a40c131b3b04095e0dd408f917ad1b1f37725ba7767",
+    "sha256": "70dca3296018bb09f6460dd6f48f9c84fa3037f7f3d02b877ac42735371c29ae",
     "globals": {
       "schema": "honro-map",
       "version": 6,
@@ -2912,7 +2913,7 @@
       {
         "id": "stage-5",
         "stageId": 5,
-        "sha256": "5d0d613285a56d51e4d762c8a802cf457a4cd9abbd3d5dcb9b4e7807da1fc838"
+        "sha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5"
       },
       {
         "id": "stage-6",
@@ -5621,6 +5622,39 @@
       "beforeStageSha256": "b2026ffce75b270680cc44f3377c0df82f7a6bed47a1946c8c3ef813100957eb",
       "afterStageSha256": "f9b48f9e2d90a6949cbc4c3524c914614b058132fe8c62a10acfc5dce83052b9",
       "behaviorGate": "tests/binding-detail-normalization.mjs"
+    },
+    {
+      "kind": "stage5-waterfall",
+      "integrationCommit": "a7ddb02bd965f3335656ced7a35b939635c38f10",
+      "sourceCommit": "d8b2c85b48c868d3fbfe1425ad21c06baca6478d",
+      "author": "tools/map-forge/stage5-waterfall.mjs",
+      "authorSha256": "3bd59eff70feea4610c7886354b48ecd379fd1c98045983fad9291f5431e9d0b",
+      "originalFixture": "tests/fixtures/stage5-waterfall/before-stage5.json",
+      "originalFixtureSha256": "483ee2642fcda9a7f49815d83cccbcf82583a57c3711eaa683ed5fddaf9ab439",
+      "addedAssets": 0,
+      "removedAssets": 0,
+      "changedAssets": 0,
+      "rows": [
+        {
+          "variant": "raw",
+          "beforeProjectSha256": "40656900ea1db84a3874500572202e1ba241498b511d44b8231bb17c8f1f1642",
+          "afterProjectSha256": "b02754fdc26dc83f6b95e5b47124b58e30e9df46ef49252f40c7ecd64ad4bc87",
+          "beforeStageSha256": "1efdb99b86a52b1c80756a9f6c6237d75497cec6d76f53c57213dac3e553c28a",
+          "afterStageSha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5"
+        },
+        {
+          "variant": "runtime",
+          "beforeProjectSha256": "b0c19e9a3fd231ff0eeb7a40c131b3b04095e0dd408f917ad1b1f37725ba7767",
+          "afterProjectSha256": "70dca3296018bb09f6460dd6f48f9c84fa3037f7f3d02b877ac42735371c29ae",
+          "beforeStageSha256": "5d0d613285a56d51e4d762c8a802cf457a4cd9abbd3d5dcb9b4e7807da1fc838",
+          "afterStageSha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5"
+        }
+      ],
+      "behaviorGates": [
+        "tests/stage5-waterfall-authoring.mjs",
+        "tests/stage5-waterfall-continue.mjs",
+        "tests/stage5-waterfall-drag.mjs"
+      ]
     }
   ]
 }

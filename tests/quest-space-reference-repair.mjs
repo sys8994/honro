@@ -1,3 +1,4 @@
+import {beforeApprovedWaterfall} from './approved-waterfall-contract-helpers.mjs';
 /** Exact metadata-only correction of the approved route/funeral author. */
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
@@ -8,10 +9,11 @@ import {repairQuestSpaceReferences,authorAct23QuestRedesign} from '../tools/map-
 const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex'),plain=v=>JSON.parse(JSON.stringify(v));
 const bytes=readFileSync('tests/fixtures/campaign-contracts/metadata-before.json','utf8');
 assert.equal(hash(bytes),'78abe6d173d25aaf08e1e4fc2e68062b6df3ad12f1ad2afcbc24a88b50dfb91e');
+const g=await runtime({legacyMaps:false});
 const f=JSON.parse(bytes),p=JSON.parse(readFileSync('shared/data/campaign.json','utf8')),before=plain(p);
 assert.equal(f.sourceCommit,'5ca1830');
 for(const[n,space]of Object.entries(f.spaces))before.stages[n-1].design.space=plain(space);
-assert.equal(hash(before),f.projectSha256,'Everything except the two explicitly reviewed metadata objects stays exact');
+assert.equal(hash(beforeApprovedWaterfall(before,g)),f.projectSha256,'Everything except the two explicitly reviewed metadata objects stays exact');
 const expected=plain(before),s15=expected.stages[14].design.space,s19=expected.stages[18].design.space;
 assert.equal(s15.rooms[2].terrainIds.pop(),'fc15-west-descent');
 s15.rooms[3].terrainIds.push('fc15-dry-basin-rim');
@@ -23,7 +25,7 @@ assert.deepEqual(s19.encounterSites.map(s=>s.unitId).sort(),Array.from({length:1
 const expectedHash=hash(expected),exact=q=>assert.equal(hash(q),expectedHash,'Only enumerated metadata changes; no arbitrary route/actor/terrain change');exact(p);
 const repaired=plain(before);repaired.stages.forEach(repairQuestSpaceReferences);exact(repaired);repaired.stages.forEach(repairQuestSpaceReferences);exact(repaired);
 exact(await authorAct23QuestRedesign(p));console.log('PASS exact source author and enumerated metadata delta');
-const g=await runtime({legacyMaps:false});vm.runInContext('Date.now=()=>1780000000000',g);
+vm.runInContext('Date.now=()=>1780000000000',g);
 const oldErrors=plain(g.HonroMaps.validate(before)).filter(e=>e.level==='err');assert.equal(oldErrors.length,20);
 assert.deepEqual(plain(g.HonroMaps.validate(p)).filter(e=>e.level==='err'),[],'All30 canonical chapters pass complete existing schema');
 const negatives=[];for(const[id,mutate]of[

@@ -1,3 +1,4 @@
+import {beforeApprovedWaterfall} from './approved-waterfall-contract-helpers.mjs';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
@@ -7,7 +8,7 @@ import {appHarness,plain} from './app-regression-helpers.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex');
 const bytes=readFileSync('tests/fixtures/campaign-contracts/binding-detail-before.json');assert.equal(hash(bytes),'c6a5cb59a886ef8f4433878ff6343a356f026ee250ebf5873ead1d094418f11f');const f=JSON.parse(bytes),g=await runtime({legacyMaps:false});vm.runInContext('Date.now=()=>1780000000000',g);
 const current=plain(g.HONRO_PROJECT),before=plain(current),defaults={spacing:18,roughness:0,seed:1,optimizeEpsilon:0},terrain=current.stages[9].terrains.find(t=>t.id==='sodan-binding');
-assert.deepEqual(terrain,{...f.terrain,detail:defaults});before.stages[9].terrains[before.stages[9].terrains.findIndex(t=>t.id==='sodan-binding')]=plain(f.terrain);assert.equal(hash(before),f.runtimeProjectSha256,'Only this one generated terrain detail property changes across all30 stages');
+assert.deepEqual(terrain,{...f.terrain,detail:defaults});before.stages[9].terrains[before.stages[9].terrains.findIndex(t=>t.id==='sodan-binding')]=plain(f.terrain);assert.equal(hash(beforeApprovedWaterfall(before,g,{variant:'runtime'})),f.runtimeProjectSha256,'Only this one generated terrain detail property changes across all30 stages');
 assert.deepEqual(plain(g.HonroNarrativeRevision.author(current)),current,'Author idempotence for all30');assert.deepEqual(plain(g.HonroMaps.finalize(JSON.parse(g.HonroMaps.serialize(current)))),current,'All30 serialize/import exactly idempotent');assert.deepEqual(plain(g.HonroMaps.finalize(before)),current,'Added value is exactly the existing production schema default');
 // Existing authored terrains, including deliberately customized detail, are untouched.
 assert.deepEqual(plain(g.HonroNarrativeRevision.author(before)),before,'Existing old authored binding without detail is not rewritten');
