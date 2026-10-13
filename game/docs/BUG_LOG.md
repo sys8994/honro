@@ -1,3 +1,11 @@
+## 휘겸 검술 범위 접촉·응수세 범위 반격 (2026-10-13)
+
+- 조사: 평참·횡참·회신참·사생참은 기존에도 범위 안의 모든 적을 순회했다. 기존 횡참 다중 대상 회귀도 통과했다. 사용자 관측의 정확한 전투 배치는 확보하지 못했으므로 단일 대상 종료가 원인이라고 단정하지 않는다.
+- 원인: 공통 근접 판정은 몸통 높이 세 점만 검사해 실제 hurtbox가 부채꼴 끝/모서리에 걸리는 경우를 놓쳤다. 1막 까마귀의 실제 h80/r33 크기와 위쪽 조준에서 모서리 접촉 누락을 재현했다. 응수세는 별도로 첫 적 하나만 선택했다.
+- 변경: 기존 완화 판정은 보존하고 실제 hurtbox/부채꼴 접촉점을 추가 검사한다. 접촉점까지 지형 차폐를 유지한다. 응수세의 발동은 한 번 그대로이며 그 한 번의 검격은 기존 범위 안의 적 모두에게 적용한다. 연참의 단일 대상 연속 타격·사망 시 인계, 회신참의 앞/뒤 각 한 타(아주 가까운 중첩 대상은 두 타), 피해·범위·조준각·기력·돌격/검기 계열은 유지한다.
+- 검증: native/shared runtime의 28개 공통 사례(경지1/8·좌우·겹친 적3명·범위/각도 밖·벽·아군/중립/포획 제외·타당 1회·연참·저장 중 후방타 재개), 기존 hwigyeom-p5 및 typecheck 통과. 두 HTML 빌드 완료.
+- 한계: 실제 발사 버튼/RAF의 Game·Workshop Playtest 회귀를 추가했으나 이 실행 환경의 Chromium socket 권한 오류로 브라우저 시작이 막혔다. 실제 두 호스트 및 공개 Pages 재검수는 배포 검수 단계에서 별도로 필요하다. 자동 회귀가 사용자의 원래 배치를 재현했다는 의미는 아니다.
+
 ## 2026-10-13 먹귀 지상 포획 전환
 - 공중 투사체 흡수 소환을 지형 착지 시 주변 일반/정예 적 1회 포획으로 교체. 포획 원본을 살아있는 상태로 보존해 처치 목표와 저장 ID를 유지하며, 전장 actor와 목표 생존 수를 분리한다.
 - 아군/동맹이 먹귀에 실제 가한 HP 손실을 포획 적 각각에 재계산 없이 전달한다. 초과피해를 남은 먹귀 HP로 제한하며 먹귀 자체는 처치/XP 보상을 만들지 않는다.
@@ -2693,3 +2701,9 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - Change: cooperative persisted release guard, one coordinator, bounded independent blobs, production-first scheduling, explicit uncertain/denied states, read-only reconciliation, confirmed no-effect recovery and four-URL/master/Pages-SHA receipt validation. See `RELEASE_OPERATION_GUARD.md`.
 - Validation: 16 deterministic offline tests pass. `npm run verify` was attempted and stopped during build because this isolated worktree has no installed TypeScript dependency; downstream aggregate/browser/performance tests did not run. No package installation or security workaround was attempted. Runtime sources and generated HTML are unchanged from f6da62d.
 - Limits: caller integration is required; this helper neither calls/cancels MCP nor grants approval. Publication evidence remains distinct from browser/normal-play/performance QA.
+
+## 2026-10-13 · 1막 영체의 과도한 물질 공격 저항 완화
+
+- 원인: 형·기·혼 수비는 각 피해 감응도인데, 등불의 형.18/기1.10에서 기본 평사는21.68%만 전달됐다. 현행8장의 혼4/등불5와 소단 미합류 조건이 설오·평참 휘겸에게 과한 처리 부담을 줬다.
+- 변경: 캠페인1–10장의 일반/정예 혼·수의귀·등불 형 감응만.65/.72/.70로 조정한다. 기·혼·보스·육체형 적·2/3막 기본표·개별 명시 방어는 유지한다. 동일 생성기/compiler/Continue 기본값 보정이라 과거1막 저장도 HP·위치·행동·상태·진행 초기화 없이 적용된다. 상세는 [현재 계약](ACT1_DEFENSE_BALANCE.md).
+- 검증: `test:act1-defense`에 전30장 전후 예산·일반/정예/증원·보스·custom·단일 compiler와 실제 App 내보내기/가져오기3회 회귀를 추가했다. 피해량/체력가중 감응/명중 수 합계를 기록하며 실제 TTK·전투 완주로 주장하지 않는다. 통합 전 빌드·전역 verify·브라우저/Pages 검수는 별도 대기다.

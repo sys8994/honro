@@ -10,26 +10,26 @@ import {historicalRuntimeSources,historicalRuntimeParts,sourceHistoryInput} from
 import {beforeEncounterDensityRuntimeSources,encounterDensityHistory} from './encounter-density-history-helpers.mjs';
 import {beforeStage8BierRuntimeSources,beforeStage8BierFingerprintParts,beforeStage18BellFingerprintParts,stage8BierReview,stage18BellHistoryDelta} from './stage8-bier-history-helpers.mjs';
 const sources=currentRuntimeSources(),archive=historicalRuntimeSources();assertCurrentRuntimeSources(sources);
-const finalDelta=f.approvedDeltas.find(d=>d.kind==='final-waterfall-companion-ai'),bodyDelta=f.approvedDeltas.find(d=>d.kind==='stage5-body-fluid-separation'),uiDelta=f.approvedDeltas.find(d=>d.kind==='compact-ui-title-rest-prop'),titleDelta=f.approvedDeltas.find(d=>d.kind==='title-weathered-ash-vertical-reading'),audioDelta=f.approvedDeltas.find(d=>d.kind==='dialogue-sfx-title-bgm-start'),skillDelta=f.approvedDeltas.find(d=>d.kind==='enemy-prison-and-splitting-reflection'),inspectorDelta=f.approvedDeltas.find(d=>d.kind==='prison-inspection-and-captive-overlays');
-assert(finalDelta&&bodyDelta&&uiDelta&&titleDelta&&audioDelta&&skillDelta&&inspectorDelta);assert.equal(finalDelta.sourceChanges.length,20);assert.equal(bodyDelta.sourceChanges.length,5);
+const finalDelta=f.approvedDeltas.find(d=>d.kind==='final-waterfall-companion-ai'),bodyDelta=f.approvedDeltas.find(d=>d.kind==='stage5-body-fluid-separation'),uiDelta=f.approvedDeltas.find(d=>d.kind==='compact-ui-title-rest-prop'),titleDelta=f.approvedDeltas.find(d=>d.kind==='title-weathered-ash-vertical-reading'),audioDelta=f.approvedDeltas.find(d=>d.kind==='dialogue-sfx-title-bgm-start'),skillDelta=f.approvedDeltas.find(d=>d.kind==='enemy-prison-and-splitting-reflection'),inspectorDelta=f.approvedDeltas.find(d=>d.kind==='prison-inspection-and-captive-overlays'),combatDelta=f.approvedDeltas.find(d=>d.kind==='sword-area-and-act1-defense');
+assert(finalDelta&&bodyDelta&&uiDelta&&titleDelta&&audioDelta&&skillDelta&&inspectorDelta&&combatDelta);assert.equal(finalDelta.sourceChanges.length,20);assert.equal(bodyDelta.sourceChanges.length,5);
 assert.deepEqual(finalDelta.afterBuilds,bodyDelta.beforeBuilds);assert.equal(finalDelta.afterCoreSha256,bodyDelta.beforeCoreSha256);
 assert.deepEqual(bodyDelta.afterBuilds,uiDelta.beforeBuilds);assert.equal(bodyDelta.afterCoreSha256,uiDelta.beforeCoreSha256);
 assert.deepEqual(uiDelta.afterBuilds,titleDelta.beforeBuilds);assert.equal(uiDelta.afterCoreSha256,titleDelta.beforeCoreSha256);
 assert.deepEqual(titleDelta.afterBuilds,audioDelta.beforeBuilds);assert.equal(titleDelta.afterCoreSha256,audioDelta.beforeCoreSha256);
-assert.deepEqual(audioDelta.afterBuilds,skillDelta.beforeBuilds);assert.equal(audioDelta.afterCoreSha256,skillDelta.beforeCoreSha256);assert.deepEqual(skillDelta.afterBuilds,inspectorDelta.beforeBuilds);assert.deepEqual(inspectorDelta.afterBuilds,f.variants);assert.equal(skillDelta.afterCoreSha256,inspectorDelta.beforeCoreSha256);assert.equal(inspectorDelta.afterCoreSha256,f.coreSha256);assert.notEqual(inspectorDelta.beforeCoreSha256,inspectorDelta.afterCoreSha256);assert.notEqual(audioDelta.beforeCoreSha256,audioDelta.afterCoreSha256);assert.equal(uiDelta.beforeCoreSha256,uiDelta.afterCoreSha256,'Follow-up UI/navigation/art does not change compiled gameplay');
+assert.deepEqual(audioDelta.afterBuilds,skillDelta.beforeBuilds);assert.equal(audioDelta.afterCoreSha256,skillDelta.beforeCoreSha256);assert.deepEqual(skillDelta.afterBuilds,inspectorDelta.beforeBuilds);assert.deepEqual(inspectorDelta.afterBuilds,combatDelta.beforeBuilds);assert.deepEqual(combatDelta.afterBuilds,f.variants);assert.equal(skillDelta.afterCoreSha256,inspectorDelta.beforeCoreSha256);assert.equal(inspectorDelta.afterCoreSha256,combatDelta.beforeCoreSha256);assert.equal(combatDelta.afterCoreSha256,f.coreSha256);assert.notEqual(inspectorDelta.beforeCoreSha256,inspectorDelta.afterCoreSha256);assert.notEqual(audioDelta.beforeCoreSha256,audioDelta.afterCoreSha256);assert.equal(uiDelta.beforeCoreSha256,uiDelta.afterCoreSha256,'Follow-up UI/navigation/art does not change compiled gameplay');
 assert.equal(titleDelta.beforeCoreSha256,titleDelta.afterCoreSha256,'Title-only refinement does not change compiled gameplay');
 assert.deepEqual(uiDelta.sourceChanges.map(c=>c.path),['shared/runtime/main.js','shared/runtime/rest-journey.js','shared/runtime/story-act1-art.js']);
 assert.deepEqual(uiDelta.packagingChanges.map(c=>c.path),['game/build.mjs']);
 assert.deepEqual(titleDelta.sourceChanges.map(c=>c.path),['shared/runtime/main.js']);
 assert.deepEqual(titleDelta.packagingChanges.map(c=>c.path),['game/src/title.css']);
 assert.match(titleDelta.sourceCommit,/^[0-9a-f]{40}$/);assert.equal(titleDelta.baseCurrentCommit,'85cdf1b1e7875e3f4aac1fff350a6f62a9be8305');
-assert.equal(f.approvedDeltas.at(-4),titleDelta);assert.equal(f.approvedDeltas.at(-3),audioDelta);assert.equal(hash(f.approvedDeltas.slice(0,-4)),'fb201dffe122dc9283131482e42cdbcfaf99f83426eebcbfebbdcc22b5936d31','Every prior approval and its historical build evidence remains unchanged');
-assert.equal(hash(f.approvedDeltas.slice(0,-3)),'d823e0905ee08af639da23180003517c6cc92176e2e2f491a723623dc05cb1ae','Every pre-audio approval including title build evidence is immutable');
+assert.equal(f.approvedDeltas.at(-5),titleDelta);assert.equal(f.approvedDeltas.at(-4),audioDelta);assert.equal(hash(f.approvedDeltas.slice(0,-5)),'fb201dffe122dc9283131482e42cdbcfaf99f83426eebcbfebbdcc22b5936d31','Every prior approval and its historical build evidence remains unchanged');
+assert.equal(hash(f.approvedDeltas.slice(0,-4)),'d823e0905ee08af639da23180003517c6cc92176e2e2f491a723623dc05cb1ae','Every pre-audio approval including title build evidence is immutable');
 assert.deepEqual(audioDelta.sourceChanges.map(c=>c.path),['shared/engine/src/bgm.ts','shared/engine/src/sound-design.ts','shared/runtime/story.js']);
 assert.deepEqual(audioDelta.packagingChanges,[]);assert.equal(audioDelta.baseCurrentCommit,'28b829abb3a108f522be9f35aceca4795de637bd');assert.equal(audioDelta.sourceCommit,'3b848ddb72d4dc7ccacfe86c5bf999509868b9c3');
 
-assert.equal(f.approvedDeltas.at(-2),skillDelta);
-assert.equal(hash(f.approvedDeltas.slice(0,-2)),'3f2b98b5bce6d50ae5c8c25dc9d57c1b061499d339674f943f485d3e0a3c5dbd','Every pre-skill approval, including audio, is immutable');
+assert.equal(f.approvedDeltas.at(-3),skillDelta);
+assert.equal(hash(f.approvedDeltas.slice(0,-3)),'3f2b98b5bce6d50ae5c8c25dc9d57c1b061499d339674f943f485d3e0a3c5dbd','Every pre-skill approval, including audio, is immutable');
 assert.equal(skillDelta.beforeApprovedDeltasSha256,'3f2b98b5bce6d50ae5c8c25dc9d57c1b061499d339674f943f485d3e0a3c5dbd');
 assert.equal(skillDelta.baseCurrentCommit,'26a53350b9e51d0b45e6441f6ca91250ce3d9cab');
 assert.match(skillDelta.sourceCommit,/^[0-9a-f]{40}$/);
@@ -39,13 +39,21 @@ assert.deepEqual(skillDelta.sourceChanges.filter(c=>c.previousKind===null).map(c
 assert.equal(hash(skillDelta.beforeEngineFiles),'37a6f1abc98d958fd27b2c2e3e0232a0ad4cfdef765cca2cb3bc8161fc147538');
 assert.deepEqual(f.engineFiles,[...skillDelta.beforeEngineFiles,'shared/engine/src/eaterMechanics.ts','shared/engine/src/waveReflection.ts'].sort());
 assert.deepEqual(f.modelFiles,skillDelta.beforeModelFiles,'Runtime model registration is unchanged');
-assert.equal(f.approvedDeltas.at(-1),inspectorDelta);
-assert.equal(hash(f.approvedDeltas.slice(0,-1)),'97d66fda218f29302e1f0dc63bcd4bd4952903e79eb6a66417417f812b4645c5','The entire completed skill approval remains immutable');
+assert.equal(f.approvedDeltas.at(-2),inspectorDelta);
+assert.equal(hash(f.approvedDeltas.slice(0,-2)),'97d66fda218f29302e1f0dc63bcd4bd4952903e79eb6a66417417f812b4645c5','The entire completed skill approval remains immutable');
 assert.equal(inspectorDelta.beforeApprovedDeltasSha256,'97d66fda218f29302e1f0dc63bcd4bd4952903e79eb6a66417417f812b4645c5');
 assert.equal(inspectorDelta.baseCurrentCommit,'d03915bc5cf213cd56dc5c9a7036e53ebe7bb773');assert.match(inspectorDelta.sourceCommit,/^[a-f0-9]{40}$/);
 assert.deepEqual(inspectorDelta.sourceChanges.map(c=>c.path),['shared/engine/src/warriorVisuals.ts','shared/runtime/combat-feedback.js','shared/runtime/unit-info.js']);assert.deepEqual(inspectorDelta.packagingChanges,[]);
 assert.deepEqual(inspectorDelta.sourceChanges.map(c=>c.exactEdits.length),[1,1,3]);for(const change of inspectorDelta.sourceChanges)for(const edit of change.exactEdits){assert.equal(edit.before.length,1);assert.equal(edit.after.length,1);}
+assert.equal(f.approvedDeltas.at(-1),combatDelta);
+assert.equal(hash(f.approvedDeltas.slice(0,-1)),'bd5208b8cc7160bf4eadd1702159b20940ae55ffe989a943a5e9c1eb5fe67e77','Every completed approval and historical build stays immutable');
+assert.equal(combatDelta.beforeApprovedDeltasSha256,'bd5208b8cc7160bf4eadd1702159b20940ae55ffe989a943a5e9c1eb5fe67e77');
+assert.equal(combatDelta.baseCurrentCommit,'ad9b0c54ca960cb087ece043b18d248343c89a87');assert.match(combatDelta.sourceCommit,/^[a-f0-9]{40}$/);
+assert.deepEqual(combatDelta.sourceChanges.map(c=>c.path),["shared/engine/src/warriorData.ts", "shared/engine/src/warriorMechanics.ts", "shared/map/compiler.js", "shared/runtime/act1-roster.js", "shared/runtime/stage-rules.js", "shared/runtime/world.js"]);assert.deepEqual(combatDelta.packagingChanges,[]);
 const priorSourceRows=structuredClone(f.sourceRows);
+for(const change of combatDelta.sourceChanges){const row=priorSourceRows.find(r=>r.path===change.path);assert.deepEqual(row.provenance.slice(-change.provenance.length),change.provenance);row.provenance.splice(-change.provenance.length);row.sha256=change.previousSha256;row.kind=change.previousKind;}
+assert.equal(hash(priorSourceRows),'7a5dad04511f13abf4ace8377341b137a99bcc5f7aeaa79471881919511cadc0','Reverse only the exact combat source changes to the prior reviewed source ledger');assert.equal(combatDelta.beforeSourceRowsSha256,'7a5dad04511f13abf4ace8377341b137a99bcc5f7aeaa79471881919511cadc0');
+
 for(const change of inspectorDelta.sourceChanges){const row=priorSourceRows.find(r=>r.path===change.path);assert.deepEqual(row.provenance.slice(-change.provenance.length),change.provenance);row.provenance.splice(-change.provenance.length);row.sha256=change.previousSha256;row.kind=change.previousKind;}
 assert.equal(hash(priorSourceRows),'8a54ebab962fe281c16db32b6c3c8603858695245e33456a4d4cdd6f5b5accb2','Restore the exact completed skill source provenance');assert.equal(inspectorDelta.beforeSourceRowsSha256,'8a54ebab962fe281c16db32b6c3c8603858695245e33456a4d4cdd6f5b5accb2');
 
@@ -68,12 +76,12 @@ const outsideBrand=line=>{const start='<h1 class="title-brand" aria-label="혼�
 assert.equal(outsideBrand(titleEdit[0].before[0]),outsideBrand(titleEdit[0].after[0]),'Only title brand markup changes; navigation, save and action code remains byte-identical');
 assert.deepEqual(titleDelta.preservedTitleAssets.map(r=>r.path),['shared/assets/environment/title/hanja-wordmark.png','shared/assets/environment/title/wordmark.png']);
 for(const row of titleDelta.preservedTitleAssets)assert.equal(hash(readFileSync(row.path)),row.sha256,'Original approved title image bytes '+row.path);
-for(const [index,delta] of [finalDelta,bodyDelta,uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta].entries())for(const change of delta.sourceChanges){
- const later=[finalDelta,bodyDelta,uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta].slice(index+1).flatMap(d=>d.sourceChanges).find(c=>c.path===change.path);
+for(const [index,delta] of [finalDelta,bodyDelta,uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta,combatDelta].entries())for(const change of delta.sourceChanges){
+ const later=[finalDelta,bodyDelta,uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta,combatDelta].slice(index+1).flatMap(d=>d.sourceChanges).find(c=>c.path===change.path);
  assert.equal(later?later.previousSha256:hash(sources[change.path]),change.sha256);assert.notEqual(change.sha256,change.previousSha256);if(delta!==bodyDelta)assert(change.provenance.length);else assert.match(delta.sourceCommit,/^[0-9a-f]{40}$/);
 }
 let exactDeltaNegatives=0;
-const exactDeltas=[uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta],exactChanges=exactDeltas.flatMap(d=>[...d.sourceChanges,...d.packagingChanges,...(d.artChanges||[])]);
+const exactDeltas=[uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta,combatDelta],exactChanges=exactDeltas.flatMap(d=>[...d.sourceChanges,...d.packagingChanges,...(d.artChanges||[])]);
 for(const [index,change] of exactChanges.entries()){
  const live=readFileSync(change.path,'utf8'),later=exactChanges.slice(index+1).filter(c=>c.path===change.path),source=later.length?assertExactFollowupDeltaChain(live,later):live;
  const previous=assertExactFollowupDelta(source,change);assert.equal(assertExactFollowupDeltaChain(live,[change,...later]),previous,'Prior approval is proved after reversing every subsequent exact refinement');
@@ -106,6 +114,11 @@ for(const[key,before]of Object.entries(audioDelta.beforeBuilds)){
  assert.deepEqual(after.options,before.options,'Audio refinement preserves all actual build options');
 }
 
+for(const[key,before]of Object.entries(combatDelta.beforeBuilds)){
+ const after=combatDelta.afterBuilds[key],expected=before.parts.map(h=>h===combatDelta.beforeCoreSha256?combatDelta.afterCoreSha256:combatDelta.sourceChanges.find(c=>c.previousSha256===h)?.sha256||h);
+ assert.deepEqual(after.parts,expected,'Only the reviewed combat core and four runtime modules may change: '+key);assert.deepEqual(after.options,before.options);
+ assert.equal(before.parts.filter(h=>h===combatDelta.beforeCoreSha256).length,1);assert.equal(after.parts.filter(h=>h===combatDelta.afterCoreSha256).length,1);
+}
 for(const[key,before]of Object.entries(inspectorDelta.beforeBuilds)){
  const after=inspectorDelta.afterBuilds[key];assert.deepEqual(after.parts,before.parts.map(h=>h===inspectorDelta.beforeCoreSha256?inspectorDelta.afterCoreSha256:inspectorDelta.sourceChanges.find(c=>c.previousSha256===h)?.sha256||h),'Exact captive UI/core part substitution');assert.equal(after.parts.filter((h,i)=>h!==before.parts[i]).length,1+(key==='temple'?0:Number(after.options.render)+Number(after.options.app)),'One compiled visual core plus optional feedback and inspector');assert.deepEqual(after.options,before.options);
 }
@@ -125,7 +138,7 @@ for(const delta of f.approvedDeltas.filter(d=>d.exactAddedText)){assert.equal(de
 assert.equal(Object.keys(sources).length,161);assert.equal(Object.keys(archive).length,133);
 assert.deepEqual(Object.keys(archive).sort(),Object.keys(encounterDensityHistory.runtime).sort());
 for(const[path,row]of Object.entries(encounterDensityHistory.runtime))assert.equal(hash(archive[path]),row.afterSha256,'Original source byte identity '+path);
-for(const[k,n]of [['added', 28], ['changed', 81], ['unchanged', 52]])assert.equal(f.sourceRows.filter(r=>r.kind===k).length,n);
+for(const[k,n]of [['added', 28], ['changed', 83], ['unchanged', 50]])assert.equal(f.sourceRows.filter(r=>r.kind===k).length,n);
 assert.deepEqual(Object.keys(archive).filter(p=>!Object.hasOwn(sources,p)),[],'No historical source removed');
 for(const row of f.sourceRows){if(row.kind==='unchanged'){assert.equal(hash(sources[row.path]),hash(archive[row.path]));assert.equal(row.sha256,row.beforeSha256);}else{assert(row.provenance.length>0);for(const entry of row.provenance)assert.match(entry,/^[0-9a-f]{40} .+/);assert.notEqual(row.sha256,row.beforeSha256);}if(row.beforeSha256)assert.equal(hash(archive[row.path]),row.beforeSha256);}
 for(const row of f.packagingSources){assert.equal(hash(readFileSync(row.path)),row.sha256,'Exact packaging dependency '+row.path);assert.match(row.provenance,/^[0-9a-f]{40} .+/);}
@@ -148,4 +161,4 @@ let sourceNegatives=0;for(const row of f.sourceRows){const changed={...sources,[
 assert.throws(()=>assertCurrentRuntimeSources({...sources,'shared/engine/src/unreviewed.ts':'export const injected=true;'}));assert.throws(()=>assertCurrentRuntimeSources(Object.fromEntries(Object.entries(sources).reverse())));
 assert.throws(()=>assertCurrentBuildGraph({modelFiles:[...modelFiles,modelFiles[0]],engineFiles:f.engineFiles,core:'invalid'}));assert.throws(()=>assertCurrentBuildGraph({modelFiles,engineFiles:[...f.engineFiles,'shared/engine/src/injected.ts'],core:'invalid'}));
 for(const path of Object.keys(archive)){assert.throws(()=>beforeStage8BierRuntimeSources({...archive,[path]:archive[path]+' '}),'Archive byte '+path);const missing={...archive};delete missing[path];assert.throws(()=>beforeStage8BierRuntimeSources(missing),'Archive membership '+path);sourceNegatives+=2;}
-mkdirSync('_local/reports/runtime-contracts',{recursive:true});writeFileSync('_local/reports/runtime-contracts/contracts.json',JSON.stringify({passed:true,currentSources:161,archiveSources:133,priorSources:130,added:28,changed:81,unchanged:52,sourceNegatives,exactDeltaNegatives,partNegatives,builds,archiveChecks,currentGameplayFingerprintIsNotProjected:true,scope:'Actual current build identity and explicit nonexecuted archive byte identity. Current behavior/completed-run compatibility is a separate gate, not waived.'},null,2)+'\n');console.log('PASS current161 provenance/9 builds/twoHTML, immutable133→130 and old fingerprints; '+sourceNegatives+' source negatives, '+partNegatives.length+' current part negatives; '+exactDeltaNegatives+' exact edit negatives');
+mkdirSync('_local/reports/runtime-contracts',{recursive:true});writeFileSync('_local/reports/runtime-contracts/contracts.json',JSON.stringify({passed:true,currentSources:161,archiveSources:133,priorSources:130,added:28,changed:83,unchanged:50,sourceNegatives,exactDeltaNegatives,partNegatives,builds,archiveChecks,currentGameplayFingerprintIsNotProjected:true,scope:'Actual current build identity and explicit nonexecuted archive byte identity. Current behavior/completed-run compatibility is a separate gate, not waived.'},null,2)+'\n');console.log('PASS current161 provenance/9 builds/twoHTML, immutable133→130 and old fingerprints; '+sourceNegatives+' source negatives, '+partNegatives.length+' current part negatives; '+exactDeltaNegatives+' exact edit negatives');
