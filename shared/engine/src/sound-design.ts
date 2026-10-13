@@ -6,7 +6,7 @@ function* prepareSound(name:string,sr=24000):Generator<void,Float32Array> {
     const recipes:Record<string,number[]>={
         // seconds, body Hz, noise cutoff Hz, body gain, texture gain, decay
         // Soft low wooden/paper arrival, one note per message, no pitch sweep.
-        dialogue:[.24,156,680,.18,.045,6.2],
+        dialogue:[.24,156,680,.145,.035,6.2],
         sodanBell:[.72,742,2600,.26,.018,5.5],
         arrow:[.27,146,1800,.29,.26,8], arrowhit:[.30,94,1150,.42,.38,10],
         sword:[.34,108,1900,.24,.40,7], fire:[.55,69,900,.42,.46,5],
@@ -97,11 +97,12 @@ export class AudioEngine {
         const names=['dialogue','arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose','sodanBell'];
         // Prepare PCM before the first gesture, without opening/unlocking an audio device.
         let name:string|undefined,preparation:Generator<void,Float32Array>|undefined;
-        const step=()=>{
+        const step=(deadline?:IdleDeadline)=>{
             if(this.disposed)return;
             if(!preparation){name=names.shift();if(!name)return;if(this.pcm.has(name)){schedule();return;}preparation=prepareSound(name);}
-            // At most 256 samples per task; never monopolize the first input/BGM frame.
-            const result=preparation.next();
+            // Yield after 256-sample blocks; use at most 2ms of an idle slot.
+            const started=performance.now();let result=preparation.next(),blocks=1;
+            while(!result.done&&blocks<8&&deadline&&deadline.timeRemaining()>1&&performance.now()-started<2){result=preparation.next();blocks++;}
             if(result.done){if(!this.pcm.has(name!))this.pcm.set(name!,result.value);if(this.context)this.buffer(name!);preparation=undefined;}
             if(preparation||names.length)schedule();
         };
