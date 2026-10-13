@@ -197,6 +197,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             return fail();
         if (q.emissions !== undefined && (!finite(q.emissions) || q.emissions < 0 || q.emissions > 100))
             return fail();
+        if(q.reflectionVersion!==undefined&&(q.reflectionVersion!==1||q.mode!=='waveBounce'||!Number.isInteger(q.bounces)||q.bounces<0||q.bounces>3))return fail();
         if(q.targetId!==undefined&&(!safe(q.targetId)||!ids.has(q.targetId)))return fail();
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
         if(q.echoDelay!==undefined&&(!finite(q.echoDelay)||q.echoDelay<0||q.echoDelay>.3)||q.echoSource!==undefined&&!ids.has(q.echoSource)||q.soulBoost!==undefined&&typeof q.soulBoost!=='boolean')return fail();

@@ -1,3 +1,5 @@
+import {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
+export {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 import {passiveTuning} from './passiveBalance';
 import {healed} from './contribution';
 import {triggerOffensiveStake} from './totemBehavior';
@@ -108,7 +110,7 @@ export function initRedesignCast(e:Engine,s:Skill,u:Unit,actualKiSpent=e.manaCos
  e.b.cast={owner:u.id,skill:s.id,shot:e.b.shot,cost:actualKiSpent,enemyDamage:0};
  if(u.prepared&&u.prepared.expires<e.b.round)delete u.prepared;
  const roots=e.b.projectiles.filter(p=>p.owner===u.id&&p.shot===e.b.shot);
- for(const p of roots){if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
+ for(const p of roots){if(s.mode==='waveBounce')p.reflectionVersion=1;if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
  if(s.branch==='distance'&&s.id!=='A10')delete u.prepared;
  if(s.mode==='prepare'){e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));u.prepared={rank:u.ranks[s.id]||1,expires:e.b.round+2};e.fx('ring',u.x,u.y-u.h*.6,'#c8cebf',22);}
  if(['waveRing','waveBagua'].includes(s.mode))for(const p of roots){
@@ -251,6 +253,24 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(s.branch==='gourd'){
   if(p.mode==='gourdIce'){reflect(p,h,h.unit?.72:.64);e.fx('ring',p.x,p.y,'#b5c9cb',14);e.emit('sound',{name:'ceramic'});return true;}
   gourdBurst(e,p);return true;
+ }
+ if(p.mode==='waveBounce'&&p.reflectionVersion===1){
+  if(h.terrain){
+   const count=waveReflectionPlan(r)[p.bounces];
+   if(!count){e.remove(p);return true;}
+   const velocities=waveReflectionVelocities(p,h.n,count);
+   // Retain launch age, credit, shot and owner: descendants share the original
+   // 12-second lifetime and never reset their generation on a terrain corner.
+   p.contacts=[...(p.contacts||[]),{x:h.x,y:h.y}];p.bounces++;
+   p.damage*=WAVE_REFLECTION_DECAY;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);
+   p.child=true;p.autonomous=true;p.trail=[{x:p.x,y:p.y}];
+   for(const [i,v] of velocities.entries()){
+    const q=i===0?p:{...p,id:e.b.nextId++,hit:[...p.hit],contacts:[...p.contacts],trail:[{x:p.x,y:p.y}]};
+    Object.assign(q,v,{prevVy:v.vy});if(i)e.b.projectiles.push(q);
+   }
+   e.fx('inkImpact',h.x,h.y,'#dce3da',30);e.emit('sound',{name:'qiRebound'});
+  }else if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);e.remove(p);}
+  return true;
  }
  if(p.mode==='waveBounce'||p.mode==='waveTriangle'){
   if(h.terrain){p.contacts??=[];p.contacts.push({x:h.x,y:h.y});reflect(p,h);
@@ -400,6 +420,8 @@ export interface SkillPrediction extends Prediction {time:number;geometry?:Skill
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
  const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
+ const wave=s.mode==='waveBounce',impact=sim.impact.bind(sim);
+ if(wave)sim.impact=(p,h)=>{if(p.bounces>=1){p.x=h.x;p.y=h.y;sim.remove(p);}else impact(p,h);};
  const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
  sim.collision=(a,z,r,owner,ignored,units=true,...rest)=>{const h=collision(a,z,r,owner,ignored,ignoreUnits?false:units,...rest);if(capture&&h){stepContact=h;if(h.unit&&!contact)contact=h;}return h;};
  b.active=actor.id;b.side=0;b.phase='aim';b.mode='practice';b.projectiles=[];b.volley=undefined;
@@ -417,7 +439,7 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
   for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex,wasSplit=representative&&p===tracked&&p.mode==='seekRain',nextId=b.nextId;capture=!representative||p===tracked;stepContact=null;sim.stepProjectile(p,STEP);
    if(p===tracked&&!b.projectiles.includes(p))terminalContact=stepContact;
    if(p===primary&&!wasApex&&p.apex)apex={x:p.x,y:p.apexY??p.y};
-   if(!p.secondary&&(!representative||p===tracked)){const key=representative?primary.id:p.id,list=paths.get(key)||[];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(key,list);}
+   if(!p.secondary&&(!representative||p===tracked)){const key=representative?primary.id:p.id,list=paths.get(key)||[...(p.trail.slice(0,1))];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(key,list);}
    // Keep all seven in the replay so their collisions and kills affect homing exactly as in combat.
    // Only the middle child's samples extend the visible parent path.
    if(wasSplit&&!b.projectiles.includes(p)){const children=b.projectiles.filter(q=>q.id>=nextId&&q.mode==='seekChild');if(children.length===7){tracked=children[3];contact=null;terminalContact=null;}}
@@ -431,6 +453,7 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
 export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction|null{
  if(!s.redesigned)return null;
+ if(s.mode==='waveBounce')return arrowPrediction(e,u,s,angle,power,false,ignoreUnits);
  if(s.cls==='archer')return arrowPrediction(e,u,s,angle,power,representative,ignoreUnits);
  if(s.cls!=='mage')return null;
  const r=u.ranks[s.id]||1,origin=e.projectileOrigin(u,s,angle),v=e.velocity(u,s,angle,power),points:Vec[]=[origin],contacts:Vec[]=[];

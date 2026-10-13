@@ -318,6 +318,8 @@ export interface Projectile {
     wind: number;
     mode: string;
     color: string;
+    /** Missing on pre-split in-flight saves: retain their historical behavior. */
+    reflectionVersion?: 1;
     bounces: number;
     pierces: number;
     apex: boolean;
