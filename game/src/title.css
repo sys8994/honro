@@ -1,48 +1,68 @@
-/* First ferry landing: independent ink landscape and wordmark. */
-.honro #app .honro-title{background:#07151b;isolation:isolate;overflow:hidden}
-.honro-title .title-bg{inset:0;overflow:hidden;background:#0a1b22;filter:none}
+/* First ferry: separately composed portrait/landscape paintings, independent brand and real controls. */
+.honro #app .honro-title{background:#08121b;isolation:isolate;overflow:hidden}
+.honro-title .title-bg{inset:0;overflow:hidden;background:linear-gradient(160deg,#1b2a34,#08121b 75%);filter:none;pointer-events:none}
 .honro-title .title-bg:before{display:none}
-.honro-title .title-bg>svg{display:block;width:100%;height:100%;max-width:none}
-.honro-title:after{background:linear-gradient(90deg,#06141bea 0%,#081920d9 26%,#0b1b229c 44%,#0b1b221a 70%,transparent 100%),linear-gradient(0deg,#061319d9 0%,transparent 34%,#06121834 100%);pointer-events:none}
-.honro-title .top{z-index:3;min-height:66px;padding:16px 28px}
-.honro-title .top>.icon{margin-left:auto;border-color:#b8b69a58;background:#09192199;width:44px;height:44px}
-.honro-title .title-main{width:min(480px,42vw);max-width:none;margin:auto 0 auto clamp(30px,6vw,110px);padding:18px 0 34px;gap:0;animation:title-arrive .55s ease-out both}
-.honro-title .honro-logo-wrap{width:min(440px,100%);filter:drop-shadow(0 8px 24px #0009)}
-.honro-title .honro-logo{width:100%;mix-blend-mode:normal}
-.honro-title .title-tagline{font-size:clamp(12px,1.15vw,16px);color:#d4cfb9;letter-spacing:.08em;margin:2px 0 37px 7px;text-shadow:0 2px 11px #000}
-.honro-title .title-actions{display:flex;flex-direction:column;align-items:stretch;gap:5px;width:min(285px,90%);margin-left:5px}
-.honro-title .title-actions>button{position:relative;text-align:left;justify-content:flex-start;padding:13px 17px 13px 21px;min-height:49px;min-width:0;border:0;border-left:2px solid #a9a08155;border-radius:0;background:#0a1d23a8;color:#e8dfc8;font-size:17px;font-weight:400;letter-spacing:.08em;transition:background .18s,color .18s,border-color .18s,transform .18s}
-.honro-title .title-actions>button.primary{background:#b6a47a29;color:#f3e5c0;border-color:#a14e40}
-.honro-title .title-actions>button:hover,.honro-title .title-actions>button:focus-visible{background:#b6a47a3f;color:#fff0ca;border-color:#d2bd86;transform:translateX(3px)}
-.honro-title .title-actions>button:focus-visible{outline:2px solid #e7d4a1;outline-offset:3px}
-.honro-title .title-actions>button:after{content:"";position:absolute;left:21px;bottom:8px;width:0;height:1px;background:#dbc99e;transition:width .18s}
-.honro-title .title-actions>button:hover:after,.honro-title .title-actions>button:focus-visible:after{width:50px}
-.honro-title .footer{z-index:3;padding:16px clamp(24px,5vw,75px) max(14px,env(safe-area-inset-bottom));color:#abb5aa;align-items:center}
-.honro-title .footer .ghost{background:#091a2094;border:1px solid #9ba38b45;border-radius:2px;min-height:44px}
-.honro-title .footer>span:last-child{color:#b5bcae;letter-spacing:.08em}
-.honro-title #valley-mist{animation:title-mist 12s ease-in-out infinite alternate}
-.honro-title #way-lamp ellipse{animation:title-lamp 8s ease-in-out infinite alternate;transform-origin:1404px 711px}
-@keyframes title-mist{to{transform:translateX(3px);opacity:.82}}
-@keyframes title-lamp{to{opacity:.72;transform:scale(1.025)}}
-@keyframes title-arrive{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:700px){
- .honro-title #title-moon{display:none}
- .honro-title:after{background:linear-gradient(0deg,#061319ed 0%,#07171dc7 43%,#07171d46 80%),linear-gradient(90deg,#06141b69,transparent)}
- .honro-title .top{min-height:55px;padding:8px 12px}
- .honro-title .title-main{width:100%;max-width:none;margin:0;padding:clamp(14px,3vh,32px) 6% 0;align-items:flex-start}
- .honro-title .honro-logo-wrap{width:min(370px,90vw)}
- .honro-title .title-tagline{margin:0 0 20px 5px;font-size:12px}
- .honro-title .title-actions{position:absolute;top:clamp(280px,51dvh,520px);left:6%;width:88%;max-width:360px;margin:0}
- .honro-title .footer{margin-top:auto;flex-wrap:wrap;padding:10px 6% max(13px,env(safe-area-inset-bottom));gap:5px}
+.honro-title .title-painting,.honro-title .title-painting img{display:block;width:100%;height:100%}
+.honro-title .title-painting img{object-fit:cover;object-position:70% 65%}
+.honro-title .title-painting img[hidden],.honro-title .honro-logo[hidden]{display:none}
+.honro-title:after{background:linear-gradient(90deg,#06111b80,transparent 64%),linear-gradient(0deg,#050e16b3,transparent 24%);pointer-events:none}
+.honro-title .top{z-index:3;min-height:64px;height:64px;padding:14px 26px}
+.honro-title .top>.icon{margin-left:auto;border-color:#c4cccf30;background:#0b182180;width:44px;height:44px;border-radius:50%}
+.honro-title .title-main{width:min(420px,40vw);max-width:none;margin:auto 0 auto clamp(32px,7vw,130px);padding:0 0 28px;gap:0;align-items:flex-start}
+.honro-title .honro-logo-wrap{width:min(390px,100%);filter:drop-shadow(0 3px 12px #0005)}
+.honro-title .title-main .title-brand{font:400 104px/1.1 Batang,'Noto Serif KR',serif;letter-spacing:.08em;text-align:center;color:#e8dec7;margin:0;position:relative}
+.honro-title .honro-logo{display:block;width:100%;height:auto;mix-blend-mode:normal}
+.honro-title .title-roman{display:block;text-align:center;font:400 11px/1.6 Georgia,serif;letter-spacing:.65em;padding-left:.65em;color:#d9d2c0;margin-top:5px}
+.honro-title .title-tagline{font-size:clamp(11px,1.05vw,14px);color:#bec6c6;letter-spacing:.075em;line-height:1.7;white-space:nowrap;margin:23px 0 35px 0;text-shadow:0 2px 10px #000}
+.honro-title .title-actions{display:flex;flex-direction:column;align-items:stretch;gap:7px;width:min(280px,100%);margin:0}
+.honro-title .title-actions>button{position:relative;text-align:left;justify-content:flex-start;padding:13px 18px;min-height:50px;min-width:0;border:1px solid #bcc5c426;border-left:2px solid #a2aca955;border-radius:1px;background:linear-gradient(90deg,#14222bb3,#14222b40);color:#d6dcda;font-size:16px;font-weight:400;letter-spacing:.1em;line-height:1.35;transition:background .18s,color .18s,border-color .18s}
+.honro-title .title-actions>button.primary{background:linear-gradient(90deg,#b6a47a24,#b6a47a09);color:#f1e4c6;border-color:#d8cba442;border-left-color:#c3ab77}
+.honro-title .title-actions>button:hover,.honro-title .title-actions>button:focus-visible{background:#b6a47a30;color:#fff1d0;border-color:#d2bd86}
+.honro-title .title-actions>button:focus-visible,.honro-title .footer button:focus-visible,.honro-title .top button:focus-visible{outline:2px solid #e7d4a1;outline-offset:4px}
+.honro-title .footer{z-index:3;padding:12px clamp(24px,5vw,75px) max(14px,env(safe-area-inset-bottom));color:#aeb8ba;align-items:center;gap:8px;flex-shrink:0}
+.honro-title .footer .ghost{background:#09151d70;border:1px solid #a9b7b52e;border-radius:2px;min-height:44px;padding:9px 14px;font-size:12px}
+.honro-title .footer>span:last-child{color:#aeb8ba;letter-spacing:.1em;font-size:10px}
+/* Portrait art reserves its upper third for the mark and middle for controls; ferry stays below. */
+@media(orientation:portrait){
+ .honro-title .title-painting img{object-position:right bottom}
+ .honro-title:after{background:linear-gradient(0deg,#050e169c,transparent 19%,#07131d20 56%,#07131d24)}
+ .honro-title .top{min-height:58px;height:58px;padding:7px 16px}
+ .honro-title .title-main{position:static;align-items:center;width:100%;max-width:none;margin:0;padding:clamp(8px,3.7dvh,40px) 7% 0;gap:0}
+ .honro-title .honro-logo-wrap{width:min(295px,79vw)}
+ .honro-title .title-main .title-brand{font-size:85px}
+ .honro-title .title-roman{font-size:10px;margin-top:3px;letter-spacing:.6em;padding-left:.6em}
+ .honro-title .title-tagline{margin:19px 0 0;font-size:11px;letter-spacing:.025em;text-align:center}
+ .honro-title .title-actions{position:absolute;top:43%;left:50%;transform:translateX(-50%);width:min(280px,80%);gap:7px}
+ .honro-title .title-actions>button{text-align:center;justify-content:center;min-height:49px;font-size:15px;background:#101f2a9e}
+ .honro-title .title-actions>button.primary{background:#b6a47a18}
+ .honro-title .footer{margin-top:auto;flex-wrap:wrap;padding:9px 7% max(12px,env(safe-area-inset-bottom));gap:6px}
+ .honro-title .footer .ghost{font-size:11px;padding:8px 12px}
  .honro-title .footer>span:last-child{width:100%;font-size:9px}
 }
-@media(max-height:490px) and (orientation:landscape){
- .honro-title .top{min-height:45px;padding:4px 12px}
- .honro-title .title-main{width:min(410px,48vw);margin:auto 0 auto 5vw;padding:0}
- .honro-title .honro-logo-wrap{width:270px}
- .honro-title .title-tagline{margin:0 0 8px;font-size:10px}
- .honro-title .title-actions{position:static;width:250px;gap:2px}
- .honro-title .title-actions>button{min-height:42px;padding:8px 16px;font-size:13px}
- .honro-title .footer{padding:4px 5vw}
+@media(orientation:portrait) and (max-height:650px){
+ .honro-title .title-main{padding-top:0}
+ .honro-title .honro-logo-wrap{width:min(225px,70vw)}
+ .honro-title .title-tagline{margin-top:10px;font-size:10px}
+ .honro-title .title-actions{top:44%;gap:5px}
+ .honro-title .title-actions>button{font-size:14px;min-height:46px;padding:10px 12px}
 }
-@media(prefers-reduced-motion:reduce){.honro-title .title-main,.honro-title #valley-mist,.honro-title #way-lamp ellipse{animation:none}.honro-title .title-actions>button{transition:none}}
+@media(orientation:landscape) and (max-height:540px){
+ .honro-title .top{min-height:48px;height:48px;padding:2px 14px}
+ .honro-title .title-main{width:min(320px,43vw);margin:auto 0 auto 6vw;padding:0}
+ .honro-title .honro-logo-wrap{width:220px;max-width:100%}
+ .honro-title .title-roman{font-size:9px;margin-top:0}
+ .honro-title .title-tagline{margin:9px 0 12px;font-size:10px;letter-spacing:0}
+ .honro-title .title-actions{width:240px;gap:4px}
+ .honro-title .title-actions>button{min-height:44px;padding:9px 14px;font-size:13px}
+ .honro-title .footer{padding:4px 4vw max(6px,env(safe-area-inset-bottom))}
+ .honro-title .footer .ghost{font-size:10px;padding:6px 10px}
+ .honro-title .footer>span:last-child{font-size:9px}
+}
+@media(orientation:landscape) and (max-height:380px){
+ .honro-title .title-main{margin-top:0;margin-bottom:0}
+ .honro-title .honro-logo-wrap{width:170px}
+ .honro-title .title-tagline{margin:4px 0 7px;font-size:9px}
+ .honro-title .title-actions{width:230px}
+ .honro-title .footer{margin-top:auto}
+}
+@media(prefers-reduced-motion:reduce){.honro-title *{animation:none!important;transition:none!important}}

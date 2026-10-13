@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // A fresh authored battle explicitly opts in. No Continue upgrades, global
 // activation/range/cap changes, new victory conditions or growth changes.
-const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([8,11,12,16,17,18,23,30]);
+const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([8,9,11,12,16,17,18,21,23,24,30]);
 const active=b=>!!b&&!b.honroCustom&&stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1;
 const alive=u=>u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;
 const memory=b=>(b.honroState.encounterDensity??={version:1,alert:{},warnings:{},entries:{}});
@@ -56,11 +56,13 @@ function warnings(b){const hs=b.honroState,m=memory(b),all={...m.warnings};
  return all;
 }
 function observeWarnings(b){const m=memory(b),hs=b.honroState;m.existingWarnings??={};
+ // Stage9 keeps its original Act1 spawn/tuning path and only borrows this gate.
+ if(b.honroStage===9)for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroTacticalWarning===1&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
  if(b.honroStage===11){for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroStage11Response===1&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
  for(const [index,w]of Object.entries(hs.ravineComposition?.echoWarnings||{}))m.existingWarnings['hold-knots-'+(Number(index)*3)]=w;}
 }
 function offer(app){if(ended(app)||paused(app))return;const e=app.engine,b=e.b,u=e.active;if(b.phase!=='aim'||b.side!==0||!hero(u)||u.acted)return;for(const w of Object.values(warnings(b)))if(!w.opportunity&&!w.cancelled)(w.offered??={})[u.id]={round:b.round,serial:serial(b)};}
-function prepare(app){const e=app.engine,b=e.b,mem=memory(b),hs=b.honroState;if(ended(app)){for(const ev of b.honroEvents||[])if(own(ev)&&!hs.flags['event:'+ev.id]){hs.flags['event:'+ev.id]='cancelled:battle-ended';if(mem.warnings[ev.id])mem.warnings[ev.id].cancelled=true;hs.pendingEvents=(hs.pendingEvents||[]).filter(id=>id!==ev.id);}return;}
+function prepare(app){const e=app.engine,b=e.b,mem=memory(b),hs=b.honroState;if(ended(app)){for(const ev of b.honroEvents||[])if((own(ev)||b.honroStage===9&&ev.honroTacticalWarning===1)&&!hs.flags['event:'+ev.id]){hs.flags['event:'+ev.id]='cancelled:battle-ended';const w=warnings(b)[ev.id];if(w)w.cancelled=true;hs.pendingEvents=(hs.pendingEvents||[]).filter(id=>id!==ev.id);}return;}
  observeWarnings(b);const action=e.honroDensityAction,u=action&&e.unit(action.id);if(action&&app.actorBoundary===action.id&&hero(u)&&u.acted)for(const id of action.waves){const w=warnings(b)[id];if(w&&!w.opportunity&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
  if(paused(app))return;hs.pendingEvents??=[];for(const ev of b.honroEvents||[]){if(!own(ev)||hs.flags['event:'+ev.id]||!ready(b,ev))continue;if(!mem.warnings[ev.id]){mem.warnings[ev.id]={serial:serial(b),round:b.round,offered:{}};app.event(ev.warning);app.dirty=true;}if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);}
  offer(app);E.flush(app);

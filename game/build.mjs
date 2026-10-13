@@ -14,9 +14,13 @@ const sha=s=>createHash('sha256').update(s).digest('hex');
 export async function buildGame({vector=true,destination=path.join(root,'HONRO.html')}={}) {
   const reference=await read(path.join(here,'templates/body.html'));
   const shared=await runtimeParts({vector,app:true});
-  const scene=await read('shared/assets/environment/title-first-ferry.svg');
-  const logo=await readFile(path.join(root,'shared/assets/environment/title-wordmark.svg'));
-  const title='globalThis.HONRO_TITLE_SCENE='+JSON.stringify(scene)+';globalThis.HONRO_TITLE_LOGO="data:image/svg+xml;base64,'+logo.toString('base64')+'";';
+  // Embedded art keeps downloaded HTML usable offline. The portrait is separately authored.
+  const titleAsset=async (name,mime)=>'data:'+mime+';base64,'+(await readFile(path.join(root,'shared/assets/environment/title',name))).toString('base64');
+  const landscape=await titleAsset('landscape.webp','image/webp'),portrait=await titleAsset('portrait.webp','image/webp');
+  const landscapeFallback=await titleAsset('landscape.jpg','image/jpeg'),portraitFallback=await titleAsset('portrait.jpg','image/jpeg');
+  const scene=`<picture class="title-painting"><source media="(orientation: portrait)" type="image/webp" srcset="${portrait}"><source media="(orientation: portrait)" type="image/jpeg" srcset="${portraitFallback}"><source type="image/webp" srcset="${landscape}"><img src="${landscapeFallback}" alt="" decoding="async" fetchpriority="high" onerror="this.hidden=true"></picture>`;
+  const logo=await titleAsset('wordmark.png','image/png');
+  const title='globalThis.HONRO_TITLE_SCENE='+JSON.stringify(scene)+';globalThis.HONRO_TITLE_LOGO='+JSON.stringify(logo)+';';
   const stageArt={};for(let i=1;i<=10;i++){const buf=await readFile(path.join(root,'assets','rc11',`stage-${String(i).padStart(2,'0')}.jpg`));stageArt[i]='data:image/jpeg;base64,'+buf.toString('base64');}
   const parts=[title,'globalThis.HONRO_STAGE_INTRO_ART='+JSON.stringify(stageArt)+';',...shared];
   const portraits=JSON.parse(await read(path.join(here,'config/story-portraits.json')));

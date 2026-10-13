@@ -69,6 +69,8 @@ function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Atta
 }
 function spawnHold(app,s,h){if(!s.wave||h.spawned>=s.wave.count)return true;const e=app.engine,b=e.b,m=marker(b,'wave-'+s.id);if(!m)return false;
  const before=new Set(b.units.map(u=>u.id)),key='act3-'+s.id,n=s.wave.count-h.spawned;
+ // Fresh city defence reuses the density gate; old battle snapshots stay unchanged.
+ if(b.honroStage===21&&G.HonroEncounterDensity?.active(b)){const mem=G.HonroEncounterDensity.memory(b);mem.existingWarnings??={};if(!mem.existingWarnings[key]){mem.existingWarnings[key]={serial:b.honroState.actorTurnSerial||0,round:b.round,offered:{}};app.event('성문 동쪽에서 산개 둘이 다가옵니다. 다음 행동 동안 주민 곁 방어 위치를 살피세요.');app.dirty=true;} }
  if(G.HonroAllies.execute(app,{type:'spawn',kind:s.wave.kind,n,x:m.x,y:m.y,spacing:145,maxDistance:580,source:key})===false)return false;
  for(const u of b.units)if(!before.has(u.id)&&u.side===1)u.honroCohort='reinforcement';
  h.spawned+=n;memory(b).events[key]=true;app.event('길목에 '+n+'명의 위협이 다가온다.');app.dirty=true;return true;

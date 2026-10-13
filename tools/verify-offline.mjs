@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);const out=process.env.HONRO_OFFLINE_REPORT_DIR||'_local/reports/offline-verification';await mkdir(out,{recursive:true});
 const checks=[
+ ['tactical-routes','npm',['run','test:tactical-routes']],
  ['contribution-xp','npm',['run','test:contribution-xp']],
  ['sp-marginal-balance','npm',['run','test:sp-balance']],
  ['growth-resume','npm',['run','test:growth-resume']],
