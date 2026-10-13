@@ -156471,6 +156471,240 @@
           ]
         }
       }
+    },
+    {
+      "id": "stage9:tactical-recessed-support",
+      "name": "후퇴한 회랑과 암대의 접지 모암",
+      "category": "terrain",
+      "environmentRole": "rock",
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          0,
+          0,
+          3600,
+          3500
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#26343c",
+              "d": "M540 2362 L741.4 2270 960 2220 1390 2445 1214.8 2672.96 666.8 2580.36 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#303e45",
+              "d": "M726.8 2360 L960 2220 1164.8 2445 1129.8 2657.96 726.8 2560.36 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#19262e",
+              "d": "M650 2410 Q960 2380 1315 2490 L1310 2634 Q960 2492 650 2519.3076923076924 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#26343c",
+              "d": "M2450 2012 L2610 1920 2750 1880 3070 2065 2950 2430 2540 2395 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#303e45",
+              "d": "M2600 2010 L2750 1880 2900 2065 2865 2415 2600 2375 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#19262e",
+              "d": "M2560 2060 Q2750 2040 2995 2110 L2990 2390 Q2750 2275 2560 2337 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 3600 3500\"><path fill=\"#26343c\" d=\"M540 2362 L741.4 2270 960 2220 1390 2445 1214.8 2672.96 666.8 2580.36 Z\"/><path fill=\"#303e45\" d=\"M726.8 2360 L960 2220 1164.8 2445 1129.8 2657.96 726.8 2560.36 Z\"/><path fill=\"#19262e\" d=\"M650 2410 Q960 2380 1315 2490 L1310 2634 Q960 2492 650 2519.3076923076924 Z\"/><path fill=\"#26343c\" d=\"M2450 2012 L2610 1920 2750 1880 3070 2065 2950 2430 2540 2395 Z\"/><path fill=\"#303e45\" d=\"M2600 2010 L2750 1880 2900 2065 2865 2415 2600 2375 Z\"/><path fill=\"#19262e\" d=\"M2560 2060 Q2750 2040 2995 2110 L2990 2390 Q2750 2275 2560 2337 Z\"/></svg>"
+      },
+      "visual": [],
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 3600,
+        "h": 3500
+      },
+      "tags": [
+        "visual-only",
+        "editable-native-vector"
+      ],
+      "params": {
+        "artRevision": 1,
+        "rearOnly": true,
+        "noWalkRim": true,
+        "supports": [
+          {
+            "terrainId": "yard-floor",
+            "x": 726.8,
+            "y": 2545.36
+          },
+          {
+            "terrainId": "yard-floor",
+            "x": 1164.8,
+            "y": 2632.96
+          },
+          {
+            "terrainId": "yard-floor",
+            "x": 2600,
+            "y": 2360
+          },
+          {
+            "terrainId": "yard-floor",
+            "x": 2900,
+            "y": 2390
+          }
+        ]
+      },
+      "reference": {
+        "heightM": 58.333333333333336,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 3600,
+          "h": 3500
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          4
+        ],
+        "backgroundRange": [
+          0.35,
+          4
+        ]
+      }
+    },
+    {
+      "id": "stage13:tactical-recessed-support",
+      "name": "후퇴한 회랑과 암대의 접지 모암",
+      "category": "terrain",
+      "environmentRole": "rock",
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          0,
+          0,
+          8200,
+          6600
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#26343c",
+              "d": "M1040 2966.714285714286 L1293.6 2874.714285714286 1560 2925 2180 3267.5 1935.2 3381.3 1213.2 3213.3371428571427 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#303e45",
+              "d": "M1273.2 2964.714285714286 L1560 2925 1885.2 3267.5 1850.2 3366.3 1273.2 3193.3371428571427 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#19262e",
+              "d": "M1150 3014.714285714286 Q1560 3085 2105 3312.5 L2100 3390.5 Q1560 3160 1150 3109.714285714286 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#26343c",
+              "d": "M5200 3959.3 L5453.6 3867.3 5700 3975 6340 4377.142857142857 6095.2 4479.628 5373.2 4235.948 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#303e45",
+              "d": "M5433.2 3957.3 L5700 3975 6045.2 4377.142857142857 6010.2 4464.628 5433.2 4215.948 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#19262e",
+              "d": "M5310 4007.3 Q5700 4135 6265 4422.142857142857 L6260 4520.142857142857 Q5700 4205 5310 4122.3 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 8200 6600\"><path fill=\"#26343c\" d=\"M1040 2966.714285714286 L1293.6 2874.714285714286 1560 2925 2180 3267.5 1935.2 3381.3 1213.2 3213.3371428571427 Z\"/><path fill=\"#303e45\" d=\"M1273.2 2964.714285714286 L1560 2925 1885.2 3267.5 1850.2 3366.3 1273.2 3193.3371428571427 Z\"/><path fill=\"#19262e\" d=\"M1150 3014.714285714286 Q1560 3085 2105 3312.5 L2100 3390.5 Q1560 3160 1150 3109.714285714286 Z\"/><path fill=\"#26343c\" d=\"M5200 3959.3 L5453.6 3867.3 5700 3975 6340 4377.142857142857 6095.2 4479.628 5373.2 4235.948 Z\"/><path fill=\"#303e45\" d=\"M5433.2 3957.3 L5700 3975 6045.2 4377.142857142857 6010.2 4464.628 5433.2 4215.948 Z\"/><path fill=\"#19262e\" d=\"M5310 4007.3 Q5700 4135 6265 4422.142857142857 L6260 4520.142857142857 Q5700 4205 5310 4122.3 Z\"/></svg>"
+      },
+      "visual": [],
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 8200,
+        "h": 6600
+      },
+      "tags": [
+        "visual-only",
+        "editable-native-vector"
+      ],
+      "params": {
+        "artRevision": 1,
+        "rearOnly": true,
+        "noWalkRim": true,
+        "supports": [
+          {
+            "terrainId": "act2-floor",
+            "x": 1273.2,
+            "y": 3178.3371428571427
+          },
+          {
+            "terrainId": "act2-floor",
+            "x": 1885.2,
+            "y": 3341.3
+          },
+          {
+            "terrainId": "act2-floor",
+            "x": 5433.2,
+            "y": 4200.948
+          },
+          {
+            "terrainId": "act2-floor",
+            "x": 6045.2,
+            "y": 4439.628
+          }
+        ]
+      },
+      "reference": {
+        "heightM": 110,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 8200,
+          "h": 6600
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          4
+        ],
+        "backgroundRange": [
+          0.35,
+          4
+        ]
+      }
     }
   ],
   "stages": [
@@ -205747,6 +205981,17 @@
           "snap": false,
           "layer": "back",
           "depthLayer": "L1"
+        },
+        {
+          "id": "tactical-recessed-support",
+          "assetId": "stage9:tactical-recessed-support",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "layer": "back",
+          "depthLayer": "L1"
         }
       ],
       "units": [
@@ -206082,7 +206327,7 @@
           "cls": "archer",
           "side": 1,
           "x": 2580,
-          "y": 2120,
+          "y": 1840,
           "vx": 0,
           "vy": 0,
           "hp": 713,
@@ -206116,7 +206361,7 @@
           "airborne": false,
           "fixed": true,
           "spawnX": 2580,
-          "spawnY": 2120,
+          "spawnY": 1840,
           "intent": "썩은깃과 검은깃비",
           "dead": false,
           "ranks": {
@@ -206295,7 +206540,7 @@
           "cls": "mage",
           "side": 1,
           "x": 2800,
-          "y": 2050,
+          "y": 1880,
           "vx": 0,
           "vy": 0,
           "hp": 621,
@@ -206329,7 +206574,7 @@
           "airborne": false,
           "fixed": true,
           "spawnX": 2800,
-          "spawnY": 2050,
+          "spawnY": 1880,
           "intent": "초음파와 반향",
           "dead": false,
           "ranks": {
@@ -206366,7 +206611,7 @@
           "cls": "archer",
           "side": 1,
           "x": 1110,
-          "y": 2350,
+          "y": 2200,
           "vx": 0,
           "vy": 0,
           "hp": 713,
@@ -206400,7 +206645,7 @@
           "airborne": false,
           "fixed": true,
           "spawnX": 1110,
-          "spawnY": 2350,
+          "spawnY": 2200,
           "intent": "썩은깃과 검은깃비",
           "dead": false,
           "ranks": {
@@ -230523,6 +230768,17 @@
           "snap": false,
           "layer": "back",
           "depthLayer": "L1"
+        },
+        {
+          "id": "tactical-recessed-support",
+          "assetId": "stage13:tactical-recessed-support",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "layer": "back",
+          "depthLayer": "L1"
         }
       ],
       "units": [
@@ -230773,7 +231029,7 @@
           "kind": "bat",
           "team": "enemy",
           "x": 6165,
-          "y": 4326.35,
+          "y": 4040,
           "facing": 1,
           "spawnIndex": 14,
           "behavior": "patrol",
@@ -230803,7 +231059,7 @@
           "kind": "bat",
           "team": "enemy",
           "x": 6334,
-          "y": 4387.857142857143,
+          "y": 4210,
           "facing": 1,
           "spawnIndex": 16,
           "behavior": "patrol",
@@ -230818,7 +231074,7 @@
           "kind": "bat",
           "team": "enemy",
           "x": 6412,
-          "y": 4415.714285714285,
+          "y": 4250,
           "facing": 1,
           "spawnIndex": 17,
           "behavior": "patrol",
@@ -233191,7 +233447,7 @@
               "roomId": "inner-pocket",
               "surfaceId": "floor-main",
               "x": 6165,
-              "y": 4326.35,
+              "y": 4040,
               "supportY": 4486.35,
               "flying": true
             },
@@ -233213,7 +233469,7 @@
               "roomId": "inner-pocket",
               "surfaceId": "floor-main",
               "x": 6334,
-              "y": 4387.857142857143,
+              "y": 4210,
               "supportY": 4547.857142857143,
               "flying": true
             },
@@ -233224,7 +233480,7 @@
               "roomId": "inner-pocket",
               "surfaceId": "floor-main",
               "x": 6412,
-              "y": 4415.714285714285,
+              "y": 4250,
               "supportY": 4575.714285714285,
               "flying": true
             },

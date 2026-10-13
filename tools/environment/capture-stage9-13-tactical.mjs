@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtimeParts,root} from '../../shared/build.mjs';
-const native=createRequire(import.meta.url)('@napi-rs/canvas'),tag=process.argv[2]||'after',out=path.resolve(root,'_local/reports/stage17-worksite',tag);
+const native=createRequire(import.meta.url)('@napi-rs/canvas'),tag=process.argv[2]||'after',out=path.resolve(root,'_local/reports/stage9-13',tag);
 await mkdir(out,{recursive:true});native.GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');
 const canvas=(w=300,h=150)=>{const c=native.createCanvas(w,h);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});return c;};
 class Image extends native.Image{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;}get src(){return super.src;}}

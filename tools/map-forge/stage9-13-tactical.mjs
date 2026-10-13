@@ -5,7 +5,7 @@ import {pathToFileURL} from 'node:url';
 const point=([x,y])=>({x,y});
 function surface(t,x){for(let i=1;i<t.points.length;i++){const a=t.points[i-1],b=t.points[i];if(b.x>a.x&&x>=a.x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('No surface '+t.id+' '+x);}
 function slab(id,top,thickness=45,oneWay=false,material='rock'){return{id,name:id,type:'solid',points:[...top,...top.toReversed().map(([x,y])=>[x,y+thickness])].map(point),baseMaterial:material,oneWay,breakable:false,layer:'terrain',properties:{hp:99999,maxHp:99999,optional:true,surfaceKind:oneWay?'wood':'rock',honroWalkEdges:top.slice(1).map((_,i)=>i)},detail:{spacing:18,roughness:0,seed:913,optimizeEpsilon:0}};}
-function author(s){
+function author(s,project){
  const n=s.metadata.stageId,floor=s.terrains.find(t=>t.id===(n===9?'yard-floor':'act2-floor')),ground=x=>surface(floor,x);
  const removed=n===9?['west-step-1','west-step-2','west-gallery','center-lookout','east-step-1','east-step-2','east-gallery']:['ct-gallery-work-deck'];
  s.terrains=s.terrains.filter(t=>!removed.includes(t.id)&&!t.id.startsWith('tactical-'));
@@ -38,7 +38,24 @@ function author(s){
  ];
  s.design.tacticalRoutes={version:1,geometryRevision:1,scope:'ordinary walking and default jump, no skill or reward required',routes:routes.map(r=>({...r,requires:[],bidirectional:true})),preserved:{bounds:true,encounters:true,objectives:true,npcFloor:true}};
  if(n===13){const sp=s.design.space;sp.routes=sp.routes.filter(r=>!removed.includes(r.id)&&!r.id.startsWith('tactical-'));sp.surfaces=sp.surfaces.filter(r=>!removed.includes(r.terrainId)&&!r.terrainId.startsWith('tactical-'));for(const room of sp.rooms)room.terrainIds=room.terrainIds.filter(id=>!removed.includes(id)&&!id.startsWith('tactical-'));for(const t of additions)sp.surfaces.push({id:t.id,terrainId:t.id,role:'shelf',edgeIndices:t.properties.honroWalkEdges,roomIds:[t.id.includes('inner')?'low-gallery':'sunken-forecourt']});sp.routes.push(...routes.map(r=>({...r,id:'tactical-'+r.id,kind:'optional-jump',requires:[]})));}
+ // Recessed mother-rock carries the solid ledges visually. It has no collision
+ // and no bright rim; the outlined front surface remains the only walk cue.
+ const artId=`stage${n}:tactical-recessed-support`,children=[],supports=[];
+ for(const t of additions.filter(t=>!t.oneWay)){
+  const top=t.points.slice(0,t.properties.honroWalkEdges.length+1),l=top[0].x,r=top.at(-1).x,w=r-l;
+  const a=l+w*.16,b=l+w*.76,ay=ground(a),by=ground(b),mid=top[Math.floor(top.length/2)];
+  children.push({tag:'path',fill:'#26343c',d:`M${l-70} ${top[0].y+22} L${l+w*.18} ${top[0].y-70} ${mid.x} ${mid.y-90} ${r+50} ${top.at(-1).y+45} ${b+50} ${by+40} ${a-60} ${ay+35} Z`});
+  children.push({tag:'path',fill:'#303e45',d:`M${a} ${top[0].y+20} L${mid.x} ${mid.y-90} ${b} ${top.at(-1).y+45} ${b-35} ${by+25} ${a} ${ay+15} Z`});
+  children.push({tag:'path',fill:'#19262e',d:`M${l+40} ${top[0].y+70} Q${mid.x} ${mid.y+70} ${r-25} ${top.at(-1).y+90} L${r-30} ${ground(r)-12} Q${mid.x} ${ground(mid.x)-100} ${l+40} ${ground(l)-15} Z`});
+  supports.push({terrainId:floor.id,x:a,y:ay},{terrainId:floor.id,x:b,y:by});
+ }
+ const bounds={x:0,y:0,w:s.width,h:s.height},viewBox=[0,0,s.width,s.height],asset={id:artId,name:'후퇴한 회랑과 암대의 접지 모암',category:'terrain',environmentRole:'rock',vector:{version:1,viewBox,gradients:{},root:{tag:'g',children},source:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.join(' ')}">${children.map(p=>`<path fill="${p.fill}" d="${p.d}"/>`).join('')}</svg>`},visual:[],collision:[],anchor:{x:0,y:0},sockets:[],bounds,tags:['visual-only','editable-native-vector'],params:{artRevision:1,rearOnly:true,noWalkRim:true,supports},reference:{heightM:s.height/60,bounds,foot:{x:0,y:0},scaleRange:[.35,4],backgroundRange:[.35,4]}};
+ project.library=project.library.filter(a=>a.id!==artId);project.library.push(asset);s.elements=s.elements.filter(e=>e.id!=='tactical-recessed-support');s.elements.push({id:'tactical-recessed-support',assetId:artId,x:0,y:0,scale:1,rotation:0,snap:false,layer:'back',depthLayer:'L1'});
+ // Fixed flying sentries keep their role above the new shoulders, rather than
+ // starting inside the new solid shell. Their budgets and number are unchanged.
+ if(n===9)for(const [id,y]of [['foe-2',1840],['foe-5',1880],['foe-6',2200]]){const u=s.units.find(u=>u.id===id);if(u){u.y=y;u.spawnY=y;}}
+ if(n===13)for(const [id,y]of [['a2-enemy-14',4040],['a2-enemy-16',4210],['a2-enemy-17',4250]]){const u=s.units.find(u=>u.id===id);if(u)u.y=y;const site=s.design.space.encounterSites.find(q=>q.unitId===id);if(site)site.y=y;}
  return s;
 }
-export function applyStage9And13Tactical(project){for(const s of project.stages)if([9,13].includes(s.metadata?.stageId))author(s);return project;}
+export function applyStage9And13Tactical(project){for(const s of project.stages)if([9,13].includes(s.metadata?.stageId))author(s,project);return project;}
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const file='shared/data/campaign.json';await writeFile(file,JSON.stringify(applyStage9And13Tactical(JSON.parse(await readFile(file,'utf8'))),null,2)+'\n');}
