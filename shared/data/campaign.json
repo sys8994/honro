@@ -207146,7 +207146,9 @@
           },
           "text": "대피로 뒤쪽에 들린 짐승들이 나타난다.",
           "lines": [],
-          "once": true
+          "once": true,
+          "honroTacticalWarning": 1,
+          "warning": "대피로 뒤쪽에서 들린 짐승들이 다가옵니다. 다음 행동 동안 아래 길과 높은 마당의 사선을 살피세요."
         },
         {
           "id": "evac-crows",
@@ -207161,7 +207163,9 @@
           },
           "text": "윗마당에서 까마귀 떼가 내려온다.",
           "lines": [],
-          "once": true
+          "once": true,
+          "honroTacticalWarning": 1,
+          "warning": "윗마당에서 까마귀 떼가 내려옵니다. 다음 행동 동안 몸을 가릴 곳과 반대 길을 살피세요."
         }
       ],
       "encounters": [
@@ -207488,7 +207492,8 @@
           "initialEnemies": 12,
           "allyActions": 0,
           "spawned": 0
-        }
+        },
+        "honroEncounterDensityRevision": 1
       },
       "environment": {
         "version": 4,

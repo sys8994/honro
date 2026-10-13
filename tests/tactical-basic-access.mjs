@@ -10,12 +10,14 @@ import {cityBasicRoutePoints} from './tactical-basic-route-contracts.mjs';
 const option=k=>process.argv.find(a=>a.startsWith('--'+k+'='))?.slice(k.length+3);
 const stages=(option('stages')||'9,13,21,24,28').split(',').map(Number),classes=(option('classes')||'archer,mage,knight,occultist').split(','),offsets=(option('offsets')||'-30,0,30').split(',').map(Number),out=option('out-dir')||'_local/reports/tactical-basic-access';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[],hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+// Legal unspent entry budget. Default profiles keep special movement rank zero.
+const atBudget=(id,budgetId=id)=>{const p=C.defaults();for(const hero of Object.values(p.heroes))hero.xp=g.HonroProgression.budget(budgetId).start;return battlefield(g,id,{profile:p});};
 const routes={21:['wall','market'],24:['hall','shrine'],28:['petition']};
 for(const id of stages)for(const rid of (routes[id]||g.HONRO_PROJECT.stages[id-1].design.tacticalRoutes.routes.map(r=>r.id)))for(const cls of classes)for(const delta of offsets){
- const q=battlefield(g,id),{b,e,app}=q,fullParty=rid==='shrine'||id===28;let u,pre=[];
+ const q=atBudget(id),{b,e,app}=q,fullParty=rid==='shrine'||id===28;let u,pre=[];
  if(fullParty){b.units=b.units.filter(v=>v.side===0);e.checkEnd=()=>false;u=b.units.find(v=>v.cls===cls);g.HonroAct3.attach(app,e);
   for(const [hero,mid]of(id===28?[['knight','fire-screen'],['archer','water-release']]:[['knight','family-crest'],['mage','shrine-seal']])){const actor=b.units.find(v=>v.cls===hero),m=g.HonroAct3.marker(b,mid),travel=drive(g,q,actor,[{x:m.x,y:m.y}],{jump:false,label:mid,strictPose:false}),eligibility=g.HonroAct3.eligibility(app,m),used=travel.passed&&g.HonroAct3.use(app,m);pre.push({mid,used,eligibility,travel});}
- }else{const fallback=structuredClone(battlefield(g,13).e.heroesAlive().find(v=>v.cls===cls));if(id===9&&cls==='occultist')Object.assign(fallback,{x:e.active.x,y:e.active.y,spawnX:e.active.x,spawnY:e.active.y});const npcs=b.units.filter(v=>v.side!==0&&v.side!==1);u=isolate(q,cls,fallback);b.units.push(...npcs);}
+ }else{const fallback=structuredClone(atBudget(13,id).e.heroesAlive().find(v=>v.cls===cls));if(id===9&&cls==='occultist')Object.assign(fallback,{x:e.active.x,y:e.active.y,spawnX:e.active.x,spawnY:e.active.y});const npcs=b.units.filter(v=>v.side!==0&&v.side!==1);u=isolate(q,cls,fallback);b.units.push(...npcs);}
  const initial={x:u.x,y:u.y,level:u.level,h:u.h,r:u.r,maxMove:u.maxMove,walkSpeed:u.walkSpeed,SP03:u.ranks.SP03||0};assert.equal(initial.SP03,0);
  let points,jump=true;
  if(id===9||id===13){const route=g.HONRO_PROJECT.stages[id-1].design.tacticalRoutes.routes.find(r=>r.id===rid),spawn={x:u.x,y:u.y};

@@ -1,3 +1,4 @@
+import {applyTacticalWaveWarnings} from '../tools/map-forge/tactical-wave-warnings.mjs';
 import {applyTacticalCityResponses} from '../tools/map-forge/tactical-city-responses.mjs';
 import {applyStage9And13Tactical} from '../tools/map-forge/stage9-13-tactical.mjs';
 import {applyCityTacticalRoutes} from '../tools/map-forge/city-tactical-routes.mjs';
@@ -39,6 +40,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   project=applyCityTacticalRoutes(project);
   project=applyStage9And13Tactical(project);
   project=applyTacticalCityResponses(project);
+  project=applyTacticalWaveWarnings(project);
   parts.push('globalThis.HONRO_PROJECT=HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+')));');
   if(vector){
     await buildParty();
