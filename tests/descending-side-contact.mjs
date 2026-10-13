@@ -15,14 +15,15 @@ const h=await appHarness(),{C}=h,classes=['archer','mage','knight','occultist'],
 const gap=3.5140131152211325;
 function fixture(cls,x,y,{recordedMove=false}={}){
  const profile=h.profileThrough(17);
- // Captured R6 progression produces the recorded speed/budget through the
- // production stat builder, so Continue sees a coherent profile and body.
+ // Captured R6 progression still produces the recorded walk speed. The SP
+ // rebalance changes its move budget (historically 2541), so use the current
+ // stat builder while keeping the recorded commands, contacts and poses exact.
  if(recordedMove)Object.assign(profile.heroes[cls],{xp:46729,statTraining:24});
  const a=h.load(profile);a.launch(18);h.finish(a);
  const e=a.engine,b=e.b,u=b.units.find(z=>z.cls===cls&&z.side===0);
  b.units=[u];b.active=u.id;b.phase='aim';b.side=0;e.checkEnd=()=>false;
  Object.assign(u,{x,y,vx:0,vy:0,jumping:false,airborne:false,acted:false});
- if(recordedMove){assert.equal(u.walkSpeed,347);assert.equal(u.maxMove,2541);assert.equal(u.moveLeft,2541);}
+ if(recordedMove){const stats=C.heroStats(profile.heroes[cls],cls,u.loadout);assert.equal(stats.move,2064,'XP46729 with unchanged 24 training SP uses the approved half-strength movement coefficient');assert.equal(u.walkSpeed,347);assert.equal(u.maxMove,stats.move);assert.equal(u.moveLeft,stats.move);}
  const terrain=JSON.stringify(b.terrain),initial={x,y,hp:u.hp,focus:u.focus,moveLeft:u.moveLeft};
  const audit={externalPositionWrites:0,recoveries:0};let allowed=0;
  for(const key of ['x','y']){let value=u[key];Object.defineProperty(u,key,{enumerable:true,configurable:true,get(){return value},set(v){if(!allowed){audit.externalPositionWrites++;throw Error('External '+key+' write after initial fixture');}value=v;}});}
