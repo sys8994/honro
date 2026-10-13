@@ -9,7 +9,7 @@ export function authorStage5Waterfall(project,g){
  s.terrains=[solid('valley-floor',[[0,3450],[1450,3450],[1900,3410],[2290,3370],[2500,3580],[2760,3780],[3290,3820],[3630,3700],[3950,3400],[4400,3370],[4400,4700],[0,4700]],{properties:{route:true,surfaceKind:'wet'}}),
  solid('western-bank',[[0,2235],[440,2250],[800,2360],[1120,2600],[1280,2790],[1630,2855],[1840,3000],[2160,3180],[2360,3370],[2320,3420],[2110,3270],[1750,3140],[1400,3110],[990,3040],[570,3080],[0,3100]],{properties:{route:true,surfaceKind:'wet'}}),
  // The right wall is actual rock, with a shallow dry recess cut into its face.
- solid('waterfall-cliff',[[3000,1340],[3290,1320],[3480,1290],[3770,1280],[4080,1250],[4400,1220],[4400,4700],[3490,4700],[3650,3900],[3830,3700],[3900,3280],[3210,2910],[3080,2630],[3010,2460],[3060,2405],[3630,2405],[3660,2240],[3540,2100],[3070,2140],[3040,1890],[2970,1650]]),
+ solid('waterfall-cliff',[[3000,1340],[3290,1320],[3480,1290],[3770,1280],[4080,1250],[4400,1220],[4400,4700],[3490,4700],[3650,3900],[3830,3700],[3900,3280],[3740,2910],[3570,2630],[3010,2460],[3060,2405],[3630,2405],[3660,2240],[3540,2100],[3070,2140],[3040,1890],[2970,1650]]),
  // Grounded, unequal stone shoulders replace the seven floating platform row.
  solid('receiver-shoulder',[[1030,2534],[1170,2530],[1260,2590],[1330,2680],[1300,2810],[1120,2750],[1020,2640]]),
  solid('archer-step',[[1850,2840],[1970,2730],[2150,2600],[2320,2500],[2470,2460],[2580,2460],[2610,2630],[2470,2550],[2320,2590],[2150,2690],[1970,2820],[1850,2875]]),
@@ -20,7 +20,7 @@ export function authorStage5Waterfall(project,g){
  {...clone(old.terrains.find(t=>t.id==='waterfall-veil')),points:clone(g.HonroStage5WaterGeometry.closed)},
  clone(old.terrains.find(t=>t.id==='cliff-cleat'))];
  for(const k of ['playBounds','terrainBounds','terrainDomainVersion'])delete s[k];
- s.initialState.honroStage5WaterfallRevision=1;
+ s.initialState.honroStage5WaterfallRevision=1;s.initialState.honroNarrativeRevision=1;
  s.units=s.units.filter(u=>u.id!=='npc-hwigyeom');
  Object.assign(s.anchors,{start:{x:330,y:2246.25,support:'western-bank'},receiver:{x:1450,y:2821.5714285714284,support:'western-bank'},basin:{x:2040,y:2679.4444444444443,support:'archer-step'},shotGap:{x:2400,y:2478.6666666666665,support:'archer-step'},waterfallFoot:{x:2990,y:3300,support:'valley-floor'},cleat:{x:3320,y:2403.529411764706,support:'hidden-ledge'},roost:{x:2340,y:2494.6666666666665,support:'archer-step'},exit:{x:3400,y:2404.038062283737,support:'hidden-ledge'}});
  const surface=(id,x)=>{const t=s.terrains.find(t=>t.id===id);for(let i=0;i<t.points.length;i++){const a=t.points[i],b=t.points[(i+1)%t.points.length];if(b.x>a.x&&x>=a.x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error(`Missing ${id}/${x}`);};
