@@ -45,7 +45,7 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&c
  // Only the immediate working space must be clear. Distant fiends and other
  // storeys never turn a retrieval objective into an extermination objective.
  if(b.units.some(v=>v.side===1&&alive(v)&&sameFloor(v,point,220)))return{ok:false,reason:'작업 지점 가까운 악귀부터 처치'};
- return{ok:true,reason:'E · '+s.label};
+ return{ok:true,reason:s.label};
 }
 function openGate(b,id){if(!id)return;const t=b.terrain.find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}
 function completeStep(app,s){const b=app.engine.b,a=memory(b);if(a.done[s.id])return;a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round,enemyEnd:b.teamEnds?.[1]||0});const m=marker(b,s.id);if(m)m.collected=true;openGate(b,s.opens);

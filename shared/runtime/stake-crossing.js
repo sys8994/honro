@@ -30,8 +30,8 @@ function preparationLines(b){const record=(b?.honroSplit||b)?.stakePreparation;
 }
 function instruction(b){if(!active(b)||!current(b))return null;const s=b.honroStakeCrossing,c=current(b),count=Object.keys(s?.crossed||{}).length;
  if(flexible(b))return count?`동행 ${count}/2 도착 · 남은 동행도 안전한 석대로 이동`:'축지진목으로 닿는 석대를 살피기 · 두 동행이 길을 이어가기';
- if(count)return `동행 ${count}/2 도착 · 남은 동행도 진목 곁에서 E`;
- if((b.stakes||[]).filter(z=>z.skill==='M09'&&z.side===0).length===2)return '두 동행이 각각 진목 곁에서 E · 다음 석대로 이동';
+ if(count)return `동행 ${count}/2 도착 · 남은 동행도 진목 곁에서 축지하세요`;
+ if((b.stakes||[]).filter(z=>z.skill==='M09'&&z.side===0).length===2)return '두 동행이 각각 진목 곁에서 축지해 다음 석대로 이동하세요';
  if(!heroes(b).every(u=>inside(u,c.fromZone)))return '두 동행을 출발 석대에 모으기 · 담허의 축지진목 준비';
  return '담허의 축지진목 선택 · 다음 석대를 향해 발사';
 }

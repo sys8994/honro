@@ -235,7 +235,7 @@ function rescueTarget(b,s){
  const weaken=spirit&&!spirit.dead&&spirit.hp>0&&(spirit.hp>spirit.maxHp*.4||!sodan&&!spirit.honroSubdued);
  const target=weaken?spirit:b.units.find(u=>u.id===m.target);
  if(!target||target.dead||target.hp<=0||!Number.isFinite(target.x)||!Number.isFinite(target.y))return null;
- return{kind:weaken?'boss':'interact',unitId:target.id,x:target.x,y:target.y-target.h,label:weaken?'주민에게 붙은 '+(spirit.name||'혼'):'주민 · E'};
+ return{kind:weaken?'boss':'interact',unitId:target.id,x:target.x,y:target.y-target.h,label:weaken?'주민에게 붙은 '+(spirit.name||'혼'):'주민 · 구조'};
 }
 // Only the next actionable rescue instruction is shown. Use the production
 // eligibility result; this presentation does not change any gate or saved step.
@@ -249,8 +249,8 @@ function rescueInstruction(b,s){
   return '주민 주변의 적 '+count+'명을 처치하세요';
  }
  if(!result.ok&&result.reason==='붙은 혼을 먼저 약화시키세요 · 체력 40% 이하')return sodan?'붙은 혼의 체력을 40% 이하로 낮추세요':'주민에게 붙은 혼을 제압하세요';
- if(!result.ok&&result.reason==='소단으로 분리하거나 곁의 혼을 먼저 제압')return sodan?'소단으로 주민에게 다가가 E':'주민에게 붙은 혼을 제압하세요';
- if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 E':'동행으로 주민에게 다가가 E';
+ if(!result.ok&&result.reason==='소단으로 분리하거나 곁의 혼을 먼저 제압')return sodan?'소단으로 주민에게 다가가 혼을 분리하세요':'주민에게 붙은 혼을 제압하세요';
+ if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 혼을 분리하세요':'동행으로 주민에게 다가가 구조하세요';
  return null;
 }
 G.HonroStage11RavineEncounters={active,ready,queue,blockedClear,composed,residentShelter,rescueInstruction,rescueTarget,knotInstruction,holdInstruction,defenseEntries,repairResponseFlights};
