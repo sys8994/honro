@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import ts from '../game/node_modules/typescript/lib/typescript.js';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
-import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 const source=await readFile('shared/engine/src/sound-design.ts','utf8');
 function harness(code=source){
  let now=0,resolveResume,rejectResume,contexts=0,resumes=0;const idle=[],created=[],synthesis=[];
@@ -53,7 +53,9 @@ await check('Autoplay denial clears pending audio; next permitted gesture has no
 await check('Hidden playback is suppressed and return does not revive old cues',async()=>{
  const h=harness();let p=h.a.wake();h.resolve();await p;h.a.play('dialogue');h.a.update('main',true);h.a.play('dialogue');assert.equal(h.a.voices.size,0);assert.equal(h.a.pending.length,0);h.a.update('main',false);await h.a.wake();assert.equal(h.created.length,1);h.time(100);h.a.play('dialogue');assert.equal(h.created.length,2);
 });
-const baseline=execFileSync('git',['show','28b829abb3a108f522be9f35aceca4795de637bd:shared/engine/src/sound-design.ts'],{encoding:'utf8'});
+// Exact source bytes from 28b829a, kept independently of translated release commit IDs.
+const baseline=await readFile('tests/fixtures/audio-latency/sound-design-before.ts','utf8');
+assert.equal(createHash('sha256').update(baseline).digest('hex'),'a45b4fece07eda3476dc9e758409ca9622ef776a9fc22b9ac8357c4fd9a69c72');
 const old=harness(baseline),current=harness();
 await check('Existing combat waveforms remain byte-identical at 24 and 48 kHz',()=>{for(const name of ['arrow','arrowhit','hit','sword','qiHit','break','down','fire','boom','qiWave','ricochet','split','ceramic','heal','turn','jump','charge','spiritCast','spiritImpact','spiritSummon','meteor','qiRebound','win','lose','sodanBell'])for(const sr of [24000,48000])assert.deepEqual(current.samples(name,sr),old.samples(name,sr));});
 function metrics(samples){const sr=24000;let peak=0,peakIndex=0,sum=0,early=0;for(let i=0;i<samples.length;i++){sum+=samples[i]**2;if(i<sr*.02)early+=samples[i]**2;if(Math.abs(samples[i])>peak){peak=Math.abs(samples[i]);peakIndex=i;}}return {peak,peakMs:peakIndex/sr*1000,rms:Math.sqrt(sum/samples.length),first20msRms:Math.sqrt(early/(sr*.02)),onsetMs:samples.findIndex(x=>Math.abs(x)>.01)/sr*1000};}
