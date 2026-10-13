@@ -194,11 +194,12 @@
     "test:migration-current-meta": "node tests/current-migration-metadata.mjs",
     "test:stage5-waterfall:ai": "node tests/stage5-enemy-standoff.mjs && node tests/stage5-enemy-standoff-replay.mjs",
     "test:stage5-waterfall:fullplay": "HONRO_STAGE5_POLICY=route HONRO_STAGE5_STATS=0 HONRO_STAGE5_RECOVER=1 HONRO_STAGE5_REQUIRE_WIN=1 HONRO_STAGE5_ACTION_LIMIT=180 HONRO_STAGE5_OUT=_local/reports/stage5-waterfall/mandatory-input node tests/stage5-waterfall-fullplay-input.mjs",
-    "test:title": "node tests/title-redesign.mjs",
+    "test:title": "node tests/title-redesign.mjs && node tests/title-letter-rendering.mjs",
     "test:title:browser": "python -X utf8 tests/title-redesign-browser.py",
     "capture:title:art": "node tools/testing/capture-title-hanja-native.mjs"
   },
   "devDependencies": {
-    "@napi-rs/canvas": "0.1.100"
+    "@napi-rs/canvas": "0.1.100",
+    "sharp": "0.35.4"
   }
 }
