@@ -30,6 +30,7 @@ check('action restrictions do not erase live passive progress or own gameplay st
   const u={...unit(cls,cls==='mage'?{MP05:1}:{SP04:1}),...flags,jucheon:50,swordChain:['sword']},before=JSON.stringify(u);S.passives({},u);assert.equal(host.hidden,false);assert.equal(JSON.stringify(u),before);
  }
 });
+const vendor=await readFile('game/vendor/style.css','utf8');
 const status=await readFile('shared/runtime/combat-status.js','utf8'),ui=await readFile('shared/runtime/ui-bridge.js','utf8'),controls=await readFile('game/src/controls.css','utf8'),presentation=await readFile('game/src/skill-presentation.css','utf8');
 check('one live passive host belongs to the existing clickable status button, never a resource overlay',()=>{
  assert.equal((status.match(/id="combat-passives"/g)||[]).length,1);assert.match(status,/<span id="combat-passives"[^>]*><\/span><\/button>/);assert(!ui.includes('id="combat-passives"'));
@@ -45,8 +46,9 @@ check('portrait passive content fits the unchanged 36px status control without r
 });
 check('phone mission header reserves the unchanged minimap lane instead of overlapping it',()=>{
  const patch=controls.slice(controls.indexOf('/* Keep phone mission text'));
+ assert.match(vendor,/battle-head\{left:7px!important;right:7px!important/,'legacy important edge needs an explicit scoped override');
  assert.match(patch,/@media\(max-width:620px\)/);
- assert.match(patch,/battle-head\{left:8px;right:calc\(31vw \+ 16px\);gap:8px\}/);
+ assert.match(patch,/battle-head\{left:8px!important;right:calc\(31vw \+ 16px\)!important;gap:8px\}/);
  assert.match(patch,/battle-head>\.icon\{flex:none\}/);
  assert.match(patch,/battle-info\{flex:1;min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere\}/);
  assert(!/font-size:|#minimap\{|--hud-height/.test(patch));
