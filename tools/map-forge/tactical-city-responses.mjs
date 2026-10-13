@@ -11,7 +11,7 @@ const rows={
  24:[
   {id:'act3-response-24-0',objective:'family-crest',xs:[3590,3750],alt:[3450,3620],kind:'archiveFiend',warning:'폐가 서재에서 지워진 이름들이 웅성거립니다. 다음 행동 동안 후원 진입로를 살피세요.'},
   {id:'act3-response-24-1',objective:'shrine-seal',xs:[5380,5500,5620],alt:[5320,5450,5580],kind:'archiveFiend',warning:'봉인이 풀린 사당 뒤로 장부귀가 모입니다. 다음 행동 동안 봉인 앞 퇴로를 살피세요.'},
-  {id:'act3-response-24-2',objective:'shrine-seal',region:{x:5900,y:1800,width:1100,height:900},xs:[6440,6570],alt:[6480,6610],kind:'possessedGuard',elite:true,warning:'토지문서 동쪽 낮은 마당에서 경비가 일어납니다. 다음 행동 동안 문서 곁 사선과 사당 위 길을 살피세요.'}
+  {id:'act3-response-24-2',objective:'shrine-seal',region:{x:6200,y:2400,width:600,height:800},xs:[6440,6570],alt:[6480,6610],kind:'possessedGuard',elite:true,warning:'토지문서 동쪽 낮은 마당에서 경비가 일어납니다. 다음 행동 동안 문서 곁 사선과 사당 위 길을 살피세요.'}
  ]
 };
 function ground(s,x){const points=s.terrains.find(t=>t.id==='a3-foundation').points;for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i];if(b.x>a.x&&x>=a.x&&x<=b.x&&a.y<s.height&&b.y<s.height)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('Missing ground '+s.metadata.stageId+'/'+x);}

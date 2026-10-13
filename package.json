@@ -168,8 +168,9 @@
     "test:sp-balance": "node tests/sp-passive-runtime.mjs && node tests/sp-marginal-balance.mjs && node tests/sp-build-survivability.mjs",
     "test:contribution-xp": "node tests/contribution-xp-ledger.mjs && node tests/contribution-xp-engine.mjs && node tests/contribution-xp-migration.mjs && node tests/contribution-xp-app.mjs && node tests/contribution-xp-healing-boundaries.mjs && node tests/objective-contribution-invariants.mjs && node tests/objective-contribution-runtime.mjs && node tests/objective-wave-provenance.mjs",
     "test:growth-resume": "node tests/sp-balance-app-resume.mjs",
-    "test:tactical-routes": "node tests/city-tactical-contracts.mjs && node tests/city-tactical-save.mjs && node tests/stage9-13-tactical-contracts.mjs && node tests/stage9-13-tactical-traversal.mjs && node tests/stage9-13-tactical-clearance.mjs && node tests/stage9-13-tactical-shots.mjs && npm run test:tactical-basic-access",
-    "test:tactical-basic-access": "node tests/tactical-basic-access.mjs"
+    "test:tactical-routes": "node tests/city-tactical-contracts.mjs && node tests/city-tactical-save.mjs && node tests/stage9-13-tactical-contracts.mjs && node tests/stage9-13-tactical-traversal.mjs && node tests/stage9-13-tactical-clearance.mjs && node tests/stage9-13-tactical-shots.mjs && npm run test:tactical-basic-access && npm run test:tactical-city-responses",
+    "test:tactical-basic-access": "node tests/tactical-basic-access.mjs",
+    "test:tactical-city-responses": "node tests/tactical-city-responses.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100"
