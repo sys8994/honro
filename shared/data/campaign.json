@@ -205090,306 +205090,290 @@
           }
         },
         {
-          "id": "west-step-1",
-          "name": "west-step-1",
+          "id": "tactical-west-collapsed-gallery",
+          "name": "tactical-west-collapsed-gallery",
+          "type": "solid",
+          "points": [
+            {
+              "x": 610,
+              "y": 2340
+            },
+            {
+              "x": 960,
+              "y": 2310
+            },
+            {
+              "x": 1340,
+              "y": 2400
+            },
+            {
+              "x": 1340,
+              "y": 2445
+            },
+            {
+              "x": 960,
+              "y": 2355
+            },
+            {
+              "x": 610,
+              "y": 2385
+            }
+          ],
+          "baseMaterial": "rock",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "optional": true,
+            "surfaceKind": "rock",
+            "honroWalkEdges": [
+              0,
+              1
+            ]
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 913,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "tactical-west-rubble-ascent",
+          "name": "tactical-west-rubble-ascent",
           "type": "solid",
           "points": [
             {
               "x": 430,
-              "y": 2360
+              "y": 2393.6923076923076
             },
             {
-              "x": 720,
-              "y": 2330
+              "x": 660,
+              "y": 2340
             },
             {
-              "x": 720,
-              "y": 2380
+              "x": 660,
+              "y": 2365
             },
             {
               "x": 430,
-              "y": 2410
+              "y": 2418.6923076923076
             }
           ],
-          "baseMaterial": "rock",
+          "baseMaterial": "wood",
           "oneWay": true,
           "breakable": false,
+          "layer": "terrain",
           "properties": {
             "hp": 99999,
             "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "platform",
-            "artSeed": 1
+            "optional": true,
+            "surfaceKind": "wood",
+            "honroWalkEdges": [
+              0
+            ]
           },
-          "layer": "terrain",
           "detail": {
             "spacing": 18,
             "roughness": 0,
-            "seed": 1,
+            "seed": 913,
             "optimizeEpsilon": 0
           }
         },
         {
-          "id": "west-step-2",
-          "name": "west-step-2",
+          "id": "tactical-west-rubble-return",
+          "name": "tactical-west-rubble-return",
           "type": "solid",
           "points": [
             {
-              "x": 600,
-              "y": 2180
+              "x": 1280,
+              "y": 2386
             },
             {
-              "x": 920,
-              "y": 2150
+              "x": 1550,
+              "y": 2412.5
             },
             {
-              "x": 920,
-              "y": 2200
+              "x": 1550,
+              "y": 2437.5
             },
             {
-              "x": 600,
-              "y": 2230
+              "x": 1280,
+              "y": 2411
             }
           ],
-          "baseMaterial": "rock",
+          "baseMaterial": "wood",
           "oneWay": true,
           "breakable": false,
+          "layer": "terrain",
           "properties": {
             "hp": 99999,
             "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "platform",
-            "artSeed": 1
+            "optional": true,
+            "surfaceKind": "wood",
+            "honroWalkEdges": [
+              0
+            ]
           },
-          "layer": "terrain",
           "detail": {
             "spacing": 18,
             "roughness": 0,
-            "seed": 1,
+            "seed": 913,
             "optimizeEpsilon": 0
           }
         },
         {
-          "id": "west-gallery",
-          "name": "west-gallery",
+          "id": "tactical-east-stone-shoulder",
+          "name": "tactical-east-stone-shoulder",
           "type": "solid",
           "points": [
             {
-              "x": 650,
-              "y": 1980
-            },
-            {
-              "x": 980,
-              "y": 1880
-            },
-            {
-              "x": 1320,
-              "y": 1910
-            },
-            {
-              "x": 1320,
-              "y": 2040
-            },
-            {
-              "x": 980,
-              "y": 2010
-            },
-            {
-              "x": 650,
-              "y": 2110
-            }
-          ],
-          "baseMaterial": "rock",
-          "oneWay": true,
-          "breakable": false,
-          "properties": {
-            "hp": 99999,
-            "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "rock",
-            "artSeed": 1
-          },
-          "layer": "terrain",
-          "detail": {
-            "spacing": 18,
-            "roughness": 0,
-            "seed": 1,
-            "optimizeEpsilon": 0
-          }
-        },
-        {
-          "id": "center-lookout",
-          "name": "center-lookout",
-          "type": "solid",
-          "points": [
-            {
-              "x": 1470,
-              "y": 2160
-            },
-            {
-              "x": 1760,
-              "y": 2070
-            },
-            {
-              "x": 2030,
-              "y": 2100
-            },
-            {
-              "x": 2030,
-              "y": 2185
-            },
-            {
-              "x": 1760,
-              "y": 2155
-            },
-            {
-              "x": 1470,
-              "y": 2245
-            }
-          ],
-          "baseMaterial": "rock",
-          "oneWay": true,
-          "breakable": false,
-          "properties": {
-            "hp": 99999,
-            "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "rock",
-            "artSeed": 1
-          },
-          "layer": "terrain",
-          "detail": {
-            "spacing": 18,
-            "roughness": 0,
-            "seed": 1,
-            "optimizeEpsilon": 0
-          }
-        },
-        {
-          "id": "east-step-1",
-          "name": "east-step-1",
-          "type": "solid",
-          "points": [
-            {
-              "x": 2280,
-              "y": 2200
-            },
-            {
-              "x": 2580,
-              "y": 2170
-            },
-            {
-              "x": 2580,
-              "y": 2220
-            },
-            {
-              "x": 2280,
-              "y": 2250
-            }
-          ],
-          "baseMaterial": "rock",
-          "oneWay": true,
-          "breakable": false,
-          "properties": {
-            "hp": 99999,
-            "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "platform",
-            "artSeed": 1
-          },
-          "layer": "terrain",
-          "detail": {
-            "spacing": 18,
-            "roughness": 0,
-            "seed": 1,
-            "optimizeEpsilon": 0
-          }
-        },
-        {
-          "id": "east-step-2",
-          "name": "east-step-2",
-          "type": "solid",
-          "points": [
-            {
-              "x": 2460,
-              "y": 2020
-            },
-            {
-              "x": 2820,
+              "x": 2520,
               "y": 1990
             },
             {
-              "x": 2820,
-              "y": 2040
+              "x": 2750,
+              "y": 1970
             },
             {
-              "x": 2460,
-              "y": 2070
+              "x": 3020,
+              "y": 2020
+            },
+            {
+              "x": 3020,
+              "y": 2085
+            },
+            {
+              "x": 2750,
+              "y": 2035
+            },
+            {
+              "x": 2520,
+              "y": 2055
             }
           ],
           "baseMaterial": "rock",
-          "oneWay": true,
+          "oneWay": false,
           "breakable": false,
+          "layer": "terrain",
           "properties": {
             "hp": 99999,
             "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "platform",
-            "artSeed": 1
+            "optional": true,
+            "surfaceKind": "rock",
+            "honroWalkEdges": [
+              0,
+              1
+            ]
           },
-          "layer": "terrain",
           "detail": {
             "spacing": 18,
             "roughness": 0,
-            "seed": 1,
+            "seed": 913,
             "optimizeEpsilon": 0
           }
         },
         {
-          "id": "east-gallery",
-          "name": "east-gallery",
+          "id": "tactical-east-root-ascent",
+          "name": "tactical-east-root-ascent",
           "type": "solid",
           "points": [
             {
-              "x": 2480,
-              "y": 1850
+              "x": 2140,
+              "y": 2250
             },
             {
-              "x": 2820,
-              "y": 1740
+              "x": 2420,
+              "y": 2180
             },
             {
-              "x": 3190,
-              "y": 1780
+              "x": 2600,
+              "y": 1983
             },
             {
-              "x": 3190,
-              "y": 1910
+              "x": 2600,
+              "y": 2008
             },
             {
-              "x": 2820,
-              "y": 1870
+              "x": 2420,
+              "y": 2205
             },
             {
-              "x": 2480,
-              "y": 1980
+              "x": 2140,
+              "y": 2275
             }
           ],
-          "baseMaterial": "rock",
+          "baseMaterial": "wood",
           "oneWay": true,
           "breakable": false,
+          "layer": "terrain",
           "properties": {
             "hp": 99999,
             "maxHp": 99999,
-            "route": false,
-            "surfaceKind": "rock",
-            "artSeed": 1
+            "optional": true,
+            "surfaceKind": "wood",
+            "honroWalkEdges": [
+              0,
+              1
+            ]
           },
-          "layer": "terrain",
           "detail": {
             "spacing": 18,
             "roughness": 0,
-            "seed": 1,
+            "seed": 913,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "tactical-east-root-return",
+          "name": "tactical-east-root-return",
+          "type": "solid",
+          "points": [
+            {
+              "x": 2940,
+              "y": 2005
+            },
+            {
+              "x": 3140,
+              "y": 2200
+            },
+            {
+              "x": 3380,
+              "y": 2227.6
+            },
+            {
+              "x": 3380,
+              "y": 2252.6
+            },
+            {
+              "x": 3140,
+              "y": 2225
+            },
+            {
+              "x": 2940,
+              "y": 2030
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "optional": true,
+            "surfaceKind": "wood",
+            "honroWalkEdges": [
+              0,
+              1
+            ]
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 913,
             "optimizeEpsilon": 0
           }
         }
@@ -208004,6 +207988,179 @@
           ],
           "lights": [],
           "viewpoints": []
+        },
+        "tacticalRoutes": {
+          "version": 1,
+          "geometryRevision": 1,
+          "scope": "ordinary walking and default jump, no skill or reward required",
+          "routes": [
+            {
+              "id": "west-covered-floor",
+              "defaultJump": false,
+              "anchors": [
+                {
+                  "x": 430,
+                  "y": 2553.6923076923076,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 850,
+                  "y": 2570,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 1420,
+                  "y": 2618,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 1800,
+                  "y": 2485,
+                  "surfaceId": "yard-floor"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            },
+            {
+              "id": "west-collapsed-gallery",
+              "anchors": [
+                {
+                  "x": 400,
+                  "y": 2556.923076923077,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 470,
+                  "y": 2384.3545150501673,
+                  "surfaceId": "tactical-west-rubble-ascent"
+                },
+                {
+                  "x": 570,
+                  "y": 2361.010033444816,
+                  "surfaceId": "tactical-west-rubble-ascent"
+                },
+                {
+                  "x": 960,
+                  "y": 2310,
+                  "surfaceId": "tactical-west-collapsed-gallery"
+                },
+                {
+                  "x": 1400,
+                  "y": 2397.777777777778,
+                  "surfaceId": "tactical-west-rubble-return"
+                },
+                {
+                  "x": 1510,
+                  "y": 2408.574074074074,
+                  "surfaceId": "tactical-west-rubble-return"
+                },
+                {
+                  "x": 1630,
+                  "y": 2544.5,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 1800,
+                  "y": 2485,
+                  "surfaceId": "yard-floor"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            },
+            {
+              "id": "east-root-loop",
+              "anchors": [
+                {
+                  "x": 2060,
+                  "y": 2423.3333333333335,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 2190,
+                  "y": 2237.5,
+                  "surfaceId": "tactical-east-root-ascent"
+                },
+                {
+                  "x": 2340,
+                  "y": 2200,
+                  "surfaceId": "tactical-east-root-ascent"
+                },
+                {
+                  "x": 2600,
+                  "y": 1983.0434782608695,
+                  "surfaceId": "tactical-east-stone-shoulder"
+                },
+                {
+                  "x": 2800,
+                  "y": 1979.2592592592594,
+                  "surfaceId": "tactical-east-stone-shoulder"
+                },
+                {
+                  "x": 3070,
+                  "y": 2131.75,
+                  "surfaceId": "tactical-east-root-return"
+                },
+                {
+                  "x": 3320,
+                  "y": 2220.7,
+                  "surfaceId": "tactical-east-root-return"
+                },
+                {
+                  "x": 3480,
+                  "y": 2379.6,
+                  "surfaceId": "yard-floor"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            },
+            {
+              "id": "receiver-return",
+              "defaultJump": false,
+              "anchors": [
+                {
+                  "x": 850,
+                  "y": 2570,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 1400,
+                  "y": 2625,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 1800,
+                  "y": 2485,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 2300,
+                  "y": 2383.3333333333335,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 2800,
+                  "y": 2380,
+                  "surfaceId": "yard-floor"
+                },
+                {
+                  "x": 3380,
+                  "y": 2387.6,
+                  "surfaceId": "yard-floor"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            }
+          ],
+          "preserved": {
+            "bounds": true,
+            "encounters": true,
+            "objectives": true,
+            "npcFloor": true
+          }
         }
       },
       "routes": [],
@@ -229719,25 +229876,76 @@
           }
         },
         {
-          "id": "ct-gallery-work-deck",
-          "name": "ct-gallery-work-deck",
+          "id": "tactical-entry-shoulder",
+          "name": "tactical-entry-shoulder",
           "type": "solid",
           "points": [
             {
-              "x": 5490,
-              "y": 4085
+              "x": 1110,
+              "y": 2944.714285714286
             },
             {
-              "x": 5910,
-              "y": 4085
+              "x": 1560,
+              "y": 3015
             },
             {
-              "x": 5910,
-              "y": 4110
+              "x": 2130,
+              "y": 3222.5
             },
             {
-              "x": 5490,
-              "y": 4110
+              "x": 2130,
+              "y": 3272.5
+            },
+            {
+              "x": 1560,
+              "y": 3065
+            },
+            {
+              "x": 1110,
+              "y": 2994.714285714286
+            }
+          ],
+          "baseMaterial": "rock",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "optional": true,
+            "surfaceKind": "rock",
+            "honroWalkEdges": [
+              0,
+              1
+            ]
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 913,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "tactical-entry-west-ramp",
+          "name": "tactical-entry-west-ramp",
+          "type": "solid",
+          "points": [
+            {
+              "x": 820,
+              "y": 2869.4285714285716
+            },
+            {
+              "x": 1180,
+              "y": 2946.714285714286
+            },
+            {
+              "x": 1180,
+              "y": 2971.714285714286
+            },
+            {
+              "x": 820,
+              "y": 2894.4285714285716
             }
           ],
           "baseMaterial": "wood",
@@ -229748,10 +229956,7 @@
             "hp": 99999,
             "maxHp": 99999,
             "optional": true,
-            "honroCave": true,
             "surfaceKind": "wood",
-            "honroSpaceSurfaceId": "ct-gallery-work-deck",
-            "honroSurfaceRole": "shelf",
             "honroWalkEdges": [
               0
             ]
@@ -229759,7 +229964,184 @@
           "detail": {
             "spacing": 18,
             "roughness": 0,
-            "seed": 13,
+            "seed": 913,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "tactical-mason-return",
+          "name": "tactical-mason-return",
+          "type": "solid",
+          "points": [
+            {
+              "x": 2080,
+              "y": 3212.5
+            },
+            {
+              "x": 2350,
+              "y": 3275
+            },
+            {
+              "x": 2350,
+              "y": 3300
+            },
+            {
+              "x": 2080,
+              "y": 3237.5
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "optional": true,
+            "surfaceKind": "wood",
+            "honroWalkEdges": [
+              0
+            ]
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 913,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "tactical-inner-gallery",
+          "name": "tactical-inner-gallery",
+          "type": "solid",
+          "points": [
+            {
+              "x": 5270,
+              "y": 3937.3
+            },
+            {
+              "x": 5700,
+              "y": 4065
+            },
+            {
+              "x": 6290,
+              "y": 4332.142857142857
+            },
+            {
+              "x": 6290,
+              "y": 4382.142857142857
+            },
+            {
+              "x": 5700,
+              "y": 4115
+            },
+            {
+              "x": 5270,
+              "y": 3987.3
+            }
+          ],
+          "baseMaterial": "rock",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "optional": true,
+            "surfaceKind": "rock",
+            "honroWalkEdges": [
+              0,
+              1
+            ]
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 913,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "tactical-inner-west-ramp",
+          "name": "tactical-inner-west-ramp",
+          "type": "solid",
+          "points": [
+            {
+              "x": 5020,
+              "y": 3944.5999999999995
+            },
+            {
+              "x": 5350,
+              "y": 3961.3
+            },
+            {
+              "x": 5350,
+              "y": 3986.3
+            },
+            {
+              "x": 5020,
+              "y": 3969.5999999999995
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "optional": true,
+            "surfaceKind": "wood",
+            "honroWalkEdges": [
+              0
+            ]
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 913,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "tactical-inner-east-ramp",
+          "name": "tactical-inner-east-ramp",
+          "type": "solid",
+          "points": [
+            {
+              "x": 6220,
+              "y": 4314.142857142857
+            },
+            {
+              "x": 6530,
+              "y": 4457.857142857143
+            },
+            {
+              "x": 6530,
+              "y": 4482.857142857143
+            },
+            {
+              "x": 6220,
+              "y": 4339.142857142857
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "hp": 99999,
+            "maxHp": 99999,
+            "optional": true,
+            "surfaceKind": "wood",
+            "honroWalkEdges": [
+              0
+            ]
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 913,
             "optimizeEpsilon": 0
           }
         }
@@ -231217,8 +231599,7 @@
             {
               "id": "low-gallery",
               "terrainIds": [
-                "act2-floor",
-                "ct-gallery-work-deck"
+                "act2-floor"
               ],
               "ceilingIds": [
                 "cave-roof"
@@ -231454,8 +231835,65 @@
               ]
             },
             {
-              "id": "ct-gallery-work-deck",
-              "terrainId": "ct-gallery-work-deck",
+              "id": "tactical-entry-shoulder",
+              "terrainId": "tactical-entry-shoulder",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1
+              ],
+              "roomIds": [
+                "sunken-forecourt"
+              ]
+            },
+            {
+              "id": "tactical-entry-west-ramp",
+              "terrainId": "tactical-entry-west-ramp",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "sunken-forecourt"
+              ]
+            },
+            {
+              "id": "tactical-mason-return",
+              "terrainId": "tactical-mason-return",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "sunken-forecourt"
+              ]
+            },
+            {
+              "id": "tactical-inner-gallery",
+              "terrainId": "tactical-inner-gallery",
+              "role": "shelf",
+              "edgeIndices": [
+                0,
+                1
+              ],
+              "roomIds": [
+                "low-gallery"
+              ]
+            },
+            {
+              "id": "tactical-inner-west-ramp",
+              "terrainId": "tactical-inner-west-ramp",
+              "role": "shelf",
+              "edgeIndices": [
+                0
+              ],
+              "roomIds": [
+                "low-gallery"
+              ]
+            },
+            {
+              "id": "tactical-inner-east-ramp",
+              "terrainId": "tactical-inner-east-ramp",
               "role": "shelf",
               "edgeIndices": [
                 0
@@ -232108,30 +232546,168 @@
               "requires": []
             },
             {
-              "id": "ct-gallery-work-deck",
-              "kind": "optional-jump",
+              "id": "tactical-entry-shoulder",
               "anchors": [
                 {
-                  "x": 5520,
-                  "y": 4234.8,
+                  "x": 740,
+                  "y": 3003.1428571428573,
                   "surfaceId": "floor-main"
                 },
                 {
-                  "x": 5520,
-                  "y": 4085,
-                  "surfaceId": "ct-gallery-work-deck"
+                  "x": 865,
+                  "y": 2879.089285714286,
+                  "surfaceId": "tactical-entry-west-ramp"
                 },
                 {
-                  "x": 5865,
-                  "y": 4085,
-                  "surfaceId": "ct-gallery-work-deck"
+                  "x": 1050,
+                  "y": 2918.8055555555557,
+                  "surfaceId": "tactical-entry-west-ramp"
                 },
                 {
-                  "x": 5995,
-                  "y": 4420.05,
+                  "x": 1200,
+                  "y": 2958.7714285714287,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 1550,
+                  "y": 3013.4380952380952,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 2050,
+                  "y": 3193.377192982456,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 2190,
+                  "y": 3237.962962962963,
+                  "surfaceId": "tactical-mason-return"
+                },
+                {
+                  "x": 2290,
+                  "y": 3261.1111111111113,
+                  "surfaceId": "tactical-mason-return"
+                },
+                {
+                  "x": 2430,
+                  "y": 3443,
                   "surfaceId": "floor-main"
                 }
               ],
+              "kind": "optional-jump",
+              "requires": []
+            },
+            {
+              "id": "tactical-mason-covered-approach",
+              "defaultJump": false,
+              "anchors": [
+                {
+                  "x": 820,
+                  "y": 3029.4285714285716,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 1300,
+                  "y": 3187.142857142857,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 1800,
+                  "y": 3320,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 2400,
+                  "y": 3440,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "kind": "optional-jump",
+              "requires": []
+            },
+            {
+              "id": "tactical-inner-gallery",
+              "anchors": [
+                {
+                  "x": 4940,
+                  "y": 4102.2,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5070,
+                  "y": 3947.1303030303025,
+                  "surfaceId": "tactical-inner-west-ramp"
+                },
+                {
+                  "x": 5190,
+                  "y": 3953.20303030303,
+                  "surfaceId": "tactical-inner-west-ramp"
+                },
+                {
+                  "x": 5400,
+                  "y": 3975.906976744186,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 5700,
+                  "y": 4065,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 6200,
+                  "y": 4291.392251815981,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 6360,
+                  "y": 4379.046082949309,
+                  "surfaceId": "tactical-inner-east-ramp"
+                },
+                {
+                  "x": 6470,
+                  "y": 4430.041474654378,
+                  "surfaceId": "tactical-inner-east-ramp"
+                },
+                {
+                  "x": 6620,
+                  "y": 4650,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "kind": "optional-jump",
+              "requires": []
+            },
+            {
+              "id": "tactical-inner-low-passage",
+              "defaultJump": false,
+              "anchors": [
+                {
+                  "x": 5020,
+                  "y": 4104.599999999999,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5400,
+                  "y": 4188,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5900,
+                  "y": 4383,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 6400,
+                  "y": 4571.428571428572,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 6600,
+                  "y": 4642.857142857143,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "kind": "optional-jump",
               "requires": []
             }
           ],
@@ -233284,6 +233860,184 @@
               "height": 1080
             }
           ]
+        },
+        "tacticalRoutes": {
+          "version": 1,
+          "geometryRevision": 1,
+          "scope": "ordinary walking and default jump, no skill or reward required",
+          "routes": [
+            {
+              "id": "entry-shoulder",
+              "anchors": [
+                {
+                  "x": 740,
+                  "y": 3003.1428571428573,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 865,
+                  "y": 2879.089285714286,
+                  "surfaceId": "tactical-entry-west-ramp"
+                },
+                {
+                  "x": 1050,
+                  "y": 2918.8055555555557,
+                  "surfaceId": "tactical-entry-west-ramp"
+                },
+                {
+                  "x": 1200,
+                  "y": 2958.7714285714287,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 1550,
+                  "y": 3013.4380952380952,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 2050,
+                  "y": 3193.377192982456,
+                  "surfaceId": "tactical-entry-shoulder"
+                },
+                {
+                  "x": 2190,
+                  "y": 3237.962962962963,
+                  "surfaceId": "tactical-mason-return"
+                },
+                {
+                  "x": 2290,
+                  "y": 3261.1111111111113,
+                  "surfaceId": "tactical-mason-return"
+                },
+                {
+                  "x": 2430,
+                  "y": 3443,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            },
+            {
+              "id": "mason-covered-approach",
+              "defaultJump": false,
+              "anchors": [
+                {
+                  "x": 820,
+                  "y": 3029.4285714285716,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 1300,
+                  "y": 3187.142857142857,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 1800,
+                  "y": 3320,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 2400,
+                  "y": 3440,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            },
+            {
+              "id": "inner-gallery",
+              "anchors": [
+                {
+                  "x": 4940,
+                  "y": 4102.2,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5070,
+                  "y": 3947.1303030303025,
+                  "surfaceId": "tactical-inner-west-ramp"
+                },
+                {
+                  "x": 5190,
+                  "y": 3953.20303030303,
+                  "surfaceId": "tactical-inner-west-ramp"
+                },
+                {
+                  "x": 5400,
+                  "y": 3975.906976744186,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 5700,
+                  "y": 4065,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 6200,
+                  "y": 4291.392251815981,
+                  "surfaceId": "tactical-inner-gallery"
+                },
+                {
+                  "x": 6360,
+                  "y": 4379.046082949309,
+                  "surfaceId": "tactical-inner-east-ramp"
+                },
+                {
+                  "x": 6470,
+                  "y": 4430.041474654378,
+                  "surfaceId": "tactical-inner-east-ramp"
+                },
+                {
+                  "x": 6620,
+                  "y": 4650,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            },
+            {
+              "id": "inner-low-passage",
+              "defaultJump": false,
+              "anchors": [
+                {
+                  "x": 5020,
+                  "y": 4104.599999999999,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5400,
+                  "y": 4188,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 5900,
+                  "y": 4383,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 6400,
+                  "y": 4571.428571428572,
+                  "surfaceId": "floor-main"
+                },
+                {
+                  "x": 6600,
+                  "y": 4642.857142857143,
+                  "surfaceId": "floor-main"
+                }
+              ],
+              "requires": [],
+              "bidirectional": true
+            }
+          ],
+          "preserved": {
+            "bounds": true,
+            "encounters": true,
+            "objectives": true,
+            "npcFloor": true
+          }
         }
       },
       "routes": [
