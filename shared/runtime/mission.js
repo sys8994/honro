@@ -69,7 +69,7 @@ function tick(app,dt){
    const distance=m.type==='sector'?430:m.type==='relic'?155:180;
    if(heroes.some(u=>Math.hypot(u.x-m.x,(u.y-m.y)*(m.type==='sector'?.6:1))<distance))m.honroPending=true;
    if(!m.honroPending)continue;
-   if(m.type==='sector'&&!hs.flags['sector-'+m.sector]){hs.flags['sector-'+m.sector]=true;app.event(m.label,{kind:'narration',source:'sector:'+m.sector});}
+   if(m.type==='sector'&&!hs.flags['sector-'+m.sector]){hs.flags['sector-'+m.sector]=true;app.event(m.label);}
    // Fresh Stage8's lower return shares x with guards over 2,000px above it.
    // Only this authored layered encounter narrows the existing threat volume;
    // legacy saves and every other chapter retain their original rest contract.
