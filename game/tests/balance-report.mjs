@@ -1,9 +1,11 @@
+import './noncombat-budget-regression.mjs';
+import {auditEncounterBudget} from './noncombat-budget-contract.mjs';
 import {runtime,battlefield,gameRoot} from './helpers.mjs';
 import {writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 const g=await runtime(),rows=[];
-for(let id=1;id<=g.HONRO_CONTENT.stages.length;id++){const {b,st}=battlefield(g,id);rows.push(g.HonroDifficulty.audit(st,b));}
+for(let id=1;id<=g.HONRO_CONTENT.stages.length;id++){const {b,st}=battlefield(g,id);rows.push(auditEncounterBudget(g,st,b));}
 const schedule=[];let previous=1,index=0;
 for(const act of [...g.HONRO_CONTENT.acts.map(a=>({act:a.id,stageExitLevels:g.HONRO_BALANCE.stages.slice(a.first-1,a.last).map(s=>s.exitLevel)})),...g.HONRO_BALANCE.futureActs]){
   for(const [i,level]of act.stageExitLevels.entries()){
