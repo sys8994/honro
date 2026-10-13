@@ -19,14 +19,14 @@ function wet(p:Flight,dt:number){
 }
 export function advanceWaterfall(p:Flight,dt:number,t:Terrain,air:(p:Flight,dt:number)=>Flight){
  const dry=air(p,dt);
- if(!insideWater(t,p)&&!segmentTerrain(p,dry,t,0))return {...dry,waterEntered:false};
- let q={...p},left=dt,waterEntered=false;
+ if(!insideWater(t,p)&&!segmentTerrain(p,dry,t,0))return {...dry,waterEntered:false,waterEntryPoint:undefined as {x:number;y:number}|undefined};
+ let q={...p},left=dt,waterEntered=false,waterEntryPoint:{x:number;y:number}|undefined;
  // Geometry crossings use short swept segments; homogeneous wet motion is analytical.
  // Cost is bounded by elapsed simulation time, never by projectile speed.
  while(left>1e-9){
   const h=Math.min(left,1/240);left-=h;
   if(insideWater(t,q)){
-   waterEntered=true;const z=wet(q,h);
+   waterEntered=true;waterEntryPoint??={x:q.x,y:q.y};const z=wet(q,h);
    if(insideWater(t,z)){q=z;continue;}
    const exit=segmentTerrain(z,q,t,0),part=exit?Math.max(0,Math.min(1,1-exit.t)):1;
    const at=wet(q,h*part);q=air(at,h*(1-part));
@@ -34,8 +34,8 @@ export function advanceWaterfall(p:Flight,dt:number,t:Terrain,air:(p:Flight,dt:n
    const z=air(q,h),entry=segmentTerrain(q,z,t,0);
    if(!entry){q=z;continue;}
    const part=Math.max(0,Math.min(1,entry.t)),at=air(q,h*part);
-   waterEntered=true;q=wet(at,h*(1-part));
+   waterEntered=true;waterEntryPoint??={x:at.x,y:at.y};q=wet(at,h*(1-part));
   }
  }
- return {...q,waterEntered};
+ return {...q,waterEntered,waterEntryPoint};
 }

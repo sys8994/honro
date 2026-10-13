@@ -4391,13 +4391,14 @@ class Engine {
     advanceProjectile(p, dt) {
         const a = this.forceSample(p), air = (q, step) => (0, physics_1.advanceLinear)(q.x, q.y, q.vx, q.vy, a.x, a.y, a.k, step);
         const water = !p.body && !BODY.has(p.mode || '') ? (0, waterfallPhysics_1.waterfallSheet)(this.b) : undefined;
-        return water ? (0, waterfallPhysics_1.advanceWaterfall)(p, dt, water, air) : { ...air(p, dt), waterEntered: false };
+        return water ? (0, waterfallPhysics_1.advanceWaterfall)(p, dt, water, air) : { ...air(p, dt), waterEntered: false, waterEntryPoint: undefined };
     }
     waterEntry(p, m) {
         if (m.waterEntered && !p.waterfallTouched) {
             p.waterfallTouched = true;
-            this.fx('ring', p.x, p.y, '#c8e1d9', 22);
-            this.fx('spark', p.x, p.y, '#9fcbd0', 16);
+            const at = m.waterEntryPoint || p;
+            this.fx('ring', at.x, at.y, '#c8e1d9', 22);
+            this.fx('spark', at.x, at.y, '#9fcbd0', 16);
         }
     }
     // Uniform broad phase: a large field need not scan every distant ground piece for each flight substep.
@@ -12347,6 +12348,28 @@ function drawRedesignProjectile(c, p) {
             return true;
         }
         const a = exports.ARROW_STYLES[s.branch] || exports.ARROW_STYLES.basic;
+        // A wet arrow remains legible against the pale falling sheet, at its true velocity angle.
+        if (p.waterfallTouched) {
+            c.save();
+            c.strokeStyle = '#263e43';
+            c.lineWidth = a.width + 2;
+            c.lineJoin = 'round';
+            c.beginPath();
+            c.moveTo(15 - a.length, 0);
+            c.lineTo(11, 0);
+            c.moveTo(19, 0);
+            c.lineTo(6, -a.head);
+            c.lineTo(9, 0);
+            c.lineTo(6, a.head);
+            c.closePath();
+            for (const x of [18 - a.length, 24 - a.length]) {
+                c.moveTo(x - 6, -a.head - 2);
+                c.lineTo(x, 0);
+                c.lineTo(x - 6, a.head + 2);
+            }
+            c.stroke();
+            c.restore();
+        }
         c.strokeStyle = a.color;
         c.lineWidth = a.width;
         c.beginPath();
@@ -14776,8 +14799,8 @@ function wet(p, dt) {
 function advanceWaterfall(p, dt, t, air) {
     const dry = air(p, dt);
     if (!insideWater(t, p) && !(0, math_1.segmentTerrain)(p, dry, t, 0))
-        return { ...dry, waterEntered: false };
-    let q = { ...p }, left = dt, waterEntered = false;
+        return { ...dry, waterEntered: false, waterEntryPoint: undefined };
+    let q = { ...p }, left = dt, waterEntered = false, waterEntryPoint;
     // Geometry crossings use short swept segments; homogeneous wet motion is analytical.
     // Cost is bounded by elapsed simulation time, never by projectile speed.
     while (left > 1e-9) {
@@ -14785,6 +14808,7 @@ function advanceWaterfall(p, dt, t, air) {
         left -= h;
         if (insideWater(t, q)) {
             waterEntered = true;
+            waterEntryPoint ?? (waterEntryPoint = { x: q.x, y: q.y });
             const z = wet(q, h);
             if (insideWater(t, z)) {
                 q = z;
@@ -14802,10 +14826,11 @@ function advanceWaterfall(p, dt, t, air) {
             }
             const part = Math.max(0, Math.min(1, entry.t)), at = air(q, h * part);
             waterEntered = true;
+            waterEntryPoint ?? (waterEntryPoint = { x: at.x, y: at.y });
             q = wet(at, h * (1 - part));
         }
     }
-    return { ...q, waterEntered };
+    return { ...q, waterEntered, waterEntryPoint };
 }
 
 },
