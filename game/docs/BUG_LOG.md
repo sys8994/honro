@@ -1,3 +1,10 @@
+
+## 2026-10-13 · 확정 한자 魂路 중심의 인트로 제목
+
+- 요청/확정: 큰 한자 아래 작은 한글이라는 사용자 방향을 적용하고, 미확정 표기를 임의로 정하지 않도록 확인한 뒤 `魂路`(혼의 길)를 사용했다.
+- 변경: 투명 상아빛 한자 붓글씨를 기존 로고 영역의 주 제목으로 추가하고, 기존 `혼로` 원본은 한 번만 보조로 사용한다. 한글 이미지 높이는 한자의 30.76%, 두 표기 사이 여백은 화면별 3–7px다. 이전 HONRO 세 번째 줄은 제거했다. 배경 그림·tagline·버튼/저장 분기·전투·워크숍 코드는 변경하지 않았다. 두 이미지가 독립적으로 실패해도 고정된 영역에 정확한 HTML 글자가 남고 접근성 제목은 `혼로`로 한 번만 읽힌다.
+- 검증: title-redesign의 5개 저장 분기·반복 진입·표기·2계층·RGBA·비율·독립 fallback, modal-keyboard, fullscreen-escape, audio 22항목, typecheck, 두 HTML 빌드 통과. 6개 화면 크기의 Native 미술 합성과 390/263/170px 실제 표시크기 원본을 구현자와 독립 검수자가 검토했고 한자 구조·한글 비율·배경 조화와 미세 alpha 잔여에 문제가 없음을 확인했다.
+- 한계: Native 합성은 브라우저 CSS·터치·공개 Pages 증거가 아니다. 로컬 Chromium은 화면 로드 전 `socket() failed: Operation not permitted`로 실행되지 않았다. 실제 CSS 검사는 title-redesign-browser에 두 계층 비율·순서·실패 전후 높이 유지 검증을 추가했으며 공개 Pages에서 별도 실행해야 한다. 전체 `npm run verify`는 `test:runtime-contracts`의 `shared/runtime/main.js` 승인 해시가 이전 제목 상태에 고정되어 차단됐다(현재 6cf5d8… / 기준 928690…). 제목 집중 검사는 verify에 연결했다. 병렬 HUD 변경도 같은 파일을 수정하므로 최종 합본의 승인 delta·provenance·8개 bundle manifest를 재검토해 갱신해야 하며, 단순 해시 무효화나 역사 계약 우회는 하지 않았다.
 ## 2026-10-13 · 대화·쉼터·자동공격 합본 독립검수
 
 - 범위: 쉼터 재배치/첫서술/새 SP/확대이동, 서술의 텍스트 전용 표현·화자 정체성, 수동서술·지속 전술큐, 대화 이전/반복입력/기록/Continue, E 도움말, 대화 정지 피격잔상, 자동공격 아군보호 및 A03 후속 자동재조준, 전장 막·장 표기를 합쳤다. 새 2장 AI/5장 폭포/휘겸 서사 작업은 포함하지 않았다.
@@ -2607,3 +2614,35 @@ SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBal
 ### 새5장 실제 R13 하부 낙수 몸 접촉 끼임
 
 정상 입력14R완주 원본에서 설오가 x2805.86/y3240.19 열린 낙수의 굽은 표면을 지형처럼 밟고 서쪽 이동·점프가 막혔다. 기존 pool fixture는 더 아래 y3400에서 시작하여 이 경계를 놓쳤다. 부모 승인에 따라 새5장만 몸 지형을 y2580에서 국소 clipping하고 전체 물표현/화살저항 sample은 honroWaterFluidVertices로 직렬화하여 동일하게 유지했다. 기존 revision1 중간저장은 terrain의 몸 투영과 sceneVersion만 한번 갱신하며 예전5장/커스텀/29장은 보존한다. 실제 R13 두 whole-battle복사와 양방향 기본귀환 및 네체형×3물상태를 추가했다. 정상 입력 전체재생과최종manifest/브라우저 검수는 이수정후 다시 수집해야 한다.
+
+## 2026-10-13 · Two-line battle header and allied-row clearance
+
+- The stage title, turn and objective wrapped beyond the fixed allied-roster top, letting the ally chips cover the card. The stage card now shares the pause button's44px border-box height: chapter/title on the first16px line and turn/current objective on the second16px line. Long titles/objectives ellipsize; title tooltip and existing goal dialog retain their full text.
+- Header and allied roster share top/inset/height variables. Allies begin6px below the header at phone, desktop and short-landscape breakpoints, and both reserve the existing minimap column. No lower-HUD sizes, inputs or battle state change.
+- `test:battle-chapter` checks all30 chapter labels,333/400/desktop and breakpoint geometry equations, plus production App7/28 long-title markup and read-only full objective help. These are source/DOM-double checks; actual browser layout, both rebuilt HTMLs and Pages remain separate final gates.
+
+## 2026-10-13 · Remove the center tactical toast
+
+- Removed the battle event container, center toast renderer, acknowledgement action and toast-specific active CSS. Non-narrative `App.event` preserves only its last text for existing encounter deduplication; it neither queues notices nor opens a dialog. Explicit narration still uses `HonroStory.event` without changing its actor-boundary or manual reading policy.
+- Old saved `tacticalNotices` are inert and preserved as data; Continue cannot render them and they do not block inputs. The existing wave-warning/source state and new-player-action gates remain owned by encounter modules and are unchanged.
+- `narrative-event-delivery` checks fresh non-narration does not alter battle state, two unread old messages survive Continue without blocking input or growing, and narrator Next/Skip, unread-order save, in-dialogue delivery and victory flush remain intact. Production-App/DOM doubles only; browser and public Pages remain separate gates.
+
+## 2026-10-13 · Swap drop and defend positions only
+
+The shared radial-control variables now place drop at150° and defend at195°; jump remains240°. No DOM, binding, size, color, hit shape, action radius or gameplay code changes. `combat-action-layout` checks all four original size pairs, circular gaps and readout clearance with the new positions. Actual browser pointer/keyboard and public Pages verification remain separate gates.
+
+## 2026-10-13 · 여정첩 선택 뒤 쉼터의 표시 장과 실제 출발 장 불일치
+
+쉼터 제목은 일반 여정의 다음 장 또는 디버그 여정첩에서 선택한 장을 표시했지만, 이정표 버튼은 저장 전투가 하나라도 있으면 무조건 `continue`를 사용했다. 7장 재플레이를 남긴 일반 기록의 8장 쉼터, 또는 7장을 중단하고 디버그 여정첩에서 8장을 선택한 경우 모두 제목은 1막 8장인데 실제 버튼이 7장을 재개했다. 완료 7장 → 과거 핀/대화 기록을 보기만 함 → 돌아오기 경로는 기존에도 8장을 유지하며, 이 경로를 원인으로 단정하지 않는다.
+
+`restMarkup`의 이정표는 표시된 목적지와 저장 전투의 장이 같은 경우에만 이어가기를 사용한다. 다른 장의 저장 전투 또는 명시적 디버그 지도 선택은 표시된 장의 `journey-enter`를 사용하고 기존 전투 교체 확인/취소를 거친다. 저장 전투는 확인 전까지 그대로 보존하며 여정첩/타이틀의 명시적 Continue로 정확히 재개할 수 있다. 저장 schema, 완료 기록, 성장·기예, 임무·지도·전투 상태를 변경하지 않고 replay 표식이 없는 기존 저장에도 같은 기준을 적용한다.
+
+`tests/journey-stage-departure.mjs`는 실제 생산 App의 렌더된 이정표에서 action/id를 읽고 클릭한다. 7→8 완료 fixture/지도/대화 기록 왕복과 반복 저장·불러오기, 일반 7장 재플레이·구저장, 취소와 명시 Continue의 전체 snapshot 보존, 디버그 30개 목적지와 일반 저장 보호, 막/긴급 연결 경계를 확인한다. DOM·저장소와 완료 결과는 테스트 대역/fixture이며 실제 사용자 저장, 브라우저 입력 또는 정상 전투 완주 증거가 아니다. 두 HTML 통합 빌드와 공개 Pages 실검수는 통합 담당에서 별도 수행한다.
+
+### 2026-10-13 · 8장 담허의 중복 손 소품 제거
+
+- 제보 화면의 밝은 테두리 갈색 물건은 `story-act1-art.js`의 8장 전용 `flask` 그림이었다. 결박에서 풀린 혼을 받는 연출용 호리병을 매 프레임 손 옆에 덧그려, 공통 캐릭터의 지팡이와 허리 호리병 외에 큰 물건이 하나 더 보였다. 장비나 퀘스트 소지품 상태는 아니다.
+- 이 추가 호리병과 그 위치로 모이던 입자만 제거했다. 실제 상여 결박 그림, 담허의 공통 지팡이·허리 소품, 캐릭터 에셋·전투·목표·저장 데이터는 그대로 유지한다. 별도 저장 이관 없이 진행 중인 8장에도 적용된다.
+- `tests/act1-story-art.mjs`에 양방향·구/현 8장·결박/보스 4단계·저장 왕복의 16가지 회귀를 추가했다. 수정 전 실제 실패, 수정 후 통과와 전체 전투 데이터 불변을 확인했다. 기존 1막 사물 그림, 8장 목표/그림, 서사 목표·19개 런타임 경계·21개 초기화/대사/저장 계약도 통과했다.
+- 같은 전투·카메라의 실제 공통 Scene Native Canvas 전후를 직접 확인했다. 차이는 720×900 화면의 손 옆 (299,557)–(345,644) 안 2,644픽셀뿐이며 지팡이와 허리 호리병은 보존됐다. 로컬 증거는 `_local/reports/stage8-held-flask/`다. Native 그림은 실제 브라우저·정상 완주 검수를 대신하지 않으며 합본 빌드/전체 verify/master/Pages 검수는 통합 단계에서 수행한다.
+- 추가 구저장 회귀 `stage8-bier-old-save.mjs`는 진입 준비 단계의 역사 경험치 예산 7,512 대 8,644 불일치로 중단됐다. 수정 전 `1796822`에서도 같은 실패를 확인했으며, 이 미술 수정에서 역사 경험치 기대값을 바꾸지 않았다.

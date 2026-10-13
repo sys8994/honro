@@ -1,4 +1,5 @@
 import {SHARED_BEGIN,SHARED_END} from '../shared/playtest-template.mjs';
+import {assertExactFollowupDelta} from './ui-followup-source-delta.mjs';
 /** Production identity, archive identity and behavior are distinct gates. */
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync,mkdirSync,writeFileSync} from 'node:fs';
@@ -9,8 +10,30 @@ import {historicalRuntimeSources,historicalRuntimeParts,sourceHistoryInput} from
 import {beforeEncounterDensityRuntimeSources,encounterDensityHistory} from './encounter-density-history-helpers.mjs';
 import {beforeStage8BierRuntimeSources,beforeStage8BierFingerprintParts,beforeStage18BellFingerprintParts,stage8BierReview,stage18BellHistoryDelta} from './stage8-bier-history-helpers.mjs';
 const sources=currentRuntimeSources(),archive=historicalRuntimeSources();assertCurrentRuntimeSources(sources);
-const finalDelta=f.approvedDeltas.find(d=>d.kind==='final-waterfall-companion-ai');assert(finalDelta);assert.equal(finalDelta.sourceChanges.length,20);const bodyDelta=f.approvedDeltas.find(d=>d.kind==='stage5-body-fluid-separation');assert(bodyDelta);assert.equal(bodyDelta.sourceChanges.length,5);assert.deepEqual(finalDelta.afterBuilds,bodyDelta.beforeBuilds);assert.equal(finalDelta.afterCoreSha256,bodyDelta.beforeCoreSha256);assert.deepEqual(bodyDelta.afterBuilds,f.variants);assert.equal(bodyDelta.afterCoreSha256,f.coreSha256);for(const change of bodyDelta.sourceChanges){assert.equal(hash(sources[change.path]),change.sha256);assert.notEqual(change.sha256,change.previousSha256);}
-for(const change of finalDelta.sourceChanges){const later=bodyDelta.sourceChanges.find(row=>row.path===change.path);assert.equal(later?later.previousSha256:hash(sources[change.path]),change.sha256);assert.notEqual(change.sha256,change.previousSha256);assert(change.provenance.length);}
+const finalDelta=f.approvedDeltas.find(d=>d.kind==='final-waterfall-companion-ai'),bodyDelta=f.approvedDeltas.find(d=>d.kind==='stage5-body-fluid-separation'),uiDelta=f.approvedDeltas.find(d=>d.kind==='compact-ui-title-rest-prop');
+assert(finalDelta&&bodyDelta&&uiDelta);assert.equal(finalDelta.sourceChanges.length,20);assert.equal(bodyDelta.sourceChanges.length,5);
+assert.deepEqual(finalDelta.afterBuilds,bodyDelta.beforeBuilds);assert.equal(finalDelta.afterCoreSha256,bodyDelta.beforeCoreSha256);
+assert.deepEqual(bodyDelta.afterBuilds,uiDelta.beforeBuilds);assert.equal(bodyDelta.afterCoreSha256,uiDelta.beforeCoreSha256);
+assert.deepEqual(uiDelta.afterBuilds,f.variants);assert.equal(uiDelta.afterCoreSha256,f.coreSha256);assert.equal(uiDelta.beforeCoreSha256,uiDelta.afterCoreSha256,'Follow-up UI/navigation/art does not change compiled gameplay');
+assert.deepEqual(uiDelta.sourceChanges.map(c=>c.path),['shared/runtime/main.js','shared/runtime/rest-journey.js','shared/runtime/story-act1-art.js']);
+assert.deepEqual(uiDelta.packagingChanges.map(c=>c.path),['game/build.mjs']);
+for(const [index,delta] of [finalDelta,bodyDelta,uiDelta].entries())for(const change of delta.sourceChanges){
+ const later=[finalDelta,bodyDelta,uiDelta].slice(index+1).flatMap(d=>d.sourceChanges).find(c=>c.path===change.path);
+ assert.equal(later?later.previousSha256:hash(sources[change.path]),change.sha256);assert.notEqual(change.sha256,change.previousSha256);if(delta!==bodyDelta)assert(change.provenance.length);else assert.match(delta.sourceCommit,/^[0-9a-f]{40}$/);
+}
+let exactDeltaNegatives=0;
+for(const change of [...uiDelta.sourceChanges,...uiDelta.packagingChanges]){
+ const source=readFileSync(change.path,'utf8');assertExactFollowupDelta(source,change);
+ for(const mutate of [d=>d.exactEdits[0].afterLine++,d=>d.exactEdits[0].beforeLine++,d=>d.exactEdits[0].before[0]+=' ',d=>d.exactEdits[0].after[0]+=' ',d=>d.exactEdits.pop()]){
+  const altered=structuredClone(change);mutate(altered);assert.throws(()=>assertExactFollowupDelta(source,altered),'Exact source delta rejects its own altered edit');exactDeltaNegatives++;
+ }
+}
+for(const[key,before]of Object.entries(uiDelta.beforeBuilds)){
+ const after=uiDelta.afterBuilds[key],expected=before.parts.map(old=>uiDelta.sourceChanges.find(c=>c.previousSha256===old)?.sha256||old);
+ assert.deepEqual(after.parts,expected,'Only three explicitly approved source modules may change actual build parts');
+ const count=after.parts.filter((h,i)=>h!==before.parts[i]).length,wanted=key==='temple'?2:(after.options.app?2:0)+(after.options.render?1:0);
+ assert.equal(count,wanted,'Exact app/render-only module-change count');
+}
 for(const delta of f.approvedDeltas.filter(d=>d.exactAddedText)){assert.equal(delta.path,'shared/runtime/narrative-revision.js');const source=sources[delta.path];assert.equal(source.split(delta.exactAddedText).length,2);assert.equal(hash(source.replace(delta.exactAddedText,'')),delta.beforeSha256,'Exact approved creation-default source delta');assert.equal(hash(source),delta.afterSha256);for(const change of delta.buildChanges){assert.equal(finalDelta.beforeBuilds[change.variant].parts[change.index],delta.afterSha256);assert.equal(finalDelta.beforeBuilds[change.variant].sha256,change.afterSha256);assert.equal(f.variants[change.variant].parts.filter(h=>h===delta.afterSha256).length,1,'Unchanged binding source occurs exactly once in final build');}}
 assert.equal(Object.keys(sources).length,159);assert.equal(Object.keys(archive).length,133);
 assert.deepEqual(Object.keys(archive).sort(),Object.keys(encounterDensityHistory.runtime).sort());
@@ -38,4 +61,4 @@ let sourceNegatives=0;for(const row of f.sourceRows){const changed={...sources,[
 assert.throws(()=>assertCurrentRuntimeSources({...sources,'shared/engine/src/unreviewed.ts':'export const injected=true;'}));assert.throws(()=>assertCurrentRuntimeSources(Object.fromEntries(Object.entries(sources).reverse())));
 assert.throws(()=>assertCurrentBuildGraph({modelFiles:[...modelFiles,modelFiles[0]],engineFiles:f.engineFiles,core:'invalid'}));assert.throws(()=>assertCurrentBuildGraph({modelFiles,engineFiles:[...f.engineFiles,'shared/engine/src/injected.ts'],core:'invalid'}));
 for(const path of Object.keys(archive)){assert.throws(()=>beforeStage8BierRuntimeSources({...archive,[path]:archive[path]+' '}),'Archive byte '+path);const missing={...archive};delete missing[path];assert.throws(()=>beforeStage8BierRuntimeSources(missing),'Archive membership '+path);sourceNegatives+=2;}
-mkdirSync('_local/reports/runtime-contracts',{recursive:true});writeFileSync('_local/reports/runtime-contracts/contracts.json',JSON.stringify({passed:true,currentSources:159,archiveSources:133,priorSources:130,added:26,changed:74,unchanged:59,sourceNegatives,partNegatives,builds,archiveChecks,currentGameplayFingerprintIsNotProjected:true,scope:'Actual current build identity and explicit nonexecuted archive byte identity. Current behavior/completed-run compatibility is a separate gate, not waived.'},null,2)+'\n');console.log('PASS current159 provenance/8 builds/twoHTML, immutable133→130 and old fingerprints; '+sourceNegatives+' source negatives, '+partNegatives.length+' current part negatives');
+mkdirSync('_local/reports/runtime-contracts',{recursive:true});writeFileSync('_local/reports/runtime-contracts/contracts.json',JSON.stringify({passed:true,currentSources:159,archiveSources:133,priorSources:130,added:26,changed:74,unchanged:59,sourceNegatives,exactDeltaNegatives,partNegatives,builds,archiveChecks,currentGameplayFingerprintIsNotProjected:true,scope:'Actual current build identity and explicit nonexecuted archive byte identity. Current behavior/completed-run compatibility is a separate gate, not waived.'},null,2)+'\n');console.log('PASS current159 provenance/8 builds/twoHTML, immutable133→130 and old fingerprints; '+sourceNegatives+' source negatives, '+partNegatives.length+' current part negatives; '+exactDeltaNegatives+' exact edit negatives');

@@ -18,11 +18,17 @@ with sync_playwright() as pw:
         page.wait_for_function('Array.from(document.querySelectorAll(".honro-title img")).every(i=>i.complete&&i.naturalWidth>0)')
         result=page.evaluate('''()=>{
           const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom}};
+          const hanja=rect(document.querySelector('.title-hanja')),hangul=rect(document.querySelector('.title-hangul'));
           const mark=rect(document.querySelector('.honro-logo-wrap')),tag=rect(document.querySelector('.title-tagline')),actions=rect(document.querySelector('.title-actions')),footer=rect(document.querySelector('.footer'));
           const buttons=[...document.querySelectorAll('.honro-title button')].map(rect);
-          return {mark,tag,actions,footer,buttons,overflow:document.documentElement.scrollWidth>innerWidth,portrait:matchMedia('(orientation:portrait)').matches,source:document.querySelector('.title-painting img').currentSrc.slice(0,30),animation:getComputedStyle(document.querySelector('.title-main')).animationName};
+          return {mark,hanja,hangul,tag,actions,footer,buttons,overflow:document.documentElement.scrollWidth>innerWidth,portrait:matchMedia('(orientation:portrait)').matches,source:document.querySelector('.title-painting img').currentSrc.slice(0,30),animation:getComputedStyle(document.querySelector('.title-main')).animationName};
         }''')
         assert not result['overflow'],(w,h,result)
+        assert 0.25 <= result['hangul']['h']/result['hanja']['h'] <= 0.35,(w,h,result)
+        assert result['hanja']['bottom'] < result['hangul']['y'],(w,h,result)
+        assert page.locator('.title-brand').get_attribute('aria-label') == '혼로'
+        assert page.locator('.honro-logo-hanja').count()==1 and page.locator('.honro-logo-hangul').count()==1
+        assert page.locator('.title-roman').count()==0
         assert result['mark']['bottom']<=result['tag']['y']+1,(w,h,result)
         assert result['tag']['bottom']<result['actions']['y'],(w,h,result)
         assert result['actions']['bottom']<=result['footer']['y'],(w,h,result)
@@ -40,8 +46,15 @@ with sync_playwright() as pw:
         page.locator('[data-action="journal"]').click()
         page.keyboard.press('Escape')
         page.evaluate('HonroApp.showTitle()')
-        page.locator('.honro-logo').evaluate('(i)=>i.onerror()')
+        before_failure=page.locator('.honro-logo-wrap').bounding_box()
+        page.locator('.honro-logo-hanja').evaluate('(i)=>i.onerror()')
         assert page.locator('.title-logo-fallback').is_visible()
+        assert page.locator('.title-logo-fallback').inner_text()=='魂路'
+        page.locator('.honro-logo-hangul').evaluate('(i)=>i.onerror()')
+        assert page.locator('.title-reading-fallback').is_visible()
+        assert page.locator('.title-reading-fallback').inner_text()=='혼로'
+        after_failure=page.locator('.honro-logo-wrap').bounding_box()
+        assert abs(before_failure['height']-after_failure['height']) < 1,(before_failure,after_failure)
         page.locator('.title-painting img').evaluate('(i)=>i.onerror()')
         assert page.locator('.title-actions button').nth(0).is_visible()
         page.screenshot(path=str(OUT/f'{w}x{h}-art-failure.png'))

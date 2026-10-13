@@ -10,7 +10,7 @@ assert.equal(faceInset,12,'The fire face is visibly larger, not just an empty ou
 assert.match(css,/#fire \.fire-inner\{\s*position:absolute!important;inset:var\(--fire-face-inset\)!important/);
 assert.match(css,/#fire \.fire-inner svg\{width:20px!important;height:20px!important/);
 const angles=['jump','drop','defend'].map(id=>number(id+'-angle'));
-assert.deepEqual(angles,[240,195,150]);
+assert.deepEqual(angles,[240,150,195],'Only drop/defend positions swap; jump stays at240 degrees');
 assert.doesNotMatch(css,/--(?:action-x|action-y|defend-x):/,'No independent button pixel offsets');
 assert.equal((css.match(/--action-radius:/g)||[]).length,1,'One common radius formula, shared by all three actions at each breakpoint');
 assert.match(css,/--action-radius:calc\(\(var\(--fire-size\) \+ var\(--action-size\)\) \/ 2 \+ 5px\)/);
@@ -42,7 +42,7 @@ for(const {size,fire} of sizes){
   assert(gap>=4.99,`${fire}px fire: visible and actual circular hit areas must be separated (${gap})`);
  }
  const readout={left:width-fire+4,top:cy+fire/2+1,right:width-4,bottom:cy+fire/2+12};
- assert(readout.bottom<=height+.001);assert(readout.left>=buttons[2].x+size/2);
+ assert(readout.bottom<=height+.001);assert(readout.left>=buttons[1].x+size/2);
  console.log(`PASS arc secondary=${size}px/fire=${fire}px, gold-face ratio=${(primaryFace/secondaryFace).toFixed(2)}, radius=${radius}px, bounds=${width.toFixed(2)}x${height.toFixed(2)}`);
 }
 console.log('PASS separate geometry and primary/secondary hierarchy contracts; shared jump/drop style and unchanged bindings');
