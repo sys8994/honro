@@ -5,12 +5,13 @@ import {runtime} from '../game/tests/helpers.mjs';
 import {applyCityTacticalRoutes,CITY_TACTICAL_SURFACES} from '../tools/map-forge/city-tactical-routes.mjs';
 const clone=v=>JSON.parse(JSON.stringify(v)),before=JSON.parse(execFileSync('git',['show','25ae85c:shared/data/campaign.json'],{encoding:'utf8',maxBuffer:40*1024*1024})),after=applyCityTacticalRoutes(before);
 assert.deepEqual(applyCityTacticalRoutes(after),after,'Idempotent stage-local author');
-assert.deepEqual(after.library,before.library,'Existing art/collision library is preserved');
+assert.deepEqual(after.library.filter(a=>!a.id.startsWith('city-tactical:')),before.library,'Existing art/collision library is preserved');
 const g=await runtime({legacyMaps:false}),rows=[];
 for(let i=0;i<before.stages.length;i++){
  const old=before.stages[i],fresh=after.stages[i],n=old.metadata.stageId;
  if(!CITY_TACTICAL_SURFACES[n]){assert.deepEqual(fresh,old,'Unrelated stage '+n);continue;}
- for(const k of Object.keys(old).filter(k=>!['terrains','design','initialState','units'].includes(k)))assert.deepEqual(fresh[k],old[k],n+' preserves '+k);
+ for(const k of Object.keys(old).filter(k=>!['terrains','design','initialState','units','elements'].includes(k)))assert.deepEqual(fresh[k],old[k],n+' preserves '+k);
+ assert.deepEqual(fresh.elements.filter(e=>!e.cityTacticalRearOnly),old.elements,n+' original art retained');
  assert.deepEqual(fresh.units.map(({y,...u})=>u),old.units.map(({y,...u})=>u),n+' actor identity/count/stats/x retained');
  assert.deepEqual(fresh.terrains.filter(t=>!t.properties?.honroCityTactical),old.terrains,n+' original single domain/gates unchanged');
  const state=clone(fresh.initialState);delete state.honroCityTacticalRevision;assert.deepEqual(state,old.initialState,n+' objectives/party/resources unchanged');

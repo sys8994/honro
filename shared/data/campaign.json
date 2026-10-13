@@ -156227,6 +156227,250 @@
           2
         ]
       }
+    },
+    {
+      "id": "city-tactical:21:recessed-supports",
+      "name": "Recessed rear masonry and timber supports",
+      "category": "prop",
+      "visual": [],
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "city-tactical",
+        "rear-support"
+      ],
+      "params": {
+        "rearOnly": true
+      },
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": 3550,
+        "y": 2010,
+        "w": 1270,
+        "h": 490
+      },
+      "reference": {
+        "heightM": 4,
+        "bounds": {
+          "x": 3550,
+          "y": 2010,
+          "w": 1270,
+          "h": 490
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          3550,
+          2010,
+          1270,
+          490
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#50584e",
+              "d": "M3550 2010 L3620 2070 L3620 2500 L3550 2500 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#414943",
+              "d": "M3730 2146 L3770 2146 L3770 2380 L3730 2413 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#50584e",
+              "d": "M4330 2328 L4370 2327 L4370 2500 L4330 2500 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#414943",
+              "d": "M4780 2344 L4820 2348 L4820 2500 L4780 2500 Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "city-tactical:24:recessed-supports",
+      "name": "Recessed rear masonry and timber supports",
+      "category": "prop",
+      "visual": [],
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "city-tactical",
+        "rear-support"
+      ],
+      "params": {
+        "rearOnly": true
+      },
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": 3460,
+        "y": 2264,
+        "w": 954,
+        "h": 410
+      },
+      "reference": {
+        "heightM": 4,
+        "bounds": {
+          "x": 3460,
+          "y": 2264,
+          "w": 954,
+          "h": 410
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          3460,
+          2264,
+          954,
+          410
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#50584e",
+              "d": "M3460 2264 L3494 2264 L3494 2451 L3460 2455 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#414943",
+              "d": "M3750 2328 L3790 2328 L3790 2518 L3750 2508 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#50584e",
+              "d": "M4230 2392 L4264 2425 L4264 2522 L4230 2505 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#414943",
+              "d": "M4380 2461 L4414 2461 L4414 2674 L4380 2672 Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "city-tactical:28:recessed-supports",
+      "name": "Recessed rear masonry and timber supports",
+      "category": "prop",
+      "visual": [],
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "city-tactical",
+        "rear-support"
+      ],
+      "params": {
+        "rearOnly": true
+      },
+      "material": "stone",
+      "breakable": false,
+      "bounds": {
+        "x": 2950,
+        "y": 2523,
+        "w": 1804,
+        "h": 282
+      },
+      "reference": {
+        "heightM": 4,
+        "bounds": {
+          "x": 2950,
+          "y": 2523,
+          "w": 1804,
+          "h": 282
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          1,
+          1
+        ],
+        "backgroundRange": [
+          1,
+          1
+        ]
+      },
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          2950,
+          2523,
+          1804,
+          282
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#50584e",
+              "d": "M2950 2700 L2980 2687 L2980 2805 L2950 2802 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#414943",
+              "d": "M4490 2615 L4528 2610 L4528 2785 L4490 2800 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#50584e",
+              "d": "M4720 2535 L4754 2523 L4754 2667 L4720 2685 Z"
+            }
+          ]
+        }
+      }
     }
   ],
   "stages": [
@@ -341111,11 +341355,64 @@
             },
             {
               "x": 3990,
-              "y": 2300
+              "y": 2280
             },
             {
               "x": 4080,
-              "y": 2300
+              "y": 2280
+            },
+            {
+              "x": 4080,
+              "y": 2335
+            },
+            {
+              "x": 3990,
+              "y": 2335
+            },
+            {
+              "x": 3820,
+              "y": 2165
+            },
+            {
+              "x": 3720,
+              "y": 2165
+            },
+            {
+              "x": 3540,
+              "y": 2015
+            }
+          ],
+          "baseMaterial": "stone",
+          "oneWay": false,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCityTactical": true,
+            "honroSpaceSurfaceId": "ct21-wall-east-return",
+            "honroWalkEdges": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "honroSurfaceRole": "cover-gallery",
+            "surfaceKind": "granite"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 21,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "ct21-wall-east-toe",
+          "name": "wall-east-toe",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4080,
+              "y": 2280
             },
             {
               "x": 4290,
@@ -341127,41 +341424,21 @@
             },
             {
               "x": 4080,
-              "y": 2336
-            },
-            {
-              "x": 3990,
-              "y": 2336
-            },
-            {
-              "x": 3820,
-              "y": 2146
-            },
-            {
-              "x": 3720,
-              "y": 2146
-            },
-            {
-              "x": 3540,
-              "y": 1996
+              "y": 2316
             }
           ],
-          "baseMaterial": "stone",
+          "baseMaterial": "wood",
           "oneWay": true,
           "breakable": false,
           "layer": "terrain",
           "properties": {
             "honroCityTactical": true,
-            "honroSpaceSurfaceId": "ct21-wall-east-return",
+            "honroSpaceSurfaceId": "ct21-wall-east-toe",
             "honroWalkEdges": [
-              0,
-              1,
-              2,
-              3,
-              4
+              0
             ],
             "honroSurfaceRole": "access-ramp",
-            "surfaceKind": "granite"
+            "surfaceKind": "wood"
           },
           "detail": {
             "spacing": 18,
@@ -341184,19 +341461,19 @@
               "y": 2380
             },
             {
-              "x": 3950,
+              "x": 3820,
               "y": 2380
             },
             {
-              "x": 4100,
+              "x": 3900,
               "y": 2500
             },
             {
-              "x": 4100,
+              "x": 3900,
               "y": 2800
             },
             {
-              "x": 3950,
+              "x": 3820,
               "y": 2680
             },
             {
@@ -341620,6 +341897,18 @@
           "snap": false,
           "depthLayer": "L1",
           "layer": "back"
+        },
+        {
+          "id": "city-tactical:21:recessed-supports",
+          "assetId": "city-tactical:21:recessed-supports",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back",
+          "cityTacticalRearOnly": true
         }
       ],
       "units": [
@@ -341816,7 +342105,7 @@
           "kind": "hound",
           "team": "enemy",
           "x": 3970,
-          "y": 2396,
+          "y": 2500,
           "facing": -1,
           "spawnIndex": 8,
           "behavior": "patrol",
@@ -343464,11 +343753,23 @@
                 ],
                 [
                   3990,
-                  2300
+                  2280
                 ],
                 [
                   4080,
-                  2300
+                  2280
+                ]
+              ],
+              false,
+              "stone",
+              55
+            ],
+            [
+              "wall-east-toe",
+              [
+                [
+                  4080,
+                  2280
                 ],
                 [
                   4290,
@@ -343476,7 +343777,7 @@
                 ]
               ],
               true,
-              "stone"
+              "wood"
             ],
             [
               "wall-buttress-plinth",
@@ -343490,11 +343791,11 @@
                   2380
                 ],
                 [
-                  3950,
+                  3820,
                   2380
                 ],
                 [
-                  4100,
+                  3900,
                   2500
                 ]
               ],
@@ -398760,6 +399061,18 @@
           "snap": false,
           "depthLayer": "L1",
           "layer": "back"
+        },
+        {
+          "id": "city-tactical:24:recessed-supports",
+          "assetId": "city-tactical:24:recessed-supports",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back",
+          "cityTacticalRearOnly": true
         }
       ],
       "units": [
@@ -405527,6 +405840,18 @@
           "snap": false,
           "depthLayer": "L1",
           "layer": "back"
+        },
+        {
+          "id": "city-tactical:28:recessed-supports",
+          "assetId": "city-tactical:28:recessed-supports",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back",
+          "cityTacticalRearOnly": true
         }
       ],
       "units": [
