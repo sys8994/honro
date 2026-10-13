@@ -1,3 +1,10 @@
+## 2026-10-13 · 반탄파 경지별 반사 분열
+
+- 변경: 최초 1발, 요청된 SP1~8 분열표와 최대 1/2/2/4/4/8/8/12개를 적용했다. 지형 접촉만 분열하고 세대별 82% 피해를 보존한다. 마지막 세대의 다음 지형 접촉·본체 명중·기존 수명으로 종료한다. 첫 반사 후손까지만 실제 엔진을 재생해 예상선을 그린다.
+- 호환: 새 발사에만 reflectionVersion=1을 부여했다. 옛 저장 비행탄은 옛 규칙으로 끝나며 SP/기예/진행 초기화가 없다. 파생탄은 기존 자동 공격 아군 보호를 따른다.
+- 검증: TypeScript, 전체 skill-redesign, projectile-platforms, 전 SP 분열·피해·본체/지형·접선 대칭·lineage 상한·30/60/120 FPS 및 실제 App Continue·반복 import/export 통과. Production Scene Native Canvas 검수는 브라우저 증거가 아니다. 전체 verify·최종 합본·Pages 검수는 별도 단계다.
+- 명세와 한계: [SPLITTING_REFLECTION.md](SPLITTING_REFLECTION.md).
+
 ## 2026-10-13 · 대화 첫 타격과 공통 SFX 지연 방지
 
 - 원인: 기존 대화는 22ms attack·낮은 gain으로 첫 20ms가 약했고, 효과음의 첫 사용은 출력장치 표본율로 전체 파형을 동기 합성했다. 예열도 첫 제스처 후 시작했다. 중단된 컨텍스트는 최대 300ms 된 이벤트를 다음 제스처에 되살렸다.
