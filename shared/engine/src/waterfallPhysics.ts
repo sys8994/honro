@@ -1,5 +1,5 @@
 import type {Battle,Terrain} from './types';
-import {terrainContains,segmentTerrain} from './math';
+import {poly,segmentTerrain} from './math';
 import {advanceLinear} from './physics';
 export type Flight={x:number;y:number;vx:number;vy:number};
 /** Only the authored new campaign encounter opts in. Its current polygon is also the art source. */
@@ -8,7 +8,15 @@ export function waterfallSheet(b:Battle):Terrain|undefined{
  if(q.honroStage!==5||q.honroStage5WaterfallRevision!==1||q.honroCustom)return;
  return b.terrain.find(t=>t.id==='waterfall-veil'&&!t.broken);
 }
-export function insideWater(t:Terrain|undefined,p:{x:number;y:number}){return !!t&&terrainContains(t,p.x,p.y,1e-7);}
+export function insideWater(t:Terrain|undefined,p:{x:number;y:number}){
+ if(!t||p.x<t.x||p.x>t.x+t.w||p.y<t.y||p.y>t.y+t.h)return false;
+ // A fluid needs parity only, not the generic body's per-edge closest-distance calculation.
+ const v=t.vertices||poly(t);let inside=false;
+ for(let i=0,j=v.length-1;i<v.length;j=i++){
+  const a=v[j],b=v[i];if((a.y>p.y)!==(b.y>p.y)&&p.x<(b.x-a.x)*(p.y-a.y)/(b.y-a.y)+a.x)inside=!inside;
+ }
+ return inside;
+}
 /** Exact dvx/dt = -32 vx - .05 |vx| vx. Quadratic drag bounds even extreme entry speeds.
  * Vertical entrainment accelerates toward downward flow, with ordinary gravity retained.
  * No collision, reflection, damage, fuse, phase or lifetime policy lives here. */
