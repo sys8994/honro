@@ -19,8 +19,8 @@ export async function buildGame({vector=true,destination=path.join(root,'HONRO.h
   const landscape=await titleAsset('landscape.webp','image/webp'),portrait=await titleAsset('portrait.webp','image/webp');
   const landscapeFallback=await titleAsset('landscape.jpg','image/jpeg'),portraitFallback=await titleAsset('portrait.jpg','image/jpeg');
   const scene=`<picture class="title-painting"><source media="(orientation: portrait)" type="image/webp" srcset="${portrait}"><source media="(orientation: portrait)" type="image/jpeg" srcset="${portraitFallback}"><source type="image/webp" srcset="${landscape}"><img src="${landscapeFallback}" alt="" decoding="async" fetchpriority="high" onerror="this.hidden=true"></picture>`;
-  const logo=await titleAsset('wordmark.png','image/png');
-  const title='globalThis.HONRO_TITLE_SCENE='+JSON.stringify(scene)+';globalThis.HONRO_TITLE_LOGO='+JSON.stringify(logo)+';';
+  const logo=await titleAsset('wordmark.png','image/png'),hanja=await titleAsset('hanja-wordmark.png','image/png');
+  const title='globalThis.HONRO_TITLE_SCENE='+JSON.stringify(scene)+';globalThis.HONRO_TITLE_LOGO='+JSON.stringify(logo)+';globalThis.HONRO_TITLE_HANJA='+JSON.stringify(hanja)+';';
   const stageArt={};for(let i=1;i<=10;i++){const buf=await readFile(path.join(root,'assets','rc11',`stage-${String(i).padStart(2,'0')}.jpg`));stageArt[i]='data:image/jpeg;base64,'+buf.toString('base64');}
   const parts=[title,'globalThis.HONRO_STAGE_INTRO_ART='+JSON.stringify(stageArt)+';',...shared];
   const portraits=JSON.parse(await read(path.join(here,'config/story-portraits.json')));
