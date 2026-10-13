@@ -2,7 +2,7 @@
 // One opt-in material/flow pass, shared by Game, Stage View and Playtest.
 // Geometry remains canonical; paths are immutable and clipped to live terrain.
 const S=G.HonroScene.prototype,A=G.HonroEnvironmentArt,active=G.HonroStage5Waterfall.active,cache=new WeakMap();
-const P=d=>new Path2D(d),poly=ps=>{const p=new Path2D();ps.forEach((q,i)=>i?p.lineTo(q.x,q.y):p.moveTo(q.x,q.y));p.closePath();return p;};
+const paths=new Map(),P=d=>{if(!paths.has(d))paths.set(d,new Path2D(d));return paths.get(d);},poly=ps=>{const p=new Path2D();ps.forEach((q,i)=>i?p.lineTo(q.x,q.y):p.moveTo(q.x,q.y));p.closePath();return p;};
 const facets=[
  ['M3020 1240L3220 1270 3280 1760 3190 2110 3080 2200 2970 1900Z','#83968a'],
  ['M3260 1230L3480 1260 3400 1580 3510 1840 3440 2110 3220 2230 3320 1830Z','#5e7774'],
@@ -15,8 +15,7 @@ const facets=[
 ].map(([d,color])=>({path:P(d),color}));
 const cracks=[P('M3460 1350L3390 1590 3490 1840 3435 2080 3520 2320 3510 2590'),P('M4030 1360L3970 1670 4110 2110 4010 2430 4150 2700'),P('M3720 2600L3890 2780 3790 3030 3930 3330')];
 const moss=[P('M3140 1330Q3360 1320 3470 1290L3420 1345 3270 1370 3150 1355Z'),P('M3580 2110L3760 2100 3830 2160 3720 2140 3600 2160Z'),P('M3610 2480L3800 2500 3840 2540 3730 2530 3620 2520Z'),P('M3940 1240Q4120 1200 4290 1195L4220 1250 4060 1290 3950 1280Z')];
-const closed=P('M2798 1220 C2770 1580 2825 1830 2782 2100 C2760 2490 2765 2860 2690 3285 Q2970 3350 3280 3290 C3180 2920 3210 2540 3202 2120 C3170 1820 3230 1560 3210 1220 Z');
-const opened=P('M2798 1220 C2770 1580 2870 1840 3070 2040 C3280 2140 3430 2210 3440 2330 C3445 2470 3200 2550 2980 2730 Q2770 3040 2690 3285 Q2970 3350 3280 3290 Q3170 3000 3310 2820 C3510 2650 3760 2500 3750 2320 C3740 2100 3440 1990 3310 1850 C3190 1680 3230 1440 3210 1220 Z');
+const closed=poly(G.HonroStage5WaterGeometry.closed),opened=poly(G.HonroStage5WaterGeometry.opened);
 const flowHighlights=[P('M2960 1220Q2920 1740 2970 2100T2910 3280L2940 3290Q3030 2830 3010 2330T3000 1220Z'),P('M3050 1220Q3070 1760 3040 2080T3100 3280L3130 3290Q3070 2740 3070 2260T3090 1220Z')];
 
 function terrain(c,t,b){let q=cache.get(t);if(!q||q.vertices!==t.vertices){q={vertices:t.vertices,path:poly(G.HONRO_CORE.poly(t))};cache.set(t,q);}c.save();c.clip(q.path);
@@ -27,17 +26,19 @@ function terrain(c,t,b){let q=cache.get(t);if(!q||q.vertices!==t.vertices){q={ve
  }else{
   const x=Math.max(-200,t.x),y=Math.max(2200,t.y),w=Math.min(2500,t.w),d=Math.min(1000,t.h);c.fillStyle='#7d92824d';c.fill(poly([{x,y},{x:x+w*.43,y:y+40},{x:x+w*.25,y:y+d*.65},{x:x+w*.03,y:y+d*.85}]));c.fillStyle='#183a4366';c.fill(poly([{x:x+w*.5,y},{x:x+w,y:y+70},{x:x+w*.85,y:y+d},{x:x+w*.62,y:y+d*.72}]));
   c.fillStyle='#75826388';c.fillRect(t.x,t.y,t.w,18);
- }c.restore();}
+ }c.restore();c.save();c.strokeStyle='#162c33';c.lineWidth=3;c.stroke(q.path);c.restore();}
 const oldTerrain=S.terrain;S.terrain=function(c,t,...args){if(active(this.battle)&&t.indestructible&&t.id!=='waterfall-veil'&&!t.honroElementCollision){terrain(c,t,this.battle);return;}if(active(this.battle)&&t.id==='waterfall-veil')return;return oldTerrain.call(this,c,t,...args);};
 const oldLandmark=S.landmark;S.landmark=function(c,l,...args){if(active(this.battle)&&l.kind==='waterfall')return;return oldLandmark.call(this,c,l,...args);};
 const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.call(this,c,w,h,b);if(!active(b))return;c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);c.fillStyle='#14252d';c.fill(P('M2920 2100Q3260 1990 3570 2110L3710 2300 3660 2520 2900 2590Z'));c.fillStyle='#273c3e';c.fill(P('M3020 2160L3260 2120 3570 2170 3600 2290 3500 2400 3030 2430Z'));c.restore();};
-const oldWater=S.liveWater;S.liveWater=function(c,b){if(!active(b))return oldWater.call(this,c,b);oldWater.call(this,c,{...b,honroLandmarks:b.honroLandmarks.filter(l=>l.kind!=='waterfall')});const time=A.time(this),a=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:b.honroEnvironment},this.y),open=!!b.terrain.find(t=>t.id==='waterfall-veil')?.broken,shape=open?opened:closed;c.save();c.clip(shape);
+const oldWater=S.liveWater;S.liveWater=function(c,b){if(!active(b))return oldWater.call(this,c,b);oldWater.call(this,c,{...b,honroLandmarks:b.honroLandmarks.filter(l=>l.kind!=='waterfall'),honroSurfaceZones:b.honroSurfaceZones.filter(z=>!['stage5-downstream','stage5-plunge-pool','stage5-headwater'].includes(z.id))});const time=A.time(this),a=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:b.honroEnvironment},this.y),open=!!b.terrain.find(t=>t.id==='waterfall-veil')?.honroWaterOpen,shape=open?opened:closed;const downstream=b.honroSurfaceZones.find(z=>z.id==='stage5-downstream');if(downstream){c.save();c.clip(A.poolData(downstream).clip);c.fillStyle=A.gradient(c,0,3300,0,3460,[[0,'#3f63635c'],[1,'#17343aaa']]);c.fillRect(-6000,3300,8400,180);c.restore();}
+ const head=b.honroSurfaceZones.find(z=>z.id==='stage5-headwater');if(head){c.save();c.clip(A.poolData(head).clip);c.fillStyle=A.gradient(c,0,1220,0,1350,[[0,'#a8c4b980'],[1,'#315859dd']]);c.fillRect(2960,1220,8000,150);c.strokeStyle='#adcdbd70';c.lineWidth=4;for(let i=0;i<8;i++){const x=3070+i*260-(time*60%260);c.beginPath();c.moveTo(x,1240+i%3*13);c.quadraticCurveTo(x+50,1232+i%3*13,x+135,1244+i%3*13);c.stroke();}c.restore();}
+ const basin=b.honroSurfaceZones.find(z=>z.id==='stage5-plunge-pool');if(basin){c.save();c.clip(A.poolData(basin).clip);c.fillStyle=A.gradient(c,0,3300,0,3820,[[0,'#487d78cc'],[.16,'#234f5c'],[.55,'#102e43'],[1,'#071c2c']]);c.fillRect(2290,3300,1680,540);A.glow(c,2960,3330,450,100,'#bdddd0',.25);c.strokeStyle='#80aba54d';c.lineWidth=3;for(let i=0;i<7;i++){c.beginPath();c.ellipse(2940+Math.sin(i*4)*120,3320+i*25,200+i*26,8+i*2,0,0,Math.PI);c.stroke();}c.restore();}c.save();c.clip(shape);
  c.fillStyle=A.gradient(c,2780,0,3650,0,[[0,'#d8e2ccdd'],[.20,'#9ebcb4e8'],[.36,'#5d898ee0'],[.67,'#d4dfc9d8'],[1,'#779e9ddd']]);c.fillRect(2650,1210,1080,2150);
  if(!open){for(const p of flowHighlights){c.fillStyle='#ecf0d64a';c.fill(p);}}
  for(let i=0;i<12;i++){const y=1230+(time*(150+i%3*21)+i*177)%2090;c.fillStyle=i%2?'#eff1d331':'#c4ded530';c.save();c.translate(2850+(i%4)*58,y);c.fill(P('M0 0Q-7 70 6 130L17 175Q12 67 22 0Z'));c.restore();if(open)c.fillRect(3440+(i%3)*49,y,33,130);}
  c.restore();A.glow(c,2980,3250,490,170,'#c0dbd0',.52);A.fog(c,3010,3260,1450,400,'#d5e2d0',.80,time,22);A.fog(c,2900,3170,1050,320,'#b3c8bd',.5,time,15);
  c.save();c.fillStyle='#cbdcca8c';c.fill(P('M2720 3301Q2770 3276 2825 3294Q2860 3255 2910 3278Q2950 3252 3000 3284Q3070 3256 3120 3290Q3180 3270 3230 3303Q3100 3328 2980 3317Q2840 3330 2720 3301Z'));c.fillStyle='#edf0d7a1';c.fill(P('M2820 3300Q2890 3282 2950 3296Q3010 3270 3080 3294L3160 3305Q3000 3320 2820 3300Z'));c.restore();
- c.save();c.strokeStyle='#d1dfc5ad';c.lineWidth=7;c.beginPath();c.moveTo(2798,1220);c.bezierCurveTo(3240,1226,3830,1218,4390,1220);c.stroke();for(let i=0;i<4;i++){const phase=(time*.19+i*.24)%1;c.globalAlpha=(1-phase)*.65;c.beginPath();c.ellipse(2980,3305,140+phase*420,11+phase*29,0,0,Math.PI*2);c.stroke();}c.restore();};
+ c.save();c.strokeStyle='#d1dfc5ad';c.lineWidth=7;c.beginPath();c.moveTo(2798,1220);c.bezierCurveTo(2920,1210,3070,1216,3210,1220);c.stroke();for(let i=0;i<4;i++){const phase=(time*.19+i*.24)%1;c.globalAlpha=(1-phase)*.65;c.beginPath();c.ellipse(2980,3305,140+phase*420,11+phase*29,0,0,Math.PI*2);c.stroke();}c.restore();};
 function evidence(scene,e){const b=e.b,c=scene.ctx,t=b.terrain.find(t=>t.id==='cliff-cleat'),m=b.honroMarkers.find(m=>m.id==='receiver-5');if(!t||!m)return;const lit=!!b.honroState.ritual?.active,time=A.time(scene);G.HonroAct1StoryArt.floorArray(c,m,time,lit);
  // The complete wood slab represents the attackable rectangle, without hollow holes.
  if(!t.broken){const level=G.HonroAct1StoryArt.cleatDamageStage(t),x=t.x,y=t.y,w=t.w,h=t.h;c.save();c.fillStyle='#4b352e';c.fillRect(x,y,w,h);c.fillStyle='#91765a';c.fillRect(x+3,y+3,w-6,10);c.fillRect(x+3,y+3,7,h-6);c.fillStyle='#201e20';c.fillRect(x+w-12,y+8,10,h-10);c.strokeStyle='#15252b';c.lineWidth=3;c.strokeRect(x,y,w,h);
