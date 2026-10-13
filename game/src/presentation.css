@@ -50,3 +50,6 @@
 .story-actions>button,.narration-actions>button{white-space:nowrap;flex-shrink:0}
 .story-actions>button:disabled,.narration-actions>button:disabled{opacity:.38;cursor:default;box-shadow:none}
 @media(max-width:650px){.dialogue-scene .story-copy{display:contents}.dialogue-scene .story-location,.dialogue-scene h2,.dialogue-scene #story-line{grid-column:2}.dialogue-scene .story-portrait{grid-column:1;grid-row:1 / 4}.dialogue-scene .story-actions{grid-column:1 / -1;flex-wrap:nowrap;gap:7px}.story-actions>button,.narration-actions>button{min-width:0}.narration-actions{flex-wrap:nowrap}}
+
+/* No empty portrait column for narration or an unillustrated named speaker. */
+.story-overlay .story-scene.text-only-scene{grid-template-columns:minmax(0,1fr);gap:0}.narration-inline .story-copy h2{font-size:clamp(17px,2vw,22px);color:#c9b889}.narration-inline .story-copy p{min-height:0}.narration-inline .story-scene{width:min(920px,100%)}
