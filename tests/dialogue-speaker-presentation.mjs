@@ -12,5 +12,5 @@ const doc=display(['기록','옛 장부',{kind:'document',documentTitle:'장부'
 const unknown=display(['미등록 인물','인물의 말']);assert(unknown.includes('data-portrait-status="missing"'));assert(unknown.includes('미등록 인물'));assert(!unknown.includes('story-portrait'));checks.push('Missing identity stays named text-only, never another companion');
 const hero=display(['설오','인물의 말']);assert(hero.includes('story-portrait-canvas'));checks.push('Registered companion retains the correct portrait');
 for(const [kind,label] of [['narration','서술'],['document','기록'],['guide','안내']])assert.equal(S.speakerPresentation(label).kind,kind);
-assert.equal(S.speakerPresentation('설오',{kind:'narration'}).kind,'narration');checks.push('Explicit kind takes priority over character name');
+assert.equal(S.speakerPresentation('설오',{kind:'narration'}).kind,'narration');const dead=a.engine.b.units.find(u=>u.side===0);dead.dead=true;dead.hp=0;assert(S.allowed(a,dead.name,{kind:'narration'}));checks.push('Explicit kind takes priority over character name, including a dead named actor');
 await report('dialogue-speaker-presentation',checks);console.log(checks.join('\n'));

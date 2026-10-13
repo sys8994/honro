@@ -35,7 +35,7 @@ function request(app,id,context={}){
  const s=state(b);if(s.once[id])return false;s.once[id]='queued';
  G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]]);return true;
 }
-function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)request(app,ID,{marker:m.id});}
+function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)return request(app,ID,{marker:m.id});return false;}
 function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
  if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}

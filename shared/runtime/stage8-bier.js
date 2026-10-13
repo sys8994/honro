@@ -115,7 +115,7 @@ function noticeText(b){const m=memory(b),parts=[];if(['won','lost'].includes(b.p
  for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push((G.HonroEncounterDensity?.active(b)?({'stage8-first-seal':'서쪽 창고 산개 2 · 까마귀 1','stage8-settled-crows':'마당 위 까마귀 3','stage8-low-health':(w.entry?.label||'중앙 마당 동쪽 오름길')+' 산개 1 · 혼불 1'}[source]):waveLabels[source])+(w.status==='blocked'?' 진입 보류':''));}
  return parts.length?parts.join(' · ')+' · 다음 행동 끝에 안전 확인':'';
 }
-function publishNotice(app){const b=app.engine.b,m=memory(b),text=ended(app)?'':noticeText(b);if(text){if((typeof app.eventText==='string'?app.eventText:m.notice)!==text)app.event(text);m.notice=text;}else if(m.notice){if(app.eventText===m.notice){app.eventText='';app.eventUntil=0;app.dirty=true;}delete m.notice;}return text;}
+function publishNotice(app){const b=app.engine.b,m=memory(b),text=ended(app)?'':noticeText(b);if(text){if((typeof app.eventText==='string'?app.eventText:m.notice)!==text)app.event(text);m.notice=text;}else if(m.notice){if(app.eventText===m.notice){app.eventText='';app.eventUntil=0;app.dirty=true;}if(b.honroState?.tacticalNotices)b.honroState.tacticalNotices=b.honroState.tacticalNotices.filter(n=>n.text!==m.notice);delete m.notice;}return text;}
 function cleanup(app){const b=app.engine?.b;if(!active(b))return false;
  // Story pauses ordinary Engine ticks. If the last real companion was lost
  // during this pause (or in a saved scene), run the existing loss decision
