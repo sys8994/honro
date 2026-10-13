@@ -106,7 +106,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    O08:[row('현형 유지',`${MANIFEST_TURNS[rr-1]}턴`)],O09:[row('섭혼 행동',`${ENTHRALL_ACTIONS[rr-1]}회`),row('섭혼 전투력',pct(ENTHRALL_POWER[rr-1]))],
    O10:[row('지박 유지',`${3+Math.floor((rr-1)*4/7)}턴`),row('지박령 동시 수','최대 4')],
    O11:[row('배회령 유지',`${SPIRIT_TURNS[rr-1]}턴`)],O12:[row('등불귀 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('대상 수',rr<4?'1명':'최대 2명')],
-   O13:[row('호혼령 유지',`${SPIRIT_TURNS[rr-1]}턴`)],O14:[row('먹귀 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('끌림 반경',`${200+rr*15}`)],
+   O13:[row('호혼령 유지',`${SPIRIT_TURNS[rr-1]}턴`)],O14:[row('포획 유지',`${[2,2,2,3,3,3,4,4][rr-1]}턴`),row('포획 반경',`${200+rr*15}`),row('기초 HP',`${Math.round(205*(1+.07*(rr-1)))} × 경지 보정`),row('피해 전달','포획 적 각각 · 남은 먹귀 HP까지')],
    O15:[row('반향령 유지',`${ECHO_TURNS[rr-1]}턴`),row('반향 피해',pct(ECHO_POWER[rr-1])),row('동시 설치',`${ECHO_LIMIT[rr-1]}개`)],
    O16:[row('귀결 혼령',`${10+Math.floor(rr/2)}기`)],
   };

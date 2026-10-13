@@ -161,6 +161,14 @@ export interface Unit {
     summonExpires?: number;
     summonRank?: number;
     summonActionRound?: number;
+    /** Captive remains alive for objectives but absent from combat until released. */
+    eaterCapturedBy?: string;
+    eaterReleasedShot?: number;
+    eaterOrigin?: {x:number;y:number};
+    eaterRevision?: number;
+    eaterCaptureCount?: number;
+    eaterCaptureRadius?: number;
+    eaterSwallow?: number;
     summonAbsorbed?: number;
     summonGrowthHits?: number;
     auraHits?: Record<string,string>;

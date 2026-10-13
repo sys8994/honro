@@ -6,7 +6,7 @@ const active=b=>b?.honroStage===11&&!b.honroCustom&&[1,2].includes(b.honroStage1
 const composed=b=>active(b)&&b.honroStage11EncounterRevision===2;
 const composition=b=>(b.honroState.ravineComposition??={version:2,alert:{},entries:{},echoWarnings:{}});
 const owned=ev=>ev?.honroStage11Response===1;
-const live=b=>b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0&&!u.honroSubdued);
+const live=b=>b.units.filter(u=>u.side===1&&!u.summoned&&!u.dead&&u.hp>0&&!u.honroSubdued);
 const done=(b,id)=>!!b.honroState?.act2?.done?.[id];
 const pending=b=>(b.honroEvents||[]).filter(ev=>owned(ev)&&!b.honroState.flags['event:'+ev.id]);
 function blockedClear(b){

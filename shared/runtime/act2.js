@@ -64,7 +64,7 @@ function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const spec
 }
 function current(b){return steps(b).find(s=>!s.optional&&!satisfied(b,s));}
 function readySteps(b){const s=current(b);return steps(b).filter(q=>!satisfied(b,q)&&(q.optional||q.id===s?.id||s?.parallelGroup&&q.parallelGroup===s.parallelGroup)&&(q.requiresDone||[]).every(id=>!!memory(b).done[id]));}
-function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.defeatIds?s.defeatIds.includes(u.id):s.cohorts==='all'||s.cohorts===u.honroCohort));}
+function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.summoned&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.defeatIds?s.defeatIds.includes(u.id):s.cohorts==='all'||s.cohorts===u.honroCohort));}
 function visible(b,u){if(!u?.honroSpirit||!u.spiritHidden||u.manifested||u.revealSpiritToParty)return true;const viewer=b.units.find(v=>v.id===b.active);return viewer?.side===0?!!viewer.spiritSight:!!b.units.find(v=>v.id===memory(b).viewerId)?.spiritSight;}
 function scaleEncounter(u,hp,attack){const ratio=u.maxHp>0?u.hp/u.maxHp:1;
  u.maxHp=Math.max(1,Math.round(u.maxHp*hp));u.hp=Math.max(u.dead?0:1,Math.round(u.maxHp*ratio));
@@ -96,7 +96,7 @@ function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!sati
  const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||b.terrain.find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
 }
 // Shared by the actual interaction gate and read-only prerequisite guidance.
-function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
+function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&!v.summoned&&!v.eaterCapturedBy&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
 function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=app.engine.active;
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'낙석 치우기'};
  if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'주변 원혼등불 밝히기'};
@@ -229,7 +229,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  const s=current(b),m=s&&marker(b,s.id);
  if(revision2(b)&&s?.kind==='hold'&&m){
   a.holds??={};const h=a.holds[s.id]??={progress:0,spawned:0,lastRound:b.round,enteredRound:b.round,continuous:false};
-  const guards=heroes.filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=b.round>h.lastRound,contested=b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
+  const guards=heroes.filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=b.round>h.lastRound,contested=b.units.some(u=>u.side===1&&!u.summoned&&!u.eaterCapturedBy&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
   if(!guarded||contested)h.continuous=false;
   if(b.round>h.lastRound){if(h.continuous&&guarded&&!contested)h.progress++;h.lastRound=b.round;h.continuous=guarded&&!contested;app.dirty=true;}
   if(h.guarded===undefined)h.continuous=guarded&&!contested;

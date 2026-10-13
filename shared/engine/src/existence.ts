@@ -66,7 +66,7 @@ export const MONSTER_EXISTENCE:Record<string,ExistenceVector>={
  'boss:4':mix(.80,1.12,1.15),'boss:5':mix(1,1,.82),'boss:6':mix(.92,1.10,1),
  bier:mix(1,.80,.35),gate:mix(1,.82,.30),civilian:mix(1,1,.88),
  'summon-stalker':mix(.65,1.03,1.18),'summon-charger':mix(.75,1.02,1.14),'summon-host':mix(.70,1.04,1.17),
- 'summon-lantern':mix(.25,1.07,1.27),'summon-warden':mix(.60,1.04,1.16),'summon-eater':mix(.28,1.07,1.25),
+ 'summon-lantern':mix(.25,1.07,1.27),'summon-warden':mix(.60,1.04,1.16),'summon-eater':mix(1,1,1),
  'summon-echo':mix(.22,1.08,1.26),'summon-earthbound':mix(.64,1.03,1.18)
 };
 

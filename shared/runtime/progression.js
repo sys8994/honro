@@ -115,10 +115,10 @@ function initialize(b,profile){
   }else state.policy??=state.contribution?4:3;
   if(state.contribution)ledger.version=Math.max(4,ledger.version||0);
   const act3Weight=id>=21&&id<=30&&!b.honroCustom?(G.HONRO_CONTENT.stages[id-1].steps||[]).reduce((n,s)=>n+(s.wave?actionWeight({type:'spawn',kind:s.wave.kind,n:s.wave.count}):0),0):0;
-  const weight=b.units.filter(u=>u.side===1).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
+  const weight=b.units.filter(u=>u.side===1&&!u.summoned).reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
   b.honroGrowth={ledger,limit,weight:Math.max(1,weight)};
   for(const u of b.units)registerOwner(b,u);
-  for(const u of b.units.filter(u=>u.side===1)){enemyXP(b,u);if(isContributionBattle(b))registerEnemy(b,u);}
+  for(const u of b.units.filter(u=>u.side===1&&!u.summoned)){enemyXP(b,u);if(isContributionBattle(b))registerEnemy(b,u);}
   reconcileWounds(b);
 }
 function enemyXP(b,u){if(b.honroGrowth){u.xpBudget=Math.max(1,Math.round(b.honroGrowth.limit.combat*(u.honroXpWeight||1)/b.honroGrowth.weight));u.xpGranted=0;}}
@@ -136,7 +136,7 @@ function awardCombat(e,source,amount){
   if(changed)e.emit('save');
 }
 function defeat(e,u,killer){
-  if(u.killRewarded||u.side!==1)return;u.killRewarded=true;
+  if(u.killRewarded||u.side!==1||u.summoned)return;u.killRewarded=true;
   if(isContributionBattle(e.b)){const row=registerEnemy(e.b,u);if(row){if(row.progress<row.hp)X.damage(contributionState(e.b),row.id,row.hp,row.hp-row.progress,{});if(!row.defeated)X.touch(contributionState(e.b));row.defeated=true;}}
   else awardCombat(e,killer,Math.max(0,u.xpBudget-u.xpGranted));u.xpGranted=u.xpBudget;
   if(killer?.side===0)e.b.heroes[killer.cls].kills++;
