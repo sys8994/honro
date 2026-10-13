@@ -1073,10 +1073,10 @@ export class Engine {
         const b=this.b;b.occultTraps??=[];
         for(const trap of [...b.occultTraps]){
             if(trap.expires<b.round){b.occultTraps=b.occultTraps!.filter(z=>z.id!==trap.id);continue;}
-            const owner=this.unit(trap.owner),target=this.alive(1).find(v=>Math.hypot(v.x-trap.x,v.y-v.h*.5-trap.y)<v.r+38);
+            const owner=this.unit(trap.owner),target=this.alive(1).find(v=>this.attackAllows(v,trap.owner,trap)&&Math.hypot(v.x-trap.x,v.y-v.h*.5-trap.y)<v.r+38);
             if(!owner||!target)continue;
             if(trap.skill==='O08')this.manifest(target,owner,trap.rank,-Math.floor(MANIFEST_TURNS[clamp(trap.rank,1,8)-1]/2));
-            else this.applyCurse(target,owner,trap.skill==='O06'?'weak':'betray',trap.damage,trap.rank,0,true);
+            else this.applyCurse(target,owner,trap.skill==='O06'?'weak':'betray',trap.damage,trap.rank,0,true,trap);
             if(trap.damage>0)this.hurt(target,trap.damage,owner.id,false,undefined,undefined,'normal',trap.skill);
             this.fx('spark',trap.x,trap.y,'#c2b9a0',25);b.occultTraps=b.occultTraps!.filter(z=>z.id!==trap.id);
         }
@@ -1228,12 +1228,12 @@ export class Engine {
         else if(!['curseDot','curseChain'].includes(p.mode)&&(h?.terrain||!p.damage||['curseManifest','curseEarth'].includes(p.mode)))this.emit('sound',{name:'spiritImpact'});
         if(['curseWeak','curseBetray','curseBind'].includes(p.mode)){
             if(h?.unit){this.hurt(h.unit,p.damage,p.owner,true,p,h);this.applyCurse(h.unit,owner,p.mode==='curseWeak'?'weak':p.mode==='curseBetray'?'betray':'bind',p.damage*.28,p.skillRank||1,p.soulBoost?1:0,false,p);}
-            else if(h?.terrain&&['O06','O07'].includes(p.skill)&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage*passiveTuning(passiveRank(owner,'OP01')).trapDamage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
+            else if(h?.terrain&&['O06','O07'].includes(p.skill)&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,autonomous:this.autonomousAttack(p.owner,p),damage:p.damage*passiveTuning(passiveRank(owner,'OP01')).trapDamage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
             this.remove(p);return true;
         }
         if(p.mode==='curseManifest'){
             for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1)this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);this.hurt(t,p.damage,p.owner,false,p,p);}
-            if(h?.terrain&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,damage:p.damage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
+            if(h?.terrain&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,autonomous:this.autonomousAttack(p.owner,p),damage:p.damage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
             this.remove(p);return true;
         }
         if(p.mode==='curseEnthrall'){if(h?.unit)this.captureEnemy(h.unit,owner,p.skillRank||1,!!p.soulBoost);this.remove(p);return true;}
