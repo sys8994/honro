@@ -48,7 +48,7 @@
   --hud-height:calc(var(--hud-roster-height) + var(--hud-vitals-height) + var(--action-height) + var(--hud-skill-wrap) + 10px + var(--hud-block-start) + var(--hud-block-end) + 1px)!important;
 }
 .honro #app .battle-bottom.honro-compact-hud{
-  --jump-angle:240deg;--drop-angle:195deg;--defend-angle:150deg;
+  --jump-angle:240deg;--drop-angle:150deg;--defend-angle:195deg;
   --action-width:calc(var(--action-radius) * cos(15deg) + var(--action-size) / 2 + var(--fire-size) / 2);
   --fire-center-x:calc(var(--action-width) - var(--fire-size) / 2);
   --fire-center-y:calc(var(--action-radius) * sin(60deg) + var(--action-size) / 2);

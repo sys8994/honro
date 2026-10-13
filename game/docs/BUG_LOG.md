@@ -2619,3 +2619,7 @@ SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBal
 - Removed the battle event container, center toast renderer, acknowledgement action and toast-specific active CSS. Non-narrative `App.event` preserves only its last text for existing encounter deduplication; it neither queues notices nor opens a dialog. Explicit narration still uses `HonroStory.event` without changing its actor-boundary or manual reading policy.
 - Old saved `tacticalNotices` are inert and preserved as data; Continue cannot render them and they do not block inputs. The existing wave-warning/source state and new-player-action gates remain owned by encounter modules and are unchanged.
 - `narrative-event-delivery` checks fresh non-narration does not alter battle state, two unread old messages survive Continue without blocking input or growing, and narrator Next/Skip, unread-order save, in-dialogue delivery and victory flush remain intact. Production-App/DOM doubles only; browser and public Pages remain separate gates.
+
+## 2026-10-13 · Swap drop and defend positions only
+
+The shared radial-control variables now place drop at150° and defend at195°; jump remains240°. No DOM, binding, size, color, hit shape, action radius or gameplay code changes. `combat-action-layout` checks all four original size pairs, circular gaps and readout clearance with the new positions. Actual browser pointer/keyboard and public Pages verification remain separate gates.
