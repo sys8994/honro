@@ -1,6 +1,7 @@
 /** Grid clearance and a closed-gate movement probe, separate from gameplay. */
 import assert from 'node:assert/strict';import {runtime,battlefield} from '../game/tests/helpers.mjs';import {mkdir,writeFile} from 'node:fs/promises';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,rows=[];
+for(const n of [9,13])for(const t of g.HONRO_PROJECT.stages[n-1].terrains.filter(t=>t.id.startsWith('tactical-')))for(const edge of t.properties.honroWalkEdges){const a=t.points[edge],b=t.points[edge+1];assert(Math.abs((b.y-a.y)/(b.x-a.x))<=1.35,`${n}/${t.id} walk slope exceeds production cap`);}
 for(const n of [9,13])for(const cls of ['archer','mage','knight','occultist']){
 const {b,e}=battlefield(g,n),u=e.heroesAlive().find(u=>u.cls===cls)||battlefield(g,13).e.heroesAlive().find(u=>u.cls===cls),floor=b.terrain.find(t=>t.id===(n===9?'yard-floor':'act2-floor'));let samples=0;
 for(const [l,r]of n===9?[[610,1340],[2520,3020]]:[[1110,2130],[5270,6290]])for(let x=l;x<=r;x+=8){const pose={...u,x,y:C.topAt(floor,x)};assert(C.validTerrainContactPose(b.terrain,pose),`${n}/${cls} lower passage x${x}`);samples++;}rows.push({stage:n,cls,clearancePoses:samples});

@@ -16,7 +16,7 @@ function author(s,project){
  slab('tactical-west-rubble-return',[[1280,2385.7894736842104],[1340,2400],[1550,ground(1550)-160]],25,true,'wood'),
  slab('tactical-east-stone-shoulder',[[2520,1990],[2750,1970],[3020,2020]],65),
  slab('tactical-east-root-ascent',[[2140,ground(2140)-160],[2420,2080],[2520,1990],[2600,1983.0434782608695]],25,true,'wood'),
- slab('tactical-east-root-return',[[2940,2005.1851851851852],[3020,2020],[3140,2200],[3380,ground(3380)-160]],25,true,'wood')
+ slab('tactical-east-root-return',[[2940,2005.1851851851852],[3020,2020],[3140,2145],[3380,ground(3380)-160]],25,true,'wood')
  ]:[
  slab('tactical-entry-shoulder',entryTop,50),
  slab('tactical-entry-west-ramp',[[820,ground(820)-160],[1110,ground(1110)-180],[1180,atTop(entryTop,1180)]],25,true,'wood'),
