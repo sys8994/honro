@@ -59,7 +59,7 @@ function snapshot(app){const s=active(app),c=app.scene;if(s&&c&&[c.x,c.y,c.scale
 function restore(app){const s=active(app),c=app.scene;if(!s||!c)return;if(s.currentCamera)Object.assign(c,s.currentCamera);c.goalFocus=null;if(s.focusActor&&alive(actor(app.engine.b,s.focusActor)))c.storyFocus?.(s.focusActor,120);else if(s.focus)c.storyFocusPoint?.(s.focus.x,s.focus.y,350);}
 
 function draw(app,node){const s=active(app);if(!s||s.complete)return false;const step=s.steps[s.cursor],focused=node.contains?.(G.document?.activeElement)?G.document.activeElement?.dataset?.action:null;
- node.innerHTML=`<div class="story-overlay staging-overlay"><section class="staging-cue" role="dialog" aria-modal="true" aria-label="${esc(app.dialogue.title)}"><p id="story-line">${esc(step?.caption||'')}</p><div class="story-actions"><button class="ghost" data-story-tool="history">대화 기록</button><button class="ghost" data-action="dialogue-skip">장면 넘기기</button><button class="primary" data-action="dialogue-next">대화로 ›</button></div></section></div>`;
+ node.innerHTML=`<div class="story-overlay staging-overlay"><section class="staging-cue" role="dialog" aria-modal="true" aria-label="${esc(app.dialogue.title)}"><p id="story-line">${esc(step?.caption||'')}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">장면 넘기기</button><button class="primary" data-action="dialogue-next">대화로 ›</button></div></section></div>`;
  node.querySelector(`[data-action="${focused==='dialogue-skip'?'dialogue-skip':'dialogue-next'}"]`)?.focus({preventScroll:true});return true;
 }
 function move(app,s,step,dt,skip){
@@ -96,7 +96,12 @@ function settle(app,s){for(const u of [...app.engine.b.units,...app.engine.b.hon
 // inside the same serialized dialogue; reading/rendering never restarts a cue.
 function lineStart(app,skip=false){
  const s=active(app),d=app.dialogue;if(!s?.cues||!s.complete||s.waitForDialogue||s.cue?.index===d.index)return;
+ // Forward navigation settles the old cue before returning. Revisiting text
+ // must never replay movement, actor reveals, or effects (also after Continue).
+ const revisited=d.index<=(s.readThrough??s.cue?.index??-1),frontier=Math.max(s.readThrough??s.cue?.index??d.index,s.cue?.index??d.index);
  settle(app,s);s.cue={index:d.index,elapsed:0,applied:{},results:{},done:{},started:{}};
+ if(revisited)for(const i of (s.cues[d.index]||[]).keys())s.cue.done[i]=true;
+ s.readThrough=Math.max(frontier,d.index);
  delete s.focus;delete s.focusActor;cueAdvance(app,0,skip);
 }
 function cueAdvance(app,dt,skip=false){
