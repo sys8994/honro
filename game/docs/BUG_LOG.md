@@ -2630,3 +2630,11 @@ SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBal
 ## 2026-10-13 · Swap drop and defend positions only
 
 The shared radial-control variables now place drop at150° and defend at195°; jump remains240°. No DOM, binding, size, color, hit shape, action radius or gameplay code changes. `combat-action-layout` checks all four original size pairs, circular gaps and readout clearance with the new positions. Actual browser pointer/keyboard and public Pages verification remain separate gates.
+
+## 2026-10-13 · 여정첩 선택 뒤 쉼터의 표시 장과 실제 출발 장 불일치
+
+쉼터 제목은 일반 여정의 다음 장 또는 디버그 여정첩에서 선택한 장을 표시했지만, 이정표 버튼은 저장 전투가 하나라도 있으면 무조건 `continue`를 사용했다. 7장 재플레이를 남긴 일반 기록의 8장 쉼터, 또는 7장을 중단하고 디버그 여정첩에서 8장을 선택한 경우 모두 제목은 1막 8장인데 실제 버튼이 7장을 재개했다. 완료 7장 → 과거 핀/대화 기록을 보기만 함 → 돌아오기 경로는 기존에도 8장을 유지하며, 이 경로를 원인으로 단정하지 않는다.
+
+`restMarkup`의 이정표는 표시된 목적지와 저장 전투의 장이 같은 경우에만 이어가기를 사용한다. 다른 장의 저장 전투 또는 명시적 디버그 지도 선택은 표시된 장의 `journey-enter`를 사용하고 기존 전투 교체 확인/취소를 거친다. 저장 전투는 확인 전까지 그대로 보존하며 여정첩/타이틀의 명시적 Continue로 정확히 재개할 수 있다. 저장 schema, 완료 기록, 성장·기예, 임무·지도·전투 상태를 변경하지 않고 replay 표식이 없는 기존 저장에도 같은 기준을 적용한다.
+
+`tests/journey-stage-departure.mjs`는 실제 생산 App의 렌더된 이정표에서 action/id를 읽고 클릭한다. 7→8 완료 fixture/지도/대화 기록 왕복과 반복 저장·불러오기, 일반 7장 재플레이·구저장, 취소와 명시 Continue의 전체 snapshot 보존, 디버그 30개 목적지와 일반 저장 보호, 막/긴급 연결 경계를 확인한다. DOM·저장소와 완료 결과는 테스트 대역/fixture이며 실제 사용자 저장, 브라우저 입력 또는 정상 전투 완주 증거가 아니다. 두 HTML 통합 빌드와 공개 Pages 실검수는 통합 담당에서 별도 수행한다.
