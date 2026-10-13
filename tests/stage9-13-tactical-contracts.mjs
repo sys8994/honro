@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {applyStage9And13Tactical} from '../tools/map-forge/stage9-13-tactical.mjs';
+import {appHarness,plain,report} from './app-regression-helpers.mjs';
+const base=JSON.parse(execFileSync('git',['show','25ae85c:shared/data/campaign.json'],{encoding:'utf8',maxBuffer:50e6})),p=JSON.parse(await readFile('shared/data/campaign.json','utf8')),checks=[];
+assert.deepEqual(applyStage9And13Tactical(structuredClone(p)),p);checks.push('author idempotent');
+for(let i=0;i<30;i++)if(![8,12].includes(i))assert.deepEqual(p.stages[i],base.stages[i]);
+for(const n of [9,13]){const a=p.stages[n-1],b=base.stages[n-1];for(const k of ['width','height','playBounds','terrainBounds','objectives','events','encounters','markers','initialState','anchors','routes'])assert.deepEqual(a[k],b[k],n+'/'+k);assert.deepEqual(a.terrains.find(t=>t.id===(n===9?'yard-floor':'act2-floor')),b.terrains.find(t=>t.id===(n===9?'yard-floor':'act2-floor')));assert.equal(a.units.length,b.units.length);for(let i=0;i<a.units.length;i++){const x=structuredClone(a.units[i]),y=structuredClone(b.units[i]);for(const k of ['y','spawnY']){delete x[k];delete y[k];}assert.deepEqual(x,y,n+'/'+x.id+' non-pose contract');}if(n===13)for(const id of ['gate-gate','cave-roof','forecourt-shot-ledge'])assert.deepEqual(a.terrains.find(t=>t.id===id),b.terrains.find(t=>t.id===id));}checks.push('28 maps, bounds, NPC floor, objectives/events/counts/resources, 13 closed gate and route-entry ledge preserved');
+const h=await appHarness();for(const n of [9,13])for(const old of [false,true]){const profile=h.profileThrough(n),app=h.load(profile);app.launch(n);h.finish(app);const b=app.engine.b;if(old){const prior=h.g.HonroMaps.createBattle(base.stages[n-1],base,profile,{origin:'campaign'});b.terrain=plain(prior.terrain);b.honroWorldTerrain=plain(prior.honroWorldTerrain);}
+const terrain=plain(b.terrain),world=plain(b.honroWorldTerrain);app.export();await h.import(await h.exported());app.continue();h.finish(app);assert.deepEqual(plain(app.engine.b.terrain),terrain);assert.deepEqual(plain(app.engine.b.honroWorldTerrain),world);checks.push(`${n} ${old?'old':'new'} geometry export/import/Continue exact`);}
+await report('stage9-13-contracts',checks,{base:'25ae85c',scope:'Contract and App save fixture only; no normal-combat or browser claim.'});console.log('PASS',checks);
