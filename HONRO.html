@@ -11638,6 +11638,7 @@ exports.recommendedLevel = recommendedLevel;
 exports.isOpen = isOpen;
 exports.mapPath = mapPath;
 exports.nextStage = nextStage;
+const waveReflection_1 = require("./waveReflection");
 const passiveBalance_1 = require("./passiveBalance");
 const warriorData_1 = require("./warriorData");
 const projectileGrowth_1 = require("./projectileGrowth");
@@ -11735,7 +11736,7 @@ function skillEffectRows(id, rank) {
             M13: [row('후속 폭발', `${6 + rr}회 · 약 1초`), row('속성·전개', '불 · 첫 폭발 주변 공중에 무작위 연쇄'), row('후속 폭발 피해', num(dmg * 14 / 48)), row('후속 폭발 반경', '55 · 분포 반경 240'), row('대상별 후속 명중', '최대 3회')],
             M05: [row('낙뢰 대기', '착탄 후 0.35초'), row('낙뢰 차폐', '상부 지형에 가로막힘')],
             M03: [row('발동', '적·지형 접촉 시'), row('펼침 방향', '충돌 지점에서 진행 방향의 양옆'), row('원호 각도', `${52 + 6 * (rr - 1)}°`), row('원호 두께', `${30 + 2 * (rr - 1)}`)],
-            M11: [row('반사 횟수', `${Math.round(mix(2, 7))}회`), row('반사 위력', '매번 +8% · 최대 +48%')],
+            M11: [row('반사 분열', (0, waveReflection_1.waveReflectionPlan)(rr).map(n => `×${n}`).join(' → ')), row('최대 동시 파동', `${(0, waveReflection_1.waveReflectionPlan)(rr).reduce((a, n) => a * n, 1)}개`), row('반사 위력', `매번 ${Math.round(waveReflection_1.WAVE_REFLECTION_DECAY * 100)}% 유지`)],
             M12: [row('삼각형 완성', '발사점과 지형 반사점 2곳'), row('경계 두께', `${20 + 2 * (rr - 1)}`), row('내부 피해', num(dmg * 16 / 38)), row('중복 명중', '최대 2변')],
             M14: [row('원주 반경', '충전에 따라 180~900'), row('원주 두께', num(mix(34, 50))), row('원주 피해', '반경 220까지 100% · 확대 시 감소'), row('최소 피해', '28% · 원 안쪽 피해 없음')],
             M15: [row('외곽 경계', '팔각형'), row('중심 추가 피해', num(dmg * 62 / 34)), row('기선 두께', `${20 + 2 * (rr - 1)}`), row('중복 명중', '최대 3선')],
@@ -12039,7 +12040,7 @@ exports.SKILL_LORE = {
     M13: '호리병이 터진 자리에 붉은 불씨가 흩어진다. 허공에 머문 불꽃들이 잇달아 피어나며 주위를 불길로 감싼다.',
     M05: '호리병을 던져 하늘에 청할 자리를 정한다. 짧은 정적 뒤, 창백한 천뢰가 그곳을 가른다.',
     M03: '지팡이로 허공에 큰 획을 긋는다. 적에게 닿은 기운이 양옆으로 벌어지며 흰 붓끝처럼 전열을 쓸어 벤다.',
-    M11: '단단한 곳에 부딪힌 기운을 다시 거둬 보낸다. 벽과 천장을 오간 파문이 더 묵직하게 적을 두드린다.',
+    M11: '단단한 곳에 부딪힌 기운이 갈라져 돌아온다. 벽과 천장을 오갈수록 옅어진 파문들이 서로 다른 길로 적을 두드린다.',
     M12: '날아간 기운이 땅과 벽에 자취를 남긴다. 흩어진 세 자리가 이어지면 그 안에 숨은 적까지 흔들린다.',
     M14: '발아래 고요한 물결을 일으킨다. 비어 있는 중심을 두고 둥글게 번진 기운이 먼 적에게 닿는다.',
     M15: '허공에 팔방의 길을 펼친다. 먹빛 여백 사이로 흰 기선이 뻗어 적의 몸과 진형을 가른다.',
@@ -12102,7 +12103,7 @@ exports.SKILL_LORE = {
 "skillMechanics": function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newSkill = exports.iceGourdFuse = exports.ICE_GOURD_FUSE = exports.SKILL_REVISION = void 0;
+exports.newSkill = exports.iceGourdFuse = exports.ICE_GOURD_FUSE = exports.SKILL_REVISION = exports.waveReflectionVelocities = exports.WAVE_REFLECTION_DECAY = exports.waveReflectionPlan = void 0;
 exports.mainBranch = mainBranch;
 exports.specialty = specialty;
 exports.trajectoryMultiplier = trajectoryMultiplier;
@@ -12130,6 +12131,11 @@ exports.gateCandidate = gateCandidate;
 exports.useGate = useGate;
 exports.tickRedesign = tickRedesign;
 exports.redesignPrediction = redesignPrediction;
+const waveReflection_1 = require("./waveReflection");
+var waveReflection_2 = require("./waveReflection");
+Object.defineProperty(exports, "waveReflectionPlan", { enumerable: true, get: function () { return waveReflection_2.waveReflectionPlan; } });
+Object.defineProperty(exports, "WAVE_REFLECTION_DECAY", { enumerable: true, get: function () { return waveReflection_2.WAVE_REFLECTION_DECAY; } });
+Object.defineProperty(exports, "waveReflectionVelocities", { enumerable: true, get: function () { return waveReflection_2.waveReflectionVelocities; } });
 const passiveBalance_1 = require("./passiveBalance");
 const contribution_1 = require("./contribution");
 const totemBehavior_1 = require("./totemBehavior");
@@ -12337,6 +12343,8 @@ function initRedesignCast(e, s, u, actualKiSpent = e.manaCost(s, u)) {
         delete u.prepared;
     const roots = e.b.projectiles.filter(p => p.owner === u.id && p.shot === e.b.shot);
     for (const p of roots) {
+        if (s.mode === 'waveBounce')
+            p.reflectionVersion = 1;
         if (s.id === 'M02')
             p.fuseAt = (0, exports.iceGourdFuse)(u.lastPower);
         p.apexY = p.y;
@@ -12630,6 +12638,39 @@ function redesignImpact(e, p, h) {
             return true;
         }
         gourdBurst(e, p);
+        return true;
+    }
+    if (p.mode === 'waveBounce' && p.reflectionVersion === 1) {
+        if (h.terrain) {
+            const count = (0, waveReflection_1.waveReflectionPlan)(r)[p.bounces];
+            if (!count) {
+                e.remove(p);
+                return true;
+            }
+            const velocities = (0, waveReflection_1.waveReflectionVelocities)(p, h.n, count);
+            // Retain launch age, credit, shot and owner: descendants share the original
+            // 12-second lifetime and never reset their generation on a terrain corner.
+            p.contacts = [...(p.contacts || []), { x: h.x, y: h.y }];
+            p.bounces++;
+            p.damage *= waveReflection_1.WAVE_REFLECTION_DECAY;
+            p.x = h.x + h.n.x * (p.radius + 1);
+            p.y = h.y + h.n.y * (p.radius + 1);
+            p.child = true;
+            p.autonomous = true;
+            p.trail = [{ x: p.x, y: p.y }];
+            for (const [i, v] of velocities.entries()) {
+                const q = i === 0 ? p : { ...p, id: e.b.nextId++, hit: [...p.hit], contacts: [...p.contacts], trail: [{ x: p.x, y: p.y }] };
+                Object.assign(q, v, { prevVy: v.vy });
+                if (i)
+                    e.b.projectiles.push(q);
+            }
+            e.fx('inkImpact', h.x, h.y, '#dce3da', 30);
+            e.emit('sound', { name: 'qiRebound' });
+        }
+        else if (h.unit) {
+            e.hurt(h.unit, p.damage, p.owner, false, p, h);
+            e.remove(p);
+        }
         return true;
     }
     if (p.mode === 'waveBounce' || p.mode === 'waveTriangle') {
@@ -12966,6 +13007,15 @@ function tickRedesign(e, dt) {
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e, u, s, angle, power, representative = false, ignoreUnits = false) {
     const b = structuredClone(e.b), Sim = e.constructor, sim = new Sim(b), actor = sim.unit(u.id);
+    const wave = s.mode === 'waveBounce', impact = sim.impact.bind(sim);
+    if (wave)
+        sim.impact = (p, h) => { if (p.bounces >= 1) {
+            p.x = h.x;
+            p.y = h.y;
+            sim.remove(p);
+        }
+        else
+            impact(p, h); };
     const collision = sim.collision.bind(sim);
     let contact = null, stepContact = null, terminalContact = null, capture = true;
     sim.collision = (a, z, r, owner, ignored, units = true, ...rest) => { const h = collision(a, z, r, owner, ignored, ignoreUnits ? false : units, ...rest); if (capture && h) {
@@ -13019,7 +13069,7 @@ function arrowPrediction(e, u, s, angle, power, representative = false, ignoreUn
             if (p === primary && !wasApex && p.apex)
                 apex = { x: p.x, y: p.apexY ?? p.y };
             if (!p.secondary && (!representative || p === tracked)) {
-                const key = representative ? primary.id : p.id, list = paths.get(key) || [];
+                const key = representative ? primary.id : p.id, list = paths.get(key) || [...(p.trail.slice(0, 1))];
                 if (i % 3 === 0 || !b.projectiles.includes(p))
                     list.push({ x: p.x, y: p.y });
                 paths.set(key, list);
@@ -13047,6 +13097,8 @@ function arrowPrediction(e, u, s, angle, power, representative = false, ignoreUn
 function redesignPrediction(e, u, s, angle, power, representative = false, ignoreUnits = false) {
     if (!s.redesigned)
         return null;
+    if (s.mode === 'waveBounce')
+        return arrowPrediction(e, u, s, angle, power, false, ignoreUnits);
     if (s.cls === 'archer')
         return arrowPrediction(e, u, s, angle, power, representative, ignoreUnits);
     if (s.cls !== 'mage')
@@ -13134,7 +13186,7 @@ const notes = {
     M02: '적과 지형에서 튀는 호리병입니다. 비행 중 발사를 다시 누르면 터집니다. 재입력이 없으면 충전량에 따라 3.2~6.4초 뒤 폭발하고 맞은 적을 한 턴 느리게 만듭니다.',
     M04: '폭발점 주변의 적마다 번개가 한 번씩 닿습니다. 번개는 사이의 벽과 다른 적을 통과합니다.', M13: '첫 폭발 주변에 작은 폭발이 연달아 생깁니다. 같은 적은 후속 폭발에 최대 세 번 맞습니다.',
     M05: '착탄 후 잠시 뒤 위에서 천뢰가 내려칩니다. 천장이나 위쪽 지형에 막힐 수 있습니다.', M03: '닿은 자리에서 진행 방향의 양옆으로 원호가 펼쳐집니다.',
-    M11: '지형에서 반사될 때마다 피해가 8%씩, 최대 48%까지 증가합니다.', M12: '발사점과 두 번의 반사점이 삼각형을 만듭니다. 경계와 내부를 함께 공격합니다.',
+    M11: '첫 발은 하나입니다. 경지별 반사·분열 순서에 따라 최대 12개로 퍼지고 반사마다 위력 82%를 유지합니다. 예상선은 첫 반사 뒤까지만 보입니다.', M12: '발사점과 두 번의 반사점이 삼각형을 만듭니다. 경계와 내부를 함께 공격합니다.',
     M14: '충전한 만큼 큰 원주를 공격합니다. 중심은 비어 있으며 너무 넓히면 피해가 줄어듭니다.', M15: '착탄점에 팔각형과 여덟 기선을 펼칩니다. 중심의 추가 피해가 크고 같은 적은 최대 세 기선에 맞습니다.',
     M07: '적이 다가오면 주위에 충격을 내는 진목입니다. 유지되는 동안 매 턴 다시 발동합니다.', M10: '진목을 밟은 아군의 체력·기력·이동력을 회복합니다. 아군마다 한 턴에 한 번 이용합니다.',
     M08: '적이 다가오면 주위 적을 끌어모읍니다. 벽을 뚫고 끌지는 못하며 매 턴 다시 발동합니다.', M09: '발밑과 착탄점에 진목 한 쌍을 만듭니다. 진목 위에서 상호작용하면 건너갑니다. 각 동행은 한 턴에 한 번 이용하며 새 진목은 오래된 것을 교체합니다.',
@@ -13195,7 +13247,7 @@ function installSkillRedesign(skills) {
         M01: '지팡이에서 회백색 기파를 보내 작은 압력파를 만든다. SP를 쓰지 않는 기본 공격.', M06: '도자기 호리병이 터지고 6~13개의 짧은 불꽃 파편을 흩뿌린다. 한 적 최대 2파편.',
         M02: '적과 지형에서 튀다가 발사 버튼을 다시 누르면 폭발. 미입력 시 충전량에 따라 3.2~6.4초 뒤 자동 폭발. 얼음조각 6~13개, 맞은 적 1턴 20~35% 감속.', M04: '폭발점에서 260~330 안의 모든 유닛에게 각각 45% 번개. 다른 유닛과 벽을 무시하며 대상당 1회.',
         M13: '큰 폭발 후 1초 동안 반경 240에 작은 폭발 7~14회. 한 적은 최대 3회.', M05: '착탄점을 표시하고 0.35초 뒤 수직 천뢰가 내려온다. 상부 지형에 차폐될 수 있다. 2R 재사용.',
-        M03: '적·지형에 닿으면 반경 150, 각도 52~94도의 원호가 충돌점에서 진행 방향에 수직으로 펼쳐진다.', M11: '지형에 2~7회 반사한다. 반사마다 피해 +8%, 최대 +48%. 적에게 닿으면 타격.',
+        M03: '적·지형에 닿으면 반경 150, 각도 52~94도의 원호가 충돌점에서 진행 방향에 수직으로 펼쳐진다.', M11: '한 발이 지형에 반사하며 경지별 순서대로 분열한다. 각 반사 후 위력 82% 유지. 적 명중 또는 마지막 세대의 다음 지형 충돌 시 소멸.',
         M12: '발사점과 두 지형 반사점의 삼각형. 경계 38(최대 2변), 내부 16 피해. 작은 삼각형은 내부 피해 없음.', M14: '충전으로 180~900 반지름을 정한다. 내부는 피해 없이 원주만 타격. 피해는 220/r, 최소 28%.',
         M15: '목표에 팔방 기선과 팔각형 외곽 기문을 펼친다. 중심 62, 선 34, 같은 적 최대 3선. 2R 재사용.', M07: '바닥에 고정된 진목. 적 턴에 반경 45를 밟으면 반경 95의 기파가 난다. 진목마다 같은 적은 턴당 1회 피해. SP에 따라 2~9턴 유지.',
         M10: '아군이 밟으면 체력 7~14%, 기력 8~15%, 이동력 15~36% 회복. 아군마다 턴당 1회, SP에 따라 4~7턴 반복 사용.', M08: '적 턴에 260~365 범위 적의 이동을 진목으로 유인한다. 밟은 적은 턴당 1회 피해를 받고 남은 이동을 잃는다. 보스는 유인·구속 면역. 벽을 통과하지 않으며 SP에 따라 2~9턴 유지.',
@@ -15077,6 +15129,8 @@ function validBattle(raw, legacyXp = false, oldXp = false) {
             return fail();
         if (q.emissions !== undefined && (!finite(q.emissions) || q.emissions < 0 || q.emissions > 100))
             return fail();
+        if (q.reflectionVersion !== undefined && (q.reflectionVersion !== 1 || q.mode !== 'waveBounce' || !Number.isInteger(q.bounces) || q.bounces < 0 || q.bounces > 3))
+            return fail();
         if (q.targetId !== undefined && (!safe(q.targetId) || !ids.has(q.targetId)))
             return fail();
         if (q.drag !== undefined && (!finite(q.drag) || q.drag < 0 || q.drag > 5) || q.gravityScale !== undefined && (!finite(q.gravityScale) || Math.abs(q.gravityScale) > 10) || q.skillRank !== undefined && (!Number.isInteger(q.skillRank) || q.skillRank < 1 || q.skillRank > 8))
@@ -16309,6 +16363,26 @@ function advanceWaterfall(p, dt, t, air) {
         }
     }
     return { ...q, waterEntered, waterEntryPoint };
+}
+
+},
+"waveReflection": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WAVE_REFLECTION_DECAY = void 0;
+exports.waveReflectionPlan = waveReflectionPlan;
+exports.waveReflectionVelocities = waveReflectionVelocities;
+/** Authored SP contract. Extra SP7 value comes from ordinary damage/mana growth. */
+const PLANS = [[1], [2], [2, 1], [2, 2], [2, 2, 1], [2, 2, 2], [2, 2, 2], [2, 2, 3]];
+exports.WAVE_REFLECTION_DECAY = .82;
+function waveReflectionPlan(rank) { return PLANS[Math.max(0, Math.min(7, Math.floor(rank || 1) - 1))]; }
+/** Symmetric around specular reflection; narrow at grazing angles so no child
+ * points back into the same face and consumes generations without travelling. */
+function waveReflectionVelocities(p, n, count) {
+    const dot = p.vx * n.x + p.vy * n.y, vx = (p.vx - 2 * dot * n.x) * .84, vy = (p.vy - 2 * dot * n.y) * .84;
+    const speed = Math.hypot(vx, vy), angle = Math.atan2(vy, vx), out = Math.max(0, (vx * n.x + vy * n.y) / (speed || 1));
+    const delta = Math.min(Math.PI / 20, Math.asin(Math.min(1, out)) * .7);
+    return (count === 3 ? [-delta, 0, delta] : count === 2 ? [-delta, delta] : [0]).map(d => ({ vx: Math.cos(angle + d) * speed, vy: Math.sin(angle + d) * speed }));
 }
 
 },
