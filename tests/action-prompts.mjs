@@ -24,6 +24,7 @@ for(const name of ['narrative-legacy-v0','split-campaign-v1']){
  assert.equal(JSON.stringify(old),before,'legacy data remains immutable');
 }
 assert.equal(legacyGuides,12);
+for(const [old,display]of [['주민 2 곁에서 E를 누르세요','주민 2 곁에서 구조하세요'],['받이진 1 앞에서 E를 누르세요','받이진 1을 활성화하세요'],['휘겸 · 숨은 기록실 열기 · E','휘겸 · 숨은 기록실 열기']]){assert.equal(g.HonroActionPrompts.text(old),display);assert.equal(g.HonroActionPrompts.text(display),display);}
 assert.equal(g.HonroActionPrompts.text('석축 E 점프 입구 · E 상호작용'),'석축 E 점프 입구 · E 상호작용','region names and explicit key tables stay accurate');
 const source=await readFile('shared/runtime/interactions.js','utf8');
 const listeners={},host={dataset:{},innerHTML:''};g.document={getElementById:()=>host,addEventListener:(kind,fn)=>listeners[kind]=fn};

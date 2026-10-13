@@ -20,7 +20,7 @@ check('exact normal save targets the identified 551/551 spirit, not the healthy 
 });
 check('40% boundary returns the E cue to the real resident, preserving actual eligibility',()=>{
  const q=fixture();q.spirit.hp=q.spirit.maxHp*.4+.01;assert.equal(result(q).targets[0].unitId,q.spirit.id);assert.equal(A.eligibility({engine:{b:q.b,active:q.sodan}},q.m).ok,false);
- q.spirit.hp=q.spirit.maxHp*.4;const r=result(q);assert.equal(r.targets[0].unitId,q.resident.id);assert.equal(r.targets[0].x,q.resident.x);assert.equal(r.targets[0].kind,'interact');assert(r.currentInstruction.includes('주민에게 다가가 E'));assert.equal(A.eligibility({engine:{b:q.b,active:q.sodan}},q.m).ok,true);
+ q.spirit.hp=q.spirit.maxHp*.4;const r=result(q);assert.equal(r.targets[0].unitId,q.resident.id);assert.equal(r.targets[0].x,q.resident.x);assert.equal(r.targets[0].kind,'interact');assert(r.currentInstruction.includes('주민에게 다가가 혼을 분리하세요'));assert.equal(A.eligibility({engine:{b:q.b,active:q.sodan}},q.m).ok,true);
 });
 check('dead, missing or subdued spirit falls back to the resident; dead Sodan retains legal defeat target',()=>{
  for(const change of [q=>Object.assign(q.spirit,{dead:true,hp:0}),q=>q.b.units=q.b.units.filter(u=>u!==q.spirit),q=>Object.assign(q.spirit,{honroSubdued:true,hp:q.spirit.maxHp*.2})]){const q=fixture();change(q);assert.equal(result(q).targets[0].unitId,q.resident.id);assert.equal(A.eligibility({engine:{b:q.b,active:q.sodan}},q.m).ok,true);}

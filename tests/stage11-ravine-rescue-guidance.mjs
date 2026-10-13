@@ -32,18 +32,18 @@ check('nearby threat first, exact count and boundary, without showing later E/we
 });
 check('living spirit above 40% shows only weakening; exact 40% switches to Sodan E',()=>{
  const q=make();q.spirit.hp=q.spirit.maxHp*.4+.01;assert.equal(text(q,'붙은 혼의 체력을 40% 이하로 낮추세요').ok,false);
- q.spirit.hp=q.spirit.maxHp*.4;assert.equal(text(q,'소단으로 주민에게 다가가 E').ok,true);
- q.b.active=q.archer.id;assert.equal(text(q,'소단으로 주민에게 다가가 E').ok,false,'Archer cannot extract a living spirit');
+ q.spirit.hp=q.spirit.maxHp*.4;assert.equal(text(q,'소단으로 주민에게 다가가 혼을 분리하세요').ok,true);
+ q.b.active=q.archer.id;assert.equal(text(q,'소단으로 주민에게 다가가 혼을 분리하세요').ok,false,'Archer cannot extract a living spirit');
 });
 check('dead Sodan gets legal defeat alternative, then any companion E after spirit defeat',()=>{
  const q=make();q.sodan.hp=0;q.sodan.dead=true;q.b.active=q.archer.id;
  assert.equal(text(q,'주민에게 붙은 혼을 제압하세요').ok,false);
  q.spirit.hp=q.spirit.maxHp*.3;assert.equal(text(q,'주민에게 붙은 혼을 제압하세요').ok,false);
- q.spirit.hp=0;q.spirit.dead=true;assert.equal(text(q,'동행으로 주민에게 다가가 E').ok,true);
+ q.spirit.hp=0;q.spirit.dead=true;assert.equal(text(q,'동행으로 주민에게 다가가 구조하세요').ok,true);
 });
 check('defeated or subdued spirit never asks for nonexistent weakening or Sodan',()=>{
- const q=make();q.b.active=q.archer.id;q.spirit.hp=0;q.spirit.dead=true;assert.equal(text(q,'동행으로 주민에게 다가가 E').ok,true);
- q.spirit.dead=false;q.spirit.hp=q.spirit.maxHp*.2;q.spirit.honroSubdued=true;assert.equal(text(q,'동행으로 주민에게 다가가 E').ok,true);
+ const q=make();q.b.active=q.archer.id;q.spirit.hp=0;q.spirit.dead=true;assert.equal(text(q,'동행으로 주민에게 다가가 구조하세요').ok,true);
+ q.spirit.dead=false;q.spirit.hp=q.spirit.maxHp*.2;q.spirit.honroSubdued=true;assert.equal(text(q,'동행으로 주민에게 다가가 구조하세요').ok,true);
 });
 check('every other stage, old draft revision and non-rescue objective have byte-equal presentation',()=>{
  const original=H.rescueInstruction;

@@ -2469,3 +2469,5 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 - 현행 runtime 저작과 12장 재생성기의 guide를 함께 수정한다. campaign의 `석축 E`는 키가 아닌 지형 구역이므로 유지한다. 두 HTML은 최종 통합 빌드에서 생성한다.
 - 구형 narrative/split JSON 12개 guide는 원본 그대로 두며, `HonroActionPrompts.text`가 알려진 안내 구절만 표시 시 치환한다. 저장·역사 fixture·캐릭터·턴수·목표·지형·대사 metadata를 바꾸지 않는다. 저장된 Story 안내/기록의 표시 경계는 화자 검수 변경에서 연결한다.
 - 검증: `node tests/action-prompts.mjs` (30장 현재 안내/HUD, legacy 12개 표시·불변성, 실제 KeyE와 click 공통 축지 호출) 및 objective-clarity 39개 통과. 브라우저 실화면·최종 통합 verify·master/Pages는 별도 최종 검수이며 이 단위의 통과로 주장하지 않는다.
+
+- 후속 확인: 기준 `0372047`과 현재 runtime의 `HONRO_PROJECT`·`HONRO_CONTENT`·`HONRO_CORE.SKILLS`를 재귀 대조하여 guide 문자열 6개 이외 값·키·형식이 모두 동일함을 확인했다. `rescue-targets` 15개도 통과했다. 구 저장의 번호가 붙은 주민/받이진 안내와 목표 뒤 ` · E`는 안내 표시 함수 안에서만 정규화하며 멱등성을 검사한다.

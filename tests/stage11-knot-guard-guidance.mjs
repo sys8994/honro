@@ -32,14 +32,14 @@ check('east knot exposes the exact local guard gate before approach and switches
  assert.equal(text(q,'동쪽 혼매듭 주변의 들림 2명을 먼저 제압하세요').reason,'주변 들림을 먼저 제압하세요');
  q.sodan.x-=1200;assert.equal(text(q,'동쪽 혼매듭 주변의 들림 2명을 먼저 제압하세요').reason,'더 가까이 이동');q.sodan.x=q.m.x;
  one.honroSubdued=true;assert.equal(text(q,'동쪽 혼매듭 주변의 들림 1명을 먼저 제압하세요').ok,false);
- Object.assign(two,{dead:true,hp:0});assert.equal(text(q,'동쪽 혼매듭 해체 · E').ok,true);
+ Object.assign(two,{dead:true,hp:0});assert.equal(text(q,'동쪽 혼매듭 해체').ok,true);
  assert.deepEqual(plain(A.interactionThreats(q.b,q.m)),[]);
 });
 check('west knot preserves the required Sodan headline after guards are gone',()=>{
  const q=make('knot-west'),one=q.foes[0];q.b.active=q.archer.id;Object.assign(one,{x:q.m.x+100,y:q.m.y});
  text(q,'서쪽 혼매듭 주변의 들림 1명을 먼저 제압하세요');one.honroSubdued=true;
- const rule=text(q,'소단 · 서쪽 혼매듭 해체 · E');assert.equal(rule.ok,false);assert.equal(rule.reason,'소단 필요');
- q.b.active=q.sodan.id;assert.equal(text(q,'소단 · 서쪽 혼매듭 해체 · E').ok,true);
+ const rule=text(q,'소단 · 서쪽 혼매듭 해체');assert.equal(rule.ok,false);assert.equal(rule.reason,'소단 필요');
+ q.b.active=q.sodan.id;assert.equal(text(q,'소단 · 서쪽 혼매듭 해체').ok,true);
 });
 check('legacy and custom chapters and unrelated objectives retain their existing presentation',()=>{
  for(const alter of [b=>b.honroStage11EncounterRevision=1,b=>delete b.honroStage11EncounterRevision,b=>b.honroCustom=true,b=>b.honroStage=12,b=>b.honroAct2Revision=1]){

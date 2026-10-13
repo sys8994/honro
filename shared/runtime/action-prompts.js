@@ -155,6 +155,6 @@ const phrases=[
     "대조한"
   ]
 ];
-function text(value){if(typeof value!=='string')return value;for(const [before,after] of phrases)value=value.split(before).join(after);return value;}
+function text(value){if(typeof value!=='string')return value;for(const [before,after] of phrases)value=value.split(before).join(after);return value.replace(/주민 (\d+) 곁에서 E를 누르세요/g,'주민 $1 곁에서 구조하세요').replace(/받이진 (\d+) 앞에서 E를 누르세요/g,'받이진 $1을 활성화하세요').replace(/ · E$/,'');}
 G.HonroActionPrompts={text};
 })(globalThis);
