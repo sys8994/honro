@@ -5,6 +5,9 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {guidanceRuntime,canvas} from './act2-guidance-helpers.mjs';
 const g=await guidanceRuntime();
+// Browsers fix context attributes on the first getContext call. Native Canvas
+// otherwise reapplies Scene's alpha:false request and creates an opaque backing.
+g.document.createElement=()=>{const cv=canvas(),ctx=cv.getContext('2d');cv.getContext=()=>ctx;return cv;};
 vm.runInContext(await readFile('shared/runtime/portraits.js','utf8'),g);
 g.HONRO_STORY_PORTRAITS=JSON.parse(await readFile('game/config/story-portraits.json','utf8'));
 const hash=cv=>createHash('sha256').update(cv.toBuffer('image/png')).digest('hex');
@@ -22,6 +25,7 @@ for(const [who,kind] of Object.entries(expected)){
  const portrait=g.HONRO_STORY_PORTRAITS[who],original=JSON.stringify(portrait),actor=g.HonroPortraits.storyActor(who,null),cv=canvas(400,440);
  assert.equal(actor.name,who);assert.equal(actor.side,2);assert.equal(g.resolveRebuildCharacter(actor),null,`${who}: must not resolve to a companion`);
  assert.equal(g.HonroActorVisual.kind(actor),kind);assert(g.HonroPortraits.draw(cv,actor,portrait.class));
+ assert.equal(cv.getContext('2d').getImageData(0,0,1,1).data[3],0,`${who}: transparent portrait corner`);
  const digest=hash(cv);assert(![...party.values()].includes(digest),`${who}: must not paint any companion`);
  assert.equal(JSON.stringify(portrait),original);const live={...actor,id:`live-${who}`,x:123,y:456,hp:17};
  assert.equal(g.HonroPortraits.storyActor(who,live),live,'live authored actor must retain identity');
