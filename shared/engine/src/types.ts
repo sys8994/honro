@@ -383,7 +383,7 @@ export interface Battle {
     stakes?: {effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>}[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean;afterActor?:boolean};
-    occultTraps?: {id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number}[];
+    occultTraps?: {autonomous?:boolean;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number}[];
     vertical?: boolean;
     routePoints?: Vec[];
     volley?: {template: Projectile; remaining: number; elapsed: number; interval: number; index: number; angle: number; power: number};

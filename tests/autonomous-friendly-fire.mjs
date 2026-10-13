@@ -89,3 +89,23 @@ for(const kind of ['stalker','lantern','charger']){
  assert.equal(state(ally),before,kind+' allied actor excluded from automatic target/impulse');assert(enemy.hp<enemy.maxHp,kind+' attacks foe');assert(!a.b.summonTurn,kind+' turn finishes');
 }
 console.log('PASS orbit blades, exact enemy damage/XP, ricochet and complete summon turns');
+// Automatic delayed explosions persist eligibility without changing their original damage calculation.
+for(const autonomous of [false,true]){
+ const a=arena('M01'),ally=a.add(0,800,{fixed:false}),foe=a.add(1,800),p=a.fire();Object.assign(p,{autonomous,x:800,y:1460,blast:100,damage:50});
+ a.e.createZone(p,'delay');const z=a.b.zones[0],b=JSON.parse(JSON.stringify(a.b)),e=new C.Engine(b);e.random=()=>.99;b.teamEnds[z.triggerSide]=z.triggerCount;e.triggerDelays(z.triggerSide);
+ assert.equal(e.unit(ally.id).hp===ally.maxHp,autonomous);assert(e.unit(foe.id).hp<foe.maxHp);assert.equal(b.zones.length,0);
+}
+// Continuous automatic effects recheck allegiance after control changes and Continue.
+{
+ const a=arena('O01'),target=a.add(1,800);a.e.applyCurse(target,a.u,'dot',40,1,0,false,{autonomous:true});
+ target.honroAlly=true;target.earthbind={owner:a.u.id,damage:40,until:99,autonomous:true};const b=JSON.parse(JSON.stringify(a.b)),e=new C.Engine(b),t=e.unit(target.id),hp=t.hp;e.tickCurses();assert.equal(t.hp,hp);assert(!t.slowed);
+}
+// Counter stance waits for an actual opponent instead of spending itself on a side-1 ally.
+{
+ const a=arena('S08'),ally=a.add(1,270,{honroAlly:true}),enemy=a.add(1,300);assert(a.e.fire('S08',0,.7));a.b.side=1;a.b.phase='flight';const hp=ally.hp;a.e.tick(.1);assert.equal(ally.hp,hp);assert(enemy.hp<enemy.maxHp);assert.equal(a.u.martialGuard.counter,false);
+}
+// An enemy-owned automatic attack still harms the opposing player coalition.
+{
+ const a=arena('M01'),enemy=a.add(1,800),p=a.fire();Object.assign(p,{owner:enemy.id,side:1,autonomous:true});const hp=a.u.hp;a.e.blast(a.u.x,a.u.y-a.u.h*.5,100,50,enemy.id,false,p);assert(a.u.hp<hp);
+}
+console.log('PASS delayed Continue, automatic DOT allegiance changes, counter ordering and opposing enemy attacks');
