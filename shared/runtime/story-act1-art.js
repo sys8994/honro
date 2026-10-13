@@ -55,7 +55,6 @@ function markerArt(scene,m){const b=scene.battle;if(b?.honroNarrativeRevision!==
 function replacedLandmark(b,l){if(b?.honroNarrativeRevision!==1||b.honroCustom)return false;const kind=l.asset?.kind||l.kind;
  if(kind==='receiverStone'&&(b.honroMarkers||[]).some(m=>m.type==='receiver'&&Math.hypot(m.x-l.x,m.y-l.y)<5))return true;
  if(b.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=b.terrain.find(t=>t.id==='cliff-cleat');return !!t&&Math.hypot(l.x-(t.x+t.w/2),l.y-(t.y+t.h))<5;}return false;}
-function flask(c,u,t,receiving){if(!alive(u))return;const p={x:u.x+u.facing*24,y:u.y-u.h*.6};c.fillStyle='#827259';c.strokeStyle='#d4c4a4';c.lineWidth=2;c.beginPath();c.ellipse(p.x,p.y+10,10,14,0,0,Math.PI*2);c.ellipse(p.x,p.y-7,7,9,0,0,Math.PI*2);c.fill();c.stroke();if(receiving)for(let i=0;i<5;i++){const a=i*1.25+t*.45,r=18+((1-(t*.28+i/5)%1)*65),q={x:p.x+Math.cos(a)*r,y:p.y+Math.sin(a)*r*.65};curve(c,q,p,9,'#d4cba66e',1);pulse(c,q,p,9,t+i,1);}}
 function evidence(b){const s=b.honroState||{},id=b.honroStage;
  if(id===3){const a=anchor(b,'ledger');if(!a)return null;return{kind:'eave',at:{x:a.x-65,y:a.y-185}};}
  if(id===4){const a=anchor(b,'gate');if(!a)return null;return{kind:'village',at:{x:a.x-120,y:a.y-178}};}
@@ -86,7 +85,8 @@ function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G
   // The attackable straps are broad cloth lashings, distinct from fine red
   // protective thread. Loose ends are attached to their actual terrain targets.
   for(const a of d.seals){const p={x:a.x+a.w/2,y:a.y+a.h*.5},z={x:p.x+90,y:p.y+(a.broken?85:8)};curve(c,{x:p.x-90,y:p.y-8},z,a.broken?45:5,'#c0a77d',8);if(!a.broken)knot(c,p,0,'#d7bd91');}
-  flask(c,d.mage,t,d.receiving);
+  // Damheo already carries his gourd in the shared party rig. Do not paint
+  // a second, oversized hand prop (or particles aimed at that absent prop).
  }
  if(d.kind==='receivers'){for(const m of d.receivers){const to={x:m.x,y:m.y-17},loose=m.collected;curve(c,d.at,to,loose?115:Math.sin(t*12)*11,loose?'#a58363':'#b25751');if(loose)pulse(c,d.at,to,115,t,4);}knot(c,{x:d.at.x,y:d.at.y-28});}
  if(d.kind==='binding'){const a=d.binding,p={x:a.x+a.w/2,y:a.y+a.h/2},v=d.boss,hand={x:v.x-8,y:v.y-v.h*.58};
