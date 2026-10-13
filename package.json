@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node workshop/build.mjs",
     "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs && node tools/map-forge/apply-act1-roster.mjs",
-    "verify": "npm run build && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm --prefix game run verify && npm run test:integration && npm run test:performance",
+    "verify": "npm run build && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm run test:current-story-display && npm --prefix game run verify && npm run test:integration && npm run test:performance",
+    "test:current-story-display": "node tests/current-story-display.mjs",
     "test:action-prompts": "node tests/action-prompts.mjs",
     "test:dialogue-controls": "node tests/dialogue-controls-audio.mjs",
     "test:dialogue-hit-feedback": "node tests/dialogue-hit-feedback.mjs",
