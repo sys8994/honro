@@ -61,3 +61,10 @@
 - 신규 수련점은 종료된 전투의 `startXP`와 현재 영웅에 canonical `pointsEarned`를 적용한 차이만 사용한다. 현재 잔여 수련점으로 한정해 표시하며 투자 후 해제한다. 진입 XP 없는 구저장/재플레이/디버그는 추정 표시하지 않는다. 수련점·경험치·성장·보상 계산은 변경하지 않는다.
 - 새 전용 검사: `node tests/rest-scene-controls.mjs`, `node tests/rest-scene-gestures.mjs`. App/DOM 대역 검사이며 실제 멀티터치나 브라우저 미술 승인과 다르다.
 - 초기 집중 검사: rest-idle 7, rest-journey 9, dialogue-controls-audio 6, 신규 상태 6 및 제스처 10그룹 통과. campaign-transition-regressions는 앞 9항목 후 기존 encounter-density 역사 fixture 해시 불일치(dd11f9… 대 4e6862…)에서 중단했다. 이를 새 통과로 계산하지 않는다. Native/실브라우저/통합·배포 검수는 별도 기록한다.
+
+### 후속 배치·입력 보강
+
+- 333px Native 검수에서 동행 이름과 모닥불 버튼이 겹친 첫 시안을 수정했다. 모닥불은 이름 아래, 점세개 표식은 캔버스 위 54px에 50×50px로 배치한다(최소 줌에서도 45px). 하단 nav 자체에는 배경·테두리·고정 높이가 없고, 풍경의 땅색을 아래까지 연장해 기존 그림 끝의 가로 이음선을 없앴다.
+- 전투 도중 레벨업 후 쉼터로 돌아오는 경우도 `startXP` 기반으로 확인한다. 동일 전투의 관측한 총 수련점을 저장해 투자·재방문·Continue가 새 알림을 되살리지 않는다. 다음 레벨업분만 추가한다.
+- `tests/rest-scene-preview.mjs`는 생산 SVG/동행 renderer를 사용한 Native 구성 미리보기 333·400·1280px 전후 6장을 생성한다. CSS 브라우저 screenshot이 아니며 실제 폰트·hit dispatch·멀티터치는 별도다.
+- 추가 검사: 상태 7그룹 및 제스처 11그룹 통과. game verify의 TypeScript는 통과했으나 기존 rc20-map-audit 역사 fixture 해시 불일치(536570… 대 4e6862…)에서 멈췄다. 이전 기록의 dd11f9…는 별도 campaign-transition 경로의 실제값이다. 전체 verify 통과로 표기하지 않는다.
