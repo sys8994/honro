@@ -137,7 +137,7 @@
     "fc15-safe-crown-descent"
   ],
   "raw": {
-    "sha256": "b02754fdc26dc83f6b95e5b47124b58e30e9df46ef49252f40c7ecd64ad4bc87",
+    "sha256": "fecb34052b35eb607d60b7d770ed5a686b9e7c695147ad8990d71a25f542121d",
     "globals": {
       "schema": "honro-map",
       "version": 6,
@@ -179,7 +179,7 @@
       {
         "id": "stage-5",
         "stageId": 5,
-        "sha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5"
+        "sha256": "d6c7862053913b02942aa3c0d0146c869313707ddb62378993dc75cc85359f8a"
       },
       {
         "id": "stage-6",
@@ -2871,7 +2871,7 @@
     ]
   },
   "runtime": {
-    "sha256": "70dca3296018bb09f6460dd6f48f9c84fa3037f7f3d02b877ac42735371c29ae",
+    "sha256": "73ace94571b734f9f3e3d9606adb2493a8cec0c84d76fcead91231e368b67917",
     "globals": {
       "schema": "honro-map",
       "version": 6,
@@ -2913,7 +2913,7 @@
       {
         "id": "stage-5",
         "stageId": 5,
-        "sha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5"
+        "sha256": "d6c7862053913b02942aa3c0d0146c869313707ddb62378993dc75cc85359f8a"
       },
       {
         "id": "stage-6",
@@ -5655,6 +5655,38 @@
         "tests/stage5-waterfall-continue.mjs",
         "tests/stage5-waterfall-drag.mjs"
       ]
+    },
+    {
+      "kind": "stage5-body-fluid-separation",
+      "sourceCommit": "798dd306f470683b42eaafe9ee447dad7efdef40",
+      "author": "tools/map-forge/stage5-waterfall.mjs",
+      "authorSha256": "e5a8feb6428c635ab09af9b258eabcfc98e5d2054d67b75a5a89a9c0f4d6e58f",
+      "priorFixture": "tests/fixtures/stage5-waterfall/before-body-separation.json",
+      "priorFixtureSha256": "702436d9e29f69de3365d1bbdb9d33f851390b2479bab89b659cd2d1a6199190",
+      "rows": [
+        {
+          "variant": "raw",
+          "beforeProjectSha256": "b02754fdc26dc83f6b95e5b47124b58e30e9df46ef49252f40c7ecd64ad4bc87",
+          "afterProjectSha256": "fecb34052b35eb607d60b7d770ed5a686b9e7c695147ad8990d71a25f542121d",
+          "beforeStageSha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5",
+          "afterStageSha256": "d6c7862053913b02942aa3c0d0146c869313707ddb62378993dc75cc85359f8a"
+        },
+        {
+          "variant": "runtime",
+          "beforeProjectSha256": "70dca3296018bb09f6460dd6f48f9c84fa3037f7f3d02b877ac42735371c29ae",
+          "afterProjectSha256": "73ace94571b734f9f3e3d9606adb2493a8cec0c84d76fcead91231e368b67917",
+          "beforeStageSha256": "d7cde437c9bfc5dd9decda15047c6a5b2a5ecc2e633f1c342937eae7a8e202a5",
+          "afterStageSha256": "d6c7862053913b02942aa3c0d0146c869313707ddb62378993dc75cc85359f8a"
+        }
+      ],
+      "allowedFields": [
+        "stage5.terrains.waterfall-veil.points",
+        "stage5.terrains.waterfall-veil.properties.honroWaterFluidVertices"
+      ],
+      "bodyPointsBefore": 121,
+      "bodyPointsAfter": 70,
+      "fluidPointsUnchanged": 121,
+      "behaviorGate": "tests/stage5-waterfall-body-gate.mjs"
     }
   ]
 }

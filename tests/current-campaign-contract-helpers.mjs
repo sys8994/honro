@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 export const campaignHash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex');
 const bytes=readFileSync(new URL('./fixtures/campaign-contracts/current-manifest.json',import.meta.url));
-assert.equal(campaignHash(bytes),'5be4ce7c5bc62771a8c9090faaa25016e9316755ac586b9ec77ca791e9610145','Reviewed current manifest; not automatically refreshed');
+assert.equal(campaignHash(bytes),'fb85e9889b9598992b153c55a1044c09d6cf747ab805800bc823bc5cc5562e43','Reviewed current manifest; not automatically refreshed');
 export const currentCampaignManifest=JSON.parse(bytes);
 export function campaignScope(scope){assert(['full','act12'].includes(scope),'Explicit full or act12 scope required');return scope;}
 export function scopeCampaign(p,scope){campaignScope(scope);const q=structuredClone(p);if(scope==='act12'){q.stages=q.stages.slice(0,20);q.library=q.library.filter(a=>!a.id.startsWith('a3-'));}return q;}
