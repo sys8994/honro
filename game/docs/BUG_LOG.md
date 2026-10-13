@@ -2613,3 +2613,9 @@ SP재계산96ff981과 contribution XP b81fefd 이후의 실제migration은 spBal
 - The stage title, turn and objective wrapped beyond the fixed allied-roster top, letting the ally chips cover the card. The stage card now shares the pause button's44px border-box height: chapter/title on the first16px line and turn/current objective on the second16px line. Long titles/objectives ellipsize; title tooltip and existing goal dialog retain their full text.
 - Header and allied roster share top/inset/height variables. Allies begin6px below the header at phone, desktop and short-landscape breakpoints, and both reserve the existing minimap column. No lower-HUD sizes, inputs or battle state change.
 - `test:battle-chapter` checks all30 chapter labels,333/400/desktop and breakpoint geometry equations, plus production App7/28 long-title markup and read-only full objective help. These are source/DOM-double checks; actual browser layout, both rebuilt HTMLs and Pages remain separate final gates.
+
+## 2026-10-13 · Remove the center tactical toast
+
+- Removed the battle event container, center toast renderer, acknowledgement action and toast-specific active CSS. Non-narrative `App.event` preserves only its last text for existing encounter deduplication; it neither queues notices nor opens a dialog. Explicit narration still uses `HonroStory.event` without changing its actor-boundary or manual reading policy.
+- Old saved `tacticalNotices` are inert and preserved as data; Continue cannot render them and they do not block inputs. The existing wave-warning/source state and new-player-action gates remain owned by encounter modules and are unchanged.
+- `narrative-event-delivery` checks fresh non-narration does not alter battle state, two unread old messages survive Continue without blocking input or growing, and narrator Next/Skip, unread-order save, in-dialogue delivery and victory flush remain intact. Production-App/DOM doubles only; browser and public Pages remain separate gates.
