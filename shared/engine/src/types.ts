@@ -258,6 +258,7 @@ export interface Unit {
     cooldowns?: Record<string, number>;
 }
 export interface Projectile {
+    waterfallTouched?: boolean;
     existenceAttack?: ExistenceVector;
     echoDelay?: number;
     echoSource?: string;
