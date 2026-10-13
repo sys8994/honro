@@ -15,14 +15,14 @@ const facets=[
 ].map(([d,color])=>({path:P(d),color}));
 const cracks=[P('M3460 1350L3390 1590 3490 1840 3435 2080 3520 2320 3510 2590'),P('M4030 1360L3970 1670 4110 2110 4010 2430 4150 2700'),P('M3720 2600L3890 2780 3790 3030 3930 3330')];
 const moss=[P('M3140 1330Q3360 1320 3470 1290L3420 1345 3270 1370 3150 1355Z'),P('M3580 2110L3760 2100 3830 2160 3720 2140 3600 2160Z'),P('M3610 2480L3800 2500 3840 2540 3730 2530 3620 2520Z'),P('M3940 1240Q4120 1200 4290 1195L4220 1250 4060 1290 3950 1280Z')];
-const closed=P('M2898 1220 C2870 1580 2925 1830 2882 2100 C2860 2490 2865 2860 2790 3285 Q2970 3350 3180 3290 C3080 2920 3110 2540 3102 2120 C3070 1820 3130 1560 3110 1220 Z');
-const opened=P('M2898 1220 C2890 1550 2940 1820 3130 2040 C3310 2120 3590 2160 3580 2320 C3590 2510 3380 2620 3200 2770 Q3120 3060 3180 3290 Q2970 3350 2790 3285 Q2850 2950 3050 2680 C3270 2530 3450 2470 3455 2330 C3460 2210 3220 2180 3010 2130 C2840 1920 2870 1550 2898 1220 Z');
+const closed=P('M2798 1220 C2770 1580 2825 1830 2782 2100 C2760 2490 2765 2860 2690 3285 Q2970 3350 3280 3290 C3180 2920 3210 2540 3202 2120 C3170 1820 3230 1560 3210 1220 Z');
+const opened=P('M2798 1220 C2770 1580 2870 1840 3070 2040 C3280 2140 3430 2210 3440 2330 C3445 2470 3200 2550 2980 2730 Q2770 3040 2690 3285 Q2970 3350 3280 3290 Q3170 3000 3310 2820 C3510 2650 3760 2500 3750 2320 C3740 2100 3440 1990 3310 1850 C3190 1680 3230 1440 3210 1220 Z');
 const flowHighlights=[P('M2960 1220Q2920 1740 2970 2100T2910 3280L2940 3290Q3030 2830 3010 2330T3000 1220Z'),P('M3050 1220Q3070 1760 3040 2080T3100 3280L3130 3290Q3070 2740 3070 2260T3090 1220Z')];
-const pine=[];
+
 function terrain(c,t,b){let q=cache.get(t);if(!q||q.vertices!==t.vertices){q={vertices:t.vertices,path:poly(G.HONRO_CORE.poly(t))};cache.set(t,q);}c.save();c.clip(q.path);
  c.fillStyle=A.gradient(c,0,1220,0,4450,[[0,'#788d80'],[.25,'#4d6968'],[.68,'#29484d'],[1,'#172e38']]);c.fill(q.path);
  if(t.id==='waterfall-cliff'){
-  for(const f of facets){c.fillStyle=f.color;c.fill(f.path);}c.strokeStyle='#203b3f88';c.lineWidth=11;c.lineJoin='round';for(const path of cracks)c.stroke(path);
+  for(const f of facets){c.fillStyle=A.gradient(c,3200,1280,4400,3550,[[0,f.color],[1,'#233d46']]);c.fill(f.path);}c.fillStyle='#213b3e44';c.fill(P('M3360 1540Q3490 1690 3410 1860L3330 2060 3415 1870Q3460 1680 3360 1540Z'));c.fill(P('M3980 1990L3930 2250 3990 2400 3960 2260 4010 2070Z'));
   for(const path of moss){c.fillStyle='#66765a';c.fill(path);}c.fillStyle=A.gradient(c,2910,0,3670,0,[[0,'#142f3740'],[.45,'#c1cbb318'],[1,'#162b3344']]);c.fillRect(2870,1280,850,2540);
  }else{
   const x=Math.max(-200,t.x),y=Math.max(2200,t.y),w=Math.min(2500,t.w),d=Math.min(1000,t.h);c.fillStyle='#7d92824d';c.fill(poly([{x,y},{x:x+w*.43,y:y+40},{x:x+w*.25,y:y+d*.65},{x:x+w*.03,y:y+d*.85}]));c.fillStyle='#183a4366';c.fill(poly([{x:x+w*.5,y},{x:x+w,y:y+70},{x:x+w*.85,y:y+d},{x:x+w*.62,y:y+d*.72}]));
@@ -32,11 +32,12 @@ const oldTerrain=S.terrain;S.terrain=function(c,t,...args){if(active(this.battle
 const oldLandmark=S.landmark;S.landmark=function(c,l,...args){if(active(this.battle)&&l.kind==='waterfall')return;return oldLandmark.call(this,c,l,...args);};
 const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.call(this,c,w,h,b);if(!active(b))return;c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);c.fillStyle='#14252d';c.fill(P('M2920 2100Q3260 1990 3570 2110L3710 2300 3660 2520 2900 2590Z'));c.fillStyle='#273c3e';c.fill(P('M3020 2160L3260 2120 3570 2170 3600 2290 3500 2400 3030 2430Z'));c.restore();};
 const oldWater=S.liveWater;S.liveWater=function(c,b){if(!active(b))return oldWater.call(this,c,b);oldWater.call(this,c,{...b,honroLandmarks:b.honroLandmarks.filter(l=>l.kind!=='waterfall')});const time=A.time(this),a=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:b.honroEnvironment},this.y),open=!!b.terrain.find(t=>t.id==='waterfall-veil')?.broken,shape=open?opened:closed;c.save();c.clip(shape);
- c.fillStyle=A.gradient(c,2780,0,3650,0,[[0,'#d8e2ccdd'],[.20,'#9ebcb4e8'],[.36,'#5d898ee0'],[.67,'#d4dfc9d8'],[1,'#779e9ddd']]);c.fillRect(2750,1210,980,2150);
+ c.fillStyle=A.gradient(c,2780,0,3650,0,[[0,'#d8e2ccdd'],[.20,'#9ebcb4e8'],[.36,'#5d898ee0'],[.67,'#d4dfc9d8'],[1,'#779e9ddd']]);c.fillRect(2650,1210,1080,2150);
  if(!open){for(const p of flowHighlights){c.fillStyle='#ecf0d64a';c.fill(p);}}
- for(let i=0;i<12;i++){const y=1230+(time*(150+i%3*21)+i*177)%2090;c.fillStyle=i%2?'#eff1d331':'#c4ded530';c.fillRect(2780+(i%4)*115,y,55+i%3*27,95+i%3*40);if(open)c.fillRect(3440+(i%3)*49,y,33,130);}
- c.restore();A.fog(c,3010,3280,1180,300,'#adcbc1',.53,time,18);A.fog(c,2900,3180,900,220,'#bacabc',.24,time,8);
- c.save();c.strokeStyle='#d1dfc5ad';c.lineWidth=5;c.beginPath();c.moveTo(2898,1220);c.bezierCurveTo(3240,1226,3830,1218,4390,1220);c.stroke();for(let i=0;i<4;i++){const phase=(time*.19+i*.24)%1;c.globalAlpha=(1-phase)*.35;c.beginPath();c.ellipse(2980,3305,110+phase*380,9+phase*22,0,0,Math.PI*2);c.stroke();}c.restore();};
+ for(let i=0;i<12;i++){const y=1230+(time*(150+i%3*21)+i*177)%2090;c.fillStyle=i%2?'#eff1d331':'#c4ded530';c.save();c.translate(2850+(i%4)*58,y);c.fill(P('M0 0Q-7 70 6 130L17 175Q12 67 22 0Z'));c.restore();if(open)c.fillRect(3440+(i%3)*49,y,33,130);}
+ c.restore();A.glow(c,2980,3250,490,170,'#c0dbd0',.52);A.fog(c,3010,3260,1450,400,'#d5e2d0',.80,time,22);A.fog(c,2900,3170,1050,320,'#b3c8bd',.5,time,15);
+ c.save();c.fillStyle='#cbdcca8c';c.fill(P('M2720 3301Q2770 3276 2825 3294Q2860 3255 2910 3278Q2950 3252 3000 3284Q3070 3256 3120 3290Q3180 3270 3230 3303Q3100 3328 2980 3317Q2840 3330 2720 3301Z'));c.fillStyle='#edf0d7a1';c.fill(P('M2820 3300Q2890 3282 2950 3296Q3010 3270 3080 3294L3160 3305Q3000 3320 2820 3300Z'));c.restore();
+ c.save();c.strokeStyle='#d1dfc5ad';c.lineWidth=7;c.beginPath();c.moveTo(2798,1220);c.bezierCurveTo(3240,1226,3830,1218,4390,1220);c.stroke();for(let i=0;i<4;i++){const phase=(time*.19+i*.24)%1;c.globalAlpha=(1-phase)*.65;c.beginPath();c.ellipse(2980,3305,140+phase*420,11+phase*29,0,0,Math.PI*2);c.stroke();}c.restore();};
 function evidence(scene,e){const b=e.b,c=scene.ctx,t=b.terrain.find(t=>t.id==='cliff-cleat'),m=b.honroMarkers.find(m=>m.id==='receiver-5');if(!t||!m)return;const lit=!!b.honroState.ritual?.active,time=A.time(scene);G.HonroAct1StoryArt.floorArray(c,m,time,lit);
  // The complete wood slab represents the attackable rectangle, without hollow holes.
  if(!t.broken){const level=G.HonroAct1StoryArt.cleatDamageStage(t),x=t.x,y=t.y,w=t.w,h=t.h;c.save();c.fillStyle='#4b352e';c.fillRect(x,y,w,h);c.fillStyle='#91765a';c.fillRect(x+3,y+3,w-6,10);c.fillRect(x+3,y+3,7,h-6);c.fillStyle='#201e20';c.fillRect(x+w-12,y+8,10,h-10);c.strokeStyle='#15252b';c.lineWidth=3;c.strokeRect(x,y,w,h);
