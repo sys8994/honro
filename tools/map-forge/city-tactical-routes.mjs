@@ -50,7 +50,7 @@ function rearSupports(p,s,n){
  const all=polys.flat(),minX=Math.min(...all.map(v=>v[0])),minY=Math.min(...all.map(v=>v[1])),maxX=Math.max(...all.map(v=>v[0])),maxY=Math.max(...all.map(v=>v[1]));
  const bounds={x:minX,y:minY,w:maxX-minX,h:maxY-minY};
  const a={id,name:'Recessed rear masonry and timber supports',category:'prop',visual:[],collision:[],anchor:{x:0,y:0},sockets:[],tags:['city-tactical','rear-support'],params:{rearOnly:true},material:'stone',breakable:false,bounds,reference:{heightM:4,bounds,foot:{x:0,y:0},scaleRange:[1,1],backgroundRange:[1,1]},vector:{version:1,viewBox:[minX,minY,bounds.w,bounds.h],gradients:{},root:{tag:'g',children:polys.map((v,i)=>({tag:'path',fill:i%2?'#414943':'#50584e',d:'M'+v.map(q=>q.join(' ')).join(' L')+' Z'}))}}};
- p.library=p.library.filter(a=>a.id!==id);p.library.push(a);s.elements=s.elements.filter(e=>e.id!==id);s.elements.push({id,assetId:id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',cityTacticalRearOnly:true});
+ const ai=p.library.findIndex(v=>v.id===id);if(ai<0)p.library.push(a);else p.library[ai]=a;s.elements=s.elements.filter(e=>e.id!==id);s.elements.push({id,assetId:id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',cityTacticalRearOnly:true});
 }
 export function applyCityTacticalRoutes(project){
  const p=clone(project);

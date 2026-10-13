@@ -52,7 +52,7 @@ function author(s,project){
   supports.push({terrainId:floor.id,x:a,y:ay},{terrainId:floor.id,x:b,y:by});
  }
  const bounds={x:0,y:0,w:s.width,h:s.height},viewBox=[0,0,s.width,s.height],asset={id:artId,name:'후퇴한 회랑과 암대의 접지 모암',category:'terrain',environmentRole:'rock',vector:{version:1,viewBox,gradients:{},root:{tag:'g',children},source:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.join(' ')}">${children.map(p=>`<path fill="${p.fill}" d="${p.d}"/>`).join('')}</svg>`},visual:[],collision:[],anchor:{x:0,y:0},sockets:[],bounds,tags:['visual-only','editable-native-vector'],params:{artRevision:1,rearOnly:true,noWalkRim:true,supports},reference:{heightM:s.height/60,bounds,foot:{x:0,y:0},scaleRange:[.35,4],backgroundRange:[.35,4]}};
- project.library=project.library.filter(a=>a.id!==artId);project.library.push(asset);s.elements=s.elements.filter(e=>e.id!=='tactical-recessed-support');s.elements.push({id:'tactical-recessed-support',assetId:artId,x:0,y:0,scale:1,rotation:0,snap:false,layer:'back',depthLayer:'L1'});
+ const ai=project.library.findIndex(a=>a.id===artId);if(ai<0)project.library.push(asset);else project.library[ai]=asset;s.elements=s.elements.filter(e=>e.id!=='tactical-recessed-support');s.elements.push({id:'tactical-recessed-support',assetId:artId,x:0,y:0,scale:1,rotation:0,snap:false,layer:'back',depthLayer:'L1'});
  // Fixed flying sentries keep their role above the new shoulders, rather than
  // starting inside the new solid shell. Their budgets and number are unchanged.
  if(n===9)for(const [id,y]of [['foe-2',1840],['foe-5',1880],['foe-6',2200]]){const u=s.units.find(u=>u.id===id);if(u){u.y=y;u.spawnY=y;}}
