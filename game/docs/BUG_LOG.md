@@ -2500,3 +2500,6 @@ HUD 동료 초상화는 열린 정보창을 닫고 선택만 한다. 맵의 캐�
 - 검증: `node tests/action-prompts.mjs` (30장 현재 안내/HUD, legacy 12개 표시·불변성, 실제 KeyE와 click 공통 축지 호출) 및 objective-clarity 39개 통과. 브라우저 실화면·최종 통합 verify·master/Pages는 별도 최종 검수이며 이 단위의 통과로 주장하지 않는다.
 
 - 후속 확인: 기준 `0372047`과 현재 runtime의 `HONRO_PROJECT`·`HONRO_CONTENT`·`HONRO_CORE.SKILLS`를 재귀 대조하여 guide 문자열 6개 이외 값·키·형식이 모두 동일함을 확인했다. `rescue-targets` 15개도 통과했다. 구 저장의 번호가 붙은 주민/받이진 안내와 목표 뒤 ` · E`는 안내 표시 함수 안에서만 정규화하며 멱등성을 검사한다.
+## 2026-10-13 · A03 자동 연환 경로 아군 피해 누락
+
+자동 공격 안전 패치 검수에서 연환시가 첫 적 명중 후 자동 재조준해도 원탄 출처를 유지해 중간 아군에76피해를 주는 실제 비행을 재현했다. `chainArrow` 재조준 순간 자동 출처를 부여하고 표지 없는 `chain>0` 구 저장도 읽는다. 첫 직접 조준 구간과 적 소유 연환의 NPC·지형 피해는 보존한다. `test:autonomous-friendly-fire`에 live/JSON Continue/legacy·직접구간·후속 상태/밀치기/지형 경계를 추가했다. 원본 App Continue 검사와 별도로 실제 브라우저·Pages·최종 통합 검수는 미실행이다.
