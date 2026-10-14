@@ -2738,3 +2738,5 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 원인: 휴식터는 게임의 1막 SVG 대신 별도의 단순 산 다각형을 사용했고, 세로 기본 시점은 정자·이정표를 잘라 빈 중간 하늘만 남겼다.
 - 변경: 이미 번들된 1–5장 mountains / 6–10장 gorge 벡터의 경로를 그대로 재사용한다. ID만 구분하고 공통 ACT1_FAR 채도·밝기·veil 및 act1Mood 밤톤을 적용한다. 먼 배경은 공통 .025 수평/.0035 수직 시차를 유지한다. 8장은 모닥불 공간을 비워 둔 낮은 창고 측면을 추가한다. 화면 밖으로 둘러본 뒤에는 고정 ‘모닥불로’ 버튼으로 시점과 줌만 초기화한다.
 - 검증: 10장 배정·원경 경로 보존·SVG 정의 참조·기존 지도/다른 막 유지 계약, 13개 실제 gesture handler VM 검사, rest-idle/rest-scene-controls/rest-journey 검사를 통과했다. 320/390 세로 및 1280 데스크톱 Native 전후·좌우 끝 이미지 24장을 생성하고 1/8장 중앙 및 8장 좌우 구도를 직접 검토했다. Native는 실제 CSS·touch·GPU·Pages 검수가 아니며 최종 브라우저 검수는 통합 발행자가 별도 진행한다.
+
+- 추가 환경 검증: journey-art 및 environment-depth 통과, 30개 맵 validate 오류 0. environment-composition은 기존 env:rock 음성검사 fixture 부재로 44행에서 실패하며 수정 전 5bbf19f에서도 동일 실패를 재현했다. 이 쉼터 패치에서 세계 지형/fixture를 바꾸지 않았다.
