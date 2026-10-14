@@ -205,7 +205,8 @@
     "capture:title:art": "node tools/testing/capture-title-hanja-native.mjs",
     "test:eater-capture": "node tests/eater-capture.mjs && node tests/eater-independent-review.mjs && node tests/two-skill-balance-contracts.mjs && node tests/eater-contribution.mjs && node tests/eater-app-resume.mjs && node tests/eater-ui-boundaries.mjs && node tests/eater-inspector-review.mjs",
     "test:damheo-damage": "node tests/damheo-damage-balance.mjs",
-    "test:release-guard": "python -X utf8 tests/release-guard.py"
+    "test:release-guard": "python -X utf8 tests/release-guard.py",
+    "test:dialogue-clarity": "node tests/dialogue-clarity.mjs && node tests/dialogue-source-inventory.mjs && node tests/act1-narrative-redesign.mjs && node tests/act23-narrative-redesign.mjs && node tests/sodan-protection-wording.mjs && node tests/story-direction.mjs && node tests/sodan-departure.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",
