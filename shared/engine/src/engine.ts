@@ -12,7 +12,7 @@ import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIF
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,fallDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
-import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER } from './balance';
+import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
@@ -116,6 +116,9 @@ export class Engine {
             if (u.cls === 'knight' && BODY.has(s.mode))
                 damage *= .9 + u.tune * .2;
         }
+        // Scale newly cast player spells only. Existing projectiles/stakes retain their saved damage;
+        // impact, reflections, secondary bursts and stake triggers must never apply this again.
+        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&!s.enemyOnly)damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
         if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
         if (u.bound > 0 && BODY.has(s.mode))
