@@ -116,7 +116,7 @@ function background(c,b,scene,w,h){if(!active(b))return false;const n=b.honroSta
   }
   c.globalAlpha=1;
   const sceneryContext=c;c=G.HonroVisualStyle?.raw(c)||c;
-  const hanging=b.honroCaveHangingTarget,target=b.terrain.find(t=>t.id==='shaft-pin');
+  const hanging=b.honroCaveHangingTarget,target=G.HonroQuestTargets.records(b).find(t=>t.id==='shaft-pin');
   if(hanging&&target&&!target.broken){c.strokeStyle='#746d58';c.lineWidth=4;c.beginPath();c.moveTo(hanging.x,hanging.roofY-4);c.lineTo(hanging.x+4,hanging.roofY+65);c.lineTo(target.x+target.w*.5,target.y+4);c.stroke();}
   const clue=b.honroCaveHangingClue;if(clue&&Number.isFinite(clue.x)&&Number.isFinite(clue.targetY)){c.save();c.strokeStyle='#746d58';c.lineWidth=5;c.beginPath();c.moveTo(clue.x,clue.roofY);c.lineTo(clue.x,clue.targetY);c.stroke();c.strokeStyle='#a29370';c.lineWidth=7;c.beginPath();c.ellipse(clue.x,clue.targetY+22,22,30,0,0,Math.PI*2);c.stroke();c.restore();}
   c=sceneryContext;

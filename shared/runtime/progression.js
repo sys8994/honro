@@ -116,10 +116,10 @@ function initialize(b,profile){
   if(state.contribution){if(state.cleared&&!state.contribution.deferred)state.contribution.completed=true;X.upgradeBalance(state.contribution);}
   if(state.contribution)ledger.version=Math.max(4,ledger.version||0);
   const act3Weight=id>=21&&id<=30&&!b.honroCustom?(G.HONRO_CONTENT.stages[id-1].steps||[]).reduce((n,s)=>n+(s.wave?actionWeight({type:'spawn',kind:s.wave.kind,n:s.wave.count}):0),0):0;
-  const weight=b.units.filter(u=>u.side===1&&u.summonKind!=='eater').reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
+  const weight=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater').reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
   b.honroGrowth={ledger,limit,weight:Math.max(1,weight)};
   for(const u of b.units)registerOwner(b,u);
-  for(const u of b.units.filter(u=>u.side===1&&u.summonKind!=='eater')){enemyXP(b,u);if(isContributionBattle(b))registerEnemy(b,u);}
+  for(const u of b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater')){enemyXP(b,u);if(isContributionBattle(b))registerEnemy(b,u);}
   reconcileWounds(b);
 }
 function enemyXP(b,u){if(b.honroGrowth){u.xpBudget=Math.max(1,Math.round(b.honroGrowth.limit.combat*(u.honroXpWeight||1)/b.honroGrowth.weight));u.xpGranted=0;}}
@@ -137,7 +137,7 @@ function awardCombat(e,source,amount){
   if(changed)e.emit('save');
 }
 function defeat(e,u,killer){
-  if(u.killRewarded||u.side!==1||u.summoned)return;u.killRewarded=true;
+  if(u.honroObjectiveTarget||u.killRewarded||u.side!==1||u.summoned)return;u.killRewarded=true;
   if(isContributionBattle(e.b)){const row=registerEnemy(e.b,u);if(row){if(row.progress<row.hp)X.damage(contributionState(e.b),row.id,row.hp,row.hp-row.progress,{});if(!row.defeated)X.touch(contributionState(e.b));row.defeated=true;}}
   else awardCombat(e,killer,Math.max(0,u.xpBudget-u.xpGranted));u.xpGranted=u.xpBudget;
   if(killer?.side===0)e.b.heroes[killer.cls].kills++;
@@ -154,7 +154,7 @@ const contributionState=b=>b?.mode==='campaign'?b?.honroGrowth?.ledger?.stages?.
 const isContributionBattle=b=>contributionState(b)?.version===4;
 function registerOwner(b,u){const s=contributionState(b);if(!s||!u)return;const owner=u.summonOwner||u.enthrall?.owner;if(owner){const p=b.units.find(v=>v.id===owner);if(p&&p!==u)registerOwner(b,p);if(s.owners[owner])s.owners[u.id]=s.owners[owner];}else if(campaignHero(b,u)&&C.CLASS_IDS.includes(u.cls)){s.owners[u.id]=u.cls;if(!s.actors.includes(u.cls)){s.actors.push(u.cls);s.factors[u.cls]=1;}}}
 function actorClass(b,id){const s=contributionState(b);if(!s)return null;const u=b.units.find(v=>v.id===id);if(u){if(u.side!==0&&!u.summonOwner&&!u.enthrall)return null;registerOwner(b,u);}return s.owners[id]|| (s.actors.includes(id)?id:null);}
-function registerEnemy(b,u){const s=contributionState(b);if(!s||!u||u.summoned)return null;const id=u.honroContributionId||u.id;u.honroContributionId=id;const row=X.enemy(s,id,u.maxHp,u.honroXpWeight||1);if(!row.progress&&!Object.keys(row.threats).length){row.hp=Math.max(1,u.maxHp);row.weight=u.honroXpWeight||1;}return row;}
+function registerEnemy(b,u){if(u?.honroObjectiveTarget)return null;const s=contributionState(b);if(!s||!u||u.summoned)return null;const id=u.honroContributionId||u.id;u.honroContributionId=id;const row=X.enemy(s,id,u.maxHp,u.honroXpWeight||1);if(!row.progress&&!Object.keys(row.threats).length){row.hp=Math.max(1,u.maxHp);row.weight=u.honroXpWeight||1;}return row;}
 function liveEnemyProgress(row,u){return Math.max(0,u.maxHp-u.hp)*row.hp/Math.max(1,u.maxHp);}
 function recordDamage(b,target,owner,actual,assists={}){const s=contributionState(b);if(!s||s.completed||target.side!==1||actual<=0)return;const row=registerEnemy(b,target);if(!row)return;target.honroContributionDamage=Math.max(target.honroContributionDamage||0,liveEnemyProgress(row,target));const cls=actorClass(b,owner),credits={},parts=Object.entries(assists).map(([id,n])=>[actorClass(b,id),Math.max(0,n)]).filter(([id])=>id),total=parts.reduce((n,[,v])=>n+v,0),scale=total>actual?actual/total:1;for(const [id,n]of parts)credits[id]=(credits[id]||0)+n*scale;if(cls)credits[cls]=(credits[cls]||0)+Math.max(0,actual-total*scale);const hpScale=row.hp/Math.max(1,target.maxHp);for(const id of Object.keys(credits))credits[id]*=hpScale;X.damage(s,row.id,target.honroContributionDamage,actual*hpScale,credits);}
 function recordThreat(b,enemy,target,hpBefore,loss,protections={}){const s=contributionState(b);if(!s||s.completed||!enemy||enemy.side!==1||target.side===1||target.summoned||(!campaignHero(b,target)&&!target.honroAlly&&!target.honroCivilian))return;const row=registerEnemy(b,enemy);if(!row)return;const credits={};for(const[id,n]of Object.entries(protections)){const cls=actorClass(b,id);if(cls)credits[cls]=(credits[cls]||0)+Math.max(0,n);}X.threat(s,row.id,target.id,target.maxHp,hpBefore,loss,credits,enemy.honroContributionDamage||liveEnemyProgress(row,enemy));}

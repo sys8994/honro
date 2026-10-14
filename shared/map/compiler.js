@@ -64,6 +64,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  G.HonroNarrativeRevision?.prepareFresh(b);
  G.HonroStoryStaging?.prepareFresh(b);
  G.HonroAct1Roster?.applyBattleDefense(b);
+ G.HonroQuestTargets?.migrate(b);
  return b;
 }
 // Imported legacy Workshop projects are normalized once; exported data is always v3.

@@ -74,7 +74,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; ensureWaterfallBody(b); for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -84,7 +84,7 @@ export class Engine {
     fx(name: string, x: number, y: number, color: string, size = 50, text?: string) { this.emit('fx', { name, x, y, color, size, text }); }
     message(text: string) { this.b.events.push(text); this.b.events = this.b.events.slice(-30); this.emit('message', { text }); }
     random() { let a = this.b.rng += 0x6D2B79F5; a = Math.imul(a ^ a >>> 15, 1 | a); a ^= a + Math.imul(a ^ a >>> 7, 61 | a); return ((a ^ a >>> 14) >>> 0) / 4294967296; }
-    alive(side: Side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0 && u.summonKind!=='eater'); }
+    alive(side: Side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0 && u.summonKind!=='eater' && !u.honroObjectiveTarget); }
     actors(side: Side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0 && !u.eaterCapturedBy); }
     heroesAlive() { return this.actors(0).filter(u => !u.summoned&&!u.enthrall); }
     creditUnit(u?:Unit){ if(u)ownerRegistered(this.b,u);const owner=u?.summonOwner||u?.enthrall?.owner;return owner?(this.unit(owner)||u):u; }
@@ -170,7 +170,7 @@ export class Engine {
                 e.awake = true;
             }
     }
-    combatEnemies() { const allies = (this.b as any).honroStage?this.b.units.filter(v=>!v.dead&&(v.side===0||(v as any).honroAlly)):this.actors(0); return this.actors(1).filter(e => !e.summoned && e.awake && (allies.some(p => Math.hypot(p.x - e.x, (p.y - e.y) * .7) < 2300) || e.aggroUntil >= this.b.round)); }
+    combatEnemies() { const allies = (this.b as any).honroStage?this.b.units.filter(v=>!v.dead&&(v.side===0||(v as any).honroAlly)):this.actors(0); return this.actors(1).filter(e => !e.summoned && !e.honroObjectiveTarget && e.awake && (allies.some(p => Math.hypot(p.x - e.x, (p.y - e.y) * .7) < 2300) || e.aggroUntil >= this.b.round)); }
     setMoveTarget(x: number) { if (!this.canAct()||this.active?.meleeFollow==='ready')
         return false; const u = this.active!; u.moveTarget = clamp(x, 30, this.b.width - 30); return true; }
     cancelMovement() { for (const u of this.b.units)
@@ -757,7 +757,7 @@ export class Engine {
             armorWithoutSupport=armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
         if (u.boss && u.boss !== 5)
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
-        if (u.side === 1 && u.summonKind!=='eater' && this.b.terrain.some(t => !t.broken && t.device === 'ward'))
+        if (u.side === 1 && !u.honroObjectiveTarget && u.summonKind!=='eater' && this.b.terrain.some(t => !t.broken && t.device === 'ward'))
             {armor = Math.max(armor, .32);armorWithoutSupport=Math.max(armorWithoutSupport,.32);}
         if (u.breaks > 0 && damageSource!=='eaterTransfer') {
             armor *= .15;armorWithoutSupport*=.15;
@@ -810,7 +810,10 @@ export class Engine {
         if (dmg) {
             const hpBefore=u.hp;
             if(!p&&damageSource!=='eaterTransfer')this.emit('sound',{name:'hit'});
-            u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - dmg);
+            if(u.honroObjectiveTarget){
+                dmg=(globalThis as any).HonroQuestTargets.damage(this,u,dmg,owner,p||provenance);
+                if(!dmg){endHit(this.b,u,contribution);return;}
+            }else u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - dmg);
             if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*passiveTuning(passiveRank(u,'SP05')).lastStandHp));u.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(u,'SP05')).lastStandGuard};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             const actual=Math.max(0,hpBefore-u.hp);
             // Commit this HP interval before on-hit effects can recursively hurt again.
@@ -848,7 +851,7 @@ export class Engine {
             u.airborne = false;
             u.vx = u.vy = 0;
             if(damageSource!=='eaterTransfer'){this.fx('burst', u.x, u.y - u.h * .4, u.side === 1 ? '#aaa8b9' : '#a8c5cc', 60);this.emit('sound', { name: 'down' });}
-            if (u.side === 1 && !u.summoned) {
+            if (u.side === 1 && !u.summoned && !u.honroObjectiveTarget) {
                 this.b.kills++;
                 this.rewardKill(u, src);
                 const medium=src?.side===0&&src.cls==='occultist'?src:u.curseOwner?this.unit(u.curseOwner):undefined;
@@ -869,16 +872,17 @@ export class Engine {
         u.jumping = false; }
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active, attack?:Partial<Projectile>) {
         // Automatic attacks cannot remove support, trigger barrels or alter water under allies.
-        if(this.protectedAutomaticAttack(owner,attack))return;
-        if (t.broken || t.indestructible || t.hp >= 9999 || depth > 8)
+        if(!(t as any).honroQuestTarget&&this.protectedAutomaticAttack(owner,attack))return;
+        if (t.broken || t.indestructible || (!(t as any).honroQuestTarget && t.hp >= 9999) || depth > 8)
             return;
         if((this.b as any).honroStage===5&&(this.b as any).honroStage5WaterfallRevision!==1&&t.id==='cliff-cleat'&&!(this.b as any).honroState?.ritual?.active){
             this.fx('text',t.x+t.w/2,t.y-28,'#c8d6d8',15,'물틈 닫힘 · 받이진 필요');return;
         }
         const before=t.hp;
         t.hp -= amount;
+        if((t as any).honroQuestTarget)(globalThis as any).HonroQuestTargets.sync(this.b,t);
         (globalThis as any).HonroObjectiveContributions?.terrain(this,t,before,owner);
-        if(amount>0&&((t as any).honroSeal||(t as any).honroAct2Target||t.device)){
+        if(!(t as any).honroQuestTarget&&amount>0&&((t as any).honroSeal||(t as any).honroAct2Target||t.device)){
             this.fx('text',t.x+t.w/2,t.y-28,'#fff0d2',19,'−'+Math.ceil(Math.min(before,amount)));
             this.b.reviewFocus={x:t.x+t.w/2,y:t.y+t.h*.5};
         }
@@ -887,6 +891,7 @@ export class Engine {
             return;
         }
         t.broken = true;
+        if((t as any).honroQuestTarget)(globalThis as any).HonroQuestTargets.sync(this.b,t);
         this.b.sceneVersion++;
         this.fx('burst', t.x + t.w / 2, t.y + Math.min(t.h / 2, 35), t.mat === 'wood' || t.mat === 'support' ? '#b78e61' : t.mat === 'ice' ? '#a3dbe6' : '#acb6bd', Math.min(100, t.w));
         this.emit('sound', { name: 'break' });
@@ -913,7 +918,7 @@ export class Engine {
         if (t.device === 'ward')
             this.message('결계 장치 파괴 · 적의 방호가 약해졌다.');
         for (const id of t.link || []) {
-            const linked = this.b.terrain.find(p => p.id === id);
+            const linked = ((globalThis as any).HonroQuestTargets?.records(this.b)||this.b.terrain).find((p:Terrain) => p.id === id);
             if (!linked || linked.broken)
                 continue;
             this.damageTerrain(linked, Math.max(1, linked.hp) + 1, depth + 1, owner);
@@ -934,6 +939,10 @@ export class Engine {
         for (const u of this.b.units.filter(v=>!v.eaterCapturedBy)) {
             if (u.dead || !this.attackAllows(u,owner,p||provenance) || (body && u.id === owner) || ((p?.mode === 'spin'||p?.mode==='charge'||p?.mode==='cataclysmCharge') && p.hit.includes(u.id)))
                 continue;
+            if(u.honroObjectiveTarget&&(this.b as any).honroStage5WaterfallRevision===1&&u.id==='cliff-cleat'){
+                const to={x:clamp(x,u.x-u.r,u.x+u.r),y:clamp(y,u.y-u.h,u.y)},sheet=waterfallSheet(this.b);
+                if(this.b.terrain.some(t=>!t.broken&&(segmentProjectileTerrain({x,y},to,t.id===sheet?.id?sheet:t,0)||terrainRectIntersects(t.id===sheet?.id?sheet:t,x-.1,y-.1,.2,.2,0))))continue;
+            }
             const d = Math.hypot(u.x - x, (u.y - u.h * .45) - y);
             if (d < radius + u.r) {
                 const factor = .42 + .58 * (1 - clamp(d / radius, 0, 1));
@@ -1059,7 +1068,7 @@ export class Engine {
         this.fx('spark',target.x,target.y-target.h*.55,'#d9d0b1',32);
     }
     private captureEnemy(target:Unit,owner:Unit,rank:number,empowered=false){
-        if(target.dead||target.eaterCapturedBy||target.summoned||target.side!==1||target.boss||target.honroMidboss||target.elite||target.enthrall)return false;
+        if(target.honroObjectiveTarget||target.dead||target.eaterCapturedBy||target.summoned||target.side!==1||target.boss||target.honroMidboss||target.elite||target.enthrall)return false;
         const power=ENTHRALL_POWER[clamp(rank,1,8)-1],ratio=target.hp/target.maxHp;
         target.enthrall={owner:owner.id,actions:ENTHRALL_ACTIONS[clamp(rank,1,8)-1]+(empowered?1:0),captureRatio:ratio,originalMaxHp:target.maxHp,originalAttack:target.attack,originalArmor:target.armor,power};
         target.side=0;ownerRegistered(this.b,target);target.maxHp=Math.max(1,Math.round(target.maxHp*power));target.hp=Math.max(1,Math.round(target.maxHp*ratio));target.attack*=power;target.armor=clamp(target.armor*power,0,.75);target.acted=true;
@@ -1706,7 +1715,7 @@ export class Engine {
             u.dead = true;
             u.airborne = false;
             u.vx = u.vy = 0;
-            if (u.side === 1 && !u.summoned) {
+            if (u.side === 1 && !u.summoned && !u.honroObjectiveTarget) {
                 this.b.kills++;
                 const contributor = Object.entries(u.damageBy).sort((a, b) => b[1] - a[1])[0];
                 this.rewardKill(u, contributor ? this.unit(contributor[0]) : undefined);

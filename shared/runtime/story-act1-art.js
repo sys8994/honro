@@ -54,15 +54,15 @@ function markerArt(scene,m){const b=scene.battle;if(b?.honroNarrativeRevision!==
  if(b.honroStage===3&&m.type==='ledger'){const c=scene.ctx;c.save();c.fillStyle='#40352f';c.fillRect(m.x-28,m.y-15,56,13);c.fillStyle='#d2c8aa';c.fillRect(m.x-22,m.y-26,42,13);c.strokeStyle='#71654c';c.lineWidth=2;c.strokeRect(m.x-22,m.y-26,42,13);c.beginPath();c.moveTo(m.x-14,m.y-26);c.lineTo(m.x-14,m.y-13);c.stroke();c.restore();return true;}return false;}
 function replacedLandmark(b,l){if(b?.honroNarrativeRevision!==1||b.honroCustom)return false;const kind=l.asset?.kind||l.kind;
  if(kind==='receiverStone'&&(b.honroMarkers||[]).some(m=>m.type==='receiver'&&Math.hypot(m.x-l.x,m.y-l.y)<5))return true;
- if(b.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=b.terrain.find(t=>t.id==='cliff-cleat');return !!t&&Math.hypot(l.x-(t.x+t.w/2),l.y-(t.y+t.h))<5;}return false;}
+ if(b.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat');return !!t&&Math.hypot(l.x-(t.x+t.w/2),l.y-(t.y+t.h))<5;}return false;}
 function evidence(b){const s=b.honroState||{},id=b.honroStage;
  if(id===3){const a=anchor(b,'ledger');if(!a)return null;return{kind:'eave',at:{x:a.x-65,y:a.y-185}};}
  if(id===4){const a=anchor(b,'gate');if(!a)return null;return{kind:'village',at:{x:a.x-120,y:a.y-178}};}
- if(id===5){const seal=b.terrain.find(t=>t.id==='cliff-cleat'),r=marker(b,'receiver-5');if(!seal||!r)return null;return{kind:'waterfall',at:{x:seal.x+seal.w/2,y:seal.y+seal.h*.4},broken:!!seal.broken,receiving:!!s.ritual?.active||!!seal.broken&&!!r.collected,receiver:r,seal};}
+ if(id===5){const seal=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat'),r=marker(b,'receiver-5');if(!seal||!r)return null;return{kind:'waterfall',at:{x:seal.x+seal.w/2,y:seal.y+seal.h*.4},broken:!!seal.broken,receiving:!!s.ritual?.active||!!seal.broken&&!!r.collected,receiver:r,seal};}
  if(id===7){return{kind:'rescue',residents:(b.honroMarkers||[]).filter(m=>m.action==='rescue').map(m=>({marker:m,unit:actor(b,m.target)}))};}
- if(id===8){const mage=actor(b,'mage'),boss=actor(b,'boss'),seals=b.terrain.filter(t=>t.honroSeal);return{kind:'bier',mage,boss,seals,receiving:seals.some(t=>t.broken&&mage&&Math.hypot(t.x+t.w/2-mage.x,t.y-mage.y)<600)||!!boss?.dead&&mage&&Math.hypot(boss.x-mage.x,boss.y-mage.y)<600};}
+ if(id===8){const mage=actor(b,'mage'),boss=actor(b,'boss'),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);return{kind:'bier',mage,boss,seals,receiving:seals.some(t=>t.broken&&mage&&Math.hypot(t.x+t.w/2-mage.x,t.y-mage.y)<600)||!!boss?.dead&&mage&&Math.hypot(boss.x-mage.x,boss.y-mage.y)<600};}
  if(id===9){const v=actor(b,'npc-sodan')||b.honroStaging?.hidden?.['npc-sodan'];if(!alive(v))return null;return{kind:'receivers',at:{x:v.x-8,y:v.y-v.h*.58},receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
- if(id===10){const binding=b.terrain.find(t=>t.id==='sodan-binding'),v=actor(b,'boss');if(!binding||!alive(v)||s.sodanCoop)return null;return{kind:'binding',binding,boss:v,phase:s.sodanBinding?.phase||'bound',hitCount:s.sodanBinding?.hitCount||0,receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
+ if(id===10){const binding=G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding'),v=actor(b,'boss');if(!binding||!alive(v)||s.sodanCoop)return null;return{kind:'binding',binding,boss:v,phase:s.sodanBinding?.phase||'bound',hitCount:s.sodanBinding?.hitCount||0,receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
  return null;
 }
 function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5WaterfallArt?.evidence(scene,e);if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';
@@ -114,7 +114,7 @@ if(G.HonroScene){const S=G.HonroScene.prototype,damage=S.objectDamage,terrain=S.
  const fresh=b=>b?.honroNarrativeRevision===1&&!b.honroCustom;
  S.terrain=function(c,t,...args){if(fresh(this.battle)&&this.battle.honroStage===5&&t.id==='cliff-cleat'){return;}return terrain.call(this,c,t,...args);};
  S.landmark=function(c,l,...args){if(replacedLandmark(this.battle,l))return;return landmark.call(this,c,l,...args);};
- S.objectDamage=function(c,b,...args){const replaced=t=>b.honroStage===10&&t.id==='sodan-binding'||b.honroStage===5&&t.id==='cliff-cleat';return damage.call(this,c,fresh(b)?{...b,terrain:b.terrain.filter(t=>!replaced(t))}:b,...args);};
+ S.objectDamage=function(c,b,...args){const replaced=t=>b.honroStage===10&&t.id==='sodan-binding'||b.honroStage===5&&t.id==='cliff-cleat';return damage.call(this,c,fresh(b)?{...b,terrain:G.HonroQuestTargets.records(b).filter(t=>!replaced(t))}:b,...args);};
 }
 G.HonroAct1StoryArt={draw,evidence,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray};
 })(globalThis);

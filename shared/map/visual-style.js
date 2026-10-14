@@ -59,7 +59,7 @@ function legacyGameplay(inst,b,asset){const id=inst.id,kind=asset?.kind||inst.ki
  if(inst.stage18Bell?.terrainIds?.some(tid=>b?.terrain?.some(t=>t.id===tid))||inst.stage30FerryBody||inst.honroEscortYardCargo)return true;
  if(legacyMissionAssets[b?.honroStage]?.includes(id)||asset?.id==='act2:ritual'||asset?.id==='act2:old-soul-stone')return true;
  if(kind==='receiverStone'&&b?.honroMarkers?.some(m=>(m.type==='receiver'||m.action==='receiver')&&Math.hypot(m.x-inst.x,m.y-inst.y)<5))return true;
- if(b?.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=b.terrain?.find(t=>t.id==='cliff-cleat');if(t&&Math.hypot(inst.x-(t.x+t.w/2),inst.y-(t.y+t.h))<5)return true;}
+ if(b?.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat');if(t&&Math.hypot(inst.x-(t.x+t.w/2),inst.y-(t.y+t.h))<5)return true;}
  return !!(id==='sb-bell-body'&&b?.honroBellRevision===1||id===(b?.honroEscortYardSpec?.cargo?.elementId||'sy-art-cargo')&&b?.honroStage===23||id==='sf-art-settled-barge'&&b?.honroStage===30);
 }
 function classify(inst,b,asset=inst?.asset){

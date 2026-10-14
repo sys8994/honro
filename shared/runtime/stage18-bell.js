@@ -21,7 +21,7 @@ const alive=u=>!u.dead&&u.hp>0;
 const intersects=(a,z)=>a.x+a.w>z.x&&a.x<z.x+z.w&&a.y+a.h>z.y&&a.y<z.y+z.h;
 const sweepCache=new WeakMap();
 function sweepGeometry(b){const spec=b.honroBellDescent;if(!spec)return[];if(sweepCache.has(spec))return sweepCache.get(spec);let polygons=spec.sweepPolygons;
- if(!polygons?.length){polygons=[];for(const id of spec.terrainIds||[]){const t=b.terrain.find(t=>t.id===id);if(!t)continue;const ps=C.poly(t).map(p=>({x:p.x,y:p.y-(memory(b).offset||0)})),drop=spec.distance||200,moved=ps.map(p=>({x:p.x,y:p.y+drop}));polygons.push(ps,moved);for(let i=0;i<ps.length;i++){const j=(i+1)%ps.length;if(Math.abs(ps[i].x-ps[j].x)<.001)continue;polygons.push([ps[i],ps[j],moved[j],moved[i]]);}}}
+ if(!polygons?.length){polygons=[];for(const id of spec.terrainIds||[]){const t=G.HonroQuestTargets.records(b).find(t=>t.id===id);if(!t)continue;const ps=C.poly(t).map(p=>({x:p.x,y:p.y-(memory(b).offset||0)})),drop=spec.distance||200,moved=ps.map(p=>({x:p.x,y:p.y+drop}));polygons.push(ps,moved);for(let i=0;i<ps.length;i++){const j=(i+1)%ps.length;if(Math.abs(ps[i].x-ps[j].x)<.001)continue;polygons.push([ps[i],ps[j],moved[j],moved[i]]);}}}
  const shapes=(polygons||[]).map(ps=>{const vertices=(ps.points||ps).map(p=>Array.isArray(p)?{x:p[0],y:p[1]}:{x:p.x,y:p.y}),xs=vertices.map(p=>p.x),ys=vertices.map(p=>p.y);return{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),vertices,broken:false,oneWay:false};});sweepCache.set(spec,shapes);return shapes;
 }
 function swept(b,box){const shapes=sweepGeometry(b);return shapes.length?shapes.some(t=>intersects(box,t)&&C.terrainRectIntersects(t,box.x,box.y,box.w,box.h,.01)):(b.honroBellDescent?.sweep||[]).some(z=>intersects(box,z));}
@@ -47,7 +47,7 @@ function settle(app){const b=app.engine.b,m=memory(b),spec=b.honroBellDescent;
  app.engine.emit?.('save');
 }
 function transition(app){const e=app.engine,b=e.b,m=memory(b);if(!b.honroBellDescent||m.status==='settled'||m.status==='lowering')return;
- const hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=b.terrain.find(t=>t.id==='upper-chain');
+ const hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=G.HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');
  if(!done(b,'silence')||!hold||!A.satisfied(b,hold)||!anchor?.broken)return;
  const serial=b.honroState.actorTurnSerial||0;
  if(m.status==='suspended'){
@@ -99,7 +99,7 @@ const attach=A.attach;A.attach=function(app,e){const out=attach(app,e),b=e.b;if(
 const tick=A.tick;A.tick=function(app,dt){const b=app.engine?.b;if(!active(b))return tick(app,dt);if(memory(b).status==='lowering')return;
  app.engine.refreshActivation();prepareWaves(app);transition(app);if(memory(b).status==='lowering')return;const out=tick(app,dt);transition(app);return out;
 };
-const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const a=A.memory(b),m=memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=b.terrain.find(t=>t.id==='upper-chain');
+const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const a=A.memory(b),m=memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=G.HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');
  if(done(b,'silence')&&(!A.satisfied(b,hold)||!anchor?.broken)){
   const h=a.holds?.['hold-silence'],site=b.honroMarkers.find(s=>s.id==='hold-silence');out.summary=`${A.steps(b).filter(s=>A.satisfied(b,s)).length}/8 · 병렬 안정화 · 억제 ${h?.progress||0}/4라운드${h?.contested?' (적 점유)':''} · 고정구 ${anchor?.broken?'해제':'남음'}`;
   out.targets=[...(!A.satisfied(b,hold)&&site?[{id:'hold-silence',kind:'interact',x:site.x,y:site.y,label:'담허 · 억제진 4라운드'}]:[]),...(!anchor?.broken&&anchor?[{id:'upper-chain',kind:'seal',x:anchor.x+anchor.w/2,y:anchor.y,label:'장력 고정구 · 기본 공격',box:anchor}]:[])];

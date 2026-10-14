@@ -22,9 +22,10 @@
     compressStage2(b);
     addForegroundDecor(b);
     G.HonroLayouts.upgrade(b);
+    G.HonroQuestTargets?.migrate(b);
     if(b.honroGeometryReady){repairEmbeddedSave(b);return b;}
     for(const u of b.units || []){
-      if(!u || u.dead || typeof u.x !== 'number' || typeof u.y !== 'number') continue;
+      if(!u || u.dead || u.honroObjectiveTarget || typeof u.x !== 'number' || typeof u.y !== 'number') continue;
       const flying=!!G.HonroWorld.archetypes[u.honroType]?.flying;
       const p=G.HonroTerrain.place(b,u,{flying,maxDistance:Math.max(b.width,b.height)});
       if(!p)throw Error('No legal initial placement for '+u.id+' in stage '+b.honroStage);

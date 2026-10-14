@@ -215,12 +215,12 @@ function eventLines(app,ev){
   lines=near?[['휘겸','저쪽에서 또 몰려오오. 피란민이 문을 빠져나갈 때까지 이 길을 함께 지킵시다.',{focus:'objective'}]]:[['휘겸','문 앞이 비었소! 피란민이 지나갈 길을 다시 열어주시오.',{focus:'objective'}]];
  }
  if(app.stage.id===5&&ev.id==='lower-beasts'){
-  const sealsIntact=b.terrain.some(t=>t.honroSeal&&!t.broken);
+  const sealsIntact=G.HonroQuestTargets.records(b).some(t=>t.honroSeal&&!t.broken);
   lines=!sealsIntact?[['설오','고리쇠는 끊었지만 사슴들이 아직 남았습니다. 물길에서 몰아냅시다.']]:hs.ritual?.active?[['설오','사슴들이 받이진 쪽으로 옵니다. 담허 어른이 자리를 지키는 동안 제가 막겠습니다.',{focus:'interact'}]]:[['설오','사슴들이 바위 쪽으로 옵니다. 받이진을 펴기 전에 몰아내겠습니다.',{focus:'interact'}]];
  }
  if(app.stage.id===7&&ev.id==='yard-hounds'&&(hs.rescuedCount||0)>=3)lines=[['휘겸','주민들은 빠져나갔소. 산개들이 뒤를 밟지 못하게 내가 막겠소.']];
  if(app.stage.id===7&&ev.id==='upper-crows'&&(hs.rescuedCount||0)>=3)lines=[['담허','주민들은 빠져나왔네. 저 새들이 뒤쫓지 못하게 하세.']];
- if(app.stage.id===8&&ev.id==='bier-crows'&&!b.terrain.some(t=>t.honroSeal&&!t.broken))lines=[['담허','결박은 모두 풀렸네. 새들을 떼어내고 상여 안의 혼을 받아야 해.',{focus:'boss'}]];
+ if(app.stage.id===8&&ev.id==='bier-crows'&&!G.HonroQuestTargets.records(b).some(t=>t.honroSeal&&!t.broken))lines=[['담허','결박은 모두 풀렸네. 새들을 떼어내고 상여 안의 혼을 받아야 해.',{focus:'boss'}]];
  if(app.stage.id===9&&ev.id==='evac-crows'&&b.honroStaging?.hidden?.['npc-sodan'])lines=[['휘겸','위쪽 새들이 내려오오! 받이진을 놓는 사람 곁을 지키시오.']];
  else if(app.stage.id===9&&ev.id==='evac-crows'&&(hs.receivers||0)>=2)lines=[['소단','(담장 너머로 외친다) 두 진이 다 섰군요… 새들이 그쪽으로 가요! 조심해요!']];
  if(app.stage.id===9&&ev.id==='evac-beasts'&&(hs.receivers||0)>=2)lines=[['휘겸','받이진은 섰소. 대피로를 따라 올라오는 놈들만 여기서 끊겠소.']];
@@ -236,7 +236,7 @@ function resolveDeferred(app,entry){
  if(id.includes('entry-follow-7-')&&(hs.rescuedCount||0)>=3)return [];
  if(id.includes('entry-follow-9-')&&(hs.receivers||0)>=2)return [];
  if(id.includes('entry-follow-10-')&&hs.sodanCoop)return [];
- const sealsIntact=b.terrain.some(t=>t.honroSeal&&!t.broken);
+ const sealsIntact=G.HonroQuestTargets.records(b).some(t=>t.honroSeal&&!t.broken);
  return (entry.lines||[]).filter(([who,text,meta={}])=>{
   if(meta.onlyWhile==='sealsIntact'&&!sealsIntact)return false;
   // Older saved battles may carry the briefing before it had a condition tag.

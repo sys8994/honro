@@ -24,7 +24,7 @@ export function flightClear(e:Engine,u:Unit,p:Vec){
  const pad=8,left=p.x-u.r-pad,right=p.x+u.r+pad,head=p.y-u.h-pad,feet=p.y+pad;
  if(left<0||right>e.b.width||head<12||feet>e.b.height)return false;
  if(e.b.terrain.some(t=>!t.broken&&terrainRectIntersects(t,left,head,right-left,feet-head,0)))return false;
- return e.b.units.every(v=>v.id===u.id||v.dead||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||feet<=v.y-v.h-4||head>=v.y+4);
+ return e.b.units.every(v=>v.id===u.id||v.dead||v.honroObjectiveTarget||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||feet<=v.y-v.h-4||head>=v.y+4);
 }
 /** Flying fixed bodies absorb most of an impulse, but retain a small positional recoil.
  * Sweep the whole body in short steps so thin walls, ceilings and other actors stop it.
@@ -185,7 +185,7 @@ function waterfallTactics(e:Engine){const b=e.b as any;return b.honroStage===5&&
  * reserve every living body (opponent, teammate, ally or objective), not just enemies.
  * The 10px horizontal margin covers the ordinary <=9px waypoint arrival tolerance. */
 function waterfallDestinationClear(e:Engine,u:Unit,p:Vec){
- return e.b.units.every(v=>v.id===u.id||v.dead||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||p.y<=v.y-v.h-4||p.y-u.h>=v.y+4);
+ return e.b.units.every(v=>v.id===u.id||v.dead||v.honroObjectiveTarget||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||p.y<=v.y-v.h-4||p.y-u.h>=v.y+4);
 }
 function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
  const found:Vec[]=[];

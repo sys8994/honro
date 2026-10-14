@@ -256,6 +256,8 @@ export interface Unit {
     fixed: boolean;
     boss?: number;
     honroMidboss?: boolean;
+    /** Stationary hostile quest device; never an AI actor or a kill quota. */
+    honroObjectiveTarget?: boolean;
     spawnX: number;
     spawnY: number;
     intent: string;
