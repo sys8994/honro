@@ -24,3 +24,9 @@ HP0 또는 수명 종료 시 살아남은 적을 주변의 실제 안전 지지�
 ## 검증
 
 `npm run test:eater-capture`는 13 기본 lifecycle + 7 독립 적대적 사례, 전 SP 정량, 실제 기여장부, App Continue/3회 export-import를 실행한다. Native 미술은 `tests/ground-eater-native-art.mjs` 및 실제 lifecycle 캡처를 따로 검사한다. Native/VM 검사는 실제 브라우저·CSS·Pages 검수를 대체하지 않는다.
+
+### 최종 합본 검수 · 2026-10-13
+
+생산 소스 `fd9e853`, exact 계약/두 HTML `cf2d787` 기준으로 먹귀/반사파 집중 gate와 실제 App 저장 복원을 재실행해 통과했다. Native 먹귀20·반사10 프레임은 최종 생산161개 입력과 일치한다. `3f5dc89`의 후속 변경은 오래된 먹귀 투사체 흡수 브라우저 검사만 새 지상포획 계약으로 갱신했으며, 실제 브라우저 실행 증거는 아니다.
+
+기존 설치된 선언 버전 sharp0.35.4/canvas0.1.100을 사용한 `npm --offline --no-audit --no-fund run verify`는 빌드·제목·캠페인/runtime exact 계약·마이그레이션 메타·스토리/바인딩·TypeScript·game 정적 suite·rc20 지도 재검사까지 통과했다. 첫 `game/tests/rc20-browser.py`가 Chromium의 `socket() failed: Operation not permitted`와 읽기 전용 Crash Reports 오류로 페이지 로드 전 종료했다. 따라서 전체 verify는 환경 차단으로 exit1이며 rc21 성능 및 이후 전체 integration/performance는 미실행이다. Native/VM 결과를 실제 브라우저·성능·공개 Pages 통과로 해석하지 않는다. 원본 로그는 `_local/reports/eater-capture/final-verify.log`, 두 집중 gate 로그는 같은 폴더에 보존한다.
