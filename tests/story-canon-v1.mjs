@@ -42,9 +42,11 @@ for(const id of [25,27])for(const version of [1,2]){
 const raw=JSON.parse(readFileSync('shared/data/campaign.json')),once=g.HonroStoryCanonV1.author(raw);
 assert.deepEqual(plain(g.HonroStoryCanonV1.author(once)),plain(once),'Fresh author is idempotent');
 for(let i=0;i<30;i++)assert.equal(once.stages[i].initialState.honroStoryCanonRevision,i<10?undefined:1);
-for(const id of [18,25,27,29]){
+for(const id of [12,14,18,25,27,29]){
  const {b}=battlefield(g,id);assert.equal(b.honroStoryCanonRevision,1);
  assert(b.honroNarrativeContent,'Actual World build snapshots prose');
+ if(id===12){assert(text(b.honroQuarryContent.beats.sign).includes('사람이 길을 틀어놓은 진'));assert(text(g.HonroObjectiveRevision.contentFor(b,H.stages[id-1])).includes('사람이 길을 틀어놓은 진'));}
+ if(id===14){assert.equal(b.honroVerticalStage14Content.beats['family-mid'].filter(r=>r[1].includes('요새는 늘 밟던 돌')).length,1);assert(text(g.HonroObjectiveRevision.contentFor(b,H.stages[id-1])).includes('요새는 늘 밟던 돌'));}
  const saved=plain(b),before=text(saved);g.HonroObjectiveRevision.contentFor(saved,H.stages[id-1]);assert.equal(text(saved),before,'Content lookup is pure');
 }
 // New additions are observation and uncertainty, not the unrevealed answers.

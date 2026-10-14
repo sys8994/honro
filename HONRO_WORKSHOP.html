@@ -32440,9 +32440,25 @@ letter.splice(letter.length-1,0,
 text(30,'outro','사람들의 시신과 금속','시신과 생활 금속을 보낸 곳, 종을 옮겨 온 곳이 모두 무명사입니다. 고향 사람들이 향한 곳도 그 옛길에서 더 찾아야겠습니다.');
 
 const active=b=>!b?.honroCustom&&b?.honroStoryCanonRevision===1;
+function freshBespoke(id,initialState){
+ // These chapters deliberately keep their own authored payloads. Revise only
+ // the two adopted observations at new-map authoring; never migrate Continue.
+ if(id===12&&initialState.honroQuarryContent){
+  const payload=clone(initialState.honroQuarryContent),row=payload.beats.sign.find(r=>r[1].includes('돌림진이네'));
+  if(!row)throw Error('Story canon quarry snapshot drift');
+  row[1]=stage(12).beats.sign.find(r=>r[1].includes('돌림진이네'))[1];initialState.honroQuarryContent=payload;
+ }
+ if(id===14&&initialState.honroVerticalStage14Content){
+  const payload=clone(initialState.honroVerticalStage14Content),rows=payload.beats['family-mid'],line=stage(14).beats['family-mid'].find(r=>r[1].includes('요새는 늘 밟던 돌'));
+  if(!rows||!line)throw Error('Story canon village snapshot drift');
+  if(!rows.some(r=>r[1]===line[1])){const at=rows.findIndex(r=>r[1].includes('절보다 종이 먼저'));if(at<0)throw Error('Story canon village observation drift');rows.splice(at+1,0,clone(line));}
+  initialState.honroVerticalStage14Content=payload;
+ }
+ return initialState;
+}
 function author(project){return {...project,stages:project.stages.map(st=>{
  const id=st.metadata?.stageId;if(!st.metadata?.campaign||id<11||id>30)return st;
- return {...st,initialState:{...st.initialState,honroStoryCanonRevision:1}};
+ return {...st,initialState:freshBespoke(id,{...st.initialState,honroStoryCanonRevision:1})};
 })};}
 function witnessedContent(b,content){
  const allow=row=>(!row[2]?.requiresVoidWitness||b?.honroVoidWitness)&&(!row[2]?.requiresBellWitness||b?.honroBellWitness);

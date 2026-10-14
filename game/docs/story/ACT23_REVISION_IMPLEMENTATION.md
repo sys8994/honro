@@ -6,6 +6,7 @@
 
 - 캠페인은 `shared/data/campaign.json`의 stage-11~stage-30. `shared/build.mjs`의 같은 author·번들을 Game, Workshop Stage View, Playtest가 사용한다. 옛 맵 전체 재생성은 실행하지 않는다.
 - `story-canon-v1.js`: 새 지도 `honroStoryCanonRevision=1`, 현재 대사에 대한 최소 변경, 구형 content fallback과 기존 snapshot 보존. [채택]인 제작 비밀을 극중 대사에 넣지 않는다.
+- 12·14장의 전용 대사 사본도 새 지도 저작 때 각각 진 설명 한 문장·주민 관찰 한 행만 갱신한다. 첫 구현의 전역 대사 수정만으로는 실제 사본에 반영되지 않는 문제를 전체 대사 이력 대조에서 찾아 보완했다. 전용 목표·동선·기존 저장 사본은 유지하며 실제 fresh `contentFor`를 회귀 검사한다.
 - `story-anomaly-revision.mjs` / `story-anomaly-art.js`: 17/18/19/25/27의 추가 환경 metadata와 공통 Scene의 국소 표현. 기존 지형 polygon·충돌·적 배치·목표·진목 경로를 보존한다. 27장 일시 낙하만 별도 장면 상태에서 설오의 몸 위치를 움직인다.
 - `act3-void.js`: 새 27장의 필수 조우. `main.js`는 입력·시뮬레이션·미션·프레임·오디오 경계와 이어하기 복구를 연결한다. `world.js`는 실제 체험의 영속 증거가 있을 때만 다음 새 장에 witness를 전달한다. `stake-crossing.js`는 완료 조우를 구간 재시도로 되돌리지 않는다.
 - `bell-anomaly.js` / `Engine.advanceProjectile`: 새 18장의 단 한 발 소실, 발사 전 상태 보존과 복구, 이후 국소 쏠림. 몸 낙하의 `physics.regions`는 사용하지 않는다.
@@ -63,9 +64,9 @@
 | `act23-narrative-redesign.mjs`, TypeScript | 통과 |
 | `act3-void-browser.py` | 실제 Chromium desktop/mobile·회전·키/터치·멈춤/설정·동일 BGM 스트림·정확한 복귀·reload·Workshop Playtest 통과. 심부 도착 위치를 둔 관찰 fixture |
 | `bell-anomaly-browser.py` | 실제 Space 또는 모바일 발사 버튼 press/release→화살→즉시 대화→정확한 자원 환급/목표 보존 통과. 기존 안전 발판 위치를 둔 관찰 fixture |
-| Native 전후 화면 | 같은 카메라·같은 기존 배우 위치에서25/27의 기둥/물방울,18국소 영향 경계 검토. 정상 조작 완주·브라우저·성능 증거와 구별 |
+| Native 전후 화면 | 같은 카메라·같은 기존 배우 위치에서17작업장 배경,18국소 영향 경계,19장례 잔향,25/27기둥/물방울 검토. 구현자와 별도 통합자가 전후 화면을 직접 확인했다. 정상 조작 완주·브라우저·성능 증거와 구별 |
 
-실행 로그/JSON/PNG/WebM은 `_local/reports/story-revision/`, `act3-void-browser/`, `bell-anomaly-browser/`, `story-anomaly-native/`, `story-anomaly-focused-native/`에 둔다. 새 검사는 `npm run test:story-revision`과 `npm run test:story-revision:browser`로 재현하며 전체 `test:integration`에도 연결한다. 브라우저 검사는 HTTP 서버를 사용하며 `HONRO_BASE_URL`로 최종 Pages를 지정할 수 있다.
+실행 로그/JSON/PNG/WebM은 `_local/reports/story-revision/`, `act3-void-browser/`, `bell-anomaly-browser/`, `story-anomaly-native/`, `story-anomaly-focused-native/`, `story-anomaly-17-19-native/`에 둔다. 새 검사는 `npm run test:story-revision`과 `npm run test:story-revision:browser`로 재현하며 전체 `test:integration`에도 연결한다. 브라우저 검사는 HTTP 서버를 사용하며 `HONRO_BASE_URL`로 최종 Pages를 지정할 수 있다. 묵종 브라우저 증거의 HTML은 `26818aa8…`, 이후 검은 틈 복귀 대사 수정 빌드는 `9645d315…`이다. 묵종 소스는 그 사이 동일하고, 최종 Pages에서는 배포된 바이트로 다시 확인한다.
 
 현재와 수정 전 master `4a601580d1a55d9455c0bb25aeb9db3e7613c529`에서 각각 재현한 기존 실패:
 
@@ -75,4 +76,4 @@
 - `act3-save-boundaries.mjs:73`: 기록 수0과 옛 기대1이 다르다.
 - `stage18-bell-refinement-resume.mjs:8`: 이미 적군 유닛인 `upper-chain`을 지형에서 찾아 `broken`을 쓰다가 실패한다. 현재 목표 보호는 새 실제 유닛/records 검사로 확인했다.
 
-이 실패를 없애려고 옛 fixture 전체를 새 데이터로 덮지 않는다. 정상 자원으로 전20장 완주, 물리 기기 입력/청취, 성능,17/19별도 화면과 최종 배포 후 전체 검수는 이 저장 지점의 통과 범위에 포함하지 않는다. 기준서 원본 signed transfer가 실패하여 원본 바이트 검증도 미완료이며 [채택 기록](README.md)의 전체 읽기 전사본 상태를 유지한다.
+이 실패를 없애려고 옛 fixture 전체를 새 데이터로 덮지 않는다. 정상 자원으로 전20장 완주, 물리 기기 입력/청취, 성능과 최종 배포 후 전체 검수는 이 저장 지점의 통과 범위에 포함하지 않는다. 기준서 원본 signed transfer가 실패하여 원본 바이트 검증도 미완료이며 [채택 기록](README.md)의 전체 읽기 전사본 상태를 유지한다.
