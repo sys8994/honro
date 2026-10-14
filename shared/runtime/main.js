@@ -298,7 +298,7 @@
         portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
         drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; const resumeRest=!!this.profile.honroJourney?.story;this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg" aria-hidden="true">${G.HONRO_TITLE_SCENE||""}</div><header class="top">${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap"><h1 class="title-brand" aria-label="혼로"><svg class="title-ink-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs><filter id="honro-title-ink" x="-1%" y="-1%" width="111%" height="102%" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="12 9" numOctaves="3" seed="13" result="weathered"/><feColorMatrix in="weathered" type="matrix" values=".6 0 0 0 .17 .6 0 0 0 .185 .58 0 0 0 .18 0 0 0 0 1"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs></svg><span class="title-hanja" aria-hidden="true">${G.HONRO_TITLE_HANJA?`<img class="honro-logo honro-logo-hanja" src="${G.HONRO_TITLE_HANJA}" alt="" width="1859" height="846" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="title-logo-fallback" hidden>魂路</span>`:'<span class="title-logo-fallback">魂路</span>'}</span><span class="title-hangul" aria-hidden="true">${["혼","로"].map((syllable,i)=>`<span class="title-reading-glyph title-reading-glyph-${i}">${G.HONRO_TITLE_LOGO?`<img class="honro-logo honro-logo-hangul" src="${G.HONRO_TITLE_LOGO}" alt="" width="1100" height="550" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="title-reading-fallback" hidden>${syllable}</span>`:`<span class="title-reading-fallback">${syllable}</span>`}</span>`).join("")}</span></h1></div><p class="title-tagline">떠나지 못한 이들을 위한 길.</p><div class="title-actions"><button class="primary" data-action="${resumeRest?'rest':this.profile.honroBattle ? 'continue' : 'rest'}">${resumeRest?'쉼터 대화 이어가기':this.profile.honroBattle ? '이어서 걷기' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? resumeRest?'<button class="ghost" data-action="continue">저장된 전투 이어서 걷기</button>':!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':'<button class="ghost" data-action="rest">길 위의 쉼터</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
-        stopBattle() { G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
+        stopBattle() { G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             this.persist();
@@ -476,7 +476,7 @@
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b) { this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b) { G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
@@ -488,12 +488,13 @@
                 const before=u.hp,out=orig(u,amount,...args);if(e.b.honroStage===10&&u.id==='boss'&&!e.b.honroState?.sodanCoop&&u.hp<=0){u.hp=1;u.dead=false;}
                 if(u.hp<before&&!u.eaterCapturedBy)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
-        } G.HonroNarrativeRevision?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row">${this.battleTitleMarkup()}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}</div><div class="battle-objective-row"><span id="turn-text"></span><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button></div><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        } G.HonroNarrativeRevision?.attach(this,e); G.HonroAct3Void?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row">${this.battleTitleMarkup()}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}</div><div class="battle-objective-row"><span id="turn-text"></span><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button></div><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
         continue() { if (!this.profile.honroBattle) {
             this.showRest();
             return;
         } const b = clone(this.profile.honroBattle); if(b.honroRevision!==20){this.profile.honroBattle=null;this.notify('지형 물리가 교체되어 현재 스테이지 입구에서 다시 시작합니다. 성장 정보는 유지됩니다.');this.launch(b.honroStage||1);return;} this.stageId = b.honroStage || 1; this.stage = G.HonroSplitCampaign.content(this.profile,this.stageId)||H.stages[this.stageId - 1]; this.training = false; if(!this.customMap&&!G.HONRO_EMBEDDED){G.HonroStage7Reentry?.upgradeBattle(b);G.HonroPlatformPassages?.upgradeBattle(b);G.HonroOpenStructures?.upgradeBattle(b);G.HonroProjectileTargets?.upgradeBattle(b);} this.mount(b); }
         checkMission(e) {
+            if(G.HonroAct3Void?.blocked(this)||G.HonroBellAnomaly?.blocked(this))return false;
             const b = e.b;
             if (['won', 'lost'].includes(b.phase))
                 return true;
@@ -521,7 +522,7 @@
             }
             return false;
         }
-        missionTick(dt){G.HonroStakeCrossing.tick(this);if(G.HonroLayouts.upgrade(this.engine.b)){this.scene.manual=false;this.updateHUD(true);this.profile.honroBattle=clone(this.engine.b);this.persist();}G.HonroAllies.missionTick(this,dt);}
+        missionTick(dt){if(G.HonroAct3Void?.blocked(this)||G.HonroBellAnomaly?.blocked(this))return;G.HonroStakeCrossing.tick(this);if(G.HonroLayouts.upgrade(this.engine.b)){this.scene.manual=false;this.updateHUD(true);this.profile.honroBattle=clone(this.engine.b);this.persist();}G.HonroAllies.missionTick(this,dt);}
 
         groundAt(x, oldY) { return G.HonroMapEngine.surfaceY(this.engine.b.terrain,x,oldY)?.y ?? Math.min(this.engine.b.height-140,oldY+8); }
         spawnWave(n) { let b = this.engine.b; for (let i = 0; i < n; i++) {
@@ -581,14 +582,14 @@
             const help=G.HonroObjectives.help(this);
             this.open(`<h2>목표·조작 안내</h2><section class="battle-help-goal"><h3>${esc(this.training?'허공터':this.stage.name)}</h3><p class="battle-help-current">${esc(help.summary)}</p></section>${help.checklist?.length?`<section><h3>지금까지의 목표</h3><ol class="mission-checklist">${help.checklist.map(q=>`<li${q.done?' class="complete"':''}>${q.done?'✓ ':q.current?'현재 · ':''}${esc(q.text)}</li>`).join('')}</ol></section>`:''}${help.failureText?`<section><h3>실패 조건</h3><p>${esc(help.failureText)}</p></section>`:''}<section><h3>화면 둘러보기</h3><p>빈 전장을 드래그해 화면을 옮깁니다. 마우스 휠 또는 두 손가락 오므리기·벌리기로 축소·확대합니다. 미니맵을 누르거나 드래그하면 그 위치를 봅니다. 행동 가능한 동행 초상을 누르면 다시 따라갑니다.</p></section><section><h3>키보드</h3><p>← → / A D 이동 · ↑ ↓ 조준 각도 · Ctrl 도약<br>Space 누른 채 충전, 떼어 발사 · F 방어<br>Tab 행동 가능한 동행 전환 · 1–4 기예 선택 · E 상호작용</p></section><section><h3>발판과 사격</h3><p>투사체와 폭발은 동행·동맹·보호 대상에게도 피해를 줍니다. 유도탄은 적을 추적하지만 앞을 가로막은 아군에게 맞을 수 있습니다. 회복·부적의 특수 효과는 기존 대상에게만 적용됩니다.</p><p>아래 화살표는 통과 가능한 발판 위에서만 사용할 수 있습니다. 잠깐 몸을 낮춘 뒤 아래층으로 내려갑니다. 단단한 땅에서는 사용할 수 없습니다.</p><p>발판은 아래·옆으로 쏜 탄을 통과시키고, 위에서 내려오는 탄을 막습니다. 진목·소환탄도 윗면에 닿으면 놓입니다. 벽과 동굴 천장은 모든 방향의 탄을 막으며, 반사 기예는 막힌 면에서 튕깁니다.</p></section><section><h3>터치</h3><p>왼쪽 조이스틱의 좌우로 이동하고 위아래로 조준합니다. 발사 버튼을 누른 채 충전하고 떼면 발사합니다. 도약·아래로 내려가기·방어·동행·기예·상호작용은 화면의 해당 버튼을 누릅니다.</p></section><div class="actions"><button data-action="pause">일시정지 메뉴</button><button class="primary" data-action="close">돌아가기</button></div>`,'battle-help-dialog');
         }
-        pause() { this.cancelInput(); this.open(`<h2>잠시 머무르기</h2><div class="pause-menu"><button class="primary" data-action="close">${fa('crosshairs',17)}<span>돌아가기</span></button><button data-action="settings">${fa('gear',17)}<span>설정</span></button><button data-action="battle-help"><span>목표·조작 안내</span></button><button data-action="journal"><span>대화와 장부 기록</span></button><button data-action="fullscreen">${fa('expand',17)}<span>전체화면</span></button>${G.HonroStakeCrossing.active(this.engine?.b)&&(G.HonroStakeCrossing.current(this.engine.b)||G.HonroStakeCrossing.flexible(this.engine.b))?'<button data-action="stake-retry"><span>현재 구간 다시 걷기</span></button>':''}<button data-action="retry">${fa('rotateRight',17)}<span>처음부터</span></button>${!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':`<button data-action="rest">${fa('map',17)}<span>길 위의 쉼터</span></button>`}<button data-action="map"><span>여정첩</span></button></div>`,'pause-dialog'); }
+        pause() { if(G.HonroAct3Void?.pause(this))return; this.cancelInput(); this.open(`<h2>잠시 머무르기</h2><div class="pause-menu"><button class="primary" data-action="close">${fa('crosshairs',17)}<span>돌아가기</span></button><button data-action="settings">${fa('gear',17)}<span>설정</span></button><button data-action="battle-help"><span>목표·조작 안내</span></button><button data-action="journal"><span>대화와 장부 기록</span></button><button data-action="fullscreen">${fa('expand',17)}<span>전체화면</span></button>${G.HonroStakeCrossing.active(this.engine?.b)&&(G.HonroStakeCrossing.current(this.engine.b)||G.HonroStakeCrossing.flexible(this.engine.b))?'<button data-action="stake-retry"><span>현재 구간 다시 걷기</span></button>':''}<button data-action="retry">${fa('rotateRight',17)}<span>처음부터</span></button>${!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':`<button data-action="rest">${fa('map',17)}<span>길 위의 쉼터</span></button>`}<button data-action="map"><span>여정첩</span></button></div>`,'pause-dialog'); }
         defend() { if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active,hpBefore=u.hp,shieldBefore=u.shield; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));G.HonroProgression.recordHeal(this.engine.b,u,u.id,u.hp-hpBefore);G.HonroProgression.shieldAdded(this.engine.b,u,u.id,shieldBefore);u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
         displayAngle(u) { return u.facing >= 0 ? u.angle : 180 - u.angle; }
         adjustAngle(u, v) { if (u.facing >= 0)
             u.angle = clamp(u.angle + v, C.AIM_MIN || -85, 90);
         else
             u.angle = 180 - clamp(this.displayAngle(u) + v, C.AIM_MIN || -85, 90); }
-        canInput() { return this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
+        canInput() { return !G.HonroAct3Void?.blocked(this) && !G.HonroBellAnomaly?.blocked(this) && this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
         beginCharge() { if(this.charging||this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.detonateIceGourd()||this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
             return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || u.focus < this.engine.manaCost(sk, u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0; return true; }
@@ -764,7 +765,7 @@
             const session=inBattle?(this.training?(this.trainingMusicSession||b.session):b.session):undefined;
             if(inBattle&&this.musicSession!==session){this.musicSession=session;this.bossMusicSeen=false;}
             if(inBattle&&!this.training&&b.honroStage===10&&b.units.some(u=>u.side===1&&!u.dead&&u.hp>0&&(u.boss||u.honroMidboss||u.honroFinalBoss)&&(u.awake||u.honroFinalBoss)))this.bossMusicSeen=true;
-            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden,session);
+            this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session);
             this.updateMusicLabel();
         }
         updateMusicLabel(){
@@ -796,7 +797,7 @@
             document.addEventListener('pointerup', e => {if(e.pointerType!=='mouse')wakeAudio();}, {capture:true});
             document.addEventListener('touchend', wakeAudio, {capture:true,passive:true});
             document.addEventListener('click', wakeAudio, {capture:true});
-            document.addEventListener('keydown', e => { void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
+            document.addEventListener('keydown', e => { if(G.HonroAct3Void?.key(this,e))return; void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
                 return; if (e.code === 'Escape') {
                 e.preventDefault();
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
@@ -957,6 +958,12 @@
                     break;
                 case 'battle-help':
                     this.battleHelp();
+                    break;
+                case 'void-skip':
+                    G.HonroAct3Void?.skip(this);
+                    break;
+                case 'void-leave':
+                    G.HonroAct3Void?.abort(this);this.showTitle();
                     break;
                 case 'pause':
                     this.pause();
@@ -1130,7 +1137,9 @@
             this.updateAudio();
             try {
                 const dt = Math.min(.06, Math.max(0, (now - this.prev) / 1000));
-                this.prev = now; G.HonroStory.tick(this,now);
+                this.prev = now;
+                if(G.HonroAct3Void?.blocked(this)){this.acc=0;G.HonroAct3Void.frame(this,dt);requestAnimationFrame(t=>this.frame(t));return;}
+                G.HonroStory.tick(this,now);
                 G.HonroRestJourney?.frame(this,dt);
                 if(this.preview)G.HonroSkillPreview.tick(this,this.preview,dt);
                 if (this.engine && this.scene && this.screen === 'battle') {
@@ -1158,10 +1167,10 @@
                             }
                             e.tick(1 / 120);
                             simulated+=1/120;
-                            if(!this.dialogue)this.missionTick(1 / 120);
+                            if(!this.dialogue&&!G.HonroAct3Void?.blocked(this))this.missionTick(1 / 120);
                             this.acc -= 1 / 120;
-                            if(['aim','enemy','ally','summon'].includes(e.b.phase))G.HonroStory.turn(this);
-                            if (this.dialogue||G.HonroStory.turnPaused(this)||['won', 'lost'].includes(e.b.phase)){this.acc=0;break;}
+                            if(!G.HonroAct3Void?.blocked(this)&&['aim','enemy','ally','summon'].includes(e.b.phase))G.HonroStory.turn(this);
+                            if (G.HonroAct3Void?.blocked(this)||this.dialogue||G.HonroStory.turnPaused(this)||['won', 'lost'].includes(e.b.phase)){this.acc=0;break;}
                         }
                         }finally{e.planningBudget();}
                         if (['won', 'lost'].includes(e.b.phase) && !this.training&&!this.dialogue)

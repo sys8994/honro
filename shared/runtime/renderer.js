@@ -238,6 +238,7 @@
             // Animated water lives outside the world raster cache; its collision and
             // conduction geometry remain in the canonical static map.
             this.liveWater?.(c,b);
+            G.HonroStoryAnomalyArt?.draw(c,this,b);
             // Grade scenery before actors, targeting guides and labels so deeper
             // nights retain the same readable combat colors in every entry point.
             if(this.environmentTone){c.save();c.setTransform(d,0,0,d,0,0);this.environmentTone(c,w,h,b);c.restore();}

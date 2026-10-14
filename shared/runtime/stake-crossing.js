@@ -42,9 +42,11 @@ function retry(app,reason){const e=app.engine,b=e?.b;if(!active(b))return false;
  // enemies, terrain and encounter triggers cannot be retained as free progress.
  // Earned XP remains monotonic; its existing capped ledger prevents refarming.
  const preparation=clone((b.honroSplit||b).stakePreparation),loadout=clone(b.honroStakeLoadout);
+ const resolvedVoid=b.honroAct3Void?.state==='RESOLVED'?clone(b.honroAct3Void):null;
  const progress={heroes:clone(b.heroes),honroGrowth:clone(b.honroGrowth)},awarded=new Map(b.units.map(u=>[u.id,u.xpGranted||0]));
  const sceneVersion=Math.max(b.sceneVersion||0,s.checkpoint.sceneVersion||0)+1;
  const restored=clone(s.checkpoint);for(const k of Object.keys(b))delete b[k];Object.assign(b,restored,progress,{sceneVersion});
+ if(resolvedVoid){b.honroAct3Void=resolvedVoid;b.honroVoidWitness=true;}
  b.honroStakeCrossing={...s,...(flexible(b)&&s.checkpointProgress?clone(s.checkpointProgress):{}),crossed:{},attempted:false,pairSeen:false,retries:(s.retries||0)+1,lastReason:reason};
  if(preparation)(b.honroSplit||b).stakePreparation=preparation;if(loadout)b.honroStakeLoadout=loadout;prepare(b);
  for(const u of b.units){u.xpGranted=Math.max(u.xpGranted||0,awarded.get(u.id)||0);if(u.side===0&&!u.summoned&&b.heroes[u.cls])C.applyHero(u,b.heroes[u.cls]);}

@@ -116,7 +116,12 @@ function build(st,profile,training,cls,skill,legacy){
  if(training)return trainingWorld(st,profile,cls,skill,legacy);
  const old=G.HonroSplitCampaign.legacy(profile,st.id),project=old?{...G.HONRO_PROJECT,library:[...(G.HONRO_SPLIT_V1.library||[]),...G.HONRO_PROJECT.library]}:G.HONRO_PROJECT,map=(old?G.HONRO_SPLIT_V1.stages:project.stages).find(s=>s.metadata.stageId===st.id);
  if(!map)throw Error('Missing canonical stage '+st.id);
- return G.HonroMaps.createBattle(map,project,profile,{origin:'campaign'});
+ const b=G.HonroMaps.createBattle(map,project,profile,{origin:'campaign'});
+ if(b.honroStoryCanonRevision===1){
+  if(profile.honroStoryEvents?.['act3-void-v1'])b.honroVoidWitness=true;
+  if(profile.honroStoryEvents?.['act2-bell-anomaly-v1'])b.honroBellWitness=true;
+ }
+ return b;
 }
 
 G.HonroWorld={build,top,createEnemy,ally,archetypes:ARCHETYPES};

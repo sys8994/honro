@@ -229,7 +229,11 @@ export class Engine {
     acceleration(p:{x:number;y:number;wind:number;gravityScale?:number;vx?:number;vy?:number;drag?:number;skill?:string;mode?:string}){const a=this.forceSample(p);return{x:a.x-a.k*(p.vx||0),y:a.y-a.k*(p.vy||0)};}
     inWaterfall(p:{x:number;y:number}){return insideWater(waterfallSheet(this.b),p);}
     advanceProjectile(p:{x:number;y:number;wind:number;vx:number;vy:number;gravityScale?:number;drag?:number;skill?:string;mode?:string;body?:boolean},dt:number){
-        const a=this.forceSample(p),air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
+        // Story-local projectile forces share this path with every prediction.
+        // They never enter body/environment physics or alter collision geometry.
+        const a=this.forceSample(p),story=(globalThis as any).HonroBellAnomaly?.force(this.b,p);
+        if(story){a.x+=story.x;a.y+=story.y;}
+        const air=(q:{x:number;y:number;vx:number;vy:number},step:number)=>advanceLinear(q.x,q.y,q.vx,q.vy,a.x,a.y,a.k,step);
         const water=!p.body&&!BODY.has(p.mode||'')?waterfallSheet(this.b):undefined;
         return water?advanceWaterfall(p,dt,water,air):{...air(p,dt),waterEntered:false,waterEntryPoint:undefined};
     }

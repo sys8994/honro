@@ -1,3 +1,4 @@
+import {applyStoryAnomalyEnvironment} from '../tools/map-forge/story-anomaly-revision.mjs';
 import {applyTacticalWaveWarnings} from '../tools/map-forge/tactical-wave-warnings.mjs';
 import {applyTacticalCityResponses} from '../tools/map-forge/tactical-city-responses.mjs';
 import {applyStage9And13Tactical} from '../tools/map-forge/stage9-13-tactical.mjs';
@@ -20,7 +21,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['action-prompts','content','story-content-v0','story-content','terrain-space','map-engine','battlefield-layouts',
-  'split-campaign','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','quest-targets'];
+  'split-campaign','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','quest-targets','story-canon-v1','bell-anomaly','act3-void'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeParts({vector=true,render=true,app=false}={}) {
@@ -41,7 +42,8 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   project=applyStage9And13Tactical(project);
   project=applyTacticalCityResponses(project);
   project=applyTacticalWaveWarnings(project);
-  parts.push('globalThis.HONRO_PROJECT=HonroStage2Airborne.author(HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'))));');
+  project=applyStoryAnomalyEnvironment(project);
+  parts.push('globalThis.HONRO_PROJECT=HonroStoryCanonV1.author(HonroBellAnomaly.author(HonroStage2Airborne.author(HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'))))));');
   if(vector){
     await buildParty();
     parts.push(await read('shared/runtime/party-rig.js'));
@@ -63,7 +65,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
     parts.push('globalThis.HONRO_ACT2_FAR_DATA='+JSON.stringify(act2Backdrops)+';');
     parts.push(await read('shared/assets/monsters/monsters.runtime.js'));
     parts.push(await read('shared/assets/actors/actors.runtime.js'));
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','story-act23-art','narrative-art','quest-target-art','visual-hierarchy'])parts.push(await read(`shared/runtime/${name}.js`));
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])parts.push(await read(`shared/runtime/${name}.js`));
   }
   if(app){
     parts.push(await read('game/vendor/ui/fa.js'));
