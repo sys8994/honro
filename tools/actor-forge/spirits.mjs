@@ -30,9 +30,16 @@ export function spirit(d){
   const head=part(a,'head',[0,-91],'body');shape(head,'M-24 -96 L-22 -120 -10 -125 -6 -119 8 -124 21 -118 24 -95 13 -79 -13 -80Z','woodLight');shape(head,'M-20 -108 L-6 -104 0 -109 7 -105 21 -110 17 -99 6 -98 -3 -101 -15 -98Z','shade');shape(head,'M-3 -104 L5 -105 10 -90 1 -86 -6 -91Z','wood');line(head,'M-17 -91 Q0 -78 17 -91','feature',2,0);line(head,'M-9 -86 L-8 -81 M0 -84 L1 -79 M9 -85 L9 -81','linen',1.6,0);react(a,'mantle',7);react(a,'head',5);
  }else if(kind==='eater'){
   a.viewBox=[-118,-160,236,186];Object.assign(a.palette,{cloth:'#303736',shade:'#1b2928',deep:'#101817',skin:'#897f6a',soul:'#8fa69a',glow:'#d0d8bc'});
+  a.parts[0].pivot=[0,16];
+  const feet=part(a,'ground-feet',[0,16],'root');shape(feet,'M-39 -20 L-24 -17 -23 3 -15 10 -16 15 -43 16 -49 12 -38 5Z M24 -18 L40 -21 39 4 50 11 48 16 19 15 17 10 26 3Z','shade','ink',1.4);line(feet,'M-43 12 L-35 11 M-29 10 L-25 14 M30 12 L35 11 M41 11 L44 14','skin',1.5,0);
   const shroud=part(a,'shroud',[0,-75],'root');shape(shroud,'M-48 -111 Q-78 -98 -83 -63 L-69 -37 -86 -11 -48 -25 -35 -4 -16 -17 0 6 19 -18 43 -2 55 -27 86 -13 69 -43 83 -68 Q63 -105 43 -112Z','cloth','ink',2);shape(shroud,'M-68 -59 Q-53 -80 -43 -79 L-50 -44 -70 -31Z M45 -81 Q67 -75 72 -54 L61 -32 47 -43Z','shade');shape(shroud,'M-71 -44 L-103 -22 -86 -21 -109 -6 -79 -14 -92 1 -62 -19Z M69 -39 L101 -28 83 -16 109 -9 82 -9 93 4 61 -19Z','shade','ink',1.3);line(shroud,'M-72 -51 L-82 -37 M-58 -38 L-64 -18 M70 -51 L78 -36 M55 -29 L59 -14','soul',1.3,1);
   const face=part(a,'face',[0,-88],'shroud');shape(face,'M-52 -122 Q-27 -151 0 -133 Q28 -151 52 -119 L59 -80 Q43 -50 0 -37 Q-43 -50 -59 -80Z','skin','ink',2.1);shape(face,'M-49 -112 L-37 -122 -20 -112 -12 -103 -30 -88 -52 -96Z M49 -110 L38 -118 22 -113 9 -100 25 -94 51 -100Z','deep','ink',1.1);shape(face,'M-42 -82 Q0 -97 42 -82 L49 -60 Q20 -31 0 -29 Q-28 -32 -49 -60Z','deep','ink',1.5);shape(face,'M-37 -77 L-29 -63 -20 -76 -10 -59 0 -78 11 -59 21 -76 31 -63 38 -78 M-34 -48 L-23 -58 -13 -44 -2 -56 9 -44 19 -57 30 -48','linen','ink',.8);oval(face,0,-66,11,14,'ink');line(face,'M-51 -88 L-62 -81 M52 -88 L63 -81 M-27 -130 L-23 -138 M27 -130 L23 -138 M-37 -119 L-40 -103 M-5 -132 L-14 -115 0 -108 M40 -119 L32 -108','woodLight',2,0);
-  const maw=part(a,'maw',[0,-55],'face');oval(maw,0,-59,14,9,'deep','glow',1);oval(maw,0,-59,5,4,'soul');react(a,'maw',18);react(a,'face',9);breathe(a,'shroud',9);breathe(a,'face',6,-1);breathe(a,'maw',10,-1);
+  const maw=part(a,'maw',[0,-55],'face');shape(maw,'M-13 -64 Q-6 -71 2 -67 L11 -65 14 -57 8 -51 -1 -50 -11 -54Z','deep','skinShade',.7);shape(maw,'M-10 -63 L-7 -59 -4 -65 0 -60 4 -64 7 -59 10 -62 M-7 -54 L-4 -58 -1 -53 3 -57 7 -54','linenShade',null,.6);line(maw,'M-3 -61 Q4 -64 5 -59 Q2 -56 -2 -58','soul',.7,0);react(a,'face',5);breathe(a,'shroud',4);breathe(a,'face',3,-1);breathe(a,'maw',7,-1);
+  // The mouth tears open vertically while the mask remains recognizable.
+  track(a,'attack','maw','scaleY',[[0,1],[.18,.55],[.46,3.4],[.7,1.8],[1,1]]);
+  track(a,'attack','maw','scaleX',[[0,1],[.18,1.25],[.46,1.7],[.7,.65],[1,1]]);
+  track(a,'attack','face','scaleY',[[0,1],[.18,.93],[.46,1.13],[.7,.96],[1,1]]);
+  track(a,'attack','shroud','scaleX',[[0,1],[.18,1.05],[.46,.87],[.7,1.09],[1,1]]);
  }else if(kind==='echo'){
   a.viewBox=[-82,-156,164,173];Object.assign(a.palette,{linen:'#c6c0a9',cloth:'#67767b',shade:'#3d4d52'});
   for(const side of [-1,1]){const wing=part(a,side<0?'left-paper':'right-paper',[side*9,-73],'root');shape(wing,`M${side*8} -124 L${side*38} -115 ${side*54} -96 ${side*43} -52 ${side*59} -16 ${side*25} -34 ${side*7} -9Z`,'linen','ink',1.1);shape(wing,`M${side*13} -109 L${side*31} -103 ${side*34} -66 ${side*21} -40Z`,'cloth');line(wing,`M${side*13} -104 L${side*25} -94 ${side*16} -84 ${side*30} -70 M${side*31} -100 L${side*19} -65`,'red',1.5,0);breathe(a,wing.id,7,side);react(a,wing.id,side*25);}
@@ -63,5 +70,5 @@ export function spirit(d){
   for(const tr of a.clips.attack.tracks)if(tr.part==='front-arm')tr.keys=tr.keys.map(([t,v])=>[t,-v]);
   track(a,'attack','club','rotate',[[0,0],[.22,-12],[.48,58],[.72,20],[1,0]]);
  }
- breathe(a,'root',kind==='eater'?9:3);track(a,'move','root','rotate',[[0,0],[.25,4],[.75,-4],[1,0]]);track(a,'attack','root','x',[[0,0],[.2,-3],[.48,5],[1,0]]);track(a,'hit','root','rotate',[[0,-8],[.4,3],[1,0]]);track(a,'jump_fall','root','rotate',[[0,0],[.4,-5],[.7,3],[1,0]]);return a;
+ if(kind!=='eater')breathe(a,'root',3);track(a,'move','root','rotate',[[0,0],[.25,4],[.75,-4],[1,0]]);track(a,'attack','root','x',[[0,0],[.2,-3],[.48,5],[1,0]]);track(a,'hit','root','rotate',[[0,-8],[.4,3],[1,0]]);track(a,'jump_fall','root','rotate',[[0,0],[.4,-5],[.7,3],[1,0]]);return a;
 }

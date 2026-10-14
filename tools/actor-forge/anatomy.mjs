@@ -16,6 +16,9 @@ export function matureHuman(a){
 }
 export function matureSpirit(a){
  Object.assign(a.palette,{wood:'#514A37',woodLight:'#8B7A59',linen:'#B3AF94',linenShade:'#85856F',skin:'#A4B8AD',soul:'#92B5AD',glow:'#C0D1B4',light:'#687F83',cloth:'#40535E'});
+ if(a.id==='summon_eater'){
+  transformParts(a,null,([x,y])=>[x*.8,(y-16)*.85]);a.baseHeight=142;a.viewBox=[-96,-150,192,156];return a;
+ }
  if(a.id!=='summon_lantern'){
   const head=a.parts.find(p=>p.id==='head');if(head){const [x,y]=head.pivot;transformParts(a,new Set(['head']),p=>[x+(p[0]-x)*.68,y+(p[1]-y)*.68],.8);}
   transformParts(a,null,([x,y])=>[x,y<=-70?y-20:y*90/70]);a.baseHeight=132;a.viewBox=[-80,-155,160,173];
