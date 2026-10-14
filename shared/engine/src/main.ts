@@ -348,7 +348,7 @@ class App {
         return false; const s = SKILLS[this.selected]; if (!s || s.passive || e.active!.focus < e.manaCost(s, e.active!)) {
         this.toast('MP가 부족합니다.');
         return false;
-    } e.cancelMovement(); this.charging = true; this.chargeStarted = performance.now(); this.power = .08; this.audio.wake().then(() => this.audio.play('charge')); this.updateHUD(); return true; }
+    } e.cancelMovement(); this.charging = true; this.chargeStarted = performance.now(); this.power = .08; void this.audio.wake(); this.audio.play('charge'); this.updateHUD(); return true; }
     releaseCharge() { if (!this.charging)
         return; this.power = Math.min(1, .08 + (performance.now() - this.chargeStarted) / 1000 * .48); this.charging = false; const e = this.engine; this.firePointer = null; if (!e || this.paused)
         return; this.renderer?.follow(); const u = e.active; if (u && e.fire(this.selected, u.angle, this.power)) {
@@ -394,7 +394,7 @@ class App {
         this.save();
         const final = won && b.stageId === 36 && b.mode === 'campaign';
         this.modal(`<div class="eyebrow">${final ? 'THE EXPEDITION CONTINUES' : won ? 'VICTORY' : 'REGROUP'}</div><h2 class="result-title">${final ? '원정의 끝, 새로운 길' : won ? '전장 확보' : '다시 일어설 시간'}</h2>${final ? '<p>관측성의 불빛이 꺼졌습니다.<br>남겨 둔 갈림길과 전장은 계속 탐험할 수 있습니다.</p>' : ''}<div class="result-stat"><span>${b.round}라운드</span><span>${b.kills}명 제압</span><span>${b.shots}발 발사</span></div>${b.units.filter(u => u.side === 0 && !u.summoned).map(u => { const h = b.heroes[u.cls], delta = h.xp - b.startXP[u.cls]; return `<div class="xp-result"><img src="${this.portraits[u.cls]}" alt=""><div><strong>${esc(u.name)} · Lv.${levelOf(h)}</strong><div class="muted">${pointsLeft(h, u.cls) ? '미사용 ' + pointsLeft(h, u.cls) + ' SP' : ''}</div></div><span class="spacer"></span><span>+${delta.toLocaleString()} XP</span></div>`; }).join('')}${!won ? '<p>획득한 경험치는 유지됩니다.</p>' : ''}<div class="dialog-actions"><button class="btn" data-action="retry">재도전</button><button class="btn primary" data-action="result-map">원정 지도 ${icon('chevron', '', 15)}</button></div>`, 'result');
-        this.audio.wake().then(() => { this.audio.configure(this.profile.settings); this.audio.play(won ? 'win' : 'lose'); });
+        this.audio.configure(this.profile.settings); void this.audio.wake(); this.audio.play(won ? 'win' : 'lose');
     }
     showPause() { if (!this.engine || this.modalType === 'result')
         return; this.modal(`${this.closeButton()}<h2>잠시 정비</h2><div class="dialog-actions"><button class="btn primary" data-action="close">계속하기</button><button class="btn" data-action="items" ${this.engine.canAct() ? '' : 'disabled'}>물약</button><button class="btn" data-action="wait" ${this.engine.canAct() ? '' : 'disabled'}>방어 / 턴 종료</button></div>${this.engine.b.mode === 'practice' ? '<div class="dialog-actions"><button class="btn" data-action="practice-options">훈련 설정</button><button class="btn" data-action="practice-skills">모든 기술</button></div>' : ''}<div class="dialog-actions"><button class="btn ghost" data-action="settings">설정</button><button class="btn ghost" data-action="help">조작 안내</button><button class="btn ghost" data-action="leave">지도에 복귀</button></div>`, 'pause'); }
@@ -559,7 +559,7 @@ class App {
                     this.closeModal();
                     break;
                 case 'test-sound':
-                    this.audio.configure(this.profile.settings); void this.audio.wake().then(()=>this.audio.play('win'));
+                    this.audio.configure(this.profile.settings); void this.audio.wake(true); this.audio.play('win');
                     break;
                 case 'settings':
                     this.showSettings();
@@ -763,7 +763,7 @@ class App {
             this.save();
         } });
         document.addEventListener('keydown', ev => {
-            void this.audio.wake().then(() => this.audio.configure(this.profile.settings));
+            this.audio.configure(this.profile.settings); void this.audio.wake(true);
             if (this.overlay.classList.contains('open')) {
                 if (ev.key === 'Escape' && this.modalType !== 'result') {
                     ev.preventDefault();
@@ -818,7 +818,12 @@ class App {
                 this.releaseCharge();
             this.spaceAction = null;
         } });
-        document.addEventListener('pointerdown', ev => { void this.audio.wake().then(() => this.audio.configure(this.profile.settings)); this.pointerDown(ev); });
+        const wakeAudio=()=>{this.audio.configure(this.profile.settings);void this.audio.wake(true);};
+        document.addEventListener('pointerdown', ev => {if(ev.pointerType==='mouse')wakeAudio();}, {capture:true});
+        document.addEventListener('pointerup', ev => {if(ev.pointerType!=='mouse')wakeAudio();}, {capture:true});
+        document.addEventListener('touchend', wakeAudio, {capture:true,passive:true});
+        document.addEventListener('click', wakeAudio, {capture:true});
+        document.addEventListener('pointerdown', ev => this.pointerDown(ev));
         document.addEventListener('pointermove', ev => this.pointerMove(ev), { passive: false });
         document.addEventListener('pointerup', ev => this.pointerUp(ev, false), true);
         document.addEventListener('pointercancel', ev => this.pointerUp(ev, true));

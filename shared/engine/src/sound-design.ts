@@ -52,6 +52,7 @@ export class AudioEngine {
     private gainTarget=-1; private warming=false; private disposed=false; private paused=false;
     private pcm=new Map<string,Float32Array>();
     private resuming:Promise<boolean>|null=null;
+    private resumeSerial=0;
     private dialogueVoice:AudioBufferSourceNode|null=null;
     constructor(){this.warm();}
     pending:{name:string;at:number}[]=[];
@@ -65,15 +66,17 @@ export class AudioEngine {
         if(this.master&&this.context&&gain!==this.gainTarget){this.master.gain.setTargetAtTime(gain,this.context.currentTime,.015);this.gainTarget=gain;}
         if((!this.enabled||this.volume<=0)&&(this.pending.length||this.voices.size))this.pause();
     }
-    wake():Promise<boolean>{
+    wake(userGesture=false):Promise<boolean>{
         this.music.unlock();
         if(!this.enabled||this.volume<=0||this.paused||this.disposed)return Promise.resolve(false);
-        if(this.resuming)return this.resuming;
-        const task=this.resumeContext();this.resuming=task;
+        // A resume requested before touch release can remain pending indefinitely.
+        // A fresh activation must reach the device instead of reusing that promise.
+        if(this.resuming&&!userGesture)return this.resuming;
+        const task=this.resumeContext(++this.resumeSerial);this.resuming=task;
         void task.then(()=>{if(this.resuming===task)this.resuming=null;});
         return task;
     }
-    private async resumeContext():Promise<boolean>{
+    private async resumeContext(serial:number):Promise<boolean>{
         try{
             if(!this.context){
                 const Constructor=globalThis.AudioContext||(globalThis as any).webkitAudioContext;if(!Constructor)return false;
@@ -83,12 +86,13 @@ export class AudioEngine {
                 this.master.connect(compressor);compressor.connect(ctx.destination);
             }
             if(this.context!.state!=='running')await this.context!.resume();
+            if(serial!==this.resumeSerial)return this.context!.state==='running';
             const now=performance.now(),queue=this.pending.splice(0);
             // An old visual event must not become sound on a later unrelated gesture.
             if(this.context!.state!=='running'||this.paused||this.disposed)return false;
             for(const item of queue)if(now-item.at<80)this.play(item.name);
             return true;
-        }catch{this.pending=[];return false;}
+        }catch{if(serial===this.resumeSerial)this.pending=[];return false;}
     }
     private samples(name:string){let samples=this.pcm.get(name);if(!samples){samples=soundSamples(name,24000);if(samples.length)this.pcm.set(name,samples);}return samples;}
     private buffer(name:string){let buffer=this.buffers.get(name);if(!buffer&&this.context){const samples=this.samples(name);if(!samples.length)return;buffer=this.context.createBuffer(1,samples.length,24000);buffer.copyToChannel(samples as Float32Array<ArrayBuffer>,0);this.buffers.set(name,buffer);}return buffer;}

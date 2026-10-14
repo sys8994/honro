@@ -6,7 +6,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const source=await readFile('shared/engine/src/sound-design.ts','utf8');
 function harness(code=source){
- let now=0,resolveResume,rejectResume,contexts=0,resumes=0;const idle=[],created=[],synthesis=[];
+ let now=0,resolveResume,rejectResume,contexts=0,resumes=0;const idle=[],created=[],synthesis=[],attempts=[];
  class Context{
   state='suspended';sampleRate=48000;currentTime=0;destination={};
   constructor(options){contexts++;assert.equal(options.latencyHint,'interactive');}
@@ -14,13 +14,13 @@ function harness(code=source){
   createDynamicsCompressor(){return {threshold:{},knee:{},ratio:{},attack:{},release:{},connect(){}};}
   createBuffer(channels,length,rate){synthesis.push({length,rate});return {copyToChannel(){}};}
   createBufferSource(){const s={connect(){},disconnect(){},start(){this.started=now;},stop(){this.stopped=true;this.onended?.();}};created.push(s);return s;}
-  resume(){resumes++;return new Promise((resolve,reject)=>{resolveResume=()=>{this.state='running';resolve();};rejectResume=reject;});}
+  resume(){resumes++;return new Promise((resolve,reject)=>{resolveResume=()=>{this.state='running';resolve();};rejectResume=reject;attempts.push({resolve:resolveResume,reject});});}
   close(){this.state='closed';}
  }
  const context=vm.createContext({module:{exports:{}},exports:{},require:()=>({BgmPlayer:class{configure(){}unlock(){}setPaused(){}select(){}tick(){}dispose(){}}}),performance:{now:()=>now},AudioContext:Context,requestIdleCallback:fn=>idle.push(fn),Float32Array,Map,Set,Promise,Math,console});context.exports=context.module.exports;
  vm.runInContext(ts.transpileModule(code,{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS}}).outputText,context);
  const a=new context.module.exports.AudioEngine();
- return {a,created,idle,synthesis,get contexts(){return contexts;},get resumes(){return resumes;},time:n=>now=n,resolve:()=>resolveResume(),reject:()=>rejectResume(new Error('NotAllowedError')),samples:context.module.exports.soundSamples};
+ return {a,created,idle,synthesis,attempts,get contexts(){return contexts;},get resumes(){return resumes;},time:n=>now=n,resolve:()=>resolveResume(),reject:()=>rejectResume(new Error('NotAllowedError')),samples:context.module.exports.soundSamples};
 }
 const checks=[];const check=async(name,fn)=>{await fn();checks.push(name);console.log('PASS',name);};
 await check('Prepares fixed-rate PCM in bounded 256-sample idle tasks before any device or autoplay request',()=>{
@@ -32,6 +32,18 @@ await check('Concurrent unlocks share one resume; only the latest page plays wit
  const h=harness();const p=h.a.wake();assert.equal(h.a.wake(),p);assert.equal(h.resumes,1);
  for(let i=0;i<100;i++)h.a.play('dialogue');assert.equal(h.a.pending.length,1);h.time(30);h.resolve();await p;
  assert.equal(h.created.length,1);assert.equal(h.created[0].started,30);assert.equal(h.synthesis[0].rate,24000);assert.equal(h.a.pending.length,0);
+});
+await check('A new touch activation retries an indefinitely pending resume without replaying stale effects',async()=>{
+ const h=harness();const stalled=h.a.wake();h.a.play('hit');h.time(500);
+ const retry=h.a.wake(true);assert.notEqual(retry,stalled);assert.equal(h.resumes,2);h.a.play('arrow');h.resolve();assert.equal(await retry,true);
+ assert.equal(h.created.length,1);assert.equal(h.a.playCount,1);assert.equal(h.a.lastPlayed.hit,undefined);assert.equal(h.a.lastPlayed.arrow,500);
+ // A superseded request settling later cannot clear or duplicate the new playback.
+ h.attempts[0].resolve();await stalled;assert.equal(h.created.length,1);assert.equal(h.a.pending.length,0);
+ h.a.context.state='suspended';h.time(600);const restored=h.a.wake(true);h.a.play('hit');h.resolve();await restored;assert.equal(h.created.length,2);
+});
+await check('Old denied resume does not discard cues queued behind a newer gesture',async()=>{
+ const h=harness();const old=h.a.wake();const fresh=h.a.wake(true);h.a.play('dialogue');h.attempts[0].reject(new Error('NotAllowedError'));await old;
+ assert.equal(h.a.pending.length,1);h.resolve();await fresh;assert.equal(h.created.length,1);
 });
 await check('Slow resume drops old SFX rather than sounding late; later gesture cannot replay locked events',async()=>{
  for(const name of ['dialogue','arrow','hit']){const h=harness();h.a.play(name);assert.equal(h.a.pending.length,0);const p=h.a.wake();h.a.play(name);h.time(81);h.resolve();await p;assert.equal(h.created.length,0);h.a.play(name);assert.equal(h.created.length,1);}

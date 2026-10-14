@@ -1,3 +1,9 @@
+## Android 효과음 무음 P0 · 2026-10-14
+
+- 원인: 전역 unlock은 pointerdown/keydown만 처리했다. 터치·펜의 유효 활성화 시점은 release이므로 처음 resume이 정책에 막힌 채 미완료로 남을 수 있고, 최근 동시 wake 합치기가 그 Promise를 계속 반환하여 실제 후속 입력도 장치를 재시도하지 못했다.
+- 변경: 마우스 press, 터치/펜 release, touchend/click 및 키 입력에서 재시도한다. 새 입력은 미완료 resume을 대체하며 구 요청의 늦은 성공/거부가 새 효과음을 지우거나 중복 재생하지 않는다. 80ms 지난 cue 폐기·음소거·0음량·숨김·저장/진행은 유지한다.
+- 검증: audio-latency의 무기한 pending→새 gesture, 구 요청 지연 거부, 재중단 복귀 회귀와 production App 입력 routing 검사를 추가했다. 기존 파형·장치 표본율·취소 회귀와 typecheck를 실행한다. 이 검사는 장치 대역이며 실제 Android 출력 검증이 아니다. 알려진 Chromium socket/ptrace 차단 때문에 이 작업에서 로컬 headless 경로는 재시도하지 않았다. 최종 빌드·전체 검수·Pages 검증은 통합 발행 작업에서 별도 수행한다.
+
 ## 응수세 범위 반격 도움말 동기화 (2026-10-13)
 
 - 공개 QA에서 카드 설명은 범위 반격인데 상세 설명과 경지별 효과 행은 아직 ‘첫 적’으로 표시됨을 확인했다.

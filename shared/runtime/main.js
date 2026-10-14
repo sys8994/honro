@@ -789,8 +789,14 @@
             // Game text is UI, not a document. Cancel selection, dragging and long-press menus throughout the app.
             for(const type of ['selectstart','dragstart','contextmenu'])document.addEventListener(type,e=>{if(e.target?.closest?.('#app,#modal'))e.preventDefault();},{capture:true,passive:false});
             document.addEventListener('selectionchange',()=>{const selection=window.getSelection();if(selection&&!selection.isCollapsed&&(this.root.contains(selection.anchorNode)||this.modal.contains(selection.anchorNode)))selection.removeAllRanges();});
-            document.addEventListener('pointerdown', () => { this.audio?.configure(this.profile.settings); void this.audio?.wake?.(); }, { capture: true });
-            document.addEventListener('keydown', e => { void this.audio?.wake?.(); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
+            // Touch/pen activate media on release, not pointerdown. Keep mouse startup
+            // early and retry on click for keyboard/assistive and older touch paths.
+            const wakeAudio=()=>{this.audio?.configure(this.profile.settings);void this.audio?.wake?.(true);};
+            document.addEventListener('pointerdown', e => {if(e.pointerType==='mouse')wakeAudio();}, {capture:true});
+            document.addEventListener('pointerup', e => {if(e.pointerType!=='mouse')wakeAudio();}, {capture:true});
+            document.addEventListener('touchend', wakeAudio, {capture:true,passive:true});
+            document.addEventListener('click', wakeAudio, {capture:true});
+            document.addEventListener('keydown', e => { void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
                 return; if (e.code === 'Escape') {
                 e.preventDefault();
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
