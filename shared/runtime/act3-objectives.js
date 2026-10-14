@@ -44,7 +44,7 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&c
  if(app.canInput&&!app.canInput())return{ok:false,reason:'현재 행동이 끝난 뒤'};
  // Only the immediate working space must be clear. Distant fiends and other
  // storeys never turn a retrieval objective into an extermination objective.
- if(b.units.some(v=>v.side===1&&!v.summoned&&!v.eaterCapturedBy&&alive(v)&&sameFloor(v,point,220)))return{ok:false,reason:'작업 지점 가까운 악귀부터 처치'};
+ if(b.units.some(v=>v.side===1&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&alive(v)&&sameFloor(v,point,220)))return{ok:false,reason:'작업 지점 가까운 악귀부터 처치'};
  return{ok:true,reason:s.label};
 }
 function openGate(b,id){if(!id)return;const t=b.terrain.find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}
@@ -76,7 +76,7 @@ function spawnHold(app,s,h){if(!s.wave||h.spawned>=s.wave.count)return true;cons
  h.spawned+=n;memory(b).events[key]=true;app.event('길목에 '+n+'명의 위협이 다가온다.');app.dirty=true;return true;
 }
 function holdTick(app,s,m){const b=app.engine.b,a=memory(b),end=b.teamEnds?.[1]||0,h=a.holds[s.id]??={progress:0,spawned:0,lastEnemyEnd:end,continuous:false};
- const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&!u.summoned&&!u.eaterCapturedBy&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
+ const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
  if(!guarded||contested)h.continuous=false;
  else if(end===h.lastEnemyEnd&&b.side!==1)h.continuous=true;
  if(end>h.lastEnemyEnd){if(h.continuous&&guarded&&!contested)h.progress++;h.lastEnemyEnd=end;h.continuous=guarded&&!contested;app.dirty=true;}
@@ -105,7 +105,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['wo
  if(s){const m=marker(b,s.id);if(s.kind==='route')G.HonroRouteBranches?.commit(app,s);else if(s.kind==='hold')holdTick(app,s,m);else if(s.kind==='reach'){const group=heroes(b),r=s.radius||180;const reunion=s.id==='party-reunion'&&[1,2].includes(b.honroSplit?.version),present=!reunion||G.HonroSplitCampaign?.allPresent(b)===true,safeBoundary=!reunion||!!app.actorBoundary&&!app.modal?.classList.contains('open')&&!app.done;const crossing=G.HonroStakeCrossing?.active(b)&&G.HonroStakeCrossing.crossings(b).some(c=>c.markerId===s.id);if(G.HonroStakeCrossing?.allowsStep(b,s.id)!==false&&safeBoundary&&present&&group.length&&(crossing||(s.allHeroes?group.every(u=>sameFloor(u,m,r)):group.some(u=>sameFloor(u,m,r))))){if(!crossing){const arrived=group.filter(u=>sameFloor(u,m,r));G.HonroObjectiveContributions?.arrive(b,s.id,s.allHeroes?arrived:[arrived.find(u=>u.id===b.active)||arrived[0]],p=>sameFloor(p,m,r));}completeStep(app,s);}}else if(s.kind==='escort')escortTick(app,s,m,dt);}
  s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  const group=heroes(b);
- for(const step of readySteps(b))if(step.kind==='rescue'){const point=b.units.find(u=>u.id===step.target)||marker(b,step.id);G.HonroObjectiveContributions?.approach(b,step.id,group,point,220,!b.units.some(v=>v.side===1&&!v.summoned&&!v.eaterCapturedBy&&alive(v)&&sameFloor(v,point,220)));}
+ for(const step of readySteps(b))if(step.kind==='rescue'){const point=b.units.find(u=>u.id===step.target)||marker(b,step.id);G.HonroObjectiveContributions?.approach(b,step.id,group,point,220,!b.units.some(v=>v.side===1&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&alive(v)&&sameFloor(v,point,220)));}
  G.HonroObjectiveContributions?.observe(b,group);
  G.HonroEncounters.update(app,dt,{progress:Math.max(0,...group.map(u=>u.x)),height:Math.min(b.height,...group.map(u=>u.y)),broken:b.terrain.filter(t=>t.broken).length,collected:b.honroMarkers.filter(m=>m.collected).length});
  app.checkMission(e);

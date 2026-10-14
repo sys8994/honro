@@ -83,7 +83,7 @@ export class Engine {
     fx(name: string, x: number, y: number, color: string, size = 50, text?: string) { this.emit('fx', { name, x, y, color, size, text }); }
     message(text: string) { this.b.events.push(text); this.b.events = this.b.events.slice(-30); this.emit('message', { text }); }
     random() { let a = this.b.rng += 0x6D2B79F5; a = Math.imul(a ^ a >>> 15, 1 | a); a ^= a + Math.imul(a ^ a >>> 7, 61 | a); return ((a ^ a >>> 14) >>> 0) / 4294967296; }
-    alive(side: Side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0 && !(u.side===1&&u.summoned)); }
+    alive(side: Side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0 && u.summonKind!=='eater'); }
     actors(side: Side) { return this.b.units.filter(u => u.side === side && !u.dead && u.hp > 0 && !u.eaterCapturedBy); }
     heroesAlive() { return this.actors(0).filter(u => !u.summoned&&!u.enthrall); }
     creditUnit(u?:Unit){ if(u)ownerRegistered(this.b,u);const owner=u?.summonOwner||u?.enthrall?.owner;return owner?(this.unit(owner)||u):u; }
@@ -402,7 +402,7 @@ export class Engine {
         const speed=(270+535*maxPower)*eff.speed,reach=Math.abs(o.x-u.x),duration=6,step=.25;
         // Every continuous point lies within this distance of a sampled time.
         const margin=(speed+Math.hypot(a.x,a.y)*duration)*step*.5+7;
-        const opponents=this.b.units.filter(v=>!v.dead&&(v.side!==u.side||v.id===allowedTarget?.id));
+        const opponents=this.b.units.filter(v=>!v.dead&&!v.eaterCapturedBy&&(v.side!==u.side||v.id===allowedTarget?.id));
         for(let t=0;t<=duration;t+=step){
             const F=a.k<1e-7?t:-Math.expm1(-a.k*t)/a.k,Q=a.k<1e-7?t*t*.5:(t-F)/a.k;
             const x=u.x+a.x*Q,y=o.y+a.y*Q,r=reach+speed*F+eff.radius+margin;
@@ -614,6 +614,7 @@ export class Engine {
     }
     /** Current allegiance, including authored allies and controlled/summoned actors. Never rewrites saved sides. */
     allegiance(u:Unit,seen=new Set<string>()):Side {
+      if(u.summonKind==='eater')return 1;
       if(seen.has(u.id))return u.side;seen.add(u.id);
       const id=u.enthrall?.owner||u.summonOwner,owner=id?this.unit(id):undefined;
       if(owner)return this.allegiance(owner,seen);
@@ -1359,7 +1360,7 @@ export class Engine {
                 this.b.sceneVersion++;
             }
             // Never entomb a unit inside a newly created wall.
-            const crowded = this.b.units.some(a => !a.dead && Math.abs(a.x - (x + 20)) < a.r + 25 && a.y > base - 100 && a.y - a.h < base);
+            const crowded = this.b.units.some(a => !a.dead && !a.eaterCapturedBy && Math.abs(a.x - (x + 20)) < a.r + 25 && a.y > base - 100 && a.y - a.h < base);
             const wx = crowded ? clamp(x + u.facing * 58, 15, this.b.width - 55) : x;
             this.b.terrain.push({ id: 'ice' + this.b.nextId++, x: wx, y: base - 105, w: 40, h: 105, mat: 'ice', hp: Math.round(65 * u.attack), maxHp: Math.round(65 * u.attack), expires: this.b.round + 3, owner: p.owner });
             this.b.sceneVersion++;
@@ -1378,7 +1379,7 @@ export class Engine {
                         const iy = w.y - 3;
                         this.b.terrain.push({ id: 'frozen' + this.b.nextId++, x: ix, y: iy, w: iw, h: 7, mat: 'ice', hp: 42, maxHp: 42, expires: this.b.round + 3 });
                         for (const v of this.b.units)
-                            if (!v.dead && !v.fixed && v.x > ix && v.x < ix + iw && v.y > iy && v.y - v.h < iy) {
+                            if (!v.dead && !v.eaterCapturedBy && !v.fixed && v.x > ix && v.x < ix + iw && v.y > iy && v.y - v.h < iy) {
                                 v.y = iy;
                                 v.vy = 0;
                             }

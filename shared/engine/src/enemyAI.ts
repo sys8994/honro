@@ -84,7 +84,7 @@ function advanceFlight(e:Engine,u:Unit,dt:number){
 export function shotImpactValue(e:Engine,u:Unit,skill:Skill,hit:{x:number;y:number;unit?:string},allowedTargetId?:string){
  const eff=e.effective(skill,u),radius=Math.max(1,eff.radius);let enemyDamage=0,friendlyDamage=0;
  for(const v of e.b.units){
-  if(v.dead)continue;
+  if(v.dead||v.eaterCapturedBy)continue;
   const friendly=v.id!==allowedTargetId&&(u.side===1?v.side===1:v.side!==1);
   const opponent=v.id===allowedTargetId||(u.side===1?(v.side===0||(v.side===2&&((v as any).honroAlly||v.id==='objective'))):v.side===1);
   if(!friendly&&!opponent)continue;

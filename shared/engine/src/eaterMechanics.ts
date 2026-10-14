@@ -5,7 +5,7 @@ import {controlled} from './contribution';
 
 export function eaterTuning(rank:number){const r=clamp(Math.floor(rank),1,8);return {radius:200+r*15,turns:[2,2,2,3,3,3,4,4][r-1]};}
 /** Narrative identity, never elite rank or display name, makes a boss immune. */
-export function eaterEligible(u:Unit){const v=u as any;return u.side===1&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall&&!u.eaterCapturedBy&&!['ballista','gate','bier','objective','device','support'].includes(u.role)&&!u.boss&&!u.honroMidboss&&u.role!=='boss'&&u.id!=='boss'&&!v.honroFinalBoss&&!v.honroAct2Boss&&!v.honroAct3Boss&&!v.honroStoryBoss&&!v.honroNonlethal&&!v.honroAlly&&!v.honroCivilian&&!v.honroSubdued;}
+export function eaterEligible(u:Unit){const v=u as any;return u.side===1&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall&&!u.eaterCapturedBy&&!['ballista','gate','bier','objective','device','support'].includes(u.role)&&!u.boss&&!u.honroMidboss&&u.role!=='boss'&&u.id!=='boss'&&!v.honroFinalBoss&&!v.honroAct2Boss&&!v.honroAct3Boss&&!v.honroStoryBoss&&!v.honroNonlethal&&!v.honroAlly&&!v.honroCivilian&&!v.honroProtected&&!v.honroSubdued;}
 export function captureEater(e:Engine,u:Unit){
  if(u.eaterRevision===1)return;
  u.eaterRevision=1;u.eaterTransferred=0;u.eaterCaptureCount=0;u.eaterTransferred=0;u.eaterCaptureRadius=eaterTuning(u.summonRank||1).radius;u.existenceDefense={form:1,qi:1,soul:1};u.armor=0;u.shield=0;

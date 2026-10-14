@@ -8,7 +8,7 @@ import {clamp,rad,STEP,segRect,terrainRectIntersects,poly} from './math';
 import {COMBO_HITS,ORBIT_BLADES} from './warriorData';
 
 const at=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
-const foe=(u:Unit,t:Unit)=>!t.dead&&t.side!==u.side&&t.side!==2;
+const foe=(u:Unit,t:Unit)=>!t.dead&&!t.eaterCapturedBy&&t.side!==u.side&&t.side!==2;
 export const meleeSkill=(s:Skill)=>!!s.martial&&s.branch==='sword';
 export function warriorAllowed(u:Unit,s:Skill){return u.meleeFollow!=='ready'||meleeSkill(s);}
 export function meleeRange(u:Unit,s:Skill,power:number){return s.radius*(1+(['counterStance','lifeSlash'].includes(s.mode)?0:power)*(.23+passiveTuning(passiveRank(u,'SP01')).swordReach));}

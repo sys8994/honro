@@ -33,7 +33,7 @@ function interactReason(b,st,s,m){const u=b.units.find(u=>u.id===b.active),point
  if(s.requiredClass&&u.cls!==s.requiredClass)return heroName(s.requiredClass)+'로 전환';
  if(Math.abs(u.y-point.y)>150)return'같은 층으로 이동';
  if(Math.hypot(u.x-point.x,(u.y-point.y)*.75)>260)return'표시 지점 가까이 이동';
- const threats=b.units.filter(v=>v.side===1&&!v.summoned&&!v.eaterCapturedBy&&alive(v)&&v.id!==m?.spiritId&&!v.honroSubdued);
+ const threats=b.units.filter(v=>v.side===1&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&alive(v)&&v.id!==m?.spiritId&&!v.honroSubdued);
  if(st.act===3&&threats.some(v=>G.HonroAct3.sameFloor(v,point,220)))return'작업 지점 가까운 악귀부터 처치';
  if(st.act===2&&b.honroAct2Revision>=2&&threats.some(v=>!v.honroAct2Boss&&Math.hypot(v.x-point.x,v.y-point.y)<360))return'작업 지점의 들림부터 제압';
  if(st.act===2&&s.kind==='rescue'){const spirit=b.units.find(v=>v.id===m?.spiritId);if(alive(spirit)&&spirit.hp>spirit.maxHp*.4)return'붙은 혼을 체력 40% 이하로 약화';if(alive(spirit)&&u.cls!=='occultist')return'소단으로 전환하거나 붙은 혼을 제압';}

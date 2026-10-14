@@ -70,7 +70,7 @@ export function stepConvergingSpirit(e:Engine,p:Projectile,dt:number){
  if(p.age<(c.delay||0))return;
  const t=clamp((p.age-(c.delay||0))/c.duration,0,1),next=convergencePoint(c,p.age);
  const old={x:p.x,y:p.y};p.vx=(next.x-old.x)/Math.max(dt,.001);p.vy=(next.y-old.y)/Math.max(dt,.001);p.x=next.x;p.y=next.y;
- for(const u of e.b.units)if(!u.dead&&u.id!==p.owner&&u.id!==p.echoSource&&!p.hit.includes(u.id)){
+ for(const u of e.b.units)if(!u.dead&&!u.eaterCapturedBy&&u.id!==p.owner&&u.id!==p.echoSource&&!p.hit.includes(u.id)){
   const h=segRect(old,next,u.x-u.r,u.y-u.h,u.r*2,u.h,p.radius);
   if(h){p.hit.push(u.id);e.hurt(u,p.damage,p.owner,true,p,next);}
  }
