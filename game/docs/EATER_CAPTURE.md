@@ -30,3 +30,5 @@ HP0 또는 수명 종료 시 살아남은 적을 주변의 실제 안전 지지�
 생산 소스 `fd9e853`, exact 계약/두 HTML `cf2d787` 기준으로 먹귀/반사파 집중 gate와 실제 App 저장 복원을 재실행해 통과했다. Native 먹귀20·반사10 프레임은 최종 생산161개 입력과 일치한다. `3f5dc89`의 후속 변경은 오래된 먹귀 투사체 흡수 브라우저 검사만 새 지상포획 계약으로 갱신했으며, 실제 브라우저 실행 증거는 아니다.
 
 기존 설치된 선언 버전 sharp0.35.4/canvas0.1.100을 사용한 `npm --offline --no-audit --no-fund run verify`는 빌드·제목·캠페인/runtime exact 계약·마이그레이션 메타·스토리/바인딩·TypeScript·game 정적 suite·rc20 지도 재검사까지 통과했다. 첫 `game/tests/rc20-browser.py`가 Chromium의 `socket() failed: Operation not permitted`와 읽기 전용 Crash Reports 오류로 페이지 로드 전 종료했다. 따라서 전체 verify는 환경 차단으로 exit1이며 rc21 성능 및 이후 전체 integration/performance는 미실행이다. Native/VM 결과를 실제 브라우저·성능·공개 Pages 통과로 해석하지 않는다. 원본 로그는 `_local/reports/eater-capture/final-verify.log`, 두 집중 gate 로그는 같은 폴더에 보존한다.
+
+별도 필수 `node tests/migration.mjs`는 역사 provenance와 Stage1~6을 통과한 뒤 Stage7 story `honroGrowth`의 적 HP 장부(예:527 대434)에서 실패했다. 원본 `26a53350b9e51d0b45e6441f6ca91250ce3d9cab`에서도 동일 명령으로 재현했으며 저장소 경로만 정규화한 전체 출력이 동일하다. 이는 기존 실패로 분류하며 역사 fixture를 고쳐 숨기지 않았다. 대조 로그와 `migration-baseline-parity.json`은 같은 보고서 폴더에 보존했다.

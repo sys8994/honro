@@ -4,6 +4,7 @@
 - 반경 215~320, 기존 HP 성장식, 수명 2~4 완전 적 라운드. 죽음/만료 방출, 정규 지형 복귀, 구버전 저장에서 무단 재포획 방지.
 - 최종 검증: 13 lifecycle·7 독립 사례·전 SP 정량·실제 기여장부·App Continue/반복 export-import·UI 목표 제외 및 반사파 전 SP/FPS/저장 회귀 통과. 실제 엔진 Native 먹귀20·반사10 프레임을 직접 검수했고 최종 생산 소스와 해시 일치를 확인했다.
 - 전체 verify: build/title/캠페인·161소스 9변형 exact 계약/마이그레이션 메타/스토리/타입/game 정적 suite/rc20 지도 회귀까지 통과. 첫 Chromium 검사에서 socket() EPERM 및 readonly Crash Reports로 페이지 로드 전에 종료했다. rc21 브라우저·성능 및 이후 전체 integration/performance는 미실행이며 전체 통과가 아니다. 실제 Pages 검수는 별도이며 환경 제한을 우회하지 않았다.
+- 추가 필수 migration.mjs는 Stage7 story honroGrowth의 적 HP 장부에서 실패했다. 원본26a5335에서도 같은 명령으로 재현했고 경로 정규화 전체 출력이 동일하므로 기존 실패로 분류했다. 역사 fixture/생산 코드를 변경하지 않았다.
 - 최종 동작·수치·피해 상한·검증 범위: EATER_CAPTURE.md. 생산 freeze fd9e853, exact build cf2d787; 이후 3f5dc89는 구형 브라우저 테스트 한 파일만 갱신했다.
 ## 2026-10-13 · 반탄파 경지별 반사 분열
 
