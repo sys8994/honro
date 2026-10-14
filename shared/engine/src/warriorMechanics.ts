@@ -24,6 +24,25 @@ export function meleeContains(e:Engine,u:Unit,t:Unit,range:number,angle=-rad(u.a
   if(dist>bodyRadius&&delta>span/2+Math.asin(Math.min(1,bodyRadius/Math.max(1,dist))))continue;
   if(!e.collision(a,v,1,u.id,[],false))return true;
  }
+ // The three forgiving body samples above preserve the original hit tolerance,
+ // but can miss a tall enemy's head/feet inside the visible sector. Test actual
+ // hurtbox contacts too; checking the contact (not its centre) respects cover.
+ const left=t.x-t.r,right=t.x+t.r,top=t.y-t.h,bottom=t.y;
+ const points:Vec[]=[{x:clamp(a.x,left,right),y:clamp(a.y,top,bottom)},
+  ...[left,right].flatMap(x=>[top,bottom].map(y=>({x,y})))];
+ for(const theta of [angle-span/2,angle,angle+span/2]){
+  const end={x:a.x+Math.cos(theta)*range,y:a.y+Math.sin(theta)*range},hit=segRect(a,end,left,top,right-left,bottom-top,0);
+  if(hit)points.push({x:a.x+(end.x-a.x)*hit.t,y:a.y+(end.y-a.y)*hit.t});
+ }
+ // Arc/edge intersections cover contacts where neither corner lies in range.
+ for(const x of [left,right]){const d=range*range-(x-a.x)**2;if(d>=0)for(const y of [a.y-Math.sqrt(d),a.y+Math.sqrt(d)])if(y>=top&&y<=bottom)points.push({x,y});}
+ for(const y of [top,bottom]){const d=range*range-(y-a.y)**2;if(d>=0)for(const x of [a.x-Math.sqrt(d),a.x+Math.sqrt(d)])if(x>=left&&x<=right)points.push({x,y});}
+ for(const v of points){const dx=v.x-a.x,dy=v.y-a.y,distance=Math.hypot(dx,dy);
+  if(distance>range+.0001)continue;
+  const delta=Math.abs(Math.atan2(Math.sin(Math.atan2(dy,dx)-angle),Math.cos(Math.atan2(dy,dx)-angle)));
+  if(distance>.0001&&delta>span/2+.0001)continue;
+  if(!e.collision(a,v,1,u.id,[],false))return true;
+ }
  return false;
 }
 /** An authored device can explicitly receive the same real sword sector.
@@ -102,7 +121,11 @@ export function tickWarrior(e:Engine,dt:number){
    if(a.index>=count&&a.elapsed>delay+(count-1)*interval+.17)delete u.meleeAction;
   }
   const guard=u.martialGuard;
-  if(guard?.counter&&e.b.side!==u.side){const range=SKILLS.S08.radius,span=guard.span??meleeSpan(u,SKILLS.S08),t=e.b.units.find(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,range,guard.angle??-rad(u.angle),span));if(t){guard.counter=false;strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7),SKILLS.S08,e.b.shot,true);stroke(e,u,range,u.facing,'#dbe2dd',0,guard.angle??-rad(u.angle),span);}}
+  if(guard?.counter&&e.b.side!==u.side){
+   const range=SKILLS.S08.radius,span=guard.span??meleeSpan(u,SKILLS.S08),angle=guard.angle??-rad(u.angle);
+   const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,range,angle,span));
+   if(targets.length){guard.counter=false;for(const t of targets)strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7),SKILLS.S08,e.b.shot,true);stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
+  }
  }
 }
 export function manualDive(e:Engine){
