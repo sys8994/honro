@@ -16,6 +16,7 @@
   function sanitizeStageBattle(b){
     if(!b) return b;
     if(b.mode!=='campaign')return b;
+    G.HonroAct1Roster?.applyBattleDefense(b);
     const st=G.HONRO_CONTENT.stages[(b.honroStage||1)-1];
     if(st)for(const u of b.units||[])if(u.honroAlly)u.level=Math.max(u.level||1,st.recruit===u.cls?G.HonroProgression.joinLevel(st):Math.floor(G.HonroProgression.plan(st.id)?.entryLevel||st.level||1));
     compressStage2(b);

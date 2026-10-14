@@ -25,5 +25,22 @@ function author(project){
  }
  return project;
 }
-G.HonroAct1Roster={author,replacements,attackBudget};
+// Act 1 precedes Sodan's recruitment. Keep spirits resistant to arrows without
+// making the starter's material attacks nearly ineffective. These are received
+// damage sensitivities, not a normalized defense composition. Later acts and
+// explicit per-unit overrides retain their authored responses.
+const defenseProfiles={
+ ghost:{form:.65,qi:1.05,soul:1.32},
+ shade:{form:.72,qi:1.05,soul:1.28},
+ lantern:{form:.70,qi:1.10,soul:1.34}
+};
+function applyDefense(b,u){
+ if(b?.mode!=='campaign'||b.honroCustom||!Number.isInteger(b.honroStage)||b.honroStage<1||b.honroStage>10)return u;
+ if(u.side!==1||u.summonKind||u.boss||u.honroMidboss||u.honroFinalBoss||u.existenceDefense)return u;
+ const profile=defenseProfiles[u.honroVariant||u.honroType];
+ if(profile){u.existenceDefense={...profile};u.honroAct1DefenseRevision=1;}
+ return u;
+}
+function applyBattleDefense(b){for(const u of b?.units||[])applyDefense(b,u);return b;}
+G.HonroAct1Roster={author,replacements,attackBudget,defenseProfiles,applyDefense,applyBattleDefense};
 })(globalThis);
