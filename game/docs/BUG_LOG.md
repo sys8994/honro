@@ -2747,3 +2747,16 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - Change: opt-in `--summary` / `--summary-limit` CLI output with bounded problem rows and explicit total/status/omission counts; default CLI and Python API output stay compatible. Journal history and evidence remain complete.
 - Validation: 19 focused offline tests pass, including 1,000 succeeded operations plus 24 unresolved/failed operations, subprocess CLI compatibility and lossless journal checks. Summary output stays below 4 KiB in the fixture. `git diff --check` passes.
 - Scope: no runtime, generated HTML or release manifest edits. Full gameplay verification was not rerun for this CLI-only change; prior runtime evidence is unchanged, not relabeled as a new pass.
+
+## 2026-10-14 · 쉼터 파노라마의 실제 너비로 팬 경계 계산
+- 원인: 모바일 SVG의 160% 확대와 세로 cover 크롭은 .9 최소 줌용 wrapper보다 훨씬 넓었지만 카메라는 wrapper만 이동했다. 그래서 양 끝 정자·소나무·이정표를 드래그로도 볼 수 없었다.
+- 변경: 1600×900 원화의 실제 cover 너비와 카메라 world 너비를 일치시켰다. 동행은 독립된 중앙 모닥불 폭에 모이고, 도구 버튼은 화면에 고정한다. .9–1.35 줌 한도와 저장·진행·전투 카메라는 유지한다.
+- 검증: production pointer/wheel handler VM 검사, 320/390/430 세로·700 가로·1280/1920 데스크톱에서 세 줌 단계 양끝 도달·빈 가장자리 방지·취소/대화/모달 차단. 브라우저 입력·Pages 화면은 별도 검수 대기.
+
+## 2026-10-14 · 1막 쉼터의 승인 원경과 장소 구도
+- 원인: 휴식터는 게임의 1막 SVG 대신 별도의 단순 산 다각형을 사용했고, 세로 기본 시점은 정자·이정표를 잘라 빈 중간 하늘만 남겼다.
+- 변경: 이미 번들된 1–5장 mountains / 6–10장 gorge 벡터의 경로를 그대로 재사용한다. ID만 구분하고 공통 ACT1_FAR 채도·밝기·veil 및 act1Mood 밤톤을 적용한다. 먼 배경은 공통 .025 수평/.0035 수직 시차를 유지한다. 8장은 모닥불 공간을 비워 둔 낮은 창고 측면을 추가한다. 화면 밖으로 둘러본 뒤에는 고정 ‘모닥불로’ 버튼으로 시점과 줌만 초기화한다.
+- 검증: 10장 배정·원경 경로 보존·SVG 정의 참조·기존 지도/다른 막 유지 계약, 13개 실제 gesture handler VM 검사, rest-idle/rest-scene-controls/rest-journey 검사를 통과했다. 320/390 세로 및 1280 데스크톱 Native 전후·좌우 끝 이미지 24장을 생성하고 1/8장 중앙 및 8장 좌우 구도를 직접 검토했다. Native는 실제 CSS·touch·GPU·Pages 검수가 아니며 최종 브라우저 검수는 통합 발행자가 별도 진행한다.
+
+- 추가 환경 검증: journey-art 및 environment-depth 통과, 30개 맵 validate 오류 0. environment-composition은 기존 env:rock 음성검사 fixture 부재로 44행에서 실패하며 수정 전 5bbf19f에서도 동일 실패를 재현했다. 이 쉼터 패치에서 세계 지형/fixture를 바꾸지 않았다.
+- 잔여 검사 한계: migration은 의도적으로 미갱신한 current-runtime manifest의 journey-art 소스 해시에서 차단된다. 단일 발행자의 통합 소스/HTML/provenance 갱신 뒤 재검사가 필요하다. 기존 rest-idle-render는 그림 생성 전 maxScale 2.21–2.22 단언에서 실패하며 5bbf19f의 네 런타임 소스를 그대로 재생해 같은 실패를 확인했다. 새 rest-panorama Native 캡처와 기존 idle-render 전체 통과를 혼동하지 않는다. 최종 verify/브라우저/Pages는 여기서 실행하지 않았다.
