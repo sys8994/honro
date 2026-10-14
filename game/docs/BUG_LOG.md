@@ -2740,3 +2740,4 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 검증: 10장 배정·원경 경로 보존·SVG 정의 참조·기존 지도/다른 막 유지 계약, 13개 실제 gesture handler VM 검사, rest-idle/rest-scene-controls/rest-journey 검사를 통과했다. 320/390 세로 및 1280 데스크톱 Native 전후·좌우 끝 이미지 24장을 생성하고 1/8장 중앙 및 8장 좌우 구도를 직접 검토했다. Native는 실제 CSS·touch·GPU·Pages 검수가 아니며 최종 브라우저 검수는 통합 발행자가 별도 진행한다.
 
 - 추가 환경 검증: journey-art 및 environment-depth 통과, 30개 맵 validate 오류 0. environment-composition은 기존 env:rock 음성검사 fixture 부재로 44행에서 실패하며 수정 전 5bbf19f에서도 동일 실패를 재현했다. 이 쉼터 패치에서 세계 지형/fixture를 바꾸지 않았다.
+- 잔여 검사 한계: migration은 의도적으로 미갱신한 current-runtime manifest의 journey-art 소스 해시에서 차단된다. 단일 발행자의 통합 소스/HTML/provenance 갱신 뒤 재검사가 필요하다. 기존 rest-idle-render는 그림 생성 전 maxScale 2.21–2.22 단언에서 실패하며 5bbf19f의 네 런타임 소스를 그대로 재생해 같은 실패를 확인했다. 새 rest-panorama Native 캡처와 기존 idle-render 전체 통과를 혼동하지 않는다. 최종 verify/브라우저/Pages는 여기서 실행하지 않았다.
