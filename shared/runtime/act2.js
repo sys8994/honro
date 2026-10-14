@@ -58,13 +58,13 @@ function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const spec
  if(s.kind==='route')return !!b.honroRouteChoice?.selectedRoute;
  if(s.kind==='clear'){const plan=G.HonroAct2Plan.forStage(b.honroStage);if(s.cohorts==='all'&&(plan.bossWave&&!a.events['keeper-retaliation']||plan.progressWave&&!a.events['convoy-ambush']))return false;return enemiesFor(b,s).length===0;}
  if(s.kind==='hold'){const h=a.holds?.[s.id];return !!h&&h.progress>=s.rounds&&h.spawned>=(s.wave?.count||0);}
- if(s.kind==='destroy')return !!b.terrain.find(t=>t.id===s.id)?.broken;
+ if(s.kind==='destroy')return !!G.HonroQuestTargets.records(b).find(t=>t.id===s.id)?.broken;
  if(s.kind==='defeat'){const u=b.units.find(u=>u.id===s.target);return !!u&&(u.dead||u.honroSubdued);}
  return false;
 }
 function current(b){return steps(b).find(s=>!s.optional&&!satisfied(b,s));}
 function readySteps(b){const s=current(b);return steps(b).filter(q=>!satisfied(b,q)&&(q.optional||q.id===s?.id||s?.parallelGroup&&q.parallelGroup===s.parallelGroup)&&(q.requiresDone||[]).every(id=>!!memory(b).done[id]));}
-function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&u.summonKind!=='eater'&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.defeatIds?s.defeatIds.includes(u.id):s.cohorts==='all'||s.cohorts===u.honroCohort));}
+function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.defeatIds?s.defeatIds.includes(u.id):s.cohorts==='all'||s.cohorts===u.honroCohort));}
 function visible(b,u){if(!u?.honroSpirit||!u.spiritHidden||u.manifested||u.revealSpiritToParty)return true;const viewer=b.units.find(v=>v.id===b.active);return viewer?.side===0?!!viewer.spiritSight:!!b.units.find(v=>v.id===memory(b).viewerId)?.spiritSight;}
 function scaleEncounter(u,hp,attack){const ratio=u.maxHp>0?u.hp/u.maxHp:1;
  u.maxHp=Math.max(1,Math.round(u.maxHp*hp));u.hp=Math.max(u.dead?0:1,Math.round(u.maxHp*ratio));
@@ -72,6 +72,7 @@ function scaleEncounter(u,hp,attack){const ratio=u.maxHp>0?u.hp/u.maxHp:1;
  u.attack*=attack;if(Number.isFinite(u.combatBaseAttack))u.combatBaseAttack*=attack;
 }
 function tuneEncounter(u,stage=0){
+ if(u.honroObjectiveTarget)return;
  const late=stage>=17&&stage<=20;
  if(u.honroAct2Tuned){
   // Old revision-2 saves keep their battle state but receive the late-act
@@ -87,16 +88,16 @@ function tuneEncounter(u,stage=0){
  if(u.honroAct2Elite&&!u.honroAct2Boss&&u.honroType!=='hoist'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.combatBaseHp*=1.55;u.attack*=1.15;u.combatBaseAttack*=1.15;u.honroXpWeight=(u.honroXpWeight||1)*1.6;u.name='정예 '+u.name;}
  if(late){scaleEncounter(u,.85,.65);u.honroAct2LateTuned=true;}
 }
-function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&b.terrain.find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=list.filter(q=>!q.optional&&satisfied(b,q)).length;
+function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&G.HonroQuestTargets.records(b).find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=list.filter(q=>!q.optional&&satisfied(b,q)).length;
  const target=s?{id:s.id,kind:s.kind==='destroy'?'seal':s.kind==='defeat'?'boss':s.kind==='reach'||s.kind==='escort'?'exit':'interact',x:u?.x??m?.x??(t?t.x+t.w/2:0),y:u?u.y-u.h:m?.y??t?.y??0,label:s.label,unitId:u?.id,box:t}:null;
  let detail='';
  if(s?.kind==='clear'){const foes=enemiesFor(b,s),hero=b.units.find(u=>u.id===b.active),next=foes.filter(u=>visible(b,u)).sort((u,v)=>Math.hypot(u.x-(hero?.x||0),u.y-(hero?.y||0))-Math.hypot(v.x-(hero?.x||0),v.y-(hero?.y||0)))[0];detail=' · 남은 적 '+foes.length;if(next)Object.assign(target,{x:next.x,y:next.y-next.h,kind:'boss'});}
  if(s?.kind==='hold'){const hold=memory(b).holds?.[s.id];detail=` · ${hold?.progress||0}/${s.rounds}턴${hold?.contested?' · 진 안의 적을 밀어내세요':hold?.guarded?' · 방어 중':' · 표시 범위에서 유지'}`;}
  const parallel=s?.parallelGroup?readySteps(b).filter(q=>q.parallelGroup===s.parallelGroup).map(q=>{const p=marker(b,q.id)||{};return{id:q.id,kind:'interact',x:p.x||0,y:p.y||0,label:q.label};}):null;
- const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||b.terrain.find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
+ const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||G.HonroQuestTargets.records(b).find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
 }
 // Shared by the actual interaction gate and read-only prerequisite guidance.
-function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
+function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&!v.honroObjectiveTarget&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
 function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=app.engine.active;
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'낙석 치우기'};
  if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'주변 원혼등불 밝히기'};
@@ -133,7 +134,7 @@ function expose(b,until,site,radius=Infinity){for(const u of b.units)if(u.honroS
 function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=>q.id===m.id);
  if(!eligibility(app,m).ok)return false;
  if(m.id.startsWith('spirit-lamp')){expose(b,b.round+2,m,m.radius||1200);app.event('원혼등불 · 주변의 혼이 두 턴 동안 형태를 드러낸다.');}
- else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;G.HonroObjectiveContributions?.interact(b,m.id,e.active);const debris=b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.',{kind:'narration',source:'brace-restored'});}
+ else if(m.id==='rebuild-brace'){a.rebuilt=true;m.collected=true;G.HonroObjectiveContributions?.interact(b,m.id,e.active);const debris=G.HonroQuestTargets.records(b).find(t=>t.id==='gate-debris');if(debris)debris.broken=true;b.sceneVersion++;app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.',{kind:'narration',source:'brace-restored'});}
  else{
   if(!s||s.id!==m.id)return false;
   if(s.kind==='rescue'){
@@ -148,9 +149,9 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
    b.honroSurfaceZones=b.honroSurfaceZones.map(z=>z.kind==='water-pool'?lowerPool(z,120):z);
    const pools=b.honroSurfaceZones.filter(z=>z.kind==='water-pool'&&z.surface.length===2);
    b.waters=pools.map((z,j)=>({...(b.waters[j]||{}),x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y}))}));
-   const block=b.terrain.find(t=>t.id==='water-gate');if(block)block.broken=true;b.sceneVersion++;
+   const block=G.HonroQuestTargets.records(b).find(t=>t.id==='water-gate');if(block)block.broken=true;b.sceneVersion++;
   }
-  if(['gate','bridge','repair'].includes(s.id)){const barrier=b.terrain.find(t=>t.id==='gate-'+s.id);if(barrier)barrier.broken=true;b.sceneVersion++;}
+  if(['gate','bridge','repair'].includes(s.id)){const barrier=G.HonroQuestTargets.records(b).find(t=>t.id==='gate-'+s.id);if(barrier)barrier.broken=true;b.sceneVersion++;}
   if(s.id==='silence'){a.silenced=true;expose(b,b.round+2);}
   if(s.id==='leak'){expose(b,b.round+3);for(const u of b.units.filter(u=>u.honroSpirit&&!u.dead)){u.shield=0;u.bound=Math.max(u.bound,1);}}
   if(s.id==='route'){a.routeOpen=true;for(const u of b.units.filter(u=>u.honroProtected))u.shield=Math.max(u.shield,80);}
@@ -183,9 +184,9 @@ function attach(app,e){if(!active(e.b))return;
   if(t.id==='upper-chain'&&!memory(e.b).silenced){e.message('공명을 먼저 억제해야 고정점이 드러난다.');return;}
   const before=t.broken,out=terrain(t,amount,depth,owner);
   if(!before&&t.broken){
-   if(t.id==='rock-pin'){const floor=e.b.terrain.find(t=>t.id==='act2-floor');if(floor?.honroRestoredVertices){floor.vertices=floor.honroRestoredVertices.map(p=>({...p}));delete floor.honroRestoredVertices;e.b.sceneVersion++;}}
-   if(t.id==='exit-pin'){const gate=e.b.terrain.find(t=>t.id==='gate-exit');if(gate){gate.broken=true;e.b.sceneVersion++;}}
-   if(t.id==='collapse-pin'&&!memory(e.b).done.brace){memory(e.b).collapse=true;for(const p of e.heroesAlive())if(Math.abs(p.x-t.x)<550)e.hurt(p,p.maxHp*.18,undefined,false,undefined,undefined,'environment');const m=marker(e.b,'rebuild-brace');if(m)m.collected=false;const debris=e.b.terrain.find(t=>t.id==='gate-debris');if(debris)debris.broken=false;e.b.sceneVersion++;app.event('버팀목 없이 돌이 무너졌다. 안전 지지대를 세우고 낙석을 치워야 한다.',{kind:'narration',source:'quarry-collapse'});}
+   if(t.id==='rock-pin'){const floor=G.HonroQuestTargets.records(e.b).find(t=>t.id==='act2-floor');if(floor?.honroRestoredVertices){floor.vertices=floor.honroRestoredVertices.map(p=>({...p}));delete floor.honroRestoredVertices;e.b.sceneVersion++;}}
+   if(t.id==='exit-pin'){const gate=G.HonroQuestTargets.records(e.b).find(t=>t.id==='gate-exit');if(gate){gate.broken=true;e.b.sceneVersion++;}}
+   if(t.id==='collapse-pin'&&!memory(e.b).done.brace){memory(e.b).collapse=true;for(const p of e.heroesAlive())if(Math.abs(p.x-t.x)<550)e.hurt(p,p.maxHp*.18,undefined,false,undefined,undefined,'environment');const m=marker(e.b,'rebuild-brace');if(m)m.collected=false;const debris=G.HonroQuestTargets.records(e.b).find(t=>t.id==='gate-debris');if(debris)debris.broken=false;e.b.sceneVersion++;app.event('버팀목 없이 돌이 무너졌다. 안전 지지대를 세우고 낙석을 치워야 한다.',{kind:'narration',source:'quarry-collapse'});}
    if(t.honroRockfall){for(const p of e.b.units)if(!p.dead&&p.x>t.x-150&&p.x<t.x+t.w+150&&p.y>t.y)e.hurt(p,Math.round(p.maxHp*.28),owner,false,undefined,undefined,'environment');}
   }
   return out;
@@ -229,7 +230,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].inc
  const s=current(b),m=s&&marker(b,s.id);
  if(revision2(b)&&s?.kind==='hold'&&m){
   a.holds??={};const h=a.holds[s.id]??={progress:0,spawned:0,lastRound:b.round,enteredRound:b.round,continuous:false};
-  const guards=heroes.filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=b.round>h.lastRound,contested=b.units.some(u=>u.side===1&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
+  const guards=heroes.filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=b.round>h.lastRound,contested=b.units.some(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
   if(!guarded||contested)h.continuous=false;
   if(b.round>h.lastRound){if(h.continuous&&guarded&&!contested)h.progress++;h.lastRound=b.round;h.continuous=guarded&&!contested;app.dirty=true;}
   if(h.guarded===undefined)h.continuous=guarded&&!contested;

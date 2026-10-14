@@ -3,7 +3,7 @@ const C=G.HONRO_CORE,H=G.HONRO_CONTENT,P=G.HonroProgression;
 const median=a=>{const s=[...a].sort((a,b)=>a-b);return s.length?s[Math.floor(s.length/2)]:0;};
 function audit(stage,b){
   const p=P.plan(stage.id),r=P.referenceStats(stage);
-  const enemies=b.units.filter(u=>u.side===1&&!u.dead),ordinary=enemies.filter(u=>!u.boss&&!u.elite);
+  const enemies=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&!u.dead),ordinary=enemies.filter(u=>!u.boss&&!u.elite);
   const hits=u=>u.maxHp/(r.shot/.96*(1-(u.armor||0)));
   const incoming=u=>{const s=u.loadout.map(id=>C.SKILLS[id]);return s.reduce((n,s)=>n+s.damage*C.skillBalanceFactor(s)*u.attack*(1-r.armor),0)/Math.max(1,s.length)/r.hp;};
   const eventWaves=(b.honroEvents||[]).reduce((n,e)=>n+G.HonroEncounters.spawnCount(e.action),0);

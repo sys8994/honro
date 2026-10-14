@@ -4,7 +4,7 @@ const spawnCount=a=>!a?0:a.type==='multi'?(a.actions||[]).reduce((n,a)=>n+spawnC
 // Applied only to newly compiled campaign battles. Saved battles keep their population and HP.
 function balance(b){
  if(b.honroCustom||b.honroEncounterRevision||b.honroStage>10)return;
- const originals=b.units.filter(u=>u.side===1&&!u.boss&&!u.honroMidboss&&!u.honroFinalBoss),added=[];
+ const originals=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&!u.boss&&!u.honroMidboss&&!u.honroFinalBoss),added=[];
  for(const u of originals){
   u.combatBaseHp=(u.combatBaseHp??u.maxHp/(G.HONRO_CORE.DIFFICULTIES[b.difficulty]?.hp||1))*.6;
   u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));
@@ -71,7 +71,7 @@ function update(app,dt,state){
     const key='event:'+ev.id;if(hs.flags[key])continue;
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
-    if(!matches(ev.when,{...state,objectives:hs.act3?.done,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:b.terrain,hold:hs.hold,rescued:hs.rescued}))continue;
+    if(!matches(ev.when,{...state,objectives:hs.act3?.done,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:G.HonroQuestTargets.records(b),hold:hs.hold,rescued:hs.rescued}))continue;
     if(!hs.pendingEvents.includes(ev.id)){hs.pendingEvents.push(ev.id);hs.eventActors??={};hs.eventActors[ev.id]={id:app.actorBoundary||b.active,round:b.round};if(ev.warning)app.event(ev.warning);app.dirty=true;}
   }
   flush(app);

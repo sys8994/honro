@@ -17,7 +17,7 @@ test('Act 1 does not invent prior terminology, visible eyes or unseen lower proc
 test('Hongman is disclosed at Yeonsil’s reveal and Sodan chooses before defense',()=>{
  const reveal=H.stages[1].outro.find(l=>l[0]==='연실'&&l[1].startsWith('홍만이에요'));
  assert.equal(reveal[2].revealName.name,'홍만의 상여');
- const pre=S.cooperation(),post=S.cooperationDefense();assert(pre.at(-1)[1].includes('놓을게요'));assert(!JSON.stringify(pre).includes('동쪽 전각'));assert(JSON.stringify(post).includes('지금 건 당신이 놓친 게 아닙니다'));
+ const pre=S.cooperation(),post=S.cooperationDefense();assert(pre.at(-1)[1].includes('놓을게요'));assert(!JSON.stringify(pre).includes('동쪽 전각'));assert.match(JSON.stringify(post),/지금 온 원혼은 당신의 망에서 빠진 게 아닙니다.*문밖에서.*들어왔어요/);
  assert(JSON.stringify(H.stages[9].outro).includes('같이 가죠. 남은 매듭부터 함께 정리하고요.'));
 });
 test('Chapter 7 keeps the rescue judgment and describes only supported resident presentation',()=>{

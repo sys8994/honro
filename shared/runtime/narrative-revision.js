@@ -45,7 +45,7 @@ function pressure(app){const e=app.engine,b=e.b,A=G.HonroAct2,defs=b.honroNarrat
 }
 function tick(app,dt){const b=app.engine.b;if(!active(b))return;if(!app.dialogue)updateConvoy(b);pressure(app);const a=b.honroState.act2;if(!a?.drainRevealPending)return;
  if(app.dialogue||app.modal?.classList.contains('open')||app.charging||['flight','review','summon','ally'].includes(b.phase)||b.projectiles.length||app.engine.settleBusy())return;
- const ids=b.honroDrainRevealTerrains||[],terrain=ids.map(id=>b.terrain.find(t=>t.id===id));if(terrain.some(t=>!t))return;
+ const ids=b.honroDrainRevealTerrains||[],terrain=ids.map(id=>G.HonroQuestTargets.records(b).find(t=>t.id===id));if(terrain.some(t=>!t))return;
  if(terrain.some(t=>b.units.some(u=>!u.dead&&u.hp>0&&G.HONRO_CORE.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01))))return;
  for(const list of [b.terrain,b.honroWorldTerrain])for(const id of ids){const t=list?.find(t=>t.id===id);if(t)t.broken=false;}
  a.drainRevealPending=false;a.drainRevealed=true;b.sceneVersion++;app.event('물이 빠진 바위 가장자리가 드러났다. 아래 물길로 걸어갈 수 있다.',{kind:'narration',source:'drain-revealed'});app.dirty=true;
@@ -54,7 +54,7 @@ function reveal(b,row){const q=row?.[2]?.revealName;if(!active(b)||!q)return;con
 function finishStory(app,d){const b=app.engine?.b;if(!active(b))return;for(const row of d.lines||[])reveal(b,row);const ids=[...new Set((d.lines||[]).map(l=>l[2]?.storyId).filter(Boolean))];b.honroState.completedStory??={};for(const id of ids)b.honroState.completedStory[id]=true;
  if(b.honroStage===10&&b.honroState.sodanBinding?.phase==='offering'&&ids.some(id=>id.includes('cooperation')&&!id.includes('defense')))b.honroState.sodanBinding.phase='accepted';
 }
-function bindingReady(b){return active(b)&&b.honroStage===10&&!!b.terrain.find(t=>t.id===bindingId)?.broken;}
+function bindingReady(b){return active(b)&&b.honroStage===10&&!!G.HonroQuestTargets.records(b).find(t=>t.id===bindingId)?.broken;}
 function beforeCooperation(app){const b=app.engine.b;if(!active(b))return null;const state=b.honroState.sodanBinding;if(!bindingReady(b)||!state)return false;
  if(state.phase==='bound'){state.phase='offering';app.sayLines(G.HonroStoryContent.cooperation());app.dirty=true;return false;}
  return state.phase==='accepted';

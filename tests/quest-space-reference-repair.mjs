@@ -1,3 +1,4 @@
+import {beforeQuestProjectProse} from './quest-project-prose-history.mjs';
 import {beforeApprovedWaterfall} from './approved-waterfall-contract-helpers.mjs';
 /** Exact metadata-only correction of the approved route/funeral author. */
 import assert from 'node:assert/strict';
@@ -22,7 +23,7 @@ s15.surfaces[9]={id:'fc15-dry-basin-rim',terrainId:'fc15-dry-basin-rim',role:'sh
 assert.equal(s15.routes[0].anchors[21].x,5450);
 Object.assign(s15.routes[0].anchors[21],{y:4270.789473684211,surfaceId:'fc15-dry-basin-rim'});
 assert.deepEqual(s19.encounterSites.map(s=>s.unitId).sort(),Array.from({length:18},(_,i)=>'a2-enemy-'+i).sort());s19.encounterSites=[];
-const expectedHash=hash(expected),exact=q=>assert.equal(hash(q),expectedHash,'Only enumerated metadata changes; no arbitrary route/actor/terrain change');exact(p);
+const expectedHash=hash(expected),exact=q=>assert.equal(hash(beforeQuestProjectProse(q)),expectedHash,'Only enumerated metadata changes; no arbitrary route/actor/terrain change');exact(p);
 const repaired=plain(before);repaired.stages.forEach(repairQuestSpaceReferences);exact(repaired);repaired.stages.forEach(repairQuestSpaceReferences);exact(repaired);
 exact(await authorAct23QuestRedesign(p));console.log('PASS exact source author and enumerated metadata delta');
 vm.runInContext('Date.now=()=>1780000000000',g);

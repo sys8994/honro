@@ -4,8 +4,8 @@ import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {g,C,stage,fixture,fire} from './stage18-bell-tactics-helper.mjs';
 const pose=stage.design.bell.standing.closeRelease,rows=[];
-const setup=(x=pose.x)=>{const q=fixture('knight',pose.surfaceId,x,{silenced:true});q.allowTargetDamage=true;const t=q.b.terrain.find(t=>t.id==='upper-chain');assert(t.honroMeleeTarget,'Canonical target explicitly opts in');return{...q,target:t};};
-for(const spec of [{id:'near-basic',angle:0,power:1,damage:true},{id:'behind-sector',angle:180,power:1,damage:false},{id:'outside-sector',angle:70,power:1,damage:false},{id:'outside-range',angle:0,power:0,x:5398,damage:false},{id:'ordinary-unflagged',angle:0,power:1,flag:false,damage:false},{id:'solid-occlusion',angle:0,power:1,wall:true,damage:false},{id:'before-suppression',angle:0,power:1,locked:true,damage:false}]){
+const setup=(x=pose.x)=>{const q=fixture('knight',pose.surfaceId,x,{silenced:true});q.allowTargetDamage=true;const t=g.HonroQuestTargets.records(q.b).find(t=>t.id==='upper-chain');assert(t.honroMeleeTarget,'Canonical target explicitly opts in');return{...q,target:t};};
+for(const spec of [{id:'near-basic',angle:0,power:1,damage:true},{id:'behind-sector',angle:180,power:1,damage:false},{id:'outside-sector',angle:70,power:1,damage:false},{id:'outside-range',angle:0,power:0,x:5398,damage:false},{id:'hostile-unit-needs-no-terrain-optin',angle:0,power:1,flag:false,damage:true},{id:'solid-occlusion',angle:0,power:1,wall:true,damage:false},{id:'before-suppression',angle:0,power:1,locked:true,damage:false}]){
  const q=setup(spec.x),t=q.target;if(spec.flag===false)delete t.honroMeleeTarget;if(spec.locked)g.HonroAct2.memory(q.b).silenced=false;
  if(spec.wall)q.b.terrain.push({id:'fixture-solid-occluder',x:5530,y:4360,w:20,h:180,mat:'rock',indestructible:true,vertices:[{x:5530,y:4360},{x:5550,y:4360},{x:5550,y:4540},{x:5530,y:4540}]});
  const cost=q.e.manaCost(C.SKILLS.S00,q.hero,spec.power),hp=t.hp,terrain=q.b.terrain.map(z=>({id:z.id,hp:z.hp,broken:z.broken})),shot=fire(q,'S00',spec);
@@ -15,7 +15,7 @@ for(const spec of [{id:'near-basic',angle:0,power:1,damage:true},{id:'behind-sec
 }
 {
  const q=setup(),hp=q.target.hp;assert(q.e.fire('S00',0,1));q.e.tick(.035);assert.equal(q.target.hp,hp);assert.equal(q.hero.meleeAction.index,0);
- const saved=JSON.parse(JSON.stringify(q.b)),e=new C.Engine(saved,()=>{},true),app={...q.app,engine:e};g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);g.HonroAct2.attach(app,e);const target=saved.terrain.find(t=>t.id==='upper-chain');assert(target.honroMeleeTarget);for(let i=0;i<45;i++)e.tick(C.STEP);assert(target.hp<hp);assert.equal(target.hp,rows[0].hpAfter,'Windup save resumes the same one strike');rows.push({id:'windup-Continue',hpBefore:hp,hpAfter:target.hp});console.log('PASS windup-Continue exact one strike');
+ const saved=JSON.parse(JSON.stringify(q.b)),e=new C.Engine(saved,()=>{},true),app={...q.app,engine:e};g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);g.HonroAct2.attach(app,e);const target=g.HonroQuestTargets.records(saved).find(t=>t.id==='upper-chain');assert(target.honroMeleeTarget);for(let i=0;i<45;i++)e.tick(C.STEP);assert(target.hp<hp);assert.equal(target.hp,rows[0].hpAfter,'Windup save resumes the same one strike');rows.push({id:'windup-Continue',hpBefore:hp,hpAfter:target.hp});console.log('PASS windup-Continue exact one strike');
 }
 // Every other canonical chapter has zero opt-in terrain; its existing melee
 // contracts are exercised by hwigyeom-p5/finale regressions in this checkpoint.

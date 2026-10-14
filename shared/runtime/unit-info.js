@@ -4,7 +4,7 @@ const eligible=u=>u&&!u.eaterCapturedBy&&(player(u)||!u.dead&&(u.side===1||u.sid
 const available=a=>a.screen==='battle'&&a.engine&&a.scene&&!a.dialogue&&!a.done&&!a.modal.classList.contains('open');
 const clamp=(v,min,max)=>Math.max(min,Math.min(Math.max(min,max),v));
 const S=G.HonroScene.prototype;
-function description(u,b){if(u.summonKind==='eater')return `${b?b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead&&v.hp>0).length:u.eaterCaptureCount||0}명 포획 · 남은 ${Math.max(0,(u.summonExpires??b?.round??0)-(b?.round??0)+1)}적 턴. 자체 행동 없이 아군에게 잃은 HP를 포획 적 각각에게 전달하며, 죽거나 수명이 끝나면 생존자를 방출합니다.`;const identity=u.honroAct3Fiend&&G.HonroWorld.archetypes[u.honroVariant]?.intent;if(identity)return identity+(u.intent&&u.intent!==identity?' · '+u.intent:'');return u.intent||G.HonroWorld.archetypes[u.honroType]?.intent||(u.summoned?'소환자를 도와 동맹군 턴에 행동합니다.':u.allyRole==='civilian'?'전투에 휘말린 동행인. 안전하게 호위해야 합니다.':'함께 적을 상대하는 동행입니다.');}
+function description(u,b){if(u.honroObjectiveTarget)return [G.HonroQuestTargets.blocker(b,u),'파괴 목표 · 이동하거나 공격하지 않습니다. 동행은 통과할 수 있으며 체력을 모두 깎으면 목표가 진행됩니다.'].filter(Boolean).join(' ');if(u.summonKind==='eater')return `${b?b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead&&v.hp>0).length:u.eaterCaptureCount||0}명 포획 · 남은 ${Math.max(0,(u.summonExpires??b?.round??0)-(b?.round??0)+1)}적 턴. 자체 행동 없이 아군에게 잃은 HP를 포획 적 각각에게 전달하며, 죽거나 수명이 끝나면 생존자를 방출합니다.`;const identity=u.honroAct3Fiend&&G.HonroWorld.archetypes[u.honroVariant]?.intent;if(identity)return identity+(u.intent&&u.intent!==identity?' · '+u.intent:'');return u.intent||G.HonroWorld.archetypes[u.honroType]?.intent||(u.summoned?'소환자를 도와 동맹군 턴에 행동합니다.':u.allyRole==='civilian'?'전투에 휘말린 동행인. 안전하게 호위해야 합니다.':'함께 적을 상대하는 동행입니다.');}
 // The body-only mask follows the current pose; health bars, shadows and selection arrows are excluded.
 S.unitOutline=function(c,u){
  if(u.id!==this.hoverUnitId&&u.id!==this.inspectUnitId)return;
@@ -59,7 +59,7 @@ function tick(a){
  if(scene.inspectPointer)hover(a,scene.inspectPointer);
  const u=a.engine.unit(scene.inspectUnitId);if(!eligible(u)||G.HonroAct2&&!G.HonroAct2.visible(a.engine.b,u)){close(a);return;}
  const boundBody=G.HonroNarrativeRevision?.bodyBound(a.engine.b,u);el.hidden=false;el.dataset.unitId=u.id;el.dataset.side=boundBody?'ally':u.side===1?'enemy':'ally';
- const side=boundBody?'주박을 붙들고 있는 사람':player(u)?'동행'+(u.dead?' · 전투불능':u.acted?' · 행동 완료':''):u.side===1?'적군':u.summoned?'동맹군 · 소환귀':'동맹군';
+ const side=boundBody?'주박을 붙들고 있는 사람':player(u)?'동행'+(u.dead?' · 전투불능':u.acted?' · 행동 완료':''):u.side===1?(u.honroObjectiveTarget?'적군 · 파괴 목표':'적군'):u.summoned?'동맹군 · 소환귀':'동맹군';
  const C=G.HONRO_CORE,hero=player(u)&&a.engine.b.heroes?.[u.cls],level=hero?C.levelOf(hero):u.level||1;
  const skills=(u.loadout||[]).map(id=>G.HONRO_CORE.SKILLS[id]).filter(s=>s&&!s.passive).slice(0,2);
  const text=(selector,value)=>{const n=el.querySelector(selector);if(n.textContent!==value)n.textContent=value;};

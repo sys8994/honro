@@ -56,7 +56,7 @@ function terrainBlockers(e,u,from=u,to=u){const b=e.b,left=Math.min(from.x,to.x)
  const floorAt=x=>Math.min(bottom,...lines.filter(l=>x>=l.lo-1e-8&&x<=l.hi+1e-8).map(l=>l.slope*x+l.intercept))-.15;
  const ordered=[...xs].sort((a,z)=>z-a),floor=ordered.filter((x,i)=>!i||ordered[i-1]-x>1e-7).map(x=>({x,y:floorAt(x)}));if(floor.some(p=>p.y<=top))return[{kind:'terrain',id:'body-clearance',label:'몸통 여유가 없는 지형'}];
  const ps=[{x:left,y:top},{x:right,y:top},...floor],vertices=ps,shape={x:left,y:top,w:right-left,h:bottom-top,vertices,broken:false};
- return b.terrain.filter(t=>!t.broken&&!t.oneWay&&overlaps(shape,t)&&polygonsOverlap(shape,t)).map(t=>({kind:'terrain',id:t.id,label:'막힌 지형'}));
+ return G.HonroQuestTargets.records(b).filter(t=>!t.broken&&!t.oneWay&&overlaps(shape,t)&&polygonsOverlap(shape,t)).map(t=>({kind:'terrain',id:t.id,label:'막힌 지형'}));
 }
 function bodyBlockers(e,u,from=u,to=u){const box={x:Math.min(from.x,to.x)-u.r-2,y:Math.min(from.y,to.y)-u.h-2,w:Math.abs(to.x-from.x)+u.r*2+4,h:Math.abs(to.y-from.y)+u.h+4};return [...terrainBlockers(e,u,from,to),...hazards(e.b,u,box)];}
 const temporary=['fixed','moveLeft','walkSpeed','bound','slowed'];
@@ -133,10 +133,10 @@ function warnWave(app,source){const b=app.engine.b,m=memory(b);if(m.warnings[sou
  if(G.HonroEncounterDensity?.active(b)&&source==='stage8-low-health'){const ev=(b.honroEvents||[]).find(ev=>ev.id===source);if(ev){ev.warning=ev.text=at.label+'에서 산개 한 마리와 혼불이 다가온다. 다음 행동에 그 입구를 살피세요.';ev.entry={x:at.x,y:at.y};}}
  publishNotice(app);app.dirty=true;offer(app);
 }
-function prepareWaves(app){const b=app.engine?.b;if(!active(b)||cleanup(app)||paused(app))return;const m=memory(b),seals=b.terrain.filter(t=>t.honroSeal);m.sealIdsSeen=seals.filter(t=>t.broken).map(t=>t.id);
+function prepareWaves(app){const b=app.engine?.b;if(!active(b)||cleanup(app)||paused(app))return;const m=memory(b),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);m.sealIdsSeen=seals.filter(t=>t.broken).map(t=>t.id);
  if(m.sealIdsSeen.length)warnWave(app,sources[0]);if(alive(boss(b))){if(m.completedOnce)warnWave(app,sources[1]);if(boss(b).hp<=boss(b).maxHp*.35)warnWave(app,sources[2]);}
 }
-function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))return;const m=memory(b),seals=b.terrain.filter(t=>t.honroSeal);acceptOpportunity(app);if(m.completedOnce||m.status==='moving'||m.status==='cancelled')return;
+function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))return;const m=memory(b),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);acceptOpportunity(app);if(m.completedOnce||m.status==='moving'||m.status==='cancelled')return;
  if(m.status==='anchored'){if(paused(app)||seals.length!==2||seals.some(t=>!t.broken)||!alive(boss(b)))return;Object.assign(m,{status:'announced',triggerSerial:serial(b),announcedSerial:serial(b),eligibleAfterSerial:serial(b)+1,announcedRound:b.round,offered:{},playerOpportunity:null,reason:'두 결박이 풀렸다. 상여가 중앙 아래뜰을 향한다. 다음 행동에서 그 길을 비우세요.'});publishNotice(app);app.dirty=true;offer(app);return;}
  offer(app);if(!m.playerOpportunity){m.reason='동행의 새로운 행동이 끝난 뒤 상여의 길을 확인합니다.';return;}m.status='blocked';
  if(!safeBoundary(app))return;const route=chooseRoute(app);m.blockers=route.blocked||[];
@@ -191,7 +191,7 @@ const execute=W.execute;W.execute=function(app,action){return active(app.engine?
 // queues are removed. Any actual hit, local approach or the original two seals
 // engages normal unrestricted AI permanently. Early defeat remains possible.
 function bossGuardReady(e,write=true){const b=e.b,u=boss(b);if(!G.HonroEncounterDensity?.active(b)||b.honroStage8BierBossGuard!==1||!alive(u))return true;const m=memory(b);if(m.bossEngaged)return true;
- const seals=b.terrain.filter(t=>t.honroSeal),approached=e.heroesAlive().some(h=>Math.hypot(h.x-u.x,h.y-u.y)<1450&&Math.abs(h.y-u.y)<900),struck=u.hp<u.maxHp||u.shield>0&&u.hurt>0,freed=seals.length===2&&seals.every(t=>t.broken);
+ const seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal),approached=e.heroesAlive().some(h=>Math.hypot(h.x-u.x,h.y-u.y)<1450&&Math.abs(h.y-u.y)<900),struck=u.hp<u.maxHp||u.shield>0&&u.hurt>0,freed=seals.length===2&&seals.every(t=>t.broken);
  if(!approached&&!struck&&!freed)return false;if(write)m.bossEngaged={round:b.round,serial:serial(b),reason:struck?'hit':freed?'seals':'approach'};return true;
 }
 const attach=E.attach;E.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroStage8BierAttached)return out;e.honroStage8BierAttached=true;memory(e.b);installScene();

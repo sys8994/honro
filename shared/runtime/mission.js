@@ -40,13 +40,13 @@ function reinforceHold(app,boundary){
  if(!holding||objective.complete)return;
  hs.lastHabitatRound=b.round;
  const foes=e.alive(1).length,minimum=st.objective==='defend'?7:5;
- if(foes>=minimum||b.units.length>=68)return;
+ if(foes>=minimum||b.units.filter(u=>!u.honroObjectiveTarget).length>=68)return;
  const sites=(b.honroMarkers||[]).filter(m=>m.type==='hauntHabitat');if(!sites.length)return;
  // Alternate habitats and keep emergence away from the party's feet.
  const heroes=e.heroesAlive(),ranked=sites.map(site=>({site,distance:Math.min(...heroes.map(u=>Math.hypot(u.x-site.x,(u.y-site.y)*.6)))})).sort((a,c)=>c.distance-a.distance);
  const distant=ranked.filter(item=>item.distance>=400),contested=!distant.length,choices=contested?ranked:distant;
  const ordered=choices.length>1?[choices[b.round%choices.length],...choices.filter((_,i)=>i!==b.round%choices.length)]:choices;
- const n=Math.min(contested?2:4,minimum-foes,68-b.units.length);
+ const n=Math.min(contested?2:4,minimum-foes,68-b.units.filter(u=>!u.honroObjectiveTarget).length);
  for(const item of ordered){const site=item.site;
   for(let count=n;count>=1;count--){
    const spawned=G.HonroAllies.execute(app,{type:'spawn',n:count,kind:site.kind,x:site.x,y:site.y,support:site.support,spacing:contested?240:110,maxDistance:260,clearance:contested?100:18,source:site.id,contributionSource:`habitat:${st.objective}:${hs.habitatContributionWave||0}`});
@@ -80,7 +80,7 @@ function tick(app,dt){
  }
  // Once started, only leaving the array (or losing the holder) releases it.
  // grounded() includes velocity: a small hit used to cancel it before any movement.
- if(st.id===5){const ritual=hs.ritual,veil=b.terrain.find(t=>t.id==='waterfall-veil'),cleat=b.terrain.find(t=>t.id==='cliff-cleat'),marker=b.honroMarkers.find(m=>m.id==='receiver-5'),holder=ritual?.holderId?e.unit(ritual.holderId):null;const valid=!!ritual?.active&&!!holder&&!holder.dead&&holder.hp>0&&holder.cls==='mage'&&!!marker&&Math.abs(holder.x-marker.x)<=125&&Math.abs(holder.y-marker.y)<=80;if(cleat?.broken){if(ritual)ritual.active=false;hs.waterfallSight=true;if(veil&&!G.HonroStage5Waterfall?.active(b)&&!veil.broken){veil.broken=true;b.sceneVersion++;}if(marker)marker.collected=true;}else if(valid){hs.waterfallSight=true;if(veil&&!G.HonroStage5Waterfall?.active(b)&&!veil.broken){veil.broken=true;b.sceneVersion++;}}else{if(ritual?.active){ritual.active=false;app.event(G.HonroStage5Waterfall?.active(b)?'담허가 물길진에서 벗어나 낙수가 다시 화살을 쓸어 내린다.':'담허가 받이진에서 벗어나 물틈이 다시 닫혔다.',{kind:'narration',source:'ritual-released'});}hs.waterfallSight=false;if(veil?.broken&&!G.HonroStage5Waterfall?.active(b)){veil.broken=false;b.sceneVersion++;}}G.HonroStage5WaterGeometry?.setOpen(b,!!hs.waterfallSight);}
+ if(st.id===5){const ritual=hs.ritual,veil=G.HonroQuestTargets.records(b).find(t=>t.id==='waterfall-veil'),cleat=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat'),marker=b.honroMarkers.find(m=>m.id==='receiver-5'),holder=ritual?.holderId?e.unit(ritual.holderId):null;const valid=!!ritual?.active&&!!holder&&!holder.dead&&holder.hp>0&&holder.cls==='mage'&&!!marker&&Math.abs(holder.x-marker.x)<=125&&Math.abs(holder.y-marker.y)<=80;if(cleat?.broken){if(ritual)ritual.active=false;hs.waterfallSight=true;if(veil&&!G.HonroStage5Waterfall?.active(b)&&!veil.broken){veil.broken=true;b.sceneVersion++;}if(marker)marker.collected=true;}else if(valid){hs.waterfallSight=true;if(veil&&!G.HonroStage5Waterfall?.active(b)&&!veil.broken){veil.broken=true;b.sceneVersion++;}}else{if(ritual?.active){ritual.active=false;app.event(G.HonroStage5Waterfall?.active(b)?'담허가 물길진에서 벗어나 낙수가 다시 화살을 쓸어 내린다.':'담허가 받이진에서 벗어나 물틈이 다시 닫혔다.',{kind:'narration',source:'ritual-released'});}hs.waterfallSight=false;if(veil?.broken&&!G.HonroStage5Waterfall?.active(b)){veil.broken=false;b.sceneVersion++;}}G.HonroStage5WaterGeometry?.setOpen(b,!!hs.waterfallSight);}
  const obj=e.unit('objective');
  if(st.objective==='rescue'&&obj&&!obj.dead){
    if(!hs.rescued&&heroes.some(u=>Math.hypot(u.x-obj.x,u.y-obj.y)<205))hs.rescuePending=true;
@@ -89,10 +89,10 @@ function tick(app,dt){
  }
  if(boundary&&b.side===0&&hs.lastRitualRound!==b.round){
    hs.lastRitualRound=b.round;hs.lastRound=b.round;
-   if(st.objective==='ritual'){const k=heroes.find(u=>u.cls==='knight'),altar=b.honroMarkers.find(m=>m.type==='shrine');if(k&&altar&&!b.terrain.some(t=>t.honroSeal&&!t.broken)&&Math.hypot(k.x-altar.x,k.y-altar.y)<330){hs.hold++;app.event(hs.hold>=st.holdRounds?'왕문이 열렸다.':'왕문 의식 · '+hs.hold+'/'+st.holdRounds,hs.hold>=st.holdRounds?{kind:'narration',source:'royal-gate-open'}:{});}}
+   if(st.objective==='ritual'){const k=heroes.find(u=>u.cls==='knight'),altar=b.honroMarkers.find(m=>m.type==='shrine');if(k&&altar&&!G.HonroQuestTargets.records(b).some(t=>t.honroSeal&&!t.broken)&&Math.hypot(k.x-altar.x,k.y-altar.y)<330){hs.hold++;app.event(hs.hold>=st.holdRounds?'왕문이 열렸다.':'왕문 의식 · '+hs.hold+'/'+st.holdRounds,hs.hold>=st.holdRounds?{kind:'narration',source:'royal-gate-open'}:{});}}
  }
  const progress=st.objective==='overwatch'?(obj?.x||0):st.objective==='escort'?Math.max(lead.x,obj?.x||0):lead.x;
- G.HonroEncounters.update(app,dt,{progress,height,broken:b.terrain.filter(t=>t.honroSeal&&t.broken).length,collected:b.honroMarkers.filter(m=>m.type==='relic'&&m.collected).length});
+ G.HonroEncounters.update(app,dt,{progress,height,broken:G.HonroQuestTargets.records(b).filter(t=>t.honroSeal&&t.broken).length,collected:b.honroMarkers.filter(m=>m.type==='relic'&&m.collected).length});
  reinforceHold(app,boundary);
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
  if(st.id===10)finale(app);

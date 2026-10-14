@@ -23,7 +23,7 @@ function failure(b,st,list,result){const parts=['동행 전원 전투불능'];co
  if(protectedUnits.length)parts.push([...new Set(protectedUnits.map(u=>u.name))].join('·')+' 상실');
  const required=[...new Set(list.filter(s=>!s.optional&&s.requiredClass&&!(st.act===3?G.HonroAct3.satisfied(b,s):result.allTargets?.find(t=>t.id===s.id)?.done)).map(s=>heroName(s.requiredClass)))];
  if(required.length)parts.push('필수 행동 전 '+required.join('·')+' 전투불능');
- if(st.id===5&&b.terrain.some(t=>t.id==='cliff-cleat'&&!t.broken))parts.push('고리쇠 파괴 전 담허 전투불능');
+ if(st.id===5&&G.HonroQuestTargets.records(b).some(t=>t.id==='cliff-cleat'&&!t.broken))parts.push('고리쇠 파괴 전 담허 전투불능');
  if(st.id===10)parts.push('협력 시작 후 소단 전투불능');
  if(st.id===27&&b.honroSplit?.version===1&&!b.honroState?.act3?.done?.['party-reunion'])parts.push('중앙 합류 전 조사팀 동행 전투불능');
  if(G.HonroAct3?.fireScenario(b)&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen']))parts.push('불길 진압 전 12번째 적 턴 종료');
@@ -44,7 +44,7 @@ function enhance(b,st,result){if(b.honroCustom)return result;
  let summary=result.summary,blockReason='';
  if(list.length){summary=summary.replace(/^(\d+\/\d+) · /,'완료 $1 · ');if(s){const m=A.marker?A.marker(b,s.id):(b.honroMarkers||[]).find(m=>m.id===s.id);
    if(['interact','rescue'].includes(s.kind)&&!s.parallelGroup){blockReason=interactReason(b,st,s,m);if(blockReason)summary+=' · '+blockReason;}
-   if(s.kind==='destroy'){const t=b.terrain.find(t=>t.id===s.id);if(t)summary+=' · 내구도 '+Math.max(0,Math.ceil(t.hp))+'/'+Math.ceil(t.maxHp||t.hp);if(s.requiredClass)summary+=' · '+heroName(s.requiredClass)+'의 공격';}
+   if(s.kind==='destroy'){const t=G.HonroQuestTargets.records(b).find(t=>t.id===s.id);if(t)summary+=' · 내구도 '+Math.max(0,Math.ceil(t.hp))+'/'+Math.ceil(t.maxHp||t.hp);if(s.requiredClass)summary+=' · '+heroName(s.requiredClass)+'의 공격';}
    if(s.kind==='hold')summary=summary.replace(/(\d+\/\d+)턴/,st.act===3?'$1 적 턴':'$1라운드');
    if(s.kind==='escort')summary+=' · 운반자 앞 같은 층에서 가까이 동행';
    if(s.parallelGroup)summary+=s.parallelGroup==='bell-stabilize'?' · 유지와 기본 공격은 동시에 진행':s.parallelGroup==='farewell'?' · 세 만남은 자유 순서 · 혼을 가른 뒤 작별하세요':' · 두 지점 모두 조작하세요';
@@ -53,7 +53,7 @@ function enhance(b,st,result){if(b.honroCustom)return result;
  const presentation=progressive(b,st,result,list,s);
  return{...result,summary,blockReason,completionText:ending(b,st,list),failureText:failure(b,st,list,result),checklist,...presentation};
 }
-function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=false)=>out.push({id,text,done}),marks=b.honroMarkers||[],boss=b.units.find(u=>u.id==='boss'),seals=b.terrain.filter(t=>t.honroSeal);
+function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=false)=>out.push({id,text,done}),marks=b.honroMarkers||[],boss=b.units.find(u=>u.id==='boss'),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);
  const hold=(text)=>add('settle',text,r.complete);
  switch(st.id){
  case 1:add('exit','표시된 도착 지점으로 이동하세요',r.complete);break;
@@ -65,7 +65,7 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
  case 7:marks.filter(m=>m.action==='rescue').forEach((m,i)=>add(m.id,'주민 '+(i+1)+' 곁에서 구조하세요',!!m.collected));hold('구조한 주민들을 2턴 보호하세요');break;
  case 8:seals.forEach((t,i)=>add(t.id,'상여 결박 '+(i+1)+'을 공격하세요',!!t.broken));add('boss','빈 상여를 쓰러뜨리세요',!!boss?.dead);if(b.honroNarrativeRevision!==1)hold('주변을 1턴 지키세요');break;
  case 9:marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));if(b.honroNarrativeRevision!==1)hold('일행을 2턴 보호하세요');break;
- case 10:if(b.honroNarrativeRevision===1){add('binding','바깥 붉은 주박을 공격하세요',!!b.terrain.find(t=>t.id==='sodan-binding')?.broken);add('accept','소단이 힘을 맡기도록 곁을 지키세요',!!h.sodanCoop);add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',r.complete);break;}add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',r.complete);break;
+ case 10:if(b.honroNarrativeRevision===1){add('binding','바깥 붉은 주박을 공격하세요',!!G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding')?.broken);add('accept','소단이 힘을 맡기도록 곁을 지키세요',!!h.sodanCoop);add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',r.complete);break;}add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',r.complete);break;
  default:add('current',r.summary,r.complete);
  }return out;
 }

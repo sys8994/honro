@@ -418,7 +418,7 @@ export class Renderer {
             c.restore();
         }
         for (const d of b.drafts) {
-            if (d.device && !b.terrain.some(t => t.id === d.device && !t.broken))
+            if (d.device && !((globalThis as any).HonroQuestTargets?.records(b)||b.terrain).some((t: {id:string;broken?:boolean}) => t.id === d.device && !t.broken))
                 continue;
             const grad = c.createLinearGradient(d.x, 0, d.x + d.w, 0);
             grad.addColorStop(0, 'rgba(190,223,221,0)');

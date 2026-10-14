@@ -106,7 +106,7 @@ function execute(app,a){const e=app.engine,b=e.b,st=app.stage,hero=e.heroesAlive
  }
  if(a.type==='ally'){const x=clamp(a.x,50,b.width-60),y=st.id===7&&!b.honroLayoutRevision?(hero?.y||3500):undefined;const u=W.ally(b,st,'ally-'+b.nextId,a.role,x,y),p=G.HonroTerrain.place(b,u,{flying:false,maxDistance:1600});if(!p)return false;Object.assign(u,p,{spawnX:p.x,spawnY:p.y});b.nextId++;b.units.push(u);}
  if(a.type==='convoyWard'){if(a.actor&&!e.b.units.some(u=>u.id===a.actor&&!u.dead&&u.hp>0))return false;const car=e.unit('objective');for(const u of coalition(e).filter(v=>!car||Math.abs(v.x-car.x)<1200)){const before=u.shield;u.shield=Math.max(u.shield,90);G.HonroProgression.shieldAdded(b,u,a.actor||'',before);e.fx('ring',u.x,u.y-u.h*.5,'#9ebaa8',48);}return;}
- if(a.type==='wind')b.wind=a.value;if(a.type==='fog')e.setEnvironment({dragScale:a.drag});if(a.type==='rest')restore(e,a.fraction);if(a.type==='break'){const t=b.terrain.find(t=>t.id===a.terrain);if(t){t.broken=true;t.hp=0;b.sceneVersion++;}}
+ if(a.type==='wind')b.wind=a.value;if(a.type==='fog')e.setEnvironment({dragScale:a.drag});if(a.type==='rest')restore(e,a.fraction);if(a.type==='break'){const t=G.HonroQuestTargets.records(b).find(t=>t.id===a.terrain);if(t){t.broken=true;t.hp=0;G.HonroQuestTargets.sync(b,t);b.sceneVersion++;}}
 }
 function prepareSpawn(b,st,a,hero){
  const archer=b.units.find(u=>u.side===0&&u.cls==='archer'&&!u.dead)||hero;

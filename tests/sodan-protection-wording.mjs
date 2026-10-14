@@ -3,11 +3,11 @@
 import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';
 const legacy=JSON.parse(await readFile('shared/data/narrative-legacy-v0.json','utf8'));
 const g=vm.createContext({HONRO_CORE:{SKILLS:{}},HONRO_NARRATIVE_V0:legacy,HonroNarrativeRevision:{active:b=>b.honroNarrativeRevision===1&&!b.honroCustom},HonroObjectives:{state:()=>({complete:false})}});
-for(const f of ['content','story-content','mission'])vm.runInContext(await readFile(`shared/runtime/${f}.js`,'utf8'),g);
+for(const f of ['content','story-content','mission','quest-targets'])vm.runInContext(await readFile(`shared/runtime/${f}.js`,'utf8'),g);
 const S=g.HonroStoryContent,plain=v=>JSON.parse(JSON.stringify(v));
 assert.equal(S.finaleMidpoint().length,4);assert.equal(S.cooperationDefense().length,6);
 assert.match(S.finaleMidpoint()[1][1],/제 목소리.*여기서 지키고.*매듭에 집중/);
-assert.match(S.finaleMidpoint()[3][1],/양옆 진이 받고/);
+assert.match(S.finaleMidpoint()[3][1],/양옆 진이.*혼.*받고/);
 assert.match(S.cooperationDefense()[4][1],/다가오는 것들은 제가 막겠습니다/);
 assert.doesNotMatch(JSON.stringify([S.finaleMidpoint(),S.cooperationDefense()]),/바로 앞에 있습니다|앞은 제가 보고|양옆은 내가 받네/);
 for(const fresh of [true,false]){

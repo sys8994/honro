@@ -19,7 +19,7 @@ G.HonroStoryContent.eventLines=function(app,ev){
  const b=app.engine?.b;if(!active(b))return eventLines(app,ev);
  if(ev.id==='bell')return G.HonroStoryContent.scene('event-5-bell','동굴 너머의 방울 소리',[['설오','방울 소리… 가까운 줄은 풀렸는데, 옆 줄은 더 당겨집니다.',{focus:'seal'}]],{delivery:'dialogue'});
  if(ev.id!=='lower-beasts')return eventLines(app,ev);
- const intact=b.terrain.some(t=>t.id==='cliff-cleat'&&!t.broken),holding=b.honroState?.ritual?.active;
+ const intact=G.HonroQuestTargets.records(b).some(t=>t.id==='cliff-cleat'&&!t.broken),holding=b.honroState?.ritual?.active;
  const line=!intact?'주박목은 부쉈지만 사슴들이 아직 남았습니다. 물길 밖으로 몰아내겠습니다.':holding?'사슴들이 물길진 쪽으로 옵니다. 어른이 물살을 붙드는 동안 제가 막겠습니다.':'사슴들이 바위길로 올라옵니다. 진에 다가가기 전에 길부터 열겠습니다.';
  return G.HonroStoryContent.scene('event-5-lower-beasts','물길진 곁의 기척',[['설오',line,{focus:intact?'interact':'seal'}]],{delivery:'dialogue'});
 };
