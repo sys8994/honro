@@ -7,6 +7,6 @@ const held={id:'held',side:1,x:100,y:200,r:20,h:80,hp:100,dead:false,eaterCaptur
 const a={screen:'battle',engine:{b:{units:[held,prison],round:1}},scene:{scale:1,world:(x,y)=>({x,y}),canvas:{style:{}}},modal:{classList:{contains:()=>false}}};
 for(const touch of [false,true]){assert.equal(I.pick(a,{x:100,y:160},touch),null);assert.equal(I.pick(a,{x:300,y:145},touch),prison);}
 I.hover(a,{x:100,y:160});assert.equal(a.scene.hoverUnitId,null);assert.equal(a.scene.canvas.style.cursor,'');assert.equal(I.show(a,held),false);
-assert.match(I.description(prison,a.engine),/포획/);assert(!I.description(prison,a.engine).includes('동맹군 턴에 행동'));
+assert.match(I.description(prison,a.engine.b),/포획/);assert(!I.description(prison,a.engine.b).includes('동맹군 턴에 행동'));
 delete held.eaterCapturedBy;assert.equal(I.pick(a,{x:100,y:160}),held,'Released survivor becomes inspectable again');
 console.log('PASS real inspector excludes captive mouse/touch/hover/show, describes prison, and restores released targets');
