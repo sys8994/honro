@@ -30,6 +30,14 @@ for(const id of [5,8,10,18]){
  C.setDifficulty(b,'veteran');assert.equal(target.hp,hp);assert.equal(target.maxHp,maxHp);assert.equal(target.attack,0);
  const foe=C.makeUnit('archer',1,100,100,{id:'ward-probe',hp:2000,maxHp:2000,armor:0,shield:0,existenceDefense:{form:1,qi:1,soul:1}});b.units.push(foe);e.hurt(foe,100,hero.id,false);const protectedDamage=2000-foe.hp;for(const t of b.honroQuestTargets)t.broken=true;foe.hp=2000;e.hurt(foe,100,hero.id,false);assert(2000-foe.hp>protectedDamage,'old ward protection ends only on real destruction');
 }
+// Integrated v4 accounting: original goal credit, no enemy reward, one common slice.
+{const {b,e}=battle(5),P=g.HonroProgression,X=g.HonroContributionXP,state=P.contributionState(b),u=e.unit('cliff-cleat'),archer=e.heroesAlive().find(u=>u.cls==='archer'),mage=e.heroesAlive().find(u=>u.cls==='mage'),m=b.honroMarkers.find(m=>m.id==='receiver-5');
+ Object.assign(mage,{x:m.x,y:m.y});b.honroState.ritual={active:true,holderId:mage.id};const enemies=Object.keys(state.enemies),xp=JSON.stringify(b.heroes),spent=state.combatSpent;
+ e.hurt(u,120,archer.id,true);assert(!state.objectives['goal:terrain:cliff-cleat']);e.hurt(u,9999,archer.id,true);
+ assert.deepEqual(clone(state.objectives['goal:terrain:cliff-cleat']),{archer:12,mage:8});assert.deepEqual(Object.keys(state.enemies),enemies);assert(!state.enemies[u.id]);assert.equal(u.xpGranted,0);assert.equal(state.combatSpent,spent);assert.equal(JSON.stringify(b.heroes),xp);assert.equal(state.rewardBalance,1);
+ const weighted=X.rewardScores(state),raw=X.scores(state),total=Object.values(raw).reduce((n,v)=>n+v,0);for(const cls of state.actors)assert(Math.abs(weighted[cls]-((raw[cls]||0)*.8+total*.2/state.actors.length))<1e-9);
+ const before=JSON.stringify(state);e.hurt(u,9999,archer.id,true);e.damageTerrain(b.honroQuestTargets[0],9999,0,archer.id);assert.equal(JSON.stringify(state),before,'repeat destruction cannot award again');
+}
 const legacy={12:'rock-pin',13:'door-pin',15:'shaft-pin',17:'collapse-pin',20:'exit-pin',21:'wagon-lock',22:'upper-latch',23:'cargo-lock',24:'courtyard-latch',25:'rear-latch',27:'water-release',28:'outer-chain',29:'sluice-chain',30:'route-pin'};
 for(const [stage,id]of Object.entries(legacy)){
  const {b}=battle(+stage);b.honroQuestTargets=[];b.units=b.units.filter(u=>!u.honroObjectiveTarget);b.terrain.push({id,x:100,y:200,w:50,h:80,hp:37,maxHp:100,mat:'wood',broken:false});b[+stage<=20?'honroAct2Steps':'honroAct3Steps']=[{id,kind:'destroy',label:'옛 목표',requiredClass:'archer'}];const state=JSON.stringify(b.honroState);Q.migrate(b);const u=b.units.find(u=>u.id===id);assert(u?.honroObjectiveTarget);assert.equal(u.hp,37);assert.equal(u.maxHp,100);assert.equal(JSON.stringify(b.honroState),state);assert(!b.terrain.some(t=>t.id===id));
