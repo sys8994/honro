@@ -148,13 +148,13 @@ function finish(app,natural=false){const s=active(app);if(!s)return false;if(s.w
  if(s.cues){const index=app.dialogue.index;lineEnd(app);for(let i=index+1;i<s.cues.length;i++){app.dialogue.index=i;lineStart(app,true);}app.dialogue.index=index;}
  settle(app,s);state(app.engine.b).once[s.id]='done';app.stagingLastTime=null;}
 register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
- {type:'fx',sound:'sodanBell',at:{marker:'$trigger'},effect:'ring',color:'#b8c999',duration:300,caption:'첫 받이진이 붉은 실의 힘을 받아 낸다. 위쪽에서 방울이 짧게 울린다.'},
+ {type:'fx',sound:'sodanBell',at:{marker:'$trigger'},effect:'ring',color:'#b8c999',duration:300,caption:'첫 받이진으로 붉은 실에 붙잡힌 원혼 일부가 옮겨 간다. 위쪽에서 방울이 짧게 울린다.'},
  {type:'look',at:{anchor:'sodan'},duration:550,caption:'방울 소리가 난 사당 문간으로 시선이 향한다.'},
  {type:'move',actor:'npc-sodan',reveal:true,to:{anchor:'sodan',dx:-76},duration:950,caption:'붉은 실에 손이 감긴 소단이 매듭을 붙든 채 문턱으로 나온다.'},
  {type:'look',actor:'npc-sodan',at:{marker:'$trigger'},pose:'hold-bell',duration:450,caption:'방울 소리가 멎는다. 소단은 줄을 놓지 않은 채 아래를 살핀다.'},
  {type:'dialogue',lines:[
   ['소단','한쪽이… 덜 당겨요. 방금 뭘 한 거예요?'],
-  ['설오','담허 어른이 나눠 받았습니다. 덕수 씨 일행도 무사합니다.'],
+  ['설오','담허 어른이 당신의 줄에 붙잡힌 원혼을 저 진으로 나눠 받았습니다. 덕수 씨 일행도 무사히 구했습니다.'],
   ['소단','덕수 아저씨가 걸어서 나갔어요?'],
   ['설오','예. 당신도 도우러 왔습니다.'],
   ['소단','빈자리에 진을 놓는 건 괜찮아요. 가운데 줄은 건드리지 마요.'],
