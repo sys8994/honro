@@ -118,7 +118,7 @@ export class Engine {
         }
         // Scale newly cast player spells only. Existing projectiles/stakes retain their saved damage;
         // impact, reflections, secondary bursts and stake triggers must never apply this again.
-        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&!s.enemyOnly)damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
+        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&s.redesigned&&!s.enemyOnly)damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
         if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
         if (u.bound > 0 && BODY.has(s.mode))
