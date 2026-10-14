@@ -2812,3 +2812,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 같은 지지면에서 `(3274,2396.08)→(3560,2373.2)`까지 286px 걷도록 늘렸다. 카메라는 1.15의 가까운 고정 구도로 소단을 오른쪽 안쪽 190px에 두고, 움직임을 추적하지 않는다. 몸 전체가 실제 보행으로 화면을 벗어난 뒤 빈 길을 잠시 유지한다. fade·actor 제거·순간이동·맵 전환은 추가하지 않는다.
 - `look.screenRight` 선택값은 화면 크기에 맞춰 최초 구도를 계산한다. `focusScale`을 장면 snapshot에 함께 보존해 Continue 때 기존 기본 story zoom으로 축소하지 않는다. 이미 저장한 구형 136px 장면의 steps snapshot은 그대로다.
 - 보행/skip/구 저장 회귀와 320/390/844/1280/1920 너비의 고정 구도·몸 전체 화면 이탈, 중간 Continue의 같은 고정점/zoom을 검사한다. Native 전후는 실제 renderer로 별도 확인하며 browser CSS·실시간 동영상·정상 전투와 구분한다.
+
+## 2026-10-14 · 실제 렌더러 캐릭터 도감
+
+- 원인: 캐릭터 그림의 정의·실제 분기·숨김/호송/동적 생성·구 저장 호환을 함께 검수할 독립 화면이 없었다. 단순 자산 검색으로는 이름 alias와 side=0 구형 분기, 파괴 목표 그림을 놓칠 수 있었다.
+- 변경: `tools/character-catalog.html`과 전용 빌더/adapter를 추가했다. 공통 `runtimeParts({app:false})`, `Scene.unit`, 기존 벡터 클립을 재사용한다. 주요 53개, 구형 호환 15개 분기, 파괴 목표 4개 그림(5유닛)을 제공하고 209개 정의 클립 슬롯·정적 여부·막/장/역할/근거·검색/필터·상세/재생/정지/스크럽을 표시한다. 주인공 4명은 개편 제외 기준이다. 종지기와 전체 항목의 실제 픽셀 의견, 공식 한국 시각 자료 링크를 수록했다. 자산 재디자인/삭제·스토리/런타임 변경은 없다.
+- 집중 검증: Node 24.19.0, 고정 TypeScript 5.8.3, Python Playwright와 실제 `/usr/bin/chromium` 사용. 브라우저 31검사 PASS, 1,386개 렌더 샘플 가시 픽셀/가장자리 확인. 네 동행의 Scene/클립 모션, 실제 이름 변경/정예/사용자 맵/구 소환 팩토리, 표본 무변경, 저장 API 호출 0, JS 오류 0. 전체 contact sheet와 개별 전신 및 desktop/mobile PNG를 직접 열어 검수했다. 1440×1000, 390×844, 333×667, 667×333에서 목록/상세 가로 넘침 없음.
+- 한계: 조건부 설정·기예 팩토리 근거는 정상 플레이 완주/발동 관측과 다르다. 모든 개인 구 저장/사용자 맵 미보유, 전역 미사용 확정 0. 종 사슬 고정구는 주변 환경을 제외한 단독 몸체다. 공식 링크 일부는 자동 열람 제한을 표시했다. 전체 verify·Game/Workshop 재빌드·공개 Pages 검수는 별도 스토리 통합 발행자가 최종 수행한다. 도감 작업에서 master 병합/배포하지 않는다.
+- 실행·범위·통합 재빌드 지침: `game/docs/CHARACTER_CATALOG.md`. 증거: Git 제외 `_local/reports/character-catalog/{browser-results.json,pixel-samples.json,contact-*.png,desktop.png,keeper-*.png}`.
