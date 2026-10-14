@@ -62,6 +62,7 @@
 | `stake-crossing-flexible.mjs` | 자유 경로·긴 사격·점프·도착점 계약8그룹 통과 |
 | `vertical-waterworks-structure/physics` | 현재5/4구조와27개 이동/탄도 사례 통과 |
 | `act23-narrative-redesign.mjs`, TypeScript | 통과 |
+| current runtime/campaign contracts, dialogue-clarity | 소스167개·9빌드·두HTML,30장/640자산 독립 재생과804개 대사 발생 위치 통과. 기존 manifest/fixture는 불변이고42개 정확 대사 변경 구간과 소스/지도 역변환만 추가. 역변환이 관련 없는 HP·좌표·순서 변경을 숨기지 못하는 음성 대조 포함 |
 | `act3-void-browser.py` | 실제 Chromium desktop/mobile·회전·키/터치·멈춤/설정·동일 BGM 스트림·정확한 복귀·reload·Workshop Playtest 통과. 심부 도착 위치를 둔 관찰 fixture |
 | `bell-anomaly-browser.py` | 실제 Space 또는 모바일 발사 버튼 press/release→화살→즉시 대화→정확한 자원 환급/목표 보존 통과. 기존 안전 발판 위치를 둔 관찰 fixture |
 | Native 전후 화면 | 같은 카메라·같은 기존 배우 위치에서17작업장 배경,18국소 영향 경계,19장례 잔향,25/27기둥/물방울 검토. 구현자와 별도 통합자가 전후 화면을 직접 확인했다. 정상 조작 완주·브라우저·성능 증거와 구별 |

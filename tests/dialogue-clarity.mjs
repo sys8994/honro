@@ -1,8 +1,11 @@
+import {beforeStoryDialogueInventory,storyRevisionApproval} from './act23-story-revision-history.mjs';
+import {assertExactStoryJsonNegatives} from './exact-story-revision-delta.mjs';
 import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {dialogueInventory} from './dialogue-clarity-inventory-helpers.mjs';
 import {beforeDialogueClarity} from './dialogue-clarity-history-helpers.mjs';
-const before=JSON.parse(await readFile('tests/fixtures/dialogue-clarity-before.json','utf8')),delta=JSON.parse(await readFile('tests/fixtures/dialogue-clarity-delta.json','utf8')),current=await dialogueInventory(),expected=structuredClone(before);
+const before=JSON.parse(await readFile('tests/fixtures/dialogue-clarity-before.json','utf8')),delta=JSON.parse(await readFile('tests/fixtures/dialogue-clarity-delta.json','utf8')),live=await dialogueInventory(),current=beforeStoryDialogueInventory(live),expected=structuredClone(before);
+const storyDeltaNegatives=assertExactStoryJsonNegatives(current,storyRevisionApproval.dialogue);
 const proseRoots=new Set(['story','outro','failure','beats','storyFollowups','narration','guide','storySummary']);
 for(const row of delta.changes){
  const [view,,field]=row.path;assert(['stages','authoredStages','rests','lines'].includes(view));if(['stages','authoredStages'].includes(view))assert(proseRoots.has(field),'Only explicitly enumerated narrative fields may change');if(view==='lines')assert.equal(field,'text','Speaker, path, metadata and scene IDs remain exact');
@@ -22,6 +25,6 @@ assert.match(current.lines.find(l=>l.path==='runtime.10.cooperation.4').text,/�
 assert.doesNotMatch(rest(13),/홍만.*지도/);assert.doesNotMatch(rest(18),/축도 함께 가져/);assert.doesNotMatch(rest(26),/청원/);assert.doesNotMatch(rest(29),/대도사 곁|현묵|제자/);
 assert.match(text(26,'beats'),/유골과 재를 어떻게 처리/);assert.doesNotMatch(text(26,'beats'),/유골을 종을 만드는 데/);
 assert.match(text(5,'story'),/물길.*낙수/);assert.match(text(18,'beats'),/종 아래 열린 틈으로 새는 혼/);
-await mkdir('_local/reports/dialogue-clarity',{recursive:true});await writeFile('_local/reports/dialogue-clarity/coverage.json',JSON.stringify({baseCommit:delta.baseCommit,sourceOccurrences:current.lines.length,perStage,deltaStringLeaves:delta.changes.length,limits:['Collected source occurrences include raw authored map candidates and overridden runtime dispatch; not unique spoken lines or normal-play execution coverage.','Production App/model harness; DOM, Canvas and audio are doubles. Movement Native inspection and deployment verification are separate.']},null,2)+'\n');
-console.log('PASS exact approved prose delta across 30 fresh/authored stages and 30 rest contexts; speakers, IDs, page counts, quests and non-prose fields unchanged.');
+await mkdir('_local/reports/dialogue-clarity',{recursive:true});await writeFile('_local/reports/dialogue-clarity/coverage.json',JSON.stringify({baseCommit:delta.baseCommit,sourceOccurrences:live.lines.length,priorSourceOccurrences:current.lines.length,perStage,deltaStringLeaves:delta.changes.length,storyDeltaNegatives,limits:['Collected source occurrences include raw authored map candidates and overridden runtime dispatch; not unique spoken lines or normal-play execution coverage.','Production App/model harness; DOM, Canvas and audio are doubles. Movement Native inspection and deployment verification are separate.']},null,2)+'\n');
+console.log('PASS exact Act 2/3 inverse and original approved prose delta across 30 fresh/authored stages and 30 rest contexts; speakers, IDs, page counts, quests and non-prose fields unchanged.');
 console.log('PASS explicit Sodan threat and partial/full transfer proof, rest revelation timing, evidence limits and unknown-text negative control.');
