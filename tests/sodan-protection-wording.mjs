@@ -7,7 +7,7 @@ for(const f of ['content','story-content','mission'])vm.runInContext(await readF
 const S=g.HonroStoryContent,plain=v=>JSON.parse(JSON.stringify(v));
 assert.equal(S.finaleMidpoint().length,4);assert.equal(S.cooperationDefense().length,6);
 assert.match(S.finaleMidpoint()[1][1],/제 목소리.*여기서 지키고.*매듭에 집중/);
-assert.match(S.finaleMidpoint()[3][1],/양옆 진이 받고/);
+assert.match(S.finaleMidpoint()[3][1],/양옆 진이.*혼.*받고/);
 assert.match(S.cooperationDefense()[4][1],/다가오는 것들은 제가 막겠습니다/);
 assert.doesNotMatch(JSON.stringify([S.finaleMidpoint(),S.cooperationDefense()]),/바로 앞에 있습니다|앞은 제가 보고|양옆은 내가 받네/);
 for(const fresh of [true,false]){

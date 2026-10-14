@@ -207,7 +207,8 @@
     "test:damheo-damage": "node tests/damheo-damage-balance.mjs",
     "test:release-guard": "python -X utf8 tests/release-guard.py",
     "test:quest-hostile-targets": "node tests/quest-hostile-targets.mjs && node tests/quest-targets-live-combat.mjs && node tests/quest-targets-app-resume.mjs",
-    "capture:quest-hostile-targets": "node tests/quest-hostile-targets-native.mjs"
+    "capture:quest-hostile-targets": "node tests/quest-hostile-targets-native.mjs",
+    "test:dialogue-clarity": "node tests/dialogue-clarity.mjs && node tests/dialogue-source-inventory.mjs && node tests/act1-narrative-redesign.mjs && node tests/act23-narrative-redesign.mjs && node tests/sodan-protection-wording.mjs && node tests/story-direction.mjs && node tests/sodan-departure.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

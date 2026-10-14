@@ -35,7 +35,7 @@ for(const st of H.stages){
 }
 replaceLine(H.stages[11].story,'저 바위를 받친','낙석이 아래 홈을 메웠소. 길표에 다가가려면 먼저 작업장을 비워야 하오.');
 replaceLine(H.stages[14].story,'활로 끊을','천장 아래 오래된 인양구가 보입니다. 마른 관찰점에서 남은 흔적을 살펴보겠습니다.');
-replaceLine(H.stages[16].beats?.brace,'끊으시오','받침이 물렸소. 무게가 이쪽으로 쏠리지 않게 지키며 안의 인양축을 복원합시다.');
+replaceLine(H.stages[16].beats?.brace,'끊으시오','버팀목이 천장을 받쳤소. 돌의 무게가 이쪽으로 쏠리지 않게 지키며 안쪽 인양틀의 축을 복원합시다.');
 replaceLine(H.stages[19].story,'출구까지 돌이','무너진 출구를 주민들이 치우고 있소. 매복부터 걷어 내고 사람들을 부릅시다.');
 replaceLine(H.stages[20].story,'저 고리부터','수레 밑에 사람이 있습니다. 곁의 위협부터 치우고 꺼내겠습니다.');
 replaceLine(H.stages[21].story,'위층 걸쇠','위층 서가에도 장부가 남아 있습니다. 같은 해의 호적을 찾아오겠습니다.');

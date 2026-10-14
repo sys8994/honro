@@ -21,7 +21,11 @@ function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!==
 function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
  if(b.honroCustom)return;
- const s=state(b);s.cinematic=2;const c=G.HonroStoryDirection?.cast[b.honroStage],id=b.honroStage===9?'npc-sodan':c?.actor;if(!id)return;const u=actor(b,id);if(!u)return;
+ const s=state(b);s.cinematic=2;
+ // Opt in only when building a new battle. Existing saves must not acquire a
+ // newly authored outcome motion merely because they already have scene state.
+ const outcomeScenes=[...registry.values()].filter(d=>d.stage===b.honroStage&&d.on==='outcome'&&d.freshOnly).map(d=>d.id);if(outcomeScenes.length)s.outcomeScenes=outcomeScenes;
+ const c=G.HonroStoryDirection?.cast[b.honroStage],id=b.honroStage===9?'npc-sodan':c?.actor;if(!id)return;const u=actor(b,id);if(!u)return;
  // Hidden cast is outside the engine roster, so it cannot leak via minimap,
  // hover, damage/collision, AI selection or speaker focus before its entrance.
  // Retained cast still receives the Engine's normal non-player skill mapping.
@@ -38,7 +42,7 @@ function request(app,id,context={}){
 function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)return request(app,ID,{marker:m.id});return false;}
 function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
- if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
+ if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.freshOnly||b.honroStaging.outcomeScenes?.includes(d.id))&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
  if(!r)return{lines,options};
  const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
@@ -148,18 +152,27 @@ function finish(app,natural=false){const s=active(app);if(!s)return false;if(s.w
  if(s.cues){const index=app.dialogue.index;lineEnd(app);for(let i=index+1;i<s.cues.length;i++){app.dialogue.index=i;lineStart(app,true);}app.dialogue.index=index;}
  settle(app,s);state(app.engine.b).once[s.id]='done';app.stagingLastTime=null;}
 register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
- {type:'fx',sound:'sodanBell',at:{marker:'$trigger'},effect:'ring',color:'#b8c999',duration:300,caption:'첫 받이진이 붉은 실의 힘을 받아 낸다. 위쪽에서 방울이 짧게 울린다.'},
+ {type:'fx',sound:'sodanBell',at:{marker:'$trigger'},effect:'ring',color:'#b8c999',duration:300,caption:'첫 받이진으로 붉은 실에 붙잡힌 원혼 일부가 옮겨 간다. 위쪽에서 방울이 짧게 울린다.'},
  {type:'look',at:{anchor:'sodan'},duration:550,caption:'방울 소리가 난 사당 문간으로 시선이 향한다.'},
  {type:'move',actor:'npc-sodan',reveal:true,to:{anchor:'sodan',dx:-76},duration:950,caption:'붉은 실에 손이 감긴 소단이 매듭을 붙든 채 문턱으로 나온다.'},
  {type:'look',actor:'npc-sodan',at:{marker:'$trigger'},pose:'hold-bell',duration:450,caption:'방울 소리가 멎는다. 소단은 줄을 놓지 않은 채 아래를 살핀다.'},
  {type:'dialogue',lines:[
   ['소단','한쪽이… 덜 당겨요. 방금 뭘 한 거예요?'],
-  ['설오','담허 어른이 나눠 받았습니다. 덕수 씨 일행도 무사합니다.'],
+  ['설오','담허 어른이 당신의 줄에 붙잡힌 원혼을 저 진으로 나눠 받았습니다. 덕수 씨 일행도 무사히 구했습니다.'],
   ['소단','덕수 아저씨가 걸어서 나갔어요?'],
   ['설오','예. 당신도 도우러 왔습니다.'],
   ['소단','빈자리에 진을 놓는 건 괜찮아요. 가운데 줄은 건드리지 마요.'],
   ['담허','알겠네. 자네가 놓으라고 할 때까지 끊지 않겠어.']
  ]}
+]});
+// Stage 10 owns the upper-yard tree. On stage 9, show the same Sodan body
+// retreating along the supported approach toward its real exit, never imply
+// that this short walk reaches the tree or moves between maps. Keep the outro.
+register({id:'act1-sodan-upper-yard-departure-v1',stage:9,on:'outcome',position:'after',freshOnly:true,title:'윗마당으로 물러서다',steps:[
+ {type:'look',actor:'npc-sodan',at:{anchor:'exit'},pose:'hold-bell',camera:true,duration:450,caption:'소단은 붉은 실을 놓지 않은 채 사당 안쪽으로 몸을 돌린다.'},
+ {type:'move',actor:'npc-sodan',towards:{anchor:'exit'},distance:136,duration:1500,caption:'소단이 윗마당 나무로 이어지는 길을 향해 물러난다.'},
+ {type:'look',at:{anchor:'exit',dy:-70},duration:800,caption:'소단이 향한 길은 윗마당의 나무로 이어진다. 일행은 소단과 거리를 두고 뒤따를 준비를 한다.'},
+ {type:'dialogue'}
 ]});
 // The approved split uses the existing Act 3 outro verbatim, then takes only
 // short supported steps toward the two authored routes. No roster/carry edits.
