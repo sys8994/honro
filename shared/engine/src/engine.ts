@@ -540,9 +540,9 @@ export class Engine {
         return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
     }
     jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
-    jump(u = this.active) { if (!u || u.dead || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
+    jump(u = this.active) { if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
         return false; delete u.platformDrop;delete u.moveTarget; u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
-    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;return walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);}
+    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;return walkTerrain(this,u,direction,dt*(1-(u.slowed?.factor||0)),requireSupport);}
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
@@ -559,7 +559,7 @@ export class Engine {
     kineticMultiplier(p: Pick<Projectile, 'vx' | 'vy' | 'body'>, u: Unit) { const speed = Math.hypot(p.vx, p.vy); if (u.cls === 'archer')
         return clamp((.70+.60*Math.pow(speed/780,1.35))*(1+.06*equippedRank(u,'AP04')),.70,1.90*(1+.06*equippedRank(u,'AP04'))); if (u.cls === 'knight' && p.body)
         return clamp(.76 + .62 * Math.pow(speed / 720, 1.25), .80, 1.95); return 1; }
-    stun(u: Unit,owner=this.b.active) { if (u.dead || u.side === 2)
+    stun(u: Unit,owner=this.b.active) { if (u.dead || u.eaterCapturedBy || u.side === 2)
         return; if (u.boss) {
         u.breaks = Math.max(u.breaks, 1);
         this.fx('text', u.x, u.y - u.h - 10, '#eedcba', 14, '강인함 · 방호 약화');
@@ -805,7 +805,7 @@ export class Engine {
         }
         if (dmg) {
             const hpBefore=u.hp;
-            if(!p)this.emit('sound',{name:'hit'});
+            if(!p&&damageSource!=='eaterTransfer')this.emit('sound',{name:'hit'});
             u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - dmg);
             if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*passiveTuning(passiveRank(u,'SP05')).lastStandHp));u.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(u,'SP05')).lastStandGuard};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             const actual=Math.max(0,hpBefore-u.hp);
@@ -813,7 +813,7 @@ export class Engine {
             endHit(this.b,u,contribution);
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
             u.hurt = .7;
-            this.emit('fx',{name:'text',x:u.x,y:u.y-u.h-7,color:critical?'#ffd45c':u.side===0?'#ffaaa3':'#fff0d2',size:critical?26:19,text:(critical?'치명! −':'−')+dmg,critical:!!critical,damage:dmg,targetId:u.id,attackId:`${owner||'environment'}:${this.b.round}:${p?.shot??this.b.shot}`});
+            if(damageSource!=='eaterTransfer')this.emit('fx',{name:'text',x:u.x,y:u.y-u.h-7,color:critical?'#ffd45c':u.side===0?'#ffaaa3':'#fff0d2',size:critical?26:19,text:(critical?'치명! −':'−')+dmg,critical:!!critical,damage:dmg,targetId:u.id,attackId:`${owner||'environment'}:${this.b.round}:${p?.shot??this.b.shot}`});
             if (src?.side === 0 && u.side === 1 && !u.summoned) {
                 this.b.hits++;
                 u.damageBy[src.id] = (u.damageBy[src.id] || 0) + actual;
@@ -843,14 +843,13 @@ export class Engine {
             delete u.salheun;u.dead = true;
             u.airborne = false;
             u.vx = u.vy = 0;
-            this.fx('burst', u.x, u.y - u.h * .4, u.side === 1 ? '#aaa8b9' : '#a8c5cc', 60);
-            this.emit('sound', { name: 'down' });
+            if(damageSource!=='eaterTransfer'){this.fx('burst', u.x, u.y - u.h * .4, u.side === 1 ? '#aaa8b9' : '#a8c5cc', 60);this.emit('sound', { name: 'down' });}
             if (u.side === 1 && !u.summoned) {
                 this.b.kills++;
                 this.rewardKill(u, src);
                 const medium=src?.side===0&&src.cls==='occultist'?src:u.curseOwner?this.unit(u.curseOwner):undefined;
                 if(medium?.side===0&&medium.cls==='occultist'&&passiveRank(medium,'OP05'))medium.soulRemnants=Math.min(3,(medium.soulRemnants||0)+1);
-                if(u.earthbind&&u.earthbind.until>=this.b.round){const binder=this.unit(u.earthbind.owner);if(binder)this.spawnEarthbound(u.x,u.y,binder);}
+                if(u.earthbind&&u.earthbind.until>=this.b.round){const binder=this.unit(u.earthbind.owner);if(binder){const prison=u.eaterCapturedBy?this.unit(u.eaterCapturedBy):undefined;this.spawnEarthbound(prison?.x??u.x,prison?.y??u.y,binder);}}
                 this.message(`${u.name} 제압`);
             }
         }
@@ -1050,13 +1049,13 @@ export class Engine {
         this.fx('spark',target.x,target.y-target.h*.55,kind==='betray'?'#bd9c8f':'#c1b399',30);
     }
     private manifest(target:Unit,owner:Unit,rank:number,bonus=0){
-        if(target.dead||target.side!==1)return;
+        if(target.dead||target.eaterCapturedBy||target.side!==1)return;
         target.manifestedUntil=Math.max(target.manifestedUntil||0,this.b.round+Math.max(1,MANIFEST_TURNS[clamp(rank,1,8)-1]+bonus)-1);
         (target as any).honroManifestOwner=owner.id;target.manifested=true;target.revealSpiritToParty=true;target.formDamageTakenBonus=.08+.015*rank;target.curseOwner=owner.id;
         this.fx('spark',target.x,target.y-target.h*.55,'#d9d0b1',32);
     }
     private captureEnemy(target:Unit,owner:Unit,rank:number,empowered=false){
-        if(target.dead||target.side!==1||target.boss||target.honroMidboss||target.elite||target.enthrall)return false;
+        if(target.dead||target.eaterCapturedBy||target.summoned||target.side!==1||target.boss||target.honroMidboss||target.elite||target.enthrall)return false;
         const power=ENTHRALL_POWER[clamp(rank,1,8)-1],ratio=target.hp/target.maxHp;
         target.enthrall={owner:owner.id,actions:ENTHRALL_ACTIONS[clamp(rank,1,8)-1]+(empowered?1:0),captureRatio:ratio,originalMaxHp:target.maxHp,originalAttack:target.attack,originalArmor:target.armor,power};
         target.side=0;ownerRegistered(this.b,target);target.maxHp=Math.max(1,Math.round(target.maxHp*power));target.hp=Math.max(1,Math.round(target.maxHp*ratio));target.attack*=power;target.armor=clamp(target.armor*power,0,.75);target.acted=true;
@@ -1823,6 +1822,7 @@ export class Engine {
     }
     /** Shared contact integration for live units and read-only AI traversal probes. */
     integrateBody(u:Unit,dt:number,silent=false):boolean{
+            if(u.eaterCapturedBy)return false;
             const drop=u.platformDrop;
             if(drop?.phase==='land'){drop.elapsed+=dt;if(drop.elapsed>=.26)delete u.platformDrop;}
             else if(drop?.phase==='prepare'){
