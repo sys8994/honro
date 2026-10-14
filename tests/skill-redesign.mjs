@@ -81,8 +81,8 @@ test('원호 preview and actual geometry agree, ring excludes interior and decay
  const u={x:400,y:1040,h:80,r:1},ring=C.skillGeometry(C.SKILLS.M14,1,400,1000,0,0);assert.equal(C.geometryHits(ring,u).count,0);u.x=580;assert.equal(C.geometryHits(ring,u).count,1);
  const trial=power=>{const b=arena('M14'),radius=180+720*power,t=b.foe(b.u.x+radius,b.u.y);b.fire(0,power);b.run();return t.maxHp-t.hp;};assert(trial(0)>trial(1));
 });
-test('반탄파 2–7 bounces and 삼재 boundary/interior geometry',()=>{
- for(const r of [1,8]){const a=arena('M11',r),p=a.fire();for(let i=0;i<=(r===1?2:7);i++){a.e.impact(p,{x:800,y:1600,t:0,n:{x:i%2?1:-1,y:0},terrain:a.b.terrain[0]});assert.equal(a.b.projectiles.includes(p),i<(r===1?2:7));}}
+test('반탄파 ranked splitting bounces and 삼재 boundary/interior geometry',()=>{
+ for(const r of [1,8]){const a=arena('M11',r),p=a.fire();for(let i=0;i<=(r===1?1:3);i++){a.e.impact(p,{x:800,y:1600,t:0,n:{x:i%2?1:-1,y:0},terrain:a.b.terrain[0]});assert.equal(a.b.projectiles.includes(p),i<(r===1?1:3));}}
  const g={kind:'triangle',x:0,y:0,radius:0,thickness:20,angle:0,span:0,points:[{x:0,y:0},{x:400,y:0},{x:200,y:400}]};assert(C.geometryHits(g,{x:200,y:80,h:80,r:1}).interior);assert(C.geometryHits(g,{x:200,y:40,h:80,r:1}).count>0);assert.equal(C.geometryHits(g,{x:600,y:300,h:80,r:1}).count,0);
 });
 test('팔괘 center and ray hits are capped at three lines',()=>{const geo=C.skillGeometry(C.SKILLS.M15,8,500,500,0);const center=C.geometryHits(geo,{x:500,y:540,h:80,r:21});assert(center.center);assert.equal(center.count,3);assert(C.geometryHits(geo,{x:650,y:540,h:80,r:10}).count>0);});
