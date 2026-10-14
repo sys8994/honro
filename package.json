@@ -199,7 +199,7 @@
     "test:title": "node tests/title-redesign.mjs && node tests/title-letter-rendering.mjs",
     "test:title:browser": "python -X utf8 tests/title-redesign-browser.py",
     "capture:title:art": "node tools/testing/capture-title-hanja-native.mjs",
-    "test:eater-capture": "node tests/eater-capture.mjs && node tests/eater-independent-review.mjs && node tests/two-skill-balance-contracts.mjs && node tests/eater-contribution.mjs && node tests/eater-app-resume.mjs"
+    "test:eater-capture": "node tests/eater-capture.mjs && node tests/eater-independent-review.mjs && node tests/two-skill-balance-contracts.mjs && node tests/eater-contribution.mjs && node tests/eater-app-resume.mjs && node tests/eater-ui-boundaries.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

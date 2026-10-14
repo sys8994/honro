@@ -53,7 +53,7 @@ export function drawSwordCut(c:C,x:number,y:number,size:number,t:number,facing=1
 }
 export function drawCirculation(c:C,x:number,y:number,size:number,t:number){c.save();c.strokeStyle='#d8e2da';c.lineWidth=1.5;c.globalAlpha*=Math.sin(Math.PI*t);const a=t*Math.PI*2;c.beginPath();c.ellipse(x,y,size*.6,size,0,a-1.5,a+.4);c.stroke();c.restore();}
 export function drawCombatPassives(c:C,e:Engine,time:number){
- for(const u of e.b.units){if(u.dead)continue;
+ for(const u of e.b.units){if(u.dead||u.eaterCapturedBy)continue;
   if(u.bladeScreen&&u.bladeScreen.round>=e.b.round){const a=u.bladeScreen.facing<0?Math.PI:0;c.save();c.strokeStyle='#c4d3cb';c.lineWidth=1.4;c.globalAlpha=.38;for(let i=0;i<3;i++){c.beginPath();c.ellipse(u.x,u.y-u.h*.5,171+i*3,168-i*8,0,a-Math.PI*.5+i*.025,a+Math.PI*.5-i*.025);c.stroke();}c.restore();}
   if(u.salheun){const entries=Object.entries(u.salheun).flatMap(([owner,h])=>h.entries.map(v=>({...v,age:(e.unit(owner)?.arrowTurn||v.turn)-v.turn}))).sort((a,b)=>a.age-b.age).slice(0,3);c.save();for(let i=0;i<entries.length;i++){const x=u.x+(i-1)*7,y=u.y-u.h*(.44+i*.10),wiggle=(u.salheunFlash||0)>0?Math.sin(time*75)*2:0;c.globalAlpha=Math.max(.3,.8-entries[i].age*.13);c.strokeStyle='#c0b491';c.lineWidth=1.2;c.beginPath();c.moveTo(x-15,y-8+wiggle);c.lineTo(x+2,y+wiggle);c.moveTo(x-13,y-7+wiggle);c.lineTo(x-15,y-12+wiggle);c.stroke();}c.restore();}
  }
