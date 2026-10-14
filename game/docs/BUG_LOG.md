@@ -2728,3 +2728,8 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - Change: opt-in `--summary` / `--summary-limit` CLI output with bounded problem rows and explicit total/status/omission counts; default CLI and Python API output stay compatible. Journal history and evidence remain complete.
 - Validation: 19 focused offline tests pass, including 1,000 succeeded operations plus 24 unresolved/failed operations, subprocess CLI compatibility and lossless journal checks. Summary output stays below 4 KiB in the fixture. `git diff --check` passes.
 - Scope: no runtime, generated HTML or release manifest edits. Full gameplay verification was not rerun for this CLI-only change; prior runtime evidence is unchanged, not relabeled as a new pass.
+
+## 2026-10-14 · 쉼터 파노라마의 실제 너비로 팬 경계 계산
+- 원인: 모바일 SVG의 160% 확대와 세로 cover 크롭은 .9 최소 줌용 wrapper보다 훨씬 넓었지만 카메라는 wrapper만 이동했다. 그래서 양 끝 정자·소나무·이정표를 드래그로도 볼 수 없었다.
+- 변경: 1600×900 원화의 실제 cover 너비와 카메라 world 너비를 일치시켰다. 동행은 독립된 중앙 모닥불 폭에 모이고, 도구 버튼은 화면에 고정한다. .9–1.35 줌 한도와 저장·진행·전투 카메라는 유지한다.
+- 검증: production pointer/wheel handler VM 검사, 320/390/430 세로·700 가로·1280/1920 데스크톱에서 세 줌 단계 양끝 도달·빈 가장자리 방지·취소/대화/모달 차단. 브라우저 입력·Pages 화면은 별도 검수 대기.

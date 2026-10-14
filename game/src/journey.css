@@ -68,8 +68,10 @@
 .honro #app .rest-screen>.top h2{display:none}
 .honro #app .rest-landscape{min-height:0;touch-action:none;overscroll-behavior:contain;cursor:grab}
 .rest-landscape.dragging{cursor:grabbing;user-select:none}
-.rest-world{position:absolute;width:111.111112%;height:111.111112%;left:-5.555556%;top:-5.555556%;transform-origin:50% 50%;isolation:isolate;background:#111d22}
+.rest-world{position:absolute;width:var(--rest-width,111.111112%);height:var(--rest-height,111.111112%);left:calc(50% - var(--rest-width,111.111112%)/2);top:calc(50% - var(--rest-height,111.111112%)/2);transform-origin:50% 50%;isolation:isolate;background:#111d22}
 .rest-world .rest-background{inset:0 0 140px;z-index:-1}
+.rest-world .rest-background>svg{width:100%;height:100%;margin:0;max-width:none}
+.rest-world .rest-people{position:absolute;top:0;bottom:0;left:calc(50% - var(--rest-camp-width,100%)/2);width:var(--rest-camp-width,100%)}
 .rest-world .rest-background::after{content:"";position:absolute;left:0;right:0;bottom:-140px;height:180px;background:linear-gradient(to bottom,transparent,#111d22 40px);pointer-events:none}
 .rest-location{left:6%;top:5%;max-width:88%;pointer-events:none;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .rest-location>span{font-size:11px;letter-spacing:.08em;white-space:nowrap}
