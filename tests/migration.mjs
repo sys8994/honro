@@ -40,11 +40,14 @@ for(let id=1;id<=10;id++){
   // comparison; scene timing/visibility has its own production App regression.
   const retained={1:'npc-woodcutter',3:'npc-hwigyeom',4:'npc-chunrye',9:'npc-sodan'}[id];if(retained){assert(!b.units.some(u=>u.id===retained));const hidden=b.honroStaging?.hidden?.[retained];assert(hidden,'The staged entrance must retain its historical actor');b.units.push(plain(hidden));}
   g.HonroStageRules.sanitizeStageBattle(b);new g.HONRO_CORE.Engine(b,()=>{},true);
-  assert.deepEqual(originalTerrain(b.terrain),originalTerrain(a.terrain),`Stage ${id} ${difficulty} terrain`);
+  const targets=b.honroQuestTargets||[],targetIds=new Set(targets.map(t=>t.id));
+  assert.deepEqual(originalTerrain(b.terrain),originalTerrain(a.terrain.filter(t=>!targetIds.has(t.id))),`Stage ${id} ${difficulty} non-objective terrain`);
+  for(const target of targets){const original=a.terrain.find(t=>t.id===target.id),{honroQuestTarget,broken,...descriptor}=plain(target);assert(original,'Historical destruction target exists');assert.deepEqual(descriptor,plain(original));assert.equal(!!broken,!!original.broken);const unit=b.units.find(u=>u.honroObjectiveTarget&&u.id===target.id);assert(unit);assert.equal(unit.hp,original.hp);assert.equal(unit.maxHp,original.maxHp);assert.equal(unit.side,1);assert(unit.fixed);}
+
   assert.deepEqual(plain(b.honroSurfaceZones).map(({terrainId,...z})=>z),plain(a.honroSurfaceZones),`Stage ${id} materials`);
   for(const field of ['honroEvents','honroMarkers','honroMapAnchors','honroMap','honroRoute','honroDetailStats','honroState','honroGrowth'])
    {const value=field==='honroMarkers'?plain(b[field]).filter(m=>!m.id?.startsWith('habitat-')):plain(b[field]);if(field==='honroMap')delete value.act1Scene;assert.deepEqual(value,plain(a[field]),`Stage ${id} ${difficulty} ${field}`);}
-  assert.equal(b.units.length,a.units.length);
+  assert.equal(b.units.filter(u=>!u.honroObjectiveTarget).length,a.units.length);
   for(const u of a.units){const v=b.units.find(v=>v.id===u.id);assert.ok(v,u.id);for(const [key,value] of Object.entries(plain(u))){if(balanceFields.has(key))continue;assert.deepEqual(plain(v[key]),value,`Stage ${id} ${difficulty} ${u.id}.${key}`);}}
   for(let i=0;i<a.honroLandmarks.length;i++){const original=plain(a.honroLandmarks[i]),actual=plain(b.honroLandmarks[i]);if(id===10&&original.kind==='ritualDais')original.layer='prop';for(const [key,value] of Object.entries(original))assert.deepEqual(actual[key],value,`Stage ${id} landmark ${i}.${key}`);}
  }
