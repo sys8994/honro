@@ -47,4 +47,16 @@ test('mid-move Continue resumes the same path once and never repeats the pull',(
 test('removed stake during a saved movement cancels safely and finishes the turn',()=>{
  const a=arena(),t=a.foe(1210);a.start();a.e.tick(C.STEP);assert(t.aiMove);a.b.stakes=[];const x=t.x;a.run();assert.equal(t.x,x);assert(!t.aiMove);
 });
+test('capturing or killing a target mid-pull cannot stall the enemy turn',()=>{
+ for(const effect of ['capture','death']){const a=arena(),t=a.foe(1210);a.start();a.e.tick(C.STEP);assert(t.aiMove);if(effect==='capture')t.eaterCapturedBy='eater-test';else{t.dead=true;t.hp=0;}a.run();assert(!t.aiMove);}
+});
+test('many targets plan within the frame budget and move together, with no extra attack slots',()=>{
+ const a=arena(8);a.b.terrain=[];a.u.fixed=true;a.z.y=1000;a.u.y=1000;a.u.x=3500;
+ const ts=[];for(let i=0;i<12;i++){const angle=i*Math.PI*2/12,t=a.foe(1000+Math.cos(angle)*300,{fixed:true,honroType:'bat',awake:false,aggroUntil:0});t.y=1000+Math.sin(angle)*300;ts.push(t);}
+ const before=ts.map(t=>({id:t.id,x:t.x,y:t.y}));a.start();assert.equal(a.b.queue.length,0);
+ let ticks=0,maxMoving=0,maxTickMs=0;const begun=performance.now();while(a.b.round===1&&ticks++<1800){a.e.planningBudget(.25);const at=performance.now();a.e.tick(C.STEP);maxTickMs=Math.max(maxTickMs,performance.now()-at);maxMoving=Math.max(maxMoving,ts.filter(t=>t.aiMove).length);}
+ assert(ticks<1800);assert(maxMoving>=8,'plans move together, not serial 12 enemy waits');assert(ts.every(t=>t.lureRound===1));assert(ts.every(t=>t.lastAct===0));assert(ts.filter((t,i)=>Math.hypot(t.x-1000,t.y-1000)<Math.hypot(before[i].x-1000,before[i].y-1000)-5).length>=8);
+ trace.push({case:'many-target-budget',count:ts.length,planningBudgetMs:.25,ticks,maxMoving,maxTickMs,totalMs:performance.now()-begun,before,after:ts.map(t=>({id:t.id,x:t.x,y:t.y,lastAct:t.lastAct}))});
+});
+const {mkdir,writeFile}=await import('node:fs/promises');await mkdir('_local/reports/lure-totem',{recursive:true});await writeFile('_local/reports/lure-totem/turn-trace.json',JSON.stringify({method:'production-engine-ticks',passed,trace},null,2));
 console.log(`${passed} actual enemy-turn lure tests passed`);
