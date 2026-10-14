@@ -1195,8 +1195,10 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
 .honro #app .rest-screen>.top h2{display:none}
 .honro #app .rest-landscape{min-height:0;touch-action:none;overscroll-behavior:contain;cursor:grab}
 .rest-landscape.dragging{cursor:grabbing;user-select:none}
-.rest-world{position:absolute;width:111.111112%;height:111.111112%;left:-5.555556%;top:-5.555556%;transform-origin:50% 50%;isolation:isolate;background:#111d22}
+.rest-world{position:absolute;width:var(--rest-width,111.111112%);height:var(--rest-height,111.111112%);left:calc(50% - var(--rest-width,111.111112%)/2);top:calc(50% - var(--rest-height,111.111112%)/2);transform-origin:50% 50%;isolation:isolate;background:#111d22}
 .rest-world .rest-background{inset:0 0 140px;z-index:-1}
+.rest-world .rest-background>svg{width:100%;height:100%;margin:0;max-width:none}
+.rest-world .rest-people{position:absolute;top:0;bottom:0;left:calc(50% - var(--rest-camp-width,100%)/2);width:var(--rest-camp-width,100%)}
 .rest-world .rest-background::after{content:"";position:absolute;left:0;right:0;bottom:-140px;height:180px;background:linear-gradient(to bottom,transparent,#111d22 40px);pointer-events:none}
 .rest-location{left:6%;top:5%;max-width:88%;pointer-events:none;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .rest-location>span{font-size:11px;letter-spacing:.08em;white-space:nowrap}
@@ -1228,6 +1230,10 @@ button,select,input{font:inherit;color:inherit}button{cursor:pointer;touch-actio
  .honro #app .rest-actions>.rest-next{flex:1.55}.rest-actions svg{width:16px;height:16px}
 }
 @media(max-height:460px){.rest-location{top:2%}.rest-location h1{font-size:23px}.honro #app .rest-world .rest-person{height:110px;width:63px}.rest-world .rest-person canvas{height:86px;width:63px}.rest-world .rest-person-label i{top:-54px}.rest-actions{bottom:8px}.honro #app .rest-world .rest-fire{top:calc(var(--rest-ground,75%) + 13px);min-height:46px;padding:5px 9px}}
+
+/* Only shown after leaving the central camp; never changes a save or route. */
+.honro #app .rest-center{position:absolute;right:12px;bottom:calc(max(18px,env(safe-area-inset-bottom)) + 58px);z-index:3;min-height:44px;padding:8px 12px;background:#14262ae6;color:#ded8c4;border:1px solid #9aab9859;border-radius:4px;font-size:11px;touch-action:manipulation}
+.honro #app .rest-center[hidden]{display:none}
 
 /* First ferry: separately composed portrait/landscape paintings, independent brand and real controls. */
 .honro #app .honro-title{background:#08121b;isolation:isolate;overflow:hidden}
@@ -3886,7 +3892,7 @@ Object.defineProperty(exports, "AudioEngine", { enumerable: true, get: function 
 "balance": function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.enlargedGroup = exports.DIFFICULTIES = exports.MANA_COST_MULTIPLIER = exports.ENEMY_GLOBAL_STAT = exports.ENEMY_DENSITY = exports.VOLLEY_SPREAD = exports.VOLLEY_INTERVAL = exports.MAX_CHARGE_SECONDS = exports.CHARGE_ACCELERATION = exports.ACTION_REVIEW_SECONDS = exports.GAME_NAME_KO = exports.GAME_NAME = void 0;
+exports.enlargedGroup = exports.DIFFICULTIES = exports.PLAYER_MAGE_DAMAGE_MULTIPLIER = exports.MANA_COST_MULTIPLIER = exports.ENEMY_GLOBAL_STAT = exports.ENEMY_DENSITY = exports.VOLLEY_SPREAD = exports.VOLLEY_INTERVAL = exports.MAX_CHARGE_SECONDS = exports.CHARGE_ACCELERATION = exports.ACTION_REVIEW_SECONDS = exports.GAME_NAME_KO = exports.GAME_NAME = void 0;
 exports.stageStrength = stageStrength;
 exports.campaignEnemyCount = campaignEnemyCount;
 exports.campaignEliteShare = campaignEliteShare;
@@ -3903,6 +3909,8 @@ exports.VOLLEY_SPREAD = 2;
 exports.ENEMY_DENSITY = 1;
 exports.ENEMY_GLOBAL_STAT = .85;
 exports.MANA_COST_MULTIPLIER = 1.95;
+/** Damheo's offensive cast budget; applied once before descendants inherit damage. */
+exports.PLAYER_MAGE_DAMAGE_MULTIPLIER = 1.20;
 exports.DIFFICULTIES = {
     explorer: { name: '탐험', hp: .90, damage: .78, active: 6, aim: 4.4 },
     story: { name: '원정', hp: 1.05, damage: .92, active: 8, aim: 3.4 },
@@ -4983,6 +4991,7 @@ exports.shotImpactValue = shotImpactValue;
 exports.targetFor = targetFor;
 exports.dangerAt = dangerAt;
 exports.traceTravel = traceTravel;
+exports.planEnemyLuresSteps = planEnemyLuresSteps;
 exports.planEnemyMove = planEnemyMove;
 exports.planEnemyMoveSteps = planEnemyMoveSteps;
 exports.advanceEnemyMove = advanceEnemyMove;
@@ -5088,7 +5097,7 @@ function advanceFlight(e, u, dt) {
     let left = Math.min(d, 180 * dt, u.moveLeft);
     while (left > 1e-6) {
         const step = Math.min(4, left), at = { x: u.x + dx / d * step, y: u.y + dy / d * step };
-        if (!routeGuardAllows(e, u, at) || !flightClear(e, u, at)) {
+        if ((p.lureStakeId === undefined && !routeGuardAllows(e, u, at)) || !flightClear(e, u, at)) {
             stop();
             return;
         }
@@ -5394,8 +5403,34 @@ function* planLuredMove(e, u, target, z) {
         yield;
         if (!leg)
             continue;
-        return { round: e.b.round, targetId: target.id, path: [{ ...to, jump: leg.jump, ...('jumpX' in leg && leg.jumpX !== undefined ? { jumpX: leg.jumpX } : {}) }], index: 0, elapsed: 0, stalled: 0, lastX: u.x, lastY: u.y, jumping: false, intent: '유인진목에 이끌림' };
+        return { lureStakeId: z.id, round: e.b.round, targetId: target.id, path: [{ ...to, jump: leg.jump, ...('jumpX' in leg && leg.jumpX !== undefined ? { jumpX: leg.jumpX } : {}) }], index: 0, elapsed: 0, stalled: 0, lastX: u.x, lastY: u.y, jumping: false, intent: '유인진목에 이끌림' };
     }
+}
+/** Plan the skill's movement separately from the capped attack queue. Commit all
+ * plans together after yielding through the normal frame planning budget. */
+function* planEnemyLuresSteps(e) {
+    if (!e.b.stakes?.some(z => z.skill === 'M08' && (z.expires === undefined || z.expires > e.b.round)))
+        return false;
+    const plans = [];
+    for (const u of e.actors(1)) {
+        if (u.lureRound === e.b.round)
+            continue;
+        const z = (0, totemBehavior_1.lureStakeFor)(e, u);
+        if (!z)
+            continue;
+        const owner = e.unit(z.owner);
+        const plan = yield* planLuredMove(e, u, owner, z);
+        plans.push({ u, plan });
+        yield;
+    }
+    for (const { u, plan } of plans) {
+        u.lureRound = e.b.round;
+        if (plan) {
+            u.aiMove = plan;
+            u.intent = plan.intent;
+        }
+    }
+    return plans.some(v => !!v.plan);
 }
 function planEnemyMove(e, u, target) { return finishPlanning(planEnemyMoveSteps(e, u, target)); }
 function* planEnemyMoveSteps(e, u, target) {
@@ -5451,6 +5486,13 @@ function* planEnemyMoveSteps(e, u, target) {
 }
 /** Executes the plan, never teleports to it. Unexpected changes cancel safely into re-aiming. */
 function advanceEnemyMove(e, u, dt) {
+    const lureId = u.aiMove?.lureStakeId;
+    if (lureId !== undefined && (!(0, totemBehavior_1.lureStakeFor)(e, u) || !e.b.stakes?.some(z => z.id === lureId && (z.expires === undefined || z.expires > e.b.round)))) {
+        delete u.aiMove;
+        delete u.moveTarget;
+        u.moving = 0;
+        return;
+    }
     if (flyingEnemy(u)) {
         if (u.aiMove)
             advanceFlight(e, u, dt);
@@ -5599,6 +5641,7 @@ const balanceModel_1 = require("./balanceModel");
 const stageRules_1 = require("./stageRules");
 const data_1 = require("./data");
 const existence_1 = require("./existence");
+const totemBehavior_1 = require("./totemBehavior");
 const enemyAI_1 = require("./enemyAI");
 const math_1 = require("./math");
 const world_1 = require("./world");
@@ -5705,6 +5748,10 @@ class Engine {
             if (u.cls === 'knight' && BODY.has(s.mode))
                 damage *= .9 + u.tune * .2;
         }
+        // Scale newly cast player spells only. Existing projectiles/stakes retain their saved damage;
+        // impact, reflections, secondary bursts and stake triggers must never apply this again.
+        if (u.side === 0 && u.cls === 'mage' && !u.summoned && s.cls === 'mage' && s.redesigned && !s.enemyOnly)
+            damage *= balance_1.PLAYER_MAGE_DAMAGE_MULTIPLIER;
         if (s.redesigned && s.cls === 'mage')
             damage *= 1 + (0, combatPassives_1.jucheonBoost)(u, s);
         if (s.martial && u.side === 0) {
@@ -8232,6 +8279,12 @@ class Engine {
     }
     stepUnits(dt) {
         for (const u of this.b.units) {
+            // A removed/captured/disabled actor must not leave the team waiting on a stale pull.
+            if (u.aiMove?.lureStakeId !== undefined && (u.dead || u.eaterCapturedBy || u.carriedBy !== undefined || !(0, totemBehavior_1.lureStakeFor)(this, u))) {
+                delete u.aiMove;
+                delete u.moveTarget;
+                u.moving = 0;
+            }
             if (u.eaterCapturedBy)
                 continue;
             u.eaterSwallow = Math.max(0, (u.eaterSwallow || 0) - dt);
@@ -8242,7 +8295,7 @@ class Engine {
             if (u.summonFloating) {
                 u.vx = u.vy = 0;
             }
-            if ((0, enemyAI_1.flyingEnemy)(u) && !u.dead && u.aiMove && this.b.phase === 'enemy' && this.b.active === u.id && !u.acted) {
+            if ((0, enemyAI_1.flyingEnemy)(u) && !u.dead && u.aiMove && this.b.phase === 'enemy' && (u.aiMove.lureStakeId !== undefined || this.b.active === u.id && !u.acted)) {
                 (0, enemyAI_1.advanceEnemyMove)(this, u, dt);
                 continue;
             }
@@ -8250,7 +8303,7 @@ class Engine {
                 delete u.platformDrop;
                 continue;
             }
-            if (u.aiMove && this.b.phase === 'enemy' && this.b.active === u.id && !u.acted) {
+            if (u.aiMove && this.b.phase === 'enemy' && (u.aiMove.lureStakeId !== undefined || this.b.active === u.id && !u.acted)) {
                 (0, enemyAI_1.advanceEnemyMove)(this, u, dt);
             }
             else if (u.moveTarget !== undefined && (this.b.phase === 'aim' || this.b.phase === 'enemy') && u.id === this.b.active && !u.acted) {
@@ -8652,6 +8705,13 @@ class Engine {
             for (const u of this.actors(1))
                 u.acted = !b.queue.includes(u.id);
             if (!enemies.length) {
+                if (this.actors(1).some(u => u.lureRound !== b.round && (0, totemBehavior_1.lureStakeFor)(this, u))) {
+                    b.active = '';
+                    b.phase = 'enemy';
+                    b.turnAge = 0;
+                    this.emit('change');
+                    return;
+                }
                 this.endTeam();
                 return;
             }
@@ -8762,7 +8822,7 @@ class Engine {
         }
     }
     enemyAction() {
-        if (this.active?.aiMove || this.active?.moveTarget !== undefined)
+        if (this.active?.aiMove || this.active?.moveTarget !== undefined || this.b.units.some(u => u.aiMove?.lureStakeId !== undefined))
             return;
         if (this.planningRemaining <= 0)
             return;
@@ -8777,7 +8837,17 @@ class Engine {
         work.key = this.planningKey();
     }
     *enemyActionSteps() {
-        const b = this.b, u = this.active;
+        const b = this.b;
+        if (yield* (0, enemyAI_1.planEnemyLuresSteps)(this)) {
+            this.emit('change');
+            this.emit('save');
+            return;
+        }
+        const u = this.active;
+        if (!u && b.queue.length === 0) {
+            this.endTeam();
+            return;
+        }
         if (!u || u.dead || u.eaterCapturedBy || u.summonKind === 'eater') {
             this.finishAction();
             return;
@@ -8796,7 +8866,7 @@ class Engine {
         if (u.lastAct !== b.round) {
             if ((0, enemyAI_1.flyingEnemy)(u))
                 u.moveLeft = Math.min(u.moveLeft, enemyAI_1.FLY_MOVE_BUDGET);
-            if ((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u)) {
+            if (u.lureRound !== b.round && ((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u))) {
                 const plan = yield* (0, enemyAI_1.planEnemyMoveSteps)(this, u, target);
                 u.lastAct = b.round;
                 if (plan) {
@@ -8872,7 +8942,7 @@ class Engine {
         }
         if (!viable.ok) {
             // One bounded second reposition attempt is allowed after discovering a bad firing lane.
-            if (((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u)) && u.moveLeft > 90 && u.honroRepositionRound !== b.round) {
+            if (u.lureRound !== b.round && ((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u)) && u.moveLeft > 90 && u.honroRepositionRound !== b.round) {
                 u.honroRepositionRound = b.round;
                 const retry = yield* (0, enemyAI_1.planEnemyMoveSteps)(this, u, target);
                 if (retry) {
@@ -13359,7 +13429,7 @@ const notes = {
     M11: '첫 발은 하나입니다. 경지별 반사·분열 순서에 따라 최대 12개로 퍼지고 반사마다 위력 82%를 유지합니다. 예상선은 첫 반사 뒤까지만 보입니다.', M12: '발사점과 두 번의 반사점이 삼각형을 만듭니다. 경계와 내부를 함께 공격합니다.',
     M14: '충전한 만큼 큰 원주를 공격합니다. 중심은 비어 있으며 너무 넓히면 피해가 줄어듭니다.', M15: '착탄점에 팔각형과 여덟 기선을 펼칩니다. 중심의 추가 피해가 크고 같은 적은 최대 세 기선에 맞습니다.',
     M07: '적이 다가오면 주위에 충격을 내는 진목입니다. 유지되는 동안 매 턴 다시 발동합니다.', M10: '진목을 밟은 아군의 체력·기력·이동력을 회복합니다. 아군마다 한 턴에 한 번 이용합니다.',
-    M08: '적이 다가오면 주위 적을 끌어모읍니다. 벽을 뚫고 끌지는 못하며 매 턴 다시 발동합니다.', M09: '발밑과 착탄점에 진목 한 쌍을 만듭니다. 진목 위에서 상호작용하면 건너갑니다. 각 동행은 한 턴에 한 번 이용하며 새 진목은 오래된 것을 교체합니다.',
+    M08: '적 턴이 되면 표시된 범위 안의 적이 진목 쪽으로 이동합니다. 벽을 통과하지 않으며 보스는 유인되지 않습니다.', M09: '발밑과 착탄점에 진목 한 쌍을 만듭니다. 진목 위에서 상호작용하면 건너갑니다. 각 동행은 한 턴에 한 번 이용하며 새 진목은 오래된 것을 교체합니다.',
     M99: '진 안의 적을 느리게 하고 이동력을 줄입니다. 경계를 넘는 적에게 한 턴에 한 번 피해를 주며 안으로 밀어냅니다.',
     MP01: '호리병의 후속 효과와 파문·진목의 효력을 높입니다.', MP02: '담을 수 있는 기력과 매 턴 회복량을 늘립니다.', MP03: '공격 도술이 모든 적을 빗나가면 쓴 기력 일부를 돌려받습니다. 진목 설치는 제외합니다.', MP04: '도술이 적에게 명중하면 가까운 동행 한 명에게 방호를 줍니다. 가까운 동행이 없으면 자신에게 적용되며, 한 행동에 한 번 발동합니다.', MP05: '기력을 쓰는 도술로 주천을 채웁니다. 완성 후 다음 도술 한 번의 비용은 줄고 효과는 강해집니다. 무료 도술은 주천을 채우지 않습니다.',
     S00: '선택한 방향을 좁게 벱니다. 빠르게 놓으면 기력을 아끼고 수세를 취하며, 오래 모으면 더 멀고 강하게 벱니다.', S03: '전방을 넓게 벱니다. 오래 힘을 모으면 사거리와 피해가 증가합니다.',
@@ -13466,6 +13536,7 @@ exports.drawFireBloom = drawFireBloom;
 exports.guideStroke = guideStroke;
 exports.drawTurnGuide = drawTurnGuide;
 exports.drawRedesignGuide = drawRedesignGuide;
+const totemBehavior_1 = require("./totemBehavior");
 const warriorVisuals_1 = require("./warriorVisuals");
 const data_1 = require("./data");
 const occultMechanics_1 = require("./occultMechanics");
@@ -14137,6 +14208,20 @@ function drawStakes(c, e, time = 0) {
             c.restore();
         };
         c.save();
+        if (z.skill === 'M08' && (z.expires === undefined || z.expires > e.b.round) && e.unit(z.owner)) {
+            c.save();
+            c.strokeStyle = s.color;
+            c.fillStyle = s.color;
+            c.lineWidth = 1.2;
+            c.setLineDash([5, 9]);
+            c.beginPath();
+            c.arc(z.x, z.y, (0, totemBehavior_1.lureRadius)(e, z), 0, Math.PI * 2);
+            c.globalAlpha = .025;
+            c.fill();
+            c.globalAlpha = .22;
+            c.stroke();
+            c.restore();
+        }
         draw(z.x, z.y);
         c.strokeStyle = s.color;
         c.lineWidth = 1.2;
@@ -15620,6 +15705,7 @@ exports.SUMMON_TUNING = {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stakeBoost = stakeBoost;
 exports.stakeContact = stakeContact;
+exports.lureRadius = lureRadius;
 exports.lureStakeFor = lureStakeFor;
 exports.triggerOffensiveStake = triggerOffensiveStake;
 const progression_1 = require("./progression");
@@ -15628,10 +15714,11 @@ const data_1 = require("./data");
 const hostile = (z, u) => !u.dead && u.side !== z.side && u.side !== 2;
 function stakeBoost(e, z) { const caster = e.unit(z.owner); return caster ? (1 + (0, progression_1.passiveRank)(caster, 'MP01') * .02) * (1 + (z.effectBoost || 0)) : 1; }
 function stakeContact(z, u, boost) { return Math.min(Math.hypot(u.x - z.x, u.y - z.y), Math.hypot(u.x - z.x, u.y - u.h * .5 - z.y)) < 45 * Math.min(1.25, boost) + u.r; }
+function lureRadius(e, z) { return (260 + 15 * (z.rank - 1)) * stakeBoost(e, z); }
 function lureStakeFor(e, u) {
-    if (u.dead || u.boss || u.side !== 1 || e.b.side !== u.side || u.fixed && !['bat', 'crow', 'lantern'].includes(u.honroType))
+    if (u.dead || u.hp <= 0 || u.eaterCapturedBy || u.carriedBy !== undefined || u.summoned || u.boss || u.stunnedRound === e.b.round || (u.stun || 0) > 0 || u.side !== 1 || e.b.side !== u.side || u.fixed && !['bat', 'crow', 'lantern'].includes(u.honroType))
         return undefined;
-    return (e.b.stakes || []).filter(z => z.skill === 'M08' && hostile(z, u) && e.unit(z.owner) && (z.expires === undefined || z.expires > e.b.round) && Math.hypot(u.x - z.x, u.y - u.h * .5 - z.y) < (260 + 15 * (z.rank - 1)) * stakeBoost(e, z)).sort((a, b) => Math.hypot(u.x - a.x, u.y - a.y) - Math.hypot(u.x - b.x, u.y - b.y) || a.id - b.id)[0];
+    return (e.b.stakes || []).filter(z => z.skill === 'M08' && hostile(z, u) && e.unit(z.owner) && (z.expires === undefined || z.expires > e.b.round) && Math.hypot(u.x - z.x, u.y - u.h * .5 - z.y) < lureRadius(e, z)).sort((a, b) => Math.hypot(u.x - a.x, u.y - a.y) - Math.hypot(u.x - b.x, u.y - b.y) || a.id - b.id)[0];
 }
 function triggerOffensiveStake(e, z, nearby, p, boost) {
     const b = e.b;
@@ -27325,7 +27412,7 @@ const VERSION=4,finite=n=>Number.isFinite(n)?Math.max(0,n):0,sum=o=>Object.value
 const add=(o,k,n)=>{if(k&&finite(n)>0)o[k]=(o[k]||0)+n;};
 function create(total,combat,actors,levels={}){
  const values=Object.values(levels).sort((a,b)=>a-b),median=values.length?values[Math.floor(values.length/2)]:1;
- return {version:VERSION,sequence:0,total:Math.round(total),combatLimit:Math.round(combat),actors:[...actors].sort(),factors:Object.fromEntries(actors.map(c=>[c,1+Math.min(.25,Math.max(0,median-(levels[c]||median))*.1)])),owners:{},enemies:{},objectives:{},objectiveEvidence:{},paid:{},spent:0,forfeited:0,combatSpent:0,completed:false};
+ return {version:VERSION,rewardBalance:1,sequence:0,total:Math.round(total),combatLimit:Math.round(combat),actors:[...actors].sort(),factors:Object.fromEntries(actors.map(c=>[c,1+Math.min(.25,Math.max(0,median-(levels[c]||median))*.1)])),owners:{},enemies:{},objectives:{},objectiveEvidence:{},paid:{},spent:0,forfeited:0,combatSpent:0,completed:false};
 }
 function enemy(s,id,hp,weight=1){return s.enemies[id]??={id,hp:Math.max(1,finite(hp)),weight:Math.max(.01,finite(weight)),progress:0,damage:{},support:{},threats:{},wounds:{},controls:{},defeated:false,settled:false};}
 function damage(s,id,liveProgress,actual,credits){const e=s.enemies[id];if(!e||s.completed)return 0;const progress=Math.min(e.hp,finite(liveProgress)),delta=Math.max(0,progress-e.progress);e.progress=Math.max(e.progress,progress);if(!delta)return 0;touch(s);const current=Math.min(delta,finite(actual)),valid=Object.entries(credits).filter(([cls])=>s.actors.includes(cls)),total=valid.reduce((n,[,v])=>n+finite(v),0),scale=total>actual?finite(actual)/total:1;let assigned=0;for(const [cls,n]of valid){const share=actual>0?finite(n)*scale/actual*current:0;assigned+=share;add(e.damage,cls,share/e.hp*100*e.weight);}add(e.damage,'_system',Math.max(0,delta-assigned)/e.hp*100*e.weight);return delta;}
@@ -27340,8 +27427,12 @@ function heal(s,target,actual,cls){let left=finite(actual);if(!left||s.completed
 function control(s,id,token,cls){const e=s.enemies[id];if(!e||s.completed||!s.actors.includes(cls)||e.controls[token]||Object.keys(e.controls).length>=2)return;touch(s);e.controls[token]=cls;add(e.support,cls,15*e.weight);}
 function block(s,id,band,token,cls,damage){const e=s.enemies[id];if(!e||s.completed||!s.actors.includes(cls)||damage<=0)return;const blocks=e.blocks??={};if(blocks[band]||Object.values(blocks).some(v=>v.token===token)||Object.keys(blocks).length>=5)return;const points=3*e.weight*Math.min(1,damage/20);touch(s);blocks[band]={token,cls,points};add(e.support,cls,points);}
 function objective(s,token,credits,points){if(s.completed||s.objectives[token])return false;const valid=Object.fromEntries(Object.entries(credits).filter(([cls,n])=>(s.actors.includes(cls)||cls==='_system')&&finite(n)>0)),total=sum(valid);if(!total)return false;touch(s);s.objectives[token]=Object.fromEntries(Object.entries(valid).map(([cls,n])=>[cls,n/total*finite(points)]));return true;}
-function enemyScores(e){const out={...e.damage},support=sum(e.support),scale=Math.min(1,60*e.weight/Math.max(1,support)),progress=e.defeated?1:Math.min(1,e.progress/e.hp);for(const [cls,n] of Object.entries(e.support))add(out,cls,n*scale*progress);return out;}
-function scores(s,id){const out={};for(const e of id?[s.enemies[id]].filter(Boolean):Object.values(s.enemies))for(const [cls,n] of Object.entries(enemyScores(e)))add(out,cls,n);if(!id)for(const o of Object.values(s.objectives))for(const [cls,n]of Object.entries(o))add(out,cls,n);for(const cls of Object.keys(out))out[cls]*=s.factors[cls]||1;return out;}
+// Upgrade only unspent rewards; accepted evidence and already-paid XP are immutable.
+function upgradeBalance(s){if(s?.version!==VERSION||s.rewardBalance===1||s.completed&&!s.deferred||s.total<=s.spent+s.forfeited)return false;s.rewardBalance=1;touch(s);return true;}
+function enemyScores(e,supportMultiplier=1){const out={...e.damage},support=sum(e.support),scale=Math.min(1,60*e.weight/Math.max(1,support)),progress=e.defeated?1:Math.min(1,e.progress/e.hp);for(const [cls,n] of Object.entries(e.support))add(out,cls,n*scale*progress*supportMultiplier);return out;}
+function scores(s,id){const out={};for(const e of id?[s.enemies[id]].filter(Boolean):Object.values(s.enemies))for(const [cls,n] of Object.entries(enemyScores(e,s.rewardBalance===1?1.25:1)))add(out,cls,n);if(!id)for(const o of Object.values(s.objectives))for(const [cls,n]of Object.entries(o))add(out,cls,n);for(const cls of Object.keys(out))out[cls]*=s.factors[cls]||1;return out;}
+// Keep neutral evidence neutral. Only the player-earned share supplies the 20% party slice.
+function rewardScores(s,id){const out=scores(s,id);if(s.rewardBalance!==1||!s.actors.length)return out;const player=sum(Object.fromEntries(Object.entries(out).filter(([cls])=>s.actors.includes(cls))));if(!player)return out;for(const cls of s.actors)out[cls]=(out[cls]||0)*.8+player*.2/s.actors.length;return out;}
 function apportion(amount,weights){const budget=Math.max(0,Math.floor(amount)),rows=Object.entries(weights).filter(([,n])=>finite(n)>0).sort(([a],[b])=>a.localeCompare(b)),total=rows.reduce((n,[,v])=>n+v,0);if(!total)return {};const exact=rows.map(([cls,n])=>({cls,value:Math.floor(budget*n/total),fraction:budget*n/total%1}));let left=budget-exact.reduce((n,r)=>n+r.value,0);for(const r of [...exact].sort((a,b)=>b.fraction-a.fraction||a.cls.localeCompare(b.cls))){if(left--<=0)break;r.value++;}return Object.fromEntries(exact.map(r=>[r.cls,r.value]));}
 function reserve(s,amount,weights,caps={}){
  const n=Math.max(0,Math.min(Math.floor(amount),s.total-s.spent-s.forfeited));if(!n||!sum(weights))return {};
@@ -27350,7 +27441,7 @@ function reserve(s,amount,weights,caps={}){
  touch(s);const paid=sum(grants);s.spent+=paid;s.forfeited+=n-paid;s.systemForfeited=(s.systemForfeited||0)+system;for(const[cls,v]of Object.entries(grants))add(s.paid,cls,v);return grants;
 }
 function reconcile(s){return {total:s.total,allocated:s.spent,forfeited:s.forfeited,pending:Math.max(0,s.total-s.spent-s.forfeited)};}
-G.HonroContributionXP={VERSION,touch,create,enemy,damage,threat,heal,control,block,objective,scores,enemyScores,apportion,reserve,reconcile};
+G.HonroContributionXP={VERSION,touch,create,enemy,damage,threat,heal,control,block,objective,scores,rewardScores,upgradeBalance,enemyScores,apportion,reserve,reconcile};
 })(globalThis);
 
 (function(G){'use strict';
@@ -27436,7 +27527,7 @@ function initialize(b,profile){
       recoverEarnedXp(b,profile.heroes);
     }
     if(profile.cleared?.[b.honroStage]&&b.honroGrowth.ledger.stages[b.honroStage].contribution){b.honroGrowth.ledger.stages[b.honroStage].cleared=true;b.honroGrowth.ledger.stages[b.honroStage].contribution.completed=true;}
-    reconcileWounds(b);rememberLimit(b);return;
+    X.upgradeBalance(contributionState(b));reconcileWounds(b);rememberLimit(b);return;
   }
   const ledger=clone(profile.honroGrowth||{version:config.version,stages:{}});ledger.version=config.version;ledger.stages??={};
   const id=b.honroStage,previous=profile.honroBattle,saved=previous?.honroGrowth;
@@ -27468,6 +27559,7 @@ function initialize(b,profile){
     state.contribution=X.create(limit.total*(split?4:actors.length),limit.combat*actors.length,actors,levels);
     state.policy=4;
   }else state.policy??=state.contribution?4:3;
+  if(state.contribution){if(state.cleared&&!state.contribution.deferred)state.contribution.completed=true;X.upgradeBalance(state.contribution);}
   if(state.contribution)ledger.version=Math.max(4,ledger.version||0);
   const act3Weight=id>=21&&id<=30&&!b.honroCustom?(G.HONRO_CONTENT.stages[id-1].steps||[]).reduce((n,s)=>n+(s.wave?actionWeight({type:'spawn',kind:s.wave.kind,n:s.wave.count}):0),0):0;
   const weight=b.units.filter(u=>u.side===1&&u.summonKind!=='eater').reduce((n,u)=>n+(u.honroXpWeight||1),0)+(b.honroEvents||[]).reduce((n,e)=>n+actionWeight(e.action),0)+act3Weight;
@@ -27522,19 +27614,19 @@ function shieldConsumed(b,target,before,absorbed){const layers=shieldLayers(b,ta
 function objective(b,token,contributors,points=20){const s=contributionState(b);if(!s)return false;const credits={};for(const item of contributors||[]){const cls=item.id==='_system'?'_system':actorClass(b,item.id||item.cls);if(cls)credits[cls]=(credits[cls]||0)+Math.max(0,item.weight??1);}return X.objective(s,String(token),credits,points);}
 function applyContributionGrants(b,grants,e){const s=contributionState(b);for(const [cls,amount]of Object.entries(grants)){const h=b.heroes[cls];if(!h)continue;const result=C.grantXP(h,amount);s.capDiscarded??={};s.capDiscarded[cls]=(s.capDiscarded[cls]||0)+amount-result.actual;if(result.actual)e?.emit('xp',{cls,value:result.actual});for(const u of b.units.filter(u=>campaignHero(b,u)&&!u.enthrall&&u.cls===cls))if(result.after>result.before){const hp=u.hp;C.applyHero(u,h,!u.dead);recordHeal(b,u,'',u.hp-hp);if(e&&!u.dead){e.fx('text',u.x,u.y-u.h-35,'#f4d797',22,`경지 ${result.after}`);e.emit('sound',{name:'heal'});e.emit('level',{cls,value:result.after});}}}if(Object.keys(grants).length)e?.emit('save');}
 const contributionCaps=b=>Object.fromEntries(C.CLASS_IDS.map(cls=>[cls,Math.max(0,C.xpAtLevel(C.MAX_LEVEL)-b.heroes[cls].xp)]));
-function flushContribution(e){const b=e.b,s=contributionState(b);if(!s||s.completed)return;for(const row of Object.values(s.enemies).filter(v=>v.defeated&&!v.settled).sort((a,b)=>a.id.localeCompare(b.id))){row.settled=true;X.touch(s);const amount=Math.min(s.combatLimit-s.combatSpent,Math.floor(s.combatLimit*row.weight/b.honroGrowth.weight)),before=s.spent+s.forfeited,grants=X.reserve(s,amount,X.scores(s,row.id),contributionCaps(b));s.combatSpent+=s.spent+s.forfeited-before;applyContributionGrants(b,grants,e);}}
-function completeContribution(b){const s=contributionState(b);if(!s||s.completed)return;G.HonroObjectiveContributions?.beforeComplete?.(b,G.HONRO_CONTENT.stages[b.honroStage-1]);const split=G.HonroSplitCampaign?.active(b),end=b.honroSplit?.version===1?27:28;
+function flushContribution(e){const b=e.b,s=contributionState(b);if(!s||s.completed)return;X.upgradeBalance(s);for(const row of Object.values(s.enemies).filter(v=>v.defeated&&!v.settled).sort((a,b)=>a.id.localeCompare(b.id))){row.settled=true;X.touch(s);const amount=Math.min(s.combatLimit-s.combatSpent,Math.floor(s.combatLimit*row.weight/b.honroGrowth.weight)),before=s.spent+s.forfeited,grants=X.reserve(s,amount,X.rewardScores(s,row.id),contributionCaps(b));s.combatSpent+=s.spent+s.forfeited-before;applyContributionGrants(b,grants,e);}}
+function completeContribution(b){const s=contributionState(b);if(!s||s.completed)return;X.upgradeBalance(s);G.HonroObjectiveContributions?.beforeComplete?.(b,G.HONRO_CONTENT.stages[b.honroStage-1]);const split=G.HonroSplitCampaign?.active(b),end=b.honroSplit?.version===1?27:28;
  // Branch rewards wait for reunion; only active members earned the combat slice.
  if(split&&b.honroStage>=25&&b.honroStage<end){s.completed=true;s.deferred=true;X.touch(s);return;}
  if(split&&b.honroStage===end){const states=Object.entries(b.honroGrowth.ledger.stages).filter(([id,v])=>+id>=25&&+id<=end&&v.contribution?.version===4&&(v.contribution.deferred||+id===end)).map(([,v])=>v.contribution),weights={},opportunities={};let total=0;
-  for(const q of states){const scores=X.scores(q),sum=Object.values(scores).reduce((a,n)=>a+n,0),weight=q.total;for(const cls of q.actors){opportunities[cls]=(opportunities[cls]||0)+weight;if(sum>0)weights[cls]=(weights[cls]||0)+(scores[cls]||0)/sum*q.actors.length*weight;}if(sum>0&&scores._system){weights._system=(weights._system||0)+scores._system/sum*q.actors.length*weight;opportunities._system=(opportunities._system||0)+weight;}total+=q.total-q.spent-q.forfeited;}
+  for(const q of states){X.upgradeBalance(q);const scores=X.rewardScores(q),sum=Object.values(scores).reduce((a,n)=>a+n,0),weight=q.total;for(const cls of q.actors){opportunities[cls]=(opportunities[cls]||0)+weight;if(sum>0)weights[cls]=(weights[cls]||0)+(scores[cls]||0)/sum*q.actors.length*weight;}if(sum>0&&scores._system){weights._system=(weights._system||0)+scores._system/sum*q.actors.length*weight;opportunities._system=(opportunities._system||0)+weight;}total+=q.total-q.spent-q.forfeited;}
   for(const cls of Object.keys(weights))weights[cls]/=opportunities[cls];
   // Normalize total expedition entitlement, then deduct already earned combat XP.
   const entitlement=X.apportion(states.reduce((n,q)=>n+q.total,0),weights),owed={};for(const[cls,n]of Object.entries(entitlement)){const prior=states.reduce((v,q)=>v+(cls==='_system'?q.forfeited:q.paid[cls]||0),0);if(n>prior)owed[cls]=n-prior;}
   const grants={};for(const q of states){const left=q.total-q.spent-q.forfeited,systemBefore=q.systemForfeited||0,part=X.reserve(q,left,owed,contributionCaps(b));if(!Object.keys(part).length)q.forfeited=q.total-q.spent;owed._system=Math.max(0,(owed._system||0)-((q.systemForfeited||0)-systemBefore));for(const[cls,n]of Object.entries(part)){grants[cls]=(grants[cls]||0)+n;owed[cls]=Math.max(0,(owed[cls]||0)-n);}applyContributionGrants(b,part);q.completed=true;q.deferred=false;q.reunionSettled=true;X.touch(q);}
   s.reunionGrants=grants;return;
  }
- const remaining=s.total-s.spent-s.forfeited,grants=X.reserve(s,remaining,X.scores(s),contributionCaps(b));if(!Object.keys(grants).length)s.forfeited=s.total-s.spent;s.completed=true;X.touch(s);applyContributionGrants(b,grants);
+ const remaining=s.total-s.spent-s.forfeited,grants=X.reserve(s,remaining,X.rewardScores(s),contributionCaps(b));if(!Object.keys(grants).length)s.forfeited=s.total-s.spent;s.completed=true;X.touch(s);applyContributionGrants(b,grants);
 }
 // Camp allocates the next expedition while Continue owns an independent combat
 // snapshot. Only these choices cross the sync boundary; combat owns XP/counters.
@@ -38433,7 +38525,7 @@ function tick(a){
   text('.unit-info-xp-label',maxed?'경험치 · 최대 경지':`경험치 · ${percent}%`);
   text('.unit-info-xp-detail',maxed?`경지 ${level} · 성장 완료`:`${(hero.xp-C.xpAtLevel(level)).toLocaleString()} / ${C.xpToNext(level).toLocaleString()} XP`);
   const b=a.engine.b,contribution=b.honroGrowth?.ledger?.stages?.[b.honroStage]?.contribution;
-  text('.unit-info-xp-policy',b.mode!=='campaign'||b.honroCustom?'훈련·사용자 전투는 경험치 없음':contribution?.version===4?'피해·유효 지원·목표 기여에 따라 개별 성장':'이 장은 기존 성장 방식 유지');
+  text('.unit-info-xp-policy',b.mode!=='campaign'||b.honroCustom?'훈련·사용자 전투는 경험치 없음':contribution?.version===4?(contribution.rewardBalance===1?'동행 공통 20% · 피해·유효 지원·목표 기여 80%':'피해·유효 지원·목표 기여에 따라 개별 성장'):'이 장은 기존 성장 방식 유지');
   xp.querySelector('i').style.width=fraction*100+'%';xp.setAttribute('aria-valuenow',String(percent));xp.setAttribute('aria-valuetext',maxed?`경지 ${level} · 최대 경지`:`경지 ${level} · 경험치 ${percent}%`);
  }
   const existence=el.querySelector('.unit-info-existence'),response=G.HONRO_CORE.effectiveDefenseForUnit(u),key=[u.id,response.form,response.qi,response.soul].join(':');
@@ -38791,11 +38883,42 @@ G.HonroSkillPreview={setup,tick};
         `<circle cx="1377" cy="616" r="2.5" fill="#292c26"/><circle cx="1376" cy="638" r="2.5" fill="#292c26"/>` +
         path('M1354 773L1362 749 1367 765 1387 745 1380 770 1399 761 1394 775Z', '#26352c'));
   }
-  function scene(variant, layer = 'surface') {
+  // Reuse the exact embedded battlefield SVG and shared act-one palette pass.
+  // These are retained images, never rebuilt paths or external asset requests.
+  function campaignBackdrop(stage, id) {
+    const mood=G.HonroEnvironment?.act1Mood(stage),finish=G.HonroEnvironment?.ACT1_FAR;
+    const uri=mood&&G.HONRO_ACT1_FAR_DATA?.[mood.variant];
+    if(!uri||!finish||!G.atob)return '';
+    // Inline the vector markup rather than nesting an SVG data-image: retained
+    // SVG-in-SVG images are inconsistently decoded by screenshot renderers.
+    // All artwork paths are unchanged; only document-local IDs are namespaced.
+    const vector=G.atob(uri.slice(uri.indexOf(',')+1)).replace(/<title\b[^>]*>[\s\S]*?<\/title>|<desc\b[^>]*>[\s\S]*?<\/desc>/g,'').replace(/<svg\b[^>]*>/,'<g>').replace(/<\/svg>/,'</g>').replace(/id="([^"]+)"/g,(_,key)=>`id="${id}-far-${key}"`).replace(/url\(#([^\)]+)\)/g,(_,key)=>`url(#${id}-far-${key})`);
+    const brightness=finish.brightness[mood.variant];
+    return `<defs><filter id="${id}-distance" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="${finish.saturation}"/><feComponentTransfer><feFuncR type="linear" slope="${brightness}"/><feFuncG type="linear" slope="${brightness}"/><feFuncB type="linear" slope="${brightness}"/></feComponentTransfer></filter></defs>`+
+      group('campaign-distant-landscape',`<g filter="url(#${id}-distance)">${vector}</g><path d="M0 0H1600V900H0Z" fill="${finish.veil}" opacity="${finish.veilOpacity}"/><path d="M0 0H1600V900H0Z" fill="${mood.tint}" opacity="${mood.opacity}"/>`,`data-rest-backdrop="${mood.variant}"`);
+  }
+  function warehouseApproach(p){
+    // The chapter-eight rest is outside a warehouse. A low side elevation and
+    // warm doorway frame the distant gorge without closing the fire clearing.
+    return group('warehouse-approach',
+      path('M339 513L537 509 638 542V687L332 691Z','#293532')+
+      path('M537 509L638 542V687L537 674Z','#19282b')+
+      path('M304 514L342 484 524 463 666 535 645 550 530 513 332 534Z','#14272c')+
+      path('M325 508L347 491 523 471 643 530 529 501 342 522Z','#6e7565')+
+      path('M335 529H347V688H335Z M523 515H536V676H523Z M624 546H635V684H624Z','#71614a')+
+      path('M381 547H465V682H381Z','#121f22')+
+      path('M389 552H454V675H389Z','#9a7746','opacity=".42"')+
+      path('M407 550H413V675H407Z M383 598H463V605H383Z','#453e30')+
+      path('M551 567L608 581V631L551 618Z','#354842')+
+      path('M558 573L600 583V591L558 581Z M558 591L600 601V609L558 599Z','#7a8068','opacity=".48"')+
+      path('M325 688L536 674 650 687 643 700 327 704Z','#58604f')+
+      rock(604,704,.28,p));
+  }
+  function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';
     layer = variant === 'cave' || layer === 'underground' ? 'underground' : 'surface';
     const underground = layer === 'underground';
-    const key = `scene:${variant}:${layer}`;
+    const key = `scene:${variant}:${layer}:${stage}:${!!G.HONRO_ACT1_FAR_DATA}`;
     if (cache.has(key)) return cache.get(key);
     const p = underground ? {...palettes[variant], sky:'#101f28', horizon:'#38565d', ridge:'#223d48', mist:'#83a4a5'} : palettes[variant];
     const id = `honro-journey-${variant}-${layer}`;
@@ -38809,7 +38932,7 @@ G.HonroSkillPreview={setup,tick};
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-ground"><stop offset="0" stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>` +
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-halo"><stop offset="0" stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient></defs>`;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="${variant}" data-journey-layer="${layer}">` + defs +
-      (underground ? cavernBackdrop(p, id) : farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + weather(variant, underground) + campGround(p, id) + campProps(id) + '</svg>';
+      (underground ? cavernBackdrop(p, id) : campaignBackdrop(stage,id)||farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + (stage===8&&!underground?warehouseApproach(p):'') + weather(variant, underground) + campGround(p, id) + campProps(id) + '</svg>';
     cache.set(key, svg);
     return svg;
   }
@@ -39023,7 +39146,7 @@ function restMarkup(app){const p=app.profile,d=data(),next=restNext(app),place=n
  const resume=battle&&!(app.debugMode&&app.debugRestStage)&&(!next||battle.honroStage===next.stageId);
  const positions={archer:[30,84],mage:[40,79],knight:[63,82],occultist:[73,78]};
  const heroes=p.recruited.filter(cls=>H.hero[cls]).map(cls=>{const [x,y]=positions[cls]||[60,80],unread=!s.talked[talkId(next,cls)];return `<button class="rest-person rest-${cls}" data-action="rest-talk" data-class="${cls}" style="--person-x:${x}%;--person-y:${y}%" aria-label="${esc(together(speakerId(cls)))} 선택 대화${unread?' · 새 대화':''}"><canvas width="220" height="300" data-rest-person="${cls}" aria-hidden="true"></canvas><span class="rest-person-label">${esc(speakerId(cls))}${unread?'<i aria-hidden="true">···</i>':''}</span></button>`;}).join('');
- return `<main class="screen rest-screen">${app.top('')}<section class="rest-landscape" aria-label="${esc(place.restName)}"><div class="rest-world"><div class="rest-background" aria-hidden="true">${G.HonroJourneyArt.scene(place.variant,place.layer).replace('preserveAspectRatio="xMidYMid slice"','preserveAspectRatio="xMidYMax slice"')}</div><div class="rest-people">${heroes}</div><button class="rest-fire${growth.length?' has-new-sp':''}" data-action="camp" aria-label="모닥불 · 모든 동행 능력치와 기예 준비${growth.length?' · 새 수련점 있음':''}"><span>모닥불</span><small>${growth.length?'새 수련점 · 동행의 성장':'동행 · 능력치 · 기예'}</small></button></div><div class="rest-location"><span>${esc(chapterLabel(place))}</span><h1>${esc(place.restName)}</h1></div>${!next?`<div class="rest-ending"><strong>${esc(d.ending.endingTitle||'하늘 아래, 잠시 머무르다')}</strong><span>${esc(d.ending.nextText||'다음 여정은 준비 중입니다.')}</span></div>`:''}<nav class="rest-actions" aria-label="쉼터에서 할 일"><button data-action="journey-book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16m6-14v16"/></svg>여정 지도</button><button class="rest-training" data-action="training">허공터</button>${resume?'<button class="primary rest-next" data-action="continue">전투 이어가기 <span aria-hidden="true">→</span></button>':next?`<button class="primary rest-next" data-action="journey-enter" data-id="${next.stageId}" aria-label="다음 길로 진입 · ${esc(towards(next.place))} 진입">다음 길로 진입 <span aria-hidden="true">→</span></button>`:'<button class="rest-next" disabled>다음 여정 준비 중</button>'}</nav></section><div id="dialogue-root"></div></main>`;
+ return `<main class="screen rest-screen">${app.top('')}<section class="rest-landscape" aria-label="${esc(place.restName)}"><div class="rest-world"><div class="rest-background" aria-hidden="true">${G.HonroJourneyArt.scene(place.variant,place.layer,place.stageId).replace('preserveAspectRatio="xMidYMid slice"','preserveAspectRatio="xMidYMax slice"')}</div><div class="rest-people">${heroes}</div><button class="rest-fire${growth.length?' has-new-sp':''}" data-action="camp" aria-label="모닥불 · 모든 동행 능력치와 기예 준비${growth.length?' · 새 수련점 있음':''}"><span>모닥불</span><small>${growth.length?'새 수련점 · 동행의 성장':'동행 · 능력치 · 기예'}</small></button></div><div class="rest-location"><span>${esc(chapterLabel(place))}</span><h1>${esc(place.restName)}</h1></div>${!next?`<div class="rest-ending"><strong>${esc(d.ending.endingTitle||'하늘 아래, 잠시 머무르다')}</strong><span>${esc(d.ending.nextText||'다음 여정은 준비 중입니다.')}</span></div>`:''}<button class="rest-center" type="button" data-rest-center aria-label="쉼터 시점을 모닥불로 되돌리기" hidden>모닥불로 ↩</button><nav class="rest-actions" aria-label="쉼터에서 할 일"><button data-action="journey-book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16m6-14v16"/></svg>여정 지도</button><button class="rest-training" data-action="training">허공터</button>${resume?'<button class="primary rest-next" data-action="continue">전투 이어가기 <span aria-hidden="true">→</span></button>':next?`<button class="primary rest-next" data-action="journey-enter" data-id="${next.stageId}" aria-label="다음 길로 진입 · ${esc(towards(next.place))} 진입">다음 길로 진입 <span aria-hidden="true">→</span></button>`:'<button class="rest-next" disabled>다음 여정 준비 중</button>'}</nav></section><div id="dialogue-root"></div></main>`;
 }
 // Use the same cached pose-target renderer and idle clips as the battlefield.
 // Rest actors have no engine units, combat timers, or saved progression state.
@@ -39032,22 +39155,26 @@ const reducedMotion=G.matchMedia?.('(prefers-reduced-motion: reduce)');
 function drawActor(ctx,cls,time=0){const spec=restActors[cls];if(!spec)return;const [id,facing,phase]=spec;let renderer=restRenderers.get(id);if(!renderer){renderer=G.HonroVectorRig.createCanvasRenderer(G.HONRO_PARTY[id]);restRenderers.set(id,renderer);}renderer.draw(ctx,{height:102,facing,animation:'idle',time:Math.max(0,time)+phase});}
 // Rest has its own bounded camera. No battlefield camera or save values change.
 const REST_MIN_ZOOM=.9,REST_MAX_ZOOM=1.35;
-function layoutRest(){const scene=document.querySelector('.rest-landscape'),box=scene?.getBoundingClientRect?.();if(!box)return;const width=box.width/REST_MIN_ZOOM,height=box.height/REST_MIN_ZOOM,artHeight=Math.max(1,height-140),scale=Math.max(width*(box.width<=700?1.6:1)/1600,artHeight/900),dy=artHeight-900*scale;scene.style.setProperty('--rest-ground',`${765*scale+dy}px`);scene._restCamera?.resize(box,width,height);}
-function mountRestCamera(app,scene){const world=scene?.querySelector?.('.rest-world');if(!world||!scene.addEventListener)return;
+// The camera must bound the painted panorama, not the viewport-sized wrapper.
+// A tall phone covers the full SVG height; its hidden horizontal wings remain
+// reachable at every zoom, including the deliberately limited .9 zoom-out.
+function restGeometry(viewWidth,viewHeight){const height=viewHeight/REST_MIN_ZOOM,artHeight=Math.max(1,height-140),width=Math.max(viewWidth/REST_MIN_ZOOM,artHeight*1600/900),scale=width/1600,dy=artHeight-900*scale;return{width,height,artHeight,scale,dy,ground:765*scale+dy,campWidth:viewWidth/REST_MIN_ZOOM};}
+function layoutRest(){const scene=document.querySelector('.rest-landscape'),box=scene?.getBoundingClientRect?.();if(!box)return;const g=restGeometry(box.width,box.height);for(const [key,value]of Object.entries({width:g.width,height:g.height,ground:g.ground,'camp-width':g.campWidth}))scene.style.setProperty(`--rest-${key}`,`${value}px`);scene._restCamera?.resize(box,g.width,g.height);}
+function mountRestCamera(app,scene){const world=scene?.querySelector?.('.rest-world'),far=scene?.querySelector?.('[data-rest-backdrop]'),center=scene?.querySelector?.('[data-rest-center]');if(!world||!scene.addEventListener)return;
  const contacts=new Map();let moved=false,zoom=1,x=0,y=0,box,width,height;
  const blocked=()=>app.screen!=='rest'||!!app.dialogue||!!app.modal?.classList.contains('open');
- const apply=()=>{const mx=Math.max(0,(width*zoom-box.width)/2),my=Math.max(0,(height*zoom-box.height)/2);x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));world.style.transform=`translate(${x}px,${y}px) scale(${zoom})`;};
+ const apply=()=>{const mx=Math.max(0,(width*zoom-box.width)/2),my=Math.max(0,(height*zoom-box.height)/2);x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));world.style.transform=`translate(${x}px,${y}px) scale(${zoom})`;if(center)center.hidden=Math.abs(x)<box.width*.3&&Math.abs(y)<box.height*.2;if(far){const depth=G.HonroEnvironment.ACT1_FAR,unit=1600/(width*zoom);far.setAttribute('transform',`translate(${-x*unit*(1-depth.panX)} ${-y*unit*(1-depth.panY)})`);}};
  const cancel=()=>{if(contacts.size)moved=true;contacts.clear();scene.classList.remove('dragging');};
  scene._restCamera={resize(rect,w,h){box=rect;width=w;height=h;cancel();apply();},cancel};
  layoutRest();
  const pinch=()=>{const [a,b]=contacts.values();return b?{x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.hypot(a.x-b.x,a.y-b.y)}:null;};
  const transform=(value,toX,toY,fromX=toX,fromY=toY)=>{const next=Math.max(REST_MIN_ZOOM,Math.min(REST_MAX_ZOOM,value)),cx=box.left+box.width/2,cy=box.top+box.height/2;x=toX-cx-(fromX-cx-x)*next/zoom;y=toY-cy-(fromY-cy-y)*next/zoom;zoom=next;apply();};
- scene.addEventListener('pointerdown',e=>{if(e.button!==0||blocked())return;if(!contacts.size)moved=false;if(e.target.closest('.rest-actions,.rest-location,.rest-ending')){if(contacts.size)moved=true;return;}contacts.set(e.pointerId,{x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY});(e.target.closest('button')||scene).setPointerCapture?.(e.pointerId);if(contacts.size>1){moved=true;scene.classList.add('dragging');}});
+ scene.addEventListener('pointerdown',e=>{if(e.button!==0||blocked())return;if(!contacts.size)moved=false;if(e.target.closest('.rest-actions,.rest-location,.rest-ending,.rest-center')){if(contacts.size)moved=true;return;}contacts.set(e.pointerId,{x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY});(e.target.closest('button')||scene).setPointerCapture?.(e.pointerId);if(contacts.size>1){moved=true;scene.classList.add('dragging');}});
  scene.addEventListener('pointermove',e=>{const p=contacts.get(e.pointerId);if(!p)return;if(blocked()){cancel();return;}const before=pinch(),dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;if(before){const after=pinch();transform(zoom*Math.max(1,after.gap)/Math.max(1,before.gap),after.x,after.y,before.x,before.y);}else if(moved||Math.hypot(p.x-p.sx,p.y-p.sy)>6){moved=true;x+=dx;y+=dy;apply();}if(moved){scene.classList.add('dragging');e.preventDefault();}});
  const stop=e=>{if(e.type!=='pointerup'&&contacts.has(e.pointerId))moved=true;contacts.delete(e.pointerId);if(!contacts.size)scene.classList.remove('dragging');};
  for(const type of ['pointerup','pointercancel','lostpointercapture'])scene.addEventListener(type,stop);
- scene.addEventListener('click',e=>{if((moved||contacts.size)&&e.detail!==0){e.preventDefault();e.stopPropagation();}},{capture:true});
- scene.addEventListener('wheel',e=>{if(blocked()||e.target.closest('.rest-actions,.rest-location,.rest-ending'))return;e.preventDefault();if(contacts.size)return;const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?box.height:1);transform(zoom*Math.exp(-Math.max(-1000,Math.min(1000,delta))*.0014),e.clientX,e.clientY);},{passive:false});
+ scene.addEventListener('click',e=>{if((moved||contacts.size)&&e.detail!==0){e.preventDefault();e.stopPropagation();return;}if(e.target.closest('[data-rest-center]')&&!blocked()){cancel();x=0;y=0;zoom=1;apply();e.preventDefault();e.stopPropagation();}},{capture:true});
+ scene.addEventListener('wheel',e=>{if(blocked()||e.target.closest('.rest-actions,.rest-location,.rest-ending,.rest-center'))return;e.preventDefault();if(contacts.size)return;const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?box.height:1);transform(zoom*Math.exp(-Math.max(-1000,Math.min(1000,delta))*.0014),e.clientX,e.clientY);},{passive:false});
 }
 // v010 full-cycle bounds: Hwigyeom hat reaches -123.454 at height 102.
 // With foot y282 and 8px top margin, max uniform scale is 2.2194; use 2.21.
@@ -39151,7 +39278,7 @@ function observeGrowth(app,b){
 function recordOutcome(app,won){const b=app.engine?.b;observeGrowth(app,b);if(!won||b?.honroJourneyReplay)return;const next=data().next(app.profile),s=state(app.profile);if(next?.stageId===app.stage.id+1&&data().transitionAfter(app.stage.id)==='direct')s.pendingDirect=next.stageId;else delete s.pendingDirect;}
 function resultLabel(app){if(app.customMap)return '원래 여정으로 돌아가기';const splitLabel=G.HonroSplitCampaign?.resultLabel(app);if(splitLabel)return splitLabel;if(app.engine?.b.phase==='lost')return '쉼터로 돌아가기';const next=data().next(app.profile);return app.engine?.b.honroJourneyReplay?'여정첩으로':next&&next.stageId===app.stage.id+1&&data().transitionAfter(app.stage.id)==='direct'?`${towards(next.place)} 이어 걷기`:'다음 쉼터로';}
 function resultContinue(app){G.HonroRouteBranches?.continueFrom(app);if(G.HonroSplitCampaign?.resultContinue(app))return;if(!app.engine||!app.done)return;const b=app.engine.b,won=b.phase==='won',id=app.stage.id,replay=b.honroJourneyReplay;app.engine=null;app.profile.honroBattle=null;app.close();if(won)app.debugRestStage=null;if(replay)return showBook(app,id);const next=data().next(app.profile);if(won&&next?.stageId===id+1&&data().transitionAfter(id)==='direct')return launch(app,next.stageId,'next');return showRest(app);}
-G.HonroRestJourney={state,location,active,currentId,towards,chapterLabel,arrivalLines,unspentGrowth,observeGrowth,mountRestCamera,startEntry,restMarkup,drawPeople,drawActor,layoutRest,startMotion,stopMotion,frame,showRest,nextStory,saveStory,finishStory,talk,bookMarkup,showBook,selectBook,zoomBook,requestLaunch,confirmLaunch,recordOutcome,resultLabel,resultContinue};
+G.HonroRestJourney={state,location,active,currentId,towards,chapterLabel,arrivalLines,unspentGrowth,observeGrowth,mountRestCamera,startEntry,restMarkup,drawPeople,drawActor,restGeometry,layoutRest,startMotion,stopMotion,frame,showRest,nextStory,saveStory,finishStory,talk,bookMarkup,showBook,selectBook,zoomBook,requestLaunch,confirmLaunch,recordOutcome,resultLabel,resultContinue};
 })(globalThis);
 
 (function (G) {
