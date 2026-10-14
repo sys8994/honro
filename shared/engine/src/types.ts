@@ -115,6 +115,8 @@ export interface ForceField {
     strength: number;
 }
 export interface AIMovePlan {
+    /** Forced M08 movement may run outside the attack queue; saved across Continue. */
+    lureStakeId?:number;
     round:number;
     targetId:string;
     path:{x:number;y:number;jump:boolean;jumpX?:number}[];
@@ -200,6 +202,7 @@ export interface Unit {
     combatBaseHp?: number;
     combatBaseAttack?: number;
     aiMove?:AIMovePlan;
+    lureRound?:number;
     carriedBy?: number;
     lastStandUsed?: boolean;
     refundShot?: number;

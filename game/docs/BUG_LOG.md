@@ -2728,3 +2728,10 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - Change: opt-in `--summary` / `--summary-limit` CLI output with bounded problem rows and explicit total/status/omission counts; default CLI and Python API output stay compatible. Journal history and evidence remain complete.
 - Validation: 19 focused offline tests pass, including 1,000 succeeded operations plus 24 unresolved/failed operations, subprocess CLI compatibility and lossless journal checks. Summary output stays below 4 KiB in the fixture. `git diff --check` passes.
 - Scope: no runtime, generated HTML or release manifest edits. Full gameplay verification was not rerun for this CLI-only change; prior runtime evidence is unchanged, not relabeled as a new pass.
+
+
+## 2026-10-14 · 유인진목 실제 적 턴 이동과 범위
+
+- 원인: 유인 계획은 실제 공격 큐에서 선택된 적에게만 실행됐다. 행동 상한 밖과 비활성 적은 범위 안에서도 이동하지 않았으며, 이전 검사는 계획 직접 호출이라 이 누락을 잡지 못했다. 사용자 당시 전투 저장은 제공되지 않아 정확한 배치 재현과 구분한다.
+- 수정: 공격 큐와 독립된 적 턴 유인 계획/실제 충돌 이동을 적용한다. 공격 기회를 추가하거나 선택된 적에게 두 번째 일반 이동을 주지 않는다. 기존 반경·거리·SP·수명·피해·보스 면역 유지, 포획/기절/운반 등 비참여 몸 제외. 같은 반경 함수로 옅은 월드 점선 원을 그린다. 중간 저장에 유인 라운드와 경로를 보존한다.
+- 집중 검증: 기존 진목8그룹, 실제 팀 전환/tick7그룹, TypeScript 통과. 설치 즉시 효과 없음·범위 밖·지상/비행·벽·공격 상한·비활성·저장 재개를 구분했다. 후속 회귀/Native 시각 검수 진행 중. 두 HTML 생성·전체 verify·브라우저/Pages는 단일 통합 발행자 검수로 남는다. 로컬 Chromium EPERM은 알려진 환경 제한이며 통과로 세지 않는다.
