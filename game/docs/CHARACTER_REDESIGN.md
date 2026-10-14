@@ -31,3 +31,6 @@
 - 승인 경계 반영 후 `migration.mjs`는 기존 `Stage7 story honroGrowth` HP527/434에서 실패한다. baseline3899a2f와 현재의 전체 실패 로그가 경로 정규화 후 정확히 같다. `migration-comparison.json` 참조.
 - 몬스터 공방 브라우저43검사 통과. 재생성 공방은 변경된 현재 fallback을 과거 그림으로 표시하지 않고 보존된 원래 fixture의 별도 Scene으로 비교한다. 브라우저는 기존 localhost HTTP 서버 helper를 사용한다.
 - 배우 공방의 먹귀 idle 진폭 검사에는 기존 실패가 있다: 실제0.0315 < 기대0.04. baseline3899a2f와 현재의 전체 clips SHA256이 `3843636dce2e2ebb1c96963a8874c7976b6ff42fedd5a11b4db0c0288406ea09`로 동일하며 같은 값으로 실패한다. 모션이나 임계값은 바꾸지 않았다. 이 fail-fast 뒤의 공방 검사는 미실행이며 개별46행 미술 검수와 구분한다.
+- `tests/integration.py`는 1–7장 픽셀 동등성0 차이를 통과한 뒤 8장679픽셀(비율0.0013097993827160493, bbox0/397/52/424)에서 중단했다. 이전 배포의 baseline 기록과 정확히 같은 실패다. 이후 장/기능은 해당 집계 실행에서 미실행이며 별도8/10/18/28장 화면 검수로 전체 통합 통과를 주장하지 않는다.
+
+최종 커밋·Pages run·공개 접근 오류·파일 SHA256·배포 후 단일 verify 실행 로그는 `/workspace/honro-release/`와 `_local/reports/character-redesign/`에 보존하며 배포 보고에서 명시한다. 최종 공개 HTTP/화면이 막히면 publication receipt를 허위 작성하지 않는다.
