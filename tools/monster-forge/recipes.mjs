@@ -1,5 +1,6 @@
 // Authoring source. Coordinates are bind-pose coordinates, +x faces right, y=0 is ground.
 // Curves describe anatomy/material boundaries; repeated marks follow specific surfaces.
+import {redesign} from './redesign.mjs';
 import {createExtras} from './species.mjs';
 import {createAct3} from './act3-species.mjs';
 const palette={ink:'#111d20',deep:'#233330',shadow:'#354940',fur:'#5c7160',light:'#91a18a',bone:'#d4c8a7',boneShade:'#918d73',wood:'#766044',woodLight:'#b29665',woodDark:'#493e30',paper:'#cfc299',red:'#995747',redDark:'#603d35',soul:'#afd8bd',hot:'#e4efd1',metal:'#667b74',cloth:'#574d60',clothLight:'#90818d',clothDark:'#302f3d',feather:'#334750',featherLight:'#657b80'};
@@ -181,4 +182,4 @@ function compact(a){
 function paper(p,x,y,w,h){path(p,`M${x} ${y}l${w} 1 -1 ${h-2} ${-w/2} -2 ${-w/2} 3Z`,'paper','woodDark',.5);line(p,`M${x+2} ${y+4}L${x+w-2} ${y+5} ${x+2} ${y+h*.55} ${x+w-2} ${y+h-4}`,'red',.8,1);}
 function react(a,id,n=8){track(a,'attack',id,'rotate',[[0,-n*.4],[.2,-n],[.45,n],[.75,n*.3],[1,0]]);track(a,'hit',id,'rotate',[[0,-n],[.4,n*.3],[1,0]]);}
 function walk(a,ids,n=12){ids.forEach((id,i)=>track(a,'move',id,'rotate',[[0,0],[.25,i%2?n:-n],[.75,i%2?-n:n],[1,0]]));}
-export const monsters=[...[hound(),warden(),lantern()].map(compact),...createExtras({asset,part,path,line,oval,track,sway,paper,react,walk}),...createAct3({asset,part,path,line,oval,track,sway,paper,react,walk})];
+export const monsters=[...[hound(),warden(),lantern()].map(compact),...createExtras({asset,part,path,line,oval,track,sway,paper,react,walk}),...createAct3({asset,part,path,line,oval,track,sway,paper,react,walk})].map(redesign);

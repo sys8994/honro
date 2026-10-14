@@ -8,9 +8,35 @@ const paths={
  pick:path('M-4-83L4-83 8 0-2 0Z M-40-73Q0-110 41-72L26-76Q0-86-26-75Z'),
  lantern:path('M-32 0L-26-15H26L33 0Z M-17-15L-14-77H14L17-15Z M-33-76L-25-107H25L33-76Z M-37-108L-19-128 0-137 19-129 37-108Z'),window:path('M-15-82L-15-102H15V-82Z'),
  hoist:path('M-61 0L-43-173H-29L-42 0Z M42 0L27-173H42L60 0Z M-76-169H74V-151H-76Z M-41-144L43-52 40-34-48-130Z'),hoistWeight:path('M-15-83L16-83 29-32 18-11-24-11-31-30Z'),
- soul:path('M-29-24Q-52-68-19-97Q0-124 21-98Q48-75 31-39L15-9 25 4 4-3-11 3-8-16Z'),face:path('M-12-80Q0-94 12-80L9-65Q0-55-9-65Z'),
- stole:path('M-24-72L-8-79-5-15-22-4Z M10-79L26-72 21-4 5-16Z')
+ // Original silhouettes informed by Korean bronze bell structure, not traced ornament.
+ bell:path('M-17-63Q-18-76 0-79Q18-76 17-63L24-20Q0-12-24-20Z'),
+ bellShade:path('M5-77Q18-75 17-63L24-20 9-18Z'),
+ bellRim:path('M-24-24Q0-17 24-24L25-17Q0-10-25-17Z'),
+ bellCrown:path('M-8-77L-10-87Q-3-97 5-86L4-79 M10-80L9-93 15-93 17-79'),
+ resonance:path('M-28-13L-22-37-32-58-20-85-6-100 7-96 20-73 27-46 16-20 24-5 4-12-7 0-10-18Z'),
+ resonancePlane:path('M-6-100L7-96 20-73 27-46 16-20 8-30 13-61 2-81Z'),
+ resonanceGap:path('M-19-76Q-8-67 9-84L15-73Q1-54-17-64Z M-20-48Q-9-53 15-60L13-43Q-3-34-15-39Z'),
+ echo:path('M-30-15L-24-42-35-55-27-81-9-99 8-104 18-88 16-73 31-59 28-39 13-18 18-3-3-12-17 1-13-20Z'),
+ echoPlane:path('M8-104L18-88 16-73 31-59 28-39 13-18 18-3 3-14 8-39 15-53 3-69Z'),
+ echoFace:path('M-20-75L-7-95 5-87-4-65-16-56-11-76Z'),
+ echoJaw:path('M-22-45L-4-55 13-66 7-44-8-27-17-30-4-44Z'),
+ keeperRobe:path('M-10-89L-21-82-19-60-15-54-20-29-5-26 1-38 8-27 21-30 14-56 19-79 7-90Z'),
+ keeperPlane:path('M0-89L7-90 19-79 14-56 21-30 8-27 1-38-2-63Z'),
+ keeperCollar:path('M-8-91L1-83 8-91 12-83 1-72-14-83Z'),
+ keeperHead:path('M-7-104Q1-110 7-103L6-94 2-90-4-93-8-98Z'),
+ keeperWrap:path('M-8-104Q0-109 8-104L8-100-8-101Z'),
+ keeperApron:path('M-12-62L9-62 12-34-13-33Z'),
+ keeperArm:path('M-16-83L-23-77-25-57-19-47-13-51-18-61Z'),
+ keeperHand:path('M-20-53L-14-55-9-51-11-46-18-46Z'),
+ striker:path('M-1-68L34-64 35-57 0-61Z')
 };
+function drawBell(c){
+ paint(c,paths.bellCrown,'#8c9173','#b0af8a',1.8);
+ paint(c,paths.bell,'#7d896b','#bdba91',1.8);paint(c,paths.bellShade,'#435a51',null);
+ paint(c,paths.bellRim,'#9e9872');
+ c.strokeStyle='#bbb38b';c.lineWidth=2;c.beginPath();c.moveTo(-16,-65);c.quadraticCurveTo(0,-60,16,-65);c.stroke();
+ c.fillStyle='#41574e';c.strokeStyle='#b4a77a';c.beginPath();c.ellipse(-3,-40,7,8,0,0,Math.PI*2);c.fill();c.stroke();
+}
 const body=S.unitBody;
 const drawUnit=S.unit;
 S.unit=function(c,u,active,charge=0){
@@ -25,11 +51,37 @@ S.unit=function(c,u,active,charge=0){
 };
 S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call(this,c,u,charge);
  const kind=u.honroType;
- if(kind==='keeper'){body.call(this,c,u,charge);c.save();c.translate(u.x,u.y);c.scale((u.facing||1)*u.h/103,u.h/103);paint(c,paths.stole,'#9b8b69','#c0b28d',1.2);c.restore();return;}
  c.save();c.translate(u.x,u.y);c.scale((u.facing||1)*u.h/110,u.h/110);const t=this.time||0;
- if(u.honroSpirit){c.globalAlpha*=.94;c.translate(0,Math.sin(t*1.7)*5);
-  if(kind==='bellCluster'){for(const [x,y,z] of [[-29,-11,.6],[28,-6,.62],[0,0,.83]]){c.save();c.translate(x,y);c.scale(z,z);paint(c,paths.soul,'#718794','#bac7c2',1.5);paint(c,paths.face,'#c6cec5',null);c.restore();}}
-  else{paint(c,paths.soul,kind==='echo'?'#6f728e':'#778c94','#becbc1',1.7);paint(c,paths.face,'#d0d6c8','#7d8b86',.8);}
+ const attack=Math.max(0,Math.min(1,u.anim||0)),step=u.moving?Math.sin(t*10)*3:0;
+ if(kind==='keeper'){
+  // A working bell attendant: flat head wrap, crossed jacket, tied apron,
+  // carrying a bronze bell and striking it from outside with a wooden beam.
+  // No occultist/human fallback: legacy class does not reintroduce hood/staff.
+  c.save();c.translate(0,Math.abs(step)*-.3);c.rotate(attack*.045);
+  c.strokeStyle='#7c8270';c.lineWidth=7;c.lineCap='round';
+  for(const [x,dx]of [[-9,step],[11,-step]]){c.beginPath();c.moveTo(x,-34);c.lineTo(x+dx,-3);c.lineTo(x+dx+4,0);c.strokeStyle='#172729';c.lineWidth=10;c.stroke();c.strokeStyle='#727867';c.lineWidth=6;c.stroke();c.beginPath();c.moveTo(x+dx,-2);c.lineTo(x+dx+4,0);c.strokeStyle='#253633';c.stroke();}
+  paint(c,paths.keeperRobe,'#545e59','#a2a38c',1.5);paint(c,paths.keeperPlane,'#303e3e',null);
+  paint(c,paths.keeperCollar,'#b6ad91');paint(c,paths.keeperApron,'#82755b');
+  paint(c,paths.keeperHead,'#a79b7b');paint(c,paths.keeperWrap,'#596760','#b8b49c',1);
+  c.strokeStyle='#293230';c.lineWidth=1.2;c.beginPath();c.moveTo(-5,-98);c.lineTo(2,-98);c.moveTo(-1,-94);c.lineTo(3,-94);c.stroke();
+  c.save();c.translate(-23,-20);c.scale(.4,.4);drawBell(c);c.restore();
+  paint(c,paths.keeperArm,'#606b60','#a2a38c',1.5);paint(c,paths.keeperHand,'#aa9c7e');
+  c.save();c.translate(4,-65);c.rotate(-attack*.5);c.translate(-4,65);paint(c,paths.striker,'#887354','#baa888',1.6);
+  c.fillStyle='#a49678';c.fillRect(7,-67,6,6);c.restore();c.restore();
+ }else if(u.honroSpirit){c.globalAlpha*=.94;c.translate(0,Math.sin(t*1.7)*5);c.rotate(-attack*.06);
+  if(kind==='bellCluster'){
+   // Linked, displaced bronze bodies make the cluster read as sound-bound
+   // metal at game scale rather than three identical white ghost faces.
+   c.strokeStyle='#9b987c';c.lineWidth=3;c.beginPath();c.moveTo(-27,-78);c.lineTo(0,-101);c.lineTo(29,-72);c.stroke();
+   for(const [x,y,z] of [[-28,-14,.55],[28,-7,.58],[0,5,.88]]){c.save();c.translate(x,y+Math.sin(t*1.7+x)*2);c.rotate(Math.sin(t+x)*.045+attack*.12);c.scale(z,z);drawBell(c);c.restore();}
+  }else if(kind==='echo'){
+   paint(c,paths.echo,'#637879','#b4bca6',1.7);paint(c,paths.echoPlane,'#394f55',null);
+   paint(c,paths.echoFace,'#c1bea4');paint(c,paths.echoJaw,'#9eaa97');
+   // Pale fractured strata suggest the quarry's repeated impact, without eyes or mouths.
+  }else{
+   paint(c,paths.resonance,'#788b80','#bec2a8',1.7);paint(c,paths.resonancePlane,'#425b5d',null);paint(c,paths.resonanceGap,'#203b43','#9cae9e',1.1);
+   c.strokeStyle='#c7b689';c.lineWidth=3;c.beginPath();c.moveTo(-4,-91);c.lineTo(2,-83);c.moveTo(-10,-29);c.lineTo(6,-32);c.stroke();
+  }
  }else if(kind==='minecart'){c.rotate(Math.sin(t*8)*(u.moving?.018:.005));paint(c,paths.cart,'#776a50','#aaa486',2);paint(c,paths.cartSide,'#3e473f',null);paint(c,paths.wheel,'#293c3d','#a0a590',3);}
  else if(kind==='picks'){for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05);paint(c,paths.pick,'#8e998e','#c1c2ad',1.7);c.restore();}}
  else if(kind==='waterwheel'){c.save();c.translate(0,-55);c.rotate(t*.24);c.strokeStyle='#93876a';c.lineWidth=10;c.beginPath();c.arc(0,0,47,0,Math.PI*2);c.stroke();c.strokeStyle='#424d46';c.lineWidth=5;for(let j=0;j<8;j++){c.rotate(Math.PI/4);c.beginPath();c.moveTo(0,0);c.lineTo(50,0);c.stroke();}c.restore();}

@@ -45,7 +45,7 @@ with preview_server() as URL, sync_playwright() as p:
     page.screenshot(path=str(OUT/'desktop.png'),full_page=False)
     page.fill('#search','종지기');check('Korean search',page.locator('.card').count()==1)
     page.click('[data-open=keeper]');page.screenshot(path=str(OUT/'keeper-desktop.png'))
-    check('Keeper evidence is old body plus stole', 'act2-art.js' in page.locator('#routes').inner_text())
+    check('Keeper evidence links actual Canvas renderer', 'act2-art.js' in page.locator('#routes').inner_text())
     page.click('#play');page.wait_for_timeout(220);check('Playback advances phase',page.evaluate('CharacterCatalog.phase')>0)
     page.click('#play');phase=page.evaluate('CharacterCatalog.phase');page.wait_for_timeout(80);check('Pause freezes phase',page.evaluate('CharacterCatalog.phase')==phase)
     page.locator('#scrub').evaluate("e=>{e.value='.55';e.dispatchEvent(new Event('input'))}")

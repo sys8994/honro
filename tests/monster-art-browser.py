@@ -65,7 +65,11 @@ with sync_playwright() as p:
     metrics=json.loads((OUT/'metrics.json').read_text(encoding='utf-8'))
     for row in result['rows']:
         meta=next(m for m in metrics['assets'] if m['id']==row['id']);row['newAnchors']=meta['anchors'];row['anchorRatio']=round(meta['anchors']/row['legacy']['anchors'],2)
-        check(row['id']+': within 2.85-3.15x the original contour anchors',2.85<=meta['anchors']/row['legacy']['anchors']<=3.15 and row['legacy']['anchors']==BASELINE['assets'][row['id']]['anchors'],row)
+        # Redesign explicitly removes the former minimum-density target. Keep
+        # historical baseline equality, bounded authored complexity and pixel QA.
+        revised=meta.get('budget')=='catalog-redesign'
+        budget=(meta['anchors']<=350 and meta['paths']<=90 and meta['colors']<=16) if revised else 2.85<=meta['anchors']/row['legacy']['anchors']<=3.15
+        check(row['id']+': authored complexity budget and unchanged historical baseline',budget and row['legacy']['anchors']==BASELINE['assets'][row['id']]['anchors'],row)
         check(row['id']+': deterministic, visible, bounded and animated without state writes',all(row[k] for k in ['planted','bounded','visible','animated','deterministic','pure']),row)
     check('All 11 species covered; special bosses, allies and summons preserved',result['fallback'] and result['cache']==len(metrics['assets']) and len(metrics['assets'])==len(IDS)+6 and set(r['id'] for r in result['rows'])==set(IDS) and set(r['id'] for r in result['coverage'])==set(IDS) and all(r['kind']==r['id']==r['midboss'] for r in result['coverage']) and result['defaultBeast']=='stag',result['coverage'])
     check('Source modules and baseline match generated metadata',metrics['sourceSha256']==hashlib.sha256('\n'.join(name+'\n'+(ROOT/name).read_text(encoding='utf-8') for name in metrics['sourceFiles']).encode()).hexdigest() and BASELINE['sha256']==hashlib.sha256((ROOT/BASELINE['source']).read_bytes()).hexdigest())

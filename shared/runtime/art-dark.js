@@ -54,10 +54,29 @@ c.save();const f=u.facing||1;c.scale(f,1);const type=u.cls||'archer',ally=u.honr
  }else if(type==='mage'){
   P(c,[[-8,-96],[-6,-110],[5,-111],[8,-96]],'#263637','#8a907a',.8);P(c,[[-13,-49],[-14,-20],[-3,-24],[0,-40]],'#3c5350','#1b2b2d',.9);L(c,11,-70,23,-61,cloth,7);L(c,25,-10,29,-112,'#776b4d',3);L(c,26,-102,41,-99,'#b5aa83',1);P(c,[[29,-110],[36,-116],[41,-108],[34,-103]],'#b4c4b2');glyph(c,34,-112,7+charge*8,'#a9c6b8',this.time*.4);glow(c,34,-110,14+charge*25,'#a5c7b5',.25+charge*.3);
  }else if(type==='knight'){
-  P(c,[[-14,-77],[-18,-68],[-11,-57],[10,-55],[17,-68],[11,-77]],'#56625c','#202e30',1.2);for(let i=0;i<4;i++)for(let j=0;j<4;j++){c.fillStyle=(i+j)%2?'#566459':'#7c8370';c.fillRect(-11+j*6,-72+i*6,4.5,4);}
-  P(c,[[-8,-94],[-8,-102],[-2,-110],[7,-105],[11,-96],[8,-85],[5,-84],[5,-96],[-4,-95],[-4,-83]],'#4d5d5b','#a6aa91',1);stroke(c,[[3,-108],[8,-120],[17,-125]],'#8c514d',2.5);L(c,9,-68,24,-55,'#68786b',7);c.save();c.translate(25,-56);c.rotate(-.32-charge*.4+recoil*.15);P(c,[[-2,5],[2,-59],[7,-77],[9,-60],[4,4]],'#aebbb2','#4a5b5e',1);L(c,-8,1,12,1,'#b9a075',3);L(c,1,4,1,17,'#514137',4);c.restore();P(c,[[-18,-70],[-32,-63],[-31,-40],[-21,-31],[-10,-46]],'#364b43','#928a6c',1.2);
+  // Cloth-covered armour, broad collar and tied headcloth: a road guard,
+  // rather than a visor helmet with a decorative plume. Preserve sword joint.
+  P(c,[[-14,-78],[-21,-67],[-16,-43],[-10,-36],[12,-36],[18,-65],[11,-78]],'#4f5950','#ac9f7d',1.2);
+  P(c,[[-12,-77],[-4,-64],[10,-77],[7,-55],[-8,-48]],'#797b63','#263431',1);
+  L(c,-13,-44,13,-44,'#aa9470',3);L(c,-7,-57,9,-58,'#2b3834',2);
+  P(c,[[-8,-99],[-6,-106],[7,-106],[12,-98],[8,-93],[-8,-93]],'#3b4640','#a6a184',1);
+  P(c,[[-8,-94],[-11,-84],[-8,-74],[-3,-78],[-4,-93]],'#5b6252','#283730',1);
+  stroke(c,[[-8,-98],[-19,-94],[-24,-82-tail*.25]],'#9c8b6b',2.5);
+  L(c,9,-68,24,-55,'#68786b',7);c.save();c.translate(25,-56);c.rotate(-.32-charge*.4+recoil*.15);
+  P(c,[[-2,5],[2,-59],[7,-77],[9,-60],[4,4]],'#aebbb2','#4a5b5e',1);L(c,-8,1,12,1,'#b9a075',3);L(c,1,4,1,17,'#514137',4);c.restore();
+  P(c,[[-18,-70],[-30,-64],[-30,-40],[-20,-32],[-12,-46]],'#3b4940','#928a6c',1.2);L(c,-24,-61,-23,-42,'#777b60',2);
  }else{
-  P(c,[[-9,-84],[-12,-99],[-6,-112],[2,-118],[11,-103],[14,-85],[6,-81],[3,-96],[-5,-95],[-5,-79]],'#373040','#95839a',.9);P(c,[[-5,-94],[6,-94],[5,-83],[-3,-82]],'#cbc1a7','#594f5c',.7);L(c,-2,-90,4,-90,'#623d52',1);L(c,1,-86,3,-84,'#61565a',.6);for(let i=0;i<3;i++){const y=-70+i*10;P(c,[[10,y],[24,y+4],[20,y+15],[8,y+10]],'#b8ad89','#765051',.7);stroke(c,[[14,y+4],[18,y+7],[13,y+10]],'#814951',.8);}L(c,12,-72,23,-58,cloth,7);L(c,26,-14,32,-115,'#685d48',3);glyph(c,33,-110,8+charge*9,'#bc9dcb',-this.time*.6);glow(c,33,-110,14+charge*25,'#9d7aba',.26+charge*.4);
+  // A travelling ritual artisan: low linen wrap, cross collar, folded paper
+  // and a hand-held bronze ring. No pointed hood, staff or purple aura.
+  P(c,[[-9,-96],[-9,-104],[-3,-108],[8,-105],[11,-96]],'#8e8870','#293832',1);
+  L(c,-9,-98,11,-98,'#c0b397',2);P(c,[[-9,-98],[-16,-95],[-17,-76],[-12,-81],[-10,-91]],'#766f58','#28342e',1);
+  P(c,[[-12,-79],[-4,-64],[10,-77],[13,-63],[-5,-48],[-13,-57]],'#9e957b','#253530',1);
+  P(c,[[-12,-41],[11,-41],[17,-17],[6,-22],[0,-35],[-10,-19],[-19,-24]],'#4d5549','#26352e',1);
+  L(c,-12,-42,13,-42,'#b1a17a',3);L(c,10,-71,23,-59,cloth,7);
+  c.save();c.translate(24,-59);c.rotate(-charge*.55+recoil*.12);
+  P(c,[[-6,-5],[8,-9],[13,10],[0,14]],'#b9ac88','#665644',1);L(c,-2,-2,6,3,'#81534b',1.2);
+  c.beginPath();c.arc(10,16,9,0,Math.PI*2);c.strokeStyle='#a28c58';c.lineWidth=2.8;c.stroke();L(c,10,24,8,34,'#6a5140',2);
+  if(charge>0){c.globalAlpha=Math.min(.45,charge*.45);E(c,10,16,13+charge*5,13+charge*5,'#b6ae7855');}c.restore();
  }
  if(ally){
   // Named story allies that are not one of the four party rigs still get a full
@@ -112,7 +131,12 @@ Scene.prototype.boss=function(c,u){c.save();const t=this.time;P(c,[[-44,0],[-36,
 Scene.prototype.warden=function(c,u){c.save();const lean=Math.sin(this.time*.8)*.018;c.rotate(lean);P(c,[[-19,0],[-15,-25],[-21,-55],[-19,-94],[-8,-105],[9,-102],[20,-88],[16,-55],[21,-25],[18,0]],'#4a493a','#95907a',1.2);for(let j=0;j<7;j++){const x=-13+j*4;stroke(c,[[x,-88],[x+Math.sin(j)*3,-59],[x-3,-29],[x+2,-4]],j%2?'#171f1e':'#8c826447',1);}P(c,[[-17,-88],[16,-87],[13,-63],[-14,-61]],'#877c60','#282e24',1);stroke(c,[[-15,-80],[-4,-75],[0,-79],[11,-77]],'#291d23',3);stroke(c,[[-11,-68],[0,-71],[12,-67]],'#372824',2);L(c,-20,-52,-49,-35,'#645b3e',5);L(c,18,-53,47,-74,'#776948',5);for(let i=0;i<3;i++){const x=-11+i*9;P(c,[[x,-47],[x+7,-48],[x+5,-17],[x-3,-21]],'#a5967477','#5f453f',.7);glyph(c,x+2,-39,3,'#704944');}L(c,-17,2,-30,9,'#504937',6);L(c,17,2,30,8,'#504937',6);c.restore();};
 const oldUnit=Scene.prototype.unit;
 Scene.prototype.unitBody=function(c,u,charge=0){c.save();c.translate(u.x,u.y);const baseHeight=u.boss?230:u.honroType==='beast'?125:['crow','bat'].includes(u.honroType)?83:['ghost','shade','lantern'].includes(u.honroType)?112:102;c.scale(u.h/baseHeight,u.h/baseHeight);
- if(u.honroType==='bier')this.bier(c,u);else if(u.honroType==='gate')hall(c,0,0,108,122);else if(u.boss)this.boss(c,u);else if(u.honroType==='warden'){this.warden(c,u);}else if(u.honroType==='civilian'){this.human(c,{...u,cls:'mage'},H.hero.mage,false,0,0);}else if(u.summoned||['ghost','shade','lantern'].includes(u.honroType))this.spirit(c,u);else if(u.honroType==='bat')this.bat(c,u);else if(u.honroType==='crow')this.crow(c,u);else if(u.honroType==='beast')this.beast(c,u,(u.moving||0)>0?Math.sin(this.time*12)*9:0);else if(u.honroType==='mourner'){this.human(c,{...u,cls:'occultist'},H.hero.occultist,true,0,0);c.fillStyle='#1d292e';c.fillRect(-13,-116,28,28);stroke(c,[[-20,-91],[-3,-76],[23,-89]],'#99876c',3);}else this.human(c,u,H.hero[u.cls]||H.hero.archer,u.side===1,(u.moving||0)>0?Math.sin(this.time*12)*8:0,charge);
+ if(u.honroType==='bier')this.bier(c,u);else if(u.honroType==='gate')hall(c,0,0,108,122);else if(u.boss)this.boss(c,u);else if(u.honroType==='warden'){this.warden(c,u);}else if(u.honroType==='civilian'){this.human(c,{...u,cls:'mage'},H.hero.mage,false,0,0);}else if(u.summoned||['ghost','shade','lantern'].includes(u.honroType))this.spirit(c,u);else if(u.honroType==='bat')this.bat(c,u);else if(u.honroType==='crow')this.crow(c,u);else if(u.honroType==='beast')this.beast(c,u,(u.moving||0)>0?Math.sin(this.time*12)*9:0);else if(u.honroType==='mourner'){
+  // A player-team Workshop mourner is still a mourner, never a party hero.
+  // Share the authored headless porter without changing team/AI/save fields.
+  const visual=G.HonroMonsterVisual,a=visual?.assets.mourner;
+  if(a){c.save();c.scale(102/a.baseHeight*(u.facing||1),102/a.baseHeight);const m=c.getTransform();visual.draw(c,'mourner',{time:this.time||0,state:visual.state(u),pixels:a.baseHeight*Math.hypot(m.c,m.d)});c.restore();}
+ }else this.human(c,u,H.hero[u.cls]||H.hero.archer,u.side===1,(u.moving||0)>0?Math.sin(this.time*12)*8:0,charge);
  c.restore();};
 // Tint one composited sprite, never hundreds of filtered vector draw calls.
 // Four reusable size buckets bound memory and avoid resizing a surface for every monster.
