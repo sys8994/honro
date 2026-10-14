@@ -9,6 +9,7 @@ export class BgmPlayer {
     private restartRequested=false;
     private requested=false;
     private firstPlay=true;
+    private fadeMs=25;
     private preloadFailed=false;
     private battleSession:string|undefined; private battleSelected=false;
     constructor(public tracks:string[]=(globalThis as any).HONRO_BGM_TRACKS||[],
@@ -60,7 +61,9 @@ export class BgmPlayer {
             const audio=this.current;this.requested=true;
             // A prepared stream may have waited on the title for seconds. Fade from
             // the actual play request, not from creation of the silent media element.
-            if(this.firstPlay){this.transitionStart=performance.now();this.firstPlay=false;this.tick(this.transitionStart);}
+            // Initial playback only needs a short anti-click ramp; retain the full
+            // 420 ms crossfade when replacing an existing stream.
+            if(this.firstPlay){this.transitionStart=performance.now();this.fadeMs=this.outgoing?this.transitionMs:25;this.firstPlay=false;this.tick(this.transitionStart);}
             try{const promise=audio.play();this.starts++;promise?.catch(error=>{if(this.current!==audio)return;this.errors.push(String(error?.name||error));
                 // Autoplay rejection waits for another real gesture. No per-frame retries.
                 if(error?.name==='NotAllowedError'){this.unlocked=false;this.firstPlay=true;}
@@ -68,7 +71,7 @@ export class BgmPlayer {
         }
     }
     tick(now=performance.now()){
-        const mix=Math.max(0,Math.min(1,(now-this.transitionStart)/this.transitionMs)),volume=this.enabled&&this.unlocked?this.volume:0;
+        const mix=Math.max(0,Math.min(1,(now-this.transitionStart)/this.fadeMs)),volume=this.enabled&&this.unlocked?this.volume:0;
         if(this.current)this.current.volume=volume*mix;
         if(this.outgoing){this.outgoing.volume=volume*(1-mix);if(mix>=1){this.outgoing.pause();this.outgoing.removeAttribute('src');this.outgoing.load();this.outgoing=null;}}
     }
