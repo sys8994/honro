@@ -10,6 +10,13 @@
 - 변경: 마우스 press, 터치/펜 release, touchend/click 및 키 입력에서 재시도한다. 새 입력은 미완료 resume을 대체하며 구 요청의 늦은 성공/거부가 새 효과음을 지우거나 중복 재생하지 않는다. 80ms 지난 cue 폐기·음소거·0음량·숨김·저장/진행은 유지한다.
 - 검증: audio-latency의 무기한 pending→새 gesture, 구 요청 지연 거부, 재중단 복귀 회귀와 production App 입력 routing 검사를 추가했다. 기존 파형·장치 표본율·취소 회귀와 typecheck를 실행한다. 이 검사는 장치 대역이며 실제 Android 출력 검증이 아니다. 알려진 Chromium socket/ptrace 차단 때문에 이 작업에서 로컬 headless 경로는 재시도하지 않았다. 최종 빌드·전체 검수·Pages 검증은 통합 발행 작업에서 별도 수행한다.
 
+## 첫 화면 부제의 서사 의미 명료화 (2026-10-14)
+
+- 원인: 산과 죽은 자가 다시 흐른다는 기존 비유가 혼로의 여정을 분명히 전달하지 못했다.
+- 변경: 활성 첫 화면 부제를 ‘떠나지 못한 이들을 위한 길.’로 바꾸고 Native 캡처는 활성 문구를 읽도록 했다. 5개 저장 분기의 제목 회귀와 6개 화면 크기 브라우저 검사에 정확한 문구 검증을 추가했다. 제목 미술·CSS·메뉴·저장 형식·대본·후반 정보 공개는 변경하지 않았다.
+- 시작 기준: 5bbf19f. Node 24.19.0 / Python Playwright import 가능. 기존 title 회귀는 TypeScript 의존성 부재로 실행 차단, Chromium은 실행 환경에서 시작 실패했다. 의존성 설치나 보안 우회는 하지 않았다.
+- 검증: 기존 선언된 TypeScript 의존성을 재사용한 `node tests/title-redesign.mjs`가 통과했다(5개 저장 분기·반복 진입·정확한 부제·저장 무변경·제목 fallback 계약). 의존성 없는 실제 showTitle 메서드 검사와 JS/Python 문법 및 diff 공백 검사도 통과했다. `npm run test:title`의 후속 letter-rendering 검사는 sharp 부재로 차단되었다. 전체 verify·두 HTML 재빌드·미술/실제 브라우저/Pages 검수는 통합 발행 단계에서 별도로 수행한다. 기존 runtime-contracts 이력 fixture는 소급 수정하지 않았다.
+
 ## 응수세 범위 반격 도움말 동기화 (2026-10-13)
 
 - 공개 QA에서 카드 설명은 범위 반격인데 상세 설명과 경지별 효과 행은 아직 ‘첫 적’으로 표시됨을 확인했다.

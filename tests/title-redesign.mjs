@@ -33,6 +33,7 @@ for(const c of [
  {label:'interrupted story without battle',changes:{honroJourney:{story:{id:'test'}}},text:'쉼터 대화 이어가기',actions:['rest']},
 ]){
  a.profile={...plain(fresh),...c.changes};const before=JSON.stringify(a.profile);a.showTitle();const html=a.root.innerHTML;
+ assert.equal(html.match(/<p class="title-tagline">([^<]+)<\/p>/)?.[1],'떠나지 못한 이들을 위한 길.',`${c.label}: story-grounded subtitle`);
  assert(html.includes(c.text),c.label);const group=html.match(/<div class="title-actions">(.*?)<\/div>/s)[1];
  assert.deepEqual([...group.matchAll(/data-action="(.*?)"/g)].map(m=>m[1]),c.actions,c.label);
  assert.equal(JSON.stringify(a.profile),before,'title rendering cannot change saves');
