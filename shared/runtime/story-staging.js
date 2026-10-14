@@ -60,7 +60,7 @@ function directed(app,lines,options){
 function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!s)return false;if(!(meta?.stagingScene&&s.once[meta.stagingScene]==='running')&&!G.HonroStoryDirection?.hiddenSpeech(b,meta))return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
 function active(app){return app.dialogue?.staging;}
 function snapshot(app){const s=active(app),c=app.scene;if(s&&c&&[c.x,c.y,c.scale].every(Number.isFinite))s.currentCamera={x:c.x,y:c.y,scale:c.scale,manual:!!c.manual};}
-function restore(app){const s=active(app),c=app.scene;if(!s||!c)return;if(s.currentCamera)Object.assign(c,s.currentCamera);c.goalFocus=null;if(s.focusActor&&alive(actor(app.engine.b,s.focusActor)))c.storyFocus?.(s.focusActor,120);else if(s.focus)c.storyFocusPoint?.(s.focus.x,s.focus.y,350);}
+function restore(app){const s=active(app),c=app.scene;if(!s||!c)return;if(s.currentCamera)Object.assign(c,s.currentCamera);c.goalFocus=null;if(s.focusActor&&alive(actor(app.engine.b,s.focusActor)))c.storyFocus?.(s.focusActor,120);else if(s.focus)c.storyFocusPoint?.(s.focus.x,s.focus.y,350,s.focusScale);}
 
 function draw(app,node){const s=active(app);if(!s||s.complete)return false;const step=s.steps[s.cursor],focused=node.contains?.(G.document?.activeElement)?G.document.activeElement?.dataset?.action:null;
  node.innerHTML=`<div class="story-overlay staging-overlay"><section class="staging-cue" role="dialog" aria-modal="true" aria-label="${esc(app.dialogue.title)}"><p id="story-line">${esc(step?.caption||'')}</p><div class="story-actions"><button class="ghost" data-action="dialogue-skip">장면 넘기기</button><button class="primary" data-action="dialogue-next">대화로 ›</button></div></section></div>`;
@@ -89,7 +89,11 @@ function apply(app,s,step,skip=false,dt=0){
  if(first){s.applied[key]=true;
   if(step.type==='fx'&&!skip){if(step.sound)app.audio?.play(step.sound);const p=point(b,step.at,s.context);if(p&&step.effect)app.engine.fx(step.effect,p.x,p.y-15,step.color||'#c9b37f',step.radius||48);}
   if(step.type==='move'){const u=step.reveal?reveal(b,step.actor):actor(b,step.actor);if(alive(u)&&step.focus!==false){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}}
-  if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.actor?{actor:step.actor}:step.at,s.context);if(p&&app.scene){s.focus=clone(p);delete s.focusActor;app.scene.goalFocus=null;const size=app.scene.size?.(),scale=step.scale&&size?Math.min(step.scale,size.w/((p.spanX||0)+240),(size.h*.55)/((p.spanY||0)+200)):step.scale;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500),scale);}}
+  if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.actor?{actor:step.actor}:step.at,s.context);if(p&&app.scene){delete s.focusActor;app.scene.goalFocus=null;const size=app.scene.size?.(),scale=step.scale&&size?Math.min(step.scale,size.w/((p.spanX||0)+240),(size.h*.55)/((p.spanY||0)+200)):step.scale;
+   // An authored exit shot leaves the camera behind. Keep the starting actor a
+   // fixed screen distance from the right edge on both wide and narrow views.
+   if(Number.isFinite(step.screenRight)&&size&&scale)p.x-=(size.w*.5-Math.min(step.screenRight,size.w*.65))/Math.max(.3,Math.min(1.15,scale));
+   s.focus=clone(p);s.focusScale=scale;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500),scale);}}
  }
  if(step.type==='move'){const status=move(app,s,step,dt,skip);if(status){s.results[key]={...s.results[key],status};return true;}return skip||s.elapsed>Math.max(3000,(step.duration||600)*3);}
  if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x){const facing=Math.sign(p.x-u.x);if(facing!==u.facing&&Number.isFinite(u.angle))u.angle=180-u.angle;u.facing=facing;}if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
@@ -169,9 +173,9 @@ register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
 // retreating along the supported approach toward its real exit, never imply
 // that this short walk reaches the tree or moves between maps. Keep the outro.
 register({id:'act1-sodan-upper-yard-departure-v1',stage:9,on:'outcome',position:'after',freshOnly:true,title:'윗마당으로 물러서다',steps:[
- {type:'look',actor:'npc-sodan',at:{anchor:'exit'},pose:'hold-bell',camera:true,duration:450,caption:'소단은 붉은 실을 놓지 않은 채 사당 안쪽으로 몸을 돌린다.'},
- {type:'move',actor:'npc-sodan',towards:{anchor:'exit'},distance:136,duration:1500,caption:'소단이 윗마당 나무로 이어지는 길을 향해 물러난다.'},
- {type:'look',at:{anchor:'exit',dy:-70},duration:800,caption:'소단이 향한 길은 윗마당의 나무로 이어진다. 일행은 소단과 거리를 두고 뒤따를 준비를 한다.'},
+ {type:'look',actor:'npc-sodan',at:{anchor:'exit'},pose:'hold-bell',camera:true,scale:1.15,screenRight:190,duration:600,caption:'소단은 붉은 실을 놓지 않은 채 사당 안쪽으로 몸을 돌린다.'},
+ {type:'move',actor:'npc-sodan',to:{anchor:'exit',dx:120},focus:false,duration:2100,caption:'소단이 윗마당 나무로 이어지는 길을 향해 물러난다.'},
+ {type:'look',actor:'npc-sodan',at:{anchor:'exit',dx:120},camera:false,duration:950,caption:'소단이 향한 길은 윗마당의 나무로 이어진다. 일행은 소단과 거리를 두고 뒤따를 준비를 한다.'},
  {type:'dialogue'}
 ]});
 // The approved split uses the existing Act 3 outro verbatim, then takes only
