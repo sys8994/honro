@@ -12,6 +12,8 @@ for(const f of ['hanja-wordmark.png','wordmark.png','landscape.webp','portrait.w
 function text(c,t,x,y,size,color='#d6dcda',align='left'){c.font=`${size}px "Noto Serif CJK KR"`;c.textAlign=align;c.textBaseline='middle';c.fillStyle=color;c.fillText(t,x,y);}
 // Render the production filter and original alpha through SVG; no source pixels are rewritten.
 const main=await readFile('shared/runtime/main.js','utf8'),inkDefs=main.match(/<defs><filter id="honro-title-ink"[\s\S]*?<\/defs>/)[0];
+const tagline=main.match(/<p class="title-tagline">([^<]+)<\/p>/)?.[1];
+if(!tagline)throw new Error('Production title tagline is missing');
 const [hanjaData,hangulData]=await Promise.all(['hanja-wordmark.png','wordmark.png'].map(async f=>'data:image/png;base64,'+(await readFile(asset+f)).toString('base64')));
 const markCache=new Map();
 async function mark(c,x,y,w){
@@ -35,7 +37,7 @@ for(const [w,h] of [[1440,900],[400,800],[333,740],[333,592],[844,390],[667,333]
  const my=p?headerH+(compact?0:Math.max(8,Math.min(40,h*.037))):(tiny?headerH:headerH+Math.max(0,(h-headerH-footerH-mh-tagMargin-tagLine-tagBottomMargin-actionH-padBottom)/2));
  const mx=p?(w-mw)/2:(low?w*.06:Math.max(32,Math.min(130,w*.07)));
  const bounds=await mark(ctx,mx,my,mw),tagY=my+mh+tagMargin;
- text(ctx,'산도, 죽은 자도, 언젠가 다시 흐른다.',p?w/2:mx,tagY+tagLine/2,tagSize,'#bec6c6',p?'center':'left');
+ text(ctx,tagline,p?w/2:mx,tagY+tagLine/2,tagSize,'#bec6c6',p?'center':'left');
  const aw=p?Math.min(280,w*.8):(tiny?230:low?240:280),ax=p?(w-aw)/2:mx,ay=p?h*(compact?.44:.43):tagY+tagLine+tagBottomMargin;
  for(let i=0;i<2;i++){let y=ay+i*(buttonH+buttonGap);ctx.fillStyle=i?'#101f2a9e':'#b6a47a18';ctx.fillRect(ax,y,aw,buttonH);ctx.strokeStyle=i?'#bcc5c426':'#d8cba442';ctx.lineWidth=1;ctx.strokeRect(ax+.5,y+.5,aw-1,buttonH-1);text(ctx,i?'저장된 전투 이어서 걷기':'쉼터 대화 이어가기',p?ax+aw/2:ax+16,y+buttonH/2,p?(compact?14:15):(low?13:16),i?'#d6dcda':'#f1e4c6',p?'center':'left');}
  const fx=p?w*.07:low?w*.04:Math.max(24,Math.min(75,w*.05)),fy=h-footerH+10;

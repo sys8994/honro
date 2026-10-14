@@ -31,6 +31,7 @@ with sync_playwright() as pw:
         assert result['syllables'][0]['bottom'] <= result['syllables'][1]['y']+1,(w,h,result)
         assert 'honro-title-ink' in result['ink']
         assert page.locator('.title-brand').get_attribute('aria-label') == '혼로'
+        assert page.locator('.title-tagline').inner_text() == '떠나지 못한 이들을 위한 길.'
         assert page.locator('.honro-logo-hanja').count()==1 and page.locator('.honro-logo-hangul').count()==2
         assert page.locator('.title-roman').count()==0
         assert result['mark']['bottom']<=result['tag']['y']+1,(w,h,result)
