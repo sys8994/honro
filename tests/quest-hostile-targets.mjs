@@ -32,9 +32,9 @@ for(const id of [5,8,10,18]){
 }
 // Integrated v4 accounting: original goal credit, no enemy reward, one common slice.
 {const {b,e}=battle(5),P=g.HonroProgression,X=g.HonroContributionXP,state=P.contributionState(b),u=e.unit('cliff-cleat'),archer=e.heroesAlive().find(u=>u.cls==='archer'),mage=e.heroesAlive().find(u=>u.cls==='mage'),m=b.honroMarkers.find(m=>m.id==='receiver-5');
- Object.assign(mage,{x:m.x,y:m.y});b.honroState.ritual={active:true,holderId:mage.id};const enemies=Object.keys(state.enemies),xp=JSON.stringify(b.heroes),spent=state.combatSpent;
+ Object.assign(mage,{x:m.x,y:m.y});b.honroState.ritual={active:true,holderId:mage.id};const enemies=Object.keys(state.enemies),xp=Object.fromEntries(Object.entries(b.heroes).map(([cls,h])=>[cls,h.xp])),spent=state.combatSpent;
  e.hurt(u,120,archer.id,true);assert(!state.objectives['goal:terrain:cliff-cleat']);e.hurt(u,9999,archer.id,true);
- assert.deepEqual(clone(state.objectives['goal:terrain:cliff-cleat']),{archer:12,mage:8});assert.deepEqual(Object.keys(state.enemies),enemies);assert(!state.enemies[u.id]);assert.equal(u.xpGranted,0);assert.equal(state.combatSpent,spent);assert.equal(JSON.stringify(b.heroes),xp);assert.equal(state.rewardBalance,1);
+ assert.deepEqual(clone(state.objectives['goal:terrain:cliff-cleat']),{archer:12,mage:8});assert.deepEqual(Object.keys(state.enemies),enemies);assert(!state.enemies[u.id]);assert.equal(u.xpGranted,0);assert.equal(state.combatSpent,spent);assert.deepEqual(Object.fromEntries(Object.entries(b.heroes).map(([cls,h])=>[cls,h.xp])),xp);assert.equal(state.rewardBalance,1);
  const weighted=X.rewardScores(state),raw=X.scores(state),total=Object.values(raw).reduce((n,v)=>n+v,0);for(const cls of state.actors)assert(Math.abs(weighted[cls]-((raw[cls]||0)*.8+total*.2/state.actors.length))<1e-9);
  const before=JSON.stringify(state);e.hurt(u,9999,archer.id,true);e.damageTerrain(b.honroQuestTargets[0],9999,0,archer.id);assert.equal(JSON.stringify(state),before,'repeat destruction cannot award again');
 }
