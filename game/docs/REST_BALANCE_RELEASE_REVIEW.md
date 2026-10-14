@@ -28,9 +28,36 @@ in the feature work; it does not prove CSS, touch input or public deployment.
 
 ## Final checks
 
-Final build identity, aggregate result and publication are recorded after the
-source freeze. Only one aggregate verification is run for this second freeze.
-Known local Chromium startup restrictions are reported as blocked, never passed;
-subsequent stages behind a failed aggregate command are not treated as executed.
+Frozen source: edb1606. Artifact: 88b7ac9. Both HTML files built successfully;
+current runtime identity passed for 161 sources and nine variants, with 910 source,
+48 part and 370 exact-edit negative checks. Original archived source bytes and all
+P0/earlier approvals are unchanged. The game contains the exact rest CSS once.
+
+One aggregate invocation started at 02:54:55 UTC and exited 1 after release-guard,
+build and title contracts passed. The next title-letter-rendering check could not
+resolve the declared sharp package in the available verified dependencies. It did
+not execute title pixel validation. The later campaign/runtime/migration/story/
+binding/game-verify/integration/performance aggregate stages were not reached.
+This is not a full verification pass. No package installation or second aggregate
+was attempted. The separately successful runtime identity and focused feature
+checks above remain distinct from this aggregate result. Raw log:
+`_local/reports/rest-balance-release/verify.log`.
+
+After the aggregate stopped, the impacted migration test was run separately on
+88b7ac9. Approved Library/topology/forest-cavern history gates and stages 1–6
+passed. Stage 7 story honroGrowth then failed on enemy HP ledger differences
+(e.g. 527 versus 434). A narrow Stage 7 comparison using the untouched completed
+P0 artifact 3f66b70 reproduced the identical 2,758-character assertion diff. This
+is an inherited migration-comparison failure, not a new XP rewardBalance mismatch.
+Historical fixtures were not edited. Raw logs are retained as migration.log and
+p0-stage7-migration.log beside the aggregate log. Stages 7–10 migration are not
+reported as passed.
+
+All earlier focused second-batch runtime checks remain applicable to 88b7ac9:
+shared sources and game CSS are byte-identical to their tested bc7ef7c versions.
+The added cross-feature regression separately passed at d529f8d.
+
+Known local Chromium startup restrictions remain a separate limitation; no
+physical Android, public browser, or performance claim is made by these checks.
 The designated publisher owns remote writes, master integration and existing
 GitHub Pages publication and verification.
