@@ -37,7 +37,7 @@ const eater={...base,id:'art-eater',name:'먹귀',cls:'occultist',summoned:true,
 eater.y=g.HONRO_CORE.groundY(b.terrain,eater.x);
 b.units=[anchor,eater];b.phase='aim';const files=[];
 for(const [label,count,swallow,facing,width,height,zoom,release] of [
- ['empty',0,0,1,960,640,.9,false],['one-held',1,0,1,960,640,.9,false],['many-held',8,0,1,960,640,.9,false],['swallow-open',3,.48,1,960,640,.9,false],['swallow-close',3,.18,-1,960,640,.9,false],['left-hit',5,0,-1,960,640,.9,false],['small-zoom',8,.48,-1,390,700,.4,false],['release',8,0,1,960,640,.9,true]]){
+ ['empty',0,0,1,960,640,.9,false],['one-held',1,0,1,960,640,.9,false],['many-held',10,0,1,960,640,.9,false],['swallow-open',3,.48,1,960,640,.9,false],['swallow-close',3,.18,-1,960,640,.9,false],['left-hit',5,0,-1,960,640,.9,false],['small-zoom',10,.48,-1,390,700,.4,false],['release',8,0,1,960,640,.9,true]]){
  Object.assign(eater,{eaterCaptureCount:count,eaterSwallow:swallow,summonGrowthHits:Math.min(5,count),h:96*(1+.14*Math.min(5,count)),r:36.8*(1+.14*Math.min(5,count)),facing,hurt:label==='left-hit'?.65:0,dead:release});
  const cv=canvas(width,height),scene=new g.HonroScene(cv);Object.assign(scene,{x:eater.x-30,y:eater.y-130,scale:zoom,manual:true,time:2,skillPreview:true});
  if(release){scene.event({type:'fx',name:'eaterRelease',x:eater.x,y:eater.y-eater.h*.5,size:190});scene.time+=.28;}
@@ -45,4 +45,11 @@ for(const [label,count,swallow,facing,width,height,zoom,release] of [
  const bytes=cv.toBuffer('image/png');await writeFile(`${out}/${label}.png`,bytes);files.push({label,sha256:hash(bytes),count,width,height,zoom});
 }
 assert.equal(g.HonroActorVisual.state({...eater,eaterSwallow:.45}).attack,.5);
+// Captured records must be silent even through direct unit/body rendering paths.
+const hiddenCanvas=canvas(320,320),hiddenScene=new g.HonroScene(hiddenCanvas),ctx=hiddenCanvas.getContext('2d');
+const hidden={...eater,x:160,y:240,dead:false,eaterCapturedBy:'another-eater'};
+const blank=hash(hiddenCanvas.toBuffer('image/png'));hiddenScene.unit(ctx,hidden,true);hiddenScene.unitBody(ctx,hidden);assert.equal(hash(hiddenCanvas.toBuffer('image/png')),blank,'Captured body and HP bar are hidden');
+const asset=g.HonroActorVisual.assets.summon_eater;
+assert.equal(asset.baseHeight,142);assert(asset.parts.some(p=>p.id==='ground-feet'));assert(!asset.clips.idle.tracks.some(t=>t.part==='root'),'Idle never lifts the feet');
+
 await writeFile(`${out}/report.json`,JSON.stringify({files,source:loaded,limits:['Native production Scene with reconstructed unit states, not browser play or actual capture lifecycle.']},null,2));console.log('PASS ground eater native Scene: '+files.length+' frames');
