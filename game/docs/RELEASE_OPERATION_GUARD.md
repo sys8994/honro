@@ -167,3 +167,31 @@ connector workflow has no confirmed bulk push route; this helper does not create
 one, guess a proxy, copy credentials, or remove connector approvals.
 
 Run `npm run test:release-guard`. No network or remote writes occur in the tests.
+
+
+## Bounded CLI output for long-running publishers
+
+Use `--summary` on any CLI command when returning JSON through an executor/tool
+with output limits. For example:
+
+```sh
+python tools/release/guard.py "$G" tick --owner "$OWNER" --summary
+python tools/release/guard.py "$G" report --summary --summary-limit 10
+```
+
+This is an explicit presentation option: existing Python APIs and default CLI
+output are unchanged. Summary JSON uses compact whitespace and includes total
+operation count, counts for **every** status, attention count, overdue count,
+production blocker count, and a bounded attention list. Denied and uncertain
+operations come before other unresolved work; successes never crowd that list.
+The default limit is 10; `--summary-limit N` accepts 0–100. `omitted_by_status`,
+`omitted_operation_count`, and `omitted_attention_count` account for entries not
+shown. An omitted problem is still unresolved. `plan` retains its operation ID
+and status in `operation`; receipt validation retains `receipt_result`.
+
+No journal operations, evidence, receipts or history are removed or shortened.
+To inspect the full output, redirect the default output to a file and read the
+needed portions; do not send the entire accumulated report through a bounded
+executor response. The summary avoids growth with completed-operation count,
+not arbitrary-size input strings. Callers must still check exit status and JSON
+validity rather than interpreting truncated text as a successful guard decision.

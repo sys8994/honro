@@ -199,6 +199,61 @@ class GuardTests(unittest.TestCase):
             result = subprocess.run([sys.executable, '-c', code, str(path) + '.lock'], capture_output=True)
             self.assertEqual(result.returncode, 0)
 
+    def populated_summary_state(self):
+        key = self.plan()
+        template = self.s['operations'].pop(key)
+        statuses = ['succeeded'] * 1000 + ['denied', 'uncertain_write', 'approval_pending', 'io_running', 'no_effect', 'planned'] * 4
+        for i, status in enumerate(statuses):
+            op = copy.deepcopy(template)
+            op.update(id=f'{i:064x}', status=status, deadline_at=10)
+            op['history'] = [{'status': status, 'at': 0}]
+            op['evidence'] = [{'raw': 'preserved evidence ' + str(i)}]
+            self.s['operations'][op['id']] = op
+
+    def test_summary_is_small_with_1000_successes_and_accounts_for_omissions(self):
+        self.populated_summary_state()
+        before = copy.deepcopy(self.s)
+        result = g.summarize(self.s, g.report(self.s, 20))
+        self.assertLess(len(json.dumps(result).encode()), 4096)
+        self.assertEqual(result['operation_count'], 1024)
+        self.assertEqual(result['counts_by_status']['succeeded'], 1000)
+        self.assertEqual(result['attention_count'], 24)
+        self.assertEqual(result['omitted_attention_count'], 14)
+        self.assertEqual(result['omitted_operation_count'], 1014)
+        self.assertEqual(result['production_blocker_count'], 24)
+        self.assertEqual(result['attention'][0]['status'], 'denied')
+        for status, total in result['counts_by_status'].items():
+            self.assertEqual(sum(row['status'] == status for row in result['attention']) + result['omitted_by_status'].get(status, 0), total)
+        self.assertEqual(self.s, before)
+
+    def test_summary_cli_preserves_default_and_complete_journal(self):
+        self.populated_summary_state()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'journal.json'
+            path.write_text(json.dumps(self.s))
+            cli = str(Path(g.__file__))
+            raw = subprocess.run([sys.executable, cli, str(path), 'report'], capture_output=True, check=True)
+            full = json.loads(raw.stdout)
+            self.assertEqual(len(full['operations']), 1024)
+            self.assertNotIn('output', full)
+            small = subprocess.run([sys.executable, cli, str(path), 'report', '--summary', '--summary-limit', '2'], capture_output=True, check=True)
+            result = json.loads(small.stdout)
+            self.assertLess(len(small.stdout), 2048)
+            self.assertEqual(len(result['attention']), 2)
+            self.assertEqual(result['omitted_attention_count'], 22)
+            self.assertEqual(json.loads(path.read_text()), self.s)
+            invalid = subprocess.run([sys.executable, cli, str(path), 'report', '--summary-limit', '101'], capture_output=True)
+            self.assertNotEqual(invalid.returncode, 0)
+            self.assertEqual(json.loads(path.read_text()), self.s)
+
+    def test_summary_keeps_plan_handle_and_zero_limit_counts(self):
+        key = self.plan()
+        result = g.summarize(self.s, self.s['operations'][key], limit=0)
+        self.assertEqual(result['operation'], {'id': key, 'status': 'planned'})
+        self.assertEqual(result['attention'], [])
+        self.assertEqual(result['omitted_by_status'], {'planned': 1})
+        self.assertEqual(result['omitted_attention_count'], 1)
+
     def test_phase_duration_report(self):
         key = self.plan()
         self.start(key, 'pending', at=2)

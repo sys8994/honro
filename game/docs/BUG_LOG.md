@@ -2720,3 +2720,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 원인: 형·기·혼 수비는 각 피해 감응도인데, 등불의 형.18/기1.10에서 기본 평사는21.68%만 전달됐다. 현행8장의 혼4/등불5와 소단 미합류 조건이 설오·평참 휘겸에게 과한 처리 부담을 줬다.
 - 변경: 캠페인1–10장의 일반/정예 혼·수의귀·등불 형 감응만.65/.72/.70로 조정한다. 기·혼·보스·육체형 적·2/3막 기본표·개별 명시 방어는 유지한다. 동일 생성기/compiler/Continue 기본값 보정이라 과거1막 저장도 HP·위치·행동·상태·진행 초기화 없이 적용된다. 상세는 [현재 계약](ACT1_DEFENSE_BALANCE.md).
 - 검증: `test:act1-defense`에 전30장 전후 예산·일반/정예/증원·보스·custom·단일 compiler와 실제 App 내보내기/가져오기3회 회귀를 추가했다. 피해량/체력가중 감응/명중 수 합계를 기록하며 실제 TTK·전투 완주로 주장하지 않는다. 통합 전 빌드·전역 verify·브라우저/Pages 검수는 별도 대기다.
+
+
+## 2026-10-13 · Bounded release guard CLI output
+
+- Cause: the default cumulative report grew with completed operations and could exceed executor output limits, interrupting JSON parsing despite a persisted journal.
+- Change: opt-in `--summary` / `--summary-limit` CLI output with bounded problem rows and explicit total/status/omission counts; default CLI and Python API output stay compatible. Journal history and evidence remain complete.
+- Validation: 19 focused offline tests pass, including 1,000 succeeded operations plus 24 unresolved/failed operations, subprocess CLI compatibility and lossless journal checks. Summary output stays below 4 KiB in the fixture. `git diff --check` passes.
+- Scope: no runtime, generated HTML or release manifest edits. Full gameplay verification was not rerun for this CLI-only change; prior runtime evidence is unchanged, not relabeled as a new pass.

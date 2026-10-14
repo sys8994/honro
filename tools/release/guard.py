@@ -210,18 +210,59 @@ def report(state, now=None):
         'note': 'Observed phase durations, not an inferred dependency critical path. Deadlines never cancel tools.'}
 
 
+
+def summarize(state, result, limit=10):
+    """Bound stdout, not the durable journal; account for every omitted status."""
+    require(0 <= limit <= 100, 'Summary limit must be 0..100')
+    counts = {}
+    for op in state['operations'].values():
+        counts[op['status']] = counts.get(op['status'], 0) + 1
+    # Success history never crowds out current problems. Unknown states remain visible.
+    priority = {'denied': 0, 'uncertain_write': 1, 'approval_pending': 2,
+                'io_running': 3, 'no_effect': 4, 'planned': 5}
+    attention = sorted((op for op in state['operations'].values() if op['status'] != 'succeeded'),
+                       key=lambda op: (priority.get(op['status'], -1), op['created_at'], op['id']))
+    shown = attention[:limit]
+    omitted = dict(counts)
+    for op in shown:
+        omitted[op['status']] -= 1
+    summary = {
+        'output': 'summary', 'owner': state['owner'],
+        'operation_count': len(state['operations']), 'counts_by_status': counts,
+        'attention_count': len(attention), 'attention_limit': limit,
+        'overdue_attention_count': sum(op['status'] in ACTIVE and time.time() >= op['deadline_at'] for op in attention),
+        'attention': [{key: op[key] for key in ('id', 'lane', 'kind', 'status')} for op in shown],
+        'omitted_operation_count': len(state['operations']) - len(shown),
+        'omitted_by_status': {key: count for key, count in omitted.items() if count},
+        'omitted_attention_count': len(attention) - len(shown),
+        'production_blocker_count': sum(op['lane'] == 'production' and op['status'] != 'succeeded'
+                                        for op in state['operations'].values()),
+        'note': 'Display only. Full operations, evidence and history remain in the journal. Omitted attention is not resolved.'}
+    if 'id' in result:  # Keep the operation handle returned by plan.
+        summary['operation'] = {key: result[key] for key in ('id', 'status')}
+    elif 'publication_verified' in result:
+        summary['receipt_result'] = result
+    return summary
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('journal', help='One shared durable path for ALL publishers/worktrees')
     parser.add_argument('command', choices=['acquire', 'recover', 'release', 'plan', 'pending', 'begin', 'await_approval', 'end_no_effect', 'retry', 'deny', 'uncertain', 'reconcile', 'tick', 'report', 'receipt'])
     parser.add_argument('--owner', default='')
+    parser.add_argument('--summary', action='store_true', help='Bound stdout with status counts and a limited attention list; journal remains complete')
+    parser.add_argument('--summary-limit', type=int, default=10, metavar='N', help='Attention rows in summary, 0..100 (default: 10)')
     parser.add_argument('--input', help='JSON input path; never include credentials')
     args = parser.parse_args()
+    if not 0 <= args.summary_limit <= 100:
+        parser.error('--summary-limit must be 0..100')
     data = json.loads(Path(args.input).read_text()) if args.input else {}
     try:
         with transaction(args.journal) as state:
             result = report(state) if args.command == 'report' else act(state, args.command, data, args.owner)
-        print(json.dumps(result, indent=2))
+            if args.summary:
+                result = summarize(state, result, args.summary_limit)
+        print(json.dumps(result, separators=(',', ':')) if args.summary else json.dumps(result, indent=2))
     except (ValueError, KeyError) as error:
         parser.exit(2, str(error) + '\n')
 
