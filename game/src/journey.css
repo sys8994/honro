@@ -103,3 +103,7 @@
  .honro #app .rest-actions>.rest-next{flex:1.55}.rest-actions svg{width:16px;height:16px}
 }
 @media(max-height:460px){.rest-location{top:2%}.rest-location h1{font-size:23px}.honro #app .rest-world .rest-person{height:110px;width:63px}.rest-world .rest-person canvas{height:86px;width:63px}.rest-world .rest-person-label i{top:-54px}.rest-actions{bottom:8px}.honro #app .rest-world .rest-fire{top:calc(var(--rest-ground,75%) + 13px);min-height:46px;padding:5px 9px}}
+
+/* Only shown after leaving the central camp; never changes a save or route. */
+.honro #app .rest-center{position:absolute;right:12px;bottom:calc(max(18px,env(safe-area-inset-bottom)) + 58px);z-index:3;min-height:44px;padding:8px 12px;background:#14262ae6;color:#ded8c4;border:1px solid #9aab9859;border-radius:4px;font-size:11px;touch-action:manipulation}
+.honro #app .rest-center[hidden]{display:none}

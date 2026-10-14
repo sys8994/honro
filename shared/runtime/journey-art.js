@@ -185,11 +185,42 @@
         `<circle cx="1377" cy="616" r="2.5" fill="#292c26"/><circle cx="1376" cy="638" r="2.5" fill="#292c26"/>` +
         path('M1354 773L1362 749 1367 765 1387 745 1380 770 1399 761 1394 775Z', '#26352c'));
   }
-  function scene(variant, layer = 'surface') {
+  // Reuse the exact embedded battlefield SVG and shared act-one palette pass.
+  // These are retained images, never rebuilt paths or external asset requests.
+  function campaignBackdrop(stage, id) {
+    const mood=G.HonroEnvironment?.act1Mood(stage),finish=G.HonroEnvironment?.ACT1_FAR;
+    const uri=mood&&G.HONRO_ACT1_FAR_DATA?.[mood.variant];
+    if(!uri||!finish||!G.atob)return '';
+    // Inline the vector markup rather than nesting an SVG data-image: retained
+    // SVG-in-SVG images are inconsistently decoded by screenshot renderers.
+    // All artwork paths are unchanged; only document-local IDs are namespaced.
+    const vector=G.atob(uri.slice(uri.indexOf(',')+1)).replace(/<title\b[^>]*>[\s\S]*?<\/title>|<desc\b[^>]*>[\s\S]*?<\/desc>/g,'').replace(/<svg\b[^>]*>/,'<g>').replace(/<\/svg>/,'</g>').replace(/id="([^"]+)"/g,(_,key)=>`id="${id}-far-${key}"`).replace(/url\(#([^\)]+)\)/g,(_,key)=>`url(#${id}-far-${key})`);
+    const brightness=finish.brightness[mood.variant];
+    return `<defs><filter id="${id}-distance" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="${finish.saturation}"/><feComponentTransfer><feFuncR type="linear" slope="${brightness}"/><feFuncG type="linear" slope="${brightness}"/><feFuncB type="linear" slope="${brightness}"/></feComponentTransfer></filter></defs>`+
+      group('campaign-distant-landscape',`<g filter="url(#${id}-distance)">${vector}</g><path d="M0 0H1600V900H0Z" fill="${finish.veil}" opacity="${finish.veilOpacity}"/><path d="M0 0H1600V900H0Z" fill="${mood.tint}" opacity="${mood.opacity}"/>`,`data-rest-backdrop="${mood.variant}"`);
+  }
+  function warehouseApproach(p){
+    // The chapter-eight rest is outside a warehouse. A low side elevation and
+    // warm doorway frame the distant gorge without closing the fire clearing.
+    return group('warehouse-approach',
+      path('M339 513L537 509 638 542V687L332 691Z','#293532')+
+      path('M537 509L638 542V687L537 674Z','#19282b')+
+      path('M304 514L342 484 524 463 666 535 645 550 530 513 332 534Z','#14272c')+
+      path('M325 508L347 491 523 471 643 530 529 501 342 522Z','#6e7565')+
+      path('M335 529H347V688H335Z M523 515H536V676H523Z M624 546H635V684H624Z','#71614a')+
+      path('M381 547H465V682H381Z','#121f22')+
+      path('M389 552H454V675H389Z','#9a7746','opacity=".42"')+
+      path('M407 550H413V675H407Z M383 598H463V605H383Z','#453e30')+
+      path('M551 567L608 581V631L551 618Z','#354842')+
+      path('M558 573L600 583V591L558 581Z M558 591L600 601V609L558 599Z','#7a8068','opacity=".48"')+
+      path('M325 688L536 674 650 687 643 700 327 704Z','#58604f')+
+      rock(604,704,.28,p));
+  }
+  function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';
     layer = variant === 'cave' || layer === 'underground' ? 'underground' : 'surface';
     const underground = layer === 'underground';
-    const key = `scene:${variant}:${layer}`;
+    const key = `scene:${variant}:${layer}:${stage}:${!!G.HONRO_ACT1_FAR_DATA}`;
     if (cache.has(key)) return cache.get(key);
     const p = underground ? {...palettes[variant], sky:'#101f28', horizon:'#38565d', ridge:'#223d48', mist:'#83a4a5'} : palettes[variant];
     const id = `honro-journey-${variant}-${layer}`;
@@ -203,7 +234,7 @@
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-ground"><stop offset="0" stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>` +
       `<radialGradient cx="50%" cy="50%" r="50%" id="${id}-fire-halo"><stop offset="0" stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient></defs>`;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="${variant}" data-journey-layer="${layer}">` + defs +
-      (underground ? cavernBackdrop(p, id) : farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + weather(variant, underground) + campGround(p, id) + campProps(id) + '</svg>';
+      (underground ? cavernBackdrop(p, id) : campaignBackdrop(stage,id)||farLandscape(p, id, variant)) + placeLandscape(variant, p, id, underground) + (stage===8&&!underground?warehouseApproach(p):'') + weather(variant, underground) + campGround(p, id) + campProps(id) + '</svg>';
     cache.set(key, svg);
     return svg;
   }
