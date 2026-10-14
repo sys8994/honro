@@ -1,4 +1,4 @@
-import type { Battle, Stage, Unit } from './types';
+import type { Battle, Stage, Unit, Terrain } from './types';
 
 export interface StageEndState { win:boolean; lose:boolean; reason:string; }
 export type StageEventTrigger = 'start'|'round'|'unit-dead'|'position'|'objective';
@@ -23,7 +23,7 @@ export function evaluateStageEnd(stage:Stage,b:Battle,heroes:Unit[],enemies:Unit
    case 'scripted': if(rule.target&&b.events.includes(`victory:${rule.target}`))return {win:true,lose:false,reason:stage.outro}; break;
    case 'escort': if(b.events.includes(`escort:complete${rule.target?':'+rule.target:''}`))return {win:true,lose:false,reason:stage.outro}; break;
    case 'clear': {
-    const wards=stage.objective==='wards'&&b.terrain.some(t=>t.device==='ward'&&!t.broken);
+    const wards=stage.objective==='wards'&&((globalThis as any).HonroQuestTargets?.records(b)||b.terrain).some((t:Terrain)=>t.device==='ward'&&!t.broken);
     if(!enemies.length&&!wards)return {win:true,lose:false,reason:stage.outro};
     break;
    }
@@ -33,7 +33,7 @@ export function evaluateStageEnd(stage:Stage,b:Battle,heroes:Unit[],enemies:Unit
  // Legacy campaign semantics.
  if(b.mode==='campaign'&&stage.boss&&boss?.dead)return {win:true,lose:false,reason:stage.outro};
  if(!enemies.length){
-  const wards=b.mode==='campaign'&&stage.objective==='wards'&&b.terrain.some(t=>t.device==='ward'&&!t.broken);
+  const wards=b.mode==='campaign'&&stage.objective==='wards'&&((globalThis as any).HonroQuestTargets?.records(b)||b.terrain).some((t:Terrain)=>t.device==='ward'&&!t.broken);
   if(!wards)return {win:true,lose:false,reason:stage.outro};
  }
  return {win:false,lose:false,reason:''};

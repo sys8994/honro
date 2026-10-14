@@ -30,7 +30,7 @@ export function campaignEliteShare(stage:number){const id=clamp(Math.round(stage
 export function setDifficulty(b:Battle,difficulty:Battle['difficulty']){
  b.difficulty=difficulty;b.enemyLimit=(b as any).honroActiveLimit??DIFFICULTIES[difficulty].active;
  for(const u of b.units){
-  if(u.side!==1||u.role==='dummy')continue;
+  if(u.honroObjectiveTarget||u.side!==1||u.role==='dummy')continue;
   const oldMax=u.maxHp, fraction=oldMax>0?u.hp/oldMax:0;
   // A resumed old battle retains its original stats until the next battlefield is entered.
   if(u.combatBaseHp===undefined||u.combatBaseAttack===undefined)continue;
@@ -40,7 +40,7 @@ export function setDifficulty(b:Battle,difficulty:Battle['difficulty']){
  }
 }
 export function makeElite(u:Unit){
- if(u.side!==1||u.boss||u.role==='dummy'||u.elite)return u;
+ if(u.honroObjectiveTarget||u.side!==1||u.boss||u.role==='dummy'||u.elite)return u;
  u.elite=true;u.name='정예 '+u.name;u.r*=1.25;u.h*=1.25;
  u.maxHp=u.hp=Math.round(u.maxHp*1.75);u.attack*=1.30;
  u.armor=Math.min(.55,u.armor+.04);u.maxMove*=1.08;u.moveLeft=u.maxMove;

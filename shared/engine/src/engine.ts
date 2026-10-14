@@ -220,7 +220,7 @@ export class Engine {
     private forceSample(p:{x:number;y:number;wind:number;gravityScale?:number;drag?:number;skill?:string;mode?:string}){
         const env=environmentAt(this.b.physics??(this.b.physics=makePhysics()),p.x,p.y),q=p.gravityScale??1;
         let gx=env.gravity.x*q+this.b.wind*p.wind*5.2,gy=env.gravity.y*q;
-        for(const d of this.b.drafts)if(p.x>d.x&&p.x<d.x+d.w&&p.y>d.y&&p.y<d.y+d.h&&(!d.device||this.b.terrain.some(t=>t.id===d.device&&!t.broken)))gy-=d.force;
+        for(const d of this.b.drafts)if(p.x>d.x&&p.x<d.x+d.w&&p.y>d.y&&p.y<d.y+d.h&&(!d.device||((globalThis as any).HonroQuestTargets?.records(this.b)||this.b.terrain).some((t:Terrain)=>t.id===d.device&&!t.broken)))gy-=d.force;
         for(const f of this.b.fields){if(f.kind==='storm')continue;const dx=f.x-p.x,dy=f.y-p.y,d=Math.hypot(dx,dy);if(d>=f.radius||d<1)continue;const a=(f.kind==='repulsor'?-1:1)*f.strength*Math.sin(Math.PI*d/f.radius);gx+=dx/d*a;gy+=dy/d*a;}
         const skill=p.skill?SKILLS[p.skill]:undefined,k=(p.drag??(skill?dragFor(skill,p.mode):0))*env.dragScale;
         // Linear drag acts relative to local air flow; wind acceleration keeps the established aiming convention.
@@ -757,7 +757,7 @@ export class Engine {
             armorWithoutSupport=armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
         if (u.boss && u.boss !== 5)
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
-        if (u.side === 1 && !u.honroObjectiveTarget && u.summonKind!=='eater' && this.b.terrain.some(t => !t.broken && t.device === 'ward'))
+        if (u.side === 1 && !u.honroObjectiveTarget && u.summonKind!=='eater' && ((globalThis as any).HonroQuestTargets?.records(this.b)||this.b.terrain).some((t:Terrain) => !t.broken && t.device === 'ward'))
             {armor = Math.max(armor, .32);armorWithoutSupport=Math.max(armorWithoutSupport,.32);}
         if (u.breaks > 0 && damageSource!=='eaterTransfer') {
             armor *= .15;armorWithoutSupport*=.15;

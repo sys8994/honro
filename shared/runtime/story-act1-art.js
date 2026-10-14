@@ -65,11 +65,17 @@ function evidence(b){const s=b.honroState||{},id=b.honroStage;
  if(id===10){const binding=G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding'),v=actor(b,'boss');if(!binding||!alive(v)||s.sodanCoop)return null;return{kind:'binding',binding,boss:v,phase:s.sodanBinding?.phase||'bound',hitCount:s.sodanBinding?.hitCount||0,receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
  return null;
 }
+function bindingBody(c,a,hitCount=0,t=0){if(a.broken)return;const p={x:a.x+a.w/2,y:a.y+a.h/2};
+   const wobble=Math.sin(t*9)*Math.min(7,2+hitCount),ratio=Math.max(0,Math.min(1,a.hp/(a.maxHp||a.hp||1)));
+   c.save();c.translate(p.x+wobble,p.y);c.strokeStyle='#d48475';c.lineWidth=4;
+   for(let i=0;i<3;i++){c.beginPath();c.ellipse(0,0,31+i*4,48-i*5,i*Math.PI/3,0,Math.PI*2);c.stroke();}
+   knot(c,{x:0,y:0},Math.max(0,(1-ratio)*13));c.restore();
+}
 function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5WaterfallArt?.evidence(scene,e);if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';
  for(const m of b.honroMarkers||[])if(m.type==='receiver')floorArray(c,m,t,m.action==='ritual'?d.receiving:!!m.collected);
  if(d.kind==='eave'){const p=d.at,w=Math.sin(t*10)*5;curve(c,{x:p.x-90,y:p.y-10},{x:p.x+100,y:p.y-4},w);knot(c,{x:p.x,y:p.y+w/2});curve(c,{x:p.x,y:p.y},{x:p.x+5+w,y:p.y+45},4);}
  if(d.kind==='village'){const p=d.at;curve(c,{x:p.x-74,y:p.y+32},p,-8);knot(c,p);curve(c,p,{x:p.x+455,y:p.y-84},Math.sin(t*9)*7);}
- if(d.kind==='waterfall'){cleat(c,d.seal);const p=d.at,home={x:p.x-210,y:p.y-15},side={x:p.x+320,y:p.y-70};
+ if(d.kind==='waterfall'){if(!d.seal.honroQuestTarget)cleat(c,d.seal);const p=d.at,home={x:p.x-210,y:p.y-15},side={x:p.x+320,y:p.y-70};
   // The near split knot visibly opens before intervention. Breaking only its
   // iron anchor relaxes this local line while the other line remains strained.
   const shake=d.broken?0:Math.sin(t*10)*7;
@@ -92,12 +98,10 @@ function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G
  if(d.kind==='binding'){const a=d.binding,p={x:a.x+a.w/2,y:a.y+a.h/2},v=d.boss,hand={x:v.x-8,y:v.y-v.h*.58};
   curve(c,p,hand,24,'#a54f56');
   if(!a.broken){
-   const wobble=Math.sin(t*9)*Math.min(7,2+d.hitCount),ratio=Math.max(0,Math.min(1,a.hp/(a.maxHp||a.hp||1)));
-   c.save();c.translate(p.x+wobble,p.y);c.strokeStyle='#d48475';c.lineWidth=4;
-   for(let i=0;i<3;i++){c.beginPath();c.ellipse(0,0,31+i*4,48-i*5,i*Math.PI/3,0,Math.PI*2);c.stroke();}
-   knot(c,{x:0,y:0},Math.max(0,(1-ratio)*13));c.restore();
+   if(!a.honroQuestTarget)bindingBody(c,a,d.hitCount,t);
+   if(!a.honroQuestTarget){const ratio=Math.max(0,Math.min(1,a.hp/(a.maxHp||a.hp||1)));
    c.fillStyle='#171c24';c.fillRect(p.x-56,p.y-82,112,8);c.fillStyle='#be8aaf';c.fillRect(p.x-55,p.y-81,110*ratio,6);
-   c.font=`600 ${12/scene.scale}px sans-serif`;c.textAlign='center';c.fillStyle='#efd7bf';if(!scene.missionTargets?.some(t=>t.id===a.id)&&scene.goalFocus?.id!==a.id)c.fillText('바깥 주박',p.x,p.y-96);
+   c.font=`600 ${12/scene.scale}px sans-serif`;c.textAlign='center';c.fillStyle='#efd7bf';if(!scene.missionTargets?.some(t=>t.id===a.id)&&scene.goalFocus?.id!==a.id)c.fillText('바깥 주박',p.x,p.y-96);}
   }
   const offering=d.phase==='offering'||d.phase==='accepted',s=b.honroStory;
   // Gold reaches a real receiving stone during the small trial, before the
@@ -116,5 +120,5 @@ if(G.HonroScene){const S=G.HonroScene.prototype,damage=S.objectDamage,terrain=S.
  S.landmark=function(c,l,...args){if(replacedLandmark(this.battle,l))return;return landmark.call(this,c,l,...args);};
  S.objectDamage=function(c,b,...args){const replaced=t=>b.honroStage===10&&t.id==='sodan-binding'||b.honroStage===5&&t.id==='cliff-cleat';return damage.call(this,c,fresh(b)?{...b,terrain:G.HonroQuestTargets.records(b).filter(t=>!replaced(t))}:b,...args);};
 }
-G.HonroAct1StoryArt={draw,evidence,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray};
+G.HonroAct1StoryArt={draw,evidence,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray,bindingBody};
 })(globalThis);

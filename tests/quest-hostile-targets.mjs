@@ -24,6 +24,12 @@ for(const id of [5,8,10,18]){
  e.hurt(u,u.maxHp*20,hero.id,true);assert(u.dead&&t.broken);assert.equal(u.hp,0);assert.equal(b.kills,kills,'objective adds no kill count');
  const broken=clone(b);Q.migrate(broken);assert(broken.units.find(v=>v.id===u.id).dead);assert.equal(broken.units.find(v=>v.id===u.id).hp,0);
 }
+// Objective devices keep their original ward effect until actually destroyed;
+// changing enemy difficulty cannot silently resize a saved object's durability.
+{const {b,e}=battle(5),hero=e.heroesAlive()[0],target=b.units.find(u=>u.honroObjectiveTarget),hp=target.hp,maxHp=target.maxHp;
+ C.setDifficulty(b,'veteran');assert.equal(target.hp,hp);assert.equal(target.maxHp,maxHp);assert.equal(target.attack,0);
+ const foe=C.makeUnit('archer',1,100,100,{id:'ward-probe',hp:2000,maxHp:2000,armor:0,shield:0,existenceDefense:{form:1,qi:1,soul:1}});b.units.push(foe);e.hurt(foe,100,hero.id,false);const protectedDamage=2000-foe.hp;for(const t of b.honroQuestTargets)t.broken=true;foe.hp=2000;e.hurt(foe,100,hero.id,false);assert(2000-foe.hp>protectedDamage,'old ward protection ends only on real destruction');
+}
 const legacy={12:'rock-pin',13:'door-pin',15:'shaft-pin',17:'collapse-pin',20:'exit-pin',21:'wagon-lock',22:'upper-latch',23:'cargo-lock',24:'courtyard-latch',25:'rear-latch',27:'water-release',28:'outer-chain',29:'sluice-chain',30:'route-pin'};
 for(const [stage,id]of Object.entries(legacy)){
  const {b}=battle(+stage);b.honroQuestTargets=[];b.units=b.units.filter(u=>!u.honroObjectiveTarget);b.terrain.push({id,x:100,y:200,w:50,h:80,hp:37,maxHp:100,mat:'wood',broken:false});b[+stage<=20?'honroAct2Steps':'honroAct3Steps']=[{id,kind:'destroy',label:'옛 목표',requiredClass:'archer'}];const state=JSON.stringify(b.honroState);Q.migrate(b);const u=b.units.find(u=>u.id===id);assert(u?.honroObjectiveTarget);assert.equal(u.hp,37);assert.equal(u.maxHp,100);assert.equal(JSON.stringify(b.honroState),state);assert(!b.terrain.some(t=>t.id===id));
