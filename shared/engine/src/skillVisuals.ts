@@ -1,3 +1,4 @@
+import {lureRadius} from './totemBehavior';
 import {drawWarriorProjectile,drawMeleeGuide} from './warriorVisuals';
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
@@ -165,7 +166,11 @@ export function drawStakes(c:C,e:Engine,time=0){
   if(z.skill==='M99'){c.fillStyle=s.color;c.fillRect(-15,-43,30,4);}
   const cloth=(off:number)=>{c.fillStyle='#d6c7a0';c.beginPath();c.moveTo(off-4,-36);c.lineTo(off+5,-36);c.quadraticCurveTo(off+wave*5+7,-21,off+wave*4+2,-9);c.lineTo(off+wave*3-5,-13);c.quadraticCurveTo(off+wave*2,-24,off-4,-36);c.fill();c.fillStyle='#66523f';c.font='11px serif';c.textAlign='center';c.fillText(s.mark,off+wave,-23);};cloth(z.skill==='M09'?-9:0);if(z.skill==='M09')cloth(9);
   c.restore();};
-  c.save();draw(z.x,z.y);c.strokeStyle=s.color;c.lineWidth=1.2;c.globalAlpha=.24+.08*wave;c.beginPath();c.ellipse(z.x,z.y-1,29+wave*2,7,0,t*.18,t*.18+Math.PI*1.65);c.stroke();
+  c.save();
+  if(z.skill==='M08'&&(z.expires===undefined||z.expires>e.b.round)&&e.unit(z.owner)){
+   c.save();c.strokeStyle=s.color;c.fillStyle=s.color;c.lineWidth=1.2;c.setLineDash([5,9]);c.beginPath();c.arc(z.x,z.y,lureRadius(e,z),0,Math.PI*2);c.globalAlpha=.025;c.fill();c.globalAlpha=.22;c.stroke();c.restore();
+  }
+  draw(z.x,z.y);c.strokeStyle=s.color;c.lineWidth=1.2;c.globalAlpha=.24+.08*wave;c.beginPath();c.ellipse(z.x,z.y-1,29+wave*2,7,0,t*.18,t*.18+Math.PI*1.65);c.stroke();
   c.globalAlpha=.55;for(let i=0;i<3;i++){const phase=(t*.35+i/3)%1,x=z.x+Math.sin(t+i*2.1)*16,y=z.y-12-phase*42;c.beginPath();if(z.skill==='M10'){c.ellipse(x,y,2.2,4,-.6+phase,0,Math.PI*2);}else if(z.skill==='M08'){c.moveTo(x-4,y+5);c.quadraticCurveTo(x+8,y,x,y-6);}else{c.moveTo(x-1,y+3);c.lineTo(x+2,y-2);}c.stroke();}
   c.globalAlpha=.85;c.fillStyle=s.color;c.font='12px serif';c.textAlign='center';c.fillText(s.name,z.x,z.y-62);
   if(z.active){c.globalAlpha=.22;const ps=[[0,-220],[220,0],[0,220],[-220,0]];for(const [x,y] of ps)draw(z.x+x,z.y+y);c.beginPath();ps.forEach(([x,y],i)=>i?c.lineTo(z.x+x,z.y+y):c.moveTo(z.x+x,z.y+y));c.closePath();c.stroke();c.setLineDash([5,12]);c.beginPath();c.arc(z.x,z.y,220,0,Math.PI*2);c.stroke();}

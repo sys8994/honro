@@ -72,7 +72,7 @@ function advanceFlight(e:Engine,u:Unit,dt:number){
  if(d<1){stop();return;}
  let left=Math.min(d,180*dt,u.moveLeft);
  while(left>1e-6){const step=Math.min(4,left),at={x:u.x+dx/d*step,y:u.y+dy/d*step};
-  if(!routeGuardAllows(e,u,at)||!flightClear(e,u,at)){stop();return;}
+  if((p.lureStakeId===undefined&&!routeGuardAllows(e,u,at))||!flightClear(e,u,at)){stop();return;}
   u.x=at.x;u.y=at.y;u.moveLeft=Math.max(0,u.moveLeft-step);left-=step;
  }
  u.moving=.12;if(Math.abs(dx)>1)u.facing=Math.sign(dx);u.vx=u.vy=0;
@@ -275,8 +275,22 @@ function* planLuredMove(e:Engine,u:Unit,target:Unit,z:NonNullable<ReturnType<typ
   if(Math.hypot(to.x-z.x,to.y-z.y)>=Math.hypot(u.x-z.x,u.y-z.y)-2)continue;
   const leg=flying?(flightLeg(e,u,to)?{cost:distance,jump:false}:null):(yield* traceTravelSteps(e,u,u,to,budget));yield;
   if(!leg)continue;
-  return {round:e.b.round,targetId:target.id,path:[{...to,jump:leg.jump,...('jumpX' in leg&&leg.jumpX!==undefined?{jumpX:leg.jumpX as number}:{})}],index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'유인진목에 이끌림'};
+  return {lureStakeId:z.id,round:e.b.round,targetId:target.id,path:[{...to,jump:leg.jump,...('jumpX' in leg&&leg.jumpX!==undefined?{jumpX:leg.jumpX as number}:{})}],index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'유인진목에 이끌림'};
  }
+}
+/** Plan the skill's movement separately from the capped attack queue. Commit all
+ * plans together after yielding through the normal frame planning budget. */
+export function* planEnemyLuresSteps(e:Engine):Generator<void,boolean,unknown>{
+ if(!e.b.stakes?.some(z=>z.skill==='M08'&&(z.expires===undefined||z.expires>e.b.round)))return false;
+ const plans:{u:Unit;plan?:AIMovePlan}[]=[];
+ for(const u of e.actors(1)){
+  if(u.lureRound===e.b.round)continue;
+  const z=lureStakeFor(e,u);if(!z)continue;
+  const owner=e.unit(z.owner)!;
+  const plan=yield* planLuredMove(e,u,owner,z);plans.push({u,plan});yield;
+ }
+ for(const {u,plan} of plans){u.lureRound=e.b.round;if(plan){u.aiMove=plan;u.intent=plan.intent;}}
+ return plans.some(v=>!!v.plan);
 }
 export function planEnemyMove(e:Engine,u:Unit,target:Unit){return finishPlanning(planEnemyMoveSteps(e,u,target));}
 export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|undefined,unknown>{
@@ -312,6 +326,8 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit):Generator<void,
 }
 /** Executes the plan, never teleports to it. Unexpected changes cancel safely into re-aiming. */
 export function advanceEnemyMove(e:Engine,u:Unit,dt:number){
+ const lureId=u.aiMove?.lureStakeId;
+ if(lureId!==undefined&&(!lureStakeFor(e,u)||!e.b.stakes?.some(z=>z.id===lureId&&(z.expires===undefined||z.expires>e.b.round)))){delete u.aiMove;delete u.moveTarget;u.moving=0;return;}
  if(flyingEnemy(u)){if(u.aiMove)advanceFlight(e,u,dt);return;}
  const plan=u.aiMove;if(!plan)return;
  const stop=()=>{delete u.aiMove;delete u.moveTarget;e.b.turnAge=0;};

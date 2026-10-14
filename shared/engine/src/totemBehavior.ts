@@ -9,9 +9,10 @@ type Stake=NonNullable<Battle['stakes']>[number];
 const hostile=(z:Stake,u:Unit)=>!u.dead&&u.side!==z.side&&u.side!==2;
 export function stakeBoost(e:Engine,z:Stake){const caster=e.unit(z.owner);return caster?(1+passiveRank(caster,'MP01')*.02)*(1+(z.effectBoost||0)):1;}
 export function stakeContact(z:Stake,u:Unit,boost:number){return Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<45*Math.min(1.25,boost)+u.r;}
+export function lureRadius(e:Engine,z:Stake){return (260+15*(z.rank-1))*stakeBoost(e,z);}
 export function lureStakeFor(e:Engine,u:Unit){
- if(u.dead||u.boss||u.side!==1||e.b.side!==u.side||u.fixed&&!['bat','crow','lantern'].includes((u as any).honroType))return undefined;
- return (e.b.stakes||[]).filter(z=>z.skill==='M08'&&hostile(z,u)&&e.unit(z.owner)&&(z.expires===undefined||z.expires>e.b.round)&&Math.hypot(u.x-z.x,u.y-u.h*.5-z.y)<(260+15*(z.rank-1))*stakeBoost(e,z)).sort((a,b)=>Math.hypot(u.x-a.x,u.y-a.y)-Math.hypot(u.x-b.x,u.y-b.y)||a.id-b.id)[0];
+ if(u.dead||u.hp<=0||u.eaterCapturedBy||u.carriedBy!==undefined||u.summoned||u.boss||u.stunnedRound===e.b.round||(u.stun||0)>0||u.side!==1||e.b.side!==u.side||u.fixed&&!['bat','crow','lantern'].includes((u as any).honroType))return undefined;
+ return (e.b.stakes||[]).filter(z=>z.skill==='M08'&&hostile(z,u)&&e.unit(z.owner)&&(z.expires===undefined||z.expires>e.b.round)&&Math.hypot(u.x-z.x,u.y-u.h*.5-z.y)<lureRadius(e,z)).sort((a,b)=>Math.hypot(u.x-a.x,u.y-a.y)-Math.hypot(u.x-b.x,u.y-b.y)||a.id-b.id)[0];
 }
 export function triggerOffensiveStake(e:Engine,z:Stake,nearby:Unit[],p:Projectile,boost:number){
  const b=e.b;if(b.side===z.side||b.side===2||!['enemy','aim','flight','review'].includes(b.phase))return;
