@@ -1,3 +1,4 @@
+import {waveReflectionPlan,WAVE_REFLECTION_DECAY} from './waveReflection';
 import {HERO_ARMOR_CAP,passiveTuning,durabilityPower} from './passiveBalance';
 import {SALHEUN_TURNS,SALHEUN_RATIO,JUCHEON_DISCOUNT,JUCHEON_EFFECT,JUCHEON_THRESHOLD,COMBO_HITS,ORBIT_BLADES} from './warriorData';
 import {multishotProfile} from './projectileGrowth';
@@ -93,7 +94,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    M13:[row('후속 폭발',`${6+rr}회 · 약 1초`),row('속성·전개','불 · 첫 폭발 주변 공중에 무작위 연쇄'),row('후속 폭발 피해',num(dmg*14/48)),row('후속 폭발 반경','55 · 분포 반경 240'),row('대상별 후속 명중','최대 3회')],
    M05:[row('낙뢰 대기','착탄 후 0.35초'),row('낙뢰 차폐','상부 지형에 가로막힘')],
    M03:[row('발동','적·지형 접촉 시'),row('펼침 방향','충돌 지점에서 진행 방향의 양옆'),row('원호 각도',`${52+6*(rr-1)}°`),row('원호 두께',`${30+2*(rr-1)}`)],
-   M11:[row('반사 횟수',`${Math.round(mix(2,7))}회`),row('반사 위력','매번 +8% · 최대 +48%')],
+   M11:[row('반사 분열',waveReflectionPlan(rr).map(n=>`×${n}`).join(' → ')),row('최대 동시 파동',`${waveReflectionPlan(rr).reduce((a,n)=>a*n,1)}개`),row('반사 위력',`매번 ${Math.round(WAVE_REFLECTION_DECAY*100)}% 유지`)],
    M12:[row('삼각형 완성','발사점과 지형 반사점 2곳'),row('경계 두께',`${20+2*(rr-1)}`),row('내부 피해',num(dmg*16/38)),row('중복 명중','최대 2변')],
    M14:[row('원주 반경','충전에 따라 180~900'),row('원주 두께',num(mix(34,50))),row('원주 피해','반경 220까지 100% · 확대 시 감소'),row('최소 피해','28% · 원 안쪽 피해 없음')],
    M15:[row('외곽 경계','팔각형'),row('중심 추가 피해',num(dmg*62/34)),row('기선 두께',`${20+2*(rr-1)}`),row('중복 명중','최대 3선')],
