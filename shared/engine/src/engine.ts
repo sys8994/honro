@@ -2085,7 +2085,7 @@ export class Engine {
     }
     newRound() {
         const b = this.b;
-        b.round++; b.reviewDamage={};b.reviewFocus=undefined;this.applyPhysicsCues();this.tickCurses();
+        b.round++; b.reviewDamage={};b.reviewFocus=undefined;this.applyPhysicsCues();for(const u of b.units)if(u.summonKind==='eater')this.expireSummon(u);this.tickCurses();
         b.side = 0;
         b.wind = b.mode === 'practice' ? b.practiceWind || 0 : b.mode === 'skirmish' && b.practiceWind !== undefined ? b.practiceWind : this.stage.wind[(b.round - 1) % this.stage.wind.length];
         for (const u of b.units) {

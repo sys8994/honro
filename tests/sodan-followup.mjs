@@ -9,7 +9,7 @@ function arena(id,side=0){
  const u=b.units[0];Object.assign(u,{x:350,y:1800,loadout:[id],focus:9999,maxFocus:9999,acted:false,ranks:{[id]:8,[C.baseSkill(s.cls)]:1}});
  b.units=[u];b.active=u.id;const events=[],e=new C.Engine(b,event=>events.push(event));u.side=side;return{e,b,u,s,events};
 }
-for(const id of ['O12','O14','O15','O16']){
+for(const id of ['O12','O15','O16']){
  const {e,b,u,s}=arena(id),angle=57,power=.55,guide=e.predict(u,s,angle,power);
  assert(guide.points.length>3,id+' prediction path');assert(e.fire(id,angle,power),id+' launch');
  const root=b.projectiles[0],launchSpeed=Math.hypot(root.vx,root.vy),expected=Math.hypot(...Object.values(e.velocity(u,s,angle,power)));
@@ -22,6 +22,9 @@ for(const id of ['O12','O14','O15','O16']){
  assert(event,id+' must cast in open air');
  assert(Math.hypot(event.x-guide.x,event.y-guide.y)<25,id+' guide matches cast point');
  console.log('PASS',id,'open-air guide and actual cast agree');
+}
+{
+ const {e,b,u,s}=arena('O14'),angle=57,power=.55,guide=e.predict(u,s,angle,power);assert(guide.terrain,'eater guide ends on ground');assert.equal(s.fuse,undefined);assert(e.fire('O14',angle,power));const seed=b.projectiles[0];assert.equal(seed.fuseAt,undefined);seed.fuseAt=1.45;seed.age=1.45;e.stepProjectile(seed,C.STEP);assert(b.projectiles.includes(seed),'old saved eater fuse cannot hatch in air');assert.equal(seed.fuseAt,undefined);for(let i=0;i<1500&&b.projectiles.includes(seed);i++)e.stepProjectile(seed,C.STEP);const eater=b.units.find(v=>v.summonKind==='eater');assert(eater);assert.equal(eater.side,1);assert.equal(eater.summonFloating,false);assert.equal(eater.y,1800);assert(Math.hypot(seed.x-guide.x,seed.y-guide.y)<25);console.log('PASS O14 ground-only capture and old-fuse recovery');
 }
 {
  const {e,b,u,s}=arena('O13'),angle=76,power=.8,guide=e.predict(u,s,angle,power);
