@@ -1,14 +1,25 @@
 """Focused catalog QA. Does not run a game, change campaign saves, or claim gameplay QA."""
 import base64, hashlib, json
+from contextlib import contextmanager
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from threading import Thread
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'_local/reports/character-catalog';OUT.mkdir(parents=True,exist_ok=True)
-URL='http://127.0.0.1:8765/tools/character-catalog.html'
+@contextmanager
+def preview_server():
+    class QuietHandler(SimpleHTTPRequestHandler):
+        def log_message(self,*args): pass
+    server=ThreadingHTTPServer(('127.0.0.1',0),partial(QuietHandler,directory=str(ROOT)))
+    thread=Thread(target=server.serve_forever,daemon=True);thread.start()
+    try: yield f'http://127.0.0.1:{server.server_port}/tools/character-catalog.html'
+    finally: server.shutdown();server.server_close();thread.join()
 checks=[];errors=[]
 def check(name,ok,detail=None):
     assert ok,(name,detail)
     checks.append({'name':name,'detail':detail});print('PASS',name,flush=True)
-with sync_playwright() as p:
+with preview_server() as URL, sync_playwright() as p:
     browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True)
     page=browser.new_page(viewport={'width':1440,'height':1000},device_scale_factor=1)
     page.on('pageerror',lambda e: errors.append(str(e)))

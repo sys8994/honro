@@ -5,7 +5,7 @@ let selected=null,visible=[],phase=0,playing=false,raf=0,last=0,light=false,faci
 const indexes=new Map(D.rows.map(r=>[r.id,[r.name,r.id,r.type,r.role,r.layer,...r.aliases,...r.stages.map(s=>s+'장'),...r.usage.map(u=>`${u.name} ${u.unitId} ${u.route} ${u.path}`),...r.routes.map(x=>x.label)].join(' ').toLowerCase()]));
 $('numbers').innerHTML=`<div><b>${D.counts.primary}</b><span>주요 그림</span></div><div><b>${D.counts.clips}</b><span>정의 클립 슬롯</span></div><div><b>${D.counts.compatibility}</b><span>구형 호환 분기</span></div>`;
 $('type').insertAdjacentHTML('beforeend',[...new Set(D.rows.map(r=>r.type))].map(t=>`<option>${t}</option>`).join(''));
-$('scope').textContent=D.scope;$('provenance').textContent=`기준 소스 ${D.sourceCommit.slice(0,12)} · 번들 SHA-256 ${D.sourceSha256} · 검수 ${D.reviewDate}`;
+$('scope').textContent=D.scope;$('provenance').textContent=`기준 소스 ${D.sourceCommit.slice(0,12)} · 번들 SHA-256 ${D.sourceSha256} · 검수 ${D.reviewDate}${D.sourceDirty?.length?' · 미커밋 런타임 변경 포함: 소스 링크는 기준 commit, 그림은 표시된 번들 해시 기준':''}`;
 function refs(list){return list.map(r=>`<article class="reference"><a target="_blank" rel="noopener noreferrer" href="${escape(r.url)}">${escape(r.name)}</a><small>${escape(r.institution)}${r.access?" · "+escape(r.access):""}</small><p>${escape(r.note)}</p>${r.additional?`<a target="_blank" rel="noopener noreferrer" href="${escape(r.additional)}">유물 상세</a>`:''}</article>`).join('');}
 $('referenceGrid').innerHTML=refs(D.references);
 const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){const row=D.rows.find(r=>r.id===e.target.dataset.id);R.draw(e.target,row);observer.unobserve(e.target);}},{rootMargin:'200px'});

@@ -59,9 +59,10 @@ iframe·물리 tick은 만들지 않는다. `HONRO_EMBEDDED=true`를 선행하�
 # 기존 game/package-lock.json에 고정된 TypeScript 의존성이 필요하다.
 npm --prefix game ci --ignore-scripts --cache /tmp/honro-npm-cache
 node tools/character-catalog/build.mjs
-python3 -m http.server 8765 --bind 127.0.0.1
-# 별도 터미널; Python Playwright와 /usr/bin/chromium 필요
+# Python Playwright와 /usr/bin/chromium 필요; 검사 자체가 임시 localhost 서버를 열고 닫는다.
 python3 tests/character-catalog-browser.py
+# 수동 브라우저 확인이 필요할 때만:
+python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
 빌더는 원본 파일과 근거 토큰을 검증하고 공통 런타임 SHA-256 및 기준 Git commit을
@@ -72,8 +73,10 @@ HTML에 기록한다. `--ui-only`는 같은 작업에서 UI를 반복 검수할 
 Game/Workshop 빌드 목록을 바꾸지 않기 위해 별도 빌드로 둔다. 스토리 통합 후
 `npm run build`와 함께 위 도감 빌더를 실행하고 생성 HTML도 커밋한다.
 검수 메모는 자동 생성하지 않으므로 그림이 바뀌면 실제 픽셀을 다시 보고 갱신한다.
-기준 commit은 `git merge-base HEAD origin/master`이며 미통합 브랜치에서 빌드한
-경우 런타임 해시가 정확한 스냅샷 식별자다.
+기준 commit은 빌드 시점 `HEAD`다. 미통합 스토리 브랜치도 그 commit의 근거를
+가리키며, 미커밋 런타임 변경이 있으면 화면에 별도 표시한다. 런타임 SHA-256이
+실제 그림의 정확한 스냅샷 식별자다. 출처 링크를 정확히 고정하려면 스토리 소스를
+먼저 커밋하고 도감을 빌드한다.
 
 브라우저 검사는 72개 항목/모든 정의 모션의 Scene·클립 샘플, 캔버스 가장자리,
 실제 재생·정지·스크럽·방향, 한글 검색/필터, 모달, 숨은 혼, 저장 API 무접근,
