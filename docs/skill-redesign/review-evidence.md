@@ -1,5 +1,23 @@
 # Independent review evidence
 
+## Final captive UI follow-up
+
+Production input checkpoint: `fd9e8537e7ce2448eb47ed349ad4661111a988a6`.
+Review source checkpoint: `c3cee6d20cc1d964d3a0324560b6de6b42f7a120` (same production inputs, with independent inspector assertions).
+
+A separate follow-up approval preserves the entire completed `d03915b` two-skill approval unchanged. It proves five exact line edits across `warriorVisuals.ts`, `combat-feedback.js`, and `unit-info.js`: captive mouse/touch/inspection exclusion, live captured count and remaining enemy turns, hidden passive markings, and suppression of pre-capture damage labels. The compiled visual core changes once; optional feedback/inspector parts change only in their actual build variants.
+
+Final checks passed: shared build, TypeScript, independent seven-case prison regression, production inspector regression, complete UI-boundary regression, quantitative sensitivity audit, and current provenance contracts. The last contract run checks 161 sources (28 added, 81 changed, 52 unchanged), nine variants, both HTML files, 910 source negatives, 48 parts negatives and 245 exact-edit negatives. Both previous approval chains and the original archive remain intact.
+
+- Current manifest SHA256: `86dd4527fdea04a523e2eda2d91ee104541d4a9f99d74733bb7e58243e5e4f08`
+- Compiled core SHA256: `1f16ffb9f9d17d02f8c4b345313b52e1f5e4eec5dd74c31255ddf411deb490fe`
+- HONRO.html SHA256: `1891c958e7136e6876f9eed925700fdd612800de69c25ef6885a81457f7e8c57`
+- HONRO_WORKSHOP.html SHA256: `7df7192b4b8ea07e042e80624342dc9a920587a7ddf2825e87245900c1f70731`
+
+The final Node reports replace `runtime-contracts/contracts.json` and `two-skill-balance/quantitative-audit.json`. The earlier successful provenance report is retained locally as `runtime-contracts/contracts-two-skill-checkpoint.json`. Native captures are separately regenerated against final source hashes; publication/browser/performance verification remains outside these claims.
+
+## Preserved completed two-skill checkpoint
+
 Production input checkpoint: `274f0f896f51eade3bbf397509ca1b0a59523bf3`.
 Review integration checkpoint: `4097d26b7a6bc05363329794d284d5a420281970` (same production inputs; additional independent tests/docs retained).
 

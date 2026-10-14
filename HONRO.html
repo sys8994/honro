@@ -16383,7 +16383,7 @@ function drawSwordCut(c, x, y, size, t, facing = 1, variant = 0, color = '#dce3d
 function drawCirculation(c, x, y, size, t) { c.save(); c.strokeStyle = '#d8e2da'; c.lineWidth = 1.5; c.globalAlpha *= Math.sin(Math.PI * t); const a = t * Math.PI * 2; c.beginPath(); c.ellipse(x, y, size * .6, size, 0, a - 1.5, a + .4); c.stroke(); c.restore(); }
 function drawCombatPassives(c, e, time) {
     for (const u of e.b.units) {
-        if (u.dead)
+        if (u.dead || u.eaterCapturedBy)
             continue;
         if (u.bladeScreen && u.bladeScreen.round >= e.b.round) {
             const a = u.bladeScreen.facing < 0 ? Math.PI : 0;
@@ -37783,7 +37783,7 @@ S.render=function(e,...args){const out=render.call(this,e,...args);
  c.save();c.setTransform(d,0,0,d,0,0);c.textAlign='center';c.textBaseline='middle';c.lineJoin='round';
  const top=document.querySelector?.('.battle-head')?.getBoundingClientRect?.().bottom||80;
  for(const f of this.damageNumbers?.values()||[]){const age=(this.time||0)-f.updated;if(age>1.5)continue;
-  const u=e.unit(f.targetId),wx=u?.x??f.x,wy=u?u.y-u.h*(u.elite?1.12:1)-20:f.y,x=(wx-this.x)*this.scale+w/2,y=(wy-this.y)*this.scale+h/2-9-Math.min(22,age*20);
+  const u=e.unit(f.targetId);if(u?.eaterCapturedBy)continue;const wx=u?.x??f.x,wy=u?u.y-u.h*(u.elite?1.12:1)-20:f.y,x=(wx-this.x)*this.scale+w/2,y=(wy-this.y)*this.scale+h/2-9-Math.min(22,age*20);
   if(x<-60||x>w+60||y<top-30||y>h+50)continue;
   c.save();c.translate(x,y);const bump=1+.14*Math.max(0,1-age/.16);c.scale(bump,bump);c.globalAlpha=Math.min(1,(1.5-age)/.4);
   c.font=(f.critical?'900 24':'800 20')+'px "Malgun Gothic",system-ui';c.strokeStyle='#102025';c.lineWidth=3;c.strokeText(String(Math.round(f.total)),0,0);c.fillStyle=f.critical?'#f5cd76':f.color;c.fillText(String(Math.round(f.total)),0,0);
@@ -38280,11 +38280,11 @@ G.HonroInteractions={mount,refresh,nearest,use,key,candidates,eligibility};
 
 (function(G){'use strict';
 const player=u=>u?.side===0&&!u.summoned;
-const eligible=u=>u&&(player(u)||!u.dead&&(u.side===1||u.side===2||u.summoned));
+const eligible=u=>u&&!u.eaterCapturedBy&&(player(u)||!u.dead&&(u.side===1||u.side===2||u.summoned));
 const available=a=>a.screen==='battle'&&a.engine&&a.scene&&!a.dialogue&&!a.done&&!a.modal.classList.contains('open');
 const clamp=(v,min,max)=>Math.max(min,Math.min(Math.max(min,max),v));
 const S=G.HonroScene.prototype;
-function description(u){const identity=u.honroAct3Fiend&&G.HonroWorld.archetypes[u.honroVariant]?.intent;if(identity)return identity+(u.intent&&u.intent!==identity?' · '+u.intent:'');return u.intent||G.HonroWorld.archetypes[u.honroType]?.intent||(u.summoned?'소환자를 도와 동맹군 턴에 행동합니다.':u.allyRole==='civilian'?'전투에 휘말린 동행인. 안전하게 호위해야 합니다.':'함께 적을 상대하는 동행입니다.');}
+function description(u,b){if(u.summonKind==='eater')return `${b?b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead&&v.hp>0).length:u.eaterCaptureCount||0}명 포획 · 남은 ${Math.max(0,(u.summonExpires??b?.round??0)-(b?.round??0)+1)}적 턴. 자체 행동 없이 아군에게 잃은 HP를 포획 적 각각에게 전달하며, 죽거나 수명이 끝나면 생존자를 방출합니다.`;const identity=u.honroAct3Fiend&&G.HonroWorld.archetypes[u.honroVariant]?.intent;if(identity)return identity+(u.intent&&u.intent!==identity?' · '+u.intent:'');return u.intent||G.HonroWorld.archetypes[u.honroType]?.intent||(u.summoned?'소환자를 도와 동맹군 턴에 행동합니다.':u.allyRole==='civilian'?'전투에 휘말린 동행인. 안전하게 호위해야 합니다.':'함께 적을 상대하는 동행입니다.');}
 // The body-only mask follows the current pose; health bars, shadows and selection arrows are excluded.
 S.unitOutline=function(c,u){
  if(u.id!==this.hoverUnitId&&u.id!==this.inspectUnitId)return;
@@ -38360,7 +38360,7 @@ function tick(a){
   const existence=el.querySelector('.unit-info-existence'),response=G.HONRO_CORE.effectiveDefenseForUnit(u),key=[u.id,response.form,response.qi,response.soul].join(':');
   if(existence.dataset.key!==key){existence.innerHTML=G.HONRO_CORE.existenceDefenseView(u);existence.dataset.key=key;}
  existence.hidden=!!boundBody;
- text('.unit-info-desc',boundBody?'소단의 몸을 공격하지 마세요. 사람과 떨어진 바깥 붉은 주박을 겨누세요.':description(u));
+ text('.unit-info-desc',boundBody?'소단의 몸을 공격하지 마세요. 사람과 떨어진 바깥 붉은 주박을 겨누세요.':description(u,a.engine.b));
  text('.unit-info-skills',!boundBody&&skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
  const states=G.HonroCombatStatus.effects(a.engine.b,u);
  text('.unit-info-status',states.join(' · ')||(player(u)?'적용 중인 상태가 없습니다.':''));
