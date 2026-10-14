@@ -12,13 +12,14 @@ import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIF
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,fallDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
-import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER } from './balance';
+import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier} from './existence';
-import { planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
+import {lureStakeFor} from './totemBehavior';
+import { planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -116,6 +117,9 @@ export class Engine {
             if (u.cls === 'knight' && BODY.has(s.mode))
                 damage *= .9 + u.tune * .2;
         }
+        // Scale newly cast player spells only. Existing projectiles/stakes retain their saved damage;
+        // impact, reflections, secondary bursts and stake triggers must never apply this again.
+        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&s.redesigned&&!s.enemyOnly)damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
         if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
         if (u.bound > 0 && BODY.has(s.mode))
@@ -1754,6 +1758,8 @@ export class Engine {
     } if(u.platformDrop?.phase==='fall'){u.platformDrop.phase='land';u.platformDrop.elapsed=0;u.platformDrop.contacts=[];} u.jumping = false; u.vy = 0; }
     stepUnits(dt: number) {
         for (const u of this.b.units) {
+            // A removed/captured/disabled actor must not leave the team waiting on a stale pull.
+            if(u.aiMove?.lureStakeId!==undefined&&(u.dead||u.eaterCapturedBy||u.carriedBy!==undefined||!lureStakeFor(this,u))){delete u.aiMove;delete u.moveTarget;u.moving=0;}
             if(u.eaterCapturedBy)continue;
             u.eaterSwallow=Math.max(0,(u.eaterSwallow||0)-dt);
             u.hurt = Math.max(0, u.hurt - dt);
@@ -1761,11 +1767,11 @@ export class Engine {
             u.moving = Math.max(0, (u.moving || 0) - dt);
             u.landing = Math.max(0, (u.landing || 0) - dt);
             if(u.summonFloating){u.vx=u.vy=0;}
-            if(flyingEnemy(u)&&!u.dead&&u.aiMove&&this.b.phase==='enemy'&&this.b.active===u.id&&!u.acted){advanceEnemyMove(this,u,dt);continue;}
+            if(flyingEnemy(u)&&!u.dead&&u.aiMove&&this.b.phase==='enemy'&&(u.aiMove.lureStakeId!==undefined||this.b.active===u.id&&!u.acted)){advanceEnemyMove(this,u,dt);continue;}
             if (u.dead || u.airborne || u.fixed || u.summonFloating || u.carriedBy!==undefined){
                 delete u.platformDrop;continue;
             }
-            if(u.aiMove && this.b.phase==='enemy' && this.b.active===u.id && !u.acted){advanceEnemyMove(this,u,dt);}
+            if(u.aiMove && this.b.phase==='enemy' && (u.aiMove.lureStakeId!==undefined||this.b.active===u.id && !u.acted)){advanceEnemyMove(this,u,dt);}
             else if (u.moveTarget !== undefined && (this.b.phase === 'aim' || this.b.phase === 'enemy') && u.id === this.b.active && !u.acted) {
                 const target = u.moveTarget;
                 if (Math.abs(target - u.x) < 9 || u.moveLeft <= 0) {
@@ -2072,6 +2078,7 @@ export class Engine {
             for (const u of this.actors(1))
                 u.acted = !b.queue.includes(u.id);
             if (!enemies.length) {
+                if(this.actors(1).some(u=>u.lureRound!==b.round&&lureStakeFor(this,u))){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
                 this.endTeam();
                 return;
             }
@@ -2161,14 +2168,17 @@ export class Engine {
             u.intent = ENEMIES[u.role]?.intent || '대기';
     } }
     enemyAction(){
-        if(this.active?.aiMove||this.active?.moveTarget!==undefined)return;
+        if(this.active?.aiMove||this.active?.moveTarget!==undefined||this.b.units.some(u=>u.aiMove?.lureStakeId!==undefined))return;
         if(this.planningRemaining<=0)return;
         const key=this.planningKey();if(!this.enemyPlanning||this.enemyPlanning.key!==key)this.enemyPlanning={key,steps:this.enemyActionSteps()};
         const work=this.enemyPlanning;if(this.continuePlanning(work.steps)){this.enemyPlanning=undefined;return;}
         work.key=this.planningKey();
     }
     private *enemyActionSteps():Generator<void,void,unknown>{
-        const b=this.b,u=this.active;
+        const b=this.b;
+        if(yield* planEnemyLuresSteps(this)){this.emit('change');this.emit('save');return;}
+        const u=this.active;
+        if(!u&&b.queue.length===0){this.endTeam();return;}
         if(!u||u.dead||u.eaterCapturedBy||u.summonKind==='eater'){this.finishAction();return;}
         if(u.aiMove||u.moveTarget!==undefined)return;
         if(!this.heroesAlive().length){this.checkEnd();return;}
@@ -2176,7 +2186,7 @@ export class Engine {
         if(!target){this.finishAction();return;}
         if(u.lastAct!==b.round){
             if(flyingEnemy(u))u.moveLeft=Math.min(u.moveLeft,FLY_MOVE_BUDGET);
-            if(flyingEnemy(u)||!u.fixed&&this.grounded(u)){
+            if(u.lureRound!==b.round&&(flyingEnemy(u)||!u.fixed&&this.grounded(u))){
                 const plan=yield* planEnemyMoveSteps(this,u,target);u.lastAct=b.round;
                 if(plan){u.aiMove=plan;u.intent=plan.intent;this.emit('change');return;}
             }else u.lastAct=b.round;
@@ -2212,7 +2222,7 @@ export class Engine {
         }
         if(!viable.ok){
             // One bounded second reposition attempt is allowed after discovering a bad firing lane.
-            if((flyingEnemy(u)||!u.fixed&&this.grounded(u))&&u.moveLeft>90&&(u as any).honroRepositionRound!==b.round){
+            if(u.lureRound!==b.round&&(flyingEnemy(u)||!u.fixed&&this.grounded(u))&&u.moveLeft>90&&(u as any).honroRepositionRound!==b.round){
                 (u as any).honroRepositionRound=b.round;
                 const retry=yield* planEnemyMoveSteps(this,u,target);
                 if(retry){u.aiMove=retry;u.intent=viable.reason==='blocked'?'사선 변경':'사거리 확보';this.emit('change');return;}

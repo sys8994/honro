@@ -2,9 +2,9 @@
 
 ## Contract and migration
 
-New campaign chapters use a per-stage version-4 contribution ledger. The shared ledger can contain historical version-3 stages and new version-4 stages. A historical in-progress stage and all its retries finish under its original policy. No old earned XP, skill allocation, training, or historical payout is redistributed. The first genuinely new chapter starts policy 4. Custom/Workshop legacy maps retain the old campaign policy; practice has no contribution payout.
+New campaign chapters use a per-stage version-4 contribution ledger. The shared ledger can contain historical version-3 stages and new version-4 stages. Historical version-3 in-progress stages and all their retries finish under the original policy. Unfinished version-4 ledgers upgrade to rewardBalance 1 on load or the next settlement, including deferred split rewards. Saved raw support evidence is sufficient: already-paid XP, defeated/settled enemies, finite tokens and the original budget stay intact. Only remaining payouts use the new weights; completed stages never reopen. No old earned XP, skill allocation, training, or historical payout is redistributed. The first genuinely new chapter starts policy 4. Custom/Workshop legacy maps retain the old campaign policy; practice has no contribution payout.
 
-The old per-person chapter increase B stays unchanged. A normal stage freezes N × B for its initial genuine companions; summons/NPCs do not increase N. Stage16 with four companions has17,240 total XP. A late companion may contribute after arrival but does not retroactively enlarge the frozen budget. Initial catch-up factors affect positive contribution only:10% per level below the initial party median, capped25%. They never pay an inactive hero.
+The old per-person chapter increase B stays unchanged. A normal stage freezes N × B for its initial genuine companions; summons/NPCs do not increase N. Stage16 with four companions has17,240 total XP. A late companion may contribute after arrival but does not retroactively enlarge the frozen budget. Initial catch-up factors affect positive contribution only:10% per level below the initial party median, capped25%. Catch-up multiplies contribution scores before the shared slice; it does not directly multiply the equal party share.
 
 XP is added to each person's existing total. New-policy chapters do not shift a common absolute end target to the highest party XP and do not level everyone's total at completion.
 
@@ -18,7 +18,7 @@ XP is added to each person's existing total. New-policy chapters do not shift a 
 - Each enemy/recipient/10%-HP-progress band has a threat high-water envelope. A repeated equal-strength attack in the same band, time passing, refresh, or retry cannot refill it. HP support is normalized to the recipient's maximum HP at that event. Outstanding wound records are bounded by the finite threat envelopes.
 - Hard stun contributes15 × risk weight only when that enemy would actually have occupied a limited action slot, with at most two distinct progress-band opportunities per enemy. Immune/out-of-queue enemies and repeated casts score0.
 - Actual full missile removal by blade screen or eater grants a small **blocking utility**, not hypothetical prevented HP:3 × risk weight × min(1, projectile damage /20). Only positive-damage, hostile, non-body projectiles with a hostile source qualify. Original source+shot is counted once, one removal per10%-HP band, at most five per enemy (15 × weight lifetime maximum). Partial blade-screen attenuation is credited through actual later HP prevention instead.
-- All survival/control/block support shares one60 × enemy risk weight ceiling, scaled proportionally at settlement. Support is pending until the enemy's HP progress or genuine resolution confirms useful encounter progress.
+- All survival/control/block raw support shares one60 × enemy risk weight ceiling, scaled proportionally at settlement, then receives a1.25 multiplier. Effective support is therefore capped at75 × enemy risk weight (previously60). A real control opportunity is18.75 effective points (previously15); full-strength projectile blocking is3.75 (previously3). The raw evidence and opportunity limits are unchanged. Support is pending until the enemy's HP progress or genuine resolution confirms useful encounter progress.
 - Goal contribution records cover real maintenance intervals, effective durability, safe rescue approach, leading/escort progress, individual crossings and successful interactions. M09 ownership is credited only when its actual traversal produces new goal progress. Details and representative chapter coverage are in OBJECTIVE_CONTRIBUTION_XP.md.
 - Unattributed enemy damage and goal progress keep an explicit `_system` share. It is not granted to a tiny remaining player contribution. NPC99% + player1% cannot turn into100% player XP.
 
@@ -26,7 +26,7 @@ Enemy identity uses authored unit IDs or separate logical wave source+wave index
 
 ## Settlement and conservation
 
-An enemy's finite combat slice is finalized once at an action boundary following its defeat. All slices together can spend at most40% of the ordinary stage budget. Integer remainders and any unspent combat amount roll into chapter completion. Completion distributes the remaining stage budget using all effective chapter contributions. Final-hit bonus is0.
+An enemy's finite combat slice is finalized once at an action boundary following its defeat. All slices together can spend at most40% of the ordinary stage budget. Integer remainders and any unspent combat amount roll into chapter completion. Completion distributes the remaining stage budget using all effective chapter contributions. For rewardBalance 1, each player-earned payout is80% contribution-proportional and20% shared equally among that stage’s registered genuine companions. An inactive companion receives only this small shared slice; absent split-branch heroes are not registered recipients. The `_system` score is preserved and contributes nothing to the common pool. No valid player evidence still means no common reward. Integer apportionment can differ by1 XP between settlement boundaries; the total pool is unchanged. Final-hit bonus is0.
 
 No grant is revoked after a later contribution. A party defeat keeps earned XP and the complete current ledger; a retry reuses the original budget, accepted HP intervals, goal/threat tokens and settlement flags. Save interruption selects the newer serialized contribution sequence and recovers its already-earned XP; it does not overwrite it with a stale profile ledger. Recovered level gains refresh real companion stats while preserving HP deficits and death, rather than resurrecting or transforming enthralled enemies.
 
@@ -34,7 +34,7 @@ For every stage:
 
 allocated XP + explicit system/cap/no-evidence exhaustion + pending budget = original budget.
 
-Only positive contributors receive XP. MAX_LEVEL excess is reallocated to positive non-cap contributors. If all contributors are capped, the excess is explicitly exhausted. A forced clear with no valid evidence is exhausted, not an equal-XP fallback. Original earned totals are never reduced.
+The80% personal slice rewards positive contribution; the20% common slice includes registered companions with zero contribution. MAX_LEVEL excess is reallocated among uncapped recipients according to their mixed reward weights. If all recipients are capped, the excess is explicitly exhausted. A forced clear with no valid evidence is exhausted, not an equal-XP fallback. Original earned totals are never reduced.
 
 ## 2+2 expedition
 
@@ -46,6 +46,7 @@ At reunion, each hero is compared using the budget-weighted mean of their relati
 
 Focused headless tests:
 
+- tests/support-xp-balance.mjs: before/after damage and support cases, zero evidence, neutral shares, partial-paid v4 upgrade, repeated load and completed-stage preservation
 - tests/contribution-xp-ledger.mjs: proportional allocation, deterministic integer remainder, finite support, unknown/system share and MAX_LEVEL
 - tests/contribution-xp-engine.mjs: actual damage/healing/shields/weakness/manifestation/recursive effects/stun/missile removal/summon death/retry
 - tests/contribution-xp-healing-boundaries.mjs: actual App defense, NPC healer, authored rest, camp, mission rest and checkpoint HP restoration
@@ -72,3 +73,14 @@ Inspected production paths:
 - Practice resets, practice/training unit construction and non-campaign core grants are outside the campaign XP policy. Enemy-only healer actions cannot heal allied hostile wounds. Dead/expired summons do not create enemy XP rows.
 
 Regression evidence includes actual Engine.recover followed by a hero hit, an intentionally uninstrumented direct HP reduction followed by a hit, enemy HP rescaling, enemy regeneration, actual App.defend, NPC/free healing followed by self-funded damage and healing, and checkpoint rollback. This audit does not claim a browser playthrough.
+
+## October 14 support/common tuning examples
+
+A four-companion stage retains17,240 XP. With equal initial levels and one complete settlement:
+
+- Damage80/20/0/0:13,792/3,448/0/0 becomes11,896/3,620/862/862.
+- Damage100 by one hero, effective healing30% of an ally’s maximum HP by another:13,262/3,978/0/0 becomes10,893/4,623/862/862.
+- One damage contributor, three idle companions:17,240/0/0/0 becomes14,654/862/862/862.
+- No player evidence:0 for everyone; a neutral NPC/environment score is exhausted rather than shared.
+
+An in-progress v4 chapter that already paid6,896 XP to one attacker keeps that award. Its remaining10,344 XP uses the new mix (one attacker example:8,793/517/517/517); the final total remains17,240. This does not retroactively equalize earned XP or levels. Historical v3 chapters retain their existing shared-growth policy until the next new chapter.
