@@ -21,7 +21,11 @@ function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!==
 function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
  if(b.honroCustom)return;
- const s=state(b);s.cinematic=2;const c=G.HonroStoryDirection?.cast[b.honroStage],id=b.honroStage===9?'npc-sodan':c?.actor;if(!id)return;const u=actor(b,id);if(!u)return;
+ const s=state(b);s.cinematic=2;
+ // Opt in only when building a new battle. Existing saves must not acquire a
+ // newly authored outcome motion merely because they already have scene state.
+ const outcomeScenes=[...registry.values()].filter(d=>d.stage===b.honroStage&&d.on==='outcome'&&d.freshOnly).map(d=>d.id);if(outcomeScenes.length)s.outcomeScenes=outcomeScenes;
+ const c=G.HonroStoryDirection?.cast[b.honroStage],id=b.honroStage===9?'npc-sodan':c?.actor;if(!id)return;const u=actor(b,id);if(!u)return;
  // Hidden cast is outside the engine roster, so it cannot leak via minimap,
  // hover, damage/collision, AI selection or speaker focus before its entrance.
  // Retained cast still receives the Engine's normal non-player skill mapping.
@@ -38,7 +42,7 @@ function request(app,id,context={}){
 function receiver(app,m){const b=app.engine.b;if(b.honroStaging?.entrance===ID&&b.honroState.receivers===1)return request(app,ID,{marker:m.id});return false;}
 function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
- if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
+ if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.freshOnly||b.honroStaging.outcomeScenes?.includes(d.id))&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
  if(!r)return{lines,options};
  const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
@@ -160,6 +164,15 @@ register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
   ['소단','빈자리에 진을 놓는 건 괜찮아요. 가운데 줄은 건드리지 마요.'],
   ['담허','알겠네. 자네가 놓으라고 할 때까지 끊지 않겠어.']
  ]}
+]});
+// Stage 10 owns the upper-yard tree. On stage 9, show the same Sodan body
+// retreating along the supported approach toward its real exit, never imply
+// that this short walk reaches the tree or moves between maps. Keep the outro.
+register({id:'act1-sodan-upper-yard-departure-v1',stage:9,on:'outcome',position:'after',freshOnly:true,title:'윗마당으로 물러서다',steps:[
+ {type:'look',actor:'npc-sodan',at:{anchor:'exit'},pose:'hold-bell',camera:true,duration:450,caption:'소단은 붉은 실을 놓지 않은 채 사당 안쪽으로 몸을 돌린다.'},
+ {type:'move',actor:'npc-sodan',towards:{anchor:'exit'},distance:136,duration:1500,caption:'소단이 윗마당 나무로 이어지는 길을 향해 물러난다.'},
+ {type:'look',at:{anchor:'exit',dy:-70},duration:800,caption:'소단이 향한 길은 윗마당의 나무로 이어진다. 일행은 소단과 거리를 두고 뒤따를 준비를 한다.'},
+ {type:'dialogue'}
 ]});
 // The approved split uses the existing Act 3 outro verbatim, then takes only
 // short supported steps toward the two authored routes. No roster/carry edits.
