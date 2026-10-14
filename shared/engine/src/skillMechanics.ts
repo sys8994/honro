@@ -421,8 +421,8 @@ export interface SkillPrediction extends Prediction {time:number;geometry?:Skill
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
  const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
- const wave=s.mode==='waveBounce',impact=sim.impact.bind(sim);
- if(wave)sim.impact=(p,h)=>{if(p.bounces>=1){p.x=h.x;p.y=h.y;sim.remove(p);}else impact(p,h);};
+ const wave=s.mode==='waveBounce',waveContacts:Vec[]=[],impact=sim.impact.bind(sim);
+ if(wave)sim.impact=(p,h)=>{if(p.bounces>=1){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
  const collision=sim.collision.bind(sim);let contact:Collision|null=null,stepContact:Collision|null=null,terminalContact:Collision|null=null,capture=true;
  sim.collision=(a,z,r,owner,ignored,units=true,...rest)=>{const h=collision(a,z,r,owner,ignored,ignoreUnits?false:units,...rest);if(capture&&h){stepContact=h;if(h.unit&&!contact)contact=h;}return h;};
  b.active=actor.id;b.side=0;b.phase='aim';b.mode='practice';b.projectiles=[];b.volley=undefined;
@@ -449,7 +449,7 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
   if(representative&&tracked&&!b.projectiles.includes(tracked))break;
  }
  const points=primary?paths.get(primary.id)||[origin]:[origin],last=points.at(-1)||origin;
- return {...last,unit:(contact as Collision|null)?.unit?.id,terrain:(terminalContact as Collision|null)?.terrain?.id,points,paths:[...paths.values()],time,contacts:[],apex,closest:99999};
+ return {...last,unit:(contact as Collision|null)?.unit?.id,terrain:(terminalContact as Collision|null)?.terrain?.id,points,paths:[...paths.values()],time,contacts:waveContacts,apex,closest:99999};
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
 export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction|null{
