@@ -14,18 +14,27 @@ export function captureEater(e:Engine,u:Unit){
  u.eaterCaptureCount=targets.length;u.summonGrowthHits=Math.min(5,targets.length);const scale=1+.14*u.summonGrowthHits;u.h*=scale;u.r*=scale;u.eaterSwallow=.9;
  e.fx('eaterSwallow',cx,cy,'#aaa79d',u.eaterCaptureRadius,String(targets.length));
 }
-/** Nearest real, exposed support. No fall damage or wall teleport on release. */
-function safeRelease(e:Engine,v:Unit,x:number,y:number){
+/** Local exposed support only. A continuous body sweep prevents wall/ceiling snaps.
+ * Without nearby support, release into local clear air and let normal gravity work. */
+function safeRelease(e:Engine,v:Unit,x:number,y:number,cx=x,cy=y){
+ const clear=(nx:number,ny:number)=>nx>=v.r+5&&nx<=e.b.width-v.r-5&&ny>=v.h&&ny<e.b.height+100&&!e.b.terrain.some(t=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,nx-v.r-1,ny-v.h+3,v.r*2+2,Math.max(4,v.h-6),.15));
+ const route=(nx:number,ny:number)=>{const n=Math.max(1,Math.ceil(Math.hypot(nx-cx,ny-cy)/8));for(let i=0;i<=n;i++)if(!clear(cx+(nx-cx)*i/n,cy+(ny-cy)*i/n))return false;return true;};
  let best:{x:number;y:number;d:number}|undefined;
+ // Try both the desired radial position and the container's own support before
+ // considering nearby edge positions. Never search the far side of the map.
  for(const t of e.b.terrain){if(t.broken||t.w<v.r*2+4||['barrel','device','support'].includes(t.mat))continue;
-  const nx=clamp(x,Math.max(v.r+5,t.x+v.r+5),Math.min(e.b.width-v.r-5,t.x+t.w-v.r-5));
-  for(const face of terrainSurfaces(t,nx)){if(Math.abs(face.slope)>1.35)continue;const ny=face.y;if(ny<0||ny>e.b.height||e.b.terrain.some(o=>o!==t&&!o.broken&&!o.oneWay&&terrainRectIntersects(o,nx-v.r*.6,ny-v.h+5,v.r*1.2,Math.max(4,v.h-10),.15)))continue;const d=Math.abs(nx-x)+Math.abs(ny-y)*.35;if(!best||d<best.d)best={x:nx,y:ny,d};}
+  for(const preferred of [x,cx,cx-v.r-8,cx+v.r+8]){const nx=clamp(preferred,Math.max(v.r+5,t.x+v.r+5),Math.min(e.b.width-v.r-5,t.x+t.w-v.r-5));if(Math.abs(nx-cx)>240)continue;
+   for(const face of terrainSurfaces(t,nx)){const ny=face.y;if(Math.abs(face.slope)>1.35||Math.abs(ny-cy)>160||!clear(nx,ny)||!route(nx,ny))continue;const d=Math.abs(nx-x)+Math.abs(ny-y)*.35;if(!best||d<best.d)best={x:nx,y:ny,d};}
+  }
  }
- const origin=v.eaterOrigin||{x:v.spawnX,y:v.spawnY};v.x=best?.x??clamp(origin.x,v.r+5,e.b.width-v.r-5);v.y=best?.y??origin.y;v.vx=v.vy=0;v.airborne=false;v.jumping=false;
+ if(!best)for(const dx of [0,-v.r-8,v.r+8,-2*v.r-16,2*v.r+16]){if(best)break;for(const dy of [0,-20,-v.h*.5]){if(clear(cx+dx,cy+dy)&&route(cx+dx,cy+dy)){best={x:cx+dx,y:cy+dy,d:0};break;}}}
+ // A pathological embedded container is resolved locally by the same physics as
+ // any knocked-back actor, rather than teleporting its captives to old spawns.
+ v.x=best?.x??clamp(cx,v.r+5,e.b.width-v.r-5);v.y=best?.y??cy;v.vx=v.vy=0;v.airborne=false;v.jumping=false;
 }
 export function releaseEater(e:Engine,u:Unit){
  const targets=e.b.units.filter(v=>v.eaterCapturedBy===u.id);u.dead=true;u.hp=0;u.vx=u.vy=0;
- for(let i=0;i<targets.length;i++){const v=targets[i];delete v.eaterCapturedBy;if(v.dead){delete v.eaterOrigin;continue;}const a=2*Math.PI*i/Math.max(1,targets.length),dx=Math.cos(a);safeRelease(e,v,u.x+dx*(u.r+v.r+12),u.y);delete v.eaterOrigin;v.eaterReleasedShot=e.b.shot;v.acted=true;v.awake=true;v.aggroUntil=Math.max(v.aggroUntil,e.b.round+1);e.impulse(v,dx*45,-22-Math.abs(Math.sin(a))*25);}
+ for(let i=0;i<targets.length;i++){const v=targets[i];delete v.eaterCapturedBy;if(v.dead){delete v.eaterOrigin;continue;}const a=2*Math.PI*i/Math.max(1,targets.length),dx=Math.cos(a);safeRelease(e,v,u.x+dx*(u.r+v.r+12),u.y,u.x,u.y);delete v.eaterOrigin;v.eaterReleasedShot=e.b.shot;v.acted=true;v.awake=true;v.aggroUntil=Math.max(v.aggroUntil,e.b.round+1);e.impulse(v,dx*45,-22-Math.abs(Math.sin(a))*25);}
  e.fx('eaterRelease',u.x,u.y-u.h*.5,'#c8c3ae',Math.max(70,u.r*2));
 }
 /** Old floating eaters migrate inertly; loading never performs a new capture. */
