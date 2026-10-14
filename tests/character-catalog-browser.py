@@ -1,14 +1,18 @@
 """Focused catalog QA. Does not run a game, change campaign saves, or claim gameplay QA."""
-import base64, hashlib, json
+import base64, hashlib, json, os
 from contextlib import contextmanager
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 from playwright.sync_api import sync_playwright
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'_local/reports/character-catalog';OUT.mkdir(parents=True,exist_ok=True)
+ROOT=Path(__file__).resolve().parents[1];OUT=Path(os.environ.get('HONRO_CATALOG_REPORT',ROOT/'_local/reports/character-catalog'));OUT.mkdir(parents=True,exist_ok=True)
 @contextmanager
 def preview_server():
+    deployed=os.environ.get('HONRO_BASE_URL')
+    if deployed:
+        yield deployed.rstrip('/')+'/tools/character-catalog.html'
+        return
     class QuietHandler(SimpleHTTPRequestHandler):
         def log_message(self,*args): pass
     server=ThreadingHTTPServer(('127.0.0.1',0),partial(QuietHandler,directory=str(ROOT)))
@@ -24,7 +28,13 @@ with preview_server() as URL, sync_playwright() as p:
     page=browser.new_page(viewport={'width':1440,'height':1000},device_scale_factor=1)
     page.on('pageerror',lambda e: errors.append(str(e)))
     page.add_init_script('''(()=>{const set=Storage.prototype.setItem,get=Storage.prototype.getItem;set.call(localStorage,'honro-catalog-preservation-sentinel','unchanged');window.storageCalls=[];for(const k of ['getItem','setItem','removeItem','clear']){const old=Storage.prototype[k];Storage.prototype[k]=function(...args){storageCalls.push([k,...args]);return old.apply(this,args)}}window.readSentinel=()=>get.call(localStorage,'honro-catalog-preservation-sentinel')})()''')
-    page.goto(URL);page.wait_for_function('window.CharacterCatalog')
+    # The 11 MB standalone bundle exceeds Chromium's default inspector body cache.
+    # Read the same URL through Playwright's HTTP client before browser navigation.
+    artifact=page.request.get(URL);assert artifact.status==200
+    served_hash=hashlib.sha256(artifact.body()).hexdigest();artifact.dispose()
+    assert served_hash==hashlib.sha256((ROOT/'tools/character-catalog.html').read_bytes()).hexdigest(),'Served catalog differs from final build'
+    response=page.goto(URL);assert response and response.status==200
+    page.wait_for_function('window.CharacterCatalog')
     data=page.evaluate('HONRO_CATALOG')
     check('53 primary + 15 compatibility routes + 4 targets; 44 vectors / 209 slots',all(data['counts'][k]==v for k,v in {'primary':53,'compatibility':15,'vector':44,'clips':209,'targets':4}.items()),data['counts'])
     check('30 fresh chapters collected',len(data['stages'])==30)
@@ -76,5 +86,5 @@ with preview_server() as URL, sync_playwright() as p:
         page.locator('#detail').evaluate('d=>d.close()')
     check('Save storage was neither read nor written',page.evaluate('storageCalls.length===0 && readSentinel()==="unchanged"'),page.evaluate('storageCalls'))
     check('No browser script errors',not errors,errors)
-    (OUT/'browser-results.json').write_text(json.dumps({'checks':checks,'errors':errors,'sourceSha256':data['sourceSha256'],'htmlSha256':hashlib.sha256((ROOT/'tools/character-catalog.html').read_bytes()).hexdigest()},ensure_ascii=False,indent=2)+'\n')
+    (OUT/'browser-results.json').write_text(json.dumps({'checks':checks,'errors':errors,'sourceSha256':data['sourceSha256'],'htmlSha256':served_hash,'url':URL,'sourceCommit':data['sourceCommit'],'sourceDirty':data['sourceDirty']},ensure_ascii=False,indent=2)+'\n')
     browser.close()

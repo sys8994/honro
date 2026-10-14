@@ -2832,3 +2832,9 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 한계: 조건부 설정·기예 팩토리 근거는 정상 플레이 완주/발동 관측과 다르다. 모든 개인 구 저장/사용자 맵 미보유, 전역 미사용 확정 0. 종 사슬 고정구는 주변 환경을 제외한 단독 몸체다. 공식 링크 일부는 자동 열람 제한을 표시했다. 전체 verify·Game/Workshop 재빌드·공개 Pages 검수는 별도 스토리 통합 발행자가 최종 수행한다. 도감 작업에서 master 병합/배포하지 않는다.
 - 실행·범위·통합 재빌드 지침: `game/docs/CHARACTER_CATALOG.md`. 증거: Git 제외 `_local/reports/character-catalog/{browser-results.json,pixel-samples.json,contact-*.png,desktop.png,keeper-*.png}`.
 - 후속 보강: 스토리 통합 브랜치에서도 출처 링크가 과거 master를 가리키지 않도록 빌드 시점 HEAD를 사용하고 미커밋 런타임 변경을 표시한다. 항목 수는 실제 수집 결과에서 계산한다. 브라우저 검사는 자체 임시 localhost 서버를 열고 닫는다. 최종 HTML 해시와 31개 PASS 결과의 해시가 일치하며 런타임 변경 목록은 비어 있다.
+
+## 2026-10-14 · 스토리/원본 도감 통합 빌드
+
+- 부모의 단일 발행자 인계 후 원본 도감 `36cbc1c`를 스토리 개정과 합쳤다. 복구용 별도 도감 UI는 사용하지 않았다. 두 기준서의 크기·SHA256·말미 개행은 실제 Library materialize 원본과 일치한다.
+- 통합 소스 `84afafc`에서 Game/Workshop과 도감을 전체 재빌드했다. 두 게임 HTML은 이전 검증 바이트와 동일하며 도감은 새 런타임으로 재수집했다. 도감 31검사·1,386 렌더 표본 통과, sourceDirty 없음. 실제 desktop/390px 종지기 상세와 contact sheet를 다시 확인했다.
+- 도감 브라우저 검사에 공개 URL/보고서 위치 선택과 HTTP 산출물 해시 대조를 추가했다. 11MB 본문은 Chromium inspector 캐시 상한으로 읽을 수 없어 같은 URL의 HTTP 응답을 Playwright HTTP client로 읽고 이어 실제 페이지를 탐색한다. 게임 동작 변경이 아니다. master/Pages/배포 후 전체 검수는 다음 단계다.
