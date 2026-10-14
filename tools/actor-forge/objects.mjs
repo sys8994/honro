@@ -36,6 +36,18 @@ export function object(d){
   const r=part(a,'right-arm',[34,-134],'body');shape(r,'M31 -151 L56 -143 61 -113 76 -90 68 -75 54 -83 44 -110 28 -125Z','wood');shape(r,'M62 -90 L77 -93 84 -78 76 -66 64 -69 57 -78Z','linenShade');line(r,'M72 -88 L89 -30','wood',5,0);shape(r,'M63 -45 L105 -50 114 -23 70 -14Z','metal','ink',1.2);shape(r,'M68 -41 L101 -44 105 -36 73 -28Z','metalLight');
   const ties=part(a,'seals',[0,-137],'body');for(const x of [-26,-10,8,24])paper(ties,x,-137,9,60);sway(a,'seals',1.5);react(a,'right-arm',22);react(a,'left-arm',8);react(a,'head',5);sway(a,'body',.7);track(a,'move','body','rotate',[[0,0],[.25,2],[.75,-2],[1,0]]);track(a,'jump_fall','body','rotate',[[0,0],[.4,-4],[1,0]]);
  }
+ // The hostile apparition inhabits an abandoned bier; funerary craft itself is not evil.
+ if(d.id==='bier_boss'){
+  a.brief.identity=['검게 비어 있는 상여 안쪽','서로 다른 길이로 무겁게 내려온 삼베 휘장','굵은 상여채·기둥과 닳은 지붕'];
+  a.brief.silhouette='넓은 목조 상여 아래 비어 있는 공간과 길게 늘어진 휘장';
+  a.brief.reference='상여의 운반·장례 구조를 창작 해석; 내부의 가상 현상과 장례 조형을 구별';
+  const get=id=>{const p=a.parts.find(p=>p.id===id);p.paths=[];return p;};
+  const poles=get('poles');shape(poles,'M-94 -12 L92 -12 96 -8 92 -3 -94 -3 -97 -7Z','wood','ink',1.3);line(poles,'M-89 -9 L88 -9','woodLight',1.6,0);
+  const box=get('box');shape(box,'M-59 -57 L57 -57 63 -23 53 -13 -52 -13 -64 -23Z','wood','ink',1.5);shape(box,'M-51 -53 L50 -53 53 -25 43 -20 -45 -20 -54 -27Z','deep','ink',1);shape(box,'M-55 -22 L54 -22 54 -15 -53 -15Z','woodLight','ink',.8);shape(box,'M-54 -63 L-47 -63 -45 -17 -52 -16Z M47 -63 L54 -63 54 -17 47 -17Z','wood','ink',1);line(box,'M-50 -58 L-49 -28 M50 -58 L51 -28','woodLight',1.4,0);
+  const cloth=get('cloth');shape(cloth,'M-51 -59 L-26 -58 -29 -37 -22 -19 -33 -7 -40 -13 -50 -7 -54 -27Z','linenShade','ink',1.3);shape(cloth,'M24 -58 L51 -59 54 -32 50 -8 42 -16 35 -5 29 -19 30 -36Z','linenShade','ink',1.3);shape(cloth,'M-45 -53 L-36 -52 -40 -33 -35 -17 -41 -14 -48 -22Z M37 -52 L45 -53 47 -32 42 -18 36 -21 38 -36Z','linen');line(cloth,'M-32 -48 L-35 -35 M33 -43 L35 -29','shade',1.2,1);
+  const soul=get('soul');shape(soul,'M-19 -54 L18 -54 16 -35 9 -26 -3 -24 -16 -32Z','deep');shape(soul,'M-12 -49 L-7 -50 -5 -32 -10 -29Z M8 -50 L12 -49 10 -33 7 -30Z','shade');
+  const roof=get('roof');shape(roof,'M-72 -65 L-54 -72 -34 -93 -7 -95 0 -100 10 -94 35 -90 55 -72 72 -65 62 -57 -60 -57Z','wood','ink',1.5);shape(roof,'M-32 -89 L-9 -90 5 -94 31 -86 52 -64 -51 -64Z','linenShade','ink',.9);shape(roof,'M-28 -87 L-8 -87 4 -90 27 -83 40 -67 -41 -67Z','linen');line(roof,'M-64 -61 L62 -61','woodLight',2.2,0);line(roof,'M-20 -83 L-30 -70 M20 -80 L29 -69','linenShade',1.1,1);
+ }
  // Objects respond only by presentation transforms; pivots never change world collision geometry.
  if(!a.clips.hit.tracks.length)react(a,'root',1.5);
  if(d.id==='stretcher')transformParts(a,new Set(['head']),([x,y])=>[-44+(x+44)*.7,-46+(y+46)*.7],.8);

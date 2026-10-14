@@ -22,3 +22,5 @@ npm.cmd run test:monsters
 검수 PNG·자동 측정은 `_local/reports/monster-forge/`, 직접 본 미술 평가는 같은 폴더의 `VISUAL_REVIEW.md`에 기록한다. 기술 통과와 미술 승인을 구별한다.
 
 2026 도감 개편의 `catalog-redesign` 에셋은 `redesign.mjs`에서 기존 bind pivot·clip을 유지하며 조형을 교체한다. 사용자 요청에 따라 반복 미세무늬/노드 채우기를 피하기 위해 이전 3배 **하한**은 이 명시적 대상에 적용하지 않고, 350 anchors / 90 paths / 16 colors 상한을 적용한다. 최초 기준 파일 및 실제 anchorRatio 보고는 보존한다. 다른 에셋의 기존 예산은 바뀌지 않는다.
+
+2차 수정 권장 10종(`hound`, `boar`, `bat`, `human`, `possessedGuard`, `possessedArcher`, `gateMaster`, `archerMaster`, `archiveFiend`, `kilnFiend`)은 `recommended-redesign.mjs`에서 실루엣·얼굴·장비 면을 교체한다. 작은 얼굴과 긴 복식, 좌우 다른 날개, 줄인 엄니를 사용하며 masters는 장비 구조로 구별한다. 10종의 rig/animation JSON은 기존과 동일하다. 두 개편 모듈 모두 생성기의 sourceSha256 입력에 포함한다.

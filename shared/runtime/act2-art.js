@@ -4,10 +4,27 @@
 const S=G.HonroScene.prototype,C=G.HONRO_CORE;
 const path=d=>new Path2D(d),paint=(c,p,fill,stroke='#151d21',width=2)=>{if(fill){c.fillStyle=fill;c.fill(p);}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.lineJoin='round';c.stroke(p);}};
 const paths={
- cart:path('M-49-63L46-57 37-17-37-17Z M-54-68L52-62 49-52-51-57Z'),cartSide:path('M8-59L46-57 37-17 2-17Z'),wheel:path('M-31-23a13 13 0 1 0 0 26a13 13 0 1 0 0-26 M29-23a13 13 0 1 0 0 26a13 13 0 1 0 0-26'),
- pick:path('M-4-83L4-83 8 0-2 0Z M-40-73Q0-110 41-72L26-76Q0-86-26-75Z'),
- lantern:path('M-32 0L-26-15H26L33 0Z M-17-15L-14-77H14L17-15Z M-33-76L-25-107H25L33-76Z M-37-108L-19-128 0-137 19-129 37-108Z'),window:path('M-15-82L-15-102H15V-82Z'),
- hoist:path('M-61 0L-43-173H-29L-42 0Z M42 0L27-173H42L60 0Z M-76-169H74V-151H-76Z M-41-144L43-52 40-34-48-130Z'),hoistWeight:path('M-15-83L16-83 29-32 18-11-24-11-31-30Z'),
+ cart:path('M-49-63L35-70 49-57 38-18-35-18Z'),cartSide:path('M8-60L49-57 38-18 2-18Z'),
+ cartLoad:path('M-43-65L-32-81-15-77-4-89 12-81 25-85 40-67 11-58Z'),
+ cartRim:path('M-53-66L35-74 52-60 48-52 7-55-48-58Z'),
+ cartBrace:path('M-35-58L-28-59-19-22-26-21Z M-8-59L-1-59 3-22-4-22Z M28-56L35-55 27-22 20-22Z'),
+ wheel:path('M-41-19L-32-25-22-21-17-11-21-2-31 2-41-3-45-12Z M20-19L29-24 39-20 44-10 40 0 30 3 20-2 16-11Z'),
+ wheelHub:path('M-35-16L-28-17-24-11-29-6-35-9Z M25-15L32-16 36-10 31-5 25-8Z'),
+ pick:path('M-5-83L2-86 7-3 1 0-2-35Z'),
+ pickHead:path('M-37-73Q-22-91-3-94L6-95Q24-94 40-81L21-84 8-85 6-76-5-77-9-85Q-24-82-37-73Z'),
+ pickBlade:path('M-37-73Q-23-91-7-93L-9-86Q-24-82-37-73Z M8-91Q27-91 40-81L22-85 8-86Z'),
+ lantern:path('M-32 0L-29-9 29-9 33 0Z M-25-9L-19-22-9-28H10L21-21 26-9Z M-8-28L-7-64H8L9-28Z M-22-64L-11-76H12L24-64Z M-25-76L-23-104-13-109H15L25-103 26-76Z'),
+ lanternShade:path('M6-28L6-64 14-71 24-64 10-61 11-28Z M15-109L25-103 26-76 16-76Z M10-27L21-21 26-9 12-9Z'),
+ lanternRoof:path('M-34-105Q-20-110-12-119L-5-121-4-127 1-133 6-127 6-121 14-118Q24-109 35-105L32-101-31-101Z'),
+ window:path('M-15-82L-15-100-5-103 4-100V-82Z M15-99L21-97 21-83 15-82Z'),
+ hoist:path('M-61 0L-43-173H-29L-42 0Z M42 0L27-173H42L60 0Z M-76-169H74V-151H-76Z M-41-144L43-52 40-34-48-130Z'),
+ hoistShade:path('M-34-169L-29-169-42 0-48 0Z M35-169L42-169 60 0 52 0Z M-76-156H74V-151H-76Z'),
+ hoistJoint:path('M-49-153L-27-153-29-141-48-141Z M25-153L46-153 47-141 27-141Z M-50-30L-39-29-42-15-52-16Z M40-30L54-31 56-19 42-18Z'),
+ hoistWeight:path('M-15-79L9-85 24-68 29-32 18-11-24-11-31-30Z'),
+ hoistWeightShade:path('M9-85L24-68 29-32 18-11 4-11 13-36Z'),
+ wheelPaddle:path('M35-22L51-24 58-5 41 1Z'),
+ wheelSpoke:path('M-4-5L40-7 43 2-3 5Z'),
+ wheelCenter:path('M-10-6L-3-12 8-9 12 1 5 10-6 9-12 2Z'),
  // Original silhouettes informed by Korean bronze bell structure, not traced ornament.
  bell:path('M-17-63Q-18-76 0-79Q18-76 17-63L24-20Q0-12-24-20Z'),
  bellShade:path('M5-77Q18-75 17-63L24-20 9-18Z'),
@@ -82,11 +99,29 @@ S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call
    paint(c,paths.resonance,'#788b80','#bec2a8',1.7);paint(c,paths.resonancePlane,'#425b5d',null);paint(c,paths.resonanceGap,'#203b43','#9cae9e',1.1);
    c.strokeStyle='#c7b689';c.lineWidth=3;c.beginPath();c.moveTo(-4,-91);c.lineTo(2,-83);c.moveTo(-10,-29);c.lineTo(6,-32);c.stroke();
   }
- }else if(kind==='minecart'){c.rotate(Math.sin(t*8)*(u.moving?.018:.005));paint(c,paths.cart,'#776a50','#aaa486',2);paint(c,paths.cartSide,'#3e473f',null);paint(c,paths.wheel,'#293c3d','#a0a590',3);}
- else if(kind==='picks'){for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05);paint(c,paths.pick,'#8e998e','#c1c2ad',1.7);c.restore();}}
- else if(kind==='waterwheel'){c.save();c.translate(0,-55);c.rotate(t*.24);c.strokeStyle='#93876a';c.lineWidth=10;c.beginPath();c.arc(0,0,47,0,Math.PI*2);c.stroke();c.strokeStyle='#424d46';c.lineWidth=5;for(let j=0;j<8;j++){c.rotate(Math.PI/4);c.beginPath();c.moveTo(0,0);c.lineTo(50,0);c.stroke();}c.restore();}
- else if(kind==='stoneLantern'){paint(c,paths.lantern,'#737d72','#a0a891',2);paint(c,paths.window,'#c8c39a',null);}
- else if(kind==='hoist'){paint(c,paths.hoist,'#70624d','#aea184',2);c.strokeStyle='#a0aaa0';c.lineWidth=3;c.beginPath();c.moveTo(0,-155);c.lineTo(Math.sin(t*1.5)*10,-65);c.stroke();c.translate(Math.sin(t*1.5)*10,0);paint(c,paths.hoistWeight,'#4c5c59','#9fab99',2);}
+ }else if(kind==='minecart'){
+  c.rotate(Math.sin(t*8)*(u.moving?.018:.005));paint(c,paths.cartLoad,'#4e5c59','#9caa96',1.7);
+  paint(c,paths.cart,'#766950','#b2a384',1.8);paint(c,paths.cartSide,'#3e4942',null);paint(c,paths.cartBrace,'#343e39','#9b9d83',1.2);paint(c,paths.cartRim,'#8a7a59');
+  paint(c,paths.wheel,'#3e4a43','#a2a58d',2);paint(c,paths.wheelHub,'#9d9571');
+ }else if(kind==='picks'){
+  for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05);paint(c,paths.pick,'#7d6b50','#b8ac8b',1.4);paint(c,paths.pickHead,'#536760','#aeb5a1',1.7);paint(c,paths.pickBlade,'#a2ad98',null);c.restore();}
+ }else if(kind==='waterwheel'){
+  c.save();c.translate(0,-55);c.rotate(t*.24);
+  for(let j=0;j<8;j++){c.save();c.rotate(j*Math.PI/4);paint(c,paths.wheelSpoke,j%2?'#6b634d':'#847657','#192e30',1.8);paint(c,paths.wheelPaddle,j%2?'#576254':'#7b7d62','#a2a489',1.7);c.restore();}
+  c.strokeStyle='#172d30';c.lineWidth=12;c.beginPath();c.arc(0,0,38,0,Math.PI*2);c.stroke();c.strokeStyle='#9d9470';c.lineWidth=7;c.stroke();
+  paint(c,paths.wheelCenter,'#556359','#b4ac85',2);c.restore();
+ }else if(kind==='stoneLantern'){
+  // Octagonal shaft, lotus-bearing tiers, fire chamber and shallow stone roof.
+  paint(c,paths.lantern,'#7c887b','#b3b9a1',1.8);paint(c,paths.lanternShade,'#475f59',null);
+  paint(c,paths.window,'#243d3b','#a8ad8e',1.2);c.fillStyle='#bdb188';c.fillRect(-11,-96,7,12);
+  paint(c,paths.lanternRoof,'#8c947e','#c0bda0',1.8);
+ }else if(kind==='hoist'){
+  paint(c,paths.hoist,'#75664c','#b7a883',2);paint(c,paths.hoistShade,'#3d4b43',null);paint(c,paths.hoistJoint,'#48584e','#a5a48b',1.3);
+  c.save();c.translate(0,-143);c.scale(.8,.8);paint(c,paths.wheelCenter,'#928968','#b9b18f',2);c.restore();
+  const sway=Math.sin(t*1.5)*10;c.strokeStyle='#aca68b';c.lineWidth=3;c.beginPath();c.moveTo(-5,-143);c.lineTo(sway-6,-70);c.moveTo(5,-143);c.lineTo(sway+6,-71);c.stroke();
+  c.translate(sway,0);paint(c,paths.hoistWeight,'#5a6a60','#aab2a0',2);paint(c,paths.hoistWeightShade,'#354d48',null);
+  c.strokeStyle='#a3997b';c.lineWidth=4;c.beginPath();c.moveTo(-20,-65);c.lineTo(-16,-29);c.lineTo(21,-30);c.lineTo(17,-68);c.stroke();
+ }
  else{c.restore();return body.call(this,c,u,charge);}
  c.restore();
 };

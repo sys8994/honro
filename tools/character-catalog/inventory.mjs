@@ -55,7 +55,10 @@ export function inventory(G){
   if(row.type==='소환'&&row.skills.length){row.routes.push({label:'현재 유효 기예: '+row.skills.map(s=>s.id+' '+s.name+' ('+s.mode+')').join(' / '),file:row.id==='summon_charger'?'shared/engine/src/engine.ts':'shared/engine/src/occultData.ts',token:row.id==='summon_charger'?"if(p.mode==='nightParade')":row.id==='summon_earthbound'?"update('O10'":row.id==='summon_stalker'?"update('O11'":row.id==='summon_lantern'?"update('O12'":row.id==='summon_warden'?"update('O13'":row.id==='summon_eater'?"update('O14'":"update('O15'"});}
   if(row.id==='summon_charger')row.routes.push({label:'O99는 과거 저장 투사체용이며 현재 선택 기예에서 제외',file:'shared/engine/src/occultData.ts',token:'O99 remains as an inaccessible historical definition'});
   if(row.type!=='소환')row.usageState=row.usageState||(row.usage.length?'캠페인 경로 확인':row.type==='호환 그림'?'사용자 맵·구 저장 도달 가능':'캠페인 미관측 · 도구/호환 확인');
-  if(row.id==='legacy_mourner')row.routes.push({label:'side=0 상두꾼은 구형 human에서 소단으로 해석된 뒤 목 부분을 가리는 분기까지 도달',file:'shared/runtime/art-dark.js',token:"u.honroType==='mourner'"});
+  if(row.type==='호환 그림'){
+   const shared=G.HonroLegacyVisual?.kind(row.unit);
+   if(shared){row.sharedVisual=shared;row.aliases.push('호환 디스패처 → '+shared);row.routes.push({label:'팀·구 저장은 보존하고 현행 '+shared+' 벡터와 모션 공유',file:'shared/runtime/art-dark.js',token:'function legacyVisualKind'});row.routes.push({label:'공유 그림 원본',file:shared.startsWith('summon_')?'tools/actor-forge/spirits.mjs':shared==='mourner'?'tools/monster-forge/species.mjs':'tools/monster-forge/recipes.mjs',token:shared==='mourner'?'mourner':shared.startsWith('summon_')?'export':'export'});}
+  }
   if(row.type==='몬스터'||row.type==='2막 직접 그림'||row.type==='동맹·주민')row.routes.push({label:'Workshop 기본 팩토리·사용자 맵 작성 경로',file:'shared/map/units.js',token:'function catalog'});
   row.routes.push({label:'실제 그리기 경로',file:row.renderer,token:row.renderer.endsWith('act2-art.js')?(['resonance','echo'].includes(row.id)?'if(u.honroSpirit)':"kind==='"+row.id+"'"):'unitBody'});
   if(row.type==='호환 그림')row.routes.push({label:'팀·runtimeTemplate·stageOverrides를 보존하는 사용자 맵 팩토리',file:'shared/map/units.js',token:'function create'});

@@ -10,7 +10,10 @@
       "bellCluster",
       "stoneLantern"
     ],
-    "additional": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=1113700290000"
+    "additional": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=1113700290000",
+    "access": "2026-10-14 AKS 본문과 공식 이미지 링크 확인. 이미지 바이트 직접 열람은 실행환경 CONNECT 403으로 미완료.",
+    "imageUrl": "https://devin.aks.ac.kr/image/8f273e59-ffa4-43f4-93a4-df75faaf9103?preset=orig",
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "kings",
@@ -23,7 +26,8 @@
       "possessedGuard",
       "colossus"
     ],
-    "access": "제공된 공식 링크 · 자동 열람 제한"
+    "access": "제공된 공식 링크 · 자동 열람 제한",
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "jangseung",
@@ -36,7 +40,9 @@
       "summon_warden",
       "summon_earthbound"
     ],
-    "access": "제공된 공식 링크 · 자동 열람 제한"
+    "access": "2026-10-14 원 링크 웹 Internal Error. 서울시 공식 사진 추가 조회, 이미지 서버 HTTP403. 직접 이미지 검수 미완료.",
+    "additional": "https://mediahub.seoul.go.kr/archives/2007804",
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "bangsang",
@@ -48,8 +54,10 @@
       "archiveFiend",
       "colossus"
     ],
-    "access": "공식 링크 · 자동 열람에서 유물 본문 확인 제한",
-    "additional": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=1481100160000"
+    "access": "2026-10-14 국립중앙박물관 본문 확인. 이미지 직접 다운로드 HTTP403: 픽셀 직접 관찰로 주장하지 않음.",
+    "additional": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=1481100160000",
+    "imageUrl": "https://www.museum.go.kr/relic_image/PS01001001/ssu000/2019/0925111516358/ssu006331-000-90000.jpg",
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "cheoyong",
@@ -61,7 +69,8 @@
       "human",
       "possessedArcher"
     ],
-    "access": "제공된 공식 링크 · 기관 접근 안내 표시"
+    "access": "제공된 공식 링크 · 기관 접근 안내 표시",
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "yeongno",
@@ -72,7 +81,8 @@
     "related": [
       "summon_eater",
       "kilnFiend"
-    ]
+    ],
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "kokdu",
@@ -85,7 +95,8 @@
       "bier_boss",
       "mourner",
       "ally_porter"
-    ]
+    ],
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "tile",
@@ -97,7 +108,8 @@
       "archiveFiend",
       "kilnFiend"
     ],
-    "access": "공식 링크 · 자동 열람에서 유물 본문 확인 제한"
+    "access": "공식 링크 · 자동 열람에서 유물 본문 확인 제한",
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "bulgasari",
@@ -108,7 +120,9 @@
     "related": [
       "summon_eater",
       "kilnFiend"
-    ]
+    ],
+    "access": "2026-10-14 AKS 전승 본문 확인. 이 항목에서 형태를 확정할 이미지 없음.",
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   },
   {
     "id": "fish",
@@ -119,6 +133,7 @@
     "related": [
       "resonance",
       "bellCluster"
-    ]
+    ],
+    "reuse": "외부 사진·도안 저장소 복사 없음. 코드로 독립 조형, 트레이싱 없음."
   }
 ]

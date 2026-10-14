@@ -49,10 +49,25 @@ c.save();const f=u.facing||1;c.scale(f,1);const type=u.cls||'archer',ally=u.honr
  // A small weathered face inside shadow, without bright circular eyes.
  P(c,[[-6,-87],[-4,-96],[4,-98],[8,-93],[7,-85],[2,-81],[-3,-83]],skin,'#27312b',.8);P(c,[[-6,-86],[-8,-95],[-2,-103],[6,-101],[9,-91],[4,-92],[3,-97],[-3,-94]],'#172426');L(c,3,-90,7,-90,'#162b2b',.8);L(c,5,-88,6,-86,'#4c4b40',.7);
  if(type==='archer'){
-  L(c,-8,-94,9,-94,foe?'#9b544a':'#9b9c7c',2.7);stroke(c,[[-8,-94],[-21,-91],[-28,-97-tail*.2]],'#6b785f',2);L(c,-11,-76,-26,-42,'#433f30',6);for(let i=0;i<4;i++){L(c,-14+i*2,-72,-22+i*3,-100,'#aaa07d',.8);stroke(c,[[-22+i*3,-100],[-26+i*3,-104]],'#747d6a',1.4);}
+  // Bound sleeves, cross collar and a compact bow case distinguish the
+  // compatibility archer from both the party archer and a generic hooded scout.
+  P(c,[[-11,-78],[-5,-65],[10,-77],[12,-65],[-3,-53],[-12,-59]],'#8b8870','#25372f',1);
+  P(c,[[-10,-103],[4,-106],[10,-99],[8,-94],[-10,-94]],'#394b41','#9a9b7e',1);
+  stroke(c,[[-9,-97],[-19,-93],[-25,-83-tail*.2]],'#9a916e',2.2);
+  P(c,[[-22,-78],[-13,-75],[-20,-42],[-29,-45]],'#665a40','#9f946e',1);
+  for(let i=0;i<3;i++){L(c,-19+i*3,-77,-23+i*3,-102,'#b4a27a',1);L(c,-23+i*3,-102,-27+i*3,-106,'#9a9d82',1.4);}
+  P(c,[[-12,-41],[11,-41],[14,-23],[4,-26],[-1,-34],[-9,-23],[-16,-27]],'#455749','#1f332e',1);
   const theta=(u.angle<90?u.angle:180-u.angle)*Math.PI/180;c.save();c.translate(12,-65);c.rotate(-theta*.72);L(c,0,0,18,0,cloth,5);c.strokeStyle='#b6a16e';c.lineWidth=2.3;c.beginPath();c.moveTo(19,-26);c.bezierCurveTo(26,-24,33,-10,31,0);c.bezierCurveTo(33,10,26,24,19,26);c.stroke();stroke(c,[[19,-26],[3-charge*16,0],[19,26]],'#c1b99a',.75);L(c,3-charge*16,0,39,0,'#c9c4aa',1);P(c,[[43,0],[36,-2],[36,2]],'#d0c8a3');c.restore();
  }else if(type==='mage'){
-  P(c,[[-8,-96],[-6,-110],[5,-111],[8,-96]],'#263637','#8a907a',.8);P(c,[[-13,-49],[-14,-20],[-3,-24],[0,-40]],'#3c5350','#1b2b2d',.9);L(c,11,-70,23,-61,cloth,7);L(c,25,-10,29,-112,'#776b4d',3);L(c,26,-102,41,-99,'#b5aa83',1);P(c,[[29,-110],[36,-116],[41,-108],[34,-103]],'#b4c4b2');glyph(c,34,-112,7+charge*8,'#a9c6b8',this.time*.4);glow(c,34,-110,14+charge*25,'#a5c7b5',.25+charge*.3);
+  // Low cloth cap, long coat and an opened paper fan: no crystal staff.
+  P(c,[[-9,-97],[-8,-105],[5,-107],[11,-101],[10,-96]],'#4b554b','#a5a489',1);
+  P(c,[[-12,-78],[-4,-61],[10,-77],[14,-64],[-3,-48],[-13,-58]],'#a19b80','#273832',1);
+  P(c,[[-13,-43],[12,-43],[18,-12],[5,-17],[-1,-32],[-11,-13],[-19,-19]],'#405b54','#223831',1.1);
+  L(c,-12,-43,13,-43,'#a49b78',3);L(c,11,-70,22,-59,cloth,7);
+  c.save();c.translate(24,-59);c.rotate(-.2-charge*.7+recoil*.1);
+  P(c,[[0,2],[-9,-18],[0,-23],[12,-22],[23,-14],[24,-5]],'#c0b797','#4b5949',1);
+  stroke(c,[[0,2],[0,-18]],'#81795a',1);stroke(c,[[0,2],[11,-17]],'#81795a',1);stroke(c,[[0,2],[20,-8]],'#81795a',1);L(c,0,2,-2,10,'#7d6a4b',3);
+  if(charge>0){c.globalAlpha=Math.min(.4,charge*.4);E(c,11,-10,18+charge*8,13+charge*5,'#b0c3a555');}c.restore();
  }else if(type==='knight'){
   // Cloth-covered armour, broad collar and tied headcloth: a road guard,
   // rather than a visor helmet with a decorative plume. Preserve sword joint.
@@ -130,7 +145,19 @@ Scene.prototype.boss=function(c,u){c.save();const t=this.time;P(c,[[-44,0],[-36,
  for(let i=0;i<8;i++){const x=-31+i*9,y=-128;P(c,[[x,y],[x+7,y+1],[x+9+Math.sin(t+i)*5,-47-i%3*8],[x+1,-40-i%3*8]],i%2?'#78735d':'#a2997b','#4b4844',.6);stroke(c,[[x+3,y+8],[x+5,y+32],[x+2,y+52]],'#73464b',.7);}L(c,54,-127,91,-31,'#716147',9);P(c,[[65,-37],[107,-46],[118,-11],[69,1]],'#535c4c','#a5a082',1.5);L(c,-52,-125,-78,-209,'#776b53',6);roof(c,-77,-218,80,50);glyph(c,1,-90,18,'#aa8c9c',t*.14);c.restore();};
 Scene.prototype.warden=function(c,u){c.save();const lean=Math.sin(this.time*.8)*.018;c.rotate(lean);P(c,[[-19,0],[-15,-25],[-21,-55],[-19,-94],[-8,-105],[9,-102],[20,-88],[16,-55],[21,-25],[18,0]],'#4a493a','#95907a',1.2);for(let j=0;j<7;j++){const x=-13+j*4;stroke(c,[[x,-88],[x+Math.sin(j)*3,-59],[x-3,-29],[x+2,-4]],j%2?'#171f1e':'#8c826447',1);}P(c,[[-17,-88],[16,-87],[13,-63],[-14,-61]],'#877c60','#282e24',1);stroke(c,[[-15,-80],[-4,-75],[0,-79],[11,-77]],'#291d23',3);stroke(c,[[-11,-68],[0,-71],[12,-67]],'#372824',2);L(c,-20,-52,-49,-35,'#645b3e',5);L(c,18,-53,47,-74,'#776948',5);for(let i=0;i<3;i++){const x=-11+i*9;P(c,[[x,-47],[x+7,-48],[x+5,-17],[x-3,-21]],'#a5967477','#5f453f',.7);glyph(c,x+2,-39,3,'#704944');}L(c,-17,2,-30,9,'#504937',6);L(c,17,2,30,8,'#504937',6);c.restore();};
 const oldUnit=Scene.prototype.unit;
-Scene.prototype.unitBody=function(c,u,charge=0){c.save();c.translate(u.x,u.y);const baseHeight=u.boss?230:u.honroType==='beast'?125:['crow','bat'].includes(u.honroType)?83:['ghost','shade','lantern'].includes(u.honroType)?112:102;c.scale(u.h/baseHeight,u.h/baseHeight);
+// Kept as a public read-only dispatch contract for the catalogue and old-save
+// audit. These are visual aliases only; never rewrite a unit's team or species.
+function legacyVisualKind(u){
+ if(!u||u.boss)return null;
+ if(u.summoned)return G.HonroActorVisual?.assets['summon_'+u.summonKind]?'summon_'+u.summonKind:'summon_stalker';
+ if(['beast','bat','crow','ghost','shade','lantern','warden','mourner'].includes(u.honroType))return G.HonroMonsterVisual?.species(u);
+ return null;
+}
+G.HonroLegacyVisual={kind:legacyVisualKind};
+Scene.prototype.unitBody=function(c,u,charge=0){
+ const id=legacyVisualKind(u),visual=u.summoned?G.HonroActorVisual:G.HonroMonsterVisual,a=id&&visual?.assets[id];
+ if(a){c.save();c.translate(u.x,u.y);c.scale(u.h/a.baseHeight*(u.facing||1),u.h/a.baseHeight);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;visual.draw(c,id,{time:this.time||0,state:visual.state(u,this.actorEngine),pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();return;}
+ c.save();c.translate(u.x,u.y);const baseHeight=u.boss?230:u.honroType==='beast'?125:['crow','bat'].includes(u.honroType)?83:['ghost','shade','lantern'].includes(u.honroType)?112:102;c.scale(u.h/baseHeight,u.h/baseHeight);
  if(u.honroType==='bier')this.bier(c,u);else if(u.honroType==='gate')hall(c,0,0,108,122);else if(u.boss)this.boss(c,u);else if(u.honroType==='warden'){this.warden(c,u);}else if(u.honroType==='civilian'){this.human(c,{...u,cls:'mage'},H.hero.mage,false,0,0);}else if(u.summoned||['ghost','shade','lantern'].includes(u.honroType))this.spirit(c,u);else if(u.honroType==='bat')this.bat(c,u);else if(u.honroType==='crow')this.crow(c,u);else if(u.honroType==='beast')this.beast(c,u,(u.moving||0)>0?Math.sin(this.time*12)*9:0);else if(u.honroType==='mourner'){
   // A player-team Workshop mourner is still a mourner, never a party hero.
   // Share the authored headless porter without changing team/AI/save fields.
