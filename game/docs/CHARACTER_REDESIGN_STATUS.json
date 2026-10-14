@@ -1,0 +1,421 @@
+{
+  "baseline": "3899a2f2550d8728811f96ec0c1c202956921291",
+  "referenceImageInspection": "blocked: CONNECT/HTTP403, no pixel inspection claimed",
+  "publicVerification": "pending final deployment",
+  "items": [
+    {
+      "id": "ghost",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "shade",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "warden",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "lantern",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "summon_charger",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "summon_eater",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "resonance",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "echo",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "bellCluster",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "keeper",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_mourner",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_knight",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_occultist",
+      "phase": 1,
+      "previousVerdict": "우선 개편",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+    },
+    {
+      "id": "hound",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "boar",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "bat",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "human",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "possessedGuard",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "possessedArcher",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "gateMaster",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "archerMaster",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "archiveFiend",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "kilnFiend",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "summon_stalker",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "summon_warden",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "summon_echo",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "bier_boss",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "minecart",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "picks",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "waterwheel",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "stoneLantern",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "hoist",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_hound",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_boar",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_stag",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_bat",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_crow",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_ghost",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_shade",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_lantern",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_warden",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_archer",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_mage",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "legacy_summon",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "target_bier-knot",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    },
+    {
+      "id": "target_upper-chain",
+      "phase": 2,
+      "previousVerdict": "수정 권장",
+      "implementation": "complete",
+      "localVisualReview": "passed",
+      "sourceCommit": "20d86d69158d5a8d1434886f27e526f464a1a2ac",
+      "evidence": "_local/reports/character-redesign/phase2-qa/visual-review.json"
+    }
+  ]
+}

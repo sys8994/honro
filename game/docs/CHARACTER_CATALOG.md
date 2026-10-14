@@ -12,7 +12,7 @@
   한 그림이며, 주박목·바깥 주박·상부 사슬 고정구는 각각 별도 항목이다.
 - 구형 호환 15개 **분기**를 별도 필터로 제공한다. 독립 원본 파일 15개라는 뜻은
   아니다. 미등록 소환혼은 구형 혼의 기본 도형을 공유하고 side=0 상두꾼은
-  구형 human 경로에서 소단과 가림 면을 합성한다.
+  호환 디스패처에서 현행 머리 없는 상두꾼 벡터를 공유한다. 이전 소단+가림 면 분기는 개편에서 제거했다.
 - `monkVessel`은 공명혼의 alias, 8장 빈 상여는 `bier_boss` 사용처다.
 - 30개 fresh 장에서 `b.units`, `honroStaging.hidden`, `honroConvoyActors`를 수집하고
   프로젝트의 meta·metadata·encounters·initialState·events, 전투 맵/사건과
@@ -46,8 +46,7 @@ iframe·물리 tick은 만들지 않는다. `HONRO_EMBEDDED=true`를 선행하�
 검수 기록은 `reviews.json`에 있다. Chromium으로 전체 contact sheet와 개별 전신을
 직접 보고 판정했으며 소스 코드만 읽어 픽셀 검수를 대신하지 않았다. 주인공 4명은
 개편 대상에서 제외하고 기준으로 표시한다. 큰 실루엣·재질·절제된 면을 우선하며
-미세 선이나 노드 수를 품질의 대용으로 삼지 않는다. 종지기는 기존 보라색 뾰족
-두건/원형 지팡이 몸체에 띠를 더하는 경로여서 우선 개편으로 판단했다.
+미세 선이나 노드 수를 품질의 대용으로 삼지 않는다. 기존 종지기는 보라색 뾰족 두건/지팡이 때문에 우선 개편으로 판단했고, 이번에 독립 사찰 작업자 Canvas로 교체했다. 원 판정은 `CHARACTER_REDESIGN_BASELINE.json`에 보존한다.
 
 공식 문화 자료는 `references.json`의 링크로만 제공한다. 자동 열람 제한이 있는
 페이지는 표시하며 사진·도안을 복제하거나 트레이스하지 않는다. 방상시·처용·꼭두·
@@ -94,4 +93,8 @@ Game/Workshop 빌드 목록을 바꾸지 않기 위해 별도 빌드로 둔다. 
 
 `HONRO_BASE_URL=https://sys8994.github.io/honro HONRO_CATALOG_REPORT=_local/reports/character-catalog-public python -X utf8 tests/character-catalog-browser.py`로 공개 사이트에 같은 검사를 적용한다. HTTP 응답 SHA256을 체크아웃 산출물과 대조하고 실제 URL·sourceCommit을 결과에 기록한다. 로컬 통합 증거는 `_local/reports/character-catalog-integrated/`이며 공개 배포 검수와 구분한다.
 
-공개 배포는 스토리 통합 master의 기존 Pages로 반영했다. 이 executor의 공개 HTTP403/DNS 제한 때문에 공개 사이트의 해시·화면 검수는 미완료다. 로컬 통합31검사와 Pages workflow 성공을 공개 검수 통과로 바꾸지 않는다. 최종 통합 상태와 남은 검증은 [개정 구현 기록](story/ACT23_REVISION_IMPLEMENTATION.md)을 따른다.
+이전 스토리 통합 공개 배포는 기존 Pages로 반영했다. 이 executor의 공개 HTTP403/DNS 제한 때문에 공개 사이트의 해시·화면 검수는 미완료다. 로컬 통합31검사와 Pages workflow 성공을 공개 검수 통과로 바꾸지 않는다. 최종 통합 상태와 남은 검증은 [개정 구현 기록](story/ACT23_REVISION_IMPLEMENTATION.md)을 따른다.
+
+## 캐릭터 개편 반영
+
+[개편 기록](CHARACTER_REDESIGN.md)에 따라 우선13·권장33 전체를 실제 그림으로 교체했다. 호환11분기는 현행 몬스터/소환 벡터와 모션을 공유하고 `sharedVisual` 및 원본 경로를 표시한다. 이름 별칭·정예·소환·목표의 사용처 수집과 72행 계약은 유지한다. 새 판정의 이전 분류는 각 `previousVerdict`와 동결 baseline에서 확인한다. 공식 이미지 직접 열람 차단과 공개 배포 검수는 로컬 미술 통과와 구별한다.

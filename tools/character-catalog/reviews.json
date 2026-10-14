@@ -20,14 +20,16 @@
     "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
   },
   "hound": {
-    "verdict": "수정 권장",
-    "note": "목과 어깨의 꺾인 큰 면은 읽히지만 큰 뾰족귀·눈·짧은 주둥이가 친숙한 만화 개에 가깝다. 머리 비율과 몸의 긴장·불균형으로 들림을 보강하고 털 선의 증량은 피한다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "긴 주둥이·작은 눈·뒤틀린 목과 어깨의 큰 면으로 친숙한 만화 개의 인상을 줄였다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "boar": {
-    "verdict": "수정 권장",
-    "note": "큰 몸통과 낮은 다리는 무게가 있다. 둥글게 말린 꼬리와 밝고 둥근 엄니가 익살을 만들므로 엄니·주둥이·눈의 비중을 조정할 여지가 있다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "낮은 눈과 긴 주둥이, 무딘 엄니·각진 중량으로 둥근 얼굴과 익살스러운 꼬리 비중을 줄였다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "stag": {
     "verdict": "유지",
@@ -35,9 +37,10 @@
     "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
   },
   "bat": {
-    "verdict": "수정 권장",
-    "note": "날개막의 면과 긴 귀는 읽힌다. 좌우 대칭과 작고 단정한 얼굴이 문장 아이콘처럼 보여 비행 자세의 비대칭과 날개 끝의 무게를 우선 검토한다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "좌우 날개막과 날개 끝의 길이·굽힘을 달리해 대칭 문장 같은 인상을 줄였다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "crow": {
     "verdict": "유지",
@@ -57,9 +60,10 @@
     "previousVerdict": "우선 개편"
   },
   "human": {
-    "verdict": "수정 권장",
-    "note": "기울어진 갓과 활은 한국식 인물로 읽힌다. 밝은 사각 눈·입과 짧은 팔다리가 가벼운 병정 인상을 주어 주인공의 성인 비례에 맞춘 조정이 필요하다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "작은 얼굴과 낮은 관모·교차깃, 길어진 옷 면과 다리로 성인 비례를 보강했다. 활 관절과 조준은 유지한다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "warden": {
     "verdict": "유지",
@@ -79,34 +83,40 @@
     "previousVerdict": "우선 개편"
   },
   "possessedGuard": {
-    "verdict": "수정 권장",
-    "note": "군복과 칼·방패는 식별되지만 큰 머리와 짧은 다리가 주인공보다 만화 병정에 가깝다. 한국 군복의 큰 면과 성인 비례를 먼저 맞춘다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "작은 그늘진 얼굴과 긴 군복, 어깨 보호구·방패의 큰 면으로 병정 인상을 줄였다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "possessedArcher": {
-    "verdict": "수정 권장",
-    "note": "활과 화살통으로 역할은 구분된다. 호위병과 같은 가면 얼굴·큰 머리 비율을 쓰므로 조준 몸짓과 긴장으로 들림의 차이를 만드는 편이 낫다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "얼굴 크기·복식 면을 정돈하고 활·화살통의 사선과 조준 몸짓을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "gateMaster": {
-    "verdict": "수정 권장",
-    "note": "붉은 군복·방패는 정예를 구별하지만 큰 얼굴과 짧은 하체는 가벼운 인상이다. 정예의 무게 중심과 갑주의 큰 면을 다듬고 사천왕 수호상을 악귀로 단정하지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "넓은 어깨 보호구·긴 환도와 무게 중심으로 일반 호위와 구분한다. 수호상을 악귀로 설명하는 설정은 추가하지 않았다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "archerMaster": {
-    "verdict": "수정 권장",
-    "note": "붉은 옷과 활은 명확하다. 일반 궁수의 단순 색상 변화로 읽히기 쉬워 성인 비례와 자세·장비 무게에서 차이를 줄 필요가 있다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "큰 화살통과 한쪽 어깨 보호구·기울어진 관모로 일반 궁수의 단순 색상 변형을 벗어났다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "archiveFiend": {
-    "verdict": "수정 권장",
-    "note": "두건·길게 늘어진 옷과 든 문서는 서고 역할을 전한다. 큰 밝은 얼굴과 매끈한 종이 면은 가벼워 보여, 문서가 몸을 묶거나 비우는 구조를 검토할 수 있다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "밝은 가면과 후드를 낮은 방건·그늘진 작은 얼굴·펼친 장부의 구조로 교체했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "kilnFiend": {
-    "verdict": "수정 권장",
-    "note": "큰 망치와 등에 진 짐은 작업자 역할을 전하지만 소형 병정 비례다. 가마·쇠·그을음의 큰 재질 차이를 실루엣에 연결할 필요가 있다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "작업 앞치마·낮은 머리싸개와 등짐·망치의 큰 면을 분리했다. 작은 병정 얼굴의 비중을 줄였다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "ally_porter": {
     "verdict": "유지",
@@ -159,9 +169,10 @@
     "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
   },
   "summon_stalker": {
-    "verdict": "수정 권장",
-    "note": "찢긴 소매와 작은 얼굴은 읽히지만 외곽이 단순한 망토 유령에 가깝다. 한국 수의의 여밈과 몸의 부재를 큰 면으로 다듬을 여지가 있다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "교차한 수의와 빈 목깃·비대칭 소매·긴 손으로 몸의 부재를 나타낸다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "summon_lantern": {
     "verdict": "유지",
@@ -175,9 +186,10 @@
     "previousVerdict": "우선 개편"
   },
   "summon_warden": {
-    "verdict": "수정 권장",
-    "note": "나무 기둥과 부적은 수호 역할에 맞지만 넓은 입·왕관형 머리가 만화 장승으로 보인다. 깊이 깎인 목재 면과 절제된 얼굴 대비를 검토한다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "굵고 넓은 목주·처진 가지·닫힌 입으로 만화 장승 인상을 줄였다. 수호의 역할은 유지한다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "summon_host": {
     "verdict": "미사용 후보",
@@ -191,9 +203,10 @@
     "previousVerdict": "우선 개편"
   },
   "summon_echo": {
-    "verdict": "수정 권장",
-    "note": "길게 접힌 소매와 가는 몸은 낯설지만 웃는 듯한 짧은 붉은 입과 반듯한 가면이 가볍다. 얼굴보다 빈 소매·반향의 반복 자세를 중심으로 다듬는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "웃는 가면을 제거하고 빈 목·길이가 다른 소매·큰 종이 접힘으로 반향의 빈 공간을 표현한다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "summon_earthbound": {
     "verdict": "유지",
@@ -206,9 +219,10 @@
     "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
   },
   "bier_boss": {
-    "verdict": "수정 권장",
-    "note": "상여 외곽은 읽히지만 가운데 밝은 얼굴이 웃는 작은 귀신처럼 보인다. 빈 내부·늘어진 천·무게로 불안을 만들고 얼굴 표식의 비중을 줄인다. 8장 그림은 이 항목으로 통합했다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "밝은 얼굴·손을 제거하고 빈 내부·길고 무거운 휘장·굵은 상여채를 사용한다. 8장과 호환 보스가 같은 그림을 쓴다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "stretcher": {
     "verdict": "유지",
@@ -226,24 +240,28 @@
     "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
   },
   "minecart": {
-    "verdict": "수정 권장",
-    "note": "두 원형 바퀴와 단순 사다리꼴 수레통이 아이콘처럼 보인다. 들림의 무게 이동·낡은 결합부를 큰 면으로 보강하되 작은 리벳을 늘리지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "광석 적재물·각진 바퀴와 차축·받침띠·측면 그늘로 작업 수레의 중량을 보강했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "picks": {
-    "verdict": "수정 권장",
-    "note": "곡괭이 세 개의 교차는 선명하다. 밝은 외곽선과 균등한 배치가 장식 문양처럼 보여 작업도구의 쇠·나무 차이와 불안한 비대칭을 검토한다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "나무 자루·철제 날·고정쇠를 큰 면으로 구별했다. 기존 공중 회전·공격 구조는 유지한다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "waterwheel": {
-    "verdict": "수정 권장",
-    "note": "정원과 균등한 여덟 살이 수차 기호에 가깝다. 축·젖은 목재·비뚤어진 살의 큰 구조로 무게를 보강할 필요가 있다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "두꺼운 테·넓은 물받이·축과 서로 다른 명암의 살로 목재 수차의 구조를 보강했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "stoneLantern": {
-    "verdict": "수정 권장",
-    "note": "석등의 기단·기둥·지붕은 읽히지만 매끈한 도형과 균일한 테두리가 평면 아이콘처럼 보인다. 석재의 넓은 명암면과 실제 지붕·화사석 비례를 우선 검토한다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "기단·간주·화사석·완만한 옥개석을 분리하고 어두운 내부에 작은 등화만 남겼다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "resonance": {
     "verdict": "유지",
@@ -264,9 +282,10 @@
     "previousVerdict": "우선 개편"
   },
   "hoist": {
-    "verdict": "수정 권장",
-    "note": "A자 인양틀·밧줄·추는 역할이 분명하다. 균일한 밝은 외곽선과 가벼운 추 때문에 실제 중량이 약해 보여 목재 지지와 매달린 하중을 큰 면으로 보강한다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "목재 결구·쌍밧줄·걸린 돌의 넓은 명암면으로 하중을 드러낸다. 본래 높이·모션 속도는 유지한다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "keeper": {
     "verdict": "유지",
@@ -275,49 +294,58 @@
     "previousVerdict": "우선 개편"
   },
   "legacy_hound": {
-    "verdict": "수정 권장",
-    "note": "몸의 큰 면은 남지만 머리와 다리가 도형적으로 끊겨 최신 산개보다 납작하다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 hound 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_boar": {
-    "verdict": "수정 권장",
-    "note": "등의 반복 가시와 사각 주둥이·짧은 다리가 도구 아이콘처럼 읽힌다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 boar 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_stag": {
-    "verdict": "수정 권장",
-    "note": "길게 뻗은 뿔과 가는 몸은 읽히나 면의 두께와 접지감이 약하다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 stag 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_bat": {
-    "verdict": "수정 권장",
-    "note": "얇은 삼각 날개와 직선 날개막이 기호처럼 읽힌다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 bat 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_crow": {
-    "verdict": "수정 권장",
-    "note": "큰 각진 날개와 직선 꼬리깃이 평면 문장처럼 읽힌다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 crow 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_ghost": {
-    "verdict": "수정 권장",
-    "note": "뾰족한 두건과 수직선 망토가 서양 유령 의상으로 읽힌다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 ghost 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_shade": {
-    "verdict": "수정 권장",
-    "note": "구형 유령 몸에 가는 결박선만 겹쳐 역할 구분이 약하다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 shade 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_lantern": {
-    "verdict": "수정 권장",
-    "note": "희미한 불빛과 가는 선의 작은 등롱은 최신 그림과 밀도 차이가 크다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 lantern 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_warden": {
-    "verdict": "수정 권장",
-    "note": "큰 기둥 몸은 분명하지만 얼굴이 단순한 꺾인 선으로 남아 표정·재질이 약하다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "구 저장·player 팀 분기에서 현행 warden 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_mourner": {
     "verdict": "유지",
@@ -326,14 +354,16 @@
     "previousVerdict": "우선 개편"
   },
   "legacy_archer": {
-    "verdict": "수정 권장",
-    "note": "붉은 짧은 상의와 단순한 활은 주인공의 성인 비례·복식과 차이가 크다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "교차깃·낮은 관모·화살통과 분할 자락을 추가하고 얼굴 대비를 절제했다. 기존 활의 손 연결은 유지한다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_mage": {
-    "verdict": "수정 권장",
-    "note": "작은 직사각 관과 보석·문양 지팡이가 구형 술사 기호로 읽힌다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "보석 지팡이를 제거하고 낮은 두건·긴 도포·펼친 종이부채의 독립 경로로 교체했다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "legacy_knight": {
     "verdict": "유지",
@@ -348,9 +378,10 @@
     "previousVerdict": "우선 개편"
   },
   "legacy_summon": {
-    "verdict": "수정 권장",
-    "note": "구형 망토 유령과 같은 기본 윤곽이다. 미등록 summonKind의 fallback을 재현한 표본이며 별도 새 자산이 아니다. 사용자 맵·구 저장 도달 가능성을 보존하며 자산 삭제 근거로 쓰지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "미등록 summonKind는 개선된 summon_stalker 그림과 모션을 공유한다. 구 저장·팩토리의 유닛 값은 그대로다.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "target_cliff-cleat": {
     "verdict": "유지",
@@ -358,9 +389,10 @@
     "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
   },
   "target_bier-knot": {
-    "verdict": "수정 권장",
-    "note": "상여 결박의 두 사용처는 같은 직사각 판·부적 몸체다. 결박의 장력과 목재의 재질이 약해 작은 아이콘처럼 읽힌다. 매듭의 구조를 먼저 개선하고 장식 선을 늘리지 않는다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "목재 두 면을 가로지르는 팽팽한 밧줄·중심 매듭·남은 끈으로 결박의 장력을 보강했다. 두 목표 모두 같은 그림이며 체력480·적 판정 유지.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   },
   "target_sodan-binding": {
     "verdict": "유지",
@@ -368,8 +400,9 @@
     "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
   },
   "target_upper-chain": {
-    "verdict": "수정 권장",
-    "note": "단독 목표 몸체는 어두운 각진 돌 블록으로 보이며 사슬 고정구의 역할이 약하다. 주변 대종·사슬 환경 레이어는 이 몸체 보기의 범위 밖이다. 전체 장면과 함께 체결 구조의 식별성을 다시 검토할 것을 권장한다.",
-    "evidence": "Chromium 실제 Scene.unit 전신 캡처 · contact sheet / 개별 상세 · 2026-10-14. 미술 판단이며 정상 플레이 완주 검증과 구분."
+    "verdict": "유지",
+    "note": "돌 받침 위 철제 고리·핀·짧은 체인으로 사슬 고정구의 역할을 드러낸다. 체력240·적 판정·공명 억제 잠금 유지.",
+    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+    "previousVerdict": "수정 권장"
   }
 }

@@ -7,6 +7,8 @@ import hashlib
 import json
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
+from story_browser_server import story_base_url
+BASE_URL=story_base_url()
 
 OUT=ROOT/'_local/reports/monster-forge';OUT.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[]
@@ -21,10 +23,10 @@ CONTRACT=r'''()=>{
  const V=HonroMonsterVisual,scene=Object.create(HonroScene.prototype);scene.time=0;scene.scale=1;scene.walkTime=0;
  const cv=document.createElement('canvas');cv.width=640;cv.height=640;const c=cv.getContext('2d'),rows=[];
  for(const [id,a] of Object.entries(V.assets)){
-  if(a.budget==='act3-authored')continue; // New authored species have separate, explicit budgets.
+  if(!window.MONSTER_HISTORICAL_IDS.includes(id))continue; // Baseline membership is independent of current art budget.
   const d=HonroWorld.archetypes[id],u={id:'qa-'+id,x:320,y:540,h:256,r:d.r,honroType:d.look,honroVariant:d.variant,cls:d.cls,side:1,facing:1,hp:100,maxHp:100,angle:0},before=JSON.stringify(u);
   let anchors=0,curves=0;const proxy=new Proxy(c,{get(target,key){const v=target[key];if(typeof v!=='function')return v;return(...args)=>{if(['moveTo','lineTo','quadraticCurveTo','bezierCurveTo'].includes(key))anchors++;if(['arc','ellipse','rect'].includes(key))curves++;return v.apply(target,args);};},set(target,k,v){target[k]=v;return true;}});
-  V.legacyBody.call(scene,proxy,u);const legacy={anchors,curvedPrimitives:curves};
+  const oldScene=Object.create(HonroHistoricalMonsterScene.prototype);Object.assign(oldScene,{time:0,walkTime:0,scale:1});oldScene.unitBody(proxy,u);const legacy={anchors,curvedPrimitives:curves};
   const snapshots=[];let bounded=true,visible=true;
   for(const facing of [-1,1])for(const motion of ['idle','move','attack','hit'])for(const t of [0,.2,.45,.8]){
    c.clearRect(0,0,640,640);c.save();c.translate(320,530);c.scale(2*facing,2);V.draw(c,id,{time:t,state:motion==='idle'?{}:motion==='move'?{move:true}:{[motion]:t},pixels:256});c.restore();
@@ -60,7 +62,8 @@ RUNTIME=r'''()=>{const a=HonroApp;a.frame=()=>{};a.dialogue=null;a.turnNotice=nu
 
 with sync_playwright() as p:
     browser=launch(p)
-    lab=browser.new_page(viewport={'width':1480,'height':1100});listen(lab);lab.goto((OUT/'index.html').as_uri());lab.wait_for_function('window.MonsterLab')
+    lab=browser.new_page(viewport={'width':1480,'height':1100});listen(lab);lab.goto(BASE_URL+'/_local/reports/monster-forge/index.html');lab.wait_for_function('window.MonsterLab')
+    lab.evaluate('(ids)=>window.MONSTER_HISTORICAL_IDS=ids',IDS)
     result=lab.evaluate(CONTRACT)
     metrics=json.loads((OUT/'metrics.json').read_text(encoding='utf-8'))
     for row in result['rows']:
@@ -98,12 +101,12 @@ with sync_playwright() as p:
     # not charged to an otherwise identical 36-monster combat workload.
     lab.close()
     bench=browser.new_page(viewport={'width':1480,'height':1100});listen(bench)
-    bench.goto((OUT/'index.html').as_uri());bench.wait_for_function('window.MonsterLab')
+    bench.goto(BASE_URL+'/_local/reports/monster-forge/index.html');bench.wait_for_function('window.MonsterLab')
     perf=bench.evaluate(r'''()=>{const cv=document.createElement('canvas');cv.width=1500;cv.height=900;const c=cv.getContext('2d'),times=[],assets=HonroMonsterVisual.assets,ids=Object.keys(assets);for(let k=0;k<80;k++){const start=performance.now();c.clearRect(0,0,1500,900);for(let i=0;i<36;i++){const id=ids[i%ids.length],a=assets[id];c.save();c.translate(100+i%9*165,185+Math.floor(i/9)*220);c.scale(120/a.baseHeight,120/a.baseHeight);HonroMonsterVisual.draw(c,id,{time:k*.02,pixels:120,state:{move:true}});c.restore();}c.getImageData(0,0,1,1);if(k>=10)times.push(performance.now()-start);}times.sort((a,b)=>a-b);return{units:36,samples:times.length,p50:times[35],p95:times[66],max:times.at(-1)};}''')
     print('MONSTER PERF',json.dumps(perf),flush=True)
     check('36 detailed monsters draw within 16.7ms at p95 on this machine',perf['p95']<16.7,perf)
     bench.close()
-    game=browser.new_page(viewport={'width':1440,'height':900});listen(game);game.goto((ROOT/'HONRO.html').as_uri());game.wait_for_function('window.HonroApp');arena=game.evaluate(ARENA)
+    game=browser.new_page(viewport={'width':1440,'height':900});listen(game);game.goto(BASE_URL+'/HONRO.html');game.wait_for_function('window.HonroApp');arena=game.evaluate(ARENA)
     game.evaluate('p=>{HonroApp.profile.settings.sound=false;HonroApp.launchMap(p,p.activeStageId,{story:false});}',arena)
     game_result=game.evaluate(RUNTIME);check('Game uses pure production vectors',game_result['pure'] and not game_result['error'],game_result['signatures']);game.screenshot(path=str(OUT/'game.png'))
     for i,x in enumerate([1800,2850],2):
@@ -112,7 +115,7 @@ with sync_playwright() as p:
     combat=game.evaluate(r'''()=>{const a=HonroApp,e=a.engine,b=e.b,rows=[];for(const id of Object.keys(HonroMonsterVisual.assets)){b.projectiles=[];b.phase='enemy';b.active='art-'+id;const u=e.active;u.acted=false;u.focus=999;u.cooldowns={};const ok=e.fire(u.loadout[0],150,.45,true),atFire=HonroMonsterVisual.state(u);e.stepUnits(.18);const later=HonroMonsterVisual.state(u);e.hurt(u,5,'p-archer');const hit=HonroMonsterVisual.state(u);rows.push({id,ok,atFire:atFire.attack,later:later.attack,hit:hit.hit,damage:u.hp<u.maxHp});}return rows;}''')
     check('Actual enemy fire and damage drive attack/hit poses',all(r['ok'] and r['atFire']==0 and 0<r['later']<1 and r['hit']==0 and r['damage'] for r in combat),combat)
     game.close()
-    editor=browser.new_page(viewport={'width':1440,'height':900});listen(editor);editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI');editor.evaluate('p=>HonroWorkshopAPI.importProject(p)',arena)
+    editor=browser.new_page(viewport={'width':1440,'height':900});listen(editor);editor.goto(BASE_URL+'/HONRO_WORKSHOP.html');editor.wait_for_function('window.HonroWorkshopAPI');editor.evaluate('p=>HonroWorkshopAPI.importProject(p)',arena)
     saved=editor.evaluate('HonroWorkshopAPI.exportProject()');editor.evaluate('HonroWorkshopAPI.setCamera({x:850,y:580,zoom:.85})');editor.wait_for_timeout(150);editor.screenshot(path=str(OUT/'workshop-stage.png'))
     stage=editor.evaluate('()=>{const {scene,engine}=HonroWorkshopAPI.getRuntime();return ('+SPRITES+')(scene,engine);}')
     for i,x in enumerate([1800,2850],2):

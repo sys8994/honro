@@ -4,5 +4,7 @@ import {actorCatalog} from './catalog.mjs';
 import path from 'node:path';
 const out=path.join(root,'_local/reports/actor-forge');await mkdir(out,{recursive:true});
 const runtime=(await runtimeParts()).join('\n'),template=await readFile(new URL('./lab.html',import.meta.url),'utf8'),metrics=await readFile(path.join(out,'metrics.json'),'utf8');
-await writeFile(path.join(out,'index.html'),template.replace('/* RUNTIME */',runtime).replace('/* DATA */','const catalog='+JSON.stringify(actorCatalog)+';const metrics='+metrics+';'));
+const oldSources=await Promise.all(['actor-renderer-baseline.js','actor-art-dark-baseline.js'].map(name=>readFile(path.join(root,'tests/fixtures',name),'utf8')));
+const historical='\n{const scope={...globalThis};'+oldSources.map(source=>'new Function("globalThis",'+JSON.stringify(source)+')(scope);').join('')+'globalThis.HonroHistoricalActorScene=scope.HonroScene;}\n';
+await writeFile(path.join(out,'index.html'),template.replace('/* RUNTIME */',runtime+historical).replace('/* DATA */','const catalog='+JSON.stringify(actorCatalog)+';const metrics='+metrics+';'));
 console.log('_local/reports/actor-forge/index.html');

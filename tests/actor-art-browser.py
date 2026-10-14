@@ -5,6 +5,8 @@ This verifies implementation contracts; PNG review is a separate art decision.
 import base64, hashlib, json
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
+from story_browser_server import story_base_url
+BASE_URL=story_base_url()
 
 OUT=ROOT/'_local/reports/actor-forge';OUT.mkdir(parents=True,exist_ok=True)
 BASE=json.loads((ROOT/'tests/fixtures/actor-baseline.json').read_text(encoding='utf-8'))
@@ -42,7 +44,7 @@ RUNTIME=r'''()=>{const a=HonroApp;a.frame=()=>{};a.dialogue=null;a.turnNotice=nu
 
 with sync_playwright() as p:
     browser=launch(p)
-    lab=browser.new_page(viewport={'width':1500,'height':1100});listen(lab);lab.goto((OUT/'index.html').as_uri());lab.wait_for_function('window.ActorLab')
+    lab=browser.new_page(viewport={'width':1500,'height':1100});listen(lab);lab.goto(BASE_URL+'/_local/reports/actor-forge/index.html');lab.wait_for_function('window.ActorLab')
     actor_fixtures=lab.evaluate('catalog')
     rows=lab.evaluate(AUDIT)
     idle=lab.evaluate(r'''() => Object.values(HonroActorVisual.assets).filter(a=>a.family==='summon').map(a=>({id:a.id,rotates:a.clips.idle.tracks.some(t=>t.channel==='rotate'),deforms:a.clips.idle.tracks.some(t=>t.channel==='scaleX'||t.channel==='scaleY'),amplitude:Math.max(...a.clips.idle.tracks.filter(t=>t.channel==='scaleX'||t.channel==='scaleY').flatMap(t=>t.keys.map(k=>Math.abs(k[1]-1))))}))''')
@@ -79,7 +81,7 @@ with sync_playwright() as p:
     # Keep this workload sequential with other browser/performance tests.
     perf=lab.evaluate(r'''()=>{const cv=document.createElement('canvas');cv.width=1500;cv.height=900;const c=cv.getContext('2d'),V=HonroActorVisual,ids=Object.keys(V.assets),times=[];for(let k=0;k<80;k++){const start=performance.now();c.clearRect(0,0,1500,900);for(let i=0;i<36;i++){const id=ids[i%ids.length],a=V.assets[id];c.save();c.translate(100+i%9*165,185+Math.floor(i/9)*220);c.scale(96/a.baseHeight,96/a.baseHeight);V.draw(c,id,{time:k*.02,pixels:96,state:{move:true}});c.restore();}c.getImageData(0,0,1,1);if(k>=10)times.push(performance.now()-start);}times.sort((a,b)=>a-b);return{units:36,samples:times.length,p50:times[35],p95:times[66],max:times.at(-1)};}''')
     check('36 actors within 16.7ms p95',perf['p95']<16.7,perf);lab.close()
-    game=browser.new_page(viewport={'width':1440,'height':900});listen(game);game.goto((ROOT/'HONRO.html').as_uri());game.wait_for_function('window.HonroApp');game.evaluate('()=>{HonroApp.frame=()=>{};HonroApp.profile.settings.sound=false;HonroApp.profile.settings.music=false;HonroApp.updateAudio();}')
+    game=browser.new_page(viewport={'width':1440,'height':900});listen(game);game.goto(BASE_URL+'/HONRO.html');game.wait_for_function('window.HonroApp');game.evaluate('()=>{HonroApp.frame=()=>{};HonroApp.profile.settings.sound=false;HonroApp.profile.settings.music=false;HonroApp.updateAudio();}')
     inventory=game.evaluate(r'''()=>{const a=HonroApp,rows=[];for(let i=1;i<=10;i++){a.profile.cleared[i]={visits:1};a.launch(i);a.dialogue=null;a.turnNotice=null;for(const u of a.engine.b.units)rows.push({stage:i,id:u.id,name:u.name,type:u.honroType,actor:HonroActorVisual.kind(u),party:resolveRebuildCharacter(u),monster:HonroMonsterVisual.kind(u),act2:!!(u.honroAct2&&globalThis.HonroAct2Art)});}return rows;}''')
     check('All campaign units have an improved production design',all(r['actor'] or r['party'] or r['monster'] for r in inventory),inventory)
     check('Named allies and final Sodan keep approved party designs',all(not r['actor'] for r in inventory if r['party']),[r for r in inventory if r['party'] and not r['id'].startswith('p-')])
@@ -99,7 +101,7 @@ with sync_playwright() as p:
     allies=game.evaluate(r'''()=>{const e=HonroApp.engine,b=e.b,V=HonroActorVisual,rows=[],units=[...b.units];for(const role of ['guard','scout','archer','healer','ritualist','porter']){const u=units.find(u=>u.id==='art-ally_'+role),owner=e.unit('owner'),foe=e.unit('foe');b.units=[owner,u,foe];owner.hp=owner.maxHp*.4;owner.dead=false;u.dead=false;u.honroAlly=true;u.x=600;owner.x=640;foe.x=690;foe.hp=foe.maxHp=999999;foe.dead=false;b.projectiles=[];b.phase='ally';b.active=u.id;b.side=0;b.honroState??={};b.honroState.allyQueue={ids:[u.id],index:0,returnActive:owner.id,phase:'act',elapsed:0,started:false};e.tick(.016);const state=V.state(u,e);rows.push({role,attack:state.attack,phase:b.honroState.allyQueue?.phase});}return rows;}''')
     check('Actual allied turn exposes non-projectile attack poses',all(r.get('attack') is not None for r in allies),allies)
     game.close()
-    editor=browser.new_page(viewport={'width':1440,'height':900});listen(editor);editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI');editor.evaluate('p=>HonroWorkshopAPI.importProject(p)',arena)
+    editor=browser.new_page(viewport={'width':1440,'height':900});listen(editor);editor.goto(BASE_URL+'/HONRO_WORKSHOP.html');editor.wait_for_function('window.HonroWorkshopAPI');editor.evaluate('p=>HonroWorkshopAPI.importProject(p)',arena)
     saved=editor.evaluate('HonroWorkshopAPI.exportProject()');editor.evaluate('HonroWorkshopAPI.setCamera({x:700,y:600,zoom:1})');editor.wait_for_timeout(150);editor.screenshot(path=str(OUT/'workshop-stage.png'))
     stage=editor.evaluate('()=>{const {scene,engine}=HonroWorkshopAPI.getRuntime();return ('+SPRITES+')(scene,engine);}')
     check('Stage View matches Game vectors pixel for pixel',stage==result['image'])

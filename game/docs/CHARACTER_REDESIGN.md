@@ -15,9 +15,9 @@
 
 증거는 Git 제외 `_local/reports/character-redesign/phase1-qa/`의 `comparison-1.png`~`comparison-4.png`, 각 `*-motions.png`, `results.json`, `visual-review.json`에 있다. 원래 도감의 baseline31검사·1,386렌더 표본도 `before/`에 보존했다.
 
-## 2차: 진행 중
+## 2차: 구현·로컬 미술 검수 완료
 
-몬스터10, 소환·상여4, 직접 Canvas5, 구형12, 파괴 목표2. 상세 ID는 동결 JSON의 `phase2`가 기준이다. 아직 전체 완료로 표시하지 않는다.
+몬스터10, 소환·상여4, 직접 Canvas5, 구형12, 파괴 목표2. 상세 ID는 동결 JSON의 `phase2`가 기준이다. 소스 `20d86d69158d5a8d1434886f27e526f464a1a2ac`를 원격 저장했다. `phase2-qa/` 128검사·오류0, 33행 전체 전후·모션 시트를 독립 검토했다. 권양기는 고정180px 표본의 캔버스 높이만330→440으로 늘려 원래 큰 프레임의 잘림을 해결했다. 그림 크기·허용 오차는 바꾸지 않았다. 실제 8장 결박HP480/side1·18장 고정구HP240/side1과 Game/Workshop 화면을 확인했다. 목표의 실제 검·화살·잠금·저장 이어하기 집중 검사도 통과했다. `CHARACTER_REDESIGN_STATUS.json`에46행 각각의 구현/로컬검수 상태를 기록한다.
 
 ## 자료와 검수 제한
 
