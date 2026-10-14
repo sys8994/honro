@@ -5,9 +5,11 @@ import json
 import os
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
+from story_browser_server import story_base_url
 
 OUT = ROOT / '_local/reports/act3-void-browser'
 OUT.mkdir(parents=True, exist_ok=True)
+BASE = story_base_url()
 SETUP = r'''() => {
  const app=HonroApp;app.close();app.stopBattle();app.debugMode=false;
  const p=HONRO_TOOLS.fresh();for(let i=1;i<=26;i++)p.cleared[i]={visits:1,rounds:5};
@@ -39,7 +41,7 @@ with sync_playwright() as p:
  for mobile in [False,True]:
   context=browser.new_context(viewport={'width':390,'height':844} if mobile else {'width':1440,'height':900},is_mobile=mobile,has_touch=mobile)
   page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(os.environ.get('HONRO_BASE_URL','http://127.0.0.1:8765').rstrip('/')+'/HONRO.html');page.wait_for_function('window.HonroApp')
+  page.goto(BASE+'/HONRO.html');page.wait_for_function('window.HonroApp')
   # Real user activation unlocks the same BGM stream used during the scene.
   page.locator('.title-actions button').first.click()
   setup=page.evaluate(SETUP);assert setup['revision']==1 and setup['roster']==['archer','mage'],setup
@@ -116,7 +118,7 @@ with sync_playwright() as p:
  if not RETURN_ONLY:
   # The editor Playtest uses the same film and fresh-map opt-in in its real iframe.
   context=browser.new_context(viewport={'width':1440,'height':900});owner=context.new_page();owner.on('pageerror',lambda e:errors.append(str(e)))
-  owner.goto(os.environ.get('HONRO_BASE_URL','http://127.0.0.1:8765').rstrip('/')+'/HONRO_WORKSHOP.html');owner.click('[data-tab="play"]');owner.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
+  owner.goto(BASE+'/HONRO_WORKSHOP.html');owner.click('[data-tab="play"]');owner.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
   frame=owner.frames[1];assert frame.evaluate(SETUP)['revision']==1;assert frame.evaluate(BEGIN)
   frame.wait_for_function('HonroApp.engine.b.honroAct3Void.state==="VOID"');frame.locator('.honro-void-scene').screenshot(path=str(OUT/'workshop-void.png'))
   assert frame.locator('.honro-void-text').inner_text()=='……여긴 어디지.';assert not frame.locator('.battle-head').is_visible()

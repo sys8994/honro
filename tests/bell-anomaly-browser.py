@@ -4,15 +4,15 @@ HONRO_BASE_URL can point at the final deployed GitHub Pages directory.
 """
 import hashlib
 import json
-import os
 import base64
 import subprocess
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
+from story_browser_server import story_base_url
 
 OUT = ROOT / '_local/reports/bell-anomaly-browser'
 OUT.mkdir(parents=True, exist_ok=True)
-BASE = os.environ.get('HONRO_BASE_URL', 'http://127.0.0.1:8765').rstrip('/')
+BASE = story_base_url()
 SETUP = r'''mobile => {
  const a=HonroApp;a.close();a.stopBattle();a.debugMode=false;
  const profile=HONRO_TOOLS.fresh();for(let i=1;i<18;i++)profile.cleared[i]={visits:1,rounds:5};

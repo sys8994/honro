@@ -68,6 +68,8 @@
 
 실행 로그/JSON/PNG/WebM은 `_local/reports/story-revision/`, `act3-void-browser/`, `bell-anomaly-browser/`, `story-anomaly-native/`, `story-anomaly-focused-native/`, `story-anomaly-17-19-native/`에 둔다. 새 검사는 `npm run test:story-revision`과 `npm run test:story-revision:browser`로 재현하며 전체 `test:integration`에도 연결한다. 브라우저 검사는 HTTP 서버를 사용하며 `HONRO_BASE_URL`로 최종 Pages를 지정할 수 있다. 묵종 브라우저 증거의 HTML은 `26818aa8…`, 이후 검은 틈 복귀 대사 수정 빌드는 `9645d315…`이다. 묵종 소스는 그 사이 동일하고, 최종 Pages에서는 배포된 바이트로 다시 확인한다.
 
+로컬 브라우저 검사는 별도 서버 준비 없이 임시 localhost 포트를 열고 종료 시 정리한다. `HONRO_BASE_URL`이 있으면 로컬 서버 없이 지정된 배포 주소를 검수한다.
+
 현재와 수정 전 master `4a601580d1a55d9455c0bb25aeb9db3e7613c529`에서 각각 재현한 기존 실패:
 
 - `environment-composition.mjs:44`: 현재 없는 `env:rock` fixture에 `Object.keys`를 호출한다.
