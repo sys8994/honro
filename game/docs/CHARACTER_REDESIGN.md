@@ -24,3 +24,10 @@
 한국학중앙연구원 상원사 동종·불가사리, 국립중앙박물관 방상시 본문을 읽었다. 공식 이미지 링크는 찾았으나 AKS·박물관·서울시 이미지 서버의 CONNECT/HTTP403으로 이미지 픽셀 직접 관찰은 미완료다. `tools/character-catalog/references.json`에 정확한 접근 상태를 남긴다. 사진을 저장소에 넣거나 트레이스하지 않았다. 장승·방상시·장례 장식을 본래 악한 존재로 설명하지 않는다. 사천왕 도상은 이 작업에 억지로 적용하지 않았다.
 
 기준 검사 알려진 실패는 `story/ACT23_REVISION_IMPLEMENTATION.md`의 목록을 유지한다. 전체 verify는 최종 master 배포 후 한 차례만 실행한다. baseline과 다른 실패를 기존 실패로 가리지 않으며 fixture를 완화하지 않는다. 과거 최소3배 앵커 규칙은 사용자 요청의 간결한 큰 면 설계와 충돌하므로, 개편 벡터만 명시적 상한350앵커/90경로/16색을 적용한다. baseline 자체와 그 무결성 검사는 보존한다.
+
+## 역사 계약과 추가 집중 검사
+
+- 현재 소스 해시를 고정한 기존 회귀 경계는 미술 변경 직후 `act2-art.js`에서 신규 실패했다. 과거 manifest/fixture를 덮지 않고 `character-art-revision-history.mjs`와 새 고정 delta로 정확한3개 런타임·2개 자산 번들 변경을 추가 승인한다. 비렌더 gameplay/core/build 입력은 불변이다. 현재167소스/9빌드/두HTML·변조 음성934+48+650+19검사 통과.
+- 승인 경계 반영 후 `migration.mjs`는 기존 `Stage7 story honroGrowth` HP527/434에서 실패한다. baseline3899a2f와 현재의 전체 실패 로그가 경로 정규화 후 정확히 같다. `migration-comparison.json` 참조.
+- 몬스터 공방 브라우저43검사 통과. 재생성 공방은 변경된 현재 fallback을 과거 그림으로 표시하지 않고 보존된 원래 fixture의 별도 Scene으로 비교한다. 브라우저는 기존 localhost HTTP 서버 helper를 사용한다.
+- 배우 공방의 먹귀 idle 진폭 검사에는 기존 실패가 있다: 실제0.0315 < 기대0.04. baseline3899a2f와 현재의 전체 clips SHA256이 `3843636dce2e2ebb1c96963a8874c7976b6ff42fedd5a11b4db0c0288406ea09`로 동일하며 같은 값으로 실패한다. 모션이나 임계값은 바꾸지 않았다. 이 fail-fast 뒤의 공방 검사는 미실행이며 개별46행 미술 검수와 구분한다.
