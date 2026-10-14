@@ -2796,3 +2796,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 호환성: 새 전투의 outcomeScenes opt-in만 새 장면을 연결한다. 구형 battle/대사 snapshot은 유지하고, 진행 중 장면은 기존 cursor·좌표 snapshot으로 재개한다. 처음 받이진 설치 전 소단을 노출하지 않으며 10장의 적 진영·주박/협력 규칙은 그대로다.
 - 시작 기준: 64b6f36, 기존 story-staging 10항목 PASS. 체크아웃에 이미 선언된 Node 의존성을 재사용했다. Python Playwright와 Chromium 경로는 있지만 기존 동일 환경의 socket/ptrace 실행 차단을 브라우저 통과로 바꾸지 않았다.
 - 검증: 신규 sodan-departure 7묶음 PASS (자연 보행 전체 지지면·작은 좌표 변화·비서사 battle 무변경, 넘기기, 중간 저장 재개, 구 저장, 누락/사망/공중/벽, 정지/재시도, 다음 장 적 진영). 장면/퀘스트 종결은 명시적 fixture다. 전체 verify·합본 HTML·실제 Game/Workshop/Pages는 통합 검수와 별도다.
+
+
+## 소단 퇴장 고정 구도 보강 (2026-10-14)
+
+- 후속 검수에서 첫 136px 보행은 카메라가 소단을 따라가며 축소해 작은 옆걸음처럼 보였다.
+- 같은 지지면에서 `(3274,2396.08)→(3560,2373.2)`까지 286px 걷도록 늘렸다. 카메라는 1.15의 가까운 고정 구도로 소단을 오른쪽 안쪽 190px에 두고, 움직임을 추적하지 않는다. 몸 전체가 실제 보행으로 화면을 벗어난 뒤 빈 길을 잠시 유지한다. fade·actor 제거·순간이동·맵 전환은 추가하지 않는다.
+- `look.screenRight` 선택값은 화면 크기에 맞춰 최초 구도를 계산한다. `focusScale`을 장면 snapshot에 함께 보존해 Continue 때 기존 기본 story zoom으로 축소하지 않는다. 이미 저장한 구형 136px 장면의 steps snapshot은 그대로다.
+- 보행/skip/구 저장 회귀와 320/390/844/1280/1920 너비의 고정 구도·몸 전체 화면 이탈, 중간 Continue의 같은 고정점/zoom을 검사한다. Native 전후는 실제 renderer로 별도 확인하며 browser CSS·실시간 동영상·정상 전투와 구분한다.
