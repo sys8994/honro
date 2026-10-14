@@ -5,6 +5,8 @@ import json
 from PIL import Image, ImageChops
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
+from story_browser_server import story_base_url
+BASE=story_base_url()
 
 OUT=ROOT/'_local/reports/integration';OUT.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[]
@@ -20,9 +22,9 @@ def canvas_image(page,selector):
 with sync_playwright() as p:
     browser=launch(p)
     editor=browser.new_page(viewport={'width':1440,'height':900});listen(editor)
-    editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene')
+    editor.goto(BASE+'/HONRO_WORKSHOP.html');editor.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene')
     game=browser.new_page(viewport={'width':1440,'height':900});listen(game)
-    game.goto((ROOT/'HONRO.html').as_uri());game.wait_for_function('window.HonroApp')
+    game.goto(BASE+'/HONRO.html');game.wait_for_function('window.HonroApp')
     game.evaluate('HonroApp.frame=()=>{}')
     project=editor.evaluate('HonroWorkshopAPI.getProject()')
     stage_count=len(project['stages'])
@@ -125,7 +127,7 @@ with sync_playwright() as p:
     check('No desktop browser exceptions',not errors,errors)
     # Mobile landscape uses the same real app and its own isolated browser storage.
     mobile=browser.new_page(viewport={'width':844,'height':390},is_mobile=True,has_touch=True);listen(mobile)
-    mobile.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());mobile.wait_for_function('window.HonroWorkshopAPI')
+    mobile.goto(BASE+'/HONRO_WORKSHOP.html');mobile.wait_for_function('window.HonroWorkshopAPI')
     mobile.click('[data-tab="play"]');mobile.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
     mp=mobile.frames[1];mp.evaluate('if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroApp.turnNotice=null;HonroApp.updateHUD(true)')
     mobile.wait_for_timeout(500);mobile.screenshot(path=str(OUT/'mobile-playtest.png'))

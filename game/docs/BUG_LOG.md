@@ -2838,3 +2838,10 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 부모의 단일 발행자 인계 후 원본 도감 `36cbc1c`를 스토리 개정과 합쳤다. 복구용 별도 도감 UI는 사용하지 않았다. 두 기준서의 크기·SHA256·말미 개행은 실제 Library materialize 원본과 일치한다.
 - 통합 소스 `84afafc`에서 Game/Workshop과 도감을 전체 재빌드했다. 두 게임 HTML은 이전 검증 바이트와 동일하며 도감은 새 런타임으로 재수집했다. 도감 31검사·1,386 렌더 표본 통과, sourceDirty 없음. 실제 desktop/390px 종지기 상세와 contact sheet를 다시 확인했다.
 - 도감 브라우저 검사에 공개 URL/보고서 위치 선택과 HTTP 산출물 해시 대조를 추가했다. 11MB 본문은 Chromium inspector 캐시 상한으로 읽을 수 없어 같은 URL의 HTTP 응답을 Playwright HTTP client로 읽고 이어 실제 페이지를 탐색한다. 게임 동작 변경이 아니다. master/Pages/배포 후 전체 검수는 다음 단계다.
+
+## 2026-10-14 · 배포 후 정확 비교 검사 경계 보완
+
+- 원인: 스토리 개정 이후에도 metadata-only 검사가 전체 캠페인을 과거 SHA와 직접 대조하여 최종 verify가 중단했다. 이전 master에서는 통과했으므로 새 검사 불일치로 분류했다.
+- 변경: 별도 고정된 스토리 delta의 정확한 역변환 뒤 과거 metadata fixture를 비교한다. 현재30장 전체 전투 비교도 계속 수행하며, 원본 fixture·허용 metadata 목록·임계치는 바꾸지 않았다. 현재 개정번호/HP/경로의 비승인 변경3종 거부를 추가했다. 집중 검사 통과.
+- 검수: 전체 verify는 배포 뒤 한 번만 실행했다. 필수 migration의7장 성장 원장 실패와 전체 브라우저 비교의8장679픽셀 실패는 기준 master에서 동일 재현했다. 별도11–30장 렌더/전체30장 짧은 실행/편집·물리·모바일 집중77검사는 통과했다. `integration.py`는 자체 HTTP 호스트를 사용하며 기본 전체 검사의 기존 실패는 유지한다.
+- 한계: GitHub에서 master/Pages 성공을 확인했으나 공개 사이트는 이 환경의 HTTP403/DNS 제한으로 직접 검수 불가다. 최종 guard receipt와 전체 검수 통과를 선언하지 않는다. 상세 결과·바이트·미실행은 [개정 구현 기록](story/ACT23_REVISION_IMPLEMENTATION.md)을 따른다.

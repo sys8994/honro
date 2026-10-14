@@ -93,3 +93,5 @@ Game/Workshop 빌드 목록을 바꾸지 않기 위해 별도 빌드로 둔다. 
 원본 도감 `36cbc1c`를 스토리 개정과 병합한 소스 `84afafc6ef926bc084aec2088c77674220b5d8f4`에서 `--ui-only` 없이 전체 수집·재빌드했다. 런타임 SHA256은 `539901883ea9f0f75a2c4ec721f6b455e6b5a790e13ec19f1281f9ead560cfef`, sourceDirty는 비어 있다. 주요53·호환15·목표4·전용벡터44·클립209 계약이 유지되며 통합본에서도 31개 실제 Chromium 검사와 1,386 렌더 표본 검사가 통과했다.
 
 `HONRO_BASE_URL=https://sys8994.github.io/honro HONRO_CATALOG_REPORT=_local/reports/character-catalog-public python -X utf8 tests/character-catalog-browser.py`로 공개 사이트에 같은 검사를 적용한다. HTTP 응답 SHA256을 체크아웃 산출물과 대조하고 실제 URL·sourceCommit을 결과에 기록한다. 로컬 통합 증거는 `_local/reports/character-catalog-integrated/`이며 공개 배포 검수와 구분한다.
+
+공개 배포는 스토리 통합 master의 기존 Pages로 반영했다. 이 executor의 공개 HTTP403/DNS 제한 때문에 공개 사이트의 해시·화면 검수는 미완료다. 로컬 통합31검사와 Pages workflow 성공을 공개 검수 통과로 바꾸지 않는다. 최종 통합 상태와 남은 검증은 [개정 구현 기록](story/ACT23_REVISION_IMPLEMENTATION.md)을 따른다.

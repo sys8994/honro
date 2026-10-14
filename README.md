@@ -5,6 +5,7 @@
 본게임 RC21과 Map Workshop을 하나의 엔진·Scene·맵 모델로 통합한 정적 웹 프로젝트입니다.
 
 - 게임: 루트 `HONRO.html`을 브라우저에서 엽니다.
+- 캐릭터 도감: [혼로의 얼굴들](tools/character-catalog.html)에서 실제 렌더러의 인물·동작·등장 근거와 검수 의견을 봅니다. [수집/검증 범위](game/docs/CHARACTER_CATALOG.md).
 - 편집기: 루트 `HONRO_WORKSHOP.html`을 엽니다. 기본 프로젝트는 Stage 1~30(1막·2막·3막)이며, 1·2는 목업을 반영한 숲길·분지 개편판입니다.
 - 실행 자산: `assets/bgm/`을 HTML과 함께 같은 디렉터리 구조로 배포합니다. MP3는 HTML에 포함되지 않습니다.
 - 편집한 맵 실행: Workshop의 Project JSON을 내보낸 뒤 게임 타이틀의 `Workshop Map`으로 가져옵니다. 캠페인 저장과 분리해 실행합니다.

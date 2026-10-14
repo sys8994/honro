@@ -52,7 +52,7 @@
 
 ## 검증 상태
 
-구현 저장 지점의 집중 검증이다. 전체 verify·최종 master·Pages·배포 후 실화면 검수 완료는 아직 주장하지 않는다. 부모의 최종 통합 신호를 받아 원본 도감 `36cbc1c`를 병합했다. 최종 전체 검수는 master 배포 후 한 번 진행한다.
+부모의 최종 통합 신호를 받아 원본 도감 `36cbc1c`를 병합하고, 통합 소스 `84afafc`에서 도감을 전체 재생성했다. 배포 기준 `d802331acdcf5a4ac13bff83be76cb3d4d7704c7`의 master 원격 일치와 Pages run `38601987871` 성공을 확인했다. 배포 뒤 전체 `npm run verify`를 한 번 실행했으며 아래 차단/미실행을 통과로 표시하지 않는다. 후속 변경은 테스트·문서뿐이고 세 HTML의 바이트는 동일하다.
 
 | 검사 | 현재 결과와 범위 |
 |---|---|
@@ -67,7 +67,7 @@
 | `bell-anomaly-browser.py` | 실제 Space 또는 모바일 발사 버튼 press/release→화살→즉시 대화→정확한 자원 환급/목표 보존 통과. 기존 안전 발판 위치를 둔 관찰 fixture |
 | Native 전후 화면 | 같은 카메라·같은 기존 배우 위치에서17작업장 배경,18국소 영향 경계,19장례 잔향,25/27기둥/물방울 검토. 구현자와 별도 통합자가 전후 화면을 직접 확인했다. 정상 조작 완주·브라우저·성능 증거와 구별 |
 
-실행 로그/JSON/PNG/WebM은 `_local/reports/story-revision/`, `act3-void-browser/`, `bell-anomaly-browser/`, `story-anomaly-native/`, `story-anomaly-focused-native/`, `story-anomaly-17-19-native/`에 둔다. 새 검사는 `npm run test:story-revision`과 `npm run test:story-revision:browser`로 재현하며 전체 `test:integration`에도 연결한다. 브라우저 검사는 HTTP 서버를 사용하며 `HONRO_BASE_URL`로 최종 Pages를 지정할 수 있다. 묵종 브라우저 증거의 HTML은 `26818aa8…`, 이후 검은 틈 복귀 대사 수정 빌드는 `9645d315…`이다. 묵종 소스는 그 사이 동일하고, 최종 Pages에서는 배포된 바이트로 다시 확인한다.
+실행 로그/JSON/PNG/WebM은 `_local/reports/story-revision/`, `act3-void-browser/`, `bell-anomaly-browser/`, `story-anomaly-native/`, `story-anomaly-focused-native/`, `story-anomaly-17-19-native/`에 둔다. 새 검사는 `npm run test:story-revision`과 `npm run test:story-revision:browser`로 재현하며 전체 `test:integration`에도 연결한다. 브라우저 검사는 HTTP 서버를 사용하며 `HONRO_BASE_URL`로 최종 Pages를 지정할 수 있다. 묵종 브라우저 증거의 HTML은 `26818aa8…`, 이후 검은 틈 복귀 대사 수정 빌드는 `9645d315…`이다. 12/14장 새 진입 대사 snapshot을 반영한 최종 Game SHA256은 `f55a9dd8624d7b3c316dc83c4cafbf3c35deab11f528ee233a34baa8cc7b3cbe`, Workshop은 `d73a575794ffb8cf4bcc6928bc4d35933741d6634cacf9a6436f23d4c5518f35`다. 18/27장 관련 소스는 이후 동일하므로 해당 집중 증거를 재사용한다. 공개 Pages 바이트 직접 대조는 아래 네트워크 제한으로 미완료다.
 
 로컬 브라우저 검사는 별도 서버 준비 없이 임시 localhost 포트를 열고 종료 시 정리한다. `HONRO_BASE_URL`이 있으면 로컬 서버 없이 지정된 배포 주소를 검수한다.
 
@@ -79,4 +79,17 @@
 - `act3-save-boundaries.mjs:73`: 기록 수0과 옛 기대1이 다르다.
 - `stage18-bell-refinement-resume.mjs:8`: 이미 적군 유닛인 `upper-chain`을 지형에서 찾아 `broken`을 쓰다가 실패한다. 현재 목표 보호는 새 실제 유닛/records 검사로 확인했다.
 
-이 실패를 없애려고 옛 fixture 전체를 새 데이터로 덮지 않는다. 정상 자원으로 전20장 완주, 물리 기기 입력/청취, 성능과 최종 배포 후 전체 검수는 이 저장 지점의 통과 범위에 포함하지 않는다. 기준서 원본은 부모의 실제 Library materialize 결과와 저장 파일의 크기·SHA256·말미 개행이 일치함을 대조했다([채택 기록](README.md)).
+- `migration.mjs`: 7장 story `honroGrowth`의 HP527/434 등 성장 원장 기대 차이. 기준 master와 현재의 경로 정규화 전체 로그가 동일하다.
+- `integration.py`: 8장 화면679픽셀(비율0.001309799, bbox0/397/52/424) 차이. 동일 HTTP 호스트 조건의 기준 master에서도 정확히 재현했다. 1–7장 비교는 차이0이다.
+
+이 실패를 없애려고 옛 fixture 전체를 새 데이터로 덮지 않는다. 정상 자원으로 전20장 완주, 물리 기기 입력/청취, 성능과 공개 배포 화면 전체 검수는 통과 범위에 포함하지 않는다. 기준서 원본은 부모의 실제 Library materialize 결과와 저장 파일의 크기·SHA256·말미 개행이 일치함을 대조했다([채택 기록](README.md)).
+
+
+## 배포 후 검사 결과와 남은 한계
+
+- **전체 검사 한 차례:** `npm run verify`는 release guard19검사·두 HTML 빌드·제목 계약/실제 SVG 검사 후 `quest-space-reference-repair.mjs`의 과거 전체 맵 해시에서 중단했다. 이 항목은 이전 master에서 통과하므로 새 개정으로 생긴 검사 경계 불일치다. 승인된 스토리 delta를 정확히 역적용하도록 보완했으며 기존 fixture는 불변이다. 보완 후 집중 실행에서30장 스키마/전체 전투 상태와9 metadata·3 story 음성 대조가 통과했다. 전체 verify를 재실행하지 않았으므로 뒤의 aggregate 명령은 **미실행**이다. 위 표의 앞선 개별 실행 증거와 구분한다.
+- **실제 브라우저 집중 후속:** 기존 8장 실패를 그대로 남긴 별도 범위 실행으로11–30장 Game/Workshop 픽셀 차이0,30장 짧은 실행의 유효 좌표·동행 생존, 실제 사용자 맵420스텝 이동/충돌/발사 일치, JSON·편집 Undo/Redo·Playtest Stop·모바일 복귀를 확인했다(77검사). 장 진입 smoke는 전투 완주나 각 장 실제 발사 성공을 보증하지 않는다. 원본 `integration.py`의 실패를 지우거나 허용 임계치를 바꾸지 않았다. 파일 URL 대신 자체 HTTP 서버와 선택적 `HONRO_BASE_URL`을 사용하도록 호스트만 정리했다.
+- **도감:** 통합본31검사/1,386렌더 표본·저장 API0회·JS오류0·desktop/390/333/667폭 통과. 주요53·호환15·목표4·44벡터/209클립을 보존했다. HTML SHA256 `afd1ca84cc81adc6f690119508c492335fb4afe69149357cca84685719b77da9`. [도감 검증 범위](../CHARACTER_CATALOG.md).
+- **공개 검수 차단:** 실행 환경의 공개 Pages HTTP는 CONNECT tunnel403, Playwright HTTP는 DNS `EAI_AGAIN sys8994.github.io`, 승인된 web reader도 해당 URL 접근 불가였다. 프록시/DNS/보안 설정을 우회하지 않았다. 공개 Game/Workshop/도감의 화면·일반/캐시무효화 URL 해시·BGM5파일 검증은 **미완료**다. 필수4개 HTTP200/hash 행이 없으므로 release guard의 최종 publication receipt를 만들지 않았다. GitHub Pages run 성공만으로 최종 검수 완료를 주장하지 않는다.
+
+자동 기록은 Git 제외 `_local/reports/integration-acts23.json`, `campaign-contracts/metadata-repair.json`, `character-catalog-integrated/`에 있다. 발행자의 원문 로그·정확한 Pages 응답·master manifest·네트워크 오류는 공유 저널과 같은 `/workspace/honro-release/`에 보존한다. 공개 검수를 재개할 때에는 현재 master SHA와 동일한 Pages run을 새로 읽고, 일반/`?release=<SHA>` Game·Workshop4개 바이트 및 도감/음악을 대조한 뒤 `HONRO_BASE_URL` 브라우저 검사를 실행한다. **구현·통합·배포와 검수 완료를 구분하며, 공개 접근과 정상 자원 전20장 완주/성능 검증은 남아 있다.**
