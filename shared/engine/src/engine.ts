@@ -856,6 +856,7 @@ export class Engine {
         }
         if(u.summonKind==='eater'){
             if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){const shared=Math.min(dmg,Math.max(0,u.maxHp-(u.eaterTransferred||0)));u.eaterTransferred=(u.eaterTransferred||0)+shared;for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,shared,owner,false,undefined,source,'eaterTransfer');}
+            this.b.reviewFocus={x:u.x,y:u.y-u.h*.5};
             if(u.dead||u.hp<=0)releaseEater(this,u);
         }
     }
