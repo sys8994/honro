@@ -23,4 +23,4 @@ HP0 또는 수명 종료 시 살아남은 적을 주변의 실제 안전 지지�
 
 ## 검증
 
-`npm run test:eater-capture`는 10 기본 lifecycle + 6 독립 적대적 사례, 전 SP 정량, 실제 기여장부, App Continue/3회 export-import를 실행한다. Native 미술은 `tests/ground-eater-native-art.mjs` 및 실제 lifecycle 캡처를 따로 검사한다. Native/VM 검사는 실제 브라우저·CSS·Pages 검수를 대체하지 않는다.
+`npm run test:eater-capture`는 13 기본 lifecycle + 7 독립 적대적 사례, 전 SP 정량, 실제 기여장부, App Continue/3회 export-import를 실행한다. Native 미술은 `tests/ground-eater-native-art.mjs` 및 실제 lifecycle 캡처를 따로 검사한다. Native/VM 검사는 실제 브라우저·CSS·Pages 검수를 대체하지 않는다.
