@@ -4106,6 +4106,7 @@ class BgmPlayer {
         this.restartRequested = false;
         this.requested = false;
         this.firstPlay = true;
+        this.fadeMs = 25;
         this.preloadFailed = false;
         this.battleSelected = false;
     }
@@ -4213,8 +4214,11 @@ class BgmPlayer {
             this.requested = true;
             // A prepared stream may have waited on the title for seconds. Fade from
             // the actual play request, not from creation of the silent media element.
+            // Initial playback only needs a short anti-click ramp; retain the full
+            // 420 ms crossfade when replacing an existing stream.
             if (this.firstPlay) {
                 this.transitionStart = performance.now();
+                this.fadeMs = this.outgoing ? this.transitionMs : 25;
                 this.firstPlay = false;
                 this.tick(this.transitionStart);
             }
@@ -4238,7 +4242,7 @@ class BgmPlayer {
         }
     }
     tick(now = performance.now()) {
-        const mix = Math.max(0, Math.min(1, (now - this.transitionStart) / this.transitionMs)), volume = this.enabled && this.unlocked ? this.volume : 0;
+        const mix = Math.max(0, Math.min(1, (now - this.transitionStart) / this.fadeMs)), volume = this.enabled && this.unlocked ? this.volume : 0;
         if (this.current)
             this.current.volume = volume * mix;
         if (this.outgoing) {
@@ -10084,7 +10088,8 @@ class App {
         this.charging = true;
         this.chargeStarted = performance.now();
         this.power = .08;
-        this.audio.wake().then(() => this.audio.play('charge'));
+        void this.audio.wake();
+        this.audio.play('charge');
         this.updateHUD();
         return true;
     }
@@ -10160,7 +10165,9 @@ class App {
         this.save();
         const final = won && b.stageId === 36 && b.mode === 'campaign';
         this.modal(`<div class="eyebrow">${final ? 'THE EXPEDITION CONTINUES' : won ? 'VICTORY' : 'REGROUP'}</div><h2 class="result-title">${final ? '원정의 끝, 새로운 길' : won ? '전장 확보' : '다시 일어설 시간'}</h2>${final ? '<p>관측성의 불빛이 꺼졌습니다.<br>남겨 둔 갈림길과 전장은 계속 탐험할 수 있습니다.</p>' : ''}<div class="result-stat"><span>${b.round}라운드</span><span>${b.kills}명 제압</span><span>${b.shots}발 발사</span></div>${b.units.filter(u => u.side === 0 && !u.summoned).map(u => { const h = b.heroes[u.cls], delta = h.xp - b.startXP[u.cls]; return `<div class="xp-result"><img src="${this.portraits[u.cls]}" alt=""><div><strong>${esc(u.name)} · Lv.${(0, progression_1.levelOf)(h)}</strong><div class="muted">${(0, progression_1.pointsLeft)(h, u.cls) ? '미사용 ' + (0, progression_1.pointsLeft)(h, u.cls) + ' SP' : ''}</div></div><span class="spacer"></span><span>+${delta.toLocaleString()} XP</span></div>`; }).join('')}${!won ? '<p>획득한 경험치는 유지됩니다.</p>' : ''}<div class="dialog-actions"><button class="btn" data-action="retry">재도전</button><button class="btn primary" data-action="result-map">원정 지도 ${(0, icons_1.icon)('chevron', '', 15)}</button></div>`, 'result');
-        this.audio.wake().then(() => { this.audio.configure(this.profile.settings); this.audio.play(won ? 'win' : 'lose'); });
+        this.audio.configure(this.profile.settings);
+        void this.audio.wake();
+        this.audio.play(won ? 'win' : 'lose');
     }
     showPause() {
         if (!this.engine || this.modalType === 'result')
@@ -10434,7 +10441,8 @@ class App {
                     break;
                 case 'test-sound':
                     this.audio.configure(this.profile.settings);
-                    void this.audio.wake().then(() => this.audio.play('win'));
+                    void this.audio.wake(true);
+                    this.audio.play('win');
                     break;
                 case 'settings':
                     this.showSettings();
@@ -10675,7 +10683,8 @@ class App {
             }
         });
         document.addEventListener('keydown', ev => {
-            void this.audio.wake().then(() => this.audio.configure(this.profile.settings));
+            this.audio.configure(this.profile.settings);
+            void this.audio.wake(true);
             if (this.overlay.classList.contains('open')) {
                 if (ev.key === 'Escape' && this.modalType !== 'result') {
                     ev.preventDefault();
@@ -10737,7 +10746,14 @@ class App {
                 this.spaceAction = null;
             }
         });
-        document.addEventListener('pointerdown', ev => { void this.audio.wake().then(() => this.audio.configure(this.profile.settings)); this.pointerDown(ev); });
+        const wakeAudio = () => { this.audio.configure(this.profile.settings); void this.audio.wake(true); };
+        document.addEventListener('pointerdown', ev => { if (ev.pointerType === 'mouse')
+            wakeAudio(); }, { capture: true });
+        document.addEventListener('pointerup', ev => { if (ev.pointerType !== 'mouse')
+            wakeAudio(); }, { capture: true });
+        document.addEventListener('touchend', wakeAudio, { capture: true, passive: true });
+        document.addEventListener('click', wakeAudio, { capture: true });
+        document.addEventListener('pointerdown', ev => this.pointerDown(ev));
         document.addEventListener('pointermove', ev => this.pointerMove(ev), { passive: false });
         document.addEventListener('pointerup', ev => this.pointerUp(ev, false), true);
         document.addEventListener('pointercancel', ev => this.pointerUp(ev, true));
@@ -14588,6 +14604,7 @@ class AudioEngine {
         this.paused = false;
         this.pcm = new Map();
         this.resuming = null;
+        this.resumeSerial = 0;
         this.dialogueVoice = null;
         this.pending = [];
         this.lastPlayed = {};
@@ -14609,19 +14626,21 @@ class AudioEngine {
         if ((!this.enabled || this.volume <= 0) && (this.pending.length || this.voices.size))
             this.pause();
     }
-    wake() {
+    wake(userGesture = false) {
         this.music.unlock();
         if (!this.enabled || this.volume <= 0 || this.paused || this.disposed)
             return Promise.resolve(false);
-        if (this.resuming)
+        // A resume requested before touch release can remain pending indefinitely.
+        // A fresh activation must reach the device instead of reusing that promise.
+        if (this.resuming && !userGesture)
             return this.resuming;
-        const task = this.resumeContext();
+        const task = this.resumeContext(++this.resumeSerial);
         this.resuming = task;
         void task.then(() => { if (this.resuming === task)
             this.resuming = null; });
         return task;
     }
-    async resumeContext() {
+    async resumeContext(serial) {
         try {
             if (!this.context) {
                 const Constructor = globalThis.AudioContext || globalThis.webkitAudioContext;
@@ -14641,6 +14660,8 @@ class AudioEngine {
             }
             if (this.context.state !== 'running')
                 await this.context.resume();
+            if (serial !== this.resumeSerial)
+                return this.context.state === 'running';
             const now = performance.now(), queue = this.pending.splice(0);
             // An old visual event must not become sound on a later unrelated gesture.
             if (this.context.state !== 'running' || this.paused || this.disposed)
@@ -14651,7 +14672,8 @@ class AudioEngine {
             return true;
         }
         catch {
-            this.pending = [];
+            if (serial === this.resumeSerial)
+                this.pending = [];
             return false;
         }
     }
@@ -39431,7 +39453,7 @@ G.HonroRestJourney={state,location,active,currentId,towards,chapterLabel,arrival
         top(title, back = 'title') { return `<header class="top"><button class="icon ghost" data-action="${back}" aria-label="뒤로">${fa('chevronUp',17,'back-icon')}</button><h2>${esc(title)}</h2>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="journal" aria-label="기록">${fa('bookOpen',18)}</button><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',18)}</button></header>`; }
         portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
         drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
-        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; const resumeRest=!!this.profile.honroJourney?.story;this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg" aria-hidden="true">${G.HONRO_TITLE_SCENE||""}</div><header class="top">${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap"><h1 class="title-brand" aria-label="혼로"><svg class="title-ink-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs><filter id="honro-title-ink" x="-1%" y="-1%" width="111%" height="102%" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="12 9" numOctaves="3" seed="13" result="weathered"/><feColorMatrix in="weathered" type="matrix" values=".6 0 0 0 .17 .6 0 0 0 .185 .58 0 0 0 .18 0 0 0 0 1"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs></svg><span class="title-hanja" aria-hidden="true">${G.HONRO_TITLE_HANJA?`<img class="honro-logo honro-logo-hanja" src="${G.HONRO_TITLE_HANJA}" alt="" width="1859" height="846" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="title-logo-fallback" hidden>魂路</span>`:'<span class="title-logo-fallback">魂路</span>'}</span><span class="title-hangul" aria-hidden="true">${["혼","로"].map((syllable,i)=>`<span class="title-reading-glyph title-reading-glyph-${i}">${G.HONRO_TITLE_LOGO?`<img class="honro-logo honro-logo-hangul" src="${G.HONRO_TITLE_LOGO}" alt="" width="1100" height="550" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="title-reading-fallback" hidden>${syllable}</span>`:`<span class="title-reading-fallback">${syllable}</span>`}</span>`).join("")}</span></h1></div><p class="title-tagline">산도, 죽은 자도, 언젠가 다시 흐른다.</p><div class="title-actions"><button class="primary" data-action="${resumeRest?'rest':this.profile.honroBattle ? 'continue' : 'rest'}">${resumeRest?'쉼터 대화 이어가기':this.profile.honroBattle ? '이어서 걷기' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? resumeRest?'<button class="ghost" data-action="continue">저장된 전투 이어서 걷기</button>':!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':'<button class="ghost" data-action="rest">길 위의 쉼터</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
+        showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; const resumeRest=!!this.profile.honroJourney?.story;this.root.innerHTML = `<main class="screen title honro-title"><div class="title-bg" aria-hidden="true">${G.HONRO_TITLE_SCENE||""}</div><header class="top">${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',19)}</button></header><input type="file" id="map-import" accept=".json" hidden><section class="title-main"><div class="honro-logo-wrap"><h1 class="title-brand" aria-label="혼로"><svg class="title-ink-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs><filter id="honro-title-ink" x="-1%" y="-1%" width="111%" height="102%" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="12 9" numOctaves="3" seed="13" result="weathered"/><feColorMatrix in="weathered" type="matrix" values=".6 0 0 0 .17 .6 0 0 0 .185 .58 0 0 0 .18 0 0 0 0 1"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs></svg><span class="title-hanja" aria-hidden="true">${G.HONRO_TITLE_HANJA?`<img class="honro-logo honro-logo-hanja" src="${G.HONRO_TITLE_HANJA}" alt="" width="1859" height="846" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="title-logo-fallback" hidden>魂路</span>`:'<span class="title-logo-fallback">魂路</span>'}</span><span class="title-hangul" aria-hidden="true">${["혼","로"].map((syllable,i)=>`<span class="title-reading-glyph title-reading-glyph-${i}">${G.HONRO_TITLE_LOGO?`<img class="honro-logo honro-logo-hangul" src="${G.HONRO_TITLE_LOGO}" alt="" width="1100" height="550" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="title-reading-fallback" hidden>${syllable}</span>`:`<span class="title-reading-fallback">${syllable}</span>`}</span>`).join("")}</span></h1></div><p class="title-tagline">떠나지 못한 이들을 위한 길.</p><div class="title-actions"><button class="primary" data-action="${resumeRest?'rest':this.profile.honroBattle ? 'continue' : 'rest'}">${resumeRest?'쉼터 대화 이어가기':this.profile.honroBattle ? '이어서 걷기' : Object.keys(this.profile.cleared).length ? '여정 이어가기' : '길을 열다'}</button>${this.profile.honroBattle ? resumeRest?'<button class="ghost" data-action="continue">저장된 전투 이어서 걷기</button>':!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':'<button class="ghost" data-action="rest">길 위의 쉼터</button>' : ''}</div></section><footer class="footer"><button class="ghost" data-action="import-map">Workshop Map</button><button class="ghost" data-action="journal">기록</button><span class="grow"></span><span>연목의 매듭 · 울리지 않는 종</span></footer></main>`; }
         stopBattle() { G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
@@ -39923,8 +39945,14 @@ G.HonroRestJourney={state,location,active,currentId,towards,chapterLabel,arrival
             // Game text is UI, not a document. Cancel selection, dragging and long-press menus throughout the app.
             for(const type of ['selectstart','dragstart','contextmenu'])document.addEventListener(type,e=>{if(e.target?.closest?.('#app,#modal'))e.preventDefault();},{capture:true,passive:false});
             document.addEventListener('selectionchange',()=>{const selection=window.getSelection();if(selection&&!selection.isCollapsed&&(this.root.contains(selection.anchorNode)||this.modal.contains(selection.anchorNode)))selection.removeAllRanges();});
-            document.addEventListener('pointerdown', () => { this.audio?.configure(this.profile.settings); void this.audio?.wake?.(); }, { capture: true });
-            document.addEventListener('keydown', e => { void this.audio?.wake?.(); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
+            // Touch/pen activate media on release, not pointerdown. Keep mouse startup
+            // early and retry on click for keyboard/assistive and older touch paths.
+            const wakeAudio=()=>{this.audio?.configure(this.profile.settings);void this.audio?.wake?.(true);};
+            document.addEventListener('pointerdown', e => {if(e.pointerType==='mouse')wakeAudio();}, {capture:true});
+            document.addEventListener('pointerup', e => {if(e.pointerType!=='mouse')wakeAudio();}, {capture:true});
+            document.addEventListener('touchend', wakeAudio, {capture:true,passive:true});
+            document.addEventListener('click', wakeAudio, {capture:true});
+            document.addEventListener('keydown', e => { void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
                 return; if (e.code === 'Escape') {
                 e.preventDefault();
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
