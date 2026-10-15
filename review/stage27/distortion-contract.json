@@ -1,0 +1,11 @@
+{
+  "baseline": "c1342cb8900de82558390aa5dd53b8c2eb805b9f",
+  "checks": [
+    "Exact one background pointer + additive zero-collision asset only",
+    "30 stages gameplay fields identical",
+    "All original library assets identical",
+    "Runtime/engine/map untouched",
+    "Idempotent/reproducible authoring"
+  ],
+  "scope": "Background-only exact structural comparison"
+}

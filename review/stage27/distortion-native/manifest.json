@@ -1,0 +1,293 @@
+{
+  "source": "Production HonroMaps.createBattle + HONRO_CORE.Engine + HonroScene",
+  "projectFile": "/workspace/honro-stage27/shared/data/campaign.json",
+  "runtimeFile": "/workspace/honro-stage27/shared/build.mjs",
+  "runtimeSha256": "ce5d6e41c60d3d000e3808ed2ea7936acefe9ea3d4e670869999778f680f157b",
+  "runtimeGitHead": "c06270f7a06a16d24af981d9adf74fa356fed9bf",
+  "artOverride": null,
+  "projectSha256": "addee9ff4f957f29b9bfcfa6974046fb68fa8dbf9e37a805b309e7971b668047",
+  "scope": "Canonical campaign metadata and geometry in Native Canvas. No browser, HUD/input, performance or campaign-completion claim.",
+  "results": [
+    {
+      "stageId": 27,
+      "name": "검은 집하장",
+      "file": "stage-27-overview.png",
+      "view": {
+        "name": "overview",
+        "w": 1600,
+        "h": 1200,
+        "x": 4100,
+        "y": 3900,
+        "scale": 0.18292682926829268,
+        "overview": true
+      },
+      "actualCamera": {
+        "x": 4100,
+        "y": 3900,
+        "scale": 0.18292682926829268,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 90.81469399999969,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 15,
+        "bgHits": 0,
+        "domainTileBuilds": 15,
+        "screenBuilds": 1,
+        "screenWorldBytes": 7680000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 15975360,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 19.502810461357623
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 18.39621510431972
+        }
+      ]
+    },
+    {
+      "stageId": 27,
+      "name": "검은 집하장",
+      "file": "stage-27-default.png",
+      "view": {
+        "name": "default",
+        "w": 1440,
+        "h": 1000,
+        "x": 700,
+        "y": 4430,
+        "scale": 0.68
+      },
+      "actualCamera": {
+        "x": 700,
+        "y": 4430,
+        "scale": 0.68,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 32.72147899999891,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainTileBuilds": 12,
+        "screenBuilds": 1,
+        "screenWorldBytes": 5760000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 12780288,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 72.49844742168675
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 68.38486361445784
+        }
+      ]
+    },
+    {
+      "stageId": 27,
+      "name": "검은 집하장",
+      "file": "stage-27-crossing.png",
+      "view": {
+        "name": "crossing",
+        "w": 1440,
+        "h": 1100,
+        "x": 5700,
+        "y": 4310,
+        "scale": 0.56
+      },
+      "actualCamera": {
+        "x": 5700,
+        "y": 4310,
+        "scale": 0.56,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 43.51565200000368,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 16,
+        "bgHits": 0,
+        "domainTileBuilds": 16,
+        "screenBuilds": 1,
+        "screenWorldBytes": 6336000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 17040384,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 59.70460375903615
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 56.31694650602411
+        }
+      ]
+    },
+    {
+      "stageId": 27,
+      "name": "검은 집하장",
+      "file": "stage-27-mobile.png",
+      "view": {
+        "name": "mobile",
+        "w": 400,
+        "h": 800,
+        "x": 420,
+        "y": 4450,
+        "scale": 0.53
+      },
+      "actualCamera": {
+        "x": 420,
+        "y": 4450,
+        "scale": 0.53,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 7.879461999999876,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 3,
+        "bgHits": 0,
+        "domainTileBuilds": 3,
+        "screenBuilds": 1,
+        "screenWorldBytes": 1280000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 3195072,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 56.50614284337349
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 53.299967228915676
+        }
+      ]
+    },
+    {
+      "stageId": 27,
+      "name": "검은 집하장",
+      "file": "stage-27-households.png",
+      "view": {
+        "name": "households",
+        "w": 1440,
+        "h": 1000,
+        "x": 2110,
+        "y": 2340,
+        "scale": 0.66
+      },
+      "actualCamera": {
+        "x": 2110,
+        "y": 2340,
+        "scale": 0.66,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 46.3046779999986,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainTileBuilds": 12,
+        "screenBuilds": 1,
+        "screenWorldBytes": 5760000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 12780288,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 70.36614014457831
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 4700,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 66.37354409638556
+        }
+      ]
+    }
+  ]
+}

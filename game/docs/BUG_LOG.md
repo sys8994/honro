@@ -2999,3 +2999,7 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 `terrain/stage27-depot`는 d7c1f84 기준의27장만 저작한다. 수몰 하역 구획·목재 맞춤·석재 부두와 실제100 높이 적재 경사면으로25장 수문축과 구분한다. 네 진목 연결과 관찰창, 목표 revision, 적 수/종류/증원, gallery-6 심부 사건·물방울·벽 함몰·2.8/1.8/.4 연출은 불변이다. 석재 배면기둥을 낙하 seam3850에서 옮겨 화면에서 기둥을 뚫고 내려가는 인상을 피했다.
 
 `review/stage27/README.md`에 Native 전체도와 실제 Game PC/mobile 검수 카메라, 전후 PNG 및 정확한 한계를 보존했다. 진목27사례·신규4보행·2실탄·낙하복구28·필수조우 runtime/browser·새/옛 App Continue 집중 검사는 통과했다. 기존 `act3-save-boundaries.mjs:73`의0!=1은 정확한 깨끗한 d7c1f84에도 재현된다. 공식 참고 픽셀 다운로드는 접근 차단, 정상 자원 전투 완주/성능/최종 encounter gate/전체 verify는 미실행이다. 사용자 미술 승인과 master/Pages 반영은 하지 않았으며 다른 장을 바꾸지 않았다.
+
+### 27장 심부 배경 후속
+
+사용자15:17 방향에 따라 기존 배면을 어둡게 낮추고, 심부 정상배율에 크게 보이는 어긋난 회랑·반복 하역구·틈 건너 기둥·옆/위로 굽는 정적 물띠·불일치 반사를 추가했다. `stage27-background-distortion` exact 검사에서 배경포인터와 collision빈 새자산 이외의 변경이 없다. 게임필드·중력·4진목·3050y trigger/support·2.8/1.8/.4 연출과 UI/audio 코드는 모두 동일하다. RAF고정·요청카메라assertion을 둔 실제PC/mobile 심부 PNG와 Native전체도를 `review/stage27/distortion-*`에 보존했다. 정상플레이 완주·유체애니메이션·사용자미술승인으로 보고하지 않는다.
