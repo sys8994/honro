@@ -59,24 +59,41 @@ const author=G.HonroStoryCanonV1.author;
 G.HonroStoryCanonV1.author=function(project){const p=author(project);return {...p,stages:p.stages.map(original=>{const id=original.metadata?.stageId;if(!original.metadata?.campaign||!ids.includes(id))return original;const st=clone(original),content=reviseContent(H.stages[id-1]);st.initialState??={};Object.assign(st.initialState,{honroEvidenceRevision:1,honroFieldEvidenceVersion:1,honroNarrativeContent:content});if(content.steps)st.initialState[id<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);for(const m of st.markers||[]){const s=content.steps?.find(s=>s.id===m.id);if(s){m.label=s.label;if(s.target)m.target=s.target;}if(id===3&&m.action==='ledger')m.label='움막 기록함 챙기기';}return st;})};};
 const prepareFresh=G.HonroNarrativeRevision.prepareFresh;
 G.HonroNarrativeRevision.prepareFresh=function(b){const content=active(b)&&b.honroNarrativeContent;prepareFresh(b);if(content){b.honroNarrativeContent=content;if(content.steps)b[b.honroStage<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);}};
-function satisfied(b,s){if(!active(b)||s.kind!=='evidence')return null;const a=b.honroState?.[b.honroStage<21?'act2':'act3'];if(s.afterEvidence){if(fieldActive(b)&&b.honroStage===26&&s.id==='investigation-record')return !!a?.done?.[s.afterEvidence]&&living(b).some(u=>near(u,site(b,s.id)));return !!a?.done?.[s.afterEvidence];}if(s.evidenceAction==='stake')return (b.stakes||[]).some(q=>q.skill==='M09'&&q.side===0&&(q.expires===undefined||q.expires>b.round));if(s.evidenceAction==='entrances')return !!b.honroState.evidenceEntrances?.water&&!!b.honroState.evidenceEntrances?.archive;return false;}
+function satisfied(b,s){if(!active(b)||s.kind!=='evidence')return null;const a=b.honroState?.[b.honroStage<21?'act2':'act3'];if(s.afterEvidence){if(fieldActive(b)&&b.honroStage===26&&s.id==='investigation-record')return !!a?.done?.[s.afterEvidence]&&living(b).some(u=>pickupNear(u,site(b,s.id)));return !!a?.done?.[s.afterEvidence];}if(s.evidenceAction==='stake')return (b.stakes||[]).some(q=>q.skill==='M09'&&q.side===0&&(q.expires===undefined||q.expires>b.round));if(s.evidenceAction==='entrances')return !!b.honroState.evidenceEntrances?.water&&!!b.honroState.evidenceEntrances?.archive;return false;}
 const entrances=[{id:'water',marker:'split-route-a',classes:['archer','mage'],label:'설오·담허 · 물길 출입로'},{id:'archive',marker:'split-route-b',classes:['knight','occultist'],label:'휘겸·소단 · 지상 기록실 출입로'}];
-function observe(app){const b=app.engine.b;recoverCargo(app);if(!active(b)||b.honroStage!==24||!b.honroState.act3?.done['shrine-seal']||app.dialogue||app.modal?.classList.contains('open'))return;const mem=b.honroState.evidenceEntrances??={};for(const q of entrances){const m=b.honroMarkers.find(m=>m.id===q.marker);if(m&&q.classes.every(cls=>b.units.some(u=>u.cls===cls&&u.side===0&&!u.dead&&u.hp>0&&G.HonroAct3.sameFloor(u,m,115))))mem[q.id]=true;}}
-function targets(b,s){if(!active(b)||s?.evidenceAction!=='entrances')return null;return entrances.filter(q=>!b.honroState.evidenceEntrances?.[q.id]).map(q=>{const m=b.honroMarkers.find(m=>m.id===q.marker);return {...m,id:q.marker,kind:'exit',label:q.label};});}
+function observe(app){const b=app.engine.b;repairMissing(app);recoverCargo(app);if(!active(b)||b.honroStage!==24||!b.honroState.act3?.done['shrine-seal']||app.dialogue||app.modal?.classList.contains('open'))return;const mem=b.honroState.evidenceEntrances??={};for(const q of entrances){const m=b.honroMarkers.find(m=>m.id===q.marker);if(m&&q.classes.every(cls=>b.units.some(u=>u.cls===cls&&u.side===0&&!u.dead&&u.hp>0&&G.HonroAct3.sameFloor(u,m,115))))mem[q.id]=true;}}
+function targets(b,s){if(fieldActive(b)){const missing=Object.values(field(b).cargo).filter(q=>q.recoveredMissing&&q.phase==='dropped');if(missing.length)return missing.map(q=>({id:q.id,kind:'exit',x:q.x,y:q.y,label:'누락된 기록함 회수 · 가까이 이동'}));}if(!active(b)||s?.evidenceAction!=='entrances')return null;return entrances.filter(q=>!b.honroState.evidenceEntrances?.[q.id]).map(q=>{const m=b.honroMarkers.find(m=>m.id===q.marker);return {...m,id:q.marker,kind:'exit',label:q.label};});}
 // Field evidence belongs to the successful action and its physical actor, never a speaker cue.
 const fieldActive=b=>active(b)&&b.honroFieldEvidenceVersion===1;
 const field=b=>(b.honroState.fieldEvidence??={version:1,cargo:{},events:{}});
 const living=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0);
 const near=(u,p,r=220)=>!!u&&!!p&&Math.abs(u.y-p.y)<100&&Math.hypot(u.x-p.x,u.y-p.y)<r;
 const site=(b,id)=>b.honroMarkers?.find(m=>m.id===id);
-function eventActor(b,p,actor){return actor&&near(actor,p)?actor:living(b).filter(u=>near(u,p)).sort((a,c)=>Math.abs(a.x-p.x)-Math.abs(c.x-p.x))[0];}
+// Acquisition uses precisely the same inclusive horizontal/height metric as Act3.use.
+const pickupNear=(u,p)=>!!u&&!!p&&G.HonroAct3.sameFloor(u,p);
+const acquisitions={22:['ledger-case','upper-register'],25:['household-tally'],26:['investigation-record','casting-tally'],27:['family-manifest'],28:['petition-record'],29:['hyeonmuk-letter']};
+const cargoId=(b,id)=>acquisitions[b.honroStage]?.includes(id)?b.honroStage+':'+id:null;
+function eventActor(b,p,actor){if(actor)return pickupNear(actor,p)?actor:null;return living(b).filter(u=>pickupNear(u,p)).sort((a,c)=>Math.abs(a.x-p.x)-Math.abs(c.x-p.x))[0];}
 function saveCargo(app,q){app.profile.honroFieldCargo??={};app.profile.honroFieldCargo[q.id]=clone({...q,phase:'carry',progress:0});}
-function collect(app,id,source,actor){const b=app.engine.b,f=field(b);if(f.cargo[id])return f.cargo[id];if(!near(actor,source))return null;
+function collect(app,id,source,actor){const b=app.engine.b,f=field(b);if(f.cargo[id])return f.cargo[id];if(!pickupNear(actor,source))return null;
  const q={id,sourceStage:b.honroStage,source:source.id||id,origin:{x:source.x,y:source.y},actor:actor.id,ownerClass:actor.cls,phase:'carry',progress:0,proof:{round:b.round,x:actor.x,y:actor.y}};f.cargo[id]=q;saveCargo(app,q);return q;
 }
 function pairReady(b){if(!fieldActive(b)||b.honroStage!==22)return true;const f=field(b),m=site(b,'compare-ledgers'),qs=['22:ledger-case','22:upper-register'].map(id=>f.cargo[id]);return qs.every(q=>q&&q.phase==='carry'&&near(b.units.find(u=>u.id===q.actor),m,420))&&near(b.units.find(u=>u.id===qs[0].actor),b.units.find(u=>u.id===qs[1].actor),180);}
-function recoverCargo(app){const b=app.engine.b;if(!fieldActive(b))return;for(const q of Object.values(field(b).cargo)){const owner=b.units.find(u=>u.id===q.actor);if(q.phase==='carry'&&owner&&(owner.dead||owner.hp<=0)){q.phase='dropped';q.x=owner.x;q.y=owner.y;b.sceneVersion++;}if(q.phase==='dropped'){const u=living(b).find(u=>near(u,q,110));if(u){q.actor=u.id;q.ownerClass=u.cls;q.phase='carry';saveCargo(app,q);b.sceneVersion++;}}}}
-function onComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return;const f=field(b);if(f.events[s.id])return;
+// A completed goal is proof of prior acquisition, not proof of an arbitrary carrier.
+// Restore an existing saved receipt, otherwise leave its missing case at the source
+// for physical recovery. Never clear/replay goals, rewards, story or checkpoints.
+function repairMissing(app){const b=app.engine?.b;if(!fieldActive(b))return;const f=field(b),done=b.honroState.act3?.done||{};
+ for(const goal of acquisitions[b.honroStage]||[]){const id=cargoId(b,goal);if(!done[goal]||f.cargo[id])continue;
+  const old=app.profile.honroFieldCargo?.[id],owner=old&&living(b).find(u=>u.cls===old.ownerClass);
+  if(old?.proof&&owner){f.cargo[id]={...clone(old),actor:owner.id,phase:'carry',progress:0};}
+  else{const source=goal==='casting-tally'?b.units.find(u=>u.id==='act3-resident'):site(b,goal==='household-tally'?'stake-arrival-5':goal==='hyeonmuk-letter'?'old-seal':goal);if(!source)continue;
+   f.cargo[id]={id,sourceStage:b.honroStage,source:source.id,origin:{x:source.x,y:source.y},actor:null,ownerClass:null,phase:'dropped',progress:1,x:source.x,y:source.y,recoveredMissing:true,proof:{completedGoal:goal,round:b.honroState.act3.checkpoints?.find(q=>q.id===goal)?.round??null}};
+  }b.sceneVersion++;app.dirty=true;
+ }
+}
+function recoverCargo(app){const b=app.engine.b;if(!fieldActive(b))return;for(const q of Object.values(field(b).cargo)){const owner=b.units.find(u=>u.id===q.actor);if(q.phase==='carry'&&owner&&(owner.dead||owner.hp<=0)){q.phase='dropped';q.x=owner.x;q.y=owner.y;b.sceneVersion++;app.dirty=true;}if(q.phase==='dropped'){const u=living(b).find(u=>q.recoveredMissing?pickupNear(u,q):near(u,q,110));if(u){q.actor=u.id;q.ownerClass=u.cls;q.phase='carry';if(q.recoveredMissing)q.proof={...q.proof,recoveredAt:{round:b.round,x:u.x,y:u.y}};saveCargo(app,q);b.sceneVersion++;app.dirty=true;}}}}
+function prepareComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return true;onComplete(app,s,actor);const id=cargoId(b,s.id);return !id||!!field(b).cargo[id];}
+function onComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return;const f=field(b);if(f.events[s.id]&&(!cargoId(b,s.id)||f.cargo[cargoId(b,s.id)]))return;
  let p=site(b,s.id),u=eventActor(b,p,actor),ids=[];
  if(s.id==='casting-tally'){const r=f.events['artisan-resident'];p=b.units.find(v=>v.id==='act3-resident');u=r&&b.units.find(v=>v.id===r.actor);}
  if(s.id==='artisan-resident'){p=b.units.find(v=>v.id===s.target);u=eventActor(b,p,actor);}
@@ -89,7 +106,7 @@ function onComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return;
  if(b.honroStage===25&&/^stake-arrival-[1-5]$/.test(s.id)){const group=living(b).filter(v=>near(v,p,220));if(group.length!==2)return;u=group[0];}
  if(s.id==='household-tally'&&b.honroStage===25){const last=f.events['stake-arrival-5'];p=site(b,'stake-arrival-5');u=last&&b.units.find(v=>v.id===last.actor);const q=collect(app,'25:household-tally',p,u);if(q)ids=[q.id];}
  if(!u&&ids.length)u=b.units.find(v=>v.id===f.cargo[ids[0]].actor);
- if(!u||!p||(!ids.length&&!near(u,p,260)))return;
+ if(!u||!p||(!ids.length&&!pickupNear(u,p)))return;
  f.events[s.id]={actor:u.id,source:{x:p.x,y:p.y},cargo:ids,progress:0,round:b.round};b.sceneVersion++;
 }
 function fieldDirections(b,goal){if(!fieldActive(b))return[];const e=field(b).events[goal];if(!e)return[];const inspect=goal==='old-soul'||/^stake-arrival-/.test(goal),compare=goal==='compare-ledgers'||goal==='party-reunion';if(!inspect&&!compare&&!e.cargo.length)return[];const at=site(b,goal),walk=compare?[...new Set(e.cargo.map(id=>field(b).cargo[id]?.actor).filter(Boolean))].map((id,i)=>({type:'move',actor:id,to:{x:at.x-65+i*55,y:at.y},duration:900,maxDistance:450,focus:false})):[];return [...walk,{type:'look',actor:e.actor,at:e.source,pose:inspect?'kneel':'inspect',duration:650,camera:true},{type:'field-evidence',goal,actor:e.actor,compare,duration:1100},...(compare?[{type:'look',actor:e.actor,at:at,pose:'inspect',duration:1200},{type:'field-evidence',goal,actor:e.actor,compare:true,pack:true,duration:650}]:[])];}
@@ -121,5 +138,5 @@ const summaries={
 function cleanText(text){return String(text).replace(/\n?원문은 여정의 기록에서 선택해 읽을 수 있다\./g,'').replace(/핵심 단서를 확인한 뒤 원문은 여정의 기록에서 다시 읽을 수 있습니다\./g,'홍만이 남긴 행선지를 동행과 확인합니다.').replace(/일지 원문은 여정의 기록에서 선택해 읽습니다\./g,'작업대의 일지에서 종지기가 한 일을 확인합니다.');}
 // Acquired evidence is delivered in the event. Legacy archive fields remain inert.
 function present(app,lines){return lines.map(row=>{const [who,text,meta={}]=row,{evidenceOriginal,...safe}=meta;const id=meta.documentId;const oldDocument=meta.kind==='document'||who==='기록';if(meta.evidenceOriginal?.id==='original-19-old-soul')return ['서술','소단은 종 밑에 남은 혼의 옷차림이 방금 떠난 희생자들과 다르다고 짚었다. '+summaries['bell-transfer-marks'],{...safe,kind:'narration'}];if(!oldDocument)return [who,cleanText(text),safe];return ['서술',summaries[id]||cleanText(text).replace(/\n/g,' · '),{...safe,kind:'narration'}];});}
-G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText,fieldActive,field,onComplete,pairReady,fieldDirections,animateField};
+G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText,fieldActive,field,onComplete,prepareComplete,repairMissing,pickupNear,pairReady,fieldDirections,animateField};
 })(globalThis);
