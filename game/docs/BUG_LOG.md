@@ -2979,3 +2979,7 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 최신 master `c81c54565c89bbde1c2089290787308e0b105e1b`를 전체 로컬 이야기 이력 위에 merge했다. 게임 소스 충돌은 없었고 런타임 계약 두 파일만 조정했다. 먹귀/만혼귀결의 엔진·그림·포획 해제 변경은 배포 master와 바이트 동일하게 보존한다. 기존 `field-story-delta.json`과 `eater-sodan-revision-delta.json`을 그대로 두고 새 `field-story-integration-delta.json`이 최신 배포 위의 10개 이야기 소스 및 CSS 차이를 검증한다. 새 계약은 원래 field delta의 exactEdits·전후 소스 해시·캠페인 변경과 동일함도 검사한다.
 
 집중 검사 로그는 `_local/reports/field-story-integration/`에 둔다. 런타임 168 소스/9 빌드/두 HTML 계약, 먹귀 16개 lifecycle 시나리오, 만혼귀결 24회 균등 방사·순서/Continue, 17장 인양 P0, 두 HTML의 먹귀/만혼귀결 브라우저와 desktop/mobile 28장 실제 확보→저장→합류 대조를 확인했다. 기존 승인된 이미지·코드만 배포하며 검수 PNG는 외부 업로드하지 않는다. 최종 배포 뒤 전체 verify는 한 번 실행하고 기존 baseline 실패·미실행 후속 검사를 구분해 보고한다.
+
+배포 후 전체 검사 결과: `6159d77`에서 `npm run verify`를 정확히 한 번 실행했다. release guard 19개와 재빌드 후 title 테스트가 삭제된 journal 버튼을 계속 요구해 중단됐다. 이번 선택 읽기 제거에 맞춰 5개 저장 분기의 journal 부재를 명시 검증하도록 테스트를 고쳤고 `npm run test:title`은 통과했다. 그림 fixture·픽셀 해시는 변경하지 않았다. 별도 title 브라우저 스크립트는 기존 `file://` URL이 환경 관리자에게 차단돼 실행되지 않았으며 다른 경로로 재시도하지 않았다. 전체 verify는 재실행하지 않았다.
+
+분리 확인: binding-detail의 과거 프로젝트 해시 단언은 기준 `c81c545`에서도 실패(실제 `af6cfdc1…`, 기대 `0b41536f…`), 통합본에서도 실패(실제 `f6bb21f4…`, 같은 기대)한다. 해당 역사 fixture는 그대로 두었고 이번 실제 변경은 별도 exact 계약으로 검증한다. 전체 명령은 title에서 단락됐으므로 migration/integration/performance 등 후속 전체 체인을 실행한 것으로 보고하지 않는다. 과거에 확인된 migration/integration 기준 실패는 유지되며 이번 실행의 새 실패로 계산하지 않는다. 공개 Pages 직접 요청은 executor 프록시의 `Tunnel connection failed: 403 Forbidden`으로 중단했고 우회하지 않았다. Pages 성공과 공개 바이트/공개 브라우저 검수 완료는 별개다.

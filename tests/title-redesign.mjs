@@ -37,7 +37,8 @@ for(const c of [
  assert(html.includes(c.text),c.label);const group=html.match(/<div class="title-actions">(.*?)<\/div>/s)[1];
  assert.deepEqual([...group.matchAll(/data-action="(.*?)"/g)].map(m=>m[1]),c.actions,c.label);
  assert.equal(JSON.stringify(a.profile),before,'title rendering cannot change saves');
- for(const action of ['settings','import-map','journal'])assert(html.includes(`data-action="${action}"`));
+ for(const action of ['settings','import-map'])assert(html.includes(`data-action="${action}"`));
+ assert(!html.includes('data-action="journal"'),'Optional reading stays absent in every title save branch');
  assert(html.includes('<h1 class="title-brand" aria-label="혼로">')&&html.includes('<picture'));
  assert.equal((html.match(/class="title-hanja"/g)||[]).length,1);assert.equal((html.match(/class="title-hangul"/g)||[]).length,1);
  assert(html.indexOf('title-hanja')<html.indexOf('title-hangul'));assert(html.includes('>魂路</span>')&&html.includes('>혼</span>')&&html.includes('>로</span>'));

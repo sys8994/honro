@@ -48,8 +48,7 @@ with sync_playwright() as pw:
         assert page.locator('#modal').evaluate('(m)=>m.classList.contains("open")')
         page.keyboard.press('Escape')
         assert not page.locator('#modal').evaluate('(m)=>m.classList.contains("open")')
-        page.locator('[data-action="journal"]').click()
-        page.keyboard.press('Escape')
+        assert page.locator('[data-action="journal"]').count()==0, 'Removed optional reading must not return'
         page.evaluate('HonroApp.showTitle()')
         before_failure=page.locator('.honro-logo-wrap').bounding_box()
         page.locator('.honro-logo-hanja').evaluate('(i)=>i.onerror()')
@@ -67,4 +66,4 @@ with sync_playwright() as pw:
         page.close()
     browser.close()
 (OUT/'report.json').write_text(json.dumps({'checks':checks,'limits':['Fixture save branches; not normal gameplay. Art approval requires direct image review.']},ensure_ascii=False,indent=2)+'\n')
-print('PASS six title viewports, focus, settings/journal return, image failure; see screenshots for art approval')
+print('PASS six title viewports, focus, settings return and no optional-reading control, image failure; see screenshots for art approval')
