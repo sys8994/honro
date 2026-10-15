@@ -1,5 +1,7 @@
+import {restoreAnimal} from './animal-restoration.mjs';
 // Second catalogue pass: painted geometry only. Rig/pivots/aim/clips remain upstream.
 export function redesignRecommended(a){
+ if(['hound','boar'].includes(a.id))return restoreAnimal(a);
  const ids=['hound','boar','bat','human','possessedGuard','possessedArcher','gateMaster','archerMaster','archiveFiend','kilnFiend'];if(!ids.includes(a.id))return a;
  a.version=3;a.budget='catalog-redesign';a.palette={...a.palette,bone:'#a9aa92',boneShade:'#747d6b',soul:'#9ba88c'};
  const get=id=>a.parts.find(p=>p.id===id),paint=(id,rows)=>{const p=get(id);if(p)p.paths=rows.map(([d,fill,stroke='ink',width=1,lod=0])=>({d,fill,stroke,width,lod}));};
