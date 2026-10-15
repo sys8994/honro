@@ -8,7 +8,7 @@ export function restoreAnimal(a){
  a.palette={...a.palette};
  a.brief={...a.brief,reference:'3899a2f anatomy restored and reinforced. Korean reference metadata supplied; Library image transfer blocked, pixel reference review pending.'};
  if(a.id==='hound'){
-  Object.assign(a.palette,{deep:'#171c1c',shadow:'#292d2b',fur:'#474941',light:'#8c8974',bone:'#dfd1ad',boneShade:'#9e9277',soul:'#b8bc91'});
+  Object.assign(a.palette,{deep:'#171c1c',shadow:'#292d2b',fur:'#474941',light:'#8c8974',bone:'#dfd1ad',boneShade:'#9e9277',soul:'#b8bc91',rim:'#819487'});
   // Tight abdomen rises behind the ribs; back and long hock contours survive.
   get('body').paths[0].d='M-51 -57 Q-55 -74 -42 -84 L-34 -90 -33 -85 -24 -93 -20 -87 -11 -94 -8 -89 1 -96 4 -91 Q19 -96 31 -84 L41 -69 31 -45 Q20 -37 5 -43 L-9 -53 Q-23 -58 -35 -41 L-48 -46Z';
   get('body').paths[2].fill='shadow';
@@ -16,6 +16,10 @@ export function restoreAnimal(a){
   add('body','M-29 -74 Q-22 -69 -23 -59 M-20 -77 Q-12 -72 -14 -58 M-10 -79 Q-2 -73 -4 -60 M0 -80 Q8 -74 6 -61',null,'deep',1.65);
   add('body','M17 -83 Q29 -82 29 -69 L24 -55 19 -48 21 -64 14 -70Z','light');
   add('body','M18 -79 Q25 -76 23 -67',null,'boneShade',1.2);
+  add('body','M-43 -79 Q-30 -86 -18 -84 L-25 -80 -35 -76Z','rim');
+  add('body','M18 -82 L24 -80 26 -72 23 -65 21 -70Z','rim');
+  add('hind-near','M-35 -54 Q-28 -56 -27 -47 L-34 -34 -37 -32 -32 -46Z','rim');
+  add('fore-near','M24 -24 L26 -23 26 -9 32 -5 24 -5Z','rim');
   // Occiput to sternum: two tensile planes rather than decorative scratching.
   get('neck').paths[1].d='M28 -91 L34 -96 37 -87 43 -82 37 -70 30 -60 32 -73 27 -77Z';
   add('neck','M35 -88 Q39 -79 32 -65 M28 -85 L30 -77 27 -69',null,'deep',1.8);

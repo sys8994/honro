@@ -10,7 +10,7 @@ export async function buildActors(){
  const out=path.join(root,'_local/reports/actor-forge'),dest=path.join(root,'shared/assets/actors');await mkdir(out,{recursive:true});await mkdir(dest,{recursive:true});
  const base=JSON.parse(await readFile(path.join(root,'tests/fixtures/actor-baseline.json'),'utf8'));
  for(const [name,hash]of Object.entries(base.sources))if(sha(await readFile(path.join(root,name)))!==hash)throw Error('Changed actor reference: '+name);
- const sourceFiles=['tools/actor-forge/catalog.mjs','tools/actor-forge/shapes.mjs','tools/actor-forge/humans.mjs','tools/actor-forge/spirits.mjs','tools/actor-forge/objects.mjs','tools/actor-forge/anatomy.mjs','tools/actor-forge/recipes.mjs','shared/assets/rebuild-game-adapter.mjs','shared/runtime/actor-vector.js','shared/runtime/monster-vector.js'];
+ const sourceFiles=['tools/actor-forge/catalog.mjs','tools/actor-forge/shapes.mjs','tools/actor-forge/humans.mjs','tools/actor-forge/spirits.mjs','tools/actor-forge/objects.mjs','tools/actor-forge/anatomy.mjs','tools/actor-forge/material-depth.mjs','tools/actor-forge/recipes.mjs','shared/assets/rebuild-game-adapter.mjs','shared/runtime/actor-vector.js','shared/runtime/monster-vector.js'];
  const texts=await Promise.all(sourceFiles.map(n=>readFile(path.join(root,n),'utf8'))),sourceSha256=sha(sourceFiles.map((n,i)=>n+'\n'+texts[i].replace(/\r\n/g,'\n')).join('\n')),rows=[];
  for(const a of actors){
   const ids=new Set();for(const p of a.parts){if(ids.has(p.id)||p.parent&&!ids.has(p.parent))throw Error(a.id+': invalid part '+p.id);ids.add(p.id);}

@@ -2888,3 +2888,8 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 경계: campaign/steps/marker/획득flag/순서/스토리 원문/저장 스키마와 P0 엔진은 변경하지 않는다. 30장 transport-map 및 27장 depot-route-ledger ID와 배·증원·검은 틈 조건을 보존한다. 문서 수집 퀘스트 축소 기획은 구현하지 않는다.
 - 집중 검증: 전30장 evidence inventory·원문 fillText 금지·묶음 크기·무변이 검사, P0 body sweep, story-revision 통과. 실제 Chromium desktop1440×900/mobile390×844·가로회전·Workshop Playtest에서 상호작용, 정지, 같은 문서 Continue, 중복 거부, 이전/키보드/닫기/터치 스크롤 확인. 16종 문서 목록과 PNG는 `_local/reports/document-reader/`. 모든 장 정상 전투 완주 검사가 아니다.
 - 원본 첨부 `libfile_83cd65f33af48191a1881cbd5999c02c`는 지원 materialization 및 소비자 목적지 재시도가 전송 실패해 이 실행환경에서는 픽셀 미확인이다. 원본은 변경하지 않았다. 부모의 픽셀 확인과 동일한 30장 지도를 실제 baseline HTML에서 재현·전후 확인했다. 기존 binding-detail/migration/integration 실패는 별도 기록하며 fixture 완화는 하지 않는다. 최종 배포/전체 검증은 후속 결과로 기록한다.
+
+### 2026-10-15 · 승인된 동물 방향의 가독성 보강과 전종 재작업
+- 부모의 단독 쓰기 인계 후8d759f2 문서 모달/P0를 병합. 개의 등·견갑·허벅지·앞발에만 차가운 중간 명도를 더하며 깊은 복부/목은 보존, 멧돼지는 불변. 박쥐는3899a2f 원본 도형 복원.
+- monster material-depth: ghost/shade는 빈 상징 대신 광대·목·긴 손을 복원하고 압박된 천면을 분리. warden은 목재 절단/안와/갈라진 심재, lantern은 목틀 결구·찢긴 창 안쪽 깊이. 인간형6종은 피부·소매 관절·몸통 하중을 보강하고 궁수의 청회색/무사의 적갈색/서고의 종이색/주조의 그을음과 가죽을 구별. 얼굴/도구/갑옷 구조로 역할을 구분하며 부적 추가를 사용하지 않는다.
+- actor material-depth: 배회령/반향령의 얼굴·손·목, 돌격귀 팔꿈치 하중, 수호령 목재 심재, 먹귀 갑판/턱/발, 빈 상여의 장부결구/휘장접힘/깊은 바닥면. 기존 joint/clip/게임플레이는 보존한다. 소스 생성 검사 후 실제 미술 전후 검수 예정.
