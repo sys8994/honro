@@ -1,0 +1,135 @@
+{
+  "scope": "Unmodified resources and production native inputs, bounded observation; not victory and not browser input",
+  "round": 18,
+  "phase": "aim",
+  "goal": {
+    "dispatch-bundle": true,
+    "carrier-start": true
+  },
+  "cargo": {
+    "version": 1,
+    "status": "stored",
+    "elapsed": 0,
+    "duration": 1.2,
+    "commitCount": 0,
+    "warnings": {
+      "act3-response-23-0": {
+        "serial": 2,
+        "round": 1,
+        "side": "west-yard",
+        "offered": {
+          "p-occultist": {
+            "round": 1,
+            "serial": 3
+          }
+        },
+        "opportunity": {
+          "id": "p-occultist",
+          "round": 1,
+          "serial": 4
+        }
+      },
+      "act3-response-23-1": {
+        "serial": 2,
+        "round": 1,
+        "side": "low-central-flank",
+        "offered": {
+          "p-occultist": {
+            "round": 1,
+            "serial": 3
+          }
+        },
+        "opportunity": {
+          "id": "p-occultist",
+          "round": 1,
+          "serial": 4
+        }
+      }
+    },
+    "entries": {
+      "act3-response-23-0": {
+        "x": 1710,
+        "y": 4585,
+        "support": "sy-ground",
+        "side": "west-yard",
+        "round": 1,
+        "serial": 4,
+        "count": 4,
+        "ids": [
+          "event-3",
+          "event-4",
+          "event-5",
+          "event-6"
+        ]
+      },
+      "act3-response-23-1": {
+        "x": 3290,
+        "y": 4895,
+        "support": "sy-central-flank",
+        "side": "low-central-flank",
+        "round": 1,
+        "serial": 5,
+        "count": 5,
+        "ids": [
+          "event-7",
+          "event-8",
+          "event-9",
+          "event-10",
+          "event-11"
+        ]
+      }
+    },
+    "offered": {},
+    "blockers": [],
+    "alert": {
+      "A-front": true,
+      "A-support": true,
+      "B-support": true,
+      "B-front": true,
+      "C-front": true,
+      "D-support": true,
+      "D-rear": true,
+      "E-support": true
+    }
+  },
+  "heroes": [
+    {
+      "id": "p-archer",
+      "hp": 613,
+      "focus": 206
+    },
+    {
+      "id": "p-mage",
+      "hp": 530,
+      "focus": 44
+    },
+    {
+      "id": "p-knight",
+      "hp": 1062,
+      "focus": 231
+    },
+    {
+      "id": "p-occultist",
+      "hp": 1120,
+      "focus": 334
+    }
+  ],
+  "actions": 136,
+  "provenance": {
+    "policy": "escort-roles-first-v3",
+    "roleRoute": "high",
+    "rosterMode": "canonical",
+    "budget": {
+      "initial": 40,
+      "elites": 10
+    },
+    "basicOnly": false,
+    "sourceHash": "1891046f825e9652f639ca620cf7531d75798e7b8f84fca7c23e87f3048f54a1",
+    "runtimeSha256": "b9fa3f7da5bc90db5af08bddc083e5d6fa482aa7baa75c392714044d1312e697",
+    "controllerSha256": "8bc1136aab6b3e7cf50c4e0d1a361bb45692f6d0deae50434dbb49d7685fd20e",
+    "navigatorSha256": "87ff8b5a045a9e067201cd4347786a56d1548ba0fb208a88a3d9ceea1e13afb4",
+    "entrySha256": "25afee55f71ac08504bd0efd4525ea1eb8afbb2e5c7489c2b80c58a062d2a3e0",
+    "sourceCommit": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+    "sourceCommitBasis": "enclosing worktree HEAD at launch"
+  }
+}

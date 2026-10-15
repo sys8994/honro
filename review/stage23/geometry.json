@@ -1,0 +1,787 @@
+{
+  "passed": false,
+  "scope": "Isolated ordinary physics. Stat0 level16 legal entry; other actors removed and move pools replenished. NPC unmodified walk260; no route pose repair or jumps. Not full combat, runtime scene, UI or browser.",
+  "rows": [
+    {
+      "kind": "NPC",
+      "state": "stored",
+      "ticks": 1683,
+      "dist": 7293.837421484634,
+      "maxError": 9.094947017729282e-13,
+      "end": {
+        "x": 9147.57946319116,
+        "y": 4170
+      }
+    },
+    {
+      "kind": "NPC",
+      "state": "settled",
+      "ticks": 1683,
+      "dist": 7293.837421484634,
+      "maxError": 9.094947017729282e-13,
+      "end": {
+        "x": 9147.57946319116,
+        "y": 4170
+      }
+    },
+    {
+      "route": "entry-record",
+      "cls": "archer",
+      "phase": "stored",
+      "cost": 760.4478064331324,
+      "turnEquivalent": 0.463687686849471,
+      "maxMove": 1640,
+      "passed": true,
+      "failed": null,
+      "ticks": 120,
+      "jumps": 0,
+      "drops": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 300,
+            "y": 4250,
+            "surfaceId": "sy-ground"
+          },
+          "x": 300,
+          "y": 4250,
+          "ticks": 1,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 1050,
+            "y": 4250,
+            "surfaceId": "sy-ground"
+          },
+          "x": 1028.3333333333358,
+          "y": 4250,
+          "ticks": 116,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 1080,
+            "y": 4265.272727272727,
+            "surfaceId": "sy-ground"
+          },
+          "x": 1059.310699732145,
+          "y": 4254.73999259091,
+          "ticks": 6,
+          "support": "sy-ground"
+        }
+      ],
+      "mode": "isolated walk-only",
+      "landings": [],
+      "recoveries": 0
+    },
+    {
+      "route": "record-carrier",
+      "cls": "archer",
+      "phase": "stored",
+      "cost": 1285.6666666666615,
+      "turnEquivalent": 0.7839430894308912,
+      "maxMove": 1640,
+      "passed": true,
+      "failed": null,
+      "ticks": 203,
+      "jumps": 0,
+      "drops": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1080,
+            "y": 4265.272727272727,
+            "surfaceId": "sy-ground"
+          },
+          "x": 1080,
+          "y": 4265.272727272727,
+          "ticks": 1,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 1600,
+            "y": 4530,
+            "surfaceId": "sy-ground"
+          },
+          "x": 1582.318942827371,
+          "y": 4520.998734530298,
+          "ticks": 90,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 1940,
+            "y": 4700,
+            "surfaceId": "sy-ground"
+          },
+          "x": 1922.1365147560869,
+          "y": 4691.068257378043,
+          "ticks": 61,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 2280,
+            "y": 4700,
+            "surfaceId": "sy-ground"
+          },
+          "x": 2262.0280163397765,
+          "y": 4700,
+          "ticks": 55,
+          "support": "sy-ground"
+        }
+      ],
+      "mode": "isolated walk-only",
+      "landings": [],
+      "recoveries": 0
+    },
+    {
+      "route": "carrier-bridge",
+      "cls": "archer",
+      "phase": "stored",
+      "cost": 3655.1126891093963,
+      "turnEquivalent": 2.228727249456949,
+      "maxMove": 1640,
+      "passed": true,
+      "failed": null,
+      "ticks": 577,
+      "jumps": 0,
+      "drops": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 2280,
+            "y": 4700,
+            "surfaceId": "sy-ground"
+          },
+          "x": 2280,
+          "y": 4700,
+          "ticks": 1,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 4700,
+            "surfaceId": "sy-ground"
+          },
+          "x": 2584.0000000000073,
+          "y": 4700,
+          "ticks": 49,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 3400,
+            "y": 5100,
+            "surfaceId": "sy-ground"
+          },
+          "x": 3379.0646593909482,
+          "y": 5089.532329695474,
+          "ticks": 141,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 3980,
+            "y": 5100,
+            "surfaceId": "sy-ground"
+          },
+          "x": 3959.260244299705,
+          "y": 5100,
+          "ticks": 93,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 4360,
+            "y": 4940,
+            "surfaceId": "sy-ground"
+          },
+          "x": 4340.292070240058,
+          "y": 4948.298075688396,
+          "ticks": 66,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 5050,
+            "y": 4480,
+            "surfaceId": "sy-ground"
+          },
+          "x": 5032.885953155956,
+          "y": 4491.409364562696,
+          "ticks": 132,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 5375,
+            "y": 4350,
+            "surfaceId": "sy-stone-bridge"
+          },
+          "x": 5354.3219851168515,
+          "y": 4358.27120595326,
+          "ticks": 56,
+          "support": "sy-stone-bridge"
+        },
+        {
+          "goal": {
+            "x": 5660,
+            "y": 4350,
+            "surfaceId": "sy-stone-bridge"
+          },
+          "x": 5644.062429727294,
+          "y": 4350,
+          "ticks": 47,
+          "support": "sy-stone-bridge"
+        }
+      ],
+      "mode": "isolated walk-only",
+      "landings": [],
+      "recoveries": 0
+    },
+    {
+      "route": "bridge-exit",
+      "cls": "archer",
+      "phase": "stored",
+      "cost": 3603.919882471319,
+      "turnEquivalent": 2.197512123458121,
+      "maxMove": 1640,
+      "passed": true,
+      "failed": null,
+      "ticks": 569,
+      "jumps": 0,
+      "drops": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 5660,
+            "y": 4350,
+            "surfaceId": "sy-stone-bridge"
+          },
+          "x": 5660,
+          "y": 4350,
+          "ticks": 1,
+          "support": "sy-stone-bridge"
+        },
+        {
+          "goal": {
+            "x": 5950,
+            "y": 4350,
+            "surfaceId": "sy-stone-bridge"
+          },
+          "x": 5932.33333333332,
+          "y": 4350,
+          "ticks": 44,
+          "support": "sy-stone-bridge"
+        },
+        {
+          "goal": {
+            "x": 6550,
+            "y": 4620,
+            "surfaceId": "sy-ground"
+          },
+          "x": 6528.944498904086,
+          "y": 4610.525024506838,
+          "ticks": 104,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 7250,
+            "y": 4620,
+            "surfaceId": "sy-ground"
+          },
+          "x": 7229.910840487414,
+          "y": 4620,
+          "ticks": 112,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 8120,
+            "y": 4400,
+            "surfaceId": "sy-ground"
+          },
+          "x": 8102.412681725432,
+          "y": 4404.447367839546,
+          "ticks": 143,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 8620,
+            "y": 4170,
+            "surfaceId": "sy-ground"
+          },
+          "x": 8598.396015378235,
+          "y": 4179.937832926012,
+          "ticks": 87,
+          "support": "sy-ground"
+        },
+        {
+          "goal": {
+            "x": 9150,
+            "y": 4170,
+            "surfaceId": "sy-ground"
+          },
+          "x": 9128.219910117909,
+          "y": 4170,
+          "ticks": 85,
+          "support": "sy-ground"
+        }
+      ],
+      "mode": "isolated walk-only",
+      "landings": [],
+      "recoveries": 0
+    },
+    {
+      "route": "west-upper-approach",
+      "cls": "archer",
+      "phase": "stored",
+      "cost": 3406.573726211707,
+      "turnEquivalent": 2.0771791013486016,
+      "maxMove": 1640,
+      "passed": true,
+      "failed": null,
+      "ticks": 569,
+      "jumps": 1,
+      "drops": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1100,
+            "y": 4275.454545454545,
+            "surfaceId": "sy-ground"
+          },
+          "x": 1239.3333333333317,
+          "y": 4156,
+          "ticks": 1,
+          "support": "sy-west-upper",
+          "jumpTo": {
+            "x": 1240,
+            "support": "sy-west-upper",
+            "speed": 0.4
+          }
+        },
+        {
+          "goal": {
+            "x": 1240,
+            "y": 4156,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 1239.3333333333317,
+          "y": 4156,
+          "ticks": 1,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 1330,
+            "y": 4156,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 1308.9999999999975,
+          "y": 4156,
+          "ticks": 12,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 1760,
+            "y": 4020,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 1738.7116014766411,
+          "y": 4026.7330748818067,
+          "ticks": 72,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 4100,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 2582.6166104883177,
+          "y": 4098.344439094126,
+          "ticks": 135,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 3040,
+            "y": 3840,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 3021.3761947268013,
+          "y": 3851.0049758432538,
+          "ticks": 81,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 3560,
+            "y": 3650,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 3543.1652073367904,
+          "y": 3656.1511742423268,
+          "ticks": 89,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 4320,
+            "y": 3650,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 4302.076630099989,
+          "y": 3650,
+          "ticks": 121,
+          "support": "sy-west-upper"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps",
+      "landings": [
+        {
+          "from": {
+            "x": 1100,
+            "y": 4275.454545454545
+          },
+          "to": {
+            "x": 1239.3333333333317,
+            "y": 4156
+          },
+          "rise": 119.45454545454504
+        }
+      ],
+      "recoveries": 0
+    },
+    {
+      "route": "west-upper-return",
+      "cls": "archer",
+      "phase": "stored",
+      "cost": 3350.3333333333467,
+      "turnEquivalent": 2.0428861788617967,
+      "maxMove": 1640,
+      "passed": true,
+      "failed": null,
+      "ticks": 571,
+      "jumps": 0,
+      "drops": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 4320,
+            "y": 3650,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 4320,
+          "y": 3650,
+          "ticks": 1,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 3560,
+            "y": 3650,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 3578.999999999998,
+          "y": 3650,
+          "ticks": 118,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 3040,
+            "y": 3840,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 3060.3110605433158,
+          "y": 3832.578650955327,
+          "ticks": 88,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 4100,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 2616.961729089523,
+          "y": 4089.977160083464,
+          "ticks": 82,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 1760,
+            "y": 4020,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 1781.0739483303948,
+          "y": 4022.007042698133,
+          "ticks": 134,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 1330,
+            "y": 4156,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 1351.4498231268494,
+          "y": 4149.215869894764,
+          "ticks": 72,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 1210,
+            "y": 4156,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 1225.8304294450083,
+          "y": 4156,
+          "ticks": 21,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 1210,
+            "y": 4156,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 1099.1637627783432,
+          "y": 4275.028824687157,
+          "ticks": 1,
+          "support": "sy-ground",
+          "dropTo": {
+            "x": 1100,
+            "support": "sy-ground",
+            "stepOffX": 1100
+          }
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps",
+      "landings": [],
+      "recoveries": 0
+    },
+    {
+      "route": "D-E-return",
+      "cls": "archer",
+      "phase": "stored",
+      "cost": 1395.9999999999882,
+      "turnEquivalent": 0.8512195121951147,
+      "maxMove": 1640,
+      "passed": false,
+      "failed": {
+        "reason": "timeout",
+        "goal": {
+          "x": 5000,
+          "y": 3650,
+          "surfaceId": "sy-west-upper"
+        },
+        "x": 4565.1830820057385,
+        "y": 3635.163119435159
+      },
+      "ticks": 900,
+      "jumps": 15,
+      "drops": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 4320,
+            "y": 3650,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 4320,
+          "y": 3650,
+          "ticks": 1,
+          "support": "sy-west-upper"
+        },
+        {
+          "goal": {
+            "x": 5000,
+            "y": 3650,
+            "surfaceId": "sy-west-upper"
+          },
+          "x": 4565.1830820057385,
+          "y": 3635.163119435159,
+          "ticks": 901
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps",
+      "landings": [
+        {
+          "from": {
+            "x": 4566.999999999988,
+            "y": 3650
+          },
+          "to": {
+            "x": 4569.173104499464,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4569.173104499464,
+            "y": 3650
+          },
+          "to": {
+            "x": 4567.34620899894,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4567.34620899894,
+            "y": 3650
+          },
+          "to": {
+            "x": 4565.519313498416,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4565.519313498416,
+            "y": 3650
+          },
+          "to": {
+            "x": 4567.740494195274,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4567.740494195274,
+            "y": 3650
+          },
+          "to": {
+            "x": 4565.913598694749,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4565.913598694749,
+            "y": 3650
+          },
+          "to": {
+            "x": 4568.1347793916075,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4568.1347793916075,
+            "y": 3650
+          },
+          "to": {
+            "x": 4566.307883891083,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4566.307883891083,
+            "y": 3650
+          },
+          "to": {
+            "x": 4568.529064587941,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4568.529064587941,
+            "y": 3650
+          },
+          "to": {
+            "x": 4566.702169087417,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4566.702169087417,
+            "y": 3650
+          },
+          "to": {
+            "x": 4568.875273586893,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4568.875273586893,
+            "y": 3650
+          },
+          "to": {
+            "x": 4567.048378086369,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4567.048378086369,
+            "y": 3650
+          },
+          "to": {
+            "x": 4569.221482585845,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4569.221482585845,
+            "y": 3650
+          },
+          "to": {
+            "x": 4567.39458708532,
+            "y": 3650
+          },
+          "rise": 0
+        },
+        {
+          "from": {
+            "x": 4567.39458708532,
+            "y": 3650
+          },
+          "to": {
+            "x": 4565.567691584796,
+            "y": 3650
+          },
+          "rise": 0
+        }
+      ],
+      "recoveries": 0
+    }
+  ],
+  "error": "{\"route\":\"D-E-return\",\"cls\":\"archer\",\"phase\":\"stored\",\"cost\":1395.9999999999882,\"turnEquivalent\":0.8512195121951147,\"maxMove\":1640,\"passed\":false,\"failed\":{\"reason\":\"timeout\",\"goal\":{\"x\":5000,\"y\":3650,\"surfaceId\":\"sy-west-upper\"},\"x\":4565.1830820057385,\"y\":3635.163119435159},\"ticks\":900,\"jumps\":15,\"drops\":0,\"damage\":0,\"samples\":[{\"goal\":{\"x\":4320,\"y\":3650,\"surfaceId\":\"sy-west-upper\"},\"x\":4320,\"y\":3650,\"ticks\":1,\"support\":\"sy-west-upper\"},{\"goal\":{\"x\":5000,\"y\":3650,\"surfaceId\":\"sy-west-upper\"},\"x\":4565.1830820057385,\"y\":3635.163119435159,\"ticks\":901}],\"mode\":\"isolated ordinary walking and default jumps\",\"landings\":[{\"from\":{\"x\":4566.999999999988,\"y\":3650},\"to\":{\"x\":4569.173104499464,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4569.173104499464,\"y\":3650},\"to\":{\"x\":4567.34620899894,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4567.34620899894,\"y\":3650},\"to\":{\"x\":4565.519313498416,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4565.519313498416,\"y\":3650},\"to\":{\"x\":4567.740494195274,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4567.740494195274,\"y\":3650},\"to\":{\"x\":4565.913598694749,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4565.913598694749,\"y\":3650},\"to\":{\"x\":4568.1347793916075,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4568.1347793916075,\"y\":3650},\"to\":{\"x\":4566.307883891083,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4566.307883891083,\"y\":3650},\"to\":{\"x\":4568.529064587941,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4568.529064587941,\"y\":3650},\"to\":{\"x\":4566.702169087417,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4566.702169087417,\"y\":3650},\"to\":{\"x\":4568.875273586893,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4568.875273586893,\"y\":3650},\"to\":{\"x\":4567.048378086369,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4567.048378086369,\"y\":3650},\"to\":{\"x\":4569.221482585845,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4569.221482585845,\"y\":3650},\"to\":{\"x\":4567.39458708532,\"y\":3650},\"rise\":0},{\"from\":{\"x\":4567.39458708532,\"y\":3650},\"to\":{\"x\":4565.567691584796,\"y\":3650},\"rise\":0}],\"recoveries\":0}"
+}
