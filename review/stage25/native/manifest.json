@@ -1,0 +1,293 @@
+{
+  "source": "Production HonroMaps.createBattle + HONRO_CORE.Engine + HonroScene",
+  "projectFile": "/workspace/honro-stage25/shared/data/campaign.json",
+  "runtimeFile": "/workspace/honro-stage25/shared/build.mjs",
+  "runtimeSha256": "3e3ad5599f8b2471e7e1caa8704fe214e7a3ba5211392d2a65ca42201f9643e7",
+  "runtimeGitHead": "8280bedb9863ec501e1a287184a78fe61a8b2497",
+  "artOverride": null,
+  "projectSha256": "df86241bed922f18a2eef1f8ba873e3e6f0b93e56e4efed04eb6265ae843b724",
+  "scope": "Canonical campaign metadata and geometry in Native Canvas. No browser, HUD/input, performance or campaign-completion claim.",
+  "results": [
+    {
+      "stageId": 25,
+      "name": "물 아래 묶인 이름",
+      "file": "stage-25-overview.png",
+      "view": {
+        "name": "overview",
+        "w": 1600,
+        "h": 1200,
+        "x": 2800,
+        "y": 3900,
+        "scale": 0.23333333333333334,
+        "overview": true
+      },
+      "actualCamera": {
+        "x": 2800,
+        "y": 3900,
+        "scale": 0.23333333333333334,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 127.02636800000255,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 20,
+        "bgHits": 0,
+        "domainTileBuilds": 20,
+        "screenBuilds": 1,
+        "screenWorldBytes": 7680000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 21300480,
+        "worldScale": 0.25,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 24.876918232931725
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 23.465394377510044
+        }
+      ]
+    },
+    {
+      "stageId": 25,
+      "name": "물 아래 묶인 이름",
+      "file": "stage-25-default.png",
+      "view": {
+        "name": "default",
+        "w": 1440,
+        "h": 1000,
+        "x": 700,
+        "y": 5130,
+        "scale": 0.68
+      },
+      "actualCamera": {
+        "x": 700,
+        "y": 5130,
+        "scale": 0.68,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 68.7033599999977,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainTileBuilds": 12,
+        "screenBuilds": 1,
+        "screenWorldBytes": 5760000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 12780288,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 72.49844742168675
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 68.38486361445784
+        }
+      ]
+    },
+    {
+      "stageId": 25,
+      "name": "물 아래 묶인 이름",
+      "file": "stage-25-crossing.png",
+      "view": {
+        "name": "crossing",
+        "w": 1440,
+        "h": 1100,
+        "x": 2100,
+        "y": 4200,
+        "scale": 0.56
+      },
+      "actualCamera": {
+        "x": 2100,
+        "y": 4200,
+        "scale": 0.56,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 200.52341599999636,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 16,
+        "bgHits": 0,
+        "domainTileBuilds": 16,
+        "screenBuilds": 1,
+        "screenWorldBytes": 6336000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 17040384,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 59.70460375903615
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 56.31694650602411
+        }
+      ]
+    },
+    {
+      "stageId": 25,
+      "name": "물 아래 묶인 이름",
+      "file": "stage-25-mobile.png",
+      "view": {
+        "name": "mobile",
+        "w": 400,
+        "h": 800,
+        "x": 420,
+        "y": 5150,
+        "scale": 0.53
+      },
+      "actualCamera": {
+        "x": 420,
+        "y": 5150,
+        "scale": 0.53,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 7.838226999998369,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 2,
+        "bgHits": 0,
+        "domainTileBuilds": 2,
+        "screenBuilds": 1,
+        "screenWorldBytes": 1280000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 2130048,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 56.50614284337349
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 53.299967228915676
+        }
+      ]
+    },
+    {
+      "stageId": 25,
+      "name": "물 아래 묶인 이름",
+      "file": "stage-25-households.png",
+      "view": {
+        "name": "households",
+        "w": 1440,
+        "h": 1000,
+        "x": 2380,
+        "y": 2880,
+        "scale": 0.66
+      },
+      "actualCamera": {
+        "x": 2380,
+        "y": 2880,
+        "scale": 0.66,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 87.32578700000158,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainTileBuilds": 12,
+        "screenBuilds": 1,
+        "screenWorldBytes": 5760000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 12780288,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 300,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 70.36614014457831
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 400,
+          "y": 5400,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 66.37354409638556
+        }
+      ]
+    }
+  ]
+}

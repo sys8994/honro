@@ -18,8 +18,12 @@ export function refineMaintenance25(p,s){
  // galleries. They are rear-wall masonry, never a false foreground landing.
  for(const [x,y,w,h] of [[130,4150,1000,690],[1960,5050,1770,870],[3370,3700,1910,1600],[1310,3250,1900,310]]){
   const l=x+130,r=x+w-130,top=y+100,bottom=y+h;
-  wall+=P([[x,y],[x+w,y],[x+w,bottom],[r,bottom],[r,top+160],[(l+r)/2,top-40],[l,top+160],[l,bottom],[x,bottom]],'#344d51');
-  wall+=`<path d="M${l} ${bottom}V${top+160}Q${(l+r)/2} ${top-220} ${r} ${top+160}V${bottom}" fill="none" stroke="#536663" stroke-width="38"/>`;
+  const inner=Array.from({length:13},(_,i)=>{const t=Math.PI*i/12;return[r-(r-l)*i/12,top+160-200*Math.sin(t)];});
+  wall+=P([[x,y],[x+w,y],[x+w,bottom],[r,bottom],...inner,[l,bottom],[x,bottom]],'#344d51');
+  wall+=line(inner,'#536663',32);
+  // Broad dressed-stone courses at the loaded crown, recessed joints below.
+  for(const [f,width]of [[.03,.22],[.27,.3],[.59,.19],[.8,.17]])wall+=P([[x+w*f,y+12],[x+w*(f+width),y+8],[x+w*(f+width)-7,y+64],[x+w*f+5,y+70]],'#425955');
+  wall+=P([[r-5,top+164],[r+34,top+170],[r+34,bottom],[r-5,bottom]],'#233c43');
   wall+=P([[x,y+20],[x+36,y+20],[x+44,bottom],[x,bottom]],'#64736a');
  }
  add('shaft-bearing-masonry',wall,[80,2600,5300,3300]);

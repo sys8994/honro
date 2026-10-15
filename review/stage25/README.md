@@ -9,3 +9,7 @@ Native PNG는 실제 공통 게임 렌더러의 출력이며 브라우저 캡처
 공식 참고: 한국관광공사 화홍문 소개 https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=108749 및 해당 사진 https://tong.visitkorea.or.kr/cms/resource/51/3407951_image2_1.png . 출처는 확인했지만 실행환경 사진 다운로드가 HTTP tunnel403으로 실패하여 **공식 사진 픽셀 미열람**이다. 현재 게임 전후 이미지는 직접 열어 확인했다. 사진을 게임 자산에 복사하지 않았다.
 
 검수 제한: 미술 사용자 승인 없음. 정상 자원 전투 완주와 모든 군집/증원의 실효 행동 관측은 아직 미검증이다. 이 문서는 완료·승인 증명서가 아니다.
+
+현재 집중 검사: 다른29장/기존 자산/25장 목표·사건·유닛·다섯 연결 불변, 네 가지 기본 보행 왕복,27 진목 바람/실탄/양동행 도달, 연속 유한 자원/진목 교체·복귀,다섯 실제 현장 조사와 마지막 표찰 확보,P0 body184,낙하/reload28,물증 소유/Continue,Game+Workshop PC/모바일16화면 통과. 적을 제외한 경로 검사는 정상 전투와 구분한다.
+
+Library 이미지 저장은 지원 helper가 네트워크 오류로 실패하여 확정ID가 없다. 요청대로 PNG를 이 review 디렉터리에 보존한다. `native/`는 게임 공통 렌더러의 전체도, `browser/`는 독립 Chromium 실제 Game/Workshop 화면이다. 카메라는 검수용 지정 위치이며 일반 진행/완주 화면은 아니다.
