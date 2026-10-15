@@ -29765,10 +29765,11 @@ function lowerPool(z,amount){
 const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
+const timedHoist=(b,s)=>b.honroStage===17&&!b.honroCustom&&b.honroEvidenceRevision===1&&s.id==='hold-hoist';
 function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const evidence=G.HonroEvidenceQuests?.satisfied(b,s);if(evidence!==null&&evidence!==undefined)return evidence;const special=G.HonroStage18Bell?.satisfied(b,s);if(special!==null&&special!==undefined)return special;
  if(s.kind==='route')return !!b.honroRouteChoice?.selectedRoute;
  if(s.kind==='clear'){const plan=G.HonroAct2Plan.forStage(b.honroStage);if(s.cohorts==='all'&&(plan.bossWave&&!a.events['keeper-retaliation']||plan.progressWave&&!a.events['convoy-ambush']))return false;return enemiesFor(b,s).length===0;}
- if(s.kind==='hold'){const h=a.holds?.[s.id];return !!h&&h.progress>=s.rounds&&h.spawned>=(s.wave?.count||0);}
+ if(s.kind==='hold'){const h=a.holds?.[s.id];return !!h&&h.progress>=s.rounds&&(timedHoist(b,s)||h.spawned>=(s.wave?.count||0));}
  if(s.kind==='destroy')return !!G.HonroQuestTargets.records(b).find(t=>t.id===s.id)?.broken;
  if(s.kind==='defeat'){const u=b.units.find(u=>u.id===s.target);return !!u&&(u.dead||u.honroSubdued);}
  return false;
@@ -29950,7 +29951,9 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.
   G.HonroObjectiveContributions?.maintain(b,s.id,h,guards,h.progress>priorProgress,s.rounds,h.continuous,intervalEnded);
   h.guarded=guarded;h.contested=contested;
   if(app.actorBoundary&&guarded&&!a.events['story:'+s.id]){a.events['story:'+s.id]=true;say(app,s.id+'-start',app.stage.beats?.[s.id+':start']);}
-  if(app.actorBoundary&&guarded&&h.spawned<(s.wave?.count||0)&&h.waveRound!==b.round){const n=Math.min(3,s.wave.count-h.spawned),key=s.id+'-'+h.spawned;if(wave(app,key,s.wave.kind,n,s.id,s.wave.eliteEvery)){h.spawned+=n;h.waveRound=b.round;}}
+  if(app.actorBoundary&&guarded&&!satisfied(b,s)&&h.spawned<(s.wave?.count||0)&&h.waveRound!==b.round){const n=Math.min(3,s.wave.count-h.spawned),key=s.id+'-'+h.spawned;if(wave(app,key,s.wave.kind,n,s.id,s.wave.eliteEvery)){h.spawned+=n;h.waveRound=b.round;}}
+  // Commit the final protection interval and automatic evidence before mission checks.
+  if(timedHoist(b,s)&&satisfied(b,s))for(const q of steps(b)){if(a.done[q.id]||q.optional)continue;if(!satisfied(b,q))break;completeStep(app,q);}
  }
  if(s?.kind==='route')G.HonroRouteBranches?.commit(app,s);
  if(s?.kind==='rescue')G.HonroObjectiveContributions?.approach(b,s.id,heroes,e.unit(m.target)||m,220,!interactionThreats(b,m).length);
@@ -30259,6 +30262,7 @@ function warn(app){const b=app.engine.b,s=A.current(b);if(s?.id!=='hold-hoist')r
 const execute=W.execute;
 W.execute=function(app,action){const b=app.engine?.b;
  if(!active(b)||action?.type!=='spawn'||action.kind!=='minecart'||!/^hold-hoist-(0|3|6|9)$/.test(action.source||''))return execute(app,action);
+ if(b.honroEvidenceRevision===1&&A.satisfied(b,A.steps(b).find(s=>s.id==='hold-hoist')))return false;
  const index=Number(action.source.split('-').at(-1)),at=entryFor(b,index),mem=memory(b),warning=mem.warnings[action.source];
  if(!at||!warning||(b.honroState.actorTurnSerial||0)<=warning.serial)return false;
  const xs=Array.from({length:action.n||1},(_,i)=>at.x+i*100);

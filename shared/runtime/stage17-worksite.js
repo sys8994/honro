@@ -15,6 +15,7 @@ function warn(app){const b=app.engine.b,s=A.current(b);if(s?.id!=='hold-hoist')r
 const execute=W.execute;
 W.execute=function(app,action){const b=app.engine?.b;
  if(!active(b)||action?.type!=='spawn'||action.kind!=='minecart'||!/^hold-hoist-(0|3|6|9)$/.test(action.source||''))return execute(app,action);
+ if(b.honroEvidenceRevision===1&&A.satisfied(b,A.steps(b).find(s=>s.id==='hold-hoist')))return false;
  const index=Number(action.source.split('-').at(-1)),at=entryFor(b,index),mem=memory(b),warning=mem.warnings[action.source];
  if(!at||!warning||(b.honroState.actorTurnSerial||0)<=warning.serial)return false;
  const xs=Array.from({length:action.n||1},(_,i)=>at.x+i*100);
