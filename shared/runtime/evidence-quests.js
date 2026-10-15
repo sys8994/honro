@@ -86,7 +86,7 @@ function onComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return;
  else if(['ledger-case','upper-register','investigation-record','casting-tally','family-manifest','petition-record','hyeonmuk-letter'].includes(s.id)){
   if(s.id==='hyeonmuk-letter'){p=site(b,'old-seal');u=eventActor(b,p,actor);}const q=p&&collect(app,b.honroStage+':'+s.id,p,u);if(q)ids=[q.id];
  }
- if(b.honroStage===25&&/^stake-arrival-[1-5]$/.test(s.id)){const group=living(b).filter(v=>near(v,p,260));if(group.length!==2)return;u=group[0];}
+ if(b.honroStage===25&&/^stake-arrival-[1-5]$/.test(s.id)){const group=living(b).filter(v=>near(v,p,220));if(group.length!==2)return;u=group[0];}
  if(s.id==='household-tally'&&b.honroStage===25){const last=f.events['stake-arrival-5'];p=site(b,'stake-arrival-5');u=last&&b.units.find(v=>v.id===last.actor);const q=collect(app,'25:household-tally',p,u);if(q)ids=[q.id];}
  if(!u&&ids.length)u=b.units.find(v=>v.id===f.cargo[ids[0]].actor);
  if(!u||!p||(!ids.length&&!near(u,p,260)))return;
