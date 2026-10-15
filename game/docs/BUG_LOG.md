@@ -2973,3 +2973,9 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 계약은 배포 기준 `1dc96a56be0798bb652e43b12c8dbd53eb5327fe` 위의 새 `field-story-delta.json`으로 승인 소스·CSS·각 빌드 부분·캠페인 대사 및 opt-in 필드를 정확히 정방향/역방향 검사한다. 이전 fixture는 변경하지 않는다. 단위 검사에서 `current-runtime-contracts.mjs`(168 소스, 9 빌드, 두 HTML)와 `current-campaign-contracts.mjs`(30장, 640 에셋)가 통과했다. 17장 P0 및 대화 이전/다음·건너뛰기·Continue·음성 정책 회귀도 통과했다. 전체 verify는 사용자 요청에 따라 최종 배포 후 1회 실행할 항목으로 남는다. 알려진 binding-detail/migration/integration 기준 실패를 새 실패와 혼동하지 않는다. 이 기록은 master/Pages 발행이나 공개 검수 완료를 의미하지 않는다.
 
 28장 전용 합류 장면은 일반 목표 메타데이터 경로를 거치지 않아 동작이 누락되던 경로도 연결했다. `field-reunion-browser.py`에서 26장 조사 자료와 27장 가족 명세를 실제 확보한 후 직렬화한 프로필로 28장에 전달해, 같은 소유자·원래 위치·확보 증거가 유지되고 펼치기·재포장이 실행됨을 desktop/mobile에서 확인했다.
+
+### 2026-10-15 · 먹귀·만혼귀결 배포와 필수 현장 이야기 통합
+
+최신 master `c81c54565c89bbde1c2089290787308e0b105e1b`를 전체 로컬 이야기 이력 위에 merge했다. 게임 소스 충돌은 없었고 런타임 계약 두 파일만 조정했다. 먹귀/만혼귀결의 엔진·그림·포획 해제 변경은 배포 master와 바이트 동일하게 보존한다. 기존 `field-story-delta.json`과 `eater-sodan-revision-delta.json`을 그대로 두고 새 `field-story-integration-delta.json`이 최신 배포 위의 10개 이야기 소스 및 CSS 차이를 검증한다. 새 계약은 원래 field delta의 exactEdits·전후 소스 해시·캠페인 변경과 동일함도 검사한다.
+
+집중 검사 로그는 `_local/reports/field-story-integration/`에 둔다. 런타임 168 소스/9 빌드/두 HTML 계약, 먹귀 16개 lifecycle 시나리오, 만혼귀결 24회 균등 방사·순서/Continue, 17장 인양 P0, 두 HTML의 먹귀/만혼귀결 브라우저와 desktop/mobile 28장 실제 확보→저장→합류 대조를 확인했다. 기존 승인된 이미지·코드만 배포하며 검수 PNG는 외부 업로드하지 않는다. 최종 배포 뒤 전체 verify는 한 번 실행하고 기존 baseline 실패·미실행 후속 검사를 구분해 보고한다.
