@@ -29,10 +29,23 @@
 /* Act 1 discoveries, readable documents and persistent dialogue history. */
 .story-copy p,.narration-card p{overflow-wrap:anywhere}.story-actions,.narration-actions{flex-wrap:wrap}
 .narration-card{box-sizing:border-box;max-height:calc(100dvh - 24px);overflow:auto}
-.document-overlay{align-items:center;background:#030b10d9}
-.story-document{box-sizing:border-box;width:min(680px,100%);max-height:calc(100dvh - 24px);overflow:auto;margin:auto;padding:clamp(18px,4vw,40px);background:#dbd0af;color:#292e29;border:1px solid #aa9260;border-radius:3px;box-shadow:0 16px 70px #0009}
-.story-document .story-location{color:#595c4c}.story-document h2{font:700 clamp(20px,3vw,28px)/1.5 Batang, 'Noto Serif KR', serif;margin:20px 0}
-.story-document p{white-space:pre-wrap;overflow-wrap:anywhere;font:400 clamp(15px,2vw,18px)/1.95 Batang, 'Noto Serif KR', serif}.story-document .ghost{color:#29362f;border-color:#6d7767}
+.document-overlay{align-items:center;background:#030b10e8;padding:12px;box-sizing:border-box}
+.story-document{box-sizing:border-box;width:min(760px,100%);max-height:calc(100dvh - 24px);display:flex;flex-direction:column;overflow:hidden;margin:auto;color:#292e29;border:1px solid #8e805e;border-radius:3px;box-shadow:0 22px 80px #000b,inset 0 0 55px #6d54322b;background:radial-gradient(ellipse at 13% 10%,#f0e5c34a,transparent 60%),linear-gradient(105deg,#b9ad8b,#d9ceac 8%,#d4c6a3 80%,#b4a786)}
+.document-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px;border-bottom:1px solid #796c4d55;background:#29382c0c}
+.story-document .story-location{color:#5a5845;font-size:12px;letter-spacing:.08em}
+.document-tools{display:flex;gap:8px;flex-shrink:0}.document-tools button{min-height:44px;padding:8px 12px}
+.document-scroll{overflow:auto;overscroll-behavior:contain;touch-action:pan-y pinch-zoom;padding:12px clamp(22px,5vw,56px) 22px;scrollbar-color:#85765b #c4b796}
+.story-document h2{font:700 clamp(23px,3vw,30px)/1.5 Batang,'Noto Serif KR',serif;margin:20px 0 28px;letter-spacing:.04em;color:#29382e}
+.story-document p{white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font:400 clamp(17px,2vw,20px)/2 Batang,'Noto Serif KR',serif;margin:0 0 22px}
+.story-document.document-enlarged p{font-size:26px;line-height:2}.story-document.document-enlarged h2{font-size:32px}
+.story-document .ghost{color:#29362f;border-color:#6d7767;background:#f6e9c52b}.story-document button:focus-visible,.document-scroll:focus-visible{outline:2px solid #68452e;outline-offset:-3px}
+.story-document .story-actions{flex-shrink:0;flex-wrap:wrap;gap:10px;margin:0;padding:12px 22px;border-top:1px solid #796c4d55;background:#c4b48f}.story-document .story-actions button{min-height:44px}
+.document-ledger .document-scroll{background:linear-gradient(90deg,transparent 28px,#955e4940 29px,#955e4940 30px,transparent 31px)}
+.document-note{width:min(660px,100%)}.document-note h2{padding-bottom:20px;border-bottom:1px solid #88795755}
+.document-routes{border-left:1px solid #7b8067;padding-left:24px;margin:12px 0 28px}.document-routes p{position:relative;padding:12px 0;border-bottom:1px solid #837e6140}.document-routes p:before{content:'';position:absolute;left:-29px;top:29px;width:9px;height:9px;transform:rotate(45deg);background:#65715d;border:1px solid #bdb391}
+.document-end{text-align:center;color:#827052;letter-spacing:.4em;padding:12px}
+@media(max-width:480px){.document-header{padding:10px 14px;align-items:flex-start;gap:6px}.document-tools{gap:5px}.document-tools button{padding:7px 9px}.story-document .story-location{max-width:110px;line-height:1.8}.document-scroll{padding:6px 24px 18px}.story-document h2{margin:18px 0 24px}.story-document .story-actions{padding:10px 14px}}
+
 .story-history-overlay{position:fixed;inset:0;z-index:125;display:grid;place-items:center;padding:12px;background:#020a10ec}
 .story-history{box-sizing:border-box;width:min(820px,100%);max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain;padding:24px;background:#112529;border:1px solid #a68f6455;color:#e4ddc9}
 .story-record{margin:12px 0;border:1px solid #aa947840;border-radius:4px;padding:12px}.story-record summary{cursor:pointer;line-height:1.6;color:#ddc99c}.story-record p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}.record-document{background:#cabc9620;padding:14px}

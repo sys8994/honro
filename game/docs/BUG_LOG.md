@@ -2881,3 +2881,10 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 실제 시안 픽셀: 180/90에서 안면/갈비/엄니/목가죽 면이 분리되고35에서 뼈빛 얼굴·엄니는 유지된다. 개 몸통의 어두운 털은35px에서 세부가 합쳐진다. 양방향 주요 동작에서 관절 분리/잘림은 관측하지 않았다. jump_fall은 기존 renderer의 정지 포즈 표시이며 새로운 점프 애니메이션을 만들었다는 증거가 아니다. 최종 미술 합격은 부모 검수 전이다.
 - `npm run verify`: 기존 monster packaging source 해시 계약(current-runtime-contracts.mjs:224)에서 FAIL. 시안 통합 후에는 기존 승인자료를 보존하는 별도 exact reversible delta가 필요하다. 이 단계에서는 manifest를 고치지 않았다. `tests/migration.mjs`: Stage7 story honroGrowth FAIL. `tests/integration.py`: Stage1–7 렌더동일 PASS, Stage8 기존679픽셀 차이 FAIL. 실패를 미술 합격으로 대체하지 않는다.
 - 비교PNG Library 저장 확인: hound libfile_d541d0c1d0748191915dd4953cdb742e / boar libfile_e576d8207aa081918a961e23d6197fac. 현재 Scene에서3899a2f/6a8638c/시안 자산만 교체한3열 비교이므로 포즈/배경/크기가 동일하다. 원본 당시 전체 게임 스크린샷으로 오인하지 않는다. PNG와 로그는 `_local/reports/animal-preview/`.
+## 2026-10-15 · 현장 문서는 작은 조사 표식과 읽기 모달로 분리
+
+- 원인: `story-act23-art.js`가 16·17·22–30장의 장부/쪽지/지도 원문을 큰 월드 종이판으로 반복 출력했다. 30장은 조사 전부터 지명이 노출됐다.
+- 변경: 공통 월드 문서는 42×19의 닫힌 묶음으로만 식별한다. 15장 운반 흔적, 19장 공양물·분리혼, 23/25장 생활도구, 기존 홍만의 작은 장부, 목표 라벨·미니맵·쉼터 여정 지도는 보존한다. `story.js`의 홍만 `documentView`를 지도/장부/메모로 확장하고 명조 글씨, 먹색·종이 명암, 독립 스크롤, 큰 글씨, 닫기/Escape·이전·기록 열람을 제공한다. 닫기는 다음 대사로 이동하며 기존 넘기기 정책은 유지한다.
+- 경계: campaign/steps/marker/획득flag/순서/스토리 원문/저장 스키마와 P0 엔진은 변경하지 않는다. 30장 transport-map 및 27장 depot-route-ledger ID와 배·증원·검은 틈 조건을 보존한다. 문서 수집 퀘스트 축소 기획은 구현하지 않는다.
+- 집중 검증: 전30장 evidence inventory·원문 fillText 금지·묶음 크기·무변이 검사, P0 body sweep, story-revision 통과. 실제 Chromium desktop1440×900/mobile390×844·가로회전·Workshop Playtest에서 상호작용, 정지, 같은 문서 Continue, 중복 거부, 이전/키보드/닫기/터치 스크롤 확인. 16종 문서 목록과 PNG는 `_local/reports/document-reader/`. 모든 장 정상 전투 완주 검사가 아니다.
+- 원본 첨부 `libfile_83cd65f33af48191a1881cbd5999c02c`는 지원 materialization 및 소비자 목적지 재시도가 전송 실패해 이 실행환경에서는 픽셀 미확인이다. 원본은 변경하지 않았다. 부모의 픽셀 확인과 동일한 30장 지도를 실제 baseline HTML에서 재현·전후 확인했다. 기존 binding-detail/migration/integration 실패는 별도 기록하며 fixture 완화는 하지 않는다. 최종 배포/전체 검증은 후속 결과로 기록한다.
