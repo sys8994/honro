@@ -2910,3 +2910,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 배포 후 전체 검사 1회에서 verify는 새 runtime 캠페인 초기 상태(stage-3)의 계약 누락을 발견했다. 이를 baseline으로 분류하지 않았다. raw 맵/지형/병력/640 에셋을 그대로 두고, 13장의 initialState 및 marker label/target만 허용하는 별도 exact JSON delta와 역복원/변조 검사를 추가해 campaign-contracts 집중 재검사를 통과했다. 같은 점검에서 마지막 목표 직후 outcome에 합쳐진 일지가 선택 원문 변환을 거치지 않는 경계를 재현했다(stored 0/mandatory 1). 변환을 outcome queue 병합 뒤로 옮겨 desktop/mobile 모두 stored 1/mandatory 0, 새 Continue/원문 재열람 검사를 통과했다. 전체 검사는 반복하지 않고 영향받은 계약/종료 경로만 재검사한다. migration은 기존 Stage7 성장 HP 비교, integration은 기존 Stage8 679px 비교 실패였다. fixture 완화 없음.
 
 추가 집중 검사: outcome 보관 경계와 캠페인 117개 역복원/변조 검사를 통과했다. 기존 binding-detail whole-runtime-project 고정값은 별도 실행에서도 불일치했다(기대 0b41536f…, 현재 fc135142…). 해당 역사 fixture를 완화하지 않았으며, 승인된 새 초기 상태는 별도 exact campaign delta로 검증했다. 전체 verify의 최초 신규 계약 실패와 기존 baseline 실패를 같은 통과/실패로 합치지 않는다.
+
+## 2026-10-15 잠운사 필수 증언 복구
+
+사용자 요청에 따라 새 16장 필수 witness 대화에 최근 종 안의 생존자들이 사흘간 두드리며 물을 청했다는 증언, 종지기가 인양축을 빼고 문을 잠갔다는 증언, 작업굴에서 직접 확인하려는 동기를 복구했다. 선택 전문과 기존 목표 ID/순서는 그대로다. 이송 기록 획득 대화에는 칠십 년 전 기록과 최근 사건을 구분하는 담허의 한 문장을 덧붙였다. 17장 내용/인양축·일지의 물리적 검증은 변경하지 않았다.
+
+새 캠페인 실제 자동 진행 검사에서 hall 사용 직후 record의 선행조건이 참이라는 이유만으로 승리해 자동 record 커밋/원문 보관을 건너뛰던 경계도 발견했다. 16장 evidence revision에서만 필수 자동 증거가 실제 done으로 커밋된 뒤 승리하도록 막았다. 새 클릭이나 목표는 추가하지 않는다. 저장된 narrative snapshot/대화 인덱스는 이관하지 않는다.
+
+집중 브라우저 검사: 격리된 새 16장 진입, 실제 monk/hall use, 통제한 위협 제거, 자동 필수 증언·열쇠·옛 이송 기록, 결과/쉼터 UI를 통한 17장 진입. 원문은 한 번도 열지 않았으며 desktop/mobile의 증언 도중 reload/Continue에서 대화·단계·획득 기록이 일치했다. 이동/전투 압력은 fixture로 통제한 기능 검수이며 정상 자원 완주가 아니다. `tests/temple-testimony-browser.py`, 증거 `_local/reports/temple-testimony/`. 기존 전체 baseline 검사를 반복하지 않는다.
