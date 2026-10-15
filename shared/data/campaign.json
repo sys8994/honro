@@ -156894,6 +156894,967 @@
           ]
         }
       }
+    },
+    {
+      "id": "a3-maintenance25:shaft-bearing-masonry",
+      "name": "shaft-bearing-masonry",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          80,
+          2600,
+          5300,
+          3300
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#263d42",
+              "d": "M100 3400 L1180 3400 L1180 4050 L100 4050 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#172c33",
+              "d": "M135 3432 L1145 3432 L1145 4050 L135 4050 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M100 3400 L170 3400 L182 4050 L80 4050 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M108 3424 L122 3424 L122 4042 L108 4042 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M1090 3400 L1180 3400 L1192 4050 L1070 4050 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M1098 3424 L1112 3424 L1112 4042 L1098 4042 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#354b4b",
+              "d": "M138 3436 L1138 3436 L1138 3472 L138 3472 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#263d42",
+              "d": "M1950 4530 L3750 4530 L3750 4950 L1950 4950 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#172c33",
+              "d": "M1985 4562 L3715 4562 L3715 4950 L1985 4950 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M1950 4530 L2020 4530 L2032 4950 L1930 4950 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M1958 4554 L1972 4554 L1972 4942 L1958 4942 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M3660 4530 L3750 4530 L3762 4950 L3640 4950 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M3668 4554 L3682 4554 L3682 4942 L3668 4942 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#354b4b",
+              "d": "M1988 4566 L3708 4566 L3708 4602 L1988 4602 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#263d42",
+              "d": "M3350 2950 L5330 2950 L5330 3600 L3350 3600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#172c33",
+              "d": "M3385 2982 L5295 2982 L5295 3600 L3385 3600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M3350 2950 L3420 2950 L3432 3600 L3330 3600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M3358 2974 L3372 2974 L3372 3592 L3358 3592 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M5240 2950 L5330 2950 L5342 3600 L5220 3600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M5248 2974 L5262 2974 L5262 3592 L5248 3592 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#354b4b",
+              "d": "M3388 2986 L5288 2986 L5288 3022 L3388 3022 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#263d42",
+              "d": "M1300 2650 L3240 2650 L3240 3150 L1300 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#172c33",
+              "d": "M1335 2682 L3205 2682 L3205 3150 L1335 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M1300 2650 L1370 2650 L1382 3150 L1280 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M1308 2674 L1322 2674 L1322 3142 L1308 3142 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3c5354",
+              "d": "M3150 2650 L3240 2650 L3252 3150 L3130 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#566863",
+              "d": "M3158 2674 L3172 2674 L3172 3142 L3158 3142 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#354b4b",
+              "d": "M1338 2686 L3198 2686 L3198 2722 L1338 2722 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#344d51",
+              "d": "M130 4150 L1130 4150 L1130 4840 L1000 4840 L1000 4410 L630 4210 L260 4410 L260 4840 L130 4840 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#536663",
+              "lineWidth": 38,
+              "d": "M260 4840V4410Q630 4030 1000 4410V4840"
+            },
+            {
+              "tag": "path",
+              "fill": "#64736a",
+              "d": "M130 4170 L166 4170 L174 4840 L130 4840 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#344d51",
+              "d": "M1960 5050 L3730 5050 L3730 5920 L3600 5920 L3600 5310 L2845 5110 L2090 5310 L2090 5920 L1960 5920 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#536663",
+              "lineWidth": 38,
+              "d": "M2090 5920V5310Q2845 4930 3600 5310V5920"
+            },
+            {
+              "tag": "path",
+              "fill": "#64736a",
+              "d": "M1960 5070 L1996 5070 L2004 5920 L1960 5920 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#344d51",
+              "d": "M3370 3700 L5280 3700 L5280 5300 L5150 5300 L5150 3960 L4325 3760 L3500 3960 L3500 5300 L3370 5300 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#536663",
+              "lineWidth": 38,
+              "d": "M3500 5300V3960Q4325 3580 5150 3960V5300"
+            },
+            {
+              "tag": "path",
+              "fill": "#64736a",
+              "d": "M3370 3720 L3406 3720 L3414 5300 L3370 5300 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#344d51",
+              "d": "M1310 3250 L3210 3250 L3210 3560 L3080 3560 L3080 3510 L2260 3310 L1440 3510 L1440 3560 L1310 3560 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#536663",
+              "lineWidth": 38,
+              "d": "M1440 3560V3510Q2260 3130 3080 3510V3560"
+            },
+            {
+              "tag": "path",
+              "fill": "#64736a",
+              "d": "M1310 3270 L1346 3270 L1354 3560 L1310 3560 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"80 2600 5300 3300\"><path d=\"M100 3400 L1180 3400 L1180 4050 L100 4050 Z\" fill=\"#263d42\"/><path d=\"M135 3432 L1145 3432 L1145 4050 L135 4050 Z\" fill=\"#172c33\"/><path d=\"M100 3400 L170 3400 L182 4050 L80 4050 Z\" fill=\"#3c5354\"/><path d=\"M108 3424 L122 3424 L122 4042 L108 4042 Z\" fill=\"#566863\"/><path d=\"M1090 3400 L1180 3400 L1192 4050 L1070 4050 Z\" fill=\"#3c5354\"/><path d=\"M1098 3424 L1112 3424 L1112 4042 L1098 4042 Z\" fill=\"#566863\"/><path d=\"M138 3436 L1138 3436 L1138 3472 L138 3472 Z\" fill=\"#354b4b\"/><path d=\"M1950 4530 L3750 4530 L3750 4950 L1950 4950 Z\" fill=\"#263d42\"/><path d=\"M1985 4562 L3715 4562 L3715 4950 L1985 4950 Z\" fill=\"#172c33\"/><path d=\"M1950 4530 L2020 4530 L2032 4950 L1930 4950 Z\" fill=\"#3c5354\"/><path d=\"M1958 4554 L1972 4554 L1972 4942 L1958 4942 Z\" fill=\"#566863\"/><path d=\"M3660 4530 L3750 4530 L3762 4950 L3640 4950 Z\" fill=\"#3c5354\"/><path d=\"M3668 4554 L3682 4554 L3682 4942 L3668 4942 Z\" fill=\"#566863\"/><path d=\"M1988 4566 L3708 4566 L3708 4602 L1988 4602 Z\" fill=\"#354b4b\"/><path d=\"M3350 2950 L5330 2950 L5330 3600 L3350 3600 Z\" fill=\"#263d42\"/><path d=\"M3385 2982 L5295 2982 L5295 3600 L3385 3600 Z\" fill=\"#172c33\"/><path d=\"M3350 2950 L3420 2950 L3432 3600 L3330 3600 Z\" fill=\"#3c5354\"/><path d=\"M3358 2974 L3372 2974 L3372 3592 L3358 3592 Z\" fill=\"#566863\"/><path d=\"M5240 2950 L5330 2950 L5342 3600 L5220 3600 Z\" fill=\"#3c5354\"/><path d=\"M5248 2974 L5262 2974 L5262 3592 L5248 3592 Z\" fill=\"#566863\"/><path d=\"M3388 2986 L5288 2986 L5288 3022 L3388 3022 Z\" fill=\"#354b4b\"/><path d=\"M1300 2650 L3240 2650 L3240 3150 L1300 3150 Z\" fill=\"#263d42\"/><path d=\"M1335 2682 L3205 2682 L3205 3150 L1335 3150 Z\" fill=\"#172c33\"/><path d=\"M1300 2650 L1370 2650 L1382 3150 L1280 3150 Z\" fill=\"#3c5354\"/><path d=\"M1308 2674 L1322 2674 L1322 3142 L1308 3142 Z\" fill=\"#566863\"/><path d=\"M3150 2650 L3240 2650 L3252 3150 L3130 3150 Z\" fill=\"#3c5354\"/><path d=\"M3158 2674 L3172 2674 L3172 3142 L3158 3142 Z\" fill=\"#566863\"/><path d=\"M1338 2686 L3198 2686 L3198 2722 L1338 2722 Z\" fill=\"#354b4b\"/><path d=\"M130 4150 L1130 4150 L1130 4840 L1000 4840 L1000 4410 L630 4210 L260 4410 L260 4840 L130 4840 Z\" fill=\"#344d51\"/><path d=\"M260 4840V4410Q630 4030 1000 4410V4840\" fill=\"none\" stroke=\"#536663\" stroke-width=\"38\"/><path d=\"M130 4170 L166 4170 L174 4840 L130 4840 Z\" fill=\"#64736a\"/><path d=\"M1960 5050 L3730 5050 L3730 5920 L3600 5920 L3600 5310 L2845 5110 L2090 5310 L2090 5920 L1960 5920 Z\" fill=\"#344d51\"/><path d=\"M2090 5920V5310Q2845 4930 3600 5310V5920\" fill=\"none\" stroke=\"#536663\" stroke-width=\"38\"/><path d=\"M1960 5070 L1996 5070 L2004 5920 L1960 5920 Z\" fill=\"#64736a\"/><path d=\"M3370 3700 L5280 3700 L5280 5300 L5150 5300 L5150 3960 L4325 3760 L3500 3960 L3500 5300 L3370 5300 Z\" fill=\"#344d51\"/><path d=\"M3500 5300V3960Q4325 3580 5150 3960V5300\" fill=\"none\" stroke=\"#536663\" stroke-width=\"38\"/><path d=\"M3370 3720 L3406 3720 L3414 5300 L3370 5300 Z\" fill=\"#64736a\"/><path d=\"M1310 3250 L3210 3250 L3210 3560 L3080 3560 L3080 3510 L2260 3310 L1440 3510 L1440 3560 L1310 3560 Z\" fill=\"#344d51\"/><path d=\"M1440 3560V3510Q2260 3130 3080 3510V3560\" fill=\"none\" stroke=\"#536663\" stroke-width=\"38\"/><path d=\"M1310 3270 L1346 3270 L1354 3560 L1310 3560 Z\" fill=\"#64736a\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 80,
+        "y": 2600,
+        "w": 5300,
+        "h": 3300
+      },
+      "reference": {
+        "heightM": 55,
+        "bounds": {
+          "x": 80,
+          "y": 2600,
+          "w": 5300,
+          "h": 3300
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "a3-maintenance25:sluice-leaf-and-guides",
+      "name": "sluice-leaf-and-guides",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          2460,
+          1730,
+          490,
+          4100
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#10252d",
+              "d": "M2480 1740 L2930 1740 L2930 5820 L2480 5820 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4b4b3b",
+              "d": "M2500 1840 L2548 1840 L2548 5620 L2500 5620 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#665f46",
+              "d": "M2505 1850 L2510 1850 L2510 5600 L2505 5600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3b4136",
+              "d": "M2558 1840 L2606 1840 L2606 5620 L2558 5620 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#665f46",
+              "d": "M2563 1850 L2568 1850 L2568 5600 L2563 5600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3b4136",
+              "d": "M2616 1840 L2664 1840 L2664 5620 L2616 5620 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#665f46",
+              "d": "M2621 1850 L2626 1850 L2626 5600 L2621 5600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4b4b3b",
+              "d": "M2674 1840 L2722 1840 L2722 5620 L2674 5620 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#665f46",
+              "d": "M2679 1850 L2684 1850 L2684 5600 L2679 5600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3b4136",
+              "d": "M2732 1840 L2780 1840 L2780 5620 L2732 5620 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#665f46",
+              "d": "M2737 1850 L2742 1850 L2742 5600 L2737 5600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3b4136",
+              "d": "M2790 1840 L2838 1840 L2838 5620 L2790 5620 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#665f46",
+              "d": "M2795 1850 L2800 1850 L2800 5600 L2795 5600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4b4b3b",
+              "d": "M2848 1840 L2896 1840 L2896 5620 L2848 5620 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#665f46",
+              "d": "M2853 1850 L2858 1850 L2858 5600 L2853 5600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#242f30",
+              "d": "M2490 2220 L2920 2220 L2920 2268 L2490 2268 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#697064",
+              "d": "M2500 2224 L2910 2224 L2910 2231 L2500 2231 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#242f30",
+              "d": "M2490 3010 L2920 3010 L2920 3058 L2490 3058 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#697064",
+              "d": "M2500 3014 L2910 3014 L2910 3021 L2500 3021 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#242f30",
+              "d": "M2490 3860 L2920 3860 L2920 3908 L2490 3908 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#697064",
+              "d": "M2500 3864 L2910 3864 L2910 3871 L2500 3871 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#242f30",
+              "d": "M2490 4640 L2920 4640 L2920 4688 L2490 4688 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#697064",
+              "d": "M2500 4644 L2910 4644 L2910 4651 L2500 4651 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#242f30",
+              "d": "M2490 5420 L2920 5420 L2920 5468 L2490 5468 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#697064",
+              "d": "M2500 5424 L2910 5424 L2910 5431 L2500 5431 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4c5d5b",
+              "d": "M2467 1740 L2491 1740 L2491 5810 L2467 5810 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#263e44",
+              "d": "M2910 1740 L2934 1740 L2934 5810 L2910 5810 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"2460 1730 490 4100\"><path d=\"M2480 1740 L2930 1740 L2930 5820 L2480 5820 Z\" fill=\"#10252d\"/><path d=\"M2500 1840 L2548 1840 L2548 5620 L2500 5620 Z\" fill=\"#4b4b3b\"/><path d=\"M2505 1850 L2510 1850 L2510 5600 L2505 5600 Z\" fill=\"#665f46\"/><path d=\"M2558 1840 L2606 1840 L2606 5620 L2558 5620 Z\" fill=\"#3b4136\"/><path d=\"M2563 1850 L2568 1850 L2568 5600 L2563 5600 Z\" fill=\"#665f46\"/><path d=\"M2616 1840 L2664 1840 L2664 5620 L2616 5620 Z\" fill=\"#3b4136\"/><path d=\"M2621 1850 L2626 1850 L2626 5600 L2621 5600 Z\" fill=\"#665f46\"/><path d=\"M2674 1840 L2722 1840 L2722 5620 L2674 5620 Z\" fill=\"#4b4b3b\"/><path d=\"M2679 1850 L2684 1850 L2684 5600 L2679 5600 Z\" fill=\"#665f46\"/><path d=\"M2732 1840 L2780 1840 L2780 5620 L2732 5620 Z\" fill=\"#3b4136\"/><path d=\"M2737 1850 L2742 1850 L2742 5600 L2737 5600 Z\" fill=\"#665f46\"/><path d=\"M2790 1840 L2838 1840 L2838 5620 L2790 5620 Z\" fill=\"#3b4136\"/><path d=\"M2795 1850 L2800 1850 L2800 5600 L2795 5600 Z\" fill=\"#665f46\"/><path d=\"M2848 1840 L2896 1840 L2896 5620 L2848 5620 Z\" fill=\"#4b4b3b\"/><path d=\"M2853 1850 L2858 1850 L2858 5600 L2853 5600 Z\" fill=\"#665f46\"/><path d=\"M2490 2220 L2920 2220 L2920 2268 L2490 2268 Z\" fill=\"#242f30\"/><path d=\"M2500 2224 L2910 2224 L2910 2231 L2500 2231 Z\" fill=\"#697064\"/><path d=\"M2490 3010 L2920 3010 L2920 3058 L2490 3058 Z\" fill=\"#242f30\"/><path d=\"M2500 3014 L2910 3014 L2910 3021 L2500 3021 Z\" fill=\"#697064\"/><path d=\"M2490 3860 L2920 3860 L2920 3908 L2490 3908 Z\" fill=\"#242f30\"/><path d=\"M2500 3864 L2910 3864 L2910 3871 L2500 3871 Z\" fill=\"#697064\"/><path d=\"M2490 4640 L2920 4640 L2920 4688 L2490 4688 Z\" fill=\"#242f30\"/><path d=\"M2500 4644 L2910 4644 L2910 4651 L2500 4651 Z\" fill=\"#697064\"/><path d=\"M2490 5420 L2920 5420 L2920 5468 L2490 5468 Z\" fill=\"#242f30\"/><path d=\"M2500 5424 L2910 5424 L2910 5431 L2500 5431 Z\" fill=\"#697064\"/><path d=\"M2467 1740 L2491 1740 L2491 5810 L2467 5810 Z\" fill=\"#4c5d5b\"/><path d=\"M2910 1740 L2934 1740 L2934 5810 L2910 5810 Z\" fill=\"#263e44\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 2460,
+        "y": 1730,
+        "w": 490,
+        "h": 4100
+      },
+      "reference": {
+        "heightM": 68.33333333333333,
+        "bounds": {
+          "x": 2460,
+          "y": 1730,
+          "w": 490,
+          "h": 4100
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "a3-maintenance25:maintenance-winding-drum",
+      "name": "maintenance-winding-drum",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          1650,
+          2750,
+          1080,
+          420
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#67583e",
+              "d": "M1680 2855 L2080 2855 L2080 2887 L1680 2887 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#716044",
+              "d": "M1710 2885 L1740 2885 L1740 3150 L1710 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#554b38",
+              "d": "M2010 2885 L2040 2885 L2040 3150 L2010 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#849080",
+              "d": "M1688 3120 L1758 3120 L1770 3150 L1676 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#748172",
+              "d": "M1990 3120 L2060 3120 L2072 3150 L1978 3150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#8a7550",
+              "d": "M1735 2948 L2015 2948 L2015 3034 L1735 3034 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#514b39",
+              "d": "M1735 2995 L2015 2995 L2015 3034 L1735 3034 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1780 2954 L1780 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1798 2954 L1798 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1816 2954 L1816 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1834 2954 L1834 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1852 2954 L1852 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1870 2954 L1870 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1888 2954 L1888 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1906 2954 L1906 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1924 2954 L1924 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1942 2954 L1942 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b1a07a",
+              "lineWidth": 5,
+              "d": "M1960 2954 L1960 3025"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#8b7954",
+              "lineWidth": 17,
+              "d": "M2018 2990 L2090 2940 L2130 2980"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#847c61",
+              "lineWidth": 7,
+              "d": "M1880 2952 L1880 2770 L2680 2770 L2680 2990"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#4d5145",
+              "lineWidth": 6,
+              "d": "M1894 2952 L1894 2786 L2694 2786 L2694 2990"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"1650 2750 1080 420\"><path d=\"M1680 2855 L2080 2855 L2080 2887 L1680 2887 Z\" fill=\"#67583e\"/><path d=\"M1710 2885 L1740 2885 L1740 3150 L1710 3150 Z\" fill=\"#716044\"/><path d=\"M2010 2885 L2040 2885 L2040 3150 L2010 3150 Z\" fill=\"#554b38\"/><path d=\"M1688 3120 L1758 3120 L1770 3150 L1676 3150 Z\" fill=\"#849080\"/><path d=\"M1990 3120 L2060 3120 L2072 3150 L1978 3150 Z\" fill=\"#748172\"/><path d=\"M1735 2948 L2015 2948 L2015 3034 L1735 3034 Z\" fill=\"#8a7550\"/><path d=\"M1735 2995 L2015 2995 L2015 3034 L1735 3034 Z\" fill=\"#514b39\"/><path d=\"M1780 2954 L1780 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1798 2954 L1798 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1816 2954 L1816 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1834 2954 L1834 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1852 2954 L1852 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1870 2954 L1870 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1888 2954 L1888 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1906 2954 L1906 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1924 2954 L1924 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1942 2954 L1942 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M1960 2954 L1960 3025\" fill=\"none\" stroke=\"#b1a07a\" stroke-width=\"5\"/><path d=\"M2018 2990 L2090 2940 L2130 2980\" fill=\"none\" stroke=\"#8b7954\" stroke-width=\"17\"/><path d=\"M1880 2952 L1880 2770 L2680 2770 L2680 2990\" fill=\"none\" stroke=\"#847c61\" stroke-width=\"7\"/><path d=\"M1894 2952 L1894 2786 L2694 2786 L2694 2990\" fill=\"none\" stroke=\"#4d5145\" stroke-width=\"6\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 1650,
+        "y": 2750,
+        "w": 1080,
+        "h": 420
+      },
+      "reference": {
+        "heightM": 7,
+        "bounds": {
+          "x": 1650,
+          "y": 2750,
+          "w": 1080,
+          "h": 420
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "a3-maintenance25:west-stoplog-workbench",
+      "name": "west-stoplog-workbench",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          666,
+          3960,
+          240,
+          130
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#6c7160",
+              "stroke": "#1c343b",
+              "lineWidth": 3,
+              "d": "M670 4050 L770 3965 L810 3965 L900 4050 L900 4080 L670 4080 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a5a48b",
+              "lineWidth": 8,
+              "d": "M670 4050 L770 3965 L810 3965 L900 4050"
+            },
+            {
+              "tag": "path",
+              "fill": "#424f46",
+              "d": "M692 4050 L778 3988 L804 3988 L876 4050 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"666 3960 240 130\"><path d=\"M670 4050 L770 3965 L810 3965 L900 4050 L900 4080 L670 4080 Z\" fill=\"#6c7160\" stroke=\"#1c343b\" stroke-width=\"3\"/><path d=\"M670 4050 L770 3965 L810 3965 L900 4050\" fill=\"none\" stroke=\"#a5a48b\" stroke-width=\"8\"/><path d=\"M692 4050 L778 3988 L804 3988 L876 4050 Z\" fill=\"#424f46\"/></svg>"
+      },
+      "collision": [
+        [
+          {
+            "x": 670,
+            "y": 4050
+          },
+          {
+            "x": 770,
+            "y": 3965
+          },
+          {
+            "x": 810,
+            "y": 3965
+          },
+          {
+            "x": 900,
+            "y": 4050
+          },
+          {
+            "x": 900,
+            "y": 4080
+          },
+          {
+            "x": 670,
+            "y": 4080
+          }
+        ]
+      ],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": false
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 666,
+        "y": 3960,
+        "w": 240,
+        "h": 130
+      },
+      "reference": {
+        "heightM": 2.1666666666666665,
+        "bounds": {
+          "x": 666,
+          "y": 3960,
+          "w": 240,
+          "h": 130
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "a3-maintenance25:stoplog-storage",
+      "name": "stoplog-storage",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          2110,
+          3350,
+          2180,
+          1610
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#6b6045",
+              "d": "M2150 4700 L2172 4700 L2172 4950 L2150 4950 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5d553e",
+              "d": "M2530 4700 L2552 4700 L2552 4950 L2530 4950 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M2126 4895 L2572 4895 L2572 4922 L2126 4922 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M2132 4898 L2565 4898 L2565 4903 L2132 4903 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M2126 4840 L2572 4840 L2572 4867 L2126 4867 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M2132 4843 L2565 4843 L2565 4848 L2132 4848 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M2126 4785 L2572 4785 L2572 4812 L2126 4812 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M2132 4788 L2565 4788 L2565 4793 L2132 4793 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M2126 4730 L2572 4730 L2572 4757 L2126 4757 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M2132 4733 L2565 4733 L2565 4738 L2132 4738 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#434b3b",
+              "lineWidth": 15,
+              "d": "M2150 4720 L2550 4930"
+            },
+            {
+              "tag": "path",
+              "fill": "#6b6045",
+              "d": "M3820 3350 L3842 3350 L3842 3600 L3820 3600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5d553e",
+              "d": "M4240 3350 L4262 3350 L4262 3600 L4240 3600 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M3796 3545 L4282 3545 L4282 3572 L3796 3572 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M3802 3548 L4275 3548 L4275 3553 L3802 3553 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M3796 3490 L4282 3490 L4282 3517 L3796 3517 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M3802 3493 L4275 3493 L4275 3498 L3802 3498 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M3796 3435 L4282 3435 L4282 3462 L3796 3462 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M3802 3438 L4275 3438 L4275 3443 L3802 3443 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7a6a4c",
+              "d": "M3796 3380 L4282 3380 L4282 3407 L3796 3407 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a18c61",
+              "d": "M3802 3383 L4275 3383 L4275 3388 L3802 3388 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#434b3b",
+              "lineWidth": 15,
+              "d": "M3820 3370 L4260 3580"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"2110 3350 2180 1610\"><path d=\"M2150 4700 L2172 4700 L2172 4950 L2150 4950 Z\" fill=\"#6b6045\"/><path d=\"M2530 4700 L2552 4700 L2552 4950 L2530 4950 Z\" fill=\"#5d553e\"/><path d=\"M2126 4895 L2572 4895 L2572 4922 L2126 4922 Z\" fill=\"#7a6a4c\"/><path d=\"M2132 4898 L2565 4898 L2565 4903 L2132 4903 Z\" fill=\"#a18c61\"/><path d=\"M2126 4840 L2572 4840 L2572 4867 L2126 4867 Z\" fill=\"#7a6a4c\"/><path d=\"M2132 4843 L2565 4843 L2565 4848 L2132 4848 Z\" fill=\"#a18c61\"/><path d=\"M2126 4785 L2572 4785 L2572 4812 L2126 4812 Z\" fill=\"#7a6a4c\"/><path d=\"M2132 4788 L2565 4788 L2565 4793 L2132 4793 Z\" fill=\"#a18c61\"/><path d=\"M2126 4730 L2572 4730 L2572 4757 L2126 4757 Z\" fill=\"#7a6a4c\"/><path d=\"M2132 4733 L2565 4733 L2565 4738 L2132 4738 Z\" fill=\"#a18c61\"/><path d=\"M2150 4720 L2550 4930\" fill=\"none\" stroke=\"#434b3b\" stroke-width=\"15\"/><path d=\"M3820 3350 L3842 3350 L3842 3600 L3820 3600 Z\" fill=\"#6b6045\"/><path d=\"M4240 3350 L4262 3350 L4262 3600 L4240 3600 Z\" fill=\"#5d553e\"/><path d=\"M3796 3545 L4282 3545 L4282 3572 L3796 3572 Z\" fill=\"#7a6a4c\"/><path d=\"M3802 3548 L4275 3548 L4275 3553 L3802 3553 Z\" fill=\"#a18c61\"/><path d=\"M3796 3490 L4282 3490 L4282 3517 L3796 3517 Z\" fill=\"#7a6a4c\"/><path d=\"M3802 3493 L4275 3493 L4275 3498 L3802 3498 Z\" fill=\"#a18c61\"/><path d=\"M3796 3435 L4282 3435 L4282 3462 L3796 3462 Z\" fill=\"#7a6a4c\"/><path d=\"M3802 3438 L4275 3438 L4275 3443 L3802 3443 Z\" fill=\"#a18c61\"/><path d=\"M3796 3380 L4282 3380 L4282 3407 L3796 3407 Z\" fill=\"#7a6a4c\"/><path d=\"M3802 3383 L4275 3383 L4275 3388 L3802 3388 Z\" fill=\"#a18c61\"/><path d=\"M3820 3370 L4260 3580\" fill=\"none\" stroke=\"#434b3b\" stroke-width=\"15\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 2110,
+        "y": 3350,
+        "w": 2180,
+        "h": 1610
+      },
+      "reference": {
+        "heightM": 26.833333333333332,
+        "bounds": {
+          "x": 2110,
+          "y": 3350,
+          "w": 2180,
+          "h": 1610
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
     }
   ],
   "stages": [
@@ -400540,6 +401501,50 @@
           "layer": "back"
         },
         {
+          "id": "shaft-bearing-masonry",
+          "assetId": "a3-maintenance25:shaft-bearing-masonry",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "sluice-leaf-and-guides",
+          "assetId": "a3-maintenance25:sluice-leaf-and-guides",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "maintenance-winding-drum",
+          "assetId": "a3-maintenance25:maintenance-winding-drum",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "stoplog-storage",
+          "assetId": "a3-maintenance25:stoplog-storage",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
           "id": "masonry-vault",
           "assetId": "a3-waterworks-v3:25:masonry-vault",
           "x": 0,
@@ -400982,6 +401987,17 @@
         {
           "id": "broken-haul-bridge",
           "assetId": "a3-waterworks-v3:25:broken-haul-bridge",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "west-stoplog-workbench",
+          "assetId": "a3-maintenance25:west-stoplog-workbench",
           "x": 0,
           "y": 0,
           "scale": 1,
@@ -401537,6 +402553,24 @@
                   "support": "gallery-1:collision:0"
                 }
               ]
+            },
+            {
+              "id": "west-stoplog-crest",
+              "description": "낮은 직사선을 끊는 정비 석대. 양쪽 경사로를 기본 보행으로 오르고 돌아올 수 있다.",
+              "points": [
+                {
+                  "x": 670,
+                  "y": 4050
+                },
+                {
+                  "x": 790,
+                  "y": 3965
+                },
+                {
+                  "x": 900,
+                  "y": 4050
+                }
+              ]
             }
           ],
           "shotSamples": [],
@@ -401899,7 +402933,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "maintenanceRevision": 1
         }
       },
       "routes": [
