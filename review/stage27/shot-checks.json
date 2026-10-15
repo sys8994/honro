@@ -1,0 +1,35 @@
+{
+  "scope": "Controlled supported poses, actual A01 projectiles with all enemies retained and normal cost; not fullplay",
+  "rows": [
+    {
+      "from": {
+        "x": 4780,
+        "y": 4850
+      },
+      "target": "a3-27-lower-loading-store-0",
+      "shot": {
+        "angle": 15.647746137164123,
+        "power": 0.6753765267737876
+      },
+      "damage": 188,
+      "focusBefore": 204,
+      "focusAfter": 204,
+      "fullRoster": 10
+    },
+    {
+      "from": {
+        "x": 5660,
+        "y": 4850
+      },
+      "target": "a3-27-lower-loading-store-0",
+      "shot": {
+        "angle": 165.63449628767964,
+        "power": 0.7020861564783638
+      },
+      "damage": 188,
+      "focusBefore": 204,
+      "focusAfter": 204,
+      "fullRoster": 10
+    }
+  ]
+}

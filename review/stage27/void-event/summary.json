@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "viewport": "desktop",
+      "checks": [
+        "actual temporary solo fall",
+        "no simulation clocks",
+        "nameless text and existing rig",
+        "real keyboard/touch and rapid input",
+        "accessible pause/settings/focus",
+        "desktop focus",
+        "same BGM stream and user mute preserved",
+        "exact safe return",
+        "actual browser reload to READY safe world"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "checks": [
+        "actual temporary solo fall",
+        "no simulation clocks",
+        "nameless text and existing rig",
+        "real keyboard/touch and rapid input",
+        "accessible pause/settings/focus",
+        "rotation",
+        "same BGM stream and user mute preserved",
+        "exact safe return",
+        "actual browser reload to READY safe world"
+      ]
+    },
+    {
+      "host": "Workshop Playtest iframe",
+      "checks": [
+        "same authored revision",
+        "real solo void overlay",
+        "shared quiet return and HUD restoration"
+      ]
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Late-stage safe pose fixtures, not normal combat completion.",
+    "No performance benchmark.",
+    "Workshop Stage View itself is not an interactive story host; Playtest iframe is covered."
+  ]
+}

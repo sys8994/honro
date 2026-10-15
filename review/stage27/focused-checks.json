@@ -1,0 +1,225 @@
+{
+  "baseline": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "scope": "geometry probes, not normal combat completion",
+  "rows": [
+    {
+      "cls": "archer",
+      "reverse": false,
+      "result": {
+        "passed": true,
+        "failed": null,
+        "ticks": 83,
+        "jumps": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 4900,
+              "y": 4850
+            },
+            "x": 4900,
+            "y": 4850,
+            "ticks": 1,
+            "support": "gallery-2:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5090,
+              "y": 4750
+            },
+            "x": 5068.945637289758,
+            "y": 4761.081243531706,
+            "ticks": 30,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5230,
+              "y": 4750
+            },
+            "x": 5211.040894464153,
+            "y": 4750,
+            "ticks": 23,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5420,
+              "y": 4850
+            },
+            "x": 5399.736531753911,
+            "y": 4839.335016712585,
+            "ticks": 33,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          }
+        ],
+        "mode": "isolated walk-only"
+      }
+    },
+    {
+      "cls": "archer",
+      "reverse": true,
+      "result": {
+        "passed": true,
+        "failed": null,
+        "ticks": 83,
+        "jumps": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 5420,
+              "y": 4850
+            },
+            "x": 5420,
+            "y": 4850,
+            "ticks": 1,
+            "support": "gallery-2:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5230,
+              "y": 4750
+            },
+            "x": 5251.054362710242,
+            "y": 4761.081243531706,
+            "ticks": 30,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5090,
+              "y": 4750
+            },
+            "x": 5108.959105535847,
+            "y": 4750,
+            "ticks": 23,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 4900,
+              "y": 4850
+            },
+            "x": 4920.354485786932,
+            "y": 4839.28711274372,
+            "ticks": 33,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          }
+        ],
+        "mode": "isolated walk-only"
+      }
+    },
+    {
+      "cls": "mage",
+      "reverse": false,
+      "result": {
+        "passed": true,
+        "failed": null,
+        "ticks": 88,
+        "jumps": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 4900,
+              "y": 4850
+            },
+            "x": 4900,
+            "y": 4850,
+            "ticks": 1,
+            "support": "gallery-2:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5090,
+              "y": 4750
+            },
+            "x": 5070.081282341814,
+            "y": 4760.483535609572,
+            "ticks": 32,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5230,
+              "y": 4750
+            },
+            "x": 5210.090894464153,
+            "y": 4750,
+            "ticks": 24,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5420,
+              "y": 4850
+            },
+            "x": 5398.922830998121,
+            "y": 4838.906753156905,
+            "ticks": 35,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          }
+        ],
+        "mode": "isolated walk-only"
+      }
+    },
+    {
+      "cls": "mage",
+      "reverse": true,
+      "result": {
+        "passed": true,
+        "failed": null,
+        "ticks": 88,
+        "jumps": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 5420,
+              "y": 4850
+            },
+            "x": 5420,
+            "y": 4850,
+            "ticks": 1,
+            "support": "gallery-2:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5230,
+              "y": 4750
+            },
+            "x": 5249.918717658186,
+            "y": 4760.483535609572,
+            "ticks": 32,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 5090,
+              "y": 4750
+            },
+            "x": 5109.909105535847,
+            "y": 4750,
+            "ticks": 24,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          },
+          {
+            "goal": {
+              "x": 4900,
+              "y": 4850
+            },
+            "x": 4921.077169001878,
+            "y": 4838.906753156906,
+            "ticks": 35,
+            "support": "stage27-depot-r1:cargo-incline:collision:0"
+          }
+        ],
+        "mode": "isolated walk-only"
+      }
+    }
+  ],
+  "unchangedOtherStages": 29,
+  "unchangedHistoricalAssets": 640,
+  "crossings": 4
+}
