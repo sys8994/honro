@@ -5,7 +5,7 @@ import {environmentalLoss,ownerRegistered,healed,shielded,settled,controlled,pro
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,bladeScreenPass,warriorPrediction} from './warriorMechanics';
 import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
-import {terrainSurface,exposedSurface,walkTerrain,SEAM_GAP} from './locomotion';
+import {terrainSurface,exposedSurface,walkTerrain,sweepBodyTerrain,SEAM_GAP} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
 import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
@@ -207,8 +207,9 @@ export class Engine {
      * This is a launch-only sweep: locomotion's tangent/escape collision rule stays intact,
      * and genuinely terrain-phasing skills retain their authored origin. */
     projectileOrigin(u: Unit, skill: Skill, angle: number) {
-        const body=BODY.has(skill.mode),origin=this.origin(u,angle,body);
-        if(body||skill.phase==='terrain'||skill.phase==='all')return origin;
+        const body=BODY.has(skill.mode)||!!skill.martial&&skill.branch==='rush',origin=this.origin(u,angle,body);
+        if(body){const hit=this.bodyFlightCollision(u,{x:u.x,y:u.y-u.h*.5},origin);return hit?{x:hit.x,y:hit.y}:origin;}
+        if(skill.phase==='terrain'||skill.phase==='all')return origin;
         const radius=ARROWS.has(skill.mode)?3:skill.mode==='shieldthrow'?9:6;
         const hit=this.projectileCollision({x:u.x,y:u.y-u.h*.63},origin,radius,u.id,[],false);
         return hit?{x:hit.x+hit.n.x*.05,y:hit.y+hit.n.y*.05}:origin;
@@ -289,6 +290,8 @@ export class Engine {
             }
         return best;
     }
+    sweepBody(u:Unit,a:Vec,b:Vec):Collision|null{return sweepBodyTerrain(this.collisionTerrain(a,b,Math.min(6,u.r)),u,a,b,t=>this.dropEdges(u,t));}
+    bodyFlightCollision(u:Unit,a:Vec,b:Vec):Collision|null{const h=this.sweepBody(u,{x:a.x,y:a.y+u.h*.5},{x:b.x,y:b.y+u.h*.5});return h?{...h,y:h.y-u.h*.5}:null;}
     /** All flying weapons, their children and previews share this policy. No saved state. */
     projectileCollision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, attack?:Projectile): Collision | null {
         return this.collision(a,c,r,owner,hit,units,skip,terrain,true,attack || ('owner' in a ? a as Projectile : undefined));
@@ -331,7 +334,8 @@ export class Engine {
             if (target)
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase=skill.phase;
-            const h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, phase!=='terrain', !body);
+            let h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, !body&&phase!=='terrain', !body);
+            if(body&&phase!=='all'&&phase!=='terrain'){const bodyHit=this.bodyFlightCollision(u,{x,y},{x:nx,y:ny});if(bodyHit&&(!h||bodyHit.t<h.t))h=bodyHit;}
             if (h) {
                 if ((skill.mode === 'bounce' || skill.mode === 'ricochet' || skill.mode === 'shieldthrow') && h.terrain && bounce === 0) {
                     const dot = vx * h.n.x + vy * h.n.y;
@@ -987,25 +991,10 @@ export class Engine {
         if (!u)
             return;
         const s = SKILLS[p.skill];
-        let x = clamp(p.x, 30, this.b.width - 30), y = p.y + u.h * .5;
-        u.airborne = false;
-        u.x = x;
-        u.y = y;
-        u.vx = u.vy = 0;
-        if (hit?.terrain) {
-            if (hit.n.y < -.3)
-                u.y = topAt(hit.terrain, clamp(x, hit.terrain.x, hit.terrain.x + hit.terrain.w));
-            else {
-                u.x = clamp(x + hit.n.x * (u.r + 2), 25, this.b.width - 25);
-                const surf = this.surface(u.x, p.y - u.h * .1, this.b.height + 180);
-                if (surf && surf.y < p.y + u.h)
-                    u.y = surf.y;
-            }
-        }
-        if (hit?.unit) {
-            u.x = clamp(hit.unit.x + Math.sign(p.x - hit.unit.x || -u.facing) * (hit.unit.r + u.r + 3), 25, this.b.width - 25);
-            u.y = Math.min(u.y, hit.unit.y);
-        }
+        // The swept body endpoint is already reachable. Nearby floor searches
+        // could cross a wall or leave an unchecked fallback inside a slope.
+        u.airborne = false;u.jumping=false;
+        u.x=p.x;u.y=p.y+u.h*.5;u.vx=u.vy=0;
         const impactY = hit ? hit.y : p.y;
         if(hit?.terrain&&p.mode!=='grappletravel')this.contactDamage(u,p.vx,p.vy,hit.n,hit.n.y<-.35?'fall':'wall',false,.30);
         this.blast(p.x, impactY, p.blast, p.damage, p.owner, true, p);
@@ -1623,7 +1612,7 @@ export class Engine {
             const before = { x: p.x, y: p.y };
             p.x += p.vx * dt;
             p.y += p.vy * dt;
-            const h = this.collision(before, p, u.r, p.owner, [], false);
+            const h = this.bodyFlightCollision(u,before,p);
             u.x = p.x;
             u.y = p.y + u.h * .5;
             if (h || Math.hypot(p.x - p.returnX, p.y - p.returnY) < 14 || p.age > 2.6) {
@@ -1667,7 +1656,8 @@ export class Engine {
                     this.hurt(e, p.damage, p.owner, true, p, p);
                     this.fx('slash', e.x, e.y - e.h * .5, p.color, 55);
                 }
-        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,!SUMMONS.has(p.mode)&&p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],p.phaseMode!=='terrain',!p.body,p);
+        let hit = p.phaseMode==='all' ? null : this.collision({x:p.x,y:p.y},{x:nx,y:ny},p.radius,p.owner,p.hit,!SUMMONS.has(p.mode)&&p.mode!=='spin'&&p.mode!=='charge'&&p.mode!=='cataclysmCharge'&&p.mode!=='waveTriangle'&&!p.mode.startsWith('stake'),[],!p.body&&p.phaseMode!=='terrain',!p.body,p);
+        if(p.body&&p.phaseMode!=='all'&&p.phaseMode!=='terrain'){const bodyHit=this.bodyFlightCollision(u,p,{x:nx,y:ny});if(bodyHit&&(!hit||bodyHit.t<hit.t))hit=bodyHit;}
         if(p.mode==='charge'||p.mode==='cataclysmCharge'){
           for(const f of this.b.units.filter(v=>v.side!==p.side&&v.side!==2&&v.fixed&&!v.dead&&!v.eaterCapturedBy)){const h=segRect({x:p.x,y:p.y},{x:nx,y:ny},f.x-f.r,f.y-f.h,f.r*2,f.h,p.radius);if(h&&(!hit||h.t<hit.t))hit={x:p.x+(nx-p.x)*h.t,y:p.y+(ny-p.y)*h.t,t:h.t,n:h.n,unit:f};}
           this.carrySweep(p,{x:p.x,y:p.y},hit||{x:nx,y:ny});
@@ -1890,23 +1880,12 @@ export class Engine {
                 u.vy+=(env.gravity.y*gravityScale-k*(u.vy-env.flow.y))*dt;
             }else u.vy = 0;
             let nx = clamp(ox + u.vx * dt, -100, this.b.width + 100), ny = oy + u.vy * dt;
-            // The lowest old wall probe was five units ABOVE the feet. A foot
-            // arriving just below a ledge could enter it while every probe passed
-            // overhead, then land on a buried overlapping ground segment.
-            const footWall=this.collision({x:ox,y:oy-.05},{x:nx,y:ny},0,u.id,[],false,this.b.terrain.filter(t=>t.oneWay).map(t=>t.id));
-            if(footWall?.terrain&&Math.abs(footWall.n.x)>.99&&Math.abs(footWall.n.y)<.01){
-                this.contactDamage(u,u.vx,u.vy,footWall.n,'wall',silent);
-                nx=footWall.x+footWall.n.x*(Math.min(6,Math.max(2,u.r-2))+.1);u.vx=0;
-            }
-            // Ignore only upward-facing ramp contacts as walls, not actual vertical faces.
-            for (const offset of [u.h * .52, u.h - 7, 5]) {
-                const h = this.collision({ x: ox, y: oy - offset }, { x: nx, y: oy - offset }, offset === 5 ? 2 : Math.min(6, u.r - 2), u.id, [], false, this.b.terrain.filter(t=>t.oneWay).map(t=>t.id));
-                if (h && (Math.abs(h.n.x) > .65 && h.n.y > -.35 || h.n.y > .3)) {
-                    this.contactDamage(u,u.vx,u.vy,h.n,'wall',silent);
-                    nx = h.x+h.n.x*6;
-                    u.vx = 0;
-                    break;
-                }
+            const bodyHit=this.sweepBody(u,{x:ox,y:oy},{x:nx,y:ny});
+            if(bodyHit&&bodyHit.n.y>=-.01){
+                this.contactDamage(u,u.vx,u.vy,bodyHit.n,'wall',silent);
+                nx=bodyHit.x+bodyHit.n.x*.05;ny=bodyHit.y+bodyHit.n.y*.05;
+                if(Math.abs(bodyHit.n.x)>.65)u.vx=0;
+                if(bodyHit.n.y>.3)u.vy=0;
             }
             if(!supported&&ny>oy)nx=this.descendingSideEntry(u,ox,oy,nx,ny);
             u.x = nx;
@@ -1920,14 +1899,6 @@ export class Engine {
                      this.groundFriction(u, next.t, dt);
                      u.fallApexY=undefined;
                      return true;
-                }
-            }
-            if (u.vy < 0) {
-                const head = this.collision({ x: nx, y: oy - u.h + 4 }, { x: nx, y: ny - u.h + 4 }, 3, u.id, [], false, this.b.terrain.filter(t=>t.oneWay).map(t=>t.id));
-                if (head && head.n.y > .30) {
-                    this.contactDamage(u,u.vx,u.vy,head.n,'wall',silent);
-                    ny = head.y + u.h;
-                    u.vy = 0;
                 }
             }
             // Swept feet contact: crossing a sloping top is a landing, regardless of world-space vy.

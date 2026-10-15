@@ -1,5 +1,39 @@
-import type {Terrain,Unit} from './types';
-import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,segRect,AIM_MIN,AIM_MAX} from './math';
+import type {Terrain,Unit,Vec} from './types';
+import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,segmentProjectileTerrain,segRect,AIM_MIN,AIM_MAX} from './math';
+
+/** Continuous translation of the locomotion body, expressed in FOOT coordinates.
+ * Feet own upward contacts; narrow head/torso probes own walls and ceilings.
+ * Swept spine/vertex contacts also catch thin solids BETWEEN those probes.
+ * A flying skill must use this same body, never just its attack-radius circle. */
+export function sweepBodyTerrain(terrain:Terrain[],u:Unit,a:Vec,b:Vec,skipFace?:(t:Terrain)=>number[]|undefined){
+ let best:{x:number;y:number;t:number;n:Vec;terrain:Terrain}|null=null;
+ const dx=b.x-a.x,dy=b.y-a.y,r=Math.min(6,Math.max(2,u.r-2));
+ const take=(t:Terrain,h:{t:number;n:Vec}|null)=>{if(h&&(!best||h.t<best.t))best={x:a.x+dx*h.t,y:a.y+dy*h.t,t:h.t,n:h.n,terrain:t};};
+ for(const t of terrain){
+  if(t.broken||Math.max(a.x,b.x)+r<t.x||Math.min(a.x,b.x)-r>t.x+t.w||Math.max(a.y,b.y)<t.y||Math.min(a.y,b.y)-u.h>t.y+t.h)continue;
+  const footA={x:a.x,y:a.y-.05},footB={x:b.x,y:b.y-.05};
+  const skipped=skipFace?.(t);
+  if(t.oneWay){
+   const h=segmentProjectileTerrain(footA,footB,t,0);
+   if(h&&!skipped?.length)take(t,h);
+   else if(h&&skipped?.length){const q=segmentTerrain(footA,footB,t,0,skipped);if(q&&q.n.y<-.01)take(t,q);}
+   continue;
+  }
+  take(t,segmentTerrain(footA,footB,t));
+  for(const offset of [u.h*.5,u.h-7]){
+   const h=segmentTerrain({x:a.x,y:a.y-offset},{x:b.x,y:b.y-offset},t,r);
+   if(h&&h.n.y>=-.01)take(t,h);
+  }
+  // A zero-width vertical spine is swept exactly: its endpoints above plus
+  // each terrain vertex crossing its interior. No spatial sampling or dt cap.
+  if(Math.abs(dx)>1e-8)for(const v of poly(t)){
+   const time=(v.x-a.x)/dx,foot=a.y+dy*time;
+   if(time<=1e-8||time>1||v.y>=foot-.1||v.y<=foot-u.h+7+.1)continue;
+   if(terrainContains(t,v.x+Math.sign(dx)*.01,v.y))take(t,{t:time,n:{x:-Math.sign(dx),y:0}});
+  }
+ }
+ return best;
+}
 
 /** Only sub-pixel/editor seams may be bridged. This never bridges real ledges. */
 export const SEAM_GAP=2.5;

@@ -87,7 +87,7 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
   return;
  }
  if(s.branch==='rush'){
-  p.body=true;p.radius=u.r;Object.assign(p,e.origin(u,u.angle,true));p.returnX=u.x;p.returnY=u.y;
+  p.body=true;p.radius=u.r;Object.assign(p,e.projectileOrigin(u,s,u.angle));p.returnX=u.x;p.returnY=u.y;
   p.launchX=p.x;p.launchY=p.y;p.apexY=p.y;p.trail=[{x:p.x,y:p.y}];u.airborne=true;u.vx=u.vy=0;
  }
  if(s.branch==='blade'){
@@ -158,10 +158,9 @@ function bladeHit(e:Engine,p:Projectile,t:Unit){
 }
 function land(e:Engine,p:Projectile,h?:Collision){
  const u=e.unit(p.owner)!;u.airborne=false;u.jumping=false;u.vx=u.vy=0;
- let x=clamp(p.x+(h?.n.x||0)*(u.r+3),25,e.b.width-25),y=p.y+u.h*.5;
- const sf=e.surface(x,p.y-u.h*.6,p.y+u.h+100);if(sf)y=sf.y;
- for(const dx of [0,-24,24,-48,48,-72,72,-96,96]){const qx=clamp(x+dx,25,e.b.width-25),floor=e.surface(qx,y-75,y+100);if(floor&&!e.b.terrain.some(t=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,qx-u.r,floor.y-u.h,2*u.r,u.h-2,.1))){x=qx;y=floor.y;break;}}
- u.x=x;u.y=y;u.landing=.24;
+ // The sweep already chose a reachable body pose. Never search through nearby
+ // walls for a floor, nor assign an unchecked fallback when that search fails.
+ u.x=p.x;u.y=p.y+u.h*.5;u.landing=.24;
  const s=SKILLS[p.skill];
  if(p.mode==='warriorDive'){
   const factor=p.dived?1.35+Math.min(.30,Math.max(0,p.y-(p.apexY||p.y))/1800):.75,radius=p.dived?p.blast:80;
@@ -179,7 +178,7 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
  const u=e.unit(p.owner);if(!u||u.dead){if(u)u.airborne=false;e.remove(p);return true;}
  const a={x:p.x,y:p.y},motion=e.advanceProjectile(p,dt);p.vx=motion.vx;p.vy=motion.vy;p.apexY=Math.min(p.apexY??p.y,motion.y);
  const rush=SKILLS[p.skill].branch==='rush';
- const wall=e.collision(a,motion,p.radius,p.owner,[],false,[],true,!p.body);
+ const wall=rush?e.bodyFlightCollision(u,a,motion):e.collision(a,motion,p.radius,p.owner,[],false,[],true,!p.body);
  const end=wall||motion;
  e.passFields(p,a,end);if(!e.b.projectiles.includes(p))return true;
  if(p.orbit){
