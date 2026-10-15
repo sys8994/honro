@@ -15,7 +15,27 @@ const pose=(actor,kind,at)=>face(actor,at||{actor:'archer'},kind);
 const step=(actor,dx)=>({type:'move',actor,to:{origin:actor,dx},duration:850,focus:false});
 const toward=(actor,at,distance=48)=>({type:'move',actor,towards:at,distance,duration:950,focus:false});
 const rule=(stage,when,who,text,actions)=>({stage,when,who,text,actions});
+const take=(actor,marker,phase='carry')=>({type:'evidence',actor,marker,phase,duration:0});
 const rules=[
+ // Evidence follows the actor who retrieves it; comparison is physical custody, not a reader.
+ rule(16,'record','서술','칠십 년 전',[take('knight','record'),pose('knight','inspect',{marker:'record'})]),
+ rule(17,'notes','서술','일지에는',[take('mage','notes'),pose('mage','inspect',{marker:'notes'})]),
+ rule(19,'old-soul','소단','옷차림',[toward('occultist',{marker:'old-soul'},36),pose('occultist','hold-bell',{marker:'old-soul'}),face('knight',{marker:'old-soul'},'inspect')]),
+ rule(22,'ledger-case','휘겸','보고에는',[take('knight','ledger-case'),toward('knight',{actor:'archer'},42),pose('knight','inspect')]),
+ rule(22,'upper-register','설오','호적에',[take('archer','upper-register'),toward('archer',{actor:'knight'},42),pose('archer','inspect')]),
+ rule(22,'compare-ledgers','설오','같은 주민',[take('knight','ledger-case','compare'),take('knight','upper-register','compare'),pose('knight','inspect'),pose('archer','inspect',{actor:'knight'})]),
+ rule(26,'investigation-record','서술','현장 조사',[take('knight','investigation-record'),toward('knight',{actor:'occultist'},36),pose('knight','inspect')]),
+ rule(26,'artisan-resident','주민','작업기록',[toward('act3-resident',{actor:'occultist'},48),face('occultist',{actor:'act3-resident'},'listen')]),
+ rule(26,'casting-tally','서술','금속량',[take('occultist','casting-tally'),toward('occultist',{actor:'knight'},36),pose('occultist','inspect')]),
+ rule(27,'family-manifest','서술','적재 명세',[take('archer','family-manifest'),pose('archer','inspect',{marker:'family-manifest'})]),
+ rule(28,'party-reunion','서술','나란히',[take('archer','party-reunion','compare'),take('knight','party-reunion','compare'),toward('archer',{actor:'knight'},36),pose('knight','inspect')]),
+ rule(28,'petition-record','서술','청원한 뒤',[take('knight','petition-record'),pose('knight','inspect')]),
+ rule(28,'closure-order','서술','고위 관리',[take('knight','closure-order','compare'),pose('knight','inspect')]),
+ rule(28,'suppression-order','휘겸','각각의 이름',[take('knight','petition-record','compare'),take('knight','suppression-order','compare'),pose('knight','inspect'),face('archer',{actor:'knight'},'listen')]),
+ rule(29,'hyeonmuk-letter','서술','현묵은 스승',[take('mage','hyeonmuk-letter'),pose('mage','inspect',{marker:'old-seal'})]),
+ rule(29,'hyeonmuk-letter','담허','남은 혼을',[face('mage',{marker:'old-seal'},'hold-bell'),face('occultist',{marker:'old-seal'},'listen')]),
+ rule(30,'transport-map','서술','기존 기록의',[toward('archer',{marker:'ferry-hold'},48),face('archer',{marker:'ferry-hold'},'point'),face('knight',{marker:'transport-map'},'inspect')]),
+
  // First act: curiosity, a guarded first meeting, then trust earned in action.
  rule(1,'entry','설오','접힌 쪽지',[pose('archer','inspect'),shot({actor:'archer'})]),
  rule(1,'entry','설오','길에 짐승',[step('archer',18),face('archer',{anchor:'cart'},'guard')]),

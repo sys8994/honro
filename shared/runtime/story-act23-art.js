@@ -16,7 +16,11 @@ function evidence(b){if(b.honroCustom||b.honroNarrativeRevision!==1)return[];con
  if(id===28&&d['party-reunion'])rows=[at('party-reunion','shared-evidence'),...(d['petition-record']?[at('petition-record','petition')]:[]),...(d['closure-order']?[at('closure-order','approval')]:[]),...(d['suppression-order']?[at('suppression-order','suppression')]:[])];
  if(id===29&&d['old-seal'])rows=[at('hyeonmuk-letter','signed-letter')];
  if(id===30&&!G.HonroEvidenceQuests?.active(b))rows=[at('transport-map','transport-map')];
- return rows.filter(Boolean);
+ const custody=b.honroState?.evidenceScene||{};
+ // Closed source cases disappear only after the acquisition scene takes custody.
+ rows=rows.filter(r=>r&&!Object.values(custody).some(q=>q.source===r.key));
+ for(const [key,q]of Object.entries(custody)){const u=b.units.find(u=>u.id===q.actor);if(!u||u.dead)continue;const peers=Object.values(custody).filter(v=>v.phase==='compare'&&v.actor===q.actor),slot=peers.indexOf(q);rows.push({key,kind:'carried-case',x:q.phase==='carry'?u.x+(u.facing||1)*24:q.x+slot*46,y:q.phase==='carry'?u.y-u.h*.44:q.y,phase:q.phase});}
+ return rows;
 }
 // Closed, human-scale bundles identify an investigation without publishing its text.
 // The authored marker, target radius and acquisition policy remain untouched.
@@ -35,10 +39,10 @@ function draw(scene,e){const b=e.b,rows=evidence(b);if(!rows.length)return;const
   if(d.kind==='transport-traces'){c.strokeStyle='#706b55';c.lineWidth=5;c.beginPath();c.moveTo(x-110,y-8);c.lineTo(x-79,y-33);c.moveTo(x-91,y-4);c.lineTo(x-63,y-29);c.stroke();c.strokeStyle='#b7b199';c.lineWidth=2;for(let i=0;i<5;i++){c.beginPath();c.moveTo(x-107+i*9,y-12);c.lineTo(x-96+i*9,y-28);c.stroke();}c.strokeStyle='#a98f64';c.lineWidth=9;c.beginPath();c.moveTo(x+17,y-4);c.lineTo(x+43,y-32);c.moveTo(x+53,y-45);c.lineTo(x+74,y-69);c.stroke();c.strokeStyle='#d1bd83';c.lineWidth=3;c.beginPath();c.moveTo(x+40,y-30);c.lineTo(x+49,y-32);c.moveTo(x+48,y-43);c.lineTo(x+58,y-43);c.stroke();}
   if(d.kind==='released-soul'){c.save();c.globalAlpha=.42;c.fillStyle='#c0d3c2';c.beginPath();c.ellipse(x,y-65,17,28,0,0,Math.PI*2);c.fill();c.beginPath();c.moveTo(x-21,y-40);c.quadraticCurveTo(x-42,y-5,x,y-8);c.quadraticCurveTo(x+35,y-12,x+21,y-40);c.fill();c.restore();continue;}
   if(d.kind==='family-tags'||d.kind==='cargo-tag'){
-   // Household tools are evidence in their own right; only their open labels move into the reader.
+   // Household tools remain visible physical evidence; no world text or reader.
    c.strokeStyle='#8c795a';c.lineWidth=8;c.beginPath();c.moveTo(x-84,y-1);c.lineTo(x-44,y-64);c.moveTo(x-69,y-27);c.lineTo(x-22,y-43);c.stroke();c.fillStyle='#aaa07f';c.beginPath();c.ellipse(x+64,y-13,30,10,0,0,Math.PI*2);c.fill();
   }
-  if(documents.has(d.kind))bundle(c,x,y,d.kind);
+  if(documents.has(d.kind)||d.kind==='carried-case')bundle(c,x,y,d.kind);
  }
  c.restore();}
 G.HonroAct23StoryArt={draw,evidence};

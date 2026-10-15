@@ -17,10 +17,10 @@ const changes={
 30:{'transport-map':{kind:'reach',radius:260,label:'나루에서 강 방향·끊긴 옛길을 기존 기록과 대조'}}
 };
 const guides={
-3:'움막의 기록함에서 홍만의 장부를 챙기세요. 핵심 단서를 확인한 뒤 원문은 여정의 기록에서 다시 읽을 수 있습니다.',
+3:'움막의 기록함에서 홍만의 장부를 챙기세요. 홍만이 남긴 행선지를 동행과 확인합니다.',
 16:'노승을 구조하고 가까운 위협을 막으세요. 증언과 열쇠를 확인한 뒤 법당 기록실을 열면 이송 기록도 함께 확보합니다.',
 23:'살아 있는 짐꾼 곁에서 운송 묶음을 풀고 출발을 도우세요. 운송 기록을 함께 확보합니다. 석교를 지나 짐꾼과 하역장 출구에 도착하세요.',
-17:'작업장을 확보하고 버팀목을 세우세요. 인양틀을 제압하고 축을 복원한 뒤 5라운드 보호하면 완료됩니다. 일지 원문은 여정의 기록에서 선택해 읽습니다.',
+17:'작업장을 확보하고 버팀목을 세우세요. 인양틀을 제압하고 축을 복원한 뒤 5라운드 보호하면 완료됩니다. 작업대의 일지에서 종지기가 한 일을 확인합니다.',
 24:'휘겸으로 문장을 확인하고 담허로 사당 봉인을 푸세요. 설오·담허는 물길 입구, 휘겸·소단은 지상 기록실 입구를 확인하면 보호지 원본을 함께 확보합니다. 출구에서 두 팀으로 나뉘며, 합류 전에는 장 사이 자동 회복이 없습니다.',
 25:'진목으로 길을 이어 다섯 도착지에 두 동행이 함께 도착하세요. 각 장소의 생활 물품과 번호를 관찰하고 끝에서 가족 번호를 대조한 뒤 출구로 이동하세요.',
 26:'숨은 기록실을 열어 조사 원본을 확보하고 공방 주민을 구조하세요. 주민의 장부를 함께 챙긴 뒤 출구로 이동하세요.',
@@ -38,13 +38,23 @@ function reviseContent(original){const st=clone(original);for(const s of st.step
   rows.find(r=>r[0]==='노승'),rows.at(-1)
  ].filter(Boolean);st.beats.record.push(['담허','이건 칠십 년 전의 이송 기록이네. 방금 들은 종지기 사건과는 따로 보아야 하네.']);}
  if(st.id===17)st.beats['clear-lift']=[];
- if(st.id===19)st.beats['old-soul']=st.beats['old-soul'].filter(r=>r[2]?.kind==='document'||r[0]==='휘겸'||r[0]==='설오');
+
  if(st.id===25){const observations=['적재대의 생활 물품에 번호가 남아 있다.','같은 가족 번호가 서로 다른 물품에 붙어 있다.','물길 너머에도 같은 운송 번호가 이어진다.','끝 창고 쪽 물품에서도 같은 표식이 보인다.','다섯 도착지의 물품 번호를 대조할 수 있게 되었다.'];for(let i=1;i<=5;i++){const key='stake-arrival-'+i;st.beats[key]=[...(st.beats[key]||[]),['서술',observations[i-1],{kind:'narration'}]];}}
  if(st.id===27)st.beats['depot-route-ledger']=[['담허','진목을 세웠네. 현장 물품의 운반 번호는 이어지는데 눈앞의 길은 맞지 않아. 끝 창고의 명세와 대조하세.']];
  if(st.id===30)st.beats['transport-map']=[['서술','나루의 강 방향과 끊긴 옛길을, 지금까지 확보한 이송 기록과 대조한다.',{kind:'narration'}],...st.beats['transport-map']];
- for(const key of ({16:['witness'],19:['old-soul'],27:['depot-route-ledger']}[st.id]||[])){const rows=st.beats[key];if(rows?.length)rows[0][2]={...rows[0][2],evidenceOriginal:{id:`original-${st.id}-${key}`,text:original.beats[key].map(r=>r[0]+' · '+r[1]).join('\n\n'),meta:{kind:'document',documentId:`original-${st.id}-${key}`,documentTitle:st.id===16?'노승의 증언 전문':st.id===19?'천도한 자리의 기록':'집하장의 운반 기록'},stage:st.id}};}
+
+ return requiredContent(st);
+}
+
+// Presentation-only compatibility: old saved goal IDs, flags and dialogue indices stay intact.
+function requiredContent(original){const st=clone(original);if(st.guide)st.guide=cleanText(st.guide);
+ if(st.id===19&&st.beats?.['old-soul']&&!st.beats['old-soul'].some(r=>r[0]==='소단'))st.beats['old-soul'].unshift(['소단','종 밑에 오래된 혼이 아직 남았어요. 방금 떠난 희생자들과 옷차림이 달라요.']);
+ if(st.id===22&&st.beats){st.beats['ledger-case']=[['휘겸','보고에는 사술 혐의자를 제압하다 다수가 죽었다고 적혀 있소. 같은 해의 호적도 찾아봅시다.']];st.beats['upper-register']=[['설오','이 호적에 적힌 사람들은 농가의 주민과 아이, 노인입니다. 방금 찾은 보고와 맞지 않아요.'],['휘겸','누가 무슨 일을 겪었는지 아직 단정할 수 없소. 두 기록의 이름부터 맞춰 봅시다.']];st.beats['compare-ledgers']=[['설오','같은 주민들을 가리키는데 두 기록의 설명은 다릅니다.'],['휘겸','보고만 믿을 수 없겠군. 현장 증언을 찾아봅시다.']];}
+ if(st.id===29&&st.beats?.['hyeonmuk-letter']&&!st.beats['hyeonmuk-letter'].some(r=>r[1].includes('남은 혼을 지키려'))){const rows=st.beats['hyeonmuk-letter'];rows.splice(rows.length-1,0,['담허','현묵은 남은 혼을 지키려 했네. 하지만 지금 어디 있는지는 이 글로 알 수 없어.']);}
  return st;
 }
+const contentFor=G.HonroObjectiveRevision.contentFor;
+G.HonroObjectiveRevision.contentFor=function(b,st){const out=contentFor(b,st);return b?.honroCustom?out:requiredContent(out);};
 const author=G.HonroStoryCanonV1.author;
 G.HonroStoryCanonV1.author=function(project){const p=author(project);return {...p,stages:p.stages.map(original=>{const id=original.metadata?.stageId;if(!original.metadata?.campaign||!ids.includes(id))return original;const st=clone(original),content=reviseContent(H.stages[id-1]);st.initialState??={};Object.assign(st.initialState,{honroEvidenceRevision:1,honroNarrativeContent:content});if(content.steps)st.initialState[id<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);for(const m of st.markers||[]){const s=content.steps?.find(s=>s.id===m.id);if(s){m.label=s.label;if(s.target)m.target=s.target;}if(id===3&&m.action==='ledger')m.label='움막 기록함 챙기기';}return st;})};};
 const prepareFresh=G.HonroNarrativeRevision.prepareFresh;
@@ -54,10 +64,25 @@ const entrances=[{id:'water',marker:'split-route-a',classes:['archer','mage'],la
 function observe(app){const b=app.engine.b;if(!active(b)||b.honroStage!==24||!b.honroState.act3?.done['shrine-seal']||app.dialogue||app.modal?.classList.contains('open'))return;const mem=b.honroState.evidenceEntrances??={};for(const q of entrances){const m=b.honroMarkers.find(m=>m.id===q.marker);if(m&&q.classes.every(cls=>b.units.some(u=>u.cls===cls&&u.side===0&&!u.dead&&u.hp>0&&G.HonroAct3.sameFloor(u,m,115))))mem[q.id]=true;}}
 function targets(b,s){if(!active(b)||s?.evidenceAction!=='entrances')return null;return entrances.filter(q=>!b.honroState.evidenceEntrances?.[q.id]).map(q=>{const m=b.honroMarkers.find(m=>m.id===q.marker);return {...m,id:q.marker,kind:'exit',label:q.label};});}
 const summaries={
-'hongman-ledger':'북쪽 산사람 열셋, 아이 둘 포함. 연목 주막을 거쳐 북문으로 향했다. 그 뒤 생사는 아직 알 수 없다.',
-'old-route-map':'기존 기록은 저문골의 시신·금속이 무명사로, 묵종이 잠운사로 옮겨졌고 옛길이 봉쇄됐음을 가리킨다.'
+'hongman-ledger':'장부에 북쪽 산사람 열셋, 아이 둘이 적혀 있다. 연목 주막에서 하룻밤을 묵고 다음 날 북문으로 향했다.',
+ 'temple-transfer':'칠십 년 전 대종을 밖에서 옮겨 왔다. 타종을 금하고 인양로와 바깥길을 봉쇄했지만, 출처는 잘려 나갔다.',
+ 'keeper-work-log':'일지에는 산 사람의 혼을 청동에 붙이려 문을 잠그고 인양축을 뺐다고 적혀 있다. 사흘째 두드림이 멎었다.',
+ 'bell-transfer-marks':'종 받침에 무명사에서 잠운사로 옮겼다는 표식과 왕실 봉인이 남아 있다. 그 곁에 저문골이라는 이름이 새겨져 있다.',
+ 'city-incident':'보고에는 사술 혐의자를 제압하던 중 다수가 죽었다고 적혀 있다.',
+ 'city-register':'같은 해의 호적에는 농가의 주민과 아이, 노인이 적혀 있다. 사건 보고의 설명과 맞지 않는다.',
+ 'dispatch-tag':'운송 표찰은 저문골의 시신과 생활 금속을 무명사로 보냈음을 가리킨다.',
+ 'land-plan':'약도에는 저문골 보호지의 묘역 기록실과 공방이 표시돼 있다. 아래 물길은 관아 뒤뜰로 이어진다.',
+ 'ancestor-investigation':'선조의 현장 조사에는 조직적 저항이 없었으며, 대도사가 주민 전원을 살해했다고 적혀 있다.',
+ 'casting-comparison':'저문골에서 거둔 금속량과 무명사에서 종을 만들 때 쓴 양이 거의 같다. 유골과 재는 통상 장례와 다르게 처리됐다.',
+ 'family-manifest':'적재 명세에는 가족 번호마다 이름과 살림 물품이 함께 적혀 있다.',
+ 'erased-petition':'휘겸의 가문은 조사를 청원한 뒤 작위를 빼앗기고 추방당했다. 청원서의 가문 문장도 지워져 있다.',
+ 'closure-approval':'왕실 고위 관리가 폐쇄와 제압을 승인했다. 이 결재에는 주민을 죽이라는 명령은 없다.',
+ 'later-suppression':'학살이 보고된 뒤에도 조사를 막은 기록이 남아 있다.',
+ 'hyeonmuk-letter':'현묵은 스승에게 들린 혼이 없었다고 썼다. 스승은 저편의 울림을 답이라 여겼고, 타종 뒤 무명사의 이치가 어그러졌다.',
+ 'old-route-map':'기존 기록의 운송로와 나루의 강 방향이 맞는다. 저문골의 시신·금속은 무명사로, 묵종은 잠운사로 옮겨졌고 옛길은 막혔다.'
 };
-// Only already acquired document rows are retained. This is not a catalogue of spoilers.
-function present(app,lines){const b=app.engine?.b;if(!active(b))return lines;app.profile.honroEvidenceRevision=1;const docs=app.profile.honroEvidenceDocuments??=[];return lines.map(row=>{const [who,text,meta={}]=row;if(meta.evidenceOriginal&&!docs.some(d=>d.id===meta.evidenceOriginal.id))docs.push(clone(meta.evidenceOriginal));if(meta.kind!=='document')return row;const id=meta.documentId||`${b.honroStage}:${meta.documentTitle}`;if(!docs.some(d=>d.id===id&&d.text===text))docs.push({id,text,meta:clone(meta),stage:b.honroStage});return ['서술',(summaries[id]||text.replace(/\n/g,' · '))+'\n원문은 여정의 기록에서 선택해 읽을 수 있다.',{...meta,kind:'narration',documentId:undefined,documentTitle:undefined}];});}
-G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,satisfied,observe,targets,present};
+function cleanText(text){return String(text).replace(/\n?원문은 여정의 기록에서 선택해 읽을 수 있다\./g,'').replace(/핵심 단서를 확인한 뒤 원문은 여정의 기록에서 다시 읽을 수 있습니다\./g,'홍만이 남긴 행선지를 동행과 확인합니다.').replace(/일지 원문은 여정의 기록에서 선택해 읽습니다\./g,'작업대의 일지에서 종지기가 한 일을 확인합니다.');}
+// Acquired evidence is delivered in the event. Legacy archive fields remain inert.
+function present(app,lines){return lines.map(row=>{const [who,text,meta={}]=row,{evidenceOriginal,...safe}=meta;const id=meta.documentId;const oldDocument=meta.kind==='document'||who==='기록';if(meta.evidenceOriginal?.id==='original-19-old-soul')return ['서술','소단은 종 밑에 남은 혼의 옷차림이 방금 떠난 희생자들과 다르다고 짚었다. '+summaries['bell-transfer-marks'],{...safe,kind:'narration'}];if(!oldDocument)return [who,cleanText(text),safe];return ['서술',summaries[id]||cleanText(text).replace(/\n/g,' · '),{...safe,kind:'narration'}];});}
+G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText};
 })(globalThis);

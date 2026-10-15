@@ -17,7 +17,7 @@ function point(b,p,context={}){
  else if(Number.isFinite(p.x)&&Number.isFinite(p.y))q=p;
  return q&&Number.isFinite(q.x)&&Number.isFinite(q.y)?{...q,x:q.x+(p.dx||0),y:q.y+(p.dy||0)}:null;
 }
-function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
+function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx','evidence'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
 function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
  if(b.honroCustom)return;
@@ -87,6 +87,11 @@ function move(app,s,step,dt,skip){
 function apply(app,s,step,skip=false,dt=0){
  const b=app.engine.b,key=s.cursor,first=!s.applied[key];
  if(first){s.applied[key]=true;
+  if(step.type==='evidence'){
+   // Cosmetic custody, serialized with this cue. Never completes a goal or awards evidence.
+   const mem=b.honroState.evidenceScene??={},prior=mem[step.marker],u=actor(b,step.phase==='compare'&&prior?prior.actor:step.actor),m=b.honroMarkers?.find(m=>m.id===step.marker);
+   if(alive(u)&&m){const key=step.marker==='party-reunion'?step.marker+':'+u.id:step.marker,old=mem[key];mem[key]={source:step.marker,actor:u.id,kind:step.kind||'record-case',phase:step.phase||'carry',x:u.x+(u.facing||1)*28,y:u.y,acquiredAt:old?.acquiredAt||{x:m.x,y:m.y}};b.sceneVersion++;}
+  }
   if(step.type==='fx'&&!skip){if(step.sound)app.audio?.play(step.sound);const p=point(b,step.at,s.context);if(p&&step.effect)app.engine.fx(step.effect,p.x,p.y-15,step.color||'#c9b37f',step.radius||48);}
   if(step.type==='move'){const u=step.reveal?reveal(b,step.actor):actor(b,step.actor);if(alive(u)&&step.focus!==false){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}}
   if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.actor?{actor:step.actor}:step.at,s.context);if(p&&app.scene){delete s.focusActor;app.scene.goalFocus=null;const size=app.scene.size?.(),scale=step.scale&&size?Math.min(step.scale,size.w/((p.spanX||0)+240),(size.h*.55)/((p.spanY||0)+200)):step.scale;
