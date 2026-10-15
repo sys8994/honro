@@ -1,6 +1,7 @@
 // Role-specific structural planes. All original joints and clip keys are retained.
 export function actorDepth(a){
  const p=id=>a.parts.find(p=>p.id===id),add=(id,d,fill,stroke=null,width=.8,lod=0)=>p(id).paths.push({d,fill,stroke,width,lod});
+ if(a.id==='summon_eater')return a;
  if(!['summon_stalker','summon_charger','summon_warden','summon_eater','summon_echo','bier_boss'].includes(a.id))return a;
  a.version=4;
  if(a.id==='summon_stalker'){
@@ -19,12 +20,6 @@ export function actorDepth(a){
   add('body','M-5 -91 L2 -83 -2 -66 3 -45 -2 -18 -7 -22 -5 -47 -9 -68Z','deep');
   add('head','M-17 -103 L-12 -101 -13 -94 -8 -89 M12 -102 L16 -104 14 -94 9 -90',null,'woodLight',1.6);
   add('mantle','M-34 -72 L-31 -66 -35 -61 M31 -66 L35 -63 37 -57',null,'linenShade',1.6);
- }else if(a.id==='summon_eater'){
-  add('shroud','M-69 -88 Q-78 -65 -63 -47 L-55 -31 -62 -23 -72 -42 -80 -57Z','deep');
-  add('face','M-29 -123 L-18 -129 -12 -118 -16 -99 -24 -91 -22 -111Z','linenShade');
-  add('face','M20 -117 L26 -111 21 -99 23 -87 29 -76 26 -61',null,'metal',2);
-  add('maw','M-11 -65 L-5 -68 -7 -59 -12 -56Z M5 -59 L8 -55 2 -49 1 -53Z','linenShade');
-  add('ground-feet','M-41 4 L-28 6 -23 11 -39 11Z M29 5 L40 5 46 10 28 10Z','skinShade');
  }else if(a.id==='summon_echo'){
   // Jaw and neck, carried through two displaced folds rather than blank paper.
   add('head','M-5 -129 L3 -132 8 -125 6 -116 1 -109 -4 -116Z','skinShade');

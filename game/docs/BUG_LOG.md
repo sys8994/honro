@@ -2926,6 +2926,21 @@ Current isolated evidence: 29 route/overlook/lake-return/gate rejection probes p
 
 최종 집중 검사: 새/구 narrative snapshot, 선택 전문 동일성, 17장 포함 나머지 맵/문서/단계 불변, record 커밋 전 승리 차단과 1회 완료 통과. desktop/mobile 실제 자동 대화·중간 Continue·원문 미열람 17장 진입 및 Workshop 공유 증언 표시 통과. 168 source/9 variant/두 HTML runtime 계약과 30 map/640 asset campaign 계약 통과. 새 가역 delta는 두 runtime 파일 및 16장 witness/record 배열만 허용하며 이전 fixture는 유지한다. 전체 verify/migration/integration은 요청대로 반복하지 않았다.
 
+## 2026-10-15 먹귀 귀면 복원·파열·연속 화살 복귀
+
+- 기준 master `1902844`. 실제 Scene 비교 후 먹귀는 `6819cd9`의 지상 귀면을 복원 기준으로 선택했다. 먹귀 경로는 `2d6e646`의 우선 캐릭터 개편 및 `20d86d6`의 전체 적용, `7a980c5`의 재질 보강을 거쳤다. 넓은 입과 지상 발·포식 트랙을 유지하고 비대칭 광대, 탈구된 턱, 엇갈린 치열, 압박된 복부를 추가했다. 네 주인공과 다른 소환수 에셋은 변경하지 않았다.
+- 원인: `eaterReleasedShot`이 AP01 후속 화살까지 공유하는 cast 번호를 면역 키로 사용했다. 기준 소스에서 실제 A01+AP01 발사 재현 시 먹귀 HP 1 소진 후 생존 적 HP가 999에 고정됐다.
+- 변경: 같은 피해를 발생시킨 투사체 ID만 제외한다. AoE는 기존 대상 스냅샷을 유지한다. 복귀 시 포획/옛 shot 제외/연출 포즈를 즉시 해제하고 안전 위치·물리·전투 대상 상태를 함께 복원한다. 기존 저장의 shot 제외는 로드 시 제거한다. HP 0 포획 적은 부활하지 않으며 방출 완료 플래그로 재실행을 방지한다. 피해 사망에는 몸 조각·혼기 파열, 시간 만료에는 기존 방출을 사용한다.
+- 검증: lifecycle 16, 독립 계약 7, App Continue/export-import, UI 및 기여장부 통과. Game/Workshop 생산 번들의 Chromium 격리 컨텍스트에서 PC 1280×800·모바일 390×700 실제 AP01 5발: HP 999→949, 방출 1회. 전후 및 확대·파열 프레임은 `_local/reports/eater-revision/`에 보관한다. 사용자 저장은 접근하지 않았다.
+- 검증 장부: 기존 승인 fixture를 수정하지 않고 `eater-sodan-revision-delta.json`과 가역 투영을 추가했다. 168개 현재 소스/9개 빌드/두 HTML 계약과 이번 변경의 49개 부정 대조가 통과했다. TypeScript 검사도 통과했다.
+- 집계 한계: `npm run verify` 최초 실행은 변경 전 정확 해시에서 멈췄으며 해당 gate는 위 delta로 해결했다. 이후 migration은 7장 honroGrowth HP 527 대 434, `npm --prefix game test`는 1장 캠페인 해시, `tests/integration.py`는 8장 화면 679px 차이로 실패했다. 모두 별도 기준 master 1902844 체크아웃에서 동일하게 재현했다. 전체 verify 통과나 전체 정상 플레이 완료로 보고하지 않는다. 원격 쓰기와 Pages 검수는 별도 폭포 작업의 부모 인계까지 보류한다.
+
+## 2026-10-15 소단 만혼귀결 균등 방사·발사 순서
+
+- 만혼귀결의 10~14개 혼령은 2π를 같은 각도로 나눈 방향으로 퍼진다. 기존 세로 압축으로 실제 방사각이 찌그러지던 부분을 제거하고, Fisher–Yates로 방향 인덱스만 섞어 0.07초 간격에 배정한다. 각도를 독립 무작위로 추출하지 않는다.
+- 수량, 피해, 범위, 각 궤적의 후반 제어점/지속시간, 대표탄 하나의 예상 궤적은 보존한다. 이미 저장된 곡선은 재생성하지 않는다.
+- 8경지×3시드 24회에서 각도 간격, 순서, 수량/간격/피해/저장 재개를 검증했다. 두 생산 HTML의 실제 Chromium 연출을 격리 컨텍스트로 캡처했다(`_local/reports/sodan-radial/`). 원격 인계 대기 중이다.
+
 ## 2026-10-15 · Stage 5 lake revision validation
 
 Replaced waterfall approach shelves with a broad deep lake and a continuous returnable bottom; translated the right cliff/cave 900 east. West contours and two low optional overlooks create reachable approach/retreat alternatives. Ground and air groups now occupy the left tactical area. The finite lower-beasts arrival required 110 spacing: 85 blocked the entire atomic wave even on an empty bank. An occupied entry still waits without partial spawning.

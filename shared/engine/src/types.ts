@@ -165,7 +165,9 @@ export interface Unit {
     summonActionRound?: number;
     /** Captive remains alive for objectives but absent from combat until released. */
     eaterCapturedBy?: string;
-    eaterReleasedShot?: number;
+    eaterReleasedShot?: number; // Legacy saves only; cleared on load.
+    eaterReleasedProjectile?: number;
+    eaterReleased?: boolean;
     eaterOrigin?: {x:number;y:number};
     eaterRevision?: number;
     eaterTransferred?: number;

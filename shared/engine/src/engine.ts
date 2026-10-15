@@ -650,7 +650,7 @@ export class Engine {
       return side===0&&this.autonomousAttack(owner,p);
     }
     attackAllows(target:Unit,owner:string,p?:Partial<Projectile>){
-      if(target.eaterCapturedBy||p?.shot!==undefined&&target.eaterReleasedShot===p.shot)return false;
+      if(target.eaterCapturedBy||p?.id!==undefined&&target.eaterReleasedProjectile===p.id)return false;
       if(this.unit(owner)?.summonKind==='eater')return false;
       return !this.protectedAutomaticAttack(owner,p)||this.allegiance(target)===1;
     }
@@ -871,7 +871,7 @@ export class Engine {
         if(u.summonKind==='eater'){
             if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){const shared=Math.min(dmg,Math.max(0,u.maxHp-(u.eaterTransferred||0)));u.eaterTransferred=(u.eaterTransferred||0)+shared;for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,shared,owner,false,undefined,source,'eaterTransfer');}
             this.b.reviewFocus={x:u.x,y:u.y-u.h*.5};
-            if(u.dead||u.hp<=0)releaseEater(this,u);
+            if(u.dead||u.hp<=0)releaseEater(this,u,p||provenance,true);
         }
     }
     impulse(u: Unit, vx: number, vy: number) { if (u.dead || u.eaterCapturedBy || u.summonFloating) return;
