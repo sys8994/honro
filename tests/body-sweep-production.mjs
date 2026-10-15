@@ -1,2 +1,36 @@
-import assert from 'node:assert/strict';import {runtime,battlefield} from '../game/tests/helpers.mjs';const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;let n=0;
-for(const stage of [1,3,5,11,18,27]){const template=battlefield(g,stage).b;let sampled=0;for(const t of template.terrain){if(t.broken||t.oneWay)continue;const v=C.poly(t);for(let i=0;i<v.length;i++){const a=v[i],z=v[(i+1)%v.length],s=(z.y-a.y)/(z.x-a.x);if(z.x-a.x<40||Math.abs(s)<.15||Math.abs(s)>3)continue;const x=(a.x+z.x)/2,y=(a.y+z.y)/2,u=C.makeUnit('knight',0,x,y,{id:'prod-probe',loadout:['S15'],focus:999,maxFocus:999,ranks:{S15:8},acted:false});if(!C.validTerrainContactPose(template.terrain,u))continue;for(const angle of [15,45,135,165]){const b=structuredClone(template);b.units=[structuredClone(u)];b.active=u.id;b.phase='aim';b.side=0;b.projectiles=[];const e=new C.Engine(b),unit=e.active;assert(e.fire('S15',angle,1));for(let tick=0;tick<2000&&b.projectiles.length;tick++){e.stepProjectile(b.projectiles[0],1/120);assert(!b.terrain.some(q=>!q.broken&&!q.oneWay&&C.terrainContains(q,unit.x,unit.y-.2)),`${stage}/${t.id}/${angle}/${tick}: ${unit.x},${unit.y}`);}n++;}if(++sampled>=4)break;}if(sampled>=4)break;}console.log('stage',stage,'slopes',sampled);}console.log('PASS production slope rush',n);
+// Real authored terrain, isolated actor/cast fixtures; not normal chapter clears.
+import assert from 'node:assert/strict';
+import {runtime,battlefield} from '../game/tests/helpers.mjs';
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
+let count=0;
+for(const stage of [1,3,5,11,18,27]){
+ const template=battlefield(g,stage).b;
+ let sampled=0;
+ for(const terrain of template.terrain){
+  if(terrain.broken||terrain.oneWay)continue;
+  const vertices=C.poly(terrain);
+  for(let i=0;i<vertices.length;i++){
+   const a=vertices[i],z=vertices[(i+1)%vertices.length],slope=(z.y-a.y)/(z.x-a.x);
+   if(z.x-a.x<40||Math.abs(slope)<.15||Math.abs(slope)>3)continue;
+   const x=(a.x+z.x)/2,y=(a.y+z.y)/2;
+   const actor=C.makeUnit('knight',0,x,y,{id:'prod-probe',loadout:['S15'],focus:999,maxFocus:999,ranks:{S15:8},acted:false});
+   if(!C.validTerrainContactPose(template.terrain,actor))continue;
+   for(const angle of [15,45,135,165]){
+    const b=structuredClone(template);
+    Object.assign(b,{units:[structuredClone(actor)],active:actor.id,phase:'aim',side:0,projectiles:[]});
+    const e=new C.Engine(b),u=e.active;
+    assert(e.fire('S15',angle,1));
+    for(let tick=0;tick<2000&&b.projectiles.length;tick++){
+     e.stepProjectile(b.projectiles[0],1/120);
+     assert(!b.terrain.some(t=>!t.broken&&!t.oneWay&&C.terrainContains(t,u.x,u.y-.2)),`${stage}/${terrain.id}/${angle}/${tick}: ${u.x},${u.y}`);
+    }
+    count++;
+   }
+   if(++sampled>=4)break;
+  }
+  if(sampled>=4)break;
+ }
+ console.log('stage',stage,'slopes',sampled);
+}
+assert.equal(count,80,'Exact current production sample coverage');
+console.log('PASS production slope rush',count);
