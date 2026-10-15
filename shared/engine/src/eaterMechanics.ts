@@ -35,7 +35,7 @@ function safeRelease(e:Engine,v:Unit,x:number,y:number,cx=x,cy=y){
 export function releaseEater(e:Engine,u:Unit,p?:Partial<Projectile>,rupture=false){
  if(u.eaterReleased)return;u.eaterReleased=true;
  const targets=e.b.units.filter(v=>v.eaterCapturedBy===u.id);u.dead=true;u.hp=0;u.vx=u.vy=0;
- for(let i=0;i<targets.length;i++){const v=targets[i];delete v.eaterCapturedBy;if(v.dead||v.hp<=0){v.dead=true;delete v.eaterOrigin;continue;}const a=2*Math.PI*i/Math.max(1,targets.length),dx=Math.cos(a);safeRelease(e,v,u.x+dx*(u.r+v.r+12),u.y,u.x,u.y);delete v.eaterOrigin;delete v.eaterReleasedShot;if(p?.id!==undefined)v.eaterReleasedProjectile=p.id;else delete v.eaterReleasedProjectile;v.hurt=0;delete v.honroScenePose;v.acted=true;v.awake=true;v.aggroUntil=Math.max(v.aggroUntil,e.b.round+1);e.impulse(v,dx*45,-22-Math.abs(Math.sin(a))*25);}
+ for(let i=0;i<targets.length;i++){const v=targets[i];delete v.eaterCapturedBy;if(v.dead||v.hp<=0){v.dead=true;delete v.eaterOrigin;continue;}const a=2*Math.PI*i/Math.max(1,targets.length),dx=Math.cos(a);safeRelease(e,v,u.x+dx*(u.r+v.r+12),u.y,u.x,u.y);delete v.eaterOrigin;delete v.eaterReleasedShot;if(p?.id!==undefined)v.eaterReleasedProjectile=p.id;else delete v.eaterReleasedProjectile;v.hurt=0;delete (v as any).honroScenePose;v.acted=true;v.awake=true;v.aggroUntil=Math.max(v.aggroUntil,e.b.round+1);e.impulse(v,dx*45,-22-Math.abs(Math.sin(a))*25);}
  e.fx('eaterRelease',u.x,u.y-u.h*.5,'#c8c3ae',Math.max(70,u.r*2),rupture?'rupture':'expiry');
 }
 /** Old floating eaters migrate inertly; loading never performs a new capture. */
