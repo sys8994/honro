@@ -15,7 +15,7 @@ function evidence(b){if(b.honroCustom||b.honroNarrativeRevision!==1)return[];con
  if(id===27)rows=[at('family-manifest','family-manifest')];
  if(id===28&&d['party-reunion'])rows=[at('party-reunion','shared-evidence'),...(d['petition-record']?[at('petition-record','petition')]:[]),...(d['closure-order']?[at('closure-order','approval')]:[]),...(d['suppression-order']?[at('suppression-order','suppression')]:[])];
  if(id===29&&d['old-seal'])rows=[at('hyeonmuk-letter','signed-letter')];
- if(id===30)rows=[at('transport-map','transport-map')];
+ if(id===30&&!G.HonroEvidenceQuests?.active(b))rows=[at('transport-map','transport-map')];
  return rows.filter(Boolean);
 }
 // Closed, human-scale bundles identify an investigation without publishing its text.

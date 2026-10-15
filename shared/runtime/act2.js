@@ -54,7 +54,7 @@ function lowerPool(z,amount){
 const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
-function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const special=G.HonroStage18Bell?.satisfied(b,s);if(special!==null&&special!==undefined)return special;
+function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const evidence=G.HonroEvidenceQuests?.satisfied(b,s);if(evidence!==null&&evidence!==undefined)return evidence;const special=G.HonroStage18Bell?.satisfied(b,s);if(special!==null&&special!==undefined)return special;
  if(s.kind==='route')return !!b.honroRouteChoice?.selectedRoute;
  if(s.kind==='clear'){const plan=G.HonroAct2Plan.forStage(b.honroStage);if(s.cohorts==='all'&&(plan.bossWave&&!a.events['keeper-retaliation']||plan.progressWave&&!a.events['convoy-ambush']))return false;return enemiesFor(b,s).length===0;}
  if(s.kind==='hold'){const h=a.holds?.[s.id];return !!h&&h.progress>=s.rounds&&h.spawned>=(s.wave?.count||0);}
@@ -102,7 +102,7 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'낙석 치우기'};
  if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'주변 원혼등불 밝히기'};
  if(!s)return{ok:false,reason:current(b)?'먼저 '+current(b).label:'목표 완료'};
- if(['clear','hold','defeat','destroy','reach','escort','route'].includes(s.kind))return{ok:false,reason:s.label};
+ if(['evidence','clear','hold','defeat','destroy','reach','escort','route'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
  if(revision2(b)){
   const threats=interactionThreats(b,m);
@@ -220,7 +220,7 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  ]);
  G.HonroStory.save(app);
 }
-function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||['won','lost'].includes(b.phase))return;
+function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.modal?.classList.contains('open')||['won','lost'].includes(b.phase))return;
  const a=memory(b),heroes=e.heroesAlive();
  G.HonroNarrativeRevision?.tick(app,dt);
  if(e.active?.side===0)a.viewerId=e.active.id;

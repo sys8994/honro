@@ -67,3 +67,9 @@
 /* No empty portrait column for narration or an unillustrated named speaker. */
 .story-overlay .story-scene.text-only-scene{grid-template-columns:minmax(0,1fr);gap:0}.narration-inline .story-copy h2{font-size:clamp(17px,2vw,22px);color:#c9b889}.narration-inline .story-copy p{min-height:0}.narration-inline .story-scene{width:min(920px,100%)}
 
+/* The optional reader also lives inside the pause journal dialog. Keep paper ink
+   independent of the dark journal's generic paragraph colour. */
+.evidence-reader .story-document p,.evidence-reader .story-document #story-line{color:#292e29}
+.evidence-list{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 24px}
+.evidence-list button{min-height:44px;text-align:left}
+.story-history.evidence-reader{padding:0;border:0;background:none;overflow:visible}

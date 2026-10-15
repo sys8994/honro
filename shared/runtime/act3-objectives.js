@@ -13,7 +13,7 @@ function initialize(b){if(!active(b))return;G.HonroObjectiveRevision?.registerSc
 function sourceIssue(b){const routeIssue=G.HonroRouteBranches?.sourceIssue(b);if(routeIssue)return routeIssue;const list=steps(b);if(!list.length)return'이 장의 목표 자료가 준비되지 않았습니다.';
  for(const s of list){if(!marker(b,s.id))return'목표 위치가 준비되지 않았습니다: '+s.id;if(s.kind==='destroy'&&!G.HonroQuestTargets.records(b).some(t=>t.id===s.id))return'파괴 장치가 준비되지 않았습니다: '+s.id;if(s.target&&!b.units.some(u=>u.id===s.target))return'동행 대상이 준비되지 않았습니다: '+s.target;if(s.opens&&!G.HonroQuestTargets.records(b).some(t=>t.id===s.opens))return'통로가 준비되지 않았습니다: '+s.opens;if(s.wave&&!marker(b,'wave-'+s.id))return'방어 경로가 준비되지 않았습니다: '+s.id;}return null;
 }
-function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;
+function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const evidence=G.HonroEvidenceQuests?.satisfied(b,s);if(evidence!==null&&evidence!==undefined)return evidence;
  if(s.kind==='route')return !!b.honroRouteChoice?.selectedRoute;
  if(s.kind==='destroy')return !!G.HonroQuestTargets.records(b).find(t=>t.id===s.id)?.broken;
  if(s.kind==='hold'){const h=a.holds[s.id];return !!h&&h.progress>=s.rounds&&h.spawned>=(s.wave?.count||0);}
@@ -30,7 +30,7 @@ function target(b,s){const m=marker(b,s.id),t=s.kind==='destroy'&&G.HonroQuestTa
 function state(b){const list=steps(b),s=current(b),a=memory(b),issue=sourceIssue(b),all=list.map(q=>({...target(b,q),done:!!a.done[q.id]}));let detail='';
  if(s?.kind==='hold'){const h=a.holds[s.id];detail=` · ${h?.progress||0}/${s.rounds}턴${h?.contested?' · 가까운 적을 밀어내세요':h?.guarded?' · 지키는 중':' · 같은 층의 표시 범위에서 유지'}`;}
  if(fireScenario(b)&&!firesStopped(b))detail+=` · 소각까지 ${Math.max(0,12-(a.fireTurns||0))} 적 턴`;
- const targets=G.HonroRouteBranches?.targets(b,s)||readySteps(b).map(q=>target(b,q));
+ const targets=G.HonroEvidenceQuests?.targets(b,s)||G.HonroRouteBranches?.targets(b,s)||readySteps(b).map(q=>target(b,q));
  if(s?.kind==='escort'){const u=b.units.find(u=>u.id===s.target);if(alive(u))targets.push({id:u.id,kind:'objective',x:u.x,y:u.y-u.h,unitId:u.id,label:'기록 운반자 · 가까이 동행'});}
  const complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${list.filter(q=>a.done[q.id]).length}/${list.length} · ${s?.parallelGroup==='fire-control'?'불길 진압 '+list.filter(q=>q.parallelGroup==='fire-control'&&a.done[q.id]).length+'/2 · 설오 수문 / 휘겸 차단막'+detail:s?s.label+detail:'모든 목표 완료'}`,targets:targets.filter(t=>Number.isFinite(t.x)&&Number.isFinite(t.y)),allTargets:all};
 }
@@ -96,8 +96,8 @@ function failure(b){if(!active(b))return null;const a=memory(b);if(b.honroStage=
  for(const s of steps(b))if(!satisfied(b,s)&&s.requiredClass&&!heroes(b).some(u=>u.cls===s.requiredClass))return H.hero[s.requiredClass].name+'이 쓰러져 남은 목표를 이어갈 수 없다. 이 장을 다시 시작하자.';
  if(fireScenario(b)&&!firesStopped(b)&&(a.fireTurns||0)>=12)return'불길이 핵심 기록에 닿았다. 수문과 차단막부터 다시 확보하자.';return null;
 }
-function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||['won','lost'].includes(b.phase))return;initialize(b);const a=memory(b);
- if(sourceIssue(b))return; // Missing authoring is never a completed stage.
+function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.modal?.classList.contains('open')||['won','lost'].includes(b.phase))return;initialize(b);const a=memory(b);
+ if(sourceIssue(b))return;G.HonroEvidenceQuests?.observe(app); // Missing authoring is never a completed stage.
  if(fireScenario(b)&&!firesStopped(b)){const end=b.teamEnds?.[1]||0;a.fireStartEnd??=end;a.fireTurns=Math.max(0,end-a.fireStartEnd);}
  let s=current(b);while(s&&satisfied(b,s)){completeStep(app,s);s=current(b);}
  // Commit the reunion at the same actor boundary that opens its Story lock.

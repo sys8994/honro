@@ -2900,3 +2900,7 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 최종 회귀 결과: body-sweep-production80조건 및 두 host×4장×desktop/mobile16화면 통과. 전체 npm run verify는 binding-detail normalization에서 중단하며, 격리한8d759f2도 같은 actual/expected 해시로 실패한다. migration은 기존 Stage7 honroGrowth, integration은 기존 Stage8의679픽셀 차이로 중단한다. 역사fixture를 변경하지 않았다.
 - 추가 성능 표본(다른 브라우저 작업 없이 HTTP 로컬 호스트): 현재18장 desktop load860ms로750ms 기준 초과, 기준8d759f2도1212.1ms로 같은 실패. 현재60.26Hz/render평균0.644ms/cache재생성0, 기준60.32Hz/1.16ms/0. 성능 전체 통과로 보고하지 않는다. 파일 URL은 환경 정책상 차단되어 기존 로컬 HTTP 테스트 지원 경로를 사용했다.
 - 공개 Pages 접근은 실행환경 HTTP 터널403 및 Chromium ERR_TUNNEL_CONNECTION_FAILED로 차단. 원격 master/Pages workflow 확인과 공개 바이트·브라우저 QA를 구분하며, 공개 receipt를 만들거나 완전 검증으로 보고하지 않는다. 공식3참고 Library materialize 실패도 남은 한계다.
+
+## 2026-10-15 현장 행동과 선택 원문 revision 1
+
+문서마다 별도 필수 클릭/낭독이 이어지던 흐름을 새 캠페인 revision에서 현장 행동과 통합했다. 17 복구 보호, 24 실제 두 팀 출입로 확인, 27 진목 설치, 30 나루 지형 대조가 우선 대상이며 나머지 원본은 구조/개방/기록함 구출 뒤 보관한다. 기존 단계 ID와 저장, 증원·화재·분할/합류·검은 공간, 책임/생사 미상 정보는 보존한다. 상세 범위는 EVIDENCE_QUESTS.md. 집중 native 및 desktop/mobile 체크포인트 검수 진행; 정확 delta 계약과 최종 배포/전체 검사는 후속 저장 단위에서 완료한다. 종이 모달을 어두운 journal dialog 안에 넣을 때 생긴 회색 본문 상속을 종이 잉크색으로 수정했다.
