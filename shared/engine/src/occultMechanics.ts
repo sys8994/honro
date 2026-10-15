@@ -40,9 +40,9 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
 
 export function convergenceCurve(start:Vec,goal:Vec,seed:number,index:number,count:number):NonNullable<Projectile['curve']>{
  const angle=index*Math.PI*2/count+seed*.23,reach=225+(index%4)*27;
- // Souls fan out around the medium without burrowing under the ground at her feet.
+ // Equal angular sectors across the full circle; launch timing is shuffled separately.
  const vertical=Math.sin(angle)*reach;
- const spread={x:start.x+Math.cos(angle)*reach,y:start.y+vertical*(vertical>0?.1:.78)};
+ const spread={x:start.x+Math.cos(angle)*reach,y:start.y+vertical};
  const bend=((index%2)*2-1)*(95+(index%3)*26);
  const control={x:(spread.x+goal.x)*.55-Math.sin(angle)*bend,y:Math.min(start.y+28,(spread.y+goal.y)*.55+Math.cos(angle)*bend)};
  return {start,spread,control,goal,duration:1.26+(index%3)*.08,delay:index*.07,outwardRatio:.4};
@@ -58,8 +58,11 @@ export function convergencePoint(c:NonNullable<Projectile['curve']>,age:number):
 /** The representative alone is predicted. Curve parameters are fixed once on impact. */
 export function convergeAt(e:Engine,p:Projectile){
  const goal={x:p.x,y:p.y},start={x:p.returnX,y:p.returnY-48},rank=clamp(p.skillRank||1,1,8),count=10+Math.floor(rank/2);
+ const order=Array.from({length:count},(_,i)=>i);
+ for(let i=count-1;i>0;i--){const j=Math.floor(e.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
  for(let i=0;i<count;i++){
-  const c:Projectile={...p,id:e.b.nextId++,mode:'convergeSpirit',x:start.x,y:start.y,vx:0,vy:0,prevVy:0,age:0,radius:6,damage:p.damage*.22,blast:38,phaseMode:'all',gravityScale:0,wind:0,hit:[],trail:[start],child:true,autonomous:true,echoUsed:true,color:'#bea9cf',curve:convergenceCurve(start,goal,p.id,i,count)};
+  const curve=convergenceCurve(start,goal,p.id,order[i],count);curve.delay=i*.07;
+  const c:Projectile={...p,id:e.b.nextId++,mode:'convergeSpirit',x:start.x,y:start.y,vx:0,vy:0,prevVy:0,age:0,radius:6,damage:p.damage*.22,blast:38,phaseMode:'all',gravityScale:0,wind:0,hit:[],trail:[start],child:true,autonomous:true,echoUsed:true,color:'#bea9cf',curve};
   e.b.projectiles.push(c);
  }
  e.fx('ring',goal.x,goal.y,'#bec4ae',55);e.remove(p);
