@@ -1,0 +1,3805 @@
+{
+  "kind": "field-evidence-runtime-campaign",
+  "baseCurrentCommit": "ba3678a1b36e7eba7f4b8fd28a998fc2faed20e6",
+  "beforeManifestSha256": "0724504cb3a69c874b6f2e9d0de3e3bc77b5b9be0cffffe81f37a5bd99664833",
+  "rows": [
+    {
+      "variant": "runtime",
+      "stageId": 3,
+      "beforeSha256": "d094de8af8310bac99924c1460c922d5d1a62dee20f22a9b35a836de76885d48",
+      "afterSha256": "d5db020e340aa4233ad2ce93536f3cd8b18b5b6c311fe7fec7bd222f9a7e6754",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            7,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "홍만의 장부",
+          "after": "움막 기록함 챙기기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 57
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "id": 3,
+            "name": "나루의 남은 장부",
+            "level": 3,
+            "theme": "river",
+            "template": 4,
+            "objective": "ledger",
+            "goal": "홍만의 나루 움막에서 장부 회수",
+            "w": 9400,
+            "h": 2500,
+            "map": [
+              1080,
+              760
+            ],
+            "requires": [
+              2
+            ],
+            "enemies": 6,
+            "active": 3,
+            "narrationArt": "ferry",
+            "narration": [
+              "홍만은 이미 세상을 떠났다. 설오는 그의 딸 연실이 알려 준 장부를 찾아 담허와 나루로 내려왔다. 빈 움막 앞에서 낯선 검객 하나가 두 사람을 향해 손을 들었다."
+            ],
+            "story": [
+              [
+                "휘겸",
+                "멈추시오. 저 장승이 물 밖으로 기어 나왔소. 그쪽은 위험하오."
+              ],
+              [
+                "설오",
+                "(활을 내리지 않은 채) 나루를 지키는 분입니까? 사람들은 어디로 갔지요?"
+              ],
+              [
+                "휘겸",
+                "휘겸이라 하오. 서쪽 길에서 피란민을 데려오다 여기 발이 묶였소. 걸을 수 있는 사람은 마을 문으로 먼저 보냈소."
+              ],
+              [
+                "설오",
+                "저는 설오입니다. 홍만 어르신의 장부를 찾으러 왔습니다. 저 움막에 있다고 들었습니다.",
+                {
+                  "focus": "interact"
+                }
+              ],
+              [
+                "휘겸",
+                "홍만 어르신이라면… 부고를 들었소. 움막은 아직 못 살폈소. 내가 장승의 눈을 끄는 동안 들어가 보시오."
+              ],
+              [
+                "담허",
+                "나는 담허라 하네. 장승에서 빠져나온 혼은 내가 진으로 받아 다른 몸에 붙지 못하게 하겠네. 혼자 남아 애썼구먼."
+              ]
+            ],
+            "storyFollowups": [
+              [
+                [
+                  "설오",
+                  "어른, 장승의 몸을 부숴도 그 안의 혼은 남는 겁니까?"
+                ],
+                [
+                  "담허",
+                  "그렇네. 죽은 뒤에도 떠나지 못한 혼, 원혼이 들어 있는 거야. 죽은 사람이 모두 그렇게 되는 건 아니야."
+                ],
+                [
+                  "설오",
+                  "저 장승도… 누군가의 혼이 들어 움직이는 겁니까?"
+                ],
+                [
+                  "담허",
+                  "그래. 사람이나 짐승, 저런 물건도 그릇이 되네. 부수고 끝낼 수 없는 까닭이지."
+                ]
+              ],
+              [
+                [
+                  "설오",
+                  "몸에서 떼어 놓은 뒤에는 어디로 보냅니까?"
+                ],
+                [
+                  "담허",
+                  "땅에 진을 펴서 원혼을 받아 두네. 사람에게 다시 붙지 못하게 하는 자리라 받이진이라 하지."
+                ],
+                [
+                  "설오",
+                  "그럼 몸을 부수기 전에 원혼을 받아 둘 진부터 마련해야겠군요."
+                ],
+                [
+                  "담허",
+                  "(빈 움막을 돌아보며) 여기 남은 것도 살펴야겠네. 서두르되 함부로 부수지는 말게."
+                ]
+              ]
+            ],
+            "outro": [
+              [
+                "설오",
+                "고향 사람들 다음 행선지가 남아 있어 다행입니다."
+              ],
+              [
+                "휘겸",
+                "나는 북문으로 먼저 가겠소. 아직 문 밖에 남은 사람들이 있소."
+              ],
+              [
+                "설오",
+                "우리도 가겠습니다."
+              ]
+            ],
+            "storySummary": "고향 사람들은 연목 주막에 묵은 뒤 북문으로 이동했다. 붉은 실에는 무언가 걸려 있다. 함부로 끊지 말고 맨 사람을 찾아야 한다. 다음 목적지는 연목 마을이다.",
+            "guide": "움막의 기록함에서 홍만의 장부를 챙기세요. 핵심 단서를 확인한 뒤 원문은 여정의 기록에서 다시 읽을 수 있습니다."
+          },
+          "afterKeyIndex": 58
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 16,
+      "beforeSha256": "ddc6b2ddb9692968deccc51bde1c91e2025a33a167e0e31e4d35c2f4c1fc27be",
+      "afterSha256": "a9de09a2bcfa3cfd0fff8761f9b2269d906d50c44e5a150d07caa46e0e2bdb55",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "받은 열쇠로 동쪽 기록방 열기",
+          "after": "기록방 문 열기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            3,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "대종 금기 문서 조사",
+          "after": "개방한 기록실의 이송 기록 확보"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            4,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "구조 자리에서 증언과 열쇠 받기",
+          "after": "구조한 노승의 증언과 열쇠 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            2,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "구조 자리에서 증언과 열쇠 받기",
+          "after": "구조한 노승의 증언과 열쇠 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            2,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            2,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "clear-rescue-threat",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            3,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "받은 열쇠로 동쪽 기록방 열기",
+          "after": "기록방 문 열기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            4,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "대종 금기 문서 조사",
+          "after": "개방한 기록실의 이송 기록 확보"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            4,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            4,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "hall",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 18
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "잠운사",
+            "theme": "temple",
+            "goal": "승려를 구해 증언과 열쇠를 받고 동쪽 기록함 조사",
+            "narration": [
+              "법당의 향은 오래전에 꺼졌지만 재를 고르는 손길은 남아 있었다. 노승은 쓰러진 제자의 손바닥에 이름 세 글자를 쓰고 지우기를 반복했다. 제자는 글자가 지워질 때마다 다른 사람의 이름을 말했다."
+            ],
+            "story": [
+              [
+                "설오",
+                "아래 마을에서 왔습니다. 종에 관한 기록을 찾습니다. 먼저 이분을 도와드리겠습니다.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-16",
+                  "storyTitle": "잠운사"
+                }
+              ],
+              [
+                "노승",
+                "내 제자요. 자기 이름마저 잊을까 봐 손에 써 주고 있소. 어릴 때도 이렇게 글을 배웠는데.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-16",
+                  "storyTitle": "잠운사"
+                }
+              ],
+              [
+                "소단",
+                "곁에 붙은 혼부터 약하게 만들면 떼어낼 수 있어요. 손은 놓지 말아 주세요.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-16",
+                  "storyTitle": "잠운사"
+                }
+              ]
+            ],
+            "guide": "노승을 구조하고 가까운 위협을 막으세요. 증언과 열쇠를 확인한 뒤 법당 기록실을 열면 이송 기록도 함께 확보합니다.",
+            "steps": [
+              {
+                "id": "monk",
+                "label": "들린 승려 구조",
+                "kind": "rescue"
+              },
+              {
+                "id": "clear-rescue-threat",
+                "label": "구조 자리로 다가온 위협 제압",
+                "kind": "clear",
+                "defeatIds": [
+                  "a2-enemy-4",
+                  "tm-court-flank",
+                  "a2-enemy-5",
+                  "a2-enemy-9"
+                ]
+              },
+              {
+                "id": "witness",
+                "label": "구조한 노승의 증언과 열쇠 확인",
+                "kind": "evidence",
+                "afterEvidence": "clear-rescue-threat"
+              },
+              {
+                "id": "hall",
+                "label": "기록방 문 열기",
+                "kind": "interact"
+              },
+              {
+                "id": "record",
+                "label": "개방한 기록실의 이송 기록 확보",
+                "kind": "evidence",
+                "afterEvidence": "hall"
+              }
+            ],
+            "beats": {
+              "monk": [
+                [
+                  "승려",
+                  "스님. 손이 아픕니다."
+                ],
+                [
+                  "노승",
+                  "그래. 아프다고 말할 수 있으면 됐다. 네 이름부터 다시 말해 보아라."
+                ],
+                [
+                  "서술",
+                  "제자가 제 이름을 말했다. 노승은 대답 대신 손바닥에 묻은 먹을 소매로 닦아 주었다."
+                ]
+              ],
+              "record": [
+                [
+                  "기록",
+                  "칠십 년 전, 대종 외부 이송\n타종 금지 · 인양로와 바깥길 봉쇄\n출처: [잘려 나감]",
+                  {
+                    "kind": "document",
+                    "documentTitle": "잠운사 이송 기록",
+                    "documentId": "temple-transfer"
+                  }
+                ],
+                [
+                  "담허",
+                  "이송 기록의 진법 표식이 산길의 돌림진과 같네. 내가 배운 법도 이 뿌리에서 나왔어."
+                ],
+                [
+                  "설오",
+                  "누가 왜 숨겼는지는 잘린 장에 있었겠군요."
+                ]
+              ],
+              "witness": [
+                [
+                  "휘겸",
+                  "그 증언을 적어 둡시다. 종 안에서 죽은 이들이 누구였는지 잊지 않도록.",
+                  {
+                    "evidenceOriginal": {
+                      "id": "original-16-witness",
+                      "text": "승려 · 처음에는 종 안에서 돌로 두드렸어요. 이튿날에는 손으로. 사흘째에는 문 가까운 데서만 소리가 났어요.\n\n설오 · 그동안 꺼낼 수 있었습니까?\n\n승려 · 인양틀이 살아 있었습니다. 종지기가 축을 빼고 문을 잠갔어요. 우리가 손대면 밖의 사람까지 죽는다고 했습니다.\n\n승려 · 내가 들은 건 저주가 아니었어요. 물을 달라는 말이었어요. 그래도 나는 돌아섰습니다.\n\n휘겸 · 그 증언을 적어 둡시다. 종 안에서 죽은 이들이 누구였는지 잊지 않도록.\n\n노승 · 옛 장부는 동쪽 회랑의 기록함에 있소. 열쇠를 가져가시오.\n\n서술 · 노승이 열쇠를 건넸다. 제자는 스승 곁에 남았다.",
+                      "meta": {
+                        "kind": "document",
+                        "documentId": "original-16-witness",
+                        "documentTitle": "노승의 증언 전문"
+                      },
+                      "stage": 16
+                    }
+                  }
+                ],
+                [
+                  "서술",
+                  "노승이 열쇠를 건넸다. 제자는 스승 곁에 남았다."
+                ]
+              ],
+              "hall": [
+                [
+                  "설오",
+                  "노승께 받은 열쇠로 기록방이 열렸습니다. 스승과 제자는 툇마루에서 기다리고 계십니다."
+                ],
+                [
+                  "휘겸",
+                  "기록함까지 길을 열겠소."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "휘겸",
+                "증언과 옛 기록은 챙겼소. 뒤편 인양로에서 빠진 축을 확인합시다.",
+                {
+                  "storyId": "act2-v1:act2-r2-outro-16",
+                  "storyTitle": "잠운사"
+                }
+              ],
+              [
+                "설오",
+                "종지기가 어떻게 구조를 막았는지, 인양틀에서 직접 확인하겠습니다.",
+                {
+                  "storyId": "act2-v1:act2-r2-outro-16",
+                  "storyTitle": "잠운사"
+                }
+              ]
+            ],
+            "summary": "묵종을 외부에서 들여온 옛 이송·봉쇄 기록을 찾았다. 별개로 최근 희생자들이 사흘간 살아 있었고 종지기가 구조를 막았다는 증언을 얻었다.",
+            "id": 16,
+            "act": 2,
+            "actStage": 6,
+            "level": 15,
+            "template": 1,
+            "objective": "act2",
+            "requires": [
+              15
+            ],
+            "active": 4,
+            "enemies": 34,
+            "map": [
+              5300,
+              860
+            ],
+            "narrationArt": "road",
+            "storySummary": "묵종을 외부에서 들여온 옛 이송·봉쇄 기록을 찾았다. 별개로 최근 희생자들이 사흘간 살아 있었고 종지기가 구조를 막았다는 증언을 얻었다.",
+            "failure": [
+              [
+                "휘겸",
+                "더 밀고 갈 수는 없소. 숨을 고르고 처음부터 길을 다시 잡읍시다."
+              ]
+            ],
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "w": 11000,
+            "h": 7600,
+            "act2Plan": {
+              "size": [
+                11000,
+                7600
+              ],
+              "initial": 34,
+              "active": 4,
+              "eliteEvery": 4,
+              "rounds": [
+                70,
+                130
+              ],
+              "lamps": [],
+              "sequence": [
+                "monk",
+                {
+                  "id": "clear-rescue-threat",
+                  "label": "구조 자리로 다가온 위협 제압",
+                  "kind": "clear",
+                  "defeatIds": [
+                    "a2-enemy-4",
+                    "tm-court-flank",
+                    "a2-enemy-5",
+                    "a2-enemy-9"
+                  ]
+                },
+                "witness",
+                "hall",
+                "record"
+              ],
+              "sites": {
+                "clear-court": [
+                  1850
+                ],
+                "monk": [
+                  2500
+                ],
+                "hall": [
+                  3900
+                ],
+                "hold-hall": [
+                  4140
+                ],
+                "record": [
+                  5280
+                ],
+                "clear-temple": [
+                  6500
+                ],
+                "witness": [
+                  7460
+                ]
+              },
+              "id": 16,
+              "revision": 2,
+              "waveCount": 0,
+              "expectedMinutes": [
+                100,
+                181
+              ]
+            }
+          },
+          "afterKeyIndex": 19
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 17,
+      "beforeSha256": "d490f2e43c62c81ca287d14d7f65f3043393369ee7f144748f9cb89d5214789f",
+      "afterSha256": "dfcfa9dcec74cfd11a484a4e0e24038aba519ae8ce4ec59fec8a609f1a4a1acf",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            2,
+            "target"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "act2-hoist",
+          "afterKeyIndex": 5
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            6,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "인양로의 잔존 들림 전부 제압",
+          "after": "복구한 인양축 보호 완료"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            7,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "종지기의 작업 기록 조사",
+          "after": "작업대의 일지 보관"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            5,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "인양로의 잔존 들림 전부 제압",
+          "after": "복구한 인양축 보호 완료"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            5,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "clear",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            5,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "hold-hoist",
+          "afterKeyIndex": 4
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            6,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "종지기의 작업 기록 조사",
+          "after": "작업대의 일지 보관"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            6,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            6,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "clear-lift",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 18
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "두드리는 벽",
+            "theme": "temple",
+            "goal": "인양축을 복구하고 5라운드 보호",
+            "narration": [
+              "막힌 작업굴 너머로 인양틀이 보였다. 승려는 종지기가 그 축을 빼냈다고 말했다. 일행은 남은 장치를 확인하러 들어갔다."
+            ],
+            "story": [
+              [
+                "휘겸",
+                "승려 말대로라면 저 인양틀의 축이 빠져 있을 것이오. 직접 확인합시다.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-17",
+                  "storyTitle": "두드리는 벽"
+                }
+              ],
+              [
+                "담허",
+                "천장이 먼저 무너지겠네. 받친 돌을 치우기 전에 버팀목을 세워야 하네.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-17",
+                  "storyTitle": "두드리는 벽"
+                }
+              ],
+              [
+                "설오",
+                "그때 못 연 길을 지금 열겠습니다. 안에 남은 이들을 위해서라도.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-17",
+                  "storyTitle": "두드리는 벽"
+                }
+              ]
+            ],
+            "guide": "작업장을 확보하고 버팀목을 세우세요. 인양틀을 제압하고 축을 복원한 뒤 5라운드 보호하면 완료됩니다. 일지 원문은 여정의 기록에서 선택해 읽습니다.",
+            "steps": [
+              {
+                "id": "clear-works",
+                "label": "버팀목 작업장 확보",
+                "kind": "clear",
+                "cohorts": "west"
+              },
+              {
+                "id": "brace",
+                "label": "안전 버팀목 설치",
+                "kind": "interact"
+              },
+              {
+                "id": "hoist",
+                "label": "들린 인양틀 제압",
+                "kind": "defeat",
+                "target": "act2-hoist"
+              },
+              {
+                "id": "repair",
+                "label": "인양축 복원",
+                "kind": "interact"
+              },
+              {
+                "id": "hold-hoist",
+                "label": "인양축이 돌아가는 동안 작업장 방어",
+                "kind": "hold",
+                "rounds": 5,
+                "wave": {
+                  "kind": "minecart",
+                  "count": 10,
+                  "eliteEvery": 4
+                },
+                "radius": 680,
+                "contestRadius": 260
+              },
+              {
+                "id": "clear-lift",
+                "label": "복구한 인양축 보호 완료",
+                "kind": "evidence",
+                "cohorts": "all",
+                "afterEvidence": "hold-hoist"
+              },
+              {
+                "id": "notes",
+                "label": "작업대의 일지 보관",
+                "kind": "evidence",
+                "afterEvidence": "clear-lift"
+              }
+            ],
+            "beats": {
+              "brace": [
+                [
+                  "휘겸",
+                  "버팀목이 천장을 받쳤소. 돌의 무게가 이쪽으로 쏠리지 않게 지키며 안쪽 인양틀의 축을 복원합시다."
+                ]
+              ],
+              "repair": [
+                [
+                  "서술",
+                  "휘겸이 복구대에서 꺼낸 축을 들어 맞댔다."
+                ],
+                [
+                  "휘겸",
+                  "부러진 자국이 없소. 뽑아 감췄던 축이 그대로 맞는군."
+                ],
+                [
+                  "설오",
+                  "축이 돌아갑니다. 이렇게 돌아갈 수 있었는데."
+                ],
+                [
+                  "휘겸",
+                  "고칠 수 없는 장치였다는 말은 못 하겠군. 축이 멀쩡했다는 사실을 종지기에게 따져 묻겠소."
+                ],
+                [
+                  "설오",
+                  "종 쪽 벽은 가까이 갈수록 뒤로 물러나는 듯합니다. 그래도 이 축으로 사람을 끌어올릴 수 있었던 건 분명합니다."
+                ]
+              ],
+              "notes": [
+                [
+                  "기록",
+                  "산 사람의 혼을 청동에 붙일 것\n문 잠금 · 인양축 제거\n사흘째, 두드림 멎음",
+                  {
+                    "kind": "document",
+                    "documentTitle": "종지기 작업일지",
+                    "documentId": "keeper-work-log"
+                  }
+                ],
+                [
+                  "소단",
+                  "살아 있는지 알아보려던 게 아니었어요. 죽어 가는 걸 세고 있었어요."
+                ]
+              ],
+              "hoist": [
+                [
+                  "서술",
+                  "인양추가 바닥에 멎었다. 철륜 안쪽에는 손가락으로 묶었다 풀어낸 매듭들이 겹쳐 남아 있었다."
+                ],
+                [
+                  "소단",
+                  "이 혼은 계속 올리려고 했어요. 끝까지 저 종을 들어 올리려고요."
+                ]
+              ],
+              "hold-hoist:start": [
+                [
+                  "담허",
+                  "인양틀이 종의 무게를 받자, 종에 묶인 혼들이 이쪽으로 새어 나오네. 인양틀이 멎지 않게 지켜야겠어."
+                ]
+              ],
+              "clear-lift": []
+            },
+            "outro": [
+              [
+                "담허",
+                "저 종에 든 것은 이름 없는 재앙이 아니네. 나올 길을 빼앗긴 사람들이야.",
+                {
+                  "storyId": "act2-v1:act2-r2-outro-17",
+                  "storyTitle": "두드리는 벽"
+                }
+              ],
+              [
+                "설오",
+                "종지기에게 갑시다. 더는 그가 안에 갇힌 사람들의 운명을 정하게 두지 않겠습니다.",
+                {
+                  "storyId": "act2-v1:act2-r2-outro-17",
+                  "storyTitle": "두드리는 벽"
+                }
+              ]
+            ],
+            "summary": "구조 가능한 인양로를 종지기가 의도적으로 망가뜨린 증거를 확보했다. 묵종 공동으로 들어간다.",
+            "id": 17,
+            "act": 2,
+            "actStage": 7,
+            "level": 15,
+            "template": 1,
+            "objective": "act2",
+            "requires": [
+              16
+            ],
+            "active": 3,
+            "enemies": 36,
+            "map": [
+              5550,
+              1050
+            ],
+            "narrationArt": "road",
+            "storySummary": "구조 가능한 인양로를 종지기가 의도적으로 망가뜨린 증거를 확보했다. 묵종 공동으로 들어간다.",
+            "failure": [
+              [
+                "휘겸",
+                "더 밀고 갈 수는 없소. 숨을 고르고 처음부터 길을 다시 잡읍시다."
+              ]
+            ],
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "w": 11200,
+            "h": 8200,
+            "act2Plan": {
+              "size": [
+                11200,
+                8200
+              ],
+              "initial": 36,
+              "active": 3,
+              "eliteEvery": 4,
+              "rounds": [
+                52,
+                84
+              ],
+              "lamps": [],
+              "sequence": [
+                {
+                  "id": "clear-works",
+                  "label": "버팀목 작업장 확보",
+                  "kind": "clear",
+                  "cohorts": "west"
+                },
+                "brace",
+                "hoist",
+                "repair",
+                {
+                  "id": "hold-hoist",
+                  "label": "인양축이 돌아가는 동안 작업장 방어",
+                  "kind": "hold",
+                  "rounds": 5,
+                  "wave": {
+                    "kind": "minecart",
+                    "count": 10,
+                    "eliteEvery": 4
+                  },
+                  "radius": 680,
+                  "contestRadius": 260
+                },
+                {
+                  "id": "clear-lift",
+                  "label": "인양로의 잔존 들림 전부 제압",
+                  "kind": "clear",
+                  "cohorts": "all"
+                },
+                "notes"
+              ],
+              "sites": {
+                "clear-works": [
+                  1800
+                ],
+                "brace": [
+                  2500
+                ],
+                "collapse-pin": [
+                  3320
+                ],
+                "hoist": [
+                  4380
+                ],
+                "repair": [
+                  5250
+                ],
+                "hold-hoist": [
+                  5400
+                ],
+                "clear-lift": [
+                  6600
+                ],
+                "notes": [
+                  7840
+                ]
+              },
+              "id": 17,
+              "revision": 2,
+              "waveCount": 10,
+              "expectedMinutes": [
+                75,
+                118
+              ]
+            }
+          },
+          "afterKeyIndex": 19
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 19,
+      "beforeSha256": "a49816dd6204846140cc80dcf61e913937bb6793c36793948913c124cded4845",
+      "afterSha256": "6e1e25edcfc7d12136befe4ce134a7279f6f6b0ffab9cee808de8f958dc51a5d",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "임시 천도길 열기",
+          "after": "임시 천도진 열기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            7,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "종 받침의 오래된 표식 조사",
+          "after": "천도한 자리의 각인을 닦아 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "임시 천도길 열기",
+          "after": "임시 천도진 열기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct2Steps",
+            7,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "종 받침의 오래된 표식 조사",
+          "after": "천도한 자리의 각인을 닦아 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 16
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "종 안의 사람들",
+            "theme": "temple",
+            "goal": "가족과 세 혼의 만남을 마친 뒤 옛 이송 표식 확인",
+            "narration": [
+              "휘겸의 소식을 들은 가족들이 열린 통로로 들어왔다. 한 남자는 동생의 망치를, 한 여인은 언니의 밥그릇을 종 앞의 같은 자리에 내려놓았다."
+            ],
+            "story": [
+              [
+                "담허",
+                "종에서 분리한 혼을 담을 임시 그릇을 놓았네. 여기서 떠날 수 있도록 천도진으로 길을 열겠어.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-19",
+                  "storyTitle": "종 안의 사람들"
+                }
+              ],
+              [
+                "동생을 잃은 형",
+                "제 동생이 여기서 돌을 깎았어요. 이 망치를 보면 제 목소리를 알아들을까요?",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-19",
+                  "storyTitle": "종 안의 사람들"
+                }
+              ],
+              [
+                "소단",
+                "이름을 불러 주세요. 제가 그 혼을 찾아볼게요.",
+                {
+                  "storyId": "act2-v1:act2-r2-entry-19",
+                  "storyTitle": "종 안의 사람들"
+                }
+              ]
+            ],
+            "guide": "종 앞에서 망치를 가져온 형, 언니를 부르는 동생, 이름을 모르는 혼을 원하는 순서로 만나세요. 각 혼을 분리하고 보내면 됩니다. 세 만남 뒤 종 받침의 옛 표식을 살펴보세요.",
+            "steps": [
+              {
+                "id": "route",
+                "label": "임시 천도진 열기",
+                "kind": "interact",
+                "requiredClass": "mage"
+              },
+              {
+                "id": "separate-1",
+                "label": "망치를 가져온 형과 혼 만나기",
+                "kind": "interact",
+                "requiredClass": "occultist",
+                "parallelGroup": "farewell"
+              },
+              {
+                "id": "send-1",
+                "label": "동생의 혼 보내기",
+                "kind": "interact",
+                "parallelGroup": "farewell",
+                "requiresDone": [
+                  "separate-1"
+                ]
+              },
+              {
+                "id": "separate-2",
+                "label": "언니를 부르는 동생과 혼 만나기",
+                "kind": "interact",
+                "requiredClass": "occultist",
+                "parallelGroup": "farewell"
+              },
+              {
+                "id": "send-2",
+                "label": "언니의 혼 보내기",
+                "kind": "interact",
+                "parallelGroup": "farewell",
+                "requiresDone": [
+                  "separate-2"
+                ]
+              },
+              {
+                "id": "separate-3",
+                "label": "이름 없는 혼 곁에 서기",
+                "kind": "interact",
+                "requiredClass": "occultist",
+                "parallelGroup": "farewell"
+              },
+              {
+                "id": "send-3",
+                "label": "이름 없는 혼 보내기",
+                "kind": "interact",
+                "parallelGroup": "farewell",
+                "requiresDone": [
+                  "separate-3"
+                ]
+              },
+              {
+                "id": "old-soul",
+                "label": "천도한 자리의 각인을 닦아 확인",
+                "kind": "interact"
+              }
+            ],
+            "beats": {
+              "send-1": [
+                [
+                  "서술",
+                  "손잡이를 쥐려던 흐린 손이 멎었다. 주민은 망치를 내려놓고 빈손을 펴 보였다."
+                ],
+                [
+                  "동생을 잃은 형",
+                  "이제 일은 그만해도 된다. 집으로 오는 길도 찾지 않아도 된다. 우리가 왔어."
+                ],
+                [
+                  "소단",
+                  "동생분이 망치에서 손을 놓았어요. 더는 종을 두드리지 않아요."
+                ]
+              ],
+              "send-2": [
+                [
+                  "서술",
+                  "한 여인이 아무도 모르는 짧은 말을 세 번 불렀다. 마지막에는 울음 대신 웃음 같은 숨이 나왔다."
+                ],
+                [
+                  "담허",
+                  "언니의 혼이 떠날 길을 찾았네. 동생이 곁에 와 있다는 것도 알았겠지."
+                ]
+              ],
+              "old-soul": [
+                [
+                  "기록",
+                  "무명사 → 잠운사\n왕실 봉인\n저문골",
+                  {
+                    "kind": "document",
+                    "documentTitle": "종 받침의 표식",
+                    "documentId": "bell-transfer-marks",
+                    "evidenceOriginal": {
+                      "id": "original-19-old-soul",
+                      "text": "소단 · 종 밑에 오래된 혼이 아직 남았어요. 방금 떠난 희생자들과 옷차림이 달라요.\n\n기록 · 무명사 → 잠운사\n왕실 봉인\n저문골\n\n휘겸 · 출발한 절은 찾았소. 저문골이 어디를 가리키는지는 운송 기록과 맞춰 봐야겠소.\n\n설오 · 표식과 봉인을 함께 베껴 가겠습니다.",
+                      "meta": {
+                        "kind": "document",
+                        "documentId": "original-19-old-soul",
+                        "documentTitle": "천도한 자리의 기록"
+                      },
+                      "stage": 19
+                    }
+                  }
+                ],
+                [
+                  "휘겸",
+                  "출발한 절은 찾았소. 저문골이 어디를 가리키는지는 운송 기록과 맞춰 봐야겠소."
+                ],
+                [
+                  "설오",
+                  "표식과 봉인을 함께 베껴 가겠습니다."
+                ]
+              ],
+              "route": [
+                [
+                  "서술",
+                  "담허가 임시 그릇의 주둥이를 바깥 길로 돌렸다. 혼을 받아 가두던 진이 이제 혼을 떠나보낼 길로 이어졌다."
+                ],
+                [
+                  "담허",
+                  "붙드는 손과 놓아 주는 손은 모양이 같아 보이지. 끝까지 어느 쪽을 택하는지가 다른 것일세."
+                ]
+              ],
+              "separate-1": [
+                [
+                  "동생을 잃은 형",
+                  "네 망치를 가져왔다. 손잡이를 새로 갈아 준다는 약속은 못 지켰구나."
+                ],
+                [
+                  "소단",
+                  "망치를 찾는 손이 보여요. 조금만 더 불러 주세요."
+                ]
+              ],
+              "separate-2": [
+                [
+                  "언니를 잃은 동생",
+                  "우리 언니는 이름보다 집에서 부르던 말을 좋아했어요. 그런 걸 불러도 되나요?"
+                ],
+                [
+                  "소단",
+                  "들으면 돌아보던 말이면 돼요. 그분에게 닿는 말이면 돼요."
+                ]
+              ],
+              "separate-3": [
+                [
+                  "소단",
+                  "아직 남은 혼이 있어요. 여기 계신 분들 가운데 이름을 아는 분은 없나 봐요."
+                ],
+                [
+                  "휘겸",
+                  "그렇다면 우리가 곁에 있겠소. 혼자 보내지는 맙시다."
+                ]
+              ],
+              "send-3": [
+                [
+                  "서술",
+                  "네 사람은 소단의 손이 내려올 때까지 자리를 떠나지 않았다. 빈 그릇에는 더는 손톱 긁는 소리가 나지 않았다."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "소단",
+                "목소리가 멀어져요. 붙잡으라는 말이 아니라… 서로 부르면서 가요.",
+                {
+                  "storyId": "act2-v1:act2-r2-outro-19",
+                  "storyTitle": "종 안의 사람들"
+                }
+              ],
+              [
+                "휘겸",
+                "우리를 기다리는 사람에게 돌아갑시다. 살아 있는 발걸음도 밖으로 나가야 하오.",
+                {
+                  "storyId": "act2-v1:act2-r2-outro-19",
+                  "storyTitle": "종 안의 사람들"
+                }
+              ]
+            ],
+            "summary": "희생자들의 혼을 분리해 보냈다. 현재 희생자보다 오래된 혼, 무명사에서 온 이송 표식과 왕실 봉인, 저문골이라는 지명을 발견했다.",
+            "id": 19,
+            "act": 2,
+            "actStage": 9,
+            "level": 16,
+            "template": 1,
+            "objective": "act2",
+            "requires": [
+              18
+            ],
+            "active": 3,
+            "enemies": 0,
+            "map": [
+              6110,
+              1380
+            ],
+            "narrationArt": "road",
+            "storySummary": "희생자들의 혼을 분리해 보냈다. 현재 희생자보다 오래된 혼, 무명사에서 온 이송 표식과 왕실 봉인, 저문골이라는 지명을 발견했다.",
+            "failure": [
+              [
+                "휘겸",
+                "더 밀고 갈 수는 없소. 숨을 고르고 처음부터 길을 다시 잡읍시다."
+              ]
+            ],
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "w": 10400,
+            "h": 7600,
+            "act2Plan": {
+              "size": [
+                10400,
+                7600
+              ],
+              "initial": 0,
+              "active": 3,
+              "eliteEvery": 4,
+              "rounds": [
+                4,
+                8
+              ],
+              "lamps": [],
+              "sequence": [
+                "route",
+                {
+                  "id": "separate-1",
+                  "label": "망치를 가져온 형과 혼 만나기",
+                  "kind": "interact",
+                  "requiredClass": "occultist",
+                  "parallelGroup": "farewell"
+                },
+                {
+                  "id": "send-1",
+                  "label": "동생의 혼 보내기",
+                  "kind": "interact",
+                  "parallelGroup": "farewell",
+                  "requiresDone": [
+                    "separate-1"
+                  ]
+                },
+                {
+                  "id": "separate-2",
+                  "label": "언니를 부르는 동생과 혼 만나기",
+                  "kind": "interact",
+                  "requiredClass": "occultist",
+                  "parallelGroup": "farewell"
+                },
+                {
+                  "id": "send-2",
+                  "label": "언니의 혼 보내기",
+                  "kind": "interact",
+                  "parallelGroup": "farewell",
+                  "requiresDone": [
+                    "separate-2"
+                  ]
+                },
+                {
+                  "id": "separate-3",
+                  "label": "이름 없는 혼 곁에 서기",
+                  "kind": "interact",
+                  "requiredClass": "occultist",
+                  "parallelGroup": "farewell"
+                },
+                {
+                  "id": "send-3",
+                  "label": "이름 없는 혼 보내기",
+                  "kind": "interact",
+                  "parallelGroup": "farewell",
+                  "requiresDone": [
+                    "separate-3"
+                  ]
+                },
+                "old-soul"
+              ],
+              "sites": {
+                "route": [
+                  1750
+                ],
+                "separate-1": [
+                  3050
+                ],
+                "hold-first": [
+                  3050
+                ],
+                "send-1": [
+                  3260
+                ],
+                "separate-2": [
+                  4900
+                ],
+                "hold-second": [
+                  4900
+                ],
+                "send-2": [
+                  5120
+                ],
+                "separate-3": [
+                  6940
+                ],
+                "hold-last": [
+                  6940
+                ],
+                "send-3": [
+                  7150
+                ],
+                "clear-souls": [
+                  8480
+                ],
+                "old-soul": [
+                  9470
+                ]
+              },
+              "id": 19,
+              "revision": 2,
+              "waveCount": 0,
+              "expectedMinutes": [
+                10,
+                16
+              ]
+            }
+          },
+          "afterKeyIndex": 17
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 22,
+      "beforeSha256": "d9db12d0d61283536c13a925aa80236fa0b01d3932af40b3e997b03fde4b32de",
+      "afterSha256": "2c67ee2ee6d692f140eb3583e8d2ba14446c790ec490685e6f2c179c94e0006a",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "중층 저문골 사건 보고 확보",
+          "after": "중층 기록함을 꺼내 통로 열기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            5,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "상층 저문골 호적 확보",
+          "after": "상층 호적함 구출"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "중층 저문골 사건 보고 확보",
+          "after": "중층 기록함을 꺼내 통로 열기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            2,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "상층 저문골 호적 확보",
+          "after": "상층 호적함 구출"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 15
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "옛 장부",
+            "place": "관아 문서고",
+            "theme": "temple",
+            "narration": [
+              "사람들이 떠난 문서고에 세 층의 서가가 남았다. 낮은 들보 아래에서 원혼이 맴돌고 묵은 종이가 흔들린다."
+            ],
+            "goal": "사건 보고와 호적을 확보·대조하고 관창 출구에 도착",
+            "story": [
+              [
+                "휘겸",
+                "저문골 주민을 적은 호적과 사건 보고는 따로 두었을 것이오. 같은 해의 기록을 맞춰 봅시다.",
+                {
+                  "storyId": "act3-entry-22",
+                  "storyTitle": "3-2 · 옛 장부"
+                }
+              ],
+              [
+                "설오",
+                "위층 서가에도 장부가 남아 있습니다. 같은 해의 호적을 찾아오겠습니다.",
+                {
+                  "storyId": "act3-entry-22",
+                  "storyTitle": "3-2 · 옛 장부",
+                  "focus": "interact"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "archive-seal",
+                "label": "하층 서고 봉인 열기",
+                "kind": "interact",
+                "requiredClass": "knight",
+                "opens": "archive-door"
+              },
+              {
+                "id": "ledger-case",
+                "label": "중층 기록함을 꺼내 통로 열기",
+                "kind": "interact",
+                "opens": "upper-door"
+              },
+              {
+                "id": "upper-register",
+                "label": "상층 호적함 구출",
+                "kind": "interact"
+              },
+              {
+                "id": "compare-ledgers",
+                "label": "상층에서 사건 보고와 호적 대조",
+                "kind": "hold",
+                "rounds": 2,
+                "wave": {
+                  "kind": "lantern",
+                  "count": 2
+                },
+                "radius": 460,
+                "contestRadius": 230
+              },
+              {
+                "id": "archive-exit",
+                "label": "옛 관창으로 나가기",
+                "kind": "reach"
+              }
+            ],
+            "beats": {
+              "ledger-case": [
+                [
+                  "기록",
+                  "사술 혐의\n제압 중 다수 사망",
+                  {
+                    "kind": "document",
+                    "documentTitle": "사건 보고",
+                    "documentId": "city-incident"
+                  }
+                ]
+              ],
+              "compare-ledgers": [
+                [
+                  "기록",
+                  "농가 · 아이 · 노인",
+                  {
+                    "kind": "document",
+                    "documentTitle": "같은 해의 호적",
+                    "documentId": "city-register"
+                  }
+                ],
+                [
+                  "설오",
+                  "호적에는 농가와 아이, 노인이 적혀 있는데… 이 주민들을 사술 혐의로 제압했다고요?"
+                ],
+                [
+                  "휘겸",
+                  "보고만 믿을 수 없겠군. 현장 증언을 찾아봅시다."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "담허",
+                "저문골을 폐쇄한 뒤 사람들과 짐을 어디로 옮겼는지 보세.",
+                {
+                  "storyId": "act3-outro-22",
+                  "storyTitle": "옛 장부"
+                }
+              ],
+              [
+                "휘겸",
+                "그 장부는 수로 옆 관창에 있을 것이오.",
+                {
+                  "storyId": "act3-outro-22",
+                  "storyTitle": "옛 장부"
+                }
+              ]
+            ],
+            "summary": "사건 보고와 같은 해의 호적이 어긋난다. 주민들의 삶과 사술 혐의를 대조할 현장 증언을 찾는다.",
+            "guide": "휘겸으로 하층 봉인을 여세요. 중층에서 사건 보고를, 상층에서 호적을 각각 확보하세요. 상층 대조 범위에서 적 턴 2회를 지킨 뒤 오른쪽 관창 출구로 이동하면 완료됩니다.",
+            "id": 22,
+            "act": 3,
+            "actStage": 2,
+            "level": 16,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              21
+            ],
+            "active": 3,
+            "enemies": 20,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              7260,
+              560
+            ],
+            "narrationArt": "road",
+            "storySummary": "사건 보고와 같은 해의 호적이 어긋난다. 주민들의 삶과 사술 혐의를 대조할 현장 증언을 찾는다.",
+            "failure": [
+              [
+                "휘겸",
+                "길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오."
+              ]
+            ]
+          },
+          "afterKeyIndex": 16
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 23,
+      "beforeSha256": "4a873cf569864fac29a4930e96ecb188779b3d106627965228be17b5ba0a4493",
+      "afterSha256": "3b0faa771f025977ea8acf9555d355ff03cd3ab0a282d60a4e626a752540bc50",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "무명사 운송 묶음 확보",
+          "after": "짐꾼의 운송 묶음을 풀고 출발 돕기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            0,
+            "target"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "act3-carrier",
+          "afterKeyIndex": 6
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "짐꾼과 출발",
+          "after": "짐꾼과 기록 호송 시작"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "무명사 운송 묶음 확보",
+          "after": "짐꾼의 운송 묶음을 풀고 출발 돕기"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "target"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "act3-carrier",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "startsEscort"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": true,
+          "afterKeyIndex": 4
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "짐꾼과 출발",
+          "after": "짐꾼과 기록 호송 시작"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "dispatch-bundle",
+          "afterKeyIndex": 5
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 20
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "사라진 짐",
+            "hiddenWaterworks": true,
+            "place": "지상 관창 하역장",
+            "theme": "river",
+            "narration": [
+              "하늘이 열린 관창 하역장에 쓰러졌던 병사의 몸들이 다시 문을 막는다. 살아 있는 짐꾼은 마지막 장부 상자를 품에 안고 물러선다."
+            ],
+            "goal": "악귀가 막은 하역길을 열고 짐꾼과 운송 기록을 지켜 통과",
+            "story": [
+              [
+                "수비병 악귀",
+                "지켜라… 문을… 아무도…",
+                {
+                  "storyId": "act3-entry-23",
+                  "storyTitle": "3-3 · 사라진 짐"
+                }
+              ],
+              [
+                "소단",
+                "문을 막은 병사들도 성문에서처럼 악귀가 움직이는 시신이에요. 저 너머 짐꾼은 살아 있어요.",
+                {
+                  "storyId": "act3-entry-23",
+                  "storyTitle": "3-3 · 사라진 짐"
+                }
+              ],
+              [
+                "설오",
+                "짐꾼이 장부 상자를 안고 있습니다. 악귀를 처치하고 저분이 나올 길을 열겠습니다.",
+                {
+                  "storyId": "act3-entry-23",
+                  "storyTitle": "3-3 · 사라진 짐",
+                  "focus": "interact"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "dispatch-bundle",
+                "label": "짐꾼의 운송 묶음을 풀고 출발 돕기",
+                "kind": "interact",
+                "target": "act3-carrier",
+                "startsEscort": true
+              },
+              {
+                "id": "carrier-start",
+                "label": "짐꾼과 기록 호송 시작",
+                "kind": "evidence",
+                "target": "act3-carrier",
+                "startsEscort": true,
+                "afterEvidence": "dispatch-bundle"
+              },
+              {
+                "id": "dock-mid",
+                "label": "짐꾼을 석교까지 호송",
+                "kind": "escort",
+                "target": "act3-carrier"
+              },
+              {
+                "id": "dock-exit",
+                "label": "짐꾼과 지상 하역장 벗어나기",
+                "kind": "escort",
+                "target": "act3-carrier"
+              }
+            ],
+            "beats": {
+              "dispatch-bundle": [
+                [
+                  "서술",
+                  "운송 끈 아래 놋그릇과 농기구가 함께 묶여 있었다. 표찰에는 짐을 내릴 석대와 검수대의 번호도 적혀 있었다."
+                ],
+                [
+                  "기록",
+                  "저문골 → 무명사\n시신 · 생활 금속",
+                  {
+                    "kind": "document",
+                    "documentTitle": "운송 표찰",
+                    "documentId": "dispatch-tag"
+                  }
+                ],
+                [
+                  "설오",
+                  "사람들이 쓰던 밥그릇까지 가져갔군요."
+                ]
+              ],
+              "carrier-start": [
+                [
+                  "짐꾼",
+                  "다들 피했어요. 저 병사들은 죽은 뒤에도 지키던 문에서 떠나지 않았어요."
+                ],
+                [
+                  "휘겸",
+                  "당신은 우리와 나갑시다. 상자를 놓치지 마시오."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "서술",
+                "휘겸이 운송 표찰 끝의 먼지를 문질렀다. 가문의 표식으로 쓰는 문장이 드러났다.",
+                {
+                  "storyId": "act3-outro-23",
+                  "storyTitle": "사라진 짐"
+                }
+              ],
+              [
+                "짐꾼",
+                "아래 수로는 물이 차서 발판이 끊겼어요. 수리하러 다니던 위쪽 통로만 남았을 거예요.",
+                {
+                  "storyId": "act3-outro-23",
+                  "storyTitle": "사라진 짐"
+                }
+              ]
+            ],
+            "summary": "저문골의 시신과 생활 금속이 함께 무명사로 옮겨졌음을 확인했다. 죽은 육신에 남은 수호의 사념을 돌파해 짐꾼과 운송 묶음을 지켰다.",
+            "guide": "살아 있는 짐꾼 곁에서 운송 묶음을 풀고 출발을 도우세요. 운송 기록을 함께 확보합니다. 석교를 지나 짐꾼과 하역장 출구에 도착하세요.",
+            "id": 23,
+            "act": 3,
+            "actStage": 3,
+            "level": 16,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              22
+            ],
+            "active": 3,
+            "enemies": 28,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              7520,
+              820
+            ],
+            "narrationArt": "road",
+            "storySummary": "저문골의 시신과 생활 금속이 함께 무명사로 옮겨졌음을 확인했다. 죽은 육신에 남은 수호의 사념을 돌파해 짐꾼과 운송 묶음을 지켰다.",
+            "failure": [
+              [
+                "휘겸",
+                "길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오."
+              ]
+            ]
+          },
+          "afterKeyIndex": 21
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 24,
+      "beforeSha256": "a0683f322a5c4d61ed9b26bb8ee1dd188412cfbb18259fcf977469cd13b9d8ec",
+      "afterSha256": "2a0f7e017da13c4fcb00c1b770d34073292562046b6302c46fe9b9dfa55a6024",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "휘겸의 문장 확인",
+          "after": "휘겸으로 가문 출입문의 문장 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "사당 봉인 풀기",
+          "after": "담허로 사당 출입로 개방"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            2,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "보호지 토지문서 확보",
+          "after": "설오·담허는 물길 입구, 휘겸·소단은 기록실 입구 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "휘겸의 문장 확인",
+          "after": "휘겸으로 가문 출입문의 문장 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "사당 봉인 풀기",
+          "after": "담허로 사당 출입로 개방"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            2,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "보호지 토지문서 확보",
+          "after": "설오·담허는 물길 입구, 휘겸·소단은 기록실 입구 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            2,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            2,
+            "evidenceAction"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "entrances",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 14
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "휘겸의 문장",
+            "hiddenWaterworks": true,
+            "place": "폐쇄된 저택과 사당",
+            "theme": "temple",
+            "narration": [
+              "담장 안의 빈 저택에 같은 문장이 남아 있다. 휘겸이 무너진 문간에서 걸음을 멈춘다."
+            ],
+            "goal": "사당을 열고 두 조사팀의 출입로를 확인",
+            "story": [
+              [
+                "휘겸",
+                "운송 표찰 끝과 같은 문장이오. 우리 집안의 문장인데, 왜 이곳에 남았지?",
+                {
+                  "storyId": "act3-entry-24",
+                  "storyTitle": "3-4 · 휘겸의 문장"
+                }
+              ],
+              [
+                "담허",
+                "사당 안쪽 봉인이 남아 있네. 문서를 지키던 봉인인지 살펴보세.",
+                {
+                  "storyId": "act3-entry-24",
+                  "storyTitle": "3-4 · 휘겸의 문장"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "family-crest",
+                "label": "휘겸으로 가문 출입문의 문장 확인",
+                "kind": "interact",
+                "requiredClass": "knight"
+              },
+              {
+                "id": "shrine-seal",
+                "label": "담허로 사당 출입로 개방",
+                "kind": "interact",
+                "requiredClass": "mage",
+                "opens": "shrine-door"
+              },
+              {
+                "id": "land-register",
+                "label": "설오·담허는 물길 입구, 휘겸·소단은 기록실 입구 확인",
+                "kind": "evidence",
+                "evidenceAction": "entrances"
+              },
+              {
+                "id": "garden-exit",
+                "label": "지상과 지하 두 조사길로 출발",
+                "kind": "reach"
+              }
+            ],
+            "beats": {
+              "family-crest": [
+                [
+                  "휘겸",
+                  "내 선조가 왕실 방계였다는 것은 알았소. 저문골과의 관계는 듣지 못했소."
+                ]
+              ],
+              "land-register": [
+                [
+                  "기록",
+                  "저문골 보호지\n묘역 기록실 · 공방\n아래 물길 → 관아 뒤뜰",
+                  {
+                    "kind": "document",
+                    "documentTitle": "접힌 토지 약도",
+                    "documentId": "land-plan"
+                  }
+                ],
+                [
+                  "휘겸",
+                  "선조의 기록실은 묘역 아래군. 소단, 묘역 쪽 기록실과 공방은 우리가 살핍시다."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "담허",
+                "설오는 나와 약도의 지하 물길에서 운송 표찰의 원본을 찾세. 휘겸과 소단은 지상 기록을 찾고, 관아 뒤뜰에서 만나자고.",
+                {
+                  "storyId": "act3-outro-24",
+                  "storyTitle": "휘겸의 문장"
+                }
+              ],
+              [
+                "설오",
+                "찾은 기록은 가져가서 함께 맞춰 보겠습니다.",
+                {
+                  "storyId": "act3-outro-24",
+                  "storyTitle": "휘겸의 문장"
+                }
+              ]
+            ],
+            "summary": "저문골은 휘겸 선조인 왕실 방계와 관계가 깊었다. 휘겸은 가문의 몰락과 저문골을 함께 추적한다.",
+            "guide": "휘겸으로 문장을 확인하고 담허로 사당 봉인을 푸세요. 설오·담허는 물길 입구, 휘겸·소단은 지상 기록실 입구를 확인하면 보호지 원본을 함께 확보합니다. 출구에서 두 팀으로 나뉘며, 합류 전에는 장 사이 자동 회복이 없습니다.",
+            "id": 24,
+            "act": 3,
+            "actStage": 4,
+            "level": 17,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              23
+            ],
+            "active": 3,
+            "enemies": 18,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              7780,
+              300
+            ],
+            "narrationArt": "road",
+            "storySummary": "저문골은 휘겸 선조인 왕실 방계와 관계가 깊었다. 휘겸은 가문의 몰락과 저문골을 함께 추적한다.",
+            "failure": [
+              [
+                "휘겸",
+                "길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오."
+              ]
+            ]
+          },
+          "afterKeyIndex": 15
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 25,
+      "beforeSha256": "f1db36657180ad2a871b7e15a0cee1ce340d10396409b722cdccf99515d823b8",
+      "afterSha256": "a8d280dce78f02ef6df04d562e0db5da02d1336bc96c8cb1026f2fd57ae917f4",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            6,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "생활물품의 가족 번호 확인",
+          "after": "다섯 도착지 물증과 가족 번호 대조"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            6,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "생활물품의 가족 번호 확인",
+          "after": "다섯 도착지 물증과 가족 번호 대조"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            6,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            6,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "stake-arrival-5",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 11
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "물 아래 묶인 이름",
+            "place": "지하 수로의 은폐 집하장",
+            "theme": "river",
+            "hiddenWaterworks": true,
+            "narration": [
+              "설오와 담허가 지하 수로로 내려갔다. 물 건너 석대에는 사람 없는 집에서 거둔 짐들이 묶여 있다. 운반길은 중간에서 끊겼다."
+            ],
+            "goal": "축지진목으로 물길을 건너 생활물품의 번호 확인",
+            "story": [
+              [
+                "설오",
+                "발밑이 보이지 않습니다. 뛰어서 건널 수는 없겠습니다.",
+                {
+                  "storyId": "act3-entry-25",
+                  "storyTitle": "3-5 · 물 아래 묶인 이름"
+                }
+              ],
+              [
+                "담허",
+                "건너편 단단한 돌에 축지진목을 박겠네. 그 진목으로 자리를 옮겨 건너세. 둘 다 닿으면 다음 길을 찾자고.",
+                {
+                  "storyId": "act3-entry-25",
+                  "storyTitle": "3-5 · 물 아래 묶인 이름"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "depot-entry-seal",
+                "label": "담허와 수로 봉인 살피기",
+                "kind": "interact",
+                "requiredClass": "mage"
+              },
+              {
+                "id": "stake-arrival-1",
+                "label": "두 동행이 동쪽 정비실에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "stake-arrival-2",
+                "label": "두 동행이 중앙 점검창에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "stake-arrival-3",
+                "label": "두 동행이 상층 물받이에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "stake-arrival-4",
+                "label": "두 동행이 맞은편 검문실에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "stake-arrival-5",
+                "label": "두 동행이 상층 봉인회랑에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "household-tally",
+                "label": "다섯 도착지 물증과 가족 번호 대조",
+                "kind": "evidence",
+                "afterEvidence": "stake-arrival-5"
+              },
+              {
+                "id": "waterworks-exit",
+                "label": "안쪽 집하장 입구로 이동",
+                "kind": "reach"
+              }
+            ],
+            "beats": {
+              "depot-entry-seal": [
+                [
+                  "담허",
+                  "돌이 단단하군. 저쪽 석대에 진목을 박으면 길을 이을 수 있네."
+                ],
+                [
+                  "설오",
+                  "제가 먼저 건너가 자리를 살피겠습니다. 어른도 곧 따라오세요."
+                ]
+              ],
+              "household-tally": [
+                [
+                  "서술",
+                  "같은 끈에 묶인 이름표와 숟가락, 농기구의 표찰에 같은 번호가 남아 있었다."
+                ],
+                [
+                  "설오",
+                  "이름표와 살림에 같은 번호가 붙었습니다."
+                ],
+                [
+                  "담허",
+                  "이름과 가족 번호가 적힌 표찰을 가져가세. 휘겸과 소단이 찾을 지상 기록과 맞춰 보자고."
+                ]
+              ],
+              "stake-arrival-3": [
+                [
+                  "설오",
+                  "저 물방울은 아래로 떨어지다가 옆으로 흐릅니다."
+                ],
+                [
+                  "담허",
+                  "눈이 속는 것일 수도 있네. 발 디딜 돌부터 확인하고, 표찰을 챙기세."
+                ],
+                [
+                  "서술",
+                  "물길 너머에도 같은 운송 번호가 이어진다.",
+                  {
+                    "kind": "narration"
+                  }
+                ]
+              ],
+              "stake-arrival-1": [
+                [
+                  "서술",
+                  "적재대의 생활 물품에 번호가 남아 있다.",
+                  {
+                    "kind": "narration"
+                  }
+                ]
+              ],
+              "stake-arrival-2": [
+                [
+                  "서술",
+                  "같은 가족 번호가 서로 다른 물품에 붙어 있다.",
+                  {
+                    "kind": "narration"
+                  }
+                ]
+              ],
+              "stake-arrival-4": [
+                [
+                  "서술",
+                  "끝 창고 쪽 물품에서도 같은 표식이 보인다.",
+                  {
+                    "kind": "narration"
+                  }
+                ]
+              ],
+              "stake-arrival-5": [
+                [
+                  "서술",
+                  "다섯 도착지의 물품 번호를 대조할 수 있게 되었다.",
+                  {
+                    "kind": "narration"
+                  }
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "담허",
+                "안쪽은 더 넓군. 물에 잠긴 운반로가 어디로 이어졌는지 살펴보세.",
+                {
+                  "storyId": "act3-outro-25",
+                  "storyTitle": "물 아래 묶인 이름"
+                }
+              ]
+            ],
+            "summary": "설오와 담허가 축지진목으로 끊긴 수로를 건넜다. 생활물품과 이름표를 가족 번호로 묶어 보관한 지하 은폐 집하장을 발견했다. 이곳이 종 주조소라는 근거는 없다.",
+            "guide": "진목으로 길을 이어 다섯 도착지에 두 동행이 함께 도착하세요. 각 장소의 생활 물품과 번호를 관찰하고 끝에서 가족 번호를 대조한 뒤 출구로 이동하세요.",
+            "id": 25,
+            "act": 3,
+            "actStage": 5,
+            "level": 18,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              24
+            ],
+            "active": 2,
+            "enemies": 7,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              8040,
+              560
+            ],
+            "narrationArt": "road",
+            "storySummary": "설오와 담허가 축지진목으로 끊긴 수로를 건넜다. 생활물품과 이름표를 가족 번호로 묶어 보관한 지하 은폐 집하장을 발견했다. 이곳이 종 주조소라는 근거는 없다.",
+            "failure": [
+              [
+                "담허",
+                "길을 다시 잡세. 가져온 단서까지 잃어서는 안 되네."
+              ]
+            ]
+          },
+          "afterKeyIndex": 12
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 26,
+      "beforeSha256": "1aaba69d36cbdd2e9b83a5a7a54718b6b6995bd415e7f63e9e74005e66268cb0",
+      "afterSha256": "8325bfdde65b4d0322316d7fa24ce49318e8f2736604b69f3025894b128384d5",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "선조의 조사 기록 확보",
+          "after": "열린 기록실의 조사 원본 확보"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            3,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "수거량과 주조량 대조",
+          "after": "구조한 주민의 공방 장부 보관"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "선조의 조사 기록 확보",
+          "after": "열린 기록실의 조사 원본 확보"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "hidden-latch",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            3,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "수거량과 주조량 대조",
+          "after": "구조한 주민의 공방 장부 보관"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            3,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            3,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "artisan-resident",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 11
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "지상에 남은 증언",
+            "place": "묘역 기록실과 불탄 공방",
+            "theme": "temple",
+            "hiddenWaterworks": true,
+            "narration": [
+              "휘겸과 소단은 지상에 남았다. 묘역 아래 숨긴 조사문서와 공방에 남은 작업기록을 맞춰 볼 차례다."
+            ],
+            "goal": "선조의 조사문서와 공방 작업기록 확보",
+            "story": [
+              [
+                "휘겸",
+                "약도에 적힌 기록실이오. 문서를 찾고 공방으로 가겠소.",
+                {
+                  "storyId": "act3-entry-26",
+                  "storyTitle": "3-6 · 지상에 남은 증언"
+                }
+              ],
+              [
+                "소단",
+                "저쪽에 살아 있는 주민이 있어요. 문서를 찾는 동안 저분도 구해야 해요.",
+                {
+                  "storyId": "act3-entry-26",
+                  "storyTitle": "3-6 · 지상에 남은 증언"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "hidden-latch",
+                "label": "휘겸으로 기록실 열기",
+                "kind": "interact",
+                "requiredClass": "knight",
+                "opens": "hidden-door"
+              },
+              {
+                "id": "investigation-record",
+                "label": "열린 기록실의 조사 원본 확보",
+                "kind": "evidence",
+                "afterEvidence": "hidden-latch"
+              },
+              {
+                "id": "artisan-resident",
+                "label": "작업기록을 지킨 주민 구조",
+                "kind": "rescue",
+                "target": "act3-resident"
+              },
+              {
+                "id": "casting-tally",
+                "label": "구조한 주민의 공방 장부 보관",
+                "kind": "evidence",
+                "afterEvidence": "artisan-resident"
+              },
+              {
+                "id": "workshop-exit",
+                "label": "관아 뒤뜰로 돌아가기",
+                "kind": "reach"
+              }
+            ],
+            "beats": {
+              "investigation-record": [
+                [
+                  "기록",
+                  "조직적 저항 없음\n대도사가 현장에서 주민 전원을 살해",
+                  {
+                    "kind": "document",
+                    "documentTitle": "선조의 현장 조사",
+                    "documentId": "ancestor-investigation"
+                  }
+                ],
+                [
+                  "휘겸",
+                  "대도사… 왕실에 저문골 보고를 올린 도사요. 선조는 그 보고가 거짓임을 조사했소."
+                ],
+                [
+                  "서술",
+                  "소단이 사건 보고 조각을 그 옆에 놓았다."
+                ]
+              ],
+              "artisan-resident": [
+                [
+                  "주민",
+                  "우리 집안에 남은 무명사 작업기록이에요. 없어질까 봐 꺼내 왔어요."
+                ]
+              ],
+              "casting-tally": [
+                [
+                  "기록",
+                  "저문골 수거량 ≈ 무명사 주조량\n유골·재: 통상 장례와 다른 처리",
+                  {
+                    "kind": "document",
+                    "documentTitle": "수거·주조 기록 대조",
+                    "documentId": "casting-comparison"
+                  }
+                ],
+                [
+                  "소단",
+                  "금속량은 맞지만, 유골과 재를 어떻게 처리했는지는 적혀 있지 않아요."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "소단",
+                "관아 쪽에서 연기가 나요. 설오 씨와 담허 어른이 지하에서 올라올 길도 그쪽인데…",
+                {
+                  "storyId": "act3-outro-26",
+                  "storyTitle": "지상에 남은 증언"
+                }
+              ],
+              [
+                "휘겸",
+                "뒤뜰에서 만나기로 했소. 기록을 챙기고 서둘러 갑시다.",
+                {
+                  "storyId": "act3-outro-26",
+                  "storyTitle": "지상에 남은 증언"
+                }
+              ]
+            ],
+            "summary": "휘겸과 소단이 선조의 조사문서와 공방 기록을 확보했다. 저항하지 않은 주민들을 대도사가 현장에서 학살했고, 이후 무명사에서 대종을 주조했다. 생활 금속량은 수거량과 거의 일치하며 유골·재 처리도 비정상적이다. 정확한 공정과 목적은 미상이다.",
+            "guide": "숨은 기록실을 열어 조사 원본을 확보하고 공방 주민을 구조하세요. 주민의 장부를 함께 챙긴 뒤 출구로 이동하세요.",
+            "id": 26,
+            "act": 3,
+            "actStage": 6,
+            "level": 18,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              25
+            ],
+            "active": 2,
+            "enemies": 10,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              8300,
+              820
+            ],
+            "narrationArt": "road",
+            "storySummary": "휘겸과 소단이 선조의 조사문서와 공방 기록을 확보했다. 저항하지 않은 주민들을 대도사가 현장에서 학살했고, 이후 무명사에서 대종을 주조했다. 생활 금속량은 수거량과 거의 일치하며 유골·재 처리도 비정상적이다. 정확한 공정과 목적은 미상이다.",
+            "failure": [
+              [
+                "휘겸",
+                "길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오."
+              ]
+            ]
+          },
+          "afterKeyIndex": 12
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 27,
+      "beforeSha256": "d6459087cc2269c5709d5ed41b88509d34a536bed328263f42eb791044088a75",
+      "afterSha256": "df3870d235340f50f187ce6be9d19bd4be057e08841689513afad3df5e325cfd",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            4,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "끊긴 운반로의 순서 확인",
+          "after": "첫 진목을 설치하고 현장 운반 번호 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "끊긴 운반로의 순서 확인",
+          "after": "첫 진목을 설치하고 현장 운반 번호 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "evidenceAction"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "stake",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 12
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "검은 집하장",
+            "place": "지하 심부의 봉인 창고",
+            "theme": "river",
+            "hiddenWaterworks": true,
+            "narration": [
+              "수로 너머로 거대한 인공 집하장이 드러났다. 높은 적재대와 낮은 검수대 사이의 운반길은 물속으로 꺼졌다. 저문골 사람들의 살림만 층층이 남았다."
+            ],
+            "goal": "진목을 설치해 네 도착지를 지나 가족 명세 확보",
+            "story": [
+              [
+                "설오",
+                "집하장 하나에 마을의 살림이 다 들어와 있습니다. 돌길은 여기서도 끊겼군요.",
+                {
+                  "storyId": "act3-entry-27",
+                  "storyTitle": "3-7 · 검은 집하장"
+                }
+              ],
+              [
+                "담허",
+                "앞 석대와 뒤 기둥의 자리가 맞지 않는군. 진목이 선 돌은 밟을 수 있네. 둘이 닿은 곳을 확인하며 길을 잇세.",
+                {
+                  "storyId": "act3-entry-27",
+                  "storyTitle": "3-7 · 검은 집하장"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "depot-route-ledger",
+                "label": "첫 진목을 설치하고 현장 운반 번호 확인",
+                "kind": "evidence",
+                "evidenceAction": "stake"
+              },
+              {
+                "id": "stake-arrival-1",
+                "label": "두 동행이 수몰 하역대에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "stake-arrival-2",
+                "label": "두 동행이 맞은편 봉인통로에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "stake-arrival-3",
+                "label": "두 동행이 회수 점검창에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "stake-arrival-4",
+                "label": "두 동행이 윗층 대조대에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 150
+              },
+              {
+                "id": "family-manifest",
+                "label": "가족별 적재 명세 챙기기",
+                "kind": "interact"
+              },
+              {
+                "id": "deep-depot-exit",
+                "label": "합류할 출구로 이동",
+                "kind": "reach"
+              }
+            ],
+            "beats": {
+              "depot-route-ledger": [
+                [
+                  "담허",
+                  "진목을 세웠네. 현장 물품의 운반 번호는 이어지는데 눈앞의 길은 맞지 않아. 끝 창고의 명세와 대조하세.",
+                  {
+                    "evidenceOriginal": {
+                      "id": "original-27-depot-route-ledger",
+                      "text": "담허 · 위는 적재대, 아래는 검수대였군. 운반로 번호는 이어지는데 눈앞의 길은 맞지 않아. 끝 창고의 명세부터 놓치지 말게.",
+                      "meta": {
+                        "kind": "document",
+                        "documentId": "original-27-depot-route-ledger",
+                        "documentTitle": "집하장의 운반 기록"
+                      },
+                      "stage": 27
+                    }
+                  }
+                ]
+              ],
+              "family-manifest": [
+                [
+                  "기록",
+                  "이름 / 가족 번호 / 물품",
+                  {
+                    "kind": "document",
+                    "documentTitle": "가족별 적재 명세",
+                    "documentId": "family-manifest"
+                  }
+                ],
+                [
+                  "설오",
+                  "수로 입구에서 본 살림 표찰과 같은 가족 번호입니다. 이 명세에는 이름도 함께 있군요."
+                ],
+                [
+                  "담허",
+                  "이 적재 명세를 챙기세. 휘겸과 소단이 찾은 기록과 맞춰 봐야지."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "설오",
+                "저 문틈으로 연기가 들어옵니다. 약속한 뒤뜰이 가까운가 봅니다.",
+                {
+                  "storyId": "act3-outro-27",
+                  "storyTitle": "검은 집하장"
+                }
+              ],
+              [
+                "담허",
+                "진목을 함부로 거두지 말게. 돌아갈 길을 확인하고 올라가세.",
+                {
+                  "storyId": "act3-outro-27",
+                  "storyTitle": "검은 집하장"
+                }
+              ]
+            ],
+            "summary": "거대한 인공 지하 집하장을 축지진목으로 건넜다. 가족별 이름표와 숟가락·농기구를 같은 번호로 다룬 적재 명세를 확보했다. 지상 희생자 명단과의 대조를 위해 두 기록을 합류 지점으로 가져간다.",
+            "guide": "첫 진목을 설치해 현장 운반 번호와 어긋난 길을 확인하세요. 네 도착지에 두 동행이 함께 도착한 뒤 끝 창고의 가족 명세를 확보하고 이탈하세요.",
+            "id": 27,
+            "act": 3,
+            "actStage": 7,
+            "level": 19,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              26
+            ],
+            "active": 2,
+            "enemies": 8,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              8560,
+              300
+            ],
+            "narrationArt": "road",
+            "storySummary": "거대한 인공 지하 집하장을 축지진목으로 건넜다. 가족별 이름표와 숟가락·농기구를 같은 번호로 다룬 적재 명세를 확보했다. 지상 희생자 명단과의 대조를 위해 두 기록을 합류 지점으로 가져간다.",
+            "failure": [
+              [
+                "담허",
+                "길을 다시 잡세. 가져온 단서까지 잃어서는 안 되네."
+              ]
+            ]
+          },
+          "afterKeyIndex": 13
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 28,
+      "beforeSha256": "656e0d7a33fccd97183efe04c619483a567d03b1441726355c3527531e84a237",
+      "afterSha256": "b195c317e27467bde38c9316a3365da5d45cf08443a4ec524f4355b594b8c34c",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            5,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "지워진 조사 청원서 확보",
+          "after": "불길에서 청원·결재 기록함 구출"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            6,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "당시 폐쇄 승인문 확보",
+          "after": "구출한 기록함의 폐쇄 승인 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            7,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "사후 은폐 기록 대조",
+          "after": "구출한 기록함의 사후 은폐 기록 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            3,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "지워진 조사 청원서 확보",
+          "after": "불길에서 청원·결재 기록함 구출"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            4,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "당시 폐쇄 승인문 확보",
+          "after": "구출한 기록함의 폐쇄 승인 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            4,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            4,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "petition-record",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            5,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "사후 은폐 기록 대조",
+          "after": "구출한 기록함의 사후 은폐 기록 확인"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            5,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            5,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "closure-order",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 12
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "지운 이름과 남은 명령",
+            "place": "불붙은 관아 뒤뜰과 기록각",
+            "theme": "temple",
+            "hiddenWaterworks": true,
+            "narration": [
+              "지하에서 올라온 설오와 담허, 공방을 돌아온 휘겸과 소단이 불붙은 관아 뒤뜰의 양쪽에 닿았다. 살아 있는 사람은 물러났지만 악귀들은 남은 문서를 태우고 있다."
+            ],
+            "goal": "불길을 막고 합류해 청원서와 은폐 기록 확보",
+            "story": [
+              [
+                "휘겸",
+                "서쪽 불길은 우리가 막겠소. 설오, 동쪽 수문을 열어 주시오.",
+                {
+                  "storyId": "act3-entry-28",
+                  "storyTitle": "3-8 · 지운 이름과 남은 명령",
+                  "focus": "fire-screen"
+                }
+              ],
+              [
+                "설오",
+                "두 분 모두 무사하시군요. 물길을 열고 가운데로 가겠습니다.",
+                {
+                  "storyId": "act3-entry-28",
+                  "storyTitle": "3-8 · 지운 이름과 남은 명령",
+                  "focus": "water-release"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "fire-screen",
+                "label": "휘겸으로 서쪽 불길 막기",
+                "kind": "interact",
+                "requiredClass": "knight",
+                "opens": "fire-door",
+                "parallelGroup": "fire-control"
+              },
+              {
+                "id": "water-release",
+                "label": "설오로 동쪽 수문 열기",
+                "kind": "interact",
+                "requiredClass": "archer",
+                "opens": "water-gate",
+                "parallelGroup": "fire-control"
+              },
+              {
+                "id": "party-reunion",
+                "label": "네 동행이 뒤뜰에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 440
+              },
+              {
+                "id": "petition-record",
+                "label": "불길에서 청원·결재 기록함 구출",
+                "kind": "interact"
+              },
+              {
+                "id": "closure-order",
+                "label": "구출한 기록함의 폐쇄 승인 확인",
+                "kind": "evidence",
+                "afterEvidence": "petition-record"
+              },
+              {
+                "id": "suppression-order",
+                "label": "구출한 기록함의 사후 은폐 기록 확인",
+                "kind": "evidence",
+                "afterEvidence": "closure-order"
+              },
+              {
+                "id": "office-exit",
+                "label": "기록을 가지고 봉쇄 벗어나기",
+                "kind": "reach"
+              }
+            ],
+            "beats": {
+              "party-reunion": [
+                [
+                  "서술",
+                  "네 사람이 이름표와 희생자 명단을 나란히 놓았다. 같은 가족 번호와 이름이 맞았다."
+                ],
+                [
+                  "휘겸",
+                  "지하 살림의 이름표와 선조가 남긴 희생자 명단이 같소. 대도사에게 저항도 없이 죽은 저문골 사람들이오."
+                ],
+                [
+                  "소단",
+                  "저문골에서 거둔 생활 금속량과 무명사에서 종을 만들 때 쓴 양이 거의 같아요. 유골을 어떻게 처리했는지는 아직 몰라요."
+                ],
+                [
+                  "서술",
+                  "담허가 두 팀의 기록을 받아 함께 묶었다."
+                ]
+              ],
+              "petition-record": [
+                [
+                  "기록",
+                  "조사 청원\n작위 박탈 · 추방",
+                  {
+                    "kind": "document",
+                    "documentTitle": "지워진 청원서",
+                    "documentId": "erased-petition"
+                  }
+                ],
+                [
+                  "휘겸",
+                  "우리 가문의 문장을 긁어 지웠군. 조사를 청원한 뒤 내린 처분이오."
+                ]
+              ],
+              "closure-order": [
+                [
+                  "기록",
+                  "폐쇄·제압 승인\n왕실 고위 관리 결재",
+                  {
+                    "kind": "document",
+                    "documentTitle": "당시 승인문",
+                    "documentId": "closure-approval"
+                  }
+                ]
+              ],
+              "suppression-order": [
+                [
+                  "기록",
+                  "학살 보고 뒤 조사 차단",
+                  {
+                    "kind": "document",
+                    "documentTitle": "사후 기록",
+                    "documentId": "later-suppression"
+                  }
+                ],
+                [
+                  "설오",
+                  "이 승인문에는 주민을 죽이라는 명령은 없습니다. 하지만 학살을 보고받은 뒤에도 조사를 막았군요."
+                ],
+                [
+                  "휘겸",
+                  "승인한 자, 죽인 자, 감춘 자. 각각의 이름을 남기겠소."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "담허",
+                "수문 뒤에 봉인된 문서가 더 있네. 도사의 글인 듯한데, 봉인한 획이 낯익어.",
+                {
+                  "storyId": "act3-outro-28",
+                  "storyTitle": "지운 이름과 남은 명령"
+                }
+              ],
+              [
+                "설오",
+                "아래에서 겪은 일은 아직 설명할 수 없습니다. 가져온 이름과 번호는 이 기록으로 확인할 수 있습니다.",
+                {
+                  "storyId": "act3-outro-28",
+                  "storyTitle": "지운 이름과 남은 명령",
+                  "requiresVoidWitness": true
+                }
+              ]
+            ],
+            "summary": "두 팀이 합류해 지하 가족 번호와 지상 희생자 명단을 대조했다. 휘겸 선조의 조사 청원 뒤 가문 탄압이 이어졌다. 왕실 특정 고위 관리의 폐쇄·제압 승인, 대도사의 현장 학살, 사후 은폐의 책임은 구별된다. 왕의 직접 학살 명령이나 왕실 전체의 공모로 단순화하지 않는다.",
+            "guide": "12번째 적 턴 종료 전에 설오로 수문을, 휘겸으로 차단막을 조작하세요. 네 사람이 중앙에 합류한 뒤 기록함을 구출하고 출구로 이동하세요. 승인·현장 살해·사후 은폐의 책임은 구분해서 확인합니다.",
+            "id": 28,
+            "act": 3,
+            "actStage": 8,
+            "level": 20,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              27
+            ],
+            "active": 3,
+            "enemies": 11,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              8820,
+              560
+            ],
+            "narrationArt": "road",
+            "storySummary": "두 팀이 합류해 지하 가족 번호와 지상 희생자 명단을 대조했다. 휘겸 선조의 조사 청원 뒤 가문 탄압이 이어졌다. 왕실 특정 고위 관리의 폐쇄·제압 승인, 대도사의 현장 학살, 사후 은폐의 책임은 구별된다. 왕의 직접 학살 명령이나 왕실 전체의 공모로 단순화하지 않는다.",
+            "failure": [
+              [
+                "휘겸",
+                "길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오."
+              ]
+            ]
+          },
+          "afterKeyIndex": 13
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 29,
+      "beforeSha256": "cb525285349818b2921828a156177d35c50540d12ed9ee987f2ae3cacb5764cb",
+      "afterSha256": "9d0d0058801e146fdaa9c64087883ba4f97f166d3c0b1bcdf02c7b78cd2c39ac",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            2,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "현묵이 남긴 글 확보",
+          "after": "봉인 안의 현묵 기록 보관"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            6,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "높은 수문길 또는 아래 점검다리",
+          "after": "높은 수문길 또는 아래 점검다리로 이탈"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "현묵이 남긴 글 확보",
+          "after": "봉인 안의 현묵 기록 보관"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "evidence"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            1,
+            "afterEvidence"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": "old-seal",
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 12
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "현묵의 글",
+            "place": "밤의 수문과 봉인 창고",
+            "theme": "river",
+            "narration": [
+              "수문 뒤 봉인 창고에 오래된 글 한 묶음이 남았다. 담허가 같은 뿌리의 획을 짚는다."
+            ],
+            "goal": "현묵의 글을 확보하고 높은 수문길 또는 점검다리로 이탈",
+            "story": [
+              [
+                "담허",
+                "창고 봉인이 북쪽 산길의 돌림진과 같은 법을 썼네. 획을 순서대로 풀겠어.",
+                {
+                  "storyId": "act3-entry-29",
+                  "storyTitle": "3-9 · 현묵의 글"
+                }
+              ],
+              [
+                "휘겸",
+                "문을 막던 악귀들이 따라왔소. 안쪽 길을 여는 동안 지키겠소.",
+                {
+                  "storyId": "act3-entry-29",
+                  "storyTitle": "3-9 · 현묵의 글"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "old-seal",
+                "label": "담허의 옛 봉인 해체 지키기",
+                "kind": "hold",
+                "rounds": 2,
+                "wave": {
+                  "kind": "ghost",
+                  "count": 2
+                },
+                "radius": 460,
+                "contestRadius": 230,
+                "requiredClass": "mage",
+                "opens": "old-door"
+              },
+              {
+                "id": "hyeonmuk-letter",
+                "label": "봉인 안의 현묵 기록 보관",
+                "kind": "evidence",
+                "afterEvidence": "old-seal"
+              },
+              {
+                "id": "route-exit",
+                "kind": "route",
+                "label": "높은 수문길 또는 아래 점검다리로 이탈"
+              }
+            ],
+            "beats": {
+              "hyeonmuk-letter": [
+                [
+                  "서술",
+                  "글의 끝에 현묵이라는 서명과 문하 표식이 남아 있었다."
+                ],
+                [
+                  "기록",
+                  "스승께 들린 혼은 없었다\n저편의 울림을 답이라 여겼다\n종을 울린 뒤 무명사의 이치가 어그러졌다",
+                  {
+                    "kind": "document",
+                    "documentTitle": "현묵의 글",
+                    "documentId": "hyeonmuk-letter"
+                  }
+                ],
+                [
+                  "담허",
+                  "현묵은 대도사의 제자였군. 여기서 스승이라 부르는 이가 대도사네."
+                ],
+                [
+                  "소단",
+                  "이 글대로라면, 대도사가 혼에 들려 저문골 사람들을 죽인 건 아니었군요."
+                ],
+                [
+                  "설오",
+                  "무명사의 이치가 어그러졌다고요. 집하장에서 아래가 없던 순간도 그런 일이었을까요?",
+                  {
+                    "requiresVoidWitness": true
+                  }
+                ],
+                [
+                  "담허",
+                  "비슷한 일인지는 아직 모르네. 이 글과 자네가 겪은 일을 같은 원인이라 단정할 수는 없어.",
+                  {
+                    "requiresVoidWitness": true
+                  }
+                ],
+                [
+                  "휘겸",
+                  "위 수문길과 아래 점검다리가 이어져 있소. 기록을 가지고 빠져나갑시다."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "담허",
+                "이 글은 그 뒤 현묵이 어떻게 됐는지 말하지 않네. 남은 운송로와 맞춰 보세.",
+                {
+                  "storyId": "act3-outro-29",
+                  "storyTitle": "현묵의 글"
+                }
+              ]
+            ],
+            "summary": "현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.",
+            "guide": "담허의 봉인 해체를 두 적 턴 지키면 현묵의 글도 함께 확보합니다. 현묵의 현재 행방은 알 수 없습니다. 높은 수문길 또는 점검다리 출구로 이탈하세요.",
+            "id": 29,
+            "act": 3,
+            "actStage": 9,
+            "level": 20,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              28
+            ],
+            "active": 3,
+            "enemies": 22,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              9080,
+              820
+            ],
+            "narrationArt": "road",
+            "storySummary": "현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.",
+            "failure": [
+              [
+                "휘겸",
+                "길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오."
+              ]
+            ]
+          },
+          "afterKeyIndex": 13
+        }
+      ]
+    },
+    {
+      "variant": "runtime",
+      "stageId": 30,
+      "beforeSha256": "2509720c74691d91602bb4ccf47ee89a8d5722e4583eb710d4d88d6e523ba60b",
+      "afterSha256": "be6ba6b5e2d8a0b12c7be730bf05def71d594b18e7604b48641b2f048ab9fa83",
+      "changes": [
+        {
+          "kind": "field",
+          "path": [
+            "markers",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "세 기록으로 옛 운송로 확인",
+          "after": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "label"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "세 기록으로 옛 운송로 확인",
+          "after": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "kind"
+          ],
+          "beforePresent": true,
+          "afterPresent": true,
+          "before": "interact",
+          "after": "reach"
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroAct3Steps",
+            0,
+            "radius"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 260,
+          "afterKeyIndex": 3
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroEvidenceRevision"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": 1,
+          "afterKeyIndex": 19
+        },
+        {
+          "kind": "field",
+          "path": [
+            "initialState",
+            "honroNarrativeContent"
+          ],
+          "beforePresent": false,
+          "afterPresent": true,
+          "after": {
+            "name": "남겨진 길",
+            "place": "강변 나루",
+            "theme": "river",
+            "narration": [
+              "읍성을 벗어나는 나루에서 세 묶음의 기록을 한 지도 위에 펼친다. 지도 위에서 끊긴 길의 흔적이 이어진다."
+            ],
+            "goal": "나루 지형과 기존 기록을 대조하고 방어 후 집결",
+            "story": [
+              [
+                "휘겸",
+                "저문골의 짐을 옮긴 기록, 종의 이송 기록, 옛길을 막은 기록을 가져왔소. 지도 위에서 운송로를 맞춰 봅시다.",
+                {
+                  "storyId": "act3-entry-30",
+                  "storyTitle": "3-10 · 남겨진 길"
+                }
+              ],
+              [
+                "설오",
+                "기록에 적힌 운송로가 같은 강을 지나는지부터 보겠습니다.",
+                {
+                  "storyId": "act3-entry-30",
+                  "storyTitle": "3-10 · 남겨진 길"
+                }
+              ]
+            ],
+            "steps": [
+              {
+                "id": "transport-map",
+                "label": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조",
+                "kind": "reach",
+                "radius": 260
+              },
+              {
+                "id": "ferry-hold",
+                "label": "일행이 빠져나갈 나루 지키기",
+                "kind": "hold",
+                "rounds": 3,
+                "wave": {
+                  "kind": "hound",
+                  "count": 3
+                },
+                "radius": 540,
+                "contestRadius": 230
+              },
+              {
+                "id": "old-road",
+                "label": "생존한 동행과 옛길 입구에 모이기",
+                "kind": "reach",
+                "allHeroes": true,
+                "radius": 440
+              }
+            ],
+            "beats": {
+              "transport-map": [
+                [
+                  "서술",
+                  "나루의 강 방향과 끊긴 옛길을, 지금까지 확보한 이송 기록과 대조한다.",
+                  {
+                    "kind": "narration"
+                  }
+                ],
+                [
+                  "기록",
+                  "저문골 → 무명사: 시신·금속\n무명사 → 잠운사: 묵종\n옛길 봉쇄",
+                  {
+                    "kind": "document",
+                    "documentTitle": "지도 위의 운송로",
+                    "documentId": "old-route-map"
+                  }
+                ],
+                [
+                  "설오",
+                  "고향 곁을 지나는 길입니다. 사람들이 탄 배도 이쪽으로 갔는지 찾아보겠습니다."
+                ],
+                [
+                  "담허",
+                  "종이 최근 다시 울린 까닭도 남았네. 무명사로 가세."
+                ]
+              ]
+            },
+            "outro": [
+              [
+                "설오",
+                "시신과 생활 금속을 보낸 곳, 종을 옮겨 온 곳이 모두 무명사입니다. 고향 사람들이 향한 곳도 그 옛길에서 더 찾아야겠습니다.",
+                {
+                  "storyId": "act3-outro-30",
+                  "storyTitle": "남겨진 길"
+                }
+              ],
+              [
+                "담허",
+                "강과 장례길을 따라 이어 보세. 안에서 무엇이 기다리는지는 아직 모르네.",
+                {
+                  "storyId": "act3-outro-30",
+                  "storyTitle": "남겨진 길"
+                }
+              ],
+              [
+                "소단",
+                "이번에는 돌아올 길도 함께 남겨요.",
+                {
+                  "storyId": "act3-outro-30",
+                  "storyTitle": "남겨진 길"
+                }
+              ]
+            ],
+            "summary": "저문골·무명사·잠운사를 잇는 운송·봉쇄 기록을 확보했다. 길은 설오의 고향 곁을 지난다. 끊긴 옛길을 따라 무명사로 향한다.",
+            "guide": "나루에서 강 방향과 끊긴 옛길을 이미 얻은 기록과 대조하세요. 나루를 적 턴 3회 지킨 뒤 살아 있는 동행 전원이 옛길 입구에 모이세요.",
+            "id": 30,
+            "act": 3,
+            "actStage": 10,
+            "level": 21,
+            "template": 1,
+            "objective": "act3",
+            "requires": [
+              29
+            ],
+            "active": 3,
+            "enemies": 26,
+            "w": 9000,
+            "h": 4200,
+            "playableRoster": [
+              "archer",
+              "mage",
+              "knight",
+              "occultist"
+            ],
+            "map": [
+              9340,
+              300
+            ],
+            "narrationArt": "road",
+            "storySummary": "저문골·무명사·잠운사를 잇는 운송·봉쇄 기록을 확보했다. 길은 설오의 고향 곁을 지난다. 끊긴 옛길을 따라 무명사로 향한다.",
+            "failure": [
+              [
+                "휘겸",
+                "길을 다시 잡읍시다. 가져온 단서까지 잃어서는 안 되오."
+              ]
+            ]
+          },
+          "afterKeyIndex": 20
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+/** New initial-state/marker contract; raw maps, geometry and archives stay pinned. */
+import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
+import {storyDeltaHash as hash,applyExactStoryJsonDelta,reverseExactStoryStages,assertExactStoryJsonNegatives} from './exact-story-revision-delta.mjs';
+const bytes=readFileSync(new URL('./fixtures/evidence-quests-campaign-delta.json',import.meta.url));assert.equal(hash(bytes),'52ceab5522b6591a87156f2f466436dceda4b5cb8ee8e696dc7bc148a06f6b00','Exact approved field-action campaign projection');
+export const evidenceCampaignDelta=JSON.parse(bytes),d=evidenceCampaignDelta;
+assert.equal(d.baseCurrentCommit,'ba3678a1b36e7eba7f4b8fd28a998fc2faed20e6');assert.deepEqual(d.rows.map(r=>r.stageId),[3,16,17,19,22,23,24,25,26,27,28,29,30]);
+for(const r of d.rows)for(const c of r.changes)assert(c.path[0]==='initialState'&&['honroEvidenceRevision','honroNarrativeContent','honroAct2Steps','honroAct3Steps'].includes(c.path[1])||c.path[0]==='markers'&&['label','target'].includes(c.path.at(-1)),'Only approved initial snapshots/steps and marker labels/target: '+c.path);
+export function applyEvidenceCampaignManifest(previous){assert.equal(hash(previous),d.beforeManifestSha256);const out=structuredClone(previous);for(const r of d.rows){const row=out.runtime.stages.find(s=>s.stageId===r.stageId);assert.equal(row.sha256,r.beforeSha256);row.sha256=r.afterSha256;}out.approvedDeltas.push(structuredClone(d));return out;}
+export const beforeEvidenceCampaign=p=>reverseExactStoryStages(p,d.rows,{variant:'runtime'});
+export function assertEvidenceCampaignNegatives(project){let count=0;for(const r of d.rows){const s=project.stages.find(s=>s.metadata.stageId===r.stageId),before=applyExactStoryJsonDelta(s,r,{reverse:true});count+=assertExactStoryJsonNegatives(before,r);for(const mutate of [p=>p.units[0].hp++,p=>p.terrains[0].points[0].x++,p=>p.markers.reverse()]){const bad=structuredClone(s);mutate(bad);assert.throws(()=>applyExactStoryJsonDelta(bad,{...r,afterSha256:hash(bad)},{reverse:true}));count++;}}return count;}

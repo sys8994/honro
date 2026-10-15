@@ -54,5 +54,5 @@ const summaries={
 };
 // Only already acquired document rows are retained. This is not a catalogue of spoilers.
 function present(app,lines){const b=app.engine?.b;if(!active(b))return lines;app.profile.honroEvidenceRevision=1;const docs=app.profile.honroEvidenceDocuments??=[];return lines.map(row=>{const [who,text,meta={}]=row;if(meta.evidenceOriginal&&!docs.some(d=>d.id===meta.evidenceOriginal.id))docs.push(clone(meta.evidenceOriginal));if(meta.kind!=='document')return row;const id=meta.documentId||`${b.honroStage}:${meta.documentTitle}`;if(!docs.some(d=>d.id===id&&d.text===text))docs.push({id,text,meta:clone(meta),stage:b.honroStage});return ['서술',(summaries[id]||text.replace(/\n/g,' · '))+'\n원문은 여정의 기록에서 선택해 읽을 수 있다.',{...meta,kind:'narration',documentId:undefined,documentTitle:undefined}];});}
-G.HonroEvidenceQuests={version:1,active,ids,changes,reviseContent,satisfied,observe,targets,present};
+G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,satisfied,observe,targets,present};
 })(globalThis);
