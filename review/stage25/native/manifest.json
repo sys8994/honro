@@ -2,10 +2,10 @@
   "source": "Production HonroMaps.createBattle + HONRO_CORE.Engine + HonroScene",
   "projectFile": "/workspace/honro-stage25/shared/data/campaign.json",
   "runtimeFile": "/workspace/honro-stage25/shared/build.mjs",
-  "runtimeSha256": "3e3ad5599f8b2471e7e1caa8704fe214e7a3ba5211392d2a65ca42201f9643e7",
-  "runtimeGitHead": "8280bedb9863ec501e1a287184a78fe61a8b2497",
+  "runtimeSha256": "8b99c99310f295622162bf4fea4752332fd6d4685dd2c7ab243ab9b8d4f9e451",
+  "runtimeGitHead": "9086c05d62af061f2dce843bf7c9d8a201718fcb",
   "artOverride": null,
-  "projectSha256": "df86241bed922f18a2eef1f8ba873e3e6f0b93e56e4efed04eb6265ae843b724",
+  "projectSha256": "c3c0f386464cee30ce4d1adeb5e265e0e0439d5cc44d54dc7870595ebc3ee735",
   "scope": "Canonical campaign metadata and geometry in Native Canvas. No browser, HUD/input, performance or campaign-completion claim.",
   "results": [
     {
@@ -31,7 +31,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 127.02636800000255,
+        "worldBuildMs": 203.65855399999873,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 20,
@@ -87,7 +87,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 68.7033599999977,
+        "worldBuildMs": 39.732216000000335,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 12,
@@ -143,7 +143,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 200.52341599999636,
+        "worldBuildMs": 123.22135499999604,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 16,
@@ -199,7 +199,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 7.838226999998369,
+        "worldBuildMs": 5.148639000000003,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 2,
@@ -255,7 +255,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 87.32578700000158,
+        "worldBuildMs": 41.041512999998304,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 12,

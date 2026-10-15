@@ -1,0 +1,76 @@
+
+> verify
+> npm run test:release-guard && npm run build && npm run test:title && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm run test:current-story-display && npm run test:binding-detail && npm --prefix game run verify && npm run test:integration && npm run test:performance
+
+
+> test:release-guard
+> python -X utf8 tests/release-guard.py
+
+...................
+----------------------------------------------------------------------
+Ran 19 tests in 0.225s
+
+OK
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> build
+> node workshop/build.mjs
+
+Built HONRO.html and HONRO_WORKSHOP.html with one shared runtime
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> test:title
+> node tests/title-redesign.mjs && node tests/title-letter-rendering.mjs
+
+PASS title contracts: confirmed 魂路 + upright lower-right 혼/로 + alpha-preserving ash ink; separate art + fallback + accessibility + no delay; 5 save-state branches and repeat entry; 1590019 encoded bytes. Browser and art approval are separate.
+PASS original PNG identity; actual SVG ash pixels/alpha; complementary upright syllable crops; six viewport bounds equations. Browser and art review are separate.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> test:campaign-metadata
+> node tests/quest-space-reference-repair.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Exact after JSON identity
++ actual - expected
+
++ '04c6d95df1192170a412a8015962458519255b7651e82849b438dd3f38085f3a'
+- 'f1db36657180ad2a871b7e15a0cee1ce340d10396409b722cdccf99515d823b8'
+
+    at applyExactStoryJsonDelta (file:///workspace/honro-stage25/tests/exact-story-revision-delta.mjs:19:9)
+    at reverseExactStoryStages (file:///workspace/honro-stage25/tests/exact-story-revision-delta.mjs:66:24)
+    at beforeStoryCampaign (file:///workspace/honro-stage25/tests/act23-story-revision-history.mjs:58:53)
+    at file:///workspace/honro-stage25/tests/quest-space-reference-repair.mjs:18:9 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '04c6d95df1192170a412a8015962458519255b7651e82849b438dd3f38085f3a',
+  expected: 'f1db36657180ad2a871b7e15a0cee1ce340d10396409b722cdccf99515d823b8',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
