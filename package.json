@@ -210,7 +210,8 @@
     "capture:quest-hostile-targets": "node tests/quest-hostile-targets-native.mjs",
     "test:dialogue-clarity": "node tests/dialogue-clarity.mjs && node tests/dialogue-source-inventory.mjs && node tests/act1-narrative-redesign.mjs && node tests/act23-narrative-redesign.mjs && node tests/sodan-protection-wording.mjs && node tests/story-direction.mjs && node tests/sodan-departure.mjs",
     "test:story-revision": "node tests/story-canon-v1.mjs && node tests/story-anomaly-environment.mjs && node tests/bell-anomaly.mjs && node tests/act3-void-runtime.mjs",
-    "test:story-revision:browser": "python -X utf8 tests/act3-void-browser.py && python -X utf8 tests/bell-anomaly-browser.py"
+    "test:story-revision:browser": "python -X utf8 tests/act3-void-browser.py && python -X utf8 tests/bell-anomaly-browser.py",
+    "test:waterworks-fall": "node tests/waterworks-fall-recovery.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",
