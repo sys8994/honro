@@ -32780,7 +32780,7 @@ function reviseContent(original){const st=clone(original);for(const s of st.step
 // Presentation-only compatibility: old saved goal IDs, flags and dialogue indices stay intact.
 function requiredContent(original){const st=clone(original);if(st.guide)st.guide=cleanText(st.guide);
  if(st.id===19&&st.beats?.['old-soul']&&!st.beats['old-soul'].some(r=>r[0]==='소단'))st.beats['old-soul'].unshift(['소단','종 밑에 오래된 혼이 아직 남았어요. 방금 떠난 희생자들과 옷차림이 달라요.']);
- if(st.id===22&&st.beats){st.beats['ledger-case']=[['휘겸','보고에는 사술 혐의자를 제압하다 다수가 죽었다고 적혀 있소. 같은 해의 호적도 찾아봅시다.']];st.beats['upper-register']=[['설오','이 호적에 적힌 사람들은 농가의 주민과 아이, 노인입니다. 방금 찾은 보고와 맞지 않아요.'],['휘겸','누가 무슨 일을 겪었는지 아직 단정할 수 없소. 두 기록의 이름부터 맞춰 봅시다.']];st.beats['compare-ledgers']=[['설오','같은 주민들을 가리키는데 두 기록의 설명은 다릅니다.'],['휘겸','보고만 믿을 수 없겠군. 현장 증언을 찾아봅시다.']];}
+ if(st.id===22&&st.beats){st.beats['ledger-case']=[['휘겸','보고에는 사술 혐의자를 제압하다 다수가 죽었다고 적혀 있소. 같은 해의 호적도 찾아봅시다.']];st.beats['upper-register']=[['설오','이 호적에 적힌 사람들은 농가의 주민과 아이, 노인입니다. 방금 찾은 보고와 맞지 않아요.'],['휘겸','누가 무슨 일을 겪었는지 아직 단정할 수 없소. 두 기록의 이름부터 맞춰 봅시다.']];st.beats['compare-ledgers']=[['설오','같은 주민들을 가리키는데 두 기록의 설명은 다릅니다.'],['휘겸','보고만 믿을 수 없겠군. 현장 증언을 찾아봅시다.']];if(!st.steps?.some(q=>q.id==='upper-register'))st.beats['compare-ledgers'].unshift(['설오','호적에는 농가의 주민과 아이, 노인이 적혀 있습니다. 사술 혐의자를 제압했다는 보고와 맞지 않아요.']);}
  if(st.id===29&&st.beats?.['hyeonmuk-letter']&&!st.beats['hyeonmuk-letter'].some(r=>r[1].includes('남은 혼을 지키려'))){const rows=st.beats['hyeonmuk-letter'];rows.splice(rows.length-1,0,['담허','현묵은 남은 혼을 지키려 했네. 하지만 지금 어디 있는지는 이 글로 알 수 없어.']);}
  return st;
 }
