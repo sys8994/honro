@@ -135,12 +135,14 @@ function advanceSupport(u){const npc=carrier(),state=roleStates.get(u.id)||{phas
 }
 await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial,training,readiness},null,2));
 if(!resume)await save('role-choice');
+// Current evidence action is attached to the living carrier, not the old record stone.
+function objectiveMarker(goal){const m=b.honroMarkers.find(x=>x.id===goal?.id),target=goal?.target&&e.unit(goal.target);return target?{...m,x:target.x,y:target.y}:m;}
 const started=performance.now(),actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||1200),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||120);let lastSignature='',stalled=0;
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
  while(!ready()&&!terminal()){if(story())continue;tick();if(frames>1400000){stopReason='engine frame observation limit';break;}}if(stopReason||terminal())break;
  if(['warned','waiting'].includes(S.memory(b).status)&&!savedLabels.has('cargo-warning'))await continueNow('cargo-warning');if(A.memory(b).done['dock-mid']&&!savedLabels.has('dock-mid'))await continueNow('dock-mid');
  if(lastRound!==b.round){lastRound=b.round;const row={round:b.round,goal:A.current(b)?.id,heroes:heroRows(),npc:plain(carrier()),enemies:e.alive(1).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,cell:u.honroEscortYardActivationCell})),cargo:S.memory(b).status};rounds.push(row);console.log('ROUND',JSON.stringify({...row,npc:{x:row.npc.x,y:row.npc.y,hp:row.npc.hp},enemies:row.enemies.length}));await save('round-'+b.round);await save();const sig=JSON.stringify([row.goal,Math.round(carrier().x/30),row.enemies.map(u=>[u.id,Math.round(u.hp)]),row.heroes.map(u=>[u.id,Math.round(u.x/40),Math.round(u.y/40)])]);stalled=sig===lastSignature?stalled+1:0;lastSignature=sig;if(stalled>=8){stopReason='fixed policy unchanged eight rounds';break;}if(b.round>roundLimit){stopReason='round observation limit';break;}}
- let goal=A.current(b),m=b.honroMarkers.find(x=>x.id===goal?.id);if(goal?.kind==='escort'){const knight=e.heroesAlive().find(u=>u.cls==='knight'&&!u.acted);if(knight&&e.active?.id!==knight.id){e.select(knight.id);record({op:'select',hero:'knight',reason:'low escort front before support actions'});}}
+ let goal=A.current(b),m=objectiveMarker(goal);if(goal?.kind==='escort'){const knight=e.heroesAlive().find(u=>u.cls==='knight'&&!u.acted);if(knight&&e.active?.id!==knight.id){e.select(knight.id);record({op:'select',hero:'knight',reason:'low escort front before support actions'});}}
  let u=e.active;if(!u||u.dead){stopReason='no active living hero';break;}const npc=carrier(),high=['archer','mage'].includes(u.cls),upperThreats=e.alive(1).filter(v=>v.honroEncounterSupport==='sy-west-upper'||v.honroEscortYardEntry==='west-upper'),eastThreats=e.alive(1).filter(v=>v.honroEncounterSupport==='sy-east-upper');
  const interact=()=>m?.action&&g.HonroInteractions.eligibility(app,m).ok&&liveAudit.production(()=>g.HonroInteractions.use(app,m));
  // Start the carrier when the actual interaction is safe. High support is a
@@ -161,7 +163,7 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
   else destination=lowPoint(Math.min(m.x,npc.x+(u.cls==='occultist'?125:120)),'escort-support-'+u.cls);
  }
  if(destination&&ready())nav.advance(u,destination,enemy);if(!ready())continue;
- goal=A.current(b);m=b.honroMarkers.find(x=>x.id===goal?.id);if(interact()){record({op:'E',hero:u.cls,target:m.id});continue;}
+ goal=A.current(b);m=objectiveMarker(goal);if(interact()){record({op:'E',hero:u.cls,target:m.id});continue;}
  foes=relevantFoes(u);for(const target of foes.filter(v=>!v.dead&&distance(v,u)<1800).slice(0,5))if(attack(u,target)){fired=true;break;}
  if(!fired){const before={hp:u.hp,focus:u.focus};record({op:'defend',hero:u.cls,reason:'no-safe-shot-after-role-position'});liveAudit.production(()=>app.defend());resources.push({round:b.round,frame:frames,hero:u.cls,op:'defend',before,after:{hp:u.hp,focus:u.focus}});}
 }

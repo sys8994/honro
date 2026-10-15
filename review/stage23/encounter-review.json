@@ -1,0 +1,255 @@
+{
+  "schema": "honro-encounter-evidence/v1",
+  "stageIds": [
+    23
+  ],
+  "implementationAuthors": [],
+  "sourceDigest": "51e74225ebb019a5cb3b15137c13c3c29fc40ba00a1c7f5af79685b2aa9bab3e",
+  "targetDigest": "3f4960d86cb9991014a2b9f46ba5269b563b16e2c432daee1f3cd7561021b597",
+  "evidence": [],
+  "knownFailures": [],
+  "stages": [
+    {
+      "stageId": 23,
+      "clusters": [
+        {
+          "id": "A-front",
+          "memberIds": [
+            "s23-A-0",
+            "s23-A-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "A-support",
+          "memberIds": [
+            "s23-A-2",
+            "s23-A-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "B-front",
+          "memberIds": [
+            "s23-B-0",
+            "s23-B-1",
+            "s23-B-5",
+            "s23-B-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "B-flank",
+          "memberIds": [
+            "s23-B-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "B-support",
+          "memberIds": [
+            "s23-B-3",
+            "s23-B-4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "C-front",
+          "memberIds": [
+            "s23-C-0",
+            "s23-C-1",
+            "s23-C-2",
+            "s23-C-5"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "C-support",
+          "memberIds": [
+            "s23-C-3",
+            "s23-C-4",
+            "s23-C-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "D-support",
+          "memberIds": [
+            "s23-D-0",
+            "s23-D-1",
+            "s23-D-4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "D-rear",
+          "memberIds": [
+            "s23-D-2",
+            "s23-D-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "E-front",
+          "memberIds": [
+            "s23-E-0",
+            "s23-E-1",
+            "s23-E-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "E-support",
+          "memberIds": [
+            "s23-E-3",
+            "s23-E-4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "E-flank",
+          "memberIds": [
+            "s23-E-5",
+            "s23-E-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "F-front",
+          "memberIds": [
+            "s23-F-0",
+            "s23-F-1",
+            "s23-F-2",
+            "s23-F-5"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "F-support",
+          "memberIds": [
+            "s23-F-3",
+            "s23-F-4",
+            "s23-F-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "G-front",
+          "memberIds": [
+            "s23-G-0",
+            "s23-G-1",
+            "s23-G-2"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [
+        {
+          "id": "act3-response-23-0",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-23-1",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-23-2",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "conclusion": "unverified",
+    "reviewer": null,
+    "reviewedAt": null,
+    "reviewDigest": null,
+    "reportPaths": [],
+    "unresolvedFindings": []
+  }
+}
