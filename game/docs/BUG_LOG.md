@@ -2931,3 +2931,10 @@ Current isolated evidence: 29 route/overlook/lake-return/gate rejection probes p
 Replaced waterfall approach shelves with a broad deep lake and a continuous returnable bottom; translated the right cliff/cave 900 east. West contours and two low optional overlooks create reachable approach/retreat alternatives. Ground and air groups now occupy the left tactical area. The finite lower-beasts arrival required 110 spacing: 85 blocked the entire atomic wave even on an empty bank. An occupied entry still waits without partial spawning.
 
 Focused route/shot/wave/authoring/story/save checks pass; current merged-master normal-resource native-input trace wins round10. Browser screenshots and Workshop iframe are checked with isolated storage. Exact prior snapshots remain intact. Known baseline migration/environment/Stage8 integration failures are retained and documented in STAGE5_WATERFALL_ACCEPTANCE.md. The full verify command was run once only, without claiming an aggregate pass. The source attachment could not be materialized after its one supported retry. Final independent evidence and remote deployment are tracked separately.
+
+## 2026-10-15 — Stage17 5턴 방어 P0 복구
+- 원인: evidence revision1에서도 보호5턴 외에 수레10체 생성을 요구해 안전한 입구 점유/배치실패 대기가 7/5 이상 진행을 막았다.
+- 수정: 17장 honroEvidenceRevision===1의 hold-hoist만 5보호턴에 완료. 마지막 간격에 clear-lift/notes를 즉시 한 번 커밋하고 미생성 증원 요청을 종료. 생성 안전·이탈/경합·미개정 Continue는 유지한다.
+- 최신 폭포 master cac13a95 통합본 검사: 생성0/3/6/9의 실제4→5와7/5 JSON복구, 양쪽 입구점유, 배치실패, 대화/모달정지, legacy, 중복완료/후속생성 방지 통과. desktop/mobile 이전HTML 저장→현재HTML Continue 및 디버그 최종간격 통과. runtime168소스/9빌드/양HTML 및 hoist13 negative 통과.
+- 원본 사용자 저장 대신 격리 체크포인트 사용. 정상 전투 완주·공개 Pages 직접조작 증거와 구분한다. 증거 `_local/reports/hoist-defense/`. 첨부 Library libfile_641bf94007d881919066f7e5fde104e0의 승인전송URL은403으로 실제픽셀 미확인.
+- 전역 선택읽기/동적 스토리 개편은 이 배포에 포함하지 않는 후속 별도 작업이다. 기존 binding-detail/migration/integration baseline fixture는 변경하지 않았다.
