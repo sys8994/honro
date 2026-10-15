@@ -5,6 +5,9 @@ from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
 from story_browser_server import story_base_url
 OUT=ROOT/'_local/reports/graphics-revision';OUT.mkdir(parents=True,exist_ok=True)
+BASELINE='2ef1d192d71a279eed1c6d372e69afcc148e3f5a'
+baseline=subprocess.check_output(['git','show',BASELINE+':tools/character-catalog.html'],cwd=ROOT)
+(OUT/'before.html').write_bytes(baseline)
 changed='hound boar bat legacy_hound legacy_boar legacy_bat ghost legacy_ghost shade legacy_shade warden legacy_warden summon_warden lantern legacy_lantern summon_charger summon_eater resonance echo bellCluster keeper legacy_knight legacy_occultist human possessedGuard possessedArcher gateMaster archerMaster archiveFiend kilnFiend summon_stalker summon_echo legacy_summon bier_boss minecart'.split()
 # Boar was approved and intentionally stays pixel-identical to the first candidate.
 preserved='legacy_mourner legacy_stag legacy_crow legacy_archer legacy_mage picks waterwheel stoneLantern hoist target_bier-knot target_upper-chain'.split()
