@@ -13,7 +13,7 @@ export function applyStage27Depot(input){
  let rear=`<defs><linearGradient id="depot-depth" x1="0" y1="1500" x2="0" y2="5700" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#10272f"/><stop offset=".55" stop-color="#243c40"/><stop offset="1" stop-color="#0c242c"/></linearGradient></defs>`+R(-16000,-10000,40200,30200,'#0a1c25')+R(-300,1400,8800,4500,'url(#depot-depth)');
  // Three masonry bearing masses terminate at the drowned floor. Broad uneven
  // mortar courses explain their load, rather than enormous freestanding bars.
- for(const [x,top,w]of[[240,2070,370],[3630,1760,490],[7500,1750,400]]){
+ for(const [x,top,w]of[[240,2070,370],[4330,1760,370],[7500,1750,400]]){
   rear+=P([[x+45,top],[x+w-45,top],[x+w+80,5690],[x-75,5690]],'#31494b')+P([[x+45,top],[x+105,top],[x+30,5690],[x-75,5690]],'#3d5351')+P([[x+w-110,top],[x+w-45,top],[x+w+80,5690],[x+w-30,5690]],'#192f35');
   for(let row=0;row<9;row++){const y=top+130+row*395,width=w+row*15;rear+=P([[x+21-row*6,y],[x+width-38,y-14],[x+width-23,y+216],[x-row*6,y+240]],row%3===0?'#3b5050':'#2b4245')+P([[x+20-row*6,y],[x+width-38,y-14],[x+width-41,y+9],[x+18-row*6,y+23]],'#4a5b55');}
  }

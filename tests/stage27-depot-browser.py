@@ -14,8 +14,9 @@ with sync_playwright() as p:
   page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(BASE+'/HONRO.html');page.wait_for_function('window.HonroApp')
   page.evaluate('''()=>{const a=HonroApp;a.close();a.stopBattle();const p=HONRO_TOOLS.fresh();for(let i=1;i<=26;i++)p.cleared[i]={visits:1,rounds:5};p.recruited=['archer','mage','knight','occultist'];p.party=[...p.recruited];p.settings.sound=false;p.settings.music=false;for(const c of p.recruited)p.heroes[c].xp=HONRO_CORE.xpAtLevel(20);a.profile=p;a.normalProfile=p;a.launch(27);while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;a.close();a.scene.storyTween=null;a.scene.goalFocus=null;a.scene.cinematic=null;a.lastTurnNotice=`${a.engine.b.round}:player`;document.getElementById('turn-banner').hidden=true;a.updateHUD(true);}''')
+  page.wait_for_timeout(3200)
   for name,x,y,scale in [('entry',700,4430,.68),('loading',5400,4590,.68),('manifest',1900,2420,.68)]:
-   page.evaluate('''([x,y,scale])=>{const a=HonroApp;Object.assign(a.scene,{x,y,scale,manual:true,storyTween:null,goalFocus:null,cinematic:null,focusId:null,speakerId:null,focusUntil:0,speakerUntil:0});a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}''',[x,y,scale if not mobile else .48])
+   page.evaluate('''([x,y,scale])=>{const a=HonroApp;Object.assign(a.scene,{x,y,scale,manual:true,storyTween:null,goalFocus:null,cinematic:null,focusId:null,speakerId:null,focusUntil:0,speakerUntil:0});a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}''',[x,y+(180 if mobile else 0),scale if not mobile else .48])
    page.wait_for_timeout(250)
    file=('mobile-' if mobile else 'desktop-')+name+'.png';page.screenshot(path=str(OUT/file))
    rows.append({'file':file,'mode':'real browser, authored inspection camera; unmodified enemy roster','state':page.evaluate('''()=>({stage:HonroApp.engine.b.honroStageId,units:HonroApp.engine.b.units.length,objectives:HonroApp.engine.b.honroState,camera:{x:HonroApp.scene.x,y:HonroApp.scene.y,scale:HonroApp.scene.scale}})''')})
