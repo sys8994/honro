@@ -53,26 +53,18 @@ function rearRail(stage,support,xs,key){const feet=xs.map(x=>({terrainId:support
  * bright rim, stair picture, balcony floor, or collision on these rear faces. */
 function connectedRetainingWalls(stage){
  const feet=[],attachments=[],foot=(id,x)=>{const p={terrainId:id,x,y:actualY(stage,id,x)};feet.push(p);return p;},undert=(id)=>{const t=stage.terrains.find(t=>t.id===id),last=Math.max(...t.properties.honroWalkEdges)+1,points=t.points.slice(last+1);attachments.push({terrainId:id,points,contact:'rear face overlaps actual underside; no new walk rim'});return points;};
- let b='<defs><linearGradient id="v22-rear-depth" x1="700" y1="1300" x2="2900" y2="5350" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#384f52"/><stop offset=".62" stop-color="#2d464d"/><stop offset="1" stop-color="#203b43"/></linearGradient></defs>';
- const masses=[
-  {id:'v22-west-gallery',lower:'v22-lower-court',xs:[550,1250],side:120,key:'west-gallery-foundation'},
-  {id:'v22-report-approach',lower:'v22-lower-court',xs:[1180,2180],side:125,key:'lower-return-bearing'},
-  {id:'v22-report-crossing',lower:'v22-lower-court',xs:[1800,3070],side:175,key:'central-document-terrace'},
-  {id:'v22-register-mass',lower:'v22-west-gallery',xs:[680,1530],side:115,key:'register-back-buttress'},
-  {id:'v22-east-register-rise',lower:'v22-report-crossing',xs:[2070,2400],side:70,key:'east-turn-recess'},
-  {id:'v22-comparison-mass',lower:'v22-report-crossing',xs:[1830,2920],side:185,key:'upper-court-bearing'}
- ];
- for(const q of masses){const contour=undert(q.id),left=foot(q.lower,q.xs[0]),right=foot(q.lower,q.xs[1]),chain=contour.map(p=>[p.x,p.y-17]);b+=poly([...chain,[left.x,left.y+8],[right.x,right.y+8]],'url(#v22-rear-depth)',q.key);const start=contour[0];b+=poly([[start.x-q.side,start.y-10],[start.x+4,start.y-10],[right.x+3,right.y+7],[right.x-q.side,right.y+7]],'#223c44',q.key+'-receding-east-face');}
- // Few large sheltered planes. These stop short of routes and expose no tops.
- b+=poly([[1450,3910],[1650,3850],[2030,4490],[1810,4670],[1710,4290]],'#3c5254','C-bearing-upper-left-face');
- b+=poly([[2440,3458],[2740,3360],[2960,4500],[2680,4550]],'#344d50','C-one-broad-east-buttress');
- b+=poly([[870,2930],[1080,2840],[1110,3220],[910,3220]],'#405653','register-west-face');
- b+=poly([[2170,1900],[2410,1800],[2530,2843],[2340,2843]],'#3a5051','comparison-lower-stone-face');
- b+=poly([[2530,1820],[2780,1720],[2850,2843],[2650,2843]],'#2c4247','comparison-recessed-side');
- // Squared storage vents, not arched castle windows. Large quiet voids make
- // depth legible without adding crack noise or rows of identical wall tiles.
- for(const [x,y,w,h]of [[2420,3930,136,229],[1140,4530,113,250],[2560,2330,117,207]]){b+=rect(x,y,w,h,'#1d343c','recessed-square-service-opening')+poly([[x,y],[x+14,y+12],[x+14,y+h],[x,y+h]],'#53635b')+rect(x+34,y+16,8,h-18,'#465349')+rect(x+w-37,y+16,8,h-18,'#3c4d45');}
- return{asset:pack('connected-retaining-walls','관아의 실제 아래뜰에 닿는 여섯 후면 석축',b,[55,1590,3160,3740],{kind:'rear-masonry',extra:{groundedSupports:feet,terrainAttachments:attachments,noWalkRim:true,noProjectileCover:true,structuralMasses:6}}),feet,attachments};
+ // One receding mountain shoulder supports the terraced archive. Its broad
+ // unoutlined forms are scenery; the exact foreground terrain owns contact.
+ const left=foot('v22-lower-court',550),right=foot('v22-lower-court',3070);
+ for(const id of ['v22-west-gallery','v22-report-approach','v22-report-crossing','v22-register-mass','v22-east-register-rise','v22-comparison-mass'])undert(id);
+ let b=path(`M550 ${left.y} Q458 4790 470 4510 L620 4010 Q485 3710 520 3490 Q590 3100 710 2940 L925 2700 Q1020 2510 1100 2440 L1470 2350 Q1590 2180 1770 2030 L2110 1870 Q2530 1530 2900 1540 Q2980 1770 3010 2310 L2910 2830 Q3130 3170 3190 3410 L3070 3900 L3070 ${right.y} Z`,'#2d4549','mountain-bearing-silhouette');
+ b+=poly([[620,4010],[710,2940],[925,2700],[1100,2440],[1470,2350],[1260,3100],[1120,3480],[890,4050],[1020,4890],[550,left.y]],'#3c5352','western-broad-lit-rock-face');
+ b+=poly([[1470,2350],[1770,2030],[2110,1870],[2450,1665],[2900,1540],[2660,2280],[2700,2710],[2460,3130],[2240,3600],[2020,4490],[1710,4620],[1860,3740],[1580,3190]],'#354d4d','central-long-rock-shoulder');
+ b+=poly([[2900,1540],[3010,2310],[2910,2830],[3190,3410],[3070,3900],[3070,right.y],[2640,4540],[2780,3890],[2570,3440],[2750,2870],[2670,2390]],'#233d43','receding-east-shoulder');
+ b+=poly([[860,3490],[1120,3160],[1290,2890],[1210,3440],[1360,3820],[1240,4050],[1130,3670]],'#294449','western-fold-shadow');
+ b+=poly([[2110,1870],[2230,2060],[2100,2520],[2230,2880],[1990,3250],[2060,2780],[1930,2490]],'#294346','central-fold-shadow');
+
+ return{asset:pack('connected-retaining-walls','기록고의 층대를 받치는 뒤쪽 암산',b,[450,1530,2760,3800],{kind:'rear-masonry',extra:{groundedSupports:feet,terrainAttachments:attachments,noWalkRim:true,noProjectileCover:true,structuralMasses:1}}),feet,attachments};
 }
 
 function masonryPlanes(stage){
@@ -209,16 +201,51 @@ function registerMasonryPieces(polygon,courses,{rear=false}={}){
  }
  return{pieces,cells};
 }
+
+// A masonry cap bears on the mountain rather than a full-depth repeating wall.
+// Clip the same small set of stone cells to the actual walking profile band.
+function shallowMasonry(stage,id,pieces){
+ const surface=V22_LAYOUT.surfaces.find(s=>s.id===id),out=[];
+ for(let i=1;i<surface.top.length;i++){
+  const a=surface.top[i-1],b=surface.top[i],lo=a[0],hi=b[0];
+  for(const p of pieces){
+   let points=clipMasonryBox(p.points,lo,Math.min(a[1],b[1])+18,hi,Math.max(a[1],b[1])+150);
+   const floor=x=>a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);
+   for(const signed of [q=>q[1]-floor(q[0])-18,q=>floor(q[0])+150-q[1]]){
+    const input=points;points=[];
+    for(let j=0;j<input.length;j++){const q=input[j],r=input[(j+1)%input.length],qa=signed(q),ra=signed(r);if(qa>=0)points.push(q);if((qa>=0)!==(ra>=0)){const k=qa/(qa-ra);points.push([q[0]+(r[0]-q[0])*k,q[1]+(r[1]-q[1])*k]);}}
+   }
+   if(points.length<3)continue;
+   out.push({...p,key:p.key+'-cap-'+i,points,fill:({'#a0a78e':'#889284','#748174':'#66766d','#667a6e':'#596e66','#818b78':'#748073','#3d584d':'#3c514c'})[p.fill]||p.fill});
+  }
+ }
+ return out;
+}
+function bedrockPlanes(stage){
+ const rows=[];
+ for(const sf of V22_LAYOUT.surfaces){
+  if(['v22-report-crossing','v22-report-approach','v22-west-gallery'].includes(sf.id))continue;
+  const t=stage.terrains.find(t=>t.id===sf.id),xs=t.points.map(p=>p.x),ys=t.points.map(p=>p.y),l=Math.min(...xs),r=Math.max(...xs),top=Math.min(...ys),bottom=Math.max(...ys),w=r-l,h=bottom-top;
+  const ps=[
+   {points:[[l,top],[l+w*.47,top+h*.12],[l+w*.40,top+h*.43],[l+w*.29,top+h*.55],[l+w*.32,bottom],[l,bottom]],fill:'#53665f'},
+   {points:[[l+w*.47,top+h*.12],[r,top+h*.05],[r,bottom],[l+w*.65,bottom],[l+w*.71,top+h*.62],[l+w*.56,top+h*.55]],fill:'#334e4d'},
+   {points:[[l+w*.47,top+h*.12],[l+w*.56,top+h*.55],[l+w*.71,top+h*.62],[l+w*.65,bottom],[l+w*.32,bottom],[l+w*.29,top+h*.55],[l+w*.40,top+h*.43]],fill:'#425b55'}
+  ];
+  ps.forEach((p,i)=>rows.push({terrainId:sf.id,id:ELEMENT+'bedrock-'+sf.zone+'-'+i,stage22VerticalArt:true,...p}));
+ }
+ return rows;
+}
+
 function registerRetainingMasonry(stage){
  const id='v22-register-mass',terrain=stage.terrains.find(t=>t.id===id),polygon=terrain.points.map(p=>[p.x,p.y]),bottom=Math.max(...polygon.map(p=>p[1])),courses=registerMasonryCourses(bottom),masonry=registerMasonryPieces(polygon,courses);
- return{planes:masonry.pieces.map(p=>({terrainId:id,id:ELEMENT+'register-masonry-'+p.key,stage22VerticalArt:true,points:p.points.map(q=>q.map(N)),fill:p.fill})),record:{terrainId:id,courseAxis:'horizontal',courseHeightRange:[42,58],jointWidth:4,bodyTones:['#748174','#667a6e','#818b78'],courses:courses.map(({row,y,height,cells})=>({row,y,height,joints:cells.slice(1).map(c=>c.x)})),cells:masonry.cells,fullClosedFace:true,physicalProfile:'continuous-ramp',drawnStepCount:0}};
+ return{planes:shallowMasonry(stage,id,masonry.pieces).map(p=>({terrainId:id,id:ELEMENT+'register-masonry-'+p.key,stage22VerticalArt:true,points:p.points.map(q=>q.map(N)),fill:p.fill})),record:{terrainId:id,courseAxis:'horizontal',courseHeightRange:[42,58],jointWidth:4,bodyTones:['#748174','#667a6e','#818b78'],courses:courses.map(({row,y,height,cells})=>({row,y,height,joints:cells.slice(1).map(c=>c.x)})),cells:masonry.cells,fullClosedFace:false,capDepth:150,physicalProfile:'continuous-ramp',drawnStepCount:0}};
 }
 /** Finish E/G's existing solid only. No extra scenic building, support, or
  * deck is introduced; F's already reviewed geometry and art stay exact. */
 function upperTerraceMasonry(stage){
  const planes=[],records=[];
  for(const id of ['v22-east-register-rise','v22-comparison-mass']){const terrain=stage.terrains.find(t=>t.id===id),polygon=terrain.points.map(p=>[p.x,p.y]),xs=polygon.map(p=>p[0]),ys=polygon.map(p=>p[1]),courses=registerMasonryCourses(Math.max(...ys),{top:Math.min(...ys)-12,left:Math.min(...xs)-74,right:Math.max(...xs)+40}),masonry=registerMasonryPieces(polygon,courses);
-  planes.push(...masonry.pieces.map(p=>({terrainId:id,id:ELEMENT+'upper-masonry-'+id+'-'+p.key,stage22VerticalArt:true,points:p.points.map(q=>q.map(N)),fill:p.fill})));
+  planes.push(...shallowMasonry(stage,id,masonry.pieces).map(p=>({terrainId:id,id:ELEMENT+'upper-masonry-'+id+'-'+p.key,stage22VerticalArt:true,points:p.points.map(q=>q.map(N)),fill:p.fill})));
   records.push({terrainId:id,courseAxis:'horizontal',courseHeightRange:[42,58],jointWidth:4,cells:masonry.cells,continuousTrafficUnchanged:true,noNewCollision:true,closedRoom:id==='v22-comparison-mass'?{x:2140,y:1296,width:664,height:148,bays:4,belowFlatSurface:true}:null});
  }
  return{planes,records};
@@ -235,6 +262,7 @@ function builtTerracePlanes(stage){
   records.push({terrainId:id,key,kind:paper?'closed-paper-record-room':'closed-plank-record-room',storeyHeight:h,bays,closed:true});
  };
  for(const surface of V22_LAYOUT.surfaces.filter(s=>s.id!=='v22-report-crossing')){const id=surface.id,t=stage.terrains.find(t=>t.id===id);add(id,id+'-built-body',t.points.map(p=>[p.x,p.y]),id==='v22-lower-court'?'#3b514d':['v22-register-mass','v22-east-register-rise','v22-comparison-mass'].includes(id)?'#304941':'#4b6056');
+  planes.push(...bedrockPlanes(stage).filter(p=>p.terrainId===id));
   if(id==='v22-register-mass')planes.push(...registerMasonry.planes);
   planes.push(...upperMasonry.planes.filter(p=>p.terrainId===id));
   for(let i=1;i<surface.top.length;i++){const a=surface.top[i-1],b=surface.top[i],key=id+'-edge-'+i,flat=Math.abs(a[1]-b[1])<.01;
@@ -290,7 +318,7 @@ function linkedTerraceFrames(stage){
 function registerRearPavilions(stage){
  const specs=[{key:'west-register-wing',x:792,baseY:2570,width:370,role:'archive',variant:1},{key:'middle-register-wing',x:1005,baseY:2205,width:330,role:'archive',variant:2},{key:'east-register-wing',x:1495,baseY:2410,width:288,role:'storehouse',variant:1}],out=[];
  for(const q of specs){const support='v22-west-gallery',left=q.x-q.width/2-17,right=q.x+q.width/2+17,footXs=[left,(left+right)/2,right],feet=footXs.map(x=>({terrainId:support,x,y:actualY(stage,support,x)})),a=koreanTownBuilding(PREFIX+q.key+'-upper',{width:q.width,role:q.role,roofType:'gable',variant:q.variant,collision:false});
-  const ground=feet.map(p=>[p.x,p.y]),foundation=[[left,q.baseY-7],[right,q.baseY-7],...ground.slice().reverse()],courses=registerMasonryCourses(Math.max(...feet.map(p=>p.y))),masonry=registerMasonryPieces(foundation,courses,{rear:true});let b=poly(foundation,'#29453b','broad-grounded-rectangular-plinth');
+  const ground=feet.map(p=>[p.x,p.y]),foundation=[[left,q.baseY-7],[right,q.baseY-7],...ground.slice().reverse()],courses=registerMasonryCourses(Math.max(...feet.map(p=>p.y))),masonry=registerMasonryPieces(clipMasonryBox(foundation,left,q.baseY-7,right,q.baseY+135),courses,{rear:true});let b=poly(foundation,'#2c4747','grounded-rock-shoulder')+poly([[left,q.baseY+100],[left+(right-left)*.55,q.baseY+155],[left+(right-left)*.36,actualY(stage,support,left+(right-left)*.36)],[left,actualY(stage,support,left)]],'#3c5350','quiet-upper-left-rock-face');
   // Merge same-paint polygons into editable compound paths, rather than
   // hundreds of SVG nodes. The stone dimensions remain human-scale.
   const byPaint=new Map();for(const p of masonry.pieces){const d='M'+p.points.map(p=>p.map(N).join(' ')).join('L')+'Z';byPaint.set(p.fill,(byPaint.get(p.fill)||'')+d);}for(const [fill,d]of byPaint)b+=path(d,fill,'foundation-courses-'+fill.slice(1));
@@ -316,10 +344,10 @@ export function applyStage22VerticalArt(project){
  const unchanged=gameplay(stage),others=JSON.stringify(project.stages.filter(s=>s!==stage));
  stage.elements=stage.elements.filter(e=>!e.id.startsWith(ELEMENT));stage.design.space.scenery=(stage.design.space.scenery||[]).filter(e=>!e.id.startsWith(ELEMENT));stage.design.space.lights=(stage.design.space.lights||[]).filter(e=>!e.id.startsWith(ELEMENT));stage.design.space.terrainPlanes=(stage.design.space.terrainPlanes||[]).filter(e=>!e.stage22VerticalArt);
  const wall=connectedRetainingWalls(stage);register(project,wall.asset);stage.elements.push({id:ELEMENT+'connected-retaining-walls',assetId:wall.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:wall.feet});
- const materials=masonryPlanes(stage),section=reportArchitecturePlanes(stage);materials.planes=materials.planes.filter(p=>['archive-door','upper-door'].includes(p.terrainId));materials.records=[];const built=builtTerracePlanes(stage);materials.planes.push(...section.planes,...built.planes);materials.records.push(...section.records,...built.records);stage.design.space.terrainPlanes.push(...materials.planes);
- const linked=linkedTerraceFrames(stage);for(const r of linked){register(project,r.asset);stage.elements.push({id:ELEMENT+r.asset.id.slice(PREFIX.length),assetId:r.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:r.feet});}
+ const materials=masonryPlanes(stage),section=reportArchitecturePlanes(stage);materials.planes=materials.planes.filter(p=>['archive-door','upper-door'].includes(p.terrainId));materials.records=[];const built=builtTerracePlanes(stage);materials.planes.push(...section.planes,...built.planes);materials.records.push(...section.records,...built.records);stage.design.space.terrainPlanes.push(...bedrockPlanes(stage),...materials.planes);
+ const linked=[];for(const r of linked){register(project,r.asset);stage.elements.push({id:ELEMENT+r.asset.id.slice(PREFIX.length),assetId:r.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:r.feet});}
  const registerBuildings=registerRearPavilions(stage);for(const r of registerBuildings){register(project,r.asset);stage.elements.push({id:ELEMENT+r.asset.id.slice(PREFIX.length),assetId:r.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:r.feet});}
- const frame=reportLoadFrame(stage);register(project,frame.asset);stage.elements.push({id:ELEMENT+'report-archive-load-frame',assetId:frame.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:frame.feet});
+ const frame={columns:[],heads:[]};
  const specs=[
   [archiveBuilding('lower-clerk-office',{width:545,role:'office',roofType:'hip',variant:1,cabinets:false}),'lower-clerk-office','v22-lower-court',680,'A','Initial guardhouse on the broad lower forecourt.'],
   [narrowRecordBay('seal-record-bay',{width:122,variant:0}),'seal-record-bay','v22-lower-court',1200,'A','A compact record bay sits beside the original seal and closed real gate.'],
@@ -332,8 +360,8 @@ export function applyStage22VerticalArt(project){
  ];
  const placed=[];for(const[a,key,support,x,zone,purpose]of specs){const e=place(project,stage,a,key,support,x,{zone,purpose});placed.push(e);stage.design.space.terrainPlanes.push(...buildingContact(stage,e,a));}
  for(const [key,support,x,zone]of [['seal-lamp','v22-lower-court',1010,'A'],['record-lamp','v22-report-crossing',2335,'E'],['gallery-lamp','v22-west-gallery',1048,'D'],['exit-lamp','v22-comparison-mass',2890,'H']]){const a=lantern(),e=place(project,stage,a,key,support,x,{zone,purpose:'Sparse low lamp, smaller than an actor and behind every combat element.'});stage.design.space.lights.push({id:e.id+'-light',x:e.x,y:e.y-96,roomId:'v22-'+zone,kind:'oil',radius:91,color:'#c2ad78',visualOnly:true});}
- for(const [support,xs,key]of [['v22-report-approach',[1167,1220,1435,1650,1743],'lower-return-rail'],['v22-east-register-rise',[1815,1860,2010,2140,2187],'register-rise-rail'],['v22-register-mass',[588,600,840,1040,1130],'optional-west-rail'],['v22-west-gallery',[95,350,530,700,1010],'west-gallery-return-rail'],['v22-comparison-mass',[1514,1560,1740,1880,1990],'comparison-ascent-rail'],['v22-report-crossing',[1510,1640,1780,1835,1890,2030,2160,2300],'continuous-report-passage-rail']]){const r=rearRail(stage,support,xs,key);register(project,r.asset);stage.elements.push({id:ELEMENT+key,assetId:r.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:r.feet});}
+ for(const [support,xs,key]of [['v22-report-approach',[1167,1220,1435,1650,1743],'lower-return-rail'],['v22-east-register-rise',[1815,1860,2010,2140,2187],'register-rise-rail'],['v22-register-mass',[458,480,800,900,1040,1130],'optional-west-rail'],['v22-west-gallery',[95,350,530,700,1010],'west-gallery-return-rail'],['v22-comparison-mass',[1514,1560,1740,1880,1990],'comparison-ascent-rail'],['v22-report-crossing',[1510,1640,1780,1835,1890,2030,2160,2300],'continuous-report-passage-rail']]){const r=rearRail(stage,support,xs,key);register(project,r.asset);stage.elements.push({id:ELEMENT+key,assetId:r.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:r.feet});}
  stage.environment.placements=[];stage.environment.groups=[];stage.environment.surfaces=[];stage.environment.skyVisible=true;stage.environment.atmosphere={preset:'valley',overrides:{skyTop:'#172f39',skyBottom:'#435b5c',hazeStrength:.30,mistStrength:.045,lightStrength:.055}};
- stage.design.vertical22Art={revision:1,iteration:6,upperTerraceFinish:built.upperFinish,registerArchitecture:{foreground:'continuous-external-passage-over-coursed-stone-retaining-wall',masonry:built.registerMasonry,frontWindows:0,rearBuildings:registerBuildings.map(r=>r.record),thinRegisterFrameRemoved:true,noNewCollision:true},wholeArchitecture:{regions:['A','B','C','D','E','F','G','H'],rampProfiles:built.rampProfiles,columns:linked.flatMap(r=>r.columns),closedRoomSections:built.records,drawnStepCount:0},reportArchitecture:{closedStorageStoreys:2,storyHeight:222,stoneCourseHeight:[32,46],maxStoneWidth:187,rampJoints:section.joints,columns:frame.columns,undersideContacts:frame.heads,noNewCollision:true},status:'authored-awaiting-native-and-independent-review',source:'tools/environment/stage22-vertical-art.mjs',geometrySource:'tools/map-forge/stage22-vertical-geometry.mjs',nativeVectorOnly:true,style:'Korean administrative terraces: cut granite blocks, subdued gable and hip tile roofs, horizontal bound folios, square timber recesses. Upper-left key light, broad rear support shadows.',referenceSources:['tools/environment/korean-town-art.mjs: existing21/22/24 office/archive/cabinet assets','tools/environment/stage16-temple-art.mjs: broad plinth upper/side/shadow planes'],collisionPolicy:'Exact terrain/units/objectives/events/routes/gates unchanged. No scenic collision. Terrain paint is clipped to current solid by the shared renderer.',rearPolicy:'Six actual underside attachments descend to verified lower walking surfaces. No new front walk rim or decorative balcony deck.',terrainAttachments:wall.attachments,namedStoneMasses:materials.records,artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage22Supports||[]).map(p=>({elementId:e.id,...p}))),buildingElements:placed.map(e=>e.id),budgets:{maxNodesPerAsset:180,repeatedNoisePaths:0,decorativeCollisionBodies:0},views:[{id:'report-cross-cover',x:1740,y:3320,z:.55,w:1440,h:960},{id:'lower-seal-court',x:1270,y:5100,z:.57,w:1440,h:960},{id:'register-ascent',x:1580,y:2300,z:.55,w:1440,h:960},{id:'comparison-exit',x:2420,y:1180,z:.65,w:1440,h:960}]};
+ stage.design.vertical22Art={revision:1,iteration:7,upperTerraceFinish:built.upperFinish,registerArchitecture:{foreground:'continuous-external-passage-over-short-masonry-cap-and-rock',masonry:built.registerMasonry,frontWindows:0,rearBuildings:registerBuildings.map(r=>r.record),thinRegisterFrameRemoved:true,noNewCollision:true},wholeArchitecture:{regions:['A','B','C','D','E','F','G','H'],rampProfiles:built.rampProfiles,columns:linked.flatMap(r=>r.columns),closedRoomSections:built.records,drawnStepCount:0},reportArchitecture:{closedStorageStoreys:2,storyHeight:222,stoneCourseHeight:[32,46],maxStoneWidth:187,rampJoints:section.joints,columns:frame.columns,undersideContacts:frame.heads,noNewCollision:true},status:'authored-awaiting-native-and-independent-review',source:'tools/environment/stage22-vertical-art.mjs',geometrySource:'tools/map-forge/stage22-vertical-geometry.mjs',nativeVectorOnly:true,style:'Korean administrative terraces: cut granite blocks, subdued gable and hip tile roofs, horizontal bound folios, square timber recesses. Upper-left key light, broad rear support shadows.',referenceSources:['tools/environment/korean-town-art.mjs: existing21/22/24 office/archive/cabinet assets','tools/environment/stage16-temple-art.mjs: broad plinth upper/side/shadow planes'],collisionPolicy:'Art adds no collision; foreground paint clips to the geometry source. Separate geometry revision adds a west-route pause court; objectives, east required path and gates remain unchanged.',rearPolicy:'One receding rock shoulder joins verified lower supports. Overlong timber frames removed; existing houses retain shallow plinths. No scenic collision or new walk rim.',terrainAttachments:wall.attachments,namedStoneMasses:materials.records,artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage22Supports||[]).map(p=>({elementId:e.id,...p}))),buildingElements:placed.map(e=>e.id),budgets:{maxNodesPerAsset:180,repeatedNoisePaths:0,decorativeCollisionBodies:0},views:[{id:'report-cross-cover',x:1740,y:3320,z:.55,w:1440,h:960},{id:'lower-seal-court',x:1270,y:5100,z:.57,w:1440,h:960},{id:'register-ascent',x:1580,y:2300,z:.55,w:1440,h:960},{id:'comparison-exit',x:2420,y:1180,z:.65,w:1440,h:960}]};
  if(gameplay(stage)!==unchanged||JSON.stringify(project.stages.filter(s=>s!==stage))!==others)throw Error('Stage22 visual author changed gameplay or another stage');return project;
 }
