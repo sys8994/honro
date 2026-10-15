@@ -21,15 +21,27 @@
   },
   "hound": {
     "verdict": "유지",
-    "note": "긴 주둥이·작은 눈·뒤틀린 목과 어깨의 큰 면으로 친숙한 만화 개의 인상을 줄였다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "원본의 뼈빛 안면·검은 안와·긴 다리·날카로운 등선을 복원. 꺼진 복부와 목힘줄을 유지하고 등·견갑·허벅지·앞발에만 중간 명도를 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "긴 주둥이·작은 눈·뒤틀린 목과 어깨의 큰 면으로 친숙한 만화 개의 인상을 줄였다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "boar": {
     "verdict": "유지",
-    "note": "낮은 눈과 긴 주둥이, 무딘 엄니·각진 중량으로 둥근 얼굴과 익살스러운 꼬리 비중을 줄였다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "원본의 높은 어깨·긴 밝은 엄니를 복원하고 목가죽·견갑·엄니 뿌리·발굽 하중을 보강했다. 부모 방향 검수 후 형상을 유지했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "낮은 눈과 긴 주둥이, 무딘 엄니·각진 중량으로 둥근 얼굴과 익살스러운 꼬리 비중을 줄였다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "stag": {
     "verdict": "유지",
@@ -38,9 +50,15 @@
   },
   "bat": {
     "verdict": "유지",
-    "note": "좌우 날개막과 날개 끝의 길이·굽힘을 달리해 대칭 문장 같은 인상을 줄였다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "3899a2f의 날개막·골격 면과 두 날개의 긴장을 복원했다. 원본 관절·모션을 보존한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "좌우 날개막과 날개 끝의 길이·굽힘을 달리해 대칭 문장 같은 인상을 줄였다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "crow": {
     "verdict": "유지",
@@ -49,27 +67,51 @@
   },
   "ghost": {
     "verdict": "유지",
-    "note": "삼베색 교차 여밈과 빈 얼굴·비대칭 머리카락으로 보라 후드와 가면을 교체했다. 큰 수의 면과 어깨·빈 소매가 축소 화면에서 분리된다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "빈 얼굴 대신 깊은 안와·광대·목과 긴 손을 복원. 삼베 앞섶과 몸통의 압박/접힘면을 분리했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "삼베색 교차 여밈과 빈 얼굴·비대칭 머리카락으로 보라 후드와 가면을 교체했다. 큰 수의 면과 어깨·빈 소매가 축소 화면에서 분리된다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "shade": {
     "verdict": "유지",
-    "note": "눌린 머리와 몸을 조이는 굵은 사선 결박으로 망령과 구별했다. 얇은 가로선 증량 대신 찌그러진 옷의 큰 면을 사용한다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "결박 아래의 얼굴·목·손과 압박된 천의 음영을 보강했다. 결박의 폭과 장력, 꺼진 옷 속을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "눌린 머리와 몸을 조이는 굵은 사선 결박으로 망령과 구별했다. 얇은 가로선 증량 대신 찌그러진 옷의 큰 면을 사용한다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "human": {
     "verdict": "유지",
-    "note": "작은 얼굴과 낮은 관모·교차깃, 길어진 옷 면과 다리로 성인 비례를 보강했다. 활 관절과 조준은 유지한다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "피부·소매 관절·몸통 하중을 보강했다. 궁수의 청회색·무사의 적갈색·서고의 종이·주조의 그을음과 가죽으로 역할 재질을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "작은 얼굴과 낮은 관모·교차깃, 길어진 옷 면과 다리로 성인 비례를 보강했다. 활 관절과 조준은 유지한다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "warden": {
     "verdict": "유지",
-    "note": "긴 목주 얼굴과 낮은 관모, 닫힌 입·깎인 목재 면으로 익살스러운 이빨을 제거했다. 장승의 수호 기원과 게임의 들림을 구별한다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "검은 안와와 목재 절단면·갈라진 심재를 보강. 한국 장승의 수호 역할 자체를 악으로 해석하지 않는다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "긴 목주 얼굴과 낮은 관모, 닫힌 입·깎인 목재 면으로 익살스러운 이빨을 제거했다. 장승의 수호 기원과 게임의 들림을 구별한다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "mourner": {
     "verdict": "유지",
@@ -78,45 +120,87 @@
   },
   "lantern": {
     "verdict": "유지",
-    "note": "해골 얼굴을 제거하고 찢어진 한지·기울어진 목제 틀·빈 내부의 불빛으로 식별한다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "목틀 결구·한지 찢긴 창의 안쪽과 어두운 측면을 분리했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "해골 얼굴을 제거하고 찢어진 한지·기울어진 목제 틀·빈 내부의 불빛으로 식별한다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "possessedGuard": {
     "verdict": "유지",
-    "note": "작은 그늘진 얼굴과 긴 군복, 어깨 보호구·방패의 큰 면으로 병정 인상을 줄였다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "피부·소매 관절·몸통 하중을 보강했다. 궁수의 청회색·무사의 적갈색·서고의 종이·주조의 그을음과 가죽으로 역할 재질을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "작은 그늘진 얼굴과 긴 군복, 어깨 보호구·방패의 큰 면으로 병정 인상을 줄였다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "possessedArcher": {
     "verdict": "유지",
-    "note": "얼굴 크기·복식 면을 정돈하고 활·화살통의 사선과 조준 몸짓을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "피부·소매 관절·몸통 하중을 보강했다. 궁수의 청회색·무사의 적갈색·서고의 종이·주조의 그을음과 가죽으로 역할 재질을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "얼굴 크기·복식 면을 정돈하고 활·화살통의 사선과 조준 몸짓을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "gateMaster": {
     "verdict": "유지",
-    "note": "넓은 어깨 보호구·긴 환도와 무게 중심으로 일반 호위와 구분한다. 수호상을 악귀로 설명하는 설정은 추가하지 않았다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "피부·소매 관절·몸통 하중을 보강했다. 궁수의 청회색·무사의 적갈색·서고의 종이·주조의 그을음과 가죽으로 역할 재질을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "넓은 어깨 보호구·긴 환도와 무게 중심으로 일반 호위와 구분한다. 수호상을 악귀로 설명하는 설정은 추가하지 않았다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "archerMaster": {
     "verdict": "유지",
-    "note": "큰 화살통과 한쪽 어깨 보호구·기울어진 관모로 일반 궁수의 단순 색상 변형을 벗어났다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "피부·소매 관절·몸통 하중을 보강했다. 궁수의 청회색·무사의 적갈색·서고의 종이·주조의 그을음과 가죽으로 역할 재질을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "큰 화살통과 한쪽 어깨 보호구·기울어진 관모로 일반 궁수의 단순 색상 변형을 벗어났다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "archiveFiend": {
     "verdict": "유지",
-    "note": "밝은 가면과 후드를 낮은 방건·그늘진 작은 얼굴·펼친 장부의 구조로 교체했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "피부·소매 관절·몸통 하중을 보강했다. 궁수의 청회색·무사의 적갈색·서고의 종이·주조의 그을음과 가죽으로 역할 재질을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "밝은 가면과 후드를 낮은 방건·그늘진 작은 얼굴·펼친 장부의 구조로 교체했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "kilnFiend": {
     "verdict": "유지",
-    "note": "작업 앞치마·낮은 머리싸개와 등짐·망치의 큰 면을 분리했다. 작은 병정 얼굴의 비중을 줄였다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "피부·소매 관절·몸통 하중을 보강했다. 궁수의 청회색·무사의 적갈색·서고의 종이·주조의 그을음과 가죽으로 역할 재질을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "작업 앞치마·낮은 머리싸개와 등짐·망치의 큰 면을 분리했다. 작은 병정 얼굴의 비중을 줄였다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "ally_porter": {
     "verdict": "유지",
@@ -170,9 +254,15 @@
   },
   "summon_stalker": {
     "verdict": "유지",
-    "note": "교차한 수의와 빈 목깃·비대칭 소매·긴 손으로 몸의 부재를 나타낸다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "좁은 광대와 꺼진 눈, 손목 힘줄을 드러내 빈 작업복 인형의 인상을 줄였다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "교차한 수의와 빈 목깃·비대칭 소매·긴 손으로 몸의 부재를 나타낸다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "summon_lantern": {
     "verdict": "유지",
@@ -181,15 +271,27 @@
   },
   "summon_charger": {
     "verdict": "유지",
-    "note": "긴 목재 얼굴·어깨 멜빵과 무거운 망치로 돌격의 전방 중량을 보강했다. 구 저장·팩토리를 그대로 보존한다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "메를 드는 어깨의 압박과 굽은 팔꿈치·손목의 하중을 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "긴 목재 얼굴·어깨 멜빵과 무거운 망치로 돌격의 전방 중량을 보강했다. 구 저장·팩토리를 그대로 보존한다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "summon_warden": {
     "verdict": "유지",
-    "note": "굵고 넓은 목주·처진 가지·닫힌 입으로 만화 장승 인상을 줄였다. 수호의 역할은 유지한다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "수직 목재의 심재와 안면/가지 절단면을 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "굵고 넓은 목주·처진 가지·닫힌 입으로 만화 장승 인상을 줄였다. 수호의 역할은 유지한다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "summon_host": {
     "verdict": "미사용 후보",
@@ -198,15 +300,27 @@
   },
   "summon_eater": {
     "verdict": "유지",
-    "note": "둥근 두 눈·코·삼각 이빨을 버리고 높은 한쪽 어깨와 비뚤어진 깊은 수직 입·철갑 같은 큰 면으로 재구성했다. 흡수·성장 모션은 원래 리그를 유지한다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "갑판 겹침·깊은 파쇄강·턱과 발 접지면을 분리했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "둥근 두 눈·코·삼각 이빨을 버리고 높은 한쪽 어깨와 비뚤어진 깊은 수직 입·철갑 같은 큰 면으로 재구성했다. 흡수·성장 모션은 원래 리그를 유지한다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "summon_echo": {
     "verdict": "유지",
-    "note": "웃는 가면을 제거하고 빈 목·길이가 다른 소매·큰 종이 접힘으로 반향의 빈 공간을 표현한다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "접힌 옷 아래 턱·목·흉곽 음영과 양손을 추가해 종이기호와 구별했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "웃는 가면을 제거하고 빈 목·길이가 다른 소매·큰 종이 접힘으로 반향의 빈 공간을 표현한다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "summon_earthbound": {
     "verdict": "유지",
@@ -220,9 +334,15 @@
   },
   "bier_boss": {
     "verdict": "유지",
-    "note": "밝은 얼굴·손을 제거하고 빈 내부·길고 무거운 휘장·굵은 상여채를 사용한다. 8장과 호환 보스가 같은 그림을 쓴다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "장부결구·깊은 바닥·휘장의 꺾임과 상여채의 연결을 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "밝은 얼굴·손을 제거하고 빈 내부·길고 무거운 휘장·굵은 상여채를 사용한다. 8장과 호환 보스가 같은 그림을 쓴다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "stretcher": {
     "verdict": "유지",
@@ -241,9 +361,15 @@
   },
   "minecart": {
     "verdict": "유지",
-    "note": "광석 적재물·각진 바퀴와 차축·받침띠·측면 그늘로 작업 수레의 중량을 보강했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "광석의 분리된 면·판재 이음·철결구·차축과 바퀴살로 중량을 드러냈다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "광석 적재물·각진 바퀴와 차축·받침띠·측면 그늘로 작업 수레의 중량을 보강했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "picks": {
     "verdict": "유지",
@@ -265,21 +391,39 @@
   },
   "resonance": {
     "verdict": "유지",
-    "note": "둥근 유령 얼굴 대신 비대칭 몸체와 휘어진 음향 공극을 사용한다. monkVessel 별칭도 같은 경로다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "안와·턱·목힘줄을 더해 두 빈 띠의 기호화를 줄였다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "둥근 유령 얼굴 대신 비대칭 몸체와 휘어진 음향 공극을 사용한다. monkVessel 별칭도 같은 경로다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "echo": {
     "verdict": "유지",
-    "note": "원형 얼굴을 제거하고 어긋난 파편 면을 넣어 공명혼과 구분했다. 2라운드 후 곡괭이로 변하는 상태는 그대로다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "광산 암면의 어긋난 층 위에 안와·턱·견갑과 힘줄을 분리했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "원형 얼굴을 제거하고 어긋난 파편 면을 넣어 공명혼과 구분했다. 2라운드 후 곡괭이로 변하는 상태는 그대로다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "bellCluster": {
     "verdict": "유지",
-    "note": "같은 유령 세 개 대신 크기·높이가 다른 청동 종과 연결 구조로 종울림의 물성을 드러낸다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "종 입술의 어두운 안쪽과 주조면을 추가해 겹치는 금속 몸체 깊이를 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "같은 유령 세 개 대신 크기·높이가 다른 청동 종과 연결 구조로 종울림의 물성을 드러낸다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "hoist": {
     "verdict": "유지",
@@ -289,21 +433,39 @@
   },
   "keeper": {
     "verdict": "유지",
-    "note": "occultist/human 위임을 제거했다. 낮은 머리싸개·교차 깃·작업 앞치마·긴 다리, 손에 든 청동 종과 외부 타종봉의 독립 Canvas 디자인이다. 보라 후드·지팡이가 없다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "목과 소매 압박, 가죽 앞치마와 종 주조면을 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "occultist/human 위임을 제거했다. 낮은 머리싸개·교차 깃·작업 앞치마·긴 다리, 손에 든 청동 종과 외부 타종봉의 독립 Canvas 디자인이다. 보라 후드·지팡이가 없다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "legacy_hound": {
     "verdict": "유지",
-    "note": "구 저장·player 팀 분기에서 현행 hound 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "원본의 뼈빛 안면·검은 안와·긴 다리·날카로운 등선을 복원. 꺼진 복부와 목힘줄을 유지하고 등·견갑·허벅지·앞발에만 중간 명도를 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "구 저장·player 팀 분기에서 현행 hound 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "legacy_boar": {
     "verdict": "유지",
-    "note": "구 저장·player 팀 분기에서 현행 boar 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "원본의 높은 어깨·긴 밝은 엄니를 복원하고 목가죽·견갑·엄니 뿌리·발굽 하중을 보강했다. 부모 방향 검수 후 형상을 유지했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "구 저장·player 팀 분기에서 현행 boar 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "legacy_stag": {
     "verdict": "유지",
@@ -313,9 +475,15 @@
   },
   "legacy_bat": {
     "verdict": "유지",
-    "note": "구 저장·player 팀 분기에서 현행 bat 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "3899a2f의 날개막·골격 면과 두 날개의 긴장을 복원했다. 원본 관절·모션을 보존한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "구 저장·player 팀 분기에서 현행 bat 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "legacy_crow": {
     "verdict": "유지",
@@ -325,27 +493,51 @@
   },
   "legacy_ghost": {
     "verdict": "유지",
-    "note": "구 저장·player 팀 분기에서 현행 ghost 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "빈 얼굴 대신 깊은 안와·광대·목과 긴 손을 복원. 삼베 앞섶과 몸통의 압박/접힘면을 분리했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "구 저장·player 팀 분기에서 현행 ghost 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "legacy_shade": {
     "verdict": "유지",
-    "note": "구 저장·player 팀 분기에서 현행 shade 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "결박 아래의 얼굴·목·손과 압박된 천의 음영을 보강했다. 결박의 폭과 장력, 꺼진 옷 속을 구별한다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "구 저장·player 팀 분기에서 현행 shade 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "legacy_lantern": {
     "verdict": "유지",
-    "note": "구 저장·player 팀 분기에서 현행 lantern 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "목틀 결구·한지 찢긴 창의 안쪽과 어두운 측면을 분리했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "구 저장·player 팀 분기에서 현행 lantern 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "legacy_warden": {
     "verdict": "유지",
-    "note": "구 저장·player 팀 분기에서 현행 warden 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "검은 안와와 목재 절단면·갈라진 심재를 보강. 한국 장승의 수호 역할 자체를 악으로 해석하지 않는다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "구 저장·player 팀 분기에서 현행 warden 벡터와 모션을 공유한다. 이전의 평면 선 그림을 대체하고 종·방향·크기·팀·저장값을 보존했다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "legacy_mourner": {
     "verdict": "유지",
@@ -367,21 +559,39 @@
   },
   "legacy_knight": {
     "verdict": "유지",
-    "note": "뾰족 투구·반복 판금을 낮은 머리띠·목가리개·포형 갑주의 큰 면으로 교체했다. 검의 연결과 동작은 유지한다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "천 아래 갑편·팔 하중과 금속면을 추가했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "뾰족 투구·반복 판금을 낮은 머리띠·목가리개·포형 갑주의 큰 면으로 교체했다. 검의 연결과 동작은 유지한다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "legacy_occultist": {
     "verdict": "유지",
-    "note": "보라 후드·마법진 지팡이를 낮은 삼베 두건·교차깃·접은 의식 종이와 동제 고리로 교체했다. 주인공 소단은 변경하지 않는다.",
-    "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
-    "previousVerdict": "우선 개편"
+    "note": "겹옷과 손의 연결, 허리 아래 접힘을 보강했다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "우선 개편",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "보라 후드·마법진 지팡이를 낮은 삼베 두건·교차깃·접은 의식 종이와 동제 고리로 교체했다. 주인공 소단은 변경하지 않는다.",
+      "evidence": "2026-10-14 source 2d6e646 · 실제 Scene 전후 180/90/35px·5모션·양방향 검토, phase1-qa 64검사. 공개 Pages·정상 완주·공식 사진 직접 관찰 미완료와 구분.",
+      "previousVerdict": "우선 개편"
+    }
   },
   "legacy_summon": {
     "verdict": "유지",
-    "note": "미등록 summonKind는 개선된 summon_stalker 그림과 모션을 공유한다. 구 저장·팩토리의 유닛 값은 그대로다.",
-    "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
-    "previousVerdict": "수정 권장"
+    "note": "좁은 광대와 꺼진 눈, 손목 힘줄을 드러내 빈 작업복 인형의 인상을 줄였다.",
+    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "previousVerdict": "수정 권장",
+    "previousReview": {
+      "verdict": "유지",
+      "note": "미등록 summonKind는 개선된 summon_stalker 그림과 모션을 공유한다. 구 저장·팩토리의 유닛 값은 그대로다.",
+      "evidence": "2026-10-14 source 20d86d6 · 실제 Scene 전후 180/90/35px·5모션·양방향, phase2-qa 128검사 및 Game/Workshop desktop/mobile. 정상 완주·공개 Pages·공식 사진 직접 관찰은 별도 미완료.",
+      "previousVerdict": "수정 권장"
+    }
   },
   "target_cliff-cleat": {
     "verdict": "유지",

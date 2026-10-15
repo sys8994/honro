@@ -18,7 +18,7 @@ await mkdir(root+'/_local/reports/character-catalog',{recursive:true});
 if(!uiOnly){await writeFile(root+'/_local/reports/character-catalog/runtime.js',runtime);await writeFile(root+'/_local/reports/character-catalog/base-inventory.json',JSON.stringify(data));}
 const sourceCache=new Map();
 for(const row of data.rows){row.review=reviews[row.id]||{verdict:'검수 대기',note:'실제 픽셀 검수 전'};for(const route of row.routes){if(!sourceCache.has(route.file))sourceCache.set(route.file,(await readFile(root+'/'+route.file,'utf8')).split('\n'));route.line=sourceCache.get(route.file).findIndex(s=>s.includes(route.token))+1;if(!route.line)throw Error('Missing evidence: '+route.file+' '+route.token);}}
-Object.assign(data,{sourceCommit,sourceDirty,sourceSha256:createHash('sha256').update(runtime).digest('hex'),references,reviewDate:'2026-10-14'});
+Object.assign(data,{sourceCommit,sourceDirty,sourceSha256:createHash('sha256').update(runtime).digest('hex'),references,reviewDate:'2026-10-15'});
 await mkdir(root+'/_local/reports/character-catalog',{recursive:true});
 await writeFile(root+'/_local/reports/character-catalog/inventory.json',JSON.stringify(data,null,2)+'\n');
 const escape=s=>s.replace(/<\/script/gi,'<\\/script');
