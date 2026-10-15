@@ -2927,7 +2927,8 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 원인: `eaterReleasedShot`이 AP01 후속 화살까지 공유하는 cast 번호를 면역 키로 사용했다. 기준 소스에서 실제 A01+AP01 발사 재현 시 먹귀 HP 1 소진 후 생존 적 HP가 999에 고정됐다.
 - 변경: 같은 피해를 발생시킨 투사체 ID만 제외한다. AoE는 기존 대상 스냅샷을 유지한다. 복귀 시 포획/옛 shot 제외/연출 포즈를 즉시 해제하고 안전 위치·물리·전투 대상 상태를 함께 복원한다. 기존 저장의 shot 제외는 로드 시 제거한다. HP 0 포획 적은 부활하지 않으며 방출 완료 플래그로 재실행을 방지한다. 피해 사망에는 몸 조각·혼기 파열, 시간 만료에는 기존 방출을 사용한다.
 - 검증: lifecycle 16, 독립 계약 7, App Continue/export-import, UI 및 기여장부 통과. Game/Workshop 생산 번들의 Chromium 격리 컨텍스트에서 PC 1280×800·모바일 390×700 실제 AP01 5발: HP 999→949, 방출 1회. 전후 및 확대·파열 프레임은 `_local/reports/eater-revision/`에 보관한다. 사용자 저장은 접근하지 않았다.
-- 진행 상태: `npm run verify`와 migration은 변경된 엔진의 기존 정확 해시 장부에서 중단했다. 승인된 새 변경의 가역 delta 등록이 필요하며 실패를 통과로 보지 않는다. 원격 쓰기는 별도 폭포 작업의 부모 인계까지 보류한다.
+- 검증 장부: 기존 승인 fixture를 수정하지 않고 `eater-sodan-revision-delta.json`과 가역 투영을 추가했다. 168개 현재 소스/9개 빌드/두 HTML 계약과 이번 변경의 49개 부정 대조가 통과했다. TypeScript 검사도 통과했다.
+- 집계 한계: `npm run verify` 최초 실행은 변경 전 정확 해시에서 멈췄으며 해당 gate는 위 delta로 해결했다. 이후 migration은 7장 honroGrowth HP 527 대 434, `npm --prefix game test`는 1장 캠페인 해시, `tests/integration.py`는 8장 화면 679px 차이로 실패했다. 모두 별도 기준 master 1902844 체크아웃에서 동일하게 재현했다. 전체 verify 통과나 전체 정상 플레이 완료로 보고하지 않는다. 원격 쓰기와 Pages 검수는 별도 폭포 작업의 부모 인계까지 보류한다.
 
 ## 2026-10-15 소단 만혼귀결 균등 방사·발사 순서
 
