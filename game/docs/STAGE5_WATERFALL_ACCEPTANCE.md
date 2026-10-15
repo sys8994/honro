@@ -15,11 +15,11 @@ Status: implementation and independent review in progress. This document is not 
 
 | Source | Authored/runtime count | Role and geometry |
 | --- | ---: | --- |
-| receiver-guard | 3/6 | Split-height bank shoulder and ritual approach; approach pressure before holding the array |
-| basin-pocket | 3/6 | Ascending shooting ledge; guards interrupt the archer's line and require positioning or prior combat |
-| upper-roost | 2/4 | Air group above the ledge; elevated sight and incoming fire |
-| cleat-guard | 2/4 | Front-rib stags and two cave archers in front of the tablet, avoiding an inert tablet-blocked rear clone |
-| lower-beasts | 3/6, once | Original progress1900 trigger after earlier approach warning and at least one round; atomic entry along the upper ledge |
+| receiver-guard | 3/6 | Low west contour and ritual approach; approach pressure before holding the array |
+| basin-pocket | 3/6 | Inner bank and return slope; guards interrupt the archer's line and require positioning or prior combat |
+| upper-roost | 2/4 | Air group above the western overlooks; elevated sight and incoming fire |
+| cleat-guard | 2/4 | Outer bank ground guards and elevated ranged pressure; no guards stand on the removed cave approach |
+| lower-beasts | 3/6, once | Progress1750 trigger after progress1550 warning and at least one round; atomic six-body entry on the continuous shore with 110 spacing |
 | habitat-5-0/1 | existing conditional 1–4 | Existing settlement/minimum-population response from wet grass or nest; warned when fewer than5 foes remain before breaking the tablet |
 
 Initial20, action cap4, population cap20, enemy stats, target HP and one-round settlement are preserved. The unaltered cap can legitimately defer the finite six until six initial foes are defeated. A no-kill objective-first win can preempt that wave; this is distinct from a blocked safe-placement entry. Conditional habitats can likewise be preempted by fast objective completion. No extra round is added to force every wave into every run.
@@ -27,11 +27,11 @@ Initial20, action cap4, population cap20, enemy stats, target HP and one-round s
 ## Persistence and shared authoring
 
 - `authorStage5Waterfall(project,g)` is the last Stage5 author in the canonical Act1 generator. It leaves every other stage unchanged.
-- New/retried entry opts in through `honroStage5WaterfallRevision:1`. Old live battle snapshots have no flag and remain untouched.
+- New/retried entry additionally opts in through `honroStage5LakeRevision:1`. Old live battle snapshots with waterfall revision only retain their original terrain.
 - `stage5-waterfall-authoring.mjs` requires whole-stage canonical/runtime equality, exact generator reproduction, Game/Workshop closed/open geometry equality and serialized reimport equality. Canonical Workshop metadata retains `campaign:true`; arbitrary custom maps do not receive the narrative override.
 - The original037 stage is frozen in `tests/fixtures/stage5-waterfall/before-stage5.json`, SHA256 `483ee2642fcda9a7f49815d83cccbcf82583a57c3711eaa683ed5fddaf9ab439`. Existing history assertions are not weakened. The central release-history owner maintains the separate immutable/current manifest boundary.
 
-## Evidence boundaries
+## Earlier waterfall evidence (historical; not lake completion evidence)
 
 - `stage5-waterfall-body-gate.mjs`: exact observed R13 whole-battle copies preserve actors/projectiles/state while upgrading only the earlier revision1 body projection; bidirectional recovery and four bodies × closed/open/released states are isolated geometry checks, not normal play.
 - `stage5-waterfall-routes.mjs`: four-body isolated ordinary movement, cave return and real-gravity pool landing/escape. Its airborne starts and unlimited per-step movement are explicit geometry fixtures, not normal budget play.
