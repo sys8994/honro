@@ -2920,3 +2920,9 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 집중 브라우저 검사: 격리된 새 16장 진입, 실제 monk/hall use, 통제한 위협 제거, 자동 필수 증언·열쇠·옛 이송 기록, 결과/쉼터 UI를 통한 17장 진입. 원문은 한 번도 열지 않았으며 desktop/mobile의 증언 도중 reload/Continue에서 대화·단계·획득 기록이 일치했다. 이동/전투 압력은 fixture로 통제한 기능 검수이며 정상 자원 완주가 아니다. `tests/temple-testimony-browser.py`, 증거 `_local/reports/temple-testimony/`. 기존 전체 baseline 검사를 반복하지 않는다.
 
 최종 집중 검사: 새/구 narrative snapshot, 선택 전문 동일성, 17장 포함 나머지 맵/문서/단계 불변, record 커밋 전 승리 차단과 1회 완료 통과. desktop/mobile 실제 자동 대화·중간 Continue·원문 미열람 17장 진입 및 Workshop 공유 증언 표시 통과. 168 source/9 variant/두 HTML runtime 계약과 30 map/640 asset campaign 계약 통과. 새 가역 delta는 두 runtime 파일 및 16장 witness/record 배열만 허용하며 이전 fixture는 유지한다. 전체 verify/migration/integration은 요청대로 반복하지 않았다.
+
+## 2026-10-15 — Stage17 5턴 방어 완료 복구
+- 원인: evidence revision1에서도 방어 5턴 외에 수레 10체 생성을 요구했다. 안전한 입구 점유/배치 실패 대기가 7/5 이상 진행을 막았다.
+- 범위: 17장 `honroEvidenceRevision===1`의 hold-hoist만 시간으로 완료. 마지막 보호 간격에서 후속 clear-lift/notes를 즉시 한 번 커밋하며 남은 증원 요청은 종료한다. 기존 생성 안전·이탈/적점유·미개정 Continue는 유지한다.
+- 검증: tests/hoist-defense.mjs — 생성0/3/6/9, 4→5, 7/5 JSON복구, 양쪽 입구 점유, 배치실패, 대화/모달 정지, legacy, 중복 완료/후속 생성 방지. 실제 desktop/mobile 이전HTML 저장→현재HTML Continue와 디버그 최종간격 통과. 현재 runtime exact delta 13개 negative 포함 통과. 원본 저장 대신 격리 checkpoint 사용, 정상 전투 완주 주장은 하지 않음.
+- 증거: `_local/reports/hoist-defense/`. Library libfile_641bf94007d881919066f7e5fde104e0 승인 전송 URL이 403으로 픽셀 미확인. 공개 Pages 검수 및 원격 쓰기는 부모의 단일 발행자 인계 대기.
