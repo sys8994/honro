@@ -27,3 +27,5 @@
 검수는 `tests/evidence-quests.mjs`, `tests/evidence-quests-browser.py`. 브라우저는 desktop/mobile의 체크포인트 fixture에서 실제 M09 발사/착지, 목표 전환, 선택 원문과 전투 정지를 검사한다. 이는 정상 자원 캠페인 완주 증거가 아니다. 전후 PNG와 로그는 `_local/reports/evidence-quests/`에 둔다. 정확 source/build delta는 별도 승인 계약으로 기존 manifest를 역복원한다.
 
 집중 검수 결과: 위 native/브라우저 검사, 기존 16종 모달의 명시적 pre-revision Continue/Workshop 호환, 새 원문 모달의 긴 증언 터치스크롤/키보드/새 Continue 모두 통과. 별도 `tests/evidence-quests-reader-browser.py`가 획득 뒤 열람과 저장을 검사한다. 본문 잉크색도 실제 computed style로 확인한다. P0 body-sweep 184+80 및 기존 canon/bell/void 검사 통과. 전체 baseline 검사 결과는 최종 배포 보고서에 별도로 남긴다.
+
+배포 후 확인한 종료 경계: 대기 중 목표 대사가 outcome에 합쳐진 뒤 선택 원문 변환을 적용한다. 17장 일지가 마지막 목표일 때도 stored=1/mandatory=0이며, 저장 중인 구 대화는 변환하지 않는다. 캠페인 계약은 runtime의 13장 초기 상태와 marker label/target만 exact JSON delta로 허용한다. 117개 변조/역복원 검사로 병력·지형·표식 순서의 무단 변경을 거부한다. raw campaign/640 에셋과 이전 승인 fixture는 변경하지 않았다.

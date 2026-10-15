@@ -1,7 +1,7 @@
 {
   "kind": "field-evidence-optional-originals",
   "baseCurrentCommit": "ba3678a1b36e7eba7f4b8fd28a998fc2faed20e6",
-  "sourceCommit": "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6",
+  "sourceCommit": "54a822bd58043f969bcdc279a16463d33d36c774",
   "sourceChanges": [
     {
       "path": "shared/build.mjs",
@@ -61,7 +61,7 @@
           "d8b2c85b48c868d3fbfe1425ad21c06baca6478d Integrate waterfall cavern and chapter-six companion into current UI and combat safety",
           "f09731f49dd80bb343d2311e2c5cba70d1e02dad Convert quest destruction objects to stationary hostile objective units",
           "32289215db67589e4dece6742d130dfc6aca4893 Adopt reviewed Act 2/3 canon, bell anomaly and safe void encounter",
-          "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+          "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
         ]
       },
       "exactEdits": [
@@ -127,7 +127,7 @@
           "cb14b45b44576c4dfa594ecd8a4c91f0834219f3 Replace eater projectile absorption with grounded enemy capture",
           "30511a6c0cea04ee340e1dad1ede6077e914cf1f Integrate capture targeting with coalition AI and continuous combat state",
           "f09731f49dd80bb343d2311e2c5cba70d1e02dad Convert quest destruction objects to stationary hostile objective units",
-          "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+          "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
         ]
       },
       "exactEdits": [
@@ -203,7 +203,7 @@
           "cb14b45b44576c4dfa594ecd8a4c91f0834219f3 Replace eater projectile absorption with grounded enemy capture",
           "30511a6c0cea04ee340e1dad1ede6077e914cf1f Integrate capture targeting with coalition AI and continuous combat state",
           "f09731f49dd80bb343d2311e2c5cba70d1e02dad Convert quest destruction objects to stationary hostile objective units",
-          "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+          "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
         ]
       },
       "exactEdits": [
@@ -244,16 +244,16 @@
     {
       "path": "shared/runtime/evidence-quests.js",
       "previousSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "sha256": "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+      "sha256": "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
       "beforeRow": null,
       "afterRow": {
         "path": "shared/runtime/evidence-quests.js",
         "kind": "added",
         "beforeSha256": null,
         "provenance": [
-          "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+          "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
         ],
-        "sha256": "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf"
+        "sha256": "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2"
       },
       "exactEdits": [
         {
@@ -317,7 +317,7 @@
             "};",
             "// Only already acquired document rows are retained. This is not a catalogue of spoilers.",
             "function present(app,lines){const b=app.engine?.b;if(!active(b))return lines;app.profile.honroEvidenceRevision=1;const docs=app.profile.honroEvidenceDocuments??=[];return lines.map(row=>{const [who,text,meta={}]=row;if(meta.evidenceOriginal&&!docs.some(d=>d.id===meta.evidenceOriginal.id))docs.push(clone(meta.evidenceOriginal));if(meta.kind!=='document')return row;const id=meta.documentId||`${b.honroStage}:${meta.documentTitle}`;if(!docs.some(d=>d.id===id&&d.text===text))docs.push({id,text,meta:clone(meta),stage:b.honroStage});return ['서술',(summaries[id]||text.replace(/\\n/g,' · '))+'\\n원문은 여정의 기록에서 선택해 읽을 수 있다.',{...meta,kind:'narration',documentId:undefined,documentTitle:undefined}];});}",
-            "G.HonroEvidenceQuests={version:1,active,ids,changes,reviseContent,satisfied,observe,targets,present};",
+            "G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,satisfied,observe,targets,present};",
             "})(globalThis);"
           ]
         }
@@ -363,7 +363,7 @@
           "4d1221f483b059433a9a8d23e12f493fb4f583ad Fix shelter departures after journal stage selection",
           "fff9557244bcab4483b2303a3e8250192851bbdd fix: bound rest camera to full reachable panorama",
           "ec6b5239717d94b3d2b810d251ee0397ac0af673 feat: restore Act1 landscape depth in rest scenes",
-          "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+          "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
         ]
       },
       "exactEdits": [
@@ -435,7 +435,7 @@
           "689b354231eb4082453bb8f8422090026a38e155 fix(story): expose the funeral belongings above low floor marks",
           "05b21f9bf906228e907136b12ed564df62f7b4a1 fix(art): size funeral belongings to the nearby hands",
           "d58768b4594166cd75f98a1673212e6d247a3387 Move world documents into the shared reading modal; preserve quests and P0",
-          "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+          "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
         ]
       },
       "exactEdits": [
@@ -454,7 +454,7 @@
     {
       "path": "shared/runtime/story.js",
       "previousSha256": "8635c0c4dace89540cb95b2e47ab12d108d33f13835261fceffd49bc488046b7",
-      "sha256": "c788ffff775be3d1e3e9cb589f8d2e69c117a539f93580df9cd0a811b3ab016d",
+      "sha256": "19f89a0aa0149eda1ac45dbb6edf51be57b31f31fda2077bacd266f97f701a03",
       "beforeRow": {
         "path": "shared/runtime/story.js",
         "kind": "changed",
@@ -479,7 +479,7 @@
         "path": "shared/runtime/story.js",
         "kind": "changed",
         "beforeSha256": "2685a948611504b3c165b1433900383cfc9a4271e61459e69cbca996f7433eac",
-        "sha256": "c788ffff775be3d1e3e9cb589f8d2e69c117a539f93580df9cd0a811b3ab016d",
+        "sha256": "19f89a0aa0149eda1ac45dbb6edf51be57b31f31fda2077bacd266f97f701a03",
         "provenance": [
           "c3e725b8e15ee71028c1f929d81bbc8b750b9ade feat: add revisioned route choices and separate Sodan binding target",
           "eec231369d9079ac1b3a0ffc2850bdd73276dbd8 fix: freeze legacy story events and clarify Sodan body presentation",
@@ -493,7 +493,7 @@
           "cb14b45b44576c4dfa594ecd8a4c91f0834219f3 Replace eater projectile absorption with grounded enemy capture",
           "30511a6c0cea04ee340e1dad1ede6077e914cf1f Integrate capture targeting with coalition AI and continuous combat state",
           "d58768b4594166cd75f98a1673212e6d247a3387 Move world documents into the shared reading modal; preserve quests and P0",
-          "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+          "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
         ]
       },
       "exactEdits": [
@@ -533,7 +533,7 @@
             "function start(app,lines,options={}){({lines,options}=G.HonroStoryStaging?.opening(app,lines,options)||{lines,options});if(options.after&&options.after!=='rest'&&options.index===undefined&&!app.engine?.b.honroCustom)lines=G.HonroStoryContent.scene(`${options.after}-${app.stage?.id}`,options.title||app.stage?.name,lines);if(options.after==='outcome'&&options.index===undefined){G.HonroEncounters.finishNarrative(app);const hs=app.engine?.b.honroState;if(hs){restoreQueuedSpeech(hs);const pending=[...(hs.storyQueue||[]),...(hs.deferredStory||[]).flatMap(x=>x.lines)];lines=[...(G.HonroStoryContent.beforeOutcome?.(app,pending)||pending),...lines];hs.storyQueue=[];hs.deferredStory=[];hs.storyBanter=[];hs.banterLine=null;}}lines=lines.filter(l=>allowed(app,l[0],l[2]));({lines,options}=G.HonroStoryStaging?.directed(app,lines,options)||{lines,options});if(!lines.length){if(options.after==='outcome')app.outcome(true);return false;}app.cancelInput();app.acc=0;app.turnNotice=null;app.storyHistoryOpen=false;const banter=$('banter');if(banter)banter.hidden=true;const banner=$('turn-banner');if(banner)banner.hidden=true;if(!app.dialogue&&app.scene&&!app.storyCamera)app.storyCamera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};app.dialogue={...options,lines:clone(lines),index:Math.min(options.index||0,options.staging?.position==='after'&&!options.staging.waitForDialogue?lines.length:lines.length-1)};if(app.dialogue.staging){app.dialogue.staging.camera??=clone(app.storyCamera||null);app.storyCamera=clone(app.dialogue.staging.camera);app.stagingLastTime=null;if(options.index!==undefined)G.HonroStoryStaging?.restore(app);}remember(app,lines,options.title);save(app);draw(app);return true;}"
           ],
           "after": [
-            "function start(app,lines,options={}){if(options.index===undefined)lines=G.HonroEvidenceQuests?.present(app,lines)||lines;({lines,options}=G.HonroStoryStaging?.opening(app,lines,options)||{lines,options});if(options.after&&options.after!=='rest'&&options.index===undefined&&!app.engine?.b.honroCustom)lines=G.HonroStoryContent.scene(`${options.after}-${app.stage?.id}`,options.title||app.stage?.name,lines);if(options.after==='outcome'&&options.index===undefined){G.HonroEncounters.finishNarrative(app);const hs=app.engine?.b.honroState;if(hs){restoreQueuedSpeech(hs);const pending=[...(hs.storyQueue||[]),...(hs.deferredStory||[]).flatMap(x=>x.lines)];lines=[...(G.HonroStoryContent.beforeOutcome?.(app,pending)||pending),...lines];hs.storyQueue=[];hs.deferredStory=[];hs.storyBanter=[];hs.banterLine=null;}}lines=lines.filter(l=>allowed(app,l[0],l[2]));({lines,options}=G.HonroStoryStaging?.directed(app,lines,options)||{lines,options});if(!lines.length){if(options.after==='outcome')app.outcome(true);return false;}app.cancelInput();app.acc=0;app.turnNotice=null;app.storyHistoryOpen=false;app.evidenceReader=null;const banter=$('banter');if(banter)banter.hidden=true;const banner=$('turn-banner');if(banner)banner.hidden=true;if(!app.dialogue&&app.scene&&!app.storyCamera)app.storyCamera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};app.dialogue={...options,lines:clone(lines),index:Math.min(options.index||0,options.staging?.position==='after'&&!options.staging.waitForDialogue?lines.length:lines.length-1)};if(app.dialogue.staging){app.dialogue.staging.camera??=clone(app.storyCamera||null);app.storyCamera=clone(app.dialogue.staging.camera);app.stagingLastTime=null;if(options.index!==undefined)G.HonroStoryStaging?.restore(app);}remember(app,lines,options.title);save(app);draw(app);return true;}"
+            "function start(app,lines,options={}){({lines,options}=G.HonroStoryStaging?.opening(app,lines,options)||{lines,options});if(options.after&&options.after!=='rest'&&options.index===undefined&&!app.engine?.b.honroCustom)lines=G.HonroStoryContent.scene(`${options.after}-${app.stage?.id}`,options.title||app.stage?.name,lines);if(options.after==='outcome'&&options.index===undefined){G.HonroEncounters.finishNarrative(app);const hs=app.engine?.b.honroState;if(hs){restoreQueuedSpeech(hs);const pending=[...(hs.storyQueue||[]),...(hs.deferredStory||[]).flatMap(x=>x.lines)];lines=[...(G.HonroStoryContent.beforeOutcome?.(app,pending)||pending),...lines];hs.storyQueue=[];hs.deferredStory=[];hs.storyBanter=[];hs.banterLine=null;}}if(options.index===undefined)lines=G.HonroEvidenceQuests?.present(app,lines)||lines;lines=lines.filter(l=>allowed(app,l[0],l[2]));({lines,options}=G.HonroStoryStaging?.directed(app,lines,options)||{lines,options});if(!lines.length){if(options.after==='outcome')app.outcome(true);return false;}app.cancelInput();app.acc=0;app.turnNotice=null;app.storyHistoryOpen=false;app.evidenceReader=null;const banter=$('banter');if(banter)banter.hidden=true;const banner=$('turn-banner');if(banner)banner.hidden=true;if(!app.dialogue&&app.scene&&!app.storyCamera)app.storyCamera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};app.dialogue={...options,lines:clone(lines),index:Math.min(options.index||0,options.staging?.position==='after'&&!options.staging.waitForDialogue?lines.length:lines.length-1)};if(app.dialogue.staging){app.dialogue.staging.camera??=clone(app.storyCamera||null);app.storyCamera=clone(app.dialogue.staging.camera);app.stagingLastTime=null;if(options.index!==undefined)G.HonroStoryStaging?.restore(app);}remember(app,lines,options.title);save(app);draw(app);return true;}"
           ]
         },
         {
@@ -562,7 +562,7 @@
       "afterRow": {
         "path": "game/src/presentation.css",
         "sha256": "67f428fcefcc01d313144f0fe852e445f8aa22dc8982a70e08265ae6ea83dbce",
-        "provenance": "7e8a956af3e0ebcdc56bd5947d2894a09b45d5b6 Expose acquired originals during dialogue and verify revised Continue"
+        "provenance": "54a822bd58043f969bcdc279a16463d33d36c774 Preserve optional evidence at chapter outcomes and pin campaign projection"
       },
       "exactEdits": [
         {
@@ -1720,7 +1720,7 @@
         "render": false,
         "app": false
       },
-      "sha256": "d8fd01a959fe8a37f0d252a0eebd0997c7c958d0cc1649931e0086957a7c5314",
+      "sha256": "215dc8129565ae5651b6c9f8752018dc45794dc5b8186c06aac89f4220c13d77",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -1785,7 +1785,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -1812,7 +1812,7 @@
         "render": false,
         "app": true
       },
-      "sha256": "fb217996dbca62b41497c2c078e77b764b1c1779e382c3a9580b3d482714bf1d",
+      "sha256": "677ea964e3ef770a9b54853245135428de5494dd6bde9b4f15e57f77bd68e3a0",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -1877,7 +1877,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -1900,7 +1900,7 @@
         "dc62501dd2031175614bdf75a7e10270a3c822511e5f3cd504f71a533e9e1150",
         "a75740288bbb017cfde16ed87d2e066c71e41e3cffa5ade8ec68d8061d8bf5d5",
         "31f411562336cc4b9a3ae0826451a461977723f332192882d077c178fbfee9ba",
-        "c788ffff775be3d1e3e9cb589f8d2e69c117a539f93580df9cd0a811b3ab016d",
+        "19f89a0aa0149eda1ac45dbb6edf51be57b31f31fda2077bacd266f97f701a03",
         "302435cb8e327ad88b0751fec8487cc57dcd20b0a229ddba7128e01e4560e418",
         "abcf990c19dae5b811f8b744de939f825868dd38a37fb594a5d22bef636748d3",
         "e5610d9a36656f9f080ca11a78edd9f9c2fd6c4561ce7c1d10b16526040388db",
@@ -1916,7 +1916,7 @@
         "render": true,
         "app": false
       },
-      "sha256": "0e9745fdffc7af70fee558384b4dbeca55b02b21893701d7cd7216c628db7a2e",
+      "sha256": "d762a364ce4586db8aa6fc0e2023e3e019ee8a5c5af33d50bc94f517151a67cf",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -1981,7 +1981,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -2042,7 +2042,7 @@
         "render": true,
         "app": true
       },
-      "sha256": "ef905232aee0fcbb3dbf45b8417b1433e1377afd18fa8398180721cebe988399",
+      "sha256": "ec7fc782021041396cf06f5bec5bee822531b39795d204d9b6ac7f0ad75c9a1a",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -2107,7 +2107,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -2164,7 +2164,7 @@
         "dc62501dd2031175614bdf75a7e10270a3c822511e5f3cd504f71a533e9e1150",
         "a75740288bbb017cfde16ed87d2e066c71e41e3cffa5ade8ec68d8061d8bf5d5",
         "31f411562336cc4b9a3ae0826451a461977723f332192882d077c178fbfee9ba",
-        "c788ffff775be3d1e3e9cb589f8d2e69c117a539f93580df9cd0a811b3ab016d",
+        "19f89a0aa0149eda1ac45dbb6edf51be57b31f31fda2077bacd266f97f701a03",
         "302435cb8e327ad88b0751fec8487cc57dcd20b0a229ddba7128e01e4560e418",
         "abcf990c19dae5b811f8b744de939f825868dd38a37fb594a5d22bef636748d3",
         "e5610d9a36656f9f080ca11a78edd9f9c2fd6c4561ce7c1d10b16526040388db",
@@ -2180,7 +2180,7 @@
         "render": false,
         "app": false
       },
-      "sha256": "5ebde8be787fc10460f78c7505186b5d6c7aacfd2cb0083848426625b6fe3cf7",
+      "sha256": "08fb61a22ddd5fdc21cd22b93b2af2fc8eb2595c1a5823255a96c80b51627e00",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -2245,7 +2245,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -2275,7 +2275,7 @@
         "render": false,
         "app": true
       },
-      "sha256": "8c7ccea8cd93d653543027c3364d76b12cf67395fe392da1b845eb75345d260c",
+      "sha256": "0323d79621fd01a27588282473b738009fd901e9675eb3b87b6780f268acb1ca",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -2340,7 +2340,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -2366,7 +2366,7 @@
         "dc62501dd2031175614bdf75a7e10270a3c822511e5f3cd504f71a533e9e1150",
         "a75740288bbb017cfde16ed87d2e066c71e41e3cffa5ade8ec68d8061d8bf5d5",
         "31f411562336cc4b9a3ae0826451a461977723f332192882d077c178fbfee9ba",
-        "c788ffff775be3d1e3e9cb589f8d2e69c117a539f93580df9cd0a811b3ab016d",
+        "19f89a0aa0149eda1ac45dbb6edf51be57b31f31fda2077bacd266f97f701a03",
         "302435cb8e327ad88b0751fec8487cc57dcd20b0a229ddba7128e01e4560e418",
         "abcf990c19dae5b811f8b744de939f825868dd38a37fb594a5d22bef636748d3",
         "e5610d9a36656f9f080ca11a78edd9f9c2fd6c4561ce7c1d10b16526040388db",
@@ -2382,7 +2382,7 @@
         "render": true,
         "app": false
       },
-      "sha256": "3a7cde43e4a6b594dd46cae83b2b81d2bf5c07f4fd0bd0c22b9335814fc5ea9d",
+      "sha256": "6ce642652e84c73da8186b3395152cdd32f5f3dd7b914719318805f19bf9edce",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -2447,7 +2447,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -2511,7 +2511,7 @@
         "render": true,
         "app": true
       },
-      "sha256": "9380fcce3fa827aa3ad6861f239f9caa414b865025ba47703576197307cd1484",
+      "sha256": "34ab43cd9d4e5a2ad2269b1df6dbe0c538b130f529b34e3622c90e1e60eb4c34",
       "parts": [
         "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
         "a5c47a4e8c1cac26c04d98d8df48d9c3fe89117cc9423e8e179a1220d51a8527",
@@ -2576,7 +2576,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -2636,7 +2636,7 @@
         "dc62501dd2031175614bdf75a7e10270a3c822511e5f3cd504f71a533e9e1150",
         "a75740288bbb017cfde16ed87d2e066c71e41e3cffa5ade8ec68d8061d8bf5d5",
         "31f411562336cc4b9a3ae0826451a461977723f332192882d077c178fbfee9ba",
-        "c788ffff775be3d1e3e9cb589f8d2e69c117a539f93580df9cd0a811b3ab016d",
+        "19f89a0aa0149eda1ac45dbb6edf51be57b31f31fda2077bacd266f97f701a03",
         "302435cb8e327ad88b0751fec8487cc57dcd20b0a229ddba7128e01e4560e418",
         "abcf990c19dae5b811f8b744de939f825868dd38a37fb594a5d22bef636748d3",
         "e5610d9a36656f9f080ca11a78edd9f9c2fd6c4561ce7c1d10b16526040388db",
@@ -2711,7 +2711,7 @@
         "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
         "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
         "fafce71d07743db461646c099fc6ba35c23bd8d6389737c45737c2e5d25628fe",
-        "77229eaf94e695e6bf1528892650415e710d4758004a97ef262d9460ffddc3cf",
+        "80c7b504c98b0ef4cf55289bfb00c12bffaeb11ab4cf049ae636fbf9884d8bb2",
         "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
         "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
         "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
@@ -2730,12 +2730,12 @@
         "28d29bb43a3aeb23166f0151d2fdd8b3dd916db02c63ed9fac320e2fd7a8b658",
         "a75740288bbb017cfde16ed87d2e066c71e41e3cffa5ade8ec68d8061d8bf5d5",
         "44a03c8bacacee097fee5dd0872ccc3bcaf463247ca6edd49fe60bf43940025d",
-        "c788ffff775be3d1e3e9cb589f8d2e69c117a539f93580df9cd0a811b3ab016d",
+        "19f89a0aa0149eda1ac45dbb6edf51be57b31f31fda2077bacd266f97f701a03",
         "302435cb8e327ad88b0751fec8487cc57dcd20b0a229ddba7128e01e4560e418",
         "0a6956f52d2b03fff94f97e3efd0dfb6efc3f97fc96ea2453df43addbbc45dc6",
         "e5610d9a36656f9f080ca11a78edd9f9c2fd6c4561ce7c1d10b16526040388db"
       ],
-      "sha256": "c93ee68e3da26fb6f1685dc280e1fcbbdd2a96d0a65eab8b66d35102a94fbbcf"
+      "sha256": "081bcb96d76c613a7bbee7c581b43165704255b8f14d82c5fb683dd48b3461d7"
     }
   }
 }
