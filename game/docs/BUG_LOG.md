@@ -2911,6 +2911,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 
 추가 집중 검사: outcome 보관 경계와 캠페인 117개 역복원/변조 검사를 통과했다. 기존 binding-detail whole-runtime-project 고정값은 별도 실행에서도 불일치했다(기대 0b41536f…, 현재 fc135142…). 해당 역사 fixture를 완화하지 않았으며, 승인된 새 초기 상태는 별도 exact campaign delta로 검증했다. 전체 verify의 최초 신규 계약 실패와 기존 baseline 실패를 같은 통과/실패로 합치지 않는다.
 
+## 2026-10-15 · Stage 5 lake revision 1 (work in progress)
+
+Fresh-entry terrain expands 4400×4700 to 5300×5000. The cliff/cave moves 900 east; the connected archer step, high rib and hidden ledge are removed. One continuous west contour offers two low, ordinary-jump overlooks and a returnable lake bed. Initial species, stats, count and action cap stay unchanged. M09 arrivals into the lake or remote cliff are rejected only for the explicit Stage 5 lake revision; old/custom/other stages retain their policy. Fluid drag and the hostile objective remain unchanged. Existing battle snapshots are not migrated.
+
+Current isolated evidence: 29 route/overlook/lake-return/gate rejection probes pass for four body types. Browser launch and initial desktop/mobile screenshots succeed. Normal combat, shot solution, historical contracts, final verification, independent review and Pages are pending. The user attachment could not be materialized after the supported retry (`download failed`); no pixel review of that attachment is claimed. No previous-environment execution has been backfilled.
 ## 2026-10-15 잠운사 필수 증언 복구
 
 사용자 요청에 따라 새 16장 필수 witness 대화에 최근 종 안의 생존자들이 사흘간 두드리며 물을 청했다는 증언, 종지기가 인양축을 빼고 문을 잠갔다는 증언, 작업굴에서 직접 확인하려는 동기를 복구했다. 선택 전문과 기존 목표 ID/순서는 그대로다. 이송 기록 획득 대화에는 칠십 년 전 기록과 최근 사건을 구분하는 담허의 한 문장을 덧붙였다. 17장 내용/인양축·일지의 물리적 검증은 변경하지 않았다.
@@ -2935,3 +2940,16 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 만혼귀결의 10~14개 혼령은 2π를 같은 각도로 나눈 방향으로 퍼진다. 기존 세로 압축으로 실제 방사각이 찌그러지던 부분을 제거하고, Fisher–Yates로 방향 인덱스만 섞어 0.07초 간격에 배정한다. 각도를 독립 무작위로 추출하지 않는다.
 - 수량, 피해, 범위, 각 궤적의 후반 제어점/지속시간, 대표탄 하나의 예상 궤적은 보존한다. 이미 저장된 곡선은 재생성하지 않는다.
 - 8경지×3시드 24회에서 각도 간격, 순서, 수량/간격/피해/저장 재개를 검증했다. 두 생산 HTML의 실제 Chromium 연출을 격리 컨텍스트로 캡처했다(`_local/reports/sodan-radial/`). 원격 인계 대기 중이다.
+
+## 2026-10-15 · Stage 5 lake revision validation
+
+Replaced waterfall approach shelves with a broad deep lake and a continuous returnable bottom; translated the right cliff/cave 900 east. West contours and two low optional overlooks create reachable approach/retreat alternatives. Ground and air groups now occupy the left tactical area. The finite lower-beasts arrival required 110 spacing: 85 blocked the entire atomic wave even on an empty bank. An occupied entry still waits without partial spawning.
+
+Focused route/shot/wave/authoring/story/save checks pass; current merged-master normal-resource native-input trace wins round10. Browser screenshots and Workshop iframe are checked with isolated storage. Exact prior snapshots remain intact. Known baseline migration/environment/Stage8 integration failures are retained and documented in STAGE5_WATERFALL_ACCEPTANCE.md. The full verify command was run once only, without claiming an aggregate pass. The source attachment could not be materialized after its one supported retry. Final independent evidence and remote deployment are tracked separately.
+
+## 2026-10-15 — Stage17 5턴 방어 P0 복구
+- 원인: evidence revision1에서도 보호5턴 외에 수레10체 생성을 요구해 안전한 입구 점유/배치실패 대기가 7/5 이상 진행을 막았다.
+- 수정: 17장 honroEvidenceRevision===1의 hold-hoist만 5보호턴에 완료. 마지막 간격에 clear-lift/notes를 즉시 한 번 커밋하고 미생성 증원 요청을 종료. 생성 안전·이탈/경합·미개정 Continue는 유지한다.
+- 최신 폭포 master cac13a95 통합본 검사: 생성0/3/6/9의 실제4→5와7/5 JSON복구, 양쪽 입구점유, 배치실패, 대화/모달정지, legacy, 중복완료/후속생성 방지 통과. desktop/mobile 이전HTML 저장→현재HTML Continue 및 디버그 최종간격 통과. runtime168소스/9빌드/양HTML 및 hoist13 negative 통과.
+- 원본 사용자 저장 대신 격리 체크포인트 사용. 정상 전투 완주·공개 Pages 직접조작 증거와 구분한다. 증거 `_local/reports/hoist-defense/`. 첨부 Library libfile_641bf94007d881919066f7e5fde104e0의 승인전송URL은403으로 실제픽셀 미확인.
+- 전역 선택읽기/동적 스토리 개편은 이 배포에 포함하지 않는 후속 별도 작업이다. 기존 binding-detail/migration/integration baseline fixture는 변경하지 않았다.

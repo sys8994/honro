@@ -363,6 +363,7 @@ export function useGate(e:Engine,u=e.active){
  // Feet stand on the exact-x support, as in walking and scripted placement.
  // A body's lower corners overlap a slope; that contact is not an arrival wall.
  const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y,support:floor.t}:null;}).find(v=>v&&validTerrainContactPose(e.b.terrain,{...u,x:v.x,y:v.y})&&!e.b.units.some(t=>!t.dead&&!t.eaterCapturedBy&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
+ if(spot&&(e.b as any).honroStage===5&&(e.b as any).honroStage5LakeRevision===1&&!(e.b as any).honroCustom&&(spot.x>2380||spot.y>3000)){e.message('깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.');return false;}
  if(!spot){e.message('도착 진목 주변에 설 자리가 없습니다.');return false;}
  const {x,y}=spot,fromPoint={x:u.x,y:u.y};u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
  const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(to.effectBoost||0)):1;

@@ -1,3 +1,4 @@
+import {beforeStage5Lake} from './stage5-lake-history-helpers.mjs';
 /** Exact additive Buddha art -> immutable completed-temple boundary.
  * The later one-asset refinement is reversed first; both fixtures stay immutable. */
 import assert from 'node:assert/strict';
@@ -40,7 +41,7 @@ export function assertStage16BuddhaCurrent(project,{unrelated=true,library=true}
  if(library&&Array.isArray(project.library))beforeStage16BuddhaLibrary(project.library,{required:true});return st;
 }
 export function beforeStage16Buddha(project,{unrelated=false,library=true}={}){
- const out=beforeStage16BuddhaRefinement(project,{unrelated,library}),st=map16(out,{required:false}),f=stage16BuddhaDelta;
+ const out=beforeStage16BuddhaRefinement(beforeStage5Lake(project),{unrelated,library}),st=map16(out,{required:false}),f=stage16BuddhaDelta;
  if(!st){if(library&&Array.isArray(out.library))out.library=beforeStage16BuddhaLibrary(out.library);return out;}
  if(!hasElement(st)&&!hasAsset(out.library))return out;
  assertStage16BuddhaCurrent(out,{unrelated,library});

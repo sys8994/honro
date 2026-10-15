@@ -1,7 +1,8 @@
+import {authorStage5Lake} from './stage5-lake.mjs';
 /** Fresh Stage 5 only. No live-save mutation: old battles keep their snapshots. */
 const clone=v=>JSON.parse(JSON.stringify(v));
 const points=a=>a.map(([x,y])=>({x,y}));
-export function authorStage5Waterfall(project,g){
+export function authorStage5Waterfall(project,g,{lake=true}={}){
  const p=clone(project),s=p.stages.find(s=>s.id==='stage-5');if(!s)throw Error('Stage 5 missing');
  const old=clone(s),template=old.terrains.find(t=>t.id==='valley-floor');
  const solid=(id,xy,{oneWay=false,properties={}}={})=>({...clone(template),id,name:id,points:points(xy),oneWay,playProjection:undefined,properties:{...template.properties,route:false,surfaceKind:'rock',...properties},detail:{spacing:18,roughness:0,seed:5,optimizeEpsilon:0}});
@@ -48,10 +49,12 @@ export function authorStage5Waterfall(project,g){
  s.events=s.events.filter(e=>e.id!=='lower-beasts-warning');s.events.unshift({id:'lower-beasts-warning',once:true,when:{progress:1750},action:null,text:'오른쪽 돌길에서 사슴 발굽 소리가 가까워진다. 한 라운드 뒤 사격턱 아래로 올라온다.',lines:[]});
  // Remove obsolete cliff scenery rather than painting another disconnected wall.
  s.environment=clone(old.environment);s.environment.placements=[];s.environment.groups=s.environment.groups.filter(x=>x.depthLayer==='L4');s.environment.surfaces=s.environment.surfaces.filter(x=>s.environment.groups.some(g=>g.id===x.groupId));
+ if(lake)authorStage5Lake(s,old,g);
  const result=g.HonroTerrainDomain.author(p);
  const cliff=result.stages.find(q=>q.id==='stage-5').terrains.find(t=>t.id==='waterfall-cliff');
- for(const q of cliff.points)if(q.x>4400&&q.y<2000)q.y=1240+(q.x-4400)*.009;
+ for(const q of cliff.points)if(q.x>(lake?5300:4400)&&q.y<2000)q.y=1240+(q.x-(lake?5300:4400))*.009;
  result.stages.find(q=>q.id==='stage-5').materials.find(m=>m.id==='stage5-headwater').points=[[3000,1220],[10400,1220],[10400,1294],[4400,1240],[4080,1250],[3770,1280],[3480,1290],[3290,1320],[3000,1340]];
  const head=result.stages.find(q=>q.id==='stage-5').materials.find(m=>m.id==='stage5-headwater');Object.assign(head,{kind:'water-pool',surface:[[3000,1220],[10400,1220]],bottom:[[3000,1340],[3290,1320],[3480,1290],[3770,1280],[4080,1250],[4400,1240],[10400,1294]],honroCarvedBasin:true});
+ if(lake)for(const key of ['points','surface','bottom'])head[key]=head[key].map(([x,y])=>[x+900,y]);
  const scoped={...result,stages:result.stages.filter(s=>s.id==='stage-5'),activeStageId:'stage-5'};g.HonroMaps.finalize(scoped);return result;
 }

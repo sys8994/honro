@@ -1,7 +1,7 @@
 /** Exact approved skill delta; earlier source/build approvals stay immutable. */
 import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {storyDeltaHash as hash} from './exact-story-revision-delta.mjs';import {assertExactFollowupDelta} from './ui-followup-source-delta.mjs';
-const bytes=readFileSync(new URL('./fixtures/eater-sodan-revision-delta.json',import.meta.url));assert.equal(hash(bytes),'e40a6a6557cc2e8dc2bd50f3d65d5a4bafd6bbf3dcef21502ef70e410ebf31d3');export const eaterSodanDelta=JSON.parse(bytes),d=eaterSodanDelta;
-assert.equal(d.baseCurrentCommit,'1902844316843bb1d64f2fd2d810365cc2a6ba3e');
+const bytes=readFileSync(new URL('./fixtures/eater-sodan-revision-delta.json',import.meta.url));assert.equal(hash(bytes),'f986bea1300a09320101d0f4b16d23079a05fb2f149bc769170eedf9e132911f');export const eaterSodanDelta=JSON.parse(bytes),d=eaterSodanDelta;
+assert.equal(d.baseCurrentCommit,'1dc96a56be0798bb652e43b12c8dbd53eb5327fe');
 assert.deepEqual(d.sourceChanges.map(c=>c.path),['shared/engine/src/eaterMechanics.ts','shared/engine/src/engine.ts','shared/engine/src/occultMechanics.ts','shared/engine/src/store.ts','shared/engine/src/types.ts','shared/runtime/actor-vector.js','shared/runtime/renderer.js']);
 const swaps=new Map([...d.sourceChanges,...d.packagingChanges].map(c=>[c.previousSha256,c.sha256]));swaps.set(d.beforeCoreSha256,d.afterCoreSha256);
 for(const[k,b]of Object.entries(d.beforeBuilds))assert.deepEqual(d.afterBuilds[k].parts,b.parts.map(h=>swaps.get(h)||h),'Only approved source, actor asset and core parts change: '+k);
