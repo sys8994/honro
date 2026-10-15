@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "errors": [],
+  "rows": [
+    {
+      "file": "game-entry.png",
+      "host": "HONRO.html",
+      "camera": [
+        850,
+        2550,
+        0.65
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "game-record-room.png",
+      "host": "HONRO.html",
+      "camera": [
+        2950,
+        2070,
+        0.7
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "game-route-choice.png",
+      "host": "HONRO.html",
+      "camera": [
+        4350,
+        2310,
+        0.56
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "mobile-entry.png",
+      "host": "HONRO.html",
+      "camera": [
+        450,
+        2640,
+        0.5
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "mobile-record-room.png",
+      "host": "HONRO.html",
+      "camera": [
+        2870,
+        2160,
+        0.48
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "mobile-route-choice.png",
+      "host": "HONRO.html",
+      "camera": [
+        4900,
+        2690,
+        0.45
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "workshop-entry.png",
+      "host": "HONRO_WORKSHOP.html",
+      "camera": [
+        850,
+        2550,
+        0.65
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "workshop-record-room.png",
+      "host": "HONRO_WORKSHOP.html",
+      "camera": [
+        2950,
+        2070,
+        0.7
+      ],
+      "enemies": 22
+    },
+    {
+      "file": "workshop-route-choice.png",
+      "host": "HONRO_WORKSHOP.html",
+      "camera": [
+        4350,
+        2310,
+        0.56
+      ],
+      "enemies": 22
+    }
+  ],
+  "scope": "Independent browser contexts; actual Game/Workshop rendering, camera fixtures only. Not normal clear."
+}

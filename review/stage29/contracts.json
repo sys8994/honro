@@ -1,0 +1,3540 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "case": "source isolation, goals/rosters/waves, idempotence, fresh build, initial natural grounding",
+      "passed": true
+    },
+    {
+      "case": "archer route A round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "A",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 250,
+        "y": 2700,
+        "hp": 935,
+        "round": 1
+      },
+      "end": {
+        "x": 254.1314252978361,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 1350.6666666666647
+      },
+      "counts": {
+        "ticks": 4766,
+        "jumps": 1,
+        "waits": 7,
+        "walkCost": 12740.524426409293,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 12815.524426409293,
+      "turnEquivalent": 7.1835899251173165,
+      "events": [
+        {
+          "op": "wait",
+          "x": 2002.3293675056423,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 7.207883337659354
+        },
+        {
+          "op": "wait",
+          "x": 3646.9943778637366,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 60.319390498506436
+        },
+        {
+          "op": "jump",
+          "x": 3646.9943778637366,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1709
+        },
+        {
+          "op": "wait",
+          "x": 5278.714113690569,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 3,
+          "moveLeft": 9.327711197192684
+        },
+        {
+          "op": "wait",
+          "x": 5796.709278466228,
+          "y": 1996.996813569418,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 6.953921891187592
+        },
+        {
+          "op": "wait",
+          "x": 4092.5141121432844,
+          "y": 1935.616431913006,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 7.3333333334291435
+        },
+        {
+          "op": "wait",
+          "x": 2389.111836618465,
+          "y": 2328.049903800869,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.333333333266867
+        },
+        {
+          "op": "wait",
+          "x": 687.46475863117,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 7.333333333331325
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 250,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1784
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1146.6666666666683,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 887.3333333333196
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1795.8200145846633,
+          "y": 2521.1575344227085,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 213.87455000432135
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2045.6627008389746,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1740.6666666666677
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2574.4834805485484,
+          "y": 2223.122558180067,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1133.6527238318884
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2776.994377863697,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 930.319390498546
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3216.994377863717,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 490.319390498526
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3646.9943778637366,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 60.319390498506436
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220,
+            "jumpTo": {
+              "x": 3850,
+              "support": "r29-upper-ascent"
+            }
+          },
+          "x": 3646.9943778637366,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 60.319390498506436
+        },
+        {
+          "jump": {
+            "x": 3850,
+            "support": "r29-upper-ascent"
+          },
+          "x": 3850,
+          "y": 2082.8571428571427,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1505.9943778637366
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3850,
+          "y": 2082.8571428571427,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1505.9943778637366
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4246.051548719379,
+          "y": 1842.3972739918058,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1042.661044530432
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4545.380780357303,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 742.6610445304593
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5545.380780357212,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 1517.3333333333576
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6094.803004131621,
+          "y": 2186.692820811031,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 866.9539218912008
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6347.173284612409,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 613.6205885578889
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6347.173284612409,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 613.6205885578889
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6103.8399512790975,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 370.28725522457773
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5554.859651982985,
+          "y": 1843.0925058073542,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 1497.3333333332846
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4555.760191799349,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 497.3333333333742
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4255.760191799376,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 197.33333333340147
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3853.173607881199,
+          "y": 2080.9303095007003,
+          "support": "r29-upper-ascent",
+          "round": 6,
+          "moveLeft": 1504.0000000000027
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3650.4437057575037,
+          "y": 2220.479202218104,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1297.3333333333285
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3650.4437057575037,
+          "y": 2220.479202218104,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1297.3333333333285
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3223.986410331131,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 870.6666666666424
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2783.986410331111,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 430.6666666666224
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2583.986410331102,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 230.6666666666133
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2055.513375507719,
+          "y": 2516.879221410725,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1400.6666666666472
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1803.002009474476,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1147.3333333333194
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1153.9815785926683,
+          "y": 2698.8974090051074,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 473.999999999999
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 254.1314252978361,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 1350.6666666666647
+        }
+      ]
+    },
+    {
+      "case": "archer route B round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "B",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 250,
+        "y": 2700,
+        "hp": 935,
+        "round": 1
+      },
+      "end": {
+        "x": 252.74646135249404,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 900.6666666666518
+      },
+      "counts": {
+        "ticks": 5192,
+        "jumps": 2,
+        "waits": 7,
+        "walkCost": 13169.413128019212,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 13319.413128019212,
+      "turnEquivalent": 7.466038748889693,
+      "events": [
+        {
+          "op": "wait",
+          "x": 2002.3293675056423,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 7.207883337659354
+        },
+        {
+          "op": "wait",
+          "x": 3684.298112771988,
+          "y": 2257.0419617937473,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 6.831420226984422
+        },
+        {
+          "op": "wait",
+          "x": 5241.214235082902,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 3,
+          "moveLeft": 7.333333333388737
+        },
+        {
+          "op": "jump",
+          "x": 5731.214235082857,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1219.0000000000446
+        },
+        {
+          "op": "wait",
+          "x": 6049.999999999978,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 6.880901749671466
+        },
+        {
+          "op": "jump",
+          "x": 5856.666666666662,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1515.6666666666843
+        },
+        {
+          "op": "wait",
+          "x": 4350.000000000133,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 9.000000000154614
+        },
+        {
+          "op": "wait",
+          "x": 2809.268113052437,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.333333333386008
+        },
+        {
+          "op": "wait",
+          "x": 1136.0797946858293,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 7.333333333304111
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 250,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1784
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1146.6666666666683,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 887.3333333333196
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1795.8200145846633,
+          "y": 2521.1575344227085,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 213.87455000432135
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2045.6627008389746,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1740.6666666666677
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2574.4834805485484,
+          "y": 2223.122558180067,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1133.6527238318884
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2776.994377863697,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 930.319390498546
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3216.994377863717,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 490.319390498526
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3646.9943778637366,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 60.319390498506436
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3646.9943778637366,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 60.319390498506436
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4144.030880752535,
+          "y": 2753.553351212738,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1107.333333333289
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5584.547568416204,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1440.666666666698
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5694.547568416194,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1330.666666666708
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5810,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 4,
+          "moveLeft": 1140.2142350829017
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5939.999999999988,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1010.2142350829135
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6496.666666666604,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 453.5475684162975
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6496.666666666604,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 453.5475684162975
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5943.333333333321,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1677.333333333343
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5810,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 5,
+          "moveLeft": 1469.0000000000218
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5700.00000000001,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1359.0000000000318
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5593.333333333353,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1252.3333333333749
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4153.333333333484,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 6,
+          "moveLeft": 1587.3333333333512
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3654.0321370063584,
+          "y": 2224.354707966867,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 854.0000000000911
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3654.0321370063584,
+          "y": 2224.354707966867,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 854.0000000000911
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3225.9347797191226,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 424.0000000000716
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2785.9347797191026,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1760.6666666666656
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2585.9347797190935,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1560.6666666666565
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2054.3081011402583,
+          "y": 2517.5614521847597,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 950.6666666666256
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1804.9503788624672,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 700.6666666666312
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1155.8592806655815,
+          "y": 2698.3774299695315,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 27.333333333303663
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 252.74646135249404,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 900.6666666666518
+        }
+      ]
+    },
+    {
+      "case": "mage route A round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "A",
+      "cls": "mage",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 360,
+        "y": 2700,
+        "hp": 998,
+        "round": 1
+      },
+      "end": {
+        "x": 253.66168163338077,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 1461.558333333335
+      },
+      "counts": {
+        "ticks": 5022,
+        "jumps": 1,
+        "waits": 7,
+        "walkCost": 12838.891280170523,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 12913.891280170523,
+      "turnEquivalent": 7.158476319384991,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1919.0012303411002,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 6.902687168877179
+        },
+        {
+          "op": "wait",
+          "x": 3634.0191130254043,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.96651817228667
+        },
+        {
+          "op": "jump",
+          "x": 3646.585779692072,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1716.4333333333325
+        },
+        {
+          "op": "wait",
+          "x": 5286.905780357243,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 3,
+          "moveLeft": 8.160779692188271
+        },
+        {
+          "op": "wait",
+          "x": 5770.797543795736,
+          "y": 1980.5075278700137,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 9.95901455570042
+        },
+        {
+          "op": "wait",
+          "x": 4048.8514866575406,
+          "y": 1962.125883100779,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 6.966666666822149
+        },
+        {
+          "op": "wait",
+          "x": 2327.328174270406,
+          "y": 2363.0217881488265,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.628053573314094
+        },
+        {
+          "op": "wait",
+          "x": 596.1033483000458,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 6.966666666677497
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 253.18333333333382,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1697.1833333333338
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1145.4166666666629,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 804.9500000000048
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1796.6040373895396,
+          "y": 2520.9404204152042,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 129.42768716887645
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2044.6678970077662,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1678.333333333334
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2575.890165320187,
+          "y": 2222.3263215168754,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1068.7081848390244
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2776.3441130253464,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 867.6415181723446
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3216.1774463587094,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 427.80818483898156
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3646.585779692072,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1791.4333333333325
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220,
+            "jumpTo": {
+              "x": 3850,
+              "support": "r29-upper-ascent"
+            }
+          },
+          "x": 3646.585779692072,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1791.4333333333325
+        },
+        {
+          "jump": {
+            "x": 3850,
+            "support": "r29-upper-ascent"
+          },
+          "x": 3850,
+          "y": 2082.8571428571427,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1513.0191130254043
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3850,
+          "y": 2082.8571428571427,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1513.0191130254043
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4244.762244217247,
+          "y": 1843.1800660109573,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1051.1941130254413
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4545.472447023967,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 749.5941130254644
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5544.52244702389,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 1546.3833333333532
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6094.15893101861,
+          "y": 2186.282956102752,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 895.9090145556067
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6344.40985861469,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 644.5756812222927
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6344.40985861469,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 644.5756812222927
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6105.643191948042,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 405.80901455564447
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5553.456283531181,
+          "y": 1842.199453156206,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 1546.3833333333719
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4555.046765801811,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 547.3333333334485
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4253.446765801834,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 245.73333333347182
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3855.4985507143992,
+          "y": 2079.5187370662575,
+          "support": "r29-upper-ascent",
+          "round": 6,
+          "moveLeft": 1577.8000000000188
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3650,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1367.9697202400432
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3650,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1367.9697202400432
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3225.8749999999714,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 943.8447202400146
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2782.8999999999414,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 500.86972023998464
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2584.974999999928,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 302.9447202399713
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2053.9224789687983,
+          "y": 2517.779728885586,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1489.8333333333412
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1803.1739324766868,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1238.5000000000089
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1155.1270581402532,
+          "y": 2698.5801992842376,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 566.1833333333416
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 253.66168163338077,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 1461.558333333335
+        }
+      ]
+    },
+    {
+      "case": "mage route B round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "B",
+      "cls": "mage",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 360,
+        "y": 2700,
+        "hp": 998,
+        "round": 1
+      },
+      "end": {
+        "x": 253.69646135245532,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 955.7500000000041
+      },
+      "counts": {
+        "ticks": 5461,
+        "jumps": 2,
+        "waits": 7,
+        "walkCost": 13270.913128018467,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 13420.913128018467,
+      "turnEquivalent": 7.439530558768551,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1919.0012303411002,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 6.902687168877179
+        },
+        {
+          "op": "wait",
+          "x": 3634.0191130254043,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.96651817228667
+        },
+        {
+          "op": "wait",
+          "x": 5193.32984707233,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 3,
+          "moveLeft": 8.754486234117394
+        },
+        {
+          "op": "jump",
+          "x": 5733.696513738955,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1188.633333333375
+        },
+        {
+          "op": "wait",
+          "x": 6078.233333333323,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 8.413180405738785
+        },
+        {
+          "op": "jump",
+          "x": 5858.316666666673,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1509.0833333333503
+        },
+        {
+          "op": "wait",
+          "x": 4356.600000000122,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 7.366666666799574
+        },
+        {
+          "op": "wait",
+          "x": 2795.5014463856833,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 6.9666666666018955
+        },
+        {
+          "op": "wait",
+          "x": 1101.9464613524513,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 6.9666666666686865
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 253.18333333333382,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1697.1833333333338
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1145.4166666666629,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 804.9500000000048
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1796.6040373895396,
+          "y": 2520.9404204152042,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 129.42768716887645
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2044.6678970077662,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1678.333333333334
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2575.890165320187,
+          "y": 2222.3263215168754,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1068.7081848390244
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2776.3441130253464,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 867.6415181723446
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3216.1774463587094,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 427.80818483898156
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3646.585779692072,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1791.4333333333325
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3646.585779692072,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1791.4333333333325
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4145.932506684531,
+          "y": 2755.6071072192935,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1058.0711529007035
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5586.038180405633,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1411.291666666697
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5695.996513738958,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1301.3333333333721
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5809.096513738949,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 4,
+          "moveLeft": 1113.2333333333809
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5940,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 982.3298470723303
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6496.074999999957,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 426.2548470723732
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6496.074999999957,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 426.2548470723732
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5943.141666666666,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1668.9083333333438
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5811.191666666677,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 5,
+          "moveLeft": 1461.958333333354
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5701.233333333352,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1352.000000000029
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5594.416666666693,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1245.1833333333707
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4155.533333333471,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 6,
+          "moveLeft": 1602.9333333333489
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3654.29257675172,
+          "y": 2224.6359828918576,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 867.7833333333263
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3654.29257675172,
+          "y": 2224.6359828918576,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 867.7833333333263
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3225.9097797190457,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 437.3749999999643
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2782.9347797190158,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1791.4333333333325
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2585.0097797190024,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1593.5083333333191
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2053.9527462577403,
+          "y": 2517.762596457883,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 984.025000000001
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1803.2087121957616,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 732.6916666666691
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1155.160576399678,
+          "y": 2698.5709173047044,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 60.375000000001926
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 253.69646135245532,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 955.7500000000041
+        }
+      ]
+    },
+    {
+      "case": "knight route A round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "A",
+      "cls": "knight",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 470,
+        "y": 2700,
+        "hp": 1522,
+        "round": 1
+      },
+      "end": {
+        "x": 255.23843103768885,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 7,
+        "moveLeft": 50.66666666669036
+      },
+      "counts": {
+        "ticks": 4885,
+        "jumps": 1,
+        "waits": 6,
+        "walkCost": 13025.891938098626,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 13100.891938098626,
+      "turnEquivalent": 6.917049597728948,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1897.213998966509,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 7.82325187680172
+        },
+        {
+          "op": "wait",
+          "x": 3645.3599927257424,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 66.83840709736705
+        },
+        {
+          "op": "jump",
+          "x": 3645.3599927257424,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1819
+        },
+        {
+          "op": "wait",
+          "x": 5387.7295378779,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 3,
+          "moveLeft": 8.58333333321093
+        },
+        {
+          "op": "wait",
+          "x": 5610.630971550737,
+          "y": 1878.583345532287,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 7.446402926817756
+        },
+        {
+          "op": "budget-exhausted-coast",
+          "x": 3807.091648908864,
+          "y": 2095.6220666909694,
+          "round": 5,
+          "moveLeft": 7.87499999984437
+        },
+        {
+          "op": "wait",
+          "x": 3807.091648908864,
+          "y": 2389.658980821573,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 7.87499999984437
+        },
+        {
+          "op": "wait",
+          "x": 2070.9810357592837,
+          "y": 2508.1239420230468,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.87500000005586
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 252.74999999999878,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1676.749999999995
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1144.7916666666638,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 784.7083333333392
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1795.34743170171,
+          "y": 2521.288403528757,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 109.86491854347054
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2045.3389989665125,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1745.8749999999966
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2576.143305373512,
+          "y": 2222.183034694239,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1136.6300737639847
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2776.3599927257824,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 935.838407097327
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3214.151659392429,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 498.04674043068053
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3645.3599927257424,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 66.83840709736705
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220,
+            "jumpTo": {
+              "x": 3850,
+              "support": "r29-upper-ascent"
+            }
+          },
+          "x": 3645.3599927257424,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 66.83840709736705
+        },
+        {
+          "jump": {
+            "x": 3850,
+            "support": "r29-upper-ascent"
+          },
+          "x": 3849.4433260590663,
+          "y": 2083.1951234641383,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1614.916666666676
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3849.4433260590663,
+          "y": 2083.1951234641383,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1614.916666666676
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4246.171581561374,
+          "y": 1842.3243969091657,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1150.791666666649
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4545.062871211156,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 851.2499999999552
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5545.7295378779145,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 1735.9999999999854
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6096.615141046474,
+          "y": 2187.845998847756,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 1083.8214029269254
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6346.154561097398,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 833.6547362602364
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6346.154561097398,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 833.6547362602364
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6105.862894430709,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 593.3630695935476
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5555.089923608367,
+          "y": 1843.2390422962335,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 1828.166666666659
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4555.366468284144,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 827.4999999999002
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4255.824801617449,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 527.9583333332059
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3855.4370366279927,
+          "y": 2079.556084904433,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 60.54166666651179
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3655.017484525156,
+          "y": 2225.4188832871682,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1670.1666666666658
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3655.017484525156,
+          "y": 2225.4188832871682,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1670.1666666666658
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3222.8850827375472,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1235.6666666666854
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2785.0934160709007,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 797.8750000000389
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2584.3017494042433,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 597.0833333333815
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2053.7934628716225,
+          "y": 2517.8527568651193,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1874.2500000000002
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1804.1923485476475,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1624.083333333328
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1153.7233044784705,
+          "y": 2698.9689310675003,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 949.2916666666887
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 255.23843103768885,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 50.66666666669036
+        }
+      ]
+    },
+    {
+      "case": "knight route B round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "B",
+      "cls": "knight",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 470,
+        "y": 2700,
+        "hp": 1522,
+        "round": 1
+      },
+      "end": {
+        "x": 254.03812801896683,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 1535.208333333332
+      },
+      "counts": {
+        "ticks": 5305,
+        "jumps": 2,
+        "waits": 7,
+        "walkCost": 13378.555880188682,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 13528.555880188682,
+      "turnEquivalent": 7.14284893357375,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1897.213998966509,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 7.82325187680172
+        },
+        {
+          "op": "wait",
+          "x": 3685.489097614305,
+          "y": 2258.3282254234496,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.963077352692505
+        },
+        {
+          "op": "wait",
+          "x": 5352.425542751567,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 3,
+          "moveLeft": 7.874999999899728
+        },
+        {
+          "op": "jump",
+          "x": 5730.967209418269,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1440.4583333332985
+        },
+        {
+          "op": "wait",
+          "x": 5856.050542751614,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 38.20833333316932
+        },
+        {
+          "op": "jump",
+          "x": 5856.050542751614,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1819
+        },
+        {
+          "op": "wait",
+          "x": 4079.115095380248,
+          "y": 2683.4443030106677,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 8.61612391491235
+        },
+        {
+          "op": "wait",
+          "x": 2419.4171125448556,
+          "y": 2310.895974031214,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.875000000048502
+        },
+        {
+          "op": "wait",
+          "x": 612.8297946856338,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 7.875000000017053
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 252.74999999999878,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1676.749999999995
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1144.7916666666638,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 784.7083333333392
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1795.34743170171,
+          "y": 2521.288403528757,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 109.86491854347054
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2045.3389989665125,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1745.8749999999966
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2576.143305373512,
+          "y": 2222.183034694239,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1136.6300737639847
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2776.3599927257824,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 935.838407097327
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3214.151659392429,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 498.04674043068053
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3645.3599927257424,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 66.83840709736705
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3645.3599927257424,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 66.83840709736705
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4146.184360306117,
+          "y": 2755.8791091306066,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1215.9166666666763
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5586.133876084922,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1660.2916666666451
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5694.758876084932,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1551.6666666666351
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5809.967209418276,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 4,
+          "moveLeft": 1361.4583333332912
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5938.342209418288,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1233.0833333332794
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6494.633876085006,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 676.7916666665615
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6494.633876085006,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 676.7916666665615
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5944.925542751622,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 127.0833333331775
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5810,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 5,
+          "moveLeft": 1772.9494572483864
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5701.37499999999,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1664.3244572483763
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5592.74999999998,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1555.6994572483663
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4154.291666666514,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 117.24112391490053
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3654.2019890140045,
+          "y": 2224.538148135125,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1268.5833333333312
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3654.2019890140045,
+          "y": 2224.538148135125,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1268.5833333333312
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3224.976446385492,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 837.3750000000175
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2783.893113052179,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 396.2916666667045
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2583.1014463855217,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 195.50000000004707
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2055.6134864226938,
+          "y": 2516.822554855079,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1475.95833333334
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1802.9920455289255,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1222.5000000000011
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1155.7388144126571,
+          "y": 2698.4107898549564,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 551.0000000000152
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 254.03812801896683,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 1535.208333333332
+        }
+      ]
+    },
+    {
+      "case": "occultist route A round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "A",
+      "cls": "occultist",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 580,
+        "y": 2700,
+        "hp": 1144,
+        "round": 1
+      },
+      "end": {
+        "x": 254.5265378310022,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 1475.5833333333467
+      },
+      "counts": {
+        "ticks": 4947,
+        "jumps": 1,
+        "waits": 7,
+        "walkCost": 13056.360265819549,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 13131.360265819549,
+      "turnEquivalent": 7.15995652443814,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1731.1367594372807,
+          "y": 2539.0698204635223,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 9.325492708627342
+        },
+        {
+          "op": "wait",
+          "x": 3474.3631489883282,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.166343336301566
+        },
+        {
+          "op": "jump",
+          "x": 3647.0548156549885,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1586.3083333333398
+        },
+        {
+          "op": "wait",
+          "x": 5155.977858145487,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 3,
+          "moveLeft": 9.275000000046816
+        },
+        {
+          "op": "wait",
+          "x": 5855.367460054276,
+          "y": 2034.3247473072668,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 9.289564801972478
+        },
+        {
+          "op": "wait",
+          "x": 4110.916064569755,
+          "y": 1924.4438179397916,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 9.333333333403612
+        },
+        {
+          "op": "wait",
+          "x": 2366.031272326627,
+          "y": 2341.1143741547394,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 9.333333333404017
+        },
+        {
+          "op": "wait",
+          "x": 612.943204497668,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 9.333333333324049
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 254.16666666666742,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1508.1666666666788
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1146.950000000003,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 615.38333333336
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1797.079986184215,
+          "y": 2520.808619210525,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1765.5749999999985
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2044.6034248013875,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1517.9416666666573
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2575.703671564655,
+          "y": 2222.4318840200067,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 908.4663433362684
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2777.079815655021,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 706.449676669609
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3216.9548156550045,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 266.5746766696253
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3647.0548156549885,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1661.3083333333398
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220,
+            "jumpTo": {
+              "x": 3850,
+              "support": "r29-upper-ascent"
+            }
+          },
+          "x": 3647.0548156549885,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1661.3083333333398
+        },
+        {
+          "jump": {
+            "x": 3850,
+            "support": "r29-upper-ascent"
+          },
+          "x": 3849.0714823216476,
+          "y": 2083.420885733285,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1384.2916666666806
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3849.0714823216476,
+          "y": 2083.420885733285,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 1384.2916666666806
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4244.567419156156,
+          "y": 1843.2983526551911,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 921.6083333333468
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4546.669524812176,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 3,
+          "moveLeft": 618.5833333333575
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5546.977858145472,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 1443.0000000000146
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6094.524400289105,
+          "y": 2186.5155274567032,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 794.5478981352503
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6344.401386156622,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 543.6562314685933
+        },
+        {
+          "goal": {
+            "x": 6350,
+            "y": 2190
+          },
+          "x": 6344.401386156622,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 543.6562314685933
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2190
+          },
+          "x": 6103.284719489964,
+          "y": 2190,
+          "support": "r29-high-road",
+          "round": 4,
+          "moveLeft": 302.5395648019356
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "y": 1840
+          },
+          "x": 5555.734052173859,
+          "y": 1843.6489422924556,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 1478.8416666667047
+        },
+        {
+          "goal": {
+            "x": 4550,
+            "y": 1840
+          },
+          "x": 4553.229960010349,
+          "y": 1840,
+          "support": "r29-high-road",
+          "round": 5,
+          "moveLeft": 475.2750000000756
+        },
+        {
+          "goal": {
+            "x": 4250,
+            "y": 1840
+          },
+          "x": 4253.463293343693,
+          "y": 1840,
+          "support": "r29-upper-ascent",
+          "round": 5,
+          "moveLeft": 175.50833333342007
+        },
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2082.857142857143
+          },
+          "x": 3854.6792604234674,
+          "y": 2080.0161633143234,
+          "support": "r29-upper-ascent",
+          "round": 6,
+          "moveLeft": 1534.2333333333486
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3650.3384739684766,
+          "y": 2220.3655518859546,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1325.7000000000235
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3650.3384739684766,
+          "y": 2220.3655518859546,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1325.7000000000235
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3223.6565228642116,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 898.8583333333725
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2783.781522864228,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 458.9833333333888
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2585.023189530902,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 260.2250000000629
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2054.1167111881077,
+          "y": 2517.669786119939,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1475.5833333333358
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1803.8387886743178,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1224.6916666666614
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1153.687749387587,
+          "y": 2698.978777092668,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 550.2166666666603
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 254.5265378310022,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 1475.5833333333467
+        }
+      ]
+    },
+    {
+      "case": "occultist route B round trip",
+      "scope": "Enemy-free open-door finite-budget geometry isolation, not normal completion",
+      "label": "B",
+      "cls": "occultist",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 580,
+        "y": 2700,
+        "hp": 1144,
+        "round": 1
+      },
+      "end": {
+        "x": 255.87146135248963,
+        "y": 2700,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 970.54166666669
+      },
+      "counts": {
+        "ticks": 5378,
+        "jumps": 2,
+        "waits": 7,
+        "walkCost": 13488.440397507678,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 13638.440397507678,
+      "turnEquivalent": 7.436445145860239,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1731.1367594372807,
+          "y": 2539.0698204635223,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 9.325492708627342
+        },
+        {
+          "op": "wait",
+          "x": 3474.3631489883282,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.166343336301566
+        },
+        {
+          "op": "wait",
+          "x": 5063.242801411152,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 3,
+          "moveLeft": 9.185567858214199
+        },
+        {
+          "op": "jump",
+          "x": 5731.20113474446,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1091.0416666666915
+        },
+        {
+          "op": "wait",
+          "x": 6180.851134744444,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 9.27500000006512
+        },
+        {
+          "op": "jump",
+          "x": 5858.276134744456,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1436.425000000012
+        },
+        {
+          "op": "wait",
+          "x": 4429.250000000047,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 7.398865255603596
+        },
+        {
+          "op": "wait",
+          "x": 2840.51811305238,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 9.333333333366795
+        },
+        {
+          "op": "wait",
+          "x": 1119.3297946858243,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 9.333333333338281
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 254.16666666666742,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1508.1666666666788
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1146.950000000003,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 615.38333333336
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1797.079986184215,
+          "y": 2520.808619210525,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1765.5749999999985
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2044.6034248013875,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1517.9416666666573
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2575.703671564655,
+          "y": 2222.4318840200067,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 908.4663433362684
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2777.079815655021,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 706.449676669609
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3216.9548156550045,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 266.5746766696253
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3647.0548156549885,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1661.3083333333398
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3647.0548156549885,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1661.3083333333398
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4146.1904242445535,
+          "y": 2755.885658184118,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 928.0355678581806
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5584.576134744466,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1312.666666666686
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5695.359468077795,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 4,
+          "moveLeft": 1201.8833333333569
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5809.4011347444575,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 4,
+          "moveLeft": 1012.8416666666944
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5939.734468077786,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 882.508333333366
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6496.909468077765,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 325.3333333333867
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2760
+          },
+          "x": 6496.909468077765,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 325.3333333333867
+        },
+        {
+          "goal": {
+            "x": 5940,
+            "y": 2760
+          },
+          "x": 5942.992801411119,
+          "y": 2760,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1596.1416666666755
+        },
+        {
+          "goal": {
+            "x": 5810,
+            "y": 2650
+          },
+          "x": 5810,
+          "y": 2650,
+          "support": "r29-low-screen",
+          "round": 5,
+          "moveLeft": 1388.1488652555563
+        },
+        {
+          "goal": {
+            "x": 5700,
+            "y": 2760
+          },
+          "x": 5700,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1278.1488652555563
+        },
+        {
+          "goal": {
+            "x": 5590,
+            "y": 2760
+          },
+          "x": 5595.733333333337,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 5,
+          "moveLeft": 1173.8821985888935
+        },
+        {
+          "goal": {
+            "x": 4150,
+            "y": 2760
+          },
+          "x": 4155.5500000000575,
+          "y": 2760,
+          "support": "r29-inspection-deck",
+          "round": 6,
+          "moveLeft": 1560.3000000000102
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3655.6797014826566,
+          "y": 2226.134077601269,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 827.1750000000033
+        },
+        {
+          "goal": {
+            "x": 3650,
+            "y": 2220
+          },
+          "x": 3655.6797014826566,
+          "y": 2226.134077601269,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 827.1750000000033
+        },
+        {
+          "goal": {
+            "x": 3220,
+            "y": 2220
+          },
+          "x": 3225.001446385699,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 393.8166666666858
+        },
+        {
+          "goal": {
+            "x": 2780,
+            "y": 2220
+          },
+          "x": 2785.1264463857156,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1778.6083333333354
+        },
+        {
+          "goal": {
+            "x": 2580,
+            "y": 2220
+          },
+          "x": 2583.1097797190564,
+          "y": 2220,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1576.5916666666762
+        },
+        {
+          "goal": {
+            "x": 2050,
+            "y": 2520
+          },
+          "x": 2055.2871401022294,
+          "y": 2517.007279187417,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 970.5416666666825
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2520
+          },
+          "x": 1805.1837121958054,
+          "y": 2520,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 719.6500000000079
+        },
+        {
+          "goal": {
+            "x": 1150,
+            "y": 2700
+          },
+          "x": 1154.983892562373,
+          "y": 2698.6198451365735,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 45.175000000005916
+        },
+        {
+          "goal": {
+            "x": 250,
+            "y": 2700
+          },
+          "x": 255.87146135248963,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 970.54166666669
+        }
+      ]
+    }
+  ]
+}

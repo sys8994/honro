@@ -11,9 +11,11 @@ with sync_playwright() as p:
   if 'WORKSHOP' in host:
    page.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene');page.click('[data-tab="play"]');page.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine');page=owner.frames[1]
   else: page.wait_for_function('window.HonroApp')
-  page.evaluate(SETUP,29)
+  page.evaluate('()=>{HonroApp.frame=()=>{}}');page.evaluate(SETUP,29)
   for label,x,y,z in [('entry',850,2550,.65),('record-room',2950,2070,.7),('route-choice',4350,2310,.56)]:
-   page.evaluate('''v=>{const a=HonroApp;Object.assign(a.scene,{x:v[0],y:v[1],scale:v[2],manual:true,goalFocus:null,focusUntil:0});}''',[x,y,z]);page.wait_for_timeout(120);name=('workshop' if 'WORKSHOP' in host else 'mobile' if mobile else 'game')+'-'+label+'.png';owner.screenshot(path=str(out/name));rows.append({'file':name,'host':host,'camera':[x,y,z],'enemies':page.evaluate('HonroApp.engine.alive(1).length')})
+   if mobile:
+    x,y,z={'entry':(450,2640,.5),'record-room':(2870,2160,.48),'route-choice':(4900,2690,.45)}[label]
+   page.evaluate('''v=>{const a=HonroApp;Object.assign(a.scene,{x:v[0],y:v[1],scale:v[2],manual:true,goalFocus:null,focusUntil:0,storyTween:null,cinematic:null});a.scene.render(a.engine,0,'',.6,false,0);}''',[x,y,z]);page.wait_for_timeout(120);name=('workshop' if 'WORKSHOP' in host else 'mobile' if mobile else 'game')+'-'+label+'.png';owner.screenshot(path=str(out/name));rows.append({'file':name,'host':host,'camera':[x,y,z],'enemies':page.evaluate('HonroApp.engine.alive(1).length')})
   c.close()
  b.close()
 (out/'browser.json').write_text(json.dumps({'passed':not errors,'errors':errors,'rows':rows,'scope':__doc__},ensure_ascii=False,indent=2));assert not errors,errors;print('PASS',len(rows),'actual browser captures')

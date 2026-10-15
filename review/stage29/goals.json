@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "scope": "Explicit two-turn and arrival fixtures; production evidence/route contract, not normal play.",
+  "rows": [
+    {
+      "route": "A",
+      "autoLetter": true,
+      "oneHeroEnough": true,
+      "enemiesRemain": 24,
+      "toStage": 30
+    },
+    {
+      "route": "B",
+      "autoLetter": true,
+      "oneHeroEnough": true,
+      "enemiesRemain": 24,
+      "toStage": 30
+    }
+  ]
+}
