@@ -4,7 +4,7 @@ import {P,R,line,asset,put} from './act3-map-kit.mjs';
 export function refineMaintenance25(p,s){
  if(s.metadata.stageId!==25)return;
  const prefix='a3-maintenance25:';
- const originalElements=[...s.elements];s.elements=s.elements.filter(e=>!e.assetId.startsWith(prefix));
+ const originalElements=s.elements.filter(e=>!e.assetId.startsWith(prefix)||e.id==='vertical-depot-shell').map(e=>e.id==='vertical-depot-shell'?{...e,assetId:'a3-waterworks-v3:25:vertical-depot-shell'}:e);s.elements=[...originalElements];
  s.design.act3.optionalRoutes=s.design.act3.optionalRoutes.filter(r=>r.id!=='west-stoplog-crest');
  const add=(id,svg,bounds,solids=[])=>{const a=asset(prefix+id,id,svg,solids,bounds,'stone');a.params.rearOnly=!solids.length;put(p,s,a,id,0,0);};
  // Recessed wall has no outline: the playable sill remains in front of it.
@@ -51,9 +51,21 @@ export function refineMaintenance25(p,s){
   for(const dy of [55,110,165,220])racks+=R(x-24,y-dy,w+66,27,'#7a6a4c')+R(x-18,y-dy+3,w+53,5,'#a18c61');
   racks+=line([[x,y-230],[x+w+20,y-20]],'#434b3b',15);
  }add('stoplog-storage',racks,[2110,3350,2180,1610]);
+ // A restrained first inconsistency precedes the stronger depot encounter.
+ // This is rear scenery only: no material pool, collider, gravity or gate edit.
+ let anomaly=P([[690,4390],[990,4344],[1410,4308],[1830,4185],[2120,4160],[2120,4190],[1850,4218],[1430,4337],[1010,4372],[690,4420]],'#3c5559')
+  +P([[700,4390],[1000,4344],[1420,4310],[1840,4187],[2110,4162],[2110,4170],[1840,4196],[1420,4320],[1000,4354],[700,4400]],'#60706d')
+  +P([[720,4450],[1280,4430],[1550,4360],[1580,4395],[1290,4470],[720,4490]],'#21373e')
+  +P([[1680,4330],[2110,4215],[2120,4250],[1690,4365]],'#233b42');
+ add('rising-rear-watercourse',anomaly,[680,4150,1460,350]);
+ const source=p.library.find(a=>a.id==='a3-waterworks-v3:25:vertical-depot-shell');
+ const dark=JSON.parse(JSON.stringify(source));dark.id=prefix+'dark-shell';
+ const shade=v=>{if(Array.isArray(v))return v.map(shade);if(v&&typeof v==='object')return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,shade(x)]));if(typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v))return '#'+[1,3,5].map(i=>Math.round(parseInt(v.slice(i,i+2),16)*.64).toString(16).padStart(2,'0')).join('');return v;};
+ dark.vector=shade(dark.vector);p.library.push(dark);
  const added=s.elements.filter(e=>e.assetId.startsWith(prefix));
  const old=originalElements.filter(e=>!e.assetId.startsWith(prefix));const split=old.findIndex(e=>e.id==='vertical-depot-shell')+1;
  s.elements=[...old.slice(0,split),...added.filter(e=>e.id!=='west-stoplog-workbench'),...old.slice(split),...added.filter(e=>e.id==='west-stoplog-workbench')];
- s.design.act3.maintenanceRevision=1;
+ s.elements.find(e=>e.id==='vertical-depot-shell').assetId=dark.id;
+ s.design.act3.maintenanceRevision=2;
  s.design.act3.optionalRoutes.push({id:'west-stoplog-crest',description:'낮은 직사선을 끊는 정비 석대. 양쪽 경사로를 기본 보행으로 오르고 돌아올 수 있다.',points:[{x:670,y:4050},{x:790,y:3965},{x:900,y:4050}]});
 }
