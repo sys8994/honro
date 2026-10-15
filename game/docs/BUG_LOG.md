@@ -2997,3 +2997,4 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 ## 2026-10-15 · Stage30 선창·강둑 검수 브랜치 후보
 
 기준 d7c1f84의 30장 기존 고지/여울/선창 및 정착 뒤 낮은 퇴로/높은 철수로의 물리·목표·적·저장 계약을 보존하고, 선창 돌쌓기/목구조/호롱·짐배 갑판용도·실제 해안에 이어지는 후퇴 암면을 보강했다. runtime 물리나 정착 규칙은 변경하지 않았다. 사용자 이미지 승인이 아직 없으므로 master/Pages 반영 대상이 아니다. 독립 검수의 큰 부유 암반 지적 뒤 후면 지지면을 재작성했다. 실제 Chromium PC/모바일 캡처, source boundary, 정상자원 native R11 전원 생존/방어3/정착1/Continue2와 기준에서도 재현되는 오래된 fixture 실패를 `review/stage30/README.md`에 구분했다. 공식 참고 사진 픽셀 접근 실패와 encounter gate pending은 미충족으로 남긴다.
+후속 고지철수 검수: 최종 미술본 정상자원 high 경로 R11 전원 생존, 실제 cape/bank 고지 통과, 피해1015/소모품0/Continue2. 방어 후 원본 저장을 실제 Chromium에서 복구한 PC/모바일 HUD PNG도 보존했다. cape-watch는 auto/high 두 실행 모두 무행동으로 선택 고지 군집의 실효성 입증이 남아 있으며 전체 교전 완료로 보고하지 않는다.

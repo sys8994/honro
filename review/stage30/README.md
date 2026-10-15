@@ -38,3 +38,11 @@
 - 기존 `stage30-ferry-contracts`/`runtime`는 과거 transport-map interact/26명 fixture 때문에 첫 비교에서 실패. 기준 d7c1f84 별도 worktree에서도 같은 실패 재현. `tactics` 역시 과거 성장원장45103≠46235로 기준에서도 실패. 원본 fixture/임계치를 완화하지 않았다.
 - 전체 캠페인 verify/성능/모든 개별 군집의 실효 교전 승인 검사는 이번에 완료하지 않았다. encounter gate는 pending cluster/wave/check 항목으로 BLOCKED이며 정상 완주를 이 gate 통과나 전투 품질 승인으로 보고하지 않는다.
 - Library 미전송. 사용자 검수 PNG와 설명은 이 브랜치에 보존한다. 사용자의 저장/비밀정보는 없다.
+
+## 고지 철수 추가 검수
+
+최종 후면 암반 수정본에서 `HONRO_FULLPLAY_BUILD=conservative-rank1 HONRO_FULLPLAY_ROUTE=high`로 정상자원 입력을 별도 실행했다. R11 승리, 방어3/정착1, Continue2, 받은 피해1015, 소모품0. 생존 동행 네 명 모두 `sf-granite-cape`와 `sf-bank-inner`를 실제로 지나 높은 철수로를 완료했다. `evidence/high/`에 원본 입력/피격/증원/자원 trace와 결과를 보존한다.
+
+`desktop-normal-play-hold-replay.png`, `mobile-normal-play-hold-replay.png`는 이 실행의 R9 방어 완료 저장을 수정하지 않고 실제 Chromium App.continue로 복구한 HUD 포함 화면이다. 카메라만 검수 위치로 옮겼다. 브라우저 입력으로 완주했다는 뜻이 아니다.
+
+군집 단위 한계: auto 경로의 escape-flank는 실제 피해149/행동2, high 경로에서는 우회했다. cape-watch는 두 실행 모두 행동/피해/플레이어 사격0으로, 이 두 경로만으로 해당 선택 고지 군집의 실효성을 입증하지 못했다. 원래 적 배치/활성 계약은 그대로이며 전투 품질 완료 판정은 보류한다.

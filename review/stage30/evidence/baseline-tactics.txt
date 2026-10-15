@@ -1,0 +1,19 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Historical v3 first-clear/recruit ledger agrees with the next stage entry budget
+
+45103 !== 46235
+
+    at campaignEntryReadiness (file:///tmp/honro-stage30-baseline/tests/stage18-bell-fullplay-helper.mjs:10:118)
+    at file:///tmp/honro-stage30-baseline/tests/stage18-bell-tactics-helper.mjs:8:24 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 45103,
+  expected: 46235,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

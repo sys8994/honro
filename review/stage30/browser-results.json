@@ -43,6 +43,46 @@
       "phase": "aim",
       "units": 44,
       "fixture": "settled event pose; original actors"
+    },
+    {
+      "file": "desktop-normal-play-hold-replay.png",
+      "source": "Unmodified saved battle from native normal-input high-route run, App.continue in browser",
+      "round": 9,
+      "hold": {
+        "progress": 3,
+        "spawned": 3,
+        "lastEnemyEnd": 8,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false
+      },
+      "ferry": "settled"
+    },
+    {
+      "file": "mobile-normal-play-hold-replay.png",
+      "source": "Unmodified saved battle from native normal-input high-route run, App.continue in browser",
+      "round": 9,
+      "hold": {
+        "progress": 3,
+        "spawned": 3,
+        "lastEnemyEnd": 8,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false
+      },
+      "ferry": "settled"
     }
   ],
   "errors": [],

@@ -20,6 +20,17 @@ with sync_playwright() as p:
   for name,x,y,z,editor in views:
    row=page.evaluate('''v=>{const b=structuredClone(reviewInitial);if(v.name==='settled-ferry'){b.honroState.ferry={status:'settled',elapsed:.8,duration:.8,commitCount:1};for(const ts of [b.terrain,b.honroWorldTerrain])for(const t of ts){if(t.id==='sf-settled-barge')t.broken=false;if(t.id==='sf-outbank-screen')t.broken=true;}b.sceneVersion++;}const e=new HONRO_CORE.Engine(b,()=>{},true),s=new HonroScene(reviewCanvas);Object.assign(s,{x:v.x,y:v.y,scale:v.z,manual:true,time:2,editorView:v.editor,skillPreview:v.editor});window.reviewScene={s,e};s.render(e,0,'',.6,false,0);return{phase:b.phase,units:b.units.length,fixture:v.name==='settled-ferry'?'settled event pose; original actors':'original entry battle; inspection camera'}}''',dict(name=name,x=x,y=y,z=z,editor=editor));page.wait_for_timeout(200);page.evaluate("reviewScene.s.render(reviewScene.e,0,'',.6,false,0)");page.screenshot(path=str(OUT/f'{prefix}-{name}.png'));rows.append({'file':f'{prefix}-{name}.png',**row})
   ctx.close()
+ # Replay the untouched serialized production checkpoint from the normal-input run.
+ # This is a browser replay of native gameplay, not browser-driven completion.
+ checkpoint=ROOT/'_local/reports/stage30-review-high/post-hold-continue.json'
+ if checkpoint.exists():
+  profile=json.loads(checkpoint.read_text())['profile']
+  for mobile in [False,True]:
+   ctx=browser.new_context(viewport={'width':390,'height':844} if mobile else {'width':1440,'height':900},is_mobile=mobile,has_touch=mobile)
+   page=ctx.new_page();page.goto(BASE+'/HONRO.html');page.wait_for_function('window.HonroApp')
+   row=page.evaluate("""async p=>{const a=HonroApp;a.close();a.stopBattle();p.settings.sound=false;p.settings.music=false;a.profile=p;a.normalProfile=p;await a.continue();a.frame=()=>{};while(a.dialogue)HonroStory.finish(a);a.close();a.turnNotice=null;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;Object.assign(a.scene,{x:5550,y:5350,scale:.52,manual:true,storyTween:null,goalFocus:null,cinematic:null,focusId:null,speakerId:null,focusUntil:0,speakerUntil:0});a.updateHUD(true);a.scene.render(a.engine,0,a.selected,a.power,false,0,true);return{round:a.engine.b.round,hold:a.engine.b.honroState.act3?.holds?.['ferry-hold'],ferry:a.engine.b.honroState.ferry.status}}""",profile)
+   page.wait_for_timeout(150);page.evaluate("()=>{const a=HonroApp;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;a.scene.render(a.engine,0,a.selected,a.power,false,0,true)}")
+   file=('mobile' if mobile else 'desktop')+'-normal-play-hold-replay.png';page.screenshot(path=str(OUT/file));rows.append({'file':file,'source':'Unmodified saved battle from native normal-input high-route run, App.continue in browser',**row});ctx.close()
  browser.close()
 (OUT/'browser-results.json').write_text(json.dumps({'rows':rows,'errors':errors,'limits':['Isolated fresh profiles only. Entry HUD is actual App launch.','Overview is editor camera; quay and ferry are production renderer camera fixtures.','Settled art fixture is not normal completion. Normal-resource proof is the separate native fullplay trace.']},ensure_ascii=False,indent=2))
 assert not errors,errors
