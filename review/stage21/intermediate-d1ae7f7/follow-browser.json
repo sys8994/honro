@@ -1,0 +1,100 @@
+{
+  "kind": "Actual Chromium; isolated storage; diagnostic actor placement then real body settling and automatic follow; not normal-play completion",
+  "views": [
+    [
+      "combat-follow",
+      1440,
+      960,
+      2000,
+      2370,
+      0.64
+    ],
+    [
+      "crown-feet",
+      1440,
+      960,
+      2110,
+      2240,
+      0.75
+    ],
+    [
+      "mobile-follow",
+      844,
+      390,
+      2080,
+      2560,
+      0.45
+    ],
+    [
+      "portrait-follow",
+      390,
+      844,
+      2080,
+      2560,
+      0.5
+    ]
+  ],
+  "poses": [
+    {
+      "view": "combat-follow",
+      "actor": {
+        "x": 2000,
+        "y": 2370,
+        "id": "p-archer",
+        "grounded": true
+      },
+      "camera": {
+        "x": 2170,
+        "y": 2186,
+        "scale": 0.64,
+        "manual": false
+      }
+    },
+    {
+      "view": "crown-feet",
+      "actor": {
+        "x": 2110,
+        "y": 2240,
+        "id": "p-archer",
+        "grounded": true
+      },
+      "camera": {
+        "x": 2279.97191963505,
+        "y": 2056.030392865592,
+        "scale": 0.75,
+        "manual": false
+      }
+    },
+    {
+      "view": "mobile-follow",
+      "actor": {
+        "x": 2080,
+        "y": 2560,
+        "id": "p-archer",
+        "grounded": true
+      },
+      "camera": {
+        "x": 2250,
+        "y": 2415.3333333333335,
+        "scale": 0.45,
+        "manual": false
+      }
+    },
+    {
+      "view": "portrait-follow",
+      "actor": {
+        "x": 2080,
+        "y": 2560,
+        "id": "p-archer",
+        "grounded": true
+      },
+      "camera": {
+        "x": 2228.2,
+        "y": 2376,
+        "scale": 0.5,
+        "manual": false
+      }
+    }
+  ],
+  "errors": []
+}

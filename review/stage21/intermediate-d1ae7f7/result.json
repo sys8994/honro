@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "name": "Canonical Stage 1\u201330 loaded",
+      "detail": null
+    },
+    {
+      "name": "Edit mode has no audio engine",
+      "detail": null
+    },
+    {
+      "name": "Rendering equivalence Stage 21",
+      "detail": {
+        "differentPixels": 0,
+        "ratio": 0.0,
+        "bbox": null
+      }
+    },
+    {
+      "name": "Actual Stage21 iframe",
+      "detail": null
+    },
+    {
+      "name": "Stop preserves project",
+      "detail": null
+    },
+    {
+      "name": "Stop restores editor camera",
+      "detail": null
+    },
+    {
+      "name": "Iframe disposed",
+      "detail": null
+    },
+    {
+      "name": "No browser errors",
+      "detail": []
+    }
+  ],
+  "errors": []
+}
