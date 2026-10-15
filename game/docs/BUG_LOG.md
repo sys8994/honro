@@ -2893,3 +2893,4 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - 부모의 단독 쓰기 인계 후8d759f2 문서 모달/P0를 병합. 개의 등·견갑·허벅지·앞발에만 차가운 중간 명도를 더하며 깊은 복부/목은 보존, 멧돼지는 불변. 박쥐는3899a2f 원본 도형 복원.
 - monster material-depth: ghost/shade는 빈 상징 대신 광대·목·긴 손을 복원하고 압박된 천면을 분리. warden은 목재 절단/안와/갈라진 심재, lantern은 목틀 결구·찢긴 창 안쪽 깊이. 인간형6종은 피부·소매 관절·몸통 하중을 보강하고 궁수의 청회색/무사의 적갈색/서고의 종이색/주조의 그을음과 가죽을 구별. 얼굴/도구/갑옷 구조로 역할을 구분하며 부적 추가를 사용하지 않는다.
 - actor material-depth: 배회령/반향령의 얼굴·손·목, 돌격귀 팔꿈치 하중, 수호령 목재 심재, 먹귀 갑판/턱/발, 빈 상여의 장부결구/휘장접힘/깊은 바닥면. 기존 joint/clip/게임플레이는 보존한다. 소스 생성 검사 후 실제 미술 전후 검수 예정.
+- Scene 경로 재작업: resonance/echo에 깊은 안와·턱·목힘줄·비대칭 견갑을 저작해 도형기호화를 줄인다. bellCluster/keeper의 종은 입술 안쪽/주조면, keeper는 목·소매 압박·가죽 앞치마, minecart는 광석면·판재 이음·철결구·바퀴 하중 구조. legacy_knight/occultist만 갑편·팔/손과 겹옷을 추가하며 legacy_archer/mage 및 네 주인공 경로는 그대로 둔다. 경로 캐시는 기존 Path2D 체계이고 판정/스폰/세이브 필드는 바꾸지 않는다.

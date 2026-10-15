@@ -4,6 +4,21 @@
 const S=G.HonroScene.prototype,C=G.HONRO_CORE;
 const path=d=>new Path2D(d),paint=(c,p,fill,stroke='#151d21',width=2)=>{if(fill){c.fillStyle=fill;c.fill(p);}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.lineJoin='round';c.stroke(p);}};
 const paths={
+ spiritSkull:path('M-11 -94 L-3 -101 7 -94 11 -84 5 -72 -3 -70 -12 -81Z'),
+ spiritSocket:path('M-10 -87 L-3 -83 -5 -78 -11 -82Z M1 -84 L8 -88 7 -80 2 -78Z'),
+ spiritJaw:path('M-8 -75 L-3 -72 5 -75 3 -67 -3 -65 -8 -69Z'),
+ resonanceTendon:path('M-16 -76 Q-8 -64 -13 -51 L-8 -33 -15 -22 -20 -40 -23 -59Z M9 -70 L17 -62 18 -46 12 -29 8 -37 13 -52Z'),
+ echoShoulder:path('M-25 -77 L-16 -81 -11 -71 -17 -56 -20 -43 -28 -49 -31 -62Z'),
+ echoTendon:path('M-23 -73 L-17 -70 -23 -55 -23 -47 M9 -61 L18 -51 17 -37 9 -24'),
+ keeperNeck:path('M-4 -94 L3 -94 6 -87 0 -83 -6 -87Z'),
+ keeperSleeveFold:path('M-18 -78 Q-22 -70 -19 -61 L-17 -57 -21 -51 M10 -78 L12 -68 7 -62'),
+ keeperLeather:path('M-10 -60 L-4 -57 -7 -43 -4 -35 -11 -36Z M4 -54 L7 -53 8 -37 3 -38Z'),
+ cartPlanks:path('M-42 -49 L3 -46 M-38 -36 L1 -33 M10 -46 L43 -44 M7 -33 L40 -31'),
+ cartIron:path('M-43 -58 L-36 -59 -32 -49 -39 -48Z M34 -56 L42 -55 39 -46 32 -46Z'),
+ cartOre:path('M-31 -79 L-18 -75 -23 -66 -39 -65Z M-4 -86 L9 -80 0 -70 -13 -73Z M25 -82 L36 -69 24 -64 18 -74Z'),
+ cartSpokes:path('M-36 -20 L-26 -3 M-41 -10 L-20 -12 M22 -17 L38 -3 M19 -8 L41 -13'),
+ bellLip:path('M-23 -20 Q0 -14 23 -20 L22 -16 Q0 -10 -22 -16Z'),
+ bellPanel:path('M-12 -60 L-5 -61 -4 -50 -12 -49Z M4 -61 L11 -60 13 -49 5 -50Z'),
  cart:path('M-49-63L35-70 49-57 38-18-35-18Z'),cartSide:path('M8-60L49-57 38-18 2-18Z'),
  cartLoad:path('M-43-65L-32-81-15-77-4-89 12-81 25-85 40-67 11-58Z'),
  cartRim:path('M-53-66L35-74 52-60 48-52 7-55-48-58Z'),
@@ -50,7 +65,7 @@ const paths={
 function drawBell(c){
  paint(c,paths.bellCrown,'#8c9173','#b0af8a',1.8);
  paint(c,paths.bell,'#7d896b','#bdba91',1.8);paint(c,paths.bellShade,'#435a51',null);
- paint(c,paths.bellRim,'#9e9872');
+ paint(c,paths.bellPanel,'#81724f','#b5a577',.7);paint(c,paths.bellRim,'#9e9872');paint(c,paths.bellLip,'#25322e','#b1a37a',.7);
  c.strokeStyle='#bbb38b';c.lineWidth=2;c.beginPath();c.moveTo(-16,-65);c.quadraticCurveTo(0,-60,16,-65);c.stroke();
  c.fillStyle='#41574e';c.strokeStyle='#b4a77a';c.beginPath();c.ellipse(-3,-40,7,8,0,0,Math.PI*2);c.fill();c.stroke();
 }
@@ -78,11 +93,11 @@ S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call
   c.strokeStyle='#7c8270';c.lineWidth=7;c.lineCap='round';
   for(const [x,dx]of [[-9,step],[11,-step]]){c.beginPath();c.moveTo(x,-34);c.lineTo(x+dx,-3);c.lineTo(x+dx+4,0);c.strokeStyle='#172729';c.lineWidth=10;c.stroke();c.strokeStyle='#727867';c.lineWidth=6;c.stroke();c.beginPath();c.moveTo(x+dx,-2);c.lineTo(x+dx+4,0);c.strokeStyle='#253633';c.stroke();}
   paint(c,paths.keeperRobe,'#545e59','#a2a38c',1.5);paint(c,paths.keeperPlane,'#303e3e',null);
-  paint(c,paths.keeperCollar,'#b6ad91');paint(c,paths.keeperApron,'#82755b');
+  paint(c,paths.keeperNeck,'#94735a');paint(c,paths.keeperCollar,'#b6ad91');paint(c,paths.keeperApron,'#82755b');
   paint(c,paths.keeperHead,'#a79b7b');paint(c,paths.keeperWrap,'#596760','#b8b49c',1);
   c.strokeStyle='#293230';c.lineWidth=1.2;c.beginPath();c.moveTo(-5,-98);c.lineTo(2,-98);c.moveTo(-1,-94);c.lineTo(3,-94);c.stroke();
   c.save();c.translate(-23,-20);c.scale(.4,.4);drawBell(c);c.restore();
-  paint(c,paths.keeperArm,'#606b60','#a2a38c',1.5);paint(c,paths.keeperHand,'#aa9c7e');
+  paint(c,paths.keeperArm,'#606b60','#a2a38c',1.5);paint(c,paths.keeperHand,'#aa9c7e');paint(c,paths.keeperSleeveFold,null,'#303333',1.8);paint(c,paths.keeperLeather,'#594334',null);
   c.save();c.translate(4,-65);c.rotate(-attack*.5);c.translate(-4,65);paint(c,paths.striker,'#887354','#baa888',1.6);
   c.fillStyle='#a49678';c.fillRect(7,-67,6,6);c.restore();c.restore();
  }else if(u.honroSpirit){c.globalAlpha*=.94;c.translate(0,Math.sin(t*1.7)*5);c.rotate(-attack*.06);
@@ -94,15 +109,15 @@ S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call
   }else if(kind==='echo'){
    paint(c,paths.echo,'#637879','#b4bca6',1.7);paint(c,paths.echoPlane,'#394f55',null);
    paint(c,paths.echoFace,'#c1bea4');paint(c,paths.echoJaw,'#9eaa97');
-   // Pale fractured strata suggest the quarry's repeated impact, without eyes or mouths.
+   paint(c,paths.echoShoulder,'#6e706a','#233136',1);paint(c,paths.echoTendon,null,'#a4a08a',1.8);paint(c,paths.spiritSkull,'#aa9f88','#344046',1);paint(c,paths.spiritSocket,'#19292d',null);paint(c,paths.spiritJaw,'#807666','#252f33',1);
   }else{
-   paint(c,paths.resonance,'#788b80','#bec2a8',1.7);paint(c,paths.resonancePlane,'#425b5d',null);paint(c,paths.resonanceGap,'#203b43','#9cae9e',1.1);
+   paint(c,paths.resonance,'#788b80','#bec2a8',1.7);paint(c,paths.resonancePlane,'#425b5d',null);paint(c,paths.resonanceGap,'#203b43','#9cae9e',1.1);paint(c,paths.resonanceTendon,'#8b8172','#364847',1);paint(c,paths.spiritSkull,'#9c8c75','#33413c',1);paint(c,paths.spiritSocket,'#202c2b',null);paint(c,paths.spiritJaw,'#70634f','#263b38',1);
    c.strokeStyle='#c7b689';c.lineWidth=3;c.beginPath();c.moveTo(-4,-91);c.lineTo(2,-83);c.moveTo(-10,-29);c.lineTo(6,-32);c.stroke();
   }
  }else if(kind==='minecart'){
   c.rotate(Math.sin(t*8)*(u.moving?.018:.005));paint(c,paths.cartLoad,'#4e5c59','#9caa96',1.7);
-  paint(c,paths.cart,'#766950','#b2a384',1.8);paint(c,paths.cartSide,'#3e4942',null);paint(c,paths.cartBrace,'#343e39','#9b9d83',1.2);paint(c,paths.cartRim,'#8a7a59');
-  paint(c,paths.wheel,'#3e4a43','#a2a58d',2);paint(c,paths.wheelHub,'#9d9571');
+  paint(c,paths.cart,'#766950','#b2a384',1.8);paint(c,paths.cartSide,'#3e4942',null);paint(c,paths.cartBrace,'#343e39','#9b9d83',1.2);paint(c,paths.cartRim,'#8a7a59');paint(c,paths.cartPlanks,null,'#342d28',1.4);paint(c,paths.cartIron,'#536267','#9a9b8b',.8);paint(c,paths.cartOre,'#82857b','#3b4848',.8);
+  paint(c,paths.wheel,'#3e4a43','#a2a58d',2);paint(c,paths.cartSpokes,null,'#a39777',1.8);paint(c,paths.wheelHub,'#9d9571');
  }else if(kind==='picks'){
   for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05);paint(c,paths.pick,'#7d6b50','#b8ac8b',1.4);paint(c,paths.pickHead,'#536760','#aeb5a1',1.7);paint(c,paths.pickBlade,'#a2ad98',null);c.restore();}
  }else if(kind==='waterwheel'){
