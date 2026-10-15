@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFileSync} from 'node:fs';
 import {runtime} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),Q=g.HonroEvidenceQuests,H=g.HONRO_CONTENT,plain=x=>x===undefined?undefined:JSON.parse(JSON.stringify(x));
 const fresh=id=>{const p=g.HONRO_CORE.defaults();p.recruited=g.HonroStageRules.stageParty(id);for(let i=1;i<id;i++)p.cleared[i]={visits:1};return g.HonroWorld.build(H.stages[id-1],p);};
@@ -13,4 +15,5 @@ const b24=fresh(24),mem=b24.honroState.act3,s24=b24.honroAct3Steps.find(s=>s.id=
 const b30=fresh(30);assert.equal(b30.honroAct3Steps[0].id,'transport-map');assert.equal(b30.honroAct3Steps[0].kind,'reach');assert.equal(b30.honroAct3Steps[1].rounds,3);
 const app30={engine:{b:b30},profile:{}};const rows=b30.honroNarrativeContent.beats['transport-map'],converted=Q.present(app30,rows);assert(converted.every(r=>r[2]?.kind!=='document'));assert(app30.profile.honroEvidenceDocuments.length);const before=JSON.stringify(b30);Q.present(app30,rows);assert.equal(app30.profile.honroEvidenceDocuments.length,1);assert.equal(JSON.stringify(b30),before,'presentation does not complete objectives');const doc=app30.profile.honroEvidenceDocuments[0];assert.equal(doc.text,rows.find(r=>r[2]?.kind==='document')[1]);
 for(const id of [3,16,17,19,22,23,24,25,26,27,28,29,30]){const b=fresh(id),a={engine:{b},profile:{}},st=b.honroNarrativeContent;for(const rows of Object.values(st.beats||{})){Q.present(a,rows);}for(const r of Object.values(H.stages[id-1].beats||{}).flat().filter(r=>r[2]?.kind==='document'))assert(a.profile.honroEvidenceDocuments?.some(d=>d.text===r[1]),'original document retained '+id);}
+vm.runInContext(readFileSync('shared/runtime/rest-journey.js','utf8'),g);const restProfile=g.HONRO_CORE.defaults();for(let i=1;i<29;i++)restProfile.cleared[i]={visits:1};const oldRest=g.HonroRestJourney.arrivalLines(restProfile,29,true,0),newRest=g.HonroRestJourney.arrivalLines(restProfile,29,true,1);assert(newRest.length<oldRest.length);assert.equal(newRest[0][2].restDescription,true);assert.deepEqual(plain(g.HonroRestJourney.arrivalLines({...restProfile,honroEvidenceRevision:1},29,true,0)),plain(oldRest),'saved rest revision 0 never follows later profile revision');
 console.log('PASS evidence quests: fresh/old/custom/Continue, ordered IDs, original documents, action prerequisites, entrances, four/five arrivals, waves, no presentation side effects');

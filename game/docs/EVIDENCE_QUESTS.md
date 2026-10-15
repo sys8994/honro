@@ -25,3 +25,5 @@
 쉼터 수집 목표는 추가하지 않는다. 새 revision의 3막 쉼터는 장소 설명 뒤 같은 장의 필수 배경 서술을 반복하지 않고, 실제 출발 준비 대사는 유지한다. 기존 쉼터 대화는 저장된 revision과 페이지 인덱스로 복원한다. 선택 회고 대화는 남긴다.
 
 검수는 `tests/evidence-quests.mjs`, `tests/evidence-quests-browser.py`. 브라우저는 desktop/mobile의 체크포인트 fixture에서 실제 M09 발사/착지, 목표 전환, 선택 원문과 전투 정지를 검사한다. 이는 정상 자원 캠페인 완주 증거가 아니다. 전후 PNG와 로그는 `_local/reports/evidence-quests/`에 둔다. 정확 source/build delta는 별도 승인 계약으로 기존 manifest를 역복원한다.
+
+집중 검수 결과: 위 native/브라우저 검사, 기존 16종 모달의 명시적 pre-revision Continue/Workshop 호환, 새 원문 모달의 긴 증언 터치스크롤/키보드/새 Continue 모두 통과. 별도 `tests/evidence-quests-reader-browser.py`가 획득 뒤 열람과 저장을 검사한다. 본문 잉크색도 실제 computed style로 확인한다. P0 body-sweep 184+80 및 기존 canon/bell/void 검사 통과. 전체 baseline 검사 결과는 최종 배포 보고서에 별도로 남긴다.

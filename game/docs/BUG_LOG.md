@@ -2904,3 +2904,5 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 ## 2026-10-15 현장 행동과 선택 원문 revision 1
 
 문서마다 별도 필수 클릭/낭독이 이어지던 흐름을 새 캠페인 revision에서 현장 행동과 통합했다. 17 복구 보호, 24 실제 두 팀 출입로 확인, 27 진목 설치, 30 나루 지형 대조가 우선 대상이며 나머지 원본은 구조/개방/기록함 구출 뒤 보관한다. 기존 단계 ID와 저장, 증원·화재·분할/합류·검은 공간, 책임/생사 미상 정보는 보존한다. 상세 범위는 EVIDENCE_QUESTS.md. 집중 native 및 desktop/mobile 체크포인트 검수 진행; 정확 delta 계약과 최종 배포/전체 검사는 후속 저장 단위에서 완료한다. 종이 모달을 어두운 journal dialog 안에 넣을 때 생긴 회색 본문 상속을 종이 잉크색으로 수정했다.
+
+집중 검수 완료: 새/구/custom 경계·원본 텍스트·단계 순서·5/4 도착지·파동·쉼터 저장 revision, desktop/mobile의 현장 전환과 실제 진목 발사/착지, 16종 구 모달 Continue, 새 Continue/선택 증언의 터치스크롤/키보드/뒤로, Workshop 공유 revision 통과. P0 body-sweep 184+80 및 기존 story-canon/bell/void 검사를 통과했다. 원문 접근 버튼을 핵심 대화에도 추가했다. 168 source/9 variant/두 HTML의 정확한 가역 delta는 evidence-quests-revision-history.mjs에 고정한다. 전체 검사 결과와 Pages 공개 접근 제한은 배포 뒤 `_local/reports/evidence-quests/` 및 최종 인계에 기록하며, 정상 자원 캠페인 완주를 주장하지 않는다.
