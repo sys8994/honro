@@ -40,24 +40,21 @@ export function spirit(d){
  }else if(kind==='eater'){
   a.viewBox=[-118,-160,236,186];Object.assign(a.palette,{cloth:'#303736',shade:'#1b2928',deep:'#101817',skin:'#897f6a',soul:'#8fa69a',glow:'#d0d8bc'});
   a.parts[0].pivot=[0,16];
-  a.brief.reference='한국민족문화대백과 불가사리의 식철 설화: 정형 복원이 아닌 먹귀의 독자적 포식 구조';
-  a.brief.silhouette='한쪽으로 솟은 등과 철갑이 갈라진 세로 포식강, 낮게 웅크린 무거운 몸';
-  a.brief.identity=[d.name,'얼굴 대신 한쪽 어깨의 작은 눈틈과 비대칭 철갑','엇갈린 파쇄면과 깊은 세로 포식강, 접지한 넓은 발'];
-  const feet=part(a,'ground-feet',[0,16],'root');shape(feet,'M-44 -25 L-24 -19 -25 4 -15 10 -17 15 -47 16 -51 10 -42 2Z M23 -20 L45 -24 43 3 54 10 51 16 19 15 17 9 27 2Z','shade','ink',1.6);line(feet,'M-43 10 L-38 14 M-31 9 L-29 14 M32 10 L35 14 M43 10 L46 14','skinShade',1.8,0);
-  const shroud=part(a,'shroud',[0,-75],'root');shape(shroud,'M-29 -130 L-61 -119 -82 -92 -87 -56 -72 -30 -75 -7 -51 -17 -34 -4 -15 -11 0 3 22 -14 44 -3 57 -21 79 -10 66 -42 73 -67 56 -96 19 -112Z','cloth','ink',2);shape(shroud,'M-58 -113 L-77 -86 -77 -57 -55 -35 -50 -16 -32 -27 -38 -63 -30 -99Z','skinShade','ink',1.5);shape(shroud,'M-62 -103 L-70 -82 -58 -59 -46 -48 -50 -76 -42 -97Z','skin');shape(shroud,'M46 -88 L65 -68 62 -44 48 -20 33 -34 35 -61Z','shade','ink',1);shape(shroud,'M-67 -49 L-91 -35 -103 -9 -83 -15 -77 -3 -60 -24Z M60 -38 L89 -29 102 -8 78 -13 69 -4 54 -21Z','skinShade','ink',1.4);line(shroud,'M-89 -26 L-96 -14 M85 -23 L94 -13','skin',1.7,0);
-  const face=part(a,'face',[0,-88],'shroud');
-  // A split mineral/iron carapace and a displaced crushing throat, not a mask face.
-  shape(face,'M-43 -116 L-25 -142 1 -147 27 -134 39 -111 31 -91 46 -72 38 -47 11 -32 -19 -38 -43 -66 -51 -93Z','skinShade','ink',2.2);
-  shape(face,'M-40 -114 L-22 -136 0 -140 14 -130 2 -118 -8 -92 -32 -78 -42 -85Z','skin','ink',1.1);
-  shape(face,'M16 -129 L29 -126 33 -112 24 -96 38 -74 31 -52 18 -45 24 -72 12 -92Z','wood','ink',1.1);
-  shape(face,'M-10 -121 L5 -133 17 -125 11 -104 23 -82 17 -57 3 -40 -17 -46 -27 -63 -21 -85Z','deep','ink',1.5);
-  shape(face,'M-12 -112 L-4 -119 -8 -96 -17 -86Z','linenShade','ink',1.1);
-  shape(face,'M15 -80 L21 -72 14 -56 7 -51 12 -69Z','metal','ink',1);
-  shape(face,'M-35 -62 L-25 -55 -16 -42 3 -35 23 -41 34 -52 33 -38 12 -26 -13 -30 -34 -45Z','wood','ink',1.5);
-  // A single occluded slit is displaced into the shoulder plate.
-  shape(face,'M-37 -103 L-21 -108 -25 -101 -36 -99Z','deep');line(face,'M-33 -102 L-27 -104','soul',1.1,0);
-  line(face,'M-25 -129 L-30 -116 M21 -120 L25 -110','woodLight',1.5,1);
-  const maw=part(a,'maw',[0,-55],'face');shape(maw,'M-13 -70 L-3 -75 6 -68 11 -57 3 -46 -8 -48 -16 -60Z','deep','skinShade',.8);shape(maw,'M-13 -67 L-7 -70 -9 -60 -14 -56Z M6 -57 L9 -53 2 -47 -1 -49Z','metal',null,.6);line(maw,'M-3 -65 L2 -61 -1 -55','soul',.8,0);react(a,'face',5);breathe(a,'shroud',4);breathe(a,'face',3,-1);breathe(a,'maw',7,-1);
+  a.brief.silhouette='넓은 귀면, 비틀린 광대 아래로 탈구된 턱과 압박된 배, 땅을 움켜쥔 발';
+  a.brief.identity=[d.name,'비대칭 눈구멍과 찢긴 저작근','길고 엇갈린 이빨과 복부 안의 포획 혼'];
+  const feet=part(a,'ground-feet',[0,16],'root');shape(feet,'M-39 -20 L-24 -17 -23 3 -15 10 -16 15 -43 16 -49 12 -38 5Z M24 -18 L40 -21 39 4 50 11 48 16 19 15 17 10 26 3Z','shade','ink',1.4);line(feet,'M-43 12 L-35 11 M-29 10 L-25 14 M30 12 L35 11 M41 11 L44 14','skin',1.5,0);
+  const shroud=part(a,'shroud',[0,-75],'root');shape(shroud,'M-48 -111 Q-78 -98 -83 -63 L-69 -37 -86 -11 -48 -25 -35 -4 -16 -17 0 6 19 -18 43 -2 55 -27 86 -13 69 -43 83 -68 Q63 -105 43 -112Z','cloth','ink',2);shape(shroud,'M-68 -59 Q-53 -80 -43 -79 L-50 -44 -70 -31Z M45 -81 Q67 -75 72 -54 L61 -32 47 -43Z','shade');shape(shroud,'M-71 -44 L-103 -22 -86 -21 -109 -6 -79 -14 -92 1 -62 -19Z M69 -39 L101 -28 83 -16 109 -9 82 -9 93 4 61 -19Z','shade','ink',1.3);line(shroud,'M-72 -51 L-82 -37 M-58 -38 L-64 -18 M70 -51 L78 -36 M55 -29 L59 -14','soul',1.3,1);
+  const face=part(a,'face',[0,-88],'shroud');shape(face,'M-54 -119 L-36 -142 -12 -139 1 -128 25 -140 48 -123 57 -99 53 -77 39 -59 9 -38 -23 -47 -58 -79Z','skin','ink',2.1);shape(face,'M-49 -112 L-37 -122 -20 -112 -12 -103 -30 -88 -52 -96Z M49 -110 L38 -118 22 -113 9 -100 25 -94 51 -100Z','deep','ink',1.1);shape(face,'M-46 -89 Q-8 -102 41 -85 L49 -64 33 -43 11 -23 -14 -29 -40 -46 -51 -65Z','deep','ink',1.5);shape(face,'M-40 -85 L-34 -64 -27 -86 -21 -70 -12 -90 -4 -63 4 -88 13 -72 20 -85 27 -60 36 -82 41 -70 M-33 -49 L-26 -64 -20 -40 -10 -58 -4 -33 7 -55 14 -31 25 -51 30 -43','linen','ink',.8);oval(face,0,-66,11,14,'ink');line(face,'M-51 -88 L-62 -81 M52 -88 L63 -81 M-27 -130 L-23 -138 M27 -130 L23 -138 M-37 -119 L-40 -103 M-5 -132 L-14 -115 0 -108 M40 -119 L32 -108','woodLight',2,0);
+  // Large structural planes: temples, torn masseter and hanging lower jaw.
+  shape(face,'M-52 -115 L-37 -131 -23 -129 -31 -116 -46 -105 -49 -91 -57 -82Z','skinShade','ink',1.2);
+  shape(face,'M18 -132 L39 -122 49 -104 34 -110 25 -119Z','linenShade');
+  shape(face,'M-53 -89 L-43 -82 -46 -64 -34 -47 -23 -36 -30 -33 -48 -49 -59 -72Z M47 -94 L56 -82 52 -62 34 -39 21 -23 9 -19 -12 -25 -21 -34 8 -29 28 -44 43 -64Z','wood','ink',1.7);
+  shape(face,'M-50 -77 L-46 -68 -41 -61 -38 -51 -46 -57 -53 -70Z M45 -76 L49 -70 42 -55 36 -50 40 -62Z','skinShade');
+  // An off-centre distended abdominal sack presses down between the grounded feet.
+  shape(shroud,'M-38 -48 Q-12 -57 29 -42 L43 -20 29 -2 7 9 -21 1 -37 -17Z','skinShade','ink',1.5);
+  shape(shroud,'M-29 -36 Q-11 -43 1 -24 L7 -4 -9 -8 -19 -23 -31 -22Z','skin');
+  shape(shroud,'M15 -34 L29 -29 33 -17 22 -6 8 0 15 -14Z','shade');
+  const maw=part(a,'maw',[0,-55],'face');shape(maw,'M-13 -64 Q-6 -71 2 -67 L11 -65 14 -57 8 -51 -1 -50 -11 -54Z','deep','skinShade',.7);shape(maw,'M-10 -63 L-7 -59 -4 -65 0 -60 4 -64 7 -59 10 -62 M-7 -54 L-4 -58 -1 -53 3 -57 7 -54','linenShade',null,.6);line(maw,'M-3 -61 Q4 -64 5 -59 Q2 -56 -2 -58','soul',.7,0);react(a,'face',5);breathe(a,'shroud',4);breathe(a,'face',3,-1);breathe(a,'maw',7,-1);
   // The mouth tears open vertically while the mask remains recognizable.
   track(a,'attack','maw','scaleY',[[0,1],[.18,.55],[.46,3.4],[.7,1.8],[1,1]]);
   track(a,'attack','maw','scaleX',[[0,1],[.18,1.25],[.46,1.7],[.7,.65],[1,1]]);

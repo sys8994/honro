@@ -2920,3 +2920,11 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 집중 브라우저 검사: 격리된 새 16장 진입, 실제 monk/hall use, 통제한 위협 제거, 자동 필수 증언·열쇠·옛 이송 기록, 결과/쉼터 UI를 통한 17장 진입. 원문은 한 번도 열지 않았으며 desktop/mobile의 증언 도중 reload/Continue에서 대화·단계·획득 기록이 일치했다. 이동/전투 압력은 fixture로 통제한 기능 검수이며 정상 자원 완주가 아니다. `tests/temple-testimony-browser.py`, 증거 `_local/reports/temple-testimony/`. 기존 전체 baseline 검사를 반복하지 않는다.
 
 최종 집중 검사: 새/구 narrative snapshot, 선택 전문 동일성, 17장 포함 나머지 맵/문서/단계 불변, record 커밋 전 승리 차단과 1회 완료 통과. desktop/mobile 실제 자동 대화·중간 Continue·원문 미열람 17장 진입 및 Workshop 공유 증언 표시 통과. 168 source/9 variant/두 HTML runtime 계약과 30 map/640 asset campaign 계약 통과. 새 가역 delta는 두 runtime 파일 및 16장 witness/record 배열만 허용하며 이전 fixture는 유지한다. 전체 verify/migration/integration은 요청대로 반복하지 않았다.
+
+## 2026-10-15 먹귀 귀면 복원·파열·연속 화살 복귀
+
+- 기준 master `1902844`. 실제 Scene 비교 후 먹귀는 `6819cd9`의 지상 귀면을 복원 기준으로 선택했다. 먹귀 경로는 `2d6e646`의 우선 캐릭터 개편 및 `20d86d6`의 전체 적용, `7a980c5`의 재질 보강을 거쳤다. 넓은 입과 지상 발·포식 트랙을 유지하고 비대칭 광대, 탈구된 턱, 엇갈린 치열, 압박된 복부를 추가했다. 네 주인공과 다른 소환수 에셋은 변경하지 않았다.
+- 원인: `eaterReleasedShot`이 AP01 후속 화살까지 공유하는 cast 번호를 면역 키로 사용했다. 기준 소스에서 실제 A01+AP01 발사 재현 시 먹귀 HP 1 소진 후 생존 적 HP가 999에 고정됐다.
+- 변경: 같은 피해를 발생시킨 투사체 ID만 제외한다. AoE는 기존 대상 스냅샷을 유지한다. 복귀 시 포획/옛 shot 제외/연출 포즈를 즉시 해제하고 안전 위치·물리·전투 대상 상태를 함께 복원한다. 기존 저장의 shot 제외는 로드 시 제거한다. HP 0 포획 적은 부활하지 않으며 방출 완료 플래그로 재실행을 방지한다. 피해 사망에는 몸 조각·혼기 파열, 시간 만료에는 기존 방출을 사용한다.
+- 검증: lifecycle 16, 독립 계약 7, App Continue/export-import, UI 및 기여장부 통과. Game/Workshop 생산 번들의 Chromium 격리 컨텍스트에서 PC 1280×800·모바일 390×700 실제 AP01 5발: HP 999→949, 방출 1회. 전후 및 확대·파열 프레임은 `_local/reports/eater-revision/`에 보관한다. 사용자 저장은 접근하지 않았다.
+- 진행 상태: `npm run verify`와 migration은 변경된 엔진의 기존 정확 해시 장부에서 중단했다. 승인된 새 변경의 가역 delta 등록이 필요하며 실패를 통과로 보지 않는다. 원격 쓰기는 별도 폭포 작업의 부모 인계까지 보류한다.
