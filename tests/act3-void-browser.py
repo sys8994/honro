@@ -65,7 +65,7 @@ with sync_playwright() as p:
   page.wait_for_function('HonroApp.engine.b.honroAct3Void.state==="VOID"')
   assert page.evaluate('HonroApp.audio.music.paused && HonroApp.audio.music.current===voidMusic && voidMusic.paused')
   assert page.evaluate('document.getElementById("app").inert && !document.getElementById("modal").inert')
-  assert page.locator('.honro-void-text').inner_text()=='……여긴 어디지.'
+  assert page.locator('.honro-void-text').inner_text()=='담허 어른? 들리십니까?'
   assert page.locator('.honro-void-actor').is_visible()
   assert not page.locator('.battle-head').is_visible()
   assert page.evaluate('HonroApp.canInput()') is False
@@ -121,7 +121,7 @@ with sync_playwright() as p:
   owner.goto(BASE+'/HONRO_WORKSHOP.html');owner.click('[data-tab="play"]');owner.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
   frame=owner.frames[1];assert frame.evaluate(SETUP)['revision']==1;assert frame.evaluate(BEGIN)
   frame.wait_for_function('HonroApp.engine.b.honroAct3Void.state==="VOID"');frame.locator('.honro-void-scene').screenshot(path=str(OUT/'workshop-void.png'))
-  assert frame.locator('.honro-void-text').inner_text()=='……여긴 어디지.';assert not frame.locator('.battle-head').is_visible()
+  assert frame.locator('.honro-void-text').inner_text()=='담허 어른? 들리십니까?';assert not frame.locator('.battle-head').is_visible()
   frame.evaluate('HonroAct3Void.skip(HonroApp)');frame.wait_for_function('HonroApp.engine.b.honroAct3Void.state==="RESOLVED"');assert not frame.evaluate('HonroApp.root.inert')
   checks.append({'host':'Workshop Playtest iframe','checks':['same authored revision','real solo void overlay','shared quiet return and HUD restoration']});print('PASS',checks[-1],flush=True);context.close()
  browser.close()

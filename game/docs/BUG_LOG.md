@@ -2938,3 +2938,11 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 - 최신 폭포 master cac13a95 통합본 검사: 생성0/3/6/9의 실제4→5와7/5 JSON복구, 양쪽 입구점유, 배치실패, 대화/모달정지, legacy, 중복완료/후속생성 방지 통과. desktop/mobile 이전HTML 저장→현재HTML Continue 및 디버그 최종간격 통과. runtime168소스/9빌드/양HTML 및 hoist13 negative 통과.
 - 원본 사용자 저장 대신 격리 체크포인트 사용. 정상 전투 완주·공개 Pages 직접조작 증거와 구분한다. 증거 `_local/reports/hoist-defense/`. 첨부 Library libfile_641bf94007d881919066f7e5fde104e0의 승인전송URL은403으로 실제픽셀 미확인.
 - 전역 선택읽기/동적 스토리 개편은 이 배포에 포함하지 않는 후속 별도 작업이다. 기존 binding-detail/migration/integration baseline fixture는 변경하지 않았다.
+
+### 2026-10-15 · 27장 검은 공간 진입의 추락·암전 속도 (로컬, 원격 발행 대기)
+
+기존 1.15초 추락은 0.35초부터 암전해 낙하를 알아보기 어려웠고, Continue는 위치만 복구해 저장 카메라를 잃었다. 밝은 추락 2.8초, 암전 1.8초, 완전 암전 여백 0.4초 후 첫 문장으로 분리했다. 설오를 따라가는 임시 카메라와 동일 캔버스 좌표의 단독 인물 렌더링을 사용한다. HUD는 암전과 함께 사라지고 대화 전에 완전히 숨는다. 일반 낙하 복구는 변경하지 않는다. transient 저장은 원래 인물·카메라를 복구하고 READY에서 명시적인 재이동을 기다린다.
+
+대사는 “그자도 물었지 / 듣고 싶어 했어 / 무엇을?” 대신 동행이 들리는지, 방금 길이 어디인지, 돌아갈 길을 묻는다. 정체·의도·실종자의 운명은 새로 단정하지 않으며 답변은 기존 “돌아가라”만 남긴다. 복귀 후에는 발 디딜 곳을 확인한다.
+
+검사: `tests/act3-void-runtime.mjs`의 추락/암전/숨긴 탭 정지, 네 transient/완료 상태 저장, 카메라/자원/인물 원상 복구 및 기존 저장 호환. 실제 HTML `tests/act3-void-browser.py`의 desktop/mobile/Workshop Playtest, 키보드·터치·설정·음악 스트림·Continue. `tests/void-pacing-browser.py`는 전후 타임라인과 PNG를 `_local/reports/void-pacing/`에 저장한다. 안전한 후반 체크포인트를 사용한 장면 검사이며 정상 전투 완주나 성능 검사가 아니다. 원격 쓰기는 다른 발행자 인계 전까지 중지한다.

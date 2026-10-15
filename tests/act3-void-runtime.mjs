@@ -44,7 +44,7 @@ check('Final manifest capture is guarded even when a long route bypasses the gal
 check('Void pauses every Engine clock, poison, summoned actor, team ends and resources; returning restores camera and active selection',()=>{
  const f=fixture({lead:'mage'});f.a.hp-=9;f.a.focus-=5;f.a.cooldowns={A06:2};f.a.status={poison:{turns:3,power:10}};
  const before=plain({units:f.b.units,items:f.b.items,round:f.b.round,teamEnds:f.b.teamEnds,phase:f.b.phase,active:f.b.active,fields:f.b.fields,stakes:f.b.stakes,heroes:f.b.heroes,camera:{x:f.app.scene.x,y:f.app.scene.y,scale:f.app.scene.scale,manual:f.app.scene.manual}});
- assert(V.begin(f.app));step(f.app,1.3);assert.equal(f.b.honroAct3Void.state,'VOID');for(let i=0;i<100;i++){f.e.tick(.05);f.app.missionTick(.05);f.app.checkMission(f.e);}resolve(f);
+ assert(V.begin(f.app));step(f.app,V.TIMING.total+.1);assert.equal(f.b.honroAct3Void.state,'VOID');for(let i=0;i<100;i++){f.e.tick(.05);f.app.missionTick(.05);f.app.checkMission(f.e);}resolve(f);
  assert.deepEqual(plain({units:f.b.units,items:f.b.items,round:f.b.round,teamEnds:f.b.teamEnds,phase:f.b.phase,active:f.b.active,fields:f.b.fields,stakes:f.b.stakes,heroes:f.b.heroes,camera:{x:f.app.scene.x,y:f.app.scene.y,scale:f.app.scene.scale,manual:f.app.scene.manual}}),before);
  assert.equal(f.app.profile.honroStoryEvents[V.KEY],true);assert.equal(f.b.honroVoidWitness,true);assert.equal(f.app.root.inert,false);assert(!g.document.body.classList.contains('honro-void-active'));
 });
@@ -54,19 +54,24 @@ check('FALLING paints without aim, active markers or objective arrows and restor
  scene.render=function(e,dt,selected,power,charging,effectDt,paused){draws++;assert.equal(selected,'');assert.equal(this.skillPreview,true);assert.equal(this.missionTargets.length,0);assert.equal(this.goalFocus,null);assert.equal(this.storyTween,null);assert.equal(paused,true);};
  V.begin(f.app);V.frame(f.app,.05);assert.equal(draws,1);assert.equal(scene.missionTargets,targets);assert.equal(scene.goalFocus,focus);assert.equal(scene.storyTween,tween);assert(!Object.hasOwn(scene,'skillPreview'));V.abort(f.app);
 });
+check('Readable fall tracks Seolo for 2.8 seconds, darkens for 1.8, then holds black; hidden tabs freeze the scene',()=>{
+ const f=fixture();V.begin(f.app);step(f.app,2);assert.equal(f.b.honroAct3Void.state,'FALLING');assert.equal(f.app.scene.x,f.a.x);assert.equal(f.app.scene.y,f.a.y-48);assert(f.a.y-f.b.honroAct3Void.return.unit.y>150);
+ step(f.app,1);assert.equal(f.b.honroAct3Void.state,'DARKENING');const elapsed=f.app.honroVoidSession.elapsed,pose=plain(f.a);g.document.hidden=true;step(f.app,10);g.document.hidden=false;assert.equal(f.app.honroVoidSession.elapsed,elapsed);assert.deepEqual(plain(f.a),pose);
+ step(f.app,1.7);assert.equal(f.b.honroAct3Void.state,'DARKENING');step(f.app,.4);assert.equal(f.b.honroAct3Void.state,'VOID');resolve(f);
+});
 check('Rapid input cannot skip the silences; keyboard/pause/skip/return are idempotent',()=>{
- const f=fixture();V.begin(f.app);for(let n=0;n<100;n++)V.advance(f.app);assert.equal(f.b.honroAct3Void.state,'FALLING');step(f.app,1.3);for(let n=0;n<100;n++)V.advance(f.app);assert.equal(f.app.honroVoidSession.line,0);
- step(f.app,1.4);assert(V.advance(f.app));assert.equal(f.app.honroVoidSession.line,1);assert(!V.advance(f.app));const age=f.app.honroVoidSession.lineAge;V.pause(f.app);step(f.app,2);assert.equal(f.app.honroVoidSession.lineAge,age);f.app.close();
+ const f=fixture();V.begin(f.app);for(let n=0;n<100;n++)V.advance(f.app);assert.equal(f.b.honroAct3Void.state,'FALLING');step(f.app,V.TIMING.total+.1);for(let n=0;n<100;n++)V.advance(f.app);assert.equal(f.app.honroVoidSession.line,0);
+ step(f.app,V.sceneLines[0].wait+.1);assert(V.advance(f.app));assert.equal(f.app.honroVoidSession.line,1);assert(!V.advance(f.app));const age=f.app.honroVoidSession.lineAge;V.pause(f.app);step(f.app,2);assert.equal(f.app.honroVoidSession.lineAge,age);f.app.close();
  resolve(f);assert(!V.finish(f.app));assert(!V.abort(f.app));assert(!V.begin(f.app));assert(!V.skip(f.app));assert(!V.eligible(f.app));
 });
 check('All authored nameless text can be read normally before a quiet return',()=>{
- const f=fixture();V.begin(f.app);step(f.app,1.3);for(let i=0;i<V.sceneLines.length;i++){step(f.app,V.sceneLines[i].wait+.1);assert.equal(f.app.honroVoidSession.line,i);assert(V.advance(f.app));}
+ const f=fixture();V.begin(f.app);step(f.app,V.TIMING.total+.1);for(let i=0;i<V.sceneLines.length;i++){step(f.app,V.sceneLines[i].wait+.1);assert.equal(f.app.honroVoidSession.line,i);assert(V.advance(f.app));}
  assert.equal(f.b.honroAct3Void.state,'RETURNING');step(f.app,.4);assert.equal(f.b.honroAct3Void.state,'RESOLVED');
  const text=V.sceneLines.map(l=>l.text).join(' ');for(const forbidden of ['대도사','저문골','묵종','무명사','70년','80년','선택'])assert(!text.includes(forbidden));
 });
 check('Transient save/reload always restores the pre-fall pose and READY without reopening black on Continue',()=>{
- for(const phase of ['FALLING','VOID','RETURNING']){const f=fixture(),before=plain(f.a);V.begin(f.app);if(phase!=='FALLING')step(f.app,1.3);if(phase==='RETURNING')V.skip(f.app);assert.equal(f.b.honroAct3Void.state,phase);
- f.app.profile.honroBattle=plain(f.b);h.storage.set(KEY,JSON.stringify(f.app.profile));const resumed=h.reload();resumed.continue();const b=resumed.engine.b;assert.equal(b.honroAct3Void.state,'READY');assert.equal(b.honroAct3Void.recovered,true);assert.deepEqual(plain(b.units.find(u=>u.id===before.id)),before);assert(!V.blocked(resumed));assert(!V.eligible(resumed));assert.equal(resumed.profile.honroStoryEvents?.[V.KEY],undefined);
+ for(const phase of ['FALLING','DARKENING','VOID','RETURNING']){const f=fixture(),before=plain(f.a),camera=plain({x:f.app.scene.x,y:f.app.scene.y,scale:f.app.scene.scale,manual:f.app.scene.manual});V.begin(f.app);if(phase==='DARKENING')step(f.app,V.TIMING.fall+.1);else if(phase!=='FALLING')step(f.app,V.TIMING.total+.1);if(phase==='RETURNING')V.skip(f.app);assert.equal(f.b.honroAct3Void.state,phase);
+ f.app.profile.honroBattle=plain(f.b);h.storage.set(KEY,JSON.stringify(f.app.profile));const resumed=h.reload();resumed.continue();const b=resumed.engine.b;assert.equal(b.honroAct3Void.state,'READY');assert.equal(b.honroAct3Void.recovered,true);assert.deepEqual(plain(b.units.find(u=>u.id===before.id)),before);assert.deepEqual(plain({x:resumed.scene.x,y:resumed.scene.y,scale:resumed.scene.scale,manual:resumed.scene.manual}),camera);assert(!V.blocked(resumed));assert(!V.eligible(resumed));assert.equal(resumed.profile.honroStoryEvents?.[V.KEY],undefined);
  resumed.engine.move(0,0);assert(!b.honroAct3Void.recovered);assert(V.begin(resumed));resolve({app:resumed,b});
  }
 });

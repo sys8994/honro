@@ -1,6 +1,7 @@
 /* The encounter hides game chrome while retaining an accessible pause layer. */
-.honro-void-active #bgm-now-playing,.honro-void-active #notice,.honro-void-active #turn-banner{visibility:hidden!important}
-.honro-void-active #app .battle>:not(.battle-view){visibility:hidden!important}
+.honro-void-active #bgm-now-playing,.honro-void-active #notice,.honro-void-active #turn-banner{opacity:var(--void-hud-opacity,1)!important}
+.honro-void-active #app .battle>:not(.battle-view){opacity:var(--void-hud-opacity,1)!important}
+.honro-void-dark #bgm-now-playing,.honro-void-dark #notice,.honro-void-dark #turn-banner,.honro-void-dark #app .battle>:not(.battle-view){visibility:hidden!important}
 .honro-void-active #modal{z-index:2200!important}
 .honro-void-scene{position:fixed;inset:0;z-index:2000;isolation:isolate;overflow:hidden;touch-action:manipulation;color:#dddcd5;outline:0;background:rgb(1 2 3 / var(--void-dark,1));}
 .honro-void-actor{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
