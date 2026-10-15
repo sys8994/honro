@@ -291,7 +291,7 @@ export class Engine {
         return best;
     }
     sweepBody(u:Unit,a:Vec,b:Vec):Collision|null{return sweepBodyTerrain(this.collisionTerrain(a,b,Math.min(6,u.r)),u,a,b,t=>this.dropEdges(u,t));}
-    bodyFlightCollision(u:Unit,a:Vec,b:Vec):Collision|null{const h=this.sweepBody(u,{x:a.x,y:a.y+u.h*.5},{x:b.x,y:b.y+u.h*.5});return h?{...h,y:h.y-u.h*.5}:null;}
+    bodyFlightCollision(u:Unit,a:Vec,b:Vec):Collision|null{const h=this.sweepBody(u,{x:a.x,y:a.y+u.h*.5},{x:b.x,y:b.y+u.h*.5});return h?{...h,x:h.x+h.n.x*.05,y:h.y-u.h*.5+h.n.y*.05}:null;}
     /** All flying weapons, their children and previews share this policy. No saved state. */
     projectileCollision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, attack?:Projectile): Collision | null {
         return this.collision(a,c,r,owner,hit,units,skip,terrain,true,attack || ('owner' in a ? a as Projectile : undefined));
