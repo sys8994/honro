@@ -1291,7 +1291,7 @@ export class Engine {
                 this.damageTerrain(h.terrain, 200 * u.attack, 0, p.owner,p);
                 if (h.terrain.broken) {
                     p.pierces++;
-                    p.x += Math.sign(p.vx) * 7;
+                    // Resume from this contact; the next sweep sees any solid behind it.
                     return;
                 }
             }
@@ -1915,8 +1915,8 @@ export class Engine {
             const below = u.vy >= 0 ? this.bodySurface(u,nx, oy - 2, ny + 2) : null;
             if (ground || below && ny >= below.y) {
                 const t = ground?.terrain || below!.t;
-                u.x = clamp(nx, t.x + .01, t.x + t.w - .01);
-                u.y = topAt(t, u.x,ground?.y??below?.y);
+                u.x = ground?.x ?? clamp(nx, t.x + .01, t.x + t.w - .01);
+                u.y = ground?.y ?? topAt(t, u.x,below?.y);
                 const slope=terrainSlopeAt(t,u.x,u.y),norm=Math.hypot(slope,1),normal=ground?.n??{x:slope/norm,y:-1/norm};
                  this.contactDamage(u,u.vx,u.vy,normal,'fall',silent,1,Math.max(0,u.y-(u.fallApexY??oy)));
                  u.fallApexY=undefined;
