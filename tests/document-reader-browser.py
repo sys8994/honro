@@ -1,11 +1,11 @@
-"""Controlled real Game/Workshop document UI, not full campaign completion."""
+"""Explicit pre-evidence-revision Continue compatibility: real Game/Workshop document UI, not a campaign clear."""
 import json
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
 from story_browser_server import story_base_url
 OUT=ROOT/'_local/reports/document-reader';OUT.mkdir(parents=True,exist_ok=True)
 BASE=story_base_url();checks=[];errors=[]
-SETUP='''() => {const a=HonroApp;a.close();a.stopBattle();const p=HONRO_TOOLS.fresh();for(let i=1;i<30;i++)p.cleared[i]={visits:1};p.recruited=['archer','mage','knight','occultist'];p.party=[...p.recruited];p.settings.sound=false;p.settings.music=false;a.profile=p;a.normalProfile=p;a.launch(30);while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const b=a.engine.b,m=b.honroMarkers.find(m=>m.id==='transport-map');Object.assign(a.scene,{x:m.x,y:m.y-110,scale:1,manual:true,storyTween:null,goalFocus:null,cinematic:null,focusId:null,speakerId:null,focusUntil:0,speakerUntil:0});document.getElementById('turn-banner').hidden=true;a.lastTurnNotice=`${b.round}:player`;return m;}'''
+SETUP='''() => {const a=HonroApp;a.close();a.stopBattle();const p=HONRO_TOOLS.fresh();for(let i=1;i<30;i++)p.cleared[i]={visits:1};p.recruited=['archer','mage','knight','occultist'];p.party=[...p.recruited];p.settings.sound=false;p.settings.music=false;a.profile=p;a.normalProfile=p;a.launch(30);while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const b=a.engine.b;delete b.honroEvidenceRevision;b.honroAct3Steps=structuredClone(HONRO_CONTENT.stages[29].steps);b.honroNarrativeContent=structuredClone(HONRO_CONTENT.stages[29]);a.stage=b.honroNarrativeContent;const m=b.honroMarkers.find(m=>m.id==='transport-map');Object.assign(a.scene,{x:m.x,y:m.y-110,scale:1,manual:true,storyTween:null,goalFocus:null,cinematic:null,focusId:null,speakerId:null,focusUntil:0,speakerUntil:0});document.getElementById('turn-banner').hidden=true;a.lastTurnNotice=`${b.round}:player`;return m;}'''
 with sync_playwright() as p:
  browser=launch(p)
  for mobile in [False,True]:
@@ -60,6 +60,6 @@ with sync_playwright() as p:
  # Workshop shared Playtest reader, with its own storage context.
  context=browser.new_context(viewport={'width':1440,'height':900});page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.goto(BASE+'/HONRO_WORKSHOP.html');page.wait_for_function('window.HonroWorkshopAPI')
  page.evaluate("HonroWorkshopAPI.selectStage('stage-30')");page.locator('[data-tab="play"]').click();page.wait_for_selector('iframe');frame=page.frames[-1];frame.wait_for_function('window.HonroApp')
- frame.evaluate("()=>{while(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroStory.start(HonroApp,HONRO_CONTENT.stages[29].beats['transport-map']);}");assert frame.locator('.story-document').count()==1;page.screenshot(path=str(OUT/'after-workshop-reader.png'));checks.append({'workshop':True});context.close();browser.close()
+ frame.evaluate("()=>{while(HonroApp.dialogue)HonroStory.finish(HonroApp);delete HonroApp.engine.b.honroEvidenceRevision;HonroStory.start(HonroApp,HONRO_CONTENT.stages[29].beats['transport-map']);}");assert frame.locator('.story-document').count()==1;page.screenshot(path=str(OUT/'after-workshop-reader.png'));checks.append({'workshop':True});context.close();browser.close()
 assert not errors,errors
 (OUT/'browser.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2));print(json.dumps(checks,ensure_ascii=False))
