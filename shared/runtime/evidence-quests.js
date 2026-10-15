@@ -31,7 +31,12 @@ const guides={
 };
 const goals={17:'인양축을 복구하고 5라운드 보호',24:'사당을 열고 두 조사팀의 출입로를 확인',27:'진목을 설치해 네 도착지를 지나 가족 명세 확보',30:'나루 지형과 기존 기록을 대조하고 방어 후 집결'};
 function reviseContent(original){const st=clone(original);for(const s of st.steps||[])Object.assign(s,changes[st.id]?.[s.id]||{});if(guides[st.id])st.guide=guides[st.id];if(goals[st.id])st.goal=goals[st.id];
- if(st.id===16){const rows=st.beats.witness;st.beats.witness=[rows.find(r=>r[0]==='휘겸'),rows.at(-1)].filter(Boolean);}
+ if(st.id===16){const rows=st.beats.witness;st.beats.witness=[
+  ['승려','이번에 종 안에 갇힌 사람들은 바로 죽지 않았습니다. 사흘 동안 종을 두드리며 물을 달라고 했어요.'],
+  ['승려','인양틀은 움직일 수 있었습니다. 그런데 종지기가 인양축을 빼고 문을 잠갔어요.'],
+  ['휘겸','그 증언을 적어 두겠소. 뒤편 작업굴에서 빠진 축을 직접 확인합시다.'],
+  rows.find(r=>r[0]==='노승'),rows.at(-1)
+ ].filter(Boolean);st.beats.record.push(['담허','이건 칠십 년 전의 이송 기록이네. 방금 들은 종지기 사건과는 따로 보아야 하네.']);}
  if(st.id===17)st.beats['clear-lift']=[];
  if(st.id===19)st.beats['old-soul']=st.beats['old-soul'].filter(r=>r[2]?.kind==='document'||r[0]==='휘겸'||r[0]==='설오');
  if(st.id===25){const observations=['적재대의 생활 물품에 번호가 남아 있다.','같은 가족 번호가 서로 다른 물품에 붙어 있다.','물길 너머에도 같은 운송 번호가 이어진다.','끝 창고 쪽 물품에서도 같은 표식이 보인다.','다섯 도착지의 물품 번호를 대조할 수 있게 되었다.'];for(let i=1;i<=5;i++){const key='stake-arrival-'+i;st.beats[key]=[...(st.beats[key]||[]),['서술',observations[i-1],{kind:'narration'}]];}}

@@ -28515,7 +28515,9 @@ function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!sati
  if(s?.kind==='clear'){const foes=enemiesFor(b,s),hero=b.units.find(u=>u.id===b.active),next=foes.filter(u=>visible(b,u)).sort((u,v)=>Math.hypot(u.x-(hero?.x||0),u.y-(hero?.y||0))-Math.hypot(v.x-(hero?.x||0),v.y-(hero?.y||0)))[0];detail=' · 남은 적 '+foes.length;if(next)Object.assign(target,{x:next.x,y:next.y-next.h,kind:'boss'});}
  if(s?.kind==='hold'){const hold=memory(b).holds?.[s.id];detail=` · ${hold?.progress||0}/${s.rounds}턴${hold?.contested?' · 진 안의 적을 밀어내세요':hold?.guarded?' · 방어 중':' · 표시 범위에서 유지'}`;}
  const parallel=s?.parallelGroup?readySteps(b).filter(q=>q.parallelGroup===s.parallelGroup).map(q=>{const p=marker(b,q.id)||{};return{id:q.id,kind:'interact',x:p.x||0,y:p.y||0,label:q.label};}):null;
- const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||G.HonroQuestTargets.records(b).find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
+ // The temple's automatic record must be committed before the chapter wins.
+ const pendingTempleEvidence=b.honroStage===16&&G.HonroEvidenceQuests?.active(b)&&list.some(q=>q.kind==='evidence'&&!memory(b).done[q.id]);
+ const issue=G.HonroRouteBranches?.sourceIssue(b),complete=!issue&&!s&&!pendingTempleEvidence;return{complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:issue||`${done}/${list.filter(q=>!q.optional).length} · ${s?s.label+detail:'모든 목표 완료'}`,targets:G.HonroRouteBranches?.targets(b,s)||parallel||(target?[target]:[]),allTargets:list.map(q=>{const p=marker(b,q.id)||G.HonroQuestTargets.records(b).find(t=>t.id===q.id)||b.units.find(u=>u.id===q.target)||{};return{id:q.id,kind:q.kind==='destroy'?'seal':q.kind==='defeat'?'boss':q.kind==='reach'||q.kind==='escort'?'exit':'interact',x:q.kind==='destroy'?(p.x||0)+(p.w||0)/2:p.x||0,y:p.y||0,label:q.label,done:satisfied(b,q)};})};
 }
 // Shared by the actual interaction gate and read-only prerequisite guidance.
 function interactionThreats(b,m){return b.units.filter(v=>v.side===1&&!v.honroObjectiveTarget&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&!v.dead&&!v.honroSubdued&&v.id!==m.spiritId&&!v.honroAct2Boss&&Math.hypot(v.x-m.x,v.y-m.y)<360);}
@@ -32735,7 +32737,12 @@ const guides={
 };
 const goals={17:'인양축을 복구하고 5라운드 보호',24:'사당을 열고 두 조사팀의 출입로를 확인',27:'진목을 설치해 네 도착지를 지나 가족 명세 확보',30:'나루 지형과 기존 기록을 대조하고 방어 후 집결'};
 function reviseContent(original){const st=clone(original);for(const s of st.steps||[])Object.assign(s,changes[st.id]?.[s.id]||{});if(guides[st.id])st.guide=guides[st.id];if(goals[st.id])st.goal=goals[st.id];
- if(st.id===16){const rows=st.beats.witness;st.beats.witness=[rows.find(r=>r[0]==='휘겸'),rows.at(-1)].filter(Boolean);}
+ if(st.id===16){const rows=st.beats.witness;st.beats.witness=[
+  ['승려','이번에 종 안에 갇힌 사람들은 바로 죽지 않았습니다. 사흘 동안 종을 두드리며 물을 달라고 했어요.'],
+  ['승려','인양틀은 움직일 수 있었습니다. 그런데 종지기가 인양축을 빼고 문을 잠갔어요.'],
+  ['휘겸','그 증언을 적어 두겠소. 뒤편 작업굴에서 빠진 축을 직접 확인합시다.'],
+  rows.find(r=>r[0]==='노승'),rows.at(-1)
+ ].filter(Boolean);st.beats.record.push(['담허','이건 칠십 년 전의 이송 기록이네. 방금 들은 종지기 사건과는 따로 보아야 하네.']);}
  if(st.id===17)st.beats['clear-lift']=[];
  if(st.id===19)st.beats['old-soul']=st.beats['old-soul'].filter(r=>r[2]?.kind==='document'||r[0]==='휘겸'||r[0]==='설오');
  if(st.id===25){const observations=['적재대의 생활 물품에 번호가 남아 있다.','같은 가족 번호가 서로 다른 물품에 붙어 있다.','물길 너머에도 같은 운송 번호가 이어진다.','끝 창고 쪽 물품에서도 같은 표식이 보인다.','다섯 도착지의 물품 번호를 대조할 수 있게 되었다.'];for(let i=1;i<=5;i++){const key='stake-arrival-'+i;st.beats[key]=[...(st.beats[key]||[]),['서술',observations[i-1],{kind:'narration'}]];}}

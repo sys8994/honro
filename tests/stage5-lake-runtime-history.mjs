@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';import{readFileSync}from'node:fs';import{createHash}from'node:crypto';
 const hash=x=>createHash('sha256').update(typeof x==='string'||Buffer.isBuffer(x)?x:JSON.stringify(x)).digest('hex');
 const bytes=readFileSync(new URL('./fixtures/stage5-waterfall/lake-runtime-delta.json',import.meta.url));
-assert.equal(hash(bytes),'54d1112e54273c54aab0187b96fbebf6b02b1a9b30b1d18021aa09ef991133ff','Pinned lake source/build evidence');
+assert.equal(hash(bytes),'05c6110d317574c2a0ccd285d656785635973624ce769dfb10fde657216ea516','Pinned lake source/build evidence');
 export const lakeDelta=JSON.parse(bytes),d=lakeDelta;
 assert.equal(d.baseCommit,'1902844316843bb1d64f2fd2d810365cc2a6ba3e');
 export function beforeLakeSource(path,source){const c=[...d.sourceChanges,...d.packagingChanges].find(c=>c.path===path);if(!c)return source;assert.equal(hash(source),c.afterSha256,'Exact lake source '+path);assert.equal(hash(c.before),c.beforeSha256,'Immutable previous source '+path);return c.before;}

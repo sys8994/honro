@@ -2916,3 +2916,12 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 Fresh-entry terrain expands 4400×4700 to 5300×5000. The cliff/cave moves 900 east; the connected archer step, high rib and hidden ledge are removed. One continuous west contour offers two low, ordinary-jump overlooks and a returnable lake bed. Initial species, stats, count and action cap stay unchanged. M09 arrivals into the lake or remote cliff are rejected only for the explicit Stage 5 lake revision; old/custom/other stages retain their policy. Fluid drag and the hostile objective remain unchanged. Existing battle snapshots are not migrated.
 
 Current isolated evidence: 29 route/overlook/lake-return/gate rejection probes pass for four body types. Browser launch and initial desktop/mobile screenshots succeed. Normal combat, shot solution, historical contracts, final verification, independent review and Pages are pending. The user attachment could not be materialized after the supported retry (`download failed`); no pixel review of that attachment is claimed. No previous-environment execution has been backfilled.
+## 2026-10-15 잠운사 필수 증언 복구
+
+사용자 요청에 따라 새 16장 필수 witness 대화에 최근 종 안의 생존자들이 사흘간 두드리며 물을 청했다는 증언, 종지기가 인양축을 빼고 문을 잠갔다는 증언, 작업굴에서 직접 확인하려는 동기를 복구했다. 선택 전문과 기존 목표 ID/순서는 그대로다. 이송 기록 획득 대화에는 칠십 년 전 기록과 최근 사건을 구분하는 담허의 한 문장을 덧붙였다. 17장 내용/인양축·일지의 물리적 검증은 변경하지 않았다.
+
+새 캠페인 실제 자동 진행 검사에서 hall 사용 직후 record의 선행조건이 참이라는 이유만으로 승리해 자동 record 커밋/원문 보관을 건너뛰던 경계도 발견했다. 16장 evidence revision에서만 필수 자동 증거가 실제 done으로 커밋된 뒤 승리하도록 막았다. 새 클릭이나 목표는 추가하지 않는다. 저장된 narrative snapshot/대화 인덱스는 이관하지 않는다.
+
+집중 브라우저 검사: 격리된 새 16장 진입, 실제 monk/hall use, 통제한 위협 제거, 자동 필수 증언·열쇠·옛 이송 기록, 결과/쉼터 UI를 통한 17장 진입. 원문은 한 번도 열지 않았으며 desktop/mobile의 증언 도중 reload/Continue에서 대화·단계·획득 기록이 일치했다. 이동/전투 압력은 fixture로 통제한 기능 검수이며 정상 자원 완주가 아니다. `tests/temple-testimony-browser.py`, 증거 `_local/reports/temple-testimony/`. 기존 전체 baseline 검사를 반복하지 않는다.
+
+최종 집중 검사: 새/구 narrative snapshot, 선택 전문 동일성, 17장 포함 나머지 맵/문서/단계 불변, record 커밋 전 승리 차단과 1회 완료 통과. desktop/mobile 실제 자동 대화·중간 Continue·원문 미열람 17장 진입 및 Workshop 공유 증언 표시 통과. 168 source/9 variant/두 HTML runtime 계약과 30 map/640 asset campaign 계약 통과. 새 가역 delta는 두 runtime 파일 및 16장 witness/record 배열만 허용하며 이전 fixture는 유지한다. 전체 verify/migration/integration은 요청대로 반복하지 않았다.
