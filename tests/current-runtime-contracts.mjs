@@ -1,3 +1,4 @@
+import {beforeStage5Lake} from './stage5-lake-history-helpers.mjs';
 import {beforeLakeManifest,beforeLakeSources,beforeLakeSource} from './stage5-lake-runtime-history.mjs';
 import {beforeTempleManifest,beforeTempleSource,beforeTempleSources,assertTempleNegatives} from './temple-testimony-history.mjs';
 import {beforeEvidenceManifest,beforeEvidenceSource,beforeEvidenceSources,assertEvidenceNegatives} from './evidence-quests-revision-history.mjs';
@@ -131,7 +132,7 @@ const titleEdit=titleDelta.sourceChanges[0].exactEdits;assert.equal(titleEdit.le
 const outsideBrand=line=>{const start='<h1 class="title-brand" aria-label="혼로">',end='</h1>';assert.equal(line.split(start).length,2);assert.equal(line.split(end).length,2);return line.slice(0,line.indexOf(start))+line.slice(line.indexOf(end)+end.length);};
 assert.equal(outsideBrand(titleEdit[0].before[0]),outsideBrand(titleEdit[0].after[0]),'Only title brand markup changes; navigation, save and action code remains byte-identical');
 assert.deepEqual(titleDelta.preservedTitleAssets.map(r=>r.path),['shared/assets/environment/title/hanja-wordmark.png','shared/assets/environment/title/wordmark.png']);
-for(const row of titleDelta.preservedTitleAssets)assert.equal(hash(beforeLakeSource(row.path,readFileSync(row.path,'utf8'))),row.sha256,'Original approved title image bytes '+row.path);
+for(const row of titleDelta.preservedTitleAssets)assert.equal(hash(readFileSync(row.path)),row.sha256,'Original approved title image bytes '+row.path);
 for(const [index,delta] of [finalDelta,bodyDelta,uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta,combatDelta,helpDelta,audioP0Delta,restBalanceDelta,questDelta,storyRuntimeDelta].entries())for(const change of delta.sourceChanges){
  const later=[finalDelta,bodyDelta,uiDelta,titleDelta,audioDelta,skillDelta,inspectorDelta,combatDelta,helpDelta,audioP0Delta,restBalanceDelta,questDelta,storyRuntimeDelta].slice(index+1).flatMap(d=>d.sourceChanges).find(c=>c.path===change.path);
  assert.equal(later?later.previousSha256:hash(sources[change.path]),change.sha256);assert.notEqual(change.sha256,change.previousSha256);if(delta!==bodyDelta)assert(change.provenance.length);else assert.match(delta.sourceCommit,/^[0-9a-f]{40}$/);
@@ -254,7 +255,7 @@ for(const path of Object.keys(archive)){assert.throws(()=>beforeStage8BierRuntim
 const projectProof=questDelta.projectPart;
 assert.deepEqual(projectProof.changes.map(c=>c.path),[["stages", 11, "initialState", "honroQuarryContent", "beats", "rock-pin", 0, 1], ["stages", 11, "initialState", "honroQuarryContent", "beats", "sign", 5, 1], ["stages", 11, "initialState", "honroQuarryContent", "outro", 1, 1], ["stages", 13, "initialState", "honroVerticalStage14Content", "beats", "family-lower", 0, 1], ["stages", 13, "initialState", "honroVerticalStage14Content", "beats", "family-lower", 1, 1]]);
 function reverseQuestProjectPart(part,proof=projectProof){assert.equal(hash(part),proof.sha256);assert(part.startsWith(proof.prefix)&&part.endsWith(proof.suffix));const obj=JSON.parse(part.slice(proof.prefix.length,-proof.suffix.length));for(const c of proof.changes){const parent=c.path.slice(0,-1).reduce((o,k)=>o[k],obj),key=c.path.at(-1);assert.equal(typeof c.before,'string');assert.equal(typeof c.after,'string');assert.equal(parent[key],c.after);parent[key]=c.before;}const restored=proof.prefix+JSON.stringify(obj)+proof.suffix;assert.equal(hash(restored),proof.previousSha256);return restored;}
-const questProject=currentRaw.find(p=>p.startsWith('globalThis.HONRO_PROJECT='));const priorQuestProject=beforeStoryProjectPart(questProject);reverseQuestProjectPart(priorQuestProject);
+const lakeProject=currentRaw.find(p=>p.startsWith('globalThis.HONRO_PROJECT=')), projectPrefix=storyRuntimeDelta.projectPart.prefix,projectSuffix=storyRuntimeDelta.projectPart.suffix;const questProject=projectPrefix+JSON.stringify(beforeStage5Lake(JSON.parse(lakeProject.slice(projectPrefix.length,-projectSuffix.length))))+projectSuffix;const priorQuestProject=beforeStoryProjectPart(questProject);reverseQuestProjectPart(priorQuestProject);
 let storyProjectNegatives=0;
 const storyProject=JSON.parse(questProject.slice(storyRuntimeDelta.projectPart.prefix.length,-storyRuntimeDelta.projectPart.suffix.length));
 for(const row of storyRevisionApproval.campaign.stages.filter(row=>row.variant==='project')){

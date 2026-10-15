@@ -2925,3 +2925,9 @@ Current isolated evidence: 29 route/overlook/lake-return/gate rejection probes p
 집중 브라우저 검사: 격리된 새 16장 진입, 실제 monk/hall use, 통제한 위협 제거, 자동 필수 증언·열쇠·옛 이송 기록, 결과/쉼터 UI를 통한 17장 진입. 원문은 한 번도 열지 않았으며 desktop/mobile의 증언 도중 reload/Continue에서 대화·단계·획득 기록이 일치했다. 이동/전투 압력은 fixture로 통제한 기능 검수이며 정상 자원 완주가 아니다. `tests/temple-testimony-browser.py`, 증거 `_local/reports/temple-testimony/`. 기존 전체 baseline 검사를 반복하지 않는다.
 
 최종 집중 검사: 새/구 narrative snapshot, 선택 전문 동일성, 17장 포함 나머지 맵/문서/단계 불변, record 커밋 전 승리 차단과 1회 완료 통과. desktop/mobile 실제 자동 대화·중간 Continue·원문 미열람 17장 진입 및 Workshop 공유 증언 표시 통과. 168 source/9 variant/두 HTML runtime 계약과 30 map/640 asset campaign 계약 통과. 새 가역 delta는 두 runtime 파일 및 16장 witness/record 배열만 허용하며 이전 fixture는 유지한다. 전체 verify/migration/integration은 요청대로 반복하지 않았다.
+
+## 2026-10-15 · Stage 5 lake revision validation
+
+Replaced waterfall approach shelves with a broad deep lake and a continuous returnable bottom; translated the right cliff/cave 900 east. West contours and two low optional overlooks create reachable approach/retreat alternatives. Ground and air groups now occupy the left tactical area. The finite lower-beasts arrival required 110 spacing: 85 blocked the entire atomic wave even on an empty bank. An occupied entry still waits without partial spawning.
+
+Focused route/shot/wave/authoring/story/save checks pass; current merged-master normal-resource native-input trace wins round10. Browser screenshots and Workshop iframe are checked with isolated storage. Exact prior snapshots remain intact. Known baseline migration/environment/Stage8 integration failures are retained and documented in STAGE5_WATERFALL_ACCEPTANCE.md. The full verify command was run once only, without claiming an aggregate pass. The source attachment could not be materialized after its one supported retry. Final independent evidence and remote deployment are tracked separately.

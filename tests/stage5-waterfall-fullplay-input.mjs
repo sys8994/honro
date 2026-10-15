@@ -19,7 +19,7 @@ for(const cls of p.recruited){p.heroes[cls]=plain(readiness.heroes[cls]);C.reset
 const requireFallReturn=process.env.HONRO_STAGE5_RECOVER==='1';let fallReturnStarted=false,fallReachedBottom=false,fallReturnCompleted=false;
 let requestedStop=false;process.on('SIGTERM',()=>{requestedStop=true;});process.on('SIGINT',()=>{requestedStop=true;});let now=0,frame=0;g.performance={now:()=>now};let app=h.load(p);app.launch(5);let e=app.engine,b=e.b;app.scene.render=()=>{};
 assert.equal(b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget).length,20);assert(!b.units.some(u=>u.id==='npc-hwigyeom'));assert.deepEqual(plain(b.units.filter(u=>u.side===0&&!u.summoned).map(u=>u.cls)),['archer','mage']);
-const waveFixture=process.env.HONRO_STAGE5_WAVE_FIXTURE==='1';if(waveFixture){for(const u of b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget).slice(4)){u.hp=0;u.dead=true;}}
+const waveFixture=process.env.HONRO_STAGE5_WAVE_FIXTURE==='1';if(waveFixture){for(const u of b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget).slice(Number(process.env.HONRO_STAGE5_KEEP_FOES??4))){u.hp=0;u.dead=true;}}
 const initial=plain(b),actions=[],hits=[],terrainHits=[],impacts=[],fires=[],enemyActions=[],births=[],notices=[],stateTrace=[],frames=[],frameInputs=[],continues=[],snapshots=[];const known=new Set(b.units.map(u=>u.id)),starts=new Map();let lastProgressRound=-1,stateKey='',lastSerial=-1,stop='',saved=false,pauseChecked=false;
 await writeFile(out+'/initial.json',JSON.stringify({source,profile:p,readiness,training,initial},null,2));
 const snapshotKeys=new Set();function snapshot(label){if(snapshotKeys.has(label))return;snapshotKeys.add(label);snapshots.push({label,frame,round:b.round,battle:plain(b)});}
