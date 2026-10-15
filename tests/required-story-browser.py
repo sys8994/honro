@@ -20,13 +20,13 @@ with sync_playwright()as p:
      if not page.evaluate('!!HonroApp.dialogue'):break
     page.wait_for_selector('#story-line');assert not page.locator('.story-document,[data-story-tool="history"],[data-action="journal"]').count();text=page.locator('#story-line').inner_text();assert '선택해 읽'not in text and '원문은'not in text;heard.append(text)
     if save and not saved and '호적에' in text:
-     page.wait_for_timeout(500);before=page.evaluate('JSON.stringify({d:HonroApp.dialogue,m:HonroApp.engine.b.honroState.act3,c:HonroApp.engine.b.honroState.evidenceScene})');page.screenshot(path=str(OUT/f'{tag}-register-scene.png'));page.reload();page.wait_for_function('window.HonroApp');page.locator('[data-action="continue"]').click();page.wait_for_selector('#story-line');assert page.evaluate('HonroApp.engine.b.honroState.act3.done["upper-register"]');saved=True
+     page.wait_for_timeout(500);before=page.evaluate('JSON.stringify({d:HonroApp.dialogue,m:HonroApp.engine.b.honroState.act3,c:HonroApp.engine.b.honroState.fieldEvidence.cargo})');page.screenshot(path=str(OUT/f'{tag}-register-scene.png'));page.reload();page.wait_for_function('window.HonroApp');page.locator('[data-action="continue"]').click();page.wait_for_selector('#story-line');assert page.evaluate('HonroApp.engine.b.honroState.act3.done["upper-register"]');saved=True
     page.locator('[data-action="dialogue-next"]').click()
    return heard
   page.evaluate(SETUP,22);page.evaluate('''()=>{const a=HonroApp,b=a.engine.b;a.checkMission=()=>false;for(const u of b.units)if(u.side===1){u.dead=true;u.hp=0;}a.turnNotice=null;const m=HonroAct3.memory(b);m.done['archive-seal']=true;const gate=HonroQuestTargets.records(b).find(t=>t.id==='archive-door');if(gate)gate.broken=true;}''');heard=[]
-  for goal,cls in [('ledger-case','knight'),('upper-register','archer')]:
+  for goal,cls in [('ledger-case','mage'),('upper-register','archer')]:
    ok=page.evaluate('''([id,cls])=>{const a=HonroApp,b=a.engine.b,m=b.honroMarkers.find(m=>m.id===id),u=b.units.find(u=>u.side===0&&u.cls===cls);Object.assign(u,{x:m.x,y:m.y,acted:false,vx:0,vy:0});b.active=u.id;b.side=0;b.phase='aim';a.actorBoundary=u.id;return HonroAct3.use(a,m);}''',[goal,cls]);assert ok;heard+=drain(goal=='upper-register')
-  assert any('아이, 노인' in x for x in heard);assert not any('주민 전원을 살해' in x for x in heard);assert page.evaluate('Object.keys(HonroApp.engine.b.honroState.evidenceScene||{}).length')>=2
+  assert any('아이, 노인' in x for x in heard);assert not any('주민 전원을 살해' in x for x in heard);assert page.evaluate('Object.keys(HonroApp.engine.b.honroState.fieldEvidence.cargo||{}).length')>=2
   # Runtime authored scene samples cover all remaining evidence events without optional reading.
   for id,key in [(16,'witness'),(19,'old-soul'),(26,'investigation-record'),(28,'suppression-order'),(29,'hyeonmuk-letter'),(30,'transport-map')]:
    page.evaluate(SETUP,id)

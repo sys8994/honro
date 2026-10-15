@@ -1,3 +1,4 @@
+import {applyFieldRuntimeManifest} from './field-story-history.mjs';
 import {applyHoistRuntimeManifest} from './hoist-defense-history.mjs';
 import {applyLakeRuntimeManifest} from './stage5-lake-runtime-history.mjs';
 import {applyTempleRuntimeManifest} from './temple-testimony-history.mjs';
@@ -15,7 +16,7 @@ export const runtimeContractHash=v=>createHash('sha256').update(typeof v==='stri
 const bytes=readFileSync(new URL('./fixtures/runtime-contracts/current-manifest.json',import.meta.url));
 assert.equal(runtimeContractHash(bytes),'476d746f8ddcab4e12b75769ccd7fc6c6dd2a8c60f7453a41b1c218f1832c141','Reviewed current runtime provenance manifest');
 const freeze=v=>{if(v&&typeof v==='object'){Object.values(v).forEach(freeze);Object.freeze(v);}return v;};
-export const currentRuntimeManifest=freeze(applyHoistRuntimeManifest(applyLakeRuntimeManifest(applyTempleRuntimeManifest(applyEvidenceRuntimeManifest(applyMaterialRuntimeManifest(applyDocumentRuntimeManifest(applyBodyRuntimeManifest(applyCharacterArtRuntimeManifest(applyStoryRuntimeManifest(JSON.parse(bytes)))))))))));
+export const currentRuntimeManifest=freeze(applyFieldRuntimeManifest(applyHoistRuntimeManifest(applyLakeRuntimeManifest(applyTempleRuntimeManifest(applyEvidenceRuntimeManifest(applyMaterialRuntimeManifest(applyDocumentRuntimeManifest(applyBodyRuntimeManifest(applyCharacterArtRuntimeManifest(applyStoryRuntimeManifest(JSON.parse(bytes))))))))))));
 const f=currentRuntimeManifest,root=new URL('../',import.meta.url);
 export function currentRuntimeSources(){const dirs=['shared/runtime','shared/map','shared/engine/src'],extra=['shared/build.mjs','game/engine/build.mjs','game/config/balance.json',...readdirSync(new URL('shared/data',root)).filter(p=>p.endsWith('.json')&&p!=='campaign.json').map(p=>'shared/data/'+p)];return Object.fromEntries([...dirs.flatMap(dir=>readdirSync(new URL(dir,root)).filter(p=>/\.(js|ts)$/.test(p)).map(p=>dir+'/'+p)),...extra].sort().map(p=>[p,readFileSync(new URL(p,root),'utf8')]));}
 export function assertCurrentRuntimeSources(sources){assert.deepEqual(Object.keys(sources),f.sourceOrder,'Exact reviewed current source paths, uniqueness and sorted order');for(const row of f.sourceRows)assert.equal(runtimeContractHash(sources[row.path]),row.sha256,'Current '+row.kind+' source '+row.path);return sources;}

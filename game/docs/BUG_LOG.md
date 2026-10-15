@@ -2946,3 +2946,15 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 대사는 “그자도 물었지 / 듣고 싶어 했어 / 무엇을?” 대신 동행이 들리는지, 방금 길이 어디인지, 돌아갈 길을 묻는다. 정체·의도·실종자의 운명은 새로 단정하지 않으며 답변은 기존 “돌아가라”만 남긴다. 복귀 후에는 발 디딜 곳을 확인한다.
 
 검사: `tests/act3-void-runtime.mjs`의 추락/암전/숨긴 탭 정지, 네 transient/완료 상태 저장, 카메라/자원/인물 원상 복구 및 기존 저장 호환. 실제 HTML `tests/act3-void-browser.py`의 desktop/mobile/Workshop Playtest, 키보드·터치·설정·음악 스트림·Continue. `tests/void-pacing-browser.py`는 전후 타임라인과 PNG를 `_local/reports/void-pacing/`에 저장한다. 안전한 후반 체크포인트를 사용한 장면 검사이며 정상 전투 완주나 성능 검사가 아니다. 원격 쓰기는 다른 발행자 인계 전까지 중지한다.
+
+### 2026-10-15 · 필수 현장 단서와 물증의 실제 소유자 (로컬, 발행 인계 대기)
+
+선택 읽기 UI를 없애고 필수 사건 대사에 내용을 옮기는 작업에서, 대사의 지정 인물에게 물건을 바로 붙이는 연출을 제거했다. 새 전장은 `honroFieldEvidenceVersion:1`로 명시하고, 실제 상호작용 성공자·원래 위치·장·라운드의 확보 증거를 저장한다. 이전 진행 저장에는 이 필드를 소급 주입하지 않는다. 사망한 운반자는 실제 위치에 물건을 떨어뜨리고 가까운 생존자가 회수한다.
+
+22장은 두 실제 운반자가 같은 층에 모인 경우에만 대조를 진행한다. 기존 이동 실행기로 접근한 뒤 내려놓기·대조·다시 챙기기를 같은 저장 가능한 장면으로 처리한다. 26장은 문 개방만으로 710px 떨어진 자료를 얻지 못하고, 주민의 물증은 실제 구출자와 주민의 현재 위치에서 인계한다. 28장은 앞선 장에서 확보·저장한 물증만 재사용한다. 25장의 다섯 도착지는 두 동행이 물품에 다가가 덮개를 열며, 마지막 상자는 번호표를 챙긴 뒤에도 현장에 남는다. 19장은 비문의 이끼가 지워지고 옛 혼이 반응한다. 29장에는 확인된 서명·법맥과 현재 행방을 모른다는 말만 남기며, “남은 혼을 지키려 했다”는 단정은 쓰지 않는다. 3장 장부 요약은 산사람 열셋, 그중 아이 둘을 보존한다.
+
+검사: `tests/field-evidence.mjs`, `field-evidence-route.mjs`, `field-evidence-waterworks.mjs`, `field-evidence-browser.py`, `required-story.mjs`, `required-story-browser.py`. 22장의 CE→EF→FG 및 25장의 다섯 물길은 시작 이후 위치·이동력 재설정 없이 실제 걷기·점프/진목·턴 회복으로 통과했다. 전투를 제외한 경로 검사이며 정상 전투 완주는 아니다. 브라우저 체크포인트는 목표 선행 상태와 비교 보호 턴을 명시적으로 준비했고, 실제 인물·물증·목표와 장면 실행을 검사했다. 원래 지정 대사 인물이 다른 층에 있는 경우도 포함한다. 스크린샷과 로그는 `_local/reports/field-evidence/`, `_local/reports/required-story/`, `_local/reports/void-pacing/`에 있다.
+
+계약은 배포 기준 `1dc96a56be0798bb652e43b12c8dbd53eb5327fe` 위의 새 `field-story-delta.json`으로 승인 소스·CSS·각 빌드 부분·캠페인 대사 및 opt-in 필드를 정확히 정방향/역방향 검사한다. 이전 fixture는 변경하지 않는다. 단위 검사에서 `current-runtime-contracts.mjs`(168 소스, 9 빌드, 두 HTML)와 `current-campaign-contracts.mjs`(30장, 640 에셋)가 통과했다. 17장 P0 및 대화 이전/다음·건너뛰기·Continue·음성 정책 회귀도 통과했다. 전체 verify는 사용자 요청에 따라 최종 배포 후 1회 실행할 항목으로 남는다. 알려진 binding-detail/migration/integration 기준 실패를 새 실패와 혼동하지 않는다. 이 기록은 master/Pages 발행이나 공개 검수 완료를 의미하지 않는다.
+
+28장 전용 합류 장면은 일반 목표 메타데이터 경로를 거치지 않아 동작이 누락되던 경로도 연결했다. `field-reunion-browser.py`에서 26장 조사 자료와 27장 가족 명세를 실제 확보한 후 직렬화한 프로필로 28장에 전달해, 같은 소유자·원래 위치·확보 증거가 유지되고 펼치기·재포장이 실행됨을 desktop/mobile에서 확인했다.
