@@ -2873,7 +2873,7 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 
 ### 2026-10-15 · 동물 해부 복원 시안 (부모 픽셀 검수 전)
 - 29b1e273 기반 독립 로컬 작업. hound/boar에 3899a2f 원본 도형·관절·애니메이션을 복원하고 광대/턱/갈비/꺼진 배, 견갑/목가죽/엄니 뿌리/발굽의 구조를 보강한다. 네 주인공·P0 충돌·기존 승인 manifest는 변경하지 않는다. legacy 두 종은 같은 자산을 사용한다.
-- 원본의 날카로운 등선·뼈빛 안면/검은 안와·긴 다리, 높은 어깨·긴 밝은 엄니·머리/몸 명암을 보존한다. 부적 대신 해부 구조를 읽게 한다. 시안의 460 anchor 상한은 이 두 종에만 적용하며 기존 종 기준은 보존한다.
+- 원본의 날카로운 등선·뼈빛 안면/검은 안와·긴 다리, 높은 어깨·긴 밝은 엄니·머리/몸 명암을 보존한다. 부적 대신 해부 구조를 읽게 한다. 실제 hound256/boar273 anchors로 기존350-anchor/90-path/16-color 상한 안에 들며 예산 완화는 필요하지 않다.
 - Library 세 참고 ID는 정상 해석되었으나 공식 helper의 소비자 로컬 materialize가 모두 `download failed`. 실제 픽셀 확인을 완료했다고 주장하지 않는다. 제공된 한국 참고의 설명은 제작 방향이며 사진 복사·공포 도상 근거가 아니다.
 - 빌드 생성기 통과. Node24/Chromium/Python Playwright 사용 가능. 최초 catalog build는 TypeScript 의존성 부재, npm 최초 설치는 기본 cache 디렉터리 생성 실패. workspace cache로 설치 후 검사 예정. 기준의 migration Stage7 honroGrowth 및 integration Stage8 픽셀 실패는 기존 기록이며 이번 통과로 대체하지 않는다.
 - 이 단위는 미술 검수 전 로컬 시안. 원격 발행은 문서모달 작업의 쓰기 차례 인계와 부모 픽셀 검수 이후. 승인 manifest를 시안에 맞춰 자동 갱신하지 않는다.

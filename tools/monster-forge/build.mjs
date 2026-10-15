@@ -22,8 +22,7 @@ export async function buildMonsters(){
   function count(d){let anchors=0,controls=0;for(const [,cmd,args] of d.matchAll(/([MLQCZ])([^MLQCZ]*)/gi)){const n=(args.match(/[-+]?(?:\d*\.)?\d+/g)||[]).length,upper=cmd.toUpperCase();if(upper==='M'||upper==='L')anchors+=n/2;else if(upper==='Q'){anchors+=n/4;controls+=n/4;}else if(upper==='C'){anchors+=n/6;controls+=n/3;}}return{anchors,controls};}
   const counts=paths.map(p=>count(p.d)),colors=[...new Set(paths.flatMap(p=>[p.fill,p.stroke]).filter(Boolean))];
   const anchors=counts.reduce((s,c)=>s+c.anchors,0),original=baseline.assets[a.id]?.anchors,ratio=anchors/original;
-  if(a.budget==='animal-anatomy-preview'){if(anchors>460||paths.length>90||colors.length>16)throw Error(`${a.id}: anatomy preview exceeds 460-anchor/90-path/16-color ceiling`);}
-  else if(a.budget==='catalog-redesign'){if(anchors>350||paths.length>90||colors.length>16)throw Error(`${a.id}: redesign exceeds 350-anchor/90-path/16-color ceiling`);}
+  if(a.budget==='catalog-redesign'){if(anchors>350||paths.length>90||colors.length>16)throw Error(`${a.id}: redesign exceeds 350-anchor/90-path/16-color ceiling`);}
   else if(original){if(ratio<2.85||ratio>3.15)throw Error(`${a.id}: ${anchors}/${original} = ${ratio.toFixed(3)}; allowed original-anchor ratio is 2.85–3.15`);}
   else if(a.budget!=='act3-authored'||anchors>350||paths.length>90||colors.length>16)throw Error(`${a.id}: new Act 3 artwork exceeds its explicit 350-anchor/90-path/16-color budget`);
   const raw=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${a.viewBox.join(' ')}" role="img"><title>${a.name}</title>\n${a.parts.map(p=>`<g id="${p.id}" stroke-linejoin="round" stroke-linecap="round">\n${p.paths.map(v=>`<path d="${xml(v.d)}" fill="${v.fill?a.palette[v.fill]:'none'}" stroke="${v.stroke?a.palette[v.stroke]:'none'}" stroke-width="${v.width}" data-lod="${v.lod}"/>`).join('\n')}\n</g>`).join('\n')}\n</svg>\n`;

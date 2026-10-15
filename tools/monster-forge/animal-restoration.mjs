@@ -2,7 +2,7 @@
 // Reference Library transfer failed in this executor; no claimed image inspection.
 export function restoreAnimal(a){
  if(!['hound','boar'].includes(a.id))return a;
- a.version=4;a.budget='animal-anatomy-preview';
+ a.version=4;a.budget='catalog-redesign';
  const get=id=>a.parts.find(p=>p.id===id);
  const add=(id,d,fill,stroke=null,width=.8,lod=0)=>get(id).paths.push({d,fill,stroke,width,lod});
  a.palette={...a.palette};
