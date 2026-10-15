@@ -10,24 +10,35 @@ export function applyStage27Depot(input){
  // A low, wide timber haulage hall, not a second monumental sluice throat.
  // Rear forms have no outline or collision. Foreground quay edges retain the
  // existing four gate landing coordinates and unobstructed observation shots.
- let rear=R(-16000,-10000,40200,30200,'#0a1c25')+R(-300,1400,8800,4500,'#183138');
- for(const [x,y,w,h]of[[470,2070,2450,2450],[3160,1800,2320,3660],[5850,1770,2040,3660]]){
-  rear+=R(x,y,w,h,'#122830')+R(x+50,y+70,w-100,h-70,'#203a3d');
-  for(const xx of[x+90,x+w*.51,x+w-100])rear+=R(xx,y+100,64,h-100,'#344748')+R(xx+12,y+100,12,h-100,'#46554f');
-  for(const yy of[y+140,y+h*.55])rear+=R(x,yy,w,80,'#384b49')+R(x,yy+62,w,25,'#10272d');
-  rear+=P([[x+70,y+210],[x+400,y+490],[x+435,y+450],[x+115,y+180]],'#384a45');
+ let rear=`<defs><linearGradient id="depot-depth" x1="0" y1="1500" x2="0" y2="5700" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#10272f"/><stop offset=".55" stop-color="#243c40"/><stop offset="1" stop-color="#0c242c"/></linearGradient></defs>`+R(-16000,-10000,40200,30200,'#0a1c25')+R(-300,1400,8800,4500,'url(#depot-depth)');
+ // Three masonry bearing masses terminate at the drowned floor. Broad uneven
+ // mortar courses explain their load, rather than enormous freestanding bars.
+ for(const [x,top,w]of[[240,2070,370],[3630,1760,490],[7500,1750,400]]){
+  rear+=P([[x+45,top],[x+w-45,top],[x+w+80,5690],[x-75,5690]],'#31494b')+P([[x+45,top],[x+105,top],[x+30,5690],[x-75,5690]],'#3d5351')+P([[x+w-110,top],[x+w-45,top],[x+w+80,5690],[x+w-30,5690]],'#192f35');
+  for(let row=0;row<9;row++){const y=top+130+row*395,width=w+row*15;rear+=P([[x+21-row*6,y],[x+width-38,y-14],[x+width-23,y+216],[x-row*6,y+240]],row%3===0?'#3b5050':'#2b4245')+P([[x+20-row*6,y],[x+width-38,y-14],[x+width-41,y+9],[x+18-row*6,y+23]],'#4a5b55');}
  }
- // Long loading apertures, closed wooden panels and drowned lower cargo bays.
- for(const [x,y,w,h]of[[260,3520,1020,900],[2700,3100,700,1020],[6300,2800,1090,1450]]){
-  rear+=R(x-40,y-60,w+80,h+100,'#344e4e')+R(x,y,w,h,'#0b232b');
-  for(let xx=x+25;xx<x+w;xx+=125)rear+=R(xx,y+20,87,h-30,'#293d39');
-  rear+=R(x,y+h*.38,w,36,'#465047')+R(x,y+h*.75,w,32,'#35443f');
+ // Load bays sit behind the real quay levels. Their head beams rest on stone
+ // corbels; the upper ledger alcove and drowned berth have unequal proportions.
+ for(const [x,y,w,h]of[[600,4700,1020,650],[2490,4250,920,590],[4640,4850,1300,800],[6390,4400,1100,720],[1200,2600,1020,520]]){
+  rear+=P([[x-30,y-h-70],[x+w+10,y-h-55],[x+w+35,y],[x-42,y]],'#304747')+R(x,y-h,w,h,'#0b232a');
+  for(const [j,xx]of[x+25,x+w*.49,x+w-70].entries()){
+   rear+=R(xx-19,y-h-25,101,h+25,'#223936')+R(xx,y-h,64,h,'#4b5144')+R(xx,y-h,14,h,'#626553')+R(xx+44,y-h,20,h,'#333f38');
+   rear+=P([[xx-32,y-h+38],[xx+95,y-h+38],[xx+84,y-h+93],[xx-22,y-h+93]],'#655f49');
+   rear+=P([[xx+34,y-h+100],[xx+173,y-h+230],[xx+198,y-h+205],[xx+65,y-h+73]],'#414b3f');
+   rear+=P([[xx-38,y-52],[xx+104,y-52],[xx+121,y],[xx-50,y]],'#415550');
+  }
+  rear+=P([[x-25,y-h-20],[x+w+30,y-h-35],[x+w+35,y-h+39],[x-25,y-h+52]],'#4b5144')+P([[x-25,y-h-20],[x+w+30,y-h-35],[x+w+30,y-h-18],[x-25,y-h-2]],'#6a6c56');
+  // Surviving plank skins stop short of open loading doors. Missing plank ends
+  // show thickness and water staining, not a repeat barred-prison silhouette.
+  for(const [j,xx]of[x+w*.58,x+w*.68,x+w*.78].entries()){
+   const end=y-30-[35,0,95][j];rear+=P([[xx,y-h+58],[xx+w*.075,y-h+54],[xx+w*.075-7,end],[xx+8,end+15]],j===1?'#3d493f':'#35433c')+P([[xx+5,y-h+65],[xx+15,y-h+65],[xx+17,end-20],[xx+8,end-13]],'#52594a');
+  }
+  rear+=R(x+w*.56,y-180,w*.32,36,'#50513f');
  }
- rear+=P([[0,5490],[1580,5480],[2190,5560],[3100,5510],[3600,5580],[4390,5540],[4400,6100],[0,6100]],'#263f43');
- // Partial flat-bottom transport hull: asymmetrical surviving ribs, no fantasy prow.
- rear+=P([[1120,5390],[1500,5540],[3130,5540],[3570,5360],[3380,5760],[1640,5850],[1300,5700]],'#182e33');
- rear+=P([[1120,5390],[1510,5525],[3100,5525],[3570,5360],[3480,5470],[3140,5600],[1510,5600]],'#4a5147');
+ // A stranded low-hulled freight boat belongs to the waterline, not the path.
+ rear+=P([[1060,5410],[1510,5525],[3070,5525],[3510,5400],[3360,5760],[1640,5850],[1260,5700]],'#172c31')+P([[1060,5410],[1510,5510],[3070,5510],[3510,5400],[3410,5480],[3120,5580],[1510,5590]],'#4b5147');
  for(const [x,lean,h]of[[1510,-75,270],[1840,-25,330],[2250,30,300],[2740,65,340],[3140,105,240]])rear+=P([[x-24,5680],[x+24,5680],[x+lean+35,5680-h],[x+lean-9,5680-h]],'#3c4c45');
+ rear+=P([[1360,5620],[3130,5600],[3370,5510],[3330,5560],[3140,5650],[1390,5670]],'#35453d');
  rear+=R(-300,5690,8800,2210,'#0b2531')+line([[-300,5706],[8500,5706]],'#567a78',9);
  const shell=s.elements.find(e=>e.id==='vertical-depot-shell');const a=asset(prefix+'rear-haulage-hall','수몰 목조 집하장 배면',rear,[],[-16000,-10000,40200,30200],'wood');p.library.push(a);shell.assetId=a.id;
  // Quays read as massive load-bearing structures, not thin parallel shelves.
@@ -36,7 +47,7 @@ export function applyStage27Depot(input){
   let v=P(face,'#364e4c')+P([[l,y+23],[r,y+23],[r,y+65],[l,y+65]],'#8b9078');
   for(const [j,x]of [l+90,l+(r-l)*.48,r-140].entries())v+=P([[x,y+68],[x+73,y+68],[x+105,y+depth+20],[x-30,y+depth+20]],j===1?'#56675a':'#41594f');
   v+=line([[l+12,y+depth*.6],[r-12,y+depth*.6]],'#243c3d',12);
-  add('quay-face-'+i,v,[l,y,r-l,depth+50]);
+  add('quay-face-'+i,v,[l,y,r-l,depth+50],[face]);
  }
  // Two-sided cargo loading incline. Low enough to return using ordinary walk;
  // its broad crest changes close-range sight lines, not mandatory progression.
@@ -47,8 +58,11 @@ export function applyStage27Depot(input){
  add('cargo-incline',cargo,[4895,4745,530,110],[mound]);
  // Replace decoration that falsely showed crates on the new approach plane.
  s.elements=s.elements.filter(e=>e.id!=='abandoned-loading-shed');
- let crane=R(5530,4070,45,780,'#534f3a')+R(5535,4070,9,780,'#a28d61')+R(5320,4080,510,43,'#776347')+P([[5545,4120],[5740,4310],[5770,4290],[5580,4100]],'#594e39')+line([[5350,4120],[5350,4540]],'#847e62',8)+P([[5315,4540],[5385,4540],[5370,4565],[5330,4565]],'#3a4d46');
- add('loading-hoist',crane,[5310,4060,530,800]);
+ // Low open timber shed: thick lintel, paired face planes and scarf joint.
+ let crane=R(4780,4300,790,40,'#1b3030')+R(4780,4300,790,10,'#9b8962')+R(4790,4310,770,21,'#6f6248')+P([[4750,4290],[4950,4210],[5360,4210],[5600,4300],[5570,4320],[5330,4240],[4970,4240],[4780,4315]],'#34463f')+P([[4750,4290],[4950,4210],[5360,4210],[5360,4223],[4965,4230],[4768,4304]],'#737661');
+ for(const [x,lean]of[[4800,1],[5520,-1]]){crane+=R(x-5,4340,48,510,'#1a3030')+R(x,4340,38,510,'#6b6048')+R(x+3,4340,8,510,'#a18d64')+P([[x+18,4340],[x+18+lean*126,4470],[x+34+lean*126,4452],[x+36,4330]],'#76684b')+R(x-13,4330,65,25,'#9a865d')+R(x-15,4807,68,43,'#526250');}
+ crane+=R(5560,4230,38,620,'#283932')+R(5567,4230,9,620,'#8a7957')+R(5400,4240,420,33,'#78664a')+R(5400,4240,420,8,'#a48d63')+P([[5580,4280],[5740,4430],[5760,4412],[5600,4263]],'#62563e')+line([[5430,4273],[5430,4620]],'#8a8468',6)+P([[5400,4620],[5460,4620],[5445,4644],[5416,4644]],'#4a5a4c');
+ add('loading-hoist',crane,[4740,4200,1100,660]);
  // Enemy identities, counts, cohorts and every objective are unchanged.
  const cart=s.units.find(u=>u.team==='enemy'&&u.kind==='minecart'&&u.x===5180);if(cart)cart.y=4750;
  const group=s.design.act3.encounterPlan.groups.find(q=>q.id==='lower-loading-store');
