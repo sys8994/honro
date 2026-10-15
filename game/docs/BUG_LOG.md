@@ -2993,3 +2993,9 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 집중 검사: 219/220/240/260px 경계 및 초과, 높이 150 경계 및 초과, 다른 층, 실제 확보자, 26장 주민 장부 인계, 반복 클릭, 확보 실패 시 완료 차단, 누락된 JSON 저장 복구, 실제 desktop/mobile reload/Continue 두 번, 정상 두 기록함 확보 후 대조, 기존 물증 회귀와 실제 22장 이동 경로. 전체 verify는 사용자 요청에 따라 재실행하지 않는다. 검수 이미지는 외부 전송하지 않는다.
 
 최종 집중 결과: 48개 경계/획득/복구 사례, 비필드 구 저장 불변, desktop/mobile 실제 Continue 복구와 재저장, 기존 물증 회귀, 실제 22장 CE→EF→FG 이동 경로 통과. 정확한 3개 런타임 소스 변경은 `evidence-pickup-p0-delta.json`으로 고정했으며 168 소스/9 빌드/두 HTML 계약 및 17개 신규 변조 거부 검사를 통과했다. 이전 먹귀·인양·필드 이야기 fixture는 변경하지 않았다.
+
+### 2026-10-15 · 28장 관아 기록 마당 검수 후보
+
+새 28장의 U자 지형을 중앙 대청·서쪽 서리길·동쪽 수방으로 재구성했다. 기존 양측 출발, 두 제어와 12턴 화재, 실물 증거/후속 자동 목표, 초기11/정예3/무증원 계약을 보존했다. 다른29장 및 진행 저장 지형은 바꾸지 않는다.
+
+합류 범위440에서 받아들인 물증 소유자가 별도260 검사로 누락되는 문제를 새 개편 맵에 한해 동일 sameFloor 판정으로 교정했다. 기존 영수증과 실제 걷기·전개·재포장을 사용한다. 정상 자원 Native R8/36행동 완주, 분산 물증 fixture, 새/구 Continue, PC/모바일 Canvas, 기존 P0/field evidence/fire-sites, 빌드/환경 검증 통과. 자세한 범위·PNG·원본 로그는 사용자 요청 경로 review/stage28/README.md에 있다. 브라우저 수동 완주/Workshop Playtest/전체 verify는 미실행, encounter gate와 미술 승인은 대기. 공식 이미지 픽셀 조사는 네트워크403/timeout으로 미충족이며 master/Pages에 배포하지 않았다.

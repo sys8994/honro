@@ -1,0 +1,59 @@
+{
+  "scope": "Declared battle/cargo/position fixtures. Actual story walk+lay+pack and App export/import/Continue. Not normal combat.",
+  "passed": true,
+  "rows": [
+    {
+      "case": "spread-430-290",
+      "cargo": [
+        "25:household-tally",
+        "26:investigation-record",
+        "26:casting-tally",
+        "27:family-manifest"
+      ],
+      "laid": true,
+      "repacked": true,
+      "walk": {
+        "0": {
+          "distance": -355,
+          "target": {
+            "x": 3435,
+            "y": 2380
+          },
+          "status": "arrived"
+        },
+        "1": {
+          "distance": 420,
+          "target": {
+            "x": 3490,
+            "y": 2380
+          },
+          "status": "arrived"
+        },
+        "2": {
+          "distance": 335,
+          "target": {
+            "x": 3545,
+            "y": 2380
+          },
+          "status": "arrived"
+        },
+        "3": {
+          "distance": -330,
+          "target": {
+            "x": 3600,
+            "y": 2380
+          },
+          "status": "arrived"
+        }
+      }
+    },
+    {
+      "case": "new-save-continue",
+      "preserved": true
+    },
+    {
+      "case": "pre-rebuild-save",
+      "preserved": true
+    }
+  ]
+}

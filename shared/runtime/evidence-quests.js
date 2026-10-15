@@ -98,7 +98,7 @@ function onComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return;
  if(s.id==='casting-tally'){const r=f.events['artisan-resident'];p=b.units.find(v=>v.id==='act3-resident');u=r&&b.units.find(v=>v.id===r.actor);}
  if(s.id==='artisan-resident'){p=b.units.find(v=>v.id===s.target);u=eventActor(b,p,actor);}
  if(b.honroStage===28&&s.id==='party-reunion'){
-  for(const id of ['25:household-tally','26:investigation-record','26:casting-tally','27:family-manifest']){const old=app.profile.honroFieldCargo?.[id],owner=old&&living(b).find(v=>v.cls===old.ownerClass);if(old&&near(owner,p,260)){f.cargo[id]={...clone(old),actor:owner.id,phase:'carry',progress:0};ids.push(id);}}
+  for(const id of ['25:household-tally','26:investigation-record','26:casting-tally','27:family-manifest']){const old=app.profile.honroFieldCargo?.[id],owner=old&&living(b).find(v=>v.cls===old.ownerClass);if(old&&(b.honroRecordCourtRevision===1?!!owner&&G.HonroAct3.sameFloor(owner,p,440):near(owner,p,260))){f.cargo[id]={...clone(old),actor:owner.id,phase:'carry',progress:0};ids.push(id);}}
  }else if(b.honroStage===22&&s.id==='compare-ledgers')ids=['22:ledger-case','22:upper-register'].filter(id=>f.cargo[id]);
  else if(['ledger-case','upper-register','investigation-record','casting-tally','family-manifest','petition-record','hyeonmuk-letter'].includes(s.id)){
   if(s.id==='hyeonmuk-letter'){p=site(b,'old-seal');u=eventActor(b,p,actor);}const q=p&&collect(app,b.honroStage+':'+s.id,p,u);if(q)ids=[q.id];
