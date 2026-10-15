@@ -2877,3 +2877,7 @@ The shared radial-control variables now place drop at150° and defend at195°; j
 - Library 세 참고 ID는 정상 해석되었으나 공식 helper의 소비자 로컬 materialize가 모두 `download failed`. 실제 픽셀 확인을 완료했다고 주장하지 않는다. 제공된 한국 참고의 설명은 제작 방향이며 사진 복사·공포 도상 근거가 아니다.
 - 빌드 생성기 통과. Node24/Chromium/Python Playwright 사용 가능. 최초 catalog build는 TypeScript 의존성 부재, npm 최초 설치는 기본 cache 디렉터리 생성 실패. workspace cache로 설치 후 검사 예정. 기준의 migration Stage7 honroGrowth 및 integration Stage8 픽셀 실패는 기존 기록이며 이번 통과로 대체하지 않는다.
 - 이 단위는 미술 검수 전 로컬 시안. 원격 발행은 문서모달 작업의 쓰기 차례 인계와 부모 픽셀 검수 이후. 승인 manifest를 시안에 맞춰 자동 갱신하지 않는다.
+- 실행 결과: workspace npm cache로 의존성 설치 완료. 두 HTML/도감 재빌드, `tests/animal-anatomy-preview.py` 89검사 PASS(4종×5동작×2시점×양방향, 네 주인공 픽셀 동일, 양 호스트 자산 동일, JS 오류0). `body-sweep.mjs`184조건 PASS. 원본 대비 두 동물 rig/clip 동일, 나머지15종 자산 동일.
+- 실제 시안 픽셀: 180/90에서 안면/갈비/엄니/목가죽 면이 분리되고35에서 뼈빛 얼굴·엄니는 유지된다. 개 몸통의 어두운 털은35px에서 세부가 합쳐진다. 양방향 주요 동작에서 관절 분리/잘림은 관측하지 않았다. jump_fall은 기존 renderer의 정지 포즈 표시이며 새로운 점프 애니메이션을 만들었다는 증거가 아니다. 최종 미술 합격은 부모 검수 전이다.
+- `npm run verify`: 기존 monster packaging source 해시 계약(current-runtime-contracts.mjs:224)에서 FAIL. 시안 통합 후에는 기존 승인자료를 보존하는 별도 exact reversible delta가 필요하다. 이 단계에서는 manifest를 고치지 않았다. `tests/migration.mjs`: Stage7 story honroGrowth FAIL. `tests/integration.py`: Stage1–7 렌더동일 PASS, Stage8 기존679픽셀 차이 FAIL. 실패를 미술 합격으로 대체하지 않는다.
+- 비교PNG Library 저장 확인: hound libfile_d541d0c1d0748191915dd4953cdb742e / boar libfile_e576d8207aa081918a961e23d6197fac. 현재 Scene에서3899a2f/6a8638c/시안 자산만 교체한3열 비교이므로 포즈/배경/크기가 동일하다. 원본 당시 전체 게임 스크린샷으로 오인하지 않는다. PNG와 로그는 `_local/reports/animal-preview/`.
