@@ -29,6 +29,7 @@ function target(b,s){const m=marker(b,s.id),t=s.kind==='destroy'&&G.HonroQuestTa
 }
 function state(b){const list=steps(b),s=current(b),a=memory(b),issue=sourceIssue(b),all=list.map(q=>({...target(b,q),done:!!a.done[q.id]}));let detail='';
  if(s?.kind==='hold'){const h=a.holds[s.id];detail=` · ${h?.progress||0}/${s.rounds}턴${h?.contested?' · 가까운 적을 밀어내세요':h?.guarded?' · 지키는 중':' · 같은 층의 표시 범위에서 유지'}`;}
+ if(s?.id==='compare-ledgers'&&G.HonroEvidenceQuests?.pairReady(b)===false)detail+=' · 두 기록함을 든 동행이 같은 층에서 서로 가까이 모이세요';
  if(fireScenario(b)&&!firesStopped(b))detail+=` · 소각까지 ${Math.max(0,12-(a.fireTurns||0))} 적 턴`;
  const targets=G.HonroEvidenceQuests?.targets(b,s)||G.HonroRouteBranches?.targets(b,s)||readySteps(b).map(q=>target(b,q));
  if(s?.kind==='escort'){const u=b.units.find(u=>u.id===s.target);if(alive(u))targets.push({id:u.id,kind:'objective',x:u.x,y:u.y-u.h,unitId:u.id,label:'기록 운반자 · 가까이 동행'});}
@@ -48,14 +49,14 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&c
  return{ok:true,reason:s.label};
 }
 function openGate(b,id){if(!id)return;const t=G.HonroQuestTargets.records(b).find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}
-function completeStep(app,s){const b=app.engine.b,a=memory(b);if(a.done[s.id])return;a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round,enemyEnd:b.teamEnds?.[1]||0});const m=marker(b,s.id);if(m)m.collected=true;openGate(b,s.opens);
- const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
+function completeStep(app,s,actor){const b=app.engine.b,a=memory(b);if(a.done[s.id])return;a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round,enemyEnd:b.teamEnds?.[1]||0});const m=marker(b,s.id);if(m)m.collected=true;openGate(b,s.opens);G.HonroEvidenceQuests?.onComplete(app,s,actor);
+ const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}])));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
 }
 function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=e.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=s.target&&e.unit(s.target);
  if(s.kind==='rescue'){G.HonroObjectiveContributions?.approach(b,s.id,heroes(b),u,220);u.honroResolved=true;u.shield=Math.max(u.shield||0,Math.round(u.maxHp*.3));}
  if(s.startsEscort){a.escorts[s.target]={started:true};u.fixed=false;u.maxMove=u.moveLeft=900;u.walkSpeed=Math.min(u.walkSpeed||280,320);}
  G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
- completeStep(app,s);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
+ completeStep(app,s,e.active);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
  const hurt=e.hurt.bind(e);e.hurt=function(u,amount,...args){const source=e.unit(args[0]);if(u.honroProtected&&source?.side===0&&!e.projectileDamage(args[2]))return;return hurt(u,amount,...args);};
@@ -76,7 +77,7 @@ function spawnHold(app,s,h){if(!s.wave||h.spawned>=s.wave.count)return true;cons
  h.spawned+=n;memory(b).events[key]=true;app.event('길목에 '+n+'명의 위협이 다가온다.');app.dirty=true;return true;
 }
 function holdTick(app,s,m){const b=app.engine.b,a=memory(b),end=b.teamEnds?.[1]||0,h=a.holds[s.id]??={progress:0,spawned:0,lastEnemyEnd:end,continuous:false};
- const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
+ const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0&&(s.id!=='compare-ledgers'||G.HonroEvidenceQuests?.pairReady(b)!==false),priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
  if(!guarded||contested)h.continuous=false;
  else if(end===h.lastEnemyEnd&&b.side!==1)h.continuous=true;
  if(end>h.lastEnemyEnd){if(h.continuous&&guarded&&!contested)h.progress++;h.lastEnemyEnd=end;h.continuous=guarded&&!contested;app.dirty=true;}

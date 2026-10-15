@@ -121,10 +121,10 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  return{ok:true,reason:m.label};
 }
 function say(app,id,lines){if(!lines?.length)return;app.sayLines(G.HonroAct2Content.scene('act2-'+app.stage.id+'-'+id,app.stage.name,lines));}
-function completeStep(app,s){const e=app.engine,b=e.b,a=memory(b);if(a.done[s.id])return;
+function completeStep(app,s,actor){const e=app.engine,b=e.b,a=memory(b);if(a.done[s.id])return;
  a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round});
- const m=marker(b,s.id);if(m)m.collected=true;
- const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];say(app,s.id,lines);if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
+ const m=marker(b,s.id);if(m)m.collected=true;G.HonroEvidenceQuests?.onComplete(app,s,actor);
+ const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];say(app,s.id,lines?.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}]));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
 }
 function wave(app,key,kind,n=2,siteKey=key,eliteEvery=4){const e=app.engine,b=e.b,a=memory(b);if(a.events[key])return true;
  const site=marker(b,'wave-'+siteKey)||marker(b,'wave');if(!site)return false;
@@ -162,7 +162,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
   if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.',{kind:'narration',source:'soul-released'});}
   if(s.id==='escort')a.escort=true;
   G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
-  completeStep(app,s);
+  completeStep(app,s,e.active);
  }
  if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }

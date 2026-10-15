@@ -28542,10 +28542,10 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  return{ok:true,reason:m.label};
 }
 function say(app,id,lines){if(!lines?.length)return;app.sayLines(G.HonroAct2Content.scene('act2-'+app.stage.id+'-'+id,app.stage.name,lines));}
-function completeStep(app,s){const e=app.engine,b=e.b,a=memory(b);if(a.done[s.id])return;
+function completeStep(app,s,actor){const e=app.engine,b=e.b,a=memory(b);if(a.done[s.id])return;
  a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round});
- const m=marker(b,s.id);if(m)m.collected=true;
- const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];say(app,s.id,lines);if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
+ const m=marker(b,s.id);if(m)m.collected=true;G.HonroEvidenceQuests?.onComplete(app,s,actor);
+ const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];say(app,s.id,lines?.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}]));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
 }
 function wave(app,key,kind,n=2,siteKey=key,eliteEvery=4){const e=app.engine,b=e.b,a=memory(b);if(a.events[key])return true;
  const site=marker(b,'wave-'+siteKey)||marker(b,'wave');if(!site)return false;
@@ -28583,7 +28583,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
   if(s.id.startsWith('send-')){for(const u of e.heroesAlive()){u.focus=Math.min(u.maxFocus,u.focus+25);}app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.',{kind:'narration',source:'soul-released'});}
   if(s.id==='escort')a.escort=true;
   G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
-  completeStep(app,s);
+  completeStep(app,s,e.active);
  }
  if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
@@ -30086,6 +30086,7 @@ function target(b,s){const m=marker(b,s.id),t=s.kind==='destroy'&&G.HonroQuestTa
 }
 function state(b){const list=steps(b),s=current(b),a=memory(b),issue=sourceIssue(b),all=list.map(q=>({...target(b,q),done:!!a.done[q.id]}));let detail='';
  if(s?.kind==='hold'){const h=a.holds[s.id];detail=` · ${h?.progress||0}/${s.rounds}턴${h?.contested?' · 가까운 적을 밀어내세요':h?.guarded?' · 지키는 중':' · 같은 층의 표시 범위에서 유지'}`;}
+ if(s?.id==='compare-ledgers'&&G.HonroEvidenceQuests?.pairReady(b)===false)detail+=' · 두 기록함을 든 동행이 같은 층에서 서로 가까이 모이세요';
  if(fireScenario(b)&&!firesStopped(b))detail+=` · 소각까지 ${Math.max(0,12-(a.fireTurns||0))} 적 턴`;
  const targets=G.HonroEvidenceQuests?.targets(b,s)||G.HonroRouteBranches?.targets(b,s)||readySteps(b).map(q=>target(b,q));
  if(s?.kind==='escort'){const u=b.units.find(u=>u.id===s.target);if(alive(u))targets.push({id:u.id,kind:'objective',x:u.x,y:u.y-u.h,unitId:u.id,label:'기록 운반자 · 가까이 동행'});}
@@ -30105,14 +30106,14 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&c
  return{ok:true,reason:s.label};
 }
 function openGate(b,id){if(!id)return;const t=G.HonroQuestTargets.records(b).find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}
-function completeStep(app,s){const b=app.engine.b,a=memory(b);if(a.done[s.id])return;a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round,enemyEnd:b.teamEnds?.[1]||0});const m=marker(b,s.id);if(m)m.collected=true;openGate(b,s.opens);
- const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
+function completeStep(app,s,actor){const b=app.engine.b,a=memory(b);if(a.done[s.id])return;a.done[s.id]=true;a.checkpoints.push({id:s.id,round:b.round,enemyEnd:b.teamEnds?.[1]||0});const m=marker(b,s.id);if(m)m.collected=true;openGate(b,s.opens);G.HonroEvidenceQuests?.onComplete(app,s,actor);
+ const lines=(G.HonroObjectiveRevision?.contentFor(b,app.stage)||app.stage).beats?.[s.id];if(lines?.length&&!G.HonroObjectiveRevision?.stageScene(app,s))app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}])));if(!lines?.length)app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id});app.dirty=true;
 }
 function use(app,m){if(!eligibility(app,m).ok)return false;const e=app.engine,b=e.b,s=readySteps(b).find(q=>q.id===m.id),a=memory(b),u=s.target&&e.unit(s.target);
  if(s.kind==='rescue'){G.HonroObjectiveContributions?.approach(b,s.id,heroes(b),u,220);u.honroResolved=true;u.shield=Math.max(u.shield||0,Math.round(u.maxHp*.3));}
  if(s.startsEscort){a.escorts[s.target]={started:true};u.fixed=false;u.maxMove=u.moveLeft=900;u.walkSpeed=Math.min(u.walkSpeed||280,320);}
  G.HonroObjectiveContributions?.interact(b,s.id,e.active,{rescue:s.kind==='rescue',progress:steps(b).some(q=>['hold','destroy','escort','reach'].includes(q.kind)&&a.done[q.id])});
- completeStep(app,s);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
+ completeStep(app,s,e.active);if(!app.checkMission(e))e.finishAction();app.dirty=true;return true;
 }
 function attach(app,e){if(!active(e.b))return;initialize(e.b);if(e.honroAct3Attached)return;e.honroAct3Attached=true;
  const hurt=e.hurt.bind(e);e.hurt=function(u,amount,...args){const source=e.unit(args[0]);if(u.honroProtected&&source?.side===0&&!e.projectileDamage(args[2]))return;return hurt(u,amount,...args);};
@@ -30133,7 +30134,7 @@ function spawnHold(app,s,h){if(!s.wave||h.spawned>=s.wave.count)return true;cons
  h.spawned+=n;memory(b).events[key]=true;app.event('길목에 '+n+'명의 위협이 다가온다.');app.dirty=true;return true;
 }
 function holdTick(app,s,m){const b=app.engine.b,a=memory(b),end=b.teamEnds?.[1]||0,h=a.holds[s.id]??={progress:0,spawned:0,lastEnemyEnd:end,continuous:false};
- const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0,priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
+ const guards=heroes(b).filter(u=>(!s.requiredClass||u.cls===s.requiredClass)&&sameFloor(u,m,s.radius)),guarded=guards.length>0&&(s.id!=='compare-ledgers'||G.HonroEvidenceQuests?.pairReady(b)!==false),priorProgress=h.progress,intervalEnded=end>h.lastEnemyEnd,contested=b.units.some(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&alive(u)&&sameFloor(u,m,s.contestRadius||230));
  if(!guarded||contested)h.continuous=false;
  else if(end===h.lastEnemyEnd&&b.side!==1)h.continuous=true;
  if(end>h.lastEnemyEnd){if(h.continuous&&guarded&&!contested)h.progress++;h.lastEnemyEnd=end;h.continuous=guarded&&!contested;app.dirty=true;}
@@ -30893,7 +30894,7 @@ const geography=[
  ['동굴마을','수문 아래 작업굴','underground','river','피난 다리 곁','고정된 피난 다리 뒤로 가족들이 모여 있다. 아래 물길은 잠운사로 이어지는 우회로다.'],
  ['잠운사','법당','underground','temple','법당 아래 계단','물이 빠진 작업굴을 지나 계단 앞에 선다. 암벽에 붙은 법당 쪽으로 길이 올라간다.'],
  ['잠운사','뒤편 작업굴','underground','cave','잠운사 뒤편 길목','법당 뒤로 작업굴이 이어진다. 설오는 가져온 기록을 다시 접어 품에 넣는다.'],
- ['잠운사','묵종 공동','underground','cave','인양로 끝','복원한 인양로 끝에서 공동으로 길이 열린다. 일행은 남은 기록을 챙기고 발걸음을 맞춘다.'],
+ ['잠운사','묵종 공동','underground','cave','인양로 끝','복원한 인양로 끝에서 공동으로 길이 열린다. 일행은 다시 돌아가는 인양축을 지나 공동 쪽으로 발걸음을 맞춘다.'],
  ['잠운사','묵종 공동','underground','cave','묵종 곁','종지기는 제압됐지만 종 안에는 아직 혼이 남아 있다. 같은 자리에서 그들을 보내는 일이 이어진다.'],
  ['북쪽 돌산','동굴 출구','underground','cave','동굴 출구 안쪽','종의 울림이 멎은 길을 따라 사람들이 모인다. 바깥으로 나가기 전, 서로의 걸음을 기다린다.']
 ];
@@ -31099,7 +31100,7 @@ const observations={
  1:['쪽지의 접힌 자리에 홍만의 이름이 있네. 연목 나루… 잊을 리 없는데 벌써 몇 번을 읽었지.'],
  2:['아래 사람들은 아직 나를 못 봤나 보네. 목소리가 닿을 만큼만 더 가까이 가자.'],
  3:['홍만 어르신이 살아 계실 때 왔어야 했는데. 지금은 남겨 두신 장부를 찾는 수밖에 없겠지.','아버지가 남긴 장부를 기억하고 있었구먼. 연실이 해 준 말을 잘 짚어 보세.'],
- 4:['장부에 사람 수라도 남아 있어서 다행이야. 이제는 누구를 찾는지 제대로 말할 수 있겠지.','젖은 장을 함부로 넘기지 않길 잘했네. 남은 기록은 잘 간수하게.'],
+ 4:['장부에 사람 수라도 남아 있어서 다행이야. 이제는 누구를 찾는지 제대로 말할 수 있겠지.','주막을 지나 북문으로 간 발자취가 이어졌네. 문밖으로 나온 사람들에게 길을 물어보세.'],
  5:['가까워질수록 물소리가 커지는군. 서로 하는 말을 놓치지 않게 해야겠네.','실이 당겨지는 쪽은 보여도, 저 너머 사정까지 안다고 할 수는 없지.'],
  6:['휘겸이 부상자들을 맡기고 돌아왔구나. 이번에는 셋이서 남은 분들을 데려올 수 있겠지.','폭포의 줄이 느슨해져도 다른 줄은 여전히 당겨졌네. 물가에서 본 그 움직임을 기억해 두세.','쉼터에 닿은 사람들도 뒤처진 이들을 기다리고 있을 것이오. 나도 그 얼굴들이 마음에 남소.'],
  7:['쉼터에서 사람들 말소리가 들리네. 운반대를 끌던 소리가 멎으니 이제야 알겠네.','다친 몸과 그 안에 든 혼은 다른 것이네. 오늘 만난 사람들을 보며 더 잊지 말아야겠어.','운반대를 끝까지 함께 끌고 오니 어깨가 묵직하오. 기다리던 사람들 얼굴은 좀 펴졌소.'],
@@ -31130,10 +31131,10 @@ const conversations={
   occultist:[['소단','문 안쪽에서 혼이 여러 갈래로 겹쳐 들려요. 누군가 부르는 소리와 피하려는 소리가 달라요.'],['담허','하나의 울림으로 단정하지 말자는 거구나. 안에서 들은 방향을 함께 맞춰 보자.']]
  },
  14:{knight:[['휘겸','이 집 문턱은 안에서 닳았소. 밖으로 나가던 발보다 안에서 기다리던 발이 더 많았던 모양이오.'],['설오','석공 어르신은 아직 아들을 기다리고 있어요. 길찬을 찾을 때까지 이 문을 닫지 말죠.']]},
- 16:{mage:[['담허','작업굴에 오래된 고정 자리와 새로 끊긴 손잡이가 있었네. 같은 때의 일은 아니지.'],['휘겸','그럼 누가 다시 손을 댔는지 장부에서 찾아야겠소.'],['담허','맞네. 절에 남은 기록과 맞춰 보세.']]},
+ 16:{mage:[['담허','작업굴에 오래된 고정 자리와 새로 끊긴 손잡이가 있었네. 같은 때의 일은 아니지.'],['휘겸','끊긴 자리와 오래된 홈을 구분해 봐야겠소.'],['담허','그렇지. 먼저 다친 이들의 말을 듣고, 손댄 자리를 직접 확인하세.']]},
  18:{knight:[['휘겸','축을 뺀 흔적이 손 높이에 있었소. 무너져서 막힌 길이 아니었소.'],['소단','그 안에서 두드린 분들이 있었어요. 왜 못 들은 척했을까요?'],['휘겸','그 까닭은 종지기에게 직접 묻겠소. 축을 빼서 구조를 막았다는 사실도 짚겠소.']]},
  19:{occultist:[['소단','울림이 낮아지니 서로 다른 소리가 들려요. 이름을 아는 분들을 기다리고 있어요.'],['설오','누구의 이름부터 불러야 하나요?'],['소단','가족이 알아볼 수 있는 이름부터 불러 주세요. 아무도 기억하지 못하는 혼도 남았는지 제가 살필게요.']]},
- 20:{archer:[['설오','사람들이 밖으로 나갈 준비를 하는데도 종 안에는 오래된 혼이 남았네요.'],['담허','서두른다고 떠날 수 있는 혼은 아니네. 먼저 왜 여기에 붙들렸는지 알아야 해.'],['설오','그럼 기록을 챙겨요. 우리가 본 일과 그들이 겪은 일을 따로 적어 두죠.']]}
+ 20:{archer:[['설오','사람들이 밖으로 나갈 준비를 하는데도 종 안에는 오래된 혼이 남았네요.'],['담허','서두른다고 떠날 수 있는 혼은 아니네. 먼저 왜 여기에 붙들렸는지 알아야 해.'],['설오','밖으로 나가는 분들께 길을 물어볼게요. 남은 혼이 찾는 곳을 아는 분이 있을지도 몰라요.']]}
 };
 function optional(profile,nextStageId,cls){
  const p=context(profile,nextStageId),index=classes.indexOf(cls);
@@ -31246,7 +31247,7 @@ function point(b,p,context={}){
  else if(Number.isFinite(p.x)&&Number.isFinite(p.y))q=p;
  return q&&Number.isFinite(q.x)&&Number.isFinite(q.y)?{...q,x:q.x+(p.dx||0),y:q.y+(p.dy||0)}:null;
 }
-function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx','evidence'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
+function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx','field-evidence'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
 function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
  if(b.honroCustom)return;
@@ -31316,11 +31317,6 @@ function move(app,s,step,dt,skip){
 function apply(app,s,step,skip=false,dt=0){
  const b=app.engine.b,key=s.cursor,first=!s.applied[key];
  if(first){s.applied[key]=true;
-  if(step.type==='evidence'){
-   // Cosmetic custody, serialized with this cue. Never completes a goal or awards evidence.
-   const mem=b.honroState.evidenceScene??={},prior=mem[step.marker],u=actor(b,step.phase==='compare'&&prior?prior.actor:step.actor),m=b.honroMarkers?.find(m=>m.id===step.marker);
-   if(alive(u)&&m){const key=step.marker==='party-reunion'?step.marker+':'+u.id:step.marker,old=mem[key];mem[key]={source:step.marker,actor:u.id,kind:step.kind||'record-case',phase:step.phase||'carry',x:u.x+(u.facing||1)*28,y:u.y,acquiredAt:old?.acquiredAt||{x:m.x,y:m.y}};b.sceneVersion++;}
-  }
   if(step.type==='fx'&&!skip){if(step.sound)app.audio?.play(step.sound);const p=point(b,step.at,s.context);if(p&&step.effect)app.engine.fx(step.effect,p.x,p.y-15,step.color||'#c9b37f',step.radius||48);}
   if(step.type==='move'){const u=step.reveal?reveal(b,step.actor):actor(b,step.actor);if(alive(u)&&step.focus!==false){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}}
   if(step.type==='look'&&(!step.actor||step.camera===true)&&!skip){const p=point(b,step.actor?{actor:step.actor}:step.at,s.context);if(p&&app.scene){delete s.focusActor;app.scene.goalFocus=null;const size=app.scene.size?.(),scale=step.scale&&size?Math.min(step.scale,size.w/((p.spanX||0)+240),(size.h*.55)/((p.spanY||0)+200)):step.scale;
@@ -31329,6 +31325,7 @@ function apply(app,s,step,skip=false,dt=0){
    if(Number.isFinite(step.screenRight)&&size&&scale)p.x-=(size.w*.5-Math.min(step.screenRight,size.w*.65))/Math.max(.3,Math.min(1.15,scale));
    s.focus=clone(p);s.focusScale=scale;app.scene.storyFocusPoint?.(p.x,p.y,Math.min(550,step.duration||500),scale);}}
  }
+ if(step.type==='field-evidence'){G.HonroEvidenceQuests?.animateField(app,step,skip?1:Math.min(1,(s.elapsed+dt*1000)/(step.duration||1)));return skip||s.elapsed+dt*1000>=(step.duration||0);}
  if(step.type==='move'){const status=move(app,s,step,dt,skip);if(status){s.results[key]={...s.results[key],status};return true;}return skip||s.elapsed>Math.max(3000,(step.duration||600)*3);}
  if(step.type==='look'&&step.actor){const u=actor(b,step.actor),p=point(b,step.at,s.context);if(alive(u)){if(p&&p.x!==u.x){const facing=Math.sign(p.x-u.x);if(facing!==u.facing&&Number.isFinite(u.angle))u.angle=180-u.angle;u.facing=facing;}if(step.pose)u.honroScenePose={kind:step.pose,time:(s.elapsed+dt*1000)/1000};}}
  return skip||s.elapsed+dt*1000>=(step.duration||0);
@@ -31453,27 +31450,7 @@ const pose=(actor,kind,at)=>face(actor,at||{actor:'archer'},kind);
 const step=(actor,dx)=>({type:'move',actor,to:{origin:actor,dx},duration:850,focus:false});
 const toward=(actor,at,distance=48)=>({type:'move',actor,towards:at,distance,duration:950,focus:false});
 const rule=(stage,when,who,text,actions)=>({stage,when,who,text,actions});
-const take=(actor,marker,phase='carry')=>({type:'evidence',actor,marker,phase,duration:0});
 const rules=[
- // Evidence follows the actor who retrieves it; comparison is physical custody, not a reader.
- rule(16,'record','서술','칠십 년 전',[take('knight','record'),pose('knight','inspect',{marker:'record'})]),
- rule(17,'notes','서술','일지에는',[take('mage','notes'),pose('mage','inspect',{marker:'notes'})]),
- rule(19,'old-soul','소단','옷차림',[toward('occultist',{marker:'old-soul'},36),pose('occultist','hold-bell',{marker:'old-soul'}),face('knight',{marker:'old-soul'},'inspect')]),
- rule(22,'ledger-case','휘겸','보고에는',[take('knight','ledger-case'),toward('knight',{actor:'archer'},42),pose('knight','inspect')]),
- rule(22,'upper-register','설오','호적에',[take('archer','upper-register'),toward('archer',{actor:'knight'},42),pose('archer','inspect')]),
- rule(22,'compare-ledgers','설오','같은 주민',[take('knight','ledger-case','compare'),take('knight','upper-register','compare'),pose('knight','inspect'),pose('archer','inspect',{actor:'knight'})]),
- rule(26,'investigation-record','서술','현장 조사',[take('knight','investigation-record'),toward('knight',{actor:'occultist'},36),pose('knight','inspect')]),
- rule(26,'artisan-resident','주민','작업기록',[toward('act3-resident',{actor:'occultist'},48),face('occultist',{actor:'act3-resident'},'listen')]),
- rule(26,'casting-tally','서술','금속량',[take('occultist','casting-tally'),toward('occultist',{actor:'knight'},36),pose('occultist','inspect')]),
- rule(27,'family-manifest','서술','적재 명세',[take('archer','family-manifest'),pose('archer','inspect',{marker:'family-manifest'})]),
- rule(28,'party-reunion','서술','나란히',[take('archer','party-reunion','compare'),take('knight','party-reunion','compare'),toward('archer',{actor:'knight'},36),pose('knight','inspect')]),
- rule(28,'petition-record','서술','청원한 뒤',[take('knight','petition-record'),pose('knight','inspect')]),
- rule(28,'closure-order','서술','고위 관리',[take('knight','closure-order','compare'),pose('knight','inspect')]),
- rule(28,'suppression-order','휘겸','각각의 이름',[take('knight','petition-record','compare'),take('knight','suppression-order','compare'),pose('knight','inspect'),face('archer',{actor:'knight'},'listen')]),
- rule(29,'hyeonmuk-letter','서술','현묵은 스승',[take('mage','hyeonmuk-letter'),pose('mage','inspect',{marker:'old-seal'})]),
- rule(29,'hyeonmuk-letter','담허','남은 혼을',[face('mage',{marker:'old-seal'},'hold-bell'),face('occultist',{marker:'old-seal'},'listen')]),
- rule(30,'transport-map','서술','기존 기록의',[toward('archer',{marker:'ferry-hold'},48),face('archer',{marker:'ferry-hold'},'point'),face('knight',{marker:'transport-map'},'inspect')]),
-
  // First act: curiosity, a guarded first meeting, then trust earned in action.
  rule(1,'entry','설오','접힌 쪽지',[pose('archer','inspect'),shot({actor:'archer'})]),
  rule(1,'entry','설오','길에 짐승',[step('archer',18),face('archer',{anchor:'cart'},'guard')]),
@@ -31597,6 +31574,7 @@ function build(app,lines,options={}){
  for(const [i,[who,text,meta={}]]of lines.entries()){
   const id=meta.storyId||'',when=id||(entry?'entry':outcome?'outcome':'');
   for(const r of (!b.honroNarrativeRevision&&G.HONRO_NARRATIVE_V0?.directionRules||rules))if(r.stage===b.honroStage&&when.includes(r.when)&&who===r.who&&text.includes(r.text))cues[i].push(...r.actions);
+  if(meta.evidenceGoal&&!lines.slice(0,i).some(r=>r[2]?.evidenceGoal===meta.evidenceGoal))cues[i].push(...(G.HonroEvidenceQuests?.fieldDirections(b,meta.evidenceGoal)||[]));
   if(id==='act2:first-spirit-encounter'){const part=who==='설오'?(/그럼|가리켜|맞설/.test(text)?3:0):who==='휘겸'?1:who==='소단'?(text.includes('현형부')?4:2):5;cues[i].push(...spirit[part]);}
   if(meta.kind==='guide'||meta.kind==='document')cues[i]=[];
   if(c?.speaker===who&&b.honroStaging.hidden[c.actor])cues[i].unshift({type:'move',actor:c.actor,reveal:true,to:{origin:c.actor,dx:c.dx},duration:900,focus:true});
@@ -32785,21 +32763,58 @@ function reviseContent(original){const st=clone(original);for(const s of st.step
 function requiredContent(original){const st=clone(original);if(st.guide)st.guide=cleanText(st.guide);
  if(st.id===19&&st.beats?.['old-soul']&&!st.beats['old-soul'].some(r=>r[0]==='소단'))st.beats['old-soul'].unshift(['소단','종 밑에 오래된 혼이 아직 남았어요. 방금 떠난 희생자들과 옷차림이 달라요.']);
  if(st.id===22&&st.beats){st.beats['ledger-case']=[['휘겸','보고에는 사술 혐의자를 제압하다 다수가 죽었다고 적혀 있소. 같은 해의 호적도 찾아봅시다.']];st.beats['upper-register']=[['설오','이 호적에 적힌 사람들은 농가의 주민과 아이, 노인입니다. 방금 찾은 보고와 맞지 않아요.'],['휘겸','누가 무슨 일을 겪었는지 아직 단정할 수 없소. 두 기록의 이름부터 맞춰 봅시다.']];st.beats['compare-ledgers']=[['설오','같은 주민들을 가리키는데 두 기록의 설명은 다릅니다.'],['휘겸','보고만 믿을 수 없겠군. 현장 증언을 찾아봅시다.']];if(!st.steps?.some(q=>q.id==='upper-register'))st.beats['compare-ledgers'].unshift(['설오','호적에는 농가의 주민과 아이, 노인이 적혀 있습니다. 사술 혐의자를 제압했다는 보고와 맞지 않아요.']);}
- if(st.id===29&&st.beats?.['hyeonmuk-letter']&&!st.beats['hyeonmuk-letter'].some(r=>r[1].includes('남은 혼을 지키려'))){const rows=st.beats['hyeonmuk-letter'];rows.splice(rows.length-1,0,['담허','현묵은 남은 혼을 지키려 했네. 하지만 지금 어디 있는지는 이 글로 알 수 없어.']);}
+ if(st.id===29&&st.beats?.['hyeonmuk-letter']&&!st.beats['hyeonmuk-letter'].some(r=>r[1].includes('현묵의 서명과 문하 표식'))){const rows=st.beats['hyeonmuk-letter'];rows.splice(rows.length-1,0,['담허','현묵의 서명과 문하 표식이 있네. 내가 배운 법맥과 이어지지만, 지금 어디 있는지는 알 수 없어.']);}
  return st;
 }
 const contentFor=G.HonroObjectiveRevision.contentFor;
 G.HonroObjectiveRevision.contentFor=function(b,st){const out=contentFor(b,st);return b?.honroCustom?out:requiredContent(out);};
 const author=G.HonroStoryCanonV1.author;
-G.HonroStoryCanonV1.author=function(project){const p=author(project);return {...p,stages:p.stages.map(original=>{const id=original.metadata?.stageId;if(!original.metadata?.campaign||!ids.includes(id))return original;const st=clone(original),content=reviseContent(H.stages[id-1]);st.initialState??={};Object.assign(st.initialState,{honroEvidenceRevision:1,honroNarrativeContent:content});if(content.steps)st.initialState[id<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);for(const m of st.markers||[]){const s=content.steps?.find(s=>s.id===m.id);if(s){m.label=s.label;if(s.target)m.target=s.target;}if(id===3&&m.action==='ledger')m.label='움막 기록함 챙기기';}return st;})};};
+G.HonroStoryCanonV1.author=function(project){const p=author(project);return {...p,stages:p.stages.map(original=>{const id=original.metadata?.stageId;if(!original.metadata?.campaign||!ids.includes(id))return original;const st=clone(original),content=reviseContent(H.stages[id-1]);st.initialState??={};Object.assign(st.initialState,{honroEvidenceRevision:1,honroFieldEvidenceVersion:1,honroNarrativeContent:content});if(content.steps)st.initialState[id<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);for(const m of st.markers||[]){const s=content.steps?.find(s=>s.id===m.id);if(s){m.label=s.label;if(s.target)m.target=s.target;}if(id===3&&m.action==='ledger')m.label='움막 기록함 챙기기';}return st;})};};
 const prepareFresh=G.HonroNarrativeRevision.prepareFresh;
 G.HonroNarrativeRevision.prepareFresh=function(b){const content=active(b)&&b.honroNarrativeContent;prepareFresh(b);if(content){b.honroNarrativeContent=content;if(content.steps)b[b.honroStage<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);}};
-function satisfied(b,s){if(!active(b)||s.kind!=='evidence')return null;const a=b.honroState?.[b.honroStage<21?'act2':'act3'];if(s.afterEvidence)return !!a?.done?.[s.afterEvidence];if(s.evidenceAction==='stake')return (b.stakes||[]).some(q=>q.skill==='M09'&&q.side===0&&(q.expires===undefined||q.expires>b.round));if(s.evidenceAction==='entrances')return !!b.honroState.evidenceEntrances?.water&&!!b.honroState.evidenceEntrances?.archive;return false;}
+function satisfied(b,s){if(!active(b)||s.kind!=='evidence')return null;const a=b.honroState?.[b.honroStage<21?'act2':'act3'];if(s.afterEvidence){if(fieldActive(b)&&b.honroStage===26&&s.id==='investigation-record')return !!a?.done?.[s.afterEvidence]&&living(b).some(u=>near(u,site(b,s.id)));return !!a?.done?.[s.afterEvidence];}if(s.evidenceAction==='stake')return (b.stakes||[]).some(q=>q.skill==='M09'&&q.side===0&&(q.expires===undefined||q.expires>b.round));if(s.evidenceAction==='entrances')return !!b.honroState.evidenceEntrances?.water&&!!b.honroState.evidenceEntrances?.archive;return false;}
 const entrances=[{id:'water',marker:'split-route-a',classes:['archer','mage'],label:'설오·담허 · 물길 출입로'},{id:'archive',marker:'split-route-b',classes:['knight','occultist'],label:'휘겸·소단 · 지상 기록실 출입로'}];
-function observe(app){const b=app.engine.b;if(!active(b)||b.honroStage!==24||!b.honroState.act3?.done['shrine-seal']||app.dialogue||app.modal?.classList.contains('open'))return;const mem=b.honroState.evidenceEntrances??={};for(const q of entrances){const m=b.honroMarkers.find(m=>m.id===q.marker);if(m&&q.classes.every(cls=>b.units.some(u=>u.cls===cls&&u.side===0&&!u.dead&&u.hp>0&&G.HonroAct3.sameFloor(u,m,115))))mem[q.id]=true;}}
+function observe(app){const b=app.engine.b;recoverCargo(app);if(!active(b)||b.honroStage!==24||!b.honroState.act3?.done['shrine-seal']||app.dialogue||app.modal?.classList.contains('open'))return;const mem=b.honroState.evidenceEntrances??={};for(const q of entrances){const m=b.honroMarkers.find(m=>m.id===q.marker);if(m&&q.classes.every(cls=>b.units.some(u=>u.cls===cls&&u.side===0&&!u.dead&&u.hp>0&&G.HonroAct3.sameFloor(u,m,115))))mem[q.id]=true;}}
 function targets(b,s){if(!active(b)||s?.evidenceAction!=='entrances')return null;return entrances.filter(q=>!b.honroState.evidenceEntrances?.[q.id]).map(q=>{const m=b.honroMarkers.find(m=>m.id===q.marker);return {...m,id:q.marker,kind:'exit',label:q.label};});}
+// Field evidence belongs to the successful action and its physical actor, never a speaker cue.
+const fieldActive=b=>active(b)&&b.honroFieldEvidenceVersion===1;
+const field=b=>(b.honroState.fieldEvidence??={version:1,cargo:{},events:{}});
+const living=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0);
+const near=(u,p,r=220)=>!!u&&!!p&&Math.abs(u.y-p.y)<100&&Math.hypot(u.x-p.x,u.y-p.y)<r;
+const site=(b,id)=>b.honroMarkers?.find(m=>m.id===id);
+function eventActor(b,p,actor){return actor&&near(actor,p)?actor:living(b).filter(u=>near(u,p)).sort((a,c)=>Math.abs(a.x-p.x)-Math.abs(c.x-p.x))[0];}
+function saveCargo(app,q){app.profile.honroFieldCargo??={};app.profile.honroFieldCargo[q.id]=clone({...q,phase:'carry',progress:0});}
+function collect(app,id,source,actor){const b=app.engine.b,f=field(b);if(f.cargo[id])return f.cargo[id];if(!near(actor,source))return null;
+ const q={id,sourceStage:b.honroStage,source:source.id||id,origin:{x:source.x,y:source.y},actor:actor.id,ownerClass:actor.cls,phase:'carry',progress:0,proof:{round:b.round,x:actor.x,y:actor.y}};f.cargo[id]=q;saveCargo(app,q);return q;
+}
+function pairReady(b){if(!fieldActive(b)||b.honroStage!==22)return true;const f=field(b),m=site(b,'compare-ledgers'),qs=['22:ledger-case','22:upper-register'].map(id=>f.cargo[id]);return qs.every(q=>q&&q.phase==='carry'&&near(b.units.find(u=>u.id===q.actor),m,420))&&near(b.units.find(u=>u.id===qs[0].actor),b.units.find(u=>u.id===qs[1].actor),180);}
+function recoverCargo(app){const b=app.engine.b;if(!fieldActive(b))return;for(const q of Object.values(field(b).cargo)){const owner=b.units.find(u=>u.id===q.actor);if(q.phase==='carry'&&owner&&(owner.dead||owner.hp<=0)){q.phase='dropped';q.x=owner.x;q.y=owner.y;b.sceneVersion++;}if(q.phase==='dropped'){const u=living(b).find(u=>near(u,q,110));if(u){q.actor=u.id;q.ownerClass=u.cls;q.phase='carry';saveCargo(app,q);b.sceneVersion++;}}}}
+function onComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return;const f=field(b);if(f.events[s.id])return;
+ let p=site(b,s.id),u=eventActor(b,p,actor),ids=[];
+ if(s.id==='casting-tally'){const r=f.events['artisan-resident'];p=b.units.find(v=>v.id==='act3-resident');u=r&&b.units.find(v=>v.id===r.actor);}
+ if(s.id==='artisan-resident'){p=b.units.find(v=>v.id===s.target);u=eventActor(b,p,actor);}
+ if(b.honroStage===28&&s.id==='party-reunion'){
+  for(const id of ['25:household-tally','26:investigation-record','26:casting-tally','27:family-manifest']){const old=app.profile.honroFieldCargo?.[id],owner=old&&living(b).find(v=>v.cls===old.ownerClass);if(old&&near(owner,p,260)){f.cargo[id]={...clone(old),actor:owner.id,phase:'carry',progress:0};ids.push(id);}}
+ }else if(b.honroStage===22&&s.id==='compare-ledgers')ids=['22:ledger-case','22:upper-register'].filter(id=>f.cargo[id]);
+ else if(['ledger-case','upper-register','investigation-record','casting-tally','family-manifest','petition-record','hyeonmuk-letter'].includes(s.id)){
+  if(s.id==='hyeonmuk-letter'){p=site(b,'old-seal');u=eventActor(b,p,actor);}const q=p&&collect(app,b.honroStage+':'+s.id,p,u);if(q)ids=[q.id];
+ }
+ if(b.honroStage===25&&/^stake-arrival-[1-5]$/.test(s.id)){const group=living(b).filter(v=>near(v,p,260));if(group.length!==2)return;u=group[0];}
+ if(s.id==='household-tally'&&b.honroStage===25){const last=f.events['stake-arrival-5'];p=site(b,'stake-arrival-5');u=last&&b.units.find(v=>v.id===last.actor);const q=collect(app,'25:household-tally',p,u);if(q)ids=[q.id];}
+ if(!u&&ids.length)u=b.units.find(v=>v.id===f.cargo[ids[0]].actor);
+ if(!u||!p||(!ids.length&&!near(u,p,260)))return;
+ f.events[s.id]={actor:u.id,source:{x:p.x,y:p.y},cargo:ids,progress:0,round:b.round};b.sceneVersion++;
+}
+function fieldDirections(b,goal){if(!fieldActive(b))return[];const e=field(b).events[goal];if(!e)return[];const inspect=goal==='old-soul'||/^stake-arrival-/.test(goal),compare=goal==='compare-ledgers'||goal==='party-reunion';if(!inspect&&!compare&&!e.cargo.length)return[];const at=site(b,goal),walk=compare?[...new Set(e.cargo.map(id=>field(b).cargo[id]?.actor).filter(Boolean))].map((id,i)=>({type:'move',actor:id,to:{x:at.x-65+i*55,y:at.y},duration:900,maxDistance:450,focus:false})):[];return [...walk,{type:'look',actor:e.actor,at:e.source,pose:inspect?'kneel':'inspect',duration:650,camera:true},{type:'field-evidence',goal,actor:e.actor,compare,duration:1100},...(compare?[{type:'look',actor:e.actor,at:at,pose:'inspect',duration:1200},{type:'field-evidence',goal,actor:e.actor,compare:true,pack:true,duration:650}]:[])];}
+function animateField(app,step,progress){const b=app.engine.b;if(!fieldActive(b))return;const f=field(b),e=f.events[step.goal];if(!e)return;const actor=b.units.find(u=>u.id===e.actor);if(!near(actor,e.source,step.compare?420:260)&&!e.cargo.length)return;
+ if(step.compare){const qs=e.cargo.map(id=>f.cargo[id]).filter(Boolean),at=site(b,step.goal);if(!qs.length||!qs.every(q=>near(b.units.find(u=>u.id===q.actor),at,180)))return;
+  for(const [i,q]of qs.entries()){const u=b.units.find(v=>v.id===q.actor);q.phase=step.pack?(progress<1?'packing':'carry'):(progress<1?'placing':'laid');q.progress=step.pack?1-progress:progress;q.x=u.x+(u.facing||1)*(25+i*20);q.y=u.y;if(step.pack&&progress===1)saveCargo(app,q);}
+ }
+ e.progress=Math.max(e.progress,progress);b.sceneVersion++;
+}
+
 const summaries={
-'hongman-ledger':'장부에 북쪽 산사람 열셋, 아이 둘이 적혀 있다. 연목 주막에서 하룻밤을 묵고 다음 날 북문으로 향했다.',
+'hongman-ledger':'장부에 북쪽 산사람 열셋, 그중 아이 둘이 적혀 있다. 연목 주막에서 하룻밤을 묵고 다음 날 북문으로 향했다.',
  'temple-transfer':'칠십 년 전 대종을 밖에서 옮겨 왔다. 타종을 금하고 인양로와 바깥길을 봉쇄했지만, 출처는 잘려 나갔다.',
  'keeper-work-log':'일지에는 산 사람의 혼을 청동에 붙이려 문을 잠그고 인양축을 뺐다고 적혀 있다. 사흘째 두드림이 멎었다.',
  'bell-transfer-marks':'종 받침에 무명사에서 잠운사로 옮겼다는 표식과 왕실 봉인이 남아 있다. 그 곁에 저문골이라는 이름이 새겨져 있다.',
@@ -32819,7 +32834,7 @@ const summaries={
 function cleanText(text){return String(text).replace(/\n?원문은 여정의 기록에서 선택해 읽을 수 있다\./g,'').replace(/핵심 단서를 확인한 뒤 원문은 여정의 기록에서 다시 읽을 수 있습니다\./g,'홍만이 남긴 행선지를 동행과 확인합니다.').replace(/일지 원문은 여정의 기록에서 선택해 읽습니다\./g,'작업대의 일지에서 종지기가 한 일을 확인합니다.');}
 // Acquired evidence is delivered in the event. Legacy archive fields remain inert.
 function present(app,lines){return lines.map(row=>{const [who,text,meta={}]=row,{evidenceOriginal,...safe}=meta;const id=meta.documentId;const oldDocument=meta.kind==='document'||who==='기록';if(meta.evidenceOriginal?.id==='original-19-old-soul')return ['서술','소단은 종 밑에 남은 혼의 옷차림이 방금 떠난 희생자들과 다르다고 짚었다. '+summaries['bell-transfer-marks'],{...safe,kind:'narration'}];if(!oldDocument)return [who,cleanText(text),safe];return ['서술',summaries[id]||cleanText(text).replace(/\n/g,' · '),{...safe,kind:'narration'}];});}
-G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText};
+G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText,fieldActive,field,onComplete,pairReady,fieldDirections,animateField};
 })(globalThis);
 
 (function(G){'use strict';
@@ -37569,10 +37584,17 @@ function evidence(b){if(b.honroCustom||b.honroNarrativeRevision!==1)return[];con
  if(id===28&&d['party-reunion'])rows=[at('party-reunion','shared-evidence'),...(d['petition-record']?[at('petition-record','petition')]:[]),...(d['closure-order']?[at('closure-order','approval')]:[]),...(d['suppression-order']?[at('suppression-order','suppression')]:[])];
  if(id===29&&d['old-seal'])rows=[at('hyeonmuk-letter','signed-letter')];
  if(id===30&&!G.HonroEvidenceQuests?.active(b))rows=[at('transport-map','transport-map')];
- const custody=b.honroState?.evidenceScene||{};
- // Closed source cases disappear only after the acquisition scene takes custody.
+ const f=b.honroState?.fieldEvidence;
+ if(G.HonroEvidenceQuests?.fieldActive(b)){
+  if(id===22)rows=[at('ledger-case','paired-records'),at('upper-register','paired-records')];
+  if(id===25)rows=[1,2,3,4,5].map(i=>at('stake-arrival-'+i,'household-cargo',{item:i,progress:f?.events['stake-arrival-'+i]?.progress||0}));
+  if(id===19&&d['send-3'])rows.push(at('old-soul','old-inscription',{progress:f?.events['old-soul']?.progress||0}));
+  if(id===26){rows=[at('investigation-record','investigation')];const npc=b.units.find(u=>u.id==='act3-resident');if(npc&&!d['artisan-resident'])rows.push({key:'artisan-resident',kind:'amounts',x:npc.x+22,y:npc.y-npc.h*.4});}
+ }
+ const custody=f?.cargo||{};
  rows=rows.filter(r=>r&&!Object.values(custody).some(q=>q.source===r.key));
- for(const [key,q]of Object.entries(custody)){const u=b.units.find(u=>u.id===q.actor);if(!u||u.dead)continue;const peers=Object.values(custody).filter(v=>v.phase==='compare'&&v.actor===q.actor),slot=peers.indexOf(q);rows.push({key,kind:'carried-case',x:q.phase==='carry'?u.x+(u.facing||1)*24:q.x+slot*46,y:q.phase==='carry'?u.y-u.h*.44:q.y,phase:q.phase});}
+ for(const [key,q]of Object.entries(custody)){const u=b.units.find(u=>u.id===q.actor);if(!u||u.dead&&q.phase!=='dropped')continue;const p=['placing','packing'].includes(q.phase)?q.progress:q.phase==='laid'||q.phase==='dropped'?1:0;rows.push({key,kind:'carried-case',x:p?(u.x+(u.facing||1)*24)*(1-p)+q.x*p:u.x+(u.facing||1)*24,y:p?(u.y-u.h*.44)*(1-p)+q.y*p:u.y-u.h*.44,phase:q.phase});}
+
  return rows;
 }
 // Closed, human-scale bundles identify an investigation without publishing its text.
@@ -37587,7 +37609,23 @@ function bundle(c,x,y,kind){
  c.strokeStyle='#716147';c.lineWidth=3;c.beginPath();c.moveTo(0,-18);c.lineTo(2,-5);c.stroke();
  c.fillStyle='#99715b';c.fillRect(-2,-15,6,5);c.restore();
 }
+function household(c,d){const x=d.x,y=d.y,p=d.progress||0,n=d.item;
+ c.save();c.translate(x,y);c.fillStyle='#303b32';c.strokeStyle='#97896a';c.lineWidth=2;c.fillRect(-44,-26,88,25);c.strokeRect(-44,-26,88,25);
+ // Identical cut marks belong to the boxes, not a giant readable label.
+ c.strokeStyle='#c8b68a';for(let i=0;i<2;i++){c.beginPath();c.moveTo(-35+i*7,-18);c.lineTo(-35+i*7,-8);c.stroke();}
+ c.save();c.beginPath();c.rect(-43,-70,86,70);c.clip();c.fillStyle='#a79370';c.strokeStyle='#d0c3a1';
+ if(n===1||n===5){c.beginPath();c.ellipse(3,-35,22,14,0,0,Math.PI*2);c.fill();c.stroke();c.fillStyle='#434d3e';c.beginPath();c.ellipse(3,-43,18,5,0,0,Math.PI*2);c.fill();}
+ if(n===2||n===4){c.lineWidth=5;c.beginPath();c.moveTo(-20,-20);c.lineTo(13,-60);c.stroke();c.fillStyle='#8c9b8b';c.fillRect(2,-62,27,12);}
+ if(n===3){c.fillStyle='#858171';c.beginPath();c.moveTo(-28,-23);c.lineTo(-22,-48);c.lineTo(18,-43);c.lineTo(29,-23);c.closePath();c.fill();c.stroke();c.strokeStyle='#cfbe93';c.beginPath();c.moveTo(-18,-33);c.lineTo(18,-30);c.stroke();}
+ c.restore();c.save();c.translate(p*54,-p*16);c.rotate(p*.35);c.fillStyle='#4e5947';c.beginPath();c.moveTo(-47,-28);c.lineTo(-40,-59);c.lineTo(39,-57);c.lineTo(47,-28);c.closePath();c.fill();c.strokeStyle='#969177';c.stroke();c.restore();c.restore();
+}
+function inscription(c,d){const x=d.x,y=d.y,p=d.progress||0;c.save();c.translate(x,y);c.fillStyle='#59615a';c.strokeStyle='#8a9280';c.lineWidth=2;c.beginPath();c.moveTo(-46,0);c.lineTo(-38,-35);c.lineTo(40,-32);c.lineTo(48,0);c.closePath();c.fill();c.stroke();c.strokeStyle='#cabda0';c.lineWidth=2;for(let i=0;i<3;i++){c.beginPath();c.moveTo(-24+i*22,-25);c.lineTo(-24+i*22,-10);c.lineTo(-16+i*22,-10);c.stroke();}c.fillStyle='#354c3e';c.fillRect(-36+p*76,-31,76*(1-p),25);
+ // The surviving soul wears a long crossed robe, unlike the short work coats of the recently released.
+ c.globalAlpha=.45+p*.2;c.translate(75-p*18,-6);c.fillStyle='#c1cec0';c.beginPath();c.ellipse(0,-88,9,12,0,0,Math.PI*2);c.fill();c.beginPath();c.moveTo(-12,-74);c.lineTo(12,-74);c.lineTo(22,-6);c.quadraticCurveTo(0,6,-25,-6);c.closePath();c.fill();c.strokeStyle='#63796d';c.beginPath();c.moveTo(-10,-72);c.lineTo(8,-54);c.lineTo(-5,-29);c.moveTo(10,-72);c.lineTo(-6,-55);c.stroke();c.strokeStyle='#c1cec0';c.lineWidth=6;c.beginPath();c.moveTo(-9,-64);c.lineTo(-15-p*22,-42-p*7);c.stroke();c.restore();}
+
 function draw(scene,e){const b=e.b,rows=evidence(b);if(!rows.length)return;const c=scene.ctx;c.save();c.lineCap='round';for(const d of rows){const x=d.x,y=d.y-5;if(Number.isFinite(scene.viewLeft)&&x<scene.viewLeft-350||Number.isFinite(scene.viewRight)&&x>scene.viewRight+350)continue;
+  if(d.kind==='household-cargo'){household(c,{...d,y});continue;}
+  if(d.kind==='old-inscription'){inscription(c,{...d,y});continue;}
   if(['mourning-hammer','mourning-bowl','farewell-place'].includes(d.kind)){c.strokeStyle='#b6b09b';c.lineWidth=2;c.beginPath();c.ellipse(x,y-1,32,5,0,0,Math.PI*2);c.stroke();if(d.kind==='mourning-hammer'){c.save();c.translate(x,y);c.scale(.43,.43);c.translate(-x,-y);c.strokeStyle='#bca075';c.lineWidth=12;c.beginPath();c.moveTo(x-24,y-8);c.lineTo(x+14,y-72);c.stroke();c.fillStyle='#7e9293';c.strokeStyle='#c3cbba';c.lineWidth=2;c.beginPath();c.moveTo(x-17,y-93);c.lineTo(x+48,y-77);c.lineTo(x+41,y-48);c.lineTo(x-24,y-65);c.closePath();c.fill();c.stroke();c.restore();}if(d.kind==='mourning-bowl'){c.save();c.translate(x,y);c.scale(.35,.35);c.translate(-x,-y);c.fillStyle='#c8b17c';c.strokeStyle='#e1d6ae';c.lineWidth=2;c.beginPath();c.moveTo(x-40,y-25);c.quadraticCurveTo(x-30,y+2,x,y+1);c.quadraticCurveTo(x+31,y+1,x+40,y-25);c.closePath();c.fill();c.stroke();c.fillStyle='#5b6354';c.beginPath();c.ellipse(x,y-25,40,12,0,0,Math.PI*2);c.fill();c.stroke();c.restore();}continue;}
   if(d.kind==='transport-traces'){c.strokeStyle='#706b55';c.lineWidth=5;c.beginPath();c.moveTo(x-110,y-8);c.lineTo(x-79,y-33);c.moveTo(x-91,y-4);c.lineTo(x-63,y-29);c.stroke();c.strokeStyle='#b7b199';c.lineWidth=2;for(let i=0;i<5;i++){c.beginPath();c.moveTo(x-107+i*9,y-12);c.lineTo(x-96+i*9,y-28);c.stroke();}c.strokeStyle='#a98f64';c.lineWidth=9;c.beginPath();c.moveTo(x+17,y-4);c.lineTo(x+43,y-32);c.moveTo(x+53,y-45);c.lineTo(x+74,y-69);c.stroke();c.strokeStyle='#d1bd83';c.lineWidth=3;c.beginPath();c.moveTo(x+40,y-30);c.lineTo(x+49,y-32);c.moveTo(x+48,y-43);c.lineTo(x+58,y-43);c.stroke();}
   if(d.kind==='released-soul'){c.save();c.globalAlpha=.42;c.fillStyle='#c0d3c2';c.beginPath();c.ellipse(x,y-65,17,28,0,0,Math.PI*2);c.fill();c.beginPath();c.moveTo(x-21,y-40);c.quadraticCurveTo(x-42,y-5,x,y-8);c.quadraticCurveTo(x+35,y-12,x+21,y-40);c.fill();c.restore();continue;}
