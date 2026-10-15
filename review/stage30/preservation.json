@@ -1,0 +1,38 @@
+{
+  "pass": true,
+  "base": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "other29Exact": true,
+  "stage30GameplayExact": true,
+  "oldSaveNoMigration": true,
+  "physicalStageSha256": "75b45257ae483b36ac1d359d7fc8c5134e5fb3341fcd014ea28932389a766351",
+  "initialEnemies": 40,
+  "elites": 10,
+  "steps": [
+    {
+      "id": "transport-map",
+      "label": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조",
+      "kind": "reach",
+      "radius": 260
+    },
+    {
+      "id": "ferry-hold",
+      "label": "일행이 빠져나갈 나루 지키기",
+      "kind": "hold",
+      "rounds": 3,
+      "wave": {
+        "kind": "hound",
+        "count": 3
+      },
+      "radius": 540,
+      "contestRadius": 230
+    },
+    {
+      "id": "old-road",
+      "label": "생존한 동행과 옛길 입구에 모이기",
+      "kind": "reach",
+      "allHeroes": true,
+      "radius": 440
+    }
+  ],
+  "runtimeSafetyUnchanged": true
+}

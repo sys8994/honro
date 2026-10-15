@@ -1,0 +1,54 @@
+{
+  "rows": [
+    {
+      "view": "desktop",
+      "continue": {
+        "stage": 30,
+        "retained": true
+      }
+    },
+    {
+      "file": "desktop-overview.png",
+      "phase": "aim",
+      "units": 44,
+      "fixture": "original entry battle; inspection camera"
+    },
+    {
+      "file": "desktop-quay.png",
+      "phase": "aim",
+      "units": 44,
+      "fixture": "original entry battle; inspection camera"
+    },
+    {
+      "file": "desktop-settled-ferry.png",
+      "phase": "aim",
+      "units": 44,
+      "fixture": "settled event pose; original actors"
+    },
+    {
+      "view": "mobile",
+      "continue": {
+        "stage": 30,
+        "retained": true
+      }
+    },
+    {
+      "file": "mobile-quay.png",
+      "phase": "aim",
+      "units": 44,
+      "fixture": "original entry battle; inspection camera"
+    },
+    {
+      "file": "mobile-settled-ferry.png",
+      "phase": "aim",
+      "units": 44,
+      "fixture": "settled event pose; original actors"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Isolated fresh profiles only. Entry HUD is actual App launch.",
+    "Overview is editor camera; quay and ferry are production renderer camera fixtures.",
+    "Settled art fixture is not normal completion. Normal-resource proof is the separate native fullplay trace."
+  ]
+}

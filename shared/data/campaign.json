@@ -128646,6 +128646,49 @@
             },
             {
               "tag": "path",
+              "fill": "#6e7057",
+              "stroke": "#263c35",
+              "lineWidth": 5,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "covered-cargo-hatch",
+              "d": "M6469.8 5986.32L6493.8 5924.32L6735.8 5825.04L6778.8 5889.04L6754.8 5897.04Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a2a080",
+              "d": "M6493.8 5924.32L6595.8 5910.32L6735.8 5825.04L6682.8 5853.04L6525.8 5952.32Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#4e5139",
+              "lineWidth": 6,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M6548.8 5902.45L6566.8 5961.45"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#4e5139",
+              "lineWidth": 6,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M6695.8 5856.17L6713.8 5915.17"
+            },
+            {
+              "tag": "path",
+              "fill": "#8b7952",
+              "stroke": "#2a3d34",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "id": "stowed-steering-sweep",
+              "d": "M7070.2 5790.94L7345.2 5688.24L7399.2 5690.24L7395.2 5706.24L7355.2 5710.24L7075.2 5802.94Z"
+            },
+            {
+              "tag": "path",
               "fill": "url(#hull-depth)",
               "stroke": "#142d36",
               "lineWidth": 8,
@@ -128809,7 +128852,7 @@
             }
           ]
         },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"5992 5488.28 1576.42 852.72\"><defs><linearGradient id=\"hull-depth\" x1=\"6020\" y1=\"5700\" x2=\"6452\" y2=\"6310\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#9a8d64\"/><stop offset=\"0.38\" stop-color=\"#726b4d\"/><stop offset=\"1\" stop-color=\"#263e3d\"/></linearGradient></defs><path id=\"broad-rear-deck-plane\" d=\"M6058 6076L6420 5986L6960 5816L7424 5666L7460 5700L6960 5850L6420 6020L6020 6110Z\" fill=\"#8e8661\" stroke=\"#243d37\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"one-heavy-low-hull\" d=\"M6020 6110L6420 6020L6960 5850L7460 5700L7460 5750L7300 5940L6920 6160L6430 6310L6170 6280L6020 6150Z\" fill=\"url(#hull-depth)\" stroke=\"#142d36\" stroke-width=\"8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6020 6110L6170 6076.25L6420 6020L6430 6016.85L6920 5862.59L6960 5850L7300 5748L7460 5700L7460 5715L7300 5763L6960 5865L6920 5877.59L6430 6031.85L6420 6035L6170 6091.25L6020 6125Z\" fill=\"#c0b58a\"/><path d=\"M6020 6133L6170 6099.25L6420 6043L6430 6039.85L6920 5885.59L6960 5873L7300 5771L7460 5723L7460 5748L7300 5796L6960 5898L6920 5910.59L6430 6064.85L6420 6068L6170 6124.25L6020 6148Z\" fill=\"#837652\"/><path d=\"M6020 6147L6170 6125.25L6420 6069L6430 6065.85L6920 5911.59L6960 5899L7300 5797L7460 5747L7460 5748L7300 5805L6960 5907L6920 5919.59L6430 6073.85L6420 6077L6170 6133.25L6020 6148Z\" fill=\"#2a3e35\"/><path d=\"M6020 6147L6170 6154.25L6420 6098L6430 6094.85L6920 5940.59L6960 5928L7300 5826L7460 5747L7460 5748L7300 5834L6960 5936L6920 5948.59L6430 6102.85L6420 6106L6170 6162.25L6020 6148Z\" fill=\"#223a34\"/><path d=\"M6020 6147L6170 6188.25L6420 6132L6430 6128.85L6920 5974.59L6960 5962L7300 5860L7460 5747L7460 5748L7300 5871L6960 5973L6920 5985.59L6430 6139.85L6420 6143L6170 6199.25L6020 6148Z\" fill=\"#152f33\"/><path d=\"M6104.6 6100.94L6120.6 6099.94L6126.6 6219.12L6104.6 6223.12Z\" fill=\"#313e32\"/><path d=\"M6108.6 6106.94L6109.6 6205.12\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6428.6 6026.46L6444.6 6025.46L6450.6 6158.46L6428.6 6162.46Z\" fill=\"#313e32\"/><path d=\"M6432.6 6032.46L6433.6 6144.46\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6918.2 5872.33L6934.2 5871.33L6940.2 6004.33L6918.2 6008.33Z\" fill=\"#313e32\"/><path d=\"M6922.2 5878.33L6923.2 5990.33\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7335.8 5746.56L7351.8 5745.56L7357.8 5874.8L7335.8 5878.8Z\" fill=\"#313e32\"/><path d=\"M7339.8 5752.56L7340.8 5860.8\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6192.4 6037.16Q6230.4 6024.16 6308.4 6030.16L6299.4 6045.16Q6250.4 6054.16 6198.4 6046.16Z\" fill=\"#435341\" stroke=\"#a0936b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6206.4 6037.16Q6250.4 6031.16 6290.4 6035.16M6211.4 6042.16Q6250.4 6036.16 6287.4 6039.16\" fill=\"none\" stroke=\"#b3a079\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7087.6 5769.72Q7137.6 5756.72 7227.6 5762.72L7218.6 5777.72Q7157.6 5786.72 7093.6 5778.72Z\" fill=\"#435341\" stroke=\"#a0936b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7101.6 5769.72Q7157.6 5763.72 7209.6 5767.72M7106.6 5774.72Q7157.6 5768.72 7206.6 5771.72\" fill=\"none\" stroke=\"#b3a079\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6037 6114.9L6025 6070.9L6060 6073.9L6076 6117.9Z\" fill=\"#5e5c40\" stroke=\"#263a33\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6031 6078.9L6054 6079.9\" fill=\"none\" stroke=\"#b5a377\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7405 5723.8L7419 5679.8L7454 5682.8L7444 5726.8Z\" fill=\"#5e5c40\" stroke=\"#263a33\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7425 5687.8L7448 5688.8\" fill=\"none\" stroke=\"#b5a377\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"5992 5488.28 1576.42 852.72\"><defs><linearGradient id=\"hull-depth\" x1=\"6020\" y1=\"5700\" x2=\"6452\" y2=\"6310\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#9a8d64\"/><stop offset=\"0.38\" stop-color=\"#726b4d\"/><stop offset=\"1\" stop-color=\"#263e3d\"/></linearGradient></defs><path id=\"broad-rear-deck-plane\" d=\"M6058 6076L6420 5986L6960 5816L7424 5666L7460 5700L6960 5850L6420 6020L6020 6110Z\" fill=\"#8e8661\" stroke=\"#243d37\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"covered-cargo-hatch\" d=\"M6469.8 5986.32L6493.8 5924.32L6735.8 5825.04L6778.8 5889.04L6754.8 5897.04Z\" fill=\"#6e7057\" stroke=\"#263c35\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6493.8 5924.32L6595.8 5910.32L6735.8 5825.04L6682.8 5853.04L6525.8 5952.32Z\" fill=\"#a2a080\"/><path d=\"M6548.8 5902.45L6566.8 5961.45\" fill=\"none\" stroke=\"#4e5139\" stroke-width=\"6\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6695.8 5856.17L6713.8 5915.17\" fill=\"none\" stroke=\"#4e5139\" stroke-width=\"6\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"stowed-steering-sweep\" d=\"M7070.2 5790.94L7345.2 5688.24L7399.2 5690.24L7395.2 5706.24L7355.2 5710.24L7075.2 5802.94Z\" fill=\"#8b7952\" stroke=\"#2a3d34\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path id=\"one-heavy-low-hull\" d=\"M6020 6110L6420 6020L6960 5850L7460 5700L7460 5750L7300 5940L6920 6160L6430 6310L6170 6280L6020 6150Z\" fill=\"url(#hull-depth)\" stroke=\"#142d36\" stroke-width=\"8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6020 6110L6170 6076.25L6420 6020L6430 6016.85L6920 5862.59L6960 5850L7300 5748L7460 5700L7460 5715L7300 5763L6960 5865L6920 5877.59L6430 6031.85L6420 6035L6170 6091.25L6020 6125Z\" fill=\"#c0b58a\"/><path d=\"M6020 6133L6170 6099.25L6420 6043L6430 6039.85L6920 5885.59L6960 5873L7300 5771L7460 5723L7460 5748L7300 5796L6960 5898L6920 5910.59L6430 6064.85L6420 6068L6170 6124.25L6020 6148Z\" fill=\"#837652\"/><path d=\"M6020 6147L6170 6125.25L6420 6069L6430 6065.85L6920 5911.59L6960 5899L7300 5797L7460 5747L7460 5748L7300 5805L6960 5907L6920 5919.59L6430 6073.85L6420 6077L6170 6133.25L6020 6148Z\" fill=\"#2a3e35\"/><path d=\"M6020 6147L6170 6154.25L6420 6098L6430 6094.85L6920 5940.59L6960 5928L7300 5826L7460 5747L7460 5748L7300 5834L6960 5936L6920 5948.59L6430 6102.85L6420 6106L6170 6162.25L6020 6148Z\" fill=\"#223a34\"/><path d=\"M6020 6147L6170 6188.25L6420 6132L6430 6128.85L6920 5974.59L6960 5962L7300 5860L7460 5747L7460 5748L7300 5871L6960 5973L6920 5985.59L6430 6139.85L6420 6143L6170 6199.25L6020 6148Z\" fill=\"#152f33\"/><path d=\"M6104.6 6100.94L6120.6 6099.94L6126.6 6219.12L6104.6 6223.12Z\" fill=\"#313e32\"/><path d=\"M6108.6 6106.94L6109.6 6205.12\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6428.6 6026.46L6444.6 6025.46L6450.6 6158.46L6428.6 6162.46Z\" fill=\"#313e32\"/><path d=\"M6432.6 6032.46L6433.6 6144.46\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6918.2 5872.33L6934.2 5871.33L6940.2 6004.33L6918.2 6008.33Z\" fill=\"#313e32\"/><path d=\"M6922.2 5878.33L6923.2 5990.33\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7335.8 5746.56L7351.8 5745.56L7357.8 5874.8L7335.8 5878.8Z\" fill=\"#313e32\"/><path d=\"M7339.8 5752.56L7340.8 5860.8\" fill=\"none\" stroke=\"#ad9b6b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6192.4 6037.16Q6230.4 6024.16 6308.4 6030.16L6299.4 6045.16Q6250.4 6054.16 6198.4 6046.16Z\" fill=\"#435341\" stroke=\"#a0936b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6206.4 6037.16Q6250.4 6031.16 6290.4 6035.16M6211.4 6042.16Q6250.4 6036.16 6287.4 6039.16\" fill=\"none\" stroke=\"#b3a079\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7087.6 5769.72Q7137.6 5756.72 7227.6 5762.72L7218.6 5777.72Q7157.6 5786.72 7093.6 5778.72Z\" fill=\"#435341\" stroke=\"#a0936b\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7101.6 5769.72Q7157.6 5763.72 7209.6 5767.72M7106.6 5774.72Q7157.6 5768.72 7206.6 5771.72\" fill=\"none\" stroke=\"#b3a079\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6037 6114.9L6025 6070.9L6060 6073.9L6076 6117.9Z\" fill=\"#5e5c40\" stroke=\"#263a33\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M6031 6078.9L6054 6079.9\" fill=\"none\" stroke=\"#b5a377\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7405 5723.8L7419 5679.8L7454 5682.8L7444 5726.8Z\" fill=\"#5e5c40\" stroke=\"#263a33\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M7425 5687.8L7448 5688.8\" fill=\"none\" stroke=\"#b5a377\" stroke-width=\"5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"
       },
       "collision": [],
       "anchor": {
@@ -128825,7 +128868,7 @@
       "params": {
         "artRevision": 1,
         "collisionSource": "authored-stage-terrain",
-        "nodeCount": 24,
+        "nodeCount": 29,
         "terrainId": "sf-settled-barge",
         "terrainPoints": [
           {
@@ -129335,7 +129378,7 @@
     },
     {
       "id": "stage30:ferry-recessed-grounded-supports",
-      "name": "밝은 보행면 뒤로 물러난 암반아치와 석축교각",
+      "name": "실제 여울·강둑에 이어지는 후퇴한 선창 암반",
       "category": "terrain",
       "environmentRole": "rock",
       "visual": [],
@@ -129353,83 +129396,60 @@
           "children": [
             {
               "tag": "path",
-              "fill": "#263f49",
-              "id": "cape-recessed-root-arch",
-              "d": "M3035 4856.5L3706.4 4746.5L4372.8 4686.5L5420 4886.5L5565 5835L5614 6004.46L5690 6136.46L5110 6212.8L5086 5920L4682.2 5726L4396.6 5677L4134.8 5727L3896.8 5796L3558 5845L3504 6043L3405 6221.85L2925 6261.22L3029 6026.22L3121 5775L3127 5066.5Z"
+              "fill": "#30474d",
+              "id": "cape-rooted-bank",
+              "d": "M3035 4800Q3530 4630 4130 4730L5425 4925Q5460 5370 5560 5730L5720 6130.16L4650 6240L3500 6270L2670 6254Q2880 5840 2950 5410Z"
             },
             {
               "tag": "path",
-              "fill": "#365059",
-              "d": "M3085 4936.5L3385 4995.5L3499 5623L3364 5772L3318 5988L3366 6221.85L3014 6261.22L3149 5801L3120 5643L3185 5073.5Z"
+              "fill": "#405457",
+              "d": "M3100 4900L3750 4870L4050 5220Q3700 5450 3370 5590L3090 5930L2670 6254Q2940 5580 3100 4900Z"
             },
             {
               "tag": "path",
-              "fill": "#1a3642",
-              "d": "M5117 4896.5L5420 4886.5L5565 5835L5614 6004.46L5690 6136.46L5535 6136.46L5162 5969L5229 5824L5275 5664Z"
+              "fill": "#263f46",
+              "d": "M4070 5190Q4640 5090 5110 4980L5425 4925L5390 5580 5530 6040 4900 6220 4340 6220Q4380 5770 4070 5190Z"
             },
             {
               "tag": "path",
-              "fill": "#18323e",
-              "d": "M3504 6043L3558 5845L3896.8 5796L4134.8 5727L4396.6 5677L4682.2 5726L5086 5920L5080 6170.8L5042 5933L4646.5 5757L4396.6 5725L4158.6 5764L3908.7 5838L3600 5884L3536 6064Z"
+              "fill": "#344b50",
+              "d": "M3360 5600Q3780 5380 4140 5470L4610 5700Q4890 5910 5220 6000L5550 6150 4620 6220 3430 6230 3000 6240Z"
             },
             {
               "tag": "path",
-              "fill": "#30494e",
-              "d": "M4804.400000000001 5720.8L5077.400000000001 5698.8L5039.6 6214.21L4829.6 6202.33Z"
+              "fill": "#3b5154",
+              "id": "quay-rooted-bedrock",
+              "d": "M4848 5660L6259 5630Q6300 5960 6260 6130L6150 6274.96L5720 6180L5360 6230L4780 6193Q4950 6020 4848 5660Z"
             },
             {
               "tag": "path",
-              "fill": "#1b3741",
-              "d": "M4970.3 5711.8L5077.400000000001 5698.8L5039.6 6214.21L4957.700000000001 6214.21Z"
+              "fill": "#49605e",
+              "d": "M4850 5660L5360 5720L5620 5940L5490 6210L4780 6193Q4950 5920 4850 5660Z"
             },
             {
               "tag": "path",
-              "fill": "#48605e",
-              "d": "M4833.8 5905.8667000000005L5014.400000000001 5894.8667000000005L5012.3 5922.8667000000005L4831.700000000001 5933.8667000000005Z"
+              "fill": "#293f47",
+              "d": "M5820 5700L6259 5630Q6300 5960 6260 6130L6150 6274.96L5760 6160L5910 5890Z"
             },
             {
               "tag": "path",
-              "fill": "#48605e",
-              "d": "M4833.8 6062.4616L5014.400000000001 6051.4616L5012.3 6079.4616L4831.700000000001 6090.4616Z"
+              "fill": "#2e464e",
+              "id": "east-rooted-bank",
+              "d": "M6105 4960Q6530 4790 7040 4960L7730 4850L8447 4880L8430 5520.22L7910 5978L7330 6448Q7040 6190 7000 5810Q6830 5420 6420 5300L6105 5160Z"
             },
             {
               "tag": "path",
-              "fill": "#30494e",
-              "d": "M5835.4 5720.8L6134.4 5698.8L6093 6208.25L5863 6117Z"
+              "fill": "#3b5358",
+              "d": "M6900 5180Q7350 5140 7770 4920L8280 4920L7910 5978L7330 6448Q7180 5860 6900 5180Z"
             },
             {
               "tag": "path",
-              "fill": "#1b3741",
-              "d": "M6017.1 5711.8L6134.4 5698.8L6093 6208.25L6003.3 6208.25Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#48605e",
-              "d": "M5867.6 5872.588L6065.4 5861.588L6063.1 5889.588L5865.3 5900.588Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#48605e",
-              "d": "M5867.6 6001.024L6065.4 5990.024L6063.1 6018.024L5865.3 6029.024Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#243e49",
-              "d": "M7463 4997.2Q7723 4807.2 8450 4862.2L8270 5617L7910 5977L7510 6348Q7660 5577.2 7563 5402.2Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#35515a",
-              "d": "M7763 4952.2L8290 4887.2Q7950 5407.2 7910 5977L7610 6271Q7870 5277.2 7763 4952.2Z"
-            },
-            {
-              "tag": "path",
-              "fill": "#183540",
-              "d": "M8305 4887.2L8450 4862.2L8270 5617L8070 5825Z"
+              "fill": "#243e48",
+              "d": "M7980 4930L8447 4880L8430 5520.22L7910 5978L7690 6100Q7920 5620 7980 4930Z"
             }
           ]
         },
-        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"2400 4250 6500 2350\"><path id=\"cape-recessed-root-arch\" d=\"M3035 4856.5L3706.4 4746.5L4372.8 4686.5L5420 4886.5L5565 5835L5614 6004.46L5690 6136.46L5110 6212.8L5086 5920L4682.2 5726L4396.6 5677L4134.8 5727L3896.8 5796L3558 5845L3504 6043L3405 6221.85L2925 6261.22L3029 6026.22L3121 5775L3127 5066.5Z\" fill=\"#263f49\"/><path d=\"M3085 4936.5L3385 4995.5L3499 5623L3364 5772L3318 5988L3366 6221.85L3014 6261.22L3149 5801L3120 5643L3185 5073.5Z\" fill=\"#365059\"/><path d=\"M5117 4896.5L5420 4886.5L5565 5835L5614 6004.46L5690 6136.46L5535 6136.46L5162 5969L5229 5824L5275 5664Z\" fill=\"#1a3642\"/><path d=\"M3504 6043L3558 5845L3896.8 5796L4134.8 5727L4396.6 5677L4682.2 5726L5086 5920L5080 6170.8L5042 5933L4646.5 5757L4396.6 5725L4158.6 5764L3908.7 5838L3600 5884L3536 6064Z\" fill=\"#18323e\"/><path d=\"M4804.400000000001 5720.8L5077.400000000001 5698.8L5039.6 6214.21L4829.6 6202.33Z\" fill=\"#30494e\"/><path d=\"M4970.3 5711.8L5077.400000000001 5698.8L5039.6 6214.21L4957.700000000001 6214.21Z\" fill=\"#1b3741\"/><path d=\"M4833.8 5905.8667000000005L5014.400000000001 5894.8667000000005L5012.3 5922.8667000000005L4831.700000000001 5933.8667000000005Z\" fill=\"#48605e\"/><path d=\"M4833.8 6062.4616L5014.400000000001 6051.4616L5012.3 6079.4616L4831.700000000001 6090.4616Z\" fill=\"#48605e\"/><path d=\"M5835.4 5720.8L6134.4 5698.8L6093 6208.25L5863 6117Z\" fill=\"#30494e\"/><path d=\"M6017.1 5711.8L6134.4 5698.8L6093 6208.25L6003.3 6208.25Z\" fill=\"#1b3741\"/><path d=\"M5867.6 5872.588L6065.4 5861.588L6063.1 5889.588L5865.3 5900.588Z\" fill=\"#48605e\"/><path d=\"M5867.6 6001.024L6065.4 5990.024L6063.1 6018.024L5865.3 6029.024Z\" fill=\"#48605e\"/><path d=\"M7463 4997.2Q7723 4807.2 8450 4862.2L8270 5617L7910 5977L7510 6348Q7660 5577.2 7563 5402.2Z\" fill=\"#243e49\"/><path d=\"M7763 4952.2L8290 4887.2Q7950 5407.2 7910 5977L7610 6271Q7870 5277.2 7763 4952.2Z\" fill=\"#35515a\"/><path d=\"M8305 4887.2L8450 4862.2L8270 5617L8070 5825Z\" fill=\"#183540\"/></svg>"
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"2400 4250 6500 2350\"><path id=\"cape-rooted-bank\" d=\"M3035 4800Q3530 4630 4130 4730L5425 4925Q5460 5370 5560 5730L5720 6130.16L4650 6240L3500 6270L2670 6254Q2880 5840 2950 5410Z\" fill=\"#30474d\"/><path d=\"M3100 4900L3750 4870L4050 5220Q3700 5450 3370 5590L3090 5930L2670 6254Q2940 5580 3100 4900Z\" fill=\"#405457\"/><path d=\"M4070 5190Q4640 5090 5110 4980L5425 4925L5390 5580 5530 6040 4900 6220 4340 6220Q4380 5770 4070 5190Z\" fill=\"#263f46\"/><path d=\"M3360 5600Q3780 5380 4140 5470L4610 5700Q4890 5910 5220 6000L5550 6150 4620 6220 3430 6230 3000 6240Z\" fill=\"#344b50\"/><path id=\"quay-rooted-bedrock\" d=\"M4848 5660L6259 5630Q6300 5960 6260 6130L6150 6274.96L5720 6180L5360 6230L4780 6193Q4950 6020 4848 5660Z\" fill=\"#3b5154\"/><path d=\"M4850 5660L5360 5720L5620 5940L5490 6210L4780 6193Q4950 5920 4850 5660Z\" fill=\"#49605e\"/><path d=\"M5820 5700L6259 5630Q6300 5960 6260 6130L6150 6274.96L5760 6160L5910 5890Z\" fill=\"#293f47\"/><path id=\"east-rooted-bank\" d=\"M6105 4960Q6530 4790 7040 4960L7730 4850L8447 4880L8430 5520.22L7910 5978L7330 6448Q7040 6190 7000 5810Q6830 5420 6420 5300L6105 5160Z\" fill=\"#2e464e\"/><path d=\"M6900 5180Q7350 5140 7770 4920L8280 4920L7910 5978L7330 6448Q7180 5860 6900 5180Z\" fill=\"#3b5358\"/><path d=\"M7980 4930L8447 4880L8430 5520.22L7910 5978L7690 6100Q7920 5620 7980 4930Z\" fill=\"#243e48\"/></svg>"
       },
       "collision": [],
       "anchor": {
@@ -129445,79 +129465,47 @@
       "params": {
         "artRevision": 1,
         "collisionSource": "none",
-        "nodeCount": 16,
+        "nodeCount": 11,
         "rearOnly": true,
         "supports": [
           {
             "terrainId": "sf-west-ford",
-            "x": 2925,
-            "y": 6254.22,
+            "x": 2670,
+            "y": 6246,
             "sourceTerrainId": "sf-granite-cape",
-            "kind": "recessed-granite-arch",
+            "kind": "recessed-bank",
             "rearOnly": true
           },
           {
             "terrainId": "sf-west-ford",
-            "x": 3405,
-            "y": 6214.85,
+            "x": 5720,
+            "y": 6122.16,
             "sourceTerrainId": "sf-granite-cape",
-            "kind": "recessed-granite-arch",
+            "kind": "recessed-bank",
             "rearOnly": true
           },
           {
             "terrainId": "sf-west-ford",
-            "x": 5110,
-            "y": 6205.8,
-            "sourceTerrainId": "sf-granite-cape",
-            "kind": "recessed-granite-arch",
-            "rearOnly": true
-          },
-          {
-            "terrainId": "sf-west-ford",
-            "x": 5690,
-            "y": 6129.46,
-            "sourceTerrainId": "sf-granite-cape",
-            "kind": "recessed-granite-arch",
-            "rearOnly": true
-          },
-          {
-            "terrainId": "sf-west-ford",
-            "x": 4829.6,
-            "y": 6195.33,
+            "x": 4780,
+            "y": 6185,
             "sourceTerrainId": "sf-ferry-court",
-            "kind": "recessed-quay-pier",
+            "kind": "recessed-natural-quay-foot",
             "rearOnly": true
           },
           {
             "terrainId": "sf-west-ford",
-            "x": 5039.6,
-            "y": 6207.21,
+            "x": 6150,
+            "y": 6266.96,
             "sourceTerrainId": "sf-ferry-court",
-            "kind": "recessed-quay-pier",
-            "rearOnly": true
-          },
-          {
-            "terrainId": "sf-west-ford",
-            "x": 5863,
-            "y": 6110,
-            "sourceTerrainId": "sf-ferry-court",
-            "kind": "recessed-quay-pier",
-            "rearOnly": true
-          },
-          {
-            "terrainId": "sf-west-ford",
-            "x": 6093,
-            "y": 6201.25,
-            "sourceTerrainId": "sf-ferry-court",
-            "kind": "recessed-quay-pier",
+            "kind": "recessed-natural-quay-foot",
             "rearOnly": true
           },
           {
             "terrainId": "sf-east-recovery-shore",
-            "x": 7510,
-            "y": 6341,
+            "x": 7330,
+            "y": 6440,
             "sourceTerrainId": "sf-bank-inner",
-            "kind": "recessed-east-cliff-shoulder",
+            "kind": "recessed-east-bank",
             "rearOnly": true
           },
           {
@@ -129525,15 +129513,15 @@
             "x": 7910,
             "y": 5970,
             "sourceTerrainId": "sf-bank-inner",
-            "kind": "recessed-east-cliff-shoulder",
+            "kind": "recessed-east-bank",
             "rearOnly": true
           },
           {
             "terrainId": "sf-east-recovery-shore",
-            "x": 8270,
-            "y": 5610,
+            "x": 8430,
+            "y": 5512.22,
             "sourceTerrainId": "sf-bank-inner",
-            "kind": "recessed-east-cliff-shoulder",
+            "kind": "recessed-east-bank",
             "rearOnly": true
           }
         ],
@@ -156893,6 +156881,182 @@
             }
           ]
         }
+      }
+    },
+    {
+      "id": "stage30:ferry-landing-frame",
+      "name": "선창 널마루를 받치는 목구조와 계류 밧줄을 감는 호롱",
+      "category": "architecture",
+      "environmentRole": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          4830,
+          5240,
+          570,
+          242
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#524d38",
+              "stroke": "#233c38",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M4874 5272L4909 5272L4914 5470L4868 5470Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#948560",
+              "lineWidth": 6,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M4884 5285L4880 5461"
+            },
+            {
+              "tag": "path",
+              "fill": "#524d38",
+              "stroke": "#233c38",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5322 5272L5357 5272L5362 5470L5316 5470Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#948560",
+              "lineWidth": 6,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5332 5285L5328 5461"
+            },
+            {
+              "tag": "path",
+              "fill": "#655f43",
+              "stroke": "#263c35",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M4877 5290L5356 5270L5353 5302L4880 5320Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#6d6748",
+              "lineWidth": 16,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M4897 5430L4996 5312"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#6d6748",
+              "lineWidth": 16,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5336 5425L5228 5302"
+            },
+            {
+              "tag": "path",
+              "fill": "#514b34",
+              "stroke": "#203831",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5033 5462L5054 5383L5083 5387L5067 5465Z M5151 5463L5129 5382L5104 5385L5120 5465Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#988461",
+              "stroke": "#243a32",
+              "lineWidth": 4,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5039 5403Q5097 5379 5159 5400L5158 5428Q5097 5446 5039 5426Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#4e5038",
+              "lineWidth": 7,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5060 5398L5062 5431"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#4e5038",
+              "lineWidth": 7,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5131 5399L5130 5432"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#b4a178",
+              "lineWidth": 6,
+              "lineJoin": "round",
+              "lineCap": "round",
+              "d": "M5152 5416Q5231 5423 5256 5464"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"4830 5240 570 242\"><path d=\"M4874 5272L4909 5272L4914 5470L4868 5470Z\" fill=\"#524d38\" stroke=\"#233c38\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M4884 5285L4880 5461\" fill=\"none\" stroke=\"#948560\" stroke-width=\"6\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5322 5272L5357 5272L5362 5470L5316 5470Z\" fill=\"#524d38\" stroke=\"#233c38\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5332 5285L5328 5461\" fill=\"none\" stroke=\"#948560\" stroke-width=\"6\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M4877 5290L5356 5270L5353 5302L4880 5320Z\" fill=\"#655f43\" stroke=\"#263c35\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M4897 5430L4996 5312\" fill=\"none\" stroke=\"#6d6748\" stroke-width=\"16\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5336 5425L5228 5302\" fill=\"none\" stroke=\"#6d6748\" stroke-width=\"16\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5033 5462L5054 5383L5083 5387L5067 5465Z M5151 5463L5129 5382L5104 5385L5120 5465Z\" fill=\"#514b34\" stroke=\"#203831\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5039 5403Q5097 5379 5159 5400L5158 5428Q5097 5446 5039 5426Z\" fill=\"#988461\" stroke=\"#243a32\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5060 5398L5062 5431\" fill=\"none\" stroke=\"#4e5038\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5131 5399L5130 5432\" fill=\"none\" stroke=\"#4e5038\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M5152 5416Q5231 5423 5256 5464\" fill=\"none\" stroke=\"#b4a178\" stroke-width=\"6\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "stage30-ferry",
+        "visual-only",
+        "editable-native-vector"
+      ],
+      "params": {
+        "artRevision": 1,
+        "collisionSource": "authored-stage-terrain",
+        "nodeCount": 13,
+        "rearOnly": true,
+        "terrainId": "sf-quay-west-loft"
+      },
+      "bounds": {
+        "x": 4830,
+        "y": 5240,
+        "w": 570,
+        "h": 242
+      },
+      "reference": {
+        "heightM": 4.033333333333333,
+        "bounds": {
+          "x": 4830,
+          "y": 5240,
+          "w": 570,
+          "h": 242
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          4
+        ],
+        "backgroundRange": [
+          0.35,
+          4
+        ]
       }
     }
   ],
@@ -411133,74 +411297,42 @@
           "stage30Supports": [
             {
               "terrainId": "sf-west-ford",
-              "x": 2925,
-              "y": 6254.22,
+              "x": 2670,
+              "y": 6246,
               "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
+              "kind": "recessed-bank",
               "rearOnly": true
             },
             {
               "terrainId": "sf-west-ford",
-              "x": 3405,
-              "y": 6214.85,
+              "x": 5720,
+              "y": 6122.16,
               "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
+              "kind": "recessed-bank",
               "rearOnly": true
             },
             {
               "terrainId": "sf-west-ford",
-              "x": 5110,
-              "y": 6205.8,
-              "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 5690,
-              "y": 6129.46,
-              "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 4829.6,
-              "y": 6195.33,
+              "x": 4780,
+              "y": 6185,
               "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
+              "kind": "recessed-natural-quay-foot",
               "rearOnly": true
             },
             {
               "terrainId": "sf-west-ford",
-              "x": 5039.6,
-              "y": 6207.21,
+              "x": 6150,
+              "y": 6266.96,
               "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 5863,
-              "y": 6110,
-              "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 6093,
-              "y": 6201.25,
-              "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
+              "kind": "recessed-natural-quay-foot",
               "rearOnly": true
             },
             {
               "terrainId": "sf-east-recovery-shore",
-              "x": 7510,
-              "y": 6341,
+              "x": 7330,
+              "y": 6440,
               "sourceTerrainId": "sf-bank-inner",
-              "kind": "recessed-east-cliff-shoulder",
+              "kind": "recessed-east-bank",
               "rearOnly": true
             },
             {
@@ -411208,15 +411340,15 @@
               "x": 7910,
               "y": 5970,
               "sourceTerrainId": "sf-bank-inner",
-              "kind": "recessed-east-cliff-shoulder",
+              "kind": "recessed-east-bank",
               "rearOnly": true
             },
             {
               "terrainId": "sf-east-recovery-shore",
-              "x": 8270,
-              "y": 5610,
+              "x": 8430,
+              "y": 5512.22,
               "sourceTerrainId": "sf-bank-inner",
-              "kind": "recessed-east-cliff-shoulder",
+              "kind": "recessed-east-bank",
               "rearOnly": true
             }
           ]
@@ -411428,6 +411560,17 @@
         {
           "id": "sf-art-timber-bearing-frames",
           "assetId": "stage30:ferry-timber-bearing-frames",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "sf-art-landing-frame",
+          "assetId": "stage30:ferry-landing-frame",
           "x": 0,
           "y": 0,
           "scale": 1,
@@ -415924,74 +416067,42 @@
             },
             {
               "terrainId": "sf-west-ford",
-              "x": 2925,
-              "y": 6254.22,
+              "x": 2670,
+              "y": 6246,
               "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
+              "kind": "recessed-bank",
               "rearOnly": true
             },
             {
               "terrainId": "sf-west-ford",
-              "x": 3405,
-              "y": 6214.85,
+              "x": 5720,
+              "y": 6122.16,
               "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
+              "kind": "recessed-bank",
               "rearOnly": true
             },
             {
               "terrainId": "sf-west-ford",
-              "x": 5110,
-              "y": 6205.8,
-              "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 5690,
-              "y": 6129.46,
-              "sourceTerrainId": "sf-granite-cape",
-              "kind": "recessed-granite-arch",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 4829.6,
-              "y": 6195.33,
+              "x": 4780,
+              "y": 6185,
               "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
+              "kind": "recessed-natural-quay-foot",
               "rearOnly": true
             },
             {
               "terrainId": "sf-west-ford",
-              "x": 5039.6,
-              "y": 6207.21,
+              "x": 6150,
+              "y": 6266.96,
               "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 5863,
-              "y": 6110,
-              "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
-              "rearOnly": true
-            },
-            {
-              "terrainId": "sf-west-ford",
-              "x": 6093,
-              "y": 6201.25,
-              "sourceTerrainId": "sf-ferry-court",
-              "kind": "recessed-quay-pier",
+              "kind": "recessed-natural-quay-foot",
               "rearOnly": true
             },
             {
               "terrainId": "sf-east-recovery-shore",
-              "x": 7510,
-              "y": 6341,
+              "x": 7330,
+              "y": 6440,
               "sourceTerrainId": "sf-bank-inner",
-              "kind": "recessed-east-cliff-shoulder",
+              "kind": "recessed-east-bank",
               "rearOnly": true
             },
             {
@@ -415999,15 +416110,15 @@
               "x": 7910,
               "y": 5970,
               "sourceTerrainId": "sf-bank-inner",
-              "kind": "recessed-east-cliff-shoulder",
+              "kind": "recessed-east-bank",
               "rearOnly": true
             },
             {
               "terrainId": "sf-east-recovery-shore",
-              "x": 8270,
-              "y": 5610,
+              "x": 8430,
+              "y": 5512.22,
               "sourceTerrainId": "sf-bank-inner",
-              "kind": "recessed-east-cliff-shoulder",
+              "kind": "recessed-east-bank",
               "rearOnly": true
             }
           ],
@@ -416027,7 +416138,8 @@
             "stage30:ferry-quay-cargo",
             "stage30:ferry-mooring-post",
             "stage30:ferry-settled-barge",
-            "stage30:ferry-timber-bearing-frames"
+            "stage30:ferry-timber-bearing-frames",
+            "stage30:ferry-landing-frame"
           ],
           "budgets": {
             "maxNodesPerAsset": 240,

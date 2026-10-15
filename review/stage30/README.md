@@ -1,0 +1,40 @@
+# 30장 「남겨진 길」 검수 브랜치 후보
+
+기준: d7c1f8457dd33decda5481c7c3b57d8505f6f157. master 병합·Pages 배포 금지, 사용자 장별 이미지 승인 대기.
+
+## 변경
+
+- 선창의 거대한 벽돌 세 단을 마모된 상부 돌쌓기와 하부 자연 암반으로 나눴다.
+- 기존 상부 널마루 아래에 접지 목구조·가새·계류 밧줄 호롱을 그려 작업 선창의 기능을 드러냈다.
+- 한 척의 낮은 짐배에 갑판 경사를 따르는 덮개 화물칸과 보관된 노를 보강했다. 움직이는 배 자체·충돌 윗면은 그대로다.
+- 독립 검수에서 지적된 큰 부유 암반 인상을 줄이려고, 좁은 후면 아치/교각 대신 실제 여울·동쪽 강둑의 지지점을 측정한 넓은 암반 뿌리를 그렸다. 배경 면에는 윤곽을 두지 않고 낮은 대비로 후퇴시켰다. 원래 보행면·사선·점프 간격을 가리지 않는다.
+- 장식/발판/적 숫자나 맵 크기를 늘리지 않았다. 새 벡터 하나는 이미 있는 널마루의 작업 구조이며 충돌은 없다.
+
+## 실제 이미지
+
+- `desktop-overview.png`: 실제 Chromium 게임 렌더러의 전체도. 편집용 축소 카메라다.
+- `desktop-quay.png`, `mobile-quay.png`: 실제 초기 적 배치 상태의 선창 카메라 확대.
+- `desktop-settled-ferry.png`, `mobile-settled-ferry.png`: 정착 상태를 명시적으로 설정한 미술 검수 fixture. 정상 플레이 완료 장면으로 주장하지 않는다.
+- `desktop-entry-hud.png`, `mobile-entry-hud.png`: 독립 프로필의 실제 App 시작과 HUD. 검수용 카메라를 사용한다.
+- `baseline/`: 변경 전 동일 런타임 Native Canvas 렌더. 브라우저 캡처와 구분한다.
+
+부모 `/root`가 전후 선창 및 모바일 배 화면을 직접 검수했다. 첫 검수의 부유 암반 지적을 보완한 뒤 검수 브랜치 후보로 전달 가능하다는 결과를 받았다. 사용자 미술 승인이 아니다.
+
+## 보존 및 검사
+
+`preservation.json`: 다른 29장과 공유 자산 불변. 30장의 요소/미술 metadata 외 전 필드(물리 지형, 적, 목표, 사건, 경로, 시작 상태) 기준 커밋과 동일. 물리 stage SHA-256 `75b45257ae483b36ac1d359d7fc8c5134e5fb3341fcd014ea28932389a766351`.
+
+- 첫 목표는 현장 대조 reach/radius260. 옛 종이 클릭을 되살리지 않았다.
+- 초기 적40/정예10, 사건 증원4/5/4와 방어 산개3, 방어3회/540/contest230, 생존한 동행 전원 same-floor 옛길 집결440 유지.
+- `stage30-ferry.js`, objective revision, physics 소스 그대로. 경고 뒤 다음 플레이어 행동·안전경계·빈 쓸림 영역·0.8초 정착·점유중 기다림을 변경하지 않았다. 배는 배우를 운반하지 않는다.
+- 두 HTML 최신 빌드 성공. `stage30-ferry-art.mjs` 통과: 다른 장/물리 불변, 재생성 반복 일치, 실제 지지면·선체 일치, cache 재사용·렌더 순수성.
+- `stage30-ferry-traversal.mjs` 48 조건(4명×12경로) 통과. 이 검사는 지형/경로 fixture이며 정상 전투와 구분한다.
+- `stage30-review-browser.py`: Chromium PC1440×900/모바일390×844 별도 프로필, 실제 App.launch/Continue 지형·유닛·목표·상태 보존 및 페이지 오류0. 이미지 renderer 캡처는 HUD 캡처와 구분한다.
+- 정상 자원 native App/Engine 입력: conservative-rank1 합법 배분·실제 비용·소모품0, R11 승리, 전원 생존, 피해1178, 방어3/정착1, Continue2. `evidence/result.json`, `trace.json`, `wait-analysis.json`, `shot-evidence.json`. 이전1–29장은 보상 원장 fixture이며 플레이 완료를 주장하지 않는다. 브라우저/사람 플레이 완주도 아니다. 최종 후면 암반 변경 전 실행이나 이후 미술만 바뀌고 gameplay boundary는 동일하다.
+
+## 미해결·범위
+
+- 공식 사진 조사: 국가유산청 마도1호선 복원보고서 https://www.cha.go.kr/cop/bbs/selectBoardArticle.do?bbsId=BBSMSTR_1021&nttId=32264 및 국립해양유산연구소 https://www.seamuse.go.kr/images/nrimch/kr/page/img_jounchang01.jpg (부모가 확인한 순천 해룡창지) 를 확보했으나 web/HTTP 프록시403으로 **실제 공식 사진 픽셀 검수 미충족**. 복제 사진은 게임에 포함하지 않았다.
+- 기존 `stage30-ferry-contracts`/`runtime`는 과거 transport-map interact/26명 fixture 때문에 첫 비교에서 실패. 기준 d7c1f84 별도 worktree에서도 같은 실패 재현. `tactics` 역시 과거 성장원장45103≠46235로 기준에서도 실패. 원본 fixture/임계치를 완화하지 않았다.
+- 전체 캠페인 verify/성능/모든 개별 군집의 실효 교전 승인 검사는 이번에 완료하지 않았다. encounter gate는 pending cluster/wave/check 항목으로 BLOCKED이며 정상 완주를 이 gate 통과나 전투 품질 승인으로 보고하지 않는다.
+- Library 미전송. 사용자 검수 PNG와 설명은 이 브랜치에 보존한다. 사용자의 저장/비밀정보는 없다.

@@ -2993,3 +2993,7 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 집중 검사: 219/220/240/260px 경계 및 초과, 높이 150 경계 및 초과, 다른 층, 실제 확보자, 26장 주민 장부 인계, 반복 클릭, 확보 실패 시 완료 차단, 누락된 JSON 저장 복구, 실제 desktop/mobile reload/Continue 두 번, 정상 두 기록함 확보 후 대조, 기존 물증 회귀와 실제 22장 이동 경로. 전체 verify는 사용자 요청에 따라 재실행하지 않는다. 검수 이미지는 외부 전송하지 않는다.
 
 최종 집중 결과: 48개 경계/획득/복구 사례, 비필드 구 저장 불변, desktop/mobile 실제 Continue 복구와 재저장, 기존 물증 회귀, 실제 22장 CE→EF→FG 이동 경로 통과. 정확한 3개 런타임 소스 변경은 `evidence-pickup-p0-delta.json`으로 고정했으며 168 소스/9 빌드/두 HTML 계약 및 17개 신규 변조 거부 검사를 통과했다. 이전 먹귀·인양·필드 이야기 fixture는 변경하지 않았다.
+
+## 2026-10-15 · Stage30 선창·강둑 검수 브랜치 후보
+
+기준 d7c1f84의 30장 기존 고지/여울/선창 및 정착 뒤 낮은 퇴로/높은 철수로의 물리·목표·적·저장 계약을 보존하고, 선창 돌쌓기/목구조/호롱·짐배 갑판용도·실제 해안에 이어지는 후퇴 암면을 보강했다. runtime 물리나 정착 규칙은 변경하지 않았다. 사용자 이미지 승인이 아직 없으므로 master/Pages 반영 대상이 아니다. 독립 검수의 큰 부유 암반 지적 뒤 후면 지지면을 재작성했다. 실제 Chromium PC/모바일 캡처, source boundary, 정상자원 native R11 전원 생존/방어3/정착1/Continue2와 기준에서도 재현되는 오래된 fixture 실패를 `review/stage30/README.md`에 구분했다. 공식 참고 사진 픽셀 접근 실패와 encounter gate pending은 미충족으로 남긴다.
