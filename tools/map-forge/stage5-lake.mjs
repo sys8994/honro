@@ -28,6 +28,6 @@ export function authorStage5Lake(s,old,g){
  s.design.title='넓은 소 너머의 주박목';s.design.question='능선 뒤 낮은 길과 두 선택 사격대를 오가며 물길진을 지키고, 호수 건너 열린 동굴에 곡사한다.';
  s.design.gameplay=['ritual-gate','accessible-western-terraces','deep-plunge-pool','remote-cave-target'];s.design.waterfall.lakeRevision=1;
  for(const k of ['headwater','lip','pool'])s.design.waterfall[k].x+=dx;
- const ev=s.events.find(e=>e.id==='lower-beasts');if(ev){ev.when.progress=1750;Object.assign(ev.action,{x:2240,y:y(2240),support:'valley-floor',spacing:85});ev.entry={x:2240,y:y(2240)};}
+ const ev=s.events.find(e=>e.id==='lower-beasts');if(ev){ev.when.progress=1750;Object.assign(ev.action,{x:2100,y:y(2100),support:'valley-floor',spacing:110});ev.entry={x:2100,y:y(2100)};}
  const warning=s.events.find(e=>e.id==='lower-beasts-warning');if(warning){warning.when.progress=1550;warning.text='호숫가 풀숲에서 발굽 소리가 들린다. 한 라운드 뒤 사슴들이 물길진 쪽으로 올라온다.';}
 }
