@@ -1,0 +1,88 @@
+{
+  "base": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "scope": "Isolated Stage24 draft branch delta; historical global contract chain not yet extended; no fixture updates",
+  "otherStagesUnchanged": 29,
+  "goalsPreserved": true,
+  "populationPreserved": true,
+  "finiteResponseCountsPreserved": true,
+  "generatorExact": true,
+  "changedAssets": [
+    "family24:outer-servant-wing",
+    "family24:ancestral-family-hall",
+    "family24:garden-study",
+    "family24:family-ancestral-shrine",
+    "family24:ground-record-entry",
+    "family24:outer-wall",
+    "family24:inner-wall",
+    "family24:shrine-enclosure",
+    "family24:garden-gallery-bearing",
+    "family24:retaining-earth-faces",
+    "family24:terrain-material",
+    "family24:water-route-mouth"
+  ],
+  "files": [
+    {
+      "path": "tools/map-forge/stage24-family-compound.mjs",
+      "before": null,
+      "after": {
+        "bytes": 10254,
+        "sha256": "31a4f5f49de16a0fefd848fd5181fc4f5475461ae96486873407abe73e81ba11"
+      }
+    },
+    {
+      "path": "tools/map-forge/city-tactical-routes.mjs",
+      "before": {
+        "bytes": 6903,
+        "sha256": "aae5172d97793919a7d8ed8779d2b7d8b3cdf26596f82e61dbb09ffa44f57674"
+      },
+      "after": {
+        "bytes": 6991,
+        "sha256": "19ad00cf7f20722aac7aef596f239e08f9b2338fef235ecd991994c33ca947df"
+      }
+    },
+    {
+      "path": "tools/map-forge/tactical-city-responses.mjs",
+      "before": {
+        "bytes": 3439,
+        "sha256": "0c3f3e9c97915be12cb902c669c8effac619465a4799ecd87844e13c63ec36d9"
+      },
+      "after": {
+        "bytes": 3527,
+        "sha256": "2187dbd4df42000cab8dbe12ca07f8e9b36a0dfd4111c82d57c55f4aebc58ced"
+      }
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "before": {
+        "bytes": 13724176,
+        "sha256": "2a0dd3e11d61e05ca0f112e8450dedc1037ae1f25b0e8b0299eedf76719e4abc"
+      },
+      "after": {
+        "bytes": 13632892,
+        "sha256": "156910ac7567370e39bb7f2fd767a2ef94a0ea238d7a1ad120888ef2442421cc"
+      }
+    },
+    {
+      "path": "HONRO.html",
+      "before": {
+        "bytes": 14435938,
+        "sha256": "99e35c7bc1020fd5e506b63cb99194ed260e109f5a82bb7323d0d3b2f92775d5"
+      },
+      "after": {
+        "bytes": 14373458,
+        "sha256": "c2234e5c38c30a6c6b583e34a66f64b08d15e5bd232b3c39e493fe3e75748812"
+      }
+    },
+    {
+      "path": "HONRO_WORKSHOP.html",
+      "before": {
+        "bytes": 14546712,
+        "sha256": "3259f508e04f50e2fae0cbc6d1e0826e68b8654e30a9c2c5faf41b995ee9b94c"
+      },
+      "after": {
+        "bytes": 14484232,
+        "sha256": "2655c6e3eaa686215554a4b90e5fe57f157559ff75c7a01d4defa89930e7d460"
+      }
+    }
+  ]
+}

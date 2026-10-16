@@ -15,7 +15,7 @@ const rows={
  ]
 };
 function ground(s,x){const points=s.terrains.find(t=>t.id==='a3-foundation').points;for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i];if(b.x>a.x&&x>=a.x&&x<=b.x&&a.y<s.height&&b.y<s.height)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('Missing ground '+s.metadata.stageId+'/'+x);}
-export function applyTacticalCityResponses(project){const p=clone(project);for(const s of p.stages){const defs=rows[s.metadata?.stageId];if(!defs||!s.metadata.campaign)continue;
+export function applyTacticalCityResponses(project){const p=clone(project);for(const s of p.stages){if(s.metadata?.stageId===24&&s.initialState?.honroFamilyCompound24Revision===1)continue;const defs=rows[s.metadata?.stageId];if(!defs||!s.metadata.campaign)continue;
  s.initialState.honroEncounterDensityRevision=1;
  for(const q of defs){const ev=s.events.find(e=>e.id===q.id);if(!ev)throw Error('Missing existing response '+q.id);
  const actions=xs=>xs.map((x,i)=>({type:'spawn',kind:q.kind,n:1,x,y:ground(s,x),support:'a3-foundation',maxDistance:0,source:q.id,honroDensityElite:!!q.elite&&i===0,honroDensityRole:q.kind==='possessedArcher'?'exit-cover':q.kind==='archiveFiend'?'record-response':'entry-guard'}));
