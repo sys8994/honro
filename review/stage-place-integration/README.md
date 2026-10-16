@@ -33,3 +33,7 @@
 - HONRO.html: 14512348 bytes / SHA256 8dfa33c75cd843286e98ea075d65ca79ea7c570f464730b556a2744bff9e722a
 - HONRO_WORKSHOP.html: 14623122 bytes / SHA256 caf7e8d66f91139a43cd24c548180785612b28da3da414112b03dd7aec076265
 - tools/character-catalog.html (미변경): 11864191 bytes / SHA256 aeac3443d8917c6e8ea71dfcc49b7bedc4717a8fd25298a3852f6842c02faa2b
+
+최종 formal encounter gate 실행 결과는 이 executor의 `_local/reports/stage-place-integration/encounter-gate.json`에 별도로 보존한다. 미확인 전술 항목을 observed로 채우지 않으며, 이 결과는 코드 회귀 검사와 구별한다. `review/stage-place-integration/contracts.json`과 contract 로그는 새 outer exact 계약의 실제 표준 실행 결과다.
+
+최종 표준 계약3개 모두 통과: current-runtime(168소스·9변형·양HTML·새negative25개), current-campaign(새inverse negative30개와 이전생성기재현), act3-place-regeneration(새3장·사용에셋·나머지27장exact). 현재667개/이전640개 에셋을 구별해 고정했다. 동결fixture 변경 없음. 검사 메모리상한768MB를 적용했으며 진단 preload 없이 통과했다.
