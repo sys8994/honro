@@ -10,12 +10,12 @@ export function escortNavigator(g,b,e,{tick,ready,record,stageId=18,routes=null,
  function walk(a,z){edge(a,z);if(Math.abs(a.y-z.y)<=Math.abs(a.x-z.x)*1.35+1)edge(z,a);}
  for(const r of routes||stage.design.space.routes.filter(r=>r.bellState!=='settled'||g.HonroStage18Bell.memory(b).status==='settled')){for(let i=0;i<r.anchors.length;i++){let p=r.anchors[i];node(p);const leap=p.jumpTo||p.dropTo;if(leap){const t=b.terrain.find(t=>t.id===leap.support),landing={x:leap.x,y:C.topAt(t,leap.x),surfaceId:t.id};edge(p,landing,{kind:p.jumpTo?'jump':'drop',...leap});if(p.jumpTo&&Math.abs(p.x-landing.x)<=320&&Math.abs(p.y-landing.y)<=225&&(p.x<t.x-12||p.x>t.x+t.w+12))edge(landing,p,{kind:'jump',generated:true,x:p.x,support:p.surfaceId,speed:leap.speed||.35});p=landing;}const z=r.anchors[i+1];if(!z)continue;if(p.surfaceId===z.surfaceId){const t=b.terrain.find(t=>t.id===p.surfaceId),n=Math.max(1,Math.ceil(Math.abs(z.x-p.x)/90));let old=p;for(let j=1;j<=n;j++){const x=p.x+(z.x-p.x)*j/n,next={x,y:C.topAt(t,x),surfaceId:t.id};walk(old,next);old=next;}}else walk(p,z);}}
  const hero=e.heroesAlive()[0];
- for(const t of b.terrain.filter(t=>t.honroSpaceSurfaceId&&!t.honroCeiling)){const left=Math.max(25,t.x),right=Math.min(b.width-25,t.x+t.w);for(const x of [...Array.from({length:Math.floor((right-left)/80)+1},(_,i)=>left+i*80),right]){const y=C.topAt(t,x);if(!Number.isFinite(y)||y<0||y>b.height)continue;const p={...hero,x,y};if(C.validTerrainContactPose(b.terrain,p))node({x,y,surfaceId:t.id});}}
+ for(const t of b.terrain.filter(t=>(t.honroSpaceSurfaceId||t.oneWay)&&!t.honroCeiling)){const left=Math.max(25,t.x),right=Math.min(b.width-25,t.x+t.w);for(const x of [...Array.from({length:Math.floor((right-left)/80)+1},(_,i)=>left+i*80),right]){const y=C.topAt(t,x);if(!Number.isFinite(y)||y<0||y>b.height)continue;const p={...hero,x,y};if(C.validTerrainContactPose(b.terrain,p))node({x,y,surfaceId:t.id});}}
  for(const site of Object.values(stage.design.space?.sites||{}))if(site.standing)node(site.standing);
  for(const [id,set]of bySurface){const list=[...set].sort((a,z)=>nodes[a].x-nodes[z].x);for(let j=1;j<list.length;j++){const a=nodes[list[j-1]],z=nodes[list[j]];if(distance(a,z)<430&&Math.abs(a.y-z.y)<=Math.abs(a.x-z.x)*1.35+.2)walk(a,z);}}
  // Small authored cover tops are legitimate landing surfaces too. Propose local
  // basic jump/step-off links; live physics must still execute every crossing.
- const usable=nodes.map(p=>C.validTerrainContactPose(b.terrain,{...hero,x:p.x,y:p.y}));
+ const usable=nodes.map(p=>C.validTerrainContactPose(b.terrain,{...hero,x:p.x,y:p.y})&&e.contactSurface(p.x,p.y-5,p.y+5)?.t.id===p.surfaceId);
  for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
   const a=nodes[i],z=nodes[j];if(a.surfaceId===z.surfaceId)continue;
   if(Math.abs(a.x-z.x)<95&&Math.abs(a.y-z.y)<35){walk(a,z);continue;}
@@ -45,6 +45,7 @@ export function escortNavigator(g,b,e,{tick,ready,record,stageId=18,routes=null,
    const link=state.links[state.index];if(!link)break;const p=link.mode?link.from:link.point;const reached=Math.abs(u.x-p.x)<14&&Math.abs(u.y-p.y)<55&&e.grounded(u)&&(!p.surfaceId||surface(u)===p.surfaceId);
    if(reached){if(link.mode){if(link.mode.kind==='jump'){if(u.moveLeft<e.jumpCost(u)+Math.abs(link.mode.x-u.x)+65)break;if(!e.jump(u))break;record({op:'jump',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});}if(link.mode.kind==='drop')record({op:'drop',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});state.air=link.mode;state.airFrames=0;state.airStartY=u.y;state.departed=false;continue;}state.index++;continue;}
    if(!link.mode&&e.grounded(u)&&Math.abs(u.y-p.y)>350&&Math.abs(u.x-p.x)<180){record({op:'nav-replan',hero:u.cls,reason:'ordinary fall left a route waypoint above reach',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}
+   if(!link.mode&&e.grounded(u)&&(surface(u)?.startsWith('sy-roof-')||p.surfaceId?.startsWith('sy-roof-'))&&p.surfaceId&&surface(u)!==p.surfaceId&&Math.abs(u.x-p.x)<18&&Math.abs(u.y-p.y)<55){failLink(u,state,'actual roof contact differs from proposed walking support; replan from live surface');state=route(u,point,enemy);if(!state)break;nav.set(u.id,state);continue;}
    const old={x:u.x,y:u.y},dx=p.x-u.x,surfaceSeam=p.surfaceId&&surface(u)!==p.surfaceId&&e.grounded(u)&&Math.abs(u.y-p.y)<55;
    // A topological seam may be a few pixels beyond the old 5px stopping band.
    // Continue ordinary fine walking into the declared surface, in the existing

@@ -1,0 +1,333 @@
+{
+  "policy": "escort-roles-first-v3",
+  "roleRoute": "high",
+  "rosterMode": "canonical",
+  "budget": {
+    "initial": 40,
+    "elites": 10
+  },
+  "basicOnly": false,
+  "sourceHash": "a1a4d103abea324508452962a028f3947d3363662095f45a0b5ebdb222679c58",
+  "runtimeSha256": "4524160d89fc1f779b722434467a6e3c0f4e1adba60aaf230285424d9523ea16",
+  "controllerSha256": "8bc1136aab6b3e7cf50c4e0d1a361bb45692f6d0deae50434dbb49d7685fd20e",
+  "navigatorSha256": "87ff8b5a045a9e067201cd4347786a56d1548ba0fb208a88a3d9ceea1e13afb4",
+  "entrySha256": "25afee55f71ac08504bd0efd4525ea1eb8afbb2e5c7489c2b80c58a062d2a3e0",
+  "sourceCommit": "d292248e15b44b9f0cf467da7993bb0cfad39003",
+  "sourceCommitBasis": "enclosing worktree HEAD at launch",
+  "phase": "review",
+  "round": 8,
+  "stopReason": "action observation limit",
+  "wallSeconds": 140.590837064,
+  "simulationSeconds": 279.6333333333333,
+  "storyFrames": 39,
+  "attackPlanningMs": 98825.47679199997,
+  "nativePhysicsMs": 27803.267355999273,
+  "frames": 33556,
+  "done": {
+    "dispatch-bundle": true,
+    "carrier-start": true
+  },
+  "allFourSurvived": true,
+  "heroes": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "x": 1432.0209461947159,
+      "y": 4132.177096573681,
+      "hp": 517,
+      "maxHp": 888,
+      "focus": 206,
+      "moveLeft": 1763,
+      "acted": true
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "x": 1432.3183689296704,
+      "y": 4131.907654374768,
+      "hp": 585,
+      "maxHp": 961,
+      "focus": 178,
+      "moveLeft": 1785,
+      "acted": true
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "x": 2853.3367440823713,
+      "y": 4826.668372041186,
+      "hp": 1131,
+      "maxHp": 1549,
+      "focus": 223,
+      "moveLeft": 1600.6502518817406,
+      "acted": true
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "x": 2764.740733939704,
+      "y": 4782.370366969852,
+      "hp": 1005,
+      "maxHp": 1120,
+      "focus": 334,
+      "moveLeft": 1650.2672844017998,
+      "acted": false
+    }
+  ],
+  "npc": {
+    "id": "act3-carrier",
+    "name": "기록 운반인",
+    "role": "knight",
+    "cls": "knight",
+    "side": 2,
+    "x": 2789.2043863902127,
+    "y": 4794.602193195106,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1143,
+    "maxHp": 1450,
+    "r": 50,
+    "h": 110,
+    "focus": 100,
+    "maxFocus": 100,
+    "regen": 14,
+    "level": 1,
+    "attack": 1.75,
+    "armor": 0.15,
+    "shield": 0,
+    "bound": 0,
+    "mark": 0,
+    "breaks": 0,
+    "acted": false,
+    "moveLeft": 897.8333333333335,
+    "maxMove": 900,
+    "walkSpeed": 260,
+    "angle": 44,
+    "lastPower": 0.55,
+    "loadout": [],
+    "tune": 0.5,
+    "facing": 1,
+    "hurt": 0,
+    "anim": 0,
+    "airborne": false,
+    "fixed": false,
+    "spawnX": 2280,
+    "spawnY": 4700,
+    "intent": "",
+    "dead": false,
+    "ranks": {},
+    "group": 0,
+    "awake": true,
+    "lastAct": 0,
+    "aggroUntil": 0,
+    "xpBudget": 0,
+    "xpGranted": 0,
+    "killRewarded": false,
+    "damageBy": {},
+    "honroType": "civilian",
+    "honroCivilian": true,
+    "honroAlly": false,
+    "honroProtected": true,
+    "eaterSwallow": 0,
+    "moving": 0,
+    "landing": 0,
+    "impactCooldown": 0,
+    "salheunFlash": 0,
+    "honroShieldSources": {},
+    "jumping": false,
+    "walkPhase": 19.909370337325193
+  },
+  "cargo": {
+    "version": 1,
+    "status": "stored",
+    "elapsed": 0,
+    "duration": 1.2,
+    "commitCount": 0,
+    "warnings": {
+      "act3-response-23-0": {
+        "serial": 2,
+        "round": 1,
+        "side": "west-yard",
+        "offered": {
+          "p-occultist": {
+            "round": 1,
+            "serial": 3
+          }
+        },
+        "opportunity": {
+          "id": "p-occultist",
+          "round": 1,
+          "serial": 4
+        }
+      },
+      "act3-response-23-1": {
+        "serial": 2,
+        "round": 1,
+        "side": "low-central-flank",
+        "offered": {
+          "p-occultist": {
+            "round": 1,
+            "serial": 3
+          }
+        },
+        "opportunity": {
+          "id": "p-occultist",
+          "round": 1,
+          "serial": 4
+        }
+      }
+    },
+    "entries": {
+      "act3-response-23-0": {
+        "x": 1710,
+        "y": 4585,
+        "support": "sy-ground",
+        "side": "west-yard",
+        "round": 1,
+        "serial": 4,
+        "count": 4,
+        "ids": [
+          "event-3",
+          "event-4",
+          "event-5",
+          "event-6"
+        ]
+      },
+      "act3-response-23-1": {
+        "x": 3290,
+        "y": 4895,
+        "support": "sy-central-flank",
+        "side": "low-central-flank",
+        "round": 1,
+        "serial": 5,
+        "count": 5,
+        "ids": [
+          "event-7",
+          "event-8",
+          "event-9",
+          "event-10",
+          "event-11"
+        ]
+      }
+    },
+    "offered": {},
+    "blockers": [],
+    "alert": {
+      "A-front": true,
+      "A-support": true,
+      "B-support": true,
+      "B-front": true,
+      "C-front": true
+    }
+  },
+  "initialEnemies": 40,
+  "initialElites": 10,
+  "totalEnemies": 49,
+  "remainingEnemies": 47,
+  "births": [
+    {
+      "round": 1,
+      "frame": 4240,
+      "turn": 4,
+      "id": "event-3",
+      "source": "act3-response-23-0",
+      "x": 1710,
+      "y": 4585,
+      "elite": false
+    },
+    {
+      "round": 1,
+      "frame": 4240,
+      "turn": 4,
+      "id": "event-4",
+      "source": "act3-response-23-0",
+      "x": 1810,
+      "y": 4635,
+      "elite": true
+    },
+    {
+      "round": 1,
+      "frame": 4240,
+      "turn": 4,
+      "id": "event-5",
+      "source": "act3-response-23-0",
+      "x": 1930,
+      "y": 4695,
+      "elite": false
+    },
+    {
+      "round": 1,
+      "frame": 4240,
+      "turn": 4,
+      "id": "event-6",
+      "source": "act3-response-23-0",
+      "x": 2040,
+      "y": 4700,
+      "elite": false
+    },
+    {
+      "round": 1,
+      "frame": 4260,
+      "turn": 5,
+      "id": "event-7",
+      "source": "act3-response-23-1",
+      "x": 3290,
+      "y": 4895,
+      "elite": false
+    },
+    {
+      "round": 1,
+      "frame": 4260,
+      "turn": 5,
+      "id": "event-8",
+      "source": "act3-response-23-1",
+      "x": 3390,
+      "y": 4945,
+      "elite": false
+    },
+    {
+      "round": 1,
+      "frame": 4260,
+      "turn": 5,
+      "id": "event-9",
+      "source": "act3-response-23-1",
+      "x": 3500,
+      "y": 4950,
+      "elite": true
+    },
+    {
+      "round": 1,
+      "frame": 4260,
+      "turn": 5,
+      "id": "event-10",
+      "source": "act3-response-23-1",
+      "x": 3600,
+      "y": 4950,
+      "elite": false
+    },
+    {
+      "round": 1,
+      "frame": 4260,
+      "turn": 5,
+      "id": "event-11",
+      "source": "act3-response-23-1",
+      "x": 3710,
+      "y": 4950,
+      "elite": false
+    }
+  ],
+  "continues": [],
+  "damageTaken": 1325,
+  "npcDamage": 307,
+  "liveAudit": {
+    "externalWrites": 0,
+    "recoveries": 0,
+    "movement": 19969
+  },
+  "npcDistance": 596.541176426631,
+  "limits": [
+    "Actual first-clear/recruit reward fixture through22, not normal22 exported victory.",
+    "Native production inputs; DOM/render/storage/clock are doubles. Not browser or human play timing.",
+    "One fixed policy and legal rank1/stat6/four-slot profile; no consumables, live writes or recovery calls."
+  ]
+}

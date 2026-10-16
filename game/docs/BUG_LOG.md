@@ -3065,3 +3065,11 @@ Official architecture image pixels remain unavailable after supported download C
 서쪽 oneWay 지붕과 지면 사이230~250 간격이 기본 점프217.8을 넘었다. 새 맵의 지붕과 정확히 그 지붕을 지지면으로 쓰는 초기 적/증원만40 낮췄다. 기존 목재 발판 탄 규칙·oneWay·내려오기와 선박/목표/탈출 계약은 유지한다. 구조물 내부 solid 충돌은 추가하지 않았다. 저작 보정은 runtime에 로드하지 않으며 PC/모바일 실제 Continue에서 옛5220 지붕 저장의 전체 지형 보존을 확인했다.
 
 네 주인공×두 지붕8개 실제 물리 사례와 Chromium8프레임, Workshop PC/모바일, 보존 경계 및 build 통과. 지붕 변경 후 정상자원1회 검사도R15 전원 생존/피해2011/소모품0/방어3/정착1/Continue2로 완료했다. 보정 전R11/1178과 차이가 있으며 동일 난도 승인을 주장하지 않는다. 앞선 cape 접근 원본 실행은R17 승리/3생존, cape-watch 행동3/피해109로 선택경로 실효 교전 확인; 궁수 사망은 소단 아군 오사577이며 전원생존으로 보고하지 않는다. 사용자 개별 이미지 대기는 해제됐으나 master/Pages는 부모 단일 조정 대상이다. 공식 사진 픽셀·encounter gate pending 제약은 유지한다. 상세 증거 `review/stage30/README.md`.
+
+## 23장 R40 미완주 자동화 집중 진단 · 2026-10-16
+
+- 원R40 요약과 R18까지만 있는 행동 원본을 구분했다. R40 실제 checkpoint가 없어 전체 원인을 단정하지 않았다. 현재32행동/R8 정상자원 제한 재현은 고지 진입 x1432에서 새 단방향 지붕이 테스트 이동 그래프에 빠진 현상을 확인했다.
+- 수정은 테스트 전용: 지붕 노드/실제 지지면 선택과 양방향 경계 재계획, 호송인이 아래에서 정체할 때 기존 고지 복귀 경로를 선택하는 정책이다. 공통 엔진·적 AI/맵·HP/재고·좌표·목표/두 HTML은 변경하지 않았다.
+- 같은 실제R8 App export를 정확히 Continue해 정상 select/move/jump/defend 입력만으로 수정 전32입력 정체→수정 후32입력 안에R10 서측고지 도착/R15 서쪽바닥 복귀를 확인했다. 외부 전투상태쓰기0/복구0, 재고동일, 네 동행/NPC생존이다. 정책의 전체 정상완주·동측 실입력 검증은 미완료다. 원본/재현/검사 범위는 review/stage23/diagnosis/README.md.
+
+- 추가 한계: 기존 stage23-escort-route-seam은 새 navigator 호출 전 옛 fixture의 Continue 동일성에서 SP balance revision/수치 이관 차이로 중단했다. 이번 변경은 tests뿐이며 해당 저장/밸런스를 수정하지 않았다. 현재R8의 실제 snapshot은 정확 Continue를 통과했다.

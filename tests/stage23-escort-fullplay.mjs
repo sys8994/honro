@@ -10,18 +10,19 @@ import {appHarness,plain} from './app-regression-helpers.mjs';
 import {escortEntryProfile,ESCORT_ENTRY} from './stage23-escort-entry-helper.mjs';
 import {analyzeWaits,representativeTargets,representativeMelee,representativeBladePrediction} from './stage18-bell-fullplay-helper.mjs';
 import {escortNavigator} from './stage23-escort-fullplay-helper.mjs';
+import {stalledUpperSupport} from './stage23-support-policy.mjs';
 import {auditQuarryEngine} from './stage12-quarry-fullplay-helper.mjs';
 import {authorStage23LoadingYard,mainY,mainSupport,yardY} from '../tools/map-forge/stage23-loading-yard.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex'),h=await appHarness(),{g,C}=h;
 vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
 const out=process.env.HONRO_FULLPLAY_OUT||'_local/reports/stage23-escort/fullplay';await mkdir(out,{recursive:true});
-const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',policy='escort-roles-first-v3',roleRoute=process.env.HONRO_FULLPLAY_ROUTE||'high',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,reflectionStudy=false,buildMode='conservative-rank1';
+const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',policy='escort-adaptive-return-v4',roleRoute=process.env.HONRO_FULLPLAY_ROUTE||'high',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,reflectionStudy=false,buildMode='conservative-rank1';
 assert(['canonical','originalBudget22e5','candidate28e6'].includes(rosterMode));assert(['high','lower'].includes(roleRoute));const canonical=plain(g.HONRO_PROJECT.stages[22]);
 if(rosterMode!=='canonical'){g.HONRO_PROJECT=await authorStage23LoadingYard(g,plain(g.HONRO_PROJECT),{roster:rosterMode});for(const key of ['terrains','markers','width','height','elements'])assert.deepEqual(plain(g.HONRO_PROJECT.stages[22][key]),canonical[key],'Same geometry/art/markers in population comparison');}
 const stage=g.HONRO_PROJECT.stages[22],budget={initial:stage.units.filter(u=>u.team==='enemy').length,elites:stage.units.filter(u=>u.team==='enemy'&&u.stageOverrides?.honroAct3Elite).length},fixture=escortEntryProfile(g),readiness=fixture.readiness,training=fixture.training;
-const parts=await runtimeParts({vector:false,render:false}),runtimeSha256=hash(parts.join('\n')),sourceHash=hash(g.HONRO_PROJECT),provenance={policy,roleRoute,rosterMode,budget,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),navigatorSha256:hash(await readFile('tests/stage23-escort-fullplay-helper.mjs')),entrySha256:hash(await readFile('tests/stage23-escort-entry-helper.mjs')),sourceCommit:process.env.HONRO_FULLPLAY_SOURCE_COMMIT||execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceCommitBasis:process.env.HONRO_FULLPLAY_SOURCE_COMMIT?'explicit exact archive commit':'enclosing worktree HEAD at launch'};
+const parts=await runtimeParts({vector:false,render:false}),runtimeSha256=hash(parts.join('\n')),sourceHash=hash(g.HONRO_PROJECT),provenance={policy,roleRoute,rosterMode,budget,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),navigatorSha256:hash(await readFile('tests/stage23-escort-fullplay-helper.mjs')),supportPolicySha256:hash(await readFile('tests/stage23-support-policy.mjs')),entrySha256:hash(await readFile('tests/stage23-escort-entry-helper.mjs')),sourceCommit:process.env.HONRO_FULLPLAY_SOURCE_COMMIT||execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceCommitBasis:process.env.HONRO_FULLPLAY_SOURCE_COMMIT?'explicit exact archive commit':'enclosing worktree HEAD at launch'};
 if(process.env.HONRO_FULLPLAY_SOURCE_COMMIT)assert.equal(execFileSync('git',['show',provenance.sourceCommit+':tests/stage23-escort-fullplay.mjs'],{encoding:'utf8'}),await readFile(new URL(import.meta.url),'utf8'),'Explicit archive commit has this exact controller');
-const resumePath=process.env.HONRO_FULLPLAY_CONTINUE,resume=resumePath?JSON.parse(await readFile(resumePath,'utf8')):null;if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);assert.equal(resume.provenance.policy,policy);assert.equal(resume.provenance.controllerSha256,provenance.controllerSha256);assert.equal(resume.provenance.entrySha256,provenance.entrySha256);assert.equal(resume.provenance.navigatorSha256,provenance.navigatorSha256);assert.equal(resume.provenance.basicOnly,basicOnly);assert.deepEqual(resume.provenance.budget,budget);if(resume.provenance.roleRoute!==roleRoute){assert.equal(resume.frames,0,'Route comparison branches only at the actual initial role-choice export');assert.equal(resume.actions.length,0);}}
+const resumePath=process.env.HONRO_FULLPLAY_CONTINUE,resume=resumePath?JSON.parse(await readFile(resumePath,'utf8')):null;if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);assert.equal(resume.provenance.policy,policy);assert.equal(resume.provenance.controllerSha256,provenance.controllerSha256);assert.equal(resume.provenance.entrySha256,provenance.entrySha256);assert.equal(resume.provenance.navigatorSha256,provenance.navigatorSha256);assert.equal(resume.provenance.supportPolicySha256,provenance.supportPolicySha256);assert.equal(resume.provenance.basicOnly,basicOnly);assert.deepEqual(resume.provenance.budget,budget);if(resume.provenance.roleRoute!==roleRoute){assert.equal(resume.frames,0,'Route comparison branches only at the actual initial role-choice export');assert.equal(resume.actions.length,0);}}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};let app=h.load(resume?.profile||{...plain(g.AppRegression.fresh()),...plain(fixture.profile)});if(resume)app.continue();else app.launch(23);let e=app.engine,b=e.b,A=g.HonroAct3,S=g.HonroStage23Escort;if(resume)assert.deepEqual(plain(b),resume.profile.honroBattle,'Whole-battle exact external process resume');
 assert(S.active(b));assert.equal(b.seed,ESCORT_ENTRY.seed);assert.equal(b.difficulty,'normal');const initial=resume?.initial||plain({battle:b,profile:app.profile});
 const actions=resume?.actions||[],rounds=resume?.rounds||[],turns=resume?.turns||[],damage=resume?.damage||[],births=resume?.births||[],continues=resume?.continues||[],notices=resume?.notices||[],resources=resume?.resources||[],enemyActions=resume?.enemyActions||[],npcTrace=resume?.npcTrace||[],shots=resume?.shots||[];
@@ -115,20 +116,23 @@ function advanceSupport(u){const npc=carrier(),state=roleStates.get(u.id)||{phas
   if(state.phase==='west-approach'&&highRoute(u,'west-upper-approach'))state.phase='west-support';
   if(state.phase==='west-support'){
    const next=e.alive(1).some(v=>v.x>=npc.x-420&&v.x<=5750&&/^[CDE]-/.test(v.honroEscortYardCell||''));
-   if(npc.x>=4550||!next&&npc.x>=3650)state.phase='west-return';
+   if(stalledUpperSupport(state,{round:b.round,npcX:npc.x,npcY:npc.y,heroY:u.y})){state.carrierFallback=true;state.phase='west-return';record({op:'support-return',hero:u.cls,reason:'carrier stalled below upper support; use authored return',npc:{x:npc.x,y:npc.y},route:'west-upper-return'});}
+   else if(npc.x>=4550||!next&&npc.x>=3650)state.phase='west-return';
    else nav.advance(u,{id:'D-support-'+u.cls,x:u.cls==='archer'?4440:4240,y:3650,surfaceId:'sy-west-upper'});
   }
-  if(state.phase==='west-return'&&highRoute(u,'D-E-return'))state.phase='bridge-support';
+  if(state.phase==='west-return'&&highRoute(u,state.carrierFallback?'west-upper-return':'D-E-return'))state.phase=state.carrierFallback?'carrier-support':'bridge-support';
   if(state.phase==='bridge-support'){
    if(npc.x>=5350)state.phase='east-approach';else nav.advance(u,lowPoint(5740,'bridge-support'));
   }
   if(state.phase==='east-approach'&&highRoute(u,'E-F-approach'))state.phase='east-support';
   if(state.phase==='east-support'){
    const next=e.alive(1).some(v=>v.x>=npc.x-420&&v.x<=8900&&(/^[FG]-/.test(v.honroEscortYardCell||'')||v.honroEscortYardEntry==='east'));
-   if(npc.x>=7900||!next&&npc.x>=6900)state.phase='east-return';
+   if(stalledUpperSupport(state,{round:b.round,npcX:npc.x,npcY:npc.y,heroY:u.y})){state.carrierFallback=true;state.phase='east-return';record({op:'support-return',hero:u.cls,reason:'carrier stalled below upper support; use authored return',npc:{x:npc.x,y:npc.y},route:'F-E-return'});}
+   else if(npc.x>=7900||!next&&npc.x>=6900)state.phase='east-return';
    else {const x=u.cls==='archer'?7810:7520;nav.advance(u,{id:'F-support-'+u.cls,x,y:yardY('sy-east-upper',x),surfaceId:'sy-east-upper'});}
   }
-  if(state.phase==='east-return'&&highRoute(u,'F-G-return'))state.phase='exit-support';
+  if(state.phase==='east-return'&&highRoute(u,state.carrierFallback?'F-E-return':'F-G-return'))state.phase=state.carrierFallback?'carrier-support':'exit-support';
+  if(state.phase==='carrier-support')nav.advance(u,lowPoint(Math.min(9100,npc.x+180),'carrier-support-'+u.cls));
   if(state.phase==='exit-support')nav.advance(u,lowPoint(Math.min(9100,npc.x+180),'exit-support'));
  }
  record({op:'role-position',hero:u.cls,route:roleRoute,from:before,to:{phase:state.phase,x:u.x,y:u.y,moveLeft:u.moveLeft},movementCost:before.moveLeft-u.moveLeft,npc:{x:npc.x,y:npc.y,hp:npc.hp},support:nav.surface(u)});
