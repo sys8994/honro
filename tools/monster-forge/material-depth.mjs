@@ -23,10 +23,8 @@ export function materialDepth(a){
   add('left-arm','M-24 -79 Q-35 -74 -38 -65 L-44 -59',null,'woodLight',1.2);
  }else if(a.id==='lantern'){
   Object.assign(a.palette,{paper:'#c1a67a',boneShade:'#84745b',wood:'#6f4931',woodLight:'#b18a56'});
-  add('shell','M-22 -94 L-13 -97 -13 -56 -21 -51Z','boneShade');
-  add('shell','M11 -98 L18 -100 19 -91 16 -84 13 -87Z','paper');
-  add('frame','M-27 -96 L-20 -95 -20 -90 -27 -91Z M17 -100 L24 -101 25 -94 18 -93Z M-26 -54 L-19 -55 -18 -48 -25 -47Z','woodLight','ink',.6);
-  add('shell','M-9 -96 L-5 -91 -9 -88 M17 -65 L13 -61 16 -55',null,'woodDark',1.2);
+  // Illumination catches the inward tear, not the whole outer panel.
+  add('frame','M16 -84 L19 -81 16 -74 M15 -59 L18 -55 21 -56',null,'hot',.6);
  }else{
   const human=a.id==='human',archive=a.id==='archiveFiend',kiln=a.id==='kilnFiend',master=a.id.includes('Master'),bow=a.id.includes('Archer')||a.id==='archerMaster'||human;
   const colors=archive?['#55483c','#a18b69','#302825']:kiln?['#514b45','#94806a','#282c2c']:bow?['#465764','#83958f','#25323b']:['#694d42','#9a8065','#302d2e'];
