@@ -7711,7 +7711,8 @@ class Engine {
             if ((0, enemyAI_1.flyingEnemy)(u))
                 u.moveLeft = Math.min(u.moveLeft, enemyAI_1.FLY_MOVE_BUDGET);
             if (u.lureRound !== b.round && ((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u))) {
-                const plan = yield* (0, enemyAI_1.planEnemyMoveSteps)(this, u, target);
+                const unableToFire = (0, enemyAI_1.flyingEnemy)(u) && !u.loadout.some(id => { const skill = data_1.SKILLS[id]; return skill && !skill.passive && this.manaCost(skill, u) <= u.focus; });
+                const plan = yield* (0, enemyAI_1.planEnemyMoveSteps)(this, u, target, unableToFire);
                 u.lastAct = b.round;
                 if (plan) {
                     u.aiMove = plan;
@@ -7786,7 +7787,7 @@ class Engine {
         }
         if (!viable.ok) {
             // One bounded second reposition attempt is allowed after discovering a bad firing lane.
-            if (u.lureRound !== b.round && ((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u)) && u.moveLeft > 90 && u.honroRepositionRound !== b.round) {
+            if (u.lureRound !== b.round && ((0, enemyAI_1.flyingEnemy)(u) || !u.fixed && this.grounded(u)) && ((0, enemyAI_1.flyingEnemy)(u) ? u.moveLeft >= 24 : u.moveLeft > 90) && u.honroRepositionRound !== b.round) {
                 u.honroRepositionRound = b.round;
                 const retry = yield* (0, enemyAI_1.planEnemyMoveSteps)(this, u, target, true);
                 if (retry) {

@@ -2171,7 +2171,8 @@ export class Engine {
         if(u.lastAct!==b.round){
             if(flyingEnemy(u))u.moveLeft=Math.min(u.moveLeft,FLY_MOVE_BUDGET);
             if(u.lureRound!==b.round&&(flyingEnemy(u)||!u.fixed&&this.grounded(u))){
-                const plan=yield* planEnemyMoveSteps(this,u,target);u.lastAct=b.round;
+                const unableToFire=flyingEnemy(u)&&!u.loadout.some(id=>{const skill=SKILLS[id];return skill&&!skill.passive&&this.manaCost(skill,u)<=u.focus;});
+                const plan=yield* planEnemyMoveSteps(this,u,target,unableToFire);u.lastAct=b.round;
                 if(plan){u.aiMove=plan;u.intent=plan.intent;this.emit('change');return;}
             }else u.lastAct=b.round;
         }
@@ -2206,7 +2207,7 @@ export class Engine {
         }
         if(!viable.ok){
             // One bounded second reposition attempt is allowed after discovering a bad firing lane.
-            if(u.lureRound!==b.round&&(flyingEnemy(u)||!u.fixed&&this.grounded(u))&&u.moveLeft>90&&(u as any).honroRepositionRound!==b.round){
+            if(u.lureRound!==b.round&&(flyingEnemy(u)||!u.fixed&&this.grounded(u))&&(flyingEnemy(u)?u.moveLeft>=24:u.moveLeft>90)&&(u as any).honroRepositionRound!==b.round){
                 (u as any).honroRepositionRound=b.round;
                 const retry=yield* planEnemyMoveSteps(this,u,target,true);
                 if(retry){u.aiMove=retry;u.intent=viable.reason==='blocked'?'사선 변경':'사거리 확보';this.emit('change');return;}

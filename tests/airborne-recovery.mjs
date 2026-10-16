@@ -53,3 +53,11 @@ function arena(terrain=[]){
  const plan=C.planEnemyMove(q.e,q.u,q.target);assert.equal(plan?.lureStakeId,1);move(q,q.u,plan);assert(q.u.x<600,'lure takes priority over pursuit and route guard');
  console.log('PASS lure retains priority and paid motion');
 }
+
+for(const kind of ['no-focus','small-budget']){
+ const q=arena([rock('ceiling',0,0,2000,615),rock('floor',0,712,2000,688)]);
+ if(kind==='no-focus'){q.u.loadout=['M07'];q.u.focus=0;}else q.u.moveLeft=48;
+ q.e.predict=()=>({x:0,y:0,closest:9999,terrain:'blocked'});q.e.searchShot=function*(){return {angle:0,power:1,score:-100};};
+ const before=q.u.moveLeft;q.e.enemyAction();assert(q.u.aiMove);move(q,q.u,q.u.aiMove);assert(q.u.x>600);assert(before-q.u.moveLeft<=before);
+ console.log('PASS safe paid approach with',kind);
+}
