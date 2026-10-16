@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
 let count=0;
+const expectedSlopes={1:4,3:4,5:4,11:4,18:4,27:2}; // Reviewed final Stage27 adds two valid solid slope probes.
 for(const stage of [1,3,5,11,18,27]){
  const template=battlefield(g,stage).b;
  let sampled=0;
@@ -30,7 +31,8 @@ for(const stage of [1,3,5,11,18,27]){
   }
   if(sampled>=4)break;
  }
+ assert.equal(sampled,expectedSlopes[stage],'Exact reviewed slope coverage for stage '+stage);
  console.log('stage',stage,'slopes',sampled);
 }
-assert.equal(count,80,'Exact current production sample coverage');
+assert.equal(count,88,'Exact current production sample coverage');
 console.log('PASS production slope rush',count);
