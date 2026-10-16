@@ -14,7 +14,16 @@
         "stage23:yard-life-goods-cargo",
         "stage23:yard-far-mountain"
       ],
-      "stageSha256": "bd970c60b2a340d65697b6fc6ee8f3a0ea16ce9979823d313f8f4fcbeb48bb6d"
+      "stageSha256": "2bf85525acb6ce77d3359054872e9b46c4ba3ae51714047616723ea51fefb534",
+      "assetSha256": {
+        "stage23:yard-grounded-rear-plinths": "5ace41d8490e92d5e9485fa6c9aec2f7bd74d504de27b499544b4d90f30a7a6e",
+        "stage23:yard-granary-halls": "de25cf6a4391d0122699bbcf5d8344d87c16fc9c8692b6fe9ecddcfdc8fb2995",
+        "stage23:yard-terrace-faces-chute": "9b40f12b0d3897608495f768ea851b703852387dc36b5b928af51ad74573dabf",
+        "stage23:yard-stone-bridge-reflector": "c2a5bfac6a116278db8375b971316eef88c99ce8061752230a45b3928de8e009",
+        "stage23:yard-gates-record-life": "eccbea0fe1c4f2329bd88d0f61938b91731ef6b3fd3162220ff425a1a19dd67d",
+        "stage23:yard-life-goods-cargo": "9760b4fb64acdcde8076bf4dde9acb8df8d552ef4340b0cabf0018b758c6bc7e",
+        "stage23:yard-far-mountain": "56742c44aa9bbc33e441bf18fa1bc9f3e99c37814e9a2336172885a845ec5ba4"
+      }
     },
     {
       "stage": 25,
@@ -43,7 +52,31 @@
         "a3-roof-access25:maintenance-recess",
         "a3-roof-access25:upper-checkpoint"
       ],
-      "stageSha256": "1441f550a75e5e76c8a78079ba83670df2d916df1df5144de91b9a6bc54caa38"
+      "stageSha256": "7e7e9d34a3e747e1d2f41cd37444e42783d671a515aea77f4fec0a1f86421b0f",
+      "assetSha256": {
+        "a3-maintenance25:shaft-bearing-masonry": "5f63ba9a50c49bc0635de25b239db61e07b8146b837e3e1c03bc153296ad4d2d",
+        "a3-maintenance25:sluice-leaf-and-guides": "893ddbce3e3b9204dacdb6e22d8c50b3be03444fc5f842bf275d7b7477aa116a",
+        "a3-maintenance25:maintenance-winding-drum": "a68ec4b78a382afd13b3676b2fdea25ff7c3d2eec350875bc4f577c36883a5d1",
+        "a3-maintenance25:west-stoplog-workbench": "87e0d8da9eb61d89836728eb94b5c94955d085c8a4ae376b4379bed5a6a82364",
+        "a3-maintenance25:stoplog-storage": "be694833f3bf1a44bd5e9f693fef2da9f4b9bee892b08c82a84231cf665d61f5",
+        "a3-maintenance25:rising-rear-watercourse": "dd9ed188c608e438affa1568081121ecd66d666d101b955a836c3410d76640c1",
+        "a3-maintenance25:dark-shell": "37b4ef9c16fc8251b89d61cabc109af99bc5969fb8b8a69718435437530a67f4",
+        "a3-maintenance25:gallery-0": "1512c9b7020d0459752966b6310197801de3a6fbdfc12a66bc7f832f9e45ed0a",
+        "a3-maintenance25:gallery-1": "22a7f272e67be5c4fb5a9c62a1922a42638757d753fff6189adca38c0d0de4bc",
+        "a3-maintenance25:gallery-2": "44eca7e69825f4956fea4d993a573b839f6d165c0ff91fe87745ff1a86c04fe0",
+        "a3-maintenance25:gallery-3": "c0d41ced09c16e48282db118b56a3d554ae1b967cd6905f6fe28dfadca93fe4d",
+        "a3-maintenance25:gallery-4": "b4a46db05a85a155248a6056a2fc6303e92575aa20555e6b7a4dce5e4e3bb69b",
+        "a3-maintenance25:gallery-5": "35c6fade81ab92f00abf4c9beb3f4664617cef41324d2d553e40319036b83ea4",
+        "a3-maintenance25:gallery-6": "0ae238de3a1570c2925ae355669443b7e9fc36c578834166af92b5eb1b3423db",
+        "a3-roof-access25:inspection-room-roof": "9bdf9ca2b8846e1ddbe87249fe1f049f1a7e37f1b96b514d63a1aa2485e0c4c2",
+        "a3-roof-access25:inspection-room-east-wall": "b7043f6f4e9116ffa73b12889f2bcf07df8ce9d7b27ae22ca03e04c755646c8a",
+        "a3-roof-access25:west-lookout-roof": "1d8e665313b184a56415ea31988a22ff315f42ee5105488f5b60f92f5ec4564f",
+        "a3-roof-access25:west-lookout-wall": "4e51e15486e4faae21f6db652589732daa6108e76a29ad8312c3cd1f7b314235",
+        "a3-roof-access25:upper-checkpoint-roof": "662b43008f38004aef0fa199351eeafd3cb4a2c79249599b9c5fbf6c8a28671f",
+        "a3-roof-access25:upper-checkpoint-east-wall": "291e94dcf88e7391bda71678c6a9982dc93c4f2a23cbe6c798aa4da622e33a47",
+        "a3-roof-access25:maintenance-recess": "f81417796abaadd2a684295c5d528ef45e405ceb2064250b769c014d7fd24b68",
+        "a3-roof-access25:upper-checkpoint": "baad92fb3616c75cdda6f3f378ccba7d3ea045cf121f9c467182c9a8a28988fd"
+      }
     },
     {
       "stage": 27,
@@ -71,7 +104,30 @@
         "stage27-depot-r3:ledger-vault",
         "stage27-depot-r3:rear-drainage"
       ],
-      "stageSha256": "db61cf477999cdd12bcd7e29237934cd0fd86b40b7c091c6fd90d1b1739d903e"
+      "stageSha256": "6d3987594c8529d370d95f47c0dc850ab17608989f8479a4837226731dfd3a41",
+      "assetSha256": {
+        "stage27-depot-r1:rear-haulage-hall": "471cba6814035e48b9527c2fc174e06f55e23b691c173e6d2a089172fe45b57f",
+        "stage27-depot-r1:quay-face-1": "978ab9b735bfbb192191aac11a980f3561bad452f3c8353d14cc25bf3d48b47c",
+        "stage27-depot-r1:quay-face-3": "8245166da4fd5f0d7960b81ed0581fd61aa257858154006ea4a056f6d8c62d5f",
+        "stage27-depot-r1:quay-face-7": "835b3fdbe7d0ffcbfc5292ec6ca457f943d640a8754857b2d8de7672c86257a6",
+        "stage27-depot-r1:cargo-incline": "44414f1bb9480a3c0a46bcfbe9911739040d40775043ff596ba753c0f5c26ad0",
+        "stage27-depot-r1:loading-hoist": "8fc34f49d2f0cc5a69f2c1d37a4d8e3a0c143352330cdc6e86e9338f42da160c",
+        "stage27-depot-r2:misconnected-rear": "2c0d581a93232dbef589dc33b431300005861eeb0fab1008ce97588fadb641c5",
+        "stage27-depot-r3:gallery-0": "a75608dd4eecf97d7ec3e647d7abccee1062333905e31419953145ad9e8da87d",
+        "stage27-depot-r3:gallery-1": "d19d51d4c30bbd5aa8957adc84ff579f1673669d2767e91b82d76f3c07a4bbee",
+        "stage27-depot-r3:gallery-2": "09dc828cc563081380e63031539fe51228087d63780506108049ff1e16cb6dd0",
+        "stage27-depot-r3:gallery-3": "d175c5727918420a52fd0a100ff27d3301a94afd2bf31d1ed8023c95a66de043",
+        "stage27-depot-r3:gallery-4": "3e3e21539f4f668382d77c084ef99230723d95448e9fd9ea73bef098f663912d",
+        "stage27-depot-r3:gallery-5": "8a2eb00ee5ab964bc47ef87b016c4c51e3d75398046878598c1127a6f6b2340a",
+        "stage27-depot-r3:gallery-6": "d386bfa1026a926cfc42f7c7c2c2baf565cf1e89920a4a7a6ac593341eba112a",
+        "stage27-depot-r3:gallery-7": "e2bdfd8e46dceaeffc6daeb99e755342b91778bbf5c5ea116b12f592df7e3ad0",
+        "stage27-depot-r3:loading-office-roof": "9c130f7a90da279665285adde92e475c152cf76461512248036a50438855aebb",
+        "stage27-depot-r3:far-passage-roof": "9c126f281eee03507707e30fccde9592592c6c0b5ce87e5112a66e3fb7bcd6e5",
+        "stage27-depot-r3:ledger-room-roof": "5ad5341c3d6873707020df9d32f830f0b3c15ecb876cc6402650c559aaf6d737",
+        "stage27-depot-r3:far-sealed-store": "fd43824eab925f7f22c6854da184b1cc259ac39b59903ff354ec94d2175afb56",
+        "stage27-depot-r3:ledger-vault": "5ba9674f5b9574329609f403fe505c68fc8809a547aac8a33a31d67725bed143",
+        "stage27-depot-r3:rear-drainage": "2da944f5b0e61c2d86ef90a8a0c6e94c20ac5359feeeb8f1d741229424f38e69"
+      }
     },
     {
       "stage": 28,
@@ -100,7 +156,31 @@
         "stage28:record-court:approval-worktable",
         "stage28:record-court:suppression-worktable"
       ],
-      "stageSha256": "13cd400f3bf27bdbef2c3f9e007c32d24454bc2794bfe0ad33f368ac9509eb00"
+      "stageSha256": "a609e9c1024fa540102615be94e77ab83e81f194001eebdb9c5bba27b32b9160",
+      "assetSha256": {
+        "stage28:record-court:boundary-walls": "3224b50219a2cfb8667bfcc799d13af7280693b335b155c19b5d5b8806330add",
+        "stage28:record-court:west-clerks-wing-rear": "a3ecbc30967e1067fd160adbf88ba1943a76f54c9275e0f73ab9dfacc1fa7179",
+        "stage28:record-court:west-clerks-wing-roof": "bb1fa4e844a56fec5d85dca820e4b622f55e7570393935a79c172132331211d9",
+        "stage28:record-court:raised-open-record-hall-rear": "1d1e4c1fb1db99320fb9bd8536ff237c36813432455104b45815b7adb71dcb3c",
+        "stage28:record-court:raised-open-record-hall-roof": "45268847c456d6399cab6a7252934b789a9953c2a693e633e63bc4e167c8cd63",
+        "stage28:record-court:east-record-annex-rear": "ece40e272f0c8b2676994e77f588b0b558dcbcedd51bbc424bd730f0e3c7c21a",
+        "stage28:record-court:east-record-annex-roof": "5cd37b22fca11d9d78fa76b6bc1a30b7891859769a0db17971c2b434124d019a",
+        "stage28:record-court:water-yard-shed-rear": "98c63b4451e8c0edf5c4f14e74a344f7faa67a3dbe8b9850b255688d2e09628c",
+        "stage28:record-court:water-yard-shed-roof": "c3a37347deea4a9a28bbb9c5c1b223a93d40de6bbdc022c0de14924a1c7afb9b",
+        "stage28:record-court:roof-access-support-west": "ee0d04c3bc7f92a8c3c421d7a98c59dccd292aca75d5d67e645c94e81ad2f3f4",
+        "stage28:record-court:roof-access-support-court-lower": "1726e7a8025e0305ccb6bc11506a6c1b59a093e43bfc445c8f3b23cc595d8a08",
+        "stage28:record-court:roof-access-support-court-upper": "465252a7a7d1074f130524ea506d4c2a2f44b49089dcb75eb51c84babf8205ed",
+        "stage28:record-court:roof-access-support-annex": "21c04492b724251939afe7b5af694824b8e106785c6b4ea648ac44809fdb4518",
+        "stage28:record-court:roof-access-support-water": "504c75436cac364de91d2f03c6e55bdb0661ac84001f227d390f6904969346a2",
+        "stage28:record-court:court-plinth": "16695eaade916e6173a6f62ce75d08eba350024e7136ccff0b1001823e313984",
+        "stage28:record-court:veranda-supports": "ab45b9a47df94e2c969cd24d1de2f83569fae03fab4d2cd981849a1cf898a936",
+        "stage28:record-court:fire-water-basin": "16747af91b5deb709737c4d71d1d8e4e31220ec1aac5d9879a911488bee8297c",
+        "stage28:record-court:charred-west-fittings": "ba276b02a6650ca47a58ac1bc448d895e34afaad0a14e2a6e1bbcffae67c2e6e",
+        "stage28:record-court:mound-stone-shoulders": "cf199970b666e117eadf3039bd8b0f2c5a43d12dfe8358adeab5547fcf429039",
+        "stage28:record-court:petition-worktable": "ca6f2cf7ec4be09b5f286ac4e4a1894677dc4e76ac7eb32c8a62a99e5aa70e52",
+        "stage28:record-court:approval-worktable": "ef2208dcff517347a68b76b66a2adf15aee8ccbbdb93a855e74b5a48bc2b6938",
+        "stage28:record-court:suppression-worktable": "5e88abf777d98c9650db6684f01107e9453a1de23e3e897586b275dd324bf5d0"
+      }
     },
     {
       "stage": 29,
@@ -115,7 +195,17 @@
         "stage29:record-actual-stone-faces",
         "stage29:record-inspection-eaves"
       ],
-      "stageSha256": "1e7c997cdd48afc556f3866c01b067e5c1a9ff0783133c84b1ca1450adc96217"
+      "stageSha256": "2b5938fa4103c9ccf23097f44e64376103e06443d26ebec2d6db51dc1d2a9ed1",
+      "assetSha256": {
+        "stage29:record-rear-retaining-work": "3f6c7762326a02db63d39c00ece52d0a4a15a0e33a62994265a63e3843520883",
+        "stage29:record-letter-room": "b7572172a96a702a972414990c5a93d0b2723499e358b2bc6ac159ad4147887c",
+        "stage29:record-sluice-bearing": "4030e3d000a625952429af1c8c336f35051d317313530e4c240e452d9910a839",
+        "stage29:record-archive-eaves": "a1f601cb93651e1f2657784a63c09082b08814286f212b4b29ef82285bb2892c",
+        "stage29:record-keeper-hut": "5ca74d4cd3457e475f2635ba3d57004fa36c8495cb580e6a69bc79c0e0c69c4b",
+        "stage29:record-upper-rear-rail": "d3b5aa46aca134dd035afe102befe0728182cf8022d78974805a4570bb5d1e7e",
+        "stage29:record-actual-stone-faces": "c816d43ba6fd5355cc0321536877a4e395810c4bb443da329d92e2c294a423f4",
+        "stage29:record-inspection-eaves": "57a2476f38dc255a9580eaaf95f1cdbb5230fefc36271adc47ba6546dc6acbce"
+      }
     },
     {
       "stage": 30,
@@ -126,12 +216,122 @@
         "stage30:ferry-recessed-grounded-supports",
         "stage30:ferry-landing-frame"
       ],
-      "stageSha256": "26f2e2b0a658e3d2e0dc89b2add7d946e3660f5b9113eb23de5405dccf2cf95e"
+      "stageSha256": "8d35c687d15f528d9c9affe05ccc68ab496a5a8a9e3e22e83f59cec1cec8bbbe",
+      "assetSha256": {
+        "stage30:ferry-settled-barge": "ac52cf3414a2e2e4509e4caa12807a6cefdb4f4373c2f85bb3534a08cfda306e",
+        "stage30:ferry-timber-bearing-frames": "4bdedc170c6fe96debb4954e925827e2e38f451447cdd7e0ea69f911e63056a7",
+        "stage30:ferry-recessed-grounded-supports": "26a3b76aa28cbbe508ea1e8c3e722789154b5c8f2571611fefecf8acc84712e9",
+        "stage30:ferry-landing-frame": "d98ec045d609acb76479d161492f55e93fde13d8410659b64f9db4ddc546e8e6"
+      }
     }
   ],
   "excluded": [
     "recovery dialogue/VFX",
     "general airborne enemy AI/repositioning"
   ],
-  "generatedHTML": "not rebuilt yet"
+  "generatedHTML": "not rebuilt yet",
+  "unchangedStages": [
+    {
+      "stage": 1,
+      "sha256": "457c27e2c10ad51da571caccf0bee27d2edbbbdf63947aa1ff26e3e508b4ca9c"
+    },
+    {
+      "stage": 2,
+      "sha256": "a1a1fdc73f655df7273450435b66946a7230d44879f8822a9a54844c314f272d"
+    },
+    {
+      "stage": 3,
+      "sha256": "18f66a6414fefd6850ff1dcd954319c8bc9517e4d34ab6146e7d52f2576c3a13"
+    },
+    {
+      "stage": 4,
+      "sha256": "0ab0f4deeb0420881400f232a957f8506c89c2ee592a70b16c968fc7e1589913"
+    },
+    {
+      "stage": 5,
+      "sha256": "0b7e89b35ccc8ce1606a20b554f04b506108f6f0473736ceb6548e947547603f"
+    },
+    {
+      "stage": 6,
+      "sha256": "451528fb64e9b550e1064aeb7b55af8331265cf04ec9363346af9411193fe105"
+    },
+    {
+      "stage": 7,
+      "sha256": "7addcd18ef18a250df09ae6dc4745aabc824a2247c8086160645e77b120f2f3b"
+    },
+    {
+      "stage": 8,
+      "sha256": "7bde78f4e0e78d30777f2c54f13d40f204e34b395adbd704b5be85889bab5589"
+    },
+    {
+      "stage": 9,
+      "sha256": "3fae26ad7d4b5d33eb23e0fdd69ea3a9d3eaa6e53143e20dd79f761db2166321"
+    },
+    {
+      "stage": 10,
+      "sha256": "f498a8892d644f7f075dd25aded1033117c5d492b98b8a46f6a18bd0e211ab54"
+    },
+    {
+      "stage": 11,
+      "sha256": "7e9dfc17273ca436ded81a84eef8474195f358cff508d0ba67f3278f7df01fed"
+    },
+    {
+      "stage": 12,
+      "sha256": "45d5f7b471876f1f397ee9188e888d5069f511b92bde815d60438dcb01353630"
+    },
+    {
+      "stage": 13,
+      "sha256": "dc71a2b0f230035273e5c46080f1a8d7df660ee2f4ebc5701aa613ab4a395ca9"
+    },
+    {
+      "stage": 14,
+      "sha256": "899f1fed7776ec0fc7651d4aade60c4436254414b7e2fbe816051a16010d4922"
+    },
+    {
+      "stage": 15,
+      "sha256": "c297cb3a99c3e4a514f7971bcbd1e7d472cf84a523010d19d6a46afa47afeb2f"
+    },
+    {
+      "stage": 16,
+      "sha256": "ddc6b2ddb9692968deccc51bde1c91e2025a33a167e0e31e4d35c2f4c1fc27be"
+    },
+    {
+      "stage": 17,
+      "sha256": "d490f2e43c62c81ca287d14d7f65f3043393369ee7f144748f9cb89d5214789f"
+    },
+    {
+      "stage": 18,
+      "sha256": "2a968eb2cdc0a7b90b4e8febffb174f6119128069441592d567e6e34594dfb35"
+    },
+    {
+      "stage": 19,
+      "sha256": "a49816dd6204846140cc80dcf61e913937bb6793c36793948913c124cded4845"
+    },
+    {
+      "stage": 20,
+      "sha256": "ef2448f7bed9ffb4c9807ce1aa61e3ddbf2e4cba5bdaf69f3ed45afd427152be"
+    },
+    {
+      "stage": 21,
+      "sha256": "59786eb1c6ad8d2fe9301db347878bd4fb2e3608e488d198a027c9b878093c3d"
+    },
+    {
+      "stage": 22,
+      "sha256": "d9db12d0d61283536c13a925aa80236fa0b01d3932af40b3e997b03fde4b32de"
+    },
+    {
+      "stage": 24,
+      "sha256": "a0683f322a5c4d61ed9b26bb8ee1dd188412cfbb18259fcf977469cd13b9d8ec"
+    },
+    {
+      "stage": 26,
+      "sha256": "1aaba69d36cbdd2e9b83a5a7a54718b6b6995bd415e7f63e9e74005e66268cb0"
+    }
+  ],
+  "protectedFiles": {
+    "shared/engine/src/enemyAI.ts": "b1b800e51228db7988295c4e54501b155c2fbcbd6b2fcc6a2a3a6eb411ef35ae",
+    "shared/runtime/story-direction.js": "8e5ec01229e75a81def27132149ab4bcb6df5c42b958dc0206628720b7246fa7",
+    "shared/runtime/act3-void.js": "bdc61dd4b2da4c1b2859ec58339bf8bdf943390d5ee6db55172b301a0c243b41",
+    "shared/runtime/stake-crossing.js": "92fc37df186cdc77ca8a83aed79234d1116473eed4313a91b208b188f422ad82"
+  }
 }
