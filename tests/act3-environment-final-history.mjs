@@ -1,7 +1,10 @@
 /** Exact outer approval layer. Missing final pin is an error, never a bypass.
  * Inverses are historical evidence only; live gameplay retains current identity. */
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdtempSync,cpSync,symlinkSync,rmSync} from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {tmpdir} from 'node:os';
 import {storyDeltaHash as hash,applyExactStoryJsonDelta} from './exact-story-revision-delta.mjs';
 import {assertExactFollowupDelta} from './ui-followup-source-delta.mjs';
 export const ACT3_FINAL_FIXTURE_SHA256='UNPINNED_FINAL_TEN_STAGES';
@@ -49,4 +52,17 @@ export function assertAct3FinalNegatives({sources,raw,runtime,manifest}){
  for(const [p,variant]of[[raw,'raw'],[runtime,'runtime']]){for(const row of act3FinalDelta().campaign.views[variant].stages){const bad=structuredClone(p.stages[row.stageId-1]);bad.units[0].hp=(bad.units[0].hp||0)+1;assert.throws(()=>applyExactStoryJsonDelta(bad,{...row,afterSha256:hash(bad)},{reverse:true}),'Repinning cannot hide unrelated HP');count++;}}
  for(const [p,variant]of[[raw,'raw'],[runtime,'runtime']])for(const edit of[q=>q.stages[0].width++,q=>q.stages[26].units[0].hp=(q.stages[26].units[0].hp||0)+1,q=>q.library.reverse(),q=>q.library.pop(),q=>q.stages.reverse()]){const bad=structuredClone(p);edit(bad);assert.throws(()=>beforeAct3Campaign(bad,{variant}));count++;}
  for(const edit of[m=>m.coreSha256='0'.repeat(64),m=>m.variants.v1r1a1.parts.reverse(),m=>m.sourceRows.pop()]){const bad=structuredClone(manifest);edit(bad);assert.throws(()=>beforeAct3RuntimeManifest(bad));count++;}return count;
+}
+
+/** Execute old AUTHOR modules only, not archived engine/runtime. The tools tree
+ * is a real copy: an author's writes cannot modify the current source tree. */
+export async function previousAct3Authors(paths){
+ const root=fileURLToPath(new URL('../',import.meta.url)),dir=mkdtempSync(path.join(tmpdir(),'honro-previous-act3-authors-'));
+ cpSync(path.join(root,'tools'),path.join(dir,'tools'),{recursive:true});
+ for(const name of ['shared','game','tests','assets','migration','node_modules'])symlinkSync(path.join(root,name),path.join(dir,name),'dir');
+ writeFileSync(path.join(dir,'package.json'),' {"type":"module"} ');
+ for(const c of act3FinalDelta().packagingChanges.filter(c=>c.path.startsWith('tools/'))){const file=path.join(dir,c.path);if(c.added)rmSync(file);else writeFileSync(file,beforeAct3Source(c.path,readFileSync(file,'utf8')));}
+ const dispose=()=>rmSync(dir,{recursive:true,force:true});process.once('exit',dispose);
+ const modules=await Promise.all(paths.map(p=>{assert(p.startsWith('tools/'));return import(pathToFileURL(path.join(dir,p)));}));
+ return {modules,dispose:()=>{process.removeListener('exit',dispose);dispose();}};
 }

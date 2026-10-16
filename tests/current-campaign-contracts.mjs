@@ -1,4 +1,4 @@
-import {beforeAct3Campaign,afterAct3Campaign,beforeAct3CampaignManifest,assertAct3FinalNegatives} from './act3-environment-final-history.mjs';
+import {beforeAct3Campaign,afterAct3Campaign,beforeAct3CampaignManifest,assertAct3FinalNegatives,previousAct3Authors} from './act3-environment-final-history.mjs';
 import {currentRuntimeManifest,currentRuntimeSources} from './current-runtime-contract-helpers.mjs';
 import {beforeFieldCampaign,assertFieldCampaignNegatives} from './field-story-history.mjs';
 import {beforeStage5Lake} from './stage5-lake-history-helpers.mjs';
@@ -11,12 +11,21 @@ import {applyExactStoryJsonDelta,assertExactStoryJsonNegatives} from './exact-st
 import {beforeQuestProjectProse} from './quest-project-prose-history.mjs';
 import {authorStage5Waterfall} from '../tools/map-forge/stage5-waterfall.mjs';
 import {beforeApprovedWaterfall} from './approved-waterfall-contract-helpers.mjs';
-import{runtime}from'../game/tests/helpers.mjs';import{readFileSync,mkdirSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';import{authorStage14Vertical}from'../tools/map-forge/apply-stage14-vertical.mjs';import{authorStage22Vertical}from'../tools/map-forge/apply-stage22-vertical.mjs';import{applyStage22VerticalArt}from'../tools/environment/stage22-vertical-art.mjs';import{authorAct23QuestRedesign}from'../tools/map-forge/act23-quest-redesign.mjs';import{applyCityTacticalRoutes}from'../tools/map-forge/city-tactical-routes.mjs';import{applyStage9And13Tactical}from'../tools/map-forge/stage9-13-tactical.mjs';import{applyTacticalCityResponses}from'../tools/map-forge/tactical-city-responses.mjs';import{applyTacticalWaveWarnings}from'../tools/map-forge/tactical-wave-warnings.mjs';import{refineStage18BellArt}from'../tools/environment/refine-stage18-bell-art.mjs';
+import{runtime}from'../game/tests/helpers.mjs';import{readFileSync,mkdirSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';import{refineStage18BellArt}from'../tools/environment/refine-stage18-bell-art.mjs';
 import assert from 'node:assert/strict';
 import {campaignHash as hash,currentCampaignManifest as finalCampaignManifest,assertCurrentCampaign as assertLatestCampaign,assertCurrentCampaignLibrary,scopeCampaign} from './current-campaign-contract-helpers.mjs';
 import {historicalCampaign,campaignHistoryInput,campaignHistoryLibrary} from './historical-campaign-inputs.mjs';
 import {beforeEncounterDensity} from './encounter-density-history-helpers.mjs';
 import {beforeStage8BierLibrary} from './stage8-bier-history-helpers.mjs';
+const previousAuthors=await previousAct3Authors(["tools/map-forge/apply-stage14-vertical.mjs", "tools/map-forge/apply-stage22-vertical.mjs", "tools/environment/stage22-vertical-art.mjs", "tools/map-forge/act23-quest-redesign.mjs", "tools/map-forge/city-tactical-routes.mjs", "tools/map-forge/stage9-13-tactical.mjs", "tools/map-forge/tactical-city-responses.mjs", "tools/map-forge/tactical-wave-warnings.mjs"]);
+const {authorStage14Vertical}=previousAuthors.modules[0];
+const {authorStage22Vertical}=previousAuthors.modules[1];
+const {applyStage22VerticalArt}=previousAuthors.modules[2];
+const {authorAct23QuestRedesign}=previousAuthors.modules[3];
+const {applyCityTacticalRoutes}=previousAuthors.modules[4];
+const {applyStage9And13Tactical}=previousAuthors.modules[5];
+const {applyTacticalCityResponses}=previousAuthors.modules[6];
+const {applyTacticalWaveWarnings}=previousAuthors.modules[7];
 const latestRaw=beforeQuestProjectProse(beforeStage5Lake(JSON.parse(readFileSync('shared/data/campaign.json'))));assertLatestCampaign(latestRaw);
 const f=beforeAct3CampaignManifest(finalCampaignManifest),raw=beforeAct3Campaign(latestRaw),old=historicalCampaign();
 // Previous approval is proven by an exact forward/inverse, never accepted as live identity.
@@ -45,6 +54,7 @@ const reorder=(values,ids,label)=>{assert.equal(new Set(values.map(v=>v.id)).siz
 made.stages[14].terrains=reorder(made.stages[14].terrains,f.stage15TerrainOrder,'15 terrain source order');made.library=reorder(made.library,f.raw.library.map(a=>a.id),'Historical asset insertion order');
 made=beforeQuestProjectProse(JSON.parse(JSON.stringify(g.HonroEvidenceQuests.baseAuthor(g.HonroBellAnomaly.author(applyStoryAnomalyEnvironment(made))))));
 for(let i=0;i<30;i++)assert.deepEqual(made.stages[i],raw.stages[i],'Independent current source recipe reproduces complete stage '+(i+1));assert.deepEqual(made.library,raw.library,'Independent authors plus exact retained originals reproduce all640 assets');assert.deepEqual({...made,stages:[],library:[]},{...raw,stages:[],library:[]});
+previousAuthors.dispose();
 for(const scope of ['full','act12']){const current=scopeCampaign(latestRaw,scope),historic=historicalCampaign({scope});assert.deepEqual(campaignHistoryInput(current,{scope}),historic);assert.deepEqual(campaignHistoryLibrary(current.library,{scope}),historic.library);assert.deepEqual(beforeStage8BierLibrary(current.library,{scope}),beforeStage8BierLibrary(historic.library,{scope}));assert.deepEqual(campaignHistoryInput(historic,{scope}),historic);const projected=beforeEncounterDensity(historic);assert.equal(hash(projected),scope==='full'?'d3a326b89d61c79968be75e452c81043071588db8d8755fe4b2d8c6b1647c39d':JSON.parse(readFileSync('tests/fixtures/encounter-density/history-delta.json')).beforeAct12Sha256);}
 let storyJsonNegatives=0;
 for(const row of storyRevisionApproval.campaign.stages.filter(row=>row.variant!=='project')){
