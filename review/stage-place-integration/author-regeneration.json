@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "sourceCommit": "2314ee6a2ad53606c2e150b2c8c087f54de1af32",
+  "rows": [
+    {
+      "stage": 22,
+      "stageSha256": "9c84f818bfe66da32f5fcf45416a4ddea20c2389d6d86b62632c445734767b7a",
+      "usedAssets": 19,
+      "other29Unchanged": true
+    },
+    {
+      "stage": 24,
+      "stageSha256": "56c77fd1a152fa3ed7b549c847b8e3ed1a4f499c005f90a3475b9ceff830667e",
+      "usedAssets": 16,
+      "other29Unchanged": true
+    },
+    {
+      "stage": 26,
+      "stageSha256": "11897365d63539ab0add17b19a410922f99eb2a87a23df6bcada00d10dbd66ca",
+      "usedAssets": 13,
+      "other29Unchanged": true
+    }
+  ],
+  "other27Unchanged": true,
+  "scope": "Independent author replay from exact reversed baseline; current stage/used assets exact. Current manifest separately pins all library membership/order. Not gameplay acceptance."
+}

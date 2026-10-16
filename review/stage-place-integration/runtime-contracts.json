@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "currentSources": 168,
+  "archiveSources": 133,
+  "priorSources": 130,
+  "added": 35,
+  "changed": 91,
+  "unchanged": 42,
+  "sourceNegatives": 938,
+  "exactDeltaNegatives": 650,
+  "characterArtNegatives": 19,
+  "bodyNegatives": 26,
+  "documentNegatives": 19,
+  "materialNegatives": 135,
+  "evidenceNegatives": 39,
+  "templeNegatives": 13,
+  "hoistNegatives": 13,
+  "eaterNegatives": 49,
+  "fieldNegatives": 46,
+  "pickupNegatives": 17,
+  "questProjectNegatives": 6,
+  "storyProjectNegatives": 120,
+  "partNegatives": [
+    "v0r0a0/missing",
+    "v0r0a0/extra",
+    "v0r0a0/duplicate",
+    "v0r0a0/reorder",
+    "v0r0a0/core-byte",
+    "v0r0a0/inline-project",
+    "v0r0a1/missing",
+    "v0r0a1/extra",
+    "v0r0a1/duplicate",
+    "v0r0a1/reorder",
+    "v0r0a1/core-byte",
+    "v0r0a1/inline-project",
+    "v0r1a0/missing",
+    "v0r1a0/extra",
+    "v0r1a0/duplicate",
+    "v0r1a0/reorder",
+    "v0r1a0/core-byte",
+    "v0r1a0/inline-project",
+    "v0r1a1/missing",
+    "v0r1a1/extra",
+    "v0r1a1/duplicate",
+    "v0r1a1/reorder",
+    "v0r1a1/core-byte",
+    "v0r1a1/inline-project",
+    "v1r0a0/missing",
+    "v1r0a0/extra",
+    "v1r0a0/duplicate",
+    "v1r0a0/reorder",
+    "v1r0a0/core-byte",
+    "v1r0a0/inline-project",
+    "v1r0a1/missing",
+    "v1r0a1/extra",
+    "v1r0a1/duplicate",
+    "v1r0a1/reorder",
+    "v1r0a1/core-byte",
+    "v1r0a1/inline-project",
+    "v1r1a0/missing",
+    "v1r1a0/extra",
+    "v1r1a0/duplicate",
+    "v1r1a0/reorder",
+    "v1r1a0/core-byte",
+    "v1r1a0/inline-project",
+    "v1r1a1/missing",
+    "v1r1a1/extra",
+    "v1r1a1/duplicate",
+    "v1r1a1/reorder",
+    "v1r1a1/core-byte",
+    "v1r1a1/inline-project"
+  ],
+  "builds": [
+    {
+      "variant": "v0r0a0",
+      "parts": 82,
+      "sha256": "7be076103c4a85b58581bec3ef76edbc6bedf2bbe7ac3d07c0535bdc5a242fda"
+    },
+    {
+      "variant": "v0r0a1",
+      "parts": 94,
+      "sha256": "94c134b7fce4146844ed0cc892063d97112844e9fb264812cdc3abdf5a11d2c4"
+    },
+    {
+      "variant": "v0r1a0",
+      "parts": 116,
+      "sha256": "3fb4f2736484c11eb7d6d7a76d8b4186926ab1657af18ca8fe2f35a786d97269"
+    },
+    {
+      "variant": "v0r1a1",
+      "parts": 128,
+      "sha256": "8aa0bb828f888ae5037d37d0bd34765938a04c379396a01e152fa0f845ad75d5"
+    },
+    {
+      "variant": "v1r0a0",
+      "parts": 85,
+      "sha256": "6700b44397e6ba3f1ae8464dc5d8507a1cd41d526fa3603b9b6de6604eb85330"
+    },
+    {
+      "variant": "v1r0a1",
+      "parts": 97,
+      "sha256": "cdcbf2b0696ce4c27538505c755b8d8da26375555b7e696e680b55190dad2e2e"
+    },
+    {
+      "variant": "v1r1a0",
+      "parts": 119,
+      "sha256": "fc7ca1379f2dce3519ffd36e24e9b1a5a1da44079014e842a4daefecfc593fd2"
+    },
+    {
+      "variant": "v1r1a1",
+      "parts": 131,
+      "sha256": "c0c18af9a63de043528fceedb0f50a524fd719507f6c233d1055e96eb915bf69"
+    }
+  ],
+  "archiveChecks": [
+    {
+      "variant": "raw",
+      "sha256": "faf7f38c10ab44a91622d4d65c10442b9a31a3c3c2f47cfa61367b4f2f23f1a0",
+      "beforeStage8Sha256": "e7fac2fd0807ac9e5484f3fbfd06c6869e936e4c2de671936d58b584257e7601"
+    },
+    {
+      "variant": "temple",
+      "sha256": "9cf349dfbcad963c45c411b7e87ea4f94a331fc52b5b374c81e0b92043902b6c",
+      "beforeStage8Sha256": "5e30224f341fc7ae1d1f0c5842730330581b9eac02fec905a6ecd2e27f0686ab"
+    }
+  ],
+  "currentGameplayFingerprintIsNotProjected": true,
+  "scope": "Actual current build identity and explicit nonexecuted archive byte identity. Current behavior/completed-run compatibility is a separate gate, not waived."
+}
