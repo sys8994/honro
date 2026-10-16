@@ -2999,3 +2999,5 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 새 28장의 U자 지형을 중앙 대청·서쪽 서리길·동쪽 수방으로 재구성했다. 기존 양측 출발, 두 제어와 12턴 화재, 실물 증거/후속 자동 목표, 초기11/정예3/무증원 계약을 보존했다. 다른29장 및 진행 저장 지형은 바꾸지 않는다.
 
 합류 범위440에서 받아들인 물증 소유자가 별도260 검사로 누락되는 문제를 새 개편 맵에 한해 동일 sameFloor 판정으로 교정했다. 기존 영수증과 실제 걷기·전개·재포장을 사용한다. 정상 자원 Native R8/36행동 완주, 분산 물증 fixture, 새/구 Continue, PC/모바일 Canvas, 기존 P0/field evidence/fire-sites, 빌드/환경 검증 통과. 자세한 범위·PNG·원본 로그는 사용자 요청 경로 review/stage28/README.md에 있다. 브라우저 수동 완주/Workshop Playtest/전체 verify는 미실행, encounter gate와 미술 승인은 대기. 공식 이미지 픽셀 조사는 네트워크403/timeout으로 미충족이며 master/Pages에 배포하지 않았다.
+
+소유자 순서 반전 후속: 첫 물증 소유자+440/마지막-430이면 배치 목적지까지505/530px로 기존450 이동 한도에 걸려 실제 전개가 실패했다. 수정 전 실패를 재현하고 새 개편28장의 party-reunion만 maxDistance600으로 조정했다. 다른 장/구 저장/다른 연출450 유지. mirrored-owner-boundary 실제 걷기·전개·재포장 및 새/구 Continue, 기존 field-evidence/P0 48사례와 재빌드 통과.
