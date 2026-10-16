@@ -32,5 +32,16 @@ export function refineRoofAccess25(p,s){
   const wall=[[wx,wy],[wx+ww,wy],[wx+ww,wy+wh],[wx,wy+wh]];
   replace(r.wall,P(wall,'#354943')+R(wx+5,wy,Math.min(15,ww/4),wh,'#657160'),wall,[wx,wy,ww,wh],false);
  }
+ // Match the non-colliding workroom fronts to the reachable eaves. The old
+ // oversized sealed-door silhouette must not project through the new roof.
+ for(const [id,x,floor,w] of [['maintenance-recess',2860,4950,390],['upper-checkpoint',4770,3600,500]]){
+  const y=floor-128;let svg=R(x,y,w,128,'#23342e')+R(x+9,y+7,w*.44,117,'#675a40');
+  for(const f of [.12,.28,.43])svg+=R(x+w*f,y+14,9,108,'#9c835a');
+  svg+=R(x+7,y+42,w*.45,12,'#3d3c2d')+R(x+7,y+96,w*.45,10,'#39392c');
+  svg+=R(x+w*.52,y+9,w*.41,62,'#111f20')+R(x+w*.51,y+72,w*.43,14,'#867553');
+  for(const f of [.61,.76,.9])svg+=R(x+w*f,y+13,7,55,'#59634b');
+  svg+=R(x+w*.54,y+92,w*.36,24,'#4c4735')+R(x+w*.56,y+90,w*.31,4,'#ac9670');
+  const a=asset(prefix+id,'낮은 처마 아래의 수문 정비 작업실',svg,[],[x,y,w,130],'wood');p.library.push(a);s.elements.find(e=>e.id===id).assetId=a.id;
+ }
  s.design.act3.roofAccessRevision=1;
 }
