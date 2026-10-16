@@ -1,0 +1,83 @@
+{
+  "scope": "Prepared geometry probes; actual default jump/drop/ordinary walking, full enemy roster retained",
+  "rows": [
+    {
+      "cls": "archer",
+      "id": "loading-office-roof",
+      "approach": true,
+      "upwardPass": true,
+      "roofLanding": 4070,
+      "dropLanding": 4250,
+      "exit": true,
+      "hpPreserved": true,
+      "peak": 4036.3849187047085
+    },
+    {
+      "cls": "archer",
+      "id": "far-passage-roof",
+      "approach": true,
+      "upwardPass": true,
+      "roofLanding": 4220,
+      "dropLanding": 4400,
+      "exit": true,
+      "hpPreserved": true,
+      "peak": 4186.384918704705
+    },
+    {
+      "cls": "archer",
+      "id": "ledger-room-roof",
+      "approach": true,
+      "upwardPass": true,
+      "roofLanding": 2420,
+      "dropLanding": 2600,
+      "exit": true,
+      "hpPreserved": true,
+      "peak": 2386.3849187047094
+    },
+    {
+      "cls": "mage",
+      "id": "loading-office-roof",
+      "approach": true,
+      "upwardPass": true,
+      "roofLanding": 4070,
+      "dropLanding": 4250,
+      "exit": true,
+      "hpPreserved": true,
+      "peak": 4036.3849187047085
+    },
+    {
+      "cls": "mage",
+      "id": "far-passage-roof",
+      "approach": true,
+      "upwardPass": true,
+      "roofLanding": 4220,
+      "dropLanding": 4400,
+      "exit": true,
+      "hpPreserved": true,
+      "peak": 4186.384918704705
+    },
+    {
+      "cls": "mage",
+      "id": "ledger-room-roof",
+      "approach": true,
+      "upwardPass": true,
+      "roofLanding": 2420,
+      "dropLanding": 2600,
+      "exit": true,
+      "hpPreserved": true,
+      "peak": 2386.3849187047094
+    },
+    {
+      "cls": "archer",
+      "kind": "third-link-not-bypassed",
+      "peak": 4006.384918704709,
+      "requiredFloor": 3950
+    },
+    {
+      "cls": "mage",
+      "kind": "third-link-not-bypassed",
+      "peak": 4006.384918704709,
+      "requiredFloor": 3950
+    }
+  ]
+}

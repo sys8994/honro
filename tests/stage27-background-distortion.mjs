@@ -1,5 +1,7 @@
+import {applyStage27WorkingArchitecture} from '../tools/map-forge/stage27-working-architecture.mjs';
 import assert from 'node:assert/strict';import {readFile,writeFile} from 'node:fs/promises';import {execFileSync} from 'node:child_process';import {applyStage27Distortion} from '../tools/map-forge/stage27-depot-distortion.mjs';
-const before=JSON.parse(execFileSync('git',['show','c1342cb:shared/data/campaign.json'],{encoding:'utf8',maxBuffer:80e6})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+const before=JSON.parse(execFileSync('git',['show','c1342cb:shared/data/campaign.json'],{encoding:'utf8',maxBuffer:80e6})),current=JSON.parse(await readFile('shared/data/campaign.json','utf8')),after=JSON.parse(JSON.stringify(applyStage27Distortion(before)));
+assert.deepEqual(JSON.parse(JSON.stringify(applyStage27WorkingArchitecture(after))),current,'Current working architecture composes exactly on the verified background pass');
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage27Distortion(before))),after);assert.deepEqual(applyStage27Distortion(after),after);
 const reverted=structuredClone(after);reverted.library=before.library;reverted.stages[26].elements.find(e=>e.id==='vertical-depot-shell').assetId=before.stages[26].elements.find(e=>e.id==='vertical-depot-shell').assetId;assert.deepEqual(reverted,before,'Only one rear scenery pointer and new library asset change');
 const a=after.library.at(-1);assert.equal(a.collision.length,0);for(const a of before.library)assert.deepEqual(after.library.find(x=>x.id===a.id),a);
