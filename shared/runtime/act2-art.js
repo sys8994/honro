@@ -10,9 +10,38 @@ const paths={
  resonanceTendon:path('M-16 -76 Q-8 -64 -13 -51 L-8 -33 -15 -22 -20 -40 -23 -59Z M9 -70 L17 -62 18 -46 12 -29 8 -37 13 -52Z'),
  echoShoulder:path('M-25 -77 L-16 -81 -11 -71 -17 -56 -20 -43 -28 -49 -31 -62Z'),
  echoTendon:path('M-23 -73 L-17 -70 -23 -55 -23 -47 M9 -61 L18 -51 17 -37 9 -24'),
- keeperNeck:path('M-4 -94 L3 -94 6 -87 0 -83 -6 -87Z'),
- keeperSleeveFold:path('M-18 -78 Q-22 -70 -19 -61 L-17 -57 -21 -51 M10 -78 L12 -68 7 -62'),
- keeperLeather:path('M-10 -60 L-4 -57 -7 -43 -4 -35 -11 -36Z M4 -54 L7 -53 8 -37 3 -38Z'),
+ // Keeper-only retained contours: tendons, overlapping cloth and loaded grips.
+ keeperNeck:path('M-5 -96 L3 -96 6 -86 1 -81 -7 -87Z'),
+ keeperNeckShade:path('M0 -95 L3 -95 5 -87 1 -84 -2 -88Z'),
+ keeperSleeveFold:path('M-18 -77 Q-24 -71 -21 -63 L-18 -59 M-21 -56 L-17 -52 M13 -78 Q17 -73 15 -69'),
+ keeperLeather:path('M-10 -59 Q-5 -58 -5 -53 L-7 -43 -5 -35 -12 -35Z M5 -54 L9 -53 10 -37 5 -38Z'),
+ keeperFaceShade:path('M1 -104 L6 -102 6 -98 9 -96 6 -94 5 -90 1 -88 -3 -91 1 -94 -2 -98Z'),
+ keeperBrow:path('M-5 -100 L1 -101 5 -99 2 -97 -3 -98Z'),
+ keeperFaceLight:path('M-5 -103 L0 -104 0 -102 -4 -101Z M3 -99 L5 -99 5 -97 7 -96 4 -96Z M-3 -94 L0 -95 -1 -92Z'),
+ keeperFaceLine:path('M-4 -98 L0 -98 M1 -92 L5 -93 M-4 -96 Q-6 -94 -3 -93 M-2 -90 L2 -89'),
+ keeperWrapFold:path('M-8 -104 Q-1 -107 7 -104 M-6 -102 L3 -103 M-6 -105 Q-9 -101 -8 -99'),
+ keeperWrapKnot:path('M-8 -104 L-12 -102 -10 -98 -7 -100Z M-10 -99 Q-13 -94 -11 -89 L-8 -92 -8 -99Z'),
+ keeperRobeFold:path('M-9 -81 Q-13 -71 -8 -63 L-11 -52 M2 -71 L-2 -63 0 -57 M14 -46 L17 -32 M-16 -43 L-17 -31'),
+ keeperRobeLight:path('M-12 -85 Q-17 -84 -18 -79 L-16 -72 -13 -76 -10 -80Z M-14 -49 L-12 -44 -15 -31 -18 -30Z M9 -35 L14 -32 19 -33 17 -38 13 -40Z'),
+ keeperSash:path('M-13 -85 Q-7 -79 1 -73 L14 -65 11 -61 Q0 -68 -16 -81Z'),
+ keeperSashEdge:path('M-12 -83 Q-3 -76 12 -65'),
+ keeperBelt:path('M-15 -64 Q-1 -60 13 -64 L14 -59 Q1 -56 -15 -59Z'),
+ keeperApronEdge:path('M-11 -59 Q-1 -56 9 -59 M-10 -37 Q0 -34 11 -36 M-7 -56 L-6 -53 M6 -56 L6 -52'),
+ keeperChain:path('M-18 -49 L-21 -47 -19 -44 -22 -41 -22 -38 M-18 -47 L-17 -44 -20 -42'),
+ keeperHandLine:path('M-20 -51 L-17 -49 -14 -49 M-19 -48 L-16 -47'),
+ keeperGripLine:path('M10 -65 L13 -63 M11 -62 L14 -61'),
+ keeperRearTrouser:path('M-11 -37 Q-17 -25 -14 -15 L-14 -3 -7 -2 -6 -18 -3 -30Z'),
+ keeperFrontTrouser:path('M5 -36 Q2 -28 6 -18 L8 -2 15 -2 15 -19 17 -31Z'),
+ keeperTrouserFold:path('M-10 -28 L-11 -19 -9 -15 M9 -29 Q6 -23 10 -18 M12 -13 L13 -6'),
+ keeperRearShoe:path('M-15 -6 Q-11 -7 -7 -4 L-2 -2 -1 1 Q-10 3 -16 0Z'),
+ keeperFrontShoe:path('M7 -6 Q12 -7 16 -3 L21 -1 20 2 8 2 6 -1Z'),
+ keeperStrikerArm:path('M12 -83 Q20 -82 21 -75 L19 -64 13 -60 8 -64 12 -70 10 -75Z'),
+ keeperStrikerFold:path('M16 -78 L18 -74 16 -69 12 -67 M12 -72 L14 -70'),
+ keeperStrikerHand:path('M9 -69 L14 -68 16 -65 15 -60 11 -60 8 -64Z'),
+ keeperStrikerHead:path('M24 -68 L33 -66 35 -58 29 -56 24 -59Z'),
+ keeperStrikerFace:path('M30 -65 L33 -65 34 -59 30 -58 28 -61Z'),
+ keeperStrikerBinding:path('M23 -65 L24 -59 M26 -66 L27 -58'),
+ keeperBellCasting:path('M-13 -69 Q-7 -74 -1 -74 M-17 -30 Q-1 -23 17 -30 M-13 -65 L-13 -57 M-8 -66 L-8 -58 M6 -66 L6 -58 M11 -65 L11 -57'),
  cartPlanks:path('M-42 -49 L3 -46 M-38 -36 L1 -33 M10 -46 L43 -44 M7 -33 L40 -31'),
  cartIron:path('M-43 -58 L-36 -59 -32 -49 -39 -48Z M34 -56 L42 -55 39 -46 32 -46Z'),
  cartOre:path('M-31 -79 L-18 -75 -23 -66 -39 -65Z M-4 -86 L9 -80 0 -70 -13 -73Z M25 -82 L36 -69 24 -64 18 -74Z'),
@@ -52,15 +81,15 @@ const paths={
  echoPlane:path('M8-104L18-88 16-73 31-59 28-39 13-18 18-3 3-14 8-39 15-53 3-69Z'),
  echoFace:path('M-20-75L-7-95 5-87-4-65-16-56-11-76Z'),
  echoJaw:path('M-22-45L-4-55 13-66 7-44-8-27-17-30-4-44Z'),
- keeperRobe:path('M-10-89L-21-82-19-60-15-54-20-29-5-26 1-38 8-27 21-30 14-56 19-79 7-90Z'),
- keeperPlane:path('M0-89L7-90 19-79 14-56 21-30 8-27 1-38-2-63Z'),
- keeperCollar:path('M-8-91L1-83 8-91 12-83 1-72-14-83Z'),
- keeperHead:path('M-7-104Q1-110 7-103L6-94 2-90-4-93-8-98Z'),
- keeperWrap:path('M-8-104Q0-109 8-104L8-100-8-101Z'),
- keeperApron:path('M-12-62L9-62 12-34-13-33Z'),
- keeperArm:path('M-16-83L-23-77-25-57-19-47-13-51-18-61Z'),
- keeperHand:path('M-20-53L-14-55-9-51-11-46-18-46Z'),
- striker:path('M-1-68L34-64 35-57 0-61Z')
+ keeperRobe:path('M-10 -88 Q-20 -86 -22 -79 L-19 -64 -16 -57 Q-15 -48 -20 -30 L-8 -27 -1 -38 8 -28 21 -31 Q16 -47 15 -59 L19 -78 Q16 -87 6 -89 L0 -84Z'),
+ keeperPlane:path('M1 -84 L8 -88 Q18 -83 17 -77 L13 -61 Q11 -49 19 -32 L9 -30 0 -40 -3 -59 0 -71Z'),
+ keeperCollar:path('M-7 -90 L0 -84 6 -90 9 -85 2 -77 -3 -76 -12 -84Z'),
+ keeperHead:path('M-7 -104 Q-3 -108 3 -105 L6 -102 6 -98 9 -96 6 -94 5 -90 1 -88 -4 -91 -7 -97Z'),
+ keeperWrap:path('M-9 -105 Q-2 -110 6 -106 L8 -102 Q0 -103 -8 -101Z'),
+ keeperApron:path('M-12 -60 Q-2 -58 9 -61 L12 -35 Q1 -32 -13 -34Z'),
+ keeperArm:path('M-18 -83 Q-25 -80 -25 -72 L-26 -59 Q-25 -51 -21 -49 L-16 -52 -20 -60 -18 -70 -13 -76Z'),
+ keeperHand:path('M-21 -53 L-17 -54 -13 -52 -13 -49 -16 -48 -17 -46 -20 -47 -22 -50Z'),
+ striker:path('M-1 -68 L27 -63 27 -59 -1 -64Z')
 };
 function drawBell(c){
  paint(c,paths.bellCrown,'#8c9173','#b0af8a',1.8);
@@ -86,20 +115,34 @@ S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call
  c.save();c.translate(u.x,u.y);c.scale((u.facing||1)*u.h/110,u.h/110);const t=this.time||0;
  const attack=Math.max(0,Math.min(1,u.anim||0)),step=u.moving?Math.sin(t*10)*3:0;
  if(kind==='keeper'){
-  // A working bell attendant: flat head wrap, crossed jacket, tied apron,
-  // carrying a bronze bell and striking it from outside with a wooden beam.
-  // No occultist/human fallback: legacy class does not reintroduce hood/staff.
+  // Korean crossed work jacket with sleeve ties. The hand carries the yoke;
+  // the other grip, handle and mallet rotate together at the existing pivot.
   c.save();c.translate(0,Math.abs(step)*-.3);c.rotate(attack*.045);
-  c.strokeStyle='#7c8270';c.lineWidth=7;c.lineCap='round';
-  for(const [x,dx]of [[-9,step],[11,-step]]){c.beginPath();c.moveTo(x,-34);c.lineTo(x+dx,-3);c.lineTo(x+dx+4,0);c.strokeStyle='#172729';c.lineWidth=10;c.stroke();c.strokeStyle='#727867';c.lineWidth=6;c.stroke();c.beginPath();c.moveTo(x+dx,-2);c.lineTo(x+dx+4,0);c.strokeStyle='#253633';c.stroke();}
-  paint(c,paths.keeperRobe,'#545e59','#a2a38c',1.5);paint(c,paths.keeperPlane,'#303e3e',null);
-  paint(c,paths.keeperNeck,'#94735a');paint(c,paths.keeperCollar,'#b6ad91');paint(c,paths.keeperApron,'#82755b');
-  paint(c,paths.keeperHead,'#a79b7b');paint(c,paths.keeperWrap,'#596760','#b8b49c',1);
-  c.strokeStyle='#293230';c.lineWidth=1.2;c.beginPath();c.moveTo(-5,-98);c.lineTo(2,-98);c.moveTo(-1,-94);c.lineTo(3,-94);c.stroke();
-  c.save();c.translate(-23,-20);c.scale(.4,.4);drawBell(c);c.restore();
-  paint(c,paths.keeperArm,'#606b60','#a2a38c',1.5);paint(c,paths.keeperHand,'#aa9c7e');paint(c,paths.keeperSleeveFold,null,'#303333',1.8);paint(c,paths.keeperLeather,'#594334',null);
-  c.save();c.translate(4,-65);c.rotate(-attack*.5);c.translate(-4,65);paint(c,paths.striker,'#887354','#baa888',1.6);
-  c.fillStyle='#a49678';c.fillRect(7,-67,6,6);c.restore();c.restore();
+  for(const [p,shoe,dx]of [[paths.keeperRearTrouser,paths.keeperRearShoe,step],[paths.keeperFrontTrouser,paths.keeperFrontShoe,-step]]){
+   c.save();c.translate(dx,0);paint(c,p,'#4b5148','#172729',1.2);paint(c,shoe,'#2c3530','#152320',.8);c.restore();
+  }
+  paint(c,paths.keeperTrouserFold,null,'#899080',.65);
+  paint(c,paths.keeperRobe,'#626960','#1c2928',1.1);paint(c,paths.keeperPlane,'#35443f',null);
+  paint(c,paths.keeperRobeLight,'#858c78',null);paint(c,paths.keeperRobeFold,null,'#283732',.85);
+  paint(c,paths.keeperNeck,'#9a8268',null);paint(c,paths.keeperNeckShade,'#514c3d',null);
+  paint(c,paths.keeperCollar,'#aaa58a','#303c35',.7);
+  paint(c,paths.keeperSash,'#77624a','#29332e',.6);paint(c,paths.keeperSashEdge,null,'#ac9470',.6);
+  paint(c,paths.keeperBelt,'#373b30','#202a25',.6);
+  paint(c,paths.keeperApron,'#746049','#242d27',.9);paint(c,paths.keeperLeather,'#4c3b2d',null);
+  paint(c,paths.keeperApronEdge,null,'#ab9067',.6);
+  paint(c,paths.keeperHead,'#af9c7b','#30362c',.7);paint(c,paths.keeperFaceShade,'#6f6451',null);
+  paint(c,paths.keeperBrow,'#343a30',null);paint(c,paths.keeperFaceLight,'#c3b393',null);paint(c,paths.keeperFaceLine,null,'#30382d',.55);
+  paint(c,paths.keeperWrapKnot,'#444b40','#242f29',.6);paint(c,paths.keeperWrap,'#626959','#28332d',.65);paint(c,paths.keeperWrapFold,null,'#a3a48a',.5);
+  c.save();c.translate(-23,-8);c.scale(.4,.4);drawBell(c);paint(c,paths.keeperBellCasting,null,'#c0ae7d',1);c.restore();
+  paint(c,paths.keeperChain,null,'#969783',1.2);
+  paint(c,paths.keeperArm,'#5b6458','#25352e',1);paint(c,paths.keeperSleeveFold,null,'#26392f',.85);
+  paint(c,paths.keeperHand,'#ac9878','#30382e',.6);paint(c,paths.keeperHandLine,null,'#534a36',.6);
+  c.save();c.translate(4,-65);c.rotate(-attack*.5);c.translate(-4,65);
+  paint(c,paths.keeperStrikerArm,'#596352','#26342e',.9);paint(c,paths.keeperStrikerFold,null,'#9c9e82',.65);
+  paint(c,paths.striker,'#745b3c','#292d25',.7);paint(c,paths.keeperStrikerHead,'#65533b','#242d26',.85);
+  paint(c,paths.keeperStrikerFace,'#a4875b',null);paint(c,paths.keeperStrikerBinding,null,'#a5a083',.8);
+  paint(c,paths.keeperStrikerHand,'#ac9878','#30382e',.65);paint(c,paths.keeperGripLine,null,'#534a36',.6);c.restore();
+  c.restore();
  }else if(u.honroSpirit){c.globalAlpha*=.94;c.translate(0,Math.sin(t*1.7)*5);c.rotate(-attack*.06);
   if(kind==='bellCluster'){
    // Linked, displaced bronze bodies make the cluster read as sound-bound
