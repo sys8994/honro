@@ -7,17 +7,19 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {tmpdir} from 'node:os';
 import {storyDeltaHash as hash,applyExactStoryJsonDelta} from './exact-story-revision-delta.mjs';
 import {assertExactFollowupDelta} from './ui-followup-source-delta.mjs';
-export const ACT3_FINAL_FIXTURE_SHA256='c6fdc749d16aa3d46642c036e466506b4602961d9d2fbb2e03b895f119aee671';
+export const ACT3_FINAL_FIXTURE_SHA256='92a7ca90b6d4523e115bce1c779f537ed29fd0856a21219ed92a08c7ce004c3e';
 let cached;
 export function act3FinalDelta(){
  if(cached)return cached;
  assert.match(ACT3_FINAL_FIXTURE_SHA256,/^[a-f0-9]{64}$/,'Final ten-stage approval is not pinned');
- const bytes=readFileSync(new URL('./fixtures/act3-environment-final-delta.json',import.meta.url));
+ const bytes=readFileSync(new URL('./fixtures/act3-environment-final-v2-delta.json',import.meta.url));
  assert.equal(hash(bytes),ACT3_FINAL_FIXTURE_SHA256,'Immutable reviewed final environment delta');
  const d=JSON.parse(bytes);assert.equal(d.baseCommit,'d7c1f8457dd33decda5481c7c3b57d8505f6f157');
  assert.deepEqual(Object.keys(d.stageCommits).map(Number),[21,22,23,24,25,26,27,28,29,30]);
  for(const sha of Object.values(d.stageCommits))assert.match(sha,/^[a-f0-9]{40}$/);
  assert.equal(d.kind,'act3-environment-final');
+ if(d.supersedes){assert.equal(d.supersedes.file,'tests/fixtures/act3-environment-final-delta.json');assert.equal(d.supersedes.sha256,'c6fdc749d16aa3d46642c036e466506b4602961d9d2fbb2e03b895f119aee671');const bytes=readFileSync(new URL('../'+d.supersedes.file,import.meta.url));assert.equal(hash(bytes),d.supersedes.sha256,'Original interim approval remains immutable');const original=JSON.parse(bytes);assert.deepEqual(d.campaign.beforeManifest,original.campaign.beforeManifest);assert.deepEqual(d.runtime.beforeManifest,original.runtime.beforeManifest);}
+
  for(const view of Object.values(d.campaign.views))for(const row of view.stages)assert(row.stageId>=21&&row.stageId<=30);
  assert.deepEqual(d.runtime.beforeManifest.modelFiles,d.runtime.afterManifest.modelFiles,'No model registration change');
  assert.deepEqual(d.runtime.beforeManifest.engineFiles,d.runtime.afterManifest.engineFiles,'No engine files change');
