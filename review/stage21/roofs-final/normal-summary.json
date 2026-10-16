@@ -1,0 +1,181 @@
+{
+  "source": {
+    "commit": "eb373e44e424c3786ed1d0179d47d5894b54747d",
+    "campaign": "5b4babf76a7f11db9267c455f582191dd4d12dfcc943941aec01486036cebde3",
+    "runtime": "0f7ff80f6314b9c52e72b87bf326055c46df15dc976fb4e959443a355dfa611e",
+    "controller": "559120b214e99f92a15c6ba5b4aa9e99e2c3cc020b1700a7a988caa13384fb19"
+  },
+  "completed": true,
+  "round": 8,
+  "frame": 8193,
+  "stop": "",
+  "heroes": [
+    {
+      "id": "p-archer",
+      "x": 5961.802144048296,
+      "y": 2220,
+      "hp": 717,
+      "focus": 129,
+      "moveLeft": 879.9921172651113
+    },
+    {
+      "id": "p-mage",
+      "x": 5314.20383778222,
+      "y": 2370,
+      "hp": 858,
+      "focus": 194,
+      "moveLeft": 1746
+    },
+    {
+      "id": "p-knight",
+      "x": 5619.369851665517,
+      "y": 2295.393842709052,
+      "hp": 1346,
+      "focus": 163,
+      "moveLeft": 1945
+    },
+    {
+      "id": "p-occultist",
+      "x": 5065.192528227831,
+      "y": 2471.4199826290273,
+      "hp": 794,
+      "focus": 92,
+      "moveLeft": 1803
+    }
+  ],
+  "initialGroups": [
+    {
+      "id": "wagon-cordon",
+      "key": "wagon-cordon",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-wagon-cordon-0",
+        "a3-21-wagon-cordon-1",
+        "a3-21-wagon-cordon-2",
+        "a3-21-wagon-cordon-3"
+      ]
+    },
+    {
+      "id": "gate-watch",
+      "key": "gate-watch",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-gate-watch-0",
+        "a3-21-gate-watch-1",
+        "a3-21-gate-watch-2",
+        "a3-21-gate-watch-3"
+      ]
+    },
+    {
+      "id": "market-pack",
+      "key": "market-pack",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-market-pack-0",
+        "a3-21-market-pack-1",
+        "a3-21-market-pack-2"
+      ]
+    },
+    {
+      "id": "stable-tools",
+      "key": "stable-tools",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-stable-tools-0",
+        "a3-21-stable-tools-1",
+        "a3-21-stable-tools-2"
+      ]
+    },
+    {
+      "id": "office-rearguard",
+      "key": "office-rearguard",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-office-rearguard-0",
+        "a3-21-office-rearguard-1",
+        "a3-21-office-rearguard-2",
+        "a3-21-office-rearguard-3"
+      ]
+    }
+  ],
+  "births": [
+    {
+      "frame": 1967,
+      "round": 2,
+      "serial": 13,
+      "id": "event-11",
+      "source": "act3-response-21-0",
+      "contribution": "wave:act3-response-21-0:0",
+      "x": 3390,
+      "y": 2733
+    },
+    {
+      "frame": 1967,
+      "round": 2,
+      "serial": 13,
+      "id": "event-12",
+      "source": "act3-response-21-0",
+      "contribution": "wave:act3-response-21-0:1",
+      "x": 3510,
+      "y": 2760
+    },
+    {
+      "frame": 1967,
+      "round": 2,
+      "serial": 13,
+      "id": "event-13",
+      "source": "act3-response-21-0",
+      "contribution": "wave:act3-response-21-0:2",
+      "x": 3620,
+      "y": 2760
+    },
+    {
+      "frame": 2566,
+      "round": 3,
+      "serial": 19,
+      "id": "event-18",
+      "source": "act3-refuge-hold",
+      "contribution": "wave:act3-refuge-hold:0",
+      "x": 3309.5,
+      "y": 2708.85
+    },
+    {
+      "frame": 2566,
+      "round": 3,
+      "serial": 19,
+      "id": "event-19",
+      "source": "act3-refuge-hold",
+      "contribution": "wave:act3-refuge-hold:1",
+      "x": 3710.5,
+      "y": 2760
+    },
+    {
+      "frame": 5617,
+      "round": 6,
+      "serial": 46,
+      "id": "event-40",
+      "source": "act3-response-21-1",
+      "contribution": "wave:act3-response-21-1:0",
+      "x": 5030,
+      "y": 2493.076923076923
+    },
+    {
+      "frame": 5617,
+      "round": 6,
+      "serial": 46,
+      "id": "event-41",
+      "source": "act3-response-21-1",
+      "contribution": "wave:act3-response-21-1:1",
+      "x": 5170,
+      "y": 2406.923076923077
+    }
+  ],
+  "continues": [
+    {
+      "frame": 2316,
+      "round": 3,
+      "exact": true
+    }
+  ],
+  "auditWrites": []
+}

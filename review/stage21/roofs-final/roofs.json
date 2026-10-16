@@ -1,0 +1,421 @@
+{
+  "scope": "32 isolated real-map jump/pass/land/drop and directional projectile probes; not normal campaign play",
+  "rows": [
+    {
+      "id": "outside-stall",
+      "cls": "mage",
+      "start": {
+        "x": 225,
+        "y": 2810
+      },
+      "top": 2625.283300198807,
+      "min": 2596.3849187047094,
+      "landing": "eup21-outside-stall-roof",
+      "drop": 2810,
+      "moveRemaining": 1153.6900000000114
+    },
+    {
+      "id": "cloth-shelter",
+      "cls": "mage",
+      "start": {
+        "x": 1330,
+        "y": 2640
+      },
+      "top": 2440.3852459016393,
+      "min": 2426.3849187047094,
+      "landing": "eup21-cloth-shelter-roof",
+      "drop": 2640,
+      "moveRemaining": 1147.7924999999902
+    },
+    {
+      "id": "inner-home",
+      "cls": "mage",
+      "start": {
+        "x": 3445,
+        "y": 2749.5
+      },
+      "top": 2568.589494163424,
+      "min": 2535.8849187047094,
+      "landing": "eup21-inner-home-roof",
+      "drop": 2760,
+      "moveRemaining": 1222.4941666666768
+    },
+    {
+      "id": "potter-home",
+      "cls": "mage",
+      "start": {
+        "x": 4070,
+        "y": 2420
+      },
+      "top": 2254.739328201539,
+      "min": 2206.3849187047094,
+      "landing": "eup21-potter-home-roof",
+      "drop": 2420,
+      "moveRemaining": 1177.279999999976
+    },
+    {
+      "id": "stable",
+      "cls": "mage",
+      "start": {
+        "x": 4750,
+        "y": 2540.4
+      },
+      "top": 2340.695020746888,
+      "min": 2326.7849187047095,
+      "landing": "eup21-stable-roof",
+      "drop": 2530,
+      "moveRemaining": 1248.049999999981
+    },
+    {
+      "id": "office-store",
+      "cls": "mage",
+      "start": {
+        "x": 5795,
+        "y": 2220
+      },
+      "top": 2049.8529411764707,
+      "min": 2006.3849187047106,
+      "landing": "eup21-office-store-roof",
+      "drop": 2220,
+      "moveRemaining": 1173.3483333333024
+    },
+    {
+      "id": "office-hall",
+      "cls": "mage",
+      "start": {
+        "x": 5144.956666666658,
+        "y": 2020
+      },
+      "top": 1900.5883011830817,
+      "min": 1806.3849187047103,
+      "landing": "eup21-office-hall-roof",
+      "drop": 2130,
+      "moveRemaining": 1013.8174999999555
+    },
+    {
+      "id": "gate",
+      "cls": "mage",
+      "start": {
+        "x": 2052.563749999995,
+        "y": 2032.6970535242622
+      },
+      "top": 2032.6970535242622,
+      "min": 1819.0819722289725,
+      "landing": "eup21-gate-roof",
+      "drop": 2240,
+      "moveRemaining": 1036.424583333344
+    },
+    {
+      "id": "outside-stall",
+      "cls": "archer",
+      "start": {
+        "x": 225,
+        "y": 2810
+      },
+      "top": 2625.283300198807,
+      "min": 2596.3849187047094,
+      "landing": "eup21-outside-stall-roof",
+      "drop": 2810,
+      "moveRemaining": 1133.9000000000092
+    },
+    {
+      "id": "cloth-shelter",
+      "cls": "archer",
+      "start": {
+        "x": 1330,
+        "y": 2640
+      },
+      "top": 2440.3852459016393,
+      "min": 2426.3849187047094,
+      "landing": "eup21-cloth-shelter-roof",
+      "drop": 2640,
+      "moveRemaining": 1127.6000000000095
+    },
+    {
+      "id": "inner-home",
+      "cls": "archer",
+      "start": {
+        "x": 3445,
+        "y": 2749.5
+      },
+      "top": 2568.589494163424,
+      "min": 2535.8849187047094,
+      "landing": "eup21-inner-home-roof",
+      "drop": 2760,
+      "moveRemaining": 1203.2000000000062
+    },
+    {
+      "id": "potter-home",
+      "cls": "archer",
+      "start": {
+        "x": 4070,
+        "y": 2420
+      },
+      "top": 2254.739328201539,
+      "min": 2206.3849187047094,
+      "landing": "eup21-potter-home-roof",
+      "drop": 2420,
+      "moveRemaining": 1156.9999999999727
+    },
+    {
+      "id": "stable",
+      "cls": "archer",
+      "start": {
+        "x": 4750,
+        "y": 2540.4
+      },
+      "top": 2340.695020746888,
+      "min": 2326.7849187047095,
+      "landing": "eup21-stable-roof",
+      "drop": 2530,
+      "moveRemaining": 1228.3999999999796
+    },
+    {
+      "id": "office-store",
+      "cls": "archer",
+      "start": {
+        "x": 5795,
+        "y": 2220
+      },
+      "top": 2049.8529411764707,
+      "min": 2006.3849187047106,
+      "landing": "eup21-office-store-roof",
+      "drop": 2220,
+      "moveRemaining": 1152.7999999999665
+    },
+    {
+      "id": "office-hall",
+      "cls": "archer",
+      "start": {
+        "x": 5144.34999999999,
+        "y": 2020
+      },
+      "top": 1900.6167716624539,
+      "min": 1806.3849187047103,
+      "landing": "eup21-office-hall-roof",
+      "drop": 2130,
+      "moveRemaining": 992.7499999999518
+    },
+    {
+      "id": "gate",
+      "cls": "archer",
+      "start": {
+        "x": 2053.4999999999945,
+        "y": 2032.684650621683
+      },
+      "top": 2032.684650621683,
+      "min": 1819.0695693263933,
+      "landing": "eup21-gate-roof",
+      "drop": 2240,
+      "moveRemaining": 1016.9000000000042
+    },
+    {
+      "id": "outside-stall",
+      "cls": "knight",
+      "start": {
+        "x": 225,
+        "y": 2810
+      },
+      "top": 2625.283300198807,
+      "min": 2596.3849187047094,
+      "landing": "eup21-outside-stall-roof",
+      "drop": 2810,
+      "moveRemaining": 1242.7041666666792
+    },
+    {
+      "id": "cloth-shelter",
+      "cls": "knight",
+      "start": {
+        "x": 1330,
+        "y": 2640
+      },
+      "top": 2440.3852459016393,
+      "min": 2426.3849187047094,
+      "landing": "eup21-cloth-shelter-roof",
+      "drop": 2640,
+      "moveRemaining": 1238.5624999999889
+    },
+    {
+      "id": "inner-home",
+      "cls": "knight",
+      "start": {
+        "x": 3445,
+        "y": 2749.5
+      },
+      "top": 2568.589494163424,
+      "min": 2535.8849187047094,
+      "landing": "eup21-inner-home-roof",
+      "drop": 2760,
+      "moveRemaining": 1313.1125000000084
+    },
+    {
+      "id": "potter-home",
+      "cls": "knight",
+      "start": {
+        "x": 4070,
+        "y": 2420
+      },
+      "top": 2254.739328201539,
+      "min": 2206.3849187047094,
+      "landing": "eup21-potter-home-roof",
+      "drop": 2420,
+      "moveRemaining": 1267.5541666666777
+    },
+    {
+      "id": "stable",
+      "cls": "knight",
+      "start": {
+        "x": 4750,
+        "y": 2540.4
+      },
+      "top": 2340.695020746888,
+      "min": 2326.7849187047095,
+      "landing": "eup21-stable-roof",
+      "drop": 2530,
+      "moveRemaining": 1337.962500000007
+    },
+    {
+      "id": "office-store",
+      "cls": "knight",
+      "start": {
+        "x": 5795,
+        "y": 2220
+      },
+      "top": 2049.8529411764707,
+      "min": 2006.3849187047106,
+      "landing": "eup21-office-store-roof",
+      "drop": 2220,
+      "moveRemaining": 1263.4125000000113
+    },
+    {
+      "id": "office-hall",
+      "cls": "knight",
+      "start": {
+        "x": 5144.087500000003,
+        "y": 2020
+      },
+      "top": 1900.6068693651214,
+      "min": 1806.3849187047103,
+      "landing": "eup21-office-hall-roof",
+      "drop": 2130,
+      "moveRemaining": 1101.4375000000164
+    },
+    {
+      "id": "gate",
+      "cls": "knight",
+      "start": {
+        "x": 2052.902083333335,
+        "y": 2032.7117348061781
+      },
+      "top": 2032.7117348061781,
+      "min": 1819.0966535108885,
+      "landing": "eup21-gate-roof",
+      "drop": 2240,
+      "moveRemaining": 1127.3229166666815
+    },
+    {
+      "id": "outside-stall",
+      "cls": "occultist",
+      "start": {
+        "x": 225,
+        "y": 2810
+      },
+      "top": 2625.283300198807,
+      "min": 2596.3849187047094,
+      "landing": "eup21-outside-stall-roof",
+      "drop": 2810,
+      "moveRemaining": 1183.0599999999868
+    },
+    {
+      "id": "cloth-shelter",
+      "cls": "occultist",
+      "start": {
+        "x": 1330,
+        "y": 2640
+      },
+      "top": 2440.3852459016393,
+      "min": 2426.3849187047094,
+      "landing": "eup21-cloth-shelter-roof",
+      "drop": 2640,
+      "moveRemaining": 1178.9650000000106
+    },
+    {
+      "id": "inner-home",
+      "cls": "occultist",
+      "start": {
+        "x": 3445,
+        "y": 2749.5
+      },
+      "top": 2568.589494163424,
+      "min": 2535.8849187047094,
+      "landing": "eup21-inner-home-roof",
+      "drop": 2760,
+      "moveRemaining": 1252.674999999991
+    },
+    {
+      "id": "potter-home",
+      "cls": "occultist",
+      "start": {
+        "x": 4070,
+        "y": 2420
+      },
+      "top": 2254.739328201539,
+      "min": 2206.3849187047094,
+      "landing": "eup21-potter-home-roof",
+      "drop": 2420,
+      "moveRemaining": 1207.6300000000247
+    },
+    {
+      "id": "stable",
+      "cls": "occultist",
+      "start": {
+        "x": 4750,
+        "y": 2540.4
+      },
+      "top": 2340.695020746888,
+      "min": 2326.7849187047095,
+      "landing": "eup21-stable-roof",
+      "drop": 2530,
+      "moveRemaining": 1277.245000000019
+    },
+    {
+      "id": "office-store",
+      "cls": "occultist",
+      "start": {
+        "x": 5795,
+        "y": 2220
+      },
+      "top": 2049.8529411764707,
+      "min": 2006.3849187047106,
+      "landing": "eup21-office-store-roof",
+      "drop": 2220,
+      "moveRemaining": 1203.5350000000308
+    },
+    {
+      "id": "office-hall",
+      "cls": "occultist",
+      "start": {
+        "x": 5144.717499999984,
+        "y": 2020
+      },
+      "top": 1900.6108911250788,
+      "min": 1806.3849187047103,
+      "landing": "eup21-office-hall-roof",
+      "drop": 2130,
+      "moveRemaining": 1042.54000000002
+    },
+    {
+      "id": "gate",
+      "cls": "occultist",
+      "start": {
+        "x": 2053.263750000005,
+        "y": 2032.7031170471894
+      },
+      "top": 2032.7031170471894,
+      "min": 1819.0880357518997,
+      "landing": "eup21-gate-roof",
+      "drop": 2240,
+      "moveRemaining": 1068.1337499999913
+    }
+  ]
+}
