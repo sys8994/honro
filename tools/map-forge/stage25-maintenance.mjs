@@ -1,3 +1,4 @@
+import {refineRoofAccess25} from './stage25-roof-access.mjs';
 /** Stage 25 only. V3 crossings/field investigations stay in their original positions.
  * The shaft is a working sluice, not a second cargo hall. */
 import {P,R,line,asset,put} from './act3-map-kit.mjs';
@@ -87,6 +88,7 @@ export function refineMaintenance25(p,s){
   p.library.push(replacement);e.assetId=replacement.id;
  }
 
+ refineRoofAccess25(p,s);
  s.design.act3.maintenanceRevision=3;
  s.design.act3.optionalRoutes.push({id:'west-stoplog-crest',description:'낮은 직사선을 끊는 정비 석대. 양쪽 경사로를 기본 보행으로 오르고 돌아올 수 있다.',points:[{x:670,y:4050},{x:790,y:3965},{x:900,y:4050}]});
 }
