@@ -53,6 +53,23 @@
       "enemies": 26
     },
     {
+      "file": "before-desktop-archive-roof.png",
+      "device": "desktop",
+      "camera": [
+        2670,
+        2560,
+        0.7
+      ],
+      "version": "before",
+      "actualCamera": {
+        "x": 2670,
+        "y": 2560,
+        "z": 0.7,
+        "manual": true
+      },
+      "enemies": 26
+    },
+    {
       "file": "after-desktop-entry.png",
       "device": "desktop",
       "camera": [
@@ -99,6 +116,23 @@
         "x": 2420,
         "y": 1140,
         "z": 0.65,
+        "manual": true
+      },
+      "enemies": 26
+    },
+    {
+      "file": "after-desktop-archive-roof.png",
+      "device": "desktop",
+      "camera": [
+        2670,
+        2560,
+        0.7
+      ],
+      "version": "after",
+      "actualCamera": {
+        "x": 2670,
+        "y": 2560,
+        "z": 0.7,
         "manual": true
       },
       "enemies": 26
@@ -155,6 +189,23 @@
       "enemies": 26
     },
     {
+      "file": "before-mobile-archive-roof.png",
+      "device": "mobile",
+      "camera": [
+        2670,
+        2560,
+        0.48
+      ],
+      "version": "before",
+      "actualCamera": {
+        "x": 2670,
+        "y": 2560,
+        "z": 0.48,
+        "manual": true
+      },
+      "enemies": 26
+    },
+    {
       "file": "after-mobile-entry.png",
       "device": "mobile",
       "camera": [
@@ -200,6 +251,23 @@
       "actualCamera": {
         "x": 2420,
         "y": 1140,
+        "z": 0.48,
+        "manual": true
+      },
+      "enemies": 26
+    },
+    {
+      "file": "after-mobile-archive-roof.png",
+      "device": "mobile",
+      "camera": [
+        2670,
+        2560,
+        0.48
+      ],
+      "version": "after",
+      "actualCamera": {
+        "x": 2670,
+        "y": 2560,
         "z": 0.48,
         "manual": true
       },

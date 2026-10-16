@@ -2993,3 +2993,6 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 집중 검사: 219/220/240/260px 경계 및 초과, 높이 150 경계 및 초과, 다른 층, 실제 확보자, 26장 주민 장부 인계, 반복 클릭, 확보 실패 시 완료 차단, 누락된 JSON 저장 복구, 실제 desktop/mobile reload/Continue 두 번, 정상 두 기록함 확보 후 대조, 기존 물증 회귀와 실제 22장 이동 경로. 전체 verify는 사용자 요청에 따라 재실행하지 않는다. 검수 이미지는 외부 전송하지 않는다.
 
 최종 집중 결과: 48개 경계/획득/복구 사례, 비필드 구 저장 불변, desktop/mobile 실제 Continue 복구와 재저장, 기존 물증 회귀, 실제 22장 CE→EF→FG 이동 경로 통과. 정확한 3개 런타임 소스 변경은 `evidence-pickup-p0-delta.json`으로 고정했으며 168 소스/9 빌드/두 HTML 계약 및 17개 신규 변조 거부 검사를 통과했다. 이전 먹귀·인양·필드 이야기 fixture는 변경하지 않았다.
+
+### 2026-10-16 —22장 서고 실제 지붕 경로
+기존 장식 건물의 지붕이 비충돌이라 위아래 전술 경로로 사용할 수 없었다. E서고의 원본 sampled 기와 외곽만 oneWay로 연결하고 open-structure 정책에 해당 에셋만 등록했다. 지상·실내 솔리드 추가나 공통 엔진 수정 없이 기존 점프/하강/투사체 규칙을 재사용한다. 다른29장/목표/초기 배우/사건 불변, source재생성negative4개 통과. 실제desktop/mobile 및Workshop전후 검수, old/new HTML Continue 지형/목표 exact보존 통과. 지붕 전36라운드 Native완주는 해당 이전 해시에만 유효하며 최신 정상진단은 별도 기록한다. 원본 사용자 저장 미사용.
