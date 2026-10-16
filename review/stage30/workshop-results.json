@@ -1,0 +1,30 @@
+{
+  "rows": [
+    {
+      "mobile": false,
+      "stageViewAndPlaytestSameTerrainAndArt": true,
+      "stopPreservesProject": true,
+      "firstGoal": {
+        "id": "transport-map",
+        "label": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조",
+        "kind": "reach",
+        "radius": 260
+      }
+    },
+    {
+      "mobile": true,
+      "stageViewAndPlaytestSameTerrainAndArt": true,
+      "stopPreservesProject": true,
+      "firstGoal": {
+        "id": "transport-map",
+        "label": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조",
+        "kind": "reach",
+        "radius": 260
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Actual StageView and Playtest iframe launch/stop only; not combat completion."
+  ]
+}

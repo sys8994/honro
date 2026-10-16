@@ -1,0 +1,1253 @@
+{
+  "basicOnly": false,
+  "attackPolicy": "representative-equipped",
+  "mode": "representative-fullplay",
+  "rosterMode": "canonical",
+  "canonicalProjectSha256": "a4046ecf6352201962b65c0a39b3b3d311160c30e059100c4f73601c8a7fe509",
+  "pairedBaseline": null,
+  "sourceHash": "a4046ecf6352201962b65c0a39b3b3d311160c30e059100c4f73601c8a7fe509",
+  "runtimeSha256": "596254e7b4df70d3102762668ac5269ea2d44a7bb698e8840a662febfd721952",
+  "gameplayProjectSha256": "35ee2a4bb32545fefb9b34758a8f462668e217cff899e0ff0dcd440661e235c6",
+  "gameplayRuntimeSha256": "1d5b163f2cac12cbe24f6d67d64ef60b1d31189b5d699388e50d88a258a7780e",
+  "stageSha256": "4de8a8df218b3e6887a2879ab12f45225f91ac57f455aaa5bf12c2f9c0c69e07",
+  "controllerSha256": "1347e0bc45762163992520f318cbb293b153b9ae783792716a9523d8580dae2f",
+  "helperSha256": "d4c8da9c9e7ff2c20ce7e40f95d1fd180cf6058dca64c2019a4283c0ff9a9f14",
+  "stage30HelperSha256": "4104366a28abe71e49e18da9e0151d1fd2b5539361f99cc5693dd88a9c39c2b5",
+  "checkoutCommit": "fd3db61565a331545ca893e3fab97dd81ad40118",
+  "productionCommit": null,
+  "reflectionStudy": false,
+  "buildMode": "conservative-rank1",
+  "buildClassification": "approved-representative-rank1",
+  "routeMode": "auto",
+  "approachMode": "cape",
+  "completedAt": "2026-10-15T15:30:12.296Z",
+  "validationFailure": null,
+  "phase": "won",
+  "round": 17,
+  "stopReason": null,
+  "winnerReason": "저문골·무명사·잠운사를 잇는 운송·봉쇄 기록을 확보했다. 길은 설오의 고향 곁을 지난다. 끊긴 옛길을 따라 무명사로 향한다.",
+  "initialSeed": 19388,
+  "initialRng": 19388,
+  "initialEnemies": 40,
+  "initialElites": 10,
+  "enemyActionLimit": 3,
+  "observedEnemyActorsByRound": {
+    "1": [
+      "sf-c5",
+      "sf-c1",
+      "event-1"
+    ],
+    "2": [
+      "sf-de3",
+      "sf-c2",
+      "event-2"
+    ],
+    "3": [
+      "sf-dw6",
+      "sf-de1",
+      "event-18"
+    ],
+    "4": [
+      "sf-dw5",
+      "sf-dw3",
+      "event-19"
+    ],
+    "5": [
+      "sf-de6",
+      "sf-de7",
+      "event-20"
+    ],
+    "6": [
+      "sf-dw8",
+      "sf-dw2",
+      "sf-de5"
+    ],
+    "7": [
+      "sf-dw1",
+      "sf-dw4",
+      "sf-de8"
+    ],
+    "8": [
+      "sf-de4",
+      "sf-dw7",
+      "sf-de3"
+    ],
+    "9": [
+      "sf-dw6",
+      "sf-dw5",
+      "event-19"
+    ],
+    "10": [
+      "sf-de7",
+      "sf-de6",
+      "event-20"
+    ],
+    "11": [
+      "sf-dw8",
+      "sf-dw1",
+      "sf-de5"
+    ],
+    "12": [
+      "event-68",
+      "event-69",
+      "event-70"
+    ],
+    "13": [
+      "event-71",
+      "sf-dw4",
+      "event-72"
+    ],
+    "14": [
+      "sf-de8",
+      "sf-de3",
+      "sf-de4"
+    ],
+    "15": [
+      "sf-e1",
+      "sf-e2",
+      "event-87"
+    ],
+    "16": [
+      "sf-fg3",
+      "sf-fg6",
+      "event-90"
+    ],
+    "17": []
+  },
+  "remainingEnemies": 45,
+  "enemyDefeats": 11,
+  "done": {
+    "transport-map": true,
+    "ferry-hold": true,
+    "old-road": true
+  },
+  "checkpoints": [
+    {
+      "id": "transport-map",
+      "round": 1,
+      "enemyEnd": 0
+    },
+    {
+      "id": "ferry-hold",
+      "round": 14,
+      "enemyEnd": 14
+    },
+    {
+      "id": "old-road",
+      "round": 17,
+      "enemyEnd": 16
+    }
+  ],
+  "hold": {
+    "progress": 3,
+    "spawned": 3,
+    "lastEnemyEnd": 14,
+    "continuous": true,
+    "contributionGuards": [
+      "p-mage",
+      "p-knight",
+      "p-occultist"
+    ],
+    "guarded": true,
+    "contested": false
+  },
+  "holdCompletionRound": 14,
+  "gatherCompletionRound": 17,
+  "postHoldRounds": 3,
+  "ferry": {
+    "version": 1,
+    "status": "settled",
+    "elapsed": 0.8,
+    "duration": 0.8,
+    "commitCount": 1,
+    "warnings": {
+      "act3-response-30-0": {
+        "serial": 0,
+        "round": 1,
+        "side": "west-ford",
+        "offered": {
+          "p-archer": {
+            "round": 1,
+            "serial": 0
+          }
+        },
+        "opportunity": {
+          "id": "p-archer",
+          "round": 1,
+          "serial": 1
+        }
+      },
+      "act3-response-30-1": {
+        "serial": 19,
+        "round": 3,
+        "side": "east-quay-reserve",
+        "offered": {
+          "p-mage": {
+            "round": 3,
+            "serial": 19
+          }
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 3,
+          "serial": 20
+        }
+      },
+      "act3-ferry-hold": {
+        "serial": 19,
+        "round": 3,
+        "side": "low-west",
+        "offered": {
+          "p-mage": {
+            "round": 3,
+            "serial": 19
+          }
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 3,
+          "serial": 20
+        }
+      },
+      "act3-response-30-2": {
+        "serial": 121,
+        "round": 14,
+        "side": "low-east",
+        "offered": {
+          "p-mage": {
+            "round": 15,
+            "serial": 122
+          }
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 15,
+          "serial": 123
+        }
+      }
+    },
+    "entries": {
+      "act3-response-30-0": {
+        "x": 2190,
+        "y": 6017.307692307692,
+        "support": "sf-west-ford",
+        "side": "west-ford",
+        "round": 1,
+        "serial": 1,
+        "count": 4,
+        "ids": [
+          "event-1",
+          "event-2",
+          "event-3",
+          "event-4"
+        ]
+      },
+      "act3-ferry-hold": {
+        "x": 5200,
+        "y": 5233.793103448276,
+        "support": "sf-quay-west-loft",
+        "side": "low-west",
+        "round": 3,
+        "serial": 21,
+        "count": 3,
+        "ids": [
+          "event-18",
+          "event-19",
+          "event-20"
+        ]
+      },
+      "act3-response-30-1": {
+        "x": 5950,
+        "y": 5320,
+        "support": "sf-quay-reflector",
+        "side": "east-quay-reserve",
+        "round": 12,
+        "serial": 99,
+        "count": 5,
+        "ids": [
+          "event-68",
+          "event-69",
+          "event-70",
+          "event-71",
+          "event-72"
+        ]
+      },
+      "act3-response-30-2": {
+        "x": 7620,
+        "y": 5677.777777777777,
+        "support": "sf-east-landing-planks",
+        "side": "low-east",
+        "round": 15,
+        "serial": 123,
+        "count": 4,
+        "ids": [
+          "event-87",
+          "event-88",
+          "event-89",
+          "event-90"
+        ]
+      }
+    },
+    "offered": {
+      "p-archer": {
+        "round": 10,
+        "serial": 81
+      },
+      "p-mage": {
+        "round": 11,
+        "serial": 90
+      },
+      "p-knight": {
+        "round": 11,
+        "serial": 91
+      },
+      "p-occultist": {
+        "round": 11,
+        "serial": 92
+      }
+    },
+    "blockers": [],
+    "warningEnemyEnd": 8,
+    "warningActorSerial": 71,
+    "warningRound": 8,
+    "playerOpportunity": {
+      "id": "p-occultist",
+      "round": 11,
+      "serial": 93
+    },
+    "reason": "",
+    "committedRound": 11,
+    "committedSerial": 97,
+    "finalShapeVersion": 1,
+    "ended": true
+  },
+  "waveTelegraphs": [
+    {
+      "source": "act3-response-30-0",
+      "warning": {
+        "serial": 0,
+        "round": 1,
+        "side": "west-ford",
+        "offered": {
+          "p-archer": {
+            "round": 1,
+            "serial": 0
+          }
+        },
+        "opportunity": {
+          "id": "p-archer",
+          "round": 1,
+          "serial": 1
+        }
+      },
+      "entry": {
+        "x": 2190,
+        "y": 6017.307692307692,
+        "support": "sf-west-ford",
+        "side": "west-ford",
+        "round": 1,
+        "serial": 1,
+        "count": 4,
+        "ids": [
+          "event-1",
+          "event-2",
+          "event-3",
+          "event-4"
+        ]
+      },
+      "births": [
+        {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-1",
+          "source": "act3-response-30-0",
+          "x": 2190,
+          "y": 6017.307692307692
+        },
+        {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-2",
+          "source": "act3-response-30-0",
+          "x": 2300,
+          "y": 6097.692307692308
+        },
+        {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-3",
+          "source": "act3-response-30-0",
+          "x": 2410,
+          "y": 6178.076923076923
+        },
+        {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-4",
+          "source": "act3-response-30-0",
+          "x": 2520,
+          "y": 6216
+        }
+      ]
+    },
+    {
+      "source": "act3-ferry-hold",
+      "warning": {
+        "serial": 19,
+        "round": 3,
+        "side": "low-west",
+        "offered": {
+          "p-mage": {
+            "round": 3,
+            "serial": 19
+          }
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 3,
+          "serial": 20
+        }
+      },
+      "entry": {
+        "x": 5200,
+        "y": 5233.793103448276,
+        "support": "sf-quay-west-loft",
+        "side": "low-west",
+        "round": 3,
+        "serial": 21,
+        "count": 3,
+        "ids": [
+          "event-18",
+          "event-19",
+          "event-20"
+        ]
+      },
+      "births": [
+        {
+          "round": 3,
+          "frame": 13659,
+          "turn": 21,
+          "id": "event-18",
+          "source": "act3-ferry-hold",
+          "x": 5200,
+          "y": 5233.793103448276
+        },
+        {
+          "round": 3,
+          "frame": 13659,
+          "turn": 21,
+          "id": "event-19",
+          "source": "act3-ferry-hold",
+          "x": 5290,
+          "y": 5227.586206896552
+        },
+        {
+          "round": 3,
+          "frame": 13659,
+          "turn": 21,
+          "id": "event-20",
+          "source": "act3-ferry-hold",
+          "x": 4490,
+          "y": 5782.941176470588
+        }
+      ]
+    },
+    {
+      "source": "act3-response-30-1",
+      "warning": {
+        "serial": 19,
+        "round": 3,
+        "side": "east-quay-reserve",
+        "offered": {
+          "p-mage": {
+            "round": 3,
+            "serial": 19
+          }
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 3,
+          "serial": 20
+        }
+      },
+      "entry": {
+        "x": 5950,
+        "y": 5320,
+        "support": "sf-quay-reflector",
+        "side": "east-quay-reserve",
+        "round": 12,
+        "serial": 99,
+        "count": 5,
+        "ids": [
+          "event-68",
+          "event-69",
+          "event-70",
+          "event-71",
+          "event-72"
+        ]
+      },
+      "births": [
+        {
+          "round": 12,
+          "frame": 26778,
+          "turn": 99,
+          "id": "event-68",
+          "source": "act3-response-30-1",
+          "x": 5950,
+          "y": 5320
+        },
+        {
+          "round": 12,
+          "frame": 26778,
+          "turn": 99,
+          "id": "event-69",
+          "source": "act3-response-30-1",
+          "x": 6040,
+          "y": 5320
+        },
+        {
+          "round": 12,
+          "frame": 26778,
+          "turn": 99,
+          "id": "event-70",
+          "source": "act3-response-30-1",
+          "x": 6270,
+          "y": 5470
+        },
+        {
+          "round": 12,
+          "frame": 26778,
+          "turn": 99,
+          "id": "event-71",
+          "source": "act3-response-30-1",
+          "x": 6410,
+          "y": 5470
+        },
+        {
+          "round": 12,
+          "frame": 26778,
+          "turn": 99,
+          "id": "event-72",
+          "source": "act3-response-30-1",
+          "x": 6560,
+          "y": 5470
+        }
+      ]
+    },
+    {
+      "source": "act3-response-30-2",
+      "warning": {
+        "serial": 121,
+        "round": 14,
+        "side": "low-east",
+        "offered": {
+          "p-mage": {
+            "round": 15,
+            "serial": 122
+          }
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 15,
+          "serial": 123
+        }
+      },
+      "entry": {
+        "x": 7620,
+        "y": 5677.777777777777,
+        "support": "sf-east-landing-planks",
+        "side": "low-east",
+        "round": 15,
+        "serial": 123,
+        "count": 4,
+        "ids": [
+          "event-87",
+          "event-88",
+          "event-89",
+          "event-90"
+        ]
+      },
+      "births": [
+        {
+          "round": 15,
+          "frame": 32143,
+          "turn": 123,
+          "id": "event-87",
+          "source": "act3-response-30-2",
+          "x": 7620,
+          "y": 5677.777777777777
+        },
+        {
+          "round": 15,
+          "frame": 32143,
+          "turn": 123,
+          "id": "event-88",
+          "source": "act3-response-30-2",
+          "x": 7720,
+          "y": 5663.888888888889
+        },
+        {
+          "round": 15,
+          "frame": 32143,
+          "turn": 123,
+          "id": "event-89",
+          "source": "act3-response-30-2",
+          "x": 7820,
+          "y": 5650
+        },
+        {
+          "round": 15,
+          "frame": 32143,
+          "turn": 123,
+          "id": "event-90",
+          "source": "act3-response-30-2",
+          "x": 7940,
+          "y": 5602
+        }
+      ]
+    }
+  ],
+  "wallSeconds": 293.198400917,
+  "simulationSeconds": 339.775,
+  "storyPauseSeconds": 0.4,
+  "botAttackPlanningSeconds": 214.16340393299996,
+  "nativePhysicsWallSeconds": 64.50819448000153,
+  "controllerWallSecondsIncludingMovement": 240.32660124100005,
+  "frames": 40773,
+  "engineApiCallCount": 17163,
+  "actions": 224,
+  "acceptedPlayerActions": 60,
+  "actionCounts": {
+    "move": 120,
+    "defend": 3,
+    "jump": 13,
+    "land": 17,
+    "fire": 57,
+    "drop": 4,
+    "recovery-jump": 4,
+    "cape-approach-reached": 4,
+    "continue": 2
+  },
+  "entryRewardLimit": {
+    "start": 145614,
+    "end": 158091,
+    "total": 12477,
+    "combat": 4991
+  },
+  "readinessXP": 145614,
+  "readinessLevel": 21,
+  "trainingBudget": {
+    "archer": {
+      "earned": 43,
+      "spent": 21,
+      "unspent": 22,
+      "statTraining": 16,
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A11": 1,
+        "A05": 1,
+        "AP02": 1,
+        "AP05": 1
+      },
+      "loadout": [
+        "A01",
+        "A14",
+        "A11",
+        "A05"
+      ]
+    },
+    "mage": {
+      "earned": 43,
+      "spent": 23,
+      "unspent": 20,
+      "statTraining": 16,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 1,
+        "M03": 1,
+        "M11": 1,
+        "MP01": 1,
+        "MP02": 1
+      },
+      "loadout": [
+        "M01",
+        "M04",
+        "M11",
+        "M03"
+      ]
+    },
+    "knight": {
+      "earned": 43,
+      "spent": 21,
+      "unspent": 22,
+      "statTraining": 16,
+      "ranks": {
+        "S00": 1,
+        "S03": 1,
+        "S01": 1,
+        "S09": 1,
+        "SP01": 1,
+        "SP02": 1
+      },
+      "loadout": [
+        "S00",
+        "S03",
+        "S01",
+        "S09"
+      ]
+    },
+    "occultist": {
+      "earned": 43,
+      "spent": 24,
+      "unspent": 19,
+      "statTraining": 16,
+      "ranks": {
+        "O01": 1,
+        "O02": 1,
+        "O03": 1,
+        "O04": 1,
+        "O06": 1,
+        "O07": 1,
+        "O08": 1,
+        "OP01": 1,
+        "OP05": 1
+      },
+      "loadout": [
+        "O01",
+        "O04",
+        "O08",
+        "O06"
+      ]
+    }
+  },
+  "initialHeroes": [
+    {
+      "cls": "archer",
+      "level": 21,
+      "hp": 1197,
+      "maxHp": 1197,
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A11": 1,
+        "A05": 1,
+        "AP02": 1,
+        "AP05": 1
+      },
+      "loadout": [
+        "A01",
+        "A14",
+        "A11",
+        "A05"
+      ],
+      "focus": 276
+    },
+    {
+      "cls": "mage",
+      "level": 21,
+      "hp": 1318,
+      "maxHp": 1318,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 1,
+        "M03": 1,
+        "M11": 1,
+        "MP01": 1,
+        "MP02": 1
+      },
+      "loadout": [
+        "M01",
+        "M04",
+        "M11",
+        "M03"
+      ],
+      "focus": 427
+    },
+    {
+      "cls": "knight",
+      "level": 21,
+      "hp": 2374,
+      "maxHp": 2374,
+      "ranks": {
+        "S00": 1,
+        "S03": 1,
+        "S01": 1,
+        "S09": 1,
+        "SP01": 1,
+        "SP02": 1
+      },
+      "loadout": [
+        "S00",
+        "S03",
+        "S01",
+        "S09"
+      ],
+      "focus": 312
+    },
+    {
+      "cls": "occultist",
+      "level": 21,
+      "hp": 1558,
+      "maxHp": 1558,
+      "ranks": {
+        "O01": 1,
+        "O02": 1,
+        "O03": 1,
+        "O04": 1,
+        "O06": 1,
+        "O07": 1,
+        "O08": 1,
+        "OP01": 1,
+        "OP05": 1
+      },
+      "loadout": [
+        "O01",
+        "O04",
+        "O08",
+        "O06"
+      ],
+      "focus": 481
+    }
+  ],
+  "heroes": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "hp": 0,
+      "maxHp": 1197,
+      "focus": 276,
+      "maxFocus": 276,
+      "moveLeft": 2031.2812500000055,
+      "maxMove": 2184,
+      "x": 5582.897896350867,
+      "y": 5470,
+      "dead": true,
+      "acted": true
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "hp": 1359,
+      "maxHp": 1359,
+      "focus": 439,
+      "maxFocus": 439,
+      "moveLeft": 2251,
+      "maxMove": 2251,
+      "x": 9436.16819018044,
+      "y": 4300,
+      "dead": false,
+      "acted": true
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "hp": 2446,
+      "maxHp": 2446,
+      "focus": 321,
+      "maxFocus": 321,
+      "moveLeft": 2674,
+      "maxMove": 2674,
+      "x": 9135.737338212159,
+      "y": 4326.3320818087,
+      "dead": false,
+      "acted": true
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "hp": 1015,
+      "maxHp": 1558,
+      "focus": 368,
+      "maxFocus": 481,
+      "moveLeft": 1847.433181980722,
+      "maxMove": 2319,
+      "x": 9017.846832468023,
+      "y": 4397.901326740883,
+      "dead": false,
+      "acted": false
+    }
+  ],
+  "initialItems": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "items": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "damageTaken": 2624,
+  "damageDealt": 20556,
+  "deaths": [
+    {
+      "round": 10,
+      "frame": 24994,
+      "turn": 84,
+      "target": "p-archer",
+      "side": 0,
+      "sideAfter": 0,
+      "owner": "p-occultist",
+      "amount": 577,
+      "remaining": 0,
+      "dead": true,
+      "source": "normal",
+      "skill": "O04",
+      "shot": 53,
+      "projectileId": 61,
+      "direct": true,
+      "origin": {
+        "x": 5610.897896350867,
+        "y": 5381.2185804492165,
+        "t": 0.2898258433699349,
+        "n": {
+          "x": 1,
+          "y": 0
+        },
+        "unit": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 5582.897896350867,
+          "y": 5470,
+          "vx": 0,
+          "vy": 0,
+          "hp": 0,
+          "maxHp": 1197,
+          "r": 22,
+          "h": 92,
+          "focus": 276,
+          "maxFocus": 276,
+          "regen": 26,
+          "level": 21,
+          "attack": 7.489999999999999,
+          "armor": 0.304,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 2031.2812500000055,
+          "maxMove": 2184,
+          "walkSpeed": 405,
+          "angle": 18,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A11",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 700,
+          "spawnY": 5407.272727272727,
+          "intent": "",
+          "dead": true,
+          "ranks": {
+            "A01": 1,
+            "A14": 1,
+            "A11": 1,
+            "A05": 1,
+            "AP02": 1,
+            "AP05": 1
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.224,
+          "critMultiplier": 2.53,
+          "cooldowns": {},
+          "moving": 0,
+          "walkPhase": 278.7269392858838,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-archer": 0
+          },
+          "arrowTurnToken": "10:9",
+          "arrowTurn": 10,
+          "jumping": false
+        }
+      }
+    }
+  ],
+  "births": [
+    {
+      "round": 1,
+      "frame": 283,
+      "turn": 1,
+      "id": "event-1",
+      "source": "act3-response-30-0",
+      "x": 2190,
+      "y": 6017.307692307692
+    },
+    {
+      "round": 1,
+      "frame": 283,
+      "turn": 1,
+      "id": "event-2",
+      "source": "act3-response-30-0",
+      "x": 2300,
+      "y": 6097.692307692308
+    },
+    {
+      "round": 1,
+      "frame": 283,
+      "turn": 1,
+      "id": "event-3",
+      "source": "act3-response-30-0",
+      "x": 2410,
+      "y": 6178.076923076923
+    },
+    {
+      "round": 1,
+      "frame": 283,
+      "turn": 1,
+      "id": "event-4",
+      "source": "act3-response-30-0",
+      "x": 2520,
+      "y": 6216
+    },
+    {
+      "round": 3,
+      "frame": 13659,
+      "turn": 21,
+      "id": "event-18",
+      "source": "act3-ferry-hold",
+      "x": 5200,
+      "y": 5233.793103448276
+    },
+    {
+      "round": 3,
+      "frame": 13659,
+      "turn": 21,
+      "id": "event-19",
+      "source": "act3-ferry-hold",
+      "x": 5290,
+      "y": 5227.586206896552
+    },
+    {
+      "round": 3,
+      "frame": 13659,
+      "turn": 21,
+      "id": "event-20",
+      "source": "act3-ferry-hold",
+      "x": 4490,
+      "y": 5782.941176470588
+    },
+    {
+      "round": 12,
+      "frame": 26778,
+      "turn": 99,
+      "id": "event-68",
+      "source": "act3-response-30-1",
+      "x": 5950,
+      "y": 5320
+    },
+    {
+      "round": 12,
+      "frame": 26778,
+      "turn": 99,
+      "id": "event-69",
+      "source": "act3-response-30-1",
+      "x": 6040,
+      "y": 5320
+    },
+    {
+      "round": 12,
+      "frame": 26778,
+      "turn": 99,
+      "id": "event-70",
+      "source": "act3-response-30-1",
+      "x": 6270,
+      "y": 5470
+    },
+    {
+      "round": 12,
+      "frame": 26778,
+      "turn": 99,
+      "id": "event-71",
+      "source": "act3-response-30-1",
+      "x": 6410,
+      "y": 5470
+    },
+    {
+      "round": 12,
+      "frame": 26778,
+      "turn": 99,
+      "id": "event-72",
+      "source": "act3-response-30-1",
+      "x": 6560,
+      "y": 5470
+    },
+    {
+      "round": 15,
+      "frame": 32143,
+      "turn": 123,
+      "id": "event-87",
+      "source": "act3-response-30-2",
+      "x": 7620,
+      "y": 5677.777777777777
+    },
+    {
+      "round": 15,
+      "frame": 32143,
+      "turn": 123,
+      "id": "event-88",
+      "source": "act3-response-30-2",
+      "x": 7720,
+      "y": 5663.888888888889
+    },
+    {
+      "round": 15,
+      "frame": 32143,
+      "turn": 123,
+      "id": "event-89",
+      "source": "act3-response-30-2",
+      "x": 7820,
+      "y": 5650
+    },
+    {
+      "round": 15,
+      "frame": 32143,
+      "turn": 123,
+      "id": "event-90",
+      "source": "act3-response-30-2",
+      "x": 7940,
+      "y": 5602
+    }
+  ],
+  "continues": [
+    {
+      "label": "warning-continue",
+      "round": 9,
+      "phase": "aim",
+      "statePreserved": true,
+      "method": "production export, profile load, App.continue; exact actors/terrain/items/turn/objectives/waves/progression"
+    },
+    {
+      "label": "post-hold-continue",
+      "round": 15,
+      "phase": "aim",
+      "statePreserved": true,
+      "method": "production export, profile load, App.continue; exact actors/terrain/items/turn/objectives/waves/progression"
+    }
+  ],
+  "usedSkills": {
+    "M11": {
+      "actions": 3,
+      "totalCost": 102,
+      "costs": [
+        34
+      ],
+      "hpDamage": 1178
+    },
+    "S09": {
+      "actions": 6,
+      "totalCost": 132,
+      "costs": [
+        22
+      ],
+      "hpDamage": 1590
+    },
+    "O04": {
+      "actions": 4,
+      "totalCost": 236,
+      "costs": [
+        59
+      ],
+      "hpDamage": 753
+    },
+    "A01": {
+      "actions": 9,
+      "totalCost": 0,
+      "costs": [
+        0
+      ],
+      "hpDamage": 2581
+    },
+    "M01": {
+      "actions": 5,
+      "totalCost": 0,
+      "costs": [
+        0
+      ],
+      "hpDamage": 1053
+    },
+    "O08": {
+      "actions": 6,
+      "totalCost": 354,
+      "costs": [
+        59
+      ],
+      "hpDamage": 1606
+    },
+    "S00": {
+      "actions": 7,
+      "totalCost": 56,
+      "costs": [
+        8
+      ],
+      "hpDamage": 2482
+    },
+    "O01": {
+      "actions": 6,
+      "totalCost": 0,
+      "costs": [
+        0
+      ],
+      "hpDamage": 665
+    },
+    "M04": {
+      "actions": 8,
+      "totalCost": 304,
+      "costs": [
+        38
+      ],
+      "hpDamage": 5238
+    },
+    "S03": {
+      "actions": 3,
+      "totalCost": 66,
+      "costs": [
+        22
+      ],
+      "hpDamage": 3169
+    }
+  },
+  "dialogueLines": 10,
+  "limits": [
+    "Prior-clear ledger is a Stages1–29 first-clear/recruit reward fixture, not a prior campaign playthrough.",
+    "Native production App/Engine; DOM/render/storage and pause clock are test doubles.",
+    "A route graph and projectile simulations choose ordinary inputs. This is not browser UI, human-time or fun/balance approval.",
+    "Four real slots; legally paid representative skills/passives, ordinary stats and actual production costs; exact allocation is in trainingBudget.",
+    "No consumables and no live actor/resource/objective/phase injection."
+  ]
+}

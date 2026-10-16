@@ -46,3 +46,9 @@
 `desktop-normal-play-hold-replay.png`, `mobile-normal-play-hold-replay.png`는 이 실행의 R9 방어 완료 저장을 수정하지 않고 실제 Chromium App.continue로 복구한 HUD 포함 화면이다. 카메라만 검수 위치로 옮겼다. 브라우저 입력으로 완주했다는 뜻이 아니다.
 
 군집 단위 한계: auto 경로의 escape-flank는 실제 피해149/행동2, high 경로에서는 우회했다. cape-watch는 두 실행 모두 행동/피해/플레이어 사격0으로, 이 두 경로만으로 해당 선택 고지 군집의 실효성을 입증하지 못했다. 원래 적 배치/활성 계약은 그대로이며 전투 품질 완료 판정은 보류한다.
+
+## 선택 곶 접근 원본 결과와 Workshop
+
+기존에 시작해 둔 `HONRO_FULLPLAY_APPROACH=cape` 실행은 완료되어 있었으며 재시작하지 않았다. R17 승리, 생존3명 집결, 방어3/정착1/Continue2. cape-watch는 실제 행동3/발사3, 아군에게 피해109, 아군에게 받은 피해1560, 플레이어 표적 사격4회로 선택 접근 경로에서 실효 교전했다. 다른 두 경로의 행동0은 우회 결과이며 군집 자체의 불능을 재현하지 않았다. 설오는 R10에 소단 O04의 아군 오사577로 사망했다. 이 실행은 전원 생존 성공으로 보고하지 않는다. 원본은 `evidence/cape/`에 보존한다.
+
+실제 Workshop PC/모바일 Stage View→Playtest iframe→Stop 검사도 완료했다. 지형·미술 요소 동일, 현장 대조 reach260 유지, Stop 뒤 프로젝트 원본 보존, 페이지 오류0. `workshop-results.json`과 `tests/stage30-review-workshop.py`를 본다. 정상 전투 완주 검사는 아니다.
