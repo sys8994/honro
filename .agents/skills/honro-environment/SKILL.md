@@ -17,7 +17,7 @@ description: HONRO에서 사용자가 준 일러스트를 SVG 배경으로 재�
 - 파노라마 원경은 SKY에 두고 **아주 작은 수평 시차와 그보다 훨씬 작은 수직 시차**를 준다. 현재 기준은 `ACT1_FAR/act1BackdropFrame`이다. 화면 밖 여유 영역과 연속적인 이동 제한으로 극단 카메라·세로 화면에서도 빈 가장자리·왜곡이 없어야 한다. L1–L4 유한 그룹의 월드 투영·접지·줌·물리는 유지하고, 이 SKY 규칙을 유한 지형에 적용하지 않는다.
 - **형태를 승인한 뒤의 가독성 조정은 색감으로 한다.** 원경의 채도·밝기·대비 또는 얇은 색막을 조정해 L1과 구분한다. 이를 위해 기존 SVG의 경로·노드·실루엣을 바꾸지 않는다. 색상 보정은 원경별로 캐시하고 매 프레임 filter/경로 재생성을 피한다.
 - 스테이지가 진행될수록 전체 풍경의 색을 조금씩 차갑고 어둡게 해 밤이 깊어지도록 한다. `act1Mood`의 공통 색상 패스를 재사용하고 캐릭터·조준선·탄·목표 표시·HUD의 가독성을 유지한다. variation이 바뀌는 경계에서도 갑자기 밝아지지 않게 직접 비교한다. 새 막의 시간대·분위기를 사용자가 지정하면 그 설정에 맞춘다.
-- 원본 SVG와 실제 적용 화면을 모두 확인한다. 스테이지별 비교, 배정 경계, 수평/수직 이동, 확대/축소, 세로 화면 크롭, L1 구분, 캐릭터·조준선 가독성을 검토한다. 같은 소스·카메라에서 세 실행 화면이 일치하는지 확인하고, 테스트 실패·성능 변동은 통과 결과와 구분해 기록한다.
+- 수정한 SVG와 실제 적용 이미지를 레퍼런스와 비교하고 L1·캐릭터·조준선 가독성을 확인한다. 배정 경계·시차·크롭·줌을 바꿨을 때만 관련 화면/모션을 짧게 본다. 모든 장·모든 화면 크기·세 실행 화면을 반복 캡처하지 않는다. 실패와 미확인을 통과로 기록하지 않는다.
 
 ## 플레이 경계·카메라·단일 지형
 
@@ -27,7 +27,7 @@ description: HONRO에서 사용자가 준 일러스트를 SVG 배경으로 재�
 - 야외 능선은 실제 단면에서 이어진다. 동굴 바닥/천장은 통로를 남기고 부분 입구/출구 위는 유한 산세와 하늘로 마감한다. 기존 닫힌 문·개방 조건·공중 통로를 메우지 않는다.
 - 전술 줌은 가로 world 시야와 actor 식별 크기로 정한다. SKY와 L1–L4 미세 시차/깊이는 유지한다.
 - 정적 미술은 Play Bounds와 무관한 월드 고정 tile을 사용한다. 실제 픽셀 clip/gutter의 단일 alpha, bounded cache bytes, 팬 재사용과 큰 사물의 실제 transformed bounds를 검사한다.
-- `npm run test:terrain-domain`, `npm run test:camera`, 환경·migration·통합 검사를 실행한다. Native와 실제 브라우저 증거를 구분한다. Native heavy 검사는 canvas 자원을 해제하며 다른 heavy 작업과 겹치지 않게 순차 실행한다.
+- 지형·카메라 변경은 해당 구간 이동·화면·퀘스트를 확인하고 저장/충돌에 영향이 있으면 그 항목만 확인한다. `test:terrain-domain`, `test:camera`와 기존 환경·migration·통합 검사는 필요한 경우 선택한다. Native와 실제 브라우저 확인을 구분한다.
 
 ## 조사와 배치
 
@@ -50,7 +50,7 @@ HonroWorkshopAPI.applyCommands([{
 
 ## 미술과 렌더링
 
-- 제작 순서는 **역할 → layer → 지지 지형 → primary silhouette → 2–4개 큰 secondary form → material breakup → 같은 광원 방향의 light/shadow → atmosphere → 최대 축소 확인 → 성능 확인**이다. 디테일은 path 수나 미세 무늬를 늘린다는 뜻이 아니다. 큰 면 분할, planar shading, 재질 구분, 겹침, 조명 일관성을 우선한다.
+- 제작 순서는 **역할 → layer → 지지 지형 → primary silhouette → 2–4개 큰 secondary form → material breakup → 같은 광원 방향의 light/shadow → atmosphere → 필요한 표시 크기 확인**이다. 디테일은 path 수나 미세 무늬를 늘린다는 뜻이 아니다. 큰 면 분할, planar shading, 재질 구분, 겹침, 조명 일관성을 우선한다.
 - 기본 조형 언어는 한국화의 진경산수·수묵담채다. 큰 불규칙 산세, 비대칭 소나무, 먹의 농담처럼 보이는 넓은 명암면, 능선 허리와 계곡 바닥의 안개, 비어 있는 하늘을 사용한다. 작은 삼각형 반복·선/균열/노이즈 수 증가는 완성도로 세지 않는다. 원경은 한 층이어도 실루엣·어깨 능선·큰 암면·하단 연무로 깊이를 만든다.
 - 나무는 몸통의 밝은/어두운 면, 2–4개 큰 가지, 비대칭 수관 3–5덩어리로 읽히게 한다. 바위·절벽·산에는 큰 밝은 면·그림자 면·접촉 그림자를, 건물에는 지붕 실루엣·처마·벽 앞/옆면·기단을 둔다. 최대 축소에서 사라지는 잎·균열·기와 줄은 핵심 형태로 세지 않는다.
 - 거리별 대비·채도·색 혼합은 FINISH와 atmosphere가 결정한다. 먼 물체를 무조건 흰색으로 만들지 않는다. 숲·계곡·동굴·사찰·왜곡된 영역의 팔레트를 구분한다.
@@ -65,8 +65,8 @@ HonroWorkshopAPI.applyCommands([{
 
 - `node tools/environment/validate.mjs`: 현재 또는 인자로 전달한 프로젝트의 지지·group·zone·scale·coverage·금지 시차 값을 검사한다. 애매한 옛 배치를 조용히 성공으로 처리하지 않는다. migrationNotes를 검토한다.
 - `node tools/environment/inventory.mjs`: 분류표와 로컬 상세 JSON을 갱신한다.
-- 빌드 후 `npm.cmd run test:environment`: 깊이, 접지, 수직 sweep, 저장·로드, Game/Workshop/Playtest, 실제 물 프레임을 확인한다.
-- `python -X utf8 tests/environment-performance.py after`: 데스크톱·모바일 크기·최대 줌·물/안개 장면을 단독 실행한다. before는 Git HEAD의 HTML을 비교한다.
-- 스키마·렌더러 변경은 `node tests/migration.mjs`, `python -X utf8 tests/integration.py`와 `npm.cmd run verify`를 통과시킨다. 성능 검사는 다른 브라우저 작업과 겹치지 않는다.
+- 환경 로직을 바꿨을 때 필요에 따라 빌드 후 `npm.cmd run test:environment`: 깊이, 접지, 수직 sweep, 저장·로드, Game/Workshop/Playtest, 실제 물 프레임을 확인한다.
+- 성능 관련 변경/문제가 있을 때 `python -X utf8 tests/environment-performance.py after`: 데스크톱·모바일 크기·최대 줌·물/안개 장면을 단독 실행한다. before는 Git HEAD의 HTML을 비교한다.
+- 스키마·렌더러 변경은 실제 영향받는 저장 호환성·합성·이동만 선별 확인한다. 전체 migration·integration·verify를 자동 실행하지 않는다. 선택한 성능 검사는 다른 부하와 겹치지 않는다.
 
-숲·수직 계곡의 바닥/중턱/정상·물·폭포·동굴을 확대/기본/최대 축소에서 직접 본다. 수치 통과가 미술 승인을 대신하지 않는다. 발견한 실제 문제에 따라 수정하고 해당 검사를 반복한다. 캐릭터·조준선 가독성도 확인한다. 스크린샷·성능 결과는 `_local/reports/environment-v3/`, 일회성 보고서는 `_local/archive/`, 유지보수 설계와 원인·검증·한계는 game/docs에 기록한다.
+바꾼 구간의 결과 이미지와 필요한 모션만 직접 본다. 수치 통과가 미술 승인을 대신하지 않는다. 실제 관련 결함을 수정했다면 해당 항목만 다시 확인한다. 반복 스크린샷이나 전체 장 순회는 요구하지 않는다. 캐릭터·조준선 가독성도 확인한다. 스크린샷·성능 결과는 `_local/reports/environment-v3/`, 일회성 보고서는 `_local/archive/`, 유지보수 설계와 원인·검증·한계는 game/docs에 기록한다.

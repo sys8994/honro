@@ -70,8 +70,8 @@ SKY SVG·미세 시차·밤톤과 L1–L4 투영은 유지한다. 암반은 배�
 ## 검증
 
 - `npm run test:camera`: 수식·범위·이관·원본 충돌 불변, 1장 왕복·승리·긴 곡사, 전 맵 × 4 viewport의 wheel·center·coverage·캐시, pan·pinch·회전, 옛 1장 저장, 탄 추적·편집기/Playtest. 기준 데이터는 `tests/fixtures/camera-bounds-baseline.json`이다.
-- `python -X utf8 tests/camera-bounds-performance.py`: 다른 브라우저 검사 없이 최소 줌으로 pan하며 경로 캐시·terrain node 불변·렌더 시간을 확인한다.
-- migration·integration·environment·전체 verify도 실행하고 결과와 한계를 BUG_LOG에 남긴다.
+- 성능 관련 변경/문제가 있을 때 `python -X utf8 tests/camera-bounds-performance.py`: 다른 브라우저 검사 없이 최소 줌으로 pan하며 경로 캐시·terrain node 불변·렌더 시간을 확인한다.
+- 위 도구는 필요한 경우 선택한다. 일반 수정은 해당 구간 이동·퀘스트와 바뀐 카메라 동작만 확인하고, 저장/합성 로직을 바꾸면 관련 항목을 추가한다. 전 맵·전체 verify를 일괄 실행하지 않는다. 결과와 한계를 짧게 남긴다.
 
 화면과 수치는 `_local/reports/camera-bounds/index.html`에서 본다. 수동 캠페인 완주와 실제 모바일 GPU 측정은 별도다.
 

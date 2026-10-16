@@ -1,5 +1,7 @@
 # Reconstructed review tools · 2026-10-06
 
+This is an optional tool reference, not a required review or release workflow. Ordinary changes use only the focused checks in AGENTS.md; no delivery manifest or separate reviewer is required.
+
 The original review-job source did not survive the environment rollback. The current implementation is a separately reconstructed, deliberately bounded current-source reviewer. This is not byte-for-byte recovery of the former historical-evidence or intent-orchestration implementation. Earlier counts and CLI guarantees in INTENT_PIPELINE.md remain historical until individually restored.
 
 Supported commands are listed by `npm run review-job -- help`: init an explicit stage scope and goal, resume fixed build/test commands, inspect status, import externally observed browser evidence, record explicit current user art approval, and write a gated local delivery manifest. It has no remote writer, deployment command, browser driver or automatic approval. `act-canonical`, linked intent runs and historical-browser adapters are explicitly rejected rather than treated as approved.

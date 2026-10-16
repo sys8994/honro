@@ -27,7 +27,7 @@
 
 ## GitHub Pages 배포
 
-원격 반영의 단일 발행자·승인/IO/불확실 상태·재개·배포 영수증은 [Release operation guard](game/docs/RELEASE_OPERATION_GUARD.md)를 따른다. `npm run test:release-guard`로 오프라인 계약을 검사한다.
+원격 최신 상태와 단일 발행 담당자를 확인한 뒤 변경 단위별로 비강제 push하고, 최종 master와 기존 Pages의 배포 결과를 확인한다. [원격 반영과 배포](game/docs/RELEASE_OPERATION_GUARD.md)를 참고한다. 복잡한 저널과 배포 영수증은 선택 사항이며 `test:release-guard`는 그 도구를 수정할 때만 사용한다.
 
 `HONRO.html` 이름을 그대로 사용할 수 있습니다. 저장소의 **Settings → Pages → Deploy from a branch**에서 배포할 브랜치와 **/(root)**를 선택합니다.
 
@@ -51,8 +51,9 @@ python -m pip install -r requirements-dev.txt
 # Chrome/Edge가 없으면 테스트용 Chromium 설치
 python -m playwright install chromium
 npm.cmd run build
-npm.cmd run verify
 ```
+
+일반 수정은 변경 관련 최소 확인만 합니다. 디자인은 해당 이미지/필요 모션, 스킬은 기존 정량 계산/해당 동작, 맵은 해당 구간 이동/퀘스트를 확인합니다. 문서만 바꾸면 문구·링크만 확인하며 위 설치·빌드·브라우저 준비도 생략합니다. 전체 검사는 광범위한 회귀 조사가 필요한 경우에만 `npm.cmd run verify`로 선택 실행합니다. [검증 범위와 과거 기록](VALIDATION.md).
 
 게임 집계 검증은 정적 감사(`npm --prefix game test`)와 RC21 브라우저·성능 검사(`npm --prefix game run test:rc21:browser`)를 순서대로 실행하여 Stage 1/2 지도를 한 번만 감사합니다. 독립 실행 `npm --prefix game run test:rc21`은 지도 감사부터 브라우저·성능까지 모두 실행합니다. `npm --prefix game run test:verification-plan`은 중복·누락·실패 무시가 없는 명령 구성을 빠르게 검사하며 실제 감사/브라우저 통과를 대신하지 않습니다.
 
@@ -60,7 +61,7 @@ npm.cmd run verify
 
 `npm run build`는 게임과 Workshop을 함께 생성합니다. 기존 `python workshop/build.py`도 같은 빌더에 위임합니다. 생성 HTML을 직접 수정하지 않습니다.
 
-이야기·문서·기록·저장/재개 회귀만 확인하려면 빌드 후 `npm run test:story`를 실행합니다. 이 검사는 전체 `verify`에도 포함됩니다.
+이야기 런타임·기록·저장/재개를 바꿨다면 필요에 따라 빌드 후 기존 `npm run test:story`를 사용합니다. 문구·문서만 바꾸면 이 검사를 실행하지 않습니다. 이 검사는 전체 `verify`에도 포함됩니다.
 
 사용자 스토리 기획 v0.1의 1·2막 반영과 공개 순서는 [현재 서사 계약](game/docs/STORY_CANON_V01.md)을 따릅니다. `npm run test:story-canon`은 기존 지형·퀘스트·전투 보존, 돌림진부터 저문골/무명사 단서까지의 정보 순서, 진행 중 대화·쉼터 저장을 집중 검사합니다.
 
@@ -112,4 +113,4 @@ npm.cmd run verify
 
 `npm run review-job -- help`로 현재 소스 또는 승인된 전체 막 실행을 재개 가능한 검수 작업으로 시작할 수 있습니다. 기존 구현/빌드/회귀를 실제 실행하고 정확한 HTML·외부 자산 해시와 연결된 브라우저 관찰을 반입합니다. 미해결 중요한 선택, 정상 플레이, 최종 미술 검수는 별도 대기하며 자동 승인·공개 배포하지 않습니다. CLI·증거 형식·검수 보고서·재개 절차는 [의도 파이프라인](game/docs/INTENT_PIPELINE.md#실행재개-가능한-검수-작업)을 참고합니다.
 
-지형·적 편성·증원 작업은 [교전 설계와 완료 판정 SOP](game/docs/ENCOUNTER_ACCEPTANCE.md)를 함께 따릅니다. `npm run encounter:review -- help`로 현재 군집/파동 ID와 실제 파일·해시·독립 검토 기록을 확인합니다. 증거 누락이나 알려진 무기능 파동은 완료를 막으며, 도구의 형식 검사는 미관·재미·정상 플레이의 자동 승인이 아닙니다.
+지형·적 편성·증원은 [변경 구간의 교전 확인](game/docs/ENCOUNTER_ACCEPTANCE.md)에 따라 해당 구간의 실제 역할·이동·퀘스트를 짧게 확인합니다. `encounter:review`는 선택형 기록 도구이며 manifest·별도 검수자는 필수가 아닙니다. 알려진 관련 결함과 미확인 범위를 보고하고, 도구의 형식 통과를 미관·재미의 자동 승인으로 표시하지 않습니다.

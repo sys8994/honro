@@ -1,197 +1,29 @@
-# Release operation guard
+# 원격 반영과 배포
 
-`tools/release/guard.py` is a Python 3.10+ POSIX, standard-library CLI for an
-**explicitly cooperating publisher**. It records decisions and evidence locally;
-it cannot invoke MCP, approve a request, cancel an external call, discover tool
-status, enforce another agent's behavior, or remove a required approval. Existing
-ad hoc publisher scripts are not automatically wrapped by adding this file.
+## 기본 절차
 
-## Why this exists
+1. 저장소와 대상 브랜치의 최신 원격 상태, 진행 중인 발행 담당자를 확인한다. 같은 대상에는 한 담당자만 쓰며 다른 작업을 보존한다.
+2. 완성된 변경 단위마다 커밋하고 비강제 push한다. 원격이 앞섰으면 변경을 읽고 통합한 뒤 다시 push한다. 강제 push로 덮어쓰지 않는다.
+3. 원격을 읽어 의도한 커밋이 반영됐는지 확인한다. 로컬 커밋, 원격 반영, 검사 통과는 서로 다른 상태다.
+4. 최종 변경을 master에 통합하고 기존 [GitHub Pages](https://sys8994.github.io/honro/)에 배포한다. 해당 master 커밋의 Pages 실행 결과를 확인한다.
+5. 런타임·에셋 변경은 필요한 HTML을 빌드하고 Pages에서 수정한 화면/동작만 짧게 확인한다. 문서만 바뀌면 문구·링크와 원격/배포 상태만 확인한다. 문서 작업에 게임 빌드·브라우저 검사를 추가하지 않는다.
 
-The 2026-10-13 publisher records used `phase-<source>.json` (phase/source/branch),
-`backfill-state-*.json` (queue/map/branches/blobs/trees/pending), raw tool responses,
-and per-source receipts (source/remote/tree/source_parents/remote_parents).
-Some knowledge also lived only in process memory. A phase named `create_blob`
-does not distinguish an approval wait from submitted IO or an unknown outcome.
-Reconstructing that distinction and historical commit chains delayed the final
-snapshot. Preserve these old files as evidence, but do not import their booleans
-or absence of receipts as proof that a write did/did not occur.
+전체 verify, 전 장 순회, 반복 스크린샷, 네 URL 해시 영수증 또는 별도 발행 저널은 기본 절차가 아니다. 변경과 직접 관련된 확인 결과와 남은 한계를 짧게 남긴다. 배포 성공만으로 게임플레이·미술·성능까지 확인했다고 하지 않는다.
 
-## Adoption, before the next remote write
+## 실패·대기·결과 불명
 
-1. Finish or reconcile the currently active publisher. Do not start this helper
-   as a second writer, and do not retry the existing pending tool request.
-2. Choose **one absolute journal path outside individual worktrees**, on a durable
-   shared filesystem. All publishers use it. Do not use a fresh journal per branch.
-   Choose one unique owner token per coordinator session (for example UUID).
-3. Acquire that journal, and inventory old pending operations before any new
-   writes. `plan` + `pending` records known approval waits; `plan` + `begin` +
-   `uncertain` records previously submitted calls with unknown outcomes. These
-   are local bookkeeping commands, not permission to invoke those calls again.
-4. Plan the current validated production snapshot and its dependencies first.
-   Historical backfill is a separate lane. Do not make all historical unit commits
-   dependencies of production. Keep preserving each completed source change as
-   its own local commit and later remote checkpoint; this queue is not discarded.
-5. Integrate the CLI around **every** external write as described below. Stop the
-   caller if any guard command exits nonzero. Store raw responses before parsing.
-   A shared owner token belongs to the single coordinator, not independent agents.
+- 승인 대기, 진행 중인 요청, 결과 불명, 명시 거부, 실패, 성공을 구분한다. 시간 초과만으로 승인이나 요청 종료를 추정하지 않는다.
+- 결과 불명인 요청은 원래 요청 상태와 원격 대상을 읽어 먼저 대조한다. 같은 대상에 중복 쓰기를 제출하지 않는다. 의도한 커밋이 이미 반영됐으면 다시 보내지 않는다.
+- 요청이 종료됐고 의도한 변경이 적용되지 않았음을 확인한 뒤에만 재시도한다. 필요한 플랫폼 승인을 받으며 명시 거부를 다른 경로로 우회하지 않는다.
+- 담당자가 바뀌면 기존 쓰기의 상태를 먼저 인계한다. 로컬 프로세스가 끝났다는 이유만으로 원격 요청도 끝났다고 보지 않는다.
+- 차단되면 현재 상태와 필요한 다음 행동을 알린다. 기존 안정 배포와 로컬 커밋을 보존한다. 과거 보존 작업을 현재 배포의 불필요한 선행 조건으로 묶지 않는다.
 
-Example (paths/IDs are illustrative; JSON inputs are real files):
+## 선택형 release guard 도구
 
-```sh
-G=/absolute/shared/honro-release/journal.json
-OWNER=unique-coordinator-session
-python tools/release/guard.py "$G" acquire --owner "$OWNER"
-python tools/release/guard.py "$G" plan --owner "$OWNER" --input operation.json
-python tools/release/guard.py "$G" begin --owner "$OWNER" --input begin.json
-# Only after begin succeeds: submit this external tool call ONCE.
-# Save its exact raw response; then perform an authorized read-only remote check.
-python tools/release/guard.py "$G" reconcile --owner "$OWNER" --input evidence.json
-python tools/release/guard.py "$G" tick --owner "$OWNER"
-python tools/release/guard.py "$G" report
-```
+`tools/release/guard.py`는 복잡한 발행을 인계하거나 이미 저널로 시작한 요청을 복구할 때 사용할 수 있는 로컬 보조 도구다. 일반 Git push·배포에 새 저널을 만들거나 모든 쓰기를 이 도구로 감쌀 의무는 없다.
 
-`operation.json`:
+기존 저널이 진행 중인 요청을 관리한다면 해당 상태를 확인하고 인계한다. 잠금·저널을 삭제해 미해결 쓰기를 해제하지 않는다. 도구의 상태는 원격 읽기와 원래 요청 결과로 확인하며, 로컬 기록이 플랫폼 승인이나 실제 원격 상태를 대신하지 않는다.
 
-```json
-{"repository":"sys8994/honro","kind":"ref","lane":"production","target":"heads/master","expected":{"sha":"0123456789012345678901234567890123456789"},"dependencies":[]}
-```
+상세 CLI 형식은 `python tools/release/guard.py --help`와 각 하위 명령의 `--help`, 구현 소스를 참고한다. 기존 `receipt` 명령의 네 URL/해시 계약은 그 명령을 선택해 사용하는 경우에만 적용되며 일반 배포 gate가 아니다. 긴 출력은 `--summary`로 줄일 수 있다. 생략된 항목도 미해결 상태를 유지한다.
 
-`plan` returns a deterministic `id`. Blob/tree identity uses repository, kind,
-and expected SHA, regardless of source unit/path/lane. An existing succeeded,
-uncertain, or denied identity is returned unchanged, never made writable again.
-A production plan promotes a shared historical object to production priority.
-For commit operations, `expected` must instead contain the exact `tree`, ordered
-`parents`, and full `message`; the read-back evidence additionally needs the
-actual `remote_sha`. Commit creation timestamps need not be guessed.
-
-`begin.json` uses that returned ID:
-
-```json
-{"id":"<returned id>","request_id":"<caller correlation ID>","authorization":"<current user/tool approval reference>","timeout_seconds":120}
-```
-
-A correlation ID is allocated before calling a tool; preserve any later provider
-request ID in raw evidence. Use `pending` instead of `begin` when the platform
-explicitly reports an approval wait. If an already-submitted request enters an
-approval wait, record it as pending at initial adoption; for ongoing calls use
-`await_approval` (same request ID), never submit it again. A later `begin` from
-pending records that **same request** moving to IO after actual approval; it does
-not authorize a second invocation. If the API does not expose approval state,
-record `uncertain`, not an invented approval status. An explicit policy denial
-uses `deny`, with `{"id":"...","evidence":"<raw response path/reason>"}`.
-Denied operations cannot be restarted or reconciled by this helper. Seek the
-specific authorization through the platform when needed, without another route.
-
-`evidence.json`, collected by the caller from the exact remote target:
-
-```json
-{"id":"<returned id>","evidence":{"read_only":true,"source":"https://api.github.com/repos/sys8994/honro/git/ref/heads/master","checked_at":"2026-10-13T23:00:00Z","repository":"sys8994/honro","kind":"ref","target":"heads/master","observed":{"sha":"0123456789012345678901234567890123456789"}}}
-```
-
-Read existing blob/tree/commit/ref objects through the available authorized
-connector. Normalize only fields actually read. A mismatch or missing object
-leaves the operation unresolved: an external request can still finish later.
-Matching positive evidence may resolve an interrupted operation without a retry.
-The helper has no automatic retry. `end_no_effect` is permitted only with
-explicit authoritative termination of the exact old request and a fresh remote
-absence check after termination. Its input is `id` plus `evidence` containing
-`request_id`, `tool_ended: true`, `tool_source`, `outcome` (failed/cancelled/expired),
-`approval_resolution` (not_required/approved/cancelled/expired), numeric Unix
-`ended_at`, and `remote` containing `read_only: true`, `absent: true`, `source`,
-numeric `checked_at`, `repository`, `kind`, `target`, and the exact `expected`
-identity. For a ref, absence means the intended target SHA was not applied;
-record the actual observed ref in the raw source. The provider must attest the
-call has ended, not merely that its local polling deadline expired.
-A missing object alone, an unresolved approval, or a possibly-running call can
-never unlock retry. Once state is `no_effect`, `retry` needs `id` and a renewed
-explicit `authorization` reference. It preserves prior request IDs and evidence,
-returns to planned, and requires a new request ID for the next submission. Any
-new mandatory approval still applies. Denied operations cannot use this path. For refs, the caller must still use an expected-old-SHA/CAS non-force
-update; the guard does not implement a remote compare-and-swap.
-
-## Concurrency, deadlines and recovery
-
-- `flock` protects each journal transaction; atomic replace + file and directory
-  fsync persist it. A persistent owner token spans external calls. Elapsed time
-  never steals ownership. This is a local/cooperative lock, not a distributed
-  GitHub lock; all coordinators must share the same path and honor it.
-- One coordinator may run up to three independent blob calls. Running **and
-  uncertain** blobs count toward that bound, since uncertainty is not cancellation.
-  The same object is never submitted twice. Non-blob IO is serialized. A distinct
-  historical approval wait does not block production. The same target's pending
-  or uncertain operation always blocks another write to that target.
-- Backfill cannot start while planned production operations remain unverified.
-  Explicit dependencies must succeed before their consumer can begin. A receipt
-  for the production snapshot can be validated even with historical work pending.
-- Call `tick` on progress/status checks, including after a tool wait yields.
-  Deadlines are 1–1200 seconds, scoped per approval/IO phase. Expiry records a
-  report/reconcile escalation; IO becomes `uncertain_write`. Approval stays
-  `approval_pending`. **No cancellation, approval bypass or retry occurs.** The
-  caller must report blockers and schedule the next read-only check; this CLI has
-  no timer or user messaging access. A blocked synchronous call cannot be forcibly
-  interrupted by this process.
-- On interruption, inspect the old coordinator and any original tool handle.
-  Only after independently verifying that the coordinator stopped may a new owner
-  call `recover` with `previous_owner`, `coordinator_stopped: true`, and `evidence`.
-  Recovery changes running IO to uncertain, not planned. Pending approvals remain
-  pending. Local process death is not evidence that remote IO stopped. `release`
-  refuses unresolved calls. Never delete a lock/journal to unblock a write.
-- `report` emits status, overdue flags, elapsed seconds per phase, production
-  blockers and the longest observed production phase. It does not invent a
-  dependency critical path or combine parallel durations into wall time.
-
-## Final deployment receipt
-
-Use `receipt` with `{"manifest": ..., "receipt": ...}`. The manifest pins
-`master` and `files: {"HONRO.html":"<sha256>","HONRO_WORKSHOP.html":"<sha256>"}`
-from the tested final build. The receipt has `master`, `master_verified: true`,
-`pages_head_sha`, `pages_run`, `pages_url`, `pages_status: "completed"`,
-`pages_conclusion: "success"`, and `public_bytes`. Pages SHA must equal master.
-Each of exactly four distinct rows has `url`, `status: 200`, `sha256`, and
-`checked_at`: normal and `?release=<master SHA>` URLs for both HTMLs at the
-existing `https://sys8994.github.io/honro/` site. Hashes must match the manifest;
-`matches: true` alone is insufficient. Older receipts lacking Pages run SHA must
-be supplemented by a real read of that run, not fabricated fields.
-
-The guard validates caller-supplied evidence structure/equality, not its provenance
-or freshness. Collect master, run and HTTP bytes together at final verification;
-keep the exact raw evidence. Publication verification does not certify gameplay,
-browser QA, assets, performance or the aggregate test suite. `public_qa` remains
-separate and may still be pending. Do not call a release fully verified based on
-this receipt alone.
-
-Native Git bulk transport in an authorized, configured repository environment is
-a future optimization. It needs verified setup and access. The current Gitdata
-connector workflow has no confirmed bulk push route; this helper does not create
-one, guess a proxy, copy credentials, or remove connector approvals.
-
-Run `npm run test:release-guard`. No network or remote writes occur in the tests.
-
-
-## Bounded CLI output for long-running publishers
-
-Use `--summary` on any CLI command when returning JSON through an executor/tool
-with output limits. For example:
-
-```sh
-python tools/release/guard.py "$G" tick --owner "$OWNER" --summary
-python tools/release/guard.py "$G" report --summary --summary-limit 10
-```
-
-This is an explicit presentation option: existing Python APIs and default CLI
-output are unchanged. Summary JSON uses compact whitespace and includes total
-operation count, counts for **every** status, attention count, overdue count,
-production blocker count, and a bounded attention list. Denied and uncertain
-operations come before other unresolved work; successes never crowd that list.
-The default limit is 10; `--summary-limit N` accepts 0–100. `omitted_by_status`,
-`omitted_operation_count`, and `omitted_attention_count` account for entries not
-shown. An omitted problem is still unresolved. `plan` retains its operation ID
-and status in `operation`; receipt validation retains `receipt_result`.
-
-No journal operations, evidence, receipts or history are removed or shortened.
-To inspect the full output, redirect the default output to a file and read the
-needed portions; do not send the entire accumulated report through a bounded
-executor response. The summary avoids growth with completed-operation count,
-not arbitrary-size input strings. Callers must still check exit status and JSON
-validity rather than interpreting truncated text as a successful guard decision.
+`npm run test:release-guard`는 이 도구를 수정했을 때 선택하는 오프라인 회귀 검사다. 일반 프로젝트·문서 수정이나 매 push 전에 실행하지 않는다. 도구와 기존 테스트 코드는 보존한다.

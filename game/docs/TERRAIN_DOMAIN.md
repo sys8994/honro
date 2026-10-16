@@ -34,8 +34,10 @@ Game·Stage View·Playtest는 동일한 전체 terrain 경로·재질·큰 암�
 
 `node tools/map-forge/apply-terrain-domain.mjs`는 기존 맵 제작 뒤 실행하는 명시적 전 장 이관이며 idempotent하다. `npm run migrate`의 마지막 단계다. ACT2 recipe는 기존 domain 프로젝트를 재생성하면 domain을 보존한다. Workshop에서 전체 polygon을 편집해도 stage 범위로 collision을 투영하므로 개별 고체의 옛 AABB가 내부 이동/편집을 자르지 않는다. Bounds overlay에서 Play / Camera / Visual / Terrain을 확인한다.
 
-## 검증
+## 변경 범위 확인과 선택형 검사
+
+일반 수정은 바뀐 구간의 이동·퀘스트만 확인하고, 저장/충돌/합성을 바꿨을 때 관련 호환성·화면을 추가한다. 아래는 기존 도구의 범위이며 매 수정마다 전 장 검사·120 view 캡처·manifest를 요구하지 않는다.
 
 - `npm run test:terrain-domain`: 20장/135개 collision 해시, 통로·입구, 이동 범위, 실제 낙석 복구, 새/옛 저장, malformed 입력, Workshop 편집. Native Canvas의 단일 alpha 합성, cache/pan/purity, 키 큰 사물도 검사한다.
 - `npm run capture:terrain-domain -- after`: 전 장 좌우·하단·상단·최소 줌 portrait·chamber 120 view. 선택 장 번호를 붙여 범위를 제한할 수 있다. PNG SHA-256, source commit/tree와 실제 project hash를 manifest에 기록한다.
-- migration·schema·ACT1/ACT2·환경 검사를 별도로 유지한다. Native Canvas는 브라우저 HUD/입력, 정상 전투 완주, 모바일 GPU 성능 또는 최종 미술 승인을 대신하지 않는다.
+- migration·schema·ACT1/ACT2·환경 검사는 관련 변경에 필요할 때 선택한다. Native Canvas는 브라우저 HUD/입력, 정상 전투 완주, 모바일 GPU 성능 또는 최종 미술 승인을 대신하지 않는다.

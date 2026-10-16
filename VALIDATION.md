@@ -1,4 +1,15 @@
-# 통합 검증
+# 변경에 맞는 검증
+
+- 디자인: 수정한 결과 이미지와 레퍼런스, 필요한 모션만 확인한다.
+- 스킬: 기존 정량 계산과 해당 스킬 동작만 확인한다.
+- 맵: 수정 구간의 이동·관련 퀘스트만 확인한다. 저장/충돌 로직을 바꾸면 관련 호환성도 선별 확인한다.
+- 문서: 문구·링크만 확인한다. 게임 빌드·브라우저·테스트는 실행하지 않는다.
+
+런타임·에셋 변경은 필요한 HTML 빌드와 기본 실행을 포함한다. 전체 verify, 전30장 순회, 대량 신규 회귀, 반복 스크린샷, 별도 검수자와 manifest gate는 기본 절차가 아니다. 관련 실패·기존 실패·미실행을 구분한다. 성능 검사는 관련 로직 변경이나 실제 성능 문제가 있을 때만 선택한다. 기존 테스트는 필요한 경우 재사용하도록 보존한다. 발행은 [간단한 원격·배포 절차](game/docs/RELEASE_OPERATION_GUARD.md)를 따른다.
+
+## 과거 통합 검증 기록
+
+아래 날짜별 PASS·수치·표는 당시 소스의 기록이며 현재 변경의 합격 선언이나 매번 실행할 검사항목이 아니다. 로컬 보고서 링크는 새 checkout에 없을 수 있다.
 
 **맵 장식·배경 개선(2026-09-30):** `npm.cmd run test:map-art`에서 10장 52개 장식/배경 표본의 경로 점 수가 모두 원본 2배 이내(장식 최대 1.28배, 배경 최대 1.79배)였고 Game·Workshop Stage View·Playtest 그림 일치, 브라우저 오류 0을 확인했다. 마이그레이션 10장, 브라우저 통합 47개, Stage 1·2 경로 검사도 통과했다. [전후 화면](_local/reports/map-art/index.html), [시각 검토](_local/reports/map-art/VISUAL_REVIEW.md), [제작 기준](game/docs/MAP_ART_PIPELINE.md). 전체 `verify` 재실행은 별도 진행 규칙 변경 후 10장 완료 턴을 12로 기대하는 기존 최종장 테스트에서 실패했다. [기록](game/docs/BUG_LOG.md).
 
@@ -12,7 +23,9 @@
 
 Pages 배포 구성도 별도로 검사했습니다. `index.html`·게임·편집기·BGM만 있는 `/honro/` HTTP 경로에서 기본 주소 이동(쿼리·해시 보존), 게임 시작, MP3 5개 다운로드/원본 일치, 편집기 10개 스테이지, JavaScript 없는 진입점의 5항목 PASS·브라우저 예외 0건입니다. [결과](_local/reports/pages-smoke.json). 실제 GitHub 배포는 수행하지 않았습니다. `_local/` 결과·로그·이미지는 로컬 전용이며 Git에 포함되지 않습니다.
 
-## 실행 명령과 범위
+## 선택형 전체 검사 명령과 범위
+
+광범위한 회귀 조사가 필요할 때만 아래 전체 명령을 선택한다. 일반 수정은 위의 변경별 확인으로 끝낸다. 필요한 의존성만 준비하며 이미 설치된 의존성을 다시 설치하지 않는다.
 
 ```powershell
 npm.cmd --prefix game ci
@@ -36,7 +49,7 @@ npm.cmd run verify
 | BGM browser | 실제 MP3 currentTime 증가, desktop/mobile playlist/보스/일시정지/비전투, SFX, iframe BGM와 Stop dispose. [결과](_local/reports/audio-browser.json) |
 | RC21 performance | Stage 1~4 실제 runtime, ≥50Hz, render 평균 <7ms, 시작 <500ms, heap 증가 <30MB, 파괴 후 cache invalidate. [결과](_local/game-reports/rc21-performance.json) |
 
-최종 검사 수와 성능 수치는 아래 자동 갱신 표에 기록합니다. 개별 명명된 assertion과 세부값은 각 JSON에 남습니다.
+과거 전체 실행의 검사 수와 성능 수치는 아래 자동 갱신 표에 기록돼 있습니다. 개별 명명된 assertion과 세부값은 각 JSON에 남습니다.
 
 <!-- RESULTS_START -->
 **최종 `npm run verify`: PASS (exit 0).** [실행 기록·산출물 SHA256](_local/reports/skill-presentation/verification.json)
@@ -105,7 +118,7 @@ Hz는 관측된 Scene 렌더 호출률, ms는 평균 JavaScript render 비용입
 
 기존 브라우저 검사 **8개 전체**도 같은 방식으로 비교했습니다. RC13/RC20 두 개는 양쪽 PASS, 나머지 6개는 양쪽 FAIL, 새 실패는 0개였습니다. [결과](_local/reports/historical-browser.json). 테스트의 Chrome 경로·UTF-8·이동한 소스 경로만 플랫폼에 맞췄고 원래 map revision/좌표 기대값을 새 게임에 맞춰 낮추지 않았습니다.
 
-이 실패들은 통합판 전체를 PASS라고 포장하지 않기 위해 별도 표시합니다. RC11/12/15/17/18/19의 이전 map revision·옛 layout 기대값 등은 이미 RC21에서 맞지 않습니다. 현재 합격 게이트는 RC21의 `game/package.json verify`와 새 통합 검사입니다. 실패한 과거 설계로 게임을 되돌리지 않았습니다.
+이 실패들은 통합판 전체를 PASS라고 포장하지 않기 위해 별도 표시합니다. RC11/12/15/17/18/19의 이전 map revision·옛 layout 기대값 등은 이미 RC21에서 맞지 않습니다. RC21의 `game/package.json verify`와 새 통합 검사는 필요할 때 사용하는 전체 회귀 도구이며 일반 수정의 합격 게이트가 아닙니다. 실패한 과거 설계로 게임을 되돌리지 않았습니다.
 
 재현:
 
