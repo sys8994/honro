@@ -1,0 +1,335 @@
+{
+  "stage": 25,
+  "observer": "/root/stage25_play",
+  "observedAt": "2026-10-16T00:54:49.920Z",
+  "method": "native-input",
+  "phase": "won",
+  "round": 15,
+  "actions": 77,
+  "damageEvents": 36,
+  "crossings": 5,
+  "campaign": "230b4bcc0bee391beedc7230199cf0392a255e7f29b0ce2868203b825217fcac",
+  "limits": [
+    "No direct enemy-fire/source attribution recorder: player HP loss cannot be attributed to a specific group.",
+    "Group effects below are player responses and actual damage to identified enemies.",
+    "No normal-camera pixels reviewed by this observer. No art or independent whole-gate approval."
+  ],
+  "groups": [
+    {
+      "id": "seal-approach",
+      "ids": [
+        "a3-25-seal-approach-0",
+        "a3-25-seal-approach-1"
+      ],
+      "responses": [
+        {
+          "rawIndex": 2,
+          "round": 1,
+          "actor": "mage",
+          "x": 1072.8333333333333,
+          "y": 5400,
+          "goal": "depot-entry-seal",
+          "action": "attack",
+          "skill": "M06",
+          "target": "a3-25-seal-approach-1"
+        },
+        {
+          "rawIndex": 3,
+          "round": 1,
+          "actor": "archer",
+          "x": 722.5,
+          "y": 5400,
+          "goal": "depot-entry-seal",
+          "action": "attack",
+          "skill": "A02",
+          "target": "a3-25-seal-approach-0"
+        },
+        {
+          "rawIndex": 6,
+          "round": 2,
+          "actor": "archer",
+          "x": 722.5,
+          "y": 5400,
+          "goal": "depot-entry-seal",
+          "action": "attack",
+          "skill": "A02",
+          "target": "a3-25-seal-approach-0"
+        },
+        {
+          "rawIndex": 15,
+          "round": 4,
+          "actor": "archer",
+          "x": 2162.4467788958827,
+          "y": 4950,
+          "goal": "stake-arrival-1",
+          "action": "attack",
+          "skill": "A01",
+          "target": "a3-25-seal-approach-1"
+        }
+      ],
+      "hits": [
+        {
+          "rawIndex": 0,
+          "frame": 308,
+          "round": 1,
+          "id": "a3-25-seal-approach-1",
+          "side": 1,
+          "delta": -124,
+          "hp": 1297
+        },
+        {
+          "rawIndex": 1,
+          "frame": 323,
+          "round": 1,
+          "id": "a3-25-seal-approach-1",
+          "side": 1,
+          "delta": -58,
+          "hp": 1239
+        },
+        {
+          "rawIndex": 2,
+          "frame": 399,
+          "round": 1,
+          "id": "a3-25-seal-approach-0",
+          "side": 1,
+          "delta": -809,
+          "hp": 337
+        },
+        {
+          "rawIndex": 3,
+          "frame": 428,
+          "round": 1,
+          "id": "a3-25-seal-approach-0",
+          "side": 1,
+          "delta": -163,
+          "hp": 174
+        },
+        {
+          "rawIndex": 5,
+          "frame": 503,
+          "round": 1,
+          "id": "a3-25-seal-approach-1",
+          "side": 1,
+          "delta": -69,
+          "hp": 1170
+        },
+        {
+          "rawIndex": 6,
+          "frame": 653,
+          "round": 2,
+          "id": "a3-25-seal-approach-0",
+          "side": 1,
+          "delta": -174,
+          "hp": 0
+        },
+        {
+          "rawIndex": 8,
+          "frame": 1368,
+          "round": 3,
+          "id": "a3-25-seal-approach-1",
+          "side": 1,
+          "delta": -56,
+          "hp": 1114
+        },
+        {
+          "rawIndex": 9,
+          "frame": 1808,
+          "round": 4,
+          "id": "a3-25-seal-approach-1",
+          "side": 1,
+          "delta": -82,
+          "hp": 1032
+        }
+      ],
+      "enemyHpLost": 1535
+    },
+    {
+      "id": "numbered-goods",
+      "ids": [
+        "a3-25-numbered-goods-0",
+        "a3-25-numbered-goods-1"
+      ],
+      "responses": [
+        {
+          "rawIndex": 37,
+          "round": 8,
+          "actor": "mage",
+          "x": 1472.4287576843062,
+          "y": 4167.493697283873,
+          "goal": "stake-arrival-3",
+          "action": "attack",
+          "skill": "M06",
+          "target": "a3-25-numbered-goods-0"
+        }
+      ],
+      "hits": [
+        {
+          "rawIndex": 14,
+          "frame": 4419,
+          "round": 7,
+          "id": "a3-25-numbered-goods-0",
+          "side": 1,
+          "delta": -26,
+          "hp": 1750
+        },
+        {
+          "rawIndex": 15,
+          "frame": 4658,
+          "round": 7,
+          "id": "a3-25-numbered-goods-0",
+          "side": 1,
+          "delta": -50,
+          "hp": 1700
+        },
+        {
+          "rawIndex": 16,
+          "frame": 5175,
+          "round": 8,
+          "id": "a3-25-numbered-goods-0",
+          "side": 1,
+          "delta": -264,
+          "hp": 1436
+        },
+        {
+          "rawIndex": 17,
+          "frame": 5176,
+          "round": 8,
+          "id": "a3-25-numbered-goods-0",
+          "side": 1,
+          "delta": -132,
+          "hp": 1304
+        }
+      ],
+      "enemyHpLost": 472
+    },
+    {
+      "id": "inner-store",
+      "ids": [
+        "a3-25-inner-store-0",
+        "a3-25-inner-store-1",
+        "a3-25-inner-store-2"
+      ],
+      "responses": [
+        {
+          "rawIndex": 28,
+          "round": 6,
+          "actor": "archer",
+          "x": 3254.4285953379467,
+          "y": 4500,
+          "goal": "stake-arrival-2",
+          "action": "attack",
+          "skill": "A01",
+          "target": "a3-25-inner-store-1"
+        },
+        {
+          "rawIndex": 57,
+          "round": 12,
+          "actor": "archer",
+          "x": 3525.8089525987075,
+          "y": 3600,
+          "goal": "stake-arrival-4",
+          "action": "attack",
+          "skill": "A02",
+          "target": "a3-25-inner-store-1"
+        },
+        {
+          "rawIndex": 66,
+          "round": 13,
+          "actor": "archer",
+          "x": 3482.1872740018835,
+          "y": 3600,
+          "goal": "stake-arrival-5",
+          "action": "attack",
+          "skill": "A02",
+          "target": "a3-25-inner-store-1"
+        },
+        {
+          "rawIndex": 71,
+          "round": 14,
+          "actor": "archer",
+          "x": 3149.1265349909004,
+          "y": 3150,
+          "goal": "stake-arrival-5",
+          "action": "attack",
+          "skill": "A02",
+          "target": "a3-25-inner-store-0"
+        }
+      ],
+      "hits": [
+        {
+          "rawIndex": 11,
+          "frame": 3460,
+          "round": 6,
+          "id": "a3-25-inner-store-1",
+          "side": 1,
+          "delta": -106,
+          "hp": 1040
+        },
+        {
+          "rawIndex": 12,
+          "frame": 3491,
+          "round": 6,
+          "id": "a3-25-inner-store-1",
+          "side": 1,
+          "delta": -83,
+          "hp": 957
+        },
+        {
+          "rawIndex": 24,
+          "frame": 8108,
+          "round": 12,
+          "id": "a3-25-inner-store-1",
+          "side": 1,
+          "delta": -383,
+          "hp": 574
+        },
+        {
+          "rawIndex": 25,
+          "frame": 8137,
+          "round": 12,
+          "id": "a3-25-inner-store-1",
+          "side": 1,
+          "delta": -336,
+          "hp": 238
+        },
+        {
+          "rawIndex": 27,
+          "frame": 8367,
+          "round": 12,
+          "id": "a3-25-inner-store-0",
+          "side": 1,
+          "delta": -39,
+          "hp": 1107
+        },
+        {
+          "rawIndex": 29,
+          "frame": 8976,
+          "round": 13,
+          "id": "a3-25-inner-store-1",
+          "side": 1,
+          "delta": -238,
+          "hp": 0
+        },
+        {
+          "rawIndex": 32,
+          "frame": 9808,
+          "round": 14,
+          "id": "a3-25-inner-store-0",
+          "side": 1,
+          "delta": -451,
+          "hp": 656
+        },
+        {
+          "rawIndex": 33,
+          "frame": 9837,
+          "round": 14,
+          "id": "a3-25-inner-store-0",
+          "side": 1,
+          "delta": -189,
+          "hp": 467
+        }
+      ],
+      "enemyHpLost": 1825
+    }
+  ]
+}
