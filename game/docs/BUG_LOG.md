@@ -3004,4 +3004,4 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 
 서쪽 oneWay 지붕과 지면 사이230~250 간격이 기본 점프217.8을 넘었다. 새 맵의 지붕과 정확히 그 지붕을 지지면으로 쓰는 초기 적/증원만40 낮췄다. 기존 목재 발판 탄 규칙·oneWay·내려오기와 선박/목표/탈출 계약은 유지한다. 구조물 내부 solid 충돌은 추가하지 않았다. 저작 보정은 runtime에 로드하지 않으며 PC/모바일 실제 Continue에서 옛5220 지붕 저장의 전체 지형 보존을 확인했다.
 
-네 주인공×두 지붕8개 실제 물리 사례와 Chromium8프레임, Workshop PC/모바일, 보존 경계 및 build 통과. 지붕 변경 후 정상자원 검사는 진행 중이다. 앞선 cape 접근 원본 실행은R17 승리/3생존, cape-watch 행동3/피해109로 선택경로 실효 교전 확인; 궁수 사망은 소단 아군 오사577이며 전원생존으로 보고하지 않는다. 사용자 개별 이미지 대기는 해제됐으나 master/Pages는 부모 단일 조정 대상이다. 공식 사진 픽셀·encounter gate pending 제약은 유지한다. 상세 증거 `review/stage30/README.md`.
+네 주인공×두 지붕8개 실제 물리 사례와 Chromium8프레임, Workshop PC/모바일, 보존 경계 및 build 통과. 지붕 변경 후 정상자원1회 검사도R15 전원 생존/피해2011/소모품0/방어3/정착1/Continue2로 완료했다. 보정 전R11/1178과 차이가 있으며 동일 난도 승인을 주장하지 않는다. 앞선 cape 접근 원본 실행은R17 승리/3생존, cape-watch 행동3/피해109로 선택경로 실효 교전 확인; 궁수 사망은 소단 아군 오사577이며 전원생존으로 보고하지 않는다. 사용자 개별 이미지 대기는 해제됐으나 master/Pages는 부모 단일 조정 대상이다. 공식 사진 픽셀·encounter gate pending 제약은 유지한다. 상세 증거 `review/stage30/README.md`.

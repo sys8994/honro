@@ -59,4 +59,4 @@
 
 `stage30-roof-access.mjs`의 네 주인공×양쪽 지붕8사례에서 아래에서 머리 관통, 기본 점프 착지, 아래점프와 지상 복귀, 서쪽 하부 보행을 확인했다. 초기 위치와 고립된 배우를 사용하는 지형 fixture이며 정상 전투 완주가 아니다. `roof-access.json`과 `roof/`의 실제 Chromium PC/모바일 under/rising/landed/drop-return8PNG가 증거다. `roof/browser.json`에는 옛 정상실행R9 저장의 지붕5220과 전체 지형을 그대로 Continue한 대조도 있다. 저작 도구는 새 맵만 수정하며 runtime/Continue에서는 호출하지 않는다.
 
-`desktop-normal-play-hold-replay.png`와 모바일 동명 그림은 **보정 전 저장의 옛 지형**에 현재 지붕 미술을 적용한 복구 화면이다. 다른 신규 시작/지붕 PNG와 혼동하지 않는다. 최신 build, 미술 순수성/재생성, 물리 변경 경계, Workshop PC/모바일 재검사 통과. 변경 후 정상자원1회 실행은 진행 중이며 완료 결과를 별도 보존한다.
+`desktop-normal-play-hold-replay.png`와 모바일 동명 그림은 **보정 전 저장의 옛 지형**에 현재 지붕 미술을 적용한 복구 화면이다. 다른 신규 시작/지붕 PNG와 혼동하지 않는다. 최신 build, 미술 순수성/재생성, 물리 변경 경계, Workshop PC/모바일 재검사 통과. 변경 후 정상자원1회 실행도 완료했다: R15 승리, 전원 생존, 피해2011, 소모품0, 방어3/정착1/Continue2. `evidence/roof/`에 원본 결과와 trace를 보존한다. 보정 전 auto의 R11/피해1178과 결과 차이가 있으며 동일 난도나 품질 승인을 주장하지 않는다. 실행 당시 checkoutCommit은775cb53이었으나 dirty 지붕 수정본으로 실행했고, 원본 canonicalProjectSha256 `80c450219530d13106cd0cfab768d4aafb3e9b5196f9053d67e574e3c142d761`는 런타임에서 구성한 프로젝트의 원본 provenance 값이다(파일 바이트 해시와 구분). 저작 보정의 현재 데이터 재적용도 바이트 불변이다.
